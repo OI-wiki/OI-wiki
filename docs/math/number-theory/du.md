@@ -15,7 +15,7 @@ $$
 \end{aligned}
 $$
 
-其中 $f*g$ 为数论函数 $f$ 和 $g$ 的狄利克雷卷积。
+其中 $f*g$ 为数论函数 $f$ 和 $g$ 的 [狄利克雷卷积](../poly/dgf.md#dirichlet-%E5%8D%B7%E7%A7%AF)。
 
 ???+ note "略证"
     $g(d)f\left(\frac{i}{d}\right)$ 就是对所有 $i\leq n$ 的做贡献，因此变换枚举顺序，枚举 $d$,$\frac{i}{d}$（分别对应新的 $i,j$）
@@ -39,13 +39,21 @@ $$
 
 假如我们可以构造恰当的数论函数 $g$ 使得：
 
-1. 可以快速计算 $\sum_{i=1}^n(f * g)(i)$；
-2. 可以快速计算 $g$ 的单点值以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$。
+1.  可以快速计算 $\sum_{i=1}^n(f * g)(i)$；
+2.  可以快速计算 $g$ 的单点值，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$。
 
 则我们可以在较短时间内求得 $g(1)S(n)$。
 
 ???+ warning "注意"
-    无论数论函数 $f$ 是否为积性函数，只要可以快速求出 $\sum_{i=1}^n(f * g)(i)$, 便都可以考虑用杜教筛求 $f$ 的前缀和。
+    无论数论函数 $f$ 是否为积性函数，只要可以构造出恰当的数论函数 $g$, 便都可以考虑用杜教筛求 $f$ 的前缀和。
+    
+    如考虑 $f(n)=\mathrm{i}\varphi(n)$, 显然 $f$ 不是积性函数，但可取 $g(n)=1$, 从而：
+    
+    $$
+    \sum_{k=1}^n (f*g)(k)=\mathrm{i}\frac{n(n+1)}{2}
+    $$
+    
+    计算 $\sum_k (f*g)(k)$ 和 $g$ 的时间复杂度均为 $O(1)$, 故可以考虑使用杜教筛。
 
 ## 时间复杂度
 
@@ -62,11 +70,14 @@ T(n)=O\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\sqrt{n}} T\left(\left\lfloor\fra
 $$
 
 $$
-\begin{alignat}
+\begin{aligned}
     T\left(\left\lfloor\frac{n}{i}\right\rfloor\right) & =O\left(\sqrt{\frac{n}{i}}\right)+O\left(\sum_{j=2}^{\sqrt{\frac{n}{i}}} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right) \\
                                                        & =O\left(\sqrt{\frac{n}{i}}\right)
-\end{alignat}
+\end{aligned}
 $$
+
+???+ note
+    $O\left(\sum_{j=2}^{\sqrt{\frac{n}{i}}} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right)$ 视作高阶无穷小，从而可以舍去。
 
 故：
 
@@ -78,7 +89,7 @@ $$
 \end{aligned}
 $$
 
-如果 $f$ 是积性函数，则我们可以通过线性筛预处理出 $S(1)$ 到 $S(k)$ 的值，此时的 $\sum_i S\left(\left\lfloor \dfrac{n}{i}\right\rfloor\right)$ 中我们只需要计算 $k<\left\lfloor \dfrac{n}{i}\right\rfloor\leq n$ 的部分。设计算这一部分的复杂度为 $T'(n)$，则有：
+如果可以通过线性筛预处理出 $S(1)$ 到 $S(k)$ 的值，此时的 $\sum_i S\left(\left\lfloor \dfrac{n}{i}\right\rfloor\right)$ 中我们只需要计算 $k<\left\lfloor \dfrac{n}{i}\right\rfloor\leq n$ 的部分。设计算这一部分的复杂度为 $T'(n)$，则有：
 
 $$
 \begin{aligned}
@@ -104,34 +115,34 @@ $$
     求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值，$1\leq n<2^{31}$.
 
 === "莫比乌斯函数前缀和"
-    
+
     我们知道：
-    
+
     $$
     \epsilon = [n=1] = \mu * 1 = \sum_{d \mid n} \mu(d)
     $$
-    
+
     $$
     \begin{aligned}
         S_1(n) & =\sum_{i=1}^n \epsilon (i)-\sum_{i=2}^n S_1 \left(\left\lfloor \frac n i \right\rfloor\right) \\
                & = 1-\sum_{i=2}^n S_1\left(\left\lfloor \frac n i \right\rfloor\right)
     \end{aligned}
     $$
-    
+
     观察到 $\left\lfloor \dfrac n i \right\rfloor$ 最多只有 $O(\sqrt n)$ 种取值，我们就可以应用 [整除分块/数论分块](./sqrt-decomposition.md) 来计算每一项的值了。
-    
+
     直接计算的时间复杂度为 $O\left(n^{\frac 3 4}\right)$。考虑先线性筛预处理出前 $n^{\frac 2 3}$ 项，剩余部分的时间复杂度为
-    
+
     $$
     O\left(\int_{0}^{n^{1/3}} \sqrt{\frac{n}{x}} ~ \mathrm{d}x\right)=O\left(n^{\frac 2 3}\right)
     $$
-    
+
     对于较大的值，需要用 `map` / `unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
-    
+
 === "欧拉函数前缀和"
-    
-    当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演：
-    
+
+    当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演。
+
     === "莫比乌斯反演"
         
         $$
