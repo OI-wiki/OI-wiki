@@ -96,72 +96,76 @@ $$
 
 由均值不等式可知，当 $k=\Theta\left(n^{\frac{2}{3}}\right)$ 时，$T(n)$ 取得最小值 $O\left(n^{\frac{2}{3}}\right)$.
 
-## 问题一
+## 例题
+
+### 问题一
 
 ???+ note "[P4213【模板】杜教筛（Sum）](https://www.luogu.com.cn/problem/P4213)"
     求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值，$1\leq n<2^{31}$.
 
-### 莫比乌斯函数前缀和
-
-我们知道：
-
-$$
-\epsilon = [n=1] = \mu * 1 = \sum_{d \mid n} \mu(d)
-$$
-
-$$
-\begin{aligned}
-    S_1(n) & =\sum_{i=1}^n \epsilon (i)-\sum_{i=2}^n S_1 \left(\left\lfloor \frac n i \right\rfloor\right) \\
-           & = 1-\sum_{i=2}^n S_1\left(\left\lfloor \frac n i \right\rfloor\right)
-\end{aligned}
-$$
-
-观察到 $\left\lfloor \dfrac n i \right\rfloor$ 最多只有 $O(\sqrt n)$ 种取值，我们就可以应用 [整除分块/数论分块](./sqrt-decomposition.md) 来计算每一项的值了。
-
-直接计算的时间复杂度为 $O\left(n^{\frac 3 4}\right)$。考虑先线性筛预处理出前 $n^{\frac 2 3}$ 项，剩余部分的时间复杂度为
-
-$$
-O\left(\int_{0}^{n^{1/3}} \sqrt{\frac{n}{x}} ~ \mathrm{d}x\right)=O\left(n^{\frac 2 3}\right)
-$$
-
-对于较大的值，需要用 `map` / `unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
-
-### 欧拉函数前缀和
-
-当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演：
-
-$$
-\begin{aligned}
-    \sum_{i=1}^n \sum_{j=1}^n [\gcd(i,j)=1] & =\sum_{i=1}^n \sum_{j=1}^n \sum_{d \mid i,d \mid j} \mu(d)    \\
-                                            & =\sum_{d=1}^n \mu(d) {\left\lfloor \frac n d \right\rfloor}^2
-\end{aligned}
-$$
-
-由于题目所求的是 $\sum_{i=1}^n \sum_{j=1}^i [\gcd(i,j)=1]$, 所以我们排除掉 $i=1,j=1$ 的情况，并将结果除以 $2$ 即可。
-
-观察到，只需求出莫比乌斯函数的前缀和，就可以快速计算出欧拉函数的前缀和了。时间复杂度 $O\left(n^{\frac 2 3}\right)$.
-
-#### 使用杜教筛求解
-
-求 $S(n)=\sum_{i=1}^n\varphi(i)$.
-
-同样的，$\varphi * 1=\operatorname{id}$
-
-$$
-\begin{aligned}
-    \sum_{i=1}^n(\varphi * 1)(i)     & =\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)            \\
-    \sum_{i=1}^n\operatorname{id}(i) & =\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)            \\
-    \frac{1}{2}n(n+1)                & =\sum_{i=1}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)                   \\
-    S(n)                             & =\frac{1}{2}n(n+1)-\sum_{i=2}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right) \\
-\end{aligned}
-$$
+=== "莫比乌斯函数前缀和"
+    
+    我们知道：
+    
+    $$
+    \epsilon = [n=1] = \mu * 1 = \sum_{d \mid n} \mu(d)
+    $$
+    
+    $$
+    \begin{aligned}
+        S_1(n) & =\sum_{i=1}^n \epsilon (i)-\sum_{i=2}^n S_1 \left(\left\lfloor \frac n i \right\rfloor\right) \\
+               & = 1-\sum_{i=2}^n S_1\left(\left\lfloor \frac n i \right\rfloor\right)
+    \end{aligned}
+    $$
+    
+    观察到 $\left\lfloor \dfrac n i \right\rfloor$ 最多只有 $O(\sqrt n)$ 种取值，我们就可以应用 [整除分块/数论分块](./sqrt-decomposition.md) 来计算每一项的值了。
+    
+    直接计算的时间复杂度为 $O\left(n^{\frac 3 4}\right)$。考虑先线性筛预处理出前 $n^{\frac 2 3}$ 项，剩余部分的时间复杂度为
+    
+    $$
+    O\left(\int_{0}^{n^{1/3}} \sqrt{\frac{n}{x}} ~ \mathrm{d}x\right)=O\left(n^{\frac 2 3}\right)
+    $$
+    
+    对于较大的值，需要用 `map` / `unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
+    
+=== "欧拉函数前缀和"
+    
+    当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演：
+    
+    === "莫比乌斯反演"
+        
+        $$
+        \begin{aligned}
+            \sum_{i=1}^n \sum_{j=1}^n [\gcd(i,j)=1] & =\sum_{i=1}^n \sum_{j=1}^n \sum_{d \mid i,d \mid j} \mu(d)    \\
+                                                    & =\sum_{d=1}^n \mu(d) {\left\lfloor \frac n d \right\rfloor}^2
+        \end{aligned}
+        $$
+        
+        由于题目所求的是 $\sum_{i=1}^n \sum_{j=1}^i [\gcd(i,j)=1]$, 所以我们排除掉 $i=1,j=1$ 的情况，并将结果除以 $2$ 即可。
+        
+        观察到，只需求出莫比乌斯函数的前缀和，就可以快速计算出欧拉函数的前缀和了。时间复杂度 $O\left(n^{\frac 2 3}\right)$.
+        
+    === "杜教筛"
+        
+        求 $S(n)=\sum_{i=1}^n\varphi(i)$.
+        
+        同样的，$\varphi * 1=\operatorname{id}$
+        
+        $$
+        \begin{aligned}
+            \sum_{i=1}^n(\varphi * 1)(i)     & =\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)            \\
+            \sum_{i=1}^n\operatorname{id}(i) & =\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)            \\
+            \frac{1}{2}n(n+1)                & =\sum_{i=1}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)                   \\
+            S(n)                             & =\frac{1}{2}n(n+1)-\sum_{i=2}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right) \\
+        \end{aligned}
+        $$
 
 ??? note "代码实现"
     ```cpp
     --8<-- "docs/math/code/du/du_1.cpp"
     ```
 
-## 问题二
+### 问题二
 
 ???+ note "[「LuoguP3768」简单的数学题](https://www.luogu.com.cn/problem/P3768)"
     大意：求
