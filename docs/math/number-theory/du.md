@@ -4,13 +4,15 @@ author: hsfzLZH1, sshwy, StudyingFather, Marcythm
 
 ## 算法思想
 
-
 我们想办法构造一个 $S(n)$ 关于 $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 的递推式。
 
 对于任意一个数论函数 $g$，必满足：
 
 $$
-\sum_{i=1}^{n}(f * g)(i)=\sum_{i=1}^{n}\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right)=\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\begin{aligned}
+    \sum_{i=1}^{n}(f * g)(i) & =\sum_{i=1}^{n}\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right)           \\
+                             & =\sum_{i=1}^{n}g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+\end{aligned}
 $$
 
 其中 $f*g$ 为数论函数 $f$ 和 $g$ 的狄利克雷卷积。
@@ -20,9 +22,9 @@ $$
     
     $$
     \begin{aligned}
-    \sum_{i=1}^n\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right)&=\sum_{i=1}^n\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}g(i)f(j)\\
-    &=\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}f(j)\\
-    &=\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+        \sum_{i=1}^n\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right) & =\sum_{i=1}^n\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}g(i)f(j) \\
+                                                                 & =\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}f(j) \\
+                                                                 & =\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
     \end{aligned}
     $$
 
@@ -30,14 +32,16 @@ $$
 
 $$
 \begin{aligned}
-g(1)S(n)	& = \sum_{i=1}^n g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right) - \sum_{i=2}^n g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right) \\
-			& = \sum_{i=1}^n (f * g)(i) - \sum_{i=2}^n g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right) \\
+    g(1)S(n) & = \sum_{i=1}^n g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right) - \sum_{i=2}^n g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right) \\
+             & = \sum_{i=1}^n (f * g)(i) - \sum_{i=2}^n g(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
 \end{aligned}
 $$
 
 假如我们可以构造恰当的数论函数 $g$ 使得：
+
 1. 可以快速计算 $\sum_{i=1}^n(f * g)(i)$；
 2. 可以快速计算 $g$ 的单点值以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$。
+
 则我们可以在较短时间内求得 $g(1)S(n)$。
 
 ???+ warning "注意"
@@ -58,16 +62,19 @@ T(n)=O\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\sqrt{n}} T\left(\left\lfloor\fra
 $$
 
 $$
-T\left(\left\lfloor\frac{n}{i}\right\rfloor\right)=O\left(\sqrt{\frac{n}{i}}\right)+O\left(\sum_{j=2}^{\sqrt{\frac{n}{i}}} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right)=O\left(\sqrt{\frac{n}{i}}\right)
+\begin{alignat}
+    T\left(\left\lfloor\frac{n}{i}\right\rfloor\right) & =O\left(\sqrt{\frac{n}{i}}\right)+O\left(\sum_{j=2}^{\sqrt{\frac{n}{i}}} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right) \\
+                                                       & =O\left(\sqrt{\frac{n}{i}}\right)
+\end{alignat}
 $$
 
 故：
 
 $$
 \begin{aligned}
-    T(n)&=O\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\sqrt{n}} \sqrt{\frac{n}{i}}\right)=O\left(\sum_{i=2}^{\sqrt{n}} \sqrt{\frac{n}{i}}\right)\\
-    &=O\left(\int_{0}^{\sqrt{n}}\sqrt{\frac{n}{x}}\mathrm{d}x\right)\\
-    &=O\left(n^{\frac{3}{4}}\right)
+    T(n) & =O\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\sqrt{n}} \sqrt{\frac{n}{i}}\right)=O\left(\sum_{i=2}^{\sqrt{n}} \sqrt{\frac{n}{i}}\right) \\
+         & =O\left(\int_{0}^{\sqrt{n}}\sqrt{\frac{n}{x}}\mathrm{d}x\right)                                                                       \\
+         & =O\left(n^{\frac{3}{4}}\right)
 \end{aligned}
 $$
 
@@ -75,9 +82,9 @@ $$
 
 $$
 \begin{aligned}
-    T'(n)&=O\left(\sum_{i=2}^{\frac{n}{k}} \sqrt{\frac{n}{i}}\right)\\
-    &=O\left(\int_{0}^{\frac{n}{k}}\sqrt{\frac{n}{x}}\mathrm{d}x\right)\\
-    &=O\left(\frac{n}{\sqrt{k}}\right)
+    T'(n) & =O\left(\sum_{i=2}^{\frac{n}{k}} \sqrt{\frac{n}{i}}\right)         \\
+          & =O\left(\int_{0}^{\frac{n}{k}}\sqrt{\frac{n}{x}}\mathrm{d}x\right) \\
+          & =O\left(\frac{n}{\sqrt{k}}\right)
 \end{aligned}
 $$
 
@@ -104,9 +111,8 @@ $$
 
 $$
 \begin{aligned}
-    S_1(n)&=\sum_{i=1}^n \epsilon (i)-\sum_{i=2}^n S_1
-    \left(\left\lfloor \frac n i \right\rfloor\right)\\
-    &= 1-\sum_{i=2}^n S_1\left(\left\lfloor \frac n i \right\rfloor\right)
+    S_1(n) & =\sum_{i=1}^n \epsilon (i)-\sum_{i=2}^n S_1 \left(\left\lfloor \frac n i \right\rfloor\right) \\
+           & = 1-\sum_{i=2}^n S_1\left(\left\lfloor \frac n i \right\rfloor\right)
 \end{aligned}
 $$
 
@@ -115,10 +121,10 @@ $$
 直接计算的时间复杂度为 $O\left(n^{\frac 3 4}\right)$。考虑先线性筛预处理出前 $n^{\frac 2 3}$ 项，剩余部分的时间复杂度为
 
 $$
-O\left(\int_{0}^{n^{1/3}} \sqrt{\frac{n}{x}} ~ dx\right)=O\left(n^{\frac 2 3}\right)
+O\left(\int_{0}^{n^{1/3}} \sqrt{\frac{n}{x}} ~ \mathrm{d}x\right)=O\left(n^{\frac 2 3}\right)
 $$
 
-对于较大的值，需要用 `map/unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
+对于较大的值，需要用 `map` / `unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
 
 ### 欧拉函数前缀和
 
@@ -126,8 +132,8 @@ $$
 
 $$
 \begin{aligned}
-    \sum_{i=1}^n \sum_{j=1}^n [\gcd(i,j)=1]&=\sum_{i=1}^n \sum_{j=1}^n \sum_{d \mid i,d \mid j} \mu(d)\\
-    &=\sum_{d=1}^n \mu(d) {\left\lfloor \frac n d \right\rfloor}^2
+    \sum_{i=1}^n \sum_{j=1}^n [\gcd(i,j)=1] & =\sum_{i=1}^n \sum_{j=1}^n \sum_{d \mid i,d \mid j} \mu(d)    \\
+                                            & =\sum_{d=1}^n \mu(d) {\left\lfloor \frac n d \right\rfloor}^2
 \end{aligned}
 $$
 
@@ -143,10 +149,10 @@ $$
 
 $$
 \begin{aligned}
-\sum_{i=1}^n(\varphi * 1)(i)&=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-\sum_{i=1}^n\operatorname{id}(i)&=\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-\frac{1}{2}n(n+1)&=\sum_{i=1}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-S(n)&=\frac{1}{2}n(n+1)-\sum_{i=2}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+    \sum_{i=1}^n(\varphi * 1)(i)     & =\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)            \\
+    \sum_{i=1}^n\operatorname{id}(i) & =\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)            \\
+    \frac{1}{2}n(n+1)                & =\sum_{i=1}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)                   \\
+    S(n)                             & =\frac{1}{2}n(n+1)-\sum_{i=2}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right) \\
 \end{aligned}
 $$
 
@@ -166,11 +172,13 @@ $$
     
     其中 $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$,$p$ 是质数。
 
-利用 $\varphi * 1=\operatorname{id}$ 做莫比乌斯反演化为
+利用 $\varphi * 1=\operatorname{id}$ 做莫比乌斯反演化为：
 
 $$
-\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)\quad\left(F(n)=\frac{1}{2}n\left(n+1\right)\right)
+\sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
 $$
+
+其中 $F(n)=\frac{1}{2}n(n+1)$
 
 对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
 
@@ -182,7 +190,7 @@ $$
 S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(\operatorname{id}^2\varphi)(i)
 $$
 
-需要构造积性函数 $g$，使得 $f\times g$ 和 $g$ 能快速求和
+需要构造积性函数 $g$，使得 $f\times g$ 和 $g$ 能快速求和。
 
 单纯的 $\varphi$ 的前缀和可以用 $\varphi * 1$ 的杜教筛处理，但是这里的 $f$ 多了一个 $\operatorname{id}^2$，那么我们就卷一个 $\operatorname{id}^2$ 上去，让它变成常数：
 
@@ -194,10 +202,10 @@ $$
 
 $$
 \begin{aligned}
-((\operatorname{id}^2\varphi)* \operatorname{id}^2)(i)&=\sum_{d \mid i}\left(\operatorname{id}^2\varphi\right)(d)\operatorname{id}^2\left(\frac{i}{d}\right)\\
-&=\sum_{d \mid i}d^2\varphi(d)\left(\frac{i}{d}\right)^2\\
-&=\sum_{d \mid i}i^2\varphi(d)=i^2\sum_{d \mid i}\varphi(d)\\
-&=i^2(\varphi*1)(i)=i^3
+    ((\operatorname{id}^2\varphi)* \operatorname{id}^2)(i) & =\sum_{d \mid i}\left(\operatorname{id}^2\varphi\right)(d)\operatorname{id}^2\left(\frac{i}{d}\right) \\
+                                                           & =\sum_{d \mid i}d^2\varphi(d)\left(\frac{i}{d}\right)^2                                               \\
+                                                           & =\sum_{d \mid i}i^2\varphi(d)=i^2\sum_{d \mid i}\varphi(d)                                            \\
+                                                           & =i^2(\varphi*1)(i)=i^3
 \end{aligned}
 $$
 
@@ -205,13 +213,13 @@ $$
 
 $$
 \begin{aligned}
-S(n)&=\sum_{i=1}^n\left((\operatorname{id}^2\varphi)* \operatorname{id}^2\right)(i)-\sum_{i=2}^n\operatorname{id}^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-&=\sum_{i=1}^ni^3-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
-&=\left(\frac{1}{2}n(n+1)\right)^2-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\\
+    S(n) & =\sum_{i=1}^n\left((\operatorname{id}^2\varphi)* \operatorname{id}^2\right)(i)-\sum_{i=2}^n\operatorname{id}^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right) \\
+         & =\sum_{i=1}^ni^3-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)                                                                                  \\
+         & =\left(\frac{1}{2}n(n+1)\right)^2-\sum_{i=2}^ni^2S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)                                                                 \\
 \end{aligned}
 $$
 
-分块求解即可
+分块求解即可。
 
 ??? note "代码实现"
     ```cpp
