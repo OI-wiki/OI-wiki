@@ -259,4 +259,4 @@ $$
 ??? note "实现"
     ```c++
     --8<-- "docs/math/code/pollard-rho/pollard-rho_1.cpp"
-    ```  
+    ```
