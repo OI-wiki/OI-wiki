@@ -1044,7 +1044,7 @@ public class Main {
 |  `remove()`   | 将队头元素删除，并返回该元素  |
 |  `peekFirst()`   | 返回队头元素  |
 |  `peekLast()`   | 返回队尾元素 |
-.
+
 `add`、`remove` 操作在遇到异常时会抛出异常，而`offer`、 `poll` 不会抛出异常。
 
 #### 栈的操作
@@ -1052,9 +1052,9 @@ public class Main {
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class OIWIKI {
+public class Main {
     static Deque<Integer> stack = new ArrayDeque<>();
-    static int a[] = {1, 2, 3, 4, 5};
+    static int[] a = {1, 2, 3, 4, 5};
 
     public static void main(String[] args) {
         for (int v : a) stack.push(v);
@@ -1144,8 +1144,8 @@ TreeSet<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // 降序
 |:-----------------------:|:--------------------------------:|
 |         `first()`          |         返回 this 中第一个元素，无则返回 null         |
 |         `last()`          |         返回 this 中最后一个元素，无则返回 null         |
-|    `floor(Integer val)`     |       返回集合中 >=val 的第一个元素，无则返回 null        |
-|  `ceil(Integer val)`  |     返回集合中 <=val 的第一个元素，无则返回 null      |
+|    `floor(Integer val)`     |       返回集合中 <=val 的第一个元素，无则返回 null        |
+|  `ceiling(Integer val)`  |     返回集合中 >=val 的第一个元素，无则返回 null      |
 |  `higher(Integer val)`   | 返回集合中 >val 的第一个元素，无则返回 null|
 | `lower(Integer val)` |  返回集合中 <val 的第一个元素，无则返回 null  |
 | `pollFirst()` |    返回并删除 this 中第一个元素，无则返回 null     |
@@ -1157,20 +1157,29 @@ TreeSet<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // 降序
 import java.util.TreeSet;
 
 public class Main {
-    static int a[] = {4,7,1,2,3,6};
-    static void test() {
-        TreeSet<Integer> s3 = new TreeSet<>();
+    static int[] a = {4,7,1,2,3,6};
+
+    public static void main(String[] args){
+        TreeSet<Integer> set = new TreeSet<>();
         for(int v:a){
-            s3.add(v);
+            set.add(v);
         }
-        Integer a2 = s3.first(); //返回 1
-        Integer a3 = s3.last(); //返回 7
-        Integer a4 = s3.floor(5); //返回 6
-        Integer a5 = s3.ceil(6); //返回 5
-        Integer a6 = s3.higher(7); //返回 null 
-        Integer a7 = s3.lower(2); //返回 1
-        Integer a8 = s3.pollFirst(); //返回 1
-        Integer a9 = s3.pollLast(); //返回 7
+        Integer a2 = set.first();
+        System.out.println(a2); //返回 1
+        Integer a3 = set.last();
+        System.out.println(a3); //返回 7
+        Integer a4 = set.floor(5);
+        System.out.println(a4); //返回 4
+        Integer a5 = set.ceiling(6);
+        System.out.println(a5); //返回 6
+        Integer a6 = set.higher(7);
+        System.out.println(a6); //返回 null
+        Integer a7 = set.lower(2);
+        System.out.println(a7); //返回 1
+        Integer a8 = set.pollFirst();
+        System.out.println(a8); //返回 1
+        Integer a9 = set.pollLast();
+        System.out.println(a9); //返回 7
     }
 }
 ```
@@ -1373,8 +1382,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class Main {
-    static int a[] = new int[10];
-    static Integer b[] = new Integer[10];
+    static int[] a = new int[10];
+    static Integer[] b = new Integer[10];
     static int firstIdx, lastIdx;
 
     public static void main(String[] args) {
@@ -1479,7 +1488,7 @@ public class Main {
     
         static void solve() {
             int n = in.nextInt();
-            Integer a[] = new Integer[n + 10];
+            Integer[] a = new Integer[n + 10];
             for (int i = 1; i <= n; i++) {
                 a[i] = in.nextInt();
             }
@@ -1518,8 +1527,8 @@ public class Main {
 import java.util.Arrays;
 
 public class Main {
-    static int a[] = new int[10];
-    static Integer b[] = new Integer[10];
+    static int[] a = new int[10];
+    static Integer[] b = new Integer[10];
     static int firstIdx, lastIdx;
     static int key;
 
