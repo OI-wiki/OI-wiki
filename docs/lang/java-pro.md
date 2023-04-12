@@ -1154,10 +1154,7 @@ TreeSet<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // 降序
 
 代码示例：
 ```java
-import java.io.PrintWriter;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.TreeSet;
 
 public class Main {
     static int a[] = {4,7,1,2,3,6};
