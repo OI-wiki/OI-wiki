@@ -437,7 +437,6 @@ int query(int p, int s, int t, int l, int r) {
     ??? "解题思路"
         维护一下每个区间的永久标记就可以了，最后在线段树上跑一边 DFS 统计结果即可。注意打标记的时候加个剪枝优化，否则会 TLE。
 
-
 ## 线段树合并
 
 ### 过程
@@ -476,7 +475,9 @@ int merge(int a, int b, int l, int r) {
   return a;
 }
 ```
+
 ### 例题
+
 ???+ note "[luogu P4556 \[Vani 有约会\] 雨天的尾巴/【模板】线段树合并](https://www.luogu.com.cn/problem/P4556)"
     ??? "解题思路"
         线段树合并模板题，用差分把树上修改转化为单点修改，然后向上 dfs 线段树合并统计答案即可。
