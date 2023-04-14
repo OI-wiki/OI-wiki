@@ -251,8 +251,6 @@ void build_virtual_tree() {
     ```cpp
     inline bool cmp(const int x, const int y) { return id[x] < id[y]; }
     
-    ```
-
     void build() {
       sort(h + 1, h + k + 1, cmp);
       sta[top = 1] = 1, g.sz = 0, g.head[1] = -1;
