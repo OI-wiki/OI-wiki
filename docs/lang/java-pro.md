@@ -1161,7 +1161,7 @@ public class Main {
 
     public static void main(String[] args){
         TreeSet<Integer> set = new TreeSet<>();
-        for(int v:a){
+        for(int v:a) {
             set.add(v);
         }
         Integer a2 = set.first();
