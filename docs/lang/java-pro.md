@@ -1161,7 +1161,7 @@ import java.util.TreeSet;
 public class Main {
     static int[] a = {4,7,1,2,3,6};
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         TreeSet<Integer> set = new TreeSet<>();
         for(int v:a) {
             set.add(v);
