@@ -197,34 +197,31 @@ $$
 ??? note "实现"
     === "C++"
     
-    ````
-    ```cpp
-    ll Pollard_Rho(ll x) {
-      ll t = 0;
-      ll c = rand() % (x - 1) + 1;
-      // 加速算法，这一步可以省略
-      for (int i = 1; i < 1145; ++i) t = f(t, c, x);
-      ll s = t;
-      int step = 0, goal = 1;
-      ll val = 1;
-      for (goal = 1;; goal <<= 1, s = t, val = 1) {
-        for (step = 1; step <= goal; ++step) {
-          t = f(t, c, x);
-          val = val * abs(t - s) % x;
-          // 如果 val 为 0，退出重新分解
-          if (!val) return x;
-          if (step % 127 == 0) {
+        ```cpp
+        ll Pollard_Rho(ll x) {
+          ll t = 0;
+          ll c = rand() % (x - 1) + 1;
+          // 加速算法，这一步可以省略
+          for (int i = 1; i < 1145; ++i) t = f(t, c, x);
+          ll s = t;
+          int step = 0, goal = 1;
+          ll val = 1;
+          for (goal = 1;; goal <<= 1, s = t, val = 1) {
+            for (step = 1; step <= goal; ++step) {
+              t = f(t, c, x);
+              val = val * abs(t - s) % x;
+              // 如果 val 为 0，退出重新分解
+              if (!val) return x;
+              if (step % 127 == 0) {
+                ll d = gcd(val, x);
+                if (d > 1) return d;
+              }
+            }
             ll d = gcd(val, x);
             if (d > 1) return d;
           }
         }
-        ll d = gcd(val, x);
-        if (d > 1) return d;
-      }
-    }
-    ```  
-    
-    ````
+        ```
     
     === "Python"
     
