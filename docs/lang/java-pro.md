@@ -1057,7 +1057,9 @@ public class Main {
     static int[] a = {1, 2, 3, 4, 5};
 
     public static void main(String[] args) {
-        for (int v : a) stack.push(v);
+        for (int v : a) {
+            stack.push(v);
+        }
         while (!stack.isEmpty()) { //输出 5 4 3 2 1
             System.out.println(stack.pop()); 
         }
