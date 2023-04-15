@@ -154,15 +154,13 @@ $$
         
         求 $S(n)=\sum_{i=1}^n\varphi(i)$.
         
-        同样的，$\varphi * 1=\operatorname{id}$
+        同样的，$\varphi * 1=\operatorname{id}$, 从而：
         
         $$
-        \begin{aligned}
-            \sum_{i=1}^n(\varphi * 1)(i)     & =\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)            \\
-            \sum_{i=1}^n\operatorname{id}(i) & =\sum_{i=1}^n1\cdot S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)            \\
-            \frac{1}{2}n(n+1)                & =\sum_{i=1}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right)                   \\
-            S(n)                             & =\frac{1}{2}n(n+1)-\sum_{i=2}^nS\left(\left\lfloor\frac{n}{i}\right\rfloor\right) \\
-        \end{aligned}
+            \begin{aligned}
+                S(n) & =\sum_{i=1}^n i - \sum_{i=2}^n S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)    \\
+                     & =\frac{1}{2}n(n+1) - \sum_{i=2}^n S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
+            \end{aligned}
         $$
 
 ??? note "代码实现"
