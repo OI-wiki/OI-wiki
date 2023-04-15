@@ -129,13 +129,7 @@ $$
     \end{aligned}
     $$
 
-    观察到 $\left\lfloor \dfrac n i \right\rfloor$ 最多只有 $O(\sqrt n)$ 种取值，我们就可以应用 [整除分块/数论分块](./sqrt-decomposition.md) 来计算每一项的值了。
-
-    直接计算的时间复杂度为 $O\left(n^{\frac 3 4}\right)$。考虑先线性筛预处理出前 $n^{\frac 2 3}$ 项，剩余部分的时间复杂度为
-
-    $$
-    O\left(\int_{0}^{n^{1/3}} \sqrt{\frac{n}{x}} ~ \mathrm{d}x\right)=O\left(n^{\frac 2 3}\right)
-    $$
+    时间复杂度的推导见 [时间复杂度](#时间复杂度) 一节。
 
     对于较大的值，需要用 `map` / `unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
 
