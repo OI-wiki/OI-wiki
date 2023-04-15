@@ -230,16 +230,18 @@ $$
 
 
         ```python
+        from random import randint
+        from math import gcd
         def Pollard_Rho(x):
-            c = random.randint(1,x-1)
+            c = randint(1, x-1)
             s = t = f(0, c, x)
             goal = val = 1
             while True:
                 for step in range(1, goal+1):
                     t = f(t, c, x)
                     val = val * abs(t - s) % x
-                    if val == 0:
-                        return x
+                    if val == 0: 
+                        return x #如果 val 为 0，退出重新分解
                     if step % 127 == 0:
                         d = gcd(val, x)
                         if d > 1:
@@ -250,6 +252,7 @@ $$
                 s = t
                 goal <<= 1
                 val = 1
+
         ```
 
 例题：[P4718【模板】Pollard-Rho 算法](https://www.luogu.com.cn/problem/P4718)
