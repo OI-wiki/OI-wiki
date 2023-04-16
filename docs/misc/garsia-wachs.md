@@ -60,8 +60,8 @@ Garsia-Wachs 算法的第三阶段的证明，即存在另一棵具有相同距�
 
 ## 参考资料与拓展阅读
 
--   \[1][Garsia–Wachs algorithm - Wikipedia](https://en.wikipedia.org/wiki/Garsia%E2%80%93Wachs_algorithm)
--   \[2][Data.Algorithm.GarsiaWachs - Hackage Haskell](https://hackage.haskell.org/package/garsia-wachs-1.2/docs/Data-Algorithm-GarsiaWachs.html)
--   \[3][garsia-wachs: A Functional Implementation of the Garsia-Wachs Algorithm - Wikipedia](https://hackage.haskell.org/package/garsia-wachs)
--   \[4][Sentinel value - Wikipedia](https://en.wikipedia.org/wiki/Sentinel_value)
--   \[5][A new proof of the Garsia-Wachs algorithm](https://www.sciencedirect.com/science/article/abs/pii/0196677488900090)
+1.  [Garsia–Wachs algorithm - Wikipedia](https://en.wikipedia.org/wiki/Garsia%E2%80%93Wachs_algorithm)
+2.  [Data.Algorithm.GarsiaWachs - Hackage Haskell](https://hackage.haskell.org/package/garsia-wachs-1.2/docs/Data-Algorithm-GarsiaWachs.html)
+3.  [garsia-wachs: A Functional Implementation of the Garsia-Wachs Algorithm - Wikipedia](https://hackage.haskell.org/package/garsia-wachs)
+4.  [Sentinel value - Wikipedia](https://en.wikipedia.org/wiki/Sentinel_value)
+5.  [A new proof of the Garsia-Wachs algorithm](https://www.sciencedirect.com/science/article/abs/pii/0196677488900090)
