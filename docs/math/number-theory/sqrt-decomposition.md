@@ -36,7 +36,7 @@ $$
 $$
 
 ??? note "关于证明最后的小方块"
-    QED 是拉丁词组“Quod Erat Demonstrandum”（这就是所要证明的）的缩写，代表证明完毕。现在的 QED 符号通常是 $\blacksquare$ 或者 $\square$。（[维基百科](https://en.wikipedia.org/wiki/Q.E.D.)）
+    QED 是拉丁词组「Quod Erat Demonstrandum」（这就是所要证明的）的缩写，代表证明完毕。现在的 QED 符号通常是 $\blacksquare$ 或者 $\square$。（[维基百科](https://en.wikipedia.org/wiki/Q.E.D.)）
 
 ## 引理 2
 

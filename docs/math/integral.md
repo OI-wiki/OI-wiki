@@ -125,13 +125,13 @@ $$
       return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6;  // 辛普森公式
     }
 
-    double asr(double l, double r, double eqs, double ans, int step) {
+    double asr(double l, double r, double eps, double ans, int step) {
       double mid = (l + r) / 2;
       double fl = simpson(l, mid), fr = simpson(mid, r);
-      if (abs(fl + fr - ans) <= 15 * eqs && step < 0)
+      if (abs(fl + fr - ans) <= 15 * eps && step < 0)
         return fl + fr + (fl + fr - ans) / 15;  // 足够相似的话就直接返回
-      return asr(l, mid, eqs / 2, fl, step - 1) +
-            asr(mid, r, eqs / 2, fr, step - 1);  // 否则分割成两段递归求解
+      return asr(l, mid, eps / 2, fl, step - 1) +
+            asr(mid, r, eps / 2, fr, step - 1);  // 否则分割成两段递归求解
     }
 
     double calc(double l, double r, double eps) {
@@ -145,13 +145,13 @@ $$
     def simpson(l, r):
         mid = (l + r) / 2
         return (r - l) * (f(l) + 4 * f(mid) + f(r)) / 6 # 辛普森公式
-    def asr(l, r, eqs, ans, step):
+    def asr(l, r, eps, ans, step):
         mid = (l + r) / 2
         fl = simpson(l, mid); fr = simpson(mid, r)
-        if abs(fl + fr - ans) <= 15 * eqs and step < 0:
+        if abs(fl + fr - ans) <= 15 * eps and step < 0:
             return fl + fr + (fl + fr - ans) / 15 # 足够相似的话就直接返回
-        return asr(l, mid, eqs / 2, fl, step - 1) + \
-              asr(mid, r, eqs / 2, fr, step - 1) # 否则分割成两段递归求解
+        return asr(l, mid, eps / 2, fl, step - 1) + \
+              asr(mid, r, eps / 2, fr, step - 1) # 否则分割成两段递归求解
     def calc(l, r, eps):
         return asr(l, r, eps, simpson(l, r), 12)
     ```
@@ -161,3 +161,7 @@ $$
 -   [Luogu4525【模板】自适应辛普森法 1](https://www.luogu.com.cn/problem/P4525)
 -   [HDU1724 Ellipse](https://vjudge.net/problem/HDU-1724)
 -   [NOI2005 月下柠檬树](https://www.luogu.com.cn/problem/P4207)
+
+## 参考资料
+
+<https://doi.org/10.1145/321526.321537>：该文章讨论了自适应 Simpson 法的改进方案，其中详细论述了上文代码中的常数 `15` 的由来与优势。

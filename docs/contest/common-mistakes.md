@@ -44,7 +44,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
           printf("No");
 
         // 无论 n 的随机所得值为多少，输出肯定是 Yes
-        // 警告    运算符不正确: 在 Boolean 上下文中执行了常量赋值。应考虑改用“==”。
+        // 警告    运算符不正确: 在 Boolean 上下文中执行了常量赋值。应考虑改用「==」。
         ```
 
     -   如果确实想在原应使用 `==` 的语句里使用 `=`（比如 `while (foo = bar)`），又不想收到 Warning，可以使用 **双括号**：`while ((foo = bar))`。
@@ -59,7 +59,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         // 正确
         std::cout << ((1 << 1) + 1);
 
-        // 警告    “<<”: 检查运算符优先级是否有可能的错误；使用括号阐明优先级
+        // 警告    「<<」: 检查运算符优先级是否有可能的错误；使用括号阐明优先级
         ```
 
 -   不正确地使用 `static` 修饰符。
@@ -80,7 +80,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     ???+ note "未初始化变量会发生什么"
         原文：<https://loj.ac/d/3679> by @hly1204
         
-        例如我们在 C++ 中声明一个 `int a;` 但不初始化，可能有时候会认为 `a` 是一个“随机”（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
+        例如我们在 C++ 中声明一个 `int a;` 但不初始化，可能有时候会认为 `a` 是一个「随机」（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
         
         我们在简单的测试代码中
         
@@ -124,7 +124,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 -   读入优化未判断负数。
 
 -   所用数据类型位宽不足，导致溢出。
-    -   如习语“三年 OI 一场空，不开 `long long` 见祖宗”所描述的场景。选手因为没有在正确的地方开 `long long`（将整数定义为 `long long` 类型），导致得出错误的答案而失分。
+    -   如习语「三年 OI 一场空，不开 `long long` 见祖宗」所描述的场景。选手因为没有在正确的地方开 `long long`（将整数定义为 `long long` 类型），导致得出错误的答案而失分。
 
 -   存图时，节点编号 0 开始，而题目给的边中两个端点的编号从 1 开始，读入的时候忘记 -1。
 
@@ -184,7 +184,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 -   在类或结构体的构造函数中使用 `:` 初始化变量时，变量声明顺序不符合初始化时候的依赖关系。
 
-    -   成员变量的初始化顺序与它们在类中声明的顺序有关，而与初始化列表中的顺序无关。参见：[构造函数与成员初始化器列表](https://zh.cppreference.com/w/cpp/language/constructor) 的“初始化顺序”
+    -   成员变量的初始化顺序与它们在类中声明的顺序有关，而与初始化列表中的顺序无关。参见：[构造函数与成员初始化器列表](https://zh.cppreference.com/w/cpp/language/constructor) 的「初始化顺序」
     -   示例：
 
         ```cpp
