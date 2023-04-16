@@ -184,7 +184,7 @@ int hotpath_again;  // <-- 热！
 
 #### 基本块放置 (Basic Block Placement)
 
-我们用 label 来表达一种“伪机器码”，这个 C++ 程序有两种翻译方法：
+我们用 label 来表达一种「伪机器码」，这个 C++ 程序有两种翻译方法：
 
 ???+ note "布局 1"
     ```c++
