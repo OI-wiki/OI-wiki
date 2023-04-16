@@ -102,9 +102,17 @@
     3.  当 `a[i].d<=q.size()` 可以这么理解从 0 开始到 `a[i].d` 这个时间段只能做 `a[i].d` 个任务，而若 `q.size()>=a[i].d` 说明完成 `q.size()` 个任务时间大于等于 `a[i].d` 的时间，所以当第 `i` 个任务获利比较大的时候应该把最小的任务从优先级队列中换出。
 
 ??? note "参考代码"
-    ```cpp
-    --8<-- "docs/basic/code/greedy/greedy_1.cpp"
-    ```
+    === "C++"
+    
+        ```cpp
+        --8<-- "docs/basic/code/greedy/greedy_1.cpp"
+        ```
+    
+    === "Python"
+    
+        ```python
+        --8<-- "docs/basic/code/greedy/greedy_1.py"
+        ```
 
 ##### 复杂度分析
 
