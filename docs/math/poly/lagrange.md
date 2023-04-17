@@ -1,7 +1,7 @@
 author: Ir1d, Marcythm, YanWQ-monad, x4Cx58x54, rui\_er
 
 ???+ note " 例题 [Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)"
-    给出 $n$ 个点 $P_i(x_i,y_i)$，将过这 $n$ 个点的最多 $n-1$ 次的多项式记为 $f(x)$，求 $f(k)$ 的值。
+    给出 $n$ 个点对 $(x_i,y_i)$ 和 $k$，且 $\forall i,j$ 有 $i\neq j \iff x_i\neq x_j$ 且 $f(x_i)\equiv y_i\pmod{998244353}$ 和 $\deg(f(x))<n$（定义 $\deg(0)=-\infty$），求 $f(k)\bmod{998244353}$。
 
 ### 方法 1：差分法
 
@@ -38,7 +38,7 @@ $$
 f(x)\equiv f(a)\pmod{(x-a)}
 $$
 
-这是显然的，因为 $f(x)-f(a)=(a_0-a_0)+a_1(x^1-a^1)+a_1(x^2-a^2)+\cdots +a_n(x^n-a^n)$，这个式子显然有 $(x-a)$ 这个因式，所以得证。
+因为 $f(x)-f(a)=(a_0-a_0)+a_1(x^1-a^1)+a_1(x^2-a^2)+\cdots +a_n(x^n-a^n)$，显然有 $(x-a)$ 这个因式。
 
 这样我们就可以列一个关于 $f(x)$ 的多项式线性同余方程组：
 
@@ -46,44 +46,42 @@ $$
 \begin{cases}
 f(x)\equiv y_1\pmod{(x-x_1)}\\
 f(x)\equiv y_2\pmod{(x-x_2)}\\
-\cdots\\
+\vdots\\
 f(x)\equiv y_n\pmod{(x-x_n)}
 \end{cases}
 $$
 
-我们根据中国剩余定理，有：
+令
 
 $$
-M=\prod_{i=1}^n{(x-x_i)},m_i=\dfrac M{x-x_i}=\prod_{j\ne i}{(x-x_j)}
+\begin{aligned}
+M(x)&=\prod_{i=1}^n{(x-x_i)},\\
+m_i(x)&=\dfrac M{x-x_i}
+\end{aligned}
 $$
 
-则 $m_i$ 模 $(x-x_i)$ 意义下的逆元就是：
+则 $m_i(x)$ 在模 $(x-x_i)$ 意义下的乘法逆元为
 
 $$
-m_i^{-1}=\prod_{j\ne i}{\dfrac 1{x_i-x_j}}
+m_i(x_i)^{-1}=\prod_{j\ne i}{(x_i-x_j)^{-1}}
 $$
 
-所以就有：
+故
 
 $$
-f(x)\equiv\sum_{i=1}^n{y_im_im_i^{-1}}\equiv\sum_{i=1}^n{y_i\prod_{j\ne i}{\dfrac {x-x_j}{x_i-x_j}}}\pmod M
+\begin{aligned}
+f(x)&\equiv\sum_{i=1}^n{y_i\left(m_i(x)\right)\left(m_i(x_i)^{-1}\right)}&\pmod{M(x)}\\
+&\equiv\sum_{i=1}^n{y_i\prod_{j\ne i}{\dfrac {x-x_j}{x_i-x_j}}}&\pmod{M(x)}
+\end{aligned}
 $$
 
-所以在模意义下 $f(x)$ 就是唯一的，即：
+又因为 $\deg\left(f(x)\right)<n$ 所以在模 $M(x)$ 意义下 $f(x)$ 就是唯一的，即：
 
 $$
 f(x)=\sum_{i=1}^n{y_i\prod_{j\ne i}{\dfrac {x-x_j}{x_i-x_j}}}
 $$
 
 这就是拉格朗日插值的表达式。
-
-如果要将每一项的系数都算出来，时间复杂度仍为 $O(n^2)$，但是本题中只用求出 $f(k)$ 的值，所以在计算上式的过程中直接将 $k$ 代入即可。
-
-$$
-f(k)=\sum_{i=1}^{n} y_i\prod_{j\neq i }\frac{k-x_j}{x_i-x_j}
-$$
-
-本题中，还需要求解逆元。如果先分别计算出分子和分母，再将分子乘进分母的逆元，累加进最后的答案，时间复杂度的瓶颈就不会在求逆元上，时间复杂度为 $O(n^2)$。
 
 ??? note "通常意义下拉格朗日插值的一种推导"
     由于要求构造一个函数 $f(x)$ 过点 $P_1(x_1, y_1), P_2(x_2,y_2),\cdots,P_n(x_n,y_n)$。首先设第 $i$ 个点在 $x$ 轴上的投影为 $P_i^{\prime}(x_i,0)$。
@@ -98,11 +96,20 @@ $$
     
     $f(x)=\sum_{i=1}^ny_i\cdot\prod_{j\neq i}\dfrac{x-x_j}{x_i-x_j}$。
 
-### 代码实现
+??? note "代码实现"
+    因为在固定模 $998244353$ 意义下运算，计算乘法逆元的时间复杂度我们在这里暂且认为是常数时间。
 
-```cpp
---8<-- "docs/math/code/poly/lagrange/lagrange_1.cpp"
-```
+    ```cpp
+    --8<-- "docs/math/code/poly/lagrange/lagrange_1.cpp"
+    ```
+
+本题中只用求出 $f(k)$ 的值，所以在计算上式的过程中直接将 $k$ 代入即可。
+
+$$
+f(k)=\sum_{i=1}^{n}y_i\prod_{j\neq i }\frac{k-x_j}{x_i-x_j}
+$$
+
+本题中，还需要求解逆元。如果先分别计算出分子和分母，再将分子乘进分母的逆元，累加进最后的答案，时间复杂度的瓶颈就不会在求逆元上，时间复杂度为 $O(n^2)$。
 
 ### 横坐标是连续整数的拉格朗日插值
 

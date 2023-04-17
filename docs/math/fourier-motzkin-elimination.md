@@ -42,13 +42,13 @@ $$
 
 考虑以下不等式系统：
 
-$x \leq (10 + 5y - 4z)/2$
+$2x-5y+4z \leq 10$
 
-$x \leq (9 + 6y - 3z)/3$
+$3x-6y+3z \leq 9$
 
-$x \geq 7 + 5y - 2z$
+$-x+5y-2z \leq -7$
 
-$x \geq (-12 + 2y + 6z)/3$
+$-3x+2y+6z \leq 12$
 
 为了消除 $x$，我们可以根据 $x$ 改写不等式：
 
@@ -88,7 +88,7 @@ $(-12 + 2y + 6z)/3 \leq (9 + 6y - 3z)/3$
 
 ## 参考资料与拓展阅读
 
--   \[1]Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
--   \[2][Fourier–Motzkin elimination - Wikipedia](https://en.wikipedia.org/wiki/Fourier%E2%80%93Motzkin_elimination)
--   \[3][Fourier-Motzkin elimination and its dual](https://www.sciencedirect.com/science/article/pii/0097316573900046)
--   \[4]GE Liepins,[Fourier-Motzkin elimination for mixed systems](https://www.osti.gov/servlets/purl/5860090), 1983
+1.  Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
+2.  [Fourier–Motzkin elimination - Wikipedia](https://en.wikipedia.org/wiki/Fourier%E2%80%93Motzkin_elimination)
+3.  [Fourier-Motzkin elimination and its dual](https://www.sciencedirect.com/science/article/pii/0097316573900046)
+4.  GE Liepins,[Fourier-Motzkin elimination for mixed systems](https://www.osti.gov/servlets/purl/5860090), 1983

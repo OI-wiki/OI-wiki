@@ -285,6 +285,6 @@ Voronoi 图是 Delaunay 三角剖分的对偶图，可以使用构造 Delaunay �
 
 ## 参考资料与拓展阅读
 
--   \[1][Wikipedia - Triangulation (geometry)](https://en.wikipedia.org/wiki/Triangulation_\(geometry\))
--   \[2][Wikipedia - Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation)
--   \[3]Samuel Peterson -[Computing Constrained Delaunay Triangulations in 2-D (1997-98)](http://www.geom.uiuc.edu/~samuelp/del_project.html)
+1.  [Wikipedia - Triangulation (geometry)](https://en.wikipedia.org/wiki/Triangulation_\(geometry\))
+2.  [Wikipedia - Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation)
+3.  Samuel Peterson -[Computing Constrained Delaunay Triangulations in 2-D (1997-98)](http://www.geom.uiuc.edu/~samuelp/del_project.html)
