@@ -40,7 +40,7 @@ $$
 
 ## 例题
 
-### [多项式求逆](../inv)
+### [多项式求逆](./elementary-func.md#多项式求逆)
 
 设给定函数为 $h\left(x\right)$，有方程：
 
@@ -63,7 +63,7 @@ $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-### <span id="sqrt">[多项式开方](../sqrt)</span>
+### [多项式开方](./elementary-func.md#多项式开方)
 
 设给定函数为 $h\left(x\right)$，有方程：
 
@@ -86,7 +86,7 @@ $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-### [多项式 exp](../ln-exp)
+### [多项式 exp](./elementary-func.md#多项式对数函数--指数函数)
 
 设给定函数为 $h\left(x\right)$，有方程：
 
