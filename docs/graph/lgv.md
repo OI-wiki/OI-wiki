@@ -18,7 +18,7 @@ $e(u, v)$ 表示 $u$ 到 $v$ 的 **每一条** 路径 $P$ 的 $\omega(P)$ 之和
 
 一组 $A\rightarrow B$ 的不相交路径 $S$：$S_i$ 是一条从 $A_i$ 到 $B_{\sigma(S)_i}$ 的路径（$\sigma(S)$ 是一个排列），对于任何 $i\ne j$，$S_i$ 和 $S_j$ 没有公共顶点。
 
-$N(\sigma)$ 表示排列 $\sigma$ 的逆序对个数。
+$t(\sigma)$ 表示排列 $\sigma$ 的逆序对个数。
 
 ## 引理
 
@@ -30,12 +30,50 @@ e(A_n,B_1)&e(A_n,B_2)&\cdots&e(A_n,B_n)\end{bmatrix}
 $$
 
 $$
-\det(M)=\sum\limits_{S:A\rightarrow B}(-1)^{N(\sigma(S))}\prod\limits_{i=1}^n \omega(S_i)
+\det(M)=\sum\limits_{S:A\rightarrow B}(-1)^{t(\sigma(S))}\prod\limits_{i=1}^n \omega(S_i)
 $$
 
 其中 $\sum\limits_{S:A\rightarrow B}$ 表示满足上文要求的 $A\rightarrow B$ 的每一组不相交路径 $S$。
 
-证明请参考 [维基百科](https://en.wikipedia.org/wiki/Lindström–Gessel–Viennot_lemma)。
+#### 证明
+
+由行列式定义可得
+
+$$
+\begin{align}
+\det(M)&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n e(a_i,b_{\sigma(i)})\\
+&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:a_i\to b_{\sigma(i)}} \omega(P)
+\end{align}
+$$
+
+观察到 $\prod\limits_{i=1}^n \sum\limits_{P:a_i\to b_{\sigma(i)}} \omega(P)$，实际上是所有从 $A$ 到 $B$ 排列为 $\sigma$ 的路径组 $P$ 的 $\omega(P)$ 之和。
+
+$$
+\begin{align}
+&\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:a_i\to b_{\sigma(i)}} \omega(P)\\
+=&\sum_{\sigma}(-1)^{t(\sigma)}\sum_{P=\sigma}\omega(P)\\
+=&\sum_{P:A\to B}(-1)^{t(\sigma)}\prod_{i=1}^n \omega(P_i)
+\end{align}
+$$
+
+此处 $P$ 为任意路径组。
+
+设 $U$ 为不相交路径组，$V$ 为相交路径组，
+
+$$
+\begin{align}
+&\sum_{P:A\to B}(-1)^{t(\sigma)}\prod_{i=1}^n \omega(P_i)\\
+=&\sum_{U:A\to B}(-1)^{t(U)}\prod_{i=1}^n \omega(U_i)+\sum_{V:A\to B}(-1)^{t(V)}\prod_{i=1}^n \omega(V_i)
+\end{align}
+$$
+
+设 $P$ 中存在一个相交路径组 $P_i:a_1 \to u \to b_1,P_j:a_2 \to u \to b_2$，则必然存在和它相对的一个相交路径组 $P_i'=a_1\to u\to b_2,P_j'=a_2\to u\to b_1$，$P'$ 的其他路径与 $P$ 相同。可得 $\omega(P)=\omega(P'),t(P)=t(P')\pm 1$。
+
+因此我们有 $\sum\limits_{V:A\to B}(-1)^{t(\sigma)}\prod\limits_{i=1}^n \omega(V_i)=0$。
+
+则 $\det(M)=\sum\limits_{U:A\to B}(-1)^{t(U)}\prod\limits_{i=1}^n \omega(U_i)=0$。
+
+证毕[^1]。
 
 ## 例题
 
@@ -73,3 +111,7 @@ $$
     ```cpp
     --8<-- "docs/graph/code/lgv/lgv_1.cpp"
     ```
+
+### 参考资料
+
+[^1]: 证明来源于 [知乎 - LGV 引理证明](https://zhuanlan.zhihu.com/p/517819133)

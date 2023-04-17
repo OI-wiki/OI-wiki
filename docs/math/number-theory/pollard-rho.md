@@ -13,8 +13,8 @@
 === "C++"
 
     ```cpp
-    list<int> breakdown(int N) {
-      list<int> result;
+    vector<int> breakdown(int N) {
+      vector<int> result;
       for (int i = 2; i * i <= N; i++) {
         if (N % i == 0) {  // 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
           while (N % i == 0) N /= i;
@@ -36,8 +36,8 @@
         for i in range(2, int(sqrt(N)) + 1):
             if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
                 while N % i == 0:
-                    N = N // i
-                    result.append(i)
+                    N //= i
+                result.append(i)
         if N != 1: # 说明再经过操作之后 N 留下了一个素数
             result.append(N)
         return result
@@ -172,16 +172,17 @@ $$
     === "Python"
     
         ```python
+        import random
         def Pollard_Rho(N):
-        c = random.randint(0, 32767) % (N - 1) + 1
-        t = f(0, c, N)
-        r = f(f(0, c, N), c, N)
-        while t != r:
-            d = gcd(abs(t - r), N)
-            if d > 1:
-                return d
-            t = f(t, c, N)
-            r = f(f(r, c, N), c, N)
+            c = random.randint(1, N - 1)
+            t = f(0, c, N)
+            r = f(f(0, c, N), c, N)
+            while t != r:
+                d = gcd(abs(t - r), N)
+                if d > 1:
+                    return d
+                t = f(t, c, N)
+                r = f(f(r, c, N), c, N)
         return N
         ```
 
@@ -209,7 +210,7 @@ $$
           val = val * abs(t - s) % x;
           // 如果 val 为 0，退出重新分解
           if (!val) return x;
-          if ((step % 127) == 0) {
+          if (step % 127 == 0) {
             ll d = gcd(val, x);
             if (d > 1) return d;
           }

@@ -32,11 +32,11 @@ author: linehk, persdre
 
 ## 渐进符号的定义
 
-渐进符号是函数的阶的规范描述。简单来说，渐进符号忽略了一个函数中增长较慢的部分以及各项的系数（在时间复杂度相关分析中，系数一般被称作“常数”），而保留了可以用来表明该函数增长趋势的重要部分。
+渐进符号是函数的阶的规范描述。简单来说，渐进符号忽略了一个函数中增长较慢的部分以及各项的系数（在时间复杂度相关分析中，系数一般被称作「常数」），而保留了可以用来表明该函数增长趋势的重要部分。
 
 一个简单的记忆方法是，含等于（非严格）用大写，不含等于（严格）用小写，相等是 $\Theta$，小于是 $O$，大于是 $\Omega$。大 $O$ 和小 $o$ 原本是希腊字母 Omicron，由于字形相同，也可以理解为拉丁字母的大 $O$ 和小 $o$。
 
-在英文中，词根“-micro-”和“-mega-”常用于表示 10 的负六次方（百万分之一）和六次方（百万），也表示“小”和“大”。小和大也是希腊字母 Omicron 和 Omega 常表示的含义。
+在英文中，词根「-micro-」和「-mega-」常用于表示 10 的负六次方（百万分之一）和六次方（百万），也表示「小」和「大」。小和大也是希腊字母 Omicron 和 Omega 常表示的含义。
 
 ### 大 Θ 符号
 
@@ -149,13 +149,13 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 Master Theorem 递推关系式如下
 
 $$
-T(n) = a T\left(\frac{n}{b}\right)＋f(n)\qquad \forall n > b
+T(n) = a T\left(\frac{n}{b}\right)+f(n)\qquad \forall n > b
 $$
 
 那么
 
 $$
-T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}) \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon})\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
+T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}),\epsilon > 0 \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}),\epsilon\ge 0\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
 需要注意的是，这里的第二种情况还需要满足 regularity condition, 即 $a f(n/b) \leq c f(n)$，for some constant $c < 1$ and sufficiently large $n$。
@@ -181,7 +181,7 @@ $$
 
 下面举几个例子来说明主定理如何使用。
 
-例如 $T(n) = 3 T\left(\frac{n}{2}\right) + 2n$，那么 $a=3, b=2, 1< {\log_2 3} <2$，那么 $\epsilon$ 可以取值为 $1$，从而满足第一种情况，所以 $T(n) = \Theta(n^2)$。
+例如 $T(n) = T\left(\frac{n}{2}\right) + 1$，那么 $a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $0$，从而满足第一种情况，所以 $T(n) = \Theta(\log n)$。
 
 又例如 $T(n) = T\left(\frac{n}{2}\right) + n$，那么 $a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $0.5$，从而满足第二种情况，所以 $T(n) = \Theta(n)$。
 

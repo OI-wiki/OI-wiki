@@ -27,9 +27,17 @@
     直接使用程序模拟蠕虫爬井的过程就可以了。用一个循环重复蠕虫的爬井过程，当攀爬的长度超过或者等于井的深度时跳出。
 
 ??? note "参考代码"
-    ```cpp
-    --8<-- "docs/basic/code/simulate/simulate_1.cpp"
-    ```
+    === "C++"
+    
+        ```cpp
+        --8<-- "docs/basic/code/simulate/simulate_1.cpp"
+        ```
+    
+    === "Python"
+    
+        ```python
+        --8<-- "docs/basic/code/simulate/simulate_1.py"
+        ```
 
 ## 习题
 
