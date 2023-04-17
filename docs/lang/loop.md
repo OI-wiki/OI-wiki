@@ -176,13 +176,13 @@ for (int i = 1; i <= n; ++i) {
 ```
 
 ```cpp
-// for 语句判断条件复杂，没有体现“枚举”的本质
+// for 语句判断条件复杂，没有体现「枚举」的本质
 
 for (int i = l; i <= r && i % 10 != 0; ++i) {
   // do something...
 }
 
-// for 语句用于枚举，break 用于“到何时为止”
+// for 语句用于枚举，break 用于「到何时为止」
 
 for (int i = l; i <= r; ++i) {
   if (i % 10 == 0) break;

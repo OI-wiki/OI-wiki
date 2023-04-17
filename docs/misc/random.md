@@ -84,7 +84,7 @@ $$
 s_i\equiv s_{i-1}\times A+C\mod{M}
 $$
 
-`minstd_rand()` 是较新的“最小标准”，为 Park、Miller 和 Stockmeyer 于 1993 推荐。
+`minstd_rand()` 是较新的「最小标准」，为 Park、Miller 和 Stockmeyer 于 1993 推荐。
 
 对于 `minstd_rand0()`，$s$ 的类型取 32 位无符号整数，$A$ 取 16807，$C$ 取 0，$M$ 取 2147483647。
 
