@@ -28,9 +28,17 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     递推：`B[0] = A[0]`，对于 $i \ge 1$ 则 `B[i] = B[i-1] + A[i]`。
 
 ??? note "参考代码"
-    ```cpp
-    --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.cpp"
-    ```
+    === "C++"
+    
+        ```cpp
+        --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.cpp"
+        ```
+    
+    === "Python"
+    
+        ```python
+        --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.py"
+        ```
 
 ### 二维/多维前缀和
 
@@ -68,9 +76,17 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
     在一个 $n\times m$ 的只包含 $0$ 和 $1$ 的矩阵里找出一个不包含 $0$ 的最大正方形，输出边长。
 
 ??? note "参考代码"
-    ```cpp
-    --8<-- "docs/basic/code/prefix-sum/prefix-sum_2.cpp"
-    ```
+    === "C++"
+    
+        ```cpp
+        --8<-- "docs/basic/code/prefix-sum/prefix-sum_2.cpp"
+        ```
+    
+    === "Python"
+    
+        ```python
+        --8<-- "docs/basic/code/prefix-sum/prefix-sum_2.py"
+        ```
 
 ### 基于 DP 计算高维前缀和
 
@@ -82,11 +98,15 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 一种实现的伪代码如下：
 
-    for state
-      sum[state] = f[state];
-    for(i = 0;i <= D;i += 1)
-      for 以字典序从小到大枚举 state
-        sum[state] += sum[state'];
+$$
+\begin{array}{ll}
+\textbf{for } state \\
+\qquad sum[state] \gets f[state] \\
+\textbf{for } i \gets 0 \textbf{ to } D \\
+\qquad \textbf{for } state' \textbf{ in } \text{lexicographical order} \\
+\qquad \qquad sum[state] \gets sum[state] + sum[state']
+\end{array}
+$$
 
 ### 树上前缀和
 
