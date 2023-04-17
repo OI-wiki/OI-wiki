@@ -1,4 +1,4 @@
-author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007, GoodCoder666
+author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007, GoodCoder666, paigeman
 
 前置知识：[动态规划部分简介](./index.md)。
 
@@ -444,6 +444,6 @@ g[0] = 1;  // 什么都不装是一种方案
     printf("%d\n", dp[m][K]);
     ```
 
-### 参考资料与注释
+## 参考资料与注释
 
 -   [背包问题九讲 - 崔添翼](https://github.com/tianyicui/pack)。
