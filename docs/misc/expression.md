@@ -1,4 +1,4 @@
-author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO
+author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO, c8ef
 
 表达式求值要解决的问题一般是输入一个字符串表示的表达式，要求输出它的值。当然也有变种比如表达式中是否包含括号，指数运算，含多少变量，判断多个表达式是否等价，等等。
 
@@ -271,6 +271,11 @@ while (!op.empty() &&
 ## 参考资料
 
 **本页面主要译自博文 [Разбор выражений. Обратная польская нотация](https://e-maxx.ru/algo/expressions_parsing) 与其英文翻译版 [Expression parsing](https://cp-algorithms.com/string/expression_parsing.html))。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+
+## 延申阅读
+
+1.  [Operator-precedence\_parser](https://en.wikipedia.org/wiki/Operator-precedence_parser)
+2.  [Shunting yard algorithm](https://en.wikipedia.org/wiki/Shunting_yard_algorithm)
 
 ## 习题
 

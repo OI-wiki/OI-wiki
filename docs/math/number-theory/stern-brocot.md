@@ -233,7 +233,7 @@ $$
     在这些方程中，对于 $A_i x + B_i y > 0$，有四个情况：
     
     1.  $A_i, B_i > 0$ 可以忽略，因为正在查找 $x, y > 0$。
-    2.  $A_i, B_i \leq 0$ 将提供“IMPOSSIBLE”作为答案。
+    2.  $A_i, B_i \leq 0$ 将提供「IMPOSSIBLE」作为答案。
     3.  $A_i > 0$,$B_i \leq 0$。这样的约束相当于 $\frac{y}{x} < \frac{A_i}{-B_i}$。
     4.  $A_i \leq 0$,$B_i > 0$。这样的约束相当于 $\frac{y}{x} > \frac{-A_i}{B_i}$。
     

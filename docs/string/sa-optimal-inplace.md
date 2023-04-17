@@ -150,7 +150,7 @@ $$
 
 ### 构建规模缩减的子目标串 Pat1
 
-从左到右扫描 $\texttt{SA}$ 尾部的 LMS 子串，确定其大小关系“重命名”，将 $\texttt{SA[i]}$ 重命名的值存储在 $\texttt{SA}[\large\lfloor\frac{\texttt{SA}[i]}{2} \rfloor]$。
+从左到右扫描 $\texttt{SA}$ 尾部的 LMS 子串，确定其大小关系「重命名」，将 $\texttt{SA[i]}$ 重命名的值存储在 $\texttt{SA}[\large\lfloor\frac{\texttt{SA}[i]}{2} \rfloor]$。
 
 因为 LMS 字符并不相邻，所以不会有冲突，这样做是将重命名后的值按照所代表的子串在 $\texttt{Pat}$ 中的原顺序放置：
 
@@ -190,7 +190,7 @@ $$
 \end{aligned}
 $$
 
-依照 $\texttt{SA}$ 尾部的“对照表”，将 $\texttt{SA1}$ 头部的 $\texttt{SA}$ 还原为 $\texttt{Pat}$ 中对应的 LMS 后缀的索引位置：
+依照 $\texttt{SA}$ 尾部的「对照表」，将 $\texttt{SA1}$ 头部的 $\texttt{SA}$ 还原为 $\texttt{Pat}$ 中对应的 LMS 后缀的索引位置：
 
 $$
 \begin{aligned}
