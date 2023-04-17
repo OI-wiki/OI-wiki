@@ -40,7 +40,7 @@ chtholly@seniorious:~$ echo "Hello World!"
 root@seniorious:~# apt-get install gcc
 ```
 
-命令行的 `>`，`$` 或 `#` 之前会显示一个路径，这个路径就是工作目录（working directory），或者当前目录。在 Unix 下当前目录有时会显示成类似 `~/folder` 的形式，最开头的 `~` 就是当前登录的用户的主目录。用户 `chtholly` 的主目录在不同系统下的位置是不同的；在 Linux 下，他的主目录位于 `/home/chtholly`，而在 macOS 下，她的主目录位于 `/Users/chtholly`。
+命令行的 `>`，`$` 或 `#` 之前会显示一个路径，这个路径就是工作目录（working directory），或者当前目录。在 Unix 下当前目录有时会显示成类似 `~/folder` 的形式，最开头的 `~` 就是当前登录的用户的主目录。用户 `chtholly` 的主目录在不同系统下的位置是不同的；在 Linux 下，其主目录位于 `/home/chtholly`，而在 macOS 下，其主目录位于 `/Users/chtholly`。
 
 ## 语法和常用命令[^1]
 
