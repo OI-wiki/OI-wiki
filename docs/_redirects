@@ -45,6 +45,7 @@
 /math/char-poly /math/linear-algebra/char-poly
 /math/gauss /math/linear-algebra/gauss
 /math/linear-algebra-index /math/linear-algebra
+/math/linear-recurrence /math/poly/linear-recurrence
 /math/martix /math/linear-algebra/matrix
 /math/vector /math/linear-algebra/vector
 /math/gen-func/intro /math/poly/intro
