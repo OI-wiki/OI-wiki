@@ -4,9 +4,6 @@ author: Link-cute, Xeonacid, ouuan, Alphnia, Lyccrius
 
 在学习单调队列前，让我们先来看一道例题。
 
-???+ warning "注意"
-    在 [NOI 大纲](https://www.noi.cn/xw/2021-04-02/724387.shtml) 中，单调队列被称为「有序队列」。
-
 ???+ note "例题"
     [Sliding Window](http://poj.org/problem?id=2823)
     
