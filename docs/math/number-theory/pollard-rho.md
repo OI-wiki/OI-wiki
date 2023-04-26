@@ -183,7 +183,7 @@ $$
                     return d
                 t = f(t, c, N)
                 r = f(f(r, c, N), c, N)
-        return N
+            return N
         ```
 
 #### 倍增优化
@@ -195,31 +195,60 @@ $$
 注意到在环上更容易分解出因数，我们可以先迭代一定的次数。
 
 ??? note "实现"
-    ```c++
-    ll Pollard_Rho(ll x) {
-      ll t = 0;
-      ll c = rand() % (x - 1) + 1;
-      // 加速算法，这一步可以省略
-      for (int i = 1; i < 1145; ++i) t = f(t, c, x);
-      ll s = t;
-      int step = 0, goal = 1;
-      ll val = 1;
-      for (goal = 1;; goal <<= 1, s = t, val = 1) {
-        for (step = 1; step <= goal; ++step) {
-          t = f(t, c, x);
-          val = val * abs(t - s) % x;
-          // 如果 val 为 0，退出重新分解
-          if (!val) return x;
-          if (step % 127 == 0) {
+    === "C++"
+    
+        ```cpp
+        ll Pollard_Rho(ll x) {
+          ll t = 0;
+          ll c = rand() % (x - 1) + 1;
+          // 加速算法，这一步可以省略
+          for (int i = 1; i < 1145; ++i) t = f(t, c, x);
+          ll s = t;
+          int step = 0, goal = 1;
+          ll val = 1;
+          for (goal = 1;; goal <<= 1, s = t, val = 1) {
+            for (step = 1; step <= goal; ++step) {
+              t = f(t, c, x);
+              val = val * abs(t - s) % x;
+              // 如果 val 为 0，退出重新分解
+              if (!val) return x;
+              if (step % 127 == 0) {
+                ll d = gcd(val, x);
+                if (d > 1) return d;
+              }
+            }
             ll d = gcd(val, x);
             if (d > 1) return d;
           }
         }
-        ll d = gcd(val, x);
-        if (d > 1) return d;
-      }
-    }
-    ```
+        ```
+    
+    === "Python"
+    
+        ```python
+        from random import randint
+        from math import gcd
+        def Pollard_Rho(x):
+            c = randint(1, x-1)
+            s = t = f(0, c, x)
+            goal = val = 1
+            while True:
+                for step in range(1, goal+1):
+                    t = f(t, c, x)
+                    val = val * abs(t - s) % x
+                    if val == 0: 
+                        return x #如果 val 为 0，退出重新分解
+                    if step % 127 == 0:
+                        d = gcd(val, x)
+                        if d > 1:
+                            return d
+                d = gcd(val, x)
+                if d > 1:
+                    return d
+                s = t
+                goal <<= 1
+                val = 1
+        ```
 
 例题：[P4718【模板】Pollard-Rho 算法](https://www.luogu.com.cn/problem/P4718)
 
