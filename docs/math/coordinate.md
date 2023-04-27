@@ -239,7 +239,7 @@ $$
 $$
 \begin{aligned}
 x &= r \sin \vartheta \cos \varphi \\
-i &= r \sin \vartheta \sin \varphi \\
+y &= r \sin \vartheta \sin \varphi \\
 z &= r \cos \vartheta
 \end{aligned}
 $$
