@@ -577,6 +577,47 @@ p_u, p_v \geq 0
 \end{cases}
 $$
 
+## 拉格朗日对偶
+
+### 一般的拉格朗日对偶
+
+假设 $f(x)$, $g(x)$ 均为关于 $x$ 的函数，$x$ 的定义域为 $P$ 。
+此时要求
+
+$$
+\begin{matrix}
+  \max f(x) \\
+  g(x) \le 0 \tag{*}
+\end{matrix}
+$$
+
+引入拉格朗日乘子 $\lambda$，记 $L(\lambda) = \max f(x) − \lambda g(x)$，有 $(*) \le \min L(\lambda)$   
+
+**拉格朗日对偶的性质** 考虑 
+
+$$
+\begin{aligned}
+    &L(a\lambda_1 + (1 − a)\lambda_2) \\
+  = &f(x^∗) − (a\lambda_1 + (1 − a)\lambda_2)g(x^∗) \\
+  = &a(f(x^∗) − \lambda_1g(x^∗)) + (1 − a)(f(x^∗) − \lambda_2g(x^∗)) \\
+  \le &aL(\lambda_1) + (1 − a)L(\lambda_2)
+\end{aligned}
+$$
+
+也就是说 $L(\lambda)$ 关于 $\lambda$ 是凸的，可以通过二分斜率或三分求得最小值。 
+
+### 线性规划中的拉格朗日对偶 
+
+在线性规划中，考虑标准形式，令 $f(x) = c^Tx，g(x) = Ax − b，\lambda = y^T$。  
+那么上一小节中的式子变成
+$$
+\begin{aligned}
+  \max c Tx \le \min_{y \ge 0} \max_{x \ge 0} cx − y^T (Ax − b) = \min_{y \ge 0} \max_{x \ge 0} (c − y^TA)x + y^T b
+\end{aligned}
+$$
+相当于化成了对偶形式。  
+在线性规划的条件下，拉格朗日对偶和线性规划对偶本质相同，但形式不同。如遇到拉格朗日对偶的 `min max` 形式，可以考虑转化成线性规划问题求解。
+
 ## 全幺模矩阵（Totally Unimodular Matrix)
 
 **充分条件：**
