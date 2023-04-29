@@ -184,6 +184,7 @@ $$
 > **原根**：设 $m \in \mathbb{N}^{*}$，$a\in \mathbb{Z}$。若 $\gcd(a,m)=1$，且 $\delta_m(a)=\varphi(m)$，则称 $a$ 为模 $m$ 的原根。
 
 $g$ 满足 $\operatorname{ord}_n(g)=\left|Z_n^\times\right|=\varphi(n)$，对于质数 $p$，也就是说 $g^i \bmod p, 0 < i < p$ 结果互不相同。
+
 > 设 $g$ 和 $n$ 是两个正整数，如果存在一个最小的正整数 $k$ 使得 $g^k \equiv 1 \pmod n$，则称 $k$ 为 $g$ 在模 $n$ 意义下的阶，记为 $\operatorname{ord}_n(g)$。
 
 ???+ note "注"
