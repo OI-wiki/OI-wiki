@@ -587,7 +587,7 @@ $$
 $$
 \begin{matrix}
   \max f(x) \\
-  g(x) \le 0 \tag{*}
+  s.t.~g(x) \le 0 \tag{*}
 \end{matrix}
 $$
 
@@ -613,7 +613,7 @@ $$
 
 $$
 \begin{aligned}
-  \max c Tx \le \min_{y \ge 0} \max_{x \ge 0} cx − y^T (Ax − b) = \min_{y \ge 0} \max_{x \ge 0} (c − y^TA)x + y^T b
+  \max \{c Tx\right\} \le \min_{y \ge 0} \max_{x \ge 0} \left\{cx − y^T (Ax − b)\right\} = \min_{y \ge 0} \max_{x \ge 0} \left\{\left(c − y^TA\right)x + y^T b\right\}
 \end{aligned}
 $$
 
