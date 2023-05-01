@@ -613,7 +613,7 @@ $$
 
 $$
 \begin{aligned}
-  \max \{c Tx\right\} \le \min_{y \ge 0} \max_{x \ge 0} \left\{cx − y^T (Ax − b)\right\} = \min_{y \ge 0} \max_{x \ge 0} \left\{\left(c − y^TA\right)x + y^T b\right\}
+  \max \left\{c Tx\right\} \le \min_{y \ge 0} \max_{x \ge 0} \left\{cx − y^T (Ax − b)\right\} = \min_{y \ge 0} \max_{x \ge 0} \left\{\left(c − y^TA\right)x + y^T b\right\}
 \end{aligned}
 $$
 
