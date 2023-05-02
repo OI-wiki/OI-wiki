@@ -20,30 +20,29 @@ $p_-$ 是高斯整数 $\mathbf Z[\text i]$ 的素元而 $p_+$ 不是，因此 $\
 
 原论文中假定 $\mathrm{i}^2=-1$，但经笔者手推，这里的 $\mathrm{i}^2$ 不是必须为 $-1$，只要满足 $\mathrm{i}^2$ 为模 $p$ 意义下的一个二次非剩余即可：这样所有素数都可进行 CNTT。
 
-下面证明，$\{a+b\mathrm{i}\}$ 模 p 下构成一个数域。
+???+note "构成数域的证明"
+    封闭性：$x = a+b\mathrm{i}, y = c+d\mathrm{i}\Rightarrow x+y \equiv (a+c) + (b+d)\mathrm{i}$，$(a+c) \bmod p$ 和 $(b+d) \bmod p$ 分别在 $Z_p$ 的范围内，因此 $x+y$ 仍在 $\{a+b\mathrm{i}\}$ 中。
 
-封闭性：$x = a+b\mathrm{i}, y = c+d\mathrm{i}\Rightarrow x+y \equiv (a+c) + (b+d)\mathrm{i}$，$(a+c) \bmod p$ 和 $(b+d) \bmod p$ 分别在 $Z_p$ 的范围内，因此 $x+y$ 仍在 $\{a+b\mathrm{i}\}$ 中。
+    结合律：由于 $(ab) \bmod p = (a \bmod p) (b \bmod p)$，因此乘法过程类似于普通复数乘法，只要在最后取模即可。
 
-结合律：由于 $(ab) \bmod p = (a \bmod p) (b \bmod p)$，因此乘法过程类似于普通复数乘法，只要在最后取模即可。
+    同理，它也满足交换律、分配律。
 
-同理，它也满足交换律、分配律。
+    单位元：$1 + 0\mathrm{i}$
 
-单位元：$1 + 0\mathrm{i}$
+    逆元：对 $x = a+b\mathrm{i}$，其中 $a \not= 0 \vee b \not= 0$，设其逆元为 $y=c+d\mathrm{i}$，由 $xy=1$ 可知
 
-逆元：对 $x = a+b\mathrm{i}$，其中 $a \not= 0 \vee b \not= 0$，设其逆元为 $y=c+d\mathrm{i}$，由 $xy=1$ 可知
+    $$
+    \begin{cases}
+        ac+bd\mathrm{i}^2 &= 1 & (1) \\
+        bc+ad &= 0 & (2)
+    \end{cases}
+    $$
 
-$$
-\begin{cases}
-    ac+bd\mathrm{i}^2 &= 1 & (1) \\
-    bc+ad &= 0 & (2)
-\end{cases}
-$$
+    当 $b \not= 0$ 时：由 $(2)$ 知 $c = -adb^{-1}$，代入 $(1)$ 中可得 $d = (b\mathrm{i}^2-b^{-1}a^2)^{-1}$。
 
-当 $b \not= 0$ 时：由 $(2)$ 知 $c = -adb^{-1}$，代入 $(1)$ 中可得 $d = (b\mathrm{i}^2-b^{-1}a^2)^{-1}$。
+    若 $b\mathrm{i}^2-b^{-1}a^2 \equiv 0 \pmod p$，则 $\mathrm{i}^2 \equiv (ab^{-1})^2 \pmod p$，这与 $\mathrm{i}^2$ 是模 $p$ 意义下的一个二次非剩余矛盾，所以 $d$ 一定存在。
 
-若 $b\mathrm{i}^2-b^{-1}a^2 \equiv 0 \pmod p$，则 $\mathrm{i}^2 \equiv (ab^{-1})^2 \pmod p$，这与 $\mathrm{i}^2$ 是模 $p$ 意义下的一个二次非剩余矛盾，所以 $d$ 一定存在。
-
-当 $a \not= 0$ 时，用相似的方法可以推出 $x^{-1} = y$ 一定存在。
+    当 $a \not= 0$ 时，用相似的方法可以推出 $x^{-1} = y$ 一定存在。
 
 这个数域的大小是 $p^2$，只要用一些方法找出 $g = a+b\mathrm{i},g^{(p^2-1)/2} \equiv -1 \pmod p$，则 $g$ 就是我们要找的 $p^2-1$ 次「原根」，剩下的和 NTT 类似。
 
