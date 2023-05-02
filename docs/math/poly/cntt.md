@@ -16,7 +16,7 @@ $p_-$ 是高斯整数 $\mathbf Z[\text i]$ 的素元而 $p_+$ 不是，因此 $\
 
 ## 原理
 
-在 CNTT 中，用 $a+bi$ 代表一个复数，其中实部和虚部分别对 $p$ 取模，$p \in \mathbb{P}$。（$\mathbb{P}$ 为素数集）
+在 CNTT 中，我们考虑 $\mathbf{Z}_p[\mathrm{i}]$ 上的 Gauss 整数 $a+b\mathrm{i}\in\mathbf{Z}_p[\mathrm{i}]$，其中 $p \in \mathbf{P}$（$\mathbf{P}$ 为素数集）。
 
 原论文中假定 $i^2=-1$，但经笔者手推，这里的 $i^2$ 不是必须为 $-1$，只要满足 $i^2$ 为模 $p$ 意义下的一个二次非剩余即可：这样所有素数都可进行 CNTT。
 
