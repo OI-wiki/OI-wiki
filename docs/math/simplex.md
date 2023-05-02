@@ -597,10 +597,9 @@ $$
 
 $$
 \begin{aligned}
-    &L(a\lambda_1 + (1 − a)\lambda_2) \\
-  = &f(x^∗) − (a\lambda_1 + (1 − a)\lambda_2)g(x^∗) \\
-  = &a(f(x^∗) − \lambda_1g(x^∗)) + (1 − a)(f(x^∗) − \lambda_2g(x^∗)) \\
-  \le &aL(\lambda_1) + (1 − a)L(\lambda_2)
+    L(a\lambda_1 + (1 − a)\lambda_2) & = f(x^∗) − (a\lambda_1 + (1 − a)\lambda_2)g(x^∗)                   \\
+                                     & = a(f(x^∗) − \lambda_1g(x^∗)) + (1 − a)(f(x^∗) − \lambda_2g(x^∗)) \\
+                                     & \le aL(\lambda_1) + (1 − a)L(\lambda_2)
 \end{aligned}
 $$
 
