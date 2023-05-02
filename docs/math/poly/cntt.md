@@ -30,8 +30,9 @@ $p_-$ 是高斯整数 $\mathbf Z[\text i]$ 的素元而 $p_+$ 不是，因此 $\
 
 单位元：$1 + 0i$
 
-逆元：对 $x = a+bi$，其中 $a \not= 0 \vee b \not= 0$，设其逆元为 $y=c+di$，由 $xy=1$ 可知 
-$$\left\{ \begin{aligned}
+逆元：对 $x = a+bi$，其中 $a \not= 0 \vee b \not= 0$，设其逆元为 $y=c+di$，由 $xy=1$ 可知
+
+$$$\left{ \begin{aligned}
 ac+bdi^2 &= 1 & (1)\\
 bc+ad &= 0 & (2)
 \end{aligned} \right.$$
@@ -65,3 +66,4 @@ $n=2^{16}$ 时 $p_+=65537=2^{16}+1$ 的 $p_+-1$ 次单位根 $\omega=4+17573\tex
 [洛谷 P3803 评测记录](https://www.luogu.com.cn/record/list?pid=P3803&user=saisyc&page=7) 显示，按照*Optimization of number-theoretic transform in programming contests*实现的 NTT 及与其同构的 CNTT, FFT 进行 $2^{21}\approx2.1\times10^6$ 长度的变换用时分别约为 $44,97,115$ 毫秒。
 
 对于 $i^2=3$，模 $998244353$，$2^{24}$ 次单位根为 $0+125038983i$，无读入优化等优化的 CNTT，它的常数是同等条件下 FFT 和 NTT 的 $3$ 倍左右；应用三次变两次优化后，CNTT 常数约等于无优化的 FFT。
+$$$
