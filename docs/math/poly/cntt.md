@@ -8,7 +8,7 @@ $\mathbf Z_p$ 上的 NTT 常用于替代 FFT 以提高效率，但是严重依�
 
 交换环 $R$ 上的 DFT 可逆的充要条件是：存在 $n$ 次本原单位根 $\omega$，且 $\omega^1-1,\omega^2-1,\cdots,\omega^{n-1}-1$ 可逆。
 
-## 模 $p$ 高斯整数环 
+## 模 $p$ 高斯整数环
 
 即 $\mathbf Z_p[\mathrm i]$。
 
