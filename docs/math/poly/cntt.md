@@ -25,6 +25,10 @@ $p_-$ 是高斯整数 $\mathbf Z[\mathrm i]$ 的素元而 $p_+$ 不是，因此 
 ???+ note "构成数域的证明"
     由于 $\mathbf{Z}_p[\mathrm{i}]$ 为 $\mathbf{C}$ 的子集，只要证明其对四则运算封闭。
 
+    加法幺元：$0$
+
+    乘法幺元：$1$
+
     加法逆元：同 $\mathbf{C}$ 中加法逆元，对 $p$ 取模即可。
 
     乘法逆元：对 $x = a+b\mathrm{i}$，其中 $a \not= 0 \vee b \not= 0$，设其逆元为 $y=c+d\mathrm{i}$，由 $xy=1$ 可知
