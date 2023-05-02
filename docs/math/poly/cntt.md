@@ -20,7 +20,7 @@ $p_-$ 是高斯整数 $\mathbf Z[\text i]$ 的素元而 $p_+$ 不是，因此 $\
 
 原论文中假定 $\mathrm{i}^2=-1$，但经笔者手推，这里的 $\mathrm{i}^2$ 不是必须为 $-1$，只要满足 $\mathrm{i}^2$ 为模 $p$ 意义下的一个二次非剩余即可：这样所有素数都可进行 CNTT。
 
-???+note "构成数域的证明"
+???+ note "构成数域的证明"
     封闭性：$x = a+b\mathrm{i}, y = c+d\mathrm{i}\Rightarrow x+y \equiv (a+c) + (b+d)\mathrm{i}$，$(a+c) \bmod p$ 和 $(b+d) \bmod p$ 分别在 $Z_p$ 的范围内，因此 $x+y$ 仍在 $\{a+b\mathrm{i}\}$ 中。
 
     结合律：由于 $(ab) \bmod p = (a \bmod p) (b \bmod p)$，因此乘法过程类似于普通复数乘法，只要在最后取模即可。
