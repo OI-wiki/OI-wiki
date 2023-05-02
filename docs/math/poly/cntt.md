@@ -32,10 +32,12 @@ $p_-$ 是高斯整数 $\mathbf Z[\text i]$ 的素元而 $p_+$ 不是，因此 $\
 
 逆元：对 $x = a+bi$，其中 $a \not= 0 \vee b \not= 0$，设其逆元为 $y=c+di$，由 $xy=1$ 可知
 
-$$$\left{ \begin{aligned}
-ac+bdi^2 &= 1 & (1)\\
-bc+ad &= 0 & (2)
-\end{aligned} \right.$$
+$$
+\begin{cases}
+    ac+bd\mathrm{i}^2 &= 1 & (1) \\
+    bc+ad &= 0 & (2)
+\end{cases}
+$$
 
 当 $b \not= 0$ 时：由 $(2)$ 知 $c = -adb^{-1}$，代入 $(1)$ 中可得 $d = (bi^2-b^{-1}a^2)^{-1}$。
 
