@@ -17,7 +17,7 @@ $$
 \hat{F}(x)\hat{G}(x)
 &=\sum_{i\ge 0}a_i\frac{x^i}{i!}\sum_{j\ge 0}b_j\frac{x^j}{j!}\\
 &=\sum_{n\ge 0}x^{n}\sum_{i=0}^na_ib_{n-i}\frac{1}{i!(n-i)!}\\
-&=\sum_{n\ge 0}\frac{x^{n} }{n!}\sum_{i=0}^n\binom{n}{i}a_ib_{n-i}
+&=\sum_{n\ge 0}\frac{x^{n}}{n!}\sum_{i=0}^n\binom{n}{i}a_ib_{n-i}
 \end{aligned}
 $$
 
@@ -39,7 +39,7 @@ $$
 \hat{F}(x) = \sum_{n \ge 0}\frac{x^n}{n!} = e^x
 $$
 
-因为你将 $e^x$ 在 $x = 0$ 处泰勒展开就得到了它的无穷级数形式。
+因为你将 $\mathrm{e}^x$ 在 $x = 0$ 处泰勒展开就得到了它的无穷级数形式。
 
 类似地，等比数列 $\langle 1,p,p^2,\cdots\rangle$ 的指数生成函数是：
 

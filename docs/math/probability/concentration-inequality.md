@@ -76,18 +76,18 @@ $$
 
 ## Chernoff 不等式
 
-一般的 Chernoff 不等式可以从直接对随机变量 $e^{tX}$ 应用 Markov 不等式得出：
+一般的 Chernoff 不等式可以从直接对随机变量 $\mathrm{e}^{tX}$ 应用 Markov 不等式得出：
 
 设 $X$ 是一随机变量，则对任意的 $t > 0$ 都有
 
 $$
-P\{ X \geq a \} = P\{ e^{tX} > e^{ta} \} \leq \frac{E e^{tX}}{e^{ta}}
+P\{ X \geq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 类似地，当 $t < 0$ 时有
 
 $$
-P\{ X \leq a \} = P\{ e^{tX} > e^{ta} \} \leq \frac{E e^{tX}}{e^{ta}}
+P\{ X \leq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 ### Poisson 试验之和的 Chernoff 不等式

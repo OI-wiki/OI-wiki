@@ -32,7 +32,7 @@ $$
 p=998244353=7 \times 17 \times 2^{23}+1, g=3
 $$
 
-就是 $g^{qn}$ 的等价 $e^{2\pi n}$。
+就是 $g^{qn}$ 的等价 $\mathrm{e}^{2\pi n}$。
 
 迭代到长度 $l$ 时 $g_l = g^{\frac{p-1}{l}}$，或者 $\omega_n = g_l = g_N^{\frac{N}{l}} = g_N^{\frac{p-1}{l}}$。
 

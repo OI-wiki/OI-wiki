@@ -76,11 +76,11 @@ $$
 错位排列数有一个向下取整的简单表达式，增长速度与阶乘仅相差常数：
 
 $$
-D_n=\left\lfloor\frac{n!}{e}\right\rfloor
+D_n=\left\lfloor\frac{n!}{\mathrm{e}}\right\rfloor
 $$
 
 随着元素数量的增加，形成错位排列的概率 P 接近：
 
 $$
-P=\lim_{n\to\infty}\frac{D_n}{n!}=\frac{1}{e}
+P=\lim_{n\to\infty}\frac{D_n}{n!}=\frac{1}{\mathrm{e}}
 $$

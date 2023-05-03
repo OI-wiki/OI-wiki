@@ -142,7 +142,7 @@ $$
 基本的展开式有以下两个，指数函数和幂函数：
 
 $$
-e^x=1+x+\frac{1}{2!}x^2+\ldots+\frac{1}{n!}x^n+\ldots
+\mathrm{e}^x=1+x+\frac{1}{2!}x^2+\ldots+\frac{1}{n!}x^n+\ldots
 $$
 
 $$
