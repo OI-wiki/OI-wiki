@@ -71,10 +71,10 @@ ST 表基于 [倍增](../basic/binary-lifting.md) 思想，可以做到 $\Theta(
 2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议进行如下的预处理：
 
 $$
-\left\{\begin{aligned}
-Logn[1] &=0, \\
-Logn\left[i\right] &=Logn[\frac{i}{2}] + 1.
-\end{aligned}\right.
+\begin{cases}
+\texttt{Logn}[1] \gets 0, \\
+\texttt{Logn}\left[i\right] \gets \texttt{Logn}\left[\frac{i}{2}\right] + 1.
+\end{cases}
 $$
 
 ## ST 表维护其他信息
