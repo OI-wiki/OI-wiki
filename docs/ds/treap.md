@@ -246,7 +246,7 @@ int _query_rank(Node *cur, int val) {
     if (cur->ch[1] != nullptr)
       // 如果要查的值比这个节点大，那这个节点的左子树以及这个节点自身肯定都比要查的值小
       // 所以要加上这两个值，再加上往右边找的结果
-      //（以右子树为根的子树中，val 这个值的大小的排名）
+      // （以右子树为根的子树中，val 这个值的大小的排名）
       return less_siz + cur->rep_cnt + _query_rank(cur->ch[1], val);
     else
       return cur->siz + 1;

@@ -25,7 +25,7 @@ author: accelsao, StudyingFather, t4rf9
 -   近完美匹配（near-perfect matching）：发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。
 
     **maximal matching** ![graph-match-1](./images/graph-match-1.png)
-    
+
     **最大匹配** ![graph-match-2](./images/graph-match-2.png)
 
 ## 二分图匹配

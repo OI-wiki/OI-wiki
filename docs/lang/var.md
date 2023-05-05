@@ -70,17 +70,17 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 下表给出在 **一般情况下**，各整数类型的位宽和表示范围大小（少数平台上一些类型的表示范围可能与下表不同）：
 
 | 类型名                                                                   | 等价类型                     | 位宽（C++ 标准） | 位宽（常见） | 位宽（较罕见）                    |
-| --------------------------------------------------------------------- | ------------------------ | ----------- | ------ | -------------------------- |
-| `signed char`                                                         | `signed char`            | $8$         | -      | -                          |
-| `unsigned char`                                                       | `unsigned char`          | $8$         | -      | -                          |
-| `short`,`short int`,`signed short`,`signed short int`                 | `short int`              | $\geq 16$   | $16$   | -                          |
-| `unsigned short`,`unsigned short int`                                 | `unsigned short int`     | $\geq 16$   | $16$   | -                          |
-| `int`,`signed`,`signed int`                                           | `int`                    | $\geq 16$   | $32$   | $16$（常见于 Win16 API）        |
-| `unsigned`,`unsigned int`                                             | `unsigned int`           | $\geq 16$   | $32$   | $16$（常见于 Win16 API）        |
-| `long`,`long int`,`signed long`,`signed long int`                     | `long int`               | $\geq 32$   | $32$   | $64$（常见于 64 位 Linux、macOS） |
-| `unsigned long`,`unsigned long int`                                   | `unsigned long int`      | $\geq 32$   | $32$   | $64$（常见于 64 位 Linux、macOS） |
-| `long long`,`long long int`,`signed long long`,`signed long long int` | `long long int`          | $\geq 64$   | $64$   | -                          |
-| `unsigned long long`,`unsigned long long int`                         | `unsigned long long int` | $\geq 64$   | $64$   | -                          |
+| --------------------------------------------------------------------- | ------------------------ | ---------- | ------ | -------------------------- |
+| `signed char`                                                         | `signed char`            | $8$        | -      | -                          |
+| `unsigned char`                                                       | `unsigned char`          | $8$        | -      | -                          |
+| `short`,`short int`,`signed short`,`signed short int`                 | `short int`              | $\geq 16$  | $16$   | -                          |
+| `unsigned short`,`unsigned short int`                                 | `unsigned short int`     | $\geq 16$  | $16$   | -                          |
+| `int`,`signed`,`signed int`                                           | `int`                    | $\geq 16$  | $32$   | $16$（常见于 Win16 API）        |
+| `unsigned`,`unsigned int`                                             | `unsigned int`           | $\geq 16$  | $32$   | $16$（常见于 Win16 API）        |
+| `long`,`long int`,`signed long`,`signed long int`                     | `long int`               | $\geq 32$  | $32$   | $64$（常见于 64 位 Linux、macOS） |
+| `unsigned long`,`unsigned long int`                                   | `unsigned long int`      | $\geq 32$  | $32$   | $64$（常见于 64 位 Linux、macOS） |
+| `long long`,`long long int`,`signed long long`,`signed long long int` | `long long int`          | $\geq 64$  | $64$   | -                          |
+| `unsigned long long`,`unsigned long long int`                         | `unsigned long long int` | $\geq 64$  | $64$   | -                          |
 
 当位宽为 $x$ 时，有符号类型的表示范围为 $-2^{x-1}\sim 2^{x-1}-1$, 无符号类型的表示范围为 $0 \sim 2^x-1$. 具体而言，有下表：
 
