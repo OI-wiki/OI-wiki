@@ -195,9 +195,9 @@ $$
 
 ## 参考资料与注释
 
--   [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_\(mathematics\))
+-   [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_%28mathematics%29)
 -   [Group theory - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)
 -   [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
 -   [Visual Group Theory](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
 
-[^ring-wiki]: [Ring (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Ring_\(mathematics\))
+[^ring-wiki]: [Ring （mathematics）- Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)

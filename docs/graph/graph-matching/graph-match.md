@@ -80,7 +80,7 @@ author: accelsao, StudyingFather, t4rf9
 
 ## 参考资料
 
-1.  [Wikiwand - Matching (graph theory)](https://www.wikiwand.com/en/Matching_\(graph_theory\))
+1.  [Wikiwand - Matching (graph theory)](https://www.wikiwand.com/en/Matching_%28graph_theory%29)
 2.  [Wikiwand - Blossom algorithm](https://www.wikiwand.com/en/Blossom_algorithm)
 3.  2015 年《浅谈图的匹配算法及其应用》- 陈胤伯
 4.  [演算法笔记 - Matching](http://web.ntnu.edu.tw/~algo/Matching.html)
