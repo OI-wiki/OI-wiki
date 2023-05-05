@@ -150,7 +150,7 @@ $$
 
 ### 构建规模缩减的子目标串 Pat1
 
-从左到右扫描 $\texttt{SA}$ 尾部的 LMS 子串，确定其大小关系「重命名」，将 $\texttt{SA[i]}$ 重命名的值存储在 $\texttt{SA}[\large\lfloor\frac{\texttt{SA}[i]}{2} \rfloor]$。
+从左到右扫描 $\texttt{SA}$ 尾部的 LMS 子串，确定其大小关系「重命名」，将 $\texttt{SA[i]}$ 重命名的值存储在 $\texttt{SA}\left[\left\lfloor\frac{\texttt{SA}[i]}{2} \right\rfloor\right]$。
 
 因为 LMS 字符并不相邻，所以不会有冲突，这样做是将重命名后的值按照所代表的子串在 $\texttt{Pat}$ 中的原顺序放置：
 
@@ -262,7 +262,7 @@ $$
 
 #### 实现
 
-时间性能上和 SA-IS 没有显著差别，空间占用变为不到原来的 $\large\frac{1}{3}$（代码量多 1 倍），算是不愧为原文 Optimal In-Place Suffix Sorting[^in-place-sa-sort]的标题。
+时间性能上和 SA-IS 没有显著差别，空间占用变为不到原来的 $\dfrac{1}{3}$（代码量多 1 倍），算是不愧为原文 Optimal In-Place Suffix Sorting[^in-place-sa-sort]的标题。
 
 ??? note "参考代码"
     ```rust
