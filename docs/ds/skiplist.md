@@ -368,7 +368,6 @@ bool erase(const K &key) {
 
 ## 参考资料
 
-1.  [Skip Lists: A Probabilistic Alternative to
-    Balanced Trees](https://15721.courses.cs.cmu.edu/spring2018/papers/08-oltpindexes1/pugh-skiplists-cacm1990.pdf)
+1.  [Skip Lists: A Probabilistic Alternative to Balanced Trees](https://15721.courses.cs.cmu.edu/spring2018/papers/08-oltpindexes1/pugh-skiplists-cacm1990.pdf)
 2.  [Skip List](https://en.wikipedia.org/wiki/Skip_list)
 3.  [A Skip List Cookbook](http://cglab.ca/~morin/teaching/5408/refs/p90b.pdf)
