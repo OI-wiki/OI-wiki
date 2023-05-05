@@ -73,7 +73,7 @@ bitset<1000> bs;  // a bitset with 1000 bits
 -   1.  `flip()`: 翻转每一位。（$0\leftrightarrow1$，相当于异或一个全是 $1$ 的 `bitset`）
     2.  `flip(pos)`: 翻转某一位。
 -   `to_string()`: 返回转换成的字符串表达。
--   `to_ulong()`: 返回转换成的 `unsigned long` 表达 (`long` 在 NT 及 32 位 POSIX 系统下与 `int` 一样，在 64 位 POSIX 下与 `long long` 一样）。
+-   `to_ulong()`: 返回转换成的 `unsigned long` 表达（`long` 在 NT 及 32 位 POSIX 系统下与 `int` 一样，在 64 位 POSIX 下与 `long long` 一样）。
 -   `to_ullong()`:**C++11**，返回转换成的 `unsigned long long` 表达。
 
 一些文档中没有的成员函数：

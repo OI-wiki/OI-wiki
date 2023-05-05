@@ -504,6 +504,6 @@ DP 数组的长度我们可以根据子树最深节点算出。
 
 [「SDOI2014」旅行](https://hydro.ac/d/bzoj/p/3531)
 
-[「POI2014」Hotel 加强版](https://hydro.ac/d/bzoj/p/4543)（长链剖分优化 DP)
+[「POI2014」Hotel 加强版](https://hydro.ac/d/bzoj/p/4543)（长链剖分优化 DP）
 
 [攻略](https://hydro.ac/d/bzoj/p/3252)（长链剖分优化贪心）
