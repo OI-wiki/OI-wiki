@@ -80,7 +80,7 @@ C 语言有一个库函数叫做 `atan2(double y,double x)`，可以返回 $\the
 
 ![](./images/hpi4.svg)
 
-一般情况下，我们在队列（队列顺序为 $\left\{\vec{u},\vec{v}\right\}$) 后面加一条边（向量 $\vec w$），会产生一个交点 $N$，缩小 $\vec{v}$ 后面的范围。
+一般情况下，我们在队列（队列顺序为 $\left\{\vec{u},\vec{v}\right\}$）后面加一条边（向量 $\vec w$），会产生一个交点 $N$，缩小 $\vec{v}$ 后面的范围。
 
 ![](./images/hpi5.svg)
 

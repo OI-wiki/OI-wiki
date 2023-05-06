@@ -89,7 +89,7 @@ Embarcadero Dev-C++[^ref1]是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者�
 
 优化代码运行时间或占用空间。
 
-选择 "代码生成" 子选项卡中的 "优化级别（-Ox)" 选项标签。
+选择 "代码生成" 子选项卡中的 "优化级别（-Ox）" 选项标签。
 
 ![](./images/Dev-C++-11.png)
 
@@ -97,7 +97,7 @@ Embarcadero Dev-C++[^ref1]是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者�
 
 使用新语言特性或试图让代码在旧标准下编译。
 
-选择 "代码生成" 子选项卡中的 "语言标准（-std)" 选项标签。
+选择 "代码生成" 子选项卡中的 "语言标准（-std）" 选项标签。
 
 ![](./images/Dev-C++-12.png)
 
@@ -105,7 +105,7 @@ Embarcadero Dev-C++[^ref1]是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者�
 
 查错小助手。
 
-选择 "代码警告" 子选项卡中的 "显示最多警告信息（-Wall)" 选项标签。
+选择 "代码警告" 子选项卡中的 "显示最多警告信息（-Wall）" 选项标签。
 
 ![](./images/Dev-C++-13.png)
 

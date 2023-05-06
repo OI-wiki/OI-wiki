@@ -202,4 +202,4 @@ $S_1$ 可以用杜教筛求，$S_2$ 直接按照公式推，这样 $G$ 也可以
 ## 参考资料
 
 -   [破壁人五号 - Powerful number 筛略解](https://www.cnblogs.com/wallbreaker5th/p/13901487.html)
--   [command\_block - 杜教筛（+ 贝尔级数 + powerful number)](https://www.luogu.com.cn/blog/command-block/du-jiao-shai)
+-   [command\_block - 杜教筛（+ 贝尔级数 + powerful number）](https://www.luogu.com.cn/blog/command-block/du-jiao-shai)
