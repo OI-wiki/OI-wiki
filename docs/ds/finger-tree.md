@@ -74,16 +74,16 @@ data Digit a = One a | Two a a | Three a a a
 
 手指树提供了对树的「手指」（叶子）的分摊常量时间访问，这是存储数据的地方，以及在较小部分的大小中连接和拆分对数时间。它还在每个内部节点中存储对其后代应用一些关联操作的结果。存储在内部节点中的「摘要」数据可用于提供除树之外的数据结构的功能。
 
-| 操作                            | 手指树                | 注释 2-3 树 (annotated 2-3 tree) | 列表（list)       | 向量（vector) |
-| ----------------------------- | ------------------ | ----------------------------- | -------------- | ---------- |
-| `const`,`snoc`                | O(1)               | O(logn)                       | O(1)/O(n)      | O(n)       |
-| `viewl`,`viewr`               | O(1)               | O(logn)                       | O(1)/O(n)      | O(1)       |
-| `measure`/`length`            | O(1)               | O(1)                          | O(n)           | O(1)       |
-| `append`                      | O(log min(l1, l2)) | O(logn)                       | O(n)           | O(m+n)     |
-| `split`                       | O(log min(n, l-n)) | O(logn)                       | O(n)           | O(1)       |
-| `replicate`                   | O(log n)           | O(logn)                       | O(n)           | O(n)       |
-| `fromList`,`toList`,`reverse` | O(l)/O(l)/O(l)     | O(l)                          | O(1)/O(1)/O(n) | O(n)       |
-| `index`                       | O(log min(n, l-n)) | O(logn)                       | O(n)           | O(1)       |
+| 操作                            | 手指树                    | 注释 2-3 树 (annotated 2-3 tree) | 列表（list）             | 向量（vector） |
+| ----------------------------- | ---------------------- | ----------------------------- | -------------------- | ---------- |
+| `const`,`snoc`                | $O(1)$                 | $O(\log n)$                   | $O(1)$/$O(n)$        | $O(n)$     |
+| `viewl`,`viewr`               | $O(1)$                 | $O(\log n)$                   | $O(1)$/$O(n)$        | $O(1)$     |
+| `measure`/`length`            | $O(1)$                 | $O(1)$                        | $O(n)$               | $O(1)$     |
+| `append`                      | $O(\log \min(l1, l2))$ | $O(\log n)$                   | $O(n)$               | $O(m+n)$   |
+| `split`                       | $O(\log \min(n, l-n))$ | $O(\log n)$                   | $O(n)$               | $O(1)$     |
+| `replicate`                   | $O(\log n)$            | $O(\log n)$                   | $O(n)$               | $O(n)$     |
+| `fromList`,`toList`,`reverse` | $O(l)$/$O(l)$/$O(l)$   | $O(l)$                        | $O(1)$/$O(1)$/$O(n)$ | $O(n)$     |
+| `index`                       | $O(\log \min(n, l-n))$ | $O(\log n)$                   | $O(n)$               | $O(1)$     |
 
 ## 应用
 

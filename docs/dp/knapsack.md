@@ -47,8 +47,8 @@ $$
     for (int i = 1; i <= n; i++)
       for (int l = 0; l <= W - w[i]; l++)
         f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
-    // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]), f[i][l +
-    // w[i]]); 简化而来
+    // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]),
+    // f[i][l + w[i]]); 简化而来
     ```
 
 === "Python"
@@ -57,8 +57,8 @@ $$
     for i in range(1, n + 1):
         for l in range(0, W - w[i] + 1):
             f[l + w[i]] = max(f[l] + v[i], f[l + w[i]])
-    # 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]), f[i][l +
-    # w[i]]) 简化而来
+    # 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]),
+    # f[i][l + w[i]]) 简化而来
     ```
 
 这段代码哪里错了呢？枚举顺序错了。

@@ -86,7 +86,7 @@ $$
 
 构造如下有向欧拉图：
 
-设 $S = \{a_1, a_2, \cdots, a_m\}$，构造 $D=<V, E>$，如下：
+设 $S = \{a_1, a_2, \cdots, a_m\}$，构造 $D=\langle V, E\rangle$，如下：
 
 $V = \{a_{i_1}a_{i_2}\cdots a_{i_{n-1}} |a_i \in S, 1 \leq i \leq n - 1 \}$
 
