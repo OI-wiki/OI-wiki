@@ -13,7 +13,7 @@ OI Wiki 部署在国外服务器上，有时可能会因为各种原因，出现
 -   维护者：OI Wiki，线路：Netlify，同步频率：与主站相同
     -   <https://demo.oi-wiki.org>
 
--   维护者：琴春（[vx.st](https://vx.st)), 线路：AWS，同步频率：与主站相同
+-   维护者：琴春（[vx.st](https://vx.st)），线路：AWS，同步频率：与主站相同
     -   <https://oi-wiki.net>
     -   <https://oi-wiki.wiki>
     -   <https://oi-wiki.win>
