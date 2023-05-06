@@ -115,7 +115,7 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_k\
 
 设 $\mathbf{f}_i$ 是一个 $n$ 维列向量，并且转移满足 $\mathbf{f}_i = A \mathbf{f}_{i - 1}$，则可以发现 $\{\mathbf{f}_i\}$ 是一个不超过 $n$ 阶的线性递推向量列。（证明略）
 
-我们可以直接暴力求出 $\mathbf{f}_0 \dots \mathbf{f}_{2n - 1}$，然后用前面提到的做法求出 $\{\mathbf{f}_i\}$ 的最短递推式，再调用 [常系数齐次线性递推](./linear-recurrence.md) 即可。
+我们可以直接暴力求出 $\mathbf{f}_0 \dots \mathbf{f}_{2n - 1}$，然后用前面提到的做法求出 $\{\mathbf{f}_i\}$ 的最短递推式，再调用 [常系数齐次线性递推](./poly/linear-recurrence.md) 即可。
 
 如果要求的向量是 $\mathbf{f}_m$，则算法的复杂度是 $O(n^3 + n\log n \log m)$。如果 $A$ 是一个只有 $k$ 个非零项的稀疏矩阵，则复杂度可以降为 $O(nk + n\log n \log m)$。但由于算法至少需要 $O(nk)$ 的时间预处理，因此在压力不大的情况下也可以使用 $O(n^2 \log m)$ 的线性递推算法，复杂度同样是可以接受的。
 

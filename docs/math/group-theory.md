@@ -57,7 +57,7 @@
 
 定义 $X={x,y,z}$ 为包含 $x, y, z$ 元素的集合 $X$。$x \in X$ 表示 $x$ 属于集合 $X$。$f:X\to Y$ 表示 $f$ 是一个与 $X$ 的每个元素和 $Y$ 的元素相关联的函数。
 
-在研究集合时，我们使用子集（subset）、函数（function）和等价关系商（quotient by an equivalence relation）等概念。在研究群时，我们通过等价关系用子群（subgroup)、同态（homomorphism）和商群（quotient group）来代替。
+在研究集合时，我们使用子集（subset）、函数（function）和等价关系商（quotient by an equivalence relation）等概念。在研究群时，我们通过等价关系用子群（subgroup）、同态（homomorphism）和商群（quotient group）来代替。
 
 ### 群同态
 
@@ -195,9 +195,9 @@ $$
 
 ## 参考资料与注释
 
--   [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_\(mathematics\))
+-   [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_%28mathematics%29)
 -   [Group theory - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)
 -   [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
 -   [Visual Group Theory](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
 
-[^ring-wiki]: [Ring (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Ring_\(mathematics\))
+[^ring-wiki]: [Ring（mathematics）- Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)

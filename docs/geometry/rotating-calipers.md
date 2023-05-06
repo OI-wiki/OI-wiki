@@ -12,7 +12,7 @@
 ## 求凸包直径
 
 ???+ note " 例题 1 :[Luogu P1452 Beauty Contest G](https://www.luogu.com.cn/problem/P1452)"
-    给定平面上 $n$ 个点，求所有点对之间的最长距离。（$2\leq n \leq 50000,|x|,|y| \leq 10^4$)
+    给定平面上 $n$ 个点，求所有点对之间的最长距离。（$2\leq n \leq 50000,|x|,|y| \leq 10^4$）
 
 ### 过程
 
