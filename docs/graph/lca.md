@@ -281,7 +281,7 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
 
 ???+ note "参考代码"
     ```cpp
-    
+    ```
 
     int dfn[N << 1], pos[N], tot,st[30][(N<<1)+2],rev[30][(N<<1)+2];  //rev表示最小深度对应的节点编号
     void dfs(int cur, int dep)
