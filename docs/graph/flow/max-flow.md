@@ -907,7 +907,8 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
       bool init = u == s;  // 是否在初始化
       for (int i = h[u]; i; i = e[i].nex) {
         const int &v = e[i].t, &w = e[i].v;
-        if (!w || init == false && ht[u] != ht[v] + 1 || ht[u] == INF)  // 初始化时不考虑高度差为1
+        if (!w || init == false && ht[u] != ht[v] + 1 ||
+            ht[u] == INF)  // 初始化时不考虑高度差为1
           continue;
         int k = init ? w : min(w, ex[u]);
         // 取到剩余容量和超额流的最小值，初始化时可以使源的溢出量为负数。
