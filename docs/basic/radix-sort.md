@@ -54,7 +54,7 @@ MSD 基数排序需要借助一种 **稳定算法** 完成内层对关键字的�
 #include <tuple>
 #include <vector>
 
-using std::copy; // from <algorithm>
+using std::copy;  // from <algorithm>
 using std::make_tuple;
 using std::stack;
 using std::tie;
@@ -65,22 +65,21 @@ typedef unsigned int u32;
 typedef unsigned int* u32ptr;
 
 void MSD_radix_sort(u32ptr first, u32ptr last) {
-
   const size_t maxW = 0x100000000llu;
-  const u32 maxlogW = 32; // = log_2 W
+  const u32 maxlogW = 32;  // = log_2 W
 
-  const u32 W = 256; // 计数排序的值域
+  const u32 W = 256;  // 计数排序的值域
   const u32 logW = 8;
-  const u32 mask = W - 1; // 用位运算替代取模，详见下面的 key 函数
+  const u32 mask = W - 1;  // 用位运算替代取模，详见下面的 key 函数
 
-  u32ptr tmp = (u32ptr) calloc(last - first, sizeof(u32)); // 计数排序用的输出空间
+  u32ptr tmp =
+      (u32ptr)calloc(last - first, sizeof(u32));  // 计数排序用的输出空间
 
   typedef tuple<u32ptr, u32ptr, u32> node;
   stack<node, vector<node>> s;
   s.push(make_tuple(first, last, maxlogW - logW));
 
   while (!s.empty()) {
-
     u32ptr begin, end;
     size_t shift, length;
 
@@ -88,7 +87,7 @@ void MSD_radix_sort(u32ptr first, u32ptr last) {
     length = end - begin;
     s.pop();
 
-    if (begin + 1 >= end) continue; // elements <= 1
+    if (begin + 1 >= end) continue;  // elements <= 1
 
     // 计数排序
     u32 cnt[W] = {};
@@ -101,9 +100,10 @@ void MSD_radix_sort(u32ptr first, u32ptr last) {
     if (shift >= logW) {
       s.push(make_tuple(begin, begin + cnt[0], shift - logW));
       for (u32 value = 1; value < W; ++value)
-        s.push(make_tuple(begin + cnt[value - 1], begin + cnt[value], shift - logW));
+        s.push(make_tuple(begin + cnt[value - 1], begin + cnt[value],
+                          shift - logW));
     }
-        
+
     u32ptr it = end;
     do {
       --it;
@@ -112,15 +112,13 @@ void MSD_radix_sort(u32ptr first, u32ptr last) {
     } while (it != begin);
 
     copy(tmp, tmp + length, begin);
-
   }
-
 }
 ```
 
 #### 对字符串排序
 
-下面是使用迭代式 MSD 基数排序对[空终止字节字符串](https://zh.cppreference.com/w/cpp/string/byte)基于字典序进行排序的 C++ 参考代码：
+下面是使用迭代式 MSD 基数排序对 [空终止字节字符串](https://zh.cppreference.com/w/cpp/string/byte) 基于字典序进行排序的 C++ 参考代码：
 
 ```cpp
 #include <algorithm>
@@ -128,30 +126,28 @@ void MSD_radix_sort(u32ptr first, u32ptr last) {
 #include <tuple>
 #include <vector>
 
-using std::copy; // from <algorithm>
+using std::copy;  // from <algorithm>
 using std::make_tuple;
 using std::stack;
 using std::tie;
 using std::tuple;
 using std::vector;
 
-typedef char* NTBS; // 空终止字节字符串
+typedef char* NTBS;  // 空终止字节字符串
 typedef NTBS* NTBSptr;
 
 void MSD_radix_sort(NTBSptr first, NTBSptr last) {
-
   const size_t W = 128;
   const size_t logW = 7;
   const size_t mask = W - 1;
 
-  NTBSptr tmp = (NTBSptr) calloc(last - first, sizeof(NTBS));
+  NTBSptr tmp = (NTBSptr)calloc(last - first, sizeof(NTBS));
 
   typedef tuple<NTBSptr, NTBSptr, size_t> node;
   stack<node, vector<node>> s;
   s.push(make_tuple(first, last, 0));
 
   while (!s.empty()) {
-
     NTBSptr begin, end;
     size_t index, length;
 
@@ -159,7 +155,7 @@ void MSD_radix_sort(NTBSptr first, NTBSptr last) {
     length = end - begin;
     s.pop();
 
-    if (begin + 1 >= end) continue; // elements <= 1
+    if (begin + 1 >= end) continue;  // elements <= 1
 
     // 计数排序
     size_t cnt[W] = {};
@@ -181,11 +177,9 @@ void MSD_radix_sort(NTBSptr first, NTBSptr last) {
     } while (it != begin);
 
     copy(tmp, tmp + length, begin);
-
   }
 
   free(tmp);
-
 }
 ```
 
