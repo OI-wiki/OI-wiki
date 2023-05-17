@@ -4,7 +4,7 @@
 
 ### 前置知识
 
-[多项式取模](./poly/elementary-func.md#多项式除法--取模)。
+[多项式取模](./elementary-func.md#多项式除法--取模)。
 
 ### 做法
 
@@ -20,7 +20,7 @@
 
 也就是求 $F(A(x)\bmod G(x))$。$A(x)\bmod G(x)$ 的次数不超过 $k-1$，而 $f_{0..k-1}$ 已经给出了，就可以算了。
 
-问题转化成了快速地求 $x^n\bmod G(x)$，只要将 [普通快速幂](./binary-exponentiation.md) 中的乘法与取模换成 [多项式乘法](./poly/ntt.md) 与 [多项式取模](./poly/elementary-func.md#多项式除法--取模) 就可以在 $O(k\log k\log n)$ 的时间复杂度内解决这个问题了。
+问题转化成了快速地求 $x^n\bmod G(x)$，只要将 [普通快速幂](../binary-exponentiation.md) 中的乘法与取模换成 [多项式乘法](./ntt.md) 与 [多项式取模](./elementary-func.md#多项式除法--取模) 就可以在 $O(k\log k\log n)$ 的时间复杂度内解决这个问题了。
 
 #### 矩阵的解释
 

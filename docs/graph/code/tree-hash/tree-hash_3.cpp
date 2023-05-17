@@ -6,32 +6,10 @@
 #include <vector>
 
 typedef unsigned long long ull;
+typedef std::pair<ull, ull> Hash2;
 
-const int N = 1e5 + 10, M = 998244353;
+const int N = 60, M = 998244353;
 const ull mask = std::chrono::steady_clock::now().time_since_epoch().count();
-
-struct Tree {
-  ull hash, deg, ans;
-  std::map<ull, ull> son;
-
-  Tree() { clear(); }
-
-  void add(Tree& o);
-  void remove(Tree& o);
-  void clear();
-};
-
-ull inv(ull x) {
-  ull y = M - 2, z = 1;
-  while (y) {
-    if (y & 1) {
-      z = z * x % M;
-    }
-    x = x * x % M;
-    y >>= 1;
-  }
-  return z;
-}
 
 ull shift(ull x) {
   x ^= mask;
@@ -42,77 +20,71 @@ ull shift(ull x) {
   return x;
 }
 
-void Tree::add(Tree& o) {
-  ull temp = shift(o.hash);
-  hash += temp;
-  ans = ans * ++deg % M * inv(++son[temp]) % M * o.ans % M;
-}
-
-void Tree::remove(Tree& o) {
-  ull temp = shift(o.hash);
-  hash -= temp;
-  ans = ans * inv(deg--) % M * son[temp]-- % M * inv(o.ans) % M;
-}
-
-void Tree::clear() {
-  hash = 1;
-  deg = 0;
-  ans = 1;
-  son.clear();
-}
-
+int n;
+int size[N], weight[N], centroid[2];
 std::vector<int> edge[N];
-Tree sub[N], root[N];
-std::map<ull, ull> trees;
+std::map<Hash2, int> trees;
 
-void getSub(int x, int fa) {
+void getCentroid(int x, int fa) {
+  size[x] = 1;
+  weight[x] = 0;
   for (int i : edge[x]) {
     if (i == fa) {
       continue;
     }
-    getSub(i, x);
-    sub[x].add(sub[i]);
+    getCentroid(i, x);
+    size[x] += size[i];
+    weight[x] = std::max(weight[x], size[i]);
+  }
+  weight[x] = std::max(weight[x], n - size[x]);
+  if (weight[x] <= n / 2) {
+    int index = centroid[0] != 0;
+    centroid[index] = x;
   }
 }
 
-void getRoot(int x, int fa) {
+ull getHash(int x, int fa) {
+  ull hash = 1;
   for (int i : edge[x]) {
     if (i == fa) {
       continue;
     }
-    root[x].remove(sub[i]);
-    root[i] = sub[i];
-    root[i].add(root[x]);
-    root[x].add(sub[i]);
-    getRoot(i, x);
+    hash += shift(getHash(i, x));
   }
-  trees[root[x].hash] = root[x].ans;
+  return hash;
 }
 
 int main() {
-  int t, n;
-  scanf("%d", &t);
-  while (t--) {
+  int m;
+  scanf("%d", &m);
+  for (int t = 1; t <= m; t++) {
     scanf("%d", &n);
-    for (int i = 1; i < n; i++) {
-      int u, v;
-      scanf("%d%d", &u, &v);
-      edge[u].push_back(v);
-      edge[v].push_back(u);
+    for (int i = 1; i <= n; i++) {
+      int fa;
+      scanf("%d", &fa);
+      if (fa) {
+        edge[fa].push_back(i);
+        edge[i].push_back(fa);
+      }
     }
-    getSub(1, 0);
-    root[1] = sub[1];
-    getRoot(1, 0);
-    ull tot = 0;
-    for (auto p : trees) {
-      tot = (tot + p.second) % M;
+    getCentroid(1, 0);
+    Hash2 hash;
+    hash.first = getHash(centroid[0], 0);
+    if (centroid[1]) {
+      hash.second = getHash(centroid[1], 0);
+      if (hash.first > hash.second) {
+        std::swap(hash.first, hash.second);
+      }
+    } else {
+      hash.second = hash.first;
     }
-    printf("%lld\n", tot);
+    if (!trees.count(hash)) {
+      trees[hash] = t;
+    }
+    printf("%d\n", trees[hash]);
     for (int i = 1; i <= n; i++) {
       edge[i].clear();
-      sub[i].clear();
-      root[i].clear();
     }
-    trees.clear();
+    centroid[0] = centroid[1] = 0;
   }
 }

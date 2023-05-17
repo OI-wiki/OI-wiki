@@ -45,6 +45,7 @@
 /math/char-poly /math/linear-algebra/char-poly
 /math/gauss /math/linear-algebra/gauss
 /math/linear-algebra-index /math/linear-algebra
+/math/linear-recurrence /math/poly/linear-recurrence
 /math/martix /math/linear-algebra/matrix
 /math/vector /math/linear-algebra/vector
 /math/gen-func/intro /math/poly/intro
@@ -111,3 +112,4 @@
 /topic/graph-matching/general-weight-match /graph/graph-matching/general-weight-match
 /ds/persistent-in-bit /ds/seg-in-bit
 /ds/odt /misc/odt
+/graph/min-circle /graph/min-cycle

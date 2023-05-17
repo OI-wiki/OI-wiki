@@ -269,7 +269,7 @@ nav:
       - 多项式牛顿迭代: math/poly/newton.md
       - 多项式多点求值|快速插值: math/poly/multipoint-eval-interpolation.md
       - 多项式初等函数: math/poly/elementary-func.md
-      - 常系数齐次线性递推: math/linear-recurrence.md
+      - 常系数齐次线性递推: math/poly/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
       - 符号化方法: math/poly/symbolic-method.md
       - 普通生成函数: math/poly/ogf.md
@@ -434,7 +434,7 @@ nav:
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
     - 二分图: graph/bi-graph.md
-    - 最小环: graph/min-circle.md
+    - 最小环: graph/min-cycle.md
     - 平面图: graph/planar.md
     - 图的着色: graph/color.md
     - 网络流:
@@ -484,6 +484,7 @@ nav:
         - 带修改莫队: misc/modifiable-mo-algo.md
         - 树上莫队: misc/mo-algo-on-tree.md
         - 回滚莫队: misc/rollback-mo-algo.md
+        - 二维莫队: misc/mo-algo-2dimen.md
         - 莫队配合 bitset: misc/mo-algo-with-bitset.md
     - 分数规划: misc/frac-programming.md
     - 随机化:

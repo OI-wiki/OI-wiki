@@ -127,7 +127,7 @@ inline bool check(double mid) {
   int s = 0;
   for (int i = 1; i <= n; ++i) c[i] = a[i] - mid * b[i];
   sort(c + 1, c + n + 1, cmp);
-  for (int i = 1; i <= n - k + 1; ++i) s += c[i];
+  for (int i = 1; i <= n - k; ++i) s += c[i];
   return s > 0;
 }
 ```
