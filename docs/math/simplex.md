@@ -547,7 +547,7 @@ $$
 $$
 
 $$
-\min \ b^Ty: A^Ty \geq c, t \geq 0
+\min \ b^Ty: A^Ty \geq c, y \geq 0
 $$
 
 $d_{uv}$ 表示 $u,v$ 是否匹配
