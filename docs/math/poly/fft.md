@@ -33,13 +33,13 @@ $$
 设 $f(t)$ 是关于时间 $t$ 的函数，则傅里叶变换可以检测频率 $\omega$ 的周期在 $f(t)$ 出现的程度：
 
 $$
-F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)e^{-i{\omega}t}dt
+F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)\mathrm{e}^{-i{\omega}t}dt
 $$
 
 它的逆变换是
 
 $$
-f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{i{\omega}t}d\omega
+f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)\mathrm{e}^{i{\omega}t}d\omega
 $$
 
 逆变换的形式与正变换非常类似，分母 $2\pi$ 恰好是指数函数的周期。
@@ -69,7 +69,7 @@ $$
 类似于积分形式，它的 **逆离散傅里叶变换**（IDFT）为：
 
 $$
-x_n=\frac{1}{N}\sum_{k=0}^{N-1}X_ke^{i\frac{2\pi}{N}kn}
+x_n=\frac{1}{N}\sum_{k=0}^{N-1}X_k\mathrm{e}^{i\frac{2\pi}{N}kn}
 $$
 
 可以记为：

@@ -172,7 +172,7 @@ $$
 
 $$
 \begin{aligned}
-B(z)e^z &= z+B(z)\\
+B(z)\mathrm{e}^z &= z+B(z)\\
 B(z)&=\dfrac{z}{\mathrm{e}^z - 1}
 \end{aligned}
 $$

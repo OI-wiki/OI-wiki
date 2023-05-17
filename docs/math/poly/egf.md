@@ -36,7 +36,7 @@ $$
 序列 $\langle 1,1,1,\cdots\rangle$ 的指数生成函数是：
 
 $$
-\hat{F}(x) = \sum_{n \ge 0}\frac{x^n}{n!} = e^x
+\hat{F}(x) = \sum_{n \ge 0}\frac{x^n}{n!} = \mathrm{e}^x
 $$
 
 因为你将 $\mathrm{e}^x$ 在 $x = 0$ 处泰勒展开就得到了它的无穷级数形式。
@@ -44,7 +44,7 @@ $$
 类似地，等比数列 $\langle 1,p,p^2,\cdots\rangle$ 的指数生成函数是：
 
 $$
-\hat{F}(x) = \sum_{n\ge 0}\frac{p^nx^n}{n!}=e^{px}
+\hat{F}(x) = \sum_{n\ge 0}\frac{p^nx^n}{n!}=\mathrm{e}^{px}
 $$
 
 ## 指数生成函数与普通生成函数
@@ -292,15 +292,15 @@ $$
 $$
 \begin{aligned}
 F_j(x)&=\sum_{i\ge 0}a_j\frac{x^i}{i!}-\sum_{i\ge 1}\frac{x^i}{(i-1)!}\\
-&=a_je^x-xe^x\\
-&=(a_j-x)e^x
+&=a_j\mathrm{e}^x-x\mathrm{e}^x\\
+&=(a_j-x)\mathrm{e}^x
 \end{aligned}
 $$
 
 因此我们得到
 
 $$
-\prod_{j=1}^nF_j(x)=e^{nx}\prod_{j=1}^n(a_j-x)
+\prod_{j=1}^nF_j(x)=\mathrm{e}^{nx}\prod_{j=1}^n(a_j-x)
 $$
 
 其中 $\prod_{j=1}^n(a_j-x)$ 是一个 $n$ 次多项式，可以暴力计算出来。假设它的展开式是 $\sum_{i=0}^nc_ix^i$，那么
