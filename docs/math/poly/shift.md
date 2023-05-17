@@ -397,7 +397,7 @@ $$
     给定所有 $P_k$ 的系数，和 $a_0,a_1,\dots,a_{m-1}$，求 $a_n$。
     对 $998244353$ 取模。$n\le6\times10^8$，$1\le m,d\le7$，时限 $7s$。
 
-为了更系统地描述上述几道例题中构造矩阵的过程，我们引入 [$\lambda$ 矩阵](https://oi-wiki.org/math/linear-algebra/jordan/#lambda-%E7%9F%A9%E9%98%B5) 的概念。
+为了更系统地描述上述几道例题中构造矩阵的过程，我们引入 [$\lambda$ 矩阵](../linear-algebra/jordan.md#lambda-%E7%9F%A9%E9%98%B5) 的概念。
 
 为了实现整式递推，我们应当注意到快速阶乘算法过程中，我们维护的点值其实并不是 $n!$，而是 $\prod_{i=0}^{T-1}(aT+i)$，即 **一对点值之间的倍数关系**。
 
