@@ -16,7 +16,7 @@ $\mathbf Z_p$ 上的 NTT 常用于替代 FFT 以提高效率，但是严重依�
 
 为便捷，以下用 $p_-$ 表示 $4k-1$ 型质数，$p_+$ 表示 $4k+1$ 型质数。
 
-$p_-$ 是高斯整数 $\mathbf Z_p[\mathrm{i}]$ 的素元而 $p_+$ 不是，因此 $\mathbf Z_{p_-}[\mathrm{i}]$ 是域而 $\mathbf Z_{p_+}[\mathbf{i}]$ 上仍可进行 CNTT。
+$p_-$ 是高斯整数 $\mathbf Z_p[\mathrm{i}]$ 的素元而 $p_+$ 不是，因此 $\mathbf Z_{p_-}[\mathrm{i}]$ 是域而 $\mathbf Z_{p_+}[\mathrm{i}]$ 上仍可进行 CNTT。
 
 ## 原理
 
