@@ -1096,12 +1096,12 @@ $$
 
 $$
 probdelta1(m,k) =
-\left\{ \begin{array}{lcl}
-(1-p)^m\times \left\{ \begin{array}{lcl} 1  & \text{for} &m+1=patlen \\ p &\text{for}&m+1\neq patlen  \\\end{array}\right. & \text{for} & k = 1 \\
-(1-p)^{m+k-1}\times p & \text{for} & 1 < k < patlen - m\\
-(1-p)^{patlen-1} & \text{for} & k = patlen - m\\
-0 & \text{for} & patlen patlen - m < k \leqslant patlen
-\end{array}\right.
+\begin{cases}{lcl}
+(1-p)^m\times \begin{cases}{lcl} 1  & \text{for}~m+1=patlen \\ p &\text{for}~m+1\neq patlen  \\\end{cases} & \text{for}~ k = 1 \\
+(1-p)^{m+k-1}\times p & \text{for}~ 1 < k < patlen - m\\
+(1-p)^{patlen-1} & \text{for}~ k = patlen - m\\
+0 & \text{for}~ patlen patlen - m < k \leqslant patlen
+\end{cases}
 $$
 
 #### $delta_2$
@@ -1110,10 +1110,10 @@ $$
 
 $$
 probpr(m,k) =
-\left\{ \begin{array}{lcl}
-(1-p)\times p^m & \text{for} & 1 \leqslant k < patlen - m\\
-p^{patlen-k} & \text{for} & patlen - m \leqslant k \leqslant patlen
-\end{array}\right.
+\begin{cases}{lcl}
+(1-p)\times p^m & \text{for}~ 1 \leqslant k < patlen - m\\
+p^{patlen-k} & \text{for}~ patlen - m \leqslant k \leqslant patlen
+\end{cases}
 $$
 
 于是 $delta_2(m,k)$ 就可以通过保证 $pr(m,k)$ 存在并且 $k$ 更小的 $delta_2$ 不存在，来递归计算：
@@ -1132,26 +1132,22 @@ $$
 
 $$
 probdelta2'(m,k) =
-\left\{ \begin{array}{lcl}
-0 & \text{for} & k = 1\\
-probpr(m,k)(1-\sum_{n=2}^{k-1}probdelta2'(m, n)) & \text{for} & 1 \leqslant k \leqslant patlen
-\end{array}\right.
+\begin{cases}
+0 & \text{for}~ k = 1\\
+probpr(m,k)\left(1-\sum_{n=2}^{k-1}probdelta2'(m, n)\right) & \text{for}~ 1 \leqslant k \leqslant patlen
+\end{cases}
 $$
 
 于是通过组合 $delta_1$ 和 $delta_2$ 起作用的情况，我们就得到了 BoyerMoore 算法的 $skip$ 概率函数：
 
 $$
-skip(m,k) = \left\{\begin{array}{lcl}
-probdelta1(m, 1) \times probdelta2(m, 1) & \text{for} & k = 1\\
-\\
-\\
-\\
-\textit{prodelta1_worthless}(m)\times probdelta2'(m, 1)\\
-+\ probdelta1(m, k)\times \sum_{n=1}^{k-1}probdelta2(m, n)\\
-+\ probdelta2(m, k)\times \sum_{n=1}^{k-1}probdelta1(m,n)\\
-+\ probdelta1(m, k)\times probdelta2(m, k)
-& \text{for} & 1 < k \leqslant patlen
-\end{array}\right.
+skip(m,k) = \begin{cases}
+probdelta1(m, 1) \times probdelta2(m, 1) & \text{for}~k = 1\\
+\textit{prodelta1\_worthless}(m) \times probdelta2'(m, 1)\\
++~probdelta1(m, k) \times \sum_{n=1}^{k-1} probdelta2(m, n)\\
++~probdelta2(m, k) \times \sum_{n=1}^{k-1} probdelta1(m,n)\\
++~probdelta1(m, k) \times probdelta2(m, k) & \text{for}~1 < k \leqslant patlen
+\end{cases}
 $$
 
 ### 分析比较

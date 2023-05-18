@@ -454,10 +454,10 @@ $$
 
 $$
 S\left(\omega_n^a\right)=
-\left\{\begin{aligned}
-n,a=0\\
-0,a\neq 0
-\end{aligned}\right.
+\begin{cases}
+n,&a=0\\
+0,&a\neq 0
+\end{cases}
 $$
 
 那么代回原式
