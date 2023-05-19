@@ -487,7 +487,7 @@ int merge(int a, int b, int l, int r) {
         --8<-- "docs/ds/code/seg/seg_6.cpp"
         ```
 
-# 线段树分裂
+## 线段树分裂
 
 ### 过程
 
