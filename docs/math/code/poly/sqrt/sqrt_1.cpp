@@ -20,7 +20,7 @@ int qpow(int x, int y) {  // 快速幂
 
 int inv2 = qpow(2, mod - 2);  // 逆元
 
-inline void change(int *f, int len) {
+void change(int *f, int len) {
   for (int i = 1, j = len / 2; i < len - 1; i++) {
     if (i < j) {
       swap(f[i], f[j]);
@@ -37,7 +37,7 @@ inline void change(int *f, int len) {
   }
 }
 
-inline void NTT(int *f, int len, int type) {  // NTT
+void NTT(int *f, int len, int type) {  // NTT
   change(f, len);
 
   for (int q = 2; q <= len; q <<= 1) {
@@ -66,7 +66,7 @@ inline void NTT(int *f, int len, int type) {  // NTT
   }
 }
 
-inline void inv(int deg, int *f, int *h) {  // 求逆元
+void inv(int deg, int *f, int *h) {  // 求逆元
   if (deg == 1) {
     h[0] = qpow(f[0], mod - 2);
     return;
@@ -98,7 +98,7 @@ int n, t[maxn];
 // deg:次数
 // f:被开根数组
 // h:答案数组
-inline void sqrt(int deg, int *f, int *h) {
+void sqrt(int deg, int *f, int *h) {
   if (deg == 1) {
     h[0] = 1;
     return;

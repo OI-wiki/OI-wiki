@@ -109,7 +109,7 @@ void write(int x) {
 但是递归实现常数是较大的，我们可以写一个栈来实现这个过程
 
 ```cpp
-inline void write(int x) {
+void write(int x) {
   static int sta[35];
   int top = 0;
   do {
@@ -169,7 +169,7 @@ char buf[MAXSIZE], *p1, *p2;
        ? EOF                                                               \
        : *p1++)
 
-inline int rd() {
+int rd() {
   int x = 0, f = 1;
   char c = gc();
   while (!isdigit(c)) {
@@ -182,12 +182,12 @@ inline int rd() {
 
 char pbuf[1 << 20], *pp = pbuf;
 
-inline void push(const char &c) {
+void push(const char &c) {
   if (pp - pbuf == 1 << 20) fwrite(pbuf, 1, 1 << 20, stdout), pp = pbuf;
   *pp++ = c;
 }
 
-inline void write(int x) {
+void write(int x) {
   static int sta[35];
   int top = 0;
   do {
@@ -216,9 +216,9 @@ inline void write(int x) {
 如果你的程序使用多个类型的变量，那么可能需要写多个输入输出优化的函数。下面给出的代码使用 [C++ 中的 `template`](http://www.cplusplus.com/doc/oldtutorial/templates) 实现了对于所有整数类型的输入输出优化。
 
 ```cpp
+// 声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
 template <typename T>
-inline T
-read() {  // 声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
+T read() {
   T sum = 0, fl = 1;  // 将 sum,fl 和 ch 以输入的类型定义
   int ch = getchar();
   for (; !isdigit(ch); ch = getchar())
@@ -257,7 +257,7 @@ struct IO {
 
   ~IO() { fwrite(pbuf, 1, pp - pbuf, stdout); }
 #endif
-  inline char gc() {
+  char gc() {
 #if DEBUG  // 调试，可显示字符
     return getchar();
 #endif
@@ -265,12 +265,12 @@ struct IO {
     return p1 == p2 ? ' ' : *p1++;
   }
 
-  inline bool blank(char ch) {
+  bool blank(char ch) {
     return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
   }
 
   template <class T>
-  inline void read(T &x) {
+  void read(T &x) {
     double tmp = 1;
     bool sign = 0;
     x = 0;
@@ -284,7 +284,7 @@ struct IO {
     if (sign) x = -x;
   }
 
-  inline void read(char *s) {
+  void read(char *s) {
     char ch = gc();
     for (; blank(ch); ch = gc())
       ;
@@ -292,12 +292,12 @@ struct IO {
     *s = 0;
   }
 
-  inline void read(char &c) {
+  void read(char &c) {
     for (c = gc(); blank(c); c = gc())
       ;
   }
 
-  inline void push(const char &c) {
+  void push(const char &c) {
 #if DEBUG  // 调试，可显示字符
     putchar(c);
 #else
@@ -307,7 +307,7 @@ struct IO {
   }
 
   template <class T>
-  inline void write(T x) {
+  void write(T x) {
     if (x < 0) x = -x, push('-');  // 负数输出
     static T sta[35];
     T top = 0;
@@ -318,7 +318,7 @@ struct IO {
   }
 
   template <class T>
-  inline void write(T x, char lastChar) {
+  void write(T x, char lastChar) {
     write(x), push(lastChar);
   }
 } io;

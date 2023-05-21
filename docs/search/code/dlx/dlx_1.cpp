@@ -3,7 +3,7 @@ const int N = 500 + 10;
 int n, m, idx, ans;
 int first[N], siz[N], stk[N];
 
-inline int read() {  // 快读
+int read() {  // 快读
   int x = 0, f = 0, ch;
   while (!isdigit(ch = getchar())) f |= ch == '-';
   while (isdigit(ch)) x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();

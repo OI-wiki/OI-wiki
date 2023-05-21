@@ -92,7 +92,7 @@
         for (int i = L[j]; i <= R[j]; ++i) block_id[i] = j;
     }
     
-    inline int lb(int x) { return x & -x; }
+    int lb(int x) { return x & -x; }
     
     void add(int p, int v, int d) {
       for (int i = block_id[p]; i <= block_cnt; i += lb(i))
@@ -166,9 +166,9 @@
         node(int _v) : l(NULL), r(NULL), sz(1), rnd(rng()), v(_v) {}
       };
     
-      inline int get_size(node*& p) { return p ? p->sz : 0; }
+      int get_size(node*& p) { return p ? p->sz : 0; }
     
-      inline void push_up(node*& p) {
+      void push_up(node*& p) {
         if (!p) return;
         p->sz = get_size(p->l) + get_size(p->r) + 1;
       }
@@ -250,7 +250,7 @@
     // Fenwick Tree
     Treap T[N];
     
-    inline int lb(int x) { return x & -x; }
+    int lb(int x) { return x & -x; }
     
     void ins(int x, int v) {
       for (; x <= n; x += lb(x)) T[x].ins(v);
@@ -336,7 +336,7 @@
         for (int i = L[j]; i <= R[j]; ++i) block_id[i] = j;
     }
     
-    inline int lb(int x) { return x & -x; }
+    int lb(int x) { return x & -x; }
     
     // d = 1: 加点(p, v)
     // d = -1: 删点(p, v)
@@ -436,9 +436,9 @@
         node(int _v) : l(NULL), r(NULL), rnd(rng()), sz(1), v(_v) {}
       };
     
-      inline int get_size(node*& p) { return p ? p->sz : 0; }
+      int get_size(node*& p) { return p ? p->sz : 0; }
     
-      inline void push_up(node*& p) {
+      void push_up(node*& p) {
         if (!p) return;
         p->sz = get_size(p->l) + get_size(p->r) + 1;
       }

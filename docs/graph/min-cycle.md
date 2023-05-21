@@ -56,7 +56,7 @@
     ```cpp
     int val[maxn + 1][maxn + 1];  // 原图的邻接矩阵
 
-    inline int floyd(const int &n) {
+    int floyd(const int &n) {
       static int dis[maxn + 1][maxn + 1];  // 最短路矩阵
       for (int i = 1; i <= n; ++i)
         for (int j = 1; j <= n; ++j) dis[i][j] = val[i][j];  // 初始化最短路矩阵

@@ -249,7 +249,7 @@ void build_virtual_tree() {
 
 ???+ note "代码实现"
     ```cpp
-    inline bool cmp(const int x, const int y) { return id[x] < id[y]; }
+    bool cmp(const int x, const int y) { return id[x] < id[y]; }
     
     void build() {
       sort(h + 1, h + k + 1, cmp);

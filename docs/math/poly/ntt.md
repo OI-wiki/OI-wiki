@@ -84,7 +84,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     #include <vector>
     using namespace std;
     
-    inline int read() {
+    int read() {
       int x = 0, f = 1;
       char ch = getchar();
       while (ch < '0' || ch > '9') {
@@ -106,7 +106,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     
     const int N = 300100, P = 998244353;
     
-    inline int qpow(int x, int y) {
+    int qpow(int x, int y) {
       int res(1);
       while (y) {
         if (y & 1) res = 1ll * res * x % P;

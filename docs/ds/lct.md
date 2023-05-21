@@ -132,7 +132,7 @@ Splay Tree 是 LCT 的基础，但是 LCT 用的 Splay Tree 和普通的 Splay �
 ### `PushUp()`
 
 ```cpp
-inline void PushUp(int p) {
+void PushUp(int p) {
   // maintain other variables
   siz[p] = siz[ls] + siz[rs] + 1;
 }
@@ -141,7 +141,7 @@ inline void PushUp(int p) {
 ### `PushDown()`
 
 ```cpp
-inline void PushDown(int p) {
+void PushDown(int p) {
   if (tag[p] != std_tag) {
     // pushdown the tag
     tag[p] = std_tag;
@@ -156,7 +156,7 @@ inline void PushDown(int p) {
 ```cpp
 #define Get(x) (ch[f[x]][1] == x)
 
-inline void Rotate(int x) {
+void Rotate(int x) {
   int y = f[x], z = f[y], k = Get(x);
   if (!isRoot(y)) ch[z][ch[z][1] == y] = x;
   // 上面这句一定要写在前面，普通的 Splay 是不用的，因为 isRoot  (后面会讲)
@@ -165,7 +165,7 @@ inline void Rotate(int x) {
   PushUp(y), PushUp(x);
 }
 
-inline void Splay(int x) {
+void Splay(int x) {
   Update(
       x);  // 马上就能看到啦。在 Splay 之前要把旋转会经过的路径上的点都 PushDown
   for (int fa; fa = f[x], !isRoot(x); Rotate(x)) {
@@ -192,7 +192,7 @@ inline void Splay(int x) {
 // Access 是 LCT
 // 的核心操作，试想我们像求解一条路径，而这条路径恰好就是我们当前的一棵 Splay，
 // 直接调用其信息即可。先来看一下代码，再结合图来看看过程
-inline int Access(int x) {
+int Access(int x) {
   int p;
   for (p = 0; x; p = x, x = f[x]) {
     Splay(x), ch[x][1] = p, PushUp(x);
@@ -245,7 +245,7 @@ inline int Access(int x) {
 
 ```cpp
 // 回顾一下代码
-inline int Access(int x) {
+int Access(int x) {
   int p;
   for (p = 0; x; p = x, x = f[x]) {
     Splay(x), ch[x][1] = p, PushUp(x);
@@ -287,7 +287,7 @@ void Update(int p) {
 -   由于 $y$ 是 $x$ 到当前根的路径所代表的 Splay 的根，因此将以 $y$ 为根的 Splay 树进行区间翻转即可。
 
 ```cpp
-inline void makeRoot(int p) {
+void makeRoot(int p) {
   p = Access(p);
   swap(ch[p][0], ch[p][1]);
   tag[p] ^= 1;
@@ -299,7 +299,7 @@ inline void makeRoot(int p) {
 -   Link 两个点其实很简单，先 `Make_Root(x)`，然后把 $x$ 的父亲指向 $y$ 即可。显然，这个操作肯定不能发生在同一棵树内，所以记得先判一下。
 
 ```cpp
-inline void Link(int x, int p) {
+void Link(int x, int p) {
   makeRoot(x);
   splay(x);
   f[x] = p;
@@ -319,9 +319,7 @@ inline void Link(int x, int p) {
 -   如果保证合法，直接 `Split(x, y)`，这时候 $y$ 是根，$x$ 一定是它的儿子，双向断开即可。就像这样：
 
 ```cpp
-inline void Cut(int x, int p) {
-  makeRoot(x), Access(p), Splay(p), ls = f[x] = 0;
-}
+void Cut(int x, int p) { makeRoot(x), Access(p), Splay(p), ls = f[x] = 0; }
 ```
 
 如果是不保证合法，我们需要判断一下是否有，我选择使用 `map` 存一下，但是这里有一个利用性质的方法：
@@ -343,7 +341,7 @@ inline void Cut(int x, int p) {
 -   注意，每次查询之后需要把查询到的答案对应的结点 `Splay` 上去以保证复杂度。
 
 ```cpp
-inline int Find(int p) {
+int Find(int p) {
   Access(p);
   Splay(p);
   pushDown(p);

@@ -168,12 +168,12 @@ if (s >> j & 1) {       // 如果已被覆盖
       int state[MaxSZ];
       long long key[MaxSZ];
     
-      inline void clear() {
+      void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
     
-      inline void push(int s) {
+      void push(int s) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
           if (state[i] == s) {
@@ -594,7 +594,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     #define REP(i, n) for (int i = 0; i < n; ++i)
     
     template <class T>
-    inline bool checkMin(T &a, const T b) {
+    bool checkMin(T &a, const T b) {
       return b < a ? a = b, 1 : 0;
     }
     
@@ -633,12 +633,12 @@ if (s >> j & 1) {       // 如果已被覆盖
       int state[MaxSZ];
       int key[MaxSZ];
     
-      inline void clear() {
+      void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
     
-      inline void push(int s) {
+      void push(int s) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
           if (state[i] == s) {

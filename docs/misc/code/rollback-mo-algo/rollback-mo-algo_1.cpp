@@ -13,7 +13,7 @@ int pos[N], L[N], R[N], sz, tot;
 int cnt[N], __cnt[N];
 ll ans[N];
 
-inline bool cmp(const Query& A, const Query& B) {
+bool cmp(const Query& A, const Query& B) {
   if (pos[A.l] == pos[B.l]) return A.r < B.r;
   return pos[A.l] < pos[B.l];
 }
@@ -32,12 +32,12 @@ void build() {
   }
 }
 
-inline void Add(int v, ll& Ans) {
+void Add(int v, ll& Ans) {
   ++cnt[v];
   Ans = max(Ans, 1LL * cnt[v] * t[v]);
 }
 
-inline void Del(int v) { --cnt[v]; }
+void Del(int v) { --cnt[v]; }
 
 int main() {
   scanf("%d %d", &n, &q);

@@ -54,7 +54,7 @@
     === "C++"
     
         ```cpp
-        inline int qpow(long long a, int b) {
+        int qpow(long long a, int b) {
           int ans = 1;
           a = (a % p + p) % p;
           for (; b; b >>= 1) {
