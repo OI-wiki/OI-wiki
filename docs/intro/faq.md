@@ -117,13 +117,13 @@ Linux 和 macOS 用户可以尝试使用 [依云](https://github.com/lilydjwg/) 
 
 同时，您可以使用 [FastGit](https://fastgit.org/) 服务加速 Clone，可以阅读其 [使用文档](https://doc.fastgit.org/zh-cn/guide.html)。
 
-如果您仅仅是想 Clone OI Wiki 的仓库，那么：
+如果您仅仅是想 Clone **OI Wiki** 的仓库，那么：
 
 ```bash
 git clone https://hub.fastgit.xyz/OI-wiki/OI-wiki.git
 ```
 
-如果您需要向 OI Wiki 贡献，那么首先 fork OI Wiki 的仓库，然后（将 `username` 替换为您的用户名），需要注意的是提供的示例将使您使用 SSH 连接到 GitHub[^only-ssh-connect]：
+如果您需要向 **OI Wiki** 贡献，那么首先 fork **OI Wiki** 的仓库，然后（将 `username` 替换为您的用户名），需要注意的是提供的示例将使您使用 SSH 连接到 GitHub[^only-ssh-connect]：
 
 ```bash
 git clone https://hub.fastgit.xyz/username/OI-wiki.git
