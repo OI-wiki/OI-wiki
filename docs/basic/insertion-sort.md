@@ -43,15 +43,15 @@ $$
 
     ```cpp
     void insertion_sort(int arr[], int len) {
-      for (int i = 1; i < len; ++i) {
-        int key = arr[i];
-        int j = i - 1;
-        while (j >= 0 && arr[j] > key) {
-          arr[j + 1] = arr[j];
-          j--;
+        if (len < 2) return;
+        for (int i = 1; i != len; ++i) {
+            int key = arr[i];
+            auto index = upper_bound(arr, arr + i, key) - arr;
+            if (index != i) {
+                memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
+                arr[i] = key;
+            }
         }
-        arr[j + 1] = key;
-      }
     }
     ```
 
