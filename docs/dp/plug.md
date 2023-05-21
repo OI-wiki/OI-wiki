@@ -258,6 +258,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note " 习题 [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
     题目大意：求用一条有向回路覆盖 $4\times N$ 的棋盘的方案数，需要高精度。
 
+??? note " 习题 [「HNOI 2007」神奇游乐园](https://www.luogu.com.cn/problem/P3190)"
+    题目大意：给定一个 $n\times m$ 的网格图，每格内有一个权值，求一个任意一个回路，最大化经过的权值和。
+
 ??? note " 习题 [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
     题目大意：用多条回路覆盖 $n\times n$ 的方阵，每个有 $m$ 条回路的方案对答案的贡献是 $2^m$，求所有方案的贡献和。
 
