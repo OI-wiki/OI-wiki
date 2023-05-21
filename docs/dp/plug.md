@@ -552,6 +552,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note " 习题 [「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最大的连通块。
 
+??? note " 习题 [「AtCoder Beginner Contest 211. Problem E」Red Polyomino](https://atcoder.jp/contests/abc211/tasks/abc211_e)"
+    题目大意：给一个 $N\times N$ 大小的棋盘图，每个格子初始为黑色或白色。你可以从白色格子中挑选恰好 $K$ 个并将之染成红色，问有多少种染色方案满足红色格子形成一个连通块。
+
 ## 图论模型
 
 ???+ note " 例题 [「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
@@ -795,8 +798,8 @@ if (s >> j & 1) {       // 如果已被覆盖
 当 $n,m\le 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 
 -   [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031)
--   [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
--   [「51nod 1034」骨牌覆盖 V3](http://www.51nod.com/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
+-   [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033) |[「Vijos 1194」Domino](https://vijos.org/p/1194)
+-   [「51nod 1034」骨牌覆盖 V3](http://www.51nod.com/Challenge/Problem.html#problemId=1034) |[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
 -   [Wolfram MathWorld, Chebyshev Polynomial of the Second Kind](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
 
 ### 一条路径
