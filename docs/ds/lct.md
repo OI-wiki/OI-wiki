@@ -319,9 +319,7 @@ void Link(int x, int p) {
 -   如果保证合法，直接 `Split(x, y)`，这时候 $y$ 是根，$x$ 一定是它的儿子，双向断开即可。就像这样：
 
 ```cpp
-void Cut(int x, int p) {
-  makeRoot(x), Access(p), Splay(p), ls = f[x] = 0;
-}
+void Cut(int x, int p) { makeRoot(x), Access(p), Splay(p), ls = f[x] = 0; }
 ```
 
 如果是不保证合法，我们需要判断一下是否有，我选择使用 `map` 存一下，但是这里有一个利用性质的方法：

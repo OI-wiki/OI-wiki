@@ -57,9 +57,7 @@ $$
     
     double sqr(double x) { return x * x; }
     
-    double dis(point a, point b) {
-      return sqrt(sqr(a.x - b.x) + sqr(a.y - b.y));
-    }
+    double dis(point a, point b) { return sqrt(sqr(a.x - b.x) + sqr(a.y - b.y)); }
     
     bool cmp(double a, double b) { return fabs(a - b) < 1e-8; }
     

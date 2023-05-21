@@ -28,9 +28,7 @@ struct matrix {
   }
 } Tree[maxn], g[maxn];  // Tree[]是建出来的线段树，g[]是维护的每个点的矩阵
 
-void PushUp(int root) {
-  Tree[root] = Tree[root << 1] * Tree[root << 1 | 1];
-}
+void PushUp(int root) { Tree[root] = Tree[root << 1] * Tree[root << 1 | 1]; }
 
 void Build(int root, int l, int r) {
   if (l == r) {
