@@ -47,10 +47,8 @@ $$
         for (int i = 1; i != len; ++i) {
             int key = arr[i];
             auto index = upper_bound(arr, arr + i, key) - arr;
-            if (index != i) {
-                memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
-                arr[i] = key;
-            }
+            memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
+            arr[i] = key;
         }
     }
     ```
