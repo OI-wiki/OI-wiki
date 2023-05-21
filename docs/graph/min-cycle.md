@@ -19,7 +19,7 @@
 
 ### Dijkstra
 
-相关链接：[最短路/Dijkstra](https://oi-wiki.org/graph/shortest-path/#dijkstra)
+相关链接：[最短路/Dijkstra](./shortest-path.md#dijkstra-算法)
 
 #### 过程
 
@@ -31,7 +31,7 @@
 
 ### Floyd
 
-相关链接：[最短路/Floyd](https://oi-wiki.org/graph/shortest-path/#floyd)
+相关链接：[最短路/Floyd](./shortest-path.md#floyd-算法)
 
 #### 过程
 

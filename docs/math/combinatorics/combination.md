@@ -370,7 +370,7 @@ f_n &= \sum_{j = 0}^{n}\sum_{i = j}^{n}\binom{n}{i}\binom{i}{j} (-1)^{n-i}f_j \\
 \end{aligned}
 $$
 
-使用 [「组合数性质 | 二项式推论」](https://oi-wiki.org/math/combinatorics/combination/#%E7%BB%84%E5%90%88%E6%95%B0%E6%80%A7%E8%B4%A8--%E4%BA%8C%E9%A1%B9%E5%BC%8F%E6%8E%A8%E8%AE%BA) 的公式 (11) 得到：
+使用 [「组合数性质 | 二项式推论」](#组合数性质--二项式推论) 的公式 (11) 得到：
 
 $$
 \begin{aligned}
@@ -385,7 +385,7 @@ $$
 f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j\sum_{k = 0}^{n - j}\binom{n - j}{k} (-1)^{n-j-k}1^{k}
 $$
 
-使用 [「组合数性质 | 二项式推论」](https://oi-wiki.org/math/combinatorics/combination/#%E7%BB%84%E5%90%88%E6%95%B0%E6%80%A7%E8%B4%A8--%E4%BA%8C%E9%A1%B9%E5%BC%8F%E6%8E%A8%E8%AE%BA) 的公式 (5) 得到：
+使用 [「组合数性质 | 二项式推论」](#组合数性质--二项式推论) 的公式 (5) 得到：
 
 $$
 f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j[n = j] = f_n
