@@ -187,7 +187,7 @@ void MSD_radix_sort(NTBSptr first, NTBSptr last) {
 
 ### 与桶排序的关系
 
-前置知识：[桶排序](https://oi-wiki.org/basic/bucket-sort/)
+前置知识：[桶排序](./bucket-sort.md)
 
 桶排序需要其它的排序算法来完成对每个桶内部元素的排序。但实际上，完全可以对每个桶继续执行桶排序，直至某一步桶的元素数量 $\le 1$。
 

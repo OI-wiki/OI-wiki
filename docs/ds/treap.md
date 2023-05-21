@@ -1,6 +1,6 @@
 author: Dev-XYS, ttzytt
 
-前置知识：[朴素二叉搜索树](https://oi-wiki.org/ds/bst/)
+前置知识：[朴素二叉搜索树](./bst.md)
 
 ## 简介
 
@@ -645,7 +645,7 @@ int qnex(int val) {
 
 但是在 treap 中，按增序插入节点后，在合并操作时还会根据 $\textit{priority}$ 调整树的结构，在这样的情况下，如何确保中序遍历一定能正确的输出呢？
 
-可以参考 [笛卡尔树的单调栈建树方法](https://oi-wiki.org/ds/cartesian-tree/) 来理解这个问题。
+可以参考 [笛卡尔树的单调栈建树方法](./cartesian-tree.md) 来理解这个问题。
 
 设新插入的节点为 $\textit{u}$。
 
