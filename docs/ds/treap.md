@@ -691,14 +691,14 @@ int qnex(int val) {
 
 ```cpp
 // 这里这个 pushdown 是 Node 类的成员函数，其中 to_rev 是懒标记
-inline void pushdown() {
+void pushdown() {
   swap(ch[0], ch[1]);
   if (ch[0] != nullptr) ch[0]->to_rev ^= 1;
   if (ch[1] != nullptr) ch[1]->to_rev ^= 1;
   to_rev = false;
 }
 
-inline void check_tag() {
+void check_tag() {
   if (to_rev) pushdown();
 }
 ```
@@ -1034,7 +1034,7 @@ void print(Node* cur) {
         val = _node->val, prio = _node->prio, cnt = _node->cnt, siz = _node->siz;
       }
     
-      inline void upd_siz() {
+      void upd_siz() {
         siz = cnt;
         if (ch[0] != nullptr) siz += ch[0]->siz;
         if (ch[1] != nullptr) siz += ch[1]->siz;
@@ -1221,14 +1221,14 @@ void print(Node* cur) {
         prio = rand();
       }
     
-      inline int upd_siz() {
+      int upd_siz() {
         siz = cnt;
         if (ch[0] != nullptr) siz += ch[0]->siz;
         if (ch[1] != nullptr) siz += ch[1]->siz;
         return siz;
       }
     
-      inline void pushdown() {
+      void pushdown() {
         swap(ch[0], ch[1]);
         if (ch[0] != nullptr) ch[0]->to_rev ^= 1;
         // 如果原来子节点也要翻转，那两次翻转就抵消了，如果子节点不翻转，那这个
@@ -1237,7 +1237,7 @@ void print(Node* cur) {
         to_rev = false;
       }
     
-      inline void check_tag() {
+      void check_tag() {
         if (to_rev) pushdown();
       }
     };

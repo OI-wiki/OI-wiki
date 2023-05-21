@@ -417,7 +417,7 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
         ```cpp
         int t1[MAXN], t2[MAXN], n;
     
-        inline int lowbit(int x) { return x & (-x); }
+        int lowbit(int x) { return x & (-x); }
     
         void add(int k, int v) {
           int v1 = k * v;

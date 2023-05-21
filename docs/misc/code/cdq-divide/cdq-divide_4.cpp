@@ -39,9 +39,9 @@ struct qry {
 int tp2;
 int cnt;
 
-inline bool cmp(const qry& a, const qry& b) { return a.t < b.t; }
+bool cmp(const qry& a, const qry& b) { return a.t < b.t; }
 
-inline void modify(int pos, int co)  // 修改函数
+void modify(int pos, int co)  // 修改函数
 {
   if (npre[pos] == co) return;
   md[++tp1] = (modi){++cnt, pos, npre[pos], -1};
@@ -52,7 +52,7 @@ namespace prew {
 int lst[2 * N];
 map<int, int> mp;  // 提前离散化
 
-inline void prew() {
+void prew() {
   scanf("%d%d", &n, &m);
   for (int i = 1; i <= n; i++) scanf("%d", &a[i]), mp[a[i]] = 1;
   for (int i = 1; i <= m; i++) {
@@ -91,7 +91,7 @@ struct nod {
 set<nod> c[2 * N];
 set<int> bd;
 
-inline void split(int mid) {  // 将一个节点拆成两个节点
+void split(int mid) {  // 将一个节点拆成两个节点
   SDI it = s.lower_bound((data){0, mid, 0});
   data p = *it;
   if (mid == p.r) return;
@@ -103,7 +103,7 @@ inline void split(int mid) {  // 将一个节点拆成两个节点
   c[p.x].insert((nod){mid + 1, p.r});
 }
 
-inline void del(set<data>::iterator it) {  // 删除一个迭代器
+void del(set<data>::iterator it) {  // 删除一个迭代器
   bd.insert(it->l);
   SNI it1, it2;
   it1 = it2 = c[it->x].find((nod){it->l, it->r});
@@ -113,7 +113,7 @@ inline void del(set<data>::iterator it) {  // 删除一个迭代器
   s.erase(it);
 }
 
-inline void ins(data p) {  // 插入一个节点
+void ins(data p) {  // 插入一个节点
   s.insert(p);
   SNI it = c[p.x].insert((nod){p.l, p.r}).first;
   ++it;
@@ -122,7 +122,7 @@ inline void ins(data p) {  // 插入一个节点
   }
 }
 
-inline void stv(int l, int r, int x) {  // 区间赋值
+void stv(int l, int r, int x) {  // 区间赋值
   if (l != 1) split(l - 1);
   split(r);
   int p = l;  // split两下之后删掉所有区间
@@ -147,7 +147,7 @@ inline void stv(int l, int r, int x) {  // 区间赋值
   bd.clear();
 }
 
-inline void ih() {
+void ih() {
   int nc = a[1];
   int ccnt = 1;  // 将连续的一段插入到set中
   for (int i = 2; i <= n; i++)
@@ -169,30 +169,30 @@ struct treearray  // 树状数组
 {
   int ta[N];
 
-  inline void c(int x, int t) {
+  void c(int x, int t) {
     for (; x <= n; x += x & (-x)) ta[x] += t;
   }
 
-  inline void d(int x) {
+  void d(int x) {
     for (; x <= n; x += x & (-x)) ta[x] = 0;
   }
 
-  inline int q(int x) {
+  int q(int x) {
     int r = 0;
     for (; x; x -= x & (-x)) r += ta[x];
     return r;
   }
 
-  inline void clear() {
+  void clear() {
     for (int i = 1; i <= n; i++) ta[i] = 0;
   }
 } ta;
 
 int srt[N];
 
-inline bool cmp1(const int& a, const int& b) { return pre[a] < pre[b]; }
+bool cmp1(const int& a, const int& b) { return pre[a] < pre[b]; }
 
-inline void solve(int l1, int r1, int l2, int r2, int L, int R) {  // CDQ
+void solve(int l1, int r1, int l2, int r2, int L, int R) {  // CDQ
   if (l1 == r1 || l2 == r2) return;
   int mid = (L + R) / 2;
   int mid1 = l1;
@@ -212,7 +212,7 @@ inline void solve(int l1, int r1, int l2, int r2, int L, int R) {  // CDQ
   }
 }
 
-inline void mainsolve() {
+void mainsolve() {
   colist::ih();
   for (int i = 1; i <= m; i++)
     if (tp[i] == 1)

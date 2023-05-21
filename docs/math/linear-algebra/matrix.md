@@ -167,7 +167,7 @@ $$
 
 ```cpp
 // 以下文的参考代码为例
-inline mat operator*(const mat& T) const {
+mat operator*(const mat& T) const {
   mat res;
   for (int i = 0; i < sz; ++i)
     for (int j = 0; j < sz; ++j)
@@ -179,7 +179,7 @@ inline mat operator*(const mat& T) const {
 }
 
 // 不如
-inline mat operator*(const mat& T) const {
+mat operator*(const mat& T) const {
   mat res;
   int r;
   for (int i = 0; i < sz; ++i)
@@ -210,9 +210,9 @@ inline mat operator*(const mat& T) const {
 struct mat {
   LL a[sz][sz];
 
-  inline mat() { memset(a, 0, sizeof a); }
+  mat() { memset(a, 0, sizeof a); }
 
-  inline mat operator-(const mat& T) const {
+  mat operator-(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
       for (int j = 0; j < sz; ++j) {
@@ -221,7 +221,7 @@ struct mat {
     return res;
   }
 
-  inline mat operator+(const mat& T) const {
+  mat operator+(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
       for (int j = 0; j < sz; ++j) {
@@ -230,7 +230,7 @@ struct mat {
     return res;
   }
 
-  inline mat operator*(const mat& T) const {
+  mat operator*(const mat& T) const {
     mat res;
     int r;
     for (int i = 0; i < sz; ++i)
@@ -242,7 +242,7 @@ struct mat {
     return res;
   }
 
-  inline mat operator^(LL x) const {
+  mat operator^(LL x) const {
     mat res, bas;
     for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
     for (int i = 0; i < sz; ++i)

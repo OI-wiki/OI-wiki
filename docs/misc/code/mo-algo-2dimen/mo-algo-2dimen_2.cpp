@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-inline void read(int& a) {
+void read(int& a) {
   a = 0;
   char c;
   while ((c = getchar()) < 48)
@@ -10,7 +10,7 @@ inline void read(int& a) {
   while ((c = getchar()) > 47);
 }
 
-inline void write(int x) {
+void write(int x) {
   if (x > 9) write(x / 10);
   putchar(x % 10 + '0');
 }

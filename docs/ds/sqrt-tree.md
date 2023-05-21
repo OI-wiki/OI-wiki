@@ -146,7 +146,7 @@ Sqrt Tree 也支持区间覆盖操作 $\operatorname{Update}(l,r,x)$，即把区
 ```cpp
 SqrtTreeItem op(const SqrtTreeItem &a, const SqrtTreeItem &b);
 
-inline int log2Up(int n) {
+int log2Up(int n) {
   int res = 0;
   while ((1 << res) < n) {
     res++;
@@ -161,7 +161,7 @@ class SqrtTree {
   vector<int> clz, layers, onLayer;
   vector<vector<SqrtTreeItem> > pref, suf, between;
 
-  inline void buildBlock(int layer, int l, int r) {
+  void buildBlock(int layer, int l, int r) {
     pref[layer][l] = v[l];
     for (int i = l + 1; i < r; i++) {
       pref[layer][i] = op(pref[layer][i - 1], v[i]);
@@ -172,7 +172,7 @@ class SqrtTree {
     }
   }
 
-  inline void buildBetween(int layer, int lBound, int rBound, int betweenOffs) {
+  void buildBetween(int layer, int lBound, int rBound, int betweenOffs) {
     int bSzLog = (layers[layer] + 1) >> 1;
     int bCntLog = layers[layer] >> 1;
     int bSz = 1 << bSzLog;
@@ -187,7 +187,7 @@ class SqrtTree {
     }
   }
 
-  inline void buildBetweenZero() {
+  void buildBetweenZero() {
     int bSzLog = (lg + 1) >> 1;
     for (int i = 0; i < indexSz; i++) {
       v[n + i] = suf[0][i << bSzLog];
@@ -195,7 +195,7 @@ class SqrtTree {
     build(1, n, n + indexSz, (1 << lg) - n);
   }
 
-  inline void updateBetweenZero(int bid) {
+  void updateBetweenZero(int bid) {
     int bSzLog = (lg + 1) >> 1;
     v[n + bid] = suf[0][bid << bSzLog];
     update(1, n, n + indexSz, (1 << lg) - n, n + bid);
@@ -236,7 +236,7 @@ class SqrtTree {
     update(layer + 1, l, r, betweenOffs, x);
   }
 
-  inline SqrtTreeItem query(int l, int r, int betweenOffs, int base) {
+  SqrtTreeItem query(int l, int r, int betweenOffs, int base) {
     if (l == r) {
       return v[l];
     }
@@ -262,9 +262,9 @@ class SqrtTree {
   }
 
  public:
-  inline SqrtTreeItem query(int l, int r) { return query(l, r, 0, 0); }
+  SqrtTreeItem query(int l, int r) { return query(l, r, 0, 0); }
 
-  inline void update(int x, const SqrtTreeItem &item) {
+  void update(int x, const SqrtTreeItem &item) {
     v[x] = item;
     update(0, 0, n, 0, x);
   }

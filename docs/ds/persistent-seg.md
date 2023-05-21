@@ -58,7 +58,7 @@ int sum[(maxn << 5) + 10], rt[maxn + 10], ls[(maxn << 5) + 10],
     rs[(maxn << 5) + 10];
 int a[maxn + 10], ind[maxn + 10], len;
 
-inline int getid(const int &val) {  // 离散化
+int getid(const int &val) {  // 离散化
   return lower_bound(ind + 1, ind + len + 1, val) - ind;
 }
 
@@ -93,7 +93,7 @@ int query(int u, int v, int l, int r, int k) {  // 查询操作
     return query(rs[u], rs[v], mid + 1, r, k - x);
 }
 
-inline void init() {
+void init() {
   scanf("%d%d", &n, &m);
   for (int i = 1; i <= n; ++i) scanf("%d", a + i);
   memcpy(ind, a, sizeof ind);
@@ -105,7 +105,7 @@ inline void init() {
 
 int l, r, k;
 
-inline void work() {
+void work() {
   while (m--) {
     scanf("%d%d%d", &l, &r, &k);
     printf("%d\n", ind[query(rt[l - 1], rt[r], 1, len, k)]);  // 回答询问

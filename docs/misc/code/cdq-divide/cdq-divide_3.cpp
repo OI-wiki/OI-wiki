@@ -18,34 +18,34 @@ int n;
 bool tr;
 
 // 底下是重写比较
-inline bool cmp1(const data_& a, const data_& b) {
+bool cmp1(const data_& a, const data_& b) {
   if (tr)
     return a.h > b.h;
   else
     return a.h < b.h;
 }
 
-inline bool cmp2(const data_& a, const data_& b) {
+bool cmp2(const data_& a, const data_& b) {
   if (tr)
     return a.v > b.v;
   else
     return a.v < b.v;
 }
 
-inline bool cmp3(const data_& a, const data_& b) {
+bool cmp3(const data_& a, const data_& b) {
   if (tr)
     return a.p < b.p;
   else
     return a.p > b.p;
 }
 
-inline bool cmp4(const data_& a, const data_& b) { return a.v == b.v; }
+bool cmp4(const data_& a, const data_& b) { return a.v == b.v; }
 
 struct treearray {
   int ma[2 * N];
   db ca[2 * N];
 
-  inline void c(int x, int t, db c) {
+  void c(int x, int t, db c) {
     for (; x <= n; x += x & (-x)) {
       if (ma[x] == t) {
         ca[x] += c;
@@ -56,14 +56,14 @@ struct treearray {
     }
   }
 
-  inline void d(int x) {
+  void d(int x) {
     for (; x <= n; x += x & (-x)) {
       ma[x] = 0;
       ca[x] = 0;
     }
   }
 
-  inline void q(int x, int& m, db& c) {
+  void q(int x, int& m, db& c) {
     for (; x > 0; x -= x & (-x)) {
       if (ma[x] == m) {
         c += ca[x];
@@ -77,7 +77,7 @@ struct treearray {
 
 int rk[2][N];
 
-inline void solve(int l, int r, int t) {  // 递归跑
+void solve(int l, int r, int t) {  // 递归跑
   if (r - l == 1) {
     return;
   }
@@ -108,7 +108,7 @@ inline void solve(int l, int r, int t) {  // 递归跑
   sort(a[t] + l + 1, a[t] + r + 1, cmp1);
 }
 
-inline void ih(int t) {
+void ih(int t) {
   sort(a[t] + 1, a[t] + n + 1, cmp2);
   rk[t][1] = 1;
   for (int i = 2; i <= n; i++) {
