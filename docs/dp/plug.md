@@ -798,8 +798,8 @@ if (s >> j & 1) {       // 如果已被覆盖
 当 $n,m\le 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 
 -   [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031)
--   [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033) |[「Vijos 1194」Domino](https://vijos.org/p/1194)
--   [「51nod 1034」骨牌覆盖 V3](http://www.51nod.com/Challenge/Problem.html#problemId=1034) |[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
+-   [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
+-   [「51nod 1034」骨牌覆盖 V3](http://www.51nod.com/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
 -   [Wolfram MathWorld, Chebyshev Polynomial of the Second Kind](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
 
 ### 一条路径
