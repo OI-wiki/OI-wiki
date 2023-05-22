@@ -1,4 +1,4 @@
-author: frank-xjh, qiqistyle
+author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Saisyc, shuzhouliu, Xeonacid, xyf007
 
 本页面将简要介绍枚举算法。
 
