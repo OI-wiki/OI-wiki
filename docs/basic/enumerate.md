@@ -103,8 +103,8 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
 
 ### 复杂度分析
 
-- 时间复杂度分析：对 $a$ 数组遍历了一遍就能完成题目要求，当 $n$ 足够大的时候时间复杂度为 $O(n)$。
-- 空间复杂度分析：$O(n+\max\{|x|:x\in a\})$。
+-   时间复杂度分析：对 $a$ 数组遍历了一遍就能完成题目要求，当 $n$ 足够大的时候时间复杂度为 $O(n)$。
+-   空间复杂度分析：$O(n+\max\{|x|:x\in a\})$。
 
 ## 习题
 
