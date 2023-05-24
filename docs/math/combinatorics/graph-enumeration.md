@@ -86,6 +86,11 @@ $$C(x) = ln(G(x))$$
 
 下面具体讨论有标号二分图。
 
+### 习题
+
+- [UOJ Goodbye Jihai D. 新年的追逐战](https://uoj.ac/contest/50/problem/498)
+
+
 ## 有标号仙人掌
 
 ### 例题「LOJ #161」仙人掌计数
@@ -112,7 +117,7 @@ $$C(x) = ln(G(x))$$
 
 上述关于 EGF 的 exp 的用法，有时又被称作 Riddell's formula for labeled graphs，生成函数的 [欧拉变换](../../poly/symbolic-method/#%E9%9B%86%E5%90%88%E7%9A%84-multiset-%E6%9E%84%E9%80%A0)，有时也被称为 Riddell's formula for unlabeled graphs，后者最早出现在欧拉对分拆数的研究中，除了解决图论计数问题之外，也在完全背包问题中出现。
 
-$$\mathcal{E}(F(x)) = \prod_{i} (1-x^i)^{-f_i} $$对于
+$$\mathcal{E}(F(x)) = \prod_{i} (1-x^i)^{-f_i} $$
 
 ## 无标号树
 
