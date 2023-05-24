@@ -33,7 +33,14 @@ $$\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} = g_n$$
 
 ##### 方法一：多项式求逆
 
-对于数据范围更大的情况，我们需要构造卷积。
+对于数据范围更大的情况，我们需要构造卷积，我们将上式中的组合数展开，并进行变形：
+
+\begin{align}
+\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} &= g_n
+\sum_{i=1}^{n} \frac{c_i}{(i-1)!} \frac{g_{n-i}}{(n-i)!} &= \frac{g_n}{(n-1)!}
+\end{align}
+
+构造多项式：
 
 \begin{align}
 C(x) &= \sum_{n=1} \frac{c_n}{(n-1)!} x^n \\
@@ -41,11 +48,11 @@ G(x) &= \sum_{n=0} \frac{g_n}{n!} x^n \\
 H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 \end{align}
 
-得到 $H = F G$，[多项式求逆](../../poly/inv/) 解出 $F$ 即可。
+得到 $H = CG$，[多项式求逆](../../poly/inv/) 解出 $C$ 即可。
 
 ##### 方法二：多项式 Exp
 
-根据 [EGF 中多项式 exp 的组合意义](../../poly/inv/egf/#egf-中多项式-exp-的组合意义)，我们设有标号连通图和简单图序列的 EGF 分别为 $C(x)$ 和 $G(x)$，我们有下列关系：
+另一种做法是使用 [EGF 中多项式 exp 的组合意义](../../poly/inv/egf/#egf-中多项式-exp-的组合意义)，我们设有标号连通图和简单图序列的 EGF 分别为 $C(x)$ 和 $G(x)$，那么它们将有下列关系：
 
 $$ e^{C(x)} = G(x) $$
 
