@@ -36,8 +36,10 @@ $$\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} = g_n$$
 \begin{align}
 C(x) &= \sum_{n=1} \frac{c_n}{(n-1)!} x^n \\\ 
 G(x) &= \sum_{n=0} \frac{g_n}{n!} x^n \\
-H(x) &= \sum={n=1} \frac{g_n}{(n-1)!} x^n
+H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 \end{align}
+
+不难得到 $F = H G^-1$。
 
 ???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
     题目大意：求有 n 个结点的分别满足下列性质的有标号图的方案数。
