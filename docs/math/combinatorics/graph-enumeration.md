@@ -20,11 +20,11 @@
 ???+ note " 例题 [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)"
     题目大意：求有 n 个结点的有标号连通图的方案数。
 
-我们设 $G_n$ 为 n 个点有标号图的方案数，$C_n$ 为待求序列。
+我们设 $g_n$ 为 n 个点有标号图的方案数，$c_n$ 为待求序列。
 
-不难有 $G_n = 2^{\binom{n}{2}}$，我们枚举其中一个节点所在连通块的大小，可以得到这两个序列之间的关系。
+不难有 $g_n = 2^{\binom{n}{2}}$，我们枚举其中一个节点所在连通块的大小，可以得到这两个序列之间的关系。
 
-$$\sum_{i=1}^{n} \binom{n-1}{i-1} C_i G_{n-i} = G_n$$
+$$\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} = g_n$$
 
 解上式可以得到 $O(n^2)$ 的递推做法。
 
@@ -34,9 +34,9 @@ $$\sum_{i=1}^{n} \binom{n-1}{i-1} C_i G_{n-i} = G_n$$
 对于数据范围更大的情况，我们需要构造卷积。
 
 \begin{align}
-C(x) &= \sum_{n=1} \frac{C_n}{(n-1)!} x^n \\\ 
-f_n &= \sum\limits_{i=0}^{n-1} \binom{n-1}{i} (i+1)^{i-1} f_{n-1-i}    \\\
-    &= (n-1)!\sum_{i=0}^{n-1}\frac{f_i}{i!}\frac{(n-i)^{n-i-2}}{(n-i-1)!}
+C(x) &= \sum_{n=1} \frac{c_n}{(n-1)!} x^n \\\ 
+G(x) &= \sum_{n=0} \frac{g_n}{n!} x^n \\
+H(x) &= \sum={n=1} \frac{g_n}{(n-1)!} x^n
 \end{align}
 
 ???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
