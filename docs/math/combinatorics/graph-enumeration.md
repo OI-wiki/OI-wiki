@@ -10,6 +10,8 @@
 参见 [Prüfer 序列](https://oi-wiki.org/graph/prufer/)。
 
 #### 习题
+
+- [Hihocoder 1047. Random Tree](http://hihocoder.com/problemset/problem/1047)
  
 ### 图
 
@@ -22,7 +24,7 @@
 
 不难有 $G_n = 2^{\binom{n}{2}}$，我们枚举其中一个节点所在连通块的大小，可以得到这两个序列之间的关系。
 
-$$\sum_{i=1}^{n} \binom{n}{i} C_i G_{n-i} = G_n$$
+$$\sum_{i=1}^{n} \binom{n-1}{i-1} C_i G_{n-i} = G_n$$
 
 解上式可以得到 $O(n^2)$ 的递推做法。
 
@@ -30,6 +32,12 @@ $$\sum_{i=1}^{n} \binom{n}{i} C_i G_{n-i} = G_n$$
     题目大意：求有 n 个结点的有标号连通图的方案数（$n \leq 130000$）。
 
 对于数据范围更大的情况，我们需要构造卷积。
+
+\begin{align}
+C(x) &= \sum_{n=1} \frac{C_n}{(n-1)!} x^n \\\ 
+f_n &= \sum\limits_{i=0}^{n-1} \binom{n-1}{i} (i+1)^{i-1} f_{n-1-i}    \\\
+    &= (n-1)!\sum_{i=0}^{n-1}\frac{f_i}{i!}\frac{(n-i)^{n-i-2}}{(n-i-1)!}
+\end{align}
 
 ???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
     题目大意：求有 n 个结点的分别满足下列性质的有标号图的方案数。
@@ -40,6 +48,7 @@ $$\sum_{i=1}^{n} \binom{n}{i} C_i G_{n-i} = G_n$$
 
 #### 习题
 
+-   [HDU 5279. YJC plays Minecraft](https://acm.hdu.edu.cn/showproblem.php?pid=5279)
 -   [Luogu P7364. 有标号二分图计数](https://www.luogu.com.cn/problem/P7364)
 -   [Project Euler 434. Rigid graphs](https://projecteuler.net/problem=434)
 
