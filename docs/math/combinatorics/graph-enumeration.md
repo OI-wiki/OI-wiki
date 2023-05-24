@@ -72,8 +72,14 @@ $$\sum_{i=1}^{n} \binom{n}{i} C_i G_{n-i} = G_n$$
 -   [Luogu P6295. 有标号 DAG 计数](https://www.luogu.com.cn/problem/P6295)
 -   [Luogu P5434. 有标号荒漠计数](https://www.luogu.com.cn/problem/P5434)
 -   [Luogu P5448. [THUPC2018]好图计数](https://www.luogu.com.cn/problem/P5448)
+-   [Luogu P5818. [JSOI2011]同分异构体计数](https://www.luogu.com.cn/problem/P5818)
+-   [Luogu P6597. 烯烃计数](https://www.luogu.com.cn/problem/P6597)
+-   [Luogu P6598. 烷烃计数](https://www.luogu.com.cn/problem/P6598)
+-   [Luogu P4128. [SHOI2006]有色图](https://www.luogu.com.cn/problem/P4128)
+-   [Luogu P4727. [HNOI2009]图的同构计数](https://www.luogu.com.cn/problem/P4727)
 -   [AtCoder Beginner Contest 284 Ex. Count Unlabeled Graphs](https://atcoder.jp/contests/abc284/tasks/abc284_h)
 -   [Luogu P4708. 画画](https://www.luogu.com.cn/problem/P4708)
+
 
 ## 参考资料与注释
 
