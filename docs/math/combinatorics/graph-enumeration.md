@@ -167,6 +167,6 @@ $$\mathcal{E}(F(x)) = \prod_{i} (1-x^i)^{-f_i} $$
 2.  [WC2019, 生成函数，多项式算法与图的计数](https://github.com/lychees/ACM-Training/tree/master/Note/%E5%86%AC%E4%BB%A4%E8%90%A5/2019/d4)
 3.  [Counting labeled graphs - Algorithms for Competitive Programming](https://cp-algorithms.com/combinatorics/counting_labeled_graphs.html)
 4.  [Graphical Enumeration Paperback, Frank Harary, Edgar M. Palmer]()
-5.  [The encyclopedia of integer sequences, N. J.A. Sloane, Simon Plouffe]()
+5.  [The encyclopedia of integer sequences, N. J. A. Sloane, Simon Plouffe]()
 6.  [Combinatorial Problems and Exercises, László Lovász]()
 7.  [Graph Theory and Additive Combinatorics](https://yufeizhao.com/gtacbook/)
