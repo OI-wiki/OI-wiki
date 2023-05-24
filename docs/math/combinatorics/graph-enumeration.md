@@ -67,8 +67,14 @@ f_n &= \sum\limits_{i=0}^{n-1} \binom{n-1}{i} (i+1)^{i-1} f_{n-1-i}    \\\
     - 无标号无根树。
 
 
-???+ note " 例题 [「Luogu P5900」无标号无根树计数](https://www.spoj.com/problems/PT07D/)"
+???+ note " 例题 [「Luogu P5900」无标号无根树计数](https://www.luogu.com.cn/problem/P5900)"
     题目大意：求有 n 个结点的无标号无根树的方案数($n \leq 200000$)。
+
+对于数据范围更大的情况，我们可以使用生成函数，首先介绍欧拉变换。
+
+#### 欧拉变换
+
+$$\mathcal{E}(F(x)) = \prod_{i} (1-x^i)^{-f_i} $$
 
 ### 图
 
