@@ -1,22 +1,17 @@
 在组合数学中，图论计数（Graph Enumeration）是研究满足特定性质的图的计数问题的分支。[生成函数](../../poly/intro/) 与 [波利亚计数定理](../../permutation-group/#p%C3%B3lya-%E5%AE%9A%E7%90%86) 是解决这类问题时最重要的数学工具。图论计数可分为有标号，和无标号两大类问题，一般来说有标号版本的问题，都比其对应的无标号版本的问题更加简单，因此我们将先考察有标号问题的计数。
 
-## 有标号
+## 有标号树
 
-### 树
+参见 [Prüfer 序列](../../../graph/prufer/) 一文。
 
-#### 例题
-
-参见 [Prüfer 序列](https://oi-wiki.org/graph/prufer/)。
-
-#### 习题
+### 习题
 
 - [Hihocoder 1047. Random Tree](http://hihocoder.com/problemset/problem/1047)
  
-### 图
+## 有标号连通图
 
-#### 例题
+### 例题「POJ 1737」Connected Graph
 
-##### 「POJ 1737」Connected Graph
 ???+ note " 例题 [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)"
     题目大意：求有 n 个结点的有标号连通图的方案数。
 
@@ -31,18 +26,18 @@ c_n &= g_n - \sum_{i=1}^{n-1} \binom{n-1}{i-1} c_i g_{n-i}
 
 移项得到 $c_n$ 序列的 $O(n^2)$ 递推公式。
 
-##### 「集训队作业 2013」城市规划
+### 例题「集训队作业 2013」城市规划
 
 ???+ note " 例题 [「集训队作业 2013」城市规划](https://www.luogu.com.cn/problem/P4841)"
     题目大意：求有 n 个结点的有标号连通图的方案数（$n \leq 130000$）。
 
 对于数据范围更大的序列问题，往往我们需要构造这些序列的生成函数，使用高效的多项式算法。
 
-###### 方法一：分治 FFT
+#### 方法一：分治 FFT
 
 上述的递推式可以看作一种自卷积形式，因而可以使用分治 FFT 进行计算，复杂度 $O(nlog^2n)$。
 
-###### 方法二：多项式求逆
+#### 方法二：多项式求逆
 
 我们将上述递推式中的组合数展开，并进行变形：
 
@@ -61,7 +56,7 @@ H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 
 得到 $H = CG$，使用 [多项式求逆](../../poly/inv/) 后再卷积解出 $C$ 即可。
 
-###### 方法二：多项式 Exp
+#### 方法二：多项式 Exp
 
 另一种做法是使用 [EGF 中多项式 exp 的组合意义](../../poly/egf/#egf-%E4%B8%AD%E5%A4%9A%E9%A1%B9%E5%BC%8F-exp-%E7%9A%84%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89)，我们设有标号连通图和简单图序列的 EGF 分别为 $C(x)$ 和 $G(x)$，那么它们将有下列关系：
 
@@ -74,7 +69,7 @@ $$C(x) = ln(G(x))$$
 使用 [多项式 ln](../../poly/ln-exp/) 解出 $C(x)$ 即可。
 这里的公式又称作 Riddell's formula for labeled graphs，它对满足任意性质的有标号图和它对应的连通图之间均成立。
 
-##### 「SPOJ KPGRAPHS」Counting Graphs
+### 例题「SPOJ KPGRAPHS」Counting Graphs
 
 ???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
     题目大意：求有 n 个结点的分别满足下列性质的有标号图的方案数。
@@ -83,28 +78,26 @@ $$C(x) = ln(G(x))$$
     - 欧拉图。 
     - 二分图。
 
-连通图已被解决，下面再考虑欧拉图。上述对连通图计数的几种方法，均可以对满足任意性质的有标号连通图可以进行推广，例如我们可以将 「POJ 1737」Connected Graph 的递推公式中的 $g_n$，改成顶点度数均为偶数的图，那么得到的 $c_n$ 即为欧拉图。同样的，我们也可以应用 Riddell's formula for labeled graphs，构造关于顶点度数均为偶数的图的多项式 $G(x)$，并使用多项式 ln 解出对应的 $C(x)$ 即可。
+连通图已被解决，下面再考虑欧拉图。上述对连通图计数的几种方法，均可以对满足任意性质的有标号连通图可以进行推广，例如我们可以将 「POJ 1737」Connected Graph 的递推公式中的 $g_n$，改成顶点度数均为偶数的图，那么得到的 $c_n$ 即为欧拉图。同样的，我们也可以应用 ，构造关于顶点度数均为偶数的图的多项式 $G(x)$，并使用多项式 ln 解出对应的 $C(x)$ 即可。
 
 下面具体讨论有标号二分图。
 
-
-
-
-
-
-
-#### 习题
+### 习题
 
 -   [Luogu P3343. [ZJOI2015]地震后的幻想乡](https://www.luogu.com.cn/problem/P3343)
 -   [HDU 5279. YJC plays Minecraft](https://acm.hdu.edu.cn/showproblem.php?pid=5279)
 -   [Luogu P7364. 有标号二分图计数](https://www.luogu.com.cn/problem/P7364)
 -   [Project Euler 434. Rigid graphs](https://projecteuler.net/problem=434)
 
-## 无标号
+## Riddell's Formula
 
-### 树
+上述关于 EGF 的 exp 的用法，有时又被称作 Riddell's formula for labeled graphs，生成函数的 [欧拉变换](../../poly/symbolic-method/#%E9%9B%86%E5%90%88%E7%9A%84-multiset-%E6%9E%84%E9%80%A0)，有时也被称为 Riddell's formula for unlabeled graphs，后者最早出现在欧拉对分拆数的研究中，除了解决图论计数问题之外，也在完全背包问题中出现。
 
-#### 例题
+$$\mathcal{E}(F(x)) = \prod_{i} (1-x^i)^{-f_i} $$对于
+
+## 无标号无根树
+
+### 例题 「SPOJ PT07D」Let us count 1 2 3
 
 ???+ note " 例题 [「SPOJ PT07D」Let us count 1 2 3](https://www.spoj.com/problems/PT07D/)"
     题目大意：求有 n 个结点的分别满足下列性质的树的方案数。
@@ -115,16 +108,13 @@ $$C(x) = ln(G(x))$$
     - 无标号无根树。
 
 
+### 例题 「Luogu P5900」无标号无根树计数
 ???+ note " 例题 [「Luogu P5900」无标号无根树计数](https://www.luogu.com.cn/problem/P5900)"
     题目大意：求有 n 个结点的无标号无根树的方案数($n \leq 200000$)。
 
-对于数据范围更大的情况，我们可以使用生成函数，首先介绍欧拉变换。
+对于数据范围更大的情况，我们可以使用欧拉变换。
 
-#### 欧拉变换
-
-$$\mathcal{E}(F(x)) = \prod_{i} (1-x^i)^{-f_i} $$
-
-### 图
+### 无标号简单图
 
 ???+ note " 例题 [「SGU 282. Isomorphism」Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)"
     题目大意：求有 n 个结点的无标号完全图的边进行 m 染色的方案数。    
