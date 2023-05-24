@@ -1,23 +1,37 @@
 在组合数学中，图论计数（Graph Enumeration）是研究满足特定性质的图的计数问题的分支。[生成函数](https://oi-wiki.org/math/poly/intro/) 与 [波利亚计数定理](https://oi-wiki.org/math/permutation-group/#p%C3%B3lya-%E5%AE%9A%E7%90%86) 是解决这类问题时最重要的数学工具。
 
-## 树
 
-### 例题
+## 有标号
+
+### 树
+
+参见 [Prüfer 序列](https://oi-wiki.org/graph/prufer/)。
+ 
+### 图
+
+???+ note " 例题 [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)"
+    题目大意：求有 n 个结点的有标号连通图的方案数。
+    
+???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
+    题目大意：求有 n 个结点的分别满足下列性质的有标号图的方案数。
+    - 连通图。
+    - 欧拉图。 
+    - 二分图。
+
+## 无标号
+
+### 树
 
 ???+ note " 例题 [「SPOJ PT07D」Let us count 1 2 3](https://www.spoj.com/problems/PT07D/)"
-    题目大意：求有 n 个结点的分别满足下列性质的树的计数。
+    题目大意：求有 n 个结点的分别满足下列性质的树的方案数。
     - 有标号有根树。
     - 有标号无根树。    
     - 无标号有根树。
     - 无标号无根树。
 
-## 图
-
-???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
-    题目大意：求有 n 个结点的分别满足下列性质的有标号图的计数。
-    - 连通图。
-    - 欧拉图。 
-    - 二分图。
+### 图
+???+ note " 例题 [「SGU 282. Isomorphism」Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)"
+    题目大意：求有 n 个结点的无标号完全图的边进行 m 染色的方案数。    
 
 ## 习题
 
