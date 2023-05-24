@@ -17,6 +17,7 @@
 
 #### 例题
 
+##### 「POJ 1737」Connected Graph
 ???+ note " 例题 [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)"
     题目大意：求有 n 个结点的有标号连通图的方案数。
 
@@ -28,15 +29,23 @@ $$\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} = g_n$$
 
 解上式可以得到 $O(n^2)$ 的递推做法。
 
+##### 「集训队作业 2013」城市规划
+
 ???+ note " 例题 [「集训队作业 2013」城市规划](https://www.luogu.com.cn/problem/P4841)"
     题目大意：求有 n 个结点的有标号连通图的方案数（$n \leq 130000$）。
 
-##### 方法一：多项式求逆
+对于数据范围更大的序列问题，往往我们需要构造这些序列的生成函数，使用高效的多项式算法。
 
-对于数据范围更大的情况，我们需要构造卷积，我们将上式中的组合数展开，并进行变形：
+###### 方法一：分治 FFT
+
+上述的递推式可以看作一种自卷积形式，因而可以使用分治 FFT 进行计算，复杂度 $O(nlog^2n)$。
+
+###### 方法二：多项式求逆
+
+我们将上述递推式中的组合数展开，并进行变形：
 
 \begin{align}
-\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} &= g_n
+\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} &= g_n \\
 \sum_{i=1}^{n} \frac{c_i}{(i-1)!} \frac{g_{n-i}}{(n-i)!} &= \frac{g_n}{(n-1)!}
 \end{align}
 
@@ -48,9 +57,9 @@ G(x) &= \sum_{n=0} \frac{g_n}{n!} x^n \\
 H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 \end{align}
 
-得到 $H = CG$，[多项式求逆](../../poly/inv/) 解出 $C$ 即可。
+得到 $H = CG$，使用 [多项式求逆](../../poly/inv/) 解出 $C$ 即可。
 
-##### 方法二：多项式 Exp
+###### 方法二：多项式 Exp
 
 另一种做法是使用 [EGF 中多项式 exp 的组合意义](../../poly/inv/egf/#egf-%E4%B8%AD%E5%A4%9A%E9%A1%B9%E5%BC%8F-exp-%E7%9A%84%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89)，我们设有标号连通图和简单图序列的 EGF 分别为 $C(x)$ 和 $G(x)$，那么它们将有下列关系：
 
@@ -61,6 +70,8 @@ $$ e^{C(x)} = G(x) $$
 $$C(x) = ln(G(x))$$
 
 使用 [多项式 ln](../../poly/ln-exp/) 解出 $C(x)$ 即可。
+
+###### 「SPOJ KPGRAPHS」Counting Graphs
 
 ???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
     题目大意：求有 n 个结点的分别满足下列性质的有标号图的方案数。
