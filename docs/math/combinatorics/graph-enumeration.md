@@ -3,6 +3,8 @@
 
 ## 有标号
 
+通常来说有标号版本的问题，都比其对应的无标号版本的问题更加简单，因此我们先考察有标号计数。
+
 ### 树
 
 参见 [Prüfer 序列](https://oi-wiki.org/graph/prufer/)。
@@ -11,7 +13,20 @@
 
 ???+ note " 例题 [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)"
     题目大意：求有 n 个结点的有标号连通图的方案数。
-    
+
+我们设 $G_n$ 为 n 个点有标号图的方案数，$C_n$ 为待求序列。
+
+不难有 $G_n = 2^{\binom{n}{2}}$，我们枚举其中一个节点所在连通块的大小，可以得到这两个序列之间的关系。
+
+$\sum_{i=1}^{n} \binom{n}{i} C_i G_{n-i} = G_n$
+
+解上式可以得到 $O(n^2)$ 的递推做法。
+
+???+ note " 例题 [「集训队作业 2013」城市规划](https://www.luogu.com.cn/problem/P4841)"
+    题目大意：求有 n 个结点的有标号连通图的方案数（$n \leq 130000$）。
+
+对于数据范围更大的情况，我们需要构造卷积。
+
 ???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
     题目大意：求有 n 个结点的分别满足下列性质的有标号图的方案数。
     - 连通图。
