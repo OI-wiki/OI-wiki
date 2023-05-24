@@ -25,11 +25,11 @@
 不难有 $g_n = 2^{\binom{n}{2}}$，我们枚举其中一个节点所在连通块的大小，可以得到这两个序列之间的关系。
 
 \begin{align}
-\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} = g_n \\
-c_n = g_n - \sum_{i=1}^{n-1} \binom{n-1}{i-1} c_i g_{n-i} 
+\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} &= g_n \\
+c_n &= g_n - \sum_{i=1}^{n-1} \binom{n-1}{i-1} c_i g_{n-i} 
 \end{align}
 
-解上式可以得到 $O(n^2)$ 的递推做法。
+移项得到 $c_n$ 序列的 $O(n^2)$ 递推公式。
 
 ##### 「集训队作业 2013」城市规划
 
@@ -59,7 +59,7 @@ G(x) &= \sum_{n=0} \frac{g_n}{n!} x^n \\
 H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 \end{align}
 
-得到 $H = CG$，使用 [多项式求逆](../../poly/inv/) 解出 $C$ 即可。
+得到 $H = CG$，使用 [多项式求逆](../../poly/inv/) 后再卷积解出 $C$ 即可。
 
 ###### 方法二：多项式 Exp
 
@@ -72,7 +72,7 @@ $$ e^{C(x)} = G(x) $$
 $$C(x) = ln(G(x))$$
 
 使用 [多项式 ln](../../poly/ln-exp/) 解出 $C(x)$ 即可。
-这里的公式又称作 Riddell's formula for labeled graphs，它对满足任意性质 P 的图，和它对应的连通图均成立。
+这里的公式又称作 Riddell's formula for labeled graphs，它对满足任意性质的有标号图和它对应的连通图之间均成立。
 
 ##### 「SPOJ KPGRAPHS」Counting Graphs
 
@@ -83,11 +83,9 @@ $$C(x) = ln(G(x))$$
     - 欧拉图。 
     - 二分图。
 
-连通图已被解决，下面再考虑欧拉图。
+连通图已被解决，下面再考虑欧拉图。上述对连通图计数的几种方法，均可以对满足任意性质的有标号连通图可以进行推广，例如我们可以将 「POJ 1737」Connected Graph 的递推公式中的 $g_n$，改成顶点度数均为偶数的图，那么得到的 $c_n$ 即为欧拉图。同样的，我们也可以应用 Riddell's formula for labeled graphs，构造关于顶点度数均为偶数的图的多项式 $G(x)$，并使用多项式 ln 解出对应的 $C(x)$ 即可。
 
-注意到，上述对连通图计数的几种方法，均可以对满足任意性质的有标号连通图可以进行推广，例如我们可以将 「POJ 1737」Connected Graph 的递推公式中的 $g_n$，改成顶点度数均为偶数的图，那么得到的 $c_n$ 即为欧拉图。
-
-同样的，我们也可以应用 Riddell's formula for labeled graphs，构造关于顶点度数均为偶数的图的多项式 $G(x)$，并使用多项式 ln 解出对应的 $C(x)$ 即可。
+下面具体讨论有标号二分图。
 
 
 
