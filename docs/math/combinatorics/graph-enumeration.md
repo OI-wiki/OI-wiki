@@ -4,9 +4,16 @@
 
 ### 树
 
+
+#### 例题
+
 参见 [Prüfer 序列](https://oi-wiki.org/graph/prufer/)。
+
+#### 习题
  
 ### 图
+
+#### 例题
 
 ???+ note " 例题 [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)"
     题目大意：求有 n 个结点的有标号连通图的方案数。
@@ -15,7 +22,7 @@
 
 不难有 $G_n = 2^{\binom{n}{2}}$，我们枚举其中一个节点所在连通块的大小，可以得到这两个序列之间的关系。
 
-$\sum_{i=1}^{n} \binom{n}{i} C_i G_{n-i} = G_n$
+$$\sum_{i=1}^{n} \binom{n}{i} C_i G_{n-i} = G_n$$
 
 解上式可以得到 $O(n^2)$ 的递推做法。
 
@@ -31,26 +38,42 @@ $\sum_{i=1}^{n} \binom{n}{i} C_i G_{n-i} = G_n$
     - 欧拉图。 
     - 二分图。
 
+#### 习题
+
+-   [Luogu P7364. 有标号二分图计数](https://www.luogu.com.cn/problem/P7364)
+-   [Project Euler 434. Rigid graphs](https://projecteuler.net/problem=434)
+
 ## 无标号
 
 ### 树
 
+#### 例题
+
 ???+ note " 例题 [「SPOJ PT07D」Let us count 1 2 3](https://www.spoj.com/problems/PT07D/)"
     题目大意：求有 n 个结点的分别满足下列性质的树的方案数。
-    
+
     - 有标号有根树。
     - 有标号无根树。    
     - 无标号有根树。
     - 无标号无根树。
 
+
+???+ note " 例题 [「Luogu P5900」无标号无根树计数](https://www.spoj.com/problems/PT07D/)"
+    题目大意：求有 n 个结点的无标号无根树的方案数($n \leq 200000$)。
+
 ### 图
+
 ???+ note " 例题 [「SGU 282. Isomorphism」Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)"
     题目大意：求有 n 个结点的无标号完全图的边进行 m 染色的方案数。    
 
 ## 习题
 
--   [Luogu P4708. 画画](https://www.luogu.com.cn/problem/P4708)
+-   [BZOJ 2863. 愤怒的元首](https://darkbzoj.cc/problem/2863)
+-   [Luogu P6295. 有标号 DAG 计数](https://www.luogu.com.cn/problem/P6295)
+-   [Luogu P5434. 有标号荒漠计数](https://www.luogu.com.cn/problem/P5434)
+-   [Luogu P5448. [THUPC2018]好图计数](https://www.luogu.com.cn/problem/P5448)
 -   [AtCoder Beginner Contest 284 Ex. Count Unlabeled Graphs](https://atcoder.jp/contests/abc284/tasks/abc284_h)
+-   [Luogu P4708. 画画](https://www.luogu.com.cn/problem/P4708)
 
 ## 参考资料与注释
 
