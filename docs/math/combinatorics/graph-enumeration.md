@@ -4,7 +4,6 @@
 
 ### 树
 
-
 #### 例题
 
 参见 [Prüfer 序列](https://oi-wiki.org/graph/prufer/)。
@@ -25,7 +24,10 @@
 
 不难有 $g_n = 2^{\binom{n}{2}}$，我们枚举其中一个节点所在连通块的大小，可以得到这两个序列之间的关系。
 
-$$\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} = g_n$$
+\begin{align}
+\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} = g_n \\
+c_n = g_n - \sum_{i=1}^{n-1} \binom{n-1}{i-1} c_i g_{n-i} 
+\end{align}
 
 解上式可以得到 $O(n^2)$ 的递推做法。
 
@@ -61,7 +63,7 @@ H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 
 ###### 方法二：多项式 Exp
 
-另一种做法是使用 [EGF 中多项式 exp 的组合意义](../../poly/inv/egf/#egf-%E4%B8%AD%E5%A4%9A%E9%A1%B9%E5%BC%8F-exp-%E7%9A%84%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89)，我们设有标号连通图和简单图序列的 EGF 分别为 $C(x)$ 和 $G(x)$，那么它们将有下列关系：
+另一种做法是使用 [EGF 中多项式 exp 的组合意义](../../poly/egf/#egf-%E4%B8%AD%E5%A4%9A%E9%A1%B9%E5%BC%8F-exp-%E7%9A%84%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89)，我们设有标号连通图和简单图序列的 EGF 分别为 $C(x)$ 和 $G(x)$，那么它们将有下列关系：
 
 $$ e^{C(x)} = G(x) $$
 
@@ -70,8 +72,9 @@ $$ e^{C(x)} = G(x) $$
 $$C(x) = ln(G(x))$$
 
 使用 [多项式 ln](../../poly/ln-exp/) 解出 $C(x)$ 即可。
+这里的公式又称作 Riddell's formula for labeled graphs，它对满足任意性质 P 的图，和它对应的连通图均成立。
 
-###### 「SPOJ KPGRAPHS」Counting Graphs
+##### 「SPOJ KPGRAPHS」Counting Graphs
 
 ???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
     题目大意：求有 n 个结点的分别满足下列性质的有标号图的方案数。
@@ -79,6 +82,18 @@ $$C(x) = ln(G(x))$$
     - 连通图。
     - 欧拉图。 
     - 二分图。
+
+连通图已被解决，下面再考虑欧拉图。
+
+注意到，上述对连通图计数的几种方法，均可以对满足任意性质的有标号连通图可以进行推广，例如我们可以将 「POJ 1737」Connected Graph 的递推公式中的 $g_n$，改成顶点度数均为偶数的图，那么得到的 $c_n$ 即为欧拉图。
+
+同样的，我们也可以应用 Riddell's formula for labeled graphs，构造关于顶点度数均为偶数的图的多项式 $G(x)$，并使用多项式 ln 解出对应的 $C(x)$ 即可。
+
+
+
+
+
+
 
 #### 习题
 
