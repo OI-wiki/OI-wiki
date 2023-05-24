@@ -45,6 +45,16 @@ H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 
 ##### 方法二：多项式 Exp
 
+根据 [EGF 中多项式 exp 的组合意义](../../poly/inv/egf/#egf-中多项式-exp-的组合意义)，我们设有标号连通图和简单图序列的 EGF 分别为 $C(x)$ 和 $G(x)$，我们有下列关系：
+
+$$ e^{C(x)} = G(x) $$
+
+因此 
+
+$$C(x) = ln(G(x))$$
+
+使用 [多项式 ln](../../poly/ln-exp/) 解出 $C(x)$ 即可。
+
 ???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
     题目大意：求有 n 个结点的分别满足下列性质的有标号图的方案数。
 
