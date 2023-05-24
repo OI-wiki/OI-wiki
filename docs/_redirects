@@ -112,3 +112,4 @@
 /topic/graph-matching/general-weight-match /graph/graph-matching/general-weight-match
 /ds/persistent-in-bit /ds/seg-in-bit
 /ds/odt /misc/odt
+/graph/min-circle /graph/min-cycle

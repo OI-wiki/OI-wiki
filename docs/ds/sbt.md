@@ -30,7 +30,7 @@ size(N.right) >= size(N.left.right)
 SBT 主要通过旋转操作改变自身高度从而进行平衡维护。其旋转操作与绝大部分自平衡二叉搜索树类似，唯一区别在于在完成旋转之后需要对旋转过程中左右子节点发生改变的节点更新 `size`. 示例代码如下：
 
 ```c++
-inline void updateSize() {
+void updateSize() {
   USize leftSize = this->left != nullptr ? this->left->size : 0;
   USize rightSize = this->right != nullptr ? this->right->size : 0;
   this->size = leftSize + rightSize + 1;

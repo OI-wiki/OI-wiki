@@ -51,7 +51,7 @@ $$
 
 定义 $G$ 的 **基**（base）$B$ 为一个序列 $B = (b_{1},\cdots,b_{k}) \subseteq \Omega$, 因此逐点稳定器（pointwise stabilizer）$G_{b_{1},\cdots, b_{k}}$ 是可以忽略不计的。
 
-定义 $G$ 相对于 $B$ 的 **强生成集**（SGS，strong generating set) 是一个对于每个 $i$ 有 $\langle S \cap G^{(i)} = G(i)$ 的集合 $S \subseteq G$，其中 $G^{(i)} := G_{b1,\cdots,bi}$,$G^{(0)} := G$。
+定义 $G$ 相对于 $B$ 的 **强生成集**（SGS，strong generating set）是一个对于每个 $i$ 有 $\langle S \cap G^{(i)}\rangle = G(i)$ 的集合 $S \subseteq G$，其中 $G^{(i)} := G_{b1,\cdots,bi}$,$G^{(0)} := G$。
 
 ## 过程
 

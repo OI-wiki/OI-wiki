@@ -4,7 +4,7 @@ typedef long long ll;
 const int mod = 1e9 + 7;
 const int maxn = 1000000 + 5;
 
-inline int add(int x, int y) {
+int add(int x, int y) {
   x += y;
   return x >= mod ? x -= mod : x;
 }

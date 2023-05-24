@@ -26,7 +26,7 @@ $$
 
 又因为每一个 $A_i\times a \pmod p$ 都是独一无二的，且 $A_i\times a \pmod p < p$
 
-得证（每一个 $A_i\times a$ 都对应了一个 $A_i$)
+得证（每一个 $A_i\times a$ 都对应了一个 $A_i$）
 
 设 $f=(p-1)!$, 则 $f\equiv a\times A_1\times a\times A_2\times a \times A_3 \dots \times  A_{p-1} \pmod p$
 
@@ -99,7 +99,7 @@ $$
 
 证明转载自 [synapse7](http://blog.csdn.net/synapse7/article/details/19610361)，并进行了一些整理。
 
-1.  **命题**：$a$ 的从 $0$ 次，$1$ 次到 $b$ 次幂模 $m$ 构成的序列中，存在 $r$ 和 $s$，使得前 $r$ 个数（即从 $a^0 \bmod m$ 到 $a^{r-1} \bmod m$) 互不相同，从第 $r$ 个数开始，每 $s$ 个数就循环一次。
+1.  **命题**：$a$ 的从 $0$ 次，$1$ 次到 $b$ 次幂模 $m$ 构成的序列中，存在 $r$ 和 $s$，使得前 $r$ 个数（即从 $a^0 \bmod m$ 到 $a^{r-1} \bmod m$）互不相同，从第 $r$ 个数开始，每 $s$ 个数就循环一次。
 
     **证明**：
 

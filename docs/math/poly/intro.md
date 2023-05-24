@@ -2,7 +2,7 @@
 
 操纵 有限项/无限项 的多项式是 OI 数学中，尤其是生成函数中的重要内容。
 
-以 [快速傅里叶变换](https://oi-wiki.org/math/poly/fft/) 为基石的多项式算法赋予了算法竞赛选手直接操纵生成函数的能力。
+以 [快速傅里叶变换](./fft.md) 为基石的多项式算法赋予了算法竞赛选手直接操纵生成函数的能力。
 
 ## 基本概念
 
@@ -61,7 +61,7 @@ $$
 
 多项式或幂级数的乘法，满足结合律，关于加法满足分配律。若 $R$ 为交换环或幺环，乘法相应的有交换律和单位元。
 
-若 $R$ 上存在 $2^n$ 次单位根，[快速傅里叶变换](https://oi-wiki.org/math/poly/fft/) 允许我们在 $O(n2^n)$ 而不是 $O(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的乘积。
+若 $R$ 上存在 $2^n$ 次单位根，[快速傅里叶变换](./fft.md) 允许我们在 $O(n2^n)$ 而不是 $O(2^{2n})$ 的时间内计算两个 $2^n$ 次多项式的乘积。
 
 ### 复合
 
@@ -124,7 +124,7 @@ $$
 f^{-1}_0=\dfrac{1}{f_0},f^{-1}_n=\dfrac{-1}{f_0}\sum_{k=0}^{n-1}f^{-1}_kf_{n-k}
 $$
 
-直接用递推式计算前 $n$ 项是 $O(n^2)$ 的，[运用 FFT](https://oi-wiki.org/math/poly/inv/) 可得到 $O(n\log n)$ 的算法。
+直接用递推式计算前 $n$ 项是 $O(n^2)$ 的，[运用 FFT](./elementary-func.md#多项式求逆) 可得到 $O(n\log n)$ 的算法。
 
 ???+ note "注"
     容易发现，$f(x)$ 的倒数就是 $\frac{1}{f(x)}$ 的无穷项麦克劳林展开（在 $x=0$ 处的无穷项泰勒展开）。
@@ -142,7 +142,7 @@ $$
 基本的展开式有以下两个，指数函数和幂函数：
 
 $$
-e^x=1+x+\frac{1}{2!}x^2+\ldots+\frac{1}{n!}x^n+\ldots
+\mathrm{e}^x=1+x+\frac{1}{2!}x^2+\ldots+\frac{1}{n!}x^n+\ldots
 $$
 
 $$
@@ -327,7 +327,7 @@ $$
 c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{ 互不相同}
 $$
 
-此时类比正整数的最大公因数，可得多项式的 [**最大公因式**](https://oi-wiki.org/math/number-theory/gcd/)  
+此时类比正整数的最大公因数，可得多项式的 [**最大公因式**](../number-theory/gcd.md)  
 （greatest common divisor, gcd）。其可用欧几里得算法求解
 
 $$
@@ -346,7 +346,7 @@ $$
 f(x)P(x)+g(x)Q(x)=\gcd(f(x),g(x))
 $$
 
-的一组特解 $(P(x),Q(x))$，并用 [裴蜀定理](https://oi-wiki.org/math/number-theory/bezouts/) 判断不定方程
+的一组特解 $(P(x),Q(x))$，并用 [裴蜀定理](../number-theory/bezouts.md) 判断不定方程
 
 $$
 f(x)P(x)+g(x)Q(x)=h(x)

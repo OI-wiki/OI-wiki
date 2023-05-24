@@ -2,7 +2,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 
 ## 带花树算法（Blossom Algorithm）
 
-开花算法（Blossom Algorithm，也被称做带花树）可以解决一般图最大匹配问题（maximum cardinality matchings)。此算法由 Jack Edmonds 在 1961 年提出。
+开花算法（Blossom Algorithm，也被称做带花树）可以解决一般图最大匹配问题（maximum cardinality matchings）。此算法由 Jack Edmonds 在 1961 年提出。
 经过一些修改后也可以解决一般图最大权匹配问题。
 此算法是第一个给出证明说最大匹配有多项式复杂度。
 
@@ -238,7 +238,11 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 **定义**：对于一张 $n$ 个点的无向图 $G = (V, E)$，其 Tutte 矩阵 $\tilde{A}(G)$ 为一个 $n \times n$ 的矩阵，其中：
 
 $$
-\tilde{A}(G)_{i,j} = \left\{ \begin{aligned} x_{i,j} & \quad & i<j,\; (v_i, v_j)\in E \\ -x_{i,j} & \quad & i > j,\; (v_i, v_j) \in E \\ 0 & \quad & \text{otherwise}\end{aligned} \right.
+\tilde{A}(G)_{i,j} = \begin{cases}
+x_{i,j}, & i<j,\; (v_i, v_j)\in E \\
+-x_{i,j}, & i > j,\; (v_i, v_j) \in E \\
+0, & \text{otherwise}
+\end{cases}
 $$
 
 其中 $x_{i, j}$ 是一个变量，因此 $\tilde{A}(G)$ 中共有 $|E|$ 个变量。

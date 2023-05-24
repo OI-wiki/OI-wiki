@@ -76,18 +76,18 @@ $$
 
 ## Chernoff 不等式
 
-一般的 Chernoff 不等式可以从直接对随机变量 $e^{tX}$ 应用 Markov 不等式得出：
+一般的 Chernoff 不等式可以从直接对随机变量 $\mathrm{e}^{tX}$ 应用 Markov 不等式得出：
 
 设 $X$ 是一随机变量，则对任意的 $t > 0$ 都有
 
 $$
-P\{ X \geq a \} = P\{ e^{tX} > e^{ta} \} \leq \frac{E e^{tX}}{e^{ta}}
+P\{ X \geq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 类似地，当 $t < 0$ 时有
 
 $$
-P\{ X \leq a \} = P\{ e^{tX} > e^{ta} \} \leq \frac{E e^{tX}}{e^{ta}}
+P\{ X \leq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 ### Poisson 试验之和的 Chernoff 不等式
@@ -208,7 +208,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
     
     尝试分析第二、第三步所需的操作次数（即添加/删除元素的次数）：
     
-    -   记 01 随机变量 $X_i$ 表示 $i$ 是否被选入初始的子集，令 $X:=X_1+\cdots+X_n$ 表示子集大小，则第二、第三步所需的操作次数等于 $\big|X-\mathrm{E}[X]\big|$。在 Hoeffding 不等式中取 $t=c\cdot\sqrt n$（其中 $c$ 为任意常数），得到 $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2e^{-c^2}$。也就是说，我们可以通过允许 $\Theta(\sqrt n)$ 级别的偏移，来得到任意小的常数级别的失败概率。
+    -   记 01 随机变量 $X_i$ 表示 $i$ 是否被选入初始的子集，令 $X:=X_1+\cdots+X_n$ 表示子集大小，则第二、第三步所需的操作次数等于 $\big|X-\mathrm{E}[X]\big|$。在 Hoeffding 不等式中取 $t=c\cdot\sqrt n$（其中 $c$ 为任意常数），得到 $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2\mathrm{e}^{-c^2}$。也就是说，我们可以通过允许 $\Theta(\sqrt n)$ 级别的偏移，来得到任意小的常数级别的失败概率。
     
     至此我们已经说明：该算法可以以很大概率保证抛硬币次数在 $n+\Theta(\sqrt n\log n)$ 以内。
     

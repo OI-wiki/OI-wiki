@@ -413,8 +413,8 @@ public class Main {
     }
 }
 ```
-关于米勒罗宾相关知识可以查阅[miller-rabin 素性测试](https://oi.wiki/math/number-theory/prime/#miller-rabin)。
 
+关于米勒罗宾相关知识可以查阅[miller-rabin 素性测试](../math/number-theory/prime.md#miller-rabin-素性测试)。
 
 ## 基本数据类型与包装数据类型
 
@@ -1426,7 +1426,7 @@ public class Main {
 **`Arrays.sort()` 底层函数：**
 
 1. 当你 `Arrays.sort` 的参数数组元素类型为基本数据类型（`byte`、`short`、`char`、`int`、`long`、`double`、`float`）时，默认为 `DualPivotQuicksort`（双轴快排），复杂度最坏可以达到 $O(n^2)$。
-2. 当你 `Arrays.sort` 的参数数组元素类型为非基本数据类型时），则默认为 `legacyMergeSort` 和 `TimSort` (归并排序），复杂度为$O(n\log n)$。
+2. 当你 `Arrays.sort` 的参数数组元素类型为非基本数据类型时，则默认为 `legacyMergeSort` 和 `TimSort`（归并排序），复杂度为$O(n\log n)$。
 
 可以通过如下代码验证：
 

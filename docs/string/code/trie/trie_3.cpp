@@ -22,7 +22,7 @@ void maintain(int o) {  // 维护w数组和xorv（权值的异或）数组
   }
 }
 
-inline int mknode() {  // 创造一个新的节点
+int mknode() {  // 创造一个新的节点
   ++tot;
   ch[tot][0] = ch[tot][1] = 0;
   w[tot] = 0;
@@ -80,9 +80,7 @@ void dfs0(int o, int f) {  // 得到fa数组
 
 int V[_];
 
-inline int get(int x) {
-  return (fa[x] == -1 ? 0 : lztar[fa[x]]) + V[x];
-}  // 权值函数
+int get(int x) { return (fa[x] == -1 ? 0 : lztar[fa[x]]) + V[x]; }  // 权值函数
 
 int main() {
   cin >> n >> m;

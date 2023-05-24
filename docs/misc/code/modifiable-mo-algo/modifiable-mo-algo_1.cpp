@@ -3,7 +3,7 @@
 using namespace std;
 
 template <typename _Tp>
-inline void IN(_Tp& dig) {
+void IN(_Tp& dig) {
   char c;
   dig = 0;
   while (c = getchar(), !isdigit(c))

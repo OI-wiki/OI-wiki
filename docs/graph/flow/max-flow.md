@@ -776,18 +776,21 @@ $$
 #### 初始化
 
 $$
-\begin{aligned}
-\forall (u,v)\in E,&f(u,v)=\left\{\begin{aligned}
-&c(u,v)&,u=s\\
-&0&,u\neq s\\
-\end{aligned}\right.
-\\
-\forall u\in V,&h(u)=\left\{\begin{aligned}
-&|V|&,u=s\\
-&0&,u\neq s\\
-\end{aligned}\right.
-,e(u)=\sum_{(x,u)\in E}f(x,u)-\sum_{(u,y)\in E}f(u,y)
-\end{aligned}
+\forall (u,v)\in E,~~f(u,v)=\begin{cases}
+c(u,v),&u=s\\
+0,&u\neq s
+\end{cases}
+$$
+
+$$
+\forall u\in V,~~h(u)=\begin{cases}
+|V|,&u=s\\
+0,&u\neq s
+\end{cases}
+$$
+
+$$
+e(u)=\sum_{(x,u)\in E}f(x,u)-\sum_{(u,y)\in E}f(u,y)
 $$
 
 上述将 $(s,v)\in E$ 充满流，并将 $h(s)$ 抬高，使得 $(s,v)\notin E_f$，因为 $h(s)>h(v)$，而且 $(s,v)$ 毕竟满流，没必要留在残量网络中；上述还将 $e(s)$ 初始化为 $\sum_{(s,v)\in E}f(s,v)$ 的相反数。

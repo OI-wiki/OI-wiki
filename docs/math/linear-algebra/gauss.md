@@ -19,10 +19,10 @@
 例一：利用消元法求解二元一次线性方程组：
 
 $$
-\left\{\begin{aligned}
-4x+y&=100 \notag \\
-x-y&=100 \notag
-\end{aligned}\right.
+\begin{cases}
+4x+y&=100 \\
+x-y&=100
+\end{cases}
 $$
 
 解：将方程组中两方程相加，消元 $y$ 可得：
@@ -84,11 +84,11 @@ $y = -60$
 例二：利用高斯消元法五步骤法求解线性方程组：
 
 $$
-\left\{\begin{aligned}
-2x_1+5x_3+6x_4&=9 \notag \\
-x_3+x_4&=-4 \notag \\
-2x_3+2x_4&=-8 \notag
-\end{aligned}\right.
+\begin{cases}
+2x_1+5x_3+6x_4&=9 \\
+x_3+x_4&=-4 \\
+2x_3+2x_4&=-8
+\end{cases}
 $$
 
 ### 增广矩阵行（初等）变换为行最简形
@@ -157,10 +157,10 @@ $$
 ### 还原线性方程组
 
 $$
-\left\{\begin{aligned}
-x_1+0.5x_4 &= 14.5 \notag\\
-x_3+x_4 &= -4 \notag \\
-\end{aligned}\right.
+\begin{cases}
+x_1+0.5x_4 &= 14.5\\
+x_3+x_4 &= -4 \\
+\end{cases}
 $$
 
 解释
@@ -170,10 +170,10 @@ $$
 ### 求解第一个变量
 
 $$
-\left\{\begin{aligned}
-x_1 &= -0.5x_4+14.5\notag \\
-x_3 &= -x_4-4\notag
-\end{aligned}\right.
+\begin{cases}
+x_1 = -0.5x_4+14.5\notag \\
+x_3 = -x_4-4\notag
+\end{cases}
 $$
 
 解释
@@ -183,12 +183,12 @@ $$
 ### 补充自由未知量
 
 $$
-\left\{\begin{aligned}
-x_1 &= -0.5x_4+14.5 \notag \\
-x_2 &= x_2 \notag \\
-x_3 &= -x_4-4 \notag \\
-x_4 &= x_4 \notag
-\end{aligned}\right.
+\begin{cases}
+x_1 = -0.5x_4+14.5 \\
+x_2 = x_2 \\
+x_3 = -x_4-4 \\
+x_4 = x_4
+\end{cases}
 $$
 
 解释
@@ -202,10 +202,10 @@ $$
 \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} &=
 \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} x_2+
 \begin{pmatrix} -0.5 \\ 0 \\ -1 \\ 1 \end{pmatrix} x_4 +
-\begin{pmatrix} 14.5 \\ 0 \\ -4 \\ 0 \end{pmatrix} \notag \\
+\begin{pmatrix} 14.5 \\ 0 \\ -4 \\ 0 \end{pmatrix} \\
 &= \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} C_1+
 \begin{pmatrix} -0.5 \\ 0 \\ -1 \\ 1 \end{pmatrix} C_2 +
-\begin{pmatrix} 14.5 \\ 0 \\ -4 \\ 0 \end{pmatrix} \notag
+\begin{pmatrix} 14.5 \\ 0 \\ -4 \\ 0 \end{pmatrix}
 \end{aligned}
 $$
 
@@ -324,8 +324,8 @@ $$
 std::bitset<1010> matrix[2010];  // matrix[1~n]：增广矩阵，0 位置为常数
 
 std::vector<bool> GaussElimination(
-    int n, int m)  // n 为未知数个数，m 为方程个数，返回方程组的解（多解 /
-                   // 无解返回一个空的 vector）
+    int n, int m)  // n 为未知数个数，m 为方程个数，返回方程组的解
+                   // （多解 / 无解返回一个空的 vector）
 {
   for (int i = 1; i <= n; i++) {
     int cur = i;

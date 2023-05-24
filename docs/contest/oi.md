@@ -1,4 +1,4 @@
-author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, yizr-cnyali, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin
+author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin
 
 ## 赛事简介
 
@@ -64,7 +64,7 @@ NOIP 于 2019 年 8 月 16 日 [被 CCF 暂停](http://www.noi.cn/xw/2019-08-16/
 
 ### CSP J/S
 
-**CSP**（英文：Certified Software Professional Junior/Senior) 是 NOIP 在 2019 年被取消之后，CCF 开设的非专业级软件能力认证，面向全年龄段。具体赛制、时间基本同 NOIP 一致。在部分地区，CSP 设有小学组。
+**CSP**（英文：Certified Software Professional Junior/Senior）是 NOIP 在 2019 年被取消之后，CCF 开设的非专业级软件能力认证，面向全年龄段。具体赛制、时间基本同 NOIP 一致。在部分地区，CSP 设有小学组。
 
 目前暂不清楚获得 CSP J/S 认证对自主招生资格的获取是否有帮助。
 
@@ -88,8 +88,7 @@ NOI 一般在七月份举行，有现场赛和网络赛。现场赛选手分为�
 
 ### WC
 
-**WC**（英文：Winter Camp，中文：全国青少年信息学奥林匹克竞赛冬令营
-）是每年冬天在当年 NOI 举办地进行的一项活动。
+**WC**（英文：Winter Camp，中文：全国青少年信息学奥林匹克竞赛冬令营）是每年冬天在当年 NOI 举办地进行的一项活动。
 
 WC 的内容包括若干天的培训和一天的考试。这项考试主要用于从国家集训队（50 人）选拔国家候选队（15 人），但是前一年 NOIP 取得较好成绩的选手也可以参加（不参与选拔）。
 

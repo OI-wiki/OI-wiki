@@ -55,19 +55,19 @@ $$
 >
 > **证明**：
 >
-> 设数组 $X$ 排序完为数组 $X^\prime(x^\prime_1,\ldots,x^\prime_{n+l})$，数组 $Y$ 排序完为数组 $Y^\prime(y^\prime_1,\ldots,y^\prime_{m+l})$。
+> 设数组 $X$ 排序完为数组 $X'(x'_1,\ldots,x'_{n+l})$，数组 $Y$ 排序完为数组 $Y'(y'_1,\ldots,y'_{m+l})$。
 >
-> 对于任何 $1\le i\le l$，$x^\prime_{n+i}$ 小等于数组 $X^\prime$ 中的 $l-i$ 个元素，也小等于数组 $X$ 中的 $l-i$ 个元素（这是因为 $X$ 与 $X^\prime$ 的元素可重集合是相同的）。
+> 对于任何 $1\le i\le l$，$x'_{n+i}$ 小等于数组 $X'$ 中的 $l-i$ 个元素，也小等于数组 $X$ 中的 $l-i$ 个元素（这是因为 $X$ 与 $X'$ 的元素可重集合是相同的）。
 >
-> 那么在可重集合 $\{x_{n+1},\ldots,x_{n+l} \} \subset X$ 中，大等于 $x^\prime_{n+i}$ 的元素个数不超过 $l-i$ 个。
+> 那么在可重集合 $\{x_{n+1},\ldots,x_{n+l} \} \subset X$ 中，大等于 $x'_{n+i}$ 的元素个数不超过 $l-i$ 个。
 >
-> 进而小于 $x^\prime_{n+i}$ 的元素个数至少有 $i$ 个，取出其中的 $i$ 个，设它们为 $x_{n+k_1},x_{n+k_2},\ldots,x_{n+k_i}$。于是有：
+> 进而小于 $x'_{n+i}$ 的元素个数至少有 $i$ 个，取出其中的 $i$ 个，设它们为 $x_{n+k_1},x_{n+k_2},\ldots,x_{n+k_i}$。于是有：
 >
 > $$
-> y_{k_1}\le x_{n+k_1}\le x^\prime_{n+i},y_{k_2}\le x_{n+k_2}\le x^\prime_{n+i},\ldots,y_{k_i}\le x_{n+k_i}\le x^\prime_{n+i}
+> y_{k_1}\le x_{n+k_1}\le x'_{n+i},y_{k_2}\le x_{n+k_2}\le x'_{n+i},\ldots,y_{k_i}\le x_{n+k_i}\le x'_{n+i}
 > $$
 >
-> 所以 $x^\prime_{n+i}$ 至少大等于 $Y$ 也即 $Y^\prime$ 中的 $i$ 个元素，那么自然有 $y^\prime_i\le x^\prime_{n+i}\,(1\le i\le l)$。
+> 所以 $x'_{n+i}$ 至少大等于 $Y$ 也即 $Y'$ 中的 $i$ 个元素，那么自然有 $y'_i\le x'_{n+i}\,(1\le i\le l)$。
 >
 > **证毕**
 
