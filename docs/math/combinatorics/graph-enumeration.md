@@ -31,15 +31,19 @@ $$\sum_{i=1}^{n} \binom{n-1}{i-1} c_i g_{n-i} = g_n$$
 ???+ note " 例题 [「集训队作业 2013」城市规划](https://www.luogu.com.cn/problem/P4841)"
     题目大意：求有 n 个结点的有标号连通图的方案数（$n \leq 130000$）。
 
+##### 方法一：多项式求逆
+
 对于数据范围更大的情况，我们需要构造卷积。
 
 \begin{align}
-C(x) &= \sum_{n=1} \frac{c_n}{(n-1)!} x^n \\\ 
+C(x) &= \sum_{n=1} \frac{c_n}{(n-1)!} x^n \\
 G(x) &= \sum_{n=0} \frac{g_n}{n!} x^n \\
 H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 \end{align}
 
-不难得到 $F = H G^-1$。
+得到 $H = F G$，[多项式求逆](../../poly/inv/) 解出 $F$ 即可。
+
+##### 方法二：多项式 Exp
 
 ???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
     题目大意：求有 n 个结点的分别满足下列性质的有标号图的方案数。
@@ -50,6 +54,7 @@ H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 
 #### 习题
 
+-   [Luogu P3343. [ZJOI2015]地震后的幻想乡](https://www.luogu.com.cn/problem/P3343)
 -   [HDU 5279. YJC plays Minecraft](https://acm.hdu.edu.cn/showproblem.php?pid=5279)
 -   [Luogu P7364. 有标号二分图计数](https://www.luogu.com.cn/problem/P7364)
 -   [Project Euler 434. Rigid graphs](https://projecteuler.net/problem=434)
