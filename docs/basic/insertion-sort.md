@@ -79,7 +79,7 @@ $$
 ### 代码实现
 
 === "C++"
-    
+
     ```cpp
     void insertion_sort(int arr[], int len) {
         if (len < 2) return;
