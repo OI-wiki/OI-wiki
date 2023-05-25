@@ -340,7 +340,16 @@ int main(){
 
 上述关于 EGF 的 exp 的用法，有时又被称作 Riddell's formula for labeled graphs，生成函数的 [欧拉变换](../../poly/symbolic-method/#%E9%9B%86%E5%90%88%E7%9A%84-multiset-%E6%9E%84%E9%80%A0)，有时也被称为 Riddell's formula for unlabeled graphs，后者最早出现在欧拉对分拆数的研究中，除了解决图论计数问题之外，也在完全背包问题中出现。
 
-$$\mathcal{E}(F(x)) = \prod_{i} (1-x^i)^{-f_i} $$
+对于给定序列 $a_i$，和对应的 OGF $A(x)$，定义 $A(x)$ 的欧拉变换为：
+
+\begin{align}
+\mathcal{E}(A(x)) &= \prod_{i} (1-x^i)^{-a_i}  \\
+                  &= \exp (\sum_{i} \frac{A(x^i)}{i})  
+\end{align}
+
+设 $\mathcal{E}(A(x))$ 的各项系数为 $b_i$，定义辅助数组 $c_i = \sum_{d|n} d a_d$，则有递推公式
+
+$$ n b_n = c_n + \sum_{i=1}^{n-1} c_i b_{n-i}$$
 
 ## 无标号树
 
