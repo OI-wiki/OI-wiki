@@ -97,8 +97,8 @@ void ln(Int C[], Int G[]){
 前两问即可轻松解决：
 
 ``` cpp
-    REP_1(i, n) G[i] = pow(2, binom[i][2]); ln(C, G);
-    REP_1(i, n) G[i] = pow(2, binom[i-1][2]); ln(E, G);
+REP_1(i, n) G[i] = pow(2, binom[i][2]); ln(C, G);
+REP_1(i, n) G[i] = pow(2, binom[i-1][2]); ln(E, G);
 ```
 
 注意到这里的连通化递推过程其实等价于对其 EGF 求多项式 ln，同理我们也可以写出逆连通化函数，它等价于对其 EGF 求多项式 exp。
@@ -150,8 +150,8 @@ c_{n, i} &= \sum_{i=0}{n-1} \binom{n-1}{i-1} c_{n, 1}c_{n-i,k-1}
 因此：
 
 ```cpp
-    REP_1(i, n) {G[i] = 0; REP(j, i+1) G[i] += binom[i][j] * pow(2, j*(i-j));} ln(B1, G);
-    REP_1(i, n) B1[i] /= 2; exp(B, B1);
+REP_1(i, n) {G[i] = 0; REP(j, i+1) G[i] += binom[i][j] * pow(2, j*(i-j));} ln(B1, G);
+REP_1(i, n) B1[i] /= 2; exp(B, B1);
 ```    
 
 两种递推的过程复杂度均为 $\operatorname{O}(n^2)$，可以通过本题。
