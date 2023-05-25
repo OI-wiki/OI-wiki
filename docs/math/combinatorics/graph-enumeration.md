@@ -60,7 +60,7 @@ H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 \end{align}
 $$
 
-代换进上式得到 $CG = H$，使用 [多项式求逆](../poly/inv.md) 后再卷积解出 $C(x)$ 即可。
+代换进上式得到 $CG = H$，使用 [多项式求逆](../poly/elementary-func.md#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%B1%82%E9%80%86) 后再卷积解出 $C(x)$ 即可。
 
 #### 方法三：多项式 exp
 
