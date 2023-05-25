@@ -454,7 +454,7 @@ Int w(const VI P){
  
     ECH(it, P){
         z /= *it; if (*it != l){
-            z /= Fact; l = *it;
+            z /= Fact[c]; l = *it;
             c = 1;
         }
         else{
@@ -462,7 +462,7 @@ Int w(const VI P){
         }
     }
  
-    z /= Fact;
+    z /= Fact[c];
     return z;
 }
 int c(const VI P){
