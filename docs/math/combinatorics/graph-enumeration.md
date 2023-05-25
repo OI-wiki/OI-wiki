@@ -141,9 +141,9 @@ c_{n, i} &= \sum_{i=0}{n-1} \binom{n-1}{i-1} c_{n, 1}c_{n-i,k-1}
 
 #### 做法二：连通化递推
 
-方法二和方法三均使用连通二分图 $b1_n$ [A001832](https://oeis.org/A001832)  作为 $g_n$ 与 $b_n$ 之间的建立桥梁。
+方法二和方法三均使用连通二分图 $b1_n$ [A001832](https://oeis.org/A001832) 来建立 $g_n$ 与 $b_n$ 之间的桥梁。
 
-我们注意到对于每个连通二分图，我们恰好有两种不同的染色方法，对应到两组不同的连通 2 染色图，
+注意到对于每个连通二分图，我们恰好有两种不同的染色方法，对应到两组不同的连通 2 染色图，
 因而对 $g_n$ 进行连通化，得到的序列恰好是 $b1_n$ 的两倍，而 $b_n$ 则由 $b1_n$ 进行逆连通化得到。
 
 因此：
@@ -199,41 +199,6 @@ namespace NT{
     inline int pdt(int x,int y) {
         int ret; __asm__ __volatile__ ("\tmull %%ebx\n\tdivl %%ecx\n":"=d"(ret):"a"(x),"b"(y),"c"(MOD));
         return ret;
-    }
-
-    inline int gcd(int m, int n, int &x, int &y){
-
-        x = 1, y = 0; int xx = 0, yy = 1, q;
-
-        while (1){
-            q = m / n, m %= n;
-            if (!m){x = xx, y = yy; return n;}
-            DEC(x, pdt(q, xx)), DEC(y, pdt(q, yy));
-            q = n / m, n %= m;
-            if (!n) return m;
-            DEC(xx, pdt(q, x)), DEC(yy, pdt(q, y));
-        }
-    }
-
-
-    inline int pow(int a, LL b){
-        int c(1); while (b){
-            if (b&1) MUL(c, a);
-            MUL(a, a), b >>= 1;
-        }
-        return c;
-    }
-
-    template<class T> inline T pow(T a, LL b){
-        T c(1); while (b){
-            if (b&1) c *= a;
-            a *= a, b >>= 1;
-        }
-        return c;
-    }
-
-    template<class T> inline T pow(T a, int b){
-        return pow(a, (LL)b);
     }
 
     inline int _I(int b){
