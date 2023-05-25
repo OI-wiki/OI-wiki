@@ -60,11 +60,11 @@ H(x) &= \sum_{n=1} \frac{g_n}{(n-1)!} x^n
 
 另一种做法是使用 [EGF 中多项式 exp 的组合意义](../../poly/egf/#egf-%E4%B8%AD%E5%A4%9A%E9%A1%B9%E5%BC%8F-exp-%E7%9A%84%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89)，我们设有标号连通图和简单图序列的 EGF 分别为 $C(x)$ 和 $G(x)$，那么它们将有下列关系：
 
-$$ exp(C(x)) = G(x) $$
+$$ \exp(C(x)) = G(x) $$
 
 因此 
 
-$$C(x) = ln(G(x))$$
+$$C(x) = \ln(G(x))$$
 
 使用 [多项式 ln](../../poly/ln-exp/) 解出 $C(x)$ 即可。
 
@@ -163,9 +163,9 @@ c_{n, i} &= \sum_{i=0}{n-1} \binom{n-1}{i-1} c_{n, 1}c_{n-i,k-1}
 设 $G(x)$ 为 $g_n$ 的 EGF，$B1(x)$ 为 $b1_n$ 的 EGF，$B(x)$ 为 $b_n$ 的 EGF，应用做法二的方法，我们有：
 
 \begin{align}
-G(x) &= exp(2B1(x)) \\
-B(x) &= exp(B1(x))  \\
-     &= exp(\frac{ln{G(x)}}{2}) \\
+G(x) &= \exp(2B1(x)) \\
+B(x) &= \exp(B1(x))  \\
+     &= exp(\frac{\ln{G(x)}}{2}) \\
      &= \sqrt{G}
 \end{align}
 
