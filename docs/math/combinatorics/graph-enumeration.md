@@ -91,6 +91,14 @@ $$g_n = \sum_{i=0}^{n} \binom{n}{i}2^{i(n-i)} $$
 
 #### 做法一：算两次
 
+我们设 $c_{n, k}$ 表示有 k 个连通分量的二分图数目，那么不难得到如下关系： 
+
+\begin{align}
+g_n &= \sum_{i=1}^{n} c_{n, i} 2^i
+b_n &= \sum_{i=1}^{n} c_{n, i}
+\end{align}
+
+不难得到 $b_n$ 的递推关系，复杂度 $O(n^3)$，进一步使用冗斥原理可以优化到 $O(n^2)$ 通过本题。
 
 #### 做法二：多项式 exp
 
@@ -175,6 +183,7 @@ $$\mathcal{E}(F(x)) = \prod_{i} (1-x^i)^{-f_i} $$
 
 ## 习题
 
+-   [BZOJ 3864. 大朋友和多叉树](https://darkbzoj.cc/problem/3684)
 -   [BZOJ 2863. 愤怒的元首](https://darkbzoj.cc/problem/2863)
 -   [Luogu P6295. 有标号 DAG 计数](https://www.luogu.com.cn/problem/P6295)
 -   [Luogu P5434. 有标号荒漠计数](https://www.luogu.com.cn/problem/P5434)
