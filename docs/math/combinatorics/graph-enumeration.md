@@ -433,9 +433,7 @@ $$
 
 如果一条边关联的顶点处在同一个循环内，设该循环大小为 $p_i$，那么边所生成的循环数恰好为 $\left\lfloor \frac{p_i}{2} \right\rfloor$。
 
-$\DeclareMathOperator{\lcm}{lcm}$
-
-如果一条边关联的顶点处在两个不同的循环中，设分别为 $p_i$, $p_j$，那么边所生成的循环数恰好为 $\frac{p_i p_j}{\lcm(p_i,p_j)} = \gcd(p_i, p_j) $
+如果一条边关联的顶点处在两个不同的循环中，设分别为 $p_i$, $p_j$，那么边所生成的循环数恰好为 $\frac{p_i p_j}{\operatorname{lcm}(p_i,p_j)} = \gcd(p_i, p_j) $
 
 
 ## 习题
