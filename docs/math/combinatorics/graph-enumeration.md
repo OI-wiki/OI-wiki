@@ -407,13 +407,13 @@ $$ g_n = f_n - \sum_{i=\left\lceil\frac{n}{2}\right\rceil}^{n-1} f_i f_{n-i} - \
 ???+ note " 例题 [「SGU 282. Isomorphism」Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)"
     题目大意：求有 n 个结点的无标号完全图的边进行 m 染色的方案数。    
 
-注意到当 m = 2 时，所求对象就是无标号简单图 []()。根据波利亚计数定理，
+注意到当 m = 2 时，所求对象就是无标号简单图 [A000088](https://oeis.org/A000088)，考察波利亚计数定理，
 
 $$
 \frac{1}{|G|}\sum_{g\in G} m^{c(g)}
 $$
 
-本体中置换群 $G$ 为顶点的 $n$ 阶对称群生成的边集置换群，枚举量为 $\operatorname{O}(n!)$，无法通过此题。
+本题中置换群 $G$ 为顶点的 $n$ 阶对称群生成的边集置换群，枚举量为 $\operatorname{O}(n!)$，无法通过此题。
 
 ## 习题
 
