@@ -296,7 +296,6 @@ nav:
       - 矩阵: math/linear-algebra/matrix.md
       - 初等变换: math/linear-algebra/elementary-operations.md
       - 行列式: math/linear-algebra/determinant.md
-      - 高斯消元: math/linear-algebra/gauss.md
       - 线性空间: math/linear-algebra/vector-space.md
       - 线性基: math/linear-algebra/basis.md
       - 线性映射: math/linear-algebra/linear-mapping.md
@@ -323,6 +322,7 @@ nav:
     - 数值算法:
       - 拉格朗日插值: math/numerical/lagrange.md
       - 数值积分: math/numerical/integral.md
+      - 高斯消元: math/numerical/gauss.md
       - 牛顿迭代法: math/numerical/newton.md
     - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
