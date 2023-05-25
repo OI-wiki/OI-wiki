@@ -324,24 +324,13 @@ int main(){
 
 - [UOJ Goodbye Jihai D. 新年的追逐战](https://uoj.ac/contest/50/problem/498)
 
-
-## 有标号仙人掌
-
-### 例题「LOJ #161」仙人掌计数
-
-???+ note " 例题 [「LOJ #161」仙人掌计数](https://loj.ac/p/6569)"
-    题目大意：仙人掌是一张无向连通图，在一个仙人掌上，任意一条边至多只会出现在一个环上。求含有 n 个结点的有标号仙人掌的方案数。
-
-## 有标号荒漠
-
-### 例题「Luogu P5434」【模板】有标号荒漠计数
-
-???+ note " 例题 [「Luogu P5434」【模板】有标号荒漠计数](https://www.luogu.com.cn/problem/solution/P5434)"
-    题目大意：荒漠是一张无向图，一个荒漠的每个极大连通分量都是一个仙人掌。求含有 n 个结点的有标号荒漠的方案数。
-
-
 ### 习题
 
+-   [BZOJ 3864. 大朋友和多叉树](https://darkbzoj.cc/problem/3684)
+-   [BZOJ 2863. 愤怒的元首](https://darkbzoj.cc/problem/2863)
+-   [Luogu P6295. 有标号 DAG 计数](https://www.luogu.com.cn/problem/P6295)
+-   [「LOJ #161」仙人掌计数](https://loj.ac/p/6569)
+-   [Luogu P5434. 有标号荒漠计数](https://www.luogu.com.cn/problem/P5434)
 -   [Luogu P3343. [ZJOI2015]地震后的幻想乡](https://www.luogu.com.cn/problem/P3343)
 -   [HDU 5279. YJC plays Minecraft](https://acm.hdu.edu.cn/showproblem.php?pid=5279)
 -   [Luogu P7364. 有标号二分图计数](https://www.luogu.com.cn/problem/P7364)
@@ -433,19 +422,63 @@ $$
 
 如果一条边关联的顶点处在同一个循环内，设该循环大小为 $p_i$，那么边所生成的循环数恰好为 $\left\lfloor \frac{p_i}{2} \right\rfloor$。
 
-如果一条边关联的顶点处在两个不同的循环中，设分别为 $p_i$, $p_j$，那么边所生成的循环数恰好为 $\frac{p_i p_j}{\operatorname{lcm}(p_i,p_j)} = \gcd(p_i, p_j)$
+如果一条边关联的顶点处在两个不同的循环中，设分别为 $p_i$, $p_j$，每个循环节的长度均为 $\operatorname{lcm}(p_i,p_j)$，因而边所生成的循环数恰好为 $\frac{p_i p_j}{\operatorname{lcm}(p_i,p_j)} = \gcd(p_i, p_j)$。
 
-$\operatorname{lcm}(p_i,p_j) = \gcd(p_i, p_j)$
-
-$\gcd(p_i, p_j)$
-
+```
+const int N = int(5e1) + 9;
+Int Fact[N]; VVI Partition; VI cur;
+int n, m;
+ 
+void gen(int n = ::n, int s = 1){
+    if (!n){
+        Partition.PB(cur);
+    }
+    else if (n >= s){
+        cur.PB(s); gen(n-s, s); cur.pop_back();
+        gen(n, s+1);
+    }
+}
+ 
+Int w(const VI P){
+ 
+    Int z = Fact[n]; int c = 0, l = P.front();
+ 
+    ECH(it, P){
+        z /= *it; if (*it != l){
+            z /= Fact; l = *it;
+            c = 1;
+        }
+        else{
+            ++c;
+        }
+    }
+ 
+    z /= Fact;
+    return z;
+}
+int c(const VI P){
+    int z = 0; REP(i, SZ(P)){
+        z += P[i] / 2; REP(j, i) z += __gcd(P[i], P[j]);
+    }
+    return z;
+}
+ 
+int main(){
+ 
+    RD(n, m, MOD); Fact[0] = 1; REP_1(i, n) Fact[i] = Fact[i-1] * i;
+ 
+    gen();
+ 
+    Int res = 0; ECH(it, Partition){
+        res += w(*it) * pow(m, c(*it));
+    }
+    res /= Fact[n];
+    cout << res << endl;
+}
+```
 
 ## 习题
 
--   [BZOJ 3864. 大朋友和多叉树](https://darkbzoj.cc/problem/3684)
--   [BZOJ 2863. 愤怒的元首](https://darkbzoj.cc/problem/2863)
--   [Luogu P6295. 有标号 DAG 计数](https://www.luogu.com.cn/problem/P6295)
--   [Luogu P5434. 有标号荒漠计数](https://www.luogu.com.cn/problem/P5434)
 -   [Luogu P5448. [THUPC2018]好图计数](https://www.luogu.com.cn/problem/P5448)
 -   [Luogu P5818. [JSOI2011]同分异构体计数](https://www.luogu.com.cn/problem/P5818)
 -   [Luogu P6597. 烯烃计数](https://www.luogu.com.cn/problem/P6597)
