@@ -4,7 +4,7 @@
 
 ## 有标号树
 
-既 Cayley 公式，参见 [Prüfer 序列](../../../graph/prufer/) 一文，我们也可以使用生成函数推出这一结果。
+既 Cayley 公式，参见 [Prüfer 序列](../../../graph/prufer/) 一文，我们也可以使用 [Kirchhoff 矩阵树定理](../../graph/matrix-tree/) 或 [生成函数](../../poly/intro/) 得到这一结果。
 
 ### 习题
 
