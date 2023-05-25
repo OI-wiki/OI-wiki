@@ -380,15 +380,15 @@ $$F(x) = x\mathcal{E}(F(x))$$
 
 当 n 是奇数时：
 
-必然存在一棵子树大小 $\geq \ceil{\frac{n}{2}} $，枚举这棵子树的大小有。
+必然存在一棵子树大小 $\geq \left\lceil \frac{n}{2}\right\rceil$ ，枚举这棵子树的大小有。
 
-$$ g_n = f_n - \sum_{i=\ceil{\frac{n}{2}}^{n-1} f_i f_{n-i} $$
+$$ g_n = f_n - \sum_{i=\left\lceil\frac{n}{2}\right\rceil}^{n-1} f_i f_{n-i} $$
 
 当 n 是偶数时：
 
 注意到当有两个重心的情况时，上面的过程只会减去一次，因此还需要减去
 
-$$ g_n = f_n - \sum_{i=\ceil{\frac{n}{2}}^{n-1} f_i f_{n-i} - \binom{f_{\frac{n}{2}}}{2} $$
+$$ g_n = f_n - \sum_{i=\left\lceil\frac{n}{2}\right\rceil}^{n-1} f_i f_{n-i} - \binom{f_{\frac{n}{2}}}{2} $$
 
 
 ### 例题「Luogu P5900」无标号无根树计数
