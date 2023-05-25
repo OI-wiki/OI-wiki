@@ -165,7 +165,7 @@ c_{n, i} &= \sum_{i=0}{n-1} \binom{n-1}{i-1} c_{n, 1}c_{n-i,k-1}
 \begin{align}
 G(x) &= exp(2B1(x)) \\
 B(x) &= exp(B1(x))  \\
-     &= exp(\frac{ln{G(x)}}{2})
+     &= exp(\frac{ln{G(x)}}{2}) \\
      &= \sqrt{G}
 \end{align}
 
