@@ -99,7 +99,7 @@ void ln(Int C[], Int G[]){
 ``` cpp
     REP_1(i, n) G[i] = pow(2, binom[i][2]); ln(C, G);
     REP_1(i, n) G[i] = pow(2, binom[i-1][2]); ln(E, G);
-``` cpp    
+```
 
 同理我们也可以写出逆连通化函数，它等价于对其 EGF 求 exp，留作备用。
 
