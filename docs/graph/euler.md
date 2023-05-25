@@ -127,6 +127,16 @@ $E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
 
 ## 习题
 
+-   [SGU 101 Domino](https://codeforces.com/problemsets/acmsguru/problem/99999/101)
+
+-   [POJ 1780 Code](http://poj.org/problem?id=1780)
+
+-   [洛谷 P1127 词链](https://www.luogu.com.cn/problem/P1127)
+
+-   [洛谷 P1333 瑞瑞的木棍](https://www.luogu.com.cn/problem/P1333)
+
 -   [洛谷 P1341 无序字母对](https://www.luogu.com.cn/problem/P1341)
 
--   [洛谷 P2731 骑马修栅栏](https://www.luogu.com.cn/problem/P2731)
+-   [洛谷 P6066 \[USACO05JAN\]Watchcow S](https://www.luogu.com.cn/problem/P6066)
+
+-   [洛谷 P6628 \[省选联考 2020 B 卷\] 丁香之路](https://www.luogu.com.cn/problem/P6628)

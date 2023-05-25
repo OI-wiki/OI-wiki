@@ -261,7 +261,7 @@ Python 的字符串类型提供了许多强大的方法，包括计算某字符�
 
 #### 使用 `list`
 
-列表（`list`）大概是 Python 中最常用也最强大的序列类型，列表中可以存放任意类型的元素，包括嵌套的列表，这符合数据结构中「广义表」的定义。请注意不要将其与 C++ STL 中的双向链表 [`list`](https://oi-wiki.org/lang/csl/sequence-container/#list) 混淆，故本文将使用「列表」而非 `list` 以免造成误解。
+列表（`list`）大概是 Python 中最常用也最强大的序列类型，列表中可以存放任意类型的元素，包括嵌套的列表，这符合数据结构中「广义表」的定义。请注意不要将其与 C++ STL 中的双向链表 [`list`](./csl/sequence-container.md#list) 混淆，故本文将使用「列表」而非 `list` 以免造成误解。
 
 ```pycon
 >>> []  # 创建空列表，注意列表使用方括号
@@ -519,7 +519,7 @@ for i in range(4):  # 这里假设输入 4 行数据
 print(u, v, w)
 ```
 
-需要注意，Python 中的 for 循环和 C/C++ 有较大的差别，其作用类似 C++ 11 引入的 [「基于范围的循环」](https://oi-wiki.org/lang/new/#for)，实质是迭代序列中的元素，比如编写循环遍历数组下标需要迭代 `range(len(lst))`，而非真正定义起始和终止条件，所以使用起来并没有 C/C++ 灵活。
+需要注意，Python 中的 for 循环和 C/C++ 有较大的差别，其作用类似 C++ 11 引入的 [「基于范围的循环」](./new.md#基于范围的-for-循环)，实质是迭代序列中的元素，比如编写循环遍历数组下标需要迭代 `range(len(lst))`，而非真正定义起始和终止条件，所以使用起来并没有 C/C++ 灵活。
 
 下面再用 while 循环展示行数不定的情况下如何输入：
 
@@ -610,7 +610,7 @@ print(id(a), id(b))  # 你应该会看到 a, b 的 id 值现在互换了
 # 这更说明 Python 中，变量更像是名字，赋值只是让其指代对象
 ```
 
-字典就像 C++ STL 中的 [`map`](https://oi-wiki.org/lang/csl/associative-container/#map)（请注意和 Python 中内置函数 [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 区分）用于存储键值对，形式类似 [JSON](https://docs.python.org/3/library/json.html)，但 JSON 中键必须是字符串且以双引号括住，字典则更加灵活强大，可哈希的对象都可作为字典的键。需要注意 Python 几次版本更新后字典的特性有了较多变化，包括其中元素的顺序等，请自行探索。
+字典就像 C++ STL 中的 [`map`](./csl/associative-container.md#map)（请注意和 Python 中内置函数 [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 区分）用于存储键值对，形式类似 [JSON](https://docs.python.org/3/library/json.html)，但 JSON 中键必须是字符串且以双引号括住，字典则更加灵活强大，可哈希的对象都可作为字典的键。需要注意 Python 几次版本更新后字典的特性有了较多变化，包括其中元素的顺序等，请自行探索。
 
 ```python
 dic = {'key': "value"}  # 基本形式
@@ -635,7 +635,7 @@ except KeyError:
     cnter[key] = 1
 ```
 
-集合就像 C++ STL 中的 \*[`set`](https://oi-wiki.org/lang/csl/associative-container/#set)\*，不会保存重复的元素，可以看成只保存键的字典。需要注意集合和字典都用 `{}` 括住，不过单用 `{}` 会创建空字典而不是空集合，这里就不再给出示例。
+集合就像 C++ STL 中的 [`set`](./csl/associative-container.md#set)，不会保存重复的元素，可以看成只保存键的字典。需要注意集合和字典都用 `{}` 括住，不过单用 `{}` 会创建空字典而不是空集合，这里就不再给出示例。
 
 ### 编写函数
 
