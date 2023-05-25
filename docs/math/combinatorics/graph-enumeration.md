@@ -322,10 +322,7 @@ int main(){
 
 ### 习题
 
-- [UOJ Goodbye Jihai D. 新年的追逐战](https://uoj.ac/contest/50/problem/498)
-
-### 习题
-
+-   [UOJ Goodbye Jihai D. 新年的追逐战](https://uoj.ac/contest/50/problem/498)
 -   [BZOJ 3864. 大朋友和多叉树](https://darkbzoj.cc/problem/3684)
 -   [BZOJ 2863. 愤怒的元首](https://darkbzoj.cc/problem/2863)
 -   [Luogu P6295. 有标号 DAG 计数](https://www.luogu.com.cn/problem/P6295)
@@ -365,7 +362,7 @@ $$ n b_n = c_n + \sum_{i=1}^{n-1} c_i b_{n-i}$$
 
 #### 有根树
 
-先考虑有根树，设其 OGF 为 $F(x)$，根据 Riddell's Formula 一节中的推导，应用欧拉变换，可得：
+有标号情况以在前文中解决，下面考察无标号有根树，设其 OGF 为 $F(x)$，应用欧拉变换，可得：
 
 $$F(x) = x\mathcal{E}(F(x))$$
 
@@ -393,10 +390,6 @@ $$ g_n = f_n - \sum_{i=\left\lceil\frac{n}{2}\right\rceil}^{n-1} f_i f_{n-i} - \
     题目大意：求有 n 个结点的无标号无根树的方案数($n \leq 200000$)。
 
 对于数据范围更大的情况，我们可以使用欧拉变换。
-
-## 无标号二叉树
-
-### 例题「CodeForces 438 E」The Child and Binary Tree
 
 ## 无标号简单图
 
@@ -488,6 +481,7 @@ int main(){
 
 ## 习题
 
+-   [CodeForces 438 E. The Child and Binary Tree](https://codeforces.com/problemset/problem/438/E)
 -   [Luogu P5448. [THUPC2018]好图计数](https://www.luogu.com.cn/problem/P5448)
 -   [Luogu P5818. [JSOI2011]同分异构体计数](https://www.luogu.com.cn/problem/P5818)
 -   [Luogu P6597. 烯烃计数](https://www.luogu.com.cn/problem/P6597)
