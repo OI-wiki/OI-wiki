@@ -84,10 +84,10 @@ $$
 2.  约束不等式为小于等于不等式，可以在左端加入非负变量，转变为等式，比如：
 
     $$
-    x_1 + 2x_2 \leq 9 \Rightarrow 
-    \begin{cases}  
-    x_1 + 2x_2 + x_3 = 9\\ 
-    x_3 \geq 0
+    x_1 + 2x_2 \leq 9 \implies
+    \begin{cases}
+      x_1 + 2x_2 + x_3 = 9 \\
+      x_3 \geq 0
     \end{cases}
     $$
 
@@ -96,10 +96,10 @@ $$
 3.  若存在取值无约束的变量，可转变为两个非负变量的差，比如：
 
     $$
-    -\infty \leq x_k \leq +\infty \Rightarrow
-    \begin{cases}  
-    x_k = x_m - x_n\\ 
-    x_m,x_n \geq 0
+    -\infty \leq x_k \leq +\infty \implies
+    \begin{cases}
+      x_k = x_m - x_n \\
+      x_m,x_n \geq 0
     \end{cases}
     $$
 
@@ -110,10 +110,10 @@ $$
 $$
 
 $$
-s.t \begin{cases}  
-2x_1 + x_2 + x_3 = 12 \\ 
-x_1 + 2x_2 + x_4 = 9  \\
-x_1, x_2, x_3, x_4 \geq 0
+s.t \begin{cases}
+  2x_1 + x_2 + x_3 = 12 \\
+  x_1 + 2x_2 + x_4 = 9  \\
+  x_1, x_2, x_3, x_4 \geq 0
 \end{cases}
 $$
 

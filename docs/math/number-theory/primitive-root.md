@@ -146,15 +146,11 @@ $$
 **证明**：注意到：
 
 $$
-a^{k\delta_m(a^k)}=(a^k)^{\delta_m(a^k)}\equiv 1 \pmod m
-$$
-
-$$
-\Rightarrow \delta_m(a)\mid k\delta_m(a^k)
-$$
-
-$$
-\Rightarrow \dfrac{\delta_m(a)}{\gcd\big(\delta_m(a),k\big)}\mid\delta_m(a^k)
+\begin{aligned}
+             & a^{k\delta_m(a^k)}=(a^k)^{\delta_m(a^k)}\equiv 1 \pmod m          \\
+    \implies & \delta_m(a)\mid k\delta_m(a^k)                                    \\
+    \implies & \dfrac{\delta_m(a)}{\gcd\big(\delta_m(a),k\big)}\mid\delta_m(a^k)
+\end{aligned}
 $$
 
 另一方面，由 $a^{\delta_m(a)}\equiv 1 \pmod m$，可知：
@@ -365,7 +361,7 @@ $$
     现在利用之前的结论，可知：
 
     $$
-    g^{\varphi(p^{\beta})}\not\equiv 1\pmod {p^{\beta+1}}\Rightarrow g^{\delta}\not\equiv 1\pmod {p^{\beta+1}}
+    g^{\varphi(p^{\beta})}\not\equiv 1\pmod {p^{\beta+1}}\implies g^{\delta}\not\equiv 1\pmod {p^{\beta+1}}
     $$
 
     结合 $g^{\delta}\equiv 1\pmod {p^\alpha}$ 可知 $\beta \geq \alpha$。

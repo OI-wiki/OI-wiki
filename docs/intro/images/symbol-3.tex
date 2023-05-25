@@ -1,6 +1,7 @@
 \documentclass{standalone}
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
+\usepackage{amsmath}
 
 \tikzset{>=latex}
 \tikzstyle{proj}=[blue!70!black,very thin,dashed]
@@ -35,7 +36,7 @@
     \draw[axis] (O) -- (0,\coordlen,0);
     \draw[axis] (O) -- (0,0,\coordlen);
 
-    \draw[vector] (O) -- (P) node[anchor=south east]{$\mathbf{r}$};
+    \draw[vector] (O) -- (P) node[anchor=south east]{$\boldsymbol{r}$};
 
     \draw[proj] (O) -- (3.75,5,0);
     \tdplotdrawarc[proj]{(0,0,\pz)}{\pr}{0}{360}{proj}{}
@@ -52,9 +53,9 @@
     \tdplotsetrotatedcoords{\tdplotresphi}{\tdplotrestheta}{0}
     \tdplotsetrotatedcoordsorigin{(P)}
 
-    \draw[tdplot_rotated_coords,unit vector] (0,0,0) -- (1,0,0) node[anchor=north west]{$\mathbf{e}_{\vartheta}$};
-    \draw[tdplot_rotated_coords,unit vector] (0,0,0) -- (0,1,0) node[anchor=west]{$\mathbf{e}_{\varphi}$};
-    \draw[tdplot_rotated_coords,unit vector] (0,0,0) -- (0,0,1) node[anchor=south]{$\mathbf{e}_r$};
+    \draw[tdplot_rotated_coords,unit vector] (0,0,0) -- (1,0,0) node[anchor=north west]{$\boldsymbol{e}_{\vartheta}$};
+    \draw[tdplot_rotated_coords,unit vector] (0,0,0) -- (0,1,0) node[anchor=west]{$\boldsymbol{e}_{\varphi}$};
+    \draw[tdplot_rotated_coords,unit vector] (0,0,0) -- (0,0,1) node[anchor=south]{$\boldsymbol{e}_r$};
 
 \end{tikzpicture}
 

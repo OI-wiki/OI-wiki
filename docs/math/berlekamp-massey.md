@@ -107,17 +107,17 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_k\
 
 #### 求向量列或矩阵列的最短递推式
 
-如果要求向量列 $\mathbf{v}_i$ 的最短递推式，设向量的维数为 $n$，我们可以随机一个 $n$ 维行向量 $\mathbf u^T$，并计算标量序列 $\{\mathbf{u}^T\mathbf{v}_i\}$ 的最短递推式。由 Schwartz-Zippel 引理，二者的最短递推式有至少 $1 - \frac n p$ 的概率相同。
+如果要求向量列 $\boldsymbol{v}_i$ 的最短递推式，设向量的维数为 $n$，我们可以随机一个 $n$ 维行向量 $\mathbf u^T$，并计算标量序列 $\{\boldsymbol{u}^T\boldsymbol{v}_i\}$ 的最短递推式。由 Schwartz-Zippel 引理，二者的最短递推式有至少 $1 - \frac n p$ 的概率相同。
 
-求矩阵列 $\{A_i\}$ 的最短递推式也是类似的，设矩阵的大小为 $n \times m$，则只需随机一个 $1 \times n$ 的行向量 $\mathbf u^T$ 和一个 $m \times 1$ 的列向量 $\mathbf{v}$，并计算标量序列 $\{\mathbf{u}^T A_i \mathbf{v}\}$ 的最短递推式即可。由 Schwartz-Zippel 引理可以类似地得到二者相同的概率至少为 $1 - \frac{n + m} p$。
+求矩阵列 $\{A_i\}$ 的最短递推式也是类似的，设矩阵的大小为 $n \times m$，则只需随机一个 $1 \times n$ 的行向量 $\mathbf u^T$ 和一个 $m \times 1$ 的列向量 $\boldsymbol{v}$，并计算标量序列 $\{\boldsymbol{u}^T A_i \boldsymbol{v}\}$ 的最短递推式即可。由 Schwartz-Zippel 引理可以类似地得到二者相同的概率至少为 $1 - \frac{n + m} p$。
 
 #### 优化矩阵快速幂
 
-设 $\mathbf{f}_i$ 是一个 $n$ 维列向量，并且转移满足 $\mathbf{f}_i = A \mathbf{f}_{i - 1}$，则可以发现 $\{\mathbf{f}_i\}$ 是一个不超过 $n$ 阶的线性递推向量列。（证明略）
+设 $\boldsymbol{f}_i$ 是一个 $n$ 维列向量，并且转移满足 $\boldsymbol{f}_i = A \boldsymbol{f}_{i - 1}$，则可以发现 $\{\boldsymbol{f}_i\}$ 是一个不超过 $n$ 阶的线性递推向量列。（证明略）
 
-我们可以直接暴力求出 $\mathbf{f}_0 \dots \mathbf{f}_{2n - 1}$，然后用前面提到的做法求出 $\{\mathbf{f}_i\}$ 的最短递推式，再调用 [常系数齐次线性递推](./poly/linear-recurrence.md) 即可。
+我们可以直接暴力求出 $\boldsymbol{f}_0 \dots \boldsymbol{f}_{2n - 1}$，然后用前面提到的做法求出 $\{\boldsymbol{f}_i\}$ 的最短递推式，再调用 [常系数齐次线性递推](./poly/linear-recurrence.md) 即可。
 
-如果要求的向量是 $\mathbf{f}_m$，则算法的复杂度是 $O(n^3 + n\log n \log m)$。如果 $A$ 是一个只有 $k$ 个非零项的稀疏矩阵，则复杂度可以降为 $O(nk + n\log n \log m)$。但由于算法至少需要 $O(nk)$ 的时间预处理，因此在压力不大的情况下也可以使用 $O(n^2 \log m)$ 的线性递推算法，复杂度同样是可以接受的。
+如果要求的向量是 $\boldsymbol{f}_m$，则算法的复杂度是 $O(n^3 + n\log n \log m)$。如果 $A$ 是一个只有 $k$ 个非零项的稀疏矩阵，则复杂度可以降为 $O(nk + n\log n \log m)$。但由于算法至少需要 $O(nk)$ 的时间预处理，因此在压力不大的情况下也可以使用 $O(n^2 \log m)$ 的线性递推算法，复杂度同样是可以接受的。
 
 #### 求矩阵的最小多项式
 
@@ -125,7 +125,7 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_k\
 
 实际上最小多项式就是 $\{A^i\}$ 的最小递推式，所以直接调用 Berlekamp-Massey 算法就可以了。如果 $A$ 是一个 $n$ 阶方阵，则显然最小多项式的次数不超过 $n$。
 
-瓶颈在于求出 $A^i$，因为如果直接每次做矩阵乘法的话复杂度会达到 $O(n^4)$。但考虑到求矩阵列的最短递推式时实际上求的是 $\{\mathbf{u}^T A^i \mathbf{v}\}$ 的最短递推式，因此我们只要求出 $A^i \mathbf{v}$ 就行了。
+瓶颈在于求出 $A^i$，因为如果直接每次做矩阵乘法的话复杂度会达到 $O(n^4)$。但考虑到求矩阵列的最短递推式时实际上求的是 $\{\boldsymbol{u}^T A^i \boldsymbol{v}\}$ 的最短递推式，因此我们只要求出 $A^i \boldsymbol{v}$ 就行了。
 
 假设 $A$ 有 $k$ 个非零项，则复杂度为 $O(kn + n^2)$。
 
