@@ -187,13 +187,13 @@ int main() {
 
 ```cpp
 // 申请动态分配 32 位有符号整数数组：
-inline int* newarr(int sz) {
+int* newarr(int sz) {
   static int pool[maxn], *allocp = pool;
   return allocp += sz, allocp - sz;
 }
 
 // 线段树动态开点的代码：
-inline Node* newnode() {
+Node* newnode() {
   static Node pool[maxn << 1], *allocp = pool - 1;
   return ++allocp;
 }

@@ -36,7 +36,7 @@ author: Ir1d, 0xis-cn
 #### 实现
 
 ```cpp
-inline bool CanRbu(int k) {
+bool CanRbu(int k) {
   // 判断节点 k 是否需要重构
   return wn[k] && (alpha * s[k] <= (double)std::max(s[lc[k]], s[rc[k]]) ||
                    (double)sd[k] <= alpha * s[k]);
@@ -185,7 +185,7 @@ int MyAt(int k, int p) {
 以上两种功能结合即可。
 
 ```cpp
-inline int MyPre(int k, int p) { return MyAt(k, MyUprGrt(k, p)); }
+int MyPre(int k, int p) { return MyAt(k, MyUprGrt(k, p)); }
 
-inline int MyPost(int k, int p) { return MyAt(k, MyUprBd(k, p)); }
+int MyPost(int k, int p) { return MyAt(k, MyUprBd(k, p)); }
 ```

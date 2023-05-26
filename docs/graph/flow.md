@@ -25,11 +25,11 @@
 *注*：流函数的完整定义为
 
 $$
-f(u,v)=\left\{\begin{aligned}
-&f(u,v),&(u,v)\in E\\
-&-f(v,u),&(v,u)\in E\\
-&0,&(u,v)\notin E,(v,u)\notin E
-\end{aligned}\right.
+f(u,v)=\begin{cases}
+f(u,v),&(u,v)\in E\\
+-f(v,u),&(v,u)\in E\\
+0,&(u,v)\notin E,(v,u)\notin E
+\end{cases}
 $$
 
 ## 网络流的常见问题

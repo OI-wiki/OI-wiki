@@ -1,3 +1,5 @@
+author: H-J-Granger, Chrogeek, countercurrent-time, Enter-tainer, Great-designer, iamtwz, Ir1d, ksyx, mao1t, Menci, NachtgeistW, Nanarikom, ShaoChenHeng, StudyingFather, SukkaW, Tiphereth-A, zyj-111
+
 ## 定积分的定义
 
 简单来说，函数 $f(x)$ 在区间 $[l,r]$ 上的定积分 $\int_{l}^{r}f(x)\mathrm{d}x$ 指的是 $f(x)$ 在区间 $[l,r]$ 中与 $x$ 轴围成的区域的面积（其中 $x$ 轴上方的部分为正值，$x$ 轴下方的部分为负值）。

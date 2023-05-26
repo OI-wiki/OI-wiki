@@ -16,7 +16,7 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
 -   `Compare`: 提供严格的弱序比较类型
 -   `Tag`: 是 `__gnu_pbds` 提供的不同的五种堆，Tag 参数默认是 `pairing_heap_tag` 五种分别是：
     -   `pairing_heap_tag`：配对堆
-        官方文档认为在非原生元素（如自定义结构体/`std :: string`/`pair`) 中，配对堆表现最好
+        官方文档认为在非原生元素（如自定义结构体/`std :: string`/`pair`）中，配对堆表现最好
     -   `binary_heap_tag`：二叉堆
         官方文档认为在原生元素中二叉堆表现最好，不过我测试的表现并没有那么好
     -   `binomial_heap_tag`：二项堆
@@ -104,17 +104,17 @@ int main() {
 }
 ```
 
-## \_\_gnu\_pbds 迭代器的失效保证（invalidation\_guarantee)
+## \_\_gnu\_pbds 迭代器的失效保证（invalidation\_guarantee）
 
 在上述示例以及一些实践中（如使用本章的 pb-ds 堆来编写单源最短路等算法），常常需要保存并使用堆的迭代器（如 `__gnu_pbds::priority_queue<int>::point_iterator` 等）。
 
 可是例如对于 `__gnu_pbds::priority_queue` 中不同的 Tag 参数，其底层实现并不相同，迭代器的失效条件也不一样，根据\_\_gnu\_pbds 库的设计，以下三种由上至下派生的情况：
 
-1.  基本失效保证（basic\_invalidation\_guarantee）：即不修改容器时，点类型迭代器（point\_iterator)、指针和引用（key/value）**保持** 有效。
+1.  基本失效保证（basic\_invalidation\_guarantee）：即不修改容器时，点类型迭代器（point\_iterator）、指针和引用（key/value）**保持** 有效。
 
 2.  点失效保证（point\_invalidation\_guarantee）：即 **修改** 容器后，点类型迭代器（point\_iterator）、指针和引用（key/value）只要对应在容器中没被删除 **保持** 有效。
 
-3.  范围失效保证（range\_invalidation\_guarantee）：即 **修改** 容器后，除（2）的特性以外，任何范围类型的迭代器（包括 `begin()` 和 `end()` 的返回值）是正确的，具有范围失效保证的 Tag 有 rb\_tree\_tag 和 适用于 `__gnu_pbds::tree` 的 splay\_tree\_tag（)，以及 适用于 `__gnu_pbds::trie` 的 pat\_trie\_tag。
+3.  范围失效保证（range\_invalidation\_guarantee）：即 **修改** 容器后，除（2）的特性以外，任何范围类型的迭代器（包括 `begin()` 和 `end()` 的返回值）是正确的，具有范围失效保证的 Tag 有 `rb_tree_tag` 和 适用于 `__gnu_pbds::tree` 的 `splay_tree_tag`，以及 适用于 `__gnu_pbds::trie` 的 `pat_trie_tag`。
 
 从运行下述代码中看出，除了 `binary_heap_tag` 为 `basic_invalidation_guarantee` 在修改后迭代器会失效，其余的均为 `point_invalidation_guarantee` 可以实现修改后点类型迭代器 (point\_iterator) 不失效的需求。
 

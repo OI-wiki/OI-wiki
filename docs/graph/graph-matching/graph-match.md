@@ -19,12 +19,14 @@ author: accelsao, StudyingFather, t4rf9
 
 一个点如果属于 $M$ 且为至多一条边的端点，称为 **匹配点**，反之称为 **未匹配点**。
 
--   maximal matching: 无法再增加匹配边的匹配。不见得是最大匹配。
--   最大匹配（maximum matching): 匹配数最多的匹配。
--   完美匹配（perfect matching): 所有点都属于匹配，同时也符合最大匹配。
--   近完美匹配（near-perfect matching): 发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。
+-   maximal matching：无法再增加匹配边的匹配。不见得是最大匹配。
+-   最大匹配（maximum matching）：匹配数最多的匹配。
+-   完美匹配（perfect matching）：所有点都属于匹配，同时也符合最大匹配。
+-   近完美匹配（near-perfect matching）：发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。
 
-    **maximal matching** ![graph-match-1](./images/graph-match-1.png) **最大匹配** ![graph-match-2](./images/graph-match-2.png)
+    **maximal matching** ![graph-match-1](./images/graph-match-1.png)
+
+    **最大匹配** ![graph-match-2](./images/graph-match-2.png)
 
 ## 二分图匹配
 
@@ -36,11 +38,11 @@ author: accelsao, StudyingFather, t4rf9
 
 ### 完美匹配
 
-设 $G=<V_1, V_2, E>$ 为二分图，$|V_1| \leq |V_2|$，$M$ 为 $G$ 中一个最大匹配，且 $|M|=|V_1|$，则称 $M$ 为 $V_1$ 到 $V_2$ 的完美匹配。
+设 $G=\langle V_1, V_2, E \rangle$ 为二分图，$|V_1| \leq |V_2|$，$M$ 为 $G$ 中一个最大匹配，且 $|M|=|V_1|$，则称 $M$ 为 $V_1$ 到 $V_2$ 的完美匹配。
 
 ### 霍尔定理
 
-设二分图 $G=<V_1, V_2, E>, |V_1| \leq |V_2|$，则 $G$ 中存在 $V_1$ 到 $V_2$ 的完美匹配当且仅当对于任意的 $S \subset V_1$，均有 $|S|\leq|N(S)|$，其中 $N(S)=\Cup_{v_i \in S}{N(V_i)}$，是 $S$ 的邻域。
+设二分图 $G=\langle V_1, V_2, E \rangle, |V_1| \leq |V_2|$，则 $G$ 中存在 $V_1$ 到 $V_2$ 的完美匹配当且仅当对于任意的 $S \subset V_1$，均有 $|S|\leq|N(S)|$，其中 $N(S)=\Cup_{v_i \in S}{N(V_i)}$，是 $S$ 的邻域。
 
 ### 最大匹配
 
@@ -48,7 +50,7 @@ author: accelsao, StudyingFather, t4rf9
 
 ## 算法
 
-组合优化中的一个基本问题是求 **最大匹配（maximum matching)**。
+组合优化中的一个基本问题是求 **最大匹配（maximum matching）**。
 
 ### 二分图最大匹配
 
@@ -78,7 +80,7 @@ author: accelsao, StudyingFather, t4rf9
 
 ## 参考资料
 
-1.  [Wikiwand - Matching (graph theory)](https://www.wikiwand.com/en/Matching_\(graph_theory\))
+1.  [Wikiwand - Matching (graph theory)](https://www.wikiwand.com/en/Matching_%28graph_theory%29)
 2.  [Wikiwand - Blossom algorithm](https://www.wikiwand.com/en/Blossom_algorithm)
 3.  2015 年《浅谈图的匹配算法及其应用》- 陈胤伯
 4.  [演算法笔记 - Matching](http://web.ntnu.edu.tw/~algo/Matching.html)

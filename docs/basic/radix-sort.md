@@ -44,58 +44,142 @@ MSD 基数排序需要借助一种 **稳定算法** 完成内层对关键字的�
 
 ### 参考代码
 
-下面是使用 MSD 基数排序对字符串基于字典序进行排序的 C++ 参考代码：
+#### 对自然数排序
+
+下面是使用迭代式 MSD 基数排序对 `unsigned int` 范围内元素进行排序的 C++ 参考代码，可调整 $W$ 和 $\log_2 W$ 的值（建议将 $\log_2 W$ 设为 $2^k$ 以便位运算优化）。
 
 ```cpp
-#include <queue>
-#include <string>
+#include <algorithm>
+#include <stack>
+#include <tuple>
+#include <vector>
 
-using std::queue;
-using std::string;
+using std::copy;  // from <algorithm>
+using std::make_tuple;
+using std::stack;
+using std::tie;
+using std::tuple;
+using std::vector;
 
-// 计数排序的值域
-const size_t MAXBUCKET = 128;
+typedef unsigned int u32;
+typedef unsigned int* u32ptr;
 
-// 注意一定要将这两套容器放在执行递归操作的函数外边，否则很有可能 MLE / RE
-queue<string> bucket[MAXBUCKET];  // 存储具有相同关键字的元素，注意使用 queue
-                                  // 这种 FIFO 型数据结构才能使排序稳定
-string *borders[MAXBUCKET + 1] =
-    {};  // 具有相同关键字元素的范围边界，注意是 [L, R) 形式的
+void MSD_radix_sort(u32ptr first, u32ptr last) {
+  const size_t maxW = 0x100000000llu;
+  const u32 maxlogW = 32;  // = log_2 W
 
-// [first, last) 里的元素是每个字符串
-// offset 表示访问每个字符串的第 offset 个字符，即第 offset 关键字
-void MSD_radix_sort(string *first, string *last, size_t offset = 0) {
-  // 如果只剩一个字符串，直接返回
-  if (last - first == 1) return;
+  const u32 W = 256;  // 计数排序的值域
+  const u32 logW = 8;
+  const u32 mask = W - 1;  // 用位运算替代取模，详见下面的 key 函数
 
-  // 使用基于 queue 实现的计数排序分组，存储到 bucket 里
-  for (string *iter = first; iter != last; ++iter) {
-    char ch = (*iter)[offset];  // 获取字符串 *iter 的第 offset 个关键字
-    size_t idx = ch;
-    bucket[idx].push(*iter);  // 将字符串放进对应的 bucket 里
-  }
+  u32ptr tmp =
+      (u32ptr)calloc(last - first, sizeof(u32));  // 计数排序用的输出空间
 
-  // 倒回原数组，iter 记录当前数组末端的位置
-  string *iter = first;
-  borders[0] = first;
+  typedef tuple<u32ptr, u32ptr, u32> node;
+  stack<node, vector<node>> s;
+  s.push(make_tuple(first, last, maxlogW - logW));
 
-  // 由于已知 0 < 1 < ... < MAXBUCKET-1，所以按关键字从小到大清空各个 bucket
-  // 即可完成基于第 offset 个关键字的排序
-  for (size_t idx = 0; idx < MAXBUCKET; ++idx) {
-    // 清空第 idx 个 bucket
-    while (!bucket[idx].empty()) {
-      *iter++ = bucket[idx].front();
-      bucket[idx].pop();
+  while (!s.empty()) {
+    u32ptr begin, end;
+    size_t shift, length;
+
+    tie(begin, end, shift) = s.top();
+    length = end - begin;
+    s.pop();
+
+    if (begin + 1 >= end) continue;  // elements <= 1
+
+    // 计数排序
+    u32 cnt[W] = {};
+    auto key = [](const u32 x, const u32 shift) { return (x >> shift) & mask; };
+
+    for (u32ptr it = begin; it != end; ++it) ++cnt[key(*it, shift)];
+    for (u32 value = 1; value < W; ++value) cnt[value] += cnt[value - 1];
+
+    // 求完前缀和后，计算相同关键字的元素范围
+    if (shift >= logW) {
+      s.push(make_tuple(begin, begin + cnt[0], shift - logW));
+      for (u32 value = 1; value < W; ++value)
+        s.push(make_tuple(begin + cnt[value - 1], begin + cnt[value],
+                          shift - logW));
     }
 
-    // 记录当前组的右边界，左边界 border[idx] 已经事先记录过了
-    borders[idx + 1] = iter;
+    u32ptr it = end;
+    do {
+      --it;
+      --cnt[key(*it, shift)];
+      tmp[cnt[key(*it, shift)]] = *it;
+    } while (it != begin);
+
+    copy(tmp, tmp + length, begin);
+  }
+}
+```
+
+#### 对字符串排序
+
+下面是使用迭代式 MSD 基数排序对 [空终止字节字符串](https://zh.cppreference.com/w/cpp/string/byte) 基于字典序进行排序的 C++ 参考代码：
+
+```cpp
+#include <algorithm>
+#include <stack>
+#include <tuple>
+#include <vector>
+
+using std::copy;  // from <algorithm>
+using std::make_tuple;
+using std::stack;
+using std::tie;
+using std::tuple;
+using std::vector;
+
+typedef char* NTBS;  // 空终止字节字符串
+typedef NTBS* NTBSptr;
+
+void MSD_radix_sort(NTBSptr first, NTBSptr last) {
+  const size_t W = 128;
+  const size_t logW = 7;
+  const size_t mask = W - 1;
+
+  NTBSptr tmp = (NTBSptr)calloc(last - first, sizeof(NTBS));
+
+  typedef tuple<NTBSptr, NTBSptr, size_t> node;
+  stack<node, vector<node>> s;
+  s.push(make_tuple(first, last, 0));
+
+  while (!s.empty()) {
+    NTBSptr begin, end;
+    size_t index, length;
+
+    tie(begin, end, index) = s.top();
+    length = end - begin;
+    s.pop();
+
+    if (begin + 1 >= end) continue;  // elements <= 1
+
+    // 计数排序
+    size_t cnt[W] = {};
+    auto key = [](const NTBS str, const size_t index) { return str[index]; };
+
+    for (NTBSptr it = begin; it != end; ++it) ++cnt[key(*it, index)];
+    for (char ch = 1; value < W; ++value) cnt[ch] += cnt[ch - 1];
+
+    // 求完前缀和后，计算相同关键字的元素范围
+    // 对于 NTBS，如果此刻末尾的字符是 \0 则说明这两个字符串相等，不必继续迭代
+    for (char ch = 1; ch < W; ++ch)
+      s.push(make_tuple(begin + cnt[ch - 1], begin + cnt[ch], index + 1));
+
+    NTBSptr it = end;
+    do {
+      --it;
+      --cnt[key(*it, index)];
+      tmp[cnt[key(*it, index)]] = *it;
+    } while (it != begin);
+
+    copy(tmp, tmp + length, begin);
   }
 
-  // 递归对具有相同关键字的元素进行下一关键字的排序
-  for (int idx = 0; idx < MAXBUCKET; ++idx)
-    if (borders[idx] != borders[idx + 1])  // 非空
-      MSD_radix_sort(borders[idx], borders[idx + 1], offset + 1);
+  free(tmp);
 }
 ```
 
@@ -103,7 +187,7 @@ void MSD_radix_sort(string *first, string *last, size_t offset = 0) {
 
 ### 与桶排序的关系
 
-前置知识：[桶排序](https://oi-wiki.org/basic/bucket-sort/)
+前置知识：[桶排序](./bucket-sort.md)
 
 桶排序需要其它的排序算法来完成对每个桶内部元素的排序。但实际上，完全可以对每个桶继续执行桶排序，直至某一步桶的元素数量 $\le 1$。
 

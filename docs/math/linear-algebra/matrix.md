@@ -4,7 +4,7 @@
 
 在线性代数中，向量分为列向量和行向量。
 
-在中国台湾地区关于「列」与「行」的翻译，恰好与中国大陆地区相反。在 OI Wiki 按照中国大陆地区的习惯，采用列（column）与行（row）的翻译。
+在中国台湾地区关于「列」与「行」的翻译，恰好与中国大陆地区相反。在 **OI Wiki** 按照中国大陆地区的习惯，采用列（column）与行（row）的翻译。
 
 线性代数的主要研究对象是列向量，约定使用粗体小写字母表示列向量。在用到大量向量与矩阵的线性代数中，不引起混淆的情况下，在手写时，字母上方的向量记号可以省略不写。
 
@@ -167,7 +167,7 @@ $$
 
 ```cpp
 // 以下文的参考代码为例
-inline mat operator*(const mat& T) const {
+mat operator*(const mat& T) const {
   mat res;
   for (int i = 0; i < sz; ++i)
     for (int j = 0; j < sz; ++j)
@@ -179,7 +179,7 @@ inline mat operator*(const mat& T) const {
 }
 
 // 不如
-inline mat operator*(const mat& T) const {
+mat operator*(const mat& T) const {
   mat res;
   int r;
   for (int i = 0; i < sz; ++i)
@@ -196,7 +196,7 @@ inline mat operator*(const mat& T) const {
 
 方阵 $A$ 的逆矩阵 $P$ 是使得 $A \times P = I$ 的矩阵。
 
-逆矩阵不一定存在。如果存在，可以使用 [高斯消元](./gauss.md) 进行求解。
+逆矩阵不一定存在。如果存在，可以使用 [高斯消元](../numerical/gauss.md) 进行求解。
 
 ### 方阵的行列式
 
@@ -210,9 +210,9 @@ inline mat operator*(const mat& T) const {
 struct mat {
   LL a[sz][sz];
 
-  inline mat() { memset(a, 0, sizeof a); }
+  mat() { memset(a, 0, sizeof a); }
 
-  inline mat operator-(const mat& T) const {
+  mat operator-(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
       for (int j = 0; j < sz; ++j) {
@@ -221,7 +221,7 @@ struct mat {
     return res;
   }
 
-  inline mat operator+(const mat& T) const {
+  mat operator+(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
       for (int j = 0; j < sz; ++j) {
@@ -230,7 +230,7 @@ struct mat {
     return res;
   }
 
-  inline mat operator*(const mat& T) const {
+  mat operator*(const mat& T) const {
     mat res;
     int r;
     for (int i = 0; i < sz; ++i)
@@ -242,7 +242,7 @@ struct mat {
     return res;
   }
 
-  inline mat operator^(LL x) const {
+  mat operator^(LL x) const {
     mat res, bas;
     for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
     for (int i = 0; i < sz; ++i)

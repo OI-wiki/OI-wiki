@@ -338,12 +338,12 @@ using namespace std;
 
 namespace DEBUG {
 template <typename T>
-inline void _debug(const char* format, T t) {
+void _debug(const char* format, T t) {
   cerr << format << '=' << t << endl;
 }
 
 template <class First, class... Rest>
-inline void _debug(const char* format, First first, Rest... rest) {
+void _debug(const char* format, First first, Rest... rest) {
   while (*format != ',') cerr << *format++;
   cerr << '=' << first << ",";
   _debug(format + 1, rest...);

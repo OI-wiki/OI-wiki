@@ -11,7 +11,7 @@ int a, b, maxd;
 long long gcd(long long a, long long b) { return b == 0 ? a : gcd(b, a % b); }
 
 // 返回满足 1/c <= a/b 的最小 c 值
-inline int get_first(long long a, long long b) { return b / a + 1; }
+int get_first(long long a, long long b) { return b / a + 1; }
 
 const int maxn = 100 + 5;
 

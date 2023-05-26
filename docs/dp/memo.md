@@ -208,7 +208,7 @@ $dp_{i} = \max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升
 
 ### 方法二
 
-1.  写出这道题的暴搜程序（最好是 [dfs](../search/dfs.md))
+1.  写出这道题的暴搜程序（最好是 [dfs](../search/dfs.md)）
 2.  将这个 dfs 改成「无需外部变量」的 dfs
 3.  添加记忆化数组
 

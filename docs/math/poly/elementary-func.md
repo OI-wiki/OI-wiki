@@ -342,12 +342,12 @@ $$
     using poly_t = int[maxn];
     using poly = int *const;
     
-    inline void derivative(const poly &h, const int n, poly &f) {
+    void derivative(const poly &h, const int n, poly &f) {
       for (int i = 1; i != n; ++i) f[i - 1] = (i64)h[i] * i % mod;
       f[n - 1] = 0;
     }
     
-    inline void integrate(const poly &h, const int n, poly &f) {
+    void integrate(const poly &h, const int n, poly &f) {
       for (int i = n - 1; i; --i) f[i] = (i64)h[i - 1] * inv[i] % mod;
       f[0] = 0; /* C */
     }
@@ -529,12 +529,12 @@ $$
     using poly_t = int[maxn];
     using poly = int *const;
     
-    inline void derivative(const poly &h, const int n, poly &f) {
+    void derivative(const poly &h, const int n, poly &f) {
       for (int i = 1; i != n; ++i) f[i - 1] = (i64)h[i] * i % mod;
       f[n - 1] = 0;
     }
     
-    inline void integrate(const poly &h, const int n, poly &f) {
+    void integrate(const poly &h, const int n, poly &f) {
       for (int i = n - 1; i; --i) f[i] = (i64)h[i - 1] * inv[i] % mod;
       f[0] = 0; /* C */
     }

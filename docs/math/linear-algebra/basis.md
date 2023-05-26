@@ -147,7 +147,7 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
     > 该性质包含了贪心法构造的线性基满足的两条性质
 
-    如果不理解这条性质的正确性，可以跳转 [高斯消元](./gauss.md)。
+    如果不理解这条性质的正确性，可以跳转 [高斯消元](../numerical/gauss.md)。
 
 提供一组样例：
 

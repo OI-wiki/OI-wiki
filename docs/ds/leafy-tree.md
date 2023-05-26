@@ -45,7 +45,7 @@ struct Node {
 
 Node *root, *null, *st[200010], t[200010];
 
-inline void rotate(Node *u) {
+void rotate(Node *u) {
   if (u->lf->size > u->rf->size * ratio)
     u->rf = merge(u->lf->rf, u->rf), st[--cnt] = u->lf, u->lf = u->lf->lf;
   if (u->rf->size > u->lf->size * ratio)
@@ -58,7 +58,7 @@ inline void rotate(Node *u) {
 类似二叉树的插入过程。
 
 ```cpp
-inline void insert(Node *u, int x) {
+void insert(Node *u, int x) {
   if (u->size == 1)
     u->lf = new_Node(1, Min(u->val, x), null, null),
     u->rf = new_Node(1, Max(u->val, x), null, null);
@@ -90,7 +90,7 @@ void BTreeNode::traverse() {
 假设需要查找排名第 $x$ 大的元素。
 
 ```cpp
-inline int find(Node *u, int x) {
+int find(Node *u, int x) {
   if (u->size == 1) return u->val;
   return u->lf->size < x ? find(u->rf, x - u->lf->size) : find(u->lf, x);
 }

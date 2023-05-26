@@ -22,13 +22,13 @@ $$
 \left|\bigcap_{i=1}^{k}S_{a_i}\right|=(n-k)!
 $$
 
-那么选择 $k$ 个元素的方案数为 $C_n^k$，因此有：
+那么选择 $k$ 个元素的方案数为 $\dbinom{n}{k}$，因此有：
 
 $$
 \begin{aligned}
 \left|\bigcup_{i=1}^n\overline{S_i}\right|
 &=\sum_{k=1}^n(-1)^{k-1}\sum_{a_{1,\cdots,k} }\left|\bigcap_{i=1}^{k}S_{a_i}\right|\\
-&=\sum_{k=1}^n(-1)^{k-1}C_n^k(n-k)!\\
+&=\sum_{k=1}^n(-1)^{k-1}\dbinom{n}{k}(n-k)!\\
 &=\sum_{k=1}^n(-1)^{k-1}\frac{n!}{k!}\\
 &=n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}
 \end{aligned}
@@ -76,11 +76,11 @@ $$
 错位排列数有一个向下取整的简单表达式，增长速度与阶乘仅相差常数：
 
 $$
-D_n=\left\lfloor\frac{n!}{e}\right\rfloor
+D_n=\left\lfloor\frac{n!}{\mathrm{e}}\right\rfloor
 $$
 
 随着元素数量的增加，形成错位排列的概率 P 接近：
 
 $$
-P=\lim_{n\to\infty}\frac{D_n}{n!}=\frac{1}{e}
+P=\lim_{n\to\infty}\frac{D_n}{n!}=\frac{1}{\mathrm{e}}
 $$

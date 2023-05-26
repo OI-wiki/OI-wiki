@@ -19,13 +19,13 @@ struct bcj {
 
   stack<opt> st;
 
-  inline void ih() {
+  void ih() {
     for (int i = 1; i <= n; i++) fa[i] = i, size[i] = 1;
   }
 
-  inline int f(int x) { return (fa[x] == x) ? x : f(fa[x]); }
+  int f(int x) { return (fa[x] == x) ? x : f(fa[x]); }
 
-  inline void u(int x, int y) {  // 带撤回
+  void u(int x, int y) {  // 带撤回
     int u = f(x);
     int v = f(y);
     if (u == v) return;
@@ -38,14 +38,14 @@ struct bcj {
     st.push(o);
   }
 
-  inline void undo() {
+  void undo() {
     opt o = st.top();
     st.pop();
     fa[o.v] = o.v;
     size[o.u] -= size[o.v];
   }
 
-  inline void clear(int tim) {
+  void clear(int tim) {
     while (st.size() > tim) {
       undo();
     }
@@ -80,7 +80,7 @@ vector<edge> tr;
 ll res[30];
 int tim[30];
 
-inline void pushdown(int dep)  // 缩边
+void pushdown(int dep)  // 缩边
 {
   tr.clear();  // 这里要复制一份，以免无法回撤操作
   for (int i = 0; i < ve[dep].size(); i++) {
@@ -122,7 +122,7 @@ inline void pushdown(int dep)  // 缩边
   return;
 }
 
-inline void solve(int l, int r, int dep) {
+void solve(int l, int r, int dep) {
   tim[dep] = s.st.size();
   int mid = (l + r) / 2;
   if (r - l == 1) {  // 终止条件
