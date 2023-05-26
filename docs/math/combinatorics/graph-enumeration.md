@@ -238,7 +238,7 @@ int dff(int a, int b) {
 
 void MUL(int& a, int b) { a = (LL)a * b % MOD; }
 
-int pdt(int a, int b){return (LL)a * b % MOD;}
+int pdt(int a, int b) { return (LL)a * b % MOD; }
 
 int _I(int b) {
   int a = MOD, x1 = 0, x2 = 1, q;
