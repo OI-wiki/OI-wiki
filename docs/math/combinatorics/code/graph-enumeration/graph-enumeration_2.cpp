@@ -31,7 +31,7 @@ int dff(int a, int b) {
 
 void MUL(int& a, int b) { a = (LL)a * b % MOD; }
 
-int pdt(int a, int b){return (LL)a * b % MOD;}
+int pdt(int a, int b) { return (LL)a * b % MOD; }
 
 int _I(int b) {
   int a = MOD, x1 = 0, x2 = 1, q;
@@ -50,24 +50,28 @@ void DIV(int& a, int b) { MUL(a, _I(b)); }
 
 int qtt(int a, int b) { return pdt(a, _I(b)); }
 
-inline int pow(int a, LL b){
-    int c(1); while (b){
-        if (b&1) MUL(c, a);
-        MUL(a, a), b >>= 1;
-    }
-    return c;
+inline int pow(int a, LL b) {
+  int c(1);
+  while (b) {
+    if (b & 1) MUL(c, a);
+    MUL(a, a), b >>= 1;
+  }
+  return c;
 }
 
-template<class T> inline T pow(T a, LL b){
-    T c(1); while (b){
-        if (b&1) c *= a;
-        a *= a, b >>= 1;
-    }
-    return c;
+template <class T>
+inline T pow(T a, LL b) {
+  T c(1);
+  while (b) {
+    if (b & 1) c *= a;
+    a *= a, b >>= 1;
+  }
+  return c;
 }
 
-template<class T> inline T pow(T a, int b){
-    return pow(a, (LL)b);
+template <class T>
+inline T pow(T a, int b) {
+  return pow(a, (LL)b);
 }
 
 struct Int {
@@ -117,10 +121,9 @@ struct Int {
   Int operator-() const { return MOD - *this; }
 };
 
-}
+}  // namespace NT
 
 using namespace NT;
-
 
 const int N = int(5e1) + 9;
 Int Fact[N];
