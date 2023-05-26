@@ -73,7 +73,7 @@ C(x) &= \ln(G(x))
 \end{align}
 $$
 
-使用 [多项式 ln](../poly/elementary-func.md) 解出 $C(x)$ 即可。
+使用 [多项式 ln](../poly/elementary-func.md#多项式对数函数--指数函数) 解出 $C(x)$ 即可。
 
 ## 有标号欧拉图、二分图
 
