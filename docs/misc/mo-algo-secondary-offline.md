@@ -3,6 +3,7 @@ author: Lyccrius
 ## 例题 1
 
 ???+ note "[Luogu P5047 \[Ynoi2019 模拟赛\] Yuno loves sqrt technology II](https://www.luogu.com.cn/problem/P5047)"
+    
 
     给你一个长为 $n$ 的序列 $a$，$m$ 次询问，每次查询一个区间的逆序对数。
 
@@ -19,7 +20,7 @@ author: Lyccrius
 ## 例题 2
 
 ???+ note "[Luogu P5501 \[LnOI2019\] 来者不拒，去者不追](https://www.luogu.com.cn/problem/P5501)"
-    给定一个长度为$n$的序列$a$。给定$m$个询问，每次询问一个区间中$[l,r]$中所有数的“Abbi值”之和
+    给定一个长度为 $n$ 的序列 $a$。给定 $m$ 个询问，每次询问一个区间中 $[l,r]$ 中所有数的“Abbi 值”之和
 
     Abbi值定义为：若$a_i$在询问区间$[l,r]$中是第$k$小，那么它的“Abbi值”等于$k \times a_i$。
 
