@@ -512,7 +512,7 @@ Int w(const VI P) {
   Int z = Fact[n];
   int c = 0, l = P.front();
 
-  for (auto it: Partition) {
+  for (auto it : Partition) {
     z /= *it;
     if (*it != l) {
       z /= Fact[c];
@@ -544,7 +544,9 @@ int main() {
   gen();
 
   Int res = 0;
-  for (auto it: Partition) { res += w(*it) * pow(m, c(*it)); }
+  for (auto it : Partition) {
+    res += w(*it) * pow(m, c(*it));
+  }
   res /= Fact[n];
   cout << res << endl;
 }
