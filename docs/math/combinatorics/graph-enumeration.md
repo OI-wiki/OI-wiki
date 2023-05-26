@@ -4,7 +4,7 @@
 
 ## 有标号树
 
-即 Cayley 公式，参见 [Prüfer 序列](../../graph/prufer.md) 一文，我们也可以使用 [Kirchhoff 矩阵树定理](../../graph/matrix-tree.md) 或 [生成函数](../poly/intro.md) 得到这一结果。
+即 Cayley 公式，参见 [Prüfer 序列](../../graph/prufer.md) 一文，我们也可以使用 [Kirchhoff 矩阵树定理](../../graph/matrix-tree.md) 或 [生成函数](../poly/intro.md#生成函数) 得到这一结果。
 
 ### 习题
 
@@ -505,7 +505,7 @@ Int w(const VI P) {
   Int z = Fact[n];
   int c = 0, l = P.front();
 
-  for (auto it: Partition) {
+  for (auto it : Partition) {
     z /= *it;
     if (*it != l) {
       z /= Fact[c];
@@ -537,7 +537,9 @@ int main() {
   gen();
 
   Int res = 0;
-  for (auto it: Partition) { res += w(*it) * pow(m, c(*it)); }
+  for (auto it : Partition) {
+    res += w(*it) * pow(m, c(*it));
+  }
   res /= Fact[n];
   cout << res << endl;
 }
