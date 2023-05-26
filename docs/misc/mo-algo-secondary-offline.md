@@ -20,9 +20,9 @@ author: Lyccrius
 ## 例题 2
 
 ???+ note "[Luogu P5501 \[LnOI2019\] 来者不拒，去者不追](https://www.luogu.com.cn/problem/P5501)"
-    给定一个长度为 $n$ 的序列 $a$。给定 $m$ 个询问，每次询问一个区间中 $[l,r]$ 中所有数的“Abbi 值”之和
+    给定一个长度为 $n$ 的序列 $a$。给定 $m$ 个询问，每次询问一个区间中 $[l, r]$ 中所有数的「Abbi 值」之和。
 
-    Abbi值定义为：若$a_i$在询问区间$[l,r]$中是第$k$小，那么它的“Abbi值”等于$k \times a_i$。
+    Abbi 值定义为：若 $a_i$ 在询问区间 $[l, r]$ 中是第 $k$ 小，那么它的「Abbi 值」等于 $k \times a_i$。
 
     数据范围：$1 \leq a_i \leq 100000$，$1 \leq l \leq r \leq n$，$1\leq n, m\leq 500000$。
 
