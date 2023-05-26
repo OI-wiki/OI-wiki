@@ -205,7 +205,7 @@ $$
 
 ??? 参考代码
     ```cpp
-    --8<-- "docs/math/combinatorics/code/graph-enumeration/SPOJ_KPGRAPHS.cpp"
+    --8<-- "docs/math/combinatorics/code/graph-enumeration/graph-enumeration_1.cpp"
     ```
 
 ### 习题
@@ -329,7 +329,7 @@ $$
 
 ??? 参考代码
     ```cpp
-    --8<-- "docs/math/combinatorics/code/graph-enumeration/SGU_282.cpp"
+    --8<-- "docs/math/combinatorics/code/graph-enumeration/graph-enumeration_2.cpp"
     ```
 
 ## 习题
