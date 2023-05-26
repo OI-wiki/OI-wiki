@@ -219,27 +219,27 @@ void INC(int& a, int b) {
   if (a >= MOD) a -= MOD;
 }
 
-inline int sum(int a, int b) {
+int sum(int a, int b) {
   a += b;
   if (a >= MOD) a -= MOD;
   return a;
 }
 
-inline void DEC(int& a, int b) {
+void DEC(int& a, int b) {
   a -= b;
   if (a < 0) a += MOD;
 }
 
-inline int dff(int a, int b) {
+int dff(int a, int b) {
   a -= b;
   if (a < 0) a += MOD;
   return a;
 }
 
-inline void MUL(int& a, int b) { a = (LL)a * b % MOD; }
+void MUL(int& a, int b) { a = (LL)a * b % MOD; }
 
-// inline int pdt(int a, int b){return (LL)a * b % MOD;}
-inline int pdt(int x, int y) {
+// int pdt(int a, int b){return (LL)a * b % MOD;}
+int pdt(int x, int y) {
   int ret;
   __asm__ __volatile__("\tmull %%ebx\n\tdivl %%ecx\n"
                        : "=d"(ret)
@@ -247,7 +247,7 @@ inline int pdt(int x, int y) {
   return ret;
 }
 
-inline int _I(int b) {
+int _I(int b) {
   int a = MOD, x1 = 0, x2 = 1, q;
   while (1) {
     q = a / b, a %= b;
@@ -260,9 +260,9 @@ inline int _I(int b) {
   }
 }
 
-inline void DIV(int& a, int b) { MUL(a, _I(b)); }
+void DIV(int& a, int b) { MUL(a, _I(b)); }
 
-inline int qtt(int a, int b) { return pdt(a, _I(b)); }
+int qtt(int a, int b) { return pdt(a, _I(b)); }
 
 struct Int {
   int val;
@@ -493,8 +493,8 @@ $$
 ```cpp
 const int N = int(5e1) + 9;
 Int Fact[N];
-VVI Partition;
-VI cur;
+vector<vector<int>> Partition;
+vector<int> cur;
 int n, m;
 
 void gen(int n = ::n, int s = 1) {
@@ -512,7 +512,7 @@ Int w(const VI P) {
   Int z = Fact[n];
   int c = 0, l = P.front();
 
-  ECH(it, P) {
+  for (auto it: Partition) {
     z /= *it;
     if (*it != l) {
       z /= Fact[c];
@@ -537,14 +537,14 @@ int c(const VI P) {
 }
 
 int main() {
-  RD(n, m, MOD);
+  cin >> n >> m >> MOD;
   Fact[0] = 1;
   for (int i = 1; i <= n; ++i) Fact[i] = Fact[i - 1] * i;
 
   gen();
 
   Int res = 0;
-  ECH(it, Partition) { res += w(*it) * pow(m, c(*it)); }
+  for (auto it: Partition) { res += w(*it) * pow(m, c(*it)); }
   res /= Fact[n];
   cout << res << endl;
 }
