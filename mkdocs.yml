@@ -485,6 +485,7 @@ nav:
         - 树上莫队: misc/mo-algo-on-tree.md
         - 回滚莫队: misc/rollback-mo-algo.md
         - 二维莫队: misc/mo-algo-2dimen.md
+        - 莫队二次离线: misc/mo-algo-secondary-offline.md
         - 莫队配合 bitset: misc/mo-algo-with-bitset.md
     - 分数规划: misc/frac-programming.md
     - 随机化:
