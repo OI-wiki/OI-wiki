@@ -214,7 +214,7 @@ const int MOD = int(1e9) + 7;
 
 // <<= '2. Number Theory .,//{
 namespace NT {
-inline void INC(int& a, int b) {
+void INC(int& a, int b) {
   a += b;
   if (a >= MOD) a -= MOD;
 }
