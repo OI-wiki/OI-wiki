@@ -217,5 +217,5 @@ Ukkonen 算法的整体流程如下：
 
 ## 参考文献
 
-1. 2021 国家集训队论文《后缀树的构建》代晨昕
-2. [炫酷后缀树魔术 - EternalAlexander 的博客](https://www.luogu.com.cn/blog/EternalAlexander/xuan-ku-hou-zhui-shu-mo-shu)
+1.  2021 国家集训队论文《后缀树的构建》代晨昕
+2.  [炫酷后缀树魔术 - EternalAlexander 的博客](https://www.luogu.com.cn/blog/EternalAlexander/xuan-ku-hou-zhui-shu-mo-shu)
