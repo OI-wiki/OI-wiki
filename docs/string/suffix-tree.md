@@ -52,27 +52,27 @@
         int ch[26];
       } st[N << 1];
 
-        SuffixAutomaton() : tot(1),lst(1) {}
+      SuffixAutomaton() : tot(1),lst(1) {}
 
-        inline void extend(int ch) {
-            int cur = ++tot,p = lst;lst = cur;
-            siz[cur] = 1,st[cur].len = st[p].len + 1;
-            for(;p && !st[p].ch[ch];p = st[p].link)
-                st[p].ch[ch] = cur;
-            if(!p) st[cur].link = 1;
-            else {
-                int q = st[p].ch[ch];
-                if(st[q].len == st[p].len + 1)
-                    st[cur].link = q;
-                else {
-                    int pp = ++tot;st[pp] = st[q];
-                    st[pp].len = st[p].len + 1;
-                    st[cur].link = st[q].link = pp;
-                    for(;p && st[p].ch[ch] == q;p = st[p].link)
-                        st[p].ch[ch] = pp;
-                }
-            }
+      inline void extend(int ch) {
+        int cur = ++tot,p = lst;lst = cur;
+        siz[cur] = 1,st[cur].len = st[p].len + 1;
+        for(;p && !st[p].ch[ch];p = st[p].link)
+          st[p].ch[ch] = cur;
+        if(!p) st[cur].link = 1;
+        else {
+          int q = st[p].ch[ch];
+          if(st[q].len == st[p].len + 1)
+            st[cur].link = q;
+          else {
+            int pp = ++tot;st[pp] = st[q];
+            st[pp].len = st[p].len + 1;
+            st[cur].link = st[q].link = pp;
+            for(;p && st[p].ch[ch] == q;p = st[p].link)
+              st[p].ch[ch] = pp;
+          }
         }
+      }
     } SAM;
     ```
 
