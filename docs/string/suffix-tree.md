@@ -212,5 +212,5 @@ Ukkonen 算法的整体流程如下：
 
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/string/code/suffix-bst/suffix-tree_1.cpp"
+        --8<-- "docs/string/code/suffix-tree/suffix-tree_1.cpp"
         ```
