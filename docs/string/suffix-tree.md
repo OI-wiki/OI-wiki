@@ -46,15 +46,11 @@
       int tot, lst;
       int siz[N << 1];
       int buc[N], id[N << 1];
-    
       struct Node {
         int len, link;
         int ch[26];
       } st[N << 1];
-    ```
-
       SuffixAutomaton() : tot(1),lst(1) {}
-
       inline void extend(int ch) {
         int cur = ++tot,p = lst;lst = cur;
         siz[cur] = 1,st[cur].len = st[p].len + 1;
