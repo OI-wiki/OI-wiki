@@ -51,7 +51,6 @@
         int len, link;
         int ch[26];
       } st[N << 1];
-    ```
 
         SuffixAutomaton() : tot(1),lst(1) {}
 
@@ -74,7 +73,7 @@
                 }
             }
         }
-    };
+    } SAM;
     ```
 
 ### 支持后端动态添加字符的算法
