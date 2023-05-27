@@ -8,13 +8,11 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld
 
 ## 性质
 
-以树的重心为根时，所有子树的大小都不超过整棵树大小的一半。
-
-树中所有点到某个点的距离和中，到重心的距离和是最小的；如果有两个重心，那么到它们的距离和一样。
-
-把两棵树通过一条边相连得到一棵新的树，那么新的树的重心在连接原来两棵树的重心的路径上。
-
-在一棵树上添加或删除一个叶子，那么它的重心最多只移动一条边的距离。
+-   树的重心如果不唯一，则至多有两个，且这两个重心相邻。
+-   以树的重心为根时，所有子树的大小都不超过整棵树大小的一半。
+-   树中所有点到某个点的距离和中，到重心的距离和是最小的；如果有两个重心，那么到它们的距离和一样。
+-   把两棵树通过一条边相连得到一棵新的树，那么新的树的重心在连接原来两棵树的重心的路径上。
+-   在一棵树上添加或删除一个叶子，那么它的重心最多只移动一条边的距离。
 
 ## 求法
 
@@ -52,8 +50,11 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld
 
 <https://www.cnblogs.com/zinthos/p/3899075.html>
 
+<https://www.cnblogs.com/suxxsfe/p/13543253.html>
+
 ## 习题
 
 -   [POJ 1655 Balancing Art](http://poj.org/problem?id=1655)（模板题）
 -   [洛谷 P1364 医院设置](https://www.luogu.com.cn/problem/P1364)
--   [CodeForces 1406C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C)
+-   [Codeforces 1406C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C)
+-   [Codeforces 708C Centroids](https://codeforces.com/problemset/problem/708/C)

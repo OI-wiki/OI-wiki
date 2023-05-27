@@ -1,6 +1,6 @@
 author: Dev-XYS, ttzytt
 
-前置知识：[朴素二叉搜索树](https://oi-wiki.org/ds/bst/)
+前置知识：[朴素二叉搜索树](./bst.md)
 
 ## 简介
 
@@ -245,8 +245,8 @@ int _query_rank(Node *cur, int val) {
   } else {
     if (cur->ch[1] != nullptr)
       // 如果要查的值比这个节点大，那这个节点的左子树以及这个节点自身肯定都比要查的值小
-      // 所以要加上这两个值，再加上往右边找的结果（以右子树为根的子树中，val
-      // 这个值的大小的排名）
+      // 所以要加上这两个值，再加上往右边找的结果
+      // （以右子树为根的子树中，val 这个值的大小的排名）
       return less_siz + cur->rep_cnt + _query_rank(cur->ch[1], val);
     else
       return cur->siz + 1;
@@ -342,7 +342,7 @@ int _query_nex(Node *cur, int val) {
 **无旋 treap** 又称分裂合并 treap。它仅有两种核心操作，即为 **分裂** 与 **合并**。通过这两种操作，在很多情况下可以比旋转 treap 更方便的实现别的操作。下面逐一介绍这两种操作。
 
 ???+ note "注释"
-    讲解无旋 treap 应当提到 **FHQ-Treap**(by 范浩强）。即可持久化，支持区间操作的无旋 Treap。更多内容请参照《范浩强谈数据结构》ppt。
+    讲解无旋 treap 应当提到 **FHQ-Treap**（by 范浩强）。即可持久化，支持区间操作的无旋 Treap。更多内容请参照《范浩强谈数据结构》ppt。
 
 ### 分裂（split）
 
@@ -350,7 +350,7 @@ int _query_nex(Node *cur, int val) {
 
 分裂过程接受两个参数：根指针 $\textit{cur}$、关键值 $\textit{key}$。结果为将根指针指向的 treap 分裂为两个 treap，第一个 treap 所有结点的值（$\textit{val}$）小于等于 $\textit{key}$，第二个 treap 所有结点的值大于 $\textit{key}$。
 
-该过程首先判断 $\textit{key}$ 是否小于 $\textit{cur}$ 的值，若小于，则说明 $\textit{cur}$ 及其右子树全部小于 $\textit{key}$（$\textit{cur}$ 可能等于 $\textit{key}$），属于第二个 treap。当然，也可能有一部分的左子树的值大于 $\textit{key}$，所以还需要继续向左子树递归地分裂。对于大于 $\textit{key}$ 的那部分左子树，我们把它作为 $\textit{cur}$ 的左子树，这样，整个 $\textit{cur}$ 上的节点都是大于 $\textit{key}$ 的。
+该过程首先判断 $\textit{key}$ 是否小于 $\textit{cur}$ 的值，若小于，则说明 $\textit{cur}$ 及其右子树全部大于 $\textit{key}$，属于第二个 treap。当然，也可能有一部分的左子树的值大于 $\textit{key}$，所以还需要继续向左子树递归地分裂。对于大于 $\textit{key}$ 的那部分左子树，我们把它作为 $\textit{cur}$ 的左子树，这样，整个 $\textit{cur}$ 上的节点都是大于 $\textit{key}$ 的。
 
 相应的，如果 $\textit{key}$ 大于等于 $\textit{cur}$ 的值，说明 $\textit{cur}$ 的整个左子树以及其自身都小于 $\textit{key}$，属于分裂后的第一个 treap。并且，$\textit{cur}$ 的部分右子树也可能有部分小于 $\textit{key}$，因此我们需要继续递归地分裂右子树。把小于 $\textit{key}$ 的那部分作为 $\textit{cur}$ 的右子树，这样，整个 $\textit{cur}$ 上的节点都小于 $\textit{key}$。
 
@@ -645,11 +645,11 @@ int qnex(int val) {
 
 但是在 treap 中，按增序插入节点后，在合并操作时还会根据 $\textit{priority}$ 调整树的结构，在这样的情况下，如何确保中序遍历一定能正确的输出呢？
 
-可以参考 [笛卡尔树的单调栈建树方法](https://oi-wiki.org/ds/cartesian-tree/) 来理解这个问题。
+可以参考 [笛卡尔树的单调栈建树方法](./cartesian-tree.md) 来理解这个问题。
 
 设新插入的节点为 $\textit{u}$。
 
-首先，因为时递增的插入节点，每一个新插入的节点肯定会被连接到 treap 的右链（即从根结点一直往右子树走，经过的结点形成的链）上。
+首先，因为是递增地插入节点，每一个新插入的节点肯定会被连接到 treap 的右链（即从根结点一直往右子树走，经过的结点形成的链）上。
 
 从根节点开始，右链上的节点的 $\textit{priority}$ 是递增的（小根堆）。那我们可以找到右链上第一个 $\textit{priority}$ 大于 $\textit{u}$ 的节点，我们叫这个节点 $\textit{v}$，并把这个节点换成 $\textit{u}$。
 
@@ -669,7 +669,7 @@ int qnex(int val) {
 
 ![](./images/treap-none-rot-seg-flip-ex.svg)
 
-注意如果按照这个方法翻转，那么每次翻转 $[l, r]$ 区间时，就会有 $r - l$ 个节点会被交换位置，这样频繁的操作显然不能满足 $1e5$ 的数据范围，其 $\operatorname{O}(n \times \log_2 n)$ 的单次翻转复杂度甚至不如暴力（因为我们除了需要花线性时间交换节点外，还需要在树中花费 $\operatorname{O}(\log_2 n)$ 的时间找到需要交换的节点。
+注意如果按照这个方法翻转，那么每次翻转 $[l, r]$ 区间时，就会有 $r - l$ 个节点会被交换位置，这样频繁的操作显然不能满足 $10^5$ 的数据范围，其 $O(n \times \log_2 n)$ 的单次翻转复杂度甚至不如暴力（因为我们除了需要花线性时间交换节点外，还需要在树中花费 $O(\log_2 n)$ 的时间找到需要交换的节点）。
 
 再观察题目要求，可以发现因为只需要最后输出操作完的区间，所以并不需要每次都真的去交换。如此一来，便可以使用线段树中常用的懒标记（lazy tag）来优化复杂度。交换时，只需要在父节点打上标记，代表这个子树下的每个左右子节点都需要交换就行了。
 
@@ -691,14 +691,14 @@ int qnex(int val) {
 
 ```cpp
 // 这里这个 pushdown 是 Node 类的成员函数，其中 to_rev 是懒标记
-inline void pushdown() {
+void pushdown() {
   swap(ch[0], ch[1]);
   if (ch[0] != nullptr) ch[0]->to_rev ^= 1;
   if (ch[1] != nullptr) ch[1]->to_rev ^= 1;
   to_rev = false;
 }
 
-inline void check_tag() {
+void check_tag() {
   if (to_rev) pushdown();
 }
 ```
@@ -1034,7 +1034,7 @@ void print(Node* cur) {
         val = _node->val, prio = _node->prio, cnt = _node->cnt, siz = _node->siz;
       }
     
-      inline void upd_siz() {
+      void upd_siz() {
         siz = cnt;
         if (ch[0] != nullptr) siz += ch[0]->siz;
         if (ch[1] != nullptr) siz += ch[1]->siz;
@@ -1221,14 +1221,14 @@ void print(Node* cur) {
         prio = rand();
       }
     
-      inline int upd_siz() {
+      int upd_siz() {
         siz = cnt;
         if (ch[0] != nullptr) siz += ch[0]->siz;
         if (ch[1] != nullptr) siz += ch[1]->siz;
         return siz;
       }
     
-      inline void pushdown() {
+      void pushdown() {
         swap(ch[0], ch[1]);
         if (ch[0] != nullptr) ch[0]->to_rev ^= 1;
         // 如果原来子节点也要翻转，那两次翻转就抵消了，如果子节点不翻转，那这个
@@ -1237,7 +1237,7 @@ void print(Node* cur) {
         to_rev = false;
       }
     
-      inline void check_tag() {
+      void check_tag() {
         if (to_rev) pushdown();
       }
     };

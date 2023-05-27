@@ -1,4 +1,4 @@
-Size Balanced Tree (SBT) 是由中国 IO 选手陈启峰在 2007 年提出的一种自平衡二叉搜索树 (Self-Balanced Binary Search Tree, SBBST), 通过检查子树的节点数量进行自身的平衡维护。相比于红黑树，AVL 等主流自平衡二叉搜索树而言，Size Balanced Tree 支持在 $O(\log n)$ 的时间复杂度内查询某个键值在树中的排名 (rank).
+Size Balanced Tree (SBT) 是由中国 OI 选手陈启峰在 2007 年提出的一种自平衡二叉搜索树 (Self-Balanced Binary Search Tree, SBBST), 通过检查子树的节点数量进行自身的平衡维护。相比于红黑树，AVL 等主流自平衡二叉搜索树而言，Size Balanced Tree 支持在 $O(\log n)$ 的时间复杂度内查询某个键值在树中的排名 (rank).
 
 ## 节点定义
 
@@ -30,7 +30,7 @@ size(N.right) >= size(N.left.right)
 SBT 主要通过旋转操作改变自身高度从而进行平衡维护。其旋转操作与绝大部分自平衡二叉搜索树类似，唯一区别在于在完成旋转之后需要对旋转过程中左右子节点发生改变的节点更新 `size`. 示例代码如下：
 
 ```c++
-inline void updateSize() {
+void updateSize() {
   USize leftSize = this->left != nullptr ? this->left->size : 0;
   USize rightSize = this->right != nullptr ? this->right->size : 0;
   this->size = leftSize + rightSize + 1;

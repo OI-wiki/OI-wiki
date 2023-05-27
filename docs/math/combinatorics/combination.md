@@ -44,28 +44,28 @@ $$
 
 ### 组合数
 
-从 $n$ 个不同元素中，任取 $m$($m\leq n$) 个元素组成一个集合，叫做从 $n$ 个不同元素中取出 $m$ 个元素的一个组合；从 $n$ 个不同元素中取出 $m$($m\leq n$) 个元素的所有组合的个数，叫做从 $n$ 个不同元素中取出 $m$ 个元素的组合数。用符号 $\mathrm C_n^m$ 来表示。
+从 $n$ 个不同元素中，任取 $m \leq n$ 个元素组成一个集合，叫做从 $n$ 个不同元素中取出 $m$ 个元素的一个组合；从 $n$ 个不同元素中取出 $m \leq n$ 个元素的所有组合的个数，叫做从 $n$ 个不同元素中取出 $m$ 个元素的组合数，用符号 $\dbinom{n}{m}$ 来表示，读作「$n$ 选 $m$」。
 
 组合数计算公式
 
 $$
-\mathrm C_n^m = \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n - m)!}
+\dbinom{n}{m} = \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n - m)!}
 $$
 
-如何理解上述公式？我们考虑 $n$ 个人 $m$($m \le n$) 个出来，不排队，不在乎顺序 $\mathrm C_n^m$。如果在乎排列那么就是 $\mathrm A_n^m$，如果不在乎那么就要除掉重复，那么重复了多少？同样选出的来的 $m$ 个人，他们还要「全排」得 $\mathrm A_n^m$，所以得：
+如何理解上述公式？我们考虑 $n$ 个人选 $m$ 个出来（$m \le n$），不排队，不在乎顺序。如果在乎顺序那么就是 $\mathrm A_n^m$，如果不在乎那么就要除掉重复，那么重复了多少？同样选出来的 $m$ 个人，他们还要「全排」得 $m!$，所以得：
 
 $$
 \begin{aligned}
-\mathrm C_n^m \times m! &= \mathrm A_n^m\\
-\mathrm C_n^m &= \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n-m)!}
+\dbinom{n}{m} \times m! &= \mathrm A_n^m\\
+\dbinom{n}{m} &= \frac{\mathrm A_n^m}{m!} = \frac{n!}{m!(n-m)!}
 \end{aligned}
 $$
 
-组合数也常用 $\dbinom{n}{m}$ 表示，读作「$n$ 选 $m$」，即 $\displaystyle \mathrm C_n^m=\binom{n}{m}$。实际上，后者表意清晰明了，美观简洁，因此现在数学界普遍采用 $\dbinom{n}{m}$ 的记号而非 $\mathrm C_n^m$。
+组合数也常用 $\mathrm C_n^m$ 表示，即 $\displaystyle \mathrm C_n^m=\binom{n}{m}$。现在数学界普遍采用 $\dbinom{n}{m}$ 的记号而非 $\mathrm C_n^m$。
 
 组合数也被称为「二项式系数」，下文二项式定理将会阐述其中的联系。
 
-特别地，规定当 $m>n$ 时，$\mathrm A_n^m=\mathrm C_n^m=0$。
+特别地，规定当 $m>n$ 时，$\mathrm A_n^m=\dbinom{n}{m}=0$。
 
 ## 插板法
 
@@ -370,7 +370,7 @@ f_n &= \sum_{j = 0}^{n}\sum_{i = j}^{n}\binom{n}{i}\binom{i}{j} (-1)^{n-i}f_j \\
 \end{aligned}
 $$
 
-使用 [「组合数性质 | 二项式推论」](https://oi-wiki.org/math/combinatorics/combination/#%E7%BB%84%E5%90%88%E6%95%B0%E6%80%A7%E8%B4%A8--%E4%BA%8C%E9%A1%B9%E5%BC%8F%E6%8E%A8%E8%AE%BA) 的公式 (11) 得到：
+使用 [「组合数性质 | 二项式推论」](#组合数性质--二项式推论) 的公式 (11) 得到：
 
 $$
 \begin{aligned}
@@ -385,7 +385,7 @@ $$
 f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j\sum_{k = 0}^{n - j}\binom{n - j}{k} (-1)^{n-j-k}1^{k}
 $$
 
-使用 [「组合数性质 | 二项式推论」](https://oi-wiki.org/math/combinatorics/combination/#%E7%BB%84%E5%90%88%E6%95%B0%E6%80%A7%E8%B4%A8--%E4%BA%8C%E9%A1%B9%E5%BC%8F%E6%8E%A8%E8%AE%BA) 的公式 (5) 得到：
+使用 [「组合数性质 | 二项式推论」](#组合数性质--二项式推论) 的公式 (5) 得到：
 
 $$
 f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j[n = j] = f_n

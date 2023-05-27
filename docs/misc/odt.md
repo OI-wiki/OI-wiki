@@ -31,7 +31,7 @@ struct Node_t {
 
   Node_t(const int &il, const int &ir, const int &iv) : l(il), r(ir), v(iv) {}
 
-  inline bool operator<(const Node_t &o) const { return l < o.l; }
+  bool operator<(const Node_t &o) const { return l < o.l; }
 };
 ```
 

@@ -362,7 +362,7 @@ void mul(int a[], int b[], int c[]) {
 ```cpp
 // 被除数 a 以下标 last_dg 为最低位，是否可以再减去除数 b 而保持非负
 // len 是除数 b 的长度，避免反复计算
-inline bool greater_eq(int a[], int b[], int last_dg, int len) {
+bool greater_eq(int a[], int b[], int last_dg, int len) {
   // 有可能被除数剩余的部分比除数长，这个情况下最多多出 1 位，故如此判断即可
   if (a[last_dg + len] != 0) return true;
   // 从高位到低位，逐位比较
@@ -483,7 +483,7 @@ void div(int a[], int b[], int c[], int d[]) {
       }
     }
     
-    inline bool greater_eq(int a[], int b[], int last_dg, int len) {
+    bool greater_eq(int a[], int b[], int last_dg, int len) {
       if (a[last_dg + len] != 0) return true;
       for (int i = len - 1; i >= 0; --i) {
         if (a[last_dg + i] > b[i]) return true;
@@ -832,7 +832,7 @@ $$
       // TODO: Big ^ Big;
       bool operator<(const Big&) const;
       bool operator<(const int& t) const;
-      inline void print() const;
+      void print() const;
     };
     
     Big::Big(const int b) {
@@ -995,17 +995,17 @@ $$
       return 0;
     }
     
-    inline bool Big::operator<(const int& t) const {
+    bool Big::operator<(const int& t) const {
       Big tee(t);
       return *this < tee;
     }
     
-    inline void Big::print() const {
+    void Big::print() const {
       printf("%d", a[len - 1]);
       gd(i, len - 2, 0) { printf("%04d", a[i]); }
     }
     
-    inline void print(const Big& s) {
+    void print(const Big& s) {
       int len = s.len;
       printf("%d", s.a[len - 1]);
       gd(i, len - 2, 0) { printf("%04d", s.a[i]); }

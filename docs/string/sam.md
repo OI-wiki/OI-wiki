@@ -72,7 +72,7 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 
 ### 结束位置 `endpos`
 
-考虑字符串 $s$ 的任意非空子串 $t$，我们记 $\operatorname{endpos}(t)$ 为在字符串 $s$ 中 $t$ 的所有结束位置（假设对字符串中字符的编号从零开始）。例如，对于字符串 $“abcbc\!"$，我们有 $\operatorname{endpos}(“bc\!")=2,\,4$。
+考虑字符串 $s$ 的任意非空子串 $t$，我们记 $\operatorname{endpos}(t)$ 为在字符串 $s$ 中 $t$ 的所有结束位置（假设对字符串中字符的编号从零开始）。例如，对于字符串 $\texttt{abcbc}$，我们有 $\operatorname{endpos}(\texttt{bc})=2,\,4$。
 
 两个子串 $t_1$ 与 $t_2$ 的 $\operatorname{endpos}$ 集合可能相等：$\operatorname{endpos}(t_1)=\operatorname{endpos}(t_2)$。这样所有字符串 $s$ 的非空子串都可以根据它们的 $\operatorname{endpos}$ 集合被分为若干 **等价类**。
 
@@ -134,7 +134,7 @@ $$
 
 结合前面的引理有：后缀链接构成的树本质上是 $\operatorname{endpos}$ 集合构成的一棵树。
 
-以下是对字符串 $“abcbc\!"$ 构造 SAM 时产生的后缀链接树的一个 **例子**，节点被标记为对应等价类中最长的子串。
+以下是对字符串 $\texttt{abcbc}$ 构造 SAM 时产生的后缀链接树的一个 **例子**，节点被标记为对应等价类中最长的子串。
 
 ![](./images/SAM/SA_suffix_links.svg)
 

@@ -51,8 +51,8 @@ do {
 ```cpp
 int N = 10, a[] = {1, 1, 2, 4, 5, 5, 7, 7, 9, 9}, x = 5;
 int i = lower_bound(a, a + N, x) - a, j = upper_bound(a, a + N, x) - a;
-// a[0] ~ a[i - 1] 为小于x的元素， a[i] ~ a[j - 1] 为等于x的元素， a[j] ~ a[N -
-// 1] 为大于x的元素
+// a[0] ~ a[i - 1] 为小于x的元素， a[i] ~ a[j - 1] 为等于x的元素，
+// a[j] ~ a[N - 1] 为大于x的元素
 cout << i << " " << j << endl;
 ```
 

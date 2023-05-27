@@ -11,7 +11,7 @@ struct treap {  // 直接维护成数据结构，可以直接用
   int l[maxn], r[maxn], val[maxn], rnd[maxn], size_[maxn], w[maxn];
   int sz, ans, rt;
 
-  inline void pushup(int x) { size_[x] = size_[l[x]] + size_[r[x]] + w[x]; }
+  void pushup(int x) { size_[x] = size_[l[x]] + size_[r[x]] + w[x]; }
 
   void lrotate(int &k) {
     int t = r[k];

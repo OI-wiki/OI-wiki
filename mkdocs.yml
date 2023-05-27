@@ -260,7 +260,6 @@ nav:
     - 多项式与生成函数:
       - 多项式与生成函数简介: math/poly/intro.md
       - 代数基本定理: math/poly/fundamental.md
-      - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
       - 快速复数论变换: math/poly/cntt.md
@@ -269,7 +268,7 @@ nav:
       - 多项式牛顿迭代: math/poly/newton.md
       - 多项式多点求值|快速插值: math/poly/multipoint-eval-interpolation.md
       - 多项式初等函数: math/poly/elementary-func.md
-      - 常系数齐次线性递推: math/linear-recurrence.md
+      - 常系数齐次线性递推: math/poly/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
       - 符号化方法: math/poly/symbolic-method.md
       - 普通生成函数: math/poly/ogf.md
@@ -290,6 +289,7 @@ nav:
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
       - 范德蒙德卷积: math/combinatorics/vandermonde-convolution.md
+      - 图论计数: math/combinatorics/graph-enumeration.md
     - 线性代数:
       - 线性代数简介: math/linear-algebra/index.md
       - 向量: math/linear-algebra/vector.md
@@ -297,7 +297,6 @@ nav:
       - 矩阵: math/linear-algebra/matrix.md
       - 初等变换: math/linear-algebra/elementary-operations.md
       - 行列式: math/linear-algebra/determinant.md
-      - 高斯消元: math/linear-algebra/gauss.md
       - 线性空间: math/linear-algebra/vector-space.md
       - 线性基: math/linear-algebra/basis.md
       - 线性映射: math/linear-algebra/linear-mapping.md
@@ -321,8 +320,11 @@ nav:
       - 公平组合游戏: math/game-theory/impartial-game.md
       - 非公平组合游戏: math/game-theory/partizan-game.md
       - 反常游戏: math/game-theory/misere-game.md
-    - 牛顿迭代法: math/newton.md
-    - 数值积分: math/integral.md
+    - 数值算法:
+      - 拉格朗日插值: math/numerical/lagrange.md
+      - 数值积分: math/numerical/integral.md
+      - 高斯消元: math/numerical/gauss.md
+      - 牛顿迭代法: math/numerical/newton.md
     - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
@@ -434,7 +436,7 @@ nav:
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
     - 二分图: graph/bi-graph.md
-    - 最小环: graph/min-circle.md
+    - 最小环: graph/min-cycle.md
     - 平面图: graph/planar.md
     - 图的着色: graph/color.md
     - 网络流:
@@ -484,6 +486,8 @@ nav:
         - 带修改莫队: misc/modifiable-mo-algo.md
         - 树上莫队: misc/mo-algo-on-tree.md
         - 回滚莫队: misc/rollback-mo-algo.md
+        - 二维莫队: misc/mo-algo-2dimen.md
+        - 莫队二次离线: misc/mo-algo-secondary-offline.md
         - 莫队配合 bitset: misc/mo-algo-with-bitset.md
     - 分数规划: misc/frac-programming.md
     - 随机化:

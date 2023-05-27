@@ -168,12 +168,12 @@ if (s >> j & 1) {       // 如果已被覆盖
       int state[MaxSZ];
       long long key[MaxSZ];
     
-      inline void clear() {
+      void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
     
-      inline void push(int s) {
+      void push(int s) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
           if (state[i] == s) {
@@ -258,6 +258,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note " 习题 [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
     题目大意：求用一条有向回路覆盖 $4\times N$ 的棋盘的方案数，需要高精度。
 
+??? note " 习题 [「HNOI 2007」神奇游乐园](https://www.luogu.com.cn/problem/P3190)"
+    题目大意：给定一个 $n\times m$ 的网格图，每格内有一个权值，求一个任意一个回路，最大化经过的权值和。
+
 ??? note " 习题 [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
     题目大意：用多条回路覆盖 $n\times n$ 的方阵，每个有 $m$ 条回路的方案对答案的贡献是 $2^m$，求所有方案的贡献和。
 
@@ -336,6 +339,9 @@ if (s >> j & 1) {       // 如果已被覆盖
     ```
 
 #### 习题
+
+??? note " 习题 [「BZOJ 2310」ParkII](https://darkbzoj.cc/problem/2310)"
+    题目大意：$m\times n$ 的棋盘，每个格点有一个权值，求一条路径覆盖，最大化路径经过的点的权值和。
 
 ??? note " 习题 [「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
     题目大意：$n\times m$ 的棋盘，棋盘的每个格子有一个 01 权值 T\[x]\[y]，要求寻找一个路径覆盖，满足：
@@ -552,6 +558,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note " 习题 [「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最大的连通块。
 
+??? note " 习题 [「AtCoder Beginner Contest 211. Problem E」Red Polyomino](https://atcoder.jp/contests/abc211/tasks/abc211_e)"
+    题目大意：给一个 $N\times N$ 大小的棋盘图，每个格子初始为黑色或白色。你可以从白色格子中挑选恰好 $K$ 个并将之染成红色，问有多少种染色方案满足红色格子形成一个连通块。
+
 ## 图论模型
 
 ???+ note " 例题 [「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
@@ -594,7 +603,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     #define REP(i, n) for (int i = 0; i < n; ++i)
     
     template <class T>
-    inline bool checkMin(T &a, const T b) {
+    bool checkMin(T &a, const T b) {
       return b < a ? a = b, 1 : 0;
     }
     
@@ -633,12 +642,12 @@ if (s >> j & 1) {       // 如果已被覆盖
       int state[MaxSZ];
       int key[MaxSZ];
     
-      inline void clear() {
+      void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
     
-      inline void push(int s) {
+      void push(int s) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
           if (state[i] == s) {
@@ -740,6 +749,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 习题
 
+??? note " 习题 [「SCOI 2011」地板](https://www.luogu.com.cn/problem/P3272)"
+    题目大意：$r\times c$ 的棋盘上有一些位置设置障碍，问使用 L 型的瓷砖铺满所有没有障碍的格子，有多少种方案。
+
 ??? note " 习题 [「HDU 4796」Winter's Coming](https://vjudge.net/problem/HDU-4796)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
     
@@ -802,6 +814,8 @@ if (s >> j & 1) {       // 如果已被覆盖
 ### 一条路径
 
 「一条路径」是 [哈密顿路径（Hamiltonian Path）](https://en.wikipedia.org/wiki/Hamiltonian_path) 问题在 [格点图（Grid Graph）](https://mathworld.wolfram.com/GridGraph.html) 中的一种特殊情况。哈密顿路径的判定性问题是 [NP-complete](https://en.wikipedia.org/wiki/NP-completeness) 家族中的重要成员。Niconico 上有一个『フカシギの数え方』おねえさんといっしょ！みんなで数えてみよう（和大姐姐一起学习计算系列）的科普向视频，就使用这个问题作为例子，来说明 NPC 问题的计算时间如何随着问题的规模的线性增长而指数增长。
+
+「一笔画」问题也是解谜游戏的常客，很多「一笔画」谜题，事实上都是格点图上的哈密顿路径，例如《崩坏：星穹铁路》、《见证者》。在动画片《邋遢大王》中也出现过一笔画问题的谜题。
 
 ![sm18847458](./images/sm18847458.png)
 
