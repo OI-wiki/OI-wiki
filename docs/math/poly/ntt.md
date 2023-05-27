@@ -1,4 +1,4 @@
-author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni, Saisyc, 383494
+author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni, Saisyc, 383494, Tiphereth-A
 
 ## 简介
 
@@ -172,7 +172,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     }
     ```
 
-## 扩展 - 复数论变换（CNTT)
+## 扩展 - 复数论变换（CNTT）
 
 $\mathbf Z_p$ 上的 NTT 常用于替代 FFT 以提高效率，但是严重依赖模数：$p$ 是 $2^mk+1$ 型（如费马质数）时能快速计算，是 $2^mk-1$ 型（如梅森质数）时却难以进行。
 
