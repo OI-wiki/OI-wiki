@@ -190,12 +190,12 @@ $\mathbf Z_p$ 上的 NTT 常用于替代 FFT 以提高效率，但是严重依�
 
 为便捷起见，以下用 $p_-$ 表示 $4k-1$ 型质数，$p_+$ 表示 $4k+1$ 型质数。
 
-$p_-$ 是高斯整数 $\mathbf{Z}_p[\mathrm{i}]$ 的素元而 $p_+$ 不是，因此 $\mathbf{Z}_{p_-}[\mathrm{i}]$ 是域而 $\mathbf{Z}_{p_+}[\mathrm{i}]$ 上仍可进行 CNTT。
-
 ???+ note "定理 1"
     $\mathbf{Z}_p[\mathrm{i}]$ 构成数域
 
     ??? note "证明"
+        对于 $p_+$，注意到 $\left(\dfrac{-1}{p_+}\right)=1$，故此时的 $\mathbf{Z}_{p_+}[\mathrm{i}]=\mathbf{Z}_{p_+}$. 因此以下假定 $p$ 为 $p_-$.
+
         由于 $\mathbf Z_p[\mathrm{i}]$ 为 $\mathbf{C}$ 的子集，另外不难发现 $\mathbf Z_p[\mathrm{i}]$ 上有加法幺元 $0$ 和乘法幺元 $1$，故只需证明其对四则运算封闭即可。
 
         任取 $z_1=a_1+b_1\mathrm{i}\in\mathbf Z_p[\mathrm{i}]$，$z_2=a_2+b_2\mathrm{i}\in\mathbf{Z}_p[\mathrm{i}]$，则不难发现
@@ -228,13 +228,19 @@ $p_-$ 是高斯整数 $\mathbf{Z}_p[\mathrm{i}]$ 的素元而 $p_+$ 不是，因
     ??? note "证明"
         任取 $z=a+b\sqrt{-k^2}\in\mathbf{Z}_p\left[\sqrt{-k^2}\right]$，则 $z=a+bk\sqrt{-1}\in\mathbf{Z}_p\left[\sqrt{-1}\right]=\mathbf{Z}_p[\mathrm{i}]$
 
-原论文中假定 $\mathrm{i}^2=-1$，实际上由定理 2 可知 $\mathrm{i}^2$ 只需为模 $p$ 意义下的一个二次非剩余即可，这样 CNTT 的模数也可使用 NTT 模数。
+$p_-$ 是高斯整数 $\mathbf{Z}_p[\mathrm{i}]$ 的素元而 $p_+$ 不是，因此 $\mathbf{Z}_{p_-}[\mathrm{i}]$ 是域而 $\mathbf{Z}_{p_+}[\mathrm{i}]$ 上仍可进行 CNTT。
 
-$\mathbf{Z}_p[\mathrm{i}]$ 的大小是 $p^2$，只要用一些方法找出 $g = a+b\mathrm{i},g^{(p^2-1)/2} \equiv -1 \pmod p$，则 $g$ 就是我们要找的 $p^2-1$ 次「原根」，剩下的和 NTT 类似。
+-   对于 $p_-$，因为 $\left(\dfrac{x}{p_-}\right)\left(\dfrac{-x}{p_-}\right)=-1，~\forall x\nmid p_-$，因此
 
-$p=n\cdot2^k+1$ 时（$p$ 为 NTT 模数），用 CNTT 可以将最大变换长度翻倍；
+    $$
+    \forall \left(\frac{x}{p_-}\right)=-1, \exists k\in\mathbf{Z}_{+},~s.t.~-x\equiv k^2\pmod{p_-}
+    $$
 
-$p=n\cdot2^k-1$ 时，用 CNTT 后最大变换长度同样能取到 NTT 模数级别。
+    故由定理 2 可知，$\mathrm{i}^2$ 只需为模 $p_-$ 意义下的一个二次非剩余即可，这样 CNTT 的模数也可使用 NTT 模数。
+
+    $\mathbf{Z}_{p_-}[\mathrm{i}]$ 的大小是 $p_-^2$，只要用一些方法找出 $g = a+b\mathrm{i},g^{(p_-^2-1)/2} \equiv -1 \pmod p_-$，则 $g$ 就是我们要找的 $p_-^2-1$ 次「原根」，剩下的和 NTT 类似。用 CNTT 后最大变换长度能取到 NTT 模数级别；
+
+-   对于 $p_+$，用 CNTT 可以将最大变换长度翻倍。
 
 ### 常用模数的单位根
 
