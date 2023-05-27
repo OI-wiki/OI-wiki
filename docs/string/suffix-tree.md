@@ -51,6 +51,7 @@
         int len, link;
         int ch[26];
       } st[N << 1];
+    ```
 
       SuffixAutomaton() : tot(1),lst(1) {}
 
