@@ -262,7 +262,6 @@ nav:
       - 代数基本定理: math/poly/fundamental.md
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
-      - 快速复数论变换: math/poly/cntt.md
       - 快速沃尔什变换: math/poly/fwt.md
       - Chirp Z 变换: math/poly/czt.md
       - 多项式牛顿迭代: math/poly/newton.md
