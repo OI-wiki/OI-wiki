@@ -10,7 +10,7 @@ NTT 解决的是多项式乘法带模数的情况，可以说有些受模数的�
 
 ## 前置知识
 
-学习数论变换需要前置知识：离散傅里叶变换、生成子群、[原根](../number-theory/primitive-root.md)、离散对数。相关知识可以在对应页面中学习，此处不再赘述。
+学习数论变换需要前置知识：[离散傅里叶变换](./fft.md#离散傅里叶变换)、[生成子群](../group-theory.md#生成子群)、[原根](../number-theory/primitive-root.md)、[离散对数](../number-theory/discrete-logarithm.md)。相关知识可以在对应页面中学习，此处不再赘述。
 
 ## 定义
 
