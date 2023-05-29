@@ -196,11 +196,17 @@ $n=2^{16}$ 时 $p_+=65537=2^{16}+1$ 的 $p_+-1$ 次单位根 $\omega=4+17573\tex
 
 务必注意 $\omega^{-1}\equiv\bar\omega$ 不一定成立。
 
-### 性能和应用
+### 例题
 
-[洛谷 P3803 评测记录](https://www.luogu.com.cn/record/list?pid=P3803&user=saisyc) 显示，按照*Optimization of number-theoretic transform in programming contests*实现的 NTT 及与其同构的 CNTT, FFT 进行 $2^{21}\approx2.1\times10^6$ 长度的变换用时分别约为 $44,97,115$ 毫秒。
+???+ note "[洛谷 P3803【模板】多项式乘法（FFT）](https://www.luogu.com.cn/problem/P3803)"
+    给定一个 $n$ 次多项式 $F(x)$ 和一个 $m$ 次多项式 $G(x)$，求出 $F(x)$ 和 $G(x)$ 的卷积。
 
-因此，对于模 $2^mk-1$ 型质数的卷积问题，CNTT 优于三模数 NTT 和拆系数 FFT。
+    这里以取模数为 $999292927$ 为例。
+
+    ??? note "参考代码"
+        ```cpp
+        --8<-- "docs/math/code/poly/ntt/ntt_1.cpp"
+        ```
 
 ## 参考资料与拓展阅读
 
