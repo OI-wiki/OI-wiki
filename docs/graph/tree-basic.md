@@ -156,6 +156,35 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 ## 树的遍历
 
+### 树的递归序遍历
+
+按照递归顺序每次到达一个节点都输出节点的值。递归序实际包括了先序、中序和后序遍历。由递归序能得到三种遍历的任意一种。
+
+![preorder](images/tree-basic-recursionOrder.svg)
+
+上图的递归序遍历：A B D D D B E E E B A C F F F C G G G C A 。注意其中每个值都出现了三次。
+
+在递归序中只保留第一次出现的值，得到先序遍历：A B D E C F G 。
+
+在递归序中只保留第二次出现的值，得到中序遍历：D B E A F C G 。
+
+在递归序中只保留第三次出现的值，得到后序遍历：D E B F G C A 。
+
+```c++
+void orderOfRecursion(BiTree* root) {
+    if (root == nullptr) {
+        return;
+    }
+    cout << root -> key << " "; // 1. 打印，先序
+    orderOfRecursion(root->left);
+    cout << root -> key << " "; // 2. 打印，中序
+    orderOfRecursion(root->right);
+    cout << root -> key << " "; // 3. 打印，后序
+}
+```
+
+
+
 ### 树上 DFS
 
 在树上 DFS 是这样的一个过程：先访问根节点，然后分别访问根节点每个儿子的子树。
