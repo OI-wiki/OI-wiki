@@ -8,7 +8,7 @@ using u32 = uint32_t;
 using i64 = int64_t;
 using u64 = uint64_t;
 
-const i32 MAXN = 1e7 + 10;
+const i32 MAXN = (1 << 21) + 5;
 
 // 快速幂
 template <class T>
@@ -44,13 +44,6 @@ struct modint {
   template <class T, std::enable_if_t<std::is_integral<T>::value &&
                                       std::is_unsigned<T>::value> * = nullptr>
   constexpr modint(T v) : v_((u32)(v % mod())) {}
-
-  constexpr u32 val() const { return v_; }
-
-  template <class T, std::enable_if_t<std::is_integral<T>::value> * = nullptr>
-  constexpr u32 val(T x) {
-    return v_ = x;
-  }
 
   friend std::istream &operator>>(std::istream &is, self &x) {
     i64 xx;
@@ -109,7 +102,7 @@ using Zp = MODINT::modint<P>;
 using Zpi = std::complex<Zp>;
 
 u32 r[MAXN];
-u32 limit = 1, lb_limit = 0;
+u32 limit = 1;
 
 // @param type 1: DFT, -1: IDFT
 template <i32 type>
@@ -121,8 +114,7 @@ void trans(Zpi *a) {
 
   for (u32 mid = 1; mid < limit; mid <<= 1) {
     // 单位根
-    // Zpi Wn{cos(Pi / mid), type * sin(Pi / mid)};
-    Zpi Wn = qpow(OMEGA, ((u64)P * P - 1) / mid / 2);
+    Zpi Wn = qpow(OMEGA, ((u64)P * P - 1) / 2 / mid);
     if constexpr (type == -1) Wn = qpow(Wn, (u64)P * P - 2);
 
     for (u32 R = mid << 1, j = 0; j < limit; j += R) {
@@ -138,6 +130,7 @@ void trans(Zpi *a) {
 
 void init(u32 len) {
   if (len + 1 > limit) {
+    u32 lb_limit = 0;
     limit = (u32)1 << (lb_limit = (u32)ceil(log2(len + 1)));
     for (u32 i = 0; i < limit; i++)
       r[i] = (r[i >> 1] >> 1) | ((i & 1) << (lb_limit - 1));
@@ -146,8 +139,7 @@ void init(u32 len) {
 
 void conv(Zpi *a, Zpi *b, Zpi *result) {
   // 在原序列中 i 与 i/2 的关系是：i 可以看做是 i/2
-  // 的二进制上的每一位左移一位得来
-  // 那么在反转后的数组中就需要右移一位，同时特殊处理一下复数
+  // 的二进制上的每一位左移一位得来，那么在反转后的数组中就需要右移一位，同时特殊处理一下复数
   trans<1>(a);
   trans<1>(b);
   for (u32 i = 0; i <= limit; i++) result[i] = a[i] * b[i];
