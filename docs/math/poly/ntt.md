@@ -188,7 +188,7 @@ $\mathbf{Z}_p$ 上的 NTT 常用于替代 FFT 以提高效率，但是严重依�
 
 为便捷，以下用 $p_-$ 表示 $4k-1$ 型质数，$p_+$ 表示 $4k+1$ 型质数。
 
-$p_-$ 是高斯整数 $\mathbf{Z}[\mathrm{i}]$ 的素元而 $p_+$ 不是，因此 $\mathbf{Z}_{p_-}[\mathrm{i}]$ 是域而 $\mathbf{Z}_{p_+}[\mathrm{i}]$ 不是，但 $\mathbf{Z}_{p_+}[\mathrm{i}]$ 上仍可进行 CNTT。类似地，该结论稍加修改可扩展至 $\mathbf{Z}\left[\sqrt{k}\right]~\left(\sqrt{k}\notin\mathbf{Z}\right)$ 中。
+$p_-$ 是高斯整数 $\mathbf{Z}[\mathrm{i}]$ 的素元而 $p_+$ 不是，因此 $\mathbf{Z}_{p_-}[\mathrm{i}]$ 是域而 $\mathbf{Z}_{p_+}[\mathrm{i}]$ 不是，但 $\mathbf{Z}_{p_+}[\mathrm{i}]$ 上仍可进行 CNTT。类似地，该结论稍加修改可推广至 $\mathbf{Z}\left[\sqrt{k}\right]~\left(\sqrt{k}\notin\mathbf{Z}\right)$ 中。
 
 ### 常用模数的单位根
 
