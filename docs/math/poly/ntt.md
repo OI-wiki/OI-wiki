@@ -206,9 +206,14 @@ $p_-$ 是高斯整数 $\mathbf{Z}[\mathrm{i}]$ 的素元而 $p_+$ 不是，因�
 
     这里以 $\mathbf{Z}[\mathrm{i}]$, 模数为 $999292927$ 为例。
 
-    ??? note "参考代码"
+    ??? note "参考代码（无优化）"
         ```cpp
         --8<-- "docs/math/code/poly/ntt/ntt_1.cpp"
+        ```
+
+    ??? note "参考代码（三步变两步优化）"
+        ```cpp
+        --8<-- "docs/math/code/poly/ntt/ntt_2.cpp"
         ```
 
 ## 参考资料与拓展阅读

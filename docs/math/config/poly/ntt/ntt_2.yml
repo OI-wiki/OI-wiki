@@ -1,0 +1,10 @@
+id: oi-wiki:math/ntt-2
+name: NTT
+solution:
+  cpp: docs/math/code/poly/ntt/ntt_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/poly/ntt/ntt_2.ans
+  input: docs/math/examples/poly/ntt/ntt_2.in
+version: 1000
