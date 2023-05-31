@@ -9,15 +9,15 @@ int m;
 struct treearray {
   int ta[200010];
 
-  inline void ub(int& x) { x += x & (-x); }
+  void ub(int& x) { x += x & (-x); }
 
-  inline void db(int& x) { x -= x & (-x); }
+  void db(int& x) { x -= x & (-x); }
 
-  inline void c(int x, int t) {
+  void c(int x, int t) {
     for (; x <= n + 1; ub(x)) ta[x] += t;
   }
 
-  inline int sum(int x) {
+  int sum(int x) {
     int r = 0;
     for (; x > 0; db(x)) r += ta[x];
     return r;

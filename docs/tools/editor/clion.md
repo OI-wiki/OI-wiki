@@ -1,6 +1,6 @@
 ## 简介
 
-CLion 是一款由 JetBrains 公司开发的功能丰富且强大的跨平台 C/C++ 集成开发环境（IDE).
+CLion 是一款由 JetBrains 公司开发的功能丰富且强大的跨平台 C/C++ 集成开发环境（IDE）。
 
 ![Clion](./images/clion.png)
 

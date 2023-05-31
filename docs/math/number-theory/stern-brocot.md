@@ -51,12 +51,12 @@ $$
 就行了。这个很容易，直接做一下代数变换即可
 
 $$
-\begin{array}{rl}
-&\frac{a}{b}\le \frac{c}{d}\\
-\Rightarrow &ad\le bc\\
-\Rightarrow &ad+ab\le bc+ab\\
-\Rightarrow &\frac{a}{b}\le\frac{a+c}{b+d}
-\end{array}
+\begin{aligned}
+             & \frac{a}{b}\le \frac{c}{d}    \\
+    \implies & ad\le bc                      \\
+    \implies & ad+ab\le bc+ab                \\
+    \implies & \frac{a}{b}\le\frac{a+c}{b+d}
+\end{aligned}
 $$
 
 另一边同理可证。

@@ -6,7 +6,7 @@
 using namespace std;
 const int M = 10005, N = 1005, INF = 1e9;
 
-inline int read() {  // 快读
+int read() {  // 快读
   char c = getchar();
   int x = 0, f = 1;
   while (c < '0' || c > '9') {

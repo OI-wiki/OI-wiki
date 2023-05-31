@@ -246,13 +246,13 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 以下是常见 Shell 的补全能力[^autocomplete]：
 
-| Shell                | 补全能力（补全范围）                                               |
-| -------------------- | -------------------------------------------------------- |
-| cmd (Windows 的传统控制台） | 文件路径                                                     |
-| PowerShell           | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错               |
-| Bash                 | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数                           |
-| Zsh                  | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错和建议            |
-| Fish                 | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，补全时可显示参数功能，自动纠错和建议 |
+| Shell               | 补全能力（补全范围）                                               |
+| ------------------- | -------------------------------------------------------- |
+| cmd（Windows 的传统控制台） | 文件路径                                                     |
+| PowerShell          | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错               |
+| Bash                | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数                           |
+| Zsh                 | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错和建议            |
+| Fish                | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，补全时可显示参数功能，自动纠错和建议 |
 
 ???+ note
     PowerShell 的部分功能需要 PSReadline Module 载入或者位于 PowerShell ISE 中。  
@@ -262,7 +262,7 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 ### 帮助文档
 
-一般来说，命令行下的程序都附有「帮助」，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux) 上一般使用 `command --help` 或者 `command -h` 获取（但是 BSD 下的「帮助」往往过分简略而难以使用）。
+一般来说，命令行下的程序都附有「帮助」，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux）上一般使用 `command --help` 或者 `command -h` 获取（但是 BSD 下的「帮助」往往过分简略而难以使用）。
 
 此外，在 Unix-like 系统上，还有可通过 `man command` 获取的「手册」(manual)，相比「帮助」一般更为详细。
 

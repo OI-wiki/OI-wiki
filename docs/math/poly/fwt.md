@@ -38,7 +38,7 @@ author: Xeonacid, nocriz
 
 我们按照定义，显然可以构造 $FWT[A] = A' = \sum_{i=i|j}A_{j}$，来表示 $j$ 满足二进制中 $1$ 为 $i$ 的子集。
 
-那么显然会有 $C_{i} = \sum_{i=j|k}A_{j}*B_{k} \Rightarrow FWT[C] = FWT[A] * FWT[B]$
+那么显然会有 $C_{i} = \sum_{i=j|k}A_{j}*B_{k} \implies FWT[C] = FWT[A] * FWT[B]$
 
 那么我们接下来看 $FWT[A]$ 怎么求。
 

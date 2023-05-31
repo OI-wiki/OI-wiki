@@ -15,7 +15,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 ## 实现
 
 ```cpp
-inline void move(int pos, int sign) {
+void move(int pos, int sign) {
   // update nowAns
 }
 

@@ -18,7 +18,7 @@
 
 考虑人类计数的方式，最朴素的计数就是从小到大开始依次加一。但我们发现对于位数比较多的数，这样的过程中有许多重复的部分。例如，从 7000 数到 7999、从 8000 数到 8999、和从 9000 数到 9999 的过程非常相似，它们都是后三位从 000 变到 999，不一样的地方只有千位这一位，所以我们可以把这些过程归并起来，将这些过程中产生的计数答案也都存在一个通用的数组里。此数组根据题目具体要求设置状态，用递推或 DP 的方式进行状态转移。
 
-数位 DP 中通常会利用常规计数问题技巧，比如把一个区间内的答案拆成两部分相减（即 $\mathit{ans}_{[l, r]} = \mathit{ans}_{[0, r]}-\mathit{ans}_{[0, l - 1]}$
+数位 DP 中通常会利用常规计数问题技巧，比如把一个区间内的答案拆成两部分相减（即 $\mathit{ans}_{[l, r]} = \mathit{ans}_{[0, r]}-\mathit{ans}_{[0, l - 1]}$）
 
 那么有了通用答案数组，接下来就是统计答案。统计答案可以选择记忆化搜索，也可以选择循环迭代递推。为了不重不漏地统计所有不超过上限的答案，要从高到低枚举每一位，再考虑每一位都可以填哪些数字，最后利用通用答案数组统计答案。
 
@@ -49,7 +49,7 @@
     ll ans1[N], ans2[N];
     int a[N];
     
-    inline void solve(ll n, ll *ans) {
+    void solve(ll n, ll *ans) {
       ll tmp = n;
       int len = 0;
       while (n) a[++len] = n % 10, n /= 10;
@@ -160,7 +160,7 @@
     using namespace std;
     int x, y, dp[15][3], p[50];
     
-    inline int pre() {
+    int pre() {
       memset(dp, 0, sizeof(dp));
       dp[0][0] = 1;
       for (int i = 1; i <= 10; i++) {
@@ -170,7 +170,7 @@
       }
     }
     
-    inline int cal(int x) {
+    int cal(int x) {
       int cnt = 0, ans = 0, tmp = x;
       while (x) {
         p[++cnt] = x % 10;
@@ -258,7 +258,7 @@
 ## 例题四
 
 ???+ note " 例 4.[SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
-    题面大意：假如手写下 $[n,m]$ 之间所有整数，会有多少数看起来和在镜子里看起来一模一样？（$n,m<10^{44}, T<10^5$)
+    题面大意：假如手写下 $[n,m]$ 之间所有整数，会有多少数看起来和在镜子里看起来一模一样？（$n,m<10^{44}, T<10^5$）
 
 ### 解释
 
@@ -352,7 +352,7 @@
     char s[N], c[N];
     int ch[N][10], fail[N], ed[N], tot, len;
     
-    inline void insert() {
+    void insert() {
       int now = 0;
       int L = strlen(s);
       for (int i = 0; i < L; ++i) {
@@ -364,7 +364,7 @@
     
     queue<int> q;
     
-    inline void build() {
+    void build() {
       for (int i = 0; i < 10; ++i)
         if (ch[0][i]) q.push(ch[0][i]);
       while (!q.empty()) {
@@ -383,7 +383,7 @@
     
     ll f[N][N][2], ans;
     
-    inline void add(ll &x, ll y) { x = (x + y) % mod; }
+    void add(ll &x, ll y) { x = (x + y) % mod; }
     
     int main() {
       scanf("%s", c);

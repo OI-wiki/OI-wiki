@@ -1,7 +1,7 @@
 ## 引入
 
 ???+ question "问题"
-    给出一个图，问其中的有 $n$ 个节点构成的边权和最小的环 $(n\ge 3)$ 是多大。
+    给出一个图，问其中的由 $n$ 个节点构成的边权和最小的环 $(n\ge 3)$ 是多大。
 
 图的最小环也称围长。
 
@@ -19,7 +19,7 @@
 
 ### Dijkstra
 
-相关链接：[最短路/Dijkstra](https://oi-wiki.org/graph/shortest-path/#dijkstra)
+相关链接：[最短路/Dijkstra](./shortest-path.md#dijkstra-算法)
 
 #### 过程
 
@@ -31,7 +31,7 @@
 
 ### Floyd
 
-相关链接：[最短路/Floyd](https://oi-wiki.org/graph/shortest-path/#floyd)
+相关链接：[最短路/Floyd](./shortest-path.md#floyd-算法)
 
 #### 过程
 
@@ -56,7 +56,7 @@
     ```cpp
     int val[maxn + 1][maxn + 1];  // 原图的邻接矩阵
 
-    inline int floyd(const int &n) {
+    int floyd(const int &n) {
       static int dis[maxn + 1][maxn + 1];  // 最短路矩阵
       for (int i = 1; i <= n; ++i)
         for (int j = 1; j <= n; ++j) dis[i][j] = val[i][j];  // 初始化最短路矩阵

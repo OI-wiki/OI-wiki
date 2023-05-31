@@ -26,7 +26,7 @@ $$
 
 又因为每一个 $A_i\times a \pmod p$ 都是独一无二的，且 $A_i\times a \pmod p < p$
 
-得证（每一个 $A_i\times a$ 都对应了一个 $A_i$)
+得证（每一个 $A_i\times a$ 都对应了一个 $A_i$）
 
 设 $f=(p-1)!$, 则 $f\equiv a\times A_1\times a\times A_2\times a \times A_3 \dots \times  A_{p-1} \pmod p$
 
@@ -99,7 +99,7 @@ $$
 
 证明转载自 [synapse7](http://blog.csdn.net/synapse7/article/details/19610361)，并进行了一些整理。
 
-1.  **命题**：$a$ 的从 $0$ 次，$1$ 次到 $b$ 次幂模 $m$ 构成的序列中，存在 $r$ 和 $s$，使得前 $r$ 个数（即从 $a^0 \bmod m$ 到 $a^{r-1} \bmod m$) 互不相同，从第 $r$ 个数开始，每 $s$ 个数就循环一次。
+1.  **命题**：$a$ 的从 $0$ 次，$1$ 次到 $b$ 次幂模 $m$ 构成的序列中，存在 $r$ 和 $s$，使得前 $r$ 个数（即从 $a^0 \bmod m$ 到 $a^{r-1} \bmod m$）互不相同，从第 $r$ 个数开始，每 $s$ 个数就循环一次。
 
     **证明**：
 
@@ -119,7 +119,7 @@ $$
 
         又由于 $\gcd(a^r, m')=1$，所以根据欧拉函数的求值规则，容易得到：$\varphi(m) = \varphi(m') \times (a-1)a^{r-1}$，即我们有：$\varphi(m') \mid \varphi(m)$。
 
-        所以 $a^{\varphi(m')} \equiv 1 \pmod {m'}, \varphi(m') \mid \varphi(m) \Rightarrow a^{\varphi(m)} \equiv 1 \pmod {m'}$，即 $a^{\varphi(m)}=km'+1$，两边同时乘以 $a^r$，得 $a^{r+\varphi(m)} = km + a^r$（因为 $m = a^r m'$）
+        所以 $a^{\varphi(m')} \equiv 1 \pmod {m'}, \varphi(m') \mid \varphi(m) \implies a^{\varphi(m)} \equiv 1 \pmod {m'}$，即 $a^{\varphi(m)}=km'+1$，两边同时乘以 $a^r$，得 $a^{r+\varphi(m)} = km + a^r$（因为 $m = a^r m'$）
 
         所以对于 $m$ 中素因子 $a$ 的次数 $r$ 满足：$a^r \equiv a^{r+\varphi(m)} \pmod m$。我们可以简单变换形式，得到 **推论**：
 

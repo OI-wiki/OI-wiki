@@ -1,4 +1,4 @@
-author: Ir1d, Marcythm, YanWQ-monad, x4Cx58x54, rui\_er
+author: Ir1d, Marcythm, x4Cx58x54, YanWQ-monad, AtomAlpaca, billchenchina, Chrogeek, Early0v0, EndlessCheng, Enter-tainer, Ghastlcon, Henry-ZHR, hly1204, hsfzLZH1, kenlig, Peanut-Tang, qwqAutomaton, qz-cqy, rui\_er, StudyingFather, swift-zym, Tiphereth-A, TrisolarisHD, Xeonacid
 
 ???+ note " 例题 [Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)"
     给出 $n$ 个点对 $(x_i,y_i)$ 和 $k$，且 $\forall i,j$ 有 $i\neq j \iff x_i\neq x_j$ 且 $f(x_i)\equiv y_i\pmod{998244353}$ 和 $\deg(f(x))<n$（定义 $\deg(0)=-\infty$），求 $f(k)\bmod{998244353}$。
@@ -24,13 +24,13 @@ $$
 
 设 $f(x)=\sum_{i=0}^{n-1} a_ix^i$ 将每个 $x_i$ 代入 $f(x)$，有 $f(x_i)=y_i$，这样就可以得到一个由 $n$ 条 $n$ 元一次方程所组成的方程组，然后使用 **高斯消元** 解该方程组求出每一项 $a_i$，即确定了 $f(x)$ 的表达式。
 
-如果您不知道什么是高斯消元，请看 [高斯消元](../linear-algebra/gauss.md)。
+如果您不知道什么是高斯消元，请看 [高斯消元](./gauss.md)。
 
 时间复杂度 $O(n^3)$，对给出点的坐标无要求。
 
 ### 方法 3：拉格朗日插值法
 
-在 [多项式部分简介](./intro.md) 里我们已经定义了多项式除法。
+在 [多项式部分简介](../poly/intro.md) 里我们已经定义了多项式除法。
 
 那么我们会有：
 
@@ -100,7 +100,7 @@ $$
     因为在固定模 $998244353$ 意义下运算，计算乘法逆元的时间复杂度我们在这里暂且认为是常数时间。
 
     ```cpp
-    --8<-- "docs/math/code/poly/lagrange/lagrange_1.cpp"
+    --8<-- "docs/math/code/numerical/lagrange/lagrange_1.cpp"
     ```
 
 本题中只用求出 $f(k)$ 的值，所以在计算上式的过程中直接将 $k$ 代入即可。
@@ -151,5 +151,5 @@ $$
 
 ??? note "代码实现"
     ```cpp
-    --8<-- "docs/math/code/poly/lagrange/lagrange_2.cpp"
+    --8<-- "docs/math/code/numerical/lagrange/lagrange_2.cpp"
     ```
