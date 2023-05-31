@@ -260,10 +260,8 @@ nav:
     - 多项式与生成函数:
       - 多项式与生成函数简介: math/poly/intro.md
       - 代数基本定理: math/poly/fundamental.md
-      - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
-      - 快速复数论变换: math/poly/cntt.md
       - 快速沃尔什变换: math/poly/fwt.md
       - Chirp Z 变换: math/poly/czt.md
       - 多项式牛顿迭代: math/poly/newton.md
@@ -298,7 +296,6 @@ nav:
       - 矩阵: math/linear-algebra/matrix.md
       - 初等变换: math/linear-algebra/elementary-operations.md
       - 行列式: math/linear-algebra/determinant.md
-      - 高斯消元: math/linear-algebra/gauss.md
       - 线性空间: math/linear-algebra/vector-space.md
       - 线性基: math/linear-algebra/basis.md
       - 线性映射: math/linear-algebra/linear-mapping.md
@@ -322,8 +319,11 @@ nav:
       - 公平组合游戏: math/game-theory/impartial-game.md
       - 非公平组合游戏: math/game-theory/partizan-game.md
       - 反常游戏: math/game-theory/misere-game.md
-    - 牛顿迭代法: math/newton.md
-    - 数值积分: math/integral.md
+    - 数值算法:
+      - 拉格朗日插值: math/numerical/lagrange.md
+      - 数值积分: math/numerical/integral.md
+      - 高斯消元: math/numerical/gauss.md
+      - 牛顿迭代法: math/numerical/newton.md
     - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
@@ -486,6 +486,7 @@ nav:
         - 树上莫队: misc/mo-algo-on-tree.md
         - 回滚莫队: misc/rollback-mo-algo.md
         - 二维莫队: misc/mo-algo-2dimen.md
+        - 莫队二次离线: misc/mo-algo-secondary-offline.md
         - 莫队配合 bitset: misc/mo-algo-with-bitset.md
     - 分数规划: misc/frac-programming.md
     - 随机化:

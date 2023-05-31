@@ -1,0 +1,10 @@
+id: oi-wiki:misc/mo-algo-secondary-offline-1
+name: Mo Algo Secondary Offline
+solution:
+  cpp: docs/misc/code/mo-algo-secondary-offline/mo-algo-secondary-offline_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/examples/mo-algo-secondary-offline/mo-algo-secondary-offline_1.ans
+  input: docs/misc/examples/mo-algo-secondary-offline/mo-algo-secondary-offline_1.in
+version: 1000
