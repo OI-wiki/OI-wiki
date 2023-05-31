@@ -101,7 +101,6 @@ using Zp = MODINT::modint<P>;
 // 模 p Gauss 整数环
 using Zpi = std::complex<Zp>;
 
-u32 r[MAXN];
 u32 limit = 1;
 
 // @param type 1: DFT, -1: IDFT
@@ -109,8 +108,12 @@ template <i32 type>
 void trans(Zpi *a) {
   static_assert(type == 1 || type == -1);
 
-  for (u32 i = 0; i < limit; i++)
-    if (i < r[i]) std::swap(a[i], a[r[i]]);
+  for (u32 i = 0, j = 0;;) {
+    if (i < j) std::swap(a[i], a[j]);
+    if (++i == limit) break;
+    for (u32 k = limit >> 1; ((j ^= k) & k) == 0; k >>= 1)
+      ;
+  }
 
   for (u32 mid = 1; mid < limit; mid <<= 1) {
     // 单位根
@@ -129,12 +132,7 @@ void trans(Zpi *a) {
 }
 
 void init(u32 len) {
-  if (len + 1 > limit) {
-    u32 lb_limit = 0;
-    limit = (u32)1 << (lb_limit = (u32)ceil(log2(len + 1)));
-    for (u32 i = 0; i < limit; i++)
-      r[i] = (r[i >> 1] >> 1) | ((i & 1) << (lb_limit - 1));
-  }
+  if (len + 1 > limit) limit = (u32)1 << (u32)ceil(log2(len + 1));
 }
 
 void conv(Zpi *a, Zpi *result) {
