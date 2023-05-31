@@ -72,7 +72,7 @@ public class Main {
     public static double nextDouble() throws IOException { in.nextToken(); return in.nval; }
     public static float nextFloat() throws IOException { in.nextToken(); return (float)in.nval; }
     public static int nextInt() throws IOException { in.nextToken(); return (int)in.nval; }
-    public static String next() throws IOException { return in.sval; }
+    public static String next() throws IOException { in.nextToken(); return in.sval; }
     public static long nextLong() throws Exception { in.nextToken(); return (long)in.nval;}
     
     // 使用示例
