@@ -146,15 +146,11 @@ $$
 **证明**：注意到：
 
 $$
-a^{k\delta_m(a^k)}=(a^k)^{\delta_m(a^k)}\equiv 1 \pmod m
-$$
-
-$$
-\Rightarrow \delta_m(a)\mid k\delta_m(a^k)
-$$
-
-$$
-\Rightarrow \dfrac{\delta_m(a)}{\gcd\big(\delta_m(a),k\big)}\mid\delta_m(a^k)
+\begin{aligned}
+             & a^{k\delta_m(a^k)}=(a^k)^{\delta_m(a^k)}\equiv 1 \pmod m          \\
+    \implies & \delta_m(a)\mid k\delta_m(a^k)                                    \\
+    \implies & \dfrac{\delta_m(a)}{\gcd\big(\delta_m(a),k\big)}\mid\delta_m(a^k)
+\end{aligned}
 $$
 
 另一方面，由 $a^{\delta_m(a)}\equiv 1 \pmod m$，可知：
@@ -181,9 +177,9 @@ $$
 
 ## 原根
 
-> **原根**：设 $m \in \mathbb{N}^{*}$，$a\in \mathbb{Z}$。若 $\gcd(a,m)=1$，且 $\delta_m(a)=\varphi(m)$，则称 $a$ 为模 $m$ 的原根。
+> **原根**：设 $m \in \mathbb{N}^{*}$，$g\in \mathbb{Z}$。若 $\gcd(g,m)=1$，且 $\delta_m(g)=\varphi(m)$，则称 $g$ 为模 $m$ 的原根。
 
-$g$ 满足 $\operatorname{ord}_n(g)=\left|Z_n^\times\right|=\varphi(n)$，对于质数 $p$，也就是说 $g^i \bmod p, 0 < i < p$ 结果互不相同。
+即 $g$ 满足 $\delta_m(g) = \left| Z_m^\times \right| = \varphi(m)$，当 $m$ 是质数时，我们有 $g^i \bmod m,\,0 \lt i \lt m$ 的结果互不相同。
 
 ???+ note "注"
     在抽象代数中，原根就是循环群的生成元。这个概念只在模 $m$ 缩剩余系关于乘法形成的群中有「原根」这个名字，在一般的循环群中都称作「生成元」。
@@ -192,27 +188,27 @@ $g$ 满足 $\operatorname{ord}_n(g)=\left|Z_n^\times\right|=\varphi(n)$，对于
 
 ### 原根判定定理
 
-> **原根判定定理**：设 $m \geqslant 3, \gcd(a,m)=1$，则 $a$ 是模 $m$ 的原根的充要条件是，对于 $\varphi(m)$ 的每个素因数 $p$，都有 $a^{\frac{\varphi(m)}{p}}\not\equiv 1\pmod m$。
+> **原根判定定理**：设 $m \geqslant 3, \gcd(g,m)=1$，则 $g$ 是模 $m$ 的原根的充要条件是，对于 $\varphi(m)$ 的每个素因数 $p$，都有 $g^{\frac{\varphi(m)}{p}}\not\equiv 1\pmod m$。
 
 **证明：** 必要性显然，下面用反证法证明充分性。
 
-当对于 $\varphi(m)$ 的每个素因数 $p$，都有 $a^{\frac{\varphi(m)}{p}}\not\equiv 1\pmod m$ 成立时，我们假设存在一个 $a$，其不是模 $m$ 的原根。
+当对于 $\varphi(m)$ 的每个素因数 $p$，都有 $g^{\frac{\varphi(m)}{p}}\not\equiv 1\pmod m$ 成立时，我们假设存在一个 $g$，其不是模 $m$ 的原根。
 
-因为 $a$ 不是 $m$ 的原根，则存在一个 $t<\varphi(m)$ 使得 $a^t\equiv 1\pmod{m}$。
+因为 $g$ 不是 $m$ 的原根，则存在一个 $t<\varphi(m)$ 使得 $g^t\equiv 1\pmod{m}$。
 
 由 [裴蜀定理](./bezouts.md) 得，一定存在一组 $k,x$ 满足 $kt=x\varphi(m)+\gcd(t,\varphi(m))$。
 
-又由 [欧拉定理](./fermat.md) 得 $a^{\varphi(m)}\equiv 1\pmod{m}$，故有：
+又由 [欧拉定理](./fermat.md) 得 $g^{\varphi(m)}\equiv 1\pmod{m}$，故有：
 
 $$
-1\equiv a^{kt}\equiv a^{x\varphi(m)+\gcd(t,\varphi(m))}\equiv a^{\gcd(t,\varphi(m))}\pmod{m}
+1\equiv g^{kt}\equiv g^{x\varphi(m)+\gcd(t,\varphi(m))}\equiv g^{\gcd(t,\varphi(m))}\pmod{m}
 $$
 
 由于 $\gcd(t, \varphi(m)) \mid \varphi(m)$ 且 $\gcd(t, \varphi(m))\leqslant t < \varphi(m)$。
 
 故存在 $\varphi(m)$ 的素因数 $p$ 使得 $\gcd(t, \varphi(m)) \mid \frac{\varphi(m)}{p}$。
 
-则 $a^{\frac{\varphi(m)}{p}}\equiv a^{(t, \varphi(m))}\equiv 1\pmod{m}$，与条件矛盾。
+则 $g^{\frac{\varphi(m)}{p}}\equiv g^{(t, \varphi(m))}\equiv 1\pmod{m}$，与条件矛盾。
 
 故假设不成立，原命题成立。
 
@@ -365,7 +361,7 @@ $$
     现在利用之前的结论，可知：
 
     $$
-    g^{\varphi(p^{\beta})}\not\equiv 1\pmod {p^{\beta+1}}\Rightarrow g^{\delta}\not\equiv 1\pmod {p^{\beta+1}}
+    g^{\varphi(p^{\beta})}\not\equiv 1\pmod {p^{\beta+1}}\implies g^{\delta}\not\equiv 1\pmod {p^{\beta+1}}
     $$
 
     结合 $g^{\delta}\equiv 1\pmod {p^\alpha}$ 可知 $\beta \geq \alpha$。

@@ -51,8 +51,8 @@ map<pair<int, int>, int> edges;
 int main(int argc, char* argv[]) {
   registerTestlibCmd(argc, argv);
   int n = inf.readInt();  // 不需要 readSpace() 或 readEoln()
-  int m = inf.readInt();  // 因为不需要在 checker 中检查标准输入合法性（有
-                          // validator）
+  int m = inf.readInt();  // 因为不需要在 checker 中检查标准输入合法性
+                          //（有 validator）
   for (int i = 0; i < m; i++) {
     int a = inf.readInt();
     int b = inf.readInt();

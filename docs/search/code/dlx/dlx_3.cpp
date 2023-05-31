@@ -7,7 +7,7 @@ const int e[] = {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 6, 6, 7,  8,
                  6, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
 int ans = -oo, a[10][10], stk[N];
 
-inline int read() {
+int read() {
   int x = 0, f = 0, ch;
   while (!isdigit(ch = getchar())) f |= ch == '-';
   while (isdigit(ch)) x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();

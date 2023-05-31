@@ -43,7 +43,7 @@ Garsia-Wachs 算法的第三阶段的证明，即存在另一棵具有相同距�
 函数性编程语言 Haskell 的 [garsia-wachs package](https://hackage.haskell.org/package/garsia-wachs) 对 Garsia-Wachs 算法做了函数性实现。它主要用于构建最佳搜索表，或者以最优复杂度平衡 [rope](https://hackage.haskell.org/package/rope) 数据结构。
 
 ???+ note "注释"
-    **rope** 是 Haskell 语言中用于操作带有可选注释的字节串（bytestring)[手指树](../ds/finger-tree.md) 的工具。
+    **rope** 是 Haskell 语言中用于操作带有可选注释的字节串（bytestring）[手指树](../ds/finger-tree.md) 的工具。
 
 ## 例题
 

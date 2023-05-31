@@ -2,7 +2,7 @@
 const int N = 1e6 + 10;
 int ans[10][10], stk[N];
 
-inline int read() {
+int read() {
   int x = 0, f = 0, ch;
   while (!isdigit(ch = getchar())) f |= ch == '-';
   while (isdigit(ch)) x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();

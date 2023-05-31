@@ -872,12 +872,12 @@ $$
 
 ### [June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)
 
-计算 $\sum\limits_{x=1}^N \lfloor ex \rfloor$，其中 $e = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, \dots, 1, 2n, 1, \dots]$ 是自然对数的底，$N \leq 10^{4000}$。
+计算 $\sum\limits_{x=1}^N \lfloor \mathrm{e}x \rfloor$，其中 $\mathrm{e} = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, \dots, 1, 2n, 1, \dots]$ 是自然对数的底，$N \leq 10^{4000}$。
 
 ??? "解答"
-    此和等于格点 $(x;y)$ 的数量，使得 $1 \leq x \leq N$ 和 $1 \leq y \leq ex$。
+    此和等于格点 $(x;y)$ 的数量，使得 $1 \leq x \leq N$ 和 $1 \leq y \leq \mathrm{e}x$。
     
-    在构造了 $y=ex$ 以下的点的凸包之后，可以使用 Pick 定理计算这个数：
+    在构造了 $y=\mathrm{e}x$ 以下的点的凸包之后，可以使用 Pick 定理计算这个数：
     === "C++"
     
         ```cpp

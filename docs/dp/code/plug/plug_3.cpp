@@ -2,7 +2,7 @@
 using namespace std;
 
 template <class T>
-inline bool checkMax(T &a, const T b) {
+bool checkMax(T &a, const T b) {
   return a < b ? a = b, 1 : 0;
 }
 
@@ -18,12 +18,12 @@ struct hashTable {
   int state[MaxSZ];
   int key[MaxSZ];
 
-  inline void clear() {
+  void clear() {
     sz = 0;
     memset(head, -1, sizeof(head));
   }
 
-  inline void push(int s) {
+  void push(int s) {
     int x = s % Prime;
     for (int i = head[x]; ~i; i = next[i]) {
       if (state[i] == s) {

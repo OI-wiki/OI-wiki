@@ -17,13 +17,13 @@ $P^+\left(n\right)$ 表示 $x$ 最大的质因子。
 定义 $\phi\left(x,a\right)$ 为所有小于 $x$ 的正整数中满足其所有质因子都大于 $p_a$ 的数的个数，即：
 
 $$
-\phi\left(x,a\right)=\#\big\{n\le x\mid n\bmod p=0\Rightarrow p>p_a\big\}\tag{1}
+\phi\left(x,a\right)=\#\big\{n\le x\mid n\bmod p=0 \implies p>p_a\big\}\tag{1}
 $$
 
 再定义 $P_k\left(x,a\right)$ 表示为所有小于 $x$ 的正整数中满足可重质因子恰好有 $k$ 个且所有质因子都大于 $p_a$ 的数的个数，即：
 
 $$
-P_k\left(x,a\right)=\#\big\{n\le x\mid n=q_1q_2\cdots q_k\Rightarrow\forall i,q_i>p_a\big\}\tag{2}
+P_k\left(x,a\right)=\#\big\{n\le x\mid n=q_1q_2\cdots q_k \implies \forall i,q_i>p_a\big\}\tag{2}
 $$
 
 特殊的，我们定义：$P_0\left(x,a\right)=1$，如此便有：
