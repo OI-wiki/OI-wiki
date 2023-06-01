@@ -196,7 +196,7 @@ mat operator*(const mat& T) const {
 
 方阵 $A$ 的逆矩阵 $P$ 是使得 $A \times P = I$ 的矩阵。
 
-逆矩阵不一定存在。如果存在，可以使用 [高斯消元](./gauss.md) 进行求解。
+逆矩阵不一定存在。如果存在，可以使用 [高斯消元](../numerical/gauss.md) 进行求解。
 
 ### 方阵的行列式
 
