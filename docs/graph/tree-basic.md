@@ -164,19 +164,19 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 ### 二叉树的 DFS遍历
 
-#### 递归序遍历
+#### 递归顺序遍历
 
-按照递归顺序每次到达一个节点都输出节点的值。二叉树的递归序实际包括了先序、中序和后序遍历。由递归序能得到三种遍历的任意一种。
+按照递归顺序每次到达一个节点都输出节点的值。二叉树的递归顺序遍历实际包括了先序、中序和后序遍历。由递归顺序遍历能得到三种遍历的任意一种。
 
 ![preorder](images/tree-basic-recursionOrder.svg)
 
-上图的递归序遍历：A B D D D B E E E B A C F F F C G G G C A 。注意其中每个值都出现了三次。
+上图的递归顺序遍历：A B D D D B E E E B A C F F F C G G G C A 。注意其中每个值都出现了三次。
 
-在递归序中只保留第一次出现的值，得到先序遍历：A B D E C F G 。
+在递归顺序遍历中只保留第一次出现的值，得到先序遍历：A B D E C F G 。
 
-在递归序中只保留第二次出现的值，得到中序遍历：D B E A F C G 。
+在递归顺序遍历中只保留第二次出现的值，得到中序遍历：D B E A F C G 。
 
-在递归序中只保留第三次出现的值，得到后序遍历：D E B F G C A 。
+在递归顺序遍历中只保留第三次出现的值，得到后序遍历：D E B F G C A 。
 
 ```c++
 void orderOfRecursion(BiTree* root) {
