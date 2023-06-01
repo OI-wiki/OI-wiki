@@ -168,7 +168,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 按照递归顺序每次到达一个节点都输出节点的值。二叉树的递归顺序遍历实际包括了先序、中序和后序遍历。由递归顺序遍历能得到三种遍历的任意一种。
 
-![preorder](images/tree-basic-recursionOrder.svg)
+![recursionOrder](images/tree-basic-recursionOrder.svg)
 
 上图的递归顺序遍历：A B D D D B E E E B A C F F F C G G G C A 。注意其中每个值都出现了三次。
 
