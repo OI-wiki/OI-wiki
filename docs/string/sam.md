@@ -610,11 +610,8 @@ $$
 
 我们先给出与 SAM 有关的最初的一些文献：
 
--   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler, R. McConnell.**Linear
-    Size Finite Automata for the Set of All Subwords of a Word. An Outline of
-    Results**\[1983]
--   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler.**The Smallest Automaton
-    Recognizing the Subwords of a Text**\[1984]
+-   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler, R. McConnell.**Linear Size Finite Automata for the Set of All Subwords of a Word. An Outline of Results**\[1983]
+-   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler.**The Smallest Automaton Recognizing the Subwords of a Text**\[1984]
 -   Maxime Crochemore.**Optimal Factor Transducers**\[1985]
 -   Maxime Crochemore.**Transducers and Repetitions**\[1986]
 -   A. Nerode.**Linear automaton transformations**\[1958]
