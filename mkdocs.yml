@@ -240,10 +240,10 @@ nav:
       - 乘法逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
+      - 同余方程: math/number-theory/congruence-equation.md
       - 威尔逊定理: math/number-theory/wilson.md
       - 升幂定理: math/number-theory/lift-the-exponent.md
       - 卢卡斯定理: math/number-theory/lucas.md
-      - 拉格朗日定理: math/number-theory/lagrange.md
       - 原根: math/number-theory/primitive-root.md
       - 离散对数: math/number-theory/discrete-logarithm.md
       - 剩余与单位根: math/number-theory/residue.md
