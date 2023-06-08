@@ -10,7 +10,7 @@
 
 > **阶**：由欧拉定理可知，对 $a\in \mathbb{Z}$，$m\in\mathbb{N}^{*}$，若 $\gcd(a,m)=1$，则 $a^{\varphi(m)}\equiv 1\pmod m$。
 >
-> 因此满足同余式 $a^n \equiv 1 \pmod m$ 的最小正整数 $n$ 存在，这个 $n$ 称作 $a$ 模 $m$ 的阶，记作 $\delta_m(a)$。
+> 因此满足同余式 $a^n \equiv 1 \pmod m$ 的最小正整数 $n$ 存在，这个 $n$ 称作 $a$ 模 $m$ 的阶，记作 $\delta_m(a)$ 或 $\operatorname{ord}_m(a)$。
 
 ???+ note "注"
     在抽象代数中，这里的「阶」就是模 $m$ 缩剩余系关于乘法形成的群中，元素 $a$ 的阶。记号 $\delta$ 表示阶也只用于这个特殊的群。
@@ -184,8 +184,6 @@ $$
 > **原根**：设 $m \in \mathbb{N}^{*}$，$a\in \mathbb{Z}$。若 $\gcd(a,m)=1$，且 $\delta_m(a)=\varphi(m)$，则称 $a$ 为模 $m$ 的原根。
 
 $g$ 满足 $\operatorname{ord}_n(g)=\left|Z_n^\times\right|=\varphi(n)$，对于质数 $p$，也就是说 $g^i \bmod p, 0 < i < p$ 结果互不相同。
-
-> 设 $g$ 和 $n$ 是两个正整数，如果存在一个最小的正整数 $k$ 使得 $g^k \equiv 1 \pmod n$，则称 $k$ 为 $g$ 在模 $n$ 意义下的阶，记为 $\operatorname{ord}_n(g)$。
 
 ???+ note "注"
     在抽象代数中，原根就是循环群的生成元。这个概念只在模 $m$ 缩剩余系关于乘法形成的群中有「原根」这个名字，在一般的循环群中都称作「生成元」。
