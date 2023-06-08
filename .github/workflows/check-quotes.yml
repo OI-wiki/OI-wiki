@@ -1,16 +1,28 @@
 name: Check quotes
 
-on: [ pull_request ]
+on: [ pull_request_target ]
 
 jobs:
   check-quotes:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
         with:
+          ref: refs/pull/${{ github.event.number }}/merge
           fetch-depth: 2
-      - run: |
-          if git diff -G[“”] HEAD^ -- '*.md' | grep ^+.*[“”]; then
-            echo '::error::由于 `“……”` 未区分全半角，请使用 `「……」` 作为全角引号，`"..."` 作为半角引号。'
-            exit 1
-          fi
+      - name: Check diff
+        id: check-diff
+        run: echo "result=$(git diff @^ -- '*.md' | grep ^+.*[“”])" >> $GITHUB_OUTPUT
+      - name: If passed
+        if: steps.check-diff.outputs.result == ''
+        uses: hmarr/auto-approve-action@v3
+        with:
+          review-message: 引号检查通过
+      - name: If failed
+        if: steps.check-diff.outputs.result
+        uses: ntsd/auto-request-changes-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          comment-body: 由于 `“……”` 未区分全半角，请使用 `「……」` 作为全角引号，`"..."` 作为半角引号。
