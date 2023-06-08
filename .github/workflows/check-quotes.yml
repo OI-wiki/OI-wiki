@@ -20,4 +20,8 @@ jobs:
         uses: ntsd/auto-request-changes-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          comment-body: 由于 `“……”` 未区分全半角，请使用 `「……」` 作为全角引号，`"..."` 作为半角引号。
+          comment-body: |
+            由于 `“……”` 未区分全半角，请使用 `「……」` 作为全角引号，`"..."` 作为半角引号。
+            ```
+            ${{ steps.check-diff.outputs.result }}
+            ```
