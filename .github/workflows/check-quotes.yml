@@ -27,4 +27,4 @@ jobs:
       - uses: reviewdog/action-suggester@v1
         with:
           filter_mode: added
-          tool_name: 由于 `“……”` 未区分全半角，请使用 `「……」` 作为全角引号，`"..."` 作为半角引号。这条建议是自动发出的，若有误请忽略。
+          tool_name: 请使用 `「……」` 作为全角引号，`"..."` 作为半角引号。具体用法见 [格式手册](https://oi-wiki.org/intro/format/#标点符号的使用)。这条建议是自动发出的，若有误请修正或忽略。
