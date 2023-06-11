@@ -25,40 +25,40 @@ $$
 
 即对上述的 $p$ 和 $a$，
 
-1. $a$ 是 $p$ 的二次剩余当且仅当 $a^{\frac{p-1}{2}}\equiv 1 \pmod p$.
-2. $a$ 是 $p$ 的二次非剩余当且仅当 $a^{\frac{p-1}{2}}\equiv -1 \pmod p$.
+1.  $a$ 是 $p$ 的二次剩余当且仅当 $a^{\frac{p-1}{2}}\equiv 1 \pmod p$.
+2.  $a$ 是 $p$ 的二次非剩余当且仅当 $a^{\frac{p-1}{2}}\equiv -1 \pmod p$.
 
 ???+ note "证明"
     首先由 [Fermat 小定理](./fermat.md#费马小定理)，有 $a^{p-1}\equiv 1\pmod p$，故
-
+    
     $$
     \left(a^{\frac{p-1}{2}}+1\right)\left(a^{\frac{p-1}{2}}-1\right)\equiv 0\pmod p
     $$
-
+    
     从而对任意满足 $(a,p)=1$ 的 $a$ 均有 $a^{p-1}\equiv \pm 1\pmod p$
-
+    
     另外由 $p$ 是奇素数，我们有：
-
+    
     $$
     x^{p-1}-a^{\frac{p-1}{2}}={\left(x^2\right)}^{\frac{p-1}{2}}-a^{\frac{p-1}{2}}=(x^2-a)P(x)
     $$
-
+    
     其中 $P(x)$ 是某个整系数多项式，进而：
-
+    
     $$
     \begin{aligned}
         x^p-x&=x\left(x^{p-1}-a^{\frac{p-1}{2}}\right)+x\left(a^{\frac{p-1}{2}}-1\right)\\
         &=(x^2-a)xP(x)+\left(a^{\frac{p-1}{2}}-1\right)x\\
     \end{aligned}
     $$
-
+    
     由 [同余方程的定理 5](./congruence-equation.md#定理-5) 可知，$a$ 是模 $p$ 的二次剩余当且仅当 $a^{\frac{p-1}{2}}\equiv 1\pmod p$. 进而 $a$ 是模 $p$ 的非二次剩余当且仅当 $a^{\frac{p-1}{2}}\equiv -1\pmod p$.
 
 ## Legendre 符号
 
 ???+ note "定义"
     对奇素数 $p$ 和整数 $a$，定义 Legendre 符号如下：
-
+    
     $$
     \left(\frac{a}{p}\right)=\begin{cases}
         0,  & p\mid a,\\
@@ -97,17 +97,19 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
         $$
 
 2.  $a_1\equiv a_2\pmod p\iff \left(\dfrac{a_1}{p}\right)=\left(\dfrac{a_2}{p}\right)$
-3. （[完全积性](./basic.md#积性函数)）对任意整数 $a_1,a_2$，
-    
+
+3.  （[完全积性](./basic.md#积性函数)）对任意整数 $a_1,a_2$，
+
     $$
     \left(\frac{a_1a_2}{p}\right)=\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right)
     $$
 
     我们有推论：对整数 $a,b$，$p\nmid b$ 有
-    
+
     $$
     \left(\frac{ab^2}{p}\right)=\left(\frac{a}{p}\right)
     $$
+
 4.  $$
     \begin{aligned}
         \left(\frac{2}{p}\right)&=(-1)^{\frac{p^2-1}{8}}\\
@@ -119,26 +121,26 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
     $$
 
 ???+ note "证明"
-    1. 由 [Legendre 符号的定义](#legendre-符号) 和 [Euler 判别法](#euler-判别法) 易得。
-    2. 注意到
-
+    1.  由 [Legendre 符号的定义](#legendre-符号) 和 [Euler 判别法](#euler-判别法) 易得。
+    2.  注意到
+    
         $$
         a_1\equiv a_2\pmod p\iff \left(\frac{a_1}{p}\right)\equiv\left(\frac{a_2}{p}\right)\pmod p
         $$
-
-        而 $\left|\left(\dfrac{a_1}{p}\right)-\left(\dfrac{a_2}{p}\right)\right|\leq 2$ 且 $p>2$, 故:
-
+    
+        而 $\left|\left(\dfrac{a_1}{p}\right)-\left(\dfrac{a_2}{p}\right)\right|\leq 2$ 且 $p>2$, 故：
+    
         $$
         a_1\equiv a_2\pmod p\iff \left(\frac{a_1}{p}\right)=\left(\frac{a_2}{p}\right)
         $$
     3.  由 1 得
-        
+    
         $$
         \left(\frac{a_1a_2}{p}\right)\equiv a_1^{\frac{p-1}{2}}a_2^{\frac{p-1}{2}}\equiv\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right)\pmod p
         $$
-
-        而 $\left|\left(\dfrac{a_1a_2}{p}\right)-\left(\dfrac{a_1}{p}\right)\left(\dfrac{a_2}{p}\right)\right|\leq 2$ 且 $p>2$, 故:
-
+    
+        而 $\left|\left(\dfrac{a_1a_2}{p}\right)-\left(\dfrac{a_1}{p}\right)\left(\dfrac{a_2}{p}\right)\right|\leq 2$ 且 $p>2$, 故：
+    
         $$
         \left(\frac{a_1a_2}{p}\right)=\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right)
         $$
@@ -153,11 +155,11 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
     \left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}
     $$
 
-证明方式很多，读者感兴趣的话可参考 [^ref5]。一种证明方式是基于如下引理（Gauss 引理）：
+证明方式很多，读者感兴趣的话可参考[^ref5]。一种证明方式是基于如下引理（Gauss 引理）：
 
 ???+ note "Gauss 引理"
     设 $(n,p)=1$, 对整数 $k~\left(1\leq k\leq \dfrac{p-1}{2}\right)$，令 $r_k$ 为 $nk$ 模 $p$ 的最小非负剩余，设 $m$ 为所有 $r_k$ 中大于 $\dfrac{p}{2}$ 的个数，则
-
+    
     $$
     \left(\frac{n}{p}\right)=(-1)^m
     $$
@@ -166,7 +168,7 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
 
 ???+ note "结论"
     对奇素数 $p$，
-
+    
     $$
     \begin{aligned}
         \left(\frac{2}{p}\right)&=(-1)^{\frac{p^2-1}{8}}\\
@@ -185,7 +187,7 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
 
 ???+ note "证明"
     根据 Euler 判别法，考虑 $a^{\frac{p-1}{2}}\equiv 1\pmod p$.
-
+    
     注意到 $\frac{p-1}{2}\mid (p-1)$，由 [同余方程的定理 6](./congruence-equation.md#定理-6) 可知 $a^{\frac{p-1}{2}}\equiv 1\pmod p$ 有 $\frac{p-1}{2}$ 个解。所以模 $p$ 意义下二次剩余和二次非剩余均有 $\frac{p-1}{2}$ 个。
 
 ## 相关算法
@@ -219,9 +221,9 @@ $$
     &\equiv -1&\pmod p
     \end{aligned}
     $$
-
+    
     那么
-
+    
     $$
     \begin{aligned}
     \left(ab(\mathrm{i}-1)\right)^2&\equiv a^2\cdot \left(2a\right)^{(p-5)/4}\cdot (-2\mathrm{i})&\pmod p\\
@@ -246,7 +248,7 @@ Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇�
 
 ???+ note "证明"
     令 $f(x)=x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$ 和 $a_0+a_1x=(r-x)^{(p+1)/2}\bmod (x^2-(r^2-a))$ 那么有 $a_0^2\equiv a\pmod p$ 且 $a_1\equiv 0\pmod p$.
-
+    
     $$
     \begin{aligned}
     x^p&\equiv x(x^2)^{\frac{p-1}{2}}&\pmod{f(x)}\\
@@ -254,9 +256,9 @@ Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇�
     &\equiv -x&\pmod{f(x)}&\quad (\because{r^2-a}\text{ is quadratic non-residue})
     \end{aligned}
     $$
-
+    
     又因为二项式定理
-
+    
     $$
     \begin{aligned}
     (a+b)^p&=\sum_{i=0}^p\binom{p}{i}a^ib^{p-i}\\
@@ -264,18 +266,18 @@ Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇�
     &\equiv a^p+b^p\pmod p
     \end{aligned}
     $$
-
+    
     可以发现只有当 $i=0$ 和 $i=p$ 时由于没有因子 $p$ 不会因为模 $p$ 被消去，其他的项都因为有 $p$ 因子被消去了。所以
-
+    
     $$
     \begin{aligned}
     (r-x)^{p}&\equiv r^p-x^p&\pmod{f(x)}\\
     &\equiv r+x&\pmod{f(x)}
     \end{aligned}
     $$
-
+    
     所以
-
+    
     $$
     \begin{aligned}
     (a_0+a_1x)^2&=a_0^2+2a_0a_1x+a_1^2x^2\\
@@ -286,16 +288,16 @@ Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇�
     &\equiv a&\pmod{f(x)}
     \end{aligned}
     $$
-
+    
     若 $a_1\not\equiv 0\pmod p$ 且
-
+    
     $$
     \begin{aligned}
     (a_0+a_1x)^2&=a_0^2+2a_0a_1x+a_1^2x^2\\
     &\equiv a_0^2+2a_0a_1x+a_1^2(r^2-a)\pmod{f(x)}
     \end{aligned}
     $$
-
+    
     所以 $x$ 的系数必须为零即 $a_0\equiv 0\pmod p$ 此时考虑 Legendre 符号为完全积性函数可知 $r^2-a\equiv a/a_1^2\pmod p$ 显然为二次剩余，不符合定义。因此 $a_1\equiv 0\pmod p$ 且 $a_0^2\equiv a\pmod p$.
 
 ### Bostan–Mori 算法
@@ -324,22 +326,22 @@ $$
 
 ???+ note "证明"
     考虑选择一个 $b$ 满足 $b^2\equiv a\pmod p$，那么 $(r-b)(r+b)=r^2-a$ 为二次非剩余，所以
-
+    
     $$
     (r-b)^{\frac{p-1}{2}}(r+b)^{\frac{p-1}{2}}\equiv -1\pmod p
     $$
-
+    
     存在环态射
-
+    
     $$
     \begin{aligned}
     \phi:\mathbb{F}_p\lbrack x\rbrack/(x^2-a)&\to \mathbb{F}_p\times \mathbb{F}_p\\
     x&\mapsto (b,-b)
     \end{aligned}
     $$
-
+    
     那么
-
+    
     $$
     \begin{aligned}
     (a_0+a_1b,a_0-a_1b)&=\phi(a_0+a_1x)\\
@@ -348,7 +350,7 @@ $$
     &=(\pm 1,\mp 1)
     \end{aligned}
     $$
-
+    
     所以 $2a_0=(\pm 1)+(\mp 1)=0$ 而 $2a_1b=(\pm 1)-(\mp 1)=\pm 2$.
 
 ### Tonelli–Shanks 算法
@@ -365,9 +367,9 @@ Tonelli–Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod
     &\equiv 1&\pmod p
     \end{aligned}
     $$
-
+    
     而
-
+    
     $$
     \begin{aligned}
     g^{2^{n-1}}&\equiv r^{2^{n-1}\cdot m}&\pmod p\\
@@ -375,11 +377,11 @@ Tonelli–Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod
     &\equiv -1&\pmod p
     \end{aligned}
     $$
-
+    
     所以 $g$ 的阶为 $2^n$，又因为 $ab^2\equiv a^m\pmod p$ 是 $x^{2^n}\equiv 1\pmod p$ 的解，所以 $a^m$ 是 $g$ 的幂次，记 $a^m\equiv g^e\pmod p$.
-
+    
     若 $a$ 是二次剩余，那么
-
+    
     $$
     \begin{aligned}
     g^{2^{n-1}\cdot e}&\equiv (-1)^e&\pmod p\\
@@ -388,9 +390,9 @@ Tonelli–Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod
     &\equiv 1&\pmod p
     \end{aligned}
     $$
-
+    
     所以 $e$ 为偶数，而
-
+    
     $$
     \begin{aligned}
     \left(abg^{-e/2}\right)^2&\equiv a^2b^2g^{-e}&\pmod p\\
@@ -398,11 +400,11 @@ Tonelli–Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod
     &\equiv a&\pmod p
     \end{aligned}
     $$
-
+    
     剩下的问题是如何计算 $e$，Tonelli 和 Shanks 提出一次确定 $e$ 的一个比特。令 $e$ 在二进制下表示为 $e=e_0+2e_1+4e_2+\cdots$ 其中 $e_k\in\lbrace 0,1\rbrace$.
-
+    
     因为 $a$ 是二次剩余，所以开始时 $e_0=0$，然后计算 $e_1$ 然后 $e_2$ 等等，由以下公式给出
-
+    
     $$
     \left(g^eg^{-(e\bmod 2^k)}\right)^{2^{n-1-k}}\equiv g^{2^{n-1}\cdot e_k}\equiv 
     \begin{cases}
@@ -410,18 +412,18 @@ Tonelli–Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod
     -1\pmod p,&\text{else if }e_k=1
     \end{cases}
     $$
-
+    
     正确性显然。
 
 ## 习题
 
-- [洛谷 P5491 【模板】二次剩余](https://www.luogu.com.cn/problem/P5491)
-- [「Timus 1132」Square Root](https://acm.timus.ru/problem.aspx?space=1&num=1132)
+-   [洛谷 P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491)
+-   [「Timus 1132」Square Root](https://acm.timus.ru/problem.aspx?space=1&num=1132)
 
 ## 参考资料与注释
 
-1.   [Quadratic residue - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_residue)
-2.   [Euler's criterion - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_criterion)
+1.  [Quadratic residue - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_residue)
+2.  [Euler's criterion - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_criterion)
 
 [^ref1]: Daniel. J. Bernstein. Faster Square Roots in Annoying Finite Fields.
 
