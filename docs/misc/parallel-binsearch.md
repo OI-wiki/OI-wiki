@@ -228,14 +228,14 @@ void solve(int l, int r, vector<Query> q)
 
 **优化**
 
-1. 对于每一轮划分，如果当前数列中小于等于 $mid$ 的数有 $t$ 个，则将询问划分后实际是在右区间询问第 $k - t$ 小数，因此对划分到右区间的询问做出了修改。如果答案的原始值域为 $[L,R]$，某次划分的答案值域为 $[l,r]$，那么对于参与此次划分的询问，$[L,l)$ 中所有数值对它们的影响已经在之前被消除了。
-2. 由于需要使每轮划分都仅和当前答案值域 $[l,r]$ 有关，树状数组需要多次载入和清空。
+1.  对于每一轮划分，如果当前数列中小于等于 $mid$ 的数有 $t$ 个，则将询问划分后实际是在右区间询问第 $k - t$ 小数，因此对划分到右区间的询问做出了修改。如果答案的原始值域为 $[L,R]$，某次划分的答案值域为 $[l,r]$，那么对于参与此次划分的询问，$[L,l)$ 中所有数值对它们的影响已经在之前被消除了。
+2.  由于需要使每轮划分都仅和当前答案值域 $[l,r]$ 有关，树状数组需要多次载入和清空。
 
 如果划分不仅仅和当前答案值域有关呢？
 
 由此可以得到一个与全局序列有关的优化方法：维护一个指针 $pos$ 追踪每轮划分的 $mid$（分治中心），将所有 $\leq pos$ 的元素对应的下标在树状数组中置为 $1$，树状数组的其余位置置为 $0$。每次划分之前移动 $pos$ 并更新树状数组。指针 $pos$ 移动的次数与 $n \log n$ 同阶。划分时对每一个询问查询树状数组中对应区间的值，满足则划分至左区间，否则划分至右区间，**不需要对询问做出修改**。
 
-由于要追踪分治中心，需要让 $pos$ 准确地更新树状数组。在整体二分之前将序列按元素大小排序并记录元素对应下标，指针移动时在树状数组中对下标进行相应修改。对于绝大多数**可以用整体二分解决并且不带修改的问题**，都可以应用此种优化以大幅降低数据结构的使用次数。
+由于要追踪分治中心，需要让 $pos$ 准确地更新树状数组。在整体二分之前将序列按元素大小排序并记录元素对应下标，指针移动时在树状数组中对下标进行相应修改。对于绝大多数 **可以用整体二分解决并且不带修改的问题**，都可以应用此种优化以大幅降低数据结构的使用次数。
 
 由于减少了很多树状数组的载入和清空操作，应用这种优化通常情况下会明显提升整体二分的效率（即使只是常数优化），对于静态区间第 $k$ 小值问题而言效率完全不差于时间复杂度更优的可持久化线段树。值得注意的是，对于静态区间第 $k$ 小值问题也存在时间复杂度 $O(n \log n)$ 的整体二分实现。
 
@@ -243,14 +243,18 @@ void solve(int l, int r, vector<Query> q)
 
 ???+ note "实现"
     ```cpp
-    struct Query {int i, l, r, k;};//第 i 次询问查询区间 [l,r] 的第 k 小值
+    struct Query {
+      int i, l, r, k;
+    };  // 第 i 次询问查询区间 [l,r] 的第 k 小值
+    
     Query s[200005], t1[200005], t2[200005];
     int n, m, cnt, pos, p[200005], ans[200005];
     pair<int, int> a[200005];
+    ```
 
     void add(int x, int y); //树状数组 位置 x 加 y
     int sum(int x);//树状数组 [1,x] 前缀和
-    
+
     //当前处理的询问为 [l,r],答案值域为 [ql,qr]
     void overall_binary(int l, int r, int ql, int qr) {
         if (l > r) return;
@@ -281,7 +285,7 @@ void solve(int l, int r, vector<Query> q)
         overall_binary(l, l + cnt1 - 1, ql, mid);
         overall_binary(l + cnt1, r, mid + 1, qr);
     }
-    
+
     int main() {
         scanf("%d%d", &n, &m);
         for (int i = 1; i <= n; i++) {
@@ -327,27 +331,27 @@ void solve(int l, int r, vector<Query> q)
 
 ???+ note "实现"
     ```cpp
-    int a[500005], ans[500005];//a:原序列 ans:构造的序列
+    int a[500005], ans[500005];  // a:原序列 ans:构造的序列
+    
     void overall_binary(int l, int r, int ql, int qr) {
-        if (l > r) return;
-        if (ql == qr) {
-            for (int i = l; i <= r; i++)
-                ans[i] = ql;
-            return;
-        }
-        int cnt = 0, mid = ql + ((qr - ql) >> 1); //默认开始都填 mid+1 全部划分到右区间
-        long long res = 0ll, sum = 0ll;
-        for (int i = l; i <= r; i++)
-            sum += abs(a[i] - (mid + 1));
-        res = sum;
-        for (int i = l; i <= r; i++) { //尝试把 [l,i] 从 mid+1 换成 mid 并且划分到左区间
-            sum -= abs(a[i] - (mid + 1));
-            sum += abs(a[i] - mid);
-            if (sum < res)
-                cnt = i - l + 1, res = sum; //发现 [l,i] 取 mid+1 更优,更新
-        }
-        overall_binary(l, l + cnt - 1, ql, mid);
-        overall_binary(l + cnt, r, mid + 1, qr);
+      if (l > r) return;
+      if (ql == qr) {
+        for (int i = l; i <= r; i++) ans[i] = ql;
+        return;
+      }
+      int cnt = 0,
+          mid = ql + ((qr - ql) >> 1);  // 默认开始都填 mid+1 全部划分到右区间
+      long long res = 0ll, sum = 0ll;
+      for (int i = l; i <= r; i++) sum += abs(a[i] - (mid + 1));
+      res = sum;
+      for (int i = l; i <= r;
+           i++) {  // 尝试把 [l,i] 从 mid+1 换成 mid 并且划分到左区间
+        sum -= abs(a[i] - (mid + 1));
+        sum += abs(a[i] - mid);
+        if (sum < res) cnt = i - l + 1, res = sum;  // 发现 [l,i] 取 mid+1 更优,更新
+      }
+      overall_binary(l, l + cnt - 1, ql, mid);
+      overall_binary(l + cnt, r, mid + 1, qr);
     }
     ```
 
@@ -359,7 +363,7 @@ void solve(int l, int r, vector<Query> q)
 
 [二逼平衡树](https://loj.ac/p/106)
 
-[[BalticOI 2004] Sequence 数字序列](https://www.luogu.com.cn/problem/P4331)
+[\[BalticOI 2004\] Sequence 数字序列](https://www.luogu.com.cn/problem/P4331)
 
 ## 参考资料
 
