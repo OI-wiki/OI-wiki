@@ -128,16 +128,16 @@ $$
 这是一个微分方程，解得：
 
 $$
-\hat B(x) = \exp\left(e^x + C\right)
+\hat B(x) = \exp\left(\mathrm{e}^x + C\right)
 $$
 
 最后当 $x = 0$ 时 $\hat B(x) = 1$，带入后解得 $C = -1$，得到贝尔数指数生成函数的封闭形式：
 
 $$
-\hat B(x) = \exp\left(e^x - 1\right)
+\hat B(x) = \exp\left(\mathrm{e}^x - 1\right)
 $$
 
-预处理出 $e^x - 1$ 的前 $n$ 项后做一次 [多项式 exp](../poly/elementary-func.md#多项式对数函数--指数函数) 即可得出贝尔数前 $n$ 项，时间复杂度瓶颈在多项式 exp，可做到 $O(n \log n)$ 的时间复杂度。
+预处理出 $\mathrm{e}^x - 1$ 的前 $n$ 项后做一次 [多项式 exp](../poly/elementary-func.md#多项式对数函数--指数函数) 即可得出贝尔数前 $n$ 项，时间复杂度瓶颈在多项式 exp，可做到 $O(n \log n)$ 的时间复杂度。
 
 ## 参考文献
 
