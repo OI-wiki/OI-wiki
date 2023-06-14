@@ -13,11 +13,11 @@ jobs:
     name: OI-Wiki LaTeX Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Build the LaTeX document
-        uses: OI-wiki/latex-action@v1.0.0
+        uses: xu-cheng/latex-action@v2
         with:
-          latexmk_use_xelatex: true
+          latexmk_use_lualatex: true
           latexmk_shell_escape: true
           args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -8bit"
           extra_system_packages: |
@@ -49,7 +49,7 @@ jobs:
             unzip -q ./cm-unicode.zip
             cp -r notosans notoserif notosanscjk notoserifcjk robotomono cm-unicode/fonts/otf/* /usr/share/fonts
             fc-cache
-            git clone https://github.com/OI-wiki/OI-Wiki-export.git --depth=1
+            git clone https://github.com/OI-wiki/OI-Wiki-export.git --depth=1 --branch=mgt/use-ctexbook
             cd ./OI-Wiki-export/remark-latex
             npm i
             cd ../..
