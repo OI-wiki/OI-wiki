@@ -201,10 +201,11 @@
             if v == 1:
                 continue
             s = 0
-            for s in range(t):
+            while s < t:
                 if v == n - 1:
                     break
                 v = v * v % n
+                s = s + 1
             # 如果找到了非平凡平方根，则会由于无法提前 break; 而运行到 s == t
             # 如果 Fermat 素性测试无法通过，则一直运行到 s == t 前 v 都不会等于 -1
             if s == t:

@@ -215,7 +215,7 @@ $$
 -   [BZOJ 2863. 愤怒的元首](https://darkbzoj.cc/problem/2863)
 -   [Luogu P6295. 有标号 DAG 计数](https://www.luogu.com.cn/problem/P6295)
 -   [LOJ 6569. 仙人掌计数](https://loj.ac/p/6569)
--   [LOJ 6570. 毛毛虫计数](https://loj.ac/p/6569)
+-   [LOJ 6570. 毛毛虫计数](https://loj.ac/p/6570)
 -   [Luogu P5434. 有标号荒漠计数](https://www.luogu.com.cn/problem/P5434)
 -   [Luogu P3343. \[ZJOI2015\] 地震后的幻想乡](https://www.luogu.com.cn/problem/P3343)
 -   [HDU 5279. YJC plays Minecraft](https://acm.hdu.edu.cn/showproblem.php?pid=5279)
