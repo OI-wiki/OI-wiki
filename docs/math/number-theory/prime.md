@@ -117,19 +117,107 @@
         return True
     ```
 
-如果 $a^{n−1} \bmod n = 1$ 但 $n$ 不是素数，则 $n$ 被称为以 $a$ 为底的 **伪素数**。我们在实践中观察到，如果 $a^{n−1} \bmod n = 1$，那么 $n$ 通常是素数。但这里也有个反例：如果 $n = 341$ 且 $a = 2$，即使 $341 = 11 \cdot 31$ 是合数，有 $2^{340}\equiv 1 {\pmod {341}}$。事实上，$341$ 是最小的伪素数基数。
+如果 $a^{n−1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则 $n$ 被称为以 $a$ 为底的 **伪素数**。我们在实践中观察到，如果 $a^{n−1} \equiv 1 \pmod n$，那么 $n$ 通常是素数。但这里也有个反例：如果 $n = 341$ 且 $a = 2$，即使 $341 = 11 \cdot 31$ 是合数，有 $2^{340}\equiv 1 {\pmod {341}}$。事实上，$341$ 是最小的伪素数基数。
 
-很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。
+很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。甚至有些合数 $n$ 满足对任意的 $a$ 均有 $a^{n−1} \equiv 1 \pmod n$，这样的数称为 [Carmichael 数](#carmichael-数)。
 
-##### 卡迈克尔数
+##### Carmichael 函数
 
-上面的做法中随机地选择 $a$，很大程度地降低了犯错的概率。但是仍有一类数，上面的做法并不能准确地判断。
+对正整数 $n$，定义 Carmichael 函数（卡迈克尔函数）为对任意满足 $(a,n)=1$ 的整数 $a$，使
 
-对于合数 $n$，如果对于所有正整数 $a$，$a$ 和 $n$ 互素，都有同余式 $a^{n-1} \equiv 1 \pmod n$ 成立，则合数 $n$ 为 **卡迈克尔数**（Carmichael Number），又称为 **费马伪素数**。
+$$
+a^m\equiv 1\pmod n
+$$
 
-比如，$561 = 3 \times 11 \times 17$ 就是一个卡迈克尔数。
+恒成立的最小正整数 $m$.
 
-而且我们知道，若 $n$ 为卡迈克尔数，则 $m=2^{n}-1$ 也是一个卡迈克尔数，从而卡迈克尔数的个数是无穷的。[（OEIS:A006931）](https://oeis.org/A006931)
+即：
+
+$$
+\lambda(n)=\max\{\delta_n(a):(a,n)=1\}
+$$
+
+Carmichael 函数有如下性质：
+
+1.  （Carmichael 定理）对任意素数 $p$ 和任意正整数 $r$，
+
+    $$
+    \lambda\left(p^r\right)=\begin{cases}
+        \frac{1}{2}\varphi\left(p^r\right), & p=2 \land r\geq 3, \\
+        \varphi\left(p^r\right),            & \text{otherwise}.
+    \end{cases}
+    $$
+
+    ??? note "证明"
+        该定理等价于：
+        
+        若模 $p^r$ 有 [原根](./primitive-root.md)，则 $\lambda(n)=\varphi(n)$，否则 $\lambda(n)=\dfrac{1}{2}\varphi(n)$.
+        
+        当模 $p^r$ 有原根时，由 [原根存在定理](./primitive-root.md#原根存在定理) 可知命题成立。否则 $p=2$ 且 $r\geq 3$，我们有：
+        
+        $$
+        \lambda\left(2^r\right)\mid 2^{r-2}
+        $$
+        
+        又由 $5^{2^{r-3}}\equiv 1+2^{r-1}\pmod{2^{r-2}}$ 知 $\lambda\left(2^r\right)>2^{r-3}$，因此
+        
+        $$
+        \lambda\left(p^r\right)=2^{r-2}=\frac{1}{2}\varphi\left(p^r\right)
+        $$
+
+    进而有：
+
+    1.  对任意正整数 $n$，有 $\lambda(n)\mid \varphi(n)$
+
+    2.  对任意正整数 $a$，$b$，有 $a\mid b\implies \lambda(a)\mid \lambda(b)$
+
+    3.  对任意正整数 $a$，$b$，有 $\lambda([a,b])=[\lambda(a),\lambda(b)]$
+
+2.  令 $n$ 的唯一分解式为 $n=\prod_{i=1}^k p_i^{r_i}$，则
+
+    $$
+    \lambda(n)=\left[\lambda\left(p_1^{r_1}\right),\lambda\left(p_2^{r_2}\right),\dots,\lambda\left(p_k^{r_k}\right)\right]
+    $$
+
+    由 [中国剩余定理](./crt.md) 和 Carmichael 定理易证。
+
+##### Carmichael 数
+
+对于合数 $n$，如果对于所有正整数 $a$，$a$ 和 $n$ 互素，都有同余式 $a^{n-1} \equiv 1 \pmod n$ 成立，则合数 $n$ 为 **Carmichael 数**（卡迈克尔数，[OEIS:A002997](https://oeis.org/A002997)）。
+
+比如 $561 = 3 \times 11 \times 17$ 就是一个 Carmichael 数，同时也是最小的 Carmichael 数。
+
+我们可以用如下方法判断合数 $n$ 是否为 Carmichael 数：
+
+???+ note "Korselt 判别法[^korselt1899probleme]"
+    合数 $n$ 是 Carmichael 数当且仅当 $n$ 无平方因子且对 $n$ 的任意质因子 $p$ 均有 $p-1 \mid n-1$.
+
+上述判别法可简化为：
+
+???+ note
+    合数 $n$ 是 Carmichael 数当且仅当 $\lambda(n)\mid n-1$，其中 $\lambda(n)$ 为 [Carmichael 函数](#carmichael-函数)。
+
+Carmichael 数有如下性质：
+
+1.  Carmichael 数无平方因子且至少有 $3$ 个不同的质因子。
+2.  设 $C(n)$ 为小于 $n$ 的 Carmichael 数个数，则：
+    1.  （Alford *et al*. 1994[^alford1994infinitely]）$C(n)>n^{2/7}$
+        
+        （Harman 2008[^harman2008watt]）$C(n)>n^{0.333~367~04}$
+        
+        由此可知 Carmichael 数有无限多个。
+    2.  （Erdős 1956[^erdos1956pseudoprimes]）$C(n)<n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$，其中 $c$ 为常数。
+        
+        由此可知 Carmichael 数的分布十分稀疏。实际上 $C(10^9)=646$，$C(10^{18})=1~401~644$[^pinchcarmichael].
+
+???+ warning "注意"
+    「若 $n$ 为 Carmichael 数，则 $2^n-1$ 也为 Carmichael 数」是错误的。
+    
+    如 $561=3 \cdot 11 \cdot 17$ 为 Carmichael 数，考虑 $2^{561}-1$。
+    
+    注意到 $23\cdot 89=2^{11}-1\mid 2^{561}-1$，由 Korselt 判别法知，若 $2^{561}-1$ 是 Carmichael 数，则 $22$ 和 $88$ 均为 $2^{561}-2$ 的因子。
+    
+    而 $v_2\left(2^{561}-2\right)=1<v_2(88)=3$，故 $88\nmid 2^{561}-2$，因此 $2^{561}-1$ 不是 Carmichael 数。
 
 #### Miller-Rabin 素性测试
 
@@ -321,3 +409,18 @@
 6.  [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
 7.  Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
 8.  [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#)
+9.  [Fermat pseudoprime - Wikipedia](https://en.wikipedia.org/wiki/Fermat_pseudoprime)
+10. [Carmichael number - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_number)
+11. [Carmichael function - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_function)
+12. [Carmichael Number -- from Wolfram MathWorld](https://mathworld.wolfram.com/CarmichaelNumber.html)
+13. [Carmichael's Lambda Function | Brilliant Math & Science Wiki](https://brilliant.org/wiki/carmichaels-lambda-function/)
+
+[^korselt1899probleme]: Korselt, A. R. (1899). "Problème chinois". *L'Intermédiaire des Mathématiciens*. **6**: 142–143.
+
+[^alford1994infinitely]: W. R. Alford; Andrew Granville; Carl Pomerance (1994). "There are Infinitely Many Carmichael Numbers". *Annals of Mathematics*. 140 (3): 703–722.
+
+[^harman2008watt]:  Harman, Glyn (2008). "Watt's mean value theorem and Carmichael numbers". International Journal of Number Theory. 4 (2): 241–248.
+
+[^erdos1956pseudoprimes]: Erdős, P. (1956). "On pseudoprimes and Carmichael numbers". *Publ. Math. Debrecen*. 4 (3–4): 201–206.
+
+[^pinchcarmichael]: PINCH, Richard GE. The Carmichael numbers up to 10 20.
