@@ -201,13 +201,13 @@ Carmichael 数有如下性质：
 
 1.  Carmichael 数无平方因子且至少有 $3$ 个不同的质因子。
 2.  设 $C(n)$ 为小于 $n$ 的 Carmichael 数个数，则：
-    1.  （Alford *et al*. 1994[^alford1994infinitely]）$C(n)>n^{2/7}$
-        
+    1.  （Alford*et al*. 1994[^alford1994infinitely]）$C(n)>n^{2/7}$
+
         （Harman 2008[^harman2008watt]）$C(n)>n^{0.333~367~04}$
-        
+
         由此可知 Carmichael 数有无限多个。
     2.  （Erdős 1956[^erdos1956pseudoprimes]）$C(n)<n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$，其中 $c$ 为常数。
-        
+
         由此可知 Carmichael 数的分布十分稀疏。实际上 $C(10^9)=646$，$C(10^{18})=1~401~644$[^pinchcarmichael].
 
 ???+ warning "注意"
@@ -415,12 +415,12 @@ Carmichael 数有如下性质：
 12. [Carmichael Number -- from Wolfram MathWorld](https://mathworld.wolfram.com/CarmichaelNumber.html)
 13. [Carmichael's Lambda Function | Brilliant Math & Science Wiki](https://brilliant.org/wiki/carmichaels-lambda-function/)
 
-[^korselt1899probleme]: Korselt, A. R. (1899). "Problème chinois". *L'Intermédiaire des Mathématiciens*. **6**: 142–143.
+[^korselt1899probleme]: Korselt, A. R. (1899). "Problème chinois".*L'Intermédiaire des Mathématiciens*.**6**: 142–143.
 
-[^alford1994infinitely]: W. R. Alford; Andrew Granville; Carl Pomerance (1994). "There are Infinitely Many Carmichael Numbers". *Annals of Mathematics*. 140 (3): 703–722.
+[^alford1994infinitely]: W. R. Alford; Andrew Granville; Carl Pomerance (1994). "There are Infinitely Many Carmichael Numbers".*Annals of Mathematics*. 140 (3): 703–722.
 
-[^harman2008watt]:  Harman, Glyn (2008). "Watt's mean value theorem and Carmichael numbers". International Journal of Number Theory. 4 (2): 241–248.
+[^harman2008watt]: Harman, Glyn (2008). "Watt's mean value theorem and Carmichael numbers". International Journal of Number Theory. 4 (2): 241–248.
 
-[^erdos1956pseudoprimes]: Erdős, P. (1956). "On pseudoprimes and Carmichael numbers". *Publ. Math. Debrecen*. 4 (3–4): 201–206.
+[^erdos1956pseudoprimes]: Erdős, P. (1956). "On pseudoprimes and Carmichael numbers".*Publ. Math. Debrecen*. 4 (3–4): 201–206.
 
 [^pinchcarmichael]: PINCH, Richard GE. The Carmichael numbers up to 10 20.
