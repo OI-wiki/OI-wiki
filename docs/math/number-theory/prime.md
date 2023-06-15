@@ -119,7 +119,7 @@
 
 如果 $a^{n−1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则 $n$ 被称为以 $a$ 为底的 **伪素数**。我们在实践中观察到，如果 $a^{n−1} \equiv 1 \pmod n$，那么 $n$ 通常是素数。但这里也有个反例：如果 $n = 341$ 且 $a = 2$，即使 $341 = 11 \cdot 31$ 是合数，有 $2^{340}\equiv 1 {\pmod {341}}$。事实上，$341$ 是最小的伪素数基数。
 
-很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。甚至有些合数 $n$ 满足对任意的 $a$ 均有 $a^{n−1} \equiv 1 \pmod n$，这样的数称为 [Carmichael 数](#carmichael-数)。
+很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。甚至有些合数 $n$ 满足对任意的 $a\nmid n$ 均有 $a^{n−1} \equiv 1 \pmod n$，这样的数称为 [Carmichael 数](#carmichael-数)。
 
 ##### Carmichael 函数
 
@@ -151,7 +151,7 @@ Carmichael 函数有如下性质：
     ??? note "证明"
         该定理等价于：
         
-        若模 $p^r$ 有 [原根](./primitive-root.md)，则 $\lambda(n)=\varphi(n)$，否则 $\lambda(n)=\dfrac{1}{2}\varphi(n)$.
+        若模 $n=p^r$ 有 [原根](./primitive-root.md)，则 $\lambda(n)=\varphi(n)$，否则 $\lambda(n)=\dfrac{1}{2}\varphi(n)$.
         
         当模 $p^r$ 有原根时，由 [原根存在定理](./primitive-root.md#原根存在定理) 可知命题成立。否则 $p=2$ 且 $r\geq 3$，我们有：
         
@@ -423,4 +423,4 @@ Carmichael 数有如下性质：
 
 [^erdos1956pseudoprimes]: Erdős, P. (1956). "On pseudoprimes and Carmichael numbers".*Publ. Math. Debrecen*. 4 (3–4): 201–206.
 
-[^pinchcarmichael]: PINCH, Richard GE. The Carmichael numbers up to 10 20.
+[^pinchcarmichael]: PINCH, Richard GE. The Carmichael numbers up to ${10}^{20}$.
