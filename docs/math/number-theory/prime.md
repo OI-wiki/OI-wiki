@@ -119,7 +119,7 @@
 
 如果 $a^{n−1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则 $n$ 被称为以 $a$ 为底的 **伪素数**。我们在实践中观察到，如果 $a^{n−1} \equiv 1 \pmod n$，那么 $n$ 通常是素数。但这里也有个反例：如果 $n = 341$ 且 $a = 2$，即使 $341 = 11 \cdot 31$ 是合数，有 $2^{340}\equiv 1 {\pmod {341}}$。事实上，$341$ 是最小的伪素数基数。
 
-很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。甚至有些合数 $n$ 满足对任意的 $a\nmid n$ 均有 $a^{n−1} \equiv 1 \pmod n$，这样的数称为 [Carmichael 数](#carmichael-数)。
+很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。甚至有些合数 $n$ 满足对任意满足 $n\nmid a$ 的整数 $a$ 均有 $a^{n−1} \equiv 1 \pmod n$，这样的数称为 [Carmichael 数](#carmichael-数)。
 
 ##### Carmichael 函数
 
@@ -139,7 +139,7 @@ $$
 
 Carmichael 函数有如下性质：
 
-1.  （Carmichael 定理）对任意素数 $p$ 和任意正整数 $r$，
+1.  （**Carmichael 定理**）对任意素数 $p$ 和任意正整数 $r$，
 
     $$
     \lambda\left(p^r\right)=\begin{cases}
@@ -171,8 +171,6 @@ Carmichael 函数有如下性质：
 
     2.  对任意正整数 $a$，$b$，有 $a\mid b\implies \lambda(a)\mid \lambda(b)$
 
-    3.  对任意正整数 $a$，$b$，有 $\lambda([a,b])=[\lambda(a),\lambda(b)]$
-
 2.  令 $n$ 的唯一分解式为 $n=\prod_{i=1}^k p_i^{r_i}$，则
 
     $$
@@ -180,6 +178,10 @@ Carmichael 函数有如下性质：
     $$
 
     由 [中国剩余定理](./crt.md) 和 Carmichael 定理易证。
+
+    进而有：
+
+    1.  对任意正整数 $a$，$b$，有 $\lambda([a,b])=[\lambda(a),\lambda(b)]$
 
 ##### Carmichael 数
 
@@ -201,12 +203,13 @@ Carmichael 数有如下性质：
 
 1.  Carmichael 数无平方因子且至少有 $3$ 个不同的质因子。
 2.  设 $C(n)$ 为小于 $n$ 的 Carmichael 数个数，则：
-    1.  （Alford*et al*. 1994[^alford1994infinitely]）$C(n)>n^{2/7}$
+    1.  （Alford, Granville, Pomerance. 1994[^alford1994infinitely]）$C(n)>n^{2/7}$
 
-        （Harman 2008[^harman2008watt]）$C(n)>n^{0.333~367~04}$
+        （Harman. 2008[^harman2008watt]）$C(n)>n^{0.333~367~04}$
 
         由此可知 Carmichael 数有无限多个。
-    2.  （Erdős 1956[^erdos1956pseudoprimes]）$C(n)<n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$，其中 $c$ 为常数。
+
+    2.  （Erdős. 1956[^erdos1956pseudoprimes]）$C(n)<n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$，其中 $c$ 为常数。
 
         由此可知 Carmichael 数的分布十分稀疏。实际上 $C(10^9)=646$，$C(10^{18})=1~401~644$[^pinchcarmichael].
 
