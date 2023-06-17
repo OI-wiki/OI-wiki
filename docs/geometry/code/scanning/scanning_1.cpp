@@ -16,9 +16,9 @@ bool cmp(node a, node b) {
   return a.data < b.data;
 }
 
-inline ll lowbit(ll i) { return i & (-i); }
+ll lowbit(ll i) { return i & (-i); }
 
-inline ll sum(ll x) {
+ll sum(ll x) {
   ll s = 0;
   for (; x > 0; x -= lowbit(x)) {
     s += c[x];

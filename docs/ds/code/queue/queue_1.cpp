@@ -14,7 +14,7 @@ using namespace std;
 const int M = 5e4 + 5, P = 505;  // 定义常数
 int I, m, p;
 
-inline int _(int d) { return (d + p) % p; }  // 用于取模
+int _(int d) { return (d + p) % p; }  // 用于取模
 
 namespace DQ {                // 双栈模拟双端队列
 pair<int, int> fr[M], bc[M];  // 二元组，详见题目3.4

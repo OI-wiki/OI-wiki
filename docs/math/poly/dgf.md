@@ -10,7 +10,7 @@ $$
 \tilde{F}(x) = \sum_{i\ge 1}\frac{f_i}{i^x}
 $$
 
-如果序列 $f$ 满足积性（是 [积性函数](../number-theory/du.md#积性函数)）：$\forall i\perp j, \; f_{ij} = f_i f_j$，那么其 DGF 可以由质数幂处的取值表示：
+如果序列 $f$ 满足积性（是 [积性函数](../number-theory/basic.md#积性函数)）：$\forall i\perp j, \; f_{ij} = f_i f_j$，那么其 DGF 可以由质数幂处的取值表示：
 
 $$
 \tilde{F}(x) = \prod_{p\in \mathcal{P}} \left(1 + \frac{f_p}{p^x} + \frac{f_{p^2}}{p^{2x}} + \frac{f_{p^3}}{p^{3x}} + \cdots \right)
@@ -230,4 +230,4 @@ $$
 
 因此 $\tilde{F}(x)\zeta(x-2) = \zeta(x-3)$。而 $\zeta(x-2)$ 对应的积性函数为 $I_2$，所以令 $g = I_2$ 即可。这样有 $f\ast g = I_3$，两者都是可以快速计算前缀和的。
 
-[^1]: <https://en.wikipedia.org/wiki/Generating_function#Dirichlet_series_generating_functions_(DGFs>)
+[^1]: <https://en.wikipedia.org/wiki/Generating_function#Dirichlet_series_generating_functions_(DGFs)>

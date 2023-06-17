@@ -79,7 +79,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
       }
     } a[maxn], b[maxn];
     
-    inline void addedge(int x, int y) {
+    void addedge(int x, int y) {
       e[++cnt] = (edge){y, head[x]};
       head[x] = cnt;
     }
@@ -96,7 +96,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
       id[g[x] = ++index] = x;  // 括号序
     }
     
-    inline int lca(int x, int y) {
+    int lca(int x, int y) {
       if (dep[x] < dep[y]) swap(x, y);
       if (dep[x] != dep[y]) {
         int dis = dep[x] - dep[y];
@@ -110,7 +110,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
       return fa[x][0];
     }
     
-    inline void add(int x) {
+    void add(int x) {
       if (vis[x])
         cur -= (long long)v[col[x]] * w[app[col[x]]--];
       else
@@ -118,7 +118,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
       vis[x] ^= 1;
     }
     
-    inline void modify(int x, int t) {
+    void modify(int x, int t) {
       if (vis[x]) {
         add(x);
         col[x] = t;
@@ -314,7 +314,7 @@ if (!sta.empty()) {
     #include <bits/stdc++.h>
     using namespace std;
     
-    inline int gi() {
+    int gi() {
       int x, c, op = 1;
       while (c = getchar(), c < '0' || c > '9')
         if (c == '-') op = -op;

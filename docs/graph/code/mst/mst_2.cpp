@@ -105,7 +105,7 @@ void kruskal() {  // 最小生成树
 int ans;
 int A, B, C, P;
 
-inline int rnd() { return A = (A * B + C) % P; }
+int rnd() { return A = (A * B + C) % P; }
 
 void initLog2() {
   for (int i = 2; i <= MAX_VAL_RANGE; i++) {

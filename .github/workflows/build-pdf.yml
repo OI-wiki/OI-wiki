@@ -31,6 +31,7 @@ jobs:
             libwebp
             librsvg
             git
+            python3
             py3-pygments
             inkscape
             libxml2
@@ -54,6 +55,8 @@ jobs:
             npm i
             cd ../..
             cd ./OI-Wiki-export/oi-wiki-export
+            python3 increase-mem-limit.py
+            fmtutil-sys --all
             npm i
             node index.js ../../
           root_file: |

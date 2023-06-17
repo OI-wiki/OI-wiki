@@ -172,6 +172,11 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
     
     总构造时间复杂度为 $O(nm)$。
 
+???+ note " 示例代码 [UVa10615 Rooks](https://www.luogu.com.cn/problem/UVA10615)"
+    ```cpp
+    --8<-- "docs/graph/code/color/color_1.cpp"
+    ```
+
 ??? note " 一道很不简单的例题 [uoj 444 二分图](https://uoj.ac/problem/444)"
     本题为笔者于 2018 年命制的集训队第一轮作业题。
     

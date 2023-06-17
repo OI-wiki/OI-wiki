@@ -300,10 +300,10 @@ $$
 
 可以把指数函数的主值部分与其他部分以乘积的形式分开。
 
-以自然对数 $e$ 为底的指数函数应当是：
+以自然对数 $\mathrm{e}$ 为底的指数函数应当是：
 
 $$
-e^z=\operatorname{exp} z 1^z
+\mathrm{e}^z=\operatorname{exp} z 1^z
 $$
 
 单值函数 $\operatorname{exp}$ 是以自然对数 $\mathrm{e}$ 为底的指数函数的主值。真正以 $\mathrm{e}$ 为底的指数函数是多值函数，而 $\operatorname{exp}$ 是一个形式上的记号，没有幂的含义。

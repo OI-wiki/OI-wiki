@@ -172,8 +172,8 @@ $$
 
 $$
 \begin{aligned}
-B(z)e^z &= z+B(z)\\
-B(z)&=\dfrac{z}{e^z - 1}
+B(z)\mathrm{e}^z &= z+B(z)\\
+B(z)&=\dfrac{z}{\mathrm{e}^z - 1}
 \end{aligned}
 $$
 
@@ -191,17 +191,17 @@ $$
 $$
 \begin{aligned}
 F_n(z) &=\sum_{i=0}^{n-1}\sum_{m\ge 0}\dfrac{i^mz^m}{m!}\\
-       &=\sum_{i=0}^{n-1}e^{iz}\\
-       &=\dfrac{e^{nz} - 1}{e^z - 1}\\
-       &=\dfrac{z}{e^z - 1}\cdot\dfrac{e^{nz} - 1}{z}
+       &=\sum_{i=0}^{n-1}\mathrm{e}^{iz}\\
+       &=\dfrac{\mathrm{e}^{nz} - 1}{\mathrm{e}^z - 1}\\
+       &=\dfrac{z}{\mathrm{e}^z - 1}\cdot\dfrac{\mathrm{e}^{nz} - 1}{z}
 \end{aligned}
 $$
 
-代入 $B(z)=\dfrac{z}{e^z - 1}$：
+代入 $B(z)=\dfrac{z}{\mathrm{e}^z - 1}$：
 
 $$
 \begin{aligned}
-F_n(z) &= B(z)\cdot\dfrac{e^{nz} - 1}{z}\\
+F_n(z) &= B(z)\cdot\dfrac{\mathrm{e}^{nz} - 1}{z}\\
 &= \left(\sum_{i\ge 0}\dfrac{B_i}{i!} \right)\left(\sum_{i\ge 1}\dfrac{n^i z^{i - 1}}{i!}\right)\\
 &= \left(\sum_{i\ge 0}\dfrac{B_i}{i!} \right)\left(\sum_{i\ge 0}\dfrac{n^{i+1} z^{i}}{(i+1)!}\right)
 \end{aligned}

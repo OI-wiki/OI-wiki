@@ -87,4 +87,4 @@ author: zarrtic
 
 ## 参考资料
 
-[^compiler]: [编译器 - OI Wiki](https://oi-wiki.org/tools/compiler/)
+[^compiler]: [编译器 - OI Wiki](../compiler.md)

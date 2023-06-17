@@ -94,7 +94,7 @@ $$
     double mindist;
     int ansa, ansb;
     
-    inline void upd_ans(const pt& a, const pt& b) {
+    void upd_ans(const pt& a, const pt& b) {
       double dist =
           sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + .0);
       if (dist < mindist) mindist = dist, ansa = a.id, ansb = b.id;
@@ -190,7 +190,7 @@ $$
       bool operator()(const point &a, const point &b) const { return a.y < b.y; }
     };
     
-    inline void upd_ans(const point &a, const point &b) {
+    void upd_ans(const point &a, const point &b) {
       double dist = sqrt(pow((a.x - b.x), 2) + pow((a.y - b.y), 2));
       if (ans > dist) ans = dist;
     }

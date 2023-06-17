@@ -69,7 +69,7 @@ class DynamicForest {
           from_(from),
           to_(to) {}
 
-    inline void Maintain() {
+    void Maintain() {
       size_ = 1;
       if (left_) {
         size_ += left_->size_;
@@ -82,9 +82,9 @@ class DynamicForest {
     }
   };
 
-  static inline int GetSize(Node* p) { return p == nullptr ? 0 : p->size_; }
+  static int GetSize(Node* p) { return p == nullptr ? 0 : p->size_; }
 
-  static inline Node* FindRoot(Node* p) {
+  static Node* FindRoot(Node* p) {
     if (!p) return nullptr;
 
     while (p->parent_ != nullptr) p = p->parent_;
@@ -109,12 +109,12 @@ class DynamicForest {
     return ss.str();
   }
 
-  inline Node* AllocateNode(int u, int v) {
+  Node* AllocateNode(int u, int v) {
     Node* p = new Node(u, v);
     return p;
   }
 
-  inline void FreeNode(Node*& p) {
+  void FreeNode(Node*& p) {
     if (p) {
       delete p;
       p = nullptr;

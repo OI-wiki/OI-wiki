@@ -1,4 +1,4 @@
-author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007, Persdre
+author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007, Persdre, XiaoSuan250
 
 本页面主要介绍了动态规划的基本思想，以及动态规划中状态及状态转移方程的设计思路，帮助各位初学者对动态规划有一个初步的了解。
 
@@ -172,7 +172,7 @@ int dp() {
 考虑进来一个元素 $a_i$：
 
 1.  元素大于等于 $d_{len}$，直接将该元素插入到 $d$ 序列的末尾。
-2.  元素小于 $d_{len}$，找到 **第一个** 大于它的元素，插入进去，丢弃在它之后的全部元素。
+2.  元素小于 $d_{len}$，找到 **第一个** 大于它的元素，用 $a_i$ 替换它。
 
 参考代码如下：
 

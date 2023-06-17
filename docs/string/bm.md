@@ -1096,12 +1096,12 @@ $$
 
 $$
 probdelta1(m,k) =
-\left\{ \begin{array}{lcl}
-(1-p)^m\times \left\{ \begin{array}{lcl} 1  & \text{for} &m+1=patlen \\ p &\text{for}&m+1\neq patlen  \\\end{array}\right. & \text{for} & k = 1 \\
-(1-p)^{m+k-1}\times p & \text{for} & 1 < k < patlen - m\\
-(1-p)^{patlen-1} & \text{for} & k = patlen - m\\
-0 & \text{for} & patlen patlen - m < k \leqslant patlen
-\end{array}\right.
+\begin{cases}{lcl}
+(1-p)^m\times \begin{cases}{lcl} 1  & \text{for}~m+1=patlen \\ p &\text{for}~m+1\neq patlen  \\\end{cases} & \text{for}~ k = 1 \\
+(1-p)^{m+k-1}\times p & \text{for}~ 1 < k < patlen - m\\
+(1-p)^{patlen-1} & \text{for}~ k = patlen - m\\
+0 & \text{for}~ patlen patlen - m < k \leqslant patlen
+\end{cases}
 $$
 
 #### $delta_2$
@@ -1110,10 +1110,10 @@ $$
 
 $$
 probpr(m,k) =
-\left\{ \begin{array}{lcl}
-(1-p)\times p^m & \text{for} & 1 \leqslant k < patlen - m\\
-p^{patlen-k} & \text{for} & patlen - m \leqslant k \leqslant patlen
-\end{array}\right.
+\begin{cases}{lcl}
+(1-p)\times p^m & \text{for}~ 1 \leqslant k < patlen - m\\
+p^{patlen-k} & \text{for}~ patlen - m \leqslant k \leqslant patlen
+\end{cases}
 $$
 
 于是 $delta_2(m,k)$ 就可以通过保证 $pr(m,k)$ 存在并且 $k$ 更小的 $delta_2$ 不存在，来递归计算：
@@ -1132,26 +1132,22 @@ $$
 
 $$
 probdelta2'(m,k) =
-\left\{ \begin{array}{lcl}
-0 & \text{for} & k = 1\\
-probpr(m,k)(1-\sum_{n=2}^{k-1}probdelta2'(m, n)) & \text{for} & 1 \leqslant k \leqslant patlen
-\end{array}\right.
+\begin{cases}
+0 & \text{for}~ k = 1\\
+probpr(m,k)\left(1-\sum_{n=2}^{k-1}probdelta2'(m, n)\right) & \text{for}~ 1 \leqslant k \leqslant patlen
+\end{cases}
 $$
 
 于是通过组合 $delta_1$ 和 $delta_2$ 起作用的情况，我们就得到了 BoyerMoore 算法的 $skip$ 概率函数：
 
 $$
-skip(m,k) = \left\{\begin{array}{lcl}
-probdelta1(m, 1) \times probdelta2(m, 1) & \text{for} & k = 1\\
-\\
-\\
-\\
-\textit{prodelta1_worthless}(m)\times probdelta2'(m, 1)\\
-+\ probdelta1(m, k)\times \sum_{n=1}^{k-1}probdelta2(m, n)\\
-+\ probdelta2(m, k)\times \sum_{n=1}^{k-1}probdelta1(m,n)\\
-+\ probdelta1(m, k)\times probdelta2(m, k)
-& \text{for} & 1 < k \leqslant patlen
-\end{array}\right.
+skip(m,k) = \begin{cases}
+probdelta1(m, 1) \times probdelta2(m, 1) & \text{for}~k = 1\\
+\textit{prodelta1\_worthless}(m) \times probdelta2'(m, 1)\\
++~probdelta1(m, k) \times \sum_{n=1}^{k-1} probdelta2(m, n)\\
++~probdelta2(m, k) \times \sum_{n=1}^{k-1} probdelta1(m,n)\\
++~probdelta1(m, k) \times probdelta2(m, k) & \text{for}~1 < k \leqslant patlen
+\end{cases}
 $$
 
 ### 分析比较
@@ -1349,11 +1345,11 @@ def plot(p, title, N=30):
 
 <img src="../images/BM/plot256.svg" style="zoom: 200%;" />
 
-观察这个图像，令人印象深刻的首先就是抬头的一条大兰线，几乎笔直地画出了算法性能的下限，不愧是 KMP 算法，$O(n)$ 的时间复杂度，一看就很真实（ﾟ▽ﾟ)/。
+观察这个图像，令人印象深刻的首先就是抬头的一条大兰线，几乎笔直地画出了算法性能的下限，不愧是 KMP 算法，$O(n)$ 的时间复杂度，一看就很真实。
 
 接着会发现 BoyerMoore 算法与简化版 BoyerMoore 算法高度重叠的这条红绿紫曲线，同时也是 $\dfrac{1}{patlen}$，
 
-这就是在一般字符集下随机文本搜索能达到的 $O(\dfrac{n}{m})$ 的强力算法吗？(ﾟ△ﾟ;ﾉ)ﾉ
+这就是在一般字符集下随机文本搜索能达到的 $O(\dfrac{n}{m})$ 的强力算法吗？
 
 另外此时可以绝大多数的字符跳转依靠 $delta_1$（比 $delta_2$ 高几个数量），这也是基于 $delta_1$ 表的 BM 变种算法最佳的应用场景！
 
@@ -1361,7 +1357,7 @@ def plot(p, title, N=30):
 
 <img src="../images/BM/plot4.svg" style="zoom:200%;" />
 
-曲线出现了明显的分化，当然 KMP 还是一如既往地稳定（ﾟ▽ﾟ)/，如果此时在测试中监控一下一下 $delta_1$ 表和 $delta_2$ 表作用情况会发现：$delta_2$ 起作用的次数超过了 $delta_1$，而且 $delta_2$ 贡献的跳过字符数更是远超 $delta_1$，思考下，这件事其实也很好理解。
+曲线出现了明显的分化，当然 KMP 还是一如既往地稳定，如果此时在测试中监控一下一下 $delta_1$ 表和 $delta_2$ 表作用情况会发现：$delta_2$ 起作用的次数超过了 $delta_1$，而且 $delta_2$ 贡献的跳过字符数更是远超 $delta_1$，思考下，这件事其实也很好理解。
 
 总结一下，通过概率模型的计算，一方面看到了在较大的字符集，比如日常搜索的过程中 BoyerMoore 系列算法的优越表现，其中主要依赖 $delta_1$ 表实现字符跳转；另一方面，在较小的字符集里，$delta_1$ 的作用下降，而 $delta_2$ 的作用得到了体现。如果有一定富裕空间的情况下，使用完整的空间复杂度为 $O(m)$ 的 BoyerMoore 算法应该是一种适用各种情况、综合表现都很优异的算法选择。
 

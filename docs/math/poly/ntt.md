@@ -1,8 +1,8 @@
-author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni
+author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni, Saisyc, 383494, Tiphereth-A
 
 ## 简介
 
-**数论变换**(number-theoretic transform, NTT）是离散傅里叶变换（DFT）在数论基础上的实现；**快速数论变换**(fast number-theoretic transform, FNTT）是 [快速傅里叶变换](./fft.md)（FFT）在数论基础上的实现。
+**数论变换**（number-theoretic transform, NTT）是离散傅里叶变换（DFT）在数论基础上的实现；**快速数论变换**（fast number-theoretic transform, FNTT）是 [快速傅里叶变换](./fft.md)（FFT）在数论基础上的实现。
 
 **数论变换** 是一种计算卷积（convolution）的快速算法。最常用算法就包括了前文提到的快速傅里叶变换。然而快速傅立叶变换具有一些实现上的缺点，举例来说，资料向量必须乘上复数系数的矩阵加以处理，而且每个复数系数的实部和虚部是一个正弦及余弦函数，因此大部分的系数都是浮点数，也就是说，必须做复数而且是浮点数的运算，因此计算量会比较大，而且浮点数运算产生的误差会比较大。
 
@@ -16,9 +16,9 @@ NTT 解决的是多项式乘法带模数的情况，可以说有些受模数的�
 
 ### 数论变换
 
-在数学中，NTT 是关于任意 [环](../group-theory.md#环) 上的离散傅立叶变换（DFT）。在有限域的情况下，通常称为数论变换 (NTT)。
+在数学中，NTT 是关于任意 [环](../group-theory.md#环) 上的离散傅立叶变换（DFT）。在有限域的情况下，通常称为数论变换（NTT）。
 
-**数论变换**(NTT）是通过将离散傅立叶变换化为 $F={\mathbb {Z}/p}$，整数模质数 $p$。这是一个 **有限域**，只要 $n$ 可除 $p-1$，就存在本原 $n$ 次方根，所以我们有 $p=\xi n+1$ 对于 正整数 $ξ$。具体来说，对于质数 $p=qn+1, (n=2^m)$，原根 $g$ 满足 $g^{qn} \equiv 1 \pmod p$, 将 $g_n=g^q\pmod p$ 看做 $\omega_n$ 的等价，则其满足相似的性质，比如 $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$。
+**数论变换**（NTT）是通过将离散傅立叶变换化为 $F={\mathbb {Z}/p}$，整数模质数 $p$。这是一个 **有限域**，只要 $n$ 可除 $p-1$，就存在本原 $n$ 次方根，所以我们有 $p=\xi n+1$ 对于 正整数 $ξ$。具体来说，对于质数 $p=qn+1, (n=2^m)$，原根 $g$ 满足 $g^{qn} \equiv 1 \pmod p$, 将 $g_n=g^q\pmod p$ 看做 $\omega_n$ 的等价，则其满足相似的性质，比如 $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$。
 
 因为这里涉及到数论变化，所以 $N$（为了区分 FFT 中的 $n$，我们把这里的 $n$ 称为 $N$）可以比 FFT 中的 $n$ 大，但是只要把 $\frac{qN}{n}$ 看做这里的 $q$ 就行了，能够避免大小问题。
 
@@ -32,7 +32,7 @@ $$
 p=998244353=7 \times 17 \times 2^{23}+1, g=3
 $$
 
-就是 $g^{qn}$ 的等价 $e^{2\pi n}$。
+就是 $g^{qn}$ 的等价 $\mathrm{e}^{2\pi n}$。
 
 迭代到长度 $l$ 时 $g_l = g^{\frac{p-1}{l}}$，或者 $\omega_n = g_l = g_N^{\frac{N}{l}} = g_N^{\frac{p-1}{l}}$。
 
@@ -84,7 +84,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     #include <vector>
     using namespace std;
     
-    inline int read() {
+    int read() {
       int x = 0, f = 1;
       char ch = getchar();
       while (ch < '0' || ch > '9') {
@@ -106,7 +106,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     
     const int N = 300100, P = 998244353;
     
-    inline int qpow(int x, int y) {
+    int qpow(int x, int y) {
       int res(1);
       while (y) {
         if (y & 1) res = 1ll * res * x % P;
@@ -172,9 +172,94 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     }
     ```
 
+## 扩展 - 复数论变换（CNTT）
+
+$\mathbf Z_p$ 上的 NTT 常用于替代 FFT 以提高效率，但是严重依赖模数：$p$ 是 $2^mk+1$ 型（如费马质数）时能快速计算，是 $2^mk-1$ 型（如梅森质数）时却难以进行。
+
+对此，[*Number theoretic transforms to implement fast digital convolution*](https://ieeexplore.ieee.org/document/1451721) 中（section IX, subsection B, P559-560）的快速复数论变换（Complex Number Theoretic Transforms, CNTT）即 $\mathbf Z_p[\mathrm{i}]$ 上的 DFT 能解决，但未被重视。
+
+对于模 $2^mk-1$ 型质数的卷积问题，CNTT 优于三模数 NTT 和拆系数 FFT。
+
+### DFT 可逆的条件
+
+交换环 $R$ 上的 DFT 可逆的充要条件是：存在 $n$ 次本原单位根 $\omega$，且 $\omega^1-1,\omega^2-1,\cdots,\omega^{n-1}-1$ 可逆。
+
+### 模 p 高斯整数环
+
+即 $\mathbf{Z}_p[\mathrm{i}]$，其中 $p \in \mathbf{P}$（$\mathbf{P}$ 为素数集）。
+
+为便捷起见，以下用 $p_-$ 表示 $4k-1$ 型质数，$p_+$ 表示 $4k+1$ 型质数。
+
+???+ note "定理 1"
+    $\mathbf{Z}_p[\mathrm{i}]$ 构成数域
+
+    ??? note "证明"
+        对于 $p_+$，注意到 $\left(\dfrac{-1}{p_+}\right)=1$，故此时的 $\mathbf{Z}_{p_+}[\mathrm{i}]=\mathbf{Z}_{p_+}$. 因此以下假定 $p$ 为 $p_-$.
+
+        由于 $\mathbf Z_p[\mathrm{i}]$ 为 $\mathbf{C}$ 的子集，另外不难发现 $\mathbf Z_p[\mathrm{i}]$ 上有加法幺元 $0$ 和乘法幺元 $1$，故只需证明其对四则运算封闭即可。
+
+        任取 $z_1=a_1+b_1\mathrm{i}\in\mathbf Z_p[\mathrm{i}]$，$z_2=a_2+b_2\mathrm{i}\in\mathbf{Z}_p[\mathrm{i}]$，则不难发现
+
+        - $\overline{z_1},\overline{z_2}\in\mathbf{Z}_p[\mathrm{i}]$
+        - $|z_1|^2\equiv a_1^2+b_1^2\pmod{p}$，$|z_2|^2\equiv a_2^2+b_2^2\pmod{p}$
+        - $\forall k\in\mathbf{Z}_p,~~kz_1\in\mathbf{Z}_p[\mathrm{i}]$
+
+        加法与减法的封闭性：对上述的 $z_1,z_2$，有
+
+        $$
+        z_1\pm z_2=(a_1\pm a_2)+(b_1\pm b_2)\mathrm{i}\in\mathbf{Z}_p[\mathrm{i}]
+        $$
+
+        乘法的封闭性：对上述的 $z_1,z_2$，有
+
+        $$
+        z_1z_2=(a_1a_2-b_1b_2)+(a_1b_2+a_2b_1)\mathrm{i}\in\mathbf{Z}_p[\mathrm{i}]
+        $$
+
+        除法的封闭性：对上述的 $z_1,z_2$（$z_2\ne 0$），有
+
+        $$
+        \frac{z_1}{z_2}=(|z_2|^2)^{-1}z_1\overline{z_2}\in\mathbf{Z}_p[\mathrm{i}]
+        $$
+
+???+ note "定理 2"
+    $\forall k\in\mathbf{Z}_+$，$\mathbf{Z}_p\left[\sqrt{-k^2}\right]=\mathbf{Z}_p\left[\sqrt{-1}\right]=\mathbf{Z}_p[\mathrm{i}]$
+
+    ??? note "证明"
+        任取 $z=a+b\sqrt{-k^2}\in\mathbf{Z}_p\left[\sqrt{-k^2}\right]$，则 $z=a+bk\sqrt{-1}\in\mathbf{Z}_p\left[\sqrt{-1}\right]=\mathbf{Z}_p[\mathrm{i}]$
+
+$p_-$ 是高斯整数 $\mathbf{Z}_p[\mathrm{i}]$ 的素元而 $p_+$ 不是，因此 $\mathbf{Z}_{p_-}[\mathrm{i}]$ 是域而 $\mathbf{Z}_{p_+}[\mathrm{i}]$ 上仍可进行 CNTT。
+
+-   对于 $p_-$，因为 $\left(\dfrac{x}{p_-}\right)\left(\dfrac{-x}{p_-}\right)=-1，~\forall x\nmid p_-$，故
+
+    $$
+    \forall \left(\frac{x}{p_-}\right)=-1, \exists k\in\mathbf{Z}_{+},~s.t.~-x\equiv k^2\pmod{p_-}
+    $$
+
+    因此由定理 2 可知，$\mathrm{i}^2$ 只需为模 $p_-$ 意义下的一个二次非剩余即可，这样 CNTT 的模数也可使用 NTT 模数。
+
+    $\mathbf{Z}_{p_-}[\mathrm{i}]$ 的大小是 $p_-^2$，只要用一些方法找出 $g = a+b\mathrm{i},g^{(p_-^2-1)/2} \equiv -1 \pmod{p_-}$，则 $g$ 就是我们要找的 $p_-^2-1$ 次「原根」，剩下的和 NTT 类似。用 CNTT 后最大变换长度能取到 NTT 模数级别；
+
+-   对于 $p_+$，用 CNTT 可以将最大变换长度翻倍。
+
+### 常用模数的单位根
+
+-   $\mathbf{Z}_{p_-}\left[\sqrt{-1}\right]$，$n=2^{21}$，$p_-=999292927=2^{20}\times953-1$ 的 $p_-^2-1$ 次单位根 $\omega=1+8\mathrm{i}$
+-   $\mathbf{Z}_{p_+}\left[\sqrt{-1}\right]$，$n=2^{23}$，$p_+=998244353=2^{23}\times119+1$ 的 $p_+-1$ 次单位根 $\omega=1+\mathrm{i}$
+-   $\mathbf{Z}_{p_+}\left[\sqrt{-1}\right]$，$n=2^{16}$，$p_+=65537=2^{16}+1$ 的 $p_+-1$ 次单位根 $\omega=4+17573\mathrm{i}$
+-   $\mathbf{Z}_{p_-}\left[\sqrt{3}\right]$，$n=2^{31}$，$p_-=2147483647=2^{31}-1$ 的 $p_-^2-1$ 次单位根 $\omega=1+\sqrt{3}$
+
+务必注意 $\omega^{-1}\equiv\bar\omega\pmod p$ 不一定成立。
+
+### 性能和应用
+
+[洛谷 P3803 评测记录](https://www.luogu.com.cn/record/list?pid=P3803&user=saisyc&page=7) 显示，按照*Optimization of number-theoretic transform in programming contests*实现的 NTT 及与其同构的 CNTT, FFT 进行 $2^{21}\approx2.1\times10^6$ 长度的变换用时分别约为 $44,97,115$ 毫秒。
+
+对于 $\mathbf{Z}_{998244353}\left[\sqrt{3}\right]$，$998244353$ 的 $2^{24}$ 次单位根为 $0+125038983\sqrt{3}$，无读入优化等优化的 [CNTT](https://www.luogu.com.cn/record/106711483)，它的常数是同等条件下 [FFT](https://www.luogu.com.cn/record/106683960) 和 [NTT](https://www.luogu.com.cn/record/106706552) 的 $3$ 倍左右；应用三次变两次优化后，[CNTT](https://www.luogu.com.cn/record/106997466) 常数约等于无优化的 FFT。
+
 ## 参考资料与拓展阅读
 
 1.  [FWT（快速沃尔什变换）零基础详解 qaq（ACM/OI）](https://zhuanlan.zhihu.com/p/41867199)
 2.  [FFT（快速傅里叶变换）0 基础详解！附 NTT（ACM/OI）](https://zhuanlan.zhihu.com/p/40505277)
-3.  [Number-theoretic transform(NTT) - Wikipedia](https://en.wikipedia.org/wiki/Discrete_Fourier_transform_\(general\)#Number-theoretic_transform)
+3.  [Number-theoretic transform(NTT) - Wikipedia](https://en.wikipedia.org/wiki/Discrete_Fourier_transform_%28general%29#Number-theoretic_transform)
 4.  [Tutorial on FFT/NTT—The tough made simple. (Part 1)](https://codeforces.com/blog/entry/43499)
