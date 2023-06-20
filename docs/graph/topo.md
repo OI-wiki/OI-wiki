@@ -65,9 +65,13 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
 
 ### 最早和最迟发生时间的递推关系
 
-$ve(j) = \max\{ve(k) + dut(\langle k,j\rangle)\}  \langle k,j\rangle \in T,2\le j\le n$
+$$
+ve(j) = \max\{ve(k) + dut(\langle k,j\rangle)\},\quad \langle k,j\rangle \in T,2\le j\le n
+$$
 
-$vl(j) = \min\{vl(k) - dut(\langle j,k\rangle)\}  \langle j,k\rangle \in S,1\le j\le n-1$
+$$
+vl(j) = \min\{vl(k) - dut(\langle j,k\rangle)\},\quad \langle j,k\rangle \in S,1\le j\le n-1
+$$
 
 按拓扑顺序求，最早是从前往后，前驱顶点的最早开始时间与边的权重之和最大者，最迟是从后往前，后继顶点的最迟开始时间与边的权重之差的最小者。
 
