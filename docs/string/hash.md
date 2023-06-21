@@ -66,7 +66,7 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
     int get_hash(const string& s) {
       int res = 0;
       for (int i = 0; i < s.size(); ++i) {
-        res = (ll)(res * B + s[i]) % M;
+        res = ((ll)res * B + s[i]) % M;
       }
       return res;
     }
