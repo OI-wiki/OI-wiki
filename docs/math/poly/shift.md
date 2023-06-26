@@ -457,6 +457,6 @@ $$
 
 ## 参考文献
 
--   Alin Bostan, Pierrick Gaudry, and Eric Schost. Linear recurrences with polynomial coefficients and application to integer factorization and Cartier-Manin operator.
+-   Alin Bostan, Pierrick Gaudry, and Eric Schost. Linear recurrences with polynomial coefficients and application to integer factorization and Cartier–Manin operator.
 -   Min\_25 的博客
 -   [ZZQ 的博客 - 阶乘模大质数](https://www.cnblogs.com/zzqsblog/p/8408691.html)
