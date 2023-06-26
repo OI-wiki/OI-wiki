@@ -1,6 +1,6 @@
 ## 前言
 
-1959 年，"支配" 这一概念由 Reese T. Prosser 在 [一篇关于网络流的论文](http://portal.acm.org/ft_gateway.cfm?id=1460314&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747) 中提出，但并未提出具体的求解算法；直到 1969 年，Edward S. Lowry 和 C. W. Medlock 才首次提出了 [有效的求解算法](http://portal.acm.org/ft_gateway.cfm?id=362838&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747)。而目前使用最为广泛的 Lengauer-Tarjan 算法则由 Lengauer 和 Tarjan 于 1979 年在 [一篇论文](https://www.cs.princeton.edu/courses/archive/fall03/cs528/handouts/a%20fast%20algorithm%20for%20finding.pdf) 中提出。
+1959 年，"支配" 这一概念由 Reese T. Prosser 在 [一篇关于网络流的论文](http://portal.acm.org/ft_gateway.cfm?id=1460314&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747) 中提出，但并未提出具体的求解算法；直到 1969 年，Edward S. Lowry 和 C. W. Medlock 才首次提出了 [有效的求解算法](http://portal.acm.org/ft_gateway.cfm?id=362838&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747)。而目前使用最为广泛的 Lengauer–Tarjan 算法则由 Lengauer 和 Tarjan 于 1979 年在 [一篇论文](https://www.cs.princeton.edu/courses/archive/fall03/cs528/handouts/a%20fast%20algorithm%20for%20finding.pdf) 中提出。
 
 在 OI 界中，支配树的概念最早在 [ZJOI2012 灾难](https://www.luogu.com.cn/problem/P2597) 中被引入，当时也被称为 "灭绝树"；陈孙立也在 2020 年的国家集训队论文中介绍了这一算法。
 
@@ -24,7 +24,7 @@
 
 **引理 1：** $s$ 是其所有结点的支配点；任意一个结点都是其自身的支配点。
 
-\*\* 证明：\*\* 显然任何一条从 $s$ 到 $u$ 的路径都必须经过 $s$ 和 $u$ 这两个结点。
+**证明：** 显然任何一条从 $s$ 到 $u$ 的路径都必须经过 $s$ 和 $u$ 这两个结点。
 
 \*\* 引理 2：\*\* 仅考虑简单路径得出的支配关系与考虑所有路径得出的关系相同。
 
@@ -91,7 +91,9 @@ void getdom() {
 
 这个问题中，方程为：
 
-$dom(u)=\{u\} \cup (\bigcap_{v\in pre(u)}{dom(v)})$
+$$
+dom(u)=\{u\} \cup \left(\bigcap_{v\in pre(u)}{dom(v)}\right)
+$$
 
 其中 $pre(u)$ 定义为 $u$ 的前驱结点组成的点集。这个方程可以通过引理 3 得到。
 
@@ -257,9 +259,9 @@ void build() {
 }
 ```
 
-### Lengauer-Tarjan
+### Lengauer–Tarjan 算法
 
-Lengauer-Tarjan 是求解支配树最有名的算法之一，可以在 $O(n\alpha(n, m))$ 的时间复杂度内求出一个有向图的支配树。这一算法引入了 **半支配点** 的概念，并通过半支配点辅助求得直接支配点。
+Lengauer–Tarjan 算法是求解支配树最有名的算法之一，可以在 $O(n\alpha(n, m))$ 的时间复杂度内求出一个有向图的支配树。这一算法引入了 **半支配点** 的概念，并通过半支配点辅助求得直接支配点。
 
 #### 约定
 
@@ -623,7 +625,7 @@ int d[MAX], w[MAX], siz[MAX], p[MAX], f[MAX][17];
 vector<int> e[MAX], g[MAX], h[MAX];
 stack<int> s;
 
-inline void topo() {
+void topo() {
   s.push(0);
   for (int i = 1; i <= n; ++i) {
     if (!w[i]) {
@@ -645,7 +647,7 @@ inline void topo() {
   }
 }
 
-inline int lca(int u, int v) {
+int lca(int u, int v) {
   if (d[u] < d[v]) {
     std::swap(u, v);
   }
