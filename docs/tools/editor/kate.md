@@ -66,7 +66,7 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 |      D     |                      [serve-d](https://github.com/Pure-D/serve-d)                      |
 |   Fortran  |               [fortls](https://github.com/hansec/fortran-language-server)              |
 |     Go     |                        [gopls](https://golang.org/x/tools/gopls)                       |
-|   Haskell  | [haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server") |
+|   Haskell  | [haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server)  |
 | JavaScript |  [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
 |    OCaml   |                     [ocamllsp](https://github.com/ocaml/ocaml-lsp)                     |
 |    Perl    |        [Perl-LanguageServer](https://github.com/richterger/Perl-LanguageServer)        |
