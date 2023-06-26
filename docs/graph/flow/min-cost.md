@@ -32,7 +32,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
 
 ### 时间复杂度
 
-如果使用 [Bellman–Ford 算法](../shortest-path.md#bellman-ford-算法) 求解最短路，每次找增广路的时间复杂度为 $O(nm)$。设该网络的最大流为 $f$，则最坏时间复杂度为 $O(nmf)$。事实上，SSP 算法是 [伪多项式时间](../../misc/cc-basic.md#pseudo-polynomial-time-伪多项式时间) 的。
+如果使用 [Bellman–Ford 算法](../shortest-path.md#bellmanford-算法) 求解最短路，每次找增广路的时间复杂度为 $O(nm)$。设该网络的最大流为 $f$，则最坏时间复杂度为 $O(nmf)$。事实上，SSP 算法是 [伪多项式时间](../../misc/cc-basic.md#pseudo-polynomial-time-伪多项式时间) 的。
 
 ???+ note "为什么 SSP 算法是伪多项式时间的？"
     SSP 算法的时间复杂度有 $O(nmf)$ 的上界，这是一个关于值域的多项式，所以是伪多项式时间的。
