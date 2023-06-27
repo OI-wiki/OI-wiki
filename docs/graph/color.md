@@ -39,15 +39,15 @@
     
     至此命题证明完毕。
 
-### Welsh—Powell 算法
+### Welsh–Powell 算法
 
-Welsh—Powell 算法是一种在 **不限制最大着色数** 时寻找着色方案的贪心算法。
+Welsh–Powell 算法是一种在 **不限制最大着色数** 时寻找着色方案的贪心算法。
 
 对于无自环无向图 G，设 $V(G):=\{v_1,v_2,\dots,v_n\}$ 满足。
 
 $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 
-按 Welsh—Powell 算法着色后的颜色数至多为 $\max_{i=1}^n\min\{\deg(v_i)+1,i\}$, 该算法的时间复杂度为 $O\left(n\max_{i=1}^n\min\{\deg(v_i)+1,i\}\right)=O(n^2)$。
+按 Welsh–Powell 算法着色后的颜色数至多为 $\max_{i=1}^n\min\{\deg(v_i)+1,i\}$, 该算法的时间复杂度为 $O\left(n\max_{i=1}^n\min\{\deg(v_i)+1,i\}\right)=O(n^2)$。
 
 #### 过程
 
@@ -70,7 +70,7 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 | 度数                      | 5 | 5 | 4 | 4 | 4 | 3 | 3 | 3 | 3  | 3  | 2  | 2  | 1  |
 | $\min\{\deg(v_i)+1,i\}$ | 1 | 2 | 3 | 4 | 5 | 4 | 4 | 4 | 4  | 4  | 3  | 3  | 2  |
 
-所以 Welsh—Powell 算法着色后的颜色数最多为 5。
+所以 Welsh–Powell 算法着色后的颜色数最多为 5。
 
 另外因为该图有子图 $C_3$, 所以色数一定大于等于 3。
 
@@ -109,7 +109,7 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
         1.  $j>i_{m,l_m}$
         2.  $v_j$ 与 $v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}$ 均不相邻
     
-    显然若将 $V_i$ 中的点染成第 i 种颜色，则该染色方案即为 Welsh—Powell 算法给出的方案，显然有
+    显然若将 $V_i$ 中的点染成第 i 种颜色，则该染色方案即为 Welsh–Powell 算法给出的方案，显然有
     
     -   $V_1\neq\varnothing$
     -   $V_i\cap V_j=\varnothing\iff i\neq j$

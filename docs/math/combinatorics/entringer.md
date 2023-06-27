@@ -21,9 +21,9 @@ $$
 E(n,k)=E(n,k-1)+E(n-1,n-k)
 $$
 
-## Seidel-Entringer-Arnold 三角
+## Seidel–Entringer–Arnold 三角
 
-恩特林格数的一个适当排列的数字三角，称为 Seidel-Entringer-Arnold 三角（Seidel-Entringer-Arnold triangle，[OEIS A008280](http://oeis.org/A008280)）。该三角是按照「牛耕」顺序（ox-plowing order）排列的恩特林格数 $E_(n,k)$：
+恩特林格数的一个适当排列的数字三角，称为 Seidel–Entringer–Arnold 三角（Seidel–Entringer–Arnold triangle，[OEIS A008280](http://oeis.org/A008280)）。该三角是按照「牛耕」顺序（ox-plowing order）排列的恩特林格数 $E_(n,k)$：
 
 $$
 \begin{aligned}
@@ -55,7 +55,7 @@ $$
 \sum_{m=0}^\infty\sum_{n=0}^\infty E\left(m+n,\frac{1}{2}\left(m+n+{(-1)}^{m+n}(n-m)\right)\right)\frac{x^m}{m!}\frac{x^n}{n!}=\frac{\cos x+\sin x}{\cos (x+y)}
 $$
 
-这个生成函数的系数分布事实上是上面的 Seidel-Entringer-Arnold 三角的简单拉伸变形：
+这个生成函数的系数分布事实上是上面的 Seidel–Entringer–Arnold 三角的简单拉伸变形：
 
 $$
 \begin{array}{ccccc}

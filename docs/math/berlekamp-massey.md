@@ -1,6 +1,6 @@
 author: AntiLeaf
 
-Berlekamp-Massey 算法是一种用于求数列的最短递推式的算法。给定一个长为 $n$ 的数列，如果它的最短递推式的阶数为 $m$，则 Berlekamp-Massey 算法能够在 $O(nm)$ 时间内求出数列的每个前缀的最短递推式。最坏情况下 $m = O(n)$，因此算法的最坏复杂度为 $O(n^2)$。
+Berlekamp–Massey 算法是一种用于求数列的最短递推式的算法。给定一个长为 $n$ 的数列，如果它的最短递推式的阶数为 $m$，则 Berlekamp–Massey 算法能够在 $O(nm)$ 时间内求出数列的每个前缀的最短递推式。最坏情况下 $m = O(n)$，因此算法的最坏复杂度为 $O(n^2)$。
 
 ### 定义
 
@@ -99,17 +99,17 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_k\
     }
     ```
 
-朴素的 Berlekamp-Massey 算法求解的是有限项数列的最短递推式。如果待求递推式的序列有无限项，但已知最短递推式的阶数上界，则只需取出序列的前 $2m$ 项即可求出整个序列的最短递推式。（证明略）
+朴素的 Berlekamp–Massey 算法求解的是有限项数列的最短递推式。如果待求递推式的序列有无限项，但已知最短递推式的阶数上界，则只需取出序列的前 $2m$ 项即可求出整个序列的最短递推式。（证明略）
 
 ### 应用
 
-由于 Berlekamp-Massey 算法的数值稳定性比较差，在处理实数问题时一般很少使用。为了叙述方便，以下均假定在某个质数 $p$ 的剩余系下进行运算。
+由于 Berlekamp–Massey 算法的数值稳定性比较差，在处理实数问题时一般很少使用。为了叙述方便，以下均假定在某个质数 $p$ 的剩余系下进行运算。
 
 #### 求向量列或矩阵列的最短递推式
 
-如果要求向量列 $\boldsymbol{v}_i$ 的最短递推式，设向量的维数为 $n$，我们可以随机一个 $n$ 维行向量 $\mathbf u^T$，并计算标量序列 $\{\boldsymbol{u}^T\boldsymbol{v}_i\}$ 的最短递推式。由 Schwartz-Zippel 引理，二者的最短递推式有至少 $1 - \frac n p$ 的概率相同。
+如果要求向量列 $\boldsymbol{v}_i$ 的最短递推式，设向量的维数为 $n$，我们可以随机一个 $n$ 维行向量 $\mathbf u^T$，并计算标量序列 $\{\boldsymbol{u}^T\boldsymbol{v}_i\}$ 的最短递推式。由 Schwartz–Zippel 引理，二者的最短递推式有至少 $1 - \frac n p$ 的概率相同。
 
-求矩阵列 $\{A_i\}$ 的最短递推式也是类似的，设矩阵的大小为 $n \times m$，则只需随机一个 $1 \times n$ 的行向量 $\mathbf u^T$ 和一个 $m \times 1$ 的列向量 $\boldsymbol{v}$，并计算标量序列 $\{\boldsymbol{u}^T A_i \boldsymbol{v}\}$ 的最短递推式即可。由 Schwartz-Zippel 引理可以类似地得到二者相同的概率至少为 $1 - \frac{n + m} p$。
+求矩阵列 $\{A_i\}$ 的最短递推式也是类似的，设矩阵的大小为 $n \times m$，则只需随机一个 $1 \times n$ 的行向量 $\mathbf u^T$ 和一个 $m \times 1$ 的列向量 $\boldsymbol{v}$，并计算标量序列 $\{\boldsymbol{u}^T A_i \boldsymbol{v}\}$ 的最短递推式即可。由 Schwartz–Zippel 引理可以类似地得到二者相同的概率至少为 $1 - \frac{n + m} p$。
 
 #### 优化矩阵快速幂
 
@@ -123,7 +123,7 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_k\
 
 方阵 $A$ 的最小多项式是次数最小的并且满足 $f(A) = 0$ 的多项式 $f$。
 
-实际上最小多项式就是 $\{A^i\}$ 的最小递推式，所以直接调用 Berlekamp-Massey 算法就可以了。如果 $A$ 是一个 $n$ 阶方阵，则显然最小多项式的次数不超过 $n$。
+实际上最小多项式就是 $\{A^i\}$ 的最小递推式，所以直接调用 Berlekamp–Massey 算法就可以了。如果 $A$ 是一个 $n$ 阶方阵，则显然最小多项式的次数不超过 $n$。
 
 瓶颈在于求出 $A^i$，因为如果直接每次做矩阵乘法的话复杂度会达到 $O(n^4)$。但考虑到求矩阵列的最短递推式时实际上求的是 $\{\boldsymbol{u}^T A^i \boldsymbol{v}\}$ 的最短递推式，因此我们只要求出 $A^i \boldsymbol{v}$ 就行了。
 
