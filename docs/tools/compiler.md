@@ -6,9 +6,11 @@
 
 #### 手动下载安装
 
-方便起见，我们在 Windows 系统下使用由 MinGW-w64 项目提供的 GCC 编译器。
+访问 [MinGW-w64](https://www.mingw-w64.org/downloads) 的下载页面，有多个构建版本。方便起见，我们使用由 WinLibs 提供的构建版本。
 
-首先前往 MinGW 的 [Releases](https://github.com/niXman/mingw-builds-binaries/releases/latest) 页面下载最新的安装包，如下图中红色箭头所示：
+首先前往 [WinLibs](https://winlibs.com) 下载最新的安装包，选择合适的版本，本文选择了 GCC 12.3.0 + LLVM/Clang/LLD/LLDB 16.0.4 + MinGW-w64 11.0.0 (UCRT)：
+
+默认会附带安装 LLVM Clang，如果不想安装，你也可以选择右边的 without LLVM/Clang/LLD/LLDB。
 
 ![](./images/compiler1.png)
 

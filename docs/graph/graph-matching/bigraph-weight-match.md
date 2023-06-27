@@ -2,7 +2,7 @@ author: accelsao, Enter-tainer, guodong2005, StudyingFather, Backl1ght, Chrogeek
 
 二分图的最大权匹配是指二分图中边权和最大的匹配。
 
-## Hungarian Algorithm（Kuhn-Munkres Algorithm）
+## Hungarian Algorithm（Kuhn–Munkres Algorithm）
 
 匈牙利算法又称为 **KM** 算法，可以在 $O(n^3)$ 时间内求出二分图的 **最大权完美匹配**。
 
