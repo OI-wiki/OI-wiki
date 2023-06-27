@@ -159,7 +159,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     
         ```python
         vis = [False] * (n + 1)
-        adj = [[False]] * (n + 1)
+        adj = [[False] * (n + 1) for _ in range(n + 1)]
     
         for i in range(1, m + 1):
             u, v = map(lambda x:int(x), input().split())

@@ -1,4 +1,4 @@
-author: Marcythm, sshwy, nutshellfool
+author: Marcythm, iamtwz, nutshellfool, sshwy, allenanswerzq, countercurrent-time, Enter-tainer, H-J-Granger, hly1204, Ir1d, Menci, NachtgeistW, SukkaW, Tiphereth-A, Xeonacid
 
 ## 引入
 
@@ -14,13 +14,13 @@ author: Marcythm, sshwy, nutshellfool
 根据导数的几何意义，可以得到如下关系：
 
 $$
- f^\prime(x_i) = \frac{f(x_i)}{x_{i} - x_{i+1}}
+ f'(x_i) = \frac{f(x_i)}{x_{i} - x_{i+1}}
 $$
 
 整理后得到如下递推式：
 
 $$
- x_{i+1} = x_i - \frac{f(x_i)}{f^\prime(x_i)}
+ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 $$
 
 直观地说，如果 $f(x)$ 比较平滑，那么随着迭代次数的增加，$x_i$ 会越来越逼近方程的解。

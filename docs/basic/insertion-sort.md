@@ -41,17 +41,17 @@ $$
 
 === "C++"
 
-    ```cpp
+    ```cpp 
     void insertion_sort(int arr[], int len) {
-      for (int i = 1; i < len; ++i) {
-        int key = arr[i];
-        int j = i - 1;
-        while (j >= 0 && arr[j] > key) {
-          arr[j + 1] = arr[j];
-          j--;
+        for (int i = 1; i < len; ++i) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
         }
-        arr[j + 1] = key;
-      }
     }
     ```
 
@@ -59,11 +59,36 @@ $$
 
     ```python
     def insertion_sort(arr, n):
-      for i in range(1, n):
-        key = arr[i]
-        j = i - 1
-        while j >= 0 and arr[j] > key:
-          arr[j + 1] = arr[j]
-          j = j - 1
-        arr[j + 1] = key
+        for i in range(1, n):
+            key = arr[i]
+            j = i - 1
+            while j >= 0 and arr[j] > key:
+                arr[j + 1] = arr[j]
+                j = j - 1
+            arr[j + 1] = key
+    ```
+
+## 折半插入排序
+
+插入排序还可以通过二分算法优化性能，在排序元素数量较多时优化的效果比较明显。
+
+### 时间复杂度
+
+折半插入排序与直接插入排序的基本思想是一致的，折半插入排序仅对插入排序时间复杂度中的常数进行了优化，所以优化后的时间复杂度仍然不变。
+
+### 代码实现
+
+=== "C++"
+
+    ```cpp
+    void insertion_sort(int arr[], int len) {
+        if (len < 2) return;
+        for (int i = 1; i != len; ++i) {
+            int key = arr[i];
+            auto index = upper_bound(arr, arr + i, key) - arr;
+            // 使用 memmove 移动元素，比使用 for 循环速度更快，时间复杂度仍为 O(n)
+            memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
+            arr[i] = key;
+        }
+    }
     ```

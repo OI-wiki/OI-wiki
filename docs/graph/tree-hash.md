@@ -30,7 +30,7 @@ $$
 
 ??? "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/tree-hash/tree-hash_4.cpp"
+    --8<-- "docs/graph/code/tree-hash/tree-hash_1.cpp"
     ```
 
 ### [\[BJOI2015\] 树的同构](https://www.luogu.com.cn/problem/P5043)
@@ -43,12 +43,12 @@ $$
 
 ??? "做法一"
     ```cpp
-    --8<-- "docs/graph/code/tree-hash/tree-hash_1.cpp"
+    --8<-- "docs/graph/code/tree-hash/tree-hash_2.cpp"
     ```
 
 ??? "做法二"
     ```cpp
-    --8<-- "docs/graph/code/tree-hash/tree-hash_2.cpp"
+    --8<-- "docs/graph/code/tree-hash/tree-hash_3.cpp"
     ```
 
 ### [HDU 6647 Bracket Sequences on Tree](https://vjudge.net/problem/HDU-6647)
@@ -61,7 +61,7 @@ $$
 
 ??? "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/tree-hash/tree-hash_3.cpp"
+    --8<-- "docs/graph/code/tree-hash/tree-hash_4.cpp"
     ```
 
 ## 参考资料

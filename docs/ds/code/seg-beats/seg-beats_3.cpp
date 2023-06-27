@@ -9,7 +9,7 @@ char nc() {
              : *p++;
 }
 
-inline ll rd() {  // LLONG_MIN LMAX=9,223,372,036,854,775,807
+ll rd() {  // LLONG_MIN LMAX=9,223,372,036,854,775,807
   ll s = 0, w = 1;
   char ch = nc();
   while (ch < '0' || ch > '9') {
@@ -34,12 +34,12 @@ int n, m;
 #define rs u * 2 + 1
 #define mid (l + r) / 2
 
-inline void pushup(int u) {
+void pushup(int u) {
   g[u].mx = max(g[ls].mx, g[rs].mx);
   g[u]._mx = max(g[ls]._mx, g[rs]._mx);
 }
 
-inline void pushadd(int u, int v, int _v) {
+void pushadd(int u, int v, int _v) {
   g[u]._mx = max(g[u]._mx, g[u].mx + _v), g[u].mx += v;
   if (g[u].st == INT_MIN)
     g[u]._ad = max(g[u]._ad, g[u].ad + _v), g[u].ad += v;
@@ -47,12 +47,12 @@ inline void pushadd(int u, int v, int _v) {
     g[u]._st = max(g[u]._st, g[u].st + _v), g[u].st += v;
 }
 
-inline void pushset(int u, int v, int _v) {
+void pushset(int u, int v, int _v) {
   g[u]._mx = max(g[u]._mx, _v), g[u].mx = v;
   g[u]._st = max(g[u]._st, _v), g[u].st = v;
 }
 
-inline void pushdown(int u, int l, int r) {
+void pushdown(int u, int l, int r) {
   if (g[u].ad || g[u]._ad)
     pushadd(ls, g[u].ad, g[u]._ad), pushadd(rs, g[u].ad, g[u]._ad),
         g[u].ad = g[u]._ad = 0;

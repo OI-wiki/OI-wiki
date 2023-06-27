@@ -12,7 +12,7 @@ int head[10005], vis[10005], tot[10005], cnt;
 long long ans, dist[10005];
 queue<int> q;
 
-inline void addedge(int u, int v, int w) {  // 加边
+void addedge(int u, int v, int w) {  // 加边
   e[++cnt].v = v;
   e[cnt].w = w;
   e[cnt].next = head[u];

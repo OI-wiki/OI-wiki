@@ -10,7 +10,7 @@
 
 群公理包含下述四个性质（有时略去封闭性，只有三个性质）。若集合 $G\neq\varnothing$ 和 $G$ 上的运算 $\cdot$ 构成的代数结构 $(G,\cdot)$ 满足以下性质：
 
-1.  **封闭性**：对于所有 $G$ 中 $a, b$，运算 $a·b$ 的结果也在 G 中。
+1.  **封闭性**：对于所有 $G$ 中 $a, b$，运算 $a\cdot b$ 的结果也在 G 中。
 2.  **结合律**（associativity）：对于 $G$ 中所有的 $a, b, c$，等式 $(a \cdot b)\cdot c = a \cdot (b \cdot c)$ 成立。
 3.  **单位元**（identity element，也称幺元）：$G$ 中存在一个元素 $e$，使得对于 $G$ 中的每一个元素 $a$，都有一个 $e \cdot a=a\cdot e=a$ 成立。这样的元素是独一无二的。它被称为群的单位元。
 4.  **逆元**（inverse element）：对于每个 $G$ 中的 $a$，总存在 $G$ 中的一个元素 $b$ 使 $a \cdot b = b \cdot a = e$，此处 $e$ 为单位元，称 $b$ 为 $a$ 的逆元，记为 $a^{-1}$。
@@ -57,7 +57,7 @@
 
 定义 $X={x,y,z}$ 为包含 $x, y, z$ 元素的集合 $X$。$x \in X$ 表示 $x$ 属于集合 $X$。$f:X\to Y$ 表示 $f$ 是一个与 $X$ 的每个元素和 $Y$ 的元素相关联的函数。
 
-在研究集合时，我们使用子集（subset）、函数（function）和等价关系商（quotient by an equivalence relation）等概念。在研究群时，我们通过等价关系用子群（subgroup)、同态（homomorphism）和商群（quotient group）来代替。
+在研究集合时，我们使用子集（subset）、函数（function）和等价关系商（quotient by an equivalence relation）等概念。在研究群时，我们通过等价关系用子群（subgroup）、同态（homomorphism）和商群（quotient group）来代替。
 
 ### 群同态
 
@@ -195,9 +195,9 @@ $$
 
 ## 参考资料与注释
 
--   [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_\(mathematics\))
+-   [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_%28mathematics%29)
 -   [Group theory - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)
 -   [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
 -   [Visual Group Theory](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
 
-[^ring-wiki]: [Ring (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Ring_\(mathematics\))
+[^ring-wiki]: [Ring（mathematics）- Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)

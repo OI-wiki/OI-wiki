@@ -11,7 +11,7 @@ int siz[maxn], top[maxn], son[maxn], dep[maxn], fa[maxn], dfn[maxn], rnk[maxn],
     cnt;
 char op[10];
 
-inline void add_edge(int x, int y) {  // 加边
+void add_edge(int x, int y) {  // 加边
   cur++;
   nxt[cur] = h[x];
   h[x] = cur;

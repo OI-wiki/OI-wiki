@@ -93,7 +93,7 @@ $$
 
 ### 利用最大公约数求出一个约数
 
-$n$ 和某个数的最大公约数一定是 $n$ 的约数，即 $\forall k \in\mathbf{N}_{+},\gcd(k,n) \mid n$，只要选适当的 $k$ 使得 $1<\gcd(k,n)< n$，就可以求得 $n$ 的一个约数 $\gcd(k,n)$。满足这样条件的 $k$ 不少，$k$ 有若干个质因子，每个质因子及其倍数都是可行的。
+$n$ 和某个数的最大公约数一定是 $n$ 的约数，即 $\forall k \in\mathbf{N}_{+},\gcd(k,n) \mid n$，只要选适当的 $k$ 使得 $1<\gcd(k,n)< n$，就可以求得 $n$ 的一个约数 $\gcd(k,n)$。满足这样条件的 $k$ 不少，$n$ 有若干个质因子，每个质因子及其大部分倍数都是可行的。
 
 我们通过 $f(x)=(x^2+c)\bmod n$ 来生成一个序列 $\{x_i\}$：随机取一个 $x_1$，令 $x_2=f(x_1),x_3=f(x_2),\dots,x_i=f(x_{i-1})$。其中 $c$ 是一个随机选取的常数。
 
@@ -127,7 +127,7 @@ $$
 
 根据生日悖论，生成的序列中不同值的数量约为 $O(\sqrt{n})$ 个。设 $m$ 为 $n$ 的最小非平凡因子，显然有 $m\leq \sqrt{n}$。
 
-将 $\{x_i\}$ 中每一项对 $m$ 取模，我们得到了一个新序列 $\{y_i\}$（当然也可以写作 $\{x_i \bmod m\}$)，并且根据生日悖论可以得知新序列中不同值的个数约为 $O(\sqrt{m})\leq O(n^{\frac{1}{4}})$。
+将 $\{x_i\}$ 中每一项对 $m$ 取模，我们得到了一个新序列 $\{y_i\}$（当然也可以写作 $\{x_i \bmod m\}$），并且根据生日悖论可以得知新序列中不同值的个数约为 $O(\sqrt{m})\leq O(n^{\frac{1}{4}})$。
 
 因此，我们可以期望在 $O(n^{\frac{1}{4}})$ 的时间内找到两个位置 $i,j$，使得 $x_i\neq x_j\wedge y_i=y_j$，这意味着 $n \nmid |x_i−x_j| \wedge m \mid |x_i−x_j|$，我们可以通过 $\gcd(n, |x_i-x_j|)$ 获得 $n$ 的一个非平凡因子。
 
@@ -183,7 +183,7 @@ $$
                     return d
                 t = f(t, c, N)
                 r = f(f(r, c, N), c, N)
-        return N
+            return N
         ```
 
 #### 倍增优化
@@ -195,35 +195,64 @@ $$
 注意到在环上更容易分解出因数，我们可以先迭代一定的次数。
 
 ??? note "实现"
-    ```c++
-    ll Pollard_Rho(ll x) {
-      ll t = 0;
-      ll c = rand() % (x - 1) + 1;
-      // 加速算法，这一步可以省略
-      for (int i = 1; i < 1145; ++i) t = f(t, c, x);
-      ll s = t;
-      int step = 0, goal = 1;
-      ll val = 1;
-      for (goal = 1;; goal <<= 1, s = t, val = 1) {
-        for (step = 1; step <= goal; ++step) {
-          t = f(t, c, x);
-          val = val * abs(t - s) % x;
-          // 如果 val 为 0，退出重新分解
-          if (!val) return x;
-          if (step % 127 == 0) {
+    === "C++"
+    
+        ```cpp
+        ll Pollard_Rho(ll x) {
+          ll t = 0;
+          ll c = rand() % (x - 1) + 1;
+          // 加速算法，这一步可以省略
+          for (int i = 1; i < 1145; ++i) t = f(t, c, x);
+          ll s = t;
+          int step = 0, goal = 1;
+          ll val = 1;
+          for (goal = 1;; goal <<= 1, s = t, val = 1) {
+            for (step = 1; step <= goal; ++step) {
+              t = f(t, c, x);
+              val = val * abs(t - s) % x;
+              // 如果 val 为 0，退出重新分解
+              if (!val) return x;
+              if (step % 127 == 0) {
+                ll d = gcd(val, x);
+                if (d > 1) return d;
+              }
+            }
             ll d = gcd(val, x);
             if (d > 1) return d;
           }
         }
-        ll d = gcd(val, x);
-        if (d > 1) return d;
-      }
-    }
-    ```
+        ```
+    
+    === "Python"
+    
+        ```python
+        from random import randint
+        from math import gcd
+        def Pollard_Rho(x):
+            c = randint(1, x-1)
+            s = t = f(0, c, x)
+            goal = val = 1
+            while True:
+                for step in range(1, goal+1):
+                    t = f(t, c, x)
+                    val = val * abs(t - s) % x
+                    if val == 0: 
+                        return x #如果 val 为 0，退出重新分解
+                    if step % 127 == 0:
+                        d = gcd(val, x)
+                        if d > 1:
+                            return d
+                d = gcd(val, x)
+                if d > 1:
+                    return d
+                s = t
+                goal <<= 1
+                val = 1
+        ```
 
 例题：[P4718【模板】Pollard-Rho 算法](https://www.luogu.com.cn/problem/P4718)
 
-对于一个数 $n$，用 [Miller Rabin 算法](./prime.md#miller-rabin-素性测试) 判断是否为素数，如果是就可以直接返回了，否则用 Pollard-Rho 算法找一个因子 $p$，将 $n$ 除去因子 $p$。再递归分解 $n$ 和 $p$，用 Miller Rabin 判断是否出现质因子，并用 max\_factor 更新就可以求出最大质因子了。由于这个题目的数据过于庞大，用 Floyd 判环的方法是不够的，这里采用倍增优化的方法。
+对于一个数 $n$，用 [Miller Rabin 算法](./prime.md#millerrabin-素性测试) 判断是否为素数，如果是就可以直接返回了，否则用 Pollard-Rho 算法找一个因子 $p$，将 $n$ 除去因子 $p$。再递归分解 $n$ 和 $p$，用 Miller Rabin 判断是否出现质因子，并用 max\_factor 更新就可以求出最大质因子了。由于这个题目的数据过于庞大，用 Floyd 判环的方法是不够的，这里采用倍增优化的方法。
 
 ??? note "实现"
     ```c++

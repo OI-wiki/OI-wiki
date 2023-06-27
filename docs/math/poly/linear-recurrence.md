@@ -4,7 +4,7 @@
 
 ### 前置知识
 
-[多项式取模](./poly/elementary-func.md#多项式除法--取模)。
+[多项式取模](./elementary-func.md#多项式除法--取模)。
 
 ### 做法
 
@@ -20,7 +20,7 @@
 
 也就是求 $F(A(x)\bmod G(x))$。$A(x)\bmod G(x)$ 的次数不超过 $k-1$，而 $f_{0..k-1}$ 已经给出了，就可以算了。
 
-问题转化成了快速地求 $x^n\bmod G(x)$，只要将 [普通快速幂](./binary-exponentiation.md) 中的乘法与取模换成 [多项式乘法](./poly/ntt.md) 与 [多项式取模](./poly/elementary-func.md#多项式除法--取模) 就可以在 $O(k\log k\log n)$ 的时间复杂度内解决这个问题了。
+问题转化成了快速地求 $x^n\bmod G(x)$，只要将 [普通快速幂](../binary-exponentiation.md) 中的乘法与取模换成 [多项式乘法](./ntt.md) 与 [多项式取模](./elementary-func.md#多项式除法--取模) 就可以在 $O(k\log k\log n)$ 的时间复杂度内解决这个问题了。
 
 #### 矩阵的解释
 
@@ -52,7 +52,7 @@ $$
 
 假设我们要求 $M^n$ 可以构造多项式 $f(x)=x^n$ 那么 $f(M)=M^n$，而现在我们可将 $f(x)$ 写成 $f(x)=Q(x)\Gamma(x)+R(x)$ 而其中零矩阵是没有贡献的，那么 $f(M)=R(M)$。
 
-但是注意矩阵乘法不满足消去律，此处我们定义矩阵 $M$ 的特征多项式为 $\Gamma(x)=\det(xI-M)$，其中 $I$ 为一个 $k\times k$ 的单位矩阵。Cayley-Hamilton 定理指出 $\Gamma(M)=O$，我们观察 $M$ 的形式较为特殊，为下 Hessenberg 矩阵，其特征多项式比起一般矩阵更容易计算。
+但是注意矩阵乘法不满足消去律，此处我们定义矩阵 $M$ 的特征多项式为 $\Gamma(x)=\det(xI-M)$，其中 $I$ 为一个 $k\times k$ 的单位矩阵。Cayley–Hamilton 定理指出 $\Gamma(M)=O$，我们观察 $M$ 的形式较为特殊，为下 Hessenberg 矩阵，其特征多项式比起一般矩阵更容易计算。
 
 我们从右下角的 $2\times 2$ 矩阵开始计算特征多项式
 

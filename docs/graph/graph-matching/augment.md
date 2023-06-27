@@ -6,7 +6,7 @@ author: accelsao, Chrogeek, t4rf9
 
 ### 定义
 
--   交错路（alternating path) 始于非匹配点且由匹配边与非匹配边交错而成。
+-   交错路（alternating path）始于非匹配点且由匹配边与非匹配边交错而成。
 -   增广路（augmenting path）是始于非匹配点且终于非匹配点的交错路。
 
 增广路上非匹配边比匹配边数量多一，如果将匹配边改为未匹配边，反之亦然，则匹配大小会增加一且依然是交错路。

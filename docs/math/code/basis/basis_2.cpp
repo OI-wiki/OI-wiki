@@ -2,7 +2,7 @@
 using ull = unsigned long long;
 const int MAXN = 1e5 + 5;
 
-inline ull deg(ull num, int deg) { return num & (1ull << deg); }
+ull deg(ull num, int deg) { return num & (1ull << deg); }
 
 ull a[MAXN];
 

@@ -277,7 +277,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
     所以在输入常量、函数名、运算符等时，请先检查一下是否应该使用 Roman 体或其它字体。LaTeX 符号的书写可参考 [KaTeX 的 Supported Functions 页面](https://katex.org/docs/supported.html)（不是全部），也可以搜索求解。
 
-    由于 LaTeX 书写 Roman 体小写希腊字母较为困难，故小写希腊字母常量、算子和函数可以使用 Italic 体，如 $\pi$，$\delta x$.
+    由于 LaTeX 书写 Roman 体小写希腊字母较为困难，故小写希腊字母常量、算子和函数可以使用 Italic 体，如 $\pi$ 以及 $\delta x$ 中的 $\delta$.
 
     如果遇到没有预先定义好的需要使用 Roman 体的 **函数名**，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号。同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$`；产生 Roman 体粗体符号应用 `$\mathbf{}$`；产生 Italic 体粗体符号应用 `$\boldsymbol{}$`（如向量 $\boldsymbol{a}$）。对于多字母的变量，应当使用 `$\textit{}$`。其他非数学内容，包括英文、特殊符号等，一律使用 `$\text{}$`。中文我们则建议不放在 LaTeX 公式中。
 
@@ -320,7 +320,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 -   请不要滥用 LaTeX 公式。这不仅会造成页面加载缓慢（因为 MathJax 的效率低是出了名的），同时也会导致页面的排版混乱。我们通常使用 LaTeX 公式字体表示变量名称。我们的建议是，如非必要，尽量减少公式与普通正文字体的 **大量** 混合使用，如非必要，尽量不要使用公式，如：
 
     ```LaTeX
-    我们将要学习 $Network-flow$ 中的 $SPFA$ 最小费用流，需要使用 $Edmonds-Karp$ 算法进行增广。
+    我们将要学习 $Network-flow$ 中的 $SPFA$ 最小费用流，需要使用 $Edmonds–Karp$ 算法进行增广。
     ```
 
     就是一个典型的 **滥用公式字体** 的例子。（在页面中使用斜体请用 `*文本*` 表示。）
@@ -331,20 +331,22 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 我们可以使用一个表格来总结一下上述内容。注意本表格没有举出所有符号的用法，只给出常见的错误。类似的情况类比即可。
 
-| 不符合规定的用法          | 渲染效果            | 符合规定的用法                                  | 渲染效果                                |
-| ----------------- | --------------- | ---------------------------------------- | ----------------------------------- |
-| `$log, ln, lg$`   | $log, ln, lg$   | `$\log$, $\ln$, $\lg$`                   | $\log$，$\ln$，$\lg$                  |
-| `$sin, cos, tan$` | $sin, cos, tan$ | `$\sin$, $\cos$, $\tan$`                 | $\sin$，$\cos$，$\tan$                |
-| `$gcd, lcm$`      | $gcd, lcm$      | `$\gcd$, $\operatorname{lcm}$`           | $\gcd$，$\operatorname{lcm}$         |
-| `$ 小于 a 的质数 $`    | $小于 a 的质数$      | `小于 $a$ 的质数`                             | 小于 $a$ 的质数                          |
-| `$...$`           | $...$           | `$\cdots$, $\ldots$, $\vdots$, $\ddots$` | $\cdots$，$\ldots$，$\vdots$，$\ddots$ |
-| `$a*b$`（两个数相乘）    | $a*b$           | `$a\times b$, $a\cdot b$`                | $a\times b$，$a\cdot b$              |
-| `$SPFA$`（英文名称）    | $SPFA$          | `SPFA`                                   | SPFA                                |
-| `$a==b$`          | $a==b$          | `$a=b$`                                  | $a=b$                               |
-| `$f[i][j][k]$`    | $f[i][j][k]$    | `$f_{i,j,k}$, $f(i,j,k)$`                | $f_{i,j,k}$，$f(i,j,k)$              |
-| `$R,N^*$`（集合）     | $R,N^*$         | `$\mathbf{R}$, $\mathbf{N}^*$`           | $\mathbf{R}$，$\mathbf{N}^*$         |
-| `$\emptyset$`     | $\emptyset$     | `$\varnothing$`                          | $\varnothing$                       |
-| `$different$`     | $different$     | `$\textit{different}$`                   | $\textit{different}$                |
+| 不符合规定的用法                     | 渲染效果              | 符合规定的用法                                  | 渲染效果                                |
+| ---------------------------- | ----------------- | ---------------------------------------- | ----------------------------------- |
+| `$log, ln, lg$`              | $log, ln, lg$     | `$\log$, $\ln$, $\lg$`                   | $\log$，$\ln$，$\lg$                  |
+| `$sin, cos, tan$`            | $sin, cos, tan$   | `$\sin$, $\cos$, $\tan$`                 | $\sin$，$\cos$，$\tan$                |
+| `$gcd, lcm$`                 | $gcd, lcm$        | `$\gcd$, $\operatorname{lcm}$`           | $\gcd$，$\operatorname{lcm}$         |
+| `$e$, $\text{e}$, e`（自然对数的底） | $e$，$\text{e}$, e | `$\mathrm{e}$`                           | $\mathrm{e}$                        |
+| `$i$, $\text{i}$, i`（虚数单位）   | $i$，$\text{i}$, i | `$\mathrm{i}$`                           | $\mathrm{i}$                        |
+| `$ 小于 a 的质数 $`               | $小于 a 的质数$        | `小于 $a$ 的质数`                             | 小于 $a$ 的质数                          |
+| `$...$`                      | $...$             | `$\cdots$, $\ldots$, $\vdots$, $\ddots$` | $\cdots$，$\ldots$，$\vdots$，$\ddots$ |
+| `$a*b$`（两个数相乘）               | $a*b$             | `$a\times b$, $a\cdot b$`                | $a\times b$，$a\cdot b$              |
+| `$SPFA$`（英文名称）               | $SPFA$            | `SPFA`                                   | SPFA                                |
+| `$a==b$`                     | $a==b$            | `$a=b$`                                  | $a=b$                               |
+| `$f[i][j][k]$`               | $f[i][j][k]$      | `$f_{i,j,k}$, $f(i,j,k)$`                | $f_{i,j,k}$，$f(i,j,k)$              |
+| `$R,N^*$`（集合）                | $R,N^*$           | `$\mathbf{R}$, $\mathbf{N}^*$`           | $\mathbf{R}$，$\mathbf{N}^*$         |
+| `$\emptyset$`                | $\emptyset$       | `$\varnothing$`                          | $\varnothing$                       |
+| `$different$`                | $different$       | `$\textit{different}$`                   | $\textit{different}$                |
 
 #### 对数学公式的附加格式要求
 

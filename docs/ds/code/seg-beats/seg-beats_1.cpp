@@ -24,7 +24,7 @@ int a[N];
 int mx[N << 2], se[N << 2], cn[N << 2], tag[N << 2];
 long long sum[N << 2];
 
-inline void pushup(int u) {  // 向上更新标记
+void pushup(int u) {  // 向上更新标记
   const int ls = u << 1, rs = u << 1 | 1;
   sum[u] = sum[ls] + sum[rs];
   if (mx[ls] == mx[rs]) {
@@ -42,13 +42,13 @@ inline void pushup(int u) {  // 向上更新标记
   }
 }
 
-inline void pushtag(int u, int tg) {  // 单纯地打标记，不暴搜
+void pushtag(int u, int tg) {  // 单纯地打标记，不暴搜
   if (mx[u] <= tg) return;
   sum[u] += (1ll * tg - mx[u]) * cn[u];
   mx[u] = tag[u] = tg;
 }
 
-inline void pushdown(int u) {  // 下传标记
+void pushdown(int u) {  // 下传标记
   if (tag[u] == -1) return;
   pushtag(u << 1, tag[u]), pushtag(u << 1 | 1, tag[u]);
   tag[u] = -1;

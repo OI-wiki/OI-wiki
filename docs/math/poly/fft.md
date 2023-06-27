@@ -33,13 +33,13 @@ $$
 设 $f(t)$ 是关于时间 $t$ 的函数，则傅里叶变换可以检测频率 $\omega$ 的周期在 $f(t)$ 出现的程度：
 
 $$
-F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)e^{-i{\omega}t}dt
+F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)\mathrm{e}^{-i{\omega}t}dt
 $$
 
 它的逆变换是
 
 $$
-f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)e^{i{\omega}t}d\omega
+f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)\mathrm{e}^{i{\omega}t}d\omega
 $$
 
 逆变换的形式与正变换非常类似，分母 $2\pi$ 恰好是指数函数的周期。
@@ -57,10 +57,10 @@ $$
 设 $\{x_n\}_{n=0}^{N-1}$ 是某一满足有限性条件的序列，它的离散傅里叶变换（DFT）为：
 
 $$
-X_k=\sum_{n=0}^{N-1}x_ne^{-i\frac{2\pi}{N}kn}
+X_k=\sum_{n=0}^{N-1}x_n\mathrm{e}^{-i\frac{2\pi}{N}kn}
 $$
 
-其中 $e$ 是自然对数的底数，$i$ 是虚数单位。通常以符号 $\mathcal {F}$ 表示这一变换，即
+其中 $\mathrm{e}$ 是自然对数的底数，$i$ 是虚数单位。通常以符号 $\mathcal {F}$ 表示这一变换，即
 
 $$
 \hat{x}=\mathcal{F}x
@@ -69,7 +69,7 @@ $$
 类似于积分形式，它的 **逆离散傅里叶变换**（IDFT）为：
 
 $$
-x_n=\frac{1}{N}\sum_{k=0}^{N-1}X_ke^{i\frac{2\pi}{N}kn}
+x_n=\frac{1}{N}\sum_{k=0}^{N-1}X_k\mathrm{e}^{i\frac{2\pi}{N}kn}
 $$
 
 可以记为：
@@ -82,7 +82,7 @@ $$
 
 离散傅里叶变换仍旧是时域到频域的变换。由于求和形式的特殊性，可以有其他的解释方法。
 
-如果把序列 $x_n$ 看作多项式 $f(x)$ 的 $x^n$ 项系数，则计算得到的 $X_k$ 恰好是多项式 $f(x)$ 代入单位根 $e^{\frac{-2\pi ik}{N}}$ 的点值 $f(e^{\frac{-2\pi ik}{N}})$。
+如果把序列 $x_n$ 看作多项式 $f(x)$ 的 $x^n$ 项系数，则计算得到的 $X_k$ 恰好是多项式 $f(x)$ 代入单位根 $\mathrm{e}^{\frac{-2\pi ik}{N}}$ 的点值 $f(\mathrm{e}^{\frac{-2\pi ik}{N}})$。
 
 这便构成了卷积定理的另一种解释办法，即对多项式进行特殊的插值操作。离散傅里叶变换恰好是多项式在单位根处进行插值。
 
@@ -147,7 +147,7 @@ $$
 \end{bmatrix}
 $$
 
-其中 $\alpha = e^{-i\frac{2\pi}{N}n}$。
+其中 $\alpha = \mathrm{e}^{-i\frac{2\pi}{N}n}$。
 
 ## 快速傅里叶变换
 
@@ -402,10 +402,10 @@ $$
 为了使计算的结果为原来的倒数，根据欧拉公式，可以得到
 
 $$
-\frac{1}{\omega_k}=\omega_k^{-1}=e^{-\frac{2\pi i}{k}}=\cos\left(\frac{2\pi}{k}\right)+i\cdot \sin\left(-\frac{2\pi}{k}\right)
+\frac{1}{\omega_k}=\omega_k^{-1}=\mathrm{e}^{-\frac{2\pi i}{k}}=\cos\left(\frac{2\pi}{k}\right)+i\cdot \sin\left(-\frac{2\pi}{k}\right)
 $$
 
-因此我们可以尝试着把单位根 $\omega_k$ 取成 $e^{-\frac{2\pi i}{k}}$，这样我们的计算结果就会变成原来的倒数，之后唯一多的操作就只有再 **除以它的长度 $n$**，而其它的操作过程与 DFT 是完全相同的。我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$，然后把它乘到 $\pi$ 上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT。
+因此我们可以尝试着把单位根 $\omega_k$ 取成 $\mathrm{e}^{-\frac{2\pi i}{k}}$，这样我们的计算结果就会变成原来的倒数，之后唯一多的操作就只有再 **除以它的长度 $n$**，而其它的操作过程与 DFT 是完全相同的。我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$，然后把它乘到 $\pi$ 上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT。
 
 ### 单位复根周期性
 
@@ -454,10 +454,10 @@ $$
 
 $$
 S\left(\omega_n^a\right)=
-\left\{\begin{aligned}
-n,a=0\\
-0,a\neq 0
-\end{aligned}\right.
+\begin{cases}
+n,&a=0\\
+0,&a\neq 0
+\end{cases}
 $$
 
 那么代回原式
