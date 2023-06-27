@@ -1,6 +1,6 @@
 ## 引入
 
-**Schreier-Sims 算法** 是计算群论的一种算法，以数学家 Otto Schreier 和 Charles Sims 的名字命名。它可以在多项式时间（polynomial time）内找到有限置换群的阶数、查看给定排列是否包含在群中以及其他许多任务。Schreier-Sims 算法最早由 Sims 在 1970 年基于 Schreier 的子群引理引入。1991 年，Donald Knuth 基于此改进了时序。后来，又有了该算法更快的随机版本。
+**Schreier–Sims 算法** 是计算群论的一种算法，以数学家 Otto Schreier 和 Charles Sims 的名字命名。它可以在多项式时间（polynomial time）内找到有限置换群的阶数、查看给定排列是否包含在群中以及其他许多任务。Schreier–Sims 算法最早由 Sims 在 1970 年基于 Schreier 的子群引理引入。1991 年，Donald Knuth 基于此改进了时序。后来，又有了该算法更快的随机版本。
 
 ???+ note "注释"
     **群论**（Group theory）是数学的一个分支。在数学和抽象代数中，群论研究称为群的代数结构。群是由一组元素和一个可以应用于该集合的两个元素的二元运算组成的系统。
@@ -10,14 +10,14 @@
 ???+ note "注释"
     具体算法和时间复杂度分析请看之后章节，此节只是简单的背景介绍。
 
-Schreier-Sims 算法是一种计算置换群的基强生成集（**BSGS**, base and strong generating set）的有效方法。特别是，SGS 确定了群的顺序并使查看给定排列是否包含在群中变得更加容易。由于 SGS 对于计算群论中的许多算法至关重要，因此计算机代数系统通常依赖 Schreier-Sims 算法进行群的有效计算。
+Schreier–Sims 算法是一种计算置换群的基强生成集（**BSGS**, base and strong generating set）的有效方法。特别是，SGS 确定了群的顺序并使查看给定排列是否包含在群中变得更加容易。由于 SGS 对于计算群论中的许多算法至关重要，因此计算机代数系统通常依赖 Schreier–Sims 算法进行群的有效计算。
 
-Schreier-Sims 的运行时间因实现而异。令 $G\leq S_{n}$ 由 $t$ 个生成器给出。该算法可能的运行时间为：
+Schreier–Sims 的运行时间因实现而异。令 $G\leq S_{n}$ 由 $t$ 个生成器给出。该算法可能的运行时间为：
 
 -   $O(n^{2}\log ^{3}|G|+tn\log |G|)$ 需要 $O(n^{2}\log |G|+tn)$ 的内存；
 -   $O(n^{3}\log ^{3}|G|+tn^{2}\log |G|)$ 需要 $O(n\log ^{2}|G|+tn)$ 的内存；
 
-Schreier 向量的使用会对 Schreier-Sims 算法的实现性能产生重大影响。对于 Schreier-Sims 算法的 Monte Carlo 变体，预估复杂度如下：
+Schreier 向量的使用会对 Schreier–Sims 算法的实现性能产生重大影响。对于 Schreier–Sims 算法的 Monte Carlo 变体，预估复杂度如下：
 
 -   $O(n\log n\log ^{4}|G|+tn\log |G|)$ 需要 $O(n\log |G|+tn)$ 的内存；
 
@@ -55,9 +55,9 @@ $$
 
 ## 过程
 
-用来计算排列群（permutation group）$G$ 阶数的 Schreier-Sims 算法一般有三种。它们同样也可以用来计算 $G$ 的基和强生成集。
+用来计算排列群（permutation group）$G$ 阶数的 Schreier–Sims 算法一般有三种。它们同样也可以用来计算 $G$ 的基和强生成集。
 
-### 基础 Schreier-Sims 算法
+### 基础 Schreier–Sims 算法
 
 1.  如果 $G$ 为不平凡（non-trivial）群，选择一个尚未被选择的点 $b\in \Omega$。
 2.  计算根为 $b$ 的 Schreier 树，得到 $|b^{G}|$。
@@ -66,15 +66,15 @@ $$
 
 当算法结束时，$(b_{1},\cdots,b_{m})$ 是一个基，找到的所有生成器的并集是一个强生成集。
 
-基础 Schreier-Sims 算法的运行时间是 **指数级** 的，但可以被优化成更高效的算法。
+基础 Schreier–Sims 算法的运行时间是 **指数级** 的，但可以被优化成更高效的算法。
 
-### 增量 Schreier-Sims 算法
+### 增量 Schreier–Sims 算法
 
-**增量 Schreier-Sims 算法** 是常被用来构建强生成集的快速算法。
+**增量 Schreier–Sims 算法** 是常被用来构建强生成集的快速算法。
 
 如果有一个群 $G$ 的强生成集，因为已经得到了所有 $G^{(i)}$ 稳定器的生成器，那么很容易得到 $G$ 的阶。**部分基**（partial base）$B = [b_{1},\cdots, b_{k}]$ 和部分强生成集 $S$ 是集合 $B \in \Omega$ 和集合 $S \subseteq G$，使得 $S$ 的任何元素都不能固定 $B$ 的每个元素。
 
-增量 Schreier-Sims 算法可以将任意部分基和部分强生成集转化为基和强生成集。
+增量 Schreier–Sims 算法可以将任意部分基和部分强生成集转化为基和强生成集。
 
 定义 $T_{i+1}$ 为通过 Schreier 树 $G^{(i)}$ 对 $G^{(i+1)}$ 的陪集的作用。
 
@@ -85,11 +85,11 @@ $$
 
 当算法结束时，$B$ 为基，$S$ 是大小为 $O(n^{2}\log n)$ 的强生成集。
 
-增量 Schreier-Sims 算法的运行时间为 $O(n^{8}\log^{3}n)$，即 $n$ 的多项式。$t$ 个生成器构建 Schreier 树需要 $O(n^{2}+nt)$，或对于 $t>n$ 为 $O(nt)$。因为已经用 $O(n^{2}\log n)$ 限制了 Schreier 生成器 $t$ 的数量，所以每个筛选过程都可以在 $nO(n(n^{2}\log n)) = O(n^{4}\log n)$ 中完成。
+增量 Schreier–Sims 算法的运行时间为 $O(n^{8}\log^{3}n)$，即 $n$ 的多项式。$t$ 个生成器构建 Schreier 树需要 $O(n^{2}+nt)$，或对于 $t>n$ 为 $O(nt)$。因为已经用 $O(n^{2}\log n)$ 限制了 Schreier 生成器 $t$ 的数量，所以每个筛选过程都可以在 $nO(n(n^{2}\log n)) = O(n^{4}\log n)$ 中完成。
 
 ## 实现
 
-以下为基础 Schreier-Sims 算法的参考代码。
+以下为基础 Schreier–Sims 算法的参考代码。
 
 ??? note "参考代码"
     ```c++

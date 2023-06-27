@@ -112,7 +112,7 @@ $$
 
 以下的内向也指根向，表示有向边的方向指向根。
 
-**引理 1（Cauchy-Binet）** 给定 $n\times m$ 的矩阵 $A$ 和 $m\times n$ 的矩阵 $B$，则有
+**引理 1（Cauchy–Binet）** 给定 $n\times m$ 的矩阵 $A$ 和 $m\times n$ 的矩阵 $B$，则有
 
 $$
 |AB|=\sum_{|S|=n,S\subseteq[m]}|A_{[n],[S]}||B_{[S],[n]}|
@@ -146,7 +146,7 @@ $$
 A_{i,j}=\begin{cases}\sqrt{\omega(e_j)} & u_i\in e_j\land u_i<\zeta(e_j,u_i) \\ -\sqrt{\omega(e_j)} & u_i\in e_j\land u_i>\zeta(e_j,u_i) \\ 0 & \text{otherwise}\end{cases}
 $$
 
-容易发现 $L=AA^T$，定义 $A$ 删去第一行得到 $B$，则 $M_{1,1}=BB^T$。代入 Cauchy-Binet 公式得到：
+容易发现 $L=AA^T$，定义 $A$ 删去第一行得到 $B$，则 $M_{1,1}=BB^T$。代入 Cauchy–Binet 公式得到：
 
 $$
 M_{1,1}=\sum_{|S|=n-1,S\subseteq[|E|]}|B_{[n-1],[S]}||(B^T)_{[S],[n-1]}|=\sum_{|S|=n-1,S\subseteq[|E|]}|B_{[n-1],[S]}|^2
@@ -191,7 +191,7 @@ $$
 
 ## 实现
 
-一个无向图的生成树个数为邻接矩阵度数矩阵去一行一列的行列式，可以使用 Gauss-Jordan 消元法。
+一个无向图的生成树个数为邻接矩阵度数矩阵去一行一列的行列式，可以使用 Gauss–Jordan 消元法。
 
 例如，一个正方形图的生成树个数
 

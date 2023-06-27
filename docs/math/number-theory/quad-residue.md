@@ -22,97 +22,9 @@ $$
 \end{cases}
 $$
 
-通过 Legendre 符号可以判断一个数 $a$ 是否为二次剩余，具体判断 $a$ 是否为模 $p$ 的二次剩余，需要通过 Euler 判别准则来实现。
+通过 Legendre 符号可以判断一个数 $a$ 是否为二次剩余，具体判断 $a$ 是否为模 $p$ 的二次剩余，需要通过 [Euler 判别准则](./residue.md#euler-判别准则) 来实现。
 
 下表为部分 Legendre 符号的值![](./images/quad_residue.png)
-
-## Euler 判别准则
-
-### 定义
-
-对于奇素数 $p$ 和 $p\nmid a$ 有
-
-$$
-a^{(p-1)/2}\equiv \left(\frac{a}{p}\right)\equiv
-\begin{cases}
-1\pmod p,&\text{if }x^2\equiv a\pmod p\text{ is solvable}\\
--1\pmod p,&\text{otherwise}
-\end{cases}
-$$
-
-### 证明
-
-**引理**：令 $p$ 为素数和模 $p$ 意义下原根 $g$ 并令 $a\equiv g^k\pmod p$。那么 $x^2\equiv a\pmod p$ 有解当且仅当 $k$ 为偶数。
-
-**引理的证明**：（充分性）假设 $x^2\equiv a\pmod p$ 有解为 $g^l$ 对于某个 $l$ 成立。那么 $(g^l)^2\equiv a\pmod p\implies g^{2l}\equiv a\pmod p$。因此 $k\equiv 2l\pmod{p-1}$（Fermat 小定理），而 $p-1$ 为偶数，所以 $k$ 为偶数。
-
-（必要性）假设 $k$ 为偶数，那么
-
-$$
-x^2\equiv g^k\pmod p\iff x^2\equiv (g^{k/2})^2\pmod p
-$$
-
-而因为 $k$ 为偶数，所以 $k/2$ 为整数，因此 $x^2\equiv g^k\pmod p$ 有解为 $g^{k/2}$。
-
-因为 $g$ 为模 $p$ 的原根，那么 $g$ 的阶为 $\varphi(p)=p-1$ 所以 $g^{p-1}\equiv 1\pmod p$ 且根据阶的定义，对于所有 $k\in\mathbb{Z}$ 满足 $1\leq k\lt p-1$ 都有 $g^k\not\equiv 1\pmod p$，所以
-
-$$
-\begin{aligned}
-&{}g^{p-1}\equiv 1&\pmod p\\
-\iff &g^{p-1}-1\equiv 0&\pmod p\\
-\iff &\left(g^{(p-1)/2}-1\right)\cdot\left(g^{(p-1)/2}+1\right)\equiv 0&\pmod p\\
-\implies &g^{(p-1)/2}\equiv -1&\pmod p
-\end{aligned}
-$$
-
-考虑同余方程 $x^2\equiv a\pmod p$。因为 $a\in\mathbb{F}_p\setminus \lbrace 0\rbrace$ 且 $a\equiv g^k\pmod p$ 对于某个 $k$ 满足 $1\leq k\leq p-1$ 成立。若同余方程存在解，则 $k$ 为偶数，通过上述引理和 Fermat 小定理有
-
-$$
-\begin{aligned}
-a^{(p-1)/2}&\equiv \left(g^k\right)^{(p-1)/2}&\pmod p\\
-&\equiv \left(g^{p-1}\right)^{k/2}&\pmod p\\
-&\equiv 1&\pmod p
-\end{aligned}
-$$
-
-所以当 $a^{(p-1)/2}\equiv 1\pmod p$ 时解存在。
-
-又因上述引理，$x^2\equiv a\pmod p$ 无解时 $k$ 为奇数。假设 $k$ 为奇数，那么
-
-$$
-\begin{aligned}
-a^{(p-1)/2}&\equiv (g^k)^{(p-1)/2}&\pmod p\\
-&\equiv \left(g^{(p-1)/2}\right)^k&\pmod p\\
-&\equiv \left(-1\right)^k&\pmod p\\
-&\equiv -1&\pmod p
-\end{aligned}
-$$
-
-即得 Euler 判别准则，也可以推断出 Legendre 符号为完全积性函数。
-
-## 二次剩余和二次非剩余的数量
-
-### 定义
-
-对于奇素数 $p$ 和集合 $\left\lbrace 1,2,\dots ,p-1\right\rbrace$，在模 $p$ 意义下二次剩余的数量等于二次非剩余的数量。
-
-### 证明
-
-**引理**：对于 $d\mid (p-1)$ 和奇素数 $p\in\mathbb{Z}$，$x^d\equiv 1\pmod p$ 恰有 $d$ 个解。
-
-**引理的证明**：根据 Fermat 小定理，当 $\gcd(a,p)=1$ 时有 $a^{p-1}\equiv 1\pmod p$。因此对于每个 $a\in\left\lbrace 1,\dots ,p-1\right\rbrace$，$x=a$ 是 $x^{p-1}\equiv 1\pmod p$ 的解。通过因式分解 $x^{p-1}-1$ 有
-
-$$
-\begin{aligned}
-x^{p-1}-1&\equiv (x^d-1)(x^{p-1-d}+x^{p-1-2d}+\cdots +1)&\pmod p\\
-&\equiv (x^d-1)\cdot g(x)&\pmod p\\
-&\equiv 0&\pmod p
-\end{aligned}
-$$
-
-其中 $\deg(g(x))=p-1-d$。根据 [Lagrange 定理](./lagrange.md) 我们知道 $g(x)=0$ 最多有 $p-1-d$ 个解。因为 $x^{p-1}-1\equiv 0\pmod p$ 有 $p-1$ 个解，所以显然 $x^d-1\equiv 0\pmod p$ 至少有 $d$ 个解。如果只考虑 $x^d-1\equiv 0\pmod p$，我们知道最多有 $d$ 个解。所以 $x^d-1\equiv 0\pmod p$ 恰有 $d$ 个解。
-
-根据 Euler 判别准则，对于 $a^{(p-1)/2}\equiv 1\pmod p$ 显然 $\frac{p-1}{2}\mid (p-1)$，又因上述引理所以 $a^{(p-1)/2}\equiv 1\pmod p$ 有 $\frac{p-1}{2}$ 个解，而集合中有 $p-1$ 个元素，所以也有 $\frac{p-1}{2}$ 个二次非剩余。
 
 ## 特殊情况时的算法
 

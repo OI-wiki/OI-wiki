@@ -56,7 +56,7 @@ author: accelsao, StudyingFather, t4rf9
 
 详见 [二分图最大匹配](./bigraph-match.md) 页面。
 
-在无权二分图中，Hopcroft-Karp 算法可在 $O(\sqrt{V}E)$ 解决。
+在无权二分图中，Hopcroft–Karp 算法可在 $O(\sqrt{V}E)$ 解决。
 
 ### 二分图最大权匹配
 
