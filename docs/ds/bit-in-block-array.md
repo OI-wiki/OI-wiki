@@ -148,7 +148,7 @@
     }
     ```
 
-??? node "参考代码（树状数组套 Treap-TLE）"
+??? node "参考代码（树状数组套 Treap—TLE）"
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
