@@ -242,11 +242,11 @@
         },
         "pymdown-extensions": {
             "hashes": [
-                "sha256:0f8fb7b74a37a61cc34e90b2c91865458b713ec774894ffad64353a5fce85cfc",
-                "sha256:ac698c15265680db5eb13cd4342abfcde2079ac01e5486028f47a1b41547b859"
+                "sha256:ae66d84013c5d027ce055693e09a4628b67e9dec5bce05727e45b0918e36f274",
+                "sha256:b44e1093a43b8a975eae17b03c3a77aad4681b3b56fce60ce746dbef1944c8cb"
             ],
             "index": "pypi",
-            "version": "==9.9"
+            "version": "==10.0.1"
         },
         "python-dateutil": {
             "hashes": [
