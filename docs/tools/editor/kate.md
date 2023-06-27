@@ -56,25 +56,25 @@ Kate 可以自动识别当前文件使用的是什么编码，如果识别错误
 
 Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、Latex/BibTeX、OCaml、Python、Rust，现如今支持如下表中的语言：
 
-|     语言     |                                       LSP Server                                       |
-| :--------: | :------------------------------------------------------------------------------------: |
-|    Bash    |        [bash-language-server](https://github.com/bash-lsp/bash-language-server)        |
-|    LaTeX   |                          [texlab](https://texlab.netlify.com/)                         |
-|   BibTeX   |                          [texlab](https://texlab.netlify.com/)                         |
-|      C     |                     [clangd](https://clang.llvm.org/extra/clangd/)                     |
-|     C++    |                     [clangd](https://clang.llvm.org/extra/clangd/)                     |
-|      D     |                      [serve-d](https://github.com/Pure-D/serve-d)                      |
-|   Fortran  |               [fortls](https://github.com/hansec/fortran-language-server)              |
-|     Go     |                        [gopls](https://golang.org/x/tools/gopls)                       |
-|   Haskell  | [haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server") |
-| JavaScript |  [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
-|    OCaml   |                     [ocamllsp](https://github.com/ocaml/ocaml-lsp)                     |
-|    Perl    |        [Perl-LanguageServer](https://github.com/richterger/Perl-LanguageServer)        |
-|   Python   |               [pyls](https://github.com/palantir/python-language-server)               |
-|    Rust    |                         [rls](https://github.com/rust-lang/rls)                        |
-| TypeScript |  [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
-|      R     |           [RLanguageServer](https://github.com/REditorSupport/languageserver)          |
-|     zig    |                         [zls](https://github.com/zigtools/zls)                         |
+|     语言     |                                       LSP Server                                      |
+| :--------: | :-----------------------------------------------------------------------------------: |
+|    Bash    |        [bash-language-server](https://github.com/bash-lsp/bash-language-server)       |
+|    LaTeX   |                         [texlab](https://texlab.netlify.com/)                         |
+|   BibTeX   |                         [texlab](https://texlab.netlify.com/)                         |
+|      C     |                     [clangd](https://clang.llvm.org/extra/clangd/)                    |
+|     C++    |                     [clangd](https://clang.llvm.org/extra/clangd/)                    |
+|      D     |                      [serve-d](https://github.com/Pure-D/serve-d)                     |
+|   Fortran  |              [fortls](https://github.com/hansec/fortran-language-server)              |
+|     Go     |                       [gopls](https://golang.org/x/tools/gopls)                       |
+|   Haskell  | [haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server) |
+| JavaScript | [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
+|    OCaml   |                     [ocamllsp](https://github.com/ocaml/ocaml-lsp)                    |
+|    Perl    |        [Perl-LanguageServer](https://github.com/richterger/Perl-LanguageServer)       |
+|   Python   |               [pyls](https://github.com/palantir/python-language-server)              |
+|    Rust    |                        [rls](https://github.com/rust-lang/rls)                        |
+| TypeScript | [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
+|      R     |          [RLanguageServer](https://github.com/REditorSupport/languageserver)          |
+|     zig    |                         [zls](https://github.com/zigtools/zls)                        |
 
 要启用 LSP 相关特性，需要前往菜单栏中 `设置`→`配置 Kate` 然后选择 `插件` 中 `LSP 客户端` 以启用相关特性。当打开对应语言的文件时，Kate 会自动拉起对应的 LSP Server。
 
