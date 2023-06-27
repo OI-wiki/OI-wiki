@@ -596,7 +596,8 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.magiclink
   - pymdownx.mark
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      check_paths: true
   - pymdownx.progressbar
   - pymdownx.smartsymbols
   - pymdownx.superfences:
