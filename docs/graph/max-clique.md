@@ -20,7 +20,7 @@ author: Persdre
 
 ## 过程
 
-**Bron-Kerbosch** 算法对于这种想法进行了优化实现。它的基础形式是通过给定三个集合：$R$、$P$、$X$ 来递归地进行搜索。步骤如下：
+**Bron–Kerbosch** 算法对于这种想法进行了优化实现。它的基础形式是通过给定三个集合：$R$、$P$、$X$ 来递归地进行搜索。步骤如下：
 
 1.  初始化集合 $R,X$ 分别为空，集合 $P$ 是图中所有点的集合。
 2.  每次从集合 $P$ 中取顶点 $v$，当集合中没有顶点时，有两种情况：
@@ -63,7 +63,7 @@ BronKerbosch1(R, P, X):
 ???+ note "[POJ 2989: All Friends](http://poj.org/problem?id=2989)"
     题目大意：给出 $n$ 个人，其中有 $m$ 对朋友，求最大团数量。
 
-思路：模版题，要用 Bron-Kerbosch 算法
+思路：模版题，要用 Bron–Kerbosch 算法
 
 伪代码：
 
@@ -104,6 +104,6 @@ BronKerbosch1(R, P, X):
 ## 参考资料
 
 -   [团问题 - 维基百科](https://en.wikipedia.org/wiki/Clique_problem)
--   [无向图的极大团、最大团（Bron-Kerbosch 算法）](https://blog.csdn.net/yo_bc/article/details/77453478)
--   [最大团问题——Bron-Kerbosch 算法](https://hallelujahjeff.github.io/2018/04/12/34/)
+-   [无向图的极大团、最大团（Bron–Kerbosch 算法）](https://blog.csdn.net/yo_bc/article/details/77453478)
+-   [最大团问题——Bron–Kerbosch 算法](https://hallelujahjeff.github.io/2018/04/12/34/)
 -   [最大团问题](https://www.cnblogs.com/zhj5chengfeng/archive/2013/07/29/3224092.html)

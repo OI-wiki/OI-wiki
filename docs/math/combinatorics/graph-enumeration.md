@@ -214,7 +214,8 @@ $$
 -   [BZOJ 3864. 大朋友和多叉树](https://darkbzoj.cc/problem/3684)
 -   [BZOJ 2863. 愤怒的元首](https://darkbzoj.cc/problem/2863)
 -   [Luogu P6295. 有标号 DAG 计数](https://www.luogu.com.cn/problem/P6295)
--   [「LOJ #161」仙人掌计数](https://loj.ac/p/6569)
+-   [LOJ 6569. 仙人掌计数](https://loj.ac/p/6569)
+-   [LOJ 6570. 毛毛虫计数](https://loj.ac/p/6570)
 -   [Luogu P5434. 有标号荒漠计数](https://www.luogu.com.cn/problem/P5434)
 -   [Luogu P3343. \[ZJOI2015\] 地震后的幻想乡](https://www.luogu.com.cn/problem/P3343)
 -   [HDU 5279. YJC plays Minecraft](https://acm.hdu.edu.cn/showproblem.php?pid=5279)
@@ -342,8 +343,10 @@ $$
 -   [Luogu P6598. 烷烃计数](https://www.luogu.com.cn/problem/P6598)
 -   [Luogu P4128. \[SHOI2006\] 有色图](https://www.luogu.com.cn/problem/P4128)
 -   [Luogu P4727. \[HNOI2009\] 图的同构计数](https://www.luogu.com.cn/problem/P4727)
+-   [AtCoder Beginner Contest 222 H. Binary Tree](https://atcoder.jp/contests/abc222/tasks/abc222_h)
 -   [AtCoder Beginner Contest 284 Ex. Count Unlabeled Graphs](https://atcoder.jp/contests/abc284/tasks/abc284_h)
 -   [Luogu P4708. 画画](https://www.luogu.com.cn/problem/P4708)
+-   [Luogu P7592. 数树（2021 CoE-II E）](https://www.luogu.com.cn/problem/P7592)
 
 ## 参考资料与注释
 

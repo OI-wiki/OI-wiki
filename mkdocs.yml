@@ -195,7 +195,7 @@ nav:
     - 字符串哈希: string/hash.md
     - 字典树 (Trie): string/trie.md
     - 前缀函数与 KMP 算法: string/kmp.md
-    - Boyer-Moore 算法: string/bm.md
+    - Boyer–Moore 算法: string/bm.md
     - Z 函数（扩展 KMP）: string/z-func.md
     - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
@@ -211,7 +211,7 @@ nav:
     - 序列自动机: string/seq-automaton.md
     - 最小表示法: string/minimal-string.md
     - Lyndon 分解: string/lyndon.md
-    - Main-Lorentz 算法: string/main-lorentz.md
+    - Main–Lorentz 算法: string/main-lorentz.md
   - 数学:
     - 数学部分简介: math/index.md
     - 符号: math/notation.md
@@ -231,7 +231,7 @@ nav:
       - 数论分块: math/number-theory/sqrt-decomposition.md
       - 欧拉函数: math/number-theory/euler.md
       - 筛法: math/number-theory/sieve.md
-      - Meissel-Lehmer 算法: math/number-theory/meissel-lehmer.md
+      - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 分解质因数: math/number-theory/pollard-rho.md
       - 裴蜀定理: math/number-theory/bezouts.md
       - 类欧几里德算法: math/number-theory/euclidean.md
@@ -253,7 +253,7 @@ nav:
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
       - 连分数: math/number-theory/continued-fraction.md
-      - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
+      - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
       - 循环连分数: math/number-theory/periodic-continued-fraction.md
       - Pell 方程: math/number-theory/pell-equation.md
@@ -328,7 +328,7 @@ nav:
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
     - Schreier–Sims 算法: math/schreier-sims.md
-    - Berlekamp-Massey 算法: math/berlekamp-massey.md
+    - Berlekamp–Massey 算法: math/berlekamp-massey.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
@@ -444,7 +444,7 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
-    - Stoer-Wagner 算法: graph/stoer-wagner.md
+    - Stoer–Wagner 算法: graph/stoer-wagner.md
     - 图的匹配:
       - 图匹配: graph/graph-matching/graph-match.md
       - 增广路: graph/graph-matching/augment.md
@@ -502,7 +502,7 @@ nav:
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
     - 主元素问题: misc/main-element.md
-    - Garsia-Wachs 算法: misc/garsia-wachs.md
+    - Garsia–Wachs 算法: misc/garsia-wachs.md
     - 15-puzzle: misc/15-puzzle.md
     - Kahan 求和: misc/kahan-summation.md
     - 珂朵莉树/颜色段均摊: misc/odt.md

@@ -150,7 +150,7 @@ void build_virtual_tree() {
   }
   a[++len] = h[m];
   sort(a + 1, a + len + 1, cmp);  // 把所有虚树上的点按照 dfn 序排序
-  len = unque(a + 1, a + len + 1) - a - 1;  // 去重
+  len = unique(a + 1, a + len + 1) - a - 1;  // 去重
   for (int i = 1, lc; i < len; ++i) {
     lc = lca(a[i], a[i + 1]);
     conn(lc, a[i + 1]);  // 连边，如有边权 就是 distance(lc,a[i+1])
