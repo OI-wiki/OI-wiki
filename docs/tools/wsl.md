@@ -285,9 +285,9 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 ### 使用 WSLg 运行 GUI 程序
 
-如果你使用 Windows 11 Build 22000 以上版本，则可以使用 WSL 2 提供的集成的桌面体验。该功能允许你直接安装并启动 Linux 桌面程序而无须其他配置。
+如果你使用 Windows 10 19044 及以上版本或 Windows 11，则可以使用 WSL 2 提供的集成的桌面体验。该功能允许你直接安装并启动 Linux 桌面程序而无须其他配置。
 
-参见 [在适用于 Linux 的 Windows 子系统上运行 Linux GUI 应用（预览）](https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps)
+参见 [在适用于 Linux 的 Windows 子系统上运行 Linux GUI 应用](https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gui-apps)
 
 ### 安装图形环境，并使用远程桌面连接
 
