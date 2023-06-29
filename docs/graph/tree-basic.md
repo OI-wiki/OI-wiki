@@ -178,6 +178,18 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 在递归顺序遍历中只保留第三次出现的值，得到后序遍历：D E B F G C A 。
 
+
+
+```
+递归: A  B  D  D  D  B  E  E  E  B  A  C  F  F  F  C  G  G  G  C  A
+先序:(A)(B)(D) D  D  B (E) E  E  B  A (C)(F) F  F  C (G) G  G  C  A  -> A B D E C F G
+中序: A  B  D (D) D (B) E (E) E  B (A) C  F (F) F (C) G (G) G  C  A  -> D B E A F C G
+后序: A  B  D  D (D) B  E  E (E)(B) A  C  F  F (F) C  G  G (G)(C)(A) -> D E B F G C A
+DFS序:(A)(B)(D)D (D) B (E) E (E)(B) A (C)(F) F (F) C (G) G (G)(C)(A) -> A B D D E E B C F F G G C A
+```
+
+
+
 ```c++
 void orderOfRecursion(BiTree* root) {
     if (root == nullptr) {
