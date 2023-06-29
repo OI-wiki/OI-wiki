@@ -168,7 +168,9 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 按照递归顺序每次到达一个节点都输出节点的值。二叉树的递归顺序遍历实际包括了先序、中序和后序遍历。由递归顺序遍历能得到三种遍历的任意一种。
 
-![recursionOrder](images/tree-basic-recursionorder.svg)
+
+
+![recursionorder](images/tree-basic-recursionorder.svg)
 
 上图的递归顺序遍历：A B D D D B E E E B A C F F F C G G G C A 。注意其中每个值都出现了三次。
 
@@ -239,7 +241,7 @@ void orderOfRecursion(BiTree* root) {
 
 #### 后序遍历
 
-![Postorder](images/tree-basic-postorder.svg)
+![postorder](images/tree-basic-postorder.svg)
 
 按照 **左，右，根** 的顺序遍历二叉树。
 
@@ -272,9 +274,9 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
 
 ### 二叉树 Morris遍历
 
-二叉树节点数为N，遍历二叉树，要求时间复杂度为O(N)，额外空间复杂度O(1)。
+二叉树遍历的核心问题是，当遍历当前节点的子节点后，如何返回当前节点并继续遍历。遍历二叉树的递归方法和非递归方法都使用了栈结构，记录返回路径，来实现从下层到上层的移动。其空间复杂度最好时为O(logn)，最坏时为O(n)（二叉树呈线性）。
 
-遍历二叉树的递归方法和非递归方法都使用了栈结构，来实现从下层到上层的移动，无法达到空间复杂度O(1)的限制。Morris遍历的实质是避免使用栈，利用底层节点空闲的right指针指回上层的某个节点，从而完成下层到上层的移动。
+Morris遍历的实质是避免使用栈，利用底层节点空闲的right指针指回上层的某个节点，从而完成下层到上层的移动。
 
 #### Morris遍历的过程
 
@@ -293,7 +295,7 @@ void morris(TreeNode* root) {
     TreeNode* cur = root;
     while (cur) {
         if (!cur->left) {
-            // 如果当前节点没有左子节点，则输出当前节点的值并进入右子树
+            // 如果当前节点没有左子树，则输出当前节点的值并进入右子树
             std::cout << cur->val << " ";
             cur = cur->right;
             continue;
