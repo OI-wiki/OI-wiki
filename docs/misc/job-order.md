@@ -36,9 +36,9 @@ $$
 
 我们考虑所有的 $f_i(x)$ 是同一个单增函数。那么显然我们将排列按照 $t_i$ 升序排序即可。
 
-## Livshits-Kladov 定理
+## Livshits–Kladov 定理
 
-Livshits-Kladov 定理成立，当且仅当代价函数是以下三种情况：
+Livshits–Kladov 定理成立，当且仅当代价函数是以下三种情况：
 
 -   线性函数：$f_i(t) = c_it + d_i$，其中 $c_i\ge 0$；
 -   指数函数：$f_i(t) = c_i \mathrm{e}^{a t} + d_i$，其中 $c_i,a>0$；

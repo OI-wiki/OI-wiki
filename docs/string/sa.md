@@ -262,7 +262,6 @@ for (i = 1; i <= n; ++i) {
         for (p = 0, i = 1; i <= n; ++i)
           rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
         if (p == n) {
-          for (int i = 1; i <= n; ++i) sa[rk[i]] = i;
           break;
         }
       }

@@ -1,6 +1,6 @@
 author: Peanut-Tang, Early0v0, Vxlimo, GHLinZhengyu, 1196131597
 
-「Meissel-Lehmer 算法」是一种能在亚线性时间复杂度内求出 $1\sim n$ 内质数个数的一种算法。
+「Meissel–Lehmer 算法」是一种能在亚线性时间复杂度内求出 $1\sim n$ 内质数个数的一种算法。
 
 ## 记号规定
 
@@ -12,7 +12,7 @@ $\mu\left(x\right)$ 表示莫比乌斯函数。
 $\delta\left(x\right)$ 表示 $x$ 最小的质因子。  
 $P^+\left(n\right)$ 表示 $x$ 最大的质因子。
 
-## Meissel-Lehmer 算法求 π(x)
+## Meissel–Lehmer 算法求 π(x)
 
 定义 $\phi\left(x,a\right)$ 为所有小于 $x$ 的正整数中满足其所有质因子都大于 $p_a$ 的数的个数，即：
 

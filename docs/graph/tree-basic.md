@@ -162,7 +162,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 可以用来求出每个节点的深度、父亲等信息。
 
-### 二叉树的 DFS遍历
+### 二叉树的 DFS 遍历
 
 #### 递归顺序遍历
 
@@ -172,40 +172,37 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 ![recursionorder](images/tree-basic-recursionorder.svg)
 
-上图的递归顺序遍历：A B D D D B E E E B A C F F F C G G G C A 。注意其中每个值都出现了三次。
+上图的递归顺序遍历：A B D D D B E E E B A C F F F C G G G C A。注意其中每个值都出现了三次。
 
-在递归顺序遍历中只保留第一次出现的值，得到先序遍历：A B D E C F G 。
+在递归顺序遍历中只保留第一次出现的值，得到先序遍历：A B D E C F G。
 
-在递归顺序遍历中只保留第二次出现的值，得到中序遍历：D B E A F C G 。
+在递归顺序遍历中只保留第二次出现的值，得到中序遍历：D B E A F C G。
 
-在递归顺序遍历中只保留第三次出现的值，得到后序遍历：D E B F G C A 。
+在递归顺序遍历中只保留第三次出现的值，得到后序遍历：D E B F G C A。
 
-```
-递归: A  B  D  D  D  B  E  E  E  B  A  C  F  F  F  C  G  G  G  C  A
-先序:(A)(B)(D) D  D  B (E) E  E  B  A (C)(F) F  F  C (G) G  G  C  A  -> A B D E C F G
-中序: A  B  D (D) D (B) E (E) E  B (A) C  F (F) F (C) G (G) G  C  A  -> D B E A F C G
-后序: A  B  D  D (D) B  E  E (E)(B) A  C  F  F (F) C  G  G (G)(C)(A) -> D E B F G C A
-DFS序:(A)(B)(D)D (D) B (E) E (E)(B) A (C)(F) F (F) C (G) G (G)(C)(A) -> A B D D E E B C F F G G C A
-```
+    递归: A  B  D  D  D  B  E  E  E  B  A  C  F  F  F  C  G  G  G  C  A
+    先序:(A)(B)(D) D  D  B (E) E  E  B  A (C)(F) F  F  C (G) G  G  C  A  -> A B D E C F G
+    中序: A  B  D (D) D (B) E (E) E  B (A) C  F (F) F (C) G (G) G  C  A  -> D B E A F C G
+    后序: A  B  D  D (D) B  E  E (E)(B) A  C  F  F (F) C  G  G (G)(C)(A) -> D E B F G C A
+    DFS序:(A)(B)(D)D (D) B (E) E (E)(B) A (C)(F) F (F) C (G) G (G)(C)(A) -> A B D D E E B C F F G G C A
 
 ???+ note "实现"
+    
 
 ```c++
 void orderOfRecursion(BiTree* root) {
-    if (root == nullptr) {
-        return;
-    }
-    cout << root -> key << " "; // 1. 打印，先序
-    orderOfRecursion(root->left);
-    cout << root -> key << " "; // 2. 打印，中序
-    orderOfRecursion(root->right);
-    cout << root -> key << " "; // 3. 打印，后序
+  if (root == nullptr) {
+    return;
+  }
+  cout << root->key << " ";  // 1. 打印，先序
+  orderOfRecursion(root->left);
+  cout << root->key << " ";  // 2. 打印，中序
+  orderOfRecursion(root->right);
+  cout << root->key << " ";  // 3. 打印，后序
 }
 ```
 
 #### 先序遍历
-
-
 
 ![preorder](images/tree-basic-preorder.svg)
 
@@ -272,50 +269,50 @@ void orderOfRecursion(BiTree* root) {
 
 BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
 
-### 二叉树 Morris遍历
+### 二叉树 Morris 遍历
 
 二叉树遍历的核心问题是，当遍历当前节点的子节点后，如何返回当前节点并继续遍历。遍历二叉树的递归方法和非递归方法都使用了栈结构，记录返回路径，来实现从下层到上层的移动。其空间复杂度最好时为O(logn)，最坏时为O(n)（二叉树呈线性）。
 
 Morris遍历的实质是避免使用栈，利用底层节点空闲的right指针指回上层的某个节点，从而完成下层到上层的移动。
 
-#### Morris遍历的过程
+#### Morris 遍历的过程
 
-假设来到当前节点cur，开始时来到根节点位置
+假设来到当前节点 cur，开始时来到根节点位置
 
-1. 如果cur为空时遍历停止，否则进行以下过程
-2. 如果cur没有左子树，cur向右移动（`cur = cur->right`）
-3. 如果cur有左子树，找到左子树上最右的节点，记为mostRight：
-   - 如果mostRight的right指针指向空，让其指向cur，然后cur向左移动（`cur = cur.left`）
-   - 如果mostRight的right指针指向cur，让其指向null，然后cur向右移动（`cur = cur.right`）
+1.  如果 cur 为空时遍历停止，否则进行以下过程
+2.  如果 cur 没有左子树，cur 向右移动（`cur = cur->right`）
+3.  如果 cur 有左子树，找到左子树上最右的节点，记为 mostRight：
+    -   如果 mostRight 的 right 指针指向空，让其指向 cur，然后 cur 向左移动（`cur = cur.left`）
+    -   如果 mostRight 的 right 指针指向 cur，让其指向 null，然后 cur 向右移动（`cur = cur.right`）
 
 ???+ note "实现"
 
 ```c++
 void morris(TreeNode* root) {
-    TreeNode* cur = root;
-    while (cur) {
-        if (!cur->left) {
-            // 如果当前节点没有左子树，则输出当前节点的值并进入右子树
-            std::cout << cur->val << " ";
-            cur = cur->right;
-            continue;
-        }
-        // 找到当前节点的左子树的最右节点
-        TreeNode* mostRight = cur->left;
-        while (mostRight->right && mostRight->right != cur) {
-            mostRight = mostRight->right;
-        }
-        if (!mostRight->right) {
-            // 如果最右节点的right指针为空，将其指向当前节点，并进入左子树
-            mostRight->right = cur;
-            cur = cur->left;
-        } else {
-            // 如果最右节点的right指针指向当前节点，说明左子树已经遍历完毕，输出当前节点的值并进入右子树
-            mostRight->right = nullptr;
-            std::cout << cur->val << " ";
-            cur = cur->right;
-        }
+  TreeNode* cur = root;
+  while (cur) {
+    if (!cur->left) {
+      // 如果当前节点没有左子节点，则输出当前节点的值并进入右子树
+      std::cout << cur->val << " ";
+      cur = cur->right;
+      continue;
     }
+    // 找到当前节点的左子树的最右节点
+    TreeNode* mostRight = cur->left;
+    while (mostRight->right && mostRight->right != cur) {
+      mostRight = mostRight->right;
+    }
+    if (!mostRight->right) {
+      // 如果最右节点的right指针为空，将其指向当前节点，并进入左子树
+      mostRight->right = cur;
+      cur = cur->left;
+    } else {
+      // 如果最右节点的right指针指向当前节点，说明左子树已经遍历完毕，输出当前节点的值并进入右子树
+      mostRight->right = nullptr;
+      std::cout << cur->val << " ";
+      cur = cur->right;
+    }
+  }
 }
 ```
 

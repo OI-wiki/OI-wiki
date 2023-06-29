@@ -24,11 +24,11 @@ author: DanJoshua, opsiff, yzy-1
 
 ***
 
-## Stoer-Wagner 算法
+## Stoer–Wagner 算法
 
 ### 引入
 
-Stoer-Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是一种通过 **递归** 的方式来解决 **无向正权图** 上的全局最小割问题的算法。
+Stoer–Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是一种通过 **递归** 的方式来解决 **无向正权图** 上的全局最小割问题的算法。
 
 ### 性质
 
@@ -105,7 +105,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 由于 $\operatorname{pos}(s) < \operatorname{pos}(t)$，并且 $s, t$ 不在同一连通块，因此 $t$ 会被激活，由此可以得出 $w(A_t, t) \le w(C_t) = w(C)$。
 
-??? note "[P5632【模板】Stoer-Wagner 算法](https://www.luogu.com.cn/problem/P5632)"
+??? note "[P5632【模板】Stoer–Wagner 算法](https://www.luogu.com.cn/problem/P5632)"
     ```cpp
     --8<-- "docs/graph/code/stoer-wagner/stoer-wagner_1.cpp"
     ```

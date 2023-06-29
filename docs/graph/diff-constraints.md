@@ -14,7 +14,7 @@ author: Ir1d, Anguei, hsfzLZH1
 
 ## 性质
 
-一般使用 Bellman-Ford 或队列优化的 Bellman-Ford（俗称 SPFA，在某些随机图跑得很快）判断图中是否存在负环，最坏时间复杂度为 $O(nm)$。
+一般使用 Bellman–Ford 或队列优化的 Bellman–Ford（俗称 SPFA，在某些随机图跑得很快）判断图中是否存在负环，最坏时间复杂度为 $O(nm)$。
 
 ## 常用变形技巧
 
@@ -41,9 +41,9 @@ author: Ir1d, Anguei, hsfzLZH1
 
 对每个 $x_i,x_j$ 和 $c_k$ 取一个 $\log$ 就可以把乘法变成加法运算，即 $\log x_i-\log x_j \leq \log c_k$，这样就可以用差分约束解决了。
 
-## Bellman-Ford 判负环代码实现
+## Bellman–Ford 判负环代码实现
 
-下面是用 Bellman-Ford 算法判断图中是否存在负环的代码实现，请在调用前先保证图是连通的。
+下面是用 Bellman–Ford 算法判断图中是否存在负环的代码实现，请在调用前先保证图是连通的。
 
 ???+ note "实现"
     === "C++"
