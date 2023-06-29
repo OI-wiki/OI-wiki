@@ -230,4 +230,4 @@ $$
 
 因此 $\tilde{F}(x)\zeta(x-2) = \zeta(x-3)$。而 $\zeta(x-2)$ 对应的积性函数为 $I_2$，所以令 $g = I_2$ 即可。这样有 $f\ast g = I_3$，两者都是可以快速计算前缀和的。
 
-[^1]: <https://en.wikipedia.org/wiki/Generating_function#Dirichlet_series_generating_functions_(DGFs>)
+[^1]: <https://en.wikipedia.org/wiki/Generating_function#Dirichlet_series_generating_functions_(DGFs)>

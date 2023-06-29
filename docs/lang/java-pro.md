@@ -72,7 +72,7 @@ public class Main {
     public static double nextDouble() throws IOException { in.nextToken(); return in.nval; }
     public static float nextFloat() throws IOException { in.nextToken(); return (float)in.nval; }
     public static int nextInt() throws IOException { in.nextToken(); return (int)in.nval; }
-    public static String next() throws IOException { return in.sval; }
+    public static String next() throws IOException { in.nextToken(); return in.sval; }
     public static long nextLong() throws Exception { in.nextToken(); return (long)in.nval;}
     
     // 使用示例
@@ -414,7 +414,7 @@ public class Main {
 }
 ```
 
-关于米勒罗宾相关知识可以查阅[miller-rabin 素性测试](../math/number-theory/prime.md#miller-rabin-素性测试)。
+关于米勒罗宾相关知识可以查阅[Miller–Rabin 素性测试](../math/number-theory/prime.md#millerrabin-素性测试)。
 
 ## 基本数据类型与包装数据类型
 
