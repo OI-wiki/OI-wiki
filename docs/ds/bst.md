@@ -209,32 +209,36 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
 
 对于右旋操作一般的更新顺序是：暂存 $B$ 结点，先让 $A$ 的左孩子指向 $B$ 的右子树 $BR$，再让 $B$ 的右孩子指针指向 $A$（$A$ 被它的父结点指向），最后让 $A$ 的父结点指向暂存的 $B$。整个操作只要找到 $A$ 的父节点孩子即可完成。
 
+![bst-rotate](images/bst-rotate.svg)
+
 完全同理，有对应的左旋操作，也称为「左单旋转」或「RR 平衡旋转」。左旋操作与右旋操作互为镜像。
 
 一段可行的代码为：
 
 ???+ note "实现"
-    ```cpp
-    
-    int zig(int now) {                           // 以now为中心右旋
-      int lchild = nodes[now].lchild;            // 暂存A的左孩子B节点
-      nodes[now].lchild = nodes[lchild].rchild;  // 将A的左孩子指向B的右子树BR
-      nodes[lchild].rchild = now;                // 将B的右孩子指针指向A
-      update(nodes[lchild].rchild);  // 更新旋转后A与B两个节点的信息
-      update(lchild);
-      return lchild;  // 让A的父节点指向最初暂存的B
-    }
-    
-    int zag(int now) {  // 以now为中心左旋
-      int rchild = nodes[now].rchild;
-      nodes[now].rchild = nodes[rchild].lchild;
-      nodes[rchild].lchild = now;
-      update(nodes[rchild].lchild);
-      update(rchild);
-      return rchild;
-    }
-    
-    ```
+
+
+~~~c++
+int zig(int now) {                           // 以now为中心右旋
+  int lchild = nodes[now].lchild;            // 暂存A的左孩子B节点
+  nodes[now].lchild = nodes[lchild].rchild;  // 将A的左孩子指向B的右子树BR
+  nodes[lchild].rchild = now;                // 将B的右孩子指针指向A
+  update(nodes[lchild].rchild);  // 更新旋转后A与B两个节点的信息
+  update(lchild);
+  return lchild;  // 让A的父节点指向最初暂存的B
+}
+
+int zag(int now) {  // 以now为中心左旋
+  int rchild = nodes[now].rchild;
+  nodes[now].rchild = nodes[rchild].lchild;
+  nodes[rchild].lchild = now;
+  update(nodes[rchild].lchild);
+  update(rchild);
+  return rchild;
+}
+
+```
+~~~
 
 对于这段示例代码，只有调用者知道结点 $A$ 的父结点是什么。对于这种情形，代码的返回值为新的子树根结点的下标，令调用者将左边为 $A$ 的父节点赋值为指向新的子树根结点的下标即可。
 
