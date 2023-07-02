@@ -719,11 +719,11 @@ impl<'a> BMPattern<'a> {
 
 基于这两条原则思考，我就发现二进制字节本身：1 字节等宽、字符全集大小是 256，就是符合条件的完美字符！在这个基础上完成了一系列后缀匹配算法的高效实现。
 
-### Simplified Boyer-Moore 算法
+### Simplified Boyer–Moore 算法
 
 BM 算法最复杂的地方就在于 $delta_2$ 表（通俗的名字是好后缀表）的构建，而实践中发现，在一般的字符集上的匹配性能主要依靠 $delta_1$ 表（通俗的名字是坏字符表），于是出现了仅仅使用 $delta_1$ 表的简化版 BM 算法，通常表现和完整版差距很小。
 
-### Boyer-Moore-Horspol 算法
+### Boyer–Moore–Horspol 算法
 
 Horspol 算法同样是基于坏字符的规则，不过是在与 $pat$ 尾部对齐的字符上应用 $delta_1$，这个效果类似于前文对匹配算法的改进，所以它的通常表现优于原始 BM 和匹配算法改进后的 BM 差不多。
 
@@ -756,7 +756,7 @@ Horspol 算法同样是基于坏字符的规则，不过是在与 $pat$ 尾部�
     }
     ```
 
-### Boyer-Moore-Sunday 算法
+### Boyer–Moore–Sunday 算法
 
 Sunday 算法同样是利用坏字符规则，只不过相比 Horspool 它更进一步，直接关注 $pat$ 尾部对齐的那个字符的下一个字符。
 
@@ -1363,7 +1363,7 @@ def plot(p, title, N=30):
 
 ## 引用
 
-[^bm]: [1977 年 Boyer-Moore 算法论文](https://dl.acm.org/doi/10.1145/359842.359859)
+[^bm]: [1977 年 Boyer–Moore 算法论文](https://dl.acm.org/doi/10.1145/359842.359859)
 
 [^kmp]: [1977 年 KMP 算法论文](https://epubs.siam.org/doi/abs/10.1137/0206024)
 

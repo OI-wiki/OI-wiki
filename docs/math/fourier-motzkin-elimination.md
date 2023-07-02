@@ -1,6 +1,6 @@
 ## 引入
 
-**傅里叶 - 莫茨金消元法**（原名 Fourier-Motzkin Elimination，简称 **FME** 算法）是一种用于从线性不等式中消除变量的数学方法。
+**傅里叶——莫茨金消元法**（原名 Fourier–Motzkin Elimination，简称 **FME** 算法）是一种用于从线性不等式中消除变量的数学方法。
 
 它的命名源自于在 1827 年和 1936 年独立发现该算法的 Joseph Fourier 和 Theodore Motzkin 的姓氏。
 
@@ -84,7 +84,7 @@ $(-12 + 2y + 6z)/3 \leq (9 + 6y - 3z)/3$
 
 ## 实现
 
-在编程语言中，[Racket](https://racket-lang.org/)，一种基于 Lisp 的多范式编程语言在 [fme - Fourier-Motzkin Elimination for Integer Systems)](https://docs.racket-lang.org/fme/index.html) 中对 FME 算法做了简单函数代数实现。
+在编程语言中，[Racket](https://racket-lang.org/)，一种基于 Lisp 的多范式编程语言在 [fme - Fourier–Motzkin Elimination for Integer Systems)](https://docs.racket-lang.org/fme/index.html) 中对 FME 算法做了简单函数代数实现。
 
 ## 参考资料与拓展阅读
 
