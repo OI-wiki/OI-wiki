@@ -10,7 +10,7 @@
 
 > **阶**：由欧拉定理可知，对 $a\in \mathbb{Z}$，$m\in\mathbb{N}^{*}$，若 $\gcd(a,m)=1$，则 $a^{\varphi(m)}\equiv 1\pmod m$。
 >
-> 因此满足同余式 $a^n \equiv 1 \pmod m$ 的最小正整数 $n$ 存在，这个 $n$ 称作 $a$ 模 $m$ 的阶，记作 $\delta_m(a)$。
+> 因此满足同余式 $a^n \equiv 1 \pmod m$ 的最小正整数 $n$ 存在，这个 $n$ 称作 $a$ 模 $m$ 的阶，记作 $\delta_m(a)$ 或 $\operatorname{ord}_m(a)$。
 
 ???+ note "注"
     在抽象代数中，这里的「阶」就是模 $m$ 缩剩余系关于乘法形成的群中，元素 $a$ 的阶。记号 $\delta$ 表示阶也只用于这个特殊的群。
