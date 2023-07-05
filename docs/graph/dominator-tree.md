@@ -1,8 +1,8 @@
 ## 前言
 
-1959 年，"支配" 这一概念由 Reese T. Prosser 在 [一篇关于网络流的论文](http://portal.acm.org/ft_gateway.cfm?id=1460314&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747) 中提出，但并未提出具体的求解算法；直到 1969 年，Edward S. Lowry 和 C. W. Medlock 才首次提出了 [有效的求解算法](http://portal.acm.org/ft_gateway.cfm?id=362838&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747)。而目前使用最为广泛的 Lengauer–Tarjan 算法则由 Lengauer 和 Tarjan 于 1979 年在 [一篇论文](https://www.cs.princeton.edu/courses/archive/fall03/cs528/handouts/a%20fast%20algorithm%20for%20finding.pdf) 中提出。
+1959 年，「支配」这一概念由 Reese T. Prosser 在 [一篇关于网络流的论文](http://portal.acm.org/ft_gateway.cfm?id=1460314&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747) 中提出，但并未提出具体的求解算法；直到 1969 年，Edward S. Lowry 和 C. W. Medlock 才首次提出了 [有效的求解算法](http://portal.acm.org/ft_gateway.cfm?id=362838&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747)。而目前使用最为广泛的 Lengauer–Tarjan 算法则由 Lengauer 和 Tarjan 于 1979 年在 [一篇论文](https://www.cs.princeton.edu/courses/archive/fall03/cs528/handouts/a%20fast%20algorithm%20for%20finding.pdf) 中提出。
 
-在 OI 界中，支配树的概念最早在 [ZJOI2012 灾难](https://www.luogu.com.cn/problem/P2597) 中被引入，当时也被称为 "灭绝树"；陈孙立也在 2020 年的国家集训队论文中介绍了这一算法。
+在 OI 界中，支配树的概念最早在 [ZJOI2012 灾难](https://www.luogu.com.cn/problem/P2597) 中被引入，当时也被称为「灭绝树」；陈孙立也在 2020 年的国家集训队论文中介绍了这一算法。
 
 目前支配树在竞赛界并不流行，其相关习题并不多见；但支配树在工业上，尤其是编译器相关领域，已有广泛运用。
 
@@ -152,7 +152,7 @@ void getdom() {
 
 不妨考虑某个结点的支配点集 $\{s_1, s_2, \dots, s_k\}$，则一定存在一条路径 $s \rightarrow \dots \rightarrow s_1 \rightarrow \dots \rightarrow s_2 \rightarrow \dots \rightarrow \dots \rightarrow s_k \rightarrow\dots \rightarrow u$。显然 $u$ 的直接支配点为 $s_k$。因此直接支配点的定义等价于：
 
-对于一个结点 $u$ 的支配点集 $S$，若 $  v \in S $ 满足 $\forall w \in S, w \ne v, w \ne u, w\ dom \ v$，则 $idom(u)=v$。
+对于一个结点 $u$ 的支配点集 $S$，若 $v \in S$ 满足 $\forall w \in S\setminus\{u,v\}, w\ dom \ v$，则 $idom(u)=v$。
 
 因此，利用前文所述的算法得到每个结点的支配点集之后，我们根据上述定义便能很轻松地得到每个点的直接支配点，从而构造出支配树。下面给出参考代码。
 
@@ -189,9 +189,9 @@ void getidom() {
 
 **证明：** 首先来证明充分性。考虑任意一条从 $s$ 到 $u$ 的路径都一定经过一个结点 $w \in pre(u)$，而 $v$ 支配这个结点，因此任意一条从 $s$ 到 $u$ 的路径都一定经过 $v$，因此我们得到 $v \ dom \ u$。
 
-然后是必要性。如果 $ \exists w\in pre(u)  $，$v$ 不支配 $w$，则一定有一条不经过 $v$ 的路径 $s \rightarrow \cdots \rightarrow w \rightarrow \cdots \rightarrow u$，因此 $v$ 不支配 $u$。
+然后是必要性。如果 $\exists w\in pre(u)$，$v$ 不支配 $w$，则一定有一条不经过 $v$ 的路径 $s \rightarrow \cdots \rightarrow w \rightarrow \cdots \rightarrow u$，因此 $v$ 不支配 $u$。
 
-我们发现，$u$ 的支配点一定是其所有前驱结点在支配树上的公共祖先，那么显然 $u$ 的直接支配点是所有前驱结点在支配树上的 $LCA$。考虑倍增求解 $LCA$ 可以支持每次添加一个结点，上述算法显然是可行的。
+我们发现，$u$ 的支配点一定是其所有前驱结点在支配树上的公共祖先，那么显然 $u$ 的直接支配点是所有前驱结点在支配树上的 LCA。考虑倍增求解 LCA 可以支持每次添加一个结点，上述算法显然是可行的。
 
 下面给出参考实现：
 
@@ -301,7 +301,7 @@ $sdom(u) = \min(v|\exists v=v_0 \rightarrow v_1 \rightarrow\dots \rightarrow v_k
 
 **证明：** 令 $x$ 等于上式右侧。
 
-我们首先证明 $sdom(u) \le x$。根据引理 7 我们知道这个命题等价于证明上述的两种都满足成为半支配点的条件。$x$ 是 $u$ 的前驱时的情况是显然的，对于后半部分，我们考虑将半支配点定义中所述路径 $ x=v_0\rightarrow\dots\rightarrow v_j=w  $ 和 $T$ 上的一条满足 $\forall i\in[j, k-1], v_i\ge w > u$ 的路径 $w=v_j \rightarrow\dots\rightarrow v_k=v$ 以及路径 $v \rightarrow u$ 拼接，从而我们构造出一条满足半支配点定义的路径。
+我们首先证明 $sdom(u) \le x$。根据引理 7 我们知道这个命题等价于证明上述的两种都满足成为半支配点的条件。$x$ 是 $u$ 的前驱时的情况是显然的，对于后半部分，我们考虑将半支配点定义中所述路径 $x=v_0\rightarrow\dots\rightarrow v_j=w$ 和 $T$ 上的一条满足 $\forall i\in[j, k-1], v_i\ge w > u$ 的路径 $w=v_j \rightarrow\dots\rightarrow v_k=v$ 以及路径 $v \rightarrow u$ 拼接，从而我们构造出一条满足半支配点定义的路径。
 
 然后我们证明 $sdom(u)\ge x$。考虑 $u$ 到其半支配点的定义中所述路径 $sdom(u)=v_0\rightarrow v_1 \rightarrow\dots\rightarrow v_k=u$。不难看出 $k=1$ 和 $k > 1$ 分别对应了定义中的两个选取方法。若 $k = 1$，则存在有向边 $sdom(u) \rightarrow u$，根据引理 7 即可得证；若 $k>1$，令 $j$ 是满足 $  j\ge 1 $ 且 $v_j$ 是 $v_{k-1}$ 在 $T$ 上祖先的最小数。考虑到 $k$ 满足上述条件，这样的 $j$ 一定存在。
 
@@ -380,9 +380,9 @@ void getsdom() {
 
 我们接下来证明 $sdom(w)\le v <sdom(v)$。考虑 $T$ 上 $v$ 到 $w$ 的路径 $v = v_0 \rightarrow \dots v_k = w$，若不成立，则存在 $i\in[1, k- 1], v_i < w$。此时一定存在某个 $j\in [i, k - 1]$ 满足 $v_j$ 是 $w$ 的祖先。由 $v$ 的取值可知 $sdom(u)\le v_j$，于是 $v_j$ 也在 DFS 树中从 $sdom(u)$ 到 $u$ 的路径上，与 $w$ 的定义矛盾，因此 $sdom(w)\le v < sdom(v)$，结合定理的条件有 $y=sdom(u)$，即路径 $P$ 包含 $sdom(u)$。
 
-\*\* 定理 3：\*\* 对应任意节点 $u$，$T$ 上从 $sdom(u)$ 到 $u$ 的路径上的所有节点中最小的节点 $v$ 一定满足 $sdom(v)\le sdom(u)$ 和 $idom(v) = idom(u)$。
+**定理 3：** 对应任意节点 $u$，$T$ 上从 $sdom(u)$ 到 $u$ 的路径上的所有节点中最小的节点 $v$ 一定满足 $sdom(v)\le sdom(u)$ 和 $idom(v) = idom(u)$。
 
-\*\* 证明：\*\* 考虑到 $u$ 本身也满足 $v$ 的条件，因此 $sdom(v)\le sdom(u)$。
+**证明：** 考虑到 $u$ 本身也满足 $v$ 的条件，因此 $sdom(v)\le sdom(u)$。
 
 由于 $idom(u)$ 是 $v$ 在 $T$ 上的祖先，由引理 11 可知 $idom(u)$ 也是 $idom(v)$ 的祖先，因此只需证明 $idom(v)$ 支配 $u$。
 
