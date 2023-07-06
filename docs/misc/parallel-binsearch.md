@@ -250,11 +250,10 @@ void solve(int l, int r, vector<Query> q)
     Query s[200005], t1[200005], t2[200005];
     int n, m, cnt, pos, p[200005], ans[200005];
     pair<int, int> a[200005];
-    ```
-
+    
     void add(int x, int y); //树状数组 位置 x 加 y
     int sum(int x);//树状数组 [1,x] 前缀和
-
+    
     //当前处理的询问为 [l,r],答案值域为 [ql,qr]
     void overall_binary(int l, int r, int ql, int qr) {
         if (l > r) return;
@@ -285,7 +284,7 @@ void solve(int l, int r, vector<Query> q)
         overall_binary(l, l + cnt1 - 1, ql, mid);
         overall_binary(l + cnt1, r, mid + 1, qr);
     }
-
+    
     int main() {
         scanf("%d%d", &n, &m);
         for (int i = 1; i <= n; i++) {
