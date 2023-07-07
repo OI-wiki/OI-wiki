@@ -51,9 +51,10 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
 
     ```python
     class trie:
-        nex = [[0 for i in range(26)] for j in range(100000)]
-        cnt = 0
-        exist = [False] * 100000  # 该结点结尾的字符串是否存在
+        def __init__(self):
+            self.nex = [[0 for i in range(26)] for j in range(100000)]
+            self.cnt = 0
+            self.exist = [False] * 100000  # 该结点结尾的字符串是否存在
 
         def insert(self, s):  # 插入字符串
             p = 0
