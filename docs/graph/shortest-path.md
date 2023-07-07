@@ -281,7 +281,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
             w = 0
     
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [63] * maxn; cnt = [] * maxn; vis = [] * maxn
+        dis = [63] * maxn; cnt = [0] * maxn; vis = [0] * maxn
     
         q = []
         def spfa(n, s):
