@@ -407,7 +407,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
             v = 0
             w = 0
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [63] * maxn; vis = [] * maxn
+        dis = [63] * maxn; vis = [0] * maxn
         def dijkstra(n, s):
             dis[s] = 0
             for i in range(1, n + 1):
