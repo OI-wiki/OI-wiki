@@ -113,9 +113,9 @@ Tarjan 发明了很多算法和数据结构。不少他发明的算法都以他�
 === "Python"
 
     ```python
-    dfn = [] * N; low = [] * N; dfncnt = 0; s = [] * N; in_stack  = [] * N; tp = 0
-    scc = [] * N; sc = 0 # 结点 i 所在 SCC 的编号
-    sz = [] * N # 强连通 i 的大小
+    dfn = [0] * N; low = [0] * N; dfncnt = 0; s = [0] * N; in_stack  = [0] * N; tp = 0
+    scc = [0] * N; sc = 0 # 结点 i 所在 SCC 的编号
+    sz = [0] * N # 强连通 i 的大小
     def tarjan(u):
         low[u] = dfn[u] = dfncnt; s[tp] = u; in_stack[u] = 1
         dfncnt = dfncnt + 1; tp = tp + 1

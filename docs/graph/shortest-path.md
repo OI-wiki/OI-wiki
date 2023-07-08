@@ -283,7 +283,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                 self.w = w
     
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [0x3f3f3f3f] * maxn; cnt = [] * maxn; vis = [] * maxn
+        dis = [0x3f3f3f3f] * maxn; cnt = [0] * maxn; vis = [0] * maxn
     
         q = []
         def spfa(n, s):
@@ -410,7 +410,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
                 self.v = v
                 self.w = w
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [0x3f3f3f3f] * maxn; vis = [] * maxn
+        dis = [0x3f3f3f3f] * maxn; vis = [0] * maxn
         def dijkstra(n, s):
             dis[s] = 0
             for i in range(1, n + 1):
