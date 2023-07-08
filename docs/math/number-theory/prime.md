@@ -205,8 +205,6 @@ Carmichael 数有如下性质：
 2.  设 $C(n)$ 为小于 $n$ 的 Carmichael 数个数，则：
     1.  （Alford, Granville, Pomerance. 1994[^alford1994infinitely]）$C(n)>n^{2/7}$
 
-        （Harman. 2008[^harman2008watt]）$C(n)>n^{0.333~367~04}$
-
         由此可知 Carmichael 数有无限多个。
 
     2.  （Erdős. 1956[^erdos1956pseudoprimes]）$C(n)<n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$，其中 $c$ 为常数。
@@ -421,8 +419,6 @@ Carmichael 数有如下性质：
 [^korselt1899probleme]: Korselt, A. R. (1899). "Problème chinois".*L'Intermédiaire des Mathématiciens*.**6**: 142–143.
 
 [^alford1994infinitely]: W. R. Alford; Andrew Granville; Carl Pomerance (1994). "There are Infinitely Many Carmichael Numbers".*Annals of Mathematics*. 140 (3): 703–722.
-
-[^harman2008watt]: Harman, Glyn (2008). "Watt's mean value theorem and Carmichael numbers". International Journal of Number Theory. 4 (2): 241–248.
 
 [^erdos1956pseudoprimes]: Erdős, P. (1956). "On pseudoprimes and Carmichael numbers".*Publ. Math. Debrecen*. 4 (3–4): 201–206.
 
