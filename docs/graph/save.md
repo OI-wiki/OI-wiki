@@ -65,8 +65,9 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     
         ```python
         class Edge:
-            u = 0
-            v = 0
+            def __init__(self, u = 0, v = 0):
+                self.u = u
+                self.v = v
     
         n, m = map(lambda x:int(x), input().split())
     
