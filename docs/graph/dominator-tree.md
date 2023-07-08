@@ -398,9 +398,9 @@ $$
 idom(u) =
 \left\{ 
 \begin{aligned} 
-& sdom(u), &if\ sdom(u) = sdom(v)
+& sdom(u), &\text{if}\ sdom(u) = sdom(v)
 \\
-&idom(v), &otherwise
+&idom(v), &\text{otherwise}
 \end{aligned}
 \right.
 $$
@@ -493,7 +493,7 @@ void tar(int st) {
 
 ## 例题
 
-### [模板](https://www.luogu.com.cn/problem/P5180)
+### [洛谷 P5180 【模板】支配树](https://www.luogu.com.cn/problem/P5180)
 
 可以仅求解支配关系，求解过程中记录各个点支配了多少节点，也可以建出支配树求解每个节点的 size。
 
