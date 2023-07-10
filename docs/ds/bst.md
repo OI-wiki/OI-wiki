@@ -16,6 +16,9 @@
 
 ### 二叉搜索树节点的定义
 
+???+ note "实现"
+
+~~~c++
 ```c++
 struct TreeNode {
     int key;
@@ -25,6 +28,7 @@ struct TreeNode {
     int count; // 当前节点的重复数量
 };
 ```
+~~~
 
 ### 遍历二叉搜索树
 
@@ -83,20 +87,21 @@ struct TreeNode {
 
 时间复杂度为 $O(h)$。
 
-```c++
-bool search(TreeNode* root, int target) {
-    if (root == nullptr) {
-        return false;
+???+ note "实现"
+    ```c++
+    bool search(TreeNode* root, int target) {
+        if (root == nullptr) {
+            return false;
+        }
+        if (root->key == target) {
+            return true;
+        } else if (target < root->key) {
+            return search(root->left, target);
+        } else {
+            return search(root->right, target);
+        }
     }
-    if (root->key == target) {
-        return true;
-    } else if (target < root->key) {
-        return search(root->left, target);
-    } else {
-        return search(root->right, target);
-    }
-}
-```
+    ```
 
 插入，删除，修改都需要先在二叉搜索树中进行搜索。
 
@@ -283,26 +288,25 @@ bool search(TreeNode* root, int target) {
 下面给出左旋和右旋的代码。
 
 ???+ note "实现"
-
-```c++
-TreeNode* rotateLeft(TreeNode* root) {
-    TreeNode* newRoot = root->right;
-    root->right = newRoot->left;
-    newRoot->left = root;
-    //更新相关节点的信息
-    updateHeight(root);
-    updateHeight(newRoot);
-    return newRoot; //返回新的根节点
-}
-TreeNode* rotateRight(TreeNode* root) {
-    TreeNode* newRoot = root->left;
-    root->left = newRoot->right;
-    newRoot->right = root;
-    updateHeight(root);
-    updateHeight(newRoot);
-    return newRoot;
-}
-```
+    ```c++
+    TreeNode* rotateLeft(TreeNode* root) {
+        TreeNode* newRoot = root->right;
+        root->right = newRoot->left;
+        newRoot->left = root;
+        //更新相关节点的信息
+        updateHeight(root);
+        updateHeight(newRoot);
+        return newRoot; //返回新的根节点
+    }
+    TreeNode* rotateRight(TreeNode* root) {
+        TreeNode* newRoot = root->left;
+        root->left = newRoot->right;
+        newRoot->right = root;
+        updateHeight(root);
+        updateHeight(newRoot);
+        return newRoot;
+    }
+    ```
 
 对于这段示例代码，在调用时需要保存 $root$ 的父节点 $pre$。方法返回指向新的根节点的指针，只需要将pre指向新的根节点即可。
 
