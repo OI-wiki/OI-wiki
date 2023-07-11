@@ -3,17 +3,21 @@ using std::cin;
 using std::cout;
 const int MAX = 3e5 + 5;
 const int INF = 0x5ffffff;
+
 struct E {
   int v, x;
 } e[MAX * 4];
+
 int n, m, u, v, tot, dfc;
 int ans[MAX], dfn[MAX], pos[MAX], sdm[MAX], idm[MAX], fa[MAX], mn[MAX],
     fth[MAX];
 int h[3][MAX * 2];
+
 void add(int x, int u, int v) {
   e[++tot] = {v, h[x][u]};
   h[x][u] = tot;
 }
+
 void dfs(int u) {
   dfn[u] = ++dfc;
   pos[dfc] = u;
@@ -25,6 +29,7 @@ void dfs(int u) {
     }
   }
 }
+
 int find(int x) {
   if (fa[x] == x) {
     return x;
@@ -36,6 +41,7 @@ int find(int x) {
   }
   return fa[x];
 }
+
 void tar(int st) {
   dfs(st);
   for (int i = 1; i <= n; ++i) {
@@ -82,6 +88,7 @@ void tar(int st) {
   }
   ++ans[1];
 }
+
 int main() {
   cin >> n >> m;
   for (int i = 1; i <= m; ++i) {

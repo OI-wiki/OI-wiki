@@ -500,14 +500,15 @@ void tar(int st) {
 这里给出后一种解法的代码。
 
 ??? note "参考代码"
-	```c++
-	--8<-- "docs/graph/code/dom-tree/dom-tree_1.cpp"
-	```
+    ```c++
+    --8<-- "docs/graph/code/dom-tree/dom-tree_1.cpp"
+    ```
 
 ## [ZJOI2012 灾难](https://www.luogu.com.cn/problem/P2597)
 
 在 DAG 上求支配树然后求节点 size 即可。
+
 ??? note "参考代码"
-	```c++
-	--8<-- "docs/graph/code/dom-tree/dom-tree_2.cpp"
-	```
+    ```c++
+    --8<-- "docs/graph/code/dom-tree/dom-tree_2.cpp"
+    ```
