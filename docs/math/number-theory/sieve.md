@@ -399,30 +399,30 @@ $$
 
 因为 $d_i$ 是积性函数，所以可以使用线性筛。
 
-1. 当 $i$ 为质数时，$num[i]=1,d[i]=2$，设 $q=\lfloor\dfrac{i}{p}\rfloor$，$p$ 为 $i$ 的最小质因子。
-2. 当 $p$ 是 $q$ 的质因子，则 $num[i]=num[q]+1,d[i]=\dfrac{d[q]}{num[q]+1}\times(num[i]+1)$。
-3. 当 $p,q$ 互质时，$num[i]=1,d[i]=d[q]\times(num[i]+1)$。
-   
+1.  当 $i$ 为质数时，$num[i]=1,d[i]=2$，设 $q=\lfloor\dfrac{i}{p}\rfloor$，$p$ 为 $i$ 的最小质因子。
+2.  当 $p$ 是 $q$ 的质因子，则 $num[i]=num[q]+1,d[i]=\dfrac{d[q]}{num[q]+1}\times(num[i]+1)$。
+3.  当 $p,q$ 互质时，$num[i]=1,d[i]=d[q]\times(num[i]+1)$。
+
 === "C++"
 
     ```cpp
-	void pre() {
-	    d[1] = 1;
-	    int tot=0;
-	    for (int i = 2; i <= n; ++i) {
-	        if (!v[i]) p[++tot] = i, d[i] = 2, num[i] = 1;
-	        for (int j = 1; j <= tot && 1LL * i * p[j] <= n; ++j) {
-	            v[p[j] * i] = 1;
-	            if (i % p[j] == 0) {
-	                num[i * p[j]] = num[i] + 1;
-	                d[i * p[j]] = d[i] / num[i * p[j]] * (num[i * p[j]] + 1);
-	                break;
-	            } 
-	            num[i * p[j]] = 1;
-	            d[i * p[j]] = d[i] * 2;
-	        }
-	    }
-	}
+    void pre() {
+        d[1] = 1;
+        int tot=0;
+        for (int i = 2; i <= n; ++i) {
+            if (!v[i]) p[++tot] = i, d[i] = 2, num[i] = 1;
+            for (int j = 1; j <= tot && 1LL * i * p[j] <= n; ++j) {
+                v[p[j] * i] = 1;
+                if (i % p[j] == 0) {
+                    num[i * p[j]] = num[i] + 1;
+                    d[i * p[j]] = d[i] / num[i * p[j]] * (num[i * p[j]] + 1);
+                    break;
+                } 
+                num[i * p[j]] = 1;
+                d[i * p[j]] = d[i] * 2;
+            }
+        }
+    }
     ```
 
 === "Python"
