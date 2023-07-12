@@ -157,7 +157,7 @@ $$
 
         此时有关系：$s' \mid s$ 且 $s \mid \varphi(m)$，且 $r'= \lceil \frac{r}{k}\rceil \le r \le \varphi(m)$，由 $r',s'$ 与 $\varphi(m)$ 的关系，依然可以得到 $a^b\equiv a^{b \bmod \varphi(m)+\varphi(m)}\pmod m$。
 
-4.  **合数**：$a$ 为合数的情况，该式成立。
+4.  **命题**：$a$ 为合数的情况，该式成立。
 
     **证明**：
 
