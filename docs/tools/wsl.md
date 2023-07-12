@@ -12,29 +12,29 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 NOI 竞赛（自 2021 年 9 月 1 日）的环境要求如下。[^ref2]
 
-| 类别          | 软件或模块                     | 版本                 | 备注说明                                     |
-| :---------- | :------------------------ | :----------------- | :--------------------------------------- |
-| 系统          | Linux 内核                  | `5.4.0-42-generic` | 64 位 x86 (AMD64)                         |
-| 语言环境        | GCC（`gcc` 和 `g++`）        | `9.3.0`            | C 和 C++ 编译器                              |
-|             | FPC                       | `3.0.4`            | Pascal 编译器 (注：自 2022 年起，NOI 系列竞赛不再支持 Pascal 语言) |
-|             | Python 2                  | `2.7`              | 非竞赛语言                                    |
-|             | Python 3                  | `3.8`              | 非竞赛语言                                    |
-| 调试工具        | GDB                       | `9.1`              |                                          |
-|             | DDD                       | `3.3.12`           | GDB 的 GUI 前端                             |
-| 集成开发环境（IDE） | Code::Blocks              | `20.03`            | C/C++ IDE                                |
-|             | Lazarus                   | `2.0.6`            | Pascal IDE                               |
-|             | Geany                     | `1.36`             | C/C++/Pascal（轻量级）IDE                     |
-| 文本编辑工具      | Visual Studio Code        | `1.54.3`           |                                          |
-|             | GNU Emacs                 | `26.3`             |                                          |
-|             | gedit                     | `3.36.2`           |                                          |
-|             | Vim                       | `8.1`              |                                          |
-|             | Joe                       | `4.6`              |                                          |
-|             | nano                      | `4.8`              |                                          |
-|             | Sublime Text              | `3.2.2`            |                                          |
-| 其它软件        | Firefox                   | `79.0`             | 浏览器                                      |
-|             | Midnight Commander (`mc`) | `4.8.24`           | 文件管理器                                    |
-|             | xterm (uxterm)            | `3.5.3`            | 终端                                       |
-|             | Arbiter-local             | `1.02`             | 程序评测工具单机版                                |
+| 类别          | 软件或模块                     | 版本                 | 备注说明                                           |
+| :---------- | :------------------------ | :----------------- | :--------------------------------------------- |
+| 系统          | Linux 内核                  | `5.4.0-42-generic` | 64 位 x86 (AMD64)                               |
+| 语言环境        | GCC（`gcc` 和 `g++`）        | `9.3.0`            | C 和 C++ 编译器                                    |
+|             | FPC                       | `3.0.4`            | Pascal 编译器（注：自 2022 年起，NOI 系列竞赛不再支持 Pascal 语言） |
+|             | Python 2                  | `2.7`              | 非竞赛语言                                          |
+|             | Python 3                  | `3.8`              | 非竞赛语言                                          |
+| 调试工具        | GDB                       | `9.1`              |                                                |
+|             | DDD                       | `3.3.12`           | GDB 的 GUI 前端                                   |
+| 集成开发环境（IDE） | Code::Blocks              | `20.03`            | C/C++ IDE                                      |
+|             | Lazarus                   | `2.0.6`            | Pascal IDE                                     |
+|             | Geany                     | `1.36`             | C/C++/Pascal（轻量级）IDE                           |
+| 文本编辑工具      | Visual Studio Code        | `1.54.3`           |                                                |
+|             | GNU Emacs                 | `26.3`             |                                                |
+|             | gedit                     | `3.36.2`           |                                                |
+|             | Vim                       | `8.1`              |                                                |
+|             | Joe                       | `4.6`              |                                                |
+|             | nano                      | `4.8`              |                                                |
+|             | Sublime Text              | `3.2.2`            |                                                |
+| 其它软件        | Firefox                   | `79.0`             | 浏览器                                            |
+|             | Midnight Commander (`mc`) | `4.8.24`           | 文件管理器                                          |
+|             | xterm (uxterm)            | `3.5.3`            | 终端                                             |
+|             | Arbiter-local             | `1.02`             | 程序评测工具单机版                                      |
 
 考场环境与一般环境会有一系列差异：
 
@@ -74,11 +74,11 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
     
     如果你正在使用 1607 以下版本的 Windows 10，你的系统不支持 WSL。
 
-1.  以管理员身份打开 Windows PowerShell（右击 「开始」 按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
+1.  以管理员身份打开 Windows PowerShell（右击「开始」按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
 
 2.  输入 `wsl --install`，并等待所有组件自动安装完成。期间你可能需要重启你的计算机来启用必要的 Windows 功能。
 
-3.  安装完成后，你可以在 「开始」 菜单或 Windows 终端的标签页中找到你安装的发行版。
+3.  安装完成后，你可以在「开始」菜单或 Windows 终端的标签页中找到你安装的发行版。
 
 4.  接下来，请转到下面「配置分发版」一节完成其他设置。
 
