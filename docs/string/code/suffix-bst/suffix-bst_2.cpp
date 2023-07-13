@@ -106,9 +106,9 @@ void remove(int& rt, int p, double lv, double rv) {
       if (fa == rt) {
         R[nrt] = R[rt];
       } else {
+        R[fa] = L[nrt];
         L[nrt] = L[rt];
         R[nrt] = R[rt];
-        R[fa] = 0;
       }
       rt = nrt;
       tag[rt] = (lv + rv) / 2;
@@ -126,11 +126,11 @@ void remove(int& rt, int p, double lv, double rv) {
 }
 
 bool cmp1(char* s, int len, int p) {
-  for (int i = 1; i <= len; ++i, --p) {
+  for (int i = 1; p > 0 && i <= len; ++i, --p) {
     if (s[i] < t[p]) return true;
     if (s[i] > t[p]) return false;
   }
-  return false;
+  return p > 0;
 }
 
 int query(int rt, char* s, int len) {

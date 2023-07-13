@@ -98,9 +98,9 @@ void remove(int& rt, int p, double lv, double rv) {
       if (fa == rt) {
         R[nrt] = R[rt];
       } else {
+        R[fa] = L[nrt];
         L[nrt] = L[rt];
         R[nrt] = R[rt];
-        R[fa] = 0;
       }
       rt = nrt;
       tag[rt] = (lv + rv) / 2;
