@@ -36,7 +36,7 @@ void push_up(int x) {
   sz[x] = sz[L[x]] + 1 + sz[R[x]];
 }
 
-bool balance(int rt) { return alpha * sz[rt] > max(sz[L[rt]], sz[R[rt]]); }
+bool balance(int rt) { return alpha * (sz[rt] - 1) > max(sz[L[rt]], sz[R[rt]]); }
 
 void flatten(int rt) {
   if (!rt) return;
@@ -98,9 +98,9 @@ void remove(int& rt, int p, double lv, double rv) {
       if (fa == rt) {
         R[nrt] = R[rt];
       } else {
-        R[fa] = L[nrt];
         L[nrt] = L[rt];
         R[nrt] = R[rt];
+        R[fa] = 0;
       }
       rt = nrt;
       tag[rt] = (lv + rv) / 2;
