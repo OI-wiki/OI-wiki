@@ -406,44 +406,44 @@ $$
 === "C++"
 
     ```cpp
-    void pre() {
-        d[1] = 1;
-        int tot=0;
-        for (int i = 2; i <= n; ++i) {
-            if (!v[i]) p[++tot] = i, d[i] = 2, num[i] = 1;
-            for (int j = 1; j <= tot && 1LL * i * p[j] <= n; ++j) {
-                v[p[j] * i] = 1;
-                if (i % p[j] == 0) {
-                    num[i * p[j]] = num[i] + 1;
-                    d[i * p[j]] = d[i] / num[i * p[j]] * (num[i * p[j]] + 1);
-                    break;
-                } 
-                num[i * p[j]] = 1;
-                d[i * p[j]] = d[i] * 2;
-            }
-        }
-    }
+	void pre() {
+	  d[1] = 1;
+	  for (int i = 2; i <= n; ++i) {
+	    if (!v[i]) p[++tot] = i, d[i] = 2, num[i] = 1;
+	    for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
+	      v[p[j] * i] = 1;
+	      if (i % p[j] == 0) {
+	        num[i * p[j]] = num[i] + 1;
+	        d[i * p[j]] = d[i] / num[i * p[j]] * (num[i * p[j]] + 1);
+	        break;
+	      } else {
+	        num[i * p[j]] = 1;
+	        d[i * p[j]] = d[i] * 2;
+	      }
+	    }
+	  }
+	}
     ```
 
 === "Python"
 
     ```python
-    def pre():
-        d[1] = 1
-        tot=0
-        for i in range(2, n + 1):
-            if v[i] == 0:
-                tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
-            j = 1
-            while j <= tot and i * p[j] <= n :
-                v[p[j] * i] = 1
-                if i % p[j] == 0:
-                    num[i * p[j]] = num[i] + 1
-                    d[i * p[j]] = d[i] // num[i * p[j]] * (num[i * p[j]] + 1)
-                    break
-                num[i * p[j]] = 1
-                d[i * p[j]] = d[i] * 2
-                j = j + 1
+	def pre():
+	    d[1] = 1
+	    for i in range(2, n + 1):
+	        if v[i] == 0:
+	            tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
+	        j = 1
+	        while j <= tot and i <= n // p[j]:
+	            v[p[j] * i] = 1
+	            if i % p[j] == 0:
+	                num[i * p[j]] = num[i] + 1
+	                d[i * p[j]] = d[i] // num[i * p[j]] * (num[i * p[j]] + 1)
+	                break
+	            else:
+	                num[i * p[j]] = 1
+	                d[i * p[j]] = d[i] * 2
+	            j = j + 1
     ```
 
 ## 筛法求约数和
