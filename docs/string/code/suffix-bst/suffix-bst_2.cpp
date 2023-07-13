@@ -44,7 +44,9 @@ void push_up(int x) {
   sz[x] = sz[L[x]] + 1 + sz[R[x]];
 }
 
-bool balance(int rt) { return alpha * (sz[rt] - 1) > max(sz[L[rt]], sz[R[rt]]); }
+bool balance(int rt) {
+  return (sz[L[rt]] != 0 && sz[R[rt]] == 0) || alpha * sz[rt] > max(sz[L[rt]], sz[R[rt]]);
+}
 
 void flatten(int rt) {
   if (!rt) return;
