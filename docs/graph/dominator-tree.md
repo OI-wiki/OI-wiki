@@ -504,7 +504,7 @@ void tar(int st) {
     --8<-- "docs/graph/code/dom-tree/dom-tree_1.cpp"
     ```
 
-## [ZJOI2012 灾难](https://www.luogu.com.cn/problem/P2597)
+### [ZJOI2012 灾难](https://www.luogu.com.cn/problem/P2597)
 
 在 DAG 上求支配树然后求节点 size 即可。
 
