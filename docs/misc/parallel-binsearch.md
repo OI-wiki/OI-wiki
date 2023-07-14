@@ -343,7 +343,7 @@ void solve(int l, int r, vector<Query> q)
            i++) {  // 尝试把 [l,i] 从 mid+1 换成 mid 并且划分到左区间
         sum -= abs(a[i] - (mid + 1));
         sum += abs(a[i] - mid);
-        if (sum < res) cnt = i - l + 1, res = sum;  // 发现 [l,i] 取 mid+1 更优,更新
+        if (sum < res) cnt = i - l + 1, res = sum;  // 发现 [l,i] 取 mid 更优,更新
       }
       overall_binary(l, l + cnt - 1, ql, mid);
       overall_binary(l + cnt, r, mid + 1, qr);
@@ -354,7 +354,7 @@ void solve(int l, int r, vector<Query> q)
 
 [「国家集训队」矩阵乘法](https://www.luogu.com.cn/problem/P1527)
 
-[「POI2011 R3 Day2」流星 Meteors](https://loj.ac/problem/2169)
+[「POI2011 R3 Day2」流星 Meteors](https://loj.ac/p/2169)
 
 [二逼平衡树](https://loj.ac/p/106)
 
