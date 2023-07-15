@@ -45,8 +45,10 @@ void push_up(int x) {
 }
 
 bool balance(int rt) {
-  // 此处的(sz[L[rt]] != 0 && sz[R[rt]] == 0)是为了防止remove操作时，前驱节点存在左儿子的情况
-  return (sz[L[rt]] != 0 && sz[R[rt]] == 0) || alpha * sz[rt] > max(sz[L[rt]], sz[R[rt]]);
+  // 此处的(sz[L[rt]] != 0 && sz[R[rt]] ==
+  // 0)是为了防止remove操作时，前驱节点存在左儿子的情况
+  return (sz[L[rt]] != 0 && sz[R[rt]] == 0) ||
+         alpha * sz[rt] > max(sz[L[rt]], sz[R[rt]]);
 }
 
 void flatten(int rt) {
