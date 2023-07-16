@@ -1,3 +1,5 @@
+author: abc1763613206, HeRaNO, NachtgeistW, r-value, Tiphereth-A, wlbksy, YZircon
+
 ???+ warning "注意"
     本页面十分重要，每个贡献者都应确保您的贡献满足如下条件。
 
