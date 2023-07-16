@@ -399,7 +399,9 @@ $$
 
 因为 $d_i$ 是积性函数，所以可以使用线性筛。
 
-1.  当 $i$ 为质数时，$\textit{num}_i \gets 1,\textit{d}_i \gets 2$，设 $q = \left\lfloor \dfrac {i}{p} \right\rfloor$，$p$ 为 $i$ 的最小质因子。
+在这里简单介绍一下线性筛实现原理。
+
+1.  当 $i$ 为质数时，$\textit{num}_i \gets 1,\textit{d}_i \gets 2$，同时设 $q = \left\lfloor \dfrac {i}{p} \right\rfloor$，其中 $p$ 为 $i$ 的最小质因子。
 2.  当 $p$ 为 $q$ 的质因子时，$\textit{num}_i \gets \textit{num}_q + 1,\textit{d}_i \gets \dfrac{\textit{d}_q}{\textit{num}_i} \times (\textit{num}_i + 1)$。
 3.  当 $p,q$ 互质时，$\textit{num}_i \gets 1,\textit{d}_i \gets \textit{d}_q \times (\textit{num}_i+1)$。
 
