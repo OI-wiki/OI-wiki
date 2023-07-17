@@ -320,7 +320,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 -   请不要滥用 LaTeX 公式。这不仅会造成页面加载缓慢（因为 MathJax 的效率低是出了名的），同时也会导致页面的排版混乱。我们通常使用 LaTeX 公式字体表示变量名称。我们的建议是，如非必要，尽量减少公式与普通正文字体的 **大量** 混合使用，如非必要，尽量不要使用公式，如：
 
     ```LaTeX
-    我们将要学习 $Network-flow$ 中的 $SPFA$ 最小费用流，需要使用 $Edmonds-Karp$ 算法进行增广。
+    我们将要学习 $Network-flow$ 中的 $SPFA$ 最小费用流，需要使用 $Edmonds–Karp$ 算法进行增广。
     ```
 
     就是一个典型的 **滥用公式字体** 的例子。（在页面中使用斜体请用 `*文本*` 表示。）
@@ -346,7 +346,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 | `$f[i][j][k]$`               | $f[i][j][k]$      | `$f_{i,j,k}$, $f(i,j,k)$`                | $f_{i,j,k}$，$f(i,j,k)$              |
 | `$R,N^*$`（集合）                | $R,N^*$           | `$\mathbf{R}$, $\mathbf{N}^*$`           | $\mathbf{R}$，$\mathbf{N}^*$         |
 | `$\emptyset$`                | $\emptyset$       | `$\varnothing$`                          | $\varnothing$                       |
-| `$different$`                | $different$       | `$\textit{different}$`                   | $\textit{different}$                |
+| `$size$`                     | $size$            | `$\textit{size}$`                        | $\textit{size}$                     |
 
 #### 对数学公式的附加格式要求
 

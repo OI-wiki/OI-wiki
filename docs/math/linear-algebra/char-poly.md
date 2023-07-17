@@ -314,7 +314,7 @@ $$
 
 至此完成了整个算法，该算法一般被称为 Hessenberg 算法。
 
-## 哈密顿凯莱（Hamilton-Cayley）定理
+## Cayley–Hamilton 定理
 
 对于任意的 $n$ 阶矩阵 $A$，特征多项式为 $f(\lambda)=|\lambda I-A|$，则必有 $f(A)=0$。
 
@@ -463,9 +463,9 @@ $$
 
 上述 Hessenberg 算法不具有数值的稳定性，所以 $\mathbb{R}^{n\times n}$ 上的矩阵在使用前需要其他算法进行调整或改用其他具有数值稳定性的算法。
 
-我们可以将特征多项式与常系数齐次线性递推联系起来，也可结合 Cayley-Hamilton 定理、多项式取模加速一些域上求矩阵幂次的算法。
+我们可以将特征多项式与常系数齐次线性递推联系起来，也可结合 Cayley–Hamilton 定理、多项式取模加速一些域上求矩阵幂次的算法。
 
-Cayley-Hamilton 定理指出
+Cayley–Hamilton 定理指出
 
 $$
 \begin{aligned}
