@@ -399,13 +399,19 @@ $$
 
 因为 $d_i$ 是积性函数，所以可以使用线性筛。
 
+在这里简单介绍一下线性筛实现原理。
+
+1.  当 $i$ 为质数时，$\textit{num}_i \gets 1,\textit{d}_i \gets 2$，同时设 $q = \left\lfloor \dfrac {i}{p} \right\rfloor$，其中 $p$ 为 $i$ 的最小质因子。
+2.  当 $p$ 为 $q$ 的质因子时，$\textit{num}_i \gets \textit{num}_q + 1,\textit{d}_i \gets \dfrac{\textit{d}_q}{\textit{num}_i} \times (\textit{num}_i + 1)$。
+3.  当 $p,q$ 互质时，$\textit{num}_i \gets 1,\textit{d}_i \gets \textit{d}_q \times (\textit{num}_i+1)$。
+
 === "C++"
 
     ```cpp
     void pre() {
       d[1] = 1;
       for (int i = 2; i <= n; ++i) {
-        if (!v[i]) v[i] = 1, p[++tot] = i, d[i] = 2, num[i] = 1;
+        if (!v[i]) p[++tot] = i, d[i] = 2, num[i] = 1;
         for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
           v[p[j] * i] = 1;
           if (i % p[j] == 0) {
@@ -428,7 +434,7 @@ $$
         d[1] = 1
         for i in range(2, n + 1):
             if v[i] == 0:
-                v[i] = 1; tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
+                tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
             j = 1
             while j <= tot and i <= n // p[j]:
                 v[p[j] * i] = 1
