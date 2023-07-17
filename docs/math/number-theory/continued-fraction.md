@@ -56,7 +56,7 @@ $[a_0,a_1,a_2,a_3]=[a_0,a_1,a_2,a_3-1,1]$
 
 简单连分数的值，一定大于偶数的渐进分数，一定小于奇数的渐进分数。无限简单连分数一定收敛。
 
-仿照一般分数的概念，第 $0$ 项是 $0$ 的连分数称为“真分数”。显然如果这之后的所有变元都大于等于 $1$，那么得到的真分数一定落在 $0$ 到 $1$ 之间。
+仿照一般分数的概念，第 $0$ 项是 $0$ 的连分数称为「真分数」。显然如果这之后的所有变元都大于等于 $1$，那么得到的真分数一定落在 $0$ 到 $1$ 之间。
 
 ### 无限连分数
 
@@ -88,7 +88,7 @@ $$
 
 ### 定义
 
-在上面的定义中，有理数 $r_0, r_1, r_2, \dots$ 称为 $r$ 的 **渐进分数**（convergents，意为“收敛”）。
+在上面的定义中，有理数 $r_0, r_1, r_2, \dots$ 称为 $r$ 的 **渐进分数**（convergents，意为「收敛」）。
 
 相应地，单个 $r_k = [a_0; a_1, \dots, a_k] = \frac{p_k}{q_k}$ 称为 $r$ 的第 $k$ 个渐进分数。
 
@@ -113,7 +113,7 @@ $$
 
 ### 定义
 
-设 $r_k = [a_0; a_1, \dots, a_{k-1}, a_k]$。对于 $1 \leq t \leq a_k$，$[a_0; a_1, \dots, a_{k-1}, t]$ 称为 **中间分数**（semiconvergents，“semi”意为“半”）。
+设 $r_k = [a_0; a_1, \dots, a_{k-1}, a_k]$。对于 $1 \leq t \leq a_k$，$[a_0; a_1, \dots, a_{k-1}, t]$ 称为 **中间分数**（semiconvergents，「semi」意为「半」）。
 
 通常将大于 $r$ 的分数称为 **上**（upper）渐进分数或中间分数，将小于 $r$ 者称为 **下**（lower）渐进分数或中间分数。
 
@@ -155,9 +155,9 @@ $$
 
 如果要求 $(0,1)$ 区间内某个数的简单连分数表示（第 $0$ 项为 $0$），只需：
 
-- 取倒数，得到的余项大于 $1$。
-- 取整得到整数部分为部分商，小数部分在 $0$ 到 $1$ 之间。
-- 对小数部分重复上述操作。
+-   取倒数，得到的余项大于 $1$。
+-   取整得到整数部分为部分商，小数部分在 $0$ 到 $1$ 之间。
+-   对小数部分重复上述操作。
 
 这样就得到了相应的表示。
 
@@ -207,7 +207,7 @@ $$
         return a
     ```
 
-如果规定第 $0$ 项是该数的取整，那么全体实数都有“唯一的简单连分数表示”。其中：
+如果规定第 $0$ 项是该数的取整，那么全体实数都有「唯一的简单连分数表示」。其中：
 
 如果两个无限简单连分数的值相等，必然逐项相等。
 
@@ -254,7 +254,7 @@ $$
 
 只是形式上成立。第 $-1$ 项渐进分数是 1/0，没有实际意义。
 
-???+note "证明"
+???+ note "证明"
     可以注意到，$p_k$ 与 $q_k$ 对于 $a_k$ 和 $b_k$ 都是线性函数。这是因为，$a_k$ 和 $b_k$ 都只出现了一次，无论如何通分也不会有另一个 $a_k$ 或 $b_k$ 乘上去。于是通过待定系数，即可解得这个递推关系。
 
 ### 反序定理
@@ -275,7 +275,7 @@ $$
 \frac{p_k}{p_{k-1}}=[a_k,a_{k-1},\ldots,a_2]
 $$
 
-???+note "证明"
+???+ note "证明"
     对递推关系稍加改造，有：
     
     $$
@@ -306,8 +306,8 @@ $$
 \frac{p_{k+1}}{q_{k+1}}-\frac{p_k}{q_k}=\frac{(-1)^k}{q_{k+1}q_k}
 $$
 
-???+note "注"
-    可以观察到，式 $p_{k+1}q_k-q_{k+1}p_k$ 特别像一个行列式，完全可以按“行列式”理解。
+???+ note "注"
+    可以观察到，式 $p_{k+1}q_k-q_{k+1}p_k$ 特别像一个行列式，完全可以按「行列式」理解。
     
     渐进分数的递推关系很像行列式的列变换。行列式一列加到另一列上不改变它的值，两列交换则反号。
 
@@ -331,7 +331,7 @@ $$
 
 对于大于 1 的实数 x，x 的渐进分数的倒数恰好是 $\frac{1}{x}$ 的渐进分数。显然，该定理也应该对于 0 到 1 之间的实数 x 成立。
 
-???+note "证明"
+???+ note "证明"
     $$
     x=[a_0,a_1,a_2,\ldots]
     $$
@@ -872,12 +872,12 @@ $$
 
 ### [June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)
 
-计算 $\sum\limits_{x=1}^N \lfloor ex \rfloor$，其中 $e = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, \dots, 1, 2n, 1, \dots]$ 是自然对数的底，$N \leq 10^{4000}$。
+计算 $\sum\limits_{x=1}^N \lfloor \mathrm{e}x \rfloor$，其中 $\mathrm{e} = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, \dots, 1, 2n, 1, \dots]$ 是自然对数的底，$N \leq 10^{4000}$。
 
 ??? "解答"
-    此和等于格点 $(x;y)$ 的数量，使得 $1 \leq x \leq N$ 和 $1 \leq y \leq ex$。
+    此和等于格点 $(x;y)$ 的数量，使得 $1 \leq x \leq N$ 和 $1 \leq y \leq \mathrm{e}x$。
     
-    在构造了 $y=ex$ 以下的点的凸包之后，可以使用 Pick 定理计算这个数：
+    在构造了 $y=\mathrm{e}x$ 以下的点的凸包之后，可以使用 Pick 定理计算这个数：
     === "C++"
     
         ```cpp
@@ -961,7 +961,7 @@ $$
     
     可以使用相同的方法来构造线 $y = \frac{Ax+B}{M}$ 以下的点的全凸包。
     
-    已经知道如何解决 $B = 0$ 的问题。此外，已经知道如何构造这个凸包，直到 $[0, N-1]$ 段上的这条线的最近格点（这在上面的“罪与罚”问题中完成）。
+    已经知道如何解决 $B = 0$ 的问题。此外，已经知道如何构造这个凸包，直到 $[0, N-1]$ 段上的这条线的最近格点（这在上面的「罪与罚」问题中完成）。
     
     现在应该注意到，一旦到达了离直线最近的点，就可以假设直线实际上通过了最近的点。因为在实际直线和稍微向下移动以通过最近点的直线之间，$[0, N-1]$ 上没有其他格点。
     
@@ -1046,13 +1046,13 @@ $$
 
 ## 习题
 
-- [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
-- [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
-- [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)
-- [Codeforces Round #201 (Div. 1) - Doodle Jump](https://codeforces.com/contest/346/problem/E)
-- [Codeforces Round #325 (Div. 1) - Alice, Bob, Oranges and Apples](https://codeforces.com/contest/585/problem/C)
-- [POJ Founder Monthly Contest 2008.03.16 - A Modular Arithmetic Challenge](http://poj.org/problem?id=3530)
-- [2019 Multi-University Training Contest 5 - fraction](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
-- [SnackDown 2019 Elimination Round - Election Bait](https://www.codechef.com/SNCKEL19/problems/EBAIT)
+-   [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
+-   [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
+-   [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)
+-   [Codeforces Round #201 (Div. 1) - Doodle Jump](https://codeforces.com/contest/346/problem/E)
+-   [Codeforces Round #325 (Div. 1) - Alice, Bob, Oranges and Apples](https://codeforces.com/contest/585/problem/C)
+-   [POJ Founder Monthly Contest 2008.03.16 - A Modular Arithmetic Challenge](http://poj.org/problem?id=3530)
+-   [2019 Multi-University Training Contest 5 - fraction](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
+-   [SnackDown 2019 Elimination Round - Election Bait](https://www.codechef.com/SNCKEL19/problems/EBAIT)
 
 **本页面主要译自博文 [Continued fractions](https://cp-algorithms.com/algebra/continued-fractions.html)，版权协议为 CC-BY-SA 4.0。**

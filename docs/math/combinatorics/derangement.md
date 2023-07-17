@@ -22,13 +22,13 @@ $$
 \left|\bigcap_{i=1}^{k}S_{a_i}\right|=(n-k)!
 $$
 
-那么选择 $k$ 个元素的方案数为 $C_n^k$，因此有：
+那么选择 $k$ 个元素的方案数为 $\dbinom{n}{k}$，因此有：
 
 $$
 \begin{aligned}
 \left|\bigcup_{i=1}^n\overline{S_i}\right|
 &=\sum_{k=1}^n(-1)^{k-1}\sum_{a_{1,\cdots,k} }\left|\bigcap_{i=1}^{k}S_{a_i}\right|\\
-&=\sum_{k=1}^n(-1)^{k-1}C_n^k(n-k)!\\
+&=\sum_{k=1}^n(-1)^{k-1}\dbinom{n}{k}(n-k)!\\
 &=\sum_{k=1}^n(-1)^{k-1}\frac{n!}{k!}\\
 &=n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}
 \end{aligned}
@@ -50,8 +50,8 @@ $n$ 封不同的信，编号分别是 $1,2,3,4,5$，现在要把这五封信放�
 
 假设考虑到第 $n$ 个信封，初始时暂时把第 $n$ 封信放在第 $n$ 个信封中，然后考虑两种情况的递推：
 
-- 前面 $n-1$ 个信封全部装错；
-- 前面 $n-1$ 个信封有一个没有装错其余全部装错。
+-   前面 $n-1$ 个信封全部装错；
+-   前面 $n-1$ 个信封有一个没有装错其余全部装错。
 
 对于第一种情况，前面 $n-1$ 个信封全部装错：因为前面 $n-1$ 个已经全部装错了，所以第 $n$ 封只需要与前面任一一个位置交换即可，总共有 $D_{n-1}\times (n-1)$ 种情况。
 
@@ -76,11 +76,11 @@ $$
 错位排列数有一个向下取整的简单表达式，增长速度与阶乘仅相差常数：
 
 $$
-D_n=\left\lfloor\frac{n!}{e}\right\rfloor
+D_n=\left\lfloor\frac{n!}{\mathrm{e}}\right\rfloor
 $$
 
 随着元素数量的增加，形成错位排列的概率 P 接近：
 
 $$
-P=\lim_{n\to\infty}\frac{D_n}{n!}=\frac{1}{e}
+P=\lim_{n\to\infty}\frac{D_n}{n!}=\frac{1}{\mathrm{e}}
 $$

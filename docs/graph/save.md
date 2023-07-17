@@ -65,12 +65,13 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     
         ```python
         class Edge:
-            u = 0
-            v = 0
+            def __init__(self, u = 0, v = 0):
+                self.u = u
+                self.v = v
     
         n, m = map(lambda x:int(x), input().split())
     
-        e = [Edge()] * m; vis = [False] * n
+        e = [Edge() for _ in range(m)]; vis = [False] * n
     
         for i in range(0, m):
             e[i].u, e[i].v = map(lambda x:int(x), input().split())
@@ -104,7 +105,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 由于直接存边的遍历效率低下，一般不用于遍历图。
 
-在 [Kruskal 算法](./mst.md#kruskal) 中，由于需要将边按边权排序，需要直接存边。
+在 [Kruskal 算法](./mst.md#kruskal-算法) 中，由于需要将边按边权排序，需要直接存边。
 
 在有的题目中，需要多次建图（如建一遍原图，建一遍反图），此时既可以使用多个其它数据结构来同时存储多张图，也可以将边直接存下来，需要重新建图时利用直接存下的边来建图。
 
@@ -159,7 +160,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     
         ```python
         vis = [False] * (n + 1)
-        adj = [[False]] * (n + 1)
+        adj = [[False] * (n + 1) for _ in range(n + 1)]
     
         for i in range(1, m + 1):
             u, v = map(lambda x:int(x), input().split())
@@ -249,7 +250,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     
         ```python
         vis = [False] * (n + 1)
-        adj = [[]] * (n + 1)
+        adj = [[] for _ in range(n + 1)]
     
         for i in range(1, m + 1):
             u, v = map(lambda x:int(x), input().split())

@@ -1,6 +1,6 @@
 author: AntiLeaf
 
-Berlekamp-Massey 算法是一种用于求数列的最短递推式的算法。给定一个长为 $n$ 的数列，如果它的最短递推式的阶数为 $m$，则 Berlekamp-Massey 算法能够在 $O(nm)$ 时间内求出数列的每个前缀的最短递推式。最坏情况下 $m = O(n)$，因此算法的最坏复杂度为 $O(n^2)$。
+Berlekamp–Massey 算法是一种用于求数列的最短递推式的算法。给定一个长为 $n$ 的数列，如果它的最短递推式的阶数为 $m$，则 Berlekamp–Massey 算法能够在 $O(nm)$ 时间内求出数列的每个前缀的最短递推式。最坏情况下 $m = O(n)$，因此算法的最坏复杂度为 $O(n^2)$。
 
 ### 定义
 
@@ -24,8 +24,8 @@ $a_i = \sum_{j = 0} ^ {m - 1} f_j a_{i - j - 1}, \forall i \ge m$
 
 显然初始时有 $F_0 = \{\}$。假设递推系数 $F_{i - 1}$ 对数列 $\{a_i\}$ 的前 $i - 1$ 项均成立，这时对第 $i$ 项就有两种情况：
 
-1. 递推系数对 $a_i$ 也成立，这时不需要进行任何调整，直接令 $F_i = F_{i - 1}$ 即可。
-2. 递推系数对 $a_i$ 不成立，这时需要对 $F_{i - 1}$ 进行调整，得到新的 $F_i$。
+1.  递推系数对 $a_i$ 也成立，这时不需要进行任何调整，直接令 $F_i = F_{i - 1}$ 即可。
+2.  递推系数对 $a_i$ 不成立，这时需要对 $F_{i - 1}$ 进行调整，得到新的 $F_i$。
 
 设 $\Delta_i = a_i - \sum_{j = 0} ^ m f_{i - 1, j} a_{i - j - 1}$，即 $a_i$ 与 $F_{i - 1}$ 的递推结果的差值。
 
@@ -99,33 +99,33 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_k\
     }
     ```
 
-朴素的 Berlekamp-Massey 算法求解的是有限项数列的最短递推式。如果待求递推式的序列有无限项，但已知最短递推式的阶数上界，则只需取出序列的前 $2m$ 项即可求出整个序列的最短递推式。（证明略）
+朴素的 Berlekamp–Massey 算法求解的是有限项数列的最短递推式。如果待求递推式的序列有无限项，但已知最短递推式的阶数上界，则只需取出序列的前 $2m$ 项即可求出整个序列的最短递推式。（证明略）
 
 ### 应用
 
-由于 Berlekamp-Massey 算法的数值稳定性比较差，在处理实数问题时一般很少使用。为了叙述方便，以下均假定在某个质数 $p$ 的剩余系下进行运算。
+由于 Berlekamp–Massey 算法的数值稳定性比较差，在处理实数问题时一般很少使用。为了叙述方便，以下均假定在某个质数 $p$ 的剩余系下进行运算。
 
 #### 求向量列或矩阵列的最短递推式
 
-如果要求向量列 $\mathbf{v}_i$ 的最短递推式，设向量的维数为 $n$，我们可以随机一个 $n$ 维行向量 $\mathbf u^T$，并计算标量序列 $\{\mathbf{u}^T\mathbf{v}_i\}$ 的最短递推式。由 Schwartz-Zippel 引理，二者的最短递推式有至少 $1 - \frac n p$ 的概率相同。
+如果要求向量列 $\boldsymbol{v}_i$ 的最短递推式，设向量的维数为 $n$，我们可以随机一个 $n$ 维行向量 $\mathbf u^T$，并计算标量序列 $\{\boldsymbol{u}^T\boldsymbol{v}_i\}$ 的最短递推式。由 Schwartz–Zippel 引理，二者的最短递推式有至少 $1 - \frac n p$ 的概率相同。
 
-求矩阵列 $\{A_i\}$ 的最短递推式也是类似的，设矩阵的大小为 $n \times m$，则只需随机一个 $1 \times n$ 的行向量 $\mathbf u^T$ 和一个 $m \times 1$ 的列向量 $\mathbf{v}$，并计算标量序列 $\{\mathbf{u}^T A_i \mathbf{v}\}$ 的最短递推式即可。由 Schwartz-Zippel 引理可以类似地得到二者相同的概率至少为 $1 - \frac{n + m} p$。
+求矩阵列 $\{A_i\}$ 的最短递推式也是类似的，设矩阵的大小为 $n \times m$，则只需随机一个 $1 \times n$ 的行向量 $\mathbf u^T$ 和一个 $m \times 1$ 的列向量 $\boldsymbol{v}$，并计算标量序列 $\{\boldsymbol{u}^T A_i \boldsymbol{v}\}$ 的最短递推式即可。由 Schwartz–Zippel 引理可以类似地得到二者相同的概率至少为 $1 - \frac{n + m} p$。
 
 #### 优化矩阵快速幂
 
-设 $\mathbf{f}_i$ 是一个 $n$ 维列向量，并且转移满足 $\mathbf{f}_i = A \mathbf{f}_{i - 1}$，则可以发现 $\{\mathbf{f}_i\}$ 是一个不超过 $n$ 阶的线性递推向量列。（证明略）
+设 $\boldsymbol{f}_i$ 是一个 $n$ 维列向量，并且转移满足 $\boldsymbol{f}_i = A \boldsymbol{f}_{i - 1}$，则可以发现 $\{\boldsymbol{f}_i\}$ 是一个不超过 $n$ 阶的线性递推向量列。（证明略）
 
-我们可以直接暴力求出 $\mathbf{f}_0 \dots \mathbf{f}_{2n - 1}$，然后用前面提到的做法求出 $\{\mathbf{f}_i\}$ 的最短递推式，再调用 [常系数齐次线性递推](./linear-recurrence.md) 即可。
+我们可以直接暴力求出 $\boldsymbol{f}_0 \dots \boldsymbol{f}_{2n - 1}$，然后用前面提到的做法求出 $\{\boldsymbol{f}_i\}$ 的最短递推式，再调用 [常系数齐次线性递推](./poly/linear-recurrence.md) 即可。
 
-如果要求的向量是 $\mathbf{f}_m$，则算法的复杂度是 $O(n^3 + n\log n \log m)$。如果 $A$ 是一个只有 $k$ 个非零项的稀疏矩阵，则复杂度可以降为 $O(nk + n\log n \log m)$。但由于算法至少需要 $O(nk)$ 的时间预处理，因此在压力不大的情况下也可以使用 $O(n^2 \log m)$ 的线性递推算法，复杂度同样是可以接受的。
+如果要求的向量是 $\boldsymbol{f}_m$，则算法的复杂度是 $O(n^3 + n\log n \log m)$。如果 $A$ 是一个只有 $k$ 个非零项的稀疏矩阵，则复杂度可以降为 $O(nk + n\log n \log m)$。但由于算法至少需要 $O(nk)$ 的时间预处理，因此在压力不大的情况下也可以使用 $O(n^2 \log m)$ 的线性递推算法，复杂度同样是可以接受的。
 
 #### 求矩阵的最小多项式
 
 方阵 $A$ 的最小多项式是次数最小的并且满足 $f(A) = 0$ 的多项式 $f$。
 
-实际上最小多项式就是 $\{A^i\}$ 的最小递推式，所以直接调用 Berlekamp-Massey 算法就可以了。如果 $A$ 是一个 $n$ 阶方阵，则显然最小多项式的次数不超过 $n$。
+实际上最小多项式就是 $\{A^i\}$ 的最小递推式，所以直接调用 Berlekamp–Massey 算法就可以了。如果 $A$ 是一个 $n$ 阶方阵，则显然最小多项式的次数不超过 $n$。
 
-瓶颈在于求出 $A^i$，因为如果直接每次做矩阵乘法的话复杂度会达到 $O(n^4)$。但考虑到求矩阵列的最短递推式时实际上求的是 $\{\mathbf{u}^T A^i \mathbf{v}\}$ 的最短递推式，因此我们只要求出 $A^i \mathbf{v}$ 就行了。
+瓶颈在于求出 $A^i$，因为如果直接每次做矩阵乘法的话复杂度会达到 $O(n^4)$。但考虑到求矩阵列的最短递推式时实际上求的是 $\{\boldsymbol{u}^T A^i \boldsymbol{v}\}$ 的最短递推式，因此我们只要求出 $A^i \boldsymbol{v}$ 就行了。
 
 假设 $A$ 有 $k$ 个非零项，则复杂度为 $O(kn + n^2)$。
 
@@ -204,5 +204,5 @@ $A^{-1} \mathbf b = -\frac 1 {r_{m - 1}} \sum_{i = 0} ^ {m - 2} A^i \mathbf b r_
 
 ### 例题
 
-1. [LibreOJ #163. 高斯消元 2](https://loj.ac/p/163)
-2. [ICPC2021 台北 Gym103443E. Composition with Large Red Plane, Yellow, Black, Gray, and Blue](https://codeforces.com/gym/103443/problem/E)
+1.  [LibreOJ #163. 高斯消元 2](https://loj.ac/p/163)
+2.  [ICPC2021 台北 Gym103443E. Composition with Large Red Plane, Yellow, Black, Gray, and Blue](https://codeforces.com/gym/103443/problem/E)

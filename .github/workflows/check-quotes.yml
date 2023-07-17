@@ -1,0 +1,30 @@
+name: Check quotes
+
+on: [ pull_request ]
+
+jobs:
+  check-quotes:
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.check-diff.outputs.result }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Check diff
+        id: check-diff
+        run: echo "result=$(git diff @^ -- '*.md' | grep ^+.*[“”])" >> $GITHUB_OUTPUT
+  suggest-change:
+    needs: check-quotes
+    if: needs.check-quotes.outputs.result
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Replace quotes
+        run: |
+          find . -name '*.md' | xargs sed -i 's/“/「/g'
+          find . -name '*.md' | xargs sed -i 's/”/」/g'
+      - uses: reviewdog/action-suggester@v1
+        with:
+          filter_mode: added
+          tool_name: 请使用 `「……」` 作为全角引号，`"..."` 作为半角引号。具体用法见 [格式手册](https://oi-wiki.org/intro/format/#标点符号的使用)。这条建议是自动发出的，若有误请修正或忽略。

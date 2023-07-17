@@ -17,7 +17,7 @@ $$
 \hat{F}(x)\hat{G}(x)
 &=\sum_{i\ge 0}a_i\frac{x^i}{i!}\sum_{j\ge 0}b_j\frac{x^j}{j!}\\
 &=\sum_{n\ge 0}x^{n}\sum_{i=0}^na_ib_{n-i}\frac{1}{i!(n-i)!}\\
-&=\sum_{n\ge 0}\frac{x^{n} }{n!}\sum_{i=0}^n\binom{n}{i}a_ib_{n-i}
+&=\sum_{n\ge 0}\frac{x^{n}}{n!}\sum_{i=0}^n\binom{n}{i}a_ib_{n-i}
 \end{aligned}
 $$
 
@@ -36,15 +36,15 @@ $$
 序列 $\langle 1,1,1,\cdots\rangle$ 的指数生成函数是：
 
 $$
-\hat{F}(x) = \sum_{n \ge 0}\frac{x^n}{n!} = e^x
+\hat{F}(x) = \sum_{n \ge 0}\frac{x^n}{n!} = \mathrm{e}^x
 $$
 
-因为你将 $e^x$ 在 $x = 0$ 处泰勒展开就得到了它的无穷级数形式。
+因为你将 $\mathrm{e}^x$ 在 $x = 0$ 处泰勒展开就得到了它的无穷级数形式。
 
 类似地，等比数列 $\langle 1,p,p^2,\cdots\rangle$ 的指数生成函数是：
 
 $$
-\hat{F}(x) = \sum_{n\ge 0}\frac{p^nx^n}{n!}=e^{px}
+\hat{F}(x) = \sum_{n\ge 0}\frac{p^nx^n}{n!}=\mathrm{e}^{px}
 $$
 
 ## 指数生成函数与普通生成函数
@@ -107,19 +107,40 @@ $$
 
 上面是从组合角度直接列式理解，我们也可以从递推方面来证明 $\exp(f(x))$ 和 $f(x)$ 两者间的关系。
 
-同样设 $F_k(n)$ 为 $n$ 个有标号元素划分成 $k$ 个非空集合（无标号）的情况，$g_i$ 为 $i$ 个元素组成一个集合内部的方案数（意义同上文中的 $f_i$），并令 $G(x)$ 为 $\{g_i\}$ 的 EGF
+同样设 $F_k(n)$ 为 $n$ 个有标号元素划分成 $k$ 个非空集合（无标号）的情况，$g_i$ 为 $i$ 个元素组成一个集合内部的方案数（意义同上文中的 $f_i$），并令 $G(x)$ 为 $\{g_i\}$ 的 EGF，$H_k(x)$ 为 $\{F_k(n)\}$ 的 EGF。
+
+$n$ 个元素中取出 $i$ 个元素作为一个单独划分出去的集合共有 $g_i$ 种方案，剩下的 $n-i$ 个元素构成 $k-1$ 个集合共 $F_{k-1}(n-i)$ 种方案，但最后的划分方案中，一个方案里的每个集合都会被枚举为单独划分出去的集合，所以重复计算了 $k$ 次，故还需要除以 $k$。
 
 $$
 \begin{aligned}
-F_k(n)&=\sum_{i=1}^{n-k+1}\binom niF_{k-1}(n-i)\times g_i\times \frac{1}{k!}
-\\&=\sum_{i=0}^n\binom ni F_{k-1}(n-i)\times g_i \times \frac{1}{k!}\\
-&=[x^n]\frac{1}{k!}F_{k-1}\times G\\
-&=[x^n]\frac{1}{k!}G^k\\
-&=[x^n]\exp(G(x))
+H_k(x) &= \sum_{n\ge 0}\cfrac{x^n}{n!}F_k(n)\\
+&=\sum_{n\ge 0}\cfrac{x^n}{n!}\sum_{i=1}^{n-k+1}\binom n {i} F_{k-1}(n-i)\times g_i\times \cfrac{1}{k}\\
+&=\cfrac{1}{k}\sum_{n\ge 0}\cfrac{x^n}{n!}\sum_{i=0}^{n}\binom n {i}F_{k-1}(n-i)\times g_i\\
+&=\cfrac{1}{k}\cdot  H_{k-1}(x)G(x)
 \end{aligned}
 $$
 
 上界是由非空集合划分推出的 $n-(k-1)\geq i$（前 $k-1$ 个集合每个集合最少有一个元素），但是如果超过枚举上界涉及的 $F_{k-1}(n-i)$ 设为 $0$，那么就没有影响。
+
+得到递推式之后可递归展开，边界为 $k=1$ 时 $H_1(x)=G(x)$。
+
+$$
+\begin{aligned}
+H_k(x) &= \cfrac{1}{k}\cdot   H_{k-1}(x)G(x)\\
+&= \cfrac{1}{k}\cdot\cfrac{1}{k-1}\cdot   H_{k-2}(x)G^2(x)\\
+&=\cdots \\
+&= \cfrac{1}{k}\cdot\cfrac{1}{k-1} \cdots\cfrac{1}{2}\cdot H_{1}(x)G^{k-1}(x)\\
+&= \cfrac{1}{k!}G^{k}(x)\\
+\end{aligned}
+$$
+
+同样的有：
+
+$$
+\begin{aligned}
+\sum_{k\ge 0}H_k(x)=\sum_{k\ge 0}\cfrac{G^k(x)}{k!}=\exp G(x)
+\end{aligned}
+$$
 
 显然 **定义成划分为非空集合**（$g_0=0$）是符合本身的意义的，如果 **包含空集**（$g_0=1$），那么对应 $[x^n]G^k$ 中就会有 $[x^n]G^y,y>k$ 的贡献（在至少一个 $G$ 中选择常数项），有计重，得不到所求量。
 
@@ -159,8 +180,8 @@ $$
 
 也就是说，长度为 $n$ 的排列的方案数是
 
-1. 把 $1,2,\cdots,n$ 分成若干个集合
-2. 每个集合形成一个置换环
+1.  把 $1,2,\cdots,n$ 分成若干个集合
+2.  每个集合形成一个置换环
 
 的方案数。而一个集合的数形成置换环的方案数显然就是这个集合大小的圆排列方案数。因此长度为 $n$ 的排列的方案数就是：把 $1,2,\cdots,n$ 分成若干个集合，每个集合的圆排列方案数之积。
 
@@ -168,7 +189,7 @@ $$
 
 推广之
 
-- 如果 $n$ 个点 **带标号** 生成树的 EGF 是 $\hat{F}(x)$，那么 $n$ 个点 **带标号** 生成森林的 EGF 就是 $\exp \hat{F}(x)$——直观理解为，将 $n$ 个点分成若干个集合，每个集合构成一个生成树的方案数之积。
+-   如果 $n$ 个点 **带标号** 生成树的 EGF 是 $\hat{F}(x)$，那么 $n$ 个点 **带标号** 生成森林的 EGF 就是 $\exp \hat{F}(x)$——直观理解为，将 $n$ 个点分成若干个集合，每个集合构成一个生成树的方案数之积。
 -   如果 $n$ 个点带标号无向连通图的 EGF 是 $\hat{F}(x)$，那么 $n$ 个点带标号无向图的 EGF 就是 $\exp \hat{F}(x)$，后者可以很容易计算得到
 
     $$
@@ -183,7 +204,7 @@ $$
 
 ### 错排数
 
-???+note "错排数"
+???+ note "错排数"
     定义长度为 $n$ 的一个错排是满足 $p_i\ne i$ 的排列。
     
     求错排数的指数生成函数。
@@ -198,7 +219,7 @@ $$
 
 ### 不动点
 
-???+note "[不动点](https://www.51nod.com/Challenge/Problem.html#problemId=1728)"
+???+ note "[不动点](https://www.51nod.com/Challenge/Problem.html#problemId=1728)"
     题意：求有多少个映射 $f:\{1,2,\cdots,n\}\to \{1,2,\cdots,n\}$，使得
     
     $$
@@ -225,12 +246,12 @@ $$
 
 ### Lust
 
-???+note "[Lust](https://codeforces.com/contest/891/problem/E)"
+???+ note "[Lust](https://codeforces.com/contest/891/problem/E)"
     给你一个 $n$ 个数的序列 $a_1,a_2,\cdots,a_n$，和一个初值为 $0$ 的变量 $s$，要求你重复以下操作 $k$ 次：
     
-    - 在 $1,2,\cdots,n$ 中等概率随机选择一个 $x$。
-    - 令 $s$ 加上 $\prod_{i\ne x}a_i$。
-    - 令 $a_x$ 减一。
+    -   在 $1,2,\cdots,n$ 中等概率随机选择一个 $x$。
+    -   令 $s$ 加上 $\prod_{i\ne x}a_i$。
+    -   令 $a_x$ 减一。
     
     求 $k$ 次操作后 $s$ 的期望。
     
@@ -271,15 +292,15 @@ $$
 $$
 \begin{aligned}
 F_j(x)&=\sum_{i\ge 0}a_j\frac{x^i}{i!}-\sum_{i\ge 1}\frac{x^i}{(i-1)!}\\
-&=a_je^x-xe^x\\
-&=(a_j-x)e^x
+&=a_j\mathrm{e}^x-x\mathrm{e}^x\\
+&=(a_j-x)\mathrm{e}^x
 \end{aligned}
 $$
 
 因此我们得到
 
 $$
-\prod_{j=1}^nF_j(x)=e^{nx}\prod_{j=1}^n(a_j-x)
+\prod_{j=1}^nF_j(x)=\mathrm{e}^{nx}\prod_{j=1}^n(a_j-x)
 $$
 
 其中 $\prod_{j=1}^n(a_j-x)$ 是一个 $n$ 次多项式，可以暴力计算出来。假设它的展开式是 $\sum_{i=0}^nc_ix^i$，那么

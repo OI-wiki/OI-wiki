@@ -4,7 +4,7 @@ const int logn = 21;
 const int maxn = 2000001;
 int f[maxn][logn + 1], Logn[maxn + 1];
 
-inline int read() {  // 快读
+int read() {  // 快读
   char c = getchar();
   int x = 0, f = 1;
   while (c < '0' || c > '9') {

@@ -9,8 +9,8 @@
 ???+ note "矩形区域查询"
     给出 $n$ 个二维平面中的点 $(x_i, y_i)$，其中 $1 \le i \le n, 1 \le x_i, y_i \le n, 1 \le n \le 10^5$, 要求实现以下中操作：
     
-    1. 给出 $a, b, c, d$，询问以 $(a, b)$ 为左上角，$c, d$ 为右下角的矩形区域内点的个数。
-    2. 给出 $x, y$，将横坐标为 $x$ 的点的纵坐标改为 $y$。
+    1.  给出 $a, b, c, d$，询问以 $(a, b)$ 为左上角，$c, d$ 为右下角的矩形区域内点的个数。
+    2.  给出 $x, y$，将横坐标为 $x$ 的点的纵坐标改为 $y$。
     
     题目 **强制在线**，保证 $x_i \ne x_j(1 \le i, j \le n, i \ne j)$。
 
@@ -54,17 +54,17 @@
 
 ## 例题 1
 
-???+ note " [Intersection of Permutations](https://codeforces.com/problemset/problem/1093/E) "
+???+ note "[Intersection of Permutations](https://codeforces.com/problemset/problem/1093/E)"
     给出两个排列 $a$ 和 $b$，要求实现以下两种操作：
     
-    1. 给出 $l_a, r_a, l_b, r_b$，要求查询既出现在 $a[l_a ... r_a]$ 又出现在 $b[l_b ... r_b]$ 中的元素的个数。
-    2. 给出 $x, y$，$swap(b_x, b_y)$。
+    1.  给出 $l_a, r_a, l_b, r_b$，要求查询既出现在 $a[l_a ... r_a]$ 又出现在 $b[l_b ... r_b]$ 中的元素的个数。
+    2.  给出 $x, y$，$swap(b_x, b_y)$。
     
     序列长度 $n$ 满足 $2 \le n \le 2 \cdot 10^5$，操作个数 $q$ 满足 $1 \le q \le 2 \cdot 10^5$。
 
 对于每个值 $i$，记 $x_i$ 是它在排列 $b$ 中的下标，$y_i$ 是它在排列 $a$ 中的下标。这样，操作一就变成了一个矩形区域内点的个数的询问，操作 2 可以看成两个修改操作。而且因为是排列，所以满足一个 $x$ 对应一个 $y$，所以这题可以用分块套树状数组来写。
 
-??? note "参考代码(分块套树状数组-1s)"
+??? note "参考代码（分块套树状数组 - 1s）"
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
@@ -92,7 +92,7 @@
         for (int i = L[j]; i <= R[j]; ++i) block_id[i] = j;
     }
     
-    inline int lb(int x) { return x & -x; }
+    int lb(int x) { return x & -x; }
     
     void add(int p, int v, int d) {
       for (int i = block_id[p]; i <= block_cnt; i += lb(i))
@@ -148,7 +148,7 @@
     }
     ```
 
-??? node "参考代码(树状数组套Treap-TLE)"
+??? node "参考代码（树状数组套 Treap—TLE）"
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
@@ -166,9 +166,9 @@
         node(int _v) : l(NULL), r(NULL), sz(1), rnd(rng()), v(_v) {}
       };
     
-      inline int get_size(node*& p) { return p ? p->sz : 0; }
+      int get_size(node*& p) { return p ? p->sz : 0; }
     
-      inline void push_up(node*& p) {
+      void push_up(node*& p) {
         if (!p) return;
         p->sz = get_size(p->l) + get_size(p->r) + 1;
       }
@@ -250,7 +250,7 @@
     // Fenwick Tree
     Treap T[N];
     
-    inline int lb(int x) { return x & -x; }
+    int lb(int x) { return x & -x; }
     
     void ins(int x, int v) {
       for (; x <= n; x += lb(x)) T[x].ins(v);
@@ -294,7 +294,7 @@
 
 ## 例题 2
 
-???+ note " [Complicated Computations](https://codeforces.com/contest/1436/problem/E) "
+???+ note "[Complicated Computations](https://codeforces.com/contest/1436/problem/E)"
     给出一个序列 $a$，将 $a$ 所有连续子序列的 MEX 构成的数组作为 $b$，问 $b$ 的 MEX。一个序列的 MEX 是序列中最小的没出现过的 **正整数**。
     
     序列的长度 $n$ 满足 $1 \le n \le 10^5$。
@@ -309,7 +309,7 @@
 
 如果在判断完值为 $i$ 的元素之后再将对应的点插入，这时因为 $[l, r]$ 内只存在 $a_j \le i - 1$ 的元素，所以上述三维偏序问题就可以转换为二维偏序的问题。
 
-??? note "参考代码(分块套树状数组-78ms)"
+??? note "参考代码（分块套树状数组 - 78ms）"
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
@@ -336,7 +336,7 @@
         for (int i = L[j]; i <= R[j]; ++i) block_id[i] = j;
     }
     
-    inline int lb(int x) { return x & -x; }
+    int lb(int x) { return x & -x; }
     
     // d = 1: 加点(p, v)
     // d = -1: 删点(p, v)
@@ -416,7 +416,7 @@
     }
     ```
 
-??? note "参考代码(线段树套Treap-468ms)"
+??? note "参考代码（线段树套 Treap-468ms）"
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
@@ -436,9 +436,9 @@
         node(int _v) : l(NULL), r(NULL), rnd(rng()), sz(1), v(_v) {}
       };
     
-      inline int get_size(node*& p) { return p ? p->sz : 0; }
+      int get_size(node*& p) { return p ? p->sz : 0; }
     
-      inline void push_up(node*& p) {
+      void push_up(node*& p) {
         if (!p) return;
         p->sz = get_size(p->l) + get_size(p->r) + 1;
       }

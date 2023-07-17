@@ -2,23 +2,23 @@
 
 ## 引入
 
-数位是指把一个数字按照个、十、百、千等等一位一位地拆开，关注它每一位上的数字。如果拆的是十进制数，那么每一位数字都是 0~9，其他进制可类比十进制。
+数位是指把一个数字按照个、十、百、千等等一位一位地拆开，关注它每一位上的数字。如果拆的是十进制数，那么每一位数字都是 0\~9，其他进制可类比十进制。
 
 数位 DP：用来解决一类特定问题，这种问题比较好辨认，一般具有这几个特征：
 
-1. 要求统计满足一定条件的数的数量（即，最终目的为计数）；
+1.  要求统计满足一定条件的数的数量（即，最终目的为计数）；
 
-2. 这些条件经过转化后可以使用「数位」的思想去理解和判断；
+2.  这些条件经过转化后可以使用「数位」的思想去理解和判断；
 
-3. 输入会提供一个数字区间（有时也只提供上界）来作为统计的限制；
+3.  输入会提供一个数字区间（有时也只提供上界）来作为统计的限制；
 
-4. 上界很大（比如 $10^{18}$），暴力枚举验证会超时。
+4.  上界很大（比如 $10^{18}$），暴力枚举验证会超时。
 
 数位 DP 的基本原理：
 
 考虑人类计数的方式，最朴素的计数就是从小到大开始依次加一。但我们发现对于位数比较多的数，这样的过程中有许多重复的部分。例如，从 7000 数到 7999、从 8000 数到 8999、和从 9000 数到 9999 的过程非常相似，它们都是后三位从 000 变到 999，不一样的地方只有千位这一位，所以我们可以把这些过程归并起来，将这些过程中产生的计数答案也都存在一个通用的数组里。此数组根据题目具体要求设置状态，用递推或 DP 的方式进行状态转移。
 
-数位 DP 中通常会利用常规计数问题技巧，比如把一个区间内的答案拆成两部分相减（即 $\mathit{ans}_{[l, r]} = \mathit{ans}_{[0, r]}-\mathit{ans}_{[0, l - 1]}$
+数位 DP 中通常会利用常规计数问题技巧，比如把一个区间内的答案拆成两部分相减（即 $\mathit{ans}_{[l, r]} = \mathit{ans}_{[0, r]}-\mathit{ans}_{[0, l - 1]}$）
 
 那么有了通用答案数组，接下来就是统计答案。统计答案可以选择记忆化搜索，也可以选择循环迭代递推。为了不重不漏地统计所有不超过上限的答案，要从高到低枚举每一位，再考虑每一位都可以填哪些数字，最后利用通用答案数组统计答案。
 
@@ -26,7 +26,7 @@
 
 ## 例题一
 
-???+note " 例 1 [Luogu P2602 数字计数](https://www.luogu.com.cn/problem/P2602)"
+???+ note " 例 1 [Luogu P2602 数字计数](https://www.luogu.com.cn/problem/P2602)"
     题目大意：给定两个正整数 $a,b$，求在 $[a,b]$ 中的所有整数中，每个数码（digit）各出现了多少次。
 
 ### 方法一
@@ -45,11 +45,11 @@
     using namespace std;
     const int N = 15;
     typedef long long ll;
-    ll l, r, dp[N], sum[N], mi[N];
+    ll l, r, dp[N], mi[N];
     ll ans1[N], ans2[N];
     int a[N];
     
-    inline void solve(ll n, ll *ans) {
+    void solve(ll n, ll *ans) {
       ll tmp = n;
       int len = 0;
       while (n) a[++len] = n % 10, n /= 10;
@@ -84,7 +84,7 @@
 
 #### 过程
 
-???+note "参考代码"
+???+ note "参考代码"
     ```c++
     #include <cstdio>  //code by Alphnia
     #include <cstring>
@@ -143,7 +143,7 @@
 
 ## 例题二
 
-???+note " 例 2 [hdu 2089 不要62](https://vjudge.net/problem/HDU-2089)"
+???+ note " 例 2 [hdu 2089 不要 62](https://vjudge.net/problem/HDU-2089)"
     题面大意：统计一个区间内数位上不能有 4 也不能有连续的 62 的数有多少。
 
 ### 解释
@@ -152,7 +152,7 @@
 
 ### 实现
 
-???+note "参考代码"
+???+ note "参考代码"
     ```c++
     #include <cstdio>  //code by Alphnia
     #include <cstring>
@@ -160,7 +160,7 @@
     using namespace std;
     int x, y, dp[15][3], p[50];
     
-    inline int pre() {
+    int pre() {
       memset(dp, 0, sizeof(dp));
       dp[0][0] = 1;
       for (int i = 1; i <= 10; i++) {
@@ -170,7 +170,7 @@
       }
     }
     
-    inline int cal(int x) {
+    int cal(int x) {
       int cnt = 0, ans = 0, tmp = x;
       while (x) {
         p[++cnt] = x % 10;
@@ -205,7 +205,7 @@
 
 ## 例题三
 
-???+note " 例 3 [SCOI2009 windy 数 ](https://loj.ac/problem/10165)"
+???+ note " 例 3 [SCOI2009 windy 数](https://loj.ac/problem/10165)"
     题目大意：给定一个区间 $[l,r]$，求其中满足条件 **不含前导 $0$ 且相邻两个数字相差至少为 $2$** 的数字个数。
 
 ### 解释
@@ -224,7 +224,7 @@
 
 ### 实现
 
-???+note "参考代码"
+???+ note "参考代码"
     ```cpp
     int dfs(int x, int st, int op)  // op=1 =;op=0 <
     {
@@ -257,8 +257,8 @@
 
 ## 例题四
 
-???+note "例 4.[SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
-    题面大意：假如手写下 $[n,m]$ 之间所有整数，会有多少数看起来和在镜子里看起来一模一样？（$n,m<10^{44}, T<10^5$)
+???+ note " 例 4.[SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
+    题面大意：假如手写下 $[n,m]$ 之间所有整数，会有多少数看起来和在镜子里看起来一模一样？（$n,m<10^{44}, T<10^5$）
 
 ### 解释
 
@@ -276,7 +276,7 @@
 
 ### 实现
 
-???+note "参考代码"
+???+ note "参考代码"
     ```c++
     int check(char cc[]) {  // n 的特判
       int strc = strlen(cc);
@@ -324,7 +324,7 @@
 
 ## 例题五
 
-???+note "例 5. [P3311 数数](https://www.luogu.com.cn/problem/P3311)"
+???+ note " 例 5.[P3311 数数](https://www.luogu.com.cn/problem/P3311)"
     题面：我们称一个正整数 $x$ 是幸运数，当且仅当它的十进制表示中不包含数字串集合 $S$ 中任意一个元素作为其子串。例如当 $S = \{22, 333, 0233\}$ 时，$233233$ 是幸运数，$23332333$、$2023320233$、$32233223$ 不是幸运数。给定 $n$ 和 $S$，计算不大于 $n$ 的幸运数个数。答案对 $10^9 + 7$ 取模。
     
     $1 \leq n<10^{1201}，1 \leq m \leq 100，1 \leq \sum_{i = 1}^m |s_i| \leq 1500，\min_{i = 1}^m |s_i| \geq 1$，其中 $|s_i|$ 表示字符串 $s_i$ 的长度。$n$ 没有前导 $0$，但是 $s_i$ 可能有前导 $0$。
@@ -341,7 +341,7 @@
 
 ### 实现
 
-???+note "参考代码"
+???+ note "参考代码"
     ```c++
     #include <bits/stdc++.h>  //code by Alphnia
     using namespace std;
@@ -352,7 +352,7 @@
     char s[N], c[N];
     int ch[N][10], fail[N], ed[N], tot, len;
     
-    inline void insert() {
+    void insert() {
       int now = 0;
       int L = strlen(s);
       for (int i = 0; i < L; ++i) {
@@ -364,7 +364,7 @@
     
     queue<int> q;
     
-    inline void build() {
+    void build() {
       for (int i = 0; i < 10; ++i)
         if (ch[0][i]) q.push(ch[0][i]);
       while (!q.empty()) {
@@ -383,7 +383,7 @@
     
     ll f[N][N][2], ans;
     
-    inline void add(ll &x, ll y) { x = (x + y) % mod; }
+    void add(ll &x, ll y) { x = (x + y) % mod; }
     
     int main() {
       scanf("%s", c);

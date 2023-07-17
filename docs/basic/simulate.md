@@ -10,29 +10,37 @@
 
 写模拟题时，遵循以下的建议有可能会提升做题速度：
 
-- 在动手写代码之前，在草纸上尽可能地写好要实现的流程。
-- 在代码中，尽量把每个部分模块化，写成函数、结构体或类。
-- 对于一些可能重复用到的概念，可以统一转化，方便处理：如，某题给你 "YY-MM-DD 时：分" 把它抽取到一个函数，处理成秒，会减少概念混淆。
-- 调试时分块调试。模块化的好处就是可以方便的单独调某一部分。
-- 写代码的时候一定要思路清晰，不要想到什么写什么，要按照落在纸上的步骤写。
+-   在动手写代码之前，在草纸上尽可能地写好要实现的流程。
+-   在代码中，尽量把每个部分模块化，写成函数、结构体或类。
+-   对于一些可能重复用到的概念，可以统一转化，方便处理：如，某题给你 "YY-MM-DD 时：分" 把它抽取到一个函数，处理成秒，会减少概念混淆。
+-   调试时分块调试。模块化的好处就是可以方便的单独调某一部分。
+-   写代码的时候一定要思路清晰，不要想到什么写什么，要按照落在纸上的步骤写。
 
 实际上，上述步骤在解决其它类型的题目时也是很有帮助的。
 
 ## 例题详解
 
-???+note " [Climbing Worm](https://vjudge.net/problem/Kattis-climbingworm)"
+???+ note "[Climbing Worm](https://vjudge.net/problem/Kattis-climbingworm)"
     一只长度不计的蠕虫位于 $n$ 英寸深的井的底部。它每次向上爬 $u$ 英寸，但是必须休息一次才能再次向上爬。在休息的时候，它滑落了 $d$ 英寸。之后它将重复向上爬和休息的过程。蠕虫爬出井口需要至少爬多少次？如果蠕虫爬完后刚好到达井的顶部，我们也设作蠕虫已经爬出井口。
 
 ??? note "解题思路"
     直接使用程序模拟蠕虫爬井的过程就可以了。用一个循环重复蠕虫的爬井过程，当攀爬的长度超过或者等于井的深度时跳出。
 
 ??? note "参考代码"
-    ```cpp
-    --8<-- "docs/basic/code/simulate/simulate_1.cpp"
-    ```
+    === "C++"
+    
+        ```cpp
+        --8<-- "docs/basic/code/simulate/simulate_1.cpp"
+        ```
+    
+    === "Python"
+    
+        ```python
+        --8<-- "docs/basic/code/simulate/simulate_1.py"
+        ```
 
 ## 习题
 
-- [「NOIP2014」生活大爆炸版石头剪刀布 - Universal Online Judge](https://uoj.ac/problem/15)
-- [「OpenJudge 3750」魔兽世界](http://bailian.openjudge.cn/practice/3750/)
-- [「SDOI2010」猪国杀 - LibreOJ](https://loj.ac/problem/2885)
+-   [「NOIP2014」生活大爆炸版石头剪刀布 - Universal Online Judge](https://uoj.ac/problem/15)
+-   [「OpenJudge 3750」魔兽世界](http://bailian.openjudge.cn/practice/3750/)
+-   [「SDOI2010」猪国杀 - LibreOJ](https://loj.ac/problem/2885)

@@ -16,7 +16,7 @@ author: zarrtic
 
 ## 安装
 
-???+note "提示"
+???+ note "提示"
     开箱即用版本和安装版本只需要选择一个安装即可。
 
 ### 开箱即用版本
@@ -87,4 +87,4 @@ author: zarrtic
 
 ## 参考资料
 
-[^compiler]: [编译器 - OI Wiki](https://oi-wiki.org/tools/compiler/)
+[^compiler]: [编译器 - OI Wiki](../compiler.md)

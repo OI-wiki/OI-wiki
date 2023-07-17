@@ -29,13 +29,13 @@ for (auto __begin = begin_expr, __end = end_expr; __begin != __end; ++__begin) {
 }
 ```
 
-### range_declaration 范围声明
+### range\_declaration 范围声明
 
 范围声明是一个具名变量的声明，其类型是由范围表达式所表示的序列的元素的类型，或该类型的引用。通常用 `auto` 说明符进行自动类型推导。
 
-### range_expression 范围表达式
+### range\_expression 范围表达式
 
-范围表达式是任何可以表示一个合适的序列（数组，或定义了 `begin` 和 `end` 成员函数或自由函数的对象）的表达式，或一个花括号初始化器列表。正因此，我们不应在循环体中修改范围表达式使其任何尚未被遍历到的“迭代器”（包括“尾后迭代器”）非法化。
+范围表达式是任何可以表示一个合适的序列（数组，或定义了 `begin` 和 `end` 成员函数或自由函数的对象）的表达式，或一个花括号初始化器列表。正因此，我们不应在循环体中修改范围表达式使其任何尚未被遍历到的「迭代器」（包括「尾后迭代器」）非法化。
 
 这里有一个例子：
 
@@ -43,7 +43,7 @@ for (auto __begin = begin_expr, __end = end_expr; __begin != __end; ++__begin) {
 for (int i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 ```
 
-### loop_statement 循环语句
+### loop\_statement 循环语句
 
 循环语句可以是任何语句，常为一条复合语句，它是循环体。
 
@@ -338,12 +338,12 @@ using namespace std;
 
 namespace DEBUG {
 template <typename T>
-inline void _debug(const char* format, T t) {
+void _debug(const char* format, T t) {
   cerr << format << '=' << t << endl;
 }
 
 template <class First, class... Rest>
-inline void _debug(const char* format, First first, Rest... rest) {
+void _debug(const char* format, First first, Rest... rest) {
   while (*format != ',') cerr << *format++;
   cerr << '=' << first << ",";
   _debug(format + 1, rest...);
@@ -383,8 +383,8 @@ int main(int argc, char* argv[]) {
 
 ## 参考
 
-1. [C++ reference](https://en.cppreference.com/)
-2. [C++ 参考手册](https://zh.cppreference.com/)
-3. [C++ in Visual Studio](https://docs.microsoft.com/en-us/cpp/overview/visual-cpp-in-visual-studio?view=vs-2019)
-4. [Variadic template](https://en.wikipedia.org/wiki/Variadic_template)
-5. [Variadic macros](https://en.wikipedia.org/wiki/Variadic_macro)
+1.  [C++ reference](https://en.cppreference.com/)
+2.  [C++ 参考手册](https://zh.cppreference.com/)
+3.  [C++ in Visual Studio](https://docs.microsoft.com/en-us/cpp/overview/visual-cpp-in-visual-studio?view=vs-2019)
+4.  [Variadic template](https://en.wikipedia.org/wiki/Variadic_template)
+5.  [Variadic macros](https://en.wikipedia.org/wiki/Variadic_macro)

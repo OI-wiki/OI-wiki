@@ -55,13 +55,11 @@ $$
       double x, y;
     } p[100005], o;
     
-    inline double sqr(double x) { return x * x; }
+    double sqr(double x) { return x * x; }
     
-    inline double dis(point a, point b) {
-      return sqrt(sqr(a.x - b.x) + sqr(a.y - b.y));
-    }
+    double dis(point a, point b) { return sqrt(sqr(a.x - b.x) + sqr(a.y - b.y)); }
     
-    inline bool cmp(double a, double b) { return fabs(a - b) < 1e-8; }
+    bool cmp(double a, double b) { return fabs(a - b) < 1e-8; }
     
     point geto(point a, point b, point c) {
       double a1, a2, b1, b2, c1, c2;

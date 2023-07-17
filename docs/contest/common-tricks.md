@@ -6,31 +6,7 @@ author: H-J-Granger, Ir1d, ChungZH, Marcythm, StudyingFather, billchenchina, Suy
 
 局部性是指程序倾向于引用邻近于其他最近引用过的数据项的数据项，或者最近引用过的数据项本身。局部性分为时间局部性和空间局部性。
 
--   循环展开。通过适当的循环展开可以减少整个计算中关键路径上的操作数量
-
-    ```cpp
-    // for (int i = 0; i < n; ++i) {
-    //     res = res OP a[i];
-    //}
-    // 不如
-    int i;
-    for (i = 0; i < n; i += 2) {
-      res = res OP a[i];
-      res = res OP a[i + 1];
-    }
-    for (; i < n; ++i) {
-      res = res OP a[i];
-    }
-    ```
-
--   重新结合变换，增加了可以并行执行的运算数量。
-
-    ```cpp
-    // 加号可以换成其他的运算符
-    for (int i = 0; i < n; ++i) res = (res + a[i]) + a[i + 1];
-    // 不如
-    for (int i = 0; i < n; ++i) res = res + (a[i] + a[i + 1]);
-    ```
+具体可参见 [循环展开 (Loop Unroll)](../lang/optimizations.md#循环展开-loop-unroll)、[代码布局优化 (Code Layout Optimizations)](../lang/optimizations.md#代码布局优化-code-layout-optimizations) 等内容
 
 ## 循环宏定义
 
@@ -179,7 +155,7 @@ int main() {
 
 当动态分配内存时，频繁使用 `new`/`malloc` 会占用大量的时间和空间，甚至生成大量的内存碎片从而降低程序的性能，可能会使原本正确的程序 TLE/MLE。
 
-这时候需要使用到“内存池”这种技巧：在真正使用内存之前，先申请分配一定大小的内存作为备用。当需要动态分配时直接从备用内存中分配一块即可。
+这时候需要使用到「内存池」这种技巧：在真正使用内存之前，先申请分配一定大小的内存作为备用。当需要动态分配时直接从备用内存中分配一块即可。
 
 在大多数 OI 题当中，可以预先算出需要使用到的最大内存并一次性申请分配。
 
@@ -187,13 +163,13 @@ int main() {
 
 ```cpp
 // 申请动态分配 32 位有符号整数数组：
-inline int* newarr(int sz) {
+int* newarr(int sz) {
   static int pool[maxn], *allocp = pool;
   return allocp += sz, allocp - sz;
 }
 
 // 线段树动态开点的代码：
-inline Node* newnode() {
+Node* newnode() {
   static Node pool[maxn << 1], *allocp = pool - 1;
   return ++allocp;
 }

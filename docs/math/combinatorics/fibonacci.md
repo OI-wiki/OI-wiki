@@ -48,7 +48,7 @@ $$
 
 这里的中括号表示取离它最近的整数。
 
-这两个公式在计算的时侯要求极高的精确度，因此在实践中很少用到。但是请不要忽视！结合模意义下二次剩余和逆元的概念，在 OI 中使用这个公式仍是有用的。
+这两个公式在计算的时候要求极高的精确度，因此在实践中很少用到。但是请不要忽视！结合模意义下二次剩余和逆元的概念，在 OI 中使用这个公式仍是有用的。
 
 ### 卢卡斯数列通项公式
 
@@ -128,13 +128,13 @@ pair<int, int> fib(int n) {
 
 斐波那契数列拥有许多有趣的性质，这里列举出一部分简单的性质：
 
-1. 卡西尼性质（Cassini's identity）：$F_{n-1} F_{n+1} - F_n^2 = (-1)^n$。
-2. 附加性质：$F_{n+k} = F_k F_{n+1} + F_{k-1} F_n$。
-3. 取上一条性质中 $k = n$，我们得到 $F_{2n} = F_n (F_{n+1} + F_{n-1})$。
-4. 由上一条性质可以归纳证明，$\forall k\in \mathbb{N},F_n|F_{nk}$。
-5. 上述性质可逆，即 $\forall F_a|F_b,a|b$。
-6. GCD 性质：$(F_m, F_n) = F_{(m, n)}$。
-7. 以斐波那契数列相邻两项作为输入会使欧几里德算法达到最坏复杂度（具体参见 [维基 - 拉梅](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9)）。
+1.  卡西尼性质（Cassini's identity）：$F_{n-1} F_{n+1} - F_n^2 = (-1)^n$。
+2.  附加性质：$F_{n+k} = F_k F_{n+1} + F_{k-1} F_n$。
+3.  取上一条性质中 $k = n$，我们得到 $F_{2n} = F_n (F_{n+1} + F_{n-1})$。
+4.  由上一条性质可以归纳证明，$\forall k\in \mathbb{N},F_n|F_{nk}$。
+5.  上述性质可逆，即 $\forall F_a|F_b,a|b$。
+6.  GCD 性质：$(F_m, F_n) = F_{(m, n)}$。
+7.  以斐波那契数列相邻两项作为输入会使欧几里德算法达到最坏复杂度（具体参见 [维基 - 拉梅](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9)）。
 
 ### 斐波那契数列与卢卡斯数列的关系
 
@@ -215,10 +215,10 @@ $$
 
 给 $n$ 编码的过程可以使用贪心算法解决：
 
-1. 从大到小枚举斐波那契数 $F_i$，直到 $F_i\le n$。
-2. 把 $n$ 减掉 $F_i$，在编码的 $i-2$ 的位置上放一个 1（编码从左到右以 0 为起点）。
-3. 如果 $n$ 为正，回到步骤 1。
-4. 最后在编码末位添加一个 1，表示编码的结束位置。
+1.  从大到小枚举斐波那契数 $F_i$，直到 $F_i\le n$。
+2.  把 $n$ 减掉 $F_i$，在编码的 $i-2$ 的位置上放一个 1（编码从左到右以 0 为起点）。
+3.  如果 $n$ 为正，回到步骤 1。
+4.  最后在编码末位添加一个 1，表示编码的结束位置。
 
 解码过程同理，先删掉末位的 1，对于编码为 1 的位置 $i$（编码从左到右以 0 为起点），累加一个 $F_{i+2}$ 到答案。最后的答案就是原数字。
 
@@ -255,11 +255,11 @@ $p$ 的剩余系大小为 $p$，意味着在前 $p^2+1$ 个数对中必有两个
 由二项式展开：
 
 $$
-F_p=\frac{2}{2^p\sqrt{5}}\left(C_p^1\sqrt{5}+C_p^3\sqrt{5}^3+\ldots+C_p^p\sqrt{5}^p\right)\equiv\sqrt{5}^{p-1}\equiv 1\pmod p
+F_p=\frac{2}{2^p\sqrt{5}}\left(\dbinom{p}{1}\sqrt{5}+\dbinom{p}{3}\sqrt{5}^3+\ldots+\dbinom{p}{p}\sqrt{5}^p\right)\equiv\sqrt{5}^{p-1}\equiv 1\pmod p
 $$
 
 $$
-F_{p+1}=\frac{2}{2^{p+1}\sqrt{5}}\left(C_{p+1}^1\sqrt{5}+C_{p+1}^3\sqrt{5}^3+\ldots+C_{p+1}^p\sqrt{5}^p\right)\equiv\frac{1}{2}\left(1+\sqrt{5}^{p-1}\right)\equiv 1\pmod p
+F_{p+1}=\frac{2}{2^{p+1}\sqrt{5}}\left(\dbinom{p+1}{1}\sqrt{5}+\dbinom{p+1}{3}\sqrt{5}^3+\ldots+\dbinom{p+1}{p}\sqrt{5}^p\right)\equiv\frac{1}{2}\left(1+\sqrt{5}^{p-1}\right)\equiv 1\pmod p
 $$
 
 因为 $F_p$ 和 $F_{p+1}$ 两项都同余于 $1$，与 $F_1$ 和 $F_2$ 一致，所以 $p-1$ 是周期。
@@ -273,21 +273,21 @@ $$
 由二项式展开：
 
 $$
-F_{2p}=\frac{2}{2^{2p}\sqrt{5}}\left(C_{2p}^1\sqrt{5}+C_{2p}^3\sqrt{5}^3+\ldots+C_{2p}^{2p-1}\sqrt{5}^{2p-1}\right)
+F_{2p}=\frac{2}{2^{2p}\sqrt{5}}\left(\dbinom{2p}{1}\sqrt{5}+\dbinom{2p}{3}\sqrt{5}^3+\ldots+\dbinom{2p}{2p-1}\sqrt{5}^{2p-1}\right)
 $$
 
 $$
-F_{2p+1}=\frac{2}{2^{2p+1}\sqrt{5}}\left(C_{2p+1}^1\sqrt{5}+C_{2p+1}^3\sqrt{5}^3+\ldots+C_{2p+1}^{2p+1}\sqrt{5}^{2p+1}\right)
+F_{2p+1}=\frac{2}{2^{2p+1}\sqrt{5}}\left(\dbinom{2p+1}{1}\sqrt{5}+\dbinom{2p+1}{3}\sqrt{5}^3+\ldots+\dbinom{2p+1}{2p+1}\sqrt{5}^{2p+1}\right)
 $$
 
-模 $p$ 之后，在 $F_{2p}$ 式中，只有 $C_{2p}^p\equiv 2 \pmod p$ 项留了下来；在 $F_{2p+1}$ 式中，有 $C_{2p+1}^1\equiv 1 \pmod p$、$C_{2p+1}^p\equiv 2 \pmod p$、$C_{2p+1}^{2p+1}\equiv 1 \pmod p$，三项留了下来。
+模 $p$ 之后，在 $F_{2p}$ 式中，只有 $\dbinom{2p}{p}\equiv 2 \pmod p$ 项留了下来；在 $F_{2p+1}$ 式中，有 $\dbinom{2p+1}{1}\equiv 1 \pmod p$、$\dbinom{2p+1}{p}\equiv 2 \pmod p$、$\dbinom{2p+1}{2p+1}\equiv 1 \pmod p$，三项留了下来。
 
 $$
-F_{2p}\equiv\frac{1}{2}C_{2p}^p\sqrt{5}^{p-1}\equiv -1 \pmod p
+F_{2p}\equiv\frac{1}{2}\dbinom{2p}{p}\sqrt{5}^{p-1}\equiv -1 \pmod p
 $$
 
 $$
-F_{2p+1}\equiv\frac{1}{4}\left(C_{2p+1}^1+C_{2p+1}^p\sqrt{5}^{p-1}+C_{2p+1}^{2p+1}\sqrt{5}^{2p}\right)\equiv\frac{1}{4}\left(1-2+5\right)\equiv 1 \pmod p
+F_{2p+1}\equiv\frac{1}{4}\left(\dbinom{2p+1}{1}+\dbinom{2p+1}{p}\sqrt{5}^{p-1}+\dbinom{2p+1}{2p+1}\sqrt{5}^{2p}\right)\equiv\frac{1}{4}\left(1-2+5\right)\equiv 1 \pmod p
 $$
 
 于是 $F_{2p}$ 和 $F_{2p+1}$ 两项与 $F_{-2}$ 和 $F_{-1}$ 一致，所以 $2p+2$ 是周期。
@@ -393,10 +393,10 @@ unsigned long long get_cycle_from_mod(
 
 ## 习题
 
-- [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/)
-- [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/)
-- [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem)
-- [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
+-   [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/)
+-   [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/)
+-   [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem)
+-   [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
 -   [洛谷 P4000 斐波那契数列](https://www.luogu.com.cn/problem/P4000)
 
     **本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

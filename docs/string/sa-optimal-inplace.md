@@ -46,8 +46,8 @@ $$
 
 描述一下重命名的具体步骤：
 
-1. 和 SA-IS 一样，对 $\texttt{Pat}$ 中每个字符计数，计算其前缀和（计数排序），来构建 S/L 桶，只不过这里用 $\texttt{SA}$ 盛放这个前缀和；
-2. 从尾到头，扫描 $\texttt{Pat}$ 的每个字符，这样只需记录上一个字符的类型，就可以动态地判断每个字符的类型，然后依据前缀和将其重命名。
+1.  和 SA-IS 一样，对 $\texttt{Pat}$ 中每个字符计数，计算其前缀和（计数排序），来构建 S/L 桶，只不过这里用 $\texttt{SA}$ 盛放这个前缀和；
+2.  从尾到头，扫描 $\texttt{Pat}$ 的每个字符，这样只需记录上一个字符的类型，就可以动态地判断每个字符的类型，然后依据前缀和将其重命名。
 
 ### 对 LMS 字符排序
 
@@ -89,7 +89,7 @@ M：意味着桶中有至少两个 LMS 字符。
     将新的 LMS 字符从倒数第三个位置开始插入，让临时计数器自增 1。
     如果发现桶已经满了，就把桶中从桶头到倒数第三个的所有元素向右平移 2 个位置，然后把新元素插入到桶中第二个位置（桶中第一个位置填为 E）
 
-2. 如果桶中有且只有 2 个 LMS 字符，显然不需要计数器，直接从右到左顺序插入即可。
+2.  如果桶中有且只有 2 个 LMS 字符，显然不需要计数器，直接从右到左顺序插入即可。
 
 正常的值：
 
@@ -150,7 +150,7 @@ $$
 
 ### 构建规模缩减的子目标串 Pat1
 
-从左到右扫描 $\texttt{SA}$ 尾部的 LMS 子串，确定其大小关系“重命名”，将 $\texttt{SA[i]}$ 重命名的值存储在 $\texttt{SA}[\large\lfloor\frac{\texttt{SA}[i]}{2} \rfloor]$。
+从左到右扫描 $\texttt{SA}$ 尾部的 LMS 子串，确定其大小关系「重命名」，将 $\texttt{SA[i]}$ 重命名的值存储在 $\texttt{SA}\left[\left\lfloor\frac{\texttt{SA}[i]}{2} \right\rfloor\right]$。
 
 因为 LMS 字符并不相邻，所以不会有冲突，这样做是将重命名后的值按照所代表的子串在 $\texttt{Pat}$ 中的原顺序放置：
 
@@ -190,7 +190,7 @@ $$
 \end{aligned}
 $$
 
-依照 $\texttt{SA}$ 尾部的“对照表”，将 $\texttt{SA1}$ 头部的 $\texttt{SA}$ 还原为 $\texttt{Pat}$ 中对应的 LMS 后缀的索引位置：
+依照 $\texttt{SA}$ 尾部的「对照表」，将 $\texttt{SA1}$ 头部的 $\texttt{SA}$ 还原为 $\texttt{Pat}$ 中对应的 LMS 后缀的索引位置：
 
 $$
 \begin{aligned}
@@ -262,7 +262,7 @@ $$
 
 #### 实现
 
-时间性能上和 SA-IS 没有显著差别，空间占用变为不到原来的 $\large\frac{1}{3}$（代码量多 1 倍），算是不愧为原文 Optimal In-Place Suffix Sorting[^in-place-sa-sort]的标题。
+时间性能上和 SA-IS 没有显著差别，空间占用变为不到原来的 $\dfrac{1}{3}$（代码量多 1 倍），算是不愧为原文 Optimal In-Place Suffix Sorting[^in-place-sa-sort]的标题。
 
 ??? note "参考代码"
     ```rust
@@ -808,14 +808,12 @@ $$
 
 ## 注解
 
-[^in-place-sa-sort]: Li, Zhize; Li, Jian; Huo, Hongwei (2016).*Optimal In-Place Suffix Sorting*. Proceedings of the 25th International Symposium on String Processing and Information Retrieval (SPIRE). Lecture Notes in Computer Science. 11147. Springer. pp. 268–284. arXiv:1610.08305. doi:10.1007/978-3-030-00479-8_22. ISBN:978-3-030-00478-1.
-
-[^ka03]: Pang Ko and Srinivas Aluru. Space efficient linear time construction of suffix arrays. In Combinatorial Pattern Matching (CPM), pages 200–210. Springer, 2003.
+[^in-place-sa-sort]: Li, Zhize; Li, Jian; Huo, Hongwei (2016).*Optimal In-Place Suffix Sorting*. Proceedings of the 25th International Symposium on String Processing and Information Retrieval (SPIRE). Lecture Notes in Computer Science. 11147. Springer. pp. 268–284. arXiv:1610.08305. doi:10.1007/978-3-030-00479-8\_22. ISBN:978-3-030-00478-1.
 
 [^nzc09a]: Ge Nong, Sen Zhang, and Wai Hong Chan. Linear suffix array construction by almost pure induced-sorting. In Data Compression Conference (DCC), pages 193–202. IEEE, 2009.
 
-[^np12]: Gonzalo Navarro and Eliana Providel. Fast, small, simple rank/select on bitmaps. In Proc. 11th International Symposium on Experimental Algorithms (SEA), pages 295–306, 2012.
+[^sa-is介绍]: 推荐阅读 [博文](https://riteme.site/blog/2016-6-19/sais.html) 和它的 [issue 列表](https://github.com/riteme/riteme.github.io/issues/28)
 
 [^诱导顺序]: 如果是 LML 后缀，就先诱导 S 型后缀，唯一区别是计算 LML 后缀时需要将警戒哨也算进去。
 
-[^sa-is介绍]: 推荐阅读 [博文](https://riteme.site/blog/2016-6-19/sais.html) 和它的 [issue 列表](https://github.com/riteme/riteme.github.io/issues/28)
+[^np12]: Gonzalo Navarro and Eliana Providel. Fast, small, simple rank/select on bitmaps. In Proc. 11th International Symposium on Experimental Algorithms (SEA), pages 295–306, 2012.

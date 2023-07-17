@@ -19,7 +19,9 @@ nav:
     - Getting Started: index.md
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
+    - OI Wiki 不是什么: intro/what-oi-wiki-is-not.md
     - 格式手册: intro/format.md
+    - 数学符号表: intro/symbol.md
     - F.A.Q.: intro/faq.md
     - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 镜像站列表: intro/mirrors.md
@@ -146,6 +148,7 @@ nav:
       - 桶排序: basic/bucket-sort.md
       - 希尔排序: basic/shell-sort.md
       - 锦标赛排序: basic/tournament-sort.md
+      - tim排序: basic/tim-sort.md
       - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
     - 前缀和 & 差分: basic/prefix-sum.md
@@ -193,7 +196,7 @@ nav:
     - 字符串哈希: string/hash.md
     - 字典树 (Trie): string/trie.md
     - 前缀函数与 KMP 算法: string/kmp.md
-    - Boyer-Moore 算法: string/bm.md
+    - Boyer–Moore 算法: string/bm.md
     - Z 函数（扩展 KMP）: string/z-func.md
     - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
@@ -209,7 +212,7 @@ nav:
     - 序列自动机: string/seq-automaton.md
     - 最小表示法: string/minimal-string.md
     - Lyndon 分解: string/lyndon.md
-    - Main-Lorentz 算法: string/main-lorentz.md
+    - Main–Lorentz 算法: string/main-lorentz.md
   - 数学:
     - 数学部分简介: math/index.md
     - 符号: math/notation.md
@@ -229,7 +232,7 @@ nav:
       - 数论分块: math/number-theory/sqrt-decomposition.md
       - 欧拉函数: math/number-theory/euler.md
       - 筛法: math/number-theory/sieve.md
-      - Meissel-Lehmer 算法: math/number-theory/meissel-lehmer.md
+      - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 分解质因数: math/number-theory/pollard-rho.md
       - 裴蜀定理: math/number-theory/bezouts.md
       - 类欧几里德算法: math/number-theory/euclidean.md
@@ -251,28 +254,21 @@ nav:
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
       - 连分数: math/number-theory/continued-fraction.md
-      - Stern-Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
+      - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
       - 循环连分数: math/number-theory/periodic-continued-fraction.md
       - Pell 方程: math/number-theory/pell-equation.md
     - 多项式与生成函数:
       - 多项式与生成函数简介: math/poly/intro.md
       - 代数基本定理: math/poly/fundamental.md
-      - 拉格朗日插值: math/poly/lagrange.md
       - 快速傅里叶变换: math/poly/fft.md
       - 快速数论变换: math/poly/ntt.md
-      - 快速复数论变换: math/poly/cntt.md
       - 快速沃尔什变换: math/poly/fwt.md
       - Chirp Z 变换: math/poly/czt.md
-      - 多项式求逆: math/poly/inv.md
-      - 多项式开方: math/poly/sqrt.md
-      - 多项式除法|取模: math/poly/div-mod.md
-      - 多项式对数函数|指数函数: math/poly/ln-exp.md
       - 多项式牛顿迭代: math/poly/newton.md
       - 多项式多点求值|快速插值: math/poly/multipoint-eval-interpolation.md
-      - 多项式三角函数: math/poly/tri-func.md
-      - 多项式反三角函数: math/poly/inv-tri-func.md
-      - 常系数齐次线性递推: math/linear-recurrence.md
+      - 多项式初等函数: math/poly/elementary-func.md
+      - 常系数齐次线性递推: math/poly/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
       - 符号化方法: math/poly/symbolic-method.md
       - 普通生成函数: math/poly/ogf.md
@@ -293,6 +289,7 @@ nav:
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
       - 范德蒙德卷积: math/combinatorics/vandermonde-convolution.md
+      - 图论计数: math/combinatorics/graph-enumeration.md
     - 线性代数:
       - 线性代数简介: math/linear-algebra/index.md
       - 向量: math/linear-algebra/vector.md
@@ -300,9 +297,8 @@ nav:
       - 矩阵: math/linear-algebra/matrix.md
       - 初等变换: math/linear-algebra/elementary-operations.md
       - 行列式: math/linear-algebra/determinant.md
-      - 高斯消元: math/linear-algebra/gauss.md
       - 线性空间: math/linear-algebra/vector-space.md
-      - Hamel基: math/linear-algebra/basis.md
+      - 线性基: math/linear-algebra/basis.md
       - 线性映射: math/linear-algebra/linear-mapping.md
       - 特征多项式: math/linear-algebra/char-poly.md
       - 对角化: math/linear-algebra/diagonalization.md
@@ -324,13 +320,16 @@ nav:
       - 公平组合游戏: math/game-theory/impartial-game.md
       - 非公平组合游戏: math/game-theory/partizan-game.md
       - 反常游戏: math/game-theory/misere-game.md
-    - 牛顿迭代法: math/newton.md
-    - 数值积分: math/integral.md
+    - 数值算法:
+      - 拉格朗日插值: math/numerical/lagrange.md
+      - 数值积分: math/numerical/integral.md
+      - 高斯消元: math/numerical/gauss.md
+      - 牛顿迭代法: math/numerical/newton.md
     - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
     - Schreier–Sims 算法: math/schreier-sims.md
-    - Berlekamp-Massey 算法: math/berlekamp-massey.md
+    - Berlekamp–Massey 算法: math/berlekamp-massey.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
     - 栈: ds/stack.md
@@ -432,11 +431,12 @@ nav:
       - 双连通分量: graph/bcc.md
       - 割点和桥: graph/cut.md
       - 圆方树: graph/block-forest.md
+      - 点/边连通度: graph/connectivity.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
     - 二分图: graph/bi-graph.md
-    - 最小环: graph/min-circle.md
+    - 最小环: graph/min-cycle.md
     - 平面图: graph/planar.md
     - 图的着色: graph/color.md
     - 网络流:
@@ -445,7 +445,7 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
-    - Stoer-Wagner 算法: graph/stoer-wagner.md
+    - Stoer–Wagner 算法: graph/stoer-wagner.md
     - 图的匹配:
       - 图匹配: graph/graph-matching/graph-match.md
       - 增广路: graph/graph-matching/augment.md
@@ -453,7 +453,7 @@ nav:
       - 二分图最大权匹配: graph/graph-matching/bigraph-weight-match.md
       - 一般图最大匹配: graph/graph-matching/general-match.md
       - 一般图最大权匹配: graph/graph-matching/general-weight-match.md
-    - Prufer 序列: graph/prufer.md
+    - Prüfer 序列: graph/prufer.md
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
     - 最大团搜索算法: graph/max-clique.md
@@ -486,6 +486,8 @@ nav:
         - 带修改莫队: misc/modifiable-mo-algo.md
         - 树上莫队: misc/mo-algo-on-tree.md
         - 回滚莫队: misc/rollback-mo-algo.md
+        - 二维莫队: misc/mo-algo-2dimen.md
+        - 莫队二次离线: misc/mo-algo-secondary-offline.md
         - 莫队配合 bitset: misc/mo-algo-with-bitset.md
     - 分数规划: misc/frac-programming.md
     - 随机化:
@@ -501,10 +503,10 @@ nav:
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
     - 主元素问题: misc/main-element.md
-    - Garsia-Wachs 算法: misc/garsia-wachs.md
+    - Garsia–Wachs 算法: misc/garsia-wachs.md
     - 15-puzzle: misc/15-puzzle.md
     - Kahan 求和: misc/kahan-summation.md
-    - 珂朵莉树: misc/odt.md
+    - 珂朵莉树/颜色段均摊: misc/odt.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md
@@ -521,8 +523,23 @@ theme:
     - 404.html
   language: 'zh'
   palette:
-    primary: 'white'
-    accent: 'red'
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
   include_search_page: false
   search_index_only: true
   favicon: 'favicon.ico'
@@ -552,7 +569,6 @@ extra:
     property: UA-124485594-1
 
 extra_javascript:
-  - '_static/js/extra.js?v=16'
   - '_static/js/math-csr.js?math-csr'
   - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
 
@@ -581,7 +597,8 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.magiclink
   - pymdownx.mark
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      check_paths: true
   - pymdownx.progressbar
   - pymdownx.smartsymbols
   - pymdownx.superfences:

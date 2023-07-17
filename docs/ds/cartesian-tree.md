@@ -67,7 +67,7 @@ HDU 1506 最大子矩形
 
 > 题目大意：$n$ 个位置，每个位置上的高度是 $h_i$，求最大子矩阵。举一个例子，如下图：
 >
-> ![eg](./images/cartesian-tree3.jpeg)
+> ![eg](./images/cartesian-tree3.png)
 >
 > 阴影部分就是图中的最大子矩阵。
 

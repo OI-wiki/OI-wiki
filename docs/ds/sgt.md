@@ -6,7 +6,7 @@ author: Ir1d, 0xis-cn
 
 我们在此实现一个可重的权值平衡树。
 
-???+note "实现"
+???+ note "实现"
     ```cpp
     int cnt,                 // 树中元素总数
         rt,                  // 根节点，初值为 0 代表空树
@@ -36,7 +36,7 @@ author: Ir1d, 0xis-cn
 #### 实现
 
 ```cpp
-inline bool CanRbu(int k) {
+bool CanRbu(int k) {
   // 判断节点 k 是否需要重构
   return wn[k] && (alpha * s[k] <= (double)std::max(s[lc[k]], s[rc[k]]) ||
                    (double)sd[k] <= alpha * s[k]);
@@ -127,7 +127,7 @@ void Del(int& k, int p) {
 }
 ```
 
-### upper_bound
+### upper\_bound
 
 返回权值严格大于某值的最小名次。
 
@@ -185,7 +185,7 @@ int MyAt(int k, int p) {
 以上两种功能结合即可。
 
 ```cpp
-inline int MyPre(int k, int p) { return MyAt(k, MyUprGrt(k, p)); }
+int MyPre(int k, int p) { return MyAt(k, MyUprGrt(k, p)); }
 
-inline int MyPost(int k, int p) { return MyAt(k, MyUprBd(k, p)); }
+int MyPost(int k, int p) { return MyAt(k, MyUprBd(k, p)); }
 ```

@@ -13,19 +13,19 @@ OI 中的三角剖分主要指二维几何中的完美三角剖分（二维 Dela
 
 在数学和计算几何中，对于给定的平面中的离散点集 $P$，其 Delaunay 三角剖分 DT($P$) 满足：
 
-1. 空圆性：DT($P$) 是 **唯一** 的（任意四点不能共圆），在 DT($P$) 中，**任意** 三角形的外接圆范围内不会有其它点存在。
-2. 最大化最小角：在点集 $P$ 可能形成的三角剖分中，DT($P$) 所形成的三角形的最小角最大。从这个意义上讲，DT($P$) 是 **最接近于规则化** 的三角剖分。具体的说是在两个相邻的三角形构成凸四边形的对角线，在相互交换后，两个内角的最小角不再增大。
+1.  空圆性：DT($P$) 是 **唯一** 的（任意四点不能共圆），在 DT($P$) 中，**任意** 三角形的外接圆范围内不会有其它点存在。
+2.  最大化最小角：在点集 $P$ 可能形成的三角剖分中，DT($P$) 所形成的三角形的最小角最大。从这个意义上讲，DT($P$) 是 **最接近于规则化** 的三角剖分。具体的说是在两个相邻的三角形构成凸四边形的对角线，在相互交换后，两个内角的最小角不再增大。
 
 ![一个显示了外接圆的 Delaunay 三角剖分](./images/triangulation-1.png)
 
 ### 性质
 
-1. 最接近：以最接近的三点形成三角形，且各线段（三角形的边）皆不相交。
-2. 唯一性：不论从区域何处开始构建，最终都将得到一致的结果（点集中任意四点不能共圆）。
-3. 最优性：任意两个相邻三角形构成的凸四边形的对角线如果可以互换的话，那么两个三角形六个内角中最小角度不会变化。
-4. 最规则：如果将三角剖分中的每个三角形的最小角进行升序排列，则 Delaunay 三角剖分的排列得到的数值最大。
-5. 区域性：新增、删除、移动某一个顶点只会影响邻近的三角形。
-6. 具有凸边形的外壳：三角剖分最外层的边界形成一个凸多边形的外壳。
+1.  最接近：以最接近的三点形成三角形，且各线段（三角形的边）皆不相交。
+2.  唯一性：不论从区域何处开始构建，最终都将得到一致的结果（点集中任意四点不能共圆）。
+3.  最优性：任意两个相邻三角形构成的凸四边形的对角线如果可以互换的话，那么两个三角形六个内角中最小角度不会变化。
+4.  最规则：如果将三角剖分中的每个三角形的最小角进行升序排列，则 Delaunay 三角剖分的排列得到的数值最大。
+5.  区域性：新增、删除、移动某一个顶点只会影响邻近的三角形。
+6.  具有凸边形的外壳：三角剖分最外层的边界形成一个凸多边形的外壳。
 
 ## 构造 DT 的分治算法
 
@@ -53,8 +53,8 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
 
 对于可能的端点，我们需要按以下两个标准检验：
 
-1. 其对应 RR-edge 与 base LR-edge 的夹角小于 $180$ 度。
-2. base LR-edge 两端点和这个可能点三点构成的圆内不包含任何其它 **可能点**。
+1.  其对应 RR-edge 与 base LR-edge 的夹角小于 $180$ 度。
+2.  base LR-edge 两端点和这个可能点三点构成的圆内不包含任何其它 **可能点**。
 
 ![检验可能点](./images/triangulation-7.svg)
 
@@ -279,12 +279,12 @@ Voronoi 图是 Delaunay 三角剖分的对偶图，可以使用构造 Delaunay �
 
 [SGU 383 Caravans](https://codeforces.com/problemsets/acmsguru/problem/99999/383) 三角剖分 + 倍增
 
-[ContestHunter. 无尽的毁灭](http://noi-test.zzstep.com/contest/Beta%20Round%20%EF%BC%832%20(%E6%96%B0%E7%96%86%E7%9C%81%E9%98%9F%E4%BA%92%E6%B5%8BWeek1-Day2)/%E6%97%A0%E5%B0%BD%E7%9A%84%E6%AF%81%E7%81%AD) 三角剖分求对偶图建 Voronoi 图
+[ContestHunter. 无尽的毁灭](http://noi-test.zzstep.com/contest/Beta%20Round%20%EF%BC%832%20%28%E6%96%B0%E7%96%86%E7%9C%81%E9%98%9F%E4%BA%92%E6%B5%8BWeek1-Day2%29/%E6%97%A0%E5%B0%BD%E7%9A%84%E6%AF%81%E7%81%AD) 三角剖分求对偶图建 Voronoi 图
 
 [Codeforces Gym 103485M. Constellation collection](https://codeforces.com/gym/103485/problem/M) 三角剖分之后建图进行 Floodfill
 
 ## 参考资料与拓展阅读
 
-- [1][Wikipedia - Triangulation (geometry)](<https://en.wikipedia.org/wiki/Triangulation_(geometry)>)
-- [2][Wikipedia - Delaunay triangulation](<https://en.wikipedia.org/wiki/Delaunay_triangulation>)
-- [3]Samuel Peterson -[Computing Constrained Delaunay Triangulations in 2-D (1997-98)](http://www.geom.uiuc.edu/~samuelp/del_project.html)
+1.  [Wikipedia - Triangulation (geometry)](https://en.wikipedia.org/wiki/Triangulation_%28geometry%29)
+2.  [Wikipedia - Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation)
+3.  Samuel Peterson -[Computing Constrained Delaunay Triangulations in 2-D (1997-98)](http://www.geom.uiuc.edu/~samuelp/del_project.html)

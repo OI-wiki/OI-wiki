@@ -148,15 +148,19 @@ $v_2(n!)=n-S_2(n)$
 
 组合数对一个数取模的结果，往往构成分形结构，例如谢尔宾斯基三角形就可以通过组合数模 2 得到。
 
-$v_p(C_m^n)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}$
+$$
+v_p\left[\dbinom{m}{n}\right]=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}
+$$
 
 如果仔细分析，p 是否整除组合数其实和上下标在 p 进制下减法是否需要借位有关。这就有了 **Kummer 定理**。
 
-Kummer 定理：p 在组合数 $C_m^n$ 中的幂次，恰好是 p 进制下 m 减掉 n 需要借位的次数。
+Kummer 定理：p 在组合数 $\dbinom{m}{n}$ 中的幂次，恰好是 p 进制下 m 减掉 n 需要借位的次数。
 
 特别地，组合数中 2 的幂次是：
 
-$v_2(C_m^n)=S_2(n)+S_2(m-n)-S_2(m)$
+$$
+v_2\left[\dbinom{m}{n}\right]=S_2(n)+S_2(m-n)-S_2(m)
+$$
 
 ## Wilson 定理的推广
 
@@ -174,9 +178,9 @@ $(p^q!)_p\equiv \begin{cases}1&\text{if }p=2\text{ and }q\geq 3,\\-1&\text{other
 
 对于素数 $p$、正整数 $q$、非负整数 $n$ 和 $N_0=n\bmod{p^q}$ 有 $(n!)_p\equiv (\pm 1)^{\lfloor n/{p^q}\rfloor}(N_0!)_p\pmod{p^q}$。
 
-???note "证明"
+??? note "证明"
     证明：令 $\displaystyle \prod '$ 表示不能被 $p$ 整除的数的乘积，有
-    
+
     $$
     \begin{aligned}
     (n!)_p&=\prod_{1\leq r\leq n}'r\\
@@ -185,9 +189,9 @@ $(p^q!)_p\equiv \begin{cases}1&\text{if }p=2\text{ and }q\geq 3,\\-1&\text{other
     &\equiv (\pm 1)^{\lfloor n/p^q\rfloor}(N_0!)_p\pmod{p^q}
     \end{aligned}
     $$
-    
+
     将 $1\times 2\times 3\times \cdots \times n$ 记为 $(0\times p^q+1)\times (0\times p^q+2)\times \cdots \times (\lfloor n/p^q\rfloor p^q+N_0)$ 就得到了上述第二行。
-    
+
     至此得到了
 
 ### 推论 2
@@ -206,7 +210,7 @@ $\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor -\lfloor m/p^j\rfloor -
 
 ## 例题
 
-???+note " 例题 [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
+???+ note " 例题 [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
     给定 $n$, 计算
     
     $\sum_{k=1}^n\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor$

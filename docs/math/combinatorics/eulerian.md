@@ -1,7 +1,7 @@
 ???+ warning "注意"
-    下文中的欧拉数特指 Eulerian number。注意与 Euler number，以及 Euler's number（指与欧拉相关的数学常数例如 $\gamma$ 或 $e$）作区分。
+    下文中的欧拉数特指 Eulerian number。注意与 Euler number，以及 Euler's number（指与欧拉相关的数学常数例如 $\gamma$ 或 $\mathrm{e}$）作区分。
 
-在计算组合中，**欧拉数**（Eulerian Number）是从 $1$ 到 $n$ 中正好满足 $m$ 个元素大于前一个元素（具有 $m$ 个“上升”的排列）条件的排列 **个数**。定义为：
+在计算组合中，**欧拉数**（Eulerian Number）是从 $1$ 到 $n$ 中正好满足 $m$ 个元素大于前一个元素（具有 $m$ 个「上升」的排列）条件的排列 **个数**。定义为：
 
 $$
 A(n, m) = 
@@ -93,7 +93,7 @@ $$
 
 ## 习题
 
-- [CF1349F1 Slime and Sequences (Easy Version)](https://codeforces.com/problemset/problem/1349/F1)
-- [CF1349F2 Slime and Sequences (Hard Version)](https://codeforces.com/problemset/problem/1349/F2)
-- [UOJ 593. 新年的军队](https://uoj.ac/problem/593)
-- [P7511 三到六](https://www.luogu.com.cn/problem/P7511)
+-   [CF1349F1 Slime and Sequences (Easy Version)](https://codeforces.com/problemset/problem/1349/F1)
+-   [CF1349F2 Slime and Sequences (Hard Version)](https://codeforces.com/problemset/problem/1349/F2)
+-   [UOJ 593. 新年的军队](https://uoj.ac/problem/593)
+-   [P7511 三到六](https://www.luogu.com.cn/problem/P7511)

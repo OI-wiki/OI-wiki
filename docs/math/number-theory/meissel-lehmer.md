@@ -1,6 +1,6 @@
 author: Peanut-Tang, Early0v0, Vxlimo, GHLinZhengyu, 1196131597
 
-「Meissel-Lehmer 算法」是一种能在亚线性时间复杂度内求出 $1\sim n$ 内质数个数的一种算法。
+「Meissel–Lehmer 算法」是一种能在亚线性时间复杂度内求出 $1\sim n$ 内质数个数的一种算法。
 
 ## 记号规定
 
@@ -12,18 +12,18 @@ $\mu\left(x\right)$ 表示莫比乌斯函数。
 $\delta\left(x\right)$ 表示 $x$ 最小的质因子。  
 $P^+\left(n\right)$ 表示 $x$ 最大的质因子。
 
-## Meissel-Lehmer 算法求 π(x)
+## Meissel–Lehmer 算法求 π(x)
 
 定义 $\phi\left(x,a\right)$ 为所有小于 $x$ 的正整数中满足其所有质因子都大于 $p_a$ 的数的个数，即：
 
 $$
-\phi\left(x,a\right)=\#\big\{n\le x\mid n\bmod p=0\Rightarrow p>p_a\big\}\tag{1}
+\phi\left(x,a\right)=\#\big\{n\le x\mid n\bmod p=0 \implies p>p_a\big\}\tag{1}
 $$
 
 再定义 $P_k\left(x,a\right)$ 表示为所有小于 $x$ 的正整数中满足可重质因子恰好有 $k$ 个且所有质因子都大于 $p_a$ 的数的个数，即：
 
 $$
-P_k\left(x,a\right)=\#\big\{n\le x\mid n=q_1q_2\cdots q_k\Rightarrow\forall i,q_i>p_a\big\}\tag{2}
+P_k\left(x,a\right)=\#\big\{n\le x\mid n=q_1q_2\cdots q_k \implies \forall i,q_i>p_a\big\}\tag{2}
 $$
 
 特殊的，我们定义：$P_0\left(x,a\right)=1$，如此便有：
@@ -60,8 +60,8 @@ $$
 
 对于 $b\le a$，考虑所有不超过 $x$ 的正整数，满足它的所有质因子都大于 $p_{b-1}$。这些数可以被分为两类：
 
-1. 可以被 $p_b$ 整除的；
-2. 不可以被 $p_b$ 整除的。
+1.  可以被 $p_b$ 整除的；
+2.  不可以被 $p_b$ 整除的。
 
 属于第 $1$ 类的数有 $\phi\left(\dfrac{x}{p_b},b-1\right)$ 个，属于第二类的数有 $\phi\left(x,b\right)$ 个。
 
@@ -96,7 +96,7 @@ $$
 
 但是，这样需要计算太多东西。因为 $y\geq x^{1/3}$，仅仅计算为 $3$ 个 不超过 $y$ 质数的乘积的数，如果按照这个方法计算，会有至少 $\dfrac{x}{\log^3 x}$ 个项，没有办法我们对复杂度的需求。
 
-为了限制这个二叉树的“生长”，我们要改变原来的终止条件。这是原来的终止条件。
+为了限制这个二叉树的「生长」，我们要改变原来的终止条件。这是原来的终止条件。
 
 > **终止条件 $1$：** 如果 $b=0$，则不要再对节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 调用等式 $\left(6\right)$。
 
@@ -104,13 +104,13 @@ $$
 
 > **终止条件 $2$：** 如果满足下面 $2$ 个条件中的一个，不要再对节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 调用等式 $\left(6\right)$:
 >
-> 1. $b=0$ 且 $n\le y$；
-> 2. $n>y$。
+> 1.  $b=0$ 且 $n\le y$；
+> 2.  $n>y$。
 
 我们根据 **终止条件 $2$** 将原二叉树上的叶子分成两种：
 
-1. 如果叶子节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n\le y$，则称这种叶子节点为 **普通叶子**；
-2. 如果叶子节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n>y$ 且 $n=mp_b\left(m\le y\right)$，则称这种节点为 **特殊叶子**。
+1.  如果叶子节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n\le y$，则称这种叶子节点为 **普通叶子**；
+2.  如果叶子节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n>y$ 且 $n=mp_b\left(m\le y\right)$，则称这种节点为 **特殊叶子**。
 
 由此我们得出：
 
@@ -332,9 +332,9 @@ $$
 
 时空复杂度被如下 $3$ 个过程影响：
 
-1. 计算 $P_2\left(x,a\right)$；
-2. 计算 $W_1,W_2,W_3,W_4,W_5$；
-3. 计算 $S_3$。
+1.  计算 $P_2\left(x,a\right)$；
+2.  计算 $W_1,W_2,W_3,W_4,W_5$；
+3.  计算 $S_3$。
 
 ### 计算 P₂(x,y) 的复杂度
 
@@ -406,9 +406,9 @@ $$
 
     这也为通过改变 $z$ 的值来检查计算提供了一个很好的方法。
 
-- 为了清楚起见，我们在阐述算法的时候选择在 $x^{1/4}$ 处拆分来计算总和 $S$，但实际上我们只需要有 $p\le \dfrac{x}{pq}<p^2$ 就可以计算。我们可以利用这一点，渐近复杂性保持不变。
+-   为了清楚起见，我们在阐述算法的时候选择在 $x^{1/4}$ 处拆分来计算总和 $S$，但实际上我们只需要有 $p\le \dfrac{x}{pq}<p^2$ 就可以计算。我们可以利用这一点，渐近复杂性保持不变。
 
-- 用前几个素数 $2,3,5$ 预处理计算可以节省更多的时间。
+-   用前几个素数 $2,3,5$ 预处理计算可以节省更多的时间。
 
 ## 参考资料与拓展阅读
 

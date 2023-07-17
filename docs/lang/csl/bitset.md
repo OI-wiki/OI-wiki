@@ -7,7 +7,7 @@ author: i-Yirannn, Xeonacid, ouuan
 ??? "bitset 与 STL"
     > The C++ standard library provides some special container classes, the so-called container adapters (stack, queue, priority queue). In addition, a few classes provide a container-like interface (for example, strings, bitsets, and valarrays). All these classes are covered separately.1 Container adapters and bitsets are covered in Chapter 12.
     >
-    > The C++ standard library provides not only the containers for the STL framework but also some containers that fit some special needs and provide simple, almost self-explanatory, interfaces. You can group these containers into either the so-called container adapters, which adapt standard STL containers to fit special needs, or a bitset, which is a containers for bits or Boolean values. There are three standard container adapters: stacks, queues, and priority queues. In priority queues, the elements are sorted automatically according to a sorting criterion. Thus, the“next”element of a priority queue is the element with the“highest”value. A bitset is a bitfield with an arbitrary but fixed number of bits. Note that the C++ standard library also provides a special container with a variable size for Boolean values: vector.
+    > The C++ standard library provides not only the containers for the STL framework but also some containers that fit some special needs and provide simple, almost self-explanatory, interfaces. You can group these containers into either the so-called container adapters, which adapt standard STL containers to fit special needs, or a bitset, which is a containers for bits or Boolean values. There are three standard container adapters: stacks, queues, and priority queues. In priority queues, the elements are sorted automatically according to a sorting criterion. Thus, the "next" element of a priority queue is the element with the "highest" value. A bitset is a bitfield with an arbitrary but fixed number of bits. Note that the C++ standard library also provides a special container with a variable size for Boolean values: vector.
     
     ——摘自《The C++ Standard Library 2nd Edition》
     
@@ -21,10 +21,10 @@ author: i-Yirannn, Xeonacid, ouuan
 
 在某些情况下通过 `bitset` 可以优化程序的运行效率。至于其优化的是复杂度还是常数，要看计算复杂度的角度。一般 `bitset` 的复杂度有以下几种记法：（设原复杂度为 $O(n)$）
 
-1. $O(n)$，这种记法认为 `bitset` 完全没有优化复杂度。
-2. $O(\frac n{32})$，这种记法不太严谨（复杂度中不应出现常数），但体现了 `bitset` 能将所需时间优化至 $\frac 1{32}$。
-3. $O(\frac n w)$，其中 $w=32$（计算机的位数），这种记法较为普遍接受。
-4. $O(\frac n {\log w})$，其中 $w$ 为计算机一个整型变量的大小。
+1.  $O(n)$，这种记法认为 `bitset` 完全没有优化复杂度。
+2.  $O(\frac n{32})$，这种记法不太严谨（复杂度中不应出现常数），但体现了 `bitset` 能将所需时间优化至 $\frac 1{32}$。
+3.  $O(\frac n w)$，其中 $w=32$（计算机的位数），这种记法较为普遍接受。
+4.  $O(\frac n {\log w})$，其中 $w$ 为计算机一个整型变量的大小。
 
 当然，`vector` 的一个特化 `vector<bool>` 的储存方式同 `bitset` 一样，区别在于其支持动态开空间，`bitset` 则和我们一般的静态数组一样，是在编译时就开好了的。
 
@@ -46,40 +46,40 @@ bitset<1000> bs;  // a bitset with 1000 bits
 
 ### 构造函数
 
-- `bitset()`: 每一位都是 `false`。
-- `bitset(unsigned long val)`: 设为 `val` 的二进制形式。
-- `bitset(const string& str)`: 设为 $01$ 串 `str`。
+-   `bitset()`: 每一位都是 `false`。
+-   `bitset(unsigned long val)`: 设为 `val` 的二进制形式。
+-   `bitset(const string& str)`: 设为 $01$ 串 `str`。
 
 ### 运算符
 
-- `operator []`: 访问其特定的一位。
-- `operator ==/!=`: 比较两个 `bitset` 内容是否完全一样。
-- `operator &/&=/|/| =/^/^=/~`: 进行按位与/或/异或/取反操作。**`bitset` 只能与 `bitset` 进行位运算**，若要和整型进行位运算，要先将整型转换为 `bitset`。
-- `operator <</>>/<<=/>>=`: 进行二进制左移/右移。
-- `operator <</>>`: 流运算符，这意味着你可以通过 `cin/cout` 进行输入输出。
+-   `operator []`: 访问其特定的一位。
+-   `operator ==/!=`: 比较两个 `bitset` 内容是否完全一样。
+-   `operator &/&=/|/| =/^/^=/~`: 进行按位与/或/异或/取反操作。**`bitset` 只能与 `bitset` 进行位运算**，若要和整型进行位运算，要先将整型转换为 `bitset`。
+-   `operator <</>>/<<=/>>=`: 进行二进制左移/右移。
+-   `operator <</>>`: 流运算符，这意味着你可以通过 `cin/cout` 进行输入输出。
 
 ### 成员函数
 
-- `count()`: 返回 `true` 的数量。
-- `size()`: 返回 `bitset` 的大小。
-- `test(pos)`: 它和 `vector` 中的 `at()` 的作用是一样的，和 `[]` 运算符的区别就是越界检查。
-- `any()`: 若存在某一位是 `true` 则返回 `true`，否则返回 `false`。
-- `none()`: 若所有位都是 `false` 则返回 `true`，否则返回 `false`。
-- `all()`:**C++11**，若所有位都是 `true` 则返回 `true`，否则返回 `false`。
--   1. `set()`: 将整个 `bitset` 设置成 `true`。
-    2. `set(pos, val = true)`: 将某一位设置成 `true`/`false`。
--   1. `reset()`: 将整个 `bitset` 设置成 `false`。
-    2. `reset(pos)`: 将某一位设置成 `false`。相当于 `set(pos, false)`。
--   1. `flip()`: 翻转每一位。（$0\leftrightarrow1$，相当于异或一个全是 $1$ 的 `bitset`）
-    2. `flip(pos)`: 翻转某一位。
-- `to_string()`: 返回转换成的字符串表达。
-- `to_ulong()`: 返回转换成的 `unsigned long` 表达 (`long` 在 NT 及 32 位 POSIX 系统下与 `int` 一样，在 64 位 POSIX 下与 `long long` 一样）。
-- `to_ullong()`:**C++11**，返回转换成的 `unsigned long long` 表达。
+-   `count()`: 返回 `true` 的数量。
+-   `size()`: 返回 `bitset` 的大小。
+-   `test(pos)`: 它和 `vector` 中的 `at()` 的作用是一样的，和 `[]` 运算符的区别就是越界检查。
+-   `any()`: 若存在某一位是 `true` 则返回 `true`，否则返回 `false`。
+-   `none()`: 若所有位都是 `false` 则返回 `true`，否则返回 `false`。
+-   `all()`:**C++11**，若所有位都是 `true` 则返回 `true`，否则返回 `false`。
+-   1.  `set()`: 将整个 `bitset` 设置成 `true`。
+    2.  `set(pos, val = true)`: 将某一位设置成 `true`/`false`。
+-   1.  `reset()`: 将整个 `bitset` 设置成 `false`。
+    2.  `reset(pos)`: 将某一位设置成 `false`。相当于 `set(pos, false)`。
+-   1.  `flip()`: 翻转每一位。（$0\leftrightarrow1$，相当于异或一个全是 $1$ 的 `bitset`）
+    2.  `flip(pos)`: 翻转某一位。
+-   `to_string()`: 返回转换成的字符串表达。
+-   `to_ulong()`: 返回转换成的 `unsigned long` 表达（`long` 在 NT 及 32 位 POSIX 系统下与 `int` 一样，在 64 位 POSIX 下与 `long long` 一样）。
+-   `to_ullong()`:**C++11**，返回转换成的 `unsigned long long` 表达。
 
 一些文档中没有的成员函数：
 
-- `_Find_first()`: 返回 `bitset` 第一个 `true` 的下标，若没有 `true` 则返回 `bitset` 的大小。
-- `_Find_next(pos)`: 返回 `pos` 后面（下标严格大于 `pos` 的位置）第一个 `true` 的下标，若 `pos` 后面没有 `true` 则返回 `bitset` 的大小。
+-   `_Find_first()`: 返回 `bitset` 第一个 `true` 的下标，若没有 `true` 则返回 `bitset` 的大小。
+-   `_Find_next(pos)`: 返回 `pos` 后面（下标严格大于 `pos` 的位置）第一个 `true` 的下标，若 `pos` 后面没有 `true` 则返回 `bitset` 的大小。
 
 ## 应用
 
@@ -103,16 +103,16 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
 
 给你 $n$ 个可重集，四种操作：
 
-1. 把某个可重集设为一个数。
-2. 把某个可重集设为另外两个可重集加起来。
-3. 把某个可重集设为从另外两个可重集中各选一个数的 $\gcd$。即：$A=\{\gcd(x,y)|x\in B,y\in C\}$。
-4. 询问某个可重集中某个数的个数，**在模 2 意义下**。
+1.  把某个可重集设为一个数。
+2.  把某个可重集设为另外两个可重集加起来。
+3.  把某个可重集设为从另外两个可重集中各选一个数的 $\gcd$。即：$A=\{\gcd(x,y)|x\in B,y\in C\}$。
+4.  询问某个可重集中某个数的个数，**在模 2 意义下**。
 
 可重集个数 $10^5$，操作个数 $10^6$，值域 $7000$。
 
 #### 做法
 
-看到“在模 $2$ 意义下”，可以想到用 `bitset` 维护每个可重集。
+看到「在模 $2$ 意义下」，可以想到用 `bitset` 维护每个可重集。
 
 这样的话，操作 $1$ 直接设，操作 $2$ 就是异或（因为模 $2$），操作 $4$ 就是直接查，但 .. 操作 $3$ 怎么办？
 

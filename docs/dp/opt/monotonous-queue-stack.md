@@ -4,7 +4,7 @@ author: Marcythm, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina, Chrogeek, Chung
 
 前置知识：[单调队列](../../ds/monotonous-queue.md)、[单调栈](../../ds/monotonous-stack.md)。
 
-???+note " 例题 [CF372C Watching Fireworks is Fun](http://codeforces.com/problemset/problem/372/C)"
+???+ note " 例题 [CF372C Watching Fireworks is Fun](http://codeforces.com/problemset/problem/372/C)"
     题目大意：城镇中有 $n$ 个位置，有 $m$ 个烟花要放。第 $i$ 个烟花放出的时间记为 $t_i$，放出的位置记为 $a_i$。如果烟花放出的时候，你处在位置 $x$，那么你将收获 $b_i-|a_i-x|$ 点快乐值。
     
     初始你可在任意位置，你每个单位时间可以移动不大于 $d$ 个单位距离。现在你需要最大化你能获得的快乐值。
@@ -38,8 +38,8 @@ $f_{i,j}=\max\{f_{i-1,k}+b_i-|a_i-j|\}=\max\{f_{i-1,k}-|a_i-j|\}+b_i$
 
 ## 单调队列优化多重背包
 
-???+note "问题描述"
-    你有 $n$ 个物品，每个物品重量为 $w_i$，价值为 $v_i$，数量为 $k_i$。你有一个承重上限为 $m$ 的背包，现在要求你在不超过重量上限的情况下选取价值和尽可能大的物品放入背包。求最大价值。
+???+ note "问题描述"
+    你有 $n$ 个物品，每个物品重量为 $w_i$，价值为 $v_i$，数量为 $k_i$。你有一个承重上限为 $W$ 的背包，现在要求你在不超过重量上限的情况下选取价值和尽可能大的物品放入背包。求最大价值。
 
 不了解背包 DP 的请先阅读 [背包 DP](../knapsack.md)。设 $f_{i,j}$ 表示前 $i$ 个物品装入承重为 $j$ 的背包的最大价值，朴素的转移方程为
 
@@ -47,7 +47,7 @@ $$
 f_{i,j}=\max_{k=0}^{k_i}(f_{i-1,j-k\times w_i}+v_i\times k)
 $$
 
-时间复杂度 $O(m\sum k_i)$。
+时间复杂度 $O(W\sum k_i)$。
 
 考虑优化 $f_i$ 的转移。为方便表述，设 $g_{x,y}=f_{i,x\times w_i+y},g'_{x,y}=f_{i-1,x\times w_i+y}$，则转移方程可以表示为：
 
@@ -65,6 +65,6 @@ $$
 
 ## 习题
 
-- [「Luogu P1886」滑动窗口](https://loj.ac/problem/10175)
-- [「NOI2005」瑰丽华尔兹](https://www.luogu.com.cn/problem/P2254)
-- [「SCOI2010」股票交易](https://loj.ac/problem/10183)
+-   [「Luogu P1886」滑动窗口](https://loj.ac/problem/10175)
+-   [「NOI2005」瑰丽华尔兹](https://www.luogu.com.cn/problem/P2254)
+-   [「SCOI2010」股票交易](https://loj.ac/problem/10183)

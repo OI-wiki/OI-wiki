@@ -4,19 +4,19 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 
 ### Python 的优点
 
-- Python 是一门 **解释型** 语言：Python 不需要编译和链接，可以在一定程度上减少操作步骤。
-- Python 是一门 **交互式** 语言：Python 解释器实现了交互式操作，可以直接在终端输入并执行指令。
-- Python **易学易用**：Python 提供了大量的数据结构，也支持开发大型程序。
-- Python **兼容性强**：Python 同时支持 Windows、macOS 和 Unix 操作系统。
-- Python **实用性强**：从简单的输入输出到科学计算甚至于大型 WEB 应用，都可以写出适合的 Python 程序。
-- Python **程序简洁、易读**：Python 代码通常比实现同种功能的其他语言的代码短。
-- Python **支持拓展**：Python 会开发 C 语言程序（即 CPython），支持把 Python 解释器和用 C 语言开发的应用链接，用 Python 扩展和控制该应用。
+-   Python 是一门 **解释型** 语言：Python 不需要编译和链接，可以在一定程度上减少操作步骤。
+-   Python 是一门 **交互式** 语言：Python 解释器实现了交互式操作，可以直接在终端输入并执行指令。
+-   Python **易学易用**：Python 提供了大量的数据结构，也支持开发大型程序。
+-   Python **兼容性强**：Python 同时支持 Windows、macOS 和 Unix 操作系统。
+-   Python **实用性强**：从简单的输入输出到科学计算甚至于大型 WEB 应用，都可以写出适合的 Python 程序。
+-   Python **程序简洁、易读**：Python 代码通常比实现同种功能的其他语言的代码短。
+-   Python **支持拓展**：Python 会开发 C 语言程序（即 CPython），支持把 Python 解释器和用 C 语言开发的应用链接，用 Python 扩展和控制该应用。
 
 ### 学习 Python 的注意事项
 
-- 目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用。本文将 **介绍较新版本的 Python**。如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码。
-- Python 的设计理念和语法结构 **与一些其他语言的差异较大**，隐藏了许多底层细节，所以呈现出实用而优雅的风格。
-- Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时。在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能。
+-   目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用。本文将 **介绍较新版本的 Python**。如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码。
+-   Python 的设计理念和语法结构 **与一些其他语言的差异较大**，隐藏了许多底层细节，所以呈现出实用而优雅的风格。
+-   Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时。在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能。
 
 ## 环境搭建
 
@@ -49,7 +49,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
 
-???+warning "注意"
+???+ warning "注意"
     在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref1]
 
 如果发行版自带 Python 版本过旧，可自行下载编译最新版本的 Python。此外，也可以通过 venv、conda、Nix 等工具管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题。
@@ -82,9 +82,9 @@ Python 的语法简洁而易懂，也有许多官方和第三方文档与教程�
 # 用 # 字符开头的是单行注释
 
 """
-跨多行字符串会用三引号（即三
-个单引号或三个双引号）包裹，
-但也通常被用于注释
+跨多行字符串会用三引号
+（即三个单引号或三个双引号）
+包裹，但也通常被用于注释
 """
 ```
 
@@ -168,7 +168,7 @@ True
 10001.0
 ```
 
-在上面的实践中可以发现，除法运算（`/`）永远返回浮点类型（在 Python 2 中返回整数）。如果你想要整数或向下取整的结果的话，可以使用整数除法（`//`)。同样的，你也可以像 C++ 中一样，使用模（`%`）来计算余数，科学计数法的形式也相同。
+在上面的实践中可以发现，除法运算（`/`）永远返回浮点类型（在 Python 2 中返回整数）。如果你想要整数或向下取整的结果的话，可以使用整数除法（`//`）。同样的，你也可以像 C++ 中一样，使用模（`%`）来计算余数，科学计数法的形式也相同。
 
 特别地，Python 用 `**` 即可进行幂运算，还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/binary-exponentiation.md) 的高效实现。
 
@@ -261,7 +261,7 @@ Python 的字符串类型提供了许多强大的方法，包括计算某字符�
 
 #### 使用 `list`
 
-列表（`list`）大概是 Python 中最常用也最强大的序列类型，列表中可以存放任意类型的元素，包括嵌套的列表，这符合数据结构中「广义表」的定义。请注意不要将其与 C++ STL 中的双向链表 [`list`](https://oi-wiki.org/lang/csl/sequence-container/#list) 混淆，故本文将使用「列表」而非 `list` 以免造成误解。
+列表（`list`）大概是 Python 中最常用也最强大的序列类型，列表中可以存放任意类型的元素，包括嵌套的列表，这符合数据结构中「广义表」的定义。请注意不要将其与 C++ STL 中的双向链表 [`list`](./csl/sequence-container.md#list) 混淆，故本文将使用「列表」而非 `list` 以免造成误解。
 
 ```pycon
 >>> []  # 创建空列表，注意列表使用方括号
@@ -519,7 +519,7 @@ for i in range(4):  # 这里假设输入 4 行数据
 print(u, v, w)
 ```
 
-需要注意，Python 中的 for 循环和 C/C++ 有较大的差别，其作用类似 C++ 11 引入的 [「基于范围的循环」](https://oi-wiki.org/lang/new/#for)，实质是迭代序列中的元素，比如编写循环遍历数组下标需要迭代 `range(len(lst))`，而非真正定义起始和终止条件，所以使用起来并没有 C/C++ 灵活。
+需要注意，Python 中的 for 循环和 C/C++ 有较大的差别，其作用类似 C++ 11 引入的 [「基于范围的循环」](./new.md#基于范围的-for-循环)，实质是迭代序列中的元素，比如编写循环遍历数组下标需要迭代 `range(len(lst))`，而非真正定义起始和终止条件，所以使用起来并没有 C/C++ 灵活。
 
 下面再用 while 循环展示行数不定的情况下如何输入：
 
@@ -600,7 +600,7 @@ Python 内置了许多强大的容器类型，只有熟练使用并了解其特�
 
 ```python
 tup = tuple([[1,2], 4])  # 由列表得到元组
-# 等同于 tup = （[1,2], 4)
+# 等同于 tup = ([1,2], 4)
 tup[0].append(3)
 print(tup)
 a, b = 0, "I-Wiki"  # 多变量赋值其实是元组拆包
@@ -610,7 +610,7 @@ print(id(a), id(b))  # 你应该会看到 a, b 的 id 值现在互换了
 # 这更说明 Python 中，变量更像是名字，赋值只是让其指代对象
 ```
 
-字典就像 C++ STL 中的 [`map`](https://oi-wiki.org/lang/csl/associative-container/#map)（请注意和 Python 中内置函数 [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 区分）用于存储键值对，形式类似 [JSON](https://docs.python.org/3/library/json.html)，但 JSON 中键必须是字符串且以双引号括住，字典则更加灵活强大，可哈希的对象都可作为字典的键。需要注意 Python 几次版本更新后字典的特性有了较多变化，包括其中元素的顺序等，请自行探索。
+字典就像 C++ STL 中的 [`map`](./csl/associative-container.md#map)（请注意和 Python 中内置函数 [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 区分）用于存储键值对，形式类似 [JSON](https://docs.python.org/3/library/json.html)，但 JSON 中键必须是字符串且以双引号括住，字典则更加灵活强大，可哈希的对象都可作为字典的键。需要注意 Python 几次版本更新后字典的特性有了较多变化，包括其中元素的顺序等，请自行探索。
 
 ```python
 dic = {'key': "value"}  # 基本形式
@@ -635,7 +635,7 @@ except KeyError:
     cnter[key] = 1
 ```
 
-集合就像 C++ STL 中的*[`set`](https://oi-wiki.org/lang/csl/associative-container/#set)*，不会保存重复的元素，可以看成只保存键的字典。需要注意集合和字典都用 `{}` 括住，不过单用 `{}` 会创建空字典而不是空集合，这里就不再给出示例。
+集合就像 C++ STL 中的 [`set`](./csl/associative-container.md#set)，不会保存重复的元素，可以看成只保存键的字典。需要注意集合和字典都用 `{}` 括住，不过单用 `{}` 会创建空字典而不是空集合，这里就不再给出示例。
 
 ### 编写函数
 
@@ -736,9 +736,9 @@ NameError: name 'nothing' is not defined
 
 `@lru_cache(maxsize=128,typed=False)`
 
-- 传入的参数有 2 个：`maxsize` 和 `typed`，如果不传则 `maxsize` 的默认值为 128，`typed` 的默认值为 `False`。
-- 其中 `maxsize` 参数表示的是 LRU 缓存的容量，即被装饰的方法的最大可缓存结果的数量。如果该参数值为 128，则表示被装饰方法最多可缓存 128 个返回结果；如果 `maxsize` 传入为 `None` 则表示可以缓存无限个结果。
-- 如果 `typed` 设置为 `True`，不同类型的函数参数将被分别缓存，例如，`f(3)` 和 `f(3.0)` 会缓存两次。
+-   传入的参数有 2 个：`maxsize` 和 `typed`，如果不传则 `maxsize` 的默认值为 128，`typed` 的默认值为 `False`。
+-   其中 `maxsize` 参数表示的是 LRU 缓存的容量，即被装饰的方法的最大可缓存结果的数量。如果该参数值为 128，则表示被装饰方法最多可缓存 128 个返回结果；如果 `maxsize` 传入为 `None` 则表示可以缓存无限个结果。
+-   如果 `typed` 设置为 `True`，不同类型的函数参数将被分别缓存，例如，`f(3)` 和 `f(3.0)` 会缓存两次。
 
 以下是使用 `lru_cache` 优化计算斐波那契数列的例子：
 
@@ -773,7 +773,7 @@ def fib(n):
 
 ## 从例题对比 C++ 与 Python
 
-??? note "[例题 洛谷 P4779 【模板】单源最短路径（标准版）](https://www.luogu.com.cn/problem/P4779)"
+??? note "[例题 洛谷 P4779【模板】单源最短路径（标准版）](https://www.luogu.com.cn/problem/P4779)"
     给定一个 $n(1 \leq n \leq 10^5)$ 个点、$m(1 \leq m \leq 2\times 10^5)$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离。数据保证能从 $s$ 出发到任意点。
 
 ### 声明常量
@@ -1063,12 +1063,12 @@ def fib(n):
 
 ## 参考文档
 
-1. Python Documentation，<https://www.python.org/doc/>
-2. Python 官方中文教程，<https://docs.python.org/zh-cn/3/tutorial/>
-3. Learn Python3 In Y Minutes，<https://learnxinyminutes.com/docs/python3/>
-4. Real Python Tutorials，<https://realpython.com/>
-5. 廖雪峰的 Python 教程，<https://www.liaoxuefeng.com/wiki/1016959663602400/>
-6. GeeksforGeeks: Python Tutorials,<https://www.geeksforgeeks.org/python-programming-language/>
+1.  Python Documentation，<https://www.python.org/doc/>
+2.  Python 官方中文教程，<https://docs.python.org/zh-cn/3/tutorial/>
+3.  Learn Python3 In Y Minutes，<https://learnxinyminutes.com/docs/python3/>
+4.  Real Python Tutorials，<https://realpython.com/>
+5.  廖雪峰的 Python 教程，<https://www.liaoxuefeng.com/wiki/1016959663602400/>
+6.  GeeksforGeeks: Python Tutorials,<https://www.geeksforgeeks.org/python-programming-language/>
 
 ## 参考资料和注释
 

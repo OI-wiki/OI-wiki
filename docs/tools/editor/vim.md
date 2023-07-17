@@ -40,12 +40,12 @@ Vim 的基础操作在 Vim 自带的教程里将会讲述。打开终端输入 `
 
 从普通模式进入插入模式有如下数个键位可选：
 
-- <kbd>a</kbd>：往后挪一个字符插入文本。
-- <kbd>A</kbd>：移动到当前行尾插入文本。
-- <kbd>i</kbd>：在光标当前位置插入文本。
-- <kbd>I</kbd>：移动到当前行头插入文本。
-- <kbd>o</kbd>：在当前行的下一行新建一行，并插入文本。
-- <kbd>O</kbd>：在当前行的上一行新建一行，并插入文本。
+-   <kbd>a</kbd>：往后挪一个字符插入文本。
+-   <kbd>A</kbd>：移动到当前行尾插入文本。
+-   <kbd>i</kbd>：在光标当前位置插入文本。
+-   <kbd>I</kbd>：移动到当前行头插入文本。
+-   <kbd>o</kbd>：在当前行的下一行新建一行，并插入文本。
+-   <kbd>O</kbd>：在当前行的上一行新建一行，并插入文本。
 
 返回普通模式的键位是<kbd>Esc</kbd>键；亦可使用快捷键<kbd>Ctrl</kbd>+<kbd>\[</kbd>。
 
@@ -162,9 +162,9 @@ imap <RIGHT> <Nop>
 
 还可以进一步缩小双手需要控制的区域：
 
-- 用<kbd>Ctrl</kbd>+<kbd>h</kbd>代替<kbd>Backspace</kbd>（甚至可以在终端里这样用）。
-- 用<kbd>Ctrl</kbd>+<kbd>m</kbd>代替回车（甚至可以在终端里这样用）。
-- 在绝大多数的情况下，不要去按右边的<kbd>Ctrl</kbd>和<kbd>Shift</kbd>，用左边的代替。
+-   用<kbd>Ctrl</kbd>+<kbd>h</kbd>代替<kbd>Backspace</kbd>（甚至可以在终端里这样用）。
+-   用<kbd>Ctrl</kbd>+<kbd>m</kbd>代替回车（甚至可以在终端里这样用）。
+-   在绝大多数的情况下，不要去按右边的<kbd>Ctrl</kbd>和<kbd>Shift</kbd>，用左边的代替。
 
 ### 对调 Esc 键与 CapsLock 键
 
@@ -267,7 +267,7 @@ int check() {
 
 Vim 的宏功能可以重复任意长的命令。
 
-使用宏之前要先“录制”，即把一串按键操作录下来再回放，这样就达到了重复的效果。录制的方法很简单，普通模式下键入 `q` 开始录制。下一步，为录制的宏指定一个执行的命令键，可以按下 26 个字母中的任意一个来指定。这时左下方会显示 `记录中 @刚刚选择的字母`。然后就可以开始录制命令了。同理，普通模式下按 `q` 暂停录制。
+使用宏之前要先「录制」，即把一串按键操作录下来再回放，这样就达到了重复的效果。录制的方法很简单，普通模式下键入 `q` 开始录制。下一步，为录制的宏指定一个执行的命令键，可以按下 26 个字母中的任意一个来指定。这时左下方会显示 `记录中 @刚刚选择的字母`。然后就可以开始录制命令了。同理，普通模式下按 `q` 暂停录制。
 
 使用方法为按下 `:` 进入命令行模式，键入 `@选择的记录字母`，然后之前录制的命令就被调用了。
 
@@ -283,7 +283,7 @@ Vim 的宏功能可以重复任意长的命令。
 :a,b normal command
 ```
 
-这行命令的意思是在普通模式下，对 a~b 行执行 `command` 命令。
+这行命令的意思是在普通模式下，对 a\~b 行执行 `command` 命令。
 
 由于 `normal` 命令可以被 `.` 命令重复调用，且其易于理解，它的使用频率甚至更高于宏。
 
@@ -297,12 +297,12 @@ Vim 的宏功能可以重复任意长的命令。
 
 以下是用 Vim 处理的过程：
 
-1. 按下<kbd>/</kbd>调出查找框，输入正则表达式进行查找；
-2. 用 `q` 命令开始录制宏；
-3. 键入 `I#` 命令，然后按下<kbd>ESC</kbd>；
-4. 用 `q` 进行修改操作并结束宏录制；
-5. 键入 `normal n@字母` 转到下一处并重复上一步操作；
-6. 键入 `数字 + .` 多次重复。
+1.  按下<kbd>/</kbd>调出查找框，输入正则表达式进行查找；
+2.  用 `q` 命令开始录制宏；
+3.  键入 `I#` 命令，然后按下<kbd>ESC</kbd>；
+4.  用 `q` 进行修改操作并结束宏录制；
+5.  键入 `normal n@字母` 转到下一处并重复上一步操作；
+6.  键入 `数字 + .` 多次重复。
 
 ## 插件篇
 
@@ -325,7 +325,7 @@ filetype plugin on
 
 安装 vim-plug 的具体过程如下：
 
-1. 首先是在 home 目录下建立文件夹 .vim；
+1.  首先是在 home 目录下建立文件夹 .vim；
 2.  打开终端输入以下命令：
 
     ```bash
@@ -381,8 +381,8 @@ vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-
 
 主题掌管着语法高亮的色彩、背景颜色等等。以 onedark 主题为例，使用主题的方法如下：
 
-1. 在 `.vim` 文件夹下建立 `colors` 文件夹；
-2. 将后缀名为 `.vim` 的主题文件放入其中。本例中要放入的文件名为 `onedark.vim`。
+1.  在 `.vim` 文件夹下建立 `colors` 文件夹；
+2.  将后缀名为 `.vim` 的主题文件放入其中。本例中要放入的文件名为 `onedark.vim`。
 
 ![onedarktheme](./images/vim-3.png "onedrak theme")
 
@@ -392,23 +392,23 @@ vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-
 
 ### 小方便性插件
 
-- [vim-commentary](https://github.com/tpope/vim-commentary)：快捷键 `gc` 注释选中行，`gcu` 撤销上次注释。
+-   [vim-commentary](https://github.com/tpope/vim-commentary)：快捷键 `gc` 注释选中行，`gcu` 撤销上次注释。
 
-- [ale](https://github.com/dense-analysis/ale)：`:w` 保存时提示语法错误，并且可以开启与 `airline` 的携同，状态栏上也会显示 `Error` 和 `Warning`。
+-   [ale](https://github.com/dense-analysis/ale)：`:w` 保存时提示语法错误，并且可以开启与 `airline` 的携同，状态栏上也会显示 `Error` 和 `Warning`。
 
-- [easymotion](https://github.com/easymotion/vim-easymotion)：快速跳转。
+-   [easymotion](https://github.com/easymotion/vim-easymotion)：快速跳转。
 
-- [rainbow](https://github.com/luochen1990/rainbow)：彩虹括号，使具有包含关系的括号显现出不同的颜色，增强多括号代码的可读性……
+-   [rainbow](https://github.com/luochen1990/rainbow)：彩虹括号，使具有包含关系的括号显现出不同的颜色，增强多括号代码的可读性……
 
-- [delimitMate](https://github.com/Raimondi/delimitMate_)：括号补全功能。考试中可用配置实现部分功能，见配置篇。
+-   [delimitMate](https://github.com/Raimondi/delimitMate_)：括号补全功能。考试中可用配置实现部分功能，见配置篇。
 
-- [vimcdoc](https://github.com/yianwillis/vimcdoc)：汉化 Vim 在线文档。
+-   [vimcdoc](https://github.com/yianwillis/vimcdoc)：汉化 Vim 在线文档。
 
-- [gundo](https://github.com/sjl/gundo.vim)：这个插件能够像 git 一样显示文件修改树。Vim 中键入 `:GundoToggle` 即可在左侧打开时光机。使用前需要在 Vim 里开启 Python 支持。
+-   [gundo](https://github.com/sjl/gundo.vim)：这个插件能够像 git 一样显示文件修改树。Vim 中键入 `:GundoToggle` 即可在左侧打开时光机。使用前需要在 Vim 里开启 Python 支持。
 
-- [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506)：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin`，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下<kbd>Ctrl</kbd>+<kbd>/</kbd>即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb)，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
+-   [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506)：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin`，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下<kbd>Ctrl</kbd>+<kbd>/</kbd>即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb)，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
 
-- [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)：一个即时预览 Markdown 文件的插件。打开 Markdown 文件时会自动在浏览器中打开一个标签页，实时预览 Vim 中正在编辑的 Markdown 文件的内容。
+-   [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)：一个即时预览 Markdown 文件的插件。打开 Markdown 文件时会自动在浏览器中打开一个标签页，实时预览 Vim 中正在编辑的 Markdown 文件的内容。
 
 ## 配置篇
 
@@ -537,7 +537,7 @@ inoremap "  ""<esc>i
 inoremap '  ''<esc>i
 ```
 
-<kbd>F1</kbd>~<kbd>F12</kbd>键是 Vim 里少有的方便自由的快捷键。可以对它们进行客制化操作。
+<kbd>F1</kbd>\~<kbd>F12</kbd>键是 Vim 里少有的方便自由的快捷键。可以对它们进行客制化操作。
 
 <kbd>F9</kbd>：一键编译
 
@@ -652,11 +652,11 @@ nnoremap <F7> :GundoToggle<CR>  " F7  ：启动 Gundo 时光机
 
 Vim 的前身是 vi，一个简洁但是略有不足的编辑器，但是从 vi 开始，编辑器的模式区分和唯快不破的思想就已经体现的很到位了。Vim 即是 vi improved，是在 vi 原本所有的方式上进行的进一步提升，但是并不会改变 vi 的其他本质，只是增加了更多适应如今需要的一些功能。
 
-vi 于 1976 年诞生，与 Emacs 不分先后，两者因其快捷的编辑被奉为主流的神器，甚至使用者们还有爆发过“圣战”，即是「神的编辑器 Emacs」VS「编辑器之神 Vim」，但是当然分不出结果，因为各有优劣。但它们共有的特点就是高度的扩展性与高度的可定制性以及快捷方便的使用。
+vi 于 1976 年诞生，与 Emacs 不分先后，两者因其快捷的编辑被奉为主流的神器，甚至使用者们还有爆发过「圣战」，即是「神的编辑器 Emacs」VS「编辑器之神 Vim」，但是当然分不出结果，因为各有优劣。但它们共有的特点就是高度的扩展性与高度的可定制性以及快捷方便的使用。
 
 即使很多人说它们老了，太过古老的东西应该淘汰掉。但既然能够留存至今，它们的弥坚性当然也是很客观的，也会有着某些现代编辑器无法填补的优势。
 
-Vim 的模式区分是一个很有意思的设定，普通模式与插入模式是最主要常用的模式，普通模式下的每个键都是命令，这便是 Vim 不同于 Emacs 的地方，若是习惯了 Vim 的模式之间的切换，大部分都是单个键的命令必然比 Emacs 的无限 Ctrl 会更高效，虽然 Vim 的小容量注定比不了 Emacs“操作系统”这个东西那么万能，但是论快而言，Vim 是毫不逊色的。
+Vim 的模式区分是一个很有意思的设定，普通模式与插入模式是最主要常用的模式，普通模式下的每个键都是命令，这便是 Vim 不同于 Emacs 的地方，若是习惯了 Vim 的模式之间的切换，大部分都是单个键的命令必然比 Emacs 的无限 Ctrl 会更高效，虽然 Vim 的小容量注定比不了 Emacs「操作系统」这个东西那么万能，但是论快而言，Vim 是毫不逊色的。
 
 Vim 有丰富的插件扩展，这点显然是比配置更迷人的存在。有这些扩展性存在，Vim 成为一个 IDE 也不会是不可能的事情。
 
@@ -672,12 +672,12 @@ Vim 是一款非常优秀的文本编辑器，但由于其陡峭的学习曲线�
 
 ## 外部链接
 
-- [Vim 官网](https://www.vim.org/)
-- [原作者提供的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki)
-- [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/)
-- [Vim scripting cheatsheet](https://devhints.io/vimscript)
-- [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com)
+-   [Vim 官网](https://www.vim.org/)
+-   [原作者提供的配置](https://github.com/LuoshuiTianyi/Vim-for-OIWiki)
+-   [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/)
+-   [Vim scripting cheatsheet](https://devhints.io/vimscript)
+-   [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com)
 
 ## 参考资料与注释
 
-[^note1]: 有些人可能会问：“为什么是乌干达的儿童？”，这个问题 [知乎](https://www.zhihu.com/question/24892609) 上有人问过并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章 [《Vim 和乌干达的儿童》（Web Archive）](https://web.archive.org/web/20200220074059if_/https://www.jianshu.com/p/b4daf62c4b59)。感兴趣的可以了解一下。
+[^note1]: 有些人可能会问：「为什么是乌干达的儿童？」，这个问题 [知乎](https://www.zhihu.com/question/24892609) 上有人问过并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章 [《Vim 和乌干达的儿童》（Web Archive）](https://web.archive.org/web/20200220074059if_/https://www.jianshu.com/p/b4daf62c4b59)。感兴趣的可以了解一下。

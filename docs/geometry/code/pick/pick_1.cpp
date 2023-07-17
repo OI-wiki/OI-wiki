@@ -8,13 +8,9 @@ struct node {
   int x, y;
 } p[MAXN];
 
-inline int gcd(int x, int y) {
-  return y == 0 ? x : gcd(y, x % y);
-}  // 求最大公约数
+int gcd(int x, int y) { return y == 0 ? x : gcd(y, x % y); }  // 求最大公约数
 
-inline int area(int a, int b) {
-  return p[a].x * p[b].y - p[a].y * p[b].x;
-}  // 求区域
+int area(int a, int b) { return p[a].x * p[b].y - p[a].y * p[b].x; }  // 求区域
 
 int main() {
   int t, ncase = 1;

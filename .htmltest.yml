@@ -1,0 +1,7 @@
+DirectoryPath: site
+
+CheckMailto: false
+
+IgnoreAltMissing: true
+IgnoreDirectoryMissingTrailingSlash: true
+IgnoreInternalEmptyHash: true

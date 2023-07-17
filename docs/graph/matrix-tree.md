@@ -94,7 +94,7 @@ $$
 
 ## BEST 定理
 
-**定理 5 (BEST 定理）** 设 $G$ 是有向欧拉图，那么 $G$ 的不同欧拉回路总数 $ec(G)$ 是
+**定理 5（BEST 定理）** 设 $G$ 是有向欧拉图，那么 $G$ 的不同欧拉回路总数 $ec(G)$ 是
 
 $$
 ec(G) = t^{root}(G,k)\prod_{v\in V}(\deg (v) - 1)!
@@ -112,7 +112,7 @@ $$
 
 以下的内向也指根向，表示有向边的方向指向根。
 
-**引理 1（Cauchy-Binet）** 给定 $n\times m$ 的矩阵 $A$ 和 $m\times n$ 的矩阵 $B$，则有
+**引理 1（Cauchy–Binet）** 给定 $n\times m$ 的矩阵 $A$ 和 $m\times n$ 的矩阵 $B$，则有
 
 $$
 |AB|=\sum_{|S|=n,S\subseteq[m]}|A_{[n],[S]}||B_{[S],[n]}|
@@ -146,7 +146,7 @@ $$
 A_{i,j}=\begin{cases}\sqrt{\omega(e_j)} & u_i\in e_j\land u_i<\zeta(e_j,u_i) \\ -\sqrt{\omega(e_j)} & u_i\in e_j\land u_i>\zeta(e_j,u_i) \\ 0 & \text{otherwise}\end{cases}
 $$
 
-容易发现 $L=AA^T$，定义 $A$ 删去第一行得到 $B$，则 $M_{1,1}=BB^T$。代入 Cauchy-Binet 公式得到：
+容易发现 $L=AA^T$，定义 $A$ 删去第一行得到 $B$，则 $M_{1,1}=BB^T$。代入 Cauchy–Binet 公式得到：
 
 $$
 M_{1,1}=\sum_{|S|=n-1,S\subseteq[|E|]}|B_{[n-1],[S]}||(B^T)_{[S],[n-1]}|=\sum_{|S|=n-1,S\subseteq[|E|]}|B_{[n-1],[S]}|^2
@@ -189,12 +189,132 @@ $$
 
 与定理 1 中不同的是，关联矩阵 $B$ 限制了只有边的起点能选择这条边，剩下的讨论均与定理 1 相同。
 
+## 实现
+
+一个无向图的生成树个数为邻接矩阵度数矩阵去一行一列的行列式，可以使用 Gauss–Jordan 消元法。
+
+例如，一个正方形图的生成树个数
+
+$$
+\begin{pmatrix}
+2 & 0 & 0 & 0 \\
+0 & 2 & 0 & 0 \\
+0 & 0 & 2 & 0 \\
+0 & 0 & 0 & 2 \end{pmatrix}-\begin{pmatrix}
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \\
+0 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 \end{pmatrix}=\begin{pmatrix}
+2 & -1 & 0 & -1 \\
+-1 & 2 & -1 & 0 \\
+0 & -1 & 2 & -1 \\
+-1 & 0 & -1 & 2 \end{pmatrix}
+$$
+
+$$
+\begin{vmatrix}
+2 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 2 \end{vmatrix} = 4
+$$
+
+可以用高斯消元解决，时间复杂度为 $O(n^3)$。
+
+??? note "实现"
+    ```cpp
+    #include <algorithm>
+    #include <cassert>
+    #include <cmath>
+    #include <cstdio>
+    #include <cstring>
+    #include <iostream>
+    using namespace std;
+    #define MOD 100000007
+    #define eps 1e-7
+    
+    struct matrix {
+      static const int maxn = 20;
+      int n, m;
+      double mat[maxn][maxn];
+    
+      matrix() { memset(mat, 0, sizeof(mat)); }
+    
+      void print() {
+        cout << "MATRIX " << n << " " << m << endl;
+        for (int i = 0; i < n; i++) {
+          for (int j = 0; j < m; j++) {
+            cout << mat[i][j] << "\t";
+          }
+          cout << endl;
+        }
+      }
+    
+      void random(int n) {
+        this->n = n;
+        this->m = n;
+        for (int i = 0; i < n; i++)
+          for (int j = 0; j < n; j++) mat[i][j] = rand() % 100;
+      }
+    
+      void initSquare() {
+        this->n = 4;
+        this->m = 4;
+        memset(mat, 0, sizeof(mat));
+        mat[0][1] = mat[0][3] = 1;
+        mat[1][0] = mat[1][2] = 1;
+        mat[2][1] = mat[2][3] = 1;
+        mat[3][0] = mat[3][2] = 1;
+        mat[0][0] = mat[1][1] = mat[2][2] = mat[3][3] = -2;
+        this->n--;  // 去一行
+        this->m--;  // 去一列
+      }
+    
+      double gauss() {
+        double ans = 1;
+        for (int i = 0; i < n; i++) {
+          int sid = -1;
+          for (int j = i; j < n; j++)
+            if (abs(mat[j][i]) > eps) {
+              sid = j;
+              break;
+            }
+          if (sid == -1) continue;
+          if (sid != i) {
+            for (int j = 0; j < n; j++) {
+              swap(mat[sid][j], mat[i][j]);
+              ans = -ans;
+            }
+          }
+          for (int j = i + 1; j < n; j++) {
+            double ratio = mat[j][i] / mat[i][i];
+            for (int k = 0; k < n; k++) {
+              mat[j][k] -= mat[i][k] * ratio;
+            }
+          }
+        }
+        for (int i = 0; i < n; i++) ans *= mat[i][i];
+        return abs(ans);
+      }
+    };
+    
+    int main() {
+      srand(1);
+      matrix T;
+      // T.random(2);
+      T.initSquare();
+      T.print();
+      double ans = T.gauss();
+      T.print();
+      cout << ans << endl;
+    }
+    ```
+
 ## 例题
 
-???+ note "例题 1：[「HEOI2015」小 Z 的房间](https://loj.ac/problem/2122)"
+???+ note " 例题 1：[「HEOI2015」小 Z 的房间](https://loj.ac/problem/2122)"
     **解** 矩阵树定理的裸题。将每个空房间看作一个结点，根据输入的信息建图，得到 Laplace 矩阵后，任意删掉 $L$ 的第 $i$ 行第 $i$ 列，求这个子式的行列式即可。求行列式的方法就是高斯消元成上三角阵然后算对角线积。另外本题需要在模 $k$ 的整数子环 $\mathbb{Z}_k$ 上进行高斯消元，采用辗转相除法即可。
 
-???+ note "例题 2：[「FJOI2007」轮状病毒](https://www.luogu.com.cn/problem/P2144)"
+???+ note " 例题 2：[「FJOI2007」轮状病毒](https://www.luogu.com.cn/problem/P2144)"
     **解** 本题的解法很多，这里用矩阵树定理是最直接的解法。当输入为 $n$ 时，容易写出其 $n+1$ 阶的 Laplace 矩阵为：
     
     $$
@@ -276,16 +396,16 @@ $$
     改写成 $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$ 后，采用矩阵快速幂即可求出答案。
 
 ???+ note "例题 3：「BZOJ3659」WHICH DREAMED IT"
-    **解** 本题是 BEST 定理的直接应用，但是要注意，由于题目规定“两种完成任务的方式算作不同当且仅当使用钥匙的顺序不同”，对每个欧拉回路，1 号房间可以沿着任意一条出边出发，从而答案还要乘以 1 号房间的出度。
+    **解** 本题是 BEST 定理的直接应用，但是要注意，由于题目规定「两种完成任务的方式算作不同当且仅当使用钥匙的顺序不同」，对每个欧拉回路，1 号房间可以沿着任意一条出边出发，从而答案还要乘以 1 号房间的出度。
 
-???+ note "例题 4：[「联合省选 2020 A」作业题](https://loj.ac/p/3304)"
+???+ note " 例题 4：[「联合省选 2020 A」作业题](https://loj.ac/p/3304)"
     **解** 首先需要用莫比乌斯反演转化成计算所有生成树的边权和，因为与本文关系不大所以略去。
     
     将行列式的项写成 $w_ix+1$，最后答案是行列式的一次项系数，因为答案实际上是钦定一条边之后的生成树个数 $\times$ 这条边的边权之和，那么被乘上一次项系数的边就是被钦定的边。此时可以把高于一次的项忽略掉，复杂度 $O(n^3)$。
     
     [「北京省选集训 2019」生成树计数](https://www.luogu.com.cn/problem/P5296) 是较为一般化的情况：计算生成树权值之和的 $k$ 次方之和，用类似方法构造行列式的项即可，具体见洛谷题解。
 
-???+ note "例题 5：[AGC051D C4](https://atcoder.jp/contests/agc051/tasks/agc051_d)"
+???+ note " 例题 5：[AGC051D C4](https://atcoder.jp/contests/agc051/tasks/agc051_d)"
     **解** 无向图欧拉回路计数是 NPC 问题，但这题的图较为简单，确定了 $S-T$ 的边中从 $S$ 指向 $T$ 的有多少条，就可以确定其他三条边的定向方案，然后直接套用 BEST 定理就得到 $O(a+b+c+d)$ 的做法。
 
 ## 注释

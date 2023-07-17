@@ -10,7 +10,7 @@
 
 ## 例题
 
-???+note "[SPOJ PT07Z, Longest path in a tree](https://www.spoj.com/problems/PT07Z/)"
+???+ note "[SPOJ PT07Z, Longest path in a tree](https://www.spoj.com/problems/PT07Z/)"
     给定一棵 $n$ 个节点的树，求其直径的长度。$1\leq n\leq 10^4$。
 
 ## 做法 1. 两次 DFS
@@ -23,22 +23,22 @@
 
 定理：在一棵树上，从任意节点 $y$ 开始进行一次 DFS，到达的距离其最远的节点 $z$ 必为直径的一端。
 
-???+note "证明"
+???+ note "证明"
     使用反证法。记出发节点为 $y$。设真实的直径是 $\delta(s,t)$，而从 $y$ 进行的第一次 DFS 到达的距离其最远的节点 $z$ 不为 $t$ 或 $s$。共分三种情况：
     
-    - 若 $y$ 在 $\delta(s,t)$ 上：
+    -   若 $y$ 在 $\delta(s,t)$ 上：
     
     ![y 在 s-t 上](./images/tree-diameter1.svg)
     
     有 $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$，与 $\delta(s,t)$ 为树上任意两节点之间最长的简单路径矛盾。
     
-    - 若 $y$ 不在 $\delta(s,t)$ 上，且 $\delta(y,z)$ 与 $\delta(s,t)$ 存在重合路径：
+    -   若 $y$ 不在 $\delta(s,t)$ 上，且 $\delta(y,z)$ 与 $\delta(s,t)$ 存在重合路径：
     
     ![y 不在 s-t 上，y-z 与 s-t 存在重合路径](./images/tree-diameter2.svg)
     
     有 $\delta(y,z) > \delta(y,t) \Longrightarrow \delta(x,z) > \delta(x,t) \Longrightarrow \delta(s,z) > \delta(s,t)$，与 $\delta(s,t)$ 为树上任意两节点之间最长的简单路径矛盾。
     
-    - 若 $y$ 不在 $\delta(s,t)$ 上，且 $\delta(y,z)$ 与 $\delta(s,t)$ 不存在重合路径：
+    -   若 $y$ 不在 $\delta(s,t)$ 上，且 $\delta(y,z)$ 与 $\delta(s,t)$ 不存在重合路径：
     
     ![y 不在 s-t 上，y-z 与 s-t 不存在重合路径](./images/tree-diameter3.svg)
     
@@ -46,7 +46,7 @@
     
     综上，三种情况下假设均会产生矛盾，故原定理得证。
 
-???+warning "负权边"
+???+ warning "负权边"
     上述证明过程建立在所有路径均不为负的前提下。如果树上存在负权边，则上述证明不成立。故若存在负权边，则无法使用两次 DFS 的方式求解直径。
 
 ### 实现
@@ -88,7 +88,7 @@ int main() {
 
 ### 过程
 
-我们记录当 $1$ 为树的根时，每个节点作为子树的根向下，所能延伸的最远距离 $d_1$，和次远距离 $d_2$，那么直径就是所有 $d_1 + d_2$ 的最大值。
+我们记录当 $1$ 为树的根时，每个节点作为子树的根向下，所能延伸的最长路径长度 $d_1$ 与次长路径（与最长路径无公共边）长度 $d_2$，那么直径就是对于每一个点，该点 $d_1 + d_2$ 能取到的值中的最大值。
 
 树形 DP 可以在存在负权边的情况下求解出树的直径。
 
@@ -130,7 +130,7 @@ int main() {
 }
 ```
 
-如果需要求出一条直径上所有的节点，则可以在 DP 的过程中，记录下每个节点能向下延伸的最远距离与次远距离所对应的子节点，之后再找到对应的 $u$，使得 $d = d_1u + d_2u$，即可分别沿着从 $u$ 开始的最远距离和次远距离对应的子节点一路向下，遍历直径上所有的节点。
+如果需要求出一条直径上所有的节点，则可以在 DP 的过程中，记录下每个节点能向下延伸的最长路径与次长路径（定义同上）所对应的子节点，在求 $d$ 的同时记下对应的节点 $u$，使得 $d = d_1[u] + d_2[u]$，即可分别沿着从 $u$ 开始的最长路径的次长路径对应的子节点一路向某个方向（对于无根树，虽然这里指定了 $1$ 为树的根，但仍需记录每点跳转的方向；对于有根树，一路向上跳即可），遍历直径上所有的节点。
 
 ## 性质
 
@@ -144,11 +144,11 @@ int main() {
 
 ## 习题
 
-- [CodeChef, Diameter of Tree](https://www.codechef.com/problems/DTREE)
-- [Educational Codeforces Round 35, Problem F, Tree Destruction](https://codeforces.com/contest/911/problem/F)
-- [ZOJ 3820, Building Fire Stations](https://vjudge.net/problem/ZOJ-3820)
-- [CEOI2019/CodeForces 1192B. Dynamic Diameter](https://codeforces.com/contest/1192/problem/B)
-- [IPSC 2019 网络赛，Lightning Routing I](https://nanti.jisuanke.com/t/41398)
-- [NOIP2007 提高组 树网的核](https://www.luogu.com.cn/problem/P1099)
-- [SDOI2011 消防](https://www.luogu.com.cn/problem/P2491)
-- [APIO2010 巡逻](https://www.luogu.com.cn/problem/P3629)
+-   [CodeChef, Diameter of Tree](https://www.codechef.com/problems/DTREE)
+-   [Educational Codeforces Round 35, Problem F, Tree Destruction](https://codeforces.com/contest/911/problem/F)
+-   [ZOJ 3820, Building Fire Stations](https://vjudge.net/problem/ZOJ-3820)
+-   [CEOI2019/CodeForces 1192B. Dynamic Diameter](https://codeforces.com/contest/1192/problem/B)
+-   [IPSC 2019 网络赛，Lightning Routing I](https://nanti.jisuanke.com/t/41398)
+-   [NOIP2007 提高组 树网的核](https://www.luogu.com.cn/problem/P1099)
+-   [SDOI2011 消防](https://www.luogu.com.cn/problem/P2491)
+-   [APIO2010 巡逻](https://www.luogu.com.cn/problem/P3629)

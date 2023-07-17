@@ -14,9 +14,9 @@
 
 设 $f(u,v)$ 定义在二元组 $(u\in V,v\in V)$ 上的实数函数且满足
 
-1. 容量限制：对于每条边，流经该边的流量不得超过该边的容量，即，$f(u,v)\leq c(u,v)$
-2. 斜对称性：每条边的流量与其相反边的流量之和为 0，即 $f(u,v)=-f(v,u)$
-3. 流守恒性：从源点流出的流量等于汇点流入的流量，即 $\forall x\in V-\{s,t\},\sum_{(u,x)\in E}f(u,x)=\sum_{(x,v)\in E}f(x,v)$
+1.  容量限制：对于每条边，流经该边的流量不得超过该边的容量，即，$f(u,v)\leq c(u,v)$
+2.  斜对称性：每条边的流量与其相反边的流量之和为 0，即 $f(u,v)=-f(v,u)$
+3.  流守恒性：从源点流出的流量等于汇点流入的流量，即 $\forall x\in V-\{s,t\},\sum_{(u,x)\in E}f(u,x)=\sum_{(x,v)\in E}f(x,v)$
 
 那么 $f$ 称为网络 $G$ 的流函数。对于 $(u,v)\in E$，$f(u,v)$ 称为边的 **流量**，$c(u,v)-f(u,v)$ 称为边的 **剩余容量**。整个网络的流量为 $\sum_{(s,v)\in E}f(s,v)$，即 **从源点发出的所有流量之和**。
 
@@ -25,11 +25,11 @@
 *注*：流函数的完整定义为
 
 $$
-f(u,v)=\left\{\begin{aligned}
-&f(u,v),&(u,v)\in E\\
-&-f(v,u),&(v,u)\in E\\
-&0,&(u,v)\notin E,(v,u)\notin E
-\end{aligned}\right.
+f(u,v)=\begin{cases}
+f(u,v),&(u,v)\in E\\
+-f(v,u),&(v,u)\in E\\
+0,&(u,v)\notin E,(v,u)\notin E
+\end{cases}
 $$
 
 ## 网络流的常见问题

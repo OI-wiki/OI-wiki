@@ -8,9 +8,9 @@ Leafy Tree 是一种依靠旋转维持重量平衡的平衡树。
 
 ## Leafy Tree 的特点
 
-1. 所有的信息维护在叶子节点上。
-2. 类似 Kruskal 重构树的结构，每个非叶子节点一定有两个孩子，且非叶子节点统计两个孩子的信息（类似线段树上传信息），所以维护 $n$ 个信息的 Leafy Tree 有 $2n-1$ 个节点。
-3. 可以完成区间操作，比如翻转，以及可持久化等。
+1.  所有的信息维护在叶子节点上。
+2.  类似 Kruskal 重构树的结构，每个非叶子节点一定有两个孩子，且非叶子节点统计两个孩子的信息（类似线段树上传信息），所以维护 $n$ 个信息的 Leafy Tree 有 $2n-1$ 个节点。
+3.  可以完成区间操作，比如翻转，以及可持久化等。
 
 注意到，一个 Leafy 结构的每个节点必定有两个孩子。对其进行插入删除时，在插入删除叶子时必定会额外修改一个非叶节点。
 常见的平衡树均属于每个节点同时维护值和结构的 Nodey Tree。如果将一个 Nodey 结构的所有孩子的空指针指向一个维护值的节点，那么这棵树将变为一个 Leafy 结构。
@@ -45,7 +45,7 @@ struct Node {
 
 Node *root, *null, *st[200010], t[200010];
 
-inline void rotate(Node *u) {
+void rotate(Node *u) {
   if (u->lf->size > u->rf->size * ratio)
     u->rf = merge(u->lf->rf, u->rf), st[--cnt] = u->lf, u->lf = u->lf->lf;
   if (u->rf->size > u->lf->size * ratio)
@@ -58,7 +58,7 @@ inline void rotate(Node *u) {
 类似二叉树的插入过程。
 
 ```cpp
-inline void insert(Node *u, int x) {
+void insert(Node *u, int x) {
   if (u->size == 1)
     u->lf = new_Node(1, Min(u->val, x), null, null),
     u->rf = new_Node(1, Max(u->val, x), null, null);
@@ -90,7 +90,7 @@ void BTreeNode::traverse() {
 假设需要查找排名第 $x$ 大的元素。
 
 ```cpp
-inline int find(Node *u, int x) {
+int find(Node *u, int x) {
   if (u->size == 1) return u->val;
   return u->lf->size < x ? find(u->rf, x - u->lf->size) : find(u->lf, x);
 }
@@ -104,10 +104,10 @@ inline int find(Node *u, int x) {
 
 ## 例题
 
-- [Luogu P2286 宠物收养场](https://www.luogu.com.cn/problem/P2286)
+-   [Luogu P2286 宠物收养场](https://www.luogu.com.cn/problem/P2286)
 
 ## 参考资料
 
-- [WBLT 学习笔记](https://shiroi-he.gitee.io/blog/2020/07/23/WBLT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/)
-- [Leafy Tree](https://www.cnblogs.com/onionQAQ/p/10979867.html)
-- [Luogu P2286\[HNOI2004\]宠物收养场](https://www.programminghunter.com/article/64011263567/)
+-   [WBLT 学习笔记](https://shiroi-he.gitee.io/blog/2020/07/23/WBLT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/)
+-   [Leafy Tree](https://www.cnblogs.com/onionQAQ/p/10979867.html)
+-   [Luogu P2286\[HNOI2004\] 宠物收养场](https://www.programminghunter.com/article/64011263567/)

@@ -6,9 +6,9 @@ author: StudyingFather, ayalhw, qinyihao, CoderOJ, mcendu
 
 ## 基础
 
-Windows 自带的命令行界面有两个。“命令提示符”（`cmd`）是其中较为古老的一个，功能也相对简单。PowerShell 是较新的一个命令行界面，自带的功能丰富，但相对臃肿。两个界面都可以在开始菜单中找到。
+Windows 自带的命令行界面有两个。「命令提示符」（`cmd`）是其中较为古老的一个，功能也相对简单。PowerShell 是较新的一个命令行界面，自带的功能丰富，但相对臃肿。两个界面都可以在开始菜单中找到。
 
-类 Unix 系统（包含 macOS 和 Linux，以下称为 Unix）分为有图形界面和无图形界面两种情况。如果系统有图形界面（如使用 macOS 或者在 Linux 下安装了 GNOME、KDE 等图形界面），则命令行一般可以通过名为“终端”（Terminal 或 Console）的程序打开。没有图形界面的系统会在启动完成后自动进入命令行。
+类 Unix 系统（包含 macOS 和 Linux，以下称为 Unix）分为有图形界面和无图形界面两种情况。如果系统有图形界面（如使用 macOS 或者在 Linux 下安装了 GNOME、KDE 等图形界面），则命令行一般可以通过名为「终端」（Terminal 或 Console）的程序打开。没有图形界面的系统会在启动完成后自动进入命令行。
 
 Windows 下的命令行长这样：
 
@@ -40,7 +40,7 @@ chtholly@seniorious:~$ echo "Hello World!"
 root@seniorious:~# apt-get install gcc
 ```
 
-命令行的 `>`，`$` 或 `#` 之前会显示一个路径，这个路径就是工作目录（working directory），或者当前目录。在 Unix 下当前目录有时会显示成类似 `~/folder` 的形式，最开头的 `~` 就是当前登录的用户的主目录。用户 `chtholly` 的主目录在不同系统下的位置是不同的；在 Linux 下，他的主目录位于 `/home/chtholly`，而在 macOS 下，她的主目录位于 `/Users/chtholly`。
+命令行的 `>`，`$` 或 `#` 之前会显示一个路径，这个路径就是工作目录（working directory），或者当前目录。在 Unix 下当前目录有时会显示成类似 `~/folder` 的形式，最开头的 `~` 就是当前登录的用户的主目录。用户 `chtholly` 的主目录在不同系统下的位置是不同的；在 Linux 下，其主目录位于 `/home/chtholly`，而在 macOS 下，其主目录位于 `/Users/chtholly`。
 
 ## 语法和常用命令[^1]
 
@@ -48,7 +48,7 @@ root@seniorious:~# apt-get install gcc
 
 先介绍文件系统里描述位置的两种方式，相对路径和绝对路径。
 
-- 相对路径：用相对当前路径的位置关系来描述位置。例如当前路径为 `~/folder`，则 `./a.cpp` 实际上指的就是 `~/folder/a.cpp` 这个文件。**随着当前路径的变化，相对路径描述的位置也可能发生改变**。
+-   相对路径：用相对当前路径的位置关系来描述位置。例如当前路径为 `~/folder`，则 `./a.cpp` 实际上指的就是 `~/folder/a.cpp` 这个文件。**随着当前路径的变化，相对路径描述的位置也可能发生改变**。
 
 -   绝对路径：用完整的路径来描述位置。例如 `~/folder/a.cpp` 就是一个绝对路径的例子。**绝对路径描述的位置不随当前路径的变化而改变**。
 
@@ -137,13 +137,13 @@ Hello World!
 
 编译过程中可以加入一些编译选项：
 
-- `-o <文件名>`：指定编译器输出可执行文件的文件名。
-- `-g`：在编译时添加调试信息（使用 gdb 调试时需要）。
-- `-Wall`：显示所有编译警告信息。
-- `-O1`，`-O2`，`-O3`：对编译的程序进行优化，数字越大表示采用的优化手段越多（开启优化会影响使用 gdb 调试）。
-- `-DDEBUG`：在编译时定义 `DEBUG` 符号（符号可以随意更换，例如 `-DONLINE_JUDGE` 定义了 `ONLINE_JUDGE` 符号）。
-- `-UDEBUG`：在编译时取消定义 `DEBUG` 符号。
-- `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
+-   `-o <文件名>`：指定编译器输出可执行文件的文件名。
+-   `-g`：在编译时添加调试信息（使用 gdb 调试时需要）。
+-   `-Wall`：显示所有编译警告信息。
+-   `-O1`，`-O2`，`-O3`：对编译的程序进行优化，数字越大表示采用的优化手段越多（开启优化会影响使用 gdb 调试）。
+-   `-DDEBUG`：在编译时定义 `DEBUG` 符号（符号可以随意更换，例如 `-DONLINE_JUDGE` 定义了 `ONLINE_JUDGE` 符号）。
+-   `-UDEBUG`：在编译时取消定义 `DEBUG` 符号。
+-   `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
 
 ???+ note
     在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
@@ -162,10 +162,10 @@ Hello World!
 
 它分为以下几种：
 
-- AddressSanitizer[^address-sanitizer]：检测对堆、栈、全局变量的越界访问，无效的释放内存、内存泄漏（实验性）。
-- ThreadSanitizer[^thread-sanitizer]：检测多线程的数据竞争。
-- MemorySanitizer[^memory-sanitizer]：检测对未初始化内存的读取。
-- UndefinedBehaviorSanitizer[^ub-san]：检测未定义行为。
+-   AddressSanitizer[^address-sanitizer]：检测对堆、栈、全局变量的越界访问，无效的释放内存、内存泄漏（实验性）。
+-   ThreadSanitizer[^thread-sanitizer]：检测多线程的数据竞争。
+-   MemorySanitizer[^memory-sanitizer]：检测对未初始化内存的读取。
+-   UndefinedBehaviorSanitizer[^ub-san]：检测未定义行为。
 
 #### 使用方式
 
@@ -196,7 +196,7 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 | 名称                         | 所增大内存倍数 | 所增大时间倍数 |
 | :------------------------- | :------ | :------ |
 | AddressSanitizer           | N/A     | 2       |
-| ThreadSanitizer            | 5~15    | 5~10    |
+| ThreadSanitizer            | 5\~15   | 5\~10   |
 | MemorySanitizer            | N/A     | 3       |
 | UndefinedBehaviorSanitizer | N/A     | N/A     |
 
@@ -208,16 +208,16 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 以下是几个 gdb 调试的常用命令（大多数命令可以缩写，用命令开头的若干个字母就可以代表该命令）：
 
-- `list`（`l`）：列出程序源代码，如 `l main` 指定列出 `main` 函数附近的若干行代码。
-- `break`（`b`）：设置断点，如 `b main` 表示在 `main` 函数处设置断点。
-- `run`（`r`）：运行程序直到程序结束运行或遇到断点。
-- `continue`（`c`）：在程序遇到断点后继续执行，直到程序结束运行或到达下一个断点。
-- `next`（`n`）：执行当前行语句，如果当前行有函数调用，则将其视为一个整体执行。
-- `step`（`s`）：执行当前行语句，如果当前行有函数调用，则进入该函数内部。
-- `finish`（`fin`）：继续执行至当前函数返回。
-- `call`：调用某个函数，例如：`call f(2)`（以参数 2 调用函数 f）。
-- `quit`（`q`）：退出 gdb。
-- `display`（`disp`）：指定程序暂停时显示的表达式。
+-   `list`（`l`）：列出程序源代码，如 `l main` 指定列出 `main` 函数附近的若干行代码。
+-   `break`（`b`）：设置断点，如 `b main` 表示在 `main` 函数处设置断点。
+-   `run`（`r`）：运行程序直到程序结束运行或遇到断点。
+-   `continue`（`c`）：在程序遇到断点后继续执行，直到程序结束运行或到达下一个断点。
+-   `next`（`n`）：执行当前行语句，如果当前行有函数调用，则将其视为一个整体执行。
+-   `step`（`s`）：执行当前行语句，如果当前行有函数调用，则进入该函数内部。
+-   `finish`（`fin`）：继续执行至当前函数返回。
+-   `call`：调用某个函数，例如：`call f(2)`（以参数 2 调用函数 f）。
+-   `quit`（`q`）：退出 gdb。
+-   `display`（`disp`）：指定程序暂停时显示的表达式。
 -   `print`（`p`）：打印表达式的值。
 
     `display` 和 `print` 指令都支持控制输出格式，其方法是在命令后紧跟 `/` 与格式字符，例如 `p/d test`（按照十进制打印变量 test 的值），
@@ -246,13 +246,13 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 以下是常见 Shell 的补全能力[^autocomplete]：
 
-| Shell                | 补全能力（补全范围）                                               |
-| -------------------- | -------------------------------------------------------- |
-| cmd (Windows 的传统控制台） | 文件路径                                                     |
-| PowerShell           | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错               |
-| Bash                 | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数                           |
-| Zsh                  | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错和建议            |
-| Fish                 | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，补全时可显示参数功能，自动纠错和建议 |
+| Shell               | 补全能力（补全范围）                                               |
+| ------------------- | -------------------------------------------------------- |
+| cmd（Windows 的传统控制台） | 文件路径                                                     |
+| PowerShell          | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错               |
+| Bash                | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数                           |
+| Zsh                 | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错和建议            |
+| Fish                | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，补全时可显示参数功能，自动纠错和建议 |
 
 ???+ note
     PowerShell 的部分功能需要 PSReadline Module 载入或者位于 PowerShell ISE 中。  
@@ -262,9 +262,9 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 ### 帮助文档
 
-一般来说，命令行下的程序都附有“帮助”，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux) 上一般使用 `command --help` 或者 `command -h` 获取（但是 BSD 下的“帮助”往往过分简略而难以使用）。
+一般来说，命令行下的程序都附有「帮助」，Windows 下一般使用 `command /?` 或者 `command -?` 获取，Unix-like（例如 Linux）上一般使用 `command --help` 或者 `command -h` 获取（但是 BSD 下的「帮助」往往过分简略而难以使用）。
 
-此外，在 Unix-like 系统上，还有可通过 `man command` 获取的“手册”(manual)，相比“帮助”一般更为详细。
+此外，在 Unix-like 系统上，还有可通过 `man command` 获取的「手册」(manual)，相比「帮助」一般更为详细。
 
 ### built-in time 和 GNU time
 
@@ -320,7 +320,7 @@ $ ./my_code < input > output
 
 [^have-to-link-libm-in-gcc]: [Why do you have to link the math library in C?](https://stackoverflow.com/questions/1033898/why-do-you-have-to-link-the-math-library-in-c)
 
-[^autocomplete]: [Comparison_of_command_shells#Interactive_features](https://en.wikipedia.org/wiki/Comparison_of_command_shells#Interactive_features)
+[^autocomplete]: [Comparison\_of\_command\_shells#Interactive\_features](https://en.wikipedia.org/wiki/Comparison_of_command_shells#Interactive_features)
 
 [^bash-time-format]: <https://unix.stackexchange.com/a/70655>
 

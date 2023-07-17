@@ -1,8 +1,8 @@
-author: Marcythm, yizr-cnyali, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan, Enter-tainer, lcfsih, Xeonacid, Ir1d
+author: Marcythm, YZircon, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan, Enter-tainer, lcfsih, Xeonacid, Ir1d
 
 在默认情况下，`std::cin/std::cout` 是极为迟缓的读入/输出方式，而 `scanf/printf` 比 `std::cin/std::cout` 快得多。
 
-???+note "注意" 
+???+ note "注意"
     `cin`/`cout` 与 `scanf`/`printf` 的实际速度差会随编译器和操作系统的不同发生一定的改变。如果想要进行详细对比，请以实际测试结果为准。
 
 下文将详细介绍读入输出的优化方法。
@@ -11,7 +11,7 @@ author: Marcythm, yizr-cnyali, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan,
 
 ### `std::ios::sync_with_stdio(false)`
 
-这个函数是一个“是否兼容 stdio”的开关，C++ 为了兼容 C，保证程序在使用了 `printf` 和 `std::cout` 的时候不发生混乱，将输出流绑到了一起。同步的输出流是线程安全的。
+这个函数是一个「是否兼容 stdio」的开关，C++ 为了兼容 C，保证程序在使用了 `printf` 和 `std::cout` 的时候不发生混乱，将输出流绑到了一起。同步的输出流是线程安全的。
 
 这其实是 C++ 为了兼容而采取的保守措施，也是使 `cin`/`cout` 速度较慢的主要原因。我们可以在进行 IO 操作之前将 stdio 解除绑定，但是在这样做之后要注意不能同时使用 `std::cin` 和 `scanf`，也不能同时使用 `std::cout` 和 `printf`，但是可以同时使用 `std::cin` 和 `printf`，也可以同时使用 `scanf` 和 `std::cout`。
 
@@ -44,19 +44,19 @@ std::cin.tie(0);
 
 `scanf` 和 `printf` 依然有优化的空间，这就是本章所介绍的内容——读入和输出优化。
 
-- 注意，本页面中介绍的读入和输出优化均针对整型数据，若要支持其他类型的数据（如浮点数），可自行按照本页面介绍的优化原理来编写代码。
+-   注意，本页面中介绍的读入和输出优化均针对整型数据，若要支持其他类型的数据（如浮点数），可自行按照本页面介绍的优化原理来编写代码。
 
 ### 原理
 
-众所周知，`getchar` 是用来读入 1 byte 的数据并将其转换为 `char` 类型的函数，且速度很快，故可以用“读入字符——转换为整型”来代替缓慢的读入
+众所周知，`getchar` 是用来读入 1 byte 的数据并将其转换为 `char` 类型的函数，且速度很快，故可以用「读入字符——转换为整型」来代替缓慢的读入
 
 每个整数由两部分组成——符号和数字
 
 整数的 '+' 通常是省略的，且不会对后面数字所代表的值产生影响，而 '-' 不可省略，因此要进行判定
 
-10 进制整数中是不含空格或除 0~9 和正负号外的其他字符的，因此在读入不应存在于整数中的字符（通常为空格）时，就可以判定已经读入结束
+10 进制整数中是不含空格或除 0\~9 和正负号外的其他字符的，因此在读入不应存在于整数中的字符（通常为空格）时，就可以判定已经读入结束
 
-C 和 C++ 语言分别在 ctype.h 和 cctype 头文件中，提供了函数 `isdigit`, 这个函数会检查传入的参数是否为十进制数字字符，是则返回 **true**，否则返回 **false**。对应的，在下面的代码中，可以使用 `isdigit(ch)` 代替 `ch >= '0' && ch <= '9'`，而可以使用 `!isdigit(ch)` 代替 `ch <'0' || ch> '9'`
+C 和 C++ 语言分别在 ctype.h 和 cctype 头文件中，提供了函数 `isdigit`, 这个函数会检查传入的参数是否为十进制数字字符，是则返回 **true**，否则返回 **false**。对应的，在下面的代码中，可以使用 `isdigit(ch)` 代替 `ch >= '0' && ch <= '9'`，也可以使用 `!isdigit(ch)` 代替 `ch <'0' || ch> '9'`
 
 ### 代码实现
 
@@ -69,8 +69,8 @@ int read() {
     ch = getchar();               // 继续读入
   }
   while (ch >= '0' && ch <= '9') {  // ch 是数字时
-    x = x * 10 + (ch - '0');  // 将新读入的数字’加’在 x 的后面
-    // x 是 int 类型，char 类型的 ch 和 ’0’ 会被自动转为其对应的
+    x = x * 10 + (ch - '0');  // 将新读入的数字「加」在 x 的后面
+    // x 是 int 类型，char 类型的 ch 和 '0' 会被自动转为其对应的
     // ASCII 码，相当于将 ch 转化为对应数字
     // 此处也可以使用 (x<<3)+(x<<1) 的写法来代替 x*10
     ch = getchar();  // 继续读入
@@ -79,7 +79,7 @@ int read() {
 }
 ```
 
-- 举例
+-   举例
 
 读入 num 可写为 `num=read();`
 
@@ -109,7 +109,7 @@ void write(int x) {
 但是递归实现常数是较大的，我们可以写一个栈来实现这个过程
 
 ```cpp
-inline void write(int x) {
+void write(int x) {
   static int sta[35];
   int top = 0;
   do {
@@ -119,7 +119,7 @@ inline void write(int x) {
 }
 ```
 
-- 举例
+-   举例
 
 输出 num 可写为 `write(num);`
 
@@ -169,7 +169,7 @@ char buf[MAXSIZE], *p1, *p2;
        ? EOF                                                               \
        : *p1++)
 
-inline int rd() {
+int rd() {
   int x = 0, f = 1;
   char c = gc();
   while (!isdigit(c)) {
@@ -182,12 +182,12 @@ inline int rd() {
 
 char pbuf[1 << 20], *pp = pbuf;
 
-inline void push(const char &c) {
+void push(const char &c) {
   if (pp - pbuf == 1 << 20) fwrite(pbuf, 1, 1 << 20, stdout), pp = pbuf;
   *pp++ = c;
 }
 
-inline void write(int x) {
+void write(int x) {
   static int sta[35];
   int top = 0;
   do {
@@ -204,21 +204,21 @@ inline void write(int x) {
 
 ### 刷新缓冲区
 
-1. 程序结束
-2. 关闭文件
-3. `printf` 输出 `\r` 或者 `\n` 到终端的时候（注：如果是输出到文件，则不会刷新缓冲区）
-4. 手动 `fflush()`
-5. 缓冲区满自动刷新
-6. `cout` 输出 `endl`
+1.  程序结束
+2.  关闭文件
+3.  `printf` 输出 `\r` 或者 `\n` 到终端的时候（注：如果是输出到文件，则不会刷新缓冲区）
+4.  手动 `fflush()`
+5.  缓冲区满自动刷新
+6.  `cout` 输出 `endl`
 
 ## 使输入输出优化更为通用
 
 如果你的程序使用多个类型的变量，那么可能需要写多个输入输出优化的函数。下面给出的代码使用 [C++ 中的 `template`](http://www.cplusplus.com/doc/oldtutorial/templates) 实现了对于所有整数类型的输入输出优化。
 
 ```cpp
+// 声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
 template <typename T>
-inline T
-read() {  // 声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
+T read() {
   T sum = 0, fl = 1;  // 将 sum,fl 和 ch 以输入的类型定义
   int ch = getchar();
   for (; !isdigit(ch); ch = getchar())
@@ -257,7 +257,7 @@ struct IO {
 
   ~IO() { fwrite(pbuf, 1, pp - pbuf, stdout); }
 #endif
-  inline char gc() {
+  char gc() {
 #if DEBUG  // 调试，可显示字符
     return getchar();
 #endif
@@ -265,12 +265,12 @@ struct IO {
     return p1 == p2 ? ' ' : *p1++;
   }
 
-  inline bool blank(char ch) {
+  bool blank(char ch) {
     return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
   }
 
   template <class T>
-  inline void read(T &x) {
+  void read(T &x) {
     double tmp = 1;
     bool sign = 0;
     x = 0;
@@ -284,7 +284,7 @@ struct IO {
     if (sign) x = -x;
   }
 
-  inline void read(char *s) {
+  void read(char *s) {
     char ch = gc();
     for (; blank(ch); ch = gc())
       ;
@@ -292,12 +292,12 @@ struct IO {
     *s = 0;
   }
 
-  inline void read(char &c) {
+  void read(char &c) {
     for (c = gc(); blank(c); c = gc())
       ;
   }
 
-  inline void push(const char &c) {
+  void push(const char &c) {
 #if DEBUG  // 调试，可显示字符
     putchar(c);
 #else
@@ -307,7 +307,7 @@ struct IO {
   }
 
   template <class T>
-  inline void write(T x) {
+  void write(T x) {
     if (x < 0) x = -x, push('-');  // 负数输出
     static T sta[35];
     T top = 0;
@@ -318,7 +318,7 @@ struct IO {
   }
 
   template <class T>
-  inline void write(T x, char lastChar) {
+  void write(T x, char lastChar) {
     write(x), push(lastChar);
   }
 } io;

@@ -46,12 +46,12 @@ printf("s 的长度为 %lu", s.length());
 printf("s 的长度为 %lu", strlen(s.c_str()));
 ```
 
-???+note "这些函数的复杂度"
+???+ note "这些函数的复杂度"
     `strlen()` 的复杂度一定是与字符串长度线性相关的。
     
     `size()` 和 `length()` 的复杂度在 C++98 中没有指定，在 C++11 中被指定为常数复杂度。但在常见的编译器上，即便是 C++98，这两个函数的复杂度也是常数。
 
-???+warning
+???+ warning
     这三个函数（以及下面将要提到的 `find` 函数）的返回值类型都是 `size_t`（`unsigned long`）。因此，这些返回值不支持直接与负数比较或运算，建议在需要时进行强制转换。
 
 ### 寻找某字符（串）第一次出现的位置
@@ -105,7 +105,7 @@ printf("从字符串 t 的第二位开始的最多三个字符构成的子串是
 
 `insert(index,count,ch)` 和 `insert(index,str)` 是比较常见的插入函数。它们分别表示在 `index` 处连续插入 `count` 次字符串 `ch` 和插入字符串 `str`。
 
-`erase(index,count)` 函数将字符串 `index` 位置开始（含）的 `count` 个字符删除（若不传参给 `count` 则表示删去 `count` 位置及以后的所有字符）。
+`erase(index,count)` 函数将字符串 `index` 位置开始（含）的 `count` 个字符删除（若不传参给 `count` 则表示删去 `index` 位置及以后的所有字符）。
 
 示例：
 

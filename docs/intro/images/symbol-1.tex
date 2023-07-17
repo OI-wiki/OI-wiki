@@ -1,0 +1,58 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{amsmath}
+
+\tikzset{>=latex}
+\tikzstyle{proj}=[blue!70!black,very thin,dashed]
+\tikzstyle{axis}=[->,thick]
+\tikzstyle{vector}=[-stealth,axis,blue!80!black]
+\tikzstyle{unit vector}=[->,green!35!black,very thick]
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{110}
+\begin{tikzpicture}[tdplot_main_coords]
+
+    \pgfmathsetmacro{\coordlen}{7}
+    \pgfmathsetmacro{\px}{3}
+    \pgfmathsetmacro{\py}{4}
+    \pgfmathsetmacro{\pz}{3.75}
+
+    \coordinate (O) at (0,0,0);
+    \coordinate (P) at (\px,\py,\pz);
+    \coordinate (Pxy) at (\px,\py,0);
+    \coordinate (Pxz) at (\px,0,\pz);
+    \coordinate (Pyz) at (0,\py,\pz);
+    \coordinate (Px) at (\px,0,0);
+    \coordinate (Py) at (0,\py,0);
+    \coordinate (Pz) at (0,0,\pz);
+
+    \draw (O) node[anchor=south east]{$O$};
+
+    \draw[axis] (O) -- (\coordlen,0,0);
+    \draw[axis] (O) -- (0,\coordlen,0);
+    \draw[axis] (O) -- (0,0,\coordlen);
+
+    \draw[unit vector] (O) -- (1,0,0) node[anchor=east]{$\boldsymbol{e}_x$};
+    \draw[unit vector] (O) -- (0,1,0) node[anchor=south]{$\boldsymbol{e}_y$};
+    \draw[unit vector] (O) -- (0,0,1) node[anchor=east]{$\boldsymbol{e}_z$};
+    
+    \draw[vector] (O) -- (P) node[anchor=west]{$\boldsymbol{r}$};
+
+    \draw[proj] (Pxy) -- (P);
+    \draw[proj] (Pxz) -- (P);
+    \draw[proj] (Pyz) -- (P);
+    \draw[proj] (Px) -- (Pxy);
+    \draw[proj] (Py) -- (Pxy);
+    \draw[proj] (Px) -- (Pxz);
+    \draw[proj] (Pz) -- (Pxz);
+    \draw[proj] (Py) -- (Pyz);
+    \draw[proj] (Pz) -- (Pyz);
+
+    \draw (Px) node[anchor=north]{$x$};
+    \draw (Py) node[anchor=south west]{$y$};
+    \draw (Pz) node[anchor=south east]{$z$};
+\end{tikzpicture}
+
+\end{document}

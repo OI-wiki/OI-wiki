@@ -1,6 +1,6 @@
 author: Backl1ght
 
-Euler Tour Tree（欧拉游览树，欧拉回路树，后文简称 ETT ) 是一种可以解决 **动态树** 问题的数据结构。ETT 将动态树的操作转换成了其 DFS 序列上的区间操作，再用其他数据结构来维护序列的区间操作，从而维护动态树的操作。例如，ETT 将动态树的加边操作转换成了多个序列拆分操作和序列合并操作，如果能维护序列拆分操作和序列合并操作，就能维护动态树的加边操作。
+Euler Tour Tree（欧拉游览树，欧拉回路树，后文简称 ETT）是一种可以解决 **动态树** 问题的数据结构。ETT 将动态树的操作转换成了其 DFS 序列上的区间操作，再用其他数据结构来维护序列的区间操作，从而维护动态树的操作。例如，ETT 将动态树的加边操作转换成了多个序列拆分操作和序列合并操作，如果能维护序列拆分操作和序列合并操作，就能维护动态树的加边操作。
 
 LCT 也是一种可以解决动态树问题的数据结构，相比 ETT 而言 LCT 会更加常见。LCT 其实更适用于维护树链的信息，而 ETT 更加适用于维护 **子树** 的信息。例如，ETT 可以维护子树最小值而 LCT 不能。
 
@@ -206,7 +206,7 @@ void Delete(int u, int v) {
 
 点 $u$ 和点 $v$ 连通，当且仅当两个点属于同一棵树 $T$，即 $(u, u)$ 和 $(v, v)$ 属于 $\operatorname{ETR}(T)$，这可以根据点 $u$ 和点 $v$ 对应的 Treap 节点所在的 Treap 的根是否相同判断。
 
-### 例题 [P2147\[SDOI2008\]洞穴勘测](https://www.luogu.com.cn/problem/P2147)
+### 例题 [P2147\[SDOI2008\] 洞穴勘测](https://www.luogu.com.cn/problem/P2147)
 
 维护连通性的模板题。
 
@@ -251,5 +251,5 @@ void Delete(int u, int v) {
 
 ## 参考资料
 
-- Dynamic trees as search trees via euler tours, applied to the network simplex algorithm - Robert E. Tarjan
-- Randomized fully dynamic graph algorithms with polylogarithmic time per operation - Henzinger et al.
+-   Dynamic trees as search trees via euler tours, applied to the network simplex algorithm - Robert E. Tarjan
+-   Randomized fully dynamic graph algorithms with polylogarithmic time per operation - Henzinger et al.
