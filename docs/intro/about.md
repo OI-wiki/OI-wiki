@@ -16,4 +16,4 @@ Telegram 群组链接为 [@OI\_wiki](https://t.me/OI_wiki)，QQ 群号码为 [58
 ???+ warning "注意"
     本章节十分重要，每个贡献者都应阅读以下内容。
 
-- [OI Wiki 不是什么](./what-oi-wiki-is-not.md)
+-   [OI Wiki 不是什么](./what-oi-wiki-is-not.md)
