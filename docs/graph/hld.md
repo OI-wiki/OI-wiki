@@ -1,4 +1,4 @@
-author: Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy, LuoshuiTianyi, hyp1231
+author: GoodCoder666, Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy, LuoshuiTianyi, hyp1231
 
 ## 树链剖分的思想及能解决的问题
 
@@ -130,13 +130,13 @@ void dfs2(int o, int t) {
 
 所有的重链将整棵树 **完全剖分**。
 
-在剖分时 **重边优先遍历**，最后树的 DFN 序上，重链内的 DFN 序是连续的。按 DFN 排序后的序列即为剖分后的链。
+在剖分时 **重边优先遍历**，最后树的 DFS 序上，重链内的 DFS 序是连续的。按 DFN 排序后的序列即为剖分后的链。
 
-一颗子树内的 DFN 序是连续的。
+一颗子树内的 DFS 序是连续的。
 
 可以发现，当我们向下经过一条 **轻边** 时，所在子树的大小至少会除以二。
 
-因此，对于树上的任意一条路径，把它拆分成从 $lca$ 分别向两边往下走，分别最多走 $O(\log n)$ 次，因此，树上的每条路径都可以被拆分成不超过 $O(\log n)$ 条重链。
+因此，对于树上的任意一条路径，把它拆分成从 [LCA](./lca.md) 分别向两边往下走，分别最多走 $O(\log n)$ 次，因此，树上的每条路径都可以被拆分成不超过 $O(\log n)$ 条重链。
 
 ## 常见应用
 
@@ -490,13 +490,13 @@ DP 数组的长度我们可以根据子树最深节点算出。
 
 ## 练习
 
-[「luogu P3379」【模板】最近公共祖先（LCA）](https://www.luogu.com.cn/problem/P3379)（树剖求 LCA 无需数据结构，可以用作练习）
+[「洛谷 P3379」【模板】最近公共祖先（LCA）](https://www.luogu.com.cn/problem/P3379)（树剖求 LCA 无需数据结构，可以用作练习）
 
 [「JLOI2014」松鼠的新家](https://loj.ac/problem/2236)（当然也可以用树上差分）
 
 [「HAOI2015」树上操作](https://loj.ac/problem/2125)
 
-[「luogu P3384」【模板】树链剖分](https://www.luogu.com.cn/problem/P3384)
+[「洛谷 P3384」【模板】重链剖分/树链剖分](https://www.luogu.com.cn/problem/P3384)
 
 [「NOI2015」软件包管理器](https://uoj.ac/problem/128)
 

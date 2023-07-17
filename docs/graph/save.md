@@ -65,12 +65,13 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     
         ```python
         class Edge:
-            u = 0
-            v = 0
+            def __init__(self, u = 0, v = 0):
+                self.u = u
+                self.v = v
     
         n, m = map(lambda x:int(x), input().split())
     
-        e = [Edge()] * m; vis = [False] * n
+        e = [Edge() for _ in range(m)]; vis = [False] * n
     
         for i in range(0, m):
             e[i].u, e[i].v = map(lambda x:int(x), input().split())
@@ -249,7 +250,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     
         ```python
         vis = [False] * (n + 1)
-        adj = [[]] * (n + 1)
+        adj = [[] for _ in range(n + 1)]
     
         for i in range(1, m + 1):
             u, v = map(lambda x:int(x), input().split())
