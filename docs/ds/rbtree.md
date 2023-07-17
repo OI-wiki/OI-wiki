@@ -460,7 +460,7 @@ class RBTreeMap {
 该过程分为三步：
 
 1.  若 N 为左子节点，右旋 P，否则左旋 P。
-2.  将节点 C 染红，将节点 S 染黑。
+2.  将节点 S 染红，将节点 C 染黑。
 3.  此时已满足 Case 5 的条件，进入 Case 5 完成后续维护。
 
 ![rbtree-remove-case4](images/rbtree-remove-case4.png)
