@@ -235,24 +235,24 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
     ```cpp
     void getfail()  // 实际上也可以叫 build
     {
-        for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
-        q.push(1);
-        trie[1].fail = 0;
-        while (!q.empty()) {
-            int u = q.front();
-            q.pop();
-            int Fail = trie[u].fail;
-            for (int i = 0; i < 26; i++) {
-            int v = trie[u].son[i];
-            if (!v) {
-                trie[u].son[i] = trie[Fail].son[i];
-                continue;
-            }
-            trie[v].fail = trie[Fail].son[i];
-            indeg[trie[Fail].son[i]]++;  // 修改点在这里，增加了入度记录
-            q.push(v);
-            }
+      for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
+      q.push(1);
+      trie[1].fail = 0;
+      while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        int Fail = trie[u].fail;
+        for (int i = 0; i < 26; i++) {
+          int v = trie[u].son[i];
+          if (!v) {
+            trie[u].son[i] = trie[Fail].son[i];
+            continue;
+          }
+          trie[v].fail = trie[Fail].son[i];
+          indeg[trie[Fail].son[i]]++;  // 修改点在这里，增加了入度记录
+          q.push(v);
         }
+      }
     }
     ```
 
@@ -261,9 +261,10 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 ???+ note "查询"
     ```cpp
     void query(char *s) {
-        int u = 1, len = strlen(s);
-        for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
+      int u = 1, len = strlen(s);
+      for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
     }
+    ```
 
     void topu() {
         for (int i = 1; i <= cnt; i++)
@@ -316,17 +317,17 @@ int main() {
 ???+ note "查询部分主要代码"
     ```cpp
     void query(char *s) {
-    int u = 1, len = strlen(s), l = 0;
-    for (int i = 0; i < len; i++) {
+      int u = 1, len = strlen(s), l = 0;
+      for (int i = 0; i < len; i++) {
         int v = s[i] - 'a';
         int k = trie[u].son[v];
         while (k > 1) {
-        if (trie[k].flag && (dp[i - trie[k].len] || i - trie[k].len == -1))
+          if (trie[k].flag && (dp[i - trie[k].len] || i - trie[k].len == -1))
             dp[i] = dp[i - trie[k].len] + trie[k].len;
-        k = trie[k].fail;
+          k = trie[k].fail;
         }
         u = trie[u].son[v];
-    }
+      }
     }
     ```
 
