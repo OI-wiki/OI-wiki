@@ -125,7 +125,7 @@ Windows 用户在 [LLVM-MinGW](https://github.com/mstorsjo/llvm-mingw/releases/)
 
 ![](images/vscode-8.png)
 
-如果下方弹出 clangd 要求关闭 Intellisense 的对话框，点击"Disable Intellisense"，重新加载工作区，就可以享受 clangd 的自动补全等功能了。
+如果下方弹出 clangd 要求关闭 Intellisense 的对话框，点击 "Disable Intellisense"，重新加载工作区，就可以享受 clangd 的自动补全等功能了。
 
 ## 参考资料与注释
 
