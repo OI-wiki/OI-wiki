@@ -264,8 +264,6 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
       int u = 1, len = strlen(s);
       for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
     }
-    ```
-
     void topu() {
         for (int i = 1; i <= cnt; i++)
             if (!indeg[i]) q.push(i);
@@ -347,49 +345,51 @@ for (int i = 0, e = strlen(T); i < e; i++) mx = std::max(mx, dp[i]);
 
 那么我们在 buildfail 的时候就可以这么写：
 
-```cpp
-void getfail(void) {
-  for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
-  q.push(1);
-  trie[1].fail = 0;
-  while (!q.empty()) {
-    int u = q.front();
-    q.pop();
-    int Fail = trie[u].fail;
-    // 对状态的更新在这里
-    trie[u].stat = trie[Fail].stat;
-    if (trie[u].flag) trie[u].stat |= 1 << trie[u].depth;
-    for (int i = 0; i < 26; i++) {
-      int v = trie[u].son[i];
-      if (!v)
-        trie[u].son[i] = trie[Fail].son[i];
-      else {
-        trie[v].depth = trie[u].depth + 1;
-        trie[v].fail = trie[Fail].son[i];
-        q.push(v);
+???+ note "构建fail指针"
+    ```cpp
+    void getfail(void) {
+      for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
+      q.push(1);
+      trie[1].fail = 0;
+      while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        int Fail = trie[u].fail;
+        // 对状态的更新在这里
+        trie[u].stat = trie[Fail].stat;
+        if (trie[u].flag) trie[u].stat |= 1 << trie[u].depth;
+        for (int i = 0; i < 26; i++) {
+          int v = trie[u].son[i];
+          if (!v)
+            trie[u].son[i] = trie[Fail].son[i];
+          else {
+            trie[v].depth = trie[u].depth + 1;
+            trie[v].fail = trie[Fail].son[i];
+            q.push(v);
+          }
+        }
       }
     }
-  }
-}
-```
+    ```
 
 然后查询时就可以去掉跳 fail 的循环，将代码简化如下：
 
-```cpp
-int query(char *s) {
-  int u = 1, len = strlen(s), mx = 0;
-  unsigned st = 1;
-  for (int i = 0; i < len; i++) {
-    int v = s[i] - 'a';
-    u = trie[u].son[v];
-    // 因为往下跳了一位每一位的长度都+1
-    st <<= 1;
-    // 这里的 & 值是状压 dp 的使用，代表两个长度集的交非空
-    if (trie[u].stat & st) st |= 1, mx = i + 1;
-  }
-  return mx;
-}
-```
+???+ note "查询"
+    ```cpp
+    int query(char *s) {
+      int u = 1, len = strlen(s), mx = 0;
+      unsigned st = 1;
+      for (int i = 0; i < len; i++) {
+        int v = s[i] - 'a';
+        u = trie[u].son[v];
+        // 因为往下跳了一位每一位的长度都+1
+        st <<= 1;
+        // 这里的 & 值是状压 dp 的使用，代表两个长度集的交非空
+        if (trie[u].stat & st) st |= 1, mx = i + 1;
+      }
+      return mx;
+    }
+    ```
 
 我们的 `trie[u].stat` 维护的是从 u 节点开始，整条 fail 链上的长度集（因为长度集小于 32 所以不影响），而 `st` 则维护的是查询字符串走到现在，前 32 位（因为状态压缩自然溢出）的长度集。
 
