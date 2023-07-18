@@ -264,17 +264,18 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
       int u = 1, len = strlen(s);
       for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
     }
+    
     void topu() {
-        for (int i = 1; i <= cnt; i++)
-            if (!indeg[i]) q.push(i);
-        while (!q.empty()) {
-            int fr = q.front();
-            q.pop();
-            vis[trie[fr].flag] = trie[fr].ans;
-            int u = trie[fr].fail;
-            trie[u].ans += trie[fr].ans;
-            if (!(--indeg[u])) q.push(u);
-        }
+      for (int i = 1; i <= cnt; i++)
+        if (!indeg[i]) q.push(i);
+      while (!q.empty()) {
+        int fr = q.front();
+        q.pop();
+        vis[trie[fr].flag] = trie[fr].ans;
+        int u = trie[fr].fail;
+        trie[u].ans += trie[fr].ans;
+        if (!(--indeg[u])) q.push(u);
+      }
     }
     ```
 
@@ -345,7 +346,7 @@ for (int i = 0, e = strlen(T); i < e; i++) mx = std::max(mx, dp[i]);
 
 那么我们在 buildfail 的时候就可以这么写：
 
-???+ note "构建fail指针"
+???+ note "构建 fail 指针"
     ```cpp
     void getfail(void) {
       for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
