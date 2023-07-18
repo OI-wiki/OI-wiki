@@ -1,4 +1,4 @@
-author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh
+author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh, xiaofu-15191
 
 ## 简介
 
@@ -21,7 +21,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 ???+ warning
     如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境，参考 [Hello, World! 页面](../../lang/helloworld.md) 以安装。
     
-    记得勾选设置中的 Run In Terminal 选项，如图：![](./images/vscode-7.png)
+ 记得勾选设置中的 Run In Terminal 选项，如图：![](./images/vscode-7.png)
 
 ## 使用 C/C++ 插件编译并调试
 
@@ -33,14 +33,6 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 
 ???+ warning
     在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了 `PATH` 中。请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端。
-
-### 配置编译
-
-首先用 VS Code 打开一个文件夹，然后按下<kbd>F1</kbd>，输入 `C/C++: Edit configurations (UI)`，进入 C/C++ 插件的设置界面。
-
-![vscode-3](images/vscode-3.png)
-
-在「编译器路径」中选择 G++ 或 Clang 的所在路径。如果没有可选项，请检查编译器所在路径是否添加到了操作系统的 `PATH` 变量中。
 
 ### 配置 IntelliSense
 
@@ -55,18 +47,16 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 #### GDB
 
 在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}`），保存并按下<kbd>F5</kbd>，进入调试模式。
-如果出现了「选择环境」的提示，选择 `C++ (GDB/LLDB)`。在「选择配置」中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`。
+如果出现了「选择调试器」的提示，选择 `C++ (GDB/LLDB)`。在「选择配置」中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`。
 
 ???+ warning
     配置名称并非固定，而是可以自定义的。不同的操作系统可能具有不同的配置名称。
 
-完成后，VS Code 将自动完成初始化操作并弹出一个 `launch.json` 配置文件。关闭它。
-
-至此，GDB 所有的配置流程已经完毕。再次按下<kbd>F5</kbd>即可看到软件下方的调试信息。
+完成后，VS Code 将自动完成初始化操作在下方的集成终端中启动调试。至此，GDB 所有的配置流程已经完毕。
 
 #### LLDB
 
-如果需要采用 LLDB，需要安装另外一款扩展[^ref1]——[CodeLLDB](https://github.com/vadimcn/vscode-lldb/)。从该项目的 Release 页面下载 .vsix 文件后[^ref2]，从 VS Code 的扩展页面安装。
+如果需要采用 LLDB，需要安装另外一款插件[^ref1]——[CodeLLDB](https://github.com/vadimcn/vscode-lldb/)。从该项目的 Release 页面下载 .vsix 文件后[^ref2]，从 VS Code 的插件页面安装。
 
 ![](images/vscode-9.png)
 
@@ -93,7 +83,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 ## 配置 clangd
 
 ???+ warning
-    由于功能冲突，安装 clangd 插件后 C/C++ 插件的 IntelliSense 功能将被自动禁用。（调试等功能仍然使用 C/C++ 插件。）如果 clangd 插件的功能出现问题，可以查看是否禁用了 C/C++ 插件的 IntelliSense 功能。
+    由于功能冲突，安装 clangd 插件后 C/C++ 插件的 IntelliSense 功能将被禁用。（调试等功能仍然使用 C/C++ 插件。）如果 clangd 插件的功能出现问题，可以查看是否禁用了 C/C++ 插件的 IntelliSense 功能。
 
 ### clangd 简介
 
@@ -135,7 +125,7 @@ Windows 用户在 [LLVM-MinGW](https://github.com/mstorsjo/llvm-mingw/releases/)
 
 ![](images/vscode-8.png)
 
-现在就可以享受 clangd 的自动补全等功能了。
+如果下方弹出 clangd 要求关闭 Intellisense 的对话框，点击"Disable Intellisense"，重新加载工作区，就可以享受 clangd 的自动补全等功能了。
 
 ## 参考资料与注释
 
