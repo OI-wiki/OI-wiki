@@ -232,52 +232,54 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 于是我们按照 fail 树建图（不用真的建，只需要记录入度）：
 
 ???+ note "建图"
-  ```cpp
-  void getfail()  // 实际上也可以叫 build
-  {
-    for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
-    q.push(1);
-    trie[1].fail = 0;
-    while (!q.empty()) {
-      int u = q.front();
-      q.pop();
-      int Fail = trie[u].fail;
-      for (int i = 0; i < 26; i++) {
-        int v = trie[u].son[i];
-        if (!v) {
-          trie[u].son[i] = trie[Fail].son[i];
-          continue;
-        }
-        trie[v].fail = trie[Fail].son[i];
-        indeg[trie[Fail].son[i]]++;  // 修改点在这里，增加了入度记录
-        q.push(v);
+
+```cpp
+void getfail()  // 实际上也可以叫 build
+{
+  for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
+  q.push(1);
+  trie[1].fail = 0;
+  while (!q.empty()) {
+    int u = q.front();
+    q.pop();
+    int Fail = trie[u].fail;
+    for (int i = 0; i < 26; i++) {
+      int v = trie[u].son[i];
+      if (!v) {
+        trie[u].son[i] = trie[Fail].son[i];
+        continue;
       }
+      trie[v].fail = trie[Fail].son[i];
+      indeg[trie[Fail].son[i]]++;  // 修改点在这里，增加了入度记录
+      q.push(v);
     }
   }
-  ```
+}
+```
 
 然后我们在查询的时候就可以只为找到节点的 ans 打上标记，在最后再用拓扑排序求出答案。
 
 ???+ note "查询"
-  ```cpp
-  void query(char *s) {
-    int u = 1, len = strlen(s);
-    for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
-  }
 
-  void topu() {
-    for (int i = 1; i <= cnt; i++)
-      if (!indeg[i]) q.push(i);
-    while (!q.empty()) {
-      int fr = q.front();
-      q.pop();
-      vis[trie[fr].flag] = trie[fr].ans;
-      int u = trie[fr].fail;
-      trie[u].ans += trie[fr].ans;
-      if (!(--indeg[u])) q.push(u);
-    }
+```cpp
+void query(char *s) {
+  int u = 1, len = strlen(s);
+  for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
+}
+
+void topu() {
+  for (int i = 1; i <= cnt; i++)
+    if (!indeg[i]) q.push(i);
+  while (!q.empty()) {
+    int fr = q.front();
+    q.pop();
+    vis[trie[fr].flag] = trie[fr].ans;
+    int u = trie[fr].fail;
+    trie[u].ans += trie[fr].ans;
+    if (!(--indeg[u])) q.push(u);
   }
-  ```
+}
+```
 
 主函数里这么写：
 
@@ -314,21 +316,22 @@ int main() {
 主要代码如下（若不熟悉代码中的类型定义可以跳到末尾的完整代码）：
 
 ???+ note "查询部分主要代码"
-  ```cpp
-  void query(char *s) {
-    int u = 1, len = strlen(s), l = 0;
-    for (int i = 0; i < len; i++) {
-      int v = s[i] - 'a';
-      int k = trie[u].son[v];
-      while (k > 1) {
-        if (trie[k].flag && (dp[i - trie[k].len] || i - trie[k].len == -1))
-          dp[i] = dp[i - trie[k].len] + trie[k].len;
-        k = trie[k].fail;
-      }
-      u = trie[u].son[v];
+
+```cpp
+void query(char *s) {
+  int u = 1, len = strlen(s), l = 0;
+  for (int i = 0; i < len; i++) {
+    int v = s[i] - 'a';
+    int k = trie[u].son[v];
+    while (k > 1) {
+      if (trie[k].flag && (dp[i - trie[k].len] || i - trie[k].len == -1))
+        dp[i] = dp[i - trie[k].len] + trie[k].len;
+      k = trie[k].fail;
     }
+    u = trie[u].son[v];
   }
-  ```
+}
+```
 
 主函数里取 max 即可。
 
