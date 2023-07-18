@@ -231,51 +231,53 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 于是我们按照 fail 树建图（不用真的建，只需要记录入度）：
 
-```cpp
-void getfail()  // 实际上也可以叫 build
-{
-  for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
-  q.push(1);
-  trie[1].fail = 0;
-  while (!q.empty()) {
-    int u = q.front();
-    q.pop();
-    int Fail = trie[u].fail;
-    for (int i = 0; i < 26; i++) {
-      int v = trie[u].son[i];
-      if (!v) {
-        trie[u].son[i] = trie[Fail].son[i];
-        continue;
+???+ note "建图"
+  ```cpp
+  void getfail()  // 实际上也可以叫 build
+  {
+    for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
+    q.push(1);
+    trie[1].fail = 0;
+    while (!q.empty()) {
+      int u = q.front();
+      q.pop();
+      int Fail = trie[u].fail;
+      for (int i = 0; i < 26; i++) {
+        int v = trie[u].son[i];
+        if (!v) {
+          trie[u].son[i] = trie[Fail].son[i];
+          continue;
+        }
+        trie[v].fail = trie[Fail].son[i];
+        indeg[trie[Fail].son[i]]++;  // 修改点在这里，增加了入度记录
+        q.push(v);
       }
-      trie[v].fail = trie[Fail].son[i];
-      indeg[trie[Fail].son[i]]++;  // 修改点在这里，增加了入度记录
-      q.push(v);
     }
   }
-}
-```
+  ```
 
 然后我们在查询的时候就可以只为找到节点的 ans 打上标记，在最后再用拓扑排序求出答案。
 
-```cpp
-void query(char *s) {
-  int u = 1, len = strlen(s);
-  for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
-}
-
-void topu() {
-  for (int i = 1; i <= cnt; i++)
-    if (!indeg[i]) q.push(i);
-  while (!q.empty()) {
-    int fr = q.front();
-    q.pop();
-    vis[trie[fr].flag] = trie[fr].ans;
-    int u = trie[fr].fail;
-    trie[u].ans += trie[fr].ans;
-    if (!(--indeg[u])) q.push(u);
+???+ note "查询"
+  ```cpp
+  void query(char *s) {
+    int u = 1, len = strlen(s);
+    for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
   }
-}
-```
+
+  void topu() {
+    for (int i = 1; i <= cnt; i++)
+      if (!indeg[i]) q.push(i);
+    while (!q.empty()) {
+      int fr = q.front();
+      q.pop();
+      vis[trie[fr].flag] = trie[fr].ans;
+      int u = trie[fr].fail;
+      trie[u].ans += trie[fr].ans;
+      if (!(--indeg[u])) q.push(u);
+    }
+  }
+  ```
 
 主函数里这么写：
 
@@ -380,18 +382,17 @@ int query(char *s) {
     u = trie[u].son[v];
     // 因为往下跳了一位每一位的长度都+1
     st <<= 1;
-    // 这里的 & 十分妙，下文会讲到
+    // 这里的 & 值是状压 dp 的使用，代表两个长度集的交非空
     if (trie[u].stat & st) st |= 1, mx = i + 1;
   }
   return mx;
 }
 ```
 
-下面来解答一下 `&` 在上文代码中的作用。
 
-我们的 `trie[u].stat` 维护的是从 u 节点开始，整条 fail 链上的长度集（因为长度集小于 $32$ 所以不影响），而 `st` 则维护的是查询字符串走到现在，前 $32$ 位（因为状态压缩自然溢出）的长度集。
+我们的 `trie[u].stat` 维护的是从 u 节点开始，整条 fail 链上的长度集（因为长度集小于 32 所以不影响），而 `st` 则维护的是查询字符串走到现在，前 32 位（因为状态压缩自然溢出）的长度集。
 
-`&` 值不为 $0$，则代表两个长度集的交集非空，我们此时就找到了一个匹配。
+`&` 值不为 0，则代表两个长度集的交集非空，我们此时就找到了一个匹配。
 
 ???+ note "完整代码"
     [P2292 \[HNOI2004\] L 语言](https://www.luogu.com.cn/problem/P2292)
