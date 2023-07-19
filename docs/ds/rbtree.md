@@ -13,9 +13,9 @@
 
 ![rbtree-example](images/rbtree-example.svg)
 
-注：部分资料中还加入了第五条性质，即根节点必须为黑色，这条性质要求完成插入操作后若根节点为红色则将其染黑，但由于将根节点染黑的操作也可以延迟至删除操作时进行，因此，该条性质并非必须满足。（在本文给出的代码实现中就没有选择满足该性质）。为严谨起见，这里同时引用维基百科原文进行说明：
+注：部分资料中还加入了第五条性质，即根节点必须为黑色，这条性质要求完成插入操作后若根节点为红色则将其染黑，但由于将根节点染黑的操作也可以延迟至删除操作时进行，因此，该条性质并非必须满足。（在本文给出的代码实现中就没有选择满足该性质）。为严谨起见，这里同时引用 [维基百科原文](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Properties) 进行说明：
 
-> Some authors, e.g. Cormen & al.,[\[18\]](https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Cormen2009-18) claim "the root is black" as fifth requirement; but not Mehlhorn & Sanders [\[17\]](https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Mehlhorn2008-17) or Sedgewick & Wayne.[\[16\]](https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Algs4-16): 432–447  Since the root can always be changed from red to black, this rule has little effect on analysis. This article also omits it, because it slightly disturbs the recursive algorithms and proofs.
+> Some authors, e.g. Cormen & al.,[^cite_note-Cormen2009-18] claim "the root is black" as fifth requirement; but not Mehlhorn & Sanders [^cite_note-Mehlhorn2008-17] or Sedgewick & Wayne.[^cite_note-Algs4-16] Since the root can always be changed from red to black, this rule has little effect on analysis. This article also omits it, because it slightly disturbs the recursive algorithms and proofs.
 
 ## 结构
 
@@ -616,3 +616,7 @@ JDK 中的 `TreeMap` 和 `TreeSet` 都是使用红黑树作为底层数据结构
 
 -   [Red-Black Tree - Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
 -   [Red-Black Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+
+[^cite_note-Cormen2009-18]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Cormen2009-18>
+[^cite_note-Mehlhorn2008-17]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Mehlhorn2008-17>
+[^cite_note-Algs4-16]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Algs4-16>: 432–447
