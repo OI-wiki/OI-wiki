@@ -1,26 +1,34 @@
 author: accelsao, Henry-ZHR, yuhuoji
 
-本页从一般图最大全完美匹配到一般图最大权匹配。
+本页从一般图最大权完美匹配到一般图最大权匹配（最大权匹配可以通过增加零边变成完美匹配）。
 
 ## 预备知识
 
-一般图匹配和二分图匹配不同的是，图可能存在奇环。可以将偶环视为二分图解决。
+## 花（blossom）
 
-带花树算法（Blossom Algorithm）的处理方式时是遇到奇环就把它缩成一个**花（Blossom ）**。
+一般图匹配和二分图匹配不同的是，图可能存在奇环。可以将偶环视为二分图。
+
+带花树算法（Blossom Algorithm）的处理方式时是遇到奇环就把它缩成一个**花（Blossom ）**，并把花中所有的点设为偶点。既然花上的点都可以成为偶点，那么可以把整个花直接缩成一个偶点。注意，一个花可以包含其它花。
 
 这也可以变成线性规划和对偶问题，但是要对花进行一些处理。
 
-### 等边
+### 顶标（vertex labeling）和等边（Equality Edge）
+
+这里的 $z$ 就是 $KM$ 算法中的顶标（vertex labeling）。定义边 $e(u,v)$ 为”等边“当且仅当 $z_u+z_v=w(e)$，也即 $z_e=0$。根据上述互补松弛条件，**匹配只能在等边构成的子图上建**。
 
 
 
-## 定义
+## 一般图最大权完美匹配的线性规划
+
+### 定义
+
+因为一朵花最少有三个点，缩花后成为一个点。设 $O$ 为大小为 $≥3$ 奇数的集合的集合（包含所有花），$\gamma(S)$ 表示 $S$ 集合中的边。
 
 设$S\subseteq V$
 $\gamma(S)=\{(u,v)\in E:u\in S,v\in S\}$
 $O=\{B\subseteq V:|B|\text{是奇数且}|B|\geq3\}$
 
-## 一般图最大权完美匹配的线性规划
+### 对偶问题
 
 ???+ note "原问题"
     $max\sum_{e\in E}w(e)x_e$
@@ -28,6 +36,8 @@ $O=\{B\subseteq V:|B|\text{是奇数且}|B|\geq3\}$
     $x(\delta(u))=1:\forall u\in V$ 
     $x(\gamma(B))\leq\lfloor\frac{|B|}2\rfloor:\forall B\in O$ 
     $x_e\geq0:\forall e\in E$
+
+通过原始对偶（Primal-Dual）将问题转换为对偶问题。
 
 ???+ note "对偶问题"
     $min\sum_{u\in V}z_u+\sum_{B\in O}\lfloor\frac{|B|}2\rfloor z_B$ 
@@ -55,9 +65,7 @@ z_B>0&\longrightarrow&x(\gamma(B))=\lfloor\frac{|B|}2\rfloor,&x(\delta(B))=1&\fo
 $$
 可以发现在$z_B>0$时，B就会是一朵花。
 
-以「等边」的概念，结合之前的带花树算法:
-
-用「等边」构成的增广路不断进行扩充，由于用来扩充的边全是「等边」，最后得到的最大权完美匹配仍然全是「等边」。
+以「等边」的概念，结合之前的带花树算法：用「等边」构成的增广路不断进行扩充，由于用来扩充的边全是「等边」，最后得到的最大权完美匹配仍然全是「等边」。
 
 ### 处理花的问题
 
@@ -89,18 +97,18 @@ $$
 和二分圖一樣，也會有找不到「等邊」擴充的問題
 必須要調整vertex labeling
 
-### 調整 VERTEX LABELING
+### 调整 VERTEX LABELING
 
 vertex labeling 仍要維持大於等於的性質
 而且既有的「等邊」不能被改變
-還要讓zB��盡量的小
+还要让$z_B$尽量的小
 
-## 一般图最大權匹配
+## 一般图最大权匹配
 
 vertex labeling 額外增加一個限制：
 對於所有匹配點u�，zu>0��>0
 
-一開始先設所有zu=max({w(e):e∈E})/2��=���({�(�):�∈�})/2
+一開始先設所有zu=max({w(e):e∈E})/2
 vertex labeling為 0 的點最後將成為未匹配點
 
 ## Code
