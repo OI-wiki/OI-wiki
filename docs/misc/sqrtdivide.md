@@ -10,8 +10,10 @@
 
 ???+ note "[CF1207F Remainder Problem](https://www.luogu.com.cn/problem/CF1207F)"
     给定一个长度为 $n \le 5 \times 10^5$ 的序列，初值为 $0$。要完成 $q \le 5 \times 10^5$ 次操作，操作有如下两种：
-    1. `1 x y`：将下标为 $x$ 的位置的值加上 $y$；
-    2. `2 x y`：询问所有下标模 $x$ 的结果为 $y$ 的位置的值之和，即计算：
+    
+    1.  `1 x y`：将下标为 $x$ 的位置的值加上 $y$；
+    2.  `2 x y`：询问所有下标模 $x$ 的结果为 $y$ 的位置的值之和，即计算：
+    
     $$
     f(x, y) = \sum_{k \equiv y \pmod{x}} a_k
     $$
@@ -28,8 +30,8 @@
 
 上述两种暴力对应了两种极端：
 
-- 暴力 I：操作 1 的时间复杂度为 $O(1)$，操作 2 的时间复杂度为 $O(n)$；
-- 暴力 II：操作 1 的时间复杂度为 $O(n)$，操作 2 的时间复杂度为 $O(1)$。
+-   暴力 I：操作 1 的时间复杂度为 $O(1)$，操作 2 的时间复杂度为 $O(n)$；
+-   暴力 II：操作 1 的时间复杂度为 $O(n)$，操作 2 的时间复杂度为 $O(1)$。
 
 那么，有没有办法让这两种暴力融合一下，均摊时间复杂度，达到一个平衡呢？
 
@@ -37,41 +39,45 @@
 
 对于操作 1，使用暴力 I 的同时：
 
-- 若 $x \le B$，则维护暴力 II 的 $b$ 数组。此时每次操作 1 只需要枚举前 $B$ 个模数即可，故单次操作 1 的时间复杂度降为 $O(B)$；
-- 若 $x > B$，则不维护暴力 II 的 $b$ 数组。
+-   若 $x \le B$，则维护暴力 II 的 $b$ 数组。此时每次操作 1 只需要枚举前 $B$ 个模数即可，故单次操作 1 的时间复杂度降为 $O(B)$；
+-   若 $x > B$，则不维护暴力 II 的 $b$ 数组。
 
 对于操作 2：
 
-- 若 $x \le B$，使用暴力 II 的 $b$ 数组直接输出即可；
-- 若 $x > B$，使用暴力 I。由于所有满足 $k \equiv y \pmod{x}$ 的下标 $k$ 必定是 $y + rx$ 的形式（其中 $r \in \mathbf Z$），因此最多有 $\lceil n / B\rceil$ 种取值，故单次操作 2 的时间复杂度降为 $O(n / B)$。
+-   若 $x \le B$，使用暴力 II 的 $b$ 数组直接输出即可；
+-   若 $x > B$，使用暴力 I。由于所有满足 $k \equiv y \pmod{x}$ 的下标 $k$ 必定是 $y + rx$ 的形式（其中 $r \in \mathbf Z$），因此最多有 $\lceil n / B\rceil$ 种取值，故单次操作 2 的时间复杂度降为 $O(n / B)$。
 
 综上总时间复杂度变为了 $O(q(B + n / B))$，取 $B = \sqrt n$ 可以使 $B + n / B$ 达到最小值 $2\sqrt n$，此时总时间复杂度为 $O(q\sqrt n)$，空间复杂度 $O(n)$，可以通过此题。
 
 ??? "参考代码"
     ```cpp
-    #include<bits/stdc++.h>
+    #include <bits/stdc++.h>
     #define ll long long
     #define mp make_pair
     using namespace std;
-    ll sum[755][755],a[500005];  //这里我的阈值取了700
-    int main(){
-        ios_base::sync_with_stdio(false);cin.tie(0),cout.tie(0);
-        int q;cin>>q;
-        for(;q--;){
-            int tp,x,y;cin>>tp>>x>>y;
-            if(tp==1){  
-                for(int i=1;i<700;++i)sum[i][x%i]+=y;   //枚举模数
-                a[x]+=y;
-            }else{
-                if(x<700){
-                    cout<<sum[x][y]<<endl;
-                }else{
-                    ll rt=0;
-                    for(int i=y;i<=500000;i+=x)rt+=a[i];  //暴力统计
-                    cout<<rt<<endl;
-                }
-            }
+    ll sum[755][755], a[500005];  // 这里我的阈值取了700
+    
+    int main() {
+      ios_base::sync_with_stdio(false);
+      cin.tie(0), cout.tie(0);
+      int q;
+      cin >> q;
+      for (; q--;) {
+        int tp, x, y;
+        cin >> tp >> x >> y;
+        if (tp == 1) {
+          for (int i = 1; i < 700; ++i) sum[i][x % i] += y;  // 枚举模数
+          a[x] += y;
+        } else {
+          if (x < 700) {
+            cout << sum[x][y] << endl;
+          } else {
+            ll rt = 0;
+            for (int i = y; i <= 500000; i += x) rt += a[i];  // 暴力统计
+            cout << rt << endl;
+          }
         }
+      }
     }
     ```
 
@@ -79,4 +85,4 @@
 
 ## 参考资料
 
-- [暴力美学——浅谈根号分治](https://www.luogu.com.cn/blog/Amateur-threshold/pu-li-mei-xue-qian-tan-gen-hao-fen-zhi#)
+-   [暴力美学——浅谈根号分治](https://www.luogu.com.cn/blog/Amateur-threshold/pu-li-mei-xue-qian-tan-gen-hao-fen-zhi#)
