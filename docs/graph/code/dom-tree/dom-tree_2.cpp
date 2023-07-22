@@ -78,9 +78,6 @@ void build() {
 }
 
 int main() {
-  cin.tie(NULL);
-  cout.tie(NULL);
-  std::ios::sync_with_stdio(false);
   cin >> n;
   for (int i = 1; i <= n; ++i) {
     while (true) {
