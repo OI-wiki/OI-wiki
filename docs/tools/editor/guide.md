@@ -93,4 +93,4 @@ GUIDE 自带的调试功能存在很多 bug（如程序中途发生崩溃等）�
 
 建议直接在 [终端](../cmd.md) 下使用 gdb 来进行调试。
 
-[^ref1]: [NOI Linux 2.0发布，将于9月1日起正式启用！](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
+[^ref1]: [NOI Linux 2.0 发布，将于 9 月 1 日起正式启用！](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
