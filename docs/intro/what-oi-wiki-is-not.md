@@ -5,7 +5,7 @@ author: abc1763613206, HeRaNO, NachtgeistW, r-value, Tiphereth-A, wlbksy, YZirco
 
 ## OI Wiki 不是发表原创研究的场所
 
-作为一个 Wiki，**OI Wiki** 不是发表 [原创研究](https://en.wikipedia.org/wiki/Wikipedia:No_original_research)（如 **新理论及解法**、**原创观点**、**自创定义或词语**等）的场所。例如：
+作为一个 Wiki，**OI Wiki** 不是发表 [原创研究](https://en.wikipedia.org/wiki/Wikipedia:No_original_research)（如 **新理论及解法**、**原创观点**、**自创定义或词语** 等）的场所。例如：
 
 -   您发现了某题目的非常规做法，若您不能证明该做法已经被应用于其他题目中，则 **不应** 在 **OI Wiki** 中开设单独的界面。
 -   您提出了新的算法或数据结构，若您不能证明该内容已经被用于解决编程竞赛中的某一类问题，则 **不应** 将其提交至 **OI Wiki**。
