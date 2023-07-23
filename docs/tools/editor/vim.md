@@ -8,27 +8,9 @@ Vim 是从 vi 发展出来的一个文本编辑器。其代码补完、编译及
 
 ## 安装
 
-### 系统自带
-
 Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用。
 
-### 手动安装
-
-#### Windows
-
-直接前往官网下载 [安装包](https://ftp.nluug.nl/pub/vim/pc/gvim82.exe)，然后按步骤安装即可。
-
-#### Linux
-
-系统自带的 `vim`（即使用包管理器安装得到的），可能是 `vim-tiny` 或者 `vim-basic`。这类版本会缺少一些功能（如部分语言高亮、剪贴板支持等），具体可通过 `vim --version` 查看。此时，可以尝试安装 `vim-gtk3`，以获得更多的功能。
-
-在终端输入
-
-```bash
-vim
-```
-
-如果在屏幕中间出现包括 Vim 版本号、维护人员以及一些类似「Help poor children in Uganda!」或者「帮助乌干达的可怜儿童！」等文字[^note1]，说明 Vim 已经安装成功。
+若需手动安装，可前往 [download : vim online](https://www.vim.org/download.php) 获取并安装。
 
 ## 基础篇：Vim 的模式与常用键位
 
