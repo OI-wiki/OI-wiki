@@ -162,4 +162,5 @@ sudo zypper in llvm clang
 在随后弹出来的窗口中仅选择 使用 C++ 的桌面开发，然后单击安装。
 
 [^temurin]: [Eclipse Temurin](https://adoptium.net/) 即为原 [AdoptOpenJDK](https://adoptopenjdk.net/)，后者已于 2021 年 7 月移交至 [Eclipse 基金会](https://www.eclipse.org/org/foundation/)。具体可见 [本声明](https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/)。
+
 [^pythonimpl]: [Alternative Python Implementations | Python.org](https://www.python.org/download/alternatives/)
