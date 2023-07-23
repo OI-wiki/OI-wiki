@@ -93,7 +93,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 ## 配置 clangd
 
 ???+ warning
-    由于功能冲突，安装 clangd 插件后 C/C++ 插件的 IntelliSense 功能将被自动禁用。（调试等功能仍然使用 C/C++ 插件。）如果 clangd 插件的功能出现问题，可以查看是否禁用了 C/C++ 插件的 IntelliSense 功能。
+    由于功能冲突，安装 clangd 插件后 C/C++ 插件的 IntelliSense 功能将被自动禁用。（调试等功能仍然使用 C/C++ 插件）如果 clangd 插件的功能出现问题，可以查看是否禁用了 C/C++ 插件的 IntelliSense 功能。
 
 ### clangd 简介
 
@@ -107,27 +107,7 @@ VS Code 的 C/C++ 插件也有自动补全等功能，但在提示信息的易�
 
 ### 安装
 
-Linux 用户可以直接用内置的包管理器安装 clangd，各个发行版的操作大同小异。
-
-```bash
-# Ubuntu/Debian
-sudo apt install clangd 
-```
-
-有的发行版只需要安装 clang。
-
-```bash
-# Arch/Manjaro
-sudo pacman -S clang
-```
-
-对于 macOS 用户，由于自带的 XcodeCommandLineTools 中的 LLVM 不包含 clangd，需要使用 Homebrew 安装 LLVM。
-
-```bash
-brew install llvm
-```
-
-Windows 用户在 [LLVM-MinGW](https://github.com/mstorsjo/llvm-mingw/releases/) 上下载二进制文件并安装，该版本集成了 MinGW-W64，避免缺少头文件[^ref3]。
+参见 [Getting started](https://clangd.llvm.org/installation)。
 
 ### VS Code 插件
 
