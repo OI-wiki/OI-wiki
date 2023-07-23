@@ -241,8 +241,8 @@ nav:
       - 乘法逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
+      - 升幂引理: math/number-theory/lift-the-exponent.md
       - 威尔逊定理: math/number-theory/wilson.md
-      - 升幂定理: math/number-theory/lift-the-exponent.md
       - 卢卡斯定理: math/number-theory/lucas.md
       - 同余方程: math/number-theory/congruence-equation.md
       - 二次剩余: math/number-theory/quad-residue.md
