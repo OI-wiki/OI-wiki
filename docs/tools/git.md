@@ -9,7 +9,7 @@ Git 是目前使用最广泛的版本控制系统之一。**OI Wiki** 也使用�
 
 ## 配置
 
-Git 根据配置文件的应用范围，将配置文件分为不同的等级，其中较常用的有两个级别[^note3]：
+Git 根据配置文件的应用范围，将配置文件分为不同的等级，其中较常用的有两个级别[^note1]：
 
 1.  适用于当前用户的全局配置文件，该用户操作本系统上的所有仓库时都会查询该配置文件。
 2.  适用于当前仓库的配置文件。
@@ -380,7 +380,7 @@ git merge <branch> --squash
 
 #### Rebase（变基）
 
-使用 Rebase 方式将分支 B 并入分支 A 时，在 B 分支上的每一次 commit 都会单独添加到 A 分支，而不再像 Merge 方式那样创建一个合并 commit 来合并两个分支的内容[^note4]。
+使用 Rebase 方式将分支 B 并入分支 A 时，在 B 分支上的每一次 commit 都会单独添加到 A 分支，而不再像 Merge 方式那样创建一个合并 commit 来合并两个分支的内容[^note2]。
 
 首先，切换到 B 分支，接下来将 B 分支变基到 A 分支：
 
@@ -505,7 +505,7 @@ $ git clone git@github.com:OI-wiki/OI-wiki.git
 
 对于不熟悉命令行的同学，纯命令行的 Git 的上手难度可能会偏高，而借助 GUI 工具可以一定程度上降低 Git 的上手难度。此外，相比于命令行，GUI 工具在查看 diff 以及 log 时在体验上有一定程度的提高。
 
-Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如针对 Windows 用户的 TortoiseGit[^note5]，支持 Windows 和 Mac 的 Sourcetree[^note6]等。
+Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如针对 Windows 用户的 TortoiseGit[^note3]，支持 Windows 和 Mac 的 Sourcetree[^note4]等。
 
 这里简单介绍一下 TortoiseGit 的使用。下载并安装好 TortoiseGit 之后，在本地仓库的目录下，单击鼠标右键，在右键菜单中就可以看到 Git 的各个功能。
 
@@ -523,14 +523,10 @@ Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如
 
 ## 参考资料与注释
 
-[^note1]: 在某些地方（比如 [LFS 官网](https://git-lfs.github.com/)）又被称作 Git Large File Storage（大文件存储）。它在将项目托管到平台上时，用文本指针代替音频、视频、图像、数据集等大文件的原始文件，从而加快传输速度。对移动应用程序开发人员、游戏工程师以及任何需要大文件构建软件的人，该功能都极为实用。若想进一步了解该功能，可以参考 [Atlassian 官方介绍 Git LFS 的译文](https://www.cnblogs.com/cangqinglang/p/13097777.html)。
+[^note1]: 事实上 Git 还有一个针对系统上每一个用户及系统上所有仓库的通用配置文件，该配置文件覆盖范围最广，等级在用户配置文件之上。因为该配置实践中较少使用，这里不再展开。
 
-[^note2]: 但是，Git for Windows 对 Vim 的描述是「虽然强大，但是可能会难以使用。用户界面反人类，键位映射卡手。Git 使用 Vim 作为默认编辑器只是出于历史原因，强烈推荐换用一个 UI 设计现代化的编辑器。」，并给「难以使用」加上了 [Stack Overflow 每年帮助一百万名开发者退出 Vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/) 的页面链接。
+[^note2]: [Pro Git Book](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA) 中提供了可视化的 Rebase 过程图，借助图片读者可以更好地理解 Rebase 的机制。
 
-[^note3]: 事实上 Git 还有一个针对系统上每一个用户及系统上所有仓库的通用配置文件，该配置文件覆盖范围最广，等级在用户配置文件之上。因为该配置实践中较少使用，这里不再展开。
+[^note3]: [TortoiseGit](https://tortoisegit.org/)
 
-[^note4]: [Pro Git Book](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA) 中提供了可视化的 Rebase 过程图，借助图片读者可以更好地理解 Rebase 的机制。
-
-[^note5]: [TortoiseGit](https://tortoisegit.org/)
-
-[^note6]: [Sourcetree](https://www.sourcetreeapp.com/)
+[^note4]: [Sourcetree](https://www.sourcetreeapp.com/)
