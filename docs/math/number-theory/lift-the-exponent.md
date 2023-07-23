@@ -1,83 +1,126 @@
-## 定义
+## 内容
 
-升幂定理（Lift the Exponent，常简记为 LTE）根据相应乘法群的结构不同，升幂定理分为两部分，模为奇素数与模为 $2$，简记为 $LTEp$ 和 $LTE2$。
+升幂（Lift the Exponent，LTE）引理是初等数论中比较常用的一个定理。
 
-定理需要记 $v_p(n)$ 为素数 $p$ 在整数 $n$ 中的个数，即 $p^{v_p(n)}$ 恰好整除整数 $n$，$p^{v_p(n)+1}$ 不整除整数 $n$。
+定义 $v_p(n)$ 为整数 $n$ 的标准分解中素因子 $p$ 的幂次，即 $v_p(n)$ 满足 $p^{v_p(n)}\mid n$ 且 $p^{v_p(n)+1}\nmid n$.
 
-由于其针对模数为素数的幂（$\pmod {p^a}$）的强大威力，常出现在各种结论的快速证明中。
+由于升幂引理内容较长，我们将其分为三部分介绍：
 
-## 模为奇素数
+以下内容设 $p$ 为素数，$x,y$ 为满足 $p\nmid x$ 且 $p\nmid y$ 的整数，$n$ 为正整数。
 
-前提条件：$n$ 为正整数，整数 $a$ 与 $b$ 不被 $p$ 整除，且模 $p$ 同余。
+### 第一部分
 
-定理为等式：
+对所有的素数 $p$ 和满足 $(n,p)=1$ 的整数 $n$，
 
-$$
-v_p(a^n-b^n)=v_p(a-b)+v_p(n)
-$$
+1.  若 $p\mid x-y$，则：
 
-### 证明
+    $$
+    v_p\left(x^n-y^n\right)=v_p(x-y)
+    $$
 
-设 $n=p^km$，则 $k=v_p(n)$，$p$ 不整除 $m$。
+2.  若 $p\mid x+y$，则对奇数 $n$ 有：
 
-$$
-a^n-b^n=a^{p^km}-b^{p^km}=(a^{p^k}-b^{p^k})(a^{m-1}+a^{m-2}b+\ldots+b^{m-1})
-$$
+    $$
+    v_p\left(x^n+y^n\right)=v_p(x+y)
+    $$
 
-模 $p$ 容易发现 $p$ 不整除 $a^{m-1}+a^{m-2}b+\ldots+b^{m-1}$。
+???+ note "证明"
+    若 $p\mid x-y$，则不难发现 $p\mid x-y\iff x\equiv y\pmod p$，则显然有：
+    
+    $$
+    \sum_{i=0}^{n-1}x^iy^{n-1-i}\equiv nx^{n-1}\not\equiv 0\pmod p
+    $$
+    
+    进而由 $x^n-y^n=(x-y)\sum_{i=0}^{n-1}x^iy^{n-1-i}$ 可知命题得证。
+    
+    对 $p\mid x+y$ 的情况证明方法类似。
 
-问题转化为分析 $a^{p^k}-b^{p^k}$。只要 $k$ 大于 $0$，记 $c=a^{p^{k-1}}$，$d=b^{p^{k-1}}$：
+### 第二部分
 
-$$
-a^{p^k}-b^{p^k}=c^p-d^p=(c-d)(c^{p-1}+c^{p-2}d+\ldots+d^{p-1})
-$$
+若 $p$ 是奇素数，
 
-模 $p$ 容易发现 $p$ 整除 $c^{p-1}+c^{p-2}d+\ldots+d^{p-1}$。若令 $d=c+kp$，由二项式定理有：
+1.  若 $p\mid x-y$，则：
 
-$$
-c^{p-1}+c^{p-2}d+\ldots+d^{p-1}=\frac{d^p-c^p}{d-c}=\frac{(c+kp)^p-c^p}{kp}=C_p^1 c^{p-1}+C_p^2 c^{p-2}kp+\ldots\equiv C_p^1 c^{p-1} \pmod {p^2}
-$$
+    $$
+    v_p\left(x^n-y^n\right)=v_p(x-y)+v_p(n)
+    $$
 
-因为 $p$ 是奇素数，可以得知 $p^2$ 不整除 $C_p^1 c^{p-1}$，因此也不整除 $c^{p-1}+c^{p-2}d+\ldots+c^{p-1}$。
+2.  若 $p\mid x+y$，则对奇数 $n$ 有：
 
-利用归纳法，初始条件显然，从而证完了原命题。
+    $$
+    v_p\left(x^n+y^n\right)=v_p(x+y)+v_p(n)
+    $$
 
-## 模为 2
+???+ note "证明"
+    若 $p\mid x-y$，令 $y=x+kp$，我们只需证明 $p\mid n$ 的情况。
+    
+    -   若 $n=p$，则由二项式定理：
+    
+        $$
+        \begin{aligned}
+            \sum_{i=0}^{p-1}x^{p-1-i}y^i&=\sum_{i=0}^{p-1}x^{p-1-i}\sum_{j=0}^i\binom{i}{j}x^j(kp)^{i-j}\\
+            &\equiv px^{p-1} \pmod{p^2}\\
+        \end{aligned}
+        $$
+    
+        从而
+    
+        $$
+        v_p\left(x^n-y^n\right)=v_p(x-y)+1
+        $$
+    -   若 $n=p^a$，则由数学归纳法可得
+    
+        $$
+        v_p\left(x^n-y^n\right)=v_p(x-y)+a
+        $$
+    
+    因此命题得证。
+    
+    对 $p\mid x+y$ 的情况证明方法类似。
 
-前提条件：$n$ 为正整数，整数 $a$ 与 $b$ 都是奇数。
+### 第三部分
 
-如果 $n$ 为奇数，定理为等式：
+若 $p=2$ 且 $p\mid x-y$，
 
-$$
-v_2(a^n-b^n)=v_2(a-b)
-$$
+1.  对奇数 $n$ 有（与第一部分的 1 相同）：
 
-如果 $n$ 为偶数，定理为等式：
+    $$
+    v_p\left(x^n-y^n\right)=v_p(x-y)
+    $$
 
-$$
-v_2(a^n-b^n)=v_2(a-b)+v_2(a+b)+v_2(n)-1
-$$
+2.  对偶数 $n$ 有：
 
-### 证明
+    $$
+    v_p\left(x^n-y^n\right)=v_p(x-y)+v_p(x+y)+v_p(n)-1
+    $$
 
-设 $n=2^km$，则 $k=v_2(n)$，$2$ 不整除 $m$。
+另外对上述的 $x,y,n$，我们有：
 
-$$
-a^n-b^n=a^{2^km}-b^{2^km}=(a^{2^k}-b^{2^k})(a^{m-1}+a^{m-2}b+\ldots+b^{m-1})
-$$
+若 $4\mid x-y$，则：
 
-模 $2$ 容易发现 $2$ 不整除 $a^{m-1}+a^{m-2}b+\ldots+b^{m-1}$。
+-   $v_2(x+y)=1$
+-   $v_2\left(x^n-y^n\right)=v_2(x-y)+v_2(n)$
 
-如果 $n$ 为奇数，则 $k$ 为 $0$，$n=m$，这部分定理就证完了。
+???+ note "证明"
+    我们只需证明 $n$ 为偶数的情况。由于此时 $p\nmid \dbinom{p}{2}$，故我们不能用第二部分的方法证明。
+    
+    令 $n=2^a b$，其中 $a=v_p(n)$，$2\nmid b$，从而
+    
+    $$
+    \begin{aligned}
+        v_p\left(x^n-y^n\right)&=v_p\left(x^{2^a}-y^{2^a}\right)\\
+        &=v_p\left((x-y)(x+y)\prod_{i=1}^{a-1}\left(x^{2^i}+y^{2^i}\right)\right)
+    \end{aligned}
+    $$
+    
+    注意到 $2\mid x-y\implies 4\mid x^2-y^2$，从而 $(\forall i\geq 1),~~x^{2^i}+y^{2^i}\equiv 2\pmod 4$，进而上式可变为：
+    
+    $$
+    v_p\left(x^n-y^n\right)=v_p(x-y)+v_p(x+y)+v_p(n)-1
+    $$
+    
+    因此命题得证。
 
-如果 $n$ 为偶数，则 $k$ 至少为 $1$，问题转化为分析 $a^{2^k}-b^{2^k}$。
+## 参考资料
 
-如果 $k$ 大于 $1$，记 $c=a^{2^{k-1}}$，$d=b^{2^{k-1}}$：
-
-$$
-a^{2^k}-b^{2^k}=c^2-d^2=(c-d)(c+d)
-$$
-
-容易发现 $2$ 整除 $c+d$。由于假设 $k$ 大于 $1$，于是 $c$ 和 $d$ 都是平方数，于是 $4$ 不整除 $c+d$，因此 $c+d$ 里只含一个 $2$。
-
-因为 $k$ 至少为 $1$，归纳法的初始条件为 $a^2-b^2=(a+b)(a-b)$，在 $\frac{a+b}{2}$ 和 $\frac{a-b}{2}$ 中至少有一个不被 $2$ 整除，$v_2(a-b)$ 和 $v_2(a+b)$ 中有一个是 $1$，从而定理成立。
+1.  [Lifting-the-exponent lemma - Wikipedia](https://en.wikipedia.org/wiki/Lifting-the-exponent_lemma)
