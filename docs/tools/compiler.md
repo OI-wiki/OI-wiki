@@ -101,10 +101,9 @@ brew install gcc
 JDK 的发行版有很多，以下介绍两种：
 
 -   OpenJDK 中的 [Eclipse Temurin](https://adoptium.net/zh-cn/)：参见 [Install Eclipse Temurin™ | Adoptium](https://adoptium.net/zh-CN/installation/)。
-    
+
     ???+ note
         [Eclipse Temurin](https://adoptium.net/) 即为原 [AdoptOpenJDK](https://adoptopenjdk.net/)，后者已于 2021 年 7 月移交至 [Eclipse 基金会](https://www.eclipse.org/org/foundation/)。具体可见 [本声明](https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/)。
-    
 -   Oracle JDK：可参见 [JDK Installation Guide（JDK 17）](https://docs.oracle.com/en/java/javase/17/install/overview-jdk-installation.html)。
 
 ## Python 3
