@@ -551,9 +551,9 @@ Splay 也可以运用在序列上，用于维护区间信息。与线段树对�
 
 将序列建成的 Splay 有如下性质：
 
-- 原序列从左到右遍历，相当于 Splay 的中序遍历。
+-   原序列从左到右遍历，相当于 Splay 的中序遍历。
 
-- Splay 上的一个节点代表原序列的一个元素；Splay 上的一颗子树，代表原序列的一段区间。
+-   Splay 上的一个节点代表原序列的一个元素；Splay 上的一颗子树，代表原序列的一段区间。
 
 因为有 $\operatorname{Splay}$ 操作，可以快速提取出代表某个区间的 Splay 子树。
 
@@ -565,14 +565,14 @@ Splay 也可以运用在序列上，用于维护区间信息。与线段树对�
 
 这棵 Splay 当然可以每次 $O(\log n)$ 插入每个元素，总时间复杂度 $O(n \log n)$。这里介绍一个时间复杂度 $O(n)$ 的优秀做法。设 $a$ 为原数列，长度为 $n$，现在要将区间 $[l, r]$ 建成 Splay：
 
-- 令 $mid = \left\lfloor \frac{l + r}{2} \right\rfloor$，将 $a_{mid}$ 作为这颗 Splay 的根。
+-   令 $mid = \left\lfloor \frac{l + r}{2} \right\rfloor$，将 $a_{mid}$ 作为这颗 Splay 的根。
 
-- 递归建树 $[l, mid], [mid+1, r]$，将它们的根分别作为 $a_{mid}$ 的左右儿子。
+-   递归建树 $[l, mid], [mid+1, r]$，将它们的根分别作为 $a_{mid}$ 的左右儿子。
 
 #### 实现
 
 ```cpp
-int build(int l,int r,int f) {
+int build(int l, int r, int f) {
   if (l > r) return 0;
   int mid = (l + r) / 2, cur = ++tot;
   val[cur] = a[mid], fa[cur] = f;
@@ -594,23 +594,24 @@ Splay 的一颗子树代表原序列的一段区间。现在想找到序列区�
 #### 实现
 
 ```cpp
-void splay(int x,int goal = 0) {
-  if(goal == 0) rt = x;
-  while(fa[x] != goal) {
-    int f = fa[x],g = fa[fa[x]];
-    if(g != goal) {
-      if(get(f) == get(x)) rotate(x);
-      else rotate(f);
+void splay(int x, int goal = 0) {
+  if (goal == 0) rt = x;
+  while (fa[x] != goal) {
+    int f = fa[x], g = fa[fa[x]];
+    if (g != goal) {
+      if (get(f) == get(x))
+        rotate(x);
+      else
+        rotate(f);
     }
     rotate(x);
   }
 }
 ```
 
-
 ### 区间翻转
 
-Splay 常见的应用之一，代表题目是[文艺平衡树](https://loj.ac/problem/105)。
+Splay 常见的应用之一，代表题目是 [文艺平衡树](https://loj.ac/problem/105)。
 
 #### 过程
 
@@ -627,14 +628,14 @@ void tagrev(int x) {
 }
 
 void pushdown(int x) {
-  if(lazy[x]) {
+  if (lazy[x]) {
     tagrev(ch[x][0]);
     tagrev(ch[x][1]);
     lazy[x] = 0;
   }
 }
 
-void reverse(int l,int r) {
+void reverse(int l, int r) {
   int L = kth(l - 1), R = kth(r + 1);
   splay(L), splay(R, L);
   int tmp = ch[ch[L][1]][0];
@@ -647,8 +648,8 @@ void reverse(int l,int r) {
 注意 $\operatorname{kth}$ 要下传翻转标记。
 
 ```cpp
-#include<cstdio>
-#include<algorithm>
+#include <algorithm>
+#include <cstdio>
 const int N = 100005;
 
 int n, m, l, r, a[N];
@@ -657,13 +658,13 @@ int rt, tot, fa[N], ch[N][2], val[N], sz[N], lazy[N];
 
 struct Splay {
   void maintain(int x) { sz[x] = sz[ch[x][0]] + sz[ch[x][1]] + 1; }
-  
+
   bool get(int x) { return x == ch[fa[x]][1]; }
-  
+
   void clear(int x) {
-    ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = lazy[x] =0;
+    ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = lazy[x] = 0;
   }
-	
+
   void rotate(int x) {
     int y = fa[x], z = fa[y], chk = get(x);
     ch[y][chk] = ch[x][chk ^ 1];
@@ -675,33 +676,35 @@ struct Splay {
     maintain(y);
     maintain(x);
   }
-  
-  void splay(int x,int goal = 0) {
-    if(goal == 0) rt = x;
-    while(fa[x] != goal) {
+
+  void splay(int x, int goal = 0) {
+    if (goal == 0) rt = x;
+    while (fa[x] != goal) {
       int f = fa[x], g = fa[fa[x]];
-      if(g != goal) {
-        if(get(f) == get(x)) rotate(x);
-        else rotate(f);
+      if (g != goal) {
+        if (get(f) == get(x))
+          rotate(x);
+        else
+          rotate(f);
       }
       rotate(x);
     }
   }
-  
+
   void tagrev(int x) {
     std::swap(ch[x][0], ch[x][1]);
     lazy[x] ^= 1;
   }
-  
+
   void pushdown(int x) {
-    if(lazy[x]) {
+    if (lazy[x]) {
       tagrev(ch[x][0]);
       tagrev(ch[x][1]);
       lazy[x] = 0;
     }
   }
-	
-  int build(int l,int r,int f) {
+
+  int build(int l, int r, int f) {
     if (l > r) return 0;
     int mid = (l + r) / 2, cur = ++tot;
     val[cur] = a[mid], fa[cur] = f;
@@ -710,7 +713,7 @@ struct Splay {
     maintain(cur);
     return cur;
   }
-  
+
   int kth(int k) {
     int cur = rt;
     while (1) {
@@ -727,28 +730,28 @@ struct Splay {
       }
     }
   }
-  
-  void reverse(int l,int r) {
+
+  void reverse(int l, int r) {
     int L = kth(l), R = kth(r + 2);
     splay(L), splay(R, L);
     int tmp = ch[ch[L][1]][0];
     tagrev(tmp);
   }
-	
-  void print(int x){
+
+  void print(int x) {
     pushdown(x);
     if (ch[x][0]) print(ch[x][0]);
-    if(val[x] >= 1 && val[x] <= n) printf("%d ", val[x]);
+    if (val[x] >= 1 && val[x] <= n) printf("%d ", val[x]);
     if (ch[x][1]) print(ch[x][1]);
- }
+  }
 } tree;
 
 int main() {
   scanf("%d%d", &n, &m);
   for (int i = 0; i <= n + 1; i++) a[i] = i;
   rt = tree.build(0, n + 1, 0);
-  while(m--) {
-    scanf("%d%d",&l, &r);
+  while (m--) {
+    scanf("%d%d", &l, &r);
     tree.reverse(l, r);
   }
   tree.print(rt);
