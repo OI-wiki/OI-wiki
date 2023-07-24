@@ -73,14 +73,42 @@ $$
 
 ### 其他关系
 
-错位排列数有一个向下取整的简单表达式，增长速度与阶乘仅相差常数：
+现在已知 $D_n$ 的通项公式：
 
 $$
-D_n=\left\lfloor\frac{n!}{\mathrm{e}}\right\rfloor
+D_n=n!\sum_{k=0}^n\frac{(-1)^k}{k!}
 $$
 
-随着元素数量的增加，形成错位排列的概率 P 接近：
+又知道：
 
 $$
-P=\lim_{n\to\infty}\frac{D_n}{n!}=\frac{1}{\mathrm{e}}
+\mathrm{e}^{-1}=\sum_{k=0}^\infty\frac{(-1)^k}{k!}
 $$
+
+所以：
+
+$$
+\lim_{n\to \infty}D_n=\frac{n!}{\mathrm{e}}
+$$
+
+所以错排数是近似等于 $n!/e$ 的，接下来证明 $n!/e$ 四舍五入后一定等于 $D_n$ ，即：
+
+$$
+D_n=\left\lfloor\frac{n!}{\mathrm{e}}+\frac{1}{2}\right\rfloor
+$$
+
+此式可以从下式推得到
+
+$$
+\left|\frac{n!}{\mathrm{e}}-D_n\right|<\frac{1}{2}
+$$
+
+所以
+
+$$
+\left|\frac{n!}{\mathrm{e}}-D_n\right|=n!\left|{\mathrm{e}}^{-1}-\sum_{k=0}^n\frac{(-1)^k}{k!}\right|=R_n\left(-1\right)=\frac{n!e^\xi}{\left(n+1\right)!}<\frac{1}{n+1}\leq\frac{1}{2}
+$$
+
+其中$R_n(-1)$为拉格朗日余项， $\xi\in(-1,0)$ 。
+
+可以得出 $n!/e$ 四舍五入后一定等于 $D_n$ 。
