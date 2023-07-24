@@ -8,27 +8,9 @@ Vim 是从 vi 发展出来的一个文本编辑器。其代码补完、编译及
 
 ## 安装
 
-### 系统自带
-
 Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用。
 
-### 手动安装
-
-#### Windows
-
-直接前往官网下载 [安装包](https://ftp.nluug.nl/pub/vim/pc/gvim82.exe)，然后按步骤安装即可。
-
-#### Linux
-
-系统自带的 `vim`（即使用包管理器安装得到的），可能是 `vim-tiny` 或者 `vim-basic`。这类版本会缺少一些功能（如部分语言高亮、剪贴板支持等），具体可通过 `vim --version` 查看。此时，可以尝试安装 `vim-gtk3`，以获得更多的功能。
-
-在终端输入
-
-```bash
-vim
-```
-
-如果在屏幕中间出现包括 Vim 版本号、维护人员以及一些类似「Help poor children in Uganda!」或者「帮助乌干达的可怜儿童！」等文字[^note1]，说明 Vim 已经安装成功。
+若需手动安装，可前往 [download : vim online](https://www.vim.org/download.php) 获取并安装。
 
 ## 基础篇：Vim 的模式与常用键位
 
@@ -677,7 +659,3 @@ Vim 是一款非常优秀的文本编辑器，但由于其陡峭的学习曲线�
 -   [Vim 调试：termdebug 入门](https://fzheng.me/2018/05/28/termdebug/)
 -   [Vim scripting cheatsheet](https://devhints.io/vimscript)
 -   [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com)
-
-## 参考资料与注释
-
-[^note1]: 有些人可能会问：「为什么是乌干达的儿童？」，这个问题 [知乎](https://www.zhihu.com/question/24892609) 上有人问过并得到了简要回答；简书上也有人去深入研究过，并写了一篇文章 [《Vim 和乌干达的儿童》（Web Archive）](https://web.archive.org/web/20200220074059if_/https://www.jianshu.com/p/b4daf62c4b59)。感兴趣的可以了解一下。
