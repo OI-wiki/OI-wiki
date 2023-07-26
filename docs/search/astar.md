@@ -37,7 +37,6 @@ A \* 算法每次从优先队列中取出一个 $f$ 最小的元素，然后更�
     --8<-- "docs/search/code/astar/astar_1.cpp"
     ```
 
-
 ## 参考资料与注释
 
 [^note1]: 此处的 h 意为 heuristic。详见 [启发式搜索 - 维基百科](https://zh.wikipedia.org/wiki/%E5%90%AF%E5%8F%91%E5%BC%8F%E6%90%9C%E7%B4%A2) 和 [A\*search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation) 的 Bounded relaxation 一节。
