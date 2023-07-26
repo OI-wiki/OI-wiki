@@ -967,7 +967,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，$h(u
         if (push(u)) {  // 仍然溢出
           if (!--gap[ht[u]])
             for (int i = 1; i <= n; i++)
-              if (i != s && i != t && ht[i] > ht[u] && ht[i] < n + 1)
+              if (i != s && ht[i] > ht[u] && ht[i] < n + 1)
                 ht[i] = n + 1;  // 这里重贴成 n+1 的节点都不是溢出节点
           relabel(u);
         }
