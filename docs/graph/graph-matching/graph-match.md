@@ -21,7 +21,7 @@ author: accelsao, StudyingFather, t4rf9, yuhuoji
 
 -   maximal matching：无法再增加匹配边的匹配。不一定是最大匹配。
 -   最大匹配（maximum matching or maximum cardinality matching）：匹配边数量最多的匹配。最大匹配可能有不止一个，但最大匹配的边数是确定的，而且不可能超过图中定点数的一半。
-- 最大权匹配（maximum weight matching）：加权图中，权值和最大的匹配。
+-   最大权匹配（maximum weight matching）：加权图中，权值和最大的匹配。
 -   最大权最大匹配（maximum weight maximum cardinality matching）：匹配数最多的前提下，边权和最大的匹配。即所有最大匹配中，边权和最大的匹配。
 -   完美匹配（perfect matching）：所有点都属于匹配，同时也符合最大匹配。若图G为完全图且顶点数为偶数时，必然存在完美匹配。
 -   近完美匹配（near-perfect matching）：发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。
