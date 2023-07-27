@@ -13,7 +13,7 @@
 
 这个算法的时间复杂度为 $\Theta(m\sqrt m)$（假设 $n,\ m$ 同阶）。
 
-???+note "时间复杂度证明"
+???+ note "时间复杂度证明"
     对于定向部分，遍历了所有的边，时间复杂度 $\Theta(n+m)$。
 
     若已经枚举 $u,\ v$，那么剩下的枚举量为 $v$ 的出度。
@@ -24,7 +24,7 @@
 
     总时间复杂度为 $\Theta(n+m+n\sqrt m+m\sqrt m)=\Theta(m\sqrt m)$（假设 $n,\ m$ 同阶）。
 
-???+note "示例代码"
+???+ note "示例代码"
     （[洛谷 P1989 无向图三元环计数](https://www.luogu.com.cn/problem/P1989)）
 
     ```cpp
