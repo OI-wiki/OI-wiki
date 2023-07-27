@@ -62,11 +62,12 @@
 ???+ note "示例代码"
     ```cpp
     bool cmp(int x, int y) {
-        if (deg[x] != deg[y])
-            return deg[x] < deg[y];
-        else
-            return x < y;
+      if (deg[x] != deg[y])
+        return deg[x] < deg[y];
+      else
+        return x < y;
     }
+    ```
 
     for (int i = 1; i <= n; i++) x[i] = i;
     sort(x + 1, x + 1 + n, cmp);
