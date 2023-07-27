@@ -131,4 +131,4 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 安装完成后，比赛的排行榜界面会显示每个用户的 rating 变化预测。
 
-这个工具有一个经由 [GoodCoder666](https://github.com/GoodCoder666) 汉化的版本，点击[这里](https://greasyfork.org/zh-CN/scripts/458528-ac-predictor-cn)以安装。
+这个工具有一个经由 [GoodCoder666](https://github.com/GoodCoder666) 汉化的版本，点击 [这里](https://greasyfork.org/zh-CN/scripts/458528-ac-predictor-cn) 以安装。
