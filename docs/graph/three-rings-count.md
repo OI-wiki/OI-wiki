@@ -44,6 +44,6 @@
 
 ## 习题
 
-[洛谷 P3547 [POI2013] CEN-Price List](https://www.luogu.com.cn/problem/P3547)
+[洛谷 P3547 \[POI2013\] CEN-Price List](https://www.luogu.com.cn/problem/P3547)
 
 [CF985G Team Players](https://codeforces.com/contest/985/problem/G)（容斥原理）
