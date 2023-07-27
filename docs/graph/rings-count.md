@@ -43,7 +43,7 @@
     $2\leq n\leq 10^5$，$1\leq m\leq\min\{2\times 10^5,\ \dfrac{n(n-1)}2\}$。
 
 ??? note "解题思路"
-    这个图形是两个三元环共用了一条边形成的。所以我们先跑一遍三元环计数，统计出一条边上三元环的数量，然后枚举共用的那条边，设有 $x$ 个三元环中有此边，那么对答案的贡献就是 $\dbinom 2x$。
+    这个图形是两个三元环共用了一条边形成的。所以我们先跑一遍三元环计数，统计出一条边上三元环的数量，然后枚举共用的那条边，设有 $x$ 个三元环中有此边，那么对答案的贡献就是 $\dbinom x2$。
 
     时间复杂度 $\Theta(m\sqrt m)$。
 
@@ -53,12 +53,48 @@
 
 考虑先对点进行排序。按照度数大小排序，度数相同则按编号表序。
 
-考虑枚举排在最前面的点 $a$，此时只需要对于每个比 $a$ 排名更后的点 $c$，都求出有多少个排名比 $a$ 后的点 $b$ 满足 $(a,\ b)$，$(b,\ c)$ 有边。然后只需要从这些 $b$ 中任取两个都能成为一个四元环。求 $b$ 的数量只需要遍历一遍 $b$ 和 $c$ 即可。
+考虑枚举排在最后面的点 $a$，此时只需要对于每个比 $a$ 排名更前的点 $c$，都求出有多少个排名比 $a$ 前的点 $b$ 满足 $(a,\ b)$，$(b,\ c)$ 有边。然后只需要从这些 $b$ 中任取两个都能成为一个四元环。求 $b$ 的数量只需要遍历一遍 $b$ 和 $c$ 即可。
 
 注意到我们枚举的复杂度与枚举三元环等价，所以时间复杂度也是 $\Theta(m\sqrt m)$（假设 $n,\ m$ 同阶）。
+
+值得注意的是，$(a,\ b,\ c,\ d)$ 和 $(a,\ c,\ b,\ d)$ 可以是两个不同的四元环。
+
+???+ note "示例代码"
+    ```cpp
+    bool cmp(int x, int y) {
+        if (deg[x] != deg[y])
+            return deg[x] < deg[y];
+        else
+            return x < y;
+    }
+
+    for (int i = 1; i <= n; i++) x[i] = i;
+    sort(x + 1, x + 1 + n, cmp);
+    for (int i = 1; i <= n; i++) rnk[x[i]] = i;
+    for (int a = 1; a <= n; a++) {
+        for (int i = head[a]; i; i = edge[i].nxt) {
+            int b = edge[i].to;
+            if (rnk[b] > rnk[a]) continue;
+            for (int j = head[b]; j; j = edge[j].nxt) {
+                int c = edge[j].to;
+                if (rnk[c] >= rnk[a]) continue;
+                total += cnt[c]++;
+            }
+        }
+        for (int i = head[a]; i; i = edge[i].nxt) {
+            int b = edge[i].to;
+            if (rnk[b] > rnk[a]) continue;
+            for (int j = head[b]; j; j = edge[j].nxt) {
+                int c = edge[j].to;
+                if (rnk[c] >= rnk[a]) continue;
+                cnt[c] = 0;
+            }
+        }
+    }
+    ```
 
 ## 习题
 
 [洛谷 P3547 \[POI2013\] CEN-Price List](https://www.luogu.com.cn/problem/P3547)
 
-[CF985G Team Players](https://codeforces.com/contest/985/problem/G)（容斥原理）
+[CodeForces 985G Team Players](https://codeforces.com/contest/985/problem/G)（容斥原理）
