@@ -30,7 +30,7 @@
     （[洛谷 P1989 无向图三元环计数](https://www.luogu.com.cn/problem/P1989)）
 
     ```cpp
-    --8<-- "docs/graph/code/three-rings-count/three-rings-count_1.cpp"
+    --8<-- "docs/graph/code/rings-count/rings-count_1.cpp"
     ```
 
 ### 例题 1
@@ -38,7 +38,7 @@
 ???+ note "[HDU 6184 Counting Stars](https://vjudge.net/problem/HDU-6184)"
     给定一张有 $n$ 个点和 $m$ 条边的无向图，求下面图形的出现次数。
 
-    ![](./images/three-rings-count.svg)
+    ![](./images/rings-count.svg)
 
     $2\leq n\leq 10^5$，$1\leq m\leq\min\{2\times 10^5,\ \dfrac{n(n-1)}2\}$。
 
