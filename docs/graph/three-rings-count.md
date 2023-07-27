@@ -1,3 +1,5 @@
+## 三元环计数
+
 **三元环** 指的是一个简单无向图 $G$ 中的一个无序三元组 $(u,\ v,\ w)$ 满足存在三条边分别连接 $(u,\ v)$，$(v,\ w)$ 和 $(w,\ u)$。
 
 **三元环计数问题** 的目标是遍历这些三元环。
@@ -30,3 +32,18 @@
     ```cpp
     --8<-- "docs/graph/code/three-rings-count/three-rings-count_1.cpp"
     ```
+
+### 例题 1
+
+???+ note "[HDU 6184 Counting Stars](https://vjudge.net/problem/HDU-6184)"
+    给定一张有 $n$ 个点和 $m$ 条边的无向图，求下面图形的出现次数。
+
+    ![](./images/three-rings-count.svg)
+
+    $2\leq n\leq 10^5$，$1\leq m\leq\min\{2\times 10^5,\ \dfrac{n(n-1)}2\}$。
+
+## 习题
+
+[洛谷 P3547 [POI2013] CEN-Price List](https://www.luogu.com.cn/problem/P3547)
+
+[CF985G Team Players](https://codeforces.com/contest/985/problem/G)（容斥原理）
