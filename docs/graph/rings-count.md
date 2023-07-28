@@ -47,6 +47,11 @@
 
     时间复杂度 $\Theta(m\sqrt m)$。
 
+???+ note "示例代码"
+    ```cpp
+    --8<-- "docs/graph/code/rings-count/rings-count_2.cpp"
+    ```
+
 ## 四元环计数
 
 类似地，**四元环** 就是指四个点 $a,\ b,\ c,\ d$ 满足 $(a,\ b)$，$(b,\ c)$，$(c,\ d)$ 和 $(d,\ a)$ 均有边链接。
