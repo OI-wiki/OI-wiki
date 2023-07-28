@@ -9,7 +9,7 @@
 ### 例题 1
 
 ???+ note "[CF1207F Remainder Problem](https://www.luogu.com.cn/problem/CF1207F)"
-    给定一个长度为 $n = 5 \times 10^5$ 的序列，初值为 $0$。要完成 $q \le 5 \times 10^5$ 次操作，操作有如下两种：
+    给定一个长度为 $n = 5 \times 10^5$ 的序列 $a$，初值为 $0$。要完成 $q \le 5 \times 10^5$ 次操作，操作有如下两种：
     
     1.  `1 x y`：将下标为 $x$ 的位置的值加上 $y$；
     2.  `2 x y`：询问所有下标模 $x$ 的结果为 $y$ 的位置的值之和，即计算：
@@ -59,7 +59,7 @@
     
     int main() {
       ios_base::sync_with_stdio(false);
-      cin.tie(0), cout.tie(0);
+      cin.tie(nullptr);
       int q;
       cin >> q;
       for (; q--;) {
