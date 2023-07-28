@@ -8,7 +8,7 @@
 
 ### 例题 1
 
-???+ note "[CF1207F Remainder Problem](https://www.luogu.com.cn/problem/CF1207F)"
+???+ note "[CF1207F Remainder Problem](https://codeforces.com/problemset/problem/1207/F)"
     给定一个长度为 $n = 5 \times 10^5$ 的序列 $a$，初值为 $0$。要完成 $q \le 5 \times 10^5$ 次操作，操作有如下两种：
     
     1.  `1 x y`：将下标为 $x$ 的位置的值加上 $y$；
@@ -51,34 +51,7 @@
 
 ??? "参考代码"
     ```cpp
-    #include <bits/stdc++.h>
-    #define ll long long
-    #define mp make_pair
-    using namespace std;
-    ll sum[755][755], a[500005];  // 这里我的阈值取了700
-    
-    int main() {
-      ios_base::sync_with_stdio(false);
-      cin.tie(nullptr);
-      int q;
-      cin >> q;
-      for (; q--;) {
-        int tp, x, y;
-        cin >> tp >> x >> y;
-        if (tp == 1) {
-          for (int i = 1; i < 700; ++i) sum[i][x % i] += y;  // 枚举模数
-          a[x] += y;
-        } else {
-          if (x < 700) {
-            cout << sum[x][y] << endl;
-          } else {
-            ll rt = 0;
-            for (int i = y; i <= 500000; i += x) rt += a[i];  // 暴力统计
-            cout << rt << endl;
-          }
-        }
-      }
-    }
+    --8<-- "docs/misc/code/sqrtdivide/sqrtdivide_1.cpp"
     ```
 
 通过一道例题可以发现：根号分治不就是两个暴力揉到一起嘛！对于小于一个阈值的数据采取一种暴力形式，对于大于阈值的数据采用另外一种形式。通常，这两种暴力，一种是直接模拟，另外一种是动态的维护什么东西，或者预处理。暴力与暴力的完美结合，就能过题，有时候甚至可以爆踩标算。
