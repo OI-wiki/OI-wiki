@@ -305,7 +305,7 @@ $$
 $$
 \begin{aligned}
 F(P)&=\sum_{T\subseteq P}(-1)^{|P|-|T|}\\
-&=\sum_{i=0}^{|P|}C_{|P|}^i(-1)^{|P|-i}=\sum_{i=0}^{|P|}C_{|P|}^i1^i(-1)^{|P|-i}\\
+&=\sum_{i=0}^{|P|}\dbinom{|P|}{i}(-1)^{|P|-i}=\sum_{i=0}^{|P|}\dbinom{|P|}{i}1^i(-1)^{|P|-i}\\
 &=(1-1)^{|P|}=0^{|P|}
 \end{aligned}
 $$
