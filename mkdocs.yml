@@ -243,11 +243,11 @@ nav:
       - 威尔逊定理: math/number-theory/wilson.md
       - 升幂定理: math/number-theory/lift-the-exponent.md
       - 卢卡斯定理: math/number-theory/lucas.md
-      - 拉格朗日定理: math/number-theory/lagrange.md
+      - 同余方程: math/number-theory/congruence-equation.md
+      - 二次剩余: math/number-theory/quad-residue.md
       - 原根: math/number-theory/primitive-root.md
       - 离散对数: math/number-theory/discrete-logarithm.md
-      - 剩余与单位根: math/number-theory/residue.md
-      - 二次剩余: math/number-theory/quad-residue.md
+      - 剩余: math/number-theory/residue.md
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 杜教筛: math/number-theory/du.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
@@ -457,6 +457,7 @@ nav:
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
     - 最大团搜索算法: graph/max-clique.md
+    - 支配树: graph/dominator-tree.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
