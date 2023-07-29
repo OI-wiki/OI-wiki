@@ -100,64 +100,59 @@ $$
 
 因此时间复杂度为 $O(p + \log_p n)$. 如果需要多次调用函数，则可以在函数外部进行预计算，于是计算 $(n!)_p$ 的时间复杂度为 $O(\log_p n)$.
 
-```cpp
-int factmod(int n, int p) {
-  vector<int> f(p);
-  f[0] = 1;
-  for (int i = 1; i < p; i++) f[i] = f[i - 1] * i % p;
-  int res = 1;
-  while (n > 1) {
-    if ((n / p) % 2) res = p - res;
-    res = res * f[n % p] % p;
-    n /= p;
-  }
-  return res;
-}
-```
+???+ note "实现"
+    ```cpp
+    int factmod(int n, int p) {
+      vector<int> f(p);
+      f[0] = 1;
+      for (int i = 1; i < p; i++) f[i] = f[i - 1] * i % p;
+      int res = 1;
+      while (n > 1) {
+        if ((n / p) % 2) res = p - res;
+        res = res * f[n % p] % p;
+        n /= p;
+      }
+      return res;
+    }
+    ```
 
 如果空间有限，无法存储所有阶乘，也可以只存储需要的阶乘，对它们进行排序，然后计算阶乘 $0!,~ 1!,~ 2!,~ \dots,~ (p-1)!$ 而不显式存储它们。
 
-### 阶乘中素数的个数
+### 阶乘中素数的幂次
 
 如果想计算二项式系数模 $p$，那么还需要考虑在 $n$ 的阶乘的素因子分解中 $p$ 出现的次数，或在计算修改因子时删除因子 $p$ 的个数。
 
-Legengre 在 1808 年提供了一个公式，可以在 $O(\log_p n)$ 时间复杂度计算 $p$ 的个数 $v_p$。指出 $n!$ 中含有的素数 $p$ 的幂次为：
-
-$$
-v_p(n!) = \sum_{i=1}^{\infty} \left\lfloor \frac{n}{p^i} \right\rfloor
-$$
-
-??? note "证明"
-    将 $n!$ 记为 $1\times 2\times \cdots \times p\times \cdots \times 2p\times \cdots \times \lfloor n/p\rfloor p\times \cdots \times n$ 那么其中 $p$ 的倍数有 $p\times 2p\times \cdots \times \lfloor n/p\rfloor p=p^{\lfloor n/p\rfloor }\lfloor n/p\rfloor !$ 然后在 $\lfloor n/p\rfloor !$ 中继续寻找 $p$ 的倍数即可，这是一个递归的过程。为了方便记 $\nu(n!)=\sum_{j\geq 1}\lfloor n/p^j\rfloor$.
-
-因此得到实现：
-
-```cpp
-int multiplicity_factorial(int n, int p) {
-  int count = 0;
-  do {
-    n /= p;
-    count += n;
-  } while (n);
-  return count;
-}
-```
-
-很容易证明，这个公式与前面的部分使用了相同的想法。删除所有不包含因子 $p$ 的元素，保留元素 $\lfloor \frac{n}{p} \rfloor$。从它们中移除因子 $p$，可以得到乘积：
-
-$$
-1 \cdot 2 \cdots \left\lfloor \frac{n}{p} \right\rfloor = \left\lfloor \frac{n}{p} \right\rfloor !
-$$
-
-然后再次得到递归。
-
-另一种其他地方比较常见的公式，用到了 p 进制下各位数字和：
-
-$v_p(n!)=\frac{n-S_p(n)}{p-1}$
-
-与等比数列求和公式很相似。由于涉及各位数字和，利用数学归纳法可以轻松证明。
+???+ note "Legendre 公式"
+    $n!$ 中含有的素数 $p$ 的幂次 $v_p(n!)$ 为：
+    
+    $$
+    v_p(n!) = \sum_{i=1}^{\infty} \left\lfloor \frac{n}{p^i} \right\rfloor = \frac{n-S_p(n)}{p-1}
+    $$
+    
+    其中 $S_p(n)$ 为 $p$ 进制下 $n$ 的各个数位的和。
 
 特别地，阶乘中 2 的幂次是 $v_2(n!)=n-S_2(n)$
+
+??? note "证明"
+    将 $n!$ 记为 $1\times 2\times \cdots \times p\times \cdots \times 2p\times \cdots \times \lfloor n/p\rfloor p\times \cdots \times n$ 那么其中 $p$ 的倍数有 $p\times 2p\times \cdots \times \lfloor n/p\rfloor p=p^{\lfloor n/p\rfloor }\lfloor n/p\rfloor !$ 然后在 $\lfloor n/p\rfloor !$ 中继续寻找 $p$ 的倍数即可，这是一个递归的过程。
+    
+    第二个等号与等比数列求和公式很相似。由于涉及各位数字和，利用数学归纳法可以轻松证明。
+
+???+ note "实现"
+    ```cpp
+    int multiplicity_factorial(int n, int p) {
+      int count = 0;
+      do {
+        n /= p;
+        count += n;
+      } while (n);
+      return count;
+    }
+    ```
+    
+    时间复杂度 $O(\log n)$
+
+以下记 $\nu(n!)=\sum_{j\geq 1}\lfloor n/p^j\rfloor$.
 
 #### Kummer 定理
 
