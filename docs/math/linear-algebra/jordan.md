@@ -24,7 +24,7 @@ $$
     $$
 
 式中 $T_e$ 表示空间 $V$ 的恒等变换。于是有性质：
-
+``
 -   变换 $T_i$ 在空间 $V_i$ 上的限制 ${T_i|}_{V_i}$ 为空间 $V_i$ 的恒等变换。
 -   如果 $i$ 与 $j$ 不相等，变换 $T_i$ 在空间 $V_j$ 上的限制 ${T_i|}_{V_j}$ 为空间 $V_j$ 的零变换。
 
@@ -184,7 +184,7 @@ $$
 定理：设 $A(\lambda)$ 等价于对角阵：
 
 $$
-diag\{f_1(\lambda),f_2(\lambda),\cdots,f_r(\lambda),0,\cdots,0\}
+\operatorname{diag}\{f_1(\lambda),f_2(\lambda),\cdots,f_r(\lambda),0,\cdots,0\}
 $$
 
 那么有 $f_1(\lambda),f_2(\lambda),\cdots,f_r(\lambda)$ 的全体一次因子的幂 ${(\lambda-\lambda_j)}^{e_{ij}}$，构成 $A(\lambda)$ 的初等因子。
@@ -368,7 +368,7 @@ $$
 定理：设矩阵 $A$ 的特征矩阵 $\lambda I-A$ 的 Smith 标准形为：
 
 $$
-diag\{d_1(\lambda),d_2(\lambda),\cdots,d_n(\lambda)\}
+\operatorname{diag}\{d_1(\lambda),d_2(\lambda),\cdots,d_n(\lambda)\}
 $$
 
 则最后一个不变因子 $d_n(\lambda)$ 恰好为矩阵 $A$ 的最小多项式 $m_A(\lambda)$。
