@@ -238,7 +238,7 @@
 如果某个正整数 $n$ 满足如下条件，则称为是 **反素数**：任何小于 $n$ 的正数的约数个数都小于 $n$ 的约数个数。
 
 ???+ warning "注意"
-    注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp)，它是用来表示从后向前写读是素数的数。
+    注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp)，它表示的是逐位反转后是不同素数的素数（如 149 和 941 均为 emirp，101 不是 emirp）。
 
 ### 过程
 
