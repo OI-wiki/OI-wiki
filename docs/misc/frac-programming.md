@@ -168,7 +168,7 @@ bool check(double mid) {
 
 把 $a_i-mid\times b_i$ 作为每条边的权值，那么最小生成树就是最小值，
 
-代码就是求最小生成树，我就不放代码了。
+代码就是求最小生成树，故省略。
 
 ### [\[HNOI2009\] 最小圈](https://www.luogu.com.cn/problem/P3199)
 
