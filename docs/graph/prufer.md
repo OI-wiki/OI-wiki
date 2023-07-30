@@ -3,7 +3,7 @@
 
 这篇文章介绍 Prüfer 序列 (Prüfer code)，这是一种将带标号的树用一个唯一的整数序列表示的方法。
 
-使用 Prüfer 序列可以证明 [凯莱公式](#cayley-公式-cayleys-formula) (Cayley's formula)。并且我们也会讲解如何计算在一个图中加边使图连通的方案数。
+使用 Prüfer 序列可以证明 [凯莱公式](#cayley-公式-cayleys-formula)(Cayley's formula)。并且我们也会讲解如何计算在一个图中加边使图连通的方案数。
 
 **注意**：我们不考虑含有 $1$ 个结点的树。
 
