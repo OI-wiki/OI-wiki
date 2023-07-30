@@ -46,4 +46,4 @@ int main() {
 
 ## 参考资料
 
-- [联合体声明](https://zh.cppreference.com/w/cpp/language/union)
+-   [联合体声明](https://zh.cppreference.com/w/cpp/language/union)
