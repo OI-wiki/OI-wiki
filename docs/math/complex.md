@@ -187,11 +187,11 @@ $$
 **复三角函数**（也简称 **三角函数**）的定义，是 **欧拉公式**：
 
 $$
-\cos z=\frac{\operatorname{exp} (iz)+\operatorname{exp} (-\mathrm{i}z)}{2}
+\cos z=\frac{\operatorname{exp} (\mathrm{i}z)+\operatorname{exp} (-\mathrm{i}z)}{2}
 $$
 
 $$
-\sin z=\frac{\operatorname{exp} (iz)-\operatorname{exp} (-\mathrm{i}z)}{2\mathrm{i}}
+\sin z=\frac{\operatorname{exp} (\mathrm{i}z)-\operatorname{exp} (-\mathrm{i}z)}{2\mathrm{i}}
 $$
 
 有关欧拉公式的更多介绍，可以参考两个视频：[欧拉公式与初等群论](https://www.bilibili.com/video/BV1fx41187tZ)、[微分方程概论 - 第五章：在 3.14 分钟内理解 $\mathrm{e}^{\mathrm{i}\pi}$](https://www.bilibili.com/video/BV1G4411D7kZ)。

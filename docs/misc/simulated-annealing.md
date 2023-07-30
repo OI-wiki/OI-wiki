@@ -15,13 +15,13 @@
 
 先用一句话概括：如果新状态的解更优则修改答案，否则以一定概率接受新状态。
 
-我们定义当前温度为 $T$，新状态与已知状态（由已知状态通过随机的方式得到）之间的能量（值）差为 $\Delta E$（$\Delta E\geqslant 0$），则发生状态转移（修改最优解）的概率为
+我们定义当前温度为 $T$，新状态 $S'$ 与已知状态 $S$（新状态由已知状态通过随机的方式得到）之间的能量（值）差为 $\Delta E$（$\Delta E\geqslant 0$），则发生状态转移（修改最优解）的概率为
 
 $$
 P(\Delta E)=
 \begin{cases}
-1&\text{新状态更优}\\
-e^\frac{-\Delta E}{T}&\text{新状态更劣}
+1,                              & S' \text{ is better than } S,\\
+\mathrm{e}^\frac{-\Delta E}{T}, & \text{otherwise}.
 \end{cases}
 $$
 
