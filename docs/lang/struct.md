@@ -1,5 +1,4 @@
-author: Ir1d, cjsoft, Lans1ot
-**结构体**（struct），可以看做是一系列称为成员元素的组合体。
+author: Ir1d, cjsoft, Lans1ot **结构体**（struct），可以看做是一系列称为成员元素的组合体。
 
 可以看做是自定义的数据类型。
 

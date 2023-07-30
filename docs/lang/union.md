@@ -5,10 +5,10 @@
 ## 定义联合体
 
 ```cpp
-union Union{
-    int x;
-    long long y;
-}x;
+union Union {
+  int x;
+  long long y;
+} x;
 ```
 
 联合体的定义与结构体类似。按照上述定义，`Union` 同样可以当作一种自定义类型使用。名称 `Union` 可以省略。
@@ -26,18 +26,17 @@ union Union{
 ### 联合体查看二进制表示
 
 ```cpp
-union{
-    int n;
-    unsigned char bits[4];
-}a;
+union {
+  int n;
+  unsigned char bits[4];
+} a;
 
-int main(){
-    int x; 
-    scanf("%d",&x);
-    a.n=x;
-    for(int i=0;i<4;i++)
-        cout<<bitset<8>(a.bits[i]) << " ";
-    return 0;
+int main() {
+  int x;
+  scanf("%d", &x);
+  a.n = x;
+  for (int i = 0; i < 4; i++) cout << bitset<8>(a.bits[i]) << " ";
+  return 0;
 }
 ```
 
@@ -50,14 +49,14 @@ int main(){
 类似地，我们可以使用如下代码来优化短字符串的哈希。
 
 ```cpp
-union{
-    unsigned long long value;
-    char str[8];
-}a;
+union {
+  unsigned long long value;
+  char str[8];
+} a;
 
-int main(){
-    scanf("%s",a.str);
-    printf("%llu\n",a.value);
-    return 0;
+int main() {
+  scanf("%s", a.str);
+  printf("%llu\n", a.value);
+  return 0;
 }
 ```
