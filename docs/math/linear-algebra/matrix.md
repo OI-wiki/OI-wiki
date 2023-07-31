@@ -206,7 +206,7 @@ mat operator*(const mat& T) const {
 
 一般来说，可以用一个二维数组来模拟矩阵。
 
-???+ note "C风格矩阵代码"
+???+ note "C 风格矩阵代码"
     ```cpp
     struct mat {
       LL a[sz][sz];
@@ -257,17 +257,18 @@ mat operator*(const mat& T) const {
       }
     };
     ```
-???+ note "C++风格矩阵代码"
-    ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    
+
+??+ note "C++ 风格矩阵代码"
+\`\`\`cpp
+\#include \<bits/stdc++.h>
+using namespace std;
+
     template<typename T, int x, int y = x>
     class Matrix {
     public:
         constexpr static const T MOD = 1000000007;
         T data[x][y]{};
-    
+
         explicit Matrix(T _default = 0) {
             for (int i = 0; i < x; ++i) {
                 for (int j = 0; j < y; ++j) {
@@ -278,7 +279,7 @@ mat operator*(const mat& T) const {
                 }
             }
         }
-    
+
         explicit Matrix(vector<vector<T>> v) {
             clear();
             for (int i = 0; i < x; ++i) {
@@ -287,7 +288,7 @@ mat operator*(const mat& T) const {
                 }
             }
         }
-    
+
         void eye() {
             for (int i = 0; i < x; ++i) {
                 for (int j = 0; j < y; ++j) {
@@ -298,7 +299,7 @@ mat operator*(const mat& T) const {
                 }
             }
         }
-    
+
         void clear() {
             for (int i = 0; i < x; ++i) {
                 for (int j = 0; j < y; ++j) {
@@ -306,7 +307,7 @@ mat operator*(const mat& T) const {
                 }
             }
         }
-    
+
         Matrix<T, x, y> operator+(Matrix<T, x, y> o) {
             Matrix<T, x, y> res(0);
             for (int i = 0; i < x; ++i) {
@@ -317,7 +318,7 @@ mat operator*(const mat& T) const {
             }
             return res;
         }
-    
+
         template<int k>
         Matrix<T, x, k> operator*(Matrix<T, y, k> o) {
             Matrix<T, x, k> res(0);
@@ -331,7 +332,7 @@ mat operator*(const mat& T) const {
             }
             return res;
         }
-    
+
         Matrix<T, x, x> operator^(int k) {
             Matrix<T, x, x> res(1), a(*this);
             while (k > 0) {
@@ -343,9 +344,9 @@ mat operator*(const mat& T) const {
             }
             return res;
         }
-    
+
     };
-    
+
     template<typename T, int x, int y = x>
     ostream &operator<<(ostream &o, const Matrix<T, x, y> m) {
         for (int i = 0; i < x; ++i) {
