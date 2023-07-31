@@ -206,56 +206,159 @@ mat operator*(const mat& T) const {
 
 一般来说，可以用一个二维数组来模拟矩阵。
 
-```cpp
-struct mat {
-  LL a[sz][sz];
-
-  mat() { memset(a, 0, sizeof a); }
-
-  mat operator-(const mat& T) const {
-    mat res;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j) {
-        res.a[i][j] = (a[i][j] - T.a[i][j]) % MOD;
+???+ note "C风格矩阵代码"
+    ```cpp
+    struct mat {
+      LL a[sz][sz];
+    
+      mat() { memset(a, 0, sizeof a); }
+    
+      mat operator-(const mat& T) const {
+        mat res;
+        for (int i = 0; i < sz; ++i)
+          for (int j = 0; j < sz; ++j) {
+            res.a[i][j] = (a[i][j] - T.a[i][j]) % MOD;
+          }
+        return res;
       }
-    return res;
-  }
-
-  mat operator+(const mat& T) const {
-    mat res;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j) {
-        res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
+    
+      mat operator+(const mat& T) const {
+        mat res;
+        for (int i = 0; i < sz; ++i)
+          for (int j = 0; j < sz; ++j) {
+            res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
+          }
+        return res;
       }
-    return res;
-  }
-
-  mat operator*(const mat& T) const {
-    mat res;
-    int r;
-    for (int i = 0; i < sz; ++i)
-      for (int k = 0; k < sz; ++k) {
-        r = a[i][k];
-        for (int j = 0; j < sz; ++j)
-          res.a[i][j] += T.a[k][j] * r, res.a[i][j] %= MOD;
+    
+      mat operator*(const mat& T) const {
+        mat res;
+        int r;
+        for (int i = 0; i < sz; ++i)
+          for (int k = 0; k < sz; ++k) {
+            r = a[i][k];
+            for (int j = 0; j < sz; ++j)
+              res.a[i][j] += T.a[k][j] * r, res.a[i][j] %= MOD;
+          }
+        return res;
       }
-    return res;
-  }
-
-  mat operator^(LL x) const {
-    mat res, bas;
-    for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j) bas.a[i][j] = a[i][j] % MOD;
-    while (x) {
-      if (x & 1) res = res * bas;
-      bas = bas * bas;
-      x >>= 1;
+    
+      mat operator^(LL x) const {
+        mat res, bas;
+        for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
+        for (int i = 0; i < sz; ++i)
+          for (int j = 0; j < sz; ++j) bas.a[i][j] = a[i][j] % MOD;
+        while (x) {
+          if (x & 1) res = res * bas;
+          bas = bas * bas;
+          x >>= 1;
+        }
+        return res;
+      }
+    };
+    ```
+???+ note "C++风格矩阵代码"
+    ```cpp
+    #include <bits/stdc++.h>
+    using namespace std;
+    
+    template<typename T, int x, int y = x>
+    class Matrix {
+    public:
+        constexpr static const T MOD = 1000000007;
+        T data[x][y]{};
+    
+        explicit Matrix(T _default = 0) {
+            for (int i = 0; i < x; ++i) {
+                for (int j = 0; j < y; ++j) {
+                    data[i][j] = 0;
+                    if (i == j) {
+                        data[i][j] = _default;
+                    }
+                }
+            }
+        }
+    
+        explicit Matrix(vector<vector<T>> v) {
+            clear();
+            for (int i = 0; i < x; ++i) {
+                for (int j = 0; j < y; ++j) {
+                    data[i][j] = v[i][j];
+                }
+            }
+        }
+    
+        void eye() {
+            for (int i = 0; i < x; ++i) {
+                for (int j = 0; j < y; ++j) {
+                    data[i][j] = 0;
+                    if (i == j) {
+                        data[i][j] = 1;
+                    }
+                }
+            }
+        }
+    
+        void clear() {
+            for (int i = 0; i < x; ++i) {
+                for (int j = 0; j < y; ++j) {
+                    data[i][j] = 0;
+                }
+            }
+        }
+    
+        Matrix<T, x, y> operator+(Matrix<T, x, y> o) {
+            Matrix<T, x, y> res(0);
+            for (int i = 0; i < x; ++i) {
+                for (int j = 0; j < y; ++j) {
+                    res.data[i][j] = data[i][j] + o.data[i][j];
+                    res.data[i][j] %= MOD;
+                }
+            }
+            return res;
+        }
+    
+        template<int k>
+        Matrix<T, x, k> operator*(Matrix<T, y, k> o) {
+            Matrix<T, x, k> res(0);
+            for (int i = 0; i < x; i++) {
+                for (int j = 0; j < k; ++j) {
+                    for (int m = 0; m < y; ++m) {
+                        res.data[i][j] += this->data[i][m] * o.data[m][j];
+                        res.data[i][j] %= MOD;
+                    }
+                }
+            }
+            return res;
+        }
+    
+        Matrix<T, x, x> operator^(int k) {
+            Matrix<T, x, x> res(1), a(*this);
+            while (k > 0) {
+                if (k & 1) {
+                    res = res * a;
+                }
+                a = a * a;
+                k >>= 1;
+            }
+            return res;
+        }
+    
+    };
+    
+    template<typename T, int x, int y = x>
+    ostream &operator<<(ostream &o, const Matrix<T, x, y> m) {
+        for (int i = 0; i < x; ++i) {
+            o << '[';
+            for (int j = 0; j < y; ++j) {
+                o << m.data[i][j];
+                if (j != y - 1) o << '\t';
+            }
+            o << "]\n";
+        }
+        return o;
     }
-    return res;
-  }
-};
-```
+    ```
 
 ## 看待线性方程组的两种视角
 
