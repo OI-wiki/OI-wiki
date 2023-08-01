@@ -206,7 +206,7 @@ mat operator*(const mat& T) const {
 
 一般来说，可以用一个二维数组来模拟矩阵。
 
-???+ note "C 风格矩阵代码"
+???+ note "C++非模板矩阵代码"
     ```cpp
     struct mat {
       LL a[sz][sz];
@@ -258,7 +258,7 @@ mat operator*(const mat& T) const {
     };
     ```
 
-??+ note "C++ 风格矩阵代码"
+??+ note "C++模板矩阵代码"
 \`\`\`cpp
 \#include \<bits/stdc++.h>
 using namespace std;
