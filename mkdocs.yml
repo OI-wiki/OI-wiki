@@ -93,6 +93,7 @@ nav:
       - 高级数据类型:
         - 数组: lang/array.md
         - 结构体: lang/struct.md
+        - 联合体: lang/union.md
         - 指针: lang/pointer.md
       - 函数: lang/func.md
       - 文件操作: lang/file-op.md
