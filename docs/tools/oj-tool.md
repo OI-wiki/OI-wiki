@@ -125,6 +125,8 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## ac-predictor
 
+ac-predictor 是一个在 atcoder rating 更新前提前知道比赛 rating 变化的插件。
+
 这个工具是一个 tampermonkey 脚本，所以你需要首先安装 [tampermonkey](https://www.tampermonkey.net/)。
 
 完成后来到 [greasyfork](https://greasyfork.org/zh-CN/scripts/369954-ac-predictor)，点击安装即可。
