@@ -48,6 +48,7 @@ jobs:
             unzip -q ./cm-unicode.zip
             cp -r notosans notoserif notosanscjk notoserifcjk robotomono cm-unicode/fonts/otf/* /usr/share/fonts
             fc-cache
+            git config --global --add safe.directory /github/workspace
             git clone https://github.com/lllys666/OI-Wiki-export.git
             git checkout incremental-ci
             cd ./OI-Wiki-export/remark-latex
