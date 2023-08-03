@@ -1,6 +1,6 @@
 ## 简介
 
-**Garsia–Wachs 算法**（Garsia–Wachs Algorithm）是计算机用来在 **线性时间** 内构建 **最优二叉查找树** 和 **字母霍夫曼码** 的有效算法。它以 Adriano Garsia 和 Michelle L. Wachs 的名字命，他们于 1977 年发表了相关论文。
+**Garsia–Wachs 算法**（Garsia–Wachs Algorithm）是计算机用来在 **线性时间** 内构建 **最优二叉查找树** 和 **字母霍夫曼码** 的有效算法。它以 Adriano Garsia 和 Michelle L. Wachs 的名字命名，他们于 1977 年发表了相关论文。
 
 ## 问题描述
 
