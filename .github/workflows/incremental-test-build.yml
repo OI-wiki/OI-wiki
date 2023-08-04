@@ -8,6 +8,9 @@ on:
 
 jobs:
   pre_build:
+    permissions:
+      actions: write
+      contents: read  
     name: Duplicate Actions Detection
     runs-on: ubuntu-latest
     outputs:
