@@ -11,6 +11,10 @@ jobs:
     name: OI-Wiki LaTeX Build
     runs-on: ubuntu-latest
     steps:
+      - name: Skip Duplicate Actions
+        uses: fkirc/skip-duplicate-actions@v5.3.0
+        with:
+          cancel_others: true
       - uses: actions/checkout@v2
       - name: Build the LaTeX document
         uses: OI-wiki/latex-action@v1.0.0
