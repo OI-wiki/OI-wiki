@@ -7,15 +7,23 @@ on:
       - master
 
 jobs:
+  pre_build:
+    name: Duplicate Actions Detection
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          cancel_others: 'true'
   build:
     name: OI-Wiki LaTeX Build
+    needs: pre_build
+    if: needs.pre_build.outputs.should_skip != 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Skip Duplicate Actions
-        uses: fkirc/skip-duplicate-actions@v5.3.0
-        with:
-          concurrent_skipping: "outdated_runs"
       - name: Build the LaTeX document
         uses: OI-wiki/latex-action@v1.0.0
         with:
