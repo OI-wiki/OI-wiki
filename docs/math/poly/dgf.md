@@ -56,6 +56,8 @@ $$
 
 因此有 $\tilde{\Phi}(x) = \frac{\zeta(x-1)}{\zeta(x)}$。
 
+根据这些定义，容易推导出 $\varphi \ast 1 = I$，$\ast$ 表示狄利克雷卷积。因为 $\tilde{\Phi}(x)\zeta(x) = \zeta(x-1)$。
+
 ### 幂函数
 
 对于函数 $I_k (n) = n^k$，它的 DGF 定义为
@@ -63,8 +65,6 @@ $$
 $$
 \tilde{I_k} (x) = \prod_{p\in\mathcal{P}} \left(1 + \frac{p^k}{p^x} + \frac{p^{2k}}{p^{2x}} + \ldots \right)  =  \prod_{p\in \mathcal{P}} \frac{1}{1-p^{k-x}} = \zeta(x-k)
 $$
-
-根据这些定义，容易推导出 $\varphi \ast 1 = I$，$\ast$ 表示狄利克雷卷积。因为 $\tilde{\Phi}(x)\zeta(x) = \zeta(x-1)$。
 
 ### 其他函数
 
