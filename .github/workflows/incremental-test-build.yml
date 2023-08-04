@@ -15,6 +15,7 @@ jobs:
       - name: Skip Duplicate Actions
         uses: fkirc/skip-duplicate-actions@v5.3.0
         with:
+          concurrent_skipping: "outdated_runs"
           cancel_others: true
       - name: Build the LaTeX document
         uses: OI-wiki/latex-action@v1.0.0
