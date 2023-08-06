@@ -14,7 +14,7 @@ author: accelsao, Henry-ZHR, yuhuoji
 
 ### 顶标（vertex labeling）和等边（Equality Edge）
 
-定义 $z_u$ 是点$u$的顶标（vertex labeling），与$KM$ 算法中定义的顶标含义相同。定义边 $e(u,v)$ 为”等边“当且仅当点$u$和点$v$的标号和等于边$e$的权值（$z_u+z_v=w(e)$），此时边的标号 $z_e=z_u+z_v−w(e)=0$。
+定义 $z_u$ 是点$u$的顶标（vertex labeling），与$KM$ 算法中定义的顶标含义相同。定义边 $e(u,v)$ 为"等边"当且仅当点$u$和点$v$的标号和等于边$e$的权值（$z_u+z_v=w(e)$），此时边的标号 $z_e=z_u+z_v−w(e)=0$。
 
 ## 一般图最大权完美匹配的线性规划
 
