@@ -154,7 +154,7 @@ $$
 -\pi<\operatorname{arg} z \le \pi
 $$
 
-称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\operatorname{Arg} z = \{\theta \mid \theta = \operatorname{arg} z + 2k\pi, k\in \mathbb Z\}$。
+称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\operatorname{Arg} z = \{\operatorname{arg} z + 2k\pi \mid k\in \mathbb Z\}$。
 
 需要注意的是两个辐角主值相加后不一定还是辐角主值，而两个辐角相加一定还是合法的辐角。
 
