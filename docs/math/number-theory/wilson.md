@@ -44,7 +44,7 @@ $$
 (7!)_p \equiv 1 \cdot 2 \cdot \underbrace{1}_{3} \cdot 4 \cdot 5 \underbrace{2}_{6} \cdot 7 \equiv 2 \bmod 3
 $$
 
-通过学习如何有效地计算这种修正的阶乘，可以快速计算各种组合公式的值。
+这种修正的阶乘，可用于快速计算各种带取模和组合数的公式的值。
 
 #### 计算余数的算法
 
@@ -118,7 +118,7 @@ $$
 
 如果空间有限，无法存储所有阶乘，也可以只存储需要的阶乘，对它们进行排序，然后计算阶乘 $0!,~ 1!,~ 2!,~ \dots,~ (p-1)!$ 而不显式存储它们。
 
-### 阶乘中素数的幂次
+### Legendre 公式
 
 如果想计算二项式系数模 $p$，那么还需要考虑在 $n$ 的阶乘的素因子分解中 $p$ 出现的次数，或在计算修改因子时删除因子 $p$ 的个数。
 
@@ -154,26 +154,30 @@ $$
 
 以下记 $\nu(n!)=\sum_{j\geq 1}\lfloor n/p^j\rfloor$.
 
-#### Kummer 定理
+### Kummer 定理
 
 组合数对一个数取模的结果，往往构成分形结构，例如谢尔宾斯基三角形就可以通过组合数模 2 得到。
-
-$$
-v_p\left[\dbinom{m}{n}\right]=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}
-$$
 
 如果仔细分析，$p$ 是否整除组合数其实和上下标在 $p$ 进制下减法是否需要借位有关。这就有了 **Kummer 定理**。
 
 ???+ note "Kummer 定理"
     $p$ 在组合数 $\dbinom{m}{n}$ 中的幂次，恰好是 $p$ 进制下 $m$ 减掉 $n$ 需要借位的次数。
+    
+    即
+    
+    $$
+    v_p\left(\dbinom{m}{n}\right)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}
+    $$
 
-特别地，组合数中 $2$ 的幂次是 $v_2\left[\dbinom{m}{n}\right]=S_2(n)+S_2(m-n)-S_2(m)$
+特别地，组合数中 $2$ 的幂次是 $v_2\left(\dbinom{m}{n}\right)=S_2(n)+S_2(m-n)-S_2(m)$.
 
 ## Wilson 定理的推广
 
-对于素数 $p$ 和正整数 $q$ 有 $(p^q!)_p\equiv \pm 1\pmod{p^q}$.
+???+ note "Wilson 定理的推广"
+    对于素数 $p$ 和正整数 $q$ 有 $(p^q!)_p\equiv \pm 1\pmod{p^q}$.
 
-依然考虑配对一个数与其逆元，也就是考虑关于 $m$ 的同余方程 $m^2\equiv 1\pmod{p^q}$ 的根的乘积，当 $p^q=2$ 时方程仅有一根，当 $p=2$ 且 $q\geq 3$ 时有四根为 $\pm 1,2^{q-1}\pm 1$ 其他时候则有两根为 $\pm 1$.
+???+ note "证明"
+    依然考虑配对一个数与其逆元，也就是考虑关于 $m$ 的同余方程 $m^2\equiv 1\pmod{p^q}$ 的根的乘积，当 $p^q=2$ 时方程仅有一根，当 $p=2$ 且 $q\geq 3$ 时有四根为 $\pm 1,2^{q-1}\pm 1$ 其他时候则有两根为 $\pm 1$.
 
 至此我们对 Wilson 定理的推广中的 $\pm 1$ 有了详细的定义，即
 
@@ -187,16 +191,15 @@ $$
 
 下文两个推论中的 $\pm 1$，均特指这样的定义：当模数 $p^q$ 取 $8$ 及以上的 $2$ 的幂时取 $1$，其余取 $-1$.
 
-### 推论 1
-
-对于素数 $p$、正整数 $q$、非负整数 $n$ 和 $N_0=n\bmod{p^q}$ 有
-
-$$
-(n!)_p\equiv (\pm 1)^{\lfloor n/{p^q}\rfloor}(N_0!)_p\pmod{p^q}
-$$
+???+ note "推论 1"
+    对于素数 $p$、正整数 $q$、非负整数 $n$ 和 $N_0=n\bmod{p^q}$ 有
+    
+    $$
+    (n!)_p\equiv (\pm 1)^{\lfloor n/{p^q}\rfloor}(N_0!)_p\pmod{p^q}
+    $$
 
 ???+ note "证明"
-    证明：令 $\displaystyle \prod '$ 表示不能被 $p$ 整除的数的乘积，有
+    令 $\displaystyle \prod '$ 表示不能被 $p$ 整除的数的乘积，有
     
     $$
     \begin{aligned}
@@ -211,23 +214,22 @@ $$
 
 至此得到了：
 
-### 推论 2
-
-对于素数 $p$ 和正整数 $q$ 和非负整数 $n$ 有
-
-$$
-\frac{n!}{p^{\sum_{j\geq 1}\lfloor \frac{n}{p^j}\rfloor}}\equiv (\pm 1)^{\sum_{j\geq q}\lfloor \frac{n}{p^j}\rfloor}\prod_{j\geq 0}(N_j!)_p\pmod{p^q}
-$$
-
-其中 $N_j=\lfloor n/p^j\rfloor \bmod{p^q}$ 而 $\pm 1$ 与上述相同。
-
-记 $r=n-m$ 且 $n > m$ 有
-
-$$
-\frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor -\lfloor m/p^j\rfloor -\lfloor r/p^j\rfloor\right)}}{p^{\nu(n!)-\nu(m!)-\nu(r!)}}\binom{n}{m}\equiv \frac{n!/p^{\nu(n!)}}{(m!/p^{\nu(m!)})(r!/p^{\nu(r!)})}\pmod{p^q}
-$$
-
-右边的分母中括号内的项均在模 $p^q$ 意义下均存在逆元，可直接计算，而 $\pm 1$ 的与上述相同。
+???+ note "推论 2"
+    对于素数 $p$ 和正整数 $q$ 和非负整数 $n$ 有
+    
+    $$
+    \frac{n!}{p^{\sum_{j\geq 1}\lfloor \frac{n}{p^j}\rfloor}}\equiv (\pm 1)^{\sum_{j\geq q}\lfloor \frac{n}{p^j}\rfloor}\prod_{j\geq 0}(N_j!)_p\pmod{p^q}
+    $$
+    
+    其中 $N_j=\lfloor n/p^j\rfloor \bmod{p^q}$ 而 $\pm 1$ 与上述相同。
+    
+    记 $r=n-m$ 且 $n > m$ 有
+    
+    $$
+    \frac{(\pm 1)^{\sum_{j\geq q}\left(\lfloor n/p^j\rfloor -\lfloor m/p^j\rfloor -\lfloor r/p^j\rfloor\right)}}{p^{\nu(n!)-\nu(m!)-\nu(r!)}}\binom{n}{m}\equiv \frac{n!/p^{\nu(n!)}}{(m!/p^{\nu(m!)})(r!/p^{\nu(r!)})}\pmod{p^q}
+    $$
+    
+    右边的分母中括号内的项均在模 $p^q$ 意义下均存在逆元，可直接计算，而 $\pm 1$ 的与上述相同。
 
 ## 例题
 
