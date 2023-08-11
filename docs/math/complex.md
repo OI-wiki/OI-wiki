@@ -6,7 +6,7 @@
 
 ### 引入
 
-???+note "注"
+???+ note "注"
     下面的引入方法来自人教版高中数学 A 版必修二。
 
 从方程的角度看，负实数能不能开平方，就是方程 $x^2+a=0 (a>0)$ 有没有解，进而可以归结为方程 $x^2+1=0$ 有没有解。
@@ -67,7 +67,7 @@ $$
 
 考虑到向量的加法运算，我们发现复数的加法运算符合向量的加法运算法则，这同样证明了复数的几何意义的正确性。
 
-同样可以验证，复数的加法满足**交换律**和**结合律**。即：
+同样可以验证，复数的加法满足 **交换律** 和 **结合律**。即：
 
 $$
 z_1+z_2=z_2+z_1\\
@@ -98,11 +98,11 @@ $$
 
 复数的乘法与向量的向量积形式类似。
 
-易得复数乘法满足**交换律**，**结合律**和**对加法的分配律**，即：
+易得复数乘法满足 **交换律**，**结合律** 和 **对加法的分配律**，即：
 
-- $z_1z_2=z_2z_1$
-- $(z_1z_2)z_3=z_1(z_2z_3)$
-- $z_1(z_2+z_3)=z_1z_2+z_1z_3$
+-   $z_1z_2=z_2z_1$
+-   $(z_1z_2)z_3=z_1(z_2z_3)$
+-   $z_1(z_2+z_3)=z_1z_2+z_1z_3$
 
 由于满足运算律，我们可以发现实数域中的 **乘法公式在复数域中同样适用**。
 
@@ -123,12 +123,12 @@ $$
 
 对复数 $z,w$，复数共轭有如下性质
 
-- $z\cdot\bar{z}=|z|^2$
-- $\overline{\overline{z}}=z$
-- $\operatorname{Re}(z)=\dfrac{z+\bar{z}}{2}$，$\operatorname{Im}(z)=\dfrac{z-\bar{z}}{2}$
-- $\overline{z\pm w}=\bar{z}\pm\bar{w}$
-- $\overline{zw}=\bar{z}\bar{w}$
-- $\overline{z/w}=\bar{z}/\bar{w}$
+-   $z\cdot\bar{z}=|z|^2$
+-   $\overline{\overline{z}}=z$
+-   $\operatorname{Re}(z)=\dfrac{z+\bar{z}}{2}$，$\operatorname{Im}(z)=\dfrac{z-\bar{z}}{2}$
+-   $\overline{z\pm w}=\bar{z}\pm\bar{w}$
+-   $\overline{zw}=\bar{z}\bar{w}$
+-   $\overline{z/w}=\bar{z}/\bar{w}$
 
 ### 辐角和辐角主值
 
@@ -164,7 +164,7 @@ $$
 
 ### 欧拉公式
 
-???+note "欧拉公式（Euler's formula）"[^ref1]
+???+ note "欧拉公式（Euler's formula）"[^ref1]
     对任意实数 $x$，有
     
     $$
@@ -183,10 +183,10 @@ $$
 
 复指数函数在实数集上与实指数函数的定义完全一致。在复平面上拥有性质：
 
-- 模恒正：$|\operatorname{exp} z|=\operatorname{exp} x>0$。
-- 辐角主值：$\operatorname{arg} \operatorname{exp} z=y$。
-- 加法定理：$\operatorname{exp} (z_1+z_2)=\operatorname{exp} (z_1)\operatorname{exp} (z_2)$。
-- 周期性：$\operatorname{exp} z$ 是以 $2\pi \mathrm{i}$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
+-   模恒正：$|\operatorname{exp} z|=\operatorname{exp} x>0$。
+-   辐角主值：$\operatorname{arg} \operatorname{exp} z=y$。
+-   加法定理：$\operatorname{exp} (z_1+z_2)=\operatorname{exp} (z_1)\operatorname{exp} (z_2)$。
+-   周期性：$\operatorname{exp} z$ 是以 $2\pi \mathrm{i}$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
 
 **复三角函数**（也简称 **三角函数**）的定义如下：
 
@@ -210,11 +210,11 @@ $$
 
 复三角函数在实数集上与实三角函数的定义完全一致。在复平面上拥有性质：
 
-- 奇偶性：正弦函数是奇函数，余弦函数是偶函数。
-- 三角恒等式：通常的三角恒等式都成立，例如平方和为 $1$，或者角的和差公式等。
-- 周期性：正弦与余弦函数以 $2\pi$ 为基本周期。
-- 零点：实正弦与实余弦函数的全体零点，构成了复正弦与复余弦函数的全体零点。这个推广没有引进新的零点。
-- 模的无界性：复正弦与复余弦函数，模长可以大于任意给定的正数，不再像实正弦与实余弦函数一样被限制在 $1$ 的范围内。
+-   奇偶性：正弦函数是奇函数，余弦函数是偶函数。
+-   三角恒等式：通常的三角恒等式都成立，例如平方和为 $1$，或者角的和差公式等。
+-   周期性：正弦与余弦函数以 $2\pi$ 为基本周期。
+-   零点：实正弦与实余弦函数的全体零点，构成了复正弦与复余弦函数的全体零点。这个推广没有引进新的零点。
+-   模的无界性：复正弦与复余弦函数，模长可以大于任意给定的正数，不再像实正弦与实余弦函数一样被限制在 $1$ 的范围内。
 
 ## 复数的三种形式
 
@@ -322,9 +322,9 @@ $$
 
 ## 参考资料与链接
 
-- [Complex number - Wikipedia](https://en.wikipedia.org/wiki/Complex_number)
-- [Euler's formula - Wikipedia](https://en.wikipedia.org/wiki/Euler's_formula)
-- [Complex number arithmetic - cppreference.com](https://en.cppreference.com/w/c/numeric/complex)
-- [std::complex - cppreference.com](https://en.cppreference.com/w/cpp/numeric/complex)
+-   [Complex number - Wikipedia](https://en.wikipedia.org/wiki/Complex_number)
+-   [Euler's formula - Wikipedia](https://en.wikipedia.org/wiki/Euler's_formula)
+-   [Complex number arithmetic - cppreference.com](https://en.cppreference.com/w/c/numeric/complex)
+-   [std::complex - cppreference.com](https://en.cppreference.com/w/cpp/numeric/complex)
 
 [^ref1]: 有关欧拉公式的更多介绍，可以参考两个视频：[欧拉公式与初等群论](https://www.bilibili.com/video/BV1fx41187tZ)、[微分方程概论 - 第五章：在 3.14 分钟内理解 $\mathrm{e}^{\mathrm{i}\pi}$](https://www.bilibili.com/video/BV1G4411D7kZ)。
