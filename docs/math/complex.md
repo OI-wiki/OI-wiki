@@ -164,7 +164,7 @@ $$
 
 ### 欧拉公式
 
-???+ note "欧拉公式（Euler's formula）"[^ref1]
+???+ note "欧拉公式（Euler's formula）[^ref1]"
     对任意实数 $x$，有
     
     $$
