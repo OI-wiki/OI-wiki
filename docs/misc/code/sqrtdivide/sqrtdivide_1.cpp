@@ -2,7 +2,7 @@
 #define ll long long
 #define mp make_pair
 using namespace std;
-ll sum[755][755], a[500005];  //这里我的阈值取了700
+ll sum[755][755], a[500005];  // 阈值取了 700
 
 int main() {
   ios_base::sync_with_stdio(false);
