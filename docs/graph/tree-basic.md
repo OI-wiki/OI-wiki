@@ -247,22 +247,21 @@ Morris 遍历的实质是避免使用栈，利用底层节点空闲的 `right` �
     -   如果 `mostRight` 的 `right` 指针指向空，让其指向 `cur`，然后 `cur` 向左移动（`cur = cur->left`）。
     -   如果 `mostRight` 的 `right` 指针指向 `cur`，将其修改为 `null`，然后 `cur` 向右移动（`cur = cur->right`）。
 
-例如，`cur`从节点1开始访问。
+例如，`cur` 从节点 1 开始访问。
 
 ![tree-basic-morris-1](images/tree-basic-morris-1.svg)
 
-`cur` 第一次访问节点2时，找到左子树上最右的节点4，将4的 `right` 指针指向`cur`(节点2)。
+`cur` 第一次访问节点 2 时，找到左子树上最右的节点 4，将 4 的 `right` 指针指向 `cur`（节点 2)。
 
 ![tree-basic-morris-2](images/tree-basic-morris-2.svg)
 
-`cur`通过4的`right`指针返回上层，第二次访问节点2时，找到左子树上最右节点4，将4的`right`指针修改为`null`，然后继续访问右子树。之后的过程省略。
+`cur` 通过 4 的 `right` 指针返回上层，第二次访问节点 2 时，找到左子树上最右节点 4，将 4 的 `right` 指针修改为 `null`，然后继续访问右子树。之后的过程省略。
 
 ![tree-basic-morris-1](images/tree-basic-morris-1.svg)
 
-整棵树的访问顺序是`1242513637`。可以发现有左子树的节点访问两次，没有左子树的节点只访问一次。
+整棵树的访问顺序是 `1242513637`。可以发现有左子树的节点访问两次，没有左子树的节点只访问一次。
 
 ???+ note "实现"
-    
     ```c++
     void morris(TreeNode* root) {
       TreeNode* cur = root;
