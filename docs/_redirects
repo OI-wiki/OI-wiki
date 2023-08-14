@@ -103,6 +103,7 @@
 /math/integral /math/numerical/integral
 /math/newton /math/numerical/newton
 /math/number-theory/lagrange /math/number-theory/congruence-equation
+/math/permulation /math/permutation
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
