@@ -176,31 +176,37 @@ Node* newnode() {
 ```
 
 如果使用的数据类型较多、较繁杂，难以估计每个类型所使用的内存大小，或不想逐一定义相应的分配函数的话，也可以使用如下的基于面向对象和模板优化的代码：
+
 ```cpp
 class MemoryPool {
-public:
+ public:
   MemoryPool(unsigned int size) {
     // 这里除以 4 是考虑到 int 有 4 个字节，而 size 以字节作单位更符合直觉
     pool = new int[size / 4];
     allocp = pool;
   }
+
   // 申请一个 T 数组
-  // 这里定义了一个模板，可以理解为「对于每一种可能用到的类型 T，都逐一生成对应的函数 access(int)，并这个函数记为 access<T>(int)」
+  // 这里定义了一个模板，可以理解为「对于每一种可能用到的类型
+  // T，都逐一生成对应的函数 access(int)，并这个函数记为 access<T>(int)」
   template <class T>
   T *access(int size) {
     // 将 allocp 指针右移并返回指向申请到的数组首项的指针
-    return allocp = (int *) ((T *) allocp + size), (T *) allocp - size;
+    return allocp = (int *)((T *)allocp + size), (T *)allocp - size;
   }
+
   // 申请单个对象 T
   template <class T>
   T *access() {
     // 申请单个对象并返回指针可以看做申请长度为 1 的数组
     return access<T>(1);
   }
-private:
+
+ private:
   int *pool;
   int *allocp;
 };
+
 // 创建一个大小为 114 KB 的内存池对象
 MemoryPool pool(114 << 10);
 // 在内存池 pool 中申请一个长度为 514 的 int 类型数组 int[514]
