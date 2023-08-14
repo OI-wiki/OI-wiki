@@ -25,32 +25,7 @@ Geany 是一个轻量、便捷的编辑器，对于 Linux 环境下的初学者�
 
 ## 安装
 
-### Windows/macOS
-
-在官网上下载安装包安装
-
-### Linux
-
-#### 方法一
-
-使用包管理器进行安装，如在 Ubuntu 或 NOI Linux 中，运行
-
-```bash
-sudo apt install geany
-```
-
-#### 方法二
-
-1.  从官网下载源码
-2.  终端下运行：
-
-```bash
-./configure
-make
-sudo make install
-```
-
-如遇到 `No package 'gtk+-2.0' found` 可能需要安装 `libgtk2.0-dev`。
+参见 [Download | Geany](https://geany.org/download/)
 
 ## 使用技巧
 

@@ -20,8 +20,6 @@
 
 ### 定义和分类
 
-> 哇哦我们定义的数的性质这么好！
-
 我们定义形如 $a+b\mathrm{i}$，其中 $a,b\in \mathbb{R}$ 的数叫做 **复数**，其中 $\mathrm{i}$ 被称为 **虚数单位**，全体复数的集合叫做 **复数集**。
 
 复数通常用 $z$ 表示，即 $z=a+b\mathrm{i}$。这种形式被称为 **复数的代数形式**。其中 $a$ 称为复数 $z$ 的 **实部**，$b$ 称为复数 $z$ 的 **虚部**。如无特殊说明，都有 $a,b\in \mathbb{R}$。
@@ -150,15 +148,15 @@ $$
 \theta= \operatorname{Arg} z
 $$
 
-任一个 **非零** 复数 $z$ 有无穷多个辐角。借助开头小写的 $\operatorname{arg} z$ 表示 **其中一个特定值**，满足条件：
+任一个 **非零** 复数 $z$ 有无穷多个辐角，故 $\operatorname{Arg} z$ 事实上是一个集合。借助开头小写的 $\operatorname{arg} z$ 表示 **其中一个特定值**，满足条件：
 
 $$
 -\pi<\operatorname{arg} z \le \pi
 $$
 
-称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$。
+称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\operatorname{Arg} z = \{\operatorname{arg} z + 2k\pi \mid k\in \mathbb Z\}$。
 
-下文的「多值函数」一节表明，辐角是多值函数，辐角主值是多值函数的主值。因此，辐角可以直接相加，而辐角主值不能直接相加。
+需要注意的是两个辐角主值相加后不一定还是辐角主值，而两个辐角相加一定还是合法的辐角。
 
 称模小于 $1$ 的复数，在复平面上构成的图形为 **单位圆**。称模等于 $1$ 的复数为 **单位复数**，全体单位复数在复平面上构成的图形为 **单位圆周**。在不引起混淆的情况下，有时单位圆周也简称单位圆。
 
@@ -182,16 +180,14 @@ $$
 
 周期性：$\operatorname{exp} z$ 是以 $2\pi \mathrm{i}$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
 
-这里将复指数函数记为 $\operatorname{exp}$，是为了与下文的一般指数函数做区分。
-
 **复三角函数**（也简称 **三角函数**）的定义，是 **欧拉公式**：
 
 $$
-\cos z=\frac{\operatorname{exp} (iz)+\operatorname{exp} (-\mathrm{i}z)}{2}
+\cos z=\frac{\operatorname{exp} (\mathrm{i}z)+\operatorname{exp} (-\mathrm{i}z)}{2}
 $$
 
 $$
-\sin z=\frac{\operatorname{exp} (iz)-\operatorname{exp} (-\mathrm{i}z)}{2\mathrm{i}}
+\sin z=\frac{\operatorname{exp} (\mathrm{i}z)-\operatorname{exp} (-\mathrm{i}z)}{2\mathrm{i}}
 $$
 
 有关欧拉公式的更多介绍，可以参考两个视频：[欧拉公式与初等群论](https://www.bilibili.com/video/BV1fx41187tZ)、[微分方程概论 - 第五章：在 3.14 分钟内理解 $\mathrm{e}^{\mathrm{i}\pi}$](https://www.bilibili.com/video/BV1G4411D7kZ)。
@@ -227,136 +223,6 @@ z=r(\cos \theta +\mathrm{i}\sin \theta)=r \operatorname{exp} (\mathrm{i}\theta)
 $$
 
 这两种形式用于计算复数的乘除两个运算以及后面的运算较为方便。如果只用高中见过的函数，可以使用三角形式。如果引入了复指数函数，写成等价的指数形式会更加方便。
-
-## 多值函数
-
-在复数集之上定义的函数，函数值可能不再是一个具体的复数值，而是一个集合。
-
-一个例子，上述定义的辐角函数 $\operatorname{Arg} z$ 就是这样。辐角函数的函数值是 $\operatorname{Arg} z=\{\operatorname{arg} z +2k\pi | k\in Z\}$，为一个集合。
-
-如果对于每一个复数自变量，只有唯一的复数函数值与其对应，称为 **单值函数**。上述指数函数和三角函数都是单值函数。
-
-如果对于某些复数自变量，有多于一个的复数函数值与其对应，这样的函数称为 **多值函数**。
-
-多值函数的函数值为集合，值域为函数值集合的集合。多值函数常常首字母大写，并规定一个对应首字母小写的单值函数称为 **主值**。
-
-## 复对数函数
-
-规定 **复对数函数**（也简称 **对数函数**）是复指数函数的反函数。可以解得：
-
-$$
-\operatorname{Ln} z=\ln{|z|}+\mathrm{i} \operatorname{Arg} z
-$$
-
-对数函数的定义域为 **非零** 复数。由于辐角函数是多值函数，因此对数函数也是多值函数。相应地，记 **对数函数的主值** 为：
-
-$$
-\ln z=\ln{|z|}+\mathrm{i} \operatorname{arg} z
-$$
-
-于是对数函数可以记为：
-
-$$
-\operatorname{Ln} z=\{\ln z +2k\pi \mathrm{i}| k\in Z\}
-$$
-
-复对数函数拥有性质：
-
-$$
-\operatorname{Ln}(z_1z_2)=\operatorname{Ln} z_1 + \operatorname{Ln} z_2
-$$
-
-这个性质与实对数函数相同。而对数函数的主值不满足该性质。
-
-## 一般指数函数
-
-**一般指数函数** 定义为：
-
-$$
-a^z=\operatorname{exp} (z \operatorname{Ln} a)
-$$
-
-对于任意的 **非零** 复数 $a$，一般指数函数是多值函数。
-
-上述定义式展开是这样的：
-
-$$
-a^z=\operatorname{exp} (z \operatorname{Ln} a)=\operatorname{exp} (z\ln a +2k\pi \mathrm{i}z)=\operatorname{exp} (z\ln a)\operatorname{exp} (2k\pi \mathrm{i}z)
-$$
-
-一般指数函数的多值性来源于底数辐角的多值性。以实数单位 $1$ 为底的指数函数应当是：
-
-$$
-1^z=\operatorname{exp} (2k\pi \mathrm{i}z)
-$$
-
-以 $1$ 为底的指数函数不恒为 $1$，而是一个多值函数。这是因为 $1$ 的辐角不一定是 $0$，于是根据复数乘法「模相乘辐角相加」的规则，指数的结果也是多值的。只有式中 $k$ 为 $0$ 的时候才不恒为 $1$，即只有主值恒为 $1$。
-
-于是一般指数函数可以记为：
-
-$$
-a^z=\operatorname{exp} (z\ln a) 1^z
-$$
-
-可以把指数函数的主值部分与其他部分以乘积的形式分开。
-
-以自然对数 $\mathrm{e}$ 为底的指数函数应当是：
-
-$$
-\mathrm{e}^z=\operatorname{exp} z 1^z
-$$
-
-单值函数 $\operatorname{exp}$ 是以自然对数 $\mathrm{e}$ 为底的指数函数的主值。真正以 $\mathrm{e}$ 为底的指数函数是多值函数，而 $\operatorname{exp}$ 是一个形式上的记号，没有幂的含义。
-
-## 一般幂函数与复数乘方开方
-
-**一般幂函数** 定义为：
-
-$$
-z^a=\operatorname{exp} (a \operatorname{Ln} z)
-$$
-
-一般幂函数的取值情况需要分类讨论。将上述定义式展开：
-
-$$
-z^a=\operatorname{exp} (a \operatorname{Ln} z)=\operatorname{exp} (a(\ln z +2k\pi \mathrm{i}))=\operatorname{exp} (a\ln z) \operatorname{exp} (2k\pi \mathrm{i}a)
-$$
-
-根据 $a$ 的取值，分三种情形。
-
-如果 $a$ 为无理数或者虚数，$\operatorname{exp} (2k\pi \mathrm{i}a)$ 的值有无限多个，此时一般幂函数是多值函数，并且函数值集合为无限集。
-
-如果 $a=n$ 为整数，此时有：
-
-$$
-\operatorname{exp} (2k\pi \mathrm{i}a)=\operatorname{exp} (2(kn)\pi \mathrm{i}a)=1
-$$
-
-此时 $z^a$ 是单值函数。复数的整数次幂（乘方）是单值函数。
-
-如果 $a=\frac{q}{p}$ 为有理数，其中 $\gcd(q, p)=1$，此时有：
-
-$$
-\operatorname{exp} (2k\pi ia)=\operatorname{exp} (2k\pi \mathrm{i}\frac{q}{p})
-$$
-
-只能取 $p$ 个不同的值，即 $k$ 为 $0$ 到 $p-1$ 之间的值。这 $p$ 个不同的值将单位圆周 $n$ 等分，就是下文的单位根。
-
-此时 $z^a$ 是多值函数，并且可以取到有限的 $p$ 个不同的值。复数的有理数次幂（开方）是多值函数，函数值集合为有限集。
-
-这里引入一个经典结论。根据复数乘法，模相乘，辐角相加，也可以用来计算乘方和开方（整数次幂与有理数次幂）。如果 $z=r \operatorname{exp} (\mathrm{i}\theta)$，则有：
-
-$$
-z^n=r^n(\operatorname{exp} (\mathrm{i}\theta))^n=r^n(\cos n\theta +\mathrm{i}\sin n\theta)
-$$
-
-当模为 $1$ 的时候，就得到 **棣莫弗定理**（De Moivre's formula）：
-
-$$
-(\cos\theta+\mathrm{i}\sin\theta)^n=\cos n\theta+\mathrm{i}\sin n\theta
-$$
-
-非零复数 $z$ 的 $n$ 次方根共有 $n$ 个，沿中心在原点，半径为 $r^\frac{1}{n}$ 的圆周均匀分布，即构成内接于该圆周的正 $n$ 边形的 $n$ 个顶点。
 
 ## 单位根
 
