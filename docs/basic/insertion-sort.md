@@ -88,7 +88,7 @@ $$
             auto index = upper_bound(arr, arr + i, key) - arr;
             // 使用 memmove 移动元素，比使用 for 循环速度更快，时间复杂度仍为 O(n)
             memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
-            arr[i] = key;
+            arr[index] = key;
         }
     }
     ```
