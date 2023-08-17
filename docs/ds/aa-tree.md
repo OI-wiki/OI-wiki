@@ -95,7 +95,7 @@ AA树本身是一棵二叉搜索树，所以搜索操作与其他二叉搜索树
 ### 插入
 
 ???+ note "伪代码实现"
-$$
+    $$
     \begin{array}{ll}
     1 & \textbf{function } \text{insert}(\text{root}, \text{add}) \\
     2 & \qquad \textbf{if } \text{root} == \text{NULL} \\
@@ -110,14 +110,14 @@ $$
     11 & \qquad \text{split}(\text{root}); \\
     12 & \textbf{end function}
     \end{array}
-$$
+    $$
 
 ### 删除
 
 删除过程与其他二叉平衡树类似，首先将内部节点的删除转换为叶子节点的删除。具体方法是将内部节点与它最接近的前驱或后继节点替换。由于AA树的所有level大于1的节点都有两个子节点，前驱或后继节点将位于level 1，删除level 1的节点较为简单。
 
 ???+ note "伪代码实现"
-$$
+    $$
     \begin{array}{ll}
     1 &  \text{//To rebalance the tree} \\
     2 &  \textbf{if} \ \text{root->left->level} < \text{root->level} -1 \ \textbf{or} \ \text{root->right->level} < \text{root->level} -1 \\
@@ -133,7 +133,7 @@ $$
     12 & \qquad \text{split}(\text{root->right}) \\
     13 &  \} \\
     \end{array}
-$$
+    $$
 
 
 ## 性能
