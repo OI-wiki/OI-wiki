@@ -85,14 +85,14 @@ $$
 $$
 
 $$
-\begin{gather*}
+\begin{gathered}
 \begin{matrix}&&\phi\left(x,a\right)&&\\
 &\swarrow&&\searrow&\\
 &\phi\left(x,a-1\right)&&-\phi\left(\frac{x}{p_a},a-1\right)&\\
 \swarrow&\downarrow&&\downarrow&\searrow\\
 \phi\left(x,a-2\right)&\phi\left(\frac{x}{p_{a-1}},a-2\right)&&-\phi\left(\frac{x}{p_a},a-2\right)&\phi\left(\frac{x}{p_ap_{a-1}},a-2\right)\end{matrix}\\
 \vdots\\
-\end{gather*}
+\end{gathered}
 $$
 
 上图表示计算 $\phi\left(x,a\right)$ 过程的二叉树：叶子节点权值之和就是 $\phi\left(x,a\right)$。
