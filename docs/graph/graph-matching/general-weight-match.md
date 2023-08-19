@@ -23,30 +23,30 @@ author: accelsao, Henry-ZHR, yuhuoji
 因为一朵花最少有三个点，缩花后成为一个点。设 $O$ 为大小为 $≥3$ 奇数的集合的集合（包含所有花），$\gamma(S)$ 表示 $S$ 集合中的边。
 
 $$
-\begin{array} {ll}
+\begin{align*}
 & \text{设} S\subseteq V \\
 & \gamma(S)=\{(u,v)\in E:u\in S,v\in S\} \\
 & O=\{B\subseteq V:|B|\text{是奇数且}|B|\geq3\} \\
-\end{array}
+\end{align*}
 $$
 
 ### 对偶问题
 
 ???+ note "原问题"
 $$
-    \begin{array}{ll}
+\begin{align*}
     & \max\sum_{e\in E}w(e)x_e \\
     & \text{限制：} \\
     & x(\delta(u))=1:\forall u\in V \\
     & x(\gamma(B))\leq\lfloor\frac{|B|}{2}\rfloor:\forall B\in O \\
     & x_e\geq0:\forall e\in E \\
-    \end{array}
+    \end{align*}
 $$
 然后通过原始对偶（Primal-Dual）将问题转换为对偶问题。
 
 ???+ note "对偶问题"
 $$
-    \begin{array}{ll}
+\begin{align*}
     & \min\sum_{u\in V}z_u+\sum_{B\in O}\left\lfloor\frac{|B|}{2}\right\rfloor z_B \\
     & \text{限制：} \\
     & z_B\geq0:\forall B\in O \\
@@ -55,7 +55,7 @@ $$
     & \begin{array}{lll}
     z_e & = & z_u + z_v - w(e) + \sum_{\substack{B \in O \\ u,v \in \gamma(B)}} z_B
     \end{array}
-    \end{array}
+    \end{align*}
 $$
 $x_e=1$的边是匹配边，$x_e=0$的边是非匹配边。和二分图一样，我们必须满足$x_e\in\{0,1\}:\forall e\in E$。因此必须在最大权完美匹配的时候，让所有匹配边都是**等边**的。
 
@@ -68,17 +68,17 @@ $x_e=1$的边是匹配边，$x_e=0$的边是非匹配边。和二分图一样，
 - 对于选中的边 $e$，必有 $z_e=0$。
 
 $$
-\begin{array}{llll}
+\begin{align*}
 x_e>0 & \longrightarrow & z_e=0 & \forall e\in E
-\end{array}
+\end{align*}
 $$
 
 - 对于选中的集合*B*， $\begin{array} {rcl} z_B>0 & \longrightarrow & x(\gamma(B))= \lfloor \frac{|B|}2 \rfloor \end{array}$，即所有$z_B>0$的集合$B$，都被选了集合大小一半的边，也即集合$B$ 是一朵花，选中花中的一条边进行增广。同时，我们加入一个条件：$x(\delta(B))=1$，即只有花 $B$ 向外连了一条边的时候， $z_B>0$ 才是有意义的。
   
 $$
-\begin{array}{lllll}
+\begin{align*}
 z_B>0 & \longrightarrow & x(\gamma(B))=\lfloor\frac{|B|}2\rfloor, & x(\delta(B))=1 & \forall B\in O
-\end{array}
+\end{align*}
 $$
 
 以「**等边**」的概念，结合之前的带花树算法：用「等边」构成的增广路不断进行扩充，由于用来扩充的边全是「等边」，最后得到的最大权完美匹配仍然全是「等边」。
@@ -127,9 +127,9 @@ vertex labeling仍要维持大于等于的性质，而且既有的「等边」�
 
 $$
 \begin{align*}
-\text{d1} &= \min(\{z_e : e = (u^+,v^\varnothing)\}) \\
-\text{d2} &= \min(\{z_e : e = (u^+,v^+), ~ u^+ \in T_i, ~ v^+ \in T_j, ~ i \neq j\}) / 2 \\
-\text{d3} &= \min(\{z_{B^-} : B^- \in O\}) / 2
+d1 &= \min(\{z_e : e = (u^+,v^\varnothing)\}) \\
+d2 &= \min(\{z_e : e = (u^+,v^+), ~ u^+ \in T_i, ~ v^+ \in T_j, ~ i \neq j\}) / 2 \\
+d3 &= \min(\{z_{B^-} : B^- \in O\}) / 2
 \end{align*}
 $$
 
