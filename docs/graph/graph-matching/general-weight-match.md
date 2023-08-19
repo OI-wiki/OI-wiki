@@ -33,24 +33,29 @@ $$
 ### 对偶问题
 
 ???+ note "原问题"
-    $max\sum_{e\in E}w(e)x_e$
-    限制：
-    $x(\delta(u))=1:\forall u\in V$ 
-    $x(\gamma(B))\leq\lfloor\frac{|B|}2\rfloor:\forall B\in O$ 
-    $x_e\geq0:\forall e\in E$
-
-通过原始对偶（Primal-Dual）将问题转换为对偶问题。
+$$
+    \begin{array}{ll}
+    & \max\sum_{e\in E}w(e)x_e \\
+    & \text{限制：} \\
+    & x(\delta(u))=1:\forall u\in V \\
+    & x(\gamma(B))\leq\lfloor\frac{|B|}{2}\rfloor:\forall B\in O \\
+    & x_e\geq0:\forall e\in E \\
+    \end{array}
+$$
+然后通过原始对偶（Primal-Dual）将问题转换为对偶问题。
 
 ???+ note "对偶问题"
-    $min\sum_{u\in V}z_u+\sum_{B\in O}\lfloor\frac{|B|}2\rfloor z_B$ 
-    限制:
-    $z_B\geq0:\forall B\in O$
-    $z_e\geq0:\forall e\in E$
-    设$e=(u,v)$，这里
 $$
-\begin{array}{lll}
-z_e & = & z_u + z_v - w(e) + \sum_{\begin{array}{c}B \in O \\ u,v \in \gamma(B) \end{array}} z_B
-\end{array}
+    \begin{array}{ll}
+    & \min\sum_{u\in V}z_u+\sum_{B\in O}\left\lfloor\frac{|B|}{2}\right\rfloor z_B \\
+    & \text{限制：} \\
+    & z_B\geq0:\forall B\in O \\
+    & z_e\geq0:\forall e\in E \\
+    & \text{设} e=(u,v)，\text{这里} \\
+    & \begin{array}{lll}
+    z_e & = & z_u + z_v - w(e) + \sum_{\substack{B \in O \\ u,v \in \gamma(B)}} z_B
+    \end{array}
+    \end{array}
 $$
 $x_e=1$的边是匹配边，$x_e=0$的边是非匹配边。和二分图一样，我们必须满足$x_e\in\{0,1\}:\forall e\in E$。因此必须在最大权完美匹配的时候，让所有匹配边都是**等边**的。
 
@@ -61,20 +66,20 @@ $x_e=1$的边是匹配边，$x_e=0$的边是非匹配边。和二分图一样，
 根据互补松弛条件，有以下的对应关系：
 
 - 对于选中的边 $e$，必有 $z_e=0$。
-  
-  $$
-  \begin{array}{llll}
-  x_e>0 & \longrightarrow & z_e=0 & \forall e\in E
-  \end{array}
-  $$
-  
+
+$$
+\begin{array}{llll}
+x_e>0 & \longrightarrow & z_e=0 & \forall e\in E
+\end{array}
+$$
+
 - 对于选中的集合*B*， $\begin{array} {rcl} z_B>0 & \longrightarrow & x(\gamma(B))= \lfloor \frac{|B|}2 \rfloor \end{array}$，即所有$z_B>0$的集合$B$，都被选了集合大小一半的边，也即集合$B$ 是一朵花，选中花中的一条边进行增广。同时，我们加入一个条件：$x(\delta(B))=1$，即只有花 $B$ 向外连了一条边的时候， $z_B>0$ 才是有意义的。
   
-  $$
-  \begin{array}{lllll}
-  z_B>0 & \longrightarrow & x(\gamma(B))=\lfloor\frac{|B|}2\rfloor, & x(\delta(B))=1 & \forall B\in O
-  \end{array}
-  $$
+$$
+\begin{array}{lllll}
+z_B>0 & \longrightarrow & x(\gamma(B))=\lfloor\frac{|B|}2\rfloor, & x(\delta(B))=1 & \forall B\in O
+\end{array}
+$$
 
 以「**等边**」的概念，结合之前的带花树算法：用「等边」构成的增广路不断进行扩充，由于用来扩充的边全是「等边」，最后得到的最大权完美匹配仍然全是「等边」。
 
@@ -112,47 +117,45 @@ $x_e=1$的边是匹配边，$x_e=0$的边是非匹配边。和二分图一样，
 vertex labeling仍要维持大于等于的性质，而且既有的「等边」不能被改变，还要让$z_B$尽量的小。
 
 ???+ note "定义符号 奇偶点"
-    以$u^−$来表示$u$在交错树上为奇点。
-    以$u^+$来表示$u$在交错树上为偶点。
-    以$u^\varnothing$来表示$u$不在任何一棵交错树上。
-    之后所有提到的$B$预设都是花，并同时代表缩花之后的点。
-    花也可以有奇花偶花之分，因此也适用$B^+$、$B^−$、$B^\varnothing$等符号。
+    以$u^−$来表示$u$在交错树上为奇点。  
+    以$u^+$来表示$u$在交错树上为偶点。  
+    以$u^\varnothing$来表示$u$不在任何一棵交错树上。  
+    之后所有提到的$B$预设都是花，并同时代表缩花之后的点。  
+    花也可以有奇花偶花之分，因此也适用$B^+$、$B^−$、$B^\varnothing$等符号。  
 
 设目前有r棵交错树 $T_i=(U_{t_i},V_{t_i}):1\leq i\leq r$，令
 
 $$
-\begin{array}{ll}
-\text{d1} =min(\{z_e:e=(u^+,v^\varnothing)\})  \\
-\text{d2} =min(\{z_e:e=(u^+,v^+),~u^+\in T_i,~v^+\in T_j,~i\neq j\})/2  \\
-\text{d3} =min(\{z_{B^-}:B^-\in O\})/2 \\
-\end{array}
+\begin{align*}
+\text{d1} &= \min(\{z_e : e = (u^+,v^\varnothing)\}) \\
+\text{d2} &= \min(\{z_e : e = (u^+,v^+), ~ u^+ \in T_i, ~ v^+ \in T_j, ~ i \neq j\}) / 2 \\
+\text{d3} &= \min(\{z_{B^-} : B^- \in O\}) / 2
+\end{align*}
 $$
 
 注意这里*B*是缩花之后的点，所以可以有奇偶性。
 
-设$d=min(d1,d2,d3)$
-
-让
+设$d=min(d1,d2,d3)$，让
 
 $$
-\begin{array}{ll}
-&z_{u^+}-=d \\
-&z_{v^{-}}+=d \\
-&z_{B^+}+=2d \\
-&z_{B^-}-=2d \\
-\end{array}
+\begin{align*}
+z_{u^+} ~ - &= d \\
+z_{v^-} ~ + &= d \\
+z_{B^+} ~ + &= 2d \\
+z_{B^-} ~ - &= 2d \\
+\end{align*}
 $$
 
-如果出现$z_B=0(d=d3)$，为了防止$z_B<0$的情况，所以要把这朵花拆了(EXPAND)。
+如果出现$z_B=0(d=d3)$，为了防止$z_B<0$的情况，所以要把这朵花拆了*(EXPAND)*。
 拆花后只留下花里的交替路径，并把花里不在交替路径上的点设为未走访($\varnothing$)。
 
 如此便制造了一条（以上）的等边，既有等边保持不动，并维持了$z_e\geq0:\forall e\in E$的性质，且最低限度增加了$z_B$，可以继续找增广路了。
 
 ## 一般图最大权匹配
 
-以上求的是最大权完美匹配，要求最大权匹配需要在vertex labeling额外增加一个限制：对于所有匹配点$u$，$z_u>0$。
+以上求的是最大权完美匹配，求最大权匹配需要在vertex labeling额外增加一个限制：对于所有匹配点$u$，$z_u>0$。
 
-一开始先设所有$z_u=max(\{w(e):e\in E\})/2$。
+开始时先设所有的$z_u=max(\{w(e):e\in E\})/2$。
 
 vertex labeling为 $0$ 的点最后将成为未匹配点。
 
