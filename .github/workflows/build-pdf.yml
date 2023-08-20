@@ -42,12 +42,12 @@ jobs:
             wget -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
             wget -O robotomono.zip "https://fonts.google.com/download?family=Roboto%20Mono"
             wget -q "http://mirrors.ctan.org/fonts/cm-unicode.zip"
-            unzip -q notosans.zip -d notosans
-            unzip -q notoserif.zip -d notoserif
-            unzip -q notosanscjk.zip -d notosanscjk
-            unzip -q notoserifcjk.zip -d notoserifcjk
-            unzip -q robotomono.zip -d robotomono
-            unzip -q ./cm-unicode.zip
+            unzip notosans.zip -d notosans
+            unzip notoserif.zip -d notoserif
+            unzip notosanscjk.zip -d notosanscjk
+            unzip notoserifcjk.zip -d notoserifcjk
+            unzip robotomono.zip -d robotomono
+            unzip  ./cm-unicode.zip
             cp -r notosans notoserif notosanscjk notoserifcjk robotomono cm-unicode/fonts/otf/* /usr/share/fonts
             fc-cache
             git clone https://github.com/OI-wiki/OI-Wiki-export.git --depth=1
