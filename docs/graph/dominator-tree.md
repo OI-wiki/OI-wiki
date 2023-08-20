@@ -376,11 +376,11 @@ void getsdom() {
 
 **证明：** 根据引理 10 我们知道 $idom(u)$ 是 $sdom(u)$ 或其祖先，因此只需证明 $sdom(u) \ dom \ u$。
 
-考虑任意一条 $s$ 到 $u$ 的路径 $P$，我们需要证明 $sdom(u)$ 一定在 $P$ 中。令 $v$ 为 $P$ 中最后一个满足 $x<sdom(u)$ 的节点。如果 $v$ 不存在则必有 $sdom(u)=idom(u) =s$，否则令 $w$ 是 $P$ 中 $v$ 之后在 DFS 树中从 $sdom(u)$ 到 $u$ 的路径上的第一个点。
+考虑任意一条 $s$ 到 $u$ 的路径 $P$，我们需要证明 $sdom(u)$ 一定在 $P$ 中。令 $v$ 为 $P$ 中最后一个满足 $v<sdom(u)$ 的节点。如果 $v$ 不存在则必有 $sdom(u)=idom(u) =s$，否则令 $w$ 是 $P$ 中 $v$ 之后在 DFS 树中从 $sdom(u)$ 到 $u$ 的路径上的第一个点。
 
 我们接下来证明 $sdom(w)\le v <sdom(v)$。考虑 $T$ 上 $v$ 到 $w$ 的路径 $v = v_0 \rightarrow \dots v_k = w$，若不成立，则存在 $i\in[1, k- 1], v_i < w$。此时一定存在某个 $j\in [i, k - 1]$ 满足 $v_j$ 是 $w$ 的祖先。由 $v$ 的取值可知 $sdom(u)\le v_j$，于是 $v_j$ 也在 DFS 树中从 $sdom(u)$ 到 $u$ 的路径上，与 $w$ 的定义矛盾，因此 $sdom(w)\le v < sdom(v)$，结合定理的条件有 $y=sdom(u)$，即路径 $P$ 包含 $sdom(u)$。
 
-**定理 3：** 对应任意节点 $u$，$T$ 上从 $sdom(u)$ 到 $u$ 的路径上的所有节点中最小的节点 $v$ 一定满足 $sdom(v)\le sdom(u)$ 和 $idom(v) = idom(u)$。
+**定理 3：** 对于任意节点 $u$，$T$ 上从 $sdom(u)$ 到 $u$ 的路径上的所有节点中半支配点最小的节点 $v$ 一定满足 $sdom(v)\le sdom(u)$ 和 $idom(v) = idom(u)$。
 
 **证明：** 考虑到 $u$ 本身也满足 $v$ 的条件，因此 $sdom(v)\le sdom(u)$。
 

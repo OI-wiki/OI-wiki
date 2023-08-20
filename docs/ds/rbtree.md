@@ -13,9 +13,9 @@
 
 ![rbtree-example](images/rbtree-example.svg)
 
-注：部分资料中还加入了第五条性质，即根节点必须为黑色，这条性质要求完成插入操作后若根节点为红色则将其染黑，但由于将根节点染黑的操作也可以延迟至删除操作时进行，因此，该条性质并非必须满足。（在本文给出的代码实现中就没有选择满足该性质）。为严谨起见，这里同时引用维基百科原文进行说明：
+注：部分资料中还加入了第五条性质，即根节点必须为黑色，这条性质要求完成插入操作后若根节点为红色则将其染黑，但由于将根节点染黑的操作也可以延迟至删除操作时进行，因此，该条性质并非必须满足。（在本文给出的代码实现中就没有选择满足该性质）。为严谨起见，这里同时引用 [维基百科原文](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Properties) 进行说明：
 
-> Some authors, e.g. Cormen & al.,\[[18\]](https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Cormen2009-18) claim "the root is black" as fifth requirement; but not Mehlhorn & Sanders\[[17\]](https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Mehlhorn2008-17) or Sedgewick & Wayne.\[[16\]](https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Algs4-16): 432–447  Since the root can always be changed from red to black, this rule has little effect on analysis. This article also omits it, because it slightly disturbs the recursive algorithms and proofs.
+> Some authors, e.g. Cormen & al.,[^cite_note-Cormen2009-18]claim "the root is black" as fifth requirement; but not Mehlhorn & Sanders[^cite_note-Mehlhorn2008-17]or Sedgewick & Wayne.[^cite_note-Algs4-16]Since the root can always be changed from red to black, this rule has little effect on analysis. This article also omits it, because it slightly disturbs the recursive algorithms and proofs.
 
 ## 结构
 
@@ -550,7 +550,7 @@ class RBTreeMap {
 
 源码：
 
--   [linux/lib/rbtree.c](https://elixir.bootlin.com/linux/latest/source/lib/rbtree.c)
+-   [`linux/lib/rbtree.c`](https://elixir.bootlin.com/linux/latest/source/lib/rbtree.c)
 
 Linux 中的红黑树所有操作均使用循环迭代进行实现，保证效率的同时又增加了大量的注释来保证代码可读性，十分建议读者阅读学习。Linux 内核中的红黑树使用非常广泛，这里仅列举几个经典案例。
 
@@ -566,8 +566,8 @@ epoll 全称 event poll，是 Linux 内核实现 IO 多路复用 (IO multiplexin
 
 源码：
 
--   [nginx/src/core/ngx\_rbtree.h](https://github.com/nginx/nginx/blob/master/src/core/ngx_rbtree.h)
--   [nginx/src/core/ngx\_rbtree.c](https://github.com/nginx/nginx/blob/master/src/core/ngx_rbtree.c)
+-   [`nginx/src/core/ngx_rbtree.h`](https://github.com/nginx/nginx/blob/master/src/core/ngx_rbtree.h)
+-   [`nginx/src/core/ngx_rbtree.c`](https://github.com/nginx/nginx/blob/master/src/core/ngx_rbtree.c)
 
 nginx 中的用户态定时器是通过红黑树实现的。在 nginx 中，所有 timer 节点都由一棵红黑树进行维护，在 worker 进程的每一次循环中都会调用 `ngx_process_events_and_timers` 函数，在该函数中就会调用处理定时器的函数 `ngx_event_expire_timers`，每次该函数都不断的从红黑树中取出时间值最小的，查看他们是否已经超时，然后执行他们的函数，直到取出的节点的时间没有超时为止。
 
@@ -578,14 +578,14 @@ nginx 中的用户态定时器是通过红黑树实现的。在 nginx 中，所�
 源码：
 
 -   GNU libstdc++
-    -   [libstdc++-v3/include/bits/stl\_tree.h](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_tree.h)
-    -   [libstdc++-v3/src/c++98/tree.cc](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/src/c%2B%2B98/tree.cc)
+    -   [`libstdc++-v3/include/bits/stl_tree.h`](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/bits/stl_tree.h)
+    -   [`libstdc++-v3/src/c++98/tree.cc`](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/src/c%2B%2B98/tree.cc)
 
 -   LLVM libcxx
-    -   [libcxx/include/\_\_tree](https://github.com/llvm/llvm-project/blob/main/libcxx/include/__tree)
+    -   [`libcxx/include/__tree`](https://github.com/llvm/llvm-project/blob/main/libcxx/include/__tree)
 
 -   Microsoft STL
-    -   [stl/inc/xtree](https://github.com/microsoft/STL/blob/main/stl/inc/xtree)
+    -   [`stl/inc/xtree`](https://github.com/microsoft/STL/blob/main/stl/inc/xtree)
 
 大多数 STL 中的 `std::map` 和 `std::set` 的内部数据结构就是一棵红黑树（例如上面提到的这些）。不过值得注意的是，这些红黑树（包括可能有读者用过的 `std::_Rb_tree`）都不是 C++ 标准，虽然部分竞赛（例如 NOIP）并未命令禁止这类数据结构，但还是应当注意这类标准库中的非标准实现不应该在工程项目中直接使用。
 
@@ -595,9 +595,9 @@ nginx 中的用户态定时器是通过红黑树实现的。在 nginx 中，所�
 
 源码：
 
--   [java.util.TreeMap\<K, V>](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/TreeMap.java)
--   [java.util.TreeSet\<K, V>](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/TreeSet.java)
--   [java.util.HashMap\<K, V>](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/HashMap.java)
+-   [`java.util.TreeMap<K, V>`](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/TreeMap.java)
+-   [`java.util.TreeSet<K, V>`](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/TreeSet.java)
+-   [`java.util.HashMap<K, V>`](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/HashMap.java)
 
 JDK 中的 `TreeMap` 和 `TreeSet` 都是使用红黑树作为底层数据结构的。同时在 JDK 1.8 之后 `HashMap` 内部哈希表中每个表项的链表长度超过 8 时也会自动转变为红黑树以提升查找效率。
 
@@ -616,3 +616,9 @@ JDK 中的 `TreeMap` 和 `TreeSet` 都是使用红黑树作为底层数据结构
 
 -   [Red-Black Tree - Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
 -   [Red-Black Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+
+[^cite_note-Cormen2009-18]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Cormen2009-18>
+
+[^cite_note-Mehlhorn2008-17]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Mehlhorn2008-17>
+
+[^cite_note-Algs4-16]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Algs4-16>: 432–447

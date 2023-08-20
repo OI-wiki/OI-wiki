@@ -48,7 +48,7 @@ $$
 
 设 $\displaystyle n=\prod_{i=1}^k{p_i}^{c_i},n'=\prod_{i=1}^k p_i$
 
-那么 $\displaystyle\sum_{d\mid n}\mu(d)=\sum_{d\mid n'}\mu(d)=\sum_{i=0}^k C_k^i\cdot(-1)^i=(1+(-1))^k$
+那么 $\displaystyle\sum_{d\mid n}\mu(d)=\sum_{d\mid n'}\mu(d)=\sum_{i=0}^k \dbinom{k}{i}\cdot(-1)^i=(1+(-1))^k$
 
 根据二项式定理，易知该式子的值在 $k=0$ 即 $n=1$ 时值为 $1$ 否则为 $0$，这也同时证明了 $\displaystyle\sum_{d\mid n}\mu(d)=[n=1]=\varepsilon(n)$ 以及 $\mu\ast 1=\varepsilon$
 
@@ -485,43 +485,6 @@ $$
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_4.cpp"
     ```
-
-**另一种推导方式**
-
-转化一下，可以将式子写成
-
-$$
-\begin{aligned}
-&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\cdot[\gcd(i,j)=1]\\
-=&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\sum_{t\mid \gcd(i,j)}\mu(t)\\
-=&\sum_{d=1}^{n}d^3\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{d}\rfloor}ij\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}\mu(t)[t\mid \gcd(i,j)]\\
-=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij[1\mid \gcd(i,j)]\\
-=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij
-\end{aligned}
-$$
-
-容易知道
-
-$$
-\sum_{i=1}^{n}i=\frac{n(n+1)}{2}
-$$
-
-设 $F(n)=\sum_{i=1}^{n}i$，继续接着前面的往下推
-
-$$
-\begin{aligned}
-&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\sum_{i=1}^{\lfloor\frac{n}{td}\rfloor}\sum_{j=1}^{\lfloor\frac{n}{td}\rfloor}ij\\
-=&\sum_{d=1}^{n}d^3\sum_{t=1}^{\lfloor\frac{n}{d}\rfloor}t^2 \mu(t)\cdot F^2\left(\left\lfloor\frac{n}{td}\right\rfloor\right)\\
-=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) \sum_{d\mid T}d^3\left(\frac{T}{d}\right)^2\mu\left(\frac{T}{d}\right)\\
-=&\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\sum_{d\mid T}d\cdot\mu\left(\dfrac{T}{d}\right)
-\end{aligned}
-$$
-
-利用 $\operatorname{id}\ast \mu = \varphi$ 反演，上式等于
-
-$\sum_{T=1}^{n}F^2\left(\left\lfloor\frac{n}{T}\right\rfloor\right) T^2\varphi(T)$
-
-得到了一个与第一种推导本质相同的式子。
 
 ## 莫比乌斯反演扩展
 
