@@ -93,6 +93,7 @@ nav:
       - 高级数据类型:
         - 数组: lang/array.md
         - 结构体: lang/struct.md
+        - 联合体: lang/union.md
         - 指针: lang/pointer.md
       - 函数: lang/func.md
       - 文件操作: lang/file-op.md
@@ -222,7 +223,7 @@ nav:
     - 平衡三进制: math/balanced-ternary.md
     - 高精度计算: math/bignum.md
     - 快速幂: math/binary-exponentiation.md
-    - 置换和排列: math/permulation.md
+    - 置换和排列: math/permutation.md
     - 弧度制与坐标系: math/coordinate.md
     - 复数: math/complex.md
     - 数论:
