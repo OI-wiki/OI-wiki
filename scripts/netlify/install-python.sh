@@ -40,8 +40,8 @@ for DIR in "${APT_PREFIX_COPY_DIRS[@]}"; do cp -r "$DIR/." "$APT_PREFIX$DIR/" ||
 # Download packages from PPA deadsnakes/ppa
 UBUNTU_CODENAME="$(source /etc/os-release && echo "$UBUNTU_CODENAME")"
 echo "deb [trusted=yes] https://ppa.launchpadcontent.net/deadsnakes/ppa/ubuntu $UBUNTU_CODENAME main" > "$APT_PREFIX"/etc/apt/sources.list.d/python.list
-apt-get -o "Dir=$APT_PREFIX" -o Debug::NoLocking=1 update
-apt-get -o "Dir=$APT_PREFIX" -o Debug::NoLocking=1 install -y --download-only "${APT_PACKAGES[@]}"
+apt-get -o "Dir=$APT_PREFIX" --allow-unauthenticated -o Debug::NoLocking=1 update
+apt-get -o "Dir=$APT_PREFIX" --allow-unauthenticated -o Debug::NoLocking=1 install -y --download-only "${APT_PACKAGES[@]}"
 
 # Install (extract) packages
 for PACKAGE in "$APT_PREFIX"/var/cache/apt/archives/*.deb; do dpkg -x "$PACKAGE" "$APT_PREFIX"; done
