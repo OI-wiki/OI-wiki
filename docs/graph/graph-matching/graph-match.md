@@ -1,6 +1,5 @@
 author: accelsao, StudyingFather, t4rf9, wlbksy, yuhuoji
 
-
 **匹配** 或是 **独立边集** 是一张图中不具有公共端点的边的集合。
 在二分图中求匹配等价于网路流问题。
 
