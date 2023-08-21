@@ -2,7 +2,7 @@ author: GavinZhengOI, PlanariaIce
 
 ## 简介
 
-离散化是一种数据处理的技巧，本质上可以看成是一种 [哈希](../string/hash/#hash-的思想)，其保证数据在哈希以后仍然保持原来的全/偏序关系。
+离散化是一种数据处理的技巧，本质上可以看成是一种 [哈希](../string/hash.md#hash-的思想)，其保证数据在哈希以后仍然保持原来的全/偏序关系。
 
 通俗地讲就是当有些数据因为本身很大或者类型不支持，自身无法作为数组的下标来方便地处理，而影响最终结果的只有元素之间的相对大小关系时，我们可以将原来的数据按照排名来处理问题，即离散化。
 
@@ -32,14 +32,14 @@ author: GavinZhengOI, PlanariaIce
 for (int i = 1; i <= n; ++i)  // step 1
   tmp[i] = arr[i];
 std::sort(tmp + 1, tmp + n + 1);                           // step 2
-mint len = std::unique(tmp + 1, tmp + n + 1) - (tmp + 1);  // step 3
+int len = std::unique(tmp + 1, tmp + n + 1) - (tmp + 1);  // step 3
 for (int i = 1; i <= n; ++i)                               // step 4
   arr[i] = std::lower_bound(tmp + 1, tmp + len + 1, arr[i]) - tmp;
 ```
 
 参考实现中使用的 STL 算法可参考 [STL 算法](../lang/csl/algorithm.md)。
 
-同样地，我们也可以对 [std::vector](../lang/csl/sequence-container.md/#vector) 进行离散化：
+同样地，我们也可以对 [std::vector](../lang/csl/sequence-container.md#vector) 进行离散化：
 
 ```cpp
 // std::vector<int> arr;
