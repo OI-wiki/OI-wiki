@@ -1,3 +1,5 @@
+author: iamtwz, Marcythm, 383494, abc1763613206, aofall, Chrogeek, CoelacanthusHex, Dafenghh, DanJoshua, Enter-tainer, GavinZhengOI, Gesrua, Henry-ZHR, Ir1d, kenlig, ksyx, lyccrius, Menci, opsiff, orzAtalod, ouuan, partychicken, Persdre, qq2964, Ruakker, shuzhouliu, sshwy, StudyingFather, szdytom, Tiphereth-A, Xeonacid, ZXyaang, rickyxrc
+
 AC 自动机是 **以 Trie 的结构为基础**，结合 **KMP 的思想** 建立的自动机，用于解决多模式匹配等任务。
 
 ???+ note "引入"
@@ -64,7 +66,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 ![AC\_automation\_6\_9.png](./images/ac-automaton1.png)
 
-找到 6 的父结点 5，$\text{fail}[5]=10$。然而 10 结点没有字母 `s` 连出的边；继续跳到 10 的 fail 指针，$\text{fail}[10]=0$。发现 0 结点有字母 `s` 连出的边，指向 7 结点；所以 $\text{fail}[6]=7$。最后放一张建出来的图
+找到 6 的父结点 5，$\text{fail}[5]=10$。然而 10 结点没有字母 `s` 连出的边；继续跳到 10 的 fail 指针，$\text{fail}[10]=0$。发现 0 结点有字母 `s` 连出的边，指向 7 结点；所以 $\text{fail}[6]=7$。最后放一张建出来的图：
 
 ![finish](./images/ac-automaton4.png)
 
@@ -206,6 +208,200 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 2.  粉色箭头：$p$ 在自动机上的跳转，
 3.  蓝色的边：成功匹配的模式串
 4.  蓝色结点：示跳 fail 指针时的结点（状态）。
+
+## 效率优化
+
+题目请参考洛谷 [P5357【模板】AC 自动机（二次加强版）](https://www.luogu.com.cn/problem/P5357)
+
+因为我们的 AC 自动机中，每次匹配，会一直向 fail 边跳来找到所有的匹配，但是这样的效率较低，在某些题目中会被卡 T。
+
+那么我们如何优化呢？首先我们需要了解 fail 指针的一个性质：一个 AC 自动机中，如果只保留 fail 边，那么剩余的图一定是一棵树。
+
+这是显然的，因为 fail 不会成环，且深度一定比现在低，所以得证。
+
+而我们 AC 自动机的匹配就可以转化为在 fail 树上的链求和问题。
+
+所以我们只需要优化一下这部分就可以了。
+
+我们这里提供两种思路。
+
+### 拓扑排序优化建图
+
+我们浪费的时间在哪里呢？在每次都要跳 fail。如果我们可以预先记录，最后一并求和，那么效率就会优化。
+
+于是我们按照 fail 树建图（不用真的建，只需要记录入度）：
+
+???+ note "建图"
+    ```cpp
+    void getfail()  // 实际上也可以叫 build
+    {
+      for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
+      q.push(1);
+      trie[1].fail = 0;
+      while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        int Fail = trie[u].fail;
+        for (int i = 0; i < 26; i++) {
+          int v = trie[u].son[i];
+          if (!v) {
+            trie[u].son[i] = trie[Fail].son[i];
+            continue;
+          }
+          trie[v].fail = trie[Fail].son[i];
+          indeg[trie[Fail].son[i]]++;  // 修改点在这里，增加了入度记录
+          q.push(v);
+        }
+      }
+    }
+    ```
+
+然后我们在查询的时候就可以只为找到节点的 ans 打上标记，在最后再用拓扑排序求出答案。
+
+???+ note "查询"
+    ```cpp
+    void query(char *s) {
+      int u = 1, len = strlen(s);
+      for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
+    }
+    
+    void topu() {
+      for (int i = 1; i <= cnt; i++)
+        if (!indeg[i]) q.push(i);
+      while (!q.empty()) {
+        int fr = q.front();
+        q.pop();
+        vis[trie[fr].flag] = trie[fr].ans;
+        int u = trie[fr].fail;
+        trie[u].ans += trie[fr].ans;
+        if (!(--indeg[u])) q.push(u);
+      }
+    }
+    ```
+
+主函数里这么写：
+
+```cpp
+int main() {
+  // do_something();
+  scanf("%s", s);
+  query(s);
+  topu();
+  for (int i = 1; i <= n; i++) cout << vis[rev[i]] << std::endl;
+  // do_another_thing();
+}
+```
+
+???+ note "完整代码"
+    [Luogu P5357【模板】AC 自动机（二次加强版）](https://www.luogu.com.cn/problem/P5357)
+    
+    ```cpp
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_topu.cpp"
+    ```
+
+### 子树求和
+
+和拓扑排序的思路接近，我们预先将子树求和，询问时直接累加和值即可。
+
+完整代码请见总结模板 3。
+
+## AC 自动机上 DP
+
+这部分将以 [P2292 \[HNOI2004\] L 语言](https://www.luogu.com.cn/problem/P2292) 为例题讲解。
+
+一看题，不难想到一个 naive 的思路：建立 AC 自动机，在 AC 自动机上对于所有 fail 指针的子串转移，最后取最大值得到答案。
+
+主要代码如下（若不熟悉代码中的类型定义可以跳到末尾的完整代码）：
+
+???+ note "查询部分主要代码"
+    ```cpp
+    void query(char *s) {
+      int u = 1, len = strlen(s), l = 0;
+      for (int i = 0; i < len; i++) {
+        int v = s[i] - 'a';
+        int k = trie[u].son[v];
+        while (k > 1) {
+          if (trie[k].flag && (dp[i - trie[k].len] || i - trie[k].len == -1))
+            dp[i] = dp[i - trie[k].len] + trie[k].len;
+          k = trie[k].fail;
+        }
+        u = trie[u].son[v];
+      }
+    }
+    ```
+
+主函数里取 max 即可。
+
+```cpp
+for (int i = 0, e = strlen(T); i < e; i++) mx = std::max(mx, dp[i]);
+```
+
+但是这样的思路复杂度不是线性（因为要跳每个节点的 fail），会被 subtask#2 卡到 T，所以我们需要一个优化的思路。
+
+我们再看看题目的特殊性质，我们发现所有单词的长度只有 $20$，所以可以想到状态压缩优化。
+
+具体怎么优化呢？我们发现，目前的时间瓶颈主要在跳 fail 这一步，如果我们可以将这一步优化到 $O(1)$，就可以保证整个问题在严格线性的时间内被解出。
+
+那我们就将前 $20$ 位字母中，可能的子串长度存下来，并压缩到状态中，存在每个子节点中。
+
+那么我们在 buildfail 的时候就可以这么写：
+
+???+ note "构建 fail 指针"
+    ```cpp
+    void getfail(void) {
+      for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
+      q.push(1);
+      trie[1].fail = 0;
+      while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        int Fail = trie[u].fail;
+        // 对状态的更新在这里
+        trie[u].stat = trie[Fail].stat;
+        if (trie[u].flag) trie[u].stat |= 1 << trie[u].depth;
+        for (int i = 0; i < 26; i++) {
+          int v = trie[u].son[i];
+          if (!v)
+            trie[u].son[i] = trie[Fail].son[i];
+          else {
+            trie[v].depth = trie[u].depth + 1;
+            trie[v].fail = trie[Fail].son[i];
+            q.push(v);
+          }
+        }
+      }
+    }
+    ```
+
+然后查询时就可以去掉跳 fail 的循环，将代码简化如下：
+
+???+ note "查询"
+    ```cpp
+    int query(char *s) {
+      int u = 1, len = strlen(s), mx = 0;
+      unsigned st = 1;
+      for (int i = 0; i < len; i++) {
+        int v = s[i] - 'a';
+        u = trie[u].son[v];
+        // 因为往下跳了一位每一位的长度都+1
+        st <<= 1;
+        // 这里的 & 值是状压 dp 的使用，代表两个长度集的交非空
+        if (trie[u].stat & st) st |= 1, mx = i + 1;
+      }
+      return mx;
+    }
+    ```
+
+我们的 `trie[u].stat` 维护的是从 u 节点开始，整条 fail 链上的长度集（因为长度集小于 32 所以不影响），而 `st` 则维护的是查询字符串走到现在，前 32 位（因为状态压缩自然溢出）的长度集。
+
+`&` 值不为 0，则代表两个长度集的交集非空，我们此时就找到了一个匹配。
+
+???+ note "完整代码"
+    [P2292 \[HNOI2004\] L 语言](https://www.luogu.com.cn/problem/P2292)
+    
+    ```cpp
+    --8<-- "docs/string/code/ac-automaton/ac_automaton_luoguP2292.cpp"
+    ```
 
 ## 总结
 

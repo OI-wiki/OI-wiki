@@ -8,9 +8,9 @@ ST4 与 ST3 的重要差别会有额外补充，在介绍中如果提及某项�
 
 ## 安装
 
-直接前往 [Sublime Text 3 官网](https://www.sublimetext.com/3) 下载即可（[中文官网](http://www.sublimetext.cn/) 已经很久没有更新，另外还有一个仿冒的网站）。
+ST4 的安装方法参见 [Sublime Text 4 的下载页面](https://www.sublimetext.com/download)。
 
-ST 的安装包并不会创建桌面快捷方式，需要自己手动创建。
+ST3 的安装方法参见 [Sublime Text 3 的下载页面](https://www.sublimetext.com/3)。
 
 ???+ note "提示购买"
     ST 是收费软件，但有一个无限期的试用，试用并不会带来功能上的缺失，但会不时弹出弹窗提示激活。

@@ -105,15 +105,15 @@ void solve() {
 
 对于区间 $[i,i]$，由于区间只有一个元素，我们很容易就能知道答案。然后一步一步从当前区间（已知答案）向下一个区间靠近。
 
-我们设 $col[i]$ 表示当前颜色 $i$ 出现了多少次，$ans$ 当前共有多少种可行的配对方案（有多少种可以选到一双颜色相同的袜子），表示然后每次移动的时候更新答案——设当前颜色为 $k$，如果是增长区间就是 $ans$ 加上 $C_{col[k]+1}^2-C_{col[k]}^2$，如果是缩短就是 $ans$ 减去 $C_{col[k]}^2-C_{col[k]-1}^2$。
+我们设 $col[i]$ 表示当前颜色 $i$ 出现了多少次，$ans$ 当前共有多少种可行的配对方案（有多少种可以选到一双颜色相同的袜子），表示然后每次移动的时候更新答案——设当前颜色为 $k$，如果是增长区间就是 $ans$ 加上 $\dbinom{col[k]+1}{2}-\dbinom{col[k]}{2}$，如果是缩短就是 $ans$ 减去 $\dbinom{col[k]}{2}-\dbinom{col[k]-1}{2}$。
 
-而这个询问的答案就是 $\displaystyle \frac{ans}{C_{r-l+1}^2}$。
+而这个询问的答案就是 $\displaystyle \frac{ans}{\dbinom{r-l+1}{2}}$。
 
-这里有个优化：$\displaystyle C_a^2=\frac{a (a-1)}{2}$。
+这里有个优化：$\displaystyle \dbinom{a}{2}=\frac{a (a-1)}{2}$。
 
-所以 $\displaystyle C_{a+1}^2-C_a^2=\frac{(a+1) a}{2}-\frac{a (a-1)}{2}=\frac{a}{2}\cdot (a+1-a+1)=\frac{a}{2}\cdot 2=a$。
+所以 $\displaystyle \dbinom{a+1}{2}-\dbinom{a}{2}=\frac{(a+1) a}{2}-\frac{a (a-1)}{2}=\frac{a}{2}\cdot (a+1-a+1)=\frac{a}{2}\cdot 2=a$。
 
-所以 $C_{col[k]+1}^2-C_{col[k]}^2=col[k]$。
+所以 $\dbinom{col[k]+1}{2}-\dbinom{col[k]}{2}=col[k]$。
 
 算法总复杂度：$O(n\sqrt{n} )$
 
