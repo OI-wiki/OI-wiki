@@ -163,6 +163,7 @@ nav:
     - 双向搜索: search/bidirectional.md
     - 启发式搜索: search/heuristic.md
     - A*: search/astar.md
+    - B*: search/bstar.md
     - 迭代加深搜索: search/iterative.md
     - IDA*: search/idastar.md
     - 回溯法: search/backtracking.md
