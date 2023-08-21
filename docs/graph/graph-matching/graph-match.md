@@ -1,4 +1,4 @@
-author: accelsao, StudyingFather, t4rf9, yuhuoji
+author: accelsao, StudyingFather, t4rf9, wlbksy, yuhuoji
 
 **匹配** 或是 **独立边集** 是一张图中不具有公共端点的边的集合。
 在二分图中求匹配等价于网路流问题。
@@ -19,23 +19,23 @@ author: accelsao, StudyingFather, t4rf9, yuhuoji
 
 一个点如果属于 $M$ 且为至多一条边的端点，称为 **匹配点**，反之称为 **未匹配点**。
 
--   maximal matching：无法再增加匹配边的匹配。不一定是最大匹配。
+-   极大匹配（maximal matching）：无法再增加匹配边的匹配。不一定是最大匹配。
 -   最大匹配（maximum matching or maximum cardinality matching）：匹配边数量最多的匹配。最大匹配可能有不止一个，但最大匹配的边数是确定的，而且不可能超过图中定点数的一半。
 -   最大权匹配（maximum weight matching）：加权图中，权值和最大的匹配。
 -   最大权最大匹配（maximum weight maximum cardinality matching）：匹配数最多的前提下，边权和最大的匹配。即所有最大匹配中，边权和最大的匹配。
--   完美匹配（perfect matching）：所有点都属于匹配，同时也符合最大匹配。若图G为完全图且顶点数为偶数时，必然存在完美匹配。
+-   完美匹配（perfect matching）：所有点都属于匹配，同时也符合最大匹配。若图 G 为完全图且顶点数为偶数时，必然存在完美匹配。
 -   近完美匹配（near-perfect matching）：发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。
 
     **maximal matching** ![maximal matching](./images/graph-match-1.png)
 
     **最大匹配** ![maximum cardinality matching](./images/graph-match-2.png)
-    
+
     **最大权匹配**
-    
+
     ![maximum weight matching](images/graph-match-3.png)
-    
+
     **最大权最大匹配**
-    
+
     ![maximum weight maximum cardinality matching](images/graph-match-4.png)
 
 ## 二分图匹配
@@ -92,39 +92,37 @@ author: accelsao, StudyingFather, t4rf9, yuhuoji
 
 ### 用最大权最大匹配求最大权匹配
 
-**最大权最大匹配**允许负边权$(w(e)<0)$，但是**最大权匹配**不会有负边权。
+**最大权最大匹配** 允许负边权 $(w(e)<0)$，但是 **最大权匹配** 不会有负边权。
 
-若一张图$G$其所有的边皆为负权，则其 **最大权匹配** $M=\emptyset$ 。
+若一张图 $G$ 其所有的边皆为负权，则其 **最大权匹配**  $M=\emptyset$。
 
 #### 调整边的权重
 
-先将图$G$的所有负权边其权重$w(e)$设为$0$，再进行接下来的步骤。
+先将图 $G$ 的所有负权边其权重 $w(e)$ 设为 $0$，再进行接下来的步骤。
 
 #### 完全图性质
 
-当图$G$为完全图且没有负边权时，**最大权最大匹配** = **最大权匹配**。
+当图 $G$ 为完全图且没有负边权时，**最大权最大匹配**=**最大权匹配**。
 
-所以把图$G$铺成完全图，铺上的边其权重为$0$，计算**最大权最大匹配**后再把权重为0的边去除即可。如下图所示。
+所以把图 $G$ 铺成完全图，铺上的边其权重为 $0$，计算 **最大权最大匹配** 后再把权重为 0 的边去除即可。如下图所示。
 
 ![graph-match](images/graph-match-5.png)
 
 ### 用最大权匹配求最大权最大匹配
 
-**最大权匹配**不会有负边权，且零边$(w(e)=0)$可选可不选，但是**最大权最大匹配**允许负边权和零边。
+**最大权匹配** 不会有负边权，且零边 $(w(e)=0)$ 可选可不选，但是 **最大权最大匹配** 允许负边权和零边。
 
 #### 调整边的权重
 
-令 $K=max(\{|w(e)|:e\in E,\mathrm{~}w(e)\leq0\})+1$ ，若没有负边权和零边则$K=0$。把图G中所有的边其权重$w(e)$加上$K$产生一张新图$G^{\prime}=(V,E^{\prime})$。得到的新图$G$不存在负边权和零边。
+令 $K=max(\{|w(e)|:e\in E,\mathrm{~}w(e)\leq0\})+1$，若没有负边权和零边则 $K=0$。把图 G 中所有的边其权重 $w(e)$ 加上 $K$ 产生一张新图 $G^{\prime}=(V,E^{\prime})$。得到的新图 $G$ 不存在负边权和零边。
 
-**最大权最大匹配**不一定等于**最大权匹配**，但是把所有边的边权加上一个超大数字$P$的话，**最大权匹配**的结果就是**最大权最大匹配**。但是$P$取要多大?
+**最大权最大匹配** 不一定等于 **最大权匹配**，但是把所有边的边权加上一个超大数字 $P$ 的话，**最大权匹配** 的结果就是 **最大权最大匹配**。但是 $P$ 取要多大？
 
-令$P=\sum w(e):e\in E^{\prime}$，把图G中所有的边其权重$w(e)$加上$P$，产生一张新图$G^{\prime\prime}=(V,E^{\prime\prime})$。
+令 $P=\sum w(e):e\in E^{\prime}$，把图 G 中所有的边其权重 $w(e)$ 加上 $P$，产生一张新图 $G^{\prime\prime}=(V,E^{\prime\prime})$。
 
-此时对图G进行**最大权匹配**，其结果可以对应原图$G$的**最大权最大匹配**。如下图所示。
+此时对图 G 进行 **最大权匹配**，其结果可以对应原图 $G$ 的 **最大权最大匹配**。如下图所示。
 
 ![graph-match](images/graph-match-6.png)
-
-
 
 ## 参考资料
 

@@ -184,7 +184,7 @@ $$
 定理：设 $A(\lambda)$ 等价于对角阵：
 
 $$
-diag\{f_1(\lambda),f_2(\lambda),\cdots,f_r(\lambda),0,\cdots,0\}
+\operatorname{diag}\{f_1(\lambda),f_2(\lambda),\cdots,f_r(\lambda),0,\cdots,0\}
 $$
 
 那么有 $f_1(\lambda),f_2(\lambda),\cdots,f_r(\lambda)$ 的全体一次因子的幂 ${(\lambda-\lambda_j)}^{e_{ij}}$，构成 $A(\lambda)$ 的初等因子。
@@ -368,7 +368,7 @@ $$
 定理：设矩阵 $A$ 的特征矩阵 $\lambda I-A$ 的 Smith 标准形为：
 
 $$
-diag\{d_1(\lambda),d_2(\lambda),\cdots,d_n(\lambda)\}
+\operatorname{diag}\{d_1(\lambda),d_2(\lambda),\cdots,d_n(\lambda)\}
 $$
 
 则最后一个不变因子 $d_n(\lambda)$ 恰好为矩阵 $A$ 的最小多项式 $m_A(\lambda)$。
