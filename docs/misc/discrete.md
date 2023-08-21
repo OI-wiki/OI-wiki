@@ -31,9 +31,9 @@ author: GavinZhengOI, PlanariaIce
 
 for (int i = 1; i <= n; ++i)  // step 1
   tmp[i] = arr[i];
-std::sort(tmp + 1, tmp + n + 1);                           // step 2
+std::sort(tmp + 1, tmp + n + 1);                          // step 2
 int len = std::unique(tmp + 1, tmp + n + 1) - (tmp + 1);  // step 3
-for (int i = 1; i <= n; ++i)                               // step 4
+for (int i = 1; i <= n; ++i)                              // step 4
   arr[i] = std::lower_bound(tmp + 1, tmp + len + 1, arr[i]) - tmp;
 ```
 
