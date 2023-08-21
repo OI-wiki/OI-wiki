@@ -18,23 +18,23 @@ author: GavinZhengOI, PlanariaIce
 
 方法如下：
 
-1. 创建原数组的副本。
+1.  创建原数组的副本。
 
-2. 将副本中的值从小到大排序。
+2.  将副本中的值从小到大排序。
 
-3. 将排序好的副本去重。
+3.  将排序好的副本去重。
 
-4. 查找原数组的每一个元素在副本中的位置，位置即为排名，将其作为离散化后的值。
+4.  查找原数组的每一个元素在副本中的位置，位置即为排名，将其作为离散化后的值。
 
 ```cpp
 // arr[i] 为初始数组,下标范围为 [1, n]
 
-for (int i = 1; i <= n; ++i)      // step 1
-    tmp[i] = arr[i];
-std::sort(tmp + 1, tmp + n + 1);  // step 2
-mint len = std::unique(tmp + 1, tmp + n + 1) - (tmp + 1); // step 3
-for (int i = 1; i <= n; ++i)      // step 4
-    arr[i] = std::lower_bound(tmp + 1, tmp + len + 1, arr[i]) - tmp;
+for (int i = 1; i <= n; ++i)  // step 1
+  tmp[i] = arr[i];
+std::sort(tmp + 1, tmp + n + 1);                           // step 2
+mint len = std::unique(tmp + 1, tmp + n + 1) - (tmp + 1);  // step 3
+for (int i = 1; i <= n; ++i)                               // step 4
+  arr[i] = std::lower_bound(tmp + 1, tmp + len + 1, arr[i]) - tmp;
 ```
 
 参考实现中使用的 STL 算法可参考 [STL 算法](../lang/csl/algorithm.md)。
@@ -43,11 +43,11 @@ for (int i = 1; i <= n; ++i)      // step 4
 
 ```cpp
 // std::vector<int> arr;
-std::vector<int> tmp(arr); // tmp 是 arr 的一个副本
+std::vector<int> tmp(arr);  // tmp 是 arr 的一个副本
 std::sort(tmp.begin(), tmp.end());
 tmp.erase(std::unique(tmp.begin(), tmp.end()), tmp.end());
 for (int i = 0; i < n; ++i)
-    arr[i] = std::lower_bound(tmp.begin(), tmp.end(), arr[i]) - tmp.begin();
+  arr[i] = std::lower_bound(tmp.begin(), tmp.end(), arr[i]) - tmp.begin();
 ```
 
 ### 方法二
@@ -56,39 +56,37 @@ for (int i = 0; i < n; ++i)
 
 此时再用 `std::lower_bound()` 函数实现就有些困难了，需要换一种思路：
 
-1. 创建原数组的副本，同时记录每个元素出现的位置。
+1.  创建原数组的副本，同时记录每个元素出现的位置。
 
-2. 将副本按值从小到大排序，当值相同时，按出现顺序从小到大排序。
+2.  将副本按值从小到大排序，当值相同时，按出现顺序从小到大排序。
 
-3. 将离散化后的数字放回原数组。
+3.  将离散化后的数字放回原数组。
 
 ```cpp
 struct Data {
-    int idx, val; 
+  int idx, val;
 
-    bool operator < (const Data& o) const {
-        if (val == o.val) return idx < o.idx;  // 当值相同时，先出现的元素离散化后的值更小
-        return val < o.val;
-    }
-} tmp[maxn]; // 也可以使用 std::pair
+  bool operator<(const Data& o) const {
+    if (val == o.val)
+      return idx < o.idx;  // 当值相同时，先出现的元素离散化后的值更小
+    return val < o.val;
+  }
+} tmp[maxn];  // 也可以使用 std::pair
 
-
-for (int i = 1; i <= n; ++i)
-    tmp[i] = (Data){ i, arr[i] };
+for (int i = 1; i <= n; ++i) tmp[i] = (Data){i, arr[i]};
 std::sort(tmp + 1, tmp + n + 1);
-for (int i = 1; i <= n; ++i)
-    arr[tmp[i].idx] = i;
+for (int i = 1; i <= n; ++i) arr[tmp[i].idx] = i;
 ```
 
 ### 复杂度
 
-对于方法一，去重复杂度为 $O(n)$ ，排序复杂度为 $O(n \log n)$ ，最后的 $n$ 次查找复杂度为 $O(n \log n)$ 。
+对于方法一，去重复杂度为 $O(n)$，排序复杂度为 $O(n \log n)$，最后的 $n$ 次查找复杂度为 $O(n \log n)$。
 
-排对于方法二，排序复杂度为 $O(n \log n)$ 。故两种方法的总时间复杂度都为 $O(n \log n)$ 。
+排对于方法二，排序复杂度为 $O(n \log n)$。故两种方法的总时间复杂度都为 $O(n \log n)$。
 
-空间复杂度为 $O(n)$ 。
+空间复杂度为 $O(n)$。
 
 ## 习题
 
-- [[HAOI2014] 贴海报](https://www.luogu.com.cn/problem/P3740)
-- [[NOI2015] 程序自动分析](https://www.luogu.com.cn/problem/P1955)
+-   [\[HAOI2014\] 贴海报](https://www.luogu.com.cn/problem/P3740)
+-   [\[NOI2015\] 程序自动分析](https://www.luogu.com.cn/problem/P1955)
