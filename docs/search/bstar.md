@@ -26,7 +26,7 @@ B \*算法的基本思路是贪心思想+攀爬障碍。只需要朝着目标的
 3. 用 Breshenham 算法，不在本文讨论范围以内。
 4. 函数解析式法，推导比较复杂。
 
-为了代码实现方便，本文使用第一种定义做演示。如下图所示，"."为空格子，"1"为经过的格子，"#"为障碍物。
+本文为了代码实现方便，使用第一种定义做演示。如下图所示，"."为空格子，"1"为经过的格子，"#"为障碍物。
 $$
 \begin{array}{cccccccccc}
 S & 1 & 2 & 3 & 4 & 5 & 6 & . & . & . \\
@@ -75,402 +75,403 @@ $$
 - 遇到障碍物，以障碍物格子为界，分别沿着障碍物的边缘行走形成分支继续搜索。
 - 到达终点，输出答案。
 
-???+ note "代码实现"
-~~~c++
-#include<bits/stdc++.h>
-using namespace std;
-const bool showmap=0; //改为 1 可以逐步查看路径
-const int SIZE=500;
 
-const short direx[]={1,0,-1,0};
-const short direy[]={0,1,0,-1};
 
-struct Point
-{
-    int x,y,step;
-    short WD,D;
-    const bool operator == (Point ob)
-    {return x==ob.x && y==ob.y;}
-    void Scan () {scanf ("%d %d",&x,&y);}
-    void Print() {printf("%d %d\n",x,y);}
-    void Walk(short dire)
-    {x+=direx[dire],y+=direy[dire];}
-    Point Next(short dire)
-    {return Point{x+direx[dire],y+direy[dire],step,WD};}
-}start,end;
-
-int n,m;
-bool mapn[SIZE+5][SIZE+5],visit[SIZE+5][SIZE+5];
-queue<Point> B_star;
-
-void maprint(Point ob)//展示路径
-{
-    for(int i=1;i<=n;i++)
+??? note "代码实现"
+    ```cpp
+    #include<bits/stdc++.h>
+    using namespace std;
+    const bool showmap=0; //改为 1 可以逐步查看路径
+    const int SIZE=500;
+    const short direx[]={1,0,-1,0};
+    const short direy[]={0,1,0,-1};
+    
+    struct Point
     {
-        for(int j=1;j<=m;j++)
-            if(mapn[i][j]) cout<<setw(3)<<"#";
-            else if(Point{j,i}==ob) cout<<setw(3)<<ob.step;
-            else if(Point{j,i}==end) cout<<setw(3)<<"E";
-            else if(Point{j,i}==start) cout<<setw(3)<<"S";
-            else if(visit[i][j]) cout<<setw(3)<<"1";
-            else cout<<setw(3)<<".";
-        printf("\n");
+        int x,y,step;
+        short WD,D;
+        const bool operator == (Point ob)
+        {return x==ob.x && y==ob.y;}
+        void Scan () {scanf ("%d %d",&x,&y);}
+        void Print() {printf("%d %d\n",x,y);}
+        void Walk(short dire)
+        {x+=direx[dire],y+=direy[dire];}
+        Point Next(short dire)
+        {return Point{x+direx[dire],y+direy[dire],step,WD};}
+    }start,end;
+    
+    int n,m;
+    bool mapn[SIZE+5][SIZE+5],visit[SIZE+5][SIZE+5];
+    queue<Point> B_star;
+    
+    void maprint(Point ob)//展示路径
+    {
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=m;j++)
+                if(mapn[i][j]) cout<<setw(3)<<"#";
+                else if(Point{j,i}==ob) cout<<setw(3)<<ob.step;
+                else if(Point{j,i}==end) cout<<setw(3)<<"E";
+                else if(Point{j,i}==start) cout<<setw(3)<<"S";
+                else if(visit[i][j]) cout<<setw(3)<<"1";
+                else cout<<setw(3)<<".";
+            printf("\n");
+        }
     }
-}
-
-bool NW(Point ob)//near the wall
-{
-    for(short i=0;i<4;i++)
+    
+    bool NW(Point ob)//near the wall
     {
-        Point rear=ob;
-        rear.Walk(i);
-        if(mapn[rear.y][rear.x]) return 1;
+        for(short i=0;i<4;i++)
+        {
+            Point rear=ob;
+            rear.Walk(i);
+            if(mapn[rear.y][rear.x]) return 1;
+        }
+        return 0;
     }
-    return 0;
-}
-
-bool Allowed(Point ob)
-{return !mapn[ob.y][ob.x] && !visit[ob.y][ob.x];}
-
-bool AtWall(Point ob)
-{return mapn[ob.y][ob.x];}
-
-short SD(Point ob)//straight dire
-{
-    if(abs(ob.x-end.x)>=abs(ob.y-end.y))
+    
+    bool Allowed(Point ob)
+    {return !mapn[ob.y][ob.x] && !visit[ob.y][ob.x];}
+    
+    bool AtWall(Point ob)
+    {return mapn[ob.y][ob.x];}
+    
+    short SD(Point ob)//straight dire
     {
-        if(ob.x<end.x) return 0;
-        if(ob.x>end.x) return 2;
+        if(abs(ob.x-end.x)>=abs(ob.y-end.y))
+        {
+            if(ob.x<end.x) return 0;
+            if(ob.x>end.x) return 2;
+        }
+        if(ob.y<end.y) return 1;
+        return 3;
     }
-    if(ob.y<end.y) return 1;
-    return 3;
-}
-
-int main()
-{
-    memset(mapn,1,sizeof mapn);
-    scanf("%d %d",&n,&m);
-    for(int i=1;i<=n;i++)
-        for(int j=1;j<=m;j++)
-            cin>>mapn[i][j];
-    start.Scan(),start.step=0,start.WD=start.D=4;
-    end.Scan();
-    B_star.push(start);
-    if(showmap) system("cls");
-    while(!B_star.empty())
+    
+    int main()
     {
-        Point now=B_star.front();B_star.pop();
-        if(now==end) {printf("B-star ans: %d\n",now.step);return 0;}
-        if(!Allowed(now)) continue;
-        visit[now.y][now.x]=1;
-        if(showmap)
+        memset(mapn,1,sizeof mapn);
+        scanf("%d %d",&n,&m);
+        for(int i=1;i<=n;i++)
+            for(int j=1;j<=m;j++)
+                cin>>mapn[i][j];
+        start.Scan(),start.step=0,start.WD=start.D=4;
+        end.Scan();
+        B_star.push(start);
+        if(showmap) system("cls");
+        while(!B_star.empty())
         {
-            maprint(now);
-            system("pause");
-            system("cls");
-        }
-        /*
-            0 右
-            1 下
-            2 左
-            3 上 
-        */
-        if(abs(now.x-end.x)>=abs(now.y-end.y))
-        {
-            if(now.x<end.x && Allowed(now.Next(0)))//朝右走
+            Point now=B_star.front();B_star.pop();
+            if(now==end) {printf("B-star ans: %d\n",now.step);return 0;}
+            if(!Allowed(now)) continue;
+            visit[now.y][now.x]=1;
+            if(showmap)
             {
-                Point rear=now.Next(0);
-                rear.step++,rear.WD=rear.D=4;
-                B_star.push(rear);
-                continue;
-            }
-            if(now.x>end.x && Allowed(now.Next(2)))//朝左走
-            {
-                Point rear=now.Next(2);
-                rear.step++,rear.WD=rear.D=4;
-                B_star.push(rear);
-                continue;
-            }
-        }
-        else
-        {
-            if(now.y<end.y && Allowed(now.Next(1)))//朝下走 
-            {
-                Point rear=now.Next(1);
-                rear.step++,rear.WD=rear.D=4;
-                B_star.push(rear);
-                continue;
-            }
-            if(now.y>end.y && Allowed(now.Next(3)))//朝上走 
-            {
-                Point rear=now.Next(3);
-                rear.step++,rear.WD=rear.D=4;
-                B_star.push(rear);
-                continue;
-            }
-        }
-        /*
-            0 右
-            1 下
-            2 左
-            3 上 
-        */
-        //不能径直走
-         if(now.WD==4 && AtWall(now.Next(SD(now))))//第一次撞到墙2
-         {
-            if(SD(now)==0) //墙在右边
-            {
-                Point rear;
-                rear=now.Next(1),rear.D=1,rear.step++,rear.WD=0,B_star.push(rear);
-                rear=now.Next(3),rear.D=3,rear.step++,rear.WD=0,B_star.push(rear);
-                continue;
-            }
-            if(SD(now)==1) //墙在下边
-            {
-                Point rear;
-                rear=now.Next(0),rear.D=0,rear.step++,rear.WD=1,B_star.push(rear);
-                rear=now.Next(2),rear.D=2,rear.step++,rear.WD=1,B_star.push(rear);
-                continue;
-            }
-            if(SD(now)==2) //墙在左边
-            {
-                Point rear;
-                rear=now.Next(1),rear.D=1,rear.step++,rear.WD=2,B_star.push(rear);
-                rear=now.Next(3),rear.D=3,rear.step++,rear.WD=2,B_star.push(rear);
-                continue;
-            }
-            if(SD(now)==3) //墙在上边
-            {
-                Point rear;
-                rear=now.Next(0),rear.D=0,rear.step++,rear.WD=3,B_star.push(rear);
-                rear=now.Next(2),rear.D=2,rear.step++,rear.WD=3,B_star.push(rear);
-                continue;
-            }
-        }
-        /*
-            0 右
-            1 下
-            2 左
-            3 上 
-        */
-        else//早就已经撞到墙了
-        {
-            if(now.WD==0)//墙在右边
-            {
-                if(!AtWall(now.Next(0)))//右边根本没墙
-                {
-                    if(now.D==1)//向下走
-                    {
-                        Point rear;
-                        rear=now.Next(0),rear.D=0,rear.step++,rear.WD=3,B_star.push(rear);
-                        continue;
-                    }
-                    if(now.D==3)
-                    {
-                        Point rear;
-                        rear=now.Next(0),rear.D=0,rear.step++,rear.WD=1,B_star.push(rear);
-                        continue;
-                    }
-                }
-                //右边有墙，沿着 now.D 继续走
-                if(!AtWall(now.Next(now.D)))//能继续走
-                {
-                    Point rear;
-                    rear=now.Next(now.D),rear.D=now.D,rear.step++,rear.WD=0,B_star.push(rear);
-                    continue;
-                }
-                //沿着这个方向不能再走了
-                Point rear;
-                rear=now.Next(2),rear.D=2,rear.step++,rear.WD=now.D,B_star.push(rear);
-                continue;
-            }
-            if(now.WD==1)//墙在下边
-            {
-                if(!AtWall(now.Next(1)))//下边根本没墙
-                {
-                    if(now.D==0)//向右走
-                    {
-                        Point rear;
-                        rear=now.Next(1),rear.D=1,rear.step++,rear.WD=2,B_star.push(rear);
-                        continue;
-                    }
-                    if(now.D==2)//向左走 
-                    {
-                        Point rear;
-                        rear=now.Next(1),rear.D=1,rear.step++,rear.WD=0,B_star.push(rear);
-                        continue;
-                    }
-                }
-                //下边有墙，沿着 now.D 继续走
-                if(!AtWall(now.Next(now.D)))//能继续走
-                {
-                    Point rear;
-                    rear=now.Next(now.D),rear.D=now.D,rear.step++,rear.WD=1,B_star.push(rear);
-                    continue;
-                }
-                //沿着这个方向不能再走了
-                Point rear;
-                rear=now.Next(3),rear.D=3,rear.step++,rear.WD=now.D,B_star.push(rear);
-                continue;
+                maprint(now);
+                system("pause");
+                system("cls");
             }
             /*
                 0 右
                 1 下
                 2 左
-                3 上
+                3 上 
             */
-            if(now.WD==2)//墙在左边
+            if(abs(now.x-end.x)>=abs(now.y-end.y))
             {
-                if(!AtWall(now.Next(2)))//左边根本没墙
+                if(now.x<end.x && Allowed(now.Next(0)))//朝右走
                 {
-                    if(now.D==1)//本来向下走
-                    {
-                        Point rear;
-                        rear=now.Next(2),rear.D=2,rear.step++,rear.WD=3,B_star.push(rear);
-                        continue;
-                    }
-                    if(now.D==3)
-                    {
-                        Point rear;
-                        rear=now.Next(2),rear.D=2,rear.step++,rear.WD=1,B_star.push(rear);
-                        continue;
-                    }
-                }
-                //右边有墙，沿着 now.D 继续走
-                if(!AtWall(now.Next(now.D)))//能继续走
-                {
-                    Point rear;
-                    rear=now.Next(now.D),rear.D=now.D,rear.step++,rear.WD=2,B_star.push(rear);
+                    Point rear=now.Next(0);
+                    rear.step++,rear.WD=rear.D=4;
+                    B_star.push(rear);
                     continue;
                 }
-                //沿着这个方向不能再走了
-                Point rear;
-                rear=now.Next(0),rear.D=0,rear.step++,rear.WD=now.D,B_star.push(rear);
-                continue;
+                if(now.x>end.x && Allowed(now.Next(2)))//朝左走
+                {
+                    Point rear=now.Next(2);
+                    rear.step++,rear.WD=rear.D=4;
+                    B_star.push(rear);
+                    continue;
+                }
             }
-            if(now.WD==3)//墙在上边
+            else
             {
-                if(!AtWall(now.Next(3)))//上边根本没墙
+                if(now.y<end.y && Allowed(now.Next(1)))//朝下走 
                 {
-                    if(now.D==0)//向右走
-                    {
-                        Point rear;
-                        rear=now.Next(3),rear.D=3,rear.step++,rear.WD=2,B_star.push(rear);
-                        continue;
-                    }
-                    if(now.D==2)//向左走 
-                    {
-                        Point rear;
-                        rear=now.Next(3),rear.D=3,rear.step++,rear.WD=0,B_star.push(rear);
-                        continue;
-                    }
-                }
-                //下边有墙，沿着 now.D 继续走
-                if(!AtWall(now.Next(now.D)))//能继续走
-                {
-                    Point rear;
-                    rear=now.Next(now.D),rear.D=now.D,rear.step++,rear.WD=3,B_star.push(rear);
+                    Point rear=now.Next(1);
+                    rear.step++,rear.WD=rear.D=4;
+                    B_star.push(rear);
                     continue;
                 }
-                //沿着这个方向不能再走了
-                Point rear;
-                rear=now.Next(1),rear.D=1,rear.step++,rear.WD=now.D,B_star.push(rear);
-                continue;
+                if(now.y>end.y && Allowed(now.Next(3)))//朝上走 
+                {
+                    Point rear=now.Next(3);
+                    rear.step++,rear.WD=rear.D=4;
+                    B_star.push(rear);
+                    continue;
+                }
             }
             /*
                 0 右
                 1 下
                 2 左
-                3 上
+                3 上 
             */
+            //不能径直走
+             if(now.WD==4 && AtWall(now.Next(SD(now))))//第一次撞到墙2
+             {
+                if(SD(now)==0) //墙在右边
+                {
+                    Point rear;
+                    rear=now.Next(1),rear.D=1,rear.step++,rear.WD=0,B_star.push(rear);
+                    rear=now.Next(3),rear.D=3,rear.step++,rear.WD=0,B_star.push(rear);
+                    continue;
+                }
+                if(SD(now)==1) //墙在下边
+                {
+                    Point rear;
+                    rear=now.Next(0),rear.D=0,rear.step++,rear.WD=1,B_star.push(rear);
+                    rear=now.Next(2),rear.D=2,rear.step++,rear.WD=1,B_star.push(rear);
+                    continue;
+                }
+                if(SD(now)==2) //墙在左边
+                {
+                    Point rear;
+                    rear=now.Next(1),rear.D=1,rear.step++,rear.WD=2,B_star.push(rear);
+                    rear=now.Next(3),rear.D=3,rear.step++,rear.WD=2,B_star.push(rear);
+                    continue;
+                }
+                if(SD(now)==3) //墙在上边
+                {
+                    Point rear;
+                    rear=now.Next(0),rear.D=0,rear.step++,rear.WD=3,B_star.push(rear);
+                    rear=now.Next(2),rear.D=2,rear.step++,rear.WD=3,B_star.push(rear);
+                    continue;
+                }
+            }
+            /*
+                0 右
+                1 下
+                2 左
+                3 上 
+            */
+            else//早就已经撞到墙了
+            {
+                if(now.WD==0)//墙在右边
+                {
+                    if(!AtWall(now.Next(0)))//右边根本没墙
+                    {
+                        if(now.D==1)//向下走
+                        {
+                            Point rear;
+                            rear=now.Next(0),rear.D=0,rear.step++,rear.WD=3,B_star.push(rear);
+                            continue;
+                        }
+                        if(now.D==3)
+                        {
+                            Point rear;
+                            rear=now.Next(0),rear.D=0,rear.step++,rear.WD=1,B_star.push(rear);
+                            continue;
+                        }
+                    }
+                    //右边有墙，沿着 now.D 继续走
+                    if(!AtWall(now.Next(now.D)))//能继续走
+                    {
+                        Point rear;
+                        rear=now.Next(now.D),rear.D=now.D,rear.step++,rear.WD=0,B_star.push(rear);
+                        continue;
+                    }
+                    //沿着这个方向不能再走了
+                    Point rear;
+                    rear=now.Next(2),rear.D=2,rear.step++,rear.WD=now.D,B_star.push(rear);
+                    continue;
+                }
+                if(now.WD==1)//墙在下边
+                {
+                    if(!AtWall(now.Next(1)))//下边根本没墙
+                    {
+                        if(now.D==0)//向右走
+                        {
+                            Point rear;
+                            rear=now.Next(1),rear.D=1,rear.step++,rear.WD=2,B_star.push(rear);
+                            continue;
+                        }
+                        if(now.D==2)//向左走 
+                        {
+                            Point rear;
+                            rear=now.Next(1),rear.D=1,rear.step++,rear.WD=0,B_star.push(rear);
+                            continue;
+                        }
+                    }
+                    //下边有墙，沿着 now.D 继续走
+                    if(!AtWall(now.Next(now.D)))//能继续走
+                    {
+                        Point rear;
+                        rear=now.Next(now.D),rear.D=now.D,rear.step++,rear.WD=1,B_star.push(rear);
+                        continue;
+                    }
+                    //沿着这个方向不能再走了
+                    Point rear;
+                    rear=now.Next(3),rear.D=3,rear.step++,rear.WD=now.D,B_star.push(rear);
+                    continue;
+                }
+                /*
+                    0 右
+                    1 下
+                    2 左
+                    3 上
+                */
+                if(now.WD==2)//墙在左边
+                {
+                    if(!AtWall(now.Next(2)))//左边根本没墙
+                    {
+                        if(now.D==1)//本来向下走
+                        {
+                            Point rear;
+                            rear=now.Next(2),rear.D=2,rear.step++,rear.WD=3,B_star.push(rear);
+                            continue;
+                        }
+                        if(now.D==3)
+                        {
+                            Point rear;
+                            rear=now.Next(2),rear.D=2,rear.step++,rear.WD=1,B_star.push(rear);
+                            continue;
+                        }
+                    }
+                    //右边有墙，沿着 now.D 继续走
+                    if(!AtWall(now.Next(now.D)))//能继续走
+                    {
+                        Point rear;
+                        rear=now.Next(now.D),rear.D=now.D,rear.step++,rear.WD=2,B_star.push(rear);
+                        continue;
+                    }
+                    //沿着这个方向不能再走了
+                    Point rear;
+                    rear=now.Next(0),rear.D=0,rear.step++,rear.WD=now.D,B_star.push(rear);
+                    continue;
+                }
+                if(now.WD==3)//墙在上边
+                {
+                    if(!AtWall(now.Next(3)))//上边根本没墙
+                    {
+                        if(now.D==0)//向右走
+                        {
+                            Point rear;
+                            rear=now.Next(3),rear.D=3,rear.step++,rear.WD=2,B_star.push(rear);
+                            continue;
+                        }
+                        if(now.D==2)//向左走 
+                        {
+                            Point rear;
+                            rear=now.Next(3),rear.D=3,rear.step++,rear.WD=0,B_star.push(rear);
+                            continue;
+                        }
+                    }
+                    //下边有墙，沿着 now.D 继续走
+                    if(!AtWall(now.Next(now.D)))//能继续走
+                    {
+                        Point rear;
+                        rear=now.Next(now.D),rear.D=now.D,rear.step++,rear.WD=3,B_star.push(rear);
+                        continue;
+                    }
+                    //沿着这个方向不能再走了
+                    Point rear;
+                    rear=now.Next(1),rear.D=1,rear.step++,rear.WD=now.D,B_star.push(rear);
+                    continue;
+                }
+                /*
+                    0 右
+                    1 下
+                    2 左
+                    3 上
+                */
+            }
         }
+        printf("No way!\n");
+        return 0;
     }
-    printf("No way!\n");
-    return 0;
-}
-/*
-5 5
-0 0 0 0 0
-0 0 1 0 0
-0 0 1 0 0
-0 0 1 0 0
-0 0 0 0 0
-1 3
-5 3
-
-17 17
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
-0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-1 7
-17 7
-
-7 7
-0 0 0 0 0 0 0
-0 0 1 1 1 1 0
-0 0 1 0 0 1 0
-0 0 1 0 0 1 0
-0 0 1 0 0 1 0
-0 0 1 1 1 1 0
-0 0 0 0 0 0 0
-1 4
-5 4
-
-5 7
-0 0 0 0 0 0 0
-0 0 1 1 1 1 0
-0 0 0 0 0 1 0
-0 0 1 1 1 1 0
-0 0 0 0 0 0 0
-1 3
-7 3
-
-7 5
-0 0 0 0 0
-0 1 1 1 0
-0 1 0 1 0
-0 1 0 1 0
-0 1 0 1 0
-0 0 0 0 0
-0 0 0 0 0
-3 7
-3 1
-
-6 7
-0 0 0 0 0 0 0
-0 0 1 1 1 1 0
-0 0 0 0 0 1 0
-0 0 0 0 0 1 0
-0 0 1 1 1 1 0
-0 0 0 0 0 0 0
-1 3
-7 3
-
-6 7
-0 0 0 0 0 0 0
-0 0 1 1 0 1 1
-0 0 1 0 0 0 0
-0 0 1 0 0 0 0
-0 0 1 1 1 1 1
-0 0 0 0 0 0 0
-1 3
-7 3
-*/
-~~~
+    /*
+    5 5
+    0 0 0 0 0
+    0 0 1 0 0
+    0 0 1 0 0
+    0 0 1 0 0
+    0 0 0 0 0
+    1 3
+    5 3
+    
+    17 17
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0
+    0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0
+    0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0
+    0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0
+    0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0
+    0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
+    0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
+    0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
+    0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
+    0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
+    0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    1 7
+    17 7
+    
+    7 7
+    0 0 0 0 0 0 0
+    0 0 1 1 1 1 0
+    0 0 1 0 0 1 0
+    0 0 1 0 0 1 0
+    0 0 1 0 0 1 0
+    0 0 1 1 1 1 0
+    0 0 0 0 0 0 0
+    1 4
+    5 4
+    
+    5 7
+    0 0 0 0 0 0 0
+    0 0 1 1 1 1 0
+    0 0 0 0 0 1 0
+    0 0 1 1 1 1 0
+    0 0 0 0 0 0 0
+    1 3
+    7 3
+    
+    7 5
+    0 0 0 0 0
+    0 1 1 1 0
+    0 1 0 1 0
+    0 1 0 1 0
+    0 1 0 1 0
+    0 0 0 0 0
+    0 0 0 0 0
+    3 7
+    3 1
+    
+    6 7
+    0 0 0 0 0 0 0
+    0 0 1 1 1 1 0
+    0 0 0 0 0 1 0
+    0 0 0 0 0 1 0
+    0 0 1 1 1 1 0
+    0 0 0 0 0 0 0
+    1 3
+    7 3
+    
+    6 7
+    0 0 0 0 0 0 0
+    0 0 1 1 0 1 1
+    0 0 1 0 0 0 0
+    0 0 1 0 0 0 0
+    0 0 1 1 1 1 1
+    0 0 0 0 0 0 0
+    1 3
+    7 3
+    */
+    ```
 
 ## B* 算法的问题
 
@@ -494,7 +495,7 @@ $$
 代码中，设当前在 now 位置时要往 ND 方向走了，先判断一下左右的前方是否有障碍，如果有，加入向左向右的新分支就行了。
 
 
-```c++
+```cpp
 Point rear;
 rear = now.Next(ND), rear.Walk(TL(ND));//左前
 if(AtWall(rear)) rear = now.Next(TL(ND)), rear.step++, B_star.push(rear);
@@ -504,7 +505,7 @@ if(AtWall(rear)) rear = now.Next(TR(ND)), rear.step++, B_star.push(rear);
 
 函数TL和TR的定义如下。
 
-```c++
+```cpp
 short TL(short dire){ //左转
     return (dire==0 ? 3 : dire-1);
 }
@@ -540,7 +541,7 @@ S & 1 & 2 & 3 & 4 & \# & . & E \\
 $$
 解决方法是增加特判，当完全可以从临近的格子直接过来的时候，更新步数，将相邻的回路变成比较直的路径。
 
-```c++
+```cpp
 for(short i = 0; i < 4; i ++){
     Point rear = now;
     rear.Walk(i);
@@ -556,7 +557,7 @@ mem 记录搜索到每一个格子的最小步数，初始值赋为 *INT_MAX* �
 
 下面是 mem 初始化代码：
 
-```c++
+```cpp
 for(int i = 0; i <= n + 1; i++){
     for(int j = 0; j <= m + 1; j++){
         mem[i][j] = INT_MAX;    
@@ -585,11 +586,11 @@ $$
 $$
 now.step+mem[now.y][now.x]−1
 $$
-作为答案输出。如果起点队列碰见了终点队列经过的位置也要这么做。
+作为答案输出。当然如果起点队列碰见了终点队列经过的位置也要这么做。
 
-注意必需要有方法区分起点队列与终点队列更新过的 mem 还有 visit，可以另开数组进行标记，或者把每一个格子写成如下的结构体。
+注意必需要有方法区分起点队列与终点队列更新过的 mem 还有 visit。可以通过另开数组进行标记，或者把每一个格子写成如下的结构体。
 
-```c++
+```cpp
 struct msg
 {
     int val;
