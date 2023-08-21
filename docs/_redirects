@@ -102,6 +102,8 @@
 /math/linear-algebra/gauss /math/numerical/gauss
 /math/integral /math/numerical/integral
 /math/newton /math/numerical/newton
+/math/permulation /math/permutation
+/math/number-theory/lagrange /math/number-theory/congruence-equation
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut

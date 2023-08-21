@@ -66,28 +66,33 @@
 
 解：假设一年有 $n$ 天，房间中有 $k$ 人，用整数 $1, 2,\dots, k$ 对这些人进行编号。假定每个人的生日均匀分布于 $n$ 天之中，且两个人的生日相互独立。
 
-设 k 个人生日互不相同为事件 $A$, 则事件 $A$ 的概率为
+设 $k$ 个人生日互不相同为事件 $A$, 则事件 $A$ 的概率为
 
 $$
-P(A)=\frac{n}{n} \times \frac{n-1}{n} \times \dots \times \frac{n-k+1}{n}
+P(A)=\prod_{i=0}^{k-1}\frac{n-i}{n}
 $$
 
-至少有两个人生日相同的概率为 $P(\overline A)=1-P(A)$。根据题意可知 $P(\overline A)\ge\frac{1}{2}$, 那么就有 $1 \times \frac{n-1}{n} \times \dots \times \frac{n-k+1}{n} \le \frac{1}{2}$
-
-由不等式 $1+x\le e^x$ 可得
+至少有两个人生日相同的概率为 $P(\overline A)=1-P(A)$。根据题意可知 $P(\overline A)\ge\frac{1}{2}$, 那么就有
 
 $$
-\begin{gathered}
-P(A) \le e^{-\frac{1}{n}}\times e^{-\frac{2}{n}}\times \dots \times e^{-\frac{k-1}{n}}=e^{-\frac{k(k-1)}{2n}}\le\frac{1}{2}\\
-e^{-\frac{k(k-1)}{2n}}\le\frac{1}{2}
-\end{gathered}
+P(A)=\prod_{i=0}^{k-1}\frac{n-i}{n} \le \frac{1}{2}
 $$
 
-然而我们可以得到一个不等式方程，$e^{-\frac{k(k-1)}{2n}}\le 1-p$，其中 $p$ 是一个概率。
+由不等式 $1+x\le \mathrm{e}^x$ 可得
 
-将 $n=365$ 代入，解得 $k=23$。所以一个房间中至少 23 人，使其中两个人生日相同的概率达到 $50\%$, 但这个数学事实十分反直觉，故称之为一个悖论。
+$$
+P(A) \le \prod_{i=1}^{k-1}\exp\left({-\frac{i}{n}}\right)=\exp \left({-\frac{k(k-1)}{2n}}\right)
+$$
 
-当 $k>56$，$n=365$ 时，出现两个人同一天生日的概率将大于 $99\%$。那么在一年有 $n$ 天的情况下，当房间中有 $\frac{1}{2}(\sqrt{8n\ln 2+1}+1)\approx \sqrt{2n\ln 2}$ 个人时，至少有两个人的生日相同的概率约为 $50\%$。
+因此
+
+$$
+\exp\left({-\dfrac{k(k-1)}{2n}}\right) \le \frac{1}{2}\implies P(A) \le \frac{1}{2}
+$$
+
+将 $n=365$ 代入，解得 $k\geq 23$。所以一个房间中至少 $23$ 人，使其中两个人生日相同的概率达到 $50\%$, 但这个数学事实十分反直觉，故称之为一个悖论。
+
+当 $k>56$，$n=365$ 时，出现两个人同一天生日的概率将大于 $99\%$[^ref1]。那么在一年有 $n$ 天的情况下，当房间中有 $\frac{1}{2}(\sqrt{8n\ln 2+1}+1)\approx \sqrt{2n\ln 2}$ 个人时，至少有两个人的生日相同的概率约为 $50\%$。
 
 考虑一个问题，设置一个数据 $n$，在 $[1,1000]$ 里随机选取 $i$ 个数（$i=1$ 时就是它自己），使它们之间有两个数的差值为 $k$。当 $i=1$ 时成功的概率是 $\frac{1}{1000}$，当 $i=2$ 时成功的概率是 $\frac{1}{500}$（考虑绝对值，$k_2$ 可以取 $k_1-k$ 或 $k_1+k$），随着 $i$ 的增大，这个概率也会增大最后趋向于 1。
 
@@ -258,3 +263,7 @@ $$
     ```c++
     --8<-- "docs/math/code/pollard-rho/pollard-rho_1.cpp"
     ```
+
+## 参考资料与链接
+
+[^ref1]: <https://en.wikipedia.org/wiki/Birthday_problem#Reverse_problem>
