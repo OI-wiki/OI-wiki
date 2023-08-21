@@ -85,7 +85,7 @@ $$
     const int SIZE=500;
     const short direx[]={1,0,-1,0};
     const short direy[]={0,1,0,-1};
-    
+
     struct Point
     {
         int x,y,step;
@@ -99,11 +99,11 @@ $$
         Point Next(short dire)
         {return Point{x+direx[dire],y+direy[dire],step,WD};}
     }start,end;
-    
+
     int n,m;
     bool mapn[SIZE+5][SIZE+5],visit[SIZE+5][SIZE+5];
     queue<Point> B_star;
-    
+
     void maprint(Point ob)//展示路径
     {
         for(int i=1;i<=n;i++)
@@ -118,7 +118,7 @@ $$
             printf("\n");
         }
     }
-    
+
     bool NW(Point ob)//near the wall
     {
         for(short i=0;i<4;i++)
@@ -129,13 +129,13 @@ $$
         }
         return 0;
     }
-    
+
     bool Allowed(Point ob)
     {return !mapn[ob.y][ob.x] && !visit[ob.y][ob.x];}
-    
+
     bool AtWall(Point ob)
     {return mapn[ob.y][ob.x];}
-    
+
     short SD(Point ob)//straight dire
     {
         if(abs(ob.x-end.x)>=abs(ob.y-end.y))
@@ -146,7 +146,7 @@ $$
         if(ob.y<end.y) return 1;
         return 3;
     }
-    
+
     int main()
     {
         memset(mapn,1,sizeof mapn);
@@ -398,7 +398,7 @@ $$
     0 0 0 0 0
     1 3
     5 3
-    
+
     17 17
     0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
     0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0
@@ -419,7 +419,7 @@ $$
     0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
     1 7
     17 7
-    
+
     7 7
     0 0 0 0 0 0 0
     0 0 1 1 1 1 0
@@ -430,7 +430,7 @@ $$
     0 0 0 0 0 0 0
     1 4
     5 4
-    
+
     5 7
     0 0 0 0 0 0 0
     0 0 1 1 1 1 0
@@ -439,7 +439,7 @@ $$
     0 0 0 0 0 0 0
     1 3
     7 3
-    
+
     7 5
     0 0 0 0 0
     0 1 1 1 0
@@ -450,7 +450,7 @@ $$
     0 0 0 0 0
     3 7
     3 1
-    
+
     6 7
     0 0 0 0 0 0 0
     0 0 1 1 1 1 0
@@ -460,7 +460,7 @@ $$
     0 0 0 0 0 0 0
     1 3
     7 3
-    
+
     6 7
     0 0 0 0 0 0 0
     0 0 1 1 0 1 1
