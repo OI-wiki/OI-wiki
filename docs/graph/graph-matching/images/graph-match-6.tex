@@ -1,0 +1,31 @@
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{CJKutf8}
+
+\begin{document}
+\begin{CJK}{UTF8}{gbsn}
+\begin{tikzpicture}
+    % Define nodes with labels for the first graph
+    \foreach \i/\label in {1/1, 2/2, 3/3, 4/5, 5/4}
+    \node[circle, draw, inner sep=2pt] (node\i) at (\i*72:2cm) {\label};
+
+    % Define edges with weights and colors for the first graph
+    \foreach \source/\dest/\weight/\edgecolor in {1/5/-5/black, 2/5/5/black, 2/4/4/black, 3/4/34/black, 5/4/58/black}
+    \draw[thick, \edgecolor] (node\source) -- node[above] {\weight} (node\dest);
+
+    % Draw an arrow and label
+    \draw [->,thick] (2.5,0) -- node[above] {每条边+6(K)+126(P)} (6,0);
+
+    % Shift the position for the second graph
+    \begin{scope}[xshift=8cm]
+        % Define nodes with labels for the second graph
+        \foreach \i/\label in {1/1, 2/2, 3/3, 4/5, 5/4}
+        \node[circle, draw, inner sep=2pt] (node\i) at (\i*72:2cm) {\label};
+
+        % Define edges with weights and colors for the second graph
+        \foreach \source/\dest/\weight/\edgecolor in {1/5/127/black, 2/5/137/red, 2/4/136/black, 3/4/166/red, 5/4/190/black}
+        \draw[thick, \edgecolor] (node\source) -- node[above] {\weight} (node\dest);
+
+    \end{scope}
+\end{tikzpicture}
+\end{CJK}
+\end{document}
