@@ -37,9 +37,9 @@ author: accelsao, StudyingFather, t4rf9, wlbksy, yuhuoji
     **最大权匹配**
 
     ![maximum weight matching](images/graph-match-3.svg)
-    
+
     **最大权最大匹配**
-    
+
     ![maximum weight maximum cardinality matching](images/graph-match-4.svg)
 
 ## 二分图匹配
