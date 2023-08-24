@@ -233,44 +233,45 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
 
 ### 二叉树 BFS 遍历
 
-按照BFS的过程遍历二叉树。下图的二叉树BFS 遍历的结果是`[3,9,2,1,7]`。
+按照 BFS 的过程遍历二叉树。下图的二叉树 BFS 遍历的结果是 `[3,9,2,1,7]`。
 
 ![tree-basic-levelOrder](images/tree-basic-levelOrder.svg)
 
 #### 二叉树层序遍历
 
-层序遍历是BFS最重要应用之一。层序遍历是指二叉树按照从根节点到叶子节点的层次关系，一层一层的横向遍历各个节点。
+层序遍历是 BFS 最重要应用之一。层序遍历是指二叉树按照从根节点到叶子节点的层次关系，一层一层的横向遍历各个节点。
 
-下图的二叉树层序遍历的结果是`[3,[9,2],[1,7]]`（每一层从左向右）。可以直接用 BFS 得出层序遍历的结果。与BFS 是不同的是，层序遍历要求区分每一层，也就是返回一个二维数组。
+下图的二叉树层序遍历的结果是 `[3,[9,2],[1,7]]`（每一层从左向右）。可以直接用 BFS 得出层序遍历的结果。与 BFS 是不同的是，层序遍历要求区分每一层，也就是返回一个二维数组。
 
 ![tree-basic-levelOrder](images/tree-basic-levelOrder.svg)
 
 ???+ note "实现"
+    
 
 ```c++
 vector<vector<int>> levelOrder(TreeNode* root) {
-    vector<vector<int>> res;
-    if (!root) {
-        return res;
-    }
-    queue<TreeNode*> q;
-    q.push(root);
-    while (!q.empty()) {
-        int currentLevelSize = q.size();             // 当前层的节点个数
-        res.push_back(vector<int>());
-        for (int i = 0; i < currentLevelSize; i++) {
-            TreeNode* node = q.front();
-            q.pop();
-            res.back().push_back(node->val);
-            if (node->left != nullptr) {
-                q.push(node->left);
-            }
-            if (node->right != nullptr) {
-                q.push(node->right);
-            }
-        }
-    }
+  vector<vector<int>> res;
+  if (!root) {
     return res;
+  }
+  queue<TreeNode*> q;
+  q.push(root);
+  while (!q.empty()) {
+    int currentLevelSize = q.size();  // 当前层的节点个数
+    res.push_back(vector<int>());
+    for (int i = 0; i < currentLevelSize; i++) {
+      TreeNode* node = q.front();
+      q.pop();
+      res.back().push_back(node->val);
+      if (node->left != nullptr) {
+        q.push(node->left);
+      }
+      if (node->right != nullptr) {
+        q.push(node->right);
+      }
+    }
+  }
+  return res;
 }
 ```
 
