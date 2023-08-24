@@ -1,6 +1,6 @@
 ## 连分数
 
-**连分数** 是实数作为有理数的特定收敛序列的表示。它们在竞争性编程（competitive programming）中很有用，因为它们易于计算，并且可以有效地用于在分母不超过给定值的所有数字中，找到基础实数（underlying real number）的最佳可能有理近似（best possible rational approximation）。
+**连分数** 是实数作为有理数的特定收敛序列的表示。它们在算法竞赛（competitive programming）中很有用，因为它们易于计算，并且可以有效地用于在分母不超过给定值的所有数字中，找到基础实数（underlying real number）的最佳可能有理近似（best possible rational approximation）。
 
 除此之外，连分数与欧几里得算法密切相关，这使得它们在一系列数论问题中非常有用。
 
