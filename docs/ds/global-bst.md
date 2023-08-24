@@ -31,10 +31,10 @@
 代码如下：
 
 ???+ note "实现"
-    
     ```c++
     std::vector<int> G[N];
     int n, fa[N], son[N], sz[N];
+    
     void dfsS(int u) {
       sz[u] = 1;
       for (int v : G[u]) {
@@ -96,7 +96,6 @@
 代码如下：
 
 ???+ note "实现"
-    
     ```c++
     // a：子树加标记
     // s：子树和（不算加标记的）
@@ -137,7 +136,6 @@
       return ret;
     }
     ```
-
 
 此外，对于子树操作，就是要考虑轻儿子的，需要再维护一个包括轻儿子的子树和、子树标记，可以去做 "[P3384【模板】轻重链剖分](https://www.luogu.com.cn/problem/P3384)"。
 
