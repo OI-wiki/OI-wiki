@@ -6,7 +6,8 @@
 
 ### 引入
 
-注：下面的引入方法来自人教版高中数学 A 版必修二。
+???+ note "注"
+    下面的引入方法来自人教版高中数学 A 版必修二。
 
 从方程的角度看，负实数能不能开平方，就是方程 $x^2+a=0 (a>0)$ 有没有解，进而可以归结为方程 $x^2+1=0$ 有没有解。
 
@@ -16,15 +17,13 @@
 
 思考：把新引进的数 $\mathrm{i}$ 添加到实数集中，我们希望数 $\mathrm{i}$ 和实数之间仍然能像实数那样进行加法和乘法运算，并希望加法和乘法都满足交换律、结合律，以及乘法对加法满足分配律。那么，实数系经过扩充后，得到的新数系由哪些数组成呢？
 
-依照以上设想，把实数 $b$ 与 $\mathrm{i}$ 相乘，结果记作 $b\mathrm{i}$；把实数 $a$ 与 $b\mathrm{i}$ 相加，结果记作 $a+b\mathrm{i}$。注意到所有实数以及 $\mathrm{i}$ 都可以写成 $a+b\mathrm{i}(a,b\in \mathbb{R})$ 的形式，从而这些数都在扩充后的新数集中。
+依照以上设想，把实数 $b$ 与 $\mathrm{i}$ 相乘，结果记作 $b\mathrm{i}$；把实数 $a$ 与 $b\mathrm{i}$ 相加，结果记作 $a+b\mathrm{i}$。注意到所有实数以及 $\mathrm{i}$ 都可以写成 $a+b\mathrm{i}(a,b\in \mathbf{R})$ 的形式，从而这些数都在扩充后的新数集中。
 
-### 定义和分类
+### 定义
 
-> 哇哦我们定义的数的性质这么好！
+我们定义形如 $a+b\mathrm{i}$，其中 $a,b\in \mathbf{R}$ 的数叫做 **复数**，其中 $\mathrm{i}$ 被称为 **虚数单位**，全体复数的集合叫做 **复数集**，记作 $\mathbf{C}$。
 
-我们定义形如 $a+b\mathrm{i}$，其中 $a,b\in \mathbb{R}$ 的数叫做 **复数**，其中 $\mathrm{i}$ 被称为 **虚数单位**，全体复数的集合叫做 **复数集**。
-
-复数通常用 $z$ 表示，即 $z=a+b\mathrm{i}$。这种形式被称为 **复数的代数形式**。其中 $a$ 称为复数 $z$ 的 **实部**，$b$ 称为复数 $z$ 的 **虚部**。如无特殊说明，都有 $a,b\in \mathbb{R}$。
+复数通常用 $z$ 表示，即 $z=a+b\mathrm{i}$。这种形式被称为 **复数的代数形式**。其中 $a$ 称为复数 $z$ 的 **实部**，记作 $\operatorname{Re}(z)$，$b$ 称为复数 $z$ 的 **虚部**，记作 $\operatorname{Im}(z)$。如无特殊说明，都有 $a,b\in \mathbf{R}$。
 
 对于一个复数 $z$，当且仅当 $b=0$ 时，它是实数，当 $b\not = 0$ 时，它是虚数，当 $a=0$ 且 $b\not = 0$ 时，它是纯虚数。
 
@@ -32,7 +31,7 @@
 
 ![](./images/complex-relation.svg)
 
-## 性质
+## 性质与运算
 
 ### 几何意义
 
@@ -56,13 +55,9 @@
 
 并且由向量的知识我们发现，虚数不可以比较大小（但是实数是可以的）。
 
-### 运算
+### 加法与减法
 
-#### 加法与减法
-
-我们规定，复数的加法规则如下：
-
-设 $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$，那么
+对复数 $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$，定义加法规则如下：
 
 $$
 z_1+z_2=(a+c)+(b+d)\mathrm{i}
@@ -72,11 +67,13 @@ $$
 
 考虑到向量的加法运算，我们发现复数的加法运算符合向量的加法运算法则，这同样证明了复数的几何意义的正确性。
 
-同样可以验证，**复数的加法满足交换律和结合律**。即：
+同样可以验证，复数的加法满足 **交换律** 和 **结合律**。即：
 
 $$
-z_1+z_2=z_2+z_1\\
-(z_1+z_2)+z_3=z_1+(z_2+z_3)
+\begin{aligned}
+z_1+z_2&=z_2+z_1\\
+(z_1+z_2)+z_3&=z_1+(z_2+z_3)
+\end{aligned}
 $$
 
 减法作为加法的逆运算，我们可以通过加法法则与复数相等的定义来推导出减法法则：
@@ -87,11 +84,9 @@ $$
 
 这同样符合向量的减法运算。
 
-#### 乘法与除法
+### 乘法、除法与共轭
 
-我们规定，复数的乘法规则如下：
-
-设 $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$，那么
+对复数 $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$，定义乘法规则如下：
 
 $$
 \begin{aligned}
@@ -103,17 +98,13 @@ $$
 
 可以看出，两个复数相乘类似于两个多项式相乘，只需要把 $\mathrm{i}^2$ 换成 $-1$，并将实部与虚部分别合并即可。
 
-复数确实与多项式有关，因为复数域是实系数多项式环模掉 $x^2+1$ 生成的理想。（这句话不明白其实也没有关系）
+复数的乘法与向量的向量积形式类似。
 
-复数的乘法与向量的向量积形式类似，是由于复数集是数环。
+易得复数乘法满足 **交换律**，**结合律** 和 **对加法的分配律**，即：
 
-于是容易知道，**复数乘法满足交换律，结合律和对加法的分配律**，即：
-
-$$
-z_1z_2=z_2z_1\\
-(z_1z_2)z_3=z_1(z_2z_3)\\
-z_1(z_2+z_3)=z_1z_2+z_1z_3
-$$
+-   $z_1z_2=z_2z_1$
+-   $(z_1z_2)z_3=z_1(z_2z_3)$
+-   $z_1(z_2+z_3)=z_1z_2+z_1z_3$
 
 由于满足运算律，我们可以发现实数域中的 **乘法公式在复数域中同样适用**。
 
@@ -126,13 +117,22 @@ $$
 \end{aligned}
 $$
 
-为了分母实数化，我们乘了一个 $c-d\mathrm{i}$，这个式子很有意义。
-
-我们定义，当两个虚数实部相等，虚部互为相反数时，这两个复数互为 **共轭复数**。通常记 $z=a+b\mathrm{i}$ 的共轭复数为 $\bar z=a-b\mathrm{i}$。我们可以发现，两个复数互为共轭复数，那么它们 **关于实轴对称**。
-
 由于向量没有除法，这里不讨论与向量的关系。
 
-## 辐角和辐角主值
+为了分母实数化，我们乘了一个 $c-d\mathrm{i}$，这个式子很有意义。
+
+对复数 $z=a+b\mathrm{i}$，称 $a-b\mathrm{i}$ 为 $z$ 的 **共轭复数**，通常记为 $\bar z$。我们可以发现，若两个复数互为共轭复数，那么它们 **关于实轴对称**。
+
+对复数 $z,w$，复数共轭有如下性质
+
+-   $z\cdot\bar{z}=|z|^2$
+-   $\overline{\overline{z}}=z$
+-   $\operatorname{Re}(z)=\dfrac{z+\bar{z}}{2}$，$\operatorname{Im}(z)=\dfrac{z-\bar{z}}{2}$
+-   $\overline{z\pm w}=\bar{z}\pm\bar{w}$
+-   $\overline{zw}=\bar{z}\bar{w}$
+-   $\overline{z/w}=\bar{z}/\bar{w}$
+
+### 辐角和辐角主值
 
 如果设定实数单位 $1$ 作为水平正方向，虚数单位 $\mathrm{i}$ 作为竖直正方向，得到的就是直角坐标视角下的复平面。
 
@@ -150,23 +150,34 @@ $$
 \theta= \operatorname{Arg} z
 $$
 
-任一个 **非零** 复数 $z$ 有无穷多个辐角。借助开头小写的 $\operatorname{arg} z$ 表示 **其中一个特定值**，满足条件：
+任一个 **非零** 复数 $z$ 有无穷多个辐角，故 $\operatorname{Arg} z$ 事实上是一个集合。借助开头小写的 $\operatorname{arg} z$ 表示 **其中一个特定值**，满足条件：
 
 $$
 -\pi<\operatorname{arg} z \le \pi
 $$
 
-称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$。
+称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\operatorname{Arg} z = \{\operatorname{arg} z + 2k\pi \mid k\in \mathbf Z\}$。
 
-下文的「多值函数」一节表明，辐角是多值函数，辐角主值是多值函数的主值。因此，辐角可以直接相加，而辐角主值不能直接相加。
+需要注意的是两个辐角主值相加后不一定还是辐角主值，而两个辐角相加一定还是合法的辐角。
 
 称模小于 $1$ 的复数，在复平面上构成的图形为 **单位圆**。称模等于 $1$ 的复数为 **单位复数**，全体单位复数在复平面上构成的图形为 **单位圆周**。在不引起混淆的情况下，有时单位圆周也简称单位圆。
 
 在极坐标的视角下，复数的乘除法变得很简单。复数乘法，模相乘，辐角相加。复数除法，模相除，辐角相减。
 
-## 欧拉公式
+### 欧拉公式
 
-对于复数 $z=x+\mathrm{i}y$，函数 $f(z)=\mathrm{e}^x(\cos y+\mathrm{i}\sin y)$ 满足 $f(z_1+z_2)=f(z_1)f(z_2)$。给出 **复指数函数** 的定义：
+???+ note "欧拉公式（Euler's formula）[^ref1]"
+    对任意实数 $x$，有
+    
+    $$
+    \mathrm{e}^{\mathrm{i}x}=\cos x+\mathrm{i}\sin x
+    $$
+    
+    在补充 [复指数函数与复三角函数](#指数函数与三角函数) 的定义后，该公式可推广至全体复数。
+
+### 指数函数与三角函数
+
+对于复数 $z=x+\mathrm{i}y$，函数 $f(z)=\mathrm{e}^x(\cos y+\mathrm{i}\sin y)$ 满足 $f(z_1+z_2)=f(z_1)f(z_2)$。由此给出 **复指数函数** 的定义：
 
 $$
 \operatorname{exp} z=\mathrm{e}^x(\cos y+\mathrm{i}\sin y)
@@ -174,17 +185,12 @@ $$
 
 复指数函数在实数集上与实指数函数的定义完全一致。在复平面上拥有性质：
 
-模恒正：$|\operatorname{exp} z|=\operatorname{exp} x>0$。
+-   模恒正：$|\operatorname{exp} z|=\operatorname{exp} x>0$。
+-   辐角主值：$\operatorname{arg} \operatorname{exp} z=y$。
+-   加法定理：$\operatorname{exp} (z_1+z_2)=\operatorname{exp} (z_1)\operatorname{exp} (z_2)$。
+-   周期性：$\operatorname{exp} z$ 是以 $2\pi \mathrm{i}$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
 
-辐角主值：$\operatorname{arg} \operatorname{exp} z=y$。
-
-加法定理：$\operatorname{exp} (z_1+z_2)=\operatorname{exp} (z_1)\operatorname{exp} (z_2)$。
-
-周期性：$\operatorname{exp} z$ 是以 $2\pi \mathrm{i}$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
-
-这里将复指数函数记为 $\operatorname{exp}$，是为了与下文的一般指数函数做区分。
-
-**复三角函数**（也简称 **三角函数**）的定义，是 **欧拉公式**：
+**复三角函数**（也简称 **三角函数**）的定义如下：
 
 $$
 \cos z=\frac{\operatorname{exp} (\mathrm{i}z)+\operatorname{exp} (-\mathrm{i}z)}{2}
@@ -194,19 +200,23 @@ $$
 \sin z=\frac{\operatorname{exp} (\mathrm{i}z)-\operatorname{exp} (-\mathrm{i}z)}{2\mathrm{i}}
 $$
 
-有关欧拉公式的更多介绍，可以参考两个视频：[欧拉公式与初等群论](https://www.bilibili.com/video/BV1fx41187tZ)、[微分方程概论 - 第五章：在 3.14 分钟内理解 $\mathrm{e}^{\mathrm{i}\pi}$](https://www.bilibili.com/video/BV1G4411D7kZ)。
+若取 $z\in\mathbf{R}$，则由 [欧拉公式](#欧拉公式) 有：
+
+$$
+\cos z=\operatorname{Re}\left(\mathrm{e}^{\mathrm{i}z}\right)
+$$
+
+$$
+\sin z=\operatorname{Im}\left(\mathrm{e}^{\mathrm{i}z}\right)
+$$
 
 复三角函数在实数集上与实三角函数的定义完全一致。在复平面上拥有性质：
 
-奇偶性：正弦函数是奇函数，余弦函数是偶函数。
-
-三角恒等式：通常的三角恒等式都成立，例如平方和为 $1$，或者角的和差公式等。
-
-周期性：正弦与余弦函数以 $2\pi$ 为基本周期。
-
-零点：实正弦与实余弦函数的全体零点，构成了复正弦与复余弦函数的全体零点。这个推广没有引进新的零点。
-
-模的无界性：复正弦与复余弦函数，模长可以大于任意给定的正数，不再像实正弦与实余弦函数一样被限制在 $1$ 的范围内。
+-   奇偶性：正弦函数是奇函数，余弦函数是偶函数。
+-   三角恒等式：通常的三角恒等式都成立，例如平方和为 $1$，或者角的和差公式等。
+-   周期性：正弦与余弦函数以 $2\pi$ 为基本周期。
+-   零点：实正弦与实余弦函数的全体零点，构成了复正弦与复余弦函数的全体零点。这个推广没有引进新的零点。
+-   模的无界性：复正弦与复余弦函数，模长可以大于任意给定的正数，不再像实正弦与实余弦函数一样被限制在 $1$ 的范围内。
 
 ## 复数的三种形式
 
@@ -227,136 +237,6 @@ z=r(\cos \theta +\mathrm{i}\sin \theta)=r \operatorname{exp} (\mathrm{i}\theta)
 $$
 
 这两种形式用于计算复数的乘除两个运算以及后面的运算较为方便。如果只用高中见过的函数，可以使用三角形式。如果引入了复指数函数，写成等价的指数形式会更加方便。
-
-## 多值函数
-
-在复数集之上定义的函数，函数值可能不再是一个具体的复数值，而是一个集合。
-
-一个例子，上述定义的辐角函数 $\operatorname{Arg} z$ 就是这样。辐角函数的函数值是 $\operatorname{Arg} z=\{\operatorname{arg} z +2k\pi | k\in Z\}$，为一个集合。
-
-如果对于每一个复数自变量，只有唯一的复数函数值与其对应，称为 **单值函数**。上述指数函数和三角函数都是单值函数。
-
-如果对于某些复数自变量，有多于一个的复数函数值与其对应，这样的函数称为 **多值函数**。
-
-多值函数的函数值为集合，值域为函数值集合的集合。多值函数常常首字母大写，并规定一个对应首字母小写的单值函数称为 **主值**。
-
-## 复对数函数
-
-规定 **复对数函数**（也简称 **对数函数**）是复指数函数的反函数。可以解得：
-
-$$
-\operatorname{Ln} z=\ln{|z|}+\mathrm{i} \operatorname{Arg} z
-$$
-
-对数函数的定义域为 **非零** 复数。由于辐角函数是多值函数，因此对数函数也是多值函数。相应地，记 **对数函数的主值** 为：
-
-$$
-\ln z=\ln{|z|}+\mathrm{i} \operatorname{arg} z
-$$
-
-于是对数函数可以记为：
-
-$$
-\operatorname{Ln} z=\{\ln z +2k\pi \mathrm{i}| k\in Z\}
-$$
-
-复对数函数拥有性质：
-
-$$
-\operatorname{Ln}(z_1z_2)=\operatorname{Ln} z_1 + \operatorname{Ln} z_2
-$$
-
-这个性质与实对数函数相同。而对数函数的主值不满足该性质。
-
-## 一般指数函数
-
-**一般指数函数** 定义为：
-
-$$
-a^z=\operatorname{exp} (z \operatorname{Ln} a)
-$$
-
-对于任意的 **非零** 复数 $a$，一般指数函数是多值函数。
-
-上述定义式展开是这样的：
-
-$$
-a^z=\operatorname{exp} (z \operatorname{Ln} a)=\operatorname{exp} (z\ln a +2k\pi \mathrm{i}z)=\operatorname{exp} (z\ln a)\operatorname{exp} (2k\pi \mathrm{i}z)
-$$
-
-一般指数函数的多值性来源于底数辐角的多值性。以实数单位 $1$ 为底的指数函数应当是：
-
-$$
-1^z=\operatorname{exp} (2k\pi \mathrm{i}z)
-$$
-
-以 $1$ 为底的指数函数不恒为 $1$，而是一个多值函数。这是因为 $1$ 的辐角不一定是 $0$，于是根据复数乘法「模相乘辐角相加」的规则，指数的结果也是多值的。只有式中 $k$ 为 $0$ 的时候才不恒为 $1$，即只有主值恒为 $1$。
-
-于是一般指数函数可以记为：
-
-$$
-a^z=\operatorname{exp} (z\ln a) 1^z
-$$
-
-可以把指数函数的主值部分与其他部分以乘积的形式分开。
-
-以自然对数 $\mathrm{e}$ 为底的指数函数应当是：
-
-$$
-\mathrm{e}^z=\operatorname{exp} z 1^z
-$$
-
-单值函数 $\operatorname{exp}$ 是以自然对数 $\mathrm{e}$ 为底的指数函数的主值。真正以 $\mathrm{e}$ 为底的指数函数是多值函数，而 $\operatorname{exp}$ 是一个形式上的记号，没有幂的含义。
-
-## 一般幂函数与复数乘方开方
-
-**一般幂函数** 定义为：
-
-$$
-z^a=\operatorname{exp} (a \operatorname{Ln} z)
-$$
-
-一般幂函数的取值情况需要分类讨论。将上述定义式展开：
-
-$$
-z^a=\operatorname{exp} (a \operatorname{Ln} z)=\operatorname{exp} (a(\ln z +2k\pi \mathrm{i}))=\operatorname{exp} (a\ln z) \operatorname{exp} (2k\pi \mathrm{i}a)
-$$
-
-根据 $a$ 的取值，分三种情形。
-
-如果 $a$ 为无理数或者虚数，$\operatorname{exp} (2k\pi \mathrm{i}a)$ 的值有无限多个，此时一般幂函数是多值函数，并且函数值集合为无限集。
-
-如果 $a=n$ 为整数，此时有：
-
-$$
-\operatorname{exp} (2k\pi \mathrm{i}a)=\operatorname{exp} (2(kn)\pi \mathrm{i}a)=1
-$$
-
-此时 $z^a$ 是单值函数。复数的整数次幂（乘方）是单值函数。
-
-如果 $a=\frac{q}{p}$ 为有理数，其中 $\gcd(q, p)=1$，此时有：
-
-$$
-\operatorname{exp} (2k\pi ia)=\operatorname{exp} (2k\pi \mathrm{i}\frac{q}{p})
-$$
-
-只能取 $p$ 个不同的值，即 $k$ 为 $0$ 到 $p-1$ 之间的值。这 $p$ 个不同的值将单位圆周 $n$ 等分，就是下文的单位根。
-
-此时 $z^a$ 是多值函数，并且可以取到有限的 $p$ 个不同的值。复数的有理数次幂（开方）是多值函数，函数值集合为有限集。
-
-这里引入一个经典结论。根据复数乘法，模相乘，辐角相加，也可以用来计算乘方和开方（整数次幂与有理数次幂）。如果 $z=r \operatorname{exp} (\mathrm{i}\theta)$，则有：
-
-$$
-z^n=r^n(\operatorname{exp} (\mathrm{i}\theta))^n=r^n(\cos n\theta +\mathrm{i}\sin n\theta)
-$$
-
-当模为 $1$ 的时候，就得到 **棣莫弗定理**（De Moivre's formula）：
-
-$$
-(\cos\theta+\mathrm{i}\sin\theta)^n=\cos n\theta+\mathrm{i}\sin n\theta
-$$
-
-非零复数 $z$ 的 $n$ 次方根共有 $n$ 个，沿中心在原点，半径为 $r^\frac{1}{n}$ 的圆周均匀分布，即构成内接于该圆周的正 $n$ 边形的 $n$ 个顶点。
 
 ## 单位根
 
@@ -391,14 +271,16 @@ $$
 称集合：
 
 $$
- \{\omega_n^k\mid 0\le k<n, \gcd(n,k)=1\}
+\{\omega_n^k\mid 0\le k<n, \gcd(n,k)=1\}
 $$
 
 中的元素为 **本原单位根**。任意一个本原单位根 $\omega$，与上述 $\omega_n$ 具有相同的性质：对于任意的 $0<k<n$，$\omega$ 的 $k$ 次幂不为 $1$。因此，借助任意一个本原单位根，都可以生成全体单位根。
 
 全体 $n$ 次本原单位根共有 $\varphi(n)$ 个。
 
-## C99 中的复数
+## 编程语言中的复数
+
+### C 中的复数
 
 在 C99 标准中，有 `<complex.h>` 头文件。
 
@@ -414,13 +296,13 @@ $$
 
 这些函数返回值都是一般的浮点数。可以将普通浮点数直接赋值给复数，但是不可以将复数直接赋值给浮点数，而是需要使用上述提取操作。
 
-函数 conj 用于计算共轭复数，返回值是复数。
+函数 `conj` 用于计算共轭复数，返回值是复数。
 
-函数 cexp 计算复指数，clog 计算对数主值，csin 计算正弦，ccos 计算余弦，ctan 计算正切。
+函数 `cexp` 计算复指数，`clog` 计算对数主值，`csin` 计算正弦，`ccos` 计算余弦，`ctan` 计算正切。
 
-函数 cpow 计算幂函数，csqrt 计算平方根，casin 计算反正弦，cacos 计算反余弦，ctan 计算反正切。这部分函数计算的全部都是多值函数的主值。
+函数 `cpow` 计算幂函数，`csqrt` 计算平方根，`casin` 计算反正弦，`cacos` 计算反余弦，`ctan` 计算反正切。这部分函数计算的全部都是多值函数的主值。
 
-## C++ 中的复数
+### C++ 中的复数
 
 在 C 里面的 `<ctype.h>`，到 C++ 会变成 `<cctype>`，几乎所有的头文件遵从这个命名规律。
 
@@ -430,12 +312,21 @@ $$
 
 在 C++ 中，复数类型定义使用 `complex<float>`、`complex<double>` 和 `complex<long double>`。由于面向对象的多态性，下面函数的名字都是唯一的，无需 f 或 l 的后缀。
 
-一个复数对象拥有成员函数 real 和 imag，可以访问实部和虚部。
+一个复数对象拥有成员函数 `real` 和 `imag`，可以访问实部和虚部。
 
-一个复数对象拥有非成员函数 real、imag、abs、arg，返回实部、虚部、模和辐角。
+一个复数对象拥有非成员函数 `real`、`imag`、`abs`、`arg`，返回实部、虚部、模和辐角。
 
-一个复数对象还拥有非成员函数：norm 为模的平方，conj 为共轭复数。
+一个复数对象还拥有非成员函数：`norm` 为模的平方，`conj` 为共轭复数。
 
-一个复数对象还拥有非成员函数 exp、log（底为 $\mathrm{e}$ 的对数主值）、log10（底为 10 的对数主值，C 中没有）、pow、sqrt、sin、cos、tan，含义与 C 中的含义相同。
+一个复数对象还拥有非成员函数 `exp`、`log`（底为 $\mathrm{e}$ 的对数主值）、`log10`（底为 10 的对数主值，C 中没有）、`pow`、`sqrt`、`sin`、`cos`、`tan`，含义与 C 中的含义相同。
 
 在 C++14 及以后的版本中，定义了 [字面量运算符 `std::literals::complex_literals::""if, ""i, ""il`](https://zh.cppreference.com/w/cpp/numeric/complex/operator%22%22i)。例如输入 `100if`、`100i` 和 `100il`，三者将分别返回 `std::complex<float>{0.0f, 100.0f}`、`std::complex<double>{0.0, 100.0}` 以及 `std::complex<long double>{0.0l, 100.0l}`。这使得我们可以方便地书写形如 `auto z = 4 + 3i` 的复数声明。
+
+## 参考资料与链接
+
+-   [Complex number - Wikipedia](https://en.wikipedia.org/wiki/Complex_number)
+-   [Euler's formula - Wikipedia](https://en.wikipedia.org/wiki/Euler's_formula)
+-   [Complex number arithmetic - cppreference.com](https://en.cppreference.com/w/c/numeric/complex)
+-   [std::complex - cppreference.com](https://en.cppreference.com/w/cpp/numeric/complex)
+
+[^ref1]: 有关欧拉公式的更多介绍，可以参考两个视频：[欧拉公式与初等群论](https://www.bilibili.com/video/BV1fx41187tZ)、[微分方程概论 - 第五章：在 3.14 分钟内理解 $\mathrm{e}^{\mathrm{i}\pi}$](https://www.bilibili.com/video/BV1G4411D7kZ)。
