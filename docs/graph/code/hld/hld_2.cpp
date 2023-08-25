@@ -2,21 +2,21 @@
 #include <vector>
 using namespace std;
 vector<int> graph[100010];
-int n, m, son[100010], size[100010], fa[100010], dep[100010], dfn[100010],
+int n, m, son[100010], siz[100010], fa[100010], dep[100010], dfn[100010],
     rep[100010], top[100010], cnt, num[100010], tree[400010], lazy[400010];
 
 void dfs1(int now, int father, int depth) {
   num[now] = 0;
   fa[now] = father;
   dep[now] = depth;
-  size[now] = 1;
+  siz[now] = 1;
   int tmp = 0;
   for (auto to : graph[now]) {
     if (to == father) continue;
     dfs1(to, now, depth + 1);
-    size[now] += size[to];
-    if (size[to] > tmp) {
-      size[to] = tmp;
+    siz[now] += siz[to];
+    if (siz[to] > tmp) {
+      siz[to] = tmp;
       son[now] = to;
     }
   }
