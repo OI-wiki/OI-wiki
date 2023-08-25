@@ -1,4 +1,4 @@
-author: GoodCoder666, Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy, LuoshuiTianyi, hyp1231
+author: GoodCoder666, Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy, LuoshuiTianyi, hyp1231, xiaofu-15191
 
 ## 树链剖分的思想及能解决的问题
 
@@ -266,6 +266,31 @@ int querymax(int x, int y) {
 ??? "参考代码"
     ```cpp
     --8<-- "docs/graph/code/hld/hld_1.cpp"
+    ```
+    
+### [[USACO11DEC] Grass Planting G](https://www.luogu.com.cn/problem/P3038)
+
+#### 题目大意
+
+给出一棵有 $n$ 个节点的树，有 $m$ 个如下所示的操作：
+
+- 将两个节点之间的 **路径上的边** 的权值均加一。
+
+- 查询两个节点之间的 **那一条边** 的权值，保证两个节点直接相连。
+
+初始边权均为 0。
+
+保证 $2\le n\le 10^5$，$1\le m\le 10^5$。
+
+#### 解法
+
+观察到题目中要求维护边上的权值，我们考虑将边权转移到点上。
+
+可以发现，每一条边都与其连接的儿子节点一一对应，所以我们可以在树剖时把边权赋到儿子节点上维护。但是，在进行查询操作的时候，要记得将最后的点权给减去，修改同理。
+
+??? "参考代码"
+    ```cpp
+    --8<-- "docs/graph/code/hld/hld_2.cpp"
     ```
 
 ### [Nauuo and Binary Tree](https://loj.ac/problem/6669)
