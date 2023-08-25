@@ -65,7 +65,6 @@ typedef unsigned int u32;
 typedef unsigned int* u32ptr;
 
 void MSD_radix_sort(u32ptr first, u32ptr last) {
-  const size_t maxW = 0x100000000llu;
   const u32 maxlogW = 32;  // = log_2 W
 
   const u32 W = 256;  // 计数排序的值域
@@ -76,7 +75,7 @@ void MSD_radix_sort(u32ptr first, u32ptr last) {
       (u32ptr)calloc(last - first, sizeof(u32));  // 计数排序用的输出空间
 
   typedef tuple<u32ptr, u32ptr, u32> node;
-  stack<node, vector<node>> s;
+  stack<node> s;
   s.push(make_tuple(first, last, maxlogW - logW));
 
   while (!s.empty()) {
