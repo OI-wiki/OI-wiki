@@ -2,22 +2,22 @@
 #include<vector>
 using namespace std;
 vector<long long>graph[30010];
-long long n,q,num[30010],dfn[30010],rep[30010],top[30010],son[30010],dep[30010],size[30010],fa[30010],cnt,tree_sum[120010],tree_max[120010];
+long long n,q,num[30010],dfn[30010],rep[30010],top[30010],son[30010],dep[30010],siz[30010],fa[30010],cnt,tree_sum[120010],tree_max[120010];
 void dfs1(long long now,long long father,long long depth)
 {
 	dep[now]=depth;
 	fa[now]=father;
-	size[now]=1;
+	siz[now]=1;
 	long long tmp=0;
 	for(long long i=0;i<graph[now].size();i++)
 	{
 		long long to=graph[now][i];
 		if(to==father) continue;
 		dfs1(to,now,depth+1);
-		size[now]+=size[to];
-		if(size[to]>tmp)
+		siz[now]+=siz[to];
+		if(siz[to]>tmp)
 		{
-			tmp=size[to];
+			tmp=siz[to];
 			son[now]=to;
 		}
 	}
