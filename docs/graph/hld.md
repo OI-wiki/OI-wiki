@@ -267,16 +267,16 @@ int querymax(int x, int y) {
     ```cpp
     --8<-- "docs/graph/code/hld/hld_1.cpp"
     ```
-    
-### [[USACO11DEC] Grass Planting G](https://www.luogu.com.cn/problem/P3038)
+
+## [\[USACO11DEC\] Grass Planting G](https://www.luogu.com.cn/problem/P3038)
 
 #### 题目大意
 
 给出一棵有 $n$ 个节点的树，有 $m$ 个如下所示的操作：
 
-- 将两个节点之间的 **路径上的边** 的权值均加一。
+-   将两个节点之间的 **路径上的边** 的权值均加一。
 
-- 查询两个节点之间的 **那一条边** 的权值，保证两个节点直接相连。
+-   查询两个节点之间的 **那一条边** 的权值，保证两个节点直接相连。
 
 初始边权均为 0。
 
