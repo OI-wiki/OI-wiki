@@ -39,12 +39,12 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 ???+ note "实现"
     ```c++
     void inorderTraversal(TreeNode* root) {
-        if (root == nullptr) {
-            return;
-        }
-        inorderTraversal(root->left);
-        std::cout << root->key << " ";
-        inorderTraversal(root->right);
+      if (root == nullptr) {
+        return;
+      }
+      inorderTraversal(root->left);
+      std::cout << root->key << " ";
+      inorderTraversal(root->right);
     }
     ```
 
@@ -55,22 +55,23 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 ???+ note "实现"
     ```cpp
     int findMin(TreeNode* root) {
-        if (root == nullptr) {
-            return -1;
-        }
-        while (root->left != nullptr) {
-            root = root->left;
-        }
-        return root->key;
+      if (root == nullptr) {
+        return -1;
+      }
+      while (root->left != nullptr) {
+        root = root->left;
+      }
+      return root->key;
     }
+    
     int findMax(TreeNode* root) {
-        if (root == nullptr) {
-            return -1;
-        }
-        while (root->right != nullptr) {
-            root = root->right;
-        }
-        return root->key;
+      if (root == nullptr) {
+        return -1;
+      }
+      while (root->right != nullptr) {
+        root = root->right;
+      }
+      return root->key;
     }
     ```
 
@@ -90,16 +91,16 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 ???+ note "实现"
     ```c++
     bool search(TreeNode* root, int target) {
-        if (root == nullptr) {
-            return false;
-        }
-        if (root->key == target) {
-            return true;
-        } else if (target < root->key) {
-            return search(root->left, target);
-        } else {
-            return search(root->right, target);
-        }
+      if (root == nullptr) {
+        return false;
+      }
+      if (root->key == target) {
+        return true;
+      } else if (target < root->key) {
+        return search(root->left, target);
+      } else {
+        return search(root->right, target);
+      }
     }
     ```
 
@@ -119,23 +120,24 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 - 若 `root` 的权值小于 `value`，在 `root` 的右子树中插入权值为 `value` 的节点。
 
+-   若 $root$ 的权值小于 $value$，在 $root$ 的右子树中插入权值为 $value$ 的节点。
 
 时间复杂度为 $O(h)$。
 
 ???+ note "实现"
     ```cpp
     TreeNode* insert(TreeNode* root, int value) {
-        if (root == nullptr) {
-            return new TreeNode(value);
-        }
-        if (value < root->key) {
-            root->left = insert(root->left, value);
-        } else if (value > root->key) {
-            root->right = insert(root->right, value);
-        } else {
-            root->count++; // 节点值相等，增加重复数量
-        }
-        return root;
+      if (root == nullptr) {
+        return new TreeNode(value);
+      }
+      if (value < root->key) {
+        root->left = insert(root->left, value);
+      } else if (value > root->key) {
+        root->right = insert(root->right, value);
+      } else {
+        root->count++;  // 节点值相等，增加重复数量
+      }
+      return root;
     }
     ```
 
@@ -155,47 +157,47 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
   - 若 `count` 有两个非空子节点，一般是用它左子树的最大值（左子树最右的节点）或右子树的最小值（右子树最左的节点）代替它，然后将它删除。
 
-
 时间复杂度 $O(h)$。
 
 ???+ note "实现"
     ```c++
     TreeNode* remove(TreeNode* root, int value) {
-        if (root == nullptr) {
-            return root;
-        }
-        if (value < root->key) {
-            root->left = remove(root->left, value);
-        } else if (value > root->key) {
-            root->right = remove(root->right, value);
-        } else {
-            if (root->count > 1) {
-                root->count--; // 节点重复数量大于1，减少重复数量
-            } else {
-                if (root->left == nullptr) {
-                    TreeNode* temp = root->right;
-                    delete root;
-                    return temp;
-                } else if (root->right == nullptr) {
-                    TreeNode* temp = root->left;
-                    delete root;
-                    return temp;
-                } else {
-                    TreeNode* successor = findMinNode(root->right);
-                    root->key = successor->key;
-                    root->count = successor->count; // 更新重复数量
-                    root->right = remove(root->right, successor->key);
-                }
-            }
-        }
+      if (root == nullptr) {
         return root;
+      }
+      if (value < root->key) {
+        root->left = remove(root->left, value);
+      } else if (value > root->key) {
+        root->right = remove(root->right, value);
+      } else {
+        if (root->count > 1) {
+          root->count--;  // 节点重复数量大于1，减少重复数量
+        } else {
+          if (root->left == nullptr) {
+            TreeNode* temp = root->right;
+            delete root;
+            return temp;
+          } else if (root->right == nullptr) {
+            TreeNode* temp = root->left;
+            delete root;
+            return temp;
+          } else {
+            TreeNode* successor = findMinNode(root->right);
+            root->key = successor->key;
+            root->count = successor->count;  // 更新重复数量
+            root->right = remove(root->right, successor->key);
+          }
+        }
+      }
+      return root;
     }
+    
     // 此处以右子树的最小值为例
     TreeNode* findMinNode(TreeNode* root) {
-        while (root->left != nullptr) {
-            root = root->left;
-        }
-        return root;
+      while (root->left != nullptr) {
+        root = root->left;
+      }
+      return root;
     }
     ```
 
@@ -210,10 +212,11 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 ???+ note "实现"
     ```cpp
     int queryrnk(TreeNode* root, int v) {
-        if (root == nullptr) return 0;
-        if (root->key == v) return (root->left ? root->left->size : 0) + 1;
-        if (root->key > v) return queryrnk(root->left, v);
-        return queryrnk(root->right, v) + (root->left ? root->left->size + root->count : 0);
+      if (root == nullptr) return 0;
+      if (root->key == v) return (root->left ? root->left->size : 0) + 1;
+      if (root->key > v) return queryrnk(root->left, v);
+      return queryrnk(root->right, v) +
+             (root->left ? root->left->size + root->count : 0);
     }
     ```
 
@@ -233,14 +236,15 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 ???+ note "实现"
     ```cpp
     int querykth(TreeNode* root, int k) {
-        if (root == nullptr) return -1; // 或者根据需求返回其他合适的值
-        if (root->left) {
-            if (root->left->size >= k) return querykth(root->left, k);
-            if (root->left->size + root->count >= k) return root->key;
-        } else {
-            if (k == 1) return root->key;
-        }
-        return querykth(root->right, k - (root->left ? root->left->size + root->count : 0));
+      if (root == nullptr) return -1;  // 或者根据需求返回其他合适的值
+      if (root->left) {
+        if (root->left->size >= k) return querykth(root->left, k);
+        if (root->left->size + root->count >= k) return root->key;
+      } else {
+        if (k == 1) return root->key;
+      }
+      return querykth(root->right,
+                      k - (root->left ? root->left->size + root->count : 0));
     }
     ```
 
@@ -248,25 +252,25 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 使用搜索树的目的之一是缩短插入、删除、修改和查找（插入、删除、修改都包括查找操作）节点的时间。
 
-关于查找效率，如果一棵树的高度为 $h$，在最坏的情况，查找一个关键字需要对比 $h$ 次，查找时间复杂度（也为平均查找长度 ASL，Average Search Length）不超过 $O(h)$。一棵理想的二叉搜索树所有操作的时间可以缩短到 $O(\log n)$（n是节点总数）。
+关于查找效率，如果一棵树的高度为 $h$，在最坏的情况，查找一个关键字需要对比 $h$ 次，查找时间复杂度（也为平均查找长度 ASL，Average Search Length）不超过 $O(h)$。一棵理想的二叉搜索树所有操作的时间可以缩短到 $O(\log n)$（n 是节点总数）。
 
-然而$O(h)$的时间复杂度仅为理想情况。在最坏情况下，搜索树有可能退化为链表。想象一棵每个结点只有右孩子的二叉搜索树，那么它的性质就和链表一样，所有操作（增删改查）的时间是 $O(n)$。
+然而 $O(h)$ 的时间复杂度仅为理想情况。在最坏情况下，搜索树有可能退化为链表。想象一棵每个结点只有右孩子的二叉搜索树，那么它的性质就和链表一样，所有操作（增删改查）的时间是 $O(n)$。
 
-可以发现操作的复杂度与树的高度 $h$有关。由此引出了平衡树，通过一定操作维持树的高度（平衡性）来降低操作的复杂度。
+可以发现操作的复杂度与树的高度 $h$ 有关。由此引出了平衡树，通过一定操作维持树的高度（平衡性）来降低操作的复杂度。
 
 ### 平衡性的定义
 
-关于一棵搜索树是否「**平衡**」，不同的平衡树中对「**平衡**」有着不同的定义。比如以T为根节点的二叉搜索树，左子树和右子树的高度相差很大，或者左子树的节点个数远大于右子树的节点个数，这棵树显然不具有平衡性。
+关于一棵搜索树是否「**平衡**」，不同的平衡树中对「**平衡**」有着不同的定义。比如以 T 为根节点的二叉搜索树，左子树和右子树的高度相差很大，或者左子树的节点个数远大于右子树的节点个数，这棵树显然不具有平衡性。
 
-对于二叉搜索树来说，常见的平衡性的定义是指：以T为根节点的树，每一个结点的左子树和右子树高度差最多为1。
+对于二叉搜索树来说，常见的平衡性的定义是指：以 T 为根节点的树，每一个结点的左子树和右子树高度差最多为 1。
 
-[Splay树](splay.md)中，对于任意节点的访问操作（搜索、插入还是删除），都会将被访问的节点移动到树的根节点位置。
+[Splay 树](splay.md) 中，对于任意节点的访问操作（搜索、插入还是删除），都会将被访问的节点移动到树的根节点位置。
 
-[AVL树](avl.md)每个节点N维护以N为根节点的树的高度信息。AVL树对平衡性的定义：如果 T 是一棵 AVL 树，当且仅当左右子树也是 AVL 树，且 $|height(T->left) - height(T->right)| \leq 1$。
+[AVL 树](avl.md) 每个节点 N 维护以 N 为根节点的树的高度信息。AVL 树对平衡性的定义：如果 T 是一棵 AVL 树，当且仅当左右子树也是 AVL 树，且 $|height(T->left) - height(T->right)| \leq 1$。
 
-[Size Balanced Tree](sbt.md)每个节点N维护以N为根节点的树中节点个数`size`。对平衡性的定义：任意节点的 `size` 不小于其兄弟节点（Sibling）的所有子节点（Nephew）的 `size`。
+[Size Balanced Tree](sbt.md) 每个节点 N 维护以 N 为根节点的树中节点个数 `size`。对平衡性的定义：任意节点的 `size` 不小于其兄弟节点（Sibling）的所有子节点（Nephew）的 `size`。
 
-[B树](b-tree.md)对平衡性的定义：每个节点应该保持在一个预定义的范围内的关键字数量。
+[B 树](b-tree.md) 对平衡性的定义：每个节点应该保持在一个预定义的范围内的关键字数量。
 
 此外，对于拥有同样元素值集合的搜索树，平衡状态可能是不唯一的。也就是说，可能两棵不同的搜索树，含有的元素值集合相同，并且都是平衡的。
 
@@ -274,7 +278,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 对不满足平衡条件的搜索树进行调整操作，可以使不平衡的搜索树重新具有平衡性。
 
-关于二叉平衡树，平衡的调整操作分为包括 **左旋（Left Rotate 或者 zag）**和 **右旋（Right Rotate 或者 zig）**两种 。由于二叉平衡树在调整时需要保证中序遍历序列不变。这两种操作均不改变中序遍历序列。
+关于二叉平衡树，平衡的调整操作分为包括 \*\* 左旋（Left Rotate 或者 zag）\*\* 和 \*\* 右旋（Right Rotate 或者 zig）\*\* 两种。由于二叉平衡树在调整时需要保证中序遍历序列不变。这两种操作均不改变中序遍历序列。
 
 在这里先介绍右旋，右旋也称为「右单旋转」或「LL 平衡旋转」。对于结点 $A$ 的右旋操作是指：将 $A$ 的左孩子 $B$ 向右上旋转，代替 $A$ 成为根节点，将 $A$ 结点向右下旋转成为 $B$ 的右子树的根结点，$B$ 的原来的右子树变为 $A$ 的左子树。
 
@@ -291,21 +295,22 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 ???+ note "实现"
     ```c++
     TreeNode* rotateLeft(TreeNode* root) {
-        TreeNode* newRoot = root->right;
-        root->right = newRoot->left;
-        newRoot->left = root;
-        //更新相关节点的信息
-        updateHeight(root);
-        updateHeight(newRoot);
-        return newRoot; //返回新的根节点
+      TreeNode* newRoot = root->right;
+      root->right = newRoot->left;
+      newRoot->left = root;
+      // 更新相关节点的信息
+      updateHeight(root);
+      updateHeight(newRoot);
+      return newRoot;  // 返回新的根节点
     }
+    
     TreeNode* rotateRight(TreeNode* root) {
-        TreeNode* newRoot = root->left;
-        root->left = newRoot->right;
-        newRoot->right = root;
-        updateHeight(root);
-        updateHeight(newRoot);
-        return newRoot;
+      TreeNode* newRoot = root->left;
+      root->left = newRoot->right;
+      newRoot->right = root;
+      updateHeight(root);
+      updateHeight(newRoot);
+      return newRoot;
     }
     ```
 
@@ -315,29 +320,26 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 虽然不同的二叉平衡树的定义有所区别，不同二叉平衡树区别只在于节点维护的信息不同，以及旋转调整后节点更新的信息不同。二叉平衡树平衡性被破坏的情况只有以下四种。进行平衡性调整的操作只包括左旋和右旋。以下先介绍四种情况，再对不同的二叉平衡树进行对比。
 
-LL型：T的左孩子的左子树过长导致平衡性破坏。
+LL 型：T 的左孩子的左子树过长导致平衡性破坏。
 
-调整方式：右旋节点T。
-
-
+调整方式：右旋节点 T。
 
 ![bst-LL](images/bst-LL.svg)
 
-RR型：与LL型类似，T的右孩子的右子树过长导致平衡性破坏。
+RR 型：与 LL 型类似，T 的右孩子的右子树过长导致平衡性破坏。
 
-调整方式：左旋节点T。
+调整方式：左旋节点 T。
 
 ![bst-RR](images/bst-RR.svg)
 
-LR型：T的左孩子的右子树过长导致平衡性破坏。
+LR 型：T 的左孩子的右子树过长导致平衡性破坏。
 
-调整方式：先左旋节点L，成为LL型，再右旋节点T。
+调整方式：先左旋节点 L，成为 LL 型，再右旋节点 T。
 
 ![bst-LR](images/bst-LR.svg)
 
-RL型：与LR型类似，T的右孩子的左子树过长导致平衡性破坏。
+RL 型：与 LR 型类似，T 的右孩子的左子树过长导致平衡性破坏。
 
-调整方式：先右旋节点R，成为RR型，再左旋节点T。
+调整方式：先右旋节点 R，成为 RR 型，再左旋节点 T。
 
 ![bst-RL](images/bst-RL.svg)
-
