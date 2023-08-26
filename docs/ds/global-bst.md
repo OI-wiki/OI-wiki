@@ -143,7 +143,6 @@
 
 ??? note "[P4751【模板】"动态 DP"& 动态树分治（加强版）](https://www.luogu.com.cn/problem/P4751)"
     参考代码
-    
 
     ```c++
     #include <algorithm>
@@ -153,18 +152,18 @@
     #define MAXM 3000000
     #define INF 0x3FFFFFFF
     using namespace std;
-    
+
     struct edge {
       int to;
       edge *nxt;
     } edges[MAXN * 2 + 5];
-    
+
     edge *ncnt = &edges[0], *Adj[MAXN + 5];
     int n, m;
-    
+
     struct Matrix {
       int M[2][2];
-    
+
       Matrix operator*(const Matrix &B) {
         static Matrix ret;
         for (int i = 0; i < 2; i++)
@@ -176,25 +175,25 @@
         return ret;
       }
     } matr1[MAXN + 5], matr2[MAXN + 5];  // 每个点维护两个矩阵
-    
+
     int root;
     int w[MAXN + 5], dep[MAXN + 5], son[MAXN + 5], siz[MAXN + 5], lsiz[MAXN + 5];
     int g[MAXN + 5][2], f[MAXN + 5][2], trfa[MAXN + 5], bstch[MAXN + 5][2];
     int stk[MAXN + 5], tp;
     bool vis[MAXN + 5];
-    
+
     void AddEdge(int u, int v) {
       edge *p = ++ncnt;
       p->to = v;
       p->nxt = Adj[u];
       Adj[u] = p;
-    
+
       edge *q = ++ncnt;
       q->to = u;
       q->nxt = Adj[v];
       Adj[v] = q;
     }
-    
+
     void DFS(int u, int fa) {
       siz[u] = 1;
       for (edge *p = Adj[u]; p != NULL; p = p->nxt) {
@@ -207,7 +206,7 @@
       }
       lsiz[u] = siz[u] - siz[son[u]];  // 轻儿子的siz和+1
     }
-    
+
     void DFS2(int u, int fa) {
       f[u][1] = w[u], f[u][0] = 0;
       g[u][1] = w[u], g[u][0] = 0;
@@ -226,18 +225,18 @@
         g[u][1] += f[v][0];
       }
     }
-    
+
     void PushUp(int u) {
       matr2[u] = matr1[u];  // matr1是单点加上轻儿子的信息，matr2是区间信息
       if (bstch[u][0]) matr2[u] = matr2[bstch[u][0]] * matr2[u];
       // 注意转移的方向，但是如果我们的矩乘定义不同，可能方向也会不同
       if (bstch[u][1]) matr2[u] = matr2[u] * matr2[bstch[u][1]];
     }
-    
+
     int getmx2(int u) { return max(matr2[u].M[0][0], matr2[u].M[0][1]); }
-    
+
     int getmx1(int u) { return max(getmx2(u), matr2[u].M[1][0]); }
-    
+
     int SBuild(int l, int r) {
       if (l > r) return 0;
       int tot = 0;
@@ -254,7 +253,7 @@
         }
       return 0;
     }
-    
+
     int Build(int u) {
       for (int pos = u; pos; pos = son[pos]) vis[pos] = true;
       for (int pos = u; pos; pos = son[pos])
@@ -269,7 +268,7 @@
       int ret = SBuild(1, tp);  // 对重链进行单独的SBuild(我猜是Special Build?)
       return ret;               // 返回当前重链的二叉树的根
     }
-    
+
     void Modify(int u, int val) {
       matr1[u].M[1][0] += val - w[u];
       w[u] = val;
@@ -285,7 +284,7 @@
         } else
           PushUp(pos);
     }
-    
+
     int read() {
       int ret = 0, f = 1;
       char c = 0;
@@ -301,13 +300,13 @@
       }
       return ret * f;
     }
-    
+
     void print(int x) {
       if (x == 0) return;
       print(x / 10);
       putchar(x % 10 + '0');
     }
-    
+
     int main() {
       scanf("%d %d", &n, &m);
       for (int i = 1; i <= n; i++) w[i] = read();
