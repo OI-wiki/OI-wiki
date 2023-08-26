@@ -246,34 +246,32 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
 ![tree-basic-levelOrder](images/tree-basic-levelOrder.svg)
 
 ???+ note "实现"
-    
-
-```c++
-vector<vector<int>> levelOrder(TreeNode* root) {
-  vector<vector<int>> res;
-  if (!root) {
-    return res;
-  }
-  queue<TreeNode*> q;
-  q.push(root);
-  while (!q.empty()) {
-    int currentLevelSize = q.size();  // 当前层的节点个数
-    res.push_back(vector<int>());
-    for (int i = 0; i < currentLevelSize; i++) {
-      TreeNode* node = q.front();
-      q.pop();
-      res.back().push_back(node->val);
-      if (node->left != nullptr) {
-        q.push(node->left);
+    ```c++
+    vector<vector<int>> levelOrder(TreeNode* root) {
+      vector<vector<int>> res;
+      if (!root) {
+        return res;
       }
-      if (node->right != nullptr) {
-        q.push(node->right);
+      queue<TreeNode*> q;
+      q.push(root);
+      while (!q.empty()) {
+        int currentLevelSize = q.size();  // 当前层的节点个数
+        res.push_back(vector<int>());
+        for (int i = 0; i < currentLevelSize; i++) {
+          TreeNode* node = q.front();
+          q.pop();
+          res.back().push_back(node->val);
+          if (node->left != nullptr) {
+            q.push(node->left);
+          }
+          if (node->right != nullptr) {
+            q.push(node->right);
+          }
+        }
       }
+      return res;
     }
-  }
-  return res;
-}
-```
+    ```
 
 ### 二叉树 Morris 遍历
 
