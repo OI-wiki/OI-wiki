@@ -34,34 +34,33 @@ $$
 
 ???+ note "原问题"
     
+    $$
+    \begin{aligned}
+    & \max\sum_{e\in E}w(e)x_e \\
+    & \text{限制：} \\
+    & x(\delta(u))=1:\forall u\in V \\
+    & x(\gamma(B))\leq\lfloor\frac{|B|}{2}\rfloor:\forall B\in O \\
+    & x_e\geq0:\forall e\in E \\
+    \end{aligned}
+    $$
 
-\$
-\begin{aligned}
-& \max\sum\_{e\in E}w(e)x\_e \\
-& \text{限制：} \\
-& x(\delta(u))=1:\forall u\in V \\
-& x(\gamma(B))\leq\lfloor\frac{|B|}{2}\rfloor:\forall B\in O \\
-& x\_e\geq0:\forall e\in E \\
-\end{aligned}
-
-$$
 然后通过原始对偶（Primal-Dual）将问题转换为对偶问题。
 
 ???+ note "对偶问题"
-$$
+    
+    $$
+    \begin{aligned}
+    & \min\sum_{u\in V}z_u+\sum_{B\in O}\left\lfloor\frac{|B|}{2}\right\rfloor z_B \\
+    & \text{限制：} \\
+    & z_B\geq0:\forall B\in O \\
+    & z_e\geq0:\forall e\in E \\
+    & \text{设} e=(u,v)，\text{这里} \\
+    & \begin{array}{lll}
+    z_e & = & z_u + z_v - w(e) + \sum_{\substack{B \in O \\ u,v \in \gamma(B)}} z_B
+    \end{array}
+    \end{aligned}
+    $$
 
-\begin{aligned}
-& \min\sum\_{u\in V}z\_u+\sum\_{B\in O}\left\lfloor\frac{|B|}{2}\right\rfloor z\_B \\
-& \text{限制：} \\
-& z\_B\geq0:\forall B\in O \\
-& z\_e\geq0:\forall e\in E \\
-& \text{设} e=(u,v)，\text{这里} \\
-& \begin{array}{lll}
-z\_e & = & z\_u + z\_v - w(e) + \sum\_{\substack{B \in O \ u,v \in \gamma(B)}} z\_B
-\end{array}
-\end{aligned}
-
-$$
 $x_e=1$的边是匹配边，$x_e=0$的边是非匹配边。和二分图一样，我们必须满足$x_e\in\{0,1\}:\forall e\in E$。因此必须在最大权完美匹配的时候，让所有匹配边都是**等边**的。
 
 和二分图不同的是，一般图多了$z_B$要处理。下面考虑$z_B$什么时候大于$0$。
@@ -71,24 +70,20 @@ $x_e=1$的边是匹配边，$x_e=0$的边是非匹配边。和二分图一样，
 根据互补松弛条件，有以下的对应关系：
 
 - 对于选中的边 $e$，必有 $z_e=0$。
-
-$$
-
-\begin{aligned}
-x\_e>0 & \longrightarrow & z\_e=0, && \forall e\in E
-\end{aligned}
-
-$$
+  
+  $$
+  \begin{aligned}
+  x_e>0 & \longrightarrow & z_e=0, && \forall e\in E
+  \end{aligned}
+  $$
 
 - 对于选中的集合*B*， $\begin{array} {rcl} z_B>0 & \longrightarrow & x(\gamma(B))= \lfloor \frac{|B|}2 \rfloor \end{array}$，即所有$z_B>0$的集合$B$，都被选了集合大小一半的边，也即集合$B$ 是一朵花，选中花中的一条边进行增广。同时，我们加入一个条件：$x(\delta(B))=1$，即只有花 $B$ 向外连了一条边的时候， $z_B>0$ 才是有意义的。
   
-$$
-
-\begin{aligned}
-z\_B>0 & \longrightarrow & x(\gamma(B))=\lfloor\frac{|B|}2\rfloor, x(\delta(B))=1 && \forall B\in O
-\end{aligned}
-
-$$
+  $$
+  \begin{aligned}
+  z_B>0 & \longrightarrow & x(\gamma(B))=\lfloor\frac{|B|}2\rfloor, x(\delta(B))=1 && \forall B\in O
+  \end{aligned}
+  $$
 
 以「**等边**」的概念，结合之前的带花树算法：用「等边」构成的增广路不断进行扩充，由于用来扩充的边全是「等边」，最后得到的最大权完美匹配仍然全是「等边」。
 
@@ -135,13 +130,11 @@ vertex labeling仍要维持大于等于的性质，而且既有的「等边」�
 设目前有r棵交错树 $T_i=(U_{t_i},V_{t_i}):1\leq i\leq r$，令
 
 $$
-
 \begin{aligned}
-d1 &= \min({z\_e : e = (u^+,v^\varnothing)}) \\
-d2 &= \min({z\_e : e = (u^+,v^+), \~ u^+ \in T\_i, \~ v^+ \in T\_j, \~ i \neq j})/2 \\
-d3 &= \min({z\_{B^-} : B^- \in O})/2
+d1 &= \min(\{z_e : e = (u^+,v^\varnothing)\}) \\
+d2 &= \min(\{z_e : e = (u^+,v^+), ~ u^+ \in T_i, ~ v^+ \in T_j, ~ i \neq j\}) / 2 \\
+d3 &= \min(\{z_{B^-} : B^- \in O\}) / 2
 \end{aligned}
-
 $$
 
 注意这里*B*是缩花之后的点，所以可以有奇偶性。
@@ -149,14 +142,12 @@ $$
 设$d=min(d1,d2,d3)$，让
 
 $$
-
 \begin{aligned}
-z\_{u^+} - &= d \\
-z\_{v^-} + &= d \\
-z\_{B^+} + &= 2d \\
-z\_{B^-} - &= 2d \\
+z_{u^+} - &= d \\
+z_{v^-} + &= d \\
+z_{B^+} + &= 2d \\
+z_{B^-} - &= 2d \\ 
 \end{aligned}
-
 $$
 
 如果出现$z_B=0(d=d3)$，为了防止$z_B<0$的情况，所以要把这朵花拆了*(EXPAND)*。
@@ -174,7 +165,7 @@ vertex labeling为 $0$ 的点最后将成为未匹配点。
 
 ### 参考代码
 
-这里为了方便实现，使用边权乘2来计算$z_e$的值，这样就不会出现浮点数误差了。
+这里为了方便实现，使用边权乘$2$来计算$z_e$的值，这样就不会出现浮点数误差了。
 
 ???+ note "存储"
     ```c++
@@ -617,4 +608,3 @@ inline int get_lca(int u,int v){
 
 1. [Kolmogorov, Vladimir (2009), "Blossom V: A new implementation of a minimum cost perfect matching algorithm"](http://pub.ist.ac.at/~vnk/papers/BLOSSOM5.html)
 2. [从匈牙利算法到带权带花树——详解对偶问题在图匹配上的应用](https://www.luogu.com.cn/blog/potassium/solution-p6699)
-$$
