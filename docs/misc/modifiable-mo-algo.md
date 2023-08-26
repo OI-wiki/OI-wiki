@@ -10,22 +10,22 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 时间维表示经历的修改次数。
 
-即把询问 $[l,r]$ 变成 $[l,r,time]$。
+即把询问 $[l,r]$ 变成 $[l,r,\text{time}]$。
 
-那么我们的坐标也可以在时间维上移动，即 $[l,r,time]$ 多了一维可以移动的方向，可以变成：
+那么我们的坐标也可以在时间维上移动，即 $[l,r,\text{time}]$ 多了一维可以移动的方向，可以变成：
 
--   $[l-1,r,time]$
--   $[l+1,r,time]$
--   $[l,r-1,time]$
--   $[l,r+1,time]$
--   $[l,r,time-1]$
--   $[l,r,time+1]$
+-   $[l-1,r,\text{time}]$
+-   $[l+1,r,\text{time}]$
+-   $[l,r-1,\text{time}]$
+-   $[l,r+1,\text{time}]$
+-   $[l,r,\text{time}-1]$
+-   $[l,r,\text{time}+1]$
 
 这样的转移也是 $O(1)$ 的，但是我们排序又多了一个关键字，再搞搞就行了。
 
-可以用和普通莫队类似的方法排序转移，做到 $O(n^{\frac{5}{3}})$。
+可以用和普通莫队类似的方法排序转移，做到 $O(n^{5/3})$。
 
-这一次我们排序的方式是以 $n^{\frac{2}{3}}$ 为一块，分成了 $n^{\frac{1}{3}}$ 块，第一关键字是左端点所在块，第二关键字是右端点所在块，第三关键字是时间。
+这一次我们排序的方式是以 $n^{2/3}$ 为一块，分成了 $n^{1/3}$ 块，第一关键字是左端点所在块，第二关键字是右端点所在块，第三关键字是时间。
 
 ???+ note "最优块长以及时间复杂度分析"
     我们设序列长为 $n$，$m$ 个询问，$t$ 个修改。
@@ -41,7 +41,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     
     接下来分析时间复杂度。
     
-    设块长为 $s$，则有 $\frac{n}{s}$ 个块。对于块 $i$ 和块 $j$，记有 $q_{i,j}$ 个询问的左端点位于块 $i$，右端点位于块 $j$。
+    设块长为 $s$，则有 $\dfrac{n}{s}$ 个块。对于块 $i$ 和块 $j$，记有 $q_{i,j}$ 个询问的左端点位于块 $i$，右端点位于块 $j$。
     
     每「组」左右端点不换块的询问 $(i,j)$，端点每次移动 $O(s)$ 次，时间单调递增，$O(t)$。
     
@@ -51,21 +51,21 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     
     $$
     \begin{aligned}
-    &\sum_{i=1}^{\frac{n}{s}}\sum_{j=i+1}^{\frac{n}{s}}(q_{i,j}\cdot s+t)\\
-    =&ms+(\frac{n}{s})^2t\\
-    =&ms+\frac{n^2t}{s^2}
+    &\sum_{i=1}^{n/s}\sum_{j=i+1}^{n/s}(q_{i,j}\cdot s+t)\\
+    =&ms+\left(\dfrac{n}{s}\right)^2t\\
+    =&ms+\dfrac{n^2t}{s^2}
     \end{aligned}
     $$
     
-    考虑求导求此式极小值。设 $f(s)=ms+\frac{n^2t}{s^2}$。那 $f'(s)=m-\frac{2n^2t}{s^3}=0$。
+    考虑求导求此式极小值。设 $f(s)=ms+\dfrac{n^2t}{s^2}$。那 $f'(s)=m-\dfrac{2n^2t}{s^3}=0$。
     
-    得 $s=\sqrt[3]{\frac{2n^2t}{m}}=\frac{2^\frac{1}{3}n^\frac23t^\frac13}{m^\frac13}=s_0$。
+    得 $s=\sqrt[3]{\dfrac{2n^2t}{m}}=\dfrac{2^{1/3}n^{2/3}t^{1/3}}{m^{1/3}}=s_0$。
     
-    也就是当块长取 $\frac{n^\frac23t^\frac13}{m^\frac13}$ 时有最优时间复杂度 $O(n^\frac23m^\frac23t^\frac13)$。
+    也就是当块长取 $\dfrac{n^{2/3}t^{1/3}}{m^{1/3}}$ 时有最优时间复杂度 $O\left(n^{2/3}m^{2/3}t^{1/3}\right)$。
     
-    常说的 $O(n^\frac53)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
+    常说的 $O\left(n^{5/3}\right)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
     
-    实际操作中还是推荐设定 $n^{\frac{2}{3}}$ 为块长。
+    实际操作中还是推荐设定 $n^{2/3}$ 为块长。
 
 ## 例题
 

@@ -46,7 +46,7 @@
     -   对于工具类内容的撰写应该尽量包含以下的内容：
 
         1.  简介：阐明该工具的背景与用途。
-        2.  配置方式：详细给出下载、安装、配置环境与使用的过程。
+        2.  配置方式：详细给出配置环境与使用的过程，下载与安装方法建议尽量引用官方文档。
 
         示例页面：[WSL (Windows 10)](../tools/wsl.md)
 
@@ -346,7 +346,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 | `$f[i][j][k]$`               | $f[i][j][k]$      | `$f_{i,j,k}$, $f(i,j,k)$`                | $f_{i,j,k}$，$f(i,j,k)$              |
 | `$R,N^*$`（集合）                | $R,N^*$           | `$\mathbf{R}$, $\mathbf{N}^*$`           | $\mathbf{R}$，$\mathbf{N}^*$         |
 | `$\emptyset$`                | $\emptyset$       | `$\varnothing$`                          | $\varnothing$                       |
-| `$different$`                | $different$       | `$\textit{different}$`                   | $\textit{different}$                |
+| `$size$`                     | $size$            | `$\textit{size}$`                        | $\textit{size}$                     |
 
 #### 对数学公式的附加格式要求
 

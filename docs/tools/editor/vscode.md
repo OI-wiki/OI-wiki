@@ -1,4 +1,4 @@
-author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh
+author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh, xiaofu-15191
 
 ## 简介
 
@@ -6,13 +6,13 @@ Visual Studio Code（以下简称 VS Code）是一个由微软开发，同时支
 
 官网：[Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
 
-## 使用 Code Runner 插件运行代码
+## 使用 Code Runner 扩展运行代码
 
-VS Code 安装并配置插件后可实现对 C/C++ 的支持，但配置过程比较复杂。一个简单的编译与运行 C++ 程序的方案是安装 Code Runner 插件。
+VS Code 安装并配置扩展后可实现对 C/C++ 的支持，但配置过程比较复杂。一个简单的编译与运行 C++ 程序的方案是安装 Code Runner 扩展。
 
-Code Runner 是一个可以一键运行代码的插件，在工程上一般用来验证代码片段，支持 Node.js、Python、C、C++、Java、PHP、Perl、Ruby、Go 等 40 多种语言。
+Code Runner 是一个可以一键运行代码的扩展，在工程上一般用来验证代码片段，支持 Node.js、Python、C、C++、Java、PHP、Perl、Ruby、Go 等 40 多种语言。
 
-安装的方式是在插件商店搜索 Code Runner 并点击 Install；或者前往 [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 并点击 Install，浏览器会自动打开 VS Code 并进行安装。
+安装的方式是在扩展商店搜索 Code Runner 并点击 Install；或者前往 [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 并点击 Install，浏览器会自动打开 VS Code 并进行安装。
 
 ![](./images/vscode-1.jpg)
 
@@ -23,24 +23,16 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
     
     记得勾选设置中的 Run In Terminal 选项，如图：![](./images/vscode-7.png)
 
-## 使用 C/C++ 插件编译并调试
+## 使用 C/C++ 扩展编译并调试
 
-### 安装插件
+### 安装扩展
 
-在 VS Code 中打开插件商店，在搜索栏中输入 `C++` 或者 `@category:"programming languages"`，然后找到 C/C++，点击 Install 安装插件。
+在 VS Code 中打开扩展商店，在搜索栏中输入 `C++` 或者 `@category:"programming languages"`，然后找到 C/C++，点击 Install 安装扩展。
 
 ![](./images/vscode-2.png)
 
 ???+ warning
     在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了 `PATH` 中。请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端。
-
-### 配置编译
-
-首先用 VS Code 打开一个文件夹，然后按下<kbd>F1</kbd>，输入 `C/C++: Edit configurations (UI)`，进入 C/C++ 插件的设置界面。
-
-![vscode-3](images/vscode-3.png)
-
-在「编译器路径」中选择 G++ 或 Clang 的所在路径。如果没有可选项，请检查编译器所在路径是否添加到了操作系统的 `PATH` 变量中。
 
 ### 配置 IntelliSense
 
@@ -55,14 +47,12 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 #### GDB
 
 在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}`），保存并按下<kbd>F5</kbd>，进入调试模式。
-如果出现了「选择环境」的提示，选择 `C++ (GDB/LLDB)`。在「选择配置」中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`。
+如果出现了「选择调试器」的提示，选择 `C++ (GDB/LLDB)`。在「选择配置」中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`。
 
 ???+ warning
     配置名称并非固定，而是可以自定义的。不同的操作系统可能具有不同的配置名称。
 
-完成后，VS Code 将自动完成初始化操作并弹出一个 `launch.json` 配置文件。关闭它。
-
-至此，GDB 所有的配置流程已经完毕。再次按下<kbd>F5</kbd>即可看到软件下方的调试信息。
+完成后，VS Code 将自动完成初始化操作在下方的集成终端中启动调试。至此，GDB 所有的配置流程已经完毕。
 
 #### LLDB
 
@@ -93,7 +83,7 @@ Code Runner 是一个可以一键运行代码的插件，在工程上一般用�
 ## 配置 clangd
 
 ???+ warning
-    由于功能冲突，安装 clangd 插件后 C/C++ 插件的 IntelliSense 功能将被自动禁用。（调试等功能仍然使用 C/C++ 插件。）如果 clangd 插件的功能出现问题，可以查看是否禁用了 C/C++ 插件的 IntelliSense 功能。
+    由于功能冲突，安装 clangd 扩展后 C/C++ 扩展的 IntelliSense 功能将被禁用（调试等功能仍然使用 C/C++ 扩展）。如果 clangd 扩展的功能出现问题，可以查看是否禁用了 C/C++ 扩展的 IntelliSense 功能。
 
 ### clangd 简介
 
@@ -103,44 +93,22 @@ LLVM 官网上对 clangd 的介绍是这样的：
 
 简单来说，clangd 是 Clang 对语言服务器协定（Language Server Protocol）的实现，提供了一些智能的特性，例如全项目索引、代码跳转、变量重命名、更快的代码补全、提示信息、格式化代码等，并且能利用 LSP 与 Vim、Emacs、VSCode 等编辑器协作。虽然官方给出的定义是 LSP 的实现，但 clangd 的功能更接近语言服务器（Language Server）而不仅仅只是协议本身。
 
-VS Code 的 C/C++ 插件也有自动补全等功能，但在提示信息的易读程度的准确度等方面与 clangd 相比稍逊一筹，所以我们有时会使用 clangd 代替 C/C++ 插件来实现代码自动补全等功能。
+VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易读程度的准确度等方面与 clangd 相比稍逊一筹，所以我们有时会使用 clangd 代替 C/C++ 扩展来实现代码自动补全等功能。
 
 ### 安装
 
-Linux 用户可以直接用内置的包管理器安装 clangd，各个发行版的操作大同小异。
+参见 [Getting started](https://clangd.llvm.org/installation)。
 
-```bash
-# Ubuntu/Debian
-sudo apt install clangd 
-```
+### VS Code 扩展
 
-有的发行版只需要安装 clang。
-
-```bash
-# Arch/Manjaro
-sudo pacman -S clang
-```
-
-对于 macOS 用户，由于自带的 XcodeCommandLineTools 中的 LLVM 不包含 clangd，需要使用 Homebrew 安装 LLVM。
-
-```bash
-brew install llvm
-```
-
-Windows 用户在 [LLVM-MinGW](https://github.com/mstorsjo/llvm-mingw/releases/) 上下载二进制文件并安装，该版本集成了 MinGW-W64，避免缺少头文件[^ref3]。
-
-### VS Code 插件
-
-打开 VS Code 插件商店，在搜索栏中输入 `clangd` 找到 clangd 插件并安装
+打开 VS Code 扩展商店，在搜索栏中输入 `clangd` 找到 clangd 扩展并安装
 
 ![](images/vscode-8.png)
 
-现在就可以享受 clangd 的自动补全等功能了。
+如果下方弹出 clangd 要求关闭 Intellisense 的对话框，点击 "Disable Intellisense"，重新加载工作区，就可以享受 clangd 的自动补全等功能了。
 
 ## 参考资料与注释
 
-[^ref1]: VS Code 的 C/C++ 插件如果选择 lldb 作调试器，则会默认采用 lldb-mi 程序，而它已经被 LLVM 开发团队从项目中分离出来，需要自己编译该程序。而它本身就有一些 bug，使用体验和方便程度都不如 CodeLLDB 插件。
+[^ref1]: VS Code 的 C/C++ 扩展如果选择 lldb 作调试器，则会默认采用 lldb-mi 程序，而它已经被 LLVM 开发团队从项目中分离出来，需要自己编译该程序。而它本身就有一些 bug，使用体验和方便程度都不如 CodeLLDB 扩展。
 
-[^ref2]: 从插件商店安装 CodeLLDB 后它会再从 GitHub 下载本体，下载速度奇慢，有时下载出错，所以最好直接下载本体然后安装。更新也可直接按照以上步骤下载安装。
-
-[^ref3]: 使用 MSVC 构建的官方版本 [LLVM Download Page](https://releases.llvm.org/download.html) 由于需要搭配 MSVC 使用（MSVC 需要占用 2G 左右的空间，不安装会出现缺少头文件的问题），所以推荐直接安装 LLVM-MinGW。
+[^ref2]: 从扩展商店安装 CodeLLDB 后它会再从 GitHub 下载本体，下载速度奇慢，有时下载出错，所以最好直接下载本体然后安装。更新也可直接按照以上步骤下载安装。

@@ -464,21 +464,32 @@ SCEV 还可以做到优化一些循环：
 int test() {
   int ans = 1;
   for (int i = 0; i < n; i++) {
-    ans = i * (i + 1);
+    ans += i * (i + 1);
   }
   return ans
 }
 ```
 
-此函数会被优化为 $O(1)$ 公式求和，参考 <https://godbolt.org/z/7r49YnYfK>。这个行为目前仅有基于 LLVM 的编译器会出现，GCC 编译器更加保守。
+此函数会被优化为 $O(1)$ 公式求和，参考 <https://godbolt.org/z/ET8d89vvK>。这个行为目前仅有基于 LLVM 的编译器会出现，GCC 编译器更加保守。
 
 ```x86asm
-test(int):                               ; @test(int)
-        lea     ecx, [rdi - 1]
-        imul    ecx, edi
+test(int):                               # @test(int)
         test    edi, edi
+        jle     .LBB0_1
+        lea     eax, [rdi - 1]
+        lea     ecx, [rdi - 2]
+        imul    rcx, rax
+        lea     eax, [rdi - 3]
+        imul    rax, rcx
+        shr     rax
+        imul    eax, eax, 1431655766
+        and     ecx, -2
+        lea     eax, [rax + 2*rcx]
+        lea     eax, [rax + 2*rdi]
+        dec     eax
+        ret
+.LBB0_1:
         mov     eax, 1
-        cmovg   eax, ecx
         ret
 ```
 

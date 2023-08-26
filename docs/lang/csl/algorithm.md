@@ -32,6 +32,7 @@ STL 提供了大约 100 个实现算法的模版函数，基本都包含在 `<al
     `set` 等关联式容器中已经封装了 `lower_bound` 等函数（像 `s.lower_bound(val)` 这样），这样调用的时间复杂度是 $O(\log n)$ 的。
 
 -   `next_permutation`：将当前排列更改为 **全排列中的下一个排列**。如果当前排列已经是 **全排列中的最后一个排列**（元素完全从大到小排列），函数返回 `false` 并将排列更改为 **全排列中的第一个排列**（元素完全从小到大排列）；否则，函数返回 `true`。`next_permutation(v.begin(), v.end())` 或 `next_permutation(v + begin, v + end)`。
+-   `prev_permutation`：将当前排列更改为 **全排列中的上一个排列**。用法同 `next_permutation`。
 -   `partial_sum`：求前缀和。设源容器为 $x$，目标容器为 $y$，则令 $y[i]=x[0]+x[1]+\dots+x[i]$。`partial_sum(src.begin(), src.end(), back_inserter(dst))`。
 
 ### 使用样例
