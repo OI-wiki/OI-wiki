@@ -148,7 +148,7 @@ z_{B^-} - &= 2d \\
 \end{aligned}
 $$
 
-如果出现 $z_B=0(d=d3)$，为了防止 $z_B<0$ 的情况，所以要把这朵花拆了 \*(EXPAND)\*。
+如果出现 $z_B=0(d=d3)$，为了防止 $z_B<0$ 的情况，所以要把这朵花拆了 (EXPAND)。
 拆花后只留下花里的交替路径，并把花里不在交替路径上的点设为未走访（$\varnothing$)。
 
 如此便制造了一条（以上）的等边，既有等边保持不动，并维持了 $z_e\geq0:\forall e\in E$ 的性质，且最低限度增加了 $z_B$，可以继续找增广路了。
@@ -169,16 +169,12 @@ vertex labeling 为 $0$ 的点最后将成为未匹配点。
     ```c++
     #define INF INT_MAX
     #define MAXN 400
-    
     struct edge {
       int u, v, w;
-    
       // 表示(u,v)为一条边其权重为w
       edge() {}
-    
       edge(int u, int v, int w) : u(u), v(v), w(w) {}
     };
-    
     int n, n_x;
     // 有n个点，编号为 1 ~ n
     // n_x表示当前点加上花的数量，编号从n+1到n_x为花的节点
@@ -195,14 +191,16 @@ vertex labeling 为 $0$ 的点最后将成为未匹配点。
 
 其中 $\{ 6, 5, 8\} \in b1,\{ b1, 4, 3, 2, 11, 10, 9\} \in b2$。存储为：
 
-```c++
-flower[b2] = {b1, 4, 3, 2, 11, 10, 9} flower[b1] = {6, 5, 8}
+```text
+flower[b2] = {b1, 4, 3, 2, 11, 10, 9} 
+flower[b1] = {6, 5, 8}
 ```
 
 ![general-weight-match-3](images/general-weight-match-3.png)
 
-```c++
-flower[b2] = {9, b1, 4, 3, 2, 11, 10} flower[b1] = {5, 8, 6}
+```text
+flower[b2] = {9, b1, 4, 3, 2, 11, 10} 
+flower[b1] = {5, 8, 6}
 ```
 
 ```c++
@@ -227,9 +225,12 @@ queue<int> q;
 
 ![general-weight-match-4](images/general-weight-match-4.png)
 
-```c++
-flower_from[b2][6] = b1 flower_from[b2][5] = b1 flower_from[b2][9] =
-    9 flower_from[b1][6] = 6 以此类推
+```text
+flower_from[b2][6] = b1 
+flower_from[b2][5] = b1 
+flower_from[b2][9] = 9 
+flower_from[b1][6] = 6 
+以此类推
 ```
 
 ```c++
@@ -587,7 +588,6 @@ inline int get_lca(int u, int v) {
 
 ???+ note "初始化"
     很重要 使用前一定要初始化
-    
     ```c++
     inline void init_weight_graph() {
       // 在把边输入到图里面前必须要初始化
@@ -596,6 +596,7 @@ inline int get_lca(int u, int v) {
         for (int v = 1; v <= n; ++v) g[u][v] = edge(u, v, 0);
     }
     ```
+
 
 ## 复杂度分析
 
