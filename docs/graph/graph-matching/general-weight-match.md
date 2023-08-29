@@ -169,12 +169,16 @@ vertex labeling 为 $0$ 的点最后将成为未匹配点。
     ```c++
     #define INF INT_MAX
     #define MAXN 400
+    
     struct edge {
       int u, v, w;
+    
       // 表示(u,v)为一条边其权重为w
       edge() {}
+    
       edge(int u, int v, int w) : u(u), v(v), w(w) {}
     };
+    
     int n, n_x;
     // 有n个点，编号为 1 ~ n
     // n_x表示当前点加上花的数量，编号从n+1到n_x为花的节点
@@ -588,6 +592,7 @@ inline int get_lca(int u, int v) {
 
 ???+ note "初始化"
     很重要 使用前一定要初始化
+    
     ```c++
     inline void init_weight_graph() {
       // 在把边输入到图里面前必须要初始化
@@ -596,7 +601,6 @@ inline int get_lca(int u, int v) {
         for (int v = 1; v <= n; ++v) g[u][v] = edge(u, v, 0);
     }
     ```
-
 
 ## 复杂度分析
 
