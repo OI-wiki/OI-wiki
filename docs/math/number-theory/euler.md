@@ -71,7 +71,7 @@
 
     ```python
     def euler_phi(n):
-        m = int(sqrt(n + 0.5))
+        m = int(math.sqrt(n + 0.5))
         ans = n
         for i in range(2, m + 1):
             if n % i == 0:
@@ -105,7 +105,7 @@
     ```python
     def euler_phi(n):
         ans = n
-        for i in range(2, int(sqrt(n)) + 1):
+        for i in range(2, int(math.sqrt(n)) + 1):
             if n % i == 0:
                 ans = ans // i * (i - 1)
                 while n % i == 0:
