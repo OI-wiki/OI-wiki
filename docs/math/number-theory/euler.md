@@ -54,6 +54,7 @@
 === "C++"
 
     ```cpp
+    #include <cmath>
     int euler_phi(int n) {
       int m = int(sqrt(n + 0.5));
       int ans = n;
@@ -70,6 +71,7 @@
 === "Python"
 
     ```python
+    import math
     def euler_phi(n):
         m = math.isqrt(n + 0.5)
         ans = n
@@ -88,6 +90,7 @@
 === "C++"
 
     ```cpp
+    #include <cmath>
     int euler_phi(int n) {
       int ans = n;
       for (int i = 2; i * i <= n; i++)
@@ -103,6 +106,7 @@
 === "Python"
 
     ```python
+    import math
     def euler_phi(n):
         ans = n
         for i in range(2, math.isqrt(n) + 1):
