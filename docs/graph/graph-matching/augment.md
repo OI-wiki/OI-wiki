@@ -42,6 +42,6 @@ author: accelsao, Chrogeek, t4rf9, yuhuoji
 
 下图展示了一个二分图和从未匹配点 $1$ 开始寻找增广路时，形成的以 $1$ 为根的交错树。
 
-![augment-3](./images/augment-3.png)
+![augment-3](images/augment-3.svg)
 
-![augment-4](./images/augment-4.png)
+![augment-4](images/augment-4.svg)
