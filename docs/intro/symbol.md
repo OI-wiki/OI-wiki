@@ -32,7 +32,7 @@
 | n2.10 | $A \cap B$                                 | $A$ 和 $B$ 的交集                   | $A \cap B := \{x ~\vert~ x \in A \land x \in B\}$;<br>$:=$ 的定义参见 n4.3                                                                                                                                                       |
 | n2.11 | $\displaystyle \bigcup\limits_{i=1}^n A_i$ | 集合 $A_1, A_2, \dots, A_n$ 的并集   | $\displaystyle \bigcup\limits_{i=1}^n A_i=A_1\cup A_2\cup \dots \cup A_n$;<br>也可使用 $\displaystyle \bigcup\nolimits_{i=1}^n$，$\displaystyle \bigcup\limits_{i\in I}$，$\displaystyle \bigcup\nolimits_{i\in I}$, 其中 $I$ 表示指标集 |
 | n2.12 | $\displaystyle \bigcap\limits_{i=1}^n A_i$ | 集合 $A_1, A_2, \dots, A_n$ 的交集   | $\displaystyle \bigcap\limits_{i=1}^n A_i=A_1\cap A_2\cap \dots \cap A_n$;<br>也可使用 $\displaystyle \bigcap\nolimits_{i=1}^n$，$\displaystyle \bigcap\limits_{i\in I}$，$\displaystyle \bigcap\nolimits_{i\in I}$, 其中 $I$ 表示指标集 |
-| n2.13 | $A \setminus B$                            | $A$ 和 $B$ 的差集                   | $A \setminus B = \{x ~\vert~ x \in A \land x \notin B\}$;<br>不应使用 $A - B$;<br>当 $B$ 是 $A$ 的子集时也可使用 $\complement_A B$, 如果从上下文中可以得知考虑的是哪个集合 $A$，则 $A$ 可以省略。                                                                   |
+| n2.13 | $A \setminus B$                            | $A$ 和 $B$ 的差集                   | $A \setminus B = \{x ~\vert~ x \in A \land x \notin B\}$;<br>不应使用 $A - B$;<br>当 $B$ 是 $A$ 的子集时也可使用 $\complement_A B$, 如果从上下文中可以得知考虑的是哪个集合 $A$，则 $A$ 可以省略。<br>不引起歧义的情况下也可使用 $\overline{B}$ 表示集合 $B$ 的补集。                     |
 | n2.14 | $(a, b)$                                   | 有序数对 $a$，$b$;<br>有序偶 $a$，$b$    | $(a, b) = (c, d)$ 当且仅当 $a = c$ 且 $b = d$.                                                                                                                                                                                   |
 | n2.15 | $(a_1, a_2, \dots, a_n)$                   | 有序 $n$ 元组                       | 参见 n2.14.                                                                                                                                                                                                                   |
 | n2.16 | $A \times B$                               | 集合 $A$ 和 $B$ 的笛卡尔积              | $A \times B = \{(x, y) ~\vert~ x \in A \land y \in B\}$.                                                                                                                                                                    |
@@ -124,7 +124,7 @@
 | ---- | -------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | n7.1 | $n!$                       | 阶乘             | $n!=\prod_{k=1}^n k=1\cdot 2\cdot 3\cdot \dots \cdot n\quad (n>0)$;<br>$0!=1$.                                                                |
 | n7.2 | $a^{\underline{k}}$        | 下降阶乘幂          | $a^{\underline{k}}=a\cdot(a-1)\cdot \dots \cdot(a-k+1)\quad (k>0)$;<br>$a^{\underline{0}}=1$;<br>$n^{\underline{k}}=\dfrac{n!}{(n-k)!}$.      |
-| n7.3 | $a^{\overline{k}}$         | 上升阶乘幂          | $a^{\overline{k}}=a\cdot(a+1)\cdot \dots \cdot(a+k-1)\quad (k>0)$;<br>$a^{\overline{0}}=1$;<br>$n^{\underline{k}}=\dfrac{(n+k-1)!}{(n-1)!}$.  |
+| n7.3 | $a^{\overline{k}}$         | 上升阶乘幂          | $a^{\overline{k}}=a\cdot(a+1)\cdot \dots \cdot(a+k-1)\quad (k>0)$;<br>$a^{\overline{0}}=1$;<br>$n^{\overline{k}}=\dfrac{(n+k-1)!}{(n-1)!}$.   |
 | n7.4 | $\dbinom{n}{k}$            | 组合数            | $\dbinom{n}{k}=\dfrac{n!}{k!(n-k)!}$.                                                                                                         |
 | n7.5 | $\displaystyle{n\brack k}$ | 第一类 Stirling 数 | $\displaystyle{n+1\brack k}=n{n\brack k}+{n\brack k-1}$;<br>$\displaystyle x^{\overline{n}}=\sum_{k=0}^n{n\brack k}x^k$.                      |
 | n7.6 | $\displaystyle{n\brace k}$ | 第二类 Stirling 数 | $\displaystyle{n\brace k}=\frac{1}{k!}\sum_{i=0}^k(-1)^i\binom{k}{i}(k-i)^n$;<br>$\displaystyle\sum_{k=0}^n{n\brace k}x^{\underline{k}}=x^n$. |
@@ -164,15 +164,15 @@
 
 $x$ 可以是复数。
 
-| 编号   | 符号，表达式                      | 意义，等同表述                      | 备注与示例                                                                                                           |
-| ---- | --------------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| n9.1 | $\mathrm{e}$                | 自然对数的底                       | $\displaystyle \mathrm{e}=\lim\limits_{n\to\infty}\left(1+\frac{1}{n}\right)^n=2.718~812~8~\dots$;<br>不要写成 $e$. |
-| n9.2 | $a^x$                       | $x$ 的指数函数（以 $a$ 为底）          | 参见 n6.9.                                                                                                        |
-| n9.3 | $\mathrm{e}^x$;<br>$\exp x$ | $x$ 的指数函数（以 $\mathrm{e}$ 为底） |                                                                                                                 |
-| n9.4 | $\log_a x$                  | $x$ 的以 $a$ 为底的对数             | 当底数不需要指定的时候可以使用 $\log x$.<br>不应用 $\log x$ 替换 $\ln x$，$\lg x$，$\operatorname{lb} x$ 中的任意一个。                      |
-| n9.5 | $\ln x$                     | $x$ 的自然对数                    | $\ln x = \log_{\mathrm{e}} x$;<br>参见 n9.4.                                                                      |
-| n9.6 | $\lg x$                     | $x$ 的常用对数                    | $\lg x = \log_{10} x$;<br>参见 n9.4.                                                                              |
-| n9.7 | $\operatorname{lb} x$       | $x$ 的以 $2$ 为底的对数             | $\operatorname{lb} x = \log_2 x$;<br>参见 n9.4.                                                                   |
+| 编号   | 符号，表达式                      | 意义，等同表述                      | 备注与示例                                                                                                          |
+| ---- | --------------------------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| n9.1 | $\mathrm{e}$                | 自然对数的底                       | $\displaystyle \mathrm{e}=\lim\limits_{n\to\infty}\left(1+\frac{1}{n}\right)^n=2.718~281~8\dots$;<br>不要写成 $e$. |
+| n9.2 | $a^x$                       | $x$ 的指数函数（以 $a$ 为底）          | 参见 n6.9.                                                                                                       |
+| n9.3 | $\mathrm{e}^x$;<br>$\exp x$ | $x$ 的指数函数（以 $\mathrm{e}$ 为底） |                                                                                                                |
+| n9.4 | $\log_a x$                  | $x$ 的以 $a$ 为底的对数             | 当底数不需要指定的时候可以使用 $\log x$.<br>不应用 $\log x$ 替换 $\ln x$，$\lg x$，$\operatorname{lb} x$ 中的任意一个。                     |
+| n9.5 | $\ln x$                     | $x$ 的自然对数                    | $\ln x = \log_{\mathrm{e}} x$;<br>参见 n9.4.                                                                     |
+| n9.6 | $\lg x$                     | $x$ 的常用对数                    | $\lg x = \log_{10} x$;<br>参见 n9.4.                                                                             |
+| n9.7 | $\operatorname{lb} x$       | $x$ 的以 $2$ 为底的对数             | $\operatorname{lb} x = \log_2 x$;<br>参见 n9.4.                                                                  |
 
 ## 三角函数和双曲函数
 

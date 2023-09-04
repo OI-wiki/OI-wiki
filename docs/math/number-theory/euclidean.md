@@ -39,7 +39,7 @@ $$
 
 $$
 \sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor
-=\sum_{i=0}^n\sum_{j=0}^{\left\lfloor \frac{ai+b}{c} \right\rfloor-1}1\\
+=\sum_{i=0}^n\sum_{j=0}^{\left\lfloor \frac{ai+b}{c} \right\rfloor-1}1
 $$
 
 现在多了一个变量 $j$，既然算 $i$ 的贡献不方便，我们就想办法算 $j$ 的贡献。因此想办法搞一个和 $j$ 有关的贡献式。这里有另一个家喻户晓的变换方法，笔者概括为限制转移。具体来说，在上面的和式中 $n$ 限制 $i$ 的上界，而 $i$ 限制 $j$ 的上界。为了搞 $j$，就先把 j 放到贡献的式子里，于是我们交换一下 $i,j$ 的求和算子，强制用 $n$ 限制 $j$ 的上界。
@@ -53,7 +53,7 @@ $$
 $$
 j<\left\lfloor \frac{ai+b}{c} \right\rfloor
 \iff j+1\leq \left\lfloor \frac{ai+b}{c} \right\rfloor
-\iff j+1\leq \frac{ai+b}{c}\\
+\iff j+1\leq \frac{ai+b}{c}
 $$
 
 然后可以做一些变换
@@ -105,7 +105,7 @@ g(a,b,c,n)
 =g(a\bmod c,b\bmod c,c,n)+\left\lfloor\frac{a}{c}\right\rfloor\frac{n(n+1)(2n+1)}{6}+\left\lfloor\frac{b}{c}\right\rfloor\frac{n(n+1)}{2}
 $$
 
-接下来考虑 $a<c,b<c$ 的情况，令 $m=\left\lfloor\frac{an+b}{c}\right\rfloor$。之后的过程我会写得很简略，因为方法和上文略同：
+接下来考虑 $a<c,b<c$ 的情况，令 $m=\left\lfloor\frac{an+b}{c}\right\rfloor$。之后的过程比较简略，因为方法和上文略同：
 
 $$
 \begin{aligned}

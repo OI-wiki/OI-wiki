@@ -76,7 +76,7 @@
 
 ![](images/tree-binary-complete.svg)
 
--   **完美二叉树（perfect binary tree）**：所有叶结点的深度均相同的二叉树称为完美二叉树。
+-   **完美二叉树（perfect binary tree）**：所有叶结点的深度均相同，且所有非叶节点的子节点数量均为 2 的二叉树称为完美二叉树。
 
 ![](images/tree-binary-perfect.svg)
 
@@ -166,50 +166,50 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 #### 先序遍历
 
-![preorder](images/tree-basic-Preorder.png)
+![preorder](images/tree-basic-preorder.svg)
 
 按照 **根，左，右** 的顺序遍历二叉树。
 
 ???+ note "实现"
     ```c++
-    void preTrav(BiTree* root) {
+    void preorder(BiTree* root) {
       if (root) {
         cout << root->key << " ";
-        preTrav(root->left);
-        preTrav(root->right);
+        preorder(root->left);
+        preorder(root->right);
       }
     }
     ```
 
 #### 中序遍历
 
-![inorder](images/tree-basic-inorder.png)
+![inorder](images/tree-basic-inorder.svg)
 
 按照 **左，根，右** 的顺序遍历二叉树。
 
 ???+ note "实现"
     ```c++
-    void midTrav(BiTree* root) {
+    void inorder(BiTree* root) {
       if (root) {
-        midTrav(root->left);
+        inorder(root->left);
         cout << root->key << " ";
-        midTrav(root->right);
+        inorder(root->right);
       }
     }
     ```
 
 #### 后序遍历
 
-![Postorder](images/tree-basic-Postorder.png)
+![postorder](images/tree-basic-postorder.svg)
 
 按照 **左，右，根** 的顺序遍历二叉树。
 
 ???+ note "实现"
     ```c++
-    void lastTrav(BiTree* root) {
+    void postorder(BiTree* root) {
       if (root) {
-        lastTrav(root->left);
-        lastTrav(root->right);
+        postorder(root->left);
+        postorder(root->right);
         cout << root->key << " ";
       }
     }
@@ -219,9 +219,9 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 已知中序遍历序列和另外一个序列可以求第三个序列。
 
-![reverse](images/tree-basic-reverse.png)
+![reverse](images/tree-basic-reverse.svg)
 
-1.  前序的第一个是 root，后序的最后一个是 root。
+1.  前序的第一个是 `root`，后序的最后一个是 `root`。
 2.  先确定根节点，然后根据中序遍历，在根左边的为左子树，根右边的为右子树。
 3.  对于每一个子树可以看成一个全新的树，仍然遵循上面的规律。
 
@@ -231,6 +231,66 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
 
+### 二叉树 Morris 遍历
+
+二叉树遍历的核心问题是，当遍历当前节点的子节点后，如何返回当前节点并继续遍历。遍历二叉树的递归方法和非递归方法都使用了栈结构，记录返回路径，来实现从下层到上层的移动。其空间复杂度最好时为 $O(\log n)$，最坏时为 $O(n)$（二叉树呈线性）。
+
+Morris 遍历的实质是避免使用栈，利用底层节点空闲的 `right` 指针指回上层的某个节点，从而完成下层到上层的移动。
+
+#### Morris 遍历的过程
+
+假设来到当前节点 `cur`，开始时来到根节点位置。
+
+1.  如果 `cur` 为空时遍历停止，否则进行以下过程。
+2.  如果 `cur` 没有左子树，`cur` 向右移动（`cur = cur->right`）。
+3.  如果 `cur` 有左子树，找到左子树上最右的节点，记为 `mostRight`。
+    -   如果 `mostRight` 的 `right` 指针指向空，让其指向 `cur`，然后 `cur` 向左移动（`cur = cur->left`）。
+    -   如果 `mostRight` 的 `right` 指针指向 `cur`，将其修改为 `null`，然后 `cur` 向右移动（`cur = cur->right`）。
+
+例如，`cur` 从节点 1 开始访问。
+
+![tree-basic-morris-1](images/tree-basic-morris-1.svg)
+
+`cur` 第一次访问节点 2 时，找到左子树上最右的节点 4，将 4 的 `right` 指针指向 `cur`（节点 2)。
+
+![tree-basic-morris-2](images/tree-basic-morris-2.svg)
+
+`cur` 通过 4 的 `right` 指针返回上层，第二次访问节点 2 时，找到左子树上最右节点 4，将 4 的 `right` 指针修改为 `null`，然后继续访问右子树。之后的过程省略。
+
+![tree-basic-morris-1](images/tree-basic-morris-1.svg)
+
+整棵树的访问顺序是 `1242513637`。可以发现有左子树的节点访问两次，没有左子树的节点只访问一次。
+
+???+ note "实现"
+    ```c++
+    void morris(TreeNode* root) {
+      TreeNode* cur = root;
+      while (cur) {
+        if (!cur->left) {
+          // 如果当前节点没有左子节点，则输出当前节点的值并进入右子树
+          std::cout << cur->val << " ";
+          cur = cur->right;
+          continue;
+        }
+        // 找到当前节点的左子树的最右节点
+        TreeNode* mostRight = cur->left;
+        while (mostRight->right && mostRight->right != cur) {
+          mostRight = mostRight->right;
+        }
+        if (!mostRight->right) {
+          // 如果最右节点的right指针为空，将其指向当前节点，并进入左子树
+          mostRight->right = cur;
+          cur = cur->left;
+        } else {
+          // 如果最右节点的right指针指向当前节点，说明左子树已经遍历完毕，输出当前节点的值并进入右子树
+          mostRight->right = nullptr;
+          std::cout << cur->val << " ";
+          cur = cur->right;
+        }
+      }
+    }
+    ```
+
 ### 无根树
 
 #### 过程
@@ -239,23 +299,22 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
 
 由于树是无环图，因此只需记录当前结点是由哪个结点访问而来，此后进入除该结点外的所有相邻结点，即可避免重复访问。
 
-#### 实现
-
-```cpp
-void dfs(int u, int from) {
-  // 递归进入除了 from 之外的所有子结点
-  // 对于出发结点，from 为空，故会访问所有相邻结点，这与期望一致
-  for (int v : adj[u])
-    if (v != from) {
-      dfs(v, u);
+???+ note "实现"
+    ```cpp
+    void dfs(int u, int from) {
+      // 递归进入除了 from 之外的所有子结点
+      // 对于出发结点，from 为空，故会访问所有相邻结点，这与期望一致
+      for (int v : adj[u])
+        if (v != from) {
+          dfs(v, u);
+        }
     }
-}
-
-// 开始遍历时
-int EMPTY_NODE = -1;  // 一个不存在的编号
-int root = 0;         // 任取一个结点作为出发点
-dfs(root, EMPTY_NODE);
-```
+    
+    // 开始遍历时
+    int EMPTY_NODE = -1;  // 一个不存在的编号
+    int root = 0;         // 任取一个结点作为出发点
+    dfs(root, EMPTY_NODE);
+    ```
 
 ### 有根树
 
