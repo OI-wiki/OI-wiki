@@ -50,7 +50,7 @@ $$
 
 ## 离散傅里叶变换
 
-**离散傅里叶变换**（Discrete Fourier transform，DFT）是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DFT 的频域采样。
+**离散傅里叶变换**（Discrete Fourier transform，DFT）是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT（discrete-time Fourier transform）的频域采样。
 
 傅里叶变换是积分形式的连续的函数内积，离散傅里叶变换是求和形式的内积。
 
