@@ -5,95 +5,11 @@ Git 是目前使用最广泛的版本控制系统之一。**OI Wiki** 也使用�
 
 ## 安装
 
-### Windows
-
-#### 使用安装向导安装
-
-???+ warning
-    本节以 Git for Windows 2.28.0（2020-07-27 更新）为例。安装页面的选项可能会随着时间而变动。
-
-Windows 系统可以在 [Git 官网](https://git-scm.com/downloads) 获取到 Git for Windows（下文简称 Git）的安装包。
-
-下载完成后，运行 Git 的安装程序。弹出的页面如下图所示。
-
-![Git for Windows installation 1](images/git3.png)
-
-点击 `Next >`，选择安装路径。
-
-![Git for Windows installation 2](images/git4.png)
-
-点击 `Next >`，选择安装可选项。
-
-![Git for Windows installation 3](images/git5.png)
-
-默认的选项如上图所示，均不建议取消勾选。其他未勾选的选项可以依照需求勾选。
-
-??? note "各选项功能详解"
-    默认勾选的选项：
-    
-    -   `Windows Explorer integration`：资源管理器集成（右键菜单）。
-        -   `Git Bash Here`：在当前目录运行 Git 命令行。
-        -   `Git GUI Here`：在当前目录运行 Git 图形化页面。
-    -   `Git LFS`：安装 Git Large File Support（大文件支持）。[^note1]
-    -   `Associate .git* configuration files with the default text editor`：将所有 `.git` 配置文件与默认文本编辑器关联，并用其打开。默认文本编辑器会在后面配置。
-    -   `Associate .sh files to be run with Bash`：将所有扩展名为 `.sh` 的文件与 Git Bash 关联，并用其执行。
-    
-    ***
-    
-    默认不勾选的选项：
-    
-    -   `Additional icons`
-        -   `On the Desktop`：让 Git 在桌面创建快捷方式。
-    -   `Use a TrueType font in all console windows`：让 Git 在所有命令行（包括 cmd 命令行窗口）中都使用 TrueType 字体。
-    -   `Check daily for Git for Windows updates`：让 Git 每天检查更新。
-
-点击 `Next >`，选择存放 Git 快捷方式的开始菜单文件夹。若勾选 `Don't create a Start Menu folder`，则 Git 不会在开始菜单创建快捷方式。
-
-![Git for Windows installation 4](images/git6.png)
-
-点击 `Next >`，选择默认的编辑器。
-
-![Git for Windows installation 5](images/git7.png)
-
-在下拉菜单栏中，Git 提供了 nano、[Vim](./editor/vim.md)、[Notepad++](./editor/npp.md)、[Visual Studio Code](./editor/vscode.md)、Visual Studio Code Insiders（VS Code 预览版）、Sublime Text、[Atom](./editor/atom.md) 和 VSCodium 作为默认编辑器的预设方案。如果系统已经安装了上述的一种或多种编辑器，可以直接选择其中一种并进入下一步。另外，还可通过 `Select other editor as Git's default editor` 项手动指定默认编辑器。
-
-![Git for Windows installation 6](images/git8.png)
-
-除了 Vim 外，如果选择了尚未安装的编辑器，安装程序会阻止使用者进入下一步。[^note2]用户可以通过给出的官网链接跳转到下载页面，完成编辑器的安装后继续安装 Git。
-
-![Git for Windows installation 7](images/git9.png)
-
-选好默认编辑器后，点击 `Next >` 进入下一步。
-
-接下来的每一步都直接点击 `Next >`。当 `Next >` 变为 `Install` 时，按下 `Install` 进行安装。
-
-最后，该页面出现，Git 安装完成。此时可以取消勾选 `View Release Notes`，然后按下 `Next >` 直接退出；也可以直接按下 `Next >` 查看版本更新信息；亦可以勾选 `Launch Git Bash` 运行 Git 命令行。
-
-![Git for Windows installation 8](images/git10.png)
-
-#### 使用包管理器安装
-
-在 [`scoop`](https://scoop.sh/) 或 [`winget`](https://github.com/microsoft/winget-cli) 可用的情况下，Git for Windows 可以使用以下命令安装：
-
-```powershell
-scoop install git
-#或者
-winget install Git.Git
-```
-
-这种安装方式的好处是安装过程由系统接管，相对安装向导而言更为方便。需要注意的是，这种方式默认编辑器为 `vim`。
-
-### Linux
-
-Linux 系统可以通过包管理器进行安装。不同 Linux 发行版的安装方式可能不同，[Git 官网](https://git-scm.com/download/linux) 给出了不同系统下的安装方式。
-
-### macOS
-
-macOS 系统只需在终端执行 `brew install git` 命令即可安装。（需安装 [Homebrew](https://brew.sh/)）
+参见 [Git - Downloads](https://git-scm.com/downloads)。
 
 ## 配置
 
-Git 根据配置文件的应用范围，将配置文件分为不同的等级，其中较常用的有两个级别[^note3]：
+Git 根据配置文件的应用范围，将配置文件分为不同的等级，其中较常用的有两个级别[^note1]：
 
 1.  适用于当前用户的全局配置文件，该用户操作本系统上的所有仓库时都会查询该配置文件。
 2.  适用于当前仓库的配置文件。
@@ -464,7 +380,7 @@ git merge <branch> --squash
 
 #### Rebase（变基）
 
-使用 Rebase 方式将分支 B 并入分支 A 时，在 B 分支上的每一次 commit 都会单独添加到 A 分支，而不再像 Merge 方式那样创建一个合并 commit 来合并两个分支的内容[^note4]。
+使用 Rebase 方式将分支 B 并入分支 A 时，在 B 分支上的每一次 commit 都会单独添加到 A 分支，而不再像 Merge 方式那样创建一个合并 commit 来合并两个分支的内容[^note2]。
 
 首先，切换到 B 分支，接下来将 B 分支变基到 A 分支：
 
@@ -589,7 +505,7 @@ $ git clone git@github.com:OI-wiki/OI-wiki.git
 
 对于不熟悉命令行的同学，纯命令行的 Git 的上手难度可能会偏高，而借助 GUI 工具可以一定程度上降低 Git 的上手难度。此外，相比于命令行，GUI 工具在查看 diff 以及 log 时在体验上有一定程度的提高。
 
-Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如针对 Windows 用户的 TortoiseGit[^note5]，支持 Windows 和 Mac 的 Sourcetree[^note6]等。
+Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如针对 Windows 用户的 TortoiseGit[^note3]，支持 Windows 和 Mac 的 Sourcetree[^note4]等。
 
 这里简单介绍一下 TortoiseGit 的使用。下载并安装好 TortoiseGit 之后，在本地仓库的目录下，单击鼠标右键，在右键菜单中就可以看到 Git 的各个功能。
 
@@ -607,14 +523,10 @@ Git 本身自带有 GUI，市面上也有很多优秀的 Git GUI 工具，例如
 
 ## 参考资料与注释
 
-[^note1]: 在某些地方（比如 [LFS 官网](https://git-lfs.github.com/)）又被称作 Git Large File Storage（大文件存储）。它在将项目托管到平台上时，用文本指针代替音频、视频、图像、数据集等大文件的原始文件，从而加快传输速度。对移动应用程序开发人员、游戏工程师以及任何需要大文件构建软件的人，该功能都极为实用。若想进一步了解该功能，可以参考 [Atlassian 官方介绍 Git LFS 的译文](https://www.cnblogs.com/cangqinglang/p/13097777.html)。
+[^note1]: 事实上 Git 还有一个针对系统上每一个用户及系统上所有仓库的通用配置文件，该配置文件覆盖范围最广，等级在用户配置文件之上。因为该配置实践中较少使用，这里不再展开。
 
-[^note2]: 但是，Git for Windows 对 Vim 的描述是「虽然强大，但是可能会难以使用。用户界面反人类，键位映射卡手。Git 使用 Vim 作为默认编辑器只是出于历史原因，强烈推荐换用一个 UI 设计现代化的编辑器。」，并给「难以使用」加上了 [Stack Overflow 每年帮助一百万名开发者退出 Vim](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/) 的页面链接。
+[^note2]: [Pro Git Book](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA) 中提供了可视化的 Rebase 过程图，借助图片读者可以更好地理解 Rebase 的机制。
 
-[^note3]: 事实上 Git 还有一个针对系统上每一个用户及系统上所有仓库的通用配置文件，该配置文件覆盖范围最广，等级在用户配置文件之上。因为该配置实践中较少使用，这里不再展开。
+[^note3]: [TortoiseGit](https://tortoisegit.org/)
 
-[^note4]: [Pro Git Book](https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%8F%98%E5%9F%BA) 中提供了可视化的 Rebase 过程图，借助图片读者可以更好地理解 Rebase 的机制。
-
-[^note5]: [TortoiseGit](https://tortoisegit.org/)
-
-[^note6]: [Sourcetree](https://www.sourcetreeapp.com/)
+[^note4]: [Sourcetree](https://www.sourcetreeapp.com/)

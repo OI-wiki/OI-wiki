@@ -233,30 +233,7 @@ int main() {
 
 这里介绍的是要求生成的随机数按照一定的概率出现，如等概率，[伯努利分布](https://en.wikipedia.org/wiki/Bernoulli_distribution)，[二项分布](https://en.wikipedia.org/wiki/Binomial_distribution)，[几何分布](https://en.wikipedia.org/wiki/Geometric_distribution)，[标准正态（高斯）分布](https://en.wikipedia.org/wiki/Normal_distribution)。
 
-类名请参照下表，本文仅以等概率整数作为示例，其余实现请替换类名。
-
-| 类名                                | 注释                  |
-| --------------------------------- | ------------------- |
-| uniform\_int\_distribution        | 产生在一个范围上均匀分布的整数值    |
-| uniform\_real\_distribution       | 产生在一个范围上均匀分布的实数值    |
-| bernoulli\_distribution           | 产生伯努利分布上的布尔值。       |
-| binomial\_distribution            | 产生二项分布上的整数值。        |
-| negative\_binomial\_distribution  | 产生负二项分布上的整数值。       |
-| geometric\_distribution           | 产生几何分布上的整数值。        |
-| poisson\_distribution             | 产生泊松分布上的整数值。        |
-| exponential\_distribution         | 产生指数分布上的实数值。        |
-| gamma\_distribution               | 产生 $\gamma$ 分布上的实数值 |
-| weibull\_distribution             | 产生威布尔分布上的实数值。       |
-| extreme\_value\_distribution      | 产生极值分布上的实数值。        |
-| normal\_distribution              | 产生标准正态（高斯）分布上的实数值。  |
-| lognormal\_distribution           | 产生对数正态分布上的实数值。      |
-| chi\_squared\_distribution        | 产生 $x^2$ 分布上的实数值。   |
-| cauchy\_distribution              | 产生柯西分布上的实数值。        |
-| fisher\_f\_distribution           | 产生费舍尔 F 分布上的实数值。    |
-| student\_t\_distribution          | 产生学生 t 分布上的实数值。     |
-| discrete\_distribution            | 产生离散分布上的随机整数。       |
-| piecewise\_constant\_distribution | 产生分布在常子区间上的实数值。     |
-| piecewise\_linear\_distribution   | 产生分布在定义的子区间上的实数值。   |
+具体类名请参见 [伪随机数生成——随机数分布](https://zh.cppreference.com/w/cpp/numeric/random#.E9.9A.8F.E6.9C.BA.E6.95.B0.E5.88.86.E5.B8.83) 的列表。
 
 #### 实现
 

@@ -82,9 +82,9 @@ $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值。对于 $h$ �
 
 **题意**：给定积性函数 $f(p^k) = p^k(p^k-1)$，求 $\sum_{i=1}^{n} f(i)$。
 
-易得 $f(p) = p(p-1) = \textit{id}(p)\varphi(p)$，构造 $g(n) = \textit{id}(n)\varphi(n)$。
+易得 $f(p) = p(p-1) = \operatorname{id}(p)\varphi(p)$，构造 $g(n) = \operatorname{id}(n)\varphi(n)$。
 
-考虑使用杜教筛求 $G(n)$，根据 $(\textit{id} * \varphi) * I = id_2$ 可得 $G(n)= \sum_{i=1}^{n} i^2 - \sum_{i=2}^{n} d \cdot G\left(\left\lfloor \dfrac{n}{d} \right\rfloor\right)$。
+考虑使用杜教筛求 $G(n)$，根据 $(\operatorname{id}\cdot \varphi) * \operatorname{id} = \operatorname{id}_2$ 可得 $G(n)= \sum_{i=1}^{n} i^2 - \sum_{i=2}^{n} d \cdot G\left(\left\lfloor \dfrac{n}{d} \right\rfloor\right)$。
 
 之后 $h(p^k)$ 的取值可以枚举计算，这种方法不再赘述。
 

@@ -33,13 +33,13 @@ $$
 设 $f(t)$ 是关于时间 $t$ 的函数，则傅里叶变换可以检测频率 $\omega$ 的周期在 $f(t)$ 出现的程度：
 
 $$
-F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)\mathrm{e}^{-i{\omega}t}dt
+F(\omega)=\mathbb{F}[f(t)]=\int_{-\infty}^{\infty}f(t)\mathrm{e}^{-\mathrm{i}{\omega}t}dt
 $$
 
 它的逆变换是
 
 $$
-f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)\mathrm{e}^{i{\omega}t}d\omega
+f(t)=\mathbb{F}^{-1}[F(\omega)]=\frac{1}{2\pi}\int_{-\infty}^{\infty}F(\omega)\mathrm{e}^{\mathrm{i}{\omega}t}d\omega
 $$
 
 逆变换的形式与正变换非常类似，分母 $2\pi$ 恰好是指数函数的周期。
@@ -50,14 +50,14 @@ $$
 
 ## 离散傅里叶变换
 
-**离散傅里叶变换**（Discrete Fourier transform，DFT）是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
+**离散傅里叶变换**（Discrete Fourier transform，DFT）是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT（discrete-time Fourier transform）的频域采样。
 
 傅里叶变换是积分形式的连续的函数内积，离散傅里叶变换是求和形式的内积。
 
 设 $\{x_n\}_{n=0}^{N-1}$ 是某一满足有限性条件的序列，它的离散傅里叶变换（DFT）为：
 
 $$
-X_k=\sum_{n=0}^{N-1}x_n\mathrm{e}^{-i\frac{2\pi}{N}kn}
+X_k=\sum_{n=0}^{N-1}x_n\mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}kn}
 $$
 
 其中 $\mathrm{e}$ 是自然对数的底数，$i$ 是虚数单位。通常以符号 $\mathcal {F}$ 表示这一变换，即
@@ -69,7 +69,7 @@ $$
 类似于积分形式，它的 **逆离散傅里叶变换**（IDFT）为：
 
 $$
-x_n=\frac{1}{N}\sum_{k=0}^{N-1}X_k\mathrm{e}^{i\frac{2\pi}{N}kn}
+x_n=\frac{1}{N}\sum_{k=0}^{N-1}X_k\mathrm{e}^{\mathrm{i}\frac{2\pi}{N}kn}
 $$
 
 可以记为：
@@ -82,38 +82,38 @@ $$
 
 离散傅里叶变换仍旧是时域到频域的变换。由于求和形式的特殊性，可以有其他的解释方法。
 
-如果把序列 $x_n$ 看作多项式 $f(x)$ 的 $x^n$ 项系数，则计算得到的 $X_k$ 恰好是多项式 $f(x)$ 代入单位根 $\mathrm{e}^{\frac{-2\pi ik}{N}}$ 的点值 $f(\mathrm{e}^{\frac{-2\pi ik}{N}})$。
+如果把序列 $x_n$ 看作多项式 $f(x)$ 的 $x^n$ 项系数，则计算得到的 $X_k$ 恰好是多项式 $f(x)$ 代入单位根 $\mathrm{e}^{\frac{-2\pi \mathrm{i}k}{N}}$ 的点值 $f(\mathrm{e}^{\frac{-2\pi \mathrm{i}k}{N}})$。
 
 这便构成了卷积定理的另一种解释办法，即对多项式进行特殊的插值操作。离散傅里叶变换恰好是多项式在单位根处进行插值。
 
 例如计算：
 
 $$
-C_n^{3}+C_n^{7}+C_n^{11}+C_n^{15}+\ldots
+\dbinom{n}{3}+\dbinom{n}{7}+\dbinom{n}{11}+\dbinom{n}{15}+\ldots
 $$
 
 定义函数 $f(x)$ 为：
 
 $$
-f(x)={(1+x)}^n=C_n^{0}x^0+C_n^{1}x^1+C_n^{2}x^2+C_n^{3}x^3+\ldots
+f(x)={(1+x)}^n=\dbinom{n}{0}x^0+\dbinom{n}{1}x^1+\dbinom{n}{2}x^2+\dbinom{n}{3}x^3+\ldots
 $$
 
-然后可以发现，代入四次单位根 $f(i)$ 得到这样的序列：
+然后可以发现，代入四次单位根 $f(\mathrm{i})$ 得到这样的序列：
 
 $$
-f(i)={(1+i)}^n=C_n^{0}+C_n^{1}i-C_n^{2}-C_n^{3}i+\ldots
+f(\mathrm{i})={(1+\mathrm{i})}^n=\dbinom{n}{0}+\dbinom{n}{1}\mathrm{i}-\dbinom{n}{2}-\dbinom{n}{3}\mathrm{i}+\ldots
 $$
 
 于是下面的求和恰好可以把其余各项消掉：
 
 $$
-f(1)+if(i)-f(-1)-if(-i)=4C_n^{3}+4C_n^{7}+4C_n^{11}+4C_n^{15}+\ldots
+f(1)+\mathrm{i}f(\mathrm{i})-f(-1)-\mathrm{i}f(-\mathrm{i})=4\dbinom{n}{3}+4\dbinom{n}{7}+4\dbinom{n}{11}+4\dbinom{n}{15}+\ldots
 $$
 
 因此这道数学题的答案为：
 
 $$
-C_n^{3}+C_n^{7}+C_n^{11}+C_n^{15}+\ldots=\frac{2^n+i(1+i)^n-i(1-i)^n}{4}
+\dbinom{n}{3}+\dbinom{n}{7}+\dbinom{n}{11}+\dbinom{n}{15}+\ldots=\frac{2^n+\mathrm{i}(1+\mathrm{i})^n-\mathrm{i}(1-\mathrm{i})^n}{4}
 $$
 
 这道数学题在单位根处插值，恰好构成离散傅里叶变换。
@@ -147,7 +147,7 @@ $$
 \end{bmatrix}
 $$
 
-其中 $\alpha = \mathrm{e}^{-i\frac{2\pi}{N}n}$。
+其中 $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}n}$。
 
 ## 快速傅里叶变换
 
@@ -402,10 +402,10 @@ $$
 为了使计算的结果为原来的倒数，根据欧拉公式，可以得到
 
 $$
-\frac{1}{\omega_k}=\omega_k^{-1}=\mathrm{e}^{-\frac{2\pi i}{k}}=\cos\left(\frac{2\pi}{k}\right)+i\cdot \sin\left(-\frac{2\pi}{k}\right)
+\frac{1}{\omega_k}=\omega_k^{-1}=\mathrm{e}^{-\frac{2\pi \mathrm{i}}{k}}=\cos\left(\frac{2\pi}{k}\right)+\mathrm{i} \sin\left(-\frac{2\pi}{k}\right)
 $$
 
-因此我们可以尝试着把单位根 $\omega_k$ 取成 $\mathrm{e}^{-\frac{2\pi i}{k}}$，这样我们的计算结果就会变成原来的倒数，之后唯一多的操作就只有再 **除以它的长度 $n$**，而其它的操作过程与 DFT 是完全相同的。我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$，然后把它乘到 $\pi$ 上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT。
+因此我们可以尝试着把单位根 $\omega_k$ 取成 $\mathrm{e}^{-\frac{2\pi \mathrm{i}}{k}}$，这样我们的计算结果就会变成原来的倒数，之后唯一多的操作就只有再 **除以它的长度 $n$**，而其它的操作过程与 DFT 是完全相同的。我们可以定义一个函数，在里面加一个参数 $1$ 或者是 $-1$，然后把它乘到 $\pi$ 上。传入 $1$ 就是 DFT，传入 $-1$ 就是 IDFT。
 
 ### 单位复根周期性
 
