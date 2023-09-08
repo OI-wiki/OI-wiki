@@ -81,7 +81,6 @@ $$
 
 $$
 \phi\left(x,a\right)=\sum_{\substack{1\le n\le x\\ P^+\left(n\right)\le y}}{\mu\left(n\right)\left[x/n\right]}
-
 $$
 
 $$
