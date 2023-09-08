@@ -81,8 +81,8 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 分类讨论如下：
 
--   若 `root` 为空，返回 false。
--   若 `root` 的权值等于 `value`，返回 true。
+-   若 `root` 为空，返回 `false`。
+-   若 `root` 的权值等于 `value`，返回 `true`。
 -   若 `root` 的权值大于 `value`，在 `root` 的左子树中继续搜索。
 -   若 `root` 的权值小于 `value`，在 `root` 的右子树中继续搜索。
 
