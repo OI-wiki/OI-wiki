@@ -160,7 +160,8 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 时间复杂度 $O(h)$。
 
 ???+ note "实现"
-    方法使用`root = remove(root, 1)`表示删除根节点为`root`树中值为1的节点，并返回新的根节点。
+    方法使用 `root = remove(root, 1)` 表示删除根节点为 `root` 树中值为 1 的节点，并返回新的根节点。
+    
     ```c++
     // 此处返回值为删除 value 后的新 root
     TreeNode* remove(TreeNode* root, int value) {
@@ -196,13 +197,15 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
     
     ```
     
-    // 此处以右子树的最小值为例
-    TreeNode* findMinNode(TreeNode* root) {
-      while (root->left != nullptr) {
-        root = root->left;
-      }
-      return root;
+    //此处以右子树的最小值为例
+    TreeNode\* findMinNode(TreeNode\* root) {
+    while (root->left != nullptr) {
+    root = root->left;
     }
+    return root;
+    }
+    
+    ```
     ```
 
 ### 求元素的排名
@@ -267,12 +270,13 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 对于二叉搜索树来说，常见的平衡性的定义是指：以 T 为根节点的树，每一个结点的左子树和右子树高度差最多为 1。
 
-- [Splay 树](splay.md) 中，对于任意节点的访问操作（搜索、插入还是删除），都会将被访问的节点移动到树的根节点位置。
-- [AVL 树](avl.md) 每个节点 N 维护以 N 为根节点的树的高度信息。AVL 树对平衡性的定义：如果 T 是一棵 AVL 树，当且仅当左右子树也是 AVL 树，且 $|height(T->left) - height(T->right)| \leq 1$。
-- [Size Balanced Tree](sbt.md) 每个节点 N 维护以 N 为根节点的树中节点个数 `size`。对平衡性的定义：任意节点的 `size` 不小于其兄弟节点（Sibling）的所有子节点（Nephew）的 `size`。
+-   [Splay 树](splay.md) 中，对于任意节点的访问操作（搜索、插入还是删除），都会将被访问的节点移动到树的根节点位置。
 
-- [B 树](b-tree.md) 对平衡性的定义：每个节点应该保持在一个预定义的范围内的关键字数量。
+-   [AVL 树](avl.md) 每个节点 N 维护以 N 为根节点的树的高度信息。AVL 树对平衡性的定义：如果 T 是一棵 AVL 树，当且仅当左右子树也是 AVL 树，且 $|height(T->left) - height(T->right)| \leq 1$。
 
+-   [Size Balanced Tree](sbt.md) 每个节点 N 维护以 N 为根节点的树中节点个数 `size`。对平衡性的定义：任意节点的 `size` 不小于其兄弟节点（Sibling）的所有子节点（Nephew）的 `size`。
+
+-   [B 树](b-tree.md) 对平衡性的定义：每个节点应该保持在一个预定义的范围内的关键字数量。
 
 此外，对于拥有同样元素值集合的搜索树，平衡状态可能是不唯一的。也就是说，可能两棵不同的搜索树，含有的元素值集合相同，并且都是平衡的。
 
