@@ -226,9 +226,9 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 -   若其左子树的大小大于等于 $k$，则该元素在左子树中；
 
--   若其左子树的大小在区间 $[k-count,k-1]$（`count` 为当前结点的值的出现次数）中，则该元素为子树的根节点；
+-   若其左子树的大小在区间 $[k-\textit{count},k-1]$（`count` 为当前结点的值的出现次数）中，则该元素为子树的根节点；
 
--   若其左子树的大小小于 $k-count$，则该元素在右子树中。
+-   若其左子树的大小小于 $k-\textit{count}$，则该元素在右子树中。
 
 时间复杂度 $O(h)$。
 
