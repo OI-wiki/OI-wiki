@@ -18,7 +18,7 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
     -   `pairing_heap_tag`：配对堆
         官方文档认为在非原生元素（如自定义结构体/`std :: string`/`pair`）中，配对堆表现最好
     -   `binary_heap_tag`：二叉堆
-        官方文档认为在原生元素中二叉堆表现最好，不过我测试的表现并没有那么好
+        官方文档认为在原生元素中二叉堆表现最好，不过笔者测试的表现并没有那么好
     -   `binomial_heap_tag`：二项堆
         二项堆在合并操作的表现要优于二叉堆，但是其取堆顶元素操作的复杂度比二叉堆高
     -   `rc_binomial_heap_tag`：冗余计数二项堆
