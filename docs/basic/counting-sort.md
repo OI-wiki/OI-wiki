@@ -29,7 +29,7 @@
 
 如果按照 $A$ 的逆序进行排列，那么显然排序后的数组将保持 $A$ 的原序（相同 key 值情况下），也即得到一种稳定的排序算法。
 
-![counting sort animate example](images/counting-sort-1-animate-example.svg)
+![counting sort animate example](images/counting-sort.svg)
 
 ## 性质
 
