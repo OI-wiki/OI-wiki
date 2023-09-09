@@ -545,7 +545,7 @@ int main() {
 }
 ```
 
-### 序列操作
+## 序列操作
 
 Splay 也可以运用在序列上，用于维护区间信息。与线段树对比，Splay 常数较大，但是支持更复杂的序列操作，如区间翻转等。
 
@@ -555,41 +555,17 @@ Splay 也可以运用在序列上，用于维护区间信息。与线段树对�
 
 -   Splay 上的一个节点代表原序列的一个元素；Splay 上的一颗子树，代表原序列的一段区间。
 
-因为有 $\operatorname{Splay}$ 操作，可以快速提取出代表某个区间的 Splay 子树。
+因为有 splay 操作，可以快速提取出代表某个区间的 Splay 子树。
 
-在操作之前，你需要先把这颗 Splay 建出来。
-
-### 建树
-
-#### 过程
-
-这棵 Splay 当然可以每次 $O(\log n)$ 插入每个元素，总时间复杂度 $O(n \log n)$。这里介绍一个时间复杂度 $O(n)$ 的优秀做法。设 $a$ 为原数列，长度为 $n$，现在要将区间 $[l, r]$ 建成 Splay：
-
--   令 $mid = \left\lfloor \frac{l + r}{2} \right\rfloor$，将 $a_{mid}$ 作为这颗 Splay 的根。
-
--   递归建树 $[l, mid], [mid+1, r]$，将它们的根分别作为 $a_{mid}$ 的左右儿子。
-
-#### 实现
-
-```cpp
-int build(int l, int r, int f) {
-  if (l > r) return 0;
-  int mid = (l + r) / 2, cur = ++tot;
-  val[cur] = a[mid], fa[cur] = f;
-  ch[cur][0] = build(l, mid - 1, cur);
-  ch[cur][1] = build(mid + 1, r, cur);
-  maintain(cur);
-  return cur;
-}
-```
+在操作之前，你需要先把这颗 Splay 建出来。根据 Splay 的特性，直接建出一颗只有右儿子的链即可，时间复杂度仍然是正确的。
 
 ### 一些进阶操作
 
-Splay 的一颗子树代表原序列的一段区间。现在想找到序列区间 $[L, R]$ 代表的子树，只需要将代表 $a_{L - 1}$ 的节点 $\operatorname{Splay}$ 到根，再将代表 $a_{R + 1}$ 的节点 $\operatorname{Splay}$ 到根的右儿子即可。根据「原序列从左到右遍历，相当于 Splay 的中序遍历」，对应 $a_{R + 1}$ 的节点的左子树中序遍历为序列 $a[L, R]$，故其为区间 $[L, R]$ 代表的子树。
+Splay 的一颗子树代表原序列的一段区间。现在想找到序列区间 $[L, R]$ 代表的子树，只需要将代表 $a_{L - 1}$ 的节点 Splay 到根，再将代表 $a_{R + 1}$ 的节点 splay 到根的右儿子即可。根据「Splay 的中序遍历相当于原序列从左到右的遍历」，对应 $a_{R + 1}$ 的节点的左子树中序遍历为序列 $a[L, R]$，故其为区间 $[L, R]$ 代表的子树。
 
 一般会建立左右两个哨兵节点 $0$ 和 $n + 1$，放在数列的最开头和最结尾，防止 $L - 1$ 或 $R + 1$ 超出数列范围。
 
-所以首先要将 $\operatorname{Splay}$ 函数进行一些修改，能够实现将节点旋转到目标点的儿子。
+所以要将 splay 函数进行一些修改，能够实现将节点旋转到目标点的儿子。如果目标点 ``goal`` 为 $0$ 说明旋转到根节点。
 
 #### 实现
 
@@ -611,7 +587,7 @@ void splay(int x, int goal = 0) {
 
 ### 区间翻转
 
-Splay 常见的应用之一，代表题目是 [文艺平衡树](https://loj.ac/problem/105)。
+Splay 常见的应用之一，模板题目是 [文艺平衡树](https://loj.ac/problem/105)。
 
 #### 过程
 
@@ -643,9 +619,9 @@ void reverse(int l, int r) {
 }
 ```
 
-### 实现
+## 实现
 
-注意 $\operatorname{kth}$ 要下传翻转标记。
+注意 $\operatorname{kth}$ 中要下传翻转标记。
 
 ```cpp
 #include <algorithm>
