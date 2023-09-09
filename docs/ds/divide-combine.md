@@ -48,7 +48,7 @@ $$
 
 ### 连续段的性质
 
-连续段的一些显而易见的性质。我们定义 $A,B\in I_P,A \cap B \neq \varnothing,A \notin B,B \notin A$，那么有 $A\cup B,A\cap B,A\setminus B,B\setminus A\in I_P$。
+连续段的一些显而易见的性质。我们定义 $A,B\in M_P,A \cap B \neq \varnothing,A \notin B,B \notin A$，那么有 $A\cup B,A\cap B,A\setminus B,B\setminus A\in I_P$。
 
 证明？证明的本质就是集合的交并差的运算。
 
