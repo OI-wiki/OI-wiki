@@ -6,7 +6,7 @@
 
 一个与插入排序相同的操作是打扑克牌时，从牌桌上抓一张牌，按牌面大小插到手牌后，再抓下一张牌。
 
-![insertion sort animate example](images/insertion-sort.svg)
+![insertion sort animate example](images/insertion-sort-animate.svg)
 
 ## 性质
 
