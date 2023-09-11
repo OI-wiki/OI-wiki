@@ -1,0 +1,27 @@
+name: 发起新提案
+description: 为了解决现存争议、完善项目方针等而发起一个新提案（RFC）
+title: "[RFC] "
+labels: ["RFC / 提案", "Discussion / 需要讨论"]
+
+body:
+- type: markdown
+  attributes:
+    value: |
+      请注意：发起新提案往往是从 **项目本身** 出发的，如果您准备发表的观点仅与 **某个页面** 相关，则不建议您使用该模板。
+      
+      ---
+      
+      欢迎为 OI Wiki 提出新的 Issue！烦请填写以下表单：
+- type: textarea
+  id: content
+  attributes:
+    label: 提案的具体内容
+    placeholder: 例如：本提案致力于解决什么问题、可能的解决方案有哪些、具体可分为哪些部分等
+  validations:
+    required: true
+- type: textarea
+  id: reference
+  attributes:
+    label: 相关链接与参考资料
+  validations:
+    required: false

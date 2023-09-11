@@ -57,7 +57,7 @@ type Digit a = One a | Two a a | Three a a a | Four a a a a
 
 ### 双向队列操作
 
-指状树也可以制作高效的双向队列。无论结构是否持久，所有操作都需要 `Θ(1)` 时间。它可以被看作是的隐式双端队列的扩展 \[3]：
+指状树也可以制作高效的双向队列。无论结构是否持久，所有操作都需要 `Θ(1)` 时间。它可以被看作是的隐式双端队列的扩展[^okasaki1999purely]：
 
 1.  用 2-3 个节点替换对提供了足够的灵活性来支持有效的串联。（为了保持恒定时间的双端队列操作，必须将 Digit 扩展为四。）
 2.  用幺半群（monoid）注释内部节点允许有效的分裂。
@@ -97,4 +97,5 @@ data Digit a = One a | Two a a | Three a a a
 
 1.  Ralf Hinze and Ross Paterson, "[Finger trees: a simple general-purpose data structure](http://www.staff.city.ac.uk/~ross/papers/FingerTree.html)", Journal of Functional Programming 16:2 (2006) pp 197-217.
 2.  [Finger Tree - Wikipedia](https://en.wikipedia.org/wiki/Finger_tree)
-3.  [Purely Functional Data Structures](https://www.cambridge.org/us/academic/subjects/computer-science/programming-languages-and-applied-logic/purely-functional-data-structures), Chris Okasaki (1999)
+
+[^okasaki1999purely]: [Purely Functional Data Structures](https://www.cambridge.org/us/academic/subjects/computer-science/programming-languages-and-applied-logic/purely-functional-data-structures), Chris Okasaki (1999)
