@@ -45,7 +45,7 @@
 
     时间复杂度 $O(m\sqrt m)$。
 
-???+ note "示例代码"
+??? note "示例代码"
     ```cpp
     --8<-- "docs/graph/code/rings-count/rings-count_2.cpp"
     ```
