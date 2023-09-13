@@ -1,3 +1,20 @@
+## 普通环计数
+
+???+ note "[例题 1：Codeforces Beta Round 11 D. A Simple Task](https://codeforces.com/problemset/problem/11/D)"
+    给定一个简单图，求图中简单环的数目。简单环是指没有重复顶点或边的环。
+
+    结点数目 $1\leq n\leq 19$。
+
+??? note "解题思路"
+    这个图形是两个三元环共用了一条边形成的。所以我们先跑一遍三元环计数，统计出一条边上三元环的数量，然后枚举共用的那条边，设有 $x$ 个三元环中有此边，那么对答案的贡献就是 $\dbinom x2$。
+
+    时间复杂度 $O(m\sqrt m)$。
+
+??? note "示例代码"
+    ```cpp
+    --8<-- "docs/graph/code/rings-count/rings-count_1.cpp"
+    ```
+
 ## 三元环计数
 
 **三元环** 指的是一个简单图 $G$ 中的一个无序三元组 $(u,\ v,\ w)$ 满足存在三条边分别连接 $(u,\ v)$，$(v,\ w)$ 和 $(w,\ u)$。而 **三元环计数问题** 要求计算出图中所有三元环的数量。
@@ -30,10 +47,10 @@
     （[洛谷 P1989 无向图三元环计数](https://www.luogu.com.cn/problem/P1989)）
 
     ```cpp
-    --8<-- "docs/graph/code/rings-count/rings-count_1.cpp"
+    --8<-- "docs/graph/code/rings-count/rings-count_2.cpp"
     ```
 
-### 例题 1
+### 例题 2
 
 ???+ note "[HDU 6184 Counting Stars](https://vjudge.net/problem/HDU-6184)"
     给定一张有 $n$ 个点和 $m$ 条边的无向图，求下面图形的出现次数。
@@ -49,7 +66,7 @@
 
 ??? note "示例代码"
     ```cpp
-    --8<-- "docs/graph/code/rings-count/rings-count_2.cpp"
+    --8<-- "docs/graph/code/rings-count/rings-count_3.cpp"
     ```
 
 ## 四元环计数
@@ -98,7 +115,7 @@
     }
     ```
 
-### 例题 2
+### 例题 3
 
 ???+ note "[Gym 102028L Connected Subgraphs](https://codeforces.com/gym/102028/problem/L)"
     给定一张有 $n$ 个点和 $m$ 条边的无向图，求四条边的导出子图连通的情况数。
@@ -131,7 +148,7 @@
 
 ??? note "示例代码"
     ```cpp
-    --8<-- "docs/graph/code/rings-count/rings-count_3.cpp"
+    --8<-- "docs/graph/code/rings-count/rings-count_4.cpp"
     ```
 
 ## 习题
