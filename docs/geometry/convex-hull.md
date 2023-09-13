@@ -132,14 +132,12 @@ $$
 
 ???+ note "代码实现"
     ```c++
-    struct Point
-    {
-        double x, y, ang;
-        Point operator - (const Point & p) const
-        {
-            return {x - p.x, y - p.y, 0};
-        }  
+    struct Point {
+      double x, y, ang;
+    
+      Point operator-(const Point& p) const { return {x - p.x, y - p.y, 0}; }
     } p[MAX];
+    ```
 
     double dis(Point p1, Point p2)
     {
@@ -225,4 +223,6 @@ $$
 ## 参考资料与注释
 
 [^3d-v]: [三维凸包学习小记](https://www.cnblogs.com/xzyxzy/p/10225804.html)
-````
+
+```
+```
