@@ -131,13 +131,11 @@ $$
 ![](./images/ch3.svg)
 
 ???+ note "代码实现"
-    ```c++
+    ```cpp
     struct Point {
       double x, y, ang;
-    
       Point operator-(const Point& p) const { return {x - p.x, y - p.y, 0}; }
     } p[MAX];
-    ```
 
     double dis(Point p1, Point p2)
     {
