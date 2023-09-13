@@ -24,7 +24,7 @@
 
 #### 性质
 
-该算法的时间复杂度为 $O(n\log n)$，其中 $n$ 为待求凸包点集的大小，同时复杂度的瓶颈也在于对所有点坐标的双关键字排序。
+该算法的时间复杂度为 $O(n\log n)$，其中 $n$ 为待求凸包点集的大小，复杂度的瓶颈在于对所有点坐标的双关键字排序。
 
 #### 过程
 
@@ -43,6 +43,7 @@
 ???+ note "代码实现"
     === "C++"
     
+
         ```cpp
         // stk[] 是整型，存的是下标
         // p[] 存储向量或点
@@ -109,6 +110,83 @@
 $$
 \sum_{i=1}^{\textit{ans}}\left|\overrightarrow{h_ih_{i+1}}\right|
 $$
+
+
+
+###  Graham 扫描法
+
+#### 性质
+
+与 Andrew 算法相同，Graham 扫描法的时间复杂度为 $O(n\log n)$，复杂度瓶颈也在于对所有点排序。
+
+#### 过程
+
+首先找到所有点中，纵坐标最小的一个点 $P$ 。根据凸包的定义我们知道，这个点一定在凸包上。然后将所有的点以相对于点P的极角大小为关键字进行排序。
+
+![](./images/ch1.svg)
+
+和 Andrew 算法类似地，我们考虑从点 $P$ 出发，在凸包上逆时针走，那么我们经过的所有节点一定都是「左拐」的。形式化地说，对于凸包逆时针方向上任意连续经过的三个点 $P_1, P_2, P_3$，一定满足 $\overrightarrow{P_1 P_2} \times \overrightarrow{P_2 P_3} \ge 0$。
+
+新建一个栈用于存储凸包的信息，先将 $P$ 压入栈中，然后按照极角序依次尝试加入每一个点。如果进栈的点 $P_0$ 和栈顶的两个点 $P_1, P_2$（其中 $P_1$ 为栈顶）行进的方向「右拐」了，那么就弹出栈顶的 $P_1$，不断重复上述过程直至进栈的点与栈顶的两个点满足条件，或者栈中仅剩下一个元素，再将 $P_0$ 压入栈中。
+
+![](./images/ch2.svg)
+
+![](./images/ch3.svg)
+
+???+ note "代码实现"
+```c++
+struct Point
+{
+	double x, y, ang;
+	Point operator - (const Point & p) const
+	{
+		return {x - p.x, y - p.y, 0};
+	}
+} p[MAX];
+
+double dis(Point p1, Point p2)
+{
+	return sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+}
+
+bool cmp(Point p1, Point p2)
+{
+	if (p1.ang == p2.ang) { return dis(p1, p[1]) < dis(p2, p[1]); }
+	return p1.ang < p2.ang;
+}
+
+double cross(Point p1, Point p2)
+{
+	return p1.x * p2.y - p1.y * p2.x;
+}
+
+int main()
+{
+	for (int i = 2; i <= n; ++i)
+	{
+		if (p[i].y < p[1].y || (p[i].y == p[1].y && p[i].x < p[1].x)) 
+        { 
+            std::swap(p[1], p[i]); 
+        }
+	}
+	for (int i = 2; i <= n; ++i) 
+    { 
+        p[i].ang = atan2(p[i].y - p[1].y, p[i].x - p[1].x); 
+    }
+	std::sort(p + 2, p + n + 1, cmp);
+	sta[++top] = 1;
+	for (int i = 2; i <= n; ++i)
+	{
+		while (top >= 2 && cross(p[sta[top]] - p[sta[top - 1]], p[i] - p[sta[top]]) < 0)
+		{
+			top--;
+		}
+		sta[++top] = i;
+	}
+	return 0;
+}
+
+```
 
 ## 三维凸包
 
