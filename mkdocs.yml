@@ -433,7 +433,7 @@ nav:
       - 割点和桥: graph/cut.md
       - 圆方树: graph/block-forest.md
       - 点/边连通度: graph/connectivity.md
-    - 三元环 / 四元环计数: graph/rings-count.md
+    - 环计数问题: graph/rings-count.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
