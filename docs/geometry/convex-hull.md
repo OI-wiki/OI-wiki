@@ -134,27 +134,21 @@ $$
     ```cpp
     struct Point {
       double x, y, ang;
-    
       Point operator-(const Point& p) const { return {x - p.x, y - p.y, 0}; }
     } p[MAX];
-    ```
-
     double dis(Point p1, Point p2)
     {
         return sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
     }
-
     bool cmp(Point p1, Point p2)
     {
         if (p1.ang == p2.ang) { return dis(p1, p[1]) < dis(p2, p[1]); }
         return p1.ang < p2.ang;
     }
-
     double cross(Point p1, Point p2)
     {
         return p1.x * p2.y - p1.y * p2.x;
     }
-
     int main()
     {
         for (int i = 2; i <= n; ++i)
