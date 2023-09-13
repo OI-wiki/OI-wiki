@@ -161,7 +161,7 @@ $$
         {
             if (p[i].y < p[1].y || (p[i].y == p[1].y && p[i].x < p[1].x))
             {
-                std::swap(p\[1], p\[i]);
+                std::swap(p[1], p[i]);
             }
         }
         for (int i = 2; i <= n; ++i)
@@ -223,6 +223,3 @@ $$
 ## 参考资料与注释
 
 [^3d-v]: [三维凸包学习小记](https://www.cnblogs.com/xzyxzy/p/10225804.html)
-
-```
-```
