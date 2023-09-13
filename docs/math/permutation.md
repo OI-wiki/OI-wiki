@@ -12,14 +12,14 @@ $$
 
 ### 乘法
 
-对于两个置换 $f=\begin{pmatrix}a_1,a_2,\dots,a_n\\a_{p_1},a_{p_2},\dots,a_{p_n}\end{pmatrix}$ 和 $g=\begin{pmatrix}a_{p_1},a_{p_2},\dots,a_{p_n}\\a_{q_1},a_{q_2},\dots,a_{q_n}\end{pmatrix}$，$f$ 和 $g$ 的乘积记为 $f\circ g$，其值为
+对于两个置换 $f=\begin{pmatrix}a_1,a_2,\dots,a_n\\a_{p_1},a_{p_2},\dots,a_{p_n}\end{pmatrix}$ 和 $g=\begin{pmatrix}a_{p_1},a_{p_2},\dots,a_{p_n}\\a_{q_1},a_{q_2},\dots,a_{q_n}\end{pmatrix}$，$f$ 和 $g$ 的乘积记为 $g\circ f$，其值为
 
 $$
-f\circ g=\begin{pmatrix}a_1,a_2,\dots,a_n\\
+g\circ f=\begin{pmatrix}a_1,a_2,\dots,a_n\\
 a_{q_1},a_{q_2},\dots,a_{q_n}\end{pmatrix}
 $$
 
-简单来说就是先后经过 $f$ 的映射，再经过 $g$ 的映射。
+简单来说就是先经过 $f$ 的映射，再经过 $g$ 的映射。
 
 ## 排列
 
@@ -51,7 +51,7 @@ $$
 
 定理：每一个对换都改变排列的奇偶性。
 
-定理：当 $n$ 至少为 $2$ 时，$n$ 个数码的奇排列与偶排列个数相等，各为 $\frac{n!}{q}$ 个。
+定理：当 $n$ 至少为 $2$ 时，$n$ 个数码的奇排列与偶排列个数相等，各为 $\frac{n!}{2}$ 个。
 
 ### 逆序数的计算方法
 

@@ -122,3 +122,15 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 ![Competitive Companion 使用演示](images/oj-tool-3.apng)
 
 使用 [zqxyz73](https://github.com/zqxyz73) 同学的 [bytetools](https://github.com/zqxyz73/bytetools) 完成演示。
+
+## ac-predictor
+
+ac-predictor 是一个在 atcoder rating 更新前提前知道比赛 rating 变化的插件。
+
+这个工具是一个 tampermonkey 脚本，所以你需要首先安装 [tampermonkey](https://www.tampermonkey.net/)。
+
+完成后来到 [greasyfork](https://greasyfork.org/zh-CN/scripts/369954-ac-predictor)，点击安装即可。
+
+安装完成后，比赛的排行榜界面会显示每个用户的 rating 变化预测。
+
+这个工具有一个经由 [GoodCoder666](https://github.com/GoodCoder666) 汉化的版本，点击 [这里](https://greasyfork.org/zh-CN/scripts/458528-ac-predictor-cn) 以安装。
