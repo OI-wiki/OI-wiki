@@ -1,0 +1,293 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="300px" height="150px" viewBox="0 0 300 150">
+<defs>
+<path id="Layer0_0_1_STROKES" stroke="#FF0000" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" fill="none" d="
+M 211.1 73.7
+Q 211.1 80.05 206.6 84.55 202.1 89.05 195.75 89.05 194.35 89.05 193.1 88.9 188.4 88.05 184.9 84.55 180.4 80.05 180.4 73.7 180.4 67.4 184.9 62.9 189.4 58.4 195.75 58.4 199.65 58.4 202.9 60.1 204.9 61.15 206.6 62.9 211.1 67.4 211.1 73.7 Z
+M 290.95 112.6
+Q 290.95 118.95 286.45 123.45 281.95 127.95 275.6 127.95 274.2 127.95 272.95 127.75 268.2 126.95 264.75 123.45 260.25 118.95 260.25 112.6 260.25 106.3 264.75 101.8 269.25 97.3 275.6 97.3 279.45 97.3 282.75 99 284.7 100.05 286.45 101.8 290.95 106.3 290.95 112.6 Z
+M 185.15 126.85
+L 258.05 126.85
+M 219.9 48.15
+L 289.4 48.15
+M 214.6 86.3
+L 287.15 86.3
+M 118.85 35.9
+Q 118.85 42.2 114.35 46.7 109.85 51.2 103.5 51.2 102.1 51.2 100.85 51 96.15 50.2 92.65 46.7 88.15 42.2 88.15 35.9 88.15 29.5 92.65 25 97.15 20.5 103.5 20.5 107.4 20.5 110.65 22.3 112.65 23.3 114.35 25 118.85 29.5 118.85 35.9 Z
+M 122.9 48.15
+L 209.45 48.15
+M 92.5 86.3
+L 177.75 86.3
+M 94.95 126.85
+L 175.7 126.85"/>
+
+<font horiz-adv-x="2048">
+<!--  字体名称: Arial Bold
+供应商 ID: TMC 
+© 2017 The Monotype Corporation. All Rights Reserved. 
+
+Hebrew OpenType Layout logic copyright © 2003 & 2007, Ralph Hancock & John Hudson. This layout logic for Biblical Hebrew is open source software under the MIT License; see embedded license description for details.
+URL for more Information: http://www.adobe.com/go/font_vendor_id?ID=TMC&Name=Arial&PSName=Arial-BoldMT&applanguage=zh_CN-->
+<font-face font-family="Arial_Bold" units-per-em="2048" ascent="1854" descent="434"/>
+
+<hkern u1=" " u2="A" k="76"/>
+
+<hkern u1="A" u2=" " k="76"/>
+
+<glyph unicode="前" horiz-adv-x="2049" d="
+M 472 -126
+L 322 -180
+Q 329 60 329 138
+L 329 820
+Q 329 991 322 1123
+L 457 1052 810 1052 871 1130 1014 1016 951 959 951 28
+Q 951 -110 781 -180 763 -75 604 -43
+L 604 25
+Q 718 17 763 20 808 23 808 91
+L 808 353 472 353 472 -126 Z
+M 1530 1186
+L 1759 1067 1680 992 1680 84
+Q 1688 -111 1453 -180 1444 -59 1208 -4
+L 1208 64
+Q 1440 48 1493 51 1545 54 1537 128
+L 1537 836
+Q 1537 1031 1530 1186 Z
+M 1184 110
+Q 1192 303 1192 593 1192 882 1184 1060
+L 1390 976 1335 906 1335 420
+Q 1335 292 1343 173
+L 1184 110 Z
+M 110 1295
+L 743.425 1295
+Q 760.397265625 1271 781 1271 798.320703125 1271 825.225 1295
+L 1138 1295
+Q 1202 1401 1245 1490 1287 1579 1328 1679
+L 1516 1545
+Q 1452 1509 1367 1428 1282 1347 1218 1295
+L 1635 1295 1762 1413 1947 1208 389 1208
+Q 290 1208 194 1184
+L 110 1295 Z
+M 472 659
+L 472 440 808 440 808 659 472 659 Z
+M 616 1663
+Q 862 1523 879 1447 896 1371 851 1321 837.1771484375 1305.6412109375 825.225 1295
+L 743.425 1295
+Q 728.26484375 1316.431640625 716 1357 684 1470 573 1633
+L 616 1663 Z
+M 472 965
+L 472 746 808 746 808 965 472 965 Z"/>
+
+<glyph unicode="序" horiz-adv-x="2049" d="
+M 314 1476
+L 457 1405 1094.675 1405
+Q 1124.034765625 1365.6587890625 1158 1384 1173.55390625 1392.8880859375 1185.475 1405
+L 1596 1405 1722 1523 1908 1318 472 1318
+Q 472 1041 464 796 456 550 389 316 321 82 119 -180
+L 71 -151
+Q 228 137 271 366 314 595 318 864 322 1134 314 1476 Z
+M 839 40
+Q 992 24 1054 24 1115 24 1122 92
+L 1122 643 749 643
+Q 650 643 555 619
+L 471 730 1137 730
+Q 1137 765 1070 836 1003 907 918 981
+L 945 1028
+Q 1071 995 1203 918
+L 1490 1114 875 1114
+Q 776 1114 680 1090
+L 596 1201 1510 1201 1607 1279 1759 1075
+Q 1657 1075 1545 1025 1434 975 1257 870 1296 833 1287 786 1278 739 1241 730
+L 1681 730 1760 816 1931 627
+Q 1788 627 1626 423
+L 1569 450 1679 643 1265 643 1265 59
+Q 1265 -110 1073 -188 1046 -83 839 -35
+L 839 40 Z
+M 953 1679
+Q 1113 1629 1173 1581 1233 1533 1220 1472 1211.1265625 1431.045703125 1185.475 1405
+L 1094.675 1405
+Q 1080.827734375 1423.5720703125 1068 1455 1031 1537 926 1632
+L 953 1679 Z"/>
+
+<glyph unicode=":" horiz-adv-x="682" d="
+M 201 0
+L 201 281 482 281 482 0 201 0 Z
+M 201 781
+L 201 1062 482 1062 482 781 201 781 Z"/>
+
+<glyph unicode=" " horiz-adv-x="569"/>
+
+<glyph unicode="A" horiz-adv-x="1479" d="
+M 1471 0
+L 1149 0 1021 333 435 333 314 0 0 0 571 1466 884 1466 1471 0 Z
+M 926 580
+L 724 1124 526 580 926 580 Z"/>
+
+<glyph unicode="B" horiz-adv-x="1479" d="
+M 150 1466
+L 736 1466
+Q 910 1466 996 1451 1081 1437 1149 1391 1216 1345 1261 1268 1306 1192 1306 1097 1306 994 1251 908 1195 822 1100 779 1234 740 1306 646 1378 552 1378 425 1378 325 1332 230 1285 136 1205 79 1124 23 1006 10 932 2 649 0
+L 150 0 150 1466 Z
+M 446 639
+L 446 247 720 247
+Q 880 247 923 256 989 268 1031 314 1072 361 1072 439 1072 505 1040 551 1008 597 948 618 887 639 685 639
+L 446 639 Z
+M 446 1222
+L 446 883 640 883
+Q 813 883 855 888 931 897 975 940 1018 984 1018 1055 1018 1123 981 1165 943 1208 869 1217 825 1222 616 1222
+L 446 1222 Z"/>
+
+<glyph unicode="D" horiz-adv-x="1479" d="
+M 148 1466
+L 689 1466
+Q 872 1466 968 1438 1097 1400 1189 1303 1281 1206 1329 1065 1377 925 1377 719 1377 538 1332 407 1277 247 1175 148 1098 73 967 31 869 0 705 0
+L 148 0 148 1466 Z
+M 444 1218
+L 444 247 665 247
+Q 789 247 844 261 916 279 964 322 1011 365 1041 463 1071 562 1071 732 1071 902 1041 993 1011 1084 957 1135 903 1186 820 1204 758 1218 577 1218
+L 444 1218 Z"/>
+
+<glyph unicode="E" horiz-adv-x="1366" d="
+M 149 0
+L 149 1466 1236 1466 1236 1218 445 1218 445 893 1181 893 1181 646 445 646 445 247 1264 247 1264 0 149 0 Z"/>
+
+<glyph unicode="H" horiz-adv-x="1479" d="
+M 150 0
+L 150 1466 446 1466 446 889 1026 889 1026 1466 1322 1466 1322 0 1026 0 1026 641 446 641 446 0 150 0 Z"/>
+
+<glyph unicode="C" horiz-adv-x="1479" d="
+M 1087 539
+L 1374 448
+Q 1308 208 1155 91 1001 -25 765 -25 473 -25 285 174 97 374 97 720 97 1086 286 1288 475 1491 783 1491 1052 1491 1220 1332 1320 1238 1370 1062
+L 1077 992
+Q 1051 1106 969 1172 886 1238 768 1238 605 1238 504 1121 402 1004 402 742 402 464 502 346 602 228 762 228 880 228 965 303 1050 378 1087 539 Z"/>
+
+<glyph unicode="F" horiz-adv-x="1251" d="
+M 151 0
+L 151 1466 1156 1466 1156 1218 447 1218 447 871 1059 871 1059 623 447 623 447 0 151 0 Z"/>
+
+<glyph unicode="G" horiz-adv-x="1593" d="
+M 831 539
+L 831 786 1469 786 1469 202
+Q 1376 112 1200 43 1023 -25 842 -25 612 -25 441 71 270 168 184 347 98 527 98 738 98 967 194 1145 290 1323 475 1418 616 1491 826 1491 1099 1491 1253 1376 1406 1262 1450 1060
+L 1156 1005
+Q 1125 1113 1040 1175 954 1238 826 1238 632 1238 518 1115 403 992 403 750 403 489 519 358 635 228 823 228 916 228 1010 264 1103 301 1170 353
+L 1170 539 831 539 Z"/>
+
+<glyph unicode="I" horiz-adv-x="569" d="
+M 140 0
+L 140 1466 436 1466 436 0 140 0 Z"/>
+
+<glyph unicode="中" horiz-adv-x="2049" d="
+M 926 1224
+Q 926 1509 918 1687
+L 1147 1587 1084 1510 1084 1224 1601 1224 1670 1318 1829 1197 1759 1125 1759 679
+Q 1759 591 1767 486
+L 1608 432 1608 573 1084 573
+Q 1084 -6 1092 -117
+L 918 -196
+Q 926 5 926 573
+L 425 573 425 487 267 416
+Q 275 578 275 843 275 1109 267 1295
+L 410 1224 926 1224 Z
+M 1084 1137
+L 1084 660 1608 660 1608 1137 1084 1137 Z
+M 425 1137
+L 425 660 926 660 926 1137 425 1137 Z"/>
+
+<glyph unicode="后" horiz-adv-x="2049" d="
+M 1680 567
+L 1680 177
+Q 1680 57 1688 -48
+L 1530 -102 1530 39 865 39 865 -79 698 -141
+Q 714 61 714 306 714 552 706 746
+L 864 675 1525 675 1612 753 1743 621 1680 567 Z
+M 865 588
+L 865 126 1530 126 1530 588 865 588 Z
+M 94 -154
+Q 292 100 350 316 408 533 412 841 416 1149 408 1499
+L 559 1420
+Q 997 1459 1285 1521 1573 1584 1681 1640
+L 1806 1451
+Q 1684 1459 1328 1412 958 1357 567 1335
+L 567 1052 1627 1052 1738 1154 1900 965 567 965
+Q 574 510 471 259 367 9 137 -196
+L 94 -154 Z"/>
+
+<glyph unicode="L" horiz-adv-x="1251" d="
+M 157 0
+L 157 1454 453 1454 453 247 1189 247 1189 0 157 0 Z"/>
+
+<glyph unicode="R" horiz-adv-x="1479" d="
+M 150 0
+L 150 1466 773 1466
+Q 1008 1466 1115 1426 1221 1387 1285 1286 1349 1185 1349 1055 1349 890 1252 782 1155 675 962 647 1058 591 1121 524 1183 457 1289 286
+L 1468 0 1114 0 900 319
+Q 786 490 744 534 702 579 655 595 608 612 506 612
+L 446 612 446 0 150 0 Z
+M 446 846
+L 665 846
+Q 878 846 931 864 984 882 1014 926 1044 970 1044 1036 1044 1110 1005 1155 965 1201 893 1213 857 1218 677 1218
+L 446 1218 446 846 Z"/>
+</font>
+</defs>
+
+<g transform="matrix( 0.9999847412109375, 0, 0, 0.9999847412109375, 14.9,17.8) ">
+<clipPath id="Mask_Mask_1">
+<rect x="-2" y="-2" width="276.4" height="114.1" fill="#FFFFFF" stroke="none"/>
+</clipPath>
+
+<text clip-path="url(#Mask_Mask_1)" writing-mode="lr"><tspan x="0" y="27.15" baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="30" fill="#000000" xml:space="preserve">前序</tspan><tspan baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="30" fill="#000000" xml:space="preserve">: A BDEH CFGI</tspan><tspan x="0" y="65.45" baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="30" fill="#000000" xml:space="preserve">中序</tspan><tspan baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="30" fill="#000000" xml:space="preserve">: DBHE A FCGI</tspan><tspan x="0" y="103.75" baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="30" fill="#000000" xml:space="preserve">后序</tspan><tspan baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="30" fill="#000000" xml:space="preserve">: DHEB FIGC A</tspan></text>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Layer0_0_1_STROKES"/>
+</g>
+
+<g transform="matrix( 0.9999847412109375, 0, 0, 0.9999847412109375, 160.85,48.3) ">
+<clipPath id="Mask_Mask_2">
+<rect x="-2" y="-2" width="10.3" height="15.4" fill="#FFFFFF" stroke="none"/>
+</clipPath>
+
+<text clip-path="url(#Mask_Mask_2)" writing-mode="lr"><tspan x="0" y="9.25" baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="10" fill="#FF0000" xml:space="preserve">L</tspan></text>
+</g>
+
+<g transform="matrix( 0.9999847412109375, 0, 0, 0.9999847412109375, 132.9,86.25) ">
+<clipPath id="Mask_Mask_3">
+<rect x="-2" y="-2" width="10.3" height="15.4" fill="#FFFFFF" stroke="none"/>
+</clipPath>
+
+<text clip-path="url(#Mask_Mask_3)" writing-mode="lr"><tspan x="0" y="9.25" baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="10" fill="#FF0000" xml:space="preserve">L</tspan></text>
+</g>
+
+<g transform="matrix( 0.9999847412109375, 0, 0, 0.9999847412109375, 134.55,128.35) ">
+<clipPath id="Mask_Mask_4">
+<rect x="-2" y="-2" width="10.3" height="15.4" fill="#FFFFFF" stroke="none"/>
+</clipPath>
+
+<text clip-path="url(#Mask_Mask_4)" writing-mode="lr"><tspan x="0" y="9.25" baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="10" fill="#FF0000" xml:space="preserve">L</tspan></text>
+</g>
+
+<g transform="matrix( 0.9999847412109375, 0, 0, 0.9999847412109375, 250.8,86.25) ">
+<clipPath id="Mask_Mask_5">
+<rect x="-2" y="-2" width="11.4" height="15.4" fill="#FFFFFF" stroke="none"/>
+</clipPath>
+
+<text clip-path="url(#Mask_Mask_5)" writing-mode="lr"><tspan x="0" y="9.25" baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="10" fill="#FF0000" xml:space="preserve">R</tspan></text>
+</g>
+
+<g transform="matrix( 0.9999847412109375, 0, 0, 0.9999847412109375, 252.8,48.3) ">
+<clipPath id="Mask_Mask_6">
+<rect x="-2" y="-2" width="11.4" height="15.4" fill="#FFFFFF" stroke="none"/>
+</clipPath>
+
+<text clip-path="url(#Mask_Mask_6)" writing-mode="lr"><tspan x="0" y="9.25" baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="10" fill="#FF0000" xml:space="preserve">R</tspan></text>
+</g>
+
+<g transform="matrix( 0.9999847412109375, 0, 0, 0.9999847412109375, 220.05,126.75) ">
+<clipPath id="Mask_Mask_7">
+<rect x="-2" y="-2" width="11.4" height="15.4" fill="#FFFFFF" stroke="none"/>
+</clipPath>
+
+<text clip-path="url(#Mask_Mask_7)" writing-mode="lr"><tspan x="0" y="9.25" baseline-shift="0%" kerning="auto" font-family="Arial_Bold" font-weight="bold" font-size="10" fill="#FF0000" xml:space="preserve">R</tspan></text>
+</g>
+</svg>

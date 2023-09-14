@@ -8,7 +8,7 @@ author: Wajov
 
 ## 置换
 
-置换的相关定义可见 [置换和排列](./permulation.md)。
+置换的相关定义可见 [置换和排列](./permutation.md)。
 
 ### 置换群
 

@@ -6,15 +6,7 @@ Kate 是一个具有众多功能的跨平台文本编辑器。Kate 还附带了�
 
 ## 下载与安装
 
-可打开 [Kate 官网](https://kate-editor.org/)，然后进入 [获取页面](https://kate-editor.org/zh-cn/get-it/)。随后，根据你使用的系统和喜欢的安装方式进行安装。接下来以 Windows 为例讲解安装。
-
-![Windows 上的安装方式](images/kate-1-windows-install-1.png)
-
-如图，从上到下依次为从 MS Store 安装，通过 Chocolatey 安装，下载 Kate 正式版安装包，下载 Kate 每夜构建版安装包和下载源码手动构建。从 MS Store 安装只需点击链接然后点击安装即可；通过 Chocolatey 安装则需要打开命令行输入 `choco install kate`；接下来两个则需首先点击链接，然后你将看到如下界面：
-
-![](images/kate-2-windows-install-2.png)
-
-其中形如 `kate-21.04.0-1-1272-windows-msvc2019_64-cl-sideload.appx` 格式的是供手动安装的商店版本，`kate-21.04.0-1-1272-windows-msvc2019_64-cl.exe` 格式的则是安装包，下载双击即可。
+可打开 [Kate 官网](https://kate-editor.org/)，然后进入 [获取页面](https://kate-editor.org/zh-cn/get-it/)。随后，根据你使用的系统和喜欢的安装方式进行安装。
 
 ## 用法与功能
 
@@ -29,7 +21,7 @@ Kate 支持三百余种语言的语法高亮。一般来说，Kate 可以自动�
 #### 自己编写语法高亮文件
 
 尽管 Kate 支持超过三百种语言的语法高亮，但是仍不免有语言未被覆盖到，此时可以自己动手编写语法高亮文件。
-Kate 自身自带的文件位于 [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html)，编写好的文件根据 [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files) 放置。[CoelacanthusHex/dotfiles@80a913c/pam\_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) 有我编写的一个配置文件可供参考。
+Kate 自身自带的文件位于 [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html)，编写好的文件根据 [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files) 放置。[CoelacanthusHex/dotfiles@80a913c/pam\_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) 有笔者编写的一个配置文件可供参考。
 
 ### 切换语言
 

@@ -31,7 +31,7 @@ author: du33169
 
 是用来求任意两个结点之间的最短路的。
 
-复杂度比较高，但是常数小，容易实现。（我会说只有三个 `for` 吗？）
+复杂度比较高，但是常数小，容易实现（只有三个 `for`）。
 
 适用于任何图，不管有向无向，边权正负，但是最短路必须存在。（不能有个负环）
 
@@ -75,7 +75,7 @@ author: du33169
 ???+ note "证明第一维对结果无影响"
     我们注意到如果放在一个给定第一维 `k` 二维数组中，`f[x][k]` 与 `f[k][y]` 在某一行和某一列。而 `f[x][y]` 则是该行和该列的交叉点上的元素。
     
-    现在我们需要证明将 `f[k][x][y]` 直接在原地更改也不会更改它的结果：我们注意到 `f[k][x][y]` 的涵义是第一维为 `k-1` 这一行和这一列的所有元素的最小值，包含了 `f[k-1][x][y]`，那么我在原地进行更改也不会改变最小值的值，因为如果将该三维矩阵压缩为二维，则所求结果 `f[x][y]` 一开始即为原 `f[k-1][x][y]` 的值，最后依然会成为该行和该列的最小值。
+    现在我们需要证明将 `f[k][x][y]` 直接在原地更改也不会更改它的结果：我们注意到 `f[k][x][y]` 的涵义是第一维为 `k-1` 这一行和这一列的所有元素的最小值，包含了 `f[k-1][x][y]`，那么在原地进行更改也不会改变最小值的值，因为如果将该三维矩阵压缩为二维，则所求结果 `f[x][y]` 一开始即为原 `f[k-1][x][y]` 的值，最后依然会成为该行和该列的最小值。
     
     故可以压缩。
 
@@ -204,11 +204,12 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
     
         ```python
         class Edge:
-            v = 0
-            w = 0
+            def __init__(self, v = 0, w = 0):
+                self.v = v
+                self.w = w
     
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [63] * maxn
+        dis = [0x3f3f3f3f] * maxn
     
         def bellmanford(n, s):
             dis[s] = 0
@@ -277,11 +278,12 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
     
         ```python
         class Edge:
-            v = 0
-            w = 0
+            def __init__(self, v = 0, w = 0):
+                self.v = v
+                self.w = w
     
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [63] * maxn; cnt = [] * maxn; vis = [] * maxn
+        dis = [0x3f3f3f3f] * maxn; cnt = [0] * maxn; vis = [0] * maxn
     
         q = []
         def spfa(n, s):
@@ -404,10 +406,11 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
     
         ```python
         class Edge:
-            v = 0
-            w = 0
+            def __init(self, v = 0, w = 0):
+                self.v = v
+                self.w = w
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [63] * maxn; vis = [] * maxn
+        dis = [0x3f3f3f3f] * maxn; vis = [0] * maxn
         def dijkstra(n, s):
             dis[s] = 0
             for i in range(1, n + 1):

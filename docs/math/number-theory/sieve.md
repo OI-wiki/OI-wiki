@@ -1,4 +1,4 @@
-author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
+author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 
 ## 素数筛法
 
@@ -21,6 +21,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 === "C++"
 
     ```cpp
+    bool is_prome[N];
     int Eratosthenes(int n) {
       int p = 0;
       for (int i = 0; i <= n; ++i) is_prime[i] = 1;
@@ -100,27 +101,41 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 === "C++"
 
     ```cpp
-    int n;
-    vector<char> is_prime(n + 1, true);
-    is_prime[0] = is_prime[1] = false;
-    for (int i = 2; i * i <= n; i++) {
-      if (is_prime[i]) {
-        for (int j = i * i; j <= n; j += i) is_prime[j] = false;
+    bool is_prime[N];
+    int Eratosthenes(int n) {
+      int p = 0;
+      for (int i = 0; i <= n; ++i) is_prime[i] = 1;
+      is_prime[0] = is_prime[1] = 0;
+      // i * i <= n 说明 i <= sqrt(n)
+      for (int i = 2; i * i <= n; ++i) {
+        if (is_prime[i]) {
+          prime[p++] = i;
+          for (int j = i * i; j <= n; j += i)
+            is_prime[j] = 0;
+        }
       }
+      return p;
     }
     ```
 
 === "Python"
 
     ```python
-    is_prime = [True] * (n + 1)
-    is_prime[0] = is_prime[1] = False
-    for i in range(2, int(sqrt(n)) + 1):
-        if is_prime[i]:
-            j = i * i
-            while j <= n:
-                is_prime[j] = False
-                j += i
+        def Eratosthenes(n):
+        p = 0
+        for i in range(0, n + 1):
+            is_prime[i] = True
+        is_prime[0] = is_prime[1] = False
+        # 让 i 循环到 <= sqrt(n)
+        for i in range(2, int(sqrt(n + 1))):
+            if is_prime[i]:
+                prime[p] = i
+                p = p + 1
+                  j = i * i
+                  while j <= n:
+                      is_prime[j] = False
+                      j = j + i
+        return p
     ```
 
 这种优化不会影响渐进时间复杂度，实际上重复以上证明，我们将得到 $n \ln \ln \sqrt n + o(n)$，根据对数的性质，它们的渐进相同，但操作次数会明显减少。
@@ -133,11 +148,11 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu
 
 #### 减少内存的占用
 
-我们注意到筛法只需要 $n$ 比特的内存。因此我们可以通过将变量声明为布尔类型，只申请 $n$ 比特而不是 $n$ 字节的内存，来显著的减少内存占用。即仅占用 $\dfrac n 8$ 字节的内存。
+我们注意到筛选时只需要 `bool` 类型的数组。`bool` 数组的一个元素一般占用 $1$ 字节（即 $8$ 比特），但是存储一个布尔值只需要 $1$ 个比特就足够了。
 
-但是，这种称为 **位级压缩** 的方法会使这些位的操作复杂化。任何位上的读写操作都需要多次算术运算，最终会使算法变慢。
+我们可以使用 [位运算](../bit.md) 的相关知识，将每个布尔值压到一个比特位中，这样我们仅需使用 $n$ 比特（即 $\dfrac n 8$ 字节）而非 $n$ 字节，可以显著减少内存占用。
 
-因此，这种方法只有在 $n$ 特别大，以至于我们不能再分配内存时才合理。在这种情况下，我们将牺牲效率，通过显著降低算法速度以节省内存（减小 8 倍）。
+但是，这种称为 **位级压缩** 的方法会使这些位的操作复杂化。任何位上的读写操作都需要多次算术运算，最终会使算法变慢。因此，这种方法只有在 $n$ 特别大，以至于我们不能再分配内存时才合理。在这种情况下，我们将牺牲效率，通过显著降低算法速度以节省内存（减小到原来的 $\dfrac n 8$）。
 
 值得一提的是，存在自动执行位级压缩的数据结构，如 C++ 中的 `vector<bool>` 和 `bitset<>`。
 
@@ -399,13 +414,19 @@ $$
 
 因为 $d_i$ 是积性函数，所以可以使用线性筛。
 
+在这里简单介绍一下线性筛实现原理。
+
+1.  当 $i$ 为质数时，$\textit{num}_i \gets 1,\textit{d}_i \gets 2$，同时设 $q = \left\lfloor \dfrac {i}{p} \right\rfloor$，其中 $p$ 为 $i$ 的最小质因子。
+2.  当 $p$ 为 $q$ 的质因子时，$\textit{num}_i \gets \textit{num}_q + 1,\textit{d}_i \gets \dfrac{\textit{d}_q}{\textit{num}_i} \times (\textit{num}_i + 1)$。
+3.  当 $p,q$ 互质时，$\textit{num}_i \gets 1,\textit{d}_i \gets \textit{d}_q \times (\textit{num}_i+1)$。
+
 === "C++"
 
     ```cpp
     void pre() {
       d[1] = 1;
       for (int i = 2; i <= n; ++i) {
-        if (!v[i]) v[i] = 1, p[++tot] = i, d[i] = 2, num[i] = 1;
+        if (!v[i]) p[++tot] = i, d[i] = 2, num[i] = 1;
         for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
           v[p[j] * i] = 1;
           if (i % p[j] == 0) {
@@ -428,7 +449,7 @@ $$
         d[1] = 1
         for i in range(2, n + 1):
             if v[i] == 0:
-                v[i] = 1; tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
+                tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
             j = 1
             while j <= tot and i <= n // p[j]:
                 v[p[j] * i] = 1

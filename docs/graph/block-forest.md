@@ -1,3 +1,5 @@
+author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenlig, Menci, Enter-tainer, CCXXXI
+
 在阅读下列内容之前，请务必了解 [图论相关概念](./concept.md) 部分。
 
 相关阅读：[割点和桥](./cut.md)。

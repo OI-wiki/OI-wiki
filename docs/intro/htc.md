@@ -4,7 +4,7 @@
 
 ## 贡献指南
 
-请您在编辑前查看 [OI Wiki 贡献指南](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md)，以更好地和社区贡献者进行合作、交流。
+请您在编辑前查看 [OI Wiki 贡献指南](https://github.com/OI-wiki/OI-wiki/blob/master/.github/CONTRIBUTING.md) 和 [项目方针](./about.md#项目方针)，以更好地和社区贡献者进行合作、交流。
 
 ## 参与协作
 

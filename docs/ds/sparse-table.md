@@ -42,7 +42,7 @@ ST 表基于 [倍增](../basic/binary-lifting.md) 思想，可以做到 $\Theta(
 
 以上就是预处理部分。而对于查询，可以简单实现如下：
 
-对于每个询问 $[l,r]$，我们把它分成两部分：$f(l,l+2^s-1)$ 与 $f(r-2^s+1,r)$，其中 $s=\left\lfloor\log_2(r-l+1)\right\rfloor$。两部分的结果的最大值就是回答。
+对于每个询问 $[l,r]$，我们把它分成两部分：$[l,l+2^s-1]$ 与 $[r-2^s+1,r]$，其中 $s=\left\lfloor\log_2(r-l+1)\right\rfloor$。两部分的结果的最大值就是回答。
 
 ![ST 表的查询过程](./images/st-query.svg)
 

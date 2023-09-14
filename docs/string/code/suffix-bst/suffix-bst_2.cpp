@@ -95,21 +95,16 @@ void remove(int& rt, int p, double lv, double rv) {
   if (rt == p) {
     if (!L[rt] || !R[rt]) {
       rt = (L[rt] | R[rt]);
+      rebuild(rt, lv, rv);
     } else {
       // 找到rt的前驱来替换rt
-      int nrt = L[rt], fa = rt;
+      int nrt = L[rt];
       while (R[nrt]) {
-        fa = nrt;
-        sz[fa]--;
         nrt = R[nrt];
       }
-      if (fa == rt) {
-        R[nrt] = R[rt];
-      } else {
-        L[nrt] = L[rt];
-        R[nrt] = R[rt];
-        R[fa] = 0;
-      }
+      remove(L[rt], nrt, lv, tag[rt]);
+      L[nrt] = L[rt];
+      R[nrt] = R[rt];
       rt = nrt;
       tag[rt] = (lv + rv) / 2;
     }

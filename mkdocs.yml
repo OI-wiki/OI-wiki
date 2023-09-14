@@ -19,6 +19,7 @@ nav:
     - Getting Started: index.md
     - 关于本项目: intro/about.md
     - 如何参与: intro/htc.md
+    - OI Wiki 不是什么: intro/what-oi-wiki-is-not.md
     - 格式手册: intro/format.md
     - 数学符号表: intro/symbol.md
     - F.A.Q.: intro/faq.md
@@ -92,6 +93,7 @@ nav:
       - 高级数据类型:
         - 数组: lang/array.md
         - 结构体: lang/struct.md
+        - 联合体: lang/union.md
         - 指针: lang/pointer.md
       - 函数: lang/func.md
       - 文件操作: lang/file-op.md
@@ -221,7 +223,7 @@ nav:
     - 平衡三进制: math/balanced-ternary.md
     - 高精度计算: math/bignum.md
     - 快速幂: math/binary-exponentiation.md
-    - 置换和排列: math/permulation.md
+    - 置换和排列: math/permutation.md
     - 弧度制与坐标系: math/coordinate.md
     - 复数: math/complex.md
     - 数论:
@@ -239,14 +241,14 @@ nav:
       - 乘法逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
+      - 升幂引理: math/number-theory/lift-the-exponent.md
       - 威尔逊定理: math/number-theory/wilson.md
-      - 升幂定理: math/number-theory/lift-the-exponent.md
       - 卢卡斯定理: math/number-theory/lucas.md
-      - 拉格朗日定理: math/number-theory/lagrange.md
+      - 同余方程: math/number-theory/congruence-equation.md
+      - 二次剩余: math/number-theory/quad-residue.md
       - 原根: math/number-theory/primitive-root.md
       - 离散对数: math/number-theory/discrete-logarithm.md
-      - 剩余与单位根: math/number-theory/residue.md
-      - 二次剩余: math/number-theory/quad-residue.md
+      - 剩余: math/number-theory/residue.md
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 杜教筛: math/number-theory/du.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
@@ -371,6 +373,8 @@ nav:
       - 笛卡尔树: ds/cartesian-tree.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
+      - AA 树: ds/aa-tree.md
+      - 2-3 树: ds/2-3-tree.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
@@ -456,6 +460,7 @@ nav:
     - LGV 引理: graph/lgv.md
     - 弦图: graph/chord.md
     - 最大团搜索算法: graph/max-clique.md
+    - 支配树: graph/dominator-tree.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md

@@ -56,6 +56,7 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 === "C++"
 
     ```cpp
+    #include <cmath>
     int euler_phi(int n) {
       int m = int(sqrt(n + 0.5));
       int ans = n;
@@ -72,8 +73,9 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 === "Python"
 
     ```python
+    import math
     def euler_phi(n):
-        m = int(sqrt(n + 0.5))
+        m = math.isqrt(n + 0.5)
         ans = n
         for i in range(2, m + 1):
             if n % i == 0:
@@ -90,6 +92,7 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 === "C++"
 
     ```cpp
+    #include <cmath>
     int euler_phi(int n) {
       int ans = n;
       for (int i = 2; i * i <= n; i++)
@@ -105,13 +108,14 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 === "Python"
 
     ```python
+    import math
     def euler_phi(n):
         ans = n
-        for i in range(2, int(sqrt(n)) + 1):
+        for i in range(2, math.isqrt(n) + 1):
             if n % i == 0:
                 ans = ans // i * (i - 1)
                 while n % i == 0:
-                    n = n / i
+                    n = n // i
         if n > 1:
             ans = ans // n * (n - 1)
         return ans

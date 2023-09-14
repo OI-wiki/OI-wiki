@@ -1,4 +1,4 @@
-author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, CoelacanthusHex, indevn, qinyihao
+author: GoodCoder666, Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, CoelacanthusHex, indevn, qinyihao, peasoft
 
 ![头图](./images/wsl-header.png)
 
@@ -8,33 +8,33 @@ author: Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613
 
 ## 引言[^ref1]
 
-众所周知，尽管现在大部分学校的竞赛练习环境都是构建在 XP 等 Windows 系操作系统上，但是在 NOI 系列赛中，早已用上了 NOI Linux 这个 Ubuntu 操作系统的修改版。
+现在大部分学校的竞赛练习环境都是构建在 Windows 系操作系统上，但是在 NOI 系列赛中，已经用上了 NOI Linux 这个 Ubuntu 操作系统的修改版。
 
 NOI 竞赛（自 2021 年 9 月 1 日）的环境要求如下。[^ref2]
 
-| 类别          | 软件或模块                     | 版本                 | 备注说明                                     |
-| :---------- | :------------------------ | :----------------- | :--------------------------------------- |
-| 系统          | Linux 内核                  | `5.4.0-42-generic` | 64 位 x86 (AMD64)                         |
-| 语言环境        | GCC（`gcc` 和 `g++`）        | `9.3.0`            | C 和 C++ 编译器                              |
-|             | FPC                       | `3.0.4`            | Pascal 编译器<!-- 现在谁还用 Pascal 打竞赛啊.jpg --> |
-|             | Python 2                  | `2.7`              | 非竞赛语言                                    |
-|             | Python 3                  | `3.8`              | 非竞赛语言                                    |
-| 调试工具        | GDB                       | `9.1`              |                                          |
-|             | DDD                       | `3.3.12`           | GDB 的 GUI 前端                             |
-| 集成开发环境（IDE） | Code::Blocks              | `20.03`            | C/C++ IDE                                |
-|             | Lazarus                   | `2.0.6`            | Pascal IDE                               |
-|             | Geany                     | `1.36`             | C/C++/Pascal（轻量级）IDE                     |
-| 文本编辑工具      | Visual Studio Code        | `1.54.3`           |                                          |
-|             | GNU Emacs                 | `26.3`             |                                          |
-|             | gedit                     | `3.36.2`           |                                          |
-|             | Vim                       | `8.1`              |                                          |
-|             | Joe                       | `4.6`              |                                          |
-|             | nano                      | `4.8`              |                                          |
-|             | Sublime Text              | `3.2.2`            |                                          |
-| 其它软件        | Firefox                   | `79.0`             | 浏览器                                      |
-|             | Midnight Commander (`mc`) | `4.8.24`           | 文件管理器                                    |
-|             | xterm (uxterm)            | `3.5.3`            | 终端                                       |
-|             | Arbiter-local             | `1.02`             | 程序评测工具单机版                                |
+| 类别          | 软件或模块                     | 版本                 | 备注说明                                           |
+| :---------- | :------------------------ | :----------------- | :--------------------------------------------- |
+| 系统          | Linux 内核                  | `5.4.0-42-generic` | 64 位 x86 (AMD64)                               |
+| 语言环境        | GCC（`gcc` 和 `g++`）        | `9.3.0`            | C 和 C++ 编译器                                    |
+|             | FPC                       | `3.0.4`            | Pascal 编译器（注：自 2022 年起，NOI 系列竞赛不再支持 Pascal 语言） |
+|             | Python 2                  | `2.7`              | 非竞赛语言                                          |
+|             | Python 3                  | `3.8`              | 非竞赛语言                                          |
+| 调试工具        | GDB                       | `9.1`              |                                                |
+|             | DDD                       | `3.3.12`           | GDB 的 GUI 前端                                   |
+| 集成开发环境（IDE） | Code::Blocks              | `20.03`            | C/C++ IDE                                      |
+|             | Lazarus                   | `2.0.6`            | Pascal IDE                                     |
+|             | Geany                     | `1.36`             | C/C++/Pascal（轻量级）IDE                           |
+| 文本编辑工具      | Visual Studio Code        | `1.54.3`           |                                                |
+|             | GNU Emacs                 | `26.3`             |                                                |
+|             | gedit                     | `3.36.2`           |                                                |
+|             | Vim                       | `8.1`              |                                                |
+|             | Joe                       | `4.6`              |                                                |
+|             | nano                      | `4.8`              |                                                |
+|             | Sublime Text              | `3.2.2`            |                                                |
+| 其它软件        | Firefox                   | `79.0`             | 浏览器                                            |
+|             | Midnight Commander (`mc`) | `4.8.24`           | 文件管理器                                          |
+|             | xterm (uxterm)            | `3.5.3`            | 终端                                             |
+|             | Arbiter-local             | `1.02`             | 程序评测工具单机版                                      |
 
 考场环境与一般环境会有一系列差异：
 
@@ -54,12 +54,12 @@ NOI 竞赛（自 2021 年 9 月 1 日）的环境要求如下。[^ref2]
 
 Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 年 5 月更新中升级到了 WSL 2。截至 2020 年 6 月 1 日，WSL 已支持安装 Ubuntu、openSUSE Leap、Kali、Debian 等主流 Linux 分发版。但 WSL 并不支持 NOI 评测用的 Arbiter。
 
-???+ note "[什么是 Linux 子系统（WSL）](https://zh.wikipedia.org/zh-cn/%E9%80%82%E7%94%A8%E4%BA%8E_Linux_%E7%9A%84_Windows_%E5%AD%90%E7%B3%BB%E7%BB%9F)"
+???+ note "[什么是 Linux 子系统（WSL）](https://zh.wikipedia.org/zh-cn/%E9%80%82%E7%94%A8%E4%BA%8ELinux%E7%9A%84Windows%E5%AD%90%E7%B3%BB%E7%BB%9F)"
     适用于 Linux 的 Windows 子系统（英语：Windows Subsystem for Linux，简称 WSL）是一个为在 Windows 10、Windows 11 与 Windows Server 2019 上能够原生运行 Linux 二进制可执行文件（ELF 格式）的兼容层。
     
     WSL 可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生虚拟机开销。
     
-    WSL 仅在版本 1607 之后的 64 位版本的 Windows 10 中可用。它也可在 Windows Server 2019 中使用。
+    WSL 仅在 64 位 Windows 10 版本 1607 及以上、Windows 11 和 Windows Server 2019/2022 中可用。
 
 ***
 
@@ -72,13 +72,13 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
     
     如果你正在使用 2004 以下版本或你的电脑不支持虚拟化，请阅读下面的手动安装一节。
     
-    如果你正在使用 Windows 10 1607 以下版本的 Windows，你的系统不支持 WSL。
+    如果你正在使用 1607 以下版本的 Windows 10，你的系统不支持 WSL。
 
-1.  以管理员身份打开 Windows PowerShell（右击 "开始" 按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
+1.  以管理员身份打开 Windows PowerShell（右击「开始」按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
 
 2.  输入 `wsl --install`，并等待所有组件自动安装完成。期间你可能需要重启你的计算机来启用必要的 Windows 功能。
 
-3.  安装完成后，你可以在 "开始" 菜单或 Windows 终端的标签页中找到你安装的发行版。
+3.  安装完成后，你可以在「开始」菜单或 Windows 终端的标签页中找到你安装的发行版。
 
 4.  接下来，请转到下面「配置分发版」一节完成其他设置。
 
@@ -111,7 +111,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 2.  访问「程序和功能」子菜单「打开或关闭 Windows 功能」
 
-3.  选择 "适用于 Linux 的 Windows 子系统" 与 "虚拟机平台"
+3.  选择「适用于 Linux 的 Windows 子系统」与「虚拟机平台」
 
 4.  点击确定
 
@@ -204,36 +204,28 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 使用以下命令更新软件和软件源：
 
 ```console
+$ sudo su # 执行这行指令后，终端提示符会从 $ 变成 #，执行下文的命令前注意关注提示符
+[sudo] xxx 的密码：
 # cp /etc/apt/sources.list /etc/apt/sources.list.bak
 # vim /etc/apt/sources.list
 ...（按 i 之后将上文的源右键粘贴进去，编辑完后按 Esc，再输入 :wq 和回车）
 # apt update
 # apt upgrade -y
+# exit
+exit
+$ 
 ```
 
 ### 安装中文环境
 
 ```console
-# apt install language-pack-zh-han* -y
-# locale-gen zh_CN.GB18030 && locale-gen zh_CN.UTF-8
+# apt install language-pack-zh-hans -y
 # apt install fontconfig -y
-# apt install fonts-noto-cjk -y # 中文字体
-# apt install fonts-wqy-microhei -y
-# apt install fonts-wqy-zenhei -y
+# apt install fonts-noto-cjk fonts-wqy-microhei fonts-wqy-zenhei -y # 中文字体
 # dpkg-reconfigure locales
 ```
 
-使用 `sudo dpkg-reconfigure locales` 进入菜单，按空格选择带 `zh_CN` 的选项（推荐 `zh_CN.UTF-8 UTF-8`），选完后回车。
-
-    Locales to be generated:
-
-        ...
-        [ ] zh_CN.GBK GBK
-        [*] zh_CN.UTF-8 UTF-8
-        [ ] zh_HK BIG5-HKSCS
-        ...
-
-            <Ok>            <Cancel>
+此时会进入一个设置菜单，不用管，直接回车。
 
 下一个菜单中选择 `zh_CN.UTF-8` 回车。
 
@@ -265,7 +257,7 @@ Ubuntu 默认的软件源在国外。可以换成国内的软件源以加快速�
 
 GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#在-debian-或-ubuntu-安装)。
 
-这里安装的是基础 + NOI 官方要求的环境，如有需要可以用 `apt install <程序名>` 来安装其它软件包。
+这里安装的是基础 + NOI 官方要求的环境，如有需要可以用 `sudo apt install <程序名>` 来安装其它软件包。
 若想安装其他版本可以参考 Debian 官方的 [包管理手册](https://www.debian.org/doc/manuals/debian-reference/ch02.zh-cn.html)。
 
 以下为一个示例程序：
@@ -279,7 +271,7 @@ AMD Ryzen 5 1400 Quad-Core Processor
 ```
 
 ???+ note
-    Linux 环境下可执行文件可不带扩展名，实现方式看上方命令。
+    Linux 环境下可执行文件可不带扩展名，运行方式参见上方命令。
 
 ## 进阶操作
 
@@ -298,13 +290,13 @@ AMD Ryzen 5 1400 Quad-Core Processor
 如果只想安装 Xfce，可以执行以下命令：
 
 ```console
-# apt install xfce4 tightvncserver -y
+$ sudo apt install xfce4 tightvncserver -y
 ```
 
 如果除 Xfce 外想要更多的软件，可以执行以下命令：
 
 ```console
-# sudo apt install xubuntu-desktop -y
+$ sudo apt install xubuntu-desktop -y
 ```
 
 图形环境文件较大，下载解包需要一定时间。
@@ -312,12 +304,12 @@ AMD Ryzen 5 1400 Quad-Core Processor
 配置 xrdp：
 
 ```console
-# apt install xrdp -y
+$ sudo apt install xrdp -y
 $ echo "xfce4-session" >~/.xsession
-# service xrdp restart
+$ sudo service xrdp restart
 ```
 
-为了防止和计算机本来带的远程桌面冲突，最好换一下端口。
+为了防止和计算机原有的远程桌面冲突，需要更换默认端口。
 
 ![不换端口的结果](./images/wsl-result-of-not-changing-ports.png)
 
@@ -388,7 +380,7 @@ PS C:\Users\chtholly> bash
 Welcome!
 ```
 
-相对的，也可以从文件管理器访问 WSL 目录。在安装 WSL 后，可以在资源管理器的侧边栏中发现 Linux 项，在其中可以访问所有安装的发行版其中的文件。
+另外，也可以从文件管理器访问 WSL 目录。在安装 WSL 后，可以在资源管理器的侧边栏中发现 Linux 项，在其中可以访问所有安装的发行版中的文件。
 
 同样，也可以在资源管理器的路径或运行（Win+R）中直接输入 `\\wsl$` 来转到 WSL 的目录。
 
@@ -396,7 +388,7 @@ Welcome!
 
 ### 配合 Visual Sudio Code 进行编辑
 
-如果习惯在 Windows 环境下使用 [Visual Studio Code](./editor/vscode.md) 进行代码编辑，可以安装 VSC 中的 `Remote - WSL` 插件，更方便地对 WSL 系统中的文件进行编辑。
+如果习惯在 Windows 环境下使用 [Visual Studio Code](./editor/vscode.md) 进行代码编辑，可以安装 VS Code 中的 `Remote - WSL` 插件，更方便地对 WSL 系统中的文件进行编辑。
 
 通过 `Remote - WSL`，可以在 Windows 下的 VS Code 界面中直接对 WSL 子系统进行操作，更加方便地编辑子系统目录下的文件、更方便地使用终端进行调试。
 
@@ -434,7 +426,7 @@ Welcome!
 
     执行命令：`wsl --set-version <分发版名称> <版本号>`
 
-    如：将 Ubuntu18.04 设置为 WSL2 的命令为 `wsl --set-version Ubuntu-18.04 2`
+    如：将 Ubuntu 18.04 设置为 WSL 2 的命令为 `wsl --set-version Ubuntu-18.04 2`
 
     这一步比较耗时，执行完成后通过命令 `wsl -l -v` 来检查升级是否成功。
 
