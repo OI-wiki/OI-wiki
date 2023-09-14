@@ -229,7 +229,7 @@ nav:
       - 素数: math/number-theory/prime.md
       - 最大公约数: math/number-theory/gcd.md
       - 数论分块: math/number-theory/sqrt-decomposition.md
-      - 欧拉函数: math/number-theory/euler.md
+      - 欧拉函数: math/number-theory/euler-totient.md
       - 筛法: math/number-theory/sieve.md
       - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 分解质因数: math/number-theory/pollard-rho.md
