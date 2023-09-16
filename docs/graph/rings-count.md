@@ -45,9 +45,7 @@
 
     事实上，如果定向时从度数大的点指向度数小的点，复杂度也正确，只需要交换 $u,\ w$ 两个点，上述证明也成立。
 
-???+ note "示例代码"
-    （[洛谷 P1989 无向图三元环计数](https://www.luogu.com.cn/problem/P1989)）
-
+???+ note "示例代码（[洛谷 P1989 无向图三元环计数](https://www.luogu.com.cn/problem/P1989)）"
     ```cpp
     --8<-- "docs/graph/code/rings-count/rings-count_2.cpp"
     ```
