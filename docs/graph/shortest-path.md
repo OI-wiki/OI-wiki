@@ -277,7 +277,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
     === "Python"
     
         ```python
-        from collections import Deque
+        from collections import deque
         class Edge:
             def __init__(self, v = 0, w = 0):
                 self.v = v
@@ -286,7 +286,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
         dis = [0x3f3f3f3f] * maxn; cnt = [0] * maxn; vis = [False] * maxn
     
-        q = Deque()
+        q = deque()
         def spfa(n, s):
             dis[s] = 0
             vis[s] = True
