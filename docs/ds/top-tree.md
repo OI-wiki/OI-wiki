@@ -28,7 +28,7 @@ Splay Tree 是 SATT 的基础，但是 SATT 用的 Splay Tree 和普通的 Splay
 
 对于任意一棵树，我们都可以运用 **树收缩** 理论来将它收缩为一条边。
 
-具体地，树收缩有两个基本操作：**Compress** 和 **Rake**，Compress 操作指定一个度数为二的点 $x$，与点 $x$ 相邻的那两个点记为 $y$、$z$，我们连一条新边 $yz$；将点 $x$、边 $xz$、边 $xy$ 的信息放到 $yz$ 中储存，并删去它们。如图所示。
+具体地，树收缩有两个基本操作：**Compress** 和 **Rake**，Compress 操作指定一个度数为二的点 $x$，与点 $x$ 相邻的那两个点记为 $y$、 $z$，我们连一条新边 $yz$；将点 $x$、边 $xz$、边 $xy$ 的信息放到 $yz$ 中储存，并删去它们。如图所示。
 
 ![](./images/top-tree1.jpg)
 
@@ -60,11 +60,11 @@ Rake 操作指定一个度为一的点 $x$，而且与点 $x$ 相邻的点 $y$ �
 
 1.  簇只存储和维护内点和内边的信息。
 
-2.  簇有两个端点。这两个端点即为 $T_x$ 中代表那个簇的边相连的那两个点。两个端点之间的路径我们称之为 **簇路径（Cluster Path）**；记一个簇的两个端点分别为 $x$、$y$，我们下面用 $C(x,y)$ 来表示这个簇。
+2.  簇有两个端点。这两个端点即为 $T_x$ 中代表那个簇的边相连的那两个点。两个端点之间的路径我们称之为 **簇路径（Cluster Path）**；记一个簇的两个端点分别为 $x$、 $y$，我们下面用 $C(x,y)$ 来表示这个簇。
 
 3.  内点仅与端点或内点相连。
 
-特别地，对于 $T$ 中的每条边，都各自独立为一个簇（仅包含边自己的信息），这种簇我们称之为 **“基簇”（Base Cluster）**。对于由 $T$ 收缩到只有一条边的最终的 $T_x$，那条边代表的簇包含除了两个端点之外的整棵 $T$ 的信息，这个簇我们称之为 **根簇（Root Cluster）**。
+特别地，对于 $T$ 中的每条边，都各自独立为一个簇（仅包含边自己的信息），这种簇我们称之为 **基簇（Base Cluster）**。对于由 $T$ 收缩到只有一条边的最终的 $T_x$，那条边代表的簇包含除了两个端点之外的整棵 $T$ 的信息，这个簇我们称之为 **根簇（Root Cluster）**。
 
 ![](./images/top-tree5.jpg)
 
@@ -102,7 +102,7 @@ Top Tree 有以下性质；
 
 Top Tree 对树收缩过程的极大简化 使我们看到通过维护树收缩过程来维护树上信息的可能性，SATT 即是通过这一原理来维护树上信息的。
 
-注意到树收缩的过程也是树上信息不断加入的过程，我们执行一次 `compress(x)`，$x$ 点的信息从此刻起就开始在某个簇中出现，影响着我们的统计结果。
+注意到树收缩的过程也是树上信息不断加入的过程，我们执行一次 `compress(x)`， $x$ 点的信息从此刻起就开始在某个簇中出现，影响着我们的统计结果。
 
 假如我们现在用 Top Tree 来维护某棵树 $T$，树上的每个点，边都有权值，我们要维护的是 $T$ 的权值和。
 
@@ -150,7 +150,7 @@ Compress Tree 里的节点称为 **Compress Node**。只考虑当前这条簇路
 
 ![](./images/top-tree13.jpg)
 
-这一步相当于是让 Rake 操作加入某个 $T$ 中点的操作直接发生在 Compress Tree 中，这不仅使我们能 正确维护 Rake Node 的信息（只需将三个儿子信息合并即可），还使我们 Compress Tree 的结构更“完整”。下一步，我们将 Compress Tree 改为三叉树，若某个 Rake Tree 的公共端点是 点 $x$，我们就将 Rake Tree 挂在 $compress(x)$ 的中儿子处，如图。
+这一步相当于是让 Rake 操作加入某个 $T$ 中点的操作直接发生在 Compress Tree 中，这不仅使我们能 正确维护 Rake Node 的信息（只需将三个儿子信息合并即可），还使我们 Compress Tree 的结构更完整。下一步，我们将 Compress Tree 改为三叉树，若某个 Rake Tree 的公共端点是 点 $x$，我们就将 Rake Tree 挂在 $compress(x)$ 的中儿子处，如图。
 
 ![](./images/top-tree14.jpg)
 
@@ -294,7 +294,7 @@ void splay(int x, int type, int goal = 0) {
 
 `access(x)` 的意义是：将点 $x$ 旋转到整个 SATT 的根处，使点 $x$ 成为根簇的两个端点之一（另一端点即为 $T$ 的根节点），同时不能改变原树的结构和原树的根。
 
-为了实现 `access(x)`，我们先将其旋转到其所在 Compress  Tree 的树根，再把点 $x$ 的右儿子“去掉”，使点 $x$ 成为其所在 compress  tree 对应簇的端点。
+为了实现 `access(x)`，我们先将其旋转到其所在 Compress  Tree 的树根，再把点 $x$ 的右儿子去掉，使点 $x$ 成为其所在 compress  tree 对应簇的端点。
 
 ```cpp
 if (rs(x)) {
@@ -746,7 +746,7 @@ $$a \leq 3(r'(X)-r(X)) + q
 \leq 3(q-1)(r'(X)-r(X))
 $$
 
-如果我们能“找到”足够多的 zig-zig，zig-zag 操作，我们就可以将这 $3k+1$ 平摊到 这些 操作上去，从而消掉 这个 $3k+1$。
+如果我们能找到足够多的 zig-zig，zig-zag 操作，我们就可以将这 $3k+1$ 平摊到 这些 操作上去，从而消掉 这个 $3k+1$。
 
 我们发现 Globel Splay 里面就有这么多的 zig-zig，zag-zig 来给我们使用，因为 Globel Splay 里面点的个数一定大于 $k$，而从点 $x$ 到 Globel Splay 根部路径的点数一定不少于 $k$，也就是说一次 `access(x)` 中一定会至少有 $\dfrac k2$ 个 zig-zag 操作，算上 Globel Splay 的均摊复杂度 $a \leq 3\log n +1$，一次 `access(x)` 不记 `delete(x)` 的均摊复杂度为
 
@@ -766,7 +766,7 @@ $\sum_{i=1}^m c_i = \sum_{i=1}^m a_i +\sum_{i=1}^m a_i' - \varphi(x_n) +\varphi(
 
 $\sum_{i=1}^m c_i \leq \sum_{i=1}^m a_i' + 21m\log n +n\log n +3m$
 
-注意到 `delete(x)` 操作的本质是删掉一个 Rake Node，但我们在 $m$ 次操作中最多只会添加 $m$ 个 Rake Node，由 Rake Node 的定义，我们初始时最多有 $n$ 个 Rake Node，也就是说 我们总共只会做 $m+n$ 次 `delete(x)` 操作，由 $ a' \leq 3\log n +1  $ 可知
+注意到 `delete(x)` 操作的本质是删掉一个 Rake Node，但我们在 $m$ 次操作中最多只会添加 $m$ 个 Rake Node，由 Rake Node 的定义，我们初始时最多有 $n$ 个 Rake Node，也就是说 我们总共只会做 $m+n$ 次 `delete(x)` 操作，由 $a' \leq 3\log n +1  $ 可知
 
 $\sum_{i=1}^m c_i \leq 3(m+n)\log n + 21m\log n +n\log n +4m +n$
 
