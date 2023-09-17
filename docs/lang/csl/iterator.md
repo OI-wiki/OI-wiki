@@ -31,6 +31,9 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 -   ForwardIterator（向前迭代器）：同时满足 InputIterator 和 OutputIterator 的要求。
 -   BidirectionalIterator（双向迭代器）：在 ForwardIterator 的基础上支持自减（即反向访问）。
 -   RandomAccessIterator（随机访问迭代器）：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）。
+-   ContiguousIterator（连续迭代器）：在 RandomAccessIterator 的基础上要求对可解引用的迭代器 `a + n` 满足 `*(a + n)` 与 `*(std::address_of(*a) + n)` 等价（即连续存储，其中 `a` 为连续迭代器、`n` 为整型值）。
+
+    ContiguousIterator 于 C++17 中正式引入。
 
 ???+ note "为什么输入迭代器叫输入迭代器？"
     「输入」指的是「可以从迭代器中获取输入」，而「输出」指的是「可以输出到迭代器」。
