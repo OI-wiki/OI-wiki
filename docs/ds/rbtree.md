@@ -285,6 +285,8 @@ class RBTreeMap {
     //     S  ..                N  ..
     // clang-format on
     
+    ```
+    
     // Step 1
     NodePtr successor = node->right;
     NodePtr parent = node;
@@ -326,13 +328,13 @@ class RBTreeMap {
 
 #### Case 3
 
-待删除节点有且仅有一个非 NIL 子节点，若待删除节点为红色，直接使用其子节点 S 替换即可；若为黑色，则直接使用子节点 S 替代会打破性质 4，需要在使用 S 替代后判断 S 的颜色，若为红色，则将其染黑后即可满足性质 4，否则需要进行维护才可以满足性质 4。
+待删除节点 N 有且仅有一个非 NIL 子节点，则子节点 S 一定为红色。因为如果子节点 S 为黑色，则 S 的黑深度和待删除结点的黑深度不同，违反性质4。由于子节点 S 为红色，则待删除节点 N 为黑色， 直接使用子节点 S 替代 N 并将其染黑后即可满足性质4。
 
 ???+ note "实现"
     ```cpp
     // Case 3: Current node has a single left or right child
     //   Step 1. Replace N with its child
-    //   Step 2. If N is BLACK, maintain N
+    //   Step 2. Paint N to BLACK
     NodePtr parent = node->parent;
     NodePtr replacement = (node->left != nullptr ? node->left : node->right);
     
@@ -352,13 +354,7 @@ class RBTreeMap {
       replacement->parent = parent;
     }
     
-    if (node->isBlack()) {
-      if (replacement->isRed()) {
-        replacement->color = Node::BLACK;
-      } else {
-        maintainAfterRemove(replacement);
-      }
-    }
+    node->color = Node::BLACK;
     ```
 
 ### 删除后的平衡维护
