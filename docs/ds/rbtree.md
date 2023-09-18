@@ -287,17 +287,19 @@ class RBTreeMap {
     
     ```
     
-    // Step 1
+    //Step 1
     NodePtr successor = node->right;
     NodePtr parent = node;
     while (successor->left != nullptr) {
-      parent = successor;
-      successor = parent->left;
+    parent = successor;
+    successor = parent->left;
     }
-    // Step 2
+    //Step 2
     swapNode(node, successor);
     maintainRelationship(parent);
-    // Step 3: vvv
+    //Step 3: vvv
+    
+    ```
     ```
 
 #### Case 2
@@ -328,7 +330,7 @@ class RBTreeMap {
 
 #### Case 3
 
-待删除节点 N 有且仅有一个非 NIL 子节点，则子节点 S 一定为红色。因为如果子节点 S 为黑色，则 S 的黑深度和待删除结点的黑深度不同，违反性质4。由于子节点 S 为红色，则待删除节点 N 为黑色， 直接使用子节点 S 替代 N 并将其染黑后即可满足性质4。
+待删除节点 N 有且仅有一个非 NIL 子节点，则子节点 S 一定为红色。因为如果子节点 S 为黑色，则 S 的黑深度和待删除结点的黑深度不同，违反性质 4。由于子节点 S 为红色，则待删除节点 N 为黑色，直接使用子节点 S 替代 N 并将其染黑后即可满足性质 4。
 
 ???+ note "实现"
     ```cpp
