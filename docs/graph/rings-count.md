@@ -57,7 +57,7 @@
 
     ![](./images/rings-count1.svg)
 
-    $2\leq n\leq 10^5$，$1\leq m\leq\min\{2\times 10^5,\ \dfrac{n(n-1)}2\}$。
+    $2\leq n\leq 10^5$，$1\leq m\leq\min\left\{2\times 10^5,\ \dfrac{n(n-1)}2\right\}$。
 
 ??? note "解题思路"
     这个图形是两个三元环共用了一条边形成的。所以我们先跑一遍三元环计数，统计出一条边上三元环的数量，然后枚举共用的那条边，设有 $x$ 个三元环中有此边，那么对答案的贡献就是 $\dbinom x2$。
