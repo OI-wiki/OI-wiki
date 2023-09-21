@@ -1,4 +1,4 @@
-author: accelsao, StudyingFather, t4rf9
+author: accelsao, StudyingFather, t4rf9, wlbksy
 
 **匹配** 或是 **独立边集** 是一张图中没有公共边的集合。
 在二分图中求匹配等价于网路流问题。
@@ -19,7 +19,7 @@ author: accelsao, StudyingFather, t4rf9
 
 一个点如果属于 $M$ 且为至多一条边的端点，称为 **匹配点**，反之称为 **未匹配点**。
 
--   maximal matching：无法再增加匹配边的匹配。不见得是最大匹配。
+-   极大匹配（maximal matching）：无法再增加匹配边的匹配。不见得是最大匹配。
 -   最大匹配（maximum matching）：匹配数最多的匹配。
 -   完美匹配（perfect matching）：所有点都属于匹配，同时也符合最大匹配。
 -   近完美匹配（near-perfect matching）：发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。

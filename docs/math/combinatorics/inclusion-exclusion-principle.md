@@ -297,7 +297,7 @@ $$
 我们发现后半部分的求和与 $Q$ 无关，因此把后半部分的 $Q$ 剔除：
 
 $$
-=\sum_{Q}g(Q)\sum_{T\subseteq (S\setminus Q)}(-1)^{|S\setminus Q|-|T|}\\
+=\sum_{Q}g(Q)\sum_{T\subseteq (S\setminus Q)}(-1)^{|S\setminus Q|-|T|}
 $$
 
 记关于集合 $P$ 的函数 $F(P)=\sum_{T\subseteq P}(-1)^{|P|-|T|}$，并化简这个函数：

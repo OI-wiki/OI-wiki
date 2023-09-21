@@ -81,7 +81,7 @@ $$
 由不等式 $1+x\le \mathrm{e}^x$ 可得
 
 $$
-P(A) \le \prod_{i=1}^{k-1}\exp\left({-\frac{i}{n}}\right)=\exp \left({-\frac{k(k-1)}{2n}}\right)\\
+P(A) \le \prod_{i=1}^{k-1}\exp\left({-\frac{i}{n}}\right)=\exp \left({-\frac{k(k-1)}{2n}}\right)
 $$
 
 因此
