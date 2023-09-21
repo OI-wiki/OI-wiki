@@ -205,9 +205,9 @@
     折叠框的标题，即 `???+note` 中 `note` 后的内容应以 `"` 包裹起来。其中的内容支持 Markdown 语法。详见 [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title)。（不具备折叠功能的为一般的 Admonitions，参考 [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions)）
 
 -   当需要添加不同语言的代码时，推荐使用 Content tabs，可以实现不同语言代码的切换。Content tabs 还有其他的用法，详见 [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/#usage)。其使用方法和效果如下。
-    
+
     ???+ success "示例"
-        ```text
+        ````text
         注意需要在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
         
         === "C"
@@ -232,24 +232,24 @@
             }
             ```
             
-        ```
+        ````
         
         === "C"
         
             ``` c
             #include <stdio.h>
-            
+        
             int main(void) {
               printf("Hello world!\n");
               return 0;
             }
             ```
-            
+        
         === "C++"
         
             ``` c++
             #include <iostream>
-            
+        
             int main(void) {
               std::cout << "Hello world!" << std::endl;
               return 0;
