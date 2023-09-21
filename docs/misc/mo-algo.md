@@ -25,9 +25,9 @@ void solve() {
   for (int i = 0; i < m; ++i) {
     const query &q = querys[i];
     while (l > q.l) move(--l, 1);
-    while (r < q.r) move(r++, 1);
+    while (r < q.r) move(++r, 1);
     while (l < q.l) move(l++, -1);
-    while (r > q.r) move(--r, -1);
+    while (r > q.r) move(r--, -1);
     ans[q.id] = nowAns;
   }
 }
