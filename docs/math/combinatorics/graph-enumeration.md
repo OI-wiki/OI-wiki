@@ -82,9 +82,9 @@ $$
 ???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
     题目大意：求有 $n$ 个结点的分别满足下列性质的有标号图的方案数（$n \leq 1000$）。
     
-    - 连通图 [A001187](https://oeis.org/A001187)。
-    - 欧拉图 [A033678](https://oeis.org/A033678)。 
-    - 二分图 [A047864](https://oeis.org/A047864)。
+    -   连通图 [A001187](https://oeis.org/A001187)。
+    -   欧拉图 [A033678](https://oeis.org/A033678)。
+    -   二分图 [A047864](https://oeis.org/A047864)。
 
 本题限制代码长度，因而无法直接使用多项式模板，但生成函数依然可以帮助我们进行分析。
 
@@ -252,10 +252,10 @@ $$
 ???+ note " 例题 [「SPOJ PT07D」Let us count 1 2 3](https://www.spoj.com/problems/PT07D/)"
     题目大意：求有 n 个结点的分别满足下列性质的树的方案数。
     
-    - 有标号有根树 [A000169](https://oeis.org/A000169)。
-    - 有标号无根树 [A000272](https://oeis.org/A000272)。
-    - 无标号有根树 [A000081](https://oeis.org/A000081)。
-    - 无标号无根树 [A000055](https://oeis.org/A000055)。
+    -   有标号有根树 [A000169](https://oeis.org/A000169)。
+    -   有标号无根树 [A000272](https://oeis.org/A000272)。
+    -   无标号有根树 [A000081](https://oeis.org/A000081)。
+    -   无标号无根树 [A000055](https://oeis.org/A000055)。
 
 #### 有根树
 

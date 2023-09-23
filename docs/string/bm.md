@@ -596,7 +596,7 @@ $q$ 为全字符集的大小，而且 $qm$ 前面的系数很大。
 
 原理很简单，假定一个 $pat$，它是某个子串 $U$ 重复 n 次构成的字符串 $UUUU\dots$ 的前缀，那么我们称 $U$ 为 $pat$ 的一个周期。
 
-比如，$pat:$ $\texttt{ABCABCAB}$，是 $\texttt{ABC}$ 的重复 $\texttt{ABCABCABC}$ 的前缀，所以 $\texttt{ABC}$ 的长度 $3$ 就是这个 $pat$ 的周期长度，也即 $pat$ 满足 $pat[i] = pat[i+3]$。
+比如，$pat:$$\texttt{ABCABCAB}$，是 $\texttt{ABC}$ 的重复 $\texttt{ABCABCABC}$ 的前缀，所以 $\texttt{ABC}$ 的长度 $3$ 就是这个 $pat$ 的周期长度，也即 $pat$ 满足 $pat[i] = pat[i+3]$。
 
 当然其实 $\texttt{ABCABC}\dots$ 也是 $pat$ 的周期，但我们只关注最短的那个。
 

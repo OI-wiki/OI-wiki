@@ -139,11 +139,16 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 
 ??? 参考代码
     ```c++
-    #include<cstdio>
+    #include <cstdio>
     
-    char *s={"#include<cstdio>%cchar *s={%c%s%c};%cint main(){printf(s,10,34,s,34,10);return 0;}"};
+    char *s = {
+        "#include<cstdio>%cchar *s={%c%s%c};%cint "
+        "main(){printf(s,10,34,s,34,10);return 0;}"};
     
-    int main(){printf(s,10,34,s,34,10);return 0;}
+    int main() {
+      printf(s, 10, 34, s, 34, 10);
+      return 0;
+    }
     ```
 
 ## 参考资料与注释
