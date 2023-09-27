@@ -31,7 +31,7 @@ author: du33169
 
 是用来求任意两个结点之间的最短路的。
 
-复杂度比较高，但是常数小，容易实现。（我会说只有三个 `for` 吗？）
+复杂度比较高，但是常数小，容易实现（只有三个 `for`）。
 
 适用于任何图，不管有向无向，边权正负，但是最短路必须存在。（不能有个负环）
 
@@ -75,7 +75,7 @@ author: du33169
 ???+ note "证明第一维对结果无影响"
     我们注意到如果放在一个给定第一维 `k` 二维数组中，`f[x][k]` 与 `f[k][y]` 在某一行和某一列。而 `f[x][y]` 则是该行和该列的交叉点上的元素。
     
-    现在我们需要证明将 `f[k][x][y]` 直接在原地更改也不会更改它的结果：我们注意到 `f[k][x][y]` 的涵义是第一维为 `k-1` 这一行和这一列的所有元素的最小值，包含了 `f[k-1][x][y]`，那么我在原地进行更改也不会改变最小值的值，因为如果将该三维矩阵压缩为二维，则所求结果 `f[x][y]` 一开始即为原 `f[k-1][x][y]` 的值，最后依然会成为该行和该列的最小值。
+    现在我们需要证明将 `f[k][x][y]` 直接在原地更改也不会更改它的结果：我们注意到 `f[k][x][y]` 的涵义是第一维为 `k-1` 这一行和这一列的所有元素的最小值，包含了 `f[k-1][x][y]`，那么在原地进行更改也不会改变最小值的值，因为如果将该三维矩阵压缩为二维，则所求结果 `f[x][y]` 一开始即为原 `f[k-1][x][y]` 的值，最后依然会成为该行和该列的最小值。
     
     故可以压缩。
 
@@ -277,23 +277,23 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
     === "Python"
     
         ```python
+        from collections import deque
         class Edge:
             def __init__(self, v = 0, w = 0):
                 self.v = v
                 self.w = w
     
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [0x3f3f3f3f] * maxn; cnt = [0] * maxn; vis = [0] * maxn
+        dis = [0x3f3f3f3f] * maxn; cnt = [0] * maxn; vis = [False] * maxn
     
-        q = []
+        q = deque()
         def spfa(n, s):
             dis[s] = 0
-            vis[s] = 1
+            vis[s] = True
             q.append(s)
-            while len(q) != 0:
-                u = q[0]
-                vis[u] = 0
-                q.pop()
+            while q:
+                u = q.popleft()
+                vis[u] = False
                 for ed in e[u]:
                     if dis[v] > dis[u] + w:
                         dis[v] = dis[u] + w
@@ -302,7 +302,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                             return False
                         # 在不经过负环的情况下，最短路至多经过 n - 1 条边
                         # 因此如果经过了多于 n 条边，一定说明经过了负环
-                        if vis[v] == False:
+                        if not vis[v]:
                             q.append(v)
                             vis[v] = True
         ```

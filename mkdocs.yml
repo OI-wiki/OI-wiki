@@ -241,8 +241,8 @@ nav:
       - 乘法逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
+      - 升幂引理: math/number-theory/lift-the-exponent.md
       - 威尔逊定理: math/number-theory/wilson.md
-      - 升幂定理: math/number-theory/lift-the-exponent.md
       - 卢卡斯定理: math/number-theory/lucas.md
       - 同余方程: math/number-theory/congruence-equation.md
       - 二次剩余: math/number-theory/quad-residue.md
@@ -373,6 +373,8 @@ nav:
       - 笛卡尔树: ds/cartesian-tree.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
+      - AA 树: ds/aa-tree.md
+      - 2-3 树: ds/2-3-tree.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
@@ -433,6 +435,7 @@ nav:
       - 割点和桥: graph/cut.md
       - 圆方树: graph/block-forest.md
       - 点/边连通度: graph/connectivity.md
+    - 环计数问题: graph/rings-count.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
