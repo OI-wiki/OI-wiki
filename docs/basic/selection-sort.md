@@ -4,7 +4,7 @@
 
 选择排序（英语：Selection sort）是一种简单直观的排序算法。它的工作原理是每次找出第 $i$ 小的元素（也就是 $A_{i..n}$ 中最小的元素），然后将这个元素与数组第 $i$ 个位置上的元素交换。
 
-![selection sort animate example](images/selection-sort-1-animate-example.svg)
+![selection sort animate example](images/selection-sort-animate.svg)
 
 ## 性质
 

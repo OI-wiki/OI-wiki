@@ -106,7 +106,7 @@ $$
 
 ??? note "代码实现"
     因为在固定模 $998244353$ 意义下运算，计算乘法逆元的时间复杂度我们在这里暂且认为是常数时间。
-
+    
     ```cpp
     --8<-- "docs/math/code/numerical/lagrange/lagrange_1.cpp"
     ```
