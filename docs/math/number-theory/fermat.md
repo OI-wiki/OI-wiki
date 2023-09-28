@@ -51,7 +51,7 @@ $$
 
 ## 欧拉定理
 
-在了解欧拉定理（Euler's theorem）之前，请先了解 [欧拉函数](./euler.md)。定理内容如下：
+在了解欧拉定理（Euler's theorem）之前，请先了解 [欧拉函数](./euler-totient.md)。定理内容如下：
 
 ### 定义
 
