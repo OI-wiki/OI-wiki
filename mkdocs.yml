@@ -462,6 +462,7 @@ nav:
     - 弦图: graph/chord.md
     - 最大团搜索算法: graph/max-clique.md
     - 支配树: graph/dominator-tree.md
+    - 图上随机游走: graph/graph-random-walk.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
