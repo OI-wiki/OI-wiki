@@ -32,8 +32,6 @@
 由于这里查询的是树上距离为 $[0,k]$ 的点对数量，所以我们用线段树来支持维护和查询。
 
 ??? note "参考代码"
-    
-
     ```cpp
     --8<-- "docs/graph/code/tree-divide/tree-divide_2.cpp"
     ```

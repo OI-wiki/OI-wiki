@@ -1,3 +1,5 @@
+author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-time, Early0v0, Enter-tainer, fearlessxjdx, Great-designer, H-J-Granger, hsfzLZH1, iamtwz, Ir1d, ksyx, Marcythm, NachtgeistW, ouuan, Persdre, shuzhouliu, StudyingFather, SukkaW, Tiphereth-A, wsyhb, Yesphet, yuhuoji
+
 ## 定义
 
 二叉搜索树是一种二叉树的树形数据结构，其定义如下：
@@ -14,7 +16,19 @@
 
 ## 过程
 
-在接下来的代码块中，我们约定 $n$ 为结点个数，$h$ 为高度，`val[x]` 为结点 $x$ 处存的数值，`cnt[x]` 为结点 $x$ 存的值所出现的次数，`lc[x]` 和 `rc[x]` 分别为结点 $x$ 的左子结点和右子结点，`siz[x]` 为结点的子树大小。
+### 二叉搜索树节点的定义
+
+???+ note "实现"
+    ```c++
+    struct TreeNode {
+      int key;
+      TreeNode* left;
+      TreeNode* right;
+      // 维护其他信息，如高度，节点数量等
+      int size;   // 当前节点为根的子树大小
+      int count;  // 当前节点的重复数量
+    };
+    ```
 
 ### 遍历二叉搜索树
 
@@ -23,13 +37,14 @@
 遍历一棵二叉搜索树的代码如下：
 
 ???+ note "实现"
-    ```cpp
-    void print(int o) {
-      // 遍历以 o 为根节点的二叉搜索树
-      if (!o) return;  // 遇到空树，返回
-      print(lc[o]);    // 递归遍历左子树
-      for (int i = 1; i <= cnt[o]; i++) printf("%d\n", val[o]);  // 输出根节点信息
-      print(rc[o]);  // 递归遍历右子树
+    ```c++
+    void inorderTraversal(TreeNode* root) {
+      if (root == nullptr) {
+        return;
+      }
+      inorderTraversal(root->left);
+      std::cout << root->key << " ";
+      inorderTraversal(root->right);
     }
     ```
 
@@ -37,116 +52,165 @@
 
 由二叉搜索树的性质可得，二叉搜索树上的最小值为二叉搜索树左链的顶点，最大值为二叉搜索树右链的顶点。时间复杂度为 $O(h)$。
 
-findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编号 $o$，用 `val[o]` 可以获得相应的最小/最大值。
-
 ???+ note "实现"
     ```cpp
-    int findmin(int o) {
-      if (!lc[o]) return o;
-      return findmin(lc[o]);  // 一直向左儿子跳
+    int findMin(TreeNode* root) {
+      if (root == nullptr) {
+        return -1;
+      }
+      while (root->left != nullptr) {
+        root = root->left;
+      }
+      return root->key;
     }
     
-    int findmax(int o) {
-      if (!rc[o]) return o;
-      return findmax(rc[o]);  // 一直向右儿子跳
+    int findMax(TreeNode* root) {
+      if (root == nullptr) {
+        return -1;
+      }
+      while (root->right != nullptr) {
+        root = root->right;
+      }
+      return root->key;
     }
     ```
 
-### 插入一个元素
+### 搜索元素
 
-定义 `insert(o,v)` 为在以 $o$ 为根节点的二叉搜索树中插入一个值为 $v$ 的新节点。
+在以 `root` 为根节点的二叉搜索树中搜索一个值为 `value` 的节点。
 
 分类讨论如下：
 
-若 $o$ 为空，直接返回一个值为 $v$ 的新节点。
+-   若 `root` 为空，返回 `false`。
+-   若 `root` 的权值等于 `value`，返回 `true`。
+-   若 `root` 的权值大于 `value`，在 `root` 的左子树中继续搜索。
+-   若 `root` 的权值小于 `value`，在 `root` 的右子树中继续搜索。
 
-若 $o$ 的权值等于 $v$，该节点的附加域该值出现的次数自增 $1$。
+时间复杂度为 $O(h)$。
 
-若 $o$ 的权值大于 $v$，在 $o$ 的左子树中插入权值为 $v$ 的节点。
+???+ note "实现"
+    ```c++
+    bool search(TreeNode* root, int target) {
+      if (root == nullptr) {
+        return false;
+      }
+      if (root->key == target) {
+        return true;
+      } else if (target < root->key) {
+        return search(root->left, target);
+      } else {
+        return search(root->right, target);
+      }
+    }
+    ```
 
-若 $o$ 的权值小于 $v$，在 $o$ 的右子树中插入权值为 $v$ 的节点。
+插入，删除，修改都需要先在二叉搜索树中进行搜索。
+
+### 插入一个元素
+
+在以 `root` 为根节点的二叉搜索树中插入一个值为 `value` 的节点。
+
+分类讨论如下：
+
+-   若 `root` 为空，直接返回一个值为 `value` 的新节点。
+
+-   若 `root` 的权值等于 `value`，该节点的附加域该值出现的次数自增 $1$。
+
+-   若 `root` 的权值大于 `value`，在 `root` 的左子树中插入权值为 `value` 的节点。
+
+-   若 `root` 的权值小于 `value`，在 `root` 的右子树中插入权值为 `value` 的节点。
+
+-   若 `root` 的权值小于 `value`，在 `root` 的右子树中插入权值为 `value` 的节点。
 
 时间复杂度为 $O(h)$。
 
 ???+ note "实现"
     ```cpp
-    void insert(int& o, int v) {
-      if (!o) {
-        val[o = ++n] = v;
-        cnt[o] = siz[o] = 1;
-        lc[o] = rc[o] = 0;
-        return;
+    TreeNode* insert(TreeNode* root, int value) {
+      if (root == nullptr) {
+        return new TreeNode(value);
       }
-      siz[o]++;
-      if (val[o] == v) {
-        cnt[o]++;
-        return;
+      if (value < root->key) {
+        root->left = insert(root->left, value);
+      } else if (value > root->key) {
+        root->right = insert(root->right, value);
+      } else {
+        root->count++;  // 节点值相等，增加重复数量
       }
-      if (val[o] > v) insert(lc[o], v);
-      if (val[o] < v) insert(rc[o], v);
+      return root;
     }
     ```
 
 ### 删除一个元素
 
-定义 `del(o,v)` 为在以 $o$ 为根节点的二叉搜索树中删除一个值为 $v$ 的节点。
+在以 `root` 为根节点的二叉搜索树中删除一个值为 `value` 的节点。
 
-先在二叉搜索树中找到权值为 $v$ 的节点，分类讨论如下：
+先在二叉搜索树中搜索权值为 `value` 的节点，分类讨论如下：
 
-若该节点的附加 $\textit{cnt}$ 大于 $1$，只需要减少 $\textit{cnt}$。
+-   若该节点的附加 `count` 大于 $1$，只需要减少 `count`。
 
-若该节点的附加 $\textit{cnt}$ 为 $1$：
+-   若该节点的附加 `count` 为 $1$：
 
-若 $o$ 为叶子节点，直接删除该节点即可。
+    -   若 `root` 为叶子节点，直接删除该节点即可。
 
-若 $o$ 为链节点，即只有一个儿子的节点，返回这个儿子。
+    -   若 `root` 为链节点，即只有一个儿子的节点，返回这个儿子。
 
-若 $o$ 有两个非空子节点，一般是用它左子树的最大值或右子树的最小值代替它，然后将它删除。
+    -   若 `count` 有两个非空子节点，一般是用它左子树的最大值（左子树最右的节点）或右子树的最小值（右子树最左的节点）代替它，然后将它删除。
 
 时间复杂度 $O(h)$。
 
 ???+ note "实现"
-    ```cpp
-    int deletemin(int& o) {
-      if (!lc[o]) {
-        int u = o;
-        o = rc[o];
-        return u;
-      } else {
-        int u = deletemin(lc[o]);
-        siz[o] -= cnt[u];
-        return u;
+    方法使用 `root = remove(root, 1)` 表示删除根节点为 `root` 树中值为 1 的节点，并返回新的根节点。
+    
+    ```c++
+    // 此处返回值为删除 value 后的新 root
+    TreeNode* remove(TreeNode* root, int value) {
+      if (root == nullptr) {
+        return root;
       }
+      if (value < root->key) {
+        root->left = remove(root->left, value);
+      } else if (value > root->key) {
+        root->right = remove(root->right, value);
+      } else {
+        if (root->count > 1) {
+          root->count--;  // 节点重复数量大于1，减少重复数量
+        } else {
+          if (root->left == nullptr) {
+            TreeNode* temp = root->right;
+            delete root;
+            return temp;
+          } else if (root->right == nullptr) {
+            TreeNode* temp = root->left;
+            delete root;
+            return temp;
+          } else {
+            TreeNode* successor = findMinNode(root->right);
+            root->key = successor->key;
+            root->count = successor->count;  // 更新重复数量
+            root->right = remove(root->right, successor->key);
+          }
+        }
+      }
+      return root;
     }
     
-    void del(int& o, int v) {
-      // 注意 o 有可能会被修改
-      siz[o]--;
-      if (val[o] == v) {
-        if (cnt[o] > 1) {
-          cnt[o]--;
-          return;
-        }
-        if (lc[o] && rc[o]) {
-          int t = deletemin(rc[o]);
-          lc[t] = lc[o];
-          rc[t] = rc[o];
-          siz[t] = siz[o];
-          o = t;
-        }
-        // 这里以找右子树的最小值为例
-        else
-          o = lc[o] + rc[o];
-        return;
-      }
-      if (val[o] > v) del(lc[o], v);
-      if (val[o] < v) del(rc[o], v);
+    ```
+    
+    //此处以右子树的最小值为例
+    TreeNode\* findMinNode(TreeNode\* root) {
+    while (root->left != nullptr) {
+    root = root->left;
     }
+    return root;
+    }
+    
+    ```
     ```
 
 ### 求元素的排名
 
-排名定义为将数组元素排序后第一个相同元素之前的数的个数加一。
+排名定义为将数组元素升序排序后第一个相同元素之前的数的个数加一。
 
 查找一个元素的排名，首先从根节点跳到这个元素，若向右跳，答案加上左儿子节点个数加当前节点重复的数个数，最后答案加上终点的左儿子子树大小加一。
 
@@ -154,10 +218,12 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
 
 ???+ note "实现"
     ```cpp
-    int queryrnk(int o, int v) {
-      if (val[o] == v) return siz[lc[o]] + 1;
-      if (val[o] > v) return queryrnk(lc[o], v);
-      if (val[o] < v) return queryrnk(rc[o], v) + siz[lc[o]] + cnt[o];
+    int queryRank(TreeNode* root, int v) {
+      if (root == nullptr) return 0;
+      if (root->key == v) return (root->left ? root->left->size : 0) + 1;
+      if (root->key > v) return queryRank(root->left, v);
+      return queryRank(root->right, v) +
+             (root->left ? root->left->size + root->count : 0);
     }
     ```
 
@@ -165,77 +231,121 @@ findmin 和 findmax 函数分别返回最小值和最大值所对应的结点编
 
 在一棵子树中，根节点的排名取决于其左子树的大小。
 
-若其左子树的大小大于等于 $k$，则该元素在左子树中；
+-   若其左子树的大小大于等于 $k$，则该元素在左子树中；
 
-若其左子树的大小在区间 $[k-\textit{cnt},k-1]$（$\textit{cnt}$ 为当前结点的值的出现次数）中，则该元素为子树的根节点；
+-   若其左子树的大小在区间 $[k-\textit{count},k-1]$（`count` 为当前结点的值的出现次数）中，则该元素为子树的根节点；
 
-若其左子树的大小小于 $k-\textit{cnt}$，则该元素在右子树中。
+-   若其左子树的大小小于 $k-\textit{count}$，则该元素在右子树中。
 
 时间复杂度 $O(h)$。
 
 ???+ note "实现"
     ```cpp
-    int querykth(int o, int k) {
-      if (siz[lc[o]] >= k) return querykth(lc[o], k);
-      if (siz[lc[o]] < k - cnt[o]) return querykth(rc[o], k - siz[lc[o]] - cnt[o]);
-      return val[o];
-      // 如要找排名为 k 的元素所对应的结点，直接 return o 即可
+    int querykth(TreeNode* root, int k) {
+      if (root == nullptr) return -1;  // 或者根据需求返回其他合适的值
+      if (root->left) {
+        if (root->left->size >= k) return querykth(root->left, k);
+        if (root->left->size + root->count >= k) return root->key;
+      } else {
+        if (k == 1) return root->key;
+      }
+      return querykth(root->right,
+                      k - (root->left ? root->left->size + root->count : 0));
     }
     ```
 
 ## 平衡树简介
 
-使用二叉搜索树的目的之一是缩短插入与查找时间，一棵合理的二叉搜索树插入与查找时间可以缩短到 $O(\log_2 n)$。
+使用搜索树的目的之一是缩短插入、删除、修改和查找（插入、删除、修改都包括查找操作）节点的时间。
 
-对于一般的二叉搜索树，有可能退化为链表。想象一棵每个结点只有右孩子的二叉搜索树，那么它的性质就和链表一样，插入与查找时间都是 $O(n)$，可以说是极大的时间浪费，所以研究平衡二叉搜索树是非常有必要的。
+关于查找效率，如果一棵树的高度为 $h$，在最坏的情况，查找一个关键字需要对比 $h$ 次，查找时间复杂度（也为平均查找长度 ASL，Average Search Length）不超过 $O(h)$。一棵理想的二叉搜索树所有操作的时间可以缩短到 $O(\log n)$（n 是节点总数）。
 
-关于查找效率分析，如果树的高度为 $h$，则在最坏的情况，查找一个关键字需要对比 $h$ 次，查找时间复杂度（也为平均查找长度 ASL，Average Search Length）不超过 $O(h)$。
+然而 $O(h)$ 的时间复杂度仅为理想情况。在最坏情况下，搜索树有可能退化为链表。想象一棵每个结点只有右孩子的二叉搜索树，那么它的性质就和链表一样，所有操作（增删改查）的时间是 $O(n)$。
 
-二叉搜索树的「平衡」概念是指：每一个结点的左子树和右子树高度差最多为 $1$。
+可以发现操作的复杂度与树的高度 $h$ 有关。由此引出了平衡树，通过一定操作维持树的高度（平衡性）来降低操作的复杂度。
 
-可以对不满足平衡条件的二叉搜索树进行调整，使不平衡的二叉搜索树变得平衡。
+### 平衡性的定义
 
-调整要保证的标准还有二叉搜索树先天自带的条件：二叉搜索树，按照中序遍历，得到从小到大的结点值序列。对于任意一个结点，左子树各结点的最大值，小于该结点的值；该结点的值，小于右子树各结点的最小值。只有保证这一点才能称为一个二叉搜索树。
+关于一棵搜索树是否「**平衡**」，不同的平衡树中对「**平衡**」有着不同的定义。比如以 T 为根节点的二叉搜索树，左子树和右子树的高度相差很大，或者左子树的节点个数远大于右子树的节点个数，这棵树显然不具有平衡性。
 
-对于拥有同样元素值集合的二叉搜索树，平衡状态可能是不唯一的。也就是说，可能两棵不同的二叉搜索树，含有的元素值集合相同，并且都是平衡的。
+对于二叉搜索树来说，常见的平衡性的定义是指：以 T 为根节点的树，每一个结点的左子树和右子树高度差最多为 1。
 
-### 过程
+-   [Splay 树](splay.md) 中，对于任意节点的访问操作（搜索、插入还是删除），都会将被访问的节点移动到树的根节点位置。
 
-保证中序遍历序列不变的平衡调整，基本操作为 **右旋（rotate right 或者 zig）** 和 **左旋（rotate left 或者 zag）**。这两种操作均不改变中序遍历序列。
+-   [AVL 树](avl.md) 每个节点 N 维护以 N 为根节点的树的高度信息。AVL 树对平衡性的定义：如果 T 是一棵 AVL 树，当且仅当左右子树也是 AVL 树，且 $|height(T->left) - height(T->right)| \leq 1$。
+
+-   [Size Balanced Tree](sbt.md) 每个节点 N 维护以 N 为根节点的树中节点个数 `size`。对平衡性的定义：任意节点的 `size` 不小于其兄弟节点（Sibling）的所有子节点（Nephew）的 `size`。
+
+-   [B 树](b-tree.md) 对平衡性的定义：每个节点应该保持在一个预定义的范围内的关键字数量。
+
+此外，对于拥有同样元素值集合的搜索树，平衡状态可能是不唯一的。也就是说，可能两棵不同的搜索树，含有的元素值集合相同，并且都是平衡的。
+
+### 平衡的调整过程
+
+对不满足平衡条件的搜索树进行调整操作，可以使不平衡的搜索树重新具有平衡性。
+
+关于二叉平衡树，平衡的调整操作分为包括 **左旋（Left Rotate 或者 zag）** 和 **右旋（Right Rotate 或者 zig）** 两种。由于二叉平衡树在调整时需要保证中序遍历序列不变。这两种操作均不改变中序遍历序列。
 
 在这里先介绍右旋，右旋也称为「右单旋转」或「LL 平衡旋转」。对于结点 $A$ 的右旋操作是指：将 $A$ 的左孩子 $B$ 向右上旋转，代替 $A$ 成为根节点，将 $A$ 结点向右下旋转成为 $B$ 的右子树的根结点，$B$ 的原来的右子树变为 $A$ 的左子树。
 
+![bst-rotate](images/bst-rotate.svg)
+
 右旋操作只改变了三组结点关联，相当于对三组边进行循环置换一下，因此需要暂存一个结点再进行轮换更新。
 
-对于右旋操作一般的更新顺序是：暂存 $B$ 结点，先让 $A$ 的左孩子指向 $B$ 的右子树 $BR$，再让 $B$ 的右孩子指针指向 $A$（$A$ 被它的父结点指向），最后让 $A$ 的父结点指向暂存的 $B$。整个操作只要找到 $A$ 的父节点孩子即可完成。
+对于右旋操作一般的更新顺序是：暂存 $B$ 结点（新的根节点），让 $A$ 的左孩子指向 $B$ 的右子树 $T2$，再让 $B$ 的右孩子指针指向 $A$，最后让 $A$ 的父结点指向暂存的 $B$。
 
 完全同理，有对应的左旋操作，也称为「左单旋转」或「RR 平衡旋转」。左旋操作与右旋操作互为镜像。
 
-一段可行的代码为：
+下面给出左旋和右旋的代码。
 
 ???+ note "实现"
-    ```cpp
-    
-    int zig(int now) {                           // 以now为中心右旋
-      int lchild = nodes[now].lchild;            // 暂存A的左孩子B节点
-      nodes[now].lchild = nodes[lchild].rchild;  // 将A的左孩子指向B的右子树BR
-      nodes[lchild].rchild = now;                // 将B的右孩子指针指向A
-      update(nodes[lchild].rchild);  // 更新旋转后A与B两个节点的信息
-      update(lchild);
-      return lchild;  // 让A的父节点指向最初暂存的B
+    ```c++
+    TreeNode* rotateLeft(TreeNode* root) {
+      TreeNode* newRoot = root->right;
+      root->right = newRoot->left;
+      newRoot->left = root;
+      // 更新相关节点的信息
+      updateHeight(root);
+      updateHeight(newRoot);
+      return newRoot;  // 返回新的根节点
     }
     
-    int zag(int now) {  // 以now为中心左旋
-      int rchild = nodes[now].rchild;
-      nodes[now].rchild = nodes[rchild].lchild;
-      nodes[rchild].lchild = now;
-      update(nodes[rchild].lchild);
-      update(rchild);
-      return rchild;
+    TreeNode* rotateRight(TreeNode* root) {
+      TreeNode* newRoot = root->left;
+      root->left = newRoot->right;
+      newRoot->right = root;
+      updateHeight(root);
+      updateHeight(newRoot);
+      return newRoot;
     }
-    
     ```
 
-对于这段示例代码，只有调用者知道结点 $A$ 的父结点是什么。对于这种情形，代码的返回值为新的子树根结点的下标，令调用者将左边为 $A$ 的父节点赋值为指向新的子树根结点的下标即可。
+对于这段示例代码，在调用时需要保存 `root` 的父节点 `pre`。方法返回指向新的根节点的指针，只需要将 `pre` 指向新的根节点即可。
 
-对于拥有同样元素值集合的全体合法的二叉搜索树，可以证明，在任意两棵树之间均可通过若干右旋和左旋操作，完成从一棵树到另一棵树的变换。因此，借助右旋和左旋操作，可以将任意一棵合法的二叉搜索树调整至平衡状态。
+#### 四种平衡性破坏的情况
+
+虽然不同的二叉平衡树的定义有所区别，不同二叉平衡树区别只在于节点维护的信息不同，以及旋转调整后节点更新的信息不同。二叉平衡树平衡性被破坏的情况只有以下四种。进行平衡性调整的操作只包括左旋和右旋。以下先介绍四种情况，再对不同的二叉平衡树进行对比。
+
+LL 型：T 的左孩子的左子树过长导致平衡性破坏。
+
+调整方式：右旋节点 T。
+
+![bst-LL](images/bst-LL.svg)
+
+RR 型：与 LL 型类似，T 的右孩子的右子树过长导致平衡性破坏。
+
+调整方式：左旋节点 T。
+
+![bst-RR](images/bst-RR.svg)
+
+LR 型：T 的左孩子的右子树过长导致平衡性破坏。
+
+调整方式：先左旋节点 L，成为 LL 型，再右旋节点 T。
+
+![bst-LR](images/bst-LR.svg)
+
+RL 型：与 LR 型类似，T 的右孩子的左子树过长导致平衡性破坏。
+
+调整方式：先右旋节点 R，成为 RR 型，再左旋节点 T。
+
+![bst-RL](images/bst-RL.svg)

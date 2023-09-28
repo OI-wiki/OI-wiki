@@ -748,12 +748,12 @@ C/C++ 的指针是很灵活的东西，如果想要彻底理解指针，建议�
 
 ### 错误排查与技巧
 
--  [常见错误 - OI Wiki](../../intro/common-mistakes/) 
--  [常见技巧 - OI Wiki](../../intro/common-tricks/) 
+-  [常见错误 - OI Wiki](../../contest/common-mistakes/) 
+-  [常见技巧 - OI Wiki](../../contest/common-tricks/) 
 
 ### C++ 语言资料
 
--  [学习资源 - OI Wiki](../../intro/resources/) 
+-  [学习资源 - OI Wiki](../../contest/resources/) 
 -  [cppreference.com](https://zh.cppreference.com/) - 最重要的 C/C++ 参考资料
 -  [C++ 教程 - 菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html) 
 -  [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/) 
