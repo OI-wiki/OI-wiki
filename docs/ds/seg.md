@@ -536,7 +536,7 @@ void split(int &p, int &q, int s, int t, int l, int r) {
         -   $p$ 树中插入 $x$ 个 $q$：单点修改。
         -   查询 $[x,y]$ 中数的个数：区间求和。
         -   查询第 $k$ 小。
-
+    
     ??? "参考代码"
         ```cpp
         --8<-- "docs/ds/code/seg/seg_7.cpp"
