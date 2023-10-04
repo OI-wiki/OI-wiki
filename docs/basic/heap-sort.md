@@ -45,7 +45,6 @@ iRightChild(i) = 2 * i + 2;
 ## 实现
 
 === "C++"
-
     ```cpp
     void sift_down(int arr[], int start, int end) {
       // 计算父结点和子结点的下标
@@ -64,7 +63,7 @@ iRightChild(i) = 2 * i + 2;
         }
       }
     }
-
+    
     void heap_sort(int arr[], int len) {
       // 从最后一个节点的父节点开始 sift down 以完成堆化 (heapify)
       for (int i = (len - 1 - 1) / 2; i >= 0; i--) sift_down(arr, i, len - 1);
@@ -77,7 +76,6 @@ iRightChild(i) = 2 * i + 2;
     ```
 
 === "Python"
-
     ```python
     def sift_down(arr, start, end):
         # 计算父结点和子结点的下标
@@ -94,7 +92,7 @@ iRightChild(i) = 2 * i + 2;
                 arr[parent], arr[child] = arr[child], arr[parent]
                 parent = child
                 child = int(parent * 2 + 1)
-
+    
     def heap_sort(arr, len):
       # 从最后一个节点的父节点开始 sift down 以完成堆化 (heapify)
         i = (len - 1 - 1) / 2

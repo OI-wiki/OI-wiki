@@ -105,7 +105,7 @@ $$
 将一个数乘（除） 2 的非负整数次幂：
 
 === "C++"
-
+    
     ```cpp
     int mulPowerOfTwo(int n, int m) {  // 计算 n*(2^m)
       return n << m;
@@ -116,7 +116,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```python
     def mulPowerOfTwo(n, m): # 计算 n*(2^m)
         return n << m
@@ -132,7 +132,7 @@ $$
 在某些机器上，效率比 `n > 0 ? n : -n` 高。
 
 === "C++"
-
+    
     ```cpp
     int Abs(int n) {
       return (n ^ (n >> 31)) - (n >> 31);
@@ -144,7 +144,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```python
     def Abs(n):
         return (n ^ (n >> 31)) - (n >> 31)
@@ -154,7 +154,7 @@ $$
         需要计算 n 和 -1 的补码，然后进行异或运算，
         结果 n 变号并且为 n 的绝对值减 1，再减去 -1 就是绝对值
         """
-
+    
     ```
 
 ### 取两个数的最大/最小值
@@ -162,7 +162,7 @@ $$
 在某些机器上，效率比 `a > b ? a : b` 高。
 
 === "C++"
-
+    
     ```cpp
     // 如果 a >= b, (a - b) >> 31 为 0，否则为 -1
     int max(int a, int b) { return (b & ((a - b) >> 31)) | (a & (~(a - b) >> 31)); }
@@ -170,7 +170,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```python
     # 如果 a >= b, (a - b) >> 31 为 0，否则为 -1
     def max(a, b):
@@ -182,7 +182,7 @@ $$
 ### 判断两非零数符号是否相同
 
 === "C++"
-
+    
     ```cpp
     bool isSameSign(int x, int y) {  // 有 0 的情况例外
       return (x ^ y) >= 0;
@@ -190,7 +190,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```python
     # 有 0 的情况例外
     def isSameSign(x, y):
@@ -213,14 +213,14 @@ void swap(int &a, int &b) { a ^= b ^= a ^= b; }
 获取一个数二进制的某一位：
 
 === "C++"
-
+    
     ```cpp
     // 获取 a 的第 b 位，最低位编号为 0
     int getBit(int a, int b) { return (a >> b) & 1; }
     ```
 
 === "Python"
-
+    
     ```python
     # 获取 a 的第 b 位，最低位编号为 0
     def getBit(a, b):
@@ -230,14 +230,14 @@ void swap(int &a, int &b) { a ^= b ^= a ^= b; }
 将一个数二进制的某一位设置为 $0$：
 
 === "C++"
-
+    
     ```cpp
     // 将 a 的第 b 位设置为 0 ，最低位编号为 0
     int unsetBit(int a, int b) { return a & ~(1 << b); }
     ```
 
 === "Python"
-
+    
     ```python
     # 将 a 的第 b 位设置为 0 ，最低位编号为 0
     def unsetBit(a, b):
@@ -247,14 +247,14 @@ void swap(int &a, int &b) { a ^= b ^= a ^= b; }
 将一个数二进制的某一位设置为 $1$：
 
 === "C++"
-
+    
     ```cpp
     // 将 a 的第 b 位设置为 1 ，最低位编号为 0
     int setBit(int a, int b) { return a | (1 << b); }
     ```
 
 === "Python"
-
+    
     ```python
     # 将 a 的第 b 位设置为 1 ，最低位编号为 0
     def setBit(a, b):
@@ -264,14 +264,14 @@ void swap(int &a, int &b) { a ^= b ^= a ^= b; }
 将一个数二进制的某一位取反：
 
 === "C++"
-
+    
     ```cpp
     // 将 a 的第 b 位取反 ，最低位编号为 0
     int flapBit(int a, int b) { return a ^ (1 << b); }
     ```
 
 === "Python"
-
+    
     ```python
     # 将 a 的第 b 位取反 ，最低位编号为 0
     def flapBit(a, b):
