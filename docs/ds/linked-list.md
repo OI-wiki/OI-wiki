@@ -25,7 +25,7 @@
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```c++
         struct Node {
           int value;
@@ -34,7 +34,7 @@
         ```
     
     === "Python"
-    
+        
         ```python
         class Node:
             def __init__(self, value = None, next = None): 
@@ -50,7 +50,7 @@
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```c++
         struct Node {
           int value;
@@ -60,7 +60,7 @@
         ```
     
     === "Python"
-    
+        
         ```python
         class Node:
             def __init__(self, value = None, left = None, right = None): 
@@ -89,7 +89,7 @@
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```c++
         void insertNode(int i, Node *p) {
           Node *node = new Node;
@@ -100,7 +100,7 @@
         ```
     
     === "Python"
-    
+        
         ```python
         def insertNode(i, p):
             node = Node()
@@ -131,7 +131,7 @@
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```c++
         void insertNode(int i, Node *p) {
           Node *node = new Node;
@@ -148,7 +148,7 @@
         ```
     
     === "Python"
-    
+        
         ```python
         def insertNode(i, p):
             node = Node()
@@ -180,7 +180,7 @@
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```c++
         void insertNode(int i, Node *p) {
           Node *node = new Node;
@@ -199,7 +199,7 @@
         ```
     
     === "Python"
-    
+        
         ```python
         def insertNode(i, p):
             node = Node()
@@ -238,7 +238,7 @@
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```c++
         void deleteNode(Node *p) {
           p->value = p->next->value;
@@ -249,7 +249,7 @@
         ```
     
     === "Python"
-    
+        
         ```python
         def deleteNode(p):
             p.value = p.next.value
@@ -270,7 +270,7 @@
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```c++
         void deleteNode(Node *&p) {
           p->left->right = p->right;
@@ -282,7 +282,7 @@
         ```
     
     === "Python"
-    
+        
         ```python
         def deleteNode(p):
             p.left.right = p.right

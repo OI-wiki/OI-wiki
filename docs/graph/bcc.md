@@ -28,7 +28,7 @@ DFS 的代码如下：
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         void DFS(int p) {
           visited[p] = true;
@@ -38,7 +38,7 @@ DFS 的代码如下：
         ```
     
     === "Python"
-    
+        
         ```python
         def DFS(p):
             visited[p] = True

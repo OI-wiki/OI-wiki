@@ -47,7 +47,7 @@ author: Ir1d, Anguei, hsfzLZH1
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         bool Bellman_Ford() {
           for (int i = 0; i < n; i++) {
@@ -66,7 +66,7 @@ author: Ir1d, Anguei, hsfzLZH1
         ```
     
     === "Python"
-    
+        
         ```python
         def Bellman_Ford():
             for i in range(0, n):

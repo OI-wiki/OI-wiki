@@ -11,7 +11,7 @@
 最简单的算法即为从 $[2, \sqrt N]$ 进行遍历。
 
 === "C++"
-
+    
     ```cpp
     vector<int> breakdown(int N) {
       vector<int> result;
@@ -29,7 +29,7 @@
     ```
 
 === "Python"
-
+    
     ```python
     def breakdown(N):
         result = []
@@ -158,7 +158,7 @@ $$
 
 ??? note "基于 Floyd 判环的 Pollard-Rho 算法"
     === "C++"
-    
+        
         ```cpp
         ll Pollard_Rho(ll N) {
           ll c = rand() % (N - 1) + 1;
@@ -175,7 +175,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         import random
         def Pollard_Rho(N):
@@ -201,7 +201,7 @@ $$
 
 ??? note "实现"
     === "C++"
-    
+        
         ```cpp
         ll Pollard_Rho(ll x) {
           ll t = 0;
@@ -229,7 +229,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         from random import randint
         from math import gcd

@@ -73,11 +73,11 @@ $$
 
 ??? note "参考实现"
     === "C++"
-    
+        
         ```cpp
         const int maxn = 2000 + 5;
         int bell[maxn][maxn];
-    
+        
         void f(int n) {
           bell[0][0] = 1;
           for (int i = 1; i <= n; i++) {
@@ -89,7 +89,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         maxn = 2000 + 5
         bell = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)]

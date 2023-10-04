@@ -28,13 +28,13 @@
 
 ??? note "参考代码"
     === "C++"
-    
+        
         ```cpp
         --8<-- "docs/basic/code/simulate/simulate_1.cpp"
         ```
     
     === "Python"
-    
+        
         ```python
         --8<-- "docs/basic/code/simulate/simulate_1.py"
         ```

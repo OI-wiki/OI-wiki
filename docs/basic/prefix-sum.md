@@ -29,13 +29,13 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 ??? note "参考代码"
     === "C++"
-    
+        
         ```cpp
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.cpp"
         ```
     
     === "Python"
-    
+        
         ```python
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.py"
         ```
@@ -77,13 +77,13 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 ??? note "参考代码"
     === "C++"
-    
+        
         ```cpp
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_2.cpp"
         ```
     
     === "Python"
-    
+        
         ```python
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_2.py"
         ```

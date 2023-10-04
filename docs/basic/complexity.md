@@ -86,7 +86,7 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 ### `for` 循环
 
 === "C++"
-
+    
     ```cpp
     int n, m;
     std::cin >> n >> m;
@@ -100,7 +100,7 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
     ```
 
 === "Python"
-
+    
     ```python
     n = int(input())
     m = int(input())
@@ -121,7 +121,7 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 当我们要进行若干次操作时，如何判断这若干次操作是否影响时间复杂度呢？例如：
 
 === "C++"
-
+    
     ```cpp
     const int N = 100000;
     for (int i = 0; i < N; ++i) {
@@ -130,7 +130,7 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
     ```
 
 === "Python"
-
+    
     ```python
     N = 100000
     for i in range(0, N):

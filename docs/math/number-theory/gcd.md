@@ -41,27 +41,27 @@
 #### 实现
 
 === "C++"
-
+    
     ```cpp
     // Version 1
     int gcd(int a, int b) {
       if (b == 0) return a;
       return gcd(b, a % b);
     }
-
+    
     // Version 2
     int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
     ```
 
 === "Java"
-
+    
     ```java
     // Version 1
     public int gcd(int a, int b) {
         if (b == 0) return a;
         return gcd(b, a % b);
     }
-
+    
     // Version 2
     public int gcd(int a, int b) {
         return b == 0 ? a : gcd(b, a % b);
@@ -69,7 +69,7 @@
     ```
 
 === "Python"
-
+    
     ```python
     def gcd(a, b):
         if b == 0:
@@ -82,7 +82,7 @@
 根据上述递归求法，我们也可以写出一个迭代求法：
 
 === "C++"
-
+    
     ```cpp
     int gcd(int a, int b) {
       while (b != 0) {
@@ -95,7 +95,7 @@
     ```
 
 === "Java"
-
+    
     ```java
     public int gcd(int a, int b) {
         while(b != 0) {
@@ -108,7 +108,7 @@
     ```
 
 === "Python"
-
+    
     ```python
     def gcd(a, b):
         while b != 0:
@@ -269,7 +269,7 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
 ### 实现
 
 === "C++"
-
+    
     ```cpp
     int Exgcd(int a, int b, int &x, int &y) {
       if (!b) {
@@ -286,7 +286,7 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
     ```
 
 === "Python"
-
+    
     ```python
     def Exgcd(a, b):
         if b == 0:

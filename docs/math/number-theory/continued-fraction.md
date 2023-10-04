@@ -184,7 +184,7 @@ $$
 由此，$\frac{p_k}{q_k} = [a_0; a_1, \dots, a_k]$ 的 $\gcd(p_k, q_k) = 1$。因此，渐进分数总是不可约的。
 
 === "C++"
-
+    
     ```cpp
     auto fraction(int p, int q) {
         vector<int> a;
@@ -197,7 +197,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```py
     def fraction(p, q):
         a = []
@@ -449,7 +449,7 @@ $$
 把渐进分数计算为一对序列 $p_{-2}, p_{-1}, p_0, p_1, \dots, p_k$ 和 $q_{-2}, q_{-1}, q_0, q_1, \dots, q_k$：
 
 === "C++"
-
+    
     ```cpp
     auto convergents(vector<int> a) {
         vector<int> p = {0, 1};
@@ -463,7 +463,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```py
     def convergents(a):
         p = [0, 1]
@@ -623,7 +623,7 @@ $$
     
     其中 $g = \gcd(A, B)$。如果 $C$ 可被 $g$ 整除，则解为 $x = (-1)^{k-1}\frac{C}{g} q_{k-1}$ 和 $y = (-1)^{k}\frac{C}{g} p_{k-1}$。
     === "Python"
-    
+        
         ```py
         # return (x, y) such that Ax+By=C
         # assumes that such (x, y) exists
@@ -771,7 +771,7 @@ $$
     
     现在，可以将 $(\Delta x; \Delta y)$ 添加到 $(x;y)$ 中 $k = \lfloor \frac{N-x}{\Delta x} \rfloor$ 次，然后再超过 $N$，之后将尝试下一个中间分数。
     === "C++"
-    
+        
         ```cpp
         // returns [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute upper convex hull
         // of lattice points on 0 <= x <= N and 0 <= y <= r * x, where r = [a0; a1, a2, ...]
@@ -801,7 +801,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```py
         # returns [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute upper convex hull
         # of lattice points on 0 <= x <= N and 0 <= y <= r * x, where r = [a0; a1, a2, ...]
@@ -838,7 +838,7 @@ $$
     
     这个问题的核心解决方案思想基本上重复了前面的问题，但不是使用下中间分数来偏离直线，而是使用上中间分数来接近直线，而不跨越直线，也不违反 $x \leq N$。不幸的是，与前一个问题不同，您需要确保在靠近 $y=\frac{Ax+B}{C}$ 线时不会越过该线，因此在计算中间分数的系数 $t$ 时应牢记这一点。
     === "Python"
-    
+        
         ```py
         # (x, y) such that y = (A*x+B) // C,
         # Cy - Ax is max and 0 <= x <= N.
@@ -879,7 +879,7 @@ $$
     
     在构造了 $y=\mathrm{e}x$ 以下的点的凸包之后，可以使用 Pick 定理计算这个数：
     === "C++"
-    
+        
         ```cpp
         // sum floor(k * x) for k in [1, N] and x = [a0; a1, a2, ...]
         int sum_floor(auto a, int N) {
@@ -904,7 +904,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```py
         # sum floor(k * x) for k in [1, N] and x = [a0; a1, a2, ...]
         def sum_floor(a, N):
@@ -938,7 +938,7 @@ $$
     
     然而，将 $x$ 从 $1$ 到 $N$ 的 $\lfloor rx \rfloor$ 相加，是我们能够从上一个问题中得出的结果。
     === "C++"
-    
+        
         ```cpp
         void solve(int p, int q, int N) {
             cout << p * N * (N + 1) / 2 - q * sum_floor(fraction(p, q), N) << "\n";
@@ -946,7 +946,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```py
         def solve(p, q, N):
             return p * N * (N + 1) // 2 - q * sum_floor(fraction(p, q), N)
@@ -967,7 +967,7 @@ $$
     
     也就是说，要在 $[0, N-1]$ 上的线 $y=\frac{Ax+B}{M}$ 下方构造全凸包，可以将其构造到与 $[0, N-1]$ 的线最近的点，然后继续，就像该线通过该点一样，重用用于构造 $B=0$ 的凸包的算法：
     === "Python"
-    
+        
         ```py
         # hull of lattice (x, y) such that C*y <= A*x+B
         def hull(A, B, C, N):
@@ -1032,7 +1032,7 @@ $$
     
     就连分数而言，这意味着 $\frac{k}{q}$ 是 $\frac{r}{m}$ 的最佳丢番图近似值，并且仅检查 $\frac{r}{m}$ 的下中间分数就足够了。
     === "Python"
-    
+        
         ```py
         # find Q that minimizes Q*r mod m for 1 <= k <= n < m 
         def mod_min(r, n, m):

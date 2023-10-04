@@ -42,7 +42,7 @@ $$
 还有一点需要注意的是，很容易写出这样的 **错误核心代码**：
 
 === "C++"
-
+    
     ```cpp
     for (int i = 1; i <= n; i++)
       for (int l = 0; l <= W - w[i]; l++)
@@ -52,7 +52,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```python
     for i in range(1, n + 1):
         for l in range(0, W - w[i] + 1):
@@ -70,7 +70,7 @@ $$
 因此实际核心代码为
 
 === "C++"
-
+    
     ```cpp
     for (int i = 1; i <= n; i++)
       for (int l = W; l >= w[i]; l--)
@@ -78,7 +78,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```python
     for i in range(1, n + 1):
         for l in range(W, w[i] - 1, -1):
@@ -171,7 +171,7 @@ $$
 
 ??? 二进制分组代码
     === "C++"
-    
+        
         ```cpp
         index = 0;
         for (int i = 1; i <= m; i++) {
@@ -189,7 +189,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         index = 0
         for i in range(1, m + 1):
@@ -248,7 +248,7 @@ for (循环物品种类) {
 ### 实现
 
 === "C++"
-
+    
     ```cpp
     for (int k = 1; k <= n; k++)
       for (int i = m; i >= mi; i--)    // 对经费进行一层枚举
@@ -257,7 +257,7 @@ for (循环物品种类) {
     ```
 
 === "Python"
-
+    
     ```python
     for k in range(1, n + 1):
         for i in range(m, mi - 1, -1): # 对经费进行一层枚举
@@ -277,7 +277,7 @@ for (循环物品种类) {
 ### 实现
 
 === "C++"
-
+    
     ```cpp
     for (int k = 1; k <= ts; k++)           // 循环每一组
       for (int i = m; i >= 0; i--) // 循环背包容量
@@ -287,7 +287,7 @@ for (循环物品种类) {
     ```
 
 === "Python"
-
+    
     ```python
     for k in range(1, ts + 1): # 循环每一组
         for i in range(m, -1, -1): # 循环背包容量

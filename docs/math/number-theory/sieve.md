@@ -19,7 +19,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 #### 实现
 
 === "C++"
-
+    
     ```cpp
     bool is_prime[N];
     int Eratosthenes(int n) {
@@ -41,7 +41,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
     ```
 
 === "Python"
-
+    
     ```python
     def Eratosthenes(n):
         p = 0
@@ -99,7 +99,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 显然，要找到直到 $n$ 为止的所有素数，仅对不超过 $\sqrt n$ 的素数进行筛选就足够了。
 
 === "C++"
-
+    
     ```cpp
     bool is_prime[N];
     int Eratosthenes(int n) {
@@ -119,7 +119,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
     ```
 
 === "Python"
-
+    
     ```python
         def Eratosthenes(n):
         p = 0
@@ -212,7 +212,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         void init(int n) {
           for (int i = 2; i <= n; ++i) {
@@ -236,7 +236,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
         ```
     
     === "Python"
-    
+        
         ```python
         def init(n):
             for i in range(2, n + 1):
@@ -291,7 +291,7 @@ $$
 ### 实现
 
 === "C++"
-
+    
     ```cpp
     void pre() {
       for (int i = 1; i <= 5000000; i++) {
@@ -319,7 +319,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```python
     def pre():
         cnt = 0
@@ -360,7 +360,7 @@ $$
 ### 实现
 
 === "C++"
-
+    
     ```cpp
     void pre() {
       mu[1] = 1;
@@ -380,7 +380,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```python
     def pre():
         mu[1] = 1
@@ -421,7 +421,7 @@ $$
 3.  当 $p,q$ 互质时，$\textit{num}_i \gets 1,\textit{d}_i \gets \textit{d}_q \times (\textit{num}_i+1)$。
 
 === "C++"
-
+    
     ```cpp
     void pre() {
       d[1] = 1;
@@ -443,7 +443,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```python
     def pre():
         d[1] = 1
@@ -470,7 +470,7 @@ $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+
 ### 实现
 
 === "C++"
-
+    
     ```cpp
     void pre() {
       g[1] = f[1] = 1;
@@ -492,7 +492,7 @@ $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+
     ```
 
 === "Python"
-
+    
     ```python
     def pre():
         g[1] = f[1] = 1

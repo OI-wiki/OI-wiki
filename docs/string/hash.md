@@ -54,15 +54,15 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
 参考代码：（效率低下的版本，实际使用时一般不会这么写）
 
 === "C++"
-
+    
     ```cpp
     using std::string;
-
+    
     const int M = 1e9 + 7;
     const int B = 233;
-
+    
     typedef long long ll;
-
+    
     int get_hash(const string& s) {
       int res = 0;
       for (int i = 0; i < s.size(); ++i) {
@@ -70,24 +70,24 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
       }
       return res;
     }
-
+    
     bool cmp(const string& s, const string& t) {
       return get_hash(s) == get_hash(t);
     }
     ```
 
 === "Python"
-
+    
     ```python
     M = int(1e9 + 7)
     B = 233
-
+    
     def get_hash(s):
         res = 0
         for char in s:
             res = (res * B + ord(char)) % M
         return res
-
+    
     def cmp(s, t):
         return get_hash(s) == get_hash(t)
     ```

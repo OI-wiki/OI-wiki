@@ -40,7 +40,7 @@ $$
 $$
 
 === "C++"
-
+    
     ```cpp 
     void insertion_sort(int arr[], int len) {
         for (int i = 1; i < len; ++i) {
@@ -56,7 +56,7 @@ $$
     ```
 
 === "Python"
-
+    
     ```python
     def insertion_sort(arr, n):
         for i in range(1, n):
@@ -79,7 +79,7 @@ $$
 ### 代码实现
 
 === "C++"
-
+    
     ```cpp
     void insertion_sort(int arr[], int len) {
         if (len < 2) return;

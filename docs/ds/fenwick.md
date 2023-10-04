@@ -115,7 +115,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         int lowbit(int x) {
           // x 的二进制中，最低位的 1 以及后面所有 0 组成的数。
@@ -128,7 +128,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
         ```
     
     === "Python"
-    
+        
         ```python
         def lowbit(x):
             """
@@ -171,7 +171,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         int getsum(int x) {  // a[1]..a[x]的和
           int ans = 0;
@@ -184,7 +184,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
         ```
     
     === "Python"
-    
+        
         ```python
         def getsum(x): # a[1]..a[x]的和
             ans = 0
@@ -332,7 +332,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         void add(int x, int k) {
           while (x <= n) {  // 不能越界
@@ -343,7 +343,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
         ```
     
     === "Python"
-    
+        
         ```python
         def add(x, k):
             while x <= n: # 不能越界
@@ -413,12 +413,12 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         int t1[MAXN], t2[MAXN], n;
-    
+        
         int lowbit(int x) { return x & (-x); }
-    
+        
         void add(int k, int v) {
           int v1 = k * v;
           while (k <= n) {
@@ -427,7 +427,7 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
             k += lowbit(k);
           }
         }
-    
+        
         int getsum(int *t, int k) {
           int ret = 0;
           while (k) {
@@ -436,11 +436,11 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
           }
           return ret;
         }
-    
+        
         void add1(int l, int r, int v) {
           add(l, v), add(r + 1, -v);  // 将区间加差分为两个前缀加
         }
-    
+        
         long long getsum1(int l, int r) {
           return (r + 1ll) * getsum(t1, r) - 1ll * l * getsum(t1, l - 1) -
                 (getsum(t2, r) - getsum(t2, l - 1));
@@ -448,30 +448,30 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
         ```
     
     === "Python"
-    
+        
         ```python
         t1 = [0] * MAXN, t2 = [0] * MAXN; n = 0
-    
+        
         def lowbit(x):
             return x & (-x)
-    
+        
         def add(k, v):
             v1 = k * v
             while k <= n:
                 t1[k] = t1[k] + v; t2[k] = t2[k] + v1
                 k = k + lowbit(k)
-    
+        
         def getsum(t, k):
             ret = 0
             while k:
                 ret = ret + t[k]
                 k = k - lowbit(k)
             return ret
-    
+        
         def add1(l, r, v):
             add(l, v)
             add(r + 1, -v)
-    
+        
         def getsum1(l, r):
             return (r) * getsum(t1, r) - l * getsum(t1, l - 1) - \
                   (getsum(t2, r) - getsum(t2, l - 1))
@@ -531,7 +531,7 @@ $$
 
 ???+ note "实现"
     === "单点加"
-    
+        
         ```cpp
         void add(int x, int y, int v) {
             for (int i = x; i <= n ;i += lowbit(i)) {
@@ -544,7 +544,7 @@ $$
         ```
     
     === "查询子矩阵和"
-    
+        
         ```cpp
         int sum(int x, int y) {
           int res = 0;
@@ -555,7 +555,7 @@ $$
           }
           return res;
         }
-    
+        
         int ask(int x1, int y1, int x2, int y2) {
             // 查询子矩阵和
             return sum(x2, y2) - sum(x2, y1 - 1) - sum(x1 - 1, y2) + sum(x1 - 1, y1 - 1);
@@ -718,7 +718,7 @@ $$
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         // 权值树状数组查询第 k 小
         int kth(int k) {
@@ -735,7 +735,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         # 权值树状数组查询第 k 小
         def kth(k):
@@ -895,7 +895,7 @@ $i$ 按照 $5 \to 1$ 扫：
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         // Θ(n) 建树
         void init() {
@@ -908,7 +908,7 @@ $i$ 按照 $5 \to 1$ 扫：
         ```
     
     === "Python"
-    
+        
         ```python
         # Θ(n) 建树
         def init():
@@ -925,7 +925,7 @@ $i$ 按照 $5 \to 1$ 扫：
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         // Θ(n) 建树
         void init() {
@@ -936,7 +936,7 @@ $i$ 按照 $5 \to 1$ 扫：
         ```
     
     === "Python"
-    
+        
         ```python
         # Θ(n) 建树
         def init():
@@ -950,7 +950,7 @@ $i$ 按照 $5 \to 1$ 扫：
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         // 时间戳优化
         int tag[MAXN], t[MAXN], Tag;
@@ -964,7 +964,7 @@ $i$ 按照 $5 \to 1$ 扫：
             k += lowbit(k);
           }
         }
-    
+        
         int getsum(int k) {
           int ret = 0;
           while (k) {
@@ -976,7 +976,7 @@ $i$ 按照 $5 \to 1$ 扫：
         ```
     
     === "Python"
-    
+        
         ```python
         # 时间戳优化
         tag = [0] * MAXN; t = [0] * MAXN; Tag = 0

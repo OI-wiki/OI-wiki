@@ -21,7 +21,7 @@
 ### 实现
 
 === "C++"
-
+    
     ```cpp
     /*
     * s：待匹配的主串
@@ -43,12 +43,12 @@
     ```
 
 === "Python"
-
+    
     ```python
     def match(s, t, n, m):
         if m < 1:
             return []
-
+    
         ans = []
         for i in range(0, n - m + 1):
             for j in range(0, m):

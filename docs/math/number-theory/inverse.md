@@ -10,7 +10,7 @@
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         void exgcd(int a, int b, int& x, int& y) {
           if (b == 0) {
@@ -23,7 +23,7 @@
         ```
     
     === "Python"
-    
+        
         ```python
         def exgcd(a, b):
             if b == 0:
@@ -52,7 +52,7 @@
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         int qpow(long long a, int b) {
           int ans = 1;
@@ -66,7 +66,7 @@
         ```
     
     === "Python"
-    
+        
         ```python
         def qpow(a, b):
           ans = 1
@@ -117,7 +117,7 @@ $$
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         inv[1] = 1;
         for (int i = 2; i <= n; ++i) {
@@ -126,7 +126,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         inv[1] = 1
         for i in range(2, n + 1):
@@ -159,7 +159,7 @@ $$
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         s[0] = 1;
         for (int i = 1; i <= n; ++i) s[i] = s[i - 1] * a[i] % p;
@@ -170,7 +170,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         s[0] = 1
         for i in range(1, n + 1):

@@ -41,17 +41,17 @@
 ## 实现
 
 === "C++"
-
+    
     ```cpp
     int n, a[maxn], tmp[maxn << 1];
-
+    
     int winner(int pos1, int pos2) {
       int u = pos1 >= n ? pos1 : tmp[pos1];
       int v = pos2 >= n ? pos2 : tmp[pos2];
       if (tmp[u] <= tmp[v]) return u;
       return v;
     }
-
+    
     void creat_tree(int &value) {
       for (int i = 0; i < n; i++) tmp[n + i] = a[i];
       for (int i = 2 * n - 1; i > 1; i -= 2) {
@@ -62,7 +62,7 @@
       value = tmp[tmp[1]];
       tmp[tmp[1]] = INF;
     }
-
+    
     void recreat(int &value) {
       int i = tmp[1];
       while (i > 1) {
@@ -77,7 +77,7 @@
       value = tmp[tmp[1]];
       tmp[tmp[1]] = INF;
     }
-
+    
     void tournament_sort() {
       int value;
       creat_tree(value);
@@ -89,19 +89,19 @@
     ```
 
 === "Python"
-
+    
     ```python
     n = 0
     a = [0] * maxn
     tmp = [0] * maxn * 2
-
+    
     def winner(pos1, pos2):
         u = pos1 if pos1 >= n else tmp[pos1]
         v = pos2 if pos2 >= n else tmp[pos2]
         if tmp[u] <= tmp[v]:
             return u
         return v
-
+    
     def creat_tree(value):
         for i in range(0, n):
             tmp[n + 1] = a[i]
@@ -111,7 +111,7 @@
             tmp[k] = winner(i, j)
         value = tmp[tmp[i]]
         tmp[tmp[i]] = INF
-
+    
     def recreat(value):
         i = tmp[1]
         while i > 1:
@@ -124,7 +124,7 @@
             i = k
         value = tmp[tmp[1]]
         tmp[tmp[1]] = INF
-
+    
     def tournament_sort():
         value = 0
         creat_tree(value)

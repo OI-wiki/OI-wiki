@@ -80,7 +80,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         void build() {
           for (int i = 0; i < 26; i++)
@@ -99,7 +99,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
         ```
     
     === "Python"
-    
+        
         ```python
         def build():
             for i in range(0, 26):
@@ -163,7 +163,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
 ### 实现
 
 === "C++"
-
+    
     ```cpp
     int query(char *t) {
       int u = 0, res = 0;
@@ -178,7 +178,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
     ```
 
 === "Python"
-
+    
     ```python
     def query(t):
         u, res = 0, 0

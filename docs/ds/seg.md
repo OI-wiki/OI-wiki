@@ -31,7 +31,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 此处给出代码实现，可参考注释理解：
 
 === "C++"
-
+    
     ```cpp
     void build(int s, int t, int p) {
       // 对 [s,t] 区间建立线段树,当前根的编号为 p
@@ -49,7 +49,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
     ```
 
 === "Python"
-
+    
     ```python
     def build(s, t, p):
         # 对 [s,t] 区间建立线段树,当前根的编号为 p
@@ -87,7 +87,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 此处给出代码实现，可参考注释理解：
 
 === "C++"
-
+    
     ```cpp
     int getsum(int l, int r, int s, int t, int p) {
       // [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
@@ -103,7 +103,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
     ```
 
 === "Python"
-
+    
     ```python
     def getsum(l, r, s, t, p):
         # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
@@ -156,7 +156,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 区间修改（区间加上某个值）：
 
 === "C++"
-
+    
     ```cpp
     void update(int l, int r, int c, int s, int t, int p) {
       // [l, r] 为修改区间, c 为被修改的元素的变化量, [s, t] 为当前节点包含的区间, p
@@ -179,7 +179,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
     ```
 
 === "Python"
-
+    
     ```python
     def update(l, r, c, s, t, p):
         # [l, r] 为修改区间, c 为被修改的元素的变化量, [s, t] 为当前节点包含的区间, p
@@ -209,7 +209,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 区间查询（区间求和）：
 
 === "C++"
-
+    
     ```cpp
     int getsum(int l, int r, int s, int t, int p) {
       // [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
@@ -230,7 +230,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
     ```
 
 === "Python"
-
+    
     ```python
     def getsum(l, r, s, t, p):
         # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p为当前节点的编号
@@ -258,7 +258,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 如果你是要实现区间修改为某一个值而不是加上某一个值的话，代码如下：
 
 === "C++"
-
+    
     ```cpp
     void update(int l, int r, int c, int s, int t, int p) {
       if (l <= s && t <= r) {
@@ -277,7 +277,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
       if (r > m) update(l, r, c, m + 1, t, p * 2 + 1);
       d[p] = d[p * 2] + d[p * 2 + 1];
     }
-
+    
     int getsum(int l, int r, int s, int t, int p) {
       if (l <= s && t <= r) return d[p];
       int m = s + ((t - s) >> 1);
@@ -295,7 +295,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
     ```
 
 === "Python"
-
+    
     ```python
     def update(l, r, c, s, t, p):
         if l <= s and t <= r:
@@ -314,7 +314,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
         if r > m:
             update(l, r, c, m + 1, t, p * 2 + 1)
         d[p] = d[p * 2] + d[p * 2 + 1]
-
+    
     def getsum(l, r, s, t, p):
         if l <= s and t <= r:
             return d[p]

@@ -23,11 +23,11 @@ Prüfer 是这样建立的：每次选择一个编号最小的叶结点并删掉
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         // 代码摘自原文，结点是从 0 标号的
         vector<vector<int>> adj;
-    
+        
         vector<int> pruefer_code() {
           int n = adj.size();
           set<int> leafs;
@@ -37,7 +37,7 @@ Prüfer 是这样建立的：每次选择一个编号最小的叶结点并删掉
             degree[i] = adj[i].size();
             if (degree[i] == 1) leafs.insert(i);
           }
-    
+        
           vector<int> code(n - 2);
           for (int i = 0; i < n - 2; i++) {
             int leaf = *leafs.begin();
@@ -54,11 +54,11 @@ Prüfer 是这样建立的：每次选择一个编号最小的叶结点并删掉
         ```
     
     === "Python"
-    
+        
         ```python
         # 结点是从 0 标号的
         adj = [[]]
-    
+        
         def pruefer_code():
             n = len(adj)
             leafs = set()
@@ -115,30 +115,30 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
 #### 实现
 
 === "C++"
-
+    
     ```cpp
     // 从原文摘的代码，同样以 0 为起点
     vector<vector<int>> adj;
     vector<int> parent;
-
+    
     void dfs(int v) {
       for (int u : adj[v]) {
         if (u != parent[v]) parent[u] = v, dfs(u);
       }
     }
-
+    
     vector<int> pruefer_code() {
       int n = adj.size();
       parent.resize(n), parent[n - 1] = -1;
       dfs(n - 1);
-
+    
       int ptr = -1;
       vector<int> degree(n);
       for (int i = 0; i < n; i++) {
         degree[i] = adj[i].size();
         if (degree[i] == 1 && ptr == -1) ptr = i;
       }
-
+    
       vector<int> code(n - 2);
       int leaf = ptr;
       for (int i = 0; i < n - 2; i++) {
@@ -157,23 +157,23 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
     ```
 
 === "Python"
-
+    
     ```python
     # 同样以 0 为起点
     adj = [[]]
     parent = [0] * n
-
+    
     def dfs()v:
         for u in adj[v]:
             if u != parent[v]:
                 parent[u] = v
                 dfs(u)
-
+    
     def pruefer_code():
         n = len(adj)
         parent[n - 1] = -1
         dfs(n - 1)
-
+    
         ptr = -1
         degree = [0] * n
         for i in range(0, n):

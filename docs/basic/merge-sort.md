@@ -21,7 +21,7 @@
 #### 实现
 
 === "C/C++"
-
+    
     === "数组实现"
         
         ```cpp
@@ -61,11 +61,11 @@
           for (; bBegin != bEnd; ++bBegin, ++c) *c = *bBegin;
         }
         ```
-
+    
     也可使用 `<algorithm>` 库的 `merge` 函数，用法与上述指针式写法的相同。
 
 === "Python"
-
+    
     ```python
     def merge(a, b):
         i, j = 0, 0
@@ -99,7 +99,7 @@
 注意下面的代码所表示的区间分别是 $[l, r)$，$[l, mid)$，$[mid, r)$。
 
 === "C/C++"
-
+    
     ```cpp
     void merge_sort(int *a, int l, int r) {
       if (r - l <= 1) return;
@@ -115,7 +115,7 @@
     ```
 
 === "Python"
-
+    
     ```python
     def merge_sort(a, ll, rr):
         if rr - ll <= 1:
@@ -150,7 +150,7 @@
 #### 实现
 
 === "C/C++"
-
+    
     ```cpp
     void merge_sort(int *a, size_t n) {
       int tmp[1024] = {};  // 请结合实际情况设置 tmp 数组的长度（与 a 相同），或使用
@@ -170,7 +170,7 @@
     ```
 
 === "Python"
-
+    
     ```python
     def merge_sort(a):
         seg = 1

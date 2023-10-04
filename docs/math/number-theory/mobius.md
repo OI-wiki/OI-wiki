@@ -69,7 +69,7 @@ $$
 
 ???+ note "线性筛实现"
     === "C++"
-    
+        
         ```cpp
         void getMu() {
           mu[1] = 1;
@@ -88,7 +88,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         def getMu():
         mu[1] = 1

@@ -145,7 +145,7 @@ $$
 
 ???+ note "核心代码"
     === "C++"
-    
+        
         ```cpp
         for (int len = 2; len <= n; ++len)  // 枚举区间长度
         for (int l = 1, r = len; r <= n; ++l, ++r) {
@@ -160,7 +160,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         for len in range(2, n + 1): # 枚举区间长度
             r = len
@@ -263,7 +263,7 @@ $$
 
 ???+ note "代码实现"
     === "C++"
-    
+        
         ```cpp
         void DP(int l, int r, int k_l, int k_r) {
           int mid = (l + r) / 2, k = k_l;
@@ -278,7 +278,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         def DP(l, r, k_l, k_r):
             mid = int((l + r) / 2)

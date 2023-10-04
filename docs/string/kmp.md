@@ -60,7 +60,7 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
     具体实现如下：
     
     === "C++"
-    
+        
         ```cpp
         vector<int> prefix_function(string s) {
           int n = (int)s.length();
@@ -76,7 +76,7 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
         ```
     
     === "Python"
-    
+        
         ```python
         def prefix_function(s):
             n = len(s)
@@ -113,7 +113,7 @@ $$
     此时的改进的算法为：
     
     === "C++"
-    
+        
         ```cpp
         vector<int> prefix_function(string s) {
           int n = (int)s.length();
@@ -129,7 +129,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         def prefix_function(s):
             n = len(s)
@@ -180,7 +180,7 @@ $$
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         vector<int> prefix_function(string s) {
           int n = (int)s.length();
@@ -196,7 +196,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         def prefix_function(s):
             n = len(s)
@@ -237,7 +237,7 @@ $$
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         vector<int> find_occurrences(string text, string pattern) {
           string cur = pattern + '#' + text;
@@ -253,7 +253,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         def find_occurrences(t, s):
             cur = s + '#' + t
@@ -286,7 +286,7 @@ $$
 
 ???+ note "实现"
     === "C++"
-    
+        
         ```cpp
         vector<int> ans(n + 1);
         for (int i = 0; i < n; i++) ans[pi[i]]++;
@@ -295,7 +295,7 @@ $$
         ```
     
     === "Python"
-    
+        
         ```python
         ans = [0] * (n + 1)
         for i in range(0, n):

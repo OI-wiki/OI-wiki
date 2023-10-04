@@ -44,7 +44,7 @@
 ## 实现
 
 === "C++"
-
+    
     ```cpp
     for (len = 1; len <= n; len++)
       for (i = 1; i <= 2 * n - 1; i++) {
@@ -55,7 +55,7 @@
     ```
 
 === "Python"
-
+    
     ```python
     for len in range(1, n + 1):
         for i in range(1, 2 * n):

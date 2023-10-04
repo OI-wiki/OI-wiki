@@ -115,28 +115,28 @@ $$
     求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值，$1\leq n<2^{31}$.
 
 === "莫比乌斯函数前缀和"
-
+    
     我们知道：
-
+    
     $$
     \epsilon = [n=1] = \mu * 1 = \sum_{d \mid n} \mu(d)
     $$
-
+    
     $$
     \begin{aligned}
         S_1(n) & =\sum_{i=1}^n \epsilon (i)-\sum_{i=2}^n S_1 \left(\left\lfloor \frac n i \right\rfloor\right) \\
                & = 1-\sum_{i=2}^n S_1\left(\left\lfloor \frac n i \right\rfloor\right)
     \end{aligned}
     $$
-
+    
     时间复杂度的推导见 [时间复杂度](#时间复杂度) 一节。
-
+    
     对于较大的值，需要用 `map` / `unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
 
 === "欧拉函数前缀和"
-
+    
     当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演。
-
+    
     === "莫比乌斯反演"
         
         $$
