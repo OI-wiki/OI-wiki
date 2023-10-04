@@ -40,23 +40,21 @@ $$
 $$
 
 === "C++"
-    
-    ```cpp 
+    ```cpp
     void insertion_sort(int arr[], int len) {
-        for (int i = 1; i < len; ++i) {
-            int key = arr[i];
-            int j = i - 1;
-            while (j >= 0 && arr[j] > key) {
-                arr[j + 1] = arr[j];
-                j--;
-            }
-            arr[j + 1] = key;
+      for (int i = 1; i < len; ++i) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+          arr[j + 1] = arr[j];
+          j--;
         }
+        arr[j + 1] = key;
+      }
     }
     ```
 
 === "Python"
-    
     ```python
     def insertion_sort(arr, n):
         for i in range(1, n):
@@ -79,16 +77,15 @@ $$
 ### 代码实现
 
 === "C++"
-    
     ```cpp
     void insertion_sort(int arr[], int len) {
-        if (len < 2) return;
-        for (int i = 1; i != len; ++i) {
-            int key = arr[i];
-            auto index = upper_bound(arr, arr + i, key) - arr;
-            // 使用 memmove 移动元素，比使用 for 循环速度更快，时间复杂度仍为 O(n)
-            memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
-            arr[index] = key;
-        }
+      if (len < 2) return;
+      for (int i = 1; i != len; ++i) {
+        int key = arr[i];
+        auto index = upper_bound(arr, arr + i, key) - arr;
+        // 使用 memmove 移动元素，比使用 for 循环速度更快，时间复杂度仍为 O(n)
+        memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
+        arr[index] = key;
+      }
     }
     ```

@@ -47,7 +47,6 @@ $$
     题目大意：入栈顺序为 $1,2,\ldots ,n$，求所有可能的出栈顺序的总数。
 
 === "C++"
-    
     ```cpp
     #include <iostream>
     using namespace std;
@@ -65,7 +64,6 @@ $$
     ```
 
 === "Python"
-    
     ```python
     f = [0] * 25
     f[0] = 1

@@ -22,7 +22,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         struct dsu {
           vector<size_t> pa;
@@ -32,7 +31,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         ```
     
     === "Python"
-        
         ```python
         class Dsu:
             def __init__(self, size):
@@ -47,13 +45,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         size_t dsu::find(size_t x) { return pa[x] == x ? x : find(pa[x]); }
         ```
     
     === "Python"
-        
         ```python
         def find(self, x):
             return x if self.pa[x] == x else self.find(self.pa[x])
@@ -67,13 +63,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         size_t dsu::find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
         ```
     
     === "Python"
-        
         ```python
         def find(self, x):
             if self.pa[x] != x:
@@ -89,13 +83,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         void dsu::unite(size_t x, size_t y) { pa[find(x)] = find(y); }
         ```
     
     === "Python"
-        
         ```python
         def union(self, x, y):
             self.pa[self.find(x)] = self.find(y)
@@ -118,7 +110,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         struct dsu {
           vector<size_t> pa, size;
@@ -138,7 +129,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         ```
     
     === "Python"
-        
         ```python
         class Dsu:
             def __init__(self, size):
@@ -161,7 +151,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         struct dsu {
           vector<size_t> pa, size;
@@ -179,7 +168,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         ```
     
     === "Python"
-        
         ```python
         class Dsu:
             def __init__(self, size):
@@ -197,7 +185,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         void dsu::move(size_t x, size_t y) {
           auto fx = find(x), fy = find(y);
@@ -208,7 +195,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         ```
     
     === "Python"
-        
         ```python
         def move(self, x, y):
             fx, fy = self.find(x), self.find(y)
@@ -252,13 +238,11 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
     
     ??? note "参考代码"
         === "C++"
-            
             ```cpp
             --8<-- "docs/ds/code/dsu/dsu_1.cpp"
             ```
         
         === "Python"
-            
             ```python
             --8<-- "docs/ds/code/dsu/dsu_1.py"
             ```

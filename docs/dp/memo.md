@@ -17,7 +17,6 @@
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         int n, t;
         int tcost[103], mget[103];
@@ -43,7 +42,6 @@
         ```
     
     === "Python"
-        
         ```python
         tcost = [0] * 103
         mget = [0] * 103
@@ -78,7 +76,6 @@
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         int n, t;
         int tcost[103], mget[103];
@@ -105,7 +102,6 @@
         ```
     
     === "Python"
-        
         ```python
         tcost = [0] * 103
         mget = [0] * 103
@@ -171,7 +167,6 @@ $dp_{i} = \max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升
 转为
 
 === "C++"
-    
     ```cpp
     int dfs(int i) {
       if (mem[i] != -1) return mem[i];
@@ -193,7 +188,6 @@ $dp_{i} = \max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升
     ```
 
 === "Python"
-    
     ```python
     def dfs(i):
         if mem[i] != -1:

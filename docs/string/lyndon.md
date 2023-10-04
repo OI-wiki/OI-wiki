@@ -33,7 +33,6 @@ Duval 算法运用了贪心的思想。算法过程中我们把串 $s$ 分成三
 下面的代码返回串 $s$ 的 Lyndon 分解方案。
 
 === "C++"
-    
     ```cpp
     // duval_algorithm
     vector<string> duval(string const& s) {
@@ -58,7 +57,6 @@ Duval 算法运用了贪心的思想。算法过程中我们把串 $s$ 分成三
     ```
 
 === "Python"
-    
     ```python
     # duval_algorithm
     def duval(s):
@@ -93,7 +91,6 @@ Duval 算法运用了贪心的思想。算法过程中我们把串 $s$ 分成三
 于是我们在分解的过程中记录每一次的近似 Lyndon 串的开头即可。
 
 === "C++"
-    
     ```cpp
     // smallest_cyclic_string
     string min_cyclic_string(string s) {
@@ -117,7 +114,6 @@ Duval 算法运用了贪心的思想。算法过程中我们把串 $s$ 分成三
     ```
 
 === "Python"
-    
     ```python
     # smallest_cyclic_string
     def min_cyclic_string(s):

@@ -145,22 +145,20 @@ $$
 
 ???+ note "核心代码"
     === "C++"
-        
         ```cpp
         for (int len = 2; len <= n; ++len)  // 枚举区间长度
-        for (int l = 1, r = len; r <= n; ++l, ++r) {
+          for (int l = 1, r = len; r <= n; ++l, ++r) {
             // 枚举长度为len的所有区间
             f[l][r] = INF;
             for (int k = m[l][r - 1]; k <= m[l + 1][r]; ++k)
-            if (f[l][r] > f[l][k] + f[k + 1][r] + w(l, r)) {
+              if (f[l][r] > f[l][k] + f[k + 1][r] + w(l, r)) {
                 f[l][r] = f[l][k] + f[k + 1][r] + w(l, r);  // 更新状态值
                 m[l][r] = k;  // 更新（最小）最优决策点
-            }
-        }
+              }
+          }
         ```
     
     === "Python"
-        
         ```python
         for len in range(2, n + 1): # 枚举区间长度
             r = len
@@ -263,7 +261,6 @@ $$
 
 ???+ note "代码实现"
     === "C++"
-        
         ```cpp
         void DP(int l, int r, int k_l, int k_r) {
           int mid = (l + r) / 2, k = k_l;
@@ -278,7 +275,6 @@ $$
         ```
     
     === "Python"
-        
         ```python
         def DP(l, r, k_l, k_r):
             mid = int((l + r) / 2)

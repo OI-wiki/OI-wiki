@@ -28,7 +28,6 @@
 
 ???+ note "核心代码"
     === "C++"
-        
         ```cpp
         int sta[N], top;  // 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
         bool is[N];
@@ -49,7 +48,7 @@
           }
           for (int i = 1; i <= top; ++i) {
             while (sqr(sta[i], sta[i + 1], sta[j]) <=
-                  sqr(sta[i], sta[i + 1], sta[j % top + 1]))
+                   sqr(sta[i], sta[i + 1], sta[j % top + 1]))
               j = j % top + 1;
             mx = max(mx, max(dis(sta[i + 1], sta[j]), dis(sta[i], sta[j])));
           }
@@ -57,7 +56,6 @@
         ```
     
     === "Python"
-        
         ```python
         sta = [0] * N; top = 0 # 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
         def pf(x):
@@ -102,21 +100,20 @@ $$
 
 ???+ note "核心代码"
     === "C++"
-        
         ```cpp
         void get_biggest() {
           int j = 3, l = 2, r = 2;
           double t1, t2, t3, ans = 2e10;
           for (int i = 1; i <= top; ++i) {
             while (sqr(sta[i], sta[i + 1], sta[j]) <=
-                  sqr(sta[i], sta[i + 1], sta[j % top + 1]))
+                   sqr(sta[i], sta[i + 1], sta[j % top + 1]))
               j = j % top + 1;
             while (dot(sta[i + 1], sta[r % top + 1], sta[i]) >=
-                  dot(sta[i + 1], sta[r], sta[i]))
+                   dot(sta[i + 1], sta[r], sta[i]))
               r = r % top + 1;
             if (i == 1) l = r;
             while (dot(sta[i + 1], sta[l % top + 1], sta[i]) <=
-                  dot(sta[i + 1], sta[l], sta[i]))
+                   dot(sta[i + 1], sta[l], sta[i]))
               l = l % top + 1;
             t1 = sqr(sta[i], sta[i + 1], sta[j]);
             t2 = dot(sta[i + 1], sta[r], sta[i]) + dot(sta[i + 1], sta[l], sta[i]);
@@ -127,7 +124,6 @@ $$
         ```
     
     === "Python"
-        
         ```python
         def get_biggest():
             j = 3; l = 2; r = 2

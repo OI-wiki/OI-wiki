@@ -76,7 +76,6 @@ low[u] = min(low[u], dfn[v]);
 下面代码实现了求割边，其中，当 `isbridge[x]` 为真时，`(father[x],x)` 为一条割边。
 
 === "C++"
-    
     ```cpp
     int low[MAXN], dfn[MAXN], dfs_clock;
     bool isbridge[MAXN];
@@ -104,7 +103,6 @@ low[u] = min(low[u], dfn[v]);
     ```
 
 === "Python"
-    
     ```python
     low = [0] * MAXN; dfn = [0] * MAXN; dfs_clock = 0
     isbridge = [False] * MAXN

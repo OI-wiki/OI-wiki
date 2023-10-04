@@ -298,7 +298,6 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 ## 实现
 
 === "C++[^ref1]"
-    
     ```cpp
     template <typename T>
     void shell_sort(T array[], int length) {
@@ -318,7 +317,6 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
     ```
 
 === "Python"
-    
     ```python
     def shell_sort(array, length):
         h = 1

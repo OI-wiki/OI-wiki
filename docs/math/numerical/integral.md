@@ -67,7 +67,6 @@ $$
 #### 实现
 
 === "C++"
-    
     ```cpp
     const int N = 1000 * 1000;
     
@@ -84,7 +83,6 @@ $$
     ```
 
 === "Python"
-    
     ```python
     N = 1000 * 1000
     
@@ -120,7 +118,6 @@ $$
 参考代码如下：
 
 === "C++"
-    
     ```cpp
     double simpson(double l, double r) {
       double mid = (l + r) / 2;
@@ -133,7 +130,7 @@ $$
       if (abs(fl + fr - ans) <= 15 * eps && step < 0)
         return fl + fr + (fl + fr - ans) / 15;  // 足够相似的话就直接返回
       return asr(l, mid, eps / 2, fl, step - 1) +
-            asr(mid, r, eps / 2, fr, step - 1);  // 否则分割成两段递归求解
+             asr(mid, r, eps / 2, fr, step - 1);  // 否则分割成两段递归求解
     }
     
     double calc(double l, double r, double eps) {
@@ -142,7 +139,6 @@ $$
     ```
 
 === "Python"
-    
     ```python
     def simpson(l, r):
         mid = (l + r) / 2

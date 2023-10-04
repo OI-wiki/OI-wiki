@@ -41,7 +41,6 @@
 ## 实现
 
 === "C++"
-    
     ```cpp
     int n, a[maxn], tmp[maxn << 1];
     
@@ -89,7 +88,6 @@
     ```
 
 === "Python"
-    
     ```python
     n = 0
     a = [0] * maxn

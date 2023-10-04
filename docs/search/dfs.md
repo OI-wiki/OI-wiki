@@ -15,7 +15,6 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         for (int i = 1; i <= n; ++i)
           for (int j = i; j <= n; ++j)
@@ -24,7 +23,6 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
         ```
     
     === "Python"
-        
         ```python
         for i in range(1, n + 1):
             for j in range(i, n + 1):
@@ -34,7 +32,6 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
         ```
     
     === "Java"
-        
         ```Java
         for (int i = 1; i < n + 1; i++) {
             for (int j = i; j < n + 1; j++) {
@@ -65,7 +62,6 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         int m, arr[103];  // arr 用于记录方案
         
@@ -88,7 +84,6 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
         ```
     
     === "Python"
-        
         ```python
         arr = [0] * 103  # arr 用于记录方案
         
@@ -106,7 +101,6 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
         ```
     
     === "Java"
-        
         ```Java
         static int m;
         

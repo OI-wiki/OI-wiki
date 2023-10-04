@@ -755,7 +755,6 @@ def fib(n):
 ### 声明常量
 
 === "C++"
-    
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
@@ -763,7 +762,6 @@ def fib(n):
     ```
 
 === "Python"
-    
     ```python
     try: # 引入优先队列模块
         import Queue as pq #python version < 3.0
@@ -778,7 +776,6 @@ def fib(n):
 ### 声明前向星结构体和其它变量
 
 === "C++"
-    
     ```cpp
     struct qxx {
       int nex, t, v;
@@ -795,7 +792,6 @@ def fib(n):
     ```
 
 === "Python"
-    
     ```python
     class qxx:  # 前向星类（结构体）
         def __init__(self):
@@ -825,7 +821,6 @@ def fib(n):
 ### Dijkstra 算法
 
 === "C++"
-    
     ```cpp
     void dijkstra(int s) {
       memset(dist, 0x3f, sizeof(dist));
@@ -845,7 +840,6 @@ def fib(n):
     ```
 
 === "Python"
-    
     ```python
     def nextedgeid(u):  # 生成器，可以用在 for 循环里
         i = h[u]
@@ -873,7 +867,6 @@ def fib(n):
 ### 主函数
 
 === "C++"
-    
     ```cpp
     int n, m, s;
     
@@ -891,7 +884,6 @@ def fib(n):
     ```
 
 === "Python"
-    
     ```python
     if __name__ == '__main__':
         # 一行读入多个整数。注意它会把整行都读进来
@@ -911,7 +903,6 @@ def fib(n):
 ### 完整代码
 
 === "C++"
-    
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
@@ -962,7 +953,6 @@ def fib(n):
     ```
 
 === "Python"
-    
     ```python
     try:  # 引入优先队列模块
         import Queue as pq  # python version < 3.0

@@ -25,7 +25,6 @@ $$
 ### 实现
 
 === "C++"
-    
     ```cpp
     int k = 0, i = 0, j = 1;
     while (k < n && i < n && j < n) {
@@ -44,7 +43,6 @@ $$
     ```
 
 === "Python"
-    
     ```python
     k, i, j = 0, 0, 1
     while k < n and i < n and j < n:
@@ -99,7 +97,6 @@ $O(n)$
 ### 实现
 
 === "C++"
-    
     ```cpp
     int k = 0, i = 0, j = 1;
     while (k < n && i < n && j < n) {
@@ -115,7 +112,6 @@ $O(n)$
     ```
 
 === "Python"
-    
     ```python
     k, i, j = 0, 0, 1
     while k < n and i < n and j < n:

@@ -45,7 +45,6 @@ iRightChild(i) = 2 * i + 2;
 ## 实现
 
 === "C++"
-    
     ```cpp
     void sift_down(int arr[], int start, int end) {
       // 计算父结点和子结点的下标
@@ -77,7 +76,6 @@ iRightChild(i) = 2 * i + 2;
     ```
 
 === "Python"
-    
     ```python
     def sift_down(arr, start, end):
         # 计算父结点和子结点的下标

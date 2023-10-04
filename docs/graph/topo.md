@@ -164,7 +164,6 @@ bool toposort() {
 ### 实现
 
 === "C++"
-    
     ```cpp
     using Graph = vector<vector<int>>;  // 邻接表
     
@@ -205,7 +204,6 @@ bool toposort() {
     ```
 
 === "Python"
-    
     ```python
     from enum import Enum, auto
     

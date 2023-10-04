@@ -15,7 +15,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 ??? note "参考代码"
     === "C++"
-        
         ```cpp
         #include <iostream>
         #include <vector>
@@ -62,7 +61,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         ```
     
     === "Python"
-        
         ```python
         class Edge:
             def __init__(self, u = 0, v = 0):
@@ -117,7 +115,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 ??? note "参考代码"
     === "C++"
-        
         ```cpp
         #include <iostream>
         #include <vector>
@@ -139,25 +136,25 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
             }
           }
         }
+        ```
     
         int main() {
           cin >> n >> m;
-        
+    
           vis.resize(n + 1, false);
           adj.resize(n + 1, vector<bool>(n + 1, false));
-        
+    
           for (int i = 1; i <= m; ++i) {
             int u, v;
             cin >> u >> v;
             adj[u][v] = true;
           }
-        
+    
           return 0;
         }
         ```
     
     === "Python"
-        
         ```python
         vis = [False] * (n + 1)
         adj = [[False] * (n + 1) for _ in range(n + 1)]
@@ -204,7 +201,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 ??? note "参考代码"
     === "C++"
-        
         ```cpp
         #include <iostream>
         #include <vector>
@@ -247,7 +243,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         ```
     
     === "Python"
-        
         ```python
         vis = [False] * (n + 1)
         adj = [[] for _ in range(n + 1)]
@@ -293,7 +288,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 本质上是用链表实现的邻接表，核心代码如下：
 
 === "C++"
-    
     ```cpp
     // head[u] 和 cnt 的初始值都为 -1
     void add(int u, int v) {
@@ -309,7 +303,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     ```
 
 === "Python"
-    
     ```python
     # head[u] 和 cnt 的初始值都为 -1
     def add(u, v):

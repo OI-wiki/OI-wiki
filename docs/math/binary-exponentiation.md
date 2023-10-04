@@ -61,7 +61,6 @@ $$
 首先我们可以直接按照上述递归方法实现：
 
 === "C++"
-    
     ```cpp
     long long binpow(long long a, long long b) {
       if (b == 0) return 1;
@@ -74,7 +73,6 @@ $$
     ```
 
 === "Python"
-    
     ```python
     def binpow(a, b):
         if b == 0:
@@ -89,7 +87,6 @@ $$
 第二种实现方法是非递归式的。它在循环的过程中将二进制位为 1 时对应的幂累乘到答案中。尽管两者的理论复杂度是相同的，但第二种在实践过程中的速度是比第一种更快的，因为递归会花费一定的开销。
 
 === "C++"
-    
     ```cpp
     long long binpow(long long a, long long b) {
       long long res = 1;
@@ -103,7 +100,6 @@ $$
     ```
 
 === "Python"
-    
     ```python
     def binpow(a, b):
         res = 1
@@ -129,7 +125,6 @@ $$
 既然我们知道取模的运算不会干涉乘法运算，因此我们只需要在计算的过程中取模即可。
 
 === "C++"
-    
     ```cpp
     long long binpow(long long a, long long b, long long m) {
       a %= m;
@@ -144,7 +139,6 @@ $$
     ```
 
 === "Python"
-    
     ```python
     def binpow(a, b, m):
         a = a % m

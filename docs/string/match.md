@@ -21,14 +21,13 @@
 ### 实现
 
 === "C++"
-    
     ```cpp
     /*
-    * s：待匹配的主串
-    * t：模式串
-    * n：主串的长度
-    * m：模式串的长度
-    */
+     * s：待匹配的主串
+     * t：模式串
+     * n：主串的长度
+     * m：模式串的长度
+     */
     std::vector<int> match(char *s, char *t, int n, int m) {
       std::vector<int> ans;
       int i, j;
@@ -43,7 +42,6 @@
     ```
 
 === "Python"
-    
     ```python
     def match(s, t, n, m):
         if m < 1:

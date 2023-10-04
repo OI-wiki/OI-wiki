@@ -34,7 +34,6 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
 #### 实现
 
 === "C++"
-    
     ```cpp
     const int SIZE = 1000000;
     const int M = 999997;
@@ -69,7 +68,6 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
     ```
 
 === "Python"
-    
     ```python
     M = 999997
     SIZE = 1000000

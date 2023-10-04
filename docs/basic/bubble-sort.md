@@ -44,7 +44,6 @@ $$
 $$
 
 === "C++"
-    
     ```cpp
     // 假设数组的大小是 n + 1，冒泡排序从数组下标 1 开始
     void bubble_sort(int *a, int n) {
@@ -64,7 +63,6 @@ $$
     ```
 
 === "Python"
-    
     ```python
     def bubble_sort(a, n):
         flag = True

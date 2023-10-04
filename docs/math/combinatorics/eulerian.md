@@ -69,7 +69,6 @@ $$
 ## 实现
 
 === "C++"
-    
     ```cpp
     int eulerianNumber(int n, int m) {
       if (m >= n || n == 0) return 0;
@@ -80,7 +79,6 @@ $$
     ```
 
 === "Python"
-    
     ```python
     def eulerianNumber(n, m):
         if m >= n or n == 0:

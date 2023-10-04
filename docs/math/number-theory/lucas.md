@@ -18,7 +18,6 @@ $$
 
 ???+ note "实现"
     === "C++"
-        
         ```cpp
         long long Lucas(long long n, long long m, long long p) {
           if (m == 0) return 1;
@@ -27,7 +26,6 @@ $$
         ```
     
     === "Python"
-        
         ```python
         def Lucas(n, m, p):
           if m == 0:

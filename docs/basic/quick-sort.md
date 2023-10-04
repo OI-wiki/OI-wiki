@@ -25,7 +25,6 @@
 第三步中的序列已经分别有序且第一个序列中的数都小于第二个数，所以直接拼接起来就好了。
 
 === "C++[^ref2]"
-    
     ```cpp
     struct Range {
       int start, end;
@@ -60,7 +59,6 @@
     ```
 
 === "Python[^ref2]"
-    
     ```python
     def quick_sort(alist, first, last):
         if first >= last:
@@ -176,7 +174,6 @@
 三路快速排序实现起来非常简单，下面给出了一种三路快排的 C++ 实现。
 
 === "C++"
-    
     ```cpp
     // 模板的 T 参数表示元素的类型，此类型需要定义小于（<）运算
     template <typename T>
@@ -206,7 +203,6 @@
     ```
 
 === "Python[^ref2]"
-
     ```python
     def quick_sort(arr, l, r):
         if l >= r:

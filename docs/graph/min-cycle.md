@@ -52,7 +52,6 @@
 下面给出 C++ 的参考实现：
 
 === "C++"
-    
     ```cpp
     int val[maxn + 1][maxn + 1];  // 原图的邻接矩阵
     
@@ -75,7 +74,6 @@
     ```
 
 === "Python"
-    
     ```python
     val = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)] # 原图的邻接矩阵
     

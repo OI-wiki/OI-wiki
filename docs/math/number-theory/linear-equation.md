@@ -92,7 +92,6 @@ $$
 
 ???+ note "代码实现"
     === "C++"
-        
         ```cpp
         int ex_gcd(int a, int b, int& x, int& y) {
           if (b == 0) {
@@ -118,7 +117,6 @@ $$
         ```
     
     === "Python"
-        
         ```python
         def ex_gcd(a, b ,x, y):
           if b == 0:
