@@ -24,7 +24,6 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         vector<int> z_function_trivial(string s) {
           int n = (int)s.length();
@@ -36,7 +35,6 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
         ```
     
     === "Python"
-    
         ```python
         def z_function_trivial(s):
             n = len(s)
@@ -70,7 +68,6 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 ### 实现
 
 === "C++"
-
     ```cpp
     vector<int> z_function(string s) {
       int n = (int)s.length();
@@ -89,7 +86,6 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
     ```
 
 === "Python"
-
     ```python
     def z_function(s):
         n = len(s)

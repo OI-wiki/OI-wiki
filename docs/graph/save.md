@@ -15,21 +15,20 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 ??? note "参考代码"
     === "C++"
-    
         ```cpp
         #include <iostream>
         #include <vector>
-    
+        
         using namespace std;
-    
+        
         struct Edge {
           int u, v;
         };
-    
+        
         int n, m;
         vector<Edge> e;
         vector<bool> vis;
-    
+        
         bool find_edge(int u, int v) {
           for (int i = 1; i <= m; ++i) {
             if (e[i].u == u && e[i].v == v) {
@@ -38,7 +37,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
           }
           return false;
         }
-    
+        
         void dfs(int u) {
           if (vis[u]) return;
           vis[u] = true;
@@ -48,40 +47,39 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
             }
           }
         }
-    
+        
         int main() {
           cin >> n >> m;
-    
+        
           vis.resize(n + 1, false);
           e.resize(m + 1);
-    
+        
           for (int i = 1; i <= m; ++i) cin >> e[i].u >> e[i].v;
-    
+        
           return 0;
         }
         ```
     
     === "Python"
-    
         ```python
         class Edge:
             def __init__(self, u = 0, v = 0):
                 self.u = u
                 self.v = v
-    
+        
         n, m = map(lambda x:int(x), input().split())
-    
+        
         e = [Edge() for _ in range(m)]; vis = [False] * n
-    
+        
         for i in range(0, m):
             e[i].u, e[i].v = map(lambda x:int(x), input().split())
-    
+        
         def find_edge(u, v):
             for i in range(1, m + 1):
                 if e[i].u == u and e[i].v == v:
                     return True
             return False
-    
+        
         def dfs(u):
             if vis[u]:
                 return
@@ -117,19 +115,18 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 ??? note "参考代码"
     === "C++"
-    
         ```cpp
         #include <iostream>
         #include <vector>
-    
+        
         using namespace std;
-    
+        
         int n, m;
         vector<bool> vis;
         vector<vector<bool> > adj;
-    
+        
         bool find_edge(int u, int v) { return adj[u][v]; }
-    
+        
         void dfs(int u) {
           if (vis[u]) return;
           vis[u] = true;
@@ -139,6 +136,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
             }
           }
         }
+        ```
     
         int main() {
           cin >> n >> m;
@@ -157,18 +155,17 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         ```
     
     === "Python"
-    
         ```python
         vis = [False] * (n + 1)
         adj = [[False] * (n + 1) for _ in range(n + 1)]
-    
+        
         for i in range(1, m + 1):
             u, v = map(lambda x:int(x), input().split())
             adj[u][v] = True
-    
+        
         def find_edge(u, v):
             return adj[u][v]
-    
+        
         def dfs(u):
             if vis[u]:
                 return
@@ -204,17 +201,16 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 ??? note "参考代码"
     === "C++"
-    
         ```cpp
         #include <iostream>
         #include <vector>
-    
+        
         using namespace std;
-    
+        
         int n, m;
         vector<bool> vis;
         vector<vector<int> > adj;
-    
+        
         bool find_edge(int u, int v) {
           for (int i = 0; i < adj[u].size(); ++i) {
             if (adj[u][i] == v) {
@@ -223,45 +219,44 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
           }
           return false;
         }
-    
+        
         void dfs(int u) {
           if (vis[u]) return;
           vis[u] = true;
           for (int i = 0; i < adj[u].size(); ++i) dfs(adj[u][i]);
         }
-    
+        
         int main() {
           cin >> n >> m;
-    
+        
           vis.resize(n + 1, false);
           adj.resize(n + 1);
-    
+        
           for (int i = 1; i <= m; ++i) {
             int u, v;
             cin >> u >> v;
             adj[u].push_back(v);
           }
-    
+        
           return 0;
         }
         ```
     
     === "Python"
-    
         ```python
         vis = [False] * (n + 1)
         adj = [[] for _ in range(n + 1)]
-    
+        
         for i in range(1, m + 1):
             u, v = map(lambda x:int(x), input().split())
             adj[u].append(v)
-    
+        
         def find_edge(u, v):
             for i in range(0, len(adj[u])):
                 if adj[u][i] == v:
                     return True
             return False
-    
+        
         def dfs(u):
             if vis[u]:
                 return
@@ -293,7 +288,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 本质上是用链表实现的邻接表，核心代码如下：
 
 === "C++"
-
     ```cpp
     // head[u] 和 cnt 的初始值都为 -1
     void add(int u, int v) {
@@ -301,7 +295,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
       head[u] = cnt;         // 起点 u 的第一条边
       to[cnt] = v;           // 当前边的终点
     }
-
+    
     // 遍历 u 的出边
     for (int i = head[u]; ~i; i = nxt[i]) {  // ~i 表示 i != -1
       int v = to[i];
@@ -309,7 +303,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     ```
 
 === "Python"
-
     ```python
     # head[u] 和 cnt 的初始值都为 -1
     def add(u, v):
@@ -317,7 +310,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         nex[cnt] = head[u] # 当前边的后继
         head[u] = cnt # 起点 u 的第一条边
         to[cnt] = v # 当前边的终点
-
+    
     # 遍历 u 的出边
     i = head[u]
     while ~i: # ~i 表示 i != -1
