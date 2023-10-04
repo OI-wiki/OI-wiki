@@ -56,6 +56,7 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 === "C++"
     ```cpp
     #include <cmath>
+    
     int euler_phi(int n) {
       int m = int(sqrt(n + 0.5));
       int ans = n;
@@ -90,6 +91,7 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 === "C++"
     ```cpp
     #include <cmath>
+    
     int euler_phi(int n) {
       int ans = n;
       for (int i = 2; i * i <= n; i++)

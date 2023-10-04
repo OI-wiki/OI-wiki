@@ -21,6 +21,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 === "C++"
     ```cpp
     bool is_prime[N];
+    
     int Eratosthenes(int n) {
       int p = 0;
       for (int i = 0; i <= n; ++i) is_prime[i] = 1;
@@ -99,6 +100,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 === "C++"
     ```cpp
     bool is_prime[N];
+    
     int Eratosthenes(int n) {
       int p = 0;
       for (int i = 0; i <= n; ++i) is_prime[i] = 1;
