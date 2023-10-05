@@ -18,7 +18,6 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 下文中 C++ 与 Python 的代码实现是基于链式前向星的存图方式，其实现可参考 [图的存储](./save.md) 页面。
 
 === "伪代码"
-
     ```text
     bfs(s) {
       q = new queue()
@@ -36,7 +35,6 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
     ```
 
 === "C++"
-
     ```cpp
     void bfs(int u) {
       while (!Q.empty()) Q.pop();
@@ -57,7 +55,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
         }
       }
     }
-
+    
     void restore(int x) {
       vector<int> res;
       for (int v = x; v != -1; v = p[v]) {
@@ -70,10 +68,9 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
     ```
 
 === "Python"
-
     ```python
     from queue import Queue
-
+    
     def bfs(u):
         Q = Queue()
         Q.put(u)
@@ -90,7 +87,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
                     d[e[i].to] = d[u] + 1
                     p[e[i].to] = u
                 i = e[i].nxt
-
+    
     def restore(x):
         res = []
         v = x

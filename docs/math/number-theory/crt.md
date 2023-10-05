@@ -37,7 +37,6 @@ $$
 ## 实现
 
 === "C++"
-
     ```cpp
     LL CRT(int k, LL* a, LL* r) {
       LL n = 1, ans = 0;
@@ -52,7 +51,6 @@ $$
     ```
 
 === "Python"
-
     ```python
     def CRT(k, a, r):
         n = 1; ans = 0
@@ -157,7 +155,6 @@ $$
 
 ??? note "实现"
     === "C++"
-    
         ```cpp
         for (int i = 0; i < k; ++i) {
           x[i] = a[i];
@@ -170,7 +167,6 @@ $$
         ```
     
     === "Python"
-    
         ```python
         for i in range(0, k):
             x[i] = a[i]
