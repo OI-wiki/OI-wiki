@@ -166,7 +166,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 #### 先序遍历
 
-![preorder](images/tree-basic-preorder.svg)
+![preorder](images/tree-basic-preorder.png)
 
 按照 **根，左，右** 的顺序遍历二叉树。
 
@@ -183,7 +183,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 #### 中序遍历
 
-![inorder](images/tree-basic-inorder.svg)
+![inorder](images/tree-basic-inorder.png)
 
 按照 **左，根，右** 的顺序遍历二叉树。
 
@@ -200,7 +200,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 #### 后序遍历
 
-![postorder](images/tree-basic-postorder.svg)
+![postorder](images/tree-basic-postorder.png)
 
 按照 **左，右，根** 的顺序遍历二叉树。
 
@@ -219,7 +219,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 已知中序遍历序列和另外一个序列可以求第三个序列。
 
-![reverse](images/tree-basic-reverse.svg)
+![reverse](images/tree-basic-reverse.png)
 
 1.  前序的第一个是 `root`，后序的最后一个是 `root`。
 2.  先确定根节点，然后根据中序遍历，在根左边的为左子树，根右边的为右子树。
