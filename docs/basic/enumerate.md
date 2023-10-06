@@ -37,15 +37,13 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     枚举两个数的代码很容易就可以写出来。
     
     === "C++"
-    
         ```cpp
         for (int i = 0; i < n; ++i)
-            for (int j = 0; j < n; ++j)
-                if (a[i] + a[j] == 0) ++ans;
+          for (int j = 0; j < n; ++j)
+            if (a[i] + a[j] == 0) ++ans;
         ```
     
     === "Python"
-    
         ```python
         for i in range(n):
             for j in range(n):
@@ -58,15 +56,13 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     不妨要求第一个数要出现在靠前的位置。代码如下：
     
     === "C++"
-    
         ```cpp
         for (int i = 0; i < n; ++i)
-            for (int j = 0; j < i; ++j)
-                if (a[i] + a[j] == 0) ++ans;
+          for (int j = 0; j < i; ++j)
+            if (a[i] + a[j] == 0) ++ans;
         ```
     
     === "Python"
-    
         ```python
         for i in range(n):
             for j in range(i):
@@ -81,18 +77,16 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     两个数是否都一定要枚举出来呢？枚举其中一个数之后，题目的条件已经确定了其他的要素（另一个数）的条件，如果能找到一种方法直接判断题目要求的那个数是否存在，就可以省掉枚举后一个数的时间了。较为进阶地，在数据范围允许的情况下，我们可以使用桶[^1]记录遍历过的数。
     
     === "C++"
-    
         ```cpp
         bool met[MAXN * 2];
         memset(met, 0, sizeof(met));
         for (int i = 0; i < n; ++i) {
-            if (met[MAXN - a[i]]) ++ans;
-            met[MAXN + a[i]] = true;
+          if (met[MAXN - a[i]]) ++ans;
+          met[MAXN + a[i]] = true;
         }
         ```
     
     === "Python"
-    
         ```python
         met = [False] * MAXN * 2
         for i in range(n):
