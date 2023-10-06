@@ -112,7 +112,6 @@ $$
 构建实现
 
 === "C++"
-
     ```cpp
     void build(int a = 0, int b = 1, int c = 1, int d = 0, int level = 1) {
       int x = a + c, y = b + d;
@@ -124,7 +123,6 @@ $$
     ```
 
 === "Python"
-
     ```python
     def build(a = 1, b = 1, c = 1, d = 0, level = 1):
         x = a + c; y = b + d
@@ -137,7 +135,6 @@ $$
 查询实现
 
 === "C++"
-
     ```cpp
     string find(int x, int y, int a = 0, int b = 1, int c = 1, int d = 0) {
       int m = a + c, n = b + d;
@@ -150,7 +147,6 @@ $$
     ```
 
 === "Python"
-
     ```python
     def find(x, y, a = 0, b = 1, c = 1, d = 0):
         m = a + c; n = b + d

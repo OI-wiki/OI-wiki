@@ -54,9 +54,9 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用 [Pollard Rho](./pollard-rho.md) 算法优化。
 
 === "C++"
-
     ```cpp
     #include <cmath>
+    
     int euler_phi(int n) {
       int m = int(sqrt(n + 0.5));
       int ans = n;
@@ -71,7 +71,6 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
     ```
 
 === "Python"
-
     ```python
     import math
     def euler_phi(n):
@@ -90,9 +89,9 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 注：如果将上面的程序改成如下形式，会提升一点效率：
 
 === "C++"
-
     ```cpp
     #include <cmath>
+    
     int euler_phi(int n) {
       int ans = n;
       for (int i = 2; i * i <= n; i++)
@@ -106,7 +105,6 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
     ```
 
 === "Python"
-
     ```python
     import math
     def euler_phi(n):
