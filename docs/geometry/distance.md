@@ -148,11 +148,10 @@ $$
 
 ??? note "参考代码"
     === "C++"
-    
         ```cpp
         #include <bits/stdc++.h>
         using namespace std;
-    
+        
         int main() {
           int n, x, y, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
           scanf("%d", &n);
@@ -167,7 +166,6 @@ $$
         ```
     
     === "Python"
-    
         ```python
         minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
         n = int(input())
@@ -319,11 +317,10 @@ $$
 
 ??? note "参考代码"
     === "C++"
-    
         ```cpp
         #include <bits/stdc++.h>
         using namespace std;
-    
+        
         int main() {
           int n, x, y, a, b, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
           scanf("%d", &n);
@@ -339,7 +336,6 @@ $$
         ```
     
     === "Python"
-    
         ```python
         minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
         n = int(input())

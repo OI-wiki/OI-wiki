@@ -50,7 +50,6 @@ author: du33169
 上面两行都显然是对的，所以说这个做法空间是 $O(N^3)$，我们需要依次增加问题规模（$k$ 从 $1$ 到 $n$），判断任意两点在当前问题规模下的最短路。
 
 === "C++"
-
     ```cpp
     for (k = 1; k <= n; k++) {
       for (x = 1; x <= n; x++) {
@@ -62,7 +61,6 @@ author: du33169
     ```
 
 === "Python"
-
     ```python
     for k in range(1, n + 1):
         for x in range(1, n + 1):
@@ -80,7 +78,6 @@ author: du33169
     故可以压缩。
 
 === "C++"
-
     ```cpp
     for (k = 1; k <= n; k++) {
       for (x = 1; x <= n; x++) {
@@ -92,7 +89,6 @@ author: du33169
     ```
 
 === "Python"
-
     ```python
     for k in range(1, n + 1):
         for x in range(1, n + 1):
@@ -164,16 +160,15 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
 
 ??? note "参考实现"
     === "C++"
-    
         ```cpp
         struct edge {
           int v, w;
         };
-    
+        
         vector<edge> e[maxn];
         int dis[maxn];
         const int inf = 0x3f3f3f3f;
-    
+        
         bool bellmanford(int n, int s) {
           memset(dis, 63, sizeof(dis));
           dis[s] = 0;
@@ -201,16 +196,15 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
         ```
     
     === "Python"
-    
         ```python
         class Edge:
             def __init__(self, v = 0, w = 0):
                 self.v = v
                 self.w = w
-    
+        
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
         dis = [0x3f3f3f3f] * maxn
-    
+        
         def bellmanford(n, s):
             dis[s] = 0
             for i in range(1, n + 1):
@@ -241,16 +235,15 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
 
 ??? note "实现"
     === "C++"
-    
         ```cpp
         struct edge {
           int v, w;
         };
-    
+        
         vector<edge> e[maxn];
         int dis[maxn], cnt[maxn], vis[maxn];
         queue<int> q;
-    
+        
         bool spfa(int n, int s) {
           memset(dis, 63, sizeof(dis));
           dis[s] = 0, vis[s] = 1;
@@ -275,17 +268,16 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
         ```
     
     === "Python"
-    
         ```python
         from collections import deque
         class Edge:
             def __init__(self, v = 0, w = 0):
                 self.v = v
                 self.w = w
-    
+        
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
         dis = [0x3f3f3f3f] * maxn; cnt = [0] * maxn; vis = [False] * maxn
-    
+        
         q = deque()
         def spfa(n, s):
             dis[s] = 0
@@ -377,15 +369,14 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 
 ???+ note "暴力实现"
     === "C++"
-    
         ```cpp
         struct edge {
           int v, w;
         };
-    
+        
         vector<edge> e[maxn];
         int dis[maxn], vis[maxn];
-    
+        
         void dijkstra(int n, int s) {
           memset(dis, 63, sizeof(dis));
           dis[s] = 0;
@@ -403,7 +394,6 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         ```
     
     === "Python"
-    
         ```python
         class Edge:
             def __init(self, v = 0, w = 0):
@@ -429,22 +419,21 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 
 ???+ note "优先队列实现"
     === "C++"
-    
         ```cpp
         struct edge {
           int v, w;
         };
-    
+        
         struct node {
           int dis, u;
-    
+        
           bool operator>(const node& a) const { return dis > a.dis; }
         };
-    
+        
         vector<edge> e[maxn];
         int dis[maxn], vis[maxn];
         priority_queue<node, vector<node>, greater<node> > q;
-    
+        
         void dijkstra(int n, int s) {
           memset(dis, 63, sizeof(dis));
           dis[s] = 0;
@@ -466,7 +455,6 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         ```
     
     === "Python"
-    
         ```python
         def dijkstra(e,s):
           '''
