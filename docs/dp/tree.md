@@ -180,69 +180,69 @@ del-add 换根 DP 主要依赖于树形 DP 转移方程的「可回滚性」，�
     int ans;
     
     void add(int rt,int a){
-    dper[rt]+=dper[a]+siz[a];
-    siz[rt]+=siz[a];
-    
-    return;
+        dper[rt]+=dper[a]+siz[a];
+        siz[rt]+=siz[a];
+        
+        return;
     }
     
     void del(int rt,int a){
-    dper[rt]-=dper[a]+siz[a];
-    siz[rt]-=siz[a];
-    
-    return;
+        dper[rt]-=dper[a]+siz[a];
+        siz[rt]-=siz[a];
+        
+        return;
     }
     
     
     void dfs(int fa,int u){
-    siz[u]=1;
-    for(auto v:so[u]){
-    if(v==fa){
-        continue;
-    }
-    dfs(u,v);
-    add(u,v);
-    }
-    
-    return;
+        siz[u]=1;
+        for(auto v:so[u]){
+            if(v==fa){
+                continue;
+            }
+            dfs(u,v);
+            add(u,v);
+        }
+        
+        return;
     }
     
     void cntans(int u){
-    if(dper[u]>acnt){
-    acnt=dper[u];
-    ans=u;
-    }
-    return;
+        if(dper[u]>acnt){
+            acnt=dper[u];
+            ans=u;
+        }
+        return;
     }
     
     void solve(int fa,int u){
-    cntans(u);
-    for(auto v:so[u]){
-    if(v==fa){
-        continue;
-    }
-    del(u,v);
-    add(v,u);
-    solve(u,v);
-    del(v,u);
-    add(u,v);
-    }
-    
-    return;
+        cntans(u);
+        for(auto v:so[u]){
+            if(v==fa){
+                continue;
+            }
+            del(u,v);
+            add(v,u);
+            solve(u,v);
+            del(v,u);
+            add(u,v);
+        }    
+
+        return;
     }
     
     int main(){
-    scanf("%d",&n);
-    for(int i=1;i<=n-1;i++){
-    scanf("%d %d",&ru,&rv);
-    so[ru].push_back(rv);
-    so[rv].push_back(ru);
-    }
-    dfs(0,1);
-    solve(0,1);
-    printf("%d\n",ans);
-    
-    return 0;
+        scanf("%d",&n);
+        for(int i=1;i<=n-1;i++){
+            scanf("%d %d",&ru,&rv);
+            so[ru].push_back(rv);
+            so[rv].push_back(ru);
+        }
+        dfs(0,1);
+        solve(0,1);
+        printf("%d\n",ans);
+        
+        return 0;
     }
     ```
 
