@@ -113,16 +113,17 @@ $f_v\leftarrow f_u$ 可以体现换根，即以 $u$ 为根转移到以 $v$ 为�
 del-add 换根 DP 主要依赖于树形 DP 转移方程的「可回滚性」，例如一个转移方程 $f[u]=\sum\limits_{v\in son(u)}^{} f[v] + g(u)$ 实质上是可以轻而易举地进行回滚操作的。
 
 对于这个方程，当我们需要将根从 $u$ 换成 $v$ 时，除了 $f[u]$ 和 $f[v]$，其余都不会发生变化，与其推式子，在这种做法计算 $u$ 及 $u$ 的子树的值时，我们分以下几步：
-+ 答案：先执行一个 `cntans()`，其计算此时的答案并保存。
-+ 递归：递归遍历 $u$ 子节点 $v$。
-    + 换根：先执行 `del()`，其从 $f[u]$ 中把 $f[v]$ 的贡献剔除。再执行 `add()`，其向 $f[v]$ 中添加 $f[u]$ 的贡献。
-    + 计算 $v$。
-    + 还原：执行换根的逆过程，或者说把 `v` 换回 `u`。
+
+-   答案：先执行一个 `cntans()`，其计算此时的答案并保存。
+-   递归：递归遍历 $u$ 子节点 $v$。
+    -   换根：先执行 `del()`，其从 $f[u]$ 中把 $f[v]$ 的贡献剔除。再执行 `add()`，其向 $f[v]$ 中添加 $f[u]$ 的贡献。
+    -   计算 $v$。
+    -   还原：执行换根的逆过程，或者说把 `v` 换回 `u`。
 
 给出一段体现逻辑的伪代码：
 
     // 头文件及定义数组及其他一些内容
-    
+
     定义 dp(u,fa)
         // 因题而异
 
@@ -132,7 +133,7 @@ del-add 换根 DP 主要依赖于树形 DP 转移方程的「可回滚性」，�
         // 为 rt 剔除 x 的贡献
     定义 cntans(u)
         // 计算 u 的答案
-    
+
     定义 solve(u,fa) 函数
         cntans(u);
         对于每一个 u 的子节点 v:
@@ -156,11 +157,10 @@ del-add 换根 DP 主要依赖于树形 DP 转移方程的「可回滚性」，�
 
 ???+ note " 例题 [\[POI2008\]STA-Station](https://www.luogu.com.cn/problem/P3478)"
     给定一个 $n$ 个点的树，请求出一个结点，使得以这个结点为根时，所有结点的深度之和最大。
-    
-此时我们不妨在 `dp()` 函数中记录一对 $siz[x]$ 和 $f[x]$，即以 $x$ 为根的子树的大小以及 $x$ 的子树到 $x$ 的深度和。
 
-不难看出，$f$ 的转移方程是： $f[u]=\sum\limits_{v\in son(u)}^{} (f[v] + siz[v])$
-$siz$ 的转移方程是：$siz[u]=\sum\limits_{v\in son(u)}^{} siz[v] + 1$
+时我们不妨在 `dp()` 函数中记录一对 $siz[x]$ 和 $f[x]$，即以 $x$ 为根的子树的大小以及 $x$ 的子树到 $x$ 的深度和。
+
+不难看出，$f$ 的转移方程是：$f[u]=\sum\limits_{v\in son(u)}^{} (f[v] + siz[v])$ $siz$ 的转移方程是：$siz[u]=\sum\limits_{v\in son(u)}^{} siz[v] + 1$
 
 此时的 add 函数明显是将 $f[rt]$ 加上 $f[x]+siz[x]$，并将 $siz[rt]$ 加上 $siz[x]$。而 del 函数恰好相反。
 
@@ -168,8 +168,8 @@ $siz$ 的转移方程是：$siz[u]=\sum\limits_{v\in son(u)}^{} siz[v] + 1$
     ```cpp
     --8<-- "docs/dp/code/tree/tree_4.cpp"
     ```
-    
-### 习题
+
+## 习题
 
 -   [Atcoder Educational DP Contest, Problem V, Subtree](https://atcoder.jp/contests/dp/tasks/dp_v)
 
