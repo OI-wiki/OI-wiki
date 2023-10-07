@@ -1,4 +1,4 @@
-author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007, GoodCoder666, paigeman
+author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007, GoodCoder666, paigeman, shenshuaijie
 
 前置知识：[动态规划部分简介](./index.md)。
 
@@ -190,12 +190,12 @@ $$
             p, h, k = map(int, input().split())
             while k > c:
                 k -= c
-                list[index].w = c * p
                 index += 1
+                list[index].w = c * p
                 list[index].v = c * h
                 c *= 2
-            list[index].w = p * k
             index += 1
+            list[index].w = p * k
             list[index].v = h * k
         ```
 
