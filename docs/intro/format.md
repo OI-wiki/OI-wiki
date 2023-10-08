@@ -235,9 +235,9 @@
         ````
         
         === "C"
-        
-            ``` c
+            ```c
             #include <stdio.h>
+            ```
         
             int main(void) {
               printf("Hello world!\n");
@@ -246,9 +246,9 @@
             ```
         
         === "C++"
-        
-            ``` c++
+            ```c++
             #include <iostream>
+            ```
         
             int main(void) {
               std::cout << "Hello world!" << std::endl;
