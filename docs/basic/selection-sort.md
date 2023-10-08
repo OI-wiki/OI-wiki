@@ -35,7 +35,6 @@ $$
 $$
 
 === "C++"
-
     ```cpp
     void selection_sort(int* a, int n) {
       for (int i = 1; i < n; ++i) {
@@ -51,7 +50,6 @@ $$
     ```
 
 === "Python"
-
     ```python
     def selection_sort(a, n):
         for i in range(1, n):

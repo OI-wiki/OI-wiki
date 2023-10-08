@@ -85,7 +85,6 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         void Tarjan(int u) {
           low[u] = dfn[u] = ++dfc;                // low 初始化为当前节点 dfn
@@ -100,7 +99,6 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
         ```
     
     === "Python"
-    
         ```python
         def Tarjan(u):
             low[u] = dfn[u] = dfc # low 初始化为当前节点 dfn
