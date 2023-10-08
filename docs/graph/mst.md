@@ -141,7 +141,7 @@ $$
 
 注意：上述代码只是求出了最小生成树的权值，如果要输出方案还需要记录每个点的 $dis$ 代表的是哪条边。
 
-??? note 代码实现
+??? note "代码实现"
     ```cpp
     // 使用二叉堆优化的 Prim 算法。
     #include <cstring>
@@ -326,7 +326,7 @@ $$
 
 这个过程可以用倍增求解，复杂度 $O(m \log m)$。
 
-??? note 代码实现
+??? note "代码实现"
     ```cpp
     #include <algorithm>
     #include <iostream>
