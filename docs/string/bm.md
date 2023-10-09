@@ -414,7 +414,7 @@ $$
 
 Rytter 在 1980 年*SIAM Journal on Computing*上发表的文章[^rytter]对此提出了修正，但是 Rytter 的这篇文章在细节上有些令人疑惑的地方，包括不限于：
 
--   示例中奇怪的 $delta_2$ 数值（不清楚他依据的 $delta_2$ 是否和最终版 $delta_2$ 定义有微妙的差别，但我实在不想因为这事儿继续考古了😱）
+-   示例中奇怪的 $delta_2$ 数值（笔者注：不清楚他依据的 $delta_2$ 是否和最终版 $delta_2$ 定义有微妙的差别，但我实在不想因为这事儿继续考古了😱）
 -   明显的在复述 Knuth 算法时的笔误、算法上错误的缩进（可能是文章录入时的问题？）
 -   奇妙的变量命名（考虑到那个时代的标签：`goto` 语句、汇编语言、大型机，随性的变量命名也很合理）
 
@@ -596,7 +596,7 @@ $q$ 为全字符集的大小，而且 $qm$ 前面的系数很大。
 
 原理很简单，假定一个 $pat$，它是某个子串 $U$ 重复 n 次构成的字符串 $UUUU\dots$ 的前缀，那么我们称 $U$ 为 $pat$ 的一个周期。
 
-比如，$pat:$$\texttt{ABCABCAB}$，是 $\texttt{ABC}$ 的重复 $\texttt{ABCABCABC}$ 的前缀，所以 $\texttt{ABC}$ 的长度 $3$ 就是这个 $pat$ 的周期长度，也即 $pat$ 满足 $pat[i] = pat[i+3]$。
+比如，$pat: \texttt{ABCABCAB}$，是 $\texttt{ABC}$ 的重复 $\texttt{ABCABCABC}$ 的前缀，所以 $\texttt{ABC}$ 的长度 $3$ 就是这个 $pat$ 的周期长度，也即 $pat$ 满足 $pat[i] = pat[i+3]$。
 
 当然其实 $\texttt{ABCABC}\dots$ 也是 $pat$ 的周期，但我们只关注最短的那个。
 

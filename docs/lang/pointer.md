@@ -357,7 +357,7 @@ int main() {
     
     参考资料：[Why do function pointer definitions work with any number of ampersands '&' or asterisks '\*'? - stackoverflow.com](https://stackoverflow.com/questions/6893285/why-do-function-pointer-definitions-work-with-any-number-of-ampersands-or-as)
 
-可以使用 `typdef` 关键字声明函数指针的类型。
+可以使用 `typedef` 关键字声明函数指针的类型。
 
 ```cpp
 typedef int (*p_bi_int_op)(int, int);
