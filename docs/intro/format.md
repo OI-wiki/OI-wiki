@@ -237,8 +237,7 @@
         === "C"
             ```c
             #include <stdio.h>
-            ```
-        
+            
             int main(void) {
               printf("Hello world!\n");
               return 0;
@@ -248,8 +247,7 @@
         === "C++"
             ```c++
             #include <iostream>
-            ```
-        
+            
             int main(void) {
               std::cout << "Hello world!" << std::endl;
               return 0;
@@ -267,40 +265,42 @@
     ???+ success "示例"
         本页面将列出在 **OI Wiki** 编写过程时推荐使用的格式规范与编辑方针。
 
--   涉及到「前置知识」的页面，请在开头添加一行 **前置知识：……**，放在页面概述前。格式如下：
+- 涉及到「前置知识」的页面，请在开头添加一行 **前置知识：……**，放在页面概述前。格式如下：
 
-    `前置知识：[站内页面1](url1)、[站内页面2](url2)和[站内页面3](url3)`
+  `前置知识：[站内页面1](url1)、[站内页面2](url2)和[站内页面3](url3)`
 
-    ???+ success "示例"
-        前置知识：[时间复杂度](../basic/complexity.md)
-        
-        本页面将介绍基础的计算理论的知识。
+  ???+ success "示例"
+      前置知识：[时间复杂度](../basic/complexity.md)
+      
+
+      本页面将介绍基础的计算理论的知识。
 
 -   请注意文档结构。文档结构应当十分条理，层次清晰。请不要让诸如「五级标题」这种事情再次发生了，一篇正常的文章是用不到如此复杂的结构层次的。
 
 -   请注意内容的表述。作为一个百科网站，**OI Wiki** 使用的语言应该是书面的，客观的。诸如「抖机灵」性质的，对读者理解帮助不大的内容，不应该出现在 **OI Wiki** 当中。
 
--   请尽量为链接提供完整的标题、或者可被识别的提示，避免使用裸地址和「这」、「此」之类的模糊不清的描述。每一个超链接都应尽量对其加以清楚明确的描述，方便读者明白该超链接将指向何处。
+- 请尽量为链接提供完整的标题、或者可被识别的提示，避免使用裸地址和「这」、「此」之类的模糊不清的描述。每一个超链接都应尽量对其加以清楚明确的描述，方便读者明白该超链接将指向何处。
 
-    建议使用源文章或者标签页的标题。
+  建议使用源文章或者标签页的标题。
 
-    ???+ fail "不推荐的写法"
-        ```markdown
-        请参考[这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
-        
-        请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
-        ```
-        
-        请参考 [这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
-        
-        请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
+  ???+ fail "不推荐的写法"
+      ```markdown
+      请参考[这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+      
+      请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
+      ```
+      
+      请参考 [这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+      
+      请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
 
-    ???+ success "推荐的写法"
-        ```markdown
-        请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
-        ```
-        
-        请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+  ???+ success "推荐的写法"
+      ```markdown
+      请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+      ```
+      
+
+      请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
 -   受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末。
 
