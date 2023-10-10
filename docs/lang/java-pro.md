@@ -113,7 +113,7 @@ class Main {
         BigInteger a = new BigInteger("12345678910");  // 将字符串以十进制的形式创建 BigInteger 对象
         out.println(a);  // a 的值为 12345678910 
         BigInteger b = new BigInteger("1E", 16);  // 将字符串以指定进制的形式创建 BigInteger 对象
-        out.println(b);  // c 的值为 30 
+        out.println(b);  // b 的值为 30 
         out.close();
     }
 }
@@ -492,7 +492,7 @@ integer.intValue();  // 抛出 java.lang.NullPointerException 异常
 
 | 父类成员访问属性 |           在父类中的含义           |                                  在子类中的含义                                   |
 |:----------------:|:----------------------------------:|:---------------------------------------------------------------------------------:|
-|      `public`      |            对所有类开放            |                                   对所有人类开放                                    |
+|      `public`      |            对所有类开放            |                                   对所有类开放                                    |
 |    `protected`     | 只有包内其它类、自己和子类可以访问 |                        只有包内其它类、自己和子类可以访问                         |
 |  缺省（`default`）   |       只有包内其它类可以访问       | 如果子类与父类在同一个包内，只有包内其它类可以访问；否则相当于 `private`，不能访问 |
 |     `private`      |          只有自己可以访问          |                                     不能访问                                      |
