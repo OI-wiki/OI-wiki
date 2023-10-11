@@ -935,7 +935,7 @@ void non_local_search(int x, int lv, int rv, int op) {
 
 完整代码如下：
 
-???+ note "示例代码"
+??? note "示例代码"
     ```cpp
     #include <bits/stdc++.h>
     #define ls(x) T[x][0]
