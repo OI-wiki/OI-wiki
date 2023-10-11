@@ -766,7 +766,7 @@ $\sum_{i=1}^m c_i = \sum_{i=1}^m a_i +\sum_{i=1}^m a_i' - \varphi(x_n) +\varphi(
 
 $\sum_{i=1}^m c_i \leq \sum_{i=1}^m a_i' + 21m\log n +n\log n +3m$
 
-注意到 `delete(x)` 操作的本质是删掉一个 Rake Node，但我们在 $m$ 次操作中最多只会添加 $m$ 个 Rake Node，由 Rake Node 的定义，我们初始时最多有 $n$ 个 Rake Node，也就是说 我们总共只会做 $m+n$ 次 `delete(x)` 操作，由 $ a' \leq 3\log n +1   $ 可知
+注意到 `delete(x)` 操作的本质是删掉一个 Rake Node，但我们在 $m$ 次操作中最多只会添加 $m$ 个 Rake Node，由 Rake Node 的定义，我们初始时最多有 $n$ 个 Rake Node，也就是说 我们总共只会做 $m+n$ 次 `delete(x)` 操作，由 $a' \leq 3\log n +1$ 可知
 
 $\sum_{i=1}^m c_i \leq 3(m+n)\log n + 21m\log n +n\log n +4m +n$
 
