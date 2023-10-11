@@ -1,4 +1,5 @@
 author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
+
 在 OI 中，想要对图进行操作，就需要先学习图的存储方式。
 
 ## 约定
