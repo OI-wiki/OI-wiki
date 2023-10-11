@@ -465,8 +465,6 @@ void cut(int x, int y) {
     #define ms(x) T\[x]\[2]
     #define maxn 200005
     using namespace std;
-    ```
-
     int read() {
       int s = 0;
       char a = getchar();
@@ -478,9 +476,7 @@ void cut(int x, int y) {
       }
       return s;
     }
-
     int T[maxn][3], s[maxn][2], tot, v[maxn], n, m, r[maxn], top, st[maxn], f[maxn];
-
     int nnd() {
       if (top) {
         top--;
@@ -488,11 +484,8 @@ void cut(int x, int y) {
       } else
         return ++tot;
     }
-
     bool isr(int x) { return rs(f[x]) != x && ls(f[x]) != x; }
-
     bool dir(int x) { return rs(f[x]) == x; }
-
     void psu(int x, int ty) {
       if (ty) {
         s[x][1] = s[ls(x)][1] ^ s[rs(x)][1] ^ s[ms(x)][1];
@@ -501,13 +494,11 @@ void cut(int x, int y) {
       s[x][0] = s[ls(x)][0] ^ v[x] ^ s[rs(x)][0];
       s[x][1] = s[ls(x)][1] ^ s[ms(x)][1] ^ s[rs(x)][1] ^ v[x];
     }
-
     void psr(int x) {
       if (!x) return;
       r[x] ^= 1;
       swap(ls(x), rs(x));
     }
-
     void psd(int x, int ty) {
       if (ty) return;
       if (r[x]) {
@@ -517,18 +508,15 @@ void cut(int x, int y) {
         return;
       }
     }
-
     void upd(int x, int ty) {
       if (!isr(x)) upd(f[x], ty);
       psd(x, ty);
     }
-
     void stf(int x, int fa, int ty) {
       if (x) f[x] = fa;
       T[fa][ty] = x;
       return;
     }
-
     void rtt(int x, int ty) {
       int y = f[x], z = f[y], d = dir(x), w = T[x][d ^ 1];
       if (z) T[z][ms(z) == y ? 2 : dir(y)] = x;
@@ -540,19 +528,16 @@ void cut(int x, int y) {
       psu(y, ty);
       psu(x, ty);
     }
-
     void spy(int x, int ty, int gl = 0) {
       upd(x, ty);
       for (int y; y = f[x], (!isr(x)) && y != gl; rtt(x, ty)) {
         if (f[y] != gl && (!isr(y))) rtt(dir(x) ^ dir(y) ? x : y, ty);
       }
     }
-
     void cle(int x) {
       ls(x) = ms(x) = rs(x) = s[x][0] = s[x][1] = r[x] = v[x] = 0;
       st[++top] = x;
     }
-
     void del(int x) {
       stf(ms(x), f[x], 1);
       if (ls(x)) {
@@ -568,7 +553,6 @@ void cut(int x, int y) {
         stf(rs(x), f[x], 2);
       cle(x);
     }
-
     void spl(int x) {
       spy(x, 1);
       int y = f[x];
@@ -583,7 +567,6 @@ void cut(int x, int y) {
       psu(rs(y), 0);
       psu(y, 0);
     }
-
     void acs(int x) {
       spy(x, 0);
       int ys = x;
@@ -602,7 +585,6 @@ void cut(int x, int y) {
       }
       spy(ys, 0);
     }
-
     int fdr(int x) {
       acs(x);
       psd(x, 0);
@@ -610,17 +592,14 @@ void cut(int x, int y) {
       spy(x, 0);
       return x;
     }
-
     void mkr(int x) {
       acs(x);
       psr(x);
     }
-
     void epo(int x, int y) {
       mkr(x);
       acs(y);
     }
-
     void lnk(int x, int y) {
       if (fdr(x) == fdr(y)) return;
       acs(x);
@@ -629,14 +608,12 @@ void cut(int x, int y) {
       psu(x, 0);
       psu(y, 0);
     }
-
     void cu(int x, int y) {
       epo(x, y);
       if (ls(y) != x || rs(x)) return;
       f[x] = ls(y) = 0;
       psu(y, 0);
     }
-
     int main() {
       int i, j, op, U, V, n = read(), m = read();
       tot = n;
@@ -659,7 +636,6 @@ void cut(int x, int y) {
       }
       return 0;
     }
-
     ```
 
 ### SATT 的时间复杂度证明
