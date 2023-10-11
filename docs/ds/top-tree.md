@@ -459,7 +459,7 @@ void cut(int x, int y) {
 
 ???+ note "示例代码"
     ```cpp
-    #include \< bits / stdc++.h>
+    #include<bits/stdc++.h>
     #define ls(x) T\[x]\[0]
     #define rs(x) T\[x]\[1]
     #define ms(x) T\[x]\[2]
