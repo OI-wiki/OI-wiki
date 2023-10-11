@@ -56,6 +56,13 @@ jobs:
         uses: wjdp/htmltest-action@master
         with:
           skip_external: true
+      - name: Fetch old site
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: old-site
+      - name: Check _redirects
+        run: pipenv run python scripts/post-build/redirect/check-redirects.py
       - name: Deploy to gh-pages
         if: ${{ github.event_name == 'push' }}
         uses: peaceiris/actions-gh-pages@v3

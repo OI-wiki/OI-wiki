@@ -1,6 +1,6 @@
 author: HeRaNO, konnyakuxzy, littlefrog
 
-[![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")
+![./images/kuaizhuanglianbiao.png](./images/kuaizhuanglianbiao.png "./images/kuaizhuanglianbiao.png")
 
 块状链表大概就长这样……
 

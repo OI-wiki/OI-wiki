@@ -1,3 +1,5 @@
+author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, CoelacanthusHex, frank-xjh, Great-designer, greyqz, guodong2005, henrytbtrue, Ir1d, kZime, lihaoyu1234, Marcythm, MegaOwIer, Menci, nalemy, orzAtalod, ouuan, Persdre, segment-tree, ShaoChenHeng, shuzhouliu, sshwy, Struggler-q, Tiphereth-A, TrisolarisHD, Xeonacid, yuhuoji
+
 ## 定义
 
 欧拉函数（Euler's totient function），即 $\varphi(n)$，表示的是小于等于 $n$ 和 $n$ 互质的数的个数。
@@ -52,9 +54,9 @@
 如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用 [Pollard Rho](./pollard-rho.md) 算法优化。
 
 === "C++"
-
     ```cpp
     #include <cmath>
+    
     int euler_phi(int n) {
       int m = int(sqrt(n + 0.5));
       int ans = n;
@@ -69,7 +71,6 @@
     ```
 
 === "Python"
-
     ```python
     import math
     def euler_phi(n):
@@ -88,9 +89,9 @@
 注：如果将上面的程序改成如下形式，会提升一点效率：
 
 === "C++"
-
     ```cpp
     #include <cmath>
+    
     int euler_phi(int n) {
       int ans = n;
       for (int i = 2; i * i <= n; i++)
@@ -104,7 +105,6 @@
     ```
 
 === "Python"
-
     ```python
     import math
     def euler_phi(n):

@@ -233,7 +233,7 @@ $$
 -   [SPOJ #8725 CLOPPAIR "Closest Point Pair"\[难度：低\]](https://www.spoj.com/problems/CLOPPAIR/)
 -   [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount"\[难度：中\]](http://codeforces.com/contest/120/problem/J)
 -   [SPOJ #7029 CLOSEST "Closest Triple"\[难度：中\]](https://www.spoj.com/problems/CLOSEST/)
--   [Google Code Jam 2009 Final "Min Perimeter"\[难度：中\]](https://codingcompetitions.withgoogle.com/codejam/round/0000000000432ad5/0000000000433195)
+-   [Google Code Jam 2009 Final "Min Perimeter"\[难度：中\]](https://web.archive.org/web/20230329043437/https://codingcompetitions.withgoogle.com/codejam/round/0000000000432ad5/0000000000433195)
 
 ***
 

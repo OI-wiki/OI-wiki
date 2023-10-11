@@ -18,7 +18,6 @@ $$
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         long long Lucas(long long n, long long m, long long p) {
           if (m == 0) return 1;
@@ -27,7 +26,6 @@ $$
         ```
     
     === "Python"
-    
         ```python
         def Lucas(n, m, p):
           if m == 0:
@@ -145,7 +143,7 @@ $\times 13\times 14\times 15\times 16\times 17\times 18\times 19\times20\times21
 
 将其中所有 $q$ 的倍数提取，得到：
 
-$22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7)$$\times(1\times 2\times 4\times 5\times 7\times 8\times 10 \times 11\times 13\times 14\times 16\times 17\times 19 \times 20 \times 22 )$
+$22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7) \times (1\times 2\times 4\times 5\times 7\times 8\times 10 \times 11\times 13\times 14\times 16\times 17\times 19 \times 20 \times 22 )$
 
 可以看到，式子分为三个整式的乘积：
 

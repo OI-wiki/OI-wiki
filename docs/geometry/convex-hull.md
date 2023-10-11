@@ -42,7 +42,6 @@
 
 ???+ note "代码实现"
     === "C++"
-
         ```cpp
         // stk[] 是整型，存的是下标
         // p[] 存储向量或点
@@ -52,7 +51,7 @@
         // 栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
         for (int i = 2; i <= n; ++i) {
           while (tp >= 2  // 下一行 * 操作符被重载为叉积
-                && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
+                 && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
             used[stk[tp--]] = 0;
           used[i] = 1;  // used 表示在凸壳上
           stk[++tp] = i;
@@ -70,9 +69,8 @@
           h[i] = p[stk[i]];
         int ans = tp - 1;
         ```
-
+    
     === "Python"
-
         ```python
         stk = [] # 是整型，存的是下标
         p = [] # 存储向量或点
