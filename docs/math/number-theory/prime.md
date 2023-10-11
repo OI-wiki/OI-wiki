@@ -11,7 +11,6 @@
 暴力做法自然可以枚举从小到大的每个数看是否能整除
 
 === "C++"
-
     ```cpp
     bool isPrime(a) {
       if (a < 2) return 0;
@@ -22,7 +21,6 @@
     ```
 
 === "Python"
-
     ```python
     def isPrime(a):
         if a < 2:
@@ -42,7 +40,6 @@
 由于 $1$ 肯定是约数，所以不检验它。
 
 === "C++"
-
     ```cpp
     bool isPrime(a) {
       if (a < 2) return 0;
@@ -53,7 +50,6 @@
     ```
 
 === "Python"
-
     ```python
     def isPrime(a):
         if a < 2:
@@ -88,7 +84,6 @@
 ##### 实现
 
 === "C++"
-
     ```cpp
     bool millerRabin(int n) {
       if (n < 3) return n == 2;
@@ -103,7 +98,6 @@
     ```
 
 === "Python"
-
     ```python
     def millerRabin(n):
         if n < 3:
@@ -248,7 +242,6 @@ Carmichael 数有如下性质：
 这样得到了较正确的 Miller Rabin：（来自 fjzzq2002）
 
 === "C++"
-
     ```cpp
     bool millerRabin(int n) {
       if (n < 3 || n % 2 == 0) return n == 2;
@@ -261,7 +254,7 @@ Carmichael 数有如下性质：
         if (v == 1) continue;
         int s;
         for (s = 0; s < t; ++s) {
-          if (v == n - 1) break; // 得到平凡平方根 n-1，通过此轮测试
+          if (v == n - 1) break;  // 得到平凡平方根 n-1，通过此轮测试
           v = (long long)v * v % n;
         }
         // 如果找到了非平凡平方根，则会由于无法提前 break; 而运行到 s == t
@@ -273,7 +266,6 @@ Carmichael 数有如下性质：
     ```
 
 === "Python"
-
     ```python
     def millerRabin(n):
         if n < 3 or n % 2 == 0:
