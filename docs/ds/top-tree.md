@@ -180,7 +180,7 @@ Compress Tree 里的节点称为 **Compress Node**。只考虑当前这条簇路
 
 ### 代码实现
 
-#### 4.1 Push 类函数
+#### Push 类函数
 
 `Pushup(x)`
 
