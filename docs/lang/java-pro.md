@@ -113,7 +113,7 @@ class Main {
         BigInteger a = new BigInteger("12345678910");  // 将字符串以十进制的形式创建 BigInteger 对象
         out.println(a);  // a 的值为 12345678910 
         BigInteger b = new BigInteger("1E", 16);  // 将字符串以指定进制的形式创建 BigInteger 对象
-        out.println(b);  // c 的值为 30 
+        out.println(b);  // b 的值为 30 
         out.close();
     }
 }
@@ -492,7 +492,7 @@ integer.intValue();  // 抛出 java.lang.NullPointerException 异常
 
 | 父类成员访问属性 |           在父类中的含义           |                                  在子类中的含义                                   |
 |:----------------:|:----------------------------------:|:---------------------------------------------------------------------------------:|
-|      `public`      |            对所有类开放            |                                   对所有人类开放                                    |
+|      `public`      |            对所有类开放            |                                   对所有类开放                                    |
 |    `protected`     | 只有包内其它类、自己和子类可以访问 |                        只有包内其它类、自己和子类可以访问                         |
 |  缺省（`default`）   |       只有包内其它类可以访问       | 如果子类与父类在同一个包内，只有包内其它类可以访问；否则相当于 `private`，不能访问 |
 |     `private`      |          只有自己可以访问          |                                     不能访问                                      |
@@ -893,7 +893,7 @@ public class Main {
 
 ???+ warning "注意"
     不要在 `for/foreach` 遍历 `List` 的过程中删除其中的元素，否则会抛出异常。
-  
+    
     原因也很简单，`list.size()` 改变了，但在循环中已循环的次数却是没有随之变化。原来预计在下一个 `index` 的数据因为删除的操作变成了当前 `index` 的数据，运行下一个循环时操作的会变为原来预计在下下个 `index` 的数据，最终会导致操作的数据不符合预期。
 
 ### Queue
@@ -1441,16 +1441,16 @@ public class Main {
     import java.io.PrintWriter;
     import java.util.Arrays;
     import java.util.StringTokenizer;
-    
+    
     public class Main {
         static class FastReader {
             StringTokenizer st;
             BufferedReader br;
-    
+    
             public FastReader() {
                 br = new BufferedReader(new InputStreamReader(System.in));
             }
-    
+    
             String next() {
                 while (st == null || !st.hasMoreElements()) {
                     try {
@@ -1461,19 +1461,19 @@ public class Main {
                 }
                 return st.nextToken();
             }
-    
+    
             int nextInt() {
                 return Integer.parseInt(next());
             }
-    
+    
             long nextLong() {
                 return Long.parseLong(next());
             }
-    
+    
             double nextDouble() {
                 return Double.parseDouble(next());
             }
-    
+    
             String nextLine() {
                 String str = "";
                 try {
@@ -1484,10 +1484,10 @@ public class Main {
                 return str;
             }
         }
-    
+    
         static PrintWriter out = new PrintWriter(System.out);
         static FastReader in = new FastReader();
-    
+    
         static void solve() {
             int n = in.nextInt();
             Integer[] a = new Integer[n + 10];
@@ -1508,7 +1508,7 @@ public class Main {
             }
             out.println("NO");
         }
-    
+    
         public static void main(String[] args) {
             int t = in.nextInt();
             while (t-- > 0) {

@@ -440,9 +440,9 @@ $$
 
 ### 最小原根的范围估计
 
-王元[^yuan1959note]和 Burgess[^burgess1962character]证明了若素数 $p$ 有原根，其最小原根 $g_p=O\left(p^{0.25+\epsilon}\right)$，其中 $\epsilon>0$.
+王元[^yuan1959note]和 Burgess[^burgess1962character]证明了素数 $p$ 的最小原根 $g_p=O\left(p^{0.25+\epsilon}\right)$，其中 $\epsilon>0$.
 
-Fridlander[^fridlender1949least]和 Salié[^salie1949kleinsten]证明了若素数 $p$ 有原根，其最小原根 $g_p=\Omega(\log p)$.
+Fridlander[^fridlender1949least]和 Salié[^salie1949kleinsten]证明了素数 $p$ 的最小原根 $g_p=\Omega(\log p)$.
 
 这保证了我们暴力找一个数的最小原根，复杂度是可以接受的。
 

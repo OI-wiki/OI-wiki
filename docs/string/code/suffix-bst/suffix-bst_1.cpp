@@ -81,42 +81,6 @@ void insert(int& rt, int p, double lv, double rv) {
   if (!balance(rt)) rebuild(rt, lv, rv);
 }
 
-void remove(int& rt, int p, double lv, double rv) {
-  if (!rt) return;
-
-  if (rt == p) {
-    if (!L[rt] || !R[rt]) {
-      rt = (L[rt] | R[rt]);
-    } else {
-      // 找到rt的前驱来替换rt
-      int nrt = L[rt], fa = rt;
-      while (R[nrt]) {
-        fa = nrt;
-        sz[fa]--;
-        nrt = R[nrt];
-      }
-      if (fa == rt) {
-        R[nrt] = R[rt];
-      } else {
-        L[nrt] = L[rt];
-        R[nrt] = R[rt];
-        R[fa] = 0;
-      }
-      rt = nrt;
-      tag[rt] = (lv + rv) / 2;
-    }
-  } else {
-    double mv = (lv + rv) / 2;
-    if (cmp(p, rt))
-      remove(L[rt], p, lv, mv);
-    else
-      remove(R[rt], p, mv, rv);
-  }
-
-  push_up(rt);
-  if (!balance(rt)) rebuild(rt, lv, rv);
-}
-
 void inorder(int rt) {
   if (!rt) return;
   inorder(L[rt]);
