@@ -204,6 +204,56 @@
 
     折叠框的标题，即 `???+note` 中 `note` 后的内容应以 `"` 包裹起来。其中的内容支持 Markdown 语法。详见 [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title)。（不具备折叠功能的为一般的 Admonitions，参考 [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions)）
 
+-   当需要添加不同语言的代码时，推荐使用 Content tabs，可以实现不同语言代码的切换。Content tabs 还有其他的用法，详见 [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/#usage)。其使用方法和效果如下。
+
+    ???+ success "示例"
+        ````text
+        注意需要在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
+        
+        === "C"
+        
+            ``` c
+            #include <stdio.h>
+            
+            int main(void) {
+              printf("Hello world!\n");
+              return 0;
+            }
+            ```
+            
+        === "C++"
+        
+            ``` c++
+            #include <iostream>
+            
+            int main(void) {
+              std::cout << "Hello world!" << std::endl;
+              return 0;
+            }
+            ```
+            
+        ````
+        
+        === "C"
+            ```c
+            #include <stdio.h>
+            
+            int main(void) {
+              printf("Hello world!\n");
+              return 0;
+            }
+            ```
+        
+        === "C++"
+            ```c++
+            #include <iostream>
+            
+            int main(void) {
+              std::cout << "Hello world!" << std::endl;
+              return 0;
+            }
+            ```
+
 如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)。前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 Markdown 传统语法和 mkdocs-material 支持的扩展语法。
 
 #### 文本内容的格式要求
@@ -221,7 +271,7 @@
 
     ???+ success "示例"
         前置知识：[时间复杂度](../basic/complexity.md)
-        
+
         本页面将介绍基础的计算理论的知识。
 
 -   请注意文档结构。文档结构应当十分条理，层次清晰。请不要让诸如「五级标题」这种事情再次发生了，一篇正常的文章是用不到如此复杂的结构层次的。
@@ -247,7 +297,7 @@
         ```markdown
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
         ```
-        
+
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
 -   受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末。
