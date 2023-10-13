@@ -1,4 +1,4 @@
-autor: iamtwz, billchenchina, CBW2007, CCXXXI, chinggg, Enter-tainer, eyedeng, FFjet, gaojude, Great-designer, H-J-Granger, Henry-ZHR, hsfzLZH1, Ir1d, kenlig, Konano, ksyx, luoguyuntianming, Marcythm, Menci, NachtgeistW, ouuan, Peanut-Tang, qwqAutomaton, sshwy, StudyingFather, Tiphereth-A, TrisolarisHD, TRSWNCA, Xeonacid, Yuuko10032, Zhangjiacheng2006, Zhoier, Hszzzx
+autor: iamtwz, billchenchina, CBW2007, CCXXXI, chinggg, Enter-tainer, eyedeng, FFjet, gaojude, Great-designer, H-J-Granger, Henry-ZHR, hsfzLZH1, Ir1d, kenlig, Konano, ksyx, luoguyuntianming, Marcythm, Menci, NachtgeistW, ouuan, Peanut-Tang, qwqAutomaton, sshwy, StudyingFather, Tiphereth-A, TrisolarisHD, TRSWNCA, Xeonacid, Yuuko10032, Zhangjiacheng2006, Zhoier, Hszzzx, shenshuaijie
 
 ## 定义
 
@@ -11,6 +11,8 @@ autor: iamtwz, billchenchina, CBW2007, CCXXXI, chinggg, Enter-tainer, eyedeng, F
 计算 $a$ 的 $n$ 次方表示将 $n$ 个 $a$ 乘在一起：$a^{n} = \underbrace{a \times a \cdots \times a}_{n\text{ 个 a}}$。然而当 $a,n$ 太大的时侯，这种方法就不太适用了。不过我们知道：$a^{b+c} = a^b \cdot a^c,\,\,a^{2b} = a^b \cdot a^b = (a^b)^2$。二进制取幂的想法是，我们将取幂的任务按照指数的 **二进制表示** 来分割成更小的任务。
 
 ## 过程
+
+### 迭代版本
 
 首先我们将 $n$ 表示为 2 进制，举一个例子：
 
@@ -55,6 +57,37 @@ $$
 根据上式我们发现，原问题被我们转化成了形式相同的子问题的乘积，并且我们可以在常数时间内从 $2^i$ 项推出 $2^{i+1}$ 项。
 
 这个算法的复杂度是 $\Theta(\log n)$ 的，我们计算了 $\Theta(\log n)$ 个 $2^k$ 次幂的数，然后花费 $\Theta(\log n)$ 的时间选择二进制为 1 对应的幂来相乘。
+
+### 递归版本
+
+上述迭代版本中，由于$2^{i+1}$ 项依赖于$2^i$，使得其转换为递归版本比较困难（一方面需要返回一个额外的$a^{2^i}$，对函数来说无法实现一个只返回计算结果的接口；另一方面则是必须从低位往高位计算，即从高位往低位调用，这也造成了递归实现的困扰），下面则提供递归版本的思路。
+
+给定形式$n_{t...i} = (n_tn_{t-1}\cdots n_i)_2$，即$n_{t...i}$表示将$n$的前 $t- i + 1$ 位二进制位当作一个二进制数，则有如下变换：
+
+
+$$
+\begin{aligned}
+n &= n_{t...0} \\\\
+&= 2\times n_{t...1} + n_0\\\\
+ &= 2\times (2\times n_{t...2} + n_1) + n_0 \\\\
+ &\cdots\\
+\end{aligned}
+$$
+
+那么有：
+
+$$
+\begin{aligned}
+a^n &= a^{n_{t...0}} \\\\
+    &= a^{2\times n_{t...1} + n_0} = (a^{n_{t...1}})^2  a^{n_0} \\\\
+    &=(a^{2\times n_{t...2} + n_1})^2  a^{n_0} = ((a^{n_{t...2}})^2 a^{n_1})^2  a^{n_0} \\\\
+    &\cdots
+\end{aligned}
+$$
+
+如上所述，在递归时，对于不同的递归深度是相同的处理：$a^{n_{t...i}} = (a^{n_{t...(i+1)}})^2a^{n_i}$，即将当前递归的二进制数拆成两部分：最低位在递归出来时乘上去，其余部分则变成新的二进制数递归进入更深一层作相同的处理。
+
+可以观察到，每递归深入一层则二进制位减少一位，所以该算法的时间复杂度也为$\Theta(\log n)$。
 
 ## 实现
 
