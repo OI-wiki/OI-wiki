@@ -66,7 +66,8 @@
 /math/prime /math/number-theory/prime
 /math/meissel-lehmer /math/number-theory/meissel-lehmer
 /math/gcd /math/number-theory/gcd
-/math/euler /math/number-theory/euler
+/math/euler /math/number-theory/euler-totient
+/math/number-theory/euler /math/number-theory/euler-totient
 /math/sieve /math/number-theory/sieve
 /math/fermat /math/number-theory/fermat
 /math/euclidean /math/number-theory/euclidean
