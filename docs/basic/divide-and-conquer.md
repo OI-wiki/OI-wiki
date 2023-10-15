@@ -46,8 +46,7 @@ int func(传入数值) {
             for (int start = 0; start < n - seg; start += seg + seg)
               merge(a, start, start + seg - 1, std::min(start + seg + seg - 1, n - 1));
         }
-        ```
-
+        
         // 使用递归的归并排序算法
         template <typename T>
         void merge_sort(vector<T> a, int front, int end) {
