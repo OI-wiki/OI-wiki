@@ -137,9 +137,9 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
           }
         }
         
-        
         int main() {
           cin >> n >> m;
+        ```
     
           vis.resize(n + 1, false);
           adj.resize(n + 1, vector<bool>(n + 1, false));
