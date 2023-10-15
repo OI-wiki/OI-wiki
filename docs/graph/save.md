@@ -67,15 +67,15 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
                 self.u = u
                 self.v = v
         
-        n, m = map(lambda x:int(x), input().split())
+        n, m = map(int, input().split())
         
         e = [Edge() for _ in range(m)]; vis = [False] * n
         
-        for i in range(0, m):
-            e[i].u, e[i].v = map(lambda x:int(x), input().split())
+        for i in range(m):
+            e[i].u, e[i].v = map(int, input().split())
         
         def find_edge(u, v):
-            for i in range(1, m + 1):
+            for i in range(m):
                 if e[i].u == u and e[i].v == v:
                     return True
             return False
@@ -84,7 +84,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
             if vis[u]:
                 return
             vis[u] = True
-            for i in range(1, m + 1):
+            for i in range(m):
                 if e[i].u == u:
                     dfs(e[i].v)
         ```
