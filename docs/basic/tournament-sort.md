@@ -100,17 +100,18 @@
             return u
         return v
     
-    def creat_tree(value):
+    def creat_tree():
         for i in range(0, n):
-            tmp[n + 1] = a[i]
+            tmp[n + i] = a[i]
         for i in range(2 * n -1, 1, -2):
             k = int(i / 2)
             j = i - 1
             tmp[k] = winner(i, j)
-        value = tmp[tmp[i]]
-        tmp[tmp[i]] = INF
+        value = tmp[tmp[1]]
+        tmp[tmp[1]] = INF
+        return value
     
-    def recreat(value):
+    def recreat():
         i = tmp[1]
         while i > 1:
             j = k = int(i / 2)
@@ -122,13 +123,13 @@
             i = k
         value = tmp[tmp[1]]
         tmp[tmp[1]] = INF
+        return value
     
     def tournament_sort():
-        value = 0
-        creat_tree(value)
+        value = creat_tree()
         for i in range(0, n):
             a[i] = value
-            recreat(value)
+            value = recreat()
     ```
 
 ## 外部链接
