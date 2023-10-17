@@ -45,22 +45,21 @@
 
 === "C++"
     ```cpp
-    for (len = 1; len <= n; len++)
-      for (i = 1; i <= 2 * n - 1; i++) {
+    for (len = 2; len <= n; len++)
+      for (i = 1; i <= 2 * n - 1 - len; i++) {
         int j = len + i - 1;
-        for (k = i; k < j && k <= 2 * n - 1; k++)
+        for (k = i; k < j; k++)
           f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1]);
       }
     ```
 
 === "Python"
     ```python
-    for len in range(1, n + 1):
-        for i in range(1, 2 * n):
+    for len in range(2, n + 1):
+        for i in range(1, 2 * n - len):
             j = len + i - 1
-            while k < j and k <= 2 * n - 1:
+            for k in range(i, j):
                 f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1])
-                k += 1
     ```
 
 ## 几道练习题
