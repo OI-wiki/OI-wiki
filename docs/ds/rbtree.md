@@ -326,13 +326,13 @@ class RBTreeMap {
 
 #### Case 3
 
-待删除节点有且仅有一个非 NIL 子节点，若待删除节点为红色，直接使用其子节点 S 替换即可；若为黑色，则直接使用子节点 S 替代会打破性质 4，需要在使用 S 替代后判断 S 的颜色，若为红色，则将其染黑后即可满足性质 4，否则需要进行维护才可以满足性质 4。
+待删除节点 N 有且仅有一个非 NIL 子节点，则子节点 S 一定为红色。因为如果子节点 S 为黑色，则 S 的黑深度和待删除结点的黑深度不同，违反性质 4。由于子节点 S 为红色，则待删除节点 N 为黑色，直接使用子节点 S 替代 N 并将其染黑后即可满足性质 4。
 
 ???+ note "实现"
     ```cpp
     // Case 3: Current node has a single left or right child
     //   Step 1. Replace N with its child
-    //   Step 2. If N is BLACK, maintain N
+    //   Step 2. Paint N to BLACK
     NodePtr parent = node->parent;
     NodePtr replacement = (node->left != nullptr ? node->left : node->right);
     
@@ -352,13 +352,7 @@ class RBTreeMap {
       replacement->parent = parent;
     }
     
-    if (node->isBlack()) {
-      if (replacement->isRed()) {
-        replacement->color = Node::BLACK;
-      } else {
-        maintainAfterRemove(replacement);
-      }
-    }
+    node->color = Node::BLACK;
     ```
 
 ### 删除后的平衡维护
@@ -587,7 +581,7 @@ nginx 中的用户态定时器是通过红黑树实现的。在 nginx 中，所�
 -   Microsoft STL
     -   [`stl/inc/xtree`](https://github.com/microsoft/STL/blob/main/stl/inc/xtree)
 
-大多数 STL 中的 `std::map` 和 `std::set` 的内部数据结构就是一棵红黑树（例如上面提到的这些）。不过值得注意的是，这些红黑树（包括可能有读者用过的 `std::_Rb_tree`）都不是 C++ 标准，虽然部分竞赛（例如 NOIP）并未命令禁止这类数据结构，但还是应当注意这类标准库中的非标准实现不应该在工程项目中直接使用。
+大多数 STL 中的 `std::map` 和 `std::set` 的内部数据结构就是一棵红黑树（例如上面提到的这些）。不过值得注意的是，这些红黑树（包括可能有读者用过的 `std::_Rb_tree`）都不是 C++ 标准，虽然部分竞赛（例如 NOIP）并未明令禁止这类数据结构，但还是应当注意这类标准库中的非标准实现不应该在工程项目中直接使用。
 
 由于 STL 的特殊性，其中大多数实现的代码可读性都不高，因此并不建议读者使用 STL 学习红黑树。
 
