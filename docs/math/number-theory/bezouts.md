@@ -93,27 +93,22 @@ DP 代码如下：
 ```c++
 unordered_map<unsigned, unsigned> dp;
 dp[0] = 0;
-for (size_t i = 1; i <= n; i++)
-{
-    unordered_map<unsigned, unsigned> last_dp = dp; // 枚举过程不应改变被枚举容器，应先复制
-    for (auto p: last_dp)
-    {
-        unsigned x = p.first;
-        unsigned d = gcd(x, l[i]);
-        if (dp.find(d) == dp.end())
-        {
-            dp[d] = INF;
-        }
-        dp[d] = min(dp[d], p.second + c[i]);
+for (size_t i = 1; i <= n; i++) {
+  unordered_map<unsigned, unsigned> last_dp =
+      dp;  // 枚举过程不应改变被枚举容器，应先复制
+  for (auto p : last_dp) {
+    unsigned x = p.first;
+    unsigned d = gcd(x, l[i]);
+    if (dp.find(d) == dp.end()) {
+      dp[d] = INF;
     }
+    dp[d] = min(dp[d], p.second + c[i]);
+  }
 }
-if (dp.find(1) == dp.end())
-{
-    cout << "-1";
-}
-else
-{
-    cout << dp[1];
+if (dp.find(1) == dp.end()) {
+  cout << "-1";
+} else {
+  cout << dp[1];
 }
 ```
 
