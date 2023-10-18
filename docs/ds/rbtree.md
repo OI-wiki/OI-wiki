@@ -285,21 +285,17 @@ class RBTreeMap {
     //     S  ..                N  ..
     // clang-format on
     
-    ```
-    
-    //Step 1
+    // Step 1
     NodePtr successor = node->right;
     NodePtr parent = node;
     while (successor->left != nullptr) {
-    parent = successor;
-    successor = parent->left;
+      parent = successor;
+      successor = parent->left;
     }
-    //Step 2
+    // Step 2
     swapNode(node, successor);
     maintainRelationship(parent);
-    //Step 3: vvv
-    
-    ```
+    // Step 3: vvv
     ```
 
 #### Case 2
