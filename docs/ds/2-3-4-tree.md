@@ -119,6 +119,8 @@
 
 ![2-3-4-tree-rbt-2](images/2-3-4-tree-rbt-2.svg)
 
+<img src="images/2-3-4-tree-rbt-3.svg" alt="2-3-4-tree" style="zoom: 10%;" />
+
 ## 参考资料
 
 1.  [2–3–4 tree - Wikipedia](https://en.wikipedia.org/wiki/2–3–4_tree)
