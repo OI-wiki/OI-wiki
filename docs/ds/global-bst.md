@@ -102,7 +102,7 @@
     // a：子树加标记
     // s：子树和（不算加标记的）
     int a[N], s[N];
-	
+    
     void add(int x) {
       bool t = true;
       int z = 0;
@@ -163,7 +163,7 @@
     
     struct Matrix {
       int M[2][2];
-      
+    
       Matrix operator*(const Matrix &B) {
         static Matrix ret;
         for (int i = 0; i < 2; i++)
@@ -342,4 +342,4 @@
 
 ## 参考
 
-[P4211 [LNOI2014] LCA | 全局平衡二叉树](https://www.luogu.com.cn/blog/nederland/globalbst)
+[P4211 \[LNOI2014\] LCA | 全局平衡二叉树](https://www.luogu.com.cn/blog/nederland/globalbst)
