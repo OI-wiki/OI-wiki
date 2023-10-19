@@ -147,12 +147,12 @@ $$
         
         观察到，只需求出莫比乌斯函数的前缀和，就可以快速计算出欧拉函数的前缀和了。时间复杂度 $O\left(n^{\frac 2 3}\right)$.
     
-    == "杜教筛"
-    
+    === "杜教筛"
+        
         求 $S(n)=\sum_{i=1}^n\varphi(i)$.
-    
+        
         同样的，$\varphi * 1=\operatorname{id}$, 从而：
-    
+        
         $$
             \begin{aligned}
                 S(n) & =\sum_{i=1}^n i - \sum_{i=2}^n S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)    \\
