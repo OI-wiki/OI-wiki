@@ -65,7 +65,7 @@
 
 ### 多个整数
 
-裴蜀定理可以推广到 $n$ 个整数的情形：设 $a_1, a_2, \dots, a_n$ 是不全为零的整数，则存在整数 $x_1, x_2, \dots, x_n$, 使得 $a_1 x_1 + a_2 x_2 + \cdots + a_n x_n=\gcd(a_1, a_2, \dots, a_n)$。其逆定理也成立：设 $a_1, a_2, \dots, a_n$ 是不全为零的整数， $d > 0$ 是 $a_1, a_2, \dots, a_n$ 的公因数，若存在整数 $x_1, x_2, \dots, x_n$, 使得 $a_1 x_1 + a_2 x_2 + \cdots + a_n x_n=d$，则 $d = \gcd(a_1, a_2, \dots, a_n)$。
+裴蜀定理可以推广到 $n$ 个整数的情形：设 $a_1, a_2, \dots, a_n$ 是不全为零的整数，则存在整数 $x_1, x_2, \dots, x_n$, 使得 $a_1 x_1 + a_2 x_2 + \cdots + a_n x_n=\gcd(a_1, a_2, \dots, a_n)$。其逆定理也成立：设 $a_1, a_2, \dots, a_n$ 是不全为零的整数，$d > 0$ 是 $a_1, a_2, \dots, a_n$ 的公因数，若存在整数 $x_1, x_2, \dots, x_n$, 使得 $a_1 x_1 + a_2 x_2 + \cdots + a_n x_n=d$，则 $d = \gcd(a_1, a_2, \dots, a_n)$。
 
 ## 应用
 
