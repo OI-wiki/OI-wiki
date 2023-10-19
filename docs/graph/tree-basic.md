@@ -242,25 +242,25 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
 ???+ note "实现"
     ```c++
     vector<vector<int>> levelOrder(Node* root) {
-        if (!root) {
-            return {};
+      if (!root) {
+        return {};
+      }
+      vector<vector<int>> res;
+      queue<Node*> q;
+      q.push(root);
+      while (!q.empty()) {
+        int currentLevelSize = q.size();  // 当前层的节点个数
+        res.push_back(vector<int>());
+        for (int i = 0; i < currentLevelSize; ++i) {
+          Node* cur = q.front();
+          q.pop();
+          res.back().push_back(cur->val);
+          for (Node* child : cur->children) {  // 把子节点都加入
+            q.push(child);
+          }
         }
-        vector<vector<int>> res;
-        queue<Node*> q;
-        q.push(root);
-        while (!q.empty()) {
-            int currentLevelSize = q.size(); // 当前层的节点个数
-            res.push_back(vector<int>());
-            for (int i = 0; i < currentLevelSize; ++i) {
-                Node* cur = q.front();
-                q.pop();
-                res.back().push_back(cur->val);
-                for (Node* child : cur->children) { // 把子节点都加入
-                    q.push(child);
-                }
-            }
-        }
-        return res;
+      }
+      return res;
     }
     ```
 
