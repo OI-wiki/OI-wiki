@@ -91,7 +91,7 @@
 
 ## 查询
 
-实际上关于全局平衡二叉树的部分就已经讲完了，剩下的链修改、链查询只需要从要操作的点往根跳，要操作某个点重链上比它深度小的所有点，就相当于在这条重链的二叉树里操作这个点左侧的所有点，可以拆成一系列子树操作，像维护普通二叉树一样维护子树和，打子树加标记就行。这里使用的是标记永久化，其实也是可以标记用 pushdown，子树和用 pushup 的，不过可能不太好写（因为平时处理二叉树都是自上而下，这里是自下而上，可能需要先处理出跳的路径然后从上往下 pushdown 一遍，常数太大）。
+以上就是关于全局平衡二叉树的部分。剩下关于链修改和链查询的操作方法相对简单，只需要从要操作的点出发，一直跳跃到根节点。要操作某个点所在的重链上比它深度小的所有点，本质上等同于在这条重链的二叉树中操作目标节点左侧的所有节点。这些操作可以分解成一系列子树操作，与普通二叉树的维护方法类似，其中涉及到维护子树和以及打子树标记。在这一过程中，使用的是标记永久化。也可以用 pushdown 来打标记，用 pushup 维护子树和，不过这种方式可能相对复杂，因为通常情况下，处理二叉树是自上而下进行操作，但在这里，需要首先确定跳跃路径，然后再从上到下进行 pushdown，可能导致常数较大。
 
 代码如下：
 
@@ -100,7 +100,7 @@
     // a：子树加标记
     // s：子树和（不算加标记的）
     int a[N], s[N];
-    
+	
     void add(int x) {
       bool t = true;
       int z = 0;
@@ -142,8 +142,6 @@
 ## 例题
 
 ??? note "[P4751【模板】"动态 DP"& 动态树分治（加强版）](https://www.luogu.com.cn/problem/P4751)"
-    参考代码
-
     ```c++
     #include <algorithm>
     #include <cstdio>
@@ -152,18 +150,18 @@
     #define MAXM 3000000
     #define INF 0x3FFFFFFF
     using namespace std;
-
+    
     struct edge {
       int to;
       edge *nxt;
     } edges[MAXN * 2 + 5];
-
+    
     edge *ncnt = &edges[0], *Adj[MAXN + 5];
     int n, m;
-
+    
     struct Matrix {
       int M[2][2];
-
+      
       Matrix operator*(const Matrix &B) {
         static Matrix ret;
         for (int i = 0; i < 2; i++)
@@ -175,25 +173,25 @@
         return ret;
       }
     } matr1[MAXN + 5], matr2[MAXN + 5];  // 每个点维护两个矩阵
-
+    
     int root;
     int w[MAXN + 5], dep[MAXN + 5], son[MAXN + 5], siz[MAXN + 5], lsiz[MAXN + 5];
     int g[MAXN + 5][2], f[MAXN + 5][2], trfa[MAXN + 5], bstch[MAXN + 5][2];
     int stk[MAXN + 5], tp;
     bool vis[MAXN + 5];
-
+    
     void AddEdge(int u, int v) {
       edge *p = ++ncnt;
       p->to = v;
       p->nxt = Adj[u];
       Adj[u] = p;
-
+    
       edge *q = ++ncnt;
       q->to = u;
       q->nxt = Adj[v];
       Adj[v] = q;
     }
-
+    
     void DFS(int u, int fa) {
       siz[u] = 1;
       for (edge *p = Adj[u]; p != NULL; p = p->nxt) {
@@ -206,7 +204,7 @@
       }
       lsiz[u] = siz[u] - siz[son[u]];  // 轻儿子的siz和+1
     }
-
+    
     void DFS2(int u, int fa) {
       f[u][1] = w[u], f[u][0] = 0;
       g[u][1] = w[u], g[u][0] = 0;
@@ -225,18 +223,18 @@
         g[u][1] += f[v][0];
       }
     }
-
+    
     void PushUp(int u) {
       matr2[u] = matr1[u];  // matr1是单点加上轻儿子的信息，matr2是区间信息
       if (bstch[u][0]) matr2[u] = matr2[bstch[u][0]] * matr2[u];
       // 注意转移的方向，但是如果我们的矩乘定义不同，可能方向也会不同
       if (bstch[u][1]) matr2[u] = matr2[u] * matr2[bstch[u][1]];
     }
-
+    
     int getmx2(int u) { return max(matr2[u].M[0][0], matr2[u].M[0][1]); }
-
+    
     int getmx1(int u) { return max(getmx2(u), matr2[u].M[1][0]); }
-
+    
     int SBuild(int l, int r) {
       if (l > r) return 0;
       int tot = 0;
@@ -253,7 +251,7 @@
         }
       return 0;
     }
-
+    
     int Build(int u) {
       for (int pos = u; pos; pos = son[pos]) vis[pos] = true;
       for (int pos = u; pos; pos = son[pos])
@@ -268,7 +266,7 @@
       int ret = SBuild(1, tp);  // 对重链进行单独的SBuild(我猜是Special Build?)
       return ret;               // 返回当前重链的二叉树的根
     }
-
+    
     void Modify(int u, int val) {
       matr1[u].M[1][0] += val - w[u];
       w[u] = val;
@@ -284,7 +282,7 @@
         } else
           PushUp(pos);
     }
-
+    
     int read() {
       int ret = 0, f = 1;
       char c = 0;
@@ -300,13 +298,13 @@
       }
       return ret * f;
     }
-
+    
     void print(int x) {
       if (x == 0) return;
       print(x / 10);
       putchar(x % 10 + '0');
     }
-
+    
     int main() {
       scanf("%d %d", &n, &m);
       for (int i = 1; i <= n; i++) w[i] = read();
@@ -342,4 +340,4 @@
 
 ## 参考
 
-[P4211 \[LNOI2014\] LCA | 全局平衡二叉树](https://kagamine.xyz/post/globalbst/)
+[P4211 [LNOI2014] LCA | 全局平衡二叉树](https://www.luogu.com.cn/blog/nederland/globalbst)
