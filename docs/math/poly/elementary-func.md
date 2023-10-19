@@ -312,13 +312,7 @@ $$
     $$
     
     $$
-    n[x^{n}]\exp{f(x)} = \sum_{i = 0}^{n} \left([x^{i}]\exp{f(x)}\right) \left((n - i + 1)[x^{n - i}]f(x)\right)
-    $$
-    
-    又 $[x^{0}]f(x)=0$，则：
-    
-    $$
-    n[x^{n}]\exp{f(x)} = \sum_{i = 0}^{n - 1} \left([x^{i}]\exp{f(x)}\right) \left((n - i + 1)[x^{n - i}]f(x)\right)
+    n[x^{n}]\exp{f(x)} = \sum_{i = 0}^{n - 1} \left([x^{i}]\exp{f(x)}\right) \left((n - i)[x^{n - i}]f(x)\right)
     $$
     
     使用分治 FFT 即可解决。
