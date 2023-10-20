@@ -5,32 +5,6 @@
 \begin{document}
 \begin{tikzpicture}
     \matrix[row sep=1cm, column sep=1cm] {
-        \scoped[every node/.style={draw, circle, text=white},
-            edge from parent/.style={real edge, draw=black},
-        ]
-        \node[fill=black] {15}
-        child[real edge] {node[fill=red] {8}
-                child[real edge] {node[fill=black] {4}
-                        child[real edge] {node[fill=red] {2}}
-                        child[real edge] {node[fill=red] {6}}
-                    }
-                child[real edge] {node[fill=black] {10}
-                        child[missing]
-                        child[real edge] {node[fill=red] {12}}
-                    }
-            }
-        child[missing]
-        child[missing]
-        child[real edge] {node[fill=red] {25}
-                child[real edge] {node[fill=black] {20}
-                        child[real edge] {node[fill=red] {18}}
-                        child[missing]
-                    }
-                child[real edge] {node[fill=black] {36}}
-            };
-
-         &
-
         \node[draw, fill=black, circle] (15) at (0, 0) {\textcolor{white}{15}};
         \node[draw, fill=red, circle] (8) at (-2, 0) {\textcolor{white}{8}};
         \node[draw, fill=red, circle] (25) at (2, 0) {\textcolor{white}{25}};
@@ -42,6 +16,11 @@
         \node[draw, fill=black, circle] (20) at (2, -2) {\textcolor{white}{20}};
         \node[draw, fill=red, circle] (18) at (1, -2) {\textcolor{white}{18}};
         \node[draw, fill=black, circle] (36) at (4, -2) {\textcolor{white}{36}};
+        
+        \node[draw, fill=red, circle] (11) at (-1.5, -3) {\textcolor{white}{11}};
+        \node[draw, fill=red, circle] (13) at (-0.5, -3) {\textcolor{white}{13}};
+        \node[draw, fill=red, circle] (16) at (0.5, -3) {\textcolor{white}{16}};
+        \node[draw, fill=red, circle] (19) at (1.5, -3) {\textcolor{white}{19}};
 
         \draw[->] (15) -- (8);
         \draw[->] (8) -- (4);
@@ -53,6 +32,11 @@
         \draw[->] (25) -- (36);
         \draw[->] (25) -- (20);
         \draw[->] (20) -- (18);
+
+        \draw[->] (12) -- (11);
+        \draw[->] (12) -- (13);
+        \draw[->] (18) -- (16);
+        \draw[->] (18) -- (19);
         \\
     };
 \end{tikzpicture}
