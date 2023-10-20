@@ -392,6 +392,7 @@ nav:
     - K-D Tree: ds/kdt.md
     - 动态树:
       - Link Cut Tree: ds/lct.md
+      - 全局平衡二叉树: ds/global-bst.md
       - Euler Tour Tree: ds/ett.md
       - Top Tree: ds/top-tree.md
     - 析合树: ds/divide-combine.md
