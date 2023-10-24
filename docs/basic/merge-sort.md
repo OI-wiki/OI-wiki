@@ -42,9 +42,9 @@
         ```
     
     === "指针实现"
-        
         ```cpp
-        void merge(const int *aBegin, const int *aEnd, const int *bBegin, const int *bEnd, int *c) {
+        void merge(const int *aBegin, const int *aEnd, const int *bBegin,
+                   const int *bEnd, int *c) {
           while (aBegin != aEnd && bBegin != bEnd) {
             if (*bBegin < *aBegin) {
               *c = *bBegin;

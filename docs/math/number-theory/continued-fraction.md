@@ -779,21 +779,21 @@ $$
           vector ah = {t};
           vector ph = {0, t * p.back()};
           vector qh = {0, t * q.back()};
-            
-            for(int i = q.size() - 1; i >= 0; i--) {
-                if(i % 2) {
-                    while(qh.back() + q[i - 1] <= N) {
-                        t = (N - qh.back() - q[i - 1]) / q[i];
-                        int dp = p[i - 1] + t * p[i];
-                        int dq = q[i - 1] + t * q[i];
-                        int k = (N - qh.back()) / dq;
-                        ah.push_back(k);
-                        ph.push_back(ph.back() + k * dp);
-                        qh.push_back(qh.back() + k * dq);
-                    }
-                }
+        
+          for (int i = q.size() - 1; i >= 0; i--) {
+            if (i % 2) {
+              while (qh.back() + q[i - 1] <= N) {
+                t = (N - qh.back() - q[i - 1]) / q[i];
+                int dp = p[i - 1] + t * p[i];
+                int dq = q[i - 1] + t * q[i];
+                int k = (N - qh.back()) / dq;
+                ah.push_back(k);
+                ph.push_back(ph.back() + k * dp);
+                qh.push_back(qh.back() + k * dq);
+              }
             }
-            return make_tuple(ah, ph, qh);
+          }
+          return make_tuple(ah, ph, qh);
         }
         ```
     
@@ -881,21 +881,21 @@ $$
         int sum_floor(auto a, int N) {
           N++;
           auto [ah, ph, qh] = hull(a, N);
-            
-            // The number of lattice points within a vertical right trapezoid
-            // on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
-            // a+1 integer points on the segment (0; y1) - (dx; y2).
-            auto picks = [](int y1, int y2, int dx, int a) {
-                int b = y1 + y2 + a + dx;
-                int A = (y1 + y2) * dx;
-                return (A - b + 2) / 2 + b - (y2 + 1);
-            };
-            
-            int ans = 0;
-            for(size_t i = 1; i < qh.size(); i++) {
-                ans += picks(ph[i - 1], ph[i], qh[i] - qh[i - 1], ah[i - 1]);
-            }
-            return ans - N;
+        
+          // The number of lattice points within a vertical right trapezoid
+          // on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
+          // a+1 integer points on the segment (0; y1) - (dx; y2).
+          auto picks = [](int y1, int y2, int dx, int a) {
+            int b = y1 + y2 + a + dx;
+            int A = (y1 + y2) * dx;
+            return (A - b + 2) / 2 + b - (y2 + 1);
+          };
+        
+          int ans = 0;
+          for (size_t i = 1; i < qh.size(); i++) {
+            ans += picks(ph[i - 1], ph[i], qh[i] - qh[i - 1], ah[i - 1]);
+          }
+          return ans - N;
         }
         ```
     
@@ -918,7 +918,7 @@ $$
             for i in range(1, len(qh)):
                 ans += picks(ph[i-1], ph[i], qh[i]-qh[i-1], ah[i-1])
             return ans - N
-        ``` 
+        ```
 
 ### [NAIPC 2019 - It's a Mod, Mod, Mod, Mod World](https://open.kattis.com/problems/itsamodmodmodmodworld)
 
@@ -980,6 +980,7 @@ $$
                 ah.append(k)
                 qh.append(qh[-1] + k*dq)
                 ph.append(ph[-1] + k*dp)
+        ```
     
             for i in range(1, len(q) - 1):
                 if i % 2 == 0:
