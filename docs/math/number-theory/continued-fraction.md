@@ -972,7 +972,7 @@ $$
             ah = []
             ph = [B // C]
             qh = [0]
-            
+                
             def insert(dq, dp):
                 k = (N - qh[-1]) // dq
                 if diff(dq, dp) > 0:
@@ -980,8 +980,7 @@ $$
                 ah.append(k)
                 qh.append(qh[-1] + k*dq)
                 ph.append(ph[-1] + k*dp)
-        ```
-    
+                
             for i in range(1, len(q) - 1):
                 if i % 2 == 0:
                     while diff(qh[-1] + q[i+1], ph[-1] + p[i+1]) <= B:
@@ -991,9 +990,9 @@ $$
                         if dq < 0 or qh[-1] + dq > N:
                             break
                         insert(dq, dp)
-    
+                
             insert(q[-1], p[-1])
-    
+                
             for i in reversed(range(len(q))):
                 if i % 2 == 1:
                     while qh[-1] + q[i-1] <= N:
