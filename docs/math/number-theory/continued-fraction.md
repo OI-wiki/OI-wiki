@@ -779,8 +779,7 @@ $$
           vector ah = {t};
           vector ph = {0, t * p.back()};
           vector qh = {0, t * q.back()};
-        ```
-    
+            
             for(int i = q.size() - 1; i >= 0; i--) {
                 if(i % 2) {
                     while(qh.back() + q[i - 1] <= N) {
@@ -861,8 +860,7 @@ $$
                         qh.append(qh[-1] + k*dq)
                         ph.append(ph[-1] + k*dp)
             return qh[-1], ph[-1]
-        ```
-    
+            
         def solve(A, B, N):
             x, y = closest(A, N % A, B, N // A)
             return N // A - x, y
@@ -883,8 +881,7 @@ $$
         int sum_floor(auto a, int N) {
           N++;
           auto [ah, ph, qh] = hull(a, N);
-        ```
-    
+            
             // The number of lattice points within a vertical right trapezoid
             // on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
             // a+1 integer points on the segment (0; y1) - (dx; y2).
@@ -893,7 +890,7 @@ $$
                 int A = (y1 + y2) * dx;
                 return (A - b + 2) / 2 + b - (y2 + 1);
             };
-    
+            
             int ans = 0;
             for(size_t i = 1; i < qh.size(); i++) {
                 ans += picks(ph[i - 1], ph[i], qh[i] - qh[i - 1], ah[i - 1]);
@@ -908,8 +905,7 @@ $$
         def sum_floor(a, N):
             N += 1
             ah, ph, qh = hull(a, N)
-        ```
-    
+            
             # The number of lattice points within a vertical right trapezoid
             # on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
             # a+1 integer points on the segment (0; y1) - (dx; y2).
@@ -917,7 +913,7 @@ $$
                 b = y1 + y2 + a + dx
                 A = (y1 + y2) * dx
                 return (A - b + 2) // 2 + b - (y2 + 1)
-    
+            
             ans = 0
             for i in range(1, len(qh)):
                 ans += picks(ph[i-1], ph[i], qh[i]-qh[i-1], ah[i-1])
@@ -976,8 +972,7 @@ $$
             ah = []
             ph = [B // C]
             qh = [0]
-        ```
-    
+            
             def insert(dq, dp):
                 k = (N - qh[-1]) // dq
                 if diff(dq, dp) > 0:
