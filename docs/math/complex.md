@@ -242,7 +242,7 @@ $$
 
 称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，称这 $n$ 个解都是 $n$ 次 **单位根** 或 **单位复根**（the $n$-th root of unity）。根据复平面的知识，$n$ 次单位根把单位圆 $n$ 等分。
 
-设 $\omega_n=\operatorname{exp} \frac{2\pi \mathrm{i}}{n}$（即幅角为 $2\pi \over n$ 的单位复数），则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。
+设 $\omega_n=\operatorname{exp} \frac{2\pi \mathrm{i}}{n}$（即幅角为 $2\frac \pi n$ 的单位复数），则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。
 
 如果不加说明，一般叙述的 $n$ 次单位根，是指从 $1$ 开始逆时针方向的第一个解，即上述 $\omega_n$，其它解均可以用 $\omega_n$ 的幂表示。
 
