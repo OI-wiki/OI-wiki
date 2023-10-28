@@ -52,7 +52,7 @@ jobs:
         run: |
           cd OI-Wiki-export
           cd oi-wiki-export-typst
-          node index.js ../../OI-wiki
+          node index.js ../../
           typst -v compile oi-wiki-export.typ
 
       - name: Upload artifact
