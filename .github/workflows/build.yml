@@ -48,6 +48,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_OPTIONS: --max_old_space_size=3072
+      - name: Check HTML Validity
+        uses: anishathalye/proof-html@v2
+        with:
+          directory: ./site
+          ignore_empty_alt: true
+          ignore_missing_alt: true
       - name: Minify html
         run: ./scripts/post-build/minify-html/minify-html.sh
       - name: Generate redirects
