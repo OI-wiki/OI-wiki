@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    name: OI-wiki Typst Build
     runs-on: ubuntu-latest
     env:
       LANG: C.UTF-8
