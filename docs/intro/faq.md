@@ -89,44 +89,64 @@ A：推荐在 hosts 文件中加入如下几行[^ref1]：
 
 ```text
 # GitHub Start
-192.30.255.112	gist.github.com
-192.30.255.112	github.com
-192.30.255.112	www.github.com
-151.101.56.133	avatars0.githubusercontent.com
-151.101.56.133	avatars1.githubusercontent.com
-151.101.56.133	avatars2.githubusercontent.com
-151.101.56.133	avatars3.githubusercontent.com
-151.101.56.133	avatars4.githubusercontent.com
-151.101.56.133	avatars5.githubusercontent.com
-151.101.56.133	avatars6.githubusercontent.com
-151.101.56.133	avatars7.githubusercontent.com
-151.101.56.133	avatars8.githubusercontent.com
-151.101.56.133	camo.githubusercontent.com
-151.101.56.133	cloud.githubusercontent.com
-151.101.56.133	gist.githubusercontent.com
-151.101.56.133	marketplace-screenshots.githubusercontent.com
-151.101.56.133	raw.githubusercontent.com
-151.101.56.133	repository-images.githubusercontent.com
-151.101.56.133	user-images.githubusercontent.com
+140.82.114.25                 alive.github.com
+140.82.113.5                  api.github.com
+185.199.110.153               assets-cdn.github.com
+185.199.111.133               avatars.githubusercontent.com
+185.199.111.133               avatars0.githubusercontent.com
+185.199.111.133               avatars1.githubusercontent.com
+185.199.111.133               avatars2.githubusercontent.com
+185.199.111.133               avatars3.githubusercontent.com
+185.199.111.133               avatars4.githubusercontent.com
+185.199.111.133               avatars5.githubusercontent.com
+185.199.111.133               camo.githubusercontent.com
+140.82.112.22                 central.github.com
+185.199.111.133               cloud.githubusercontent.com
+140.82.114.9                  codeload.github.com
+140.82.113.22                 collector.github.com
+185.199.111.133               desktop.githubusercontent.com
+185.199.111.133               favicons.githubusercontent.com
+140.82.112.3                  gist.github.com
+52.216.163.147                github-cloud.s3.amazonaws.com
+52.217.124.1                  github-com.s3.amazonaws.com
+52.216.144.83                 github-production-release-asset-2e65be.s3.amazonaws.com
+52.217.121.249                github-production-repository-file-5c1aeb.s3.amazonaws.com
+52.217.206.57                 github-production-user-asset-6210df.s3.amazonaws.com
+192.0.66.2                    github.blog
+140.82.114.4                  github.com
+140.82.113.18                 github.community
+185.199.110.154               github.githubassets.com
+151.101.1.194                 github.global.ssl.fastly.net
+185.199.110.153               github.io
+185.199.111.133               github.map.fastly.net
+185.199.110.153               githubstatus.com
+140.82.112.25                 live.github.com
+185.199.111.133               media.githubusercontent.com
+185.199.111.133               objects.githubusercontent.com
+13.107.42.16                  pipelines.actions.githubusercontent.com
+185.199.111.133               raw.githubusercontent.com
+185.199.111.133               user-images.githubusercontent.com
+13.107.253.40                 vscode.dev
+140.82.112.21                 education.github.com
 # GitHub End
 ```
 
-可以在 [GoogleHosts 主页](https://github.com/googlehosts/hosts) 上了解到更多信息。
+可以在 [GitHub520](https://gitee.com/klmahuaw/GitHub520) 上了解到最新内容和更多信息。
 
 Linux 和 macOS 用户可以尝试使用 [依云](https://github.com/lilydjwg/) 的 [gh-check 脚本](https://gist.github.com/lilydjwg/93d33ed04547e1b9f7a86b64ef2ed058) 获取访问最快的 IP，使用 `--hosts` 参数可以直接更新 hosts 文件。使用 `--help` 参数可以获取使用帮助。使用先需要安装 Python3 和 aiohttp（`pip install aiohttp -i https://pypi.tuna.tsinghua.edu.cn/simple/`）。依云博客的介绍：[寻找最快的 GitHub IP](https://blog.lilydjwg.me/2019/8/16/gh-check.214730.html)。
 
-同时，您可以使用 [FastGit](https://fastgit.org/) 服务加速 Clone，可以阅读其 [使用文档](https://doc.fastgit.org/zh-cn/guide.html)。
+同时，您可以使用 [Gitclone](https://www.gitclone.com/) 服务加速 Clone，可以阅读其首页上的说明。
 
 如果您仅仅是想 Clone **OI Wiki** 的仓库，那么：
 
 ```bash
-git clone https://hub.fastgit.xyz/OI-wiki/OI-wiki.git
+git clone https://gitclone.com/github.com/OI-wiki/OI-wiki
 ```
 
 如果您需要向 **OI Wiki** 贡献，那么首先 fork **OI Wiki** 的仓库，然后（将 `username` 替换为您的用户名），需要注意的是提供的示例将使您使用 SSH 连接到 GitHub[^only-ssh-connect]：
 
 ```bash
-git clone https://hub.fastgit.xyz/username/OI-wiki.git
+git clone https://gitclone.com/github.com/username/OI-wiki
 git remote set-url origin git@github.com:username/OI-wiki.git
 ```
 
@@ -272,7 +292,7 @@ A：如果你发现自己写过一个页面中的部分内容，但是你没有�
 
 ## 参考资料与注释
 
-[^ref1]: [GoogleHosts-8ff01be](https://github.com/googlehosts/hosts/blob/8ff01be91c4a70604f83e5cf0a3dd595fe8868b0/hosts-files/hosts#L1465-L1485)
+[^ref1]: [GitHub520](https://gitee.com/klmahuaw/GitHub520)
 
 [^ref2]: [更改 pip 源至国内镜像 - L 瑜 - CSDN 博客](https://blog.csdn.net/lambert310/article/details/52412059)
 

@@ -36,6 +36,7 @@ jobs:
             inkscape
             libxml2
           pre_compile: |
+            umask 0 && npm config set cache /tmp/.npm
             wget -O notosans.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"
             wget -O notoserif.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerif-hinted.zip"
             wget -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip"
