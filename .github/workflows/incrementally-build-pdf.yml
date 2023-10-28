@@ -23,7 +23,7 @@ jobs:
         with:
           cancel_others: 'true'
   build:
-    name: OI-Wiki LaTeX Build
+    name: OI-Wiki Incremental LaTeX Build
     needs: pre_build
     if: needs.pre_build.outputs.should_skip != 'true'
     runs-on: ubuntu-latest
