@@ -60,7 +60,7 @@ class RBTreeMap {
 
 旋转操作是多数平衡树能够维持平衡的关键，它能在不改变一棵合法 BST 中序遍历结果的情况下改变局部节点的深度。
 
-![rbtree-rotations](images/rbtree-rotations.svg)
+![rbtree-rotations](images/rbtree-rotate.svg)
 
 如上图，从左图到右图的过程被称为左旋，左旋操作会使得 $\alpha$ 子树上结点的深度均减 1，使 $\gamma$ 子树上结点的深度均加 1，而 $\beta$ 子树上节点的深度则不变。从右图到左图的过程被称为右旋，右旋是左旋的镜像操作。
 
