@@ -62,7 +62,7 @@ class RBTreeMap {
 
 ![rbtree-rotations](images/rbtree-rotate.svg)
 
-如上图，从左图到右图的过程被称为左旋，左旋操作会使得 $\alpha$ 子树上结点的深度均减 1，使 $\gamma$ 子树上结点的深度均加 1，而 $\beta$ 子树上节点的深度则不变。从右图到左图的过程被称为右旋，右旋是左旋的镜像操作。
+如上图，从左图到右图的过程被称为右旋，右旋操作会使得 $T3$ 子树上结点的深度均减 1，使 $T1$ 子树上结点的深度均加 1，而 $T2$ 子树上节点的深度则不变。从右图到左图的过程被称为左旋，左旋是右旋的镜像操作。
 
 这里给出红黑树中节点的左旋操作的示例代码：
 
@@ -154,7 +154,7 @@ class RBTreeMap {
 1.  将 P，U 节点染黑，将 G 节点染红（可以保证每条路径上黑色节点个数不发生改变）。
 2.  递归维护 G 节点（因为不确定 G 的父节点的状态，递归维护可以确保性质 3 成立）。
 
-![rbtree-insert-case4](images/rbtree-insert-case4.png)
+![rbtree-insert-case4](images/rbtree-insert-case4.svg)
 
 ???+ note "实现"
     ```cpp
