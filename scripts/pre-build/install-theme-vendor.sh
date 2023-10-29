@@ -1,6 +1,6 @@
 set -euo pipefail
 
-VENDOR_DIR="mkdocs-material/material/assets/vendor"
+VENDOR_DIR="mkdocs-material/material/templates/assets/vendor"
 rm -rf "$VENDOR_DIR"
 
 function _when_error() {
