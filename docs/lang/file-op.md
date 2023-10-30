@@ -123,8 +123,8 @@ out = fopen("data.out", "w");
 /*
 do what you want to do
 */
-fclose(stdin);
-fclose(stdout);
+fclose(in);
+fclose(out);
 ```
 
 ## C++ 的 `ifstream/ofstream` 文件输入输出流

@@ -76,7 +76,7 @@
 
 ![](images/tree-binary-complete.svg)
 
--   **完美二叉树（perfect binary tree）**：所有叶结点的深度均相同的二叉树称为完美二叉树。
+-   **完美二叉树（perfect binary tree）**：所有叶结点的深度均相同，且所有非叶节点的子节点数量均为 2 的二叉树称为完美二叉树。
 
 ![](images/tree-binary-perfect.svg)
 
@@ -162,7 +162,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 可以用来求出每个节点的深度、父亲等信息。
 
-### 二叉树上 DFS
+### 二叉树 DFS 遍历
 
 #### 先序遍历
 
@@ -230,6 +230,39 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 从树根开始，严格按照层次来访问节点。
 
 BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
+
+#### 树的层序遍历
+
+树层序遍历是指按照从根节点到叶子节点的层次关系，一层一层的横向遍历各个节点。根据 BFS 的定义可以知道，BFS 所得到的遍历顺序就是一种层序遍历。但层序遍历要求将不同的层次区分开来，所以其结果通常以二维数组的形式表示。
+
+例如，下图的树的层序遍历的结果是 `[[1], [2, 3, 4], [5, 6]]`（每一层从左向右）。
+
+![tree-basic-levelOrder](images/tree-basic-levelOrder.svg)
+
+???+ note "实现"
+    ```c++
+    vector<vector<int>> levelOrder(Node* root) {
+      if (!root) {
+        return {};
+      }
+      vector<vector<int>> res;
+      queue<Node*> q;
+      q.push(root);
+      while (!q.empty()) {
+        int currentLevelSize = q.size();  // 当前层的节点个数
+        res.push_back(vector<int>());
+        for (int i = 0; i < currentLevelSize; ++i) {
+          Node* cur = q.front();
+          q.pop();
+          res.back().push_back(cur->val);
+          for (Node* child : cur->children) {  // 把子节点都加入
+            q.push(child);
+          }
+        }
+      }
+      return res;
+    }
+    ```
 
 ### 二叉树 Morris 遍历
 

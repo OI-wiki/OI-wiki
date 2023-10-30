@@ -214,7 +214,7 @@ void topo() {
     for (int v : e[u]) {
       --in[v];
       if (!in[v]) {
-        s.push(v);
+        sta.push(v);
       }
     }
   }
@@ -244,9 +244,9 @@ int lca(int u, int v) {
 void build() {
   topo();
   for (int i = 1; i <= n; ++i) {
-    int u = tpn[i], v = g[x][0];
-    for (int j = 1, q = g[x].size(); j < q; ++j) {
-      v = lca(v, g[x][j]);
+    int u = tpn[i], v = g[u][0];
+    for (int j = 1, q = g[u].size(); j < q; ++j) {
+      v = lca(v, g[u][j]);
     }
     idom[u] = v;
     tree[v].push_back(u);

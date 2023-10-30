@@ -31,6 +31,9 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 -   ForwardIterator（向前迭代器）：同时满足 InputIterator 和 OutputIterator 的要求。
 -   BidirectionalIterator（双向迭代器）：在 ForwardIterator 的基础上支持自减（即反向访问）。
 -   RandomAccessIterator（随机访问迭代器）：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）。
+-   ContiguousIterator（连续迭代器）：在 RandomAccessIterator 的基础上要求对可解引用的迭代器 `a + n` 满足 `*(a + n)` 与 `*(std::address_of(*a) + n)` 等价（即连续存储，其中 `a` 为连续迭代器、`n` 为整型值）。
+
+    ContiguousIterator 于 C++17 中正式引入。
 
 ???+ note "为什么输入迭代器叫输入迭代器？"
     「输入」指的是「可以从迭代器中获取输入」，而「输出」指的是「可以输出到迭代器」。
@@ -54,3 +57,5 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 在 C++11 以后可以使用 `std::prev(it)` 获得双向迭代器 `it` 的前驱（此时迭代器 `it` 不变），`std::prev(it, n)` 获得双向迭代器 `it` 的第 `n` 个前驱。
 
 [STL 容器](./container.md) 一般支持从一端或两端开始的访问，以及对 [const 修饰符](../const.md) 的支持。例如容器的 `begin()` 函数可以获得指向容器第一个元素的迭代器，`rbegin()` 函数可以获得指向容器最后一个元素的反向迭代器，`cbegin()` 函数可以获得指向容器第一个元素的 const 迭代器，`end()` 函数可以获得指向容器尾端（「尾端」并不是最后一个元素，可以看作是最后一个元素的后继；「尾端」的前驱是容器里的最后一个元素，其本身不指向任何一个元素）的迭代器。
+
+可在 [Iterator library - cppreference.com](https://en.cppreference.com/w/cpp/iterator) 查看更多用法。
