@@ -62,7 +62,8 @@ $$
         }
         ```
     
-    == "Python"`python
+    === "Python"
+        ```python
         def DP(l, r, k_l, k_r):
             mid = int((l + r) / 2)
             k = k_l         # 求状态f[mid]的最优决策点
@@ -74,7 +75,7 @@ $$
                 DP(l, mid - 1, k_l, k)
             if r > mid:
                 DP(mid + 1, r, k, k_r)
-        `
+        ```
 
 ### 二分队列
 
