@@ -85,7 +85,7 @@
 
 另外，度数相同的结点的排名将不相同，并且需要注意判断 $a\neq c$。
 
-???+ note "示例代码（[LibreOJ P191 无向图四元环计数](https://loj.ac/p/191)）"
+???+ note " 示例代码（[LibreOJ P191 无向图四元环计数](https://loj.ac/p/191)）"
     ```cpp
     --8<-- "docs/graph/code/rings-count/rings-count_4.cpp"
     ```
