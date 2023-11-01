@@ -97,7 +97,7 @@ $$
     给定一个长度为 $n$ 的序列 $a_1,a_2,\cdots,a_n$，要求对于每一个 $1 \leq i \leq n$，找到最小的非负整数 $f_i$ 满足
     
     $$
-    \forall j\in\left[1,n\right]:a_j \leq a_i + f_i - \sqrt{|i-j|}
+    \forall j\in\left[1,n\right]:a_j \leq a_i + f_i - \sqrt{|i-j|}.
     $$
 
 ??? note "参考思路"
