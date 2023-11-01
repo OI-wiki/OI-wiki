@@ -554,6 +554,7 @@ theme:
   icon:
     logo: 'material/school'
   features:
+    - content.action.edit
     - navigation.tabs
     - navigation.instant
   font:
