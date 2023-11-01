@@ -238,7 +238,7 @@ int rk(int k) {
   int res = 0, cur = rt;
   while (1) {
     if (!cur) {
-        return res + 1;
+      return res + 1;
     } else if (k < val[cur]) {
       cur = ch[cur][0];
     } else {
