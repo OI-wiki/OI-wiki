@@ -54,7 +54,7 @@ $$
           int mid = (l + r) / 2, k = k_l;
           // 求状态f[mid]的最优决策点
           for (int j = k_l; j <= min(k_r, mid - 1); ++j)
-            if (w(j, mid) < w(j, mid)) k = j;
+            if (w(j, mid) < w(k, mid)) k = j;
           f[mid] = w(k, mid);
           // 根据决策单调性得出左右两部分的决策区间，递归处理
           if (l < mid) DP(l, mid - 1, k_l, k);
