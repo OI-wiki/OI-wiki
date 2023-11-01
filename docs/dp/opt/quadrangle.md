@@ -92,8 +92,6 @@ $$
         int val(int j, int i);
         int lt[N], rt[N], f[N];
         deque<int> dq;
-        ```
-
         // 初始化队列
         dq.emplace_back(1);
         lt[1] = 1; 
