@@ -273,7 +273,7 @@ $$
     若 $w$ 满足区间包含单调性和四边形不等式，则问题 (3) 中最小最优决策 $\mathop{\mathrm{opt}}(j,i)$ 满足
     
     $$
-    \mathop{\mathrm{opt}}(j,i-1) \leq \mathop{\mathrm{opt}}(j,i) \leq \mathop{\mathrm{opt}}(j+1,i) \qquad (j + 1 < i)
+    \mathop{\mathrm{opt}}(j,i-1) \leq \mathop{\mathrm{opt}}(j,i) \leq \mathop{\mathrm{opt}}(j+1,i). \qquad (j + 1 < i)
     $$
 
 ??? note "证明"
