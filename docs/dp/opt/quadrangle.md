@@ -362,6 +362,6 @@ $$
 -   [Quora Answer by Michael Levin](https://www.quora.com/What-is-divide-and-conquer-optimization-in-dynamic-programming)
 -   [Video Tutorial by "Sothe" the Algorithm Wolf](https://www.youtube.com/watch?v=wLXEWuDWnzI)
 -   [Divide and Conquer DP](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html)
--   [Kruth's Optimization](https://cp-algorithms.com/dynamic_programming/knuth-optimization.html)
+-   [Knuth's Optimization](https://cp-algorithms.com/dynamic_programming/knuth-optimization.html)
 -   [Quadrangle Inequality Properties](https://codeforces.com/blog/entry/86306)
 -   [王钦石《浅析一类二分方法》](https://www.doc88.com/p-949564862405.html)
