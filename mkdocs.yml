@@ -375,6 +375,7 @@ nav:
       - 左偏红黑树: ds/llrbt.md
       - AA 树: ds/aa-tree.md
       - 2-3 树: ds/2-3-tree.md
+      - 2-3-4 树: ds/2-3-4-tree.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
@@ -392,6 +393,7 @@ nav:
     - K-D Tree: ds/kdt.md
     - 动态树:
       - Link Cut Tree: ds/lct.md
+      - 全局平衡二叉树: ds/global-bst.md
       - Euler Tour Tree: ds/ett.md
       - Top Tree: ds/top-tree.md
     - 析合树: ds/divide-combine.md
