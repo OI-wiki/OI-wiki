@@ -94,48 +94,48 @@ $$
         deque<int> dq;
         // 初始化队列
         dq.emplace_back(1);
-        lt[1] = 1; 
+        lt[1] = 1;
         rt[n] = n;
         // 顺次考虑所有问题和决策
         for (int j = 1; j <= n; ++j) {
-            // 出队
-            while (!dq.empty() && rt[dq.front()] < j) {
-                dq.pop_front();
+          // 出队
+          while (!dq.empty() && rt[dq.front()] < j) {
+            dq.pop_front();
+          }
+          // 计算
+          f[j] = val(dq.front(), j);
+          // 入队
+          while (!dq.empty() && val(j, lt[dq.back()]) < val(dq.back(), lt[dq.back()])) {
+            dq.pop_back();
+          }
+          if (dq.empty()) {
+            dq.emplace_back(j);
+            lt[j] = j + 1;
+            rt[j] = n;
+          } else if (val(j, rt[dq.back()]) < val(dq.back(), rt[dq.back()])) {
+            if (rt[dq.back()] < n) {
+              dq.emplace_back(j);
+              lt[j] = rt[dq.back()] + 1;
+              rt[j] = n;
             }
-            // 计算
-            f[j] = val(dq.front(), j);
-            // 入队
-            while (!dq.empty() && val(j, lt[dq.back()]) < val(dq.back(), lt[dq.back()])) {
-                dq.pop_back();
+          } else {
+            int ll = lt[dq.back()];
+            int rr = rt[dq.back()];
+            int i;
+            while (ll <= rr) {
+              int mm = (ll + rr) / 2;
+              if (val(j, mm) < val(dq.back(), mm)) {
+                i = mm;
+                rr = mm - 1;
+              } else {
+                ll = mm + 1;
+              }
             }
-            if (dq.empty()) {
-                dq.emplace_back(j);
-                lt[j] = j + 1;
-                rt[j] = n;
-            } else if (val(j, rt[dq.back()]) < val(dq.back(), rt[dq.back()])) {
-                if (rt[dq.back()] < n) {
-                    dq.emplace_back(j);
-                    lt[j] = rt[dq.back()] + 1;
-                    rt[j] = n;
-                }
-            } else {
-                int ll = lt[dq.back()];
-                int rr = rt[dq.back()];
-                int i;
-                while (ll <= rr) {
-                    int mm = (ll + rr) / 2;
-                    if (val(j, mm) < val(dq.back(), mm)) {
-                        i = mm;
-                        rr = mm - 1;
-                    } else {
-                        ll = mm + 1;
-                    }
-                }
-                rt[dq.back()] = i - 1;
-                dq.emplace_back(j);
-                lt[j] = i;
-                rt[j] = n;
-            }
+            rt[dq.back()] = i - 1;
+            dq.emplace_back(j);
+            lt[j] = i;
+            rt[j] = n;
+          }
         }
         ```
 
