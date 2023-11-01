@@ -2,8 +2,6 @@ name: Incrementally Build LaTeX document
 
 on:
   pull_request:
-    paths:
-      - "docs/**"
     types: [opened, synchronize]
     branches:
       - master
