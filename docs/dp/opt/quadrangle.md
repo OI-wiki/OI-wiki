@@ -122,6 +122,7 @@ $$
             int ll = lt[dq.back()];
             int rr = rt[dq.back()];
             int i;
+            // 二分
             while (ll <= rr) {
               int mm = (ll + rr) / 2;
               if (val(j, mm) < val(dq.back(), mm)) {
