@@ -10,12 +10,17 @@ $$
 f(i) = \min_{1 \leq j \leq i} w(j,i) \qquad \left(1 \leq i \leq n\right) \tag{1}
 $$
 
-这里假定成本函数 $w(j,i)$ 可以在 $O(1)$ 时间内计算。为表述方便，称问题 $i$ 对应的最小最优决策点为 $\mathop{\mathrm{opt}}(i)$。在一般的情形下，这些问题总时间复杂度为 $O(n^2)$。这是由于对于问题 $i$，我们需要考虑所有可能的决策 $j$。而在成立决策单调性时，可以有效缩小决策空间，优化总复杂度。
+这里假定成本函数 $w(j,i)$ 可以在 $O(1)$ 时间内计算。
+
+???+note "约定"
+    动态规划的状态转移方程经常可以写作一系列最优化问题的形式。以（1）式为例，这些问题含有参数 $i$，问题的目标函数和可行域都可以依赖于 $i$。每一个问题都是在给定参数 $i$ 时，选取某个可行解 $j$ 来最小化目标函数的取值。为表述方便，下文将参数为 $i$ 的最优化问题简称为「问题 $i$」，该最优化问题的可行解 $j$ 称为「决策 $j$」，目标函数在最优解处取得的值则称为「状态 $f(i)$」。同时，记问题 $i$ 对应的最小最优决策点为 $\mathop{\mathrm{opt}}(i)$。
+
+在一般的情形下，这些问题总时间复杂度为 $O(n^2)$。这是由于对于问题 $i$，我们需要考虑所有可能的决策 $j$。而在满足决策单调性时，可以有效缩小决策空间，优化总复杂度。
 
 -   **决策单调性**：对于任意 $i_1 < i_2$，必然成立 $\mathop{\mathrm{opt}}(i_1) \leq \mathop{\mathrm{opt}}(i_2)$。
 
 ??? note "附注"
-    对于问题 $i$，最优决策集合未必是一个区间。决策单调性实际可以定义在最优决策集合上。对于集合 $A$ 和 $B$，可以定义 $A \leq B$ 当且仅当对于任意 $a\in A$ 和 $b\in B$，成立 $\min\{a,b\}\in A$ 和 $\max\{a,b\}\in B$。这蕴含最小（最大）最优决策点的单调性，即此处采取的定义。本文对于最小最优决策点叙述的结论，同样适用于最大最优决策点。但是，存在情形，某更大问题的最小最优决策严格小于另一更小问题的最大最优决策，所以在书写代码时，应保证总是求得最小或最大的最优决策点。
+    对于问题 $i$，最优决策集合未必是一个区间。决策单调性实际可以定义在最优决策集合上。对于集合 $A$ 和 $B$，可以定义 $A \leq B$ 当且仅当对于任意 $a\in A$ 和 $b\in B$，成立 $\min\{a,b\}\in A$ 和 $\max\{a,b\}\in B$。这蕴含最小（最大）最优决策点的单调性，即此处采取的定义。本文关于最小最优决策点叙述的结论，同样适用于最大最优决策点。但是，存在情形，某更大问题的最小最优决策严格小于另一更小问题的最大最优决策，亦即可能对某些 $i_1 < i_2$ 成立 $\mathop{\mathrm{optmax}}(i_1) > \mathop{\mathrm{optmin}}(i_2)$，所以在书写代码时，应保证总是求得最小或最大的最优决策点。
     
     另一方面，拥有相同最小最优决策的问题构成一个区间。这一区间，作为最小最优决策的函数，应严格递增。亦即，给定 $j_1 = \mathop{\mathrm{opt}}(i_1)$，$j_2 = \mathop{\mathrm{opt}}(i_2)$，如果 $j_1 < j_2$，那么必然有 $i_1 < i_2$。换言之，如果决策 $j_1 < j_2$ 能够成为最小最优决策的问题区间分别是 $[l_{j_1},r_{j_1}]$ 和 $[l_{j_2},r_{j_2}]$，那么必然有 $r_{j_1} < l_{j_2}$。
 
@@ -32,10 +37,10 @@ $$
 如果没有特别说明，以下都会保证 $a\leq b\leq c\leq d$。四边形不等式给出了一个决策单调性的充分不必要条件。
 
 ???+ note "定理 1"
-    若 $w$ 满足四边形不等式，则问题 (1) 成立决策单调性。
+    若 $w$ 满足四边形不等式，则问题 (1) 满足决策单调性。
 
 ??? note "证明"
-    要证明这一点，考虑其反面，即对某些 $c < d$，成立 $a = \mathop{\mathrm{opt}}(d) < \mathop{\mathrm{opt}}(c) = b$。此时有 $a < b \leq c < d$。根据最优化条件，$w(a,d) \leq w(b,d)$ 且 $w(b,c) < w(a,c)$，于是，$w(a,d) - w(b,d) \leq 0 < w(a,c) - w(b,c)$，这与四边形不等式矛盾。
+    要证明这一点，可采用反证法。假设对某些 $c < d$，成立 $a = \mathop{\mathrm{opt}}(d) < \mathop{\mathrm{opt}}(c) = b$。此时有 $a < b \leq c < d$。根据最优化条件，$w(a,d) \leq w(b,d)$ 且 $w(b,c) < w(a,c)$，于是，$w(a,d) - w(b,d) \leq 0 < w(a,c) - w(b,c)$，这与四边形不等式矛盾。
 
 四边形不等式可以理解在合理的定义域内，$w$ 的二阶混合差分 $\Delta_i\Delta_jw(j,i)$ 非正。
 
@@ -43,7 +48,7 @@ $$
 
 ### 分治
 
-为了对所有 $1 \leq i \leq n$ 确定 $\mathop{\mathrm{opt}}(i)$，首先计算 $\mathop{\mathrm{opt}}(n/2)$，而后分别计算 $1 \leq i < n/2$ 和 $n/2 < i \leq n$ 上的 $\mathop{\mathrm{opt}}(i)$，注意此时已知前半段的 $\mathop{\mathrm{opt}}(i)$ 必然位于 $1$ 和 $\mathop{\mathrm{opt}}(n/2)$ 之间（含端点），而后半段的 $\mathop{\mathrm{opt}}(i)$ 必然位于 $\mathop{\mathrm{opt}}(n/2)$ 和 $\mathop{\mathrm{opt}}(n)$ 之间（含端点）。对于两个子区间，也类似处理，直至计算出每个问题的最优决策。在分治的过程中记录搜索的上下边界，就可以保证算法复杂度控制在 $O(n\log n)$。递归树层数为 $O(\log n)$，而每层中，单个决策点至多计算两次，所以总的计算次数是 $O(n\log n)$。
+要求解所有状态，只需要求解所有最优决策点。为了对所有 $1 \leq i \leq n$ 求解 $\mathop{\mathrm{opt}}(i)$，首先计算 $\mathop{\mathrm{opt}}(n/2)$，而后分别计算 $1 \leq i < n/2$ 和 $n/2 < i \leq n$ 上的 $\mathop{\mathrm{opt}}(i)$，注意此时已知前半段的 $\mathop{\mathrm{opt}}(i)$ 必然位于 $1$ 和 $\mathop{\mathrm{opt}}(n/2)$ 之间（含端点），而后半段的 $\mathop{\mathrm{opt}}(i)$ 必然位于 $\mathop{\mathrm{opt}}(n/2)$ 和 $\mathop{\mathrm{opt}}(n)$ 之间（含端点）。对于两个子区间，也类似处理，直至计算出每个问题的最优决策。在分治的过程中记录搜索的上下边界，就可以保证算法复杂度控制在 $O(n\log n)$。递归树层数为 $O(\log n)$，而每层中，单个决策点至多计算两次，所以总的计算次数是 $O(n\log n)$。
 
 ???+ example "核心代码"
     === "C++"
@@ -79,7 +84,63 @@ $$
 
 ### 二分队列
 
-注意到对于每个决策点 $j$，能使其成为最小最优决策点的问题 $i$ 必然构成一个区间。可以通过单调队列记录到目前为止每个决策点可以解决的问题的区间，这样，问题的最优解自然可以通过队列中记录的决策点计算得到。算法流程大致如下。
+注意到对于每个决策点 $j$，能使其成为最小最优决策点的问题 $i$ 必然构成一个区间。可以通过单调队列记录到目前为止每个决策点可以解决的问题的区间，这样，问题的最优解自然可以通过队列中记录的决策点计算得到。算法大致如下。
+
+???+example "核心代码"
+    === "C++"
+        ```cpp
+        int val(int j, int i);
+        int lt[N], rt[N], f[N];
+        deque<int> dq;
+
+        // 初始化队列
+        dq.emplace_back(1);
+        lt[1] = 1; 
+        rt[n] = n;
+        // 顺次考虑所有问题和决策
+        for (int j = 1; j <= n; ++j) {
+            // 出队
+            while (!dq.empty() && rt[dq.front()] < j) {
+                dq.pop_front();
+            }
+            // 计算
+            f[j] = val(dq.front(), j);
+            // 入队
+            while (!dq.empty() && val(j, lt[dq.back()]) < val(dq.back(), lt[dq.back()])) {
+                dq.pop_back();
+            }
+            if (dq.empty()) {
+                dq.emplace_back(j);
+                lt[j] = j + 1;
+                rt[j] = n;
+            } else if (val(j, rt[dq.back()]) < val(dq.back(), rt[dq.back()])) {
+                if (rt[dq.back()] < n) {
+                    dq.emplace_back(j);
+                    lt[j] = rt[dq.back()] + 1;
+                    rt[j] = n;
+                }
+            } else {
+                int ll = lt[dq.back()];
+                int rr = rt[dq.back()];
+                int i;
+                while (ll <= rr) {
+                    int mm = (ll + rr) / 2;
+                    if (val(j, mm) < val(dq.back(), mm)) {
+                        i = mm;
+                        rr = mm - 1;
+                    } else {
+                        ll = mm + 1;
+                    }
+                }
+                rt[dq.back()] = i - 1;
+                dq.emplace_back(j);
+                lt[j] = i;
+                rt[j] = n;
+            }
+        }
+        ```
+
+掌握这一算法，需要理解如下要点：
 
 -   队列需要记录到目前为止每个可行的决策点 $j$ 和能够解决的问题区间左右端点 $l_j$ 和 $r_j$ 构成的 **三元组**。对于给定区间 $[l_j,r_j]$ 内的问题，$j$ 应该是到目前为止考虑过的决策点中最小最优的（以下简称最优决策）。每时每刻，队列中存储的决策未必是连续的，但是尚未解决的问题应该是队列中存储的问题区间的不交并。
 -   **初始化**：将首个决策放于队列中，并记录它对于所有问题都是最优的。
@@ -111,7 +172,7 @@ $$
 
 ## 区间分拆问题
 
-考虑将某个区间拆分成若干个子区间的问题。形式化地说，将给定区间 $[1,n]$ 拆分成 $[a_1,b_1],\cdots,[a_k,b_k]$，其中，$b_1=1$，$a_k=n$，以及 $b_{i}+1=a_{i+1}$ 对任意 $i < k$ 都成立。对于给定拆分，成本为 $\sum_{i=1}^kw(a_i,b_i)$。问题要求最小化这一成本。可以列出如下的 1D1D 动态转移方程。
+考虑将某个区间拆分成若干个子区间的问题。形式化地说，将给定区间 $[1,n]$ 拆分成 $[a_1,b_1],\cdots,[a_k,b_k]$，其中，$b_1=1$，$a_k=n$，以及 $b_{i}+1=a_{i+1}$ 对任意 $i < k$ 都成立。对于给定拆分，成本为 $\sum_{i=1}^kw(a_i,b_i)$。问题要求最小化这一成本。可以列出如下的 1D1D 状态转移方程。
 
 $$
 f(i) = \min_{1\leq j\leq i} f(j-1)+w(j,i) \qquad (1\leq i\leq n)
@@ -126,7 +187,7 @@ $$
     设 $f_i$ 表示将前 $i$ 个玩具装箱的最小代价，则枚举第 $i$ 个玩具与哪些玩具放在一个箱子中，可以得到状态转移方程为
     
     $$
-    f_{i} = \min_{j=1}^{i}f_{j-1} + \left(i-j+\sum_{k=j}^i C_k\right)^2
+    f_{i} = \min_{j=1}^{i}f_{j-1} + \left(i-j+\sum_{k=j}^i C_k\right)^2.
     $$
     
     记 $s(i) = i+\sum_{k=1}^i C_k$，则有 $w(j, i) = \left(s(i) - s(j - 1) - 1 - K\right)^2$。显然 $s(i)$ 单调增加，因此根据下文的性质 1 和性质 2 可知 $s(i) - s(j - 1) - 1 - K$ 满足区间包含单调性和四边形不等式。再根据 $x^2$ 的单调性和凸性以及性质 3 可知，$w(j, i)$ 也满足四边形不等式，此时使用二分队列优化即可。
@@ -205,7 +266,7 @@ $$
     
     这里第二个不等式正是四边形不等式。所求凸性由此得证。
 
-这一结论保证了可以通过 wqs 二分（国外称 Alien's trick）的方法解决此问题。具体来说，考虑带参的成本函数 $w_c(j,i):=w(j,i)+c$，解决不限制区间个数的问题，求得其最优解为 $f_c(n)$。随着实数 $c$ 递增，相应的最优区间的数目单调递减，故而可以通过二分的方法找到恰使得最优区间个数等于 $m$ 的参数 $c$，则原题最优解为 $f(n,m) = f_c(n)-cm$。这里的实数 $c$ 可以看作区间个数限制的 Lagrange 乘子。该算法的实现有很多细节，可以参考专门介绍 wqs 二分的文章。这一算法的时间复杂度为 $O(n\log n\log C)$，这里 $C$ 为某一常数。
+这一结论保证了可以通过 wqs 二分（国外称 Alien's trick）的方法解决此问题。具体来说，考虑带参的成本函数 $w_c(j,i):=w(j,i)+c$，解决不限制区间个数的问题，求得其最优解为 $f_c(n)$。随着实数 $c$ 递增，相应的最优区间的数目单调递减，故而可以通过二分的方法找到恰使得最优区间个数等于 $m$ 的参数 $c$，则原题最优解为 $f(n,m) = f_c(n)-cm$。这里的实数 $c$ 可以看作区间个数限制的 Lagrange 乘子。该算法的实现有很多细节，可以参考[专门介绍 wqs 二分的文章](https://blog.csdn.net/Emm_Titan/article/details/124035796)。这一算法的时间复杂度为 $O(n\log n\log C)$，这里 $C$ 为某一常数。
 
 对于限制区间个数的区间分拆问题的三种算法，在不同的数据范围时表现各有优劣，需要结合具体的题目选择合适的算法。
 
@@ -247,7 +308,7 @@ $$
     & = f(a,d') + f(d'+1,d) + w(a,d) + f(b,c) \\
     & \geq f(a,c) + f(b,d') + f(d'+1,d) + w(a,d) \\
     & \geq f(a,c) + f(b,d') + f(d'+1,d) + w(b,d) \\
-    & \geq f(a,c) + f(b,d)
+    & \geq f(a,c) + f(b,d).
     \end{aligned}
     $$
     
@@ -263,7 +324,7 @@ $$
     & = f(a,d') + f(d'+1,d) + w(a,d) + f(b,c') + f(c'+1,c) + w(b,c) \\
     & \geq f(a,c') + f(c'+1,c) + w(b,c) + f(b,d') + f(d'+1,d) + w(a,d) \\
     & \geq f(a,c') + f(c'+1,c) + w(a,c) + f(b,d') + f(d'+1,d) + w(b,d) \\
-    & \geq f(a,c) + f(b,d)
+    & \geq f(a,c) + f(b,d).
     \end{aligned}
     $$
     
@@ -333,7 +394,7 @@ $$
     \Delta_i\Delta_j h\left(w(j,i)\right)
     &= h\left(w(b,d)\right) - h\left(w(a,c) + \Delta_jw(j,c) + \Delta_iw(a,i)\right) \\
     &\quad + h\left(w(a,c) + \Delta_jw(j,c) + \Delta_iw(a,i)\right) - h\left(w(a,c) + \Delta_jw(j,c)\right) \\
-    &\quad - h\left(w(a,c) + \Delta_iw(a,i)\right) + h\left(w(a,c)\right)
+    &\quad - h\left(w(a,c) + \Delta_iw(a,i)\right) + h\left(w(a,c)\right).
     \end{aligned}
     $$
     
@@ -342,7 +403,7 @@ $$
     这一证明实际是如下导数证明的离散版本。
     
     $$
-    \frac{\partial^2}{\partial x\partial y}h(w(x,y)) = h''(w(x,y))\frac{\partial }{\partial x}w(x,y)\frac{\partial}{\partial y}w(x,y) + h'(w(x,y))\frac{\partial^2}{\partial x\partial y}w(x,y) \leq 0
+    \frac{\partial^2}{\partial x\partial y}h(w(x,y)) = h''(w(x,y))\frac{\partial }{\partial x}w(x,y)\frac{\partial}{\partial y}w(x,y) + h'(w(x,y))\frac{\partial^2}{\partial x\partial y}w(x,y) \leq 0.
     $$
     
     这在 $h' \geq 0$，$h'' \geq 0$，$w_x \leq 0$，$w_y \geq 0$ 以及 $w_{xy} \leq 0$ 的条件下显然成立。其中，区间包含单调性给出了 $w$ 的一阶条件，而四边形不等式给出了其二阶条件。
