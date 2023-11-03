@@ -592,6 +592,180 @@ void split(int &p, int &q, int s, int t, int l, int r) {
 
 由于建树的时候涉及到求前缀和和求后缀和，所以对于线性基这种虽然合并是 $O(\log^2{w})$ 但是求前缀和却是 $O(n\log{n})$ 的信息，使用猫树可以将静态区间线性基从 $O(n\log^2{w}+m\log^2{w}\log{n})$ 优化至 $O(n\log{n}\log{w}+m\log^2{w})$ 的复杂度。
 
+
+### 线段树优化建图
+
+在建图连边的过程中，我们有时会碰到这种题目，一个点向一段连续的区间中的点连边或者一个连续的区间向一个点连边，如果我们真的一条一条连过去，那一旦点的数量多了复杂度就爆炸了，这里就需要用线段树的区间性质来优化我们的建图了。
+
+下面是一个线段树。
+
+![](https://images.cnblogs.com/cnblogs_com/blogs/752184/galleries/2355878/t_231102145927_tmp1.png)
+
+每个节点都代表了一个区间，假设我们要向区间 $[2, 4]$ 连边。
+
+![](https://images.cnblogs.com/cnblogs_com/blogs/752184/galleries/2355878/t_231102151402_tmp1.png)
+
+在一些题目中，还会出现一个区间连向一个点的情况，则我们将上面第一张图的有向边全部反过来即可，上面的树叫做入树，下面这个叫做出树。
+
+![](https://images.cnblogs.com/cnblogs_com/blogs/752184/galleries/2355878/t_231102152108_tmp3.png)
+
+???+ note "[Legacy](https://www.luogu.com.cn/problem/CF786B)"
+    题目大意：有 $n$ 个点、$q$ 次操作。每一种操作为以下三种类型中的一种：
+    
+    - 操作一：连一条 $u \rightarrow v$ 的有向边，权值为 $w$。
+
+    - 操作二：对于所有 $i \in [l,r]$ 连一条 $u \rightarrow i$ 的有向边，权值为 $w$。
+
+    - 操作三：对于所有 $i \in [l,r]$ 连一条 $i \rightarrow u$ 的有向边，权值为 $w$。
+    求从点 $s$ 到其他点的最短路。
+    
+    $1 \le n,q \le 10^5, 1 \le w \le 10^9$。
+    
+    ??? "参考代码"
+        ```cpp
+        #include <bits/stdc++.h>
+        using namespace std;
+        typedef long long ll;
+        
+        const int N = 1e5 + 5;
+        
+        using pil = pair<int, ll>;
+        using pli = pair<ll, int>;
+        
+        int n, q, s, tot, rt1, rt2;
+        int pos[N];
+        ll dis[N << 3];
+        vector<pil> e[N << 3];
+        bitset<(N << 3)> vis;
+        
+        struct seg {
+            int l, r, lson, rson;
+        } t[N << 3];
+        
+        inline int ls(int u) { // 左儿子 
+            return t[u].lson;
+        }
+        
+        inline int rs(int u) { // 右儿子 
+            return t[u].rson;
+        }
+        
+        void build(int &u, int l, int r) { // 动态开点建造入树 
+            u = ++ tot;
+            t[u] = seg{l, r};
+            if (l == r) {
+                pos[l] = u;
+                return ;
+            }
+            int mid = (l + r) >> 1;
+            build(t[u].lson, l, mid);
+            build(t[u].rson, mid + 1, r);
+            e[u].emplace_back(ls(u), 0);
+            e[u].emplace_back(rs(u), 0);
+        }
+        
+        
+        void build2(int &u, int l, int r) { // 动态开点建造出树 
+            if (l == r) {
+                u = pos[l];
+                return ;
+            }
+            u = ++ tot;
+            t[u] = seg{l, r};
+            int mid = (l + r) >> 1;
+            build2(t[u].lson, l, mid);
+            build2(t[u].rson, mid + 1, r);
+            e[ls(u)].emplace_back(u, 0);
+            e[rs(u)].emplace_back(u, 0);
+        }
+        
+        void add1(int u, int lr, int rr, int v, ll w) { // 点向区间连边 
+            if (lr <= t[u].l && t[u].r <= rr) {
+                e[v].emplace_back(u, w);
+                return ;
+            }
+            int mid = (t[u].l + t[u].r) >> 1;
+            if (lr <= mid) {
+                add1(ls(u), lr, rr, v, w);
+            }
+            if (rr > mid) {
+                add1(rs(u), lr, rr, v, w);
+            }
+        }
+        
+        void add2(int u, int lr, int rr, int v, ll w) { // 区间向点连边 
+            if (lr <= t[u].l && t[u].r <= rr) {
+                e[u].emplace_back(v, w);
+                return ;
+            }
+            int mid = (t[u].l + t[u].r) >> 1;
+            if (lr <= mid) {
+                add2(ls(u), lr, rr, v, w);
+            }
+            if (rr > mid) {
+                add2(rs(u), lr, rr, v, w);
+            }
+        }
+        
+        void dij(int S) {
+            priority_queue<pli, vector<pli>, greater<pli> > q;
+            int tot = (n << 2);
+            for (int i = 1; i <= tot; ++ i) {
+                dis[i] = 1e18;
+            }
+            dis[S] = 0;
+            q.emplace(dis[S], S);
+            while (! q.empty()) {
+                pli fr = q.top();
+                q.pop();
+                int u = fr.second;
+                if (vis[u]) continue ;
+                for (pil it : e[u]) {
+                    int v = it.first;
+                    ll w = it.second;
+                    if (dis[v] > dis[u] + w) {
+                        dis[v] = dis[u] + w;
+                        q.emplace(dis[v], v);
+                    }
+                }
+            }
+        }
+        
+        int main() {
+            scanf("%d%d%d", &n, &q, &s);
+            build(rt1, 1, n);
+            build2(rt2, 1, n);
+            for (int i = 1, op, u; i <= q; ++ i) {
+                scanf("%d%d", &op, &u);
+        		if (op == 1) {
+                    int v;
+                    ll w;
+                    scanf("%d%lld", &v, &w);
+                    e[pos[u]].emplace_back(pos[v], w);
+                } else if (op == 2) {
+                    int l, r;
+                    ll w;
+                    scanf("%d%d%lld", &l, &r, &w);
+                    add1(rt1, l, r, pos[u], w);
+                } else {
+                    int l, r;
+                    ll w;
+                    scanf("%d%d%lld", &l, &r, &w);
+                    add2(rt2, l, r, pos[u], w);
+                }
+            }
+            dij(pos[s]);
+            for (int i = 1; i <= n; ++ i) {
+                if (dis[pos[i]] == 1e18) {
+                    printf("-1 ");
+                } else {
+                	printf("%lld ", dis[pos[i]]);
+                }
+            }
+            return 0;
+        }
+        ```
+
 ### 参考
 
 -   [immortalCO 大爷的博客](https://immortalco.blog.uoj.ac/blog/2102)
