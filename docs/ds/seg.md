@@ -611,7 +611,7 @@ void split(int &p, int &q, int s, int t, int l, int r) {
 ???+ note "[Legacy](https://www.luogu.com.cn/problem/CF786B)"
     题目大意：有 $n$ 个点、$q$ 次操作。每一种操作为以下三种类型中的一种：
     
-    - 操作一：连一条 $u \rightarrow v$ 的有向边，权值为 $w$。
+    -   操作一：连一条 $u \rightarrow v$ 的有向边，权值为 $w$。
 
     - 操作二：对于所有 $i \in [l,r]$ 连一条 $u \rightarrow i$ 的有向边，权值为 $w$。
 
