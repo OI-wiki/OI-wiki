@@ -592,7 +592,6 @@ void split(int &p, int &q, int s, int t, int l, int r) {
 
 由于建树的时候涉及到求前缀和和求后缀和，所以对于线性基这种虽然合并是 $O(\log^2{w})$ 但是求前缀和却是 $O(n\log{n})$ 的信息，使用猫树可以将静态区间线性基从 $O(n\log^2{w}+m\log^2{w}\log{n})$ 优化至 $O(n\log{n}\log{w}+m\log^2{w})$ 的复杂度。
 
-
 ### 线段树优化建图
 
 在建图连边的过程中，我们有时会碰到这种题目，一个点向一段连续的区间中的点连边或者一个连续的区间向一个点连边，如果我们真的一条一条连过去，那一旦点的数量多了复杂度就爆炸了，这里就需要用线段树的区间性质来优化我们的建图了。
@@ -609,18 +608,18 @@ void split(int &p, int &q, int s, int t, int l, int r) {
 
 ![](https://images.cnblogs.com/cnblogs_com/blogs/752184/galleries/2355878/t_231102152108_tmp3.png)
 
-???+ note "[Legacy]([https://www.luogu.com.cn/problem/P3372](https://www.luogu.com.cn/problem/CF786B))"
+???+ note "[Legacy]([https://www.luogu.com.cn/problem/P3372]\(https://www.luogu.com.cn/problem/CF786B\))"
     题目大意：有 $n$ 个点、$q$ 次操作。每一种操作为以下三种类型中的一种：
     
-    - 操作一：连一条 $u \rightarrow v$ 的有向边，权值为 $w$。
+    -   操作一：连一条 $u \rightarrow v$ 的有向边，权值为 $w$。
 
     - 操作二：对于所有 $i \in [l,r]$ 连一条 $u \rightarrow i$ 的有向边，权值为 $w$。
 
     - 操作三：对于所有 $i \in [l,r]$ 连一条 $i \rightarrow u$ 的有向边，权值为 $w$。
     求从点 $s$ 到其他点的最短路。
-    
+
     $1 \le n,q \le 10^5, 1 \le w \le 10^9$。
-    
+
     ??? "参考代码"
         ```cpp
         #include <bits/stdc++.h>
