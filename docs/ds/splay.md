@@ -237,9 +237,7 @@ void ins(int k) {
 int rk(int k) {
   int res = 0, cur = rt;
   while (1) {
-    if (!cur) {
-      return res + 1;
-    } else if (k < val[cur]) {
+    if (k < val[cur]) {
       cur = ch[cur][0];
     } else {
       res += sz[ch[cur][0]];
@@ -445,9 +443,7 @@ struct Splay {
   int rk(int k) {
     int res = 0, cur = rt;
     while (1) {
-      if (!cur) {
-        return res + 1;
-      } else if (k < val[cur]) {
+      if (k < val[cur]) {
         cur = ch[cur][0];
       } else {
         res += sz[ch[cur][0]];
@@ -537,7 +533,7 @@ int main() {
     else if (opt == 2)
       tree.del(x);
     else if (opt == 3)
-      printf("%d\n", tree.rk(x));
+      tree.ins(x), printf("%d\n", tree.rk(x)), tree.del(x);
     else if (opt == 4)
       printf("%d\n", tree.kth(x));
     else if (opt == 5)
