@@ -94,7 +94,7 @@ $$
 4 & result\gets 0\\
 5 & \textbf{while }l\leq n\textbf{ do}:\\
 6 & \qquad r\gets\left\lfloor\dfrac n{\lfloor\frac nl\rfloor}\right\rfloor\\
-7 & \qquad result\gets [s(r)-s(l-1)]\times\left\lfloor\dfrac nl\right\rfloor\\
+7 & \qquad result\gets result + [s(r)-s(l-1)]\times\left\lfloor\dfrac nl\right\rfloor\\
 8 & \qquad l\gets r+1\\
 9 & \textbf{end while}\\
 \end{array}
