@@ -29,9 +29,9 @@ Vim 的基础操作在 Vim 自带的教程里将会讲述。打开终端输入 `
 -   <kbd>o</kbd>：在当前行的下一行新建一行，并插入文本。
 -   <kbd>O</kbd>：在当前行的上一行新建一行，并插入文本。
 
-返回普通模式的键位是 <kbd>Esc</kbd> 键；亦可使用快捷键 <kbd>Ctrl</kbd>+<kbd>[</kbd>。
+返回普通模式的键位是<kbd>Esc</kbd>键；亦可使用快捷键<kbd>Ctrl</kbd>+<kbd>\[</kbd>。
 
-有的时候用户只是需要进入普通模式下按一次小命令，按两次快捷键来回切换又略显浪费时间。Vim 提供了「插入 - 普通模式」来解决这个问题。在插入模式下按 <kbd>Ctrl+o</kbd> 即可进入此模式，执行完一次操作后又会自动回到插入模式。
+有的时候用户只是需要进入普通模式下按一次小命令，按两次快捷键来回切换又略显浪费时间。Vim 提供了「插入 - 普通模式」来解决这个问题。在插入模式下按<kbd>Ctrl+o</kbd>即可进入此模式，执行完一次操作后又会自动回到插入模式。
 
 ### 普通模式 (normal)
 
@@ -39,7 +39,7 @@ Vim 的基础操作在 Vim 自带的教程里将会讲述。打开终端输入 `
 
 Vim 的命令大部分都是在普通模式下完成的。普通模式下可不能乱按，可以说每个键都是命令。
 
-Vim 的方向键是 <kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd>。熟练之后能极大提升操作速度。
+Vim 的方向键是<kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd>。熟练之后能极大提升操作速度。
 
 ```text
      k
@@ -55,7 +55,7 @@ h <     > l
 
 `c` 命令用于修改，相当于 `di`。
 
-`u` 是撤销的快捷键，作用是撤销上一次对文本的更改。普通模式下的 `x`、`d`、`p` 命令都会被撤销。进入一次插入模式所编辑的文本也算一次更改，撤销命令会删去从进入到退出插入模式所输入的所有东西。与之对应的是 <kbd>Ctrl</kbd>+<kbd>r</kbd> 命令，它的作用是重做上次的撤销命令，相当于大部分 Windows 下程序中的 <kbd>Ctrl+y</kbd>。
+`u` 是撤销的快捷键，作用是撤销上一次对文本的更改。普通模式下的 `x`、`d`、`p` 命令都会被撤销。进入一次插入模式所编辑的文本也算一次更改，撤销命令会删去从进入到退出插入模式所输入的所有东西。与之对应的是<kbd>Ctrl</kbd>+<kbd>r</kbd>命令，它的作用是重做上次的撤销命令，相当于大部分 Windows 下程序中的<kbd>Ctrl+y</kbd>。
 
 `y` 命令可以复制被选中的区域。需要按 `v` 进入可视模式操作。
 
@@ -81,15 +81,15 @@ asdasdasd
 
 `gg` 命令可跳至代码的开头；`G` 命令可跳至代码最后一行的开头；`G` 命令前加数字可跳至指定行。
 
-普通模式下按 <kbd>/</kbd>，下方即会出现查找框，输入需要查找的字符，按回车后就能查看搜索结果。如果有多个查找结果，按 <kbd>n</kbd> 即可跳至下一个查找结果；按 <kbd>N</kbd> 可跳至上一个。
+普通模式下按<kbd>/</kbd>，下方即会出现查找框，输入需要查找的字符，按回车后就能查看搜索结果。如果有多个查找结果，按<kbd>n</kbd>即可跳至下一个查找结果；按<kbd>N</kbd>可跳至上一个。
 
-普通模式下按 <kbd>\*</kbd> 可以查找当前光标下的单词。
+普通模式下按<kbd>\*</kbd>可以查找当前光标下的单词。
 
 ### 命令行模式
 
 其实这并不能称作是一个模式。
 
-普通模式下只需要按 <kbd>:</kbd>，下方就会蹦出命令框，继续输入相关命令即可。
+普通模式下只需要按<kbd>:</kbd>，下方就会蹦出命令框，继续输入相关命令即可。
 
 输入 `:help` 或者 `:h` 可以查看英文版 Vim 在线帮助文档（看不懂英文可以下载 Vim 中文用户手册，或者 [移步插件篇下载 vimcdoc](/tools/editor/vim/#小方便性插件)）。
 
@@ -126,11 +126,11 @@ asdasdasd
 
 按 `v` 进入可视模式，多用于选中区域。按 `V`（`Shift+v`）进入行可视模式，用于选中行。
 
-进入可视模式后，按下 <kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd> 可以移动高亮选区。如果不小心跑反了，可以按 `o` 键切换活动端。如果需要鼠标操作，可以将 `set mouse=a` 写入配置文件，这样就能使用鼠标选中区域并进行复制操作。
+进入可视模式后，按下<kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd>可以移动高亮选区。如果不小心跑反了，可以按 `o` 键切换活动端。如果需要鼠标操作，可以将 `set mouse=a` 写入配置文件，这样就能使用鼠标选中区域并进行复制操作。
 
-按 <kbd>Ctrl</kbd>+<kbd>v</kbd> 或 <kbd>Ctrl</kbd>+<kbd>q</kbd> 进入块可视模式 (visual block)。
+按<kbd>Ctrl</kbd>+<kbd>v</kbd>或<kbd>Ctrl</kbd>+<kbd>q</kbd>进入块可视模式 (visual block)。
 
-进入块可视模式后，按 <kbd>I</kbd> 或 <kbd>A</kbd> 进入插入模式（相当于 `i` 和 `a`），退出插入模式后对本行所做的改动将被应用到选中的每一行同一位置。常用于批量添加注释。
+进入块可视模式后，按<kbd>I</kbd>或<kbd>A</kbd>进入插入模式（相当于 `i` 和 `a`），退出插入模式后对本行所做的改动将被应用到选中的每一行同一位置。常用于批量添加注释。
 
 选中后输入 `y` 或 `d` 亦可执行相应命令。
 
@@ -142,7 +142,7 @@ asdasdasd
 
 为什么 Emacs 和 Vim 这些编辑器效率高？很重要的一点在于，这些编辑器可以让双手始终处于主键盘区域并且保持合作状态，而不会出现一只手不停地按而另一只手摊在键盘上的情况。
 
-可以通过这几行丧心病狂的配置来极速适应使用 <kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd> 移动：
+可以通过这几行丧心病狂的配置来极速适应使用<kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd>移动：
 
 ```vim
 " 使方向键失效
@@ -154,16 +154,16 @@ imap <RIGHT> <Nop>
 
 还可以进一步缩小双手需要控制的区域：
 
--   用 <kbd>Ctrl</kbd>+<kbd>h</kbd> 代替 <kbd>Backspace</kbd>（也可以在终端里这样用，下同）。
--   用 <kbd>Ctrl</kbd>+<kbd>m</kbd> 代替 <kbd>Enter</kbd>。
--   用 <kbd>Ctrl</kbd>+<kbd>w</kbd> 在插入模式下删除一个单词。
--   用 <kbd>Ctrl</kbd>+<kbd>l</kbd> 清屏。
--   用 <kbd>Ctrl</kbd>+<kbd>u</kbd> 清空一行并自动缩进。
--   在绝大多数的情况下，不要去按右边的 <kbd>Ctrl</kbd> 和 <kbd>Shift</kbd>，用左边的代替。
+-   用<kbd>Ctrl</kbd>+<kbd>h</kbd>代替<kbd>Backspace</kbd>（也可以在终端里这样用，下同）。
+-   用<kbd>Ctrl</kbd>+<kbd>m</kbd>代替<kbd>Enter</kbd>。
+-   用<kbd>Ctrl</kbd>+<kbd>w</kbd>在插入模式下删除一个单词。
+-   用<kbd>Ctrl</kbd>+<kbd>l</kbd>清屏。
+-   用<kbd>Ctrl</kbd>+<kbd>u</kbd>清空一行并自动缩进。
+-   在绝大多数的情况下，不要去按右边的<kbd>Ctrl</kbd>和<kbd>Shift</kbd>，用左边的代替。
 
 ### 对调 Esc 键与 CapsLock 键
 
-> 键盘上的 <kbd>Esc</kbd> 键太远了，小拇指都按得不顺手。诶，我又不小心碰到大小写锁定切换键了！这个 <kbd>CapsLock</kbd> 键实在太没用了，不仅难用到，而且这么顺手这么近，还容易错按到，我要它何用？能不能把它和 <kbd>Esc</kbd> 换一下？
+> 键盘上的<kbd>Esc</kbd>键太远了，小拇指都按得不顺手。诶，我又不小心碰到大小写锁定切换键了！这个<kbd>CapsLock</kbd>键实在太没用了，不仅难用到，而且这么顺手这么近，还容易错按到，我要它何用？能不能把它和<kbd>Esc</kbd>换一下？
 
 的确可以。
 
@@ -217,11 +217,11 @@ xmodmap -e 'clear Lock' -e 'keycode x042=Escape'
 
 ### 重复，重复，重复
 
-毫无疑问，对动作的重复是提高效率最直接的办法，也是对效率最直接的反映。Vim 中，用于重复执行指令的方式有 <kbd>.</kbd> 命令，简单的录制与重复宏与 `normal` 命令。
+毫无疑问，对动作的重复是提高效率最直接的办法，也是对效率最直接的反映。Vim 中，用于重复执行指令的方式有<kbd>.</kbd>命令，简单的录制与重复宏与 `normal` 命令。
 
 #### `.` 命令
 
-Vim 的使用者不可避免地会抗拒重复的文本修改，因为 Vim 注定比其他编辑器会多出两次按键——<kbd>Esc</kbd> 与 <kbd>i</kbd>。但是，Vim 其实提供了重复命令 `.`，它适用于重复的添加、修改、删除文本操作。
+Vim 的使用者不可避免地会抗拒重复的文本修改，因为 Vim 注定比其他编辑器会多出两次按键——<kbd>Esc</kbd>与<kbd>i</kbd>。但是，Vim 其实提供了重复命令 `.`，它适用于重复的添加、修改、删除文本操作。
 
 `.` 命令可以重复上次执行的命令。但是这个「命令」并不只限于单一的命令，它也可以是 `数字 + 命令` 的组合；`进入插入模式 + 输入文本 + Esc` 也是命令的一种。所以，适当使用 `.` 命令才能达到最高的效率。
 
@@ -295,9 +295,9 @@ Vim 的宏功能可以重复任意长的命令。
 
 以下是用 Vim 处理的过程：
 
-1.  按下 <kbd>/</kbd> 调出查找框，输入正则表达式进行查找；
+1.  按下<kbd>/</kbd>调出查找框，输入正则表达式进行查找；
 2.  用 `q` 命令开始录制宏；
-3.  键入 `I#` 命令，然后按下 <kbd>ESC</kbd>；
+3.  键入 `I#` 命令，然后按下<kbd>ESC</kbd>；
 4.  用 `q` 进行修改操作并结束宏录制；
 5.  键入 `normal n@字母` 转到下一处并重复上一步操作；
 6.  键入 `数字 + .` 多次重复。
@@ -404,7 +404,7 @@ vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-
 
 -   [gundo](https://github.com/sjl/gundo.vim)：这个插件能够像 git 一样显示文件修改树。Vim 中键入 `:GundoToggle` 即可在左侧打开时光机。使用前需要在 Vim 里开启 Python 支持。
 
--   [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506)：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin`，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下 <kbd>Ctrl`+<kbd>/` 即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb)，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
+-   [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506)：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin`，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下<kbd>Ctrl `+<kbd>/` 即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb)，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
 
 -   [pangu](https://github.com/hotoo/pangu.vim)：自动格式化、规范化中文排版。
 
@@ -504,7 +504,7 @@ set wildmode=full        " zsh补全菜单
 
 ### 快捷键配置
 
-Vim 提供了 <kbd>leader</kbd> 键，供使用者与其他按键搭配，自行定制快捷键。
+Vim 提供了<kbd>leader</kbd>键，供使用者与其他按键搭配，自行定制快捷键。
 
 命令如下：
 
@@ -512,7 +512,7 @@ Vim 提供了 <kbd>leader</kbd> 键，供使用者与其他按键搭配，自行
 let mapleader ＝ ""
 ```
 
-双引号之间就是使用者定义的 <kbd>leader</kbd> 键。在未定义或为空的情况下默认映射到 <kbd>\\</kbd>。
+双引号之间就是使用者定义的<kbd>leader</kbd>键。在未定义或为空的情况下默认映射到<kbd>\\</kbd>。
 
 设置快捷键的命令如下：
 
@@ -524,7 +524,7 @@ vnoremap 快捷键 指令    " 可视模式
 
 两行分别代表了在普通模式下和插入模式下的快捷键执行指令。这里的指令相当于在键盘上按下指令中写下的键。
 
-例如如下设置。`<CR>` 代表回车。设置之后只需要连续按 <kbd>^^ i</kbd> 就能更新插件。
+例如如下设置。`<CR>` 代表回车。设置之后只需要连续按<kbd>^^ i</kbd>就能更新插件。
 
 ```vim
 let mapleader ＝ "^"
@@ -540,7 +540,7 @@ inoremap "  ""<esc>i
 inoremap '  ''<esc>i
 ```
 
-<kbd>F1</kbd>\~<kbd>F12</kbd> 键是 Vim 里少有的方便自由的快捷键。可以对它们进行客制化操作。
+<kbd>F1</kbd>\~<kbd>F12</kbd>键是 Vim 里少有的方便自由的快捷键。可以对它们进行客制化操作。
 
 <kbd>F9</kbd>：一键编译
 
