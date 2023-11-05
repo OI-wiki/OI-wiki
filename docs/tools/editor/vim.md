@@ -638,7 +638,6 @@ Plug 'luochen1990/rainbow'                     " 彩虹括号
 Plug 'yianwillis/vimcdoc'                      " HELP文档中文
 Plug 'sjl/gundo.vim'                           " 撤销树
 Plug 'suan/vim-instant-markdown'               " markdown 实时预览
-Plug 'vim-scripts/VimIM'                       " Vim 中文输入法
 Plug 'hotoo/pangu.vim'                         " 中文排版格式化
 
 call plug#end()
