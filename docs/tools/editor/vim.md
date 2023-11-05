@@ -404,7 +404,7 @@ vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-
 
 -   [gundo](https://github.com/sjl/gundo.vim)：这个插件能够像 git 一样显示文件修改树。Vim 中键入 `:GundoToggle` 即可在左侧打开时光机。使用前需要在 Vim 里开启 Python 支持。
 
--   [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506)：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin`，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下<kbd>Ctrl</kbd>+<kbd>/</kbd> 即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb)，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
+-   [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506)：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin`，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下<kbd>Ctrl</kbd>+<kbd>/</kbd>即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb)，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
 
 -   [pangu](https://github.com/hotoo/pangu.vim)：自动格式化、规范化中文排版。
 
