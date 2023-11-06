@@ -232,7 +232,7 @@ $$
 
 ```cpp
 while (r - l > eps) {
-  mid = (lmid + rmid) / 2;
+  mid = (l + r) / 2;
   lmid = mid - eps;
   rmid = mid + eps;
   if (f(lmid) < f(rmid))
