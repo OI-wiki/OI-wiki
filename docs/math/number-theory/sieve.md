@@ -67,15 +67,15 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
     如果每一次对数组的操作花费 1 个单位时间，则时间复杂度为：
     
     $$
-    O\left(\sum_{k=1}^{\pi(n)}{n\over p_k}\right)=O\left(n\sum_{k=1}^{\pi(n)}{1\over p_k}\right)
+    O\left(\sum_{k=1}^{\pi(n)}{\frac{n}{p_k}}\right)=O\left(n\sum_{k=1}^{\pi(n)}{\frac{1}{p_k}}\right)
     $$
     
-    其中 $p_k$ 表示第 $k$ 小的素数，$\pi(n)$ 表示 $\le n$ 的素数个数。$\sum_{k=1}^{\pi(n)}$ 表示第一层 for 循环，其中累加上界 $\pi(n)$ 为 `if (prime[i])` 进入 true 分支的次数；$n\over p_k$ 表示第二层 for 循环的执行次数。
+    其中 $p_k$ 表示第 $k$ 小的素数，$\pi(n)$ 表示 $\le n$ 的素数个数。$\sum_{k=1}^{\pi(n)}$ 表示第一层 for 循环，其中累加上界 $\pi(n)$ 为 `if (prime[i])` 进入 true 分支的次数；$\frac{n}{p_k}$ 表示第二层 for 循环的执行次数。
     
     根据 Mertens 第二定理，存在常数 $B_1$ 使得：
     
     $$
-    \sum_{k=1}^{\pi(n)}{1\over p_k}=\log\log n+B_1+O\left(1\over\log n\right)
+    \sum_{k=1}^{\pi(n)}{\frac{1}{p_k}}=\log\log n+B_1+O\left(\frac{1}{\log n}\right)
     $$
     
     所以 **Eratosthenes 筛法** 的时间复杂度为 $O(n\log\log n)$。接下来我们证明 Mertens 第二定理的弱化版本 $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$：
@@ -84,9 +84,9 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
     
     $$
     \begin{aligned}
-    \sum_{k=1}^{\pi(n)}{1\over p_k}
-    &=O\left(\sum_{k=2}^{\pi(n)}{1\over k\log k}\right) \\
-    &=O\left(\int_2^{\pi(n)}{\mathrm dx\over x\log x}\right) \\
+    \sum_{k=1}^{\pi(n)}{\frac{1}{p_k}}
+    &=O\left(\sum_{k=2}^{\pi(n)}{\frac{1}{k\log k}}\right) \\
+    &=O\left(\int_2^{\pi(n)}{\frac{\mathrm dx}{x\log x}}\right) \\
     &=O(\log\log\pi(n))=O(\log\log n)
     \end{aligned}
     $$

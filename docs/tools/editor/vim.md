@@ -1,4 +1,4 @@
-author: Enter-tainer, ouuan, Xeonacid, Ir1d, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise, StudyingFather, SukkaW, SodaCris, SkyeYoung, 383494
+author: Enter-tainer, ouuan, Xeonacid, Ir1d, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise, StudyingFather, SukkaW, SodaCris, SkyeYoung, 383494, danielqfmai
 
 Vim，编辑器之神。
 
@@ -31,7 +31,7 @@ Vim 的基础操作在 Vim 自带的教程里将会讲述。打开终端输入 `
 
 返回普通模式的键位是<kbd>Esc</kbd>键；亦可使用快捷键<kbd>Ctrl</kbd>+<kbd>\[</kbd>。
 
-有的时候用户只是需要进入普通模式下按一次小命令，按两次快捷键来回切换又略显浪费时间。Vim 提供了「插入 - 普通模式」来解决这个问题。在插入模式下，按<kbd>Ctrl</kbd>+<kbd>o</kbd>即可进入此模式，执行完一次操作后又会自动回到插入模式。
+有的时候用户只是需要进入普通模式下按一次小命令，按两次快捷键来回切换又略显浪费时间。Vim 提供了「插入 - 普通模式」来解决这个问题。在插入模式下按<kbd>Ctrl</kbd>+<kbd>o</kbd>即可进入此模式，执行完一次操作后又会自动回到插入模式。
 
 ### 普通模式 (normal)
 
@@ -53,17 +53,19 @@ h <     > l
 
 `d` 命令也是删除，通常配合其他键使用。
 
-`u` 是撤销的快捷键，作用是撤销上一次对文本的更改。普通模式下的 `x`、`d`、`p` 命令都会被撤销。进入一次插入模式所编辑的文本也算一次更改，撤销命令会删去从进入到退出插入模式所输入的所有东西。与之对应的是<kbd>Ctrl</kbd>+<kbd>r</kbd>命令，它的作用是撤销上次的撤销命令，相当于大部分 Windows 下程序中的<kbd>Ctrl</kbd>+<kbd>y</kbd>。
+`c` 命令用于修改，相当于 `di`。
+
+`u` 是撤销的快捷键，作用是撤销上一次对文本的更改。普通模式下的 `x`、`d`、`p` 命令都会被撤销。进入一次插入模式所编辑的文本也算一次更改，撤销命令会删去从进入到退出插入模式所输入的所有东西。与之对应的是<kbd>Ctrl</kbd>+<kbd>r</kbd>命令，它的作用是重做上次的撤销命令，相当于大部分 Windows 下程序中的<kbd>Ctrl</kbd>+<kbd>y</kbd>。
 
 `y` 命令可以复制被选中的区域。需要按 `v` 进入可视模式操作。
 
-`p` 命令可以在光标后粘贴已复制的内容，`P` 命令可以在光标前粘贴已复制的内容。
+`p` 命令可以在光标后粘贴已复制或已删除的内容，`P` 命令可以在光标前粘贴已复制或已删除的内容。可以将 `d`、`x` 命令看做是剪切。
 
-`w` 可以跳到下个单词的开头；`e` 可以跳到当前单词结尾；`0` 可以跳至行首；`$` 可以跳至行尾。`w`、`e`、`0`、`$` 还可以与其他命令组合，比如 `de`、`dw`、`d0` 和 `d$` 分别对应删至单词尾、删至下个单词头、删至行首和删至行尾。
+`w` 可以跳到下个单词的开头；`e` 可以跳到当前单词或下一单词的结尾；`b` 可以跳到当前单词或上一单词的的开头；`0` 可以跳至行首；`$` 可以跳至行尾。`w`、`e`、`0`、`$` 还可以与其他命令组合，比如 `de`、`dw`、`d0` 和 `d$` 分别对应删至单词尾、删至下个单词头、删至行首和删至行尾。
 
 `=` 命令可以以默认格式对选中行应用自动缩进。
 
-由于对行命令的使用很频繁，所以大部分的单键命令都可以通过按两次来实现对行操作。例如，`dd` 可以删除一整行；`yy` 可以复制当前行；`==` 可以缩进当前行。
+由于对行命令的使用很频繁，所以大部分的单键命令都可以通过按两次来实现对行操作。例如，`dd` 可以删除一整行；`cc` 可以重写一行；`yy` 可以复制当前行；`==` 可以自动缩进当前行。
 
 在输入某个命令前，输入一个数字 n 的话，命令就会重复 n 次。如在普通模式下：
 
@@ -77,7 +79,7 @@ asdasdasd
 
 `.` 命令可以重复上次执行的命令。
 
-`gg` 命令可跳至代码的开头；`G` 命令可跳至代码最后一行；`G` 命令前加数字可跳至指定行。
+`gg` 命令可跳至代码的开头；`G` 命令可跳至代码最后一行的开头；`G` 命令前加数字可跳至指定行。
 
 普通模式下按<kbd>/</kbd>，下方即会出现查找框，输入需要查找的字符，按回车后就能查看搜索结果。如果有多个查找结果，按<kbd>n</kbd>即可跳至下一个查找结果；按<kbd>N</kbd>可跳至上一个。
 
@@ -89,9 +91,9 @@ asdasdasd
 
 普通模式下只需要按<kbd>:</kbd>，下方就会蹦出命令框，继续输入相关命令即可。
 
-输入 `:help` 可以查看英文版 Vim 在线帮助文档（看不懂英文可以下载 Vim 中文用户手册，或者移步插件篇下载 vimcdoc）。
+输入 `:help` 或者 `:h` 可以查看英文版 Vim 在线帮助文档（看不懂英文可以下载 Vim 中文用户手册，或者 [移步插件篇下载 vimcdoc](/tools/editor/vim/#小方便性插件)）。
 
-`:q` 是退出；`:w` 是保存；`:wq` 是保存并退出；`:q!` 是不保存并退出。
+`:q` 是退出；`:w` 是保存；`:wq` 和 `:x` 是保存并退出（也可以在普通模式下按 `ZZ`）；`:q!` 是不保存并退出。
 
 `:e filename` 可以打开当前目录下的指定文件。
 
@@ -102,29 +104,37 @@ asdasdasd
 :s/str1/str2/
 " 把当前行所有的 str1 替换成 str2
 :s/str1/str2/g
+" 把当前行所有的 str1 替换成 str2，在替换前询问
+:s/str1/str2/gc
 " 把第 x1 行至 x2 行中，每一行第一个匹配的 str1 替换成 str2
 :x1,x2 s/str1/str2/
 " 把第 x1 行至 x2 行中所有的 str1 替换成 str2
 :x1,x2 s/str1/str2/g
+" 第 x1 行至 x2 行中所有的 str1 替换成 str2，在替换前询问
+:x1,x2 s/str1/str2/gc
 " 把所有行第一个匹配的 str1 替换成 str2
 :%s/str1/str2/
 " 把全文件所有的 str1 替换成 str2
 :%s/str1/str2/g
+" 把全文件所有的 str1 替换成 str2，在替换前询问
+:%s/str1/str2/gc
 ```
 
 如果命令形式是 `:! command`，则命令将在 bash 终端执行。
 
 ### 可视模式 (visual)
 
-按 `v` 进入可视模式，多用于选中区域。
+按 `v` 进入可视模式，多用于选中区域。按 `V`（`Shift+v`）进入行可视模式，用于选中行。
 
 进入可视模式后，按下<kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kbd>、<kbd>l</kbd>可以移动高亮选区。如果不小心跑反了，可以按 `o` 键切换活动端。如果需要鼠标操作，可以将 `set mouse=a` 写入配置文件，这样就能使用鼠标选中区域并进行复制操作。
 
 按<kbd>Ctrl</kbd>+<kbd>v</kbd>或<kbd>Ctrl</kbd>+<kbd>q</kbd>进入块可视模式 (visual block)。
 
-进入块可视模式后，按<kbd>I</kbd>进入插入模式，退出插入模式后对本行所做的改动将被应用到选中的每一行同一位置。常用于批量添加注释。
+进入块可视模式后，按<kbd>I</kbd>或<kbd>A</kbd>进入插入模式（相当于 `i` 和 `a`），退出插入模式后对本行所做的改动将被应用到选中的每一行同一位置。常用于批量添加注释。
 
 选中后输入 `y` 或 `d` 亦可执行相应命令。
+
+三种可视模式可以通过按键相互转化。
 
 ## 进阶篇
 
@@ -144,8 +154,11 @@ imap <RIGHT> <Nop>
 
 还可以进一步缩小双手需要控制的区域：
 
--   用<kbd>Ctrl</kbd>+<kbd>h</kbd>代替<kbd>Backspace</kbd>（甚至可以在终端里这样用）。
--   用<kbd>Ctrl</kbd>+<kbd>m</kbd>代替回车（甚至可以在终端里这样用）。
+-   用<kbd>Ctrl</kbd>+<kbd>h</kbd>代替<kbd>Backspace</kbd>（也可以在终端里这样用，下同）。
+-   用<kbd>Ctrl</kbd>+<kbd>m</kbd>代替<kbd>Enter</kbd>。
+-   用<kbd>Ctrl</kbd>+<kbd>w</kbd>在插入模式下删除一个单词。
+-   用<kbd>Ctrl</kbd>+<kbd>l</kbd>清屏。
+-   用<kbd>Ctrl</kbd>+<kbd>u</kbd>清空一行并自动缩进。
 -   在绝大多数的情况下，不要去按右边的<kbd>Ctrl</kbd>和<kbd>Shift</kbd>，用左边的代替。
 
 ### 对调 Esc 键与 CapsLock 键
@@ -265,7 +278,11 @@ Vim 的宏功能可以重复任意长的命令。
 :a,b normal command
 ```
 
-这行命令的意思是在普通模式下，对 a\~b 行执行 `command` 命令。
+或者：
+
+    :a,b norm command
+
+以上命令的意思是在普通模式下，对 a\~b 行执行 `command` 命令。
 
 由于 `normal` 命令可以被 `.` 命令重复调用，且其易于理解，它的使用频率甚至更高于宏。
 
@@ -390,6 +407,8 @@ vim-airline 的源码托管在 [vim-airline/vim-airline](https://github.com/vim-
 
 -   [vimim](https://vim.sourceforge.io/scripts/script.php?script_id=2506)：相当于给 Vim 安装中文输入法。安装方法为在 `.vim` 文件夹中创建文件夹 `plugin`，然后点击 [vimim 下载链接](https://www.vim.org/scripts/download_script.php?src_id=23122) 下载文件，最后放入此文件夹中。使用方法为打开 Vim 并进入插入模式，按下<kbd>Ctrl</kbd>+<kbd>/</kbd>即可启用。但是该插件使用的是云词库，若没网就会卡死。所以建议下载 [本地超大词库](https://github.com/vimim/vimim/raw/master/plugin/vimim.gbk.bsddb)，与插件一并放入 `plugin` 文件夹中，与插件脚本同目录即可启用。
 
+-   [pangu](https://github.com/hotoo/pangu.vim)：自动格式化、规范化中文排版。
+
 -   [vim-instant-markdown](https://github.com/suan/vim-instant-markdown)：一个即时预览 Markdown 文件的插件。打开 Markdown 文件时会自动在浏览器中打开一个标签页，实时预览 Vim 中正在编辑的 Markdown 文件的内容。
 
 ## 配置篇
@@ -435,12 +454,14 @@ set backspace=indent,eol,start
 
 ```vim
 set number
+" 简写为 :set nu
 ```
 
 Vim 自带自动折行功能，即当某一行超过了 Vim 窗口边界的时候，多出的部分会自动显示在下一行，而这种多出来的行前面是没有行号的，比较好辨认，这些行被称为屏幕行，而根据行号一一对应的便称作实际行（`g + 移动命令` 可以在屏幕行间移动）。但是仅仅凭着看前面的行号来辨认某个折下来的行属于哪个实际行的话，还是不够快。如下命令可以开启高亮显示当前行的功能：
 
 ```vim
 set cursorline
+" 简写为 :set cul
 ```
 
 以下两行配置能够禁止生成临时文件 swap：
@@ -462,7 +483,7 @@ colorscheme themename
 set mouse=a              " 开启鼠标支持
 set fillchars=vert:\ ,stl:\ ,stlnc:\
                          " 在分割窗口间留出空白
-set autochdir            " 移至当前文件所在目录
+set autochdir            " 移至当前文件所在目录，简写为 :set acd
 ```
 
 设置文件编码：
@@ -492,13 +513,14 @@ Vim 提供了<kbd>leader</kbd>键，供使用者与其他按键搭配，自行�
 let mapleader ＝ ""
 ```
 
-双引号之间就是使用者定义的<kbd>leader</kbd>键。未定义/为空的情况下默认映射到<kbd>\\</kbd>。
+双引号之间就是使用者定义的<kbd>leader</kbd>键。在未定义或为空的情况下默认映射到<kbd>\\</kbd>。
 
 设置快捷键的命令如下：
 
 ```vim
 nnoremap 快捷键 指令    " 普通模式
 inoremap 快捷键 指令    " 插入模式
+vnoremap 快捷键 指令    " 可视模式
 ```
 
 两行分别代表了在普通模式下和插入模式下的快捷键执行指令。这里的指令相当于在键盘上按下指令中写下的键。
@@ -577,9 +599,9 @@ func! GDB()
 ### 代码相关配置
 
 ```vim
-set tabstop=num " 设置 Tab 对应的空格数，num 为数字
-set showmatch   " 开启高亮显示匹配括号
-set autoread    " 自动加载改动的文件
+set tabstop=num " 设置 Tab 对应的空格数，num 为数字，简写为 :set ts=num
+set showmatch   " 开启高亮显示匹配括号,简写为 :set sm
+set autoread    " 自动加载改动的文件，简写为 :set ar
 ```
 
 ### 插件的配置
@@ -617,6 +639,8 @@ Plug 'luochen1990/rainbow'                     " 彩虹括号
 Plug 'yianwillis/vimcdoc'                      " HELP文档中文
 Plug 'sjl/gundo.vim'                           " 撤销树
 Plug 'suan/vim-instant-markdown'               " markdown 实时预览
+Plug 'vim-scripts/VimIM'                       " 中文排版格式化
+Plug 'hotoo/pangu.vim'                         " 中文排版格式化
 
 call plug#end()
 ```
