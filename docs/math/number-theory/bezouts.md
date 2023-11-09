@@ -10,7 +10,7 @@
 
 对于第一点
 
-由于 $\gcd(a,b)\mid a,\gcd(a,b)\mid b$， $x,y$ 均为整数
+由于 $\gcd(a,b)\mid a,\gcd(a,b)\mid b$，$x,y$ 均为整数
 
 所以 $\gcd(a,b)\mid ax,\gcd(a,b)\mid by$
 
