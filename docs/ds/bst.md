@@ -1,4 +1,4 @@
-author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-time, Early0v0, Enter-tainer, fearlessxjdx, Great-designer, H-J-Granger, hsfzLZH1, iamtwz, Ir1d, ksyx, Marcythm, NachtgeistW, ouuan, Persdre, shuzhouliu, StudyingFather, SukkaW, Tiphereth-A, wsyhb, Yesphet, yuhuoji
+author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-time, Early0v0, Enter-tainer, fearlessxjdx, Great-designer, H-J-Granger, hsfzLZH1, iamtwz, Ir1d, ksyx, Marcythm, NachtgeistW, ouuan, Persdre, shuzhouliu, StudyingFather, SukkaW, Tiphereth-A, wsyhb, Yesphet, yuhuoji, RainbowBird
 
 ## 定义
 
@@ -301,9 +301,9 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 ???+ note "实现"
     ```c++
     TreeNode* rotateLeft(TreeNode* root) {
-      TreeNode* newRoot = root->right;
-      root->right = newRoot->left;
-      newRoot->left = root;
+      TreeNode* newRoot = root->left;
+      root->left = newRoot->right;
+      newRoot->right = root;
       // 更新相关节点的信息
       updateHeight(root);
       updateHeight(newRoot);
@@ -311,9 +311,9 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
     }
     
     TreeNode* rotateRight(TreeNode* root) {
-      TreeNode* newRoot = root->left;
-      root->left = newRoot->right;
-      newRoot->right = root;
+      TreeNode* newRoot = root->right;
+      root->right = newRoot->left;
+      newRoot->left = root;
       updateHeight(root);
       updateHeight(newRoot);
       return newRoot;
