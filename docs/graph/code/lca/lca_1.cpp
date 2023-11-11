@@ -1,6 +1,6 @@
 #include <cstdio>
-#include <vector>
 #include <cstring>
+#include <vector>
 
 #define MXN 40005
 using namespace std;
