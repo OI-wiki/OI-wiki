@@ -10,11 +10,11 @@
 
 对于第一点
 
-由于 $\gcd(a,b)\mid a,\gcd(a,b)\mid b$，$x,y$ 均为整数
+由于 $\gcd(a,b)\mid a,\gcd(a,b)\mid b$
 
-所以 $\gcd(a,b)\mid ax,\gcd(a,b)\mid by$
+所以 $\gcd(a,b)\mid ax,\gcd(a,b)\mid by$，其中 $x,y$ 均为整数
 
-所以 $\gcd(a,b)\mid ax+by$
+因此 $\gcd(a,b)\mid ax+by$
 
 对于第二点
 
