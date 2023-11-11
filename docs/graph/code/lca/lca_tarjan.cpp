@@ -16,7 +16,7 @@ const int MAX = 100;
 int head[MAX], queryHead[MAX];
 Edge edge[MAX], queryEdge[MAX];
 int parent[MAX], visited[MAX];
-int vertexCount, edgeCount, queryCount;
+int vertexCount, queryCount;
 
 void init() {
   for (int i = 0; i <= vertexCount; i++) {
@@ -56,9 +56,9 @@ int main() {
   memset(head, 0xff, sizeof(head));
   memset(queryHead, 0xff, sizeof(queryHead));
 
-  cin >> vertexCount >> edgeCount >> queryCount;
+  cin >> vertexCount >> queryCount;
   int count = 0;
-  for (int i = 0; i < edgeCount; i++) {
+  for (int i = 0; i < vertexCount - 1; i++) {
     int start = 0, end = 0;
     cin >> start >> end;
 
