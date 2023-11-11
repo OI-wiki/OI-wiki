@@ -218,7 +218,7 @@ $$
 2 & \textbf{Output. } \text{The maximum value of } f(x) \text{ and the value of } x \text{ at that time } \text{.} \\
 3 & \textbf{Method. } \\
 4 & \textbf{while } r - l > \varepsilon\\
-5 & \qquad mid\gets \frac{lmid+rmid}{2}\\
+5 & \qquad mid\gets \frac{l+r}{2}\\
 6 & \qquad lmid\gets mid - \varepsilon \\
 7 & \qquad rmid\gets mid + \varepsilon \\
 8 & \qquad \textbf{if } f(lmid) < f(rmid) \\
@@ -232,7 +232,7 @@ $$
 
 ```cpp
 while (r - l > eps) {
-  mid = (lmid + rmid) / 2;
+  mid = (l + r) / 2;
   lmid = mid - eps;
   rmid = mid + eps;
   if (f(lmid) < f(rmid))
