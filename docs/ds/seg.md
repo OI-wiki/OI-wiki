@@ -556,6 +556,7 @@ void split(int &p, int &q, int s, int t, int l, int r) {
     -   操作二：对于所有 $i \in [l,r]$ 连一条 $u \rightarrow i$ 的有向边，权值为 $w$。
 
     -   操作三：对于所有 $i \in [l,r]$ 连一条 $i \rightarrow u$ 的有向边，权值为 $w$。
+    
     求从点 $s$ 到其他点的最短路。
 
     $1 \le n,q \le 10^5, 1 \le w \le 10^9$。
