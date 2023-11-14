@@ -630,4 +630,3 @@ void split(int &p, int &q, int s, int t, int l, int r) {
         ```cpp
         --8<-- "docs/ds/code/seg/seg_8.cpp"
         ```
-
