@@ -182,7 +182,7 @@ class RBTreeMap {
 
 该种情况无法直接进行维护，需要通过旋转操作将子树结构调整为 Case 6 的初始状态并进入 Case 6 进行后续维护。
 
-![rbtree-insert-case5](images/rbtree-insert-case5.png)
+![rbtree-insert-case5](images/rbtree-insert-case5.svg)
 
 ???+ note "实现"
     ```cpp
@@ -220,7 +220,7 @@ class RBTreeMap {
 1.  若 N 为左子节点则左旋祖父节点 G，否则右旋祖父节点 G.（该操作使得旋转过后 P - N 这条路径上的黑色节点个数比 P - G - U 这条路径上少 1，暂时打破性质 4）。
 2.  重新染色，将 P 染黑，将 G 染红，同时满足了性质 3 和 4。
 
-![rbtree-insert-case6](images/rbtree-insert-case6.png)
+![rbtree-insert-case6](images/rbtree-insert-case6.svg)
 
 ???+ note "实现"
     ```cpp
@@ -367,7 +367,7 @@ class RBTreeMap {
 2.  将 S 染黑，P 染红（保证 S 节点的父节点满足性质 4）。
 3.  此时只需根据结构对以当前 P 节点为根的子树进行维护即可（无需再考虑旋转染色后的 S 和 D 节点）。
 
-![rbtree-remove-case1](images/rbtree-remove-case1.png)
+![rbtree-remove-case1](images/rbtree-remove-case1.svg)
 
 ???+ note "实现"
     ```cpp
@@ -402,7 +402,7 @@ class RBTreeMap {
 
 兄弟节点 S 和侄节点 C, D 均为黑色，父节点 P 为红色。此时只需将 S 染红，将 P 染黑即可满足性质 3 和 4。
 
-![rbtree-remove-case2](images/rbtree-remove-case2.png)
+![rbtree-remove-case2](images/rbtree-remove-case2.svg)
 
 ???+ note "实现"
     ```cpp
@@ -426,7 +426,7 @@ class RBTreeMap {
 
 此时也无法通过一步操作同时满足性质 3 和 4，因此选择将 S 染红，优先满足局部性质 4 的成立，再递归维护 P 节点根据上部结构进行后续维护。
 
-![rbtree-remove-case3](images/rbtree-remove-case3.png)
+![rbtree-remove-case3](images/rbtree-remove-case3.svg)
 
 ???+ note "实现"
     ```cpp
