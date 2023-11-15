@@ -1,4 +1,4 @@
-author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
+author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China, HeRaNO
 
 ## 素数筛法
 
@@ -29,6 +29,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
       for (int i = 2; i <= n; ++i) {
         if (is_prime[i]) {
           prime.push_back(i);
+          if ((long long)i * i > n) continue;
           for (int j = i * i; j <= n; j += i)
             // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i
             // 的倍数开始，提高了运行速度
@@ -40,8 +41,8 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 
 === "Python"
     ```python
-    is_prime = [False] * N
     prime = []
+    is_prime = [False] * N
     
     def Eratosthenes(n):
         for i in range(0, n + 1):
@@ -50,6 +51,8 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
         for i in range(2, n + 1):
             if is_prime[i]:
                 prime.append(i)
+                if i * i > n:
+                    continue
                 for j in range(i * i, n + 1, i):
                     is_prime[j] = False
     ```
@@ -94,8 +97,8 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 
 === "C++"
     ```cpp
-    bool is_prime[N];
     vector<int> prime;
+    bool is_prime[N];
     
     void Eratosthenes(int n) {
       for (int i = 0; i <= n; ++i) is_prime[i] = true;
@@ -112,8 +115,8 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 
 === "Python"
     ```python
-    is_prime = [False] * N
     prime = []
+    is_prime = [False] * N
     
     def Eratosthenes(n):
         for i in range(0, n + 1):
@@ -238,7 +241,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
                 for pri_j in pri:
                     if i * pri_j > n:
                         break
-                    not_prime[i * pri_j] = 1
+                    not_prime[i * pri_j] = True
                     if i % pri_j == 0:
                         """
                         i % pri_j == 0
@@ -390,7 +393,7 @@ $$
                 if i * pri_j > n:
                     break
                 not_prime[i * pri_j] = True
-                if i % p[j] == 0:
+                if i % pri_j == 0:
                     mu[i * pri_j] = 0
                     break
                 mu[i * pri_j] = -mu[i]
@@ -431,7 +434,7 @@ $$
         }
         for (int pri_j : pri) {
           if (i * pri_j > n) break;
-          not_prime[i * pri_j] = True;
+          not_prime[i * pri_j] = true;
           if (i % pri_j == 0) {
             num[i * pri_j] = num[i] + 1;
             d[i * pri_j] = d[i] / num[i * pri_j] * (num[i * pri_j] + 1);
@@ -461,6 +464,7 @@ $$
             for pri_j in pri:
                 if i * pri_j > n:
                     break
+                not_prime[i * pri_j] = True
                 if i % pri_j == 0:
                     num[i * pri_j] = num[i] + 1
                     d[i * pri_j] = d[i] // num[i * pri_j] * (num[i * pri_j] + 1)
