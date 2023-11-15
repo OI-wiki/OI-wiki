@@ -430,7 +430,8 @@ $$
       for (int i = 2; i <= n; ++i) {
         if (!not_prime[i]) {
           pri.push_back(i);
-          d[i] = 2; num[i] = 1;
+          d[i] = 2;
+          num[i] = 1;
         }
         for (int pri_j : pri) {
           if (i * pri_j > n) break;
@@ -490,7 +491,8 @@ $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+
       for (int i = 2; i <= n; ++i) {
         if (!not_prime[i]) {
           pri.push_back(i);
-          g[i] = i + 1; f[i] = i + 1;
+          g[i] = i + 1;
+          f[i] = i + 1;
         }
         for (int pri_j : pri) {
           if (i * pri_j > n) break;
