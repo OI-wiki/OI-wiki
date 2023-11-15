@@ -7,7 +7,7 @@ author: Marcythm, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, C
 考虑最简单的情形，我们要解决如下一系列最优化问题。
 
 $$
-f(i) = \min_{1 \leq j \leq i} w(j,i) \qquad \left(1 \leq i \leq n\right) \tag{1}
+f(i) = \min_{1 \leq j \leq i} f(j) + w(j,i) \qquad \left(1 \leq i \leq n\right) \tag{1}
 $$
 
 这里假定成本函数 $w(j,i)$ 可以在 $O(1)$ 时间内计算。
