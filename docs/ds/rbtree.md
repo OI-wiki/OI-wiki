@@ -457,7 +457,7 @@ class RBTreeMap {
 2.  将节点 S 染红，将节点 C 染黑。
 3.  此时已满足 Case 5 的条件，进入 Case 5 完成后续维护。
 
-![rbtree-remove-case4](images/rbtree-remove-case4.png)
+![rbtree-remove-case4](images/rbtree-remove-case4.svg)
 
 ???+ note "实现"
     ```cpp
@@ -497,7 +497,7 @@ class RBTreeMap {
 2.  交换父节点 P 和兄弟节点 S 的颜色，此时性质 3 可能被打破。
 3.  将 distant nephew 节点 D 染黑，同时保证了性质 3 和 4。
 
-![rbtree-remove-case5](images/rbtree-remove-case5.png)
+![rbtree-remove-case5](images/rbtree-remove-case5.svg)
 
 ???+ note "实现"
     ```cpp
