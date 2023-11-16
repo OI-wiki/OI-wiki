@@ -1,4 +1,4 @@
-author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
+author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China, HeRaNO
 
 ## 素数筛法
 
@@ -20,43 +20,41 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 
 === "C++"
     ```cpp
+    vector<int> prime;
     bool is_prime[N];
     
-    int Eratosthenes(int n) {
-      int p = 0;
-      for (int i = 0; i <= n; ++i) is_prime[i] = 1;
-      is_prime[0] = is_prime[1] = 0;
+    void Eratosthenes(int n) {
+      is_prime[0] = is_prime[1] = false;
+      for (int i = 2; i <= n; ++i) is_prime[i] = true;
       for (int i = 2; i <= n; ++i) {
         if (is_prime[i]) {
-          prime[p++] = i;  // prime[p]是i,后置自增运算代表当前素数数量
-          if ((long long)i * i <= n)
-            for (int j = i * i; j <= n; j += i)
-              // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i
-              // 的倍数开始，提高了运行速度
-              is_prime[j] = 0;  // 是i的倍数的均不是素数
+          prime.push_back(i);
+          if ((long long)i * i > n) continue;
+          for (int j = i * i; j <= n; j += i)
+            // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i
+            // 的倍数开始，提高了运行速度
+            is_prime[j] = false;  // 是 i 的倍数的均不是素数
         }
       }
-      return p;
     }
     ```
 
 === "Python"
     ```python
+    prime = []
+    is_prime = [False] * N
+    
     def Eratosthenes(n):
-        p = 0
-        for i in range(0, n + 1):
-            is_prime[i] = True
         is_prime[0] = is_prime[1] = False
         for i in range(2, n + 1):
+            is_prime[i] = True
+        for i in range(2, n + 1):
             if is_prime[i]:
-                prime[p] = i
-                p = p + 1
-                if i * i <= n:
-                    j = i * i
-                    while j <= n:
-                        is_prime[j] = False
-                        j = j + i
-        return p
+                prime.append(i)
+                if i * i > n:
+                    continue
+                for j in range(i * i, n + 1, i):
+                    is_prime[j] = False
     ```
 
 以上为 **Eratosthenes 筛法**（埃拉托斯特尼筛法，简称埃氏筛法），时间复杂度是 $O(n\log\log n)$。
@@ -99,40 +97,37 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 
 === "C++"
     ```cpp
+    vector<int> prime;
     bool is_prime[N];
     
-    int Eratosthenes(int n) {
-      int p = 0;
-      for (int i = 0; i <= n; ++i) is_prime[i] = 1;
-      is_prime[0] = is_prime[1] = 0;
+    void Eratosthenes(int n) {
+      is_prime[0] = is_prime[1] = false;
+      for (int i = 2; i <= n; ++i) is_prime[i] = true;
       // i * i <= n 说明 i <= sqrt(n)
       for (int i = 2; i * i <= n; ++i) {
         if (is_prime[i]) {
-          prime[p++] = i;
-          for (int j = i * i; j <= n; j += i) is_prime[j] = 0;
+          prime.push_back(i);
+          for (int j = i * i; j <= n; j += i) is_prime[j] = false;
         }
       }
-      return p;
     }
     ```
 
 === "Python"
     ```python
-        def Eratosthenes(n):
-        p = 0
-        for i in range(0, n + 1):
-            is_prime[i] = True
+    prime = []
+    is_prime = [False] * N
+    
+    def Eratosthenes(n):
         is_prime[0] = is_prime[1] = False
+        for i in range(2, n + 1):
+            is_prime[i] = True
         # 让 i 循环到 <= sqrt(n)
-        for i in range(2, int(sqrt(n + 1))):
+        for i in range(2, isqrt(n) + 1): # `isqrt` 是 Python 3.8 新增的函数
             if is_prime[i]:
-                prime[p] = i
-                p = p + 1
-                  j = i * i
-                  while j <= n:
-                      is_prime[j] = False
-                      j = j + i
-        return p
+                prime.append(i)
+                for j in range(i * i, n + 1, i):
+                    is_prime[j] = False
     ```
 
 这种优化不会影响渐进时间复杂度，实际上重复以上证明，我们将得到 $n \ln \ln \sqrt n + o(n)$，根据对数的性质，它们的渐进相同，但操作次数会明显减少。
@@ -210,19 +205,22 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
 ???+ note "实现"
     === "C++"
         ```cpp
-        void init(int n) {
+        vector<int> pri;
+        bool not_prime[N];
+        
+        void pre(int n) {
           for (int i = 2; i <= n; ++i) {
-            if (!vis[i]) {
-              pri[cnt++] = i;
+            if (!not_prime[i]) {
+              pri.push_back(i);
             }
-            for (int j = 0; j < cnt; ++j) {
-              if (1ll * i * pri[j] > n) break;
-              vis[i * pri[j]] = 1;
-              if (i % pri[j] == 0) {
-                // i % pri[j] == 0
-                // 换言之，i 之前被 pri[j] 筛过了
-                // 由于 pri 里面质数是从小到大的，所以 i乘上其他的质数的结果一定会被
-                // pri[j]的倍数筛掉，就不需要在这里先筛一次，所以这里直接 break
+            for (int pri_j : pri) {
+              if (i * pri_j > n) break;
+              not_prime[i * pri_j] = true;
+              if (i % pri_j == 0) {
+                // i % pri_j == 0
+                // 换言之，i 之前被 pri_j 筛过了
+                // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定会被
+                // pri_j 的倍数筛掉，就不需要在这里先筛一次，所以这里直接 break
                 // 掉就好了
                 break;
               }
@@ -233,21 +231,23 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China
     
     === "Python"
         ```python
-        def init(n):
+        pri = []
+        not_prime = [False] * N
+        
+        def pre(n):
             for i in range(2, n + 1):
-                if vis[i] == False:
-                    pri[cnt] = i
-                    cnt = cnt + 1
-                for j in range(0, cnt):
-                    if i * pri[j] > n:
+                if not not_prime[i]:
+                    pri.append(i)
+                for pri_j in pri:
+                    if i * pri_j > n:
                         break
-                    vis[i * pri[j]] = 1
-                    if i % pri[j] == 0:
+                    not_prime[i * pri_j] = True
+                    if i % pri_j == 0:
                         """
-                        i % pri[j] == 0
-                        换言之，i 之前被 pri[j] 筛过了
+                        i % pri_j == 0
+                        换言之，i 之前被 pri_j 筛过了
                         由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定会被
-                        pri[j]的倍数筛掉，就不需要在这里先筛一次，所以这里直接 break
+                        pri_j 的倍数筛掉，就不需要在这里先筛一次，所以这里直接 break
                         掉就好了
                         """
                         break
@@ -287,26 +287,25 @@ $$
 
 === "C++"
     ```cpp
-    void pre() {
-      for (int i = 1; i <= 5000000; i++) {
-        is_prime[i] = 1;
-      }
-      int cnt = 0;
-      is_prime[1] = 0;
+    vector<int> pri;
+    bool not_prime[N];
+    int phi[N];
+    
+    void pre(int n) {
       phi[1] = 1;
-      for (int i = 2; i <= 5000000; i++) {
-        if (is_prime[i]) {
-          prime[++cnt] = i;
+      for (int i = 2; i <= n; i++) {
+        if (!not_prime[i]) {
+          pri.push_back(i);
           phi[i] = i - 1;
         }
-        for (int j = 1; j <= cnt && i * prime[j] <= 5000000; j++) {
-          is_prime[i * prime[j]] = 0;
-          if (i % prime[j])
-            phi[i * prime[j]] = phi[i] * phi[prime[j]];
-          else {
-            phi[i * prime[j]] = phi[i] * prime[j];
+        for (int pri_j : pri) {
+          if (i * pri_j > n) break;
+          not_prime[i * pri_j] = true;
+          if (i % pri_j == 0) {
+            phi[i * pri_j] = phi[i] * pri_j;
             break;
           }
+          phi[i * pri_j] = phi[i] * phi[pri_j];
         }
       }
     }
@@ -314,24 +313,24 @@ $$
 
 === "Python"
     ```python
-    def pre():
-        cnt = 0
-        is_prime[1] = False
+    pri = []
+    not_prime = [False] * N
+    phi = [0] * N
+    
+    def pre(n):
         phi[1] = 1
-        for i in range(2, 5000001):
-            if is_prime[i]:
-                cnt = cnt + 1
-                prime[cnt] = i
+        for i in range(2, n + 1):
+            if not not_prime[i]:
+                pri.append(i)
                 phi[i] = i - 1
-            j = 1
-            while j <= cnt and i * prime[j] <= 5000000:
-                is_prime[i * prime[j]] = 0
-                if i % prime[j]:
-                    phi[i * prime[j]] = phi[i] * phi[prime[j]]
-                else:
-                    phi[i * prime[j]] = phi[i] * prime[j]
+            for pri_j in pri:
+                if i * pri_j > n:
                     break
-                j = j + 1
+                not_prime[i * pri_j] = True
+                if i % pri_j == 0:
+                    phi[i * pri_j] = phi[i] * pri_j
+                    break
+                phi[i * pri_j] = phi[i] * phi[pri_j]
     ```
 
 ## 筛法求莫比乌斯函数
@@ -354,18 +353,25 @@ $$
 
 === "C++"
     ```cpp
-    void pre() {
+    vector<int> pri;
+    bool not_prime[N];
+    int mu[N];
+    
+    void pre(int n) {
       mu[1] = 1;
-      for (int i = 2; i <= 1e7; ++i) {
-        if (!v[i]) mu[i] = -1, p[++tot] = i;
-        for (int j = 1; j <= tot && i <= 1e7 / p[j]; ++j) {
-          v[i * p[j]] = 1;
-          if (i % p[j] == 0) {
-            mu[i * p[j]] = 0;
+      for (int i = 2; i <= n; ++i) {
+        if (!not_prime[i]) {
+          mu[i] = -1;
+          pri.push_back(i);
+        }
+        for (int pri_j : pri) {
+          if (i * pri_j > n) break;
+          not_prime[i * pri_j] = true;
+          if (i % pri_j == 0) {
+            mu[i * pri_j] = 0;
             break;
-          } else {
-            mu[i * p[j]] = -mu[i];
           }
+          mu[i * pri_j] = -mu[i];
         }
       }
     }
@@ -373,22 +379,24 @@ $$
 
 === "Python"
     ```python
-    def pre():
+    pri = []
+    not_prime = [False] * N
+    mu = [0] * N
+    
+    def pre(n):
         mu[1] = 1
-        for i in range(2, int(1e7 + 1)):
-            if v[i] == 0:
+        for i in range(2, n + 1):
+            if not not_prime[i]:
+                pri.append(i)
                 mu[i] = -1
-                tot = tot + 1
-                p[tot] = i
-            j = 1
-            while j <= tot and i <= 1e7 // p[j]:
-                v[i * p[j]] = 1
-                if i % p[j] == 0:
-                    mu[i * p[j]] = 0
+            for pri_j in pri:
+                if i * pri_j > n:
                     break
-                else:
-                    mu[i * p[j]] = -mu[i]
-                j = j + 1
+                not_prime[i * pri_j] = True
+                if i % pri_j == 0:
+                    mu[i * pri_j] = 0
+                    break
+                mu[i * pri_j] = -mu[i]
     ```
 
 ## 筛法求约数个数
@@ -413,20 +421,28 @@ $$
 
 === "C++"
     ```cpp
-    void pre() {
+    vector<int> pri;
+    bool not_prime[N];
+    int d[N], num[N];
+    
+    void pre(int n) {
       d[1] = 1;
       for (int i = 2; i <= n; ++i) {
-        if (!v[i]) p[++tot] = i, d[i] = 2, num[i] = 1;
-        for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
-          v[p[j] * i] = 1;
-          if (i % p[j] == 0) {
-            num[i * p[j]] = num[i] + 1;
-            d[i * p[j]] = d[i] / num[i * p[j]] * (num[i * p[j]] + 1);
+        if (!not_prime[i]) {
+          pri.push_back(i);
+          d[i] = 2;
+          num[i] = 1;
+        }
+        for (int pri_j : pri) {
+          if (i * pri_j > n) break;
+          not_prime[i * pri_j] = true;
+          if (i % pri_j == 0) {
+            num[i * pri_j] = num[i] + 1;
+            d[i * pri_j] = d[i] / num[i * pri_j] * (num[i * pri_j] + 1);
             break;
-          } else {
-            num[i * p[j]] = 1;
-            d[i * p[j]] = d[i] * 2;
           }
+          num[i * pri_j] = 1;
+          d[i * pri_j] = d[i] * 2;
         }
       }
     }
@@ -434,22 +450,28 @@ $$
 
 === "Python"
     ```python
-    def pre():
+    pri = []
+    not_prime = [False] * N
+    d = [0] * N
+    num = [0] * N
+    
+    def pre(n):
         d[1] = 1
         for i in range(2, n + 1):
-            if v[i] == 0:
-                tot = tot + 1; p[tot] = i; d[i] = 2; num[i] = 1
-            j = 1
-            while j <= tot and i <= n // p[j]:
-                v[p[j] * i] = 1
-                if i % p[j] == 0:
-                    num[i * p[j]] = num[i] + 1
-                    d[i * p[j]] = d[i] // num[i * p[j]] * (num[i * p[j]] + 1)
+            if not not_prime[i]:
+                pri.append(i)
+                d[i] = 2
+                num[i] = 1
+            for pri_j in pri:
+                if i * pri_j > n:
                     break
-                else:
-                    num[i * p[j]] = 1
-                    d[i * p[j]] = d[i] * 2
-                j = j + 1
+                not_prime[i * pri_j] = True
+                if i % pri_j == 0:
+                    num[i * pri_j] = num[i] + 1
+                    d[i * pri_j] = d[i] // num[i * pri_j] * (num[i * pri_j] + 1)
+                    break
+                num[i * pri_j] = 1
+                d[i * pri_j] = d[i] * 2
     ```
 
 ## 筛法求约数和
@@ -460,20 +482,28 @@ $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+
 
 === "C++"
     ```cpp
-    void pre() {
+    vector<int> pri;
+    bool not_prime[N];
+    int g[N], f[N];
+    
+    void pre(int n) {
       g[1] = f[1] = 1;
       for (int i = 2; i <= n; ++i) {
-        if (!v[i]) v[i] = 1, p[++tot] = i, g[i] = i + 1, f[i] = i + 1;
-        for (int j = 1; j <= tot && i <= n / p[j]; ++j) {
-          v[p[j] * i] = 1;
-          if (i % p[j] == 0) {
-            g[i * p[j]] = g[i] * p[j] + 1;
-            f[i * p[j]] = f[i] / g[i] * g[i * p[j]];
+        if (!not_prime[i]) {
+          pri.push_back(i);
+          g[i] = i + 1;
+          f[i] = i + 1;
+        }
+        for (int pri_j : pri) {
+          if (i * pri_j > n) break;
+          not_prime[i * pri_j] = true;
+          if (i % pri_j == 0) {
+            g[i * pri_j] = g[i] * pri_j + 1;
+            f[i * pri_j] = f[i] / g[i] * g[i * pri_j];
             break;
-          } else {
-            f[i * p[j]] = f[i] * f[p[j]];
-            g[i * p[j]] = 1 + p[j];
           }
+          f[i * pri_j] = f[i] * f[pri_j];
+          g[i * pri_j] = 1 + pri_j;
         }
       }
     }
@@ -481,21 +511,28 @@ $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+
 
 === "Python"
     ```python
-    def pre():
+    pri = []
+    not_prime = [False] * N
+    f = [0] * N
+    g = [0] * N
+    
+    def pre(n):
         g[1] = f[1] = 1
         for i in range(2, n + 1):
-            if v[i] == 0:
-                v[i] = 1; tot = tot + 1; p[tot] = i; g[i] = i + 1; f[i] = i + 1
-            j = 1
-            while j <= tot and i <= n // p[j]:
-                v[p[j] * i] = 1
-                if i % p[j] == 0:
-                    g[i * p[j]] = g[i] * p[j] + 1
-                    f[i * p[j]] = f[i] // g[i] * g[i * p[j]]
+            if not not_prime[i]:
+                pri.append(i)
+                g[i] = i + 1
+                f[i] = i + 1
+            for pri_j in pri:
+                if i * pri_j > n:
                     break
-                else:
-                    f[i * p[j]] = f[i] * f[p[j]]
-                    g[i * p[j]] = 1 + p[j]
+                not_prime[i * pri_j] = True
+                if i % pri_j == 0:
+                    g[i * pri_j] = g[i] * pri_j + 1
+                    f[i * pri_j] = f[i] // g[i] * g[i * pri_j]
+                    break
+                f[i * pri_j] = f[i] * f[pri_j]
+                g[i * pri_j] = 1 + pri_j
     ```
 
 ## 一般的积性函数

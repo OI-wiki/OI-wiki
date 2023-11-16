@@ -4,9 +4,19 @@
 
 其内容是：
 
-设 $a,b$ 是不全为零的整数，则存在整数 $x,y$, 使得 $ax+by=\gcd(a,b)$.
+设 $a,b$ 是不全为零的整数，对任意整数 $x,y$，满足 $\gcd(a,b)\mid ax+by$，且存在整数 $x,y$, 使得 $ax+by=\gcd(a,b)$.
 
 ## 证明
+
+对于第一点
+
+由于 $\gcd(a,b)\mid a,\gcd(a,b)\mid b$
+
+所以 $\gcd(a,b)\mid ax,\gcd(a,b)\mid by$，其中 $x,y$ 均为整数
+
+因此 $\gcd(a,b)\mid ax+by$
+
+对于第二点
 
 1.  若任何一个等于 $0$, 则 $\gcd(a,b)=a$. 这时定理显然成立。
 

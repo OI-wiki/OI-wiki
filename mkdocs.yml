@@ -375,6 +375,7 @@ nav:
       - 左偏红黑树: ds/llrbt.md
       - AA 树: ds/aa-tree.md
       - 2-3 树: ds/2-3-tree.md
+      - 2-3-4 树: ds/2-3-4-tree.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
@@ -525,7 +526,7 @@ nav:
 # Theme
 theme:
   name: null
-  custom_dir: 'mkdocs-material/material'
+  custom_dir: 'mkdocs-material/material/templates'
   static_templates:
     - 404.html
   language: 'zh'
@@ -553,6 +554,7 @@ theme:
   icon:
     logo: 'material/school'
   features:
+    - content.action.edit
     - navigation.tabs
     - navigation.instant
   font:

@@ -1,0 +1,32 @@
+\documentclass[border=5mm,12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+
+\tikzset{tree/.style={every node/.style={circle, draw}}}
+
+\begin{document}
+
+\begin{tikzpicture}[
+        squarenode/.style={draw, rectangle, minimum size=1cm},
+    ]
+    \node[squarenode] (a) {a};
+    \node[squarenode, right=-\pgflinewidth of a] (b) {b};
+    \node[squarenode, right=-\pgflinewidth of b] (c) {c};
+
+    \node[squarenode, below=of a] (q) {q};
+    \node[squarenode, left=of q] (p) {p};
+    \node[squarenode, below=of c] (r) {r};
+    \node[squarenode, right=of r] (s) {s};
+
+    \draw (a.south) -- (p.north);
+    \draw (b.south west) -- (q.north);
+    \draw (c.south) -- (s.north);
+    \draw (b.south east) -- (r.north);
+
+    \node[below] at (current bounding box.south) {4-node};
+\end{tikzpicture}
+
+\end{document}

@@ -85,38 +85,9 @@
 
 另外，度数相同的结点的排名将不相同，并且需要注意判断 $a\neq c$。
 
-???+ note "示例代码"
+???+ note " 示例代码（[LibreOJ P191 无向图四元环计数](https://loj.ac/p/191)）"
     ```cpp
-    bool cmp(int x, int y) {
-      if (deg[x] != deg[y])
-        return deg[x] < deg[y];
-      else
-        return x < y;
-    }
-    
-    for (int i = 1; i <= n; i++) x[i] = i;
-    sort(x + 1, x + 1 + n, cmp);
-    for (int i = 1; i <= n; i++) rnk[x[i]] = i;
-    for (int a = 1; a <= n; a++) {
-      for (int i = head[a]; i; i = edge[i].nxt) {
-        int b = edge[i].to;
-        if (rnk[b] > rnk[a]) continue;
-        for (int j = head[b]; j; j = edge[j].nxt) {
-          int c = edge[j].to;
-          if (rnk[c] >= rnk[a]) continue;
-          total += cnt[c]++;
-        }
-      }
-      for (int i = head[a]; i; i = edge[i].nxt) {
-        int b = edge[i].to;
-        if (rnk[b] > rnk[a]) continue;
-        for (int j = head[b]; j; j = edge[j].nxt) {
-          int c = edge[j].to;
-          if (rnk[c] >= rnk[a]) continue;
-          cnt[c] = 0;
-        }
-      }
-    }
+    --8<-- "docs/graph/code/rings-count/rings-count_4.cpp"
     ```
 
 ### 例题 3
@@ -152,7 +123,7 @@
 
 ??? note "示例代码"
     ```cpp
-    --8<-- "docs/graph/code/rings-count/rings-count_4.cpp"
+    --8<-- "docs/graph/code/rings-count/rings-count_5.cpp"
     ```
 
 ## 习题
