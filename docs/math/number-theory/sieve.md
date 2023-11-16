@@ -45,9 +45,9 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
     is_prime = [False] * N
     
     def Eratosthenes(n):
-        for i in range(0, n + 1):
-            is_prime[i] = True
         is_prime[0] = is_prime[1] = False
+        for i in range(2, n + 1):
+            is_prime[i] = True
         for i in range(2, n + 1):
             if is_prime[i]:
                 prime.append(i)
@@ -101,8 +101,8 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
     bool is_prime[N];
     
     void Eratosthenes(int n) {
-      for (int i = 0; i <= n; ++i) is_prime[i] = true;
       is_prime[0] = is_prime[1] = false;
+      for (int i = 2; i <= n; ++i) is_prime[i] = true;
       // i * i <= n 说明 i <= sqrt(n)
       for (int i = 2; i * i <= n; ++i) {
         if (is_prime[i]) {
@@ -119,9 +119,9 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
     is_prime = [False] * N
     
     def Eratosthenes(n):
-        for i in range(0, n + 1):
-            is_prime[i] = True
         is_prime[0] = is_prime[1] = False
+        for i in range(2, n + 1):
+            is_prime[i] = True
         # 让 i 循环到 <= sqrt(n)
         for i in range(2, int(sqrt(n)) + 1):
             if is_prime[i]:
