@@ -24,8 +24,8 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
     bool is_prime[N];
     
     void Eratosthenes(int n) {
-      for (int i = 0; i <= n; ++i) is_prime[i] = true;
       is_prime[0] = is_prime[1] = false;
+      for (int i = 2; i <= n; ++i) is_prime[i] = true;
       for (int i = 2; i <= n; ++i) {
         if (is_prime[i]) {
           prime.push_back(i);
