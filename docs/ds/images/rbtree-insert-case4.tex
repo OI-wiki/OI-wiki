@@ -2,9 +2,8 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning, shapes.geometric}
 \tikzset{
-    circlenode/.style={draw=black, circle, text=white, font=\Large, minimum size=0.2cm},
-    trinode/.style={draw, regular polygon, regular polygon sides=3,
-     text=black, minimum size=0.4cm},
+    circlenode/.style={draw=black, circle, text=white, font=\bfseries\Large, minimum size=0.2cm},
+    trinode/.style={draw, isosceles triangle, isosceles triangle stretches, text=black, font=\bfseries, minimum size=0.4cm, shape border rotate=90, isosceles triangle apex angle=40, line width=0.03cm},
     edge from parent/.style={real edge, draw=black},
     real edge/.style={solid, very thick, -latex}
 }
