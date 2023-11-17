@@ -100,7 +100,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
         -   [建议选择性阅读。](https://www.zhihu.com/question/292926937)
     -   《信息学奥赛一本通 - 高手训练》- 黄新军，董永建
 -   其他由国内著名 OI 教练写的教材
-    -   《信息学奥林匹克辞典》 - 中国计算机学会
+    -   《信息学奥林匹克辞典》- 中国计算机学会
     -   《信息学奥赛课课通》- 林厚从
     -   《聪明人的游戏：信息学探秘 - 提高篇》- 江涛，陈茂贤
     -   《计算概论：C++ 编程与信息学竞赛入门》- 金靖

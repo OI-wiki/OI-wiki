@@ -17,7 +17,7 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
     // 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]
     int size[MAXN],  // 这个节点的「大小」（所有子树上节点数 + 该节点）
         weight[MAXN],  // 这个节点的「重量」，即所有子树「大小」的最大值
-        centroid[2];   // 用于记录树的重心（存的是节点编号）
+        centroid[2];  // 用于记录树的重心（存的是节点编号）
     
     void GetCentroid(int cur, int fa) {  // cur 表示当前节点 (current)
       size[cur] = 1;
@@ -74,7 +74,7 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
 
 <https://www.cnblogs.com/suxxsfe/p/13543253.html>
 
-《信息学奥林匹克辞典》 2.4.7.11 章 1. 树的重心
+《信息学奥林匹克辞典》2.4.7.11 章 1. 树的重心
 
 ## 习题
 
