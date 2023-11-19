@@ -120,8 +120,6 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 -   若 `root` 的权值小于 `value`，在 `root` 的右子树中插入权值为 `value` 的节点。
 
--   若 `root` 的权值小于 `value`，在 `root` 的右子树中插入权值为 `value` 的节点。
-
 时间复杂度为 $O(h)$。
 
 ???+ note "实现"
