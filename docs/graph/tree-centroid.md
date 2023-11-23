@@ -6,7 +6,6 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
 
 （这里以及下文中的「子树」若无特殊说明都是指无根树的子树，即包括「向上」的那棵子树，并且不包括整棵树自身。）
 
-
 ## 性质
 
 -   树的重心如果不唯一，则至多有两个，且这两个重心相邻。
