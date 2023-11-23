@@ -26,7 +26,7 @@ author: accelsao, StudyingFather, t4rf9, wlbksy, yuhuoji
 -   完美匹配（perfect matching）：所有点都属于匹配，同时也符合最大匹配。若图 G 为完全图且顶点数为偶数时，必然存在完美匹配。
 -   近完美匹配（near-perfect matching）：发生在图的点数为奇数，刚好只有一个点不在匹配中，扣掉此点以后的图称为 factor-critical graph。
 
-    **maximal matching**
+    **极大匹配**
 
     ![maximal matching](images/graph-match-1.svg)
 
