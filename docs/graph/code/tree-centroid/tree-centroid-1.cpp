@@ -6,9 +6,8 @@ const int N = 3e5 + 5;
 int n, q;  // 点数，询问数
 int fa[N];
 vector<int> son[N];
-int siz[N],  // 子树大小
-    ans[N],  // 以节点 u 为根的子树重心是 ans[u]
-
+int siz[N],     // 子树大小
+    ans[N],     // 以节点 u 为根的子树重心是 ans[u]
     weight[N];  // 节点重量
 
 void dfs(int u) {
