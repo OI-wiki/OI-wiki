@@ -8,7 +8,7 @@ author: hsfzLZH1, cesonic, AtomAlpaca
 
 树状数据结构可以分为两种，分别为 **Leafy Tree** 和 **Nodey Tree**。
 
-Leafy Tree 维护的原始信息仅存储在树的**叶子节点**上，而非叶子节点仅用于维护子节点信息和维持数据结构的形态。反之则为 Nodey Tree。我们熟知的线段树就是一种 Leafy Tree，而如 Treap、Splay 都属于 Nodey Tree。
+Leafy Tree 维护的原始信息仅存储在树的 **叶子节点** 上，而非叶子节点仅用于维护子节点信息和维持数据结构的形态。反之则为 Nodey Tree。我们熟知的线段树就是一种 Leafy Tree，而如 Treap、Splay 都属于 Nodey Tree。
 
 ## 平衡树基础操作
 
@@ -26,33 +26,32 @@ Leafy Tree 维护的原始信息仅存储在树的**叶子节点**上，而非�
 
 代码实现如下：
 
-``` c++
+```c++
 /* 添加一个权值为 v 的节点，返回这个节点的编号 */
-int add(int v)
-{
-    ++cnt;
-    ls[cnt] = rs[cnt] = 0;
-    sz[cnt] = 1; 
-    vl[cnt] = v;
-    return cnt;
+int add(int v) {
+  ++cnt;
+  ls[cnt] = rs[cnt] = 0;
+  sz[cnt] = 1;
+  vl[cnt] = v;
+  return cnt;
 }
 
 /* 更新节点编号为 x 的节点的信息 */
-void pushup(int x)
-{
-    vl[x] = vl[rs[x]];
-    sz[x] = sz[ls[x]] + sz[rs[x]];
+void pushup(int x) {
+  vl[x] = vl[rs[x]];
+  sz[x] = sz[ls[x]] + sz[rs[x]];
 }
 
 /* 递归建树 */
-int build(int l, int r)
-{
-	if (l == r) { return add(a[l]); }
-    int x = add(0);
-    int k = l + ((r - l) >> 1);
-    ls[x] = build(l, k);
-    rs[x] = build(k + 1, r);
-    pushup(x);
+int build(int l, int r) {
+  if (l == r) {
+    return add(a[l]);
+  }
+  int x = add(0);
+  int k = l + ((r - l) >> 1);
+  ls[x] = build(l, k);
+  rs[x] = build(k + 1, r);
+  pushup(x);
 }
 ```
 
@@ -76,74 +75,66 @@ int build(int l, int r)
 
 代码实现：
 
-``` c++
+```c++
 /* 将某一节点的全部信息复制到另一节点上 */
-void copynode(int x, int y)
-{
-	ls[x] = ls[y]; rs[x] = rs[y];
-    sz[x] = sz[y]; vl[x] = vl[y];
+void copynode(int x, int y) {
+  ls[x] = ls[y];
+  rs[x] = rs[y];
+  sz[x] = sz[y];
+  vl[x] = vl[y];
 }
 
 /* 判断某一节点是否为叶子节点 */
-bool leaf(int x)
-{
-	return !ls[x] || !rs[x];
-}
+bool leaf(int x) { return !ls[x] || !rs[x]; }
 
-void insert(int v)
-{
-	if (leaf(x))
-    {
-    	ls[x] = add(std::min(v, vl[x]));
-        rs[x] = add(std::max(v, vl[x]));
-        pushup(x);
-        maintain(x);
-        return ;
-    }
-    if (vl[ls[x]] >= v)
-	{
-    	insert(ls[x], v);
-    }
-    else
-    {
-    	insert(rs[x], v);
-    }
+void insert(int v) {
+  if (leaf(x)) {
+    ls[x] = add(std::min(v, vl[x]));
+    rs[x] = add(std::max(v, vl[x]));
     pushup(x);
     maintain(x);
+    return;
+  }
+  if (vl[ls[x]] >= v) {
+    insert(ls[x], v);
+  } else {
+    insert(rs[x], v);
+  }
+  pushup(x);
+  maintain(x);
 }
 
-void delete(int x, int v, int fa)
-{
-	if (leaf(x))
-    {
-    	if (ls[fa] == x) { copynode(fa, rs[fa]); }
-        else		     { copynode(fa, ls[fa]); }
-        pushup(fa); return ;
+void delete(int x, int v, int fa) {
+  if (leaf(x)) {
+    if (ls[fa] == x) {
+      copynode(fa, rs[fa]);
+    } else {
+      copynode(fa, ls[fa]);
     }
-    if (vl[ls[x]] >= v)
-    {
-    	delete(ls[x], v, x);
-    }
-    else
-    {
-    	delete(rs[x], v, x);
-    }
-    pushup(x);
-    maintain(x);
+    pushup(fa);
+    return;
+  }
+  if (vl[ls[x]] >= v) {
+    delete (ls[x], v, x);
+  } else {
+    delete (rs[x], v, x);
+  }
+  pushup(x);
+  maintain(x);
 }
 ```
 
 ### 维护平衡
 
-类似替罪羊树地，我们引入重构参数 $\alpha \in (0, \frac{1}{2}]$，我们设一个节点的平衡度 $\rho$ 为当前节点左子树大小和节点大小的比值。当一个节点满足 $\rho \in[\alpha, 1-\alpha]$ 时，我们称其为 $\alpha$-平衡的。如果一棵 WBLT 的每一个节点都是 $\alpha$-平衡的，那么这棵树的树高一定能保证是 $O(\log n)$ 量级的。证明是显然的，我们从一个叶子节点往父亲方向走，每次走到的节点维护的范围至少扩大到原来的 $\dfrac{1}{1 - \alpha}$ 倍，那么树高就是 $O(\log_{\frac{1}{1-\alpha}}n) = O(\log n)$ 量级的。
+类似替罪羊树地，我们引入重构参数 $\alpha \in (0, \frac{1}{2}]$，我们设一个节点的平衡度 $\rho$ 为当前节点左子树大小和节点大小的比值。当一个节点满足 $\rho \in[\alpha, 1-\alpha]$ 时，我们称其为 $\alpha$- 平衡的。如果一棵 WBLT 的每一个节点都是 $\alpha$- 平衡的，那么这棵树的树高一定能保证是 $O(\log n)$ 量级的。证明是显然的，我们从一个叶子节点往父亲方向走，每次走到的节点维护的范围至少扩大到原来的 $\dfrac{1}{1 - \alpha}$ 倍，那么树高就是 $O(\log_{\frac{1}{1-\alpha}}n) = O(\log n)$ 量级的。
 
-当某个节点不满足 $\alpha$-平衡时，说明这个节点是失衡的，我们需要重新维护平衡。但是和替罪羊树不同的是，WBLT 使用旋转操作维护平衡。旋转的大致过程为：将过重的儿子的两个儿子拆下来，一个和过轻的儿子合并，另一个成为一个新的儿子。
+当某个节点不满足 $\alpha$- 平衡时，说明这个节点是失衡的，我们需要重新维护平衡。但是和替罪羊树不同的是，WBLT 使用旋转操作维护平衡。旋转的大致过程为：将过重的儿子的两个儿子拆下来，一个和过轻的儿子合并，另一个成为一个新的儿子。
 
 我们来举个例子：
 
 ![wblt-3](./images/wblt-3.svg)
 
-这是一颗十分不平衡的 WBLT， 节点 $A$ 的右儿子显著地重于左儿子。我们先把右儿子及其两个儿子和左儿子都拆下来：
+这是一颗十分不平衡的 WBLT，节点 $A$ 的右儿子显著地重于左儿子。我们先把右儿子及其两个儿子和左儿子都拆下来：
 
 ![wblt-4](./images/wblt-4.svg)
 
@@ -165,61 +156,54 @@ void delete(int x, int v, int fa)
 
 ![wblt-7](./images/wblt-7.svg)
 
-类似地定义 $\rho_3,\gamma_3$，则有$\gamma_1=\rho_1+\rho_2\rho_3(1-\rho_3), \gamma_2=\dfrac{\rho_1}{\rho1+(1 - \rho_1)\rho2\rho3}, \gamma_3 = \dfrac{\rho_2(1-\rho_3)}{1-\rho_2\rho_3}$。可以证明当 $\alpha < 1- \dfrac{\sqrt2}{2} \approx 0.292$ 时一定有 $\gamma_1, \gamma_2, \gamma_3 \in [\alpha, 1 - \alpha]$。
+类似地定义 $\rho_3,\gamma_3$，则有 $\gamma_1=\rho_1+\rho_2\rho_3(1-\rho_3), \gamma_2=\dfrac{\rho_1}{\rho1+(1 - \rho_1)\rho2\rho3}, \gamma_3 = \dfrac{\rho_2(1-\rho_3)}{1-\rho_2\rho_3}$。可以证明当 $\alpha < 1- \dfrac{\sqrt2}{2} \approx 0.292$ 时一定有 $\gamma_1, \gamma_2, \gamma_3 \in [\alpha, 1 - \alpha]$。
 
 实现上，我们在 $\rho_2 \le \dfrac{1 - 2\alpha}{1 - \alpha}$ 时进行单旋，否则进行双旋。
 
 代码实现，这里取 $\alpha = 0.25$：
 
-``` c++
+```c++
 const double alpha = 0.25;
-void rotate(int x, int flag)
-{
-    if (!flag)
-   {
-        rs[x] = merge(rs[ls[x]], rs[x]);
-        ls[x] = ls[ls[x]];
-   }
-   else
-   {
-        ls[x] = merge(ls[x], ls[rs[x]]);
-        rs[x] = rs[rs[x]];
-   }
+
+void rotate(int x, int flag) {
+  if (!flag) {
+    rs[x] = merge(rs[ls[x]], rs[x]);
+    ls[x] = ls[ls[x]];
+  } else {
+    ls[x] = merge(ls[x], ls[rs[x]]);
+    rs[x] = rs[rs[x]];
+  }
 }
 
-void maintain(int x)
-{
-   if (sz[ls[x]] > sz[rs[x]] * 3)
-   {
-       	if (sz[rs[ls[x]]] > sz[ls[ls[x]]] * 2) { rotate(ls[x], 1); }
-        rotate(x, 0);
-   }
-   else if (sz[rs[x]] > sz[ls[x]] * 3)
-   {
-   		if (sz[ls[rs[x]]] > sz[rs[rs[x]]] * 2) { rotate(rs[x], 0); }
-        rotate(x, 1);
-   }
+void maintain(int x) {
+  if (sz[ls[x]] > sz[rs[x]] * 3) {
+    if (sz[rs[ls[x]]] > sz[ls[ls[x]]] * 2) {
+      rotate(ls[x], 1);
+    }
+    rotate(x, 0);
+  } else if (sz[rs[x]] > sz[ls[x]] * 3) {
+    if (sz[ls[rs[x]]] > sz[rs[rs[x]]] * 2) {
+      rotate(rs[x], 0);
+    }
+    rotate(x, 1);
+  }
 }
 ```
+
 ### 查询排名
 
 我们发现 `WBLT` 的形态和线段树十分相似，因此查询排名可以使用类似线段树上二分的方式：如果左子树的最大值比大于等于待查值就往左儿子跳，否则就向右跳，同时答案加上左子树的 `size`。
 
-``` c++
-int rank(int x, int v)
-{
-	if (leaf(x))
-    {
-    	return 1;
-    }
-    if (vl[ls[x]] >= v)
-    {
-    	return rank(ls[x], v);
-    }
-    else
-    {
-    	return rank(rs[x], v) + sz[ls[x]];
-    }
+```c++
+int rank(int x, int v) {
+  if (leaf(x)) {
+    return 1;
+  }
+  if (vl[ls[x]] >= v) {
+    return rank(ls[x], v);
+  } else {
+    return rank(rs[x], v) + sz[ls[x]];
+  }
 }
 ```
 
@@ -228,25 +212,22 @@ int rank(int x, int v)
 依然是利用线段树上二分的思想，只不过这里比较的是节点的大小。
 
 ```c++
-int kth(int x, int v)
-{
-	if (sz[x] == v)
-    {
-    	return vl[x];
-    }
-    if (sz[ls[x]] >= v)
-    {
-    	return kth(ls[x], v);
-    }
-    else
-    {
-    	return kth(rs[x], v - sz[ls[x]]);
-    }
+int kth(int x, int v) {
+  if (sz[x] == v) {
+    return vl[x];
+  }
+  if (sz[ls[x]] >= v) {
+    return kth(ls[x], v);
+  } else {
+    return kth(rs[x], v - sz[ls[x]]);
+  }
 }
 ```
 
 ### 总结
-以上，我们利用 WBLT 完成了平衡树基本的几大操作。下面是用 WBLT 实现的 [普通平衡树模板](https://loj.ac/p/104) 。
+
+以上，我们利用 WBLT 完成了平衡树基本的几大操作。下面是用 WBLT 实现的 [普通平衡树模板](https://loj.ac/p/104)。
+
 ??? note "完整代码"
     ```cpp
     --8<-- "docs/ds/code/treap/treap_1.cpp"
