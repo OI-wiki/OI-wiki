@@ -230,5 +230,5 @@ int kth(int x, int v) {
 
 ??? note "完整代码"
     ```cpp
-    --8<-- "docs/ds/code/treap/treap_1.cpp"
+    --8<-- "docs/ds/code/wblt/wblt_1.cpp"
     ```
