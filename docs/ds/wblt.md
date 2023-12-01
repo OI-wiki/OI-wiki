@@ -134,7 +134,7 @@ void delete(int x, int v, int fa) {
 
 ![wblt-3](./images/wblt-3.svg)
 
-这是一颗十分不平衡的 WBLT，节点 $A$ 的右儿子显著地重于左儿子。我们先把右儿子及其两个儿子和左儿子都拆下来：
+这是一棵十分不平衡的 WBLT，节点 $A$ 的右儿子显著地重于左儿子。我们先把右儿子及其两个儿子和左儿子都拆下来：
 
 ![wblt-4](./images/wblt-4.svg)
 
