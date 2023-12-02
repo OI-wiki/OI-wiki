@@ -375,10 +375,10 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         return block[a.l] < block[b.l];
     }
     ```
-    
--   Windows 下栈空间不足，导致 SIGSEGV ， Windows 下程序返回 3221225725。  
+
+-   Windows 下栈空间不足，导致 SIGSEGV，Windows 下程序返回 3221225725。  
     若使用 gcc 编译器，应在编译时加入命令 `-Wl,--stack=SIZE`，其中 `SIZE` 为栈空间大小字节数。
-    
+
 ### 会导致 TLE
 
 -   分治未判边界导致死递归。
