@@ -5,15 +5,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 ## 因环境不同导致的错误
 
 -   大小写问题
+    例如 `A.PAS` 与 `a.pas`，`A.pas`，`a.PaS` 在 Windows 下没有区别，而在 Linux 下为不同文件。
 
-    -   Windows 下，文件名大小写不敏感，例如 `A.PAS` 与 `a.pas`，`A.pas`，`a.PaS` 没有区别。
-
-    -   Linux 视文件名为二进制数据，所以区分大小写。
-
--   Windows 下栈空间不足，导致 CE 或 程序返回 3221225725。  
-    若使用 gcc 编译器，应在编译时加入命令 `-Wl,--stack=SIZE`，其中 `SIZE` 为栈空间大小字节数。
-
--   `scanf` 或 `printf` 使用 `%I64d` 说明符在 Linux 下会导致 CE。
+-   `scanf` 或 `printf` 使用 `%I64d` 格式指示符在 Linux 下会导致 CE。
 
 ## 会引起 CE 的错误
 
@@ -381,7 +375,10 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         return block[a.l] < block[b.l];
     }
     ```
-
+    
+-   Windows 下栈空间不足，导致 SIGSEGV ， Windows 下程序返回 3221225725。  
+    若使用 gcc 编译器，应在编译时加入命令 `-Wl,--stack=SIZE`，其中 `SIZE` 为栈空间大小字节数。
+    
 ### 会导致 TLE
 
 -   分治未判边界导致死递归。
