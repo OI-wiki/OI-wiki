@@ -4,11 +4,11 @@ author: hsfzLZH1, cesonic, AtomAlpaca
 
 **Weight Balanced Leafy Tree**，下称 **WBLT**，是一种平衡树，比起其它平衡树主要有实现简单、常数小的优点。
 
-### 什么是 Leafy Tree
+Weight Balanced Leafy Tree 顾名思义是 Weight Balanced Tree 和 Leafy Tree 的结合。
 
-树状数据结构可以分为两种，分别为 **Leafy Tree** 和 **Nodey Tree**。
+Weight Balanced Tree 的每个结点储存这个结点下子树的大小，并且通过保持左右子树的大小关系在一定范围来保证树高。
 
-Leafy Tree 维护的原始信息仅存储在树的 **叶子节点** 上，而非叶子节点仅用于维护子节点信息和维持数据结构的形态。反之则为 Nodey Tree。我们熟知的线段树就是一种 Leafy Tree，而如 Treap、Splay 都属于 Nodey Tree。
+Leafy Tree 维护的原始信息仅存储在树的 **叶子节点** 上，而非叶子节点仅用于维护子节点信息和维持数据结构的形态。我们熟知的线段树就是一种 Leafy Tree。
 
 ## 平衡树基础操作
 
