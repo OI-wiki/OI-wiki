@@ -376,7 +376,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     }
     ```
 
--   Windows 下栈空间不足，导致 SIGSEGV，Windows 下程序返回 3221225725。  
+-   Windows 下栈空间不足，导致 SIGSEGV，Windows 下程序返回 3221225725 (即 0xC00000FD, NTSTATUS 定义为 `STATUS_STACK_OVERFLOW`)。  
     若使用 gcc 编译器，应在编译时加入命令 `-Wl,--stack=SIZE`，其中 `SIZE` 为栈空间大小字节数。
 
 ### 会导致 TLE
