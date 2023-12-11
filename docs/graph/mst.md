@@ -205,11 +205,12 @@ $$
           return 0;
         }
         ```
-    === "Python"
-        ```python
-        from typing import List
-        from math import inf
-        
+    
+    == "Python"
+    \`\`\`python
+    from typing import List
+    from math import inf
+    
         def Prim(g: List[List[int]]):
             n = len(g)
             V = set([i for i in range(1,n)]) # 剩余的顶点集合
@@ -217,7 +218,7 @@ $$
             
             l = [inf for _ in range(n)] # 初始化每个顶点的权值
             l[0] = 0 # 起始点的权值设为0
-        
+    
             while V: # 当剩余点集非空时，即尚未形成包含所有顶点的树
                 cur_min, cur = inf, -1 
                 for v in V:
@@ -227,9 +228,9 @@ $$
                         cur, cur_min = v, l[v]
                 k = cur # 将当前剩余点集中权值最小的顶点作为下一个选点
                 V.remove(k) # 将k从剩余点集中移除
-        
+    
             return sum(l) # 所有点权值的和
-        
+    
         g = [  # 0   1   2   3   4   5   6
                 [0,  1,  2,  0,  0, 15, 16], # 0
                 [1,  0, 10,  3,  0,  7,  0], # 1
@@ -239,7 +240,7 @@ $$
                 [15, 7,  0,  0,  5,  0,  0], # 5
                 [16, 0,  6,  0,  8,  0,  0]  # 6
             ]
-        
+    
         if __name__ == "__main__":
             print(Prim(g))
 
