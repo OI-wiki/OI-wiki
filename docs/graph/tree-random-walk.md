@@ -30,9 +30,9 @@ $$
 \end{aligned}
 $$
 
-初始状态为 $f(\text{leaf}) = 1$。
+当树上所有边的边权都为 $1$ 时，初始状态为 $f(\text{leaf}) = 1$。
 
-当树上所有边的边权都为 $1$ 时，上式可化为：
+上式可化为：
 
 $$
 f(u) = d(u) + \sum\limits_{v \in \textit{son}_u}f(v)
