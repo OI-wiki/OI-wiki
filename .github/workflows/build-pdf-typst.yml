@@ -36,9 +36,9 @@ jobs:
           chmod +x texmath-arg
           sudo mv texmath-arg /bin/
           
-          curl -OL https://github.com/lxgw/LxgwWenKai/releases/download/v1.311/lxgw-wenkai-v1.311.tar.gz
-          gzip -dc lxgw-wenkai-v1.311.tar.gz | tar -x
-          sudo mv lxgw-wenkai-v1.311 /usr/share/fonts/
+          curl -OL https://github.com/lxgw/LxgwWenKai/releases/download/v1.312/lxgw-wenkai-v1.312.tar.gz
+          gzip -dc lxgw-wenkai-v1.312.tar.gz | tar -x
+          sudo mv lxgw-wenkai-v1.312 /usr/share/fonts/
           fc-cache
           
           git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
