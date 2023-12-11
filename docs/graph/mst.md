@@ -142,68 +142,108 @@ $$
 注意：上述代码只是求出了最小生成树的权值，如果要输出方案还需要记录每个点的 $dis$ 代表的是哪条边。
 
 ??? note "代码实现"
-    ```cpp
-    // 使用二叉堆优化的 Prim 算法。
-    #include <cstring>
-    #include <iostream>
-    #include <queue>
-    using namespace std;
-    const int N = 5050, M = 2e5 + 10;
-    
-    struct E {
-      int v, w, x;
-    } e[M * 2];
-    
-    int n, m, h[N], cnte;
-    
-    void adde(int u, int v, int w) { e[++cnte] = E{v, w, h[u]}, h[u] = cnte; }
-    
-    struct S {
-      int u, d;
-    };
-    
-    bool operator<(const S &x, const S &y) { return x.d > y.d; }
-    
-    priority_queue<S> q;
-    int dis[N];
-    bool vis[N];
-    
-    int res = 0, cnt = 0;
-    
-    void Prim() {
-      memset(dis, 0x3f, sizeof(dis));
-      dis[1] = 0;
-      q.push({1, 0});
-      while (!q.empty()) {
-        if (cnt >= n) break;
-        int u = q.top().u, d = q.top().d;
-        q.pop();
-        if (vis[u]) continue;
-        vis[u] = 1;
-        ++cnt;
-        res += d;
-        for (int i = h[u]; i; i = e[i].x) {
-          int v = e[i].v, w = e[i].w;
-          if (w < dis[v]) {
-            dis[v] = w, q.push({v, w});
+    === "C++"
+        ```cpp
+        // 使用二叉堆优化的 Prim 算法。
+        #include <cstring>
+        #include <iostream>
+        #include <queue>
+        using namespace std;
+        const int N = 5050, M = 2e5 + 10;
+        
+        struct E {
+          int v, w, x;
+        } e[M * 2];
+        
+        int n, m, h[N], cnte;
+        
+        void adde(int u, int v, int w) { e[++cnte] = E{v, w, h[u]}, h[u] = cnte; }
+        
+        struct S {
+          int u, d;
+        };
+        
+        bool operator<(const S &x, const S &y) { return x.d > y.d; }
+        
+        priority_queue<S> q;
+        int dis[N];
+        bool vis[N];
+        
+        int res = 0, cnt = 0;
+        
+        void Prim() {
+          memset(dis, 0x3f, sizeof(dis));
+          dis[1] = 0;
+          q.push({1, 0});
+          while (!q.empty()) {
+            if (cnt >= n) break;
+            int u = q.top().u, d = q.top().d;
+            q.pop();
+            if (vis[u]) continue;
+            vis[u] = 1;
+            ++cnt;
+            res += d;
+            for (int i = h[u]; i; i = e[i].x) {
+              int v = e[i].v, w = e[i].w;
+              if (w < dis[v]) {
+                dis[v] = w, q.push({v, w});
+              }
+            }
           }
         }
-      }
-    }
-    
-    int main() {
-      cin >> n >> m;
-      for (int i = 1, u, v, w; i <= m; ++i) {
-        cin >> u >> v >> w, adde(u, v, w), adde(v, u, w);
-      }
-      Prim();
-      if (cnt == n)
-        cout << res;
-      else
-        cout << "No MST.";
-      return 0;
-    }
-    ```
+        
+        int main() {
+          cin >> n >> m;
+          for (int i = 1, u, v, w; i <= m; ++i) {
+            cin >> u >> v >> w, adde(u, v, w), adde(v, u, w);
+          }
+          Prim();
+          if (cnt == n)
+            cout << res;
+          else
+            cout << "No MST.";
+          return 0;
+        }
+        ```
+    === "Python"
+        ```python
+        from typing import List
+        from math import inf
+        
+        def Prim(g: List[List[int]]):
+            n = len(g)
+            V = set([i for i in range(1,n)]) # 剩余的顶点集合
+            k = 0 # 总是选择 x_0 作为起始点
+            
+            l = [inf for _ in range(n)] # 初始化每个顶点的权值
+            l[0] = 0 # 起始点的权值设为0
+        
+            while V: # 当剩余点集非空时，即尚未形成包含所有顶点的树
+                cur_min, cur = inf, -1 
+                for v in V:
+                    if g[k][v]:
+                        l[v] = min(l[v], g[k][v]) # 更新与当前选点k相连的顶点权值
+                    if l[v] < cur_min: # 找到剩余点集中权值最小的一个顶点
+                        cur, cur_min = v, l[v]
+                k = cur # 将当前剩余点集中权值最小的顶点作为下一个选点
+                V.remove(k) # 将k从剩余点集中移除
+        
+            return sum(l) # 所有点权值的和
+        
+        g = [  # 0   1   2   3   4   5   6
+                [0,  1,  2,  0,  0, 15, 16], # 0
+                [1,  0, 10,  3,  0,  7,  0], # 1
+                [2, 10,  0,  9,  0,  0,  6], # 2
+                [0,  3,  9,  0,  4,  0,  0], # 3
+                [0,  0,  0,  4,  0,  5,  8], # 4
+                [15, 7,  0,  0,  5,  0,  0], # 5
+                [16, 0,  6,  0,  8,  0,  0]  # 6
+            ]
+        
+        if __name__ == "__main__":
+            print(Prim(g))
+
+        ```
 
 ### 证明
 
