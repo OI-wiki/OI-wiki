@@ -1,10 +1,11 @@
 \documentclass[border=5mm]{standalone}
 \usepackage{tikz}
+\usepackage{fontspec} 
 
 \begin{document}
 \begin{tikzpicture}
 
-        \tikzstyle{nodebase}=[align=center, text centered, draw]
+        \tikzstyle{nodebase}=[align=center, text centered, draw, font=\Large\fontspec{Times New Roman}]
         \tikzstyle{node_a}=[nodebase, circle]
         \tikzstyle{subtree}=[nodebase, rectangle]
 

@@ -1,9 +1,11 @@
 \documentclass[border=5mm]{standalone}
 \usepackage{tikz}
+\usepackage{fontspec} 
+
 \usetikzlibrary{positioning, shapes.geometric}
 \tikzset{
-    circlenode/.style={draw=black, circle, text=white, font=\bfseries\Large, minimum size=0.2cm},
-    trinode/.style={draw, isosceles triangle, isosceles triangle stretches, text=black, font=\bfseries, minimum size=0.4cm, shape border rotate=90, isosceles triangle apex angle=40, line width=0.03cm},
+    circlenode/.style={draw=black, circle, text=white, minimum size=0.2cm, font=\Large\bfseries\fontspec{Times New Roman}},
+    trinode/.style={draw, isosceles triangle, isosceles triangle stretches, text=black, minimum size=0.4cm, shape border rotate=90, isosceles triangle apex angle=40, line width=0.03cm, font=\bfseries\fontspec{Times New Roman}},
     edge from parent/.style={real edge, draw=black},
     real edge/.style={solid, very thick, -latex}
 }

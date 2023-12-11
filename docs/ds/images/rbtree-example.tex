@@ -1,8 +1,10 @@
 \documentclass[border=5mm]{standalone}
 \usepackage{tikz}
+\usepackage{fontspec} 
+
 \tikzset{
-    circlenode/.style={draw, circle, text=white, font=\Large},
-    rectnode/.style={draw, rectangle, fill=black, text=white, minimum width=0.8cm, minimum height=0.5cm},
+    circlenode/.style={draw, circle, text=white, font=\Large\bfseries\fontspec{Times New Roman}},
+    rectnode/.style={draw, rectangle, fill=black, text=white, minimum width=0.8cm, minimum height=0.5cm, font=\Large\fontspec{Times New Roman}},
     edge from parent/.style={real edge, draw=black},
     real edge/.style={solid, very thick, -latex},
 }
