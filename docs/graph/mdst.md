@@ -81,7 +81,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 ### 例题
 
--   [CodeForce 266D BerDonalds](https://codeforces.ml/contest/266/problem/D)
+-   [CodeForce 266D BerDonalds](https://codeforces.com/contest/266/problem/D)
 
 ## 最小直径生成树
 
