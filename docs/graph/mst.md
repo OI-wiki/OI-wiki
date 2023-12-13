@@ -1,4 +1,4 @@
-author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo, Hszzzx
+author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo, Hszzzx, rksm2329
 
 ## 定义
 
@@ -63,6 +63,22 @@ $$
 10 &  \textbf{return }  result
 \end{array}
 $$
+
+形象化的：
+
+??? note "伪代码"
+    ```cpp
+    /* 类型是什么读者来定 */ Kruskal() {
+        输入图 e，信息为 (u, v, w)
+        定义一个集合 ans，一开始为空集
+        将 e 按边权从大到小排序
+        枚举 e 中的每个 (u, v, w)
+            如果 u 和 v 在并查集中没有连接
+                在并查集中连接 u 和 v
+                把 ans 和 {u, v, w} 取并集
+        返回 ans
+    }
+    ```
 
 算法虽简单，但需要相应的数据结构来支持……具体来说，维护一个森林，查询两个结点是否在同一棵树中，连接两棵树。
 
