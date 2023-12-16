@@ -313,11 +313,11 @@ $$
 
 ### 矩阵加速递推
 
-以[斐波那契数列（Fibonacci Sequence）](../combinatorics/fibonacci.md)为例。在斐波那契数列当中，$F_1 = F_2 = 1$，$F_i = F_{i - 1} + F_{i - 2}(i \geq 3)$。
+以 [斐波那契数列（Fibonacci Sequence）](../combinatorics/fibonacci.md) 为例。在斐波那契数列当中，$F_1 = F_2 = 1$，$F_i = F_{i - 1} + F_{i - 2}(i \geq 3)$。
 
 如果有一道题目让你求斐波那契数列第 $n$ 项的值，最简单的方法莫过于直接递推了。但是如果 $n$ 的范围达到了 $10^{18}$ 级别，递推就不行了，此时我们可以考虑矩阵加速递推。
 
-根据斐波那契数列[递推公式的矩阵形式](../combinatorics/fibonacci.md#矩阵形式):
+根据斐波那契数列 [递推公式的矩阵形式](../combinatorics/fibonacci.md#矩阵形式):
 
 $$
 \begin{bmatrix}
