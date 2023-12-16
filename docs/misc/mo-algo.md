@@ -200,6 +200,7 @@ void solve() {
     ```cpp
     struct node {
       int l, r, id;
+    
       bool operator<(const node &x) const {
         if (l / unit != x.l / unit) return l < x.l;
         // 注意下面两行不能写小于（大于）等于，否则会出错（详见下面的小细节）
