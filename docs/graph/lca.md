@@ -59,7 +59,7 @@ author:ouuan, Backl1ght, billchenchina, CCXXXI, ChickenHu, ChungZH, cjsoft, coun
 
 #### 过程
 
-Tarjan 算法是一种 **离线算法**，需要使用[并查集](../ds/dsu.md)记录某个结点的祖先结点。做法如下：
+Tarjan 算法是一种 **离线算法**，需要使用 [并查集](../ds/dsu.md) 记录某个结点的祖先结点。做法如下：
 
 1.  首先接受输入边（邻接链表）、查询边（存储在另一个邻接链表内）。查询边其实是虚拟加上去的边，为了方便，每次输入查询边的时候，将这个边及其反向边都加入到 `queryEdge` 数组里。
 2.  然后对其进行一次 DFS 遍历，同时使用 `visited` 数组进行记录某个结点是否被访问过、`parent` 记录当前结点的父亲结点。
