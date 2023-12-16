@@ -184,25 +184,15 @@ void solve() {
     ```cpp
     // 这里有个小细节等下会讲
     int unit;  // 块的大小
-    ```
-
     struct node {
       int l, r, id;
-
-      bool operator<(const node &x) const {
-        return l / unit == x.l / unit
-                  ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
-                  : l < x.l;
-      }
+      bool operator<(const node &x) const { return l / unit == x.l / unit ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r)) : l < x.l; }
     };
     ```
-
 === "不压行"
     ```cpp
     struct node {
       int l, r, id;
-    ```
-
       bool operator<(const node &x) const {
         if (l / unit != x.l / unit) return l < x.l;
         // 注意下面两行不能写小于（大于）等于，否则会出错（详见下面的小细节）
