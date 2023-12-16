@@ -184,13 +184,19 @@ void solve() {
     ```cpp
     // 这里有个小细节等下会讲
     int unit;  // 块的大小
+    
     struct node {
       int l, r, id;
-      bool operator<(const node &x) const { return l / unit == x.l / unit ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r)) : l < x.l; }
+    
+      bool operator<(const node &x) const {
+        return l / unit == x.l / unit
+                   ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
+                   : l < x.l;
+      }
     };
     ```
-=== "不压行"
-    ```cpp
+
+== "不压行"`cpp
     struct node {
       int l, r, id;
       bool operator<(const node &x) const {
@@ -200,7 +206,7 @@ void solve() {
         return r > x.r;
       }
     };
-    ```
+    `
 
 ???+ warning "小细节"
     如果使用 `sort` 比较两个函数，不能出现 $a < b$ 和 $b < a$ 同时为真的情况，否则会运行错误。
