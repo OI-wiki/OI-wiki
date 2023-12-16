@@ -111,9 +111,12 @@ int main() {
 
 ## 常表达式 constexpr（C++11）
 
-constexpr 说明符的作用是声明可以在编译时求得函数或变量的值，它的行为和 C 语言中的 const 关键字是一致的，会将变量结果直接编译到栈空间中。constexpr 还可以用来替换宏定义的常量，规避 [宏定义的风险](./basic.md#define-命令)。constexpr 修饰的是变量和函数，而 const 修饰的是类型。
+> 另请参阅 [常值：常表达式 constexpr（C++11）](const.md#常表达式-constexprc11)
 
-> 实际上把 const 理解成 **"readonly"**，而把 constexpr 理解成 **"const"** 更加直观。
+`constexpr` 说明符的作用是声明可以在编译时求得函数或变量的值，它的行为和 C 语言中的 `const` 关键字是一致的，会将变量结果直接编译到栈空间中。`constexpr` 还可以用来替换宏定义的常量，规避 [宏定义的风险](./basic.md#define-命令)。`constexpr` 修饰的是变量和函数，而 `const` 修饰的是类型。
+
+???+ note
+    实际上把 `const` 理解成 **"readonly"**，而把 constexpr 理解成 **"const"** 更加直观。
 
 ```cpp
 constexpr int a = 10;  // 直接定义常量
