@@ -180,43 +180,42 @@ void solve() {
 
 排序代码：
 
-压行
+=== "压行"
+    
+    ```cpp
+    // 这里有个小细节等下会讲
+    int unit;  // 块的大小
 
-```cpp
-// 这里有个小细节等下会讲
-int unit;  // 块的大小
+    struct node {
+      int l, r, id;
 
-struct node {
-  int l, r, id;
+      bool operator<(const node &x) const {
+        return l / unit == x.l / unit
+                  ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
+                  : l < x.l;
+      }
+    };
+    ```
+    
+=== "不压行"
+    
+    ```cpp
+    struct node {
+      int l, r, id;
 
-  bool operator<(const node &x) const {
-    return l / unit == x.l / unit
-               ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
-               : l < x.l;
-  }
-};
-```
+      bool operator<(const node &x) const {
+        if (l / unit != x.l / unit) return l < x.l;
+        // 注意下面两行不能写小于（大于）等于，否则会出错（详见下面的小细节）
+        if ((l / unit) & 1) return r < x.r;
+        return r > x.r;
+      }
+    };
+    ```
 
-不压行
+???+ warning "小细节"
+    如果使用 `sort` 比较两个函数，不能出现 $a < b$ 和 $b < a$ 同时为真的情况，否则会运行错误。
 
-```cpp
-struct node {
-  int l, r, id;
-
-  bool operator<(const node &x) const {
-    if (l / unit != x.l / unit) return l < x.l;
-    if ((l / unit) & 1)
-      return r <
-             x.r;  // 注意这里和下面一行不能写小于（大于）等于，否则会出错（详见下面的小细节）
-    return r > x.r;
-  }
-};
-```
-
-??? warning
-    小细节：如果使用 sort 比较两个函数，不能出现 $a < b$ 和 $b < a$ 同时为真的情况，否则会运行错误。
-
-对于压行版，如果没有 `r == x.r` 的特判，当 l 属于同一奇数块且 r 相等时，会出现上面小细节中的问题（自己手动模拟一下），对于压行版，如果写成小于（大于）等于，则也会出现同样的问题。
+对于压行版，如果没有 `r == x.r` 的特判，当 l 属于同一奇数块且 r 相等时，会出现上面小细节中的问题（自己手动模拟一下），对于不压行版，如果写成小于（大于）等于，则也会出现同样的问题。
 
 ## 参考资料
 
