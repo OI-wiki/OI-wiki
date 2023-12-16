@@ -3,8 +3,7 @@ STL 提供了大约 100 个实现算法的模版函数，基本都包含在 `<al
 -   `find`：顺序查找。`find(v.begin(), v.end(), value)`，其中 `value` 为需要查找的值。
 -   `reverse`：翻转数组、字符串。`reverse(v.begin(), v.end())` 或 `reverse(a + begin, a + end)`。
 -   `unique`：去除容器中相邻的重复元素。`unique(ForwardIterator first, ForwardIterator last)`，返回值为指向 **去重后** 容器结尾的迭代器，原容器大小不变。与 `sort` 结合使用可以实现完整容器去重。
--   `random_shuffle`：随机地打乱数组。`random_shuffle(v.begin(), v.end())` 或 `random_shuffle(v + begin, v + end)`。
-
+-   `random_shuffle`：随机地打乱数组。`random_shuffle(v.begin(), v.end())` 或 `random_shuffle(v + begin, v + end)`。  
     ???+ warning "`random_shuffle` 函数在最新 C++ 标准中已被移除 "
         `random_shuffle` 自 C++14 起被弃用，C++17 起被移除。
         
