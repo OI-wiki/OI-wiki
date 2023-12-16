@@ -50,54 +50,54 @@ STL 提供了大约 100 个实现算法的模版函数，基本都包含在 `<al
 
 -   使用 `next_permutation` 生成 $1$ 到 $9$ 的全排列。例题：[Luogu P1706 全排列问题](https://www.luogu.com.cn/problem/P1706)
 
-???+ note "实现"
-    ```cpp
-    int N = 9, a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    do {
-      for (int i = 0; i < N; i++) cout << a[i] << " ";
-      cout << endl;
-    } while (next_permutation(a, a + N));
-    ```
+    ???+ note "实现"
+        ```cpp
+        int N = 9, a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        do {
+          for (int i = 0; i < N; i++) cout << a[i] << " ";
+          cout << endl;
+        } while (next_permutation(a, a + N));
+        ```
 
 -   使用 `lower_bound` 与 `upper_bound` 查找有序数组 $a$ 中小于 $x$，等于 $x$，大于 $x$ 元素的分界线。
 
-???+ note "实现"
-    ```cpp
-    int N = 10, a[] = {1, 1, 2, 4, 5, 5, 7, 7, 9, 9}, x = 5;
-    int i = lower_bound(a, a + N, x) - a, j = upper_bound(a, a + N, x) - a;
-    // a[0] ~ a[i - 1] 为小于x的元素， a[i] ~ a[j - 1] 为等于x的元素，
-    // a[j] ~ a[N - 1] 为大于x的元素
-    cout << i << " " << j << endl;
-    ```
+    ???+ note "实现"
+        ```cpp
+        int N = 10, a[] = {1, 1, 2, 4, 5, 5, 7, 7, 9, 9}, x = 5;
+        int i = lower_bound(a, a + N, x) - a, j = upper_bound(a, a + N, x) - a;
+        // a[0] ~ a[i - 1] 为小于x的元素， a[i] ~ a[j - 1] 为等于x的元素，
+        // a[j] ~ a[N - 1] 为大于x的元素
+        cout << i << " " << j << endl;
+        ```
 
 -   使用 `partial_sum` 求解 $src$ 中元素的前缀和，并存储于 $dst$ 中。
 
-???+ note "实现"
-    ```cpp
-    vector<int> src = {1, 2, 3, 4, 5}, dst;
-    // 求解src中元素的前缀和，dst[i] = src[0] + ... + src[i]
-    // back_inserter 函数作用在 dst 容器上，提供一个迭代器
-    partial_sum(src.begin(), src.end(), back_inserter(dst));
-    for (unsigned int i = 0; i < dst.size(); i++) cout << dst[i] << " ";
-    ```
+    ???+ note "实现"
+        ```cpp
+        vector<int> src = {1, 2, 3, 4, 5}, dst;
+        // 求解src中元素的前缀和，dst[i] = src[0] + ... + src[i]
+        // back_inserter 函数作用在 dst 容器上，提供一个迭代器
+        partial_sum(src.begin(), src.end(), back_inserter(dst));
+        for (unsigned int i = 0; i < dst.size(); i++) cout << dst[i] << " ";
+        ```
 
 -   使用 `lower_bound` 查找有序数组 $a$ 中最接近 $x$ 的元素。例题：[UVA10487 Closest Sums](https://www.luogu.com.cn/problem/UVA10487)
 
-???+ note "实现"
-    ```cpp
-    int N = 10, a[] = {1, 1, 2, 4, 5, 5, 8, 8, 9, 9}, x = 6;
-    // lower_bound将返回a中第一个大于等于x的元素的地址，计算出的i为其下标
-    int i = lower_bound(a, a + N, x) - a;
-    // 在以下两种情况下，a[i] (a中第一个大于等于x的元素) 即为答案：
-    // 1. a中最小的元素都大于等于x；
-    // 2. a中存在大于等于x的元素，且第一个大于等于x的元素 (a[i])
-    // 相比于第一个小于x的元素 (a[i - 1]) 更接近x；
-    // 否则，a[i - 1] (a中第一个小于x的元素) 即为答案
-    if (i == 0 || (i < N && a[i] - x < x - a[i - 1]))
-      cout << a[i];
-    else
-      cout << a[i - 1];
-    ```
+    ???+ note "实现"
+        ```cpp
+        int N = 10, a[] = {1, 1, 2, 4, 5, 5, 8, 8, 9, 9}, x = 6;
+        // lower_bound将返回a中第一个大于等于x的元素的地址，计算出的i为其下标
+        int i = lower_bound(a, a + N, x) - a;
+        // 在以下两种情况下，a[i] (a中第一个大于等于x的元素) 即为答案：
+        // 1. a中最小的元素都大于等于x；
+        // 2. a中存在大于等于x的元素，且第一个大于等于x的元素 (a[i])
+        // 相比于第一个小于x的元素 (a[i - 1]) 更接近x；
+        // 否则，a[i - 1] (a中第一个小于x的元素) 即为答案
+        if (i == 0 || (i < N && a[i] - x < x - a[i - 1]))
+          cout << a[i];
+        else
+          cout << a[i - 1];
+        ```
 
 -   使用 `sort` 与 `unique` 查找数组 $a$ 中 **第 $k$ 小的值**（注意：重复出现的值仅算一次，因此本题不是求解第 $k$ 小的元素）。例题：[Luogu P1138 第 k 小整数](https://www.luogu.com.cn/problem/P1138)
 
