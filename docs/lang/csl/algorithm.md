@@ -15,6 +15,7 @@ STL 提供了大约 100 个实现算法的模版函数，基本都包含在 `<al
         std::mt19937 rng(std::random_device{}());
         std::shuffle(v.begin(), v.end(), rng);
         ```
+
 -   `sort`：排序。`sort(v.begin(), v.end(), cmp)` 或 `sort(a + begin, a + end, cmp)`，其中 `end` 是排序的数组最后一个元素的后一位，`cmp` 为自定义的比较函数。
 -   `stable_sort`：稳定排序，用法同 `sort()`。
 -   `nth_element`：按指定范围进行分类，即找出序列中第 $n$ 大的元素，使其左边均为小于它的数，右边均为大于它的数。`nth_element(v.begin(), v.begin() + mid, v.end(), cmp)` 或 `nth_element(a + begin, a + begin + mid, a + end, cmp)`。
