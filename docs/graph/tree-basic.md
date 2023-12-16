@@ -25,10 +25,9 @@
 -   **森林（forest）**：每个连通分量（连通块）都是树的图。按照定义，一棵树也是森林。
 -   **生成树（spanning tree）**：一个连通无向图的生成子图，同时要求是树。也即在图的边集中选择 $n - 1$ 条，将所有顶点连通。
 -   **无根树的叶结点（leaf node）**：度数不超过 $1$ 的结点。
-    
+
     ???+ question " 为什么不是度数恰为 $1$？"
         考虑 $n = 1$。
-    
 -   **有根树的叶结点（leaf node）**：没有子结点的结点。
 
 ### 只适用于有根树
@@ -48,25 +47,28 @@
 ![tree-definition.svg](images/tree-definition.svg)
 
 -   **子树（subtree）**：删掉与父亲相连的边后，该结点所在的子图。
-    
+
     ![tree-definition-subtree.svg](images/tree-definition-subtree.svg)
 
 ## 特殊的树
 
 -   **链（chain/path graph）**：满足与任一结点相连的边不超过 $2$ 条的树称为链。
+
 -   **菊花/星星（star）**：满足存在 $u$ 使得所有除 $u$ 以外结点均与 $u$ 相连的树称为菊花。
+
 -   **有根二叉树（rooted binary tree）**：每个结点最多只有两个儿子（子结点）的有根树称为二叉树。常常对两个子结点的顺序加以区分，分别称之为左子结点和右子结点。  
     大多数情况下，**二叉树** 一词均指有根二叉树。
+
 -   **完整二叉树（full/proper binary tree）**：每个结点的子结点数量均为 0 或者 2 的二叉树。换言之，每个结点或者是树叶，或者左右子树均非空。
-    
+
     ![](images/tree-binary-proper.svg)
-    
+
 -   **完全二叉树（complete binary tree）**：只有最下面两层结点的度数可以小于 2，且最下面一层的结点都集中在该层最左边的连续位置上。
-    
+
     ![](images/tree-binary-complete.svg)
-    
+
 -   **完美二叉树（perfect binary tree）**：所有叶结点的深度均相同，且所有非叶节点的子节点数量均为 2 的二叉树称为完美二叉树。
-    
+
     ![](images/tree-binary-perfect.svg)
 
 ???+ warning

@@ -181,10 +181,10 @@ void solve() {
 排序代码：
 
 === "压行"
-    
     ```cpp
     // 这里有个小细节等下会讲
     int unit;  // 块的大小
+    ```
 
     struct node {
       int l, r, id;
@@ -196,12 +196,12 @@ void solve() {
       }
     };
     ```
-    
+
 === "不压行"
-    
     ```cpp
     struct node {
       int l, r, id;
+    ```
 
       bool operator<(const node &x) const {
         if (l / unit != x.l / unit) return l < x.l;
