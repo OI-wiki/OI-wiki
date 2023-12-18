@@ -445,7 +445,7 @@ $\rightarrow$ 输入代码来在你的文档中生成下面内容：
 
 ![p12](images/latex-for-beginners-12.png)
 
-询问专家或者查看本页面的 [TeX 源代码](https://github.com/OI-wiki/OI-wiki/blob/master/docs/tools/latex.md?plain=1)获取帮助。
+询问专家或者查看本页面的 [TeX 源代码](https://github.com/OI-wiki/OI-wiki/blob/master/docs/tools/latex.md?plain=1) 获取帮助。
 
 ## 表格
 
