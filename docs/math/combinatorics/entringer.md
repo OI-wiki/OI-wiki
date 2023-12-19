@@ -194,7 +194,7 @@ $$
 当 $n$ 为偶数时，偶数项下标的 zigzag 数也称「正割数」$S_n$ 或者「zig 数」。有关系：
 
 $$
-A_n=i^nE_n
+A_n=(-1)^{n/2}E_n
 $$
 
 前几项为（[OEIS A000364](http://oeis.org/A000364)）：
@@ -206,7 +206,7 @@ $$
 当 $n$ 为奇数时，奇数项下标的 zigzag 数也称「正切数」$T_n$ 或者「zag 数」。有关系：
 
 $$
-A_n=-\frac{{2i}^{n+1}(2^{n+1}-1)B_{n+1}}{n+1}
+A_n=\frac{(-1)^{(n-1)/2}2^{n+1}(2^{n+1}-1)B_{n+1}}{n+1}
 $$
 
 前几项为（[OEIS A000182](http://oeis.org/A000182)）：
@@ -232,3 +232,7 @@ $$
 $$
 
 构成 zigzag 数的生成函数。
+
+## 参考资料与链接
+
+1.  [Alternating permutation - Wikipedia](https://en.wikipedia.org/wiki/Alternating_permutation)
