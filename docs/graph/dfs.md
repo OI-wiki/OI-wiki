@@ -50,6 +50,18 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
     }
     ```
 
+=== "Java"
+    ```Java
+    public void dfs(int u) {
+        visited[u] = true;
+        for (int i = head[u]; i != 0; i = e[i].x) {
+            if (!visited[e[i].t]) {
+                dfs(e[i].t);
+            }
+        }
+    }
+    ```
+
 === "Python"
     ```python
     def dfs(u):
