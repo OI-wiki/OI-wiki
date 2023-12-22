@@ -1,4 +1,4 @@
-author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo, Hszzzx
+author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo, Hszzzx, y-kx-b
 
 ## 定义
 
@@ -569,7 +569,7 @@ $$
 ??? note "[NOI 2018 归程](https://uoj.ac/problem/393)"
     首先预处理出来每一个点到根节点的最短路。
     
-    我们构造出来根据海拔的最大生成树。显然每次询问可以到达的节点是在最大生成树和询问点的最小边权 $\geq p$ 的节点。
+    我们构造出来根据海拔的最大生成树。显然每次询问可以到达的节点是在最大生成树中和询问点的路径上最小边权 $> p$ 的节点。
     
     根据 Kruskal 重构树的性质，这些节点满足均在一棵子树内同时为其所有叶子节点。
     
