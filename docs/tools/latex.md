@@ -690,7 +690,7 @@ $\rightarrow$ 撰写代码来生成下列公式：
 
 ![p15](images/latex-for-beginners-15.png)
 
-如果需要帮助，可以查看本页面的 [TeX 源码](https://github.com/OI-wiki/OI-wiki/blob/master/docs/tools/latex.md?plain=1)。
+如果需要帮助，可以查看本页面的 [源代码](https://github.com/OI-wiki/OI-wiki/blob/master/docs/tools/latex.md?plain=1)。
 
 ## 参考文献
 
