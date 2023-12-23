@@ -42,25 +42,25 @@ DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这�
 
 === "C++"
     ```cpp
-    vector<vector<int>> adj; // 领接表
-    vector<bool> vis; // 记录节点是否已经遍历
+    vector<vector<int>> adj;  // 领接表
+    vector<bool> vis;         // 记录节点是否已经遍历
     
     void dfs(int s) {
-        stack<int> st;
-        st.push(s);
-        vis[s] = true;
+      stack<int> st;
+      st.push(s);
+      vis[s] = true;
     
-        while (!st.empty()) {
-            int u = st.top();
-            st.pop();
-            
-            for (int v : adj[u]) { 
-                if (!vis[v]) {
-                    vis[v] = true; // 确保栈里没有重复元素
-                    st.push(v);
-                }
-            }
+      while (!st.empty()) {
+        int u = st.top();
+        st.pop();
+    
+        for (int v : adj[u]) {
+          if (!vis[v]) {
+            vis[v] = true;  // 确保栈里没有重复元素
+            st.push(v);
+          }
         }
+      }
     }
     ```
 
@@ -68,6 +68,7 @@ DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这�
     ```python
     # adj : List[List[int]] 领接表
     # vis : List[bool] 记录节点是否已经遍历
+    ```
 
     def dfs(s : int) -> None:
         stack = [s] # 用列表来模拟栈，把起点加入栈中
