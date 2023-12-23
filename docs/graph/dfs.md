@@ -42,7 +42,7 @@ DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这�
 
 === "C++"
     ```cpp
-    vector<vector<int>> adj;  // 领接表
+    vector<vector<int>> adj;  // 邻接表
     vector<bool> vis;         // 记录节点是否已经遍历
     
     void dfs(int s) {
@@ -66,7 +66,7 @@ DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这�
 
 === "Python"
     ```python
-    # adj : List[List[int]] 领接表
+    # adj : List[List[int]] 邻接表
     # vis : List[bool] 记录节点是否已经遍历
     ```
 
@@ -87,11 +87,11 @@ DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这�
 
 函数在递归调用时的求值如同对栈的添加和删除元素的顺序，故函数调用所占据的虚拟地址被称为函数调用栈（Call Stack），DFS 可用递归的方式实现。
 
-以 [领接表（Adjacency List）](./save.md#领接表) 作为图的存储方式：
+以 [邻接表（Adjacency List）](./save.md#邻接表) 作为图的存储方式：
 
 === “C++”
     ```cpp
-    vector<vector<int>> adj;  // 领接表
+    vector<vector<int>> adj;  // 邻接表
     vector<bool> vis;         // 记录节点是否已经遍历
     
     void dfs(const int u) {
@@ -103,7 +103,7 @@ DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这�
 
 === “Python”
     ```python
-    # adj : List[List[int]] 领接表
+    # adj : List[List[int]] 邻接表
     # vis : List[bool] 记录节点是否已经遍历
     
     def dfs(u : int) -> None:
