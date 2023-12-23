@@ -1,4 +1,4 @@
-author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, Marcythm, Acfboy, shenshuaijie
+author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, Marcythm, Acfboy, shenshuaijie, Craneplayz
 
 ## 引入
 
@@ -36,7 +36,58 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
 
 ## 实现
 
-以链式前向星为例：（和上方伪代码每行一一对应）
+### 栈实现
+DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这与用队列（Queue）实现的BFS形成高度对应。
+
+=== "Python"
+    ```python
+    # adj : List[List[int]] 领接表
+    # vis : List[bool] 记录节点是否已经遍历
+
+    def dfs(s : int) -> None:
+        stack = [s] # 用列表来模拟栈，把起点加入栈中
+        vis[s] = True
+        
+        while(not stack):
+        	u = stack.pop() # 拿取并丢弃掉最后一个元素（栈顶的元素），可以理解为走到u这个元素
+        	vis[u] = True # u在此刻被走到了，打上标记
+         
+        	for v in adj[u]: # 对于与u相邻的每个元素v
+        		if not vis[v]: # 如果v在此前没有走过
+        			stack.append(v) # 把v加入栈中
+    ```
+
+### 递归实现
+函数在递归调用时的求值如同对栈的添加和删除元素的顺序，故函数调用所占据的虚拟地址被称为函数调用栈（Call Stack），DFS可用递归的方式实现。
+
+以[领接表（Adjacency List）](./save.md#领接表)作为图的存储方式：
+
+=== “C++”
+    ```cpp
+    vector<vector<int>> adj; // 领接表
+    vector<bool> vis; // 记录节点是否已经遍历
+    
+    void dfs(const int u) {
+        vis[u] = true;
+        for (int v : adj[u])
+            if (!vis[v])
+                dfs(v)
+    }
+    ```
+
+=== “Python”
+    ```python
+    # adj : List[List[int]] 领接表
+    # vis : List[bool] 记录节点是否已经遍历
+    
+    def dfs(u : int) -> None:
+        vis[u] = True
+        for v in adj[u]:
+            if not vis[v]:
+                dfs(v)
+    ```
+
+以[链式前向星](./save.md#链式前向星)为例：
 
 === "C++"
     ```cpp
