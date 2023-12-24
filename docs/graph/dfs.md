@@ -56,7 +56,7 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
         vis[u] = true;
         for (int i = head[u]; i != 0; i = e[i].x) {
             if (!vis[e[i].t]) {
-                dfs(e[i].t);
+                dfs(v);
             }
         }
     }
