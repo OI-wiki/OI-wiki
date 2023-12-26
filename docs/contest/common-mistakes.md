@@ -412,6 +412,32 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     }
     ```
 
+-   使用 + 运算符向 `string` 类字符串追加字符
+
+    这种错误会创建一个临时 string 变量，修改完成后在赋值给原变量。这种错误无法被编译器优化，在数据量大的情况下可能会导致时间复杂度退化。
+
+    常见 错误写法：
+
+    ```cpp
+    std::string a;
+    char b = 'c';
+    a = a + b;
+    ```
+
+    当执行这段代码时，程序首先会创建一个临时 string 变量，随后将 `a` 的值存入临时变量，然后在末尾添加 `b` 的值，最后再存入 `a`。
+
+    从 [汇编结果](https://godbolt.org/z/Eo9vn7or5) 可以看出，`a = a + b` 调用了三次 `std::__cxx11::basic_string` 中的功能，分别为 `operator+`、`operator=` 和创建变量。
+
+    正确写法应该是：
+
+    ```cpp
+    std::string a;
+    char b = 'c';
+    a += b;
+    ```
+
+    [这种写法](https://godbolt.org/z/eGh33Grf3) 会直接将字符 `b` 附加到字符串 `a` 中，仅调用了一次 `operator+=`。
+
 -   没删文件操作（某些 OJ）。
 
 -   在 `for/while` 循环中重复执行复杂度非 $O(1)$ 的函数。严格来说，这可能会引起时间复杂度的改变。
