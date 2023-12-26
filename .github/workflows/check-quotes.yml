@@ -18,6 +18,11 @@ jobs:
     needs: check-quotes
     if: needs.check-quotes.outputs.result
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
       - name: Replace quotes
