@@ -347,7 +347,7 @@ $$
 -   [AtCoder Beginner Contest 284 Ex. Count Unlabeled Graphs](https://atcoder.jp/contests/abc284/tasks/abc284_h)
 -   [Luogu P4708. 画画](https://www.luogu.com.cn/problem/P4708)
 -   [Luogu P7592. 数树（2021 CoE-II E）](https://www.luogu.com.cn/problem/P7592)
--   [Luogu P5206. [WC2019] 数树](https://www.luogu.com.cn/problem/P5206)
+-   [Luogu P5206. \[WC2019\] 数树](https://www.luogu.com.cn/problem/P5206)
 
 ## 参考资料与注释
 
