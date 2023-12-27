@@ -128,10 +128,7 @@ DFS 为图论中的概念，详见 [DFS（图论）](../graph/dfs.md) 页面。�
 
 ## 例题
 
-[Luogu P1706 全排列问题](https://www.luogu.com.cn/problem/P1706)
-
-C++ 代码：
-
-```cpp
---8<-- "docs/search/code/dfs/dfs_1.cpp"
-```
+???+ note "[Luogu P1706 全排列问题](https://www.luogu.com.cn/problem/P1706)"
+    ```cpp
+    --8<-- "docs/search/code/dfs/dfs_1.cpp"
+    ```

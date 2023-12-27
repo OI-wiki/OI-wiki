@@ -67,10 +67,10 @@ int g(int n) { return n ^ (n >> 1); }
 我们考虑 $n$ 和 $n+1$ 的区别。把 $n$ 加 $1$，相当于把 $n$ 的二进制下末位的连续的 $1$ 全部变成取反，然后把最低位的 $0$ 变成 $1$。我们这样表示 $n$ 和 $n+1$ 的二进制位：
 
 $$
-\begin{array}{rll}
-(n)_2&=&\cdots0\underbrace{11\cdots11}_{k\text{个}}\\
-(n+1)_2&=&\cdots1\underbrace{00\cdots00}_{k\text{个}}
-\end{array}
+\begin{aligned}
+(n)_2 &= \cdots0\underbrace{11\cdots11}_{k\text{个}}\\
+(n+1)_2 &= \cdots1\underbrace{00\cdots00}_{k\text{个}}
+\end{aligned}
 $$
 
 于是我们在计算 $g(n)$ 和 $g(n+1)$ 的时侯，后 $k$ 位都会变成 $\displaystyle\underbrace{100\cdots00}_{k\text{个}}$ 的形式，而第 $k+1$ 位是不同的，因为 $n$ 和 $n+1$ 除了后 $k+1$ 位，其他位都是相同的。因此第 $k+1$ 位要么同时异或 $1$，要么同时异或 $0$。两种情况，第 $k+1$ 位都是不同的。而除了后 $k+1$ 位以外的二进制位也是做相同的异或运算，结果是相同的。
@@ -82,14 +82,14 @@ $$
 接下来我们考虑格雷码的逆变换，即给你一个格雷码 $g$，要求你找到原数 $n$。我们考虑从二进制最高位遍历到最低位（最低位下标为 $1$，即个位；最高位下标为 $k$）。则 $n$ 的二进制第 $i$ 位与 $g$ 的二进制第 $i$ 位 $g_i$ 的关系如下：
 
 $$
-\begin{array}{rll}
+\begin{aligned}
 n_k &= g_k \\
-n_{k-1} &= g_{k-1} \oplus n_k &= g_k \oplus g_{k-1} \\
-n_{k-2} &= g_{k-2} \oplus n_{k-1} &= g_k \oplus g_{k-1} \oplus g_{k-2} \\
-n_{k-3} &= g_{k-3} \oplus n_{k-2} &= g_k \oplus g_{k-1} \oplus g_{k-2} \oplus g_{k-3} \\
+n_{k-1} &= g_{k-1} \oplus n_k &&= g_k \oplus g_{k-1} \\
+n_{k-2} &= g_{k-2} \oplus n_{k-1} &&= g_k \oplus g_{k-1} \oplus g_{k-2} \\
+n_{k-3} &= g_{k-3} \oplus n_{k-2} &&= g_k \oplus g_{k-1} \oplus g_{k-2} \oplus g_{k-3} \\
 &\vdots\\
 n_{k-i} &=\displaystyle\bigoplus_{j=0}^ig_{k-j}
-\end{array}
+\end{aligned}
 $$
 
 ```cpp
