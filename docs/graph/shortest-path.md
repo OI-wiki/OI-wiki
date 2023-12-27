@@ -287,6 +287,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                 u = q.popleft()
                 vis[u] = False
                 for ed in e[u]:
+                    v, w = ed.v, ed.w
                     if dis[v] > dis[u] + w:
                         dis[v] = dis[u] + w
                         cnt[v] = cnt[u] + 1 # 记录最短路经过的边数
