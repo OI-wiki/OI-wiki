@@ -363,8 +363,8 @@ $d(L_m) = (|x_1-x_2|^m+|y_1-y_2|^m)^{\frac{1}{m}}$
 
 我们可以简单的认为对两个串进行异或运算，结果为 1 的数量就是两个串的汉明距离。
 
-部分内容搬运自 [浅谈三种常见的距离算法](https://www.luogu.com.cn/blog/xuxing/Distance-Algorithm)，感谢作者 xuxing 的授权。
+## 参考资料与链接
 
-## 参考资料
+1.  [浅谈三种常见的距离算法](https://www.luogu.com.cn/blog/xuxing/Distance-Algorithm)，感谢作者 xuxing 的授权。
 
 [^ref1]: [切比雪夫距离 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB)

@@ -2,9 +2,7 @@ author: Frankaiyou, henrytbtrue, zymooll
 
 ## C 标准库
 
-C 标准库操作字符数组。
-
-### `char[]`/`const char*`
+C 标准库操作字符数组 `char[]`/`const char*`。
 
 参见：[fprintf](https://zh.cppreference.com/w/c/io/fprintf)、[fscanf](https://zh.cppreference.com/w/c/io/fscanf)、[空终止字节字符串](https://zh.cppreference.com/w/c/string/byte)
 
@@ -23,11 +21,9 @@ C 标准库操作字符数组。
 
 ## C++ 标准库
 
-C++ 标准库操作字符串对象，同时也提供对字符数组的兼容。
+C++ 标准库操作字符串对象 [`std::string`](../lang/csl/string.md)，同时也提供对字符数组的兼容。
 
-### `std::string`
-
-参见：[std::basic\_string](https://zh.cppreference.com/w/cpp/string/basic_string)
+参见：[std::basic\_string](https://zh.cppreference.com/w/cpp/string/basic_string)、[std::basic\_string\_view](https://zh.cppreference.com/w/cpp/string/basic_string_view)
 
 -   重载了赋值运算符 `+`，当 `+` 两边是 `string/char/char[]/const char*` 类型时，可以将这两个变量连接，返回连接后的字符串（`string`）。
 -   赋值运算符 `=` 右侧可以是 `const string/string/const char*/char*`。
