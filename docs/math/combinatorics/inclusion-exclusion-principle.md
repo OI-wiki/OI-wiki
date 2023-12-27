@@ -579,7 +579,7 @@ $$
 ### 习题
 
 -   [ABC331- G - Collect Them All](https://atcoder.jp/contests/abc331/tasks/abc331_g)
--   [重返现世](https://www.luogu.com.cn/problem/P4707)
+-   [洛谷 P4707 重返现世](https://www.luogu.com.cn/problem/P4707)
 
 ## 参考文献
 
