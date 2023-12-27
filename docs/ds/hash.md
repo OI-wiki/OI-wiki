@@ -34,31 +34,30 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
 #### 实现
 
 === "C++"
-
     ```cpp
     const int SIZE = 1000000;
     const int M = 999997;
-
+    
     struct HashTable {
       struct Node {
         int next, value, key;
       } data[SIZE];
-
+    
       int head[M], size;
-
+    
       int f(int key) { return (key % M + M) % M; }
-
+    
       int get(int key) {
         for (int p = head[f(key)]; p; p = data[p].next)
           if (data[p].key == key) return data[p].value;
         return -1;
       }
-
+    
       int modify(int key, int value) {
         for (int p = head[f(key)]; p; p = data[p].next)
           if (data[p].key == key) return data[p].value = value;
       }
-
+    
       int add(int key, int value) {
         if (get(key) != -1) return -1;
         data[++size] = (Node){head[f(key)], value, key};
@@ -69,7 +68,6 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
     ```
 
 === "Python"
-
     ```python
     M = 999997
     SIZE = 1000000

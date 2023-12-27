@@ -17,13 +17,13 @@
 一个数对 $2$ 的非负整数次幂取模，等价于取二进制下一个数的后若干位，等价于和 $mod-1$ 进行与操作。
 
 === "C++"
-
+    
     ```cpp
     int modPowerOfTwo(int x, int mod) { return x & (mod - 1); }
     ```
 
 === "Python"
-
+    
     ```python
     def modPowerOfTwo(x, mod):
         return x & (mod - 1)
@@ -36,13 +36,13 @@
 借此可以判断一个数是不是 $2$ 的非负整数次幂。当且仅当 $n$ 的二进制表示只有一个 $1$ 时，$n$ 为 $2$ 的非负整数次幂。
 
 === "C++"
-
+    
     ```cpp
     bool isPowerOfTwo(int n) { return n > 0 && (n & (n - 1)) == 0; }
     ```
 
 === "Python"
-
+    
     ```python
     def isPowerOfTwo(n):
         return n > 0 and (n & (n - 1)) == 0
@@ -124,10 +124,10 @@ for (int m = 0; m < (1 << n); ++m)
 
 还有一种证明方法是：
 
-如果掩码 $m$ 具有 $k$ 个 $1$，那么它有 $2^k$ 个子掩码。对于给定的 $k$，对应有 $C_n^k$ 个掩码 $m$，那么所有掩码的总数为：
+如果掩码 $m$ 具有 $k$ 个 $1$，那么它有 $2^k$ 个子掩码。对于给定的 $k$，对应有 $\dbinom{n}{k}$ 个掩码 $m$，那么所有掩码的总数为：
 
 $$
-\sum_{k=0}^n C_n^k 2^n
+\sum_{k=0}^n \dbinom{n}{k} 2^n
 $$
 
 上面的和等于使用二项式定理对 $(1+2)^n$ 的展开，因此有 $3^n$ 个不同的组合。

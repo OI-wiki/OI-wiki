@@ -72,3 +72,5 @@ $$
 [「NOIP2018」货币系统](https://loj.ac/problem/2951)
 
 [AGC057D - Sum Avoidance](https://atcoder.jp/contests/agc057/tasks/agc057_d)
+
+[「THUPC 2023 初赛」背包](https://loj.ac/p/6872)

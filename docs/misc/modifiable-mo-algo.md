@@ -1,4 +1,4 @@
-author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, renbaoshuo
+author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, renbaoshuo, Lixuannan
 
 请确保您已经会普通莫队算法了。如果您还不会，请先阅读前面的 [普通莫队算法](./mo-algo.md)。
 
@@ -51,21 +51,21 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
     
     $$
     \begin{aligned}
-    &\sum_{i=1}^{\dfrac{n}{s}}\sum_{j=i+1}^{\dfrac{n}{s}}(q_{i,j}\cdot s+t)\\
-    =&ms+(\dfrac{n}{s})^2t\\
+    &\sum_{i=1}^{n/s}\sum_{j=i+1}^{n/s}(q_{i,j}\cdot s+t)\\
+    =&ms+\left(\dfrac{n}{s}\right)^2t\\
     =&ms+\dfrac{n^2t}{s^2}
     \end{aligned}
     $$
     
     考虑求导求此式极小值。设 $f(s)=ms+\dfrac{n^2t}{s^2}$。那 $f'(s)=m-\dfrac{2n^2t}{s^3}=0$。
     
-    得 $s=\sqrt[3]{\dfrac{2n^2t}{m}}=\dfrac{2^\dfrac{1}{3}n^\dfrac23t^\dfrac13}{m^\dfrac13}=s_0$。
+    得 $s=\sqrt[3]{\dfrac{2n^2t}{m}}=\dfrac{2^{1/3}n^{2/3}t^{1/3}}{m^{1/3}}=s_0$。
     
-    也就是当块长取 $\dfrac{n^\dfrac23t^\dfrac13}{m^\dfrac13}$ 时有最优时间复杂度 $O(n^\dfrac23m^\dfrac23t^\dfrac13)$。
+    也就是当块长取 $\dfrac{n^{2/3}t^{1/3}}{m^{1/3}}$ 时有最优时间复杂度 $O\left(n^{2/3}m^{2/3}t^{1/3}\right)$。
     
-    常说的 $O(n^\dfrac53)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
+    常说的 $O\left(n^{5/3}\right)$ 便是把 $n,m,t$ 当做同数量级的时间复杂度。
     
-    实际操作中还是推荐设定 $n^{\dfrac{2}{3}}$ 为块长。
+    实际操作中还是推荐设定 $n^{2/3}$ 为块长。
 
 ## 例题
 

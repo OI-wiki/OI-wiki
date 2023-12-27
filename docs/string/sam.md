@@ -599,9 +599,9 @@ $$
 -   [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
 -   [Codeforces 1037H Security](https://codeforces.com/problemset/problem/1037/H)
 -   [Codeforces 666E Forensic Examination](https://codeforces.com/problemset/problem/666/E)
--   [HDu4416 Good Article Good sentence](https://vjudge.net/problem/HDU-4416)
--   [HDu4436 str2int](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4398)
--   [HDu6583 Typewriter](https://vjudge.net/problem/HDU-6583)
+-   [HDU4416 Good Article Good sentence](https://acm.hdu.edu.cn/showproblem.php?pid=4416)
+-   [HDU4436 str2int](https://acm.hdu.edu.cn/showproblem.php?pid=4436)
+-   [HDU6583 Typewriter](https://acm.hdu.edu.cn/showproblem.php?pid=6583)
 -   [Codeforces 235C Cyclical Quest](https://codeforces.com/problemset/problem/235/C)
 -   [CTSC2012 熟悉的文章](https://www.luogu.com.cn/problem/P4022)
 -   [NOI2018 你的名字](https://uoj.ac/problem/395)
@@ -610,11 +610,8 @@ $$
 
 我们先给出与 SAM 有关的最初的一些文献：
 
--   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler, R. McConnell.**Linear
-    Size Finite Automata for the Set of All Subwords of a Word. An Outline of
-    Results**\[1983]
--   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler.**The Smallest Automaton
-    Recognizing the Subwords of a Text**\[1984]
+-   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler, R. McConnell.**Linear Size Finite Automata for the Set of All Subwords of a Word. An Outline of Results**\[1983]
+-   A. Blumer, J. Blumer, A. Ehrenfeucht, D. Haussler.**The Smallest Automaton Recognizing the Subwords of a Text**\[1984]
 -   Maxime Crochemore.**Optimal Factor Transducers**\[1985]
 -   Maxime Crochemore.**Transducers and Repetitions**\[1986]
 -   A. Nerode.**Linear automaton transformations**\[1958]

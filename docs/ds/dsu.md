@@ -22,17 +22,15 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         struct dsu {
           vector<size_t> pa;
-    
+        
           explicit dsu(size_t size) : pa(size) { iota(pa.begin(), pa.end(), 0); }
         };
         ```
     
     === "Python"
-    
         ```python
         class Dsu:
             def __init__(self, size):
@@ -47,13 +45,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         size_t dsu::find(size_t x) { return pa[x] == x ? x : find(pa[x]); }
         ```
     
     === "Python"
-    
         ```python
         def find(self, x):
             return x if self.pa[x] == x else self.find(self.pa[x])
@@ -67,13 +63,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         size_t dsu::find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
         ```
     
     === "Python"
-    
         ```python
         def find(self, x):
             if self.pa[x] != x:
@@ -89,13 +83,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         void dsu::unite(size_t x, size_t y) { pa[find(x)] = find(y); }
         ```
     
     === "Python"
-    
         ```python
         def union(self, x, y):
             self.pa[self.find(x)] = self.find(y)
@@ -110,7 +102,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
     
     当然，我们不总能遇到恰好如上所述的集合——点数与深度都更小。鉴于点数与深度这两个特征都很容易维护，我们常常从中择一，作为估价函数。而无论选择哪一个，时间复杂度都为 $O (m\alpha(m,n))$，具体的证明可参见 References 中引用的论文。
     
-    在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务。在 Tarjan 的论文 \[1] 中，证明了不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $O (m \log n)$。在姚期智的论文 \[2] 中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，时间复杂度依然是 $O (m\alpha(m,n))$。
+    在算法竞赛的实际代码中，即便不使用启发式合并，代码也往往能够在规定时间内完成任务。在 Tarjan 的论文[^tarjan1984worst]中，证明了不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $O (m \log n)$。在姚期智的论文[^yao1985expected]中，证明了不使用启发式合并、只使用路径压缩，在平均情况下，时间复杂度依然是 $O (m\alpha(m,n))$。
     
     如果只使用启发式合并，而不使用路径压缩，时间复杂度为 $O(m\log n)$。由于路径压缩单次合并可能造成大量修改，有时路径压缩并不适合使用。例如，在可持久化并查集、线段树分治 + 并查集中，一般使用只启发式合并的并查集。
 
@@ -118,15 +110,14 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         struct dsu {
           vector<size_t> pa, size;
-    
+        
           explicit dsu(size_t size_) : pa(size_), size(size_, 1) {
             iota(pa.begin(), pa.end(), 0);
           }
-    
+        
           void unite(size_t x, size_t y) {
             x = find(x), y = find(y);
             if (x == y) return;
@@ -138,13 +129,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         ```
     
     === "Python"
-    
         ```python
         class Dsu:
             def __init__(self, size):
                 self.pa = list(range(size))
                 self.size = [1] * size
-    
+        
             def union(self, x, y):
                 x, y = self.find(x), self.find(y)
                 if x == y:
@@ -161,16 +151,15 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         struct dsu {
           vector<size_t> pa, size;
-    
+        
           explicit dsu(size_t size_) : pa(size_ * 2), size(size_ * 2, 1) {
             iota(pa.begin(), pa.begin() + size_, size_);
             iota(pa.begin() + size_, pa.end(), size_);
           }
-    
+        
           void erase(size_t x) {
             --size[find(x)];
             pa[x] = x;
@@ -179,13 +168,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         ```
     
     === "Python"
-    
         ```python
         class Dsu:
             def __init__(self, size):
                 self.pa = list(range(size, size * 2)) * 2
                 self.size = [1] * size * 2
-    
+        
             def erase(self, x):
                 self.size[self.find(x)] -= 1
                 self.pa[x] = x
@@ -197,7 +185,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         void dsu::move(size_t x, size_t y) {
           auto fx = find(x), fy = find(y);
@@ -208,7 +195,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         ```
     
     === "Python"
-    
         ```python
         def move(self, x, y):
             fx, fy = self.find(x), self.find(y)
@@ -252,13 +238,11 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
     
     ??? note "参考代码"
         === "C++"
-        
             ```cpp
             --8<-- "docs/ds/code/dsu/dsu_1.cpp"
             ```
         
         === "Python"
-        
             ```python
             --8<-- "docs/ds/code/dsu/dsu_1.py"
             ```
@@ -281,7 +265,9 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 ## 参考资料与拓展阅读
 
-1.  Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.[ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
-2.  Yao, A. C. (1985). On the expected performance of path compression algorithms.[SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat)
-3.  [知乎回答：是否在并查集中真的有二分路径压缩优化？](https://www.zhihu.com/question/28410263/answer/40966441)
-4.  Gabow, H. N., & Tarjan, R. E. (1985). A Linear-Time Algorithm for a Special Case of Disjoint Set Union. JOURNAL OF COMPUTER AND SYSTEM SCIENCES, 30, 209-221.[PDF](https://dl.acm.org/doi/pdf/10.1145/800061.808753)
+1.  [知乎回答：是否在并查集中真的有二分路径压缩优化？](https://www.zhihu.com/question/28410263/answer/40966441)
+2.  Gabow, H. N., & Tarjan, R. E. (1985). A Linear-Time Algorithm for a Special Case of Disjoint Set Union. JOURNAL OF COMPUTER AND SYSTEM SCIENCES, 30, 209-221.[PDF](https://dl.acm.org/doi/pdf/10.1145/800061.808753)
+
+[^tarjan1984worst]: Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.[ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
+
+[^yao1985expected]: Yao, A. C. (1985). On the expected performance of path compression algorithms.[SIAM Journal on Computing, 14(1), 129-133.](https://epubs.siam.org/doi/abs/10.1137/0214010?journalCode=smjcat)

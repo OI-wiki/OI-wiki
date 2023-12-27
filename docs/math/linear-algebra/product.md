@@ -61,20 +61,20 @@ $\cos \theta=\cfrac{\boldsymbol a\cdot\boldsymbol b}{|\boldsymbol a||\boldsymbol
 二阶行列式可以视为四元函数，其定义为：
 
 $$
-\left |\begin{array}{ccc}
-a & b \\
-c & d \\
-\end{array}\right |=ad-bc
+\begin{vmatrix}
+    a & b \\
+    c & d
+\end{vmatrix}=ad-bc
 $$
 
 三阶行列式可以视为九元函数，其定义为：
 
 $$
-\left |\begin{array}{ccc}
-a & b & c \\
-d & e & f \\
-g & h & i \\
-\end{array}\right |=aei+dhc+gbf-ahf-dbi-gec
+\begin{vmatrix}
+    a & b & c \\
+    d & e & f \\
+    g & h & i
+\end{vmatrix}=aei+dhc+gbf-ahf-dbi-gec
 $$
 
 一种特殊的记忆方法是采用「对角线法则」，对角线法则只适用于二阶与三阶行列式。
@@ -101,11 +101,11 @@ $$
 向量的外积可以使用三阶行列式表示：
 
 $$
-\left |\begin{array}{ccc}
-i & j & k \\
-x_1 & y_1 & z_1  \\
-x_2 & y_2 & z_2 \\
-\end{array}\right |
+\begin{vmatrix}
+    i & j & k \\
+    x_1 & y_1 & z_1  \\
+    x_2 & y_2 & z_2
+\end{vmatrix}
 $$
 
 其中 $i, j, k$ 表示和坐标轴 $x, y, z$ 平行的单位向量，并写在对应坐标处。展开得 $c = (y_1z_2-y_2z_1,x_2z_1-x_1z_2,x_1y_2-x_2y_1)$。
@@ -147,11 +147,11 @@ $$
 向量的混合积可以使用三阶行列式表示：
 
 $$
-(a,b,c)=(a\times b)c=\left |\begin{array}{ccc}
-a_x & b_x & c_x \\
-a_y & b_y & c_y \\
-a_z & b_z & c_z \\
-\end{array}\right |=a_xb_yc_z+a_yb_zc_x+a_zb_xc_y-a_zb_yc_x-a_yb_xc_z-a_xb_zc_y
+(a,b,c)=(a\times b)c=\begin{vmatrix}
+    a_x & b_x & c_x \\
+    a_y & b_y & c_y \\
+    a_z & b_z & c_z
+\end{vmatrix}=a_xb_yc_z+a_yb_zc_x+a_zb_xc_y-a_zb_yc_x-a_yb_xc_z-a_xb_zc_y
 $$
 
 向量的混合积可以用来计算四面体的体积：

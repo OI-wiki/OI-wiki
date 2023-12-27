@@ -36,6 +36,8 @@ APT_PREFIX_PATHS=(
 
 for DIR in "${APT_PREFIX_MAKE_DIRS[@]}"; do mkdir -p "$APT_PREFIX$DIR"; done
 for DIR in "${APT_PREFIX_COPY_DIRS[@]}"; do cp -r "$DIR/." "$APT_PREFIX$DIR/" || true; done
+cat /etc/apt/sources.list | grep 'ubuntu\.com' > "$APT_PREFIX/etc/apt/sources.list"
+rm -rf "$APT_PREFIX/etc/apt/sources.list.d"/*
 
 # Download packages from PPA deadsnakes/ppa
 UBUNTU_CODENAME="$(source /etc/os-release && echo "$UBUNTU_CODENAME")"

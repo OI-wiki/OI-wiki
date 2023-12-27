@@ -51,7 +51,7 @@ $$
 首先我们注意到 $p\in \left[y+1,\sqrt{x}\right]$。此外，对于每个 $p$，我们都有 $q\in\left[p,x/p\right]$。因此：
 
 $$
-P_2\left(x,a\right)=\sum\limits_{y<p\le \sqrt{x}}{\left(\pi\left(\dfrac{x}{p}\right)-\pi\left(p\right)+1\right)}\tag{4}
+P_2\left(x,a\right)=\sum_{y<p\le \sqrt{x}}{\left(\pi\left(\dfrac{x}{p}\right)-\pi\left(p\right)+1\right)}\tag{4}
 $$
 
 当 $p\in \left[y+1,\sqrt{x}\right]$ 时，我们有 $\dfrac{x}{p}\in \left[1,\dfrac{x}{y}\right]$。因此，我们可以筛区间 $\left[1,\dfrac{x}{y}\right]$，然后对于所有的的质数 $p\in \left[y+1,\sqrt{x}\right]$ 计算 $\pi\left(\dfrac{x}{p}\right)-\pi\left(p\right)+1$。为了减少上述算法的空间复杂度，我们可以考虑分块，块长为 $L$。若块长 $L=y$，则我们可以在 $O\left(\dfrac{x}{y}\log{\log{x}}\right)$ 的时间复杂度，$O\left(y\right)$ 的空间复杂度内计算 $P_2\left(x,a\right)$。
@@ -80,16 +80,18 @@ $$
 计算 $\phi\left(x,a\right)$ 的简单方法可以从这个定理推导出来：我们重复使用等式 $\left(7\right)$，知道最后得到 $\phi\left(u,0\right)$。这个过程可以看作从根节点 $\phi\left(x,a\right)$ 开始创建有根二叉树，图 $1$ 画出了这一过程。通过这种方法，我们得到如下公式：
 
 $$
-\phi\left(x,a\right)=\sum\limits_{1\le n\le x\\\\ P^+\left(n\right)\le y}{\mu\left(n\right)\left[x/n\right]}
+\phi\left(x,a\right)=\sum_{\substack{1\le n\le x\\ P^+\left(n\right)\le y}}{\mu\left(n\right)\left[x/n\right]}
 $$
 
 $$
+\begin{gathered}
 \begin{matrix}&&\phi\left(x,a\right)&&\\
 &\swarrow&&\searrow&\\
 &\phi\left(x,a-1\right)&&-\phi\left(\frac{x}{p_a},a-1\right)&\\
 \swarrow&\downarrow&&\downarrow&\searrow\\
 \phi\left(x,a-2\right)&\phi\left(\frac{x}{p_{a-1}},a-2\right)&&-\phi\left(\frac{x}{p_a},a-2\right)&\phi\left(\frac{x}{p_ap_{a-1}},a-2\right)\end{matrix}\\
 \vdots\\
+\end{gathered}
 $$
 
 上图表示计算 $\phi\left(x,a\right)$ 过程的二叉树：叶子节点权值之和就是 $\phi\left(x,a\right)$。
@@ -123,13 +125,13 @@ $$
 > 其中 $S_0$ 表示 **普通叶子** 的贡献：
 >
 > $$
-> S_0=\sum\limits_{n\le y}{\mu\left(n\right)\left[\dfrac xn\right]}\tag{8}
+> S_0=\sum_{n\le y}{\mu\left(n\right)\left[\dfrac xn\right]}\tag{8}
 > $$
 >
 > $S$ 表示 **特殊叶子** 的贡献：
 >
 > $$
-> S=\sum\limits_{n/\delta\left(n\right)\le y\le n}{\mu\left(n\right)\phi\left(\dfrac{x}{n},\pi\left(\delta\left(n\right)\right)-1 \right)}\tag{9}
+> S=\sum_{n/\delta\left(n\right)\le y\le n}{\mu\left(n\right)\phi\left(\dfrac{x}{n},\pi\left(\delta\left(n\right)\right)-1 \right)}\tag{9}
 > $$
 
 计算 $S_0$ 显然是可以在 $O\left(y\log{\log x}\right)$ 的时间复杂度内解决的，现在我们要考虑如何计算 $S$。
@@ -139,7 +141,7 @@ $$
 我们有：
 
 $$
-S=-\sum\limits_{p\le y}{\ \sum\limits_{\delta\left(m\right)>p\\\\ m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}\tag{10}
+S=-\sum_{p\le y}{\ \sum_{\substack{\delta\left(m\right)>p\\ m\le y<mp}}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}\tag{10}
 $$
 
 我们将这个等式改写为：
@@ -151,15 +153,15 @@ $$
 其中：
 
 $$
-S_1=-\sum\limits_{x^{1/3}<p\le y}{\ \sum\limits_{\delta\left(m\right)>p\\m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
+S_1=-\sum_{x^{1/3}<p\le y}{\ \sum_{\substack{\delta\left(m\right)>p\\ m\le y<mp}}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
 $$
 
 $$
-S_2=-\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{\delta\left(m\right)>p\\\\ m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
+S_2=-\sum_{x^{1/4}<p\le x^{1/3}}{\ \sum_{\substack{\delta\left(m\right)>p\\ m\le y<mp}}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
 $$
 
 $$
-S_3=-\sum\limits_{p\le x^{1/4}}{\ \sum\limits_{\delta\left(m\right)>p\\\\ m\le y<mp}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
+S_3=-\sum_{p\le x^{1/4}}{\ \sum_{\substack{\delta\left(m\right)>p\\ m\le y<mp}}{\mu\left(m\right)\phi\left(\dfrac{x}{mp},\pi\left(p\right)-1\right)}}
 $$
 
 注意到计算 $S_1,S_2$ 的和式中涉及到的 $m$ 都是质数，证明如下：
@@ -169,11 +171,11 @@ $$
 更多的，当 $mp>x^{1/2}\ge y$ 时，有 $y\le mp$。因此我们有：
 
 $$
-S_1=\sum\limits_{x^{1/3}<p\le y}{\ \sum\limits_{p<q\le y}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1\right)}}
+S_1=\sum_{x^{1/3}<p\le y}{\ \sum_{p<q\le y}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1\right)}}
 $$
 
 $$
-S_2=\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{p<q\le y}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1\right)}}
+S_2=\sum_{x^{1/4}<p\le x^{1/3}}{\ \sum_{p<q\le y}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1\right)}}
 $$
 
 ### 计算 S₁
@@ -205,7 +207,7 @@ $$
 我们有：
 
 $$
-S_2=\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{p<q\le y}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1\right)}}
+S_2=\sum_{x^{1/4}<p\le x^{1/3}}{\ \sum_{p<q\le y}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1\right)}}
 $$
 
 我们将 $S_2$ 分成 $q>\dfrac x{p^2}$ 与 $q\le \dfrac x{p^2}$ 两部分：
@@ -217,11 +219,11 @@ $$
 其中：
 
 $$
-U=\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{p<q<y\\q>x/p^2}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1 \right)}}
+U=\sum_{x^{1/4}<p\le x^{1/3}}{\ \sum_{\substack{p<q<y\\q>x/p^2}}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1 \right)}}
 $$
 
 $$
-V=\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{p<q<y\\q\le x/p^2}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1 \right)}}
+V=\sum_{x^{1/4}<p\le x^{1/3}}{\ \sum_{\substack{p<q<y\\q\le x/p^2}}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1 \right)}}
 $$
 
 ### 计算 U
@@ -229,19 +231,19 @@ $$
 由 $q>\dfrac x{p^2}$ 可得 $p^2>\dfrac xq\le \dfrac xy,p>\sqrt{\dfrac xy}$，因此：
 
 $$
-U=\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum\limits_{p<q\le y\\q>x/p^2}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1 \right)}}
+U=\sum_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum_{\substack{p<q\le y\\q>x/p^2}}{\phi\left(\dfrac{x}{pq},\pi\left(p\right)-1 \right)}}
 $$
 
 因此：
 
 $$
-U=\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\#\left\{q\mid \dfrac x{p^2}<q\le y \right\}}
+U=\sum_{\sqrt{x/y}<p\le x^{1/3}}{\#\left\{q\mid \dfrac x{p^2}<q\le y \right\}}
 $$
 
 因此：
 
 $$
-U=\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\left(\pi\left(y\right)-\pi\left(\dfrac{x}{p^2} \right) \right)}
+U=\sum_{\sqrt{x/y}<p\le x^{1/3}}{\left(\pi\left(y\right)-\pi\left(\dfrac{x}{p^2} \right) \right)}
 $$
 
 因为有 $\dfrac x{p^2}<y$，所以我们可以预处理出所有的 $\pi\left(t\right)\left(t\le y\right)$，这样我们就可以在 $O\left(y\right)$ 的时间复杂度内计算出 $U$。
@@ -263,21 +265,21 @@ $$
 其中：
 
 $$
-V_1=\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{p<q\le \min\left(x/p^2,y\right)}{\left(2-\pi\left(p\right)\right)}}
+V_1=\sum_{x^{1/4}<p\le x^{1/3}}{\ \sum_{p<q\le \min\left(x/p^2,y\right)}{\left(2-\pi\left(p\right)\right)}}
 $$
 
 $$
-V_2=\sum\limits_{x^{1/4}<p\le x^{1/3}}{\ \sum\limits_{p<q\le \min\left(x/p^2,y\right)}{\pi\left(\dfrac{x}{pq} \right)}}
+V_2=\sum_{x^{1/4}<p\le x^{1/3}}{\ \sum_{p<q\le \min\left(x/p^2,y\right)}{\pi\left(\dfrac{x}{pq} \right)}}
 $$
 
 预处理出 $\pi\left(t\right)\left(t\le y\right)$ 我们就可以在 $O\left(x^{1/3}\right)$ 的时间复杂度内计算出 $V_1$。
 
-考虑我们如何加速计算 $V_2$ 的过程。我们可以把 $q$ 的贡献拆分成若干个 $\pi\left(\dfrac{x}{pq} \right)$ 为定值的区间上，这样我就只需要计算出每一个区间的长度和从一个区间到下一个区间的 $\pi\left(\dfrac{x}{pq} \right)$ 的改变量。
+考虑我们如何加速计算 $V_2$ 的过程。我们可以把 $q$ 的贡献拆分成若干个 $\pi\left(\dfrac{x}{pq} \right)$ 为定值的区间上，这样就只需要计算出每一个区间的长度和从一个区间到下一个区间的 $\pi\left(\dfrac{x}{pq} \right)$ 的改变量。
 
 更准确的说，我们首先将 $V_2$ 分成两个部分，将 $q\le \min\left(\dfrac x{p^2},y\right)$ 这个复杂的条件简化：
 
 $$
-V_2=\sum\limits_{x^{1/4}<p\le \sqrt{x/y}}{\ \sum\limits_{p<q\le y}{\pi\left(\dfrac{x}{pq} \right)}}+\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum\limits_{p<q\le x/p^2}{\pi\left(\dfrac{x}{pq} \right)}}
+V_2=\sum_{x^{1/4}<p\le \sqrt{x/y}}{\ \sum_{p<q\le y}{\pi\left(\dfrac{x}{pq} \right)}}+\sum_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum_{p<q\le x/p^2}{\pi\left(\dfrac{x}{pq} \right)}}
 $$
 
 接着我们把这个式子改写为：
@@ -289,23 +291,23 @@ $$
 其中：
 
 $$
-W_1=\sum\limits_{x^{1/4}<p\le x/y^2}{\ \sum\limits_{p<q\le y}{\pi\left(\dfrac{x}{pq} \right)}}
+W_1=\sum_{x^{1/4}<p\le x/y^2}{\ \sum_{p<q\le y}{\pi\left(\dfrac{x}{pq} \right)}}
 $$
 
 $$
-W_2=\sum\limits_{x/y^2<p\le \sqrt{x/y}}{\ \sum\limits_{p<q\le \sqrt{x/p}}{\pi\left(\dfrac{x}{pq} \right)}}
+W_2=\sum_{x/y^2<p\le \sqrt{x/y}}{\ \sum_{p<q\le \sqrt{x/p}}{\pi\left(\dfrac{x}{pq} \right)}}
 $$
 
 $$
-W_3=\sum\limits_{x/y^2<p\le \sqrt{x/y}}{\ \sum\limits_{\sqrt{x/p}<q\le y}{\pi\left(\dfrac{x}{pq} \right)}}
+W_3=\sum_{x/y^2<p\le \sqrt{x/y}}{\ \sum_{\sqrt{x/p}<q\le y}{\pi\left(\dfrac{x}{pq} \right)}}
 $$
 
 $$
-W_4=\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum\limits_{p<q\le \sqrt{x/p}}{\pi\left(\dfrac{x}{pq} \right)}}
+W_4=\sum_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum_{p<q\le \sqrt{x/p}}{\pi\left(\dfrac{x}{pq} \right)}}
 $$
 
 $$
-W_5=\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum\limits_{\sqrt{x/p}<q\le x/p^2}{\pi\left(\dfrac{x}{pq} \right)}}
+W_5=\sum_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum_{\sqrt{x/p}<q\le x/p^2}{\pi\left(\dfrac{x}{pq} \right)}}
 $$
 
 #### 计算 W₁ 与 W₂
@@ -353,25 +355,25 @@ $$
 计算 $W_2$ 的时间复杂度为：
 
 $$
-O\left(\sum\limits_{x/y^2<p\le \sqrt{x/y}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{3/4}}{y^{1/4}\log^2 x} \right)
+O\left(\sum_{x/y^2<p\le \sqrt{x/y}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{3/4}}{y^{1/4}\log^2 x} \right)
 $$
 
 因此，计算 $W_3$ 的时间复杂度为：
 
 $$
-O\left(\sum\limits_{x/y^2<p\le \sqrt{x/y}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{3/4}}{y^{1/4}\log^2 x} \right)
+O\left(\sum_{x/y^2<p\le \sqrt{x/y}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{3/4}}{y^{1/4}\log^2 x} \right)
 $$
 
 计算 $W_4$ 的时间复杂度为：
 
 $$
-O\left(\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{2/3}}{\log^2 x} \right)
+O\left(\sum_{\sqrt{x/y}<p\le x^{1/3}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{2/3}}{\log^2 x} \right)
 $$
 
 计算 $W_5$ 的时间复杂度为：
 
 $$
-O\left(\sum\limits_{\sqrt{x/y}<p\le x^{1/3}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{2/3}}{\log^2 x} \right)
+O\left(\sum_{\sqrt{x/y}<p\le x^{1/3}}{\pi\left(\sqrt{\dfrac xp}\right)} \right)=O\left(\dfrac{x^{2/3}}{\log^2 x} \right)
 $$
 
 ### 计算 S₃ 的复杂度

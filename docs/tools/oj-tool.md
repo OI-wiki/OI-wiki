@@ -123,12 +123,14 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 使用 [zqxyz73](https://github.com/zqxyz73) 同学的 [bytetools](https://github.com/zqxyz73/bytetools) 完成演示。
 
-## CP Editor
+## ac-predictor
 
-官网：[CP Editor](https://cpeditor.org/zh)
+ac-predictor 是一个在 atcoder rating 更新前提前知道比赛 rating 变化的插件。
 
-CP Editor 是一款专为算法竞赛（Competitive Programming）设计的轻量级 IDE，支持 Linux/Windows/macOS，是自由软件，有自动获取网页上的样例，一键编译运行并测试样例，在 IDE 内提交至 Codeforces 等功能。
+这个工具是一个 tampermonkey 脚本，所以你需要首先安装 [tampermonkey](https://www.tampermonkey.net/)。
 
-源码托管在 [GitHub](https://github.com/cpeditor/cpeditor) 上，另有 [Gitee 镜像](https://gitee.com/ouuan/cpeditor)（同步自 GitHub）。
+完成后来到 [greasyfork](https://greasyfork.org/zh-CN/scripts/369954-ac-predictor)，点击安装即可。
 
-下载链接：[GitHub Releases](https://github.com/cpeditor/cpeditor/releases) 或 [Gitee 发行版](https://gitee.com/ouuan/cpeditor/releases)。
+安装完成后，比赛的排行榜界面会显示每个用户的 rating 变化预测。
+
+这个工具有一个经由 [GoodCoder666](https://github.com/GoodCoder666) 汉化的版本，点击 [这里](https://greasyfork.org/zh-CN/scripts/458528-ac-predictor-cn) 以安装。

@@ -11,7 +11,6 @@
 暴力做法自然可以枚举从小到大的每个数看是否能整除
 
 === "C++"
-
     ```cpp
     bool isPrime(a) {
       if (a < 2) return 0;
@@ -22,7 +21,6 @@
     ```
 
 === "Python"
-
     ```python
     def isPrime(a):
         if a < 2:
@@ -42,7 +40,6 @@
 由于 $1$ 肯定是约数，所以不检验它。
 
 === "C++"
-
     ```cpp
     bool isPrime(a) {
       if (a < 2) return 0;
@@ -53,7 +50,6 @@
     ```
 
 === "Python"
-
     ```python
     def isPrime(a):
         if a < 2:
@@ -88,7 +84,6 @@
 ##### 实现
 
 === "C++"
-
     ```cpp
     bool millerRabin(int n) {
       if (n < 3) return n == 2;
@@ -103,7 +98,6 @@
     ```
 
 === "Python"
-
     ```python
     def millerRabin(n):
         if n < 3:
@@ -117,19 +111,108 @@
         return True
     ```
 
-如果 $a^{n−1} \bmod n = 1$ 但 $n$ 不是素数，则 $n$ 被称为以 $a$ 为底的 **伪素数**。我们在实践中观察到，如果 $a^{n−1} \bmod n = 1$，那么 $n$ 通常是素数。但这里也有个反例：如果 $n = 341$ 且 $a = 2$，即使 $341 = 11 \cdot 31$ 是合数，有 $2^{340}\equiv 1 {\pmod {341}}$。事实上，$341$ 是最小的伪素数基数。
+如果 $a^{n−1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则 $n$ 被称为以 $a$ 为底的 **伪素数**。我们在实践中观察到，如果 $a^{n−1} \equiv 1 \pmod n$，那么 $n$ 通常是素数。但这里也有个反例：如果 $n = 341$ 且 $a = 2$，即使 $341 = 11 \cdot 31$ 是合数，有 $2^{340}\equiv 1 {\pmod {341}}$。事实上，$341$ 是最小的伪素数基数。
 
-很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。
+很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。甚至有些合数 $n$ 满足对任意满足 $n\nmid a$ 的整数 $a$ 均有 $a^{n−1} \equiv 1 \pmod n$，这样的数称为 [Carmichael 数](#carmichael-数)。
 
-##### 卡迈克尔数
+##### Carmichael 函数
 
-上面的做法中随机地选择 $a$，很大程度地降低了犯错的概率。但是仍有一类数，上面的做法并不能准确地判断。
+对正整数 $n$，定义 Carmichael 函数（卡迈克尔函数）为对任意满足 $(a,n)=1$ 的整数 $a$，使
 
-对于合数 $n$，如果对于所有正整数 $a$，$a$ 和 $n$ 互素，都有同余式 $a^{n-1} \equiv 1 \pmod n$ 成立，则合数 $n$ 为 **卡迈克尔数**（Carmichael Number），又称为 **费马伪素数**。
+$$
+a^m\equiv 1\pmod n
+$$
 
-比如，$561 = 3 \times 11 \times 17$ 就是一个卡迈克尔数。
+恒成立的最小正整数 $m$.
 
-而且我们知道，若 $n$ 为卡迈克尔数，则 $m=2^{n}-1$ 也是一个卡迈克尔数，从而卡迈克尔数的个数是无穷的。[（OEIS:A006931）](https://oeis.org/A006931)
+即：
+
+$$
+\lambda(n)=\max\{\delta_n(a):(a,n)=1\}
+$$
+
+Carmichael 函数有如下性质：
+
+1.  （**Carmichael 定理**）对任意素数 $p$ 和任意正整数 $r$，
+
+    $$
+    \lambda\left(p^r\right)=\begin{cases}
+        \frac{1}{2}\varphi\left(p^r\right), & p=2 \land r\geq 3, \\
+        \varphi\left(p^r\right),            & \text{otherwise}.
+    \end{cases}
+    $$
+
+    ??? note "证明"
+        该定理等价于：
+        
+        若模 $n=p^r$ 有 [原根](./primitive-root.md)，则 $\lambda(n)=\varphi(n)$，否则 $\lambda(n)=\dfrac{1}{2}\varphi(n)$.
+        
+        当模 $p^r$ 有原根时，由 [原根存在定理](./primitive-root.md#原根存在定理) 可知命题成立。否则 $p=2$ 且 $r\geq 3$，我们有：
+        
+        $$
+        \lambda\left(2^r\right)\mid 2^{r-2}
+        $$
+        
+        又由 $5^{2^{r-3}}\equiv 1+2^{r-1}\pmod{2^{r-2}}$ 知 $\lambda\left(2^r\right)>2^{r-3}$，因此
+        
+        $$
+        \lambda\left(p^r\right)=2^{r-2}=\frac{1}{2}\varphi\left(p^r\right)
+        $$
+
+    进而有：
+
+    1.  对任意正整数 $n$，有 $\lambda(n)\mid \varphi(n)$
+
+    2.  对任意正整数 $a$，$b$，有 $a\mid b\implies \lambda(a)\mid \lambda(b)$
+
+2.  令 $n$ 的唯一分解式为 $n=\prod_{i=1}^k p_i^{r_i}$，则
+
+    $$
+    \lambda(n)=\left[\lambda\left(p_1^{r_1}\right),\lambda\left(p_2^{r_2}\right),\dots,\lambda\left(p_k^{r_k}\right)\right]
+    $$
+
+    由 [中国剩余定理](./crt.md) 和 Carmichael 定理易证。
+
+    进而有：
+
+    1.  对任意正整数 $a$，$b$，有 $\lambda([a,b])=[\lambda(a),\lambda(b)]$
+
+##### Carmichael 数
+
+对于合数 $n$，如果对于所有正整数 $a$，$a$ 和 $n$ 互素，都有同余式 $a^{n-1} \equiv 1 \pmod n$ 成立，则合数 $n$ 为 **Carmichael 数**（卡迈克尔数，[OEIS:A002997](https://oeis.org/A002997)）。
+
+比如 $561 = 3 \times 11 \times 17$ 就是一个 Carmichael 数，同时也是最小的 Carmichael 数。
+
+我们可以用如下方法判断合数 $n$ 是否为 Carmichael 数：
+
+???+ note "Korselt 判别法[^korselt1899probleme]"
+    合数 $n$ 是 Carmichael 数当且仅当 $n$ 无平方因子且对 $n$ 的任意质因子 $p$ 均有 $p-1 \mid n-1$.
+
+上述判别法可简化为：
+
+???+ note
+    合数 $n$ 是 Carmichael 数当且仅当 $\lambda(n)\mid n-1$，其中 $\lambda(n)$ 为 [Carmichael 函数](#carmichael-函数)。
+
+Carmichael 数有如下性质：
+
+1.  Carmichael 数无平方因子且至少有 $3$ 个不同的质因子。
+2.  设 $C(n)$ 为小于 $n$ 的 Carmichael 数个数，则：
+    1.  （Alford, Granville, Pomerance. 1994[^alford1994infinitely]）$C(n)>n^{2/7}$
+
+        由此可知 Carmichael 数有无限多个。
+
+    2.  （Erdős. 1956[^erdos1956pseudoprimes]）$C(n)<n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$，其中 $c$ 为常数。
+
+        由此可知 Carmichael 数的分布十分稀疏。实际上 $C(10^9)=646$，$C(10^{18})=1~401~644$[^pinchcarmichael].
+
+???+ warning "注意"
+    「若 $n$ 为 Carmichael 数，则 $2^n-1$ 也为 Carmichael 数」是错误的。
+    
+    如 $561=3 \cdot 11 \cdot 17$ 为 Carmichael 数，考虑 $2^{561}-1$。
+    
+    注意到 $23\cdot 89=2^{11}-1\mid 2^{561}-1$，由 Korselt 判别法知，若 $2^{561}-1$ 是 Carmichael 数，则 $22$ 和 $88$ 均为 $2^{561}-2$ 的因子。
+    
+    而 $v_2\left(2^{561}-2\right)=1<v_2(88)=3$，故 $88\nmid 2^{561}-2$，因此 $2^{561}-1$ 不是 Carmichael 数。
 
 #### Miller–Rabin 素性测试
 
@@ -159,7 +242,6 @@
 这样得到了较正确的 Miller Rabin：（来自 fjzzq2002）
 
 === "C++"
-
     ```cpp
     bool millerRabin(int n) {
       if (n < 3 || n % 2 == 0) return n == 2;
@@ -172,7 +254,7 @@
         if (v == 1) continue;
         int s;
         for (s = 0; s < t; ++s) {
-          if (v == n - 1) break; // 得到平凡平方根 n-1，通过此轮测试
+          if (v == n - 1) break;  // 得到平凡平方根 n-1，通过此轮测试
           v = (long long)v * v % n;
         }
         // 如果找到了非平凡平方根，则会由于无法提前 break; 而运行到 s == t
@@ -184,7 +266,6 @@
     ```
 
 === "Python"
-
     ```python
     def millerRabin(n):
         if n < 3 or n % 2 == 0:
@@ -227,23 +308,24 @@
 
 ## 反素数
 
+### 引入
+
+顾名思义，素数就是因子只有两个的数，那么反素数，就是因子最多的数（并且因子个数相同的时候值最小），所以反素数是相对于一个集合来说的。
+
+一种符合直觉的反素数定义是：在一个正整数集合中，因子最多并且值最小的数，就是反素数。
+
 ### 定义
 
 如果某个正整数 $n$ 满足如下条件，则称为是 **反素数**：任何小于 $n$ 的正数的约数个数都小于 $n$ 的约数个数。
 
-注：注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp)，它是用来表示从后向前写读是素数的数。
-
-### 引入
-
-其实顾名思义，素数就是因子只有两个的数，那么反素数，就是因子最多的数（并且因子个数相同的时候值最小），所以反素数是相对于一个集合来说的。
-
-我所理解的反素数定义就是，在一个集合中，因素最多并且值最小的数，就是反素数。
+???+ warning "注意"
+    注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp)，它表示的是逐位反转后是不同素数的素数（如 149 和 941 均为 emirp，101 不是 emirp）。
 
 ### 过程
 
 那么，如何来求解反素数呢？
 
-首先，既然要求因子数，我首先想到的就是素因子分解。把 $n$ 分解成 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 的形式，其中 $p$ 是素数，$k$ 为他的指数。这样的话总因子个数就是 $(k_1+1) \times (k_2+1) \times (k_3+1) \cdots \times (k_n+1)$。
+首先，既然要求因子数，首先要做的就是素因子分解。把 $n$ 分解成 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 的形式，其中 $p$ 是素数，$k$ 为他的指数。这样的话总因子个数就是 $(k_1+1) \times (k_2+1) \times (k_3+1) \cdots \times (k_n+1)$。
 
 但是显然质因子分解的复杂度是很高的，并且前一个数的结果不能被后面利用。所以要换个方法。
 
@@ -267,7 +349,7 @@
 
 2.  我们要枚举到多少次幂呢？
 
-    我们考虑一个极端情况，当我们最小的素数的某个幂次已经比所给的 $n$（的最大值）大的话，那么展开成其他的形式，最大幂次一定小于这个幂次。unsigned long long 的最大值是 $2^{64} - 1$，所以我这边习惯展开成 $2^{64} - 1$。
+    我们考虑一个极端情况，当我们最小的素数的某个幂次已经比所给的 $n$（的最大值）大的话，那么展开成其他的形式，最大幂次一定小于这个幂次。`unsigned long long` 的最大值是 $2^{64} - 1$，所以可以枚举到 $2^{64} - 1$。
 
 细节有了，那么我们具体如何具体实现呢？
 
@@ -304,7 +386,7 @@
     大家都知道我们使用十进制记数法，即记数的基数是 $10$。历史学家说这是因为人有十个手指，也许他们是对的。然而，这通常不是很方便，十只有四个除数——$1$、$2$、$5$ 和 $10$。因此，像 $\frac{1}{3}$、$\frac{1}{4}$ 或 $\frac{1}{6}$ 这样的分数不便于用十进制表示。从这个意义上说，以 $12$、$24$ 甚至 $60$ 为底会方便得多。主要原因是这些数字的除数要大得多——分别是 $6$、$8$ 和 $12$。请回答：除数最多的不超过 $n$ 的数是多少？
 
 ??? note "解题思路"
-    思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，我一开始用了 int，应该是溢出了，在循环里可能就出不来了就超时了。上代码，0ms 过。注释就没必要写了上面写的很清楚了。
+    思路同上，只不过要改改 dfs 的返回条件。注意这样的题目的数据范围，32 位整数可能溢出。
 
 ??? note "参考代码"
     ```cpp
@@ -321,3 +403,16 @@
 6.  [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
 7.  Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
 8.  [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#)
+9.  [Fermat pseudoprime - Wikipedia](https://en.wikipedia.org/wiki/Fermat_pseudoprime)
+10. [Carmichael number - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_number)
+11. [Carmichael function - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_function)
+12. [Carmichael Number -- from Wolfram MathWorld](https://mathworld.wolfram.com/CarmichaelNumber.html)
+13. [Carmichael's Lambda Function | Brilliant Math & Science Wiki](https://brilliant.org/wiki/carmichaels-lambda-function/)
+
+[^korselt1899probleme]: Korselt, A. R. (1899). "Problème chinois".*L'Intermédiaire des Mathématiciens*.**6**: 142–143.
+
+[^alford1994infinitely]: W. R. Alford; Andrew Granville; Carl Pomerance (1994). "There are Infinitely Many Carmichael Numbers".*Annals of Mathematics*. 140 (3): 703–722.
+
+[^erdos1956pseudoprimes]: Erdős, P. (1956). "On pseudoprimes and Carmichael numbers".*Publ. Math. Debrecen*. 4 (3–4): 201–206.
+
+[^pinchcarmichael]: PINCH, Richard GE. The Carmichael numbers up to ${10}^{20}$.

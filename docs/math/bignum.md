@@ -27,7 +27,7 @@
 
 在平常的实现中，高精度数字利用字符串表示，每一个字符表示数字的一个十进制位。因此可以说，高精度数值计算实际上是一种特别的字符串处理。
 
-读入字符串时，数字最高位在字符串首（下标小的位置）。但是习惯上，下标最小的位置存放的是数字的 **最低位**，即存储反转的字符串。这么做的原因在于，数字的长度可能发生变化，但我们希望同样权值位始终保持对齐（例如，希望所有的个位都在下标 `[0]`，所有的十位都在下标 `[1]`……）；同时，加、减、乘的运算一般都从个位开始进行（回想小学的竖式运算～），这都给了「反转存储」以充分的理由。
+读入字符串时，数字最高位在字符串首（下标小的位置）。但是习惯上，下标最小的位置存放的是数字的 **最低位**，即存储反转的字符串。这么做的原因在于，数字的长度可能发生变化，但我们希望同样权值位始终保持对齐（例如，希望所有的个位都在下标 `[0]`，所有的十位都在下标 `[1]`……）；同时，加、减、乘的运算一般都从个位开始进行（回想小学的竖式运算），这都给了「反转存储」以充分的理由。
 
 此后我们将一直沿用这一约定。定义一个常数 `LEN = 1004` 表示程序所容纳的最大长度。
 
@@ -349,7 +349,7 @@ void mul(int a[], int b[], int c[]) {
 
 ### 除法
 
-高精度除法，也就是竖～～～～竖式长除法啦！
+高精度除法的一种实现方式就是竖式长除法。
 
 ![](./images/division.png)
 
@@ -787,10 +787,6 @@ $$
 
 普通的多项式乘法时间复杂度仍是 $O(n^2)$，但可以用多项式一节中的 [快速傅里叶变换](poly/fft.md)、[快速数论变换](poly/ntt.md) 等算法优化，优化后的时间复杂度是 $O(n\log n)$。
 
-### Reference
-
-<https://en.wikipedia.org/wiki/Karatsuba_algorithm>
-
 ## 封装类
 
 [这里](https://paste.ubuntu.com/p/7VKYzpC7dn/) 有一个封装好的高精度整数类，以及 [这里](https://github.com/Baobaobear/MiniBigInteger/blob/main/bigint_tiny.h) 支持动态长度及四则运算的超迷你实现类。
@@ -1022,3 +1018,7 @@ $$
 -   [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
 -   [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
 -   [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D)
+
+## 参考资料与链接
+
+1.  [Karatsuba algorithm - Wikipedia](https://en.wikipedia.org/wiki/Karatsuba_algorithm)

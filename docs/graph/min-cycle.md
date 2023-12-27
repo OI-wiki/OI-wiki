@@ -52,10 +52,9 @@
 下面给出 C++ 的参考实现：
 
 === "C++"
-
     ```cpp
     int val[maxn + 1][maxn + 1];  // 原图的邻接矩阵
-
+    
     int floyd(const int &n) {
       static int dis[maxn + 1][maxn + 1];  // 最短路矩阵
       for (int i = 1; i <= n; ++i)
@@ -75,10 +74,9 @@
     ```
 
 === "Python"
-
     ```python
     val = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)] # 原图的邻接矩阵
-
+    
     def floyd(n):
         dis = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)] # 最短路矩阵
         for i in range(1, n + 1):

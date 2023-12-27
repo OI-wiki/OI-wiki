@@ -54,15 +54,14 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
 参考代码：（效率低下的版本，实际使用时一般不会这么写）
 
 === "C++"
-
     ```cpp
     using std::string;
-
+    
     const int M = 1e9 + 7;
     const int B = 233;
-
+    
     typedef long long ll;
-
+    
     int get_hash(const string& s) {
       int res = 0;
       for (int i = 0; i < s.size(); ++i) {
@@ -70,24 +69,23 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
       }
       return res;
     }
-
+    
     bool cmp(const string& s, const string& t) {
       return get_hash(s) == get_hash(t);
     }
     ```
 
 === "Python"
-
     ```python
     M = int(1e9 + 7)
     B = 233
-
+    
     def get_hash(s):
         res = 0
         for char in s:
             res = (res * B + ord(char)) % M
         return res
-
+    
     def cmp(s, t):
         return get_hash(s) == get_hash(t)
     ```
@@ -142,7 +140,7 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
 
 很显然如果存在长度为 $k$ 的最长公共子字符串，那么 $k-1$ 的公共子字符串也必定存在。因此我们可以二分最长公共子字符串的长度。假设现在的长度为 $k$，`check(k)` 的逻辑为我们将所有所有字符串的长度为 $k$ 的子串分别进行哈希，将哈希值放入 $n$ 个哈希表中存储。之后求交集即可。
 
-时间复杂度为 $O(n\log_2\frac{n}{m})$。
+时间复杂度为 $O(m+n\log n)$。
 
 ### 确定字符串中不同子字符串的数量
 

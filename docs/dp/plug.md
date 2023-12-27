@@ -813,10 +813,4 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 一条路径
 
-「一条路径」是 [哈密顿路径（Hamiltonian Path）](https://en.wikipedia.org/wiki/Hamiltonian_path) 问题在 [格点图（Grid Graph）](https://mathworld.wolfram.com/GridGraph.html) 中的一种特殊情况。哈密顿路径的判定性问题是 [NP-complete](https://en.wikipedia.org/wiki/NP-completeness) 家族中的重要成员。Niconico 上有一个『フカシギの数え方』おねえさんといっしょ！みんなで数えてみよう（和大姐姐一起学习计算系列）的科普向视频，就使用这个问题作为例子，来说明 NPC 问题的计算时间如何随着问题的规模的线性增长而指数增长。
-
-「一笔画」问题也是解谜游戏的常客，很多「一笔画」谜题，事实上都是格点图上的哈密顿路径，例如《崩坏：星穹铁路》、《见证者》。在动画片《邋遢大王》中也出现过一笔画问题的谜题。
-
-![sm18847458](./images/sm18847458.png)
-
--   [【动画】从方格这头走向那头有多少种走法呢～【结尾迷之感动】](https://www.bilibili.com/video/BV1Cx411D74e)|[Youtube](https://www.youtube.com/watch?v=Q4gTV4r0zRs)
+「一条路径」是 [哈密顿路径（Hamiltonian Path）](https://en.wikipedia.org/wiki/Hamiltonian_path) 问题在 [格点图（Grid Graph）](https://mathworld.wolfram.com/GridGraph.html) 中的一种特殊情况。哈密顿路径的判定性问题是 [NP-complete](https://en.wikipedia.org/wiki/NP-completeness) 家族中的重要成员。

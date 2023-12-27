@@ -20,39 +20,15 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 
 ## 环境搭建
 
-### Windows
+参见 [Python 3](../tools/compiler.md#python-3)。或者：
 
-访问 <https://www.python.org/downloads/> 下载自己需要的版本并安装。
-为了方便，请务必勾选复选框 `Add Python 3.x to PATH` 以将 Python 加入环境变量。
+-   Windows：也可以在 Microsoft Store 中免费而快捷地获取 Python。
+-   macOS/Linux：通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
 
-如下图，在 Python 3.7.4 版本的安装界面中，应勾选最后一项复选框。
+    ???+ warning "注意"
+        在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref1]
 
-![](./images/python1.png)
-
-安装完成后，可以在开始菜单找到安装好的 Python。
-
-![](./images/python2.png)
-
-此外，可以在命令提示符中运行 Python。
-
-正常启动 Python 解释器后，它会先显示欢迎信息等内容，之后就会出现提示符 `>>>`，大致如下所示：
-
-```pycon
-Python 3.10.1 (tags/v3.10.1:2cd268a, Dec  6 2021, 19:10:37) [MSC v.1929 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license" for more information.
->>>
-```
-
-此外，也可以在 Microsoft Store 中免费而快捷地获取 Python。
-
-### macOS/Linux
-
-通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
-
-???+ warning "注意"
-    在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref1]
-
-如果发行版自带 Python 版本过旧，可自行下载编译最新版本的 Python。此外，也可以通过 venv、conda、Nix 等工具管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题。
+此外，也可以通过 venv、conda、Nix 等工具管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题。
 
 作为一种解释型语言，Python 的执行方式和 C++ 有所不同，这种差异在使用 IDE 编程时往往得不到体现，因此这里需要强调一下运行程序的不同方式。
 
@@ -68,7 +44,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 Python 的生命力很大程度上来自于丰富的第三方库，编写一些实用程序时「调库」是常规操作，`pip` 是首选的安装第三方库的程序。自 Python 3.4 版本起，它被默认包含在 Python 二进制安装程序中。
 
-`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/)、[PyPI 镜像源使用帮助—中国科学技术大学镜像站](http://mirrors.ustc.edu.cn/help/pypi.html) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
+`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
 
 ## 基本语法
 
@@ -538,7 +514,7 @@ print(u, v, w)
 
 #### 选择结构
 
-和 C/C++ 大同小异，一些形式上的差别都在下面的示例中有所展示，此外还需注意条件表达式中不允许使用赋值运算符（Python 3.8 以上可用 [`:=`](https://www.python.org/dev/peps/pep-0572/)），以及 [没有 swicth 语句](https://docs.python.org/zh-cn/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python)。
+和 C/C++ 大同小异，一些形式上的差别都在下面的示例中有所展示，此外还需注意条件表达式中不允许使用赋值运算符（Python 3.8 以上可用 [`:=`](https://www.python.org/dev/peps/pep-0572/)），以及 [没有 switch 语句](https://docs.python.org/zh-cn/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python)。
 
 ```python
 # 条件表达式两侧无括号
@@ -779,7 +755,6 @@ def fib(n):
 ### 声明常量
 
 === "C++"
-
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
@@ -787,13 +762,12 @@ def fib(n):
     ```
 
 === "Python"
-
     ```python
     try: # 引入优先队列模块
         import Queue as pq #python version < 3.0
     except ImportError:
         import queue as pq #python3.*
-
+    
     N = int(1e5 + 5)
     M = int(2e5 + 5)
     INF = 0x3f3f3f3f
@@ -802,38 +776,36 @@ def fib(n):
 ### 声明前向星结构体和其它变量
 
 === "C++"
-
     ```cpp
     struct qxx {
       int nex, t, v;
     };
-
+    
     qxx e[M];
     int h[N], cnt;
-
+    
     void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
-
+    
     typedef pair<int, int> pii;
     priority_queue<pii, vector<pii>, greater<pii>> q;
     int dist[N];
     ```
 
 === "Python"
-
     ```python
     class qxx:  # 前向星类（结构体）
         def __init__(self):
             self.nex = 0
             self.t = 0
             self.v = 0
-
+    
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
-
+    
     dist = [INF for i in range(N)]
     q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
-
+    
     def add_path(f, t, v):  # 在前向星中加边
         # 如果要修改全局变量，要使用 global 来声明
         global cnt, e, h
@@ -849,7 +821,6 @@ def fib(n):
 ### Dijkstra 算法
 
 === "C++"
-
     ```cpp
     void dijkstra(int s) {
       memset(dist, 0x3f, sizeof(dist));
@@ -869,15 +840,14 @@ def fib(n):
     ```
 
 === "Python"
-
     ```python
     def nextedgeid(u):  # 生成器，可以用在 for 循环里
         i = h[u]
         while i:
             yield i
             i = e[i].nex
-
-
+    
+    
     def dijkstra(s):
         dist[s] = 0
         q.put((0, s))
@@ -897,10 +867,9 @@ def fib(n):
 ### 主函数
 
 === "C++"
-
     ```cpp
     int n, m, s;
-
+    
     int main() {
       scanf("%d%d%d", &n, &m, &s);
       for (int i = 1; i <= m; i++) {
@@ -915,7 +884,6 @@ def fib(n):
     ```
 
 === "Python"
-
     ```python
     if __name__ == '__main__':
         # 一行读入多个整数。注意它会把整行都读进来
@@ -923,37 +891,36 @@ def fib(n):
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-
+    
         dijkstra(s)
-
+    
         for i in range(1, n + 1):
             print(dist[i], end = ' ')
-
+    
         print()
     ```
 
 ### 完整代码
 
 === "C++"
-
     ```cpp
     #include <bits/stdc++.h>
     using namespace std;
     const int N = 1e5 + 5, M = 2e5 + 5;
-
+    
     struct qxx {
       int nex, t, v;
     };
-
+    
     qxx e[M];
     int h[N], cnt;
-
+    
     void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
-
+    
     typedef pair<int, int> pii;
     priority_queue<pii, vector<pii>, greater<pii>> q;
     int dist[N];
-
+    
     void dijkstra(int s) {
       memset(dist, 0x3f, sizeof(dist));
       dist[s] = 0, q.push(make_pair(0, s));
@@ -969,9 +936,9 @@ def fib(n):
         }
       }
     }
-
+    
     int n, m, s;
-
+    
     int main() {
       scanf("%d%d%d", &n, &m, &s);
       for (int i = 1; i <= m; i++) {
@@ -986,30 +953,29 @@ def fib(n):
     ```
 
 === "Python"
-
     ```python
     try:  # 引入优先队列模块
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
-
+    
     N = int(1e5+5)
     M = int(2e5+5)
     INF = 0x3f3f3f3f
-
+    
     class qxx:  # 前向星类（结构体）
         def __init__(self):
             self.nex = 0
             self.t = 0
             self.v = 0
-
+    
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
-
+    
     dist = [INF for i in range(N)]
     q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
-
+    
     def add_path(f, t, v):  # 在前向星中加边
         # 如果要修改全局变量，要使用 global 来声名
         global cnt, e, h
@@ -1020,13 +986,13 @@ def fib(n):
         e[cnt].t = t
         e[cnt].v = v
         h[f] = cnt
-
+    
     def nextedgeid(u):  # 生成器，可以用在 for 循环里
         i = h[u]
         while i:
             yield i
             i = e[i].nex
-
+    
     def dijkstra(s):
         dist[s] = 0
         q.put((0, s))
@@ -1041,8 +1007,8 @@ def fib(n):
                     continue
                 dist[v] = dist[u[1]]+w
                 q.put((dist[v], v))
-
-
+    
+    
     # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
     if __name__ == '__main__':
         # 一行读入多个整数。注意它会把整行都读进来
@@ -1050,14 +1016,14 @@ def fib(n):
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-
+    
         dijkstra(s)
-
+    
         for i in range(1, n + 1):
             # 两种输出语法都是可以用的
             print("{}".format(dist[i]), end=' ')
             # print("%d" % dist[i],end=' ')
-
+    
         print()  # 结尾换行
     ```
 

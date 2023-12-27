@@ -58,10 +58,11 @@
     
     void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区间进行修改
       int &v = s[root], mid = (cl + cr) >> 1;
-      if (cmp(calc(u, mid), calc(v, mid)) == 1) swap(u, v);
+      int bmid = cmp(calc(u, mid), calc(v, mid));
+      if (bmid == 1 || (!bmid && u < v))  // 在此题中记得判线段编号
+        swap(u, v);
       int bl = cmp(calc(u, cl), calc(v, cl)), br = cmp(calc(u, cr), calc(v, cr));
-      if (bl == 1 || (!bl && u < v))  // 在此题中记得判线段编号
-        upd(root << 1, cl, mid, u);
+      if (bl == 1 || (!bl && u < v)) upd(root << 1, cl, mid, u);
       if (br == 1 || (!br && u < v)) upd(root << 1 | 1, mid + 1, cr, u);
       // 上面两个 if 的条件最多只有一个成立，这保证了李超树的时间复杂度
     }

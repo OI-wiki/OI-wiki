@@ -10,9 +10,7 @@ Splay 树由 Daniel Sleator 和 Robert Tarjan 于 1985 年发明。
 
 ### 二叉查找树的性质
 
-首先肯定是一棵二叉树！
-
-能够在这棵树上查找某个值的性质：左子树任意节点的值 $<$ 根节点的值 $<$ 右子树任意节点的值。
+Splay 树是一棵二叉搜索树，查找某个值时满足性质：左子树任意节点的值 $<$ 根节点的值 $<$ 右子树任意节点的值。
 
 ### 节点维护信息
 
@@ -547,6 +545,196 @@ int main() {
 }
 ```
 
+## 序列操作
+
+Splay 也可以运用在序列上，用于维护区间信息。与线段树对比，Splay 常数较大，但是支持更复杂的序列操作，如区间翻转等。
+
+将序列建成的 Splay 有如下性质：
+
+-   Splay 的中序遍历相当于原序列从左到右的遍历。
+
+-   Splay 上的一个节点代表原序列的一个元素；Splay 上的一颗子树，代表原序列的一段区间。
+
+因为有 splay 操作，可以快速提取出代表某个区间的 Splay 子树。
+
+在操作之前，你需要先把这颗 Splay 建出来。根据 Splay 的特性，直接建出一颗只有右儿子的链即可，时间复杂度仍然是正确的。
+
+### 一些进阶操作
+
+Splay 的一颗子树代表原序列的一段区间。现在想找到序列区间 $[L, R]$ 代表的子树，只需要将代表 $a_{L - 1}$ 的节点 Splay 到根，再将代表 $a_{R + 1}$ 的节点 splay 到根的右儿子即可。根据「Splay 的中序遍历相当于原序列从左到右的遍历」，对应 $a_{R + 1}$ 的节点的左子树中序遍历为序列 $a[L, R]$，故其为区间 $[L, R]$ 代表的子树。
+
+一般会建立左右两个哨兵节点 $0$ 和 $n + 1$，放在数列的最开头和最结尾，防止 $L - 1$ 或 $R + 1$ 超出数列范围。
+
+所以要将 splay 函数进行一些修改，能够实现将节点旋转到目标点的儿子。如果目标点 `goal` 为 $0$ 说明旋转到根节点。
+
+#### 实现
+
+```cpp
+void splay(int x, int goal = 0) {
+  if (goal == 0) rt = x;
+  while (fa[x] != goal) {
+    int f = fa[x], g = fa[fa[x]];
+    if (g != goal) {
+      if (get(f) == get(x))
+        rotate(x);
+      else
+        rotate(f);
+    }
+    rotate(x);
+  }
+}
+```
+
+### 区间翻转
+
+Splay 常见的应用之一，模板题目是 [文艺平衡树](https://loj.ac/problem/105)。
+
+#### 过程
+
+先将询问区间的子树提取出来。因为是区间翻转，我们需要将这颗子树的中序遍历顺序翻转。
+
+一个暴力做法是每次将根节点的左右儿子交换，然后递归左右子树做同样的操作，这样复杂度为 $O(n)$，不可承受。可以考虑使用懒标记，先给根打上「翻转标记」并交换其左右儿子。当递归到一个带懒标记的点时，将懒标记下传即可。
+
+#### 实现
+
+```cpp
+void tagrev(int x) {
+  swap(ch[x][0], ch[x][1]);
+  lazy[x] ^= 1;
+}
+
+void pushdown(int x) {
+  if (lazy[x]) {
+    tagrev(ch[x][0]);
+    tagrev(ch[x][1]);
+    lazy[x] = 0;
+  }
+}
+
+void reverse(int l, int r) {
+  int L = kth(l - 1), R = kth(r + 1);
+  splay(L), splay(R, L);
+  int tmp = ch[ch[L][1]][0];
+  tagrev(tmp);
+}
+```
+
+## 实现
+
+注意 $\operatorname{kth}$ 中要下传翻转标记。
+
+```cpp
+#include <algorithm>
+#include <cstdio>
+const int N = 100005;
+
+int n, m, l, r, a[N];
+
+int rt, tot, fa[N], ch[N][2], val[N], sz[N], lazy[N];
+
+struct Splay {
+  void maintain(int x) { sz[x] = sz[ch[x][0]] + sz[ch[x][1]] + 1; }
+
+  bool get(int x) { return x == ch[fa[x]][1]; }
+
+  void clear(int x) {
+    ch[x][0] = ch[x][1] = fa[x] = val[x] = sz[x] = lazy[x] = 0;
+  }
+
+  void rotate(int x) {
+    int y = fa[x], z = fa[y], chk = get(x);
+    ch[y][chk] = ch[x][chk ^ 1];
+    if (ch[x][chk ^ 1]) fa[ch[x][chk ^ 1]] = y;
+    ch[x][chk ^ 1] = y;
+    fa[y] = x;
+    fa[x] = z;
+    if (z) ch[z][y == ch[z][1]] = x;
+    maintain(y);
+    maintain(x);
+  }
+
+  void splay(int x, int goal = 0) {
+    if (goal == 0) rt = x;
+    while (fa[x] != goal) {
+      int f = fa[x], g = fa[fa[x]];
+      if (g != goal) {
+        if (get(f) == get(x))
+          rotate(x);
+        else
+          rotate(f);
+      }
+      rotate(x);
+    }
+  }
+
+  void tagrev(int x) {
+    std::swap(ch[x][0], ch[x][1]);
+    lazy[x] ^= 1;
+  }
+
+  void pushdown(int x) {
+    if (lazy[x]) {
+      tagrev(ch[x][0]);
+      tagrev(ch[x][1]);
+      lazy[x] = 0;
+    }
+  }
+
+  int build(int l, int r, int f) {
+    if (l > r) return 0;
+    int mid = (l + r) / 2, cur = ++tot;
+    val[cur] = a[mid], fa[cur] = f;
+    ch[cur][0] = build(l, mid - 1, cur);
+    ch[cur][1] = build(mid + 1, r, cur);
+    maintain(cur);
+    return cur;
+  }
+
+  int kth(int k) {
+    int cur = rt;
+    while (1) {
+      pushdown(cur);
+      if (ch[cur][0] && k <= sz[ch[cur][0]]) {
+        cur = ch[cur][0];
+      } else {
+        k -= 1 + sz[ch[cur][0]];
+        if (k <= 0) {
+          splay(cur);
+          return cur;
+        }
+        cur = ch[cur][1];
+      }
+    }
+  }
+
+  void reverse(int l, int r) {
+    int L = kth(l), R = kth(r + 2);
+    splay(L), splay(R, L);
+    int tmp = ch[ch[L][1]][0];
+    tagrev(tmp);
+  }
+
+  void print(int x) {
+    pushdown(x);
+    if (ch[x][0]) print(ch[x][0]);
+    if (val[x] >= 1 && val[x] <= n) printf("%d ", val[x]);
+    if (ch[x][1]) print(ch[x][1]);
+  }
+} tree;
+
+int main() {
+  scanf("%d%d", &n, &m);
+  for (int i = 0; i <= n + 1; i++) a[i] = i;
+  rt = tree.build(0, n + 1, 0);
+  while (m--) {
+    scanf("%d%d", &l, &r);
+    tree.reverse(l, r);
+  }
+  tree.print(rt);
+  return 0;
+}
+```
+
 ## 例题
 
 以下题目都是裸的 Splay 维护二叉查找树。
@@ -562,6 +750,7 @@ int main() {
 -   [二逼平衡树（树套树）](https://loj.ac/problem/106)
 -   [bzoj 2827 千山鸟飞绝](https://hydro.ac/d/bzoj/p/2827)
 -   [「Lydsy1706 月赛」K 小值查询](https://hydro.ac/d/bzoj/p/4923)
+-   [POJ3580 SuperMemo](http://poj.org/problem?id=3580)
 
 ## 参考资料与注释
 

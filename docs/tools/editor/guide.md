@@ -1,10 +1,19 @@
 GUIDE（GAIT Universal IDE）是由北航 GAIT 研究组开发的、专门为 NOI 选手设计的、支持 C/C++/Pascal 三种程序设计语言的小型集成开发环境。
 
-自 2021 年 9 月 1 日起启用的 NOI Linux 2.0 不再包含 GUIDE。
+???+ note
+    自 2021 年 9 月 1 日起启用的 NOI Linux 2.0 不再包含 GUIDE。[^ref1]
 
 ## 安装
 
-### 需要的动态库文件及包名
+### Windows
+
+参见 <https://www.noi.cn/xw/2009-03-23/714714.shtml>。
+
+### Linux
+
+参见 <https://www.noi.cn/xw/2009-03-23/714714.shtml> 或按照如下步骤安装。
+
+#### 需要的动态库文件及包名
 
 | 动态库                 | Arch 包名          | Debian 包名      | Fedora 包名  | openSUSE x86 包名   | openSUSE x86\_64 包名     |
 | ------------------- | ---------------- | -------------- | ---------- | ----------------- | ----------------------- |
@@ -29,7 +38,7 @@ GUIDE（GAIT Universal IDE）是由北航 GAIT 研究组开发的、专门为 NO
 | libm.so.6           | lib32-glibc      | libc6          | glibc      | glibc             | glibc-32bit             |
 | libc.so.6           | lib32-glibc      | libc6          | glibc      | glibc             | glibc-32bit             |
 
-### 在 Debian 或 Ubuntu 安装
+#### 在 Debian 或 Ubuntu 安装
 
 ```bash
 sudo apt install -y libpng12 libsm6 libice6 libxi6 libxrender1 libxrandr libfreetype6 libfontconfig1 libxext6 libx11-6 zlib1g libglib2.0-0 libglib2.0-0 libstdc++6 lib32gcc1 libc6
@@ -41,7 +50,7 @@ sudo apt install -y checkinstall
 sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y
 ```
 
-### 在 openSUSE 安装
+#### 在 openSUSE 安装
 
 按照 [openSUSE/opi](https://github.com/openSUSE/opi#install) 给出的方式安装 opi。
 
@@ -83,3 +92,5 @@ sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y -rpmi
 GUIDE 自带的调试功能存在很多 bug（如程序中途发生崩溃等），因此不推荐直接使用 GUIDE 的调试功能。
 
 建议直接在 [终端](../cmd.md) 下使用 gdb 来进行调试。
+
+[^ref1]: [NOI Linux 2.0 发布，将于 9 月 1 日起正式启用！](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)

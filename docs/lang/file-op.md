@@ -93,8 +93,6 @@ int main(void) {
 }
 ```
 
-参考书目：信息学奥赛一本通
-
 ## `fopen` 函数（选读）
 
 函数大致与 `freopen` 相同，函数将打开指定文件并返回打开文件的指针
@@ -123,8 +121,8 @@ out = fopen("data.out", "w");
 /*
 do what you want to do
 */
-fclose(stdin);
-fclose(stdout);
+fclose(in);
+fclose(out);
 ```
 
 ## C++ 的 `ifstream/ofstream` 文件输入输出流
@@ -170,3 +168,7 @@ int main(void) {
   return 0;
 }
 ```
+
+## 参考资料
+
+1.  信息学奥赛一本通

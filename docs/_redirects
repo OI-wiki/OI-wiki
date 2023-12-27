@@ -66,7 +66,8 @@
 /math/prime /math/number-theory/prime
 /math/meissel-lehmer /math/number-theory/meissel-lehmer
 /math/gcd /math/number-theory/gcd
-/math/euler /math/number-theory/euler
+/math/euler /math/number-theory/euler-totient
+/math/number-theory/euler /math/number-theory/euler-totient
 /math/sieve /math/number-theory/sieve
 /math/fermat /math/number-theory/fermat
 /math/euclidean /math/number-theory/euclidean
@@ -102,6 +103,8 @@
 /math/linear-algebra/gauss /math/numerical/gauss
 /math/integral /math/numerical/integral
 /math/newton /math/numerical/newton
+/math/permulation /math/permutation
+/math/number-theory/lagrange /math/number-theory/congruence-equation
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut

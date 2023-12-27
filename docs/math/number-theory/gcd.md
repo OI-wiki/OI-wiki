@@ -41,27 +41,25 @@
 #### 实现
 
 === "C++"
-
     ```cpp
     // Version 1
     int gcd(int a, int b) {
       if (b == 0) return a;
       return gcd(b, a % b);
     }
-
+    
     // Version 2
     int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
     ```
 
 === "Java"
-
     ```java
     // Version 1
     public int gcd(int a, int b) {
         if (b == 0) return a;
         return gcd(b, a % b);
     }
-
+    
     // Version 2
     public int gcd(int a, int b) {
         return b == 0 ? a : gcd(b, a % b);
@@ -69,7 +67,6 @@
     ```
 
 === "Python"
-
     ```python
     def gcd(a, b):
         if b == 0:
@@ -82,7 +79,6 @@
 根据上述递归求法，我们也可以写出一个迭代求法：
 
 === "C++"
-
     ```cpp
     int gcd(int a, int b) {
       while (b != 0) {
@@ -95,7 +91,6 @@
     ```
 
 === "Java"
-
     ```java
     public int gcd(int a, int b) {
         while(b != 0) {
@@ -108,7 +103,6 @@
     ```
 
 === "Python"
-
     ```python
     def gcd(a, b):
         while b != 0:
@@ -124,17 +118,17 @@
 
 #### 性质
 
-欧几里得算法的时间效率如何呢？下面我们证明，欧几里得算法的时间复杂度为 $O(\log n)$。
+欧几里得算法的时间效率如何呢？下面我们证明，在输入为两个长为 $n$ 的二进制整数时，欧几里得算法的时间复杂度为 $O(n)$。（换句话说，在默认 $a, b$ 同阶的情况下，时间复杂度为 $O(\log\max(a, b))$。）
 
 ???+ note "证明"
     当我们求 $\gcd(a,b)$ 的时候，会遇到两种情况：
     
     -   $a < b$，这时候 $\gcd(a,b)=\gcd(b,a)$；
-    -   $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log n)$ 次。
+    -   $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log a) = O(n)$ 次。
     
     第一种情况发生后一定会发生第二种情况，因此第一种情况的发生次数一定 **不多于** 第二种情况的发生次数。
     
-    从而我们最多递归 $O(\log n)$ 次就可以得出结果。
+    从而我们最多递归 $O(n)$ 次就可以得出结果。
 
 事实上，假如我们试着用欧几里得算法去求 [斐波那契数列](../combinatorics/fibonacci.md) 相邻两项的最大公约数，会让该算法达到最坏复杂度。
 
@@ -269,7 +263,6 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
 ### 实现
 
 === "C++"
-
     ```cpp
     int Exgcd(int a, int b, int &x, int &y) {
       if (!b) {
@@ -286,7 +279,6 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
     ```
 
 === "Python"
-
     ```python
     def Exgcd(a, b):
         if b == 0:

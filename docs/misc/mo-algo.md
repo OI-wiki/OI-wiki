@@ -25,9 +25,9 @@ void solve() {
   for (int i = 0; i < m; ++i) {
     const query &q = querys[i];
     while (l > q.l) move(--l, 1);
-    while (r < q.r) move(r++, 1);
+    while (r < q.r) move(++r, 1);
     while (l < q.l) move(l++, -1);
-    while (r > q.r) move(--r, -1);
+    while (r > q.r) move(r--, -1);
     ans[q.id] = nowAns;
   }
 }
@@ -105,15 +105,15 @@ void solve() {
 
 对于区间 $[i,i]$，由于区间只有一个元素，我们很容易就能知道答案。然后一步一步从当前区间（已知答案）向下一个区间靠近。
 
-我们设 $col[i]$ 表示当前颜色 $i$ 出现了多少次，$ans$ 当前共有多少种可行的配对方案（有多少种可以选到一双颜色相同的袜子），表示然后每次移动的时候更新答案——设当前颜色为 $k$，如果是增长区间就是 $ans$ 加上 $C_{col[k]+1}^2-C_{col[k]}^2$，如果是缩短就是 $ans$ 减去 $C_{col[k]}^2-C_{col[k]-1}^2$。
+我们设 $col[i]$ 表示当前颜色 $i$ 出现了多少次，$ans$ 当前共有多少种可行的配对方案（有多少种可以选到一双颜色相同的袜子），表示然后每次移动的时候更新答案——设当前颜色为 $k$，如果是增长区间就是 $ans$ 加上 $\dbinom{col[k]+1}{2}-\dbinom{col[k]}{2}$，如果是缩短就是 $ans$ 减去 $\dbinom{col[k]}{2}-\dbinom{col[k]-1}{2}$。
 
-而这个询问的答案就是 $\displaystyle \frac{ans}{C_{r-l+1}^2}$。
+而这个询问的答案就是 $\displaystyle \frac{ans}{\dbinom{r-l+1}{2}}$。
 
-这里有个优化：$\displaystyle C_a^2=\frac{a (a-1)}{2}$。
+这里有个优化：$\displaystyle \dbinom{a}{2}=\frac{a (a-1)}{2}$。
 
-所以 $\displaystyle C_{a+1}^2-C_a^2=\frac{(a+1) a}{2}-\frac{a (a-1)}{2}=\frac{a}{2}\cdot (a+1-a+1)=\frac{a}{2}\cdot 2=a$。
+所以 $\displaystyle \dbinom{a+1}{2}-\dbinom{a}{2}=\frac{(a+1) a}{2}-\frac{a (a-1)}{2}=\frac{a}{2}\cdot (a+1-a+1)=\frac{a}{2}\cdot 2=a$。
 
-所以 $C_{col[k]+1}^2-C_{col[k]}^2=col[k]$。
+所以 $\dbinom{col[k]+1}{2}-\dbinom{col[k]}{2}=col[k]$。
 
 算法总复杂度：$O(n\sqrt{n} )$
 
@@ -180,43 +180,40 @@ void solve() {
 
 排序代码：
 
-压行
+=== "压行"
+    ```cpp
+    // 这里有个小细节等下会讲
+    int unit;  // 块的大小
+    
+    struct node {
+      int l, r, id;
+    
+      bool operator<(const node &x) const {
+        return l / unit == x.l / unit
+                   ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
+                   : l < x.l;
+      }
+    };
+    ```
 
-```cpp
-// 这里有个小细节等下会讲
-int unit;  // 块的大小
+=== "不压行"
+    ```cpp
+    struct node {
+      int l, r, id;
+    
+      bool operator<(const node &x) const {
+        if (l / unit != x.l / unit) return l < x.l;
+        // 注意下面两行不能写小于（大于）等于，否则会出错（详见下面的小细节）
+        if ((l / unit) & 1) return r < x.r;
+        return r > x.r;
+      }
+    };
+    ```
 
-struct node {
-  int l, r, id;
+???+ warning "小细节"
+    如果使用 `sort` 比较两个结构体，不能出现 $a < b$ 和 $b < a$ 同时为真的情况，否则会运行错误，详见 [常见错误](../contest/common-mistakes.md#会导致-re)。
 
-  bool operator<(const node &x) const {
-    return l / unit == x.l / unit
-               ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
-               : l < x.l;
-  }
-};
-```
-
-不压行
-
-```cpp
-struct node {
-  int l, r, id;
-
-  bool operator<(const node &x) const {
-    if (l / unit != x.l / unit) return l < x.l;
-    if ((l / unit) & 1)
-      return r <
-             x.r;  // 注意这里和下面一行不能写小于（大于）等于，否则会出错（详见下面的小细节）
-    return r > x.r;
-  }
-};
-```
-
-??? warning
-    小细节：如果使用 sort 比较两个函数，不能出现 $a < b$ 和 $b < a$ 同时为真的情况，否则会运行错误。
-
-对于压行版，如果没有 `r == x.r` 的特判，当 l 属于同一奇数块且 r 相等时，会出现上面小细节中的问题（自己手动模拟一下），对于压行版，如果写成小于（大于）等于，则也会出现同样的问题。
+对于压行版，如果没有 `r == x.r` 的特判，当 l 属于同一奇数块且 r 相等时，会出现上面小细节中的问题（自己手动模拟一下），对于不压行版，如果写成小于（大于）等于，则也会出现同样的问题。
 
 ## 参考资料
 
