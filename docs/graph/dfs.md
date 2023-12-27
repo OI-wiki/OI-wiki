@@ -1,4 +1,4 @@
-author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, Marcythm, Acfboy
+author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, Marcythm, Acfboy, shenshuaijie
 
 ## 引入
 
@@ -50,12 +50,24 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
     }
     ```
 
+=== "Java"
+    ```Java
+    public void dfs(int u) {
+        vis[u] = true;
+        for (int i = head[u]; i != 0; i = e[i].x) {
+            if (!vis[e[i].t]) {
+                dfs(v);
+            }
+        }
+    }
+    ```
+
 === "Python"
     ```python
     def dfs(u):
         vis[u] = True
+        i = head[u]
         while i:
-            i = head[u]
             if vis[e[i].t] == False:
                 dfs(v)
             i = e[i].x

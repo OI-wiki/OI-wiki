@@ -1,3 +1,5 @@
+author: LeverImmy
+
 红黑树是一种自平衡的二叉搜索树。每个节点额外存储了一个 color 字段 ("RED" or "BLACK")，用于确保树在插入和删除时保持平衡。
 
 ## 性质
@@ -60,9 +62,9 @@ class RBTreeMap {
 
 旋转操作是多数平衡树能够维持平衡的关键，它能在不改变一棵合法 BST 中序遍历结果的情况下改变局部节点的深度。
 
-![rbtree-rotations](images/rbtree-rotations.svg)
+![rbtree-rotations](images/rbtree-rotate.svg)
 
-如上图，从左图到右图的过程被称为左旋，左旋操作会使得 $\alpha$ 子树上结点的深度均减 1，使 $\gamma$ 子树上结点的深度均加 1，而 $\beta$ 子树上节点的深度则不变。从右图到左图的过程被称为右旋，右旋是左旋的镜像操作。
+如上图，从左图到右图的过程被称为右旋，右旋操作会使得 $T3$ 子树上结点的深度均减 1，使 $T1$ 子树上结点的深度均加 1，而 $T2$ 子树上节点的深度则不变。从右图到左图的过程被称为左旋，左旋是右旋的镜像操作。
 
 这里给出红黑树中节点的左旋操作的示例代码：
 
@@ -154,7 +156,7 @@ class RBTreeMap {
 1.  将 P，U 节点染黑，将 G 节点染红（可以保证每条路径上黑色节点个数不发生改变）。
 2.  递归维护 G 节点（因为不确定 G 的父节点的状态，递归维护可以确保性质 3 成立）。
 
-![rbtree-insert-case4](images/rbtree-insert-case4.png)
+![rbtree-insert-case4](images/rbtree-insert-case4.svg)
 
 ???+ note "实现"
     ```cpp
@@ -182,7 +184,7 @@ class RBTreeMap {
 
 该种情况无法直接进行维护，需要通过旋转操作将子树结构调整为 Case 6 的初始状态并进入 Case 6 进行后续维护。
 
-![rbtree-insert-case5](images/rbtree-insert-case5.png)
+![rbtree-insert-case5](images/rbtree-insert-case5.svg)
 
 ???+ note "实现"
     ```cpp
@@ -220,7 +222,7 @@ class RBTreeMap {
 1.  若 N 为左子节点则左旋祖父节点 G，否则右旋祖父节点 G.（该操作使得旋转过后 P - N 这条路径上的黑色节点个数比 P - G - U 这条路径上少 1，暂时打破性质 4）。
 2.  重新染色，将 P 染黑，将 G 染红，同时满足了性质 3 和 4。
 
-![rbtree-insert-case6](images/rbtree-insert-case6.png)
+![rbtree-insert-case6](images/rbtree-insert-case6.svg)
 
 ???+ note "实现"
     ```cpp
@@ -326,13 +328,13 @@ class RBTreeMap {
 
 #### Case 3
 
-待删除节点有且仅有一个非 NIL 子节点，若待删除节点为红色，直接使用其子节点 S 替换即可；若为黑色，则直接使用子节点 S 替代会打破性质 4，需要在使用 S 替代后判断 S 的颜色，若为红色，则将其染黑后即可满足性质 4，否则需要进行维护才可以满足性质 4。
+待删除节点 N 有且仅有一个非 NIL 子节点，则子节点 S 一定为红色。因为如果子节点 S 为黑色，则 S 的黑深度和待删除结点的黑深度不同，违反性质 4。由于子节点 S 为红色，则待删除节点 N 为黑色，直接使用子节点 S 替代 N 并将其染黑后即可满足性质 4。
 
 ???+ note "实现"
     ```cpp
     // Case 3: Current node has a single left or right child
     //   Step 1. Replace N with its child
-    //   Step 2. If N is BLACK, maintain N
+    //   Step 2. Paint N to BLACK
     NodePtr parent = node->parent;
     NodePtr replacement = (node->left != nullptr ? node->left : node->right);
     
@@ -352,13 +354,7 @@ class RBTreeMap {
       replacement->parent = parent;
     }
     
-    if (node->isBlack()) {
-      if (replacement->isRed()) {
-        replacement->color = Node::BLACK;
-      } else {
-        maintainAfterRemove(replacement);
-      }
-    }
+    node->color = Node::BLACK;
     ```
 
 ### 删除后的平衡维护
@@ -373,7 +369,7 @@ class RBTreeMap {
 2.  将 S 染黑，P 染红（保证 S 节点的父节点满足性质 4）。
 3.  此时只需根据结构对以当前 P 节点为根的子树进行维护即可（无需再考虑旋转染色后的 S 和 D 节点）。
 
-![rbtree-remove-case1](images/rbtree-remove-case1.png)
+![rbtree-remove-case1](images/rbtree-remove-case1.svg)
 
 ???+ note "实现"
     ```cpp
@@ -408,7 +404,7 @@ class RBTreeMap {
 
 兄弟节点 S 和侄节点 C, D 均为黑色，父节点 P 为红色。此时只需将 S 染红，将 P 染黑即可满足性质 3 和 4。
 
-![rbtree-remove-case2](images/rbtree-remove-case2.png)
+![rbtree-remove-case2](images/rbtree-remove-case2.svg)
 
 ???+ note "实现"
     ```cpp
@@ -432,7 +428,7 @@ class RBTreeMap {
 
 此时也无法通过一步操作同时满足性质 3 和 4，因此选择将 S 染红，优先满足局部性质 4 的成立，再递归维护 P 节点根据上部结构进行后续维护。
 
-![rbtree-remove-case3](images/rbtree-remove-case3.png)
+![rbtree-remove-case3](images/rbtree-remove-case3.svg)
 
 ???+ note "实现"
     ```cpp
@@ -463,7 +459,7 @@ class RBTreeMap {
 2.  将节点 S 染红，将节点 C 染黑。
 3.  此时已满足 Case 5 的条件，进入 Case 5 完成后续维护。
 
-![rbtree-remove-case4](images/rbtree-remove-case4.png)
+![rbtree-remove-case4](images/rbtree-remove-case4.svg)
 
 ???+ note "实现"
     ```cpp
@@ -497,13 +493,13 @@ class RBTreeMap {
 
 #### Case 5
 
-兄弟节点是黑色，且 close nephew 节点 C 为红色，distant nephew 节点 D 为黑色，父节点既可为红色又可为黑色。此时性质 4 无法满足，通过旋转操作使得黑色节点 S 变为该子树的根节点再进行染色即可满足性质 4。具体步骤如下：
+兄弟节点是黑色，且 close nephew 节点 C 为黑色，distant nephew 节点 D 为红色，父节点既可为红色又可为黑色。此时性质 4 无法满足，通过旋转操作使得黑色节点 S 变为该子树的根节点再进行染色即可满足性质 4。具体步骤如下：
 
 1.  若 N 为左子节点，左旋 P，反之右旋 P。
 2.  交换父节点 P 和兄弟节点 S 的颜色，此时性质 3 可能被打破。
 3.  将 distant nephew 节点 D 染黑，同时保证了性质 3 和 4。
 
-![rbtree-remove-case5](images/rbtree-remove-case5.png)
+![rbtree-remove-case5](images/rbtree-remove-case5.svg)
 
 ???+ note "实现"
     ```cpp
@@ -587,7 +583,7 @@ nginx 中的用户态定时器是通过红黑树实现的。在 nginx 中，所�
 -   Microsoft STL
     -   [`stl/inc/xtree`](https://github.com/microsoft/STL/blob/main/stl/inc/xtree)
 
-大多数 STL 中的 `std::map` 和 `std::set` 的内部数据结构就是一棵红黑树（例如上面提到的这些）。不过值得注意的是，这些红黑树（包括可能有读者用过的 `std::_Rb_tree`）都不是 C++ 标准，虽然部分竞赛（例如 NOIP）并未命令禁止这类数据结构，但还是应当注意这类标准库中的非标准实现不应该在工程项目中直接使用。
+大多数 STL 中的 `std::map` 和 `std::set` 的内部数据结构就是一棵红黑树（例如上面提到的这些）。不过值得注意的是，这些红黑树（包括可能有读者用过的 `std::_Rb_tree`）都不是 C++ 标准，虽然部分竞赛（例如 NOIP）并未明令禁止这类数据结构，但还是应当注意这类标准库中的非标准实现不应该在工程项目中直接使用。
 
 由于 STL 的特殊性，其中大多数实现的代码可读性都不高，因此并不建议读者使用 STL 学习红黑树。
 

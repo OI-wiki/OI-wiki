@@ -28,7 +28,7 @@ author:ouuan, Backl1ght, billchenchina, CCXXXI, ChickenHu, ChungZH, cjsoft, coun
 
 #### 性质
 
-朴素算法预处理时需要 dfs 整棵树，时间复杂度为 $O(n)$，单次查询时间复杂度为 $\Theta(n)$。但由于随机树高为 $O(\log n)$，所以朴素算法在随机树上的单次查询时间复杂度为 $O(\log n)$。
+朴素算法预处理时需要 dfs 整棵树，时间复杂度为 $O(n)$，单次查询时间复杂度为 $\Theta(n)$。如果树满足随机性质，则时间复杂度与这种随机树的期望高度有关。
 
 ### 倍增算法
 
@@ -46,105 +46,24 @@ author:ouuan, Backl1ght, billchenchina, CCXXXI, ChickenHu, ChungZH, cjsoft, coun
 另外倍增算法可以通过交换 `fa` 数组的两维使较小维放在前面。这样可以减少 cache miss 次数，提高程序效率。
 
 ??? 例题
-    [HDU 2586 How far away?](https://vjudge.net/problem/HDU-2586) 树上最短路查询。原题为多组数据，以下代码为针对单组数据的情况编写的。
+    [HDU 2586 How far away?](https://vjudge.net/problem/HDU-2586) 树上最短路查询。
 
 可先求出 LCA，再结合性质 $7$ 进行解答。也可以直接在求 LCA 时求出结果。
 
 ??? note "参考代码"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    #include <vector>
-    #define MXN 50007
-    using namespace std;
-    std::vector<int> v[MXN];
-    std::vector<int> w[MXN];
-    
-    int fa[MXN][31], cost[MXN][31], dep[MXN];
-    int n, m;
-    int a, b, c;
-    
-    // dfs，用来为 lca 算法做准备。接受两个参数：dfs 起始节点和它的父亲节点。
-    void dfs(int root, int fno) {
-      // 初始化：第 2^0 = 1 个祖先就是它的父亲节点，dep 也比父亲节点多 1。
-      fa[root][0] = fno;
-      dep[root] = dep[fa[root][0]] + 1;
-      // 初始化：其他的祖先节点：第 2^i 的祖先节点是第 2^(i-1) 的祖先节点的第
-      // 2^(i-1) 的祖先节点。
-      for (int i = 1; i < 31; ++i) {
-        fa[root][i] = fa[fa[root][i - 1]][i - 1];
-        cost[root][i] = cost[fa[root][i - 1]][i - 1] + cost[root][i - 1];
-      }
-      // 遍历子节点来进行 dfs。
-      int sz = v[root].size();
-      for (int i = 0; i < sz; ++i) {
-        if (v[root][i] == fno) continue;
-        cost[v[root][i]][0] = w[root][i];
-        dfs(v[root][i], root);
-      }
-    }
-    
-    // lca。用倍增算法算取 x 和 y 的 lca 节点。
-    int lca(int x, int y) {
-      // 令 y 比 x 深。
-      if (dep[x] > dep[y]) swap(x, y);
-      // 令 y 和 x 在一个深度。
-      int tmp = dep[y] - dep[x], ans = 0;
-      for (int j = 0; tmp; ++j, tmp >>= 1)
-        if (tmp & 1) ans += cost[y][j], y = fa[y][j];
-      // 如果这个时候 y = x，那么 x，y 就都是它们自己的祖先。
-      if (y == x) return ans;
-      // 不然的话，找到第一个不是它们祖先的两个点。
-      for (int j = 30; j >= 0 && y != x; --j) {
-        if (fa[x][j] != fa[y][j]) {
-          ans += cost[x][j] + cost[y][j];
-          x = fa[x][j];
-          y = fa[y][j];
-        }
-      }
-      // 返回结果。
-      ans += cost[x][0] + cost[y][0];
-      return ans;
-    }
-    
-    int main() {
-      // 初始化表示祖先的数组 fa，代价 cost 和深度 dep。
-      memset(fa, 0, sizeof(fa));
-      memset(cost, 0, sizeof(cost));
-      memset(dep, 0, sizeof(dep));
-      // 读入树：节点数一共有 n 个。
-      scanf("%d", &n);
-      for (int i = 1; i < n; ++i) {
-        scanf("%d %d %d", &a, &b, &c);
-        ++a, ++b;
-        v[a].push_back(b);
-        v[b].push_back(a);
-        w[a].push_back(c);
-        w[b].push_back(c);
-      }
-      // 为了计算 lca 而使用 dfs。
-      dfs(1, 0);
-      // 查询 m 次，每一次查找两个节点的 lca 点。
-      scanf("%d", &m);
-      for (int i = 0; i < m; ++i) {
-        scanf("%d %d", &a, &b);
-        ++a, ++b;
-        printf("%d\n", lca(a, b));
-      }
-      return 0;
-    }
+    --8<-- "docs/graph/code/lca/lca_1.cpp"
     ```
 
 ### Tarjan 算法
 
 #### 过程
 
-`Tarjan 算法` 是一种 `离线算法`，需要使用 `并查集` 记录某个结点的祖先结点。做法如下：
+Tarjan 算法是一种 **离线算法**，需要使用 [并查集](../ds/dsu.md) 记录某个结点的祖先结点。做法如下：
 
 1.  首先接受输入边（邻接链表）、查询边（存储在另一个邻接链表内）。查询边其实是虚拟加上去的边，为了方便，每次输入查询边的时候，将这个边及其反向边都加入到 `queryEdge` 数组里。
 2.  然后对其进行一次 DFS 遍历，同时使用 `visited` 数组进行记录某个结点是否被访问过、`parent` 记录当前结点的父亲结点。
-3.  其中涉及到了 `回溯思想`，我们每次遍历到某个结点的时候，认为这个结点的根结点就是它本身。让以这个结点为根节点的 DFS 全部遍历完毕了以后，再将 `这个结点的根节点` 设置为 `这个结点的父一级结点`。
+3.  其中涉及到了 **回溯思想**，我们每次遍历到某个结点的时候，认为这个结点的根结点就是它本身。让以这个结点为根节点的 DFS 全部遍历完毕了以后，再将这个结点的根节点设置为这个结点的父一级结点。
 4.  回溯的时候，如果以该节点为起点，`queryEdge` 查询边的另一个结点也恰好访问过了，则直接更新查询边的 LCA 结果。
 5.  最后输出结果。
 
@@ -163,102 +82,7 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
 
 ??? note "参考代码"
     ```cpp
-    #include <algorithm>
-    #include <iostream>
-    using namespace std;
-    
-    class Edge {
-     public:
-      int toVertex, fromVertex;
-      int next;
-      int LCA;
-      Edge() : toVertex(-1), fromVertex(-1), next(-1), LCA(-1){};
-      Edge(int u, int v, int n) : fromVertex(u), toVertex(v), next(n), LCA(-1){};
-    };
-    
-    const int MAX = 100;
-    int head[MAX], queryHead[MAX];
-    Edge edge[MAX], queryEdge[MAX];
-    int parent[MAX], visited[MAX];
-    int vertexCount, edgeCount, queryCount;
-    
-    void init() {
-      for (int i = 0; i <= vertexCount; i++) {
-        parent[i] = i;
-      }
-    }
-    
-    int find(int x) {
-      if (parent[x] == x) {
-        return x;
-      } else {
-        return find(parent[x]);
-      }
-    }
-    
-    void tarjan(int u) {
-      parent[u] = u;
-      visited[u] = 1;
-    
-      for (int i = head[u]; i != -1; i = edge[i].next) {
-        Edge& e = edge[i];
-        if (!visited[e.toVertex]) {
-          tarjan(e.toVertex);
-          parent[e.toVertex] = u;
-        }
-      }
-    
-      for (int i = queryHead[u]; i != -1; i = queryEdge[i].next) {
-        Edge& e = queryEdge[i];
-        if (visited[e.toVertex]) {
-          queryEdge[i ^ 1].LCA = e.LCA = find(e.toVertex);
-        }
-      }
-    }
-    
-    int main() {
-      memset(head, 0xff, sizeof(head));
-      memset(queryHead, 0xff, sizeof(queryHead));
-    
-      cin >> vertexCount >> edgeCount >> queryCount;
-      int count = 0;
-      for (int i = 0; i < edgeCount; i++) {
-        int start = 0, end = 0;
-        cin >> start >> end;
-    
-        edge[count] = Edge(start, end, head[start]);
-        head[start] = count;
-        count++;
-    
-        edge[count] = Edge(end, start, head[end]);
-        head[end] = count;
-        count++;
-      }
-    
-      count = 0;
-      for (int i = 0; i < queryCount; i++) {
-        int start = 0, end = 0;
-        cin >> start >> end;
-    
-        queryEdge[count] = Edge(start, end, queryHead[start]);
-        queryHead[start] = count;
-        count++;
-    
-        queryEdge[count] = Edge(end, start, queryHead[end]);
-        queryHead[end] = count;
-        count++;
-      }
-    
-      init();
-      tarjan(1);
-    
-      for (int i = 0; i < queryCount; i++) {
-        Edge& e = queryEdge[i * 2];
-        cout << "(" << e.fromVertex << "," << e.toVertex << ") " << e.LCA << endl;
-      }
-    
-      return 0;
-    }
+    --8<-- "docs/graph/code/lca/lca_tarjan.cpp"
     ```
 
 ### 用欧拉序列转化为 RMQ 问题

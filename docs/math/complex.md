@@ -242,7 +242,7 @@ $$
 
 称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，称这 $n$ 个解都是 $n$ 次 **单位根** 或 **单位复根**（the $n$-th root of unity）。根据复平面的知识，$n$ 次单位根把单位圆 $n$ 等分。
 
-设 $\omega_n=\operatorname{exp} \frac{2\pi \mathrm{i}}{n}$（即幅角为 $2\pi \over n$ 的单位复数），则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。
+设 $\omega_n=\operatorname{exp} \frac{2\pi \mathrm{i}}{n}$（即幅角为 $2\frac \pi n$ 的单位复数），则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。
 
 如果不加说明，一般叙述的 $n$ 次单位根，是指从 $1$ 开始逆时针方向的第一个解，即上述 $\omega_n$，其它解均可以用 $\omega_n$ 的幂表示。
 
@@ -290,9 +290,9 @@ $$
 
 头文件 `<complex.h>` 提供了虚数单位 `I`，引入此头文件时，大写字母 `I` 不可以作为变量名使用。
 
-对于单个复数，`<complex.h>` 提供了若干操作：creal 函数用于提取实部，cimag 函数用于提取虚部，cabs 函数用于计算模，carg 函数用于计算辐角主值。
+对于单个复数，`<complex.h>` 提供了若干操作：`creal` 函数用于提取实部，`cimag` 函数用于提取虚部，`cabs` 函数用于计算模，`carg` 函数用于计算辐角主值。
 
-所有的函数根据类型不同，都有三个。例如 creal 函数有 creal、crealf、creall 三个，用于处理对应的 `double`、`float` 和 `long double` 三种类型。末尾什么都不带的默认处理 double 类型。以下所有函数均遵从此规律，不再特别说明。
+所有的函数根据类型不同，都有三个。例如 `creal` 函数有 `creal`、`crealf`、`creall` 三个，用于处理对应的 `double`、`float` 和 `long double` 三种类型。末尾什么都不带的默认处理 `double` 类型。以下所有函数均遵从此规律，不再特别说明。
 
 这些函数返回值都是一般的浮点数。可以将普通浮点数直接赋值给复数，但是不可以将复数直接赋值给浮点数，而是需要使用上述提取操作。
 

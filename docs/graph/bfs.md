@@ -79,8 +79,8 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
         p[u] = -1
         while Q.qsize() != 0:
             u = Q.get()
+            i = head[u]
             while i:
-                i = head[u]
                 if vis[e[i].to] == False:
                     Q.put(e[i].to)
                     vis[e[i].to] = True
