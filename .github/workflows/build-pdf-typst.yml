@@ -29,16 +29,13 @@ jobs:
           sudo apt-get install curl git unzip imagemagick libwebp-dev librsvg2-dev fonts-noto-cjk fonts-noto-cjk-extra
           sudo apt-get remove fonts-noto-color-emoji
           
-          curl -OL https://github.com/typst/typst/releases/download/v0.9.0/typst-x86_64-unknown-linux-musl.tar.xz
-          curl -OL https://github.com/megakite/texmath/releases/download/v0.12.8.3-20231003/texmath-arg
+          curl -OL https://github.com/typst/typst/releases/download/v0.10.0/typst-x86_64-unknown-linux-musl.tar.xz
           xz -dc typst-x86_64-unknown-linux-musl.tar.xz | tar -x
           sudo mv ./typst-x86_64-unknown-linux-musl/typst /bin/
-          chmod +x texmath-arg
-          sudo mv texmath-arg /bin/
           
-          curl -OL https://github.com/lxgw/LxgwWenKai/releases/download/v1.300/lxgw-wenkai-v1.300.tar.gz
-          gzip -dc lxgw-wenkai-v1.300.tar.gz | tar -x
-          sudo mv lxgw-wenkai-v1.300 /usr/share/fonts/
+          curl -OL https://github.com/lxgw/LxgwWenKai/releases/download/v1.312/lxgw-wenkai-v1.312.tar.gz
+          gzip -dc lxgw-wenkai-v1.312.tar.gz | tar -x
+          sudo mv lxgw-wenkai-v1.312 /usr/share/fonts/
           fc-cache
           
           git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
