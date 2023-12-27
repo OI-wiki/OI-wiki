@@ -38,7 +38,7 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
 
 ### 栈实现
 
-DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这与用队列（Queue）实现的 BFS 形成高度对应。
+DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容器来实现；这与用 [队列（Queue）](../ds/queue.md) 实现的 BFS 形成高度对应。
 
 === "C++"
     ```cpp
@@ -68,8 +68,7 @@ DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这�
     ```python
     # adj : List[List[int]] 邻接表
     # vis : List[bool] 记录节点是否已经遍历
-    ```
-
+    
     def dfs(s : int) -> None:
         stack = [s] # 用列表来模拟栈，把起点加入栈中
         vis[s] = True # 起点被遍历
@@ -89,7 +88,7 @@ DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这�
 
 以 [邻接表（Adjacency List）](./save.md#邻接表) 作为图的存储方式：
 
-=== “C++”
+=== "C++"
     ```cpp
     vector<vector<int>> adj;  // 邻接表
     vector<bool> vis;         // 记录节点是否已经遍历
@@ -101,7 +100,7 @@ DFS 可以使用栈（Stack）为遍历中节点的暂存容器来实现；这�
     }
     ```
 
-=== “Python”
+=== "Python"
     ```python
     # adj : List[List[int]] 邻接表
     # vis : List[bool] 记录节点是否已经遍历
