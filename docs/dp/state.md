@@ -2,7 +2,7 @@
 
 状压 DP 是动态规划的一种，通过将状态压缩为整数来达到优化转移的目的。
 
-## 例题
+## 例题 1
 
 ???+ note "[「SCOI2005」互不侵犯](https://loj.ac/problem/2153)"
     在 $N\times N$ 的棋盘里面放 $K$ 个国王（$1 \leq N \leq 9, 1 \leq K \leq N \times N$），使他们互不攻击，共有多少种摆放方案。
@@ -30,6 +30,33 @@ $$
 ??? "参考代码"
     ```cpp
     --8<-- "docs/dp/code/state/state_1.cpp"
+    ```
+
+## 例题 2
+
+???+ note "[\[POI2004\] PRZ](https://www.luogu.com.cn/problem/P5911)"
+    有 $n$ 个人需要过桥，第 $i$ 的人的重量为 $w_i$，过桥用时为 $t_i$. 这些人过桥时会分成若干组，只有在某一组的所有人全部过桥后，其余的组才能过桥。桥最大承重为 $W$，问这些人全部过桥的最短时间。
+    
+    $100\le W \le 400$，$1\le n\le 16$，$1\le t_i\le 50$，$10\le w_i\le 100$.
+
+### 解释
+
+我们用 $S$ 表示所有人构成集合的一个子集，设 $t(S)$ 表示 $S$ 中人的最长过桥时间，$w(S)$ 表示 $S$ 中所有人的总重量，$f(S)$ 表示 $S$ 中所有人全部过桥的最短时间，则：
+
+$$
+\begin{cases}
+    f(\varnothing)=0,\\
+    f(S)=\min\limits_{T\subseteq S;~w(T)\leq W}\left\{t(T)+f(S\setminus T)\right\}.
+\end{cases}
+$$
+
+需要注意的是这里不能直接枚举集合再判断是否为子集，而应使用 [子集枚举](../math/binary-set.md#遍历所有掩码的子掩码)，从而使时间复杂度为 $O(3^n)$.
+
+### 实现
+
+??? "参考代码"
+    ```cpp
+    --8<-- "docs/dp/code/state/state_2.cpp"
     ```
 
 ## 习题
