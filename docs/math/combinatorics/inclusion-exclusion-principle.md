@@ -576,6 +576,11 @@ $$
 
 不妨设 $F'(T)=(-1)^{|T|-1}F(T)$，那么进一步得到 $E(\max_{i\in S}x_i)=\sum_{T\subseteq S}F'(T)$。因此可以使用 FMT（也叫子集前缀和，或者 FWT 或变换）在 $O(2^nn)$ 的时间内对每个 $S$ 计算出 $E(\max_{i\in S}x_i)$，这样就可以 $O(1)$ 回答询问了。
 
+### 习题
+
+-   [ABC331- G - Collect Them All](https://atcoder.jp/contests/abc331/tasks/abc331_g)
+-   [洛谷 P4707 重返现世](https://www.luogu.com.cn/problem/P4707)
+
 ## 参考文献
 
 王迪《容斥原理》，2013 年信息学奥林匹克中国国家队候选队员论文集
