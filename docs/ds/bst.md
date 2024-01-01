@@ -194,12 +194,9 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
       return root;
     }
     
-    ```
-    
     //此处以右子树的最小值为例
-    
-    ```c++
-    TreeNode\* findMinNode(TreeNode\* root) {
+
+    TreeNode* findMinNode(TreeNode* root) {
     while (root->left != nullptr) {
     root = root->left;
     }
