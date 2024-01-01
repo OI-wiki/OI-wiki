@@ -135,7 +135,8 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
       } else {
         root->count++;  // 节点值相等，增加重复数量
       }
-      root->size = root->count + (root->left ? root->left->size : 0) + (root->right ? root->right->size : 0);  // 更新节点的子树大小
+      root->size = root->count + (root->left ? root->left->size : 0) +
+                   (root->right ? root->right->size : 0);  // 更新节点的子树大小
       return root;
     }
     ```
@@ -194,7 +195,8 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
       return root;
     }
     
-    //此处以右子树的最小值为例
+    // 此处以右子树的最小值为例
+    ```
 
     TreeNode* findMinNode(TreeNode* root) {
     while (root->left != nullptr) {
@@ -218,7 +220,8 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
       if (root == nullptr) return 0;
       if (root->key == v) return (root->left ? root->left->size : 0) + 1;
       if (root->key > v) return queryRank(root->left, v);
-      return queryRank(root->right, v) + (root->left ? root->left->size : 0) + root->count;
+      return queryRank(root->right, v) + (root->left ? root->left->size : 0) +
+             root->count;
     }
     ```
 
@@ -244,7 +247,8 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
       } else {
         if (k == 1) return root->key;
       }
-      return querykth(root->right, k - (root->left ? root->left->size : 0) - root->count);
+      return querykth(root->right,
+                      k - (root->left ? root->left->size : 0) - root->count);
     }
     ```
 
