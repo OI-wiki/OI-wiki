@@ -22,11 +22,13 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
     ```c++
     struct TreeNode {
       int key;
-      TreeNode* left = nullptr;
-      TreeNode* right = nullptr;
+      TreeNode* left;
+      TreeNode* right;
       // 维护其他信息，如高度，节点数量等
-      int size = 1;   // 当前节点为根的子树大小
-      int count = 1;  // 当前节点的重复数量
+      int size;   // 当前节点为根的子树大小
+      int count;  // 当前节点的重复数量
+
+      TreeNode(int value) : key(value), size(1), count(1), left(nullptr), right(nullptr) {}
     };
     ```
 
