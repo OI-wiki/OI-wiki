@@ -200,10 +200,10 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
     
     // 此处以右子树的最小值为例
     TreeNode* findMinNode(TreeNode* root) {
-    while (root->left != nullptr) {
-    root = root->left;
-    }
-    return root;
+      while (root->left != nullptr) {
+        root = root->left;
+      }
+      return root;
     }
     ```
 
