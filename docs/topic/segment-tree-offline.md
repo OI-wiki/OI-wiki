@@ -25,30 +25,33 @@ author: xiezheyuan
 下面将给出一个简要的实现：
 
 ```cpp
-#define ls (i<<1)
-#define rs (i<<1|1)
-#define mid ((l+r)>>1)
+#define ls (i << 1)
+#define rs (i << 1 | 1)
+#define mid ((l + r) >> 1)
 
-vector<Object> tree[N << 2];// 线段树
-void update(int ql, int qr, Object obj, int i, int l, int r){// 插入
-  if(ql <= l && r <= qr){
+vector<Object> tree[N << 2];  // 线段树
+
+void update(int ql, int qr, Object obj, int i, int l, int r) {  // 插入
+  if (ql <= l && r <= qr) {
     tree[i].push_back(obj);
     return;
   }
-  if(ql <= mid) update(ql, qr, obj, ls, l, mid);
-  if(qr > mid) update(ql, qr, obj, rs, mid + 1, r);
+  if (ql <= mid) update(ql, qr, obj, ls, l, mid);
+  if (qr > mid) update(ql, qr, obj, rs, mid + 1, r);
 }
 
-stack<Object> sta;// 用于撤销的栈
-Object now;// 当前的信息并
-Object ans[N];// 答案
+stack<Object> sta;  // 用于撤销的栈
+Object now;         // 当前的信息并
+Object ans[N];      // 答案
 
-void solve(int i, int l, int r){
-  auto lvl = sta.size();// 记录一下应当撤销到底几个
-  for(Object x : tree[i]) sta.push(now), now = Merge(now, x);// 合并信息
-  if(l == r) ans[i] = now;// 记录一下答案
-  else solve(ls, l, mid), solve(rs, mid + 1, r);// 分治
-  while(sta.size() != lvl){// 撤销信息
+void solve(int i, int l, int r) {
+  auto lvl = sta.size();  // 记录一下应当撤销到底几个
+  for (Object x : tree[i]) sta.push(now), now = Merge(now, x);  // 合并信息
+  if (l == r)
+    ans[i] = now;  // 记录一下答案
+  else
+    solve(ls, l, mid), solve(rs, mid + 1, r);  // 分治
+  while (sta.size() != lvl) {                  // 撤销信息
     now = sta.top();
     sta.pop();
   }
@@ -57,8 +60,8 @@ void solve(int i, int l, int r){
 
 ### 例题
 
-??+ note "[luogu P5787 二分图 /【模板】线段树分治](https://www.luogu.com.cn/problem/P5787)"
-    你需要维护一个 $n$ 个点 $m$ 条边的无向图。第 $i$ 条边为 $(x_i,y_i)$，出现的时刻为 $[l_i,r_i)$，其余时刻消失。
+??+ note "[luogu P5787 二分图/【模板】线段树分治](https://www.luogu.com.cn/problem/P5787)"
+你需要维护一个 $n$ 个点 $m$ 条边的无向图。第 $i$ 条边为 $(x_i,y_i)$，出现的时刻为 $[l_i,r_i)$，其余时刻消失。
 
     对于每一个时刻，若此时该图为二分图，输出 `Yes`，否则输出 `No`。
 
@@ -73,7 +76,7 @@ void solve(int i, int l, int r){
         ```
 
 ??+ note "颜色限制 restriction"
-    有一个 $n$ 点 $m$ 边的无向图，有 $k$ 种颜色编号为 $0\sim k-1$，每条边有一种颜色。
+有一个 $n$ 点 $m$ 边的无向图，有 $k$ 种颜色编号为 $0\sim k-1$，每条边有一种颜色。
 
     对于每种颜色，请判断假如删去所有这种颜色的边，得到的图是否连通？是否是一棵树？
 
@@ -88,13 +91,13 @@ void solve(int i, int l, int r){
         ```
 
 ??+ note "[luogu P4219 \[BJOI2014\] 大融合](https://www.luogu.com.cn/problem/P4219)"
-    你需要维护一个 $n$ 个点的森林，初始时是散点。
+你需要维护一个 $n$ 个点的森林，初始时是散点。
 
     有 $q$ 个操作，支持：
 
     - `A x y` 连边 $(x,y)$。
     - `Q x y` 输出经过边 $(x,y)$ 的路径数。
-    
+
     允许离线。
 
     ??? "解题思路"
@@ -110,7 +113,7 @@ void solve(int i, int l, int r){
         ```
 
 ??+ note "[luogu P2056 \[ZJOI2007\] 捉迷藏](https://www.luogu.com.cn/problem/P2056)"
-    给出一个 $n$ 个点的树，每个点有黑白两种颜色。初始时每个点都是黑色的。$q$ 次操作，支持：
+给出一个 $n$ 个点的树，每个点有黑白两种颜色。初始时每个点都是黑色的。$q$ 次操作，支持：
 
     - `C x` 将第 $x$ 个点的颜色反转。
     - `G` 询问树上两个黑色点的最远距离。特别地，若不存在黑色点，输出 $-1$。
@@ -133,12 +136,10 @@ void solve(int i, int l, int r){
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_4.cpp"
         ```
 
-
 ### 课后习题
 
-- [CF601E A Museum Robbery](https://codeforces.com/problemset/problem/601/E) 线段树分治 + 背包 dp。
-- [CF19E Fairy](https://codeforces.com/problemset/problem/19/E) 线段树分治 + 种类并查集。
-- [luogu P5227 \[AHOI2013\] 连通图](https://www.luogu.com.cn/problem/P5227) 线段树分治 + 并查集。
-- [luogu P4319 变化的道路](https://www.luogu.com.cn/problem/P4319) 线段树分治 + Link Cut Tree 维护最小生成树。
-- [luogu P3733 \[HAOI2017\] 八纵八横](https://www.luogu.com.cn/problem/P3733) 线段树分治 + 线性基。
-
+-   [CF601E A Museum Robbery](https://codeforces.com/problemset/problem/601/E) 线段树分治 + 背包 dp。
+-   [CF19E Fairy](https://codeforces.com/problemset/problem/19/E) 线段树分治 + 种类并查集。
+-   [luogu P5227 \[AHOI2013\] 连通图](https://www.luogu.com.cn/problem/P5227) 线段树分治 + 并查集。
+-   [luogu P4319 变化的道路](https://www.luogu.com.cn/problem/P4319) 线段树分治 + Link Cut Tree 维护最小生成树。
+-   [luogu P3733 \[HAOI2017\] 八纵八横](https://www.luogu.com.cn/problem/P3733) 线段树分治 + 线性基。
