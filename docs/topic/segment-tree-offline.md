@@ -143,3 +143,5 @@ void solve(int i, int l, int r) {
 -   [luogu P5227 \[AHOI2013\] 连通图](https://www.luogu.com.cn/problem/P5227) 线段树分治 + 并查集。
 -   [luogu P4319 变化的道路](https://www.luogu.com.cn/problem/P4319) 线段树分治 + Link Cut Tree 维护最小生成树。
 -   [luogu P3733 \[HAOI2017\] 八纵八横](https://www.luogu.com.cn/problem/P3733) 线段树分治 + 线性基。
+
+**本页面部分参考自博文 [Deleting from a data structure](https://cp-algorithms.com/data_structures/deleting_in_log_n.html)，版权协议为 CC-BY-SA 4.0。**
