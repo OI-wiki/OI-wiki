@@ -1,14 +1,12 @@
 author: xiezheyuan
 
-## 线段树与离线询问
-
 线段树与离线询问结合的问题在 OI 领域也有出现。这种技巧又被称为线段树分治。
 
 假如你需要维护一些信息，这些信息会在某一个时间段内出现，要求在离线的前提下回答某一个时刻的信息并，则可以考虑使用线段树分治的技巧。
 
 实际上线段树分治常用于不带删的数据结构转成可以带删的数据结构，抑或是对于某一个属性的信息分别计算。
 
-### 具体流程
+## 过程
 
 首先我们建立一个线段树来维护时刻，每一个节点维护一个 `vector` 来存储位于这一段时刻的信息。
 
@@ -20,45 +18,42 @@ author: xiezheyuan
 
 整个分治流程的总时间复杂度是 $O(n\log n(T(n) + M(n)))$ 的，其中 $O(M(n))$ 为合并信息的时间复杂度，空间复杂度为 $O(n\log n)$。
 
-### 实现
+??? note "实现"
+    ```cpp
+    #define ls (i << 1)
+    #define rs (i << 1 | 1)
+    #define mid ((l + r) >> 1)
+    
+    vector<Object> tree[N << 2];  // 线段树
+    
+    void update(int ql, int qr, Object obj, int i, int l, int r) {  // 插入
+      if (ql <= l && r <= qr) {
+        tree[i].push_back(obj);
+        return;
+      }
+      if (ql <= mid) update(ql, qr, obj, ls, l, mid);
+      if (qr > mid) update(ql, qr, obj, rs, mid + 1, r);
+    }
+    
+    stack<Object> sta;  // 用于撤销的栈
+    Object now;         // 当前的信息并
+    Object ans[N];      // 答案
+    
+    void solve(int i, int l, int r) {
+      auto lvl = sta.size();  // 记录一下应当撤销到底几个
+      for (Object x : tree[i]) sta.push(now), now = Merge(now, x);  // 合并信息
+      if (l == r)
+        ans[i] = now;  // 记录一下答案
+      else
+        solve(ls, l, mid), solve(rs, mid + 1, r);  // 分治
+      while (sta.size() != lvl) {                  // 撤销信息
+        now = sta.top();
+        sta.pop();
+      }
+    }
+    ```
 
-下面将给出一个简要的实现：
-
-```cpp
-#define ls (i << 1)
-#define rs (i << 1 | 1)
-#define mid ((l + r) >> 1)
-
-vector<Object> tree[N << 2];  // 线段树
-
-void update(int ql, int qr, Object obj, int i, int l, int r) {  // 插入
-  if (ql <= l && r <= qr) {
-    tree[i].push_back(obj);
-    return;
-  }
-  if (ql <= mid) update(ql, qr, obj, ls, l, mid);
-  if (qr > mid) update(ql, qr, obj, rs, mid + 1, r);
-}
-
-stack<Object> sta;  // 用于撤销的栈
-Object now;         // 当前的信息并
-Object ans[N];      // 答案
-
-void solve(int i, int l, int r) {
-  auto lvl = sta.size();  // 记录一下应当撤销到底几个
-  for (Object x : tree[i]) sta.push(now), now = Merge(now, x);  // 合并信息
-  if (l == r)
-    ans[i] = now;  // 记录一下答案
-  else
-    solve(ls, l, mid), solve(rs, mid + 1, r);  // 分治
-  while (sta.size() != lvl) {                  // 撤销信息
-    now = sta.top();
-    sta.pop();
-  }
-}
-```
-
-### 例题
+## 例题
 
 ???+ note "[luogu P5787 二分图/【模板】线段树分治](https://www.luogu.com.cn/problem/P5787)"
     你需要维护一个 $n$ 个点 $m$ 条边的无向图。第 $i$ 条边为 $(x_i,y_i)$，出现的时刻为 $[l_i,r_i)$，其余时刻消失。
@@ -136,7 +131,7 @@ void solve(int i, int l, int r) {
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_4.cpp"
         ```
 
-### 课后习题
+## 习题
 
 -   [CF601E A Museum Robbery](https://codeforces.com/problemset/problem/601/E) 线段树分治 + 背包 dp。
 -   [CF19E Fairy](https://codeforces.com/problemset/problem/19/E) 线段树分治 + 种类并查集。
@@ -144,4 +139,4 @@ void solve(int i, int l, int r) {
 -   [luogu P4319 变化的道路](https://www.luogu.com.cn/problem/P4319) 线段树分治 + Link Cut Tree 维护最小生成树。
 -   [luogu P3733 \[HAOI2017\] 八纵八横](https://www.luogu.com.cn/problem/P3733) 线段树分治 + 线性基。
 
-**本页面部分参考自博文 [Deleting from a data structure](https://cp-algorithms.com/data_structures/deleting_in_log_n.html)，版权协议为 CC-BY-SA 4.0。**
+**本页面部分内容参考自博文 [Deleting from a data structure](https://cp-algorithms.com/data_structures/deleting_in_log_n.html)，版权协议为 CC-BY-SA 4.0。**
