@@ -60,8 +60,8 @@ void solve(int i, int l, int r) {
 
 ### 例题
 
-??+ note "[luogu P5787 二分图/【模板】线段树分治](https://www.luogu.com.cn/problem/P5787)"
-你需要维护一个 $n$ 个点 $m$ 条边的无向图。第 $i$ 条边为 $(x_i,y_i)$，出现的时刻为 $[l_i,r_i)$，其余时刻消失。
+???+ note "[luogu P5787 二分图/【模板】线段树分治](https://www.luogu.com.cn/problem/P5787)"
+    你需要维护一个 $n$ 个点 $m$ 条边的无向图。第 $i$ 条边为 $(x_i,y_i)$，出现的时刻为 $[l_i,r_i)$，其余时刻消失。
 
     对于每一个时刻，若此时该图为二分图，输出 `Yes`，否则输出 `No`。
 
