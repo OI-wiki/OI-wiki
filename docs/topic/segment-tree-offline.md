@@ -65,32 +65,32 @@ void solve(int i, int l, int r) {
 
     对于每一个时刻，若此时该图为二分图，输出 `Yes`，否则输出 `No`。
 
-    ??+ "解题思路"
+    ???+ "解题思路"
           使用种类并查集来维护一个图是否是二分图，然后就可以套用线段树分治了。
 
           注意可撤销的并查集不能路径压缩，只能按秩合并。
       
-    ??+ "参考代码"
+    ???+ "参考代码"
         ```cpp
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_1.cpp"
         ```
 
-??+ note "颜色限制 restriction"
+???+ note "颜色限制 restriction"
 有一个 $n$ 点 $m$ 边的无向图，有 $k$ 种颜色编号为 $0\sim k-1$，每条边有一种颜色。
 
     对于每种颜色，请判断假如删去所有这种颜色的边，得到的图是否连通？是否是一棵树？
 
     输出满足删去后图连通的颜色数和删去后图是树的颜色数。
 
-    ??+ "解题思路"
+    ???+ "解题思路"
         对于每一种颜色，建立一个时间，在这个时间内没有这个颜色的边，其他边都有。用一个并查集维护一下即可。
 
-    ??+ "参考代码"
+    ???+ "参考代码"
         ```cpp
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_2.cpp"
         ```
 
-??+ note "[luogu P4219 \[BJOI2014\] 大融合](https://www.luogu.com.cn/problem/P4219)"
+???+ note "[luogu P4219 \[BJOI2014\] 大融合](https://www.luogu.com.cn/problem/P4219)"
 你需要维护一个 $n$ 个点的森林，初始时是散点。
 
     有 $q$ 个操作，支持：
@@ -100,19 +100,19 @@ void solve(int i, int l, int r) {
 
     允许离线。
 
-    ??+ "解题思路"
+    ???+ "解题思路"
         考虑允许离线，因此可以想到线段树分治。
 
         然后考虑如何支持 Q 操作。如果不存在 $(x,y)$ 这条边，答案就是 $x$ 所在连通块大小乘上 $y$ 所在连通块大小。可以用并查集维护。
 
         因此你可以将 Q 拆成三个时间 $k-1,k,k+1$。其中 $k-1$ 是这条边的终止时刻，$k+1$ 是这条边的起始时刻。这样 $k$ 就没有这条边，正好回答询问。
 
-    ??+ "参考代码"
+    ???+ "参考代码"
         ```cpp
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_3.cpp"
         ```
 
-??+ note "[luogu P2056 \[ZJOI2007\] 捉迷藏](https://www.luogu.com.cn/problem/P2056)"
+???+ note "[luogu P2056 \[ZJOI2007\] 捉迷藏](https://www.luogu.com.cn/problem/P2056)"
 给出一个 $n$ 个点的树，每个点有黑白两种颜色。初始时每个点都是黑色的。$q$ 次操作，支持：
 
     - `C x` 将第 $x$ 个点的颜色反转。
@@ -120,7 +120,7 @@ void solve(int i, int l, int r) {
 
     允许离线。
 
-    ??+ "解题思路"
+    ???+ "解题思路"
         首先考虑如何维护树上点集的直径，有下面的推论：
 
         > 对于一个集合 $S$ 和只有一个点的集合 $\{P\}$。若集合 $S$ 的直径为 $(U,V)$。则点集 $S\cap\{P\}$ 的直径只可能为 $(U,V),(U,P)$ 或 $(V,P)$。
@@ -131,7 +131,7 @@ void solve(int i, int l, int r) {
 
         撤销是平凡的，开一个栈记录一下直径端点的变化即可。
 
-    ??+ "参考代码"
+    ???+ "参考代码"
         ```cpp
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_4.cpp"
         ```
