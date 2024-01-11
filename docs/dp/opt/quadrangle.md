@@ -296,7 +296,7 @@ $$
     若 $w$ 满足区间包含单调性和四边形不等式，则状态 $f(j,i)$ 满足四边形不等式。
 
 ??? note "证明"
-    不妨设 $a \leq b \leq c \leq d$。下证 $f(a,d) + f(b,c) \geq f(a,d) + f(b,c)$。考虑依 $d-a$ 归纳。当 $a=b$ 或 $c=d$ 时，所求即一等式。对于一般的情形，根据 $d'=\mathop{\mathrm{opt}}(a,d)$ 的位置分类讨论。
+    不妨设 $a \leq b \leq c \leq d$。下证 $f(a,d) + f(b,c) \geq f(a,c) + f(b,d)$。考虑依 $d-a$ 归纳。当 $a=b$ 或 $c=d$ 时，所求即一等式。对于一般的情形，根据 $d'=\mathop{\mathrm{opt}}(a,d)$ 的位置分类讨论。
     
     第一种情况，$c \leq d'$ 或 $d' < b$，即 $[b,c]$ 包含于 $[a,d']$ 或 $[d'+1,d]$ 之中。
     
