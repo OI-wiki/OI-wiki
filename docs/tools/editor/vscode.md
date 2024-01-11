@@ -23,7 +23,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
     
     记得勾选设置中的 Run In Terminal 选项，如图：![](./images/vscode-7.png)
 
-## 使用 C/C++ 扩展编译并调试
+## 使用 C/C++ 扩展编译并调试/智能补全代码
 
 ### 安装扩展
 
@@ -33,14 +33,6 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 ???+ warning
     在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了 `PATH` 中。请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端。
-
-### 配置 IntelliSense
-
-用于调整 VS Code 的智能补全。
-
-如果你使用 Clang 编译器，在「IntelliSense 模式」中选择 `clang-x64` 而非默认的 `msvc-x64`；如果你使用 G++ 编译器，选择 `gcc-x64` 以使用自动补全等功能。否则会得到「IntelliSense 模式 msvc-x64 与编译器路径不兼容。」的错误。
-
-![](images/vscode-4.png)
 
 ### 配置 GDB/LLDB 调试器
 
@@ -80,6 +72,14 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 在调试模式中，编辑器将以黄色底色显示下一步将要执行的代码。
 
+### 配置 IntelliSense
+
+用于调整 VS Code 的智能补全。
+
+如果你使用 Clang 编译器，在「IntelliSense 模式」中选择 `clang-x64` 而非默认的 `msvc-x64`；如果你使用 G++ 编译器，选择 `gcc-x64` 以使用自动补全等功能。否则会得到「IntelliSense 模式 msvc-x64 与编译器路径不兼容。」的错误。
+
+![](images/vscode-4.png)
+
 ## 配置 clangd
 
 ???+ warning
@@ -106,6 +106,46 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 ![](images/vscode-8.png)
 
 如果下方弹出 clangd 要求关闭 Intellisense 的对话框，点击 "Disable Intellisense"，重新加载工作区，就可以享受 clangd 的自动补全等功能了。
+
+## 编辑
+
+### 语法设置
+
+在新打开的编辑器中点击“选择语言”，即可打开对应的语法高亮，如图：
+
+![](images/vscode-11.apng)
+
+### 快捷键
+
+部分快捷键：
+
+| 按键                                                       | 操作                                |
+| ---------------------------------------------------------- | ----------------------------------- |
+| <kbd>Ctrl</kbd>+<kbd>C</kbd>/<kbd>X</kbd>                  | 复制/剪切当前行（当没有选择内容时） |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>|删除当前行|
+| <kbd>Alt</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd>               | 行上移/下移                         |
+| <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd>  |行向上/向下复制                    |
+| <kbd>Ctrl</kbd>+<kbd>/</kbd>                               | 切换行注释                          |
+| <kbd>Ctrl</kbd>+<kbd>[</kbd>/<kbd>]</kbd>                  | 行向左/右缩进                       |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>[</kbd>/<kbd>]</kbd> | 行折叠/展开                         |
+| <kbd>Ctrl</kbd>+<kbd>P</kbd>                               | 打开最近打开的文件                  |
+| <kbd>Alt</kbd>+<kbd>Z</kbd>                                | 切换自动折行                        |
+| <kbd>Alt</kbd>+<kbd>F12</kbd> | 速览定义（如函数的定义） |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\\</kbd>                                                            | 跳转到匹配括号 |
+| <kbd>Ctrl</kbd>+<kbd>T</kbd> | 在工作区中查找符号（在文件夹中查找指定名称函数等） |
+
+### 多光标
+
+按住<kbd>Alt</kbd>并单击即可在编辑器中添加光标，多数编辑操作都可同时进行；按住鼠标中键并在编辑器中移动也可添加多行光标，如图：
+
+![](images/vscode-12.gif)
+
+
+按<kbd>Ctrl</kbd>+<kbd>F2</kbd>可在编辑器中同时更改所有匹配项，如图：
+
+![](images/vscode-13.gif)
+
+注意此时在右上角会有一个工具栏，可在其中开启查找匹配项时是否开启大小写匹配、全字匹配等。
 
 ## 参考资料与注释
 
