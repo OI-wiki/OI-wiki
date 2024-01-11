@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#define debug(format, ...) fprintf(stderr, format, ##__VA_ARGS__)
 #define ls (i << 1)
 #define rs (i << 1 | 1)
 #define mid ((l + r) >> 1)

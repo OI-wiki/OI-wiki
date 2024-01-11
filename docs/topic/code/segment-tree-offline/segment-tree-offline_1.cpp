@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#define int long long
 #define ls (i << 1)
 #define rs (i << 1 | 1)
 #define mid ((l + r) >> 1)

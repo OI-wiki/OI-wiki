@@ -47,7 +47,7 @@ void dfs2(int u, int fa) {
   }
 }
 
-inline int lca(int x, int y) {
+int lca(int x, int y) {
   while (top[x] != top[y]) {
     if (dep[top[x]] < dep[top[y]]) swap(x, y);
     x = father[top[x]];
@@ -55,7 +55,7 @@ inline int lca(int x, int y) {
   return dep[x] < dep[y] ? x : y;
 }
 
-inline int dis(int x, int y) { return dep[x] + dep[y] - (dep[lca(x, y)] << 1); }
+int dis(int x, int y) { return dep[x] + dep[y] - (dep[lca(x, y)] << 1); }
 
 vector<int> t[N << 2];
 
