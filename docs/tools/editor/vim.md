@@ -122,7 +122,7 @@ Vim 的方向键是↑↓←→，或者<kbd>h</kbd>、<kbd>j</kbd>、<kbd>k</kb
 
 ## Vim 的快捷键
 
-[史上最全 Vim 快捷键键位图—入门到进阶](http://cenalulu.github.io/linux/all-vim-cheatsheat/)
+可参考 [史上最全 Vim 快捷键键位图—入门到进阶](https://cenalulu.github.io/linux/all-vim-cheatsheat/)
 
 ## 外部链接
 
