@@ -119,27 +119,26 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 
 部分快捷键：
 
-| 按键                                                       | 操作                                |
-| ---------------------------------------------------------- | ----------------------------------- |
-| <kbd>Ctrl</kbd>+<kbd>C</kbd>/<kbd>X</kbd>                  | 复制/剪切当前行（当没有选择内容时） |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>|删除当前行|
-| <kbd>Alt</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd>               | 行上移/下移                         |
-| <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd>  |行向上/向下复制                    |
-| <kbd>Ctrl</kbd>+<kbd>/</kbd>                               | 切换行注释                          |
-| <kbd>Ctrl</kbd>+<kbd>[</kbd>/<kbd>]</kbd>                  | 行向左/右缩进                       |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>[</kbd>/<kbd>]</kbd> | 行折叠/展开                         |
-| <kbd>Ctrl</kbd>+<kbd>P</kbd>                               | 打开最近打开的文件                  |
-| <kbd>Alt</kbd>+<kbd>Z</kbd>                                | 切换自动折行                        |
-| <kbd>Alt</kbd>+<kbd>F12</kbd> | 速览定义（如函数的定义） |
-| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\\</kbd>                                                            | 跳转到匹配括号 |
-| <kbd>Ctrl</kbd>+<kbd>T</kbd> | 在工作区中查找符号（在文件夹中查找指定名称函数等） |
+| 按键                                                            | 操作                        |
+| ------------------------------------------------------------- | ------------------------- |
+| <kbd>Ctrl</kbd>+<kbd>C</kbd>/<kbd>X</kbd>                     | 复制/剪切当前行（当没有选择内容时）        |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                 | 删除当前行                     |
+| <kbd>Alt</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd>                  | 行上移/下移                    |
+| <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd> | 行向上/向下复制                  |
+| <kbd>Ctrl</kbd>+<kbd>/</kbd>                                  | 切换行注释                     |
+| <kbd>Ctrl</kbd>+<kbd>\[</kbd>/<kbd>]</kbd>                    | 行向左/右缩进                   |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\[</kbd>/<kbd>]</kbd>   | 行折叠/展开                    |
+| <kbd>Ctrl</kbd>+<kbd>P</kbd>                                  | 打开最近打开的文件                 |
+| <kbd>Alt</kbd>+<kbd>Z</kbd>                                   | 切换自动折行                    |
+| <kbd>Alt</kbd>+<kbd>F12</kbd>                                 | 速览定义（如函数的定义）              |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\\</kbd>                | 跳转到匹配括号                   |
+| <kbd>Ctrl</kbd>+<kbd>T</kbd>                                  | 在工作区中查找符号（在文件夹中查找指定名称函数等） |
 
 ### 多光标
 
 按住<kbd>Alt</kbd>并单击即可在编辑器中添加光标，多数编辑操作都可同时进行；按住鼠标中键并在编辑器中移动也可添加多行光标，如图：
 
 ![](images/vscode-12.gif)
-
 
 按<kbd>Ctrl</kbd>+<kbd>F2</kbd>可在编辑器中同时更改所有匹配项，如图：
 
