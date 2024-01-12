@@ -1,4 +1,4 @@
-author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-time, Early0v0, Enter-tainer, fearlessxjdx, Great-designer, H-J-Granger, hsfzLZH1, iamtwz, Ir1d, ksyx, Marcythm, NachtgeistW, ouuan, Persdre, shuzhouliu, StudyingFather, SukkaW, Tiphereth-A, wsyhb, Yesphet, yuhuoji
+author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-time, Early0v0, Enter-tainer, fearlessxjdx, Great-designer, H-J-Granger, hsfzLZH1, iamtwz, Ir1d, ksyx, Marcythm, NachtgeistW, ouuan, Persdre, shuzhouliu, StudyingFather, SukkaW, Tiphereth-A, wsyhb, Yesphet, yuhuoji, lingkerio
 
 ## 定义
 
@@ -27,6 +27,9 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
       // 维护其他信息，如高度，节点数量等
       int size;   // 当前节点为根的子树大小
       int count;  // 当前节点的重复数量
+    
+      TreeNode(int value)
+          : key(value), size(1), count(1), left(nullptr), right(nullptr) {}
     };
     ```
 
@@ -135,6 +138,8 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
       } else {
         root->count++;  // 节点值相等，增加重复数量
       }
+      root->size = root->count + (root->left ? root->left->size : 0) +
+                   (root->right ? root->right->size : 0);  // 更新节点的子树大小
       return root;
     }
     ```
@@ -193,17 +198,13 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
       return root;
     }
     
-    ```
-    
-    //此处以右子树的最小值为例
-    TreeNode\* findMinNode(TreeNode\* root) {
-    while (root->left != nullptr) {
-    root = root->left;
+    // 此处以右子树的最小值为例
+    TreeNode* findMinNode(TreeNode* root) {
+      while (root->left != nullptr) {
+        root = root->left;
+      }
+      return root;
     }
-    return root;
-    }
-    
-    ```
     ```
 
 ### 求元素的排名
@@ -220,8 +221,8 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
       if (root == nullptr) return 0;
       if (root->key == v) return (root->left ? root->left->size : 0) + 1;
       if (root->key > v) return queryRank(root->left, v);
-      return queryRank(root->right, v) +
-             (root->left ? root->left->size + root->count : 0);
+      return queryRank(root->right, v) + (root->left ? root->left->size : 0) +
+             root->count;
     }
     ```
 
@@ -248,7 +249,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
         if (k == 1) return root->key;
       }
       return querykth(root->right,
-                      k - (root->left ? root->left->size + root->count : 0));
+                      k - (root->left ? root->left->size : 0) - root->count);
     }
     ```
 
