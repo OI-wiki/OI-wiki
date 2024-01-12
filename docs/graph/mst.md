@@ -206,11 +206,11 @@ $$
         }
         ```
     
-    == "Python"
-    \`\`\`python
-    from typing import List
-    from math import inf
-    
+    === "Python"
+        ```python
+        from typing import List
+        from math import inf
+        
         def Prim(g: List[List[int]]):
             n = len(g)
             V = set([i for i in range(1,n)]) # 剩余的顶点集合
@@ -243,7 +243,6 @@ $$
     
         if __name__ == "__main__":
             print(Prim(g))
-
         ```
 
 ### 证明
