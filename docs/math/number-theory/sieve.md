@@ -105,11 +105,11 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
       for (int i = 2; i <= n; ++i) is_prime[i] = true;
       // i * i <= n 说明 i <= sqrt(n)
       for (int i = 2; i * i <= n; ++i) {
-        if (is_prime[i]) {
-          prime.push_back(i);
+        if (is_prime[i])
           for (int j = i * i; j <= n; j += i) is_prime[j] = false;
-        }
       }
+      for (int i = 2; i <= n; ++i)
+        if (is_prime[i]) prime.push_back(i);
     }
     ```
 
@@ -125,9 +125,11 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
         # 让 i 循环到 <= sqrt(n)
         for i in range(2, isqrt(n) + 1): # `isqrt` 是 Python 3.8 新增的函数
             if is_prime[i]:
-                prime.append(i)
                 for j in range(i * i, n + 1, i):
                     is_prime[j] = False
+        for i in range(2, n + 1):
+	    if is_prime[i]:
+	        prime.append(i)
     ```
 
 这种优化不会影响渐进时间复杂度，实际上重复以上证明，我们将得到 $n \ln \ln \sqrt n + o(n)$，根据对数的性质，它们的渐进相同，但操作次数会明显减少。
