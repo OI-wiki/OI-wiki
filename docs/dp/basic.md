@@ -1,4 +1,4 @@
-author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007, Persdre, XiaoSuan250, hhc0001
+author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007, Persdre, XiaoSuan250, hhc0001, ZhangZhanhaoxiang
 
 本页面主要介绍了动态规划的基本思想，以及动态规划中状态及状态转移方程的设计思路，帮助各位初学者对动态规划有一个初步的了解。
 
@@ -194,7 +194,7 @@ int dp() {
 
     同步骤 1，如果插在 $d$ 的末尾，那么由于前面的元素大于要插入的元素，所以不符合 $d$ 的定义，因此必须先找到 **第一个** 大于它的元素，再用 $a_i$ 替换。
 
-步骤 2 如果采用暴力查找，则时间复杂度仍然是 $O(n^2)$ 的。但是根据 $d$ 数组的定义，又由于本题要求不下降子序列，所以 $d$ 一定是 **单调不减** 的，因此文明可以用二分查找将时间复杂度降至 $O(n\log n)$.
+步骤 2 如果采用暴力查找，则时间复杂度仍然是 $O(n^2)$ 的。但是根据 $d$ 数组的定义，又由于本题要求不下降子序列，所以 $d$ 一定是 **单调不减** 的，因此可以用二分查找将时间复杂度降至 $O(n\log n)$.
 
 参考代码如下：
 
