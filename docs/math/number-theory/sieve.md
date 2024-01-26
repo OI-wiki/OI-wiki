@@ -105,11 +105,11 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
       for (int i = 2; i <= n; ++i) is_prime[i] = true;
       // i * i <= n 说明 i <= sqrt(n)
       for (int i = 2; i * i <= n; ++i) {
-        if (is_prime[i]) {
-          prime.push_back(i);
+        if (is_prime[i])
           for (int j = i * i; j <= n; j += i) is_prime[j] = false;
-        }
       }
+      for (int i = 2; i <= n; ++i)
+        if (is_prime[i]) prime.push_back(i);
     }
     ```
 
@@ -125,9 +125,11 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
         # 让 i 循环到 <= sqrt(n)
         for i in range(2, isqrt(n) + 1): # `isqrt` 是 Python 3.8 新增的函数
             if is_prime[i]:
-                prime.append(i)
                 for j in range(i * i, n + 1, i):
                     is_prime[j] = False
+        for i in range(2, n + 1):
+            if is_prime[i]:
+                prime.append(i)
     ```
 
 这种优化不会影响渐进时间复杂度，实际上重复以上证明，我们将得到 $n \ln \ln \sqrt n + o(n)$，根据对数的性质，它们的渐进相同，但操作次数会明显减少。
@@ -146,7 +148,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
 
 但是，这种称为 **位级压缩** 的方法会使这些位的操作复杂化。任何位上的读写操作都需要多次算术运算，最终会使算法变慢。因此，这种方法只有在 $n$ 特别大，以至于我们不能再分配内存时才合理。在这种情况下，我们将牺牲效率，通过显著降低算法速度以节省内存（减小到原来的 $\dfrac n 8$）。
 
-值得一提的是，存在自动执行位级压缩的数据结构，如 C++ 中的 `vector<bool>` 和 `bitset<>`。
+值得一提的是，存在自动执行位级压缩的数据结构，如 C++ 中的 `vector<bool>` 和 `bitset<>`（参见 [bitset: 与埃氏筛结合](../../lang/csl/bitset.md#与埃氏筛结合)）。
 
 #### 分块筛选
 

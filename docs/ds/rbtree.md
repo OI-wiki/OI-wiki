@@ -62,9 +62,9 @@ class RBTreeMap {
 
 旋转操作是多数平衡树能够维持平衡的关键，它能在不改变一棵合法 BST 中序遍历结果的情况下改变局部节点的深度。
 
-![rbtree-rotations](images/rbtree-rotations.svg)
+![rbtree-rotations](images/rbtree-rotate.svg)
 
-如上图，从左图到右图的过程被称为左旋，左旋操作会使得 $\alpha$ 子树上结点的深度均减 1，使 $\gamma$ 子树上结点的深度均加 1，而 $\beta$ 子树上节点的深度则不变。从右图到左图的过程被称为右旋，右旋是左旋的镜像操作。
+如上图，从左图到右图的过程被称为右旋，右旋操作会使得 $T3$ 子树上结点的深度均减 1，使 $T1$ 子树上结点的深度均加 1，而 $T2$ 子树上节点的深度则不变。从右图到左图的过程被称为左旋，左旋是右旋的镜像操作。
 
 这里给出红黑树中节点的左旋操作的示例代码：
 
@@ -149,14 +149,14 @@ class RBTreeMap {
 
 #### Case 4
 
-当前节点 N 的父节点 P 和叔节点 U 均为红色，此时 P 包含了一个红色子节点，违反了红黑树的性质，需要进行重新染色。由于在当前节点 N 之前该树是一棵合法的红黑树，根据性质 4 可以确定 N 的祖父节点 G 一定是黑色，这时只要后续操作可以保证以 G 为根节点的子树在不违反性质 4 的情况下再递归维护祖父节点 G 以保证性质 3 即可。
+当前节点 N 的父节点 P 和叔节点 U 均为红色，此时 P 包含了一个红色子节点，违反了红黑树的性质，需要进行重新染色。由于在当前节点 N 之前该树是一棵合法的红黑树，根据性质 3 可以确定 N 的祖父节点 G 一定是黑色，这时只要后续操作可以保证以 G 为根节点的子树在不违反性质 4 的情况下再递归维护祖父节点 G 以保证性质 3 即可。
 
 因此，这种情况的维护需要：
 
 1.  将 P，U 节点染黑，将 G 节点染红（可以保证每条路径上黑色节点个数不发生改变）。
 2.  递归维护 G 节点（因为不确定 G 的父节点的状态，递归维护可以确保性质 3 成立）。
 
-![rbtree-insert-case4](images/rbtree-insert-case4.png)
+![rbtree-insert-case4](images/rbtree-insert-case4.svg)
 
 ???+ note "实现"
     ```cpp
@@ -184,7 +184,7 @@ class RBTreeMap {
 
 该种情况无法直接进行维护，需要通过旋转操作将子树结构调整为 Case 6 的初始状态并进入 Case 6 进行后续维护。
 
-![rbtree-insert-case5](images/rbtree-insert-case5.png)
+![rbtree-insert-case5](images/rbtree-insert-case5.svg)
 
 ???+ note "实现"
     ```cpp
@@ -222,7 +222,7 @@ class RBTreeMap {
 1.  若 N 为左子节点则左旋祖父节点 G，否则右旋祖父节点 G.（该操作使得旋转过后 P - N 这条路径上的黑色节点个数比 P - G - U 这条路径上少 1，暂时打破性质 4）。
 2.  重新染色，将 P 染黑，将 G 染红，同时满足了性质 3 和 4。
 
-![rbtree-insert-case6](images/rbtree-insert-case6.png)
+![rbtree-insert-case6](images/rbtree-insert-case6.svg)
 
 ???+ note "实现"
     ```cpp
@@ -369,7 +369,7 @@ class RBTreeMap {
 2.  将 S 染黑，P 染红（保证 S 节点的父节点满足性质 4）。
 3.  此时只需根据结构对以当前 P 节点为根的子树进行维护即可（无需再考虑旋转染色后的 S 和 D 节点）。
 
-![rbtree-remove-case1](images/rbtree-remove-case1.png)
+![rbtree-remove-case1](images/rbtree-remove-case1.svg)
 
 ???+ note "实现"
     ```cpp
@@ -404,7 +404,7 @@ class RBTreeMap {
 
 兄弟节点 S 和侄节点 C, D 均为黑色，父节点 P 为红色。此时只需将 S 染红，将 P 染黑即可满足性质 3 和 4。
 
-![rbtree-remove-case2](images/rbtree-remove-case2.png)
+![rbtree-remove-case2](images/rbtree-remove-case2.svg)
 
 ???+ note "实现"
     ```cpp
@@ -428,7 +428,7 @@ class RBTreeMap {
 
 此时也无法通过一步操作同时满足性质 3 和 4，因此选择将 S 染红，优先满足局部性质 4 的成立，再递归维护 P 节点根据上部结构进行后续维护。
 
-![rbtree-remove-case3](images/rbtree-remove-case3.png)
+![rbtree-remove-case3](images/rbtree-remove-case3.svg)
 
 ???+ note "实现"
     ```cpp
@@ -459,7 +459,7 @@ class RBTreeMap {
 2.  将节点 S 染红，将节点 C 染黑。
 3.  此时已满足 Case 5 的条件，进入 Case 5 完成后续维护。
 
-![rbtree-remove-case4](images/rbtree-remove-case4.png)
+![rbtree-remove-case4](images/rbtree-remove-case4.svg)
 
 ???+ note "实现"
     ```cpp
@@ -499,7 +499,7 @@ class RBTreeMap {
 2.  交换父节点 P 和兄弟节点 S 的颜色，此时性质 3 可能被打破。
 3.  将 distant nephew 节点 D 染黑，同时保证了性质 3 和 4。
 
-![rbtree-remove-case5](images/rbtree-remove-case5.png)
+![rbtree-remove-case5](images/rbtree-remove-case5.svg)
 
 ???+ note "实现"
     ```cpp
