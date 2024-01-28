@@ -1,0 +1,10 @@
+id: oi-wiki:math/order-theory-2
+name: Order theory
+solution:
+  cpp: docs/math/code/order-theory/order-theory_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/order-theory/order-theory_2.ans
+  input: docs/math/examples/order-theory/order-theory_2.in
+version: 1000
