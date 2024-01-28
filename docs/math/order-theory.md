@@ -85,7 +85,7 @@
 
 如对于集合 $\{0,1,2\}$ 的幂集 $S$ 和集合的包含关系 $\subseteq$，其对应的 Hasse 图为：
 
-![](images\order-theory1.svg)
+![](images/order-theory1.svg)
 
 由于偏序具有反对称性，所以 Hasse 图一定是[有向无环图](../graph/dag.md)，进而我们可以根据[拓扑排序](../graph/topo.md)对任意有限偏序集构造全序。
 
