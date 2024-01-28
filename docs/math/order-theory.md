@@ -39,23 +39,23 @@
 
 同时我们定义一些特殊的二元关系：
 
-| 二元关系                         | 自反性 | 反自反性 | 对称性 | 反对称性 | 非对称性 | 传递性 | 连接性 | 良基性 | 不可比的传递性 |
-| -------------------------------- | ------ | -------- | ------ | -------- | -------- | ------ | ------ | ------ | -------------- |
-| 等价关系（equivalence relation） | 有     |          | 有     |          |          | 有     |        |        |                |
-| 预序（preorder，quasiorder）     | 有     |          |        |          |          | 有     |        |        |                |
-| 偏序（partial order）            | 有     |          |        | 有       |          | 有     |        |        |                |
-| 全序（total order）              | 有     |          |        | 有       |          | 有     | 有     |        |                |
-| 良序（well-order）               | 有     |          |        | 有       |          | 有     | 有     | 有     |                |
-| 严格预序（strict preorder）      |        | 有       |        |          |          | 有     |        |        |                |
-| 严格偏序（strict partial order） |        | 有       |        |          | 有       | 有     |        |        |                |
-| 严格弱序（strict weak order）    |        | 有       |        |          | 有       | 有     |        |        | 有             |
-| 严格全序（strict total order）   |        | 有       |        |          | 有       | 有     | 有     |        |                |
+| 二元关系                       | 自反性 | 反自反性 | 对称性 | 反对称性 | 非对称性 | 传递性 | 连接性 | 良基性 | 不可比的传递性 |
+| -------------------------- | --- | ---- | --- | ---- | ---- | --- | --- | --- | ------- |
+| 等价关系（equivalence relation） | 有   |      | 有   |      |      | 有   |     |     |         |
+| 预序（preorder，quasiorder）    | 有   |      |     |      |      | 有   |     |     |         |
+| 偏序（partial order）          | 有   |      |     | 有    |      | 有   |     |     |         |
+| 全序（total order）            | 有   |      |     | 有    |      | 有   | 有   |     |         |
+| 良序（well-order）             | 有   |      |     | 有    |      | 有   | 有   | 有   |         |
+| 严格预序（strict preorder）      |     | 有    |     |      |      | 有   |     |     |         |
+| 严格偏序（strict partial order） |     | 有    |     |      | 有    | 有   |     |     |         |
+| 严格弱序（strict weak order）    |     | 有    |     |      | 有    | 有   |     |     | 有       |
+| 严格全序（strict total order）   |     | 有    |     |      | 有    | 有   | 有   |     |         |
 
 ### 关系间的运算
 
 对集合 $X$ 和集合 $Y$ 上的二元关系 $R$ 和 $S$，我们可以定义如下运算：
 
-1.  $R$ 和 $S$ 的并 $R\cup S$ 满足 $G(R\cup S):=\{(x,y):xRy \lor xSy\}$（如 $\leq$ 是 $<$ 和 $=$ 的并）,
+1.  $R$ 和 $S$ 的并 $R\cup S$ 满足 $G(R\cup S):=\{(x,y):xRy \lor xSy\}$（如 $\leq$ 是 $<$ 和 $=$ 的并），
 2.  $R$ 和 $S$ 的交 $R\cap S$ 满足 $G(R\cap S):=\{(x,y):xRy \land xSy\}$,
 3.  $R$ 的补 $\bar{R}$ 满足 $G(\bar{R}):=\{(x,y):\lnot(xRy)\}$,
 4.  $R$ 的对偶 $R^T$ 满足 $G(R^T):=\{(y,x):xRy\}$.
@@ -65,9 +65,9 @@
 ### 偏序集
 
 ???+ note "定义"
-    若集合 $S$ 上的一个二元关系 $\preceq$ 具有**自反性**、**反对称性**、**传递性**，则称 $S$ 是 **偏序集**（partially ordered set，poset）, $\preceq$ 为其上一 **偏序**（partial order）。
+    若集合 $S$ 上的一个二元关系 $\preceq$ 具有 **自反性**、**反对称性**、**传递性**，则称 $S$ 是 **偏序集**（partially ordered set，poset），$\preceq$ 为其上一 **偏序**（partial order）。
     
-    若偏序 $\preceq$ 还具有**连接性**，则称其为**全序**（total order），对应的集合称为 **全序集**（totally ordered set）、**线性序集**（linearly ordered set，loset）、**简单序集**（simply ordered set）。
+    若偏序 $\preceq$ 还具有 **连接性**，则称其为 **全序**（total order），对应的集合称为 **全序集**（totally ordered set）、**线性序集**（linearly ordered set，loset）、**简单序集**（simply ordered set）。
 
 由传递性和反对称性可以推出自反性，由传递性和自反性也可以推出反对称性。
 
@@ -78,7 +78,7 @@
 对于有限偏序集，我们可以用 Hasse 图直观地表示其上的偏序关系。
 
 ???+ note "定义"
-    对有限偏序集 $S$ 和其上的偏序 $\preceq$，定义 $x\prec y\iff (x\preceq y\land x\neq y)$ 其对应的 **Hasse 图**为满足如下条件的图 $G=\langle V,E\rangle$：
+    对有限偏序集 $S$ 和其上的偏序 $\preceq$，定义 $x\prec y\iff (x\preceq y\land x\neq y)$ 其对应的 **Hasse 图** 为满足如下条件的图 $G=\langle V,E\rangle$：
     
     -   $V=S$,
     -   $E=\{(x,y)\in S\times S: x\prec y \land ((\nexists~z\in S)~~x\prec z\prec y)\}$
@@ -87,14 +87,14 @@
 
 ![](images/order-theory1.svg)
 
-由于偏序具有反对称性，所以 Hasse 图一定是[有向无环图](../graph/dag.md)，进而我们可以根据[拓扑排序](../graph/topo.md)对任意有限偏序集构造全序。
+由于偏序具有反对称性，所以 Hasse 图一定是 [有向无环图](../graph/dag.md)，进而我们可以根据 [拓扑排序](../graph/topo.md) 对任意有限偏序集构造全序。
 
 ### 链与反链
 
 ???+ note "定义"
-    对偏序集 $S$ 和其上的偏序 $\preceq$，称 $S$ 的全序子集为**链**（chain）。若 $S$ 的子集 $T$ 中任意两个不同元素均不可比（即 $(\forall~a,b \in T)~~a \neq b \implies (a \npreceq b \land b \npreceq a)$），则称 $T$ 为**反链**（antichain）。
+    对偏序集 $S$ 和其上的偏序 $\preceq$，称 $S$ 的全序子集为 **链**（chain）。若 $S$ 的子集 $T$ 中任意两个不同元素均不可比（即 $(\forall~a,b \in T)~~a \neq b \implies (a \npreceq b \land b \npreceq a)$），则称 $T$ 为 **反链**（antichain）。
     
-    对偏序集 $S$ 和其上的偏序 $\preceq$，我们将偏序集 $S$ 的最长反链长度称为**宽度**（partial order width）。
+    对偏序集 $S$ 和其上的偏序 $\preceq$，我们将偏序集 $S$ 的最长反链长度称为 **宽度**（partial order width）。
 
 如对于集合 $\{0,1,2\}$ 的幂集 $S$ 和集合的包含关系 $\subseteq$，$\{\varnothing,\{1\},\{1,2\}\}$ 为一条链，$\{\{1\},\{0,2\}\}$ 为一条反链，$S$ 的宽度为 $3$.
 
@@ -105,11 +105,11 @@
 ???+ note "定义"
     对预序集 $S$ 和其上的预序 $\preceq$，取 $S$ 中的元素 $m$：
     
-    1.  若 $(\forall~a \in S\setminus\{m\})~~\lnot(m\preceq a)$，则称 $m$ 为**极大元**（maximal element），
-    2.  若对 $T \subseteq S$ 满足 $(\forall~t\in T)~~t\preceq m$，则称 $m$ 为 $T$ 的**上界**（upper bound），
-    3.  若对 $T \subseteq S$ 满足 $m$ 是 $T$ 的上界且对 $T$ 的任意上界 $n$ 均有 $m \preceq n$，则称 $m$ 为 $T$ 的**上确界**（supremum）。
+    1.  若 $(\forall~a \in S\setminus\{m\})~~\lnot(m\preceq a)$，则称 $m$ 为 **极大元**（maximal element），
+    2.  若对 $T \subseteq S$ 满足 $(\forall~t\in T)~~t\preceq m$，则称 $m$ 为 $T$ 的 **上界**（upper bound），
+    3.  若对 $T \subseteq S$ 满足 $m$ 是 $T$ 的上界且对 $T$ 的任意上界 $n$ 均有 $m \preceq n$，则称 $m$ 为 $T$ 的 **上确界**（supremum）。
     
-    类似可定义**极小元**（minimal element）、**下界**（lower bound）和**下确界**（infimum）。
+    类似可定义 **极小元**（minimal element）、**下界**（lower bound）和 **下确界**（infimum）。
 
 如 $1$ 是 $\mathbf{N}_+$ 的极小元和下界。
 
@@ -118,7 +118,7 @@
 -   预序集中，极大（小）元、上（下）界、上（下）确界都是不一定存在的，即使存在也不一定唯一。
 
 -   若偏序集 $S$ 的子集 $T$ 存在上（下）确界，则一定唯一。
-    
+
     我们可将 $T$ 的上确界、下确界分别记为 $\sup T$，$\inf T$. 若偏序集 $S$ 既有上界又有下界，则称 $S$ 是有界的。
 
 在无限偏序集中，极大元不一定存在。可用 **Zorn 引理**（Zorn's Lemma）来判断无限偏序集中是否存在极大元。
@@ -137,18 +137,18 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
 对偏序集 $S$ 和其上的偏序 $\preceq$：
 
 ???+ note "并半格"
-    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有上确界 $c$，则称 $S$ 为**并半格**（meet-semilattice，lower semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的**并**（meet），记为 $a\lor b$.
+    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有上确界 $c$，则称 $S$ 为 **并半格**（meet-semilattice，lower semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **并**（meet），记为 $a\lor b$.
 
 ???+ note "交半格"
-    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有下确界 $c$，则称 $S$ 为**交半格**（join-semilattice，upper semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的**交**（join），记为 $a\land b$.
+    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有下确界 $c$，则称 $S$ 为 **交半格**（join-semilattice，upper semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **交**（join），记为 $a\land b$.
 
 不难发现：
 
--   若并半格存在极大元，则一定唯一。我们将并半格的极大元称为**最大元**（greatest element）。
--   若交半格存在极小元，则一定唯一。我们将交半格的极小元称为**最小元**（least element）。
+-   若并半格存在极大元，则一定唯一。我们将并半格的极大元称为 **最大元**（greatest element）。
+-   若交半格存在极小元，则一定唯一。我们将交半格的极小元称为 **最小元**（least element）。
 
 ???+ note "格"
-    对偏序集 $S$ 和其上的偏序 $\preceq$，$S$ 既是并半格也是交半格，则称 $S$ 为**格**（lattice）。
+    对偏序集 $S$ 和其上的偏序 $\preceq$，$S$ 既是并半格也是交半格，则称 $S$ 为 **格**（lattice）。
 
 例如对于 $\mathbf{N}_+$ 上的任意正整数 $a,b$，$\lcm(a,b)$ 为 $a$ 和 $b$ 的交，$\gcd(a,b)$ 为 $a$ 和 $b$ 的并，从而 $\mathbf{N}_+$ 是格。
 
@@ -156,7 +156,7 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
 
 在序理论中，对偶是非常常见的概念，如上文提到的极大元与极小元对偶、上界与下界对偶、上确界与下确界对偶。
 
-对偏序集 $P$ 和其上的偏序 $\preceq$，定义其**对偶**（dual，opposite）偏序集 $P^d$ 满足：$x \preceq y$ 在 $P$ 中成立当且仅当 $y \preceq x$ 在 $P^d$ 中成立。将 $P$ 的 Hasse 图的边反转即可得到 $P^d$ 的 Hasse 图。
+对偏序集 $P$ 和其上的偏序 $\preceq$，定义其 **对偶**（dual，opposite）偏序集 $P^d$ 满足：$x \preceq y$ 在 $P$ 中成立当且仅当 $y \preceq x$ 在 $P^d$ 中成立。将 $P$ 的 Hasse 图的边反转即可得到 $P^d$ 的 Hasse 图。
 
 ## Dliworth 定理与 Mirsky 定理
 
@@ -184,9 +184,9 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
         
         我们不难发现如下性质：
         
-        - $S^+\cup S^-=S$，
-        - $S^+\cap S^-=A$，
-        - $|S^+|<|S|$, $|S^-|<|S|$（因为 $m\notin S^+$ 且 $M\notin S^-$）。
+        -   $S^+\cup S^-=S$，
+        -   $S^+\cap S^-=A$，
+        -   $|S^+|<|S|$,$|S^-|<|S|$（因为 $m\notin S^+$ 且 $M\notin S^-$）。
         
         对 $S^+$ 和 $S^-$ 都应用归纳假设，则这两个集合的最小链覆盖数为 $d$，且这些链中恰好包含一个 $A$ 中的元素 $a$，设这些链分别为 $C_a^+$，$C_a^-$，则 $\{C_a^-\cup\{a\}\cup C_a^+\}$ 是 $S$ 的一个最小链覆盖，命题得证。
 
@@ -232,7 +232,7 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#�
         (i,h_i)\preceq(j,h_j) \iff (i\leq j \land h_i\geq h_j)
         $$
         
-        进而根据 Dilworth 定理有：**序列的不上升子序列的最少覆盖数等于最长上升子序列长度**。从而可以通过[最长不下降子序列的 $O(n\log n)$ 做法](../dp/basic.md#算法二2)解决本题。
+        进而根据 Dilworth 定理有：**序列的不上升子序列的最少覆盖数等于最长上升子序列长度**。从而可以通过 [最长不下降子序列的 $O(n\log n)$ 做法](../dp/basic.md#算法二2) 解决本题。
     
     ??? note "参考代码"
         ```cpp
