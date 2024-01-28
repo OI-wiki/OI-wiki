@@ -1,16 +1,6 @@
 ## 引入
 
-序理论是研究二元关系的一个数学分支。
-
-在数学，计算机科学和相关知识领域中，次序无处不在。例如我们在入门数学课中学到的自然数之间的比较：「1 小于 2」，「100 大于 99」，「小明有 3 个苹果，小红有 12 个苹果。小红把自己的一半苹果分给小明，现在谁有更多的苹果？」。或者将这个概念扩展到其他数学集合的排序，比如整数和实数。实际上，大于或小于另一个数的概念是数学系统的基本直觉。很多时候我们并不知道两个数间的实际差，只有它们之间的次序。
-
-上述类型的次序有特殊性质：每个元素都可以用于和另一个元素直接「比较」，也就是说，这个元素大于、小于、或等于另一个元素。但是，这不总是我们想要的结果。一个常见的例子是集合的子集排序。如果一个集合 $A$ 包含集合 $B$ 的所有元素，那么集合 $B$ 被称为小于等于 $A$。然而有些集合不能用这种方式来比较，因为其中每个集合都包含着其他集合中不存在的某些元素。例如，考虑一个系列集合的子集次序：尽管鸟类集合和狗的集合都是动物集合的子集，但鸟类和狗都不构成另一个的子集。所以，子集包含是偏次序，对立了前面给出的全次序。
-
-更宽泛地讲，次序的概念非常普遍，远远超出了对序列或相对数量这些具有直观结论的描述。在特定情况下，次序可以用来描述专业化的概念。因为抽象地来看，这种类型的次序相当于子集关系。例如，「儿科医生是医生」，「圆是一种特殊的椭圆」。
-
-序理论捕捉了在一般环境中从这些例子中产生的次序直觉。这是通过指定必须是数学顺序关系的 $\leq$ 属性来实现的。这种更抽象的方法很有意义，因为人们可以在一般环境中无需关注任何特定顺序的细节，就推导出许多定理。而这些方法可以很容易地转移到许多不太抽象的应用中。
-
-在次序广泛应用的推动下，许多特殊类型的有序集有了定义，其中一些甚至已经发展成为了自己的数学领域。此外，序理论并不局限于各类序关系，而是考虑了它们之间的函数。函数的序理论的性质的一个简单例子来自在数学分析中常见的单调函数。
+序理论是利用二元关系来将「次序」这一概念严格化的数学分支，下面将介绍这一分支的基本定义。
 
 ## 定义
 
@@ -34,8 +24,8 @@
 5.  非对称性（asymmetric）：$(\forall~a,b \in S)~~aRb \implies \lnot(bRa)$，
 6.  传递性（transitive）：$(\forall~a,b,c \in S)~~(aRb \land bRc) \implies aRc$，
 7.  连接性（connected）：$(\forall~a,b \in S)~~a \neq b \implies (aRb \lor bRa)$，
-8.  良基性（well-founded）：$(\exists~m \in S \neq \varnothing)~~(\forall~a \in S)~~\lnot(aRm)$（即非空集合 $S$ 中有极小元 $m$），
-9.  不可比的传递性（transitive of incomparability）：$(\forall~a,b,c \in S)~~(\lnot(aRb \lor bRa) \land \lnot(bRc \lor cRb)) \implies \lnot(aRc \lor cRa)$（若 $\lnot(aRb \lor bRa)$，我们则称 $a$ 和 $b$ 是不可比的）。
+8.  良基性（well-founded）：$(\exists~m \in S \neq \varnothing)~~(\forall~a \in S\setminus\{m\})~~\lnot(aRm)$（即非空集合 $S$ 中有极小元 $m$），
+9.  不可比的传递性（transitive of incomparability）：$(\forall~a,b,c \in S)~~(\lnot(aRb \lor bRa) \land \lnot(bRc \lor cRb)) \implies \lnot(aRc \lor cRa)$（若 $\lnot(aRb \lor bRa)$，则称 $a$ 和 $b$ 是不可比的）。
 
 同时我们定义一些特殊的二元关系：
 
@@ -56,8 +46,8 @@
 对集合 $X$ 和集合 $Y$ 上的二元关系 $R$ 和 $S$，我们可以定义如下运算：
 
 1.  $R$ 和 $S$ 的并 $R\cup S$ 满足 $G(R\cup S):=\{(x,y):xRy \lor xSy\}$（如 $\leq$ 是 $<$ 和 $=$ 的并），
-2.  $R$ 和 $S$ 的交 $R\cap S$ 满足 $G(R\cap S):=\{(x,y):xRy \land xSy\}$,
-3.  $R$ 的补 $\bar{R}$ 满足 $G(\bar{R}):=\{(x,y):\lnot(xRy)\}$,
+2.  $R$ 和 $S$ 的交 $R\cap S$ 满足 $G(R\cap S):=\{(x,y):xRy \land xSy\}$，
+3.  $R$ 的补 $\bar{R}$ 满足 $G(\bar{R}):=\{(x,y):\lnot(xRy)\}$，
 4.  $R$ 的对偶 $R^T$ 满足 $G(R^T):=\{(y,x):xRy\}$.
 
 对集合 $X$ 和集合 $Y$ 上的二元关系 $R$ 以及集合 $Y$ 和集合 $Z$ 上的二元关系 $S$，我们可以定义其复合 $S\circ R$ 满足 $G(S\circ R):=\{(x,z):(\exists~y\in Y)~~xRy\land ySz\}$.
@@ -137,10 +127,10 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
 对偏序集 $S$ 和其上的偏序 $\preceq$：
 
 ???+ note "并半格"
-    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有上确界 $c$，则称 $S$ 为 **并半格**（meet-semilattice，lower semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **并**（meet），记为 $a\lor b$.
+    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有上确界 $c$，则称 $S$ 为 **并半格**（join-semilattice，upper semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **并**（join），记为 $a\lor b$.
 
 ???+ note "交半格"
-    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有下确界 $c$，则称 $S$ 为 **交半格**（join-semilattice，upper semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **交**（join），记为 $a\land b$.
+    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有下确界 $c$，则称 $S$ 为 **交半格**（meet-semilattice，lower semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **交**（meet），记为 $a\land b$.
 
 不难发现：
 
@@ -148,9 +138,9 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
 -   若交半格存在极小元，则一定唯一。我们将交半格的极小元称为 **最小元**（least element）。
 
 ???+ note "格"
-    对偏序集 $S$ 和其上的偏序 $\preceq$，$S$ 既是并半格也是交半格，则称 $S$ 为 **格**（lattice）。
+    对偏序集 $S$ 和其上的偏序 $\preceq$，若 $S$ 既是并半格也是交半格，则称 $S$ 为 **格**（lattice）。
 
-例如对于 $\mathbf{N}_+$ 上的任意正整数 $a,b$，$\operatorname{lcm}(a,b)$ 为 $a$ 和 $b$ 的交，$\gcd(a,b)$ 为 $a$ 和 $b$ 的并，从而 $\mathbf{N}_+$ 是格。
+例如对于 $\mathbf{N}_+$ 上的任意正整数 $a,b$，$\operatorname{lcm}(a,b)$ 为 $a$ 和 $b$ 的并，$\gcd(a,b)$ 为 $a$ 和 $b$ 的交，从而 $\mathbf{N}_+$ 是格。
 
 ### 对偶
 
@@ -158,7 +148,7 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
 
 对偏序集 $P$ 和其上的偏序 $\preceq$，定义其 **对偶**（dual，opposite）偏序集 $P^d$ 满足：$x \preceq y$ 在 $P$ 中成立当且仅当 $y \preceq x$ 在 $P^d$ 中成立。将 $P$ 的 Hasse 图的边反转即可得到 $P^d$ 的 Hasse 图。
 
-## Dliworth 定理与 Mirsky 定理
+## Dilworth 定理与 Mirsky 定理
 
 对有限偏序集 $S$ 和其上的偏序 $\preceq$，我们有如下的一对对偶的定理：
 
@@ -262,14 +252,16 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#�
         --8<-- "docs/math/code/order-theory/order-theory_2.cpp"
         ```
 
-### 算法
+### C++ 中的应用
 
-[C++ 基础库的排序函数](../basic/stl-sort.md) 中有偏序关系的应用。很多情况时，我们需要在 C++ 中自定义比较器（custom comparator），而 STL 要求自定义比较器必须为 **严格弱序**。而所有 STL 中的自定义比较器都可以用简单的 $<$ 关系表示。因为我们可以推断得知：
+另请参阅：[排序相关 STL -  算法基础](../basic/stl-sort.md)。
 
--   $x>y$ 表示 $y<x$;
--   $x \leq y$ 表示 $y \nless x$；
--   $x \geq y$ 表示 $x \nless y$；
--   $x=y$ 表示 $x \nless y$ 和 $y \nless x$。这就是为什么上面第四条规则被称为等价的传递性。如果 $x \nless y$ 和 $y \nless x$，我们可以说「$x$ 和 $y$ 是不可比的」。
+C++ STL 中 [需要使用比较的算法和数据结构](https://en.cppreference.com/w/cpp/named_req/Compare#Standard_library) 中有序理论的应用。我们经常需要在 C++ 中自定义比较器，STL [要求](https://en.cppreference.com/w/cpp/named_req/Compare) 其必须为 **严格弱序**。令 $<$ 为自定义比较器，则可以定义：
+
+-   $x>y$ 为 $y<x$；
+-   $x \leq y$ 为 $y \nless x$；
+-   $x \geq y$ 为 $x \nless y$；
+-   $x=y$ 为 $x \nless y\land y \nless x$.
 
 ## 参考资料与拓展阅读
 
