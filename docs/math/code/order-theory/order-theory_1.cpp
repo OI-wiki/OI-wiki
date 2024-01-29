@@ -5,10 +5,6 @@ int main() {
   vector<int> a;
   int x;
   while (cin >> x) a.push_back(x);
-  if (a.empty()) {
-    cout << "0\n0\n";
-    return 0;
-  }
   vector<int> f, g;
   for (int i : a) {
     if (f.empty() || -i >= f.back())
