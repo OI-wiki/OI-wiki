@@ -118,11 +118,28 @@
 
 Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**、**[良序定理](https://en.wikipedia.org/wiki/Well-ordering_theorem)** 等价。
 
-### 格
+### 有向集与格
 
 我们知道若偏序集的子集存在上（下）确界，则一定唯一。但是这一点并不适用于极大（小）元。例如：考虑偏序集 $S=\{\{0\},\{1\},\{2\},\{0,1\},\{0,2\},\{1,2\}\}$ 和其上的偏序 $\subseteq$，不难发现其有 $3$ 个极大元和 $3$ 个极小元。
 
 我们希望通过向偏序集添加一定的条件来使得若极大（小）元存在则一定唯一，这样我们就可以定义最大（小）元的概念了。
+
+???+ note "有向集"
+    对预序集 $S$ 和其上的预序 $\preceq$，若 $(\forall~a,b\in S)~~(\exists~c\in S)~~a\preceq c\land b\preceq c$，则称 $\preceq$ 为 $S$ 的一个**方向**（direction），$S$ 称为**有向集**（directed set）或**过滤集**（filtered set）。
+    
+    有时也将满足上述定义的集合 $S$ 称为**上有向集**（upward directed set），类似地可定义**下有向集**（downward directed set）。
+
+有向集也可用如下方式定义：
+
+???+ note "有向集的等价定义"
+    对预序集 $S$ 和其上的预序 $\preceq$，若 $S$ 的任意有限子集 $T$ 均有上界，则称 $\preceq$ 为 $S$ 的一个方向，$S$ 称为有向集。
+
+不难发现：
+
+-   若上有向集存在极大元，则一定唯一。我们将上有向集的极大元称为 **最大元**（greatest element）。
+-   若下有向集存在极小元，则一定唯一。我们将下有向集的极小元称为 **最小元**（least element）。
+
+有方向的偏序集中，对任意元素 $a,b$，$\{a,b\}$ 都有上界，若将上界修改为上确界，则得到了并半格的定义。
 
 对偏序集 $S$ 和其上的偏序 $\preceq$：
 
@@ -132,13 +149,8 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
 ???+ note "交半格"
     若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有下确界 $c$，则称 $S$ 为 **交半格**（meet-semilattice，lower semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **交**（meet），记为 $a\land b$.
 
-不难发现：
-
--   若并半格存在极大元，则一定唯一。我们将并半格的极大元称为 **最大元**（greatest element）。
--   若交半格存在极小元，则一定唯一。我们将交半格的极小元称为 **最小元**（least element）。
-
 ???+ note "格"
-    对偏序集 $S$ 和其上的偏序 $\preceq$，若 $S$ 既是并半格也是交半格，则称 $S$ 为 **格**（lattice）。
+    若 $S$ 既是并半格也是交半格，则称 $S$ 为 **格**（lattice）。
 
 例如对于 $\mathbf{N}_+$ 上的任意正整数 $a,b$，$\operatorname{lcm}(a,b)$ 为 $a$ 和 $b$ 的并，$\gcd(a,b)$ 为 $a$ 和 $b$ 的交，从而 $\mathbf{N}_+$ 是格。
 
@@ -269,12 +281,13 @@ C++ STL 中 [需要使用比较的算法和数据结构](https://en.cppreference
 2.  [Binary Relation - Wikipedia](https://en.wikipedia.org/wiki/Binary_relation)
 3.  [Order Theory - Wikipedia](https://en.wikipedia.org/wiki/Order_theory)
 4.  [Hasse diagram - Wikipedia](https://en.wikipedia.org/wiki/Hasse_diagram)
-5.  [Order Theory, Lecture Notes by Mark Dean for Decision Theory](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
-6.  卢开澄，卢华明，[《组合数学》（第 3 版）](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
-7.  [List of Order Theory Topics - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
-8.  [浅谈邻项交换排序的应用以及需要注意的问题 by ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
-9.  [One thing you should know about comparators—Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
-10. [Dilworth's theorem - Wikipedia](https://en.wikipedia.org/wiki/Dilworth%27s_theorem)
-11. [Dilworth's Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/dilworths-theorem/)
-12. [Hall's marriage theorem - Wikipedia](https://en.wikipedia.org/wiki/Hall's_marriage_theorem)
-13. [Hall's Marriage Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/hall-marriage-theorem/)
+5.  [Directed set - Wikipedia](https://en.wikipedia.org/wiki/Directed_set)
+6.  [Order Theory, Lecture Notes by Mark Dean for Decision Theory](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
+7.  卢开澄，卢华明，[《组合数学》（第 3 版）](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
+8.  [List of Order Theory Topics - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
+9.  [浅谈邻项交换排序的应用以及需要注意的问题 by ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
+10. [One thing you should know about comparators—Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
+11. [Dilworth's theorem - Wikipedia](https://en.wikipedia.org/wiki/Dilworth%27s_theorem)
+12. [Dilworth's Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/dilworths-theorem/)
+13. [Hall's marriage theorem - Wikipedia](https://en.wikipedia.org/wiki/Hall's_marriage_theorem)
+14. [Hall's Marriage Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/hall-marriage-theorem/)
