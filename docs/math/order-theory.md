@@ -264,7 +264,12 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#�
         --8<-- "docs/math/code/order-theory/order-theory_2.cpp"
         ```
 
-### C++ 中的应用
+### 习题
+
+-   [\[CTSC2008\] 祭祀](https://www.luogu.com.cn/problem/P4298)
+-   [CodeForces 590E Birthday](https://codeforces.com/problemset/problem/590/E)
+
+## C++ 中的应用
 
 另请参阅：[排序相关 STL -  算法基础](../basic/stl-sort.md)。
 
@@ -291,3 +296,4 @@ C++ STL 中 [需要使用比较的算法和数据结构](https://en.cppreference
 12. [Dilworth's Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/dilworths-theorem/)
 13. [Hall's marriage theorem - Wikipedia](https://en.wikipedia.org/wiki/Hall's_marriage_theorem)
 14. [Hall's Marriage Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/hall-marriage-theorem/)
+15. [Dilworth 学习笔记 - Selfish](https://www.luogu.com.cn/blog/Rolling-Code/dilworth)
