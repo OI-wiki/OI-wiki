@@ -36,7 +36,7 @@ $$
 
 时间复杂度 $O(n^3)$，对给出点的坐标无要求。
 
-### 方法 3：拉格朗日插值法
+### Lagrange 插值法
 
 在 [多项式部分简介](../poly/intro.md) 里我们已经定义了多项式除法。
 
@@ -108,7 +108,7 @@ $$
     因为在固定模 $998244353$ 意义下运算，计算乘法逆元的时间复杂度我们在这里暂且认为是常数时间。
     
     ```cpp
-    --8<-- "docs/math/code/numerical/lagrange/lagrange_1.cpp"
+    --8<-- "docs/math/code/numerical/interp/interp_1.cpp"
     ```
 
 本题中只用求出 $f(k)$ 的值，所以在计算上式的过程中直接将 $k$ 代入即可。
@@ -165,5 +165,5 @@ $$
 
 ??? note "代码实现"
     ```cpp
-    --8<-- "docs/math/code/numerical/lagrange/lagrange_2.cpp"
+    --8<-- "docs/math/code/numerical/interp/interp_2.cpp"
     ```
