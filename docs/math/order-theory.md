@@ -152,7 +152,7 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
 ???+ note "格"
     若 $S$ 既是并半格也是交半格，则称 $S$ 为 **格**（lattice）。
 
-例如 $60$ 的正因子构成的集合 $S=\{1,2,3,4,5,6,10,12,15,20,30,60\}$ 关于整除构成偏序集，其上的任意正整数 $a,b$，$\operatorname{lcm}(a,b)$ 为 $a$ 和 $b$ 的并，$\gcd(a,b)$ 为 $a$ 和 $b$ 的交，从而 $\mathbf{N}_+$ 是格。
+例如 $60$ 的正因子构成的集合 $S=\{1,2,3,4,5,6,10,12,15,20,30,60\}$ 关于整除构成偏序集，其上的任意正整数 $a,b$，$\operatorname{lcm}(a,b)$ 为 $a$ 和 $b$ 的并，$\gcd(a,b)$ 为 $a$ 和 $b$ 的交，从而 $S$ 是格。
 
 ### 对偶
 
@@ -198,9 +198,9 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
     ??? note "证明"
         设 $S$ 的最长链长度为 $d$，则由定义，最小反链覆盖数至少为 $d$.
         
-        令 $f(s)$ 为以 $s$ 为最小元的最长链长度，注意到若 $f(s)=f(t)$，则 $s$ 与 $t$ 不可比，进而 $(\forall~1\leq n\leq d)~~f^{-1}(n)$ 均为反链。
+        令 $f(s)$ 为以 $s$ 为最小元的最长链长度，注意到若 $f(s)=f(t)$，则 $s$ 与 $t$ 不可比，进而 $(\forall~n\in\mathbf{N})~~f^{-1}(\{n\})$ 均为反链，其中 $f^{-1}(\{n\}):=\{a\in S:f(a)=n\}$ 称为 [水平集（level set）](https://en.wikipedia.org/wiki/Level_set)。
         
-        因此不难得出 $\{f^{-1}(i):1\leq i\leq d\}$ 是一个反链覆盖，从而最小反链覆盖数至多为 $d$.
+        因此不难得出 $\{f^{-1}(\{i\}):1\leq i\leq d\}$ 是一个反链覆盖，从而最小反链覆盖数至多为 $d$.
 
 Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#霍尔定理) 等价。
 
