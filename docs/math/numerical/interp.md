@@ -182,6 +182,11 @@ $$
     \end{aligned}
     $$
 
+??? note " 代码实现（[Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)）"
+    ```cpp
+    --8<-- "docs/math/code/numerical/interp/interp_3.cpp"
+    ```
+
 ### 横坐标是连续整数的 Newton 插值
 
 例如：求某三次多项式 $f(x)=\sum_{i=0}^{3} a_ix^i$ 的多项式系数，已知 $f(1)$ 至 $f(6)$ 的值分别为 $1, 5, 14, 30, 55, 91$。
