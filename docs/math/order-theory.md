@@ -152,7 +152,7 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
 ???+ note "格"
     若 $S$ 既是并半格也是交半格，则称 $S$ 为 **格**（lattice）。
 
-例如对于 $\mathbf{N}_+$ 上的任意正整数 $a,b$，$\operatorname{lcm}(a,b)$ 为 $a$ 和 $b$ 的并，$\gcd(a,b)$ 为 $a$ 和 $b$ 的交，从而 $\mathbf{N}_+$ 是格。
+例如 $60$ 的正因子构成的集合 $S=\{1,2,3,4,5,6,10,12,15,20,30,60\}$ 关于整除构成偏序集，其上的任意正整数 $a,b$，$\operatorname{lcm}(a,b)$ 为 $a$ 和 $b$ 的并，$\gcd(a,b)$ 为 $a$ 和 $b$ 的交，从而 $\mathbf{N}_+$ 是格。
 
 ### 对偶
 
