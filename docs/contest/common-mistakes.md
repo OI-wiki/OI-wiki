@@ -436,7 +436,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     a += b;
     ```
 
-    [这种写法](https://godbolt.org/z/eGh33Grf3) 会直接将字符 `b` 附加到字符串 `a` 中，仅调用了一次 `operator+=`。
+    [这种写法](https://godbolt.org/z/eGh33Grf3) 会直接将字符 `b` 附加到字符串 `a` 中，仅调用了一次 `operator+=`。更详细的性能比较可参考 [Benchmark](https://quick-bench.com/q/JNDGl7HgOszNG-bo7AgVc42owv4)。
 
 -   没删文件操作（某些 OJ）。
 
