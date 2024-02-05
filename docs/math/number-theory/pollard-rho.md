@@ -50,7 +50,7 @@
 
 值得指出的是，如果开始已经打了一个素数表的话，时间复杂度将从 $O(\sqrt N)$ 下降到 $O(\sqrt{\frac N {\ln N}})$。去 [筛法](./sieve.md) 处查阅更多打表的信息。
 
-例题：[CF 1445C](https://codeforces.ml/problemset/problem/1445/C)
+例题：[CF 1445C](https://codeforces.com/problemset/problem/1445/C)
 
 ## Pollard Rho 算法
 

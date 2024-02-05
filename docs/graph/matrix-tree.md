@@ -132,7 +132,7 @@ $\omega(l_i,d_j)=a_{i,j}$，$\omega(d_i,r_j)=b_{i,j}$。
 
 将余子式 $M_{i,j}$ 中除了 $\boldsymbol r_k$ 之外的所有 $\boldsymbol r_i$ 都加到 $\boldsymbol r_k$ 上，得到 $A=[\boldsymbol r_1,\cdots,\boldsymbol r_{j-1},\boldsymbol r_{j+1},\cdots,\boldsymbol r_{k-1},-\boldsymbol r_j,\boldsymbol r_{k+1},\cdots,\boldsymbol r_n]$。
 
-将 $-\boldsymbol r_j$ 取反并通过交换两列移动到 $\boldsymbol r_{j+1}$ 左边，得到 $|A|=M_{i,k}=(-1)^{1+(k-1)-(r+1)+1}M_{i,j}$，所以 $C_{i,j}=C_{i,k}$。
+将 $-\boldsymbol r_j$ 取反并通过交换两列移动到 $\boldsymbol r_{j+1}$ 左边，得到 $|A|=M_{i,k}=(-1)^{1+(k-1)-(j+1)+1}M_{i,j}$，所以 $C_{i,j}=C_{i,k}$。
 
 同理，删去第 $i$ 列后行向量之和为 $\boldsymbol 0$，得到 $C_{j,i}=C_{k,i}$。
 

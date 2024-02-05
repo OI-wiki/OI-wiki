@@ -161,34 +161,35 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
 ??? note "参考实现"
     === "C++"
         ```cpp
-        struct edge {
-          int v, w;
+        struct Edge {
+          int u, v, w;
         };
         
-        vector<edge> e[maxn];
-        int dis[maxn];
-        const int inf = 0x3f3f3f3f;
+        vector<Edge> edge;
+        
+        int dis[MAXN], u, v, w;
+        const int INF = 0x3f3f3f3f;
         
         bool bellmanford(int n, int s) {
-          memset(dis, 63, sizeof(dis));
+          memset(dis, 0x3f, sizeof(dis));
           dis[s] = 0;
-          bool flag;  // 判断一轮循环过程中是否发生松弛操作
+          bool flag = false;  // 判断一轮循环过程中是否发生松弛操作
           for (int i = 1; i <= n; i++) {
             flag = false;
-            for (int u = 1; u <= n; u++) {
-              if (dis[u] == inf) continue;
+            for (int j = 0; j < edge.size(); j++) {
+              u = edge[j].u, v = edge[j].v, w = edge[j].w;
+              if (dis[u] == INF) continue;
               // 无穷大与常数加减仍然为无穷大
-              // 因此最短路长度为 inf 的点引出的边不可能发生松弛操作
-              for (auto ed : e[u]) {
-                int v = ed.v, w = ed.w;
-                if (dis[v] > dis[u] + w) {
-                  dis[v] = dis[u] + w;
-                  flag = true;
-                }
+              // 因此最短路长度为 INF 的点引出的边不可能发生松弛操作
+              if (dis[v] > dis[u] + w) {
+                dis[v] = dis[u] + w;
+                flag = true;
               }
             }
             // 没有可以松弛的边时就停止算法
-            if (!flag) break;
+            if (!flag) {
+              break;
+            }
           }
           // 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
           return flag;
@@ -198,22 +199,28 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
     === "Python"
         ```python
         class Edge:
-            def __init__(self, v = 0, w = 0):
+            def __init__(self, u = 0, v = 0, w = 0):
+                self.u = u
                 self.v = v
                 self.w = w
         
-        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [0x3f3f3f3f] * maxn
+        INF = 0x3f3f3f3f
+        edge = []
+        dis = [INF] * MAXN
         
         def bellmanford(n, s):
             dis[s] = 0
             for i in range(1, n + 1):
                 flag = False
-                for u in range(1, n + 1):
-                    for ed in e[u]:
-                        v, w = ed.v, ed.w
-                        if dis[v] > dis[u] + w:
-                            flag = True
+                for e in edge:
+                    u, v, w = e.u, e.v, e.w
+                    if (dis[u] == INF):
+                        continue
+                    # 无穷大与常数加减仍然为无穷大
+                    # 因此最短路长度为 INF 的点引出的边不可能发生松弛操作
+                    if dis[v] > dis[u] + w:
+                        dis[v] = dis[u] + w
+                        flag = True
                 # 没有可以松弛的边时就停止算法
                 if flag == False:
                     break

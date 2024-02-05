@@ -450,23 +450,22 @@ int x = a / 3;
 ```cpp
 int a = 0;
 for (int i = 1; i < 10; i++) {
-  int a;
-  a = 2 * i;  // bad!
-  a = a + 2;  // good!
+  a = 3 * i;  // bad!
+  a = a + 3;  // good!
 }
 ```
 
-此处如果直接使用 `a = 2 * i` 在 OI 中很常见，而编译器可以自动分析出，等价的变换为 `a = a + 2`，用代价更低的加法代替乘法。分析循环变量的迭代过程，被称为 SCEV (Scalar Evolution)。
+此处如果直接使用 `a = 3 * i` 在 OI 中很常见，而编译器可以自动分析出，等价的变换为 `a = a + 3`，用代价更低的加法代替乘法。分析循环变量的迭代过程，被称为 SCEV (Scalar Evolution)。
 
 SCEV 还可以做到优化一些循环：
 
 ```cpp
-int test() {
+int test(int n) {
   int ans = 1;
   for (int i = 0; i < n; i++) {
     ans += i * (i + 1);
   }
-  return ans
+  return ans;
 }
 ```
 

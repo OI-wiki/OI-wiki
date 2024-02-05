@@ -3197,11 +3197,11 @@ remark-stringify@^10.0.0, remark-stringify@^10.0.2:
     mdast-util-to-markdown "^1.0.0"
     unified "^10.0.0"
 
-remark-tabbed@OI-wiki/remark-tabbed#pre-release:
-  version "0.0.0"
-  resolved "https://codeload.github.com/OI-wiki/remark-tabbed/tar.gz/2a648b04d9bda0eb6bbcaa921a796493846e390e"
+remark-tabbed@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/remark-tabbed/-/remark-tabbed-0.1.0.tgz#974639fb0b94be5d3cffa09ed6a4014fec8dcc49"
+  integrity sha512-VPjswnrZSd8xj1aWQgJjAfp9hPO6mLtlS0J3i7iC98i3h5aFTQ3IEEshA+ckSn6fPkia5+Y8GJIdizlQgu1pSg==
   dependencies:
-    hast "^1.0.0"
     hastscript "^7.0.2"
     mdast-util-from-markdown "^1.0.2"
     mdast-util-to-markdown "^1.0.0"
