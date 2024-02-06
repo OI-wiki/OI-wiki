@@ -15,7 +15,7 @@ author: PeterlitsZo, Tiphereth-A
 构造一个序列：$A=\{1,2,3\dots,p-1\}$，这个序列有着这样一个性质：
 
 $$
-\prod_{i=1}^{n}\space A_i\equiv\prod_{i=1}^{n} (A_i\times a) \pmod p
+\prod_{i=1}^{p-1}\space A_i\equiv\prod_{i=1}^{p-1} (A_i\times a) \pmod p
 $$
 
 证明：
