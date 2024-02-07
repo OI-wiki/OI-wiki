@@ -1,4 +1,4 @@
-author: Dev-XYS, ttzytt
+author: Dev-XYS, ttzytt, Sora233
 
 前置知识：[朴素二叉搜索树](./bst.md)
 
@@ -302,7 +302,7 @@ int _query_val(Node *cur, int rank) {
 ```cpp
 int _query_prev(Node *cur, int val) {
   if (val <= cur->val) {
-    // 还是比 val 大，所以往右子树找
+    // 还是比 val 大，所以往左子树找
     if (cur->ch[0] != nullptr) return _query_prev(cur->ch[0], val);
   } else {
     // 只有能进到这个 else 里，才会更新 q_prev_tmp 的值
