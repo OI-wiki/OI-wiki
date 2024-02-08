@@ -4,10 +4,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 ## 因环境不同导致的错误
 
--   大小写问题
-    例如 `A.PAS` 与 `a.pas`，`A.pas`，`a.PaS` 在 Windows 下没有区别，而在 Linux 下为不同文件。
-
--   `scanf` 或 `printf` 使用 `%I64d` 格式指示符在 Linux 下会导致 CE。
+-   `scanf` 或 `printf` 使用 `%I64d` 格式指示符在 Linux 下可能导致输出格式错误。
 
 ## 会引起 CE 的错误
 
