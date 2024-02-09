@@ -422,12 +422,12 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 ST 默认的编译选项为 `g++ "${file}" -o "${file_path}/${file_base_name}"`，如果要修改编译选项，可以新建一个编译系统。
 
-进入 `系统->编译系统->新建编译系统…` 然后在大括号中间输入：
+进入 `工具->编译系统->新建编译系统…` 然后在大括号中间输入：
 
 ```JSON
 //编译选项可以自己调整
-"cmd": ["cmd","/c","g++","-Wall","${file}","-o","${file_path}/${file_base_name}"
-	,"&&","cmd","/c","${file_path}/${file_base_name}"],  //这部分为运行
+"cmd": "cmd /c g++ -Wall ${file} -o ${file_path}/${file_base_name}.exe
+	&& start cmd /c \"${file_path}/${file_base_name}.exe & pause\"“,  //这部分为运行
 
 //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
 "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
