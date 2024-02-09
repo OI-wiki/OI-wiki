@@ -427,7 +427,7 @@ ST 默认的编译选项为 `g++ "${file}" -o "${file_path}/${file_base_name}"`�
 ```JSON
 //编译选项可以自己调整
 "cmd": "cmd /c g++ -Wall ${file} -o ${file_path}/${file_base_name}.exe
-	&& start cmd /c \"${file_path}/${file_base_name}.exe & pause\"“,  //这部分为运行
+	&& start cmd /c \"${file_path}/${file_base_name}.exe & pause\"",  //这部分为运行
 
 //这一行可以让ST3图形化显示报错，如果习惯了看g++返回的信息可以去掉
 "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
