@@ -1,6 +1,10 @@
-author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu
+author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint
 
 本页面主要列举一些竞赛中很多人经常会出现的错误。
+
+## 因环境不同导致的错误
+
+-   `scanf` 或 `printf` 使用 `%I64d` 格式指示符在 Linux 下可能导致输出格式错误。
 
 ## 会引起 CE 的错误
 
@@ -368,6 +372,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         return block[a.l] < block[b.l];
     }
     ```
+
+-   Windows 下栈空间不足，导致栈空间溢出，Windows 向程序发出 SIGSEGV 信号，程序终止并返回 3221225725（即 0xC00000FD, NTSTATUS 定义为 `STATUS_STACK_OVERFLOW`)。  
+    若使用 gcc 编译器，可在编译时加入命令 `-Wl,--stack=SIZE` 以扩展栈空间，其中 `SIZE` 为栈空间大小字节数。
 
 ### 会导致 TLE
 
