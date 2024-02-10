@@ -272,7 +272,7 @@ $$
                 \delta_m\left(b^Z\right)=W
                 $$
                 
-                又因为显然有 $(Y,W)=1$，$YW=\left[\delta_p(a),\delta_p(b)\right]$，则再由阶的 [性质 1](#性质-1)，可得：
+                又因为显然有 $(Y,W)=1$，$YW=\left[\delta_p(a),\delta_p(b)\right]$，则再由阶的 [性质 3](#性质-3)，可得：
                 
                 $$
                 \begin{aligned}

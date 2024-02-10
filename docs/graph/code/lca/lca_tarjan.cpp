@@ -18,17 +18,11 @@ Edge edge[MAX], queryEdge[MAX];
 int parent[MAX], visited[MAX];
 int vertexCount, queryCount;
 
-void init() {
-  for (int i = 0; i <= vertexCount; i++) {
-    parent[i] = i;
-  }
-}
-
 int find(int x) {
   if (parent[x] == x) {
     return x;
   } else {
-    return find(parent[x]);
+    return parent[x] = find(parent[x]);
   }
 }
 
@@ -85,7 +79,6 @@ int main() {
     count++;
   }
 
-  init();
   tarjan(1);
 
   for (int i = 0; i < queryCount; i++) {

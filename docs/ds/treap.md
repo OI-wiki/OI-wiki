@@ -1,4 +1,4 @@
-author: Dev-XYS, ttzytt
+author: Dev-XYS, ttzytt, Sora233
 
 前置知识：[朴素二叉搜索树](./bst.md)
 
@@ -15,7 +15,7 @@ Treap（树堆）是一种 **弱平衡** 的 **二叉搜索树**。它同时符�
 
 -   子节点值（$\textit{priority}$）比父节点大或小（取决于是小根堆还是大根堆）
 
-不难看出，如果用的是同一个值，那这两种数据结构的性质是矛盾的，所以我们再在搜索树的基础上，引入一个给堆的值 $\textit{priority}$。对于 $\textit{val}$ 值，我们维护搜索树的性质，对于 $\textit{priority}$ 值，我们维护堆的性质。其中 $\textit{priority}$ 这个值是随机给出的。
+不难看出，如果用的是同一个值，那么这两种数据结构在组合后会变成一条链，所以我们再在搜索树的基础上，引入一个给堆的值 $\textit{priority}$。对于 $\textit{val}$ 值，我们维护搜索树的性质，对于 $\textit{priority}$ 值，我们维护堆的性质。其中 $\textit{priority}$ 这个值是随机给出的。
 
 下图就是一个 Treap 的例子（这里使用的是小根堆，即根节点的值最小）。
 
@@ -302,7 +302,7 @@ int _query_val(Node *cur, int rank) {
 ```cpp
 int _query_prev(Node *cur, int val) {
   if (val <= cur->val) {
-    // 还是比 val 大，所以往右子树找
+    // 还是比 val 大，所以往左子树找
     if (cur->ch[0] != nullptr) return _query_prev(cur->ch[0], val);
   } else {
     // 只有能进到这个 else 里，才会更新 q_prev_tmp 的值
