@@ -1,4 +1,4 @@
-author: hsfzLZH1, cesonic, AtomAlpaca
+author: hsfzLZH1, cesonic, AtomAlpaca, caijianhong
 
 ## 前言
 
@@ -163,7 +163,7 @@ void delete(int x, int v, int fa) {
 代码实现，这里取 $\alpha = 0.25$：
 
 ```c++
-const double alpha = 0.25;
+constexpr double alpha = 0.25;
 
 void rotate(int x, int flag) {
   if (!flag) {
@@ -176,13 +176,16 @@ void rotate(int x, int flag) {
 }
 
 void maintain(int x) {
-  if (sz[ls[x]] > sz[rs[x]] * 3) {
-    if (sz[rs[ls[x]]] > sz[ls[ls[x]]] * 2) {
+  if (!ls[x]) return;
+  if (sz[ls[x]] > sz[rs[x]]) {
+    if (sz[rs[x]] >= sz[x] * alpha) return;
+    if (sz[rs[ls[x]]] >= sz[ls[x]] * (1 - alpha * 2) / (1 - alpha)) {
       rotate(ls[x], 1);
     }
     rotate(x, 0);
-  } else if (sz[rs[x]] > sz[ls[x]] * 3) {
-    if (sz[ls[rs[x]]] > sz[rs[rs[x]]] * 2) {
+  } else {
+    if (sz[ls[x]] >= sz[x] * alpha) return;
+    if (sz[ls[rs[x]]] >= sz[rs[x]] * (1 - alpha * 2) / (1 - alpha)) {
       rotate(rs[x], 0);
     }
     rotate(x, 1);
