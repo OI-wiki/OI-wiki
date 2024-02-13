@@ -11,6 +11,7 @@ template <int N>
 struct WBLT {
   static constexpr double alpha = 0.292;
   int ch[N << 1][2], val[N << 1], siz[N << 1], tot, root, tsh[N << 1], tct;
+
   // ch[p][0] 是左儿子，ch[p][1] 是右儿子。siz[p] 是树大小。
   // val[p] 是这个点的权值，当 p 不是叶子节点时，val[p] = val[ch[p][1]]。
   // tsh 是垃圾回收的一个栈，栈中是丢弃的节点。

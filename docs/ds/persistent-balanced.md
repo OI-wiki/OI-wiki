@@ -111,7 +111,7 @@ static int _merge(int _x, int _y) {
 
 可持久化 WBLT 由 WBLT 改动而来，所以首先学习 [WBLT](https://oi-wiki.org/ds/wblt/)。
 
-### 思想 / 做法
+### 思想/做法
 
 使用 **路径复制** 的方法，将一次操作中 **修改过** 的节点复制下来，不能影响之前的节点。
 
