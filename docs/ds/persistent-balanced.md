@@ -133,7 +133,7 @@ static int _merge(int _x, int _y) {
 
 ### 代码实现
 
-??? note "完整代码"
+??? note "完整代码（可持久化文艺平衡树）"
     ```cpp
     --8<-- "docs/ds/code/persistent-balanced/persistent-wblt.cpp"
     ```
@@ -163,3 +163,5 @@ static int _merge(int _x, int _y) {
 2.  [「Codeforces 702F」T-shirt](http://codeforces.com/problemset/problem/702/F)
 
 3.  [「Luogu P5055」可持久化文艺平衡树](https://www.luogu.com.cn/problem/P5055)
+
+4.  [「Luogu P5350」序列](https://www.luogu.com.cn/problem/P5350)
