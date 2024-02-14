@@ -10,7 +10,7 @@ jobs:
     name: OI-Wiki LaTeX Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build the LaTeX document
         uses: OI-wiki/latex-action@v1.0.0
         with:
@@ -59,7 +59,7 @@ jobs:
             node index.js ../../
           root_file: |
             oi-wiki-export.tex
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: OI-wiki.pdf
           path: ./OI-Wiki-export/oi-wiki-export/oi-wiki-export.pdf
