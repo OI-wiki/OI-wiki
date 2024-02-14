@@ -33,9 +33,9 @@ jobs:
           xz -dc typst-x86_64-unknown-linux-musl.tar.xz | tar -x
           sudo mv ./typst-x86_64-unknown-linux-musl/typst /bin/
 
-          curl -OL https://github.com/lxgw/LxgwWenKai/releases/download/v1.312/lxgw-wenkai-v1.312.tar.gz
-          gzip -dc lxgw-wenkai-v1.312.tar.gz | tar -x
-          sudo mv lxgw-wenkai-v1.312 /usr/share/fonts/
+          curl -OL https://github.com/lxgw/LxgwWenKai/releases/download/v1.320/lxgw-wenkai-v1.320.tar.gz
+          gzip -dc lxgw-wenkai-v1.320.tar.gz | tar -x
+          sudo mv lxgw-wenkai-v1.320 /usr/share/fonts/
           fc-cache
 
           git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
