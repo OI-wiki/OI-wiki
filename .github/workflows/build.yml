@@ -44,7 +44,8 @@ jobs:
           ./scripts/pre-build/pre-build.sh
           pipenv run mkdocs build -v
       - name: Post-process HTML
-        run: yarn ts-node-esm scripts/post-build/html-postprocess.ts commits-info math external-links
+        # https://github.com/TypeStrong/ts-node/issues/1997
+        run: node --loader ts-node/esm scripts/post-build/html-postprocess.ts commits-info math external-links
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_OPTIONS: --max_old_space_size=3072
