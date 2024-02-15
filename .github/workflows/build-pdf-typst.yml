@@ -15,7 +15,16 @@ jobs:
     env:
       LANG: C.UTF-8
     steps:
-      - name: Install dependencies
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Pre-build operations
         run: |
           sudo apt-get install curl git unzip imagemagick libwebp-dev librsvg2-dev fonts-noto-cjk fonts-noto-cjk-extra
           sudo apt-get remove fonts-noto-color-emoji
@@ -29,32 +38,18 @@ jobs:
           sudo mv lxgw-wenkai /usr/share/fonts/
           fc-cache
 
-      - name: Checkout main repo
-        uses: actions/checkout@v4
-
-      - name: Checkout export
-        uses: actions/checkout@v4
-        with:
-          repository: OI-wiki/OI-Wiki-export
-          path: OI-Wiki-export
-          submodules: recursive
-
-      - name: Setup node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20.x
-          cache: 'npm'
-
-      - name: npm install
-        run: |
-          cd OI-Wiki-export/remark-typst
+          git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
+          cd OI-Wiki-export
+          cd remark-typst
           npm install
-          cd ../oi-wiki-export-typst
+          cd ..
+          cd oi-wiki-export-typst
           npm install
 
       - name: Build Typst document
         run: |
-          cd OI-Wiki-export/oi-wiki-export-typst
+          cd OI-Wiki-export
+          cd oi-wiki-export-typst
           node index.js ../../
           typst -v compile oi-wiki-export.typ
 
