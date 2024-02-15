@@ -11,7 +11,7 @@ repo_url: 'https://github.com/OI-wiki/OI-wiki'
 edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2023 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2024 OI Wiki Team'
 
 # Contents
 nav:
@@ -322,7 +322,7 @@ nav:
       - 非公平组合游戏: math/game-theory/partizan-game.md
       - 反常游戏: math/game-theory/misere-game.md
     - 数值算法:
-      - 拉格朗日插值: math/numerical/lagrange.md
+      - 插值: math/numerical/interp.md
       - 数值积分: math/numerical/integral.md
       - 高斯消元: math/numerical/gauss.md
       - 牛顿迭代法: math/numerical/newton.md

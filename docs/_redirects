@@ -98,7 +98,8 @@
 /math/poly/ln-exp /math/poly/elementary-func
 /math/poly/tri-func /math/poly/elementary-func
 /math/poly/inv-tri-func /math/poly/elementary-func
-/math/poly/lagrange /math/numerical/lagrange
+/math/poly/lagrange /math/numerical/interp
+/math/numerical/lagrange /math/numerical/interp
 /math/poly/cntt /math/poly/ntt
 /math/linear-algebra/gauss /math/numerical/gauss
 /math/integral /math/numerical/integral

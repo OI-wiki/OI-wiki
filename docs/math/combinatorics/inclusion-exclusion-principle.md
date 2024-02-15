@@ -367,7 +367,7 @@ $$
 
 ## Min-max 容斥
 
-对于满足全序关系并且其中元素满足可加减性的序列 $\{x_i\}$，设其长度为 $n$，并设 $S=\{1,2,3,\cdots,n\}$，则有：
+对于满足 [全序](../order-theory.md#偏序集) 关系并且其中元素满足可加减性的序列 $\{x_i\}$，设其长度为 $n$，并设 $S=\{1,2,3,\cdots,n\}$，则有：
 
 $$
 \max_{i\in S}{x_i}=\sum_{T\subseteq S}{(-1)^{|T|-1}\min_{j\in T}{x_j}}
@@ -376,13 +376,6 @@ $$
 $$
 \min_{i\in S}{x_i}=\sum_{T\subseteq S}{(-1)^{|T|-1}\max_{j\in T}{x_j}}
 $$
-
-??? note "全序关系"
-    对于集合 $X$，若 $X$ 满足全序关系，则下列陈述对于任意 $a,b,c\in X$ 都成立：
-    
-    -   反对称性：若 $a\le b$ 且 $b\le a$，则 $a=b$;
-    -   传递性：若 $a\le b$ 且 $b\le c$，则 $a\le c$；
-    -   完全性：$a\le b$ 或者 $b\le a$。
 
 **证明：** 考虑做一个到一般容斥原理的映射。对于 $x\in S$，假设 $x$ 是第 $k$ 大的元素。那么我们定义一个映射 $f:x\mapsto \{1,2,\cdots,k\}$。显然这是一个双射。
 
@@ -575,6 +568,11 @@ $$
 回到容斥的部分，我们知道 $E(\max_{i\in S}x_i)=\sum_{T\subseteq S}(-1)^{|T|-1}F(T)$。
 
 不妨设 $F'(T)=(-1)^{|T|-1}F(T)$，那么进一步得到 $E(\max_{i\in S}x_i)=\sum_{T\subseteq S}F'(T)$。因此可以使用 FMT（也叫子集前缀和，或者 FWT 或变换）在 $O(2^nn)$ 的时间内对每个 $S$ 计算出 $E(\max_{i\in S}x_i)$，这样就可以 $O(1)$ 回答询问了。
+
+### 习题
+
+-   [ABC331- G - Collect Them All](https://atcoder.jp/contests/abc331/tasks/abc331_g)
+-   [洛谷 P4707 重返现世](https://www.luogu.com.cn/problem/P4707)
 
 ## 参考文献
 

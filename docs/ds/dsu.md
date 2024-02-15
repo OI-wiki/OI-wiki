@@ -229,7 +229,7 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 ## 例题
 
-???+ note "[UVA11987 Almost Union-Find](https://www.luogu.com.cn/problem/UVA11987)"
+???+ note "[UVa11987 Almost Union-Find](https://www.luogu.com.cn/problem/UVA11987)"
     实现类似并查集的数据结构，支持以下操作：
     
     1.  合并两个元素所属集合

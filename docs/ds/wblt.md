@@ -156,7 +156,7 @@ void delete(int x, int v, int fa) {
 
 ![wblt-7](./images/wblt-7.svg)
 
-类似地定义 $\rho_3,\gamma_3$，则有 $\gamma_1=\rho_1+\rho_2\rho_3(1-\rho_3), \gamma_2=\dfrac{\rho_1}{\rho1+(1 - \rho_1)\rho2\rho3}, \gamma_3 = \dfrac{\rho_2(1-\rho_3)}{1-\rho_2\rho_3}$。可以证明当 $\alpha < 1- \dfrac{\sqrt2}{2} \approx 0.292$ 时一定有 $\gamma_1, \gamma_2, \gamma_3 \in [\alpha, 1 - \alpha]$。
+类似地定义 $\rho_3,\gamma_3$，则有 $\gamma_1=\rho_1+\rho_2\rho_3(1-\rho_1), \gamma_2=\dfrac{\rho_1}{\rho1+(1 - \rho_1)\rho2\rho3}, \gamma_3 = \dfrac{\rho_2(1-\rho_3)}{1-\rho_2\rho_3}$。可以证明当 $\alpha < 1- \dfrac{\sqrt2}{2} \approx 0.292$ 时一定有 $\gamma_1, \gamma_2, \gamma_3 \in [\alpha, 1 - \alpha]$。
 
 实现上，我们在 $\rho_2 \le \dfrac{1 - 2\alpha}{1 - \alpha}$ 时进行单旋，否则进行双旋。
 

@@ -17,30 +17,27 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Setup node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: 'npm'
 
       - name: Pre-build operations
         run: |
           sudo apt-get install curl git unzip imagemagick libwebp-dev librsvg2-dev fonts-noto-cjk fonts-noto-cjk-extra
           sudo apt-get remove fonts-noto-color-emoji
-          
+
           curl -OL https://github.com/typst/typst/releases/download/v0.10.0/typst-x86_64-unknown-linux-musl.tar.xz
-          curl -OL https://github.com/megakite/texmath/releases/download/v0.12.8.6-20231213/texmath-arg
           xz -dc typst-x86_64-unknown-linux-musl.tar.xz | tar -x
           sudo mv ./typst-x86_64-unknown-linux-musl/typst /bin/
-          chmod +x texmath-arg
-          sudo mv texmath-arg /bin/
-          
+
           curl -OL https://github.com/lxgw/LxgwWenKai/releases/download/v1.312/lxgw-wenkai-v1.312.tar.gz
           gzip -dc lxgw-wenkai-v1.312.tar.gz | tar -x
           sudo mv lxgw-wenkai-v1.312 /usr/share/fonts/
           fc-cache
-          
+
           git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
           cd OI-Wiki-export
           cd remark-typst
@@ -57,8 +54,7 @@ jobs:
           typst -v compile oi-wiki-export.typ
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: OI-wiki.pdf
           path: ./OI-Wiki-export/oi-wiki-export-typst/oi-wiki-export.pdf
-
