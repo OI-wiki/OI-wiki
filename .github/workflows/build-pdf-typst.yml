@@ -31,15 +31,6 @@ jobs:
           sudo apt-get install curl git unzip imagemagick libwebp-dev librsvg2-dev fonts-noto-cjk fonts-noto-cjk-extra
           sudo apt-get remove fonts-noto-color-emoji
 
-          curl -OL $(gh api /repos/typst/typst/releases/latest -q '.assets[].browser_download_url | select(contains("x86_64-unknown-linux"))')
-          tar xf typst-x86_64-unknown-linux-musl.tar.xz
-          sudo mv ./typst-x86_64-unknown-linux-musl/typst /bin/
-
-          curl -OL $(gh api /repos/lxgw/LxgwWenKai/releases/latest -q '.assets[].browser_download_url | select(contains("tar.gz"))')
-          tar xf lxgw-wenkai-v*.tar.gz
-          sudo mv lxgw-wenkai-v* /usr/share/fonts/
-          fc-cache
-
           git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
           cd OI-Wiki-export
           cd remark-typst
@@ -48,12 +39,18 @@ jobs:
           cd oi-wiki-export-typst
           npm install
 
+          curl -L $(gh api /repos/lxgw/LxgwWenKai/releases/latest -q '.assets[].browser_download_url | select(contains("tar.gz"))') | tar xfz -C .fonts -
+
+      - uses: typst-community/setup-typst@v3
+        with:
+          cache-dependency-path: OI-Wiki-export/oi-wiki-export-typst/oi-wiki.typ
+
       - name: Build Typst document
         run: |
           cd OI-Wiki-export
           cd oi-wiki-export-typst
           node index.js ../../
-          typst -v compile oi-wiki-export.typ
+          typst -v compile oi-wiki-export.typ --font-path .fonts
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
