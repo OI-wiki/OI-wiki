@@ -40,7 +40,7 @@ jobs:
           npm install
 
           mkdir .fonts
-          curl -L $(gh api /repos/lxgw/LxgwWenKai/releases/latest -q '.assets[].browser_download_url | select(contains("tar.gz"))') | tar xfz -C .fonts -
+          curl -L $(gh api /repos/lxgw/LxgwWenKai/releases/latest -q '.assets[].browser_download_url | select(contains("tar.gz"))') | tar xfz - -C .fonts
 
       - uses: typst-community/setup-typst@v3
         with:
