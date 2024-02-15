@@ -25,6 +25,8 @@ jobs:
           cache: 'npm'
 
       - name: Pre-build operations
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           sudo apt-get install curl git unzip imagemagick libwebp-dev librsvg2-dev fonts-noto-cjk fonts-noto-cjk-extra
           sudo apt-get remove fonts-noto-color-emoji
