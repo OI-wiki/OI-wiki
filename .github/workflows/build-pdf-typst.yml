@@ -36,8 +36,8 @@ jobs:
           sudo mv ./typst-x86_64-unknown-linux-musl/typst /bin/
 
           curl -OL $(gh api /repos/lxgw/LxgwWenKai/releases/latest -q '.assets[].browser_download_url | select(contains("tar.gz"))')
-          tar xf -C lxgw-wenkai lxgw-wenkai-v*.tar.gz
-          sudo mv lxgw-wenkai /usr/share/fonts/
+          tar xf lxgw-wenkai-v*.tar.gz
+          sudo mv lxgw-wenkai-v* /usr/share/fonts/
           fc-cache
 
           git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
