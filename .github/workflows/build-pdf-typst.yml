@@ -15,8 +15,29 @@ jobs:
     env:
       LANG: C.UTF-8
     steps:
-      - name: Checkout repository
+      - name: Install dependencies
+        run: |
+          sudo apt-get install curl git unzip imagemagick libwebp-dev librsvg2-dev fonts-noto-cjk fonts-noto-cjk-extra
+          sudo apt-get remove fonts-noto-color-emoji
+
+          curl -OL $(gh api /repos/typst/typst/releases/latest -q '.assets[].browser_download_url | select(contains("x86_64-unknown-linux"))')
+          tar xf typst-x86_64-unknown-linux-musl.tar.xz
+          sudo mv ./typst-x86_64-unknown-linux-musl/typst /bin/
+
+          curl -OL $(gh api /repos/lxgw/LxgwWenKai/releases/latest -q '.assets[].browser_download_url | select(contains("tar.gz"))')
+          tar xf -C lxgw-wenkai lxgw-wenkai-v*.tar.gz
+          sudo mv lxgw-wenkai /usr/share/fonts/
+          fc-cache
+
+      - name: Checkout main repo
         uses: actions/checkout@v4
+
+      - name: Checkout export
+        uses: actions/checkout@v4
+        with:
+          repository: OI-wiki/OI-Wiki-export
+          path: OI-Wiki-export
+          submodules: recursive
 
       - name: Setup node.js
         uses: actions/setup-node@v4
@@ -24,32 +45,16 @@ jobs:
           node-version: 20.x
           cache: 'npm'
 
-      - name: Pre-build operations
+      - name: npm install
         run: |
-          sudo apt-get install curl git unzip imagemagick libwebp-dev librsvg2-dev fonts-noto-cjk fonts-noto-cjk-extra
-          sudo apt-get remove fonts-noto-color-emoji
-
-          curl -OL https://github.com/typst/typst/releases/download/v0.10.0/typst-x86_64-unknown-linux-musl.tar.xz
-          xz -dc typst-x86_64-unknown-linux-musl.tar.xz | tar -x
-          sudo mv ./typst-x86_64-unknown-linux-musl/typst /bin/
-
-          curl -OL https://github.com/lxgw/LxgwWenKai/releases/download/v1.312/lxgw-wenkai-v1.312.tar.gz
-          gzip -dc lxgw-wenkai-v1.312.tar.gz | tar -x
-          sudo mv lxgw-wenkai-v1.312 /usr/share/fonts/
-          fc-cache
-
-          git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
-          cd OI-Wiki-export
-          cd remark-typst
+          cd OI-Wiki-export/remark-typst
           npm install
-          cd ..
-          cd oi-wiki-export-typst
+          cd ../oi-wiki-export-typst
           npm install
 
       - name: Build Typst document
         run: |
-          cd OI-Wiki-export
-          cd oi-wiki-export-typst
+          cd OI-Wiki-export/oi-wiki-export-typst
           node index.js ../../
           typst -v compile oi-wiki-export.typ
 
