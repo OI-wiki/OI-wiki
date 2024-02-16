@@ -61,5 +61,5 @@ jobs:
             oi-wiki-export.tex
       - uses: actions/upload-artifact@v4
         with:
-          name: OI-wiki.pdf
+          name: OI-wiki-latex-export
           path: ./OI-Wiki-export/oi-wiki-export/oi-wiki-export.pdf
