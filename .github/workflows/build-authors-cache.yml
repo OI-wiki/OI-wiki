@@ -32,7 +32,7 @@ jobs:
           rm -rf authors.json
 
           # Fetch authors list with 10 concurrency requests
-          yarn ts-node-esm scripts/post-build/commits-info/fetch-authors-cache.ts 10
+          node --loader ts-node/esm scripts/post-build/commits-info/fetch-authors-cache.ts 10
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit Authors Cache
