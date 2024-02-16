@@ -56,5 +56,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: OI-wiki.pdf
+          name: OI-wiki-typst-export
           path: ./OI-Wiki-export/oi-wiki-export-typst/oi-wiki-export.pdf
