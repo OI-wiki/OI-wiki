@@ -37,6 +37,11 @@
         --8<-- "docs/basic/code/simulate/simulate_1.py"
         ```
 
+    === "Java"
+        ```java
+        --8<-- "docs/basic/code/simulate/simulate_1.java"
+        ```
+
 ## 习题
 
 -   [「NOIP2014」生活大爆炸版石头剪刀布 - Universal Online Judge](https://uoj.ac/problem/15)
