@@ -20,7 +20,7 @@ author: countercurrent-time, StudyingFather
 -   [CF843B Interactive LowerBound](https://www.luogu.com.cn/problem/CF843B)
 -   [UOJ206\[APIO2016\]Gap](http://uoj.ac/problem/206)
 -   [CF750F New Year and Finding Roots](https://www.luogu.com.cn/problem/CF750F)
--   [UVa12731 太空站之谜 Mysterious Space Station](https://www.luogu.com.cn/problem/UVA12731)
+-   [UVa 12731 - 太空站之谜 Mysterious Space Station](https://www.luogu.com.cn/problem/UVA12731)
 
 ## CF679A Bear and Prime 100
 
@@ -278,7 +278,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
     }
     ```
 
-## UVa12731 太空站之谜 Mysterious Space Station
+## UVa 12731 - 太空站之谜 Mysterious Space Station
 
 由于唯一的反馈是移动时是否撞墙，所以我们应该考虑在机器人不走丢的情况下，尽量接近墙边走路，这样有几个好处：
 

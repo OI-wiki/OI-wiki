@@ -1015,8 +1015,8 @@ $$
 -   [NOIP 2012 国王游戏](https://loj.ac/problem/2603)
 -   [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/)
 -   [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/)
--   [UVa - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
--   [UVa - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
+-   [UVa 10083 - Division](https://vjudge.net/problem/UVA-10083)
+-   [UVa 495 - Fibonacci Freeze](https://vjudge.net/problem/UVA-495)
 -   [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D)
 
 ## 参考资料与链接

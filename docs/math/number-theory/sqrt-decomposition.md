@@ -102,7 +102,7 @@ $$
 
 最终得到的 $result$ 即为所求的和式。
 
-???+ note " 例题：[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
+???+ note " 例题：[UVa 11526 - H(n)](https://vjudge.net/problem/UVA-11526)"
     题意：$T$ 组数据，每组一个整数 $n$。对于每组数据，输出 $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$。
     
     思路：如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
@@ -133,6 +133,6 @@ $$
 
 1.  [CQOI2007 余数求和](https://www.luogu.com.cn/problem/P2261)（需要一点转化和特判）
 
-2.  [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)（几乎可以当做模板题）
+2.  [UVa 11526 - H(n)](https://vjudge.net/problem/UVA-11526)（几乎可以当做模板题）
 
 3.  [POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)（数论分块一般配合 [莫比乌斯反演](./mobius.md) 用以进一步降低复杂度；本题需要用到 $[n=1]=\sum_{d|n}\mu(n)$ 这一条莫反结论）

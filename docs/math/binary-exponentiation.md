@@ -384,9 +384,9 @@ long long binmul(long long a, long long b, long long m) {
 
 ## 习题
 
--   [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671)
--   [UVa 374 - Big Mod](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=310)
--   [UVa 11029 - Leading and Trailing](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1970)
+-   [UVa 1230 - MODEX](https://vjudge.net/problem/UVA-1230)
+-   [UVa 374 - Big Mod](https://vjudge.net/problem/UVA-374)
+-   [UVa 11029 - Leading and Trailing](https://vjudge.net/problem/UVA-11029)
 -   [Codeforces - Parking Lot](http://codeforces.com/problemset/problem/630/I)
 -   [SPOJ - The last digit](http://www.spoj.com/problems/LASTDIG/)
 -   [SPOJ - Locker](http://www.spoj.com/problems/LOCKER/)

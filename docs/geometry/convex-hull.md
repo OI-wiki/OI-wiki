@@ -199,7 +199,7 @@ $$
 
 ## 练习
 
--   [UVa11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673)
+-   [UVa 11626 - Convex Hull](https://vjudge.net/problem/UVA-11626)
 
 -   [「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.com.cn/problem/P2742)
 

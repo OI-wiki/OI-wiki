@@ -79,4 +79,4 @@ end;
 
 ## 习题
 
--   [UVa1343 旋转游戏](https://www.luogu.com.cn/problem/UVA1343)
+-   [UVa 1343 - 旋转游戏](https://vjudge.net/problem/UVA-1343)
