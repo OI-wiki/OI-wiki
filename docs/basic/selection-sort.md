@@ -59,3 +59,22 @@ $$
                     ith = j
             a[i], a[ith] = a[ith], a[i]
     ```
+
+=== "Java"
+    ```java
+    // arr代码下标从 1 开始索引
+    static void selection_sort(int[] arr, int n) {
+        for (int i = 1; i < n; i++) {
+            int ith = i;
+            for (int j = i + 1; j <= n; j++) {
+                if (arr[j] < arr[ith]) {
+                    ith = j;
+                }
+            }
+            // swap
+            int temp = arr[i];
+            arr[i] = arr[ith];
+            arr[ith] = temp;
+        }
+    }
+    ```
