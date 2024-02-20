@@ -99,34 +99,7 @@ Vim 的方向键是<kbd>↑</kbd>、<kbd>↓</kbd>、<kbd>←</kbd>、<kbd>→</
 -   `:wq` 保存文件，退出 Vim。
 -   `:q!`/`:!q` 强制退出 Vim，不保存修改。
 -   `:e filename` 可以打开当前目录下的指定文件。
-
-按<kbd>Esc</kbd>键可以退出底线命令模式。
-
-### 可视模式 (Visual mode)
-
-按 `v` 进入可视模式，多用于选中区域。按 `V`（`Shift+v`）进入行可视模式，用于选中行。
-
-按<kbd>Ctrl</kbd>+<kbd>v</kbd>或<kbd>Ctrl</kbd>+<kbd>q</kbd>进入块可视模式 (visual block)。
-
-进入块可视模式后，按<kbd>I</kbd>或<kbd>A</kbd>进入插入模式（相当于 `i` 和 `a`），退出插入模式后对本行所做的改动将被应用到选中的每一行同一位置。常用于批量添加注释。
-
-选中后输入 `y` 或 `d` 亦可执行相应命令。
-
-三种可视模式可以通过按键相互转化。
-
-## Vim 的快捷键
-
-可参考 [史上最全 Vim 快捷键键位图—入门到进阶](https://cenalulu.github.io/linux/all-vim-cheatsheat/)
-
-## 进阶知识
-
-输入 `:help` 或者 `:h` 可以查看英文版 Vim 在线帮助文档。
-
-`:q` 是退出；`:w` 是保存；`:wq` 和 `:x` 是保存并退出（也可以在普通模式下按 `ZZ`）；`:q!` 是不保存并退出。
-
-`:e filename` 可以打开当前目录下的指定文件。
-
-`:s` 命令是替换。
+-   `:s` 命令是替换。
 
 ```vim
 " 把当前行第一个匹配的 str1 替换成 str2
@@ -148,8 +121,27 @@ Vim 的方向键是<kbd>↑</kbd>、<kbd>↓</kbd>、<kbd>←</kbd>、<kbd>→</
 " 把全文件所有的 str1 替换成 str2，在替换前询问
 :%s/str1/str2/gc
 ```
-
 如果命令形式是 `:! command`，则命令将在 bash 终端执行。
+
+按<kbd>Esc</kbd>键可以退出底线命令模式。
+
+### 可视模式 (Visual mode)
+
+按 `v` 进入可视模式，多用于选中区域。按 `V`（`Shift+v`）进入行可视模式，用于选中行。
+
+按<kbd>Ctrl</kbd>+<kbd>v</kbd>或<kbd>Ctrl</kbd>+<kbd>q</kbd>进入块可视模式 (visual block)。
+
+进入块可视模式后，按<kbd>I</kbd>或<kbd>A</kbd>进入插入模式（相当于 `i` 和 `a`），退出插入模式后对本行所做的改动将被应用到选中的每一行同一位置。常用于批量添加注释。
+
+选中后输入 `y` 或 `d` 亦可执行相应命令。
+
+三种可视模式可以通过按键相互转化。
+
+## Vim 的快捷键
+
+可参考 [史上最全 Vim 快捷键键位图—入门到进阶](https://cenalulu.github.io/linux/all-vim-cheatsheat/)
+
+## 进阶知识
 
 ### `.` 命令
 
