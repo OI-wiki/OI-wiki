@@ -2,6 +2,12 @@ import requests
 import json
 import sys
 from datetime import datetime
+from math import log2
+
+def nextCelebration(current):
+    a = (current // 5000 + 1) * 5000
+    b = 2 ** (int(log2(current)) + 1)
+    return min(a, b)
 
 headers = {
     "Authorization": f'token {sys.argv[1]}'
@@ -66,7 +72,7 @@ mutation {{
         mut = requests.post('https://api.github.com/graphql', json.dumps({ 'query': mutation }), headers = headers)
         print(mut.text)
 
-celebration = maxCelebration * 2
+celebration = nextCelebration(maxCelebration)
 
 if stars >= celebration - 1: # "will soon" reach
     mutation = f'''
@@ -90,7 +96,7 @@ mutation {{
 
 非常感谢这么长时间以来大家的支持，我们再接再厉～
 
-最后，祝大家身体健康，我们 {celebration * 2} stars 时再见。
+最后，祝大家身体健康，我们 {nextCelebration(celebration)} stars 时再见。
 
 cc {" ".join(numbers)}
 """, ensure_ascii = False)}

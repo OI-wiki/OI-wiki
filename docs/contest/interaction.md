@@ -7,7 +7,7 @@ author: countercurrent-time, StudyingFather
 交互题的特殊错误：
 
 -   选手每一次输出后都需要刷新缓冲区，否则会引起 Idleness limit exceeded 错误。另外，如果题目含多组数据并且程序可以在未读入所有数据前就知道答案，也仍然要读入所有数据，否则同样会因为读入混乱引起 ILE（可以一次提出多次询问，一次接收所有询问的回答）。同时尽量不要使用快读。
--   如果程序查询次数过多，则在 Codeforces 上会给出 Wrong Answer 的评测结果（不过评测系统会说明 Wrong Answer 的原因），而 UVA 会给出 Protocol Limit Exceeded (PLE) 的评测结果。
+-   如果程序查询次数过多，则在 Codeforces 上会给出 Wrong Answer 的评测结果（不过评测系统会说明 Wrong Answer 的原因），而 UVa 会给出 Protocol Limit Exceeded (PLE) 的评测结果。
 -   如果程序交互格式错误，UVa 会给出 Protocol Violation (PV) 的评测结果。
 
 由于交互题输入输出较为繁琐，所以建议分别封装输入和输出函数。
@@ -20,7 +20,7 @@ author: countercurrent-time, StudyingFather
 -   [CF843B Interactive LowerBound](https://www.luogu.com.cn/problem/CF843B)
 -   [UOJ206\[APIO2016\]Gap](http://uoj.ac/problem/206)
 -   [CF750F New Year and Finding Roots](https://www.luogu.com.cn/problem/CF750F)
--   [UVA12731 太空站之谜 Mysterious Space Station](https://www.luogu.com.cn/problem/UVA12731)
+-   [UVa12731 太空站之谜 Mysterious Space Station](https://www.luogu.com.cn/problem/UVA12731)
 
 ## CF679A Bear and Prime 100
 
@@ -278,7 +278,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
     }
     ```
 
-## UVA12731 太空站之谜 Mysterious Space Station
+## UVa12731 太空站之谜 Mysterious Space Station
 
 由于唯一的反馈是移动时是否撞墙，所以我们应该考虑在机器人不走丢的情况下，尽量接近墙边走路，这样有几个好处：
 

@@ -10,7 +10,7 @@ jobs:
   pre_build:
     permissions:
       actions: write
-      contents: read  
+      contents: read
     name: Duplicate Actions Detection
     runs-on: ubuntu-latest
     outputs:
@@ -26,7 +26,7 @@ jobs:
     if: needs.pre_build.outputs.should_skip != 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build the LaTeX document
         uses: OI-wiki/latex-action@v1.0.0
         with:
@@ -77,8 +77,7 @@ jobs:
             node incremental-build.js ${{ github.ref }} ${{ secrets.GITHUB_TOKEN }}
           root_file: |
             oi-wiki-export.tex
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: OI-wiki.pdf
           path: ./OI-Wiki-export/oi-wiki-export/oi-wiki-export.pdf
-

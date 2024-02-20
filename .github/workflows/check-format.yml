@@ -12,12 +12,12 @@ jobs:
     name: Check PR Format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         name: Checkout Repo
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         name: Setup Node.js
         with:
-          node-version: '18.x'
+          node-version: '20.x'
           check-latest: true
       - name: Install Yarn
         run: npm install -g yarn

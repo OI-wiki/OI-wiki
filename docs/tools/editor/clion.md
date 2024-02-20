@@ -20,7 +20,9 @@ CLion 默认不带编译器，构建工具和调试工具，需要手动进行�
 
 #### Windows
 
-（待补充）
+参见 [Tutorial: Configure CLion on Windows | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-windows.html)
+
+值得一提的是 CLion 的 Windows 版本中自带了 MinGW，所以可以不用额外安装 MinGW 工具链。
 
 #### Linux
 
@@ -50,7 +52,7 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 
 #### MacOS
 
-（待补充）
+参见 [Tutorial: Configure CLion on macOS | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-macos.html)
 
 ### 工具链设置
 
