@@ -121,6 +121,7 @@ Vim 的方向键是<kbd>↑</kbd>、<kbd>↓</kbd>、<kbd>←</kbd>、<kbd>→</
 " 把全文件所有的 str1 替换成 str2，在替换前询问
 :%s/str1/str2/gc
 ```
+
 如果命令形式是 `:! command`，则命令将在 bash 终端执行。
 
 按<kbd>Esc</kbd>键可以退出底线命令模式。
