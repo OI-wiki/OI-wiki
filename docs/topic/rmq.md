@@ -1,6 +1,6 @@
 ## 简介
 
-RMQ 是英文 Range Maximum / Minimum Query 的缩写，表示区间最大（最小）值。
+RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值。
 
 在接下来的描述中，默认初始数组大小为 $n$，询问次数为 $m$。
 
@@ -86,7 +86,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 不了解笛卡尔树的朋友请移步 [笛卡尔树](../ds/cartesian-tree.md)。
 
-不难发现，原序列上两个点之间的 min / max，等于笛卡尔树上两个点的 LCA 的权值。根据这一点就可以借助 $O(n) \sim O(1)$ 求解树上两个点之间的 LCA 进而求解 RMQ。$O(n) \sim O(1)$ 树上 LCA 在 [LCA - 标准 RMQ](../graph/lca.md#标准-rmq) 已经有描述，这里不再展开。
+不难发现，原序列上两个点之间的 min/max，等于笛卡尔树上两个点的 LCA 的权值。根据这一点就可以借助 $O(n) \sim O(1)$ 求解树上两个点之间的 LCA 进而求解 RMQ。$O(n) \sim O(1)$ 树上 LCA 在 [LCA - 标准 RMQ](../graph/lca.md#标准-rmq) 已经有描述，这里不再展开。
 
 总结一下，笛卡尔树在 RMQ 上的应用，就是通过将普通 RMQ 问题转化为 LCA 问题，进而转化为加减 1 RMQ 问题进行求解，时间复杂度为 $O(n) \sim O(1)$。当然由于转化步数较多，$O(n) \sim O(1)$ RMQ 常数较大。
 
