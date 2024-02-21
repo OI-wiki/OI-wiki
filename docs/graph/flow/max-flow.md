@@ -935,16 +935,18 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
     qxx e[M * 2 + 1];
     int h[N + 1], cnt = 1;
     
-    void add_path(int f, int t, long long v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
+    void add_path(int f, int t, long long v) {
+      e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt;
+    }
     
     void add_flow(int f, int t, long long v) {
       add_path(f, t, v);
       add_path(t, f, 0);
     }
     
-    int ht[N + 1];
-    long long ex[N + 1];
-    int gap[N];  // 高度; 超额流; gap 优化 gap[i] 为高度为 i 的节点的数量
+    int ht[N + 1]; // 高度;
+    long long ex[N + 1]; // 超额流;
+    int gap[N]; // gap 优化 gap[i] 为高度为 i 的节点的数量
     stack<int> B[N];  // 桶 B[i] 中记录所有 ht[v]==i 的v
     int level = 0;    // 溢出节点的最高高度
     
@@ -997,7 +999,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
       return level == -1 ? 0 : B[level].top();
     }
     
-    long long hlpp() {                  // 返回最大流
+    long long hlpp() {            // 返回最大流
       if (!bfs_init()) return 0;  // 图不连通
       memset(gap, 0, sizeof(gap));
       for (int i = 1; i <= n; i++)
