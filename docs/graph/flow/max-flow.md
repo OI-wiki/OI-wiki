@@ -928,32 +928,35 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
     int n, m, s, t;
     
     struct qxx {
-      int nex, t, v;
+      int nex, t;
+      long long v;
     };
     
     qxx e[M * 2 + 1];
     int h[N + 1], cnt = 1;
     
-    void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
+    void add_path(int f, int t, long long v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
     
-    void add_flow(int f, int t, int v) {
+    void add_flow(int f, int t, long long v) {
       add_path(f, t, v);
       add_path(t, f, 0);
     }
     
-    int ht[N + 1], ex[N + 1],
-        gap[N];  // 高度; 超额流; gap 优化 gap[i] 为高度为 i 的节点的数量
+    int ht[N + 1];
+    long long ex[N + 1];
+    int gap[N];  // 高度; 超额流; gap 优化 gap[i] 为高度为 i 的节点的数量
     stack<int> B[N];  // 桶 B[i] 中记录所有 ht[v]==i 的v
     int level = 0;    // 溢出节点的最高高度
     
     int push(int u) {      // 尽可能通过能够推送的边推送超额流
       bool init = u == s;  // 是否在初始化
       for (int i = h[u]; i; i = e[i].nex) {
-        const int &v = e[i].t, &w = e[i].v;
+        const int &v = e[i].t;
+        const long long &w = e[i].v;
         if (!w || init == false && ht[u] != ht[v] + 1 ||
             ht[v] == INF)  // 初始化时不考虑高度差为1
           continue;
-        int k = init ? w : min(w, ex[u]);
+        long long k = init ? w : min(w, ex[u]);
         // 取到剩余容量和超额流的最小值，初始化时可以使源的溢出量为负数。
         if (v != s && v != t && !ex[v]) B[ht[v]].push(v), level = max(level, ht[v]);
         ex[u] -= k, ex[v] += k, e[i].v -= k, e[i ^ 1].v += k;  // push
@@ -994,7 +997,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
       return level == -1 ? 0 : B[level].top();
     }
     
-    int hlpp() {                  // 返回最大流
+    long long hlpp() {                  // 返回最大流
       if (!bfs_init()) return 0;  // 图不连通
       memset(gap, 0, sizeof(gap));
       for (int i = 1; i <= n; i++)
@@ -1021,7 +1024,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
         scanf("%d%d%d", &u, &v, &w);
         add_flow(u, v, w);
       }
-      printf("%d", hlpp());
+      printf("%lld", hlpp());
       return 0;
     }
     ```
