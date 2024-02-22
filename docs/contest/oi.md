@@ -6,19 +6,19 @@ author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luogu
 
 OI 竞赛种类繁多，仅中国就包括：
 
-- 全国青少年信息学奥林匹克联赛（NOIP）
-- 全国青少年信息学奥林匹克竞赛（NOI）
-- 全国青少年信息学奥林匹克竞赛冬令营（WC）
-- 国际信息学奥林匹克竞赛中国队选拔赛（CTSC）
+-   全国青少年信息学奥林匹克联赛（NOIP）
+-   全国青少年信息学奥林匹克竞赛（NOI）
+-   全国青少年信息学奥林匹克竞赛冬令营（WC）
+-   国际信息学奥林匹克竞赛中国队选拔赛（CTSC）
 
 国际性的 OI 竞赛包括：
 
-- 国际信息学奥林匹克（IOI）
-- 美国计算机奥林匹克竞赛（USACO）
-- 日本信息学奥林匹克（JOI）
-- 亚太地区信息学奥林匹克（APIO）
+-   国际信息学奥林匹克（IOI）
+-   美国计算机奥林匹克竞赛（USACO）
+-   日本信息学奥林匹克（JOI）
+-   亚太地区信息学奥林匹克（APIO）
 
-  ……
+    ……
 
 对于大部分选手而言，每年的新赛季从 9 月的 CSP 初试开始。
 
@@ -66,10 +66,10 @@ CSP 分为入门级（Junior，简写为 CSP-J）与提高级（Senior，简写�
 
 NOIP 于 2019 年 8 月 16 日 [被 CCF 暂停](http://www.noi.cn/xw/2019-08-16/715365.shtml)，于 2020 年 1 月 21 日 [被宣布恢复](http://www.noi.cn/xw/2020-01-21/715520.shtml)。2020 年起的 NOIP 赛制与以往有所不同，具体如下：
 
-- 取消初赛，由 CSP 初试替代；
-- 取消普及组，由 CSP-J 替代，此后 NOIP 仅有一个组别，面向提高组水平选手；
-- 赛程由以往的两天共 6 题、每天 3.5 个小时，缩减为一天 4 题、共 4.5 个小时。
-- 选手需要在 CSP-S 复试中取得一定名次才能获得 NOIP 参赛资格，具体名额各省有所差异。NOIP 省级参赛资格由该省在去年赛季中的参赛人数和成绩等有关。
+-   取消初赛，由 CSP 初试替代；
+-   取消普及组，由 CSP-J 替代，此后 NOIP 仅有一个组别，面向提高组水平选手；
+-   赛程由以往的两天共 6 题、每天 3.5 个小时，缩减为一天 4 题、共 4.5 个小时。
+-   选手需要在 CSP-S 复试中取得一定名次才能获得 NOIP 参赛资格，具体名额各省有所差异。NOIP 省级参赛资格由该省在去年赛季中的参赛人数和成绩等有关。
 
 报名参加 NOIP 和进行题目申诉不需要额外缴费。
 
@@ -119,13 +119,13 @@ APIO 和 CTS 都以省为单位报名，一般按照 NOIP 的成绩排序来确�
 
 #### 北京大学（PKU）
 
-- 北京大学信息学冬季体验营（PKUWC）：在冬令营前后举行。
-- 北京大学信息学体验营（PKUSC）：一般在六月份在校内举行。由于在学校机房比赛，机房环境是 Windows，比赛系统是 OpenJudge。
-- 北京大学中学生暑期课堂（信息学）：在暑假举行，面向高二年级理科学生。
+-   北京大学信息学冬季体验营（PKUWC）：在冬令营前后举行。
+-   北京大学信息学体验营（PKUSC）：一般在六月份在校内举行。由于在学校机房比赛，机房环境是 Windows，比赛系统是 OpenJudge。
+-   北京大学中学生暑期课堂（信息学）：在暑假举行，面向高二年级理科学生。
 
 #### 清华大学（THU）
 
-- 计算机系"大中衔接"冬季研讨与教学活动：相当于信息学冬令营，有时也会用英文简写为 THUWC。一般共两天，上午为竞赛（第一天是标准 OI 竞赛，第二天为清华独创的"工程题"竞赛），下午为课程培训。
+-   计算机系 "大中衔接" 冬季研讨与教学活动：相当于信息学冬令营，有时也会用英文简写为 THUWC。一般共两天，上午为竞赛（第一天是标准 OI 竞赛，第二天为清华独创的 "工程题" 竞赛），下午为课程培训。
 
 ## 其他国家和地区的 OI 竞赛
 
@@ -139,10 +139,10 @@ USACO 或许是国内选手最熟悉的外国 OI 竞赛（可能也是中文题�
 
 根据官网的介绍，USACO 的比赛分成这 4 档难度（2015\~2016 学年之前为 3 档）：
 
-- 铜牌组，适合编程初学者，尤其是只学了最最基础的算法（如：排序，二分查找）的学生；
-- 银牌组，适合开始学习基本的算法技巧（如：递归，搜索，贪心算法）和基础数据结构的学生；
-- 金牌组，学生会遇到更复杂的算法（如：最短路径，DP）和更高级的数据结构；
-- 铂金组，适合有着扎实的算法设计能力的选手，铂金组可以帮助他们以复杂且更开放的问题来挑战自我。
+-   铜牌组，适合编程初学者，尤其是只学了最最基础的算法（如：排序，二分查找）的学生；
+-   银牌组，适合开始学习基本的算法技巧（如：递归，搜索，贪心算法）和基础数据结构的学生；
+-   金牌组，学生会遇到更复杂的算法（如：最短路径，DP）和更高级的数据结构；
+-   铂金组，适合有着扎实的算法设计能力的选手，铂金组可以帮助他们以复杂且更开放的问题来挑战自我。
 
 在国内，目前 USACO 题目最齐全的 OJ 平台是洛谷。
 
@@ -156,10 +156,10 @@ POI 是不少省选选手最常刷的外国 OI 比赛。
 
 根据 <http://main.edu.pl/en/> 的描述，POI 的流程如下：
 
-- 第一轮：五题，网络赛，公开赛；
-- 第二轮：包含一场练习赛，和两场正式比赛；
-- 第三轮：赛制同上。
-- ONTAK：POI 训练营（类似国内的集训队）。
+-   第一轮：五题，网络赛，公开赛；
+-   第二轮：包含一场练习赛，和两场正式比赛；
+-   第三轮：赛制同上。
+-   ONTAK：POI 训练营（类似国内的集训队）。
 
 另有 PA，大意为「算法大战」。
 
@@ -185,10 +185,10 @@ JOI（日文：日本情報オリンピック，中文：日本信息学奥赛�
 
 JOI 的流程：
 
-- 预赛（予選）
-- 决赛（本選/JOI Final）
-- 春训营（春季トレーニング合宿/JOI Spring Camp/JOISC）
-- 公开赛（通信教育/JOI Open Contest）
+-   预赛（予選）
+-   决赛（本選/JOI Final）
+-   春训营（春季トレーニング合宿/JOI Spring Camp/JOISC）
+-   公开赛（通信教育/JOI Open Contest）
 
 预赛难度较低，自 2019/2020 赛季起，预赛分为多轮。JOI Final 的难度从提高 - 到 提高 + 左右。JOISC 和 JOI Open 的题目的难度从提高到 NOI - 不等。
 
@@ -206,25 +206,25 @@ ROI（俄文：олимпиадная информатика，中文：俄罗�
 
 流程：
 
-- 市级比赛（Municipal Stage/Муниципальный этап）
-- 州级比赛（Regional Stage/Региональный этап）
-- 决赛（Final Stage/Заключительный этап）
+-   市级比赛（Municipal Stage/Муниципальный этап）
+-   州级比赛（Regional Stage/Региональный этап）
+-   决赛（Final Stage/Заключительный этап）
 
 目前 LibreOJ 有近几年的 ROI 决赛题的译文。
 
 除此之外，俄罗斯较大型的、面向中学生的比赛还有：
 
-- 信息学网络奥赛（俄文：Интернет-олимпиады по информатике）
-  - 官网地址：<http://neerc.ifmo.ru/school/io/index.html>
-  - 该比赛由 ROI 出题人举办。
-- 全国中学生团队信息学竞赛（俄文：Всероссийской командной олимпиады школьников）
-  - 官网地址：<http://neerc.ifmo.ru/school/russia-team/index.html>
-  - 该比赛的预选赛 Moscow Team Olympiad 可以在 Codeforces 上提交。
-- Innopolis Open
-  - 官网地址 <https://olymp.innopolis.ru/en/ooui/information/>
-- 中学生编程公开赛（Открытая олимпиада школьников по программированию）
-  - 官网地址：<https://olympiads.ru/zaoch/>
-  - 官网称该比赛对标 ROI。
+-   信息学网络奥赛（俄文：Интернет-олимпиады по информатике）
+    -   官网地址：<http://neerc.ifmo.ru/school/io/index.html>
+    -   该比赛由 ROI 出题人举办。
+-   全国中学生团队信息学竞赛（俄文：Всероссийской командной олимпиады школьников）
+    -   官网地址：<http://neerc.ifmo.ru/school/russia-team/index.html>
+    -   该比赛的预选赛 Moscow Team Olympiad 可以在 Codeforces 上提交。
+-   Innopolis Open
+    -   官网地址 <https://olymp.innopolis.ru/en/ooui/information/>
+-   中学生编程公开赛（Открытая олимпиада школьников по программированию）
+    -   官网地址：<https://olympiads.ru/zaoch/>
+    -   官网称该比赛对标 ROI。
 
 ### 加拿大：CCC & CCO
 
@@ -240,7 +240,7 @@ CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌
 
 全称 Singapore National Olympiad in Informatics，在新加坡国内语境且不引起歧义的情况下也作 NOI。赛制上分为 Online Qualification Contest（在线资格赛）和 Final Contest（全国决赛）。在线资格赛以学校为单位报名参加，选手在本校参赛，通过网络进行远程提交。资格赛成绩只在校内排名，前 5 名且非零分选手有资格作为校代表队参加全国决赛。
 
-目前国内 OJ 对于 NOI SG 的题目收录比较匮乏，可以在[官方的 GitHub 帐号](https://github.com/noisg)上找到历年题面、测试数据和官方标准程序。
+目前国内 OJ 对于 NOI SG 的题目收录比较匮乏，可以在 [官方的 GitHub 帐号](https://github.com/noisg) 上找到历年题面、测试数据和官方标准程序。
 
 ### 台湾地区：資訊奧林匹亞競賽
 
@@ -248,24 +248,24 @@ CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌
 
 台湾地区的选手如果想参加 IOI，需要经过这几轮比赛：
 
-- 區域資訊學科能力競賽
-- 全國資訊學科能力競賽
-- 資訊研習營（TOI）
+-   區域資訊學科能力競賽
+-   全國資訊學科能力競賽
+-   資訊研習營（TOI）
 
 ### 其他国家
 
-- 法国与澳大利亚：FARIO：<http://orac.amt.edu.au/cgi-bin/train/hub.pl>
+-   法国与澳大利亚：FARIO：<http://orac.amt.edu.au/cgi-bin/train/hub.pl>
 
-  - 难度与 NOI 类似。
+    -   难度与 NOI 类似。
 
-- 英国：British Informatics Olympiad：<https://www.olympiad.org.uk/>
+-   英国：British Informatics Olympiad：<https://www.olympiad.org.uk/>
 
-  - 难度太低。
+    -   难度太低。
 
-- 捷克：Matematická olympiáda–kategorie P：<http://mo.mff.cuni.cz/p/archiv.html>
+-   捷克：Matematická olympiáda–kategorie P：<http://mo.mff.cuni.cz/p/archiv.html>
 
-- 罗马尼亚：Olimpiada Nationala de Informatica：<http://olimpiada.info/>
-  - 题面、测试数据、题解请在含有 Subiecte 字样的标签页中寻找。
+-   罗马尼亚：Olimpiada Nationala de Informatica：<http://olimpiada.info/>
+    -   题面、测试数据、题解请在含有 Subiecte 字样的标签页中寻找。
 
 ## 其它国际 OI 竞赛
 
@@ -316,5 +316,5 @@ eJOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](ht
 
 ## 参考资料
 
-- [ICPC/CCPC 赛事与赛制](./icpc.md)
-- [「翻译组」一些大洲级 OI 比赛的地址](https://loj.ac/article/416)
+-   [ICPC/CCPC 赛事与赛制](./icpc.md)
+-   [「翻译组」一些大洲级 OI 比赛的地址](https://loj.ac/article/416)
