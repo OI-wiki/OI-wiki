@@ -32,7 +32,7 @@ Lemon 所需的修改版 Testlib 托管于 [GitHub - GitPinkRabbit/Testlib-for-L
 
 DOMJudge 所需的修改版 Testlib 托管于 [cn-xcpc-tools/testlib-for-domjudge](https://github.com/cn-xcpc-tools/testlib-for-domjudge)。此版本 Testlib 同时可作为 Special Judge 的 checker 和交互题的 interactor。
 
-Arbiter 所需的修改版 Testlib 托管于 [HeRaNO/testlib.h](https://gist.github.com/HeRaNO/b6ce55b5f8a72f460ba4db7323567aa0)。
+Arbiter 所需的修改版 Testlib 托管于 [testlib-for-arbiter](https://github.com/HeRaNO/ChickenRibs/tree/master/testlib-for-arbiter)。
 
 其他评测工具/OJ 大部分需要按照其 spj 编写格式修改 Testlib，并将 testlib.h 与 spj 一同上传；或将 testlib.h 置于 include 目录。
 
