@@ -63,7 +63,7 @@ $$
     对任意的 $m\in R(n)$，我们有 $R(m)\subseteq R(n)$.
     
     ???+ note "证明"
-        令 $m=\left\lfloor\dfrac{n}{x}\right\rfloor$, 任取 $\left\lfloor\dfrac{m}{y}\right\rfloor \in R(m)$, 由整除分块/数论分块的 [引理 1](./sqrt-decomposition.md#引理-1) 可知:
+        令 $m=\left\lfloor\dfrac{n}{x}\right\rfloor$, 任取 $\left\lfloor\dfrac{m}{y}\right\rfloor \in R(m)$, 由整除分块/数论分块的 [引理 1](./sqrt-decomposition.md#引理-1) 可知：
         
         $$
         \left\lfloor\dfrac{m}{y}\right\rfloor=\left\lfloor\dfrac{n}{xy}\right\rfloor\in R(n).
@@ -271,5 +271,5 @@ $$
 
 ### 参考资料
 
-1. 任之洲，2016，《积性函数求和的几种方法》，2016 年信息学奥林匹克中国国家队候选队员论文
-2. [杜教筛的时空复杂度分析 - riteme.site](https://riteme.site/blog/2018-9-11/time-space-complexity-dyh-algo.html)
+1.  任之洲，2016，《积性函数求和的几种方法》，2016 年信息学奥林匹克中国国家队候选队员论文
+2.  [杜教筛的时空复杂度分析 - riteme.site](https://riteme.site/blog/2018-9-11/time-space-complexity-dyh-algo.html)
