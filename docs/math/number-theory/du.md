@@ -143,7 +143,7 @@ $$
         \end{aligned}
         $$
         
-        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{n/i}\right\rfloor\right)$ 仍然是 $\omega\left(\sqrt[4]{n/i}\right)$ 的，进而所谓的「高阶无穷小」部分是不可以舍去的。
+        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{n/i}\right\rfloor\right)$ 仍然是 $\omega\left((n/i)^{1/4}\right)$ 的，进而所谓的「高阶无穷小」部分是不可以舍去的。
         
         实际上杜教筛的亚线性时间复杂度是由记忆化保证的。只有使用了记忆化之后才能保证不会出现那个多重求和的项。
 
