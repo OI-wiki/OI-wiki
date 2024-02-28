@@ -22,8 +22,8 @@ $$
     
     $$
     \begin{aligned}
-        \sum_{i=1}^n\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right) & =\sum_{i=1}^n\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}g(i)f(j) \\
-                                                                 & =\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}f(j) \\
+        \sum_{i=1}^n\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right) & =\sum_{i=1}^n\sum_{j=1}^{\left\lfloor n/i \right\rfloor}g(i)f(j) \\
+                                                                 & =\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor n/i \right\rfloor}f(j) \\
                                                                  & =\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
     \end{aligned}
     $$
@@ -40,7 +40,7 @@ $$
 假如我们可以构造恰当的数论函数 $g$ 使得：
 
 1.  可以快速计算 $\sum_{i=1}^n(f * g)(i)$；
-2.  可以快速计算 $g$ 的前缀和，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$。
+2.  可以快速计算 $g$ 的前缀和，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$。
 
 则我们可以在较短时间内求得 $g(1)S(n)$。
 
@@ -57,7 +57,7 @@ $$
 
 ## 时间复杂度
 
-令 $R(n)=\{\lfloor n/k\rfloor:2\leq k\leq n,k\in\mathbf{N}\}$, 我们有如下引理：
+令 $R(n)=\left\{\left\lfloor \dfrac{n}{k} \right\rfloor: k=2,3,\dots,n\right\}$, 我们有如下引理：
 
 ???+ abstract "引理"
     对任意的 $m\in R(n)$，我们有 $R(m)\subseteq R(n)$.
@@ -76,7 +76,7 @@ $$
 $$
 \begin{aligned}
     T(n) & = \sum_{k\in R(n)}^n T(k)\\
-         & = \Theta(\sqrt n)+\sum_{k=1}^{\lfloor\sqrt n\rfloor} O(\sqrt k)+\sum_{k=2}^{\lfloor\sqrt n\rfloor} O\left(\sqrt\dfrac{n}{k}\right)\\
+         & = \Theta(\sqrt n)+\sum_{k=1}^{\lfloor\sqrt n\rfloor} O(\sqrt k)+\sum_{k=2}^{\lfloor\sqrt n\rfloor} O\left(\sqrt{\dfrac{n}{k}}\right)\\
          & = O\left(\int_{0}^{\sqrt n} \sqrt{x} + \sqrt\dfrac{n}{x} \mathrm{d}x\right)\\
          & = O\left(n^{3/4}\right).
 \end{aligned}
@@ -87,8 +87,8 @@ $$
 $$
 \begin{aligned}
     T(n) & = T_0(m)+\sum_{k\in R(n);k>m}^n T(k)\\
-         & = T_0(m)+\sum_{k=1}^{\lfloor n/m \rfloor} O\left(\sqrt\dfrac{n}{k}\right)\\
-         & = O\left(T_0(m)+\int_{0}^{\lfloor n/m \rfloor} \sqrt\dfrac{n}{x} \mathrm{d}x\right)\\
+         & = T_0(m)+\sum_{k=1}^{\lfloor n/m \rfloor} O\left(\sqrt{\dfrac{n}{k}}\right)\\
+         & = O\left(T_0(m)+\int_{0}^{\lfloor n/m \rfloor} \sqrt{\dfrac{n}{x}} \mathrm{d}x\right)\\
          & = O\left(T_0(m)+\dfrac{n}{\sqrt m}\right).
 \end{aligned}
 $$
@@ -138,12 +138,12 @@ $$
         
         $$
         \begin{aligned}
-            \sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right) & = \omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\frac{n}{i}\cdot\left(\sqrt\frac{n}{i}\right)^{-1}\right\rfloor\right)\right) \\
-                                                                                                                                         & = \omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\sqrt\frac{n}{i}\right\rfloor\right)\right) \\
+            \sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right) & = \omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\frac{n}{i}\cdot\left\lfloor\sqrt\frac{n}{i}\right\rfloor^{-1}\right\rfloor\right)\right) \\
+                                                                                                                                         & = \omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\sqrt\frac{n}{i}\right\rfloor\right)\right)
         \end{aligned}
         $$
         
-        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt\frac{n}{i}\right\rfloor\right)$ 不可视作 $\Theta(1)$，进而所谓的「高阶无穷小」部分是不可以舍去的。
+        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{n/i}\right\rfloor\right)$ 不可视作 $\Theta(1)$，进而所谓的「高阶无穷小」部分是不可以舍去的。
         
         实际上杜教筛的亚线性时间复杂度是由记忆化保证的。只有使用了记忆化之后才能保证不会出现那个多重求和的项。
 
