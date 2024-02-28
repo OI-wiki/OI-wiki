@@ -88,7 +88,7 @@ $$
 \begin{aligned}
     T(n) & = T_0(m)+\sum_{k\in R(n);k>m}^n T(k)\\
          & = T_0(m)+\sum_{k=1}^{\lfloor n/m \rfloor} O\left(\sqrt{\dfrac{n}{k}}\right)\\
-         & = O\left(T_0(m)+\int_{0}^{\lfloor n/m \rfloor} \sqrt{\dfrac{n}{x}} \mathrm{d}x\right)\\
+         & = O\left(T_0(m)+\int_{0}^{n/m} \sqrt{\dfrac{n}{x}} \mathrm{d}x\right)\\
          & = O\left(T_0(m)+\dfrac{n}{\sqrt m}\right).
 \end{aligned}
 $$
