@@ -77,7 +77,7 @@ $$
 \begin{aligned}
     T(n) & = \sum_{k\in R(n)}^n T(k)\\
          & = \Theta(\sqrt n)+\sum_{k=1}^{\lfloor\sqrt n\rfloor} O(\sqrt k)+\sum_{k=2}^{\lfloor\sqrt n\rfloor} O\left(\sqrt{\dfrac{n}{k}}\right)\\
-         & = O\left(\int_{0}^{\sqrt n} \sqrt{x} + \sqrt\dfrac{n}{x} \mathrm{d}x\right)\\
+         & = O\left(\int_{0}^{\sqrt n} \sqrt{x} + \sqrt{\dfrac{n}{x}} \mathrm{d}x\right)\\
          & = O\left(n^{3/4}\right).
 \end{aligned}
 $$
