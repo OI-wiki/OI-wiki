@@ -53,11 +53,11 @@ $$
     \sum_{k=1}^n (f*g)(k)=\mathrm{i}\frac{n(n+1)}{2}
     $$
     
-    计算 $\sum_k (f*g)(k)$ 和 $g$ 的时间复杂度均为 $O(1)$, 故可以考虑使用杜教筛。
+    计算 $\sum_k (f*g)(k)$ 和 $\sum_k g(k)$ 的时间复杂度均为 $O(1)$, 故可以考虑使用杜教筛。
 
 ## 时间复杂度
 
-我们认为计算 $\sum_{i=1}^n(f * g)(i)$ 和 $g(n)$ 的时间复杂度均为 $O(1)$, 设计算 $S(n)$ 的复杂度为 $T(n)$, 此时我们不妨将 $S(n)$ 简化为如下形式：
+我们认为计算 $\sum_{i=1}^n(f * g)(i)$ 和 $\sum_{i=1}^n g(i)$ 的时间复杂度均为 $O(1)$, 设计算 $S(n)$ 的复杂度为 $T(n)$, 此时我们不妨将 $S(n)$ 简化为如下形式：
 
 $$
 S(n)=\sum_{i=2}^n S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
@@ -83,7 +83,7 @@ $$
 
 $$
 \begin{aligned}
-    T(n) & =O\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\sqrt{n}} \sqrt{\frac{n}{i}}\right)=O\left(\sum_{i=2}^{\sqrt{n}} \sqrt{\frac{n}{i}}\right) \\
+    T(n) & =O\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\sqrt{n}} \sqrt{\frac{n}{i}}\right)=O\left(\sum_{i=1}^{\sqrt{n}} \sqrt{\frac{n}{i}}\right) \\
          & =O\left(\int_{0}^{\sqrt{n}}\sqrt{\frac{n}{x}}\mathrm{d}x\right)                                                                       \\
          & =O\left(n^{\frac{3}{4}}\right)
 \end{aligned}
