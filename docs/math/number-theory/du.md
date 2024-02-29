@@ -110,7 +110,7 @@ $$
     $$
     
     ???+ note
-        $O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right)$ 视作高阶无穷小，从而可以舍去。
+        $O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\dfrac{n}{ij}\right\rfloor\right)\right)$ 视作高阶无穷小，从而可以舍去。
     
     故：
     
@@ -124,7 +124,7 @@ $$
     $$
     
     ??? bug
-        问题在于「视作高阶无穷小，从而可以舍去」这一处。我们将 $T\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 代入 $T(n)$ 的式子里，有：
+        问题在于「视作高阶无穷小，从而可以舍去」这一处。我们将 $T\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$ 代入 $T(n)$ 的式子里，有：
         
         $$
         \begin{aligned}
@@ -143,7 +143,7 @@ $$
         \end{aligned}
         $$
         
-        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{n/i}\right\rfloor\right)$ 仍然是 $\Omega\left((n/i)^{1/4}\right)$ 的，进而所谓的「高阶无穷小」部分是不可以舍去的。
+        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{\dfrac{n}{i}}\right\rfloor\right)$ 仍然是 $\Omega\left(\left(\dfrac{n}{i}\right)^{1/4}\right)$ 的，进而所谓的「高阶无穷小」部分是不可以舍去的。
         
         实际上杜教筛的亚线性时间复杂度是由记忆化保证的。只有使用了记忆化之后才能保证不会出现那个多重求和的项。
 
@@ -221,9 +221,9 @@ $$
 \sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
 $$
 
-其中 $F(n)=\frac{1}{2}n(n+1)$
+其中 $F(n)=\dfrac{1}{2}n(n+1)$
 
-对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
+对 $\sum_{d=1}^nF\left(\left\lfloor\dfrac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
 
 $$
 f(n)=n^2\varphi(n)=(\operatorname{id}^2\varphi)(n)
