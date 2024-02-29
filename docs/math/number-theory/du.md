@@ -75,7 +75,7 @@ $$
 
 $$
 \begin{aligned}
-    T(n) & = \sum_{k\in R(n)}^n T(k)\\
+    T(n) & = \sum_{k\in R(n)} T(k)\\
          & = \Theta(\sqrt n)+\sum_{k=1}^{\lfloor\sqrt n\rfloor} O(\sqrt k)+\sum_{k=2}^{\lfloor\sqrt n\rfloor} O\left(\sqrt{\dfrac{n}{k}}\right)\\
          & = O\left(\int_{0}^{\sqrt n} \sqrt{x} + \sqrt{\dfrac{n}{x}} \mathrm{d}x\right)\\
          & = O\left(n^{3/4}\right).
@@ -86,7 +86,7 @@ $$
 
 $$
 \begin{aligned}
-    T(n) & = T_0(m)+\sum_{k\in R(n);k>m}^n T(k)\\
+    T(n) & = T_0(m)+\sum_{k\in R(n);k>m} T(k)\\
          & = T_0(m)+\sum_{k=1}^{\lfloor n/m \rfloor} O\left(\sqrt{\dfrac{n}{k}}\right)\\
          & = O\left(T_0(m)+\int_{0}^{n/m} \sqrt{\dfrac{n}{x}} \mathrm{d}x\right)\\
          & = O\left(T_0(m)+\dfrac{n}{\sqrt m}\right).
@@ -138,12 +138,12 @@ $$
         
         $$
         \begin{aligned}
-            \sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right) & = \omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\frac{n}{i}\cdot\left\lfloor\sqrt\frac{n}{i}\right\rfloor^{-1}\right\rfloor\right)\right) \\
-                                                                                                                                         & = \omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\sqrt\frac{n}{i}\right\rfloor\right)\right)
+            \sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right) & = \Omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\frac{n}{i}\cdot\left\lfloor\sqrt\frac{n}{i}\right\rfloor^{-1}\right\rfloor\right)\right) \\
+                                                                                                                                         & = \Omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\sqrt\frac{n}{i}\right\rfloor\right)\right)
         \end{aligned}
         $$
         
-        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{n/i}\right\rfloor\right)$ 仍然是 $\omega\left((n/i)^{1/4}\right)$ 的，进而所谓的「高阶无穷小」部分是不可以舍去的。
+        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{n/i}\right\rfloor\right)$ 仍然是 $\Omega\left((n/i)^{1/4}\right)$ 的，进而所谓的「高阶无穷小」部分是不可以舍去的。
         
         实际上杜教筛的亚线性时间复杂度是由记忆化保证的。只有使用了记忆化之后才能保证不会出现那个多重求和的项。
 
