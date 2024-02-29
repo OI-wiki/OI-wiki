@@ -300,7 +300,7 @@ False
 >>> nums = list(range(65,70))  # 记得 range 外面还要套一层 list()
 [65, 66, 67, 68, 69]
 >>> lst = [chr(x) for x in nums]  # 列表推导式的典型结构，[exp for var in iterable if cond]
->>> lst  # 上两句可以合并成 [str(x) for x in range(65,70)]
+>>> lst  # 上两句可以合并成 [chr(x) for x in range(65,70)]
 ['A', 'B', 'C', 'D', 'E']
 >>> s = ''.join(lst); s # 用空字符串 '' 拼接列表中的元素生成新字符串
 'ABCDE'

@@ -40,7 +40,7 @@ $$
 假如我们可以构造恰当的数论函数 $g$ 使得：
 
 1.  可以快速计算 $\sum_{i=1}^n(f * g)(i)$；
-2.  可以快速计算 $g$ 的单点值，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$。
+2.  可以快速计算 $g$ 的前缀和，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$。
 
 则我们可以在较短时间内求得 $g(1)S(n)$。
 
