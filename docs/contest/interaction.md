@@ -20,7 +20,7 @@ author: countercurrent-time, StudyingFather
 -   [CF843B Interactive LowerBound](https://www.luogu.com.cn/problem/CF843B)
 -   [UOJ206\[APIO2016\]Gap](http://uoj.ac/problem/206)
 -   [CF750F New Year and Finding Roots](https://www.luogu.com.cn/problem/CF750F)
--   [UVa 12731 - 太空站之谜 Mysterious Space Station](https://www.luogu.com.cn/problem/UVA12731)
+-   [UVa 12731 - 太空站之谜 Mysterious Space Station](https://vjudge.net/problem/UVA-12731)
 
 ## CF679A Bear and Prime 100
 

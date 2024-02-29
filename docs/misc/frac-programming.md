@@ -213,4 +213,4 @@ bool check(double mid) {  // 如果有负环返回 true
 
 -   [JSOI2016 最佳团体](https://loj.ac/problem/2071)
 -   [SDOI2017 新生舞会](https://loj.ac/problem/2003)
--   [UVa 1389 - Hard Life](https://vjudge.net/problem/UVA-1389)
+-   [UVa 1389 - 艰苦的生活 Hard Life](https://vjudge.net/problem/UVA-1389)

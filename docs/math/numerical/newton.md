@@ -131,7 +131,7 @@ public static BigInteger isqrtNewton(BigInteger n) {
 
 ## 习题
 
--   [UVa 10428 - The Roots](https://vjudge.net/problem/UVA-10428)
+-   [UVa 10428 - 根 The Roots](https://vjudge.net/problem/UVA-10428)
 -   [LeetCode 69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)
 
     **本页面主要译自博文 [Метод Ньютона (касательных) для поиска корней](http://e-maxx.ru/algo/roots_newton) 与其英文翻译版 [Newton's method for finding roots](https://cp-algorithms.com/num_methods/roots_newton.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

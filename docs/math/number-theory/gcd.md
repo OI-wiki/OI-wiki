@@ -451,6 +451,6 @@ int exgcd(int a, int b, int &x, int &y) {
 
 ## 应用
 
--   [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)
+-   [UVa 10104 - 欧几里得问题 Euclid Problem](https://vjudge.net/problem/UVA-10104)
 -   [GYM - (J) once upon a time](http://codeforces.com/gym/100963)
--   [UVa 12775 - Gift Dilemma](https://vjudge.net/problem/UVA-12775)
+-   [UVa 12775 - 礼物困境 Gift Dilemma](https://vjudge.net/problem/UVA-12775)
