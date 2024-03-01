@@ -20,8 +20,10 @@ union MyUnion {
   int x;
   long long y;
 };
-MyUnion x={.y=34};
+
+MyUnion x = {.y = 34};
 ```
+
 联合体的定义与结构体类似。按照上述定义，`MyUnion` 同样可以当作一种自定义类型使用。名称 `MyUnion` 可以省略。
 
 ## 访问/修改成员元素
