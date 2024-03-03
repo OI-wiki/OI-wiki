@@ -60,6 +60,11 @@ $$
 
 即求出 $A\left(\lbrace 0,1 \rbrace^n\right)$。Zeta 变换的逆变换被称为 Moebius 变换。我们只需对上述算法稍作修改即可。
 
+??? "子集卷积模板（[LOJ 152. 子集卷积](https://loj.ac/p/152)）"
+    ```cpp
+    --8<-- "docs/math/code/poly/sps/sps_1.cpp"
+    ```
+
 ## 乘法逆元
 
 考虑计算
@@ -75,6 +80,23 @@ $$
 $$
 
 首先我们先求出常数项的乘法逆元，然后逐一加入元 $x_1,\dots ,x_n$，每一次我们都将这个多项式当成一个一元多项式去套用上式。在仅有一元 $x_1$ 时套用上式不难理解，在加入一元 $x_2$ 后，对于关于 $x_2$ 的多项式，其系数在环 $R\lbrack x_1\rbrack /(x_1^2)$ 上，而在加入 $x_3$ 后，对于关于 $x_3$ 的多项式，其系数在环 $R\lbrack x_1,x_2\rbrack /(x_1^2,x_2^2)$ 上，那么我们使用上述子集卷积即可。
+
+```cpp
+template <typename T>
+std::vector<T> sps_inv(const std::vector<T> &x) {
+  const int len = static_cast<int>(x.size());
+  const int n   = std::countr_zero(static_cast<unsigned>(len));
+  std::vector<T> res(len);
+  res.front() = x.front().inv();
+  for (int i = 0; i != n; ++i) {
+    std::vector a_1(res.begin(), res.begin() + (1 << i)); // a^{-1}
+    std::vector b(x.begin() + (1 << i), x.begin() + (2 << i));
+    auto t = subset_convolution(subset_convolution(b, a_1), a_1);
+    for (int j = 0; j != 1 << i; ++j) res[j + (1 << i)] = -t[j];
+  }
+  return res;
+}
+```
 
 ## 对数
 
@@ -96,6 +118,24 @@ $$
 
 同上操作即可，注意我们要求 $A$ 的常数项为 $1$。
 
+```cpp
+template <typename T>
+std::vector<T> sps_log(const std::vector<T> &x) {
+  const int len = static_cast<int>(x.size());
+  const int n   = std::countr_zero(static_cast<unsigned>(len));
+  if (n == 0) return {0};
+  std::vector<T> res(len);
+  res.front() = 0;
+  for (int i = 0; i != n; ++i) {
+    std::vector a(x.begin(), x.begin() + (1 << i));
+    std::vector b(x.begin() + (1 << i), x.begin() + (2 << i));
+    auto t = subset_convolution(b, sps_inv(a));
+    for (int j = 0; j != 1 << i; ++j) res[j + (1 << i)] = t[j];
+  }
+  return res;
+}
+```
+
 ## 指数
 
 考虑计算
@@ -115,6 +155,23 @@ $$
 $$
 
 同上操作即可，注意我们要求 $A$ 的常数项为 $0$。
+
+```cpp
+template <typename T>
+std::vector<T> sps_exp(const std::vector<T> &x) {
+  const int len = static_cast<int>(x.size());
+  const int n   = std::countr_zero(static_cast<unsigned>(len));
+  std::vector<T> res(len);
+  res.front() = 1;
+  for (int i = 0; i != n; ++i) {
+    std::vector expa(res.begin(), res.begin() + (1 << i));
+    std::vector b(x.begin() + (1 << i), x.begin() + (2 << i));
+    auto t = subset_convolution(expa, b);
+    for (int j = 0; j != 1 << i; ++j) res[j + (1 << i)] = t[j];
+  }
+  return res;
+}
+```
 
 ## 其他操作
 
