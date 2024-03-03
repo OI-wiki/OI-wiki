@@ -60,7 +60,7 @@ $$
 
 即求出 $A\left(\lbrace 0,1 \rbrace^n\right)$。Zeta 变换的逆变换被称为 Moebius 变换。我们只需对上述算法稍作修改即可。
 
-??? "子集卷积模板（[LOJ 152. 子集卷积](https://loj.ac/p/152)）"
+??? " 子集卷积模板（[LOJ 152. 子集卷积](https://loj.ac/p/152)）"
     ```cpp
     --8<-- "docs/math/code/poly/sps/sps_1.cpp"
     ```
@@ -85,11 +85,11 @@ $$
 template <typename T>
 std::vector<T> sps_inv(const std::vector<T> &x) {
   const int len = static_cast<int>(x.size());
-  const int n   = std::countr_zero(static_cast<unsigned>(len));
+  const int n = std::countr_zero(static_cast<unsigned>(len));
   std::vector<T> res(len);
   res.front() = x.front().inv();
   for (int i = 0; i != n; ++i) {
-    std::vector a_1(res.begin(), res.begin() + (1 << i)); // a^{-1}
+    std::vector a_1(res.begin(), res.begin() + (1 << i));  // a^{-1}
     std::vector b(x.begin() + (1 << i), x.begin() + (2 << i));
     auto t = subset_convolution(subset_convolution(b, a_1), a_1);
     for (int j = 0; j != 1 << i; ++j) res[j + (1 << i)] = -t[j];
@@ -122,7 +122,7 @@ $$
 template <typename T>
 std::vector<T> sps_log(const std::vector<T> &x) {
   const int len = static_cast<int>(x.size());
-  const int n   = std::countr_zero(static_cast<unsigned>(len));
+  const int n = std::countr_zero(static_cast<unsigned>(len));
   if (n == 0) return {0};
   std::vector<T> res(len);
   res.front() = 0;
@@ -160,7 +160,7 @@ $$
 template <typename T>
 std::vector<T> sps_exp(const std::vector<T> &x) {
   const int len = static_cast<int>(x.size());
-  const int n   = std::countr_zero(static_cast<unsigned>(len));
+  const int n = std::countr_zero(static_cast<unsigned>(len));
   std::vector<T> res(len);
   res.front() = 1;
   for (int i = 0; i != n; ++i) {
@@ -179,6 +179,6 @@ std::vector<T> sps_exp(const std::vector<T> &x) {
 
 ## 参考文献
 
-- Andreas Björklund and Thore Husfeldt. [Fourier Meets Möbius: Fast Subset Convolution](http://algo.inria.fr/flajolet/Publications/books.html).
-- adamant. [Subset convolution interpretation](https://codeforces.com/blog/entry/92153).
-- Elegia. [Optimal Algorithm on Polynomial Composite Set Power Series](https://codeforces.com/blog/entry/92183).
+-   Andreas Björklund and Thore Husfeldt.[Fourier Meets Möbius: Fast Subset Convolution](http://algo.inria.fr/flajolet/Publications/books.html).
+-   adamant.[Subset convolution interpretation](https://codeforces.com/blog/entry/92153).
+-   Elegia.[Optimal Algorithm on Polynomial Composite Set Power Series](https://codeforces.com/blog/entry/92183).
