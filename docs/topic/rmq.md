@@ -4,31 +4,25 @@ RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最�
 
 在接下来的描述中，默认初始数组大小为 $n$，询问次数为 $m$。
 
-在接下来的描述中，默认时间复杂度标记方式为 $O($ 数据预处理 $) \sim O($ 单次询问 $)$。
+在接下来的描述中，默认时间复杂度标记方式为 $O(A) \sim O(B)$，其中 $O(A)$ 表示预处理时间复杂度，而 $O(B)$ 表示单次询问的时间复杂度。
 
 ## 单调栈
 
 由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/monotonous-stack.md)。这部分不再展开。
 
-时间复杂度 $O(m\log m) \sim O(\log n)$
-
-空间复杂度 $O(n)$
+时间复杂度 $O(m\log m) \sim O(\log n)$，空间复杂度 $O(n)$。
 
 ## ST 表
 
 由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/sparse-table.md)。这部分不再展开。
 
-时间复杂度 $O(n\log n) \sim O(1)$
-
-空间复杂度 $O(n\log n)$
+时间复杂度 $O(n\log n) \sim O(1)$，空间复杂度 $O(n\log n)$。
 
 ## 线段树
 
 由于 **OI Wiki** 中已有此部分的描述，本文仅给出 [链接](../ds/seg.md)。这部分不再展开。
 
-时间复杂度 $O(n) \sim O(\log n)$
-
-空间复杂度 $O(n)$
+时间复杂度 $O(n) \sim O(\log n)$，空间复杂度 $O(n)$。
 
 ## Four Russian
 
@@ -46,9 +40,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 在 $S=\log n$ 时候，预处理复杂度达到最优，为 $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$。
 
-时间复杂度 $O(n\log \log n) \sim O(1)$
-
-空间复杂度 $O(n\log \log n)$
+时间复杂度 $O(n\log \log n) \sim O(1)$，空间复杂度 $O(n\log \log n)$。
 
 当然询问由于要跑三个 ST 表，该实现方法的常数较大。
 
@@ -106,7 +98,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
 
 ### 隐性要求
 
--   序列的长度 $n$ 满足 $\log_2{n} \leq 64$
+-   序列的长度 $n$ 满足 $\log_2{n} \leq 64$。
 
 ### 前置知识
 
