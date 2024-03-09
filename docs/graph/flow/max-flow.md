@@ -936,7 +936,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
     int h[N + 1], cnt = 1;
     
     void add_path(int f, int t, long long v) {
-      e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt;
+      e[++cnt] = qxx{h[f], t, v}, h[f] = cnt;
     }
     
     void add_flow(int f, int t, long long v) {
