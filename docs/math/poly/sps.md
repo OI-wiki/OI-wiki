@@ -85,7 +85,7 @@ $$
 template <typename T>
 std::vector<T> sps_inv(const std::vector<T> &x) {
   const int len = static_cast<int>(x.size());
-  const int n = std::countr_zero(static_cast<unsigned>(len));
+  const int n = __builtin_ctz(len);
   std::vector<T> res(len);
   res.front() = x.front().inv();
   for (int i = 0; i != n; ++i) {
@@ -122,7 +122,7 @@ $$
 template <typename T>
 std::vector<T> sps_log(const std::vector<T> &x) {
   const int len = static_cast<int>(x.size());
-  const int n = std::countr_zero(static_cast<unsigned>(len));
+  const int n = __builtin_ctz(len);
   if (n == 0) return {0};
   std::vector<T> res(len);
   res.front() = 0;
@@ -160,7 +160,7 @@ $$
 template <typename T>
 std::vector<T> sps_exp(const std::vector<T> &x) {
   const int len = static_cast<int>(x.size());
-  const int n = std::countr_zero(static_cast<unsigned>(len));
+  const int n = __builtin_ctz(len);
   std::vector<T> res(len);
   res.front() = 1;
   for (int i = 0; i != n; ++i) {
