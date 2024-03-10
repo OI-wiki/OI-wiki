@@ -134,9 +134,9 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
     
     以上示例代码存在如下问题：
     
-    1. `__int128_t f3(__int128_t)` 中使用的是 C 风格的绝对值函数，其签名为 `int abs(int)`，故 `num` 首先会强制转换为 `int`，然后才会调用 `abs` 函数。
-    2. `__int128_t f4(__int128_t)` 中使用的是 C++ 风格的绝对值函数，其并没有签名为 `__int128_t std::abs(__int128_t)` 的函数重载，所以无法通过编译。
-    3. C++ 的流式输出不支持输出 `__int128_t` 与  `__uint128_t`。
+    1.  `__int128_t f3(__int128_t)` 中使用的是 C 风格的绝对值函数，其签名为 `int abs(int)`，故 `num` 首先会强制转换为 `int`，然后才会调用 `abs` 函数。
+    2.  `__int128_t f4(__int128_t)` 中使用的是 C++ 风格的绝对值函数，其并没有签名为 `__int128_t std::abs(__int128_t)` 的函数重载，所以无法通过编译。
+    3.  C++ 的流式输出不支持输出 `__int128_t` 与 `__uint128_t`。
     
     以下是一种解决方案：
     
@@ -161,17 +161,11 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
           return os << (__uint128_t)n;
         }
         
-        int f1(int n) {
-          return abs(n);
-        }
+        int f1(int n) { return abs(n); }
         
-        int f2(int n) {
-          return std::abs(n);
-        }
+        int f2(int n) { return std::abs(n); }
         
-        __int128_t f3(__int128_t n) {
-          return abs(n);
-        }
+        __int128_t f3(__int128_t n) { return abs(n); }
         
         int main() {
           std::cout << "f1: " << f1(-42) << std::endl;
