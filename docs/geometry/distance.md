@@ -357,6 +357,8 @@ $D(X, Y) = (\sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert ^p)^{\frac{
 
 特殊的：当 $p=1$ 时，$D(X, Y) = \sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert$ 即为曼哈顿距离，当 $p=2$ 时，$D(X, Y) = (\sum \limits _{i=1}^n (x_i - y_i) ^2)^{\frac{1}{2}}$ 即为欧几里得距离，当 $p \to \infty$ 时，$D(X, Y) = \lim \limits _{p \to \infty} (\sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert ^p)^{\frac{1}{p}} = \max \limits _{i=1}^n \left \vert x_i - y_i \right \vert$ 即为切比雪夫距离。
 
+需要注意的是，当 $p \ge 1$ 时，闵可夫斯基距离才是度量，具体证明可以看 [维基百科](https://en.wikipedia.org/wiki/Minkowski_distance)。
+
 ## 汉明距离
 
 汉明距离是两个字符串之间的距离，它表示两个长度相同的字符串对应位字符不同的数量
