@@ -136,7 +136,7 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
     
     1.  `__int128_t f3(__int128_t)` 中使用的是 C 风格的绝对值函数，其签名为 `int abs(int)`，故 `num` 首先会强制转换为 `int`，然后才会调用 `abs` 函数。
     2.  `__int128_t f4(__int128_t)` 中使用的是 C++ 风格的绝对值函数，其并没有签名为 `__int128_t std::abs(__int128_t)` 的函数重载，所以无法通过编译。
-    3.  C++ 的流式输出不支持输出 `__int128_t` 与 `__uint128_t`。
+    3.  C++ 的流式输出不支持 `__int128_t` 与 `__uint128_t`。
     
     以下是一种解决方案：
     
