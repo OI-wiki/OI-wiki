@@ -173,16 +173,9 @@ std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大�
 
 ### 严格弱序
 
-参见：[Strict weak orderings](https://en.wikipedia.org/wiki/Weak_ordering#Strict_weak_orderings)
+另请参阅：[C++ 中的应用 - 序理论](../math/order-theory.md#c-中的应用)
 
-进行排序的运算符必须满足严格弱序，否则会出现不可预料的情况（如运行时错误、无法正确排序）。
-
-严格弱序的要求：
-
-1.  $x \not< x$（非自反性）
-2.  若 $x < y$，则 $y \not< x$（非对称性）
-3.  若 $x < y, y < z$，则 $x < z$（传递性）
-4.  若 $x \not< y, y \not< x, y \not< z, z \not< y$，则 $x \not< z, z \not< x$（不可比性的传递性）
+进行排序的运算符必须满足 [严格弱序](../math/order-theory.md#二元关系)，否则会出现不可预料的情况（如运行时错误、无法正确排序）。
 
 常见的错误做法：
 

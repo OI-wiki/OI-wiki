@@ -285,7 +285,7 @@ $sdom(u) = \min(v|\exists v=v_0 \rightarrow v_1 \rightarrow\dots \rightarrow v_k
 
 **引理 9：** 对于任意结点 $u$，$sdom(u)$ 是其在 $T$ 上的祖先。
 
-**证明：** 假设 $sdom(u)$ 不是 $u$ 的祖先，那么 $fa(sdom(u))$ 也一定满足成为半支配点的条件，且 $fa(sdom(u)) < sdom(u)$，这与 $sdom(u)$ 的定义矛盾。
+**证明：** 假设 $sdom(u)$ 不是 $u$ 的祖先，那么 $sdom(u)$ 不可能连向任何 $\mathrm{dfs}$ 序大于等于 $u$ 的结点（否则这个点应在 $sdom(u)$ 的子树内而非其他子树内），矛盾。
 
 **引理 10：** 对于任意结点 $u$，$idom(u)$ 是 $sdom(u)$ 的祖先。
 

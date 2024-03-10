@@ -355,9 +355,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 除了路径模型之外，还有一类常见的模型，需要我们对棋盘进行染色，相邻的相同颜色节点被视为连通。在路径类问题中，状态转移的时候我们枚举当前路径的方向，而在染色类问题中，我们枚举当前节点染何种颜色。在染色模型中，状态中处在相同连通性的节点可能不止两个。但总体来说依然大同小异。我们不妨来看一个经典的例题。
 
-### 例题「UVA 10572」Black & White
+### 例题「UVa 10572」Black & White
 
-???+ note " 例题 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
+???+ note " 例题 [「UVa 10572」Black & White](https://vjudge.net/problem/UVA-10572)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 $2\times 2$ 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数，并构造一组合法的方案。
     
     ![black\_and\_white1](./images/black_and_white1.svg)
@@ -585,7 +585,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ![greatwall](./images/greatwall.svg)
 
-在本题中，如果视作染色模型的话，不仅需要额外讨论染色区域的周长，还要判断在角上触碰而导致不合法的情况（图 2）。另外与 [「UVA 10572」Black & White](https://vjudge.net/problem/UVA-10572) 不同的是，本题中要求围墙为简单多边形，因而对于下面的回字形的情况，在本题中是不合法的。
+在本题中，如果视作染色模型的话，不仅需要额外讨论染色区域的周长，还要判断在角上触碰而导致不合法的情况（图 2）。另外与 [「UVa 10572」Black & White](https://vjudge.net/problem/UVA-10572) 不同的是，本题中要求围墙为简单多边形，因而对于下面的回字形的情况，在本题中是不合法的。
 
     3 3
     ooo
@@ -773,7 +773,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note " 习题 [「HDU 3958」Tower Defence](https://vjudge.net/problem/HDU-3958)"
     题目大意：可以转化为求解一条从 $\mathit{S}$ 到 $\mathit{T}$ 的不能接触的最长路径，拐角处可以接触。
 
-??? note " 习题 [「UVA 10531」Maze Statistics](https://vjudge.net/problem/UVA-10531)"
+??? note " 习题 [「UVa 10531」Maze Statistics](https://vjudge.net/problem/UVA-10531)"
     题目大意：有一个 $N\times M$ 的图，每个格子有独立概率 $\mathit{p}$ 变成障碍物。你要从迷宫左上角走到迷宫右下角。求每个格子成为一个 **有解迷宫（即起点终点四联通）** 中的障碍物的概率。（$N \le 5$，$M \le 6$）
 
 ??? note " 习题 [「AIZU 2452」Pipeline Plans](https://vjudge.net/problem/Aizu-2452)"

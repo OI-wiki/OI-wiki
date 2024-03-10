@@ -89,7 +89,7 @@ $$
 
 ### Lagrange 插值公式法
 
-考虑 Lagrange 插值公式
+考虑 [Lagrange 插值公式](../numerical/interp.md#lagrange-插值法)
 
 $$
 \begin{aligned}

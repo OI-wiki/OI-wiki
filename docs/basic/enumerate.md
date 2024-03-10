@@ -78,7 +78,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     
     === "C++"
         ```cpp
-        bool met[MAXN * 2];
+        bool met[MAXN * 2 + 1];
         memset(met, 0, sizeof(met));
         for (int i = 0; i < n; ++i) {
           if (met[MAXN - a[i]]) ++ans;
@@ -88,7 +88,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     
     === "Python"
         ```python
-        met = [False] * MAXN * 2
+        met = [False] * (MAXN * 2 + 1)
         for i in range(n):
             if met[MAXN - a[i]]:
                 ans += 1
