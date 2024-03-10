@@ -1,4 +1,3 @@
-#include <bit>
 #include <cassert>
 #include <iostream>
 #include <vector>
@@ -118,10 +117,10 @@ std::vector<T> subset_convolution(const std::vector<T> &x,
                                   const std::vector<T> &y) {
   assert(x.size() == y.size());
   const int len = x.size();
-  const int n = std::countr_zero<unsigned>(len);
+  const int n = __builtin_ctz(len);
   std::vector zx(n + 1, std::vector<T>(len)), zy(n + 1, std::vector<T>(len));
   for (int i = 0; i != len; ++i) {
-    const auto p = std::popcount<unsigned>(i);
+    const auto p = __builtin_popcount(i);
     zx[p][i] = x[i];
     zy[p][i] = y[i];
   }
@@ -135,14 +134,14 @@ std::vector<T> subset_convolution(const std::vector<T> &x,
       for (int k = 0; k != len; ++k) zxy[i][k] += zx[j][k] * zy[i - j][k];
   for (int i = 0; i <= n; ++i) moebius(zxy[i]);
   std::vector<T> res(len);
-  for (int i = 0; i != len; ++i) res[i] = zxy[std::popcount<unsigned>(i)][i];
+  for (int i = 0; i != len; ++i) res[i] = zxy[__builtin_popcount(i)][i];
   return res;
 }
 
 int main() {
   std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
-  using mint = Fp<998244353>;
+  using mint = Fp<1000000009>;
   int n;
   std::cin >> n;
   std::vector<mint> a(1 << n), b(1 << n);

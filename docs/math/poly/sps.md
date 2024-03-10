@@ -11,7 +11,7 @@ $$
 子集卷积即集合幂级数的乘法，我们一共有 $n$ 个未定元，并且我们对系数进行了截断，这意味着这样的一个多项式有 $2^n$ 项系数。下面我们考虑这样两个多项式相乘，也就是计算
 
 $$
-AB\bmod{\left(x_1^2,\dots x_n^2\right)}
+AB\bmod{\left(x_1^2,\dots ,x_n^2\right)}
 $$
 
 我们注意到这一多项式对于任何一元来说，其都只有两项系数即 $a_0+a_1x$，不难想到我们对每一元使用 FFT 即求出
@@ -58,7 +58,7 @@ $$
 AB\bmod{\left(x_1^2-tx_1,\dots ,x_n^2-tx_n\right)}
 $$
 
-即求出 $A\left(\lbrace 0,1 \rbrace^n\right)$。Zeta 变换的逆变换被称为 Moebius 变换。我们只需对上述算法稍作修改即可。
+即求出 $A\left(\lbrace 0,1 \rbrace^n\right)$。Zeta 变换的逆变换被称为 Möbius 变换。我们只需对上述算法稍作修改即可。
 
 ??? " 子集卷积模板（[LOJ 152. 子集卷积](https://loj.ac/p/152)）"
     ```cpp
