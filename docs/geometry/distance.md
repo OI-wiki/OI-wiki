@@ -351,13 +351,19 @@ $$
 
 ## 闵可夫斯基距离
 
-我们定义 $n$ 维空间中两点 $X(x_1, x_2, \dots, x_n)$，$Y(y_1, y_2, \dots, y_n)$ 之间的闵可夫斯基距离为
+我们定义 $n$ 维空间中两点 $X(x_1, x_2, \dots, x_n)$，$Y(y_1, y_2, \dots, y_n)$ 之间的闵可夫斯基距离为：
 
-$D(X, Y) = (\sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert ^p)^{\frac{1}{p}}$
+$$
+D(X, Y) = \left(\sum_{i=1}^n \left\vert x_i - y_i \right\vert ^p\right)^{\frac{1}{p}}.
+$$
 
-特殊的：当 $p=1$ 时，$D(X, Y) = \sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert$ 即为曼哈顿距离，当 $p=2$ 时，$D(X, Y) = (\sum \limits _{i=1}^n (x_i - y_i) ^2)^{\frac{1}{2}}$ 即为欧几里得距离，当 $p \to \infty$ 时，$D(X, Y) = \lim \limits _{p \to \infty} (\sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert ^p)^{\frac{1}{p}} = \max \limits _{i=1}^n \left \vert x_i - y_i \right \vert$ 即为切比雪夫距离。
+特别的：
 
-需要注意的是，当 $p \ge 1$ 时，闵可夫斯基距离才是度量，具体证明可以看 [维基百科](https://en.wikipedia.org/wiki/Minkowski_distance)。
+1. 当 $p=1$ 时，$D(X, Y) = \sum_{i=1}^n \left\vert x_i - y_i \right\vert$ 即为曼哈顿距离；
+2. 当 $p=2$ 时，$D(X, Y) = \left(\sum_{i=1}^n (x_i - y_i)^2\right)^{1/2}$ 即为欧几里得距离；
+3. 当 $p \to \infty$ 时，$D(X, Y) = \lim_{p \to \infty}\left(\sum_{i=1}^n \left\vert x_i - y_i \right\vert ^p\right) ^{1/p} = \max\limits_{i=1}^n \left\vert x_i - y_i \right\vert$ 即为切比雪夫距离。
+
+注意：当 $p \ge 1$ 时，闵可夫斯基距离才是度量，具体证明参见 [Minkowski distance - Wikipedia](https://en.wikipedia.org/wiki/Minkowski_distance)。
 
 ## 汉明距离
 
