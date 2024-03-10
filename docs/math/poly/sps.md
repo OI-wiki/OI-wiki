@@ -179,6 +179,6 @@ std::vector<T> sps_exp(const std::vector<T> &x) {
 
 ## 参考文献
 
--   Andreas Björklund and Thore Husfeldt.[Fourier Meets Möbius: Fast Subset Convolution](http://algo.inria.fr/flajolet/Publications/books.html).
+-   Andreas Björklund and Thore Husfeldt.[Fourier Meets Möbius: Fast Subset Convolution](https://arxiv.org/abs/cs/0611101).
 -   adamant.[Subset convolution interpretation](https://codeforces.com/blog/entry/92153).
 -   Elegia.[Optimal Algorithm on Polynomial Composite Set Power Series](https://codeforces.com/blog/entry/92183).
