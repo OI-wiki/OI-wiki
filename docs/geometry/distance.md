@@ -355,8 +355,6 @@ $$
 
 $D(X, Y) = (\sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert ^p)^{\frac{1}{p}}$
 
-闵可夫斯基距离是欧氏空间中的一种测度。
-
 特殊的：当 $p=1$ 时，$D(X, Y) = \sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert$ 即为曼哈顿距离，当 $p=2$ 时，$D(X, Y) = (\sum \limits _{i=1}^n (x_i - y_i) ^2)^{\frac{1}{2}}$ 即为欧几里得距离，当 $p \to \infty$ 时，$D(X, Y) = \lim \limits _{p \to \infty} (\sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert ^p)^{\frac{1}{p}} = \max \limits _{i=1}^n \left \vert x_i - y_i \right \vert$ 即为切比雪夫距离。
 
 ## 汉明距离
