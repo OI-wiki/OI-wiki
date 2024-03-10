@@ -349,13 +349,15 @@ $$
 
 对比两份代码，我们又能够发现，两种不同的思路，写出来的代码却是完全等价的，是不是很神奇呢？当然，更高深的东西需要大家另行研究。
 
-## $L_m$ 距离
+## 闵可夫斯基距离
 
-一般地，我们定义平面上两点 $A(x_1, y_1)$，$B(x_2, y_2)$ 之间的 $L_m$ 距离为
+我们定义 $n$ 维空间中两点 $X(x_1, x_2, \dots, x_n)$，$Y(y_1, y_2, \dots, y_n)$ 之间的闵可夫斯基距离为
 
-$d(L_m) = (|x_1-x_2|^m+|y_1-y_2|^m)^{\frac{1}{m}}$
+$D(X, Y) = (\sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert ^p)^{\frac{1}{p}}$
 
-特殊的，$L_2$ 距离就是欧几里得距离，$L_1$ 距离就是曼哈顿距离。
+闵可夫斯基距离是欧氏空间中的一种测度。
+
+特殊的：当 $p=1$ 时，$D(X, Y) = \sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert$ 即为曼哈顿距离，当 $p=2$ 时，$D(X, Y) = (\sum \limits _{i=1}^n (x_i - y_i) ^2)^{\frac{1}{2}}$ 即为欧几里得距离，当 $p \to \infty$ 时，$D(X, Y) = \lim \limits _{p \to \infty} (\sum \limits _{i=1}^n \left \vert x_i - y_i \right \vert ^p)^{\frac{1}{p}} = \max \limits _{i=1}^n \left \vert x_i - y_i \right \vert$ 即为切比雪夫距离。
 
 ## 汉明距离
 
