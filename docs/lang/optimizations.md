@@ -590,11 +590,12 @@ int f(int) { return 42; }
 
 ```cpp
 int table[4] = {};
+
 bool exists_in_table(int v) {
-  // return true in one of the first 4 iterations or UB due to out-of-bounds access
+  // return true in one of the first 4 iterations or UB due to out-of-bounds
+  // access
   for (int i = 0; i <= 4; i++)
-    if (table[i] == v)
-      return true;
+    if (table[i] == v) return true;
   return false;
 }
 ```
@@ -613,7 +614,7 @@ bool exists_in_table(int) { return true; }
 int f(int* p) {
   int x = *p;
   if (!p)
-    return x; // Either UB above or this branch is never taken
+    return x;  // Either UB above or this branch is never taken
   else
     return 0;
 }
@@ -637,7 +638,7 @@ int f(int*) { return 0; }
     
     bool fermat() {
       const int max_value = 1000;
-      
+    
       // Endless loop with no side effects is UB
       for (int a = 1, b = 1, c = 1; true;) {
         if (((a * a * a) == ((b * b * b) + (c * c * c))))
@@ -651,18 +652,16 @@ int f(int*) { return 0; }
           b = 1;
           c++;
         }
-        if (c > max_value)
-          c = 1;
+        if (c > max_value) c = 1;
       }
-      
+    
       return false;  // not disproved
     }
     
     int main() {
       std::cout << "Fermat's Last Theorem ";
-      fermat()
-          ? std::cout << "has been disproved!\n"
-          : std::cout << "has not been disproved.\n";
+      fermat() ? std::cout << "has been disproved!\n"
+               : std::cout << "has not been disproved.\n";
     }
     ```
 
