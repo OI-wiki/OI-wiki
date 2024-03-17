@@ -302,20 +302,20 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
         使用 `erase` 或 `delete` 或 `free` 操作应注意不要对同一地址/对象多次使用。
 
--    尝试释放由 `new []` 分配的整块内存的一部分
+-   尝试释放由 `new []` 分配的整块内存的一部分
 
-     例如：
+    例如：
 
-     ```cpp
-     object *pool = new object[POOL_SIZE];
+    ```cpp
+    object *pool = new object[POOL_SIZE];
 
-     object *pointer = pool + 10;
+    object *pointer = pool + 10;
 
-     // 报错！
-     delete pointer;
-     ```
+    // 报错！
+    delete pointer;
+    ```
 
-     常见于使用内存池提前分配整块内存后，试图使用 `delete` 或 `free()` 释放从内存池中获取的单个对象。
+    常见于使用内存池提前分配整块内存后，试图使用 `delete` 或 `free()` 释放从内存池中获取的单个对象。
 
 -   解引用空指针/野指针
 
