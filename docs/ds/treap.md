@@ -1,4 +1,4 @@
-author: Dev-XYS, ttzytt, Sora233
+author: Dev-XYS, ttzytt, Sora233, scp020
 
 前置知识：[朴素二叉搜索树](./bst.md)
 
@@ -73,7 +73,7 @@ struct Node {
   Node *ch[2];  // 两个子节点的地址
   int val, rank;
   int rep_cnt;  // 当前这个值（val）重复出现的次数
-  int siz;      //
+  int siz;      // 当前节点为根的子树大小
 
   Node(int val) : val(val), rep_cnt(1), siz(1) {
     ch[0] = ch[1] = nullptr;
