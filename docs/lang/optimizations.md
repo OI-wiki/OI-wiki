@@ -631,7 +631,7 @@ int f(int*) { return 0; }
 ### 无副作用的无限循环
 
 ???+ note "验证 Fermat 大定理"
-    由 Fermat 大定理可知，不定方程 $a^3=b^3+c^3$ 没有整数解。下面的程序试图枚举 $[1,1000]$ 内的整数验证该方程是否成立，若返回 `true` 则说明在 $[1,1000]$ 范围内找到了一组整数解，从而 Fermat 大定理不成立。
+    由 [Fermat 大定理](https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem) 可知，不定方程 $a^3=b^3+c^3$ 没有正整数解。下面的程序试图枚举 $[1,1000]$ 内的整数验证该方程是否成立，若返回 `true` 则说明在 $[1,1000]$ 范围内找到了一组整数解，从而 Fermat 大定理不成立。
     
     ```cpp
     #include <iostream>
