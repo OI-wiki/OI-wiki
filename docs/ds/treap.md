@@ -1,4 +1,4 @@
-author: Dev-XYS, ttzytt, Sora233, scp020
+author: Dev-XYS, ttzytt, Sora233
 
 前置知识：[朴素二叉搜索树](./bst.md)
 
