@@ -1,6 +1,6 @@
 author: iamtwz, Marcythm, 383494, abc1763613206, aofall, Chrogeek, CoelacanthusHex, Dafenghh, DanJoshua, Enter-tainer, GavinZhengOI, Gesrua, Henry-ZHR, Ir1d, kenlig, ksyx, lyccrius, Menci, opsiff, orzAtalod, ouuan, partychicken, Persdre, qq2964, Ruakker, shuzhouliu, sshwy, StudyingFather, szdytom, Tiphereth-A, Xeonacid, ZXyaang, rickyxrc
 
-AC 自动机是 **以 Trie 的结构为基础**，结合 **KMP 的思想** 建立的自动机，用于解决多模式匹配等任务。
+AC 自动机是**以Tri的结构为基础**，结合**KMP 的思想**建立的自动机，用于解决多模式匹配等任务。
 
 ???+ note "引入"
     很多人在第一次看到这个东西的时侯是非常兴奋的。不过这个自动机叫作 `Automaton`，不是 `Automation`，这里的 AC 也不是 Accepted，而是 Aho–Corasick（Alfred V. Aho, Margaret J. Corasick. 1975），让萌新失望啦。切入正题。似乎在初学自动机相关的内容时，许多人难以建立对自动机的初步印象，尤其是在自学的时侯。而这篇文章就是为你们打造的。笔者在自学 AC 自动机后花费两天时间制作若干的 gif，呈现出一个相对直观的自动机形态。尽管这个图似乎不太可读，但这绝对是在作者自学的时侯，画得最认真的 gif 了。另外有些小伙伴问这个 gif 拿什么画的。笔者用 Windows 画图软件制作。
@@ -86,15 +86,16 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
             if (tr[0][i]) q.push(tr[0][i]);
           while (q.size()) {
             int u = q.front();
-            q.pop();
+            
+                    q.pop();
             for (int i = 0; i < 26; i++) {
-              if (tr[u][i])
-                fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]);
-              else
-                tr[u][i] = tr[fail[u]][i];
-            }
+                      if (tr[u][i])
+                            fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]);
+                  else
+                    tr[u][i] = tr[fail[u]][i];
+                        }
           }
-        }
+                                }
         ```
     
     === "Python"
