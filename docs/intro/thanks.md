@@ -6,11 +6,6 @@ disqus:
 
 大额捐赠将会记录在本页面下方或日后更合适的位置来表示感谢。
 
-<div align="center">
-<img src="/intro/images/alipay.png" style="width: 256px; " />
-<img src="/intro/images/wechat.png" style="width: 256px; " />
-</div>
-
 ***
 
 |       id      |  amount |    date    |
