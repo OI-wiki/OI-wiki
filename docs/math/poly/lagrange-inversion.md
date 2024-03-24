@@ -113,7 +113,7 @@ $$
 
 ## Lagrange 反演公式
 
-令 $f(x),g(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ 满足 $f(g(x))=g(f(x))=x$ 和 $\Phi \in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$（或 $\Phi(x)\in\mathbb{C}\left(\left(x\right)\right)$）那么
+令 $f(x),g(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ 满足 $f(g(x))=g(f(x))=x$ 和 $\Phi(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$（或 $\Phi(x)\in\mathbb{C}\left(\left(x\right)\right)$）那么
 
 $$
 \begin{aligned}
@@ -161,4 +161,4 @@ $$
 ## 参考文献
 
 1.  Richard P. Stanley and Sergey P. Fomin. Enumerative Combinatorics Volume 2 (Edition 1).
-2.  IRA M. GESSEL. LAGRANGE INVERSION.
+2.  Ira M. Gessel. Lagrange Inversion.
