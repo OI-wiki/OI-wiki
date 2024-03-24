@@ -520,8 +520,6 @@ nav:
     - 并查集应用: topic/dsu-app.md
     - 括号序列: topic/bracket.md
     - 线段树与离线询问: topic/segment-tree-offline.md
-  - 关于 Hulu:
-    -  关于 Hulu: intro/hulu.md
 
 # Theme
 theme:
