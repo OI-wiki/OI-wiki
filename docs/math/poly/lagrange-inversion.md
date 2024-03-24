@@ -34,17 +34,17 @@ $$
 
 形式留数是形式 Laurent 级数中 $x^{-1}$ 项的系数。记 $\operatorname{res} f:=\left\lbrack x^{-1}\right\rbrack f$。
 
-__定理__：对于任何形式 Laurent 级数 $f$ 有 $\operatorname{res} f'=0$。
+**定理**：对于任何形式 Laurent 级数 $f$ 有 $\operatorname{res} f'=0$。
 
-__证明__：考虑形式导数的定义 $\left(x^k\right)'=kx^{k-1}$。
+**证明**：考虑形式导数的定义 $\left(x^k\right)'=kx^{k-1}$。
 
-__定理__：对于任何形式 Laurent 级数 $f,g$ 有 $\operatorname{res}(f'g)=-\operatorname{res}(fg')$。
+**定理**：对于任何形式 Laurent 级数 $f,g$ 有 $\operatorname{res}(f'g)=-\operatorname{res}(fg')$。
 
-__证明__：考虑乘法法则 $(fg)'=f'g+fg'$ 所以 $0=\operatorname{res}((fg)')=\operatorname{res}(f'g)+\operatorname{res}(fg')$。
+**证明**：考虑乘法法则 $(fg)'=f'g+fg'$ 所以 $0=\operatorname{res}((fg)')=\operatorname{res}(f'g)+\operatorname{res}(fg')$。
 
-__定理__：对于形式 Laurent 级数 $f(x)\neq 0$ 有 $\operatorname{res}(f'/f)=\operatorname{ord}f$。
+**定理**：对于形式 Laurent 级数 $f(x)\neq 0$ 有 $\operatorname{res}(f'/f)=\operatorname{ord}f$。
 
-__证明__：设 $\operatorname{ord}f=k$ 那么
+**证明**：设 $\operatorname{ord}f=k$ 那么
 
 $$
 \begin{aligned}
@@ -54,9 +54,9 @@ $$
 \end{aligned}
 $$
 
-__定理__：对于形式 Laurent 级数 $f$ 和形式幂级数 $g\neq 0$ 有 $\operatorname{res}(f)\operatorname{ord}(g)=\operatorname{res}(f(g)g')$。
+**定理**：对于形式 Laurent 级数 $f$ 和形式幂级数 $g\neq 0$ 有 $\operatorname{res}(f)\operatorname{ord}(g)=\operatorname{res}(f(g)g')$。
 
-__证明__：考虑线性性，我们只需证明 $f=x^k$ 其中 $k\in\mathbb{Z}$ 的情况即可，若 $k\neq -1$ 那么
+**证明**：考虑线性性，我们只需证明 $f=x^k$ 其中 $k\in\mathbb{Z}$ 的情况即可，若 $k\neq -1$ 那么
 
 $$
 \begin{aligned}
@@ -82,9 +82,9 @@ $$
 
 记 $A(x)\circ B(x):=A(B(x))$。
 
-__定理__：$f(x):=\sum_{k\geq 1}f_kx^k$ 存在复合逆 $f^{\langle -1\rangle}(x)$ 当且仅当 $f(0)=0\neq f'(0)$，此时 $f^{\langle -1\rangle}(x)$ 是唯一的。进一步说：若 $g(x)=\sum_{k\geq 1}g_kx^k$ 满足 $f(g(x))=x$ 或 $g(f(x))$ 那么 $g(x)=f^{\langle -1\rangle}(x)$。
+**定理**：$f(x):=\sum_{k\geq 1}f_kx^k$ 存在复合逆 $f^{\langle -1\rangle}(x)$ 当且仅当 $f(0)=0\neq f'(0)$，此时 $f^{\langle -1\rangle}(x)$ 是唯一的。进一步说：若 $g(x)=\sum_{k\geq 1}g_kx^k$ 满足 $f(g(x))=x$ 或 $g(f(x))$ 那么 $g(x)=f^{\langle -1\rangle}(x)$。
 
-__证明__：考虑
+**证明**：考虑
 
 $$
 \begin{aligned}
@@ -122,7 +122,7 @@ $$
 \end{aligned}
 $$
 
-__证明__：
+**证明**：
 
 $$
 \begin{aligned}
@@ -160,5 +160,5 @@ $$
 
 ## 参考文献
 
-1. Richard P. Stanley and Sergey P. Fomin. Enumerative Combinatorics Volume 2 (Edition 1).
-2. IRA M. GESSEL. LAGRANGE INVERSION.
+1.  Richard P. Stanley and Sergey P. Fomin. Enumerative Combinatorics Volume 2 (Edition 1).
+2.  IRA M. GESSEL. LAGRANGE INVERSION.
