@@ -1,4 +1,4 @@
-author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China, HeRaNO
+author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China, HeRaNO, Lixuannan
 
 ## 素数筛法
 
@@ -260,6 +260,11 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
 ???+ note
     注意到筛法求素数的同时也得到了每个数的最小质因子。
 
+???+ note " 例题：[P3383 【模板】线性筛素数](https://www.luogu.com.cn/problem/P3383)"
+    题意：给定一个范围 $[1,\,n]$，$q$ 次询问，每次问第 $x$ 个质数。
+    思路：套板子直接做即可。
+
+
 ## 筛法求欧拉函数
 
 注意到在线性筛中，每一个合数都是被最小的质因子筛掉。比如设 $p_1$ 是 $n$ 的最小质因子，$n' = \frac{n}{p_1}$，那么线性筛的过程中 $n$ 通过 $n' \times p_1$ 筛掉。
@@ -334,6 +339,9 @@ $$
                     break
                 phi[i * pri_j] = phi[i] * phi[pri_j]
     ```
+???+ note " 例题：[P2158 [SDOI2008] 仪仗队](https://www.luogu.com.cn/problem/P2158)"
+    题意：若 $a\in[1,\,n]$，$b\in[1,\,n]$ 且 $\gcd(a,\,b) \neq 1$，求满足条件的二元组 $(a,\,b)$ 的个数。
+    思路：易得答案为：$2 \times \sum_{i=1}^{n-1}\varphi(i) + 1$ 即可，注意当左边部分 $\leq 1$ 时，不 $+1$。
 
 ## 筛法求莫比乌斯函数
 
@@ -551,6 +559,11 @@ g_n=
 \end{cases}
 $$
 
-假如 $n=g_n$，说明 $n$ 就是某个质数的次幂，可以 $O(1)$ 计算 $f(n)$；否则，$f(n)=f(\frac{n}{g_n})\cdot f(g_n)$。
+假如 $n=g_n$，说明 $n$ 就是某个质数的次幂，可以 $O(1)$ 计算 $f(n)$；否则，$f(n)=f(\frac{n}{g_n})\cdot f(g_n)$​。
+
+## 习题
+
+1. [P3383 【模板】线性筛素数](https://www.luogu.com.cn/problem/P3383)（线性筛求素数模板题）
+2. [P2158 [SDOI2008] 仪仗队](https://www.luogu.com.cn/problem/P2158)（线性筛求欧拉函数，需要一些转化）
 
 **本节部分内容译自博文 [Решето Эратосфена](http://e-maxx.ru/algo/eratosthenes_sieve) 与其英文翻译版 [Sieve of Eratosthenes](https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
