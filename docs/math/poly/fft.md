@@ -147,7 +147,7 @@ $$
 \end{bmatrix}
 $$
 
-其中 $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}n}$。
+其中 $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}}$。
 
 ## 快速傅里叶变换
 
