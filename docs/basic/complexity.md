@@ -108,6 +108,20 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
                 print("hello world")
     ```
 
+=== "Java"
+    ```java
+    int n, m;
+    n = input.nextInt();
+    m = input.nextInt();
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            for (int k = 0; k < m; ++k) {
+                System.out.println("hello world");
+            }
+        }
+    }
+    ```
+
 如果以输入的数值 $n$ 和 $m$ 的大小作为数据规模，则上面这段代码的时间复杂度为 $\Theta(n^2m)$。
 
 ### DFS
@@ -131,6 +145,14 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
     N = 100000
     for i in range(0, N):
         print("hello world")
+    ```
+
+=== "Java"
+    ```java
+    final int N = 100000;
+    for (int i = 0; i < N; ++i) {
+        System.out.println("hello world");
+    }
     ```
 
 如果 $N$ 的大小不被看作输入规模，那么这段代码的时间复杂度就是 $O(1)$。
