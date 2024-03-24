@@ -82,7 +82,7 @@ $$
 
 记 $A(x)\circ B(x):=A(B(x))$。
 
-**定理**：$f(x):=\sum_{k\geq 1}f_kx^k$ 存在复合逆 $f^{\langle -1\rangle}(x)$ 当且仅当 $f(0)=0\neq f'(0)$，此时 $f^{\langle -1\rangle}(x)$ 是唯一的。进一步说：若 $g(x)=\sum_{k\geq 1}g_kx^k$ 满足 $f(g(x))=x$ 或 $g(f(x))$ 那么 $g(x)=f^{\langle -1\rangle}(x)$。
+**定理**：$f(x):=\sum_{k\geq 1}f_kx^k$ 存在复合逆 $f^{\langle -1\rangle}(x)$ 当且仅当 $f(0)=0\neq f'(0)$，此时 $f^{\langle -1\rangle}(x)$ 是唯一的。进一步说：若 $g(x)=\sum_{k\geq 1}g_kx^k$ 满足 $f(g(x))=x$ 或 $g(f(x))=x$ 那么 $g(x)=f^{\langle -1\rangle}(x)$。
 
 **证明**：考虑
 
