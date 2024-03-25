@@ -109,11 +109,11 @@ $$
 
 我们只能在 $f_1\neq 0$ 时才能解出第一个等式，然后依次可以解出 $g_2,\dots$。
 
-特别的，考虑 $f(h(x))=x$ 那么 $g(f(h(x)))=g(x)$ 即 $x\circ h(x)=h(x)=g(x)$。
+特别的，考虑 $f(h(x))=x$ 那么 $g(f(h(x)))=g(x)$，进而 $g(x)=g\circ f\circ h(x)=x\circ h(x)=h(x)$。
 
 ## Lagrange 反演公式
 
-令 $f(x),g(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ 满足 $f(g(x))=g(f(x))=x$ 和 $\Phi(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$（或 $\Phi(x)\in\mathbb{C}\left(\left(x\right)\right)$）那么
+令 $f(x),g(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ 满足 $f(g(x))=g(f(x))=x$。取 $\Phi(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$（或 $\Phi(x)\in\mathbb{C}\left(\left(x\right)\right)$），那么
 
 $$
 \begin{aligned}
@@ -127,7 +127,7 @@ $$
 $$
 \begin{aligned}
 \left\lbrack x^n\right\rbrack\Phi(f(x))&=\operatorname{res}\left(\frac{\Phi(f(x))}{x^{n+1}}\right) \\
-&=\operatorname{res}\left(\frac{\Phi(f(g(x)))g'(x)}{g(x)^{n+1}}\right)\cdot \operatorname{ord}(g(x)) \\
+&=\operatorname{res}\left(\frac{\Phi(f(g(x)))g'(x)}{g(x)^{n+1}}\right)\cdot \left(\operatorname{ord}(g(x))\right)^{-1} \\
 &=\operatorname{res}\left(\frac{\Phi(x)g'(x)}{g(x)^{n+1}}\right)
 \end{aligned}
 $$
