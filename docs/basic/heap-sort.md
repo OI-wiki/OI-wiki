@@ -107,6 +107,48 @@ iRightChild(i) = 2 * i + 2;
             i -= 1
     ```
 
+=== "Java"
+    ```java
+    void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    
+    void siftDown(int[] arr, int start, int end) {
+        int parent = start;
+        int child = 2 * parent + 1; // 左子节点
+        while (child <= end) {
+            // 如果有右子节点，并且右子节点的值大于左子节点的值，则使用右子节点
+            if (child + 1 <= end && arr[child] < arr[child + 1]) {
+                child++;
+            }
+            // 如果父节点大于等于最大的子节点，则完成
+            if (arr[parent] >= arr[child]) {
+                break;
+            } else {
+                // 否则交换，并继续向下调整
+                swap(arr, parent, child);
+                parent = child;
+                child = 2 * parent + 1;
+            }
+        }
+    }
+
+    void heapSort(int[] arr) {
+        int len = arr.length;
+        // 构建最大堆
+        for (int i = (len - 2) / 2; i >= 0; i--) {
+            siftDown(arr, i, len - 1);
+        }
+        // 逐个将最大元素"移出"，然后重新调整堆
+        for (int i = len - 1; i > 0; i--) {
+            swap(arr, 0, i);
+            siftDown(arr, 0, i - 1);
+        }
+    }
+    ```
+
 ## 外部链接
 
 -   [堆排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F)
