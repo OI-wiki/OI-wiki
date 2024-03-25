@@ -66,6 +66,21 @@ $$
             arr[j + 1] = key
     ```
 
+=== "Java"
+    ```java
+    void insertion_sort(int arr[], int len) {
+    for (int i = 1; i < len; ++i) {
+      int key = arr[i];
+      int j = i - 1;
+      while (j >= 0 && arr[j] > key) {
+        arr[j + 1] = arr[j];
+        j--;
+      }
+      arr[j + 1] = key;
+    }
+  }
+    ```
+
 ## 折半插入排序
 
 插入排序还可以通过二分算法优化性能，在排序元素数量较多时优化的效果比较明显。
@@ -87,5 +102,32 @@ $$
         memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
         arr[index] = key;
       }
+    }
+    ```
+
+=== "Java"
+    ```java
+    public static void insertionSort(int[] arr, int len) {
+        if (len < 2) return;
+        for (int i = 1; i != len; ++i) {
+            int key = arr[i];
+            int index = upperBound(arr, 0, i, key);
+            // Java中使用System.arraycopy移动元素
+            System.arraycopy(arr, index, arr, index + 1, i - index);
+            arr[index] = key;
+        }
+    }
+
+    // 实现upperBound功能的辅助函数
+    public static int upperBound(int[] arr, int start, int end, int key) {
+        while (start < end) {
+            int mid = (start + end) / 2;
+            if (arr[mid] <= key) {
+                start = mid + 1;
+            } else {
+                end = mid;
+            }
+        }
+        return start;
     }
     ```
