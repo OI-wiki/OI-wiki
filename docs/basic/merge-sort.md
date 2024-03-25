@@ -81,6 +81,39 @@
         return c
     ```
 
+=== "Java"
+    ```java
+    void merge(int[] a, int[] b, int[] c) {
+        int aLen = a.length, bLen = b.length;
+        int i = 0, j = 0, k = 0;
+        
+        while (i < aLen && j < bLen) {
+            if (b[j] < a[i]) {
+                c[k] = b[j];
+                j++;
+            } else {
+                c[k] = a[i];
+                i++;
+            }
+            k++;
+        }
+        
+        // 如果数组a中还有剩余元素，直接复制到c中
+        while (i < aLen) {
+            c[k] = a[i];
+            i++;
+            k++;
+        }
+        
+        // 如果数组b中还有剩余元素，直接复制到c中
+        while (j < bLen) {
+            c[k] = b[j];
+            j++;
+            k++;
+        }
+    }
+    ```
+
 ### 分治法实现归并排序
 
 1.  当数组长度为 $1$ 时，该数组就已经是有序的，不用再分解。
@@ -121,6 +154,24 @@
         merge_sort(a, mid, rr)
         # 合并
         a[ll:rr] = merge(a[ll:mid], a[mid:rr])
+    ```
+
+=== "Java"
+    ```java
+    void mergeSort(int[] a, int l, int r) {
+        if (r - l <= 1) return;
+        
+        int mid = l + ((r - l) >> 1);
+        mergeSort(a, l, mid);
+        mergeSort(a, mid, r);
+
+        int[] tmp = new int[a.length];
+        merge(a, l, mid, mid, r, tmp);
+        
+        for (int i = l; i < r; i++) {
+            a[i] = tmp[i];
+        }
+    }
     ```
 
 ### 倍增法实现归并排序
@@ -175,6 +226,31 @@
                 a[l1:r2] = merge(a[l1:r1], a[l2:r2])
         seg <<= 1
     ```
+
+=== "Python"
+    ```python
+    void mergeSort(int[] a) {
+        int n = a.length;
+        int[] tmp = new int[n];  // 使用与 a 相同的长度来初始化 tmp 数组
+        
+        for (int seg = 1; seg < n; seg <<= 1) {
+            for (int left1 = 0; left1 < n - seg; left1 += seg + seg) {
+                int right1 = left1 + seg;
+                int left2 = right1;
+                int right2 = Math.min(left2 + seg, n);  // 注意最后一个段的边界
+                
+                // 合并 [left1, right1) 和 [left2, right2) 范围的数组
+                merge(a, left1, right1, left2, right2, tmp);
+                
+                // 将合并后的结果复制回 a 数组
+                for (int i = left1; i < right2; i++) {
+                    a[i] = tmp[i];
+                }
+            }
+        }
+    }
+    ```
+  
 
 ## 逆序对
 
