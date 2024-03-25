@@ -112,6 +112,11 @@
         --8<-- "docs/basic/code/greedy/greedy_1.py"
         ```
 
+    === "Java"
+        ```java
+        --8<-- "docs/basic/code/greedy/greedy_1.java"
+        ```
+
 ##### 复杂度分析
 
 -   空间复杂度：当输入 $n$ 个任务时使用 $n$ 个 $a$ 数组元素，优先队列中最差情况下会储存 $n$ 个元素，则空间复杂度为 $O(n)$。
