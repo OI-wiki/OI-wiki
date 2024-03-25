@@ -331,6 +331,36 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
             h = int(h / 3)
     ```
 
+=== "Java"
+    ```
+    <T extends Comparable<T>> void shellSort(T[] array) {
+        int length = array.length;
+        int h = 1;
+        while (h < length / 3) {
+            h = 3 * h + 1; // 使用1, 4, 13, 40...的序列
+        }
+        while (h >= 1) {
+            // 进行h间隔的插入排序
+            for (int i = h; i < length; i++) {
+                for (int j = i; j >= h && less(array[j], array[j - h]); j -= h) {
+                    swap(array, j, j - h);
+                }
+            }
+            h = h / 3;
+        }
+    }
+
+    <T extends Comparable<T>> boolean less(T v, T w) {
+        return v.compareTo(w) < 0;
+    }
+
+    <T> void swap(T[] a, int i, int j) {
+        T swap = a[i];
+        a[i] = a[j];
+        a[j] = swap;
+    }
+    ```
+
 ## 参考资料与注释
 
 [^ref1]: [希尔排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F)
