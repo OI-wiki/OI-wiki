@@ -134,6 +134,7 @@ iRightChild(i) = 2 * i + 2;
             }
         }
     }
+    ```
 
     void heapSort(int[] arr) {
         int len = arr.length;

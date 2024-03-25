@@ -164,6 +164,7 @@
         int mid = l + ((r - l) >> 1);
         mergeSort(a, l, mid);
         mergeSort(a, mid, r);
+    ```
 
         int[] tmp = new int[a.length];
         merge(a, l, mid, mid, r, tmp);
@@ -228,11 +229,11 @@
     ```
 
 === "Python"
-    ```python
-    void mergeSort(int[] a) {
-        int n = a.length;
-        int[] tmp = new int[n];  // 使用与 a 相同的长度来初始化 tmp 数组
-        
+\`\`\`python
+void mergeSort(int\[] a) {
+int n = a.length;
+int\[] tmp = new int\[n];//使用与 a 相同的长度来初始化 tmp 数组
+
         for (int seg = 1; seg < n; seg <<= 1) {
             for (int left1 = 0; left1 < n - seg; left1 += seg + seg) {
                 int right1 = left1 + seg;
@@ -250,7 +251,6 @@
         }
     }
     ```
-  
 
 ## 逆序对
 

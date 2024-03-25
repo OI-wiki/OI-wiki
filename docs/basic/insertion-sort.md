@@ -66,8 +66,7 @@ $$
             arr[j + 1] = key
     ```
 
-=== "Java"
-    ```java
+=== "Java"`java
     void insertion_sort(int arr[], int len) {
     for (int i = 1; i < len; ++i) {
       int key = arr[i];
@@ -79,7 +78,7 @@ $$
       arr[j + 1] = key;
     }
   }
-    ```
+    `
 
 ## 折半插入排序
 
@@ -117,6 +116,7 @@ $$
             arr[index] = key;
         }
     }
+    ```
 
     // 实现upperBound功能的辅助函数
     public static int upperBound(int[] arr, int start, int end, int key) {

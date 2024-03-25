@@ -332,23 +332,22 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
     ```
 
 === "Java"
-    ```
-    <T extends Comparable<T>> void shellSort(T[] array) {
-        int length = array.length;
-        int h = 1;
-        while (h < length / 3) {
-            h = 3 * h + 1; // 使用1, 4, 13, 40...的序列
-        }
-        while (h >= 1) {
-            // 进行h间隔的插入排序
-            for (int i = h; i < length; i++) {
-                for (int j = i; j >= h && less(array[j], array[j - h]); j -= h) {
-                    swap(array, j, j - h);
-                }
+        <T extends Comparable<T>> void shellSort(T[] array) {
+            int length = array.length;
+            int h = 1;
+            while (h < length / 3) {
+                h = 3 * h + 1; // 使用1, 4, 13, 40...的序列
             }
-            h = h / 3;
+            while (h >= 1) {
+                // 进行h间隔的插入排序
+                for (int i = h; i < length; i++) {
+                    for (int j = i; j >= h && less(array[j], array[j - h]); j -= h) {
+                        swap(array, j, j - h);
+                    }
+                }
+                h = h / 3;
+            }
         }
-    }
 
     <T extends Comparable<T>> boolean less(T v, T w) {
         return v.compareTo(w) < 0;
