@@ -96,6 +96,45 @@
                 p += 1
     ```
 
+=== "Java"
+    ```java
+    final int N = 100010;
+    int n, w;
+    int[] a = new int[N];
+    List<List<Integer>> bucket = new ArrayList<>();
+
+    void insertionSort(List<Integer> A) {
+        for (int i = 1; i < A.size(); ++i) {
+            int key = A.get(i);
+            int j = i - 1;
+            while (j >= 0 && A.get(j) > key) {
+                A.set(j + 1, A.get(j));
+                j--;
+            }
+            A.set(j + 1, key);
+        }
+    }
+
+    void bucketSort() {
+        int bucketSize = w / n + 1;
+        for (int i = 0; i < n; ++i) {
+            bucket.add(new ArrayList<>());
+        }
+        for (int i = 1; i <= n; ++i) {
+            int index = a[i] / bucketSize;
+            if (index >= n) index = n - 1; // 避免数组越界
+            bucket.get(index).add(a[i]);
+        }
+        int p = 0;
+        for (int i = 0; i < n; ++i) {
+            insertionSort(bucket.get(i));
+            for (int val : bucket.get(i)) {
+                a[++p] = val;
+            }
+        }
+    }
+    ```
+
 ## 参考资料与注释
 
 [^ref1]: [（英文）Bucket sort - Wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis)
