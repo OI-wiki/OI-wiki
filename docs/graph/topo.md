@@ -95,23 +95,21 @@ $$
 
 不断重复以上过程，直到集合 $S$ 为空。检查图中是否存在任何边，如果有，那么这个图一定有环路，否则返回 $L$，$L$ 中顶点的顺序就是构造拓扑序列的结果。
 
-首先看来自 [Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm) 的伪代码
+首先看来自 [Wikipedia](https://zh.wikipedia.org/wiki/%E6%8B%93%E6%92%B2%E6%8E%92%E5%BA%8F) 的伪代码
 
 ???+ note "实现"
     ```text
-    L ← Empty list that will contain the sorted elements
-    S ← Set of all nodes with no incoming edges
-    while S is not empty do
-        remove a node n from S
-        insert n into L
-        for each node m with an edge e from n to m do
-            remove edge e from the graph
-            if m has no other incoming edges then
-                insert m into S
-    if graph has edges then
-        return error (graph has at least one cycle)
-    else
-        return L (a topologically sorted order)
+    L ← 包含已排序的元素的列表，目前为空
+    S ← 入度为零的节点的集合
+    当 S 非空时：
+        将节点n从S移走
+        将n加到L尾部
+        选出任意起点为n的边e = (n,m)，移除e。如m没有其它入边，则将m加入S。
+        重复上一步。
+    如图中有剩余的边则：
+        return error   (图中至少有一个环)
+    否则： 
+        return L   (L为图的拓扑排序)
     ```
 
 代码的核心是维持一个入度为 0 的顶点的集合。
