@@ -206,7 +206,7 @@ $$
 
 -   [洛谷 B3612【深进 1. 例 1】求区间和](https://www.luogu.com.cn/problem/B3612)
 -   [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096)
--   [AtCoder joi2007ho_a 最大の和](https://atcoder.jp/contests/joi2007ho/tasks/joi2007ho_a)
+-   [AtCoder joi2007ho\_a 最大の和](https://atcoder.jp/contests/joi2007ho/tasks/joi2007ho_a)
 -   [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
 -   [「USACO05JAN」Moo Volume S](https://www.luogu.com.cn/problem/P6067)
 
