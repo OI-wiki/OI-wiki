@@ -125,6 +125,8 @@
 
 -   表示强调时请使用 `**SOMETHING**` 和 `「」`，而非某级标题，因为使用标题会导致文章结构层次混乱和（或）目录出现问题。
 
+-   当需要引用题目链接时，应尽可能使用原 OJ 题库中的链接而不是镜像链接。
+
 -   请正确使用 Markdown 的区块功能。插入行内代码请使用一对反引号包围代码区块；行间代码请使用一对 ` ``` ` 包围代码区块，其中反引号就是键盘左上角波浪线下面那个符号，行间代码请在第一个 ` ``` ` 的后面加上语言名称（如：` ```cpp`）。
 
     ???+ success "示例"
@@ -178,7 +180,7 @@
         
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+note "[HDOJ 的「A + B Problem」](https://vjudge.net/problem/HDU-1000)"
+    ???+note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的「A + B Problem」。
         
         而且推荐以这种方式**标注原题链接**。
@@ -193,7 +195,7 @@
         
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+ note "[HDOJ 的「A + B Problem」](https://vjudge.net/problem/HDU-1000)"
+    ???+ note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的「A + B Problem」。
         
         而且推荐以这种方式 **标注原题链接**。

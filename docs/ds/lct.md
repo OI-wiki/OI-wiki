@@ -1207,4 +1207,4 @@ st.siz2[y] += st.siz[x];
 ### 习题
 
 -   [luogu P4299 首都](https://www.luogu.com.cn/problem/P4299)
--   [SPOJ QTREE5 - Query on a tree V](https://www.luogu.com.cn/problem/SP2939)
+-   [SPOJ QTREE5 - Query on a tree V](https://www.spoj.com/problems/QTREE5)

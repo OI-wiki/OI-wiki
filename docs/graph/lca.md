@@ -46,7 +46,7 @@ author:ouuan, Backl1ght, billchenchina, CCXXXI, ChickenHu, ChungZH, cjsoft, coun
 另外倍增算法可以通过交换 `fa` 数组的两维使较小维放在前面。这样可以减少 cache miss 次数，提高程序效率。
 
 ??? 例题
-    [HDU 2586 How far away?](https://vjudge.net/problem/HDU-2586) 树上最短路查询。
+    [HDU 2586 How far away?](https://acm.hdu.edu.cn/showproblem.php?pid=2586) 树上最短路查询。
 
 可先求出 LCA，再结合性质 $7$ 进行解答。也可以直接在求 LCA 时求出结果。
 
