@@ -272,6 +272,7 @@ nav:
       - 常系数齐次线性递推: math/poly/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
       - 符号化方法: math/poly/symbolic-method.md
+      - 集合幂级数: math/poly/sps.md
       - 普通生成函数: math/poly/ogf.md
       - 指数生成函数: math/poly/egf.md
       - 狄利克雷生成函数: math/poly/dgf.md
