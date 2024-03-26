@@ -70,7 +70,7 @@ author: hyp1231, 383494
 
 ## 例题
 
-### [「ICPC 2013 杭州赛区」Problem of Apollonius](https://vjudge.net/problem/HDU-4773)
+### [「ICPC 2013 杭州赛区」Problem of Apollonius](https://acm.hdu.edu.cn/showproblem.php?pid=4773)
 
 #### 题目大意
 
@@ -256,7 +256,7 @@ author: hyp1231, 383494
 
 [「ICPC 2017 南宁赛区网络赛」Finding the Radius for an Inserted Circle](https://nanti.jisuanke.com/t/A1283)
 
-[「CCPC 2017 网络赛」The Designer](https://vjudge.net/problem/HDU-6158)
+[「CCPC 2017 网络赛」The Designer](https://acm.hdu.edu.cn/showproblem.php?pid=6158)
 
 ## 参考资料与拓展阅读
 

@@ -54,7 +54,7 @@
 
 ### 例题 2
 
-???+ note "[HDU 6184 Counting Stars](https://vjudge.net/problem/HDU-6184)"
+???+ note "[HDU 6184 Counting Stars](https://acm.hdu.edu.cn/showproblem.php?pid=6184)"
     给定一张有 $n$ 个点和 $m$ 条边的无向图，求下面图形的出现次数。
     
     ![](./images/rings-count1.svg)

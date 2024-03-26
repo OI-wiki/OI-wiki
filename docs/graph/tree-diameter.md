@@ -187,7 +187,7 @@ int main() {
 
 -   [CodeChef, Diameter of Tree](https://www.codechef.com/problems/DTREE)
 -   [Educational Codeforces Round 35, Problem F, Tree Destruction](https://codeforces.com/contest/911/problem/F)
--   [ZOJ 3820, Building Fire Stations](https://vjudge.net/problem/ZOJ-3820)
+-   [ZOJ 3820, Building Fire Stations](https://pintia.cn/problem-sets/91827364500/exam/problems/91827369872)
 -   [CEOI2019/CodeForces 1192B. Dynamic Diameter](https://codeforces.com/contest/1192/problem/B)
 -   [IPSC 2019 网络赛，Lightning Routing I](https://nanti.jisuanke.com/t/41398)
 -   [NOIP2007 提高组 树网的核](https://www.luogu.com.cn/problem/P1099)

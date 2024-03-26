@@ -206,7 +206,7 @@ $$
 
 -   [洛谷 B3612【深进 1. 例 1】求区间和](https://www.luogu.com.cn/problem/B3612)
 -   [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096)
--   [AT2412 最大の和](https://vjudge.net/problem/AtCoder-joi2007ho_a#author=wuyudi)
+-   [AtCoder joi2007ho_a 最大の和](https://atcoder.jp/contests/joi2007ho/tasks/joi2007ho_a)
 -   [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
 -   [「USACO05JAN」Moo Volume S](https://www.luogu.com.cn/problem/P6067)
 
@@ -214,7 +214,7 @@ $$
 
 二维/多维前缀和：
 
--   [HDU 6514 Monitor](https://vjudge.net/problem/HDU-6514)
+-   [HDU 6514 Monitor](https://acm.hdu.edu.cn/showproblem.php?pid=6514)
 -   [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)
 -   [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280)
 
