@@ -95,6 +95,21 @@ $$
             cnt[a[i]] -= 1
     ```
 
+=== "Java"
+    ```java
+    final int N = 100010;
+    final int W = 100010;
+    
+    int n, w;
+    int[] a = new int[N],cnt = new int[W],b = new int[N];
+    
+    void counting_sort() {
+        for (int i = 1; i <= n; ++i) ++cnt[a[i]];
+        for (int i = 1; i <= w; ++i) cnt[i] += cnt[i - 1];
+        for (int i = n; i >= 1; --i) b[cnt[a[i]]--] = a[i];
+    }
+    ```
+
 ## 参考资料与注释
 
 [^ref1]: [计数排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F)

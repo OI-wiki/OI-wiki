@@ -38,6 +38,11 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.py"
         ```
 
+    === "Java"
+        ```java
+        --8<-- "docs/basic/code/prefix-sum/prefix-sum_1.java"
+        ```
+
 ### 二维/多维前缀和
 
 多维前缀和的普通求解方法几乎都是基于容斥原理。
