@@ -576,9 +576,9 @@ void splay(int x, int goal = 0) {
     int f = fa[x], g = fa[fa[x]];
     if (g != goal) {
       if (get(f) == get(x))
-        rotate(x);
-      else
         rotate(f);
+      else
+        rotate(x);
     }
     rotate(x);
   }
@@ -659,9 +659,9 @@ struct Splay {
       int f = fa[x], g = fa[fa[x]];
       if (g != goal) {
         if (get(f) == get(x))
-          rotate(x);
-        else
           rotate(f);
+        else
+          rotate(x);
       }
       rotate(x);
     }
