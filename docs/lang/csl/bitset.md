@@ -57,7 +57,7 @@ std::bitset<1000> bs;  // a bitset with 1000 bits
 -   `operator ==`/`operator !=`: 比较两个 `bitset` 内容是否完全一样。
 
 -   `operator &`/`operator &=`/`operator |`/`operator |=`/`operator ^`/`operator ^=`/`operator ~`: 进行按位与/或/异或/取反操作。
-    
+
     注意：**`bitset` 只能与 `bitset` 进行位运算**，若要和整型进行位运算，要先将整型转换为 `bitset`。
 
 -   `operator <<`/`operator >>`/`operator <<=`/`operator >>=`: 进行二进制左移/右移。
@@ -99,47 +99,46 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
 
 发现可以用 `bitset` 优化，左移再或起来就好了：
 
-??? note "提交记录：[std::bitset](https://loj.ac/submission/395274)"
+??? note " 提交记录：[std::bitset](https://loj.ac/submission/395274)"
     ```cpp
-    #include <iostream>
-    #include <cstdio>
     #include <bitset>
+    #include <cstdio>
+    #include <iostream>
     
     using namespace std;
     
     const int N = 101;
     
     int n, a[N], b[N];
-    bitset<N *N *N> f[N];
+    bitset<N * N * N> f[N];
     
     int main() {
-        int i, j;
-        
-        cin >> n;
-        
-        for (i = 1; i <= n; ++i)
-            cin >> a[i] >> b[i];
-        
-        f[0][0] = 1;
-        
-        for (i = 1; i <= n; ++i) {
-            for (j = a[i]; j <= b[i]; ++j) {
-                f[i] |= (f[i - 1] << (j * j));
-            }
+      int i, j;
+    
+      cin >> n;
+    
+      for (i = 1; i <= n; ++i) cin >> a[i] >> b[i];
+    
+      f[0][0] = 1;
+    
+      for (i = 1; i <= n; ++i) {
+        for (j = a[i]; j <= b[i]; ++j) {
+          f[i] |= (f[i - 1] << (j * j));
         }
-        
-        cout << f[n].count();
-        
-        return 0;
+      }
+    
+      cout << f[n].count();
+    
+      return 0;
     }
     ```
 
 由于 libstdc++ 的实现为压 `__CHAR_BIT__ * sizeof(unsigned long)` 位的[^bitset2]，在一些平台中其为 $32$。所以，可以手写 `bitset`（只需要支持左移后或起来这一种操作）压 $64$ 位（`__CHAR_BIT__ * sizeof(unsigned long long)`）来进一步优化：
 
-??? note "提交记录：[手写 bitset](https://loj.ac/submission/395619)"
+??? note " 提交记录：[手写 bitset](https://loj.ac/submission/395619)"
     ```cpp
-    #include <iostream>
     #include <cstdio>
+    #include <iostream>
     
     using namespace std;
     
@@ -147,54 +146,54 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
     const int W = 64;
     
     struct Bitset {
-        unsigned long long a[N * N * N >> 6];
-        void shiftor(const Bitset &y, int p, int l, int r) {
-            int t = p - p / W * W;
-            int tt = (t == 0 ? 0 : W - t);
-            int to = (r + p) / W;
-            int qaq = (p + W - 1) / W;
-            
-            for (register int i = (l + p) / W; i <= to; ++i) {
-                if (i - qaq >= 0)
-                    a[i] |= y.a[i - qaq] >> tt;
-                
-                a[i] |= ((y.a[i - qaq + 1] & ((1ull << tt) - 1)) << t);
-            }
+      unsigned long long a[N * N * N >> 6];
+    
+      void shiftor(const Bitset &y, int p, int l, int r) {
+        int t = p - p / W * W;
+        int tt = (t == 0 ? 0 : W - t);
+        int to = (r + p) / W;
+        int qaq = (p + W - 1) / W;
+    
+        for (register int i = (l + p) / W; i <= to; ++i) {
+          if (i - qaq >= 0) a[i] |= y.a[i - qaq] >> tt;
+    
+          a[i] |= ((y.a[i - qaq + 1] & ((1ull << tt) - 1)) << t);
         }
+      }
     } f[N];
     
     int main() {
-        int n, a, b, l = 0, r = 0, ans = 0;
-        
-        scanf("%d", &n);
-        
-        f[0].a[0] = 1;
-        
-        for (register int i = 1; i <= n; ++i) {
-            scanf("%d%d", &a, &b);
-            
-            for (register int j = a; j <= b; ++j)
-                f[i].shiftor(f[i - 1], j * j, l, r);
-            
-            l += a * a;
-            r += b * b;
-        }
-        
-        for (register int i = l / W; i <= r / W; ++i)
-            ans += __builtin_popcount(f[n].a[i] & 0xffffffffu) + __builtin_popcount(f[n].a[i] >> 32);
-        
-        printf("%d", ans);
-        
-        return 0;
+      int n, a, b, l = 0, r = 0, ans = 0;
+    
+      scanf("%d", &n);
+    
+      f[0].a[0] = 1;
+    
+      for (register int i = 1; i <= n; ++i) {
+        scanf("%d%d", &a, &b);
+    
+        for (register int j = a; j <= b; ++j) f[i].shiftor(f[i - 1], j * j, l, r);
+    
+        l += a * a;
+        r += b * b;
+      }
+    
+      for (register int i = l / W; i <= r / W; ++i)
+        ans += __builtin_popcount(f[n].a[i] & 0xffffffffu) +
+               __builtin_popcount(f[n].a[i] >> 32);
+    
+      printf("%d", ans);
+    
+      return 0;
     }
     ```
 
 另外，加了几个剪枝的暴力也能过：
 
-??? note "提交记录：[加了几个剪枝的暴力](https://loj.ac/submission/395673)"
+??? note " 提交记录：[加了几个剪枝的暴力](https://loj.ac/submission/395673)"
     ```cpp
-    #include <iostream>
     #include <cstdio>
+    #include <iostream>
     
     using namespace std;
     
@@ -204,38 +203,36 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
     bool f[N * N * N];
     
     int main() {
-        int n, i, j, k, a, b, l = 0, r = 0, ans = 0;
-        
-        scanf("%d", &n);
-        
-        f[0] = true;
-        
-        for (i = 1; i <= n; ++i) {
-            scanf("%d%d", &a, &b);
-            l += a * a;
-            r += b * b;
-            
-            for (j = r; j >= l; --j) {
-                f[j] = false;
-                
-                for (k = a; k <= b; ++k) {
-                    if (j - k * k < l - a * a)
-                        break;
-                    
-                    if (f[j - k * k]) {
-                        f[j] = true;
-                        break;
-                    }
-                }
+      int n, i, j, k, a, b, l = 0, r = 0, ans = 0;
+    
+      scanf("%d", &n);
+    
+      f[0] = true;
+    
+      for (i = 1; i <= n; ++i) {
+        scanf("%d%d", &a, &b);
+        l += a * a;
+        r += b * b;
+    
+        for (j = r; j >= l; --j) {
+          f[j] = false;
+    
+          for (k = a; k <= b; ++k) {
+            if (j - k * k < l - a * a) break;
+    
+            if (f[j - k * k]) {
+              f[j] = true;
+              break;
             }
+          }
         }
-        
-        for (i = l; i <= r; ++i)
-            ans += f[i];
-        
-        printf("%d", ans);
-        
-        return 0;
+      }
+    
+      for (i = l; i <= r; ++i) ans += f[i];
+    
+      printf("%d", ans);
+    
+      return 0;
     }
     ```
 
@@ -364,37 +361,37 @@ $$
 ??? "速度测试"
     使用 [Quick C++ Benchmarks](https://quick-bench.com) 进行测试，编译器采用 `GCC 13.2`，编译参数为 `-std=c++20 -O2`。
     
-    | 算法                                        | 函数名                   |
-    | ------------------------------------------- | ------------------------ |
-    | 埃氏筛 + C 风格布尔数组，不存储筛出来的素数 | `Eratosthenes_CArray`    |
-    | 埃氏筛 + `vector<bool>`，不存储筛出来的素数 | `Eratosthenes_vector`    |
-    | 埃氏筛 + `bitset`，不存储筛出来的素数       | `Eratosthenes_bitset`    |
-    | 埃氏筛 + C 风格布尔数组，存储筛出来的素数   | `Eratosthenes_CArray_sp` |
-    | 埃氏筛 + `vector<bool>`，存储筛出来的素数   | `Eratosthenes_vector_sp` |
-    | 埃氏筛 + `bitset`，存储筛出来的素数         | `Eratosthenes_bitset_sp` |
-    | 欧拉筛 + C 风格布尔数组                     | `Euler_CArray`           |
-    | 欧拉筛 + `vector<bool>`                     | `Euler_vector`           |
-    | 欧拉筛 + `bitset`                           | `Euler_bitset`           |
+    | 算法                            | 函数名                      |
+    | ----------------------------- | ------------------------ |
+    | 埃氏筛 + C 风格布尔数组，不存储筛出来的素数      | `Eratosthenes_CArray`    |
+    | 埃氏筛 +`vector<bool>`，不存储筛出来的素数 | `Eratosthenes_vector`    |
+    | 埃氏筛 +`bitset`，不存储筛出来的素数       | `Eratosthenes_bitset`    |
+    | 埃氏筛 + C 风格布尔数组，存储筛出来的素数       | `Eratosthenes_CArray_sp` |
+    | 埃氏筛 +`vector<bool>`，存储筛出来的素数  | `Eratosthenes_vector_sp` |
+    | 埃氏筛 +`bitset`，存储筛出来的素数        | `Eratosthenes_bitset_sp` |
+    | 欧拉筛 + C 风格布尔数组                | `Euler_CArray`           |
+    | 欧拉筛 +`vector<bool>`           | `Euler_vector`           |
+    | 欧拉筛 +`bitset`                 | `Euler_bitset`           |
     
-    当埃氏筛**存储**筛出来的素数时结果如下：
+    当埃氏筛 **存储** 筛出来的素数时结果如下：
     
-    | `N`      | $5 \times 10^7 + 1$                                     | $10^8 + 1$                                              |
-    | -------- | ------------------------------------------------------- | ------------------------------------------------------- |
+    | `N`  | $5 \times 10^7 + 1$                                     | $10^8 + 1$                                              |
+    | ---- | ------------------------------------------------------- | ------------------------------------------------------- |
     | 测试结果 | <https://quick-bench.com/q/iQL9FhsZ6PVV81HKABsidRw8hB8> | <https://quick-bench.com/q/pwEamEFUW-6nXeXEALRsYPd8FWI> |
-    | 图像     | ![](./images/bitset-5e7sp.png)                          | ![](./images/bitset-1e8sp.png)                          |
+    | 图像   | ![](./images/bitset-5e7sp.png)                          | ![](./images/bitset-1e8sp.png)                          |
     
-    当埃氏筛**不存储**筛出来的素数时结果如下：
+    当埃氏筛 **不存储** 筛出来的素数时结果如下：
     
-    | `N`      | $5 \times 10^7 + 1$                                     | $10^8 + 1$                                              |
-    | -------- | ------------------------------------------------------- | ------------------------------------------------------- |
+    | `N`  | $5 \times 10^7 + 1$                                     | $10^8 + 1$                                              |
+    | ---- | ------------------------------------------------------- | ------------------------------------------------------- |
     | 测试结果 | <https://quick-bench.com/q/rg2mCUxT02a44w9fWvHtZoNTJyU> | <https://quick-bench.com/q/lusNWxWsR0VXoRBof7uBtqfvJuY> |
-    | 图像     | ![](./images/bitset-5e7.png)                            | ![](./images/bitset-1e8.png)                            |
+    | 图像   | ![](./images/bitset-5e7.png)                            | ![](./images/bitset-1e8.png)                            |
     
     从测试结果中可知：
     
-    1. 时间复杂度 $O(n \log \log n)$ 的埃氏筛在使用 `bitset` 或 `vector<bool>` 优化后，性能甚至超过时间复杂度 $O(n)$ 的欧拉筛；
-    2. 欧拉筛使用 `bitset` 或 `vector<bool>` 后的优化效果在大多数情况下均不明显；
-    3. `bitset` 的优化效果略强于 `vector<bool>`。
+    1.  时间复杂度 $O(n \log \log n)$ 的埃氏筛在使用 `bitset` 或 `vector<bool>` 优化后，性能甚至超过时间复杂度 $O(n)$ 的欧拉筛；
+    2.  欧拉筛使用 `bitset` 或 `vector<bool>` 后的优化效果在大多数情况下均不明显；
+    3.  `bitset` 的优化效果略强于 `vector<bool>`。
 
 ??? "参考代码"
     需安装 [google/benchmark](https://github.com/google/benchmark)。
@@ -413,94 +410,100 @@ $$
     #ifndef ERATOSTHENES_STORAGE_PRIME
     
     void Eratosthenes_CArray(benchmark::State &state) {
-        static bool is_prime[N];
-        for (auto _ : state) {
-            fill(is_prime, is_prime + N, true);
-            is_prime[0] = is_prime[1] = false;
-            for (u32 i = 2; (u64)i * i < N; ++i)
-                if (is_prime[i])
-                    for (u32 j = i * i; j < N; j += i) is_prime[j] = false;
-            benchmark::DoNotOptimize(0);
-        }
+      static bool is_prime[N];
+      for (auto _ : state) {
+        fill(is_prime, is_prime + N, true);
+        is_prime[0] = is_prime[1] = false;
+        for (u32 i = 2; (u64)i * i < N; ++i)
+          if (is_prime[i])
+            for (u32 j = i * i; j < N; j += i) is_prime[j] = false;
+        benchmark::DoNotOptimize(0);
+      }
     }
+    
     BENCHMARK(Eratosthenes_CArray);
     
     void Eratosthenes_vector(benchmark::State &state) {
-        static vector<bool> is_prime(N);
-        for (auto _ : state) {
-            fill(is_prime.begin(), is_prime.end(), true);
-            is_prime[0] = is_prime[1] = false;
-            for (u32 i = 2; (u64)i * i < N; ++i)
-                if (is_prime[i])
-                    for (u32 j = i * i; j < N; j += i) is_prime[j] = false;
-            benchmark::DoNotOptimize(0);
-        }
+      static vector<bool> is_prime(N);
+      for (auto _ : state) {
+        fill(is_prime.begin(), is_prime.end(), true);
+        is_prime[0] = is_prime[1] = false;
+        for (u32 i = 2; (u64)i * i < N; ++i)
+          if (is_prime[i])
+            for (u32 j = i * i; j < N; j += i) is_prime[j] = false;
+        benchmark::DoNotOptimize(0);
+      }
     }
+    
     BENCHMARK(Eratosthenes_vector);
     
     void Eratosthenes_bitset(benchmark::State &state) {
-        static bitset<N> is_prime;
-        for (auto _ : state) {
-            is_prime.set();
-            is_prime.reset(0);
-            is_prime.reset(1);
-            for (u32 i = 2; (u64)i * i < N; ++i)
-                if (is_prime[i])
-                    for (u32 j = i * i; j < N; j += i) is_prime.reset(j);
-            benchmark::DoNotOptimize(0);
-        }
+      static bitset<N> is_prime;
+      for (auto _ : state) {
+        is_prime.set();
+        is_prime.reset(0);
+        is_prime.reset(1);
+        for (u32 i = 2; (u64)i * i < N; ++i)
+          if (is_prime[i])
+            for (u32 j = i * i; j < N; j += i) is_prime.reset(j);
+        benchmark::DoNotOptimize(0);
+      }
     }
+    
     BENCHMARK(Eratosthenes_bitset);
     
     #else
     
     void Eratosthenes_CArray_sp(benchmark::State &state) {
-        static bool is_prime[N];
-        for (auto _ : state) {
-            vector<u32> prime;
-            fill(is_prime, is_prime + N, true);
-            is_prime[0] = is_prime[1] = false;
-            for (u32 i = 2; (u64)i * i < N; ++i)
-                if (is_prime[i])
-                    for (u32 j = i * i; j < N; j += i) is_prime[j] = false;
-            for (u32 i = 2; i < N; ++i)
-                if (is_prime[i]) prime.push_back(i);
-            benchmark::DoNotOptimize(prime);
-        }
+      static bool is_prime[N];
+      for (auto _ : state) {
+        vector<u32> prime;
+        fill(is_prime, is_prime + N, true);
+        is_prime[0] = is_prime[1] = false;
+        for (u32 i = 2; (u64)i * i < N; ++i)
+          if (is_prime[i])
+            for (u32 j = i * i; j < N; j += i) is_prime[j] = false;
+        for (u32 i = 2; i < N; ++i)
+          if (is_prime[i]) prime.push_back(i);
+        benchmark::DoNotOptimize(prime);
+      }
     }
+    
     BENCHMARK(Eratosthenes_CArray_sp);
     
     void Eratosthenes_vector_sp(benchmark::State &state) {
-        static vector<bool> is_prime(N);
-        for (auto _ : state) {
-            vector<u32> prime;
-            fill(is_prime.begin(), is_prime.end(), true);
-            is_prime[0] = is_prime[1] = false;
-            for (u32 i = 2; (u64)i * i < N; ++i)
-                if (is_prime[i])
-                    for (u32 j = i * i; j < N; j += i) is_prime[j] = false;
-            for (u32 i = 2; i < N; ++i)
-                if (is_prime[i]) prime.push_back(i);
-            benchmark::DoNotOptimize(prime);
-        }
+      static vector<bool> is_prime(N);
+      for (auto _ : state) {
+        vector<u32> prime;
+        fill(is_prime.begin(), is_prime.end(), true);
+        is_prime[0] = is_prime[1] = false;
+        for (u32 i = 2; (u64)i * i < N; ++i)
+          if (is_prime[i])
+            for (u32 j = i * i; j < N; j += i) is_prime[j] = false;
+        for (u32 i = 2; i < N; ++i)
+          if (is_prime[i]) prime.push_back(i);
+        benchmark::DoNotOptimize(prime);
+      }
     }
+    
     BENCHMARK(Eratosthenes_vector_sp);
     
     void Eratosthenes_bitset_sp(benchmark::State &state) {
-        static bitset<N> is_prime;
-        for (auto _ : state) {
-            vector<u32> prime;
-            is_prime.set();
-            is_prime.reset(0);
-            is_prime.reset(1);
-            for (u32 i = 2; (u64)i * i < N; ++i)
-                if (is_prime[i])
-                    for (u32 j = i * i; j < N; j += i) is_prime.reset(j);
-            for (u32 i = 2; i < N; ++i)
-                if (is_prime[i]) prime.push_back(i);
-            benchmark::DoNotOptimize(prime);
-        }
+      static bitset<N> is_prime;
+      for (auto _ : state) {
+        vector<u32> prime;
+        is_prime.set();
+        is_prime.reset(0);
+        is_prime.reset(1);
+        for (u32 i = 2; (u64)i * i < N; ++i)
+          if (is_prime[i])
+            for (u32 j = i * i; j < N; j += i) is_prime.reset(j);
+        for (u32 i = 2; i < N; ++i)
+          if (is_prime[i]) prime.push_back(i);
+        benchmark::DoNotOptimize(prime);
+      }
     }
+    
     BENCHMARK(Eratosthenes_bitset_sp);
     
     #endif
@@ -508,68 +511,72 @@ $$
     #ifdef ENABLE_EULER
     
     void Euler_CArray(benchmark::State &state) {
-        static bool not_prime[N];
-        for (auto _ : state) {
-            vector<u32> prime;
-            fill(not_prime, not_prime + N, false);
-            not_prime[0] = not_prime[1] = true;
-            for (u32 i = 2; i < N; ++i) {
-                if (!not_prime[i]) prime.push_back(i);
-                for (u32 pri_j : prime) {
-                    if (i * pri_j >= N) break;
-                    not_prime[i * pri_j] = true;
-                    if (i % pri_j == 0) break;
-                }
-            }
-            benchmark::DoNotOptimize(prime);
+      static bool not_prime[N];
+      for (auto _ : state) {
+        vector<u32> prime;
+        fill(not_prime, not_prime + N, false);
+        not_prime[0] = not_prime[1] = true;
+        for (u32 i = 2; i < N; ++i) {
+          if (!not_prime[i]) prime.push_back(i);
+          for (u32 pri_j : prime) {
+            if (i * pri_j >= N) break;
+            not_prime[i * pri_j] = true;
+            if (i % pri_j == 0) break;
+          }
         }
+        benchmark::DoNotOptimize(prime);
+      }
     }
+    
     BENCHMARK(Euler_CArray);
     
     void Euler_vector(benchmark::State &state) {
-        static vector<bool> not_prime(N);
-        for (auto _ : state) {
-            vector<u32> prime;
-            fill(not_prime.begin(), not_prime.end(), false);
-            not_prime[0] = not_prime[1] = true;
-            for (u32 i = 2; i < N; ++i) {
-                if (!not_prime[i]) prime.push_back(i);
-                for (u32 pri_j : prime) {
-                    if (i * pri_j >= N) break;
-                    not_prime[i * pri_j] = true;
-                    if (i % pri_j == 0) break;
-                }
-            }
-            benchmark::DoNotOptimize(prime);
+      static vector<bool> not_prime(N);
+      for (auto _ : state) {
+        vector<u32> prime;
+        fill(not_prime.begin(), not_prime.end(), false);
+        not_prime[0] = not_prime[1] = true;
+        for (u32 i = 2; i < N; ++i) {
+          if (!not_prime[i]) prime.push_back(i);
+          for (u32 pri_j : prime) {
+            if (i * pri_j >= N) break;
+            not_prime[i * pri_j] = true;
+            if (i % pri_j == 0) break;
+          }
         }
+        benchmark::DoNotOptimize(prime);
+      }
     }
+    
     BENCHMARK(Euler_vector);
     
     void Euler_bitset(benchmark::State &state) {
-        static bitset<N> not_prime;
-        for (auto _ : state) {
-            vector<u32> prime;
-            not_prime.reset();
-            not_prime.set(0);
-            not_prime.set(1);
-            for (u32 i = 2; i < N; ++i) {
-                if (!not_prime[i]) prime.push_back(i);
-                for (u32 pri_j : prime) {
-                    if (i * pri_j >= N) break;
-                    not_prime.set(i * pri_j);
-                    if (i % pri_j == 0) break;
-                }
-            }
-            benchmark::DoNotOptimize(prime);
+      static bitset<N> not_prime;
+      for (auto _ : state) {
+        vector<u32> prime;
+        not_prime.reset();
+        not_prime.set(0);
+        not_prime.set(1);
+        for (u32 i = 2; i < N; ++i) {
+          if (!not_prime[i]) prime.push_back(i);
+          for (u32 pri_j : prime) {
+            if (i * pri_j >= N) break;
+            not_prime.set(i * pri_j);
+            if (i % pri_j == 0) break;
+          }
         }
+        benchmark::DoNotOptimize(prime);
+      }
     }
+    
     BENCHMARK(Euler_bitset);
     
     #endif
     
-    static void Noop(benchmark::State& state) {
-        for (auto _ : state) benchmark::DoNotOptimize(0);
+    static void Noop(benchmark::State &state) {
+      for (auto _ : state) benchmark::DoNotOptimize(0);
     }
+    
     BENCHMARK(Noop);
     BENCHMARK_MAIN();
     ```
@@ -589,4 +596,5 @@ $$
 ## 参考资料与注释
 
 [^bitset1]: [libstdc++: SGI STL extensions](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00994.html#g32541eb0d6581b915af48b5a51006dff)
-[^bitset2]: [libstdc++: std::bitset< _Nb > Class Template Reference](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00219.html)
+
+[^bitset2]: [libstdc++: std::bitset<\_Nb> Class Template Reference](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00219.html)
