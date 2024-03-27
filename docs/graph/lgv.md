@@ -96,7 +96,7 @@ $$
     --8<-- "docs/graph/code/lgv/lgv_2.cpp"
     ```
 
-???+ note " 例 2 [hdu5852 Intersection is not allowed!](https://vjudge.net/problem/HDU-5852)"
+???+ note " 例 2 [HDU 5852 Intersection is not allowed!](https://acm.hdu.edu.cn/showproblem.php?pid=5852)"
     题意：有一个 $n\times n$ 的棋盘，一个棋子从 $(x, y)$ 只能走到 $(x, y+1)$ 或 $(x + 1, y)$，有 $k$ 个棋子，一开始第 $i$ 个棋子放在 $(1, a_i)$，最终要到 $(n, b_i)$，路径要两两不相交，求方案数对 $10^9+7$ 取模。$1\le n\le 10^5$，$1\le k\le 100$，保证 $1\le a_1<a_2<\dots<a_n\le n$，$1\le b_1<b_2<\dots<b_n\le n$。
 
 观察到如果路径不相交就一定是 $a_i$ 到 $b_i$，因此 LGV 引理中一定有 $\sigma(S)_i=i$，不需要考虑符号问题。边权设为 $1$，直接套用引理即可。
