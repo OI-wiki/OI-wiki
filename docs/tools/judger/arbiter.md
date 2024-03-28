@@ -1,4 +1,4 @@
-author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, CoelacanthusHex, billchenchina, Tiger3018, Xeonacid
+author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, CoelacanthusHex, billchenchina, Tiger3018, Xeonacid, Cryflmind
 
 ## Arbiter
 
@@ -66,6 +66,8 @@ players/
 ```
 
 其中，`<y>` 是数据编号，编号从 1 开始。默认测试数据后缀名是 `.ans`，选手输出的后缀名是 `.out`，不能混淆。
+
+如果需要将之前生成的 out 格式修改为 ans 格式，在 NOI Linux 2.0 中可以使用 `rename` 命令批量修改，而在 Windows 中可以使用 `ren` 命令批量修改。我们将在后面介绍这些命令的用法。
 
 不用将每题的测试数据放置在各题的文件夹里，只需要放在一起即可。
 
@@ -139,11 +141,16 @@ players/
 ### 注意事项
 
 -   据说很容易死机，如大量测评时移动鼠标会导致死机。
+-   没有进行过评测时不要点击上面的成绩统计，否则将会导致 Arbiter 直接闪退。
 -   据说不定时闪退，需要注意及时保存比赛。可能有些闪退原因是没有保存比赛。
+-   当然，如果你真的担心程序会自己闪退的话，不妨每次操作后多保存几次（
+-   据说修改比较方式后有概率会出现修改失败的情况，即比较方式修改后未被应用。（但是笔者并未遇到）
 -   据说配置时需要注意权限问题（但是笔者并未遇到）。
 -   由于 Linux 运行时栈限制，如果要开无限栈，应在终端先输入 `ulimit -s unlimited` 后执行 `arbiter_local` 打开测评器，否则可能出现 `Exceeding memory limit` 的问题。
 -   对于正式测评，在题目准备时需要让所有题目空间限制一致。测评时将命令中的 `unlimited` 换为题目空间限制的千字节数（KiB），如：题目空间限制为 512 MiB，则命令为 `ulimit -s 524288`。
 -   导致这一问题的主要原因是直接启动 Arbiter，其父进程为 GNOME，子进程继承了父进程的栈空间限制。
+-   软件的工作目录不建议包含空格，若包含空格的话很可能会导致创建比赛时所有的默认校验器都无法拷贝进 filter 目录中（即 filter 目录为空）。此时进行评测会出现全部爆 0 的情况，同时你可以在生成的 result 文件中看到 `Compile Failed.` 的提示。
+-   查看代码时提示 `未找到答案文件` 指的是没有找到选手的源代码。
 
 ### 漏洞
 
@@ -152,3 +159,54 @@ players/
 ### 评价
 
 Arbiter 1.0.2 在开发完成后就一直没有实质性更新，导致测评体验极差，UI 脱离现代审美。在 NOI Linux 1.4.1 中，它和 NOI Linux 自带的 GUIDE 一样沦为选手与教练疯狂吐槽的对象。在 NOI Linux 2.0 中，除了比较器移除了源代码和软件整体使用 Qt 5 重新编译外，并没有很大的变化，一些稳定性问题仍未得到解决。
+
+??? note "附：ren 和 rename 命令的使用方法"
+    在 Windows 操作系统中自带了一个修改文件名称的命令：`ren`。
+    
+    命令语法如下：
+    
+    ```shell
+    ren [<drive>:][<path>]<filename1> <filename2>
+    ```
+    
+    如果我们需要对当前工作目录下的所有的文件进行修改，比如将所有的 out 文件修改为 ans 文件，可以这么写：
+    
+    ```shell
+    ren *.out *.ans
+    ```
+    
+    即可实现一键处理。
+    
+    如果是在 NOI Linux 2.0 环境中进行此类修改，似乎目前比较好用的是 `rename` 命令，但它不是 NOI Linux 2.0 环境内自带的命令，所以你要先进行安装：
+    
+    ```shell
+    sudo apt install rename
+    ```
+    
+    注：如果执行后提示 `E: Unable to locate package package_name`，你需要先执行这个命令：`sudo apt-get update`
+    
+    安装完成后，就可以正常使用 `rename` 命令了。`rename` 命令的使用类似于直接的文本替换，其在 NOI Linux 2.0 环境下的命令语法如下：
+    
+    ```shell
+    rename ‘s/<修改前的文本>/<修改后的文本>/’ <filename>
+    ```
+    
+    其中 `<filename>` 可以使用通配符 `*`，也可以指定其中一类文件（比如 `*.out`)。
+    
+    请注意在引号内末尾还有一个 `/`，如果少写了一个 `/`，`rename` 命令将会报错：`Substitution replacement not terminated at (user-supplied code)`。
+    
+    此时如果我们需要对当前工作目录下的所有的文件进行修改，比如将所有的 out 文件修改为 ans 文件，可以这么写：
+    
+    ```shell
+    rename 's/\.out/\.ans/' *
+    ```
+    
+    其中 `\.` 表示对 `.` 进行转义。
+    
+    （温馨提示：如果少写了 `\.`，假如你的文件里有个 `outtest.out`，这条命令执行过后文件将会被修改成 `anstest.out`)
+    
+    类似的，如果你需要对所有名为 `atmost<x>.ans` 的文件进行统一修改（其中 `<x>` 代表测试点编号），将它们都修改为 `test<x>.ans`，不妨这么写：
+    
+    ```shell
+    rename 's/atmost/test/' *.ans
+    ```
