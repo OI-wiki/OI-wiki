@@ -35,7 +35,7 @@ $$
     \left(a^{\frac{p-1}{2}}+1\right)\left(a^{\frac{p-1}{2}}-1\right)\equiv 0\pmod p
     $$
     
-    从而对任意满足 $(a,p)=1$ 的 $a$ 均有 $a^{p-1}\equiv \pm 1\pmod p$
+    从而对任意满足 $(a,p)=1$ 的 $a$ 均有 $a^{(p-1)/2}\equiv \pm 1\pmod p$
     
     另外由 $p$ 是奇素数，我们有：
     
@@ -52,7 +52,7 @@ $$
     \end{aligned}
     $$
     
-    由 [同余方程的定理 5](./congruence-equation.md#定理-5) 可知，$a$ 是模 $p$ 的二次剩余当且仅当 $a^{\frac{p-1}{2}}\equiv 1\pmod p$. 进而 $a$ 是模 $p$ 的非二次剩余当且仅当 $a^{\frac{p-1}{2}}\equiv -1\pmod p$.
+    由 [同余方程的定理 5](./congruence-equation.md#定理-5) 可知，$a$ 是模 $p$ 的二次剩余当且仅当 $a^{(p-1)/2}\equiv 1\pmod p$. 进而 $a$ 是模 $p$ 的非二次剩余当且仅当 $a^{(p-1)/2}\equiv -1\pmod p$.
 
 ## Legendre 符号
 

@@ -28,7 +28,7 @@ $$
 
 ## 网格图
 
-???+ note " 例题 1 [Circles of Waiting](https://www.luogu.com.cn/problem/CF963E)"
+???+ note " 例题 1 [Circles of Waiting](https://codeforces.com/problemset/problem/963/E)"
     有一枚棋子起始被放在平面直角坐标系的 $(0,0)$ 点。每秒棋子会随机移动。假设它当前在 $(x, y)$，它下一秒有 $p_1$ 的概率移动到 $(x-1, y)$，$p_2$ 的概率移动到 $(x, y-1)$，$p_3$ 的概率移动到 $(x+1, y)$，$p_4$ 的概率移动到 $(x, y+1)$。保证 $p_1+p_2+p_3+p_4=1$。
     求期望经过多少时间它会移动到一个离原点的欧几里得距离大于 $R$ 的位置。$0 \leq R \leq 50$，$p_1, p_2, p_3, p_4>0$，答案对 $10^9+7$ 取模。
 

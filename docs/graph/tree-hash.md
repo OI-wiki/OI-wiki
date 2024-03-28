@@ -51,7 +51,7 @@ $$
     --8<-- "docs/graph/code/tree-hash/tree-hash_3.cpp"
     ```
 
-### [HDU 6647 Bracket Sequences on Tree](https://vjudge.net/problem/HDU-6647)
+### [HDU 6647 Bracket Sequences on Tree](https://acm.hdu.edu.cn/showproblem.php?pid=6647)
 
 题目要求遍历一棵无根树产生的本质不同括号序列方案数。
 

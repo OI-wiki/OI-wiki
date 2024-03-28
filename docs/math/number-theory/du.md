@@ -22,8 +22,8 @@ $$
     
     $$
     \begin{aligned}
-        \sum_{i=1}^n\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right) & =\sum_{i=1}^n\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}g(i)f(j) \\
-                                                                 & =\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor\frac{n}{i}\right\rfloor}f(j) \\
+        \sum_{i=1}^n\sum_{d \mid i}g(d)f\left(\frac{i}{d}\right) & =\sum_{i=1}^n\sum_{j=1}^{\left\lfloor n/i \right\rfloor}g(i)f(j) \\
+                                                                 & =\sum_{i=1}^ng(i)\sum_{j=1}^{\left\lfloor n/i \right\rfloor}f(j) \\
                                                                  & =\sum_{i=1}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
     \end{aligned}
     $$
@@ -40,7 +40,7 @@ $$
 假如我们可以构造恰当的数论函数 $g$ 使得：
 
 1.  可以快速计算 $\sum_{i=1}^n(f * g)(i)$；
-2.  可以快速计算 $g$ 的单点值，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$。
+2.  可以快速计算 $g$ 的前缀和，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$。
 
 则我们可以在较短时间内求得 $g(1)S(n)$。
 
@@ -53,59 +53,99 @@ $$
     \sum_{k=1}^n (f*g)(k)=\mathrm{i}\frac{n(n+1)}{2}
     $$
     
-    计算 $\sum_k (f*g)(k)$ 和 $g$ 的时间复杂度均为 $O(1)$, 故可以考虑使用杜教筛。
+    计算 $\sum_{k\leq m} (f*g)(k)$ 和 $\sum_{k \leq m} g(k)$ 的时间复杂度均为 $O(1)$, 故可以考虑使用杜教筛。
 
 ## 时间复杂度
 
-我们认为计算 $\sum_{i=1}^n(f * g)(i)$ 和 $g(n)$ 的时间复杂度均为 $O(1)$, 设计算 $S(n)$ 的复杂度为 $T(n)$, 此时我们不妨将 $S(n)$ 简化为如下形式：
+令 $R(n)=\left\{\left\lfloor \dfrac{n}{k} \right\rfloor: k=2,3,\dots,n\right\}$, 我们有如下引理：
 
-$$
-S(n)=\sum_{i=2}^n S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)
-$$
+???+ abstract "引理"
+    对任意的 $m\in R(n)$，我们有 $R(m)\subseteq R(n)$.
+    
+    ???+ note "证明"
+        令 $m=\left\lfloor\dfrac{n}{x}\right\rfloor$, 任取 $\left\lfloor\dfrac{m}{y}\right\rfloor \in R(m)$, 由整除分块/数论分块的 [引理 1](./sqrt-decomposition.md#引理-1) 可知：
+        
+        $$
+        \left\lfloor\dfrac{m}{y}\right\rfloor=\left\lfloor\dfrac{n}{xy}\right\rfloor\in R(n).
+        $$
 
-由 [整除分块/数论分块](./sqrt-decomposition.md) 可知 $\left\lfloor \dfrac n i \right\rfloor$ 共有 $O(\sqrt{n})$ 种取值，故有：
+设计算 $\sum_{i=1}^n(f * g)(i)$ 和 $\sum_{i=1}^n g(i)$ 的时间复杂度均为 $O(1)$. 由引理可知：使用记忆化之后，每个 $S(k)~(k\in R(n))$ 均只会计算一次。
 
-$$
-T(n)=O\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\sqrt{n}} T\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\right)
-$$
-
-$$
-\begin{aligned}
-    T\left(\left\lfloor\frac{n}{i}\right\rfloor\right) & =O\left(\sqrt{\frac{n}{i}}\right)+O\left(\sum_{j=2}^{\sqrt{\frac{n}{i}}} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right) \\
-                                                       & =O\left(\sqrt{\frac{n}{i}}\right)
-\end{aligned}
-$$
-
-???+ note
-    $O\left(\sum_{j=2}^{\sqrt{\frac{n}{i}}} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right)$ 视作高阶无穷小，从而可以舍去。
-
-故：
+由整除分块/数论分块的 [引理 2](./sqrt-decomposition.md) 可知 $|R(n)|=2\sqrt{n}+\Theta(1)$. 设计算 $S(n)$ 的时间复杂度为 $T(n)$, 则：
 
 $$
 \begin{aligned}
-    T(n) & =O\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\sqrt{n}} \sqrt{\frac{n}{i}}\right)=O\left(\sum_{i=2}^{\sqrt{n}} \sqrt{\frac{n}{i}}\right) \\
-         & =O\left(\int_{0}^{\sqrt{n}}\sqrt{\frac{n}{x}}\mathrm{d}x\right)                                                                       \\
-         & =O\left(n^{\frac{3}{4}}\right)
+    T(n) & = \sum_{k\in R(n)} T(k)\\
+         & = \Theta(\sqrt n)+\sum_{k=1}^{\lfloor\sqrt n\rfloor} O(\sqrt k)+\sum_{k=2}^{\lfloor\sqrt n\rfloor} O\left(\sqrt{\dfrac{n}{k}}\right)\\
+         & = O\left(\int_{0}^{\sqrt n} \left(\sqrt{x} + \sqrt{\dfrac{n}{x}}\right) \mathrm{d}x\right)\\
+         & = O\left(n^{3/4}\right).
 \end{aligned}
 $$
 
-如果可以通过线性筛预处理出 $S(1)$ 到 $S(k)$ 的值，此时的 $\sum_i S\left(\left\lfloor \dfrac{n}{i}\right\rfloor\right)$ 中我们只需要计算 $k<\left\lfloor \dfrac{n}{i}\right\rfloor\leq n$ 的部分。设计算这一部分的复杂度为 $T'(n)$，则有：
+若我们可以预处理出一部分 $S(k)$, 其中 $k=1,2,\dots,m$，$m\geq \lfloor\sqrt n\rfloor$. 设预处理的时间复杂度为 $T_0(m)$, 则此时的 $T(n)$ 为：
 
 $$
 \begin{aligned}
-    T'(n) & =O\left(\sum_{i=2}^{\frac{n}{k}} \sqrt{\frac{n}{i}}\right)         \\
-          & =O\left(\int_{0}^{\frac{n}{k}}\sqrt{\frac{n}{x}}\mathrm{d}x\right) \\
-          & =O\left(\frac{n}{\sqrt{k}}\right)
+    T(n) & = T_0(m)+\sum_{k\in R(n);k>m} T(k)\\
+         & = T_0(m)+\sum_{k=1}^{\lfloor n/m \rfloor} O\left(\sqrt{\dfrac{n}{k}}\right)\\
+         & = O\left(T_0(m)+\int_{0}^{n/m} \sqrt{\dfrac{n}{x}} \mathrm{d}x\right)\\
+         & = O\left(T_0(m)+\dfrac{n}{\sqrt m}\right).
 \end{aligned}
 $$
 
-从而：
+若 $T_0(m)=O(m)$（如线性筛），由均值不等式可知：当 $m=\Theta\left(n^{2/3}\right)$ 时，$T(n)$ 取得最小值 $O\left(n^{2/3}\right)$.
 
-$$
-T(n)=O(k)+T'(n)=O(k)+O\left(\frac{n}{\sqrt{k}}\right)
-$$
-
-由均值不等式可知，当 $k=\Theta\left(n^{\frac{2}{3}}\right)$ 时，$T(n)$ 取得最小值 $O\left(n^{\frac{2}{3}}\right)$.
+??? failure "伪证一例"
+    设计算 $S(n)$ 的复杂度为 $T(n)$, 则有：
+    
+    $$
+    T(n)=\Theta\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\right)
+    $$
+    
+    $$
+    \begin{aligned}
+        T\left(\left\lfloor\frac{n}{i}\right\rfloor\right) & = \Theta\left(\sqrt{\frac{n}{i}}\right)+O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right) \\
+                                                           & = O\left(\sqrt{\frac{n}{i}}\right)
+    \end{aligned}
+    $$
+    
+    ???+ note
+        $O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\dfrac{n}{ij}\right\rfloor\right)\right)$ 视作高阶无穷小，从而可以舍去。
+    
+    故：
+    
+    $$
+    \begin{aligned}
+        T(n) & = \Theta\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} \sqrt{\frac{n}{i}}\right) \\
+             & = O\left(\sum_{i=1}^{\lfloor\sqrt{n}\rfloor} \sqrt{\frac{n}{i}}\right) \\
+             & = O\left(\int_{0}^{\sqrt{n}}\sqrt{\frac{n}{x}}\mathrm{d}x\right) \\
+             & = O\left(n^{3/4}\right)
+    \end{aligned}
+    $$
+    
+    ??? bug
+        问题在于「视作高阶无穷小，从而可以舍去」这一处。我们将 $T\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$ 代入 $T(n)$ 的式子里，有：
+        
+        $$
+        \begin{aligned}
+            T(n) & = \Theta\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} \sqrt{\frac{n}{i}}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right)\\
+                 & = O\left(\sqrt{n}+\int_{0}^{\sqrt{n}}\sqrt{\frac{n}{x}}\mathrm{d}x\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right)\\
+                 & = O\left(n^{3/4}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)\right)\\
+        \end{aligned}
+        $$
+        
+        我们考虑 $\displaystyle\sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right)$ 这部分，不难发现：
+        
+        $$
+        \begin{aligned}
+            \sum_{i=2}^{\lfloor\sqrt{n}\rfloor}\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\frac{n}{ij}\right\rfloor\right) & = \Omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\frac{n}{i}\cdot\left\lfloor\sqrt\frac{n}{i}\right\rfloor^{-1}\right\rfloor\right)\right) \\
+                                                                                                                                         & = \Omega\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\sqrt\frac{n}{i}\right\rfloor\right)\right)
+        \end{aligned}
+        $$
+        
+        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{\dfrac{n}{i}}\right\rfloor\right)$ 仍然是 $\Omega\left(\left(\dfrac{n}{i}\right)^{1/4}\right)$ 的，进而所谓的「高阶无穷小」部分是不可以舍去的。
+        
+        实际上杜教筛的亚线性时间复杂度是由记忆化保证的。只有使用了记忆化之后才能保证不会出现那个多重求和的项。
 
 ## 例题
 
@@ -181,9 +221,9 @@ $$
 \sum_{d=1}^nF^2\left(\left\lfloor\frac{n}{d}\right\rfloor\right)\cdot d^2\varphi(d)
 $$
 
-其中 $F(n)=\frac{1}{2}n(n+1)$
+其中 $F(n)=\dfrac{1}{2}n(n+1)$
 
-对 $\sum_{d=1}^nF\left(\left\lfloor\frac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
+对 $\sum_{d=1}^nF\left(\left\lfloor\dfrac{n}{d}\right\rfloor\right)^2$ 做数论分块，$d^2\varphi(d)$ 的前缀和用杜教筛处理：
 
 $$
 f(n)=n^2\varphi(n)=(\operatorname{id}^2\varphi)(n)
@@ -228,3 +268,8 @@ $$
     ```cpp
     --8<-- "docs/math/code/du/du_2.cpp"
     ```
+
+### 参考资料
+
+1.  任之洲，2016，《积性函数求和的几种方法》，2016 年信息学奥林匹克中国国家队候选队员论文
+2.  [杜教筛的时空复杂度分析 - riteme.site](https://riteme.site/blog/2018-9-11/time-space-complexity-dyh-algo.html)

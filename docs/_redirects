@@ -26,6 +26,7 @@
 /intro/editor/npp /tools/editor/npp
 /intro/editor/devcpp /tools/editor/devcpp
 /intro/editor/geany /tools/editor/geany
+/intro/hulu /
 /lang/editor/vim /tools/editor/vim
 /lang/editor/emacs /tools/editor/emacs
 /lang/editor/vscode /tools/editor/vscode
