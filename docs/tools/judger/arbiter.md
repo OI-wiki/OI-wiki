@@ -152,58 +152,6 @@ players/
 -   软件的工作目录不建议包含空格，若包含空格的话很可能会导致创建比赛时所有的默认校验器都无法拷贝进 filter 目录中（即 filter 目录为空）。此时进行评测会出现全部爆 0 的情况，同时你可以在生成的 result 文件中看到 `Compile Failed.` 的提示。
 -   查看代码时提示 `未找到答案文件` 指的是没有找到选手的源代码。
 
-### 附：ren 和 rename 命令的使用方法
-
-在 Windows 操作系统中自带了一个修改文件名称的命令：`ren`。
-
-命令语法如下：
-
-```shell
-ren [<drive>:][<path>]<filename1> <filename2>
-```
-
-如果我们需要对当前工作目录下的所有的文件进行修改，比如将所有的 out 文件修改为 ans 文件，可以这么写：
-
-```shell
-ren *.out *.ans
-```
-
-即可实现一键处理。
-
-如果是在 NOI Linux 2.0 环境中进行此类修改，似乎目前比较好用的是 `rename` 命令，但它不是 NOI Linux 2.0 环境内自带的命令，所以你要先进行安装：
-
-```shell
-sudo apt install rename
-```
-
-注：如果执行后提示 `E: Unable to locate package package_name`，你需要先执行这个命令：`sudo apt-get update`
-
-安装完成后，就可以正常使用 `rename` 命令了。`rename` 命令的使用类似于直接的文本替换，其在 NOI Linux 2.0 环境下的命令语法如下：
-
-```shell
-rename ‘s/<修改前的文本>/<修改后的文本>/’ <filename>
-```
-
-其中 `<filename>` 可以使用通配符 `*`，也可以指定其中一类文件（比如 `*.out`)。
-
-请注意在引号内末尾还有一个 `/`，如果少写了一个 `/`，`rename` 命令将会报错：`Substitution replacement not terminated at (user-supplied code)`。
-
-此时如果我们需要对当前工作目录下的所有的文件进行修改，比如将所有的 out 文件修改为 ans 文件，可以这么写：
-
-```shell
-rename 's/\.out/\.ans/' *
-```
-
-其中 `\.` 表示对 `.` 进行转义。
-
-（温馨提示：如果少写了 `\.`，假如你的文件里有个 `outtest.out`，这条命令执行过后文件将会被修改成 `anstest.out`)
-
-类似的，如果你需要对所有名为 `atmost<x>.ans` 的文件进行统一修改（其中 `<x>` 代表测试点编号），将它们都修改为 `test<x>.ans`，不妨这么写：
-
-```shell
-rename 's/atmost/test/' *.ans
-```
-
 ### 漏洞
 
 由于长期缺乏维护，系统存在一些漏洞，如可以使用 `#pragma G++ optimize("O2")` 和 `__attribute__((__optimize__("-O2")))` 等。可以使用 [gcc-plugins-for-oi](https://github.com/xdu-icpc/gcc-plugins-for-oi) 在编译期实现对这些命令的检测。
@@ -211,3 +159,55 @@ rename 's/atmost/test/' *.ans
 ### 评价
 
 Arbiter 1.0.2 在开发完成后就一直没有实质性更新，导致测评体验极差，UI 脱离现代审美。在 NOI Linux 1.4.1 中，它和 NOI Linux 自带的 GUIDE 一样沦为选手与教练疯狂吐槽的对象。在 NOI Linux 2.0 中，除了比较器移除了源代码和软件整体使用 Qt 5 重新编译外，并没有很大的变化，一些稳定性问题仍未得到解决。
+
+??? note "附：ren 和 rename 命令的使用方法"
+  
+  在 Windows 操作系统中自带了一个修改文件名称的命令：`ren`。
+  
+  命令语法如下：
+  
+  ```shell
+  ren [<drive>:][<path>]<filename1> <filename2>
+  ```
+  
+  如果我们需要对当前工作目录下的所有的文件进行修改，比如将所有的 out 文件修改为 ans 文件，可以这么写：
+  
+  ```shell
+  ren *.out *.ans
+  ```
+  
+  即可实现一键处理。
+  
+  如果是在 NOI Linux 2.0 环境中进行此类修改，似乎目前比较好用的是 `rename` 命令，但它不是 NOI Linux 2.0 环境内自带的命令，所以你要先进行安装：
+  
+  ```shell
+  sudo apt install rename
+  ```
+  
+  注：如果执行后提示 `E: Unable to locate package package_name`，你需要先执行这个命令：`sudo apt-get update`
+  
+  安装完成后，就可以正常使用 `rename` 命令了。`rename` 命令的使用类似于直接的文本替换，其在 NOI Linux 2.0 环境下的命令语法如下：
+  
+  ```shell
+  rename ‘s/<修改前的文本>/<修改后的文本>/’ <filename>
+  ```
+  
+  其中 `<filename>` 可以使用通配符 `*`，也可以指定其中一类文件（比如 `*.out`)。
+  
+  请注意在引号内末尾还有一个 `/`，如果少写了一个 `/`，`rename` 命令将会报错：`Substitution replacement not terminated at (user-supplied code)`。
+  
+  此时如果我们需要对当前工作目录下的所有的文件进行修改，比如将所有的 out 文件修改为 ans 文件，可以这么写：
+  
+  ```shell
+  rename 's/\.out/\.ans/' *
+  ```
+  
+  其中 `\.` 表示对 `.` 进行转义。
+  
+  （温馨提示：如果少写了 `\.`，假如你的文件里有个 `outtest.out`，这条命令执行过后文件将会被修改成 `anstest.out`)
+  
+  类似的，如果你需要对所有名为 `atmost<x>.ans` 的文件进行统一修改（其中 `<x>` 代表测试点编号），将它们都修改为 `test<x>.ans`，不妨这么写：
+  
+  ```shell
+  rename 's/atmost/test/' *.ans
+  ```
