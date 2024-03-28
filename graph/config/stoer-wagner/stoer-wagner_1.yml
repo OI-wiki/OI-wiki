@@ -1,0 +1,10 @@
+id: oi-wiki:graph/stoer-wagner-1
+name: Stoer Wagner
+solution:
+  cpp: docs/graph/code/stoer-wagner/stoer-wagner_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/stoer-wagner/stoer-wagner_1.ans
+  input: docs/graph/examples/stoer-wagner/stoer-wagner_1.in
+version: 1000
