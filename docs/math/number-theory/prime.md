@@ -31,6 +31,16 @@
         return True
     ```
 
+=== "Java"
+    ```java
+    static boolean isPrime(int a) {
+		if (a < 2) return false;
+		for (int i = 2; i < a; ++i)
+			if (a % i == 0) return false;
+		return true;
+	}
+    ```
+
 这样做是十分稳妥了，但是真的有必要每个数都去判断吗？
 
 很容易发现这样一个事实：如果 $x$ 是 $a$ 的约数，那么 $\frac{a}{x}$ 也是 $a$ 的约数。
@@ -58,6 +68,15 @@
             if a % i == 0:
                 return False
         return True
+    ```
+=== "Java"
+    ```java
+    static boolean isPrime(int a) {
+		if (a < 2) return false;
+		for (int i = 2; i * i <= a; ++i)
+			if (a % i == 0) return false;
+		return true;
+	}
     ```
 
 ### 素性测试
