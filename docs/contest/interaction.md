@@ -16,11 +16,11 @@ author: countercurrent-time, StudyingFather
 
 例题：
 
--   [CF679A Bear and Prime 100](https://www.luogu.com.cn/problem/CF679A)
--   [CF843B Interactive LowerBound](https://www.luogu.com.cn/problem/CF843B)
+-   [CF679A Bear and Prime 100](https://codeforces.com/problemset/problem/679/A)
+-   [CF843B Interactive LowerBound](https://codeforces.com/problemset/problem/843/B)
 -   [UOJ206\[APIO2016\]Gap](http://uoj.ac/problem/206)
--   [CF750F New Year and Finding Roots](https://www.luogu.com.cn/problem/CF750F)
--   [UVa12731 太空站之谜 Mysterious Space Station](https://www.luogu.com.cn/problem/UVA12731)
+-   [CF750F New Year and Finding Roots](https://codeforces.com/problemset/problem/750/F)
+-   [UVa12731 太空站之谜 Mysterious Space Station](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=823&page=show_problem&problem=4584)
 
 ## CF679A Bear and Prime 100
 
