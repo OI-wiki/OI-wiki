@@ -128,26 +128,26 @@ $$
     X_{1}  \\
     X_{2}  \\
     \vdots \\
-    X_{n-1}
+    X_{N-1}
 \end{bmatrix}
 =
 \begin{bmatrix}
     1      & 1            & 1               & \cdots & 1                   \\
-    1      & \alpha       & \alpha^{2}      & \cdots & \alpha^{n-1}        \\
-    1      & \alpha^{2}   & \alpha^{4}      & \cdots & \alpha^{2(n-1)}     \\
+    1      & \alpha       & \alpha^{2}      & \cdots & \alpha^{N-1}        \\
+    1      & \alpha^{2}   & \alpha^{4}      & \cdots & \alpha^{2(N-1)}     \\
     \vdots & \vdots       & \vdots          & \ddots & \vdots              \\
-    1      & \alpha^{n-1} & \alpha^{2(n-1)} & \cdots & \alpha^{(n-1)(n-1)}
+    1      & \alpha^{N-1} & \alpha^{2(N-1)} & \cdots & \alpha^{(N-1)(N-1)}
 \end{bmatrix}
 \begin{bmatrix}
     x_{0}  \\
     x_{1}  \\
     x_{2}  \\
     \vdots \\
-    x_{n-1}
+    x_{N-1}
 \end{bmatrix}
 $$
 
-其中 $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}n}$。
+其中 $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}}$。
 
 ## 快速傅里叶变换
 

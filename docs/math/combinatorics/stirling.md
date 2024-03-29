@@ -830,7 +830,7 @@ $$
 
 ## 习题
 
--   [HDU3625 Examining the Rooms](https://vjudge.net/problem/HDU-3625)
+-   [HDU3625 Examining the Rooms](https://acm.hdu.edu.cn/showproblem.php?pid=3625)
 -   [UOJ540 联合省选 2020 组合数问题](https://uoj.ac/problem/540)
 -   [UOJ269 清华集训 2016 如何优雅地求和](https://uoj.ac/problem/269)
 

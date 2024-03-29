@@ -134,7 +134,7 @@ void build_heap_2() {
 
 ### 对顶堆
 
-??? note "[SP16254 RMID2 - Running Median Again](https://www.luogu.com.cn/problem/SP16254)"
+??? note "[SPOJ RMID2 - Running Median Again](https://www.spoj.com/problems/RMID2/)"
     维护一个序列，支持两种操作：
     
     1.  向序列中插入一个元素
@@ -161,5 +161,7 @@ void build_heap_2() {
     --8<-- "docs/ds/code/binary-heap/binary-heap_1.cpp"
     ```
 
--   双倍经验：[SP15376 RMID - Running Median](https://www.luogu.com.cn/problem/SP15376)
--   典型习题：[P1801 黑匣子](https://www.luogu.com.cn/problem/P1801)
+### 习题
+
+-   [SPOJ RMID - Running Median](https://www.spoj.com/problems/RMID)
+-   [洛谷 P1801 黑匣子](https://www.luogu.com.cn/problem/P1801)

@@ -143,7 +143,7 @@
 
 ## 例题二
 
-???+ note " 例 2 [hdu 2089 不要 62](https://vjudge.net/problem/HDU-2089)"
+???+ note " 例 2 [HDU 2089 不要 62](https://acm.hdu.edu.cn/showproblem.php?pid=2089)"
     题面大意：统计一个区间内数位上不能有 4 也不能有连续的 62 的数有多少。
 
 ### 解释
@@ -421,7 +421,7 @@
 
 [洛谷  P3413 SAC#1 - 萌数](https://www.luogu.com.cn/problem/P3413)
 
-[HDU 6148 Valley Number](https://vjudge.net/problem/HDU-6148)
+[HDU 6148 Valley Number](https://acm.hdu.edu.cn/showproblem.php?pid=6148)
 
 [CF55D Beautiful numbers](http://codeforces.com/problemset/problem/55/D)
 
