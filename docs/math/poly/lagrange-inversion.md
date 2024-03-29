@@ -1,6 +1,6 @@
 ## 形式 Laurent 级数
 
-我们已经知道形式幂级数环 $\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ 了，定义形式 Laurent 级数：
+我们已经知道形式幂级数环 $\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$ 了，定义形式 Laurent 级数环：
 
 $$
 \mathbb{C}\left(\left(x\right)\right):=\left\lbrace \sum_{k\geq N}a_kx^k : N\in\mathbb{Z},a_k\in \mathbb{C}\right\rbrace
@@ -32,7 +32,7 @@ $$
 
 ## 形式留数
 
-形式留数是形式 Laurent 级数中 $x^{-1}$ 项的系数。记 $\operatorname{res} f:=\left\lbrack x^{-1}\right\rbrack f$。
+形式留数是形式 Laurent 级数中 $x^{-1}$ 项的系数。记 $\operatorname{res} f:=\lbrack x^{-1}\rbrack f$。
 
 **引理**：对于任何形式 Laurent 级数 $f$ 有 $\operatorname{res} f'=0$。
 
@@ -113,12 +113,12 @@ $$
 
 ## Lagrange 反演公式
 
-令 $f(x),g(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ 满足 $f(g(x))=g(f(x))=x$。取 $\Phi(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$（或 $\Phi(x)\in\mathbb{C}\left(\left(x\right)\right)$），那么
+令 $f(x),g(x)\in\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$ 满足 $f(g(x))=g(f(x))=x$。取 $\Phi(x)\in\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$（或 $\Phi(x)\in\mathbb{C}\left(\left(x\right)\right)$），那么
 
 $$
 \begin{aligned}
-\left\lbrack x^n\right\rbrack\Phi(f(x))&=\left\lbrack x^{n-1}\right\rbrack\Phi(x)\frac{g'(x)}{g(x)}\left(\frac{x}{g(x)}\right)^n \\
-&=\left\lbrack x^{-1}\right\rbrack\frac{\Phi(x)g'(x)}{g(x)^{n+1}}
+\lbrack x^n\rbrack\Phi(f(x))&=\lbrack x^{n-1}\rbrack\Phi(x)\frac{g'(x)}{g(x)}\left(\frac{x}{g(x)}\right)^n \\
+&=\lbrack x^{-1}\rbrack\frac{\Phi(x)g'(x)}{g(x)^{n+1}}
 \end{aligned}
 $$
 
@@ -126,7 +126,7 @@ $$
 
 $$
 \begin{aligned}
-\left\lbrack x^n\right\rbrack\Phi(f(x))&=\operatorname{res}\left(\frac{\Phi(f(x))}{x^{n+1}}\right) \\
+\lbrack x^n\rbrack\Phi(f(x))&=\operatorname{res}\left(\frac{\Phi(f(x))}{x^{n+1}}\right) \\
 &=\operatorname{res}\left(\frac{\Phi(f(g(x)))g'(x)}{g(x)^{n+1}}\right)\cdot \left(\operatorname{ord}(g(x))\right)^{-1} \\
 &=\operatorname{res}\left(\frac{\Phi(x)g'(x)}{g(x)^{n+1}}\right)
 \end{aligned}
@@ -135,15 +135,15 @@ $$
 一些读者可能会更加熟悉下面的版本：对于 $k\in\mathbb{Z}_{\geq 0},n\in\mathbb{Z}_{>0}$ 有
 
 $$
-\left\lbrack x^n\right\rbrack f(x)^k=\frac{k}{n}\left\lbrack x^{n-k}\right\rbrack\left(\frac{x}{g(x)}\right)^n
+\lbrack x^n\rbrack f(x)^k=\frac{k}{n}\lbrack x^{n-k}\rbrack\left(\frac{x}{g(x)}\right)^n
 $$
 
 或者
 
 $$
 \begin{aligned}
-\left\lbrack x^n\right\rbrack \Phi(f(x))&=\frac{1}{n}\left\lbrack x^{n-1}\right\rbrack \Phi'(x)\left(\frac{x}{g(x)}\right)^n \\
-&=\frac{1}{n}\left\lbrack x^{-1}\right\rbrack\frac{\Phi'(x)}{g(x)^n}
+\lbrack x^n\rbrack \Phi(f(x))&=\frac{1}{n}\lbrack x^{n-1}\rbrack \Phi'(x)\left(\frac{x}{g(x)}\right)^n \\
+&=\frac{1}{n}\lbrack x^{-1}\rbrack\frac{\Phi'(x)}{g(x)^n}
 \end{aligned}
 $$
 
