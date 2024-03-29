@@ -270,7 +270,7 @@ for (int i = 1; i <= n; i++)
 
 ## 习题
 
-[SP5446 FISHNET - Fishing Net](https://www.luogu.com.cn/problem/SP5446)
+[SPOJ FISHNET - Fishing Net](https://www.spoj.com/problems/FISHNET)
 
 [P3196\[HNOI2008\] 神奇的国度](https://www.luogu.com.cn/problem/P3196)
 

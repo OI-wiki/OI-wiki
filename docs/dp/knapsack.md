@@ -404,7 +404,7 @@ g[0] = 1;  // 什么都不装是一种方案
 普通的 0-1 背包是要求最优解，在普通的背包 DP 方法上稍作改动，增加一维用于记录当前状态下的前 k 优解，即可得到求 0-1 背包第 $k$ 优解的算法。
 具体来讲：$\mathit{dp_{i,j,k}}$ 记录了前 $i$ 个物品中，选择的物品总体积为 $j$ 时，能够得到的第 $k$ 大的价值和。这个状态可以理解为将普通 0-1 背包只用记录一个数据的 $\mathit{dp_{i,j}}$ 扩展为记录一个有序的优解序列。转移时，普通背包最优解的求法是 $\mathit{dp_{i,j}}=\max(\mathit{dp_{i-1,j}},\mathit{dp_{i-1,j-v_{i}}}+w_{i})$，现在我们则是要合并 $\mathit{dp_{i-1,j}}$，$\mathit{dp_{i-1,j-v_{i}}}+w_{i}$ 这两个大小为 $k$ 的递减序列，并保留合并后前 $k$ 大的价值记在 $\mathit{dp_{i,j}}$ 里，这一步利用双指针法，复杂度是 $O(k)$ 的，整体时间复杂度为 $O(nmk)$。空间上，此方法与普通背包一样可以压缩掉第一维，复杂度是 $O(mk)$ 的。
 
-??? note "[例题 hdu 2639 Bone Collector II](https://vjudge.net/problem/HDU-2639)"
+??? note " 例题 [HDU 2639 Bone Collector II](https://acm.hdu.edu.cn/showproblem.php?pid=2639)"
     求 0-1 背包的严格第 $k$ 优解。$n \leq 100,v \leq 1000,k \leq 30$
 
 ??? note "实现"

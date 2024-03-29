@@ -210,9 +210,9 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 -   [Luogu P3812【模板】线性基](https://www.luogu.com.cn/problem/P3812)
 -   [Acwing 3164. 线性基](https://www.acwing.com/problem/content/description/3167)
--   [SGU 275 to xor or not xor](https://vjudge.net/problem/SGU-275)
--   [HDU 3949 XOR](https://vjudge.net/problem/HDU-3949)
--   [HDU 6579 Operation](https://vjudge.net/problem/HDU-6579)
+-   [SGU 275 to xor or not xor](https://codeforces.com/problemsets/acmsguru/problem/99999/275)
+-   [HDU 3949 XOR](https://acm.hdu.edu.cn/showproblem.php?pid=3949)
+-   [HDU 6579 Operation](https://acm.hdu.edu.cn/showproblem.php?pid=6579)
 -   [Luogu P4151\[WC2011\] 最大 XOR 和路径](https://www.luogu.com.cn/problem/P4151)
 
 ## 参考资料与注释
