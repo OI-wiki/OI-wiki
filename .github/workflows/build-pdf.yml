@@ -32,7 +32,6 @@ jobs:
             py3-pygments
             inkscape
             libxml2
-            font-roboto-mono
           pre_compile: |
             umask 0 && npm config set cache /tmp/.npm
             wget -O notosans.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"
@@ -40,12 +39,13 @@ jobs:
             wget -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip"
             wget -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
             wget "https://mirror.math.princeton.edu/pub/CTAN/fonts/cm-unicode.zip"
+            git clone https://github.com/googlefonts/RobotoMono
             unzip notosans.zip -d notosans
             unzip notoserif.zip -d notoserif
             unzip notosanscjk.zip -d notosanscjk
             unzip notoserifcjk.zip -d notoserifcjk
             unzip  ./cm-unicode.zip
-            cp -r notosans notoserif notosanscjk notoserifcjk cm-unicode/fonts/otf/* /usr/share/fonts
+            cp -r notosans notoserif notosanscjk notoserifcjk cm-unicode/fonts/otf/* RobotoMono/fonts/ttf/* /usr/share/fonts
             fc-cache
             git clone https://github.com/OI-wiki/OI-Wiki-export.git --depth=1
             cd ./OI-Wiki-export/remark-latex
