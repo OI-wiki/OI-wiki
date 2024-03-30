@@ -374,23 +374,20 @@ $$
     | 欧拉筛 +`bitset`                 | `Euler_bitset`           |
     
     -   当埃氏筛 **存储** 筛出来的素数时：
-        
+    
         -   $N=5 \times 10^7 + 1$ 时的 [测试结果](https://quick-bench.com/q/iQL9FhsZ6PVV81HKABsidRw8hB8)：
-        
+    
             ![](./images/bitset-5e7sp.png)
-        
         -   $N=10^8 + 1$ 时的 [测试结果](https://quick-bench.com/q/pwEamEFUW-6nXeXEALRsYPd8FWI)：
-        
+    
             ![](./images/bitset-1e8sp.png)
-        
     -   当埃氏筛 **不存储** 筛出来的素数时：
-        
+    
         -   $N=5 \times 10^7 + 1$ 时的 [测试结果](https://quick-bench.com/q/rg2mCUxT02a44w9fWvHtZoNTJyU)：
-        
+    
             ![](./images/bitset-5e7.png)
-        
         -   $N=10^8 + 1$ 时的 [测试结果](https://quick-bench.com/q/lusNWxWsR0VXoRBof7uBtqfvJuY)：
-        
+    
             ![](./images/bitset-1e8.png)
     
     从测试结果中可知：
