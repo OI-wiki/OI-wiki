@@ -128,7 +128,7 @@ void _rotate(Node *&cur,
    */
   cur->ch[dir] = tmp->ch[!dir];    // 让 A 的右子节点变成 D
   tmp->ch[!dir] = cur;             // 让 C 的左子节点变成 A
-  tmp->upd_siz(), cur->upd_siz();  // 更新大小信息
+  cur->upd_siz(), tmp->upd_siz();  // 更新大小信息
   cur = tmp;  // 最后把临时储存 C 树的变量赋值到当前根节点上（注意 cur 是引用）
 }
 ```
@@ -834,7 +834,7 @@ void print(Node* cur) {
         Node *tmp = cur->ch[dir];
         cur->ch[dir] = tmp->ch[!dir];
         tmp->ch[!dir] = cur;
-        tmp->upd_siz(), cur->upd_siz();
+        cur->upd_siz(), tmp->upd_siz();
         cur = tmp;
       }
     
