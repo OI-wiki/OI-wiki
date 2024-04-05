@@ -24,8 +24,8 @@ C 标准库操作字符数组 `char[]`/`const char*`。
     
     === "C++"
         ```cpp
-        char str[51] = "abcdefg";
-        char* ptr;
+	char str[51] = "abcdefg";
+	char* ptr;
 	int len, pos;
 	len = strlen(str);
 	printf("%d\n", len);//输出字符串长度7
