@@ -28,25 +28,23 @@ C 标准库操作字符数组 `char[]`/`const char*`。
         char* ptr;
         int len, pos;
         len = strlen(str);
-        printf("%d\n", len);//输出字符串长度 7
+        printf("%d\n", len);  // 输出字符串长度 7
         strcpy(str, "world");
-        printf("%s\n", str);//覆盖原字符串，输出 “world”
+        printf("%s\n", str);  // 覆盖原字符串，输出 “world”
         strncpy(str, "hello", 5);
-        printf("%s\n", str);//替换前5个字符，输出 “hello”
+        printf("%s\n", str);  // 替换前5个字符，输出 “hello”
         strcat(str, "world");
-        printf("%s\n", str);//连接字符串，输出 “helloworld”
-        printf("%d\n", strcmp(str, "hello"));//按字典序比较，输出一个正数
+        printf("%s\n", str);  // 连接字符串，输出 “helloworld”
+        printf("%d\n", strcmp(str, "hello"));  // 按字典序比较，输出一个正数
         ptr = strchr(str, 'l');
-        if (ptr != NULL)
-          pos = ptr - str;
-        printf("l第一次出现的位置是%d\n", pos);//在"helloworld"中查找“l”的位置，输出2
+        if (ptr != NULL) pos = ptr - str;
+        printf("l第一次出现的位置是%d\n", pos);  // 在"helloworld"中查找“l”的位置，输出2
         ptr = strstr(str, "world");
-        if (ptr != NULL)
-          pos = ptr - str;
-        printf("world第一次出现的位置是%d\n", pos);//查找 "world" 的位置，输出5
+        if (ptr != NULL) pos = ptr - str;
+        printf("world第一次出现的位置是%d\n", pos);  // 查找 "world" 的位置，输出5
         ```
-    
-## C++ 标准库
+
+# C++ 标准库
 
 C++ 标准库操作字符串对象 [`std::string`](../lang/csl/string.md)，同时也提供对字符数组的兼容。
 
@@ -72,17 +70,18 @@ C++ 标准库操作字符串对象 [`std::string`](../lang/csl/string.md)，同�
     === "C++"
         ```cpp
         string s1 = "hello", s2 = "world";
-        cout << s1 + s2 << endl;//连接s1,s2 ,输出 "helloworld"
-        cout << (s1 < s2) << endl;//字符串比较，输出 1
-        cout << s1.substr(2, 4) << endl;//从 2 位置到 4 位置的字串，输出 "llo" 
-        s1.append("world");//把字符串 "world" 接到末尾 
-        cout << s1 << endl;//输出 "helloworld"
-        s1.replace(0, 5, "world");//把 0 位置后 5 个字符换成"world" 
-        cout << s1 << endl;//输出 "worldworld"
-        s1.erase(0, 5);//删除 0 位置后 5 个字符
-        cout << s1 << endl;//输出 "world" 
-        s1.insert(0, "hello"); //在 0 位置插入字符串 "hello"。
-        cout << s1 << endl;//输出 "helloworld"
-        cout << s1.find("l") << endl;//查找并返回从起始位置开始字符串 "l" 的位置，输出 2
-        cout << s1.rfind("l") << endl;//查找并返回从末尾开始字符串 "l" 的位置，输出 8
+        cout << s1 + s2 << endl;          // 连接s1,s2 ,输出 "helloworld"
+        cout << (s1 < s2) << endl;        // 字符串比较，输出 1
+        cout << s1.substr(2, 4) << endl;  // 从 2 位置到 4 位置的字串，输出 "llo"
+        s1.append("world");               // 把字符串 "world" 接到末尾
+        cout << s1 << endl;               // 输出 "helloworld"
+        s1.replace(0, 5, "world");        // 把 0 位置后 5 个字符换成"world"
+        cout << s1 << endl;               // 输出 "worldworld"
+        s1.erase(0, 5);                   // 删除 0 位置后 5 个字符
+        cout << s1 << endl;               // 输出 "world"
+        s1.insert(0, "hello");            // 在 0 位置插入字符串 "hello"。
+        cout << s1 << endl;               // 输出 "helloworld"
+        cout << s1.find("l")
+             << endl;  // 查找并返回从起始位置开始字符串 "l" 的位置，输出 2
+        cout << s1.rfind("l") << endl;  // 查找并返回从末尾开始字符串 "l" 的位置，输出 8
         ```
