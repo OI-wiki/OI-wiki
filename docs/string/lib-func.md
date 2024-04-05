@@ -71,8 +71,8 @@ C++ 标准库操作字符串对象 [`std::string`](../lang/csl/string.md)，同�
     
     === "C++"
         ```cpp
-	string s1 = "hello", s2 = "world";
-	cout << s1 + s2 << endl;//连接s1,s2 ,输出 "hello,world"
+        string s1 = "hello", s2 = "world";
+        cout << s1 + s2 << endl;//连接s1,s2 ,输出 "hello,world"
         cout << (s1 < s2) << endl;//字符串比较，输出 1
         cout << s1.substr(2, 4) << endl;//从 2 位置到 4 位置的字串，输出 "llo" 
         s1.append("world");//把字符串 "world" 接到末尾 
