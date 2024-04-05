@@ -28,22 +28,22 @@ C 标准库操作字符数组 `char[]`/`const char*`。
         char* ptr;
         int len, pos;
         len = strlen(str);
-        printf("%d\n", len);//输出字符串长度7
+        printf("%d\n", len);//输出字符串长度 7
         strcpy(str, "world");
-        printf("%s\n", str);//覆盖原字符串，输出world
+        printf("%s\n", str);//覆盖原字符串，输出 “world”
         strncpy(str, "hello", 5);
-        printf("%s\n", str);//替换前5个字符，输出hello
+        printf("%s\n", str);//替换前5个字符，输出 “hello”
         strcat(str, "world");
-        printf("%s\n", str);//连接字符串，输出helloworld
+        printf("%s\n", str);//连接字符串，输出 “helloworld”
         printf("%d\n", strcmp(str, "hello"));//按字典序比较，输出一个正数
         ptr = strchr(str, 'l');
         if (ptr != NULL)
           pos = ptr - str;
-        printf("l第一次出现的位置是%d\n", pos);//在"helloworld"中查找l的位置，输出2
+        printf("l第一次出现的位置是%d\n", pos);//在"helloworld"中查找“l”的位置，输出2
         ptr = strstr(str, "world");
         if (ptr != NULL)
           pos = ptr - str;
-        printf("world第一次出现的位置是%d\n", pos);//查找"world"的位置，输出5
+        printf("world第一次出现的位置是%d\n", pos);//查找 "world" 的位置，输出5
         ```
     
 ## C++ 标准库
