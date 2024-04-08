@@ -13,7 +13,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
     
     第一行一个整数 $n$，代表岛屿数量。
     
-    接下来 $n-1$ 行，每行三个整数 $u,v,w$，代表 $u$ 号岛屿和 $v$ 号岛屿由一条代价为 $c$ 的桥梁直接相连，保证 $1\le u,v\le n$ 且 $1\le c\le 10^5$。
+    接下来 $n-1$ 行，每行三个整数 $u,v,w$，代表 $u$ 号岛屿和 $v$ 号岛屿由一条代价为 $w$ 的桥梁直接相连，保证 $1\le u,v\le n$ 且 $1\le w\le 10^5$。
     
     第 $n+1$ 行，一个整数 $m$，代表敌方机器能使用的次数。
     

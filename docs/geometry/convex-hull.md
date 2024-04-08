@@ -76,17 +76,17 @@
         p = [] # 存储向量或点
         tp = 0 # 初始化栈
         p.sort() # 对点进行排序
-        stk[tp] = 1
         tp = tp + 1
+        stk[tp] = 1
         # 栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
         for i in range(2, n + 1):
             while tp >= 2 and (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0:
                 # 下一行 * 操作符被重载为叉积
                 used[stk[tp]] = 0
                 tp = tp - 1
-                used[i] = 1 # used 表示在凸壳上
-                stk[tp] = i
-                tp = tp + 1
+            used[i] = 1 # used 表示在凸壳上
+            tp = tp + 1
+            stk[tp] = i
         tmp = tp # tmp 表示下凸壳大小
         for i in range(n - 1, 0, -1):
             if used[i] == False:
@@ -94,9 +94,9 @@
                 while tp > tmp and (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0:
                     used[stk[tp]] = 0
                     tp = tp - 1
-                    used[i] = 1
-                    stk[tp] = i
-                    tp = tp + 1
+                used[i] = 1
+                tp = tp + 1
+                stk[tp] = i
         for i in range(1, tp + 1):
             h[i] = p[stk[i]]
         ans = tp - 1
@@ -199,7 +199,7 @@ $$
 
 ## 练习
 
--   [UVA11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673)
+-   [UVa11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673)
 
 -   [「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.com.cn/problem/P2742)
 

@@ -10,7 +10,7 @@ jobs:
   pre_build:
     permissions:
       actions: write
-      contents: read  
+      contents: read
     name: Duplicate Actions Detection
     runs-on: ubuntu-latest
     outputs:
@@ -26,7 +26,7 @@ jobs:
     if: needs.pre_build.outputs.should_skip != 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build the LaTeX document
         uses: OI-wiki/latex-action@v1.0.0
         with:
@@ -54,15 +54,14 @@ jobs:
             wget -O notoserif.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerif-hinted.zip"
             wget -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip"
             wget -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
-            wget -O robotomono.zip "https://fonts.google.com/download?family=Roboto%20Mono"
             wget "https://mirror.math.princeton.edu/pub/CTAN/fonts/cm-unicode.zip"
+            git clone https://github.com/googlefonts/RobotoMono
             unzip notosans.zip -d notosans
             unzip notoserif.zip -d notoserif
             unzip notosanscjk.zip -d notosanscjk
             unzip notoserifcjk.zip -d notoserifcjk
-            unzip robotomono.zip -d robotomono
             unzip  ./cm-unicode.zip
-            cp -r notosans notoserif notosanscjk notoserifcjk robotomono cm-unicode/fonts/otf/* /usr/share/fonts
+            cp -r notosans notoserif notosanscjk notoserifcjk cm-unicode/fonts/otf/* RobotoMono/fonts/ttf/* /usr/share/fonts
             fc-cache
             git config --global --add safe.directory /github/workspace
             git clone https://github.com/OI-wiki/OI-Wiki-export.git
@@ -77,8 +76,7 @@ jobs:
             node incremental-build.js ${{ github.ref }} ${{ secrets.GITHUB_TOKEN }}
           root_file: |
             oi-wiki-export.tex
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: OI-wiki.pdf
           path: ./OI-Wiki-export/oi-wiki-export/oi-wiki-export.pdf
-

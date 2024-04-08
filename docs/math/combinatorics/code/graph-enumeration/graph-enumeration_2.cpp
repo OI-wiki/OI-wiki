@@ -165,7 +165,7 @@ int c(const vector<int> P) {
   int z = 0;
   for (int i = 0; i < P.size(); ++i) {
     z += P[i] / 2;
-    for (int j = 0; j < i; ++j) z += __gcd(P[i], P[j]);
+    for (int j = 0; j < i; ++j) z += gcd(P[i], P[j]);
   }
   return z;
 }

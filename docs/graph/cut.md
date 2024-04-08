@@ -129,9 +129,9 @@ low[u] = min(low[u], dfn[v]);
 ## 练习
 
 -   [P3388【模板】割点（割顶）](https://www.luogu.com.cn/problem/P3388)
--   [POJ2117 Electricity](https://vjudge.net/problem/POJ-2117)
--   [HDU4738 Caocao's Bridges](https://vjudge.net/problem/HDU-4738)
--   [HDU2460 Network](https://vjudge.net/problem/HDU-2460)
--   [POJ1523 SPF](https://vjudge.net/problem/POJ-1523)
+-   [POJ2117 Electricity](http://poj.org/problem?id=2117)
+-   [HDU4738 Caocao's Bridges](https://acm.hdu.edu.cn/showproblem.php?pid=4738)
+-   [HDU2460 Network](https://acm.hdu.edu.cn/showproblem.php?pid=2460)
+-   [POJ1523 SPF](http://poj.org/problem?id=1523)
 
 Tarjan 算法还有许多用途，常用的例如求强连通分量，缩点，还有求 2-SAT 的用途等。
