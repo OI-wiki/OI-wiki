@@ -39,10 +39,9 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-
 更新 `low` 的伪代码如下：
 
 ```cpp
-如果 v 是 u 的儿子，那么：
-    low[u] = min(low[u], low[v]);
+如果 v 是 u 的儿子，那么： low[u] = min(low[u], low[v]);
 否则：
-    low[u] = min(low[u], dfn[v]);
+low[u] = min(low[u], dfn[v]);
 ```
 
 ### 例题
