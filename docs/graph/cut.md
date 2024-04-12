@@ -38,11 +38,14 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-
 
 更新 `low` 的伪代码如下：
 
-```text
-如果 v 是 u 的儿子，那么： low[u] = min(low[u], low[v]);
-否则：
-low[u] = min(low[u], dfn[v]);
-```
+$$
+\begin{array}{ll}
+1 & \textbf{if } v \text{ is a son of } u \\
+2 & \qquad \text{low}_u = \min(\text{low}_u, \text{low}_v) \\
+3 & \text{else} \\
+4 & \qquad \text{low}_u = \min(\text{low}_u, \text{dfn}_v) \\
+\end{array}
+$$
 
 ### 例题
 
