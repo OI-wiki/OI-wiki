@@ -14,7 +14,7 @@
 
 如果我们已知两个数 $a$ 和 $b$，如何求出二者的最大公约数呢？
 
-不妨设 $a > b$
+不妨设 $a > b$。
 
 我们发现如果 $b$ 是 $a$ 的约数，那么 $b$ 就是二者的最大公约数。
 下面讨论不能整除的情况，即 $a = b \times q + r$，其中 $r < b$。
@@ -112,7 +112,7 @@
 
 上述算法都可被称作欧几里得算法（Euclidean algorithm）。
 
-另外，对于 C++ 17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
+另外，对于 C++17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
 
 ???+ warning "注意"
     在部分编译器中，C++14 中可以用 `std::__gcd(a,b)` 函数来求最大公约数，但是其仅作为 `std::rotate` 的私有辅助函数。[^1]使用该函数可能会导致预期之外的问题，故一般情况下不推荐使用。
@@ -169,37 +169,31 @@
 
 高精度模板见 [高精度计算](../bignum.md)。
 
-高精度运算需实现：减法、大小比较、左移、右移（可用低精乘除代替）、判断奇偶。
+高精度运算需实现：减法、大小比较、左移、右移（可用低精乘除代替）、二进制末位 0 的个数（可以通过判断奇偶暴力计算）。
 
 ??? "C++"
     ```cpp
     Big gcd(Big a, Big b) {
-      // 记录a和b的公因数2出现次数
-      int atimes = 0, btimes = 0;
-      while (a % 2 == 0) {
-        a >>= 1;
-        atimes++;
-      }
-      while (b % 2 == 0) {
-        b >>= 1;
-        btimes++;
-      }
+      if (a == 0) return b;
+      if (b == 0) return a;
+      // 记录a和b的公因数2出现次数，countr_zero表示二进制末位0的个数
+      int atimes = countr_zero(a);
+      int btimes = countr_zero(b);
+      a >>= atimes;
       for (;;) {
-        // a和b公因数中的2已经计算过了，后面不可能出现a,b均为偶数的情况
-        while (a % 2 == 0) {
-          a >>= 1;
-        }
-        while (b % 2 == 0) {
-          b >>= 1;
-        }
-        if (a == b) break;
-        // 确保 a>=b
-        if (a < b) swap(a, b);
-        a -= b;
+        // a和b公因数中的2已经计算过了，后面不可能出现a为偶数的情况
+        b >>= btimes;
+        // 确保 a<=b
+        if (a > b) swap(a, b);
+        b -= a;
+        if (b == 0) break;
+        btimes = countr_zero(b);
       }
       return a << min(atimes, btimes);
     }
     ```
+
+上述代码参考了部分编译器对 C++17 `std::gcd` 的实现。如果可以以极快的速度计算 `countr_zero`，则 Stein 算法甚至在 `unsigned int` 和 `unsigned long long` 下性能也比欧几里得算法来得优秀。
 
 ### 多个数的最大公约数
 
