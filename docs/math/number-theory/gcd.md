@@ -196,21 +196,17 @@
 上述代码参考了 [libstdc++](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/std/numeric#L173) 和 [MSVC](https://github.com/microsoft/STL/blob/9aca22477df4eed3222b4974746ee79129eb44e7/stl/inc/numeric#L591) 对 C++17 `std::gcd` 的实现。在 `unsigned int` 和 `unsigned long long` 的数据范围下，如果可以以极快的速度计算 `countr_zero`，则 Stein 算法比欧几里得算法来得快，但反之则可能比欧几里得算法慢。
 
 ???+ note "关于 countr_zero"
-    1. gcc 有[内建函数](/bit/#内建函数) `__builtin_ctz`（32 位）或 `__builtin_ctzll`（64 位）可替换上述代码的 `countr_zero`；
-    2. 从 C++23 开始，头文件 `<bit>` 包含了 `std::countr_zero`；
-    3. 如果不使用不在标准库的函数，又无法使用 C++23 标准，下面的代码是一种在 Word-RAM with multiplication 模型下经过预处理后 $O(1)$ 的实现：
+    1.  gcc 有 [内建函数](/bit/#内建函数) `__builtin_ctz`（32 位）或 `__builtin_ctzll`（64 位）可替换上述代码的 `countr_zero`；
+    2.  从 C++23 开始，头文件 `<bit>` 包含了 `std::countr_zero`；
+    3.  如果不使用不在标准库的函数，又无法使用 C++23 标准，下面的代码是一种在 Word-RAM with multiplication 模型下经过预处理后 $O(1)$ 的实现：
     
     ```cpp
-    const int loghash[64] = {
-      0, 32, 48, 56, 60, 62, 63, 31,
-	  47, 55, 59, 61, 30, 15, 39, 51,
-      57, 28, 46, 23, 43, 53, 58, 29,
-      14, 7, 35, 49, 24, 44, 54, 27,
-      45, 22, 11, 37, 50, 25, 12, 38,
-      19, 41, 52, 26, 13, 6, 3, 33,
-      16, 40, 20, 42, 21, 10, 5, 34,
-      17, 8, 36, 18, 9, 4, 2, 1
-    };
+    const int loghash[64] = {0,  32, 48, 56, 60, 62, 63, 31, 47, 55, 59, 61, 30,
+                             15, 39, 51, 57, 28, 46, 23, 43, 53, 58, 29, 14, 7,
+                             35, 49, 24, 44, 54, 27, 45, 22, 11, 37, 50, 25, 12,
+                             38, 19, 41, 52, 26, 13, 6,  3,  33, 16, 40, 20, 42,
+                             21, 10, 5,  34, 17, 8,  36, 18, 9,  4,  2,  1};
+    
     int countr_zero(unsigned long long x) {
       return loghash[(x & -x) * 0x9150D32D8EB9EFC0Ui64 >> 58];
     }
@@ -232,7 +228,7 @@
       }
       return ans;
     }
-    
+
     // 暴力计算，如需使用建议直接写进 gcd 加快常数
     int countr_zero(Big a) {
       int ans = 0;
