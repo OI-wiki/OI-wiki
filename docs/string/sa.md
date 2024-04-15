@@ -458,8 +458,8 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 ## 习题
 
--   [Uva 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701)
--   [Uva 1223 - Editor](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664)
+-   [UVa 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701)
+-   [UVa 1223 - Editor](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664)
 -   [Codechef - Tandem](https://www.codechef.com/problems/TANDEM)
 -   [Codechef - Substrings and Repetitions](https://www.codechef.com/problems/ANUSAR)
 -   [Codechef - Entangled Strings](https://www.codechef.com/problems/TANGLED)
