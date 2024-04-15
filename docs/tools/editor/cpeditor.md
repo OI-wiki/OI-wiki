@@ -1,8 +1,8 @@
-author: zarrtic
+author: zarrtic, xk2013
 
 ## 简介
 
-[CP Editor](https://github.com/cpeditor/cpeditor) 专为算法竞赛设计，不像其它 IDE 主要是为了开发设计的。它可以帮助你自动化编译、运行、测试，从而让你专注于算法设计。它甚至可以从各种算法竞赛网站上获取样例，将代码提交到 Codeforces 上！
+[CP Editor](https://github.com/cpeditor/cpeditor) 专为算法竞赛设计，不像其它 IDE 主要是为了开发设计的。它可以帮助你自动化编译、运行、测试，从而让你专注于算法设计。它甚至可以从各种算法竞赛网站上获取样例，将代码提交到 [Codeforces](https://codeforces.com/) 上！
 
 ## 下载与安装
 
@@ -10,7 +10,7 @@ author: zarrtic
 
 ## 基础配置
 
-> CP Editor 内部没有集成编译器，需要自己安装配置编译器，如有需要请参考本站关于编译器安装相关的文章[^compiler]。
+> CP Editor 内部没有集成编译器，需要自己安装配置编译器，如有需要请参考本站关于编译器安装相关的文章[^compiler]，当然，如果你在下载时选择了带有 `LLVM` 后缀的安装包，你就可以使用 CP Editor 自带的编译器，路径在 `{安装目录}/mingw64/bin/`，版本为 `13.2.0`。
 
 -   设置默认语言
 
@@ -33,6 +33,27 @@ author: zarrtic
     ![cp-setting-lang-4](images/cp-setting-lang-4.png)
 
 > 完成了以上的基本操作你就可以使用最基本的功能了。
+
+## 基本功能
+-   快捷键
+    | 命令 | 操作 |
+    | :-: | :-: |
+    | `Ctrl+Shift+C` | 编译。 |
+    | `Ctrl+Shift+R` | 编译并运行。 |
+    | `Ctrl+R` | 运行。 |
+    | `Ctrl+Alt+D` | 在终端中运行。 |
+    | `Ctrl+K` | 终止所有进程。 |
+    | `Ctrl+Shift+I` | 格式化代码。 |
+    具体可以查阅官方文档。
+
+-   样例测试
+    可以把题面的样例复制下来，由 CP Editor 自动评测，而且还可以设置时间限制！
+
+    ![cp-setting-limits](images/cp-setting-limits.png)
+    ![cp-judge-1](images/cp-judge-1.png)
+    ![cp-judge-2](images/cp-judge-2.png)
+    ![cp-judge-3](images/cp-judge-3.png)
+    ![cp-judge-4](images/cp-judge-4.png)
 
 ## 参考资料
 
