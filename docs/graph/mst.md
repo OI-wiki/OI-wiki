@@ -235,7 +235,7 @@ $$
 
 接下来介绍另一种求解最小生成树的算法——Boruvka 算法。该算法的思想是前两种算法的结合。它可以用于求解无向图的最小生成森林。（无向连通图就是最小生成树。）
 
-在边具有较多特殊性质的问题中，Boruvka 算法具有优势。例如 [CF888G](http://codeforces.com/problemset/problem/888/G) 的完全图问题。
+在边具有较多特殊性质的问题中，Boruvka 算法具有优势。例如 [CF888G](https://codeforces.com/problemset/problem/888/G) 的完全图问题。
 
 为了描述该算法，我们需要引入一些定义：
 
