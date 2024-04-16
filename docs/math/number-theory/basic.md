@@ -2,7 +2,8 @@
 
 ## 整除
 
-整除的定义：设 $a,b\in\mathbf{Z}$，$a\ne 0$。如果 $\exists q\in\mathbf{Z}$，使得 $b=aq$，那么就说 $b$ 可被 $a$ 整除，记作 $a\mid b$；$b$ 不被 $a$ 整除记作 $a\nmid b$。
+???+ note "定义"
+    设 $a,b\in\mathbf{Z}$，$a\ne 0$。如果 $\exists q\in\mathbf{Z}$，使得 $b=aq$，那么就说 $b$ 可被 $a$ **整除**，记作 $a\mid b$；$b$ 不被 $a$ 整除记作 $a\nmid b$。
 
 整除的性质：
 
@@ -14,7 +15,10 @@
 -   设 $b\ne0$，那么 $a\mid b\implies|a|\le|b|$。
 -   设 $a\ne0,b=qa+c$，那么 $a\mid b\iff a\mid c$。
 
-约数（因数）：若 $a\mid b$，则称 $b$ 是 $a$ 的倍数，$a$ 是 $b$ 的约数。
+### 约数
+
+???+ note "定义"
+    若 $a\mid b$，则称 $b$ 是 $a$ 的**倍数**，$a$ 是 $b$ 的**约数**。
 
 $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只有有限个。
 
@@ -31,7 +35,8 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 
 ## 带余数除法
 
-余数的定义：设 $a,b$ 为两个给定的整数，$a\ne0$。设 $d$ 是一个给定的整数。那么，一定存在唯一的一对整数 $q$ 和 $r$，满足 $b=qa+r,d\le r<|a|+d$。
+???+ note "定义（余数）"
+    设 $a,b$ 为两个给定的整数，$a\ne0$。设 $d$ 是一个给定的整数。那么，一定存在唯一的一对整数 $q$ 和 $r$，满足 $b=qa+r,d\le r<|a|+d$。
 
 无论整数 $d$ 取何值，$r$ 统称为余数。$a\mid b$ 等价于 $a\mid r$。
 
@@ -39,9 +44,8 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 
 余数往往还有两种常见取法：
 
-绝对最小余数：$d$ 取 $a$ 的绝对值的一半的相反数。即 $b=qa+r,-\dfrac{|a|}{2}\le r<|a|-\dfrac{|a|}{2}$。
-
-最小正余数：$d$ 取 $1$。即 $b=qa+r,1\le r<|a|+1$。
+-   绝对最小余数：$d$ 取 $a$ 的绝对值的一半的相反数。即 $b=qa+r,-\dfrac{|a|}{2}\le r<|a|-\dfrac{|a|}{2}$。
+-   最小正余数：$d$ 取 $1$。即 $b=qa+r,1\le r<|a|+1$。
 
 带余数除法的余数只有最小非负余数。**如果没有特别说明，余数总是指最小非负余数。**
 
@@ -54,11 +58,54 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 
 关于公约数、公倍数、最大公约数与最小公倍数，四个名词的定义，见 [最大公约数](./gcd.md)。
 
+???+ warning
+    一些作者认为 $0$ 和 $0$ 的最大公约数无定义，其余作者一般将其视为 $0$。C++ STL 的实现中采用后者，即认为 $0$ 和 $0$ 的最大公约数为 $0$[^gcdcpp]。
+
+最大公约数有如下性质：
+
+-   $\gcd(a_1,\dots,a_n)=\gcd(|a_1|,\dots,|a_n|)$；
+-   $\gcd(a,b)=\gcd(b,a)$；
+-   若 $a\ne 0$，则 $\gcd(a,0)=\gcd(a,a)=|a|$；
+-   $\gcd(bq+r,b)=\gcd(r,b)$；
+-   $\gcd(a_1,\dots,a_n)=\gcd(\gcd(a_1,a_2),a_3,\dots,a_n)$；
+-   对不全为 $0$ 的整数 $a_1,\dots,a_n$ 和非零整数 $m$，$\gcd(ma_1,\dots,ma_n)=|m|\gcd(a_1,\dots,a_n)$；
+-   对不全为 $0$ 的整数 $a_1,\dots,a_n$，若 $\gcd(a_1,\dots,a_n)=d$，则 $\gcd(a_1/d,\dots,a_n/d)=1$；
+-   $\gcd(a^n,b^n)=\gcd(a,b)^n$。
+
+最大公约数还有如下与互素相关的性质：
+
+-   若 $b|ac$ 且 $\gcd(a,b)=1$，则 $b\mid c$；
+-   若 $b|c$、$a|c$ 且 $\gcd(a,b)=1$，则 $ab\mid c$；
+-   若 $\gcd(a,b)=1$，则 $\gcd(a,bc)=\gcd(a,c)$；
+-   若 $\gcd(a_i,b_j)=1,~\forall 1\leq i\leq n,1\leq j\leq m$，则 $\gcd\left(\prod_i a_i,\prod_j b_j\right)=1$。特别地，若 $\gcd(a,b)=1$，则 $\gcd(a^n,b^m)=1$；
+-   对整数 $a_1,\dots,a_n$，若 $\exists v\in \mathbf{Z},~\prod_i a_i=v^m$，且 $(a_i,a_j)=1,~\forall i\ne j$，则 $\forall 1\leq i\leq m,~\sqrt[m]{a_i}\in\mathbf{Z}$。
+
+最小公倍数有如下性质：
+
+-   若 $a\ne 0$，则 $\operatorname{lcm}(a,1)=\operatorname{lcm}(a,a)=|a|$；
+-   $\operatorname{lcm}(a,b)=\operatorname{lcm}(b,a)$；
+-   $\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(|a_1|,\dots,|a_n|)$；
+-   $\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(\operatorname{lcm}(a_1,a_2),a_3,\dots,a_n)$；
+-   若 $a\mid b$，则 $\operatorname{lcm}(a,b)=|b|$；
+-   若 $a_i\mid m,~\forall 1\leq i\leq n$，则 $\operatorname{lcm}(a_1,\dots,a_n)\mid m$；
+-   $\operatorname{lcm}(ma_1,\dots,ma_n)=|m|\operatorname{lcm}(a_1,\dots,a_n)$；
+-   $\operatorname{lcm}(a,b,c)\operatorname{lcm}(ab,ba,ca)=\operatorname{lcm}(a,b)\operatorname{lcm}(b,c)\operatorname{lcm}(c,a)$；
+-   $\operatorname{lcm}(a^n,b^n)=\operatorname{lcm}(a,b)^n$。
+
+最大公约数和最小公倍数可以组合出很多奇妙的等式，如：
+
+-   $\gcd(a,b)\operatorname{lcm}(a,b)=|ab|$；
+-   $\gcd(ab,bc,ca)\operatorname{lcm}(a,b,c)=|abc|$；
+-   $\dfrac{\gcd(a,b,c)^2}{\gcd(a,b)\gcd(b,c)\gcd(a,c)}=\dfrac{\operatorname{lcm}(a,b,c)^2}{\operatorname{lcm}(a,b)\operatorname{lcm}(b,c)\operatorname{lcm}(a,c)}$。
+
+这些等式均可通过 [唯一分解定理](#算术基本定理) 证明。
+
 ### 互素
 
-两个整数互素（既约）的定义：若 $\gcd(a_1,a_2)=1$，则称 $a_1$ 和 $a_2$ 互素（既约）。
-
-多个整数互素（既约）的定义：若 $\gcd(a_1,\ldots,a_k)=1$，则称 $a_1,\ldots,a_k$ 互素（既约）。
+???+ note "定义"
+    若 $\gcd(a_1,a_2)=1$，则称 $a_1$ 和 $a_2$ **互素**（**既约**）。
+    
+    若 $\gcd(a_1,\ldots,a_k)=1$，则称 $a_1,\ldots,a_k$ **互素**（**既约**）。
 
 多个整数互素，不一定两两互素。例如 $6$、$10$ 和 $15$ 互素，但是任意两个都不互素。
 
@@ -72,9 +119,10 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 
 关于素数的算法见 [素数](./prime.md)。
 
-设整数 $p\ne0,\pm1$。如果 $p$ 除了平凡约数外没有其他约数，那么称 $p$ 为素数（不可约数）。
-
-若整数 $a\ne0,\pm 1$ 且 $a$ 不是素数，则称 $a$ 为合数。
+???+ note "定义"
+    设整数 $p\ne0,\pm1$。如果 $p$ 除了平凡约数外没有其他约数，那么称 $p$ 为 **素数**（**不可约数**）。
+    
+    若整数 $a\ne0,\pm 1$ 且 $a$ 不是素数，则称 $a$ 为 **合数**。
 
 $p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明，素数总是指正的素数。**
 
@@ -91,41 +139,39 @@ $p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明�
 
 ## 算术基本定理
 
-算术基本引理：
-
-设 $p$ 是素数，$p\mid a_1a_2$，那么 $p\mid a_1$ 和 $p\mid a_2$ 至少有一个成立。
+???+ note "算术基本引理"
+    设 $p$ 是素数，$p\mid a_1a_2$，那么 $p\mid a_1$ 和 $p\mid a_2$ 至少有一个成立。
 
 算术基本引理是素数的本质属性，也是素数的真正定义。
 
-算术基本定理（唯一分解定理）：
+???+ note "算术基本定理（唯一分解定理）"
+    设正整数 $a$，那么必有表示：
+    
+    $$
+    a=p_1p_2\cdots p_s
+    $$
+    
+    其中 $p_j(1\le j\le s)$ 是素数。并且在不计次序的意义下，该表示唯一。
 
-设正整数 $a$，那么必有表示：
-
-$$
-a=p_1p_2\cdots p_s
-$$
-
-其中 $p_j(1\le j\le s)$ 是素数。并且在不计次序的意义下，该表示唯一。
-
-标准素因数分解式：
-
-将上述表示中，相同的素数合并，可得：
-
-$$
-a={p_1}^{\alpha_1}{p_2}^{\alpha_2}\cdots{p_s}^{\alpha_s},p_1<p_2<\cdots<p_s
-$$
-
-称为正整数 $a$ 的标准素因数分解式。
+???+ note "标准素因数分解式"
+    将上述表示中，相同的素数合并，可得：
+    
+    $$
+    a={p_1}^{\alpha_1}{p_2}^{\alpha_2}\cdots{p_s}^{\alpha_s},p_1<p_2<\cdots<p_s
+    $$
+    
+    称为正整数 $a$ 的标准素因数分解式。
 
 算术基本定理和算术基本引理，两个定理是等价的。
 
 ## 同余
 
-同余的定义：设整数 $m\ne0$。若 $m\mid(a-b)$，称 $m$ 为模数（模），$a$ 同余于 $b$ 模 $m$，$b$ 是 $a$ 对模 $m$ 的剩余。记作 $a\equiv b\pmod m$。
-
-否则，$a$ 不同余于 $b$ 模 $m$，$b$ 不是 $a$ 对模 $m$ 的剩余。记作 $a\not\equiv b\pmod m$。
-
-这样的等式，称为模 $m$ 的同余式，简称同余式。
+???+ note "定义"
+    设整数 $m\ne0$。若 $m\mid(a-b)$，称 $m$ 为 **模数**（**模**），$a$ 同余于 $b$ 模 $m$，$b$ 是 $a$ 对模 $m$ 的 **剩余**。记作 $a\equiv b\pmod m$。
+    
+    否则，$a$ 不同余于 $b$ 模 $m$，$b$ 不是 $a$ 对模 $m$ 的剩余。记作 $a\not\equiv b\pmod m$。
+    
+    这样的等式，称为模 $m$ 的同余式，简称 **同余式**。
 
 根据整除的性质，上述同余式也等价于 $a\equiv b\pmod{(-m)}$。
 
@@ -135,12 +181,14 @@ $$
 
 同余的性质：
 
--   自反性：$a\equiv a\pmod m$。
--   对称性：若 $a\equiv b\pmod m$，则 $b\equiv a\pmod m$。
--   传递性：若 $a\equiv b\pmod m,b\equiv c\pmod m$，则 $a\equiv c\pmod m$。
+-   同余是 [等价关系](../order-theory.md#二元关系)，即同余具有
+    -   自反性：$a\equiv a\pmod m$。
+    -   对称性：若 $a\equiv b\pmod m$，则 $b\equiv a\pmod m$。
+    -   传递性：若 $a\equiv b\pmod m,b\equiv c\pmod m$，则 $a\equiv c\pmod m$。
 -   线性运算：若 $a,b,c,d\in\mathbf{Z},m\in\mathbf{N}^*,a\equiv b\pmod m,c\equiv d\pmod m$ 则有：
     -   $a\pm c\equiv b\pm d\pmod m$。
     -   $a\times c\equiv b\times d\pmod m$。
+-   设 $f(x)=\sum_{i=0}^n a_ix^i$ 和 $g(x)=\sum_{i=0}^n b_ix^i$ 是两个整系数多项式，$m\in\mathbf{N}^*$，则对任意整数 $x$ 均有 $f(x)\equiv g(x)\pmod m$。进而若 $a_i\equiv b_i\pmod m,~0\leq i\leq n$，那么若 $s\equiv t\pmod m$，则 $f(s)\equiv g(t)\pmod m$。
 -   若 $a,b\in\mathbf{Z},k,m\in\mathbf{N}^*,a\equiv b\pmod m$, 则 $ak\equiv bk\pmod{mk}$。
 -   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid a,d\mid b,d\mid m$，则当 $a\equiv b\pmod m$ 成立时，有 $\dfrac{a}{d}\equiv\dfrac{b}{d}\left(\bmod\;{\dfrac{m}{d}}\right)$。
 -   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid m$，则当 $a\equiv b\pmod m$ 成立时，有 $a\equiv b\pmod d$。
@@ -168,17 +216,197 @@ $$
 -5 % -3 == -2;
 ```
 
+## 同余类与剩余系
+
+为方便讨论，对集合 $A,B$ 和元素 $r$，我们引入如下记号：
+
+- $r+A:=\{r+a:a\in A\}$；
+- $rA:=\{ra:a\in A\}$；
+- $A+B:=\{a+b:a\in A,b\in B\}$；
+- $AB:=\{ab:a\in A,b\in B\}$。
+
+???+ note "同余类"
+    对非零整数 $m$，把全体整数分成 $|m|$ 个两两不交的集合，且同一个集合中的任意两个数模 $m$ 均同余，我们把这 $|m|$ 个集合均称为模 $m$ 的**同余类**或**剩余类**。用 $r\bmod m$ 表示含有整数 $r$ 的模 $m$ 的同余类。
+    
+    不难证明对任意非零整数 $m$，上述划分方案一定存在且唯一。
+
+由同余类的定义可知：
+
+-   $r\bmod m=\{r+km:k\in\mathbf{Z}\}$；
+-   $r\bmod m=s\bmod m\iff r\equiv s\pmod m$；
+-   对任意 $r,s\in\mathbf{Z}$，要么 $r\bmod m=s\bmod m$，要么 $(r\bmod m)\cap (s\bmod m)=\varnothing$；
+-   若 $m_1\mid m$，则对任意整数 $r$ 均有 $r+m\mathbf{Z}\subseteq r+m_1\mathbf{Z}$。
+
+注意到同余是等价关系，所以同余类即为同余关系的等价类。
+
+我们把模 $m$ 的同余类全体构成的集合记为 $\mathbf{Z}_m$，即
+
+$$
+\mathbf{Z}_m:=\{r\bmod m:0\leq r<m\}
+$$
+
+不难发现：
+
+-   对任意整数 $a$，$a+\mathbf{Z}_m=\mathbf{Z}_m$；
+-   对任意与 $m$ 互质的整数 $b$，$b\mathbf{Z}_m=\mathbf{Z}_m$。
+
+由 [商群](../group-theory.md#商群) 的定义可知 $\mathbf{Z}_m=\mathbf{Z}/m\mathbf{Z}$，所以有时我们也会用 $\mathbf{Z}/m\mathbf{Z}$ 表示 $\mathbf{Z}_m$。
+
+可知：
+
+-   任取 $m+1$ 个整数，必有两个整数模 $m$ 同余。
+-   存在 $m$ 个两两模 $m$ 不同余的整数。
+
+由此我们给出完全剩余系的定义：
+
+???+ note "（完全）剩余系"
+    对 $m$ 个整数 $a_1,a_2,\dots,a_m$，若对任意的数 $x$，有且仅有一个数 $a_i$ 使得 $x$ 与 $a_i$ 模 $m$ 同余，则称这 $m$ 个整数 $a_1,a_2,\dots,a_m$ 为模 $m$ 的**完全剩余系**，简称**剩余系**。
+
+我们还可以定义模 $m$ 的：
+
+-   最小非负（完全）剩余系：$0,\dots,m-1$；
+-   最小正（完全）剩余系：$1,\dots,m$；
+-   绝对最小（完全）剩余系：$-\lfloor m/2\rfloor,\dots,-\lfloor -m/2\rfloor-1$；
+-   最大非正（完全）剩余系：$-m+1,\dots,0$；
+-   最大负（完全）剩余系：$-m,\dots,-1$。
+
+若无特殊说明，一般我们只用最小非负剩余系。
+
+---
+
+我们注意到如下命题成立：
+
+-   在模 $m$ 的任意一个同余类中，任取两个整数 $a_1,a_2$ 均有 $(a_1,m)=(a_2,m)$。
+
+考虑同余类 $r\bmod m$ ，若 $\gcd(r,m)=1$，则该同余类的所有元素均与 $m$ 互质，这说明我们也许可以通过类似方式得知所有与 $m$ 互质的整数构成的集合的结构。
+
+???+ note "既约同余类"
+    对同余类 $r\bmod m$，若 $\gcd(r,m)=1$，则称该同余类为**既约同余类**或**既约剩余类**。
+    
+    我们把模 $m$ 既约剩余类的个数记作 $\varphi(m)$，称其为 [Euler 函数](./euler-totient.md)。
+
+我们把模 $m$ 的既约同余类全体构成的集合记为 $\mathbf{Z}_m^*$，即
+
+$$
+\mathbf{Z}_m^*:=\{r\bmod m:0\leq r<m,\gcd(r,m)=1\}
+$$
+
+???+ warning
+    对于任意的整数 $a$ 和与 $m$ 互质的整数 $b$，$b\mathbf{Z}_m^*=\mathbf{Z}_m^*$，但是 $a+\mathbf{Z}_m^*$ 不一定为 $\mathbf{Z}_m^*$。这一点与 $\mathbf{Z}_m$ 不同。
+
+可知：
+
+-   任取 $\varphi(m)+1$ 个与 $m$ 互质的整数，必有两个整数模 $m$ 同余。
+-   存在 $\varphi(m)$ 个与 $m$ 互质且两两模 $m$ 不同余的整数。
+
+由此我们给出既约剩余系的定义：
+
+???+ note "既约剩余系"
+    对 $t=\varphi(m)$ 个整数 $a_1,a_2,\dots,a_t$，若 $\gcd(a_i,m)=1,~\forall 1\leq i\leq t$，且对任意满足 $\gcd(x,m)=1$ 的数 $x$，有且仅有一个数 $a_i$ 使得 $x$ 与 $a_i$ 模 $m$ 同余，则称这 $t$ 个整数 $a_1,a_2,\dots,a_t$ 为模 $m$ 的**既约剩余系**、**缩剩余系** 或 **简化剩余系**。
+
+类似地，我们也可以定义最小非负既约剩余系等概念。
+
+若无特殊说明，一般我们只用最小非负既约剩余系。
+
+### 剩余系的复合
+
+对正整数 $m$，我们有如下定理：
+
+-   若 $m=m_1m_2,~1\leq m_1,m_2$，令 $Z_{m_1},Z_{m_2}$ 分别为模 $m_1,m_2$ 的**完全**剩余系，则：
+    
+    $$
+    Z_m=Z_{m_1}+m_1Z_{m_2}.
+    $$
+
+    为模 $m$ 的**完全**剩余系。进而，若 $m=\prod_{i=1}^k m_i,~1\leq m_1,m_2,\dots,m_k$，令 $Z_{m_1},\dots,Z_{m_k}$ 分别为模 $m_1,\dots,m_k$ 的**完全**剩余系，则：
+    
+    $$
+    Z_m=\sum_{i=1}^k\left(\prod_{j=1}^{i-1}m_j\right)Z_{m_i}.
+    $$
+
+    为模 $m$ 的**完全**剩余系。
+    
+    ???+ note "证明"
+        只需证明对任意满足 $x+m_1y\equiv x'+m_1y'\pmod{m_1m_2}$ 的 $x,x'\in Z_{m_1}$，$y,y'\in Z_{m_2}$，都有：
+        
+        $$
+        x+m_1y=x'+m_1y'.
+        $$
+        
+        实际上，由 $m_1\mid m_1m_2$，我们有 $x+m_1y\equiv x'+m_1y'\pmod{m_1}$，进而 $x\equiv x'\pmod{m_1}$，即 $x=x'$。
+        
+        进一步，$m_1y\equiv m_1y'\pmod{m_1m_2}$，则 $y\equiv y'\pmod{m_2}$，即 $y=y'$。
+        
+        因此，
+        
+        $$
+        x+m_1y=x'+m_1y'.
+        $$
+
+-   若 $m=m_1m_2,~1\leq m_1,m_2,\gcd(m_1,m_2)=1$，令 $Z_{m_1}^*,Z_{m_2}^*$ 分别为模 $m_1,m_2$ 的**既约**剩余系，则：
+
+    $$
+    Z_m^*=m_2Z_{m_1}^*+m_1Z_{m_2}^*.
+    $$
+
+    为模 $m$ 的**既约**剩余系。
+
+    ???+ tip
+        该定理等价于证明 Euler 函数为 [积性函数](#积性函数)。
+
+    ???+ note "证明"
+        令 $Z_{m_1},Z_{m_2}$ 分别为模 $m_1,m_2$ 的完全剩余系，我们已经证明了
+        
+        $$
+        Z_m=m_2Z_{m_1}+m_1Z_{m_2}
+        $$
+        
+        为模 $m$ 的完全剩余系。令 $M=\{a\in Z_m:(a,m)=1\}\subseteq Z_m$，显然 $M$ 为模 $m$ 的既约剩余系，所以我们只需证明 $M=Z_m^*$ 即可。
+        
+        显然 $Z_m^*\subseteq Z_m$。
+        
+        任取 $m_2x+m_1y\in M$，其中 $x\in Z_{m_1}$ 且 $y\in Z_{m_2}$，有 $(m_2x+m_1y,m_1m_2)=1$，由 $(m_1,m_2)=1$ 可得
+        
+        $$
+        1=(m_2x+m_1y,m_1)=(m_2x,m_1)=(x,m_1),
+        $$
+        
+        $$
+        1=(m_2x+m_1y,m_2)=(m_1y,m_2)=(y,m_2).
+        $$
+        
+        因此可得 $x\in Z_{m_1}^*$ 且 $y\in Z_{m_2}^*$，即 $M\subseteq Z_m^*$。
+        
+        任取 $m_2x+m_1y\in Z_m^*$，其中 $x\in Z_{m_1}^*$ 且 $y\in Z_{m_2}^*$，有 $(x,m_1)=1$ 且 $(y,m_2)=1$，由 $(m_1,m_2)=1$ 可得
+        
+        $$
+        (m_2x+m_1y,m_1)=(m_2x,m_1)=(x,m_1)=1,
+        $$
+        
+        $$
+        (m_2x+m_1y,m_2)=(m_1y,m_2)=(x,m_2)=1,
+        $$
+        
+        因此可得 $(m_2x+m_1y,m_1m_2)=1$，即 $Z_m^*\subseteq M$。
+        
+        综上所述，
+        
+        $$
+        Z_m^*=m_2Z_{m_1}^*+m_1Z_{m_2}^*.
+        $$
+        
+        为模 $m$ 的**既约**剩余系。
+
 ## 数论函数
 
 数论函数指定义域为正整数的函数。数论函数也可以视作一个数列。
 
 ## 积性函数
 
-### 定义
-
-若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*,\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为积性函数。
-
-若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为完全积性函数。
+???+ note "定义"
+    若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*,\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为**积性函数**。
+    
+    若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为**完全积性函数**。
 
 ### 性质
 
@@ -216,8 +444,12 @@ $$
 
 ## 参考资料与注释
 
+1.  潘承洞，潘承彪。初等数论。北京大学出版社。
+
 [^ref1]: [Are all primes (past 2 and 3) of the forms 6n+1 and 6n-1?](https://primes.utm.edu/notes/faq/six.html)
 
 [^operatorc]: [Arithmetic operators (C) - cppreference.com](https://en.cppreference.com/w/c/language/operator_arithmetic)
 
 [^operatorcpp]: [Arithmetic operators (C++) - cppreference.com](https://en.cppreference.com/w/cpp/language/operator_arithmetic)
+
+[^gcdcpp]: [std::gcd - cppreference.com](https://en.cppreference.com/w/cpp/numeric/gcd)
