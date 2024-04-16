@@ -38,8 +38,8 @@ author: zarrtic, xk2013
 
 -   快捷键
 
-    |       命令       |    操作   |
-    | :------------: | :-----: |
+    |            命令           |    操作   |
+    | :---------------------: | :-----: |
     | <kbd>Ctrl+Shift+C</kbd> |   编译。   |
     | <kbd>Ctrl+Shift+R</kbd> |  编译并运行。 |
     |    <kbd>Ctrl+R</kbd>    |   运行。   |
@@ -47,7 +47,7 @@ author: zarrtic, xk2013
     |    <kbd>Ctrl+K</kbd>    | 终止所有进程。 |
     | <kbd>Ctrl+Shift+I</kbd> |  格式化代码。 |
 
-    具体可以查阅[官方文档](https://cpeditor.org/zh/docs/preferences/key-bindings/)。
+    具体可以查阅 [官方文档](https://cpeditor.org/zh/docs/preferences/key-bindings/)。
 
 -   样例测试
 
