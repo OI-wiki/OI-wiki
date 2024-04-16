@@ -42,7 +42,7 @@ $$
 \begin{array}{ll}
 1 & \textbf{if } v \text{ is a son of } u \\
 2 & \qquad \text{low}_u = \min(\text{low}_u, \text{low}_v) \\
-3 & \text{else} \\
+3 & \textbf{else} \\
 4 & \qquad \text{low}_u = \min(\text{low}_u, \text{dfn}_v) \\
 \end{array}
 $$
