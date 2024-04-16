@@ -37,7 +37,7 @@ author: zarrtic, xk2013
 ## 基本功能
 
 -   快捷键
-    
+
     |       命令       |    操作   |
     | :------------: | :-----: |
     | `Ctrl+Shift+C` |   编译。   |
@@ -46,21 +46,21 @@ author: zarrtic, xk2013
     |  `Ctrl+Alt+D`  | 在终端中运行。 |
     |    `Ctrl+K`    | 终止所有进程。 |
     | `Ctrl+Shift+I` |  格式化代码。 |
-    
+
     具体可以查阅官方文档。
 
 -   样例测试
-    
+
     可以把题面的样例复制下来，由 CP Editor 自动评测，而且还可以设置时间限制！
 
     ![cp-setting-limits](images/cp-setting-limits.png)
-    
+
     ![cp-judge-1](images/cp-judge-1.png)
-    
+
     ![cp-judge-2](images/cp-judge-2.png)
-    
+
     ![cp-judge-3](images/cp-judge-3.png)
-    
+
     ![cp-judge-4](images/cp-judge-4.png)
 
 ## 参考资料
