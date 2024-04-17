@@ -12,20 +12,20 @@ ACL 是 [开源项目](https://github.com/atcoder/ac-library)。这意味着你�
 
 ## 如何安装
 
-- 前往 [GitHub Releases](https://github.com/atcoder/ac-library/releases/) 下载并解压 zip 文件，会得到一个 `atcoder` 目录。
-- 如果你使用 g++，你可以将待编译的 `main.cpp` 与 `atcoder` 放在同一个目录下，然后运行 `g++ main.cpp -std=c++14 -I .`。
-    - 为了正常使用 AtCoder Library，确保你的 C++ 版本设置为 14 或更高。
-- 关于其他安装和使用的方式，请参见 [附录](./appendix.md)。
+-   前往 [GitHub Releases](https://github.com/atcoder/ac-library/releases/) 下载并解压 zip 文件，会得到一个 `atcoder` 目录。
+-   如果你使用 g++，你可以将待编译的 `main.cpp` 与 `atcoder` 放在同一个目录下，然后运行 `g++ main.cpp -std=c++14 -I .`。
+    -   为了正常使用 AtCoder Library，确保你的 C++ 版本设置为 14 或更高。
+-   关于其他安装和使用的方式，请参见 [附录](./appendix.md)。
 
 ## 约定
 
-- 如果输入不满足约束条件，则行为未定义。
-- 简单起见，我们有以下类型的缩写：
-    - `uint` 是 `unsigned int` 的缩写。
-    - `ll` 是 `long long` 的缩写。
-    - `ull` 是 `unsigned long long` 的缩写。
-- 约定 $0^0=1$。
-- 除非特别说明，否则图中允许存在重边和自环。
+-   如果输入不满足约束条件，则行为未定义。
+-   简单起见，我们有以下类型的缩写：
+    -   `uint` 是 `unsigned int` 的缩写。
+    -   `ll` 是 `long long` 的缩写。
+    -   `ull` 是 `unsigned long long` 的缩写。
+-   约定 $0^0=1$。
+-   除非特别说明，否则图中允许存在重边和自环。
 
 ## 列表
 
@@ -33,24 +33,24 @@ ACL 是 [开源项目](https://github.com/atcoder/ac-library)。这意味着你�
 
 ### 数据结构
 
-- [`#include <atcoder/fenwicktree>` 树状数组](./fenwicktree.md)
-- [`#include <atcoder/segtree>` 线段树](./segtree.md)
-- [`#include <atcoder/lazysegtree>` 惰性线段树（带懒惰标记的线段树）](./lazysegtree.md)
-- [`#include <atcoder/string>` 字符串](./string.md)
+-   [`#include <atcoder/fenwicktree>` 树状数组](./fenwicktree.md)
+-   [`#include <atcoder/segtree>` 线段树](./segtree.md)
+-   [`#include <atcoder/lazysegtree>` 惰性线段树（带懒惰标记的线段树）](./lazysegtree.md)
+-   [`#include <atcoder/string>` 字符串](./string.md)
 
 ### 数学
 
-- [`#include <atcoder/math>` 数学](./math.md)
-- [`#include <atcoder/convolution>` 卷积](./convolution.md)
-- [`#include <atcoder/modint>` 自取模整数](./modint.md)
+-   [`#include <atcoder/math>` 数学](./math.md)
+-   [`#include <atcoder/convolution>` 卷积](./convolution.md)
+-   [`#include <atcoder/modint>` 自取模整数](./modint.md)
 
 ### 图论
 
-- [`#include <atcoder/dsu>` 并查集](./dsu.md)
-- [`#include <atcoder/maxflow>` 最大流](./maxflow.md)
-- [`#include <atcoder/mincostflow>` 最小费用流](./mincostflow.md)
-- [`#include <atcoder/scc>` 强连通分量](./scc.md)
-- [`#include <atcoder/twosat>` 2-SAT](./twosat.md)
+-   [`#include <atcoder/dsu>` 并查集](./dsu.md)
+-   [`#include <atcoder/maxflow>` 最大流](./maxflow.md)
+-   [`#include <atcoder/mincostflow>` 最小费用流](./mincostflow.md)
+-   [`#include <atcoder/scc>` 强连通分量](./scc.md)
+-   [`#include <atcoder/twosat>` 2-SAT](./twosat.md)
 
 ## 附录
 

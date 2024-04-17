@@ -1,11 +1,11 @@
 给定一个长度为 $N$ 的数组，[树状数组](../../ds/fenwick.md) 能在 $O(\log N)$ 时间内处理以下操作：
 
-- 将某个元素加上一个值。
-- 计算某个区间内元素总和。
+-   将某个元素加上一个值。
+-   计算某个区间内元素总和。
 
 ## 构造函数
 
-``` cpp
+```cpp
 fenwick_tree<T>(int n);
 ```
 
@@ -13,18 +13,18 @@ fenwick_tree<T>(int n);
 
 **约束条件**
 
-- `T`（元素类型）应为 `int`、`uint`、`ll`、`ull` 或 `modint` 中的一个。
-- $0\le n\le 10^8$。
+-   `T`（元素类型）应为 `int`、`uint`、`ll`、`ull` 或 `modint` 中的一个。
+-   $0\le n\le 10^8$。
 
 **复杂度**
 
-- $O(n)$。
+-   $O(n)$。
 
 ## 成员函数
 
 ### add
 
-``` cpp
+```cpp
 void add(int p, T x);
 ```
 
@@ -32,15 +32,15 @@ void add(int p, T x);
 
 **约束条件**
 
-- $0\le p < n$。
+-   $0\le p < n$。
 
 **复杂度**
 
-- $O(\log n)$。
+-   $O(\log n)$。
 
 ### sum
 
-``` cpp
+```cpp
 void sum(int l, int r);
 ```
 
@@ -50,17 +50,18 @@ void sum(int l, int r);
 
 **约束条件**
 
-- $0\le l\le r\le n$。
+-   $0\le l\le r\le n$。
 
 **复杂度**
 
-- $O(\log n)$。
+-   $O(\log n)$。
 
 ## 示例
 
 尝试使用 AtCoder Library 通过 [Fenwick Tree](https://atcoder.jp/contests/practice2/tasks/practice2_b)。
 
 ??? note "代码"
+    
 
     ``` cpp
     --8<-- "docs/misc/code/atcoder-fenwicktree/atcoder-fenwicktree_1.cpp"

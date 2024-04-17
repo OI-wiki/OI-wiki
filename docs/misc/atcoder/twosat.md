@@ -2,7 +2,7 @@
 
 ## 构造函数
 
-``` cpp
+```cpp
 two_sat(int n);
 ```
 
@@ -10,17 +10,17 @@ two_sat(int n);
 
 **约束条件**
 
-- $0\le n\le 10^8$。
+-   $0\le n\le 10^8$。
 
 **复杂度**
 
-- $O(n)$。
+-   $O(n)$。
 
 ## 成员函数
 
-### add_clause
+### add\_clause
 
-``` cpp
+```cpp
 void add_clause(int i, bool f, int j, bool g);
 ```
 
@@ -28,15 +28,15 @@ void add_clause(int i, bool f, int j, bool g);
 
 **约束条件**
 
-- $0\le i, j < n$。
+-   $0\le i, j < n$。
 
 **复杂度**
 
-- 均摊 $O(1)$。
+-   均摊 $O(1)$。
 
 ### satisfiable
 
-``` cpp
+```cpp
 bool satisfiable();
 ```
 
@@ -44,11 +44,11 @@ bool satisfiable();
 
 **复杂度**
 
-- $O(n+m)$。
+-   $O(n+m)$。
 
 ### answer
 
-``` cpp
+```cpp
 vector<bool> answer();
 ```
 
@@ -61,6 +61,7 @@ vector<bool> answer();
 尝试使用 AtCoder Library 通过 [Two SAT](https://atcoder.jp/contests/practice2/tasks/practice2_h)。
 
 ??? note "代码"
+    
 
     ``` cpp
     --8<-- "docs/misc/code/atcoder-twosat/atcoder-twosat_1.cpp"

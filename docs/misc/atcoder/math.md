@@ -1,8 +1,8 @@
 ## 非成员函数
 
-### pow_mod
+### pow\_mod
 
-``` cpp
+```cpp
 ll pow_mod(ll x, ll n, int m);
 ```
 
@@ -10,16 +10,16 @@ ll pow_mod(ll x, ll n, int m);
 
 **约束条件**
 
-- $0\le n$。
-- $1\le m$。
+-   $0\le n$。
+-   $1\le m$。
 
 **复杂度**
 
-- $O(\log n)$。
+-   $O(\log n)$。
 
-### inv_mod
+### inv\_mod
 
-``` cpp
+```cpp
 ll inv_mod(ll x, ll m);
 ```
 
@@ -27,16 +27,16 @@ ll inv_mod(ll x, ll m);
 
 **约束条件**
 
-- $1\le m$。
-- $\gcd(x, m) = 1$。
+-   $1\le m$。
+-   $\gcd(x, m) = 1$。
 
 **复杂度**
 
-- $O(\log m)$。
+-   $O(\log m)$。
 
 ### crt
 
-``` cpp
+```cpp
 pair<ll, ll> crt(vector<ll> r, vector<ll> m);
 ```
 
@@ -52,17 +52,17 @@ $$
 
 **约束条件**
 
-- $|r| = |m|$。
-- $\forall x\in m,\ x\ge 1$。
-- $\mathrm{lcm}\lbrace m_0, m_1, \cdots, m_{n - 1}\rbrace$ 在 `ll` 范围内。
+-   $|r| = |m|$。
+-   $\forall x\in m,\ x\ge 1$。
+-   $\mathrm{lcm}\lbrace m_0, m_1, \cdots, m_{n - 1}\rbrace$ 在 `ll` 范围内。
 
 **复杂度**
 
-- $O(n\log \mathrm{lcm}\lbrace m_0, m_1, \cdots, m_{n - 1}\rbrace)$
+-   $O(n\log \mathrm{lcm}\lbrace m_0, m_1, \cdots, m_{n - 1}\rbrace)$
 
-### floor_sum
+### floor\_sum
 
-``` cpp
+```cpp
 ll floor_sum(ll n, ll m, ll a, ll b);
 ```
 
@@ -76,18 +76,19 @@ $$
 
 **约束条件**
 
-- $0\le n < 2^{32}$。
-- $1\le m < 2^{32}$。
+-   $0\le n < 2^{32}$。
+-   $1\le m < 2^{32}$。
 
 **复杂度**
 
-- $O(\log m)$。
+-   $O(\log m)$。
 
 ## 示例
 
 尝试使用 AtCoder Library 解决 [Floor Sum](https://atcoder.jp/contests/practice2/tasks/practice2_c)。
 
 ??? note "代码"
+    
 
     ``` cpp
     --8<-- "docs/misc/code/atcoder-math/atcoder-math_1.cpp"
