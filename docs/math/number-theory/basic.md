@@ -67,7 +67,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 -   $\gcd(a,b)=\gcd(b,a)$；
 -   若 $a\ne 0$，则 $\gcd(a,0)=\gcd(a,a)=|a|$；
 -   $\gcd(bq+r,b)=\gcd(r,b)$；
--   $\gcd(a_1,\dots,a_n)=\gcd(\gcd(a_1,a_2),a_3,\dots,a_n)$；
+-   $\gcd(a_1,\dots,a_n)=\gcd(\gcd(a_1,a_2),a_3,\dots,a_n)$。进而 $\forall 1<k<n-1,~\gcd(a_1,\dots,a_n)=\gcd(\gcd(a_1,\dots,a_k),\gcd(a_{k+1},\dots,a_n))$；
 -   对不全为 $0$ 的整数 $a_1,\dots,a_n$ 和非零整数 $m$，$\gcd(ma_1,\dots,ma_n)=|m|\gcd(a_1,\dots,a_n)$；
 -   对不全为 $0$ 的整数 $a_1,\dots,a_n$，若 $\gcd(a_1,\dots,a_n)=d$，则 $\gcd(a_1/d,\dots,a_n/d)=1$；
 -   $\gcd(a^n,b^n)=\gcd(a,b)^n$。
@@ -86,7 +86,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 -   $\operatorname{lcm}(a,b)=\operatorname{lcm}(b,a)$；
 -   若 $a\ne 0$，则 $\operatorname{lcm}(a,1)=\operatorname{lcm}(a,a)=|a|$；
 -   若 $a\mid b$，则 $\operatorname{lcm}(a,b)=|b|$；
--   $\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(\operatorname{lcm}(a_1,a_2),a_3,\dots,a_n)$；
+-   $\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(\operatorname{lcm}(a_1,a_2),a_3,\dots,a_n)$。进而 $\forall 1<k<n-1,~\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(\operatorname{lcm}(a_1,\dots,a_k),\operatorname{lcm}(a_{k+1},\dots,a_n))$；
 -   若 $a_i\mid m,~\forall 1\leq i\leq n$，则 $\operatorname{lcm}(a_1,\dots,a_n)\mid m$；
 -   $\operatorname{lcm}(ma_1,\dots,ma_n)=|m|\operatorname{lcm}(a_1,\dots,a_n)$；
 -   $\operatorname{lcm}(a,b,c)\operatorname{lcm}(ab,ba,ca)=\operatorname{lcm}(a,b)\operatorname{lcm}(b,c)\operatorname{lcm}(c,a)$；
@@ -312,10 +312,10 @@ $$
 
 对正整数 $m$，我们有如下定理：
 
--   若 $m=m_1m_2,~1\leq m_1,m_2$，令 $Z_{m_1},Z_{m_2}$ 分别为模 $m_1,m_2$ 的 **完全** 剩余系，则：
+-   若 $m=m_1m_2,~1\leq m_1,m_2$，令 $Z_{m_1},Z_{m_2}$ 分别为模 $m_1,m_2$ 的 **完全** 剩余系，则对任意与 $m_1$ 互质的 $a$ 均有：
 
     $$
-    Z_m=Z_{m_1}+m_1Z_{m_2}.
+    Z_m=aZ_{m_1}+m_1Z_{m_2}.
     $$
 
     为模 $m$ 的 **完全** 剩余系。进而，若 $m=\prod_{i=1}^k m_i,~1\leq m_1,m_2,\dots,m_k$，令 $Z_{m_1},\dots,Z_{m_k}$ 分别为模 $m_1,\dots,m_k$ 的 **完全** 剩余系，则：
@@ -327,20 +327,20 @@ $$
     为模 $m$ 的 **完全** 剩余系。
 
     ???+ note "证明"
-        只需证明对任意满足 $x+m_1y\equiv x'+m_1y'\pmod{m_1m_2}$ 的 $x,x'\in Z_{m_1}$，$y,y'\in Z_{m_2}$，都有：
+        只需证明对任意满足 $ax+m_1y\equiv ax'+m_1y'\pmod{m_1m_2}$ 的 $x,x'\in Z_{m_1}$，$y,y'\in Z_{m_2}$，都有：
         
         $$
-        x+m_1y=x'+m_1y'.
+        ax+m_1y=ax'+m_1y'.
         $$
         
-        实际上，由 $m_1\mid m_1m_2$，我们有 $x+m_1y\equiv x'+m_1y'\pmod{m_1}$，进而 $x\equiv x'\pmod{m_1}$，即 $x=x'$。
+        实际上，由 $m_1\mid m_1m_2$，我们有 $ax+m_1y\equiv ax'+m_1y'\pmod{m_1}$，进而 $ax\equiv ax'\pmod{m_1}$，由 $\gcd(a,m_1)=1$ 可知 $x\equiv x'\pmod{m_1}$，进而有 $x=x'$。
         
         进一步，$m_1y\equiv m_1y'\pmod{m_1m_2}$，则 $y\equiv y'\pmod{m_2}$，即 $y=y'$。
         
         因此，
         
         $$
-        x+m_1y=x'+m_1y'.
+        ax+m_1y=ax'+m_1y'.
         $$
 -   若 $m=m_1m_2,~1\leq m_1,m_2,\gcd(m_1,m_2)=1$，令 $Z_{m_1}^*,Z_{m_2}^*$ 分别为模 $m_1,m_2$ 的 **既约** 剩余系，则：
 
