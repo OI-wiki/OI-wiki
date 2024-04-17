@@ -35,7 +35,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 
 ## 带余数除法
 
-???+ note "定义（余数）"
+???+ note "余数"
     设 $a,b$ 为两个给定的整数，$a\ne0$。设 $d$ 是一个给定的整数。那么，一定存在唯一的一对整数 $q$ 和 $r$，满足 $b=qa+r,d\le r<|a|+d$。
 
 无论整数 $d$ 取何值，$r$ 统称为余数。$a\mid b$ 等价于 $a\mid r$。
@@ -82,11 +82,11 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 
 最小公倍数有如下性质：
 
--   若 $a\ne 0$，则 $\operatorname{lcm}(a,1)=\operatorname{lcm}(a,a)=|a|$；
--   $\operatorname{lcm}(a,b)=\operatorname{lcm}(b,a)$；
 -   $\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(|a_1|,\dots,|a_n|)$；
--   $\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(\operatorname{lcm}(a_1,a_2),a_3,\dots,a_n)$；
+-   $\operatorname{lcm}(a,b)=\operatorname{lcm}(b,a)$；
+-   若 $a\ne 0$，则 $\operatorname{lcm}(a,1)=\operatorname{lcm}(a,a)=|a|$；
 -   若 $a\mid b$，则 $\operatorname{lcm}(a,b)=|b|$；
+-   $\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(\operatorname{lcm}(a_1,a_2),a_3,\dots,a_n)$；
 -   若 $a_i\mid m,~\forall 1\leq i\leq n$，则 $\operatorname{lcm}(a_1,\dots,a_n)\mid m$；
 -   $\operatorname{lcm}(ma_1,\dots,ma_n)=|m|\operatorname{lcm}(a_1,\dots,a_n)$；
 -   $\operatorname{lcm}(a,b,c)\operatorname{lcm}(ab,ba,ca)=\operatorname{lcm}(a,b)\operatorname{lcm}(b,c)\operatorname{lcm}(c,a)$；
@@ -98,7 +98,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 -   $\gcd(ab,bc,ca)\operatorname{lcm}(a,b,c)=|abc|$；
 -   $\dfrac{\gcd(a,b,c)^2}{\gcd(a,b)\gcd(b,c)\gcd(a,c)}=\dfrac{\operatorname{lcm}(a,b,c)^2}{\operatorname{lcm}(a,b)\operatorname{lcm}(b,c)\operatorname{lcm}(a,c)}$。
 
-这些等式均可通过 [唯一分解定理](#算术基本定理) 证明。
+这些性质均可通过定义或 [唯一分解定理](#算术基本定理) 证明，其中使用唯一分解定理的证明更容易理解。
 
 ### 互素
 
@@ -252,7 +252,7 @@ $$
 
 由 [商群](../group-theory.md#商群) 的定义可知 $\mathbf{Z}_m=\mathbf{Z}/m\mathbf{Z}$，所以有时我们也会用 $\mathbf{Z}/m\mathbf{Z}$ 表示 $\mathbf{Z}_m$。
 
-可知：
+由 [抽屉原理](../combinatorics/drawer-principle.md) 可知：
 
 -   任取 $m+1$ 个整数，必有两个整数模 $m$ 同余。
 -   存在 $m$ 个两两模 $m$ 不同余的整数。
@@ -294,7 +294,7 @@ $$
 ???+ warning
     对于任意的整数 $a$ 和与 $m$ 互质的整数 $b$，$b\mathbf{Z}_m^*=\mathbf{Z}_m^*$，但是 $a+\mathbf{Z}_m^*$ 不一定为 $\mathbf{Z}_m^*$。这一点与 $\mathbf{Z}_m$ 不同。
 
-可知：
+由 [抽屉原理](../combinatorics/drawer-principle.md) 可知：
 
 -   任取 $\varphi(m)+1$ 个与 $m$ 互质的整数，必有两个整数模 $m$ 同余。
 -   存在 $\varphi(m)$ 个与 $m$ 互质且两两模 $m$ 不同余的整数。
