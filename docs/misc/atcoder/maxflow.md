@@ -29,8 +29,8 @@ int add_edge(int from, int to, Cap cap);
 
 **约束条件**
 
-- $0\le \mathrm{from}, \mathrm{to} < n$。
-- $0\le \mathrm{cap}$。
+- $0\le \textit{from}, \textit{to} < n$。
+- $0\le \textit{cap}$。
 
 **复杂度**
 
@@ -63,7 +63,7 @@ Cap flow(int s, int t, Cap flow_limit); // (2)
 vector<bool> min_cut(int s);
 ```
 
-返回的 `vector` 中，若 $i$ 对应位置为 $\mathrm{True}$ 当且仅当残量网络上存在 $s$ 到 $i$ 的边（即 $s$ 残量网络上可达点集）。也就是 $s-t$ 最小割。
+返回的 `vector` 中，若 $i$ 对应位置为 $\textit{True}$ 当且仅当残量网络上存在 $s$ 到 $i$ 的边（即 $s$ 残量网络上可达点集）。也就是 $s-t$ 最小割。
 
 **约束条件**
 
@@ -107,99 +107,14 @@ void change_edge(int i, Cap new_cap, Cap new_flow);
 
 **约束条件**
 
-- $0\le \mathrm{new\_flow}\le \mathrm{new\_cap}$。
+- $0\le \textit{newflow}\le \textit{newcap}$。
 
 ## 示例
 
 尝试使用 AtCoder Library 通过 [Maxflow](https://atcoder.jp/contests/practice2/tasks/practice2_d)。
 
-??? 代码
+??? note "代码"
 
     ``` cpp
-    #include <atcoder/maxflow>
-    #include <iostream>
-
-    using namespace std;
-    using namespace atcoder;
-
-    int main() {
-        int n, m;
-        cin >> n >> m;
-
-        vector<string> grid(n);
-        for (int i = 0; i < n; i++) {
-            cin >> grid[i];
-        }
-
-        /**
-        * generate (s -> even grid -> odd grid -> t) graph
-        * grid(i, j) correspond to vertex (i * m + j)
-        **/
-        mf_graph<int> g(n * m + 2);
-        int s = n * m, t = n * m + 1;
-
-        // s -> even / odd -> t
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (grid[i][j] == '#') continue;
-                int v = i * m + j;
-                if ((i + j) % 2 == 0) {
-                    g.add_edge(s, v, 1);
-                } else {
-                    g.add_edge(v, t, 1);
-                }
-            }
-        }
-
-        // even -> odd
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if ((i + j) % 2 || grid[i][j] == '#') continue;
-                int v0 = i * m + j;
-                if (i && grid[i - 1][j] == '.') {
-                    int v1 = (i - 1) * m + j;
-                    g.add_edge(v0, v1, 1);
-                }
-                if (j && grid[i][j - 1] == '.') {
-                    int v1 = i * m + (j - 1);
-                    g.add_edge(v0, v1, 1);
-                }
-                if (i + 1 < n && grid[i + 1][j] == '.') {
-                    int v1 = (i + 1) * m + j;
-                    g.add_edge(v0, v1, 1);
-                }
-                if (j + 1 < m && grid[i][j + 1] == '.') {
-                    int v1 = i * m + (j + 1);
-                    g.add_edge(v0, v1, 1);
-                }
-            }
-        }
-
-        cout << g.flow(s, t) << endl;
-
-        auto edges = g.edges();
-        for (auto e : edges) {
-            if (e.from == s || e.to == t || e.flow == 0) continue;
-            int i0 = e.from / m, j0 = e.from % m;
-            int i1 = e.to / m, j1 = e.to % m;
-
-            if (i0 == i1 + 1) {
-                grid[i1][j1] = 'v';
-                grid[i0][j0] = '^';
-            } else if (j0 == j1 + 1) {
-                grid[i1][j1] = '>'; grid[i0][j0] = '<';
-            } else if (i0 == i1 - 1) {
-                grid[i0][j0] = 'v';
-                grid[i1][j1] = '^';
-            } else {
-                grid[i0][j0] = '>'; grid[i1][j1] = '<';
-            }
-        }
-
-        for (int i = 0; i < n; i++) {
-            cout << grid[i] << endl;
-        }
-
-        return 0;
-    }
+    --8<-- "docs/misc/code/atcoder-maxflow/atcoder-maxflow_1.cpp"
     ```

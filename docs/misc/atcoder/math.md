@@ -46,7 +46,7 @@ $$
 x\equiv r_i \pmod{m_i},\ \forall i\in\lbrace 0, 1, \cdots, n - 1\rbrace.
 $$
 
-无解返回 $(0, 0)$。否则，所有解都可以写成 $x\equiv y \pmod{z}$ 形式（其中 $z=\mathrm{lcm}\lbrace m_0, m_1, \cdots, m_{n - 1}\rbrace,\ 0\le y < z$），返回 $(y, z)$。
+无解返回 $(0, 0)$。否则，解可以写成 $x\equiv y \pmod{z}$ 形式（其中 $z=\mathrm{lcm}\lbrace m_0, m_1, \cdots, m_{n - 1}\rbrace,\ 0\le y < z$），返回 $(y, z)$。
 
 特别地，若 $n=0$，返回 $(0, 1)$。
 
@@ -87,23 +87,8 @@ $$
 
 尝试使用 AtCoder Library 解决 [Floor Sum](https://atcoder.jp/contests/practice2/tasks/practice2_c)。
 
-??? 代码
+??? note "代码"
 
     ``` cpp
-    #include <atcoder/math>
-    #include <cstdio>
-
-    using namespace std;
-    using namespace atcoder;
-
-    int main() {
-        int t;
-        scanf("%d", &t);
-        for (int i = 0; i < t; i++) {
-            long long n, m, a, b;
-            scanf("%lld %lld %lld %lld", &n, &m, &a, &b);
-            printf("%lld\n", floor_sum(n, m, a, b));
-        }
-        return 0;
-    }
+    --8<-- "docs/misc/code/atcoder-math/atcoder-math_1.cpp"
     ```

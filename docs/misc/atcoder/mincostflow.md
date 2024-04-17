@@ -29,8 +29,8 @@ int add_edge(int from, int to, Cap cap, Cost cost);
 
 **约束条件**
 
-- $0\le \mathrm{from}, \mathrm{to} < n$。
-- $0\le \mathrm{cap}, \mathrm{cost}$。
+- $0\le \textit{from}, \textit{to} < n$。
+- $0\le \textit{cap}, \textit{cost}$。
 
 **复杂度**
 
@@ -68,11 +68,11 @@ vector<pair<Cap, Cost>> slope(int s, int t);                 // (1)
 vector<pair<Cap, Cost>> slope(int s, int t, Cap flow_limit); // (2)
 ```
 
-计算流量与最小成本之间的变化曲线。具体地，定义 $g(x)$ 是当流量恰好是 $x$ 时的 $s-t$ 流量最小费用，则返回 $g(x)$ 在 $x\in[0, \mathrm{maxflow}]$ 时的点集。满足以下性质：
+计算流量与最小费用之间的变化曲线。具体地，定义 $g(x)$ 是当流量恰好是 $x$ 时的 $s-t$ 流量最小费用，则返回 $g(x)$ 在 $x\in[0, \textit{maxflow}]$ 时的点集。满足以下性质：
 
 - 第一个点是 $(0, 0)$。
-- 对于 (1)，最后一个点是 $(\mathrm{maxflow}, g(\mathrm{maxflow}))$。
-- 对于 (2)，记 $a=\min(\mathrm{maxflow}, \mathrm{flow_limit})$，则最后一个点是 $(a, g(a))$。
+- 对于 (1)，最后一个点是 $(\textit{maxflow}, g(\textit{maxflow}))$。
+- 对于 (2)，记 $a=\min(\textit{maxflow}, \textit{flow\_limit})$，则最后一个点是 $(a, g(a))$。
 - `.first` 与 `.second` 均严格递增。
 - 没有任何三个点在同一条直线上。
 
@@ -113,59 +113,8 @@ vector<mcf_graph<Cap, Cost>::edge> edges(); // (2)
 
 尝试使用 AtCoder Library 通过 [MinCostFlow](https://atcoder.jp/contests/practice2/tasks/practice2_e)。
 
-??? 代码
+??? note "代码"
 
     ``` cpp
-    #include <atcoder/mincostflow>
-    #include <iostream>
-
-    using namespace std;
-    using namespace atcoder;
-
-    const long long BIG = 1'000'000'000;
-
-    int main() {
-        int n, k;
-        cin >> n >> k;
-
-        /**
-        * generate (s -> row -> column -> t) graph
-        * i-th row correspond to vertex i
-        * i-th col correspond to vertex n + i
-        **/
-        mcf_graph<int, long long> g(2 * n + 2);
-        int s = 2 * n, t = 2 * n + 1;
-
-        // we can "waste" the flow
-        g.add_edge(s, t, n * k, BIG);
-
-        for (int i = 0; i < n; i++) {
-            g.add_edge(s, i, k, 0);
-            g.add_edge(n + i, t, k, 0);
-        }
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                long long a;
-                cin >> a;
-                g.add_edge(i, n + j, 1, BIG - a);
-            }
-        }
-
-        auto result = g.flow(s, t, n * k);
-        cout << 1LL * n * k * BIG - result.second << endl;
-
-        vector<string> grid(n, string(n, '.'));
-        auto edges = g.edges();
-        for (auto e : edges) {
-            if (e.from == s || e.to == t || e.flow == 0) continue;
-
-            grid[e.from][e.to - n] = 'X';
-        }
-
-        for (int i = 0; i < n; i++) {
-            cout << grid[i] << endl;
-        }
-        return 0;
-    }
+    --8<-- "docs/misc/code/atcoder-mincostflow/atcoder-mincostflow_1.cpp"
     ```

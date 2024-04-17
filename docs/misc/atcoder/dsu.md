@@ -1,6 +1,6 @@
 是一个 [并查集](../../ds/dsu.md) 数据结构。给定一张无向图，并查集在均摊 $O(\alpha(n))$ 时间内处理以下操作：
 
-- 加边。
+- 增加一条边。
 - 判断两个顶点在不在一个连通分量中。
 
 每个连通分量都有一个代表（根节点），两个连通分量合并时，其中之一的代表成为新代表。
@@ -95,6 +95,8 @@ vector<vector<int>> groups();
 
 返回所有连通分量的列表。
 
+不保证以何顺序返回。
+
 **复杂度**
 
 - $O(n)$。
@@ -103,32 +105,8 @@ vector<vector<int>> groups();
 
 尝试使用 AtCoder Library 通过 [Disjoint Set Union](https://atcoder.jp/contests/practice2/tasks/practice2_a)。
 
-??? 代码
+??? note "代码"
 
     ``` cpp
-    #include <atcoder/dsu>
-    #include <cstdio>
-
-    using namespace std;
-    using namespace atcoder;
-
-    int main() {
-        int n, q;
-        scanf("%d %d", &n, &q);
-        dsu d(n);
-        for (int i = 0; i < q; i++) {
-            int t, u, v;
-            scanf("%d %d %d", &t, &u, &v);
-            if (t == 0) {
-                d.merge(u, v);
-            } else {
-                if (d.same(u, v)) {
-                    printf("1\n");
-                } else {
-                    printf("0\n");
-                }
-            }
-        }
-        return 0;
-    }
+    --8<-- "docs/misc/code/atcoder-dsu/atcoder-dsu_1.cpp"
     ```

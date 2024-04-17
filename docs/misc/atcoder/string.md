@@ -1,5 +1,3 @@
-下面，我们令 $s$ 为字符串，$s[l..r)$ 表示 $l$ 到 $r-1$ 的子串，**注意是左闭右开**。
-
 ## 非成员函数
 
 ### suffix_array
@@ -16,14 +14,14 @@ vector<int> suffix_array(vector<int> s, int upper); // (3)
 
 - $0\le n\le 10^8$。
 - (2) `T` 是 `int`、`uint`、`ll`、`ull` 其中的一个。
-- (3) $0\le \mathrm{upper}\le 10^8$。
-- (3) $\forall x\in S,\ 0\le x\le \mathrm{upper}$。
+- (3) $0\le \textit{upper}\le 10^8$。
+- (3) $\forall x\in S,\ 0\le x\le \textit{upper}$。
 
 **复杂度**
 
 1. $O(n)$。
 2. $O(n\log n)$，并需要 $O(n)$ 空间。
-3. $O(n+\mathrm{upper})$。
+3. $O(n+\textit{upper})$。
 
 ### lcp_array
 
@@ -66,27 +64,8 @@ vector<int> z_algorithm<T>(vector<T> s); // (2)
 
 尝试使用 AtCoder Library 通过 [Number of Substrings](https://atcoder.jp/contests/practice2/tasks/practice2_i)。
 
-??? 代码
+??? note "代码"
 
     ``` cpp
-    #include <atcoder/string>
-    #include <iostream>
-    #include <string>
-    #include <vector>
-
-    using namespace std;
-    using namespace atcoder;
-
-    int main() {
-        static char buf[500'001];
-        scanf("%s", buf);
-        string s = buf;
-        vector<int> sa = suffix_array(s);
-        long long answer = 1LL * s.size() * (s.size() + 1) / 2;
-        for (auto x : lcp_array(s, sa)) {
-            answer -= x;
-        }
-        printf("%lld\n", answer);
-        return 0;
-    }
+    --8<-- "docs/misc/code/atcoder-string/atcoder-string_1.cpp"
     ```

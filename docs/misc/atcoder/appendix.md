@@ -2,8 +2,8 @@
 
 - 不要使用任何以 `ATCODER_` 开头的宏。
 - 运行环境需满足特殊要求：
-    - `__int128 / unsigned __int128`（对于 g++、clang++）、`_mul128 / _umul128`（对于 msvc）。
-    - `__builtin_(ctz/ctzll/clz/clzll/popcount)`（对于 g++、clang++）、`_BitScan(Forward/Reverse)`（对于 msvc）。
+    - 可以使用 `__int128 / unsigned __int128`（对于 g++、clang++）、`_mul128 / _umul128`（对于 msvc）。
+    - 可以使用 `__builtin_(ctz/ctzll/clz/clzll/popcount)`（对于 g++、clang++）、`_BitScan(Forward/Reverse)`（对于 msvc）。
     - `char / short / int / ll` 及他们的 `unsigned` 类型（及 `signed char`）是 `8 / 16 / 32 / 64` 位。
     - [有符号整数是二进制补码](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0907r0.html)。
 
@@ -24,7 +24,7 @@
 
 将 `atcoder `文件夹放在这个路径中。
 
-`(安装盘符):\Program Files (32 位程序此处有 x86)\Microsoft Visual Studio\(2017, 2019 或 2022)\(Community, Professional 或 Enterprise)\VC\Tools\MSVC\(MSVC 版本，如 14.38.33130)\include`
+`(安装盘符):\Program Files\Microsoft Visual Studio\(2017, 2019 或 2022)\(Community, Professional 或 Enterprise)\VC\Tools\MSVC\(MSVC 版本，如 14.38.33130)\include`
 
 ## 提交到其他 OJ
 

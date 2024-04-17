@@ -10,7 +10,7 @@
 - 更新某个元素的值。
 - 对于某区间内元素，计算（指定的）二元运算结果。
 
-为简便起见，我们假定 `op`（二元运算）和 `e`（单位元）的时间复杂度均为常数。也就是说，如果 `op` 和 `e` 的时间复杂度为 $O(T)$，那么每个该文档内的时间复杂度都要乘上 $O(T)$。
+为简便起见，我们假定 `op`（二元运算）和 `e`（单位元）的时间复杂度均为常数。也就是说，如果 `op` 和 `e` 的时间复杂度为 $O(T)$，那么该文档内的时间复杂度要对应乘上 $O(T)$。
 
 ## 构造函数
 
@@ -87,7 +87,7 @@ S get(int p);
 S prod(int l, int r);
 ```
 
-返回 $\mathrm{op}(a_l, a_{l+1}, \dots, a_{r-1})$ 的值。若 $l=r$ 返回单位元。
+返回 $\operatorname{op}(a_l, a_{l+1}, \dots, a_{r-1})$ 的值。若 $l=r$ 返回单位元。
 
 **约束条件**
 
@@ -103,7 +103,7 @@ S prod(int l, int r);
 S all_prod();
 ```
 
-返回 $\mathrm{op}(a_0, a_1, \dots, a_{n-1})$ 的值。若 $n=0$ 返回单位元。
+返回 $\operatorname{op}(a_0, a_1, \dots, a_{n-1})$ 的值。若 $n=0$ 返回单位元。
 
 **复杂度**
 
@@ -123,14 +123,14 @@ int min_left<F>(int r, F f);  // (4)
 - 对于 (1)、(2)：
     - 返回满足下面 **所有** 条件的 $r$。
         - $0\le l\le r\le n$。
-        - $r=l$ 或 $f(op(a_l, a_{l+1}, \dots, a_{r-1})) = \mathrm{True}$。
-        - $r=n$ 或 $f(op(a_l, a_{l+1}, \dots, a_{r})) = \mathrm{False}$。
+        - $r=l$ 或 $f(\operatorname{op}(a_l, a_{l+1}, \dots, a_{r-1})) = \mathrm{True}$。
+        - $r=n$ 或 $f(\operatorname{op}(a_l, a_{l+1}, \dots, a_{r})) = \mathrm{False}$。
     - 若 $f$ 函数单调，则保证这是最大的 $r$。
 - 对于 (3)、(4)：
     - 返回满足下面 **所有** 条件的 $l$。
         - $0\le l\le r\le n$。
-        - $l=r$ 或 $f(op(a_l, a_{l+1}, \dots, a_{r-1})) = \mathrm{True}$。
-        - $l=0$ 或 $f(op(a_{l-1}, a_l, \dots, a_{r-1})) = \mathrm{False}$。
+        - $l=r$ 或 $f(\operatorname{op}(a_l, a_{l+1}, \dots, a_{r-1})) = \mathrm{True}$。
+        - $l=0$ 或 $f(\operatorname{op}(a_{l-1}, a_l, \dots, a_{r-1})) = \mathrm{False}$。
     - 若 $f$ 函数单调，则保证这是最小的 $l$。
 
 `f` 的函数签名如下：
@@ -153,53 +153,8 @@ bool f(S x);
 
 尝试使用 AtCoder Library 通过 [Segment Tree](https://atcoder.jp/contests/practice2/tasks/practice2_j)。
 
-??? 代码
+??? note "代码"
 
     ``` cpp
-    #include <atcoder/segtree>
-    #include <cstdio>
-    #include <vector>
-
-    using namespace std;
-    using namespace atcoder;
-
-    int op(int a, int b) { return max(a, b); }
-
-    int e() { return -1; }
-
-    int target;
-
-    bool f(int v) { return v < target; }
-
-    int main() {
-        int n, q;
-        scanf("%d %d", &n, &q);
-        vector<int> a(n);
-        for (int i = 0; i < n; i++) {
-            scanf("%d", &(a[i]));
-        }
-
-        segtree<int, op, e> seg(a);
-
-        for (int i = 0; i < q; i++) {
-            int t;
-            scanf("%d", &t);
-            if (t == 1) {
-                int x, v;
-                scanf("%d %d", &x, &v);
-                x--;
-                seg.set(x, v);
-            } else if (t == 2) {
-                int l, r;
-                scanf("%d %d", &l, &r);
-                l--;
-                printf("%d\n", seg.prod(l, r));
-            } else if (t == 3) {
-                int p;
-                scanf("%d %d", &p, &target);
-                p--;
-                printf("%d\n", seg.max_right<f>(p) + 1);
-            }
-        }
-    }
+    --8<-- "docs/misc/code/atcoder-segtree/atcoder-segtree_1.cpp"
     ```
