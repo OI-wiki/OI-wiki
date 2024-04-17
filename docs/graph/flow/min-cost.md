@@ -137,6 +137,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
       vis[u] = 1;
       int ans = 0;
       for (int &i = cur[u]; i && ans < flow; i = nxt[i]) {
+        cur[u] = i;
         int v = ter[i];
         if (!vis[v] && cap[i] && dis[v] == dis[u] + cost[i]) {
           int x = dfs(v, t, std::min(cap[i], flow - ans));
