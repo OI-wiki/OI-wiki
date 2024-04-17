@@ -516,6 +516,21 @@ nav:
     - 15-puzzle: misc/15-puzzle.md
     - Kahan 求和: misc/kahan-summation.md
     - 珂朵莉树/颜色段均摊: misc/odt.md
+    - AtCoder Library 中文文档:
+      - AtCoder Library 简介: misc/atcoder/intro.md
+      - ACL 树状数组: misc/atcoder/fenwicktree.md
+      - ACL 线段树: misc/atcoder/segtree.md
+      - ACL 惰性线段树: misc/atcoder/lazysegtree.md
+      - ACL 字符串: misc/atcoder/string.md
+      - ACL 数学: misc/atcoder/math.md
+      - ACL 卷积: misc/atcoder/convolution.md
+      - ACL 自取模整数: misc/atcoder/modint.md
+      - ACL 并查集: misc/atcoder/dsu.md
+      - ACL 最大流: misc/atcoder/maxflow.md
+      - ACL 最小费用最大流: misc/atcoder/mincostflow.md
+      - ACL 强连通分量: misc/atcoder/scc.md
+      - ACL 2-SAT: misc/atcoder/twosat.md
+      - ACL 附录及常见问题: misc/atcoder/appendix.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md
@@ -571,7 +586,7 @@ extra:
   copyright: '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 和 <a href="https://github.com/zTrix/sata-license">SATA</a>'
   pagetime: 'on'
   manifest: 'manifest.webmanifest'
-  githash: ''
+  githash: '616573d0'
   analytics:
     provider: google
     property: UA-124485594-1
