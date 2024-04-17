@@ -63,49 +63,49 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 
 最大公约数有如下性质：
 
--   $\gcd(a_1,\dots,a_n)=\gcd(|a_1|,\dots,|a_n|)$；
--   $\gcd(a,b)=\gcd(b,a)$；
--   若 $a\ne 0$，则 $\gcd(a,0)=\gcd(a,a)=|a|$；
--   $\gcd(bq+r,b)=\gcd(r,b)$；
--   $\gcd(a_1,\dots,a_n)=\gcd(\gcd(a_1,a_2),a_3,\dots,a_n)$。进而 $\forall 1<k<n-1,~\gcd(a_1,\dots,a_n)=\gcd(\gcd(a_1,\dots,a_k),\gcd(a_{k+1},\dots,a_n))$；
--   对不全为 $0$ 的整数 $a_1,\dots,a_n$ 和非零整数 $m$，$\gcd(ma_1,\dots,ma_n)=|m|\gcd(a_1,\dots,a_n)$；
--   对不全为 $0$ 的整数 $a_1,\dots,a_n$，若 $\gcd(a_1,\dots,a_n)=d$，则 $\gcd(a_1/d,\dots,a_n/d)=1$；
--   $\gcd(a^n,b^n)=\gcd(a,b)^n$。
+-   $(a_1,\dots,a_n)=(|a_1|,\dots,|a_n|)$；
+-   $(a,b)=(b,a)$；
+-   若 $a\ne 0$，则 $(a,0)=(a,a)=|a|$；
+-   $(bq+r,b)=(r,b)$；
+-   $(a_1,\dots,a_n)=((a_1,a_2),a_3,\dots,a_n)$。进而 $\forall 1<k<n-1,~(a_1,\dots,a_n)=((a_1,\dots,a_k),(a_{k+1},\dots,a_n))$；
+-   对不全为 $0$ 的整数 $a_1,\dots,a_n$ 和非零整数 $m$，$(ma_1,\dots,ma_n)=|m|(a_1,\dots,a_n)$；
+-   对不全为 $0$ 的整数 $a_1,\dots,a_n$，若 $(a_1,\dots,a_n)=d$，则 $(a_1/d,\dots,a_n/d)=1$；
+-   $(a^n,b^n)=(a,b)^n$。
 
 最大公约数还有如下与互素相关的性质：
 
--   若 $b|ac$ 且 $\gcd(a,b)=1$，则 $b\mid c$；
--   若 $b|c$、$a|c$ 且 $\gcd(a,b)=1$，则 $ab\mid c$；
--   若 $\gcd(a,b)=1$，则 $\gcd(a,bc)=\gcd(a,c)$；
--   若 $\gcd(a_i,b_j)=1,~\forall 1\leq i\leq n,1\leq j\leq m$，则 $\gcd\left(\prod_i a_i,\prod_j b_j\right)=1$。特别地，若 $\gcd(a,b)=1$，则 $\gcd(a^n,b^m)=1$；
+-   若 $b|ac$ 且 $(a,b)=1$，则 $b\mid c$；
+-   若 $b|c$、$a|c$ 且 $(a,b)=1$，则 $ab\mid c$；
+-   若 $(a,b)=1$，则 $(a,bc)=(a,c)$；
+-   若 $(a_i,b_j)=1,~\forall 1\leq i\leq n,1\leq j\leq m$，则 $\left(\prod_i a_i,\prod_j b_j\right)=1$。特别地，若 $(a,b)=1$，则 $(a^n,b^m)=1$；
 -   对整数 $a_1,\dots,a_n$，若 $\exists v\in \mathbf{Z},~\prod_i a_i=v^m$，且 $(a_i,a_j)=1,~\forall i\ne j$，则 $\forall 1\leq i\leq m,~\sqrt[m]{a_i}\in\mathbf{Z}$。
 
 最小公倍数有如下性质：
 
--   $\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(|a_1|,\dots,|a_n|)$；
--   $\operatorname{lcm}(a,b)=\operatorname{lcm}(b,a)$；
--   若 $a\ne 0$，则 $\operatorname{lcm}(a,1)=\operatorname{lcm}(a,a)=|a|$；
--   若 $a\mid b$，则 $\operatorname{lcm}(a,b)=|b|$；
--   $\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(\operatorname{lcm}(a_1,a_2),a_3,\dots,a_n)$。进而 $\forall 1<k<n-1,~\operatorname{lcm}(a_1,\dots,a_n)=\operatorname{lcm}(\operatorname{lcm}(a_1,\dots,a_k),\operatorname{lcm}(a_{k+1},\dots,a_n))$；
--   若 $a_i\mid m,~\forall 1\leq i\leq n$，则 $\operatorname{lcm}(a_1,\dots,a_n)\mid m$；
--   $\operatorname{lcm}(ma_1,\dots,ma_n)=|m|\operatorname{lcm}(a_1,\dots,a_n)$；
--   $\operatorname{lcm}(a,b,c)\operatorname{lcm}(ab,ba,ca)=\operatorname{lcm}(a,b)\operatorname{lcm}(b,c)\operatorname{lcm}(c,a)$；
--   $\operatorname{lcm}(a^n,b^n)=\operatorname{lcm}(a,b)^n$。
+-   $[a_1,\dots,a_n]=[|a_1|,\dots,|a_n|]$；
+-   $[a,b]=[b,a]$；
+-   若 $a\ne 0$，则 $[a,1]=[a,a]=|a|$；
+-   若 $a\mid b$，则 $[a,b]=|b|$；
+-   $[a_1,\dots,a_n]=[[a_1,a_2],a_3,\dots,a_n]$。进而 $\forall 1<k<n-1,~[a_1,\dots,a_n]=[[a_1,\dots,a_k],[a_{k+1},\dots,a_n]]$；
+-   若 $a_i\mid m,~\forall 1\leq i\leq n$，则 $[a_1,\dots,a_n]\mid m$；
+-   $[ma_1,\dots,ma_n]=|m|[a_1,\dots,a_n]$；
+-   $[a,b,c][ab,ba,ca]=[a,b][b,c][c,a]$；
+-   $[a^n,b^n]=[a,b]^n$。
 
 最大公约数和最小公倍数可以组合出很多奇妙的等式，如：
 
--   $\gcd(a,b)\operatorname{lcm}(a,b)=|ab|$；
--   $\gcd(ab,bc,ca)\operatorname{lcm}(a,b,c)=|abc|$；
--   $\dfrac{\gcd(a,b,c)^2}{\gcd(a,b)\gcd(b,c)\gcd(a,c)}=\dfrac{\operatorname{lcm}(a,b,c)^2}{\operatorname{lcm}(a,b)\operatorname{lcm}(b,c)\operatorname{lcm}(a,c)}$。
+-   $(a,b)[a,b]=|ab|$；
+-   $(ab,bc,ca)[a,b,c]=|abc|$；
+-   $\dfrac{(a,b,c)^2}{(a,b)(b,c)(a,c)}=\dfrac{[a,b,c]^2}{[a,b][b,c][a,c]}$。
 
 这些性质均可通过定义或 [唯一分解定理](#算术基本定理) 证明，其中使用唯一分解定理的证明更容易理解。
 
 ### 互素
 
 ???+ note "定义"
-    若 $\gcd(a_1,a_2)=1$，则称 $a_1$ 和 $a_2$  **互素**（**既约**）。
+    若 $(a_1,a_2)=1$，则称 $a_1$ 和 $a_2$  **互素**（**既约**）。
     
-    若 $\gcd(a_1,\ldots,a_k)=1$，则称 $a_1,\ldots,a_k$  **互素**（**既约**）。
+    若 $(a_1,\ldots,a_k)=1$，则称 $a_1,\ldots,a_k$  **互素**（**既约**）。
 
 多个整数互素，不一定两两互素。例如 $6$、$10$ 和 $15$ 互素，但是任意两个都不互素。
 
@@ -192,7 +192,7 @@ $p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明�
 -   若 $a,b\in\mathbf{Z},k,m\in\mathbf{N}^*,a\equiv b\pmod m$, 则 $ak\equiv bk\pmod{mk}$。
 -   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid a,d\mid b,d\mid m$，则当 $a\equiv b\pmod m$ 成立时，有 $\dfrac{a}{d}\equiv\dfrac{b}{d}\left(\bmod\;{\dfrac{m}{d}}\right)$。
 -   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid m$，则当 $a\equiv b\pmod m$ 成立时，有 $a\equiv b\pmod d$。
--   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*$，则当 $a\equiv b\pmod m$ 成立时，有 $\gcd(a,m)=\gcd(b,m)$。若 $d$ 能整除 $m$ 及 $a,b$ 中的一个，则 $d$ 必定能整除 $a,b$ 中的另一个。
+-   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*$，则当 $a\equiv b\pmod m$ 成立时，有 $(a,m)=(b,m)$。若 $d$ 能整除 $m$ 及 $a,b$ 中的一个，则 $d$ 必定能整除 $a,b$ 中的另一个。
 
 还有性质是乘法逆元。见 [乘法逆元](./inverse.md)。
 
@@ -278,17 +278,17 @@ $$
 
 -   在模 $m$ 的任意一个同余类中，任取两个整数 $a_1,a_2$ 均有 $(a_1,m)=(a_2,m)$。
 
-考虑同余类 $r\bmod m$，若 $\gcd(r,m)=1$，则该同余类的所有元素均与 $m$ 互质，这说明我们也许可以通过类似方式得知所有与 $m$ 互质的整数构成的集合的结构。
+考虑同余类 $r\bmod m$，若 $(r,m)=1$，则该同余类的所有元素均与 $m$ 互质，这说明我们也许可以通过类似方式得知所有与 $m$ 互质的整数构成的集合的结构。
 
 ???+ note "既约同余类"
-    对同余类 $r\bmod m$，若 $\gcd(r,m)=1$，则称该同余类为 **既约同余类** 或 **既约剩余类**。
+    对同余类 $r\bmod m$，若 $(r,m)=1$，则称该同余类为 **既约同余类** 或 **既约剩余类**。
     
     我们把模 $m$ 既约剩余类的个数记作 $\varphi(m)$，称其为 [Euler 函数](./euler-totient.md)。
 
 我们把模 $m$ 的既约同余类全体构成的集合记为 $\mathbf{Z}_m^*$，即
 
 $$
-\mathbf{Z}_m^*:=\{r\bmod m:0\leq r<m,\gcd(r,m)=1\}
+\mathbf{Z}_m^*:=\{r\bmod m:0\leq r<m,(r,m)=1\}
 $$
 
 ???+ warning
@@ -302,7 +302,7 @@ $$
 由此我们给出既约剩余系的定义：
 
 ???+ note "既约剩余系"
-    对 $t=\varphi(m)$ 个整数 $a_1,a_2,\dots,a_t$，若 $\gcd(a_i,m)=1,~\forall 1\leq i\leq t$，且对任意满足 $\gcd(x,m)=1$ 的数 $x$，有且仅有一个数 $a_i$ 使得 $x$ 与 $a_i$ 模 $m$ 同余，则称这 $t$ 个整数 $a_1,a_2,\dots,a_t$ 为模 $m$ 的 **既约剩余系**、**缩剩余系** 或 **简化剩余系**。
+    对 $t=\varphi(m)$ 个整数 $a_1,a_2,\dots,a_t$，若 $(a_i,m)=1,~\forall 1\leq i\leq t$，且对任意满足 $(x,m)=1$ 的数 $x$，有且仅有一个数 $a_i$ 使得 $x$ 与 $a_i$ 模 $m$ 同余，则称这 $t$ 个整数 $a_1,a_2,\dots,a_t$ 为模 $m$ 的 **既约剩余系**、**缩剩余系** 或 **简化剩余系**。
 
 类似地，我们也可以定义最小非负既约剩余系等概念。
 
@@ -333,7 +333,7 @@ $$
         ax+m_1y=ax'+m_1y'.
         $$
         
-        实际上，由 $m_1\mid m_1m_2$，我们有 $ax+m_1y\equiv ax'+m_1y'\pmod{m_1}$，进而 $ax\equiv ax'\pmod{m_1}$，由 $\gcd(a,m_1)=1$ 可知 $x\equiv x'\pmod{m_1}$，进而有 $x=x'$。
+        实际上，由 $m_1\mid m_1m_2$，我们有 $ax+m_1y\equiv ax'+m_1y'\pmod{m_1}$，进而 $ax\equiv ax'\pmod{m_1}$，由 $(a,m_1)=1$ 可知 $x\equiv x'\pmod{m_1}$，进而有 $x=x'$。
         
         进一步，$m_1y\equiv m_1y'\pmod{m_1m_2}$，则 $y\equiv y'\pmod{m_2}$，即 $y=y'$。
         
@@ -342,7 +342,7 @@ $$
         $$
         ax+m_1y=ax'+m_1y'.
         $$
--   若 $m=m_1m_2,~1\leq m_1,m_2,\gcd(m_1,m_2)=1$，令 $Z_{m_1}^*,Z_{m_2}^*$ 分别为模 $m_1,m_2$ 的 **既约** 剩余系，则：
+-   若 $m=m_1m_2,~1\leq m_1,m_2,(m_1,m_2)=1$，令 $Z_{m_1}^*,Z_{m_2}^*$ 分别为模 $m_1,m_2$ 的 **既约** 剩余系，则：
 
     $$
     Z_m^*=m_2Z_{m_1}^*+m_1Z_{m_2}^*.
@@ -403,7 +403,7 @@ $$
 ## 积性函数
 
 ???+ note "定义"
-    若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*,\gcd(x,y)=1$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为 **积性函数**。
+    若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*,~(x,y)=1$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为 **积性函数**。
     
     若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为 **完全积性函数**。
 
@@ -432,7 +432,7 @@ $$
 -   恒等函数：$\operatorname{id}_k(n)=n^k$，$\operatorname{id}_{1}(n)$ 通常简记作 $\operatorname{id}(n)$。（完全积性）
 -   常数函数：$1(n)=1$。（完全积性）
 -   除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$。$\sigma_{0}(n)$ 通常简记作 $d(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
--   欧拉函数：$\varphi(n)=\sum_{i=1}^n[\gcd(i,n)=1]$
+-   欧拉函数：$\varphi(n)=\sum_{i=1}^n[(i,n)=1]$
 -   莫比乌斯函数：$\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，它是一个加性函数。
 
 ???+ note "加性函数"
