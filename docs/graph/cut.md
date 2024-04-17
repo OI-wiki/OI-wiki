@@ -26,7 +26,7 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-
 
 还需要另外一个数组 `low`，用它来存储不经过其父亲能到达的最小的时间戳。
 
-例如 `low[2]` 的话是 1，`low[5]` 和 `low[6]` 是 3。
+例如 `low[2]` 是 1，`low[5]` 和 `low[6]` 是 3。
 
 然后我们开始 DFS，我们判断某个点是否是割点的根据是：对于某个顶点 $u$，如果存在至少一个顶点 $v$（$u$ 的儿子），使得 $low_v \geq dfn_u$，即不能回到祖先，那么 $u$ 点为割点。
 
@@ -38,11 +38,14 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-
 
 更新 `low` 的伪代码如下：
 
-```cpp
-如果 v 是 u 的儿子 low[u] = min(low[u], low[v]);
-否则
-low[u] = min(low[u], dfn[v]);
-```
+$$
+\begin{array}{ll}
+1 & \textbf{if } v \text{ is a son of } u \\
+2 & \qquad \text{low}_u = \min(\text{low}_u, \text{low}_v) \\
+3 & \textbf{else} \\
+4 & \qquad \text{low}_u = \min(\text{low}_u, \text{dfn}_v) \\
+\end{array}
+$$
 
 ### 例题
 
