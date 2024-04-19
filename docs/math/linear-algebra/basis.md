@@ -1,10 +1,16 @@
 author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, RUIN-RISE, wjy-yy, rsdbkhusky, ouuan, Menci, Tiphereth-A
 
-前置知识：[线性空间](./vector-space.md) 的定义以及相关概念中的线性相关、线性无关、极大线性无关组、子空间等。
+回想高中数学立体几何中基向量的概念，我们可以在三维欧氏空间中找到一组基向量 $\boldsymbol{i}$，$\boldsymbol{j}$，$\boldsymbol{k}$，之后空间中任意一个向量都可以由这组基向量表示。换句话说，我们可以**通过有限的基向量来描述无限的三维空间**，这足以体现基向量的重要性。
+
+三维欧氏空间是特殊的 [线性空间](./vector-space.md)，三维欧氏空间的基向量在线性空间中就被推广为了线性基。
+
+OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线性空间 $\mathbf{R}^n$ 和 $n$ 维 [布尔域](https://en.wikipedia.org/wiki/Boolean_domain) 线性空间 $\mathbf{Z}_2^n$，我们会在 [应用](#应用) 一节中详细介绍。若您不熟悉线性代数，则推荐从应用部分开始阅读。
+
+以下会从一般的线性空间出发来介绍线性基，并给出线性基的常见性质。
+
+前置知识：[线性空间](./vector-space.md)。
 
 线性基是线性空间的一组基，是研究线性空间的重要工具。
-
-由于 OI 中只涉及有限维线性空间，故本处仅介绍有限维线性空间的情况。
 
 ## 定义
 
@@ -12,7 +18,7 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
 规定线性空间 $\{\theta\}$ 的基为空集。
 
-另外，将 $V$ 的 **维数** 记作 $\dim V$, 定义为基的元素个数。
+可以证明任意线性空间均存在线性基[^existence_basis]，我们定义线性空间 $V$ 的 **维数** 为线性基的元素个数（或势），记作 $\dim V$。
 
 ## 性质
 
@@ -89,20 +95,31 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 
     $u,v,w$ 不是一组基，因为 $u+4v+6w=\theta$.
 
+## 正交基与单位正交基
+
+若线性空间 $V$ 的一组基 $B$ 满足 $\forall b,b'\in B,~(b,b')\ne 0\iff b=b'$（即两两正交），则称这组基是**正交基**。
+
+若线性空间 $V$ 的一组正交基 $B$ 还满足 $\forall b\in B,~(b,b)=1$，则称这组基是**单位正交基**。
+
+任意有限维线性空间 $V$ 的基都可以通过 [Schmidt 正交化](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) 变换为正交基。
+
 ## 应用
+
+在 OI 中，我们一般将 $n$ 维实线性空间 $\mathbf{R}^n$ 下的线性基称为 **实数线性基**，$n$ 维布尔域线性空间 $\mathbf{Z}_2^n$ 下的线性基称为 **异或线性基**。
+
+以异或线性基为例，我们可以根据给定的一组布尔序列 $\{x_1,\dots,x_m\}$ 构造出一组异或线性基 $B=\{b_1,\dots,b_n\}$，这组基有如下性质：
+
+1.  $B$ 中任意非空子集的异或和不为 $0$；
+2.  对 $X$ 中的任意元素 $x$，都可在 $B$ 中取出若干元素使其异或和为 $x$；
+3.  对任意满足上两条的集合 $B'$，其元素个数不会小于 $B$ 的元素个数。
 
 线性基在 OI 中的应用一般包含以下方面：
 
-1.  对给定的向量组，找到一组极大线性无关组（或其张成的线性空间的一组基）。
-2.  向给定的向量组插入某些向量，在插入操作后的向量组中找到一组极大线性无关组（或其张成的线性空间的一组基）。
-3.  对找到的一组极大线性无关组（或基），判断某向量能否被其线性表出
-4.  求极大线性无关组（或基）的秩。
-5.  对找到的一组极大线性无关组（或基），求其张成的线性空间中的最大元/最小元。
-
-特别地：
-
--   若限定向量均在 $\Bbb{Z}_2^n$ 下，则称找到的基为 **异或线性基**。
--   若限定向量均在 $\Bbb{R}^n$ 下，则称找到的基为 **实数线性基**。
+1.  对给定的向量组，找到一组极大线性无关组（或其张成的线性空间的一组基）；
+2.  向给定的向量组插入某些向量，在插入操作后的向量组中找到一组极大线性无关组（或其张成的线性空间的一组基）；
+3.  对找到的一组极大线性无关组（或基），判断某向量能否被其线性表出；
+4.  求极大线性无关组（或基）的秩；
+5.  对找到的一组极大线性无关组（或基），求其张成的线性空间中的特殊元素（如最大元、最小元、异或线性基的 $k$ 大元等）。
 
 ### 构造方法
 
@@ -220,3 +237,5 @@ author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, R
 1.  丘维声，高等代数（下）。清华大学出版社。
 2.  [Basis (linear algebra) - Wikipedia](https://en.wikipedia.org/wiki/Basis_%28linear_algebra%29)
 3.  [Vector Basis -- from Wolfram MathWorld](https://mathworld.wolfram.com/VectorBasis.html)
+
+[^existence_basis]: [Proof that every vector space has a basis](https://en.wikipedia.org/wiki/Basis_%28linear_algebra%29#Proof_that_every_vector_space_has_a_basis)
