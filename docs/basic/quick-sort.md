@@ -58,7 +58,7 @@
     }
     ```
 
-=== "Python[^ref2]"
+=== "Python[^ref2][^ref5]"
     ```python
     def quick_sort(alist, first, last):
         if first >= last:
@@ -334,3 +334,5 @@ $$
 [^ref3]: [三种快速排序以及快速排序的优化](https://blog.csdn.net/insistGoGo/article/details/7785038)
 
 [^ref4]: [introsort](https://en.wikipedia.org/wiki/Introsort)
+
+[^ref5]: 其实在 Python 中，有比快速排序效率更高的排序算法，且是 `list.sort()` 和 `sorted()` 的实现，详见 [Timsort](tim-sort)。
