@@ -182,6 +182,42 @@ int upper(const void *p1, const void *p2) {
     2.  为何返回左边值？
     
         同上。
+        
+## 模糊二分
+
+有时候你可能觉得上面判断边界的问题很麻烦，有没有什么办法能减少呢？
+很简单，回忆一下，最开始不知道二分的时候是怎样做的？
+你会发现，很多时候错误答案比正确答案+1或-1；所以不妨让边界变得模糊，然后再逐步判断
+
+### 实现
+
+#### C++
+
+```cpp
+while (l + 10 < r)
+    {
+        LL mid = l + r >> 1;
+        if (check(mid))
+        {
+            l = mid;
+            tmpl = l;
+        }
+        else
+        {
+            r = mid;
+            tmpr = r;
+        }
+    }//增加模糊区间，方便遍历
+for (LL i = tmpl; i < tmpr; i++)
+    {
+        if (check(i))
+        {
+            ans = i;
+        }
+        else
+            break;
+    }
+```
 
 ## 三分法
 
