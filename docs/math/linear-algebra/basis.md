@@ -1,6 +1,6 @@
 author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, RUIN-RISE, wjy-yy, rsdbkhusky, ouuan, Menci, Tiphereth-A
 
-回想高中数学立体几何中基向量的概念，我们可以在三维欧氏空间中找到一组基向量 $\boldsymbol{i}$，$\boldsymbol{j}$，$\boldsymbol{k}$，之后空间中任意一个向量都可以由这组基向量表示。换句话说，我们可以**通过有限的基向量来描述无限的三维空间**，这足以体现基向量的重要性。
+回想高中数学立体几何中基向量的概念，我们可以在三维欧氏空间中找到一组基向量 $\boldsymbol{i}$，$\boldsymbol{j}$，$\boldsymbol{k}$，之后空间中任意一个向量都可以由这组基向量表示。换句话说，我们可以 **通过有限的基向量来描述无限的三维空间**，这足以体现基向量的重要性。
 
 三维欧氏空间是特殊的 [线性空间](./vector-space.md)，三维欧氏空间的基向量在线性空间中就被推广为了线性基。
 
@@ -97,9 +97,9 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
 
 ## 正交基与单位正交基
 
-若线性空间 $V$ 的一组基 $B$ 满足 $\forall b,b'\in B,~(b,b')\ne 0\iff b=b'$（即两两正交），则称这组基是**正交基**。
+若线性空间 $V$ 的一组基 $B$ 满足 $\forall b,b'\in B,~(b,b')\ne 0\iff b=b'$（即两两正交），则称这组基是 **正交基**。
 
-若线性空间 $V$ 的一组正交基 $B$ 还满足 $\forall b\in B,~(b,b)=1$，则称这组基是**单位正交基**。
+若线性空间 $V$ 的一组正交基 $B$ 还满足 $\forall b\in B,~(b,b)=1$，则称这组基是 **单位正交基**。
 
 任意有限维线性空间 $V$ 的基都可以通过 [Schmidt 正交化](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) 变换为正交基。
 
