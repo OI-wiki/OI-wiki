@@ -88,7 +88,7 @@ $\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$
 
 $$
 \begin{array}{ll}
-1 & \text{获取 $f(i)$ 函数的前缀和，记为 $s(i)$.} \\
+1 & \text{Calculate $s(i)$, the prefix sum of $f(i)$.} \\
 2 & l \gets 1\\
 3 & r \gets 0\\
 4 & \textit{result} \gets 0 \\
