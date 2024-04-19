@@ -12,7 +12,9 @@ C++ 中你仍然可以使用 C 风格的指针，但是对于变量传递而言�
 
 ### bool
 
-与 C++ 不同的是，C 语言最初并没有 [布尔类型](var.md#布尔类型)。
+另请参阅 [布尔类型](var.md#布尔类型)。
+
+与 C++ 不同的是，C 语言最初并没有布尔类型。
 
 C99 标准加入了 `_Bool` 关键字（以及等效的 `bool` 宏）以及 `true` 和 `false` 两个宏。如果需要使用 `bool`，`true`，`false` 这三个宏，需要在程序中引入 `stdbool.h` 头文件。而使用 `_Bool` 则不需要引入任何额外头文件。
 
@@ -21,7 +23,7 @@ bool x = true;  // 需要引入 stdbool.h
 _Bool x = 1;    // 不需要引入 stdbool.h
 ```
 
-C23 起，`true` 和 `false` 成为 C 语言中的关键字，使用它们不需要再引入 `stdbool.h` 头文件[^true-false-become-keyword]。
+C23 起，`true`,`false` 和 `bool` 成为 C 语言中的关键字，使用它们不需要再引入 `stdbool.h` 头文件，同时保留 `_Bool` 作为 `bool` 的替代拼写形式[^boolean-keyword]。
 
 下表展示了 C 语言不同标准下，bool 类型支持的变化情况（作为对照，加入了 C++ 的支持情况）：
 
@@ -29,7 +31,7 @@ C23 起，`true` 和 `false` 成为 C 语言中的关键字，使用它们不需
 | ------------ | --------------------------------- | ----------------------------------------------------- | ------------------------- |
 | C89          | /                                 | /                                                     | 保留[^reserved-identifiers] |
 | C99 起，C23 以前 | 宏，与 `_Bool` 等价，需要 `stdbool.h` 头文件 | 宏，`true` 与 `1` 等价，`false` 与 `0` 等价，需要 `stdbool.h` 头文件 | 关键字                       |
-| C23 起        | 宏，与 `_Bool` 等价，需要 `stdbool.h` 头文件 | 关键字                                                   | 关键字                       |
+| C23 起        | 关键字                               | 关键字                                                   | 关键字 `bool` 的替代拼写形式        |
 | C++          | 关键字                               | 关键字                                                   | 保留[^reserved-identifiers] |
 
 ### struct
@@ -96,6 +98,6 @@ Java 与 C++ 都是面向对象的语言，都使用了面向对象的思想（�
 
 [^cpp-designated-init]: <https://en.cppreference.com/w/cpp/language/aggregate_initialization>
 
-[^true-false-become-keyword]: <https://en.cppreference.com/w/c/23>。
+[^boolean-keyword]: <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf>。
 
 [^reserved-identifiers]: C 和 C++ 均规定，以一个下划线跟着一个大写字母开头的标识符是被保留的，详见 <https://en.cppreference.com/w/c/language/identifier>。
