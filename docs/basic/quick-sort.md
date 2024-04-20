@@ -339,7 +339,8 @@ $$
 
 [^ref5]: 其实在 Python 中，有比快速排序效率更高的排序算法，且是 `list.sort()` 和 `sorted()` 的实现[^ref6]，详见 [Timsort](./tim-sort.md)。
 
-[^ref6]: 
-- [On the Worst-Case Complexity of TimSort](https://www.xueshufan.com/publication/2951137085)
-- [An Efficient Hardware Implementation of TimSort and MergeSort Algorithms Using High Level Synthesis](https://www.xueshufan.com/publication/2756283222)
-- [Sort race](https://www.nstl.gov.cn/paper_detail.html?id=2f35b2b10701c657e1bec4696d3e7bf6)
+[^ref6]:
+
+-   [On the Worst-Case Complexity of TimSort](https://www.xueshufan.com/publication/2951137085)
+-   [An Efficient Hardware Implementation of TimSort and MergeSort Algorithms Using High Level Synthesis](https://www.xueshufan.com/publication/2756283222)
+-   [Sort race](https://www.nstl.gov.cn/paper_detail.html?id=2f35b2b10701c657e1bec4696d3e7bf6)
