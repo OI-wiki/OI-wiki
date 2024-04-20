@@ -78,7 +78,6 @@
         quick_sort(alist, low + 1, last)
     ```
 
-
 === "Haskell[^ref3]"
     ```haskell
     quicksort :: (Ord a) => [a] -> [a]
@@ -88,7 +87,6 @@
         biggerSorted = quicksort [a | a <- xs, a > x]   -- 大于基准
     in  smallerSorted ++ [x] ++ biggerSorted
     ```
-
 
 ## 性质
 
@@ -240,8 +238,6 @@
         quick_sort(arr, k, r)
     ```
 
-
-
 ### 内省排序
 
 #### 定义
@@ -345,7 +341,7 @@ $$
 
 [^ref2]: [算法实现/排序/快速排序 - 维基教科书，自由的教学读本](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)
 
-[^ref3]: [Haskell 中的递归#快速排序](https://learnyouahaskell.com/recursion#quick-sort)
+[^ref3]: [Haskell 中的递归 #快速排序](https://learnyouahaskell.com/recursion#quick-sort)
 
 [^ref4]: [三种快速排序以及快速排序的优化](https://blog.csdn.net/insistGoGo/article/details/7785038)
 
