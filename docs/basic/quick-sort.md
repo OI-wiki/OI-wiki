@@ -337,7 +337,7 @@ $$
 
 [^ref4]: [introsort](https://en.wikipedia.org/wiki/Introsort)
 
-[^ref5]: 其实在 Python 中，有比快速排序效率更高的排序算法，且是 `list.sort()` 和 `sorted()` 的实现[^ref6]，详见 [Timsort](tim-sort)。
+[^ref5]: 其实在 Python 中，有比快速排序效率更高的排序算法，且是 `list.sort()` 和 `sorted()` 的实现[^ref6]，详见 [Timsort](./tim-sort.md)。
 
 [^ref6]: 
 - [On the Worst-Case Complexity of TimSort](https://www.xueshufan.com/publication/2951137085)
