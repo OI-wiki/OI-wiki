@@ -1,4 +1,4 @@
-Author:Backl1ght
+author: Backl1ght, xk2013
 
 tim 排序是归并排序和插入排序的结合，是一个 **稳定** 的排序算法，由 Tim Peters 于 2002 年用 Python 实现。现在，tim 排序是 Python 的标准排序算法，且被 Java SE7 用于对非原始类型的数组排序。
 
