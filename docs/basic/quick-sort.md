@@ -78,6 +78,18 @@
         quick_sort(alist, low + 1, last)
     ```
 
+
+=== "Haskell[^ref3]"
+    ```haskell
+    quicksort :: (Ord a) => [a] -> [a]
+    quicksort [] = []
+    quicksort (x:xs) = 
+    let smallerSorted = quicksort [a | a <- xs, a <= x] -- 小于基准
+        biggerSorted = quicksort [a | a <- xs, a > x]   -- 大于基准
+    in  smallerSorted ++ [x] ++ biggerSorted
+    ```
+
+
 ## 性质
 
 ### 稳定性
@@ -147,7 +159,7 @@
 
 如果仅按照上文所述的基本思想来实现快速排序（或者是直接照抄模板）的话，那大概率是通不过 [P1177【模板】快速排序](https://www.luogu.com.cn/problem/P1177) 这道模板的。因为有毒瘤数据能够把朴素的快速排序卡成 $O(n^2)$。
 
-所以，我们需要对朴素快速排序思想加以优化。较为常见的优化思路有以下三种[^ref3]。
+所以，我们需要对朴素快速排序思想加以优化。较为常见的优化思路有以下三种[^ref4]。
 
 -   通过 **三数取中（即选取第一个、最后一个以及中间的元素中的中位数）** 的方法来选择两个子序列的分界元素（即比较基准）。这样可以避免极端数据（如升序序列或降序序列）带来的退化；
 -   当序列较短时，使用 **插入排序** 的效率更高；
@@ -228,11 +240,13 @@
         quick_sort(arr, k, r)
     ```
 
+
+
 ### 内省排序
 
 #### 定义
 
-内省排序（英语：Introsort 或 Introspective sort）[^ref4]是快速排序和 [堆排序](./heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$。
+内省排序（英语：Introsort 或 Introspective sort）[^ref5]是快速排序和 [堆排序](./heap-sort.md) 的结合，由 David Musser 于 1997 年发明。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 $O(n\log n)$。
 
 #### 性质
 
@@ -331,6 +345,8 @@ $$
 
 [^ref2]: [算法实现/排序/快速排序 - 维基教科书，自由的教学读本](https://zh.wikibooks.org/wiki/%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0/%E6%8E%92%E5%BA%8F/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F)
 
-[^ref3]: [三种快速排序以及快速排序的优化](https://blog.csdn.net/insistGoGo/article/details/7785038)
+[^ref3]: [Haskell 中的递归#快速排序](https://learnyouahaskell.com/recursion#quick-sort)
 
-[^ref4]: [introsort](https://en.wikipedia.org/wiki/Introsort)
+[^ref4]: [三种快速排序以及快速排序的优化](https://blog.csdn.net/insistGoGo/article/details/7785038)
+
+[^ref5]: [introsort](https://en.wikipedia.org/wiki/Introsort)
