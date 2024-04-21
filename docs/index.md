@@ -15,7 +15,6 @@ title: OI Wiki
 本项目受 [CTF Wiki](https://ctf-wiki.org/) 的启发，在编写过程中参考了诸多资料，在此一并致谢。
 
 <div align="center">
-<a href="https://www.hulu.com/" target="_blank"><img style="height: 40px; " src="images/hulu-black.png"></a>
 <a href="https://www.netlify.com/" target="_blank" style="margin-left: 60px;"><img style="height: 40px; " src="images/netlify.png"></a>
 </div>
 

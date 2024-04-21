@@ -44,6 +44,7 @@ jobs:
 
       - uses: typst-community/setup-typst@v3
         with:
+          typst-version: 0.11.0
           cache-dependency-path: OI-Wiki-export/oi-wiki-export-typst/oi-wiki.typ
 
       - name: Build Typst document
@@ -51,7 +52,7 @@ jobs:
           cd OI-Wiki-export
           cd oi-wiki-export-typst
           node index.js ../../
-          typst -v compile oi-wiki-export.typ --font-path .fonts
+          typst compile oi-wiki-export.typ --font-path .fonts
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

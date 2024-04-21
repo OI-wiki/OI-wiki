@@ -102,8 +102,8 @@ $$
 ### 习题
 
 -   [POJ2096 Collecting Bugs](http://poj.org/problem?id=2096)
--   [HDU3853 LOOPS](https://vjudge.net/problem/HDU-3853)
--   [HDU4035 Maze](https://vjudge.net/problem/HDU-4035)
+-   [HDU3853 LOOPS](https://acm.hdu.edu.cn/showproblem.php?pid=3853)
+-   [HDU4035 Maze](https://acm.hdu.edu.cn/showproblem.php?pid=4035)
 -   [「NOIP2016」换教室](http://uoj.ac/problem/262)
 -   [「SCOI2008」奖励关](https://www.luogu.com.cn/problem/P2473)
 
@@ -195,7 +195,7 @@ $$
 ### 习题
 
 -   [CodeForce 24 D Broken robot](https://codeforces.com/problemset/problem/24/D)
--   [HDU Time Travel](https://vjudge.net/problem/HDU-4418)
+-   [HDU 4418 Time Travel](https://acm.hdu.edu.cn/showproblem.php?pid=4418)
 -   [「HNOI2013」游走](https://loj.ac/problem/2383)
 
 ## 参考文献

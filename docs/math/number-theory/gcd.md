@@ -6,6 +6,12 @@
 
 一组整数的最大公约数，是指所有公约数里面最大的一个。
 
+对不全为 $0$ 的整数 $a,b$，将其最大公约数记为 $\gcd(a,b)$，不引起歧义时可简写为 $(a,b)$。
+
+对不全为 $0$ 的整数 $a_1,\dots,a_n$，将其最大公约数记为 $\gcd(a_1,\dots,a_n)$，不引起歧义时可简写为 $(a_1,\dots,a_n)$。
+
+最大公约数与最小公倍数的性质见 [数论基础](./basic.md#最大公约数与最小公倍数)。
+
 那么如何求最大公约数呢？我们先考虑两个数的情况。
 
 ### 欧几里得算法
@@ -14,7 +20,7 @@
 
 如果我们已知两个数 $a$ 和 $b$，如何求出二者的最大公约数呢？
 
-不妨设 $a > b$
+不妨设 $a > b$。
 
 我们发现如果 $b$ 是 $a$ 的约数，那么 $b$ 就是二者的最大公约数。
 下面讨论不能整除的情况，即 $a = b \times q + r$，其中 $r < b$。
@@ -112,7 +118,10 @@
 
 上述算法都可被称作欧几里得算法（Euclidean algorithm）。
 
-另外，对于 C++14，我们可以使用自带的 ` __gcd(a,b)` 函数来求最大公约数。而对于 C++ 17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
+另外，对于 C++17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
+
+???+ warning "注意"
+    在部分编译器中，C++14 中可以用 `std::__gcd(a,b)` 函数来求最大公约数，但是其仅作为 `std::rotate` 的私有辅助函数。[^1]使用该函数可能会导致预期之外的问题，故一般情况下不推荐使用。
 
 如果两个数 $a$ 和 $b$ 满足 $\gcd(a, b) = 1$，我们称 $a$ 和 $b$ 互质。
 
@@ -166,37 +175,78 @@
 
 高精度模板见 [高精度计算](../bignum.md)。
 
-高精度运算需实现：减法、大小比较、左移、右移（可用低精乘除代替）、判断奇偶。
+高精度运算需实现：减法、大小比较、左移、右移（可用低精乘除代替）、二进制末位 0 的个数（可以通过判断奇偶暴力计算）。
 
 ??? "C++"
     ```cpp
     Big gcd(Big a, Big b) {
-      // 记录a和b的公因数2出现次数
-      int atimes = 0, btimes = 0;
-      while (a % 2 == 0) {
-        a >>= 1;
-        atimes++;
-      }
-      while (b % 2 == 0) {
-        b >>= 1;
-        btimes++;
-      }
+      if (a == 0) return b;
+      if (b == 0) return a;
+      // 记录a和b的公因数2出现次数，countr_zero表示二进制末位0的个数
+      int atimes = countr_zero(a);
+      int btimes = countr_zero(b);
+      a >>= atimes;
       for (;;) {
-        // a和b公因数中的2已经计算过了，后面不可能出现a,b均为偶数的情况
-        while (a % 2 == 0) {
-          a >>= 1;
-        }
-        while (b % 2 == 0) {
-          b >>= 1;
-        }
-        if (a == b) break;
-        // 确保 a>=b
-        if (a < b) swap(a, b);
-        a -= b;
+        // a和b公因数中的2已经计算过了，后面不可能出现a为偶数的情况
+        b >>= btimes;
+        // 确保 a<=b
+        if (a > b) swap(a, b);
+        b -= a;
+        if (b == 0) break;
+        btimes = countr_zero(b);
       }
       return a << min(atimes, btimes);
     }
     ```
+
+上述代码参考了 [libstdc++](https://github.com/gcc-mirror/gcc/blob/1667962ae755db27965778b8c8c684c6c0c4da21/libstdc%2B%2B-v3/include/std/numeric#L173) 和 [MSVC](https://github.com/microsoft/STL/blob/9aca22477df4eed3222b4974746ee79129eb44e7/stl/inc/numeric#L591) 对 C++17 `std::gcd` 的实现。在 `unsigned int` 和 `unsigned long long` 的数据范围下，如果可以以极快的速度计算 `countr_zero`，则 Stein 算法比欧几里得算法来得快，但反之则可能比欧几里得算法慢。
+
+???+ note "关于 countr_zero"
+    1.  gcc 有 [内建函数](../../bit/#内建函数) `__builtin_ctz`（32 位）或 `__builtin_ctzll`（64 位）可替换上述代码的 `countr_zero`；
+    2.  从 C++20 开始，头文件 `<bit>` 包含了 [`std::countr_zero`](https://en.cppreference.com/w/cpp/numeric/countr_zero)；
+    3.  如果不使用不在标准库的函数，又无法使用 C++20 标准，下面的代码是一种在 Word-RAM with multiplication 模型下经过预处理后 $O(1)$ 的实现：
+    
+    ```cpp
+    const int loghash[64] = {0,  32, 48, 56, 60, 62, 63, 31, 47, 55, 59, 61, 30,
+                             15, 39, 51, 57, 28, 46, 23, 43, 53, 58, 29, 14, 7,
+                             35, 49, 24, 44, 54, 27, 45, 22, 11, 37, 50, 25, 12,
+                             38, 19, 41, 52, 26, 13, 6,  3,  33, 16, 40, 20, 42,
+                             21, 10, 5,  34, 17, 8,  36, 18, 9,  4,  2,  1};
+    
+    int countr_zero(unsigned long long x) {
+      return loghash[(x & -x) * 0x9150D32D8EB9EFC0Ui64 >> 58];
+    }
+    ```
+
+    而对于高精度运算，如果实现方法类似 `bitset`，则搭配上述对 `countr_zero` 的实现可以在 `O(n / w)` 的时间复杂度下完成。但如果不便按二进制位拆分，则只能暴力判断最大的 $2$ 的幂因子，时间复杂度取决于实现。比如：
+
+    ```cpp
+    // 以小端序实现的二进制 Big，要求能枚举每一个元素
+    int countr_zero(Big a) {
+      int ans = 0;
+      for(auto x : a) {
+        if(x != 0) {
+          ans += 32; // 每一位数据类型的位长
+        }
+        else {
+          return ans + countr_zero(x);
+        }
+      }
+      return ans;
+    }
+
+    // 暴力计算，如需使用建议直接写进 gcd 加快常数
+    int countr_zero(Big a) {
+      int ans = 0;
+      while((a & 1) == 0) {
+        a >>= 1;
+        ++ans;
+      }
+      return ans;
+    }
+    ```
+
+更多关于 `gcd` 实现上快慢的讨论可阅读 [Fastest way to compute the greatest common divisor](https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/)。
 
 ### 多个数的最大公约数
 
@@ -211,6 +261,10 @@
 一组整数的公倍数，是指同时是这组数中每一个数的倍数的数。0 是任意一组整数的公倍数。
 
 一组整数的最小公倍数，是指所有正的公倍数里面，最小的一个数。
+
+对整数 $a,b$，将其最小公倍数记为 $\operatorname{lcm}(a,b)$，不引起歧义时可简写为 $[a,b]$。
+
+对整数 $a_1,\dots,a_n$，将其最小公倍数记为 $\operatorname{lcm}(a_1,\dots,a_n)$，不引起歧义时可简写为 $[a_1,\dots,a_n]$。
 
 ### 两个数
 
@@ -258,7 +312,7 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
 
 因为 $a=a,b=b$，所以 $x_1=y_2,y_1=x_2-\lfloor\frac{a}{b}\rfloor y_2$
 
-将 $x_2,y_2$ 不断代入递归求解直至 $\gcd$（最大公约数，下同）为 `0` 递归 `x=1,y=0` 回去求解。
+将 $x_2,y_2$ 不断代入递归求解直至 $\gcd$（最大公约数，下同）为 $0$ 递归 $x=1,y=0$ 回去求解。
 
 ### 实现
 
@@ -454,3 +508,7 @@ int exgcd(int a, int b, int &x, int &y) {
 -   [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)
 -   [GYM - (J) once upon a time](http://codeforces.com/gym/100963)
 -   [UVa - 12775 - Gift Dilemma](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628)
+
+## 参考资料与链接
+
+[^1]: [libstdc++: std Namespace Reference](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-html-USERS-4.4/a00978.html#a2686a128df5a576cb53a1ed5f674607)

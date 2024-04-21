@@ -704,7 +704,7 @@ $$
 
 原因很简单，考虑 $\operatorname{lowbit}(x + 2^i)$，它一定是 $2^i$，因为 $x$ 之前只累加过 $2^j$ 满足 $j > i$。因此 $c[x + 2^i]$ 表示的区间就是 $[x + 1 \ldots x + 2^i]$。
 
-如此以来，时间复杂度降低为 $\Theta(\log n)$。
+如此一来，时间复杂度降低为 $\Theta(\log n)$。
 
 ???+ note "实现"
     === "C++"
@@ -728,13 +728,14 @@ $$
         # 权值树状数组查询第 k 小
         def kth(k):
             sum = 0; x = 0
-            i = log2(n)
+            i = int(log2(n))
             while ~i:
                 x = x + (1 << i) # 尝试扩展
                 if x >= n or sum + t[x] >= k: # 如果扩展失败
                     x = x - (1 << i)
                 else:
                     sum = sum + t[x]
+                i = i - 1
             return x + 1
         ```
 

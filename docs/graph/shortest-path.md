@@ -214,7 +214,7 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
                 flag = False
                 for e in edge:
                     u, v, w = e.u, e.v, e.w
-                    if (dis[u] == INF):
+                    if dis[u] == INF:
                         continue
                     # 无穷大与常数加减仍然为无穷大
                     # 因此最短路长度为 INF 的点引出的边不可能发生松弛操作
@@ -222,7 +222,7 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
                         dis[v] = dis[u] + w
                         flag = True
                 # 没有可以松弛的边时就停止算法
-                if flag == False:
+                if not flag:
                     break
             # 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
             return flag
@@ -415,7 +415,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
                 u = 0
                 mind = 0x3f3f3f3f
                 for j in range(1, n + 1):
-                    if vis[j] == False and dis[v] < mind:
+                    if not vis[j] and dis[j] < mind:
                         u = j
                         mind = dis[j]
                 vis[u] = True
