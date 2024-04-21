@@ -64,13 +64,15 @@ int main() {                // 定义 main 函数
   return 0;                 // 返回 0，结束 main 函数
 }
 ```
+
 也可以写成：
+
 ```c++
 #include <iostream>
 
 int main() {
   std::cout << "Hello, world!";  // 使用标准命名空间中的 cout 函数
-  return 0;                      // 编译器一般会自动加上这一行，一般可以省略
+  return 0;  // 编译器一般会自动加上这一行，一般可以省略
 }
 ```
 
