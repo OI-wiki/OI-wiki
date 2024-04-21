@@ -53,7 +53,7 @@ g++ test.cpp -o test -lm
 C++ 语言
 
 ```c++
-#include <iostream>
+#include <iostream>  // 引用头文件
 
 int main() {  // 定义 main 函数
   std::cout << "Hello, world!";  // 使用标准命名空间中的 cout 函数
