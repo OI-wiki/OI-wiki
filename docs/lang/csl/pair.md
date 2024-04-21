@@ -131,7 +131,8 @@ for (int i = 0; i < n; i++) {
 那么，在 Dijkstra 算法的堆优化中，可以使用 `pair` 与 `priority_queue` 维护节点，将节点当前到起点的距离作为第一个变量，将节点编号作为第二个变量。
 
 ```cpp
-priority_queue<pair<int, int>, std::vector<pair<int, int> >, std::greater<pair<int, int> > > q;
+typedef pair<int, int> node;
+priority_queue<node, std::vector<node>, std::greater<node> q;
 // ...
 while (!q.empty()) {
   int i = q.top().second;  // i 为节点编号
