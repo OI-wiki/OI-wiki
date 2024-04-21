@@ -132,7 +132,7 @@ for (int i = 0; i < n; i++) {
 
 ```cpp
 typedef pair<int, int> node;
-priority_queue<node, std::vector<node>, std::greater<node> q;
+priority_queue<node, std::vector<node>, std::greater<node> > q;
 // ...
 while (!q.empty()) {
   int i = q.top().second;  // i 为节点编号
