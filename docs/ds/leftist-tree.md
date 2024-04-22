@@ -79,7 +79,7 @@
       if (!x || !y) return x | y;
       if (t[x].val < t[y].val) swap(x, y);
       t[rs(x) = merge(rs(x), y)].fa = x;
-      pushup(x);
+      t[x].d = t[rs(x)].d + 1;
       return x;
     }
     
@@ -89,6 +89,20 @@
         t[x].d = t[rs(x)].d + 1;
         pushup(t[x].fa);
       }
+    }
+
+    void erase(int x) {
+      if (!x) return;
+      int y = merge(t[x].ch[0], t[x].ch[1]);
+      if(t[t[x].fa].ch[0] == x) {
+        t[t[x].fa].ch[0] = y;
+        t[y].fa = t[x].fa;
+      }
+      else if(t[t[x].fa].ch[1] == x) {
+        t[t[x].fa].ch[1] = y;
+        t[y].fa = t[x].fa;
+      }
+      pushup(y);
     }
     ```
 
