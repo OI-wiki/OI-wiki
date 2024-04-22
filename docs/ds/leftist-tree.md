@@ -90,6 +90,7 @@
         pushup(t[x].fa);
       }
     }
+    ```
 
     void erase(int x) {
       if (!x) return;
