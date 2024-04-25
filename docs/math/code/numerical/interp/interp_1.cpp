@@ -46,7 +46,7 @@ std::vector<int> lagrange_interpolation(const std::vector<int> &x,
 
 int main() {
   std::ios::sync_with_stdio(false);
-  std::cin.tie(0);
+  std::cin.tie(nullptr);
   int n, k;
   std::cin >> n >> k;
   std::vector<int> x(n), y(n);
