@@ -38,6 +38,7 @@
       A[low] = pivot;
       return low;
     }
+    ```
 
     template <typename T>
     void QuickSort(T A[], int low, int high) {
