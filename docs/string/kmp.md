@@ -90,18 +90,19 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
     === "Java"
         ```java
         static int[] prefix_function(String s) {
-		int n = s.length();
-		int[] pi = new int[n];
-		for (int i = 1; i < n; i++) {
-			for (int j = i; j >= 0; j--) {
-				if (s.substring(0, j).equals(s.substring(i - j + 1, i + 1))) {
-					pi[i] = j;
-					break;
-				}
-			}
-		}
-		return pi;
-	}
+        int n = s.length();
+        int[] pi = new int[n];
+        for (int i = 1; i < n; i++) {
+        	for (int j = i; j >= 0; j--) {
+        		if (s.substring(0, j).equals(s.substring(i - j + 1, i + 1))) {
+        			pi[i] = j;
+        			break;
+        		}
+        	}
+        }
+        return pi;
+        ```
+    
         ```
     
     注：
@@ -154,22 +155,23 @@ $$
                         break
             return pi
         ```
-	
-	=== "Java"
+    
+    === "Java"
         ```java
         static int[] prefix_function(String s) {
-		int n = s.length();
-		int[] pi = new int[n];
-		for (int i = 1; i < n; i++) {
-			for (int j = pi[i - 1] + 1; j >= 0; j--) {
-				if (s.substring(0, j).equals(s.substring(i - j + 1, i + 1))) {
-					pi[i] = j;
-					break;
-				}
-			}
-		}
-		return pi;
-	}
+        int n = s.length();
+        int[] pi = new int[n];
+        for (int i = 1; i < n; i++) {
+        	for (int j = pi[i - 1] + 1; j >= 0; j--) {
+        		if (s.substring(0, j).equals(s.substring(i - j + 1, i + 1))) {
+        			pi[i] = j;
+        			break;
+        		}
+        	}
+        }
+        return pi;
+        ```
+    
         ```
 
 在这个初步改进的算法中，在计算每个 $\pi[i]$ 时，最好的情况是第一次字符串比较就完成了匹配，也就是说基础的字符串比较次数是 `n-1` 次。
@@ -238,24 +240,25 @@ $$
                 pi[i] = j
             return pi
         ```
-	
-	=== "Java"
+    
+    === "Java"
         ```java
         static int[] prefix_function(String s) {
-		int n = s.length();
-		int[] pi = new int[n];
-		for (int i = 1; i < n; i++) {
-			int j = pi[i - 1];
-			while (j > 0 && s.charAt(i) != s.charAt(j)) {
-				j = pi[j - 1];
-			}
-			if (s.charAt(i) == s.charAt(j)) {
-				j++;
-			}
-			pi[i] = j;
-		}
-		return pi;
-	}
+        int n = s.length();
+        int[] pi = new int[n];
+        for (int i = 1; i < n; i++) {
+        	int j = pi[i - 1];
+        	while (j > 0 && s.charAt(i) != s.charAt(j)) {
+        		j = pi[j - 1];
+        	}
+        	if (s.charAt(i) == s.charAt(j)) {
+        		j++;
+        	}
+        	pi[i] = j;
+        }
+        return pi;
+        ```
+    
         ```
 
 这是一个 **在线** 算法，即其当数据到达时处理它——举例来说，你可以一个字符一个字符的读取字符串，立即处理它们以计算出每个字符的前缀函数值。该算法仍然需要存储字符串本身以及先前计算过的前缀函数值，但如果我们已经预先知道该字符串前缀函数的最大可能取值 $M$，那么我们仅需要存储该字符串的前 $M + 1$ 个字符以及对应的前缀函数值。
@@ -309,21 +312,22 @@ $$
                     ret.append(i - 2 * sz2)
             return ret
         ```
-	
-	=== "Java"
+    
+    === "Java"
         ```java
         static List<Integer> find_occurrences(String text, String pattern) {
-		String cur = pattern + '#' + text;
-		int sz1 = text.length(), sz2 = pattern.length();
-		List<Integer> v = new ArrayList<>();
-		int[] lps = prefix_function(cur);
-		for (int i = sz2 + 1; i <= sz1 + sz2; i++) {
-			if (lps[i] == sz2) {
-				v.add(i - 2 * sz2);
-			}
-		}
-		return v;
-	}
+        String cur = pattern + '#' + text;
+        int sz1 = text.length(), sz2 = pattern.length();
+        List<Integer> v = new ArrayList<>();
+        int[] lps = prefix_function(cur);
+        for (int i = sz2 + 1; i <= sz1 + sz2; i++) {
+        	if (lps[i] == sz2) {
+        		v.add(i - 2 * sz2);
+        	}
+        }
+        return v;
+        ```
+    
         ```
 
 ### 字符串的周期
