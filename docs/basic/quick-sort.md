@@ -38,6 +38,7 @@
       A[low] = pivot;
       return low;
     }
+    
     template <typename T>
     void QuickSort(T A[], int low, int high) {
       if (low < high) {
@@ -46,6 +47,7 @@
         QuickSort(A, pivot + 1, high);
       }
     }
+    
     template <typename T>
     void QuickSort(T A[], int len) {
       QuickSort(A, 0, len - 1);
