@@ -103,7 +103,6 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
         return pi;
         ```
     
-    
     注：
     
     -   `string substr (size_t pos = 0, size_t len = npos) const;`
