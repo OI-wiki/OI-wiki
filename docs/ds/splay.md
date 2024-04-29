@@ -241,6 +241,7 @@ int rk(int k) {
       cur = ch[cur][0];
     } else {
       res += sz[ch[cur][0]];
+      if (!cur) return res + 1;
       if (k == val[cur]) {
         splay(cur);
         return res + 1;
@@ -447,6 +448,7 @@ struct Splay {
         cur = ch[cur][0];
       } else {
         res += sz[ch[cur][0]];
+        if (!cur) return res + 1;
         if (k == val[cur]) {
           splay(cur);
           return res + 1;
