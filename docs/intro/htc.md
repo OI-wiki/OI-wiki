@@ -10,7 +10,9 @@
 
 ???+ warning
     在开始编写一段内容之前，请查阅 [Issues](https://github.com/OI-wiki/OI-wiki/issues)，确认没有别人在做相同的工作之后，开个 [新 issue](https://github.com/OI-wiki/OI-wiki/issues/new) 记录待编写的内容。
-    在 Issues 中也有很多待修复的任务，尤其是我们的迭代计划（Iteration Plan）。从这里获取任务是一个很好的开始！
+
+???+ tip
+    在 Issues 中也有很多待修复/解决的问题，尤其是我们的迭代计划（Iteration Plan）。从这里获取任务是一个很好的开始！
 
 为了保证条目内容的专业性和准确性，我们建议您在编辑前先考虑以下几点：
 
