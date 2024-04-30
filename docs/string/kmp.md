@@ -61,6 +61,8 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
     
     === "C++"
         ```cpp
+        // 注：
+        // string substr (size_t pos = 0, size_t len = npos) const;
         vector<int> prefix_function(string s) {
           int n = (int)s.length();
           vector<int> pi(n);
@@ -73,10 +75,6 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
           return pi;
         }
         ```
-    
-    注：
-    
-    -   `string substr (size_t pos = 0, size_t len = npos) const;`
     
     === "Python"
         ```python
