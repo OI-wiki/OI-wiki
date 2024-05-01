@@ -67,7 +67,7 @@ int read() {
   char c = 0;
   while (c < '0' || c > '9') {  // c 不是数字时
     f |= (c == '-');            // 判断是否为负
-    c = getchar();               // 继续读入
+    c = getchar();              // 继续读入
   }
   while (c >= '0' && c <= '9') {  // c 是数字时
     x = x * 10 + (c - '0');  // 将新读入的数字「加」在 x 的后面
@@ -113,8 +113,7 @@ void write(int x) {
 void write(int x) {
   static int sta[35];
   int top = 0;
-  do
-    sta[top++] = x % 10, x /= 10;
+  do sta[top++] = x % 10, x /= 10;
   while (x);
   while (top) putchar(sta[--top] + '0');
 }
@@ -178,8 +177,7 @@ int rd() {
     f |= (c == '-');
     c = gc();
   }
-  while (isdigit(c))
-    x = x * 10 + (c - '0'), c = gc();  // 也可写成 c ^ 48
+  while (isdigit(c)) x = x * 10 + (c - '0'), c = gc();  // 也可写成 c ^ 48
   return x * f;
 }
 
@@ -193,8 +191,7 @@ void push(const char &c) {
 void write(int x) {
   static int sta[35];
   int top = 0;
-  do
-    sta[top++] = x % 10, x /= 10;
+  do sta[top++] = x % 10, x /= 10;
   while (x);
   while (top) push(sta[--top] + '0');
 }
@@ -225,7 +222,7 @@ T read() {
   T x = 0;  // 将 x 以输入的类型定义
   bool f = 0;
   char c = getchar();
-  while(!isdigit(c))
+  while (!isdigit(c))
     f |= (c == '-''), c = getchar();
   while(isdigit(c))
     c = getchar(), x = x * 10 + (c - '0');
@@ -270,9 +267,7 @@ struct IO {
     return p1 == p2 ? ' ' : *p1++;
   }
 
-  bool blank(char c) {
-    return c == ' ' || c == '\n' || c == '\r' || c == '\t';
-  }
+  bool blank(char c) { return c == ' ' || c == '\n' || c == '\r' || c == '\t'; }
 
   template <class T>
   void read(T &x) {
@@ -280,7 +275,7 @@ struct IO {
     bool f = 0;
     x = 0;
     char c = gc();
-    while(!isdigit(c))
+    while (!isdigit(c))
       f |= (c == '-''), c = getchar();
     while(isdigit(c))
       c = getchar(), x = x * 10 + (c - '0');
@@ -292,25 +287,21 @@ struct IO {
 
   void read(char *s) {
     char c = gc();
-    while(blank(c))
-      c = gc();
-    while(!blank(c))
-      *s++ = c, c = gc();
+    while (blank(c)) c = gc();
+    while (!blank(c)) *s++ = c, c = gc();
     *s = 0;
   }
 
   void read(char &c) {
     c = gc();
-    while(blank(c))
-      c = gc();
+    while (blank(c)) c = gc();
   }
 
   void push(const char &c) {
 #if DEBUG  // 调试，可显示字符
     putchar(c);
 #else
-    if (pp - pbuf == MAXSIZE) 
-      fwrite(pbuf, 1, MAXSIZE, stdout), pp = pbuf;
+    if (pp - pbuf == MAXSIZE) fwrite(pbuf, 1, MAXSIZE, stdout), pp = pbuf;
     *pp++ = c;
 #endif
   }
@@ -320,8 +311,7 @@ struct IO {
     if (x < 0) x = -x, push('-');  // 负数输出
     static T sta[35];
     T top = 0;
-    do
-      sta[top++] = x % 10, x /= 10;
+    do sta[top++] = x % 10, x /= 10;
     while (x);
     while (top) push(sta[--top] + '0');
   }
