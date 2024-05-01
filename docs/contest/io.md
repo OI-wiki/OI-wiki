@@ -56,32 +56,33 @@ std::cin.tie(0);
 
 10 进制整数中是不含空格或除 0\~9 和正负号外的其他字符的，因此在读入不应存在于整数中的字符（通常为空格）时，就可以判定已经读入结束
 
-C 和 C++ 语言分别在 ctype.h 和 cctype 头文件中，提供了函数 `isdigit`, 这个函数会检查传入的参数是否为十进制数字字符，是则返回 **true**，否则返回 **false**。对应的，在下面的代码中，可以使用 `isdigit(ch)` 代替 `ch >= '0' && ch <= '9'`，也可以使用 `!isdigit(ch)` 代替 `ch <'0' || ch> '9'`
+C 和 C++ 语言分别在 ctype.h 和 cctype 头文件中，提供了函数 `isdigit`, 这个函数会检查传入的参数是否为十进制数字字符，是则返回 **true**，否则返回 **false**。对应的，在下面的代码中，可以使用 `isdigit(c)` 代替 `c >= '0' && c <= '9'`，也可以使用 `!isdigit(c)` 代替 `c <'0' || c> '9'`
 
 ### 代码实现
 
 ```cpp
 int read() {
-  int x = 0, w = 1;
-  char ch = 0;
-  while (ch < '0' || ch > '9') {  // ch 不是数字时
-    if (ch == '-') w = -1;        // 判断是否为负
-    ch = getchar();               // 继续读入
+  int x = 0;
+  bool f = 0;
+  char c = 0;
+  while (c < '0' || c > '9') {  // c 不是数字时
+    f |= (c == '-');            // 判断是否为负
+    c = getchar();               // 继续读入
   }
-  while (ch >= '0' && ch <= '9') {  // ch 是数字时
-    x = x * 10 + (ch - '0');  // 将新读入的数字「加」在 x 的后面
-    // x 是 int 类型，char 类型的 ch 和 '0' 会被自动转为其对应的
-    // ASCII 码，相当于将 ch 转化为对应数字
-    // 此处也可以使用 (x<<3)+(x<<1) 的写法来代替 x*10
-    ch = getchar();  // 继续读入
+  while (c >= '0' && c <= '9') {  // c 是数字时
+    x = x * 10 + (c - '0');  // 将新读入的数字「加」在 x 的后面
+    // x 是 int 类型，char 类型的 c 和 '0' 会被自动转为其对应的
+    // ASCII 码，相当于将 c 转化为对应数字
+    // 此处也可以使用 (x << 3) + (x << 1) 的写法来代替 x * 10
+    c = getchar();  // 继续读入
   }
-  return x * w;  // 数字 * 正负号 = 实际数值
+  return f ? -x : x;  // 根据正负号输出
 }
 ```
 
 -   举例
 
-读入 num 可写为 `num=read();`
+读入 num 可写为 `num = read();`
 
 ## 输出优化
 
@@ -112,10 +113,10 @@ void write(int x) {
 void write(int x) {
   static int sta[35];
   int top = 0;
-  do {
+  do
     sta[top++] = x % 10, x /= 10;
-  } while (x);
-  while (top) putchar(sta[--top] + 48);  // 48 是 '0'
+  while (x);
+  while (top) putchar(sta[--top] + '0');
 }
 ```
 
@@ -170,13 +171,15 @@ char buf[MAXSIZE], *p1, *p2;
        : *p1++)
 
 int rd() {
-  int x = 0, f = 1;
+  int x = 0;
+  bool f = 0;
   char c = gc();
   while (!isdigit(c)) {
-    if (c == '-') f = -1;
+    f |= (c == '-');
     c = gc();
   }
-  while (isdigit(c)) x = x * 10 + (c ^ 48), c = gc();
+  while (isdigit(c))
+    x = x * 10 + (c - '0'), c = gc();  // 也可写成 c ^ 48
   return x * f;
 }
 
@@ -190,9 +193,9 @@ void push(const char &c) {
 void write(int x) {
   static int sta[35];
   int top = 0;
-  do {
+  do
     sta[top++] = x % 10, x /= 10;
-  } while (x);
+  while (x);
   while (top) push(sta[--top] + '0');
 }
 }  // namespace IO
@@ -219,12 +222,14 @@ void write(int x) {
 // 声明 template 类,要求提供输入的类型T,并以此类型定义内联函数 read()
 template <typename T>
 T read() {
-  T sum = 0, fl = 1;  // 将 sum,fl 和 ch 以输入的类型定义
-  int ch = getchar();
-  for (; !isdigit(ch); ch = getchar())
-    if (ch == '-') fl = -1;
-  for (; isdigit(ch); ch = getchar()) sum = sum * 10 + ch - '0';
-  return sum * fl;
+  T x = 0;  // 将 x 以输入的类型定义
+  bool f = 0;
+  char c = getchar();
+  while(!isdigit(c))
+    f |= (c == '-''), c = getchar();
+  while(isdigit(c))
+    c = getchar(), x = x * 10 + (c - '0');
+  return fl ? -x : x;
 }
 ```
 
@@ -265,43 +270,47 @@ struct IO {
     return p1 == p2 ? ' ' : *p1++;
   }
 
-  bool blank(char ch) {
-    return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
+  bool blank(char c) {
+    return c == ' ' || c == '\n' || c == '\r' || c == '\t';
   }
 
   template <class T>
   void read(T &x) {
     double tmp = 1;
-    bool sign = 0;
+    bool f = 0;
     x = 0;
-    char ch = gc();
-    for (; !isdigit(ch); ch = gc())
-      if (ch == '-') sign = 1;
-    for (; isdigit(ch); ch = gc()) x = x * 10 + (ch - '0');
-    if (ch == '.')
-      for (ch = gc(); isdigit(ch); ch = gc())
-        tmp /= 10.0, x += tmp * (ch - '0');
-    if (sign) x = -x;
+    char c = gc();
+    while(!isdigit(c))
+      f |= (c == '-''), c = getchar();
+    while(isdigit(c))
+      c = getchar(), x = x * 10 + (c - '0');
+    if (c == '.')
+      for (c = gc(); isdigit(c); c = gc())
+        tmp /= 10.0, x += tmp * (c - '0');
+    if (f) x = -x;
   }
 
   void read(char *s) {
-    char ch = gc();
-    for (; blank(ch); ch = gc())
-      ;
-    for (; !blank(ch); ch = gc()) *s++ = ch;
+    char c = gc();
+    while(blank(c))
+      c = gc();
+    while(!blank(c))
+      *s++ = c, c = gc();
     *s = 0;
   }
 
   void read(char &c) {
-    for (c = gc(); blank(c); c = gc())
-      ;
+    c = gc();
+    while(blank(c))
+      c = gc();
   }
 
   void push(const char &c) {
 #if DEBUG  // 调试，可显示字符
     putchar(c);
 #else
-    if (pp - pbuf == MAXSIZE) fwrite(pbuf, 1, MAXSIZE, stdout), pp = pbuf;
+    if (pp - pbuf == MAXSIZE) 
+      fwrite(pbuf, 1, MAXSIZE, stdout), pp = pbuf;
     *pp++ = c;
 #endif
   }
@@ -311,15 +320,16 @@ struct IO {
     if (x < 0) x = -x, push('-');  // 负数输出
     static T sta[35];
     T top = 0;
-    do {
+    do
       sta[top++] = x % 10, x /= 10;
-    } while (x);
+    while (x);
     while (top) push(sta[--top] + '0');
   }
 
   template <class T>
   void write(T x, char lastChar) {
-    write(x), push(lastChar);
+    write(x);
+    push(lastChar);
   }
 } io;
 ```
