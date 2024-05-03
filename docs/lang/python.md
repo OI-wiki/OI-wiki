@@ -771,7 +771,7 @@ for i in range(5):
 def function_generator():
     n = 1
     while True:
-        yield n  # “返回”数值(与 return 不同，yield 不会退出该函数)
+        yield n  # 「返回」数值(与 return 不同，yield 不会退出该函数)
         n += 1
 
 # 类生成器在OI中并不常见，不做介绍
