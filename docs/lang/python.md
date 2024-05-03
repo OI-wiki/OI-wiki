@@ -615,6 +615,17 @@ except KeyError:
 
 ### 编写函数
 
+> :warning:Python中默认的最大递归深度是3000层，超过该限制将会导致RecursionError错误。
+>
+> 如果有更大的递归层数需求，可以通过
+>
+> ```python
+> import sys
+> sys.setrecursionlimit(层数)
+> ```
+>
+> 来调整该限制。
+
 Python 中定义函数无需指定参数类型和返回值类型，无形中为 OI 选手减少了代码量
 
 ```python
