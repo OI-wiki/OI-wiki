@@ -105,16 +105,16 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
                         return true;
                     }
                 }
-    	        return false;
+                return false;
             }
             
             static void dfs(int u) {
                 if (vis[u]) return;
-    	        vis[u] = true;
-    	        for (int i = 1; i <= m; ++i) {
-    		        if (e[i].u == u) {
-    			        dfs(e[i].v);
-    		        }
+                vis[u] = true;
+                for (int i = 1; i <= m; ++i) {
+        	        if (e[i].u == u) {
+        		        dfs(e[i].v);
+        	        }
         		}
         	}
             
@@ -138,8 +138,8 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         	int v;
         }
         ```
-    
-### 复杂度
+
+## 复杂度
 
 查询是否存在某条边：$O(m)$。
 
