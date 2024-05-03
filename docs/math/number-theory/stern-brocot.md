@@ -260,7 +260,7 @@ $$
                             p1, q1 = A, -B
             if p0 * q1 >= p1 * q0 or fail:
                 return "IMPOSSIBLE"
-        
+    
             p, q = middle(p0, q0, p1, q1)
             return str(q) + " " + str(p)
 
