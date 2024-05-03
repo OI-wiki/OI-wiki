@@ -88,6 +88,55 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
                 if e[i].u == u:
                     dfs(e[i].v)
         ```
+    === "Java"
+        ```java
+        import java.util.*;
+
+        public class Main {
+	
+	        static int n, m;
+            static Edge[] e;
+            static boolean[] vis;
+	
+            static boolean findEdge(int u, int v) {
+                for (int i = 1; i <= m; ++i) {
+                    if (e[i].u == u && e[i].v == v) {
+                        return true;
+                    }
+                }
+		        return false;
+	        }
+	
+            static void dfs(int u) {
+                if (vis[u]) return;
+		        vis[u] = true;
+		        for (int i = 1; i <= m; ++i) {
+			        if (e[i].u == u) {
+				        dfs(e[i].v);
+			        }
+        		}
+        	}
+	
+            public static void main(String[] args) {
+                Scanner scan = new Scanner(System.in);
+                n = scan.nextInt();
+                m = scan.nextInt();
+                vis = new boolean[n + 1];
+                e = new Edge[m + 1];
+                
+                for (int i = 1; i <= m; ++i) {
+                	e[i].u = scan.nextInt();
+                	e[i].v = scan.nextInt();
+                };
+                scan.close();
+            }
+        }
+        
+        class Edge {
+        	int u;
+        	int v;
+        }
+        ```
 
 ### 复杂度
 
