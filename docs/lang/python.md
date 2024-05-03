@@ -726,6 +726,104 @@ def fib(n):
     return fib(n - 1) + fib(n - 2)
 ```
 
+## 性能优化
+
+由于Python是一门解释型语言，而且没有像其他语言一样采用JIT(即时编译)进行优化，因此它是一个非常**慢**的语言。在使用Python时，需要通过一些手段进行优化，否则很容易导致大规模的TLE。以下是几个典型且效果显著的优化方法：
+
+### 循环展开
+
+将多个循环才能完成的工作合并到一个循环中完成。
+
+```python
+for i in range(10):
+    a[i] = i
+```
+
+变换为：
+
+```python
+for i in range(5):
+    a[i] = i
+    a[i + 5] = i + 5
+```
+
+具体可以查看[循环展开](https://oi-wiki.org/lang/optimizations/#循环展开-loop-unroll)。
+
+### 使用生成器
+
+生成器（Generator）是Python中的一种强大的工具，相较于预先创建列表而言，生成器具有**内存高效**、**延迟计算**、**简洁方便**等优点。与列表不同，生成器**不是**预先计算出结果，而是**按需计算**，而且可以显著减少代码量。
+
+生成器可以是一个**带有`yield`语句的函数**、类，甚至是一行生成器表达式。函数生成器的**返回值**是一个`generator`类（不是该函数是`generator`），而不是具体的值；生成器表达式本身就是一个`generator`。
+
+```python
+# 函数实现的生成器
+def function_generator():
+    n = 1
+    while True:
+        yield n  # “返回”数值(与 return 不同，yield 不会退出该函数)
+        n += 1
+
+# 类生成器在OI中并不常见，不做介绍
+
+# 生成器表达式
+genexpr = (i for i in range(10**30)) # 其实就是把列表推导式的 方括号 换成 圆括号
+
+# 使用函数生成器
+for i in function_generator():
+    print(i)
+    if i > 5:  # i > 6 的部分将不会计算
+        break
+
+# 使用生成器表达式
+for i in genexpr:
+    print(i)
+
+# 下述方法是错误的，生成器不能像列表一样用索引进行访问
+function_generator()[0]
+genexpr[0:5]
+
+# 你可以用list()将其变为列表
+list(function_generator())
+list(genexpr)
+```
+
+上文中的`function_generator`和`expr_generator`是等价的。生成器可以显著地减少代码运行时间，**尤其是将其传入内置函数中使用时**。
+
+```python
+# %timeit 是ipython解释器提供的特殊关键字，不属于python语法
+%timeit sum([i for i in range(10**7)])   # 使用列表
+> 600 ms ± 6.6 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+%timeit sum((i for i in range(10**7)))	 # 使用生成器
+> 425 ms ± 5.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+```
+
+:warning: ​不要反复使用`list(generator)`。
+
+```python
+a = (i for i in range(10))
+
+list(a)  # 正常返回
+> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+list(a)  # 返回空列表，因为生成器已到尽头
+> []
+```
+
+### 使用 pypy 解释器
+
+[pypy](https://pypy.org/)是一个用Python编写的Python**第三方**解释器，采用了JIT（即时编译）技术来提高运行速度，比CPython（官方解释器）平均快6~9倍。但**不保证考场环境可用！**
+
+几乎所有原生Python代码都可以用pypy直接运行，只需将`python xxx.py`替换为`pypy xxx.py`即可。
+
+### 使用 NumPy
+
+**:warning:不保证考场环境可用！**原因和用法上文已经提到，此处不在赘述。
+
+### 避免使用全局变量
+
+局部变量的作用域仅限于函数内部，而全局变量的作用域是所有函数，因此使用局部变量的效率比使用全局变量效率高2倍左右。（具体涉及到Python字节码和CPython解释器的具体实现，在此不多做解释）
+
 ## 常用内置库
 
 在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html)。
@@ -1007,8 +1105,9 @@ def fib(n):
                     continue
                 dist[v] = dist[u[1]]+w
                 q.put((dist[v], v))
-    
-    
+
+
+​    
     # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
     if __name__ == '__main__':
         # 一行读入多个整数。注意它会把整行都读进来
