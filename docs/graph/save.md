@@ -89,16 +89,16 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
                     dfs(e[i].v)
         ```
     
-    == "Java"
-    \`\`\`java
-    import java.util.\*;
-
+    === "Java"
+        ```java
+        import java.util.*;
+        
         public class Main {
-
+            
             static int n, m;
             static Edge[] e;
             static boolean[] vis;
-
+            
             static boolean findEdge(int u, int v) {
                 for (int i = 1; i <= m; ++i) {
                     if (e[i].u == u && e[i].v == v) {
@@ -107,7 +107,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
                 }
     	        return false;
             }
-
+            
             static void dfs(int u) {
                 if (vis[u]) return;
     	        vis[u] = true;
@@ -117,7 +117,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     		        }
         		}
         	}
-
+            
             public static void main(String[] args) {
                 Scanner scan = new Scanner(System.in);
                 n = scan.nextInt();
@@ -138,7 +138,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         	int v;
         }
         ```
-
+    
 ### 复杂度
 
 查询是否存在某条边：$O(m)$。
