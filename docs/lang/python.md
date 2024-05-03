@@ -615,7 +615,7 @@ except KeyError:
 
 ### 编写函数
 
-> :warning:Python中默认的最大递归深度是3000层，超过该限制将会导致RecursionError错误。
+> :warning:Python 中默认的最大递归深度是 3000 层，超过该限制将会导致 RecursionError 错误。
 >
 > 如果有更大的递归层数需求，可以通过
 >
@@ -739,7 +739,7 @@ def fib(n):
 
 ## 性能优化
 
-由于Python是一门解释型语言，而且没有像其他语言一样采用JIT(即时编译)进行优化，因此它是一个非常**慢**的语言。在使用Python时，需要通过一些手段进行优化，否则很容易导致大规模的TLE。以下是几个典型且效果显著的优化方法：
+由于 Python 是一门解释型语言，而且没有像其他语言一样采用 JIT（即时编译）进行优化，因此它是一个非常 **慢** 的语言。在使用 Python 时，需要通过一些手段进行优化，否则很容易导致大规模的 TLE。以下是几个典型且效果显著的优化方法：
 
 ### 循环展开
 
@@ -758,13 +758,13 @@ for i in range(5):
     a[i + 5] = i + 5
 ```
 
-具体可以查看[循环展开](https://oi-wiki.org/lang/optimizations/#循环展开-loop-unroll)。
+具体可以查看 [循环展开](https://oi-wiki.org/lang/optimizations/#循环展开-loop-unroll)。
 
 ### 使用生成器
 
-生成器（Generator）是Python中的一种强大的工具，相较于预先创建列表而言，生成器具有**内存高效**、**延迟计算**、**简洁方便**等优点。与列表不同，生成器**不是**预先计算出结果，而是**按需计算**，而且可以显著减少代码量。
+生成器（Generator）是 Python 中的一种强大的工具，相较于预先创建列表而言，生成器具有 **内存高效**、**延迟计算**、**简洁方便** 等优点。与列表不同，生成器 **不是** 预先计算出结果，而是 **按需计算**，而且可以显著减少代码量。
 
-生成器可以是一个**带有`yield`语句的函数**、类，甚至是一行生成器表达式。函数生成器的**返回值**是一个`generator`类（不是该函数是`generator`），而不是具体的值；生成器表达式本身就是一个`generator`。
+生成器可以是一个 **带有 `yield` 语句的函数**、类，甚至是一行生成器表达式。函数生成器的 **返回值** 是一个 `generator` 类（不是该函数是 `generator`），而不是具体的值；生成器表达式本身就是一个 `generator`。
 
 ```python
 # 函数实现的生成器
@@ -798,7 +798,7 @@ list(function_generator())
 list(genexpr)
 ```
 
-上文中的`function_generator`和`expr_generator`是等价的。生成器可以显著地减少代码运行时间，**尤其是将其传入内置函数中使用时**。
+上文中的 `function_generator` 和 `expr_generator` 是等价的。生成器可以显著地减少代码运行时间，**尤其是将其传入内置函数中使用时**。
 
 ```python
 # %timeit 是ipython解释器提供的特殊关键字，不属于python语法
@@ -809,7 +809,7 @@ list(genexpr)
 > 425 ms ± 5.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 ```
 
-:warning: ​不要反复使用`list(generator)`。
+:warning: ​不要反复使用 `list(generator)`。
 
 ```python
 a = (i for i in range(10))
@@ -823,17 +823,17 @@ list(a)  # 返回空列表，因为生成器已到尽头
 
 ### 使用 pypy 解释器
 
-[pypy](https://pypy.org/)是一个用Python编写的Python**第三方**解释器，采用了JIT（即时编译）技术来提高运行速度，比CPython（官方解释器）平均快6~9倍。但**不保证考场环境可用！**
+[pypy](https://pypy.org/) 是一个用 Python 编写的 Python **第三方** 解释器，采用了 JIT（即时编译）技术来提高运行速度，比 CPython（官方解释器）平均快 6\~9 倍。但 **不保证考场环境可用！**
 
-几乎所有原生Python代码都可以用pypy直接运行，只需将`python xxx.py`替换为`pypy xxx.py`即可。
+几乎所有原生 Python 代码都可以用 pypy 直接运行，只需将 `python xxx.py` 替换为 `pypy xxx.py` 即可。
 
 ### 使用 NumPy
 
-**:warning:不保证考场环境可用！**原因和用法上文已经提到，此处不在赘述。
+\*\*:warning: 不保证考场环境可用！\*\* 原因和用法上文已经提到，此处不在赘述。
 
 ### 避免使用全局变量
 
-局部变量的作用域仅限于函数内部，而全局变量的作用域是所有函数，因此使用局部变量的效率比使用全局变量效率高2倍左右。（具体涉及到Python字节码和CPython解释器的具体实现，在此不多做解释）
+局部变量的作用域仅限于函数内部，而全局变量的作用域是所有函数，因此使用局部变量的效率比使用全局变量效率高 2 倍左右。（具体涉及到 Python 字节码和 CPython 解释器的具体实现，在此不多做解释）
 
 ## 常用内置库
 
@@ -1116,24 +1116,24 @@ list(a)  # 返回空列表，因为生成器已到尽头
                     continue
                 dist[v] = dist[u[1]]+w
                 q.put((dist[v], v))
+    ```
 
+​  
+\# 如果你直接运行这个 python 代码（不是模块调用什么的）就执行命令
+if **name**== '**main**':
+\# 一行读入多个整数。注意它会把整行都读进来
+n, m, s = map(int, input().split())
+for i in range(m):
+u, v, w = map(int, input().split())
+add\_path(u, v, w)
 
-​    
-    # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
-    if __name__ == '__main__':
-        # 一行读入多个整数。注意它会把整行都读进来
-        n, m, s = map(int, input().split())
-        for i in range(m):
-            u, v, w = map(int, input().split())
-            add_path(u, v, w)
-    
         dijkstra(s)
-    
+
         for i in range(1, n + 1):
             # 两种输出语法都是可以用的
             print("{}".format(dist[i]), end=' ')
             # print("%d" % dist[i],end=' ')
-    
+
         print()  # 结尾换行
     ```
 
