@@ -112,11 +112,11 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
                 if (vis[u]) return;
                 vis[u] = true;
                 for (int i = 1; i <= m; ++i) {
-        	        if (e[i].u == u) {
-        		        dfs(e[i].v);
+                    if (e[i].u == u) {
+                        dfs(e[i].v);
         	        }
-        		}
-        	}
+        	    }
+            }
             
             public static void main(String[] args) {
                 Scanner scan = new Scanner(System.in);
