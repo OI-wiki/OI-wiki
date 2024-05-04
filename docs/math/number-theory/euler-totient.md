@@ -51,7 +51,7 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
             \end{aligned}
             $$
 
--   对任意不全为 $0$ 的整数 $m,n$，$\varphi(mn)\varphi(\gcd(m,n))=\varphi(m)\varphi(n)$。
+-   对任意不全为 $0$ 的整数 $m,n$，$\varphi(mn)\varphi(\gcd(m,n))=\varphi(m)\varphi(n)\gcd(m,n)$。
 
     可由上一条直接计算得出。
 
