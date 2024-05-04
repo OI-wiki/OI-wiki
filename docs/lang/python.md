@@ -615,7 +615,7 @@ except KeyError:
 
 ### 编写函数
 
-> :warning:Python在不同平台上的递归限制层数是不同的（大部分情况是3000，少部分情况是1000），可以通过调用`sys`包的`getrecursionlimit`来查看，超过该限制将会导致RecursionError错误。
+> :warning:Python 在不同平台上的递归限制层数是不同的（大部分情况是 3000，少部分情况是 1000），可以通过调用 `sys` 包的 `getrecursionlimit` 来查看，超过该限制将会导致 RecursionError 错误。
 >
 > 如果有更大的递归层数需求，可以通过
 >
@@ -624,7 +624,7 @@ except KeyError:
 > sys.setrecursionlimit(层数)
 > ```
 >
-> 来调整该限制，但最好不要超过$10^4$层。
+> 来调整该限制，但最好不要超过 $10^4$ 层。
 
 Python 中定义函数无需指定参数类型和返回值类型，无形中为 OI 选手减少了代码量
 
@@ -1118,7 +1118,6 @@ list(a)  # 返回空列表，因为生成器已到尽头
                 q.put((dist[v], v))
     ```
 
-  
 \# 如果你直接运行这个 python 代码（不是模块调用什么的）就执行命令
 if **name**== '**main**':
 \# 一行读入多个整数。注意它会把整行都读进来
@@ -1127,22 +1126,22 @@ for i in range(m):
 u, v, w = map(int, input().split())
 add\_path(u, v, w)
 
-​    
-​    # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
-​    if __name__ == '__main__':
+​  
+​    # 如果你直接运行这个 python 代码（不是模块调用什么的）就执行命令
+​    if **name**== '**main**':
 ​        # 一行读入多个整数。注意它会把整行都读进来
 ​        n, m, s = map(int, input().split())
 ​        for i in range(m):
 ​            u, v, w = map(int, input().split())
-​            add_path(u, v, w)
-​    
+​            add\_path(u, v, w)
+​  
 ​        dijkstra(s)
 
         for i in range(1, n + 1):
             # 两种输出语法都是可以用的
             print("{}".format(dist[i]), end=' ')
             # print("%d" % dist[i],end=' ')
-    
+
         print()  # 结尾换行
     ```
 
