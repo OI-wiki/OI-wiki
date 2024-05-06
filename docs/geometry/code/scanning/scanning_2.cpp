@@ -1,73 +1,66 @@
-#include <bits/stdc++.h>
-#define ls x << 1
-#define rs x << 1 | 1
-#define N 1000010
-using namespace std;
+#include<bits/stdc++.h>
 
-struct node {
-  int l, r, ans;
-} q[N];
+int n, m, a[1000010], ans[1000010];
+int pre[1000010], lst[1000010]; // 处理 pre
 
-struct t {
-  int num, s;
+struct ope {
+  int type, x, y, id;
+  inline ope(int type = 0, int x = 0, int y = 0, int id = 0) {
+    this -> type = type, this -> x = x, this -> y = y, this -> id = id;
+  }
+  inline bool operator < (const ope & rhs) const {
+    if(x == rhs.x)
+      return type < rhs.type;
+    return x < rhs.x;
+  }
 };
+ope op[2500010];
+int tot; // 操作总数
 
-vector<t> p[N];
-int n, a[N], m, now[N];
-int siz[N << 2];
-
-void update(int x, int l, int r, int ad) {
-  if (l == r && l == ad) {
-    siz[x]++;
-    return;
-  }
-  int mid = l + r >> 1;
-  if (ad <= mid) {
-    update(ls, l, mid, ad);
-  } else {
-    update(rs, mid + 1, r, ad);
-  }
-  siz[x] = siz[ls] + siz[rs];
+int sum[1000010]; // 树状数组
+int lowbit(int x) {
+  return x & (-x);
 }
-
-int query(int x, int l, int r, int L, int R) {
-  if (l >= L && r <= R) {
-    return siz[x];
+void add(int x, int k) {
+  x++; // 位置 0 也要进行修改，所以树状数组下标均加 1
+  while(x <= n) {
+    sum[x] = sum[x] + k;
+    x = x + lowbit(x);
   }
-  int mid = l + r >> 1;
-  int res = 0;
-  if (L <= mid) {
-    res += query(ls, l, mid, L, R);
+}
+int getsum(int x) {
+  x++;
+  int ret = 0;
+  while(x > 0) {
+    ret = ret + sum[x];
+    x = x - lowbit(x);
   }
-  if (R > mid) {
-    res += query(rs, mid + 1, r, L, R);
-  }
-  return res;
+  return ret;
 }
 
 int main() {
   scanf("%d", &n);
-  for (int i = 1; i <= n; i++) {
+  for(int i = 1; i <= n; i++) {
     scanf("%d", &a[i]);
+    pre[i] = lst[a[i]], lst[a[i]] = i;  // 处理 pre
+    op[++tot] = (ope){0, i, pre[i], i}; // 加点操作
   }
   scanf("%d", &m);
-  for (int i = 1; i <= m; i++) {
-    int l, r;
+  for(int i = 1, l, r; i <= m; i++) {
     scanf("%d%d", &l, &r);
-    p[l - 1].push_back(t{i, -1});
-    p[r].push_back(t{i, 1});
-    q[i] = node{l, r, 0};
+    op[++tot] = (ope){1, r, l - 1, i}; // 将查询差分
+    op[++tot] = (ope){2, l - 1, l - 1, i};
   }
-  for (int i = 1; i <= n; i++) {
-    update(1, 0, n, now[a[i]]);
-    now[a[i]] = i;
-    for (auto x : p[i]) {
-      int num = x.num;
-      q[num].ans += x.s * query(1, 0, n, 0, q[num].l - 1);
-    }
+  std::sort(op + 1, op + tot + 1); // 将操作按横坐标排序，且优先执行加点操作
+  for(int i = 1; i <= tot; i++) {
+  if(op[i].type == 0)
+    add(op[i].y, 1);
+  else if(op[i].type == 1)
+    ans[op[i].id] += getsum(op[i].y);
+  else
+    ans[op[i].id] -= getsum(op[i].y);
   }
-  for (int i = 1; i <= m; i++) {
-    printf("%d\n", q[i].ans);
-  }
+  for(int i = 1; i <= m; i++)
+    printf("%d\n", ans[i]);
   return 0;
 }
