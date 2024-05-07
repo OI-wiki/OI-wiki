@@ -71,16 +71,24 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
     ```python
     M = 999997
     SIZE = 1000000
+    
+    
     class Node:
-        def __init__(self, next = None, value = None, key = None): 
+        def __init__(self, next=None, value=None, key=None):
             self.next = next
             self.value = value
             self.key = key
+    
+    
     data = [Node() for _ in range(SIZE)]
     head = [0] * M
     size = 0
+    
+    
     def f(key):
         return key % M
+    
+    
     def get(key):
         p = head[f(key)]
         while p:
@@ -88,6 +96,8 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
                 return data[p].value
             p = data[p].next
         return -1
+    
+    
     def modify(key, value):
         p = head[f(key)]
         while p:
@@ -95,6 +105,8 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
                 data[p].value = value
                 return data[p].value
             p = data[p].next
+    
+    
     def add(key, value):
         if get(key) != -1:
             return -1

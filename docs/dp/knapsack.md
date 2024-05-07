@@ -251,8 +251,8 @@ for (循环物品种类) {
 === "Python"
     ```python
     for k in range(1, n + 1):
-        for i in range(m, mi - 1, -1): # 对经费进行一层枚举
-            for j in range(t, ti - 1, -1): # 对时间进行一层枚举
+        for i in range(m, mi - 1, -1):  # 对经费进行一层枚举
+            for j in range(t, ti - 1, -1):  # 对时间进行一层枚举
                 dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1)
     ```
 
@@ -279,11 +279,13 @@ for (循环物品种类) {
 
 === "Python"
     ```python
-    for k in range(1, ts + 1): # 循环每一组
-        for i in range(m, -1, -1): # 循环背包容量
-            for j in range(1, cnt[k] + 1):     # 循环该组的每一个物品
-                if i >= w[t[k][j]]: #背包容量充足
-                    dp[i] = max(dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]) # 像0-1背包一样状态转移
+    for k in range(1, ts + 1):  # 循环每一组
+        for i in range(m, -1, -1):  # 循环背包容量
+            for j in range(1, cnt[k] + 1):  # 循环该组的每一个物品
+                if i >= w[t[k][j]]:  # 背包容量充足
+                    dp[i] = max(
+                        dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]
+                    )  # 像0-1背包一样状态转移
     ```
 
 这里要注意：**一定不能搞错循环顺序**，这样才能保证正确性。

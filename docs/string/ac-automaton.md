@@ -178,7 +178,7 @@ AC 自动机在做匹配时，同一位上可匹配多个模式串。
     def query(t: str) -> int:
         u, res = 0, 0
         for c in t:
-            u = tr[u][c - ord('a')]
+            u = tr[u][c - ord("a")]
             j = u
             while j and e[j] != -1:
                 res += e[j]

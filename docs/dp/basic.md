@@ -146,6 +146,8 @@ int dp() {
     ```python
     a = [0] * MAXN
     d = [0] * MAXN
+    
+    
     def dp():
         d[1] = 1
         ans = 1
@@ -212,7 +214,7 @@ int dp() {
 
 === "Python"
     ```python
-    dp = [0x1f1f1f1f] * MAXN
+    dp = [0x1F1F1F1F] * MAXN
     mx = dp[0]
     for i in range(0, n):
         bisect.insort_left(dp, a[i], 0, len(dp))

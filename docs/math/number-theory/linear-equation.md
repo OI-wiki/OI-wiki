@@ -118,24 +118,26 @@ $$
     
     === "Python"
         ```python
-        def ex_gcd(a, b ,x, y):
-          if b == 0:
-              x = 1; y = 0
-              return a
-          d = ex_gcd(b, a % b, x, y)
-          temp = x
-          x = y
-          y = temp - a // b * y
-          return d
+        def ex_gcd(a, b, x, y):
+            if b == 0:
+                x = 1
+                y = 0
+                return a
+            d = ex_gcd(b, a % b, x, y)
+            temp = x
+            x = y
+            y = temp - a // b * y
+            return d
+        
         
         def liEu(a, b, c, x, y):
-          d = ex_gcd(a, b, x, y)
-          if c % d != 0:
-              return 0
-          k = c // d
-          x = x * k
-          y = y * k
-          return 1
+            d = ex_gcd(a, b, x, y)
+            if c % d != 0:
+                return 0
+            k = c // d
+            x = x * k
+            y = y * k
+            return 1
         ```
 
 **本页面主要译自博文 [Модульное линейное уравнение первого порядка](http://e-maxx.ru/algo/diofant_1_equation) 与其英文翻译版 [Linear Congruence Equation](https://cp-algorithms.com/algebra/linear_congruence_equation.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

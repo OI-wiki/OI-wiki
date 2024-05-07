@@ -124,8 +124,9 @@ $$
 
 === "Python"
     ```python
-    def build(a = 1, b = 1, c = 1, d = 0, level = 1):
-        x = a + c; y = b + d
+    def build(a=1, b=1, c=1, d=0, level=1):
+        x = a + c
+        y = b + d
         # ... output the current fraction x/y
         # at the current level in the tree
         build(a, b, x, y, level + 1)
@@ -148,14 +149,15 @@ $$
 
 === "Python"
     ```python
-    def find(x, y, a = 0, b = 1, c = 1, d = 0):
-        m = a + c; n = b + d
+    def find(x, y, a=0, b=1, c=1, d=0):
+        m = a + c
+        n = b + d
         if x == m and y == n:
             return ""
         if x * n < y * m:
-            return 'L' + find(x, y, a, b, m, n)
+            return "L" + find(x, y, a, b, m, n)
         else:
-            return 'R' + find(x, y, m, n, c, d)
+            return "R" + find(x, y, m, n, c, d)
     ```
 
 #### 例题

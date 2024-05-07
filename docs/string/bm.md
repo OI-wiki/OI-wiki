@@ -1320,25 +1320,30 @@ from my_prob import bm_rate, sbm_rate, kmp_rate
 
 theme_update(text=element_text(family="SimHei"))
 
+
 def plot(p, title, N=30):
-    model_range = range(1, N+1)
-    data = {'rate':[], 'alg':[], 'patlen':[]}
-    categories_list = [(bm_rate, 'BoyerMoore'),
-                       (sbm_rate, 'S BoyerMoore'),
-                       (kmp_rate, 'KMP'),
-                       (lambda patlen, p: 1/patlen, '$\\frac{1}{patlen}$')]
+    model_range = range(1, N + 1)
+    data = {"rate": [], "alg": [], "patlen": []}
+    categories_list = [
+        (bm_rate, "BoyerMoore"),
+        (sbm_rate, "S BoyerMoore"),
+        (kmp_rate, "KMP"),
+        (lambda patlen, p: 1 / patlen, "$\\frac{1}{patlen}$"),
+    ]
 
     for alg_fun, label in categories_list:
-        data['rate'].extend([alg_fun(patlen, p) for patlen in model_range])
-        data['alg'].extend([label for _ in model_range])
-        data['patlen'].extend(model_range)
+        data["rate"].extend([alg_fun(patlen, p) for patlen in model_range])
+        data["alg"].extend([label for _ in model_range])
+        data["patlen"].extend(model_range)
 
     df = pd.DataFrame(data)
 
-    return (ggplot(df, aes(x='patlen', y='rate', color='alg'))
-            + geom_point()
-            + geom_smooth(method='gpr')
-            + labs(color='Algs', title=title, x='$patlen$', y='$\\frac{cost}{skip}$'))
+    return (
+        ggplot(df, aes(x="patlen", y="rate", color="alg"))
+        + geom_point()
+        + geom_smooth(method="gpr")
+        + labs(color="Algs", title=title, x="$patlen$", y="$\\frac{cost}{skip}$")
+    )
 ```
 
 `plot(1/256, '$p= \\frac{1}{256}$')`：
