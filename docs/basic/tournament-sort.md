@@ -93,6 +93,7 @@
     a = [0] * maxn
     tmp = [0] * maxn * 2
     
+    
     def winner(pos1, pos2):
         u = pos1 if pos1 >= n else tmp[pos1]
         v = pos2 if pos2 >= n else tmp[pos2]
@@ -100,16 +101,18 @@
             return u
         return v
     
+    
     def creat_tree():
         for i in range(0, n):
             tmp[n + i] = a[i]
-        for i in range(2 * n -1, 1, -2):
+        for i in range(2 * n - 1, 1, -2):
             k = int(i / 2)
             j = i - 1
             tmp[k] = winner(i, j)
         value = tmp[tmp[1]]
         tmp[tmp[1]] = INF
         return value
+    
     
     def recreat():
         i = tmp[1]
@@ -124,6 +127,7 @@
         value = tmp[tmp[1]]
         tmp[tmp[1]] = INF
         return value
+    
     
     def tournament_sort():
         value = creat_tree()

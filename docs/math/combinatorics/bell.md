@@ -91,6 +91,8 @@ $$
         ```python
         maxn = 2000 + 5
         bell = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)]
+        
+        
         def f(n):
             bell[0][0] = 1
             for i in range(1, n + 1):

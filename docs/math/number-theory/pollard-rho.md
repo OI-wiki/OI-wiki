@@ -32,11 +32,11 @@
     def breakdown(N):
         result = []
         for i in range(2, int(sqrt(N)) + 1):
-            if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
+            if N % i == 0:  # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
                 while N % i == 0:
                     N //= i
                 result.append(i)
-        if N != 1: # 说明再经过操作之后 N 留下了一个素数
+        if N != 1:  # 说明再经过操作之后 N 留下了一个素数
             result.append(N)
         return result
     ```
@@ -174,6 +174,8 @@ $$
     === "Python"
         ```python
         import random
+        
+        
         def Pollard_Rho(N):
             c = random.randint(1, N - 1)
             t = f(0, c, N)
@@ -227,16 +229,18 @@ $$
         ```python
         from random import randint
         from math import gcd
+        
+        
         def Pollard_Rho(x):
-            c = randint(1, x-1)
+            c = randint(1, x - 1)
             s = t = f(0, c, x)
             goal = val = 1
             while True:
-                for step in range(1, goal+1):
+                for step in range(1, goal + 1):
                     t = f(t, c, x)
                     val = val * abs(t - s) % x
-                    if val == 0: 
-                        return x #如果 val 为 0，退出重新分解
+                    if val == 0:
+                        return x  # 如果 val 为 0，退出重新分解
                     if step % 127 == 0:
                         d = gcd(val, x)
                         if d > 1:

@@ -79,6 +79,8 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 === "Python"
     ```python
     import math
+    
+    
     def euler_phi(n):
         m = math.isqrt(n + 0.5)
         ans = n
@@ -113,6 +115,8 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 === "Python"
     ```python
     import math
+    
+    
     def euler_phi(n):
         ans = n
         for i in range(2, math.isqrt(n) + 1):

@@ -83,7 +83,7 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
             pi = [0] * n
             for i in range(1, n):
                 for j in range(i, -1, -1):
-                    if s[0 : j] == s[i - j + 1 : i + 1]:
+                    if s[0:j] == s[i - j + 1 : i + 1]:
                         pi[i] = j
                         break
             return pi
@@ -147,7 +147,7 @@ $$
             pi = [0] * n
             for i in range(1, n):
                 for j in range(pi[i - 1] + 1, -1, -1):
-                    if s[0 : j] == s[i - j + 1 : i + 1]:
+                    if s[0:j] == s[i - j + 1 : i + 1]:
                         pi[i] = j
                         break
             return pi
@@ -298,7 +298,7 @@ $$
     === "Python"
         ```python
         def find_occurrences(t, s):
-            cur = s + '#' + t
+            cur = s + "#" + t
             sz1, sz2 = len(t), len(s)
             ret = []
             lps = prefix_function(cur)

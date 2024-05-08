@@ -57,7 +57,8 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
         m = s + ((t - s) >> 1)
         # 移位运算符的优先级小于加减法，所以加上括号
         # 如果写成 (s + t) >> 1 可能会超出 int 范围
-        build(s, m, p * 2); build(m + 1, t, p * 2 + 1)
+        build(s, m, p * 2)
+        build(m + 1, t, p * 2 + 1)
         # 递归对左右区间建树
         d[p] = d[p * 2] + d[(p * 2) + 1]
     ```
@@ -104,8 +105,9 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
     def getsum(l, r, s, t, p):
         # [l, r] 为查询区间, [s, t] 为当前节点包含的区间, p 为当前节点的编号
         if l <= s and t <= r:
-            return d[p] # 当前区间为询问区间的子集时直接返回当前区间的和
-        m = s + ((t - s) >> 1); sum = 0
+            return d[p]  # 当前区间为询问区间的子集时直接返回当前区间的和
+        m = s + ((t - s) >> 1)
+        sum = 0
         if l <= m:
             sum = sum + getsum(l, r, s, m, p * 2)
         # 如果左儿子代表的区间 [s, m] 与询问区间有交集, 则递归查询左儿子
@@ -304,6 +306,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
         if r > m:
             update(l, r, c, m + 1, t, p * 2 + 1)
         d[p] = d[p * 2] + d[p * 2 + 1]
+    
     
     def getsum(l, r, s, t, p):
         if l <= s and t <= r:

@@ -67,9 +67,9 @@
     def merge(a, b):
         i, j = 0, 0
         c = []
-        while(i < len(a) and j < len(b)):
+        while i < len(a) and j < len(b):
             # <!> 先判断 b[j] < a[i]，保证稳定性
-            if(b[j] < a[i]):
+            if b[j] < a[i]:
                 c.append(b[j])
                 j += 1
             else:

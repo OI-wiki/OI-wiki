@@ -71,11 +71,11 @@ $$
         ```python
         def DP(l, r, k_l, k_r):
             mid = int((l + r) / 2)
-            k = k_l         # 求状态f[mid]的最优决策点
+            k = k_l  # 求状态f[mid]的最优决策点
             for i in range(k_l, min(k_r, mid - 1)):
                 if w(i, mid) < w(k, mid):
                     k = i
-            f[mid] = w(k, mid)         # 根据决策单调性得出左右两部分的决策区间，递归处理
+            f[mid] = w(k, mid)  # 根据决策单调性得出左右两部分的决策区间，递归处理
             if l < mid:
                 DP(l, mid - 1, k_l, k)
             if r > mid:
@@ -359,15 +359,15 @@ $$
     
     === "Python"
         ```python
-        for len in range(2, n + 1): # 枚举区间长度
+        for len in range(2, n + 1):  # 枚举区间长度
             for i in range(len, n + 1):
                 # 枚举长度为len的所有区间
                 j = i - len + 1
                 f[j][i] = INF
                 for k in range(opt[j][i - 1], opt[j + 1][i] + 1):
                     if f[j][i] > f[j][k] + f[k + 1][i] + w(j, i):
-                        f[j][i] = f[j][k] + f[k + 1][i] + w(j, i) # 更新状态值
-                        opt[j][i] = k # 更新（最小）最优决策点
+                        f[j][i] = f[j][k] + f[k + 1][i] + w(j, i)  # 更新状态值
+                        opt[j][i] = k  # 更新（最小）最优决策点
         ```
 
 ## 满足四边形不等式的函数类

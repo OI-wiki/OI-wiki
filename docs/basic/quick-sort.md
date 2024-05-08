@@ -211,7 +211,7 @@
         pivot = arr[random_index]
         arr[l], arr[random_index] = arr[random_index], arr[l]
         i = l + 1
-        j = l 
+        j = l
         k = r + 1
         while i < k:
             if arr[i] < pivot:
@@ -221,7 +221,7 @@
             elif arr[i] > pivot:
                 arr[i], arr[k - 1] = arr[k - 1], arr[i]
                 k -= 1
-            else: 
+            else:
                 i += 1
         arr[l], arr[j] = arr[j], arr[l]
         quick_sort(arr, l, j - 1)

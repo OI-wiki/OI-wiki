@@ -465,8 +465,8 @@ $$
         p = [0, 1]
         q = [1, 0]
         for it in a:
-            p.append(p[-1]*it + p[-2])
-            q.append(q[-1]*it + q[-2])
+            p.append(p[-1] * it + p[-2])
+            q.append(q[-1] * it + q[-2])
         return p, q
     ```
 
@@ -625,9 +625,9 @@ $$
         # assumes that such (x, y) exists
         def dio(A, B, C):
             p, q = convergents(fraction(A, B))
-            C //= A // p[-1] # divide by gcd(A, B)
+            C //= A // p[-1]  # divide by gcd(A, B)
             t = (-1) if len(p) % 2 else 1
-            return t*C*q[-2], -t*C*p[-2]
+            return t * C * q[-2], -t * C * p[-2]
         ```
 
 ## 几何解释
@@ -806,14 +806,14 @@ $$
             p, q = convergents(a)
             t = N // q[-1]
             ah = [t]
-            ph = [0, t*p[-1]]
-            qh = [0, t*q[-1]]
+            ph = [0, t * p[-1]]
+            qh = [0, t * q[-1]]
             for i in reversed(range(len(q))):
                 if i % 2 == 1:
-                    while qh[-1] + q[i-1] <= N:
-                        t = (N - qh[-1] - q[i-1]) // q[i]
-                        dp = p[i-1] + t*p[i]
-                        dq = q[i-1] + t*q[i]
+                    while qh[-1] + q[i - 1] <= N:
+                        t = (N - qh[-1] - q[i - 1]) // q[i]
+                        dp = p[i - 1] + t * p[i]
+                        dq = q[i - 1] + t * q[i]
                         k = (N - qh[-1]) // dq
                         ah.append(k)
                         ph.append(ph[-1] + k * dp)
@@ -841,26 +841,30 @@ $$
         def closest(A, B, C, N):
             # y <= (A*x + B)/C <=> diff(x, y) <= B
             def diff(x, y):
-                return C*y-A*x
+                return C * y - A * x
+        
             a = fraction(A, C)
             p, q = convergents(a)
             ph = [B // C]
             qh = [0]
             for i in range(2, len(q) - 1):
                 if i % 2 == 0:
-                    while diff(qh[-1] + q[i+1], ph[-1] + p[i+1]) <= B:
-                        t = 1 + (diff(qh[-1] + q[i-1], ph[-1] + p[i-1]) - B - 1) // abs(diff(q[i], p[i]))
-                        dp = p[i-1] + t*p[i]
-                        dq = q[i-1] + t*q[i]
+                    while diff(qh[-1] + q[i + 1], ph[-1] + p[i + 1]) <= B:
+                        t = 1 + (diff(qh[-1] + q[i - 1], ph[-1] + p[i - 1]) - B - 1) // abs(
+                            diff(q[i], p[i])
+                        )
+                        dp = p[i - 1] + t * p[i]
+                        dq = q[i - 1] + t * q[i]
                         k = (N - qh[-1]) // dq
                         if k == 0:
                             return qh[-1], ph[-1]
                         if diff(dq, dp) != 0:
                             k = min(k, (B - diff(qh[-1], ph[-1])) // diff(dq, dp))
-                        qh.append(qh[-1] + k*dq)
-                        ph.append(ph[-1] + k*dp)
+                        qh.append(qh[-1] + k * dq)
+                        ph.append(ph[-1] + k * dp)
             return qh[-1], ph[-1]
-            
+        
+        
         def solve(A, B, N):
             x, y = closest(A, N % A, B, N // A)
             return N // A - x, y
@@ -905,7 +909,7 @@ $$
         def sum_floor(a, N):
             N += 1
             ah, ph, qh = hull(a, N)
-            
+        
             # The number of lattice points within a vertical right trapezoid
             # on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
             # a+1 integer points on the segment (0; y1) - (dx; y2).
@@ -913,10 +917,10 @@ $$
                 b = y1 + y2 + a + dx
                 A = (y1 + y2) * dx
                 return (A - b + 2) // 2 + b - (y2 + 1)
-            
+        
             ans = 0
             for i in range(1, len(qh)):
-                ans += picks(ph[i-1], ph[i], qh[i]-qh[i-1], ah[i-1])
+                ans += picks(ph[i - 1], ph[i], qh[i] - qh[i - 1], ah[i - 1])
             return ans - N
         ```
 
@@ -966,39 +970,42 @@ $$
         # hull of lattice (x, y) such that C*y <= A*x+B
         def hull(A, B, C, N):
             def diff(x, y):
-                return C*y-A*x
+                return C * y - A * x
+        
             a = fraction(A, C)
             p, q = convergents(a)
             ah = []
             ph = [B // C]
             qh = [0]
-                
+        
             def insert(dq, dp):
                 k = (N - qh[-1]) // dq
                 if diff(dq, dp) > 0:
                     k = min(k, (B - diff(qh[-1], ph[-1])) // diff(dq, dp))
                 ah.append(k)
-                qh.append(qh[-1] + k*dq)
-                ph.append(ph[-1] + k*dp)
-                
+                qh.append(qh[-1] + k * dq)
+                ph.append(ph[-1] + k * dp)
+        
             for i in range(1, len(q) - 1):
                 if i % 2 == 0:
-                    while diff(qh[-1] + q[i+1], ph[-1] + p[i+1]) <= B:
-                        t = (B - diff(qh[-1] + q[i+1], ph[-1] + p[i+1])) // abs(diff(q[i], p[i]))
-                        dp = p[i+1] - t*p[i]
-                        dq = q[i+1] - t*q[i]
+                    while diff(qh[-1] + q[i + 1], ph[-1] + p[i + 1]) <= B:
+                        t = (B - diff(qh[-1] + q[i + 1], ph[-1] + p[i + 1])) // abs(
+                            diff(q[i], p[i])
+                        )
+                        dp = p[i + 1] - t * p[i]
+                        dq = q[i + 1] - t * q[i]
                         if dq < 0 or qh[-1] + dq > N:
                             break
                         insert(dq, dp)
-                
+        
             insert(q[-1], p[-1])
-                
+        
             for i in reversed(range(len(q))):
                 if i % 2 == 1:
-                    while qh[-1] + q[i-1] <= N:
-                        t = (N - qh[-1] - q[i-1]) // q[i]
-                        dp = p[i-1] + t*p[i]
-                        dq = q[i-1] + t*q[i]
+                    while qh[-1] + q[i - 1] <= N:
+                        t = (N - qh[-1] - q[i - 1]) // q[i]
+                        dp = p[i - 1] + t * p[i]
+                        dq = q[i - 1] + t * q[i]
                         insert(dq, dp)
             return ah, ph, qh
         ```
@@ -1028,14 +1035,14 @@ $$
     
     === "Python"
         ```py
-        # find Q that minimizes Q*r mod m for 1 <= k <= n < m 
+        # find Q that minimizes Q*r mod m for 1 <= k <= n < m
         def mod_min(r, n, m):
             a = fraction(r, m)
             p, q = convergents(a)
             for i in range(2, len(q)):
-                if i % 2 == 1 and (i + 1 == len(q) or q[i+1] > n):
-                    t = (n - q[i-1]) // q[i]
-                    return q[i-1] + t*q[i]
+                if i % 2 == 1 and (i + 1 == len(q) or q[i + 1] > n):
+                    t = (n - q[i - 1]) // q[i]
+                    return q[i - 1] + t * q[i]
         ```
 
 ## 习题

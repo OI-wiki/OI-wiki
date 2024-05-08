@@ -44,6 +44,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
     prime = []
     is_prime = [False] * N
     
+    
     def Eratosthenes(n):
         is_prime[0] = is_prime[1] = False
         for i in range(2, n + 1):
@@ -118,12 +119,13 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
     prime = []
     is_prime = [False] * N
     
+    
     def Eratosthenes(n):
         is_prime[0] = is_prime[1] = False
         for i in range(2, n + 1):
             is_prime[i] = True
         # 让 i 循环到 <= sqrt(n)
-        for i in range(2, isqrt(n) + 1): # `isqrt` 是 Python 3.8 新增的函数
+        for i in range(2, isqrt(n) + 1):  # `isqrt` 是 Python 3.8 新增的函数
             if is_prime[i]:
                 for j in range(i * i, n + 1, i):
                     is_prime[j] = False
@@ -236,6 +238,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
         pri = []
         not_prime = [False] * N
         
+        
         def pre(n):
             for i in range(2, n + 1):
                 if not not_prime[i]:
@@ -319,6 +322,7 @@ $$
     not_prime = [False] * N
     phi = [0] * N
     
+    
     def pre(n):
         phi[1] = 1
         for i in range(2, n + 1):
@@ -384,6 +388,7 @@ $$
     pri = []
     not_prime = [False] * N
     mu = [0] * N
+    
     
     def pre(n):
         mu[1] = 1
@@ -457,6 +462,7 @@ $$
     d = [0] * N
     num = [0] * N
     
+    
     def pre(n):
         d[1] = 1
         for i in range(2, n + 1):
@@ -517,6 +523,7 @@ $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+
     not_prime = [False] * N
     f = [0] * N
     g = [0] * N
+    
     
     def pre(n):
         g[1] = f[1] = 1

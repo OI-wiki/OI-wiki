@@ -72,10 +72,10 @@
     
     === "Python"
         ```python
-        stk = [] # 是整型，存的是下标
-        p = [] # 存储向量或点
-        tp = 0 # 初始化栈
-        p.sort() # 对点进行排序
+        stk = []  # 是整型，存的是下标
+        p = []  # 存储向量或点
+        tp = 0  # 初始化栈
+        p.sort()  # 对点进行排序
         tp = tp + 1
         stk[tp] = 1
         # 栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
@@ -84,10 +84,10 @@
                 # 下一行 * 操作符被重载为叉积
                 used[stk[tp]] = 0
                 tp = tp - 1
-            used[i] = 1 # used 表示在凸壳上
+            used[i] = 1  # used 表示在凸壳上
             tp = tp + 1
             stk[tp] = i
-        tmp = tp # tmp 表示下凸壳大小
+        tmp = tp  # tmp 表示下凸壳大小
         for i in range(n - 1, 0, -1):
             if used[i] == False:
                 #      ↓求上凸壳时不影响下凸壳

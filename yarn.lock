@@ -23,6 +23,11 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
+"@babel/parser@^7.18.13":
+  version "7.24.5"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.24.5.tgz#4a4d5ab4315579e5398a82dcf636ca80c3392790"
+  integrity sha512-EOv5IK8arwh3LI47dz1b0tKUb/1uhHAnHJOrjgtQMIpu1uXd9mlFrJg9IUgGUgZ41Ch0K8REPTYpO7B76b4vJg==
+
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
   resolved "https://registry.npmjs.org/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz"
@@ -573,6 +578,222 @@
   dependencies:
     "@types/yargs-parser" "*"
 
+"@unified-latex/unified-latex-builder@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-builder/-/unified-latex-builder-1.7.1.tgz#3800f952c7ea7d32692422ec78acbfdc7bdd0840"
+  integrity sha512-YLeIodB+CETXkPTHkSp04+NCSMc5IbC0yjE/WtqoKJnBCl/DGIUeH2PbLc/ptguugwQaTo4hfgGCoPcgFtGn0g==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+
+"@unified-latex/unified-latex-ctan@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-ctan/-/unified-latex-ctan-1.7.1.tgz#61f6a3fa87034eba606696637d4cee5ee0cb5a60"
+  integrity sha512-8TbY9MKuE0VUVtyIu2E6dPsj/yYcUg7EyJwc4GaJfcW2JY75gZz5vlJ+sBzZ/mW0ZraSjqacCpqQ7EzhbBiA8w==
+  dependencies:
+    "@unified-latex/unified-latex-builder" "^1.7.1"
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-argspec" "^1.7.1"
+    "@unified-latex/unified-latex-util-arguments" "^1.7.1"
+    "@unified-latex/unified-latex-util-comments" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-pegjs" "^1.7.1"
+    "@unified-latex/unified-latex-util-print-raw" "^1.7.1"
+    "@unified-latex/unified-latex-util-render-info" "^1.7.1"
+    "@unified-latex/unified-latex-util-replace" "^1.7.1"
+    "@unified-latex/unified-latex-util-scan" "^1.7.1"
+    "@unified-latex/unified-latex-util-split" "^1.7.1"
+    "@unified-latex/unified-latex-util-trim" "^1.7.1"
+    "@unified-latex/unified-latex-util-visit" "^1.7.1"
+    color "^4.2.3"
+
+"@unified-latex/unified-latex-prettier@^1.0.12":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-prettier/-/unified-latex-prettier-1.7.1.tgz#a5758b8b995982de63f33378724f832558d92310"
+  integrity sha512-MTFjJRx3+iiWkTNyujU5LnyqNmxv4+khbp/73uJCrD/yTGcRntQpmIZl6O06kUAKF517e7tzeqNW+y9iXdyJNQ==
+  dependencies:
+    "@unified-latex/unified-latex-ctan" "^1.7.1"
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-align" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-parse" "^1.7.1"
+    "@unified-latex/unified-latex-util-pgfkeys" "^1.7.1"
+    "@unified-latex/unified-latex-util-print-raw" "^1.7.1"
+    "@unified-latex/unified-latex-util-trim" "^1.7.1"
+    "@unified-latex/unified-latex-util-visit" "^1.7.1"
+    prettier "^3.0.3"
+
+"@unified-latex/unified-latex-types@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-types/-/unified-latex-types-1.7.1.tgz#685de6e39c9b2c3753cd00ebede7e8680580e8df"
+  integrity sha512-WpwM9FxJi5gEvxYYWdbtcVutNgh52lHL3c1cU82pxRdJ4ltqdmDzLwZbqnWrQxOmsmVSeyaxAfOYQpv7B016CA==
+
+"@unified-latex/unified-latex-util-align@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-align/-/unified-latex-util-align-1.7.1.tgz#3390de0178b2b5e6c457fda00b97d742db8c89ba"
+  integrity sha512-MCoGG8OPVcJGxF0oiy8ql6a3/H2Ex5tMvRKI5s9ttDreXXzZpTHONJWEz7I57Wy3cCCy9leoVp9za3U1aDdImQ==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-pegjs" "^1.7.1"
+
+"@unified-latex/unified-latex-util-argspec@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-argspec/-/unified-latex-util-argspec-1.7.1.tgz#fca2ceaa3c95d50d2e96feeb0532e4fadc9fc8bb"
+  integrity sha512-f+GTU6XwgSJsrOzyFxY7XR8dx7xOKChQ5mJQkHgS1suLDrmKzqDDZlp/2Dl5CUeNO7P166laWVJcaQjzQVcfIw==
+  dependencies:
+    "@unified-latex/unified-latex-util-pegjs" "^1.7.1"
+
+"@unified-latex/unified-latex-util-arguments@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-arguments/-/unified-latex-util-arguments-1.7.1.tgz#b5a9bc42ef11e3bfba89e061c1497803c7d9a1b4"
+  integrity sha512-hVYqPAoZfRm9+PgmGdPLpvYJGx2CKrctgGGwqoYmmfxRikSgDVBjVuVk6I8x5JR1+2Zbakw8gNTRspN65eDj1A==
+  dependencies:
+    "@unified-latex/unified-latex-builder" "^1.7.1"
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-argspec" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-render-info" "^1.7.1"
+    "@unified-latex/unified-latex-util-scan" "^1.7.1"
+    "@unified-latex/unified-latex-util-visit" "^1.7.1"
+    unified "^10.1.2"
+
+"@unified-latex/unified-latex-util-catcode@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-catcode/-/unified-latex-util-catcode-1.7.1.tgz#f4e769e50d7eff7566c696c360e86dbb01542501"
+  integrity sha512-s7jZAiMF4LkkD9eaIaWL0gDg2tRow7iuJKVmKJwGgvUIr4Di5LuE2lbqLMV2ytWchmMFwC0Y6dW6rHSOiHlRjQ==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-visit" "^1.7.1"
+
+"@unified-latex/unified-latex-util-comments@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-comments/-/unified-latex-util-comments-1.7.1.tgz#42172358613f3084d27405d40f7ea39a59067f7f"
+  integrity sha512-0JOHbwuC6CZHS7nTQDxN6rv02ty0chXQ/rrtFnXQjcEmIYRGcNrtTC50AfYMDGlt329+Ul/7rCixoEePL/ZWFQ==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-replace" "^1.7.1"
+
+"@unified-latex/unified-latex-util-environments@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-environments/-/unified-latex-util-environments-1.7.1.tgz#ecc7939a41824052c8e8ec1cbf7fa44abe42a892"
+  integrity sha512-OTSoLg7B+7yFw3hwv3pc8OlRzrOvVasK7QvMBMtrAVfYmDaVFEnuoc1ru8XGeOaI6ua3thrYl8SjbkI2lH42OA==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-arguments" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-print-raw" "^1.7.1"
+    "@unified-latex/unified-latex-util-render-info" "^1.7.1"
+    "@unified-latex/unified-latex-util-visit" "^1.7.1"
+    unified "^10.1.2"
+
+"@unified-latex/unified-latex-util-match@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-match/-/unified-latex-util-match-1.7.1.tgz#854e6c12796aa9cedfdd8d4d86ee25c5fd8e611b"
+  integrity sha512-UGZyuq3KQ8BPy+2W0Fm47/T2m6IzZ5AqdOPEzvAZrbanmAfUFfIcsXAFz7eZsxACQDebeIiBfyo/Mm5MKCw16Q==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-print-raw" "^1.7.1"
+
+"@unified-latex/unified-latex-util-parse@^1.0.12", "@unified-latex/unified-latex-util-parse@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-parse/-/unified-latex-util-parse-1.7.1.tgz#395037f8f4e3bc006ced92d0f6e95bccc964fdb7"
+  integrity sha512-o6JQ5U+NrM0Pt8uOUotRV5xmRNsbzK1yn90EOZimPLhJB+clzys0vSD9FhvAA4vdTYS5AC3BsMfWzFt8zT+2Jg==
+  dependencies:
+    "@unified-latex/unified-latex-ctan" "^1.7.1"
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-arguments" "^1.7.1"
+    "@unified-latex/unified-latex-util-catcode" "^1.7.1"
+    "@unified-latex/unified-latex-util-environments" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-pegjs" "^1.7.1"
+    "@unified-latex/unified-latex-util-print-raw" "^1.7.1"
+    "@unified-latex/unified-latex-util-trim" "^1.7.1"
+    "@unified-latex/unified-latex-util-visit" "^1.7.1"
+    unified "^10.1.2"
+
+"@unified-latex/unified-latex-util-pegjs@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-pegjs/-/unified-latex-util-pegjs-1.7.1.tgz#76efe1032e13ef5b5248e95ab60f4933cedd63e5"
+  integrity sha512-YTmUDUvcz5IdtuGgwyYXoIAmYB7hL1zwuCDifZnMn1mKSc6QNB1XcnpLm2J3msLp6PlBVM1ouPZ8JJJOzRktjw==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+
+"@unified-latex/unified-latex-util-pgfkeys@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-pgfkeys/-/unified-latex-util-pgfkeys-1.7.1.tgz#fbdeec3e76c8ce97ae65f80f7ac965569fee4336"
+  integrity sha512-R1vyEtMKb9Ne/9LiSO7/oDiladoFpPmsYyODRmaUQ7naLHG/YK9TBcqt+YEoSJh9cDa/QCoJcMfYDTipDidL/A==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-pegjs" "^1.7.1"
+    "@unified-latex/unified-latex-util-print-raw" "^1.7.1"
+
+"@unified-latex/unified-latex-util-print-raw@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-print-raw/-/unified-latex-util-print-raw-1.7.1.tgz#62997cd7619df25651775d1c2e8859374b0845ff"
+  integrity sha512-63Tgz85Q4YUrnqoba5xIE23eeGErVZqaTk/kFCth/1Cc/fMulU6LJtineDcjQta1nA2X08Srog4ugfanZMgevQ==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+
+"@unified-latex/unified-latex-util-render-info@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-render-info/-/unified-latex-util-render-info-1.7.1.tgz#aa3ad48ed2d66c5ed2283db4f61e53d621ab34d0"
+  integrity sha512-daKkSRR729qz4tq78sCTk2TH38ruORZTmTv9Z+6uvznfXuXsuwH+xbs/7tPsALvHoAT5KLbjZaMdJBGBX8uLVA==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-visit" "^1.7.1"
+
+"@unified-latex/unified-latex-util-replace@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-replace/-/unified-latex-util-replace-1.7.1.tgz#7ce642d570802a8aebcda5c45e83615cf3ef34ad"
+  integrity sha512-4hrQqBMxt1eUQGoaohzNhl9XrCwsXEBeGu9BTb6oEn1GcsNrLDUCToiPvqHX9KipM8eh9grUJjqaTDPDt7FiZg==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-split" "^1.7.1"
+    "@unified-latex/unified-latex-util-trim" "^1.7.1"
+    "@unified-latex/unified-latex-util-visit" "^1.7.1"
+    unified "^10.1.2"
+
+"@unified-latex/unified-latex-util-scan@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-scan/-/unified-latex-util-scan-1.7.1.tgz#9a3b4ffae719526cbbbf2977057cd857a21bbafd"
+  integrity sha512-zHA49YW8J//dHyqH4WuelHz1S0HRDYwSlvxYEeNqXluuDf4rkQC6n1HHv/MqguMIp9rCU9D8Po8Kx01kI1pBUQ==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-print-raw" "^1.7.1"
+    trie-prefix-tree "^1.5.1"
+
+"@unified-latex/unified-latex-util-split@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-split/-/unified-latex-util-split-1.7.1.tgz#692dee78e991148431ad9e8c86280d06bce6592b"
+  integrity sha512-nWRP3ZZIOO/iKEldw/+9j/7jlTsyU3YFCNJJ9jQ/g53GTEWz72vj5vAM41mXOhzy8G0tkDOLUzu0thYKg0m+Iw==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+
+"@unified-latex/unified-latex-util-trim@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-trim/-/unified-latex-util-trim-1.7.1.tgz#f599b2e7223a815bca1f6e14caa13f64d2135525"
+  integrity sha512-qFj8pG8jIGPXXl5gFKQ+J1crdQOm+1Q3qv6aF0rtaN9qZdiTKc3E8zptR0JHWVK1lo4kkt9yMP8f84nnpBsCMw==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+    "@unified-latex/unified-latex-util-visit" "^1.7.1"
+    unified "^10.1.2"
+
+"@unified-latex/unified-latex-util-visit@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/@unified-latex/unified-latex-util-visit/-/unified-latex-util-visit-1.7.1.tgz#62fce50ac9ef237a7926153573e6ab8ee72ebdf4"
+  integrity sha512-G9DWrGTs3ZDlTxAhtlACIU1Nnuy6W13guIahtNPrmUkO24EPqnw2auwWjGbeTnf03hwoEopibst+ExrswDwt1A==
+  dependencies:
+    "@unified-latex/unified-latex-types" "^1.7.1"
+    "@unified-latex/unified-latex-util-match" "^1.7.1"
+
 "@yarnpkg/lockfile@^1.1.0":
   version "1.1.0"
   resolved "https://registry.npmjs.org/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz"
@@ -869,10 +1090,26 @@ color-name@1.1.3:
   resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.3.tgz"
   integrity sha512-72fSenhMw2HZMTVHeCA9KCmpEIbzWiQsjN+BHcBbS9vr1mtt+vJjPdksIBNUmKAW8TFUDPJK5SUU3QhE9NEXDw==
 
-color-name@~1.1.4:
+color-name@^1.0.0, color-name@~1.1.4:
   version "1.1.4"
   resolved "https://registry.npmjs.org/color-name/-/color-name-1.1.4.tgz"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
+
+color-string@^1.9.0:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/color-string/-/color-string-1.9.1.tgz#4467f9146f036f855b764dfb5bf8582bf342c7a4"
+  integrity sha512-shrVawQFojnZv6xM40anx4CkoDP+fZsw/ZerEMsW/pyzsRbElpsL/DBVW7q3ExxwusdNXI3lXpuhEZkzs8p5Eg==
+  dependencies:
+    color-name "^1.0.0"
+    simple-swizzle "^0.2.2"
+
+color@^4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/color/-/color-4.2.3.tgz#d781ecb5e57224ee43ea9627560107c0e0c6463a"
+  integrity sha512-1rXeuUUiGGrykh+CeBdu5Ie7OJwinCgQY0bc7GCRxy5xVHy+moaqkpL/jqQq0MtQOeYcrqEz4abc5f0KtU7W4A==
+  dependencies:
+    color-convert "^2.0.1"
+    color-string "^1.9.0"
 
 colors@^1.4.0:
   version "1.4.0"
@@ -1437,6 +1674,11 @@ is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://registry.npmjs.org/is-arrayish/-/is-arrayish-0.2.1.tgz"
   integrity sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==
+
+is-arrayish@^0.3.1:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.3.2.tgz#4574a2ae56f7ab206896fb431eaeed066fdf8f03"
+  integrity sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==
 
 is-bigint@^1.0.1:
   version "1.0.4"
@@ -2479,10 +2721,20 @@ postinstall-postinstall@^2.1.0:
   resolved "https://registry.npmjs.org/postinstall-postinstall/-/postinstall-postinstall-2.1.0.tgz"
   integrity sha512-7hQX6ZlZXIoRiWNrbMQaLzUUfH+sSx39u8EJ9HYuDc1kLo9IXKWjM5RSquZN1ad5GnH8CGFM78fsAAQi3OKEEQ==
 
+prettier@^2.3.2:
+  version "2.8.8"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
+  integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
+
 prettier@^2.7.1:
   version "2.7.1"
   resolved "https://registry.npmjs.org/prettier/-/prettier-2.7.1.tgz"
   integrity sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==
+
+prettier@^3.0.3:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.2.5.tgz#e52bc3090586e824964a8813b09aba6233b28368"
+  integrity sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==
 
 property-information@^6.0.0:
   version "6.2.0"
@@ -2524,12 +2776,16 @@ regexp.prototype.flags@^1.4.3:
     define-properties "^1.1.3"
     functions-have-names "^1.2.2"
 
-remark-clang-format@2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/remark-clang-format/-/remark-clang-format-2.3.2.tgz#40986e066b1964041d1b31fae1d1f833806c0a47"
-  integrity sha512-5bHrR/bHw8n9LEwKQOu83YI7i7Na6kauXy69Bp0S9F/5rT0bwtteER5mCzKTMrkFQUo0ZZmdV31OixOiMfxMrA==
+remark-clang-format@2.4.4:
+  version "2.4.4"
+  resolved "https://registry.yarnpkg.com/remark-clang-format/-/remark-clang-format-2.4.4.tgz#ed1c8a170367bef93c76c9860795375e048a3e7a"
+  integrity sha512-HZ96XUWj/+5KlYqoOz228J14KXxJi92GqE+5lWYuggnM/9NATDWZAiP6XMXMO42zh0Y5bQn6Nusq3El0hCx/YA==
   dependencies:
+    "@babel/parser" "^7.18.13"
+    "@unified-latex/unified-latex-prettier" "^1.0.12"
+    "@unified-latex/unified-latex-util-parse" "^1.0.12"
     clang-format "^1.2.4"
+    prettier "^2.3.2"
     unist-util-visit "^3.1.0"
 
 remark-cli@^10.0.1:
@@ -3305,6 +3561,13 @@ side-channel@^1.0.4:
     get-intrinsic "^1.0.2"
     object-inspect "^1.9.0"
 
+simple-swizzle@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/simple-swizzle/-/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"
+  integrity sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==
+  dependencies:
+    is-arrayish "^0.3.1"
+
 slash@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/slash/-/slash-2.0.0.tgz"
@@ -3441,6 +3704,11 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz"
   integrity sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==
+
+trie-prefix-tree@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/trie-prefix-tree/-/trie-prefix-tree-1.5.1.tgz#209c91f0e66cde53af2c5de8aceeca5558cdf03d"
+  integrity sha512-Jjvj/dA97wXnabG/NLJUgo4IQMj6vucH+Qxm7of/omfWSmZlPqdRU6Ta4GmQqCZH+n3/iYZUwfvUoEhB0Hs83Q==
 
 trough@^2.0.0:
   version "2.1.0"

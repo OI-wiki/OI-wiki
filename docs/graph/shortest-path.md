@@ -199,14 +199,16 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
     === "Python"
         ```python
         class Edge:
-            def __init__(self, u = 0, v = 0, w = 0):
+            def __init__(self, u=0, v=0, w=0):
                 self.u = u
                 self.v = v
                 self.w = w
         
-        INF = 0x3f3f3f3f
+        
+        INF = 0x3F3F3F3F
         edge = []
         dis = [INF] * MAXN
+        
         
         def bellmanford(n, s):
             dis[s] = 0
@@ -277,15 +279,22 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
     === "Python"
         ```python
         from collections import deque
+        
+        
         class Edge:
-            def __init__(self, v = 0, w = 0):
+            def __init__(self, v=0, w=0):
                 self.v = v
                 self.w = w
         
+        
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [0x3f3f3f3f] * maxn; cnt = [0] * maxn; vis = [False] * maxn
+        dis = [0x3F3F3F3F] * maxn
+        cnt = [0] * maxn
+        vis = [False] * maxn
         
         q = deque()
+        
+        
         def spfa(n, s):
             dis[s] = 0
             vis[s] = True
@@ -297,7 +306,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                     v, w = ed.v, ed.w
                     if dis[v] > dis[u] + w:
                         dis[v] = dis[u] + w
-                        cnt[v] = cnt[u] + 1 # 记录最短路经过的边数
+                        cnt[v] = cnt[u] + 1  # 记录最短路经过的边数
                         if cnt[v] >= n:
                             return False
                         # 在不经过负环的情况下，最短路至多经过 n - 1 条边
@@ -404,16 +413,21 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
     === "Python"
         ```python
         class Edge:
-            def __init(self, v = 0, w = 0):
+            def __init(self, v=0, w=0):
                 self.v = v
                 self.w = w
+        
+        
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [0x3f3f3f3f] * maxn; vis = [0] * maxn
+        dis = [0x3F3F3F3F] * maxn
+        vis = [0] * maxn
+        
+        
         def dijkstra(n, s):
             dis[s] = 0
             for i in range(1, n + 1):
                 u = 0
-                mind = 0x3f3f3f3f
+                mind = 0x3F3F3F3F
                 for j in range(1, n + 1):
                     if not vis[j] and dis[j] < mind:
                         u = j
@@ -464,27 +478,28 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
     
     === "Python"
         ```python
-        def dijkstra(e,s):
-          '''
-          输入：
-          e:邻接表
-          s:起点
-          返回：
-          dis:从s到每个顶点的最短路长度
-          '''
-          dis = defaultdict(lambda:float("inf"))
-          dis[s] = 0
-          q = [(0,s)]
-          vis = set()
-          while q:
-              _, u = heapq.heappop(q)
-              if u in vis: continue
-              vis.add(u)
-              for v,w in e[u]:
-                  if dis[v] > dis[u] + w:
-                      dis[v] = dis[u] + w
-                      heapq.heappush(q,(dis[v],v))
-          return dis
+        def dijkstra(e, s):
+            """
+            输入：
+            e:邻接表
+            s:起点
+            返回：
+            dis:从s到每个顶点的最短路长度
+            """
+            dis = defaultdict(lambda: float("inf"))
+            dis[s] = 0
+            q = [(0, s)]
+            vis = set()
+            while q:
+                _, u = heapq.heappop(q)
+                if u in vis:
+                    continue
+                vis.add(u)
+                for v, w in e[u]:
+                    if dis[v] > dis[u] + w:
+                        dis[v] = dis[u] + w
+                        heapq.heappush(q, (dis[v], v))
+            return dis
         ```
 
 ## Johnson 全源最短路径算法
