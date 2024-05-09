@@ -107,11 +107,14 @@ $$
 
 === "Python"
     ```python
-    low = [0] * MAXN; dfn = [0] * MAXN; dfs_clock = 0
+    low = [0] * MAXN
+    dfn = [0] * MAXN
+    dfs_clock = 0
     isbridge = [False] * MAXN
     G = [[0 for i in range(MAXN)] for j in range(MAXN)]
     cnt_bridge = 0
     father = [0] * MAXN
+    
     
     def tarjan(u, fa):
         father[u] = fa

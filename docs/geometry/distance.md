@@ -167,12 +167,17 @@ $$
     
     === "Python"
         ```python
-        minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
+        minx = 0x7FFFFFFF
+        maxx = 0
+        miny = 0x7FFFFFFF
+        maxy = 0
         n = int(input())
         for i in range(1, n + 1):
-            x, y = map(lambda x:int(x), input().split())
-            minx = min(minx, x + y); maxx = max(maxx, x + y)
-            miny = min(miny, x - y); maxy = max(maxy, x - y)
+            x, y = map(lambda x: int(x), input().split())
+            minx = min(minx, x + y)
+            maxx = max(maxx, x + y)
+            miny = min(miny, x - y)
+            maxy = max(maxy, x - y)
         print(max(maxx - minx, maxy - miny))
         ```
 
@@ -337,13 +342,19 @@ $$
     
     === "Python"
         ```python
-        minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
+        minx = 0x7FFFFFFF
+        maxx = 0
+        miny = 0x7FFFFFFF
+        maxy = 0
         n = int(input())
         for i in range(1, n + 1):
-            a, b = map(lambda x:int(x), input().split())
-            x = a + b; y = a - b
-            minx = min(minx, x); maxx = max(maxx, x)
-            miny = min(miny, y); maxy = max(maxy, y)
+            a, b = map(lambda x: int(x), input().split())
+            x = a + b
+            y = a - b
+            minx = min(minx, x)
+            maxx = max(maxx, x)
+            miny = min(miny, y)
+            maxy = max(maxy, y)
         print(max(maxx - minx, maxy - miny))
         ```
 

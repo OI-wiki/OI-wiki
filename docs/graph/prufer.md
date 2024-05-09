@@ -57,6 +57,7 @@ Prüfer 是这样建立的：每次选择一个编号最小的叶结点并删掉
         # 结点是从 0 标号的
         adj = [[]]
         
+        
         def pruefer_code():
             n = len(adj)
             leafs = set()

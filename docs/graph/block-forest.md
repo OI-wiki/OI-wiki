@@ -101,14 +101,14 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
     === "Python"
         ```python
         def Tarjan(u):
-            low[u] = dfn[u] = dfc # low 初始化为当前节点 dfn
+            low[u] = dfn[u] = dfc  # low 初始化为当前节点 dfn
             dfc = dfc + 1
-            for v in G[u]: # 遍历 u 的相邻节点
-                if dfn[v] == False: # 如果未访问过
-                    Tarjan(v) # 递归
-                    low[u] = min(low[u], low[v]) # 未访问的和 low 取 min
+            for v in G[u]:  # 遍历 u 的相邻节点
+                if dfn[v] == False:  # 如果未访问过
+                    Tarjan(v)  # 递归
+                    low[u] = min(low[u], low[v])  # 未访问的和 low 取 min
                 else:
-                    low[u] = min(low[u], dfn[v]) # 已访问的和 dfn 取 min
+                    low[u] = min(low[u], dfn[v])  # 已访问的和 dfn 取 min
         ```
 
 接下来，我们考虑点双和 DFS 树以及这两个数组之间的关联。

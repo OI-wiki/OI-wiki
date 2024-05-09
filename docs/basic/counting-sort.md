@@ -85,6 +85,7 @@ $$
     a = b = [0] * N
     cnt = [0] * W
     
+    
     def counting_sort():
         for i in range(1, n + 1):
             cnt[a[i]] += 1
