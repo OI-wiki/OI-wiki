@@ -1,127 +1,128 @@
 # 引入
 
-[P6466 分散层叠算法(Fractional Cascading)](https://www.luogu.com.cn/problem/P6466)
+[P6466 分散层叠算法（Fractional Cascading)](https://www.luogu.com.cn/problem/P6466)
 
-考虑 $k$ 个长度为 $n$ 有序序列 $l_1 \dots l_n$， $q$ 次询问，每次给出一个数 $x$，询问 $x$ 在这些序列中的非严格后缀。
+考虑 $k$ 个长度为 $n$ 有序序列 $l_1 \dots l_n$，$q$ 次询问，每次给出一个数 $x$，询问 $x$ 在这些序列中的非严格后缀。
 
 显然做法是每个序列分别二分，时间复杂度 $\mathcal O(qk\log n)$。而分散层叠可以把复杂度优化为 $\mathcal O(q(k+\log n))$。
 
 考虑建立 $k$ 个新序列 $M_1\dots M_k$，定义为 $M_k=l_k$，其余按照如下方法构造：
 
->$M_i$ 为 $M_{i+1}$ 的偶数项与 $l_i$ 归并排序后的序列。
+> $M_i$ 为 $M_{i+1}$ 的偶数项与 $l_i$ 归并排序后的序列。
 
 举个例子：
-```
-l1:1 4 5 8 9             M1:1 3 4 5 7 8 9
-l2:2 3 6 7 10            M2:2 3 6 7 10
-```
-考虑计算空间复杂度。$M_k$ 的长度为 $n$，$M_i(i<k)$ 的长度为 $\frac{M_{i+1}}{2}+n$。考虑设 $A_i$ 为 $M_{k-i+1}$ 的长度，则 $A_i=(2-\frac{1}{2^i})n$，当 $i$ 很大时 $A_i$ 趋近于 $2n$，所以空间复杂度依然是 $\mathcal O(nk)$。 
+
+    l1:1 4 5 8 9             M1:1 3 4 5 7 8 9
+    l2:2 3 6 7 10            M2:2 3 6 7 10
+
+考虑计算空间复杂度。$M_k$ 的长度为 $n$，$M_i(i<k)$ 的长度为 $\frac{M_{i+1}}{2}+n$。考虑设 $A_i$ 为 $M_{k-i+1}$ 的长度，则 $A_i=(2-\frac{1}{2^i})n$，当 $i$ 很大时 $A_i$ 趋近于 $2n$，所以空间复杂度依然是 $\mathcal O(nk)$。
 
 归并的时候，我们可以顺便记下 $M_i$ 中的每个数在 $l_i$ 和 $M_{i+1}$ 中的后继。
 
 对于每次询问，我们首先二分出 $x$ 在 $M_1$ 中的后继 $y$，则 $x\le y$。
 
-### 引理 1： $y$ 在 $l_1$ 中的后继一定是 $x$ 在 $l_1$ 中的后继。
+### 引理 1：$y$ 在 $l_1$ 中的后继一定是 $x$ 在 $l_1$ 中的后继。
 
-> 证明：若 $y$ 在 $l_1$ 中出现过，$y$ 的后继就是 $y$，显然成立。若 $y$ 不在 $l_1$ 中， $y$ 在 $l_1$ 中的后继就是 $x$ 在 $l_1$ 中的后继。
+> 证明：若 $y$ 在 $l_1$ 中出现过，$y$ 的后继就是 $y$，显然成立。若 $y$ 不在 $l_1$ 中，$y$ 在 $l_1$ 中的后继就是 $x$ 在 $l_1$ 中的后继。
 
 不难发现本条对任意 $l_i(1\le i\le k)$ 均成立。
 
-### 引理 2： $y$ 在 $M_2$ 中的后继与 $x$ 在 $M_2$ 的后继下标差不超过 $2$。
+### 引理 2：$y$ 在 $M_2$ 中的后继与 $x$ 在 $M_2$ 的后继下标差不超过 $2$。
 
 > 证明：因为我们从 $M_2$ 中每两个数就选取一个加入 $M_1$，所以 $x$ 在 $M_2$ 的后继 $p$ 和 $x$ 在 $M_2$ 的后继的后继 $q$ 必定有一个加入了 $M_1$。（在 $M_2$ 中 $\ge x$ 的数 $< 2$ 个的情况下显然成立）因此 $x\le y\le q$，最极端情况下 $y=q$，此时 $y$ 在 $M_2$ 中的后继就是 $q$ 的后继，与 $x$ 的后继下标差为 $2$。
 
-推广（引自论文）:
+推广（引自论文）：
 
 > “如果我们建立分散层叠时选取的比例为 $\frac{1}{r}$（本题 $r=2$），那么 $x$ 在 $M_i$ 中二分查找的结果（即 $y$）指向的 $M_{i+1}$ 的位置和 $x$ 在 $M_{i+1}$ 中二分查找的正确结果的距离不会超过 $r$。因为 $r$ 是一个常数，所以可以在 $\mathcal O(1)$ 的时间复杂度内求出 $x$ 在 $M_{i+1}$ 中二分查找的正确结果。”
 
 那么做法就很明显了，我们二分出 $y$ 后，每次找到 $y$ 在 $l_i$ 中的后继（这个在归并时就已经处理好，可以 $\mathcal O(1)$ 查询）作为答案，然后从 $y$ 跳到 $y$ 在 $M_{i+1}$ 中的后继，然后暴力把这个位置调整为 $x$ 在 $M_{i+1}$ 中的后继，已经证明最多只会调整两次，把这个后继记为 $y'$，重复上面步骤即可。
 
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define re register
 #define il inline
-#define rep(x,qwq,qaq) for(re int (x)=(qwq);(x)<=(qaq);++(x))
-#define per(x,qwq,qaq) for(re int (x)=(qwq);(x)>=(qaq);--(x))
+#define rep(x, qwq, qaq) for (re int(x) = (qwq); (x) <= (qaq); ++(x))
+#define per(x, qwq, qaq) for (re int(x) = (qwq); (x) >= (qaq); --(x))
 using namespace std;
 #define maxk 110
 #define maxn 20010
 int T;
-int n,k,q,d;
+int n, k, q, d;
 int a[maxk][maxn];
 int len[maxk];
 int M[maxk][maxn];
 int asuf[maxk][maxn];
 int Msuf[maxk][maxn];
-int tM[maxn],Mlim;
-il void fractional_cascading(){
-	rep(i,1,n)M[k][i]=a[k][i],asuf[k][i]=i,Msuf[k][i]=i;
-    len[k]=n;
-	per(i,k-1,1){
-    	//归并 
-        int p1=1,p2=1;Mlim=0;
-        len[i]=len[i+1]/2+n;
-        for(re int j=2;j<=len[i+1];j+=2){
-        	tM[++Mlim]=M[i+1][j];
-		}
-        while(p1+p2<=len[i]+1){
-        	while(p1<n+1&&p2==Mlim+1){
-        		M[i][p1+p2-1]=a[i][p1];
-        		Msuf[i][p1+p2-1]=len[i+1];
-        		asuf[i][p1+p2-1]=(p1==n?n:p1+1);
-        		++p1;
-			}
-			while(p2<Mlim+1&&p1==n+1){
-        		M[i][p1+p2-1]=tM[p2];
-        		Msuf[i][p1+p2-1]=(p2==Mlim?len[i+1]:(p2+1)*2);
-        		asuf[i][p1+p2-1]=n;
-        		++p2;
-			}
-			if(p1<n+1&&p2<Mlim+1){
-				if(a[i][p1]<tM[p2]){
-					M[i][p1+p2-1]=a[i][p1];
-					Msuf[i][p1+p2-1]=p2*2;
-					asuf[i][p1+p2-1]=p1;
-					++p1;
-				}
-				else{
-					M[i][p1+p2-1]=tM[p2];
-					Msuf[i][p1+p2-1]=p2*2;
-					asuf[i][p1+p2-1]=p1;
-					++p2;
-				}
-			}
-		}
-	}
+int tM[maxn], Mlim;
+
+il void fractional_cascading() {
+  rep(i, 1, n) M[k][i] = a[k][i], asuf[k][i] = i, Msuf[k][i] = i;
+  len[k] = n;
+  per(i, k - 1, 1) {
+    // 归并
+    int p1 = 1, p2 = 1;
+    Mlim = 0;
+    len[i] = len[i + 1] / 2 + n;
+    for (re int j = 2; j <= len[i + 1]; j += 2) {
+      tM[++Mlim] = M[i + 1][j];
+    }
+    while (p1 + p2 <= len[i] + 1) {
+      while (p1 < n + 1 && p2 == Mlim + 1) {
+        M[i][p1 + p2 - 1] = a[i][p1];
+        Msuf[i][p1 + p2 - 1] = len[i + 1];
+        asuf[i][p1 + p2 - 1] = (p1 == n ? n : p1 + 1);
+        ++p1;
+      }
+      while (p2 < Mlim + 1 && p1 == n + 1) {
+        M[i][p1 + p2 - 1] = tM[p2];
+        Msuf[i][p1 + p2 - 1] = (p2 == Mlim ? len[i + 1] : (p2 + 1) * 2);
+        asuf[i][p1 + p2 - 1] = n;
+        ++p2;
+      }
+      if (p1 < n + 1 && p2 < Mlim + 1) {
+        if (a[i][p1] < tM[p2]) {
+          M[i][p1 + p2 - 1] = a[i][p1];
+          Msuf[i][p1 + p2 - 1] = p2 * 2;
+          asuf[i][p1 + p2 - 1] = p1;
+          ++p1;
+        } else {
+          M[i][p1 + p2 - 1] = tM[p2];
+          Msuf[i][p1 + p2 - 1] = p2 * 2;
+          asuf[i][p1 + p2 - 1] = p1;
+          ++p2;
+        }
+      }
+    }
+  }
 }
+
 int x;
 int lans;
+
 signed main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0),cout.tie(0);
-    cin>>n>>k>>q>>d;
-    rep(i,1,k){
-    	rep(j,1,n){
-    		cin>>a[i][j];
-		}
-	}
-	fractional_cascading();
-	rep(i,1,q){
-		cin>>x;
-		x^=lans;
-		int res=0;
-		int pos=lower_bound(M[1]+1,M[1]+len[1]+1,x)-M[1];
-		res^=a[1][asuf[1][pos]];
-		rep(i,2,k){
-			pos=Msuf[i-1][pos];
-			while(M[i][pos]<x&&pos<len[i])++pos;
-			while(M[i][pos]>=x&&M[i][pos-1]>=x&&pos>1)--pos;
-			if(a[i][asuf[i][pos]]>=x)res^=a[i][asuf[i][pos]];
-		}
-		lans=res;
-		if(i%d==0)cout<<res<<'\n';
-	}
-	return 0;
+  ios::sync_with_stdio(false);
+  cin.tie(0), cout.tie(0);
+  cin >> n >> k >> q >> d;
+  rep(i, 1, k) {
+    rep(j, 1, n) { cin >> a[i][j]; }
+  }
+  fractional_cascading();
+  rep(i, 1, q) {
+    cin >> x;
+    x ^= lans;
+    int res = 0;
+    int pos = lower_bound(M[1] + 1, M[1] + len[1] + 1, x) - M[1];
+    res ^= a[1][asuf[1][pos]];
+    rep(i, 2, k) {
+      pos = Msuf[i - 1][pos];
+      while (M[i][pos] < x && pos < len[i]) ++pos;
+      while (M[i][pos] >= x && M[i][pos - 1] >= x && pos > 1) --pos;
+      if (a[i][asuf[i][pos]] >= x) res ^= a[i][asuf[i][pos]];
+    }
+    lans = res;
+    if (i % d == 0) cout << res << '\n';
+  }
+  return 0;
 }
 
 ```
@@ -159,213 +160,246 @@ signed main() {
 综上，取块长为 $\sqrt n$ 时复杂度最优，为 $\mathcal O(n\sqrt n)$。
 
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define re register
 #define il inline
 #define ll long long
-#define ls ((p)<<1)
-#define rs (((p)<<1)|1)
-#define mid ((l+r)>>1)
-#define rep(x,qwq,qaq) for(re int (x)=(qwq);(x)<=(qaq);++(x))
-#define per(x,qwq,qaq) for(re int (x)=(qwq);(x)>=(qaq);--(x))
+#define ls ((p) << 1)
+#define rs (((p) << 1) | 1)
+#define mid ((l + r) >> 1)
+#define rep(x, qwq, qaq) for (re int(x) = (qwq); (x) <= (qaq); ++(x))
+#define per(x, qwq, qaq) for (re int(x) = (qwq); (x) >= (qaq); --(x))
 using namespace std;
 #define maxn 200010
-int n,q;
+int n, q;
 #define SQRT 520
 int a[maxn];
 int B;
 int bel[maxn];
+
 struct node {
-	int yuan,val;
+  int yuan, val;
 } b[maxn];
-int L[maxn],R[maxn];
+
+int L[maxn], R[maxn];
 int tag[SQRT];
+
 struct Segment_Tree {
-	int lf[SQRT<<2],rf[SQRT<<2];
-	int lsuf[SQRT<<2][SQRT*3/2],rsuf[SQRT<<2][SQRT*3/2],M[SQRT<<2][SQRT*3/2],len[SQRT<<2];
-	int M1[SQRT*3/2],M2[SQRT*3/2];
-	int add_tag[SQRT<<2];
-	il void pushup(int p) {
-		int p1=1,p2=1,t1=0,t2=0;
-		for(re int j=1; j<=len[ls]; j+=3)M1[++t1]=M[ls][j];
-		for(re int j=1; j<=len[rs]; j+=3)M2[++t2]=M[rs][j];
-		len[p]=t1+t2;
-		while(p1+p2<=len[p]+1) {
-			while(p1<t1+1&&p2==t2+1) {
-				M[p][p1+p2-1]=M1[p1];
-				lsuf[p][p1+p2-1]=(p1==t1?t1:p1+1);
-				rsuf[p][p1+p2-1]=t2;
-				++p1;
-			}
-			while(p2<t2+1&&p1==t1+1) {
-				M[p][p1+p2-1]=M2[p2];
-				lsuf[p][p1+p2-1]=t1;
-				rsuf[p][p1+p2-1]=(p2==t2?t2:p2+1);
-				++p2;
-			}
-			if(p1<t1+1&&p2<t2+1) {
-				if(M1[p1]<M2[p2]) {
-					M[p][p1+p2-1]=M1[p1];
-					lsuf[p][p1+p2-1]=p1;
-					rsuf[p][p1+p2-1]=p2;
-					++p1;
-				} else {
-					M[p][p1+p2-1]=M2[p2];
-					lsuf[p][p1+p2-1]=p1;
-					rsuf[p][p1+p2-1]=p2;
-					++p2;
-				}
-			}
-		}
-		rep(j,1,len[p])M[p][j]+=add_tag[p];
-		rep(j,1,len[p])lsuf[p][j]=1+3*(lsuf[p][j]-1),rsuf[p][j]=1+3*(rsuf[p][j]-1);
-	}
-	void build(int p,int l,int r) {
-		lf[p]=l,rf[p]=r;
-		if(l==r) {
-			len[p]=R[l]-L[l]+1;
-			rep(i,L[l],R[l])M[p][i-L[l]+1]=b[i].val;
-			return;
-		}
-		build(ls,l,mid);
-		build(rs,mid+1,r);
-		pushup(p);
-	}
-	il void push_tag(int p,int v) {
-		rep(j,1,len[p])M[p][j]+=v;
-		add_tag[p]+=v;
-	}
-	void modify(int p,int l,int r,int L,int R,int v) {
-		if(L>R)return;
-		if(L<=l&&r<=R) {
-			push_tag(p,v);
-			return;
-		}
-		if(mid>=L)modify(ls,l,mid,L,R,v);
-		if(mid<R)modify(rs,mid+1,r,L,R,v);
-		pushup(p);
-	}
-	void modify_san(int p,int l,int r,int pos) {
-		if(l==r) {
-			rep(i,L[l],R[l])M[p][i-L[l]+1]=b[i].val+add_tag[p];
-			return ;
-		}
-		if(mid>=pos)modify_san(ls,l,mid,pos);
-		else modify_san(rs,mid+1,r,pos);
-		pushup(p);
-	}
-	int query(int p,int l,int r,int L,int R,ll C,int x,int tag) {
-		if(p==1)x=max(1ll,1ll*(lower_bound(M[p]+1,M[p]+len[p]+1,C)-M[p]-1));
-		else {
-			while(M[p][x]+tag<C&&M[p][x+1]+tag<C&&x<len[p])++x;
-			while(M[p][x]+tag>=C&&x>1)--x;
-		}
-		if(l==r) {
-			return x-1+(M[p][x]+tag<C);
-		}
-		int res=0;
-		if(mid>=L)res+=query(ls,l,mid,L,R,C,lsuf[p][x],tag+add_tag[p]);
-		if(mid<R)res+=query(rs,mid+1,r,L,R,C,rsuf[p][x],tag+add_tag[p]);
-		return res;
-	}
+  int lf[SQRT << 2], rf[SQRT << 2];
+  int lsuf[SQRT << 2][SQRT * 3 / 2], rsuf[SQRT << 2][SQRT * 3 / 2],
+      M[SQRT << 2][SQRT * 3 / 2], len[SQRT << 2];
+  int M1[SQRT * 3 / 2], M2[SQRT * 3 / 2];
+  int add_tag[SQRT << 2];
+
+  il void pushup(int p) {
+    int p1 = 1, p2 = 1, t1 = 0, t2 = 0;
+    for (re int j = 1; j <= len[ls]; j += 3) M1[++t1] = M[ls][j];
+    for (re int j = 1; j <= len[rs]; j += 3) M2[++t2] = M[rs][j];
+    len[p] = t1 + t2;
+    while (p1 + p2 <= len[p] + 1) {
+      while (p1 < t1 + 1 && p2 == t2 + 1) {
+        M[p][p1 + p2 - 1] = M1[p1];
+        lsuf[p][p1 + p2 - 1] = (p1 == t1 ? t1 : p1 + 1);
+        rsuf[p][p1 + p2 - 1] = t2;
+        ++p1;
+      }
+      while (p2 < t2 + 1 && p1 == t1 + 1) {
+        M[p][p1 + p2 - 1] = M2[p2];
+        lsuf[p][p1 + p2 - 1] = t1;
+        rsuf[p][p1 + p2 - 1] = (p2 == t2 ? t2 : p2 + 1);
+        ++p2;
+      }
+      if (p1 < t1 + 1 && p2 < t2 + 1) {
+        if (M1[p1] < M2[p2]) {
+          M[p][p1 + p2 - 1] = M1[p1];
+          lsuf[p][p1 + p2 - 1] = p1;
+          rsuf[p][p1 + p2 - 1] = p2;
+          ++p1;
+        } else {
+          M[p][p1 + p2 - 1] = M2[p2];
+          lsuf[p][p1 + p2 - 1] = p1;
+          rsuf[p][p1 + p2 - 1] = p2;
+          ++p2;
+        }
+      }
+    }
+    rep(j, 1, len[p]) M[p][j] += add_tag[p];
+    rep(j, 1, len[p]) lsuf[p][j] = 1 + 3 * (lsuf[p][j] - 1),
+                      rsuf[p][j] = 1 + 3 * (rsuf[p][j] - 1);
+  }
+
+  void build(int p, int l, int r) {
+    lf[p] = l, rf[p] = r;
+    if (l == r) {
+      len[p] = R[l] - L[l] + 1;
+      rep(i, L[l], R[l]) M[p][i - L[l] + 1] = b[i].val;
+      return;
+    }
+    build(ls, l, mid);
+    build(rs, mid + 1, r);
+    pushup(p);
+  }
+
+  il void push_tag(int p, int v) {
+    rep(j, 1, len[p]) M[p][j] += v;
+    add_tag[p] += v;
+  }
+
+  void modify(int p, int l, int r, int L, int R, int v) {
+    if (L > R) return;
+    if (L <= l && r <= R) {
+      push_tag(p, v);
+      return;
+    }
+    if (mid >= L) modify(ls, l, mid, L, R, v);
+    if (mid < R) modify(rs, mid + 1, r, L, R, v);
+    pushup(p);
+  }
+
+  void modify_san(int p, int l, int r, int pos) {
+    if (l == r) {
+      rep(i, L[l], R[l]) M[p][i - L[l] + 1] = b[i].val + add_tag[p];
+      return;
+    }
+    if (mid >= pos)
+      modify_san(ls, l, mid, pos);
+    else
+      modify_san(rs, mid + 1, r, pos);
+    pushup(p);
+  }
+
+  int query(int p, int l, int r, int L, int R, ll C, int x, int tag) {
+    if (p == 1)
+      x = max(1ll,
+              1ll * (lower_bound(M[p] + 1, M[p] + len[p] + 1, C) - M[p] - 1));
+    else {
+      while (M[p][x] + tag < C && M[p][x + 1] + tag < C && x < len[p]) ++x;
+      while (M[p][x] + tag >= C && x > 1) --x;
+    }
+    if (l == r) {
+      return x - 1 + (M[p][x] + tag < C);
+    }
+    int res = 0;
+    if (mid >= L)
+      res += query(ls, l, mid, L, R, C, lsuf[p][x], tag + add_tag[p]);
+    if (mid < R)
+      res += query(rs, mid + 1, r, L, R, C, rsuf[p][x], tag + add_tag[p]);
+    return res;
+  }
 } T;
+
 il void init() {
-	rep(i,1,n) {
-		b[i].yuan=i;
-		b[i].val=a[i];
-	}
-	rep(i,1,bel[n]) {
-		stable_sort(b+L[i],b+R[i]+1,[](const node &x,const node &y) {
-			if(x.val!=y.val)return x.val<y.val;
-			else return x.yuan<y.yuan;
-		});
-	}
+  rep(i, 1, n) {
+    b[i].yuan = i;
+    b[i].val = a[i];
+  }
+  rep(i, 1, bel[n]) {
+    stable_sort(b + L[i], b + R[i] + 1, [](const node &x, const node &y) {
+      if (x.val != y.val)
+        return x.val < y.val;
+      else
+        return x.yuan < y.yuan;
+    });
+  }
 }
-node a1[maxn],a2[maxn];
-il void resort(int i,int l,int r) {
-	int t1=0,t2=0;
-	rep(j,L[i],R[i]) {
-		b[j].val=a[b[j].yuan];
-		if(b[j].yuan>r||b[j].yuan<l)a1[++t1]=b[j];
-		else a2[++t2]=b[j];
-	}
-	int p1=1,p2=1;
-	int len=R[i]-L[i]+1;
-	while(p1+p2<=len+1) {
-		while(p1<t1+1&&p2==t2+1) {
-			b[L[i]+p1+p2-2]=a1[p1];
-			++p1;
-		}
-		while(p2<t2+1&&p1==t1+1) {
-			b[L[i]+p1+p2-2]=a2[p2];
-			++p2;
-		}
-		if(p1<t1+1&&p2<t2+1) {
-			if(a1[p1].val<a2[p2].val) {
-				b[L[i]+p1+p2-2]=a1[p1];
-				++p1;
-			} else {
-				b[L[i]+p1+p2-2]=a2[p2];
-				++p2;
-			}
-		}
-	}
+
+node a1[maxn], a2[maxn];
+
+il void resort(int i, int l, int r) {
+  int t1 = 0, t2 = 0;
+  rep(j, L[i], R[i]) {
+    b[j].val = a[b[j].yuan];
+    if (b[j].yuan > r || b[j].yuan < l)
+      a1[++t1] = b[j];
+    else
+      a2[++t2] = b[j];
+  }
+  int p1 = 1, p2 = 1;
+  int len = R[i] - L[i] + 1;
+  while (p1 + p2 <= len + 1) {
+    while (p1 < t1 + 1 && p2 == t2 + 1) {
+      b[L[i] + p1 + p2 - 2] = a1[p1];
+      ++p1;
+    }
+    while (p2 < t2 + 1 && p1 == t1 + 1) {
+      b[L[i] + p1 + p2 - 2] = a2[p2];
+      ++p2;
+    }
+    if (p1 < t1 + 1 && p2 < t2 + 1) {
+      if (a1[p1].val < a2[p2].val) {
+        b[L[i] + p1 + p2 - 2] = a1[p1];
+        ++p1;
+      } else {
+        b[L[i] + p1 + p2 - 2] = a2[p2];
+        ++p2;
+      }
+    }
+  }
 }
-il void modify_san(int id,int l,int r,int x) {
-	rep(i,l,r)a[i]+=x;
-	resort(id,l,r);
+
+il void modify_san(int id, int l, int r, int x) {
+  rep(i, l, r) a[i] += x;
+  resort(id, l, r);
 }
-il void modify(int l,int r,int x) {
-	if(bel[l]==bel[r])modify_san(bel[l],l,r,x),T.modify_san(1,1,bel[n],bel[l]);
-	else {
-		modify_san(bel[l],l,R[bel[l]],x);
-		modify_san(bel[r],L[bel[r]],r,x);
-		T.modify_san(1,1,bel[n],bel[l]);
-		T.modify_san(1,1,bel[n],bel[r]);
-		T.modify(1,1,bel[n],bel[l]+1,bel[r]-1,x);
-		rep(i,bel[l]+1,bel[r]-1)tag[i]+=x;
-	}
+
+il void modify(int l, int r, int x) {
+  if (bel[l] == bel[r])
+    modify_san(bel[l], l, r, x), T.modify_san(1, 1, bel[n], bel[l]);
+  else {
+    modify_san(bel[l], l, R[bel[l]], x);
+    modify_san(bel[r], L[bel[r]], r, x);
+    T.modify_san(1, 1, bel[n], bel[l]);
+    T.modify_san(1, 1, bel[n], bel[r]);
+    T.modify(1, 1, bel[n], bel[l] + 1, bel[r] - 1, x);
+    rep(i, bel[l] + 1, bel[r] - 1) tag[i] += x;
+  }
 }
-il int query_san(int id,int l,int r,ll C) {
-	int res=0;
-	rep(i,l,r)res+=(a[i]+tag[id]<C);
-	return res;
+
+il int query_san(int id, int l, int r, ll C) {
+  int res = 0;
+  rep(i, l, r) res += (a[i] + tag[id] < C);
+  return res;
 }
-il int query(int l,int r,ll C) {
-	if(bel[l]==bel[r])return query_san(bel[l],l,r,C);
-	else {
-		int res=query_san(bel[l],l,R[bel[l]],C)+query_san(bel[r],L[bel[r]],r,C);
-		int qwq=T.query(1,1,bel[n],bel[l]+1,bel[r]-1,C,0,0);
-		return res+qwq;
-	}
+
+il int query(int l, int r, ll C) {
+  if (bel[l] == bel[r])
+    return query_san(bel[l], l, r, C);
+  else {
+    int res =
+        query_san(bel[l], l, R[bel[l]], C) + query_san(bel[r], L[bel[r]], r, C);
+    int qwq = T.query(1, 1, bel[n], bel[l] + 1, bel[r] - 1, C, 0, 0);
+    return res + qwq;
+  }
 }
+
 char t;
-int l,r,x;
+int l, r, x;
+
 signed main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0),cout.tie(0);
-	cin>>n;
-	q=n;
-	B=sqrt(n);
-	rep(i,1,n) {
-		bel[i]=(i-1)/B+1,L[bel[i]]=R[bel[i]-1]+1,R[bel[i]]=i;
-	}
-	rep(i,1,n)cin>>a[i];
-	init();
-	T.build(1,1,bel[n]);
-	while(q--) {
-		cin>>t>>l>>r>>x;
-		if(t=='0') {
-			modify(l,r,x);
-		} else {
-			cout<<query(l,r,1ll*x*x)<<'\n';
-		}
-	}
-	return 0;
+  ios::sync_with_stdio(false);
+  cin.tie(0), cout.tie(0);
+  cin >> n;
+  q = n;
+  B = sqrt(n);
+  rep(i, 1, n) {
+    bel[i] = (i - 1) / B + 1, L[bel[i]] = R[bel[i] - 1] + 1, R[bel[i]] = i;
+  }
+  rep(i, 1, n) cin >> a[i];
+  init();
+  T.build(1, 1, bel[n]);
+  while (q--) {
+    cin >> t >> l >> r >> x;
+    if (t == '0') {
+      modify(l, r, x);
+    } else {
+      cout << query(l, r, 1ll * x * x) << '\n';
+    }
+  }
+  return 0;
 }
 ```
 
-## [P6578 [Ynoi2019] 魔法少女网站](https://www.luogu.com.cn/problem/P6578)
+## [P6578 \[Ynoi2019\] 魔法少女网站](https://www.luogu.com.cn/problem/P6578)
 
 单点加，查询区间 $[L,R]$ 内有多少个子区间的 $\max\le x$。
 
