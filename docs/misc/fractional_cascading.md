@@ -43,20 +43,20 @@
 
 这条在后文优化分块问题时将会用到。
 ???"代码"
-    ```cpp
-    #include <bits/stdc++.h>
-    using namespace std;
-    #define maxk 110
-    #define maxn 20010
-    int T;
-    int n, k, q, d;
-    int a[maxk][maxn];
-    int len[maxk];
-    int M[maxk][maxn];
-    int asuf[maxk][maxn];
-    int Msuf[maxk][maxn];
-    int tM[maxn], Mlim;
-    
+\`\`\`cpp
+\#include \<bits/stdc++.h>
+using namespace std;
+\#define maxk 110
+\#define maxn 20010
+int T;
+int n, k, q, d;
+int a\[maxk]\[maxn];
+int len\[maxk];
+int M\[maxk]\[maxn];
+int asuf\[maxk]\[maxn];
+int Msuf\[maxk]\[maxn];
+int tM\[maxn], Mlim;
+
     void fractional_cascading() {
       for (int i = 1; i <= n; i++)
         M[k][i] = a[k][i], asuf[k][i] = i, Msuf[k][i] = i;
@@ -98,10 +98,10 @@
         }
       }
     }
-    
+
     int x;
     int lans;
-    
+
     int main() {
       cin >> n >> k >> q >> d;
       for (int i = 1; i <= k; i++) {
@@ -127,7 +127,7 @@
       }
       return 0;
     }
-    
+
     ```
 
 ## 应用
@@ -161,6 +161,7 @@
 对于查询：散块直接暴力查询。对于整块，因为线段树上的结点数是 $O(\frac{n}{B})$ 的，所以我们完全可以在线段树上暴力查询到询问区间的叶子结点。因此我们先在根的 $M$ 数组中二分出 $x$ 的严格前驱 $y$，然后根据 $y$ 来递归左右子树，这个步骤跟模板题是一样的。但是懒标记 `pushdown` 的代价是巨大的，所以我们需要标记永久化。复杂度 $O(\frac{n}{B})$。
 
 综上，取块长为 $\sqrt n$ 时复杂度最优，为 $O(n\sqrt n)$。
+
 ??? "代码"
     ```cpp
     #include <bits/stdc++.h>
