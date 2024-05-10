@@ -90,20 +90,14 @@
         pushup(t[x].fa);
       }
     }
-    ```
 
     void erase(int x) {
-      if (!x) return;
       int y = merge(t[x].ch[0], t[x].ch[1]);
-      if(t[t[x].fa].ch[0] == x) {
-        t[t[x].fa].ch[0] = y;
-        t[y].fa = t[x].fa;
-      }
-      else if(t[t[x].fa].ch[1] == x) {
-        t[t[x].fa].ch[1] = y;
-        t[y].fa = t[x].fa;
-      }
-      pushup(y);
+      if(!t[x].fa) return;
+      t[y].fa = t[x].fa;
+      if(t[t[x].fa].ch[0] == x) t[t[x].fa].ch[0] = y;
+      else if(t[t[x].fa].ch[1] == x) t[t[x].fa].ch[1] = y;
+      pushup(t[y].fa);
     }
     ```
 
