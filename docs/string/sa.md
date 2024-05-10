@@ -220,8 +220,6 @@ for (int i = 1; i <= n; i++)
     int m, p, rk[N * 2], oldrk[N], sa[N * 2], id[N], cnt[N];
     
     int main() {
-      ios::sync_with_stdio(0);
-      cin.tie(0), cout.tie(0);
       scanf("%s", s + 1);
       n = strlen(s + 1);
       m = 128;
