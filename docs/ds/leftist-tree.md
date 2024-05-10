@@ -90,8 +90,7 @@
         pushup(t[x].fa);
       }
     }
-    ```
-
+    
     void erase(int x) {
       int y = merge(t[x].ch[0], t[x].ch[1]);
       if(!t[x].fa) return;
