@@ -93,17 +93,19 @@
     
     void erase(int x) {
       int y = merge(t[x].ch[0], t[x].ch[1]);
-      if(!t[x].fa) return;
+      if (!t[x].fa) return;
       t[y].fa = t[x].fa;
-      if(t[t[x].fa].ch[0] == x) t[t[x].fa].ch[0] = y;
-      else if(t[t[x].fa].ch[1] == x) t[t[x].fa].ch[1] = y;
+      if (t[t[x].fa].ch[0] == x)
+        t[t[x].fa].ch[0] = y;
+      else if (t[t[x].fa].ch[1] == x)
+        t[t[x].fa].ch[1] = y;
       pushup(t[y].fa);
     }
     ```
 
 #### 复杂度证明
 
-先考虑 `merge` 的过程，每次都会使 $x$ 或 $y$ 向下一层，也就是说最极端的情况，就是一直选择左偏树的右节点（ $\mathrm{dist}$ 最小的节点）向下一层，此时 $\mathrm{dist}$ 减少了 $1$。
+先考虑 `merge` 的过程，每次都会使 $x$ 或 $y$ 向下一层，也就是说最极端的情况，就是一直选择左偏树的右节点（$\mathrm{dist}$ 最小的节点）向下一层，此时 $\mathrm{dist}$ 减少了 $1$。
 
 再考虑 `pushup` 的过程，我们令当前 `pushup` 的这个节点为 $x$，其父亲为 $y$，一个节点的「初始 $\mathrm{dist}$」为它在 `pushup` 前的 $\mathrm{dist}$。我们先 `pushup` 一下删除的节点，然后从其父亲开始起讨论复杂度。
 
