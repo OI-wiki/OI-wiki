@@ -4,7 +4,7 @@ author: xiezheyuan
 
 假如你需要维护一些信息，这些信息会在某一个时间段内出现，要求在离线的前提下回答某一个时刻的信息并，则可以考虑使用线段树分治的技巧。
 
-实际上线段树分治常用于不带删的数据结构转成可以带删的数据结构，抑或是对于某一个属性的信息分别计算。
+实际上线段树分治常用于不支持删除的数据结构转成支持删除的数据结构，抑或是对于某一个属性的信息分别计算。
 
 ## 过程
 
@@ -40,7 +40,7 @@ author: xiezheyuan
     Object ans[N];      // 答案
     
     void solve(int i, int l, int r) {
-      auto lvl = sta.size();  // 记录一下应当撤销到底几个
+      auto lvl = sta.size();  // 记录一下应当撤销到第几个
       for (Object x : tree[i]) sta.push(now), now = Merge(now, x);  // 合并信息
       if (l == r)
         ans[i] = now;  // 记录一下答案
