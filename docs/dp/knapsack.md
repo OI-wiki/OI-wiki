@@ -4,7 +4,7 @@ author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007, Good
 
 ## 引入
 
-在具体讲何为「背包dp」前，先来看如下的例题：
+在具体讲何为「背包 dp」前，先来看如下的例题：
 
 ???+ note "[「USACO07 DEC」Charm Bracelet](https://www.luogu.com.cn/problem/P2871)"
     题意概要：有 $n$ 个物品和一个容量为 $W$ 的背包，每个物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量。
@@ -43,7 +43,7 @@ $$
 
 === "C++"
     ```cpp
-    for (int i=1; i <= n; i++)
+    for (int i = 1; i <= n; i++)
       for (int l = 0; l <= W - w[i]; l++)
         f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
     // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]),
@@ -54,7 +54,7 @@ $$
     ```python
     for i in range(1, n + 1):
         for l in range(0, W - w[i] + 1):
-            f[l + w[i]]     = max(f[l] + v[i], f[l + w[i]])
+            f[l + w[i]] = max(f[l] + v[i], f[l + w[i]])
     # 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]),
     # f[i][l + w[i]]) 简化而来
     ```
