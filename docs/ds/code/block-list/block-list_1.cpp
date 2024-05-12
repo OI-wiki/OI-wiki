@@ -38,8 +38,7 @@ void insert(char c, int pos) {  // 元素插入，借助链表来理解
     p->pb(c), check(p);
     return;
   }
-  for (tot = head->size; p != NULL && tot < pos; p = p->nxt, tot += p->size)
-    ;
+  for (tot = head->size; p != NULL && tot < pos; p = p->nxt, tot += p->size);
   tot -= p->size, cnt = pos - tot - 1;
   for (int i = p->size - 1; i >= cnt; i--) p->d[i + 1] = p->d[i];
   p->d[cnt] = c, p->size++;
@@ -50,8 +49,7 @@ char query(int pos) {  // 查询
   node* p;
   int tot;
   for (p = head, tot = head->size; p != NULL && tot < pos;
-       p = p->nxt, tot += p->size)
-    ;
+       p = p->nxt, tot += p->size);
   tot -= p->size;
   return p->d[pos - tot - 1];
 }

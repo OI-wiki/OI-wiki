@@ -43,7 +43,7 @@ int main() {
     cin >> x >> y;
     edge[x].push_back(y);
     edge[y].push_back(x);
-  }                             // 使用 vector 存图
+  }  // 使用 vector 存图
   for (int i = 1; i <= n; i++)  // 因为 Tarjan 图不一定连通
     if (!vis[i]) {
       inde = 0;      // 时间戳初始为 0
