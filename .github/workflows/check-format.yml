@@ -12,6 +12,7 @@ on:
       - .remarkrc
       - .remarkignore
       - .clang-format
+      - scripts/checker/*
 
 jobs:
   check-format:
