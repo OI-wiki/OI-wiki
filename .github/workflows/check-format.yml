@@ -54,6 +54,12 @@ jobs:
       - name: Run bot formatter
         run: |
           yarn docs:format:remark
+      - name: Run clang-format
+        run: |
+          find . -type f -name "*.cpp" -print0 | xargs -0 clang-format -i
+      - name: Run ruff
+        run: |
+          ruff format ./docs
       - name: Check for changes
         run: |
           git diff --exit-code
