@@ -155,7 +155,7 @@ author: hyp1231, 383494
       Point point(double a) {
         return Point(c.x + cos(a) * r, c.y + sin(a) * r);
       }  // 输入极角返回点坐标
-    };   // 圆
+    };  // 圆
     
     // a[i] 和 b[i] 分别是第i条切线在圆A和圆B上的切点
     int getTangents(Circle A, Circle B, Point* a, Point* b) {
