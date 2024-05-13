@@ -28,7 +28,8 @@ $$\textbf{a}\times\textbf{b}=|\textbf{a}||\textbf{b}|sin\theta$$
 
 注意，此处 $\theta$ 的值是**有向夹角**：如果 $\textbf a$ 在 $\textbf b$ 的 **逆时针方向** （即：向量 $\textbf b$ 逆时针旋转不超过 $180^\circ$ 后与向量 $\textbf a$ 共线），则 $\theta$ 的值为 **负数** ，$\textbf a\times\textbf b$ 的结果也是负数；如果向量 $\textbf{a}$ 在向量 $\textbf{b}$ 的 **顺时针方向**，则 $\theta$ 的值为 **正数**，$\textbf a\times\textbf b$ 的结果也是正数。
 
-???+ note 其实这个定义和[三维向量的外积](../math/linear-algebra/product.md)很相似，只不过它返回的是一个标量，而不是一个向量。
+???+ note
+    其实这个定义和[三维向量的外积](../math/linear-algebra/product.md)很相似，只不过它返回的是一个标量，而不是一个向量。
 
 #### 几何意义
 
@@ -54,7 +55,8 @@ $$\overrightarrow{OA}\times\overrightarrow{OB}=x_1y_2-x_2y_1$$
 
 $$S=\frac{1}{2}|\sum_{i=1}^n \overrightarrow{OP_i}\times\overrightarrow{OP_{(i\ mod\ n)\ +\ 1}}| $$
 
-???+ note  这个公式通常被称为「鞋带定理」。
+???+ note
+    这个公式通常被称为「鞋带定理」。
 
 ## 感性理解
 
@@ -136,7 +138,8 @@ $\overrightarrow{OD}\times\overrightarrow{OA}$ ，得到 $\Delta ODA$ 的面积�
 
 同时，射线是无限长的，多边形却是有限的。因此最后一部分（点 $H$ 到无穷远处）一定在多边形外部。而点 $P$ 在多边形内部，因此分界点（交点）必须有**奇数**个，才能符合上述交替出现的性质。
 
-???+ note 其实这也是[光影投射算法](./2d/#%E5%85%89%E7%BA%BF%E6%8A%95%E5%B0%84%E7%AE%97%E6%B3%95-ray-casting-algorithm)的基本原理。
+???+ note
+    其实这也是[光影投射算法](./2d/#%E5%85%89%E7%BA%BF%E6%8A%95%E5%B0%84%E7%AE%97%E6%B3%95-ray-casting-algorithm)的基本原理。
 
 并且我们发现，这些边有些是「从射线左边穿到右边」的（$CD$），有些是「从射线右边穿到左边」的（$BC$ ，$DE$ ），并且这两种边也是**交替出现**的。
 
@@ -176,7 +179,8 @@ $\overrightarrow{OD}\times\overrightarrow{OA}$ ，得到 $\Delta ODA$ 的面积�
 
 一个点 $P$ 产生贡献的正负性，只与「穿过线段 $OP$ 延长线的第一条边的方向」有关。
 
-???+ note "解释" 「穿过线段 $OP$ 延长线的第一条边」指的是：多边形与线段 $OP$ 延长线相交的所有边中，交点离点 $P$ 最近的那条边。
+???+ note "解释" 
+    「穿过线段 $OP$ 延长线的第一条边」指的是：多边形与线段 $OP$ 延长线相交的所有边中，交点离点  $P$ 最近的那条边。
 
 在下图中，穿过线段 $OP$ 延长线的第一条边是 $BC$ ，点 $B$ 在射线 $OP$ 右侧，点 $C$ 在射线 $OP$ 左侧，此时点 $P$ 产生的贡献为 $1$ 。
 
