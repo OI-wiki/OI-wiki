@@ -473,6 +473,7 @@ nav:
     - 距离: geometry/distance.md
     - Pick 定理: geometry/pick.md
     - 三角剖分: geometry/triangulation.md
+    - 简单多边形的面积: geometry/area.md
     - 凸包: geometry/convex-hull.md
     - 扫描线: geometry/scanning.md
     - 旋转卡壳: geometry/rotating-calipers.md
