@@ -444,8 +444,7 @@
     const Key &Set<Key, Compare>::get_min(Set::Node *root) const {
       Node *x = root;
       // will crash as intended when root == nullptr
-      for (; x->lc != nullptr; x = x->lc)
-        ;
+      for (; x->lc != nullptr; x = x->lc);
       return x->key;
     }
     
