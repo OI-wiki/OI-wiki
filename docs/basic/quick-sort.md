@@ -24,39 +24,68 @@
 
 第三步中的序列已经分别有序且第一个序列中的数都小于第二个数，所以直接拼接起来就好了。
 
-=== "C++[^ref2]"
-    ```cpp
-    struct Range {
-      int start, end;
-    
-      Range(int s = 0, int e = 0) { start = s, end = e; }
-    };
-    
-    template <typename T>
-    void quick_sort(T arr[], const int len) {
-      if (len <= 0) return;
-      Range r[len];
-      int p = 0;
-      r[p++] = Range(0, len - 1);
-      while (p) {
-        Range range = r[--p];
-        if (range.start >= range.end) continue;
-        T mid = arr[range.end];
-        int left = range.start, right = range.end - 1;
-        while (left < right) {
-          while (arr[left] < mid && left < right) left++;
-          while (arr[right] >= mid && left < right) right--;
-          std::swap(arr[left], arr[right]);
+=== "C++"
+    === " 非递归实现[^ref2]"
+        ```cpp
+        struct Range {
+          int start, end;
+        
+          Range(int s = 0, int e = 0) { start = s, end = e; }
+        };
+        
+        template <typename T>
+        void quick_sort(T arr[], const int len) {
+          if (len <= 0) return;
+          Range r[len];
+          int p = 0;
+          r[p++] = Range(0, len - 1);
+          while (p) {
+            Range range = r[--p];
+            if (range.start >= range.end) continue;
+            T mid = arr[range.end];
+            int left = range.start, right = range.end - 1;
+            while (left < right) {
+              while (arr[left] < mid && left < right) left++;
+              while (arr[right] >= mid && left < right) right--;
+              std::swap(arr[left], arr[right]);
+            }
+            if (arr[left] >= arr[range.end])
+              std::swap(arr[left], arr[range.end]);
+            else
+              left++;
+            r[p++] = Range(range.start, left - 1);
+            r[p++] = Range(left + 1, range.end);
+          }
         }
-        if (arr[left] >= arr[range.end])
-          std::swap(arr[left], arr[range.end]);
-        else
-          left++;
-        r[p++] = Range(range.start, left - 1);
-        r[p++] = Range(left + 1, range.end);
-      }
-    }
-    ```
+        ```
+
+    === "递归实现"
+        ```cpp
+        template <typename T>
+        int Paritition(T A[], int low, int high) {
+          int pivot = A[low];
+          while (low < high) {
+            while (low < high && pivot <= A[high]) --high;
+            A[low] = A[high];
+            while (low < high && A[low] <= pivot) ++low;
+            A[high] = A[low];
+          }
+          A[low] = pivot;
+          return low;
+        }
+        template <typename T>
+        void QuickSort(T A[], int low, int high) {
+          if (low < high) {
+            int pivot = Paritition(A, low, high);
+            QuickSort(A, low, pivot - 1);
+            QuickSort(A, pivot + 1, high);
+          }
+        }
+        template <typename T>
+        void QuickSort(T A[], int len) {
+          QuickSort(A, 0, len - 1);
+        }
+        ```
 
 === "Python[^ref2]"
     ```python
