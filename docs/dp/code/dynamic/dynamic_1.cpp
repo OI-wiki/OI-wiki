@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long LL;
-
 const int maxn = 500010;
 const int INF = 0x3f3f3f3f;
 
