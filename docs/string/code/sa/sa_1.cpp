@@ -21,8 +21,7 @@ int main() {
   r = n;
 
   for (i = 1; i <= n; ++i)
-    while (!isalpha(s[i] = getchar()))
-      ;
+    while (!isalpha(s[i] = getchar()));
   for (i = 1; i <= n; ++i)
     rk[i] = rk[2 * n + 2 - i] = s[i];  // 拼接正反两个字符串，中间空出一个字符
 

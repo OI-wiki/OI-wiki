@@ -25,12 +25,14 @@
 第三步中的序列已经分别有序且第一个序列中的数都小于第二个数，所以直接拼接起来就好了。
 
 === "C++"
-    === "非递归实现[^ref2]"
+    === " 非递归实现[^ref2]"
         ```cpp
         struct Range {
           int start, end;
+        
           Range(int s = 0, int e = 0) { start = s, end = e; }
         };
+        
         template <typename T>
         void quick_sort(T arr[], const int len) {
           if (len <= 0) return;
@@ -56,8 +58,8 @@
           }
         }
         ```
-    === "递归实现"
-        ```cpp
+    
+    == "递归实现"`cpp
         template <typename T>
         int Paritition(T A[], int low, int high) {
           int pivot = A[low];
@@ -82,7 +84,7 @@
         void QuickSort(T A[], int len) {
           QuickSort(A, 0, len - 1);
         }
-        ```
+        `
 
 === "Python[^ref2]"
     ```python
