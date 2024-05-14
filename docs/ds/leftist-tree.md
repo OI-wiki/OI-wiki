@@ -1,3 +1,5 @@
+author: JiZiQian, llleixx
+
 ## 什么是左偏树？
 
 **左偏树** 与 [**配对堆**](./pairing-heap.md) 一样，是一种 **可并堆**，具有堆的性质，并且可以快速合并。
