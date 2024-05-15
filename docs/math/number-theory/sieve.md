@@ -1,4 +1,4 @@
-author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China, HeRaNO
+author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China, HeRaNO, weilycoder
 
 ## 素数筛法
 
@@ -146,11 +146,17 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
 
 我们注意到筛选时只需要 `bool` 类型的数组。`bool` 数组的一个元素一般占用 $1$ 字节（即 $8$ 比特），但是存储一个布尔值只需要 $1$ 个比特就足够了。
 
-我们可以使用 [位运算](../bit.md) 的相关知识，将每个布尔值压到一个比特位中，这样我们仅需使用 $n$ 比特（即 $\dfrac n 8$ 字节）而非 $n$ 字节，可以显著减少内存占用。
-
-但是，这种称为 **位级压缩** 的方法会使这些位的操作复杂化。任何位上的读写操作都需要多次算术运算，最终会使算法变慢。因此，这种方法只有在 $n$ 特别大，以至于我们不能再分配内存时才合理。在这种情况下，我们将牺牲效率，通过显著降低算法速度以节省内存（减小到原来的 $\dfrac n 8$）。
+我们可以使用 [位运算](../bit.md) 的相关知识，将每个布尔值压到一个比特位中，这样我们仅需使用 $n$ 比特（即 $\dfrac n 8$ 字节）而非 $n$ 字节，可以显著减少内存占用。这种方式被称为「位级压缩」。
 
 值得一提的是，存在自动执行位级压缩的数据结构，如 C++ 中的 `vector<bool>` 和 `bitset<>`（参见 [bitset: 与埃氏筛结合](../../lang/csl/bitset.md#与埃氏筛结合)）。
+
+??? failure "一处误解"
+    但是，这种称为位级压缩的方法会使这些位的操作复杂化。任何位上的读写操作都需要多次算术运算，最终会使算法变慢。因此，这种方法只有在 $n$ 特别大，以至于我们不能再分配内存时才合理。在这种情况下，我们将牺牲效率，通过显著降低算法速度以节省内存（减小到原来的 $\dfrac n 8$）。
+
+    ??? bug
+        实际上，`bitset` 和 `vector<bool>` 对程序反而有常数优化。时间复杂度 $O(n \log \log n)$ 的埃氏筛在使用 `bitset` 或 `vector<bool>` 优化后，性能甚至超过时间复杂度 $O(n)$ 的欧拉筛。
+
+ 	可以参考 [bitset: 与埃氏筛结合](../../lang/csl/bitset.md#与埃氏筛结合)。
 
 #### 分块筛选
 
