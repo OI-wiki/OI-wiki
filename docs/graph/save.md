@@ -63,22 +63,26 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     === "Python"
         ```python
         class Edge:
-            def __init__(self, u = 0, v = 0):
+            def __init__(self, u=0, v=0):
                 self.u = u
                 self.v = v
         
+        
         n, m = map(int, input().split())
         
-        e = [Edge() for _ in range(m)]; vis = [False] * n
+        e = [Edge() for _ in range(m)]
+        vis = [False] * n
         
         for i in range(m):
             e[i].u, e[i].v = map(int, input().split())
+        
         
         def find_edge(u, v):
             for i in range(m):
                 if e[i].u == u and e[i].v == v:
                     return True
             return False
+        
         
         def dfs(u):
             if vis[u]:
@@ -159,11 +163,13 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         adj = [[False] * (n + 1) for _ in range(n + 1)]
         
         for i in range(1, m + 1):
-            u, v = map(lambda x:int(x), input().split())
+            u, v = map(lambda x: int(x), input().split())
             adj[u][v] = True
+        
         
         def find_edge(u, v):
             return adj[u][v]
+        
         
         def dfs(u):
             if vis[u]:
@@ -247,14 +253,16 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         adj = [[] for _ in range(n + 1)]
         
         for i in range(1, m + 1):
-            u, v = map(lambda x:int(x), input().split())
+            u, v = map(lambda x: int(x), input().split())
             adj[u].append(v)
+        
         
         def find_edge(u, v):
             for i in range(0, len(adj[u])):
                 if adj[u][i] == v:
                     return True
             return False
+        
         
         def dfs(u):
             if vis[u]:
@@ -306,13 +314,14 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     # head[u] 和 cnt 的初始值都为 -1
     def add(u, v):
         cnt = cnt + 1
-        nex[cnt] = head[u] # 当前边的后继
-        head[u] = cnt # 起点 u 的第一条边
-        to[cnt] = v # 当前边的终点
+        nex[cnt] = head[u]  # 当前边的后继
+        head[u] = cnt  # 起点 u 的第一条边
+        to[cnt] = v  # 当前边的终点
+    
     
     # 遍历 u 的出边
     i = head[u]
-    while ~i: # ~i 表示 i != -1
+    while ~i:  # ~i 表示 i != -1
         v = to[i]
         i = nxt[i]
     ```

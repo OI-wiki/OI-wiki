@@ -80,11 +80,13 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
     M = int(1e9 + 7)
     B = 233
     
+    
     def get_hash(s):
         res = 0
         for char in s:
             res = (res * B + ord(char)) % M
         return res
+    
     
     def cmp(s, t):
         return get_hash(s) == get_hash(t)

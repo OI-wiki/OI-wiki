@@ -44,7 +44,7 @@ $$
 
 > 计算 $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot\left(\sum_{d=\lfloor\sqrt n\rfloor+1}^{\lfloor\frac ni\rfloor}[d\in\mathbb P]f(d)\right)$。
 
-考虑枚举 $i$，然后 $\mathcal O(1)$ 计算括号内部分。
+考虑枚举 $i$，然后 $O(1)$ 计算括号内部分。
 
 记 $\displaystyle g(t,l)=\sum_{i=1}^l[\forall j\in[1,t],\gcd(i,p_j)=1]f(i)$，即 $[1,l]$ 中与 $p_1,p_2,\dots,p_t$ 均互质的数的 $f$ 值之和。
 
@@ -52,7 +52,7 @@ $$
 
 边界 $g(0,l)=\sum_{i=1}^lf(i)$，转移 $g(t,l)=g(t-1,l)-f(p_t)\cdot g\left(t-1,\left\lfloor\frac l{p_t}\right\rfloor\right)$。
 
-$l$ 共有 $\sqrt n$ 级别种取值，对于每种取值则需要枚举其质因子，所以复杂度为 $\displaystyle\mathcal O\left(\frac{\sqrt n}{\ln\sqrt n}\cdot\sqrt n\right)=\mathcal O\left(\frac n{\log n}\right)$，需要优化。
+$l$ 共有 $\sqrt n$ 级别种取值，对于每种取值则需要枚举其质因子，所以复杂度为 $\displaystyle O\left(\frac{\sqrt n}{\ln\sqrt n}\cdot\sqrt n\right)= O\left(\frac n{\log n}\right)$，需要优化。
 
 注意到 $p_{t+1}^2>l$ 时符合条件的数只有 $1$，所以此时 $g(t,l)=f(1)=1$。
 
@@ -60,7 +60,7 @@ $l$ 共有 $\sqrt n$ 级别种取值，对于每种取值则需要枚举其质�
 
 所以一旦发现 $p_t^2>l$ 就停止转移，记此时的 $t$ 为 $t_l$，则 $\forall t>t_l,g(t,l)=g(t_l,l)-\sum_{i=t_l}^{t-1}f(p_i)$。
 
-预处理质数的 $f$ 值前缀和即可快速求出 $g$，时间复杂度被优化至 $\mathcal O\left(\dfrac{n^{\frac34}}{\log n}\right)$。
+预处理质数的 $f$ 值前缀和即可快速求出 $g$，时间复杂度被优化至 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$。
 
 ### Part 2
 
@@ -72,7 +72,7 @@ Part 2 即为求 $h(0,n)$。
 
 边界 $h(m+1,l)=1$，转移 $\displaystyle h(t,l)=h(t+1,l)+\sum_{c\in\mathbb N^*}f(p_t^c)\cdot h\left(t+1,\left\lfloor\frac l{p_t^c}\right\rfloor\right)$。
 
-$l$ 共有 $\sqrt n$ 级别种取值，所以直接转移复杂度为 $\displaystyle\mathcal O\left(\sqrt n\cdot\frac{\sqrt n}{\ln\sqrt n}\right)=\mathcal O\left(\frac n{\log n}\right)$，需要优化。
+$l$ 共有 $\sqrt n$ 级别种取值，所以直接转移复杂度为 $\displaystyle O\left(\sqrt n\cdot\frac{\sqrt n}{\ln\sqrt n}\right)= O\left(\frac n{\log n}\right)$，需要优化。
 
 与 $g$ 的优化方式类似，注意到 $p_t>l$ 时，能用 $p_t,p_{t+1},\dots,p_m$ 组成的数只有 $1$，此时的 $h(t,l)=f(1)=1$。
 
@@ -80,7 +80,7 @@ $l$ 共有 $\sqrt n$ 级别种取值，所以直接转移复杂度为 $\displays
 
 所以一旦发现 $p_t^2>l$ 就停止转移，记此时的 $t$ 为 $t_l$，之后用到 $h$ 时，把此时的 $h$ 值加上 $\displaystyle\sum_{i=p_{t_l}}^{\min(l,\sqrt n)}[i\in\mathbb P]f(i)$ 即可。
 
-时间复杂度被优化至 $\mathcal O\left(\dfrac{n^{\frac34}}{\log n}\right)$。
+时间复杂度被优化至 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$。
 
 ### 求和
 

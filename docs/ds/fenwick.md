@@ -182,7 +182,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
     
     === "Python"
         ```python
-        def getsum(x): # a[1]..a[x]的和
+        def getsum(x):  # a[1]..a[x]的和
             ans = 0
             while x > 0:
                 ans = ans + c[x]
@@ -340,7 +340,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
     === "Python"
         ```python
         def add(x, k):
-            while x <= n: # 不能越界
+            while x <= n:  # 不能越界
                 c[x] = c[x] + k
                 x = x + lowbit(x)
         ```
@@ -727,11 +727,12 @@ $$
         ```python
         # 权值树状数组查询第 k 小
         def kth(k):
-            sum = 0; x = 0
+            sum = 0
+            x = 0
             i = int(log2(n))
             while ~i:
-                x = x + (1 << i) # 尝试扩展
-                if x >= n or sum + t[x] >= k: # 如果扩展失败
+                x = x + (1 << i)  # 尝试扩展
+                if x >= n or sum + t[x] >= k:  # 如果扩展失败
                     x = x - (1 << i)
                 else:
                     sum = sum + t[x]
@@ -926,7 +927,7 @@ $i$ 按照 $5 \to 1$ 扫：
         # Θ(n) 建树
         def init():
             for i in range(1, n + 1):
-                t[i] = sum[i] - sum[i-lowbit(i)]
+                t[i] = sum[i] - sum[i - lowbit(i)]
         ```
 
 ### 时间戳优化
@@ -962,9 +963,15 @@ $i$ 按照 $5 \to 1$ 扫：
     === "Python"
         ```python
         # 时间戳优化
-        tag = [0] * MAXN; t = [0] * MAXN; Tag = 0
+        tag = [0] * MAXN
+        t = [0] * MAXN
+        Tag = 0
+        
+        
         def reset():
             Tag = Tag + 1
+        
+        
         def add(k, v):
             while k <= n:
                 if tag[k] != Tag:
@@ -972,6 +979,8 @@ $i$ 按照 $5 \to 1$ 扫：
                 t[k] = t[k] + v
                 tag[k] = Tag
                 k = k + lowbit(k)
+        
+        
         def getsum(k):
             ret = 0
             while k:

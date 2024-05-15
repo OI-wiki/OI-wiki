@@ -71,6 +71,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
     ```python
     from queue import Queue
     
+    
     def bfs(u):
         Q = Queue()
         Q.put(u)
@@ -87,6 +88,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
                     d[e[i].to] = d[u] + 1
                     p[e[i].to] = u
                 i = e[i].nxt
+    
     
     def restore(x):
         res = []
