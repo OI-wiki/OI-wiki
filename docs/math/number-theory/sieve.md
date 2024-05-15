@@ -156,7 +156,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
     ??? bug
         实际上，`bitset` 和 `vector<bool>` 对程序反而有常数优化。时间复杂度 $O(n \log \log n)$ 的埃氏筛在使用 `bitset` 或 `vector<bool>` 优化后，性能甚至超过时间复杂度 $O(n)$ 的欧拉筛。
 
- 	可以参考 [bitset: 与埃氏筛结合](../../lang/csl/bitset.md#与埃氏筛结合)。
+    可以参考 [bitset: 与埃氏筛结合](../../lang/csl/bitset.md#与埃氏筛结合)。
 
 #### 分块筛选
 
