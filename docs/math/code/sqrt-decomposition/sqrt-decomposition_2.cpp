@@ -23,6 +23,7 @@ int main() {
       if (x > 0) ans[l] += x, ans[r + 1] -= x;  // 累加贡献
     }
   ++ans[0];  // ⌈a/l⌉=(a-1)/l+1的式子当a=0时不成立，需要修正
-  for (int i = 1; i <= maxn; ++i) std::cout << (ans[i] += ans[i - 1]) << " \n"[i == maxn];
+  for (int i = 1; i <= maxn; ++i)
+    std::cout << (ans[i] += ans[i - 1]) << " \n"[i == maxn];
   return 0;
 }
