@@ -100,6 +100,7 @@ int main() {
 
 ## constexpr
 
+> 另请参阅 [新版 C++ 特性：constexpr](new.md#constexpr)
 `constexpr` 说明符声明可以在编译时求得函数或变量的值。其与 `const` 的主要区别是一定会在编译时进行初始化。用于对象声明的 `constexpr` 说明符蕴含 `const`，用于函数声明的 `constexpr` 蕴含 `inline`。来看一个例子
 
 ```cpp
