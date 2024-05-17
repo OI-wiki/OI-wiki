@@ -50,8 +50,9 @@ author: JiZiQian, llleixx
     int merge(int x, int y) {
       if (!x || !y) return x | y;
       if (t[x].val < t[y].val) swap(x, y);
-      rs(x) = merge(rs(x), y);
-      t[x].d = t[rs(x)].d + 1;
+      int& rs_ref = rs(x);
+      rs_ref = merge(rs_ref, y);
+      t[x].d = t[rs_ref].d + 1;
       return x;
     }
     ```
@@ -80,8 +81,10 @@ author: JiZiQian, llleixx
     int merge(int x, int y) {
       if (!x || !y) return x | y;
       if (t[x].val < t[y].val) swap(x, y);
-      t[rs(x) = merge(rs(x), y)].fa = x;
-      t[x].d = t[rs(x)].d + 1;
+      int& rs_ref = rs(x);
+      rs_ref = merge(rs_ref, y);
+      t[rs_ref].fa = x;
+      t[x].d = t[rs_ref].d + 1;
       return x;
     }
     
