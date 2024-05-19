@@ -12,6 +12,8 @@ C++ 中你仍然可以使用 C 风格的指针，但是对于变量传递而言�
 
 ### bool
 
+另请参阅 [布尔类型](var.md#布尔类型)。
+
 与 C++ 不同的是，C 语言最初并没有布尔类型。
 
 C99 标准加入了 `_Bool` 关键字（以及等效的 `bool` 宏）以及 `true` 和 `false` 两个宏。如果需要使用 `bool`，`true`，`false` 这三个宏，需要在程序中引入 `stdbool.h` 头文件。而使用 `_Bool` 则不需要引入任何额外头文件。
@@ -21,7 +23,7 @@ bool x = true;  // 需要引入 stdbool.h
 _Bool x = 1;    // 不需要引入 stdbool.h
 ```
 
-C23 起，`true` 和 `false` 成为 C 语言中的关键字，使用它们不需要再引入 `stdbool.h` 头文件[^true-false-become-keyword]。
+C23 起，`true`,`false` 和 `bool` 成为 C 语言中的关键字，使用它们不需要再引入 `stdbool.h` 头文件，同时保留 `_Bool` 作为 `bool` 的替代拼写形式[^boolean-keyword]。
 
 下表展示了 C 语言不同标准下，bool 类型支持的变化情况（作为对照，加入了 C++ 的支持情况）：
 
@@ -29,7 +31,7 @@ C23 起，`true` 和 `false` 成为 C 语言中的关键字，使用它们不需
 | ------------ | --------------------------------- | ----------------------------------------------------- | ------------------------- |
 | C89          | /                                 | /                                                     | 保留[^reserved-identifiers] |
 | C99 起，C23 以前 | 宏，与 `_Bool` 等价，需要 `stdbool.h` 头文件 | 宏，`true` 与 `1` 等价，`false` 与 `0` 等价，需要 `stdbool.h` 头文件 | 关键字                       |
-| C23 起        | 宏，与 `_Bool` 等价，需要 `stdbool.h` 头文件 | 关键字                                                   | 关键字                       |
+| C23 起        | 关键字                               | 关键字                                                   | 关键字 `bool` 的替代拼写形式        |
 | C++          | 关键字                               | 关键字                                                   | 保留[^reserved-identifiers] |
 
 ### struct
@@ -86,7 +88,7 @@ Python 是目前机器学习界最常用的语言。相比于 C++，Python 的�
 
 ## Java 与 C++ 的区别
 
-Java 与 C++ 都是面向对象的语言，都使用了面向对象的思想（封装、继承、多态），由于面向对象由许多非常好的特性（继承、组合等），因此二者有很好的可重用性。所以相比于 Python，Java 和 C++ 更加类似。
+Java 与 C++ 都是面向对象的语言，都使用了面向对象的思想（封装、继承、多态），由于面向对象有许多非常好的特性（继承、组合等），因此二者有很好的可重用性。所以相比于 Python，Java 和 C++ 更加类似。
 
 二者最大的区别在于 Java 有 JVM 的机制。JVM 全称是 Java Virtual Machine，中文意为 Java 虚拟机。Java 语言的一个非常重要的特点就是与平台的无关性。而使用 Java 虚拟机是实现这一特点的关键。一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。而引入 Java 语言虚拟机后，Java 语言在不同平台上运行时不需要重新编译。Java 语言使用 Java 虚拟机屏蔽了与具体平台相关的信息，使得 Java 语言编译程序只需生成在 Java 虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。
 
@@ -96,6 +98,6 @@ Java 与 C++ 都是面向对象的语言，都使用了面向对象的思想（�
 
 [^cpp-designated-init]: <https://en.cppreference.com/w/cpp/language/aggregate_initialization>
 
-[^true-false-become-keyword]: <https://en.cppreference.com/w/c/23>。
+[^boolean-keyword]: <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf>。
 
 [^reserved-identifiers]: C 和 C++ 均规定，以一个下划线跟着一个大写字母开头的标识符是被保留的，详见 <https://en.cppreference.com/w/c/language/identifier>。

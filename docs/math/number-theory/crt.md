@@ -37,7 +37,6 @@ $$
 ## 实现
 
 === "C++"
-
     ```cpp
     LL CRT(int k, LL* a, LL* r) {
       LL n = 1, ans = 0;
@@ -52,15 +51,16 @@ $$
     ```
 
 === "Python"
-
     ```python
     def CRT(k, a, r):
-        n = 1; ans = 0
+        n = 1
+        ans = 0
         for i in range(1, k + 1):
             n = n * r[i]
         for i in range(1, k + 1):
-            m = n // r[i]; b = y = 0
-            exgcd(m, r[i], b, y) # b * m mod r[i] = 1
+            m = n // r[i]
+            b = y = 0
+            exgcd(m, r[i], b, y)  # b * m mod r[i] = 1
             ans = (ans + a[i] * m * b % n) % n
         return (ans % n + n) % n
     ```
@@ -142,11 +142,11 @@ $$
 方程两边减 $x_1$，除 $p_1$ 后得
 
 $$
-\begin{array}{rclr}
-a_2 - x_1           &\equiv& x_2 p_1             &\pmod{p_2} \\
-(a_2 - x_1) r_{1,2} &\equiv& x_2                 &\pmod{p_2} \\
-x_2                 &\equiv& (a_2 - x_1) r_{1,2} &\pmod{p_2}
-\end{array}
+\begin{aligned}
+    a_2 - x_1           &\equiv x_2 p_1             &\pmod{p_2} \\
+    (a_2 - x_1) r_{1,2} &\equiv x_2                 &\pmod{p_2} \\
+    x_2                 &\equiv (a_2 - x_1) r_{1,2} &\pmod{p_2}
+\end{aligned}
 $$
 
 类似地，我们可以得到：
@@ -157,7 +157,6 @@ $$
 
 ??? note "实现"
     === "C++"
-    
         ```cpp
         for (int i = 0; i < k; ++i) {
           x[i] = a[i];
@@ -170,14 +169,13 @@ $$
         ```
     
     === "Python"
-    
         ```python
         for i in range(0, k):
             x[i] = a[i]
             for j in range(0, i):
                 x[i] = r[j][i] * (x[i] - x[j])
                 x[i] = x[i] % p[i]
-                if (x[i] < 0):
+                if x[i] < 0:
                     x[i] = x[i] + p[i]
         ```
 

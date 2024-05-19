@@ -11,8 +11,7 @@ ll read() {
   ll out = 0;
   int f = 1;
   char c;
-  for (c = getchar(); !isdigit(c) && c != '-'; c = getchar())
-    ;
+  for (c = getchar(); !isdigit(c) && c != '-'; c = getchar());
   if (c == '-') f = -1, c = getchar();
   for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
   return out * f;

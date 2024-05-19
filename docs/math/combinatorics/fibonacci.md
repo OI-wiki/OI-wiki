@@ -324,13 +324,13 @@ $$
 \left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)^M\equiv 1\pmod {p^{k-1}}
 $$
 
-当 $p$ 是奇素数时，根据模奇素数 $p$ 的升幂定理，有：
+当 $p$ 是奇素数时，由 [升幂引理](../number-theory/lift-the-exponent.md)，有：
 
 $$
 v_p\left(a^t-1\right)=v_p\left(a-1\right)+v_p(t)
 $$
 
-当 $p$ 是 $2$ 时，根据模 $2$ 的升幂定理，有：
+当 $p=2$ 时，由 [升幂引理](../number-theory/lift-the-exponent.md)，有：
 
 $$
 v_2\left(a^t-1\right)=v_2\left(a-1\right)+v_2\left(a+1\right)+v_2(t)-1

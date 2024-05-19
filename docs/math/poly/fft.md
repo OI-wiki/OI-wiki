@@ -50,7 +50,7 @@ $$
 
 ## 离散傅里叶变换
 
-**离散傅里叶变换**（Discrete Fourier transform，DFT）是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
+**离散傅里叶变换**（Discrete Fourier transform，DFT）是傅里叶变换在时域和频域上都呈离散的形式，将信号的时域采样变换为其 DTFT（discrete-time Fourier transform）的频域采样。
 
 傅里叶变换是积分形式的连续的函数内积，离散傅里叶变换是求和形式的内积。
 
@@ -84,7 +84,7 @@ $$
 
 如果把序列 $x_n$ 看作多项式 $f(x)$ 的 $x^n$ 项系数，则计算得到的 $X_k$ 恰好是多项式 $f(x)$ 代入单位根 $\mathrm{e}^{\frac{-2\pi \mathrm{i}k}{N}}$ 的点值 $f(\mathrm{e}^{\frac{-2\pi \mathrm{i}k}{N}})$。
 
-这便构成了卷积定理的另一种解释办法，即对多项式进行特殊的插值操作。离散傅里叶变换恰好是多项式在单位根处进行插值。
+这便构成了卷积定理的另一种解释办法，即对多项式进行特殊的求值操作。离散傅里叶变换恰好是多项式在单位根处进行求值。
 
 例如计算：
 
@@ -116,7 +116,7 @@ $$
 \dbinom{n}{3}+\dbinom{n}{7}+\dbinom{n}{11}+\dbinom{n}{15}+\ldots=\frac{2^n+\mathrm{i}(1+\mathrm{i})^n-\mathrm{i}(1-\mathrm{i})^n}{4}
 $$
 
-这道数学题在单位根处插值，恰好构成离散傅里叶变换。
+这道数学题在单位根处求值，恰好构成离散傅里叶变换。
 
 ### 矩阵公式
 
@@ -128,26 +128,26 @@ $$
     X_{1}  \\
     X_{2}  \\
     \vdots \\
-    X_{n-1}
+    X_{N-1}
 \end{bmatrix}
 =
 \begin{bmatrix}
     1      & 1            & 1               & \cdots & 1                   \\
-    1      & \alpha       & \alpha^{2}      & \cdots & \alpha^{n-1}        \\
-    1      & \alpha^{2}   & \alpha^{4}      & \cdots & \alpha^{2(n-1)}     \\
+    1      & \alpha       & \alpha^{2}      & \cdots & \alpha^{N-1}        \\
+    1      & \alpha^{2}   & \alpha^{4}      & \cdots & \alpha^{2(N-1)}     \\
     \vdots & \vdots       & \vdots          & \ddots & \vdots              \\
-    1      & \alpha^{n-1} & \alpha^{2(n-1)} & \cdots & \alpha^{(n-1)(n-1)}
+    1      & \alpha^{N-1} & \alpha^{2(N-1)} & \cdots & \alpha^{(N-1)(N-1)}
 \end{bmatrix}
 \begin{bmatrix}
     x_{0}  \\
     x_{1}  \\
     x_{2}  \\
     \vdots \\
-    x_{n-1}
+    x_{N-1}
 \end{bmatrix}
 $$
 
-其中 $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}n}$。
+其中 $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}}$。
 
 ## 快速傅里叶变换
 
@@ -299,7 +299,7 @@ $$
         // 交换互为小标反转的元素，i < j 保证交换一次
         if (i < j) swap(y[i], y[j]);
         // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的。
-        // 这里 k 代表了 0 出现的最高位。j 先减去高位的全为 1 的数字，知道遇到了
+        // 这里 k 代表了 0 出现的最高位。j 先减去高位的全为 1 的数字，直到遇到了
         // 0，之后再加上即可。
         k = len / 2;
         while (j >= k) {

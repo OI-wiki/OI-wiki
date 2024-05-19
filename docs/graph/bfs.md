@@ -18,7 +18,6 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 下文中 C++ 与 Python 的代码实现是基于链式前向星的存图方式，其实现可参考 [图的存储](./save.md) 页面。
 
 === "伪代码"
-
     ```text
     bfs(s) {
       q = new queue()
@@ -36,7 +35,6 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
     ```
 
 === "C++"
-
     ```cpp
     void bfs(int u) {
       while (!Q.empty()) Q.pop();
@@ -57,7 +55,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
         }
       }
     }
-
+    
     void restore(int x) {
       vector<int> res;
       for (int v = x; v != -1; v = p[v]) {
@@ -70,10 +68,10 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
     ```
 
 === "Python"
-
     ```python
     from queue import Queue
-
+    
+    
     def bfs(u):
         Q = Queue()
         Q.put(u)
@@ -82,15 +80,16 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
         p[u] = -1
         while Q.qsize() != 0:
             u = Q.get()
+            i = head[u]
             while i:
-                i = head[u]
                 if vis[e[i].to] == False:
                     Q.put(e[i].to)
                     vis[e[i].to] = True
                     d[e[i].to] = d[u] + 1
                     p[e[i].to] = u
                 i = e[i].nxt
-
+    
+    
     def restore(x):
         res = []
         v = x
@@ -145,7 +144,7 @@ BFS 序列通常也不唯一。
 -   如果把一个游戏的动作看做是状态图上的一条边（一个转移），那么 BFS 可以用来找到在游戏中从一个状态到达另一个状态所需要的最小步骤。
 -   在一个有向无权图中找最小环。（从每个点开始 BFS，在我们即将抵达一个之前访问过的点开始的时候，就知道遇到了一个环。图的最小环是每次 BFS 得到的最小环的平均值。）
 -   找到一定在 $(a, b)$ 最短路上的边。（分别从 a 和 b 进行 BFS，得到两个 d 数组。之后对每一条边 $(u, v)$，如果 $d_a[u]+1+d_b[v]=d_a[b]$，则说明该边在最短路上）
--   找到一定在 $(a, b)$ 最短路上的点。（分别从 a 和 b 进行 BFS，得到两个 d 数组。之后对每一个点 v，如果 $d_a[u]+d_b[v]=d_a[b]$，则说明该点在最短路上）
+-   找到一定在 $(a, b)$ 最短路上的点。（分别从 a 和 b 进行 BFS，得到两个 d 数组。之后对每一个点 v，如果 $d_a[v]+d_b[v]=d_a[b]$，则说明该点在某条最短路上）
 -   找到一条长度为偶数的最短路。（我们需要一个构造一个新图，把每个点拆成两个新点，原图的边 $(u, v)$ 变成 $((u, 0), (v, 1))$ 和 $((u, 1), (v, 0))$。对新图做 BFS，$(s, 0)$ 和 $(t, 0)$ 之间的最短路即为所求）
 -   在一个边权为 0/1 的图上求最短路，见下方双端队列 BFS。
 

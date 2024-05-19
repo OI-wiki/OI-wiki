@@ -22,7 +22,7 @@
 
 希尔排序的最优时间复杂度为 $O(n)$。
 
-希尔排序的平均时间复杂度和最坏时间复杂度与间距序列的选取。设间距序列为 $H$，下面给出 $H$ 的两种经典选取方式，这两种选取方式均使得排序算法的复杂度降为 $o(n^2)$ 级别。
+希尔排序的平均时间复杂度和最坏时间复杂度与间距序列的选取有关。设间距序列为 $H$，下面给出 $H$ 的两种经典选取方式，这两种选取方式均使得排序算法的复杂度降为 $o(n^2)$ 级别。
 
 **命题 $1$**：若间距序列为 $H= \{ 2^k-1\mid k=1,2,\ldots,\lfloor\log_2 n\rfloor \}$（从大到小），则希尔排序算法的时间复杂度为 $O(n^{3/2})$。
 
@@ -41,7 +41,7 @@ A_h,A_{h+h},A_{h+2h},\ldots
 \end{array}
 $$
 
-证明：
+**证明**：
 
 我们先证明一个引理：
 
@@ -298,7 +298,6 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 ## 实现
 
 === "C++[^ref1]"
-
     ```cpp
     template <typename T>
     void shell_sort(T array[], int length) {
@@ -318,7 +317,6 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
     ```
 
 === "Python"
-
     ```python
     def shell_sort(array, length):
         h = 1

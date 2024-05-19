@@ -98,7 +98,7 @@
 #### 标点符号的使用
 
 -   请在每句话的末尾添加 **句号**。
--   请正确使用 **全角** 标点符号与 **半角** 标点符号。汉语请使用全角符号，英语请使用半角符号。中文中夹用英文时，请参考 [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/nppa/contents/805/102791.shtml)。
+-   请正确使用 **全角** 标点符号与 **半角** 标点符号。汉语请使用全角符号，英语请使用半角符号。中文中夹用英文时，请参考 [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)。
 -   由于 `“……”` 未区分全半角，请使用 `「……」` 作为全角引号，`"..."` 作为半角引号。
 -   注意区分 **顿号** 与 **逗号** 的使用。
 -   注意 **括号** 的位置。句内括号与句外括号的位置不同。
@@ -124,6 +124,8 @@
 #### Markdown 格式与主题扩展格式要求
 
 -   表示强调时请使用 `**SOMETHING**` 和 `「」`，而非某级标题，因为使用标题会导致文章结构层次混乱和（或）目录出现问题。
+
+-   当需要引用题目链接时，应尽可能使用原 OJ 题库中的链接而不是镜像链接。
 
 -   请正确使用 Markdown 的区块功能。插入行内代码请使用一对反引号包围代码区块；行间代码请使用一对 ` ``` ` 包围代码区块，其中反引号就是键盘左上角波浪线下面那个符号，行间代码请在第一个 ` ``` ` 的后面加上语言名称（如：` ```cpp`）。
 
@@ -175,14 +177,14 @@
     ```text
     ??? note "标题"
         这个文本框会被默认折叠。
-
+        
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+note "[HDOJ 的「A + B Problem」](https://vjudge.net/problem/HDU-1000)"
+    ???+note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的「A + B Problem」。
-
+        
         而且推荐以这种方式**标注原题链接**。
-
+        
         注意双引号的位置。
     ```
 
@@ -193,7 +195,7 @@
         
         推荐将 **解题代码** 放在折叠文本框内。
 
-    ???+ note "[HDOJ 的「A + B Problem」](https://vjudge.net/problem/HDU-1000)"
+    ???+ note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的「A + B Problem」。
         
         而且推荐以这种方式 **标注原题链接**。
@@ -204,7 +206,57 @@
 
     折叠框的标题，即 `???+note` 中 `note` 后的内容应以 `"` 包裹起来。其中的内容支持 Markdown 语法。详见 [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title)。（不具备折叠功能的为一般的 Admonitions，参考 [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions)）
 
-如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E) 和 [cyent 的笔记](https://cyent.github.io/markdown-with-mkdocs-material/)。前者介绍了 mkdocs-material 主题的插件使用方式，而后者介绍了 Markdown 传统语法和 mkdocs-material 支持的扩展语法。
+-   当需要添加不同语言的代码时，推荐使用 Content tabs，可以实现不同语言代码的切换。Content tabs 还有其他的用法，详见 [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/#usage)。其使用方法和效果如下。
+
+    ???+ success "示例"
+        ````text
+        注意需要在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
+        
+        === "C"
+        
+            ``` c
+            #include <stdio.h>
+            
+            int main(void) {
+              printf("Hello world!\n");
+              return 0;
+            }
+            ```
+            
+        === "C++"
+        
+            ``` c++
+            #include <iostream>
+            
+            int main(void) {
+              std::cout << "Hello world!" << std::endl;
+              return 0;
+            }
+            ```
+            
+        ````
+        
+        === "C"
+            ```c
+            #include <stdio.h>
+            
+            int main(void) {
+              printf("Hello world!\n");
+              return 0;
+            }
+            ```
+        
+        === "C++"
+            ```c++
+            #include <iostream>
+            
+            int main(void) {
+              std::cout << "Hello world!" << std::endl;
+              return 0;
+            }
+            ```
+
+如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)，其介绍了 mkdocs-material 主题的插件使用方式。
 
 #### 文本内容的格式要求
 
@@ -221,7 +273,7 @@
 
     ???+ success "示例"
         前置知识：[时间复杂度](../basic/complexity.md)
-        
+
         本页面将介绍基础的计算理论的知识。
 
 -   请注意文档结构。文档结构应当十分条理，层次清晰。请不要让诸如「五级标题」这种事情再次发生了，一篇正常的文章是用不到如此复杂的结构层次的。
@@ -247,7 +299,7 @@
         ```markdown
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
         ```
-        
+
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
 -   受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末。
@@ -508,7 +560,7 @@ $$
 -   [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
 -   [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)
 -   [一份（不太）简短的 LATEX2ε 介绍或 106 分钟了解 LATEX2ε](https://github.com/CTeX-org/lshort-zh-cn/releases)
--   [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/nppa/contents/805/102791.shtml)
+-   [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)
 
 ## 参考资料与注释
 

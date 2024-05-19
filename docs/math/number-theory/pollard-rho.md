@@ -11,7 +11,6 @@
 最简单的算法即为从 $[2, \sqrt N]$ 进行遍历。
 
 === "C++"
-
     ```cpp
     vector<int> breakdown(int N) {
       vector<int> result;
@@ -29,16 +28,15 @@
     ```
 
 === "Python"
-
     ```python
     def breakdown(N):
         result = []
         for i in range(2, int(sqrt(N)) + 1):
-            if N % i == 0: # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
+            if N % i == 0:  # 如果 i 能够整除 N，说明 i 为 N 的一个质因子。
                 while N % i == 0:
                     N //= i
                 result.append(i)
-        if N != 1: # 说明再经过操作之后 N 留下了一个素数
+        if N != 1:  # 说明再经过操作之后 N 留下了一个素数
             result.append(N)
         return result
     ```
@@ -52,7 +50,7 @@
 
 值得指出的是，如果开始已经打了一个素数表的话，时间复杂度将从 $O(\sqrt N)$ 下降到 $O(\sqrt{\frac N {\ln N}})$。去 [筛法](./sieve.md) 处查阅更多打表的信息。
 
-例题：[CF 1445C](https://codeforces.ml/problemset/problem/1445/C)
+例题：[CF 1445C](https://codeforces.com/problemset/problem/1445/C)
 
 ## Pollard Rho 算法
 
@@ -102,13 +100,13 @@ $n$ 和某个数的最大公约数一定是 $n$ 的约数，即 $\forall k \in\m
 
 我们通过 $f(x)=(x^2+c)\bmod n$ 来生成一个序列 $\{x_i\}$：随机取一个 $x_1$，令 $x_2=f(x_1),x_3=f(x_2),\dots,x_i=f(x_{i-1})$。其中 $c$ 是一个随机选取的常数。
 
-举个例子，设 $N=50,c=2,x_1=1$，$f(x)$ 生成的数据为
+举个例子，设 $n=50,c=6,x_1=1$，$f(x)$ 生成的数据为
 
 $$
-1,3,11,23,31,11,23,31,\dots
+1, 7, 5, 31, 17, 45, 31, 17, 45, 31,\dots
 $$
 
-可以发现数据在 $3$ 以后都在 $11,23,31$ 之间循环。如果将这些数如下图一样排列起来，会发现这个图像酷似一个 $\rho$，算法也因此得名 rho。
+可以发现数据在 $x_4$ 以后都在 $31,17,45$ 之间循环。如果将这些数如下图一样排列起来，会发现这个图像酷似一个 $\rho$，算法也因此得名 rho。
 
 ![Pollard-rho1](./images/Pollard-rho1.png)
 
@@ -158,7 +156,6 @@ $$
 
 ??? note "基于 Floyd 判环的 Pollard-Rho 算法"
     === "C++"
-    
         ```cpp
         ll Pollard_Rho(ll N) {
           ll c = rand() % (N - 1) + 1;
@@ -175,9 +172,10 @@ $$
         ```
     
     === "Python"
-    
         ```python
         import random
+        
+        
         def Pollard_Rho(N):
             c = random.randint(1, N - 1)
             t = f(0, c, N)
@@ -201,7 +199,6 @@ $$
 
 ??? note "实现"
     === "C++"
-    
         ```cpp
         ll Pollard_Rho(ll x) {
           ll t = 0;
@@ -229,20 +226,21 @@ $$
         ```
     
     === "Python"
-    
         ```python
         from random import randint
         from math import gcd
+        
+        
         def Pollard_Rho(x):
-            c = randint(1, x-1)
+            c = randint(1, x - 1)
             s = t = f(0, c, x)
             goal = val = 1
             while True:
-                for step in range(1, goal+1):
+                for step in range(1, goal + 1):
                     t = f(t, c, x)
                     val = val * abs(t - s) % x
-                    if val == 0: 
-                        return x #如果 val 为 0，退出重新分解
+                    if val == 0:
+                        return x  # 如果 val 为 0，退出重新分解
                     if step % 127 == 0:
                         d = gcd(val, x)
                         if d > 1:

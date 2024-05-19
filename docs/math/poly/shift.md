@@ -89,7 +89,7 @@ $$
 
 ### Lagrange 插值公式法
 
-考虑 Lagrange 插值公式
+考虑 [Lagrange 插值公式](../numerical/interp.md#lagrange-插值法)
 
 $$
 \begin{aligned}
@@ -406,7 +406,7 @@ $$
 容易发现，对于一般的整式递推远处系数求值问题，我们可以构造
 
 $$
--{1\over P_0(n)}\begin{bmatrix}P_1(n)&P_2(n)&P_3(n)&\cdots&P_{m-1}(n)&P_m(n)\\-P_0(n)\\&-P_0(n)\\&&-P_0(n)\\&&&\ddots\\&&&&-P_0(n)\\\end{bmatrix}
+-{\frac{1}{P_0(n)}}\begin{bmatrix}P_1(n)&P_2(n)&P_3(n)&\cdots&P_{m-1}(n)&P_m(n)\\-P_0(n)\\&-P_0(n)\\&&-P_0(n)\\&&&\ddots\\&&&&-P_0(n)\\\end{bmatrix}
 \begin{bmatrix}a_{n-1}\\a_{n-2}\\a_{n-3}\\\vdots\\a_{n-m+1}\\a_{n-m}\end{bmatrix}
 =\begin{bmatrix}a_n\\a_{n-1}\\a_{n-2}\\\vdots\\a_{n-m+2}\\a_{n-m+1}\end{bmatrix}
 $$

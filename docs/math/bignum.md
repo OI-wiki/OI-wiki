@@ -27,7 +27,7 @@
 
 在平常的实现中，高精度数字利用字符串表示，每一个字符表示数字的一个十进制位。因此可以说，高精度数值计算实际上是一种特别的字符串处理。
 
-读入字符串时，数字最高位在字符串首（下标小的位置）。但是习惯上，下标最小的位置存放的是数字的 **最低位**，即存储反转的字符串。这么做的原因在于，数字的长度可能发生变化，但我们希望同样权值位始终保持对齐（例如，希望所有的个位都在下标 `[0]`，所有的十位都在下标 `[1]`……）；同时，加、减、乘的运算一般都从个位开始进行（回想小学的竖式运算～），这都给了「反转存储」以充分的理由。
+读入字符串时，数字最高位在字符串首（下标小的位置）。但是习惯上，下标最小的位置存放的是数字的 **最低位**，即存储反转的字符串。这么做的原因在于，数字的长度可能发生变化，但我们希望同样权值位始终保持对齐（例如，希望所有的个位都在下标 `[0]`，所有的十位都在下标 `[1]`……）；同时，加、减、乘的运算一般都从个位开始进行（回想小学的竖式运算），这都给了「反转存储」以充分的理由。
 
 此后我们将一直沿用这一约定。定义一个常数 `LEN = 1004` 表示程序所容纳的最大长度。
 
@@ -349,7 +349,7 @@ void mul(int a[], int b[], int c[]) {
 
 ### 除法
 
-高精度除法，也就是竖～～～～竖式长除法啦！
+高精度除法的一种实现方式就是竖式长除法。
 
 ![](./images/division.png)
 
@@ -604,7 +604,7 @@ void div(int a[], int b[], int c[], int d[]) {
 
 我们可以把 double 作为媒介。假设被除数有 4 位，是 $a_4,a_3,a_2,a_1$，除数有 3 位，是 $b_3,b_2,b_1$，那么我们只要试一位的商：使用 $base$ 进制，用式子 $\dfrac{a_4 base + a_3}{b_3 + b_2 base^{-1} + (b_1+1)base^{-2}}$ 来估商。而对于多个位的情况，就是一位的写法加个循环。由于除数使用 3 位的精度来参与估商，能保证估的商 q' 与实际商 q 的关系满足 $q-1 \le q' \le q$，这样每个位在最坏的情况下也只需要两次试商。但与此同时要求 $base^3$ 在 double 的有效精度内，即 $base^3 < 2^{53}$，所以在运用这个方法时建议不要超过 32768 进制，否则很容易因精度不足产生误差从而导致错误。
 
-另外，由于估的商总是小于等于实际商，所以还有再进一步优化的空间。绝大多数情况下每个位只估商一次，这样在下一个位估商时，虽然得到的商有可能因为前一位的误差造成试商结果大于等于 base，但这没有关系，只要在最后再最后做统一进位便可。举个例子，假设 base 是 10，求 $395081/9876$，试商计算步骤如下：
+另外，由于估的商总是小于等于实际商，所以还有再进一步优化的空间。绝大多数情况下每个位只估商一次，这样在下一个位估商时，虽然得到的商有可能因为前一位的误差造成试商结果大于等于 base，但这没有关系，只要在最后做统一进位便可。举个例子，假设 base 是 10，求 $395081/9876$，试商计算步骤如下：
 
 1.  首先试商计算得到 $3950/988=3$，于是 $395081-(9876 \times 3 \times 10^1) = 98801$，这一步出现了误差，但不用管，继续下一步计算。
 2.  对余数 98801 继续试商计算得到 $9880/988=10$，于是 $98801-(9876 \times 10 \times 10^0) = 41$，这就是最终余数。
@@ -786,10 +786,6 @@ $$
 对于一个 $n$ 位的十进制整数 $a$，可以将它看作一个每位系数均为整数且不超过 $10$ 的多项式 $A=a_{0} 10^0+a_{1} 10^1+\cdots+a_{n-1} 10^{n-1}$。这样，我们就将两个整数乘法转化为了两个多项式乘法。
 
 普通的多项式乘法时间复杂度仍是 $O(n^2)$，但可以用多项式一节中的 [快速傅里叶变换](poly/fft.md)、[快速数论变换](poly/ntt.md) 等算法优化，优化后的时间复杂度是 $O(n\log n)$。
-
-### Reference
-
-<https://en.wikipedia.org/wiki/Karatsuba_algorithm>
 
 ## 封装类
 
@@ -1019,6 +1015,10 @@ $$
 -   [NOIP 2012 国王游戏](https://loj.ac/problem/2603)
 -   [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/)
 -   [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/)
--   [UVA - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
--   [UVA - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
+-   [UVa - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
+-   [UVa - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
 -   [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D)
+
+## 参考资料与链接
+
+1.  [Karatsuba algorithm - Wikipedia](https://en.wikipedia.org/wiki/Karatsuba_algorithm)

@@ -2,9 +2,7 @@ author: Frankaiyou, henrytbtrue, zymooll
 
 ## C 标准库
 
-C 标准库操作字符数组。
-
-### `char[]`/`const char*`
+C 标准库操作字符数组 `char[]`/`const char*`。
 
 参见：[fprintf](https://zh.cppreference.com/w/c/io/fprintf)、[fscanf](https://zh.cppreference.com/w/c/io/fscanf)、[空终止字节字符串](https://zh.cppreference.com/w/c/string/byte)
 
@@ -19,15 +17,13 @@ C 标准库操作字符数组。
 -   `strcat(char *str1, const char *str2)`: 将 `str2` 接到 `str1` 的结尾，用 `*str2` 替换 `str1` 末尾的 `'\0'` 返回 `str1`。
 -   `strstr(char *str1, const char *str2)`：若 `str2` 是 `str1` 的子串，则返回 `str2` 在 `str1` 的首次出现的地址；如果 `str2` 不是 `str1` 的子串，则返回 `NULL`。
 -   `strchr(const char *str, int c)`：找到在字符串 `str` 中第一次出现字符 `c` 的位置，并返回这个位置的地址。如果未找到该字符则返回 `NULL`。
--   `strrchr(const char *str, char c)`：找到在字符串 `str` 中最后一次出现字符 `c` 的位置，并返回这个位置的地址。如果未找到该字符则返回 `NULL`。
+-   `strrchr(const char *str, int c)`：找到在字符串 `str` 中最后一次出现字符 `c` 的位置，并返回这个位置的地址。如果未找到该字符则返回 `NULL`。
 
 ## C++ 标准库
 
-C++ 标准库操作字符串对象，同时也提供对字符数组的兼容。
+C++ 标准库操作字符串对象 [`std::string`](../lang/csl/string.md)，同时也提供对字符数组的兼容。
 
-### `std::string`
-
-参见：[std::basic\_string](https://zh.cppreference.com/w/cpp/string/basic_string)
+参见：[std::basic\_string](https://zh.cppreference.com/w/cpp/string/basic_string)、[std::basic\_string\_view](https://zh.cppreference.com/w/cpp/string/basic_string_view)
 
 -   重载了赋值运算符 `+`，当 `+` 两边是 `string/char/char[]/const char*` 类型时，可以将这两个变量连接，返回连接后的字符串（`string`）。
 -   赋值运算符 `=` 右侧可以是 `const string/string/const char*/char*`。

@@ -47,7 +47,6 @@ author: Ir1d, Anguei, hsfzLZH1
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         bool Bellman_Ford() {
           for (int i = 0; i < n; i++) {
@@ -66,7 +65,6 @@ author: Ir1d, Anguei, hsfzLZH1
         ```
     
     === "Python"
-    
         ```python
         def Bellman_Ford():
             for i in range(0, n):
@@ -75,7 +73,8 @@ author: Ir1d, Anguei, hsfzLZH1
                     while ~k:
                         k = h[j]
                         if dist[j] > dist[p[k]] + w[k]:
-                            dist[j] = dist[p[k]] + w[k]; jud = True
+                            dist[j] = dist[p[k]] + w[k]
+                            jud = True
                         k = nxt[k]
                 if jud == False:
                     break

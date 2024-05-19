@@ -286,16 +286,12 @@ struct IO {
 
   void read(char *s) {
     char ch = gc();
-    for (; blank(ch); ch = gc())
-      ;
+    for (; blank(ch); ch = gc());
     for (; !blank(ch); ch = gc()) *s++ = ch;
     *s = 0;
   }
 
-  void read(char &c) {
-    for (c = gc(); blank(c); c = gc())
-      ;
-  }
+  void read(char &c) { for (c = gc(); blank(c); c = gc()); }
 
   void push(const char &c) {
 #if DEBUG  // 调试，可显示字符

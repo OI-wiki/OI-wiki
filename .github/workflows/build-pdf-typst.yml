@@ -1,0 +1,61 @@
+name: Build Typst document
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: OI-wiki Typst Build
+    runs-on: ubuntu-latest
+    env:
+      LANG: C.UTF-8
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: 'npm'
+
+      - name: Pre-build operations
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo apt-get install curl git unzip imagemagick libwebp-dev librsvg2-dev fonts-noto-cjk fonts-noto-cjk-extra
+          sudo apt-get remove fonts-noto-color-emoji
+
+          git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
+          cd OI-Wiki-export
+          cd remark-typst
+          npm install
+          cd ..
+          cd oi-wiki-export-typst
+          npm install
+
+          mkdir .fonts
+          curl -L $(gh api /repos/lxgw/LxgwWenKai/releases/latest -q '.assets[].browser_download_url | select(contains("tar.gz"))') | tar xfz - -C .fonts
+
+      - uses: typst-community/setup-typst@v3
+        with:
+          typst-version: 0.11.0
+          cache-dependency-path: OI-Wiki-export/oi-wiki-export-typst/oi-wiki.typ
+
+      - name: Build Typst document
+        run: |
+          cd OI-Wiki-export
+          cd oi-wiki-export-typst
+          node index.js ../../
+          typst compile oi-wiki-export.typ --font-path .fonts
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OI-wiki-typst-export
+          path: ./OI-Wiki-export/oi-wiki-export-typst/oi-wiki-export.pdf

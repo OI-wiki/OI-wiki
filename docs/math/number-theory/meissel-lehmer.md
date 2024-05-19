@@ -10,7 +10,7 @@ $\pi\left(x\right)$ 表示 $1\sim x$ 范围内素数的个数。
 $\mu\left(x\right)$ 表示莫比乌斯函数。  
 对于集合 $S$，$\# S$ 表示集合 $S$ 的大小。  
 $\delta\left(x\right)$ 表示 $x$ 最小的质因子。  
-$P^+\left(n\right)$ 表示 $x$ 最大的质因子。
+$P^+\left(x\right)$ 表示 $x$ 最大的质因子。
 
 ## Meissel–Lehmer 算法求 π(x)
 
@@ -81,7 +81,6 @@ $$
 
 $$
 \phi\left(x,a\right)=\sum_{\substack{1\le n\le x\\ P^+\left(n\right)\le y}}{\mu\left(n\right)\left[x/n\right]}
-
 $$
 
 $$
@@ -275,7 +274,7 @@ $$
 
 预处理出 $\pi\left(t\right)\left(t\le y\right)$ 我们就可以在 $O\left(x^{1/3}\right)$ 的时间复杂度内计算出 $V_1$。
 
-考虑我们如何加速计算 $V_2$ 的过程。我们可以把 $q$ 的贡献拆分成若干个 $\pi\left(\dfrac{x}{pq} \right)$ 为定值的区间上，这样我就只需要计算出每一个区间的长度和从一个区间到下一个区间的 $\pi\left(\dfrac{x}{pq} \right)$ 的改变量。
+考虑我们如何加速计算 $V_2$ 的过程。我们可以把 $q$ 的贡献拆分成若干个 $\pi\left(\dfrac{x}{pq} \right)$ 为定值的区间上，这样就只需要计算出每一个区间的长度和从一个区间到下一个区间的 $\pi\left(\dfrac{x}{pq} \right)$ 的改变量。
 
 更准确的说，我们首先将 $V_2$ 分成两个部分，将 $q\le \min\left(\dfrac x{p^2},y\right)$ 这个复杂的条件简化：
 

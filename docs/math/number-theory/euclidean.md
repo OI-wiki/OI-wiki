@@ -105,7 +105,7 @@ g(a,b,c,n)
 =g(a\bmod c,b\bmod c,c,n)+\left\lfloor\frac{a}{c}\right\rfloor\frac{n(n+1)(2n+1)}{6}+\left\lfloor\frac{b}{c}\right\rfloor\frac{n(n+1)}{2}
 $$
 
-接下来考虑 $a<c,b<c$ 的情况，令 $m=\left\lfloor\frac{an+b}{c}\right\rfloor$。之后的过程我会写得很简略，因为方法和上文略同：
+接下来考虑 $a<c,b<c$ 的情况，令 $m=\left\lfloor\frac{an+b}{c}\right\rfloor$。之后的过程比较简略，因为方法和上文略同：
 
 $$
 \begin{aligned}

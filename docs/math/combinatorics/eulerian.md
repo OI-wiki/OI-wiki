@@ -56,20 +56,16 @@ $$
 综上所述，有
 
 $$
-A(n, m) = 
-\left\{
-\begin{array}{ll}
-0 & m > n \text{ or } n = 0 \\
-1 & m = 0 \\
-(n-m) \cdot A(n-1, m-1) + (m+1) \cdot A(n-1, m) & \text{otherwise} \\
-\end{array}
-\right.
+A(n, m) = \begin{cases}
+    0, & m > n \text{ or } n = 0, \\
+    1, & m = 0, \\
+    (n-m) \cdot A(n-1, m-1) + (m+1) \cdot A(n-1, m), & \text{otherwise}.
+\end{cases}
 $$
 
 ## 实现
 
 === "C++"
-
     ```cpp
     int eulerianNumber(int n, int m) {
       if (m >= n || n == 0) return 0;
@@ -80,15 +76,15 @@ $$
     ```
 
 === "Python"
-
     ```python
     def eulerianNumber(n, m):
         if m >= n or n == 0:
             return 0
         if m == 0:
             return 1
-        return (((n - m) * eulerianNumber(n - 1, m - 1)) + \
-                ((m + 1) * eulerianNumber(n - 1, m)))
+        return ((n - m) * eulerianNumber(n - 1, m - 1)) + (
+            (m + 1) * eulerianNumber(n - 1, m)
+        )
     ```
 
 ## 习题

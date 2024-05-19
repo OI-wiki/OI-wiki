@@ -20,7 +20,9 @@ CLion 默认不带编译器，构建工具和调试工具，需要手动进行�
 
 #### Windows
 
-（待补充）
+参见 [Tutorial: Configure CLion on Windows | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-windows.html)
+
+值得一提的是 CLion 的 Windows 版本中自带了 MinGW，所以可以不用额外安装 MinGW 工具链。
 
 #### Linux
 
@@ -50,7 +52,7 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 
 #### MacOS
 
-（待补充）
+参见 [Tutorial: Configure CLion on macOS | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-macos.html)
 
 ### 工具链设置
 
@@ -60,11 +62,25 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 
 ![Config Toolchains](./images/clion-toolchain.png)
 
-### CMake
+### 编译、运行和调试
+
+虽然 CLion 诞生之初是面向多文件的复杂 C/C++ 项目诞生的，早些时候的 CLion 默认使用 [CMake](https://cmake.org/) 作为构建工具，但是自 CLion 2022.3 版本起，CLion 已经支持 [C, C++ 单文件运行](https://www.jetbrains.com/help/clion/run-single-file.html)。
+
+有多种方式来运行一个 C++ 程序，一个简单的流程如下：
+
+1.  创建一个 C/C++ 项目：New -> Project -> C++ Executable，选择合适的地址和语言标准版本，点击 Create。
+2.  打开项目，此时的项目目录下应当存在一个 `cmake-build-debug` 目录、一个 `CMakeLists.txt` 文件和一个 `main.cpp` 文件。因为我们不需要使用 CMake 来管理项目，因此我们可以删去 `CMakeLists.txt` 文件和 `cmake-build-debug` 目录及其内所有文件。
+3.  点击打开 `main.cpp` 文件，并在编辑区右键单击，可以看到 Run 'main.cpp' 选项。选择此选项后，CLion 可以自动创建一个运行配置并运行程序
+
+![C++ Single File Execution](./images/clion-single-file-execution.png)
+
+如需调试程序，可以编辑区打好断点，在编辑区右键单击，选择 Debug 'main.cpp' 选项。
+
+### 通过 CMake 编译、运行和调试
 
 #### 设置
 
-CLion 默认使用 [CMake](https://cmake.org/) 作为构建工具，关于 CMake 的设置可以在 `Build, Execution, Deployment`>`Toolchains`>`CMake` 中修改。
+CLion 也可使用 [CMake](https://cmake.org/) 作为构建工具，关于 CMake 的设置可以在 `Build, Execution, Deployment`>`Toolchains`>`CMake` 中修改。
 
 ![CMake Settings](./images/clion-cmake.png)
 

@@ -26,6 +26,7 @@
 /intro/editor/npp /tools/editor/npp
 /intro/editor/devcpp /tools/editor/devcpp
 /intro/editor/geany /tools/editor/geany
+/intro/hulu /
 /lang/editor/vim /tools/editor/vim
 /lang/editor/emacs /tools/editor/emacs
 /lang/editor/vscode /tools/editor/vscode
@@ -66,7 +67,8 @@
 /math/prime /math/number-theory/prime
 /math/meissel-lehmer /math/number-theory/meissel-lehmer
 /math/gcd /math/number-theory/gcd
-/math/euler /math/number-theory/euler
+/math/euler /math/number-theory/euler-totient
+/math/number-theory/euler /math/number-theory/euler-totient
 /math/sieve /math/number-theory/sieve
 /math/fermat /math/number-theory/fermat
 /math/euclidean /math/number-theory/euclidean
@@ -97,7 +99,8 @@
 /math/poly/ln-exp /math/poly/elementary-func
 /math/poly/tri-func /math/poly/elementary-func
 /math/poly/inv-tri-func /math/poly/elementary-func
-/math/poly/lagrange /math/numerical/lagrange
+/math/poly/lagrange /math/numerical/interp
+/math/numerical/lagrange /math/numerical/interp
 /math/poly/cntt /math/poly/ntt
 /math/linear-algebra/gauss /math/numerical/gauss
 /math/integral /math/numerical/integral

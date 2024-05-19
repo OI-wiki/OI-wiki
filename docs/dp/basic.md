@@ -1,4 +1,4 @@
-author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007, Persdre, XiaoSuan250
+author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007, Persdre, XiaoSuan250, hhc0001, ZhangZhanhaoxiang
 
 本页面主要介绍了动态规划的基本思想，以及动态规划中状态及状态转移方程的设计思路，帮助各位初学者对动态规划有一个初步的了解。
 
@@ -124,10 +124,9 @@ int dp() {
 容易发现该算法的时间复杂度为 $O(n^2)$。
 
 === "C++"
-
     ```cpp
     int a[MAXN], d[MAXN];
-
+    
     int dp() {
       d[1] = 1;
       int ans = 1;
@@ -144,10 +143,11 @@ int dp() {
     ```
 
 === "Python"
-
     ```python
     a = [0] * MAXN
     d = [0] * MAXN
+    
+    
     def dp():
         d[1] = 1
         ans = 1
@@ -163,7 +163,19 @@ int dp() {
 
 当 $n$ 的范围扩大到 $n \leq 10^5$ 时，第一种做法就不够快了，下面给出了一个 $O(n \log n)$ 的做法。
 
-首先，定义 $a_1 \dots a_n$ 为原始序列，$d$ 为当前的不下降子序列，$len$ 为子序列的长度，那么 $d_{len}$ 就是长度为 $len$ 的不下降子序列末尾元素。
+回顾一下之前的状态：$(i, l)$。
+
+但这次，我们不是要按照相同的 $i$ 处理状态，而是直接判断合法的 $(i, l)$。
+
+再看一下之前的转移：$(j, l - 1) \rightarrow (i, l)$，就可以判断某个 $(i, l)$ 是否合法。
+
+初始时 $(1, 1)$ 肯定合法。
+
+那么，只需要找到一个 $l$ 最大的合法的 $(i, l)$，就可以得到最终最长不下降子序列的长度了。
+
+那么，根据上面的方法，我们就需要维护一个可能的转移列表，并逐个处理转移。
+
+所以可以定义 $a_1 \dots a_n$ 为原始序列，$d_i$ 为所有的长度为 $i$ 的不下降子序列的末尾元素的最小值，$len$ 为子序列的长度。
 
 初始化：$d_1=a_1,len=1$。
 
@@ -174,10 +186,21 @@ int dp() {
 1.  元素大于等于 $d_{len}$，直接将该元素插入到 $d$ 序列的末尾。
 2.  元素小于 $d_{len}$，找到 **第一个** 大于它的元素，用 $a_i$ 替换它。
 
+为什么：
+
+-   对于步骤 1：
+
+    由于我们是从前往后扫，所以说当元素大于等于 $d_{len}$ 时一定会有一个不下降子序列使得这个不下降子序列的末项后面可以再接这个元素。如果 $d$ 不接这个元素，可以发现既不符合定义，又不是最优解。
+
+-   对于步骤 2：
+
+    同步骤 1，如果插在 $d$ 的末尾，那么由于前面的元素大于要插入的元素，所以不符合 $d$ 的定义，因此必须先找到 **第一个** 大于它的元素，再用 $a_i$ 替换。
+
+步骤 2 如果采用暴力查找，则时间复杂度仍然是 $O(n^2)$ 的。但是根据 $d$ 数组的定义，又由于本题要求不下降子序列，所以 $d$ 一定是 **单调不减** 的，因此可以用二分查找将时间复杂度降至 $O(n\log n)$.
+
 参考代码如下：
 
 === "C++"
-
     ```cpp
     for (int i = 0; i < n; ++i) scanf("%d", a + i);
     memset(dp, 0x1f, sizeof dp);
@@ -190,9 +213,8 @@ int dp() {
     ```
 
 === "Python"
-
     ```python
-    dp = [0x1f1f1f1f] * MAXN
+    dp = [0x1F1F1F1F] * MAXN
     mx = dp[0]
     for i in range(0, n):
         bisect.insort_left(dp, a[i], 0, len(dp))

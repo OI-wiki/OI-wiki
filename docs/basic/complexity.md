@@ -86,7 +86,6 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 ### `for` 循环
 
 === "C++"
-
     ```cpp
     int n, m;
     std::cin >> n >> m;
@@ -100,7 +99,6 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
     ```
 
 === "Python"
-
     ```python
     n = int(input())
     m = int(input())
@@ -108,6 +106,20 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
         for j in range(0, n):
             for k in range(0, m):
                 print("hello world")
+    ```
+
+=== "Java"
+    ```java
+    int n, m;
+    n = input.nextInt();
+    m = input.nextInt();
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            for (int k = 0; k < m; ++k) {
+                System.out.println("hello world");
+            }
+        }
+    }
     ```
 
 如果以输入的数值 $n$ 和 $m$ 的大小作为数据规模，则上面这段代码的时间复杂度为 $\Theta(n^2m)$。
@@ -121,7 +133,6 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 当我们要进行若干次操作时，如何判断这若干次操作是否影响时间复杂度呢？例如：
 
 === "C++"
-
     ```cpp
     const int N = 100000;
     for (int i = 0; i < N; ++i) {
@@ -130,11 +141,18 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
     ```
 
 === "Python"
-
     ```python
     N = 100000
     for i in range(0, N):
         print("hello world")
+    ```
+
+=== "Java"
+    ```java
+    final int N = 100000;
+    for (int i = 0; i < N; ++i) {
+        System.out.println("hello world");
+    }
     ```
 
 如果 $N$ 的大小不被看作输入规模，那么这段代码的时间复杂度就是 $O(1)$。
@@ -155,7 +173,7 @@ $$
 那么
 
 $$
-T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b a-\epsilon}),\epsilon > 0 \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b a+\epsilon}),\epsilon\ge 0\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
+T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b (a)-\epsilon}),\epsilon > 0 \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b (a)+\epsilon}),\epsilon\ge 0\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
 需要注意的是，这里的第二种情况还需要满足 regularity condition, 即 $a f(n/b) \leq c f(n)$，for some constant $c < 1$ and sufficiently large $n$。
@@ -181,11 +199,13 @@ $$
 
 下面举几个例子来说明主定理如何使用。
 
-例如 $T(n) = T\left(\frac{n}{2}\right) + 1$，那么 $a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $0$，从而满足第一种情况，所以 $T(n) = \Theta(\log n)$。
+1.  $T(n) = 2T\left(\frac{n}{2}\right) + 1$，那么 $a=2, b=2, {\log_2 2} = 1$，那么 $\epsilon$ 可以取值在 $(0, 1]$ 之间，从而满足第一种情况，所以 $T(n) = \Theta(n)$。
 
-又例如 $T(n) = T\left(\frac{n}{2}\right) + n$，那么 $a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值为 $0.5$，从而满足第二种情况，所以 $T(n) = \Theta(n)$。
+2.  $T(n) = T\left(\frac{n}{2}\right) + n$，那么 $a=1, b=2, {\log_2 1} = 0$，那么 $\epsilon$ 可以取值在 $(0, 1]$ 之间，从而满足第二种情况，所以 $T(n) = \Theta(n)$。
 
-再例如 $T(n) = T\left(\frac{n}{2}\right) + {\log n}$，那么 $a=1, b=2, {\log_2 1}=0$，那么 $k$ 可以取值为 $1$，从而满足第三种情况，所以 $T(n) = \Theta(\log^2 n)$。
+3.  $T(n) = T\left(\frac{n}{2}\right) + {\log n}$，那么 $a=1, b=2, {\log_2 1}=0$，那么 $k$ 可以取值为 $1$，从而满足第三种情况，所以 $T(n) = \Theta(\log^2 n)$。
+
+4.  $T(n) = T\left(\frac{n}{2}\right) + 1$，那么 $a=1, b=2, {\log_2 1} = 0$，那么 $k$ 可以取值为 $0$，从而满足第三种情况，所以 $T(n) = \Theta(\log n)$。
 
 ## 均摊复杂度
 

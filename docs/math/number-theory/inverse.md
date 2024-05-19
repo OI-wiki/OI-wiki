@@ -10,7 +10,6 @@
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         void exgcd(int a, int b, int& x, int& y) {
           if (b == 0) {
@@ -23,7 +22,6 @@
         ```
     
     === "Python"
-    
         ```python
         def exgcd(a, b):
             if b == 0:
@@ -52,7 +50,6 @@
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         int qpow(long long a, int b) {
           int ans = 1;
@@ -66,17 +63,16 @@
         ```
     
     === "Python"
-    
         ```python
         def qpow(a, b):
-          ans = 1
-          a = (a % p + p) % p
-          while b:
-              if b & 1:
-                  ans = (a * ans) % p
-              a = (a * a) % p
-              b >>= 1
-          return ans
+            ans = 1
+            a = (a % p + p) % p
+            while b:
+                if b & 1:
+                    ans = (a * ans) % p
+                a = (a * a) % p
+                b >>= 1
+            return ans
         ```
 
 注意：快速幂法使用了 [费马小定理](./fermat.md)，要求 $b$ 是一个素数；而扩展欧几里得法只要求 $\gcd(a, b) = 1$。
@@ -117,7 +113,6 @@ $$
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         inv[1] = 1;
         for (int i = 2; i <= n; ++i) {
@@ -126,7 +121,6 @@ $$
         ```
     
     === "Python"
-    
         ```python
         inv[1] = 1
         for i in range(2, n + 1):
@@ -159,7 +153,6 @@ $$
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         s[0] = 1;
         for (int i = 1; i <= n; ++i) s[i] = s[i - 1] * a[i] % p;
@@ -170,7 +163,6 @@ $$
         ```
     
     === "Python"
-    
         ```python
         s[0] = 1
         for i in range(1, n + 1):

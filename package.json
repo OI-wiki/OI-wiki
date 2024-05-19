@@ -9,11 +9,10 @@
   },
   "scripts": {
     "postinstall": "patch-package",
-    "ts-node-esm": "cross-env NODE_NO_WARNINGS=1 node --loader ts-node/esm",
     "scripts:format": "prettier --write \"scripts/**/*.ts\"",
     "scripts:format:check": "prettier --check \"scripts/**/*.ts\"",
     "docs:format:remark": "remark docs/ -o",
-    "docs:format:check": "ts-node-esm scripts/checker/checker.ts -i"
+    "docs:format:check": "node --loader ts-node/esm scripts/checker/checker.ts -i"
   },
   "repository": {
     "type": "git",
@@ -43,7 +42,7 @@
     "patch-package": "^6.5.1",
     "postinstall-postinstall": "^2.1.0",
     "remark": "^14.0.2",
-    "remark-clang-format": "^2.3.2",
+    "remark-clang-format": "2.4.5",
     "remark-cli": "^10.0.1",
     "remark-copywriting-correct": "0.6.0",
     "remark-details": "^4.1.1",
@@ -55,6 +54,7 @@
     "remark-parse": "^10.0.1",
     "remark-preset-lint-markdown-style-guide": "^5.1.2",
     "remark-stringify": "^10.0.2",
+    "remark-tabbed": "^0.1.0",
     "ts-node": "^10.8.2",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.0",

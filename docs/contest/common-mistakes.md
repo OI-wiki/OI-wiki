@@ -1,6 +1,10 @@
-author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu
+author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint
 
 本页面主要列举一些竞赛中很多人经常会出现的错误。
+
+## 因环境不同导致的错误
+
+-   `scanf` 或 `printf` 使用 `%I64d` 格式指示符在 Linux 下可能导致输出格式错误。
 
 ## 会引起 CE 的错误
 
@@ -298,6 +302,21 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
         使用 `erase` 或 `delete` 或 `free` 操作应注意不要对同一地址/对象多次使用。
 
+-   尝试释放由 `new []` 分配的整块内存的一部分
+
+    例如：
+
+    ```cpp
+    object *pool = new object[POOL_SIZE];
+
+    object *pointer = pool + 10;
+
+    // 报错！
+    delete pointer;
+    ```
+
+    常见于使用内存池提前分配整块内存后，试图使用 `delete` 或 `free()` 释放从内存池中获取的单个对象。
+
 -   解引用空指针/野指针
 
     对于空指针：先应该判断空指针，可以用 `p == nullptr` 或 `!p`。
@@ -369,6 +388,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     }
     ```
 
+-   Windows 下栈空间不足，导致栈空间溢出，Windows 向程序发出 SIGSEGV 信号，程序终止并返回 3221225725（即 0xC00000FD, NTSTATUS 定义为 `STATUS_STACK_OVERFLOW`)。  
+    若使用 gcc 编译器，可在编译时加入命令 `-Wl,--stack=SIZE` 以扩展栈空间，其中 `SIZE` 为栈空间大小字节数。
+
 ### 会导致 TLE
 
 -   分治未判边界导致死递归。
@@ -411,6 +433,32 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
       return max(query(lt(t), l, mid, ql, qr), query(rt(t), mid + 1, r, ql, qr));
     }
     ```
+
+-   使用 + 运算符向 `std::string` 类字符串追加字符
+
+    这种错误会创建一个临时 `string` 变量，修改完成后再赋值给原变量。这种错误无法被编译器优化，在数据量大的情况下可能会导致时间复杂度退化。
+
+    常见 错误写法：
+
+    ```cpp
+    std::string a;
+    char b = 'c';
+    a = a + b;
+    ```
+
+    当执行这段代码时，程序首先会创建一个临时 `string` 变量，随后将 `a` 的值存入临时变量，然后在末尾添加 `b` 的值，最后再存入 `a`。
+
+    从 [汇编结果](https://godbolt.org/z/Eo9vn7or5) 可以看出，`a = a + b` 调用了三次 `std::__cxx11::basic_string` 中的功能，分别为 `operator+`、`operator=` 和创建变量。
+
+    正确写法应该是：
+
+    ```cpp
+    std::string a;
+    char b = 'c';
+    a += b;
+    ```
+
+    [这种写法](https://godbolt.org/z/eGh33Grf3) 会直接将字符 `b` 附加到字符串 `a` 中，仅调用了一次 `operator+=`。更详细的性能比较可参考 [Benchmark](https://quick-bench.com/q/JNDGl7HgOszNG-bo7AgVc42owv4)。
 
 -   没删文件操作（某些 OJ）。
 

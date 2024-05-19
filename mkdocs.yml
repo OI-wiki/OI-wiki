@@ -11,7 +11,7 @@ repo_url: 'https://github.com/OI-wiki/OI-wiki'
 edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2023 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2024 OI Wiki Team'
 
 # Contents
 nav:
@@ -231,7 +231,7 @@ nav:
       - 素数: math/number-theory/prime.md
       - 最大公约数: math/number-theory/gcd.md
       - 数论分块: math/number-theory/sqrt-decomposition.md
-      - 欧拉函数: math/number-theory/euler.md
+      - 欧拉函数: math/number-theory/euler-totient.md
       - 筛法: math/number-theory/sieve.md
       - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 分解质因数: math/number-theory/pollard-rho.md
@@ -241,8 +241,8 @@ nav:
       - 乘法逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
+      - 升幂引理: math/number-theory/lift-the-exponent.md
       - 威尔逊定理: math/number-theory/wilson.md
-      - 升幂定理: math/number-theory/lift-the-exponent.md
       - 卢卡斯定理: math/number-theory/lucas.md
       - 同余方程: math/number-theory/congruence-equation.md
       - 二次剩余: math/number-theory/quad-residue.md
@@ -272,6 +272,7 @@ nav:
       - 常系数齐次线性递推: math/poly/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
       - 符号化方法: math/poly/symbolic-method.md
+      - Lagrange 反演: math/poly/lagrange-inversion.md
       - 普通生成函数: math/poly/ogf.md
       - 指数生成函数: math/poly/egf.md
       - 狄利克雷生成函数: math/poly/dgf.md
@@ -322,7 +323,7 @@ nav:
       - 非公平组合游戏: math/game-theory/partizan-game.md
       - 反常游戏: math/game-theory/misere-game.md
     - 数值算法:
-      - 拉格朗日插值: math/numerical/lagrange.md
+      - 插值: math/numerical/interp.md
       - 数值积分: math/numerical/integral.md
       - 高斯消元: math/numerical/gauss.md
       - 牛顿迭代法: math/numerical/newton.md
@@ -373,6 +374,9 @@ nav:
       - 笛卡尔树: ds/cartesian-tree.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
+      - AA 树: ds/aa-tree.md
+      - 2-3 树: ds/2-3-tree.md
+      - 2-3-4 树: ds/2-3-4-tree.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
@@ -390,6 +394,7 @@ nav:
     - K-D Tree: ds/kdt.md
     - 动态树:
       - Link Cut Tree: ds/lct.md
+      - 全局平衡二叉树: ds/global-bst.md
       - Euler Tour Tree: ds/ett.md
       - Top Tree: ds/top-tree.md
     - 析合树: ds/divide-combine.md
@@ -433,6 +438,7 @@ nav:
       - 割点和桥: graph/cut.md
       - 圆方树: graph/block-forest.md
       - 点/边连通度: graph/connectivity.md
+    - 环计数问题: graph/rings-count.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
@@ -459,6 +465,7 @@ nav:
     - 弦图: graph/chord.md
     - 最大团搜索算法: graph/max-clique.md
     - 支配树: graph/dominator-tree.md
+    - 图上随机游走: graph/graph-random-walk.md
   - 计算几何:
     - 计算几何部分简介: geometry/index.md
     - 二维计算几何基础: geometry/2d.md
@@ -514,13 +521,11 @@ nav:
     - 并查集应用: topic/dsu-app.md
     - 括号序列: topic/bracket.md
     - 线段树与离线询问: topic/segment-tree-offline.md
-  - 关于 Hulu:
-    -  关于 Hulu: intro/hulu.md
 
 # Theme
 theme:
   name: null
-  custom_dir: 'mkdocs-material/material'
+  custom_dir: 'mkdocs-material/material/templates'
   static_templates:
     - 404.html
   language: 'zh'
@@ -548,6 +553,7 @@ theme:
   icon:
     logo: 'material/school'
   features:
+    - content.action.edit
     - navigation.tabs
     - navigation.instant
   font:

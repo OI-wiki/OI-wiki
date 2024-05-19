@@ -42,7 +42,6 @@ $$
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         vector<int> d1(n), d2(n);
         for (int i = 0; i < n; i++) {
@@ -50,17 +49,16 @@ $$
           while (0 <= i - d1[i] && i + d1[i] < n && s[i - d1[i]] == s[i + d1[i]]) {
             d1[i]++;
           }
-    
+        
           d2[i] = 0;
           while (0 <= i - d2[i] - 1 && i + d2[i] < n &&
-                s[i - d2[i] - 1] == s[i + d2[i]]) {
+                 s[i - d2[i] - 1] == s[i + d2[i]]) {
             d2[i]++;
           }
         }
         ```
     
     === "Python"
-    
         ```python
         d1 = [0] * n
         d2 = [0] * n
@@ -68,7 +66,7 @@ $$
             d1[i] = 1
             while 0 <= i - d1[i] and i + d1[i] < n and s[i - d1[i]] == s[i + d1[i]]:
                 d1[i] += 1
-            
+        
             d2[i] = 0
             while 0 <= i - d2[i] - 1 and i + d2[i] < n and s[i - d2[i] - 1] == s[i + d2[i]]:
                 d2[i] += 1
@@ -128,7 +126,7 @@ $$
     }_\text{try moving here}
     $$
 
-    该图示显示出，尽管以 $j$ 为中心的回文串可能更长，以致于超出「外部」回文串，但在位置 $i$，我们只能利用其完全落在」外部」回文串内的部分。然而位置 $i$ 的答案可能比这个值更大，因此接下来我们将运行朴素算法来尝试将其扩展至「外部」回文串之外，也即标识为 "try moving here" 的区域。
+    该图示显示出，尽管以 $j$ 为中心的回文串可能更长，以致于超出「外部」回文串，但在位置 $i$，我们只能利用其完全落在「外部」回文串内的部分。然而位置 $i$ 的答案可能比这个值更大，因此接下来我们将运行朴素算法来尝试将其扩展至「外部」回文串之外，也即标识为 "try moving here" 的区域。
 
 最后，仍有必要提醒的是，我们应当记得在计算完每个 $d_1[i]$ 后更新值 $(l, r)$。
 
@@ -151,7 +149,6 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
 为了计算 $d_1[]$，我们有以下代码：
 
 === "C++"
-
     ```cpp
     vector<int> d1(n);
     for (int i = 0, l = 0, r = -1; i < n; i++) {
@@ -168,7 +165,6 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
     ```
 
 === "Python"
-
     ```python
     d1 = [0] * n
     l, r = 0, -1
@@ -186,7 +182,6 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
 计算 $d_2[]$ 的代码十分类似，但是在算术表达式上有些许不同：
 
 === "C++"
-
     ```cpp
     vector<int> d2(n);
     for (int i = 0, l = 0, r = -1; i < n; i++) {
@@ -203,7 +198,6 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
     ```
 
 === "Python"
-
     ```python
     d2 = [0] * n
     l, r = 0, -1
@@ -234,7 +228,7 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
 
 ## 练习题目
 
--   [UVA #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
+-   [UVa #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
 -   [「国家集训队」最长双回文串](https://www.luogu.com.cn/problem/P4555)
 
 ***

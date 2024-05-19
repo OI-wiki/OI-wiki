@@ -25,7 +25,7 @@
 $a,a^2,\cdots,a^{\delta_m(a)}$ 模 $m$ 两两不同余。
 
 ???+ note "证明"
-    考虑反证，假设存在两个数 $i\ne j$，且 $a^i\equiv a^j\pmod m$，则有 $a^{|i-j|}\equiv 1\pmod p$.
+    考虑反证，假设存在两个数 $i\ne j$，且 $a^i\equiv a^j\pmod m$，则有 $a^{|i-j|}\equiv 1\pmod m$.
     
     但是显然的有：$0<|i-j|<\delta_m(a)$，这与阶的最小性矛盾，故原命题成立。
 
@@ -272,7 +272,7 @@ $$
                 \delta_m\left(b^Z\right)=W
                 $$
                 
-                又因为显然有 $(Y,W)=1$，$YW=\left[\delta_p(a),\delta_p(b)\right]$，则再由阶的 [性质 1](#性质-1)，可得：
+                又因为显然有 $(Y,W)=1$，$YW=\left[\delta_p(a),\delta_p(b)\right]$，则再由阶的 [性质 3](#性质-3)，可得：
                 
                 $$
                 \begin{aligned}
@@ -440,9 +440,9 @@ $$
 
 ### 最小原根的范围估计
 
-王元[^yuan1959note]和 Burgess[^burgess1962character]证明了若素数 $p$ 有原根，其最小原根 $g_p=O\left(p^{0.25+\epsilon}\right)$，其中 $\epsilon>0$.
+王元[^yuan1959note]和 Burgess[^burgess1962character]证明了素数 $p$ 的最小原根 $g_p=O\left(p^{0.25+\epsilon}\right)$，其中 $\epsilon>0$.
 
-Fridlander[^fridlender1949least]和 Salié[^salie1949kleinsten]证明了若素数 $p$ 有原根，其最小原根 $g_p=\Omega(\log p)$.
+Fridlander[^fridlender1949least]和 Salié[^salie1949kleinsten]证明了素数 $p$ 的最小原根 $g_p=\Omega(\log p)$.
 
 这保证了我们暴力找一个数的最小原根，复杂度是可以接受的。
 

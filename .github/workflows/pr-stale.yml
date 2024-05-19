@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Close Stale PR
-        uses: actions/stale@v4
+        uses: actions/stale@v9
         with:
           stale-pr-message: |
             你好 :wave:

@@ -22,17 +22,15 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         struct dsu {
           vector<size_t> pa;
-    
+        
           explicit dsu(size_t size) : pa(size) { iota(pa.begin(), pa.end(), 0); }
         };
         ```
     
     === "Python"
-    
         ```python
         class Dsu:
             def __init__(self, size):
@@ -47,13 +45,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         size_t dsu::find(size_t x) { return pa[x] == x ? x : find(pa[x]); }
         ```
     
     === "Python"
-    
         ```python
         def find(self, x):
             return x if self.pa[x] == x else self.find(self.pa[x])
@@ -67,13 +63,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         size_t dsu::find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
         ```
     
     === "Python"
-    
         ```python
         def find(self, x):
             if self.pa[x] != x:
@@ -89,13 +83,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         void dsu::unite(size_t x, size_t y) { pa[find(x)] = find(y); }
         ```
     
     === "Python"
-    
         ```python
         def union(self, x, y):
             self.pa[self.find(x)] = self.find(y)
@@ -118,15 +110,14 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         struct dsu {
           vector<size_t> pa, size;
-    
+        
           explicit dsu(size_t size_) : pa(size_), size(size_, 1) {
             iota(pa.begin(), pa.end(), 0);
           }
-    
+        
           void unite(size_t x, size_t y) {
             x = find(x), y = find(y);
             if (x == y) return;
@@ -138,13 +129,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         ```
     
     === "Python"
-    
         ```python
         class Dsu:
             def __init__(self, size):
                 self.pa = list(range(size))
                 self.size = [1] * size
-    
+        
             def union(self, x, y):
                 x, y = self.find(x), self.find(y)
                 if x == y:
@@ -161,16 +151,15 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         struct dsu {
           vector<size_t> pa, size;
-    
+        
           explicit dsu(size_t size_) : pa(size_ * 2), size(size_ * 2, 1) {
             iota(pa.begin(), pa.begin() + size_, size_);
             iota(pa.begin() + size_, pa.end(), size_);
           }
-    
+        
           void erase(size_t x) {
             --size[find(x)];
             pa[x] = x;
@@ -179,13 +168,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         ```
     
     === "Python"
-    
         ```python
         class Dsu:
             def __init__(self, size):
                 self.pa = list(range(size, size * 2)) * 2
                 self.size = [1] * size * 2
-    
+        
             def erase(self, x):
                 self.size[self.find(x)] -= 1
                 self.pa[x] = x
@@ -197,7 +185,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         void dsu::move(size_t x, size_t y) {
           auto fx = find(x), fy = find(y);
@@ -208,7 +195,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
         ```
     
     === "Python"
-    
         ```python
         def move(self, x, y):
             fx, fy = self.find(x), self.find(y)
@@ -243,7 +229,7 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 ## 例题
 
-???+ note "[UVA11987 Almost Union-Find](https://www.luogu.com.cn/problem/UVA11987)"
+???+ note "[UVa11987 Almost Union-Find](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=229&page=show_problem&problem=3138)"
     实现类似并查集的数据结构，支持以下操作：
     
     1.  合并两个元素所属集合
@@ -252,13 +238,11 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
     
     ??? note "参考代码"
         === "C++"
-        
             ```cpp
             --8<-- "docs/ds/code/dsu/dsu_1.cpp"
             ```
         
         === "Python"
-        
             ```python
             --8<-- "docs/ds/code/dsu/dsu_1.py"
             ```

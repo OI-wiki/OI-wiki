@@ -1,3 +1,5 @@
+autor: iamtwz, billchenchina, CBW2007, CCXXXI, chinggg, Enter-tainer, eyedeng, FFjet, gaojude, Great-designer, H-J-Granger, Henry-ZHR, hsfzLZH1, Ir1d, kenlig, Konano, ksyx, luoguyuntianming, Marcythm, Menci, NachtgeistW, ouuan, Peanut-Tang, qwqAutomaton, sshwy, StudyingFather, Tiphereth-A, TrisolarisHD, TRSWNCA, Xeonacid, Yuuko10032, Zhangjiacheng2006, Zhoier, Hszzzx, shenshuaijie, kfy666
+
 ## 定义
 
 快速幂，二进制取幂（Binary Exponentiation，也称平方法），是一个在 $\Theta(\log n)$ 的时间内计算 $a^n$ 的小技巧，而暴力的计算需要 $\Theta(n)$ 的时间。
@@ -9,6 +11,8 @@
 计算 $a$ 的 $n$ 次方表示将 $n$ 个 $a$ 乘在一起：$a^{n} = \underbrace{a \times a \cdots \times a}_{n\text{ 个 a}}$。然而当 $a,n$ 太大的时侯，这种方法就不太适用了。不过我们知道：$a^{b+c} = a^b \cdot a^c,\,\,a^{2b} = a^b \cdot a^b = (a^b)^2$。二进制取幂的想法是，我们将取幂的任务按照指数的 **二进制表示** 来分割成更小的任务。
 
 ## 过程
+
+### 迭代版本
 
 首先我们将 $n$ 表示为 2 进制，举一个例子：
 
@@ -54,12 +58,41 @@ $$
 
 这个算法的复杂度是 $\Theta(\log n)$ 的，我们计算了 $\Theta(\log n)$ 个 $2^k$ 次幂的数，然后花费 $\Theta(\log n)$ 的时间选择二进制为 1 对应的幂来相乘。
 
+### 递归版本
+
+上述迭代版本中，由于 $2^{i+1}$ 项依赖于 $2^i$，使得其转换为递归版本比较困难（一方面需要返回一个额外的 $a^{2^i}$，对函数来说无法实现一个只返回计算结果的接口；另一方面则是必须从低位往高位计算，即从高位往低位调用，这也造成了递归实现的困扰），下面则提供递归版本的思路。
+
+给定形式 $n_{t\dots i} = (n_tn_{t-1}\cdots n_i)_2$，即 $n_{t\dots i}$ 表示将 $n$ 的前 $t - i + 1$ 位二进制位当作一个二进制数，则有如下变换：
+
+$$
+\begin{aligned}
+n &= n_{t\dots 0} \\
+  &= 2\times n_{t\dots 1} + n_0\\
+  &= 2\times (2\times n_{t\dots 2} + n_1) + n_0 \\
+  &\cdots
+\end{aligned}
+$$
+
+那么有：
+
+$$
+\begin{aligned}
+a^n &= a^{n_{t\dots 0}} \\
+    &= a^{2\times n_{t\dots 1} + n_0} = \left(a^{n_{t\dots 1}}\right)^2  a^{n_0} \\
+    &= \left(a^{2\times n_{t\dots 2} + n_1}\right)^2  a^{n_0} = \left(\left(a^{n_{t\dots 2}}\right)^2 a^{n_1}\right)^2  a^{n_0} \\
+    &\cdots
+\end{aligned}
+$$
+
+如上所述，在递归时，对于不同的递归深度是相同的处理：$a^{n_{t\dots i}} = (a^{n_{t\dots (i+1)}})^2a^{n_i}$，即将当前递归的二进制数拆成两部分：最低位在递归出来时乘上去，其余部分则变成新的二进制数递归进入更深一层作相同的处理。
+
+可以观察到，每递归深入一层则二进制位减少一位，所以该算法的时间复杂度也为 $\Theta(\log n)$。
+
 ## 实现
 
 首先我们可以直接按照上述递归方法实现：
 
 === "C++"
-
     ```cpp
     long long binpow(long long a, long long b) {
       if (b == 0) return 1;
@@ -72,7 +105,6 @@ $$
     ```
 
 === "Python"
-
     ```python
     def binpow(a, b):
         if b == 0:
@@ -87,7 +119,6 @@ $$
 第二种实现方法是非递归式的。它在循环的过程中将二进制位为 1 时对应的幂累乘到答案中。尽管两者的理论复杂度是相同的，但第二种在实践过程中的速度是比第一种更快的，因为递归会花费一定的开销。
 
 === "C++"
-
     ```cpp
     long long binpow(long long a, long long b) {
       long long res = 1;
@@ -101,12 +132,11 @@ $$
     ```
 
 === "Python"
-
     ```python
     def binpow(a, b):
         res = 1
         while b > 0:
-            if (b & 1):
+            if b & 1:
                 res = res * a
             a = a * a
             b >>= 1
@@ -127,7 +157,6 @@ $$
 既然我们知道取模的运算不会干涉乘法运算，因此我们只需要在计算的过程中取模即可。
 
 === "C++"
-
     ```cpp
     long long binpow(long long a, long long b, long long m) {
       a %= m;
@@ -142,13 +171,12 @@ $$
     ```
 
 === "Python"
-
     ```python
     def binpow(a, b, m):
         a = a % m
         res = 1
         while b > 0:
-            if (b & 1):
+            if b & 1:
                 res = res * a % m
             a = a * a % m
             b >>= 1
@@ -162,7 +190,7 @@ $$
 ???+ note "问题描述"
     计算斐波那契数列第 $n$ 项 $F_n$。
 
-根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$，我们可以构建一个 $2\times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $\Theta(\log n)$ 的时间内计算出结果。对于更多的细节参见 [斐波那契数列](./combinatorics/fibonacci.md)。
+根据斐波那契数列的递推式 $F_n = F_{n-1} + F_{n-2}$，我们可以构建一个 $2\times 2$ 的矩阵来表示从 $F_i,F_{i+1}$ 到 $F_{i+1},F_{i+2}$ 的变换。于是在计算这个矩阵的 $n$ 次幂的时侯，我们使用快速幂的思想，可以在 $\Theta(\log n)$ 的时间内计算出结果。对于更多的细节参见 [斐波那契数列](./combinatorics/fibonacci.md)，矩阵快速幂的实现参见 [矩阵加速递推](../math/linear-algebra/matrix.md#矩阵加速递推) 中的实现。
 
 ### 多次置换
 
@@ -321,7 +349,7 @@ long long binmul(long long a, long long b, long long m) {
     请先学习 [高精度](./bignum.md)
 
 ???+ note " 例题【NOIP2003 普及组改编·麦森数】（[原题在此](https://www.luogu.com.cn/problem/P1045)）"
-    题目大意：从文件中输入 P（1000\<P<3100000），计算 $2^P−1$ 的最后 100 位数字（用十进制高精度数表示），不足 100 位时高位补 0。
+    题目大意：从文件中输入 $P$（$1000 < P < 3100000$），计算 $2^P−1$ 的最后 100 位数字（用十进制高精度数表示），不足 100 位时高位补 0。
 
 代码实现如下：
 
@@ -365,7 +393,7 @@ long long binmul(long long a, long long b, long long m) {
 -   [LA - 3722 Jewel-eating Monsters](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1723)
 -   [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
 
-    **本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+**本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
 
 ## 参考资料与注释
 

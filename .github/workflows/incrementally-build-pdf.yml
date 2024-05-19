@@ -1,0 +1,82 @@
+name: Incrementally Build LaTeX document
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches:
+      - master
+
+jobs:
+  pre_build:
+    permissions:
+      actions: write
+      contents: read
+    name: Duplicate Actions Detection
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          cancel_others: 'true'
+  build:
+    name: OI-Wiki Incremental LaTeX Build
+    needs: pre_build
+    if: needs.pre_build.outputs.should_skip != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the LaTeX document
+        uses: OI-wiki/latex-action@v1.0.0
+        with:
+          latexmk_use_xelatex: true
+          latexmk_shell_escape: true
+          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -8bit"
+          extra_system_packages: |
+            unzip
+            wget
+            curl
+            coreutils
+            nodejs
+            npm
+            imagemagick
+            libwebp
+            librsvg
+            git
+            python3
+            py3-pygments
+            inkscape
+            libxml2
+          pre_compile: |
+            umask 0 && npm config set cache /tmp/.npm
+            wget -O notosans.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"
+            wget -O notoserif.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerif-hinted.zip"
+            wget -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip"
+            wget -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
+            wget "https://mirror.math.princeton.edu/pub/CTAN/fonts/cm-unicode.zip"
+            git clone https://github.com/googlefonts/RobotoMono
+            unzip notosans.zip -d notosans
+            unzip notoserif.zip -d notoserif
+            unzip notosanscjk.zip -d notosanscjk
+            unzip notoserifcjk.zip -d notoserifcjk
+            unzip  ./cm-unicode.zip
+            cp -r notosans notoserif notosanscjk notoserifcjk cm-unicode/fonts/otf/* RobotoMono/fonts/ttf/* /usr/share/fonts
+            fc-cache
+            git config --global --add safe.directory /github/workspace
+            git clone https://github.com/OI-wiki/OI-Wiki-export.git
+            cd ./OI-Wiki-export/remark-latex
+            npm i
+            cd ../..
+            cd ./OI-Wiki-export/oi-wiki-export
+            python3 increase-mem-limit.py
+            fmtutil-sys --all
+            npm i
+            node index.js ../../
+            node incremental-build.js ${{ github.ref }} ${{ secrets.GITHUB_TOKEN }}
+          root_file: |
+            oi-wiki-export.tex
+      - uses: actions/upload-artifact@v4
+        with:
+          name: OI-wiki.pdf
+          path: ./OI-Wiki-export/oi-wiki-export/oi-wiki-export.pdf

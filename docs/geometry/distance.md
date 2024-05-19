@@ -148,11 +148,10 @@ $$
 
 ??? note "参考代码"
     === "C++"
-    
         ```cpp
         #include <bits/stdc++.h>
         using namespace std;
-    
+        
         int main() {
           int n, x, y, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
           scanf("%d", &n);
@@ -167,14 +166,18 @@ $$
         ```
     
     === "Python"
-    
         ```python
-        minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
+        minx = 0x7FFFFFFF
+        maxx = 0
+        miny = 0x7FFFFFFF
+        maxy = 0
         n = int(input())
         for i in range(1, n + 1):
-            x, y = map(lambda x:int(x), input().split())
-            minx = min(minx, x + y); maxx = max(maxx, x + y)
-            miny = min(miny, x - y); maxy = max(maxy, x - y)
+            x, y = map(lambda x: int(x), input().split())
+            minx = min(minx, x + y)
+            maxx = max(maxx, x + y)
+            miny = min(miny, x - y)
+            maxy = max(maxy, x - y)
         print(max(maxx - minx, maxy - miny))
         ```
 
@@ -319,11 +322,10 @@ $$
 
 ??? note "参考代码"
     === "C++"
-    
         ```cpp
         #include <bits/stdc++.h>
         using namespace std;
-    
+        
         int main() {
           int n, x, y, a, b, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
           scanf("%d", &n);
@@ -339,27 +341,40 @@ $$
         ```
     
     === "Python"
-    
         ```python
-        minx = 0x7fffffff; maxx = 0; miny = 0x7fffffff; maxy = 0
+        minx = 0x7FFFFFFF
+        maxx = 0
+        miny = 0x7FFFFFFF
+        maxy = 0
         n = int(input())
         for i in range(1, n + 1):
-            a, b = map(lambda x:int(x), input().split())
-            x = a + b; y = a - b
-            minx = min(minx, x); maxx = max(maxx, x)
-            miny = min(miny, y); maxy = max(maxy, y)
+            a, b = map(lambda x: int(x), input().split())
+            x = a + b
+            y = a - b
+            minx = min(minx, x)
+            maxx = max(maxx, x)
+            miny = min(miny, y)
+            maxy = max(maxy, y)
         print(max(maxx - minx, maxy - miny))
         ```
 
 对比两份代码，我们又能够发现，两种不同的思路，写出来的代码却是完全等价的，是不是很神奇呢？当然，更高深的东西需要大家另行研究。
 
-## $L_m$ 距离
+## 闵可夫斯基距离
 
-一般地，我们定义平面上两点 $A(x_1, y_1)$，$B(x_2, y_2)$ 之间的 $L_m$ 距离为
+我们定义 $n$ 维空间中两点 $X(x_1, x_2, \dots, x_n)$，$Y(y_1, y_2, \dots, y_n)$ 之间的闵可夫斯基距离为：
 
-$d(L_m) = (|x_1-x_2|^m+|y_1-y_2|^m)^{\frac{1}{m}}$
+$$
+D(X, Y) = \left(\sum_{i=1}^n \left\vert x_i - y_i \right\vert ^p\right)^{\frac{1}{p}}.
+$$
 
-特殊的，$L_2$ 距离就是欧几里得距离，$L_1$ 距离就是曼哈顿距离。
+特别的：
+
+1.  当 $p=1$ 时，$D(X, Y) = \sum_{i=1}^n \left\vert x_i - y_i \right\vert$ 即为曼哈顿距离；
+2.  当 $p=2$ 时，$D(X, Y) = \left(\sum_{i=1}^n (x_i - y_i)^2\right)^{1/2}$ 即为欧几里得距离；
+3.  当 $p \to \infty$ 时，$D(X, Y) = \lim_{p \to \infty}\left(\sum_{i=1}^n \left\vert x_i - y_i \right\vert ^p\right) ^{1/p} = \max\limits_{i=1}^n \left\vert x_i - y_i \right\vert$ 即为切比雪夫距离。
+
+注意：当 $p \ge 1$ 时，闵可夫斯基距离才是度量，具体证明参见 [Minkowski distance - Wikipedia](https://en.wikipedia.org/wiki/Minkowski_distance)。
 
 ## 汉明距离
 
@@ -367,8 +382,8 @@ $d(L_m) = (|x_1-x_2|^m+|y_1-y_2|^m)^{\frac{1}{m}}$
 
 我们可以简单的认为对两个串进行异或运算，结果为 1 的数量就是两个串的汉明距离。
 
-部分内容搬运自 [浅谈三种常见的距离算法](https://www.luogu.com.cn/blog/xuxing/Distance-Algorithm)，感谢作者 xuxing 的授权。
+## 参考资料与链接
 
-## 参考资料
+1.  [浅谈三种常见的距离算法](https://www.luogu.com.cn/blog/xuxing/Distance-Algorithm)，感谢作者 xuxing 的授权。
 
 [^ref1]: [切比雪夫距离 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB)

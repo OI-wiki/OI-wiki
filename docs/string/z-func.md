@@ -4,7 +4,7 @@ author: LeoJacob, Marcythm, minghu6
 
 ## 定义
 
-对于个长度为 $n$ 的字符串 $s$。定义函数 $z[i]$ 表示 $s$ 和 $s[i,n-1]$（即以 $s[i]$ 开头的后缀）的最长公共前缀（LCP）的长度。$z$ 被称为 $s$ 的 **Z 函数**。特别地，$z[0] = 0$。
+对于一个长度为 $n$ 的字符串 $s$，定义函数 $z[i]$ 表示 $s$ 和 $s[i,n-1]$（即以 $s[i]$ 开头的后缀）的最长公共前缀（LCP）的长度，则 $z$ 被称为 $s$ 的 **Z 函数**。特别地，$z[0] = 0$。
 
 国外一般将计算该数组的算法称为 **Z Algorithm**，而国内则称其为 **扩展 KMP**。
 
@@ -24,7 +24,6 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         vector<int> z_function_trivial(string s) {
           int n = (int)s.length();
@@ -36,7 +35,6 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
         ```
     
     === "Python"
-    
         ```python
         def z_function_trivial(s):
             n = len(s)
@@ -70,7 +68,6 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 ### 实现
 
 === "C++"
-
     ```cpp
     vector<int> z_function(string s) {
       int n = (int)s.length();
@@ -89,7 +86,6 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
     ```
 
 === "Python"
-
     ```python
     def z_function(s):
         n = len(s)
@@ -159,8 +155,8 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 ## 练习题目
 
 -   [CF126B Password](http://codeforces.com/problemset/problem/126/B)
--   [UVA # 455 Periodic Strings](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
--   [UVA # 11022 String Factoring](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
+-   [UVa # 455 Periodic Strings](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
+-   [UVa # 11022 String Factoring](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
 -   [UVa 11475 - Extend to Palindrome](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2470)
 -   [LA 6439 - Pasti Pas!](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=588&page=show_problem&problem=4450)
 -   [Codechef - Chef and Strings](https://www.codechef.com/problems/CHSTR)

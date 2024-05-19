@@ -13,16 +13,16 @@ jobs:
     name: OI-wiki Offline Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Get changed code files
         id: changed-files
-        uses: tj-actions/changed-files@v35.4.1
+        uses: tj-actions/changed-files@v42
         with:
           files: |
             docs/**/*.cpp
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           python-version: '3.10'

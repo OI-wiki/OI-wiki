@@ -18,7 +18,12 @@ C++ 的类型系统由如下几部分组成：
 
 一般情况下，一个 `bool` 类型变量占有 $1$ 字节（一般情况下，$1$ 字节 =$8$ 位）的空间。
 
+???+ tip
+    可通过头文件 `<climits>`(C++)/`<limits.h>`(C) 中的宏常量 `CHAR_BIT` 获取字节的位数。
+
 ???+ note "C 语言的布尔类型"
+    另请参阅 [C++ 与其他常用语言的区别 - bool](./cpp-other-langs.md#bool)。
+    
     C 语言最初是没有布尔类型的，直到 C99 时才引入 `_Bool` 关键词作为布尔类型，其被视作无符号整数类型。
     
     ???+ note
@@ -33,6 +38,8 @@ C++ 的类型系统由如下几部分组成：
     ```
     
     这些宏于 C23 中移除，并且 C23 起引入 `true`,`false` 和 `bool` 作为关键字，同时保留 `_Bool` 作为替代拼写形式[^note10]。
+    
+    另外，C23 起还可以通过 `<limits.h>` 中的宏常量 `BOOL_WIDTH` 获取布尔类型的位宽。
 
 ### 整数类型
 
@@ -97,6 +104,82 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
     例如 `int`，`signed`，`int signed`，`signed int` 表示同一类型，而 `unsigned long` 和 `unsigned long int` 表示同一类型。
 
 另外，一些编译器实现了扩展整数类型，如 GCC 实现了 128 位整数：有符号版的 `__int128_t` 和无符号版的 `__uint128_t`，如果您在比赛时想使用这些类型，**请仔细阅读比赛规则** 以确定是否允许或支持使用扩展整数类型。
+
+???+ warning "注意"
+    STL 不一定对扩展整数类型有足够的支持，故使用扩展整数类型时需格外小心。
+    
+    ???+ note "示例代码"
+        ```cpp
+        #include <cmath>
+        #include <iostream>
+        
+        int f1(int n) {
+          return abs(n);  // Good
+        }
+        
+        int f2(int n) {
+          return std::abs(n);  // Good
+        }
+        
+        __int128_t f3(__int128_t n) {
+          return abs(n);  // Bad
+        }
+        
+        // Wrong
+        // __int128_t f4(__int128_t n) {
+        //   return std::abs(n);
+        // }
+        
+        int main() {
+          std::cout << "f1: " << f1(-42) << std::endl;
+          std::cout << "f2: " << f2(-42) << std::endl;
+          // std::cout << "f3: " << f3(-42) << std::endl; // Wrong
+          // std::cout << "f4: " << f4(-42) << std::endl; // Wrong
+          return 0;
+        }
+        ```
+    
+    以上示例代码存在如下问题：
+    
+    1.  `__int128_t f3(__int128_t)` 中使用的是 C 风格的绝对值函数，其签名为 `int abs(int)`，故 `n` 首先会强制转换为 `int`，然后才会调用 `abs` 函数。
+    2.  `__int128_t f4(__int128_t)` 中使用的是 C++ 风格的绝对值函数，其并没有签名为 `__int128_t std::abs(__int128_t)` 的函数重载，所以无法通过编译。
+    3.  C++ 的流式输出不支持 `__int128_t` 与 `__uint128_t`。
+    
+    以下是一种解决方案：
+    
+    ??? note "修正后的代码"
+        ```cpp
+        #include <cmath>
+        #include <iostream>
+        
+        __int128_t abs(__int128_t n) { return n < 0 ? -n : n; }
+        
+        std::ostream &operator<<(std::ostream &os, __uint128_t n) {
+          if (n > 9) os << n / 10;
+          os << (int)(n % 10);
+          return os;
+        }
+        
+        std::ostream &operator<<(std::ostream &os, __int128_t n) {
+          if (n < 0) {
+            os << '-';
+            n = -n;
+          }
+          return os << (__uint128_t)n;
+        }
+        
+        int f1(int n) { return abs(n); }
+        
+        int f2(int n) { return std::abs(n); }
+        
+        __int128_t f3(__int128_t n) { return abs(n); }
+        
+        int main() {
+          std::cout << "f1: " << f1(-42) << std::endl;
+          std::cout << "f2: " << f2(-42) << std::endl;
+          std::cout << "f3: " << f3(-42) << std::endl;
+        }
+        ```
 
 ### 字符类型
 

@@ -4,7 +4,8 @@
 
 在线性代数中，向量分为列向量和行向量。
 
-在中国台湾地区关于「列」与「行」的翻译，恰好与中国大陆地区相反。在 **OI Wiki** 按照中国大陆地区的习惯，采用列（column）与行（row）的翻译。
+???+ warning
+    在中国台湾地区关于「列」与「行」的翻译，恰好与中国大陆地区相反。在 **OI Wiki** 按照中国大陆地区的习惯，采用列（column）与行（row）的翻译。
 
 线性代数的主要研究对象是列向量，约定使用粗体小写字母表示列向量。在用到大量向量与矩阵的线性代数中，不引起混淆的情况下，在手写时，字母上方的向量记号可以省略不写。
 
@@ -18,13 +19,11 @@
 
 $$
 \begin{equation}
-\left\{
-\begin{array}{c}
-    7x_1+8x_2+9x_3=13 \\
-    4x_1+5x_2+6x_3=12 \\
-    x_1+2x_2+3x_3=11
-\end{array}
-\right.
+    \begin{cases}
+        7x_1+8x_2+9x_3=13 \\
+        4x_1+5x_2+6x_3=12 \\
+        x_1+2x_2+3x_3=11
+    \end{cases}
 \end{equation}
 $$
 
@@ -32,28 +31,15 @@ $$
 
 $$
 \begin{equation}
-\left(
-\begin{array}{ccc}
-    7 & 8 & 9 \\
-    4 & 5 & 6 \\
-    1 & 2 & 3
-\end{array}
-\right)
-\left(
-\begin{array}{c}
-    x_1 \\ 
-    x_2 \\
-    x_3
-\end{array}
-\right)
-=
-\left(
-\begin{array}{c}
-   13 \\
-   12 \\
-   11
-\end{array}
-\right)
+    \begin{pmatrix}
+        7 & 8 & 9 \\
+        4 & 5 & 6 \\
+        1 & 2 & 3
+    \end{pmatrix}\begin{pmatrix}
+        x_1 \\ x_2 \\ x_3
+    \end{pmatrix}=\begin{pmatrix}
+      13 \\ 12 \\ 11
+    \end{pmatrix}
 \end{equation}
 $$
 
@@ -269,38 +255,15 @@ struct mat {
 
 $$
 \begin{equation}
-\left(
-\begin{array}{c}
-    7 \\ 
-    4 \\
-    1
-\end{array}
-\right)
-x_1+
-\left(
-\begin{array}{c}
-    8 \\ 
-    5 \\
-    2
-\end{array}
-\right)
-x_2+
-\left(
-\begin{array}{c}
-    9 \\ 
-    6 \\
-    3
-\end{array}
-\right)
-x_3
-=
-\left(
-\begin{array}{c}
-   13 \\
-   12 \\
-   11
-\end{array}
-\right)
+    \begin{pmatrix}
+        7 \\ 4 \\ 1
+    \end{pmatrix}x_1+\begin{pmatrix}
+        8 \\ 5 \\ 2
+    \end{pmatrix}x_2+\begin{pmatrix}
+        9 \\ 6 \\ 3
+    \end{pmatrix}x_3=\begin{pmatrix}
+      13 \\ 12 \\ 11
+    \end{pmatrix}
 \end{equation}
 $$
 
@@ -312,23 +275,27 @@ $$
 
 ### 矩阵加速递推
 
-斐波那契数列（Fibonacci Sequence）大家应该都非常的熟悉了。在斐波那契数列当中，$F_1 = F_2 = 1$，$F_i = F_{i - 1} + F_{i - 2}(i \geq 3)$。
+以 [斐波那契数列（Fibonacci Sequence）](../combinatorics/fibonacci.md) 为例。在斐波那契数列当中，$F_1 = F_2 = 1$，$F_i = F_{i - 1} + F_{i - 2}(i \geq 3)$。
 
-如果有一道题目让你求斐波那契数列第 $n$ 项的值，最简单的方法莫过于直接递推了。但是如果 $n$ 的范围达到了 $10^{18}$ 级别，递推就不行了，稳 TLE。考虑矩阵加速递推。
+如果有一道题目让你求斐波那契数列第 $n$ 项的值，最简单的方法莫过于直接递推了。但是如果 $n$ 的范围达到了 $10^{18}$ 级别，递推就不行了，此时我们可以考虑矩阵加速递推。
 
-设 $Fib(n)$ 表示一个 $1 \times 2$ 的矩阵 $\left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$。我们希望根据 $Fib(n-1)=\left[ \begin{array}{ccc}F_{n-1} & F_{n-2} \end{array}\right]$ 推出 $Fib(n)$。
+根据斐波那契数列 [递推公式的矩阵形式](../combinatorics/fibonacci.md#矩阵形式):
 
-试推导一个矩阵 $\text{base}$，使 $Fib(n-1) \times \text{base} = Fib(n)$，即 $\left[\begin{array}{ccc}F_{n-1} & F_{n-2}\end{array}\right] \times \text{base} = \left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$。
+$$
+\begin{bmatrix}
+  F_{n-1} & F_{n-2}
+\end{bmatrix} \begin{bmatrix}
+  1 & 1 \\
+  1 & 0
+\end{bmatrix} = \begin{bmatrix}
+  F_n & F_{n-1}
+\end{bmatrix}
+$$
 
-怎么推呢？因为 $F_n=F_{n-1}+F_{n-2}$，所以 $\text{base}$ 矩阵第一列应该是 $\left[\begin{array}{ccc} 1 \\ 1 \end{array}\right]$，这样在进行矩阵乘法运算的时候才能令 $F_{n-1}$ 与 $F_{n-2}$ 相加，从而得出 $F_n$。同理，为了得出 $F_{n-1}$，矩阵 $\text{base}$ 的第二列应该为 $\left[\begin{array}{ccc} 1 \\ 0 \end{array}\right]$。
+定义初始矩阵 $\text{ans} = \begin{bmatrix}F_2 & F_1\end{bmatrix} = \begin{bmatrix}1 & 1\end{bmatrix}, \text{base} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$。那么，$F_n$ 就等于 $\text{ans} \text{base}^{n-2}$ 这个矩阵的第一行第一列元素，也就是 $\begin{bmatrix}1 & 1\end{bmatrix} \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^{n-2}$ 的第一行第一列元素。
 
-综上所述：$\text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$ 原式化为 $\left[\begin{array}{ccc}F_{n-1} & F_{n-2}\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right] = \left[ \begin{array}{ccc}F_n & F_{n-1} \end{array}\right]$
-
-转化为代码，应该怎么求呢？
-
-定义初始矩阵 $\text{ans} = \left[\begin{array}{ccc}F_2 & F_1\end{array}\right] = \left[\begin{array}{ccc}1 & 1\end{array}\right], \text{base} = \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]$。那么，$F_n$ 就等于 $\text{ans} \times \text{base}^{n-2}$ 这个矩阵的第一行第一列元素，也就是 $\left[\begin{array}{ccc}1 & 1\end{array}\right] \times \left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]^{n-2}$ 的第一行第一列元素。
-
-注意，矩阵乘法不满足交换律，所以一定不能写成 $\left[\begin{array}{ccc} 1 & 1 \\ 1 & 0 \end{array}\right]^{n-2} \times \left[\begin{array}{ccc}1 & 1\end{array}\right]$ 的第一行第一列元素。另外，对于 $n \leq 2$ 的情况，直接输出 $1$ 即可，不需要执行矩阵快速幂。
+???+ warning "注意"
+    矩阵乘法不满足交换律，所以一定不能写成 $\begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^{n-2} \begin{bmatrix}1 & 1\end{bmatrix}$ 的第一行第一列元素。另外，对于 $n \leq 2$ 的情况，直接输出 $1$ 即可，不需要执行矩阵快速幂。
 
 为什么要乘上 $\text{base}$ 矩阵的 $n-2$ 次方而不是 $n$ 次方呢？因为 $F_1, F_2$ 是不需要进行矩阵乘法就能求的。也就是说，如果只进行一次乘法，就已经求出 $F_3$ 了。如果还不是很理解为什么幂是 $n-2$，建议手算一下。
 
@@ -585,9 +552,9 @@ $$
 ???+ note "问题描述"
     给一个 $n$ 阶有向图，边权为 $1$，然后给一个整数 $k$，你的任务是对于每个点对 $(u,v)$ 找到从 $u$ 到 $v$ 长度小于等于 $k$ 的路径的数量（不一定是简单路径，即路径上的点或者边可能走多次）。
 
-我们简单修改一下这个图，我们给每一个结点加一个权值为 $1$ 的自环。这样走的时侯就可以走自环，相当于原地走。这样就包含了小于等于 $k$ 的情况。修改后再做矩阵快速幂即可。（即使这个图在修改之前就有自环，该算法仍是成立的）。
+我们对于每个点 $v$，建立一个虚点 $v'$ 用于记录答案，并在图中加入 $(v,v')$ 和 $(v',v')$ 这两条边。那么对于点对 $(u,v)$，从 $u$ 到 $v$ 边数小于等于 $k$ 的路径的数量，就和从 $u$ 到 $v'$ 边数恰好等于 $k+1$ 的路径的数量相等，这是因为对于任意一条边数为 $m(m \le k)$ 的路径 $(p_0=u)\to p_1\to p_2 \to \dots \to p_{m-1} \to (p_m=v)$，都存在一条边数为 $k+1$ 的路径 $(p_0=u)\to p_1 \to p_2 \to \dots \to p_{m-1} \to (p_m=v) \to v'  \to \dots \to v'$ 与之一一对应。
 
-同样的方法可以用于求边数小于等于 $k$ 的最短路，即加一个边权为 $0$ 的自环。
+对于求边数小于等于 $k$ 的最短路，只需对每个点加一个边权为 $0$ 的自环即可。
 
 ## 习题
 

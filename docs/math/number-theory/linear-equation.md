@@ -6,7 +6,7 @@ $$
 ax\equiv b\pmod n
 $$
 
-的方程称为 **线性同余方程**（Congruence Equation）。其中，$a$、$b$ 和 $n$ 为给定整数，$x$ 为未知数。需要从区间 $[0, n-1]$ 中求解 $x$，当解不唯一时需要求出全体解。
+的方程称为 **线性同余方程**（Linear Congruence Equation）。其中，$a$、$b$ 和 $n$ 为给定整数，$x$ 为未知数。需要从区间 $[0, n-1]$ 中求解 $x$，当解不唯一时需要求出全体解。
 
 ## 用逆元求解
 
@@ -92,7 +92,6 @@ $$
 
 ???+ note "代码实现"
     === "C++"
-    
         ```cpp
         int ex_gcd(int a, int b, int& x, int& y) {
           if (b == 0) {
@@ -106,7 +105,7 @@ $$
           y = temp - a / b * y;
           return d;
         }
-    
+        
         bool liEu(int a, int b, int c, int& x, int& y) {
           int d = ex_gcd(a, b, x, y);
           if (c % d != 0) return 0;
@@ -118,26 +117,27 @@ $$
         ```
     
     === "Python"
-    
         ```python
-        def ex_gcd(a, b ,x, y):
-          if b == 0:
-              x = 1; y = 0
-              return a
-          d = ex_gcd(b, a % b, x, y)
-          temp = x
-          x = y
-          y = temp - a // b * y
-          return d
-    
+        def ex_gcd(a, b, x, y):
+            if b == 0:
+                x = 1
+                y = 0
+                return a
+            d = ex_gcd(b, a % b, x, y)
+            temp = x
+            x = y
+            y = temp - a // b * y
+            return d
+        
+        
         def liEu(a, b, c, x, y):
-          d = ex_gcd(a, b, x, y)
-          if c % d != 0:
-              return 0
-          k = c // d
-          x = x * k
-          y = y * k
-          return 1
+            d = ex_gcd(a, b, x, y)
+            if c % d != 0:
+                return 0
+            k = c // d
+            x = x * k
+            y = y * k
+            return 1
         ```
 
 **本页面主要译自博文 [Модульное линейное уравнение первого порядка](http://e-maxx.ru/algo/diofant_1_equation) 与其英文翻译版 [Linear Congruence Equation](https://cp-algorithms.com/algebra/linear_congruence_equation.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

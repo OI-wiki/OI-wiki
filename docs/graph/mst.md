@@ -1,4 +1,4 @@
-author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo
+author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo, Hszzzx, y-kx-b
 
 ## 定义
 
@@ -141,6 +141,70 @@ $$
 
 注意：上述代码只是求出了最小生成树的权值，如果要输出方案还需要记录每个点的 $dis$ 代表的是哪条边。
 
+??? note "代码实现"
+    ```cpp
+    // 使用二叉堆优化的 Prim 算法。
+    #include <cstring>
+    #include <iostream>
+    #include <queue>
+    using namespace std;
+    const int N = 5050, M = 2e5 + 10;
+    
+    struct E {
+      int v, w, x;
+    } e[M * 2];
+    
+    int n, m, h[N], cnte;
+    
+    void adde(int u, int v, int w) { e[++cnte] = E{v, w, h[u]}, h[u] = cnte; }
+    
+    struct S {
+      int u, d;
+    };
+    
+    bool operator<(const S &x, const S &y) { return x.d > y.d; }
+    
+    priority_queue<S> q;
+    int dis[N];
+    bool vis[N];
+    
+    int res = 0, cnt = 0;
+    
+    void Prim() {
+      memset(dis, 0x3f, sizeof(dis));
+      dis[1] = 0;
+      q.push({1, 0});
+      while (!q.empty()) {
+        if (cnt >= n) break;
+        int u = q.top().u, d = q.top().d;
+        q.pop();
+        if (vis[u]) continue;
+        vis[u] = 1;
+        ++cnt;
+        res += d;
+        for (int i = h[u]; i; i = e[i].x) {
+          int v = e[i].v, w = e[i].w;
+          if (w < dis[v]) {
+            dis[v] = w, q.push({v, w});
+          }
+        }
+      }
+    }
+    
+    int main() {
+      cin >> n >> m;
+      for (int i = 1, u, v, w; i <= m; ++i) {
+        cin >> u >> v >> w, adde(u, v, w), adde(v, u, w);
+      }
+      Prim();
+      if (cnt == n)
+        cout << res;
+      else
+        cout << "No MST.";
+      return 0;
+    }
+    ```
+
 ### 证明
 
 从任意一个结点开始，将结点分成两类：已加入的，未加入的。
@@ -169,7 +233,9 @@ $$
 
 ## Boruvka 算法
 
-接下来介绍另一种求解最小生成树的算法——Boruvka 算法。该算法的思想是前两种算法的结合。它可以用于求解 **边权互不相同** 的无向图的最小生成森林。（无向连通图就是最小生成树。）
+接下来介绍另一种求解最小生成树的算法——Boruvka 算法。该算法的思想是前两种算法的结合。它可以用于求解无向图的最小生成森林。（无向连通图就是最小生成树。）
+
+在边具有较多特殊性质的问题中，Boruvka 算法具有优势。例如 [CF888G](https://codeforces.com/problemset/problem/888/G) 的完全图问题。
 
 为了描述该算法，我们需要引入一些定义：
 
@@ -209,6 +275,8 @@ $$
 17 &  \qquad\qquad\text{ Add its cheapest edge to }F \\
 \end{array}
 $$
+
+需要注意边与边的比较通常需要第二关键字（例如按编号排序），以便当边权相同时分出边的大小。
 
 ## 习题
 
@@ -262,165 +330,164 @@ $$
 
 这个过程可以用倍增求解，复杂度 $O(m \log m)$。
 
-#### 代码
-
-```cpp
-#include <algorithm>
-#include <iostream>
-
-const int INF = 0x3fffffff;
-const long long INF64 = 0x3fffffffffffffffLL;
-
-struct Edge {
-  int u, v, val;
-
-  bool operator<(const Edge &other) const { return val < other.val; }
-};
-
-Edge e[300010];
-bool used[300010];
-
-int n, m;
-long long sum;
-
-class Tr {
- private:
-  struct Edge {
-    int to, nxt, val;
-  } e[600010];
-
-  int cnt, head[100010];
-
-  int pnt[100010][22];
-  int dpth[100010];
-  // 到祖先的路径上边权最大的边
-  int maxx[100010][22];
-  // 到祖先的路径上边权次大的边，若不存在则为 -INF
-  int minn[100010][22];
-
- public:
-  void addedge(int u, int v, int val) {
-    e[++cnt] = (Edge){v, head[u], val};
-    head[u] = cnt;
-  }
-
-  void insedge(int u, int v, int val) {
-    addedge(u, v, val);
-    addedge(v, u, val);
-  }
-
-  void dfs(int now, int fa) {
-    dpth[now] = dpth[fa] + 1;
-    pnt[now][0] = fa;
-    minn[now][0] = -INF;
-    for (int i = 1; (1 << i) <= dpth[now]; i++) {
-      pnt[now][i] = pnt[pnt[now][i - 1]][i - 1];
-      int kk[4] = {maxx[now][i - 1], maxx[pnt[now][i - 1]][i - 1],
-                   minn[now][i - 1], minn[pnt[now][i - 1]][i - 1]};
-      // 从四个值中取得最大值
-      std::sort(kk, kk + 4);
-      maxx[now][i] = kk[3];
-      // 取得严格次大值
-      int ptr = 2;
-      while (ptr >= 0 && kk[ptr] == kk[3]) ptr--;
-      minn[now][i] = (ptr == -1 ? -INF : kk[ptr]);
-    }
-
-    for (int i = head[now]; i; i = e[i].nxt) {
-      if (e[i].to != fa) {
-        maxx[e[i].to][0] = e[i].val;
-        dfs(e[i].to, now);
+??? note "代码实现"
+    ```cpp
+    #include <algorithm>
+    #include <iostream>
+    
+    const int INF = 0x3fffffff;
+    const long long INF64 = 0x3fffffffffffffffLL;
+    
+    struct Edge {
+      int u, v, val;
+    
+      bool operator<(const Edge &other) const { return val < other.val; }
+    };
+    
+    Edge e[300010];
+    bool used[300010];
+    
+    int n, m;
+    long long sum;
+    
+    class Tr {
+     private:
+      struct Edge {
+        int to, nxt, val;
+      } e[600010];
+    
+      int cnt, head[100010];
+    
+      int pnt[100010][22];
+      int dpth[100010];
+      // 到祖先的路径上边权最大的边
+      int maxx[100010][22];
+      // 到祖先的路径上边权次大的边，若不存在则为 -INF
+      int minn[100010][22];
+    
+     public:
+      void addedge(int u, int v, int val) {
+        e[++cnt] = (Edge){v, head[u], val};
+        head[u] = cnt;
+      }
+    
+      void insedge(int u, int v, int val) {
+        addedge(u, v, val);
+        addedge(v, u, val);
+      }
+    
+      void dfs(int now, int fa) {
+        dpth[now] = dpth[fa] + 1;
+        pnt[now][0] = fa;
+        minn[now][0] = -INF;
+        for (int i = 1; (1 << i) <= dpth[now]; i++) {
+          pnt[now][i] = pnt[pnt[now][i - 1]][i - 1];
+          int kk[4] = {maxx[now][i - 1], maxx[pnt[now][i - 1]][i - 1],
+                       minn[now][i - 1], minn[pnt[now][i - 1]][i - 1]};
+          // 从四个值中取得最大值
+          std::sort(kk, kk + 4);
+          maxx[now][i] = kk[3];
+          // 取得严格次大值
+          int ptr = 2;
+          while (ptr >= 0 && kk[ptr] == kk[3]) ptr--;
+          minn[now][i] = (ptr == -1 ? -INF : kk[ptr]);
+        }
+    
+        for (int i = head[now]; i; i = e[i].nxt) {
+          if (e[i].to != fa) {
+            maxx[e[i].to][0] = e[i].val;
+            dfs(e[i].to, now);
+          }
+        }
+      }
+    
+      int lca(int a, int b) {
+        if (dpth[a] < dpth[b]) std::swap(a, b);
+    
+        for (int i = 21; i >= 0; i--)
+          if (dpth[pnt[a][i]] >= dpth[b]) a = pnt[a][i];
+    
+        if (a == b) return a;
+    
+        for (int i = 21; i >= 0; i--) {
+          if (pnt[a][i] != pnt[b][i]) {
+            a = pnt[a][i];
+            b = pnt[b][i];
+          }
+        }
+        return pnt[a][0];
+      }
+    
+      int query(int a, int b, int val) {
+        int res = -INF;
+        for (int i = 21; i >= 0; i--) {
+          if (dpth[pnt[a][i]] >= dpth[b]) {
+            if (val != maxx[a][i])
+              res = std::max(res, maxx[a][i]);
+            else
+              res = std::max(res, minn[a][i]);
+            a = pnt[a][i];
+          }
+        }
+        return res;
+      }
+    } tr;
+    
+    int fa[100010];
+    
+    int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
+    
+    void Kruskal() {
+      int tot = 0;
+      std::sort(e + 1, e + m + 1);
+      for (int i = 1; i <= n; i++) fa[i] = i;
+    
+      for (int i = 1; i <= m; i++) {
+        int a = find(e[i].u);
+        int b = find(e[i].v);
+        if (a != b) {
+          fa[a] = b;
+          tot++;
+          tr.insedge(e[i].u, e[i].v, e[i].val);
+          sum += e[i].val;
+          used[i] = 1;
+        }
+        if (tot == n - 1) break;
       }
     }
-  }
-
-  int lca(int a, int b) {
-    if (dpth[a] < dpth[b]) std::swap(a, b);
-
-    for (int i = 21; i >= 0; i--)
-      if (dpth[pnt[a][i]] >= dpth[b]) a = pnt[a][i];
-
-    if (a == b) return a;
-
-    for (int i = 21; i >= 0; i--) {
-      if (pnt[a][i] != pnt[b][i]) {
-        a = pnt[a][i];
-        b = pnt[b][i];
+    
+    int main() {
+      std::ios::sync_with_stdio(0);
+      std::cin.tie(0);
+      std::cout.tie(0);
+    
+      std::cin >> n >> m;
+      for (int i = 1; i <= m; i++) {
+        int u, v, val;
+        std::cin >> u >> v >> val;
+        e[i] = (Edge){u, v, val};
       }
-    }
-    return pnt[a][0];
-  }
-
-  int query(int a, int b, int val) {
-    int res = -INF;
-    for (int i = 21; i >= 0; i--) {
-      if (dpth[pnt[a][i]] >= dpth[b]) {
-        if (val != maxx[a][i])
-          res = std::max(res, maxx[a][i]);
-        else
-          res = std::max(res, minn[a][i]);
-        a = pnt[a][i];
+    
+      Kruskal();
+      long long ans = INF64;
+      tr.dfs(1, 0);
+    
+      for (int i = 1; i <= m; i++) {
+        if (!used[i]) {
+          int _lca = tr.lca(e[i].u, e[i].v);
+          // 找到路径上不等于 e[i].val 的最大边权
+          long long tmpa = tr.query(e[i].u, _lca, e[i].val);
+          long long tmpb = tr.query(e[i].v, _lca, e[i].val);
+          // 这样的边可能不存在，只在这样的边存在时更新答案
+          if (std::max(tmpa, tmpb) > -INF)
+            ans = std::min(ans, sum - std::max(tmpa, tmpb) + e[i].val);
+        }
       }
+      // 次小生成树不存在时输出 -1
+      std::cout << (ans == INF64 ? -1 : ans) << '\n';
+      return 0;
     }
-    return res;
-  }
-} tr;
-
-int fa[100010];
-
-int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
-
-void Kruskal() {
-  int tot = 0;
-  std::sort(e + 1, e + m + 1);
-  for (int i = 1; i <= n; i++) fa[i] = i;
-
-  for (int i = 1; i <= m; i++) {
-    int a = find(e[i].u);
-    int b = find(e[i].v);
-    if (a != b) {
-      fa[a] = b;
-      tot++;
-      tr.insedge(e[i].u, e[i].v, e[i].val);
-      sum += e[i].val;
-      used[i] = 1;
-    }
-    if (tot == n - 1) break;
-  }
-}
-
-int main() {
-  std::ios::sync_with_stdio(0);
-  std::cin.tie(0);
-  std::cout.tie(0);
-
-  std::cin >> n >> m;
-  for (int i = 1; i <= m; i++) {
-    int u, v, val;
-    std::cin >> u >> v >> val;
-    e[i] = (Edge){u, v, val};
-  }
-
-  Kruskal();
-  long long ans = INF64;
-  tr.dfs(1, 0);
-
-  for (int i = 1; i <= m; i++) {
-    if (!used[i]) {
-      int _lca = tr.lca(e[i].u, e[i].v);
-      // 找到路径上不等于 e[i].val 的最大边权
-      long long tmpa = tr.query(e[i].u, _lca, e[i].val);
-      long long tmpb = tr.query(e[i].v, _lca, e[i].val);
-      // 这样的边可能不存在，只在这样的边存在时更新答案
-      if (std::max(tmpa, tmpb) > -INF)
-        ans = std::min(ans, sum - std::max(tmpa, tmpb) + e[i].val);
-    }
-  }
-  // 次小生成树不存在时输出 -1
-  std::cout << (ans == INF64 ? -1 : ans) << '\n';
-  return 0;
-}
-```
+    ```
 
 ## 瓶颈生成树
 
@@ -506,7 +573,7 @@ int main() {
 ??? note "[NOI 2018 归程](https://uoj.ac/problem/393)"
     首先预处理出来每一个点到根节点的最短路。
     
-    我们构造出来根据海拔的最大生成树。显然每次询问可以到达的节点是在最小生成树和询问点的最小边权 $\geq p$ 的节点。
+    我们构造出来根据海拔的最大生成树。显然每次询问可以到达的节点是在最大生成树中和询问点的路径上最小边权 $> p$ 的节点。
     
     根据 Kruskal 重构树的性质，这些节点满足均在一棵子树内同时为其所有叶子节点。
     

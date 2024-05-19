@@ -221,7 +221,7 @@ NOI 大纲中入门级只要求学习选择、冒泡、插入排序，共三个�
 -   [素数](../math/number-theory/prime.md)
 -   [筛法](../math/number-theory/sieve.md)
 -   [最大公因数](../math/number-theory/gcd.md)
--   [欧拉函数](../math/number-theory/euler.md)
+-   [欧拉函数](../math/number-theory/euler-totient.md)
 -   [分解质因数](../math/number-theory/pollard-rho.md)
 
 #### 2.9.5 组合计数

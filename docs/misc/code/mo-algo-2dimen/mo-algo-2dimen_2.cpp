@@ -4,8 +4,7 @@ using namespace std;
 void read(int& a) {
   a = 0;
   char c;
-  while ((c = getchar()) < 48)
-    ;
+  while ((c = getchar()) < 48);
   do a = (a << 3) + (a << 1) + (c ^ 48);
   while ((c = getchar()) > 47);
 }

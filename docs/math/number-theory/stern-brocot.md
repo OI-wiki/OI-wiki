@@ -21,10 +21,10 @@ $$
 每次在相邻的两个分数 $\frac{a}{b},\frac{c}{d}$ 中间插入一个分数 $\frac{a+c}{b+d}$，这样就完成了一次迭代，得到下一个序列。于是它就会变成这样
 
 $$
-\begin{array}{c}
-\dfrac{0}{1}, \dfrac{1}{1}, \dfrac{1}{0} \\\\
-\dfrac{0}{1}, \dfrac{1}{2}, \dfrac{1}{1}, \dfrac{2}{1}, \dfrac{1}{0} \\\\
-\dfrac{0}{1}, \dfrac{1}{3}, \dfrac{1}{2}, \dfrac{2}{3}, \dfrac{1}{1}, \dfrac{3}{2}, \dfrac{2}{1}, \dfrac{3}{1}, \dfrac{1}{0}
+\begin{array}{ccccccccc}
+&&&\dfrac{0}{1}, & \dfrac{1}{1}, & \dfrac{1}{0} &&&\\\\
+&&\dfrac{0}{1}, & \dfrac{1}{2}, & \dfrac{1}{1}, & \dfrac{2}{1}, & \dfrac{1}{0} &&\\\\
+\dfrac{0}{1}, & \dfrac{1}{3}, & \dfrac{1}{2}, & \dfrac{2}{3}, & \dfrac{1}{1}, & \dfrac{3}{2}, & \dfrac{2}{1}, & \dfrac{3}{1}, & \dfrac{1}{0}
 \end{array}
 $$
 
@@ -112,7 +112,6 @@ $$
 构建实现
 
 === "C++"
-
     ```cpp
     void build(int a = 0, int b = 1, int c = 1, int d = 0, int level = 1) {
       int x = a + c, y = b + d;
@@ -124,10 +123,10 @@ $$
     ```
 
 === "Python"
-
     ```python
-    def build(a = 1, b = 1, c = 1, d = 0, level = 1):
-        x = a + c; y = b + d
+    def build(a=1, b=1, c=1, d=0, level=1):
+        x = a + c
+        y = b + d
         # ... output the current fraction x/y
         # at the current level in the tree
         build(a, b, x, y, level + 1)
@@ -137,7 +136,6 @@ $$
 查询实现
 
 === "C++"
-
     ```cpp
     string find(int x, int y, int a = 0, int b = 1, int c = 1, int d = 0) {
       int m = a + c, n = b + d;
@@ -150,16 +148,16 @@ $$
     ```
 
 === "Python"
-
     ```python
-    def find(x, y, a = 0, b = 1, c = 1, d = 0):
-        m = a + c; n = b + d
+    def find(x, y, a=0, b=1, c=1, d=0):
+        m = a + c
+        n = b + d
         if x == m and y == n:
             return ""
         if x * n < y * m:
-            return 'L' + find(x, y, a, b, m, n)
+            return "L" + find(x, y, a, b, m, n)
         else:
-            return 'R' + find(x, y, m, n, c, d)
+            return "R" + find(x, y, m, n, c, d)
     ```
 
 #### 例题
@@ -241,7 +239,7 @@ $$
     
     现在的问题是，给定 $\frac{p_0}{q_0} < \frac{p_1}{q_1}$，找到一个分数 $\frac{p}{q}$ 使得 $(q;p)$ 在字典上最小，并且 $\frac{p_0}{q_0} < \frac{p}{q} < \frac{p_1}{q_1}$。
     
-            def solve():
+        def solve():
             n = int(input())
             C = [0] * n
             J = [0] * n
@@ -252,21 +250,21 @@ $$
             for i in range(n):
                 C[i], J[i] = map(int, input().split())
                 if i > 0:
-                    A = C[i] - C[i-1]
-                    B = J[i] - J[i-1]
+                    A = C[i] - C[i - 1]
+                    B = J[i] - J[i - 1]
                     if A <= 0 and B <= 0:
                         fail = True
-                    elif B > 0 and A < 0: # y/x > (-A)/B if B > 0
-                        if (-A)*q0 > p0*B:
+                    elif B > 0 and A < 0:  # y/x > (-A)/B if B > 0
+                        if (-A) * q0 > p0 * B:
                             p0, q0 = -A, B
-                    elif B < 0 and A > 0: # y/x < A/(-B) if B < 0
-                        if A*q1 < p1*(-B):
+                    elif B < 0 and A > 0:  # y/x < A/(-B) if B < 0
+                        if A * q1 < p1 * (-B):
                             p1, q1 = A, -B
-            if p0*q1 >= p1*q0 or fail:
-                return 'IMPOSSIBLE'
+            if p0 * q1 >= p1 * q0 or fail:
+                return "IMPOSSIBLE"
     
             p, q = middle(p0, q0, p1, q1)
-            return str(q) + ' ' + str(p)
+            return str(q) + " " + str(p)
 
 ### Calkin–Wilf 树
 
@@ -311,17 +309,17 @@ Stern–Brocot 树与 Farey 序列有着极其相似的特征。第 $i$ 个 Fare
 
 $$
 \begin{array}{lllllllllllll}
-F_1=\{&\frac{0}{1},&&&&&&&&&&\frac{1}{1}&\}\\
-F_2=\{&\frac{0}{1},&&&&&\frac{1}{2},&&&&&\frac{1}{1}&\}\\
-F_3=\{&\frac{0}{1},&&&\frac{1}{3},&&\frac{1}{2},&&\frac{2}{3},&&&\frac{1}{1}&\}\\
-F_4=\{&\frac{0}{1},&&\frac{1}{4},&\frac{1}{3},&&\frac{1}{2},&&\frac{2}{3},&\frac{3}{4},&&\frac{1}{1}&\}\\
-F_5=\{&\frac{0}{1},&\frac{1}{5},&\frac{1}{4},&\frac{1}{3},&\frac{2}{5},&\frac{1}{2},&\frac{3}{5},&\frac{2}{3},&\frac{3}{4},&\frac{4}{5},&\frac{1}{1}&\}\\
+F_1=\bigg\{&\dfrac{0}{1},&&&&&&&&&&\dfrac{1}{1}&\bigg\}\\\\
+F_2=\bigg\{&\dfrac{0}{1},&&&&&\dfrac{1}{2},&&&&&\dfrac{1}{1}&\bigg\}\\\\
+F_3=\bigg\{&\dfrac{0}{1},&&&\dfrac{1}{3},&&\dfrac{1}{2},&&\dfrac{2}{3},&&&\dfrac{1}{1}&\bigg\}\\\\
+F_4=\bigg\{&\dfrac{0}{1},&&\dfrac{1}{4},&\dfrac{1}{3},&&\dfrac{1}{2},&&\dfrac{2}{3},&\dfrac{3}{4},&&\dfrac{1}{1}&\bigg\}\\\\
+F_5=\bigg\{&\dfrac{0}{1},&\dfrac{1}{5},&\dfrac{1}{4},&\dfrac{1}{3},&\dfrac{2}{5},&\dfrac{1}{2},&\dfrac{3}{5},&\dfrac{2}{3},&\dfrac{3}{4},&\dfrac{4}{5},&\dfrac{1}{1}&\bigg\}
 \end{array}
 $$
 
 显然，上述构建 Stern–Brocot 树的算法同样适用于构建 Farey 序列。因为 Stern–Brocot 树中的数是最简分数，因此在边界条件（分母）稍微修改一下就可以形成构造 Farey 序列的代码。可以认为 Farey 序列 $F_i$ 是 Stern–Brocot 第 $i-1$ 次迭代后得到的序列的子序列。
 
-Farey 序列同样满足最简性和单调性，并且满足一个与 Stern–Brocot 树相似的性质：对于序列中连续的三个数 $\frac ab,\frac xy,\frac cd$，有 $x=a+c,y=b+d$。这个可以轻松证明，不再赘述。
+Farey 序列同样满足最简性和单调性，并且满足一个与 Stern–Brocot 树相似的性质：对于序列中连续的三个数 $\dfrac ab,\dfrac xy,\dfrac cd$，有 $x=a+c,y=b+d$。这个可以轻松证明，不再赘述。
 
 由 Farey 序列的定义，可以得到 $F_i$ 的长度 $L_i$ 公式为：
 
@@ -346,9 +344,9 @@ $$
 F_{0,n}=\frac{np_0+p_{-1}}{nq_0+q_{-1}}=\frac{na_0+1}{n}=a_0+\frac{1}{n}
 $$
 
-这些中间分数介于 $\frac{p_{-1}}{q_{-1}}$ 与 $\frac{p_0}{q_0}=a_0$ 之间。
+这些中间分数介于 $\dfrac{p_{-1}}{q_{-1}}$ 与 $\dfrac{p_0}{q_0}=a_0$ 之间。
 
-对于给定的 $k$，第 $0$ 个中间分数 $F_{k,0}=\frac{p_{k-1}}{q_{k-1}}$ 与最后一个中间分数 $F_{k,0}=\frac{p_{k-1}}{q_{k-1}}$ 是渐进分数。
+对于给定的 $k$，第 $0$ 个中间分数 $F_{k,0}=\dfrac{p_{k-1}}{q_{k-1}}$ 与最后一个中间分数 $F_{k,0}=\dfrac{p_{k-1}}{q_{k-1}}$ 是渐进分数。
 
 对比上述表达式与
 
@@ -366,7 +364,7 @@ $$
 
 对于确定的 $k$，中间分数随着 $n$ 的增加递增或递减。
 
-定理：对实数 $x$ 与渐进分数 $\frac{p_k}{q_k}$，有
+定理：对实数 $x$ 与渐进分数 $\dfrac{p_k}{q_k}$，有
 
 $$
 \frac{1}{q_k(q_k+q_{k+1})}<\left|x-\frac{p_k}{q_k}\right|<\frac{1}{q_kq_{k+1}}
@@ -429,7 +427,7 @@ Dirichlet 逼近定理是说，对于任意的一个无理数 $\theta$，均能�
 
 $\left|\frac{p}{q}-\theta\right|\leqslant\frac{1}{q^2}$
 
-由于任一实数 $qx$ 到最近的整数距离不超过 $\frac{1}{2}$，显然存在整数 $p$ 和 $q$ 使得
+由于任一实数 $qx$ 到最近的整数距离不超过 $\dfrac{1}{2}$，显然存在整数 $p$ 和 $q$ 使得
 
 $$
 |qx-p|\leq\frac{1}{2}
@@ -439,17 +437,17 @@ $$
 \left|x-\frac{p}{q}\right|\leq\frac{1}{2q}
 $$
 
-Dirichlet 逼近定理将右侧优化到了 $\frac{1}{q^2}$。等价的写法，$|qx-p|<\frac{1}{q}$ 总有解。
+Dirichlet 逼近定理将右侧优化到了 $\dfrac{1}{q^2}$。等价的写法，$|qx-p|<\dfrac{1}{q}$ 总有解。
 
 当 $x$ 是无理数的时候，可以让渐进分数的分母任意大，$|qx-p|$ 任意小。
 
-另外还有瓦伦定理：实数 $x$ 连续两个渐进分数至少有一个满足 $\left|x-\frac{p}{q}\right|<\frac{1}{2q^2}$，由瓦伦（Vahlen）在 1895 年证明。
+另外还有瓦伦定理：实数 $x$ 连续两个渐进分数至少有一个满足 $\left|x-\dfrac{p}{q}\right|<\dfrac{1}{2q^2}$，由瓦伦（Vahlen）在 1895 年证明。
 
-另外还有伯雷尔定理：实数 $x$ 连续两个渐进分数至少有一个满足 $\left|x-\frac{p}{q}\right|<\frac{1}{\sqrt{5}q^2}$，由伯雷尔（Borel）在 1903 年证明。
+另外还有伯雷尔定理：实数 $x$ 连续两个渐进分数至少有一个满足 $\left|x-\dfrac{p}{q}\right|<\dfrac{1}{\sqrt{5}q^2}$，由伯雷尔（Borel）在 1903 年证明。
 
-这个 $\sqrt{5}$ 是最优的，在无理数为例如黄金分割 $\frac{1+\sqrt{5}}{2}=\left[1,1,1,\ldots\right]$ 等连分数展开自某位起均为 $1$ 的时候取等。这些后续的定理也同样表明，在 Dirichlet 逼近定理中的小于等于号事实上也可以是小于号。
+这个 $\sqrt{5}$ 是最优的，在无理数为例如黄金分割 $\dfrac{1+\sqrt{5}}{2}=\left[1,1,1,\ldots\right]$ 等连分数展开自某位起均为 $1$ 的时候取等。这些后续的定理也同样表明，在 Dirichlet 逼近定理中的小于等于号事实上也可以是小于号。
 
-另外还有定理：实数 $x$ 连分数展开无穷项不小于 $n$，则存在无穷多渐进分数满足 $\left|x-\frac{p}{q}\right|<\frac{1}{\sqrt{n^2+4}q^2}$。这种条件的极端情形例如 $\frac{n+\sqrt{n^2+4}}{2}=\left[n,n,n,\ldots\right]$。
+另外还有定理：实数 $x$ 连分数展开无穷项不小于 $n$，则存在无穷多渐进分数满足 $\left|x-\dfrac{p}{q}\right|<\dfrac{1}{\sqrt{n^2+4}q^2}$。这种条件的极端情形例如 $\dfrac{n+\sqrt{n^2+4}}{2}=\left[n,n,n,\ldots\right]$。
 
 其他的，还有 Kronecker 逼近定理：
 
@@ -475,13 +473,13 @@ Dirichlet 逼近定理和 Kronecker 逼近定理，都可以用抽屉原理来�
 
 更加严谨的叙述为：
 
-对实数 $x$ 和有理数 $\frac{p}{q}$，如果对于任意的整数 $a$ 和整数 $0<b\leq q$，$\frac{a}{b}\neq\frac{p}{q}$，均有
+对实数 $x$ 和有理数 $\dfrac{p}{q}$，如果对于任意的整数 $a$ 和整数 $0<b\leq q$，$\dfrac{a}{b}\neq\dfrac{p}{q}$，均有
 
 $$
 \left|x-\frac{a}{b}\right|>\left|x-\frac{p}{q}\right|
 $$
 
-则称 $\frac{p}{q}$ 是 $x$ 的一个最佳有理逼近。
+则称 $\dfrac{p}{q}$ 是 $x$ 的一个最佳有理逼近。
 
 比无理数大的称为上逼近，否则为下逼近。由于无理数和有理数之间一定有有理数，最佳逼近有理数列必然为若干个上逼近，之后若干个下逼近，交替进行的形式。
 
@@ -564,9 +562,9 @@ $$
 
 ## 渐进分数的等价性质
 
-实数 $x$ 的渐进分数 $\frac{p}{q}$ 等价于这样的一类分数：
+实数 $x$ 的渐进分数 $\dfrac{p}{q}$ 等价于这样的一类分数：
 
-对于任意的整数 $a$ 和整数 $0<b\leq q$，$\frac{a}{b}\neq\frac{p}{q}$，均有
+对于任意的整数 $a$ 和整数 $0<b\leq q$，$\dfrac{a}{b}\neq\dfrac{p}{q}$，均有
 
 $$
 |bx-a|>|qx-p|
@@ -582,7 +580,7 @@ $$
 
 证明：
 
-首先有 $|q_kx-p_k|<\frac{1}{q_{k+1}}$。对于一个非渐近分数的中间分数 $F_{k,n}=\frac{a}{b}$，有位置分布
+首先有 $|q_kx-p_k|<\dfrac{1}{q_{k+1}}$。对于一个非渐近分数的中间分数 $F_{k,n}=\dfrac{a}{b}$，有位置分布
 
 $$
 \frac{p_{k-1}}{q_{k-1}}~\frac{a}{b}~\frac{p_{k+1}}{q_{k+1}}~x~\frac{p_k}{q_k}
@@ -594,7 +592,7 @@ $$
 \left|x-\frac{a}{b}\right|>\left|\frac{p_{k+1}}{q_{k+1}}-\frac{a}{b}\right|
 $$
 
-即 $|bx-a|\geq\frac{1}{q_{k+1}}$。由于 $b=nq_k+q_{k-1}>q_k$，因此 $F_{k,n}=\frac{a}{b}$ 劣于比它分母更小的 $\frac{p_k}{q_k}$。
+即 $|bx-a|\geq\dfrac{1}{q_{k+1}}$。由于 $b=nq_k+q_{k-1}>q_k$，因此 $F_{k,n}=\dfrac{a}{b}$ 劣于比它分母更小的 $\dfrac{p_k}{q_k}$。
 
 接下来证明，满足这个条件的都是渐进分数。
 
@@ -610,19 +608,19 @@ $$
 
 接下来找出分母为 $q_k$ 的满足上述性质的数，并指出它是渐进分数。
 
-在给定 $b$ 的时候，$\min |bx-a|\leq\frac{1}{2}$，并且取到最小的 $a$ 最多只有两个取值。
+在给定 $b$ 的时候，$\min |bx-a|\leq\dfrac{1}{2}$，并且取到最小的 $a$ 最多只有两个取值。
 
 当 $b$ 在范围 $0<b\leq q_k$ 遍历的时候，将上述的最小值继续比较其中的最小值，并记取到最小值中的最小值的多个 $b$ 中，最小的 $b$ 为 $b_0$，对应的 $a$ 为 $a_0$。
 
 这里的 $a_0$ 至多有两个，而事实上只有一个，可以证明其唯一性。唯一性的证明补在最后。
 
-从上述选取方式可以看出 $\frac{a_0}{b_0}$ 也满足定理的条件，因此它是一个渐进分数 $\frac{p_s}{q_s}$。
+从上述选取方式可以看出 $\dfrac{a_0}{b_0}$ 也满足定理的条件，因此它是一个渐进分数 $\dfrac{p_s}{q_s}$。
 
 又根据严格单调性，在 $s<k$ 时无法取到最小，只能有 $s=k$。
 
 至此距离证毕只剩下 $a_0$ 的唯一性。
 
-如果给定 $b_0$，取到 $|b_0x-a|$ 的 $a$ 不唯一，而是相邻的两个数，只能有 $|b_0x-a|=\frac{1}{2}$。此时记较小的一个为 $a_0$。于是有
+如果给定 $b_0$，取到 $|b_0x-a|$ 的 $a$ 不唯一，而是相邻的两个数，只能有 $|b_0x-a|=\dfrac{1}{2}$。此时记较小的一个为 $a_0$。于是有
 
 $$
 x=\frac{2a_0+1}{2b_0}
@@ -638,7 +636,7 @@ $$
 a_1=\frac{2a_0+1}{d}
 $$
 
-使得 $|b_1x-a_1|=|b_0x-a_0|=\frac{1}{2}$。这与上述选取方式中 $b_0$ 的最小性矛盾。
+使得 $|b_1x-a_1|=|b_0x-a_0|=\dfrac{1}{2}$。这与上述选取方式中 $b_0$ 的最小性矛盾。
 
 此时将有理数 $x$ 做连分数展开，则最后一个渐进分数的分子分母就是
 
@@ -660,20 +658,20 @@ $$
 
 ## 勒让德判别法
 
-对实数 $x$ 与分数 $\frac{p}{q}$，如果有
+对实数 $x$ 与分数 $\dfrac{p}{q}$，如果有
 
 $$
-|x−\frac{p}{q}|<\frac{1}{2q^2}
+\left|x−\frac{p}{q}\right|<\frac{1}{2q^2}
 $$
 
-则 $\frac{p}{q}$ 一定是 $x$ 的渐近分数。
+则 $\dfrac{p}{q}$ 一定是 $x$ 的渐近分数。
 
 勒让德判别法的原始形式更加复杂，由勒让德（Legendre）于 1797 年发表在他的专著中。
 
 勒让德判别法的原始表述是一个等价关系，这里给出的形式相对简化与宽松，是一个渐进分数的充分条件而非必要条件。
 
 ???+ note "证明"
-    假设 $\frac{p}{q}$ 不是渐进分数，则存在 $0<b\leq q$，且 $\frac{a}{b}\neq\frac{p}{q}$ 使得
+    假设 $\dfrac{p}{q}$ 不是渐进分数，则存在 $0<b\leq q$，且 $\dfrac{a}{b}\neq\dfrac{p}{q}$ 使得
     
     $$
     |bx-a|\leq|qx-p|<\frac{1}{2q}

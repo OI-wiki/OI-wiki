@@ -45,7 +45,7 @@ author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicu
 
 一种做法是：$a_1 + a_2 + a_3 + a_4 + a_5 + a_6 + a_7$，需要求 $7$ 个数的和。
 
-那如果我告诉你三个数 $A$，$B$，$C$，$A = a[1 \ldots 4]$ 的和，$B = a[5 \ldots 6]$ 的总和，$C = a[7 \ldots 7]$ 的总和（其实就是 $a[7]$ 自己）。你会怎么算？你一定会回答：$A + B + C$，只需要求 $3$ 个数的和。
+但是如果已知三个数 $A$，$B$，$C$，$A = a[1 \ldots 4]$ 的和，$B = a[5 \ldots 6]$ 的总和，$C = a[7 \ldots 7]$ 的总和（其实就是 $a[7]$ 自己）。你会怎么算？你一定会回答：$A + B + C$，只需要求 $3$ 个数的和。
 
 这就是树状数组能快速求解信息的原因：我们总能将一段前缀 $[1, n]$ 拆成 **不多于 $\boldsymbol{\log n}$ 段区间**，使得这 $\log n$ 段区间的信息是 **已知的**。
 
@@ -115,7 +115,6 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         int lowbit(int x) {
           // x 的二进制中，最低位的 1 以及后面所有 0 组成的数。
@@ -128,7 +127,6 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
         ```
     
     === "Python"
-    
         ```python
         def lowbit(x):
             """
@@ -171,7 +169,6 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         int getsum(int x) {  // a[1]..a[x]的和
           int ans = 0;
@@ -184,9 +181,8 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
         ```
     
     === "Python"
-    
         ```python
-        def getsum(x): # a[1]..a[x]的和
+        def getsum(x):  # a[1]..a[x]的和
             ans = 0
             while x > 0:
                 ans = ans + c[x]
@@ -332,7 +328,6 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         void add(int x, int k) {
           while (x <= n) {  // 不能越界
@@ -343,10 +338,9 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
         ```
     
     === "Python"
-    
         ```python
         def add(x, k):
-            while x <= n: # 不能越界
+            while x <= n:  # 不能越界
                 c[x] = c[x] + k
                 x = x + lowbit(x)
         ```
@@ -413,12 +407,11 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         int t1[MAXN], t2[MAXN], n;
-    
+        
         int lowbit(int x) { return x & (-x); }
-    
+        
         void add(int k, int v) {
           int v1 = k * v;
           while (k <= n) {
@@ -427,7 +420,7 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
             k += lowbit(k);
           }
         }
-    
+        
         int getsum(int *t, int k) {
           int ret = 0;
           while (k) {
@@ -436,42 +429,41 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
           }
           return ret;
         }
-    
+        
         void add1(int l, int r, int v) {
           add(l, v), add(r + 1, -v);  // 将区间加差分为两个前缀加
         }
-    
+        
         long long getsum1(int l, int r) {
           return (r + 1ll) * getsum(t1, r) - 1ll * l * getsum(t1, l - 1) -
-                (getsum(t2, r) - getsum(t2, l - 1));
+                 (getsum(t2, r) - getsum(t2, l - 1));
         }
         ```
     
     === "Python"
-    
         ```python
         t1 = [0] * MAXN, t2 = [0] * MAXN; n = 0
-    
+        
         def lowbit(x):
             return x & (-x)
-    
+        
         def add(k, v):
             v1 = k * v
             while k <= n:
                 t1[k] = t1[k] + v; t2[k] = t2[k] + v1
                 k = k + lowbit(k)
-    
+        
         def getsum(t, k):
             ret = 0
             while k:
                 ret = ret + t[k]
                 k = k - lowbit(k)
             return ret
-    
+        
         def add1(l, r, v):
             add(l, v)
             add(r + 1, -v)
-    
+        
         def getsum1(l, r):
             return (r) * getsum(t1, r) - l * getsum(t1, l - 1) - \
                   (getsum(t2, r) - getsum(t2, l - 1))
@@ -531,34 +523,32 @@ $$
 
 ???+ note "实现"
     === "单点加"
-    
         ```cpp
         void add(int x, int y, int v) {
-            for (int i = x; i <= n ;i += lowbit(i)) {
-                for (int j = y; j <= m; j += lowbit(j)) {
-                    // 注意这里必须得建循环变量，不能像一维数组一样直接 while (x <= n) 了
-                    c[i][j] += v;
-                }
+          for (int i = x; i <= n; i += lowbit(i)) {
+            for (int j = y; j <= m; j += lowbit(j)) {
+              // 注意这里必须得建循环变量，不能像一维数组一样直接 while (x <= n) 了
+              c[i][j] += v;
             }
+          }
         }
         ```
     
     === "查询子矩阵和"
-    
         ```cpp
         int sum(int x, int y) {
           int res = 0;
           for (int i = x; i > 0; i -= lowbit(i)) {
-              for (int j = y; j > 0; j -= lowbit(j)) {
-                  res += c[i][j];
-              }
+            for (int j = y; j > 0; j -= lowbit(j)) {
+              res += c[i][j];
+            }
           }
           return res;
         }
-    
+        
         int ask(int x1, int y1, int x2, int y2) {
-            // 查询子矩阵和
-            return sum(x2, y2) - sum(x2, y1 - 1) - sum(x1 - 1, y2) + sum(x1 - 1, y1 - 1);
+          // 查询子矩阵和
+          return sum(x2, y2) - sum(x2, y1 - 1) - sum(x1 - 1, y2) + sum(x1 - 1, y1 - 1);
         }
         ```
 
@@ -714,17 +704,16 @@ $$
 
 原因很简单，考虑 $\operatorname{lowbit}(x + 2^i)$，它一定是 $2^i$，因为 $x$ 之前只累加过 $2^j$ 满足 $j > i$。因此 $c[x + 2^i]$ 表示的区间就是 $[x + 1 \ldots x + 2^i]$。
 
-如此以来，时间复杂度降低为 $\Theta(\log n)$。
+如此一来，时间复杂度降低为 $\Theta(\log n)$。
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         // 权值树状数组查询第 k 小
         int kth(int k) {
           int sum = 0, x = 0;
           for (int i = log2(n); ~i; --i) {
-            x += 1 << i;                      // 尝试扩展
+            x += 1 << i;                    // 尝试扩展
             if (x >= n || sum + t[x] >= k)  // 如果扩展失败
               x -= 1 << i;
             else
@@ -735,18 +724,19 @@ $$
         ```
     
     === "Python"
-    
         ```python
         # 权值树状数组查询第 k 小
         def kth(k):
-            sum = 0; x = 0
-            i = log2(n)
+            sum = 0
+            x = 0
+            i = int(log2(n))
             while ~i:
-                x = x + (1 << i) # 尝试扩展
-                if x >= n or sum + t[x] >= k: # 如果扩展失败
+                x = x + (1 << i)  # 尝试扩展
+                if x >= n or sum + t[x] >= k:  # 如果扩展失败
                     x = x - (1 << i)
                 else:
                     sum = sum + t[x]
+                i = i - 1
             return x + 1
         ```
 
@@ -895,7 +885,6 @@ $i$ 按照 $5 \to 1$ 扫：
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         // Θ(n) 建树
         void init() {
@@ -908,7 +897,6 @@ $i$ 按照 $5 \to 1$ 扫：
         ```
     
     === "Python"
-    
         ```python
         # Θ(n) 建树
         def init():
@@ -925,7 +913,6 @@ $i$ 按照 $5 \to 1$ 扫：
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         // Θ(n) 建树
         void init() {
@@ -936,12 +923,11 @@ $i$ 按照 $5 \to 1$ 扫：
         ```
     
     === "Python"
-    
         ```python
         # Θ(n) 建树
         def init():
             for i in range(1, n + 1):
-                t[i] = sum[i] - sum[i-lowbit(i)]
+                t[i] = sum[i] - sum[i - lowbit(i)]
         ```
 
 ### 时间戳优化
@@ -950,13 +936,12 @@ $i$ 按照 $5 \to 1$ 扫：
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         // 时间戳优化
         int tag[MAXN], t[MAXN], Tag;
-    
+        
         void reset() { ++Tag; }
-    
+        
         void add(int k, int v) {
           while (k <= n) {
             if (tag[k] != Tag) t[k] = 0;
@@ -964,7 +949,7 @@ $i$ 按照 $5 \to 1$ 扫：
             k += lowbit(k);
           }
         }
-    
+        
         int getsum(int k) {
           int ret = 0;
           while (k) {
@@ -976,12 +961,17 @@ $i$ 按照 $5 \to 1$ 扫：
         ```
     
     === "Python"
-    
         ```python
         # 时间戳优化
-        tag = [0] * MAXN; t = [0] * MAXN; Tag = 0
+        tag = [0] * MAXN
+        t = [0] * MAXN
+        Tag = 0
+        
+        
         def reset():
             Tag = Tag + 1
+        
+        
         def add(k, v):
             while k <= n:
                 if tag[k] != Tag:
@@ -989,6 +979,8 @@ $i$ 按照 $5 \to 1$ 扫：
                 t[k] = t[k] + v
                 tag[k] = Tag
                 k = k + lowbit(k)
+        
+        
         def getsum(k):
             ret = 0
             while k:

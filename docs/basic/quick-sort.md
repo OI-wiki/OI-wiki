@@ -24,43 +24,70 @@
 
 第三步中的序列已经分别有序且第一个序列中的数都小于第二个数，所以直接拼接起来就好了。
 
-=== "C++[^ref2]"
-
-    ```cpp
-    struct Range {
-      int start, end;
-
-      Range(int s = 0, int e = 0) { start = s, end = e; }
-    };
-
-    template <typename T>
-    void quick_sort(T arr[], const int len) {
-      if (len <= 0) return;
-      Range r[len];
-      int p = 0;
-      r[p++] = Range(0, len - 1);
-      while (p) {
-        Range range = r[--p];
-        if (range.start >= range.end) continue;
-        T mid = arr[range.end];
-        int left = range.start, right = range.end - 1;
-        while (left < right) {
-          while (arr[left] < mid && left < right) left++;
-          while (arr[right] >= mid && left < right) right--;
-          std::swap(arr[left], arr[right]);
+=== "C++"
+    === " 非递归实现[^ref2]"
+        ```cpp
+        struct Range {
+          int start, end;
+        
+          Range(int s = 0, int e = 0) { start = s, end = e; }
+        };
+        
+        template <typename T>
+        void quick_sort(T arr[], const int len) {
+          if (len <= 0) return;
+          Range r[len];
+          int p = 0;
+          r[p++] = Range(0, len - 1);
+          while (p) {
+            Range range = r[--p];
+            if (range.start >= range.end) continue;
+            T mid = arr[range.end];
+            int left = range.start, right = range.end - 1;
+            while (left < right) {
+              while (arr[left] < mid && left < right) left++;
+              while (arr[right] >= mid && left < right) right--;
+              std::swap(arr[left], arr[right]);
+            }
+            if (arr[left] >= arr[range.end])
+              std::swap(arr[left], arr[range.end]);
+            else
+              left++;
+            r[p++] = Range(range.start, left - 1);
+            r[p++] = Range(left + 1, range.end);
+          }
         }
-        if (arr[left] >= arr[range.end])
-          std::swap(arr[left], arr[range.end]);
-        else
-          left++;
-        r[p++] = Range(range.start, left - 1);
-        r[p++] = Range(left + 1, range.end);
-      }
-    }
-    ```
+        ```
+
+    === "递归实现"
+        ```cpp
+        template <typename T>
+        int Paritition(T A[], int low, int high) {
+          int pivot = A[low];
+          while (low < high) {
+            while (low < high && pivot <= A[high]) --high;
+            A[low] = A[high];
+            while (low < high && A[low] <= pivot) ++low;
+            A[high] = A[low];
+          }
+          A[low] = pivot;
+          return low;
+        }
+        template <typename T>
+        void QuickSort(T A[], int low, int high) {
+          if (low < high) {
+            int pivot = Paritition(A, low, high);
+            QuickSort(A, low, pivot - 1);
+            QuickSort(A, pivot + 1, high);
+          }
+        }
+        template <typename T>
+        void QuickSort(T A[], int len) {
+          QuickSort(A, 0, len - 1);
+        }
+        ```
 
 === "Python[^ref2]"
-
     ```python
     def quick_sort(alist, first, last):
         if first >= last:
@@ -176,7 +203,6 @@
 三路快速排序实现起来非常简单，下面给出了一种三路快排的 C++ 实现。
 
 === "C++"
-
     ```cpp
     // 模板的 T 参数表示元素的类型，此类型需要定义小于（<）运算
     template <typename T>
@@ -206,7 +232,6 @@
     ```
 
 === "Python[^ref2]"
-
     ```python
     def quick_sort(arr, l, r):
         if l >= r:
@@ -215,7 +240,7 @@
         pivot = arr[random_index]
         arr[l], arr[random_index] = arr[random_index], arr[l]
         i = l + 1
-        j = l 
+        j = l
         k = r + 1
         while i < k:
             if arr[i] < pivot:
@@ -225,7 +250,7 @@
             elif arr[i] > pivot:
                 arr[i], arr[k - 1] = arr[k - 1], arr[i]
                 k -= 1
-            else: 
+            else:
                 i += 1
         arr[l], arr[j] = arr[j], arr[l]
         quick_sort(arr, l, j - 1)
@@ -308,7 +333,7 @@ T find_kth_element(T arr[], int rk, const int len) {
 
 先分析前两步——划分与寻找中位数。由于划分后每组内的元素数量非常少，可以认为寻找一组元素的中位数的时间复杂度为 $O(1)$。因此找出所有 $\left \lfloor \dfrac{n}{5} \right \rfloor$ 组元素中位数的时间复杂度为 $O(n)$。
 
-接下来分析第三步——递归过程。这一步进行了两次递归调用：第一次是寻找各组中位数中的中位数，需要的开销显然为 $T(\dfrac{n}{5})$，第二次是进入分界值的左侧部分或右侧部分。根据我们选取的划分元素，有 $\dfrac{1}{2} \times \left \lfloor \dfrac{n}{5} \right \rfloor = \left \lfloor \dfrac{n}{10} \right \rfloor$ 组元素的中位数小于分界值，这几组元素中，比中位数还小的元素也一定比分界值要小，从而整个序列中小于分界值的元素至少有 $3 \times \left \lfloor \dfrac{n}{10} \right \rfloor = \left \lfloor \dfrac{3n}{10} \right \rfloor$ 个。同理，整个序列中大于分界值的元素也至少有 $\left \lfloor \dfrac{3n}{10} \right \rfloor$ 个。因此，分界值的左边或右边至多有 $\dfrac{7n}{10}$ 个元素，这次递归的时间开销的上界为 $T(\dfrac{7n}{10}$。
+接下来分析第三步——递归过程。这一步进行了两次递归调用：第一次是寻找各组中位数中的中位数，需要的开销显然为 $T(\dfrac{n}{5})$，第二次是进入分界值的左侧部分或右侧部分。根据我们选取的划分元素，有 $\dfrac{1}{2} \times \left \lfloor \dfrac{n}{5} \right \rfloor = \left \lfloor \dfrac{n}{10} \right \rfloor$ 组元素的中位数小于分界值，这几组元素中，比中位数还小的元素也一定比分界值要小，从而整个序列中小于分界值的元素至少有 $3 \times \left \lfloor \dfrac{n}{10} \right \rfloor = \left \lfloor \dfrac{3n}{10} \right \rfloor$ 个。同理，整个序列中大于分界值的元素也至少有 $\left \lfloor \dfrac{3n}{10} \right \rfloor$ 个。因此，分界值的左边或右边至多有 $\dfrac{7n}{10}$ 个元素，这次递归的时间开销的上界为 $T(\dfrac{7n}{10})$。
 
 综上，我们可以列出这样的不等式：
 

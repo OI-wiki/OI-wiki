@@ -31,7 +31,7 @@ class SparseTable {
 
   T query(int l, int r) {
     int lt = r - l + 1;
-    int q = ceil(log2(lt)) - 1;
+    int q = floor(log2(lt));
     return op(ST[l][q], ST[r - (1 << q) + 1][q]);
   }
 };

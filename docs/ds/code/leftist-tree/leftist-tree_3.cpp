@@ -9,8 +9,7 @@ using namespace std;
 int read() {
   int out = 0, f = 1;
   char c;
-  for (c = getchar(); !isdigit(c) && c != '-'; c = getchar())
-    ;
+  for (c = getchar(); !isdigit(c) && c != '-'; c = getchar());
   if (c == '-') {
     f = -1;
     c = getchar();
@@ -130,12 +129,13 @@ int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
 int merge(int x, int y) {  // 板子，合并
   if (!x || !y) return x | y;
   if (t[x].val < t[y].val) swap(x, y);
-  t[rs(x) = merge(rs(x), y)].fa = x;
+  int& rs_ref = rs(x);
+  rs_ref = merge(rs_ref, y);
+  t[rs_ref].fa = x;
   pushup(x);
   return x;
 }
 
-// 以下俩是一个东西
 void pushup(int x) {
   if (!x) return;
   if (t[x].d != t[rs(x)].d + 1) {

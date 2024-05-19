@@ -15,7 +15,7 @@ author: PeterlitsZo, Tiphereth-A
 构造一个序列：$A=\{1,2,3\dots,p-1\}$，这个序列有着这样一个性质：
 
 $$
-\prod_{i=1}^{n}\space A_i\equiv\prod_{i=1}^{n} (A_i\times a) \pmod p
+\prod_{i=1}^{p-1}\space A_i\equiv\prod_{i=1}^{p-1} (A_i\times a) \pmod p
 $$
 
 证明：
@@ -51,7 +51,7 @@ $$
 
 ## 欧拉定理
 
-在了解欧拉定理（Euler's theorem）之前，请先了解 [欧拉函数](./euler.md)。定理内容如下：
+在了解欧拉定理（Euler's theorem）之前，请先了解 [欧拉函数](./euler-totient.md)。定理内容如下：
 
 ### 定义
 
@@ -174,7 +174,7 @@ $$
 ## 习题
 
 1.  [SPOJ #4141 "Euler Totient Function"\[Difficulty: CakeWalk\]](http://www.spoj.com/problems/ETF/)
-2.  [UVA #10179 "Irreducible Basic Fractions"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120)
-3.  [UVA #10299 "Relatives"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240)
-4.  [UVA #11327 "Enumerating Rational Numbers"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302)
+2.  [UVa #10179 "Irreducible Basic Fractions"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120)
+3.  [UVa #10299 "Relatives"\[Difficulty: Easy\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240)
+4.  [UVa #11327 "Enumerating Rational Numbers"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302)
 5.  [TIMUS #1673 "Admission to Exam"\[Difficulty: High\]](http://acm.timus.ru/problem.aspx?space=1&num=1673)

@@ -2,7 +2,7 @@
 
 区间类动态规划是线性动态规划的扩展，它在分阶段地划分问题时，与阶段中元素出现的顺序和由前一阶段的哪些元素合并而来有很大的关系。
 
-令状态 $f(i,j)$ 表示将下标位置 $i$ 到 $j$ 的所有元素合并能获得的价值的最大值，那么 $f(i,j)=\max\{f(i,k)+f(k+1,j)+cost\}$，$cost$ 为将这两组元素合并起来的代价。
+令状态 $f(i,j)$ 表示将下标位置 $i$ 到 $j$ 的所有元素合并能获得的价值的最大值，那么 $f(i,j)=\max\{f(i,k)+f(k+1,j)+cost\}$，$cost$ 为将这两组元素合并起来的价值。
 
 ## 性质
 
@@ -44,25 +44,22 @@
 ## 实现
 
 === "C++"
-
     ```cpp
-    for (len = 1; len <= n; len++)
-      for (i = 1; i <= 2 * n - 1; i++) {
+    for (len = 2; len <= n; len++)
+      for (i = 1; i <= 2 * n - 1 - len; i++) {
         int j = len + i - 1;
-        for (k = i; k < j && k <= 2 * n - 1; k++)
+        for (k = i; k < j; k++)
           f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1]);
       }
     ```
 
 === "Python"
-
     ```python
-    for len in range(1, n + 1):
-        for i in range(1, 2 * n):
+    for len in range(2, n + 1):
+        for i in range(1, 2 * n - len):
             j = len + i - 1
-            while k < j and k <= 2 * n - 1:
+            for k in range(i, j):
                 f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1])
-                k += 1
     ```
 
 ## 几道练习题

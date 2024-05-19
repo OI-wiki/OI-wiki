@@ -143,12 +143,12 @@
 
 ## 例题二
 
-???+ note " 例 2 [hdu 2089 不要 62](https://vjudge.net/problem/HDU-2089)"
+???+ note " 例 2 [HDU 2089 不要 62](https://acm.hdu.edu.cn/showproblem.php?pid=2089)"
     题面大意：统计一个区间内数位上不能有 4 也不能有连续的 62 的数有多少。
 
 ### 解释
 
-没有 4 的话在枚举的时候判断一下，不枚举 4 就可以保证状态合法了，所以这个约束没有记忆化的必要，而对于 62 的话，涉及到两位，当前一位是 6 或者不是 6 这两种不同情况我计数是不相同的，所以要用状态来记录不同的方案数。$\mathit{dp}_{\mathit{pos},\mathit{sta}}$ 表示当前第 $\mathit{pos}$ 位，前一位是否是 6 的状态，这里 $\mathit{sta}$ 只需要取 0 和 1 两种状态就可以了，不是 6 的情况可视为同种，不会影响计数。
+没有 4 的话在枚举的时候判断一下，不枚举 4 就可以保证状态合法了，所以这个约束没有记忆化的必要，而对于 62 的话，涉及到两位，当前一位是 6 或者不是 6 这两种不同情况计数是不相同的，所以要用状态来记录不同的方案数。$\mathit{dp}_{\mathit{pos},\mathit{sta}}$ 表示当前第 $\mathit{pos}$ 位，前一位是否是 6 的状态，这里 $\mathit{sta}$ 只需要取 0 和 1 两种状态就可以了，不是 6 的情况可视为同种，不会影响计数。
 
 ### 实现
 
@@ -421,7 +421,7 @@
 
 [洛谷  P3413 SAC#1 - 萌数](https://www.luogu.com.cn/problem/P3413)
 
-[HDU 6148 Valley Number](https://vjudge.net/problem/HDU-6148)
+[HDU 6148 Valley Number](https://acm.hdu.edu.cn/showproblem.php?pid=6148)
 
 [CF55D Beautiful numbers](http://codeforces.com/problemset/problem/55/D)
 

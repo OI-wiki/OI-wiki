@@ -57,12 +57,10 @@ $\rightarrow$ 进入 **Format** 菜单，选择 **Syntax Coloring**，然后选�
 $\rightarrow$ 输入以下文字：
 
 ```tex
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \begin{document}
-
-A sentence of text.
-
+  A sentence of text.
 \end{document}
 ```
 
@@ -102,17 +100,15 @@ $\rightarrow$ 在 `\begin{document}` 和 命令后紧跟着输入以下文本：
 你的文档现在长成了这样：
 
 ```tex
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \begin{document}
+  \title{My First Document}
+  \author{My Name}
+  \date{\today}
+  \maketitle
 
-\title{My First Document}
-\author{My Name}
-\date{\today}
-\maketitle
-
-A sentence of text.
-
+  A sentence of text.
 \end{document}
 ```
 
@@ -156,29 +152,27 @@ Here are my results.
 你的文档会变成
 
 ```tex
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \begin{document}
+  \title{My First Document}
+  \author{My Name}
+  \date{\today}
+  \maketitle
 
-\title{My First Document}
-\author{My Name}
-\date{\today}
-\maketitle
+  \section{Introduction}
+  This is the introduction.
 
-\section{Introduction}
-This is the introduction.
+  \section{Methods}
 
-\section{Methods}
+  \subsection{Stage 1}
+  The first part of the methods.
 
-\subsection{Stage 1}
-The first part of the methods.
+  \subsection{Stage 2}
+  The second part of the methods.
 
-\subsection{Stage 2}
-The second part of the methods.
-
-\section{Results}
-Here are my results.
-
+  \section{Results}
+  Here are my results.
 \end{document}
 ```
 
@@ -195,30 +189,27 @@ $\rightarrow$ 在 `\subsection{Stage 1}` 下面另起一行，输入 `\label{sec
 你的文档会变成这样：
 
 ```tex
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \begin{document}
+  \title{My First Document}
+  \author{My Name}
+  \date{\today}
+  \maketitle
 
-\title{My First Document}
-\author{My Name}
-\date{\today}
-\maketitle
+  \section{Introduction}
+  This is the introduction.
 
-\section{Introduction}
-This is the introduction.
+  \section{Methods}
 
-\section{Methods}
+  \subsection{Stage 1}
+  \label{sec1} The first part of the methods.
 
-\subsection{Stage 1}
-\label{sec1}
-The first part of the methods.
+  \subsection{Stage 2}
+  The second part of the methods.
 
-\subsection{Stage 2}
-The second part of the methods.
-
-\section{Results}
-Here are my results. Referring to section \ref{sec1} on page \pageref{sec1}
-
+  \section{Results}
+  Here are my results. Referring to section \ref{sec1} on page \pageref{sec1}
 \end{document}
 ```
 
@@ -244,7 +235,7 @@ $\rightarrow$ 在 `\maketitle` 之后输入以下内容：
 `\newpage` 命令会另起一个页面，这样我们就可以看到 `\pagenumbering` 命令带来的影响了。你的文档的前 14 行长这样：
 
 ```tex
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \begin{document}
 
@@ -286,14 +277,9 @@ $\rightarrow$ 编译并核对文档（可能需要多次编译，下文不赘述
 LaTeX 有多种不同的字体效果，在此列举一部分：
 
 ```tex
-\textit{words in italics}
-\textsl{words slanted}
-\textsc{words in smallcaps}
-\textbf{words in bold}
-\texttt{words in teletype}
-\textsf{sans serif words}
-\textrm{roman words}
-\underline{underlined words}
+\textit{words in italics} \textsl{words slanted} \textsc{words in smallcaps} \textbf{words
+in bold} \texttt{words in teletype} \textsf{sans serif words} \textrm{roman
+words} \underline{underlined words}
 ```
 
 效果如下：
@@ -333,15 +319,9 @@ $\rightarrow$ 在 `\begin{document}` 前输入 `\usepackage{color}`。$\rightarr
 接下来我们列举一些 LaTeX 的字体大小设定命令：
 
 ```tex
-normal size words
-{\tiny tiny words}
-{\scriptsize scriptsize words}
-{\footnotesize footnotesize words}
-{\small small words}
-{\large large words}
-{\Large Large words}
-{\LARGE LARGE words}
-{\huge huge words}
+normal size words {\tiny tiny words} {\scriptsize scriptsize words}
+{\footnotesize footnotesize words} {\small small words} {\large large words}
+{\Large Large words} {\LARGE LARGE words} {\huge huge words}
 ```
 
 效果如下：
@@ -362,13 +342,16 @@ $\rightarrow$ 输入下面的内容来生成一个有序列表套无序列表：
 
 ```tex
 \begin{enumerate}
-\item First thing
-\item Second thing
-\begin{itemize}
-\item A sub-thing
-\item Another sub-thing
-\end{itemize}
-\item Third thing
+  \item First thing
+
+  \item Second thing
+    \begin{itemize}
+      \item A sub-thing
+
+      \item Another sub-thing
+    \end{itemize}
+
+  \item Third thing
 \end{enumerate}
 ```
 
@@ -384,13 +367,16 @@ $\rightarrow$ 编译并核对 PDF 文档。
 
 ```tex
 \begin{itemize}
-\item[-] First thing
-\item[+] Second thing
-\begin{itemize}
-\item[Fish] A sub-thing
-\item[Plants] Another sub-thing
-\end{itemize}
-\item[Q] Third thing
+  \item[-] First thing
+
+  \item[+] Second thing
+    \begin{itemize}
+      \item[Fish] A sub-thing
+
+      \item[Plants] Another sub-thing
+    \end{itemize}
+
+  \item[Q] Third thing
 \end{itemize}
 ```
 
@@ -406,9 +392,8 @@ $\rightarrow$ 编译并核对 PDF 文档。
 
 ```tex
 It is a truth universally acknowledged% Note comic irony
-in the very first sentence
-, that a single man in possession of a good fortune, must
-be in want of a wife.
+in the very first sentence , that a single man in possession of a good fortune,
+must be in want of a wife.
 ```
 
 生成的结果为
@@ -445,7 +430,7 @@ $\rightarrow$ 输入代码来在你的文档中生成下面内容：
 
 ![p12](images/latex-for-beginners-12.png)
 
-询问专家或者查看本书的 TeX 源代码获取帮助。
+询问专家或者查看本页面的 [源代码](https://github.com/OI-wiki/OI-wiki/blob/master/docs/tools/latex.md?plain=1) 获取帮助。
 
 ## 表格
 
@@ -475,27 +460,26 @@ $\rightarrow$ 输入代码来在你的文档中生成下面内容：
 
 ```tex
 \begin{tabular}{|l|l|}
-Apples & Green \\
-Strawberries & Red \\
-Orange & Orange\\
+  Apples       & Green  \\
+  Strawberries & Red    \\
+  Orange       & Orange \\
 \end{tabular}
 
 \begin{tabular}{rc}
-Apples & Green\\
-\hline 
-Strawberries & Red \\
-\cline{1-1}
-Oranges & Orange \\
+  Apples              & Green  \\
+  \hline
+  Strawberries        & Red    \\
+  \cline{1-1} Oranges & Orange \\
 \end{tabular}
 
 \begin{tabular}{|r|l|}
-\hline
-8 & here's \\
-\cline{2-2}
-86 & stuff\\
-\hline \hline 
-2008 & now \\
-\hline 
+  \hline
+  8              & here's \\
+  \cline{2-2} 86 & stuff  \\
+  \hline
+  \hline
+  2008           & now    \\
+  \hline
 \end{tabular}
 ```
 
@@ -515,10 +499,10 @@ Oranges & Orange \\
 
 ```tex
 \begin{figure}[h]
-\centering
-\includegraphics[width=1\textwidth]{myimage}
-\caption{Here is my image}
-\label{image-myimage}
+  \centering
+  \includegraphics[width=1\textwidth]{myimage}
+  \caption{Here is my image}
+  \label{image-myimage}
 \end{figure}
 ```
 
@@ -540,9 +524,9 @@ $\rightarrow$ 在你文档的前导命令中添加 `\usepackage{graphicx}`。$\r
 
 ```tex
 \begin{figure}[h!]
-\centering
-\includegraphics[width=1\textwidth]{ImageFilename}
-\caption{My test image}
+  \centering
+  \includegraphics[width=1\textwidth]{ImageFilename}
+  \caption{My test image}
 \end{figure}
 ```
 
@@ -583,7 +567,7 @@ $$
 ```tex
 \begin{eqnarray}
   a & = & b + c \\
-    & = & y - z
+  & = & y - z
 \end{eqnarray}
 ```
 
@@ -690,7 +674,7 @@ $\rightarrow$ 撰写代码来生成下列公式：
 
 ![p15](images/latex-for-beginners-15.png)
 
-如果需要帮助，可以查看本书的 TeX 源码。
+如果需要帮助，可以查看本页面的 [源代码](https://github.com/OI-wiki/OI-wiki/blob/master/docs/tools/latex.md?plain=1)。
 
 ## 参考文献
 
@@ -779,16 +763,16 @@ $\rightarrow$ 在同一文件夹下新建一个同名的 BibTeX 文件，用正�
 
 ## 更多阅读
 
-一份（不太）简短的 LATEX 2ε 介绍 <https://github.com/CTeX-org/lshort-zh-cn/releases/download/v6.02/lshort-zh-cn.pdf> 或 112 分钟了解 LaTeX 2ε.
+-   一份（不太）简短的 LATEX 2ε 介绍 <https://github.com/CTeX-org/lshort-zh-cn/releases/download/v6.02/lshort-zh-cn.pdf> 或 112 分钟了解 LaTeX 2ε.
 
-LaTeX Project <http://www.latex-project.org/> Official website - has links to documentation, information about installing LATEX on your own computer, and information about where to look for help.
+-   LaTeX Project <http://www.latex-project.org/> Official website - has links to documentation, information about installing LATEX on your own computer, and information about where to look for help.
 
-LaTeX Wikibook <http://en.wikibooks.org/wiki/LaTeX/> Comprehensive and clearly written, although still a work in progress. A downloadable PDF is also available.
+-   LaTeX Wikibook <http://en.wikibooks.org/wiki/LaTeX/> Comprehensive and clearly written, although still a work in progress. A downloadable PDF is also available.
 
-Comparison of TeX Editors on Wikipedia <http://en.wikipedia.org/wiki/Comparison_of_TeX_editors> Information to help you to choose which L A TEX editor to install on your own computer.
+-   Comparison of TeX Editors on Wikipedia <http://en.wikipedia.org/wiki/Comparison_of_TeX_editors> Information to help you to choose which L A TEX editor to install on your own computer.
 
-TeX Live <http://www.tug.org/texlive/>"An easy way to get up and running with the TeX document production system". Available for Unix and Windows (links to MacTeX for MacOSX users). Includes the TeXworks editor.
+-   TeX Live <http://www.tug.org/texlive/>"An easy way to get up and running with the TeX document production system". Available for Unix and Windows (links to MacTeX for MacOSX users). Includes the TeXworks editor.
 
-Workbook Source Files <http://edin.ac/17EQPM1> Download the .tex file and other files needed to compile this workbook.
+-   Workbook Source Files <http://edin.ac/17EQPM1> Download the .tex file and other files needed to compile this workbook.
 
 **本文译自 [http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf](https://web.archive.org/web/20220309055041/http://www.docs.is.ed.ac.uk/skills/documents/3722/3722-2014.pdf)**, 依据其他文献略有修改。

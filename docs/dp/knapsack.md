@@ -1,4 +1,4 @@
-author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007, GoodCoder666, paigeman
+author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007, GoodCoder666, paigeman, shenshuaijie
 
 前置知识：[动态规划部分简介](./index.md)。
 
@@ -42,7 +42,6 @@ $$
 还有一点需要注意的是，很容易写出这样的 **错误核心代码**：
 
 === "C++"
-
     ```cpp
     for (int i = 1; i <= n; i++)
       for (int l = 0; l <= W - w[i]; l++)
@@ -52,7 +51,6 @@ $$
     ```
 
 === "Python"
-
     ```python
     for i in range(1, n + 1):
         for l in range(0, W - w[i] + 1):
@@ -70,15 +68,12 @@ $$
 因此实际核心代码为
 
 === "C++"
-
     ```cpp
     for (int i = 1; i <= n; i++)
-      for (int l = W; l >= w[i]; l--)
-        f[l] = max(f[l], f[l - w[i]] + v[i]);
+      for (int l = W; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
     ```
 
 === "Python"
-
     ```python
     for i in range(1, n + 1):
         for l in range(W, w[i] - 1, -1):
@@ -171,7 +166,6 @@ $$
 
 ??? 二进制分组代码
     === "C++"
-    
         ```cpp
         index = 0;
         for (int i = 1; i <= m; i++) {
@@ -189,7 +183,6 @@ $$
         ```
     
     === "Python"
-    
         ```python
         index = 0
         for i in range(1, m + 1):
@@ -197,12 +190,12 @@ $$
             p, h, k = map(int, input().split())
             while k > c:
                 k -= c
-                list[index].w = c * p
                 index += 1
+                list[index].w = c * p
                 list[index].v = c * h
                 c *= 2
-            list[index].w = p * k
             index += 1
+            list[index].w = p * k
             list[index].v = h * k
         ```
 
@@ -248,7 +241,6 @@ for (循环物品种类) {
 ### 实现
 
 === "C++"
-
     ```cpp
     for (int k = 1; k <= n; k++)
       for (int i = m; i >= mi; i--)    // 对经费进行一层枚举
@@ -257,11 +249,10 @@ for (循环物品种类) {
     ```
 
 === "Python"
-
     ```python
     for k in range(1, n + 1):
-        for i in range(m, mi - 1, -1): # 对经费进行一层枚举
-            for j in range(t, ti - 1, -1): # 对时间进行一层枚举
+        for i in range(m, mi - 1, -1):  # 对经费进行一层枚举
+            for j in range(t, ti - 1, -1):  # 对时间进行一层枚举
                 dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1)
     ```
 
@@ -277,23 +268,24 @@ for (循环物品种类) {
 ### 实现
 
 === "C++"
-
     ```cpp
-    for (int k = 1; k <= ts; k++)           // 循环每一组
-      for (int i = m; i >= 0; i--) // 循环背包容量
-        for (int j = 1; j <= cnt[k]; j++)   // 循环该组的每一个物品
-          if (i >= w[t[k][j]])  // 背包容量充足
-            dp[i] = max(dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+    for (int k = 1; k <= ts; k++)          // 循环每一组
+      for (int i = m; i >= 0; i--)         // 循环背包容量
+        for (int j = 1; j <= cnt[k]; j++)  // 循环该组的每一个物品
+          if (i >= w[t[k][j]])             // 背包容量充足
+            dp[i] = max(dp[i],
+                        dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
     ```
 
 === "Python"
-
     ```python
-    for k in range(1, ts + 1): # 循环每一组
-        for i in range(m, -1, -1): # 循环背包容量
-            for j in range(1, cnt[k] + 1):     # 循环该组的每一个物品
-                if i >= w[t[k][j]]: #背包容量充足
-                    dp[i] = max(dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]) # 像0-1背包一样状态转移
+    for k in range(1, ts + 1):  # 循环每一组
+        for i in range(m, -1, -1):  # 循环背包容量
+            for j in range(1, cnt[k] + 1):  # 循环该组的每一个物品
+                if i >= w[t[k][j]]:  # 背包容量充足
+                    dp[i] = max(
+                        dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]
+                    )  # 像0-1背包一样状态转移
     ```
 
 这里要注意：**一定不能搞错循环顺序**，这样才能保证正确性。
@@ -414,7 +406,7 @@ g[0] = 1;  // 什么都不装是一种方案
 普通的 0-1 背包是要求最优解，在普通的背包 DP 方法上稍作改动，增加一维用于记录当前状态下的前 k 优解，即可得到求 0-1 背包第 $k$ 优解的算法。
 具体来讲：$\mathit{dp_{i,j,k}}$ 记录了前 $i$ 个物品中，选择的物品总体积为 $j$ 时，能够得到的第 $k$ 大的价值和。这个状态可以理解为将普通 0-1 背包只用记录一个数据的 $\mathit{dp_{i,j}}$ 扩展为记录一个有序的优解序列。转移时，普通背包最优解的求法是 $\mathit{dp_{i,j}}=\max(\mathit{dp_{i-1,j}},\mathit{dp_{i-1,j-v_{i}}}+w_{i})$，现在我们则是要合并 $\mathit{dp_{i-1,j}}$，$\mathit{dp_{i-1,j-v_{i}}}+w_{i}$ 这两个大小为 $k$ 的递减序列，并保留合并后前 $k$ 大的价值记在 $\mathit{dp_{i,j}}$ 里，这一步利用双指针法，复杂度是 $O(k)$ 的，整体时间复杂度为 $O(nmk)$。空间上，此方法与普通背包一样可以压缩掉第一维，复杂度是 $O(mk)$ 的。
 
-??? note "[例题 hdu 2639 Bone Collector II](https://vjudge.net/problem/HDU-2639)"
+??? note " 例题 [HDU 2639 Bone Collector II](https://acm.hdu.edu.cn/showproblem.php?pid=2639)"
     求 0-1 背包的严格第 $k$ 优解。$n \leq 100,v \leq 1000,k \leq 30$
 
 ??? note "实现"

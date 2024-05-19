@@ -85,7 +85,6 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
 
 ???+ note "实现"
     === "C++"
-    
         ```cpp
         void Tarjan(int u) {
           low[u] = dfn[u] = ++dfc;                // low 初始化为当前节点 dfn
@@ -100,17 +99,16 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
         ```
     
     === "Python"
-    
         ```python
         def Tarjan(u):
-            low[u] = dfn[u] = dfc # low 初始化为当前节点 dfn
+            low[u] = dfn[u] = dfc  # low 初始化为当前节点 dfn
             dfc = dfc + 1
-            for v in G[u]: # 遍历 u 的相邻节点
-                if dfn[v] == False: # 如果未访问过
-                    Tarjan(v) # 递归
-                    low[u] = min(low[u], low[v]) # 未访问的和 low 取 min
+            for v in G[u]:  # 遍历 u 的相邻节点
+                if dfn[v] == False:  # 如果未访问过
+                    Tarjan(v)  # 递归
+                    low[u] = min(low[u], low[v])  # 未访问的和 low 取 min
                 else:
-                    low[u] = min(low[u], dfn[v]) # 已访问的和 dfn 取 min
+                    low[u] = min(low[u], dfn[v])  # 已访问的和 dfn 取 min
         ```
 
 接下来，我们考虑点双和 DFS 树以及这两个数组之间的关联。
@@ -290,7 +288,7 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
         
         路径最小值可以使用树链剖分和线段树维护，但是修改呢？
         
-        一次修改一个圆点的点权，需要修改所有和它相邻的方点，这样很容易被卡到 $\mathcal{O}(n)$ 个修改。
+        一次修改一个圆点的点权，需要修改所有和它相邻的方点，这样很容易被卡到 $O(n)$ 个修改。
         
         这时我们利用圆方树是棵树的性质，令方点权值为自己的儿子圆点的权值最小值，这样的话修改时只需要修改父亲方点。
         
