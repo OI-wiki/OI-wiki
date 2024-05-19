@@ -173,7 +173,7 @@ $$
 &\text{Use other algorithm to compute }Q(x)^{-1} \\
 2&V(x^2)\gets Q(x)Q(-x) \\
 3&k\gets \left\lceil \frac{L-\deg Q}{2}\right\rceil \\
-4&(t_k,\dots ,t_{k+\deg Q})\gets \operatorname{Slice-CoefficientsA}\left(V,k\right) \\
+4&(t_k,\dots ,t_{k+\deg Q})\gets \operatorname{Slice-Coefficients}\left(V,k\right) \\
 5&T(x)\gets x^{(L-\deg Q)\bmod{2}}\sum_{j=0}^{\deg Q}t_{j+k}x^{2j} \\
 6&\textbf{return }\left\lbrack x^{\left\lbrack \deg Q,2\deg Q+1\right)}\right\rbrack T(x)Q(-x)
 \end{array}
