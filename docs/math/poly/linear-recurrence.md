@@ -197,7 +197,7 @@ $$
 \sum_{j\geq n}a_jx^{j-n}=\frac{P(x)}{Q(x)x^n}-\frac{Q(x)\sum_{j=0}^{n-1}a_jx^j}{Q(x)x^n}
 $$
 
-那么我们先用一次 $\operatorname{Slice-Coefficients}(Q,L-\deg{P})$ 计算出 $\left\lbrack x^{\left\lbrack L-\deg{P},L-\deg{P}+\deg{Q}+1\right)}\right\rbrack Q(x)^{-1}$，然后我们扩展合并出 $\left\lbrack x^{\left\lbrack L-\deg{P},L+\deg{Q}+1\right)}\right\rbrack Q(x)^{-1}$，再重新计算一个分子使得
+那么我们先用一次 $\operatorname{Slice-Coefficients}(Q,L-\deg{P})$ 计算出 $\left\lbrack x^{\left\lbrack L-\deg{P},L-\deg{P}+\deg{Q}+1\right)}\right\rbrack Q(x)^{-1}$，然后我们扩展合并出 $\left\lbrack x^{\left\lbrack L-\deg{P},L+\deg{Q}\right)}\right\rbrack Q(x)^{-1}$，再重新计算一个分子使得
 
 $$
 \frac{\widetilde{P}(x)}{Q(x)}=\sum_{j\geq 0}\left(\left\lbrack x^{L+j}\right\rbrack \frac{P(x)}{Q(x)}\right)x^j
