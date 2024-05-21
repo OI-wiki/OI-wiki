@@ -33,17 +33,15 @@ for 语句的三个部分中，任何一个部分都可以省略。其中，若�
 这是 C++11 的特性，结构如下：
 
 ```cpp
-for ( 范围变量声明 : 范围表达式 )
-  循环语句
+for (范围变量声明 : 范围表达式) 循环语句
 ```
 
 上述语法将遍历范围表达式，等价于以下代码：
 
 ```cpp
 {
-  auto && __range = 范围表达式 ;
-  for (auto __begin = 首表达式, __end = 尾表达式 ; __begin != __end; ++__begin)
-  {
+  auto&& __range = 范围表达式;
+  for (auto __begin = 首表达式, __end = 尾表达式; __begin != __end; ++__begin) {
     范围变量声明 = *__begin;
     循环语句
   }
@@ -54,17 +52,16 @@ for ( 范围变量声明 : 范围表达式 )
 
 首表达式和尾表达式定义如下：
 
-+ 如果范围表达式是数组类型的表达式，那么首表达式是 `__range` 而尾表达式是 `(__range + __bound)`，其中 `__bound` 是数组的元素数目（如果数组大小未知或拥有不完整类型，那么程序非良构）
-+ 如果范围表达式是同时拥有名为 `begin` 以及名为 `end` 的成员的类类型 `C` 的表达式（不管这些成员的类型或可见性），那么首表达式是 `__range.begin()` 而尾表达式是 `__range.end()`；
-+ 否则，首表达式是 `begin(__range)` 而尾表达式是 `end(__range)`，通过实参依赖查找进行查找（不进行非实参依赖查找）。
+-   如果范围表达式是数组类型的表达式，那么首表达式是 `__range` 而尾表达式是 `(__range + __bound)`，其中 `__bound` 是数组的元素数目（如果数组大小未知或拥有不完整类型，那么程序非良构）
+-   如果范围表达式是同时拥有名为 `begin` 以及名为 `end` 的成员的类类型 `C` 的表达式（不管这些成员的类型或可见性），那么首表达式是 `__range.begin()` 而尾表达式是 `__range.end()`；
+-   否则，首表达式是 `begin(__range)` 而尾表达式是 `end(__range)`，通过实参依赖查找进行查找（不进行非实参依赖查找）。
 
 正如传统循环一样，`break` 语句可用于提早退出循环，`continue` 语句可用于以下个元素重新开始循环。
 
 如果从初始化语句中引入的名字在循环语句的最外层块被重声明，那么程序非良构：
 
 ```cpp
-for (int i : { 1, 2, 3 })
-    int i = 1; // 错误：重声明
+for (int i : {1, 2, 3}) int i = 1;  // 错误：重声明
 ```
 
 示例：
@@ -73,30 +70,30 @@ for (int i : { 1, 2, 3 })
 #include <iostream>
 #include <vector>
 using namespace std;
- 
+
 int main() {
-    vector<int> v = {0, 1, 2, 3, 4, 5};
- 
-    for (const int& i : v) // 以 const 引用访问
-        cout << i << ' ';
-    cout << '\n';
- 
-    for (auto i : v) // 以值访问，i 的类型是 int
-        cout << i << ' ';
-    cout << '\n';
- 
-    for (auto&& i : v) // 以转发引用访问，i 的类型是 int&
-        cout << i << ' ';
-    cout << '\n';
- 
-    for (int n : {0, 1, 2, 3, 4, 5}) // 初始化式可以是花括号初始化式列表
-        cout << n << ' ';
-    cout << '\n';
- 
-    int a[] = {0, 1, 2, 3, 4, 5};
-    for (int n : a) // 初始化式可以是数组
-        cout << n << ' ';
-    cout << '\n';
+  vector<int> v = {0, 1, 2, 3, 4, 5};
+
+  for (const int& i : v)  // 以 const 引用访问
+    cout << i << ' ';
+  cout << '\n';
+
+  for (auto i : v)  // 以值访问，i 的类型是 int
+    cout << i << ' ';
+  cout << '\n';
+
+  for (auto&& i : v)  // 以转发引用访问，i 的类型是 int&
+    cout << i << ' ';
+  cout << '\n';
+
+  for (int n : {0, 1, 2, 3, 4, 5})  // 初始化式可以是花括号初始化式列表
+    cout << n << ' ';
+  cout << '\n';
+
+  int a[] = {0, 1, 2, 3, 4, 5};
+  for (int n : a)  // 初始化式可以是数组
+    cout << n << ' ';
+  cout << '\n';
 }
 ```
 
