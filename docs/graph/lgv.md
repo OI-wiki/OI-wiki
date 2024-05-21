@@ -1,4 +1,3 @@
-
 ## 简介
 
 Lindström–Gessel–Viennot lemma，即 LGV 引理，可以用来处理有向无环图上不相交路径计数等问题。
@@ -17,7 +16,7 @@ $e(u, v)$ 表示 $u$ 到 $v$ 的 **每一条** 路径 $P$ 的 $\omega(P)$ 之和
 
 终点集合 $B$，也是有向无环图点集的一个子集，大小也为 $n$。
 
-对于路径组 $S$，定义 $\omega(S)= \prod\limits_{i=1}^{n} \omega(S_i)$ ，为该路径组的实际路径方案数。
+对于路径组 $S$，定义 $\omega(S)= \prod\limits_{i=1}^{n} \omega(S_i)$，为该路径组的实际路径方案数。
 
 一组 $A\rightarrow B$ 的不相交路径 $S$：$S_i$ 是一条从 $A_i$ 到 $B_{\sigma(S)_i}$ 的路径（$\sigma(S)$ 是一个排列），对于任何 $i\ne j$，$S_i$ 和 $S_j$ 没有公共顶点。
 
