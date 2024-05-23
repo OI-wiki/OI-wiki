@@ -1,3 +1,5 @@
+author: JiZiQian, llleixx
+
 ## 什么是左偏树？
 
 **左偏树** 与 [**配对堆**](./pairing-heap.md) 一样，是一种 **可并堆**，具有堆的性质，并且可以快速合并。
@@ -48,7 +50,8 @@
     int merge(int x, int y) {
       if (!x || !y) return x | y;
       if (t[x].val < t[y].val) swap(x, y);
-      rs(x) = merge(rs(x), y);
+      int& rs_ref = rs(x);
+      rs_ref = merge(rs_ref, y);
       t[x].d = t[rs(x)].d + 1;
       return x;
     }
@@ -78,8 +81,10 @@
     int merge(int x, int y) {
       if (!x || !y) return x | y;
       if (t[x].val < t[y].val) swap(x, y);
-      t[rs(x) = merge(rs(x), y)].fa = x;
-      pushup(x);
+      int& rs_ref = rs(x);
+      rs_ref = merge(rs_ref, y);
+      t[rs_ref].fa = x;
+      t[x].d = t[rs(x)].d + 1;
       return x;
     }
     
@@ -90,18 +95,28 @@
         pushup(t[x].fa);
       }
     }
+    
+    void erase(int x) {
+      int y = merge(t[x].ch[0], t[x].ch[1]);
+      t[y].fa = t[x].fa;
+      if (t[t[x].fa].ch[0] == x)
+        t[t[x].fa].ch[0] = y;
+      else if (t[t[x].fa].ch[1] == x)
+        t[t[x].fa].ch[1] = y;
+      pushup(t[y].fa);
+    }
     ```
 
 #### 复杂度证明
 
-我们令当前 `pushup` 的这个节点为 $x$，其父亲为 $y$，一个节点的「初始 $\mathrm{dist}$」为它在 `pushup` 前的 $\mathrm{dist}$。我们先 `pushup` 一下删除的节点，然后从其父亲开始起讨论复杂度。
+先考虑 `merge` 的过程，每次都会使 $x$ 或 $y$ 向下一层，也就是说最极端的情况，就是一直选择左偏树的右节点（$\mathrm{dist}$ 最小的节点）向下一层，此时 $\mathrm{dist}$ 减少了 $1$。
 
-继续递归下去有两种情况：
+再考虑 `pushup` 的过程，我们令当前 `pushup` 的这个节点为 $x$，其父亲为 $y$，一个节点的「初始 $\mathrm{dist}$」为它在 `pushup` 前的 $\mathrm{dist}$。从被删除节点的父亲开始递归，有两种情况：
 
 1.  $x$ 是 $y$ 的右儿子，此时 $y$ 的初始 $\mathrm{dist}$ 为 $x$ 的初始 $\mathrm{dist}$ 加一。
-2.  $x$ 是 $y$ 的左儿子，只有 $y$ 的左右儿子初始 $\mathrm{dist}$ 相等时（此时左儿子 $\mathrm{dist}$ 减一会导致左右儿子互换）才会继续递归下去，因此 $y$ 的初始 $\mathrm{dist}$ 仍然是 $x$ 的初始 $\mathrm{dist}$ 加一。
+2.  $x$ 是 $y$ 的左儿子，由于节点的 $\mathrm{dist}$ 最多减一，因此只有 $y$ 的左右儿子初始 $\mathrm{dist}$ 相等时（此时左儿子 $\mathrm{dist}$ 减一会导致左右儿子互换）才会继续递归下去，因此 $y$ 的初始 $\mathrm{dist}$ 仍然是 $x$ 的初始 $\mathrm{dist}$ 加一。
 
-所以，我们得到，除了第一次 `pushup`（因为被删除节点的父亲的初始 $\mathrm{dist}$ 不一定等于被删除节点左右儿子合并后的初始 $\mathrm{dist}$ 加一），每递归一层 $x$ 的初始 $\mathrm{dist}$ 就会加一，因此最多递归 $O(\log n)$ 层。
+所以，我们得到，每递归一层 $x$ 的初始 $\mathrm{dist}$ 就会加一，因此最多递归 $O(\log n)$ 层。
 
 ### 整个堆加上/减去一个值、乘上一个正数
 
