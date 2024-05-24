@@ -4,21 +4,18 @@ author: JiZiQian, llleixx
 
 **左偏树** 与 [**配对堆**](./pairing-heap.md) 一样，是一种 **可并堆**，具有堆的性质，并且可以快速合并。
 
-## dist 的定义和性质
-
-对于一棵二叉树，我们定义 **外节点** 为左儿子或右儿子为空的节点，定义一个外节点的 $\mathrm{dist}$ 为 $1$，一个不是外节点的节点 $\mathrm{dist}$ 为其到子树中最近的外节点的距离加一。空节点的 $\mathrm{dist}$ 为 $0$。
-
-> 注：很多其它教程中定义的 $\mathrm{dist}$ 都是本文中的 $\mathrm{dist}$ 减去 $1$，本文这样定义是因为代码写起来方便。
-
-一棵有 $n$ 个节点的二叉树，根的 $\mathrm{dist}$ 不超过 $\left\lceil\log (n+1)\right\rceil$，因为一棵根的 $\mathrm{dist}$ 为 $x$ 的二叉树至少有 $x-1$ 层是满二叉树，那么就至少有 $2^x-1$ 个节点。注意这个性质是所有二叉树都具有的，并不是左偏树所特有的。
-
 ## 左偏树的定义和性质
+
+对于一棵二叉树，我们定义 **外节点** 为子节点数小于两个的节点，定义一个节点的 $\mathrm{dist}$ 为其到子树中最近的外节点所经过的边的数量。空节点的 $\mathrm{dist}$ 为 $0$。
+
+???+ note "注意"
+    有些资料中对 $\mathrm{dist}$ 的定义是本文中的 $\mathrm{dist}$ 减 $1$，这样定义是因为代码编写时可以省略一些判空流程，但需要注意应预先置空节点的 $\mathrm{dist}$ 为 $-1$。本文中所有代码对 $\mathrm{dist}$ 的定义 **均为后者**，请注意与行文间 $\mathrm{dist}$ 定义的差别。
 
 左偏树是一棵二叉树，它不仅具有堆的性质，并且是「左偏」的：每个节点左儿子的 $\mathrm{dist}$ 都大于等于右儿子的 $\mathrm{dist}$。
 
 因此，左偏树每个节点的 $\mathrm{dist}$ 都等于其右儿子的 $\mathrm{dist}$ 加一。
 
-需要注意的是，$\mathrm{dist}$ 不是深度，**左偏树的深度没有保证**，一条向左的链也是左偏树。
+需要注意的是，$\mathrm{dist}$ 不是深度，**左偏树的深度没有保证**，一条向左的链也符合左偏树的定义。
 
 ## 核心操作：合并（merge）
 
@@ -39,7 +36,10 @@ author: JiZiQian, llleixx
     }
     ```
 
-由于左偏性质，每递归一层，其中一个堆根节点的 $\mathrm{dist}$ 就会减小 $1$，而「一棵有 $n$ 个节点的二叉树，根的 $\mathrm{dist}$ 不超过 $\left\lceil\log (n+1)\right\rceil$」，所以合并两个大小分别为 $n$ 和 $m$ 的堆复杂度是 $O(\log n+\log m)$。
+由于左偏性质，每递归一层，其中一个堆根节点的 $\mathrm{dist}$ 就会减小 $1$，而一棵有 $n$ 个节点的二叉树，根的 $\mathrm{dist}$ 不超过 $\left\lceil\log (n+1)\right\rceil$，所以合并两个大小分别为 $n$ 和 $m$ 的堆复杂度是 $O(\log n+\log m)$。
+
+???+ note " 关于 $\mathrm{dist}$ 性质的证明 "
+    一棵根的 $\mathrm{dist}$ 为 $x$ 的二叉树至少有 $x-1$ 层是满二叉树，那么就至少有 $2^x-1$ 个节点。注意这个性质是所有二叉树都具有的，并不是左偏树所特有的。
 
 左偏树还有一种无需交换左右儿子的写法：将 $\mathrm{dist}$ 较大的儿子视作左儿子，$\mathrm{dist}$ 较小的儿子视作右儿子：
 
@@ -142,9 +142,9 @@ author: JiZiQian, llleixx
     }
     ```
 
-### 随机合并
+## 其他可并堆
 
-直接贴上代码
+### 随机堆
 
 ???+ note "实现"
     ```cpp
@@ -159,6 +159,10 @@ author: JiZiQian, llleixx
     ```
 
 可以看到该实现方法唯一不同之处便是采用了随机数来实现合并，这样一来便可以省去 $\mathrm{dist}$ 的相关计算。且平均时间复杂度亦为 $O(\log n)$，详细证明可参考 [Randomized Heap](https://cp-algorithms.com/data_structures/randomized_heap.html)。
+
+### 斜堆
+
+斜堆是左偏树的自适应形式。当合并两个堆时，它无条件交换合并路径上的所有节点，以此试图维护平衡。根据均摊分析，自顶向下斜堆（top-down skew heap）插入，合并，删除最小值的复杂度为 $O(\log n)$[^ref1]。
 
 ## 例题
 
@@ -224,3 +228,7 @@ author: JiZiQian, llleixx
 ### [「BOI2004」Sequence 数字序列](https://www.luogu.com.cn/problem/P4331)
 
 这是一道论文题，详见 [《黄源河 -- 左偏树的特点及其应用》](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2005%E8%AE%BA%E6%96%87%E9%9B%86/%E9%BB%84%E6%BA%90%E6%B2%B3--%E5%B7%A6%E5%81%8F%E6%A0%91%E7%9A%84%E7%89%B9%E7%82%B9%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/%E9%BB%84%E6%BA%90%E6%B2%B3.pdf)。
+
+## 参考资料
+
+[^ref1]: [Self-Adjusting Heaps](https://epubs.siam.org/doi/10.1137/0215004)
