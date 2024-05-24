@@ -2,7 +2,7 @@
 
 ![ST 表示意图](images/st.svg)
 
-ST表（Sparse Table，稀疏表）是用于解决 **可重复贡献问题** 的数据结构。
+ST 表（Sparse Table，稀疏表）是用于解决 **可重复贡献问题** 的数据结构。
 
 ???+ note "什么是可重复贡献问题？"
     **可重复贡献问题** 是指对于运算 $\operatorname{opt}$，满足 $x\operatorname{opt} x=x$，则对应的区间询问就是一个可重复贡献问题。例如，最大值有 $\max(x,x)=x$，gcd 有 $\operatorname{gcd}(x,x)=x$，所以 RMQ 和区间 GCD 就是一个可重复贡献问题。像区间和就不具有这个性质，如果求区间和的时候采用的预处理区间重叠了，则会导致重叠部分被计算两次，这是我们所不愿意看到的。另外，$\operatorname{opt}$ 还必须满足结合律才能使用 ST 表求解。
