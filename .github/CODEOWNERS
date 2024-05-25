@@ -12,8 +12,6 @@
 .github/ISSUE_TEMPLATE/	@Ir1d
 .github/CONTRIBUTING.md	@Ir1d @shuzhouliu
 .github/FUNDING.yml @Ir1d
-Dockerfile  @CoelacanthusHex
-docs/intro/docker-deploy.md @CoelacanthusHex
 scripts/    @Ir1d @billchenchina
 .prettierrc   @Menci
 scripts/checker/    @llh721113
