@@ -57,8 +57,7 @@ void solve(int i, int l, int r) {
 
 signed main() {
   ios::sync_with_stdio(false);
-  cin.tie(0);
-  cout.tie(0);
+  cin.tie(nullptr);
   cin >> n >> m >> k;
   for (int i = 1; i <= m; i++) {
     cin >> g[i].u >> g[i].v >> g[i].c;

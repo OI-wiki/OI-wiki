@@ -458,8 +458,7 @@ $$
     
     int main() {
       std::ios::sync_with_stdio(0);
-      std::cin.tie(0);
-      std::cout.tie(0);
+      std::cin.tie(nullptr);
     
       std::cin >> n >> m;
       for (int i = 1; i <= m; i++) {

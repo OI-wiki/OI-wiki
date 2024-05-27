@@ -81,9 +81,8 @@ inline void process() {
 }
 
 signed main() {
-  cin.tie(0);
-  cout.tie(0);
   ios::sync_with_stdio(false);
+  cin.tie(nullptr);
   cin >> n >> m;
   qsize = pow(n, 2.0 / 3.0);
   for (int i = 1; i <= n; i++) {
