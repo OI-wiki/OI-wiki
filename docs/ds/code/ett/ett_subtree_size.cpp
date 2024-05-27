@@ -1,31 +1,11 @@
 #include <bits/stdc++.h>
 
-#define CPPIO \
-  std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
 #define freep(p) p ? delete p, p = nullptr, void(1) : void(0)
-
-#if defined(BACKLIGHT) && !defined(NASSERT)
-#define ASSERT(x)                                                          \
-  ((x) || (fprintf(stderr, "assertion failed (" __FILE__ ":%d): \"%s\"\n", \
-                   __LINE__, #x),                                          \
-           assert(false), false))
-#else
-#define ASSERT(x) ;
-#endif
-
-#ifdef BACKLIGHT
-#include "debug.h"
-#else
-#define logd(...) ;
-#endif
-
-using i64 = int64_t;
-using u64 = uint64_t;
 
 void solve_case(int Case);
 
 int main(int argc, char* argv[]) {
-  CPPIO;
+  std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
   int T = 1;
   // std::cin >> T;
   for (int t = 1; t <= T; ++t) {
@@ -104,24 +84,6 @@ class DynamicForest {
     return p;
   }
 
-  static std::string to_string(Node* p) {
-    std::stringstream ss;
-
-    ss << "Node [\n";
-
-    std::function<void(Node*)> dfs = [&](Node* p) {
-      if (!p) return;
-      dfs(p->left_);
-      ss << "(" << p->from_ << "," << p->to_ << "),";
-      dfs(p->right_);
-    };
-    dfs(p);
-
-    ss << "]\n\n";
-
-    return ss.str();
-  }
-
   Node* AllocateNode(int u, int v) {
     Node* p = new Node(u, v);
     return p;
@@ -167,8 +129,6 @@ class DynamicForest {
      * containing p.
      */
     static int GetPosition(Node* p) {
-      ASSERT(p != nullptr);
-
       int position = GetSize(p->left_) + 1;
       while (p) {
         if (p->parent_ && p == p->parent_->right_)
@@ -220,8 +180,6 @@ class DynamicForest {
      * contains elements after p.
      */
     static std::pair<Node*, Node*> SplitUp2(Node* p) {
-      ASSERT(p != nullptr);
-
       Node *a = nullptr, *b = nullptr;
       b = p->right_;
       if (b) b->parent_ = nullptr;
@@ -267,8 +225,6 @@ class DynamicForest {
      * the third one contains elements after p.
      */
     static std::tuple<Node*, Node*, Node*> SplitUp3(Node* p) {
-      ASSERT(p != nullptr);
-
       Node* a = p->left_;
       if (a) a->parent_ = nullptr;
       p->left_ = nullptr;
@@ -325,8 +281,6 @@ class DynamicForest {
 
  public:
   DynamicForest(int n) : n_(n), vertices_(n_), tree_edges_(n_) {
-    ASSERT(n_ > 0);
-
     for (int i = 0; i < n_; ++i) vertices_[i] = AllocateNode(i, i);
   }
 
@@ -347,15 +301,11 @@ class DynamicForest {
     int position_u = Treap::GetPosition(vertex_u);
 
     auto [L1, L2] = Treap::SplitUp2(vertex_u);
-    ASSERT(GetSize(L1) == position_u);
 
     Treap::Merge(L2, L1);
   }
 
   void Insert(int u, int v) {
-    ASSERT(not tree_edges_[u].count(v));
-    ASSERT(not tree_edges_[v].count(u));
-
     Node* vertex_u = vertices_[u];
     Node* vertex_v = vertices_[v];
 
@@ -370,9 +320,6 @@ class DynamicForest {
     auto [L11, L12] = Treap::SplitUp2(vertex_u);
     auto [L21, L22] = Treap::SplitUp2(vertex_v);
 
-    ASSERT(GetSize(L11) == position_u);
-    ASSERT(GetSize(L21) == position_v);
-
     Node* result = nullptr;
     result = Treap::Merge(result, L12);
     result = Treap::Merge(result, L11);
@@ -383,9 +330,6 @@ class DynamicForest {
   }
 
   void Delete(int u, int v) {
-    ASSERT(tree_edges_[u].count(v));
-    ASSERT(tree_edges_[v].count(u));
-
     Node* edge_uv = tree_edges_[u][v];
     Node* edge_vu = tree_edges_[v][u];
     tree_edges_[u].erase(v);
@@ -399,12 +343,8 @@ class DynamicForest {
     }
 
     auto [L1, uv, _] = Treap::SplitUp3(edge_uv);
-    ASSERT(GetSize(L1) == position_uv - 1);
-    ASSERT(GetSize(uv) == 1);
 
     auto [L2, vu, L3] = Treap::SplitUp3(edge_vu);
-    ASSERT(GetSize(L2) == position_vu - position_uv - 1);
-    ASSERT(GetSize(vu) == 1);
 
     L1 = Treap::Merge(L1, L3);
 
@@ -430,39 +370,6 @@ class DynamicForest {
     return root_of_vertex_u ? root_of_vertex_u->num_vertex_ : 0;
   }
 
-  std::string to_string() const {
-    std::stringstream ss;
-
-    ss << "DynamicForest [\n";
-
-    std::function<void(Node*)> dfs = [&](Node* p) {
-      if (!p) return;
-      dfs(p->left_);
-      ss << "(" << p->from_ << "," << p->to_ << "),";
-      dfs(p->right_);
-    };
-    for (int i = 0; i < n_; ++i) {
-      if (vertices_[i]->parent_ == nullptr) {
-        ss << "  Component [";
-        dfs(vertices_[i]);
-        ss << "]\n";
-      }
-    }
-    for (int i = 0; i < n_; ++i) {
-      for (auto [_, j] : tree_edges_[i]) {
-        if (j->parent_ == nullptr) {
-          ss << "  Component [";
-          dfs(j);
-          ss << "]\n";
-        }
-      }
-    }
-
-    ss << "]\n\n";
-
-    return ss.str();
-  }
-
  private:
   int n_;
   std::vector<Node*> vertices_;
@@ -485,7 +392,7 @@ void solve_case(int Case) {
       t.Insert(u, v);
     } else if (op[0] == 'Q') {
       t.Delete(u, v);
-      int ans = i64(1) * t.GetComponentNumberOfVertex(u) *
+      int ans = 1ll * t.GetComponentNumberOfVertex(u) *
                 t.GetComponentNumberOfVertex(v);
       t.Insert(u, v);
       std::cout << ans << "\n";

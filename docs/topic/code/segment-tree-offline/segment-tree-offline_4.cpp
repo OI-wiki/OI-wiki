@@ -102,7 +102,7 @@ int lst[N];
 bitset<N> col;
 bitset<M> haveq;
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   cin >> n;
