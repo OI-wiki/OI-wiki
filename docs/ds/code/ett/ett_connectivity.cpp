@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 
-#define CPPIO \
-  std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
+#define CPPIO std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
 #define freep(p) p ? delete p, p = nullptr, void(1) : void(0)
 
 #if defined(BACKLIGHT) && !defined(NASSERT)
