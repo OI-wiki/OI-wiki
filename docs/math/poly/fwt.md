@@ -22,7 +22,7 @@ author: Xeonacid, nocriz, ZnPdCo
 
 （其中 $\oplus$ 是二元位运算中的某一种）
 
-下面我们举 $\cup $（按位或）、$\cap$（按位与）和 $\oplus$（按位异或）为例。
+下面我们举 $ \cup  $（按位或）、$\cap$（按位与）和 $\oplus$（按位异或）为例。
 
 ## FWT 的运算
 
@@ -71,15 +71,15 @@ $$
 下面我们给出代码实现。容易发现顺变换和逆变换可以合并为一个函数，顺变换时 $\text{type}=1$，逆变换时 $\text{type}=-1$。
 
 ```cpp
-void Or(ll *a, ll type) {	// 迭代实现，常数更小
-	for(ll x = 2; x <= n; x <<= 1) {
-		ll k = x >> 1;
-		for(ll i = 0; i < n; i += x) {
-			for(ll j = 0; j < k; j ++) {
-				(a[i + j + k] += a[i + j] * type) %= P; 
-			}
-		}
-	}
+void Or(ll *a, ll type) {  // 迭代实现，常数更小
+  for (ll x = 2; x <= n; x <<= 1) {
+    ll k = x >> 1;
+    for (ll i = 0; i < n; i += x) {
+      for (ll j = 0; j < k; j++) {
+        (a[i + j + k] += a[i + j] * type) %= P;
+      }
+    }
+  }
 }
 ```
 
@@ -95,19 +95,18 @@ $$
 UFWT[A'] = merge(UFWT[A_0'] - UFWT[A_1'], UFWT[A_1'])
 $$
 
-
 下面我们给出代码实现。顺变换时 $\text{type}=1$，逆变换时 $\text{type}=-1$。
 
 ```cpp
 void And(ll *a, ll type) {
-	for(ll x = 2; x <= n; x <<= 1) {
-		ll k = x >> 1;
-		for(ll i = 0; i < n; i += x) {
-			for(ll j = 0; j < k; j ++) {
-				(a[i + j] += a[i + j + k] * type) %= P; 
-			}
-		}
-	}
+  for (ll x = 2; x <= n; x <<= 1) {
+    ll k = x >> 1;
+    for (ll i = 0; i < n; i += x) {
+      for (ll j = 0; j < k; j++) {
+        (a[i + j] += a[i + j + k] * type) %= P;
+      }
+    }
+  }
 }
 ```
 
@@ -119,7 +118,6 @@ void And(ll *a, ll type) {
 
 对于 $FWT[A]$ 的运算其实也很好得到。
 
-
 设 $FWT[A]=\sum_{i\circ j=0}A_j-\sum_{i\circ j=1}A_j$。我们来证一下 $FWT[C] = FWT[A] \cdot FWT[B]$ 的正确性：
 
 $$
@@ -130,7 +128,6 @@ FWT[A]FWT[B]&=(\sum_{i\circ j=0}A_j-\sum_{i\circ j=1}A_j)(\sum_{i\circ k=0}B_k-\
 &=FWT[C]
 \end{aligned}
 $$
-
 
 来看看怎么快速计算 $A,B$ 的值，依旧是分治：
 
@@ -160,17 +157,17 @@ $$
 
 ```cpp
 void Xor(ll *a, ll type) {
-	for(ll x = 2; x <= n; x <<= 1) {
-		ll k = x >> 1;
-		for(ll i = 0; i < n; i += x) {
-			for(ll j = 0; j < k; j ++) {
-				(a[i + j] += a[i + j + k]) %= P; 
-				(a[i + j + k] = a[i + j] - a[i + j + k] * 2) %= P; 
-				(a[i + j] *= type) %= P;
-				(a[i + j + k] *= type) %= P;
-			}
-		}
-	}
+  for (ll x = 2; x <= n; x <<= 1) {
+    ll k = x >> 1;
+    for (ll i = 0; i < n; i += x) {
+      for (ll j = 0; j < k; j++) {
+        (a[i + j] += a[i + j + k]) %= P;
+        (a[i + j + k] = a[i + j] - a[i + j + k] * 2) %= P;
+        (a[i + j] *= type) %= P;
+        (a[i + j + k] *= type) %= P;
+      }
+    }
+  }
 }
 ```
 
@@ -249,7 +246,7 @@ $$
 
 四个数就可以完成变换了。我们称这个矩阵为位矩阵。
 
----
+***
 
 如果我们要进行逆变换，则需要上面的位矩阵的逆矩阵。
 
@@ -290,7 +287,7 @@ $$
 \end{bmatrix}
 $$
 
-如果我们要进行逆变换，则需要对矩阵求逆，以**最上面**这个矩阵为例，得：
+如果我们要进行逆变换，则需要对矩阵求逆，以 **最上面** 这个矩阵为例，得：
 
 $$
 \begin{bmatrix}
@@ -481,7 +478,8 @@ $$
 
 如果我们题目给出的模数是存在单位根的，我们就可以简单实现。
 
-但是**单位根在模意义下可能不存在**，所以我们考虑扩域，就是人为地定义一个 $x$，满足 $x^K=1$，然后直接把 $x$ 代入计算，这样每个数都是一个关于 $x$ 的 $k-1$ 次多项式。我们只需要在 $\pmod {x^K-1}$ 下计算即可。那么矩阵可以这么表示：
+但是 **单位根在模意义下可能不存在**，所以我们考虑扩域，就是人为地定义一个 $x$，满足 $x^K=1$，然后直接把 $x$ 代入计算，这样每个数都是一个关于 $x$ 的 $k-1$ 次多项式。我们只需要在 $\pmod {x^K-1}$ 下计算即可。那么矩阵可以这么表示：
+
 $$
 \begin{bmatrix}
 1 & 1 & 1 & \cdots & 1 \\
@@ -493,7 +491,7 @@ $$
 \end{bmatrix}
 $$
 
-但是这么做可能会存在零因子，也就是**一个数有多种表示方法**，我们无法确定一个数的真实值。
+但是这么做可能会存在零因子，也就是 **一个数有多种表示方法**，我们无法确定一个数的真实值。
 
 我们考虑不 $\pmod {x^K-1}$ 了，我们 $\bmod$ 分圆多项式 $\Phi_{K}(x)$，他满足 $x$ 的阶为 $k$，且在 $\mathbb{Q}$ 上不可约。所以我们定义上面的计算是在 $\pmod {\Phi_{K}(x)}$ 下进行即可。
 
@@ -501,7 +499,7 @@ $$
 
 ## 例题
 
-???+ note "[「洛谷 P4717」 【模板】快速莫比乌斯/沃尔什变换 (FMT/FWT)](https://www.luogu.com.cn/problem/P4717)"
+???+ note "[「洛谷 P4717」【模板】快速莫比乌斯/沃尔什变换 (FMT/FWT)](https://www.luogu.com.cn/problem/P4717)"
     求 $\cup$、$\cap$、$\oplus$ 的三种卷积。
     
     $n\le17$
@@ -518,54 +516,61 @@ $$
         ll n;
         ll A[N], B[N];
         ll a[N], b[N];
+        
         void init() {
-            for(ll i = 0; i < n; i ++) a[i] = A[i], b[i] = B[i];
+          for (ll i = 0; i < n; i++) a[i] = A[i], b[i] = B[i];
         }
+        
         void Or(ll *a, ll type) {
-            for(ll x = 2; x <= n; x <<= 1) {
-                ll k = x >> 1;
-                for(ll i = 0; i < n; i += x) {
-                    for(ll j = 0; j < k; j ++) {
-                        (a[i + j + k] += a[i + j] * type) %= P; 
-                    }
-                }
+          for (ll x = 2; x <= n; x <<= 1) {
+            ll k = x >> 1;
+            for (ll i = 0; i < n; i += x) {
+              for (ll j = 0; j < k; j++) {
+                (a[i + j + k] += a[i + j] * type) %= P;
+              }
             }
+          }
         }
+        
         void And(ll *a, ll type) {
-            for(ll x = 2; x <= n; x <<= 1) {
-                ll k = x >> 1;
-                for(ll i = 0; i < n; i += x) {
-                    for(ll j = 0; j < k; j ++) {
-                        (a[i + j] += a[i + j + k] * type) %= P; 
-                    }
-                }
+          for (ll x = 2; x <= n; x <<= 1) {
+            ll k = x >> 1;
+            for (ll i = 0; i < n; i += x) {
+              for (ll j = 0; j < k; j++) {
+                (a[i + j] += a[i + j + k] * type) %= P;
+              }
             }
+          }
         }
+        
         void Xor(ll *a, ll type) {
-            for(ll x = 2; x <= n; x <<= 1) {
-                ll k = x >> 1;
-                for(ll i = 0; i < n; i += x) {
-                    for(ll j = 0; j < k; j ++) {
-                        (a[i + j] += a[i + j + k]) %= P; 
-                        (a[i + j + k] = a[i + j] - a[i + j + k] * 2) %= P; 
-                        (a[i + j] *= type) %= P;
-                        (a[i + j + k] *= type) %= P;
-                    }
-                }
+          for (ll x = 2; x <= n; x <<= 1) {
+            ll k = x >> 1;
+            for (ll i = 0; i < n; i += x) {
+              for (ll j = 0; j < k; j++) {
+                (a[i + j] += a[i + j + k]) %= P;
+                (a[i + j + k] = a[i + j] - a[i + j + k] * 2) %= P;
+                (a[i + j] *= type) %= P;
+                (a[i + j + k] *= type) %= P;
+              }
             }
+          }
         }
+        
         void calc() {
-            for(ll i = 0; i < n; i ++) (a[i] *= b[i]) %= P;
+          for (ll i = 0; i < n; i++) (a[i] *= b[i]) %= P;
         }
+        
         void print() {
-            for(ll i = 0; i < n; i ++) printf("%lld ", (a[i] % P + P) % P);
-            printf("\n");
+          for (ll i = 0; i < n; i++) printf("%lld ", (a[i] % P + P) % P);
+          printf("\n");
         }
         int main() {
-            scanf("%lld", &n);
-            n = 1 << n;
-            for(ll i = 0; i < n; i ++) scanf("%lld", &A[i]);
-            for(ll i = 0; i < n; i ++) scanf("%lld", &B[i]);
+          scanf("%lld", &n);
+          n = 1 << n;
+          for (ll i = 0; i < n; i++) scanf("%lld", &A[i]);
+          for (ll i = 0; i < n; i++) scanf("%lld", &B[i]);
+        ```
     
             init(); Or(a, 1); Or(b, 1); calc(); Or(a, P - 1); print();
             init(); And(a, 1); And(b, 1); calc(); And(a, P - 1); print();
@@ -575,11 +580,10 @@ $$
 
 ???+ note "[「CF 1103E」Radix sum](https://www.luogu.com.cn/problem/CF1103E)"
     给定一个长度为 $n$ 的序列 $a_1,a_2,...,a_n$，对于每一个 $p \in [0,n-1]$，求满足下列条件的整数序列 $i_1,i_2,...,i_n$ 的方案数，对 $2^{58}$ 取模：
-    
 
     - $\forall j \in [1,n] , i_j \in [1,n]$；
     - $\sum\limits_{j=1}^n a_{i_j} = p$，这里的加法定义为十进制不进位加法。
-    
+
     $n\le10^5,a_i\le10^5$
 
 
@@ -587,13 +591,13 @@ $$
         我们可以想到 dp：设计状态 $f_{i,s}$ 表示考虑到第 $i$ 个数，当前加法状态为 $s$。因为 FWT 变换是线性的，可以先变换为 FWT 点值表示法，然后变成自己的 $n$ 次幂，最后再变换回来。
     	
         上面是平凡的，但是题目给出了模数 $2^{58}$。发现没有单位根，所以考虑扩域。
-    
+
         这里的分圆多项式 $\Phi_{10}(x)=x^4-x^3+x^2-x+1$。
-    
+
         然而我们发现 UFWT 时，需要除去进制 $10$，然而我们发现 $10$ 在 $2^{58}$ 下没有逆元。实际上我们发现 $5$ 在 $2^{58}$ 下是有逆元的：$57646075230342349$，我们只需要再除去一个 $2$ 就可以了。设已经除以了 $5$ 的答案为 $x$，真正的答案为 $y$，也就是 $2^5y\equiv x\pmod{2^{64}}$，显然，我们有 $y\equiv \frac{x}{2^5}\pmod{2^{64-5}}$，也就是 $y\equiv \frac{x}{2^5}\pmod{2^{59}}$，所以直接将最后的答案除以 $2^5$ 即可。虽然出题人不知道为什么要模 $2^{58}$，但再取下模即可。
-    
+
         然后就是平凡实现了：
-    
+
         ```cpp
         #include <bits/stdc++.h>
         using namespace std;
@@ -708,13 +712,11 @@ $$
 
 ???+ note "[【CF103329F】【XXII Opencup, Grand Prix of XiAn】The Struggle](https://codeforces.com/gym/103329/problem/F)"
     给出一个椭圆 $E$，其中所有整点的坐标均在 $[1,4 \cdot 10^6]$ 之间。求 $\sum_{(x,y) \in E} (x \oplus y)^{33}x^{-2}y^{-1} \mod 10^9+7$ 的值。
-    
 
     ??? note "题解"
         这是一道比较不裸的题，出题人提供了详细的英文题解，具体请见 [此链接](https://codeforces.com/blog/entry/96518)。
 
 ## 参考资料
 
-- [桃酱的算法笔记](https://zhuanlan.zhihu.com/p/41867199)
-- [ZnPdCo 的博客](https://znpdco.github.io/%E7%AE%97%E6%B3%95/2024/05/07/FWT.html)
-
+-   [桃酱的算法笔记](https://zhuanlan.zhihu.com/p/41867199)
+-   [ZnPdCo 的博客](https://znpdco.github.io/%E7%AE%97%E6%B3%95/2024/05/07/FWT.html)
