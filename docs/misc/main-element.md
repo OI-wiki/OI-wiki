@@ -75,4 +75,4 @@ while (n--) {
 
 ## 习题
 
-* [LeetCode 169. 多数元素](https://leetcode.cn/problems/majority-element)
+-   [LeetCode 169. 多数元素](https://leetcode.cn/problems/majority-element)
