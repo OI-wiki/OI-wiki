@@ -1,4 +1,4 @@
-author: ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagnet, CamberLoid, royqh1979
+author: topdevst, ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe, DawnMagnet, CamberLoid, royqh1979
 
 ## 介绍
 
@@ -25,6 +25,7 @@ Embarcadero Dev-C++[^ref1]是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者�
 -   `Ctrl + N`: 创建源代码
 -   `Ctrl + O`: 打开文件
 -   `Ctrl + W`: 关闭文件
+-   `Ctrl + Shift + W' 关闭所有文件
 -   `Ctrl + P`: 打印文件
 
 #### 格式部分
