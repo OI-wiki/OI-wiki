@@ -4,7 +4,7 @@ author: Xeonacid, nocriz, ZnPdCo
 
 > 沃尔什转换（Walsh Transform）是在频谱分析上作为离散傅立叶变换的替代方案的一种方法。——[维基百科](https://zh.wikipedia.org/zh-cn/%E6%B2%83%E7%88%BE%E4%BB%80%E8%BD%89%E6%8F%9B)
 
-其实这个变换在信号处理中应用很广泛，FFT 是 double 类型的，但是 walsh 把信号在不同震荡频率方波下拆解，因此所有的系数都是绝对值大小相同的整数，这使得不需要作浮点数的乘法运算，提高了运算速度。
+其实这个变换在信号处理中应用很广泛，FFT 是 double 类型的，但是 Walsh 把信号在不同震荡频率方波下拆解，因此所有的系数都是绝对值大小相同的整数，这使得不需要作浮点数的乘法运算，提高了运算速度。
 
 所以，FWT 和 FFT 的核心思想应该是相同的，都是对数组的变换。我们记对数组 $A$ 进行快速沃尔什变换后得到的结果为 $FWT[A]$。
 
@@ -22,7 +22,7 @@ author: Xeonacid, nocriz, ZnPdCo
 
 （其中 $\oplus$ 是二元位运算中的某一种）
 
-下面我们举 $ \cup  $（按位或）、$\cap$（按位与）和 $\oplus$（按位异或）为例。
+下面我们举 $\cup$（按位或）、$\cap$（按位与）和 $\oplus$（按位异或）为例。
 
 ## FWT 的运算
 
@@ -32,14 +32,13 @@ author: Xeonacid, nocriz, ZnPdCo
 
 现在要得到 $FWT[C] = FWT[A] \cdot FWT[B]$，我们就要构造这个 FWT 的规则。
 
-我们按照定义，显然可以构造 $FWT[A] = \sum_{i=i\cup j}A_{j}$，来表示 $j$ 满足二进制中 $1$ 为 $i$ 的子集。
+我们按照定义，显然可以构造 $FWT[A] = A' = \sum_{i=i\cup j}A_{j}$，来表示 $j$ 满足二进制中 $1$ 为 $i$ 的子集。
 
 那么有：
 
 $$
 \begin{aligned}
-FWT[A]\cdot FWT[B]&=(\sum_{i\cup j=i} A_j)(\sum_{i\cup k=i} B_k) \\
-&=\sum_{i\cup j=i}\sum_{i\cup k=i}A_jB_k \\
+FWT[A]\cdot FWT[B]&=\left(\sum_{i\cup j=i} A_j\right)\left(\sum_{i\cup k=i} B_k\right) \\
 &=\sum_{i\cup j=i}\sum_{i\cup k=i}A_jB_k \\
 &=\sum_{i\cup(j\cup k)=i}A_jB_k \\
 &= FWT[C]
@@ -122,8 +121,8 @@ void And(ll *a, ll type) {
 
 $$
 \begin{aligned}
-FWT[A]FWT[B]&=(\sum_{i\circ j=0}A_j-\sum_{i\circ j=1}A_j)(\sum_{i\circ k=0}B_k-\sum_{i\circ k=1}B_k) \\
-&=(\sum_{i\circ j=0}A_j\sum_{i\circ k=0}B_k+\sum_{i\circ j=1}A_j\sum_{i\circ k=1}B_k)-(\sum_{i\circ j=0}A_j\sum_{i\circ k=1}B_k+\sum_{i\circ j=1}A_j\sum_{i\circ k=0}B_k) \\
+FWT[A]FWT[B]&=\left(\sum_{i\circ j=0}A_j-\sum_{i\circ j=1}A_j\right)\left(\sum_{i\circ k=0}B_k-\sum_{i\circ k=1}B_k\right) \\
+&=\left(\sum_{i\circ j=0}A_j\sum_{i\circ k=0}B_k+\sum_{i\circ j=1}A_j\sum_{i\circ k=1}B_k\right)-\left(\sum_{i\circ j=0}A_j\sum_{i\circ k=1}B_k+\sum_{i\circ j=1}A_j\sum_{i\circ k=0}B_k\right) \\
 &=\sum_{(j\oplus k)\circ i=0}A_jB_k-\sum_{(j\oplus k)\circ i=1}A_jB_k \\
 &=FWT[C]
 \end{aligned}
