@@ -1,8 +1,8 @@
-author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh, xiaofu-15191
+author: topdevst, NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh, xiaofu-15191
 
 ## 简介
 
-Visual Studio Code（以下简称 VS Code）是一个由微软开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器。它是用 TypeScript 编写的，并且采用 Electron 架构。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统。
+Visual Studio Code（以下简称 VS Code）是一个由Microsoft (微软)开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器。它是用 TypeScript 编写的，并且采用 Electron 架构。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统。
 
 官网：[Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
 
@@ -32,7 +32,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 ![](./images/vscode-2.png)
 
 ???+ warning
-    在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了 `PATH` 中。请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端。
+    在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了 `PATH环境变量` 中。请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端。
 
 ### 配置 GDB/LLDB 调试器
 
