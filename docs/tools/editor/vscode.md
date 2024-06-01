@@ -2,7 +2,7 @@ author: topdevst, NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, kee
 
 ## 简介
 
-Visual Studio Code（以下简称 VS Code）是一个由Microsoft (微软)开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器。它是用 TypeScript 编写的，并且采用 Electron 架构。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统。
+Visual Studio Code（以下简称 VS Code）是一个由 Microsoft（微软）开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器。它是用 TypeScript 编写的，并且采用 Electron 架构。它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统。
 
 官网：[Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
 
