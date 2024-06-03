@@ -155,11 +155,9 @@ sudo zypper in llvm clang
 
 ## MSVC (Visual Studio)
 
-访问 [Visual Studio](https://visualstudio.microsoft.com/zh-hans/) 的下载页面，将光标移动到 下载 Visual Studio，在下来菜单中点击 Community 2022 下载。
+访问 [Visual Studio](https://visualstudio.microsoft.com/zh-hans/) 的下载页面，将光标移动到「下载 Visual Studio」，在下拉菜单中点击「Community 2022 下载」下载安装器。下载完成后打开安装器选择「Community 2022 安装」。在随后弹出来的窗口中仅选择「使用 C++ 的桌面开发」，然后单击安装。
 
-打开安装器，选择 Community 2022 安装。
-
-在随后弹出来的窗口中仅选择 使用 C++ 的桌面开发，然后单击安装。
+如果你不想安装完整的 Visual Studio，可以使用 [PortableBuildTools](https://github.com/Data-Oriented-House/PortableBuildTools) 以仅安装 MSVC 编译器。
 
 [^temurin]: [Eclipse Temurin](https://adoptium.net/) 即为原 [AdoptOpenJDK](https://adoptopenjdk.net/)，后者已于 2021 年 7 月移交至 [Eclipse 基金会](https://www.eclipse.org/org/foundation/)。具体可见 [本声明](https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/)。
 
