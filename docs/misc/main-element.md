@@ -76,3 +76,7 @@ while (n--) {
 ## 习题
 
 -   [LeetCode 169. 多数元素](https://leetcode.cn/problems/majority-element)
+
+进阶：试着基于摩尔投票算法略做调整，找到出现次数严格大于 1/3 的元素？
+
+-   [LeetCode 229. 多数元素 II](https://leetcode.cn/problems/majority-element-ii)
