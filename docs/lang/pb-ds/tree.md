@@ -45,6 +45,9 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 -   `empty()`：返回是否为空。
 -   `size()`：返回大小。
 
+???+ warning "注意"
+    `join(x)`函数需要保证并入树的键的最小值大于被并入树的键的最大值，否则会抛出`join_error`错误。
+    如果要合并两棵树，请将一棵树的元素一一插入到另一棵树中。
 ## 示例
 
 ```cpp
