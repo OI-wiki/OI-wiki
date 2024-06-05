@@ -11,21 +11,20 @@ author: SDLTF
 桶计数做法是出现一个数，就把这个数出现次数 $+1$，很好懂：
 
 ```cpp
+constexpr int m = 30000;
+int ans[m] = {0};
+
 for (int i = 0; i < n; i++) {
   cin >> t;
   ans[t]++;
-}
-for (int i = 0; i < m; i++) {  // m 为桶的大小
-  if (ans[i] > n / 2) {
-    cout << i;
+  if (ans[t] > n / 2) {
+    cout << t;
     break;
   }
 }
 ```
 
-时间复杂度 $O(n+m)$。
-
-但是这个做法很浪费空间，我们不推荐使用。
+时间复杂度 $O(n)$，这很好；但空间复杂度较大。能不能把空间复杂度降下来呢？
 
 ### 排序做法
 
