@@ -69,18 +69,19 @@ $$
 
 下面我们给出代码实现。容易发现顺变换和逆变换可以合并为一个函数，顺变换时 $\text{type}=1$，逆变换时 $\text{type}=-1$。
 
-```cpp
-void Or(ll *a, ll type) {  // 迭代实现，常数更小
-  for (ll x = 2; x <= n; x <<= 1) {
-    ll k = x >> 1;
-    for (ll i = 0; i < n; i += x) {
-      for (ll j = 0; j < k; j++) {
-        (a[i + j + k] += a[i + j] * type) %= P;
-      }
+???+ note "实现"
+    ```cpp
+    void Or(ll *a, ll type) {  // 迭代实现，常数更小
+        for (ll x = 2; x <= n; x <<= 1) {
+            ll k = x >> 1;
+            for (ll i = 0; i < n; i += x) {
+                for (ll j = 0; j < k; j++) {
+                    (a[i + j + k] += a[i + j] * type) %= P;
+                }
+            }
+        }
     }
-  }
-}
-```
+    ```
 
 ### 与运算
 
@@ -96,18 +97,19 @@ $$
 
 下面我们给出代码实现。顺变换时 $\text{type}=1$，逆变换时 $\text{type}=-1$。
 
-```cpp
-void And(ll *a, ll type) {
-  for (ll x = 2; x <= n; x <<= 1) {
-    ll k = x >> 1;
-    for (ll i = 0; i < n; i += x) {
-      for (ll j = 0; j < k; j++) {
-        (a[i + j] += a[i + j + k] * type) %= P;
-      }
+???+ note "实现"
+    ```cpp
+    void And(ll *a, ll type) {
+        for (ll x = 2; x <= n; x <<= 1) {
+            ll k = x >> 1;
+            for (ll i = 0; i < n; i += x) {
+                for (ll j = 0; j < k; j++) {
+                    (a[i + j] += a[i + j + k] * type) %= P;
+                }
+            }
+        }
     }
-  }
-}
-```
+    ```
 
 ### 异或运算
 
@@ -154,21 +156,22 @@ $$
 
 给出代码，顺变换时 $\text{type}=1$，逆变换时 $\text{type}=\frac{1}{2}$。
 
-```cpp
-void Xor(ll *a, ll type) {
-  for (ll x = 2; x <= n; x <<= 1) {
-    ll k = x >> 1;
-    for (ll i = 0; i < n; i += x) {
-      for (ll j = 0; j < k; j++) {
-        (a[i + j] += a[i + j + k]) %= P;
-        (a[i + j + k] = a[i + j] - a[i + j + k] * 2) %= P;
-        (a[i + j] *= type) %= P;
-        (a[i + j + k] *= type) %= P;
-      }
+???+ note "实现"
+    ```cpp
+    void Xor(ll *a, ll type) {
+        for (ll x = 2; x <= n; x <<= 1) {
+            ll k = x >> 1;
+            for (ll i = 0; i < n; i += x) {
+                for (ll j = 0; j < k; j++) {
+                    (a[i + j] += a[i + j + k]) %= P;
+                    (a[i + j + k] = a[i + j] - a[i + j + k] * 2) %= P;
+                    (a[i + j] *= type) %= P;
+                    (a[i + j + k] *= type) %= P;
+                }
+            }
+        }
     }
-  }
-}
-```
+    ```
 
 ### 同或运算
 
