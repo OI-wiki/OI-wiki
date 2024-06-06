@@ -65,3 +65,7 @@ cout << val;
 进阶：试着基于摩尔投票算法略做调整，找到出现次数严格大于 1/3 的元素？
 
 -   [LeetCode 229. 多数元素 II](https://leetcode.cn/problems/majority-element-ii)
+
+## 参考
+
+-   [多数投票算法 - 维基百科](https://zh.wikipedia.org/zh-cn/%E5%A4%9A%E6%95%B0%E6%8A%95%E7%A5%A8%E7%AE%97%E6%B3%95)
