@@ -50,7 +50,7 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
     如果要合并两棵树，请将一棵树的元素一一插入到另一棵树中。
 
 ## 示例
-    
+
 ```cpp
 // Common Header Simple over C++11
 #include <bits/stdc++.h>
