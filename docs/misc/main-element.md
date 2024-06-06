@@ -66,54 +66,55 @@ cout << val;
 
 进阶：试着基于摩尔投票算法略做调整，找到出现次数严格大于 1/3 的元素？
 
--   [LeetCode 229. 多数元素 II](https://leetcode.cn/problems/majority-element-ii)
+???+note "[LeetCode 229. 多数元素 II](https://leetcode.cn/problems/majority-element-ii)"
+    给定一个大小为 `n` 的整数数组，找出其中所有出现超过 `⌊ n/3 ⌋` 次的元素。
 
-在此给出参考解答（附注释）：
+??? note "实现"
 
-```cpp
-class Solution {
- public:
-  vector<int> majorityElement(vector<int>& nums) {
-    // 将摩尔投票算法的「抵消2个不同元素」变为「抵消3个两两不同的元素」
+    ```cpp
+    class Solution {
+    public:
+      vector<int> majorityElement(vector<int>& nums) {
+        // 将摩尔投票算法的「抵消2个不同元素」变为「抵消3个两两不同的元素」
 
-    constexpr int SENTINEL = 1e9 + 1;  // -1e9 <= nums[i] <= 1e9
-    int n = nums.size();
+        constexpr int SENTINEL = 1e9 + 1;  // -1e9 <= nums[i] <= 1e9
+        int n = nums.size();
 
-    int maj1 = SENTINEL, maj2 = SENTINEL;
-    int cnt1 = 0, cnt2 = 0;
-    for (auto num : nums) {
-      if (num == maj1) {
-        ++cnt1;
-      } else if (num == maj2) {
-        ++cnt2;
-      } else if (cnt1 == 0) {
-        maj1 = num;
-        ++cnt1;
-      } else if (cnt2 == 0) {
-        maj2 = num;
-        ++cnt2;
-      } else {
-        --cnt1;
-        --cnt2;
+        int maj1 = SENTINEL, maj2 = SENTINEL;
+        int cnt1 = 0, cnt2 = 0;
+        for (auto num : nums) {
+          if (num == maj1) {
+            ++cnt1;
+          } else if (num == maj2) {
+            ++cnt2;
+          } else if (cnt1 == 0) {
+            maj1 = num;
+            ++cnt1;
+          } else if (cnt2 == 0) {
+            maj2 = num;
+            ++cnt2;
+          } else {
+            --cnt1;
+            --cnt2;
+          }
+        }
+
+        // 由于题目没有保证存在2个超过 ⌊ n/3 ⌋ 次的元素，故需检验
+        vector<int> ans;
+        cnt1 = 0, cnt2 = 0;
+        for (auto num : nums) {
+          if (num == maj1)
+            ++cnt1;
+          else if (num == maj2)
+            ++cnt2;
+        }
+        if (cnt1 > n / 3) ans.push_back(maj1);
+        if (cnt2 > n / 3) ans.push_back(maj2);
+
+        return ans;
       }
-    }
-
-    // 由于题目没有保证存在2个超过 ⌊ n/3 ⌋ 次的元素，故需检验
-    vector<int> ans;
-    cnt1 = 0, cnt2 = 0;
-    for (auto num : nums) {
-      if (num == maj1)
-        ++cnt1;
-      else if (num == maj2)
-        ++cnt2;
-    }
-    if (cnt1 > n / 3) ans.push_back(maj1);
-    if (cnt2 > n / 3) ans.push_back(maj2);
-
-    return ans;
-  }
-};
-```
+    };
+    ```
 
 ## 参考
 
