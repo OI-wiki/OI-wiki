@@ -22,8 +22,8 @@ cout << a[n / 2];
 另一个自然的思路是计数数列中各数的出现次数，出现次数大于 $\dfrac n 2$ 的就是主元素。我们创建一个桶来存储出现次数。
 
 ```cpp
-constexpr int m = 30000; // 与数的取值范围相对应
-int ans[m] = {0}; // 也可选择使用 std::unordered_map<int, int>
+constexpr int m = 30000;  // 与数的取值范围相对应
+int ans[m] = {0};         // 也可选择使用 std::unordered_map<int, int>
 
 for (int i = 0; i < n; i++) {
   cin >> t;
