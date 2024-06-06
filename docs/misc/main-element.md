@@ -66,10 +66,11 @@ cout << val;
 
 进阶：试着基于摩尔投票算法略做调整，找到出现次数严格大于 1/3 的元素？
 
-???+note "[LeetCode 229. 多数元素 II](https://leetcode.cn/problems/majority-element-ii)"
+???+ note "[LeetCode 229. 多数元素 II](https://leetcode.cn/problems/majority-element-ii)"
     给定一个大小为 `n` 的整数数组，找出其中所有出现超过 `⌊ n/3 ⌋` 次的元素。
 
 ??? note "实现"
+    
 
     ```cpp
     class Solution {
