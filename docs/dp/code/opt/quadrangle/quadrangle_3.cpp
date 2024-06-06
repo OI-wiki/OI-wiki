@@ -1,13 +1,12 @@
 #include <deque>
 #include <iostream>
-#define int long long
 #define all \
   for (auto i : {&q, &l, &r}) (*i)
 using namespace std;
-int n, m, a[500009], s[500009], u, v, w, sum[500009], cnt[500009];
+long long n, m, a[500009], s[500009], u, v, w, sum[500009], cnt[500009];
 deque<int> q, l, r;
 
-int f(int i, int j) {
+long long f(int i, int j) {
   int k = i + j >> 1;
   return sum[i - 1] + v + a[k] * (k - i + 1) - (s[k] - s[i - 1]) +
          (s[j] - s[k]) - a[k] * (j - k);
@@ -39,7 +38,7 @@ void work() {
   }
 }
 
-main() {
+int main() {
   cin >> n >> m;
   for (int i = 1; i <= n; cin >> a[i], s[i] = s[i - 1] + a[i], ++i);
   for (w = 2e12; u <= w;) {  // wqs二分
