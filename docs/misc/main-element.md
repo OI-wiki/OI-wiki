@@ -60,6 +60,7 @@ cout << val;
 ## 习题
 
 -   [LeetCode 169. 多数元素](https://leetcode.cn/problems/majority-element)
+-   [洛谷 P2397 yyy loves Maths VI (mode)](https://www.luogu.com.cn/problem/P2397)
 
 进阶：试着基于摩尔投票算法略做调整，找到出现次数严格大于 1/3 的元素？
 
