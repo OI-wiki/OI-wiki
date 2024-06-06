@@ -66,6 +66,22 @@ $$
             arr[j + 1] = key
     ```
 
+=== "Rust"
+	```
+	pub fn insertion_sort<T>(array: &mut [T]) -> ()
+		where
+		T: PartialOrd,
+		{
+			for point in 1..array.len() {
+			let mut current_point: usize = point;
+			while current_point > 0 && array[current_point] < array[current_point - 1] {
+				array.swap(current_point, current_point - 1);
+				current_point -= 1;
+				}
+			}
+		}
+	```
+
 ## 折半插入排序
 
 插入排序还可以通过二分算法优化性能，在排序元素数量较多时优化的效果比较明显。
