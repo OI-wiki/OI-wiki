@@ -107,4 +107,4 @@ int main() {
 ## 参考资料
 
 -   [Tree-Based Containers](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
--   [`join` 函数的实现](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18376_source.html#l00043)
+-   [`join` 函数在 GCC 14.1.0 中的实现](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18376_source.html#l00043)
