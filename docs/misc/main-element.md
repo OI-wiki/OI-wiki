@@ -72,13 +72,13 @@ cout << val;
 ??? note "实现"
     ```cpp
     class Solution {
-    public:
+     public:
       vector<int> majorityElement(vector<int>& nums) {
         // 将摩尔投票算法的「抵消2个不同元素」变为「抵消3个两两不同的元素」
-        
+    
         constexpr int SENTINEL = 1e9 + 1;  // -1e9 <= nums[i] <= 1e9
         int n = nums.size();
-        
+    
         int maj1 = SENTINEL, maj2 = SENTINEL;
         int cnt1 = 0, cnt2 = 0;
         for (auto num : nums) {
@@ -97,7 +97,7 @@ cout << val;
             --cnt2;
           }
         }
-        
+    
         // 由于题目没有保证存在2个超过 ⌊ n/3 ⌋ 次的元素，故需检验
         vector<int> ans;
         cnt1 = 0, cnt2 = 0;
@@ -109,7 +109,7 @@ cout << val;
         }
         if (cnt1 > n / 3) ans.push_back(maj1);
         if (cnt2 > n / 3) ans.push_back(maj2);
-        
+    
         return ans;
       }
     };
