@@ -12,7 +12,7 @@ author: Xeonacid, nocriz, ZnPdCo
 
 我们需要一个新序列 $C$，由序列 $A$ 和序列 $B$ 经过某运算规则得到，即 $C = A \cdot B$；
 
-我们先正向得到 $FWT[A], FWT[B]$，再根据 $FWT[C]=FWT[A] \cdot FWT[B]$ 在 $O(n)$ 的时间复杂度内求出 $FWT[C]$；
+我们先正向得到序列 $FWT[A], FWT[B]$，再根据 $FWT[C]=FWT[A] \cdot FWT[B]$ 在 $O(n)$ 的时间复杂度内求出 $FWT[C]$，其中 $\cdot$ 是序列对应位置相乘；
 
 然后逆向运算得到原序列 $C$。时间复杂度为 $O(n \log{n})$。
 
@@ -32,16 +32,16 @@ author: Xeonacid, nocriz, ZnPdCo
 
 现在要得到 $FWT[C] = FWT[A] \cdot FWT[B]$，我们就要构造这个 FWT 的规则。
 
-我们按照定义，显然可以构造 $FWT[A] = A' = \sum_{i=i\cup j}A_{j}$，来表示 $j$ 满足二进制中 $1$ 为 $i$ 的子集。
+我们按照定义，显然可以构造 $FWT[A]_i = A'_i = \sum_{i=i\cup j}A_{j}$，来表示 $j$ 满足二进制中 $1$ 为 $i$ 的子集。
 
 那么有：
 
 $$
 \begin{aligned}
-FWT[A]\cdot FWT[B]&=\left(\sum_{i\cup j=i} A_j\right)\left(\sum_{i\cup k=i} B_k\right) \\
+FWT[A]_i\cdot FWT[B]_i&=\left(\sum_{i\cup j=i} A_j\right)\left(\sum_{i\cup k=i} B_k\right) \\
 &=\sum_{i\cup j=i}\sum_{i\cup k=i}A_jB_k \\
 &=\sum_{i\cup(j\cup k)=i}A_jB_k \\
-&= FWT[C]
+&= FWT[C]_i
 \end{aligned}
 $$
 
@@ -119,14 +119,14 @@ $$
 
 对于 $FWT[A]$ 的运算其实也很好得到。
 
-设 $FWT[A]=\sum_{i\circ j=0}A_j-\sum_{i\circ j=1}A_j$。我们来证一下 $FWT[C] = FWT[A] \cdot FWT[B]$ 的正确性：
+设 $FWT[A]_i=\sum_{i\circ j=0}A_j-\sum_{i\circ j=1}A_j$。我们来证一下 $FWT[C] = FWT[A] \cdot FWT[B]$ 的正确性：
 
 $$
 \begin{aligned}
-FWT[A]FWT[B]&=\left(\sum_{i\circ j=0}A_j-\sum_{i\circ j=1}A_j\right)\left(\sum_{i\circ k=0}B_k-\sum_{i\circ k=1}B_k\right) \\
+FWT[A]_iFWT[B]_i&=\left(\sum_{i\circ j=0}A_j-\sum_{i\circ j=1}A_j\right)\left(\sum_{i\circ k=0}B_k-\sum_{i\circ k=1}B_k\right) \\
 &=\left(\sum_{i\circ j=0}A_j\sum_{i\circ k=0}B_k+\sum_{i\circ j=1}A_j\sum_{i\circ k=1}B_k\right)-\left(\sum_{i\circ j=0}A_j\sum_{i\circ k=1}B_k+\sum_{i\circ j=1}A_j\sum_{i\circ k=0}B_k\right) \\
 &=\sum_{(j\oplus k)\circ i=0}A_jB_k-\sum_{(j\oplus k)\circ i=1}A_jB_k \\
-&=FWT[C]
+&=FWT[C]_i
 \end{aligned}
 $$
 
@@ -177,7 +177,7 @@ $$
 
 类比异或运算给出公式：
 
-$A_{i} = \sum_{C_1}A_{j} - \sum_{C_2}A_{j}$（$C_1$ 表示 $\text{popcnt}(x\cup y)\bmod 2$ 为 $0$，$C_2$ 表示 $\text{popcnt}(x\cup y)\bmod 2$ 为 $1$）
+$FWT[A]_{i} = \sum_{C_1}A_{j} - \sum_{C_2}A_{j}$（$C_1$ 表示 $\text{popcnt}(x\cup y)\bmod 2$ 为 $0$，$C_2$ 表示 $\text{popcnt}(x\cup y)\bmod 2$ 为 $1$）
 
 $$
 FWT[A] = merge(FWT[A_1] - FWT[A_0], FWT[A_1] + FWT[A_0])
@@ -189,16 +189,16 @@ $$
 
 ## 另一个角度的 FWT
 
-我们设 $c(i,j)$ 是 $A_j$ 对 $FWT[A_i]$ 的贡献系数。我们可以重新描述 FWT 变换的过程：
+我们设 $c(i,j)$ 是 $A_j$ 对 $FWT[A]_i$ 的贡献系数。我们可以重新描述 FWT 变换的过程：
 
 $$
-FWT[A_i] = \sum_{j=0}^{n-1} c(i,j) A_j
+FWT[A]_i = \sum_{j=0}^{n-1} c(i,j) A_j
 $$
 
 因为有：
 
 $$
-FWT[A_i]\cdot FWT[B_i]=FWT[C_i]
+FWT[A]_i\cdot FWT[B]_i=FWT[C]_i
 $$
 
 所以我们可以通过简单的证明得到：$c(i,j)c(i,k)=c(i,j\odot k)$。其中 $\odot$ 是任意一种位运算。
@@ -208,13 +208,13 @@ $$
 举个例子，我们变换的时候：
 
 $$
-FWT[A_i] = \sum_{j=0}^{n-1} c(i,j) A_j
+FWT[A]_i = \sum_{j=0}^{n-1} c(i,j) A_j
 $$
 
 这么做是比较劣的，我们将其拆分：
 
 $$
-FWT[A_i] = \sum_{j=0}^{(n-1)/2} c(i,j) A_j+\sum_{j=(n-1)/2+1}^{n-1} c(i,j) A_j
+FWT[A]_i = \sum_{j=0}^{(n-1)/2} c(i,j) A_j+\sum_{j=(n-1)/2+1}^{n-1} c(i,j) A_j
 $$
 
 考虑前面的式子和后面的式子 $i,j$ 的区别，发现只有最高位不同。
@@ -222,19 +222,19 @@ $$
 所以我们将 $i,j$ 去除最高位的值为 $i',j'$，并记 $i_0$ 为 $i$ 的最高位。有：
 
 $$
-FWT[A_i] = c(i_0,0)\sum_{j=0}^{(n-1)/2} c(i',j') A_j+c(i_0,1)\sum_{j=(n-1)/2+1}^{n-1} c(i',j') A_j
+FWT[A]_i = c(i_0,0)\sum_{j=0}^{(n-1)/2} c(i',j') A_j+c(i_0,1)\sum_{j=(n-1)/2+1}^{n-1} c(i',j') A_j
 $$
 
 如果 $i_0=0$，则有：
 
 $$
-FWT[A_i] = c(0,0)\sum_{j=0}^{(n-1)/2} c(i',j') A_j+c(0,1)\sum_{j=(n-1)/2+1}^{n-1} c(i',j') A_j
+FWT[A]_i = c(0,0)\sum_{j=0}^{(n-1)/2} c(i',j') A_j+c(0,1)\sum_{j=(n-1)/2+1}^{n-1} c(i',j') A_j
 $$
 
 $i_0=1$ 则有：
 
 $$
-FWT[A_i] = c(1,0)\sum_{j=0}^{(n-1)/2} c(i',j') A_j+c(1,1)\sum_{j=(n-1)/2+1}^{n-1} c(i',j') A_j
+FWT[A]_i = c(1,0)\sum_{j=0}^{(n-1)/2} c(i',j') A_j+c(1,1)\sum_{j=(n-1)/2+1}^{n-1} c(i',j') A_j
 $$
 
 也就是说，我们只需要：
@@ -255,7 +255,7 @@ $$
 若逆矩阵为 $c^{-1}$，可以通过类似操作得到原数：
 
 $$
-A_i = \sum_{j=0}^n c^{-1}(i,j) FWT[A_j]
+A_i = \sum_{j=0}^n c^{-1}(i,j) FWT[A]_j
 $$
 
 逆矩阵不一定存在，比如如果有一排 $0$ 或者一列 $0$ 那么这个矩阵就没有逆，我们在构造时需要格外小心。
