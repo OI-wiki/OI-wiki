@@ -23,7 +23,6 @@ nav:
     - 格式手册: intro/format.md
     - 数学符号表: intro/symbol.md
     - F.A.Q.: intro/faq.md
-    - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 镜像站列表: intro/mirrors.md
     - 致谢: intro/thanks.md
   - 比赛相关:

@@ -45,6 +45,11 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 -   `empty()`：返回是否为空。
 -   `size()`：返回大小。
 
+???+ warning "注意"
+    `join(x)` 函数需要保证并入树的键的值域与被并入树的键的值域不相交，否则会抛出 `join_error` 异常。
+    
+    如果要合并两棵值域有交集的树，需要将一棵树的元素一一插入到另一棵树中。
+
 ## 示例
 
 ```cpp
@@ -98,3 +103,8 @@ int main() {
   return 0;
 }
 ```
+
+## 参考资料
+
+-   [Tree-Based Containers](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
+-   [`join` 函数在 GCC 14.1.0 中的实现](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18376_source.html#l00043)

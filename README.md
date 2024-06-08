@@ -87,10 +87,6 @@ python2 -m SimpleHTTPServer
 # 有些环境下找不到名叫 python3/python2 的可执行文件，不妨运行 python 试试
 ```
 
-### Docker
-
-详见 [Docker 部署](https://oi-wiki.org/intro/docker-deploy/)
-
 * * *
 
 ## 如何参与完善 OI Wiki
