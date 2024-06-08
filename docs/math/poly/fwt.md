@@ -463,9 +463,7 @@ $$
 \end{bmatrix}
 $$
 
-这不就是我们熟悉的范德蒙德矩阵吗？
-
-现在我们也知道矩阵的逆了：
+此即为 [范德蒙德矩阵](https://en.wikipedia.org/wiki/Vandermonde_matrix)，求逆可得：
 
 $$
 \frac{1}{K}\begin{bmatrix}
