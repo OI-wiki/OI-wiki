@@ -135,19 +135,16 @@ $$
 
 时间复杂度 $O(W\sum_{i=1}^nk_i)$。
 
-### 实现
-
-??? 核心代码
-    === "C++"
-        ```cpp
-        for (int i = 1; i <= n; i++) {
-          for (int weight = W; weight >= w[i]; weight--) {
+??? note "核心代码"
+    ```cpp
+    for (int i = 1; i <= n; i++) {
+        for (int weight = W; weight >= w[i]; weight--) {
             for (int k = 1; k * w[i] <= j && k <= cnt[i]; k++) {  // 多遍历一层物品数量
-              dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
+                dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
             }
-          }
         }
-        ```
+    }
+    ```
 
 ### 二进制分组优化
 
@@ -225,28 +222,38 @@ $$
 
 这种题目看起来很吓人，可是只要领悟了前面几种背包的中心思想，并将其合并在一起就可以了。下面给出伪代码：
 
-### 过程
+```plain
+for (循环物品种类) {
+  if (是 0 - 1 背包)
+    套用 0 - 1 背包代码;
+  else if (是完全背包)
+    套用完全背包代码;
+  else if (是多重背包)
+    套用多重背包代码;
+}
+```
 
-??? 核心代码
-    === "C++"
-        ```cpp
-        for (int i = 1; i <= n; i++) {
-          if (cnt[i] == 0) {  // 如果数量没有限制使用完全背包的核心代码
+### 例题
+
+???+ note "[「Luogu P1833」樱花](https://www.luogu.com.cn/problem/P1833)"
+    有 $n$ 种樱花树和长度为 $T$ 的时间，有的樱花树只能看一遍，有的樱花树最多看 $A_{i}$ 遍，有的樱花树可以看无数遍。每棵樱花树都有一个美学值 $C_{i}$，求在 $T$ 的时间内看哪些樱花树能使美学值最高。
+
+??? note "核心代码"
+    ```cpp
+    for (int i = 1; i <= n; i++) {
+        if (cnt[i] == 0) {  // 如果数量没有限制使用完全背包的核心代码
             for (int weight = w[i]; weight <= W; weight++) {
-              dp[weight] = max(dp[weight], dp[weight - w[i]] + v[i]);
+                dp[weight] = max(dp[weight], dp[weight - w[i]] + v[i]);
             }
-          } else {  // 物品有限使用多重背包的核心代码，它也可以处理0-1背包问题
+        } else {  // 物品有限使用多重背包的核心代码，它也可以处理0-1背包问题
             for (int weight = W; weight >= w[i]; weight--) {
-              for (int k = 1; k * w[i] <= j && k <= cnt[i]; k++) {
-                dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
-              }
+                for (int k = 1; k * w[i] <= j && k <= cnt[i]; k++) {
+                    dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
+                }
             }
-          }
         }
-        ```
-
-??? note "[「Luogu P1833」樱花](https://www.luogu.com.cn/problem/P1833)"
-    题意概要：有 $n$ 种樱花树和长度为 $T$ 的时间，有的樱花树只能看一遍，有的樱花树最多看 $A_{i}$ 遍，有的樱花树可以看无数遍。每棵樱花树都有一个美学值 $C_{i}$，求在 $T$ 的时间内看哪些樱花树能使美学值最高。
+    }
+    ```
 
 ## 二维费用背包
 
