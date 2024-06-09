@@ -138,11 +138,11 @@ $$
 ??? note "核心代码"
     ```cpp
     for (int i = 1; i <= n; i++) {
-        for (int weight = W; weight >= w[i]; weight--) {
-            for (int k = 1; k * w[i] <= j && k <= cnt[i]; k++) {  // 多遍历一层物品数量
-                dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
-            }
+      for (int weight = W; weight >= w[i]; weight--) {
+        for (int k = 1; k * w[i] <= j && k <= cnt[i]; k++) {  // 多遍历一层物品数量
+          dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
         }
+      }
     }
     ```
 
@@ -241,17 +241,17 @@ for (循环物品种类) {
 ??? note "核心代码"
     ```cpp
     for (int i = 1; i <= n; i++) {
-        if (cnt[i] == 0) {  // 如果数量没有限制使用完全背包的核心代码
-            for (int weight = w[i]; weight <= W; weight++) {
-                dp[weight] = max(dp[weight], dp[weight - w[i]] + v[i]);
-            }
-        } else {  // 物品有限使用多重背包的核心代码，它也可以处理0-1背包问题
-            for (int weight = W; weight >= w[i]; weight--) {
-                for (int k = 1; k * w[i] <= j && k <= cnt[i]; k++) {
-                    dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
-                }
-            }
+      if (cnt[i] == 0) {  // 如果数量没有限制使用完全背包的核心代码
+        for (int weight = w[i]; weight <= W; weight++) {
+          dp[weight] = max(dp[weight], dp[weight - w[i]] + v[i]);
         }
+      } else {  // 物品有限使用多重背包的核心代码，它也可以处理0-1背包问题
+        for (int weight = W; weight >= w[i]; weight--) {
+          for (int k = 1; k * w[i] <= j && k <= cnt[i]; k++) {
+            dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
+          }
+        }
+      }
     }
     ```
 
