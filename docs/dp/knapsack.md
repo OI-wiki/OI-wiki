@@ -139,8 +139,8 @@ $$
     ```cpp
     for (int i = 1; i <= n; i++) {
       for (int weight = W; weight >= w[i]; weight--) {
-        for (int k = 1; k * w[i] <= weight && k <= cnt[i];
-             k++) {  // 多遍历一层物品数量
+        // 多遍历一层物品数量
+        for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
           dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
         }
       }
