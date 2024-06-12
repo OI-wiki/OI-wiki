@@ -355,7 +355,7 @@ $$
 以及：
 
 $$
-FWT[A]=c\cdot FWT[A]
+FWT[c\cdot A]=c\cdot FWT[A]
 $$
 
 ## K 维 FWT
