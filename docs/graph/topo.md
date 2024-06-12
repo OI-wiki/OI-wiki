@@ -157,34 +157,33 @@ bool toposort() {
 
 ### 实现
 
-=== "C++"
-    ```cpp
+=== "C++"`cpp
     using Graph = vector<vector<int>>;  // 邻接表
-    ```
- 
+    `
+
     struct TopoSort {
       enum class Status : uint8_t { to_visit, visiting, visited };
- 
+
       const Graph& graph;
       const int n;
       vector<Status> status;
       vector<int> order;
       vector<int>::reverse_iterator it;
- 
+
       TopoSort(const Graph& graph)
           : graph(graph),
             n(graph.size()),
             status(n, Status::to_visit),
             order(n),
             it(order.rbegin()) {}
- 
+
       bool sort() {
         for (int i = 0; i < n; ++i) {
           if (status[i] == Status::to_visit && !dfs(i)) return false;
         }
         return true;
       }
- 
+
       bool dfs(const int u) {
         status[u] = Status::visiting;
         for (const int v : graph[u]) {
@@ -198,22 +197,21 @@ bool toposort() {
     };
     ```
 
-=== "Python"
-    ```python
+=== "Python"`python
     from enum import Enum, auto
-    ```
- 
+    `
+
     class Status(Enum):
         to_visit = auto()
         visiting = auto()
         visited = auto()
- 
- 
+
+
     def topo_sort(graph: list[list[int]]) -> list[int] | None:
         n = len(graph)
         status = [Status.to_visit] * n
         order = []
- 
+
         def dfs(u: int) -> bool:
             status[u] = Status.visiting
             for v in graph[u]:
@@ -224,11 +222,11 @@ bool toposort() {
             status[u] = Status.visited
             order.append(u)
             return True
- 
+
         for i in range(n):
             if status[i] == Status.to_visit and not dfs(i):
                 return None
- 
+
         return order[::-1]
     ```
 
