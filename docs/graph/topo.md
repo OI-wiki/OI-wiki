@@ -47,41 +47,33 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
 
 ### AOE 网的相关基本概念
 
--   活动：AOE 网中，弧表示活动。弧的权值表示活动持续的时间，活动在事件被触发后开始。
+-   活动：AOE 网中，弧表示活动。弧的权值表示活动持续的时间，活动在其前驱事件（即该弧的起点）被触发后开始。
 
--   事件：AOE 网中，顶点表示事件，事件能被触发。
+-   事件：AOE 网中，顶点表示事件，事件在它的所有前驱活动（即指向该边的弧）全部完成被触发。
 
--   弧（活动）$a_j$ 的最早开始时间：初始点到该弧起点的最长路径长度，记为 $e(j)$。
+-   事件（顶点）$v_j$ 的最早发生时间：该事件最早可能的发生时间，记为 $ve(i)$，它决定了以该顶点开始的活动的最早发生时间，因为事件发生需要其所有前驱活动全部完成，所以 $ve(i) = 初始点到该顶点的路径长度的最大值 = /max/{前驱活动的最早开始时间 + 前驱活动的持续时间（权值）}$ ，显然源点的的最早发生时间为 0。
 
--   弧（活动）$a_j$ 的最迟开始时间：在不推迟整个工期的前提下，工程达到弧起点所表示的状态最晚能容忍的时间，记为 $l(j)$。
+-   事件（顶点）$v_j$ 的最迟发生时间：在不推迟整个工期的前提下，该事件最晚能容忍的发生时间，记为 $vl(i)$，它决定了所有以该状态结束的活动的最迟发生时间，$vl(i) = /min/{后继活动的最迟开始时间}$。
 
--   顶点（事件）$v_j$ 的最早发生时间：初始点到该顶点的最长路径长度，记为 $ve(j)$，它决定了以该顶点开始的活动的最早发生时间，所以 $ve(j)=e(j)$。
+-   活动（弧）$a_j$ 的最早开始时间：该活动最早可能的发生时间，记为 $e(i)$，显然，它等于其前驱事件的最早发生时间。
 
--   顶点（事件）$v_j$ 的最迟发生时间：在不推迟整个工期的前提下，工程达到顶点所表示的状态最晚能容忍的时间，记为 $vl(j)$，它决定了所有以该状态结束的活动的最迟发生时间，所以 $l(j)=vl(j)-dul(aj)$。
+-   活动（弧）$a_j$ 的最迟开始时间：在不推迟整个工期的前提下，活动开始最晚能容忍的时间，记为 $l(i)$，它等于其后继事件的最迟发生时间 - 该事件的持续时间（权值）。
 
 -   关键路径：AOE 网中从源点到汇点的最长路径的长度。
 
 -   关键活动：关键路径上的活动，最早开始时间和最迟开始时间相等。
 
-### 最早和最迟发生时间的递推关系
+### 递推求最早和最迟发生时间
 
-$$
-ve(j) = \max\{ve(k) + dut(\langle k,j\rangle)\},\quad \langle k,j\rangle \in T,2\le j\le n
-$$
-
-$$
-vl(j) = \min\{vl(k) - dut(\langle j,k\rangle)\},\quad \langle j,k\rangle \in S,1\le j\le n-1
-$$
-
-按拓扑顺序求，最早是从前往后，前驱顶点的最早开始时间与边的权重之和最大者，最迟是从后往前，后继顶点的最迟开始时间与边的权重之差的最小者。
+按拓扑顺序求，最早发生时间从前往后递推，$ve(i) = /max/{前驱活动的最早开始时间 + 前驱活动的持续时间（权值）}$，最迟发生时间从后往前递推，$vl(i) = /min/{后继顶点的最迟开始时间 - 活动的持续时间（边的权重）}$。
 
 ### 关键路径算法
 
 1.  输入 $e$ 条弧 $(j,k)$，建立 AOE 网；
 
-2.  从源点 $v_0$ 出发，令 $ve[0] = 0$, 按照拓扑排序求其余各个顶点的最早发生时间 $ve[i],~(i \le i \le n-1)$。如果得到的拓扑有序序列中顶点的个数小于网中的顶点数 $n$，则说明网中存在环，不能求关键路径，算法终止；否则执行步骤 3；
+2.  从源点 $v_1$ 出发，令 $ve[1] = 0$, 按照拓扑排序求其余各个顶点的最早发生时间 $ve[i],~(i \le i \le n-1)$。如果得到的拓扑有序序列中顶点的个数小于网中的顶点数 $n$，则说明网中存在环，不能求关键路径，算法终止；否则执行步骤 3；
 
-3.  从汇点 $v_n$ 出发，令 $vl[n-1] = ve[n-1]$，按照逆拓扑有序求其余各顶点的最迟发生时间 $vl[i],~(n-2 \ge i \ge 2)$;
+3.  从汇点 $v_n$ 出发，令 $vl[n] = ve[n]$，按照逆拓扑排序求其余各顶点的最迟发生时间 $vl[i],~(n-2 \ge i \ge 2)$;
 
 4.  根据各顶点的 $ve$ 和 $vl$ 值，求每条弧 $s$ 的最早开始时间 $e(s)$ 和最迟开始时间 $l(s)$。若某条弧满足条件 $e(s) = l(s)$, 则为关键活动。
 
@@ -166,30 +158,30 @@ bool toposort() {
 === "C++"
     ```cpp
     using Graph = vector<vector<int>>;  // 邻接表
-    
+
     struct TopoSort {
       enum class Status : uint8_t { to_visit, visiting, visited };
-    
+
       const Graph& graph;
       const int n;
       vector<Status> status;
       vector<int> order;
       vector<int>::reverse_iterator it;
-    
+
       TopoSort(const Graph& graph)
           : graph(graph),
             n(graph.size()),
             status(n, Status::to_visit),
             order(n),
             it(order.rbegin()) {}
-    
+
       bool sort() {
         for (int i = 0; i < n; ++i) {
           if (status[i] == Status::to_visit && !dfs(i)) return false;
         }
         return true;
       }
-    
+
       bool dfs(const int u) {
         status[u] = Status::visiting;
         for (const int v : graph[u]) {
@@ -206,19 +198,19 @@ bool toposort() {
 === "Python"
     ```python
     from enum import Enum, auto
-    
-    
+
+
     class Status(Enum):
         to_visit = auto()
         visiting = auto()
         visited = auto()
-    
-    
+
+
     def topo_sort(graph: list[list[int]]) -> list[int] | None:
         n = len(graph)
         status = [Status.to_visit] * n
         order = []
-    
+
         def dfs(u: int) -> bool:
             status[u] = Status.visiting
             for v in graph[u]:
@@ -229,11 +221,11 @@ bool toposort() {
             status[u] = Status.visited
             order.append(u)
             return True
-    
+
         for i in range(n):
             if status[i] == Status.to_visit and not dfs(i):
                 return None
-    
+
         return order[::-1]
     ```
 
