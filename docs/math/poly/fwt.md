@@ -451,7 +451,7 @@ $$
 我们构造 $c(i,j)=\omega_{K}^j$，就可以满足要求了：
 
 $$
-\omega_{K}^j\omega_{k}^k=\omega_{K}^{j\oplus k}
+\omega_{K}^j\omega_{K}^k=\omega_{K}^{j\oplus k}
 $$
 
 但是每一行都一样矩阵也没有逆，所以我们可以构造 $c(i,j)=\omega_{K}^{(i-1)j}$ 即可。
