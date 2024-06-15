@@ -17,14 +17,14 @@ void add(int u, int v) { e[++tot] = (edge){v, hd[u]}, hd[u] = tot; }
 
 void uadd(int u, int v) { add(u, v), add(v, u); }
 
-int cnt, sum;
+int bcc_cnt, sum;
 int dfn[N], low[N];
 bool vis[N];
 vector<vector<int>> ans;
 stack<int> st;
 
 void tarjan(int u, int in) {
-  low[u] = dfn[u] = ++cnt;
+  low[u] = dfn[u] = ++bcc_cnt;
   st.push(u), vis[u] = 1;
   for (int i = hd[u]; i; i = e[i].nt) {
     int v = e[i].to;
