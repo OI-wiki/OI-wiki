@@ -283,7 +283,7 @@ void build_virtual_tree() {
     ```
 
 ???+ warning "注意"  
-   这里与 $sta_{top - 1}$ 比较而不是 $sta_{top}$ 是因为，如果与 $sta_{top}$ 比较时遇到 $sta_{top - 1} \neq l$ 时，连的边会是 $sta_{top - 1} \rightarrow sta_{top} \rightarrow lca$，而正确的应该是 $sta_{top - 1} \rightarrow lca \rightarrow sta_{top}$
+这里与 $sta_{top - 1}$ 比较而不是 $sta_{top}$ 是因为，如果与 $sta_{top}$ 比较时遇到 $sta_{top - 1} \neq l$ 时，连的边会是 $sta_{top - 1} \rightarrow sta_{top} \rightarrow lca$，而正确的应该是 $sta_{top - 1} \rightarrow lca \rightarrow sta_{top}$
 
 于是我们就学会了虚树的建立了！
 
