@@ -282,6 +282,9 @@ void build_virtual_tree() {
     }
     ```
 
+???+ warning "注意"  
+   这里与 $sta_{top - 1}$ 比较而不是 $sta_{top}$ 是因为，如果与 $sta_{top}$ 比较时遇到 $sta_{top - 1} \neq l$ 时，连的边会是 $sta_{top - 1} \rightarrow sta_{top} \rightarrow lca$，而正确的应该是 $sta_{top - 1} \rightarrow lca \rightarrow sta_{top}$
+
 于是我们就学会了虚树的建立了！
 
 对于消耗战这题，直接在虚树上跑最开始讲的那个 DP 就行了，我们等于利用了虚树排除了那些没用的非关键节点！仍然考虑 $i$ 的所有儿子 $v$：
