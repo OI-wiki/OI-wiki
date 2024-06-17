@@ -44,7 +44,7 @@ jobs:
 
       - uses: typst-community/setup-typst@v3
         with:
-          typst-version: 0.11.0
+          typst-version: 0.11.1
           cache-dependency-path: OI-Wiki-export/oi-wiki-export-typst/oi-wiki.typ
 
       - name: Build Typst document
