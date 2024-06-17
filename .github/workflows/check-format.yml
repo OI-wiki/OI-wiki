@@ -4,15 +4,6 @@ on:
   pull_request:
     branches:
       - master
-    paths:
-      - docs/**
-      - .github/workflows/check-format.yml
-      - yarn.lock
-      - package.json
-      - .remarkrc
-      - .remarkignore
-      - .clang-format
-      - scripts/checker/*
 
 jobs:
   check-format:
