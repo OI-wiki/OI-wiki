@@ -250,7 +250,7 @@ Carmichael 数有如下性质：
       // test_time 为测试次数，建议设为不小于 8
       // 的整数以保证正确率，但也不宜过大，否则会影响效率
       for (int i = 0; i < test_time; ++i) {
-        // 0,1,n-1 可以直接通过测试, a取值范围[2,n-2]
+        // 0, 1, n-1 可以直接通过测试, a 取值范围 [2, n-2]
         int a = rand() % (n - 3) + 2, v = quickPow(a, u, n);
         if (v == 1) continue;
         int s;
@@ -278,7 +278,7 @@ Carmichael 数有如下性质：
         # test_time 为测试次数,建议设为不小于 8
         # 的整数以保证正确率,但也不宜过大,否则会影响效率
         for i in range(test_time):
-            # 0,1,n-1 可以直接通过测试, a取值范围[2,n-2]
+            # 0, 1, n-1 可以直接通过测试, a 取值范围 [2, n-2]
             a = random.randint(2, n - 2)
             v = pow(a, u, n)
             if v == 1:
@@ -306,7 +306,7 @@ Carmichael 数有如下性质：
 
 -   所有的数都要取一遍，不能只选小于 $n$ 的；
 -   把 $a$ 换成 $a \bmod n$；
--   如果 $a \bmod n$ 为 0, 1, n-1，则直接通过该轮测试。
+-   如果 $a \equiv 0 \pmod n$ 或 $a \equiv \pm 1 \pmod n$，则直接通过该轮测试。
 
 ## 反素数
 
