@@ -38,7 +38,7 @@
     "mathjax-full": "^3.2.2",
     "node-fetch": "^3.2.8",
     "node-html-parser": "^5.3.3",
-    "octokit": "^1.8.1",
+    "octokit": "^4.0.2",
     "patch-package": "^6.5.1",
     "postinstall-postinstall": "^2.1.0",
     "remark": "^14.0.2",
