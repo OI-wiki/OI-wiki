@@ -1,4 +1,4 @@
-author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint
+author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint, HuangYiming0608
 
 本页面主要列举一些竞赛中很多人经常会出现的错误。
 
@@ -346,7 +346,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     int foo(int x) { return 0; }
     ```
 
-    因为编译器可以假定有符号整数永远不会溢出，因此 `x > x + 1` 恒成立。
+    因为编译器可以假定有符号整数永远不会溢出，因此 `x > x + 1` 永远不会成立。
 
 -   使用未初始化的变量
 
