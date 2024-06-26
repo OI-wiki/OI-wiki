@@ -49,7 +49,7 @@ $$
 
 时间复杂度 $O(W\sum k_i)$。
 
-考虑优化 $f_i$ 的转移。为方便表述，设 $g_{x,y}=f_{i,x\times w_i+y},g'_{x,y}=f_{i-1,x\times w_i+y}$，则转移方程可以表示为：
+考虑优化 $f_i$ 的转移。为方便表述，设 $g_{x,y}=f_{i,x\times w_i+y},g'_{x,y}=f_{i-1,x\times w_i+y}$，其中 $0\le y \lt w_i$，则转移方程可以表示为：
 
 $$
 g_{x,y}=\max_{k=0}^{k_i}(g'_{x-k,y}+v_i\times k)
@@ -62,6 +62,13 @@ g_{x,y}=\max_{k=0}^{k_i}(G_{x-k,y})+v_i\times x
 $$
 
 这样就转化为一个经典的单调队列优化形式了。$G_{x,y}$ 可以 $O(1)$ 计算，因此对于固定的 $y$，我们可以在 $O\left( \left\lfloor \dfrac{W}{w_i} \right\rfloor \right)$ 的时间内计算出 $g_{x,y}$。因此求出所有 $g_{x,y}$ 的复杂度为 $O\left( \left\lfloor \dfrac{W}{w_i} \right\rfloor \right)\times O(w_i)=O(W)$。这样转移的总复杂度就降为 $O(nW)$。
+
+在实现的时候，我们需要先枚举 $y$，这样才能保证枚举 $x$ 的时候利用单调队列进行优化，而单调队列中存储的是 $x-k$，并不存储 $k$，这样使用的时候需要通过 `f[last][q.front() * w[i] + y] - q.front() * v[i]` 获取对应的 $G_{x-k,y}$，不难发现 $x-k\in [x - k_i,x]$，因此在枚举 $x$ 的时候，我们需要删除队列中不在这个范围内的元素。
+
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/dp/code/opt/monotonous-queue-stack/monotonous-queue-stack_2.cpp"
+    ```
 
 ## 习题
 
