@@ -455,7 +455,7 @@ class RBTreeMap {
 
 该过程分为三步：
 
-1.  若 N 为左子节点，右旋 P，否则左旋 P。
+1.  若 N 为左子节点，右旋 S，否则左旋 S。
 2.  将节点 S 染红，将节点 C 染黑。
 3.  此时已满足 Case 5 的条件，进入 Case 5 完成后续维护。
 
@@ -466,8 +466,8 @@ class RBTreeMap {
     // clang-format off
     // Case 4: Sibling is BLACK, close nephew is RED,
     //         distant nephew is BLACK
-    //   Step 1. If N is a left child, right rotate P;
-    //           If N is a right child, left rotate P.
+    //   Step 1. If N is a left child, right rotate S;
+    //           If N is a right child, left rotate S.
     //   Step 2. Swap the color of close nephew and sibling
     //   Step 3. Goto case 5
     //                            {P}                {P}
