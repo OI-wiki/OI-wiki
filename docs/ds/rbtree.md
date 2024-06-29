@@ -466,8 +466,8 @@ class RBTreeMap {
     // clang-format off
     // Case 4: Sibling is BLACK, close nephew is RED,
     //         distant nephew is BLACK
-    //   Step 1. If N is a left child, right rotate P;
-    //           If N is a right child, left rotate P.
+    //   Step 1. If N is a left child, right rotate S;
+    //           If N is a right child, left rotate S.
     //   Step 2. Swap the color of close nephew and sibling
     //   Step 3. Goto case 5
     //                            {P}                {P}
