@@ -22,6 +22,54 @@
 
 注意到我们每次要用到 **当前有多少个小于它的数还没有出现**，这里用树状数组统计比它小的数出现过的次数就可以了。
 
+??? note "例题 [康托展开](https://loj.ac/p/167)"
+    ```c++
+    #include <cstdio>
+    #include <cstring>
+    using namespace std;
+    const int MOD = 998244353;
+    typedef long long ll;
+    int n, x, d[1000005];
+    ll fac[1000005], ans;
+    inline int lowbit(int x) { return x & -x; }
+    int read() {
+        int x = 0;
+        char c = getchar();
+        while(c < '0' || c > '9')
+            c = getchar();
+        while(c >= '0' && c <= '9')
+            x = x * 10 + c - '0', c = getchar();
+        return x;
+    }
+    void modify(int x, int o) {
+        while(x <= n) {
+            d[x] += o;
+            x += lowbit(x);
+        }
+    }
+    int query(int x) {
+        int ret = 0;
+        while(x >= 1) {
+            ret += d[x];
+            x -= lowbit(x);
+        }
+        return ret;
+    }
+    int main() {
+        n = read();
+        fac[0] = 1;
+        for(int i = 1; i <= n; ++i) {
+            d[i] = lowbit(i);  // O(n) 建树
+            fac[i] = (fac[i - 1] * i) % MOD;  // 预处理阶乘
+        }
+        for(int i = 1; i <= n; ++i) {
+            x = read();
+            modify(x, -1);
+            ans = (ans + ll(query(x) * fac[n - i]) % MOD) % MOD;
+        }
+        printf("%d\n", ans + 1);
+    }
+    ```
 ## 逆康托展开
 
 因为排列的排名和排列是一一对应的，所以康托展开满足双射关系，是可逆的。可以通过类似上面的过程倒推回来。
