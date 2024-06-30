@@ -139,7 +139,7 @@ $$
 那么对于 $V(x^2)=Q(x)Q(-x)$ 而言，我们只需求出
 
 $$
-\left\lbrack x^{\left\lbrack \left\lceil \frac{L-\deg Q}{2}\right\rceil,\left\lceil \frac{L+\deg Q+1}{2}\right\rceil\right)}\right\rbrack \frac{1}{V(x)}
+\left\lbrack x^{\left\lbrack \lceil (L-\deg Q)/2 \rceil,\lceil (L+\deg Q+1)/2 \rceil\right)}\right\rbrack \frac{1}{V(x)}
 $$
 
 这是因为
