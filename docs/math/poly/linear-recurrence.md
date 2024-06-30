@@ -14,15 +14,7 @@ $$
 
 ### Fiduccia 算法
 
-Fiduccia 算法使用多项式取模和快速幂来计算 $a_k$，我们先考虑多项式取模的一种简单理解为「**替换降次**」：
-
-假设给出多项式 $f(x)=1+x+x^2$ 希望求出 $f(x)\bmod{\left(x^2-1\right)}$ 那么在对 $x^2-1$ 取模的意义下显然有
-
-$$
-x^2\equiv 1\pmod{\left(x^2-1\right)}
-$$
-
-那么我们将 $f(x)$ 中的 $x^2$ 替换为 $1$ 就完成了这一求算。
+Fiduccia 算法使用多项式取模和快速幂来计算 $a_k$。
 
 **算法**：构造多项式 $\Gamma(x):=x^d-\sum_{j=1}^dc_{d-j+1}x^{j-1}$ 和 $A(x):=\sum_{j=0}^{d-1}a_jx^j$，那么
 
@@ -32,28 +24,81 @@ $$
 
 其中定义 $\left\langle \left(\sum_{j=0}^{n-1}f_jx^j\right),\left(\sum_{j=0}^{n-1}g_jx^j\right) \right\rangle :=\sum_{j=0}^{n-1}f_jg_j$ 为内积。
 
-**证明**：考虑对于 $0\leq k<d$ 正确性显然，当 $k=d$ 时有
+**证明**：我们定义 $\Gamma(x)$ 的友矩阵为
+
+$$
+C_\Gamma:=
+\begin{bmatrix}
+&&&c_d \\
+1&&&c_{d-1} \\
+&\ddots &&\vdots \\
+&&1&c_1
+\end{bmatrix}
+$$
+
+我们定义多项式 $b(x):=\sum_{j=0}^{d-1}b_jx^j$ 和
+
+$$
+B_b:=\begin{bmatrix}b_0&b_1&\cdots &b_{d-1}\end{bmatrix}^{\intercal}
+$$
+
+观察到
+
+$$
+\underbrace{\begin{bmatrix}
+&&&c_d \\
+1&&&c_{d-1} \\
+&\ddots &&\vdots \\
+&&1&c_1
+\end{bmatrix}}_{C_\Gamma}
+\underbrace{\begin{bmatrix}
+b_0 \\
+b_1 \\
+\vdots \\
+b_{d-1}
+\end{bmatrix}}_{B_b}=
+\underbrace{\begin{bmatrix}
+c_db_{d-1} \\
+b_0+c_{d-1}b_{d-1} \\
+\vdots \\
+b_{d-2}+c_1b_{d-1}
+\end{bmatrix}} _ {B_{xb\bmod{\Gamma}}}
+$$
+
+且
 
 $$
 \begin{aligned}
-\left\langle \sum_{j=1}^dc_{d-j+1}x^{j-1},A(x)\right\rangle &=\sum_{j=1}^{d}c_{d-j+1}a_{j-1} \\
-&=\sum_{j=1}^dc_ja_{d-j} \\
-&=a_d
+C_\Gamma&=\begin{bmatrix}B_{x\bmod{\Gamma}}&B_{x^2\bmod{\Gamma}}&\cdots &B_{x^d\bmod{\Gamma}}\end{bmatrix}, \\
+\left(C_\Gamma\right)^2&=\begin{bmatrix}B_{x^2\bmod{\Gamma}}&B_{x^3\bmod{\Gamma}}&\cdots &B_{x^{d+1}\bmod{\Gamma}}\end{bmatrix}, \\
+\cdots \\
+\left(C_\Gamma\right)^k&=\begin{bmatrix}B_{x^k\bmod{\Gamma}}&B_{x^{k+1}\bmod{\Gamma}}&\cdots &B_{x^{k+d}\bmod{\Gamma}}\end{bmatrix}
 \end{aligned}
 $$
 
-正是我们的定义。当 $k=d+1$ 时，
+我们将这个递推用矩阵表示有
 
 $$
-\begin{aligned}
-\left\langle \left(\sum_{j=1}^{d-1}c_{d-j+1}x^j\right)+c_1\left(\sum_{j=1}^dc_{d-j+1}x^{j-1}\right),A(x)\right\rangle &=\left\langle \sum_{j=1}^{d-1}c_{d-j+1}x^j,A(x)\right\rangle+c_1\left\langle \sum_{j=1}^dc_{d-j+1}x^{j-1},A(x)\right\rangle \\
-&=\left(\sum_{j=1}^{d-1}c_{d-j+1}a_j\right)+c_1a_d \\
-&=\left(\sum_{j=2}^{d}c_{j}a_{d-j+1}\right)+c_1a_d \\
-&=a_{d+1}
-\end{aligned}
+\begin{bmatrix}
+a_{k} \\
+a_{k+1} \\
+\vdots \\
+a_{k+d-1}
+\end{bmatrix}=\underbrace{\begin{bmatrix}
+&1&& \\
+&&\ddots & \\
+&&&1 \\
+c_d&c_{d-1}&\cdots &c_1
+\end{bmatrix}^k} _ {\left(\left(C_\Gamma\right)^{\intercal}\right)^k=\left(\left(C_\Gamma\right)^{k}\right)^{\intercal}}
+\begin{bmatrix}
+a_0 \\
+a_{1} \\
+\vdots \\
+a_{d-1}
+\end{bmatrix}
 $$
 
-归纳即可。使用快速幂和多项式的带余除法，该算法时间为 $O(\mathsf{M}(d)\log k)$，其中 $O(\mathsf{M}(d))$ 表示两个度数为 $O(d)$ 的多项式相乘的时间。
+可知 $\left(\left(C_\Gamma\right)^{k}\right)^{\intercal}$ 的第一行为 $B_{x^k\bmod{\Gamma}}$，根据矩阵乘法的定义得证。
 
 ### 表示为有理函数
 
