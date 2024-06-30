@@ -64,7 +64,7 @@ class RBTreeMap {
 
 ![rbtree-rotations](images/rbtree-rotate.svg)
 
-如上图，从左图到右图的过程被称为右旋，右旋操作会使得 $T3$ 子树上结点的深度均减 1，使 $T1$ 子树上结点的深度均加 1，而 $T2$ 子树上节点的深度则不变。从右图到左图的过程被称为左旋，左旋是右旋的镜像操作。
+如上图，从左图到右图的过程被称为右旋，右旋操作会使得 $T3$ 子树上结点的深度均加 1，使 $T1$ 子树上结点的深度均减 1，而 $T2$ 子树上节点的深度则不变。从右图到左图的过程被称为左旋，左旋是右旋的镜像操作。
 
 这里给出红黑树中节点的左旋操作的示例代码：
 
@@ -493,7 +493,7 @@ class RBTreeMap {
 
 #### Case 5
 
-兄弟节点是黑色，且 close nephew 节点 C 为黑色，distant nephew 节点 D 为红色，父节点既可为红色又可为黑色。此时性质 4 无法满足，通过旋转操作使得黑色节点 S 变为该子树的根节点再进行染色即可满足性质 4。具体步骤如下：
+兄弟节点是黑色，且 distant nephew 节点 D 为红色，close nephew 节点和父节点既可为红色又可为黑色。此时性质 4 无法满足，通过旋转操作使得黑色节点 S 变为该子树的根节点再进行染色即可满足性质 4。具体步骤如下：
 
 1.  若 N 为左子节点，左旋 P，反之右旋 P。
 2.  交换父节点 P 和兄弟节点 S 的颜色，此时性质 3 可能被打破。
@@ -504,8 +504,7 @@ class RBTreeMap {
 ???+ note "实现"
     ```cpp
     // clang-format off
-    // Case 5: Sibling is BLACK, close nephew is BLACK,
-    //         distant nephew is RED
+    // Case 5: Sibling is BLACK, distant nephew is RED
     //   Step 1. If N is a left child, left rotate P;
     //           If N is a right child, right rotate P.
     //   Step 2. Swap the color of parent and sibling.
@@ -514,9 +513,8 @@ class RBTreeMap {
     //      / \    l-rotate(P)    / \    repaint    / \
     //    [N] [S]  ==========>  {P} <D>  ======>  [P] [D]
     //        / \               / \               / \
-    //      [C] <D>           [N] [C]           [N] [C]
+    //      {C} <D>           [N] {C}           [N] {C}
     // clang-format on
-    assert(closeNephew == nullptr || closeNephew->isBlack());
     assert(distantNephew->isRed());
     // Step 1
     rotateSameDirection(node->parent, direction);
