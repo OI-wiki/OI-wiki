@@ -14,7 +14,7 @@ $$
 
 ### Fiduccia 算法
 
-Fiduccia 算法使用多项式取模和快速幂来计算 $a_k$。
+Fiduccia 算法使用多项式取模和快速幂来计算 $a_k$，时间为 $O(\mathsf{M}(d)\log k)$，其中 $O(\mathsf{M}(d))$ 表示两个度数为 $O(d)$ 的多项式相乘的时间。
 
 **算法**：构造多项式 $\Gamma(x):=x^d-\sum_{j=1}^dc_{d-j+1}x^{j-1}$ 和 $A(x):=\sum_{j=0}^{d-1}a_jx^j$，那么
 
