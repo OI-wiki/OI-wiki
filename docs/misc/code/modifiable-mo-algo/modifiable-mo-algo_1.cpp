@@ -51,11 +51,11 @@ inline void process() {
     while (R < q[i].r) {
       add(a[++R]);
     }
-    while (R > q[i].r) {
-      del(a[R--]);
-    }
     while (L > q[i].l) {
       add(a[--L]);
+    }
+    while (R > q[i].r) {
+      del(a[R--]);
     }
     while (L < q[i].l) {
       del(a[L++]);
@@ -92,7 +92,7 @@ signed main() {
   for (int i = 1; i <= m; i++) {
     cin >> op >> x >> y;
     if (op == 'Q') {
-      q[++qcnt] = {qcnt, rcnt, x, y};
+      ++qcnt, q[qcnt] = {qcnt, rcnt, x, y};
     } else if (op == 'R') {
       r[++rcnt] = {x, y};
     }

@@ -31,7 +31,7 @@ void decode(T_state s) {
   }
 }
 
-const int Prime = 9979, MaxSZ = 1 << 20;
+const int Prime = 9979, MaxSZ = 1 << 19;
 
 template <class T_state, class T_key>
 struct hashTable {

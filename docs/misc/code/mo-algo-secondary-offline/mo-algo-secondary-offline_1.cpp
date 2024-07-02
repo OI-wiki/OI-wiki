@@ -203,7 +203,7 @@ void solve() {
 void solve() {
   offline1::solve();
   offline2::solve();
-  for (int i = 0; i < m; i++)
+  for (int i = 1; i < m; i++)
     ans[offline1::query[i].i] += ans[offline1::query[i - 1].i];
   return;
 }

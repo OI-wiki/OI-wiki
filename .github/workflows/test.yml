@@ -22,22 +22,39 @@ jobs:
         with:
           files: |
             docs/**/*.cpp
+            docs/**/*.py
+      - name: Check scripts themselves
+        id: changed-scripts
+        uses: tj-actions/changed-files@v42
+        with:
+          files: |
+            .github/workflows/test.yml
+            scripts/test/*
       - uses: actions/setup-python@v5
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true' || steps.changed-scripts.outputs.any_changed == 'true'
         with:
           python-version: '3.10'
           cache: pipenv
       - name: Install Python dependencies
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true' || steps.changed-scripts.outputs.any_changed == 'true'
         run: |
           curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
           pipenv install
       - name: Install C++
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true' || steps.changed-scripts.outputs.any_changed == 'true'
         run: sudo apt-get install -y g++
       - name: Make the File list
         if: steps.changed-files.outputs.any_changed == 'true'
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
+      - name: Make the File list
+        if: steps.changed-scripts.outputs.any_changed == 'true'
+        run: |
+          find docs/ -name *.cpp >cpp
+          find docs/ -name *.py >py
+          cat cpp py>res.txt
       - name: Check the Code
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: pipenv run python scripts/test.py
+        if: steps.changed-files.outputs.any_changed == 'true' || steps.changed-scripts.outputs.any_changed == 'true'
+        run: |
+          g++ scripts/test/single-run.cpp -o single-run -O2
+          g++ scripts/test/single-run.cpp -o single-run-with-san -Dwithsan -O2
+          pipenv run python scripts/test/test.py

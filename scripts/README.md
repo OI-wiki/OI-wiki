@@ -17,7 +17,8 @@
 
 以下是与构建无关的脚本：
 
-- `test.py` 测试文档中的实例代码正常编译
+- `test.py` 测试文档中的实例代码正常编译运行并通过样例
+    - `single-run.cpp` 运行单个代码
 - `check-characters.py` 扫描修改的 Markdown 文件中可替换为对应 CJK 字符的部首（和笔画字符）
 - `celebration.py` 自动创建庆祝 star 数量的 issue
 -   `utils` 一些工具
