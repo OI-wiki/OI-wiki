@@ -86,10 +86,9 @@ void solve(int i, int l, int r) {
   }
 }
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false);
-  cin.tie(0);
-  cout.tie(0);
+  cin.tie(nullptr);
   cin >> n >> m;
   for (int i = 1; i <= n; i++) {
     fa[i] = i;

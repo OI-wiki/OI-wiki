@@ -88,7 +88,7 @@ void solve(int i, int l, int r) {
   }
 }
 
-signed main() {
+int main() {
   cin >> n >> m >> k;
   for (int i = 1; i <= (n << 1); i++) {
     fa[i] = i;

@@ -316,7 +316,7 @@ void radix_sort() {
     
     int main() {
       std::ios::sync_with_stdio(false);
-      std::cin.tie(0);
+      std::cin.tie(nullptr);
       int n;
       std::cin >> n;
       int *a = new int[n];

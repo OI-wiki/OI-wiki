@@ -1,10 +1,4 @@
-#include <algorithm>
-#include <cmath>
-#include <iostream>
-
-#define int long long
-#define endl '\n'
-
+#include <bits/stdc++.h>
 using namespace std;
 
 int qsize;
@@ -80,10 +74,9 @@ inline void process() {
   }
 }
 
-signed main() {
-  cin.tie(0);
-  cout.tie(0);
+int main() {
   ios::sync_with_stdio(false);
+  cin.tie(nullptr);
   cin >> n >> m;
   qsize = pow(n, 2.0 / 3.0);
   for (int i = 1; i <= n; i++) {
@@ -99,6 +92,6 @@ signed main() {
   }
   process();
   for (int i = 1; i <= qcnt; i++) {
-    cout << ans[i] << endl;
+    cout << ans[i] << '\n';
   }
 }

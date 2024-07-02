@@ -5,11 +5,10 @@ FHQ Treap 实现。
 */
 #include <bits/stdc++.h>
 #define N 1000000
-#define int long long
 using namespace std;
 /*FHQ TREAP*/
-int rt, tot, f[N], rnd[N], ls[N], rs[N], siz[N], tag[N], val[N], sum[N], pd[N],
-    pds[N];
+int rt, tot, f[N], ls[N], rs[N], siz[N];
+long long rnd[N], tag[N], val[N], sum[N], pd[N], pds[N];
 
 void pushup(int x) {
   siz[x] = siz[ls[x]] + siz[rs[x]] + 1;
@@ -17,7 +16,7 @@ void pushup(int x) {
   pds[x] = pds[ls[x]] + pds[rs[x]] + pd[x];
 }
 
-void link(int x, int c, int y) {
+void link(int x, int c, long long y) {
   if (c)
     rs[x] = y;
   else
@@ -26,7 +25,7 @@ void link(int x, int c, int y) {
   pushup(x);
 }
 
-int newNode(int x, int y) {
+int newNode(long long x, long long y) {
   siz[++tot] = 1;
   val[tot] = sum[tot] = x;
   pd[tot] = pds[tot] = y;
@@ -34,7 +33,7 @@ int newNode(int x, int y) {
   return tot;
 }
 
-void setTag(int x, int v) {
+void setTag(int x, long long v) {
   tag[x] += v;
   sum[x] += v * pds[x];
   val[x] += v * pd[x];
@@ -90,7 +89,7 @@ int rnk(int x) {
 /*ETT*/
 int s[N], e[N];
 
-void add(int x, int v) {
+void add(int x, long long v) {
   int a, b, c;
   split(rt, rnk(s[x]) - 1, a, b);
   split(b, rnk(e[x]) - rnk(s[x]) + 1, b,
@@ -99,10 +98,10 @@ void add(int x, int v) {
   rt = merge(merge(a, b), c);
 }
 
-int query(int x) {
+long long query(int x) {
   int a, b;
   split(rt, rnk(s[x]), a, b);
-  int ans = sum[a];
+  long long ans = sum[a];
   rt = merge(a, b);
   return ans;
 }
@@ -119,7 +118,8 @@ void changeFa(int x, int y) {
 }
 
 /*main function*/
-int n, m, w[N];
+int n, m;
+long long w[N];
 vector<int> v[N];
 
 void dfs(int x) {
@@ -128,7 +128,8 @@ void dfs(int x) {
   rt = merge(rt, e[x] = newNode(-w[x], -1));
 }
 
-signed main() {
+int main() {
+  std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
   cin >> n;
   for (int i = 2; i <= n; i++) {
     int f;
