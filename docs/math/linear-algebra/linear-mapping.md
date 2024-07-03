@@ -33,7 +33,7 @@ $$
 将每个 $\alpha$ 经由 $T$ 映射后的向量用 $\beta$ 表示：
 
 $$
-T\alpha_j=a_{1j}\beta_1+\cdots+a_{mj}\beta_n
+T\alpha_j=a_{1j}\beta_1+\cdots+a_{mj}\beta_m
 $$
 
 采用矩阵记法：
