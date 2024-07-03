@@ -6,10 +6,9 @@ const int maxn = 100010;
 const int INF = 0x3f3f3f3f;
 const long long linf = (1ull << 63) - 1;
 
-int x, y, z;
+ll h, x, y, z;
 ll head[maxn << 1], tot;
-ll h, dis[maxn];
-bool vis[maxn];
+ll dis[maxn], vis[maxn];
 queue<int> q;
 
 struct edge {
@@ -44,11 +43,12 @@ void spfa() {  // spfa算法，可看最短路部分
 
 int main() {
   scanf("%lld", &h);
-  scanf("%d %d %d", &x, &y, &z);
+  scanf("%lld %lld %lld", &x, &y, &z);
   if (x == 1 || y == 1 || z == 1) {
     printf("%lld\n", h);
     return 0;
   }
+  --h;
   for (int i = 0; i < x; i++) {
     add(i, (i + z) % x, z);
     add(i, (i + y) % x, y);
@@ -57,7 +57,7 @@ int main() {
   spfa();
   ll ans = 0;
   for (int i = 0; i < x; i++) {
-    if (h >= dis[i] + 1) ans += (h - dis[i] - 1) / x + 1;
+    if (h >= dis[i]) ans += (h - dis[i]) / x + 1;
   }
   printf("%lld\n", ans);
   return 0;
