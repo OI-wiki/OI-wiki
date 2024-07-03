@@ -4,10 +4,12 @@ using namespace std;
 typedef long long ll;
 const int maxn = 100010;
 const int INF = 0x3f3f3f3f;
+const long long linf = (1ull << 63) - 1;
 
-ll h, x, y, z;
+int x, y, z;
 ll head[maxn << 1], tot;
-ll dis[maxn], vis[maxn];
+ll h, dis[maxn];
+bool vis[maxn];
 queue<int> q;
 
 struct edge {
@@ -20,9 +22,9 @@ void add(ll u, ll v, ll w) {
 }
 
 void spfa() {  // spfa算法，可看最短路部分
-  dis[1] = 1;
-  vis[1] = 1;
-  q.push(1);
+  dis[0] = 0;
+  vis[0] = 1;
+  q.push(0);
   while (!q.empty()) {
     int u = q.front();
     q.pop();
@@ -41,9 +43,8 @@ void spfa() {  // spfa算法，可看最短路部分
 }
 
 int main() {
-  memset(dis, INF, sizeof(dis));
   scanf("%lld", &h);
-  scanf("%lld %lld %lld", &x, &y, &z);
+  scanf("%d %d %d", &x, &y, &z);
   if (x == 1 || y == 1 || z == 1) {
     printf("%lld\n", h);
     return 0;
@@ -51,11 +52,12 @@ int main() {
   for (int i = 0; i < x; i++) {
     add(i, (i + z) % x, z);
     add(i, (i + y) % x, y);
+    dis[i] = linf;
   }
   spfa();
   ll ans = 0;
   for (int i = 0; i < x; i++) {
-    if (h >= dis[i]) ans += (h - dis[i]) / x + 1;
+    if (h >= dis[i] + 1) ans += (h - dis[i] - 1) / x + 1;
   }
   printf("%lld\n", ans);
   return 0;
