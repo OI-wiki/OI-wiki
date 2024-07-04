@@ -89,7 +89,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 -   $[a_1,\dots,a_n]=[[a_1,a_2],a_3,\dots,a_n]$。进而 $\forall 1<k<n-1,~[a_1,\dots,a_n]=[[a_1,\dots,a_k],[a_{k+1},\dots,a_n]]$；
 -   若 $a_i\mid m,~\forall 1\leq i\leq n$，则 $[a_1,\dots,a_n]\mid m$；
 -   $[ma_1,\dots,ma_n]=|m|[a_1,\dots,a_n]$；
--   $[a,b,c][ab,ba,ca]=[a,b][b,c][c,a]$；
+-   $[a,b,c][ab,bc,ca]=[a,b][b,c][c,a]$；
 -   $[a^n,b^n]=[a,b]^n$。
 
 最大公约数和最小公倍数可以组合出很多奇妙的等式，如：
