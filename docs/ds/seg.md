@@ -259,7 +259,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
     ```cpp
     void update(int l, int r, int c, int s, int t, int p) {
       if (l <= s && t <= r) {
-        d[p] = (t - s + 1) * c, b[p] = c;
+        d[p] = (t - s + 1) * c, b[p] = c, v[p] = 1;
         return;
       }
       int m = s + ((t - s) >> 1);
@@ -297,6 +297,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
         if l <= s and t <= r:
             d[p] = (t - s + 1) * c
             b[p] = c
+            v[p] = 1
             return
         m = s + ((t - s) >> 1)
         if v[p]:

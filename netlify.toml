@@ -3,4 +3,4 @@
   command = "cd .. && scripts/netlify/build.sh"
 
 [build.environment]
-  NODE_VERSION = "16"
+  NODE_VERSION = "20"

@@ -465,7 +465,7 @@ $$
 1 & \omega_{K}^2 & \omega_{K}^4 & \cdots & \omega_{K}^{2(k-1)} \\
 1 & \omega_{K}^3 & \omega_{K}^6 & \cdots & \omega_{K}^{3(k-1)} \\
 \vdots & \vdots & \vdots & \ddots & \vdots \\
-1 & \omega_{K}^{k-1} & \omega_{K}^{2(k-1)} & \cdots & \omega_{K}^{k(k-1)}
+1 & \omega_{K}^{k-1} & \omega_{K}^{2(k-1)} & \cdots & \omega_{K}^{(k-1)(k-1)}
 \end{bmatrix}
 $$
 
@@ -478,7 +478,7 @@ $$
 1 & \omega_{K}^{-2} & \omega_{K}^{-4} & \cdots & \omega_{K}^{-2(k-1)} \\
 1 & \omega_{K}^{-3} & \omega_{K}^{-6} & \cdots & \omega_{K}^{-3(k-1)} \\
 \vdots & \vdots & \vdots & \ddots & \vdots \\
-1 & \omega_{K}^{-(k-1)} & \omega_{K}^{-2(k-1)} & \cdots & \omega_{K}^{-k(k-1)}
+1 & \omega_{K}^{-(k-1)} & \omega_{K}^{-2(k-1)} & \cdots & \omega_{K}^{-(k-1)(k-1)}
 \end{bmatrix}
 $$
 
@@ -493,7 +493,7 @@ $$
 1 & x^2 & x^4 & \cdots & x^{2(k-1)} \\
 1 & x^3 & x^6 & \cdots & x^{3(k-1)} \\
 \vdots & \vdots & \vdots & \ddots & \vdots \\
-1 & x^{k-1} & x^{2(k-1)} & \cdots & x^{k(k-1)}
+1 & x^{k-1} & x^{2(k-1)} & \cdots & x^{(k-1)(k-1)}
 \end{bmatrix}
 $$
 

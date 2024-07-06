@@ -322,8 +322,8 @@ struct IO {
 
 ## 参考
 
-<http://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html>
+[cin.tie 与 sync\_with\_stdio 加速输入输出 - 码农场](https://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html)
 
-<http://meme.biology.tohoku.ac.jp/students/iwasaki/cxx/speed.html>
+[C++ 高速化 - Heavy Watal](https://heavywatal.github.io/cxx/speed.html)
 
-[https://marc.info/？l=linux-kernel&m=95496636207616&w=2](https://marc.info/?l=linux-kernel&m=95496636207616&w=2)
+['Re: mmap/mlock performance versus read' - MARC](https://marc.info/?l=linux-kernel&m=95496636207616&w=2)
