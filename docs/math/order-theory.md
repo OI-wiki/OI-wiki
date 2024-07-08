@@ -234,7 +234,7 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#�
         (i,h_i)\preceq(j,h_j) \iff (i\leq j \land h_i\geq h_j)
         $$
         
-        进而根据 Dilworth 定理有：**序列的不上升子序列的最少覆盖数等于最长上升子序列长度**。从而可以通过 [最长不下降子序列的 $O(n\log n)$ 做法](../dp/basic.md#算法二2) 解决本题。
+        进而根据 Dilworth 定理有：**序列的不上升子序列的最少覆盖数等于最长上升子序列长度**。从而可以通过 [最长不下降子序列的 $O(n\log n)$ 做法](../dp/basic.md#算法二) 解决本题。
     
     ??? note "参考代码"
         ```cpp
