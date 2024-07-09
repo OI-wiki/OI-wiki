@@ -410,7 +410,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    const int Prime = 9979, MaxSZ = 1 << 20;
+    const int Prime = 9979, MaxSZ = 1 << 19;
     
     template <class T_state, class T_key>
     struct hashTable {
