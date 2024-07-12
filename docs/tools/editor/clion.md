@@ -6,7 +6,7 @@ CLion 是一款由 JetBrains 公司开发的功能丰富且强大的跨平台 C/
 
 ## 官方教程
 
-在官方网站中给出了 [学习 Clion](https://www.jetbrains.com/clion/learn/) 的教程。
+在官方网站中给出了 [学习 CLion](https://www.jetbrains.com/clion/learn/) 的教程。
 
 ## 安装
 
@@ -50,7 +50,7 @@ sudo dnf install gcc g++ gdb # compiler and debugger
 sudo dnf install clang clang++ llvm lldb # you can also choose to use clang toolchain
 ```
 
-#### MacOS
+#### macOS
 
 参见 [Tutorial: Configure CLion on macOS | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-macos.html)
 
@@ -68,19 +68,19 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 
 有多种方式来运行一个 C++ 程序，一个简单的流程如下：
 
-1.  创建一个 C/C++ 项目：New -> Project -> C++ Executable，选择合适的地址和语言标准版本，点击 Create。
+1.  创建一个 C/C++ 项目：`New -> Project -> C++ Executable`，选择合适的地址和语言标准版本，点击 `Create`。
 2.  打开项目，此时的项目目录下应当存在一个 `cmake-build-debug` 目录、一个 `CMakeLists.txt` 文件和一个 `main.cpp` 文件。因为我们不需要使用 CMake 来管理项目，因此我们可以删去 `CMakeLists.txt` 文件和 `cmake-build-debug` 目录及其内所有文件。
-3.  点击打开 `main.cpp` 文件，并在编辑区右键单击，可以看到 Run 'main.cpp' 选项。选择此选项后，CLion 可以自动创建一个运行配置并运行程序
+3.  点击打开 `main.cpp` 文件，并在编辑区右键单击，可以看到 `Run 'main.cpp'` 选项。选择此选项后，CLion 可以自动创建一个运行配置并运行程序。
 
 ![C++ Single File Execution](./images/clion-single-file-execution.png)
 
-如需调试程序，可以编辑区打好断点，在编辑区右键单击，选择 Debug 'main.cpp' 选项。
+如需调试程序，可以编辑区打好断点，在编辑区右键单击，选择 `Debug 'main.cpp'` 选项。
 
 ### 通过 CMake 编译、运行和调试
 
 #### 设置
 
-CLion 也可使用 [CMake](https://cmake.org/) 作为构建工具，关于 CMake 的设置可以在 `Build, Execution, Deployment`>`Toolchains`>`CMake` 中修改。
+CLion 也可使用 [CMake](https://cmake.org/) 作为构建工具，关于 CMake 的设置可以在 `Build, Execution, Deployment -> Toolchains -> CMake` 中修改。
 
 ![CMake Settings](./images/clion-cmake.png)
 
