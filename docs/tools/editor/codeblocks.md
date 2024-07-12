@@ -96,7 +96,7 @@ Code::Blocks 支持插件来扩展功能，可以通过 `Settings -> Plugins` �
 
 插件的安装和使用方法请参考 [Code::Blocks 的插件文档](https://wiki.codeblocks.org/index.php/Code::Blocks_Plugins)，根据插件的需求和功能，选择合适的插件安装和使用。
  
-???+ warning
+???+ warning "Warning"
     需要注意的是，Code::Blocks 的插件相对单一和基础，且大部分插件已经集成到软件中，第三方插件的数量和质量有限，建议根据实际需求选择合适的插件。
 
 ### 快捷键设置
