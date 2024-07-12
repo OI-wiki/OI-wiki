@@ -1,4 +1,4 @@
-author: sshwy
+author: sshwy, danielqfmai
 
 记 $\mathcal{P}$ 表示素数集合。
 
@@ -191,7 +191,7 @@ $$
     &=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(a)f(b)g\left(\dfrac {n}{a} \right)g\left(\dfrac {m}{b} \right)}\\\\
     &=f(1)f(1)g(n)g(m)-\sum_{a\mid n,b\mid m}{f(a)f(b)g\left(\dfrac {n}{a} \right)g\left(\dfrac {m}{b} \right)}\\\\
     &=g(n)g(m)-\sum_{a\mid n}{f(a)g\left(\dfrac {n}{a} \right)}\sum_{b\mid m}{f(b)g\left(\dfrac {m}{b} \right)}\\\\
-    &=g(n)g(m)-\varepsilon(n)-\varepsilon(m)\\\\
+    &=g(n)g(m)-\varepsilon(n)\varepsilon(m)\\\\
     &=g(n)g(m)
     \end{aligned}
     $$
