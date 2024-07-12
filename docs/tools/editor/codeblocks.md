@@ -1,7 +1,3 @@
-author: yyyu-star
-
-本页面为 CodeBlocks 的入门教程。
-
 ## 简介
 
 Code::Blocks 是一个使用 C++ 开发的开源集成开发环境（IDE），采用 wxWidgets 作为图形界面库。该项目始于 2001 年，目前由官方社区维护，主要用于 C、C++ 和 Fortran 等编程语言的开发。[^ref1]
@@ -24,7 +20,10 @@ Code::Blocks 是一个使用 C++ 开发的开源集成开发环境（IDE），�
 
 参见 [Code::Blocks 官方网站](https://www.codeblocks.org/downloads/)，选择下载二进制安装程序（Binary Release），或者下载源代码编译安装（Source Code），然后根据需求和操作系统选择合适的安装程序，按照安装向导完成安装即可。
 
-> 对于 Windows 用户，如果不希望手动配置编译器，建议下载包含 MinGW 的安装程序，例如 `codeblocks-xxxxmingw-setup.exe`，该版本已经包括了 GCC 编译器，无需额外安装和配置即可开始开发 C 和 C++ 项目。![CodeBlocks DownLoad](./images/codeblocks-1.png)
+???+ note "下载包含MinGW的安装包"
+    对于 Windows 用户，如果不希望手动配置编译器，建议下载包含 MinGW 的安装程序，例如 `codeblocks-xxxxmingw-setup.exe`，该版本已经包括了 GCC 编译器，无需额外安装和配置即可开始开发 C 和 C++ 项目。
+
+![CodeBlocks DownLoad](./images/codeblocks-1.png)
 
 ## 配置
 
@@ -38,7 +37,7 @@ Code::Blocks 是一个使用 C++ 开发的开源集成开发环境（IDE），�
 
 当第一次启动 Code::Blocks 时，软件会自动扫描系统中已安装的编译器，如果没有找到编译器，可以通过以下步骤手动添加：
 
-1.  打开 Code::Blocks，点击菜单栏的 `Settings`->`Compiler`，打开编译器设置对话框（如下图所示）。![CodeBlocks Compiler Settings](./images/codeblocks-2.png)
+1.  打开 Code::Blocks，点击菜单栏的 `Settings -> Compiler`，打开编译器设置对话框（如下图所示）。![CodeBlocks Compiler Settings](./images/codeblocks-2.png)
 2.  在 `Selected compiler` 下拉框中选择需要配置的编译器，例如 `GNU GCC Compiler`。
 3.  在 `Toolchain executables` 选项卡中，单击 `Auto-detect` 按钮，Code::Blocks 将自动扫描系统中已安装的编译器。
 4.  如果自动扫描失败，你可以手动设置编译器路径。在 `Compiler's installation directory` 中输入编译器的安装路径，例如 `C:\MinGW\bin`。
@@ -48,7 +47,8 @@ Code::Blocks 是一个使用 C++ 开发的开源集成开发环境（IDE），�
 
 Code::Blocks 内置项目管理器，支持用户自定义构建项目，你可以在 `Project -> Build options` 中设置编译选项，选择编译器、编译选项、链接选项等，也可以在 `Project -> Properties` 中设置项目属性，例如项目名称、路径、文件列表等。
 
-> Code::Blocks 默认不需要编写 Makefile，如果需要使用自定义的 Makefile，可以在 `Project -> Properties` 中勾选 `This is a custom Makefile` 选项，然后在 `Project -> Build options` 中设置 Makefile 的路径。
+??? note "配置 Makefile"
+    Code::Blocks 默认不需要编写 Makefile，如果需要使用自定义的 Makefile，可以在 `Project -> Properties` 中勾选 `This is a custom Makefile` 选项，然后在 `Project -> Build options` 中设置 Makefile 的路径。
 
 ### 创建项目
 
@@ -78,7 +78,7 @@ Code::Blocks 内置了调试器，你可以在 `Debug` 菜单中设置和启动�
 
 ## 自定义设置
 
-Code::Blocks 提供了丰富的设置选项，可以帮助你调整编辑器的行为，以下是一些常用的设置：
+Code::Blocks 提供了丰富的设置选项，可以帮助调整编辑器的行为，以下是一些常用的设置：
 
 ### 界面设置
 
@@ -88,15 +88,16 @@ Code::Blocks 提供了丰富的设置选项，可以帮助你调整编辑器的�
 
 ### 插件设置
 
-Code::Blocks 支持插件来扩展功能，你可以通过 `Settings -> Plugins` 查看和安装可用的插件，例如 DoxyBlocks、wxSmith 等，以下是一些常用的插件：
+Code::Blocks 支持插件来扩展功能，可以通过 `Settings -> Plugins` 查看和安装可用的插件，例如 DoxyBlocks、wxSmith 等，以下是一些常用的插件：
 
 -   **DoxyBlocks**：著名的文档生成工具 Doxygen 的集成插件，可以直接在 Code::Blocks 中生成项目文档。
 -   **wxSmith**：用于开发 wxWidgets 应用程序的插件，提供了可视化的界面设计工具，允许快速创建和布局 GUI 界面，简化开发流程。
 -   **Thread Search**：支持多线程搜索的插件，可以在项目中快速搜索和替换符号和文本，适用于大型项目的开发。
 
 插件的安装和使用方法请参考 [Code::Blocks 的插件文档](https://wiki.codeblocks.org/index.php/Code::Blocks_Plugins)，根据插件的需求和功能，选择合适的插件安装和使用。
-
-> 需要注意的是，Code::Blocks 的插件相对单一和基础，且大部分插件已经集成到软件中，第三方插件的数量和质量有限，建议根据实际需求选择合适的插件。
+ 
+???+ warning
+    需要注意的是，Code::Blocks 的插件相对单一和基础，且大部分插件已经集成到软件中，第三方插件的数量和质量有限，建议根据实际需求选择合适的插件。
 
 ### 快捷键设置
 
