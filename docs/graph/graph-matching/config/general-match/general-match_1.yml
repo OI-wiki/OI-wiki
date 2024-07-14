@@ -1,0 +1,10 @@
+id: oi-wiki:graph/graph-matching/general-match_1
+name: General Match 1
+solution:
+  cpp: docs/graph/code/graph-matching/general-match/general-match_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/graph-matching/examples/general-match/general-match_1.ans
+  input: docs/graph/graph-matching/examples/general-match/general-match_1.in
+version: 1000

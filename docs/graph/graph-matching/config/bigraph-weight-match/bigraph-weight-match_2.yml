@@ -1,0 +1,10 @@
+id: oi-wiki:graph/graph-matching/bigraph-weight-match_2
+name: BiGraph Weight Match 2
+solution:
+  cpp: docs/graph/code/graph-matching/bigraph-weight-match/bigraph-weight-match_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/graph-matching/examples/bigraph-weight-match/bigraph-weight-match_2.ans
+  input: docs/graph/graph-matching/examples/bigraph-weight-match/bigraph-weight-match_2.in
+version: 1000

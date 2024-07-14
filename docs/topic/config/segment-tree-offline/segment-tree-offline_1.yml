@@ -1,0 +1,10 @@
+id: oi-wiki:topic/segment-tree-offline/segment-tree-offline_1
+name: Segment Tree Offline 1
+solution:
+  cpp: docs/topic/code/segment-tree-offline/segment-tree-offline_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/topic/examples/segment-tree-offline/segment-tree-offline_1.ans
+  input: docs/topic/examples/segment-tree-offline/segment-tree-offline_1.in
+version: 1000

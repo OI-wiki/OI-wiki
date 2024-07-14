@@ -1,0 +1,9 @@
+id: oi-wiki:math/combinatorics/graph-enumeration_1
+name: Graph Enumeration 1
+solution:
+  cpp: docs/math/combinatorics/code/graph-enumeration/graph-enumeration_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/combinatorics/examples/graph-enumeration/graph-enumeration_1.ans
+  input: docs/math/combinatorics/examples/graph-enumeration/graph-enumeration_1.in
