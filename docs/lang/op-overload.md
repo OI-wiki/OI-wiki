@@ -31,11 +31,11 @@
 其基本格式为（假设需要被重载的运算符为 `@`）：
 
 ```cpp
-class Example
-{
-    // 成员函数的例子
-    返回值 operator@(除本身外的参数) { /* ... */ }
+class Example {
+  // 成员函数的例子
+  返回值 operator@(除本身外的参数) { /* ... */ }
 };
+
 // 非成员函数的例子
 返回值 operator@(所有参与运算的参数) { /* ... */ }
 ```
@@ -48,19 +48,15 @@ class Example
 
 ??? note "重载算数运算符的例子"
     ```cpp
-    struct Vector2D
-    {
-        double x, y;
-        Vector2D(double a = 0, double b = 0) : x(a), y(b) {}
-        Vector2D operator+(Vector2D v)
-        {
-            return Vector2D(x + v.x, y + v.y);
-        }
-        // 注意返回值的类型可以不是这个类
-        double operator*(Vector2D v)
-        {
-            return x * v.x + y * v.y;
-        }
+    struct Vector2D {
+      double x, y;
+    
+      Vector2D(double a = 0, double b = 0) : x(a), y(b) {}
+    
+      Vector2D operator+(Vector2D v) { return Vector2D(x + v.x, y + v.y); }
+    
+      // 注意返回值的类型可以不是这个类
+      double operator*(Vector2D v) { return x * v.x + y * v.y; }
     };
     ```
 
@@ -70,23 +66,22 @@ class Example
 
 ??? note "分别重载前后置自增运算符的例子"
     ```cpp
-    struct MyInt
-    {
-        int x;
-        // 前置，对应 ++a
-        MyInt &operator++()
-        {
-            x++;
-            return *this;
-        }
-        // 后置，对应 a++
-        MyInt operator++(int)
-        {
-            MyInt tmp;
-            tmp.x = x;
-            x++;
-            return tmp;
-        }
+    struct MyInt {
+      int x;
+    
+      // 前置，对应 ++a
+      MyInt &operator++() {
+        x++;
+        return *this;
+      }
+    
+      // 后置，对应 a++
+      MyInt operator++(int) {
+        MyInt tmp;
+        tmp.x = x;
+        x++;
+        return tmp;
+      }
     };
     ```
 
@@ -115,11 +110,13 @@ class Example
       string name;
       int score;
     };
+    
     struct cmp {
       bool operator()(const student& a, const student& b) const {
         return a.score < b.score || (a.score == b.score && a.name > b.name);
       }
     };
+    
     // 注意传入的模板参数为结构体名称而非实例
     priority_queue<student, vector<student>, cmp> pq;
     ```
@@ -135,6 +132,7 @@ class Example
     struct student {
       string name;
       int score;
+    
       // 重载 < 号运算符
       bool operator<(const student& a) const {
         return score < a.score || (score == a.score && name > a.name);
@@ -186,12 +184,15 @@ bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
     
     默认比较的顺序按照成员变量声明的顺序逐个比较。[^ref3]
     
-    也可以使用自定义三路比较。此时要求选择比较内含的序关系（`std::strong_ordering`、`std::weak_ordering` 或 `std::partial_ordering`）。具体实现参见 [C++20三路比较运算符 - CSDN](https://blog.csdn.net/longji/article/details/104017451)。
-
+    也可以使用自定义三路比较。此时要求选择比较内含的序关系（`std::strong_ordering`、`std::weak_ordering` 或 `std::partial_ordering`）。具体实现参见 [C++20 三路比较运算符 - CSDN](https://blog.csdn.net/longji/article/details/104017451)。
 
 参考资料与注释：
+
 [^ref1]: [用户定义字面量 - cppreference](https://zh.cppreference.com/w/cpp/language/user_literal)
-[^ref2]: [比较运算符#三路比较 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#.E4.B8.89.E8.B7.AF.E6.AF.94.E8.BE.83)
+
+[^ref2]: [比较运算符 #三路比较 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#.E4.B8.89.E8.B7.AF.E6.AF.94.E8.BE.83)
+
 [^ref3]: [默认比较 - cppreference](https://zh.cppreference.com/w/cpp/language/default_comparisons)
+
 -   [运算符重载 - cppreference](https://zh.cppreference.com/w/cpp/language/operators)
--   [C++20三路比较运算符 - CSDN](https://blog.csdn.net/longji/article/details/104017451)
+-   [C++20 三路比较运算符 - CSDN](https://blog.csdn.net/longji/article/details/104017451)
