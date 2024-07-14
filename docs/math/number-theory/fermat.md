@@ -1,4 +1,4 @@
-author: PeterlitsZo, Tiphereth-, xmb3857
+author: PeterlitsZo, Tiphereth-A, xmb3857
 
 ## 费马小定理
 
