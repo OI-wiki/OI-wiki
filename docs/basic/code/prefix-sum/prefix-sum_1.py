@@ -7,4 +7,4 @@ for i in range(1, N):
     B[i] = B[i - 1] + A[i]
 
 for i in range(N):
-    print(B[i], end=' ')
+    print(B[i], end=" ")
