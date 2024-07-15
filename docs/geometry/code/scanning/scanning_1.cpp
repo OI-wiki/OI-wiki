@@ -5,9 +5,9 @@ using namespace std;
 struct node {
   ll data;
   ll num;
-} f[5000001];
+} f[500010];
 
-ll n, c[5000001], ans, a[5000001];
+ll n, ans, a[500010];
 
 bool cmp(node a, node b) {
   if (a.data == b.data) {
@@ -16,14 +16,24 @@ bool cmp(node a, node b) {
   return a.data < b.data;
 }
 
-ll lowbit(ll i) { return i & (-i); }
+ll sum[500010];
 
-ll sum(ll x) {
-  ll s = 0;
-  for (; x > 0; x -= lowbit(x)) {
-    s += c[x];
+int lowbit(int x) { return x & (-x); }
+
+void add(int x, int k) {
+  while (x <= n) {
+    sum[x] = sum[x] + k;
+    x = x + lowbit(x);
   }
-  return s;
+}
+
+int getsum(int x) {
+  int ret = 0;
+  while (x > 0) {
+    ret = ret + sum[x];
+    x = x - lowbit(x);
+  }
+  return ret;
 }
 
 int main() {
@@ -37,10 +47,8 @@ int main() {
     a[f[i].num] = i;
   }
   for (ll i = n; i > 0; i--) {
-    ans += sum(a[i]);
-    for (ll j = a[i]; j <= n; j += lowbit(j)) {
-      c[j]++;
-    }
+    ans += getsum(a[i]);
+    add(a[i], 1);
   }
   cout << ans;
   return 0;

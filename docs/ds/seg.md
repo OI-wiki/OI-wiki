@@ -67,6 +67,10 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 
 分析：容易知道线段树的深度是 $\left\lceil\log{n}\right\rceil$ 的，则在堆式储存情况下叶子节点（包括无用的叶子节点）数量为 $2^{\left\lceil\log{n}\right\rceil}$ 个，又由于其为一棵完全二叉树，则其总节点个数 $2^{\left\lceil\log{n}\right\rceil+1}-1$。当然如果你懒得计算的话可以直接把数组长度设为 $4n$，因为 $\frac{2^{\left\lceil\log{n}\right\rceil+1}-1}{n}$ 的最大值在 $n=2^{x}+1(x\in N_{+})$ 时取到，此时节点数为 $2^{\left\lceil\log{n}\right\rceil+1}-1=2^{x+2}-1=4n-5$。
 
+而堆式存储存在无用的叶子节点，可以考虑使用内存池管理线段树节点，每当需要新建节点时从池中获取。自底向上考虑，必有每两个底层节点合并为一个上层节点，因此可以类似哈夫曼树地证明，如果有 $n$ 个叶子节点，这样的线段树总共有 $2n-1$ 个节点。其空间效率优于堆式存储，并且是可能的最优情况。
+
+这样的线段树可以自底向上维护，参考「[统计的力量 - 张昆玮](https://github.com/hzwer/shareOI/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BB%9F%E8%AE%A1%E7%9A%84%E5%8A%9B%E9%87%8F%E2%80%94%E2%80%94%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%85%A8%E6%8E%A5%E8%A7%A6_%E5%BC%A0%E6%98%86%E7%8E%AE.pptx)」。
+
 ### 线段树的区间查询
 
 #### 过程
@@ -255,7 +259,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
     ```cpp
     void update(int l, int r, int c, int s, int t, int p) {
       if (l <= s && t <= r) {
-        d[p] = (t - s + 1) * c, b[p] = c;
+        d[p] = (t - s + 1) * c, b[p] = c, v[p] = 1;
         return;
       }
       int m = s + ((t - s) >> 1);
@@ -293,6 +297,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
         if l <= s and t <= r:
             d[p] = (t - s + 1) * c
             b[p] = c
+            v[p] = 1
             return
         m = s + ((t - s) >> 1)
         if v[p]:
@@ -629,6 +634,6 @@ void split(int &p, int &q, int s, int t, int l, int r) {
 
 ### 参考
 
--   [immortalCO 大爷的博客](https://immortalco.blog.uoj.ac/blog/2102)
+-   [immortalCO 的博客](https://immortalco.blog.uoj.ac/blog/2102)
 -   [\[Kle77\]](http://ieeexplore.ieee.org/document/1675628/) V. Klee, "Can the Measure of be Computed in Less than O (n log n) Steps?," Am. Math. Mon., vol. 84, no. 4, pp. 284–285, Apr. 1977.
 -   [\[BeW80\]](https://www.tandfonline.com/doi/full/10.1080/00029890.1977.11994336) Bentley and Wood, "An Optimal Worst Case Algorithm for Reporting Intersections of Rectangles," IEEE Trans. Comput., vol. C–29, no. 7, pp. 571–577, Jul. 1980.

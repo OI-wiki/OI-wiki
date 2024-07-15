@@ -12,8 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build the LaTeX document
-        uses: OI-wiki/latex-action@v1.0.0
+        uses: xu-cheng/latex-action@v3
         with:
+          docker_image: ghcr.io/xu-cheng/texlive-full:20220801
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
           args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -8bit"

@@ -216,7 +216,7 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#�
         (i,a_i)\preceq (j,a_j)\iff (i\leq j\land a_i\leq a_j)
         $$
         
-        假设该偏序集的宽度不超过 $s+1$，则由 Dilworth 定理可知该偏序集可以被至多 $s$ 条链覆盖，若这些链的长度都不超过 $r$，则序列所含元素数至多为 $rs$，与条件矛盾。
+        假设该偏序集的宽度不超过 $s$，则由 Dilworth 定理可知该偏序集可以被至多 $s$ 条链覆盖，若这些链的长度都不超过 $r$，则序列所含元素数至多为 $rs$，与条件矛盾。
 
 ### 例题
 
@@ -234,7 +234,7 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#�
         (i,h_i)\preceq(j,h_j) \iff (i\leq j \land h_i\geq h_j)
         $$
         
-        进而根据 Dilworth 定理有：**序列的不上升子序列的最少覆盖数等于最长上升子序列长度**。从而可以通过 [最长不下降子序列的 $O(n\log n)$ 做法](../dp/basic.md#算法二2) 解决本题。
+        进而根据 Dilworth 定理有：**序列的不上升子序列的最少覆盖数等于最长上升子序列长度**。从而可以通过 [最长不下降子序列的 $O(n\log n)$ 做法](../dp/basic.md#算法二) 解决本题。
     
     ??? note "参考代码"
         ```cpp
