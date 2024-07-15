@@ -1,11 +1,13 @@
 重载运算符是通过对运算符的重新定义，使得其支持特定数据类型的运算操作。重载运算符是重载函数的特殊情况。
 
-当一个运算符出现在一个表达式中，并且运算符的至少一个操作数具有一个类或枚举的类型（可以理解为它们是 `class`、`struct` 或 `enum` 类型的实例）时，则使用重载决议（overload resolution）确定应该调用哪个满足相应声明的用户定义函数。
+> 当一个运算符出现在一个表达式中，并且运算符的至少一个操作数具有一个类或枚举的类型时，则使用重载决议（overload resolution）确定应该调用哪个满足相应声明的用户定义函数。[^ref1]
+
+通俗的讲，如果把使用“运算符”看作一个调用特殊的函数（如将 `1+2` 视作调用 `add(1, 2)`），并且这个函数的参数（操作数）至少有一个是 `class`、`struct` 或 `enum` 的类型，编译器就需要根据操作数的类型决定应当调用哪个自定义函数。
 
 在 C++ 中，我们可以重载几乎所有可用的运算符。
 
 ???+ note "一些可重载运算符的列举"
-    单元运算：`+`（正号）；`-`（负号）；`~`（按位取反）；`++`；`--`；`!`（逻辑非）；`*`（取指针对应值）；`&`（取地址）；`->`（类成员访问运算符）等。
+    一元运算：`+`（正号）；`-`（负号）；`~`（按位取反）；`++`；`--`；`!`（逻辑非）；`*`（取指针对应值）；`&`（取地址）；`->`（类成员访问运算符）等。
     
     二元运算：`+`；`-`；`&`（按位与）；`[]`（取下标）；`==`；`=`（赋值）等。
     
@@ -63,6 +65,8 @@ class Example {
 ### 自增自减运算符
 
 自增自减运算符分为两类，前置（`++a`）和后置（`a++`）。为了区分前后置运算符，重载后置运算时需要添加一个类型为 `int` 的空置形参。
+
+可以将前置自增理解为调用 `operator++(a)` 或 `a.operator++()`，后置自增理解为调用 `operator++(a, 0)` 或 `a.operator++(0)`。
 
 ??? note "分别重载前后置自增运算符的例子"
     ```cpp
@@ -184,15 +188,20 @@ bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
     
     默认比较的顺序按照成员变量声明的顺序逐个比较。[^ref3]
     
-    也可以使用自定义三路比较。此时要求选择比较内含的序关系（`std::strong_ordering`、`std::weak_ordering` 或 `std::partial_ordering`）。具体实现参见 [C++20 三路比较运算符 - CSDN](https://blog.csdn.net/longji/article/details/104017451)。
+    也可以使用自定义三路比较。此时要求选择比较内含的序关系（`std::strong_ordering`、`std::weak_ordering` 或 `std::partial_ordering`），或者返回一个对象，使得：
+    - 若 `a < b`，则 `(a <=> b) < 0`；
+    - 若 `a > b`，则 `(a <=> b) > 0`；
+    - 若 `a` 和 `b` 相等或等价，则 `(a <=> b) == 0`。
+
+    具体实现细节请参考 [比较运算符#三路比较 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison)。
 
 参考资料与注释：
 
-[^ref1]: [用户定义字面量 - cppreference](https://zh.cppreference.com/w/cpp/language/user_literal)
+[^ref1]: [运算符重载 - cppreference](https://zh.cppreference.com/w/cpp/language/operators)
 
-[^ref2]: [比较运算符 #三路比较 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#.E4.B8.89.E8.B7.AF.E6.AF.94.E8.BE.83)
+[^ref2]: [用户定义字面量 - cppreference](https://zh.cppreference.com/w/cpp/language/user_literal)
 
-[^ref3]: [默认比较 - cppreference](https://zh.cppreference.com/w/cpp/language/default_comparisons)
+[^ref3]: [比较运算符 #三路比较 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#.E4.B8.89.E8.B7.AF.E6.AF.94.E8.BE.83)
 
--   [运算符重载 - cppreference](https://zh.cppreference.com/w/cpp/language/operators)
--   [C++20 三路比较运算符 - CSDN](https://blog.csdn.net/longji/article/details/104017451)
+[^ref4]: [默认比较 - cppreference](https://zh.cppreference.com/w/cpp/language/default_comparisons)
+
