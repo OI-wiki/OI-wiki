@@ -189,9 +189,10 @@ bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
     默认比较的顺序按照成员变量声明的顺序逐个比较。[^ref3]
     
     也可以使用自定义三路比较。此时要求选择比较内含的序关系（`std::strong_ordering`、`std::weak_ordering` 或 `std::partial_ordering`），或者返回一个对象，使得：
-    - 若 `a < b`，则 `(a <=> b) < 0`；
-    - 若 `a > b`，则 `(a <=> b) > 0`；
-    - 若 `a` 和 `b` 相等或等价，则 `(a <=> b) == 0`。
+    
+    -   若 `a < b`，则 `(a <=> b) < 0`；
+    -   若 `a > b`，则 `(a <=> b) > 0`；
+    -   若 `a` 和 `b` 相等或等价，则 `(a <=> b) == 0`。
 
     具体实现细节请参考 [比较运算符#三路比较 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison)。
 
@@ -204,4 +205,3 @@ bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
 [^ref3]: [比较运算符 #三路比较 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#.E4.B8.89.E8.B7.AF.E6.AF.94.E8.BE.83)
 
 [^ref4]: [默认比较 - cppreference](https://zh.cppreference.com/w/cpp/language/default_comparisons)
-
