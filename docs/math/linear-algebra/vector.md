@@ -8,7 +8,7 @@
 
 ## 定义及相关概念
 
-线性代数的主要研究对象之一是**列向量**，即 $n$ 行 $1$ 列的矩阵。
+线性代数的主要研究对象之一是 **列向量**，即 $n$ 行 $1$ 列的矩阵。
 
 约定在印刷体中使用粗体小写字母表示列向量（如 $\boldsymbol{x}$），而在手写体中使用斜体上加箭头表示（如 $\vec x$）。在用到大量向量与矩阵的线性代数中，不引起混淆的情况下，手写体字母上方的向量记号可以省略。
 
@@ -24,9 +24,9 @@ $$
 \boldsymbol{x}=\left(\begin{matrix}x_1\\x_2\\\vdots\\x_n\end{matrix}\right)
 $$
 
-此时向量 $\boldsymbol{x}$ 被称为 $n$ 维向量，其中各数 $x_i$ 称为 $x$ 的**分量**。
+此时向量 $\boldsymbol{x}$ 被称为 $n$ 维向量，其中各数 $x_i$ 称为 $x$ 的 **分量**。
 
-**向量的范数**：对于正整数 $p\ge 1$，定义向量 $\boldsymbol{x}$ 的 $p$-范数为
+**向量的范数**：对于正整数 $p\ge 1$，定义向量 $\boldsymbol{x}$ 的 $p$- 范数为
 
 $$
 \Vert\boldsymbol{x}\Vert_p=\left(\sum_{i=1}^n|x_i|^p\right)^{\frac 1p}
@@ -34,12 +34,12 @@ $$
 
 特别地，我们有：
 
-- $p=2$ 时，我们定义向量的 $2$-范数：
-  $$
-  \Vert\boldsymbol{x}\Vert_2=\sqrt{\sum_{i=1}^nx_i^2}
-  $$
-  为**向量 $\boldsymbol{x}$ 的模**，记作 $|\boldsymbol{x}|$。
-- 令 $p\to+\infty$，我们有向量的 $\infty$-范数为 $\Vert\boldsymbol{x}\Vert_\infty=\max_{1\le i\le n}|x_i|$，即取向量各分量绝对值的最大值。
+-   $p=2$ 时，我们定义向量的 $2$- 范数：
+    $$
+    \Vert\boldsymbol{x}\Vert_2=\sqrt{\sum_{i=1}^nx_i^2}
+    $$
+    为 **向量 $\boldsymbol{x}$ 的模**，记作 $|\boldsymbol{x}|$。
+-   令 $p\to+\infty$，我们有向量的 $\infty$- 范数为 $\Vert\boldsymbol{x}\Vert_\infty=\max_{1\le i\le n}|x_i|$，即取向量各分量绝对值的最大值。
 
 **零向量**：模为 $0$ 的向量，记作 $\boldsymbol{0}$。
 
@@ -96,13 +96,13 @@ $$
 
 对于一个实数 $k$ 和向量 $\boldsymbol{x}$，定义数乘 $\boldsymbol{y}=k\boldsymbol{x}$ 满足 $y_i=kx_i$。
 
-注意到 $\boldsymbol{x}-\boldsymbol{y}=\boldsymbol{x}+(-1\cdot\boldsymbol{y})$，我们定义 $-\boldsymbol{x}=-1\cdot\boldsymbol{x}$ 为 $\boldsymbol{x}$ 的**相反向量**。
+注意到 $\boldsymbol{x}-\boldsymbol{y}=\boldsymbol{x}+(-1\cdot\boldsymbol{y})$，我们定义 $-\boldsymbol{x}=-1\cdot\boldsymbol{x}$ 为 $\boldsymbol{x}$ 的 **相反向量**。
 
 显然，数乘满足性质 $|k\boldsymbol{x}|=|k|\cdot|\boldsymbol{x}|$。
 
-对于两个**非零**向量 $\boldsymbol{x},\boldsymbol{y}$，如果存在实数 $\lambda$ 使得 $\lambda\boldsymbol{y}=\boldsymbol{x}$，则称 $\boldsymbol{x}$ 和 $\boldsymbol{x}$ **共线**（或平行）。特别地，零向量与任一向量共线。
+对于两个 **非零** 向量 $\boldsymbol{x},\boldsymbol{y}$，如果存在实数 $\lambda$ 使得 $\lambda\boldsymbol{y}=\boldsymbol{x}$，则称 $\boldsymbol{x}$ 和 $\boldsymbol{x}$ **共线**（或平行）。特别地，零向量与任一向量共线。
 
-???+note "线性运算的几何意义"
+???+ note "线性运算的几何意义"
     我们知道向量可以看作 $n$ 维空间中的有向线段。因此，类比平面向量，我们有这些运算的几何意义。
 
     加减法：三角形法则或平行四边形法则。
@@ -129,7 +129,7 @@ $$
 \boldsymbol{x}^2=\boldsymbol{x}\cdot\boldsymbol{x}=\sum_{i=1}^nx_i^2=\Vert x\Vert_2^2
 $$
 
-恰好是这个向量的 $2$-范数的平方，因此我们就有 $\boldsymbol{x}^2=|\boldsymbol{x}|^2$，和几何向量统一。
+恰好是这个向量的 $2$- 范数的平方，因此我们就有 $\boldsymbol{x}^2=|\boldsymbol{x}|^2$，和几何向量统一。
 
 ### 向量的夹角
 
@@ -149,4 +149,4 @@ $$
 \cos\lang\boldsymbol{x},\boldsymbol{y}\rang=\dfrac{\boldsymbol{x}\cdot\boldsymbol{y}}{|\boldsymbol{x}|\cdot|\boldsymbol{y}|}
 $$
 
-是符合直觉的，而夹角则相应定义为 $\arccos\left(\dfrac{\boldsymbol{x}\cdot\boldsymbol{y}}{|\boldsymbol{x}|\cdot|\boldsymbol{y}|}\right)$。特别地，当两向量内积为 $0$，即夹角为 $\dfrac \pi2$ 时，我们称这两个向量**正交**（或垂直），记作 $\boldsymbol{x}\perp\boldsymbol{y}$。
+是符合直觉的，而夹角则相应定义为 $\arccos\left(\dfrac{\boldsymbol{x}\cdot\boldsymbol{y}}{|\boldsymbol{x}|\cdot|\boldsymbol{y}|}\right)$。特别地，当两向量内积为 $0$，即夹角为 $\dfrac \pi2$ 时，我们称这两个向量 **正交**（或垂直），记作 $\boldsymbol{x}\perp\boldsymbol{y}$。

@@ -1,4 +1,4 @@
-???+warning
+???+ warning
     在中国台湾地区关于 "column" 与 "row" 的翻译，恰好与中国大陆地区相反。在 **OI Wiki** 按照中国大陆地区的习惯，采用竖列（column）与横行（row）的翻译。
 
 ## 定义
@@ -14,18 +14,18 @@ a_{n1}&a_{n2}&\cdots&a_{nm}
 \end{matrix}\right)
 $$
 
-称为**矩阵**。其中矩阵中的数 $a_{ij}$ 称为矩阵的**元素**。如果 $n=m$，称矩阵 $M$ 为**方阵**。
+称为 **矩阵**。其中矩阵中的数 $a_{ij}$ 称为矩阵的 **元素**。如果 $n=m$，称矩阵 $M$ 为 **方阵**。
 
 ??? note "关于矩阵两侧的括号"
     矩阵两侧使用小括号（$\left(\begin{matrix}1&1\\1&1\end{matrix}\right)$）或中括号（$\begin{bmatrix}1&1\\1&1\end{bmatrix}$）都是可以的。
     
     但是如果两侧是长竖线（$\left\vert\begin{matrix}1&1\\1&1\end{matrix}\right\vert$），则表示行列式而非矩阵。
 
-如果一个矩阵的行和列相等（即 $m=n$），则称这个矩阵是 $n$ 阶**方阵**或 $n$ 阶矩阵，记作 $A_n$。其中，从方阵的左上角到右下角的连线称为**主对角线**。位于主对角线上的元素（即元素 $a_{ii}$）称为**主对角元素**。下面是一些特殊的矩阵（方阵）。
+如果一个矩阵的行和列相等（即 $m=n$），则称这个矩阵是 $n$ 阶 **方阵** 或 $n$ 阶矩阵，记作 $A_n$。其中，从方阵的左上角到右下角的连线称为 **主对角线**。位于主对角线上的元素（即元素 $a_{ii}$）称为 **主对角元素**。下面是一些特殊的矩阵（方阵）。
 
-- **上（下）三角矩阵**：如果一个方阵的主对角线的上（下）方元素均为 $0$，则称它是一个上（下）三角矩阵。
+-   **上（下）三角矩阵**：如果一个方阵的主对角线的上（下）方元素均为 $0$，则称它是一个上（下）三角矩阵。
 
-- **对角矩阵**：如果一个方阵除主对角元素外其余元素均为 $0$，且主对角元素不全为 $0$，则称它是一个对角矩阵（对角阵），可记作 $\operatorname{diag}\{\lambda_1,\cdots,\lambda_n\}$，其中 $\lambda_i=a_{ii}$ 方阵第 $i$ 行 $i$ 列的主对角元素。特别地，如果一个对角阵的主对角元素均为 $1$，则称它是**单位矩阵**（单位阵），用字母 $I$ 或 $E$ 表示，即
+-   **对角矩阵**：如果一个方阵除主对角元素外其余元素均为 $0$，且主对角元素不全为 $0$，则称它是一个对角矩阵（对角阵），可记作 $\operatorname{diag}\{\lambda_1,\cdots,\lambda_n\}$，其中 $\lambda_i=a_{ii}$ 方阵第 $i$ 行 $i$ 列的主对角元素。特别地，如果一个对角阵的主对角元素均为 $1$，则称它是 **单位矩阵**（单位阵），用字母 $I$ 或 $E$ 表示，即
 
 $$
 E=E_n=\operatorname{diag}\{1, 1, \cdots, 1\}=\left(\begin{matrix}
@@ -36,7 +36,7 @@ E=E_n=\operatorname{diag}\{1, 1, \cdots, 1\}=\left(\begin{matrix}
 \end{matrix}\right)
 $$
 
-- **零矩阵**：对于一个 $m\times n$ 的矩阵，如果它的元素全部是 $0$，称它是一个**零矩阵**，记作 $0$ 或 $0_{m\times n}$。注意不同阶的零矩阵不相等。
+-   **零矩阵**：对于一个 $m\times n$ 的矩阵，如果它的元素全部是 $0$，称它是一个 **零矩阵**，记作 $0$ 或 $0_{m\times n}$。注意不同阶的零矩阵不相等。
 
 如果两个矩阵的行数与列数对应相同，称它们是同型矩阵。很显然，阶数相同的两个方阵时同型的。
 
@@ -68,11 +68,11 @@ $$
 
 对于两个同型矩阵 $A,B$ 和实数 $k,l$，我们有以下性质成立：
 
-- $k(A\pm B)=kA\pm kB$。
-- $(kl)\cdot A=k\cdot(lA)$。
-- $(k+l)A=kA+lA$。
+-   $k(A\pm B)=kA\pm kB$。
+-   $(kl)\cdot A=k\cdot(lA)$。
+-   $(k+l)A=kA+lA$。
 
-因此我们将矩阵加减法、数乘运算称为**线性运算**。
+因此我们将矩阵加减法、数乘运算称为 **线性运算**。
 
 ??? tip "什么是线性？"
     在现实生活中，我们会遇到类似这样的情景：在平地上，可以将一个网球用 5 m/s 的速度扔出；在速度为 10 m/s 的自行车上，用同样的力扔同一个球，球最终的速度是 10+5=15m/s。「线性」的意义就在于：两个输入之和的输出，等价于两个输入分别的输出之和。[^ref1]
@@ -85,11 +85,11 @@ $$
 
 通俗理解就是将矩阵行列互换（或者将方阵沿主对角线对称）。显然，对于实数 $k$ 和同型矩阵 $A,B$，有下列事实：
 
-- $(A^T)^T=A$。
-- $(A+B)^T=A^T+B^T$。
-- $(kA)^T=k(A^T)$。
+-   $(A^T)^T=A$。
+-   $(A+B)^T=A^T+B^T$。
+-   $(kA)^T=k(A^T)$。
 
-特别地，若矩阵 $A$ 满足 $A=A^T$，则称 $A$ 是**对称矩阵**；若满足 $-A=A^T$，则称 $A$ 是**反对称矩阵**。
+特别地，若矩阵 $A$ 满足 $A=A^T$，则称 $A$ 是 **对称矩阵**；若满足 $-A=A^T$，则称 $A$ 是 **反对称矩阵**。
 
 ### 矩阵乘法
 
@@ -101,15 +101,15 @@ $$
 c_{ij} = \sum_{k=1}^ma_{ik}b_{kj}
 $$
 
-矩阵乘法满足结合律，一般不满足交换律.同时，矩阵乘法还满足：
+矩阵乘法满足结合律，一般不满足交换律。同时，矩阵乘法还满足：
 
-- 分配律：$C\times (A+B)=CA+CB$ 以及 $(A+B)\times C=AC+AB$。
-- 对于实数 $k$，有 $k(AB)=(kA)B=A(kB)$。
-- $(AB)^T=B^TA^T$。
+-   分配律：$C\times (A+B)=CA+CB$ 以及 $(A+B)\times C=AC+AB$。
+-   对于实数 $k$，有 $k(AB)=(kA)B=A(kB)$。
+-   $(AB)^T=B^TA^T$。
 
 按照矩阵乘法的规则，对于 $n$ 阶方阵 $A_n$ 而言，它乘以 $n$ 阶单位阵的结果就是它本身（无论左乘或右乘），即 $A_nI_n=I_nA_n=A_n$。
 
-???+warning "关于左右乘"
+???+ warning "关于左右乘"
     由于矩阵乘法不满足交换律，我们需要注意乘法是乘在左边还是乘在右边！
 
 ??? note "矩阵乘法的常数优化"
@@ -157,18 +157,18 @@ $$
 
 为了方便计算，我们定义 $A^0=I_n$ 为单位阵。容易证明：$A^pA^q=A^{p+q},(A^p)^q=A^{pq}$，即方阵的幂和普通实数的幂有类似的运算规律。
 
-由于矩阵乘法具有结合率，方阵的幂可以利用[快速幂](../binary-exponentiation.md)的思想来优化，称为**矩阵快速幂**。
+由于矩阵乘法具有结合率，方阵的幂可以利用 [快速幂](../binary-exponentiation.md) 的思想来优化，称为 **矩阵快速幂**。
 
 由于线性递推式可以表示成矩阵乘法的形式，我们可以用矩阵快速幂来求线性递推数列的某一项。
 
-???+"[洛谷 P1962 斐波那契数列](https://www.luogu.com.cn/problem/P1962)"
+???+ "[洛谷 P1962 斐波那契数列](https://www.luogu.com.cn/problem/P1962)"
     题意简述：求斐波那契第 $n$ 项模 $10^9+7$ 的值。其中 $n\le 2^{63}$。
 
 思路：对于斐波那契数列 $f_n$，有递推 $f_n=f_{n-1}+f_{n-2}$。
 
 考虑将其用矩阵乘法表示。我们发现
 
-$$\left(\begin{matrix}f_{n-1}&f_{n-2}\end{matrix}\right)\left(\begin{matrix}1&1\\1&0\end{matrix}\right)=\left(\begin{matrix}f_n&f_{n-1}\end{matrix}\right)$$
+$\left(\begin{matrix}f_{n-1}&f_{n-2}\end{matrix}\right)\left(\begin{matrix}1&1\\1&0\end{matrix}\right)=\left(\begin{matrix}f_n&f_{n-1}\end{matrix}\right)$
 
 因此，由递推可知
 
@@ -181,9 +181,12 @@ $$
 ??? "核心代码"
     ```cpp
     const int mod = 1000000007;
+    
     struct Matrix {
       int a[3][3];
+    
       Matrix() { memset(a, 0, sizeof a); }
+    
       Matrix operator*(const Matrix &b) const {
         Matrix res;
         for (int i = 1; i <= 2; ++i)
@@ -193,10 +196,12 @@ $$
         return res;
       }
     } ans, base;
+    
     void init() {
       base.a[1][1] = base.a[1][2] = base.a[2][1] = 1;
       ans.a[1][1] = ans.a[1][2] = 1;
     }
+    
     void qpow(int b) {
       while (b) {
         if (b & 1) ans = ans * base;
@@ -204,6 +209,7 @@ $$
         b >>= 1;
       }
     }
+    
     int main() {
       int n = read();
       if (n <= 2) return puts("1"), 0;
@@ -215,7 +221,7 @@ $$
 
 ### 方阵的行列式
 
-对于一个 $n$ 阶方阵 $A_n$，我们定义它的**行列式**，记作 $\det A$ 或 $|A|$，其定义为
+对于一个 $n$ 阶方阵 $A_n$，我们定义它的 **行列式**，记作 $\det A$ 或 $|A|$，其定义为
 
 $$
 \det A=\sum_{k_1,k_2,\cdots,k_n}(-1)^ka_{1k_1}a_{2k_2}\cdots a_{nk_n}
@@ -423,7 +429,7 @@ $$
 A \odot B = C\Leftrightarrow C_{i,j}=\min_{1\le p \le n}\left\{A_{i,p} + B_{p,j}\right\}
 $$
 
-可以证明该运算满足结合律s。于是得到
+可以证明该运算满足结合律 s。于是得到
 
 $$
 L^{(k+1)} = L^{(k)} \odot G
@@ -453,78 +459,72 @@ $$
 ??? note "矩阵类的一个实现"
     ```cpp
     template <typename _Tp = long long, size_t sz = 100>
-    class mat
-    {
-    private:
-        _Tp a[sz][sz];
+    class mat {
+     private:
+      _Tp a[sz][sz];
     
-    public:
-        mat() { memset(a, 0, sizeof a); }
-        mat operator-(const mat &T) const
-        {
-            mat res;
-            for (int i = 0; i < sz; ++i)
-                for (int j = 0; j < sz; ++j)
-                    res.a[i][j] = (a[i][j] - T.a[i][j]) % MOD;
-            return res;
+     public:
+      mat() { memset(a, 0, sizeof a); }
+    
+      mat operator-(const mat &T) const {
+        mat res;
+        for (int i = 0; i < sz; ++i)
+          for (int j = 0; j < sz; ++j) res.a[i][j] = (a[i][j] - T.a[i][j]) % MOD;
+        return res;
+      }
+    
+      mat operator+(const mat &T) const {
+        mat res;
+        for (int i = 0; i < sz; ++i)
+          for (int j = 0; j < sz; ++j) res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
+        return res;
+      }
+    
+      mat operator*(const mat &T) const  // 矩乘
+      {
+        mat res;
+        int r;
+        for (int i = 0; i < sz; ++i)
+          for (int k = 0; k < sz; ++k) {
+            r = a[i][k];
+            for (int j = 0; j < sz; ++j)
+              res.a[i][j] += T.a[k][j] * r, res.a[i][j] %= MOD;
+          }
+        return res;
+      }
+    
+      mat operator*(const _Tp &v)  // 数乘
+      {
+        mat res;
+        for (int i = 0; i < sz; i++)
+          for (int j = 0; j < sz; j++) res.a[i][j] = a[i][j] * v % MOD;
+        return res;
+      }
+    
+      mat operator^(unsigned long long x) const  // 快速幂
+      {
+        mat res, bas;
+        for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
+        for (int i = 0; i < sz; ++i)
+          for (int j = 0; j < sz; ++j) bas.a[i][j] = a[i][j] % MOD;
+        while (x) {
+          if (x & 1) res = res * bas;
+          bas = bas * bas;
+          x >>= 1;
         }
-        mat operator+(const mat &T) const
-        {
-            mat res;
-            for (int i = 0; i < sz; ++i)
-                for (int j = 0; j < sz; ++j)
-                    res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
-            return res;
-        }
-        mat operator*(const mat &T) const // 矩乘
-        {
-            mat res;
-            int r;
-            for (int i = 0; i < sz; ++i)
-                for (int k = 0; k < sz; ++k)
-                {
-                    r = a[i][k];
-                    for (int j = 0; j < sz; ++j)
-                        res.a[i][j] += T.a[k][j] * r, res.a[i][j] %= MOD;
-                }
-            return res;
-        }
-        mat operator*(const _Tp &v) // 数乘
-        {
-            mat res;
-            for (int i = 0; i < sz; i++)
-                for (int j = 0; j < sz; j++)
-                    res.a[i][j] = a[i][j] * v % MOD;
-            return res;
-        }
-        mat operator^(unsigned long long x) const // 快速幂
-        {
-            mat res, bas;
-            for (int i = 0; i < sz; ++i)
-                res.a[i][i] = 1;
-            for (int i = 0; i < sz; ++i)
-                for (int j = 0; j < sz; ++j)
-                    bas.a[i][j] = a[i][j] % MOD;
-            while (x)
-            {
-                if (x & 1)
-                    res = res * bas;
-                bas = bas * bas;
-                x >>= 1;
-            }
-            return res;
-        }
+        return res;
+      }
     };
     ```
 
 ## 习题
 
-- [洛谷 P1962 斐波那契数列](https://www.luogu.com.cn/problem/P1962)，即上面的例题，同题 POJ3070
-- [洛谷 P1349 广义斐波那契数列](https://www.luogu.com.cn/problem/P1349)，$\text{base}$ 矩阵需要变化一下
-- [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.com.cn/problem/P1939)，$\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
+-   [洛谷 P1962 斐波那契数列](https://www.luogu.com.cn/problem/P1962)，即上面的例题，同题 POJ3070
+-   [洛谷 P1349 广义斐波那契数列](https://www.luogu.com.cn/problem/P1349)，$\text{base}$ 矩阵需要变化一下
+-   [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.com.cn/problem/P1939)，$\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
 
 ## 参考资料与注释
 
 [^ref1]: [解释：线性系统与非线性系统 - MIT news](https://news.mit.edu/2010/explained-linear-0226)
 
-  **本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 与其英文翻译版 [Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+**本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 与其英文翻译版 [Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
