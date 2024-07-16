@@ -111,7 +111,7 @@ $$
 
 因此旋转后的节点 B、C、D 也满足性质 2。
 
-???+ note "维护平衡操作: 伪代码"
+???+ note "维护平衡操作：伪代码"
     $$
     \begin{array}{ll}
     1 &  \textbf{function } \mathrm{MaintainBalance}(p) \\
