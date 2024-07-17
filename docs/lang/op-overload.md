@@ -180,13 +180,13 @@ bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
 ```
 
 ??? note "关于 C++20 下的三路比较运算符"
-    如果使用 C++20 或更高版本，我们可以直接使用默认三路比较运算符简化代码。
+    如果使用 C++20 或更高版本，我们可以直接使用默认三路比较运算符简化代码。[^ref3]
     
     ```cpp
     auto operator<=>(const T &lhs, const T &rhs) = default;
     ```
     
-    默认比较的顺序按照成员变量声明的顺序逐个比较。[^ref3]
+    默认比较的顺序按照成员变量声明的顺序逐个比较。[^ref4]
     
     也可以使用自定义三路比较。此时要求选择比较内含的序关系（`std::strong_ordering`、`std::weak_ordering` 或 `std::partial_ordering`），或者返回一个对象，使得：
     
