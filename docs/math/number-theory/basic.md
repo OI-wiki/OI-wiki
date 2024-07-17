@@ -8,9 +8,9 @@
 整除的性质：
 
 -   $a\mid b\iff-a\mid b\iff a\mid-b\iff|a|\mid|b|$
--   $a\mid b\land b\mid c\implies a\mid c$
--   $a\mid b\land a\mid c\iff\forall x,y\in\mathbf{Z}, a\mid(xb+yc)$
--   $a\mid b\land b\mid a\implies b=\pm a$
+-   $a\mid b , b\mid c\implies a\mid c$
+-   $a\mid b , a\mid c\iff\forall x,y\in\mathbf{Z}, a\mid(xb+yc)$
+-   $a\mid b , b\mid a\implies b=\pm a$
 -   设 $m\ne0$，那么 $a\mid b\iff ma\mid mb$。
 -   设 $b\ne0$，那么 $a\mid b\implies|a|\le|b|$。
 -   设 $a\ne0,b=qa+c$，那么 $a\mid b\iff a\mid c$。
