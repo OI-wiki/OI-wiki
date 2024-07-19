@@ -2,60 +2,124 @@ import os
 import sys
 import json
 
-annotations = []
+summary = ''
 
-def generate_annotations_and_exit(file, message):
-    print(f"::error file={file},line={1},col={1}::{message}")
-    sys.exit(1)
+def get_files_to_test(filenames):
+    global summary
+    mainfiles_to_test = set()
+    cnt_ac, cnt_skip, cnt_error = 0, 0, 0
+
+    for filename in filenames:
+        dirname, basename, extname = os.path.dirname(filename), os.path.splitext(os.path.basename(filename))[0], os.path.splitext(filename)[1]
+        if os.path.exists(os.path.join(dirname, basename + '.skip_test')):
+            cnt_skip += 1
+            summary += f'## 跳过：{filename}\n测试因 {basename + ".skip_test"} 文件存在而跳过\n\n'
+            print(f'::group::{filename}: test skipped')
+            print(f'::endgroup::')
+            continue
+        if extname.endswith('.cpp'): # 代码文件改变，所有测试点重测
+            mainfile = os.path.normpath(os.path.join(dirname, basename.split('.')[0] + '.cpp'))
+            if mainfile in mainfiles_to_test:
+                continue
+            else:
+                mainfiles_to_test.add(mainfile)
+            auxfiles = [] # 寻找其他辅助文件
+            for root, _, files in os.walk(dirname):
+                for file in files:
+                    if file.split('.')[0] == basename.split('.')[0] and file.endswith('.cpp'):
+                        auxfiles.append(os.path.normpath(os.path.join(root, file)))
+            examples = [] # 寻找样例文件
+            for root, _, files in os.walk(dirname.replace('code', 'examples')):
+                for file in files:
+                    if file.split('.')[0] == basename.split('.')[0] and file.endswith('.in') and os.path.exists(os.path.join(root, file.replace('.in', '.ans'))):
+                        examples.append(os.path.normpath(os.path.join(root, file)))
+
+        elif extname.endswith(('.in', '.ans')): # 单一测试点改变
+            mainfile = os.path.normpath(os.path.join(dirname.replace('examples', 'code'), basename.split('.')[0] + '.cpp'))
+            if mainfile in mainfiles_to_test:
+                continue
+            else:
+                mainfiles_to_test.add(mainfile)
+            auxfiles = [] # 寻找其他辅助文件
+            for root, _, files in os.walk(dirname.replace('examples', 'code')):
+                for file in files:
+                    if file.split('.')[0] == basename.split('.')[0] and file.endswith('.cpp'):
+                        auxfiles.append(os.path.normpath(os.path.join(root, file)))
+            examples = [os.path.normpath(os.path.join(dirname, basename + '.in'))]
+
+        if test(mainfile, auxfiles, examples):
+            cnt_ac += 1
+        else:
+            cnt_error += 1
+        print()
 
 
-def test(cppname):
-    name = cppname[:cppname.rfind('.')]
-    num = name.rfind('/')
-    content = name[:num]
-    filename = name[num:]
-    # 文件名
-    cpp = name+'.cpp'
-    indata = name+'.in'
-    ansdata = name+'.ans'
-    outdata = name+'.out'
-    skiptest = name+'.skip_test'
-    indata = indata.replace('code', 'examples')
-    outdata = outdata.replace('code', 'examples')
-    ansdata = ansdata.replace('code', 'examples')
-    # 判断测试是否要执行
-    if os.path.exists(skiptest):
-        print(cpp + ' test skipped')
-        return
+    with open(os.environ.get('GITHUB_STEP_SUMMARY'), 'w') as f:
+        f.write(f'# TOTAL {len(mainfiles_to_test)} TESTS, {cnt_ac} ACCEPTED, {cnt_skip} SKIPPED, {cnt_error} ERROR\n\n')
+        f.write(summary)
+    print(f'::group::TOTAL {len(mainfiles_to_test)} TESTS, {cnt_ac} ACCEPTED, {cnt_skip} SKIPPED, {cnt_error} ERROR\n::endgroup::')
+    if cnt_error:
+        sys.exit(1)
 
-    cmd = 'g++ -std=c++17 '+cpp+' -o '+name
-    # 判断CE
-    if os.system(cmd) == 0:
-        print(cpp+' Successfully compiled')
+
+def test(mainfile, auxfiles, examples) -> bool:
+    global summary
+    print(f'::group::Test for {mainfile}...')
+    # 检测文件存在
+    for file in auxfiles:
+        if not os.path.exists(file):
+            print(f'::endgroup::')
+            print(f'::error file={file},title=file {file} not found::')
+            summary += f'## 找不到文件：{file}\n对{mainfile}的测试因找不到文件{file}而被迫中止\n\n'
+            return False
+    for file in examples:
+        if not os.path.exists(file):
+            print(f'::endgroup::')
+            print(f'::error file={file},title=file {file} not found::')
+            summary += f'## 找不到文件：{file}\n对{mainfile}的测试因找不到文件{file}而被迫中止\n\n'
+            return False
+        
+    # 编译
+    compile_command = f'g++ -std=c++17 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}'
+    print(compile_command, end=' ')
+
+    if os.system(compile_command) != 0:
+        print(f'\n::endgroup::')
+        print(f'::error file={mainfile},title=CE!::Compile Error! with error code {os.system(compile_command)}')
+        summary += f'## CE: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **编译指令**：{compile_command}\n- **错误代码**：{os.system(compile_command)}\n\n'
+        return False
     else:
-        print(cpp+' Compiled Error')
-        generate_annotations_and_exit(cpp, 'Compiled Error')
-    # 运行程序并重定向输出
-    cmd = content+'/.'+filename+' <'+indata+'> '+outdata
-    os.system(cmd)
-    # 判断RE
-    if os.system(cmd) == 0:
-        print(cpp+' Run successfully')
-    else:
-        print(cpp+' Runtime Error')
-        generate_annotations_and_exit(cpp, 'Runtime Error')
+        print('OK')
 
-    # 判断答案
-    cmd = 'diff -b -B '+outdata+' '+ansdata
-    if os.system(cmd) == 0:
-        print(cpp+' Successfully passed the test')
-    else:
-        print(cpp + ' Wrong Answer')
-        generate_annotations_and_exit(cpp, 'Wrong Answer')
+    # 逐个测试
+    run_command = (f'{mainfile.split(".")[0]} < {e} > {e.replace(".in", ".out")}' for e in examples)
+    check_command = (f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")} > /dev/null 2> /dev/null' for e in examples)
+    for run, check, e in zip(run_command, check_command, examples):
+        print(run, end=' ')
+        if os.system(run) != 0:
+            print(f'\n::endgroup::')
+            print(f'::error file={mainfile},title=RE!::Runtime Error! with error code: {os.system(run)}')
+            summary += f'## RE: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **出错测试点**：{e}\n- **错误代码**：{os.system(run)}\n\n'
+            return False
+        else:
+            print('OK')
+
+        print(check, end=' ')
+        if os.system(check) != 0:
+            print(f'\n::endgroup::')
+            print(f'::error file={e},title=WA!::Wrong Answer on: {e}')
+            summary += f'## WA: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **出错测试点**：{e}\n\n期望得到：\n```\n{open(e.replace(".in", ".ans")).read()}\n```\n但得到输出：\n```\n{open(e.replace(".in", ".out")).read()}\n```\n\n'
+            return False
+        else:
+            print(f'Accepted!')
+            summary += f'## AC: {mainfile} ({len(examples)} tests)\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n\n'
+
+    
+    print(f'::endgroup::')
+    return True
 
 filename = "res.txt"
 with open(filename) as file_object:
     lines = file_object.readlines()
 for line in lines:
-    for filename in line.split(' '):
-        test(filename)
+    get_files_to_test(line.split())
