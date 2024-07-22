@@ -1199,7 +1199,7 @@ void non_local_search(int x, int lv, int rv, int op) {
     
     ```
 
-### Referrence
+### Reference
 
 1.《Self-Adjusting Top Trees Robert》E. Tarjan，Renato F. Werneck。
 
