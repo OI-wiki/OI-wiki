@@ -6,6 +6,7 @@ using namespace std;
 #define MAXV (500 + 5)
 int d[MAXN][3];
 int x[MAXN], y[MAXN], z[MAXN];
+
 int babylon_sub(int c, int rot, int n) {
   if (d[c][rot] != -1) {
     return d[c][rot];
