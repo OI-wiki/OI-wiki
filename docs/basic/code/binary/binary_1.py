@@ -9,7 +9,7 @@ def f(x):
 
 while r - l > eps:
     mid = (l + r) / 2
-    if f(mid - eps) > f(mid + eps):
+    if f(mid - eps) < f(mid + eps):
         r = mid
     else:
         l = mid
