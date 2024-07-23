@@ -3,23 +3,6 @@
 #include <iostream>
 using namespace std;
 #define MAXN (30 + 5)
-
-    
-          
-            
-    
-
-          
-          Expand Down
-          
-            
-    
-
-          
-          Expand Up
-    
-    @@ -50,20 +48,3 @@ int babylon(int n) {
-  
 #define MAXV (500 + 5)
 int d[MAXN][3];
 int x[MAXN], y[MAXN], z[MAXN];
