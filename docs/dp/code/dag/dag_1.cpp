@@ -35,6 +35,7 @@ int babylon_sub(int c, int rot, int n) {
   }
   return d[c][rot];
 }
+
 int babylon(int n) {
   for (int i = 0; i < n; i++) {
     d[i][0] = -1;
