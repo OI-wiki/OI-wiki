@@ -1,12 +1,10 @@
 import os
 import sys
-import json
 import subprocess
 
-summary = ''
 
 def get_files_to_test(filenames):
-    global summary
+    summary = ''
     mainfiles_to_test = set()
     cnt_ac, cnt_skip, cnt_error = 0, 0, 0
 
@@ -48,7 +46,8 @@ def get_files_to_test(filenames):
                         auxfiles.append(os.path.normpath(os.path.join(root, file)))
             examples = [os.path.normpath(os.path.join(dirname, basename + '.in'))]
 
-        if test(mainfile, auxfiles, examples):
+        test_result, summary = test(mainfile, auxfiles, examples, summary)
+        if test_result:
             cnt_ac += 1
         else:
             cnt_error += 1
@@ -63,8 +62,7 @@ def get_files_to_test(filenames):
         sys.exit(1)
 
 
-def test(mainfile, auxfiles, examples) -> bool:
-    global summary
+def test(mainfile, auxfiles, examples, summary):
     print(f'::group::Test for {mainfile}...')
     # 检测文件存在
     for file in auxfiles:
@@ -72,13 +70,13 @@ def test(mainfile, auxfiles, examples) -> bool:
             print(f'::endgroup::')
             print(f'::error file={file},title=file {file} not found::')
             summary += f'## 找不到文件：{file}\n对{mainfile}的测试因找不到文件{file}而被迫中止\n\n'
-            return False
+            return False, summary
     for file in examples:
         if not os.path.exists(file):
             print(f'::endgroup::')
             print(f'::error file={file},title=file {file} not found::')
             summary += f'## 找不到文件：{file}\n对{mainfile}的测试因找不到文件{file}而被迫中止\n\n'
-            return False
+            return False, summary
         
     # 编译
     compile_command = f'g++ -std=c++17 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}'
@@ -89,7 +87,7 @@ def test(mainfile, auxfiles, examples) -> bool:
         print(f'\n::endgroup::')
         print(f'::error file={mainfile},title=CE!::Compile Error! with error code {result.returncode}')
         summary += f'## CE: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **编译指令**：{compile_command}\n- **错误代码**：{result.returncode}\n\n'
-        return False
+        return False, summary
     else:
         print('OK')
 
@@ -98,7 +96,7 @@ def test(mainfile, auxfiles, examples) -> bool:
         print(f'\n::endgroup::')
         print(f"::notice file={mainfile},title=No data!::Can't find data to test. If you don't want this notice, create {mainfile.replace('.cpp', '.skip_test')}")
         summary += f'## No Data: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- 编译指令：{compile_command}\n成功编译，但因数据不存在未能进一步测试。**如果不希望进行测试，请创建{mainfile.replace(".cpp", ".skip_test")}**\n\n'
-        return True
+        return True, summary
 
     # 逐个测试
     executable = mainfile.split(".")[0]
@@ -112,7 +110,7 @@ def test(mainfile, auxfiles, examples) -> bool:
             print(f'\n::endgroup::')
             print(f'::error file={mainfile},title=RE!::Runtime Error! with error code: {result.returncode}')
             summary += f'## RE: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **出错测试点**：{e}\n- **错误代码**：{result.returncode}\n\n'
-            return False
+            return False, summary
         else:
             print('OK')
 
@@ -122,14 +120,14 @@ def test(mainfile, auxfiles, examples) -> bool:
             print(f'\n::endgroup::')
             print(f'::error file={e},title=WA!::Wrong Answer on: {e}')
             summary += f'## WA: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **出错测试点**：{e}\n\n期望得到：\n```\n{open(e.replace(".in", ".ans")).read()}\n```\n但得到输出：\n```\n{open(e.replace(".in", ".out")).read()}\n```\n\n'
-            return False
+            return False, summary
         else:
             print(f'Accepted!')
 
     
     summary += f'## AC: {mainfile} ({len(examples)} tests)\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n\n'
     print(f'::endgroup::')
-    return True
+    return True, summary
 
 filename = "res.txt"
 with open(filename) as file_object:
