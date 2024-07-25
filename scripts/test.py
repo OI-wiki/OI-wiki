@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import subprocess
 
 summary = ''
 
@@ -83,10 +84,11 @@ def test(mainfile, auxfiles, examples) -> bool:
     compile_command = f'g++ -std=c++17 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}'
     print(compile_command, end=' ')
 
-    if os.system(compile_command) != 0:
+    result = subprocess.run(compile_command, shell=True)
+    if result.returncode != 0:
         print(f'\n::endgroup::')
-        print(f'::error file={mainfile},title=CE!::Compile Error! with error code {os.system(compile_command)}')
-        summary += f'## CE: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **编译指令**：{compile_command}\n- **错误代码**：{os.system(compile_command)}\n\n'
+        print(f'::error file={mainfile},title=CE!::Compile Error! with error code {result.returncode}')
+        summary += f'## CE: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **编译指令**：{compile_command}\n- **错误代码**：{result.returncode}\n\n'
         return False
     else:
         print('OK')
@@ -99,20 +101,24 @@ def test(mainfile, auxfiles, examples) -> bool:
         return True
 
     # 逐个测试
-    run_command = (f'{mainfile.split(".")[0]} < {e} > {e.replace(".in", ".out")}' for e in examples)
-    check_command = (f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")} > /dev/null 2> /dev/null' for e in examples)
-    for run, check, e in zip(run_command, check_command, examples):
-        print(run, end=' ')
-        if os.system(run) != 0:
+    executable = mainfile.split(".")[0]
+    check_command = (f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")}' for e in examples)
+    for check, e in zip(check_command, examples):
+        print(f'{executable} < {e} > {e.replace(".in", ".out")}', end=' ')
+        with open(e, 'r') as fstdin:
+            with open(e.replace(".in", ".out"), 'w') as fstdout:
+                result = subprocess.run(executable, shell=True, stdin=fstdin, stdout=fstdout)
+        if result.returncode != 0:
             print(f'\n::endgroup::')
-            print(f'::error file={mainfile},title=RE!::Runtime Error! with error code: {os.system(run)}')
-            summary += f'## RE: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **出错测试点**：{e}\n- **错误代码**：{os.system(run)}\n\n'
+            print(f'::error file={mainfile},title=RE!::Runtime Error! with error code: {result.returncode}')
+            summary += f'## RE: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **出错测试点**：{e}\n- **错误代码**：{result.returncode}\n\n'
             return False
         else:
             print('OK')
 
         print(check, end=' ')
-        if os.system(check) != 0:
+        result = subprocess.run(check, shell=True, stdout=subprocess.DEVNULL)
+        if result.returncode != 0:
             print(f'\n::endgroup::')
             print(f'::error file={e},title=WA!::Wrong Answer on: {e}')
             summary += f'## WA: {mainfile}\n- 主要文件：`{mainfile}`\n- 辅助文件：`{", ".join(auxfiles)}`\n- 测试点：`{", ".join(examples)}`\n- **出错测试点**：{e}\n\n期望得到：\n```\n{open(e.replace(".in", ".ans")).read()}\n```\n但得到输出：\n```\n{open(e.replace(".in", ".out")).read()}\n```\n\n'
