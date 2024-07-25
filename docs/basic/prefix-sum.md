@@ -1,8 +1,25 @@
+## 前置芝士（前置知识）
+考虑三道单纯的模板题：
+
+A：对于一个给定的序列a（可能非常长），反复求出其不同子序列的所有元素之和。注意：要求很多次，但不会更改序列。
+
+B：对于一个给定的序列b（可能肥肠长），多次对其不同子序列的所有元素都加上或减去（稍加变换后亦可以考虑乘除）一个特定值，输出最终序列。
+
+C：对于一个给定的序列c（可能比宇宙还长），多次对其不同子序列的所有元素加上或减去特定值，同时反复求出不同子序列的所有元素之和。
+
+这三种情况在算法设计中非常有用。事实上，它们的解决方案与事件复杂度也有所相关。
+
+A：前缀和，修改$O(n)$，查询$O(1)$
+
+B：差分，修改$O(1)$，查询$O(n)$
+
+C：[树状数组](../ds/fenwick.md)/[线段树](../ds/seg.md)，修改$O(n\log(n))$，查询$O(n\log(n))$
+
 ## 前缀和
 
 ### 定义
 
-前缀和可以简单理解为「数列的前 $n$ 项的和」，是一种重要的预处理方式，能大大降低查询的时间复杂度。[^note1]
+前缀和可以简单理解为「数列的前 $n$ 项的和」，是一种重要的**预处理方式**，能大大降低**查询**的时间复杂度。[^note1]
 
 C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cppreference.com/w/cpp/algorithm/partial_sum)，定义于头文件 `<numeric>` 中。
 
@@ -122,6 +139,8 @@ $$
 
 这种策略的定义是令 $b_i=\begin{cases}a_i-a_{i-1}\,&i \in[2,n] \\ a_1\,&i=1\end{cases}$
 
+有限微积分里通常定义$b_i = a_n-a_{n-1}$，为保持代码简洁常取$b_n=0$，并定义$b_n = a_n - a_{n-1}$
+
 ### 性质
 
 -   $a_i$ 的值是 $b_i$ 的前缀和，即 $a_n=\sum\limits_{i=1}^nb_i$
@@ -141,6 +160,54 @@ $$
     最后做一遍前缀和就好了。
 
 C++ 标准库中实现了差分函数 [`std::adjacent_difference`](https://zh.cppreference.com/w/cpp/algorithm/adjacent_difference)，定义于头文件 `<numeric>` 中。
+
+### 二维差分
+我们已经有了二维前缀和，一定也会有**二维差分！**
+
+对于二维前缀和的定义，已经给出
+
+$$
+\begin{array}{ll}
+    sum[i][j] \\
+    = sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1]+a[i][j]
+\end{array}
+$$
+
+![](images\prefix_orignalArray.png)
+
+整理变形得：
+$$
+\begin{array}{ll}
+a[i][j] = \\
+    +sum[i][j]\\
+    -sum[i-1][j]\\
+    - sum[i][j-1]\\
+     + sum[i-1][j-1]
+\end{array}
+$$
+于是得到了二维差分得递推式。
+
+??? note "这是更新数组的方法"
+    若需使得从$a[up][left]$到$a[down][right]$的所有值全部加上$\Delta a$，仅需：
+    $$
+    \begin{array}{ll}
+        a[up][left] \gets a[up][left]+\Delta a \\
+        a[up][right+1] \gets a[up][right+1]-\Delta a \\
+        a[down+1][left] \gets a[down][right+1]-\Delta a \\ 
+        a[down+1][right+1] \gets a[down+1][right+1]+\Delta a 
+    \end{array}
+    $$
+![](images\prefix_difference.png)
+[^note2]
+
+### 二次（高阶）差分
+
+考虑一道题，思考三秒钟，再看解析：[P4231 三步必杀](https://www.luogu.com.cn/problem/P4231)
+
+???+ note "解析"
+    *没有什么序列的加减法是一遍差分（或前缀和）解决不了的，如果有，那就**再差分一遍***
+
+    这正好适用本题。一次“攻击”导致区间的伤害值全部增加，应当差分一遍，而伤害值是等差数列，故再次差分。
 
 ### 树上差分
 
@@ -200,6 +267,13 @@ $$
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_3.cpp"
     ```
 
+*** 
+
+## 拓展 & 延申 & 探讨
+### 关于高维前缀和与差分的更快求解方案与意义
+### 关于非普通图形的前缀和与差分意义
+### 延申（Futher）：有限微积分
+
 ## 习题
 
 前缀和：
@@ -254,4 +328,6 @@ $$
 
 ## 参考资料与注释
 
-[^note1]: 南海区青少年信息学奥林匹克内部训练教材
+[^note1]: 南海区青少年信息学奥林匹克内部训练教材]
+[^note2]: [二维差分算法最细致解析](https://blog.csdn.net/Sommer001/article/details/121019319)
+[^note3]: [【日报】差分与前缀和，但是加上了一些拓展](https://www.luogu.com.cn/article/hgakmfz8)
