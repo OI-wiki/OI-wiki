@@ -1,25 +1,26 @@
 ## 前置芝士（前置知识）
+
 考虑三道单纯的模板题：
 
-A：对于一个给定的序列a（可能非常长），反复求出其不同子序列的所有元素之和。注意：要求很多次，但不会更改序列。
+A：对于一个给定的序列 a（可能非常长），反复求出其不同子序列的所有元素之和。注意：要求很多次，但不会更改序列。
 
-B：对于一个给定的序列b（可能肥肠长），多次对其不同子序列的所有元素都加上或减去（稍加变换后亦可以考虑乘除）一个特定值，输出最终序列。
+B：对于一个给定的序列 b（可能肥肠长），多次对其不同子序列的所有元素都加上或减去（稍加变换后亦可以考虑乘除）一个特定值，输出最终序列。
 
-C：对于一个给定的序列c（可能比宇宙还长），多次对其不同子序列的所有元素加上或减去特定值，同时反复求出不同子序列的所有元素之和。
+C：对于一个给定的序列 c（可能比宇宙还长），多次对其不同子序列的所有元素加上或减去特定值，同时反复求出不同子序列的所有元素之和。
 
 这三种情况在算法设计中非常有用。事实上，它们的解决方案与事件复杂度也有所相关。
 
-A：前缀和，修改$O(n)$，查询$O(1)$
+A：前缀和，修改 $O(n)$，查询 $O(1)$
 
-B：差分，修改$O(1)$，查询$O(n)$
+B：差分，修改 $O(1)$，查询 $O(n)$
 
-C：[树状数组](../ds/fenwick.md)/[线段树](../ds/seg.md)，修改$O(n\log(n))$，查询$O(n\log(n))$
+C：[树状数组](../ds/fenwick.md)/[线段树](../ds/seg.md)，修改 $O(n\log(n))$，查询 $O(n\log(n))$
 
 ## 前缀和
 
 ### 定义
 
-前缀和可以简单理解为「数列的前 $n$ 项的和」，是一种重要的**预处理方式**，能大大降低**查询**的时间复杂度。[^note1]
+前缀和可以简单理解为「数列的前 $n$ 项的和」，是一种重要的 **预处理方式**，能大大降低 **查询** 的时间复杂度。[^note1]
 
 C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cppreference.com/w/cpp/algorithm/partial_sum)，定义于头文件 `<numeric>` 中。
 
@@ -123,7 +124,7 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 这种策略的定义是令 $b_i=\begin{cases}a_i-a_{i-1}\,&i \in[2,n] \\ a_1\,&i=1\end{cases}$
 
-有限微积分里通常定义$b_i = a_n-a_{n-1}$，为保持代码简洁常取$b_n=0$，并定义$b_n = a_n - a_{n-1}$
+有限微积分里通常定义 $b_i = a_n-a_{n-1}$，为保持代码简洁常取 $b_n=0$，并定义 $b_n = a_n - a_{n-1}$
 
 ### 性质
 
@@ -146,7 +147,8 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 C++ 标准库中实现了差分函数 [`std::adjacent_difference`](https://zh.cppreference.com/w/cpp/algorithm/adjacent_difference)，定义于头文件 `<numeric>` 中。
 
 ### 二维差分
-我们已经有了二维前缀和，一定也会有**二维差分！**
+
+我们已经有了二维前缀和，一定也会有 **二维差分！**
 
 对于二维前缀和的定义，已经给出
 
@@ -160,6 +162,7 @@ $$
 ![](images\prefix_orignalArray.png)
 
 整理变形得：
+
 $$
 \begin{array}{ll}
 a[i][j] = \\
@@ -169,10 +172,12 @@ a[i][j] = \\
      + sum[i-1][j-1]
 \end{array}
 $$
+
 于是得到了二维差分得递推式。
 
 ??? note "这是更新数组的方法"
-    若需使得从$a[up][left]$到$a[down][right]$的所有值全部加上$\Delta a$，仅需：
+    若需使得从 $a[up][left]$ 到 $a[down][right]$ 的所有值全部加上 $\Delta a$，仅需：
+    
     $$
     \begin{array}{ll}
         a[up][left] \gets a[up][left]+\Delta a \\
@@ -181,15 +186,15 @@ $$
         a[down+1][right+1] \gets a[down+1][right+1]+\Delta a 
     \end{array}
     $$
-![](images\prefix_difference.png)
-[^note2]
+
+[](images\prefix_difference.png)[^note2]
 
 ### 二次（高阶）差分
 
 考虑一道题，思考三秒钟，再看解析：[P4231 三步必杀](https://www.luogu.com.cn/problem/P4231)
 
 ???+ note "解析"
-    *没有什么序列的加减法是一遍差分（或前缀和）解决不了的，如果有，那就**再差分一遍***
+    *没有什么序列的加减法是一遍差分（或前缀和）解决不了的，如果有，那就 **再差分一遍***
 
     这正好适用本题。一次“攻击”导致区间的伤害值全部增加，应当差分一遍，而伤害值是等差数列，故再次差分。
 
@@ -250,19 +255,23 @@ $$
     ```cpp
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_3.cpp"
     ```
-*** 
+
+\*\*
 
 ## 拓展 & 延申 & 探讨
+
 ### 关于高维前缀和与差分的更快求解方案与意义 & SOSDP
+
 首先是高维前缀和与差分的几何意义，可以想到：
 
-高维前缀和：对于一个$k$维矩形$a$，给定$m$次操作，每次操作输出$a_{e_{l,1},e_{l,2},...e_{l,k}}$到$a_{e_{r,1},e_{r,2},...e_{r,k}}$（即所有的$a_{e_1,e_2,...e_k}$满足$e_{l,i} < e_i < e_{i,r}(0<i\leq k)$）之和。
+高维前缀和：对于一个 $k$ 维矩形 $a$，给定 $m$ 次操作，每次操作输出 $a_{e_{l,1},e_{l,2},...e_{l,k}}$ 到 $a_{e_{r,1},e_{r,2},...e_{r,k}}$（即所有的 $a_{e_1,e_2,...e_k}$ 满足 $e_{l,i} < e_i < e_{i,r}(0<i\leq k)$）之和。
 
-高维差分：对于一个$k$维矩形$a$，给定$m$次操作，每次操作将$a_{e_{l,1},e_{l,2},...e_{l,k}}$到$a_{e_{r,1},e_{r,2},...e_{r,k}}$（即所有的$a_{e_1,e_2,...e_k}$满足$e_{l,i} < e_i < e_{i,r}(0<i\leq k)$）的所有元素值增加或减去特定的值$\Delta a$，求最终的$a$。
+高维差分：对于一个 $k$ 维矩形 $a$，给定 $m$ 次操作，每次操作将 $a_{e_{l,1},e_{l,2},...e_{l,k}}$ 到 $a_{e_{r,1},e_{r,2},...e_{r,k}}$（即所有的 $a_{e_1,e_2,...e_k}$ 满足 $e_{l,i} < e_i < e_{i,r}(0<i\leq k)$）的所有元素值增加或减去特定的值 $\Delta a$，求最终的 $a$。
 
-而求高维前缀和与差分的最基本的思想，便是[容斥原理](../math/combinatorics/inclusion-exclusion-principle.md)。也就是：
+而求高维前缀和与差分的最基本的思想，便是 [容斥原理](../math/combinatorics/inclusion-exclusion-principle.md)。也就是：
 
-设$S_i$为$sum_{e_1,e_2,...,e_i-1,...e_k}$
+设 $S_i$ 为 $sum_{e_1,e_2,...,e_i-1,...e_k}$
+
 $$
 \begin{aligned}
 sum_{e_1,e_2,...,e_k} = a_{e_1,e_2,...,e_k}+
@@ -270,61 +279,56 @@ sum_{e_1,e_2,...,e_k} = a_{e_1,e_2,...,e_k}+
 a_{e_1,e_2,...,e_k} + \sum_{m=0}^{n-1}(-1)^m\sum_{a_i<a_{i+1} }\left|\bigcap_{i=1}^mS_{a_i}\right|
 \end{aligned}
 $$
+
 写成代码：
-``` cpp
-//返回原数组
-std::map<std::vector<int>,int> mp,mp0;
-int& get(std::vector<int> index){
-    return mp[index];
-}
 
-//返回前缀和数组
-int cal(std::vector<int> index)
-{
-    if (mp0.count(index))
-        return mp0[index];
+```cpp
+// 返回原数组
+std::map<std::vector<int>, int> mp, mp0;
 
-    for (int i = 0; i < index.size(); i++)
-        if (index[i] == 0)
-            return 0;
+int& get(std::vector<int> index) { return mp[index]; }
 
-    int ans = 0, coef = 1;
-    int k = index.size();
-    int combinations = 1 << k;
+// 返回前缀和数组
+int cal(std::vector<int> index) {
+  if (mp0.count(index)) return mp0[index];
 
-    for (int mask = 1; mask < combinations; ++mask){
-        std::vector<int> subIndex = index;
-		for (int i = 0; i < k; ++i)
-            if (mask & (1 << i))
-                subIndex[i]--;
-        ans += coef * cal(subIndex);
-        coef *= -1;
-    }
+  for (int i = 0; i < index.size(); i++)
+    if (index[i] == 0) return 0;
 
-    return mp0[index] = ans + get(index);
+  int ans = 0, coef = 1;
+  int k = index.size();
+  int combinations = 1 << k;
+
+  for (int mask = 1; mask < combinations; ++mask) {
+    std::vector<int> subIndex = index;
+    for (int i = 0; i < k; ++i)
+      if (mask & (1 << i)) subIndex[i]--;
+    ans += coef * cal(subIndex);
+    coef *= -1;
+  }
+
+  return mp0[index] = ans + get(index);
 }
 
 ```
-有兴趣的同学可以用容斥原理计算一下**高维差分**。
 
-可是，目前代码已经变得十分臃肿，解决的问题也缺乏实际意义。它的时间复杂度为$O(2^{kn})$，空间复杂度为$O(max(n,m))$，其中$m$为$get$的空间，在std::map中，它是$O(n^k)$。对于差分而言，每次都需要更改$2^k$节点，故修改时间复杂度为$O(2^k)$。
+有兴趣的同学可以用容斥原理计算一下 **高维差分**。
 
-于是，有没有更简便的方法呢（不用**容斥原理**）？
+可是，目前代码已经变得十分臃肿，解决的问题也缺乏实际意义。它的时间复杂度为 $O(2^{kn})$，空间复杂度为 $O(max(n,m))$，其中 $m$ 为 $get$ 的空间，在 std::map 中，它是 $O(n^k)$。对于差分而言，每次都需要更改 $2^k$ 节点，故修改时间复杂度为 $O(2^k)$。
 
-**二次差分！**
-![](./images/prefix_huge.png)
-*没有什么区间问题(主要☞只查询，或只修改，不然还是得用线段树或树状数组)是差分一次解决不了的，如果有，那就**再差分一遍***
+于是，有没有更简便的方法呢（不用 **容斥原理**）？
 
-如图所示（虽然有点丑，但足够说明问题），可以通过从x坐标与y坐标依次差分一次完成。于是就能变成仅需更改四个数字。同理，可以通过前缀和两次解决。
+**二次差分！**![](./images/prefix_huge.png)*没有什么区间问题（主要☞只查询，或只修改，不然还是得用线段树或树状数组）是差分一次解决不了的，如果有，那就 **再差分一遍***
+
+如图所示（虽然有点丑，但足够说明问题），可以通过从 x 坐标与 y 坐标依次差分一次完成。于是就能变成仅需更改四个数字。同理，可以通过前缀和两次解决。
 
 这种方法的优势在高维前缀和与差分中尤为重要。
 
-实际意义：[^note4] [^note5]
+实际意义：[^note4][^note5]
 
-对于所有的$i$,$0 \leq i \leq 2^n -1$，求解 $\displaystyle \sum\limits_{j \subset i} a_j$
+对于所有的 $i$,$0 \leq i \leq 2^n -1$，求解 $\displaystyle \sum\limits_{j \subset i} a_j$
 
-显然，这类问题可以直接枚举子集求解，但复杂度为$O(n^3)$
-。如果我们施展高维前缀和的话，复杂度可以到$O(2^n)$
+显然，这类问题可以直接枚举子集求解，但复杂度为 $O(n^3)$。如果我们施展高维前缀和的话，复杂度可以到 $O(2^n)$
 
 设高维空间 $U$ 共有 $D$ 维，需要对 $f[\cdot]$ 求高维前缀和 $\text{sum}[\cdot]$。令 $\text{sum}[i][\text{state}]$ 表示同 $\text{state}$ 后 $D - i$ 维相同的所有点对于 $\text{state}$ 点高维前缀和的贡献。由定义可知 $\text{sum}[0][\text{state}] = f[\text{state}]$，以及 $\text{sum}[\text{state}] = \text{sum}[D][\text{state}]$。
 
@@ -344,19 +348,21 @@ $$
 
 若想了解高维前缀和（SOSDP）的更多相关信息，[点此前往。](https://www.cnblogs.com/Troverld/p/14601821.html)
 
+上题其实有一个简单有趣的做法，值得 [细细体会。](https://www.cnblogs.com/heyuhhh/p/11585358.html#:~:text=%EE%80%80%E4%BB%8A%E5%A4%A9%E4%B8%AD%E5%8D%88%E4%B8%8D%E7%9F%A5%E6%80%8E%E4%B9%88%E7%9A%84%E5%AF%B9%E8%BF%99%E4%B8%AA%E4%B8%9C%E8%A5%BF%E4%BA%A7%E7%94%9F%E4%BA%86%E5%85%B4%E8%B6%A3%EF%BC%8C%E6%84%9F%E8%A7%89%E5%BE%88%E7%A5%9E%E5%A5%87%EF%BC%8C%E7%BB%93%E6%9E%9C%E8%8A%B1%E4%BA%86%E4%B8%80%E4%B8%AA%E4%B8%AD%E5%8D%88%E5%A4%9A%E7%9A%84%E6%97%B6%E9%97%B4%E6%9D%A5%E7%9C%8BQAQ%EE%80%81。)
 
-上题其实有一个简单有趣的做法，值得[细细体会。](https://www.cnblogs.com/heyuhhh/p/11585358.html#:~:text=%EE%80%80%E4%BB%8A%E5%A4%A9%E4%B8%AD%E5%8D%88%E4%B8%8D%E7%9F%A5%E6%80%8E%E4%B9%88%E7%9A%84%E5%AF%B9%E8%BF%99%E4%B8%AA%E4%B8%9C%E8%A5%BF%E4%BA%A7%E7%94%9F%E4%BA%86%E5%85%B4%E8%B6%A3%EF%BC%8C%E6%84%9F%E8%A7%89%E5%BE%88%E7%A5%9E%E5%A5%87%EF%BC%8C%E7%BB%93%E6%9E%9C%E8%8A%B1%E4%BA%86%E4%B8%80%E4%B8%AA%E4%B8%AD%E5%8D%88%E5%A4%9A%E7%9A%84%E6%97%B6%E9%97%B4%E6%9D%A5%E7%9C%8BQAQ%EE%80%81。)
 ```cpp
-for(int j = 0; j < n; j++) 
-for(int i = 0; i < 1 << n; i++)
-    if(i >> j & 1) f[i] += f[i ^ (1 << j)];
+for (int j = 0; j < n; j++)
+  for (int i = 0; i < 1 << n; i++)
+    if (i >> j & 1) f[i] += f[i ^ (1 << j)];
 ```
 
 ### 关于极特殊序列的前缀和与差分的实际意义以及关于非普通图形的前缀和与差分求解方法
-这里推荐阅读一份[洛谷日报](https://www.luogu.com.cn/article/hgakmfz8)作为延申阅读
+
+这里推荐阅读一份 [洛谷日报](https://www.luogu.com.cn/article/hgakmfz8) 作为延申阅读
 
 ### 延申（Futher）：有限微积分
-有限微积分是研究离散变化和连续变化之间关系的数学分支。差分是有限微积分的基本概念之一，通过计算函数在离散点上的变化量来近似其导数。在离散情况下，差分表示两个相邻数据点之间的差值，类似于连续函数中的导数。有限微积分主要研究如何利用差分方法解决离散系统中的问题，包括求解差分方程、离散积分和离散傅里叶变换。它在计算机科学、物理学、工程学等领域有广泛应用，特别是在数值分析和信号处理方面。推荐阅读《具体数学》或[洛谷日报](https://www.luogu.com.cn/article/e0cvjkua)。
+
+有限微积分是研究离散变化和连续变化之间关系的数学分支。差分是有限微积分的基本概念之一，通过计算函数在离散点上的变化量来近似其导数。在离散情况下，差分表示两个相邻数据点之间的差值，类似于连续函数中的导数。有限微积分主要研究如何利用差分方法解决离散系统中的问题，包括求解差分方程、离散积分和离散傅里叶变换。它在计算机科学、物理学、工程学等领域有广泛应用，特别是在数值分析和信号处理方面。推荐阅读《具体数学》或 [洛谷日报](https://www.luogu.com.cn/article/e0cvjkua)。
 
 ## 习题
 
@@ -413,7 +419,11 @@ for(int i = 0; i < 1 << n; i++)
 ## 参考资料与注释
 
 [^note1]: 南海区青少年信息学奥林匹克内部训练教材]
+
 [^note2]: [二维差分算法最细致解析](https://blog.csdn.net/Sommer001/article/details/121019319)
+
 [^note3]: [【洛谷日报】差分与前缀和，但是加上了亿些拓展](https://www.luogu.com.cn/article/hgakmfz8)
+
 [^note4]: [高维前缀和总结](https://www.cnblogs.com/heyuhhh/p/11585358.html#:~:text=%EE%80%80%E4%BB%8A%E5%A4%A9%E4%B8%AD%E5%8D%88%E4%B8%8D%E7%9F%A5%E6%80%8E%E4%B9%88%E7%9A%84%E5%AF%B9%E8%BF%99%E4%B8%AA%E4%B8%9C%E8%A5%BF%E4%BA%A7%E7%94%9F%E4%BA%86%E5%85%B4%E8%B6%A3%EF%BC%8C%E6%84%9F%E8%A7%89%E5%BE%88%E7%A5%9E%E5%A5%87%EF%BC%8C%E7%BB%93%E6%9E%9C%E8%8A%B1%E4%BA%86%E4%B8%80%E4%B8%AA%E4%B8%AD%E5%8D%88%E5%A4%9A%E7%9A%84%E6%97%B6%E9%97%B4%E6%9D%A5%E7%9C%8BQAQ%EE%80%81)
-[^note5]: [SOSDP（子集DP）、高维前缀和、FMT（快速莫比乌斯变换）、FWT（快速沃尔什变换）学习笔记](https://www.cnblogs.com/Troverld/p/14601821.html)
+
+[^note5]: [SOSDP（子集 DP）、高维前缀和、FMT（快速莫比乌斯变换）、FWT（快速沃尔什变换）学习笔记](https://www.cnblogs.com/Troverld/p/14601821.html)
