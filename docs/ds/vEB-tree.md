@@ -90,7 +90,7 @@ van Emde Boas 树（以下简称 vEB 树），是由荷兰计算机科学家 Pet
 对于一棵 $\text{p-vEB}(u)$，我们需要查询元素 $x$ 是否在它所维护的集合之中。具体步骤如下：
 
 -   如果 $u=2$ 是基本情况，那么直接查询 $A$ 数组即可。
--   否则，递归查询第 $\operatorname{high}(x)$ 个簇中是否含有元素 $\operatorname{low}(x)$. 
+-   否则，递归查询第 $\operatorname{high}(x)$ 个簇中是否含有元素 $\operatorname{low}(x)$.
 
 ???+ note "代码实现"
     ```cpp
@@ -216,7 +216,7 @@ van Emde Boas 树（以下简称 vEB 树），是由荷兰计算机科学家 Pet
 -   若 $u=2$，直接修改 $A$ 数组即可。
 -   否则，先判断要插入的第 $\operatorname{high}(x)$ 号簇是否为空。
     -   若为空，则先在 $\textit{summary}$ 中插入 $\operatorname{high}(x)$
--   然后在第 $\operatorname{high}(x)$ 号簇中插入元素 $\operatorname{low}(x)$. 
+-   然后在第 $\operatorname{high}(x)$ 号簇中插入元素 $\operatorname{low}(x)$.
 
 ???+ note "代码实现"
     ```cpp
@@ -239,8 +239,8 @@ van Emde Boas 树（以下简称 vEB 树），是由荷兰计算机科学家 Pet
 我们类似地假定元素 $x$ 存在。删除元素 $x$ 的具体步骤：
 
 -   如果是基本情况，修改 $A$ 数组。
--   否则，递归删除 $\operatorname{high}(x)$ 号簇的元素 $\operatorname{low}(x)$. 
--   判断该簇是否为空。若为空，则删除 $\textit{summary}$ 中的元素 $\operatorname{high}(x)$. 
+-   否则，递归删除 $\operatorname{high}(x)$ 号簇的元素 $\operatorname{low}(x)$.
+-   判断该簇是否为空。若为空，则删除 $\textit{summary}$ 中的元素 $\operatorname{high}(x)$.
 
 ???+ note "代码实现"
     ```cpp
@@ -504,7 +504,7 @@ $$
 -   如果是基本情况，此时至少有一个元素。按定义修改结点的 $\textit{min}$ 和 $\textit{max}$ 即可。
 -   否则，先看 $x$ 和当前结点的最小值的大小关系。如果 $\textit{min}>x$，将二者交换。
 -   然后判断 $\operatorname{high}(x)$ 号簇是否为空。
-    -   簇为空：修改这个簇的 $\textit{min}$ 和 $\textit{max}$，然后在 $\textit{summary}$ 中递归插入这个簇的编号 $\operatorname{high}(x)$. 
+    -   簇为空：修改这个簇的 $\textit{min}$ 和 $\textit{max}$，然后在 $\textit{summary}$ 中递归插入这个簇的编号 $\operatorname{high}(x)$.
     -   簇不为空：递归在这个簇中插入 $\operatorname{low}(x)$，不用修改 $\textit{summary}$ 了。
 -   最后更新 $\textit{max}$ 的值。
 
