@@ -15,6 +15,7 @@ struct vEB_node {
   vEB *clusters;  // 子结构
   vEB summary;
 };
+
 typedef vEB_node *vEB;
 
 template <typename _T>
@@ -172,17 +173,18 @@ void build(int u, vEB t) {
   } else {
     int lg = lg2(u);            // 对 u 取以 2 为底的对数并向下取整
     int sqdn = 1 << (lg >> 1);  // sqrt down，下根号
-    int squp = sqdn << (lg & 1);         // sqrt up，上根号
-    t->summary = new vEB_node;           // 申请空间
-    build(squp, t->summary);             // 先建 summary
-    t->clusters = new vEB [squp];  // 申请出 squp 个指针的空间
-                                         // clusters 都是 vEB(sqdn)
+    int squp = sqdn << (lg & 1);  // sqrt up，上根号
+    t->summary = new vEB_node;    // 申请空间
+    build(squp, t->summary);      // 先建 summary
+    t->clusters = new vEB[squp];  // 申请出 squp 个指针的空间
+                                  // clusters 都是 vEB(sqdn)
     for (int i = 0; i < squp; i++) {
       t->clusters[i] = new vEB_node;
       build(sqdn, t->clusters[i]);
     }
   }
 }
+
 // 取消定义，防止污染
 #undef lg2
 #undef sqdown
