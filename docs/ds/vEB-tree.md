@@ -42,7 +42,7 @@ van Emde Boas 树（以下简称 vEB 树），是由荷兰计算机科学家 Pet
 在固定高度的树的情况下，我们注意到叶子和根实质上都是在维护一个 01 串。因此我们考虑使用规模缩小后相同的数据结构，递归地维护这些串（类似 [根号树](./sqrt-tree.md) 的思想）。
 
 ???+ warning "关于原型 vEB 树的不同实现"
-    在不同的教材上对于原型 vEB 树有不同的实现，如在删除操作中，有的实现是通过维护结点中储存的元素个数（结点大小）判断结点是否为空，从而决定是否修改 $\textit{summary}$。这里的实现参考了 [Slides14.pdf - Stanford University](https://web.stanford.edu/class/archive/cs/cs166/cs166.1166/lectures/14/Slides14.pdf)。
+    在不同的教材上对于原型 vEB 树有不同的实现，如在删除操作中，有的实现是通过维护结点中储存的元素个数（结点大小）判断结点是否为空，从而决定是否修改 $\textit{summary}$. 这里的实现参考了 [Slides14.pdf - Stanford University](https://web.stanford.edu/class/archive/cs/cs166/cs166.1166/lectures/14/Slides14.pdf)。
 
 ### 记号与定义
 
@@ -64,7 +64,7 @@ van Emde Boas 树（以下简称 vEB 树），是由荷兰计算机科学家 Pet
 
 ![p-vEB(u) 的结构](images/vEB-tree-3.png)
 
-其中，编号为 $i$ 的簇维护的是原值域中 $[\operatorname{index}(i, 0), \operatorname{index}(i+1,0)-1]$ 这一部分，即将原值域均分为 $\sqrt u$ 个块后第 $i$ 个块。对于一个整数 $x$，它将被第 $\operatorname{high}(x)$ 个簇维护，且在该簇中的编号为 $\operatorname{low}(x)$。例如，对于 $u=4$ 的情况，$3$ 将出现在第 $1$ 个簇的第 $1$ 号元素（注意下标从 $0$ 开始）。summary 指针指向的结构维护的是一个值域为 $\sqrt u$ 的动态集合，如果其中存在元素 $i$ 则说明编号为 $i$ 的簇非空（有元素）。
+其中，编号为 $i$ 的簇维护的是原值域中 $[\operatorname{index}(i, 0), \operatorname{index}(i+1,0)-1]$ 这一部分，即将原值域均分为 $\sqrt u$ 个块后第 $i$ 个块。对于一个整数 $x$，它将被第 $\operatorname{high}(x)$ 个簇维护，且在该簇中的编号为 $\operatorname{low}(x)$. 例如，对于 $u=4$ 的情况，$3$ 将出现在第 $1$ 个簇的第 $1$ 号元素（注意下标从 $0$ 开始）。summary 指针指向的结构维护的是一个值域为 $\sqrt u$ 的动态集合，如果其中存在元素 $i$ 则说明编号为 $i$ 的簇非空（有元素）。
 
 当 $u=2$ 时，$\text{p-vEB}(2)$ 将不储存 $\textit{clusters}$ 和 $\textit{summary}$ 指针，而是储存一个两位的数组 $A$，其中 $A[i]$ 表示元素 $i$ 是否存在。此时的该结构称为 **基本结构**（basic structure）。
 
@@ -90,7 +90,7 @@ van Emde Boas 树（以下简称 vEB 树），是由荷兰计算机科学家 Pet
 对于一棵 $\text{p-vEB}(u)$，我们需要查询元素 $x$ 是否在它所维护的集合之中。具体步骤如下：
 
 -   如果 $u=2$ 是基本情况，那么直接查询 $A$ 数组即可。
--   否则，递归查询第 $\operatorname{high}(x)$ 个簇中是否含有元素 $\operatorname{low}(x)$。
+-   否则，递归查询第 $\operatorname{high}(x)$ 个簇中是否含有元素 $\operatorname{low}(x)$. 
 
 ???+ note "代码实现"
     ```cpp
@@ -216,7 +216,7 @@ van Emde Boas 树（以下简称 vEB 树），是由荷兰计算机科学家 Pet
 -   若 $u=2$，直接修改 $A$ 数组即可。
 -   否则，先判断要插入的第 $\operatorname{high}(x)$ 号簇是否为空。
     -   若为空，则先在 $\textit{summary}$ 中插入 $\operatorname{high}(x)$
--   然后在第 $\operatorname{high}(x)$ 号簇中插入元素 $\operatorname{low}(x)$。
+-   然后在第 $\operatorname{high}(x)$ 号簇中插入元素 $\operatorname{low}(x)$. 
 
 ???+ note "代码实现"
     ```cpp
@@ -239,8 +239,8 @@ van Emde Boas 树（以下简称 vEB 树），是由荷兰计算机科学家 Pet
 我们类似地假定元素 $x$ 存在。删除元素 $x$ 的具体步骤：
 
 -   如果是基本情况，修改 $A$ 数组。
--   否则，递归删除 $\operatorname{high}(x)$ 号簇的元素 $\operatorname{low}(x)$。
--   判断该簇是否为空。若为空，则删除 $\textit{summary}$ 中的元素 $\operatorname{high}(x)$。
+-   否则，递归删除 $\operatorname{high}(x)$ 号簇的元素 $\operatorname{low}(x)$. 
+-   判断该簇是否为空。若为空，则删除 $\textit{summary}$ 中的元素 $\operatorname{high}(x)$. 
 
 ???+ note "代码实现"
     ```cpp
@@ -282,7 +282,7 @@ $$
 S(m)=S\left(\dfrac m2\right)+O(1)
 $$
 
-因此 $S(m)=O(\log m)$。代入即得
+因此 $S(m)=O(\log m)$. 代入即得
 
 $$
 T(n)=S(\log n)=O(\log\log n)
@@ -314,11 +314,11 @@ $$
 
 #### 复杂度分析
 
-对于查询元素、查询最值和判断空，我们都只进行了一次递归，满足第一条递归式，因此复杂度是 $O(\log\log u)$。
+对于查询元素、查询最值和判断空，我们都只进行了一次递归，满足第一条递归式，因此复杂度是 $O(\log\log u)$.
 
-对于查询前后继，最坏情况下要进行两次递归，满足第二条，因此复杂度最坏 $O(\log u)$。
+对于查询前后继，最坏情况下要进行两次递归，满足第二条，因此复杂度最坏 $O(\log u)$.
 
-对于插入和删除元素，我们至少要进行两次递归，满足第二条递归式，因此复杂度至少是 $O(\log u)$。
+对于插入和删除元素，我们至少要进行两次递归，满足第二条递归式，因此复杂度至少是 $O(\log u)$.
 
 ## vEB 树
 
@@ -333,7 +333,7 @@ $$
 -   $\sqrt[\uparrow]{u}=2^{\left\lceil\frac {\log u}2\right\rceil}$ 为 $u$ 的上平方根。
 -   $\sqrt[\downarrow]{u}=2^{\left\lfloor\frac {\log u}2\right\rfloor}$ 为 $u$ 的下平方根。
 
-于是立刻可以推出 $u=\sqrt[\uparrow]{u}\times \sqrt[\downarrow]{u}$。同时，我们修改原型 vEB 树中的三个重要函数的定义为
+于是立刻可以推出 $u=\sqrt[\uparrow]{u}\times \sqrt[\downarrow]{u}$. 同时，我们修改原型 vEB 树中的三个重要函数的定义为
 
 -   $\operatorname{high}(x)=\left\lfloor\dfrac x{\sqrt[\downarrow] u}\right\rfloor$.
 -   $\operatorname{low}(x)=x\bmod \sqrt[\downarrow] u$.
@@ -350,7 +350,7 @@ $$
 
 ![vEB(u) 的结构](images/vEB-tree-4.png)
 
-同样，对于元素 $x$ 而言，$\operatorname{high}(x)$ 表示 $x$ 所在的簇的编号，$\operatorname{low}(x)$ 表示 $x$ 在它所在簇内的编号，并且 $\operatorname{index}(\operatorname{high}(x), \operatorname{low}(x))=x$。
+同样，对于元素 $x$ 而言，$\operatorname{high}(x)$ 表示 $x$ 所在的簇的编号，$\operatorname{low}(x)$ 表示 $x$ 在它所在簇内的编号，并且 $\operatorname{index}(\operatorname{high}(x), \operatorname{low}(x))=x$.
 
 ???+ note "代码实现"
     ```cpp
@@ -504,7 +504,7 @@ $$
 -   如果是基本情况，此时至少有一个元素。按定义修改结点的 $\textit{min}$ 和 $\textit{max}$ 即可。
 -   否则，先看 $x$ 和当前结点的最小值的大小关系。如果 $\textit{min}>x$，将二者交换。
 -   然后判断 $\operatorname{high}(x)$ 号簇是否为空。
-    -   簇为空：修改这个簇的 $\textit{min}$ 和 $\textit{max}$，然后在 $\textit{summary}$ 中递归插入这个簇的编号 $\operatorname{high}(x)$。
+    -   簇为空：修改这个簇的 $\textit{min}$ 和 $\textit{max}$，然后在 $\textit{summary}$ 中递归插入这个簇的编号 $\operatorname{high}(x)$. 
     -   簇不为空：递归在这个簇中插入 $\operatorname{low}(x)$，不用修改 $\textit{summary}$ 了。
 -   最后更新 $\textit{max}$ 的值。
 
@@ -546,7 +546,7 @@ $$
 
 在最坏情况下，我们总共需要进行三次递归：一次为了删除簇中对应的元素；一次查询簇是否为空（现在可以 $O(1)$ 解决）；一次在簇删空的情况下修改 $\textit{summary}$ 使其满足要求。
 
-还是研究什么时候要去修改 $\textit{summary}$。显然，在对应的簇中只有一个元素的情况下，我们需要删除 $\textit{summary}$ 中对应的簇号（因为删除元素之后这个簇就空了）。在这种情况下，我们可以通过把这个簇中的 $\textit{min}$ 和 $\textit{max}$ 都置为 $\mathrm{NIL}$，达到 $O(1)$ 删除簇中元素的目的；而此时我们只需要进行一次递归删除 $\textit{summary}$ 中对应的簇号就可以完成维护。
+还是研究什么时候要去修改 $\textit{summary}$. 显然，在对应的簇中只有一个元素的情况下，我们需要删除 $\textit{summary}$ 中对应的簇号（因为删除元素之后这个簇就空了）。在这种情况下，我们可以通过把这个簇中的 $\textit{min}$ 和 $\textit{max}$ 都置为 $\mathrm{NIL}$，达到 $O(1)$ 删除簇中元素的目的；而此时我们只需要进行一次递归删除 $\textit{summary}$ 中对应的簇号就可以完成维护。
 
 通过上述思路，我们就可以把几种删除的情况都简化为只用一次递归，做到了 $O(\log\log u)$ 的删除。具体步骤：
 
@@ -555,7 +555,7 @@ $$
 -   否则，我们需要讨论 $x$ 的值与 $\textit{min}$ 和 $\textit{max}$ 的大小关系。
     -   如果 $x=\textit{min}$，此时应取第二小的元素和他交换，再递归删除第二小的元素。
     -   否则，讨论对应编号为 $\operatorname{high}(x)$ 的簇的元素个数。
-        -   如果个数为 $1$，说明需要修改 $\textit{summary}$。那么先 $O(1)$ 修改这个簇的 $\textit{min}$ 和 $\textit{max}$，再递归修改 $\textit{summary}$ 即可。
+        -   如果个数为 $1$，说明需要修改 $\textit{summary}$. 那么先 $O(1)$ 修改这个簇的 $\textit{min}$ 和 $\textit{max}$，再递归修改 $\textit{summary}$ 即可。
         -   否则，无需修改 $\textit{summary}$，直接递归删除这个簇中的对应元素即可。
     -   最后讨论 $x$ 和 $\textit{max}$ 的关系，按定义更新即可。
 
@@ -632,16 +632,15 @@ $$
 
 同时，由于 vEB 树实际上是在维护一个 01 串，我们可以在值域 $u$ 不大于 64 时直接使用一个 `unsigned long long` 表示这个串进行操作，减小常数。
 
-也可以通过附加卫星数据（值出现的次数等）使 vEB 树支持重复元素。和上面的动态开点结合就可以代替平衡树实现更高效的动态集合功能了。\`
+也可以通过附加卫星数据（值出现的次数等）使 vEB 树支持重复元素。和上面的动态开点结合就可以代替平衡树实现更高效的动态集合功能了。
 
 ## 习题和模板
 
--   [黑暗爆炸 3685 - 普通 van Emde Boas 树](https://vjudge.net.cn/problem/%E9%BB%91%E6%9A%97%E7%88%86%E7%82%B8-3685)（模板题）
+-   [黑暗爆炸 3685 - 普通 van Emde Boas 树 (vjudge)](https://vjudge.net.cn/problem/%E9%BB%91%E6%9A%97%E7%88%86%E7%82%B8-3685)（模板题）
 
 ??? note "普通版 vEB 树模板"
     ```cpp
     --8<-- "docs/ds/code/vEB-tree/template.cpp"
-    ``
     ```
 
 ## 参考资料与注释
