@@ -1,4 +1,4 @@
-# Project Information
+#Project Information
 site_name: OI Wiki
 site_description: OI Wiki 是一个编程竞赛知识整合站点，提供有趣又实用的编程竞赛知识以及其他有帮助的内容，帮助广大编程竞赛爱好者更快更深入地学习编程竞赛
 site_author: OI Wiki Team
@@ -352,6 +352,7 @@ nav:
       - 块状链表: ds/block-list.md
       - 树分块: ds/tree-decompose.md
       - Sqrt Tree: ds/sqrt-tree.md
+      - van Emde Boas 树: ds/vEB-tree.md
     - 单调栈: ds/monotonous-stack.md
     - 单调队列: ds/monotonous-queue.md
     - ST 表: ds/sparse-table.md
