@@ -1,0 +1,10 @@
+id: oi-wiki:ds/loser-tree_1
+name: Loser Tree
+solution:
+  cpp: docs/ds/code/loser-tree/loser-tree_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/loser-tree/loser-tree_1.ans
+  input: docs/ds/examples/loser-tree/loser-tree_1.in
+version: 1000
