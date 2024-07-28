@@ -101,6 +101,8 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 
 ### VS Code 扩展
 
+`warn`：不建议使用AI类型的扩展，这会影响竞赛公平！
+
 打开 VS Code 扩展商店，在搜索栏中输入 `clangd` 找到 clangd 扩展并安装
 
 ![](images/vscode-8.png)
