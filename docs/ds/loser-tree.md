@@ -89,6 +89,6 @@
     --8<-- "docs/ds/code/loser-tree/loser-tree_1.cpp"
     ```
 
-# 参考资料与注释
+## 参考资料
 
 -   [Wikipedia: k-way merge algorithm](https://en.wikipedia.org/wiki/K-way_merge_algorithm)
