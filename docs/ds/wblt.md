@@ -169,7 +169,7 @@ int merge(int x, int y) {
   int z = add(vl[x]);
   ls[z] = x;
   rs[z] = y;
-  upd(z);
+  pushup(z);
   return z;
 }
 
