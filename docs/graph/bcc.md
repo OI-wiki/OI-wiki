@@ -115,7 +115,7 @@ DFS 的代码如下：
     --8<-- "docs/graph/code/bcc/bcc_4.cpp"
     ```
 
-???+ note "[#2788. 「CEOI2015 Day1」管道](https://loj.ac/p/2788)"
+???+ note "[#2788.「CEOI2015 Day1」管道](https://loj.ac/p/2788)"
     给出一个 $N$ 点 $M$ 边的无向图，不保证连通。将每个联通块视为子图，请求出每一个子图中的桥。**你只有 16 MB 的内存空间。**
 
 ??? note "题解"
