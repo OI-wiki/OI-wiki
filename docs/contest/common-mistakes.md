@@ -158,7 +158,6 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         }
         ```
 
-    -   特别的，也不能在执行 `ios::sync_with_stdio(false);` 后使用 `freopen`。
 
 -   由于宏的展开，且未加括号导致的错误。
 
