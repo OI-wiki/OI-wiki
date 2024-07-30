@@ -30,7 +30,7 @@ Splay Tree 是 SATT 的基础，但是 SATT 用的 Splay Tree 和普通的 Splay
 
 具体地，树收缩有两个基本操作：**Compress** 和 **Rake**，Compress 操作指定一个度数为二的点 $x$，与点 $x$ 相邻的那两个点记为 $y$、$z$，我们连一条新边 $yz$；将点 $x$、边 $xz$、边 $xy$ 的信息放到 $yz$ 中储存，并删去它们。如图所示。
 
-![](./images/top-tree1.jpg)
+![](./images/top-tree1.svg)
 
 Rake 操作指定一个度为一的点 $x$，而且与点 $x$ 相邻的点 $y$ 的度数需大于一，设点 $y$ 的另一个邻点为 $z$，我们将点 $x$、边 $xy$ 的信息放入 边 $yz$ 中储存，并删去它们。如图所示。
 
