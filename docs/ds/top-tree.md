@@ -38,7 +38,7 @@ Rake 操作指定一个度为一的点 $x$，而且与点 $x$ 相邻的点 $y$ �
 
 不难证明，任何一棵树都可以只用 Compress 操作 和 Rake 操作来将它收缩为一条边，如图所示。
 
-![](./images/top-tree3.jpg)
+![](./images/top-tree3.svg)
 
 ### 簇
 
