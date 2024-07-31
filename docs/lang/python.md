@@ -329,7 +329,7 @@ False
 [0, 0, 0]
 >>> id(a1) == id(a2) and id(a1) != id(a3)  # 内置函数 id() 给出对象的「标识值」，可类比为地址，地址相同说明是一个对象
 True
->>> vis2 = vis[:];  # 拷贝一份二维列表看看
+>>> vis2 = vis[:]  # 拷贝一份二维列表看看
 >>> vis[0][1] = 2; vis  # vis 肯定还是被批量修改
 >>> [[1, 2, 0], [1, 2, 0], [1, 2, 0]]
 >>> vis2  # 但 vis2 是切片拷贝的怎么还是被改了
@@ -337,7 +337,7 @@ True
 >>> id(vis) != id(vis2)  # vis 和 vis2 确实不是一个对象啊
 True
 >>> # 谜底揭晓，vis2 虽然不是 vis 的引用，但其中对应行都指向相同的对象
->>> [[id(vis[i]) == id(vis2[i]) for i in range(3)]
+>>> [id(vis[i]) == id(vis2[i]) for i in range(3)]
 [True, True, True]
 >>> # 回看二维列表自身
 >>> [id(x) for x in vis]  # 具体数字和这里不一样但三个值一定相同，说明是三个相同对象
