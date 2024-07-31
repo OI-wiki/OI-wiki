@@ -171,7 +171,7 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
         const int INF = 0x3f3f3f3f;
         
         bool bellmanford(int n, int s) {
-          memset(dis, 0x3f, (n+1)*sizeof(int));
+          memset(dis, 0x3f, (n + 1) * sizeof(int));
           dis[s] = 0;
           bool flag = false;  // 判断一轮循环过程中是否发生松弛操作
           for (int i = 1; i <= n; i++) {
@@ -208,8 +208,9 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
         INF = 0x3F3F3F3F
         edge = []
         
+        
         def bellmanford(n, s):
-            dis = [INF] * (n+1)
+            dis = [INF] * (n + 1)
             dis[s] = 0
             for i in range(1, n + 1):
                 flag = False
@@ -253,7 +254,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
         queue<int> q;
         
         bool spfa(int n, int s) {
-          memset(dis, 0x3f, (n+1)*sizeof(int));
+          memset(dis, 0x3f, (n + 1) * sizeof(int));
           dis[s] = 0, vis[s] = 1;
           q.push(s);
           while (!q.empty()) {
@@ -289,12 +290,13 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
         INF = 0x3F3F3F3F
         
+        
         def spfa(n, s):
-            dis = [INF] * (n+1)
-            cnt = [0] * (n+1)
-            vis = [False] * (n+1)
+            dis = [INF] * (n + 1)
+            cnt = [0] * (n + 1)
+            vis = [False] * (n + 1)
             q = deque()
-            
+        
             dis[s] = 0
             vis[s] = True
             q.append(s)
@@ -420,9 +422,10 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
         INF = 0x3F3F3F3F
         
+        
         def dijkstra(n, s):
-            dis = [INF] * (n+1)
-            vis = [0] * (n+1)
+            dis = [INF] * (n + 1)
+            vis = [0] * (n + 1)
         
             dis[s] = 0
             for i in range(1, n + 1):
