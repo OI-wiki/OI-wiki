@@ -133,7 +133,7 @@ $t$ 是回文串 $s$ 的后缀，$t$ 是 $s$ 的 border 当且仅当 $t$ 是回�
 
 #### 引理二
 
-$t$ 是回文串 $s$ 的 border ($|s|\le 2|t|$)，$s$ 是回文串当且仅当 $t$ 是回文串。
+$t$ 是串 $s$ 的 border ($|s|\le 2|t|$)，$s$ 是回文串当且仅当 $t$ 是回文串。
 
 ???+ note "证明"
     若 $s$ 是回文串，由引理 $1$，$t$ 也是回文串。
@@ -213,7 +213,7 @@ $g[v]$ 表示 $v$ 所在等差数列的 $dp$ 值之和，且 $v$ 是这个等差
 
 -   [「SHOI2011」双倍回文](https://www.luogu.com.cn/problem/P4287)
 
--   [HDU 5421 Victor and String](https://vjudge.net/problem/HDU-5421)
+-   [HDU 5421 Victor and String](https://acm.hdu.edu.cn/showproblem.php?pid=5421)
 
 -   [CodeChef Palindromeness](https://www.codechef.com/LTIME23/problems/PALPROB)
 

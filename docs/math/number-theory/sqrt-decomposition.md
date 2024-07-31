@@ -62,7 +62,7 @@ $$
 \left\lfloor\dfrac ni\right\rfloor=\left\lfloor\dfrac nj\right\rfloor
 $$
 
-成立的最大的满足 $i\leq j\leq n$ 的 $j$ 的值为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。即值 $\left\lfloor\dfrac ni\right\rfloor$ 所在的块的右端点为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。
+成立且满足 $i\leq j\leq n$ 的 $j$ 值最大为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$，即值 $\left\lfloor\dfrac ni\right\rfloor$ 所在块的右端点为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。
 
 ??? note "证明"
     令 $k=\left\lfloor\dfrac ni\right\rfloor$，可以知道 $k\leq\dfrac ni$。
@@ -82,13 +82,13 @@ $\sum_{i=1}^nf(i)\left\lfloor\dfrac ni\right\rfloor$
 
 那么由于我们可以知道 $\left\lfloor\dfrac ni\right\rfloor$ 的值成一个块状分布（就是同样的值都聚集在连续的块中），那么就可以用数论分块加速计算，降低时间复杂度。
 
-利用上述结论，我们先求出 $f(i)$ 的 **前缀和**（记作 $s(i)=\sum_{j=1}^i$ f(j)），然后每次以 $[l,r]=[l,\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor]$ 为一块，分块求出贡献累加到结果中即可。
+利用上述结论，我们先求出 $f(i)$ 的 **前缀和**（记作 $s(i)=\sum_{j=1}^i f(j)$），然后每次以 $[l,r]=[l,\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor]$ 为一块，分块求出贡献累加到结果中即可。
 
 伪代码如下：
 
 $$
 \begin{array}{ll}
-1 & \text{获取 $f(i)$ 函数的前缀和，记为 $s(i)$.} \\
+1 & \text{Calculate $s(i)$, the prefix sum of $f(i)$.} \\
 2 & l \gets 1\\
 3 & r \gets 0\\
 4 & \textit{result} \gets 0 \\
@@ -109,17 +109,7 @@ $$
 
 ??? note "参考实现"
     ```cpp
-    long long H(int n) {
-      long long res = 0;  // 储存结果
-      int l = 1, r;       // 块左端点与右端点
-      while (l <= n) {
-        r = n / (n / l);  // 计算当前块的右端点
-        res += (r - l + 1) * 1LL *
-               (n / l);  // 累加这一块的贡献到结果中。乘上 1LL 防止溢出
-        l = r + 1;  // 左端点移到下一块
-      }
-      return res;
-    }
+    --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
     ```
 
 ???+ note "N 维数论分块"
@@ -128,6 +118,41 @@ $$
     ![多维数论分块图解](./images/n-dimension-sqrt-decomposition.png)
     
     一般我们用的较多的是二维形式，此时可将代码中 `r = n / (n / i)` 替换成 `r = min(n / (n / i), m / (m / i))`。
+
+## 向上取整的数论分块
+
+向上取整与前文所述的向下取整十分类似，但略有区别：
+
+对于常数 $n$，使得式子
+
+$$
+\left\lceil\dfrac ni\right\rceil=\left\lceil\dfrac nj\right\rceil
+$$
+
+成立且满足 $i\leq j\leq n$ 的 $j$ 值最大为 $\left\lfloor\dfrac{n-1}{\lfloor\frac{n-1}i\rfloor}\right\rfloor$，即值 $\left\lceil\dfrac ni\right\rceil$ 所在块的右端点为 $\left\lfloor\dfrac{n-1}{\lfloor\frac{n-1}i\rfloor}\right\rfloor$。
+
+???+ warning "注意"
+    当 $i=n$ 时，上式会出现分母为 $0$ 的错误，需要特殊处理。
+
+??? note "证明"
+    $\left\lceil\dfrac ni\right\rceil=\left\lfloor\dfrac{n-1}i\right\rfloor+1$，可以发现 $n$ 的上取整分块与 $n-1$ 的下取整分块是一样的。
+
+???+ note " 例题：[CF1954E Chain Reaction](https://codeforces.com/contest/1954/problem/E)"
+    题意：有一排 $n$ 个怪兽，每个怪兽初始血量为 $a_i$，一次攻击会使一段连续的存活的怪兽血量减 $k$，血量不大于 $0$ 视作死亡，对于所有 $k$ 求出击杀所有怪兽所需攻击次数，$n,a_i\leq 10^5$。
+
+    ??? note "思路"
+        下面是一种使用二维数论分块的解法：
+        
+        使用[积木大赛](https://www.luogu.com.cn/problem/P1969)的技巧，令 $a_0=0$，对于某个 $k$，答案就是 $\sum\limits_{i=1}^n\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right)$。
+        
+        对于相邻的两个怪兽，使用二维数论分块，分段求出它们对一段 $k$ 的答案的贡献，然后差分累加即可。
+        
+        复杂度 $O(\sum\sqrt{a_i})$。也存在其他解法。
+
+    ??? note "实现"
+        ```cpp
+        --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_2.cpp"
+        ```
 
 ## 习题
 

@@ -1,4 +1,4 @@
-???+ warning
+???+ warning "提醒"
     本页面要介绍的不是 [**基数排序**](./radix-sort.md)。
 
 本页面将简要介绍计数排序。
@@ -84,6 +84,7 @@ $$
     n = w = 0
     a = b = [0] * N
     cnt = [0] * W
+    
     
     def counting_sort():
         for i in range(1, n + 1):

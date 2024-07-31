@@ -1,4 +1,4 @@
-author: hsfzLZH1, cesonic, AtomAlpaca
+author: hsfzLZH1, cesonic, AtomAlpaca, caijianhong
 
 ## 前言
 
@@ -126,7 +126,7 @@ void delete(int x, int v, int fa) {
 
 ### 维护平衡
 
-类似替罪羊树地，我们引入重构参数 $\alpha \in (0, \dfrac{1}{2}]$，我们设一个节点的平衡度 $\rho$ 为当前节点左子树大小和节点大小的比值。当一个节点满足 $\rho \in[\alpha, 1-\alpha]$ 时，我们称其为 $\alpha$- 平衡的。如果一棵 WBLT 的每一个节点都是 $\alpha$- 平衡的，那么这棵树的树高一定能保证是 $O(\log n)$ 量级的。证明是显然的，我们从一个叶子节点往父亲方向走，每次走到的节点维护的范围至少扩大到原来的 $\dfrac{1}{1 - \alpha}$ 倍，那么树高就是 $O(\log_{\frac{1}{1-\alpha}}n) = O(\log n)$ 量级的。
+类似替罪羊树地，我们引入重构参数 $\alpha \in (0, \dfrac{1}{2}]$，我们设一个节点的平衡度 $\rho$ 为当前节点左子树的大小和节点大小的比值。当一个节点满足 $\rho \in[\alpha, 1-\alpha]$ 时，我们称其为 $\alpha$- 平衡的。如果一棵 WBLT 的每一个节点都是 $\alpha$- 平衡的，那么这棵树的树高一定能保证是 $O(\log n)$ 量级的。证明是显然的，我们从一个叶子节点往父亲方向走，每次走到的节点维护的范围至少扩大到原来的 $\dfrac{1}{1 - \alpha}$ 倍，那么树高就是 $O(\log_{\frac{1}{1-\alpha}}n) = O(\log n)$ 量级的。
 
 当某个节点不满足 $\alpha$- 平衡时，说明这个节点是失衡的，我们需要重新维护平衡。但是和替罪羊树不同的是，WBLT 使用旋转操作维护平衡。旋转的大致过程为：将过重的儿子的两个儿子拆下来，一个和过轻的儿子合并，另一个成为一个新的儿子。
 
@@ -156,14 +156,22 @@ void delete(int x, int v, int fa) {
 
 ![wblt-7](./images/wblt-7.svg)
 
-类似地定义 $\rho_3,\gamma_3$，则有 $\gamma_1=\rho_1+\rho_2\rho_3(1-\rho_3), \gamma_2=\dfrac{\rho_1}{\rho1+(1 - \rho_1)\rho2\rho3}, \gamma_3 = \dfrac{\rho_2(1-\rho_3)}{1-\rho_2\rho_3}$。可以证明当 $\alpha < 1- \dfrac{\sqrt2}{2} \approx 0.292$ 时一定有 $\gamma_1, \gamma_2, \gamma_3 \in [\alpha, 1 - \alpha]$。
+类似地定义 $\rho_3,\gamma_3$，则有 $\gamma_1=\rho_1+\rho_2\rho_3(1-\rho_1), \gamma_2=\dfrac{\rho_1}{\rho1+(1 - \rho_1)\rho2\rho3}, \gamma_3 = \dfrac{\rho_2(1-\rho_3)}{1-\rho_2\rho_3}$。可以证明当 $\alpha < 1- \dfrac{\sqrt2}{2} \approx 0.292$ 时一定有 $\gamma_1, \gamma_2, \gamma_3 \in [\alpha, 1 - \alpha]$。
 
 实现上，我们在 $\rho_2 \le \dfrac{1 - 2\alpha}{1 - \alpha}$ 时进行单旋，否则进行双旋。
 
 代码实现，这里取 $\alpha = 0.25$：
 
 ```c++
-const double alpha = 0.25;
+constexpr double alpha = 0.25;
+
+int merge(int x, int y) {
+  int z = add(vl[x]);
+  ls[z] = x;
+  rs[z] = y;
+  upd(z);
+  return z;
+}
 
 void rotate(int x, int flag) {
   if (!flag) {
@@ -176,13 +184,16 @@ void rotate(int x, int flag) {
 }
 
 void maintain(int x) {
-  if (sz[ls[x]] > sz[rs[x]] * 3) {
-    if (sz[rs[ls[x]]] > sz[ls[ls[x]]] * 2) {
+  if (leaf(x)) return;
+  if (sz[ls[x]] > sz[rs[x]]) {
+    if (sz[rs[x]] >= sz[x] * alpha) return;
+    if (sz[rs[ls[x]]] >= sz[ls[x]] * (1 - alpha * 2) / (1 - alpha)) {
       rotate(ls[x], 1);
     }
     rotate(x, 0);
-  } else if (sz[rs[x]] > sz[ls[x]] * 3) {
-    if (sz[ls[rs[x]]] > sz[rs[rs[x]]] * 2) {
+  } else {
+    if (sz[ls[x]] >= sz[x] * alpha) return;
+    if (sz[ls[rs[x]]] >= sz[rs[x]] * (1 - alpha * 2) / (1 - alpha)) {
       rotate(rs[x], 0);
     }
     rotate(x, 1);
@@ -224,6 +235,63 @@ int kth(int x, int v) {
 }
 ```
 
+### 合并两棵树
+
+合并操作是指，给定两棵树 $A, B$，保证 $A$ 的最大值不大于 $B$ 的最小值，将它们合并为一棵大树，并且需要维护平衡。分情况讨论，不妨设 $A.size\geq B.size$：
+
+-   若 $B$ 为空树，则将 $A$ 作为合并的结果。
+-   若 $\dfrac{\min(A.size, B.size)}{A.size+B.size}\geq\alpha$，说明可以以 $A, B$ 为左右儿子建一个新树，则这棵新树的根节点满足 $\alpha$- 平衡，可以将这个新树作为结果。
+-   否则若 $\dfrac{A.ls.size}{A.size+B.size}\geq \alpha$，则递归合并 $A$ 的右儿子和 $B$，再与 $A$ 的左儿子合并。
+-   否则将 $A$ 的左儿子和 $A$ 的右儿子的左儿子合并，将 $A$ 的右儿子的右儿子与 $B$ 合并，将两次合并的结果合并作为最终的结果。
+
+不加证明地，这样合并的复杂度为 $O(\log\dfrac{A.size}{B.size})$。
+
+代码实现：
+
+```cpp
+int merges(int x, int y) {
+  if (!x || !y) return x + y;
+  if (min(sz[x], sz[y]) >= alpha * (sz[x] + sz[y])) {
+    return merge(x, y);
+  }
+  if (sz[x] >= sz[y]) {
+    if (sz[ls[x]] >= alpha * (sz[x] + sz[y])) {
+      return merges(ls[x], merges(rs[x], y));
+    } else {
+      return merges(merges(ls[x], ls[rs[x]]), merges(rs[rs[x]], y));
+    }
+  } else {
+    if (sz[rs[y]] >= alpha * (sz[x] + sz[y])) {
+      return merges(merges(x, ls[y]), rs[y]);
+    } else {
+      return merges(merges(x, ls[ls[y]]), merges(rs[ls[y]], rs[y]));
+    }
+  }
+}
+```
+
+### 分裂
+
+WBLT 的分裂与无旋 Treap 类似，根据子树大小或权值决定向下递归分裂左子树或右子树。不同的是，WBLT 需要对分裂出来的子树进行合并，以维护最终分裂的树的 $\alpha$- 平衡。
+
+根据子树大小分裂的代码实现：
+
+```cpp
+void split(int p, int k, int &x, int &y) {
+  if (!k) return x = 0, y = p, void();
+  if (leaf(p)) return x = p, y = 0, void();
+  if (k <= sz[ls[p]]) {
+    split(ls[p], k, x, y);
+    y = merges(y, rs[p]);
+  } else {
+    split(rs[p], k - sz[ls[p]], x, y);
+    x = merges(ls[p], x);
+  }
+}
+```
+
+这样分裂的复杂度是 $O(\log size)$ 的，其中 $size$ 是整棵树的大小。
+
 ### 总结
 
 以上，我们利用 WBLT 完成了平衡树基本的几大操作。下面是用 WBLT 实现的 [普通平衡树模板](https://loj.ac/p/104)。
@@ -232,3 +300,12 @@ int kth(int x, int v) {
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt_1.cpp"
     ```
+
+因为 WBLT 可以合并与分裂，这意味着 WBLT 可以像无旋 Treap 一样实现插入删除等基本操作，写法同无旋 Treap。同理也可以实现文艺平衡树，下面是用 WBLT 实现的 [文艺平衡树模板](https://loj.ac/p/105)。
+
+??? note "完整代码"
+    ```cpp
+    --8<-- "docs/ds/code/wblt/wblt_2.cpp"
+    ```
+
+注意 WBLT 需要两倍的空间；涉及分裂与合并时，需要注意垃圾回收，及时回收无用的节点，否则空间不是线性的。写法可参考文艺平衡树的代码。

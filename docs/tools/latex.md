@@ -57,12 +57,10 @@ $\rightarrow$ 进入 **Format** 菜单，选择 **Syntax Coloring**，然后选�
 $\rightarrow$ 输入以下文字：
 
 ```tex
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \begin{document}
-
-A sentence of text.
-
+  A sentence of text.
 \end{document}
 ```
 
@@ -102,17 +100,15 @@ $\rightarrow$ 在 `\begin{document}` 和 命令后紧跟着输入以下文本：
 你的文档现在长成了这样：
 
 ```tex
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \begin{document}
+  \title{My First Document}
+  \author{My Name}
+  \date{\today}
+  \maketitle
 
-\title{My First Document}
-\author{My Name}
-\date{\today}
-\maketitle
-
-A sentence of text.
-
+  A sentence of text.
 \end{document}
 ```
 
@@ -156,29 +152,27 @@ Here are my results.
 你的文档会变成
 
 ```tex
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \begin{document}
+  \title{My First Document}
+  \author{My Name}
+  \date{\today}
+  \maketitle
 
-\title{My First Document}
-\author{My Name}
-\date{\today}
-\maketitle
+  \section{Introduction}
+  This is the introduction.
 
-\section{Introduction}
-This is the introduction.
+  \section{Methods}
 
-\section{Methods}
+  \subsection{Stage 1}
+  The first part of the methods.
 
-\subsection{Stage 1}
-The first part of the methods.
+  \subsection{Stage 2}
+  The second part of the methods.
 
-\subsection{Stage 2}
-The second part of the methods.
-
-\section{Results}
-Here are my results.
-
+  \section{Results}
+  Here are my results.
 \end{document}
 ```
 
@@ -195,30 +189,27 @@ $\rightarrow$ 在 `\subsection{Stage 1}` 下面另起一行，输入 `\label{sec
 你的文档会变成这样：
 
 ```tex
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \begin{document}
+  \title{My First Document}
+  \author{My Name}
+  \date{\today}
+  \maketitle
 
-\title{My First Document}
-\author{My Name}
-\date{\today}
-\maketitle
+  \section{Introduction}
+  This is the introduction.
 
-\section{Introduction}
-This is the introduction.
+  \section{Methods}
 
-\section{Methods}
+  \subsection{Stage 1}
+  \label{sec1} The first part of the methods.
 
-\subsection{Stage 1}
-\label{sec1}
-The first part of the methods.
+  \subsection{Stage 2}
+  The second part of the methods.
 
-\subsection{Stage 2}
-The second part of the methods.
-
-\section{Results}
-Here are my results. Referring to section \ref{sec1} on page \pageref{sec1}
-
+  \section{Results}
+  Here are my results. Referring to section \ref{sec1} on page \pageref{sec1}
 \end{document}
 ```
 
@@ -244,7 +235,7 @@ $\rightarrow$ 在 `\maketitle` 之后输入以下内容：
 `\newpage` 命令会另起一个页面，这样我们就可以看到 `\pagenumbering` 命令带来的影响了。你的文档的前 14 行长这样：
 
 ```tex
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper, 12pt]{article}
 
 \begin{document}
 
@@ -286,14 +277,9 @@ $\rightarrow$ 编译并核对文档（可能需要多次编译，下文不赘述
 LaTeX 有多种不同的字体效果，在此列举一部分：
 
 ```tex
-\textit{words in italics}
-\textsl{words slanted}
-\textsc{words in smallcaps}
-\textbf{words in bold}
-\texttt{words in teletype}
-\textsf{sans serif words}
-\textrm{roman words}
-\underline{underlined words}
+\textit{words in italics} \textsl{words slanted} \textsc{words in smallcaps} \textbf{words
+in bold} \texttt{words in teletype} \textsf{sans serif words} \textrm{roman
+words} \underline{underlined words}
 ```
 
 效果如下：
@@ -333,15 +319,9 @@ $\rightarrow$ 在 `\begin{document}` 前输入 `\usepackage{color}`。$\rightarr
 接下来我们列举一些 LaTeX 的字体大小设定命令：
 
 ```tex
-normal size words
-{\tiny tiny words}
-{\scriptsize scriptsize words}
-{\footnotesize footnotesize words}
-{\small small words}
-{\large large words}
-{\Large Large words}
-{\LARGE LARGE words}
-{\huge huge words}
+normal size words {\tiny tiny words} {\scriptsize scriptsize words}
+{\footnotesize footnotesize words} {\small small words} {\large large words}
+{\Large Large words} {\LARGE LARGE words} {\huge huge words}
 ```
 
 效果如下：
@@ -362,13 +342,16 @@ $\rightarrow$ 输入下面的内容来生成一个有序列表套无序列表：
 
 ```tex
 \begin{enumerate}
-\item First thing
-\item Second thing
-\begin{itemize}
-\item A sub-thing
-\item Another sub-thing
-\end{itemize}
-\item Third thing
+  \item First thing
+
+  \item Second thing
+    \begin{itemize}
+      \item A sub-thing
+
+      \item Another sub-thing
+    \end{itemize}
+
+  \item Third thing
 \end{enumerate}
 ```
 
@@ -384,13 +367,16 @@ $\rightarrow$ 编译并核对 PDF 文档。
 
 ```tex
 \begin{itemize}
-\item[-] First thing
-\item[+] Second thing
-\begin{itemize}
-\item[Fish] A sub-thing
-\item[Plants] Another sub-thing
-\end{itemize}
-\item[Q] Third thing
+  \item[-] First thing
+
+  \item[+] Second thing
+    \begin{itemize}
+      \item[Fish] A sub-thing
+
+      \item[Plants] Another sub-thing
+    \end{itemize}
+
+  \item[Q] Third thing
 \end{itemize}
 ```
 
@@ -406,9 +392,8 @@ $\rightarrow$ 编译并核对 PDF 文档。
 
 ```tex
 It is a truth universally acknowledged% Note comic irony
-in the very first sentence
-, that a single man in possession of a good fortune, must
-be in want of a wife.
+in the very first sentence , that a single man in possession of a good fortune,
+must be in want of a wife.
 ```
 
 生成的结果为
@@ -475,27 +460,26 @@ $\rightarrow$ 输入代码来在你的文档中生成下面内容：
 
 ```tex
 \begin{tabular}{|l|l|}
-Apples & Green \\
-Strawberries & Red \\
-Orange & Orange\\
+  Apples       & Green  \\
+  Strawberries & Red    \\
+  Orange       & Orange \\
 \end{tabular}
 
 \begin{tabular}{rc}
-Apples & Green\\
-\hline 
-Strawberries & Red \\
-\cline{1-1}
-Oranges & Orange \\
+  Apples              & Green  \\
+  \hline
+  Strawberries        & Red    \\
+  \cline{1-1} Oranges & Orange \\
 \end{tabular}
 
 \begin{tabular}{|r|l|}
-\hline
-8 & here's \\
-\cline{2-2}
-86 & stuff\\
-\hline \hline 
-2008 & now \\
-\hline 
+  \hline
+  8              & here's \\
+  \cline{2-2} 86 & stuff  \\
+  \hline
+  \hline
+  2008           & now    \\
+  \hline
 \end{tabular}
 ```
 
@@ -515,10 +499,10 @@ Oranges & Orange \\
 
 ```tex
 \begin{figure}[h]
-\centering
-\includegraphics[width=1\textwidth]{myimage}
-\caption{Here is my image}
-\label{image-myimage}
+  \centering
+  \includegraphics[width=1\textwidth]{myimage}
+  \caption{Here is my image}
+  \label{image-myimage}
 \end{figure}
 ```
 
@@ -540,9 +524,9 @@ $\rightarrow$ 在你文档的前导命令中添加 `\usepackage{graphicx}`。$\r
 
 ```tex
 \begin{figure}[h!]
-\centering
-\includegraphics[width=1\textwidth]{ImageFilename}
-\caption{My test image}
+  \centering
+  \includegraphics[width=1\textwidth]{ImageFilename}
+  \caption{My test image}
 \end{figure}
 ```
 
@@ -583,7 +567,7 @@ $$
 ```tex
 \begin{eqnarray}
   a & = & b + c \\
-    & = & y - z
+  & = & y - z
 \end{eqnarray}
 ```
 

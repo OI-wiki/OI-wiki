@@ -73,7 +73,8 @@ author: Ir1d, Anguei, hsfzLZH1
                     while ~k:
                         k = h[j]
                         if dist[j] > dist[p[k]] + w[k]:
-                            dist[j] = dist[p[k]] + w[k]; jud = True
+                            dist[j] = dist[p[k]] + w[k]
+                            jud = True
                         k = nxt[k]
                 if jud == False:
                     break

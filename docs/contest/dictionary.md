@@ -28,4 +28,4 @@ $$
 
 [「BZOJ 3798」特殊的质数](https://hydro.ac/d/bzoj/p/3798)：求 $[l,r]$ 区间内有多少个质数可以分解为两个正整数的平方和。
 
-[「Luogu P1822」魔法指纹](https://www.luogu.com.cn/problem/show?pid=P1822)
+[「Luogu P1822」魔法指纹](https://www.luogu.com.cn/problem/P1822)

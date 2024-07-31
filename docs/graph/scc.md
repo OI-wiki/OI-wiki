@@ -35,9 +35,11 @@ Tarjan 发明了很多算法和数据结构。不少他发明的算法都以他�
 
 如果结点 $u$ 是某个强连通分量在搜索树中遇到的第一个结点，那么这个强连通分量的其余结点肯定是在搜索树中以 $u$ 为根的子树中。结点 $u$ 被称为这个强连通分量的根。
 
-反证法：假设有个结点 $v$ 在该强连通分量中但是不在以 $u$ 为根的子树中，那么 $u$ 到 $v$ 的路径中肯定有一条离开子树的边。但是这样的边只可能是横叉边或者反祖边，然而这两条边都要求指向的结点已经被访问过了，这就和 $u$ 是第一个访问的结点矛盾了。得证。
+反证法：假设有个结点 $v$ 在该强连通分量中但是不在以 $u$ 为根的子树中，那么 $u$ 到 $v$ 的路径中肯定有一条离开子树的边。但是这样的边只可能是横叉边或者反祖边，然而这两条边都要求指向的结点已经被访问过了，这就和 $v$ 不在以 $u$ 为根的子树中矛盾了。得证。
 
 ### Tarjan 算法求强连通分量
+
+Tarjan 算法基于对图进行 [深度优先搜索](https://oi-wiki.org/graph/dfs/)。我们视每个连通分量为搜索树中的一棵子树，在搜索过程中，维护一个栈，每次把搜索树中尚未处理的节点加入栈中。
 
 在 Tarjan 算法中为每个结点 $u$ 维护了以下几个变量：
 
@@ -111,12 +113,23 @@ Tarjan 发明了很多算法和数据结构。不少他发明的算法都以他�
 
 === "Python"
     ```python
-    dfn = [0] * N; low = [0] * N; dfncnt = 0; s = [0] * N; in_stack  = [0] * N; tp = 0
-    scc = [0] * N; sc = 0 # 结点 i 所在 SCC 的编号
-    sz = [0] * N # 强连通 i 的大小
+    dfn = [0] * N
+    low = [0] * N
+    dfncnt = 0
+    s = [0] * N
+    in_stack = [0] * N
+    tp = 0
+    scc = [0] * N
+    sc = 0  # 结点 i 所在 SCC 的编号
+    sz = [0] * N  # 强连通 i 的大小
+    
+    
     def tarjan(u):
-        low[u] = dfn[u] = dfncnt; s[tp] = u; in_stack[u] = 1
-        dfncnt = dfncnt + 1; tp = tp + 1
+        low[u] = dfn[u] = dfncnt
+        s[tp] = u
+        in_stack[u] = 1
+        dfncnt = dfncnt + 1
+        tp = tp + 1
         i = h[u]
         while i:
             v = e[i].t
@@ -197,11 +210,13 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
                 dfs1(v)
         s.append(u)
     
+    
     def dfs2(u):
         color[u] = sccCnt
         for v in g2[u]:
             if color[v] == False:
                 dfs2(v)
+    
     
     def kosaraju(u):
         sccCnt = 0
@@ -263,7 +278,8 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
     def garbow(u):
         stack1[p1] = u
         stack2[p2] = u
-        p1 = p1 + 1; p2 = p2 + 1
+        p1 = p1 + 1
+        p2 = p2 + 1
         low[u] = dfs_clock
         dfs_clock = dfs_clock + 1
         i = head[u]
@@ -281,10 +297,12 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
                 p1 = p1 - 1
                 sccno[stack1[p1]] = scc_cnt
     
+    
     def find_scc(n):
         dfs_clock = scc_cnt = 0
         p1 = p2 = 0
-        sccno = []; low = []
+        sccno = []
+        low = []
         for i in range(1, n + 1):
             if low[i] == False:
                 garbow(i)

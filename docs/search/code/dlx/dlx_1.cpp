@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 const int N = 500 + 10;
-int n, m, idx, ans;
-int first[N], siz[N], stk[N];
+int n, m, ans;
+int stk[N];
 
 int read() {  // 快读
   int x = 0, f = 0, ch;

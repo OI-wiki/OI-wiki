@@ -66,7 +66,7 @@ $$
             d1[i] = 1
             while 0 <= i - d1[i] and i + d1[i] < n and s[i - d1[i]] == s[i + d1[i]]:
                 d1[i] += 1
-            
+        
             d2[i] = 0
             while 0 <= i - d2[i] - 1 and i + d2[i] < n and s[i - d2[i] - 1] == s[i + d2[i]]:
                 d2[i] += 1
@@ -228,7 +228,7 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
 
 ## 练习题目
 
--   [UVA #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
+-   [UVa #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
 -   [「国家集训队」最长双回文串](https://www.luogu.com.cn/problem/P4555)
 
 ***

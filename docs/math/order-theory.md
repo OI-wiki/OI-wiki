@@ -1,122 +1,299 @@
 ## 引入
 
-???+ note "注释"
-    **二元关系**（Binary Relation）在数学中用于描述常见的关系概念：当且仅当对于 $(x, y)$ 属于定义二元关系的有序对集，元素 $x$ 与元素 $y$ 相关。也就是说，集合 $X$ 和 $Y$ 上的二元关系是笛卡尔积 $X \times Y$，由 $x \in X$ 和 $y \in Y$ 组成的有序对 $(x, y)$ 组成。
-
-序理论是研究二元关系的一个数学分支。
-
-## 为什么需要序理论？
-
-在数学，计算机科学和相关知识领域中，次序无处不在。例如我们在入门数学课中学到的自然数之间的比较：「1 小于 2」，「100 大于 99」，「小明有 3 个苹果，小红有 12 个苹果。小红把自己的一半苹果分给小明，现在谁有更多的苹果？」。或者将这个概念扩展到其他数学集合的排序，比如整数和实数。实际上，大于或小于另一个数的概念是数学系统的基本直觉。很多时候我们并不知道两个数间的实际差，只有它们之间的次序。
-
-上述类型的次序有特殊性质：每个元素都可以用于和另一个元素直接「比较」，也就是说，这个元素大于、小于、或等于另一个元素。但是，这不总是我们想要的结果。一个常见的例子是集合的子集排序。如果一个集合 $A$ 包含集合 $B$ 的所有元素，那么集合 $B$ 被称为小于等于 $A$。然而有些集合不能用这种方式来比较，因为其中每个集合都包含着其他集合中不存在的某些元素。例如，考虑一个系列集合的子集次序：尽管鸟类集合和狗的集合都是动物集合的子集，但鸟类和狗都不构成另一个的子集。所以，子集包含是偏次序，对立了前面给出的全次序。
-
-更宽泛地讲，次序的概念非常普遍，远远超出了对序列或相对数量这些具有直观结论的描述。在特定情况下，次序可以用来描述专业化的概念。因为抽象地来看，这种类型的次序相当于子集关系。例如，「儿科医生是医生」，「圆是一种特殊的椭圆」。
-
-序理论捕捉了在一般环境中从这些例子中产生的次序直觉。这是通过指定必须是数学顺序关系的 $\leq$ 属性来实现的。这种更抽象的方法很有意义，因为人们可以在一般环境中无需关注任何特定顺序的细节，就推导出许多定理。而这些方法可以很容易地转移到许多不太抽象的应用中。
-
-在次序广泛应用的推动下，许多特殊类型的有序集有了定义，其中一些甚至已经发展成为了自己的数学领域。此外，序理论并不局限于各类序关系，而是考虑了它们之间的函数。函数的序理论的性质的一个简单例子来自在数学分析中常见的单调函数。
+序理论是利用二元关系来将「次序」这一概念严格化的数学分支，下面将介绍这一分支的基本定义。
 
 ## 定义
 
-本节以集合论、算术和二元关系的概念为基础介绍有序集合。
+### 二元关系
 
-### 偏序集合
+???+ note "定义"
+    集合 $X$ 和集合 $Y$ 上的一个 **二元关系**（binary relation）$R$ 定义为元组 $(X,Y,G(R))$，其中 $X$ 称为定义域（domain），$Y$ 称为陪域（codomain），$G(R)\subseteq X\times Y=\{(x,y):x\in X,y\in Y\}$ 称为二元关系 $R$ 的图（graph）。$xRy$ 成立当且仅当 $(x,y)\in G(R)$。
+    
+    若 $X=Y$，则称该二元关系为齐次二元关系（homogeneous relation）或内关系（endorelation）。
+    
+    若没有特别说明，下文中的二元关系均为齐次二元关系。
 
-次序是特别的二元关系。设 $P$ 为一个集合，而 $\leq$ 是在 $P$ 的关系，那么 $\leq$ 是个偏序当他是自反的，反对称的，且递移的，则，对于所有 $a,b$ 和 $c$ 于 $P$，皆能满足：
+例如 $\mathbf{N}_+$ 上的整除 $\mid$ 和小于等于 $\leq$ 均为二元关系。
 
--   $a\leq a$（自反的）
--   如果 $a\leq b$ 且 $b\leq a$，那么 $a=b$（反对称性）
--   如果 $a\leq b$ 且 $b\leq c$，那么 $a\leq c$（递移性）
+我们研究二元关系时，往往会关注其是否具有一些特别的性质。对集合 $S$ 上的二元关系 $R$，我们定义如下特殊性质：
 
-一个偏序性质的集合称为 **偏序集合**、**poset** 或是 **有序集合**。通过这些性质，我们可以得出在自然数、整数、有理数、以及实数中皆有明确的序关系。当然，它们还有额外的性质成为 **全序**，即在 $P$ 中对于每一个 $a$ 和 $b$ 皆能满足：
+1.  自反性（reflexive）：$(\forall~a \in S)~~aRa$，
+2.  反自反性（irreflexive，anti-reflexive）：$(\forall~a \in S)~~\lnot(aRa)$，
+3.  对称性（symmetric）：$(\forall~a,b \in S)~~aRb \iff bRa$，
+4.  反对称性（antisymmetric）：$(\forall~a,b \in S)~~(aRb \land bRa) \implies a=b$，
+5.  非对称性（asymmetric）：$(\forall~a,b \in S)~~aRb \implies \lnot(bRa)$，
+6.  传递性（transitive）：$(\forall~a,b,c \in S)~~(aRb \land bRc) \implies aRc$，
+7.  连接性（connected）：$(\forall~a,b \in S)~~a \neq b \implies (aRb \lor bRa)$，
+8.  良基性（well-founded）：$(\exists~m \in S \neq \varnothing)~~(\forall~a \in S\setminus\{m\})~~\lnot(aRm)$（即非空集合 $S$ 中有极小元 $m$），
+9.  不可比的传递性（transitive of incomparability）：$(\forall~a,b,c \in S)~~(\lnot(aRb \lor bRa) \land \lnot(bRc \lor cRb)) \implies \lnot(aRc \lor cRa)$（若 $\lnot(aRb \lor bRa)$，则称 $a$ 和 $b$ 是不可比的）。
 
--   $a\leq b$ 或 $b\leq a$（全序性）
+同时我们定义一些特殊的二元关系：
 
-???+ note "注释"
-    **全序关系**（Total order/Linear order）在数学中指集合 $X$ 上反对称的、传递的和完全的二元关系（一般称其为 $\leq$）。
+| 二元关系                       | 自反性 | 反自反性 | 对称性 | 反对称性 | 非对称性 | 传递性 | 连接性 | 良基性 | 不可比的传递性 |
+| -------------------------- | --- | ---- | --- | ---- | ---- | --- | --- | --- | ------- |
+| 等价关系（equivalence relation） | 有   |      | 有   |      |      | 有   |     |     |         |
+| 预序（preorder，quasiorder）    | 有   |      |     |      |      | 有   |     |     |         |
+| 偏序（partial order）          | 有   |      |     | 有    |      | 有   |     |     |         |
+| 全序（total order）            | 有   |      |     | 有    |      | 有   | 有   |     |         |
+| 良序（well-order）             | 有   |      |     | 有    |      | 有   | 有   | 有   |         |
+| 严格预序（strict preorder）      |     | 有    |     |      |      | 有   |     |     |         |
+| 严格偏序（strict partial order） |     | 有    |     |      | 有    | 有   |     |     |         |
+| 严格弱序（strict weak order）    |     | 有    |     |      | 有    | 有   |     |     | 有       |
+| 严格全序（strict total order）   |     | 有    |     |      | 有    | 有   | 有   |     |         |
 
-满足全序关系的集合叫做 **全序集合**、**线性序集合**、**简单序集合** 或 **链**。当许多典型序为线性，集合内的有序子集合会发生不满足此性质的例子。另一个例子为给定一个整除性关系 $|$。对于两个数 $m$ 和 $n$，当 $m$ 除以 $n$ 未留余数时，我们书写为 $n|m$，这显然是一个偏序关系。偏序集的许多高级属性主要和偏序相关。
+### 关系间的运算
 
-### 次序中的特殊元素
+对集合 $X$ 和集合 $Y$ 上的二元关系 $R$ 和 $S$，我们可以定义如下运算：
 
-偏序集合中可能有一些特殊的元素。最基本的例子是由偏序集的 **最小元素**（Least element）。例如，$1$ 是正整数中的最小元素，空集是子集顺序下的最小集合。形式上，如果满足以下条件，元素 $m$ 是最小元素：
+1.  $R$ 和 $S$ 的并 $R\cup S$ 满足 $G(R\cup S):=\{(x,y):xRy \lor xSy\}$（如 $\leq$ 是 $<$ 和 $=$ 的并），
+2.  $R$ 和 $S$ 的交 $R\cap S$ 满足 $G(R\cap S):=\{(x,y):xRy \land xSy\}$，
+3.  $R$ 的补 $\bar{R}$ 满足 $G(\bar{R}):=\{(x,y):\lnot(xRy)\}$，
+4.  $R$ 的对偶 $R^T$ 满足 $G(R^T):=\{(y,x):xRy\}$.
 
-对于阶的所有元素 $a$，$m \leq a$。
+对集合 $X$ 和集合 $Y$ 上的二元关系 $R$ 以及集合 $Y$ 和集合 $Z$ 上的二元关系 $S$，我们可以定义其复合 $S\circ R$ 满足 $G(S\circ R):=\{(x,z):(\exists~y\in Y)~~xRy\land ySz\}$.
 
-符号 $0$ 经常用于最小元素，即使不涉及数字也是如此。但是，在一组数字的顺序中，这种表示法可能有时不够准确，因为数字 $0$ 并不总是最小的。上面的除法顺序给出了一个例子，其中 $1$ 是最小元素，因为它可以整除所有其他数字。相反，$0$ 是除以所有其他数字的数字。因此，它是次序中的 **最大元素**（Greatest element）。最小和最大元素的其他常用术语是 **底部**（bottom），**顶部**（top），**零**（zero）和 **单位**（unit）。
+### 偏序集
 
-最小元素和最大元素可能不存在，如实数示例所示。但如果它们存在，它们总是独一无二的。相反，考虑整除关系 $|$ 在集合 $\{2,3,4,5,6\}$ 上。这个集合既没有顶部也没有底部，元素 $2$、$3$ 和 $5$ 以下没有元素，而 $4$、$5$ 和 $6$ 以上没有元素。这些元素分别称为 **极小**（minimal）和 **极大**（maximal）。形式上，如果满足以下条件，则元素 $m$ 是极小的：
+???+ note "定义"
+    若集合 $S$ 上的一个二元关系 $\preceq$ 具有 **自反性**、**反对称性**、**传递性**，则称 $S$ 是 **偏序集**（partially ordered set，poset），$\preceq$ 为其上一 **偏序**（partial order）。
+    
+    若偏序 $\preceq$ 还具有 **连接性**，则称其为 **全序**（total order），对应的集合称为 **全序集**（totally ordered set）、**线性序集**（linearly ordered set，loset）、**简单序集**（simply ordered set）。
 
-$a \leq m$ 意味着对于阶的所有元素 $a$，$a = m$。
+由传递性和反对称性可以推出自反性，由传递性和自反性也可以推出反对称性。
 
-将 $\leq$ 与 $\geq$ 交换产生 **极大值**（maximality）的定义。如示例所示，可以有许多最大元素，并且某些元素可能既是极小又是极大（例如示例中的 $5$）。但是，如果存在极小元素，则它是该顺序中唯一的极小元素。同样，在无限偏序集中，极大元素并不总是存在：给定无限集的所有有限子集的集合，按子集包含排序，就是许多反例之一。确保在特定条件下极大元素存在的一个重要方法是 **佐恩引理**（Zorn's Lemma）。
+不难发现 $\mathbf{N}$，$\mathbf{Z}$，$\mathbf{Q}$、$\mathbf{R}$ 均关于 $\leq$ 构成全序集。
 
-???+ note "注释"
-    **佐恩引理**（Zorn's Lemma）也被称为 Kuratowski–Zorn 引理，是集合论中一个重要的定理。它的定义为：在任何一非空的偏序集中，若任何链都有上界，则此偏序集内必然存在（至少一个）极大元素。
+### 偏序集的可视化表示：Hasse 图
 
-偏序集的子集可以继承次序。我们已经通过考虑具有诱导整除排序的自然数的子集 $\{2,3,4,5,6\}$ 来应用这一点。现在还有一个偏序集的元素对于顺序的某些子集是特殊的。这构成了 **上限**（upper bound）的定义。给定某个偏序集 $P$ 的子集 $S$，$S$ 的上界是 $P$ 的元素 $b$，它高于 $S$ 的所有元素。形式上，这意味着：
+对于有限偏序集，我们可以用 Hasse 图直观地表示其上的偏序关系。
 
-对于 $S$ 中的所有 $s$，$s \leq b$。
+???+ note "定义"
+    对有限偏序集 $S$ 和其上的偏序 $\preceq$，定义 $x\prec y\iff (x\preceq y\land x\neq y)$ 其对应的 **Hasse 图** 为满足如下条件的图 $G=\langle V,E\rangle$：
+    
+    -   $V=S$,
+    -   $E=\{(x,y)\in S\times S: x\prec y \land ((\nexists~z\in S)~~x\prec z\prec y)\}$
 
-下限同样由通过反转顺序定义。例如，$-5$ 是一个整数子集的自然数的下限。给定一组集合，这些集合在子集排序下的上限由它们的并集给出。事实上，这个上限非常特殊：它是包含所有集合的最小集合。因此，我们找到了一组集合的 **最小上限**（least upper bound）。这个概念也被称为 **supremum** 或 **join**。集合 $S$ 的最小上限写为 $\sup(S)$ 或 $\bigvee S$。相反，**最大下限**（greatest lower bound）被称为 **infimum** 或 **meet** 并表示为 $\inf(S)$ 或 $\bigwedge S$。这些概念在序理论的许多应用中发挥着重要作用。两个元素 $x$ 和 $y$ 分别对应 $\sup(\{x,y\})$ 和 $\inf(\{x, y\})$。
+如对于集合 $\{0,1,2\}$ 的幂集 $S$ 和集合的包含关系 $\subseteq$，其对应的 Hasse 图为：
 
-例如，$1$ 是作为整数子集的正整数下限。或者，我们再次考虑关于自然数的关系 $|$。两个数的最小上限是被两者相除的最小数，即这些数的最小公倍数（least common multiple of the number）。最大的下限依次由最大公约数（greatest common divisor）给出。
+![](images/order-theory1.svg)
 
-### 二元性
+由于偏序具有反对称性，所以 Hasse 图一定是 [有向无环图](../graph/dag.md)，进而我们可以根据 [拓扑排序](../graph/topo.md) 对任意有限偏序集构造全序。
 
-在前面的定义中，我们注意到一个概念可以通过颠倒以前定义中的次序来定义。「最小」和「最大」、「极小」和「极大」、「上限」和「下限」等等都是这种情况。这是序理论中的一般情况：给定的次序可以通过仅交换其方向来反转，以图形方式自上而下地翻转哈斯图（Hasse diagram）。这就产生了所谓的 **对偶**（dual）、**逆**（inverse）或 **相反顺序**（opposite order）。
+### 链与反链
 
-每个序理论定义都是二元的：它是通过将定义应用于逆阶而获得的概念。由于所有概念都是对称的，因此该操作保留了偏序定理。对于给定的数学结果，只需颠倒顺序并用它们的对偶替换所有定义，即可获得另一个有效定理。
+???+ note "定义"
+    对偏序集 $S$ 和其上的偏序 $\preceq$，称 $S$ 的全序子集为 **链**（chain）。若 $S$ 的子集 $T$ 中任意两个不同元素均不可比（即 $(\forall~a,b \in T)~~a \neq b \implies (a \npreceq b \land b \npreceq a)$），则称 $T$ 为 **反链**（antichain）。
+    
+    对偏序集 $S$ 和其上的偏序 $\preceq$，我们将偏序集 $S$ 的最长反链长度称为 **宽度**（partial order width）。
 
-### 构建新次序
+如对于集合 $\{0,1,2\}$ 的幂集 $S$ 和集合的包含关系 $\subseteq$，$\{\varnothing,\{1\},\{1,2\}\}$ 为一条链，$\{\{1\},\{0,2\}\}$ 为一条反链，$S$ 的宽度为 $3$.
 
-通过给定次序构造新次序有很多方法。二元/对偶次序就是一个例子。另一个重要的构造是两个部分有序集的笛卡尔积（cartesian product），连同元素对的积顺序（product order）。排序由 $(a, x) \leq (b, y)$ 当（且仅当）$a \leq b$ 且 $x \leq y$ 定义（注意这个定义中关系符号 $\leq$ 有三个不同含义）。两个偏序集的不交并（disjoint union）是阶构造的另一个典型例子，其中阶只是原始阶的（不相交）并集。
+### 预序集中的特殊元素
 
-通过定义当 $a \leq b$ 而不是 $b \leq a$ 时 $a < b$，每个偏序 $\leq$ 都会产生所谓的严格次序 $<$。如果 $a < b$ 或 $a = b$，则可以通过设置 $a \leq b$ 来转换。这两个概念是等价的。
+在预序集中，我们可以定义极大（小）元、上（下）界、上（下）确界等概念，这些概念可以推广到其他序关系中。
 
-## 相关领域和应用
+???+ note "定义"
+    对预序集 $S$ 和其上的预序 $\preceq$，取 $S$ 中的元素 $m$：
+    
+    1.  若 $(\forall~a \in S\setminus\{m\})~~\lnot(m\preceq a)$，则称 $m$ 为 **极大元**（maximal element），
+    2.  若对 $T \subseteq S$ 满足 $(\forall~t\in T)~~t\preceq m$，则称 $m$ 为 $T$ 的 **上界**（upper bound），
+    3.  若对 $T \subseteq S$ 满足 $m$ 是 $T$ 的上界且对 $T$ 的任意上界 $n$ 均有 $m \preceq n$，则称 $m$ 为 $T$ 的 **上确界**（supremum）。
+    
+    类似可定义 **极小元**（minimal element）、**下界**（lower bound）和 **下确界**（infimum）。
 
-尽管大多数数学领域通过自定的方法使用次序，但也有一些理论的关系远远超出了应用范围。以下我们会着重介绍他们和序理论的关联。
+如 $1$ 是 $\mathbf{N}_+$ 的极小元和下界。
 
-### 通用代数
+可以证明：
 
-和之前提到的一样，通用代数的方法和形式是许多序理论的重要工具。除了根据满足某些定义的代数结构形式化次序外，还可以建立与代数的其他联系。布尔代数和布尔环之间的对应关系就是一个例子。其他问题与自由结构的存在有关，例如基于一个给定生成器集的自由格（free lattices）。此外，闭包算子（closure operator）的研究在通用代数中也很重要。
+-   预序集中，极大（小）元、上（下）界、上（下）确界都是不一定存在的，即使存在也不一定唯一。
 
-### 拓扑
+-   若偏序集 $S$ 的子集 $T$ 存在上（下）确界，则一定唯一。
 
-在拓扑学中，次序起着非常重要的作用。事实上，开集的集合提供了一个完整格的例子，或者准确地说是一个完整的 Heyting 代数（或「框架」（frame）/「区域」（locale））。滤子和网是与序理论密切相关的概念，集合的闭包算子可用于定义拓扑。除了这些以外，拓扑也可以仅从开集格的角度来看待。此外，拓扑底层集合的元素的自然 git s 预序由所谓的特化顺序给出，如果拓扑是 $T_{0}$，这实际上是偏序。
+    我们可将 $T$ 的上确界、下确界分别记为 $\sup T$，$\inf T$. 若偏序集 $S$ 既有上界又有下界，则称 $S$ 是有界的。
 
-### 范畴论
+在无限偏序集中，极大元不一定存在。可用 **Zorn 引理**（Zorn's Lemma）来判断无限偏序集中是否存在极大元。
 
-使用哈斯图的次序可视化有一个简单的概括：不是在较大的元素下方显示较小的元素，次序的方向也可以通过向图的边缘给出方向来描述。这样，每个序就可以被看作是一个有向无环图，其中节点是偏序集的元素，并且当且仅当 $a \leq b$ 时存在从 $a$ 到 $b$ 的有向路径。去掉非循环的要求，还可以获得所有的预序（preorder）。
+???+ note "[Zorn 引理](https://en.wikipedia.org/wiki/Zorn%27s_lemma)"
+    **Zorn 引理** 也被称为 **Kuratowski–Zorn 引理**，其内容为：若非空偏序集的每条链都有上界，则该偏序集存在极大元。
 
-### 算法
+Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**、**[良序定理](https://en.wikipedia.org/wiki/Well-ordering_theorem)** 等价。
 
-[C++ 基础库的排序函数](../basic/stl-sort.md) 中有偏序关系的应用。很多情况时，我们需要在 C++ 中自定义比较器（custom comparator），而 STL 自定义比较器的要求就是它必须为 **严格弱序** 的（Strict Weak Ordering）。严格弱序定义为部分有序集合，其中不可比性是传递关系。设比较器为 $f$，$f(x,y)$ 为真表示 $x<y$，则有：
+### 有向集与格
 
--   $f(x,x)$ 必须为假。（非自反性）
+我们知道若偏序集的子集存在上（下）确界，则一定唯一。但是这一点并不适用于极大（小）元。例如：考虑偏序集 $S=\{\{0\},\{1\},\{2\},\{0,1\},\{0,2\},\{1,2\}\}$ 和其上的偏序 $\subseteq$，不难发现其有 $3$ 个极大元和 $3$ 个极小元。
 
--   如果 $f(x,y)$ 为真，则 $f(y,x)$ 必须为假。（非对称性）
+我们希望通过向偏序集添加一定的条件来使得若极大（小）元存在则一定唯一，这样我们就可以定义最大（小）元的概念了。
 
--   如果 $f(x,y)$ 为真且 $f(y,z)$ 为真，则 $f(x,z)$ 必须为真。（传递性）
+???+ note "有向集"
+    对预序集 $S$ 和其上的预序 $\preceq$，若 $(\forall~a,b\in S)~~(\exists~c\in S)~~a\preceq c\land b\preceq c$，则称 $\preceq$ 为 $S$ 的一个 **方向**（direction），$S$ 称为 **有向集**（directed set）或 **过滤集**（filtered set）。
+    
+    有时也将满足上述定义的集合 $S$ 称为 **上有向集**（upward directed set），类似地可定义 **下有向集**（downward directed set）。
 
--   如果 $f(x,y)$ 为假，$f(y,x)$ 为假，$f(y,z)$ 为假且 $f(z,y)$ 为假，则 $f(x,z)$ 为假 且 $f(z,x)$ 为假。（不可比性的传递性）
+有向集也可用如下方式定义：
 
-其中反对称性可以由非自反性和传递性推导得到。而所有 STL 中的自定义比较器都可以用简单的 $<$ 关系表示。因为我们可以推断得知：
+???+ note "有向集的等价定义"
+    对预序集 $S$ 和其上的预序 $\preceq$，若 $S$ 的任意有限子集 $T$ 均有上界，则称 $\preceq$ 为 $S$ 的一个方向，$S$ 称为有向集。
 
--   $x>y$ 表示 $y<x$;
--   $x \leq y$ 表示 $y \nless x$；
--   $x \geq y$ 表示 $x \nless y$；
--   $x=y$ 表示 $x \nless y$ 和 $y \nless x$。这就是为什么上面第四条规则被称为等价的传递性。如果 $x \nless y$ 和 $y \nless x$，我们可以说「$x$ 和 $y$ 是不可比的」。
+不难发现：
+
+-   若上有向集存在极大元，则一定唯一。我们将上有向集的极大元称为 **最大元**（greatest element）。
+-   若下有向集存在极小元，则一定唯一。我们将下有向集的极小元称为 **最小元**（least element）。
+
+有方向的偏序集中，对任意元素 $a,b$，$\{a,b\}$ 都有上界，若将上界修改为上确界，则得到了并半格的定义。
+
+对偏序集 $S$ 和其上的偏序 $\preceq$：
+
+???+ note "并半格"
+    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有上确界 $c$，则称 $S$ 为 **并半格**（join-semilattice，upper semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **并**（join），记为 $a\lor b$.
+
+???+ note "交半格"
+    若对 $S$ 中的任意元素 $a,b$，$\{a,b\}$ 均有下确界 $c$，则称 $S$ 为 **交半格**（meet-semilattice，lower semilattice），并且我们称 $c$ 为 $a$ 和 $b$ 的 **交**（meet），记为 $a\land b$.
+
+???+ note "格"
+    若 $S$ 既是并半格也是交半格，则称 $S$ 为 **格**（lattice）。
+
+例如 $60$ 的正因子构成的集合 $S=\{1,2,3,4,5,6,10,12,15,20,30,60\}$ 关于整除构成偏序集，其上的任意正整数 $a,b$，$\operatorname{lcm}(a,b)$ 为 $a$ 和 $b$ 的并，$\gcd(a,b)$ 为 $a$ 和 $b$ 的交，从而 $S$ 是格。
+
+### 对偶
+
+在序理论中，对偶是非常常见的概念，如上文提到的极大元与极小元对偶、上界与下界对偶、上确界与下确界对偶。
+
+对偏序集 $P$ 和其上的偏序 $\preceq$，定义其 **对偶**（dual，opposite）偏序集 $P^d$ 满足：$x \preceq y$ 在 $P$ 中成立当且仅当 $y \preceq x$ 在 $P^d$ 中成立。将 $P$ 的 Hasse 图的边反转即可得到 $P^d$ 的 Hasse 图。
+
+## Dilworth 定理与 Mirsky 定理
+
+对有限偏序集 $S$ 和其上的偏序 $\preceq$，我们有如下的一对对偶的定理：
+
+???+ note "Dilworth 定理"
+    $S$ 的宽度（最长反链长度）等于最小的链覆盖数。
+    
+    ??? note "证明"
+        考虑数学归纳法。当 $|S|\leq 3$ 时，命题显然成立。
+        
+        假设命题对所有元素个数小于 $|S|$ 的偏序集都成立，令 $S$ 的宽度为 $d$. 若 $|S|$ 中所有元素均不可比，则命题显然成立，否则在 $S$ 中取一条长度大于 $1$ 的链，令其中的最小元为 $m$，最大元为 $M$.
+        
+        令 $T=S\setminus\{m,M\}$，若 $T$ 中的宽度不超过 $d-1$，则由归纳假设知 $T$ 可被至多 $d-1$ 条链覆盖，进而 $S$ 可被这些链再加上链 $\{m,M\}$ 覆盖，命题成立，否则说明 $T$ 中的宽度也为 $d$，令 $T$ 中最长的一条反链为 $A$.
+        
+        我们考虑如下两个集合：
+        
+        $$
+        S^+:=\{x\in S:(\exists~a\in A)~~a\preceq x\}
+        $$
+        
+        $$
+        S^-:=\{x\in S:(\exists~a\in A)~~x\preceq a\}
+        $$
+        
+        我们不难发现如下性质：
+        
+        -   $S^+\cup S^-=S$，
+        -   $S^+\cap S^-=A$，
+        -   $|S^+|<|S|$,$|S^-|<|S|$（因为 $m\notin S^+$ 且 $M\notin S^-$）。
+        
+        对 $S^+$ 和 $S^-$ 都应用归纳假设，则这两个集合的最小链覆盖数为 $d$，且这些链中恰好包含一个 $A$ 中的元素 $a$，设这些链分别为 $C_a^+$，$C_a^-$，则 $\{C_a^-\cup\{a\}\cup C_a^+\}_{a\in A}$ 是 $S$ 的一个最小链覆盖，命题得证。
+
+???+ note "Mirsky 定理"
+    $S$ 的最长链长度等于最小的反链覆盖数。
+    
+    ??? note "证明"
+        设 $S$ 的最长链长度为 $d$，则由定义，最小反链覆盖数至少为 $d$.
+        
+        令 $f(s)$ 为以 $s$ 为最小元的最长链长度，注意到若 $f(s)=f(t)$，则 $s$ 与 $t$ 不可比，进而 $(\forall~n\in\mathbf{N})~~f^{-1}(\{n\})$ 均为反链，其中 $f^{-1}(\{n\}):=\{a\in S:f(a)=n\}$ 称为 [水平集（level set）](https://en.wikipedia.org/wiki/Level_set)。
+        
+        因此不难得出 $\{f^{-1}(\{i\}):1\leq i\leq d\}$ 是一个反链覆盖，从而最小反链覆盖数至多为 $d$.
+
+Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#霍尔定理) 等价。
+
+我们可以用 Dilworth 定理证明如下定理：
+
+???+ note "Erdős–Szekeres 定理"
+    含至少 $rs+1$ 个元素的实数序列 $\{a_i\}$ 要么有一个长为 $r+1$ 的不下降子序列，要么有一个长为 $s+1$ 的不上升子序列。
+    
+    ??? note "证明"
+        设序列长度为 $n\geq rs+1$，定义偏序集 $\{(i,a_i)\}_{i=1}^{n}$，其上的偏序 $\preceq$ 定义为：
+        
+        $$
+        (i,a_i)\preceq (j,a_j)\iff (i\leq j\land a_i\leq a_j)
+        $$
+        
+        假设该偏序集的宽度不超过 $s$，则由 Dilworth 定理可知该偏序集可以被至多 $s$ 条链覆盖，若这些链的长度都不超过 $r$，则序列所含元素数至多为 $rs$，与条件矛盾。
+
+### 例题
+
+???+ note "[Luogu P1020 \[NOIP1999 提高组\] 导弹拦截](https://www.luogu.com.cn/problem/P1020)"
+    某国为了防御敌国的导弹袭击，发展出一种导弹拦截系统。但是这种导弹拦截系统有一个缺陷：虽然它的第一发炮弹能够到达任意的高度，但是以后每一发炮弹都不能高于前一发的高度。某天，雷达捕捉到敌国的导弹来袭。由于该系统还在试用阶段，所以只有一套系统，因此有可能不能拦截所有的导弹。
+    
+    输入导弹依次飞来的高度，计算这套系统最多能拦截多少导弹，如果要拦截所有导弹最少要配备多少套这种导弹拦截系统。
+    
+    对于全部数据，满足导弹的高度为正整数，且不超过 $5\times 10^4$.
+    
+    ??? note "题解"
+        令一共有 $n$ 个导弹，第 $i$ 个导弹的高度为 $h_i$，则集合 $\{(i,h_i)\}_{i=1}^{n}$ 为偏序集，其上的偏序 $\preceq$ 定义为：
+        
+        $$
+        (i,h_i)\preceq(j,h_j) \iff (i\leq j \land h_i\geq h_j)
+        $$
+        
+        进而根据 Dilworth 定理有：**序列的不上升子序列的最少覆盖数等于最长上升子序列长度**。从而可以通过 [最长不下降子序列的 $O(n\log n)$ 做法](../dp/basic.md#算法二) 解决本题。
+    
+    ??? note "参考代码"
+        ```cpp
+        --8<-- "docs/math/code/order-theory/order-theory_1.cpp"
+        ```
+
+???+ note "[\[TJOI2015\] 组合数学](https://www.luogu.com.cn/problem/P3974)"
+    给一个 $n$ 行 $m$ 列的网格图，其中每个格子中均有若干块财宝。每次从左上角出发，只能往右或下走，每次经过一个格子至多只能捡走一块财宝。问至少要走几次才可能把财宝全捡完。
+    
+    $1\le n \le 1000$，$1\le m \le 1000$，每个格子中的财宝不超过 $10^6$ 块。
+    
+    ??? note "题解"
+        不考虑网格图的点权，不难发现按给定的规则下在网格图上行走等价于在 DAG 上行走，从而我们可以将其视作 Hasse 图来构造偏序集，进而根据 Dilworth 定理有：**DAG 的最小链覆盖数等于最大的点独立集大小**。
+        
+        因此本题所求即为给定网格图最大点权独立集的点权和。
+        
+        令 $a_{ij}$ 为网格图在点 $(i,j)$ 处的权值，$f(i,j)$ 为 从 $(i,j)$ 到 $(1,m)$ 这个子网格中的答案，注意到每个点都和其右上角的点不相邻，则状态转移方程为：
+        
+        $$
+        f(i,j)=\max\{f(i-1,j),f(i,j+1),f(i-1,j+1)+a_{ij}\}
+        $$
+        
+        答案即为 $f(n,1)$.
+    
+    ??? note "参考代码"
+        ```cpp
+        --8<-- "docs/math/code/order-theory/order-theory_2.cpp"
+        ```
+
+### 习题
+
+-   [\[CTSC2008\] 祭祀](https://www.luogu.com.cn/problem/P4298)
+-   [CodeForces 590E Birthday](https://codeforces.com/problemset/problem/590/E)
+
+## C++ 中的应用
+
+另请参阅：[排序相关 STL -  算法基础](../basic/stl-sort.md)。
+
+C++ STL 中 [需要使用比较的算法和数据结构](https://en.cppreference.com/w/cpp/named_req/Compare#Standard_library) 中有序理论的应用。我们经常需要在 C++ 中自定义比较器，STL [要求](https://en.cppreference.com/w/cpp/named_req/Compare) 其必须为 **严格弱序**。令 $<$ 为自定义比较器，则可以定义：
+
+-   $x>y$ 为 $y<x$；
+-   $x \leq y$ 为 $y \nless x$；
+-   $x \geq y$ 为 $x \nless y$；
+-   $x=y$ 为 $x \nless y\land y \nless x$.
 
 ## 参考资料与拓展阅读
 
 1.  [Order theory - From Academic Kids](https://academickids.com/encyclopedia/index.php/Order_theory)
 2.  [Binary Relation - Wikipedia](https://en.wikipedia.org/wiki/Binary_relation)
 3.  [Order Theory - Wikipedia](https://en.wikipedia.org/wiki/Order_theory)
-4.  [Order Theory, Lecture Notes by Mark Dean for Decision Theory](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
-5.  卢开澄，卢华明，[《组合数学》（第 3 版）](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
-6.  [List of Order Theory Topics - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
-7.  [浅谈邻项交换排序的应用以及需要注意的问题 by ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
-8.  [One thing you should know about comparators—Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
+4.  [Hasse diagram - Wikipedia](https://en.wikipedia.org/wiki/Hasse_diagram)
+5.  [Directed set - Wikipedia](https://en.wikipedia.org/wiki/Directed_set)
+6.  [Order Theory, Lecture Notes by Mark Dean for Decision Theory](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
+7.  卢开澄，卢华明，[《组合数学》（第 3 版）](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
+8.  [List of Order Theory Topics - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
+9.  [浅谈邻项交换排序的应用以及需要注意的问题 by ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
+10. [One thing you should know about comparators—Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
+11. [Dilworth's theorem - Wikipedia](https://en.wikipedia.org/wiki/Dilworth%27s_theorem)
+12. [Dilworth's Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/dilworths-theorem/)
+13. [Hall's marriage theorem - Wikipedia](https://en.wikipedia.org/wiki/Hall's_marriage_theorem)
+14. [Hall's Marriage Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/hall-marriage-theorem/)
+15. [Dilworth 学习笔记 - Selfish](https://www.luogu.com.cn/blog/Rolling-Code/dilworth)

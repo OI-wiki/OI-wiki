@@ -71,11 +71,11 @@ $$
         ```python
         def DP(l, r, k_l, k_r):
             mid = int((l + r) / 2)
-            k = k_l         # 求状态f[mid]的最优决策点
+            k = k_l  # 求状态f[mid]的最优决策点
             for i in range(k_l, min(k_r, mid - 1)):
                 if w(i, mid) < w(k, mid):
                     k = i
-            f[mid] = w(k, mid)         # 根据决策单调性得出左右两部分的决策区间，递归处理
+            f[mid] = w(k, mid)  # 根据决策单调性得出左右两部分的决策区间，递归处理
             if l < mid:
                 DP(l, mid - 1, k_l, k)
             if r > mid:
@@ -160,15 +160,20 @@ $$
     $$
     \forall j\in\left[1,n\right]:a_j \leq a_i + f_i - \sqrt{|i-j|}.
     $$
-
-??? note "参考思路"
-    显然，经过不等式变形，我们可以得到待求整数 $f_i = \max_{j}\{a_j+\sqrt{|i-j|}-a_i\}$。不妨先考虑 $j \leq i$ 的情况（另外一种情况类似），此时我们可以得到状态转移方程：
     
-    $$
-    f_i = \min_{j\le i}\{-a_j-\sqrt{i-j}+a_i\}.
-    $$
+    ??? note "思路"
+        显然，经过不等式变形，我们可以得到待求整数 $f_i = \max_{j}\{a_j+\sqrt{|i-j|}-a_i\}$。不妨先考虑 $j \leq i$ 的情况（另外一种情况类似），此时我们可以得到状态转移方程：
+        
+        $$
+        f_i = \min_{j\le i}\{-a_j-\sqrt{i-j}+a_i\}.
+        $$
+        
+        根据 $-\sqrt{x}$ 的凸性，我们很容易得出（后文将详细描述）函数 $w(l, r) = -a_l - \sqrt{r-l} + a_r$ 满足四边形不等式，因此套用上述的算法便可在 $O(n\log n)$ 的时间内解决此题了。
     
-    根据 $-\sqrt{x}$ 的凸性，我们很容易得出（后文将详细描述）函数 $w(l, r) = -a_l - \sqrt{r-l} + a_r$ 满足四边形不等式，因此套用上述的算法便可在 $O(n\log n)$ 的时间内解决此题了。
+    ??? example "实现"
+        ```cpp
+        --8<-- "docs/dp/code/opt/quadrangle/quadrangle_1.cpp"
+        ```
 
 ## 区间分拆问题
 
@@ -179,18 +184,6 @@ f(i) = \min_{1\leq j\leq i} f(j-1)+w(j,i) \qquad (1\leq i\leq n)
 $$
 
 这里，$f(0)=0$。注意到，只要 $w(j,i)$ 满足四边形不等式，$f(j-1)+w(j,i)$ 必然满足四边形不等式，因为第一项并不包括 $j$ 和 $i$ 的交叉项，在混合差分时会消去。但是由于成本函数依赖于前面的子问题，这一转移只能够顺序计算，所以通常只适合应用二分队列算法。算法复杂度为 $O(n\log n)$。
-
-???+ note " 例题 2：[「HNOI2008」玩具装箱 toy](https://loj.ac/problem/10188)"
-    有 $n$ 个玩具需要装箱，要求每个箱子中的玩具编号必须是连续的。每个玩具有一个长度 $C_i$，如果一个箱子中有多个玩具，那么每两个玩具之间要加入一个单位长度的分隔物。形式化地说，如果将编号在 $[j,i]$ 间的玩具装在一个箱子里，那么这个箱子的长度为 $i-j+\sum_{k=j}^i C_k$。现在需要制定一个装箱方案，使得所有容器的长度与 $K$ 差值的平方之和最小。
-
-??? note "参考思路"
-    设 $f_i$ 表示将前 $i$ 个玩具装箱的最小代价，则枚举第 $i$ 个玩具与哪些玩具放在一个箱子中，可以得到状态转移方程为
-    
-    $$
-    f_{i} = \min_{j=1}^{i}f_{j-1} + \left(i-j+\sum_{k=j}^i C_k\right)^2.
-    $$
-    
-    记 $s(i) = i+\sum_{k=1}^i C_k$，则有 $w(j, i) = \left(s(i) - s(j - 1) - 1 - K\right)^2$。显然 $s(i)$ 单调增加，因此根据下文的性质 1 和性质 2 可知 $s(i) - s(j - 1) - 1 - K$ 满足区间包含单调性和四边形不等式。再根据 $x^2$ 的单调性和凸性以及性质 3 可知，$w(j, i)$ 也满足四边形不等式，此时使用二分队列优化即可。
 
 ### 限制区间个数的情形
 
@@ -270,6 +263,32 @@ $$
 
 对于限制区间个数的区间分拆问题的三种算法，在不同的数据范围时表现各有优劣，需要结合具体的题目选择合适的算法。
 
+???+ note " 例题 2：[P4767 \[IOI2000\] 邮局 加强版](https://www.luogu.com.cn/problem/P4767)  [P6246 \[IOI2000\] 邮局 加强版 加强版](https://www.luogu.com.cn/problem/P6246)"
+    高速公路旁边有一些村庄。高速公路表示为整数轴，每个村庄的位置用单个整数坐标标识。没有两个在同样地方的村庄。两个位置之间的距离是其整数坐标差的绝对值。
+    
+    邮局将建在一些，但不一定是所有的村庄中。为了建立邮局，应选择他们建造的位置，使每个村庄与其最近的邮局之间的距离总和最小。
+    
+    你要编写一个程序，已知村庄的位置和邮局的数量，计算每个村庄和最近的邮局之间所有距离的最小可能的总和。
+    
+    ??? note "思路"
+        每个村庄有其最近的邮局，那么每个邮局也有其管辖的村庄，易知这是一个区间。
+        
+        考虑把这 $n$ 个村庄分成 $m$ 个区间，再在每个区间中决出一个邮局。
+        
+        根据数学知识，对于区间 $[i,j]$，邮局应该建在第 $\left\lfloor\dfrac{i+j}2\right\rfloor$ 个村庄处。使用前缀和容易算出 $w(i,j)$。
+        
+        问题转化为限制区间个数的区间分拆问题。可以证明，$w$ 函数满足四边形不等式。直接应用上述优化方法即可。
+    
+    ??? example " 实现 1，前文第二种优化，复杂度 $O(n(n+m))$"
+        ```cpp
+        --8<-- "docs/dp/code/opt/quadrangle/quadrangle_2.cpp"
+        ```
+    
+    ??? example " 实现 2，wqs 二分，复杂度 $O(n\log n\log C)$"
+        ```cpp
+        --8<-- "docs/dp/code/opt/quadrangle/quadrangle_3.cpp"
+        ```
+
 ## 区间合并问题
 
 另一类可以通过四边形不等式优化的动态规划问题是区间合并问题，即要将 $n$ 个长度为一的区间 $[i,i]$ 两两合并起来，直到得到区间 $[1,n]$。每次合并 $[j,k]$ 和 $[k+1,i]$ 时都需要支付成本 $w(j,i)$。问题要求找到成本最低的合并方式。对于此类问题，有如下 2D1D 状态转移方程。
@@ -296,7 +315,7 @@ $$
     若 $w$ 满足区间包含单调性和四边形不等式，则状态 $f(j,i)$ 满足四边形不等式。
 
 ??? note "证明"
-    不妨设 $a \leq b \leq c \leq d$。下证 $f(a,d) + f(b,c) \geq f(a,d) + f(b,c)$。考虑依 $d-a$ 归纳。当 $a=b$ 或 $c=d$ 时，所求即一等式。对于一般的情形，根据 $d'=\mathop{\mathrm{opt}}(a,d)$ 的位置分类讨论。
+    不妨设 $a \leq b \leq c \leq d$。下证 $f(a,d) + f(b,c) \geq f(a,c) + f(b,d)$。考虑依 $d-a$ 归纳。当 $a=b$ 或 $c=d$ 时，所求即一等式。对于一般的情形，根据 $d'=\mathop{\mathrm{opt}}(a,d)$ 的位置分类讨论。
     
     第一种情况，$c \leq d'$ 或 $d' < b$，即 $[b,c]$ 包含于 $[a,d']$ 或 $[d'+1,d]$ 之中。
     
@@ -359,15 +378,15 @@ $$
     
     === "Python"
         ```python
-        for len in range(2, n + 1): # 枚举区间长度
+        for len in range(2, n + 1):  # 枚举区间长度
             for i in range(len, n + 1):
                 # 枚举长度为len的所有区间
                 j = i - len + 1
                 f[j][i] = INF
                 for k in range(opt[j][i - 1], opt[j + 1][i] + 1):
                     if f[j][i] > f[j][k] + f[k + 1][i] + w(j, i):
-                        f[j][i] = f[j][k] + f[k + 1][i] + w(j, i) # 更新状态值
-                        opt[j][i] = k # 更新（最小）最优决策点
+                        f[j][i] = f[j][k] + f[k + 1][i] + w(j, i)  # 更新状态值
+                        opt[j][i] = k  # 更新（最小）最优决策点
         ```
 
 ## 满足四边形不等式的函数类
@@ -410,7 +429,6 @@ $$
 
 ## 习题
 
--   [「IOI2000」邮局](https://www.luogu.com.cn/problem/P4767)
 -   [Codeforces - Ciel and Gondolas](https://codeforces.com/contest/321/problem/E)(Be careful with I/O!)
 -   [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/)
 -   [Codechef - CHEFAOR](https://www.codechef.com/problems/CHEFAOR)

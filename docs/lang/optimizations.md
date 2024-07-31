@@ -6,7 +6,7 @@ OI 界的常用编程语言是 C++。既然使用了这门语言，就注定要�
 
 ### 什么是优化 (Optimization)
 
-保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进。
+根据 [如同规则](https://en.cppreference.com/w/cpp/language/as_if)（The as-if Rule），在保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进。
 
 <!-- ### 开优化的比赛有哪些？ -->
 
@@ -450,23 +450,22 @@ int x = a / 3;
 ```cpp
 int a = 0;
 for (int i = 1; i < 10; i++) {
-  int a;
-  a = 2 * i;  // bad!
-  a = a + 2;  // good!
+  a = 3 * i;  // bad!
+  a = a + 3;  // good!
 }
 ```
 
-此处如果直接使用 `a = 2 * i` 在 OI 中很常见，而编译器可以自动分析出，等价的变换为 `a = a + 2`，用代价更低的加法代替乘法。分析循环变量的迭代过程，被称为 SCEV (Scalar Evolution)。
+此处如果直接使用 `a = 3 * i` 在 OI 中很常见，而编译器可以自动分析出，等价的变换为 `a = a + 3`，用代价更低的加法代替乘法。分析循环变量的迭代过程，被称为 SCEV (Scalar Evolution)。
 
 SCEV 还可以做到优化一些循环：
 
 ```cpp
-int test() {
+int test(int n) {
   int ans = 1;
   for (int i = 0; i < n; i++) {
     ans += i * (i + 1);
   }
-  return ans
+  return ans;
 }
 ```
 
@@ -538,6 +537,142 @@ void test(int* __restrict a, int* __restrict b, int n) {
 
 <https://en.cppreference.com/w/cpp/keyword/register>
 
+## 未定义行为（Undefined Behavior）与编译优化
+
+编译器可以认为 C++ 程序不存在 [未定义行为](https://en.cppreference.com/w/cpp/language/ub)（undefined behavior，UB），因此在编译存在 UB 的程序时，编译器可能会产生意想不到的结果。同时，编译器也可以在假定不存在 UB 的情况下进行更加激进而自由的优化。
+
+常见的 UB 有：
+
+1.  [有符号溢出](https://users.cs.utah.edu/~regehr/papers/overflow12.pdf)；
+2.  使用未初始化的变量；
+3.  访问越界；
+4.  空指针解引用；
+5.  无副作用的无限循环。
+
+其他 UB 和示例等可通过扩展阅读详细了解。
+
+### 有符号溢出
+
+```cpp
+int f(int x) { return x * 2 / 2; }
+```
+
+编译器可以假定程序不存在有符号溢出的行为，进而此函数可能被优化为
+
+```cpp
+int f(int x) { return x; }
+```
+
+示例：<https://godbolt.org/z/WKv3W5hvM>、<https://godbolt.org/z/qqE9nxP1j>。
+
+可通过 [`-fwrapv`](https://gcc.gnu.org/onlinedocs/gcc-13.2.0/gcc/Code-Gen-Options.html#index-fwrapv) 选项禁用该假设。示例：<https://godbolt.org/z/5x3K5KGnr>、<https://godbolt.org/z/4r4a4EzMW>。
+
+### 使用未初始化的变量
+
+```cpp
+int f(int x) {
+  int a;
+  if (x)  // either x nonzero or UB
+    a = 42;
+  return a;
+}
+```
+
+编译器可以假定程序不存在使用未初始化变量的行为，所以 `a` 一定会被初始化，进而此函数可能被优化为
+
+```cpp
+int f(int) { return 42; }
+```
+
+示例：<https://godbolt.org/z/8WYMYYjdG>、<https://godbolt.org/z/qvGd1nvv9>。
+
+### 访问越界
+
+```cpp
+int table[4] = {};
+
+bool exists_in_table(int v) {
+  // return true in one of the first 4 iterations or UB due to out-of-bounds
+  // access
+  for (int i = 0; i <= 4; i++)
+    if (table[i] == v) return true;
+  return false;
+}
+```
+
+编译器可以假定程序不存在访问越界的行为，所以该函数一定会在发生访问越界之前返回，进而此函数可能被优化为
+
+```cpp
+bool exists_in_table(int) { return true; }
+```
+
+示例：<https://godbolt.org/z/xfePeYsE3>。
+
+### 空指针解引用
+
+```cpp
+int f(int* p) {
+  int x = *p;
+  if (!p)
+    return x;  // Either UB above or this branch is never taken
+  else
+    return 0;
+}
+```
+
+编译器可以假定程序不存在空指针解引用的行为，从而 `!p` 恒为 `false`，进而此函数可能被优化为
+
+```cpp
+int f(int*) { return 0; }
+```
+
+示例：<https://godbolt.org/z/GY1jvsrb5>、<https://godbolt.org/z/4ronPsnxf>。
+
+### 无副作用的无限循环
+
+???+ note "验证 Fermat 大定理"
+    由 [Fermat 大定理](https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem) 可知，不定方程 $a^3=b^3+c^3$ 没有正整数解。下面的程序试图枚举 $[1,1000]$ 内的整数验证该方程是否成立，若返回 `true` 则说明在 $[1,1000]$ 范围内找到了一组整数解，从而 Fermat 大定理不成立。
+    
+    ```cpp
+    #include <iostream>
+    
+    bool fermat() {
+      const int max_value = 1000;
+    
+      // Endless loop with no side effects is UB
+      for (int a = 1, b = 1, c = 1; true;) {
+        if (((a * a * a) == ((b * b * b) + (c * c * c))))
+          return true;  // disproved :()
+        a++;
+        if (a > max_value) {
+          a = 1;
+          b++;
+        }
+        if (b > max_value) {
+          b = 1;
+          c++;
+        }
+        if (c > max_value) c = 1;
+      }
+    
+      return false;  // not disproved
+    }
+    
+    int main() {
+      std::cout << "Fermat's Last Theorem ";
+      fermat() ? std::cout << "has been disproved!\n"
+               : std::cout << "has not been disproved.\n";
+    }
+    ```
+
+编译器可以假定程序不存在无副作用的无限循环，从而认为 `fermat()` 函数中的 for 循环一定会在某一时刻终止并返回 `true`，最终程序可能输出：
+
+```text
+Fermat's Last Theorem has been disproved!
+```
+
+示例：<https://godbolt.org/z/d834MK7bz>、<https://godbolt.org/z/Eov9nsKqf>。
+
 ## Sanitizer
 
 理智保证器。在运行时检查你的程序是否有未定义行为、数组越界、空指针，等等功能。
@@ -575,6 +710,12 @@ UBSan 的检查项可选，对程序的影响参考提供的网页地址。
 ### Compiler Explorer
 
 在这里观察各个编译器的行为和汇编代码：<https://godbolt.org>
+
+## 扩展阅读
+
+1.  [The LLVM Project Blog: What Every C Programmer Should Know About Undefined Behavior #1/3](https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html)
+2.  [The LLVM Project Blog: What Every C Programmer Should Know About Undefined Behavior #2/3](https://blog.llvm.org/2011/05/what-every-c-programmer-should-know_14.html)
+3.  [The LLVM Project Blog: What Every C Programmer Should Know About Undefined Behavior #3/3](https://blog.llvm.org/2011/05/what-every-c-programmer-should-know_21.html)
 
 ## 参考资料与注释
 

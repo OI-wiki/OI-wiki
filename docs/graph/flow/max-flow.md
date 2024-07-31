@@ -64,8 +64,8 @@ Ford–Fulkerson 增广是计算最大流的一类算法的总称。该方法运
         & = ||S, T|| \\
     \end{aligned}
     $$
-
-    为了取等，第一个不等号需要 $\{(u, v) \mid u \in T, v \in S\}$ 的所有边均空流，第二个不等号需要 $\{(v, u) \mid u \in S, v \in T\}$ 的所有边均满流。原引理得证。
+    
+    为了取等，第一个不等号需要 $\{(u, v) \mid u \in T, v \in S\}$ 的所有边均空流，第二个不等号需要 $\{(u, v) \mid u \in S, v \in T\}$ 的所有边均满流。原引理得证。
 
 那么，对于任意网络，以上取等条件是否总是能被满足呢？如果答案是肯定的，则最大流最小割定理得证。以下我们尝试证明。
 
@@ -122,18 +122,18 @@ Ford–Fulkerson 增广是计算最大流的一类算法的总称。该方法运
     
     ???+ info "最短路非递减引理的证明"
         考虑反证。对于某一轮增广，我们假设存在若干结点，它们在该轮增广后到 $s$ 的距离较增广前减小。我们记 $v$ 为其中到 $s$ 的距离最小的一者（即 $v = \arg \min_{x \in V, d_{f'}(x) < d_f(x)} d_{f'}(x)$）。注意，根据反证假设，此时 $d_{f'}(v) < d_f(v)$ 是已知条件。
-    
+        
         在 $G_{f'}$ 中 $s$ 到 $v$ 的最短路上，我们记 $u$ 是 $v$ 的上一个结点，即 $d_{f'}(u) + 1 = d_{f'}(v)$。
-    
+        
         为了不让 $u$ 破坏 $v$ 的「距离最小」这一性质，$u$ 必须满足 $d_{f'}(u) \geq d_f(u)$。
-    
+        
         对于上式，我们令不等号两侧同加，得 $d_{f'}(v) \geq d_f(u) + 1$。根据反证假设进行放缩，我们得到 $d_f(v) > d_f(u) + 1$。
-    
+        
         以下我们尝试讨论 $(u, v)$ 上的增广方向。
-    
-        - 假设有向边 $(u, v) \in E_f$。根据 BFS「广度优先」的性质，我们有 $d_f(u) + 1 \geq d_f(v)$。该式与放缩结果冲突，导出矛盾。
-        - 假设有向边 $(u, v) \not \in E_f$。根据 $u$ 的定义我们已知 $(u, v) \in E_{f'}$，因此这条边的存在必须是当前轮次的增广经过了 $(v, u)$ 并退流产生反向边的结果，也即 $d_f(v) + 1 = d_f(u)$。该式与放缩结果冲突，导出矛盾。
-    
+        
+        -   假设有向边 $(u, v) \in E_f$。根据 BFS「广度优先」的性质，我们有 $d_f(u) + 1 \geq d_f(v)$。该式与放缩结果冲突，导出矛盾。
+        -   假设有向边 $(u, v) \not \in E_f$。根据 $u$ 的定义我们已知 $(u, v) \in E_{f'}$，因此这条边的存在必须是当前轮次的增广经过了 $(v, u)$ 并退流产生反向边的结果，也即 $d_f(v) + 1 = d_f(u)$。该式与放缩结果冲突，导出矛盾。
+        
         由于 $(u, v)$ 沿任何方向增广都会导出矛盾，我们知道反证假设不成立，最短路非递减引理得证。
 
 将单轮 BFS 增广的复杂度与增广轮数的上界相乘，我们得到 Edmonds–Karp 算法的时间复杂度是 $O(|V||E|^2)$。
@@ -928,32 +928,36 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
     int n, m, s, t;
     
     struct qxx {
-      int nex, t, v;
+      int nex, t;
+      long long v;
     };
     
     qxx e[M * 2 + 1];
     int h[N + 1], cnt = 1;
     
-    void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
+    void add_path(int f, int t, long long v) {
+      e[++cnt] = qxx{h[f], t, v}, h[f] = cnt;
+    }
     
-    void add_flow(int f, int t, int v) {
+    void add_flow(int f, int t, long long v) {
       add_path(f, t, v);
       add_path(t, f, 0);
     }
     
-    int ht[N + 1], ex[N + 1],
-        gap[N];  // 高度; 超额流; gap 优化 gap[i] 为高度为 i 的节点的数量
-    stack<int> B[N];  // 桶 B[i] 中记录所有 ht[v]==i 的v
-    int level = 0;    // 溢出节点的最高高度
+    int ht[N + 1];        // 高度;
+    long long ex[N + 1];  // 超额流;
+    int gap[N];           // gap 优化. gap[i] 为高度为 i 的节点的数量
+    stack<int> B[N];      // 桶 B[i] 中记录所有 ht[v]==i 的v
+    int level = 0;        // 溢出节点的最高高度
     
     int push(int u) {      // 尽可能通过能够推送的边推送超额流
       bool init = u == s;  // 是否在初始化
       for (int i = h[u]; i; i = e[i].nex) {
-        const int &v = e[i].t, &w = e[i].v;
-        if (!w || init == false && ht[u] != ht[v] + 1 ||
-            ht[v] == INF)  // 初始化时不考虑高度差为1
-          continue;
-        int k = init ? w : min(w, ex[u]);
+        const int &v = e[i].t;
+        const long long &w = e[i].v;
+        // 初始化时不考虑高度差为1
+        if (!w || (init == false && ht[u] != ht[v] + 1) || ht[v] == INF) continue;
+        long long k = init ? w : min(w, ex[u]);
         // 取到剩余容量和超额流的最小值，初始化时可以使源的溢出量为负数。
         if (v != s && v != t && !ex[v]) B[ht[v]].push(v), level = max(level, ht[v]);
         ex[u] -= k, ex[v] += k, e[i].v -= k, e[i ^ 1].v += k;  // push
@@ -990,11 +994,11 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
     
     // 选出当前高度最大的节点之一, 如果已经没有溢出节点返回 0
     int select() {
-      while (B[level].size() == 0 && level > -1) level--;
+      while (level > -1 && B[level].size() == 0) level--;
       return level == -1 ? 0 : B[level].top();
     }
     
-    int hlpp() {                  // 返回最大流
+    long long hlpp() {            // 返回最大流
       if (!bfs_init()) return 0;  // 图不连通
       memset(gap, 0, sizeof(gap));
       for (int i = 1; i <= n; i++)
@@ -1021,7 +1025,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
         scanf("%d%d%d", &u, &v, &w);
         add_flow(u, v, w);
       }
-      printf("%d", hlpp());
+      printf("%lld", hlpp());
       return 0;
     }
     ```

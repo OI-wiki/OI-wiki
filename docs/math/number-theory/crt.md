@@ -53,12 +53,14 @@ $$
 === "Python"
     ```python
     def CRT(k, a, r):
-        n = 1; ans = 0
+        n = 1
+        ans = 0
         for i in range(1, k + 1):
             n = n * r[i]
         for i in range(1, k + 1):
-            m = n // r[i]; b = y = 0
-            exgcd(m, r[i], b, y) # b * m mod r[i] = 1
+            m = n // r[i]
+            b = y = 0
+            exgcd(m, r[i], b, y)  # b * m mod r[i] = 1
             ans = (ans + a[i] * m * b % n) % n
         return (ans % n + n) % n
     ```
@@ -173,7 +175,7 @@ $$
             for j in range(0, i):
                 x[i] = r[j][i] * (x[i] - x[j])
                 x[i] = x[i] % p[i]
-                if (x[i] < 0):
+                if x[i] < 0:
                     x[i] = x[i] + p[i]
         ```
 

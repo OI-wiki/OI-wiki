@@ -124,8 +124,9 @@ $$
 
 === "Python"
     ```python
-    def build(a = 1, b = 1, c = 1, d = 0, level = 1):
-        x = a + c; y = b + d
+    def build(a=1, b=1, c=1, d=0, level=1):
+        x = a + c
+        y = b + d
         # ... output the current fraction x/y
         # at the current level in the tree
         build(a, b, x, y, level + 1)
@@ -148,14 +149,15 @@ $$
 
 === "Python"
     ```python
-    def find(x, y, a = 0, b = 1, c = 1, d = 0):
-        m = a + c; n = b + d
+    def find(x, y, a=0, b=1, c=1, d=0):
+        m = a + c
+        n = b + d
         if x == m and y == n:
             return ""
         if x * n < y * m:
-            return 'L' + find(x, y, a, b, m, n)
+            return "L" + find(x, y, a, b, m, n)
         else:
-            return 'R' + find(x, y, m, n, c, d)
+            return "R" + find(x, y, m, n, c, d)
     ```
 
 #### 例题
@@ -237,7 +239,7 @@ $$
     
     现在的问题是，给定 $\frac{p_0}{q_0} < \frac{p_1}{q_1}$，找到一个分数 $\frac{p}{q}$ 使得 $(q;p)$ 在字典上最小，并且 $\frac{p_0}{q_0} < \frac{p}{q} < \frac{p_1}{q_1}$。
     
-            def solve():
+        def solve():
             n = int(input())
             C = [0] * n
             J = [0] * n
@@ -248,21 +250,21 @@ $$
             for i in range(n):
                 C[i], J[i] = map(int, input().split())
                 if i > 0:
-                    A = C[i] - C[i-1]
-                    B = J[i] - J[i-1]
+                    A = C[i] - C[i - 1]
+                    B = J[i] - J[i - 1]
                     if A <= 0 and B <= 0:
                         fail = True
-                    elif B > 0 and A < 0: # y/x > (-A)/B if B > 0
-                        if (-A)*q0 > p0*B:
+                    elif B > 0 and A < 0:  # y/x > (-A)/B if B > 0
+                        if (-A) * q0 > p0 * B:
                             p0, q0 = -A, B
-                    elif B < 0 and A > 0: # y/x < A/(-B) if B < 0
-                        if A*q1 < p1*(-B):
+                    elif B < 0 and A > 0:  # y/x < A/(-B) if B < 0
+                        if A * q1 < p1 * (-B):
                             p1, q1 = A, -B
-            if p0*q1 >= p1*q0 or fail:
-                return 'IMPOSSIBLE'
+            if p0 * q1 >= p1 * q0 or fail:
+                return "IMPOSSIBLE"
     
             p, q = middle(p0, q0, p1, q1)
-            return str(q) + ' ' + str(p)
+            return str(q) + " " + str(p)
 
 ### Calkin–Wilf 树
 

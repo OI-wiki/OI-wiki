@@ -28,7 +28,7 @@
     
     所以定向后图肯定不存在环。
     
-    事实上，上述定向规则满足严格偏序的条件，所以按此规则构造的图（也即该偏序的 Hasse 图）一定是一个 DAG。
+    事实上，可以根据上述定向规则构造一个 [偏序](../math/order-theory.md#二元关系)，所以按此规则构造的图（也即该偏序的 [Hasse 图](../math/order-theory.md#偏序集的可视化表示hasse-图)）一定是一个 DAG。
 
 枚举 $u$ 和 $u$ 指向的点 $v$，再在 $v$ 指向的点中枚举 $w$，检验 $u$ 是否与 $w$ 相连即可。
 
@@ -54,7 +54,7 @@
 
 ### 例题 2
 
-???+ note "[HDU 6184 Counting Stars](https://vjudge.net/problem/HDU-6184)"
+???+ note "[HDU 6184 Counting Stars](https://acm.hdu.edu.cn/showproblem.php?pid=6184)"
     给定一张有 $n$ 个点和 $m$ 条边的无向图，求下面图形的出现次数。
     
     ![](./images/rings-count1.svg)

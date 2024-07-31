@@ -78,7 +78,7 @@ STL 提供了大约 100 个实现算法的模版函数，基本都包含在 `<al
         partial_sum(src.begin(), src.end(), back_inserter(dst));
         for (unsigned int i = 0; i < dst.size(); i++) cout << dst[i] << " ";
         ```
--   使用 `lower_bound` 查找有序数组 $a$ 中最接近 $x$ 的元素。例题：[UVA10487 Closest Sums](https://www.luogu.com.cn/problem/UVA10487)
+-   使用 `lower_bound` 查找有序数组 $a$ 中最接近 $x$ 的元素。例题：[UVa10487 Closest Sums](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1428)
 
     ???+ note "实现"
         ```cpp

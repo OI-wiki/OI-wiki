@@ -6,7 +6,7 @@ int idx = 1;
 long long sum[N << 5];
 int ls[N << 5], rs[N << 5], root[N << 2], rub[N << 5], cnt, tot;
 
-//内存分配与回收
+// 内存分配与回收
 int New() { return cnt ? rub[cnt--] : ++tot; }
 
 void Del(int &p) {
@@ -29,7 +29,7 @@ void build(int s, int t, int &p) {
   push_up(p);
 }
 
-//单点修改
+// 单点修改
 void update(int x, int c, int s, int t, int &p) {
   if (!p) p = New();
   if (s == t) {
@@ -44,7 +44,7 @@ void update(int x, int c, int s, int t, int &p) {
   push_up(p);
 }
 
-//合并
+// 合并
 int merge(int p, int q, int s, int t) {
   if (!p || !q) return p + q;
   if (s == t) {
@@ -60,7 +60,7 @@ int merge(int p, int q, int s, int t) {
   return p;
 }
 
-//分裂
+// 分裂
 void split(int &p, int &q, int s, int t, int l, int r) {
   if (t < l || r < s) return;
   if (!p) return;

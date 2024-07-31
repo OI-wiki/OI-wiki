@@ -10,11 +10,13 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 
 ## 性质
 
--   欧拉函数是积性函数。
+-   欧拉函数是 [积性函数](./basic.md#积性函数)。
 
-    积性是什么意思呢？如果有 $\gcd(a, b) = 1$，那么 $\varphi(a \times b) = \varphi(a) \times \varphi(b)$。
+    即对任意满足 $\gcd(a, b) = 1$ 的整数 $a,b$，有 $\varphi(ab) = \varphi(a)\varphi(b)$。
 
     特别地，当 $n$ 是奇数时 $\varphi(2n) = \varphi(n)$。
+
+    证明参见 [剩余系的复合](./basic.md#剩余系的复合)。
 
 -   $n = \sum_{d \mid n}{\varphi(d)}$。
 
@@ -49,6 +51,10 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
             \end{aligned}
             $$
 
+-   对任意不全为 $0$ 的整数 $m,n$，$\varphi(mn)\varphi(\gcd(m,n))=\varphi(m)\varphi(n)\gcd(m,n)$。
+
+    可由上一条直接计算得出。
+
 ## 实现
 
 如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用 [Pollard Rho](./pollard-rho.md) 算法优化。
@@ -73,6 +79,8 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 === "Python"
     ```python
     import math
+    
+    
     def euler_phi(n):
         m = math.isqrt(n + 0.5)
         ans = n
@@ -107,6 +115,8 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 === "Python"
     ```python
     import math
+    
+    
     def euler_phi(n):
         ans = n
         for i in range(2, math.isqrt(n) + 1):

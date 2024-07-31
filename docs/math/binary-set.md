@@ -127,7 +127,7 @@ for (int m = 0; m < (1 << n); ++m)
 如果掩码 $m$ 具有 $k$ 个 $1$，那么它有 $2^k$ 个子掩码。对于给定的 $k$，对应有 $\dbinom{n}{k}$ 个掩码 $m$，那么所有掩码的总数为：
 
 $$
-\sum_{k=0}^n \dbinom{n}{k} 2^n
+\sum_{k=0}^n \dbinom{n}{k} 2^k
 $$
 
 上面的和等于使用二项式定理对 $(1+2)^n$ 的展开，因此有 $3^n$ 个不同的组合。
@@ -141,5 +141,5 @@ $$
 - [Atcoder - Close Group](https://atcoder.jp/contests/abc187/tasks/abc187_f)
 - [Codeforces - Nuclear Fusion](http://codeforces.com/problemset/problem/71/E)
 - [Codeforces - Sandy and Nuts](http://codeforces.com/problemset/problem/599/E)
-- [Uva 1439 - Exclusive Access 2](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4185)
+- [UVa 1439 - Exclusive Access 2](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4185)
 - [UVa 11825 - Hackers' Crackdown](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2925)

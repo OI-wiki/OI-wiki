@@ -51,6 +51,13 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
                     ans += 1
         ```
     
+    === "Java"
+        ```java
+        for (int i = 0; i < n; ++i)
+          for (int j = 0; j < n; ++j)
+            if (a[i] + a[j] == 0) ++ans;
+        ```
+    
     来看看枚举的范围如何优化。由于题中没要求数对是有序的，答案就是有序的情况的两倍（考虑如果 `(a, b)` 是答案，那么 `(b, a)` 也是答案）。对于这种情况，只需统计人为要求有顺序之后的答案，最后再乘上 $2$ 就好了。
     
     不妨要求第一个数要出现在靠前的位置。代码如下：
@@ -70,6 +77,13 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
                     ans += 1
         ```
     
+    === "Java"
+        ```java
+        for (int i = 0; i < n; ++i)
+            for (int j = 0; j < i; ++j)
+                if (a[i] + a[j] == 0) ++ans;
+        ```
+    
     不难发现这里已经减少了 $j$ 的枚举范围，减少了这段代码的时间开销。
     
     我们可以在此之上进一步优化。
@@ -78,7 +92,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     
     === "C++"
         ```cpp
-        bool met[MAXN * 2];
+        bool met[MAXN * 2 + 1];
         memset(met, 0, sizeof(met));
         for (int i = 0; i < n; ++i) {
           if (met[MAXN - a[i]]) ++ans;
@@ -88,11 +102,20 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     
     === "Python"
         ```python
-        met = [False] * MAXN * 2
+        met = [False] * (MAXN * 2 + 1)
         for i in range(n):
             if met[MAXN - a[i]]:
                 ans += 1
             met[a[i] + MAXN] = True
+        ```
+    
+    === "Java"
+        ```java
+        boolean[] met = new boolean[MAXN * 2 + 1];
+        for (int i = 0; i < n; ++i) {
+            if (met[MAXN - a[i]]) ++ans;
+            met[MAXN + a[i]] = true;
+        }
         ```
 
 ### 复杂度分析

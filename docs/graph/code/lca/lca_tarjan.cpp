@@ -8,8 +8,8 @@ class Edge {
   int toVertex, fromVertex;
   int next;
   int LCA;
-  Edge() : toVertex(-1), fromVertex(-1), next(-1), LCA(-1){};
-  Edge(int u, int v, int n) : fromVertex(u), toVertex(v), next(n), LCA(-1){};
+  Edge() : toVertex(-1), fromVertex(-1), next(-1), LCA(-1) {};
+  Edge(int u, int v, int n) : fromVertex(u), toVertex(v), next(n), LCA(-1) {};
 };
 
 const int MAX = 100;
@@ -18,17 +18,11 @@ Edge edge[MAX], queryEdge[MAX];
 int parent[MAX], visited[MAX];
 int vertexCount, queryCount;
 
-void init() {
-  for (int i = 0; i <= vertexCount; i++) {
-    parent[i] = i;
-  }
-}
-
 int find(int x) {
   if (parent[x] == x) {
     return x;
   } else {
-    return find(parent[x]);
+    return parent[x] = find(parent[x]);
   }
 }
 
@@ -85,7 +79,6 @@ int main() {
     count++;
   }
 
-  init();
   tarjan(1);
 
   for (int i = 0; i < queryCount; i++) {

@@ -23,7 +23,6 @@ nav:
     - 格式手册: intro/format.md
     - 数学符号表: intro/symbol.md
     - F.A.Q.: intro/faq.md
-    - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 镜像站列表: intro/mirrors.md
     - 致谢: intro/thanks.md
   - 比赛相关:
@@ -59,6 +58,7 @@ nav:
       - GUIDE: tools/editor/guide.md
       - Sublime Text: tools/editor/sublime.md
       - CP Editor: tools/editor/cpeditor.md
+      - Code::Blocks: tools/editor/codeblocks.md
     - 评测工具: 
       - 评测工具简介: tools/judger/index.md
       - Arbiter: tools/judger/arbiter.md
@@ -272,6 +272,7 @@ nav:
       - 常系数齐次线性递推: math/poly/linear-recurrence.md
       - 多项式平移|连续点值平移: math/poly/shift.md
       - 符号化方法: math/poly/symbolic-method.md
+      - Lagrange 反演: math/poly/lagrange-inversion.md
       - 普通生成函数: math/poly/ogf.md
       - 指数生成函数: math/poly/egf.md
       - 狄利克雷生成函数: math/poly/dgf.md
@@ -322,7 +323,7 @@ nav:
       - 非公平组合游戏: math/game-theory/partizan-game.md
       - 反常游戏: math/game-theory/misere-game.md
     - 数值算法:
-      - 拉格朗日插值: math/numerical/lagrange.md
+      - 插值: math/numerical/interp.md
       - 数值积分: math/numerical/integral.md
       - 高斯消元: math/numerical/gauss.md
       - 牛顿迭代法: math/numerical/newton.md
@@ -520,8 +521,6 @@ nav:
     - 并查集应用: topic/dsu-app.md
     - 括号序列: topic/bracket.md
     - 线段树与离线询问: topic/segment-tree-offline.md
-  - 关于 Hulu:
-    -  关于 Hulu: intro/hulu.md
 
 # Theme
 theme:
@@ -583,9 +582,12 @@ extra_javascript:
 
 extra_css:
   - '_static/css/extra.css?v=14'
+  # - '_static/css/offset-inject-debug.css'
 
 # Extensions
 markdown_extensions:
+  - document-offsets-injection:
+      # debug: true
   - admonition
   - def_list
   - footnotes

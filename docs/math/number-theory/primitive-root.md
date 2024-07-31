@@ -25,7 +25,7 @@
 $a,a^2,\cdots,a^{\delta_m(a)}$ 模 $m$ 两两不同余。
 
 ???+ note "证明"
-    考虑反证，假设存在两个数 $i\ne j$，且 $a^i\equiv a^j\pmod m$，则有 $a^{|i-j|}\equiv 1\pmod p$.
+    考虑反证，假设存在两个数 $i\ne j$，且 $a^i\equiv a^j\pmod m$，则有 $a^{|i-j|}\equiv 1\pmod m$.
     
     但是显然的有：$0<|i-j|<\delta_m(a)$，这与阶的最小性矛盾，故原命题成立。
 
@@ -272,7 +272,7 @@ $$
                 \delta_m\left(b^Z\right)=W
                 $$
                 
-                又因为显然有 $(Y,W)=1$，$YW=\left[\delta_p(a),\delta_p(b)\right]$，则再由阶的 [性质 1](#性质-1)，可得：
+                又因为显然有 $(Y,W)=1$，$YW=\left[\delta_p(a),\delta_p(b)\right]$，则再由阶的 [性质 3](#性质-3)，可得：
                 
                 $$
                 \begin{aligned}
