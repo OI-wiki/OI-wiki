@@ -894,13 +894,14 @@ void print(Node* cur) {
     class Treap {
      private:
       Node *root;
+    ```
 
       const static int NIL = -1; // 用于表示查询的值不存在
-    
+
       enum rot_type { LF = 1, RT = 0 };
-    
+
       int q_prev_tmp = 0, q_nex_tmp = 0;
-    
+
       void _rotate(Node *&cur, rot_type dir) {  // 0为右旋，1为左旋
         Node *tmp = cur->ch[dir];
         cur->ch[dir] = tmp->ch[!dir];
@@ -908,7 +909,7 @@ void print(Node* cur) {
         cur->upd_siz(), tmp->upd_siz();
         cur = tmp;
       }
-    
+
       void _insert(Node *&cur, int val) {
         if (cur == nullptr) {
           cur = new Node(val);
@@ -930,7 +931,7 @@ void print(Node* cur) {
           cur->upd_siz();
         }
       }
-    
+
       void _del(Node *&cur, int val) {
         if (val > cur->val) {
           _del(cur->ch[1], val);
@@ -970,7 +971,7 @@ void print(Node* cur) {
           }
         }
       }
-    
+
       int _query_rank(Node *cur, int val) {
         int less_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
         if (val == cur->val)
@@ -987,7 +988,7 @@ void print(Node* cur) {
             return cur->siz + 1;
         }
       }
-    
+
       int _query_val(Node *cur, int rank) {
         int less_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
         if (rank <= less_siz)
@@ -997,7 +998,7 @@ void print(Node* cur) {
         else
           return _query_val(cur->ch[1], rank - less_siz - cur->rep_cnt);
       }
-    
+
       int _query_prev(Node *cur, int val) {
         if (val <= cur->val) {
           if (cur->ch[0] != nullptr) return _query_prev(cur->ch[0], val);
@@ -1008,7 +1009,7 @@ void print(Node* cur) {
         }
         return NIL;
       }
-    
+
       int _query_nex(Node *cur, int val) {
         if (val >= cur->val) {
           if (cur->ch[1] != nullptr) return _query_nex(cur->ch[1], val);
@@ -1019,23 +1020,23 @@ void print(Node* cur) {
         }
         return NIL;
       }
-    
+
      public:
       void insert(int val) { _insert(root, val); }
-    
+
       void del(int val) { _del(root, val); }
-    
+
       int query_rank(int val) { return _query_rank(root, val); }
-    
+
       int query_val(int rank) { return _query_val(root, rank); }
-    
+
       int query_prev(int val) { return _query_prev(root, val); }
-    
+
       int query_nex(int val) { return _query_nex(root, val); }
     };
-    
+
     Treap tr;
-    
+
     int main() {
       srand(0);
       int t;
