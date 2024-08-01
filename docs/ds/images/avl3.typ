@@ -3,8 +3,10 @@
 #set page(height: auto, width: auto, fill: white)
 
 #diagram(
-  node-stroke: 0.6pt,
-  node-fill: white, {
+  node-stroke: 1pt,
+  node-fill: white, 
+  edge-stroke: 1pt,
+  {
     let (d1, b1, e1, a1, c1) = ((2,1),(1,3),(3,3),(0,5),(2,5))
     let (c2, b2, d2, a2, e2) = ((11,1), (10,3),(12,3),(9,5),(13,5))
 
@@ -25,9 +27,9 @@
     edge(c1, (c1.at(0) - 0.6, 6.3))
     edge(c1, (c1.at(0) + 0.6, 6.3))
 
-    edge((5, 3), (8, 3), "->", [
+    edge((5, 3), (8, 3), "->", text(size: 16pt, [
       LeftRotate(B), RightRotate(D)
-    ])
+    ]))
 
     node(d2, [D])
     node(b2, [B])

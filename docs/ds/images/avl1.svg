@@ -10,13 +10,13 @@
                         <g class="typst-group">
                             <g>
                                 <g transform="translate(83.31262922557514 20.85857658705712)">
-                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 40.604504 0 C 40.604504 0 0 66.3874 0 66.3874 "/>
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 40.604504 0 C 40.604504 0 0 66.3874 0 66.3874 "/>
                                 </g>
                                 <g transform="translate(135.7431169685609 20.86464385955215)">
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 0 0 C 0 0 40.548836 66.447556 40.548836 66.447556 "/>
+                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 0 0 C 0 0 40.548836 66.447556 40.548836 66.447556 "/>
                                             </g>
                                         </g>
                                     </g>
@@ -25,7 +25,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 40.594547 0 C 40.594547 0 0 66.40108 0 66.40108 "/>
+                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 40.594547 0 C 40.594547 0 0 66.40108 0 66.40108 "/>
                                             </g>
                                         </g>
                                     </g>
@@ -34,7 +34,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 0 0 C 0 0 40.763233 66.54118 40.763233 66.54118 "/>
+                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 0 0 C 0 0 40.763233 66.54118 40.763233 66.54118 "/>
                                             </g>
                                         </g>
                                     </g>
@@ -43,7 +43,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 25.992598 0 C 25.992598 0 0 46.003307 0 46.003307 "/>
+                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 25.992598 0 C 25.992598 0 0 46.003307 0 46.003307 "/>
                                             </g>
                                         </g>
                                     </g>
@@ -52,7 +52,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 0 0 C 0 0 20.887241 45.61786 20.887241 45.61786 "/>
+                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 0 0 C 0 0 20.887241 45.61786 20.887241 45.61786 "/>
                                             </g>
                                         </g>
                                     </g>
@@ -61,7 +61,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 20.719162 0 C 20.719162 0 0 42.42979 0 42.42979 "/>
+                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 20.719162 0 C 20.719162 0 0 42.42979 0 42.42979 "/>
                                             </g>
                                         </g>
                                     </g>
@@ -70,7 +70,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 0 0 C 0 0 25.459864 42.88655 25.459864 42.88655 "/>
+                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 0 0 C 0 0 25.459864 42.88655 25.459864 42.88655 "/>
                                             </g>
                                         </g>
                                     </g>
@@ -79,7 +79,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 25.617548 0 C 25.617548 0 0 43.025486 0 43.025486 "/>
+                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 25.617548 0 C 25.617548 0 0 43.025486 0 43.025486 "/>
                                             </g>
                                         </g>
                                     </g>
@@ -88,7 +88,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 0 0 C 0 0 25.528019 43.017044 25.528019 43.017044 "/>
+                                                <path class="typst-shape" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4" d="M 0 0 C 0 0 25.528019 43.017044 25.528019 43.017044 "/>
                                             </g>
                                         </g>
                                     </g>
@@ -97,7 +97,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="#ffffff" stroke="#000000" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" d="M 11.287411 0 C 17.515623 0 22.574821 5.059198 22.574821 11.287411 C 22.574821 11.287411 22.574821 11.287411 22.574821 11.287411 C 22.574821 17.515623 17.515623 22.574821 11.287411 22.574821 C 11.287411 22.574821 11.287411 22.574821 11.287411 22.574821 C 5.059198 22.574821 0 17.515623 0 11.287411 C 0 11.287411 0 11.287411 0 11.287411 C 0 5.059198 5.059198 0 11.287411 0 C 11.287411 0 11.287411 0 11.287411 0 Z "/>
+                                                <path class="typst-shape" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" d="M 11.287411 0 C 17.515623 0 22.574821 5.059198 22.574821 11.287411 C 22.574821 11.287411 22.574821 11.287411 22.574821 11.287411 C 22.574821 17.515623 17.515623 22.574821 11.287411 22.574821 C 11.287411 22.574821 11.287411 22.574821 11.287411 22.574821 C 5.059198 22.574821 0 17.515623 0 11.287411 C 0 11.287411 0 11.287411 0 11.287411 C 0 5.059198 5.059198 0 11.287411 0 C 11.287411 0 11.287411 0 11.287411 0 Z "/>
                                             </g>
                                         </g>
                                     </g>
@@ -129,7 +129,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="#ffffff" stroke="#000000" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" d="M 10.853876 0 C 16.84287 0 21.707752 4.864881 21.707752 10.853876 C 21.707752 10.853876 21.707752 10.853876 21.707752 10.853876 C 21.707752 16.84287 16.84287 21.707752 10.853876 21.707752 C 10.853876 21.707752 10.853876 21.707752 10.853876 21.707752 C 4.864881 21.707752 0 16.84287 0 10.853876 C 0 10.853876 0 10.853876 0 10.853876 C 0 4.864881 4.864881 0 10.853876 0 C 10.853876 0 10.853876 0 10.853876 0 Z "/>
+                                                <path class="typst-shape" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" d="M 10.853876 0 C 16.84287 0 21.707752 4.864881 21.707752 10.853876 C 21.707752 10.853876 21.707752 10.853876 21.707752 10.853876 C 21.707752 16.84287 16.84287 21.707752 10.853876 21.707752 C 10.853876 21.707752 10.853876 21.707752 10.853876 21.707752 C 4.864881 21.707752 0 16.84287 0 10.853876 C 0 10.853876 0 10.853876 0 10.853876 C 0 4.864881 4.864881 0 10.853876 0 C 10.853876 0 10.853876 0 10.853876 0 Z "/>
                                             </g>
                                         </g>
                                     </g>
@@ -161,7 +161,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="#ffffff" stroke="#000000" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" d="M 10.741116 0 C 16.66789 0 21.482231 4.8143396 21.482231 10.741116 C 21.482231 10.741116 21.482231 10.741116 21.482231 10.741116 C 21.482231 16.66789 16.66789 21.482231 10.741116 21.482231 C 10.741116 21.482231 10.741116 21.482231 10.741116 21.482231 C 4.8143396 21.482231 0 16.66789 0 10.741116 C 0 10.741116 0 10.741116 0 10.741116 C 0 4.8143396 4.8143396 0 10.741116 0 C 10.741116 0 10.741116 0 10.741116 0 Z "/>
+                                                <path class="typst-shape" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" d="M 10.741116 0 C 16.66789 0 21.482231 4.8143396 21.482231 10.741116 C 21.482231 10.741116 21.482231 10.741116 21.482231 10.741116 C 21.482231 16.66789 16.66789 21.482231 10.741116 21.482231 C 10.741116 21.482231 10.741116 21.482231 10.741116 21.482231 C 4.8143396 21.482231 0 16.66789 0 10.741116 C 0 10.741116 0 10.741116 0 10.741116 C 0 4.8143396 4.8143396 0 10.741116 0 C 10.741116 0 10.741116 0 10.741116 0 Z "/>
                                             </g>
                                         </g>
                                     </g>
@@ -193,7 +193,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="#ffffff" stroke="#000000" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" d="M 11.263968 0 C 17.479246 0 22.527937 5.048691 22.527937 11.263968 C 22.527937 11.263968 22.527937 11.263968 22.527937 11.263968 C 22.527937 17.479246 17.479246 22.527937 11.263968 22.527937 C 11.263968 22.527937 11.263968 22.527937 11.263968 22.527937 C 5.048691 22.527937 0 17.479246 0 11.263968 C 0 11.263968 0 11.263968 0 11.263968 C 0 5.048691 5.048691 0 11.263968 0 C 11.263968 0 11.263968 0 11.263968 0 Z "/>
+                                                <path class="typst-shape" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" d="M 11.263968 0 C 17.479246 0 22.527937 5.048691 22.527937 11.263968 C 22.527937 11.263968 22.527937 11.263968 22.527937 11.263968 C 22.527937 17.479246 17.479246 22.527937 11.263968 22.527937 C 11.263968 22.527937 11.263968 22.527937 11.263968 22.527937 C 5.048691 22.527937 0 17.479246 0 11.263968 C 0 11.263968 0 11.263968 0 11.263968 C 0 5.048691 5.048691 0 11.263968 0 C 11.263968 0 11.263968 0 11.263968 0 Z "/>
                                             </g>
                                         </g>
                                     </g>
@@ -225,7 +225,7 @@
                                     <g class="typst-group">
                                         <g>
                                             <g transform="translate(0 0)">
-                                                <path class="typst-shape" fill="#ffffff" stroke="#000000" stroke-width="0.6" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" d="M 11.072367 0 C 17.181921 0 22.144733 4.962812 22.144733 11.072367 C 22.144733 11.072367 22.144733 11.072367 22.144733 11.072367 C 22.144733 17.181921 17.181921 22.144733 11.072367 22.144733 C 11.072367 22.144733 11.072367 22.144733 11.072367 22.144733 C 4.962812 22.144733 0 17.181921 0 11.072367 C 0 11.072367 0 11.072367 0 11.072367 C 0 4.962812 4.962812 0 11.072367 0 C 11.072367 0 11.072367 0 11.072367 0 Z "/>
+                                                <path class="typst-shape" fill="#ffffff" stroke="#000000" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="4" d="M 11.072367 0 C 17.181921 0 22.144733 4.962812 22.144733 11.072367 C 22.144733 11.072367 22.144733 11.072367 22.144733 11.072367 C 22.144733 17.181921 17.181921 22.144733 11.072367 22.144733 C 11.072367 22.144733 11.072367 22.144733 11.072367 22.144733 C 4.962812 22.144733 0 17.181921 0 11.072367 C 0 11.072367 0 11.072367 0 11.072367 C 0 4.962812 4.962812 0 11.072367 0 C 11.072367 0 11.072367 0 11.072367 0 Z "/>
                                             </g>
                                         </g>
                                     </g>
