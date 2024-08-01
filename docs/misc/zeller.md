@@ -6,7 +6,7 @@ author:marscheng1
 
 ## 蔡勒公式
 
-蔡勒公式是用来计算任意日期是星期几的公式，其公式如下：
+蔡勒公式是用来计算任意日期（格里高利历即现行公历）是星期几的公式，现行公历，其公式如下：
 
 $$
 w = (y+\lfloor\frac{y}{4}\rfloor+\lfloor\frac{c}{4}\rfloor-2c+\lfloor\frac{26(m+1)}{10}\rfloor+d-1)\mod 7
@@ -38,3 +38,5 @@ $$
       return ans
     }
     ```
+
+
