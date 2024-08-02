@@ -71,6 +71,7 @@ void assign(int l, int r, int v) {
 ```
 
 ??? 为什么需要先 `split(r + 1)` 再 `split(l)`？
+    
 
     1. `std::set::erase` 方法将使指向被擦除元素的引用和迭代器失效。而其他引用和迭代器不受影响。
     2. `std::set::insert` 方法不会使任何迭代器或引用失效。
@@ -109,8 +110,8 @@ void perform(int l, int r) {
 
 ```cpp
 void split(int x) {
-  auto it = prev(mp.upper_bound(x)); // 找到左端点小于等于 x 的区间。
-  mp[x] = it->second; // 设立新的区间，并将上一个区间储存的值复制给本区间。
+  auto it = prev(mp.upper_bound(x));  // 找到左端点小于等于 x 的区间。
+  mp[x] = it->second;  // 设立新的区间，并将上一个区间储存的值复制给本区间。
 }
 ```
 
@@ -118,8 +119,12 @@ void split(int x) {
 
 ```cpp
 auto split(int pos) {
-  auto it = prev(mp.upper_bound(pos)); // 找到左端点小于等于 x 的区间。
-  return mp.insert(it, make_pair(pos, it->second)); // 设立新的区间，并将上一个区间储存的值复制给本区间。
+  auto it = prev(mp.upper_bound(pos));  // 找到左端点小于等于 x 的区间。
+  return mp.insert(
+      it,
+      make_pair(
+          pos,
+          it->second));  // 设立新的区间，并将上一个区间储存的值复制给本区间。
 }
 ```
 
@@ -129,7 +134,7 @@ auto split(int pos) {
 
 ## 实现（链表）
 
-可参考 [题解 CF896C 【Willem, Chtholly and Seniorious】 - 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/umiw1fwp)。
+可参考 [题解 CF896C【Willem, Chtholly and Seniorious】- 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/umiw1fwp)。
 
 ## 复杂度分析
 
@@ -152,4 +157,4 @@ auto split(int pos) {
 
 ## 扩展阅读
 
-[ODT的映射思想的推广 - 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/0mys9qkh)
+[ODT 的映射思想的推广 - 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/0mys9qkh)
