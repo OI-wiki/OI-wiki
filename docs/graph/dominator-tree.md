@@ -185,7 +185,7 @@ void getidom() {
 
 我们发现 DAG 有一个很好的性质：根据拓扑序求解，先求得的解不会对后续的解产生影响。我们可以利用这个特点快速求得 DAG 的支配树。
 
-值得注意的是此处的DAG只能有一个起点，如果有多个起点，受起点支配的点在支配树上出现有多个父亲的情况，从而使支配关系不能简单的用支配树来表达。
+值得注意的是此处的 DAG 只能有一个起点，如果有多个起点，受起点支配的点在支配树上出现有多个父亲的情况，从而使支配关系不能简单的用支配树来表达。
 
 **引理 6：** 在有向图上，$v\ dom\ u$ 当且仅当 $\forall w \in pre(u), v\ dom \ w$。
 
@@ -203,87 +203,69 @@ std::vector<int> e[N], g[N], tree[N]; // g 是原图的反图，tree 是支配�
 int n, m, s, tot, in[N], tpn[N], dep[N];
 int fth[N][17];
 
-void topo(int s)
-{
-    sta.push(s);
-    while (!sta.empty())
-    {
-        int u = sta.top();
-        sta.pop();
-        tpn[++tot] = u;
-        for (int v : e[u])
-        {
-            --in[v];
-            if (!in[v])
-            {
-                sta.push(v);
-            }
-        }
+void topo(int s) {
+  sta.push(s);
+  while (!sta.empty()) {
+    int u = sta.top();
+    sta.pop();
+    tpn[++tot] = u;
+    for (int v : e[u]) {
+      --in[v];
+      if (!in[v]) {
+        sta.push(v);
+      }
     }
+  }
 }
 
-int lca(int u, int v)
-{
-    if (dep[u] < dep[v])
-    {
-        std::swap(u, v);
+int lca(int u, int v) {
+  if (dep[u] < dep[v]) {
+    std::swap(u, v);
+  }
+  for (int i = 15; i >= 0; --i) {
+    if (dep[fth[u][i]] >= dep[v]) {
+      u = fth[u][i];
     }
-    for (int i = 15; i >= 0; --i)
-    {
-        if (dep[fth[u][i]] >= dep[v])
-        {
-            u = fth[u][i];
-        }
+  }
+  if (u == v) {
+    return u;
+  }
+  for (int i = 15; i >= 0; --i) {
+    if (fth[u][i] != fth[v][i]) {
+      u = fth[u][i];
+      v = fth[v][i];
     }
-    if (u == v)
-    {
-        return u;
-    }
-    for (int i = 15; i >= 0; --i)
-    {
-        if (fth[u][i] != fth[v][i])
-        {
-            u = fth[u][i];
-            v = fth[v][i];
-        }
-    }
-    return fth[u][0];
+  }
+  return fth[u][0];
 }
 
-int main()
-{
-    cin >> n >> m >> s;
-    for (int i = 1; i <= m; ++i)
-    {
-        int u, v;
-        cin >> u >> v;
-        ++in[v];
-        e[u].push_back(v);
-        g[v].push_back(u);
+int main() {
+  cin >> n >> m >> s;
+  for (int i = 1; i <= m; ++i) {
+    int u, v;
+    cin >> u >> v;
+    ++in[v];
+    e[u].push_back(v);
+    g[v].push_back(u);
+  }
+  topo(s);
+  for (int i = 1; i <= n; ++i)
+    for (int j = 0; j <= 15; ++j) fth[i][j] = s;
+  for (int i = 1; i <= n; ++i) {
+    int u = tpn[i];
+    if (g[u].size()) {
+      int v = g[u][0];
+      for (int j = 1, q = g[u].size(); j < q; ++j) {
+        v = lca(v, g[u][j]);
+      }
+      tree[v].push_back(u);
+      fth[u][0] = v;
+      dep[u] = dep[v] + 1;
+      for (int i = 1; i <= 15; ++i) {
+        fth[u][i] = fth[fth[u][i - 1]][i - 1];
+      }
     }
-    topo(s);
-    for (int i = 1; i <= n; ++i)
-        for (int j = 0; j <= 15; ++j)
-            fth[i][j] = s;
-    for (int i = 1; i <= n; ++i)
-    {
-        int u = tpn[i];
-        if (g[u].size())
-        {
-            int v = g[u][0];
-            for (int j = 1, q = g[u].size(); j < q; ++j)
-            {
-                v = lca(v, g[u][j]);
-            }
-            tree[u] = v;
-            fth[u][0] = v;
-            dep[u] = dep[v] + 1;
-            for (int i = 1; i <= 15; ++i)
-            {
-                fth[u][i] = fth[fth[u][i - 1]][i - 1];
-            }
-        }
-    }
+  }
 }
 
 ```
