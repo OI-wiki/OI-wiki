@@ -83,3 +83,8 @@ $$
       return ans
     }
     ```
+
+## 参考资料
+
+1. [蔡勒(Zeller)公式及其推导：快速将任意日期转换为星期数](https://www.cnblogs.com/faterazer/p/11393521.html)
+
