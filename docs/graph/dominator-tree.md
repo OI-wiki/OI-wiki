@@ -199,7 +199,7 @@ void getidom() {
 
 ```c++
 std::stack<int> sta;
-std::vector<int> e[N], g[N], tree[N];
+std::vector<int> e[N], g[N], tree[N]; // g 是原图的反图，tree 是支配树
 int n, m, s, tot, in[N], tpn[N], dep[N];
 int fth[N][17];
 
@@ -275,6 +275,7 @@ int main()
             {
                 v = lca(v, g[u][j]);
             }
+            tree[u] = v;
             fth[u][0] = v;
             dep[u] = dep[v] + 1;
             for (int i = 1; i <= 15; ++i)
