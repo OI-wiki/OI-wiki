@@ -120,7 +120,7 @@ void split(int x) {
 ```cpp
 auto split(int pos) {
   auto it = prev(mp.upper_bound(pos));  // 找到左端点小于等于 x 的区间。
-  return mp.insert(it, make_pair(pos, it->second)); 
+  return mp.insert(it, make_pair(pos, it->second));
   // 设立新的区间，并将上一个区间储存的值复制给本区间。
 }
 ```
