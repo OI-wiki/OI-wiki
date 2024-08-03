@@ -199,7 +199,7 @@ void getidom() {
 
 ```c++
 std::stack<int> sta;
-std::vector<int> e[N], g[N], tree[N]; // g 是原图的反图，tree 是支配树
+std::vector<int> e[N], g[N], tree[N];  // g 是原图的反图，tree 是支配树
 int n, m, s, tot, in[N], tpn[N], dep[N];
 int fth[N][17];
 
