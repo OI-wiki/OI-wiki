@@ -120,17 +120,14 @@ void split(int x) {
 ```cpp
 auto split(int pos) {
   auto it = prev(mp.upper_bound(pos));  // 找到左端点小于等于 x 的区间。
-  return mp.insert(
-      it,
-      make_pair(
-          pos,
-          it->second));  // 设立新的区间，并将上一个区间储存的值复制给本区间。
+  return mp.insert(it, make_pair(pos, it->second)); 
+  // 设立新的区间，并将上一个区间储存的值复制给本区间。
 }
 ```
 
 这里使用了 `std::map::insert` 的重载 `iterator insert( const_iterator pos, const value_type& value );`，其插入 `value` 到尽可能接近正好在 `pos` 之前的位置。如果插入恰好发生在正好在 `pos` 之前的位置，那么复杂度是均摊常数，否则复杂度与容器大小成对数。
 
-其余操作与 `std::set ` 并无二异。
+其余操作与 `std::set` 并无二异。
 
 ## 实现（链表）
 
