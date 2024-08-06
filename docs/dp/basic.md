@@ -1,4 +1,4 @@
-author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007, Persdre, XiaoSuan250, hhc0001, ZhangZhanhaoxiang
+author: Ir1d, CBW2007, ChungZH, xhn16729, Xeonacid, tptpp, hsfzLZH1, ouuan, Marcythm, HeRaNO, greyqz, Chrogeek, partychicken, zhb2000, xyf007, Persdre, XiaoSuan250, hhc0001, ZhangZhanhaoxiang, Taoran_01
 
 本页面主要介绍了动态规划的基本思想，以及动态规划中状态及状态转移方程的设计思路，帮助各位初学者对动态规划有一个初步的了解。
 
@@ -222,6 +222,13 @@ int dp() {
     while dp[ans] != mx:
         ans += 1
     ```
+
+???+ warning "注意"
+    在解决最长 **上升** 子序列问题时，$d_i$ 表示所有的长度为 $i$ 的最长上升子序列的末尾元素的最小值。
+
+    针对步骤 2，若元素小于 $d_{len}$，由于最长上升子序列中前一个元素和后一个元素不能相等，需要找到 **第一个** **大于或等于** 它的元素，用 $a_i$ 替换它。
+    
+    这种情况要求严格单调递增，应二分查找左边界。在C++中，需要将 `upper_bound` 函数改为 `lower_bound`。
 
 ## 参考资料与注释
 
