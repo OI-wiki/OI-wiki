@@ -64,7 +64,8 @@ $$
 $$
 
 \begin{aligned}
- \overline{p}(n,d) & = \frac{d}{d}\cdot \frac{d-1}{d}\cdot \frac{d-2}{d} \cdots \frac{d-n+1}{d}\\
+\overline{p}(n,d) 
+& = \frac{d}{d}\cdot \frac{d-1}{d}\cdot \frac{d-2}{d} \cdots \frac{d-n+1}{d}\\
 & = \frac{d\cdot (d-1)\cdot (d-2)\cdots(d-n+1)}{d^n}\\
 & = \frac{\frac{d!}{(d-n)!}}{d^n}\\
 & = \frac{d!}{d^n\left(d-n\right)!}
@@ -138,7 +139,7 @@ $p(10^6,6^62) \approx 0.9$
 
 首先，这种 Hash 是形如 $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i}$，我们根据 $b$ 来分类讨论。
 
-#### $b$ 为偶数
+#### b 为偶数
 
 此时 $f(s) = s_1\cdot b^l + s_2\cdot b^{l-1} + \cdots + s_l\cdot b \pmod M$，其中 $M$ 为 $2^{64}$。
 
@@ -146,12 +147,13 @@ $p(10^6,6^62) \approx 0.9$
 
 所以我们只要构造形如：
 
-$aaaa...a\\
-baaa...a$
+`aaa...a`
+
+`baa...a`
 
 且长度大于 $64$ 的字符串就能冲突。
 
-#### $b$ 为奇数
+#### b 为奇数
 
 定义 $!s_i$ 为把 $s_i$ 中所有字符反转。
 
@@ -188,11 +190,14 @@ $$
 
 设：
 
-$f_i = hash_i - !hash_i$
+$$
+\begin{aligned}
+f_i = hash_i - !hash_i\\
+g_i = base^{2^{i-2}-1}
+\end{aligned}
+$$
 
-$g_i = base^{2^{i-2}-1}$
-
-带回原式：
+根据原式得：
 
 $$
 \begin{aligned}
@@ -209,17 +214,21 @@ $$
 2^{i-1} | f_i
 $$
 
-但这样太大了，$i-1\ge 64$ 才能卡掉，继续化简。
+但这样太大了，$i-1\ge 64$ 才能卡掉，继续化简：
 
 $$
-g_i = base^{2^{i-2}-1} = (base_{2^{i-2}}-1)\cdot(base^{2^{i-2}}+1)\\
+g_i = base^{2^{i-2}-1} = (base^{2^{i-2}}-1)\cdot(base^{2^{i-2}}+1)\\
 $$
+
+即 $g_i$ 为 $g_{i-1} \cdot c\ (c \equiv 0 \pmod 2)$ 的形式。
+
+所以 $2 | s_1$，$4|s_2$ ...，即
 
 $$
 \begin{aligned}
-\therefore & 2^i | g_i\\
-&2^2\cdot2^2\cdot2^3\cdots2^{i-1} | f_i\\
-&2^{i(i-1)/2} | f_i
+& 2^i &| g_i\\
+&2^1\cdot2^2\cdot2^3\cdots2^{i-1} &| f_i\\
+&2^{i(i-1)/2} &| f_i
 \end{aligned}
 $$
 
@@ -312,8 +321,6 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
 === "C++"
     ```cpp
     typedef unsigned long long ull;
-    ```
-
     ull base = 131;
     ull mod1 = 212370440130137957, mod2 = 1e9 + 7;
     ull get_hash1(std::string s) {
@@ -346,8 +353,6 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
         for char in s:
             ans = (ans * base + ord(char)) % mod1
         return ans
-    ```
-
     def get_hash2(s: str) -> int:
         base = 131
         mod2 = 1000000007
@@ -355,7 +360,6 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
         for char in s:
             ans = (ans * base + ord(char)) % mod2
         return ans
-
     def cmp(s: str, t: str) -> bool:
         f1 = get_hash1(s) != get_hash1(t)
         f2 = get_hash2(s) != get_hash2(t)
