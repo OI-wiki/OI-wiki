@@ -141,8 +141,6 @@ void assign(int l, int r, int v) {  // 注意，这里的r是区间右端点+1
   }
   mp[l] = v;
 }
-}
-;
 ```
 
 ### perform 操作
