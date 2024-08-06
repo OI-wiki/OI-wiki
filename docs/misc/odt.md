@@ -23,7 +23,6 @@ struct Node_t {
 
 ???+ note "`mutable` 关键字的含义是什么？"
     `mutable` 的意思是「可变的」，让我们可以在后面的操作中修改 `v` 的值。在 C++ 中，mutable 是为了突破 const 的限制而设置的。被 mutable 修饰的变量（mutable 只能用于修饰类中的非静态数据成员），将永远处于可变的状态，即使在一个 const 函数中。
-    
 
     这意味着，我们可以直接修改已经插入 `set` 的元素的 `v` 值，而不用将该元素取出后重新加入 `set`。
 
@@ -73,10 +72,10 @@ void assign(int l, int r, int v) {
 }
 ```
 
-???+ note "为什么需要先 `split(r + 1)` 再 `split(l)`？"
-    1. `std::set::erase` 方法将使指向被擦除元素的引用和迭代器失效。而其他引用和迭代器不受影响。
-    2. `std::set::insert` 方法不会使任何迭代器或引用失效。
-    3. `split` 操作会将区间拆开。调用 `split(r + 1)` 之后 $r + 1$ 会成为两个新区间中右边区间的左端点，此时 `split` 左区间，必然不会访问到 $r + 1$ 为左端点的那个区间，也就不会将其拆开，删去 $r + 1$ 为左端点的区间，使迭代器失效。反之，先 `split(l)`，再 `split(r + 1)`，可能会把 $l$ 为左端点的区间删去，使迭代器失效。
+???+ note " 为什么需要先 `split(r + 1)` 再 `split(l)`？"
+    1.  `std::set::erase` 方法将使指向被擦除元素的引用和迭代器失效。而其他引用和迭代器不受影响。
+    2.  `std::set::insert` 方法不会使任何迭代器或引用失效。
+    3.  `split` 操作会将区间拆开。调用 `split(r + 1)` 之后 $r + 1$ 会成为两个新区间中右边区间的左端点，此时 `split` 左区间，必然不会访问到 $r + 1$ 为左端点的那个区间，也就不会将其拆开，删去 $r + 1$ 为左端点的区间，使迭代器失效。反之，先 `split(l)`，再 `split(r + 1)`，可能会把 $l$ 为左端点的区间删去，使迭代器失效。
 
 ### perform 操作
 
@@ -133,30 +132,31 @@ auto split(int pos) {
 对于 assign 操作，我们需要把 $[l,r−1]$ 内所有区间左端点删除，再建立新的区间。
 
 ```cpp
-void assign(int l, int r, int v) { // 注意，这里的r是区间右端点+1
-        split(l);
-        split(r);
-        auto it = mp.find(l);
-        while (it->first != r) {
-            it = mp.erase(it);
-        }
-        mp[l] = v;
-    }
-};
+void assign(int l, int r, int v) {  // 注意，这里的r是区间右端点+1
+  split(l);
+  split(r);
+  auto it = mp.find(l);
+  while (it->first != r) {
+    it = mp.erase(it);
+  }
+  mp[l] = v;
+}
+}
+;
 ```
 
 ### perform 操作
 
 ```cpp
-void perform(int l, int r) { // 注意，这里的r是区间右端点+1
-        split(l);
-        split(r);
-        auto it = mp.find(l);
-        while (it->first != r) {
-            // Perform Operations here
-            it = next(it);
-        }
-    }
+void perform(int l, int r) {  // 注意，这里的r是区间右端点+1
+  split(l);
+  split(r);
+  auto it = mp.find(l);
+  while (it->first != r) {
+    // Perform Operations here
+    it = next(it);
+  }
+}
 ```
 
 ## 实现（链表）
@@ -169,12 +169,14 @@ void perform(int l, int r) { // 注意，这里的r是区间右端点+1
 typedef long long int64;
 
 struct Block {
-    Block *next; // 链表下一节点
-    int l, r; // 区间范围
-    int64 val; // 区间上的值
+  Block *next;  // 链表下一节点
+  int l, r;     // 区间范围
+  int64 val;    // 区间上的值
 
-    Block(Block *next, int l, int r, int64 val): next(next), l(l), r(r), val(val) {}
-    bool operator<(const Block &b) const { return val < b.val; }
+  Block(Block *next, int l, int r, int64 val)
+      : next(next), l(l), r(r), val(val) {}
+
+  bool operator<(const Block &b) const { return val < b.val; }
 } *root;
 ```
 
@@ -183,18 +185,19 @@ struct Block {
 ```cpp
 // 返回左端点为 mid+1 的区间
 Block *split(int mid) {
-    for (Block *b = root; b; b = b->next) { // 遍历链表
-        if (b->l == mid + 1) { // 左端点为 mid+1
-            return b;
-        }
-        // 寻找能包含 mid 和 mid+1 的区间 [l, r]，将其被拆分成 [l, mid] 和 [mid+1, r]
-        if (b->l <= mid && mid + 1 <= b->r) {
-            b->next = new Block(b->next, mid + 1, b->r, b->val);
-            b->r = mid;
-            return b->next;
-        }
+  for (Block *b = root; b; b = b->next) {  // 遍历链表
+    if (b->l == mid + 1) {                 // 左端点为 mid+1
+      return b;
     }
-    return nullptr; // 未找到，返回空
+    // 寻找能包含 mid 和 mid+1 的区间 [l, r]，将其被拆分成 [l, mid] 和 [mid+1,
+    // r]
+    if (b->l <= mid && mid + 1 <= b->r) {
+      b->next = new Block(b->next, mid + 1, b->r, b->val);
+      b->r = mid;
+      return b->next;
+    }
+  }
+  return nullptr;  // 未找到，返回空
 }
 ```
 
@@ -205,8 +208,8 @@ Block *lb, *rb;
 
 // 预分裂，保证后续操作在 [l, r] 内部
 void prepare(int l, int r) {
-    lb = split(l - 1);
-    rb = split(r);
+  lb = split(l - 1);
+  rb = split(r);
 }
 ```
 
@@ -214,11 +217,12 @@ void prepare(int l, int r) {
 
 ```cpp
 void assign(int l, int r, int64 val) {
-    prepare(l, r);
-    lb->r = r; // 将区间 [lb.l, lb.r] 修改成 [lb.l, r]
-    lb->val = val;
-    lb->next = rb; // 将 [lb.l, r] 链至其右侧相邻区间
+  prepare(l, r);
+  lb->r = r;  // 将区间 [lb.l, lb.r] 修改成 [lb.l, r]
+  lb->val = val;
+  lb->next = rb;  // 将 [lb.l, r] 链至其右侧相邻区间
 }
+
 // 注：这里没有释放被删除节点的内存，若有需要可自行添加
 ```
 
@@ -226,10 +230,10 @@ void assign(int l, int r, int64 val) {
 
 ```cpp
 void perform(int l, int r) {
-    prepare(l, r);
-    for (Block *b = lb; b != rb; b = b->next) {
-        // Perform Operations here
-    }
+  prepare(l, r);
+  for (Block *b = lb; b != rb; b = b->next) {
+    // Perform Operations here
+  }
 }
 ```
 
@@ -258,9 +262,9 @@ void perform(int l, int r) {
 
 ## 参考资料和注释
 
-- [Problem - 896C - Codeforces](https://codeforces.com/problemset/problem/896/C)（珂朵莉树的起源）
-- [CF896C Willem, Chtholly and Seniorious 题解 - 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/gyxbe23s)（`std::set` 实现参考）
-- [珂朵莉树的 map 实现 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/469794466)（`std::map` 实现参考）
-- [题解 CF896C【Willem, Chtholly and Seniorious】- 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/umiw1fwp)（链表实现参考）
-- [Codeforces Round #449 Editorial - Codeforces](https://codeforces.com/blog/entry/56135?#comment-398940)（关于珂朵莉树的复杂度的证明）
-- [珂朵莉树的复杂度分析 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/102786071)（珂朵莉树的复杂度分析）
+-   [Problem - 896C - Codeforces](https://codeforces.com/problemset/problem/896/C)（珂朵莉树的起源）
+-   [CF896C Willem, Chtholly and Seniorious 题解 - 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/gyxbe23s)（`std::set` 实现参考）
+-   [珂朵莉树的 map 实现 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/469794466)（`std::map` 实现参考）
+-   [题解 CF896C【Willem, Chtholly and Seniorious】- 洛谷专栏 (luogu.com.cn)](https://www.luogu.com.cn/article/umiw1fwp)（链表实现参考）
+-   [Codeforces Round #449 Editorial - Codeforces](https://codeforces.com/blog/entry/56135?#comment-398940)（关于珂朵莉树的复杂度的证明）
+-   [珂朵莉树的复杂度分析 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/102786071)（珂朵莉树的复杂度分析）
