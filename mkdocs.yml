@@ -58,6 +58,7 @@ nav:
       - GUIDE: tools/editor/guide.md
       - Sublime Text: tools/editor/sublime.md
       - CP Editor: tools/editor/cpeditor.md
+      - Code::Blocks: tools/editor/codeblocks.md
     - 评测工具: 
       - 评测工具简介: tools/judger/index.md
       - Arbiter: tools/judger/arbiter.md
@@ -581,9 +582,12 @@ extra_javascript:
 
 extra_css:
   - '_static/css/extra.css?v=14'
+  # - '_static/css/offset-inject-debug.css'
 
 # Extensions
 markdown_extensions:
+  - document-offsets-injection:
+      # debug: true
   - admonition
   - def_list
   - footnotes
