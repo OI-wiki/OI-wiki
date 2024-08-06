@@ -231,7 +231,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
 
     即 $g_i$ 为 $g_{i-1} \cdot c\ (c \equiv 0 \pmod 2)$ 的形式。
 
-    所以 $2 | s_1$，$4|s_2$ ...，即
+    所以 $2 | s_1$，$4|s_2$...，即
 
     $$
     \begin{aligned}
@@ -330,24 +330,25 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     typedef unsigned long long ull;
     ull base = 131;
     ull mod1 = 212370440130137957, mod2 = 1e9 + 7;
+    
     ull get_hash1(std::string s) {
-        int len = s.size();
-        ull ans = 0;
-        for (int i = 0; i < len; i++)
-            ans = (ans * base + (ull)s[i]) % mod1;
-        return ans;
+      int len = s.size();
+      ull ans = 0;
+      for (int i = 0; i < len; i++) ans = (ans * base + (ull)s[i]) % mod1;
+      return ans;
     }
+    
     ull get_hash2(std::string s) {
-        int len = s.size();
-        ull ans = 0;
-        for (int i = 0; i < len; i++)
-            ans = (ans * base + (ull)s[i]) % mod2;
-        return ans;
+      int len = s.size();
+      ull ans = 0;
+      for (int i = 0; i < len; i++) ans = (ans * base + (ull)s[i]) % mod2;
+      return ans;
     }
+    
     bool cmp(const std::string s, const std::string t) {
-        bool f1 = get_hash1(s) != get_hash1(t);
-        bool f2 = get_hash2(s) != get_hash2(t);
-        return f1 || f2;
+      bool f1 = get_hash1(s) != get_hash1(t);
+      bool f2 = get_hash2(s) != get_hash2(t);
+      return f1 || f2;
     }
     ```
 
@@ -360,6 +361,8 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
         for char in s:
             ans = (ans * base + ord(char)) % mod1
         return ans
+    
+    
     def get_hash2(s: str) -> int:
         base = 131
         mod2 = 1000000007
@@ -367,10 +370,13 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
         for char in s:
             ans = (ans * base + ord(char)) % mod2
         return ans
+    
+    
     def cmp(s: str, t: str) -> bool:
         f1 = get_hash1(s) != get_hash1(t)
         f2 = get_hash2(s) != get_hash2(t)
         return f1 or f2
+    ```
 
     ```
 
