@@ -38,7 +38,8 @@ async function getLatestCommitHash(): Promise<string> {
 async function updateCommitHash() {
   const secret = process.env.ADMINISTRATOR_SECRET;
   if (!secret) {
-    throw new Error("ADMINISTRATOR_SECRET is not set, skipping commit hash update...");
+    log("ADMINISTRATOR_SECRET is not set, skipping commit hash update...");
+    return;
   }
   const hash = await getLatestCommitHash();
   log(`Updating commit hash to ${hash}...`);
