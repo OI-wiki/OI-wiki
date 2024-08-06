@@ -48,7 +48,7 @@ jobs:
         run: node --loader ts-node/esm scripts/post-build/html-postprocess.ts commits-info math external-links offsets-inject
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ADMINISTRATOR_SECRET: ${{ secrets.ADMINISTRATOR_SECRET }}
+          ADMINISTRATOR_SECRET: ${{ secrets.FEEDBACK_SYS_ADMINISTRATOR_SECRET }}
           NODE_OPTIONS: --max_old_space_size=3072
       - name: Minify html
         run: ./scripts/post-build/minify-html/minify-html.sh
