@@ -123,10 +123,10 @@ export const taskHandler = new (class implements TaskHandler<GlobalData> {
       .querySelector("head")
       .insertAdjacentHTML(
         "beforeend",
-        `<link rel="stylesheet" href="${cssFilePathToHtml}?${this.globalData.cssFileMd5}">`
+        `<link rel="stylesheet" href="${cssFilePathToHtml}?v=${this.globalData.cssFileMd5}">`
       );
     document
       .querySelector("head")
-      .insertAdjacentHTML("beforeend", `<script src="${jsFilePathToHtml}?${this.globalData.jsFileMd5}"></script>`);
+      .insertAdjacentHTML("beforeend", `<script src="${jsFilePathToHtml}?v=${this.globalData.jsFileMd5}"></script>`);
   }
 })();
