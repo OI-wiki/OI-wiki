@@ -2050,10 +2050,10 @@ octokit@^4.0.2:
     "@octokit/request-error" "^6.0.0"
     "@octokit/types" "^13.0.0"
 
-offsets-injection-review@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/offsets-injection-review/-/offsets-injection-review-0.0.6.tgz#d99ee5a702695b68a676c069d41d26b013240166"
-  integrity sha512-sujr5UCZ/NeWuLtHMoyuZwtByQtnD2wTajQqGKY6ojawG1n5/ggp6fMWUGg8MR0Yxm4jsGvGJz2l+iJpSfiEuw==
+offsets-injection-review@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/offsets-injection-review/-/offsets-injection-review-0.0.8.tgz#b6baf3560fa2193c89fa94d8b8257cf15071aae8"
+  integrity sha512-wtYuyBjK3eV+qxgNmlhwugNYzuEiZ1QA1dTG+SqusMybRcy2liV9vP9YFIzDJQUo57sAhAM0KlFXmL+YrFB6HA==
   dependencies:
     iconify-icon "^2.1.0"
 
