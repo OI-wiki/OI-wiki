@@ -16,10 +16,10 @@ type GlobalData = {
   cssFileMd5: string;
 };
 
-const OFFSET_INJECTION_REVIEW_JS_URL =
-  "https://unpkg.com/offsets-injection-review@latest/dist/offsets-injection-review.umd.cjs";
+const OFFSET_INJECTION_REVIEW_JS_SOURCE_FILE =
+  "../node_modules/offsets-injection-review/dist/offsets-injection-review.umd.cjs";
 const OFFSET_INJECTION_REVIEW_JS_TARGET_FILE = "assets/javascripts/offsets-injection-review.js";
-const OFFSET_INJECTION_REVIEW_CSS_URL = "https://unpkg.com/offsets-injection-review@latest/dist/style.css";
+const OFFSET_INJECTION_REVIEW_CSS_SOURCE_FILE = "../node_modules/offsets-injection-review/dist/style.css";
 const OFFSET_INJECTION_REVIEW_CSS_TARGET_FILE = "assets/stylesheets/offsets-injection-review.css";
 
 const OFFSET_INJECTION_REVIEW_CONTENT_SCRIPT_TARGET_FILE = "_static/js/offsets-inject.js";
@@ -62,19 +62,14 @@ export const taskHandler = new (class implements TaskHandler<GlobalData> {
     const commitHash = await getLatestCommitHash();
     log(`Got latest commit hash: ${commitHash}`);
 
-    log(`Fetching offsets-injection-review script...`);
-    const jsContent = (await fetch(OFFSET_INJECTION_REVIEW_JS_URL)).text();
-    log(`Fetching offsets-injection-review css...`);
-    const cssContent = (await fetch(OFFSET_INJECTION_REVIEW_CSS_URL)).text();
-
-    log(`Writing offsets-injection-review script to ${OFFSET_INJECTION_REVIEW_JS_TARGET_FILE}...`);
+    log(`Copying offsets-injection-review script to ${OFFSET_INJECTION_REVIEW_JS_TARGET_FILE}...`);
     const jsDestFile = path.join(siteDir, OFFSET_INJECTION_REVIEW_JS_TARGET_FILE);
     await fs.promises.mkdir(path.dirname(jsDestFile), { recursive: true });
-    await fs.promises.writeFile(jsDestFile, await jsContent, "utf-8");
-    log(`Writing offsets-injection-review css to ${OFFSET_INJECTION_REVIEW_CSS_TARGET_FILE}...`);
+    await fs.promises.copyFile(path.resolve(siteDir, OFFSET_INJECTION_REVIEW_JS_SOURCE_FILE), jsDestFile);
+    log(`Copying offsets-injection-review css to ${OFFSET_INJECTION_REVIEW_CSS_TARGET_FILE}...`);
     const cssDestFile = path.join(siteDir, OFFSET_INJECTION_REVIEW_CSS_TARGET_FILE);
     await fs.promises.mkdir(path.dirname(cssDestFile), { recursive: true });
-    await fs.promises.writeFile(cssDestFile, await cssContent, "utf-8");
+    await fs.promises.copyFile(path.resolve(siteDir, OFFSET_INJECTION_REVIEW_CSS_SOURCE_FILE), cssDestFile);
 
     log(
       `Injecting api endpoint to offsets-injection-review content script ${OFFSET_INJECTION_REVIEW_CONTENT_SCRIPT_TARGET_FILE}...`
@@ -87,6 +82,9 @@ export const taskHandler = new (class implements TaskHandler<GlobalData> {
     );
 
     await updateCommitHash();
+
+    const jsContent = fs.promises.readFile(jsDestFile, "utf-8");
+    const cssContent = fs.promises.readFile(cssDestFile, "utf-8");
 
     return {
       commitHash,
