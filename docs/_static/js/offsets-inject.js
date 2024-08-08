@@ -17,14 +17,16 @@ function hookMkdocsMaterial() {
   });
 }
 
-hookMkdocsMaterial();
+if (localStorage.getItem("enable_paragraph_review") === "true") {
+  hookMkdocsMaterial();
 
-document$.subscribe(function () {
-  matchColor();
+  document$.subscribe(function () {
+    matchColor();
 
-  globalThis["OffsetsInjectionReview"] instanceof Object &&
-    OffsetsInjectionReview.setupReview instanceof Function &&
-    OffsetsInjectionReview.setupReview(document.body, {
-      apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/post-build/offsets-inject/task-handler.ts
-    });
-});
+    globalThis["OffsetsInjectionReview"] instanceof Object &&
+      OffsetsInjectionReview.setupReview instanceof Function &&
+      OffsetsInjectionReview.setupReview(document.body, {
+        apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/post-build/offsets-inject/task-handler.ts
+      });
+  });
+}
