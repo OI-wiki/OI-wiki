@@ -23,10 +23,10 @@ if (localStorage.getItem("enable_paragraph_review") === "true") {
   document$.subscribe(function () {
     matchColor();
 
-    globalThis["OffsetsInjectionReview"] instanceof Object &&
-      OffsetsInjectionReview.setupReview instanceof Function &&
-      OffsetsInjectionReview.setupReview(document.body, {
-        apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/post-build/offsets-inject/task-handler.ts
+    globalThis["OIWikiFeedbackSysFrontend"] instanceof Object &&
+    OIWikiFeedbackSysFrontend.setupReview instanceof Function &&
+    OIWikiFeedbackSysFrontend.setupReview(document.body, {
+        apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/post-build/inject-feedback-sys-frontend/task-handler.ts
       });
   });
 }

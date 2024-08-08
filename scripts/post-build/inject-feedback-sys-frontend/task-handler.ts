@@ -17,12 +17,12 @@ type GlobalData = {
 };
 
 const OFFSET_INJECTION_REVIEW_JS_SOURCE_FILE =
-  "../node_modules/offsets-injection-review/dist/offsets-injection-review.umd.cjs";
-const OFFSET_INJECTION_REVIEW_JS_TARGET_FILE = "assets/javascripts/offsets-injection-review.js";
-const OFFSET_INJECTION_REVIEW_CSS_SOURCE_FILE = "../node_modules/offsets-injection-review/dist/style.css";
-const OFFSET_INJECTION_REVIEW_CSS_TARGET_FILE = "assets/stylesheets/offsets-injection-review.css";
+  "../node_modules/oiwiki-feedback-sys-frontend/dist/oiwiki-feedback-sys-frontend.umd.cjs";
+const OFFSET_INJECTION_REVIEW_JS_TARGET_FILE = "assets/javascripts/oiwiki-feedback-sys-frontend.js";
+const OFFSET_INJECTION_REVIEW_CSS_SOURCE_FILE = "../node_modules/oiwiki-feedback-sys-frontend/dist/style.css";
+const OFFSET_INJECTION_REVIEW_CSS_TARGET_FILE = "assets/stylesheets/oiwiki-feedback-sys-frontend.css";
 
-const OFFSET_INJECTION_REVIEW_CONTENT_SCRIPT_TARGET_FILE = "_static/js/offsets-inject.js";
+const OFFSET_INJECTION_REVIEW_CONTENT_SCRIPT_TARGET_FILE = "_static/js/oiwiki-feedback-sys-frontend.js";
 
 const API_ENDPOINT = "https://cloudflare-workers.hikarilan.workers.dev/";
 
@@ -62,17 +62,17 @@ export const taskHandler = new (class implements TaskHandler<GlobalData> {
     const commitHash = await getLatestCommitHash();
     log(`Got latest commit hash: ${commitHash}`);
 
-    log(`Copying offsets-injection-review script to ${OFFSET_INJECTION_REVIEW_JS_TARGET_FILE}...`);
+    log(`Copying oiwiki-feedback-sys-frontend script to ${OFFSET_INJECTION_REVIEW_JS_TARGET_FILE}...`);
     const jsDestFile = path.join(siteDir, OFFSET_INJECTION_REVIEW_JS_TARGET_FILE);
     await fs.promises.mkdir(path.dirname(jsDestFile), { recursive: true });
     await fs.promises.copyFile(path.resolve(siteDir, OFFSET_INJECTION_REVIEW_JS_SOURCE_FILE), jsDestFile);
-    log(`Copying offsets-injection-review css to ${OFFSET_INJECTION_REVIEW_CSS_TARGET_FILE}...`);
+    log(`Copying oiwiki-feedback-sys-frontend css to ${OFFSET_INJECTION_REVIEW_CSS_TARGET_FILE}...`);
     const cssDestFile = path.join(siteDir, OFFSET_INJECTION_REVIEW_CSS_TARGET_FILE);
     await fs.promises.mkdir(path.dirname(cssDestFile), { recursive: true });
     await fs.promises.copyFile(path.resolve(siteDir, OFFSET_INJECTION_REVIEW_CSS_SOURCE_FILE), cssDestFile);
 
     log(
-      `Injecting api endpoint to offsets-injection-review content script ${OFFSET_INJECTION_REVIEW_CONTENT_SCRIPT_TARGET_FILE}...`
+      `Injecting api endpoint to oiwiki-feedback-sys-frontend content script ${OFFSET_INJECTION_REVIEW_CONTENT_SCRIPT_TARGET_FILE}...`
     );
     const contentScriptFile = path.join(siteDir, OFFSET_INJECTION_REVIEW_CONTENT_SCRIPT_TARGET_FILE);
     await fs.promises.writeFile(

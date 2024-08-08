@@ -579,7 +579,7 @@ extra:
 extra_javascript:
   - '_static/js/math-csr.js?math-csr'
   - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
-  - '_static/js/offsets-inject.js'
+  - '_static/js/oiwiki-feedback-sys-frontend.js'
 
 extra_css:
   - '_static/css/extra.css?v=14'
