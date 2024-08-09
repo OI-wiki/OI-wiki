@@ -47,7 +47,8 @@ async function loadTaskHandlers(tasks: string[], onLoaded?: (taskHandler: TaskHa
   return await Promise.all(
     tasks.map(async (task, i) => {
       const taskHandlerFile = path.join(__dirname, task, "task-handler.ts");
-      const taskHandler: TaskHandler & { name: string } = (await import(taskHandlerFile)).taskHandler;
+      const taskHandlerUrl = url.pathToFileURL(taskHandlerFile).href;
+      const taskHandler: TaskHandler & { name: string } = (await import(taskHandlerUrl)).taskHandler;
       taskHandler.name = task;
       if (onLoaded) {
         await onLoaded(taskHandler, i);

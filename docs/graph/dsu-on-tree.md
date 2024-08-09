@@ -6,9 +6,7 @@ author: abc1763613206, cesonic, Ir1d, MingqiHuang, xinchengo,xiaofu-15191
 
 启发式算法是基于人类的经验和直观感觉，对一些算法的优化。
 
-给个例子？
-
-最常见的就是并查集的按秩合并了，有带按秩合并的并查集中，合并的代码是这样的：
+举个例子，最常见的就是并查集的启发式合并了，代码是这样的：
 
 ```cpp
 void merge(int x, int y) {
