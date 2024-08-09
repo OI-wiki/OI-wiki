@@ -216,8 +216,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         f[a] = b;              // 错误
         f[find(a)] = find(b);  // 正确
         ```
--  `freopen` 使用 `a` 进行追加写
-    -   CCF 的检测环境不会清空输出文件，使用 `a` 会导致上一位选手的输出也被评测机读入引发 WA 
+
+-   `freopen` 使用 `a` 进行追加写
+    -   CCF 的检测环境不会清空输出文件，使用 `a` 会导致上一位选手的输出也被评测机读入引发 WA
 
 #### 换行符不同
 
