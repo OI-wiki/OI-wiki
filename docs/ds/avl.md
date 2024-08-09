@@ -109,24 +109,27 @@ $$
 \end{cases}
 $$
 
-因此旋转后的节点 B、C、D 也满足性质 2。最后给出对于一个节点维护平衡操作的伪代码。
+因此旋转后的节点 B、C、D 也满足性质 2。
 
-???+ note "实现"
-    ```text
-    Maintain-Balanced(p)
-        if h[ls[p]] - h[rs[p]] == 2
-            if h[ls[ls[p]]] >= h[rs[ls[p]]]
-                Right-Rotate(p)
-            else
-                Left-Rotate(ls[p])
-                Right-Rotate(p)
-        else if h[ls[p]] - h[rs[p]] == -2
-            if h[ls[rs[p]]] <= h[rs[rs[p]]]
-                Left-Rotate(p)
-            else
-                Right-Rotate(rs[p])
-                Left-Rotate(p)
-    ```
+???+ note "维护平衡操作：伪代码"
+    $$
+    \begin{array}{ll}
+    1 &  \textbf{function } \mathrm{MaintainBalance}(p) \\
+    2 &  \qquad l \gets ls_p, r \gets rs_p \\
+    3 &  \qquad \textbf{if } h(l)-h(r)=2 \\
+    4 &  \qquad\qquad \textbf{if } h(ls_l) \ge h(rs_l) \\
+    5 &  \qquad\qquad\qquad \mathrm{RightRotate}(p) \\
+    6 &  \qquad\qquad \textbf{else} \\
+    7 &  \qquad\qquad\qquad \mathrm{LeftRotate}(l) \\
+    8 &  \qquad\qquad\qquad \mathrm{RightRotate}(p) \\
+    9 &  \qquad \textbf{else if } h(l)-h(r)=-2 \\
+    10 &  \qquad\qquad \textbf{if } h(ls_r) \le h(rs_r) \\
+    11 &  \qquad\qquad\qquad \mathrm{LeftRotate}(p) \\
+    12 &  \qquad\qquad \textbf{else} \\
+    13 &  \qquad\qquad\qquad \mathrm{RightRotate}(r) \\
+    14 &  \qquad\qquad\qquad \mathrm{LeftRotate}(p) \\
+    \end{array}
+    $$
 
 与其他平衡二叉搜索树相同，AVL 树中节点的高度、子树大小等信息需要在旋转时进行维护。
 
