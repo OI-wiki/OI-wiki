@@ -143,3 +143,5 @@ AA 树的性能与红黑树的性能相当。尽管 AA 树进行的旋转操作�
 
 1.  [AA tree - Wikipedia](https://en.wikipedia.org/wiki/AA_tree)
 2.  [Introduction to AA trees](https://iq.opengenus.org/aa-trees/)
+3.  [AA tree - Visualization](https://kubokovac.eu/gnarley-trees/AAtree.html)
+4.  [CMSC 420 Lecture 6: 2-3, Red-black, and AA trees](https://www.cs.umd.edu/class/fall2019/cmsc420-0201/Lects/lect06-aa.pdf)
