@@ -192,8 +192,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
             root->key = successor->key;
             root->count = successor->count;  // 更新重复数量
             // 当successor->count>1时，应该删除succesor，而不是仅仅减少其重复数量
-            successor->count = 1     
-            root->right = remove(root->right, successor->key);
+            successor->count = 1 root->right = remove(root->right, successor->key);
           }
         }
       }
