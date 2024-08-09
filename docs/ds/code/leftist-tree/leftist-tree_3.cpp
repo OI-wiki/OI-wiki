@@ -9,8 +9,7 @@ using namespace std;
 int read() {
   int out = 0, f = 1;
   char c;
-  for (c = getchar(); !isdigit(c) && c != '-'; c = getchar())
-    ;
+  for (c = getchar(); !isdigit(c) && c != '-'; c = getchar());
   if (c == '-') {
     f = -1;
     c = getchar();
