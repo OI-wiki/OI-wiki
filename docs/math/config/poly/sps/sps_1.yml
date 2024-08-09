@@ -1,0 +1,10 @@
+id: oi-wiki:math/sps-1
+name: Subset Convolution Algorithm
+solution:
+  cpp: docs/math/code/poly/sps/sps_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/poly/sps/sps_1.ans
+  input: docs/math/examples/poly/sps/sps_1.in
+version: 1000
