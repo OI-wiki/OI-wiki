@@ -191,7 +191,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
             TreeNode* successor = findMinNode(root->right);
             root->key = successor->key;
             root->count = successor->count;  // 更新重复数量
-            //当successor->count>1时，也应该删除该节点，而不是仅仅减少重复数量
+            // 当successor->count>1时，也应该删除该节点，而不是仅仅减少重复数量
             successor->count = 1;
             root->right = remove(root->right, successor->key);
           }
