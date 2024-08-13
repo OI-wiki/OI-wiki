@@ -1,0 +1,10 @@
+id: oi-wiki:ds/top-tree-2
+name: Top Tree
+solution:
+  cpp: docs/ds/code/top-tree/top-tree_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/top-tree/top-tree_2.ans
+  input: docs/ds/examples/top-tree/top-tree_2.in
+version: 1000

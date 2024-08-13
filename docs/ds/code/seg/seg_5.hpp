@@ -75,5 +75,5 @@ class SegTreeLazyRangeSet {
 
   T range_sum(int l, int r) { return range_sum(l, r, 0, end, root); }
 
-  void range_set(int l, int r, int val) { range_set(l, r, val, 0, end, root); }
+  void range_set(int l, int r, T val) { range_set(l, r, val, 0, end, root); }
 };
