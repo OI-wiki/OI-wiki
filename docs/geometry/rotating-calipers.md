@@ -46,7 +46,7 @@
             mx = dis(sta[1], sta[2]);
             return;
           }
-          for (int i = 1; i <= top; ++i) {
+          for (int i = 1; i < top; ++i) {
             while (sqr(sta[i], sta[i + 1], sta[j]) <=
                    sqr(sta[i], sta[i + 1], sta[j % top + 1]))
               j = j % top + 1;
