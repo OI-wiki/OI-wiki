@@ -1,3 +1,5 @@
+# Origin code from https://github.com/Myriad-Dreamin/tinymist/blob/0fce237d579aebe233a9c80f9dfe3f6d9d1c0cd3/.github/workflows/lint_pr_title.yml
+# Changed By Alphagocc
 name: Lint PR Title
 on:
   pull_request:
