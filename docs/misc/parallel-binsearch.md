@@ -58,8 +58,9 @@ struct Query {
   int id, k;  // 这个询问的编号, 这个询问的k
 };
 
-int ans[N];        // ans[i] 表示编号为i的询问的答案
-int check(int x, int l, int r);  // 返回原数列中值域在 [l,r] 中且小于等于x的数的个数
+int ans[N];  // ans[i] 表示编号为i的询问的答案
+int check(int x, int l,
+          int r);  // 返回原数列中值域在 [l,r] 中且小于等于x的数的个数
 
 void solve(int l, int r, vector<Query> q)
 // 请补全这个函数
