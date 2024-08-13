@@ -59,7 +59,7 @@ struct Query {
 };
 
 int ans[N];        // ans[i] 表示编号为i的询问的答案
-int check(int x);  // 返回原数列中小于等于x的数的个数
+int check(int x, int l, int r);  // 返回原数列中值域在 [l,r] 中且小于等于x的数的个数
 
 void solve(int l, int r, vector<Query> q)
 // 请补全这个函数
@@ -86,9 +86,9 @@ void solve(int l, int r, vector<Query> q)
         for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = l;
         return;
       }
-      vector<int> q1, q2;
+      vector<Query> q1, q2;
       for (unsigned i = 0; i < q.size(); i++)
-        if (q[i].k <= check(m))
+        if (q[i].k <= check(m, l, r))
           q1.push_back(q[i]);
         else
           q[i].k -= check(m), q2.push_back(q[i]);
