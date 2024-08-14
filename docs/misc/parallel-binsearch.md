@@ -58,8 +58,8 @@ struct Query {
   int id, k;  // 这个询问的编号, 这个询问的k
 };
 
-int ans[N];        // ans[i] 表示编号为i的询问的答案
-int check(int x);  // 返回原数列中小于等于x的数的个数
+int ans[N], a[N];  // ans[i] 表示编号为i的询问的答案，a 为原数列
+int check(int l, int r);  // 返回原数列中值域在 [l,r] 中的数的个数
 
 void solve(int l, int r, vector<Query> q)
 // 请补全这个函数
@@ -80,18 +80,28 @@ void solve(int l, int r, vector<Query> q)
 
 ???+ note "实现"
     ```cpp
+    int check(int l, int r) {
+      int res = 0;
+      for (int i = 1; i <= n; i++) {
+        if (l <= a[i] && a[i] <= r) res++;
+      }
+      return res;
+    }
+    
     void solve(int l, int r, vector<Query> q) {
       int m = (l + r) / 2;
       if (l == r) {
         for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = l;
         return;
       }
-      vector<int> q1, q2;
-      for (unsigned i = 0; i < q.size(); i++)
-        if (q[i].k <= check(m))
+      vector<Query> q1, q2;
+      int t = check(l, m);
+      for (unsigned i = 0; i < q.size(); i++) {
+        if (q[i].k <= t)
           q1.push_back(q[i]);
         else
-          q[i].k -= check(m), q2.push_back(q[i]);
+          q[i].k -= t, q2.push_back(q[i]);
+      }
       solve(l, m, q1), solve(m + 1, r, q2);
       return;
     }
