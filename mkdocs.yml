@@ -579,6 +579,7 @@ extra:
 extra_javascript:
   - '_static/js/math-csr.js?math-csr'
   - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
+  - '_static/js/oiwiki-feedback-sys-frontend.js?v=1'
 
 extra_css:
   - '_static/css/extra.css?v=14'
