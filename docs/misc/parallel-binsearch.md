@@ -82,9 +82,8 @@ void solve(int l, int r, vector<Query> q)
     ```cpp
     int check(int l, int r) {
       int res = 0;
-      for(int i = 1; i <= n; i++) {
-        if(l <= a[i] && a[i] <= r)
-          res++;
+      for (int i = 1; i <= n; i++) {
+        if (l <= a[i] && a[i] <= r) res++;
       }
       return res;
     }
