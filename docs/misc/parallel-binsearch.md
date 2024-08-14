@@ -96,8 +96,8 @@ void solve(int l, int r, vector<Query> q)
         return;
       }
       vector<Query> q1, q2;
+      int t = check(l, m);
       for (unsigned i = 0; i < q.size(); i++) {
-        int t = check(l, m);
         if (q[i].k <= t)
           q1.push_back(q[i]);
         else
