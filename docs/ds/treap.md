@@ -894,7 +894,6 @@ void print(Node* cur) {
     class Treap {
      private:
       Node *root;
-    ```
 
       const static int NIL = -1; // 用于表示查询的值不存在
 
