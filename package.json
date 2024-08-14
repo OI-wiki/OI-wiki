@@ -39,7 +39,7 @@
     "node-fetch": "^3.2.8",
     "node-html-parser": "^5.3.3",
     "octokit": "^4.0.2",
-    "oiwiki-feedback-sys-frontend": "^0.1.0",
+    "oiwiki-feedback-sys-frontend": "^0.2.0",
     "patch-package": "^6.5.1",
     "postinstall-postinstall": "^2.1.0",
     "remark": "^14.0.2",
