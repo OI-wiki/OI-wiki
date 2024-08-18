@@ -98,4 +98,3 @@ for path_from, path_to in renamed:
         headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
         json={"type": "renamed", "to": path_to_url(path_to)},
     )
-    pass
