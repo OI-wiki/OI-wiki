@@ -14,7 +14,7 @@ $$
 AB\bmod{\left(x_1^2,\dots ,x_n^2\right)}
 $$
 
-我们注意到这一多项式对于任何一元来说，其都只有两项系数即 $a_0+a_1x$，不难想到我们对每一元使用 FFT 即求出
+我们注意到这一多项式对于任何一元来说，其都只有两项系数即 $a_0+a_1x$，不难想到我们对每一元使用 FFT，即求出
 
 $$
 A\left(\lbrace 1,-1 \rbrace^n\right)
@@ -26,13 +26,13 @@ $$
 AB\bmod{\left(x_1^2-1,\dots ,x_n^2-1\right)}
 $$
 
-但是我们因为循环卷积的副作用，无法分离出想要的系数。考虑增加一元 $t$ 进行占位，转而计算
+但是因为循环卷积的副作用，我们无法分离出想要的系数。考虑增加一元 $t$ 进行占位，转而计算
 
 $$
 AB\bmod{\left(x_1^2-t,\dots ,x_n^2-t\right)}
 $$
 
-然后令 $t\gets 0$ 即可。为了使得这一过程能够进行，我们将 $A$ 拆分为多个多项式之和即
+然后令 $t\gets 0$ 即可。为了使得这一过程能够进行，我们将 $A$ 拆分为多个多项式之和，即
 
 $$
 A=\sum_i A_i
@@ -44,7 +44,7 @@ $$
 \left(\sum_i A_i\right)\left(\sum_i B_i\right)\bmod{\left(x_1^2-t,\dots ,x_n^2-t\right)}
 $$
 
-这样 $O(n^2)$ 次乘法，每一次都是形如计算 $A_iB_j \bmod{\left(x_1^2-t,\dots ,x_n^2-t\right)}$，注意到结果的每一项 $cx_1^{d_1}\dots x_n^{d_n}t^{d_t}$ 都满足下面的不等式
+这样 $O(n^2)$ 次乘法，每一次都是计算 $A_iB_j \bmod{\left(x_1^2-t,\dots ,x_n^2-t\right)}$，注意到结果的每一项 $cx_1^{d_1}\dots x_n^{d_n}t^{d_t}$ 都满足下面的不等式
 
 $$
 d_1+\dots +d_n+d_t\leq i+j
