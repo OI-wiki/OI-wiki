@@ -161,3 +161,5 @@ $$
 2.  [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)（几乎可以当做模板题）
 
 3.  [POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)（数论分块一般配合 [莫比乌斯反演](./mobius.md) 用以进一步降低复杂度；本题需要用到 $[n=1]=\sum_{d|n}\mu(n)$ 这一条莫反结论）
+
+4. [CF1575G GCD Festival](https://www.luogu.com.cn/problem/CF1575G) （数论分块一般配合 [莫比乌斯反演](./mobius.md) 用以进一步降低复杂度；本题需要用到 $[n=1]=\sum_{d|n}\mu(n)$ 这一条莫反结论）
