@@ -23,7 +23,6 @@ nav:
     - 格式手册: intro/format.md
     - 数学符号表: intro/symbol.md
     - F.A.Q.: intro/faq.md
-    - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 镜像站列表: intro/mirrors.md
     - 致谢: intro/thanks.md
   - 比赛相关:
@@ -59,6 +58,7 @@ nav:
       - GUIDE: tools/editor/guide.md
       - Sublime Text: tools/editor/sublime.md
       - CP Editor: tools/editor/cpeditor.md
+      - Code::Blocks: tools/editor/codeblocks.md
     - 评测工具: 
       - 评测工具简介: tools/judger/index.md
       - Arbiter: tools/judger/arbiter.md
@@ -579,12 +579,16 @@ extra:
 extra_javascript:
   - '_static/js/math-csr.js?math-csr'
   - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
+  - '_static/js/oiwiki-feedback-sys-frontend.js?v=1'
 
 extra_css:
   - '_static/css/extra.css?v=14'
+  # - '_static/css/offset-inject-debug.css'
 
 # Extensions
 markdown_extensions:
+  - document-offsets-injection:
+      # debug: true
   - admonition
   - def_list
   - footnotes

@@ -185,6 +185,7 @@
       // 记录a和b的公因数2出现次数，countr_zero表示二进制末位0的个数
       int atimes = countr_zero(a);
       int btimes = countr_zero(b);
+      int mintimes = min(atimes, btimes);
       a >>= atimes;
       for (;;) {
         // a和b公因数中的2已经计算过了，后面不可能出现a为偶数的情况
@@ -195,7 +196,7 @@
         if (b == 0) break;
         btimes = countr_zero(b);
       }
-      return a << min(atimes, btimes);
+      return a << mintimes;
     }
     ```
 

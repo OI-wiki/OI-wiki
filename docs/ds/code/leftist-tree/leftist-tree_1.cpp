@@ -6,9 +6,19 @@ const int N = 1000010;
 
 struct Node {
   int val, ls, rs, d;
+
+  Node() {
+    val = ls = rs = 0;
+    d = -1;
+  }
+
+  Node(int v) {
+    val = v;
+    ls = rs = d = 0;
+  }
 } t[N];
 
-int merge(int x, int y) {  // 左偏树并堆
+int merge(int x, int y) {
   if (!x || !y) return x | y;
   if (t[x].val > t[y].val) swap(x, y);
   t[x].rs = merge(t[x].rs, y);
@@ -30,7 +40,9 @@ int main() {
   int n;
   cin >> n;
   for (int i = 1; i <= n; ++i) {
-    cin >> t[i].val;
+    int v;
+    cin >> v;
+    t[i] = Node(v);
     f[i] = i;
   }
 

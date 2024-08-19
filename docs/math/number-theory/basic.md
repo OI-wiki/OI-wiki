@@ -78,7 +78,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 -   若 $b|c$、$a|c$ 且 $(a,b)=1$，则 $ab\mid c$；
 -   若 $(a,b)=1$，则 $(a,bc)=(a,c)$；
 -   若 $(a_i,b_j)=1,~\forall 1\leq i\leq n,1\leq j\leq m$，则 $\left(\prod_i a_i,\prod_j b_j\right)=1$。特别地，若 $(a,b)=1$，则 $(a^n,b^m)=1$；
--   对整数 $a_1,\dots,a_n$，若 $\exists v\in \mathbf{Z},~\prod_i a_i=v^m$，且 $(a_i,a_j)=1,~\forall i\ne j$，则 $\forall 1\leq i\leq m,~\sqrt[m]{a_i}\in\mathbf{Z}$。
+-   对整数 $a_1,\dots,a_n$，若 $\exists v\in \mathbf{Z},~\prod_i a_i=v^m$，且 $(a_i,a_j)=1,~\forall i\ne j$，则 $\forall 1\leq i\leq n,~\sqrt[m]{a_i}\in\mathbf{Z}$。
 
 最小公倍数有如下性质：
 
@@ -89,7 +89,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 -   $[a_1,\dots,a_n]=[[a_1,a_2],a_3,\dots,a_n]$。进而 $\forall 1<k<n-1,~[a_1,\dots,a_n]=[[a_1,\dots,a_k],[a_{k+1},\dots,a_n]]$；
 -   若 $a_i\mid m,~\forall 1\leq i\leq n$，则 $[a_1,\dots,a_n]\mid m$；
 -   $[ma_1,\dots,ma_n]=|m|[a_1,\dots,a_n]$；
--   $[a,b,c][ab,ba,ca]=[a,b][b,c][c,a]$；
+-   $[a,b,c][ab,bc,ca]=[a,b][b,c][c,a]$；
 -   $[a^n,b^n]=[a,b]^n$。
 
 最大公约数和最小公倍数可以组合出很多奇妙的等式，如：

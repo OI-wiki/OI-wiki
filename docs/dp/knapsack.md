@@ -1,4 +1,4 @@
-author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007, GoodCoder666, paigeman, shenshuaijie
+author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, Odeinjul, xyf007, GoodCoder666, paigeman, shenshuaijie, oldoldtea
 
 前置知识：[动态规划部分简介](./index.md)。
 
@@ -135,6 +135,18 @@ $$
 
 时间复杂度 $O(W\sum_{i=1}^nk_i)$。
 
+??? note "核心代码"
+    ```cpp
+    for (int i = 1; i <= n; i++) {
+      for (int weight = W; weight >= w[i]; weight--) {
+        // 多遍历一层物品数量
+        for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
+          dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
+        }
+      }
+    }
+    ```
+
 ### 二进制分组优化
 
 考虑优化。我们仍考虑把多重背包转化成 0-1 背包模型来求解。
@@ -211,8 +223,6 @@ $$
 
 这种题目看起来很吓人，可是只要领悟了前面几种背包的中心思想，并将其合并在一起就可以了。下面给出伪代码：
 
-### 过程
-
 ```plain
 for (循环物品种类) {
   if (是 0 - 1 背包)
@@ -224,8 +234,27 @@ for (循环物品种类) {
 }
 ```
 
-??? note "[「Luogu P1833」樱花](https://www.luogu.com.cn/problem/P1833)"
-    题意概要：有 $n$ 种樱花树和长度为 $T$ 的时间，有的樱花树只能看一遍，有的樱花树最多看 $A_{i}$ 遍，有的樱花树可以看无数遍。每棵樱花树都有一个美学值 $C_{i}$，求在 $T$ 的时间内看哪些樱花树能使美学值最高。
+### 例题
+
+???+ note "[「Luogu P1833」樱花](https://www.luogu.com.cn/problem/P1833)"
+    有 $n$ 种樱花树和长度为 $T$ 的时间，有的樱花树只能看一遍，有的樱花树最多看 $A_{i}$ 遍，有的樱花树可以看无数遍。每棵樱花树都有一个美学值 $C_{i}$，求在 $T$ 的时间内看哪些樱花树能使美学值最高。
+
+??? note "核心代码"
+    ```cpp
+    for (int i = 1; i <= n; i++) {
+      if (cnt[i] == 0) {  // 如果数量没有限制使用完全背包的核心代码
+        for (int weight = w[i]; weight <= W; weight++) {
+          dp[weight] = max(dp[weight], dp[weight - w[i]] + v[i]);
+        }
+      } else {  // 物品有限使用多重背包的核心代码，它也可以处理0-1背包问题
+        for (int weight = W; weight >= w[i]; weight--) {
+          for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
+            dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
+          }
+        }
+      }
+    }
+    ```
 
 ## 二维费用背包
 
@@ -313,7 +342,7 @@ for (循环物品种类) {
 
 ### 背包问题变种
 
-#### 实现
+#### 输出方案
 
 输出方案其实就是记录下来背包中的某一个状态是怎么推出来的。我们可以用 $g_{i,v}$ 表示第 $i$ 件物品占用空间为 $v$ 的时候是否选择了此物品。然后在转移时记录是选用了哪一种策略（选或不选）。输出时的伪代码：
 

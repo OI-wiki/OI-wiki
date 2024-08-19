@@ -5,10 +5,12 @@ name = "pypi"
 
 [packages]
 mkdocs = "==1.5.3"
-pymdown-extensions = "*"
+pymdown-extensions = "==10.3.1"
 pygments = "*"
 beautifulsoup4 = "*"
 requests = "*"
+python-markdown-document-offsets-injection-extension = "==0.2.0"
+markdown = "==3.6"
 
 [dev-packages]
 

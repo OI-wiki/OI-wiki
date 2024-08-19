@@ -41,17 +41,249 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
 
 由于前者的 Hash 定义计算更简便、使用人数更多、且可以类比为一个 $b$ 进制数来帮助理解，所以本文下面所将要讨论的都是使用 $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$ 来定义的 Hash 函数。
 
-下面讲一下如何选择 $M$ 和计算哈希碰撞的概率。
+还有，有时为了方便和扩大模数，我们在 C++ 中我们会使用 `unsigned long long` 来定义 Hash 函数的结果。由于 C++ 的特性，我们相当于把模数 $M$ 定为 $2^{64}$，也是一个不错的选择。
 
-这里 $M$ 需要选择一个素数（至少要比最大的字符要大），$b$ 可以任意选择。
+准确率会在后面讨论。
 
-如果我们用未知数 $x$ 替代 $b$，那么 $f(s)$ 实际上是多项式环 $\mathbb{Z}_M[x]$ 上的一个多项式。考虑两个不同的字符串 $s,t$，有 $f(s)=f(t)$。我们记 $h(x)=f(s)-f(t)=\sum_{i=1}^l(s[i]-t[i])x^{l-i}\pmod M$，其中 $l=\max(|s|,|t|)$。可以发现 $h(x)$ 是一个 $l-1$ 阶的非零多项式。
+## Hash 的错误率分析
 
-如果 $s$ 与 $t$ 在 $x=b$ 的情况下哈希碰撞，则 $b$ 是 $h(x)$ 的一个根。由于 $h(x)$ 在 $\mathbb{Z}_M$ 是一个域（等价于 $M$ 是一个素数，这也是为什么 $M$ 要选择素数的原因）的时候，最多有 $l-1$ 个根，如果我们保证 $b$ 是从 $[0,M)$ 之间均匀随机选取的，那么 $f(s)$ 与 $f(t)$ 碰撞的概率可以估计为 $\frac{l-1}{M}$。简单验算一下，可以发现如果两个字符串长度都是 $1$ 的时候，哈希碰撞的概率为 $\frac{1-1}{M}=0$，此时不可能发生碰撞。
+### Hash 冲突
+
+Hash 冲突是指两个不同的字符串映射到相同的 Hash 值。
+
+我们设 Hash 的取值空间（所有可能出现的字符串的数量）为 $d$，计算次数（要计算的字符串数量）为 $n$。
+
+则 Hash 冲突的概率为：
+
+$$
+p(n,d) =1 - \exp(-\frac{n(n-1)}{2d} )
+$$
+
+??? note "证明"
+    当 Hash 中每个值生成概率相同时，Hash 不冲突的概率为：
+
+    $$
+    \overline{p}(n,d) = 1 \cdot \left (1 - \frac{1}{d} \right) \cdot \left ( 1- \frac{2}{d}\right) \cdots \left ( 1- \frac{n-1}{d}\right)
+    $$
+
+    化简得到：
+
+    $$
+    \begin{aligned}
+    \overline{p}(n,d) 
+    & = \frac{d}{d}\cdot \frac{d-1}{d}\cdot \frac{d-2}{d} \cdots \frac{d-n+1}{d}\\
+    & = \frac{d\cdot (d-1)\cdot (d-2)\cdots(d-n+1)}{d^n}\\
+    & = \frac{\frac{d!}{(d-n)!}}{d^n}\\
+    & = \frac{d!}{d^n\left(d-n\right)!}
+    \end{aligned}
+    $$
+
+    则 Hash 冲突的概率为：
+
+    $$
+    p(n,d) = 1 - \frac{d!}{d^n\left(d-n\right)!}
+    $$
+
+    这个公式还是太复杂了，我们进一步化简。
+
+    根据泰勒公式：
+
+    $$
+    \exp(x) = \sum_{k=0}^{\infty}\frac{x^k}{k!}=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+\cdots
+    $$
+
+    当 $x$ 为一个极小值时，$\exp(x)$ 趋近于 $1+x$。
+
+    将它带入 Hash 不冲突的原始公式：
+
+    $$
+    \overline{p}(n,d) = 1 \cdot \exp(-\frac{1}{d}) \cdot \exp(-\frac{2}{d}) \cdots \exp(-\frac{n-1}{d})
+    $$
+
+    化简：
+
+    $$
+    \begin{aligned}
+    \overline{p}(n,d) & = \exp(-\frac{1}{d} - \frac{2}{d} - \cdots -\frac{n-1}{d})\\
+    &=\exp(-\frac{n(n-1)}{2d} )
+    \end{aligned}
+    $$
+
+    则 Hash 冲突的概率为：
+
+    $$
+    p(n,d) =1 - \exp(-\frac{n(n-1)}{2d})
+    $$
+
+### 卡大模数 Hash
+
+注意到这个公式：
+
+$$
+p(n,d) =1 - \exp(-\frac{n(n-1)}{2d} )
+$$
+
+为了卡掉 Hash，我们要满足一下条件：
+
+1.  $d$ 要大于模数。
+2.  $1-p(d,n)$ 要尽量小。
+
+举个例子：
+
+若字符集为 **大小写字母和数字**，模数为 $10^9+7$ 时：
+
+$log_{62}10^9+7\approx 6$
+
+$p(10^6,6^62) \approx 0.9$
+
+所以对于这个范围，我们随机生成 $10^6$ 个长度为 $6$ 的字符串，它们 Hash 值相同的概率高达 $90\%$。
+
+### 卡自然溢出 Hash
+
+这种 Hash 由于模数太大，用上面的方法卡不了，所以我们需要另一种方法。
+
+首先，这种 Hash 是形如 $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i}$，我们根据 $b$ 来分类讨论。
+
+#### b 为偶数
+
+此时 $f(s) = s_1\cdot b^l + s_2\cdot b^{l-1} + \cdots + s_l\cdot b \pmod M$，其中 $M$ 为 $2^{64}$。
+
+容易发现若 $l \ge 64$，$s_i\cdot b^l \equiv 0 \pmod M$。
+
+所以我们只要构造形如：
+
+`aaa...a`
+
+`baa...a`
+
+且长度大于 $64$ 的字符串就能冲突。
+
+#### b 为奇数
+
+定义 $!s_i$ 为把 $s_i$ 中所有字符反转。
+
+例：
+
+$s_i = abaab$
+
+$!s_i = babba$
+
+即把 `a` 变成 `b`，把 `b` 变成 `a`。
+
+再定义 $hash_i$ 为 $s_i$ 的 Hash 值，$!hash_i$ 为 $!s_i$ 的 Hash 值。
+
+不断构造 $s_i = s_{i-1} + !s_{i-1}$。
+
+$s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
+
+??? note "推导"
+    
+
+    $$
+    \begin{aligned}
+    hash_i = hash_{i-1}\cdot base^{2^{i-2}} + !hash_{i-1}\\
+    !hash_{i} = !hash_{i-1}\cdot base^{2^{i-2}}+hash_{i-1}
+    \end{aligned}
+    $$
+
+    尝试相减：
+
+    $$
+    \begin{aligned}
+    &hash_i - !hash_i\\
+    =\ &hash_{i-1}\cdot base^{2^{i-2}} + !hash_{i-1}-(!hash_{i-1}\cdot base^{2^{i-2}}+hash_{i-1})\\
+    =\ &(hash_{i-1}-!hash_{i-1})\cdot (base^{2^{i-2}}-1)
+    \end{aligned}
+    $$
+
+    发现出现了 $2^i$，但是原式太复杂，尝试换元：
+
+    设：
+
+    $$
+    \begin{aligned}
+    f_i = hash_i - !hash_i\\
+    g_i = base^{2^{i-2}-1}
+    \end{aligned}
+    $$
+
+    根据原式得：
+
+    $$
+    \begin{aligned}
+    f_i &= f_{i-1} \cdot g_i\\
+        &=f_1 \cdot g_1 \cdot g_2 \cdots g_{i-1}\\
+    \end{aligned}
+    $$
+
+    因为 $base^{2^{i-2}}$ 一定是奇数，所以 $g_i$ 一定是偶数。
+
+    所以：
+
+    $$
+    2^{i-1} | f_i
+    $$
+
+    但这样太大了，$i-1\ge 64$ 才能卡掉，继续化简：
+
+    $$
+    g_i = base^{2^{i-2}-1} = (base^{2^{i-2}}-1)\cdot(base^{2^{i-2}}+1)\\
+    $$
+
+    即 $g_i$ 为 $g_{i-1} \cdot c\ (c \equiv 0 \pmod 2)$ 的形式。
+
+    所以 $2 | s_1$，$4|s_2$...，即
+
+    $$
+    \begin{aligned}
+    & 2^i &| g_i\\
+    &2^1\cdot2^2\cdot2^3\cdots2^{i-1} &| f_i\\
+    &2^{i(i-1)/2} &| f_i
+    \end{aligned}
+    $$
+
+    即当 $i=12$ 时就可以使 $2^{64} | hash_i - !hash_i$ 达到要求。
+
+### 例题
+
+???+ note "[例题：BZOJ 3097 Hash Killer I](https://hydro.ac/d/bzoj/p/3097)"
+    给定一个用 **自然溢出** 实现的 Hash，要求构造一个字符串来卡掉它。
+
+???+ note "[例题：BZOJ 3097 Hash Killer II](https://hydro.ac/d/bzoj/p/3098)"
+    给定一个用 **大模数** 实现的 Hash，要求构造一个字符串来卡掉它。
+
+???+ note "[例题：洛谷 U461211 字符串 Hash（数据加强）](https://www.luogu.com.cn/problem/U461211)"
+    给定 $n$ 个字符串，判断不同的字符串有多少个。
+
+## Hash 的改进
+
+### 多值 Hash
+
+看了上面这么多的卡法，当然也有解决办法。
+
+多值 Hash，就是有多个 Hash 函数，每个 Hash 函数的模数不一样，这样就能解决 Hash 冲突的问题。
+
+判断时只要有其中一个的 Hash 值不同，就认为两个字符串不同，若 Hash 值都相同，则认为两个字符串相同。
+
+一般来说，双值 Hash 就够用了。
+
+### 多次询问子串哈希
+
+单次计算一个字符串的哈希值复杂度是 $O(n)$，其中 $n$ 为串长，与暴力匹配没有区别，如果需要多次询问一个字符串的子串的哈希值，每次重新计算效率非常低下。
+
+一般采取的方法是对整个字符串先预处理出每个前缀的哈希值，将哈希值看成一个 $b$ 进制的数对 $M$ 取模的结果，这样的话每次就能快速求出子串的哈希了：
+
+令 $f_i(s)$ 表示 $f(s[1..i])$，即原串长度为 $i$ 的前缀的哈希值，那么按照定义有 $f_i(s)=s[1]\cdot b^{i-1}+s[2]\cdot b^{i-2}+\dots+s[i-1]\cdot b+s[i]$
+
+现在，我们想要用类似前缀和的方式快速求出 $f(s[l..r])$，按照定义有字符串 $s[l..r]$ 的哈希值为 $f(s[l..r])=s[l]\cdot b^{r-l}+s[l+1]\cdot b^{r-l-1}+\dots+s[r-1]\cdot b+s[r]$
+
+对比观察上述两个式子，我们发现 $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l+1}$ 成立（可以手动代入验证一下），因此我们用这个式子就可以快速得到子串的哈希值。其中 $b^{r-l+1}$ 可以 $O(n)$ 的预处理出来然后 $O(1)$ 的回答每次询问（当然也可以快速幂 $O(\log n)$ 的回答每次询问）。
 
 ## 实现
 
-参考代码：（效率低下的版本，实际使用时一般不会这么写）
+### 模数 Hash：
+
+注：效率较低，实际使用中不推荐。
 
 === "C++"
     ```cpp
@@ -92,25 +324,62 @@ Hash 的核心思想在于，将输入映射到一个值域较小、可以方便
         return get_hash(s) == get_hash(t)
     ```
 
-## Hash 的分析与改进
+### 双值 Hash：
 
-### 错误率
+=== "C++"
+    ```cpp
+    typedef unsigned long long ull;
+    ull base = 131;
+    ull mod1 = 212370440130137957, mod2 = 1e9 + 7;
+    
+    ull get_hash1(std::string s) {
+      int len = s.size();
+      ull ans = 0;
+      for (int i = 0; i < len; i++) ans = (ans * base + (ull)s[i]) % mod1;
+      return ans;
+    }
+    
+    ull get_hash2(std::string s) {
+      int len = s.size();
+      ull ans = 0;
+      for (int i = 0; i < len; i++) ans = (ans * base + (ull)s[i]) % mod2;
+      return ans;
+    }
+    
+    bool cmp(const std::string s, const std::string t) {
+      bool f1 = get_hash1(s) != get_hash1(t);
+      bool f2 = get_hash2(s) != get_hash2(t);
+      return f1 || f2;
+    }
+    ```
 
-假定哈希函数将字符串随机地映射到大小为 $M$ 的值域中，总共有 $n$ 个不同的字符串，那么未出现碰撞的概率是 $\prod_{i = 0}^{n-1} \frac{M-i}{M}$（第 $i$ 次进行哈希时，有 $\frac{M-i}{M}$ 的概率不会发生碰撞）。在随机数据下，若 $M=10^9 + 7$，$n=10^6$，未出现碰撞的概率是极低的。
+=== "Python"
+    ```python
+    def get_hash1(s: str) -> int:
+        base = 131
+        mod1 = 212370440130137957
+        ans = 0
+        for char in s:
+            ans = (ans * base + ord(char)) % mod1
+        return ans
+    
+    
+    def get_hash2(s: str) -> int:
+        base = 131
+        mod2 = 1000000007
+        ans = 0
+        for char in s:
+            ans = (ans * base + ord(char)) % mod2
+        return ans
+    
+    
+    def cmp(s: str, t: str) -> bool:
+        f1 = get_hash1(s) != get_hash1(t)
+        f2 = get_hash2(s) != get_hash2(t)
+        return f1 or f2
+    ```
 
-所以，进行字符串哈希时，经常会对两个大质数分别取模，这样的话哈希函数的值域就能扩大到两者之积，错误率就非常小了。
-
-### 多次询问子串哈希
-
-单次计算一个字符串的哈希值复杂度是 $O(n)$，其中 $n$ 为串长，与暴力匹配没有区别，如果需要多次询问一个字符串的子串的哈希值，每次重新计算效率非常低下。
-
-一般采取的方法是对整个字符串先预处理出每个前缀的哈希值，将哈希值看成一个 $b$ 进制的数对 $M$ 取模的结果，这样的话每次就能快速求出子串的哈希了：
-
-令 $f_i(s)$ 表示 $f(s[1..i])$，即原串长度为 $i$ 的前缀的哈希值，那么按照定义有 $f_i(s)=s[1]\cdot b^{i-1}+s[2]\cdot b^{i-2}+\dots+s[i-1]\cdot b+s[i]$
-
-现在，我们想要用类似前缀和的方式快速求出 $f(s[l..r])$，按照定义有字符串 $s[l..r]$ 的哈希值为 $f(s[l..r])=s[l]\cdot b^{r-l}+s[l+1]\cdot b^{r-l-1}+\dots+s[r-1]\cdot b+s[r]$
-
-对比观察上述两个式子，我们发现 $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l+1}$ 成立（可以手动代入验证一下），因此我们用这个式子就可以快速得到子串的哈希值。其中 $b^{r-l+1}$ 可以 $O(n)$ 的预处理出来然后 $O(1)$ 的回答每次询问（当然也可以快速幂 $O(\log n)$ 的回答每次询问）。
+    ```
 
 ## Hash 的应用
 
