@@ -35,7 +35,7 @@
     === "Python"
         ```python
         class Node:
-            def __init__(self, value = None, next = None): 
+            def __init__(self, value=None, next=None):
                 self.value = value
                 self.next = next
         ```
@@ -59,7 +59,7 @@
     === "Python"
         ```python
         class Node:
-            def __init__(self, value = None, left = None, right = None): 
+            def __init__(self, value=None, left=None, right=None):
                 self.value = value
                 self.left = left
                 self.right = right

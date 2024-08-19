@@ -1,76 +1,75 @@
-#include <algorithm>
-#include <cctype>
-#include <cstdio>
 #include <iostream>
 
 using namespace std;
 
-int read() {  // 快读
-  int out = 0;
-  char c;
-  while (!isdigit(c = getchar()));
-  for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
-  return out;
-}
-
 const int N = 1000010;
 
 struct Node {
-  int val, ch[2], d;
+  int val, ls, rs, d;
+
+  Node() {
+    val = ls = rs = 0;
+    d = -1;
+  }
+
+  Node(int v) {
+    val = v;
+    ls = rs = d = 0;
+  }
 } t[N];
 
-int& rs(int x);
-int merge(int x, int y);
+int merge(int x, int y) {
+  if (!x || !y) return x | y;
+  if (t[x].val > t[y].val) swap(x, y);
+  t[x].rs = merge(t[x].rs, y);
+  if (t[t[x].rs].d > t[t[x].ls].d) swap(t[x].ls, t[x].rs);
+  t[x].d = t[t[x].rs].d + 1;
+  return x;
+}
 
-int find(int x);
+int f[N];
 
-int n, m, f[N];
+int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }  // 查找
+
 bool kill[N];
-char op[10];
 
 int main() {
-  int i, x, y;
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
 
-  n = read();
-
-  for (i = 1; i <= n; ++i) {
-    t[i].val = read();
+  int n;
+  cin >> n;
+  for (int i = 1; i <= n; ++i) {
+    int v;
+    cin >> v;
+    t[i] = Node(v);
     f[i] = i;
   }
 
-  m = read();
-
+  int m;
+  cin >> m;
+  int x, y;
+  char op;
   while (m--) {
-    scanf("%s", op);
-    if (op[0] == 'M') {
-      x = read();
-      y = read();
-      if (kill[x] || kill[y] || find(x) == find(y)) continue;  // 这是题意
-      f[find(x)] = f[find(y)] = merge(find(x), find(y));
+    cin >> op;
+    if (op == 'M') {
+      cin >> x >> y;
+      if (kill[x] || kill[y]) continue;
+      x = find(x);
+      y = find(y);
+      if (x != y) f[x] = f[y] = merge(x, y);
     } else {
-      x = read();
+      cin >> x;
       if (!kill[x]) {
         x = find(x);
         kill[x] = true;
-        f[x] = f[t[x].ch[0]] = f[t[x].ch[1]] = merge(t[x].ch[0], t[x].ch[1]);
+        f[x] = f[t[x].ls] = f[t[x].rs] = merge(t[x].ls, t[x].rs);
         // 由于堆中的点会 find 到 x，所以 f[x] 也要修改
-        printf("%d\n", t[x].val);
+        cout << t[x].val << '\n';
       } else
-        puts("0");
+        cout << "0\n";
     }
   }
 
   return 0;
 }
-
-int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
-
-int merge(int x, int y) {  // 左偏树并堆
-  if (!x || !y) return x | y;
-  if (t[x].val > t[y].val) swap(x, y);
-  rs(x) = merge(rs(x), y);
-  t[x].d = t[rs(x)].d + 1;
-  return x;
-}
-
-int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }  // 查找

@@ -92,7 +92,7 @@ int main() {
   // 调用绑定到 higherorder 的 Lambda 表达式
   auto answer = higherorder(addtwointegers(7), 8);
 
-  // 答案为 (7 + 8) * 2 = 15
+  // 答案为 (7 + 8) * 2 = 30
   cout << answer << endl;
 }
 ```

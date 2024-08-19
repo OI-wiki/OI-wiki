@@ -329,7 +329,7 @@ False
 [0, 0, 0]
 >>> id(a1) == id(a2) and id(a1) != id(a3)  # 内置函数 id() 给出对象的「标识值」，可类比为地址，地址相同说明是一个对象
 True
->>> vis2 = vis[:];  # 拷贝一份二维列表看看
+>>> vis2 = vis[:]  # 拷贝一份二维列表看看
 >>> vis[0][1] = 2; vis  # vis 肯定还是被批量修改
 >>> [[1, 2, 0], [1, 2, 0], [1, 2, 0]]
 >>> vis2  # 但 vis2 是切片拷贝的怎么还是被改了
@@ -337,7 +337,7 @@ True
 >>> id(vis) != id(vis2)  # vis 和 vis2 确实不是一个对象啊
 True
 >>> # 谜底揭晓，vis2 虽然不是 vis 的引用，但其中对应行都指向相同的对象
->>> [[id(vis[i]) == id(vis2[i]) for i in range(3)]
+>>> [id(vis[i]) == id(vis2[i]) for i in range(3)]
 [True, True, True]
 >>> # 回看二维列表自身
 >>> [id(x) for x in vis]  # 具体数字和这里不一样但三个值一定相同，说明是三个相同对象
@@ -502,13 +502,13 @@ print(u, v, w)
 ```python
 u, v, w = [], [], []  # 多变量赋值，其实同上
 s = input()  # 注意 Python 中赋值语句不能放在条件表达式中
-while s:  # 不能像 C 那样 while(!scanf()) 
+while s:  # 不能像 C 那样 while(!scanf())
     # 用切片拼接避免了 append()，注意列表推导式中又嵌套了列表
-    u[len(u):], v[len(v):], w[len(w):] = [[int(x)] for x in s.split()]
+    u[len(u) :], v[len(v) :], w[len(w) :] = [[int(x)] for x in s.split()]
     s = input()
 # Python 3.8 引入了 walrus operator 海象运算符后，你可以节省两行，但考场环境很可能不支持
 while s := input():
-    u[len(u):], v[len(v):], w[len(w):] = [[int(x)] for x in s.split()]
+    u[len(u) :], v[len(v) :], w[len(w) :] = [[int(x)] for x in s.split()]
 print(u, v, w)
 ```
 
@@ -521,13 +521,12 @@ print(u, v, w)
 if 4 >= 3 > 2 and 3 != 5 == 5 != 7:
     print("关系运算符可以连续使用")
     x = None or [] or -2
-    print("&&  ||  !", "与  或  非", "and or not", sep='\n')
+    print("&&  ||  !", "与  或  非", "and or not", sep="\n")
     print("善用 and/or 可节省行数")
     if not x:
         print("负数也是 True，不执行本句")
     elif x & 1:
-        print("用 elif 而不是 else if\n"
-        "位运算符与 C 相近，偶数&1 得 0，不执行本句")
+        print("用 elif 而不是 else if\n" "位运算符与 C 相近，偶数&1 得 0，不执行本句")
     else:
         print("也有三目运算符") if x else print("注意结构")
 ```
@@ -558,12 +557,12 @@ Python 内置函数 [`open()`](https://docs.python.org/3/library/functions.html#
 
 ```python
 a = []
-with open('in.txt') as f:
+with open("in.txt") as f:
     N = int(f.readline())  # 读入第一行的 N
-    a[len(a):] = [[int(x) for x in f.readline().split()] for i in range(N)]
+    a[len(a) :] = [[int(x) for x in f.readline().split()] for i in range(N)]
 
-with open('out.txt', 'w') as f:
-    f.write('1\n')
+with open("out.txt", "w") as f:
+    f.write("1\n")
 ```
 
 关于文件读写的函数有很多，分别适用于不同的场景，由于 OI 赛事尚不支持使用 Python，这里从略。
@@ -575,7 +574,7 @@ Python 内置了许多强大的容器类型，只有熟练使用并了解其特�
 元组可以简单理解成不可变的列表，不过还需注意「不可变」的内涵，如果元组中的某元素是可变类型比如列表，那么仍可以修改该列表的值，元组中存放的是对列表的引用所以元组本身并没有改变。元组的优点是开销较小且「[可哈希](https://docs.python.org/zh-cn/3/glossary.html)」，后者在创建字典和集合时非常有用。
 
 ```python
-tup = tuple([[1,2], 4])  # 由列表得到元组
+tup = tuple([[1, 2], 4])  # 由列表得到元组
 # 等同于 tup = ([1,2], 4)
 tup[0].append(3)
 print(tup)
@@ -589,21 +588,23 @@ print(id(a), id(b))  # 你应该会看到 a, b 的 id 值现在互换了
 字典就像 C++ STL 中的 [`map`](./csl/associative-container.md#map)（请注意和 Python 中内置函数 [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 区分）用于存储键值对，形式类似 [JSON](https://docs.python.org/3/library/json.html)，但 JSON 中键必须是字符串且以双引号括住，字典则更加灵活强大，可哈希的对象都可作为字典的键。需要注意 Python 几次版本更新后字典的特性有了较多变化，包括其中元素的顺序等，请自行探索。
 
 ```python
-dic = {'key': "value"}  # 基本形式
+dic = {"key": "value"}  # 基本形式
 dic = {chr(i): i for i in range(65, 91)}  # 大写字母到对应 ASCII 码的映射，注意断句
-dic = dict(zip([chr(i) for i in range(65, 91)], range(65,91)))  # 效果同上
+dic = dict(zip([chr(i) for i in range(65, 91)], range(65, 91)))  # 效果同上
 dic = {dic[k]: k for k in dic}  # 将键值对逆转，for k in dic 迭代其键
 dic = {v: k for k, v in dic.items()}  # 和上行作用相同，dic.items() 以元组存放单个键值对
-dic = {k: v for k, v in sorted(dic.items(), key=lambda x:-x[1])}  # 字典按值逆排序，用到了 lambda 表达式
+dic = {
+    k: v for k, v in sorted(dic.items(), key=lambda x: -x[1])
+}  # 字典按值逆排序，用到了 lambda 表达式
 
-print(dic['A'])  # 返回 dic 中 以 'A' 为键的项，这里值为65
-dic['a'] = 97  # 将 d[key] 设为 value，字典中原无 key 就是直接插入
-if 'b' in dic:  # LBYL(Look Before You Leap) 风格
-    print(dic['b'])  # 若字典中无该键则会出错，故先检查
+print(dic["A"])  # 返回 dic 中 以 'A' 为键的项，这里值为65
+dic["a"] = 97  # 将 d[key] 设为 value，字典中原无 key 就是直接插入
+if "b" in dic:  # LBYL(Look Before You Leap) 风格
+    print(dic["b"])  # 若字典中无该键则会出错，故先检查
 else:
-    dic['b'] = 98
+    dic["b"] = 98
 
-# 经典场景 统计出现次数 
+# 经典场景 统计出现次数
 # 新键不存在于原字典，需要额外处理
 try:  # EAFP (Easier to Ask for Forgiveness than Permission) 风格
     cnter[key] += 1
@@ -623,18 +624,19 @@ def add(a, b):
 
 
 def add_no_swap(a, b):
-    print('in func #1:', id(a), id(b))
+    print("in func #1:", id(a), id(b))
     a += b
     b, a = a, b
-    print('in func #2:', id(a), id(b))  # a, b 已交换
+    print("in func #2:", id(a), id(b))  # a, b 已交换
     return a, b  # 返回多个值，其实就是返回元组，可以拆包接收
 
 
-lst1 = [1, 2]; lst2 = [3, 4]
-print('outside func #1:', id(lst1), id(lst2))
+lst1 = [1, 2]
+lst2 = [3, 4]
+print("outside func #1:", id(lst1), id(lst2))
 add_no_swap(lst1, lst2)
 # 函数外 lst1, lst2 并未交换
-print('outside func #2:', id(lst1), id(lst2))
+print("outside func #2:", id(lst1), id(lst2))
 # 不过值确实已经改变
 print(lst1, lst2)
 ```
@@ -648,12 +650,14 @@ def append_to(element, to=[]):
     to.append(element)
     return to
 
+
 lst1 = append_to(12)
 lst2 = append_to(42)
 print(lst1, lst2)
 
 # 你可能以为输出是 [12] [42]
 # 但运行结果其实是 [12] [12, 42]
+
 
 # 这是因为默认参数的值仅仅在函数定义的时候赋值一次
 # 默认参数的值应该是不可变对象，使用 None 占位是一种最佳实践
@@ -684,13 +688,14 @@ Python 3.5 后引入了类型标注，允许设置函数参数和返回值的类
 
 ```python
 def headline(
-    text,           # type: str
-    width = 80,       # type: int
-    fill_char = "-",  # type: str
-):                  # type: (...) -> str
+    text,  # type: str
+    width=80,  # type: int
+    fill_char="-",  # type: str
+):  # type: (...) -> str
     return f"{text.title()}".center(width, fill_char)
 
-print(headline("type comments work", width = 40))
+
+print(headline("type comments work", width=40))
 ```
 
 除了函数参数，变量也是可以类型标注的，你可以通过调用 `__annotations__` 来查看函数中所有的类型标注。变量类型标注赋予了 Python 静态语言的性质，即声明与赋值分离：
@@ -719,7 +724,7 @@ NameError: name 'nothing' is not defined
 以下是使用 `lru_cache` 优化计算斐波那契数列的例子：
 
 ```python
-@lru_cache(maxsize = None)
+@lru_cache(maxsize=None)
 def fib(n):
     if n < 2:
         return n
@@ -763,14 +768,14 @@ def fib(n):
 
 === "Python"
     ```python
-    try: # 引入优先队列模块
-        import Queue as pq #python version < 3.0
+    try:  # 引入优先队列模块
+        import Queue as pq  # python version < 3.0
     except ImportError:
-        import queue as pq #python3.*
+        import queue as pq  # python3.*
     
     N = int(1e5 + 5)
     M = int(2e5 + 5)
-    INF = 0x3f3f3f3f
+    INF = 0x3F3F3F3F
     ```
 
 ### 声明前向星结构体和其它变量
@@ -799,12 +804,14 @@ def fib(n):
             self.t = 0
             self.v = 0
     
+    
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
     
     dist = [INF for i in range(N)]
     q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
+    
     
     def add_path(f, t, v):  # 在前向星中加边
         # 如果要修改全局变量，要使用 global 来声明
@@ -858,9 +865,9 @@ def fib(n):
             for i in nextedgeid(u[1]):
                 v = e[i].t
                 w = e[i].v
-                if dist[v] <= dist[u[1]]+w:
+                if dist[v] <= dist[u[1]] + w:
                     continue
-                dist[v] = dist[u[1]]+w
+                dist[v] = dist[u[1]] + w
                 q.put((dist[v], v))
     ```
 
@@ -885,7 +892,7 @@ def fib(n):
 
 === "Python"
     ```python
-    if __name__ == '__main__':
+    if __name__ == "__main__":
         # 一行读入多个整数。注意它会把整行都读进来
         n, m, s = map(int, input().split())
         for i in range(m):
@@ -895,7 +902,7 @@ def fib(n):
         dijkstra(s)
     
         for i in range(1, n + 1):
-            print(dist[i], end = ' ')
+            print(dist[i], end=" ")
     
         print()
     ```
@@ -959,9 +966,10 @@ def fib(n):
     except ImportError:
         import queue as pq  # python3.*
     
-    N = int(1e5+5)
-    M = int(2e5+5)
-    INF = 0x3f3f3f3f
+    N = int(1e5 + 5)
+    M = int(2e5 + 5)
+    INF = 0x3F3F3F3F
+    
     
     class qxx:  # 前向星类（结构体）
         def __init__(self):
@@ -969,12 +977,14 @@ def fib(n):
             self.t = 0
             self.v = 0
     
+    
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
     
     dist = [INF for i in range(N)]
     q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
+    
     
     def add_path(f, t, v):  # 在前向星中加边
         # 如果要修改全局变量，要使用 global 来声名
@@ -987,11 +997,13 @@ def fib(n):
         e[cnt].v = v
         h[f] = cnt
     
+    
     def nextedgeid(u):  # 生成器，可以用在 for 循环里
         i = h[u]
         while i:
             yield i
             i = e[i].nex
+    
     
     def dijkstra(s):
         dist[s] = 0
@@ -1003,14 +1015,14 @@ def fib(n):
             for i in nextedgeid(u[1]):
                 v = e[i].t
                 w = e[i].v
-                if dist[v] <= dist[u[1]]+w:
+                if dist[v] <= dist[u[1]] + w:
                     continue
-                dist[v] = dist[u[1]]+w
+                dist[v] = dist[u[1]] + w
                 q.put((dist[v], v))
     
     
     # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
-    if __name__ == '__main__':
+    if __name__ == "__main__":
         # 一行读入多个整数。注意它会把整行都读进来
         n, m, s = map(int, input().split())
         for i in range(m):
@@ -1021,7 +1033,7 @@ def fib(n):
     
         for i in range(1, n + 1):
             # 两种输出语法都是可以用的
-            print("{}".format(dist[i]), end=' ')
+            print("{}".format(dist[i]), end=" ")
             # print("%d" % dist[i],end=' ')
     
         print()  # 结尾换行

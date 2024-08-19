@@ -1,4 +1,4 @@
-author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint
+author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint, HuangYiming0608
 
 本页面主要列举一些竞赛中很多人经常会出现的错误。
 
@@ -158,8 +158,6 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         }
         ```
 
-    -   特别的，也不能在执行 `ios::sync_with_stdio(false);` 后使用 `freopen`。
-
 -   由于宏的展开，且未加括号导致的错误。
 
     -   示例：该宏返回的值并非 $4^2 = 16$ 而是 $2+2\times 2+2 = 8$。
@@ -218,6 +216,9 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         f[a] = b;              // 错误
         f[find(a)] = find(b);  // 正确
         ```
+
+-   `freopen` 使用 `a` 进行追加写
+    -   CCF 的检测环境不会清空输出文件，使用 `a` 会导致上一位选手的输出也被评测机读入引发 WA
 
 #### 换行符不同
 
@@ -346,7 +347,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     int foo(int x) { return 0; }
     ```
 
-    因为编译器可以假定有符号整数永远不会溢出，因此 `x > x + 1` 恒成立。
+    因为编译器可以假定有符号整数永远不会溢出，因此 `x > x + 1` 永远不会成立。
 
 -   使用未初始化的变量
 

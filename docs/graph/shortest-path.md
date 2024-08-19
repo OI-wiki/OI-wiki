@@ -9,14 +9,6 @@ author: du33169
 -   有向图中的最短路、无向图中的最短路
 -   单源最短路、每对结点之间的最短路
 
-## 性质
-
-对于边权为正的图，任意两个结点之间的最短路，不会经过重复的结点。
-
-对于边权为正的图，任意两个结点之间的最短路，不会经过重复的边。
-
-对于边权为正的图，任意两个结点之间的最短路，任意一条的结点数不会超过 $n$，边数不会超过 $n-1$。
-
 ## 记号
 
 为了方便叙述，这里先给出下文将会用到的一些记号的含义。
@@ -26,6 +18,14 @@ author: du33169
 -   $D(u)$ 为 $s$ 点到 $u$ 点的 **实际** 最短路长度；
 -   $dis(u)$ 为 $s$ 点到 $u$ 点的 **估计** 最短路长度。任何时候都有 $dis(u) \geq D(u)$。特别地，当最短路算法终止时，应有 $dis(u)=D(u)$。
 -   $w(u,v)$ 为 $(u,v)$ 这一条边的边权。
+
+## 性质
+
+对于边权为正的图，任意两个结点之间的最短路，不会经过重复的结点。
+
+对于边权为正的图，任意两个结点之间的最短路，不会经过重复的边。
+
+对于边权为正的图，任意两个结点之间的最短路，任意一条的结点数不会超过 $n$，边数不会超过 $n-1$。
 
 ## Floyd 算法
 
@@ -171,7 +171,7 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
         const int INF = 0x3f3f3f3f;
         
         bool bellmanford(int n, int s) {
-          memset(dis, 0x3f, sizeof(dis));
+          memset(dis, 0x3f, (n + 1) * sizeof(int));
           dis[s] = 0;
           bool flag = false;  // 判断一轮循环过程中是否发生松弛操作
           for (int i = 1; i <= n; i++) {
@@ -199,16 +199,18 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
     === "Python"
         ```python
         class Edge:
-            def __init__(self, u = 0, v = 0, w = 0):
+            def __init__(self, u=0, v=0, w=0):
                 self.u = u
                 self.v = v
                 self.w = w
         
-        INF = 0x3f3f3f3f
+        
+        INF = 0x3F3F3F3F
         edge = []
-        dis = [INF] * MAXN
+        
         
         def bellmanford(n, s):
+            dis = [INF] * (n + 1)
             dis[s] = 0
             for i in range(1, n + 1):
                 flag = False
@@ -252,7 +254,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
         queue<int> q;
         
         bool spfa(int n, int s) {
-          memset(dis, 63, sizeof(dis));
+          memset(dis, 0x3f, (n + 1) * sizeof(int));
           dis[s] = 0, vis[s] = 1;
           q.push(s);
           while (!q.empty()) {
@@ -277,16 +279,24 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
     === "Python"
         ```python
         from collections import deque
+        
+        
         class Edge:
-            def __init__(self, v = 0, w = 0):
+            def __init__(self, v=0, w=0):
                 self.v = v
                 self.w = w
         
-        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [0x3f3f3f3f] * maxn; cnt = [0] * maxn; vis = [False] * maxn
         
-        q = deque()
+        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+        INF = 0x3F3F3F3F
+        
+        
         def spfa(n, s):
+            dis = [INF] * (n + 1)
+            cnt = [0] * (n + 1)
+            vis = [False] * (n + 1)
+            q = deque()
+        
             dis[s] = 0
             vis[s] = True
             q.append(s)
@@ -297,7 +307,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                     v, w = ed.v, ed.w
                     if dis[v] > dis[u] + w:
                         dis[v] = dis[u] + w
-                        cnt[v] = cnt[u] + 1 # 记录最短路经过的边数
+                        cnt[v] = cnt[u] + 1  # 记录最短路经过的边数
                         if cnt[v] >= n:
                             return False
                         # 在不经过负环的情况下，最短路至多经过 n - 1 条边
@@ -386,7 +396,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         int dis[maxn], vis[maxn];
         
         void dijkstra(int n, int s) {
-          memset(dis, 63, sizeof(dis));
+          memset(dis, 0x3f, (n + 1) * sizeof(int));
           dis[s] = 0;
           for (int i = 1; i <= n; i++) {
             int u = 0, mind = 0x3f3f3f3f;
@@ -404,16 +414,23 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
     === "Python"
         ```python
         class Edge:
-            def __init(self, v = 0, w = 0):
+            def __init(self, v=0, w=0):
                 self.v = v
                 self.w = w
+        
+        
         e = [[Edge() for i in range(maxn)] for j in range(maxn)]
-        dis = [0x3f3f3f3f] * maxn; vis = [0] * maxn
+        INF = 0x3F3F3F3F
+        
+        
         def dijkstra(n, s):
+            dis = [INF] * (n + 1)
+            vis = [0] * (n + 1)
+        
             dis[s] = 0
             for i in range(1, n + 1):
                 u = 0
-                mind = 0x3f3f3f3f
+                mind = INF
                 for j in range(1, n + 1):
                     if not vis[j] and dis[j] < mind:
                         u = j
@@ -443,7 +460,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         priority_queue<node, vector<node>, greater<node> > q;
         
         void dijkstra(int n, int s) {
-          memset(dis, 63, sizeof(dis));
+          memset(dis, 0x3f, (n + 1) * sizeof(int));
           dis[s] = 0;
           q.push({0, s});
           while (!q.empty()) {
@@ -464,27 +481,28 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
     
     === "Python"
         ```python
-        def dijkstra(e,s):
-          '''
-          输入：
-          e:邻接表
-          s:起点
-          返回：
-          dis:从s到每个顶点的最短路长度
-          '''
-          dis = defaultdict(lambda:float("inf"))
-          dis[s] = 0
-          q = [(0,s)]
-          vis = set()
-          while q:
-              _, u = heapq.heappop(q)
-              if u in vis: continue
-              vis.add(u)
-              for v,w in e[u]:
-                  if dis[v] > dis[u] + w:
-                      dis[v] = dis[u] + w
-                      heapq.heappush(q,(dis[v],v))
-          return dis
+        def dijkstra(e, s):
+            """
+            输入：
+            e:邻接表
+            s:起点
+            返回：
+            dis:从s到每个顶点的最短路长度
+            """
+            dis = defaultdict(lambda: float("inf"))
+            dis[s] = 0
+            q = [(0, s)]
+            vis = set()
+            while q:
+                _, u = heapq.heappop(q)
+                if u in vis:
+                    continue
+                vis.add(u)
+                for v, w in e[u]:
+                    if dis[v] > dis[u] + w:
+                        dis[v] = dis[u] + w
+                        heapq.heappush(q, (dis[v], v))
+            return dis
         ```
 
 ## Johnson 全源最短路径算法

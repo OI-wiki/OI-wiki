@@ -46,7 +46,7 @@
             mx = dis(sta[1], sta[2]);
             return;
           }
-          for (int i = 1; i <= top; ++i) {
+          for (int i = 1; i < top; ++i) {
             while (sqr(sta[i], sta[i + 1], sta[j]) <=
                    sqr(sta[i], sta[i + 1], sta[j % top + 1]))
               j = j % top + 1;
@@ -57,21 +57,31 @@
     
     === "Python"
         ```python
-        sta = [0] * N; top = 0 # 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
+        sta = [0] * N
+        top = 0  # 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
+        
+        
         def pf(x):
             return x * x
+        
+        
         def dis(p, q):
             return pf(a[p].x - a[q].x) + pf(a[p].y - a[q].y)
+        
+        
         def sqr(p, q, y):
             return abs((a[q] - a[p]) * (a[y] - a[q]))
-        def get_longest(): # 求凸包直径
+        
+        
+        def get_longest():  # 求凸包直径
             j = 3
             if top < 4:
                 mx = dis(sta[1], sta[2])
                 return
-            for i in range(1, top + 1):
-                while sqr(sta[i], sta[i + 1], sta[j]) <=\
-                    sqr(sta[i], sta[i + 1], sta[j % top + 1]):
+            for i in range(1, top):
+                while sqr(sta[i], sta[i + 1], sta[j]) <= sqr(
+                    sta[i], sta[i + 1], sta[j % top + 1]
+                ):
                     j = j % top + 1
                 mx = max(mx, max(dis(sta[i + 1], sta[j]), dis(sta[i], sta[j])))
         ```
@@ -104,7 +114,7 @@ $$
         void get_biggest() {
           int j = 3, l = 2, r = 2;
           double t1, t2, t3, ans = 2e10;
-          for (int i = 1; i <= top; ++i) {
+          for (int i = 1; i < top; ++i) {
             while (sqr(sta[i], sta[i + 1], sta[j]) <=
                    sqr(sta[i], sta[i + 1], sta[j % top + 1]))
               j = j % top + 1;
@@ -126,19 +136,24 @@ $$
     === "Python"
         ```python
         def get_biggest():
-            j = 3; l = 2; r = 2
+            j = 3
+            l = 2
+            r = 2
             ans = 2e10
-            for i in range(1, top + 1):
-                while sqr(sta[i], sta[i + 1], sta[j]) <=\
-                    sqr(sta[i], sta[i + 1], sta[j % top + 1]):
+            for i in range(1, top):
+                while sqr(sta[i], sta[i + 1], sta[j]) <= sqr(
+                    sta[i], sta[i + 1], sta[j % top + 1]
+                ):
                     j = j % top + 1
-                while dot(sta[i + 1], sta[r % top + 1], sta[i]) >=\
-                    dot(sta[i + 1], sta[r], sta[i]):
+                while dot(sta[i + 1], sta[r % top + 1], sta[i]) >= dot(
+                    sta[i + 1], sta[r], sta[i]
+                ):
                     r = r % top + 1
                 if i == 1:
                     l = r
-                while dot(sta[i + 1], sta[l % top + 1], sta[i]) <=\
-                    dot(sta[i + 1], sta[l], sta[i]):
+                while dot(sta[i + 1], sta[l % top + 1], sta[i]) <= dot(
+                    sta[i + 1], sta[l], sta[i]
+                ):
                     l = l % top + 1
                 t1 = sqr(sta[i], sta[i + 1], sta[j])
                 t2 = dot(sta[i + 1], sta[r], sta[i]) + dot(sta[i + 1], sta[l], sta[i])

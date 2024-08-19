@@ -284,7 +284,7 @@
 
     建议使用源文章或者标签页的标题。
 
-    ???+ fail "不推荐的写法"
+    ???+ failure "不推荐的写法"
         ```markdown
         请参考[这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
         

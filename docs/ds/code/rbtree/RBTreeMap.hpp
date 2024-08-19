@@ -992,8 +992,8 @@ class RBTreeMap {
         // clang-format off
         // Case 4: Sibling is BLACK, close nephew is RED,
         //         distant nephew is BLACK
-        //   Step 1. If N is a left child, right rotate P;
-        //           If N is a right child, left rotate P.
+        //   Step 1. If N is a left child, right rotate S;
+        //           If N is a right child, left rotate S.
         //   Step 2. Swap the color of close nephew and sibling
         //   Step 3. Goto case 5
         //                            {P}                {P}
@@ -1020,15 +1020,17 @@ class RBTreeMap {
       }
 
       // clang-format off
-      // Case 5: Sibling is BLACK, close nephew is BLACK,
-      //         distant nephew is RED
-      //      {P}                   [S]
-      //      / \    l-rotate(P)    / \
-      //    [N] [S]  ==========>  {P} <D>
-      //        / \               / \
-      //      [C] <D>           [N] [C]
+      // Case 5: Sibling is BLACK, distant nephew is RED
+      //   Step 1. If N is a left child, left rotate P;
+      //           If N is a right child, right rotate P.
+      //   Step 2. Swap the color of parent and sibling.
+      //   Step 3. Paint distant nephew D to BLACK.
+      //      {P}                   [S]               {S}
+      //      / \    l-rotate(P)    / \    repaint    / \
+      //    [N] [S]  ==========>  {P} <D>  ======>  [P] [D]
+      //        / \               / \               / \
+      //      {C} <D>           [N] {C}           [N] {C}
       // clang-format on
-      assert(closeNephew == nullptr || closeNephew->isBlack());
       assert(distantNephew->isRed());
       // Step 1
       rotateSameDirection(node->parent, direction);

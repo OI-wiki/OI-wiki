@@ -57,7 +57,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
         def insert(self, s):  # 插入字符串
             p = 0
             for i in s:
-                c = ord(i) - ord('a')
+                c = ord(i) - ord("a")
                 if not self.nex[p][c]:
                     self.cnt += 1
                     self.nex[p][c] = self.cnt  # 如果没有，就添加结点
@@ -67,7 +67,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
         def find(self, s):  # 查找字符串
             p = 0
             for i in s:
-                c = ord(i) - ord('a')
+                c = ord(i) - ord("a")
                 if not self.nex[p][c]:
                     return False
                 p = self.nex[p][c]

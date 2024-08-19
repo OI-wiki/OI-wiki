@@ -65,14 +65,14 @@
     === "Python"
         ```python
         def qpow(a, b):
-          ans = 1
-          a = (a % p + p) % p
-          while b:
-              if b & 1:
-                  ans = (a * ans) % p
-              a = (a * a) % p
-              b >>= 1
-          return ans
+            ans = 1
+            a = (a % p + p) % p
+            while b:
+                if b & 1:
+                    ans = (a * ans) % p
+                a = (a * a) % p
+                b >>= 1
+            return ans
         ```
 
 注意：快速幂法使用了 [费马小定理](./fermat.md)，要求 $b$ 是一个素数；而扩展欧几里得法只要求 $\gcd(a, b) = 1$。

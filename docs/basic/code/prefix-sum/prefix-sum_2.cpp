@@ -16,9 +16,9 @@ int main() {
     }
   }
 
-  int ans = 1;
+  int ans = 0;
 
-  int l = 2;
+  int l = 1;
   while (l <= min(n, m)) {  // 判断条件
     for (int i = l; i <= n; i++) {
       for (int j = l; j <= m; j++) {

@@ -1,6 +1,7 @@
 import module from "module";
 import fs from "fs";
 import path from "path";
+import url from "url";
 import { HTMLElement } from "node-html-parser";
 
 import { mathjax } from "mathjax-full/js/mathjax.js";
@@ -52,7 +53,9 @@ export class MathRenderer {
         const packageDir = path.join(packagesDir, packageName);
         const packageDirFiles = await fs.promises.readdir(packageDir);
         const packageConfigurationFile = packageDirFiles.find(filename => filename.endsWith("Configuration.js"));
-        return await import(path.join(packageDir, packageConfigurationFile));
+        const importPath = path.join(packageDir, packageConfigurationFile);
+        const importUrl = url.pathToFileURL(importPath).href;
+        return await import(importUrl);
       })
     );
 

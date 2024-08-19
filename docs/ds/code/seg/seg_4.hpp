@@ -75,5 +75,5 @@ class SegTreeLazyRangeAdd {
 
   T range_sum(int l, int r) { return range_sum(l, r, 0, end, root); }
 
-  void range_add(int l, int r, int val) { range_add(l, r, val, 0, end, root); }
+  void range_add(int l, int r, T val) { range_add(l, r, val, 0, end, root); }
 };
