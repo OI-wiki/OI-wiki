@@ -9,24 +9,6 @@ import urllib.parse
 
 API_ENDPOINT = "https://cloudflare-workers.hikarilan.workers.dev/"
 
-parser = argparse.ArgumentParser("update-feedback-sys-meta")
-parser.add_argument("--modified", type=FileType(encoding="utf-8"), required=True)
-parser.add_argument("--renamed", type=FileType(encoding="utf-8"), required=True)
-parser.add_argument("--before_dir", type=str, required=True)
-args = parser.parse_args()
-
-modified: list[str] = args.modified.read().split(" ")
-renamed: list[(str, str)] = [
-    tuple((files.split(",")[0], files.split(",")[1]))
-    for files in args.renamed.read().split(" ")
-]
-
-before_dir: str = args.before_dir
-
-print("Modified:", modified)
-print("Renamed:", renamed)
-print("Before dir:", before_dir)
-
 def remove_meta(doc: str) -> str:
     """
     See issue: https://github.com/squidfunk/mkdocs-material/issues/4179
@@ -79,22 +61,42 @@ def path_to_url(
 
     return str(path) + ("/" if path.name != "" else "")
 
-for path in modified:
-    requests.patch(
-        API_ENDPOINT
-        + "comment/{encoded_path}".format(
-            encoded_path=urllib.parse.quote(path_to_url(path))
-        ),
-        headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
-        json={"type": "modified", "diff": dump_diff(path)},
-    )
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser("update-feedback-sys-meta")
+    parser.add_argument("--modified", type=FileType(encoding="utf-8"), required=True)
+    parser.add_argument("--renamed", type=FileType(encoding="utf-8"), required=True)
+    parser.add_argument("--before_dir", type=str, required=True)
 
-for path_from, path_to in renamed:
-    requests.patch(
-        API_ENDPOINT
-        + "comment/{encoded_path}".format(
-            encoded_path=urllib.parse.quote(path_to_url(path_from))
-        ),
-        headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
-        json={"type": "renamed", "to": path_to_url(path_to)},
-    )
+    args = parser.parse_args()
+
+    modified: list[str] = args.modified.read().split(" ")
+    renamed: list[(str, str)] = [
+        tuple((files.split(",")[0], files.split(",")[1]))
+        for files in args.renamed.read().split(" ")
+    ]
+
+    before_dir: str = args.before_dir
+
+    print("Modified:", modified)
+    print("Renamed:", renamed)
+    print("Before dir:", before_dir)
+
+    for path in modified:
+        requests.patch(
+            API_ENDPOINT
+            + "comment/{encoded_path}".format(
+                encoded_path=urllib.parse.quote(path_to_url(path))
+            ),
+            headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
+            json={"type": "modified", "diff": dump_diff(path)},
+        )
+
+    for path_from, path_to in renamed:
+        requests.patch(
+            API_ENDPOINT
+            + "comment/{encoded_path}".format(
+                encoded_path=urllib.parse.quote(path_to_url(path_from))
+            ),
+            headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
+            json={"type": "renamed", "to": path_to_url(path_to)},
+        )
