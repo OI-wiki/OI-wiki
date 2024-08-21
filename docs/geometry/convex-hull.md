@@ -170,7 +170,8 @@ $$
       return 0;
     }
     ```
-### 闵可夫斯基和
+
+## 闵可夫斯基和
 
 #### 定义
 
@@ -194,42 +195,42 @@ $$
 
 #### 性质
 
-1. 对于凸包 $A$，$B$ 的闵可夫斯基和 $C$ 也是凸包
+1.  对于凸包 $A$，$B$ 的闵可夫斯基和 $C$ 也是凸包
 
     ??? note "证明"
         考虑凸集的性质，若 $a,b\in A$，则 $c=xa+(1-x)b,c \in A(0\le x \le 1)$。
 
-        设 $a_1,a_2 \in A,b_1,b_2 \in B$，根据定义，$a_1+b_1,a_2+b_2 \in C$。
+         设 $a_1,a_2 \in A,b_1,b_2 \in B$，根据定义，$a_1+b_1,a_2+b_2 \in C$。
 
-        对于任意的 $x$ 我们有：
+         对于任意的 $x$ 我们有：
 
-        $$
-        \begin{aligned}
-        &x(a_1+b_1) + (1-x)(a_2+b_2)\\
-        =& x(xa_1+(1-x)a_2) + (1-x)(xb_1+(1-x)b_2)\\
-        \end{aligned}
-        $$
+         $$
+         \begin{aligned}
+         &x(a_1+b_1) + (1-x)(a_2+b_2)\\
+         =& x(xa_1+(1-x)a_2) + (1-x)(xb_1+(1-x)b_2)\\
+         \end{aligned}
+         $$
 
-        显然，$[xa_1,(1-x)a_2] \in A, [xb_1,(1-x)b_2] \in B$。
+         显然，$[xa_1,(1-x)a_2] \in A, [xb_1,(1-x)b_2] \in B$。
 
-        因此，$C$ 也是凸集。
+         因此，$C$ 也是凸集。
 
-2. 新凸包的边的边的数量等于原凸包的边的数量之和
-   
+2.  新凸包的边的边的数量等于原凸包的边的数量之和
+
     ??? note "证明"
+        
 
-        设两个凸包 $A = \{a_1,a_2,\cdots,a_n\},B = \{b_1,b_2,\cdots,b_m\}$。
+         设两个凸包 $A = \{a_1,a_2,\cdots,a_n\},B = \{b_1,b_2,\cdots,b_m\}$。
 
-        则 $A+B=\{a_i+b_j | 1\le i\le n,1\le j\le m\}$。
+         则 $A+B=\{a_i+b_j | 1\le i\le n,1\le j\le m\}$。
 
-        对于 $A$ 的每条边 $(a_i,a_{i+1})$ 和 $B$ 的每条边 $(b_j,b_{j+1})$，都有 $(a_i+b_j,a_{i+1}+b_{j+1})\in C$。
+         对于 $A$ 的每条边 $(a_i,a_{i+1})$ 和 $B$ 的每条边 $(b_j,b_{j+1})$，都有 $(a_i+b_j,a_{i+1}+b_{j+1})\in C$。
 
-        因此，新凸包的边的边的数量等于原凸包的边的数量之和。
+         因此，新凸包的边的边的数量等于原凸包的边的数量之和。
 
 #### 实现
 
 理论上，这个算法是 $O(n^2)$ 的，但在应用时，我们往往只关注 **凸包** 上的点。
-
 
 因为新凸包的边的边的数量等于原凸包的边的数量之和，可以用类似归并的算法。
 
@@ -238,47 +239,47 @@ $$
     const int N = 1e5 + 5;
     int n, m;
     typedef double db;
+    
     struct Point {
-        db x, y;
-        Point(db x = 0, db y = 0) :
-            x(x), y(y) {}
-        Point operator+(const Point &p) const {
-            return Point(x + p.x, y + p.y);
-        }
-        Point operator-(const Point &p) const {
-            return Point(x - p.x, y - p.y);
-        }
-        db operator*(const Point &p) const {
-            return x * p.y - y * p.x;
-        }
+      db x, y;
+    
+      Point(db x = 0, db y = 0) : x(x), y(y) {}
+    
+      Point operator+(const Point &p) const { return Point(x + p.x, y + p.y); }
+    
+      Point operator-(const Point &p) const { return Point(x - p.x, y - p.y); }
+    
+      db operator*(const Point &p) const { return x * p.y - y * p.x; }
     };
+    
     struct Convex {
-        Point p[N];
-        int cnt;
+      Point p[N];
+      int cnt;
     } a, b, s;
+    
     void minkowski() {
-        // a+b=s
-        Convex s1, s2;
-        for (int i = 1; i < a.cnt; i++) s1.p[i] = a.p[i + 1] - a.p[i];
-        for (int i = 1; i < b.cnt; i++) s2.p[i] = b.p[i + 1] - b.p[i];
-        s2.p[m] = b.p[1] - b.p[m], s1.p[n] = a.p[1] - a.p[n];
-        int i = 1, j = 1;
-        s.p[++s.cnt] = a.p[1] + b.p[1];
-        while (i <= n && j <= m) {
-            if (s1.p[i] * s2.p[j] > 0)
-                s.p[s.cnt + 1] = s.p[s.cnt] + s1.p[i++];
-            else
-                s.p[s.cnt + 1] = s.p[s.cnt] + s2.p[j++];
-            s.cnt++;
-        }
-        while (i <= n) s.p[s.cnt + 1] = s.p[s.cnt] + s1.p[i++], s.cnt++;
-        while (j <= m) s.p[s.cnt + 1] = s.p[s.cnt] + s2.p[j++], s.cnt++;
+      // a+b=s
+      Convex s1, s2;
+      for (int i = 1; i < a.cnt; i++) s1.p[i] = a.p[i + 1] - a.p[i];
+      for (int i = 1; i < b.cnt; i++) s2.p[i] = b.p[i + 1] - b.p[i];
+      s2.p[m] = b.p[1] - b.p[m], s1.p[n] = a.p[1] - a.p[n];
+      int i = 1, j = 1;
+      s.p[++s.cnt] = a.p[1] + b.p[1];
+      while (i <= n && j <= m) {
+        if (s1.p[i] * s2.p[j] > 0)
+          s.p[s.cnt + 1] = s.p[s.cnt] + s1.p[i++];
+        else
+          s.p[s.cnt + 1] = s.p[s.cnt] + s2.p[j++];
+        s.cnt++;
+      }
+      while (i <= n) s.p[s.cnt + 1] = s.p[s.cnt] + s1.p[i++], s.cnt++;
+      while (j <= m) s.p[s.cnt + 1] = s.p[s.cnt] + s2.p[j++], s.cnt++;
     }
     ```
 
 #### 例题
 
-???+ note "[例题 [JSOI2018] 战争](https://loj.ac/p/2549)"
+???+ note "[例题 \[JSOI2018\] 战争](https://loj.ac/p/2549)"
     有两个凸包 $A,B$，平移 $q$ 次 $B$，问每次移动后是否有交点。$1\le n,m\le 10^5,1\le q\le 10^5$。
 
 ??? note "实现"
