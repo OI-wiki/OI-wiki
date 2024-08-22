@@ -185,6 +185,9 @@ void getidom() {
 
 我们发现 DAG 有一个很好的性质：根据拓扑序求解，先求得的解不会对后续的解产生影响。我们可以利用这个特点快速求得 DAG 的支配树。
 
+???+ warning "提醒"
+    值得注意的是此处的 DAG 只能有一个起点，如果有多个起点，受起点支配的点在支配树上出现有多个父亲的情况，从而使支配关系不能简单的用支配树来表达。
+
 **引理 6：** 在有向图上，$v\ dom\ u$ 当且仅当 $\forall w \in pre(u), v\ dom \ w$。
 
 **证明：** 首先来证明充分性。考虑任意一条从 $s$ 到 $u$ 的路径都一定经过一个结点 $w \in pre(u)$，而 $v$ 支配这个结点，因此任意一条从 $s$ 到 $u$ 的路径都一定经过 $v$，因此我们得到 $v \ dom \ u$。
@@ -197,16 +200,12 @@ void getidom() {
 
 ```c++
 std::stack<int> sta;
-vector<int> e[N], g[N], tree[N];  // g 是原图的反图, tree 是支配树
-int in[N], tpn[N], dep[N], idom[N];
+std::vector<int> e[N], g[N], tree[N];  // g 是原图的反图，tree 是支配树
+int n, s, in[N], tpn[N], dep[N], idom[N];  // n 为总点数，s 为起始点，in 为入度
 int fth[N][17];
 
-void topo() {
-  for (int i = 1; i <= n; ++i) {
-    if (!in[i]) {
-      sta.push(i);
-    }
-  }
+void topo(int s) {
+  sta.push(s);
   while (!sta.empty()) {
     int u = sta.top();
     sta.pop();
@@ -242,21 +241,26 @@ int lca(int u, int v) {
 }
 
 void build() {
-  topo();
+  topo(s);
+  for (int i = 1; i <= n; ++i)
+    for (int j = 0; j <= 15; ++j) fth[i][j] = s;
   for (int i = 1; i <= n; ++i) {
-    int u = tpn[i], v = g[u][0];
-    for (int j = 1, q = g[u].size(); j < q; ++j) {
-      v = lca(v, g[u][j]);
-    }
-    idom[u] = v;
-    tree[v].push_back(u);
-    fth[u][0] = v;
-    dep[u] = dep[v] + 1;
-    for (int i = 1; i <= 15; ++i) {
-      fth[u][i] = fth[fth[u][i - 1]][i - 1];
+    int u = tpn[i];
+    if (g[u].size()) {
+      int v = g[u][0];
+      for (int j = 1, q = g[u].size(); j < q; ++j) {
+        v = lca(v, g[u][j]);
+      }
+      tree[v].push_back(u);
+      fth[u][0] = v;
+      dep[u] = dep[v] + 1;
+      for (int i = 1; i <= 15; ++i) {
+        fth[u][i] = fth[fth[u][i - 1]][i - 1];
+      }
     }
   }
 }
+
 ```
 
 ### Lengauer–Tarjan 算法
