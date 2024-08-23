@@ -40,15 +40,15 @@
 ???+ note "示例代码"
     ```cpp
     void adjust(int index) {
-      int parent = (index + size) / 2;  // 计算从叶节点到其父节点的索引
+      int parent = get_parent(index);  // 获取该节点的父亲节点
       while (parent > 0) {
         // 比较当前节点和父节点的值，选择较小的节点作为胜者，将败者信息存储到父节点
         if (segments[index].empty() ||
             segments[index].front() > segments[tree[parent]].front()) {
           std::swap(index, tree[parent]);
         }
-        // 继续向上调整
-        parent /= 2;
+        // 更新父亲节点，继续向上调整
+        parent = get_parent(parent)
       }
       // 更新根节点
       tree[0] = index;
