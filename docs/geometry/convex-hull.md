@@ -183,15 +183,15 @@ $$
 
 例如：对于点集 $A=\{(0,0),(-3,3),(2,1)\}$ 和 点集 $B=\{(0,0),(-1,3),(1,4),(2,2)\}$。
 
-![](./images/convex-hull1.png)
+![](./images/convex-hull1.svg)
 
 将 $A$ 沿 $B$ 的每个向量平移：
 
-![](./images/convex-hull2.png)
+![](./images/convex-hull2.svg)
 
 不难发现新图形也是一个 **凸包**：
 
-![](./images/convex-hull3.png)
+![](./images/convex-hull3.svg)
 
 ### 性质
 
