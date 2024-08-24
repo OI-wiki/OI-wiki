@@ -132,6 +132,7 @@ $$
     ```cpp
     struct Point {
       double x, y, ang;
+    
       Point operator-(const Point& p) const { return {x - p.x, y - p.y, 0}; }
     } p[MAXN];
     
@@ -232,6 +233,7 @@ $$
     ```cpp
     const int N = 1e5 + 5;
     int n, m;
+    
     struct Point {
       double x, y;
     
