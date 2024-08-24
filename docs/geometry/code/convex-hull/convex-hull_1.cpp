@@ -5,18 +5,17 @@
 using namespace std;
 const int N = 1e5 + 5;
 int n, m, T;
-typedef double db;
 
 struct Point {
-  db x, y;
+  double x, y;
 
-  Point(db x = 0, db y = 0) : x(x), y(y) {}
+  Point(double x = 0, double y = 0) : x(x), y(y) {}
 
   Point operator+(const Point &p) const { return Point(x + p.x, y + p.y); }
 
   Point operator-(const Point &p) const { return Point(x - p.x, y - p.y); }
 
-  db operator*(const Point &p) const { return x * p.y - y * p.x; }
+  double operator*(const Point &p) const { return x * p.y - y * p.x; }
 
   bool operator<(const Point p) const {
     return (x == p.x) ? (y < p.y) : (x < p.x);

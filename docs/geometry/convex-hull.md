@@ -132,9 +132,8 @@ $$
     ```cpp
     struct Point {
       double x, y, ang;
-    
       Point operator-(const Point& p) const { return {x - p.x, y - p.y, 0}; }
-    } p[MAX];
+    } p[MAXN];
     
     double dis(Point p1, Point p2) {
       return sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
@@ -212,7 +211,7 @@ $$
 
         因此，$C$ 也是凸集。
 
-2.  新凸包的边的边的数量等于原凸包的边的数量之和
+2.  两个凸包的闵可夫斯基和的凸包是对原来两个凸包的各边重排序
 
     ??? note "证明"
         设两个凸包 $A = \{a_1,a_2,\cdots,a_n\},B = \{b_1,b_2,\cdots,b_m\}$。
@@ -221,30 +220,28 @@ $$
 
         对于 $A$ 的每条边 $(a_i,a_{i+1})$ 和 $B$ 的每条边 $(b_j,b_{j+1})$，都有 $(a_i+b_j,a_{i+1}+b_{j+1})\in C$。
 
-        因此，新凸包的边的边的数量等于原凸包的边的数量之和。
+        因此，两个凸包的闵可夫斯基和的凸包是对原来两个凸包的各边重排序。
 
 ### 实现
 
 理论上，这个算法是 $O(n^2)$ 的，但在应用时，我们往往只关注 **凸包** 上的点。
 
-因为新凸包的边的边的数量等于原凸包的边的数量之和，可以用类似归并的算法。
+因为两个凸包的闵可夫斯基和的凸包是对原来两个凸包的各边重排序，可以用类似归并的算法。
 
 ???+ note "实现"
     ```cpp
     const int N = 1e5 + 5;
     int n, m;
-    typedef double db;
-    
     struct Point {
-      db x, y;
+      double x, y;
     
-      Point(db x = 0, db y = 0) : x(x), y(y) {}
+      Point(double x = 0, double y = 0) : x(x), y(y) {}
     
       Point operator+(const Point &p) const { return Point(x + p.x, y + p.y); }
     
       Point operator-(const Point &p) const { return Point(x - p.x, y - p.y); }
     
-      db operator*(const Point &p) const { return x * p.y - y * p.x; }
+      double operator*(const Point &p) const { return x * p.y - y * p.x; }
     };
     
     struct Convex {
