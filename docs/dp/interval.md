@@ -46,7 +46,7 @@
 === "C++"
     ```cpp
     for (len = 2; len <= n; len++)
-      for (i = 1; i <= 2 * n - len + 1; i++) {
+      for (i = 1; i <= 2 * n - len; i++) {
         int j = len + i - 1;
         for (k = i; k < j; k++)
           f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1]);
@@ -56,7 +56,7 @@
 === "Python"
     ```python
     for len in range(2, n + 1):
-        for i in range(1, 2 * n - len + 2):
+        for i in range(1, 2 * n - len + 1):
             j = len + i - 1
             for k in range(i, j):
                 f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1])
