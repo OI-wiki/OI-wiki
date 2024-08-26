@@ -100,7 +100,8 @@ if __name__ == '__main__':
             json={"type": "modified", "diff": dump_diff(path)},
         )
         
-    for path_from, path_to in [path_from, path_to for path_from, path_to in renamed if len(dump_diff(path_to, oldPath = path_from)) > 0]:
+    renamed_modified = [path_from, path_to for path_from, path_to in renamed if len(dump_diff(path_to, oldPath = path_from)) > 0]
+    for path_from, path_to in renamed_modified:
         requests.patch(
             API_ENDPOINT
             + "comment/{encoded_path}".format(
