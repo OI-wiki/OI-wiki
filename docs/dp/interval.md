@@ -39,14 +39,14 @@
 
 **方法一**：由于石子围成一个环，我们可以枚举分开的位置，将这个环转化成一个链，由于要枚举 $n$ 次，最终的时间复杂度为 $O(n^4)$。
 
-**方法二**：我们将这条链延长两倍，变成 $2\times n$ 堆，其中第 $i$ 堆与第 $n+i$ 堆相同，用动态规划求解后，取 $f(1,n),f(2,n+1),\dots,f(n-1,2n-2)$ 中的最优值，即为最后的答案。时间复杂度 $O(n^3)$。
+**方法二**：我们将这条链延长两倍，变成 $2\times n$ 堆，其中第 $i$ 堆与第 $n+i$ 堆相同，用动态规划求解后，取 $f(1,n),f(2,n+1),\dots,f(n,2n-1)$ 中的最优值，即为最后的答案。时间复杂度 $O(n^3)$。
 
 ## 实现
 
 === "C++"
     ```cpp
     for (len = 2; len <= n; len++)
-      for (i = 1; i <= 2 * n - 1 - len; i++) {
+      for (i = 1; i <= 2 * n - len; i++) {
         int j = len + i - 1;
         for (k = i; k < j; k++)
           f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1]);
@@ -56,7 +56,7 @@
 === "Python"
     ```python
     for len in range(2, n + 1):
-        for i in range(1, 2 * n - len):
+        for i in range(1, 2 * n - len + 1):
             j = len + i - 1
             for k in range(i, j):
                 f[i][j] = max(f[i][j], f[i][k] + f[k + 1][j] + sum[j] - sum[i - 1])

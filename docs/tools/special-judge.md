@@ -1,4 +1,4 @@
-author: Xeonacid, NachtgeistW, 2014CAIS01, sshwy, Chrogeek, Menci
+author: Xeonacid, NachtgeistW, 2014CAIS01, sshwy, Chrogeek, Menci, yzy-1
 
 本页面主要介绍部分评测工具/OJ 的 spj 编写方法。
 
@@ -265,10 +265,12 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-## LibreOJ (SYZOJ 2)
+## SYZOJ 2
 
 ???+ note
-    LibreOJ (SYZOJ 2) 有现成的修改版 [Testlib](#testlib)，建议使用 Testlib。
+    SYZOJ 2 有现成的修改版 [Testlib](#testlib)，建议使用 Testlib。
+
+    LibreOJ 的最新版本已不再基于 SYZOJ，而是基于 [Lyrio](https://github.com/lyrio-dev/lyrio)。Lyrio 支持使用原版 Testlib 编写评测器，这也是更加通用且推荐的做法。
 
 ```cpp
 #include <cmath>
@@ -283,7 +285,7 @@ int main(int argc, char* argv[]) {
    * stdout：输出最终得分 (0 ~ 100)
    * stderr：输出错误报告
    */
-  FILE* fin = fopen("in", "r");
+  FILE* fin = fopen("input", "r");
   FILE* fout = fopen("user_out", "r");
   FILE* fstd = fopen("answer", "r");
   FILE* fcode = fopen("code", "r");
