@@ -14,7 +14,12 @@ parser.add_argument("--modified", type=FileType(encoding="utf-8"), required=True
 parser.add_argument("--renamed", type=FileType(encoding="utf-8"), required=True)
 parser.add_argument("--before_dir", type=str, required=True)
 args = parser.parse_args()
-modified: list[str] = args.modified.read().split(" ")
+
+modified_file = args.modified.read().split(" ")
+modified: list[str] = []
+for f in modified_file:
+    if(len(f) > 0):
+        modified.append(f)
 
 renamed_file = args.renamed.read()
 renamed: list[(str, str)] = []
