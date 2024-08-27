@@ -100,7 +100,12 @@ if __name__ == '__main__':
             json={"type": "modified", "diff": dump_diff(path)},
         )
         
-    renamed_modified = [path_from, path_to for path_from, path_to in renamed if len(dump_diff(path_to, oldPath = path_from)) > 0]
+    renamed_modified = []
+    for path_from, path_to in renamed:
+        diff = dump_diff(path_to, oldPath = path_from)
+        if len(diff) > 0:
+            renamed_modified.append((path_from, path_to))
+            
     for path_from, path_to in renamed_modified:
         requests.patch(
             API_ENDPOINT
