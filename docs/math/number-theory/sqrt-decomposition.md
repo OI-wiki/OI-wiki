@@ -113,7 +113,6 @@ $$
         --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
         ```
 
-
 ## 向上取整的数论分块
 
 向上取整与前文所述的向下取整十分类似，但略有区别：
@@ -143,7 +142,7 @@ $$
         对于相邻的两个怪兽，使用二维数论分块，分段求出它们对一段 $k$ 的答案的贡献，然后差分累加即可。
         
         复杂度 $O(\sum\sqrt{a_i})$。也存在其他解法。
-    
+
     ??? note "实现"
         ```cpp
         --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_2.cpp"
@@ -152,31 +151,38 @@ $$
 ## N 维数论分块
 
 求含有 $\left\lfloor\dfrac {a_1}i\right\rfloor$、$\left\lfloor\dfrac {a_2}i\right\rfloor\cdots\left\lfloor\dfrac {a_n}i\right\rfloor$ 的和式时，数论分块右端点的表达式从一维的 $\left\lfloor\dfrac ni\right\rfloor$ 变为 $\min\limits_{j=1}^n\{\left\lfloor\dfrac {a_j}i\right\rfloor\}$，即对于每一个块的右端点取最小（最接近左端点）的那个作为整体的右端点。可以借助下图理解：
-    
+
 ![多维数论分块图解](./images/n-dimension-sqrt-decomposition.png)
-    
+
 一般我们用的较多的是二维形式，此时可将代码中 `r = n / (n / i)` 替换成 `r = min(n / (n / i), m / (m / i))`。
 
-## sqrt(n / i) 数论分块及扩展
+## sqrt(n/i) 数论分块及扩展
 
 考虑对于一个正整数 $n$，如何求出集合
+
 $$
 S=\left\{\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leq n\right\}
 $$
+
 的所有值，以及对每一种值求出哪些 $d$ 会使其取到这个值。可以发现：
 
-1. 因为 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 是单调不增的，所以对于所有 $v\in S$，使得 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor=v$ 的 $d$ 必然是一段区间。
-2. 对于任意正整数 $t\leq n$，我们对 $\leq t$ 与 $>t$ 的 $v\in S$ 分别分析，可以发现 $t+n/t^2\geq |S|$，取 $t=\sqrt[3]{n}$ 得到 $|S|$ 的一个上界为 $O(\sqrt[3]n)$。
+1.  因为 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 是单调不增的，所以对于所有 $v\in S$，使得 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor=v$ 的 $d$ 必然是一段区间。
+2.  对于任意正整数 $t\leq n$，我们对 $\leq t$ 与 $>t$ 的 $v\in S$ 分别分析，可以发现 $t+n/t^2\geq |S|$，取 $t=\sqrt[3]{n}$ 得到 $|S|$ 的一个上界为 $O(\sqrt[3]n)$。
 
 这些结论与数论分块所需的引理相似，因此猜测可以写为数论分块形式。结论是：使得式子
+
 $$
 \left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor
 $$
+
 成立的最大的 $q$ 满足 $p\leq q\leq n$ 为
+
 $$
 \left\lfloor\frac{n}{\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor^2}\right\rfloor
 $$
+
 略证：令 $v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor$，那么有
+
 $$
 \begin{aligned}
 v&\leq \sqrt{\frac{n}{p}}\\
@@ -185,17 +191,16 @@ p&\leq n/v^2\\
 p&\leq \left\lfloor n/v^2\right\rfloor
 \end{aligned}
 $$
+
 省略一些细节后可以发现 $q=\left\lfloor n/v^2\right\rfloor$ 是最大的使得 $\left\lfloor\sqrt{n/p}\right\rfloor=\left\lfloor\sqrt{n/q}\right\rfloor$ 成立的 $q$。
 
 故原问题可以写为数论分块形式，代码与数论分块形式并无二异。
 
 ???+ note "两个更加通用的结论"
     参照上方过程，可以同样地证明：
-    
 
     1. 对于正整数 $n$，使得式子 $\left\lfloor\sqrt[\alpha]{n/p^\beta}\right\rfloor=\left\lfloor\sqrt[\alpha]{n/q^\beta}\right\rfloor$ 成立的最大的 $q$ 满足 $p\leq q\leq n$ 为 $\left\lfloor\sqrt[\beta]{n/v^\alpha}\right\rfloor$，其中 $v=\left\lfloor\sqrt[\alpha]{n/p^\beta}\right\rfloor$。
     2. 对于正整数 $n$，集合 $\left\{\left\lfloor\sqrt[\alpha]{n/d^\beta}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leq n\right\}$ 的大小的一个上界为 $O(n^{1/(\alpha+\beta)})$。
-
 
 ## 习题
 
