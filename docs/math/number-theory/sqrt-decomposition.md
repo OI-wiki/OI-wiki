@@ -104,13 +104,14 @@ $$
 
 ???+ note " 例题：[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
     题意：$T$ 组数据，每组一个整数 $n$。对于每组数据，输出 $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$。
-    
-    思路：如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
 
-??? note "参考实现"
-    ```cpp
-    --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
-    ```
+    ??? note "思路"
+        如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
+
+    ??? note "参考实现"
+        ```cpp
+        --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
+        ```
 
 
 ## 向上取整的数论分块
