@@ -401,6 +401,7 @@ nav:
     - PQ 树: ds/pq-tree.md
     - 手指树: ds/finger-tree.md
     - 霍夫曼树: ds/huffman-tree.md
+    - 败者树: ds/loser-tree.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论相关概念: graph/concept.md
@@ -579,6 +580,7 @@ extra:
 extra_javascript:
   - '_static/js/math-csr.js?math-csr'
   - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
+  - '_static/js/oiwiki-feedback-sys-frontend.js?v=1'
 
 extra_css:
   - '_static/css/extra.css?v=14'

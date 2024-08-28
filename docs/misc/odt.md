@@ -249,6 +249,7 @@ void perform(int l, int r) {
 
 ## 习题
 
+-   [「Luogu 1840」Color the Axis](https://www.luogu.com.cn/problem/P1840)
 -   ~~[「SCOI2010」序列操作](https://www.luogu.com.cn/problem/P2572)~~（该题目来源已添加 Hack 数据）
 -   [「SHOI2015」脑洞治疗仪](https://loj.ac/problem/2037)
 -   [「Luogu 4979」矿洞：坍塌](https://www.luogu.com.cn/problem/P4979)

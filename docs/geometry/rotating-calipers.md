@@ -46,7 +46,7 @@
             mx = dis(sta[1], sta[2]);
             return;
           }
-          for (int i = 1; i <= top; ++i) {
+          for (int i = 1; i < top; ++i) {
             while (sqr(sta[i], sta[i + 1], sta[j]) <=
                    sqr(sta[i], sta[i + 1], sta[j % top + 1]))
               j = j % top + 1;
@@ -78,7 +78,7 @@
             if top < 4:
                 mx = dis(sta[1], sta[2])
                 return
-            for i in range(1, top + 1):
+            for i in range(1, top):
                 while sqr(sta[i], sta[i + 1], sta[j]) <= sqr(
                     sta[i], sta[i + 1], sta[j % top + 1]
                 ):
@@ -114,7 +114,7 @@ $$
         void get_biggest() {
           int j = 3, l = 2, r = 2;
           double t1, t2, t3, ans = 2e10;
-          for (int i = 1; i <= top; ++i) {
+          for (int i = 1; i < top; ++i) {
             while (sqr(sta[i], sta[i + 1], sta[j]) <=
                    sqr(sta[i], sta[i + 1], sta[j % top + 1]))
               j = j % top + 1;
@@ -140,7 +140,7 @@ $$
             l = 2
             r = 2
             ans = 2e10
-            for i in range(1, top + 1):
+            for i in range(1, top):
                 while sqr(sta[i], sta[i + 1], sta[j]) <= sqr(
                     sta[i], sta[i + 1], sta[j % top + 1]
                 ):

@@ -87,7 +87,7 @@ void copynode(int x, int y) {
 /* 判断某一节点是否为叶子节点 */
 bool leaf(int x) { return !ls[x] || !rs[x]; }
 
-void insert(int v) {
+void insert(int x, int v) {
   if (leaf(x)) {
     ls[x] = add(std::min(v, vl[x]));
     rs[x] = add(std::max(v, vl[x]));
@@ -152,7 +152,7 @@ void delete(int x, int v, int fa) {
 
 不难发现仅当 $\rho_2 \le \dfrac{1 - 2\alpha}{1 - \alpha}$ 时 $\gamma_1, \gamma_2 \in [\alpha, 1 - \alpha]$。
 
-为了旋转后仍不平衡的情况出现，我们引入双旋操作。具体地，我们在较大子树上做一次相反方向的旋转操作，然后再维护当前节点的平衡。
+为了避免旋转后仍不平衡的情况出现，我们引入双旋操作。具体地，我们在较大子树上做一次相反方向的旋转操作，然后再维护当前节点的平衡。
 
 ![wblt-7](./images/wblt-7.svg)
 
@@ -169,7 +169,7 @@ int merge(int x, int y) {
   int z = add(vl[x]);
   ls[z] = x;
   rs[z] = y;
-  upd(z);
+  pushup(z);
   return z;
 }
 

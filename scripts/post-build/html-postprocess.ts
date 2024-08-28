@@ -7,7 +7,7 @@ import { parse, HTMLElement } from "node-html-parser";
 import klaw from "klaw";
 import chalk from "chalk";
 
-const TASKS = ["commits-info", "math", "external-links"];
+const TASKS = ["commits-info", "math", "external-links", "inject-feedback-sys-frontend"];
 const SITE_DIR = "site";
 
 const siteDir = path.resolve(SITE_DIR);
@@ -47,7 +47,8 @@ async function loadTaskHandlers(tasks: string[], onLoaded?: (taskHandler: TaskHa
   return await Promise.all(
     tasks.map(async (task, i) => {
       const taskHandlerFile = path.join(__dirname, task, "task-handler.ts");
-      const taskHandler: TaskHandler & { name: string } = (await import(taskHandlerFile)).taskHandler;
+      const taskHandlerUrl = url.pathToFileURL(taskHandlerFile).href;
+      const taskHandler: TaskHandler & { name: string } = (await import(taskHandlerUrl)).taskHandler;
       taskHandler.name = task;
       if (onLoaded) {
         await onLoaded(taskHandler, i);
