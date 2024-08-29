@@ -108,7 +108,7 @@ $$
     ??? note "思路"
         如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
 
-    ??? note "参考实现"
+    ??? note "实现"
         ```cpp
         --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
         ```
@@ -156,9 +156,9 @@ $$
 
 一般我们用的较多的是二维形式，此时可将代码中 `r = n / (n / i)` 替换成 `r = min(n / (n / i), m / (m / i))`。
 
-## sqrt(n/i) 数论分块及扩展
+## 数论分块扩展
 
-考虑对于一个正整数 $n$，如何求出集合
+以 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 的计算为例。考虑对于一个正整数 $n$，如何求出集合
 
 $$
 S=\left\{\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leq n\right\}
