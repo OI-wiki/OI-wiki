@@ -184,7 +184,7 @@ $$
 $$
 
 ???+ note "证明"
-
+    
 
     令 $v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor$，那么
 
