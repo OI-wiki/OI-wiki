@@ -158,7 +158,7 @@ $$
 
 ## 数论分块扩展
 
-以 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 的计算为例。考虑对于一个正整数 $n$，如何求出集合
+以计算含有 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 的和式为例。考虑对于一个正整数 $n$，如何求出集合
 
 $$
 S=\left\{\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leq n\right\}
@@ -166,11 +166,12 @@ $$
 
 的所有值，以及对每一种值求出哪些 $d$ 会使其取到这个值。可以发现：
 
-1.  因为 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 是单调不增的，所以对于所有 $v\in S$，使得 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor=v$ 的 $d$ 必然是一段区间。
+1.  因为 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 是单调**不增**的，所以对于所有 $v\in S$，使得 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor=v$ 的 $d$ 必然是一段区间。
 2.  对于任意正整数 $t\leq n$，我们对 $\leq t$ 与 $>t$ 的 $v\in S$ 分别分析，可以发现 $t+n/t^2\geq |S|$，取 $t=\sqrt[3]{n}$ 得到 $|S|$ 的一个上界为 $O(\sqrt[3]n)$。
 
-这些结论与数论分块所需的引理相似，因此猜测可以写为数论分块形式。结论是：使得式子
+这些结论与数论分块所需的引理相似，因此猜测可以写为数论分块形式。
 
+结论是：使得式子
 $$
 \left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor
 $$
@@ -181,18 +182,32 @@ $$
 \left\lfloor\frac{n}{\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor^2}\right\rfloor
 $$
 
-略证：令 $v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor$，那么有
+???+ note "证明"
 
-$$
-\begin{aligned}
-v&\leq \sqrt{\frac{n}{p}}\\
-v^2&\leq n/p\\
-p&\leq n/v^2\\
-p&\leq \left\lfloor n/v^2\right\rfloor
-\end{aligned}
-$$
+    令 $v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor$，那么
 
-省略一些细节后可以发现 $q=\left\lfloor n/v^2\right\rfloor$ 是最大的使得 $\left\lfloor\sqrt{n/p}\right\rfloor=\left\lfloor\sqrt{n/q}\right\rfloor$ 成立的 $q$。
+    $$
+    \begin{aligned}
+    v&\leq \sqrt{\frac{n}{q}}\\
+    v^2&\leq n/q\\
+    q&\leq n/v^2\\
+    q&\leq \left\lfloor n/v^2\right\rfloor
+    \end{aligned}
+    $$
+
+    同理 $p\leq \left\lfloor n/v^2\right\rfloor$。同时
+    $$
+    \left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor\geq \left\lfloor \sqrt\frac{n}{n/v^2}\right\rfloor=\left\lfloor v\right\rfloor=v
+    $$
+    又由 $p\leq \left\lfloor n/v^2\right\rfloor$ 以及单调性可推出
+    $$
+    v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor\geq\left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor
+    $$
+    所以
+    $$
+    \left\lfloor\sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor=v
+    $$
+    所以 $q=\left\lfloor n/v^2\right\rfloor$ 是最大的使得 $\left\lfloor\sqrt{n/p}\right\rfloor=\left\lfloor\sqrt{n/q}\right\rfloor$ 成立的 $q$。
 
 故原问题可以写为数论分块形式，代码与数论分块形式并无二异。
 
