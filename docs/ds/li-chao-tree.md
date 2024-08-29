@@ -112,3 +112,46 @@
     ```cpp
     --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp"
     ```
+
+## 合并
+
+类似于普通线段树的合并，我们定义以下过程来将两个李超线段树节点 $u,v$ 合并，并以 $u$ 作为新的根。
+
+1.  如果 $v$ 为空，结束过程。
+
+2.  如果 $u$ 为空，将 $v$ 复制给 $u$。
+
+3.  将 $v$ 对应线段插入到 $u$ 为根的子树。
+
+4.  递归将 $u,v$ 的左右子树对应合并。
+
+若合并若干李超线段树涉及的总点数为 $n$，则该过程的复杂度为 $O(n\log n)$：对于任意线段在树上对应的节点，每次涉及移动它时，我们要么使其深度 $+1$，要么直接从树上删除，这两个操作的代价都是 $O(1)$ 的，而每个点深度至多为 $O(\log n)$，于是复杂度如上。
+
+???+ note "实现"
+    ```cpp
+    void merge(int &u, int &v, int l, int r) {
+	    if (!u || !v) {
+		    if (!u)
+		    	u = v;
+		    return;
+	    }
+	    if (l == r) {
+	    	if (t[u].calc(l) > t[v].calc(l))
+		    	u = v;
+		    return;
+	    }
+	    modify(u, l, r, t[v]);
+	    int mid = (l + r) >> 1;
+	    merge(ls[u], ls[v], l, mid);
+	    merge(rs[u], rs[v], mid + 1, r);
+    }
+    ```
+## 习题
+
+[「JSOI2008」Blue Mary 开公司](https://www.luogu.com.cn/problem/P4254)
+
+[「CodeChef」TSUM2 Sum on Tree](https://vjudge.net/problem/CodeChef-TSUM2)
+
+[「USACO13MAR」Hill Walk G](https://www.luogu.com.cn/problem/P3081)
+
+[「CF932F」Escape Through Leaf](https://codeforces.com/problemset/problem/932/F)
