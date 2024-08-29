@@ -107,7 +107,7 @@ $$
 
     ??? note "思路"
         如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
-    
+
     ??? note "实现"
         ```cpp
         --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
@@ -142,7 +142,7 @@ $$
         对于相邻的两个怪兽，使用二维数论分块，分段求出它们对一段 $k$ 的答案的贡献，然后差分累加即可。
         
         复杂度 $O(\sum\sqrt{a_i})$。也存在其他解法。
-    
+
     ??? note "实现"
         ```cpp
         --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_2.cpp"
@@ -172,6 +172,7 @@ $$
 这些结论与数论分块所需的引理相似，因此猜测可以写为数论分块形式。
 
 结论是：使得式子
+
 $$
 \left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor
 $$
@@ -184,8 +185,9 @@ $$
 
 ???+ note "证明"
 
+
     令 $v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor$，那么
-    
+
     $$
     \begin{aligned}
     v&\leq \sqrt{\frac{n}{q}}\\
@@ -194,25 +196,25 @@ $$
     q&\leq \left\lfloor n/v^2\right\rfloor
     \end{aligned}
     $$
-    
+
     同理 $p\leq \left\lfloor n/v^2\right\rfloor$。同时
-    
+
     $$
     \left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor\geq \left\lfloor \sqrt\frac{n}{n/v^2}\right\rfloor=\left\lfloor v\right\rfloor=v
     $$
-    
+
     又由 $p\leq \left\lfloor n/v^2\right\rfloor$ 以及单调性可推出
-    
+
     $$
     v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor\geq\left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor
     $$
-    
+
     所以
-    
+
     $$
     \left\lfloor\sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor=v
     $$
-    
+
     所以 $q=\left\lfloor n/v^2\right\rfloor$ 是最大的使得 $\left\lfloor\sqrt{n/p}\right\rfloor=\left\lfloor\sqrt{n/q}\right\rfloor$ 成立的 $q$。
 
 故原问题可以写为数论分块形式，代码与数论分块形式并无二异。
