@@ -166,12 +166,13 @@ $$
 
 的所有值，以及对每一种值求出哪些 $d$ 会使其取到这个值。可以发现：
 
-1.  因为 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 是单调**不增**的，所以对于所有 $v\in S$，使得 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor=v$ 的 $d$ 必然是一段区间。
+1.  因为 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 是单调 **不增** 的，所以对于所有 $v\in S$，使得 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor=v$ 的 $d$ 必然是一段区间。
 2.  对于任意正整数 $t\leq n$，我们对 $\leq t$ 与 $>t$ 的 $v\in S$ 分别分析，可以发现 $t+n/t^2\geq |S|$，取 $t=\sqrt[3]{n}$ 得到 $|S|$ 的一个上界为 $O(\sqrt[3]n)$。
 
 这些结论与数论分块所需的引理相似，因此猜测可以写为数论分块形式。
 
 结论是：使得式子
+
 $$
 \left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor
 $$
@@ -183,6 +184,7 @@ $$
 $$
 
 ???+ note "证明"
+    
 
     令 $v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor$，那么
 
