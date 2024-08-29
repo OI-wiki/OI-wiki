@@ -130,23 +130,22 @@
 ???+ note "实现"
     ```cpp
     void merge(int &u, int &v, int l, int r) {
-	    if (!u || !v) {
-		    if (!u)
-		    	u = v;
-		    return;
-	    }
-	    if (l == r) {
-	    	if (t[u].calc(l) > t[v].calc(l))
-		    	u = v;
-		    return;
-	    }
-	    modify(u, l, r, t[v]);
-	    int mid = (l + r) >> 1;
-	    merge(ls[u], ls[v], l, mid);
-	    merge(rs[u], rs[v], mid + 1, r);
+      if (!u || !v) {
+        if (!u) u = v;
+        return;
+      }
+      if (l == r) {
+        if (t[u].calc(l) > t[v].calc(l)) u = v;
+        return;
+      }
+      modify(u, l, r, t[v]);
+      int mid = (l + r) >> 1;
+      merge(ls[u], ls[v], l, mid);
+      merge(rs[u], rs[v], mid + 1, r);
     }
     ```
-## 习题
+
+# 习题
 
 [「JSOI2008」Blue Mary 开公司](https://www.luogu.com.cn/problem/P4254)
 
