@@ -107,7 +107,7 @@ $$
 
     ??? note "思路"
         如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
-
+    
     ??? note "实现"
         ```cpp
         --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
@@ -142,7 +142,7 @@ $$
         对于相邻的两个怪兽，使用二维数论分块，分段求出它们对一段 $k$ 的答案的贡献，然后差分累加即可。
         
         复杂度 $O(\sum\sqrt{a_i})$。也存在其他解法。
-
+    
     ??? note "实现"
         ```cpp
         --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_2.cpp"
@@ -166,7 +166,7 @@ $$
 
 的所有值，以及对每一种值求出哪些 $d$ 会使其取到这个值。可以发现：
 
-1.  因为 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 是单调**不增**的，所以对于所有 $v\in S$，使得 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor=v$ 的 $d$ 必然是一段区间。
+1.  因为 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 是单调不增的，所以对于所有 $v\in S$，使得 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor=v$ 的 $d$ 必然是一段区间。
 2.  对于任意正整数 $t\leq n$，我们对 $\leq t$ 与 $>t$ 的 $v\in S$ 分别分析，可以发现 $t+n/t^2\geq |S|$，取 $t=\sqrt[3]{n}$ 得到 $|S|$ 的一个上界为 $O(\sqrt[3]n)$。
 
 这些结论与数论分块所需的引理相似，因此猜测可以写为数论分块形式。
@@ -185,7 +185,7 @@ $$
 ???+ note "证明"
 
     令 $v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor$，那么
-
+    
     $$
     \begin{aligned}
     v&\leq \sqrt{\frac{n}{q}}\\
@@ -194,19 +194,25 @@ $$
     q&\leq \left\lfloor n/v^2\right\rfloor
     \end{aligned}
     $$
-
+    
     同理 $p\leq \left\lfloor n/v^2\right\rfloor$。同时
+    
     $$
     \left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor\geq \left\lfloor \sqrt\frac{n}{n/v^2}\right\rfloor=\left\lfloor v\right\rfloor=v
     $$
+    
     又由 $p\leq \left\lfloor n/v^2\right\rfloor$ 以及单调性可推出
+    
     $$
     v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor\geq\left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor
     $$
+    
     所以
+    
     $$
     \left\lfloor\sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor=v
     $$
+    
     所以 $q=\left\lfloor n/v^2\right\rfloor$ 是最大的使得 $\left\lfloor\sqrt{n/p}\right\rfloor=\left\lfloor\sqrt{n/q}\right\rfloor$ 成立的 $q$。
 
 故原问题可以写为数论分块形式，代码与数论分块形式并无二异。
@@ -215,7 +221,7 @@ $$
     参照上方过程，可以同样地证明：
 
     1. 对于正整数 $n$，使得式子 $\left\lfloor\sqrt[\alpha]{n/p^\beta}\right\rfloor=\left\lfloor\sqrt[\alpha]{n/q^\beta}\right\rfloor$ 成立的最大的 $q$ 满足 $p\leq q\leq n$ 为 $\left\lfloor\sqrt[\beta]{n/v^\alpha}\right\rfloor$，其中 $v=\left\lfloor\sqrt[\alpha]{n/p^\beta}\right\rfloor$。
-    2. 对于正整数 $n$，集合 $\left\{\left\lfloor\sqrt[\alpha]{n/d^\beta}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leq n\right\}$ 的大小的一个上界为 $O(n^{1/(\alpha+\beta)})$。
+    2. 对于正整数 $n$，集合 $\left\{\left\lfloor\sqrt[\alpha]{n/d^\beta}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leq n\right\}$ 的大小的一个上界为 $O(n^{1/(\alpha+\beta)})$（大约为 $2n^{1/(\alpha+\beta)}$）。
 
 ## 习题
 
