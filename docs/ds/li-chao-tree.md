@@ -129,16 +129,31 @@
 
 ???+ note "实现"
     ```cpp
+    void upd(int &root, int cl, int cr, int u) {  // 涉及多棵李超线段树合并，使用动态开点。
+      static int idx = 0;
+      if (!root) {
+        s[root = ++idx] = u;
+        return;
+      }
+      int &v = s[root], mid = (cl + cr) >> 1;
+      int bmid = cmp(calc(u, mid), calc(v, mid));
+      if (bmid == 1 || (!bmid && u < v))
+        swap(u, v);
+      int bl = cmp(calc(u, cl), calc(v, cl)), br = cmp(calc(u, cr), calc(v, cr));
+      if (bl == 1 || (!bl && u < v)) upd(ls[root], cl, mid, u);
+      if (br == 1 || (!br && u < v)) upd(rs[root], mid + 1, cr, u);
+    }
     void merge(int &u, int &v, int l, int r) {
       if (!u || !v) {
         if (!u) u = v;
         return;
       }
       if (l == r) {
-        if (t[u].calc(l) > t[v].calc(l)) u = v;
+        int b = cmp(calc(s[v], l), calc(s[u], l));
+        if (b == 1 || (!b && s[v] < s[u])) u = v;
         return;
       }
-      modify(u, l, r, t[v]);
+      upd(u, l, r, s[v]);
       int mid = (l + r) >> 1;
       merge(ls[u], ls[v], l, mid);
       merge(rs[u], rs[v], mid + 1, r);
