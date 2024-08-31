@@ -10,21 +10,6 @@ function matchColor() {
   }
 }
 
-function stringToHash(string) {
-
-  let hash = 0;
-
-  if (string.length == 0) return hash;
-
-  for (i = 0; i < string.length; i++) {
-      char = string.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-  }
-
-  return hash;
-}
-
 function hookMkdocsMaterial() {
   document.querySelector(".md-header__option").addEventListener("click", e => {
     if (!(e.target instanceof HTMLInputElement)) return;
@@ -32,7 +17,11 @@ function hookMkdocsMaterial() {
   });
 }
 
-if (localStorage.getItem("enable_paragraph_review") === "true" || (localStorage.getItem("giscus-session") && stringToHash(localStorage.getItem("giscus-session")) % 100 < 10)) {
+if(localStorage.getItem("giscus-session") && stringToHash(localStorage.getItem("giscus-session")) % 100 < 10){
+  localStorage.setItem("enable_paragraph_review", "true");
+}
+
+if (localStorage.getItem("enable_paragraph_review") === "true") {
   hookMkdocsMaterial();
 
   document$.subscribe(function () {
