@@ -90,7 +90,7 @@ def path_to_url(
 
 if __name__ == '__main__':
     for path_from, path_to in renamed:
-        requests.patch(
+        req = requests.patch(
             API_ENDPOINT
             + "comment/{encoded_path}".format(
                 encoded_path=urllib.parse.quote(path_to_url(path_from))
@@ -98,16 +98,20 @@ if __name__ == '__main__':
             headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
             json={"type": "renamed", "to": path_to_url(path_to)},
         )
+        print("Renamed:", path_from, "->", path_to, ", Got", req)
     
     for path in modified:
+        diff = dump_diff(path)
         requests.patch(
             API_ENDPOINT
             + "comment/{encoded_path}".format(
                 encoded_path=urllib.parse.quote(path_to_url(path))
             ),
             headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
-            json={"type": "modified", "diff": dump_diff(path)},
+            json={"type": "modified", "diff": diff},
         )
+        print("Modified:", path, ", Diff:", diff, ", Got", req)
+        
         
     renamed_modified = []
     for path_from, path_to in renamed:
@@ -116,11 +120,13 @@ if __name__ == '__main__':
             renamed_modified.append((path_from, path_to))
             
     for path_from, path_to in renamed_modified:
+        diff = dump_diff(path_to, oldPath = path_from)
         requests.patch(
             API_ENDPOINT
             + "comment/{encoded_path}".format(
                 encoded_path=urllib.parse.quote(path_to_url(path_to))
             ),
             headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
-            json={"type": "modified", "diff": dump_diff(path_to, oldPath = path_from)},
+            json={"type": "modified", "diff": diff},
         )
+        print("(Renamed) Modified:", path, ", Diff:", diff, ", Got", req)
