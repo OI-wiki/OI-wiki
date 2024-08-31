@@ -2,7 +2,9 @@ author: liujiaxi123456, Marcythm, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina,
 
 ## 引入
 
-**作用：** 单调队列主要用于维护 **两端指针单调不减** 的区间最值，而单调栈则主要用于维护 **前/后缀** 最值。
+前置知识：[单调队列](../../ds/monotonous-queue.md)、[单调栈](../../ds/monotonous-stack.md)。
+
+**作用：** 单调队列主要用于维护 **两端指针单调不减** 的区间最值，而单调栈则主要用于维护 **前/后第一个大于/小于当前值的数**。
 
 **细节/注意点：**
 
