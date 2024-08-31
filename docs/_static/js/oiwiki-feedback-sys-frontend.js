@@ -17,6 +17,10 @@ function hookMkdocsMaterial() {
   });
 }
 
+if(localStorage.getItem("giscus-session") && stringToHash(localStorage.getItem("giscus-session")) % 100 < 10){
+  localStorage.setItem("enable_paragraph_review", "true");
+}
+
 if (localStorage.getItem("enable_paragraph_review") === "true") {
   hookMkdocsMaterial();
 
