@@ -93,24 +93,24 @@ if __name__ == '__main__':
         req = requests.patch(
             API_ENDPOINT
             + "comment/{encoded_path}".format(
-                encoded_path=urllib.parse.quote(path_to_url(path_from))
+                encoded_path=urllib.parse.quote_plus(path_to_url(path_from))
             ),
             headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
             json={"type": "renamed", "to": path_to_url(path_to)},
         )
-        print("Renamed:", path_from, "->", path_to, ", Got", req)
+        print("Renamed:", path_to_url(path_from), "->", path_to_url(path_to), ", Got", req)
     
     for path in modified:
         diff = dump_diff(path)
-        requests.patch(
+        req = requests.patch(
             API_ENDPOINT
             + "comment/{encoded_path}".format(
-                encoded_path=urllib.parse.quote(path_to_url(path))
+                encoded_path=urllib.parse.quote_plus(path_to_url(path))
             ),
             headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
             json={"type": "modified", "diff": diff},
         )
-        print("Modified:", path, ", Diff:", diff, ", Got", req)
+        print("Modified:", path_to_url(path), ", Diff:", diff, ", Got", req)
         
         
     renamed_modified = []
@@ -121,12 +121,12 @@ if __name__ == '__main__':
             
     for path_from, path_to in renamed_modified:
         diff = dump_diff(path_to, oldPath = path_from)
-        requests.patch(
+        req = requests.patch(
             API_ENDPOINT
             + "comment/{encoded_path}".format(
-                encoded_path=urllib.parse.quote(path_to_url(path_to))
+                encoded_path=urllib.parse.quote_plus(path_to_url(path_to))
             ),
             headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
             json={"type": "modified", "diff": diff},
         )
-        print("(Renamed) Modified:", path, ", Diff:", diff, ", Got", req)
+        print("(Renamed) Modified:", path_to_url(path), ", Diff:", diff, ", Got", req)
