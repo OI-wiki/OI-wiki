@@ -7,7 +7,7 @@ import re
 import requests
 import urllib.parse
 
-API_ENDPOINT = "https://cloudflare-workers.hikarilan.workers.dev/"
+API_ENDPOINT = "https://feedback-sys-backend.hikarilan.workers.dev/"
 
 parser = argparse.ArgumentParser("update-feedback-sys-meta")
 parser.add_argument("--modified", type=FileType(encoding="utf-8"), required=True)
