@@ -215,7 +215,7 @@ jobs:
         continue-on-error: true
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
-          RUNS_ON: x64_64 Alpine
+          RUNS_ON: x86_64 Alpine
         run: python3 scripts/ub-check-any.py
       - name: Set Output
         id: set-output
