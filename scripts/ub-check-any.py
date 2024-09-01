@@ -138,7 +138,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                 print(f'{compile_product} < {e} > {e.replace(".in", ".out")}', end=' ')
                 with open(e, 'r') as fstdin:
                     with open(e.replace(".in", ".out"), 'w') as fstdout:
-                        result = subprocess.run(f'./{compile_product}', stdin=fstdin, stdout=fstdout, shell=True)
+                        result = subprocess.run(f'{os.path.join(os.path.curdir, compile_product)}', stdin=fstdin, stdout=fstdout, shell=True)
                 if result.returncode != 0:
                     print(f'{RED}RE({result.returncode})){RESET}')
                     this_file_looks_odd = True
