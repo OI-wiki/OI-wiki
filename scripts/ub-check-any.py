@@ -181,5 +181,5 @@ for mainfile, auxfile, example, skiptest in zip(mainfiles, auxfiles, examples, s
     else:
         cnt_ac += 1
 
-with open("output.json", "w") as f:
+with open("output.txt", "w") as f:
     f.write(str(output))
