@@ -162,7 +162,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
 
     print(f'{BLUE}Result for {mainfile}: {RESET}')
     if this_file_looks_odd:
-        print(f'::error file={mainfile},title=疑似UB::{RED}请核实该文件是否存在未定义行为{RESET}')
+        print(f'::error file={mainfile},title=Potential UB::{RED}Please take a look.{RESET}')
     for key in return_status:
         print(f'-  {key}: ', end='')
         for _ in return_status[key]:
