@@ -24,7 +24,7 @@ const OFFSET_INJECTION_REVIEW_CSS_TARGET_FILE = "assets/stylesheets/oiwiki-feedb
 
 const OFFSET_INJECTION_REVIEW_CONTENT_SCRIPT_TARGET_FILE = "_static/js/oiwiki-feedback-sys-frontend.js";
 
-const API_ENDPOINT = "https://cloudflare-workers.hikarilan.workers.dev/";
+const API_ENDPOINT = "https://feedback-sys-backend.hikarilan.workers.dev/";
 
 async function getLatestCommitHash(): Promise<string> {
   const { stdout: hash } = await execFileAsync("bash", ["-c", `git log -1 --pretty=format:%H`], {
