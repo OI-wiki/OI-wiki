@@ -69,8 +69,8 @@ jobs:
         continue-on-error: true
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
-          RUNS_ON: ubuntu-latest
-        run: python3 scripts/ub_check_ubuntu.py
+          RUNS_ON: x86_64 Ubuntu
+        run: python3 scripts/ub-check-any.py
       - name: Set Output
         id: set-output
         run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
@@ -86,7 +86,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install C++
+      - name: Check Compiler Version
         run: |
           echo "::group::Check G++ Version"
           g++-14 --version
@@ -98,8 +98,8 @@ jobs:
         continue-on-error: true
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
-          RUNS_ON: macos-latest
-        run: python3 scripts/ub_check_macos.py
+          RUNS_ON: arm64 MacOS
+        run: python3 scripts/ub-check-any.py
       - name: Set Output
         id: set-output
         run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
@@ -124,11 +124,11 @@ jobs:
             --volume $GITHUB_STEP_SUMMARY:$GITHUB_STEP_SUMMARY \
             --workdir $PWD \
             --env FILES_TO_TEST="${{ needs.correctness.outputs.files_to_test }}" \
-            --env RUNS_ON=riscv64 \
+            --env RUNS_ON="riscv64 Ubuntu" \
             --env GITHUB_STEP_SUMMARY=$GITHUB_STEP_SUMMARY \
             ghcr.io/trickeye/ubtest:latest sleep infinity
           docker exec ubtest uname -a
-      - name: Install GCC, G++, Clang
+      - name: Check Compiler Version
         run: |
           echo "::group::gcc --version"
           docker exec ubtest gcc --version
@@ -142,7 +142,7 @@ jobs:
       - name: Undefined Behaviors Check
         continue-on-error: true
         # The environment variables are set in Launch Risc-V Docker step
-        run: docker exec ubtest python3 scripts/ub_check_riscv.py
+        run: docker exec ubtest python3 scripts/ub-check-any.py
       - name: Set Output
         id: set-output
         run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
@@ -158,7 +158,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install Clang, GCC, G++
+      - name: Check Compiler Version
         shell: cmd
         run: |
           echo ::group::Install Clang, MinGW
@@ -178,8 +178,8 @@ jobs:
         continue-on-error: true
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
-          RUNS_ON: windows-latest
-        run: python scripts/ub_check_windows.py
+          RUNS_ON: x86_64 Windows
+        run: python scripts/ub-check-any.py
       - name: Set Output
         id: set-output
         run: |
@@ -200,7 +200,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install Clang
+      - name: Check Compiler Version
         run: |
           echo "::group::Install Python, GCC, Clang"
           apk add build-base python3 llvm clang
@@ -215,8 +215,8 @@ jobs:
         continue-on-error: true
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
-          RUNS_ON: alpine-latest
-        run: python3 scripts/ub_check_alpine.py
+          RUNS_ON: x64_64 Alpine
+        run: python3 scripts/ub-check-any.py
       - name: Set Output
         id: set-output
         run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
