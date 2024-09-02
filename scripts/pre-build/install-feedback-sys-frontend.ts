@@ -14,9 +14,6 @@ async function getLatestCommitHash(): Promise<string> {
   });
   return hash.trim();
 }
-
-const POST_BUILD_TASK_HANDLER_FILE = "../scripts/post-build/feedback-sys/task-handler.ts";
-
 const JS_SOURCE_FILE = "../node_modules/oiwiki-feedback-sys-frontend/dist/oiwiki-feedback-sys-frontend.umd.cjs";
 const JS_TARGET_FILE = "assets/javascripts/oiwiki-feedback-sys-frontend.js";
 const CSS_SOURCE_FILE = "../node_modules/oiwiki-feedback-sys-frontend/dist/style.css";
@@ -46,14 +43,6 @@ await fs.promises.writeFile(
   (await fs.promises.readFile(contentScriptFile, "utf-8"))
     .replace("{apiEndpoint}", API_ENDPOINT)
     .replace("{commitHash}", await getLatestCommitHash()),
-  "utf-8"
-);
-
-console.log(`Updating commit hash in ${POST_BUILD_TASK_HANDLER_FILE}...`);
-const postBuildTaskHandlerFile = path.join(docsDir, POST_BUILD_TASK_HANDLER_FILE);
-await fs.promises.writeFile(
-  postBuildTaskHandlerFile,
-  (await fs.promises.readFile(postBuildTaskHandlerFile, "utf-8")).replace("{API_ENDPOINT}", API_ENDPOINT),
   "utf-8"
 );
 
