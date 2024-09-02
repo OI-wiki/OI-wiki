@@ -66,7 +66,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install g++-9
-        run: sudo apt-get install -y g++-9
+        run: apt-get install -y g++-9
       - name: Undefined Behaviors Check
         continue-on-error: true
         env: 
