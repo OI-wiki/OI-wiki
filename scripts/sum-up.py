@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 OUTPUT_UBUNTU   = eval(os.environ.get('OUTPUT_UBUNTU', ''))
 OUTPUT_MACOS    = eval(os.environ.get('OUTPUT_MACOS', ''))
@@ -13,6 +14,7 @@ with open(os.environ.get('GITHUB_STEP_SUMMARY'), 'w') as f:
         this_file_looks_odd = False
         print(f'\n## {key}\n')
         f.write(f'\n## **{key}**\n')
+
         print(f'x86_64 Ubuntu 22.04')
         f.write(f'\nx86_64 Ubuntu 22.04\n')
         for line in OUTPUT_UBUNTU[key]:
