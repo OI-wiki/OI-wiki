@@ -45,7 +45,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                             f'g++-13 -std=c++14 -O0 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O0',
                             f'g++-13 -std=c++14 -O2 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O2',
                             f'g++-13 -std=c++14 -O3 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O3',
-                            f'g++-13 -std=c++14 -fsanitize=undefined,address -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.Sanitize'  ], # Sanitizer Activated
+                            f'g++-13 -std=c++14 -fsanitize=undefined,address {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.Sanitize'  ], # Sanitizer Activated
         "x86_64 Alpine": [  f'clang++ -std=c++14 -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O0',
                             f'clang++ -std=c++14 -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O2',
                             f'clang++ -std=c++14 -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O3',
