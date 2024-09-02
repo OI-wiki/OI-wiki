@@ -1,3 +1,5 @@
+sessionStorage.setItem("commitHash", "{commitHash}") // commit hash injected here, see: scripts/post-build/inject-feedback-sys-frontend/task-handler.ts
+
 function matchColor() {
   const palettle = localStorage.getItem("/.__palette");
   if (

@@ -45,7 +45,7 @@ jobs:
           pipenv run mkdocs build -v
       - name: Post-process HTML
         # https://github.com/TypeStrong/ts-node/issues/1997
-        run: node --loader ts-node/esm scripts/post-build/html-postprocess.ts commits-info math external-links inject-feedback-sys-frontend
+        run: node --loader ts-node/esm scripts/post-build/html-postprocess.ts commits-info math external-links feedback-sys
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ADMINISTRATOR_SECRET: ${{ secrets.FEEDBACK_SYS_ADMINISTRATOR_SECRET }}
