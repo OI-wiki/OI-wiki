@@ -9,6 +9,23 @@ import urllib.parse
 
 API_ENDPOINT = "https://feedback-sys-backend.hikarilan.workers.dev/"
 
+def get_latest_commit_hash():
+    return os.popen("git log -1 --pretty=format:%H").read().strip()
+
+def update_commit_hash():
+    if os.environ["ADMINISTRATOR_SECRET"] == "":
+        print("No ADMINISTRATOR_SECRET provided, skipping commit hash update")
+        return
+    hash = get_latest_commit_hash()
+    print("Updating commit hash to", hash)
+    req = requests.put(
+        API_ENDPOINT + "meta/commithash",
+        headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"], "Content-Type": "application/json"},
+        json={"commit_hash": hash},
+    )
+    if not req.ok:
+        print("Failed to update commit hash, got", req.status_code, req.text)
+
 parser = argparse.ArgumentParser("update-feedback-sys-meta")
 parser.add_argument("--modified", type=FileType(encoding="utf-8"), required=True)
 parser.add_argument("--renamed", type=FileType(encoding="utf-8"), required=True)
@@ -89,6 +106,8 @@ def path_to_url(
     return str(path) + ("/" if path.name != "" else "")
 
 if __name__ == '__main__':
+    update_commit_hash()
+    
     for path_from, path_to in renamed:
         req = requests.patch(
             API_ENDPOINT

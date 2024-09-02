@@ -7,7 +7,7 @@ import { parse, HTMLElement } from "node-html-parser";
 import klaw from "klaw";
 import chalk from "chalk";
 
-const TASKS = ["commits-info", "math", "external-links", "feedback-sys"];
+const TASKS = ["commits-info", "math", "external-links"];
 const SITE_DIR = "site";
 
 const siteDir = path.resolve(SITE_DIR);
