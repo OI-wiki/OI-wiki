@@ -24,27 +24,32 @@ function stringToHash(string) {
   if (string.length == 0) return hash;
 
   for (i = 0; i < string.length; i++) {
-      char = string.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
+    char = string.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
   }
 
   return hash;
 }
 
-if(localStorage.getItem("giscus-session") && stringToHash(localStorage.getItem("giscus-session")) % 100 < 10){
-  localStorage.setItem("enable_paragraph_review", "true");
+// has ?enable_feedback_sys=true parameter
+if (location.search.includes("enable_feedback_sys=true")) {
+  localStorage.setItem("enable_feedback_sys", "true");
 }
 
-if (localStorage.getItem("enable_paragraph_review") === "true") {
+if (localStorage.getItem("giscus-session") && stringToHash(localStorage.getItem("giscus-session")) % 100 < 20) {
+  localStorage.setItem("enable_feedback_sys", "true");
+}
+
+if (localStorage.getItem("enable_feedback_sys") === "true") {
   hookMkdocsMaterial();
 
   document$.subscribe(function () {
     matchColor();
 
     globalThis["OIWikiFeedbackSysFrontend"] instanceof Object &&
-    OIWikiFeedbackSysFrontend.setupReview instanceof Function &&
-    OIWikiFeedbackSysFrontend.setupReview(document.body, {
+      OIWikiFeedbackSysFrontend.setupReview instanceof Function &&
+      OIWikiFeedbackSysFrontend.setupReview(document.body, {
         apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/post-build/inject-feedback-sys-frontend/task-handler.ts
       });
   });
