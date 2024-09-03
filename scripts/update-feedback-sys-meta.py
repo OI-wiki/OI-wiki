@@ -120,8 +120,8 @@ if __name__ == '__main__':
             )
             print("Renamed:", path_to_url(path_from), "->", path_to_url(path_to), ", Got", req)
             if not req.ok:
-                print("Failed to update commit hash, got", req.status_code, req.text)
-                raise Exception("Failed to update commit hash")
+                print("Failed to update offset, got", req.status_code, req.text)
+                raise Exception("Failed to update offset")
 
         for path in modified:
             diff = dump_diff(path)
@@ -135,8 +135,8 @@ if __name__ == '__main__':
             )
             print("Modified:", path_to_url(path), ", Diff:", diff, ", Got", req)
             if not req.ok:
-                print("Failed to update commit hash, got", req.status_code, req.text)
-                raise Exception("Failed to update commit hash")
+                print("Failed to update offset, got", req.status_code, req.text)
+                raise Exception("Failed to update offset")
 
 
         renamed_modified = []
@@ -157,5 +157,5 @@ if __name__ == '__main__':
             )
             print("(Renamed) Modified:", path_to_url(path), ", Diff:", diff, ", Got", req)
             if not req.ok:
-                print("Failed to update commit hash, got", req.status_code, req.text)
-                raise Exception("Failed to update commit hash")
+                print("Failed to update offset, got", req.status_code, req.text)
+                raise Exception("Failed to update offset")
