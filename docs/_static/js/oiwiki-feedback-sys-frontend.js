@@ -1,4 +1,4 @@
-sessionStorage.setItem("commitHash", "{commitHash}") // commit hash injected here, see: scripts/post-build/inject-feedback-sys-frontend/task-handler.ts
+sessionStorage.setItem("commitHash", "{commitHash}") // commit hash injected here, see: scripts/pre-build/install-feedback-sys-frontend
 
 function matchColor() {
   const palettle = localStorage.getItem("/.__palette");
@@ -52,7 +52,7 @@ if (localStorage.getItem("enable_feedback_sys") === "true") {
     globalThis["OIWikiFeedbackSysFrontend"] instanceof Object &&
       OIWikiFeedbackSysFrontend.setupReview instanceof Function &&
       OIWikiFeedbackSysFrontend.setupReview(document.body, {
-        apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/post-build/inject-feedback-sys-frontend/task-handler.ts
+        apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/pre-build/install-feedback-sys-frontend
       });
   });
 }
