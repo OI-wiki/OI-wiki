@@ -13,9 +13,6 @@ def get_latest_commit_hash():
     return os.popen("git log -1 --pretty=format:%H").read().strip()
 
 def update_commit_hash():
-    if os.environ["ADMINISTRATOR_SECRET"] == "":
-        print("No ADMINISTRATOR_SECRET provided, skipping commit hash update")
-        return
     hash = get_latest_commit_hash()
     print("Updating commit hash to", hash)
     req = requests.put(
@@ -106,46 +103,49 @@ def path_to_url(
     return str(path) + ("/" if path.name != "" else "")
 
 if __name__ == '__main__':
-    update_commit_hash()
-    
-    for path_from, path_to in renamed:
-        req = requests.patch(
-            API_ENDPOINT
-            + "comment/{encoded_path}".format(
-                encoded_path=urllib.parse.quote_plus(path_to_url(path_from))
-            ),
-            headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
-            json={"type": "renamed", "to": path_to_url(path_to)},
-        )
-        print("Renamed:", path_to_url(path_from), "->", path_to_url(path_to), ", Got", req)
-    
-    for path in modified:
-        diff = dump_diff(path)
-        req = requests.patch(
-            API_ENDPOINT
-            + "comment/{encoded_path}".format(
-                encoded_path=urllib.parse.quote_plus(path_to_url(path))
-            ),
-            headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
-            json={"type": "modified", "diff": diff},
-        )
-        print("Modified:", path_to_url(path), ", Diff:", diff, ", Got", req)
-        
-        
-    renamed_modified = []
-    for path_from, path_to in renamed:
-        diff = dump_diff(path_to, oldPath = path_from)
-        if len(diff) > 0:
-            renamed_modified.append((path_from, path_to))
-            
-    for path_from, path_to in renamed_modified:
-        diff = dump_diff(path_to, oldPath = path_from)
-        req = requests.patch(
-            API_ENDPOINT
-            + "comment/{encoded_path}".format(
-                encoded_path=urllib.parse.quote_plus(path_to_url(path_to))
-            ),
-            headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
-            json={"type": "modified", "diff": diff},
-        )
-        print("(Renamed) Modified:", path_to_url(path), ", Diff:", diff, ", Got", req)
+    if os.environ["ADMINISTRATOR_SECRET"] == "":
+        print("No ADMINISTRATOR_SECRET provided, skipping commit hash update")
+    else:
+        update_commit_hash()
+
+        for path_from, path_to in renamed:
+            req = requests.patch(
+                API_ENDPOINT
+                + "comment/{encoded_path}".format(
+                    encoded_path=urllib.parse.quote_plus(path_to_url(path_from))
+                ),
+                headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
+                json={"type": "renamed", "to": path_to_url(path_to)},
+            )
+            print("Renamed:", path_to_url(path_from), "->", path_to_url(path_to), ", Got", req)
+
+        for path in modified:
+            diff = dump_diff(path)
+            req = requests.patch(
+                API_ENDPOINT
+                + "comment/{encoded_path}".format(
+                    encoded_path=urllib.parse.quote_plus(path_to_url(path))
+                ),
+                headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
+                json={"type": "modified", "diff": diff},
+            )
+            print("Modified:", path_to_url(path), ", Diff:", diff, ", Got", req)
+
+
+        renamed_modified = []
+        for path_from, path_to in renamed:
+            diff = dump_diff(path_to, oldPath = path_from)
+            if len(diff) > 0:
+                renamed_modified.append((path_from, path_to))
+
+        for path_from, path_to in renamed_modified:
+            diff = dump_diff(path_to, oldPath = path_from)
+            req = requests.patch(
+                API_ENDPOINT
+                + "comment/{encoded_path}".format(
+                    encoded_path=urllib.parse.quote_plus(path_to_url(path_to))
+                ),
+                headers={"Authorization": "Bearer " + os.environ["ADMINISTRATOR_SECRET"]},
+                json={"type": "modified", "diff": diff},
+            )
+            print("(Renamed) Modified:", path_to_url(path), ", Diff:", diff, ", Got", req)
