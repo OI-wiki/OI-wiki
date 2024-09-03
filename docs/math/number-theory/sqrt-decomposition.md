@@ -180,20 +180,17 @@ $$
 成立的最大的 $q$ 满足 $p\leq q\leq n$ 为
 
 $$
-\left\lfloor\frac{n}{\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor^2}\right\rfloor
+\left\lfloor\frac{n}{\left\lfloor\sqrt{n/p}\right\rfloor^2}\right\rfloor
 $$
 
 ???+ note "证明"
-    
-
-    令 $v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor$，那么
+    令 $v=\left\lfloor\sqrt{\dfrac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\dfrac{n}{q}}\right\rfloor$，那么
 
     $$
     \begin{aligned}
-    v&\leq \sqrt{\frac{n}{q}}\\
-    v^2&\leq n/q\\
-    q&\leq n/v^2\\
-    q&\leq \left\lfloor n/v^2\right\rfloor
+    v\leq \sqrt{\dfrac{n}{q}}&\implies v^2\leq \dfrac{n}{q}\\
+    &\implies q\leq \dfrac{n}{v^2}\\
+    &\implies q\leq \left\lfloor \dfrac{n}{v^2}\right\rfloor
     \end{aligned}
     $$
 
@@ -215,7 +212,7 @@ $$
     \left\lfloor\sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor=v
     $$
 
-    所以 $q=\left\lfloor n/v^2\right\rfloor$ 是最大的使得 $\left\lfloor\sqrt{n/p}\right\rfloor=\left\lfloor\sqrt{n/q}\right\rfloor$ 成立的 $q$。
+    进而 $q=\left\lfloor n/v^2\right\rfloor$ 是最大的使得 $\left\lfloor\sqrt{n/p}\right\rfloor=\left\lfloor\sqrt{n/q}\right\rfloor$ 成立的 $q$。
 
 故原问题可以写为数论分块形式，代码与数论分块形式并无二异。
 
