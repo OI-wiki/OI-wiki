@@ -22,6 +22,7 @@ def update_commit_hash():
     )
     if not req.ok:
         print("Failed to update commit hash, got", req.status_code, req.text)
+        raise Exception("Failed to update commit hash")
 
 parser = argparse.ArgumentParser("update-feedback-sys-meta")
 parser.add_argument("--modified", type=FileType(encoding="utf-8"), required=True)
@@ -118,6 +119,9 @@ if __name__ == '__main__':
                 json={"type": "renamed", "to": path_to_url(path_to)},
             )
             print("Renamed:", path_to_url(path_from), "->", path_to_url(path_to), ", Got", req)
+            if not req.ok:
+                print("Failed to update commit hash, got", req.status_code, req.text)
+                raise Exception("Failed to update commit hash")
 
         for path in modified:
             diff = dump_diff(path)
@@ -130,6 +134,9 @@ if __name__ == '__main__':
                 json={"type": "modified", "diff": diff},
             )
             print("Modified:", path_to_url(path), ", Diff:", diff, ", Got", req)
+            if not req.ok:
+                print("Failed to update commit hash, got", req.status_code, req.text)
+                raise Exception("Failed to update commit hash")
 
 
         renamed_modified = []
@@ -149,3 +156,6 @@ if __name__ == '__main__':
                 json={"type": "modified", "diff": diff},
             )
             print("(Renamed) Modified:", path_to_url(path), ", Diff:", diff, ", Got", req)
+            if not req.ok:
+                print("Failed to update commit hash, got", req.status_code, req.text)
+                raise Exception("Failed to update commit hash")
