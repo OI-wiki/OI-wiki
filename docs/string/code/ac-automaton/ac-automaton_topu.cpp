@@ -1,4 +1,5 @@
 // Code by rickyxrc | https://www.luogu.com.cn/record/115706921
+// Fixed by XuYueming | https://www.luogu.com.cn/record/175831244
 #include <bits/stdc++.h>
 #define maxn 8000001
 using namespace std;
@@ -22,12 +23,12 @@ queue<int> q;
 void init() {
   for (int i = 0; i <= cnt; i++) trie[i].init();
   for (int i = 1; i <= n; i++) vis[i] = 0;
-  cnt = 1;
+  cnt = 0;
   ans = 0;
 }
 
 void insert(char *s, int num) {
-  int u = 1, len = strlen(s);
+  int u = 0, len = strlen(s);
   for (int i = 0; i < len; i++) {
     int v = s[i] - 'a';
     if (!trie[u].son[v]) trie[u].son[v] = ++cnt;
@@ -39,9 +40,8 @@ void insert(char *s, int num) {
 }
 
 void getfail(void) {
-  for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
-  q.push(1);
-  trie[1].fail = 0;
+  for (int i = 0; i < 26; i++)
+    if (trie[0].son[i]) q.push(trie[0].son[i]);
   while (!q.empty()) {
     int u = q.front();
     q.pop();
@@ -60,7 +60,7 @@ void getfail(void) {
 }
 
 void topu() {
-  for (int i = 1; i <= cnt; i++)
+  for (int i = 0; i <= cnt; i++)
     if (!indeg[i]) q.push(i);
   while (!q.empty()) {
     int fr = q.front();
@@ -73,7 +73,7 @@ void topu() {
 }
 
 void query(char *s) {
-  int u = 1, len = strlen(s);
+  int u = 0, len = strlen(s);
   for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
 }
 
