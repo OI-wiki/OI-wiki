@@ -1,4 +1,4 @@
-author: iamtwz, Marcythm, 383494, abc1763613206, aofall, Chrogeek, CoelacanthusHex, Dafenghh, DanJoshua, Enter-tainer, GavinZhengOI, Gesrua, Henry-ZHR, Ir1d, kenlig, ksyx, lyccrius, Menci, opsiff, orzAtalod, ouuan, partychicken, Persdre, qq2964, Ruakker, shuzhouliu, sshwy, StudyingFather, szdytom, Tiphereth-A, Xeonacid, ZXyaang, rickyxrc
+author: iamtwz, Marcythm, 383494, abc1763613206, aofall, Chrogeek, CoelacanthusHex, Dafenghh, DanJoshua, Enter-tainer, GavinZhengOI, Gesrua, Henry-ZHR, Ir1d, kenlig, ksyx, lyccrius, Menci, opsiff, orzAtalod, ouuan, partychicken, Persdre, qq2964, Ruakker, shuzhouliu, sshwy, StudyingFather, szdytom, Tiphereth-A, Xeonacid, ZXyaang, rickyxrc, XuYueming520
 
 ## 概述
 
@@ -108,12 +108,12 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
         ```python
         def build():
             for i in range(0, 26):
-                if tr[0][i] == 1:
+                if tr[0][i] != 0:
                     q.append(tr[0][i])
             while q:
                 u = q.pop(0)
                 for i in range(0, 26):
-                    if tr[u][i] == 1:
+                    if tr[u][i] != 0:
                         fail[tr[u][i]] = tr[fail[u]][i]
                         q.append(tr[u][i])
                     else:
@@ -235,9 +235,8 @@ build 函数将结点按 BFS 顺序入队，依次求 fail 指针。这里的字
     ```cpp
     void getfail()  // 实际上也可以叫 build
     {
-      for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
-      q.push(1);
-      trie[1].fail = 0;
+      for (int i = 0; i < 26; i++)
+        if (trie[0].son[i]) q.push(trie[0].son[i]);
       while (!q.empty()) {
         int u = q.front();
         q.pop();
@@ -261,12 +260,12 @@ build 函数将结点按 BFS 顺序入队，依次求 fail 指针。这里的字
 ???+ note "查询"
     ```cpp
     void query(char *s) {
-      int u = 1, len = strlen(s);
+      int u = 0, len = strlen(s);
       for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
     }
     
     void topu() {
-      for (int i = 1; i <= cnt; i++)
+      for (int i = 0; i <= cnt; i++)
         if (!indeg[i]) q.push(i);
       while (!q.empty()) {
         int fr = q.front();
@@ -317,11 +316,11 @@ build 函数将结点按 BFS 顺序入队，依次求 fail 指针。这里的字
 ???+ note "查询部分主要代码"
     ```cpp
     void query(char *s) {
-      int u = 1, len = strlen(s), l = 0;
+      int u = 0, len = strlen(s), l = 0;
       for (int i = 0; i < len; i++) {
         int v = s[i] - 'a';
         int k = trie[u].son[v];
-        while (k > 1) {
+        while (k > 0) {
           if (trie[k].flag && (dp[i - trie[k].len] || i - trie[k].len == -1))
             dp[i] = dp[i - trie[k].len] + trie[k].len;
           k = trie[k].fail;
@@ -350,9 +349,11 @@ for (int i = 0, e = strlen(T); i < e; i++) mx = std::max(mx, dp[i]);
 ???+ note "构建 fail 指针"
     ```cpp
     void getfail(void) {
-      for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
-      q.push(1);
-      trie[1].fail = 0;
+      for (int i = 0; i < 26; i++)
+        if (trie[0].son[i]) {
+          q.push(trie[0].son[i]);
+          trie[trie[0].son[i]].depth = 1;
+        }
       while (!q.empty()) {
         int u = q.front();
         q.pop();
@@ -379,7 +380,7 @@ for (int i = 0, e = strlen(T); i < e; i++) mx = std::max(mx, dp[i]);
 ???+ note "查询"
     ```cpp
     int query(char *s) {
-      int u = 1, len = strlen(s), mx = 0;
+      int u = 0, len = strlen(s), mx = 0;
       unsigned st = 1;
       for (int i = 0; i < len; i++) {
         int v = s[i] - 'a';
