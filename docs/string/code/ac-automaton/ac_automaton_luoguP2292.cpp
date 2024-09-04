@@ -1,4 +1,5 @@
 // Code by rickyxrc | https://www.luogu.com.cn/record/115806238
+// Fixed by XuYueming | https://www.luogu.com.cn/record/175833123
 #include <stdio.h>
 #include <string.h>
 
@@ -23,12 +24,12 @@ std::queue<int> q;
 void init() {
   for (int i = 0; i <= cnt; i++) trie[i].init();
   for (int i = 1; i <= n; i++) vis[i] = 0;
-  cnt = 1;
+  cnt = 0;
   ans = 0;
 }
 
 void insert(char *s, int num) {
-  int u = 1, len = strlen(s);
+  int u = 0, len = strlen(s);
   for (int i = 0; i < len; i++) {
     // trie[u].depth = i + 1;
     int v = s[i] - 'a';
@@ -42,9 +43,11 @@ void insert(char *s, int num) {
 }
 
 void getfail(void) {
-  for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
-  q.push(1);
-  trie[1].fail = 0;
+  for (int i = 0; i < 26; i++)
+    if (trie[0].son[i]) {
+      q.push(trie[0].son[i]);
+      trie[trie[0].son[i]].depth = 1;
+    }
   while (!q.empty()) {
     int u = q.front();
     q.pop();
@@ -65,7 +68,7 @@ void getfail(void) {
 }
 
 int query(char *s) {
-  int u = 1, len = strlen(s), mx = 0;
+  int u = 0, len = strlen(s), mx = 0;
   unsigned st = 1;
   for (int i = 0; i < len; i++) {
     int v = s[i] - 'a';
