@@ -19,27 +19,12 @@ function hookMkdocsMaterial() {
   });
 }
 
-function stringToHash(string) {
-
-  let hash = 0;
-
-  if (string.length == 0) return hash;
-
-  for (i = 0; i < string.length; i++) {
-    char = string.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash;
-  }
-
-  return hash;
-}
-
 // has ?enable_feedback_sys=true parameter
 if (location.search.includes("enable_feedback_sys=true")) {
   localStorage.setItem("enable_feedback_sys", "true");
 }
 
-if (localStorage.getItem("giscus-session") && stringToHash(localStorage.getItem("giscus-session")) % 100 < 20) {
+if (localStorage.getItem("giscus-session")) {
   localStorage.setItem("enable_feedback_sys", "true");
 }
 
