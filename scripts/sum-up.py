@@ -19,8 +19,9 @@ with open(os.environ.get('GITHUB_STEP_SUMMARY'), 'w') as f:
             print(f'## {sysinfo}')
             f.write(f'\n## {sysinfo}\n')
             for line in output[key]:
-                print(f'- {line}: {output[key][line]}')
-                f.write(f'- {line}: {output[key][line]}\n')
+                output_line = ', '.join(output[key][line])
+                print(f'- {line}: {output_line}')
+                f.write(f'- {line}: {output_line}\n')
                 if 'CE' in output[key][line]:
                     this_file_looks_odd = True
                 if 'RE' in output[key][line]:
