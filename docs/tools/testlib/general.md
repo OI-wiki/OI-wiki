@@ -7,7 +7,7 @@
 | Ok                 | `_ok`        | 答案正确。                                                                                  |
 | Wrong Answer       | `_wa`        | 答案错误。                                                                                  |
 | Presentation Error | `_pe`        | 答案格式错误。注意包括 Codeforces 在内的许多 OJ 并不区分 PE 和 WA。                                          |
-| Partially Correct  | `_pc(score)` | 答案部分正确。仅限于有部分分的测试点，其中 `score` 为一个正整数，从 $0$（没分）到 $100$（可能的最大分数）。                        |
+| Partially Correct  | `_pc(score)` | 答案部分正确。仅限于有部分分的测试点，其中 `score` 为一个正整数，从 $0$（没分）到 $100$（可能的最大分数）。（`quitf+_pc` 只是为了兼容旧的 pascal-testlib，如果想要输出部分分，建议使用 `quitp`/`quitpi`[^1]）                        |
 | Fail               | `_fail`      | validator 中表示输入不合法，不通过校验。<br>checker 中表示程序内部错误、标准输出有误或选手输出比标准输出更优，需要裁判/出题人关注。（也就是题目锅了） |
 
 通常用程序的返回值表明结果，但是也有一些其他方法：创建一个输出 xml 文件、输出信息到 stdout 或其他位置……这些都通过下方函数表中的 `quitf` 函数来完成。
@@ -32,6 +32,7 @@
 | `void registerGen(int argc, char* argv[], int randomGeneratorVersion)`                          | 注册程序为 generator<br>`randomGeneratorVersion` 推荐为 `1` |
 | `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)` | 结束程序，返回 `verdict`，输出 `message`                      |
 | `void quitif(bool condition, TResult verdict, string message, ...)`                             | 如果 `condition` 成立，调用 `quitf(verdict, message, ...)` |
+| `void quitp(F points, string message, ...)`/`void quitpi(string points_info, string message, ...)` | 结束程序，返回部分分，支持小数和字符串 |
 
 流成员函数：
 
@@ -105,3 +106,5 @@ ensuref(s.length() % 2 == 0,
     成员函数 `InStream::ensuref/ensure()` 一般用于判断选手和参考程序的输出是否合法。当 `InStream` 为 `ouf` 时，返回 `_wa`；为 `inf`（一般不在 checker 中检查输入数据，这应当在 validator 中完成）或 `ans` 时，返回 `_fail`。详见 [Checker - 编写 readAns 函数](./checker.md#好的实现)。
 
 **本文主要翻译并综合自 [Testlib - Codeforces](https://codeforces.com/testlib) 系列。`testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。**
+
+[^1]: [issue 链接](https://github.com/MikeMirzayanov/testlib/issues/115#issuecomment-863414940)
