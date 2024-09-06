@@ -10,7 +10,7 @@ on:
 
 jobs:
   correctness:
-    name: OI-wiki Offline Test
+    name: Correctness Check
     runs-on: ubuntu-latest
     outputs:
       any_changed: ${{ steps.changed-files.outputs.any_changed }}
