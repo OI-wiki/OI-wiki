@@ -220,7 +220,7 @@ $$
     参照上方过程，可以同样地证明：（下文 $\alpha, \beta$ 均为正整数）
 
     1. 对于正整数 $n$，使得式子 $\left\lfloor\sqrt[\alpha]{n/p^\beta}\right\rfloor=\left\lfloor\sqrt[\alpha]{n/q^\beta}\right\rfloor$ 成立的最大的 $q$ 满足 $p\leq q\leq n$ 为 $\left\lfloor\sqrt[\beta]{n/v^\alpha}\right\rfloor$，其中 $v=\left\lfloor\sqrt[\alpha]{n/p^\beta}\right\rfloor$。
-    2. 对于正整数 $n$，集合 $\left\{\left\lfloor\sqrt[\alpha]{n/d^\beta}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leq n\right\}$ 的大小的一个上界为 $O(n^{1/(\alpha+\beta)})$（大约为 $2n^{1/(\alpha+\beta)}$）。
+    2. 对于正整数 $n$，集合 $\left\{\left\lfloor\sqrt[\alpha]{n/d^\beta}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leq n\right\}$ 的大小的一个上界为 $O(n^{1/(\alpha+\beta)})$（大约为 $2\left\lfloor n^{1/(\alpha+\beta)}\right\rfloor$）。
 
 ## 习题
 
