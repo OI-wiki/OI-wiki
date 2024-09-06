@@ -15,27 +15,38 @@ WHITE = "\033[0;37m"
 RESET = "\033[0m"
 
 @dataclass(frozen=True)
-class CompileOK:
+class Status:
+    errcode: int
+    color: str
+
+    def __str__(self):
+        return f'{self.__class__.__name__}({self.errcode})'
+    
+    def colored(self):
+        return f'{self.color}{self}{RESET}'
+
+@dataclass(frozen=True)
+class CompileOK(Status):
     errcode: int = 0
     color = GREEN
 
 @dataclass(frozen=True)
-class CE:
+class CE(Status):
     errcode: int
     color = RED
 
 @dataclass(frozen=True)
-class AC:
+class AC(Status):
     errcode: int = 0
     color = GREEN
 
 @dataclass(frozen=True)
-class RE:
+class RE(Status):
     errcode: int
     color = RED
 
 @dataclass(frozen=True)
-class WA:
+class WA(Status):
     errcode: int
     color = RED
     
@@ -194,7 +205,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                         status_vector.append(AC())
         print(f'{compile_product.split(os.path.pathsep)[-1]}: ', end='')
         for _ in status_vector:
-            print(f'{_.color}{_.__class__.__name__}({_.errcode}){RESET}', end='; ')
+            print(_.colored(), end='; ')
         print()
         return_status[compile_product] = status_vector
 
@@ -204,7 +215,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     for key in return_status:
         print(f'-  {key}: ', end='')
         for _ in return_status[key]:
-            print(f'{_.color}{_.__class__.__name__}({_.errcode}){RESET}', end='; ')
+            print(_.colored(), end='; ')
         print()
     print()
     return this_file_looks_odd, return_status
@@ -215,7 +226,7 @@ for mainfile, auxfile, example, skiptest in zip(mainfiles, auxfiles, examples, s
     this_file_looks_odd, return_status = ub_check(mainfile, auxfile, example, skiptest)
     output_status = {}
     for key in return_status:
-        output_status[key] = [f'{_.__class__.__name__}({_.errcode})' for _ in return_status[key]]
+        output_status[key] = [str(_) for _ in return_status[key]]
     output[mainfile] = output_status
     if this_file_looks_odd:
         cnt_error += 1
