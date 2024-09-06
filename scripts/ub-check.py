@@ -1,5 +1,7 @@
 import os
 import subprocess
+from typing import TypeAlias
+from dataclasses import dataclass
 
 mainfiles, auxfiles, examples, skiptests = eval(os.environ.get("FILES_TO_TEST"))
 runs_on = os.environ.get("RUNS_ON")
@@ -13,13 +15,32 @@ CYAN = "\033[0;36m"
 WHITE = "\033[0;37m"
 RESET = "\033[0m"
 
-def get_color(status: str) -> str:
-    if 'AC' in status or 'OK' in status:
-        return GREEN
-    elif 'SKIPPED' in status:
-        return BLUE
-    else:
-        return RED
+@dataclass(frozen=True)
+class CompileOK:
+    errcode: int = 0
+    color = GREEN
+
+@dataclass(frozen=True)
+class CE:
+    errcode: int
+    color = RED
+
+@dataclass(frozen=True)
+class AC:
+    errcode: int = 0
+    color = GREEN
+
+@dataclass(frozen=True)
+class RE:
+    errcode: int
+    color = RED
+
+@dataclass(frozen=True)
+class WA:
+    errcode: int
+    color = RED
+
+Status: TypeAlias = CompileOK | CE | AC | RE | WA
     
 def ub_check(mainfile, auxfiles, examples, skiptest):
     """
@@ -149,9 +170,9 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         if result.returncode != 0:
             print(f'{RED}CE({result.returncode}){RESET}')
             this_file_looks_odd = True
-            status_vector = [f'CE({result.returncode})']
+            status_vector = [CE(result.returncode)]
         else: 
-            status_vector = ['Compile OK']
+            status_vector = [CompileOK()]
             print(f'{GREEN}OK{RESET}')
 
             for e in examples:
@@ -162,7 +183,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                 if result.returncode != 0:
                     print(f'{RED}RE({result.returncode})){RESET}')
                     this_file_looks_odd = True
-                    status_vector.append(f'RE({result.returncode})')
+                    status_vector.append(RE(result.returncode))
                 else:
                     print(f'{GREEN}OK{RESET}')
                     print(f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")}', end=' ')
@@ -170,13 +191,13 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                     if result.returncode != 0:
                         print(f'{RED}WA{RESET}')
                         this_file_looks_odd = True
-                        status_vector.append(f'WA')
+                        status_vector.append(WA(result.returncode))
                     else:
                         print(f'{GREEN}AC{RESET}')
-                        status_vector.append(f'AC')
+                        status_vector.append(AC())
         print(f'{compile_product.split(os.path.pathsep)[-1]}: ', end='')
         for _ in status_vector:
-            print(f'{get_color(_)}{_}{RESET}', end='; ')
+            print(f'{_.color}{_.__class__.__name__}({_.errcode}){RESET}', end='; ')
         print()
         return_status[compile_product] = status_vector
 
@@ -186,7 +207,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     for key in return_status:
         print(f'-  {key}: ', end='')
         for _ in return_status[key]:
-            print(f'{get_color(_)}{_}{RESET}', end='; ')
+            print(f'{_.color}{_.__class__.__name__}({_.errcode}){RESET}', end='; ')
         print()
     print()
     return this_file_looks_odd, return_status
@@ -195,7 +216,10 @@ cnt_ac, cnt_error = 0, 0
 output = {}
 for mainfile, auxfile, example, skiptest in zip(mainfiles, auxfiles, examples, skiptests):
     this_file_looks_odd, return_status = ub_check(mainfile, auxfile, example, skiptest)
-    output[mainfile] = return_status
+    output_status = {}
+    for key in return_status:
+        output_status[key] = [f'{_.__class__.__name__}({_.errcode})' for _ in return_status[key]]
+    output[mainfile] = output_status
     if this_file_looks_odd:
         cnt_error += 1
     else:
