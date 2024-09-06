@@ -28,27 +28,27 @@ class Status:
 @dataclass(frozen=True)
 class CompileOK(Status):
     errcode: int = 0
-    color = GREEN
+    color: str = GREEN
 
 @dataclass(frozen=True)
 class CE(Status):
     errcode: int
-    color = RED
+    color: str = RED
 
 @dataclass(frozen=True)
 class AC(Status):
     errcode: int = 0
-    color = GREEN
+    color: str = GREEN
 
 @dataclass(frozen=True)
 class RE(Status):
     errcode: int
-    color = RED
+    color: str = RED
 
 @dataclass(frozen=True)
 class WA(Status):
     errcode: int
-    color = RED
+    color: str = RED
     
 def ub_check(mainfile, auxfiles, examples, skiptest):
     """
