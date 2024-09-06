@@ -1,6 +1,5 @@
 import os
 import subprocess
-from typing import TypeAlias
 from dataclasses import dataclass
 
 mainfiles, auxfiles, examples, skiptests = eval(os.environ.get("FILES_TO_TEST"))
@@ -39,8 +38,6 @@ class RE:
 class WA:
     errcode: int
     color = RED
-
-Status: TypeAlias = CompileOK | CE | AC | RE | WA
     
 def ub_check(mainfile, auxfiles, examples, skiptest):
     """
