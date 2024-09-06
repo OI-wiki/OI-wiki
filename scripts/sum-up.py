@@ -16,17 +16,13 @@ with open(os.environ.get('GITHUB_STEP_SUMMARY'), 'w') as f:
         f.write(f'\n## **{key}**\n')
 
         for sysinfo, output in zip(['x86_64 Ubuntu 22.04', 'Arm64 macOS 12.0', 'x86_64 Alpine with MUSL', 'x86_64 Windows 10', 'RISC-V64 Ubuntu 22.04'], [OUTPUT_UBUNTU, OUTPUT_MACOS, OUTPUT_ALPINE, OUTPUT_WINDOWS, OUTPUT_RV]):
-            print(f'## {sysinfo}')
-            f.write(f'\n## {sysinfo}\n')
+            print(f'### {sysinfo}')
+            f.write(f'\n### {sysinfo}\n')
             for line in output[key]:
                 output_line = ', '.join(output[key][line])
                 print(f'- {line}: {output_line}')
                 f.write(f'- {line}: {output_line}\n')
-                if 'CE' in output[key][line]:
-                    this_file_looks_odd = True
-                if 'RE' in output[key][line]:
-                    this_file_looks_odd = True
-                if 'WA' in output[key][line]:
+                if any(_2 in _1 for _1 in output[key][line] for _2 in ['CE', 'RE', 'WA']):
                     this_file_looks_odd = True
 
         if this_file_looks_odd:
