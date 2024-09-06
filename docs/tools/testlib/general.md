@@ -24,14 +24,14 @@
 
 非成员函数：
 
-| 调用                                                                                              | 含义                                                                                                                            |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `void registerTestlibCmd(int argc, char* argv[])`                                               | 注册程序为 checker                                                                                                                 |
-| `void registerInteraction(int argc, char* argv[])`                                              | 注册程序为 interactor                                                                                                              |
-| `void registerValidation()`/`void registerValidation(int argc, char* argv[])`                   | 注册程序为 validator                                                                                                               |
-| `void registerGen(int argc, char* argv[], int randomGeneratorVersion)`                          | 注册程序为 generator<br>`randomGeneratorVersion` 推荐为 `1`                                                                           |
-| `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)` | 结束程序，返回 `verdict`，输出 `message`                                                                                                |
-| `void quitif(bool condition, TResult verdict, string message, ...)`                             | 如果 `condition` 成立，调用 `quitf(verdict, message, ...)`                                                                           |
+| 调用                                                                                              | 含义                                                                                                                                          |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `void registerTestlibCmd(int argc, char* argv[])`                                               | 注册程序为 checker                                                                                                                               |
+| `void registerInteraction(int argc, char* argv[])`                                              | 注册程序为 interactor                                                                                                                            |
+| `void registerValidation()`/`void registerValidation(int argc, char* argv[])`                   | 注册程序为 validator                                                                                                                             |
+| `void registerGen(int argc, char* argv[], int randomGeneratorVersion)`                          | 注册程序为 generator<br>`randomGeneratorVersion` 推荐为 `1`                                                                                         |
+| `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)` | 结束程序，返回 `verdict`，输出 `message`                                                                                                              |
+| `void quitif(bool condition, TResult verdict, string message, ...)`                             | 如果 `condition` 成立，调用 `quitf(verdict, message, ...)`                                                                                         |
 | `void quitp(F points, string message, ...)`                                                     | 结束程序，返回部分分。大部分 OJ（如洛谷、UOJ）的 `points` 需要提供一个 $[0,1]$ 内的实数，表示得分百分比，还有部分 OJ（如 Lyrio）的 `points` 需要提供一个 $[0,100]$ 的实数（OJ 会自动舍弃小数部分），表示百分制下的测试点得分 |
 
 流成员函数：
