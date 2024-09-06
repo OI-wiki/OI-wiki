@@ -14,6 +14,8 @@ CYAN = "\033[0;36m"
 WHITE = "\033[0;37m"
 RESET = "\033[0m"
 
+incolor = lambda color, text: f"{color}{text}{RESET}"
+
 @dataclass(frozen=True)
 class Status:
     errcode: int
@@ -55,7 +57,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     Check for undefined behavior.
     """
 
-    print(f"Test for {mainfile}...")
+    print(incolor(BLUE, f"Test for {mainfile}..."))
     if skiptest:
         print(f'{BLUE}test skipped because file {mainfile + ".skip_test"} exists{RESET}')
         return ['SKIPPED']
@@ -176,12 +178,12 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         print(compile_command, end=' ')
         result = subprocess.run(compile_command, shell=True)
         if result.returncode != 0:
-            print(f'{RED}CE({result.returncode}){RESET}')
             this_file_looks_odd = True
             status_vector = [CE(result.returncode)]
+            print(status_vector[0].colored())
         else: 
             status_vector = [CompileOK()]
-            print(f'{GREEN}OK{RESET}')
+            print(status_vector[0].colored())
 
             for e in examples:
                 print(f'{compile_product} < {e} > {e.replace(".in", ".out")}', end=' ')
@@ -189,29 +191,28 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                     with open(e.replace(".in", ".out"), 'w') as fstdout:
                         result = subprocess.run(f'{os.path.join(os.path.curdir, compile_product)}', stdin=fstdin, stdout=fstdout, shell=True)
                 if result.returncode != 0:
-                    print(f'{RED}RE({result.returncode})){RESET}')
                     this_file_looks_odd = True
                     status_vector.append(RE(result.returncode))
+                    print(status_vector[-1].colored())
                 else:
-                    print(f'{GREEN}OK{RESET}')
+                    print(incolor(GREEN, 'OK'))
                     print(f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")}', end=' ')
                     result = subprocess.run(f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")}', shell=True)
                     if result.returncode != 0:
-                        print(f'{RED}WA{RESET}')
                         this_file_looks_odd = True
                         status_vector.append(WA(result.returncode))
                     else:
-                        print(f'{GREEN}AC{RESET}')
                         status_vector.append(AC())
+                    print(status_vector[-1].colored())
         print(f'{compile_product.split(os.path.pathsep)[-1]}: ', end='')
         for _ in status_vector:
             print(_.colored(), end='; ')
         print()
         return_status[compile_product] = status_vector
 
-    print(f'{BLUE}Result for {mainfile}: {RESET}')
+    print(incolor(BLUE, f'Result for {mainfile}: '))
     if this_file_looks_odd:
-        print(f'::error file={mainfile},title=Potential UB::{RED}Please take a look.{RESET}')
+        print(f'::error file={mainfile},title=Potential UB::Please take a look.')
     for key in return_status:
         print(f'-  {key}: ', end='')
         for _ in return_status[key]:
