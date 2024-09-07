@@ -198,8 +198,8 @@ $$
 
         $$
         \begin{aligned}
-        te + (1-t)f &= t(a+c)+(1-t)(b+d)
-        &=(ta+(1-t)b)+(tc+(1-t)d)
+        te + (1-t)f &= t(a+c)+(1-t)(b+d)\\
+        &=(ta+(1-t)b)+(tc+(1-t)d)\\
         &\in P+Q
         \end{aligned}
         $$
