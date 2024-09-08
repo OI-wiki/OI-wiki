@@ -584,7 +584,7 @@ extra_javascript:
   - '{OIWikiFeedbackSystemFrontendContentScript}' # see: scripts/pre-build/install-feedback-sys-frontend.ts
 
 extra_css:
-  - '_static/css/extra.css?v=14'
+  - '_static/css/extra.css?v=15'
   # - '_static/css/offset-inject-debug.css'
   - '{OIWikiFeedbackSystemFrontendCSS}' # see: scripts/pre-build/install-feedback-sys-frontend.ts
 
