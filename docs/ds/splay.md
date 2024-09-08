@@ -330,19 +330,20 @@ void del(int k) {
 
 **定义**:
 
-1. **单个节点的势能**：$w(x) = \log(\text{size}(x))$，其中 $\text{size}(x)$ 表示以节点 $x$ 为根的子树大小。
+1.  **单个节点的势能**：$w(x) = \log(\text{size}(x))$，其中 $\text{size}(x)$ 表示以节点 $x$ 为根的子树大小。
 
-2. **整棵树的势能**：$\varphi = \sum w(x)$，即树中所有节点势能的总和，初始势能满足 $\varphi(0) \leq n \log n$。
+2.  **整棵树的势能**：$\varphi = \sum w(x)$，即树中所有节点势能的总和，初始势能满足 $\varphi(0) \leq n \log n$。
 
-3. **第 $i$ 次操作的均摊成本**：$c_i = t_i + \varphi(i) - \varphi(i-1)$，其中 $t_i$ 为实际操作代价，$\varphi(i)$ 和 $\varphi(i-1)$ 分别为操作后和操作前的势能。
+3.  **第 $i$ 次操作的均摊成本**：$c_i = t_i + \varphi(i) - \varphi(i-1)$，其中 $t_i$ 为实际操作代价，$\varphi(i)$ 和 $\varphi(i-1)$ 分别为操作后和操作前的势能。
 
 **性质**:
 
-1. 如果 $fa$ 是 $x$ 的父节点，则有 $w(fa) \geq w(x)$，即父节点的势能不小于子节点的势能。
-2. 由于根节点的子树大小在操作前后保持不变，因此根节点的势能在操作过程中不变。
-3. 如果 $fa$ 的两个子节点分别是 $x$ 和 $y$，那么有 $2w(fa) - w(x) - w(y) \geq 2$
+1.  如果 $fa$ 是 $x$ 的父节点，则有 $w(fa) \geq w(x)$，即父节点的势能不小于子节点的势能。
+2.  由于根节点的子树大小在操作前后保持不变，因此根节点的势能在操作过程中不变。
+3.  如果 $fa$ 的两个子节点分别是 $x$ 和 $y$，那么有 $2w(fa) - w(x) - w(y) \geq 2$
 
 ??? note "性质 3 的证明"
+    
 
     1. 设 $ \text{size}(fa) = z $，$ \text{size}(x) = y $，$ \text{size}(y) = x $，则有 $z = x + y + 1$。
     2. 因此，  
@@ -356,51 +357,51 @@ void del(int k) {
 
 接下来，分别对 **zig**、**zig-zig** 和 **zig-zag** 操作进行势能分析。
 
-1. **Zig 操作**  
-   根据性质 1 和 2，有 $ w(fa) = w'(x) $，且 $ w'(x) \geq w'(fa) $。因此均摊成本为：
-   $$
-   \begin{aligned}
-   c_i &= 1 + w'(x) + w'(fa) - w(x) - w(fa)\\
-   &= 1 + w'(fa) - w(x)\\
-   &\leq 1 + w'(x) - w(x)
-   \end{aligned}
-   $$
+1.  **Zig 操作**   
+    根据性质 1 和 2，有 $w(fa) = w'(x)$，且 $w'(x) \geq w'(fa)$。因此均摊成本为：
+    $$
+    \begin{aligned}
+    c_i &= 1 + w'(x) + w'(fa) - w(x) - w(fa)\\
+    &= 1 + w'(fa) - w(x)\\
+    &\leq 1 + w'(x) - w(x)
+    \end{aligned}
+    $$
 
-2. **Zig-Zig 操作**  
-   根据性质 1 和 2，有 $ w(g) = w'(x) $，且 $ w'(x) \geq w'(fa) $，并且 $ w(x) \leq w(fa) $。根据性质 3，可得：
-   $$
-   2 \cdot w'(x) - w(x) - w'(g) \geq 2
-   $$
-   由此，均摊成本为：
-   $$
-   c_i = 2 + w'(x) + w'(fa) + w'(g) - w(x) - w(fa) - w(g)
-   $$
-   简化后：
-   $$
-   \begin{aligned}
-   c_i &= 2 + w'(fa) + w'(g) - w(x) - w(fa)\\
-   &\leq 2w'(x) + w'(fa) - 2w(x) - w(fa)\\
-   &\leq 3 \cdot (w'(x) - w(x))
-   \end{aligned}
-   $$
+2.  **Zig-Zig 操作**   
+    根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w'(x) \geq w'(fa)$，并且 $w(x) \leq w(fa)$。根据性质 3，可得：
+    $$
+    2 \cdot w'(x) - w(x) - w'(g) \geq 2
+    $$
+    由此，均摊成本为：
+    $$
+    c_i = 2 + w'(x) + w'(fa) + w'(g) - w(x) - w(fa) - w(g)
+    $$
+    简化后：
+    $$
+    \begin{aligned}
+    c_i &= 2 + w'(fa) + w'(g) - w(x) - w(fa)\\
+    &\leq 2w'(x) + w'(fa) - 2w(x) - w(fa)\\
+    &\leq 3 \cdot (w'(x) - w(x))
+    \end{aligned}
+    $$
 
-3. **Zig-Zag 操作**  
-   根据性质 1 和 2，有 $ w(g) = w'(x) $，且 $ w(fa) \geq w(x) $。根据性质 3，可得：
-   $$
-   2 \cdot w'(x) - w'(g) - w'(fa) \geq 2
-   $$
-   由此，均摊成本为：
-   $$
-   c_i = 2 + w'(x) + w'(fa) + w'(g) - w(x) - w(fa) - w(g)
-   $$
-   简化后：
-   $$
-   \begin{aligned}
-   c_i&= 2 + w'(g) + w'(fa) - w(x) - w(fa)\\
-   &\leq 2 \cdot w'(x) - w(x) - w(fa)\\
-   &\leq 2 \cdot (w'(x) - w(x))
-   \end{aligned}
-   $$
+3.  **Zig-Zag 操作**   
+    根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(fa) \geq w(x)$。根据性质 3，可得：
+    $$
+    2 \cdot w'(x) - w'(g) - w'(fa) \geq 2
+    $$
+    由此，均摊成本为：
+    $$
+    c_i = 2 + w'(x) + w'(fa) + w'(g) - w(x) - w(fa) - w(g)
+    $$
+    简化后：
+    $$
+    \begin{aligned}
+    c_i&= 2 + w'(g) + w'(fa) - w(x) - w(fa)\\
+    &\leq 2 \cdot w'(x) - w(x) - w(fa)\\
+    &\leq 2 \cdot (w'(x) - w(x))
+    \end{aligned}
+    $$
 
 **总结**:
 
@@ -420,7 +421,6 @@ $$
 $$
 
 因此，对于 $n$ 个节点的 splay 树，做一次 splay 操作的均摊复杂度为 $O(\log n)$。从而基于 splay 的插入，查询，删除等操作的时间复杂度也为均摊 $O(\log n)$。
-
 
 ## 实现
 
