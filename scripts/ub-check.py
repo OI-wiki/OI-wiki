@@ -75,7 +75,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         sanitizers = sanitizers if sanitizers is not None else [('', '.NA')]
         if not omit_ms_style:
             return [
-            f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} /Fe:{mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}' 
+            f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} -o {mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}' 
             for compiler, c_name in compilers
             for standard, s_name in standards
             for optimization, o_name in optimizations
@@ -83,7 +83,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         ]
         else: 
             return [
-            f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} -o {mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}' 
+            f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} /Fe:{os.path.normpath(mainfile.split(".")[0])}{c_name}{s_name}{o_name}{san_name}' 
             for compiler, c_name in compilers
             for standard, s_name in standards
             for optimization, o_name in optimizations
