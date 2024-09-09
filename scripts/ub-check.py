@@ -64,118 +64,265 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
 
     print(incolor(BLUE, f"Test for {mainfile}..."))
     if skiptest:
-        print(f'{BLUE}test skipped because file {mainfile + ".skip_test"} exists{RESET}')
-        return ['SKIPPED']
         print(incolor(BLUE, f"Test for {mainfile} skipped because file {mainfile + '.skip_test'} exists"))
         return False, {mainfile, Skipped()}
     
     CALL_VCVARS_BAT = r'call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"'
+    def arrgen(compilers, standards, optimizations, auxfiles, sanitizers, mainfile, omit_ms_style=False):
+        assert compilers is not None and compilers != []
+        standards = standards if standards is not None else [('', '.NA')]
+        optimizations = optimizations if optimizations is not None else [('', '.NA')]
+        sanitizers = sanitizers if sanitizers is not None else [('', '.NA')]
+        if not omit_ms_style:
+            return [
+            f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} /Fe:{mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}' 
+            for compiler, c_name in compilers
+            for standard, s_name in standards
+            for optimization, o_name in optimizations
+            for sanitizer, san_name in sanitizers
+        ]
+        else: 
+            return [
+            f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} -o {mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}' 
+            for compiler, c_name in compilers
+            for standard, s_name in standards
+            for optimization, o_name in optimizations
+            for sanitizer, san_name in sanitizers
+        ]
+
+    def productgen(compilers, standards, optimizations, auxfiles, sanitizers, mainfile):
+        assert compilers is not None and compilers != []
+        standards = standards if standards is not None else [('', '.NA')]
+        optimizations = optimizations if optimizations is not None else [('', '.NA')]
+        sanitizers = sanitizers if sanitizers is not None else [('', '.NA')]
+        return [
+            f'{mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}'
+            for _, c_name in compilers
+            for _, s_name in standards
+            for _, o_name in optimizations
+            for _, san_name in sanitizers
+        ]
+    
     compile_commands_dict = {
-        "x86_64 Ubuntu": [  f'clang++ -std=c++14 -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.CPP14.O0',
-                            f'clang++ -std=c++14 -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.CPP14.O2',
-                            f'clang++ -std=c++14 -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.CPP14.O3',
-                            f'clang++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O0',
-                            f'clang++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O2',
-                            f'clang++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O3',
-                            f'g++-9 -std=c++14 -O0 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC9.O0',
-                            f'g++-9 -std=c++14 -O2 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC9.O2', # NOI 2023
-                            f'g++-9 -std=c++14 -O3 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC9.O3',
-                            f'g++-13 -std=gnu++20 -O0 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O0',
-                            f'g++-13 -std=gnu++20 -O2 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O2', # ACM ICPC 2023
-                            f'g++-13 -std=gnu++20 -O3 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O3', 
-                            f'g++-13 -std=c++14 -O0 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O0',
-                            f'g++-13 -std=c++14 -O2 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O2',
-                            f'g++-13 -std=c++14 -O3 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O3',
-                            f'g++-13 -O0 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O0',
-                            f'g++-13 -O2 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O2',
-                            f'g++-13 -O3 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O3',
-                            f'g++-13 -fsanitize=undefined,address {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.Sanitize'  ], # Sanitizer Activated
-        "x86_64 Alpine": [  f'clang++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O0',
-                            f'clang++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O2',
-                            f'clang++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O3',
-                            f'g++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O0',
-                            f'g++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O2',
-                            f'g++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O3',  ],
-        "x86_64 Windows": [ f'clang++ -O0 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.Clang.O0.exe',
-                            f'clang++ -O2 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.Clang.O2.exe',
-                            f'clang++ -O3 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.Clang.O3.exe',
-                            f'g++ -O0 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.GCC.O0.exe',
-                            f'g++ -O2 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.GCC.O2.exe',
-                            f'g++ -O3 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.GCC.O3.exe',
-                            f'{CALL_VCVARS_BAT} && cl /Od {" ".join(auxfiles)} /Fe:{os.path.normpath(mainfile.split(".")[0])}.MSVC.O0.exe',
-                            f'{CALL_VCVARS_BAT} && cl /O2 {" ".join(auxfiles)} /Fe:{os.path.normpath(mainfile.split(".")[0])}.MSVC.O2.exe',  ],
-        "riscv64 Ubuntu": [ f'clang++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O0',
-                            f'clang++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O2',
-                            f'clang++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O3',
-                            f'g++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O0',
-                            f'g++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O2',
-                            f'g++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O3',  ],
-        "arm64 MacOS": [    f'clang++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O0',
-                            f'clang++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O2',
-                            f'clang++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O3',
-                            f'g++-13 -std=c++14 -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O0',
-                            f'g++-13 -std=c++14 -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O2',
-                            f'g++-13 -std=c++14 -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O3',
-                            f'g++-13 -std=gnu++20 -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O0',
-                            f'g++-13 -std=gnu++20 -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O2',
-                            f'g++-13 -std=gnu++20 -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O3',
-                            f'g++-13 -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O0',
-                            f'g++-13 -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O2',
-                            f'g++-13 -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O3',  ],
+        "x86_64 Ubuntu": arrgen(
+            compilers=[('clang++', '.Clang'), ('g++-9', '.GCC9'), ('g++-13', '.GCC13')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++20', '.GNU20'), ('', '.NA')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        ) + arrgen(
+            compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
+            standards=[('', '.NA')],
+            optimizations=[('', '.NA')],
+            sanitizers=[('-fsanitize=undefined,address', '.UBSAN-ASAN')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        ),
+        "x86_64 Alpine": arrgen(
+            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
+            standards=[('', '.NA')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        ),
+        "x86_64 Windows": arrgen(
+            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
+            standards=[('', '.NA')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        ) + arrgen(
+            compilers=[(f'{CALL_VCVARS_BAT} && cl.exe', '.MSVC')],
+            standards=[('', '.NA')],
+            optimizations=[('/Od', '.O0'), ('/O2', '.O2')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile,
+            omit_ms_style=True
+        ),
+        "riscv64 Ubuntu": arrgen(
+            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
+            standards=[('', '.NA')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        ),
+        "arm64 MacOS": arrgen(
+            compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++20', '.GNU20'), ('', '.NA')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        )
     }
     compile_products_dict = {
-        "x86_64 Ubuntu": [  f'{mainfile.split(".")[0]}.Clang.CPP14.O0',
-                            f'{mainfile.split(".")[0]}.Clang.CPP14.O2',
-                            f'{mainfile.split(".")[0]}.Clang.CPP14.O3',
-                            f'{mainfile.split(".")[0]}.Clang.O0',
-                            f'{mainfile.split(".")[0]}.Clang.O2',
-                            f'{mainfile.split(".")[0]}.Clang.O3',
-                            f'{mainfile.split(".")[0]}.CPP14.GCC9.O0',
-                            f'{mainfile.split(".")[0]}.CPP14.GCC9.O2', # NOI 2023
-                            f'{mainfile.split(".")[0]}.CPP14.GCC9.O3',
-                            f'{mainfile.split(".")[0]}.GNU20.GCC13.O0',
-                            f'{mainfile.split(".")[0]}.GNU20.GCC13.O2', # ACM ICPC 2023
-                            f'{mainfile.split(".")[0]}.GNU20.GCC13.O3', 
-                            f'{mainfile.split(".")[0]}.CPP14.GCC13.O0',
-                            f'{mainfile.split(".")[0]}.CPP14.GCC13.O2',
-                            f'{mainfile.split(".")[0]}.CPP14.GCC13.O3',
-                            f'{mainfile.split(".")[0]}.GCC13.O0',
-                            f'{mainfile.split(".")[0]}.GCC13.O2',
-                            f'{mainfile.split(".")[0]}.GCC13.O3',
-                            f'{mainfile.split(".")[0]}.GCC13.Sanitize'  ],
-        "x86_64 Alpine": [  f'{mainfile.split(".")[0]}.Clang.O0',
-                            f'{mainfile.split(".")[0]}.Clang.O2',
-                            f'{mainfile.split(".")[0]}.Clang.O3',
-                            f'{mainfile.split(".")[0]}.GCC.O0',
-                            f'{mainfile.split(".")[0]}.GCC.O2',
-                            f'{mainfile.split(".")[0]}.GCC.O3',  ],
-        "x86_64 Windows": [ f'{os.path.normpath(mainfile.split(".")[0])}.Clang.O0.exe',
-                            f'{os.path.normpath(mainfile.split(".")[0])}.Clang.O2.exe',
-                            f'{os.path.normpath(mainfile.split(".")[0])}.Clang.O3.exe',
-                            f'{os.path.normpath(mainfile.split(".")[0])}.GCC.O0.exe',
-                            f'{os.path.normpath(mainfile.split(".")[0])}.GCC.O2.exe',
-                            f'{os.path.normpath(mainfile.split(".")[0])}.GCC.O3.exe',
-                            f'{os.path.normpath(mainfile.split(".")[0])}.MSVC.O0.exe',
-                            f'{os.path.normpath(mainfile.split(".")[0])}.MSVC.O2.exe',  ],
-        "riscv64 Ubuntu": [ f'{mainfile.split(".")[0]}.Clang.O0',
-                            f'{mainfile.split(".")[0]}.Clang.O2',
-                            f'{mainfile.split(".")[0]}.Clang.O3',
-                            f'{mainfile.split(".")[0]}.GCC.O0',
-                            f'{mainfile.split(".")[0]}.GCC.O2',
-                            f'{mainfile.split(".")[0]}.GCC.O3',  ],
-        "arm64 MacOS": [    f'{mainfile.split(".")[0]}.Clang.O0',
-                            f'{mainfile.split(".")[0]}.Clang.O2',
-                            f'{mainfile.split(".")[0]}.Clang.O3',
-                            f'{mainfile.split(".")[0]}.CPP14.GCC13.O0',
-                            f'{mainfile.split(".")[0]}.CPP14.GCC13.O2',
-                            f'{mainfile.split(".")[0]}.CPP14.GCC13.O3',
-                            f'{mainfile.split(".")[0]}.GNU20.GCC13.O0',
-                            f'{mainfile.split(".")[0]}.GNU20.GCC13.O2',
-                            f'{mainfile.split(".")[0]}.GNU20.GCC13.O3',
-                            f'{mainfile.split(".")[0]}.GCC13.O0',
-                            f'{mainfile.split(".")[0]}.GCC13.O2',
-                            f'{mainfile.split(".")[0]}.GCC13.O3',  ],
+        "x86_64 Ubuntu": productgen(
+            compilers=[('clang++', '.Clang'), ('g++-9', '.GCC9'), ('g++-13', '.GCC13')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++20', '.GNU20'), ('', '.NA')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        ) + productgen(
+            compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
+            standards=[('', '.NA')],
+            optimizations=[('', '.NA')],
+            sanitizers=[('-fsanitize=undefined,address', '.UBSAN-ASAN')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        ),
+        "x86_64 Alpine": productgen(
+            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
+            standards=[('', '.NA')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        ),
+        "x86_64 Windows": productgen(
+            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
+            standards=[('', '.NA')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        ) + productgen(
+            compilers=[(f'{CALL_VCVARS_BAT} && cl.exe', '.MSVC')],
+            standards=[('', '.NA')],
+            optimizations=[('/Od', '.O0'), ('/O2', '.O2')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile,
+            omit_ms_style=True
+        ),
+        "riscv64 Ubuntu": productgen(
+            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
+            standards=[('', '.NA')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        ),
+        "arm64 MacOS": productgen(
+            compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++20', '.GNU20'), ('', '.NA')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
+            sanitizers=[('', '.NA')],
+            auxfiles=auxfiles,
+            mainfile=mainfile
+        )
     }
+    # compile_commands_dict = {
+    #     "x86_64 Ubuntu": [  f'clang++ -std=c++14 -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.CPP14.O0',
+    #                         f'clang++ -std=c++14 -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.CPP14.O2',
+    #                         f'clang++ -std=c++14 -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.CPP14.O3',
+    #                         f'clang++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O0',
+    #                         f'clang++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O2',
+    #                         f'clang++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O3',
+    #                         f'g++-9 -std=c++14 -O0 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC9.O0',
+    #                         f'g++-9 -std=c++14 -O2 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC9.O2', # NOI 2023
+    #                         f'g++-9 -std=c++14 -O3 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC9.O3',
+    #                         f'g++-13 -std=gnu++20 -O0 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O0',
+    #                         f'g++-13 -std=gnu++20 -O2 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O2', # ACM ICPC 2023
+    #                         f'g++-13 -std=gnu++20 -O3 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O3', 
+    #                         f'g++-13 -std=c++14 -O0 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O0',
+    #                         f'g++-13 -std=c++14 -O2 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O2',
+    #                         f'g++-13 -std=c++14 -O3 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O3',
+    #                         f'g++-13 -O0 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O0',
+    #                         f'g++-13 -O2 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O2',
+    #                         f'g++-13 -O3 -static {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O3',
+    #                         f'g++-13 -fsanitize=undefined,address {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.Sanitize'  ], # Sanitizer Activated
+    #     "x86_64 Alpine": [  f'clang++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O0',
+    #                         f'clang++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O2',
+    #                         f'clang++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O3',
+    #                         f'g++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O0',
+    #                         f'g++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O2',
+    #                         f'g++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O3',  ],
+    #     "x86_64 Windows": [ f'clang++ -O0 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.Clang.O0.exe',
+    #                         f'clang++ -O2 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.Clang.O2.exe',
+    #                         f'clang++ -O3 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.Clang.O3.exe',
+    #                         f'g++ -O0 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.GCC.O0.exe',
+    #                         f'g++ -O2 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.GCC.O2.exe',
+    #                         f'g++ -O3 {" ".join(auxfiles)} -o {os.path.normpath(mainfile.split(".")[0])}.GCC.O3.exe',
+    #                         f'{CALL_VCVARS_BAT} && cl /Od {" ".join(auxfiles)} /Fe:{os.path.normpath(mainfile.split(".")[0])}.MSVC.O0.exe',
+    #                         f'{CALL_VCVARS_BAT} && cl /O2 {" ".join(auxfiles)} /Fe:{os.path.normpath(mainfile.split(".")[0])}.MSVC.O2.exe',  ],
+    #     "riscv64 Ubuntu": [ f'clang++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O0',
+    #                         f'clang++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O2',
+    #                         f'clang++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O3',
+    #                         f'g++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O0',
+    #                         f'g++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O2',
+    #                         f'g++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC.O3',  ],
+    #     "arm64 MacOS": [    f'clang++ -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O0',
+    #                         f'clang++ -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O2',
+    #                         f'clang++ -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.Clang.O3',
+    #                         f'g++-13 -std=c++14 -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O0',
+    #                         f'g++-13 -std=c++14 -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O2',
+    #                         f'g++-13 -std=c++14 -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.CPP14.GCC13.O3',
+    #                         f'g++-13 -std=gnu++20 -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O0',
+    #                         f'g++-13 -std=gnu++20 -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O2',
+    #                         f'g++-13 -std=gnu++20 -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GNU20.GCC13.O3',
+    #                         f'g++-13 -O0 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O0',
+    #                         f'g++-13 -O2 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O2',
+    #                         f'g++-13 -O3 {" ".join(auxfiles)} -o {mainfile.split(".")[0]}.GCC13.O3',  ],
+    # }
+    # compile_products_dict = {
+    #     "x86_64 Ubuntu": [  f'{mainfile.split(".")[0]}.Clang.CPP14.O0',
+    #                         f'{mainfile.split(".")[0]}.Clang.CPP14.O2',
+    #                         f'{mainfile.split(".")[0]}.Clang.CPP14.O3',
+    #                         f'{mainfile.split(".")[0]}.Clang.O0',
+    #                         f'{mainfile.split(".")[0]}.Clang.O2',
+    #                         f'{mainfile.split(".")[0]}.Clang.O3',
+    #                         f'{mainfile.split(".")[0]}.CPP14.GCC9.O0',
+    #                         f'{mainfile.split(".")[0]}.CPP14.GCC9.O2', # NOI 2023
+    #                         f'{mainfile.split(".")[0]}.CPP14.GCC9.O3',
+    #                         f'{mainfile.split(".")[0]}.GNU20.GCC13.O0',
+    #                         f'{mainfile.split(".")[0]}.GNU20.GCC13.O2', # ACM ICPC 2023
+    #                         f'{mainfile.split(".")[0]}.GNU20.GCC13.O3', 
+    #                         f'{mainfile.split(".")[0]}.CPP14.GCC13.O0',
+    #                         f'{mainfile.split(".")[0]}.CPP14.GCC13.O2',
+    #                         f'{mainfile.split(".")[0]}.CPP14.GCC13.O3',
+    #                         f'{mainfile.split(".")[0]}.GCC13.O0',
+    #                         f'{mainfile.split(".")[0]}.GCC13.O2',
+    #                         f'{mainfile.split(".")[0]}.GCC13.O3',
+    #                         f'{mainfile.split(".")[0]}.GCC13.Sanitize'  ],
+    #     "x86_64 Alpine": [  f'{mainfile.split(".")[0]}.Clang.O0',
+    #                         f'{mainfile.split(".")[0]}.Clang.O2',
+    #                         f'{mainfile.split(".")[0]}.Clang.O3',
+    #                         f'{mainfile.split(".")[0]}.GCC.O0',
+    #                         f'{mainfile.split(".")[0]}.GCC.O2',
+    #                         f'{mainfile.split(".")[0]}.GCC.O3',  ],
+    #     "x86_64 Windows": [ f'{os.path.normpath(mainfile.split(".")[0])}.Clang.O0.exe',
+    #                         f'{os.path.normpath(mainfile.split(".")[0])}.Clang.O2.exe',
+    #                         f'{os.path.normpath(mainfile.split(".")[0])}.Clang.O3.exe',
+    #                         f'{os.path.normpath(mainfile.split(".")[0])}.GCC.O0.exe',
+    #                         f'{os.path.normpath(mainfile.split(".")[0])}.GCC.O2.exe',
+    #                         f'{os.path.normpath(mainfile.split(".")[0])}.GCC.O3.exe',
+    #                         f'{os.path.normpath(mainfile.split(".")[0])}.MSVC.O0.exe',
+    #                         f'{os.path.normpath(mainfile.split(".")[0])}.MSVC.O2.exe',  ],
+    #     "riscv64 Ubuntu": [ f'{mainfile.split(".")[0]}.Clang.O0',
+    #                         f'{mainfile.split(".")[0]}.Clang.O2',
+    #                         f'{mainfile.split(".")[0]}.Clang.O3',
+    #                         f'{mainfile.split(".")[0]}.GCC.O0',
+    #                         f'{mainfile.split(".")[0]}.GCC.O2',
+    #                         f'{mainfile.split(".")[0]}.GCC.O3',  ],
+    #     "arm64 MacOS": [    f'{mainfile.split(".")[0]}.Clang.O0',
+    #                         f'{mainfile.split(".")[0]}.Clang.O2',
+    #                         f'{mainfile.split(".")[0]}.Clang.O3',
+    #                         f'{mainfile.split(".")[0]}.CPP14.GCC13.O0',
+    #                         f'{mainfile.split(".")[0]}.CPP14.GCC13.O2',
+    #                         f'{mainfile.split(".")[0]}.CPP14.GCC13.O3',
+    #                         f'{mainfile.split(".")[0]}.GNU20.GCC13.O0',
+    #                         f'{mainfile.split(".")[0]}.GNU20.GCC13.O2',
+    #                         f'{mainfile.split(".")[0]}.GNU20.GCC13.O3',
+    #                         f'{mainfile.split(".")[0]}.GCC13.O0',
+    #                         f'{mainfile.split(".")[0]}.GCC13.O2',
+    #                         f'{mainfile.split(".")[0]}.GCC13.O3',  ],
+    # }
     compile_commands = compile_commands_dict[runs_on]
     compile_products = compile_products_dict[runs_on]
 
