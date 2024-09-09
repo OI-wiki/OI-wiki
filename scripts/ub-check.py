@@ -197,8 +197,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             optimizations=[('/Od', '.O0'), ('/O2', '.O2')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
-            mainfile=mainfile,
-            omit_ms_style=True
+            mainfile=mainfile
         ),
         "riscv64 Ubuntu": productgen(
             compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
