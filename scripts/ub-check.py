@@ -51,6 +51,11 @@ class RE(Status):
 class WA(Status):
     errcode: int
     color: str = RED
+
+@dataclass(frozen=True)
+class Skipped(Status):
+    errcode: int = 0
+    color: str = BLUE
     
 def ub_check(mainfile, auxfiles, examples, skiptest):
     """
@@ -61,6 +66,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     if skiptest:
         print(f'{BLUE}test skipped because file {mainfile + ".skip_test"} exists{RESET}')
         return ['SKIPPED']
+        return False, {mainfile, Skipped()}
     
     CALL_VCVARS_BAT = r'call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"'
     compile_commands_dict = {
