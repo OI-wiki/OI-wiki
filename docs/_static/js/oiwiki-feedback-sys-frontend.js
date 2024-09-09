@@ -34,10 +34,6 @@ if (localStorage.getItem("enable_feedback_sys") === "true") {
   document$.subscribe(function () {
     matchColor();
 
-    document.querySelectorAll("div.md-typeset__scrollwrap:has(table[data-review-enabled])").forEach(el => {
-      el.style.overflow = "hidden";
-    });
-
     globalThis["OIWikiFeedbackSysFrontend"] instanceof Object &&
       OIWikiFeedbackSysFrontend.setupReview instanceof Function &&
       OIWikiFeedbackSysFrontend.setupReview(document.body, {

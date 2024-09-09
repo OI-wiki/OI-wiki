@@ -100,3 +100,7 @@ mjx-container > img {
 [data-md-color-scheme="slate"] .md-typeset img[src$=".svg"] {
   border: 4px solid white;
 }
+
+div.md-typeset__scrollwrap:has(table[data-review-enabled]) {
+  overflow: visible;
+}
