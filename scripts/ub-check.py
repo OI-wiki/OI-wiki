@@ -252,8 +252,8 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                         status_vector.append(AC())
                     print(status_vector[-1].colored())
         print(f'{compile_product.split(os.path.pathsep)[-1]}: ', end='')
-        for _ in status_vector:
-            print(_.colored(), end='; ')
+        for status in status_vector:
+            print(status.colored(), end='; ')
         print()
         return_status[compile_product] = status_vector
 
@@ -262,8 +262,8 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         print(f'::error file={mainfile},title=Potential UB::Please take a look.')
     for key in return_status:
         print(f'-  {key}: ', end='')
-        for _ in return_status[key]:
-            print(_.colored(), end='; ')
+        for status in return_status[key]:
+            print(status.colored(), end='; ')
         print()
     print()
     return this_file_looks_odd, return_status
