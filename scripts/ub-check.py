@@ -72,9 +72,9 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     def gen(compilers, standards, optimizations, auxfiles, sanitizers, mainfile, omit_ms_style=False):
         def arrgen():
             assert compilers is not None and compilers != []
-            standards = standards if standards is not None else [('', '.NA')]
-            optimizations = optimizations if optimizations is not None else [('', '.NA')]
-            sanitizers = sanitizers if sanitizers is not None else [('', '.NA')]
+            assert standards is not None and standards != []
+            assert optimizations is not None and optimizations != []
+            assert sanitizers is not None and sanitizers != []
             if not omit_ms_style:
                 return [
                 f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} -o {mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}' 
