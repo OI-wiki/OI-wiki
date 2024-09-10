@@ -70,19 +70,19 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     CALL_VCVARS_BAT = r'call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"'
 
     def gen(compilers, standards, optimizations, auxfiles, sanitizers, mainfile, omit_ms_style=False):
+        assert compilers is not None and compilers != []
+        assert standards is not None and standards != []
+        assert optimizations is not None and optimizations != []
+        assert sanitizers is not None and sanitizers != []
+
         def arrgen():
-            assert compilers is not None and compilers != []
-            assert standards is not None and standards != []
-            assert optimizations is not None and optimizations != []
-            assert sanitizers is not None and sanitizers != []
             if not omit_ms_style:
                 return [
                 f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} -o {mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}' 
                 for compiler, c_name in compilers
                 for standard, s_name in standards
                 for optimization, o_name in optimizations
-                for sanitizer, san_name in sanitizers
-            ]
+                for sanitizer, san_name in sanitizers ]
             else: 
                 return [
                 f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} /Fe:{os.path.normpath(mainfile.split(".")[0])}{c_name}{s_name}{o_name}{san_name}' 
@@ -93,10 +93,6 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             ]
 
         def productgen():
-            assert compilers is not None and compilers != []
-            standards = standards if standards is not None else [('', '.NA')]
-            optimizations = optimizations if optimizations is not None else [('', '.NA')]
-            sanitizers = sanitizers if sanitizers is not None else [('', '.NA')]
             return [
                 f'{os.path.normpath(mainfile.split(".")[0])}{c_name}{s_name}{o_name}{san_name}'
                 for _, c_name in compilers
@@ -104,6 +100,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                 for _, o_name in optimizations
                 for _, san_name in sanitizers
             ]
+        
         return (arrgen(), productgen())
     
     map = {
