@@ -131,7 +131,9 @@ nav:
     - Java 进阶: lang/java-pro.md
   - 算法基础:
     - 算法基础简介: basic/index.md
-    - 复杂度: basic/complexity.md
+    - 复杂度: 
+      - 复杂度简介: basic/complexity.md
+      - 均摊复杂度: basic/amortized-analysis.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
