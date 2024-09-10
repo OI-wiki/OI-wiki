@@ -96,7 +96,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         optimizations = optimizations if optimizations is not None else [('', '.NA')]
         sanitizers = sanitizers if sanitizers is not None else [('', '.NA')]
         return [
-            f'{mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}'
+            f'{os.path.normpath(mainfile.split(".")[0])}{c_name}{s_name}{o_name}{san_name}'
             for _, c_name in compilers
             for _, s_name in standards
             for _, o_name in optimizations
