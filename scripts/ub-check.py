@@ -106,7 +106,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     compile_commands_dict = {
         "x86_64 Ubuntu": arrgen(
             compilers=[('clang++', '.Clang'), ('g++-9', '.GCC9'), ('g++-13', '.GCC13')],
-            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++20', '.GNU20'), ('', '.NA')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++2a', '.GNU20'), ('', '.NA')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
