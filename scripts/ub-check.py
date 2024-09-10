@@ -103,8 +103,9 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         
         return (arrgen(), productgen())
     
+    concat = lambda a, b: (a[0] + b[0], a[1] + b[1])
     map = {
-        "x86_64 Ubuntu": tuple(zip(gen(
+        "x86_64 Ubuntu": concat(gen(
             compilers=[('clang++', '.Clang'), ('g++-9', '.GCC9'), ('g++-13', '.GCC13')],
             standards=[('-std=c++14', '.CPP14'), ('-std=gnu++2a', '.GNU20'), ('', '.NA')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
@@ -118,7 +119,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             sanitizers=[('-fsanitize=undefined,address', '.UBSAN-ASAN')],
             auxfiles=auxfiles,
             mainfile=mainfile
-        ))),
+        )),
         "x86_64 Alpine": gen(
             compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
             standards=[('', '.NA')],
@@ -127,7 +128,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             auxfiles=auxfiles,
             mainfile=mainfile
         ),
-        "x86_64 Windows": tuple(zip(gen(
+        "x86_64 Windows": concat(gen(
             compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
             standards=[('', '.NA')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
@@ -142,7 +143,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             auxfiles=auxfiles,
             mainfile=mainfile,
             omit_ms_style=True
-        ))),
+        )),
         "riscv64 Ubuntu": gen(
             compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
             standards=[('', '.NA')],
