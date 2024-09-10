@@ -68,58 +68,61 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         return False, {mainfile, Skipped()}
     
     CALL_VCVARS_BAT = r'call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"'
-    def arrgen(compilers, standards, optimizations, auxfiles, sanitizers, mainfile, omit_ms_style=False):
-        assert compilers is not None and compilers != []
-        standards = standards if standards is not None else [('', '.NA')]
-        optimizations = optimizations if optimizations is not None else [('', '.NA')]
-        sanitizers = sanitizers if sanitizers is not None else [('', '.NA')]
-        if not omit_ms_style:
-            return [
-            f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} -o {mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}' 
-            for compiler, c_name in compilers
-            for standard, s_name in standards
-            for optimization, o_name in optimizations
-            for sanitizer, san_name in sanitizers
-        ]
-        else: 
-            return [
-            f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} /Fe:{os.path.normpath(mainfile.split(".")[0])}{c_name}{s_name}{o_name}{san_name}' 
-            for compiler, c_name in compilers
-            for standard, s_name in standards
-            for optimization, o_name in optimizations
-            for sanitizer, san_name in sanitizers
-        ]
 
-    def productgen(compilers, standards, optimizations, auxfiles, sanitizers, mainfile):
-        assert compilers is not None and compilers != []
-        standards = standards if standards is not None else [('', '.NA')]
-        optimizations = optimizations if optimizations is not None else [('', '.NA')]
-        sanitizers = sanitizers if sanitizers is not None else [('', '.NA')]
-        return [
-            f'{os.path.normpath(mainfile.split(".")[0])}{c_name}{s_name}{o_name}{san_name}'
-            for _, c_name in compilers
-            for _, s_name in standards
-            for _, o_name in optimizations
-            for _, san_name in sanitizers
-        ]
+    def gen(compilers, standards, optimizations, auxfiles, sanitizers, mainfile, omit_ms_style=False):
+        def arrgen():
+            assert compilers is not None and compilers != []
+            standards = standards if standards is not None else [('', '.NA')]
+            optimizations = optimizations if optimizations is not None else [('', '.NA')]
+            sanitizers = sanitizers if sanitizers is not None else [('', '.NA')]
+            if not omit_ms_style:
+                return [
+                f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} -o {mainfile.split(".")[0]}{c_name}{s_name}{o_name}{san_name}' 
+                for compiler, c_name in compilers
+                for standard, s_name in standards
+                for optimization, o_name in optimizations
+                for sanitizer, san_name in sanitizers
+            ]
+            else: 
+                return [
+                f'{compiler} {standard} {optimization} {sanitizer} {" ".join(auxfiles)} /Fe:{os.path.normpath(mainfile.split(".")[0])}{c_name}{s_name}{o_name}{san_name}' 
+                for compiler, c_name in compilers
+                for standard, s_name in standards
+                for optimization, o_name in optimizations
+                for sanitizer, san_name in sanitizers
+            ]
+
+        def productgen():
+            assert compilers is not None and compilers != []
+            standards = standards if standards is not None else [('', '.NA')]
+            optimizations = optimizations if optimizations is not None else [('', '.NA')]
+            sanitizers = sanitizers if sanitizers is not None else [('', '.NA')]
+            return [
+                f'{os.path.normpath(mainfile.split(".")[0])}{c_name}{s_name}{o_name}{san_name}'
+                for _, c_name in compilers
+                for _, s_name in standards
+                for _, o_name in optimizations
+                for _, san_name in sanitizers
+            ]
+        return (arrgen(), productgen())
     
-    compile_commands_dict = {
-        "x86_64 Ubuntu": arrgen(
+    map = {
+        "x86_64 Ubuntu": tuple(zip(gen(
             compilers=[('clang++', '.Clang'), ('g++-9', '.GCC9'), ('g++-13', '.GCC13')],
             standards=[('-std=c++14', '.CPP14'), ('-std=gnu++2a', '.GNU20'), ('', '.NA')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
             mainfile=mainfile
-        ) + arrgen(
+        ), gen(
             compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
             standards=[('', '.NA')],
             optimizations=[('', '.NA')],
             sanitizers=[('-fsanitize=undefined,address', '.UBSAN-ASAN')],
             auxfiles=auxfiles,
             mainfile=mainfile
-        ),
-        "x86_64 Alpine": arrgen(
+        ))),
+        "x86_64 Alpine": gen(
             compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
             standards=[('', '.NA')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
@@ -127,14 +130,14 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             auxfiles=auxfiles,
             mainfile=mainfile
         ),
-        "x86_64 Windows": arrgen(
+        "x86_64 Windows": tuple(zip(gen(
             compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
             standards=[('', '.NA')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
             mainfile=mainfile
-        ) + arrgen(
+        ), gen(
             compilers=[(f'{CALL_VCVARS_BAT} && cl.exe', '.MSVC')],
             standards=[('', '.NA')],
             optimizations=[('/Od', '.O0'), ('/O2', '.O2')],
@@ -142,8 +145,8 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             auxfiles=auxfiles,
             mainfile=mainfile,
             omit_ms_style=True
-        ),
-        "riscv64 Ubuntu": arrgen(
+        ))),
+        "riscv64 Ubuntu": gen(
             compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
             standards=[('', '.NA')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
@@ -151,7 +154,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             auxfiles=auxfiles,
             mainfile=mainfile
         ),
-        "arm64 MacOS": arrgen(
+        "arm64 MacOS": gen(
             compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
             standards=[('-std=c++14', '.CPP14'), ('-std=gnu++20', '.GNU20'), ('', '.NA')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
@@ -160,62 +163,23 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             mainfile=mainfile
         )
     }
+
+    compile_commands_dict = {
+        "x86_64 Ubuntu": map["x86_64 Ubuntu"][0],
+        "x86_64 Alpine": map["x86_64 Alpine"][0],
+        "x86_64 Windows": map["x86_64 Windows"][0],
+        "riscv64 Ubuntu": map["riscv64 Ubuntu"][0],
+        "arm64 MacOS": map["arm64 MacOS"][0]
+    }
+
     compile_products_dict = {
-        "x86_64 Ubuntu": productgen(
-            compilers=[('clang++', '.Clang'), ('g++-9', '.GCC9'), ('g++-13', '.GCC13')],
-            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++2a', '.GNU20'), ('', '.NA')],
-            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
-            sanitizers=[('', '.NA')],
-            auxfiles=auxfiles,
-            mainfile=mainfile
-        ) + productgen(
-            compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
-            standards=[('', '.NA')],
-            optimizations=[('', '.NA')],
-            sanitizers=[('-fsanitize=undefined,address', '.UBSAN-ASAN')],
-            auxfiles=auxfiles,
-            mainfile=mainfile
-        ),
-        "x86_64 Alpine": productgen(
-            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
-            standards=[('', '.NA')],
-            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
-            sanitizers=[('', '.NA')],
-            auxfiles=auxfiles,
-            mainfile=mainfile
-        ),
-        "x86_64 Windows": productgen(
-            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
-            standards=[('', '.NA')],
-            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
-            sanitizers=[('', '.NA')],
-            auxfiles=auxfiles,
-            mainfile=mainfile
-        ) + productgen(
-            compilers=[(f'{CALL_VCVARS_BAT} && cl.exe', '.MSVC')],
-            standards=[('', '.NA')],
-            optimizations=[('/Od', '.O0'), ('/O2', '.O2')],
-            sanitizers=[('', '.NA')],
-            auxfiles=auxfiles,
-            mainfile=mainfile
-        ),
-        "riscv64 Ubuntu": productgen(
-            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
-            standards=[('', '.NA')],
-            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
-            sanitizers=[('', '.NA')],
-            auxfiles=auxfiles,
-            mainfile=mainfile
-        ),
-        "arm64 MacOS": productgen(
-            compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
-            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++20', '.GNU20'), ('', '.NA')],
-            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
-            sanitizers=[('', '.NA')],
-            auxfiles=auxfiles,
-            mainfile=mainfile
-        )
+        "x86_64 Ubuntu": map["x86_64 Ubuntu"][1],
+        "x86_64 Alpine": map["x86_64 Alpine"][1],
+        "x86_64 Windows": map["x86_64 Windows"][1],
+        "riscv64 Ubuntu": map["riscv64 Ubuntu"][1],
+        "arm64 MacOS": map["arm64 MacOS"][1]
     }
+    
     compile_commands = compile_commands_dict[runs_on]
     compile_products = compile_products_dict[runs_on]
 
