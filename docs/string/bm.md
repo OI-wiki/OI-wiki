@@ -2,7 +2,7 @@ author: minghu6
 
 *本章节内容需要以 [《前缀函数与 KMP 算法》](./kmp.md) 作为前置章节。*
 
-之前的 KMP 算法将前缀匹配的信息用到了极致，
+ KMP 算法将前缀匹配的信息用到了极致，
 
 而 BM 算法背后的基本思想是通过后缀匹配获得比前缀匹配更多的信息来实现更快的字符跳转。
 
@@ -166,7 +166,7 @@ $$
 \end{aligned}
 $$
 
-现在我们发现了 $pat$ 上每一个字符都和 $string$ 上对应的字符相等，我们在 $string$ 上找到了一个 $pat$ 的匹配。而我们只花费了 14 次对 $string$ 的引用，其中 7 次是完成一个成功的匹配所必需的比较次数（$patlen=7$），另外 7 次让我们跳过了 22 个字符，Amazing（浮夸口气）！
+现在我们发现了 $pat$ 上每一个字符都和 $string$ 上对应的字符相等，我们在 $string$ 上找到了一个 $pat$ 的匹配。而只花费了 14 次对 $string$ 的引用，其中 7 次是完成一个成功的匹配所必需的比较次数（$patlen=7$），另外 7 次让我们跳过了 22 个字符。
 
 ## 算法设计
 
@@ -328,23 +328,7 @@ $$
 
 说起 $delta_2$ 的实现，发表在 1977 年 10 月的*Communications of the ACM*上的在 Boyer、Moor 的论文[^bm]里只描述了这个静态表，并没有说明如何产生它。
 
-而构造 $delta_2$ 的具体实现的讨论出现在 1977 年 6 月 Knuth、Morris、Pratt 在*SIAM Journal on Computing*上正式联合发表的 KMP 算法的论文[^kmp]里（这篇论文是个宝藏，除了 KMP，其中还提及了若干字符串搜索的算法构想和介绍，其中就包括了本文介绍的 BM 算法），听起来有点儿魔幻，嗯哼？这就不得不稍微介绍一点历史细节了：
-
-1.  1969 年夏天 Morris 为某个大型机编写文本编辑器时利用有限自动机的理论发明了等价于 KMP 算法的字符串匹配算法，而他的算法由于过于复杂，被不理解他算法的同事当做 bug 修改得一团糟，哈哈。
-
-2.  1970 年 KMP 中的「带头人」Knuth 在研究 Cook 的关于两路确定下推自动机（two-way deterministic pushdown automaton）的理论时受到启发，也独立发明了 KMP 算法的雏形，并把它展示给他的同事 Pratt，Pratt 改进了算法的数据结构。
-
-3.  1974 年 Boyer、Moor 发现通过更快地跳过不可能匹配的文本能实现比 KMP 更快的字符串匹配，（Gosper 也独立地发现了这一点），而一个只有原始 $delta_1$ 定义的匹配算法是 BM 算法的最原始版本。
-
-4.  1975 年 Boyer、Moor 提出了原始的 $delta_2$ 表，而这个版本的 $delta_2$ 表不仅不会对性能有所改善，还会在处理小字符表时拖累性能表现，而同年 MIT 人工智能实验室的 Kuipers 和我们熟悉的 Knuth 向他们提出了类似的关于 $delta_2$ 的改进建议，于是 Boyer、Moor 在论文的下一次修改中提到了这个建议，并提出一个用二维表代替 $delta_1$ 和 $delta_2$ 的想法。
-
-5.  1976 年 1 月 Knuth 证明了关于 $delta_2$ 的改进会得到更好的性能，于是 Boyer、Moor 两人又一次修改了论文，得到了现在版本的 $delta_2$ 定义。同年 4 月，斯坦福的 Floyd 又发现了 Boyer、Moor 两人第一版本的公式中的严重的统计错误，并给出了现在版本的公式。
-
-6.  Standish 又为 Boyer、Moor 提供了现在的匹配算法的改进。
-
-7.  1977 年 6 月 Knuth、Morris、Pratt 正式联合发表了 KMP 算法的论文，其中在提及比 KMP 表现更好的算法中提出了 $delta_2$ 的构建方式。（其中也感谢了 Boyer、Moor 对于证明线性定理（linearity theorem）提供的帮助）
-
-这个 BM 算法的发展的故事，切实地向我们展示了团结、友谊、协作，以及谦虚好学不折不挠「在平凡中实现伟大」！😂😂😂
+而构造 $delta_2$ 的具体实现的讨论出现在 1977 年 6 月 Knuth、Morris、Pratt 在*SIAM Journal on Computing*上正式联合发表的 KMP 算法的论文[^kmp]。
 
 ### 时间复杂度为 $O(n^3)$ 的构建 $delta_2$ 的朴素算法
 
@@ -412,13 +396,7 @@ $$
 
 需要指出的是，虽然 1977 年 Knuth 提出了这个构建方法，然而他的原始版本的构建算法存在一个缺陷，实际上对于某些 $pat$ 产生不出符合定义的 $delta_2$。
 
-Rytter 在 1980 年*SIAM Journal on Computing*上发表的文章[^rytter]对此提出了修正，但是 Rytter 的这篇文章在细节上有些令人疑惑的地方，包括不限于：
-
--   示例中奇怪的 $delta_2$ 数值（笔者注：不清楚他依据的 $delta_2$ 是否和最终版 $delta_2$ 定义有微妙的差别，但我实在不想因为这事儿继续考古了😱）
--   明显的在复述 Knuth 算法时的笔误、算法上错误的缩进（可能是文章录入时的问题？）
--   奇妙的变量命名（考虑到那个时代的标签：`goto` 语句、汇编语言、大型机，随性的变量命名也很合理）
-
-总之就是你绝对不想看他的那个修正算法的具体实现，不过好在他在用文字描述的时候比用伪代码清晰多了呢，现在我们用更清晰的思路和代码结构整理这么一个
+Rytter 在 1980 年*SIAM Journal on Computing*上发表的文章[^rytter]对此提出了修正
 
 $delta_2$ 的构建算法：
 
@@ -454,8 +432,6 @@ $$
 
 $delta_2(3)$ 的重现 $\texttt{[(XX)ABC]XXXABC}$，$subpat$ $\texttt{XXABC}$ 的后缀与 pat 前缀中，有相等的，是 $\texttt{ABC}$。
 
-*说到这个拗口的前缀后缀相等，此时看过之前《前缀函数与 KMP 算法》的小伙伴们可能已经有所悟了，*
-
 *没错，实际上对第二种和第三种情况的计算的关键都离不开前缀函数的计算和和应用*
 
 那么只要 $j$ 取值使得 $subpat$ 包含这个相等的后缀，那么就可以得到第二种情况的 $subpat$ 的重现，对于例子，我们只需要使得 $j \leqslant 5$，
@@ -468,7 +444,7 @@ $delta_2(3)$ 的重现 $\texttt{[(XX)ABC]XXXABC}$，$subpat$ $\texttt{XXABC}$ �
 
 而 $rpr(j) = -(subpatlen-\textit{prefixlen})$，所以得到 $delta_2(j) = patlastpos - rpr(j) = patlastpos \times 2 - j - \textit{prefixlen}$。
 
-那么问题到这儿是不是结束了呢，并不是，因为可能会有多对相等的前缀和后缀，比如：
+其后面可能会有多对相等的前缀和后缀，比如：
 
 $$
 \begin{aligned}
@@ -493,7 +469,7 @@ $subpat$ 的重现不在别的地方，恰好就在 $pat$ 中（不包括 $pat$ 
 
 也就是按照从右到左的顺序，在 $pat[0\dots patlastpos-1]$ 中寻找 $subpat$。
 
-*开启脑洞：既然是个字符串搜索的问题，那么当然可以用著名的 BM 算法本身解决，于是我们就得到了一个 BM 的递归实现的第三种情况，结束条件是 $patlen \leqslant  2$*
+*既然是个字符串搜索的问题，那么当然可以用著名的 BM 算法本身解决，于是我们就得到了一个 BM 的递归实现的第三种情况，结束条件是 $patlen \leqslant  2$*
 
 而且根据 $delta_2$ 的定义，找到的 $subpat$ 的重现的下一个（也就是左边一个）字符和作为 $pat$ 后缀的 $subpat$ 的下一个字符不能一样。
 
@@ -692,32 +668,7 @@ impl<'a> BMPattern<'a> {
 
 也因此如果没有很好地设计，使用 Galil 法则会拖累一点平均的性能表现，但对于一些极端特殊的 $pat$ 和 $string$ 比如例子中的：$pat$：$\texttt{AAA}$，$string$：$\texttt{AAAAA}\dots$，Galil 规则的应用确实会使得性能表现提高数倍。
 
-## 实践及后续
-
-这个部分要讨论实践中的具体问题。
-
-尽管前面给出了一些算法的实现代码，但并没有真正讨论过完整实现可能面临的一些「小问题」。
-
-### 字符类型的考虑
-
-在英语环境下，特别是上世纪 70 年代那个时候，人们考虑字符，默认的前提是它是 ASCII 码，通用字符表是容易通过一个固定大小的数组来确定的。$delta_1$ 的初始化只需要基于这个固定大小的数组。
-
-而在尝试用 Rust 实现上述算法的时候，第一个遇到的问题是字符的问题，用一门很新的 2010 + 发展起来的语言来实现 1970 + 时代的算法，是一件很有意思的事情。
-
-会观察到一些因时代发展而产生的一些变化，现代的编程语言，内生的 `char` 类型就是 Unicode，首先不可能用一个全字符集大小的数组来计算 $delta_1$，（其实也可以，只是完成一个 UTF-8 编码的字符串搜索可能需要额外 1GB 内存）但是可以使用哈希表来代替，同样是 $O(1)$ 的随机访问成本，毕竟哈希表是现代编程语言最基础的标准件之一了（哪怕是 Go 都有呢）。
-
-但更严重的问题是 Unicode 使用的都是变长的字节编码方案，所以没办法直接按照字符个数计算跳转的字节数，当然，如果限定文本是简单的 ASCII 字符集，我们仍然可以按照 1 字符宽 1 字节来进行快速跳转，但这样的实现根本就没啥卵用！😠
-
-在思考的过程中，首先的一个想法是直接将字符串转为按字符索引的向量数组，但这意味着啥都不用做就先有了一个遍历字符串的时间开销，和额外的大于等于字符串字节数的额外空间开销（因为 `char` 类型是 Unicode 字面值，采用固定 4 字节大小保存）。
-
-于是我改进了思路，对于变长编码字符串，至少要完全遍历一遍，才能完成字符串匹配，那么在遍历过程中，我使用一个基于可增长的环结构实现的双头队列作为滑动窗口，保存过去 $patlen$ 个字符，如果当前 $string$ 的索引小于算法计算的跳转，就让循环空转直到等于算法要求的索引。实践证明，这个巧妙的设计使得在一般字符上搜索的 BM 算法的实现比暴力匹配算法还要慢一些。😳😳
-
-于是挫折使我困惑，困惑使我思考，终于一束阳光照进了石头缝里：
-
-1.  字符串匹配算法高效的关键在于字符索引的快速跳转
-2.  字符索引一定要建立在等宽字符的基础上，
-
-基于这两条原则思考，我就发现二进制字节本身：1 字节等宽、字符全集大小是 256，就是符合条件的完美字符！在这个基础上完成了一系列后缀匹配算法的高效实现。
+## 改进算法
 
 ### Simplified Boyer–Moore 算法
 
@@ -1026,343 +977,11 @@ Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来�
     }
     ```
 
-这个版本的算法相对于前面的后缀匹配算法不够快，但差距并不大，仍然比 KMP 这种快得多，特别是考虑到它极为优秀的空间复杂度：至多两个 `u64` 的整数，这确实是极为实用的适合作为标准库实现的一种算法！
+这个版本的算法相对于前面的后缀匹配算法不够快，但差距并不大，仍然比 KMP 这种快得多，优于它极为优秀的空间复杂度：至多两个 `u64` 的整数。
 
 ## 理论分析
 
-现在我们通过一个简单的概率模型来做一些绝不枯燥的理论上的分析，借此可以发现一些有趣而更深入的事实。
-
-### 建立模型
-
-想象一下，我们滑动字符串 $pat$ 到某个新的位置，这个位置还没有完成匹配，我们可以用发现失配所需要的代价与发现失配后 $pat$ 能够向下滑动的字符数的比值来衡量算法的平均性能表现。
-
-假如这个代价是用对 $string$ 的引用来衡量，那么我们就可以知道平均每个字符需要多少次 $string$ 的引用，这是在理论上衡量算法表现的关键指标；
-
-而如果这个代价是用机器指令衡量，那我们可以知道平均每个字符需要多少条机器指令；
-
-当然也可以有其他的衡量方式，这并不影响什么，这里我们采用对 $string$ 的引用进行理论分析。
-
-同时为我们的概率模型提出一个假设：$pat$，$string$ 中的每个字符是独立随机变量，它们出现的概率相等，为 $p$，$p$ 取决于全字母表的大小。
-
-显然，假如全字母表的大小为 $q$，则 $p=\dfrac{1}{q}$，例如假设我们之前基于字节的实现，在日常一般搜索时，可以近似为 $q=\dfrac{1}{256}$。
-
-现在可以更准确地刻画这个比率，$rate(patlen, p)$：
-
-$$
-\frac{\sum_{m=0}^{patlen-1} cost(m) \times prob(m)}{\sum_{m=0}^{patlen-1}prob(m) \times \sum_{k=1}^{patlen}skip(m,k) \times k }
-$$
-
-其中，$cost(m)$ 为前面讨论到的在匹配成功了 $m$ 个字符后失配时的代价：
-
-$$
-cost(m) = m+1
-$$
-
-$prob(m)$ 为匹配成功 $m$ 个字符后失配的概率（其中 $1-p^{patlen}$ 排除掉 $pat$ 全部匹配的情况）：
-
-$$
-prob(m) = \frac{p^m(1-p)}{1-p^{patlen}}
-$$
-
-$skip(m,k)$ 为发生失配时 $pat$ 向下滑动 $k$ 个字符的概率，（这里的 $k$ 如同前文讨论的 $k$ 一样，为 $pat$ 实际滑动距离，不包括指针从失配位置回退到 $patlastpos$ 位置的距离）。实际上所有字符串匹配算法的核就在于 $skip(m,k)$，下面我们会通过分析 $delta_1$ 和 $delta_2$ 来计算 BoyerMoore 算法的 $skip(m,k)$。
-
-### 计算 BoyerMoore 算法的 $skip(m,k)$
-
-#### $delta_1$
-
-首先考虑 $delta_1$ 不起作用的情况，也就是发现失配字符在 $pat$ 上重现的位置在已经匹配完的 $m$ 个字符中，这种情况的概率 $\textit{probdelta_1_worthless}$ 为：
-
-$$
-\textit{probdelta1_worthless}(m) = 1 - (1-p)^m
-$$
-
-而对于 $delta_1$ 起作用的情况，可以根据 k 的范围分为四种情况进行讨论：
-
-1.  当 $k = 1$ 时：
-
-    1.  失配字符对应位置的下一个字符恰好等于失配字符；
-
-    2.  失配字符已经是 $pat$ 右手起最后一个字符。
-
-2.  当 $1 < k < patlen-m$ 时，$pat$ 在失配字符对应位置的左边还有与失配字符相等的字符，并且不满足情况 1；
-
-3.  当 $k = patlen - m$ 时，$pat$ 在失配字符对应位置左边找不到另一个与失配字符相等的字符，并且不满足情况 1，这时 $pat$ 有最大可能的向下滑动距离；
-
-4.  当 $k > patlen - m$ 时，显然对于 $delta_1$，这是不可能存在的情况。
-
-于是有计算 $delta_1$ 的概率函数：
-
-$$
-probdelta1(m,k) =
-\begin{cases}{lcl}
-(1-p)^m\times \begin{cases}{lcl} 1  & \text{for}~m+1=patlen \\ p &\text{for}~m+1\neq patlen  \\\end{cases} & \text{for}~ k = 1 \\
-(1-p)^{m+k-1}\times p & \text{for}~ 1 < k < patlen - m\\
-(1-p)^{patlen-1} & \text{for}~ k = patlen - m\\
-0 & \text{for}~ patlen patlen - m < k \leqslant patlen
-\end{cases}
-$$
-
-#### $delta_2$
-
-对于 $delta_2$ 概率的计算，根据定义，首先计算某个 $subpat$ 的重现的概率，只要考虑该重现左边还有没有字符来提供额外的判断与失配字符是否相等的检查：
-
-$$
-probpr(m,k) =
-\begin{cases}{lcl}
-(1-p)\times p^m & \text{for}~ 1 \leqslant k < patlen - m\\
-p^{patlen-k} & \text{for}~ patlen - m \leqslant k \leqslant patlen
-\end{cases}
-$$
-
-于是 $delta_2(m,k)$ 就可以通过保证 $pr(m,k)$ 存在并且 $k$ 更小的 $delta_2$ 不存在，来递归计算：
-
-$$
-probdelta2(m,k) = probpr(m,k)(1-\sum_{n=1}^{k-1}probdelta2(m, n))
-$$
-
-#### 汇总
-
-前面已经独立讨论了 $delta_1$，$delta_2$ 的概率函数，不过还需要额外考虑一下这两个概率函数之间相互影响的情况，虽然只是一个很少数的情况：
-
-当 $delta_2$ 计算的 $k$ 为 1 的时候，根据 $delta_2$ 定义我们就知道 $pat[-(m+1)] = pat[-m]=pat[-(m-1)]\dots pat[-1]$，（$pat[-n]$ 表示 $pat$ 的倒数第 $n$ 个字符，下同）。而这种情况已经排除了 $delta_1$ 不起作用的情况，因为当如前文讨论的，$delta_1$ 不起作用要求与失配字符 $pat[-(m+1)]$ 相等的字符出现在 $pat[-m]\dots pat[-1]$ 中，这就产生了不可能在倒数 $m+1$ 个字符上失配的矛盾。
-
-因此针对 $delta_1$ 不起作用的情况需要一个稍微修改过的 $delta_2$ 概率函数：
-
-$$
-probdelta2'(m,k) =
-\begin{cases}
-0 & \text{for}~ k = 1\\
-probpr(m,k)\left(1-\sum_{n=2}^{k-1}probdelta2'(m, n)\right) & \text{for}~ 1 \leqslant k \leqslant patlen
-\end{cases}
-$$
-
-于是通过组合 $delta_1$ 和 $delta_2$ 起作用的情况，我们就得到了 BoyerMoore 算法的 $skip$ 概率函数：
-
-$$
-skip(m,k) = \begin{cases}
-probdelta1(m, 1) \times probdelta2(m, 1) & \text{for}~k = 1\\
-\textit{prodelta1\_worthless}(m) \times probdelta2'(m, 1)\\
-+~probdelta1(m, k) \times \sum_{n=1}^{k-1} probdelta2(m, n)\\
-+~probdelta2(m, k) \times \sum_{n=1}^{k-1} probdelta1(m,n)\\
-+~probdelta1(m, k) \times probdelta2(m, k) & \text{for}~1 < k \leqslant patlen
-\end{cases}
-$$
-
-### 分析比较
-
-为了结构清晰、书写简单、演示方便，我们使用 Python 平台的 Lisp 方言 Hy 来进行实际计算：
-
-`myprob.hy`
-
-```Hy
-(require [hy.contrib.sequences [defseq seq]])
-
-(import [hy.contrib.sequences [Sequence end-sequence]])
-(import [hy.models [HySymbol]])
-
-
-(defmacro simplify-probfn [patlen p probfn-list]
-    "(prob-xxx patlen p m k) -> (prob-xxx-s m k)"
-    (lfor probfn probfn-list
-        [(setv simplified-probfn-symbol (HySymbol (.format "{}-s" (name probfn))))
-        `(defn ~simplified-probfn-symbol [&rest args] (~probfn patlen p #*args))]))
-
-
-(defn map-sum [range-args func]
-    (setv [start end] range-args)
-    (-> func (map (range start (inc end))) sum))
-
-
-(defn cost [m] (+ m 1))
-
-
-(defn prob-m [patlen p m]
-    (/
-        (* (** p m) (- 1 p))
-        (- 1 (** p patlen))))
-
-
-(defn prob-delta1 [patlen p m k]
-    (cond [(= 1 k) (* (** (- 1 p) m)
-                      (if (= (inc m) patlen) 1 p))]
-          [(< k (- patlen m)) (* p (** (- 1 p) (dec (+ k m))))]
-          [(= k (- patlen m)) (** (- 1 p) (dec patlen))]
-          [(> k (- patlen m)) 0]))
-
-
-(defn prob-delta1-worthless [p m] (- 1 (** (- 1 p) m)))
-
-
-(defn prob-pr [patlen p m k] (if (< patlen (+ m k))
-                                (* (- 1 p) (** p m))
-                                (** p (- patlen k))))
-
-
-(defn prob-delta2 [patlen p m]
-    "prob-delta2(_, k) = prob-delta2-seq[k]"
-    (defseq prob-delta2-seq [n]
-        (cond [(< n 1) 0]
-              [(= n 1) (prob-pr patlen p m 1)]
-              [(> n 1) (* (prob-pr patlen p m n) (- 1 (sum (take n prob-delta2-seq))))]))
-    prob-delta2-seq)
-
-
-(defn prob-delta2-1 [patlen p m]
-    (defseq prob-delta2-1-seq [n]
-        (cond [(< n 2) 0]
-              [(>= n 2) (* (prob-pr patlen p m n) (- 1 (sum (take n prob-delta2-1-seq))))]))
-    prob-delta2-1-seq)
-
-
-(defn skip [patlen p m k prob-delta2-seq prob-delta2-1-seq]
-    (simplify-probfn patlen p [prob-delta1])
-    (if (= k 1) (* (prob-delta1-s m 1) (get prob-delta2-seq 1))
-        (sum [(* (prob-delta1-worthless p m) (get prob-delta2-1-seq k))
-              (* (prob-delta1-s m k) (sum (take k prob-delta2-seq)))
-              (* (get prob-delta2-seq k) (map-sum [1 (- k 1)]
-                                                  (fn [n] (prob-delta1-s m n))))
-              (* (prob-delta1-s m k) (get prob-delta2-seq k))])))
-
-
-(defn bm-rate [patlen p]
-    (simplify-probfn patlen p [prob-m prob-delta2 prob-delta2-1 skip])
-    (/
-        (map-sum [0 (dec patlen)]
-            (fn [m] (* (cost m) (prob-m-s m))))
-
-        (map-sum [0 (dec patlen)]
-            (fn [m]
-                (setv prob-delta2-seq (prob-delta2-s m)
-                      prob-delta2-1-seq (prob-delta2-1-s m))
-                (* (prob-m-s m) (map-sum [1 patlen]
-                                    (fn [k] (* k (skip-s m k prob-delta2-seq prob-delta2-1-seq)))))))))
-```
-
-并且为了进行比较，还额外计算了简化 BM 算法：
-
-`myprob.hy`
-
-```hy
-(defn simplified-bm-skip [patlen p m k]
-    (simplify-probfn patlen p [prob-delta1])
-    (if (= k 1) (+ (prob-delta1-s m 1) (prob-delta1-worthless p m))
-        (prob-delta1-s m k)))
-
-
-(defn sbm-rate [patlen p]
-    (simplify-probfn patlen p [prob-m simplified-bm-skip])
-    (/
-        (map-sum [0 (dec patlen)]
-            (fn [m] (* (cost m) (prob-m-s m))))
-
-        (map-sum [0 (dec patlen)]
-            (fn [m] (* (prob-m-s m) (map-sum [1 patlen]
-                                        (fn [k] (* k (simplified-bm-skip-s m k)))))))))
-```
-
-和 KMP 算法：
-
-`myprob.hy`
-
-```hy
-(defn getone [&rest body &kwonly [default None]]
-  (try
-    (get #*body)
-    (except [_ [IndexError KeyError TypeError]]
-      default)))
-
-
-(defn prob-pi [patlen p]
-    "prob-pi-s(m, l) = prob-pi-seq[m][l]"
-    (defseq prob-pi-seq [n]
-        (cond [(= n 0) []]
-              [(= n 1) [1]]
-              [(= n 2) [(- 1 p) p]]
-              [(> n 2) (lfor i (range n)
-                            (+
-                                (* (getone prob-pi-seq (dec n) i :default 0) (- 1 p))
-                                (* (get prob-pi-seq (dec n) (dec i)))))]))
-    prob-pi-seq)
-
-
-(defn skip [m k prob-pi-seq]
-    (if (= m 0) (if (= k 1) 1 0)
-        (get prob-pi-seq m (- m k))))
-
-
-(defn at-least-1 [n]
-    (if (< n 1) 1 n))
-
-
-(defn kmp-rate [patlen p]
-    (simplify-probfn patlen p [prob-m prob-pi])
-    (setv prob-pi-seq (prob-pi-s))
-    (/
-        (map-sum [0 (dec patlen)]
-            (fn [m] (* (cost m) (prob-m-s m))))
-
-        (map-sum [0 (dec patlen)]
-            (fn [m] (* (prob-m-s m) (map-sum [1 (at-least-1 (dec m))]
-                                        (fn [k] (* k (skip m k prob-pi-seq)))))))))
-```
-
-然后我们就可以通过 Python 上的 `plotnine` 图形包看一下计算的数据（并用高斯过程回归拟合曲线）：
-
-```python
-import pandas as pd
-from plotnine import *
-import hy
-
-from my_prob import bm_rate, sbm_rate, kmp_rate
-
-
-theme_update(text=element_text(family="SimHei"))
-
-
-def plot(p, title, N=30):
-    model_range = range(1, N + 1)
-    data = {"rate": [], "alg": [], "patlen": []}
-    categories_list = [
-        (bm_rate, "BoyerMoore"),
-        (sbm_rate, "S BoyerMoore"),
-        (kmp_rate, "KMP"),
-        (lambda patlen, p: 1 / patlen, "$\\frac{1}{patlen}$"),
-    ]
-
-    for alg_fun, label in categories_list:
-        data["rate"].extend([alg_fun(patlen, p) for patlen in model_range])
-        data["alg"].extend([label for _ in model_range])
-        data["patlen"].extend(model_range)
-
-    df = pd.DataFrame(data)
-
-    return (
-        ggplot(df, aes(x="patlen", y="rate", color="alg"))
-        + geom_point()
-        + geom_smooth(method="gpr")
-        + labs(color="Algs", title=title, x="$patlen$", y="$\\frac{cost}{skip}$")
-    )
-```
-
-`plot(1/256, '$p= \\frac{1}{256}$')`：
-
-<img src="../images/BM/plot256.svg" style="zoom: 200%;" />
-
-观察这个图像，令人印象深刻的首先就是抬头的一条大兰线，几乎笔直地画出了算法性能的下限，不愧是 KMP 算法，$O(n)$ 的时间复杂度，一看就很真实。
-
-接着会发现 BoyerMoore 算法与简化版 BoyerMoore 算法高度重叠的这条红绿紫曲线，同时也是 $\dfrac{1}{patlen}$，
-
-这就是在一般字符集下随机文本搜索能达到的 $O(\dfrac{n}{m})$ 的强力算法吗？
-
-另外此时可以绝大多数的字符跳转依靠 $delta_1$（比 $delta_2$ 高几个数量），这也是基于 $delta_1$ 表的 BM 变种算法最佳的应用场景！
-
-接着我们可以看一下在经典的小字符集，比如在 DNA {A, C, T, G} 碱基对序列中算法的性能表现（`plot(1/4, '$p= \\frac{1}{4}$')`）：
-
-<img src="../images/BM/plot4.svg" style="zoom:200%;" />
-
-曲线出现了明显的分化，当然 KMP 还是一如既往地稳定，如果此时在测试中监控一下一下 $delta_1$ 表和 $delta_2$ 表作用情况会发现：$delta_2$ 起作用的次数超过了 $delta_1$，而且 $delta_2$ 贡献的跳过字符数更是远超 $delta_1$，思考下，这件事其实也很好理解。
-
-总结一下，通过概率模型的计算，一方面看到了在较大的字符集，比如日常搜索的过程中 BoyerMoore 系列算法的优越表现，其中主要依赖 $delta_1$ 表实现字符跳转；另一方面，在较小的字符集里，$delta_1$ 的作用下降，而 $delta_2$ 的作用得到了体现。如果有一定富裕空间的情况下，使用完整的空间复杂度为 $O(m)$ 的 BoyerMoore 算法应该是一种适用各种情况、综合表现都很优异的算法选择。
+在较大的字符集，比如日常搜索的过程中 BoyerMoore 系列算法的优越表现，其中主要依赖 $delta_1$ 表实现字符跳转；另一方面，在较小的字符集里，$delta_1$ 的作用下降，而 $delta_2$ 的作用得到了体现。如果有一定富裕空间的情况下，使用完整的空间复杂度为 $O(m)$ 的 BoyerMoore 算法应该是一种适用各种情况、综合表现都很优异的算法选择。
 
 ## 引用
 
