@@ -96,7 +96,7 @@ void make_vector(std::vector<int>& result, ...) {
   // ... (对 result 进行操作)
 }
 
-std::vecctor<int> a;
+std::vector<int> a;
 make_vector(a, ...);
 ```
 

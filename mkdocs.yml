@@ -131,7 +131,9 @@ nav:
     - Java 进阶: lang/java-pro.md
   - 算法基础:
     - 算法基础简介: basic/index.md
-    - 复杂度: basic/complexity.md
+    - 复杂度: 
+      - 复杂度简介: basic/complexity.md
+      - 均摊复杂度: basic/amortized-analysis.md
     - 枚举: basic/enumerate.md
     - 模拟: basic/simulate.md
     - 递归 & 分治: basic/divide-and-conquer.md
@@ -580,11 +582,13 @@ extra:
 extra_javascript:
   - '_static/js/math-csr.js?math-csr'
   - 'assets/vendor/mathjax/es5/tex-mml-chtml.js?math-csr'
-  - '_static/js/oiwiki-feedback-sys-frontend.js?v=3'
+  - '{OIWikiFeedbackSystemFrontendJS}' # see: scripts/pre-build/install-feedback-sys-frontend.ts
+  - '{OIWikiFeedbackSystemFrontendContentScript}' # see: scripts/pre-build/install-feedback-sys-frontend.ts
 
 extra_css:
-  - '_static/css/extra.css?v=14'
+  - '_static/css/extra.css?v=16'
   # - '_static/css/offset-inject-debug.css'
+  - '{OIWikiFeedbackSystemFrontendCSS}' # see: scripts/pre-build/install-feedback-sys-frontend.ts
 
 # Extensions
 markdown_extensions:
