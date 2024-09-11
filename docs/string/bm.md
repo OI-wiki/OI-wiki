@@ -809,9 +809,7 @@ Sunday 算法通常用作一般情况下实现最简单而且平均表现最好�
 
 ### BMHBNFS 算法
 
-该算法结合了 Horspool 和 Sunday，是 CPython 实现 `stringlib` 模块时用到的 `find` 的算法[^b5s]，似乎国内更有名气，不清楚为何叫这个名字，怎么就「AKA」了？
-
-以下简称 B5S。
+该算法结合了 Horspool 和 Sunday，是 CPython 实现 `stringlib` 模块时用到的 `find` 的算法[^b5s]，以下简称 B5S。
 
 B5S 基本想法是：
 
