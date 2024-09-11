@@ -1,4 +1,4 @@
-author: GoodCoder666, Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, CoelacanthusHex, indevn, qinyihao, peasoft
+author: dinosaur20041108, GoodCoder666, Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tainer, abc1763613206, Anti-Li, shenyouran, Chrogeek, SukkaW, Henry-ZHR, Early0v0, andylizf, tootal, Marcythm, CoelacanthusHex, indevn, qinyihao, peasoft
 
 ![头图](./images/wsl-header.png)
 
@@ -319,11 +319,19 @@ $ sudo service xrdp restart
     ...
     port=3390
 
-运行 `sudo service xrdp restart`，然后去开始菜单，用 `localhost:otherport` 来访问。
+若以上方法不能修改port：运行命令 `vim /etc/xrdp/xrdp.ini`，将其中的 `port=3390` 改为其他端口（如 `3390`）。（按 i 之后修改，编辑完后按 Esc，再输入 :wq 和回车）
+
+运行 `sudo service xrdp restart`，然后win+R打开运行，打开mstsc，用 `localhost:3390` 来访问。
 
 ![](./images/wsl-login-using-non-root.png)
 
 ![](./images/wsl-first-login.png)
+
+如果访问失败，可能需要打开端口：
+
+```console
+$ sudo ufw allow 3390
+```
 
 ### 使用 Xming 连接
 
