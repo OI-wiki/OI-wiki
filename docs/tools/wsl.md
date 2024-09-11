@@ -319,9 +319,9 @@ $ sudo service xrdp restart
     ...
     port=3390
 
-若以上方法不能修改port：运行命令 `vim /etc/xrdp/xrdp.ini`，将其中的 `port=3390` 改为其他端口（如 `3390`）。（按 i 之后修改，编辑完后按 Esc，再输入 :wq 和回车）
+若以上方法不能修改 port：运行命令 `vim /etc/xrdp/xrdp.ini`，将其中的 `port=3390` 改为其他端口（如 `3390`）。（按 i 之后修改，编辑完后按 Esc，再输入 :wq 和回车）
 
-运行 `sudo service xrdp restart`，然后win+R打开运行，打开mstsc，用 `localhost:3390` 来访问。
+运行 `sudo service xrdp restart`，然后 win+R 打开运行，打开 mstsc，用 `localhost:3390` 来访问。
 
 ![](./images/wsl-login-using-non-root.png)
 
