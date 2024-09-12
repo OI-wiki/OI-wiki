@@ -24,7 +24,7 @@ with open(os.environ.get('GITHUB_STEP_SUMMARY'), 'w') as f:
         print(f'\n## {key}\n')
         f.write(f'\n## **{key}**\n')
 
-        for sysinfo, output in zip(['x86_64 Ubuntu 22.04', 'Arm64 macOS 12.0', 'x86_64 Alpine with MUSL', 'x86_64 Windows 10', 'RISC-V64 Ubuntu 22.04'], [OUTPUT_UBUNTU, OUTPUT_MACOS, OUTPUT_ALPINE, OUTPUT_WINDOWS, OUTPUT_RV]):
+        for sysinfo, output in zip(['x86_64 Ubuntu 22.04', 'Arm64 macOS 12.0', 'x86_64 Alpine with MUSL', 'x86_64 Windows 2022', 'RISC-V64 Ubuntu 22.04'], [OUTPUT_UBUNTU, OUTPUT_MACOS, OUTPUT_ALPINE, OUTPUT_WINDOWS, OUTPUT_RV]):
             print(f'### {sysinfo}')
             f.write(f'\n### {sysinfo}\n')
             for line in output[key]:

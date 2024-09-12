@@ -153,7 +153,7 @@ jobs:
     name: UB Check - x86_64 Windows
     needs: correctness
     if: ${{ needs.correctness.outputs.any_changed == 'true' }}
-    runs-on: windows-latest
+    runs-on: windows-2022
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
