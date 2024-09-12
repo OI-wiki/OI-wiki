@@ -1,4 +1,4 @@
-author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo, Hszzzx, y-kx-b
+author: Chrogeek, Enter-tainer, HeRaNO, Ir1d, Marcythm, ShadowsEpic, StudyingFather, Xeonacid, bear-good, billchenchina, diauweb, diauweb, greyqz, kawa-yoiko, ouuan, partychicken, sshwy, stevebraveman, zhouyuyang2002, renbaoshuo, Hszzzx, y-kx-b, toprise
 
 ## 定义
 
@@ -91,6 +91,25 @@ $$
 然后，$f$ 的权值一定不会比 $e$ 大，不然 $T+e-f$ 就是一棵比 $T$ 还优的生成树了。
 
 所以，$T+e-f$ 包含了 $F$，并且也是一棵最小生成树，归纳成立。
+
+???+ note "[洛谷 P1195 口袋的天空](https://www.luogu.com.cn/problem/P1195)"
+    有 $n$ 朵云，你要将它们连成 $k$ 个棉花糖，将 $X_i$ 云朵和 $Y_i$ 连接起来需要 $L_i$ 的代价，求最小代价。
+
+??? note "例题代码"
+    === "C++"
+        ```cpp
+        --8<-- "docs/graph/code/mst/mst_3.cpp"
+        ```
+    
+    === "Python"
+        ```python
+        --8<-- "docs/graph/code/mst/mst_3.py"
+        ```
+    
+    === "Java"
+        ```java
+        --8<-- "docs/graph/code/mst/mst_3.java"
+        ```
 
 ## Prim 算法
 
