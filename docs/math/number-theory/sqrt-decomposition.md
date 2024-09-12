@@ -220,7 +220,7 @@ $$
     对于正整数 $n$ 和正实数 $\alpha, \beta$，我们有
     
     1.  对于某个不超过 $n^{\alpha/ \beta}$ 的正整数 $i$，使式子 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=\left\lfloor\dfrac{n^\alpha}{j^\beta}\right\rfloor$ 成立的最大的 $j$ 为 $\left\lfloor\dfrac{n^{\alpha/\beta}}{\left\lfloor n^\alpha/i^\beta \right\rfloor^{1/\beta}}\right\rfloor$。
-    2.  集合 $\left\{\left\lfloor\dfrac{n^\alpha}{d^\beta}\right\rfloor: d=1,2,\dots,n\right\}$ 大小不超过 $2n^{\alpha/(1+\beta)}$。
+    2.  集合 $\left\{\left\lfloor\dfrac{n^\alpha}{d^\beta}\right\rfloor: d=1,2,\dots,n\right\}$ 的大小不超过 $\min\{n,2n^{\alpha/(1+\beta)}\}$。
 
 ## 习题
 
