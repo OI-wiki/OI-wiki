@@ -394,11 +394,11 @@ nav:
       - 树状数组套权值线段树: ds/seg-in-bit.md
       - 分块套树状数组: ds/bit-in-block-array.md
     - K-D Tree: ds/kdt.md
+    - Top Tree: ds/top-tree.md
     - 动态树:
       - Link Cut Tree: ds/lct.md
       - 全局平衡二叉树: ds/global-bst.md
       - Euler Tour Tree: ds/ett.md
-      - Top Tree: ds/top-tree.md
     - 析合树: ds/divide-combine.md
     - PQ 树: ds/pq-tree.md
     - 手指树: ds/finger-tree.md
