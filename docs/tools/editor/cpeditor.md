@@ -10,7 +10,7 @@ author: zarttic, xk2013
 
 ## 基础配置
 
-> CP Editor 内部没有集成编译器，需要自己安装配置编译器，如有需要请参考本站关于编译器安装相关的文章[^compiler]，当然，如果你在下载时选择了带有 `with-gcc-<GCC 版本号>-llvm-<LLVM 版本号>` 后缀的安装包，你就可以使用 CP Editor 自带的编译器，路径在 `{安装目录}/mingw64/bin/`。
+> CP Editor 内部没有集成编译器，需要自己安装配置编译器，如有需要请参考本站关于编译器安装相关的文章[^ref1]，当然，如果你在下载时选择了带有 `with-gcc-<GCC 版本号>-llvm-<LLVM 版本号>` 后缀的安装包，你就可以使用 CP Editor 自带的编译器，路径在 `{安装目录}/mingw64/bin/`。
 
 -   设置默认语言
 
@@ -47,7 +47,7 @@ author: zarttic, xk2013
     |          <kbd>Ctrl</kbd>+<kbd>K</kbd>         | 终止所有进程。 |
     | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> |  格式化代码。 |
 
-    具体可以查阅官方文档[^doc]。
+    具体可以查阅官方文档[^ref2]。
 
 -   样例测试
 
@@ -65,5 +65,5 @@ author: zarttic, xk2013
 
 ## 参考资料
 
-[^compiler]: [编译器 - OI Wiki](../compiler.md)
-[^doc]: [热键 - CP Editor](https://cpeditor.org/zh/docs/preferences/key-bindings/)
+[^ref1]: [编译器 - OI Wiki](../compiler.md)
+[^ref2]: [热键 - CP Editor](https://cpeditor.org/zh/docs/preferences/key-bindings/)
