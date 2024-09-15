@@ -66,4 +66,5 @@ author: zarttic, xk2013
 ## 参考资料
 
 [^ref1]: [编译器 - OI Wiki](../compiler.md)
+
 [^ref2]: [热键 - CP Editor](https://cpeditor.org/zh/docs/preferences/key-bindings/)
