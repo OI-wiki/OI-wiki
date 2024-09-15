@@ -47,7 +47,7 @@ author: zarttic, xk2013
     |          <kbd>Ctrl</kbd>+<kbd>K</kbd>         | 终止所有进程。 |
     | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> |  格式化代码。 |
 
-    具体可以查阅 [官方文档](https://cpeditor.org/zh/docs/preferences/key-bindings/)。
+    具体可以查阅官方文档[^doc]。
 
 -   样例测试
 
@@ -66,3 +66,4 @@ author: zarttic, xk2013
 ## 参考资料
 
 [^compiler]: [编译器 - OI Wiki](../compiler.md)
+[^doc]: [热键 - CP Editor](https://cpeditor.org/zh/docs/preferences/key-bindings/)
