@@ -236,7 +236,7 @@ void traverse(TreeNode* root) {
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer.cpp"
+    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_1.cpp"
     ```
 
 ??? note "题目解析"
