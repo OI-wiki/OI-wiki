@@ -14,12 +14,11 @@ int main() {
   for (int i = 0; i < n; i++) {
     std::string temp;
     std::cin >> temp;
-    treeNodes[i] =
-        (temp == "null") ? nullptr : new TreeNode(std::stoi(temp));
+    treeNodes[i] = (temp == "null") ? nullptr : new TreeNode(std::stoi(temp));
     if (i & 1)
       treeNodes[i >> 1]->left = treeNodes[i];
     else if (i)
-      treeNodes[(i-1) >> 1]->right = treeNodes[i];
+      treeNodes[(i - 1) >> 1]->right = treeNodes[i];
   }
   int sum;
   std::cin >> sum;
