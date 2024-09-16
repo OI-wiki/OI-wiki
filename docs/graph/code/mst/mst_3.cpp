@@ -5,7 +5,6 @@ using namespace std;
 int fa[1010];  // 定义父亲
 int n, m, k;
 
-// 标准并查集
 struct edge {
   int u, v, w;
 };
@@ -20,6 +19,7 @@ void add(int u, int v, int w) {
   g[l].w = w;
 }
 
+// 标准并查集
 int findroot(int x) { return fa[x] == x ? x : fa[x] = findroot(fa[x]); }
 
 void Merge(int x, int y) {
