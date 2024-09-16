@@ -14,7 +14,8 @@ int main() {
   for (int i = 0; i < n; i++) {
     std::string temp;
     std::cin >> temp;
-    treeNodes[i] = (temp == "null") ? nullptr : new TreeNode(std::atoi(temp.c_str()));
+    treeNodes[i] =
+        (temp == "null") ? nullptr : new TreeNode(std::atoi(temp.c_str()));
     if (i & 1)
       treeNodes[i >> 1]->left = treeNodes[i];
     else if (i)
