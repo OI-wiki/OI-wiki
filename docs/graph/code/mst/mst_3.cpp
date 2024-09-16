@@ -37,7 +37,7 @@ void kruskal() {
   for (int i = 1; i <= m; i++) {
     int xr = findroot(g[i].u), yr = findroot(g[i].v);
     if (xr != yr) {   // 如果父亲不一样
-      Merge(xr, yr);    // 合并
+      Merge(xr, yr);  // 合并
       tot++;          // 边数增加
       ans += g[i].w;  // 代价增加
     }
