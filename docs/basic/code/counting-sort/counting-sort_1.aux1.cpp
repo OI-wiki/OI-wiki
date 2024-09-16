@@ -7,11 +7,11 @@ int main() {
   int a[MAXN];
   int n, w;
   std::cin >> n >> w;
-  for (int i = 0; i < n; ++i) {
+  for (int i = 1; i <= n; ++i) {
     std::cin >> a[i];
   }
   int* b = counting_sort(a, n, w);
-  for (int i = 0; i < n; ++i) {
+  for (int i = 1; i <= n; ++i) {
     std::cout << b[i] << " ";
   }
   std::cout << std::endl;
