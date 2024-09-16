@@ -1,4 +1,4 @@
-author: zarrtic, xk2013
+author: zarttic, xk2013
 
 ## 简介
 
