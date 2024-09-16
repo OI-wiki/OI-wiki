@@ -311,7 +311,7 @@ nav:
       - 线性规划简介: math/linear-programming.md
       - 单纯形算法: math/simplex.md
     - 群论:
-      - 群论简介:  math/group-theory.md
+      - 群论简介: math/group-theory.md
       - 置换群: math/permutation-group.md
     - 概率论:
       - 基本概念: math/probability/basic-conception.md
