@@ -23,4 +23,7 @@ int main() {
   int sum;
   std::cin >> sum;
   std::cout << pathSum(treeNodes[0], sum) << std::endl;
+  for (int i = 0; i < n; i++) {
+    if (treeNodes[i]) delete treeNodes[i];
+  }
 }

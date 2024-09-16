@@ -14,4 +14,5 @@ int main() {
   for (int i = 1; i <= n; ++i) {
     std::cout << a[i] << " ";
   }
+  std::cout << std::endl;
 }
