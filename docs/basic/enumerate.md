@@ -92,7 +92,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     
     === "C++"
         ```cpp
-        --8<-- "docs/basic/enumerate/enumerate_1.cpp"
+        --8<-- "docs/basic/code/enumerate/enumerate_1.cpp"
         ```
     
     === "Python"
