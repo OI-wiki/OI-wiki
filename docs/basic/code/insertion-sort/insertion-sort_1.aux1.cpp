@@ -1,7 +1,7 @@
 #include <iostream>
 #define MAXN 1000
 
-extern void insertion_sort(int* a, int n);
+extern void insertion_sort(int arr[], int len);
 
 int main() {
   int a[MAXN];
