@@ -51,18 +51,18 @@ jobs:
             libxml2
           pre_compile: |
             umask 0 && npm config set cache /tmp/.npm
+            echo "89.58.7.101 mirrors.ctan.org" >> /etc/hosts
             wget -O notosans.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"
             wget -O notoserif.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerif-hinted.zip"
             wget -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip"
             wget -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
-            echo "89.58.7.101 mirrors.ctan.org" >> /etc/hosts
             wget "https://mirrors.ctan.org/fonts/cm-unicode.zip"
             git clone https://github.com/googlefonts/RobotoMono
             unzip notosans.zip -d notosans
             unzip notoserif.zip -d notoserif
             unzip notosanscjk.zip -d notosanscjk
             unzip notoserifcjk.zip -d notoserifcjk
-            unzip  ./cm-unicode.zip
+            unzip cm-unicode.zip
             cp -r notosans notoserif notosanscjk notoserifcjk cm-unicode/fonts/otf/* RobotoMono/fonts/ttf/* /usr/share/fonts
             fc-cache
             git config --global --add safe.directory /github/workspace
