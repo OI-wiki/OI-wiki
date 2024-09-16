@@ -92,12 +92,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     
     === "C++"
         ```cpp
-        bool met[MAXN * 2 + 1];
-        memset(met, 0, sizeof(met));
-        for (int i = 0; i < n; ++i) {
-          if (met[MAXN - a[i]]) ++ans;
-          met[MAXN + a[i]] = true;
-        }
+        --8<-- "docs/basic/enumerate/enumerate_1.cpp"
         ```
     
     === "Python"
