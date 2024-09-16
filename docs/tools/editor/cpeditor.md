@@ -47,7 +47,7 @@ author: zarttic, xk2013
     |          <kbd>Ctrl</kbd>+<kbd>K</kbd>         | 终止所有进程。 |
     | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> |  格式化代码。 |
 
-    具体可以查阅官方文档[^doc]。
+    具体可以查阅官方文档[^doc1]。
 
 -   样例测试
 
@@ -63,8 +63,30 @@ author: zarttic, xk2013
 
     ![cp-judge-4](images/cp-judge-4.png)
 
+## 进阶操作
+
+-   设置题目链接
+    
+    右键代码标签页选项卡，选择“设置题目链接”，输入题目链接即可。
+
+-   设置 Codeforces 链接
+
+    同上，选择“设置 Codeforces 链接”，输入 Codeforces 链接即可。
+
+-   设置单个代码的时间限制
+
+    右键代码标签页选项卡，选择“设置时间限制”，输入时间（单位为毫秒）即可。
+
+-   设置单个代码的编译命令
+
+    同上，选择“设置编译命令”，输入编译命令即可。
+
+想了解更多内容也可以前往官方文档[^doc2]查阅。
+
 ## 参考资料
 
 [^compiler]: [编译器 - OI Wiki](../compiler.md)
 
-[^doc]: [热键 - CP Editor](https://cpeditor.org/zh/docs/preferences/key-bindings/)
+[^doc1]: [热键 - CP Editor](https://cpeditor.org/zh/docs/preferences/key-bindings/)
+
+[^doc2]: [文档 - CP Editor](https://cpeditor.org/zh/docs/);
