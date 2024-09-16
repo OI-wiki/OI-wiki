@@ -4,7 +4,7 @@
 
 int cnt[MAXW], b[MAXN];
 
-int* counting_sort(int *a, int n, int w) {
+int* counting_sort(int* a, int n, int w) {
   memset(cnt, 0, sizeof(cnt));
   for (int i = 1; i <= n; ++i) ++cnt[a[i]];
   for (int i = 1; i <= w; ++i) cnt[i] += cnt[i - 1];

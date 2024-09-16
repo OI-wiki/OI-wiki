@@ -10,7 +10,7 @@ int main() {
   for (int i = 0; i < n; ++i) {
     std::cin >> a[i];
   }
-  int *b = counting_sort(a, n, w);
+  int* b = counting_sort(a, n, w);
   for (int i = 0; i < n; ++i) {
     std::cout << b[i] << " ";
   }
