@@ -65,7 +65,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     print(incolor(BLUE, f"Test for {mainfile}..."))
     if skiptest:
         print(incolor(BLUE, f"Test for {mainfile} skipped because file {mainfile + '.skip_test'} exists"))
-        return False, {mainfile: Skipped()}
+        return False, {mainfile: [Skipped()]}
     
     CALL_VCVARS_BAT = r'call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"'
 
