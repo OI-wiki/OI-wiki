@@ -131,6 +131,6 @@ Timsort 的时间复杂度取决于数据的有序性：
 
 1.  [Timsort](https://en.wikipedia.org/wiki/Timsort)
 2.  [On the Worst-Case Complexity of TimSort](https://drops.dagstuhl.de/opus/volltexte/2018/9467/pdf/LIPIcs-ESA-2018-4.pdf)
-3.  [Original Explanation by Tim Peters](https://bugs.python.org/file4451/timsort.txt)
-4.  [Java 实现](https://web.archive.org/web/20150716000631/https://android.googlesource.com/platform/libcore/+/gingerbread/luni/src/main/java/java/util/TimSort.java)
-5.  [C 语言实现](http://svn.python.org/projects/python/trunk/Objects/listobject.c)
+3.  [Original Explanation by Tim Peters](https://github.com/python/cpython/blob/main/Objects/listsort.txt)
+4.  [Java 实现](https://cs.android.com/android/platform/superproject/main/+/main:libcore/ojluni/src/main/java/java/util/TimSort.java)
+5.  [C 语言实现](https://github.com/python/cpython/blob/main/Objects/listobject.c)
