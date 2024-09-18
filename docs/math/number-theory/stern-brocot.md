@@ -182,15 +182,14 @@ $$
         a = [(-1) ** i * a[i] for i in range(len(a))]
         b = [(-1) ** i * b[i] for i in range(len(b))]
         return a < b
-    ```
-
+    
     # [a0; a1, ..., ak] -> [a0, a1, ..., ak-1, 1]
     def expand(a):
         if a: # empty a = inf
             a[-1] -= 1
             a.append(1)
         return a
-
+    
     # return a-eps, a+eps
     def pm_eps(a):
         b = expand(a.copy())
