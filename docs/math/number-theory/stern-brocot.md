@@ -183,18 +183,20 @@ $$
         b = [(-1) ** i * b[i] for i in range(len(b))]
         return a < b
     
+    
     # [a0; a1, ..., ak] -> [a0, a1, ..., ak-1, 1]
     def expand(a):
-        if a: # empty a = inf
+        if a:  # empty a = inf
             a[-1] -= 1
             a.append(1)
         return a
     
+    
     # return a-eps, a+eps
     def pm_eps(a):
         b = expand(a.copy())
-        a.append(float('inf'))
-        b.append(float('inf'))
+        a.append(float("inf"))
+        b.append(float("inf"))
         return (a, b) if less(a, b) else (b, a)
     ```
 
