@@ -2038,10 +2038,10 @@ octokit@^4.0.2:
     "@octokit/request-error" "^6.0.0"
     "@octokit/types" "^13.0.0"
 
-oiwiki-feedback-sys-frontend@^0.5.4:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/oiwiki-feedback-sys-frontend/-/oiwiki-feedback-sys-frontend-0.5.4.tgz#c461ce959d1d70bc099dccc3b8b639f0101f3ede"
-  integrity sha512-KSXAXVpO0myy2H0VuqQL/wqpb+J7mQ6A4d7/CuHvWmekEPhmXG5pb+3h63QIX3qQxNVsWre5qpLv8OMLVUK7Ow==
+oiwiki-feedback-sys-frontend@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/oiwiki-feedback-sys-frontend/-/oiwiki-feedback-sys-frontend-0.5.6.tgz#db681a59b4488cfb9db2705f5de74f7be5ce3fb9"
+  integrity sha512-+VYPueH5tPIU96uS/LhcK77W/KfV4LeZJM26wLw3vCCR7RTweB4vUydUA2NytA2APuFyaHyeKyN6vk9KPvwPqA==
 
 once@^1.3.0:
   version "1.4.0"
