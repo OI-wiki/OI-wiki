@@ -179,9 +179,10 @@ $$
     ```python
     # check if a < b assuming that a[-1] = b[-1] = infty and a != b
     def less(a, b):
-        a = [(-1)**i*a[i] for i in range(len(a))]
-        b = [(-1)**i*b[i] for i in range(len(b))]
+        a = [(-1) ** i * a[i] for i in range(len(a))]
+        b = [(-1) ** i * b[i] for i in range(len(b))]
         return a < b
+    ```
 
     # [a0; a1, ..., ak] -> [a0, a1, ..., ak-1, 1]
     def expand(a):
@@ -267,6 +268,7 @@ $$
                         p1, q1 = A, -B
         if p0 * q1 >= p1 * q0 or fail:
             return "IMPOSSIBLE"
+    ```
 
         p, q = middle(p0, q0, p1, q1)
         return str(q) + " " + str(p)
