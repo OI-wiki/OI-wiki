@@ -122,6 +122,57 @@ void splay(int x) {
 }
 ```
 
+#### Splay 操作的时间复杂度
+
+因为 zig 和 zag 是 **对称** 操作，我们只需要对 zig，zig−zig，zig−zag 操作分析复杂度。采用 [势能分析](../basic/amortized-analysis.md#势能分析)，定义一个 $n$ 个节点的 splay 树进行了 $m$ 次 splay 步骤。可记 $w(x)=[\log(\operatorname{size}(x))]$, 定义势能函数为 $\varphi =\sum w(x)$,$\varphi (0) \leq n \log n$，在第 $i$ 次操作后势能为 $\varphi (i)$, 则我们只需要求出初始势能和每次的势能变化量的和即可。
+
+1.  **zig**: 势能的变化量为
+
+    $$
+    \begin{aligned}
+    1+w'(x)+w'(fa)−w(x)−w(fa) & \leq 1+w'(fa)−w(x) \\
+    & \leq 1+w'(x)−w(x)
+    \end{aligned}
+    $$
+
+2.  **zig-zig**:  势能变化量为
+
+    $$
+    \begin{aligned}
+    1+w'(x)+w'(fa)+w'(g)−w(x)−w(fa)−w(g) & \leq 1+w'(fa)+w'(g)−w(x)−w(fa) \\
+    & \leq 1+ w'(x)+w'(g)−2w(x) \\
+    & \leq 3(w'(x)−w(x))
+    \end{aligned}
+    $$
+
+3.  **zig-zag**:  势能变化量为
+
+    $$
+    \begin{aligned}
+    1+w'(x)+w'(fa)+w'(g)−w(x)−w(fa)−w(g) & \leq 1+w'(fa)+w'(g)−w(x)−w(fa) \\
+    & \leq 1+w'(g)+w'(fa)−2w(x) \\
+    & \leq 2 w'(x)−w'(g)−w'(fa) + w'(fa)+w'(g)−w(x)−w(fa) \\
+    & \leq 2(w'(x)−w(x))
+    \end{aligned}
+    $$
+
+由此可见，三种 splay 步骤的势能全部可以缩放为 $\leq 3(w'(x)−w(x))$. 令 $w^{(n)}(x)=w'^{(n-1)}(x)$,$w^{(0)}(x)=w(x)$, 假设 splay 操作一次依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$, 最终 $x_{1}$ 成为根节点，我们可以得到：
+
+$$
+\begin{aligned}
+3\left(\sum_{i=0}^{n-2}\left(w^{(i+1)}(x_{1})-w^{(i)}(x_{1})\right)+w(n)−w^{(n-1)}(x_{1})\right)+1 & = 3(w(n)−w(x_{1}))+1 \\
+& \leq \log n
+\end{aligned}
+$$
+
+继而可得：
+
+$$
+\sum_{i=1}^m (\varphi (m-i+1)−\varphi (m−i)) +\varphi (0) = n \log n+m \log n
+$$
+
+因此，对于 $n$ 个节点的 splay 树，做一次 splay 操作的均摊复杂度为 $O(\log n)$。因此基于 splay 的插入，查询，删除等操作的时间复杂度也为均摊 $O(\log n)$。
+
 ### 插入操作
 
 #### 过程
