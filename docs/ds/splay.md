@@ -359,7 +359,6 @@ void del(int k) {
 
 1.  **Zig 操作**   
     根据性质 1 和 2，有 $w(fa) = w'(x)$，且 $w'(x) \geq w'(fa)$。因此均摊成本为：
-
 $$
 \begin{aligned}
 c_i &= 1 + w'(x) + w'(fa) - w(x) - w(fa)\\
@@ -370,19 +369,14 @@ $$
 
 2.  **Zig-Zig 操作**   
     根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w'(x) \geq w'(fa)$，并且 $w(x) \leq w(fa)$。根据性质 3，可得：
-
 $$
 2 \cdot w'(x) - w(x) - w'(g) \geq 2
 $$
-
     由此，均摊成本为：
-
 $$
 c_i = 2 + w'(x) + w'(fa) + w'(g) - w(x) - w(fa) - w(g)
 $$
-
     简化后：
-
 $$
 \begin{aligned}
 c_i &= 2 + w'(fa) + w'(g) - w(x) - w(fa)\\
@@ -393,19 +387,14 @@ $$
 
 3.  **Zig-Zag 操作**   
     根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(fa) \geq w(x)$。根据性质 3，可得：
-
 $$
 2 \cdot w'(x) - w'(g) - w'(fa) \geq 2
 $$
-
     由此，均摊成本为：
-
 $$
 c_i = 2 + w'(x) + w'(fa) + w'(g) - w(x) - w(fa) - w(g)
 $$
-
     简化后：
-
 $$
 \begin{aligned}
 c_i&= 2 + w'(g) + w'(fa) - w(x) - w(fa)\\
