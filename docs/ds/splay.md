@@ -359,53 +359,53 @@ void del(int k) {
 
 1.  **Zig 操作**   
     根据性质 1 和 2，有 $w(fa) = w'(x)$，且 $w'(x) \geq w'(fa)$。因此均摊成本为：
-    $$
+$$
     \begin{aligned}
     c_i &= 1 + w'(x) + w'(fa) - w(x) - w(fa)\\
     &= 1 + w'(fa) - w(x)\\
     &\leq 1 + w'(x) - w(x)
     \end{aligned}
-    $$
+$$
 
 2.  **Zig-Zig 操作**   
     根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w'(x) \geq w'(fa)$，并且 $w(x) \leq w(fa)$。根据性质 3，可得：
-    $$
+$$
     2 \cdot w'(x) - w(x) - w'(g) \geq 2
-    $$
+$$
     由此，均摊成本为：
-    $$
+$$
     c_i = 2 + w'(x) + w'(fa) + w'(g) - w(x) - w(fa) - w(g)
-    $$
+$$
     简化后：
-    $$
+$$
     \begin{aligned}
     c_i &= 2 + w'(fa) + w'(g) - w(x) - w(fa)\\
     &\leq 2w'(x) + w'(fa) - 2w(x) - w(fa)\\
     &\leq 3 \cdot (w'(x) - w(x))
     \end{aligned}
-    $$
+$$
 
 3.  **Zig-Zag 操作**   
     根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(fa) \geq w(x)$。根据性质 3，可得：
-    $$
+$$
     2 \cdot w'(x) - w'(g) - w'(fa) \geq 2
-    $$
+$$
     由此，均摊成本为：
-    $$
+$$
     c_i = 2 + w'(x) + w'(fa) + w'(g) - w(x) - w(fa) - w(g)
-    $$
+$$
     简化后：
-    $$
+$$
     \begin{aligned}
     c_i&= 2 + w'(g) + w'(fa) - w(x) - w(fa)\\
     &\leq 2 \cdot w'(x) - w(x) - w(fa)\\
     &\leq 2 \cdot (w'(x) - w(x))
     \end{aligned}
-    $$
+$$
 
 **总结**:
 
-由此可见，三种 splay 步骤的均摊成本全部可以缩放为 $\leq 3(w'(x)−w(x))$. 令 $w^{(n)}(x)=w'^{(n-1)}(x)$,$w^{(0)}(x)=w(x)$, 假设 splay 操作一次依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$, 最终 $x_{1}$ 成为根节点，我们可以得到：
+由此可见，三种 splay 步骤的均摊成本全部可以缩放为 $\leq 3(w'(x)−w(x))$. 令 $w^{(n)}(x)=w'^{(n-1)}(x)$,$w^{(0)}(x)=w(x)$, 假设一次 splay 操作依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$, 最终 $x_{1}$ 成为根节点，我们可以得到：
 
 $$
 \begin{aligned}
