@@ -343,7 +343,6 @@ void del(int k) {
 3.  如果 $fa$ 的两个子节点分别是 $x$ 和 $y$，那么有 $2w(fa) - w(x) - w(y) \geq 2$
 
 ??? note "性质 3 的证明"
-    
 
     1. 设 $ \text{size}(fa) = z $，$ \text{size}(x) = y $，$ \text{size}(y) = x $，则有 $z = x + y + 1$。
     2. 因此，  
@@ -357,9 +356,7 @@ void del(int k) {
 
 接下来，分别对 **zig**、**zig-zig** 和 **zig-zag** 操作进行势能分析。
 
-1.  **Zig 操作**   
-    根据性质 1 和 2，有 $w(fa) = w'(x)$，且 $w'(x) \geq w'(fa)$。因此均摊成本为：
-
+**Zig**：根据性质 1 和 2，有 $w(fa) = w'(x)$，且 $w'(x) \geq w'(fa)$。由此，均摊成本为：
 $$
 \begin{aligned}
 c_i &= 1 + w'(x) + w'(fa) - w(x) - w(fa)\\
@@ -368,20 +365,19 @@ c_i &= 1 + w'(x) + w'(fa) - w(x) - w(fa)\\
 \end{aligned}
 $$
 
-2.  **Zig-Zig 操作**   
-    根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w'(x) \geq w'(fa)$，并且 $w(x) \leq w(fa)$。根据性质 3，可得：
+**Zig-Zig**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w'(x) \geq w'(fa)$，并且 $w(x) \leq w(fa)$。根据性质 3，可得：
 
 $$
 2 \cdot w'(x) - w(x) - w'(g) \geq 2
 $$
 
-    由此，均摊成本为：
+由此，均摊成本为：
 
 $$
 c_i = 2 + w'(x) + w'(fa) + w'(g) - w(x) - w(fa) - w(g)
 $$
 
-    简化后：
+简化后：
 
 $$
 \begin{aligned}
@@ -391,20 +387,19 @@ c_i &= 2 + w'(fa) + w'(g) - w(x) - w(fa)\\
 \end{aligned}
 $$
 
-3.  **Zig-Zag 操作**   
-    根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(fa) \geq w(x)$。根据性质 3，可得：
+**Zig-Zag**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(fa) \geq w(x)$。根据性质 3，可得：
 
 $$
 2 \cdot w'(x) - w'(g) - w'(fa) \geq 2
 $$
 
-    由此，均摊成本为：
+由此，均摊成本为：
 
 $$
 c_i = 2 + w'(x) + w'(fa) + w'(g) - w(x) - w(fa) - w(g)
 $$
 
-    简化后：
+简化后：
 
 $$
 \begin{aligned}
