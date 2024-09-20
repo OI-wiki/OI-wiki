@@ -114,7 +114,7 @@ std::stable_sort(first, last, cmp);
 
 稳定排序，保证相等元素排序后的相对位置与原序列相同。
 
-时间复杂度为 $O(n(\log n)^2)$，当额外内存可用时，复杂度为 $O(n\log n)$。
+时间复杂度为 $O(n\log^2 n)$，当额外内存可用时，复杂度为 $O(n\log n)$。
 
 ## std::partial\_sort
 
