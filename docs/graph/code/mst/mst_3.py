@@ -27,7 +27,7 @@ def Merge(x, y):
     fa[x] = y
 
 
-# Kurskal 算法
+# Kruskal 算法
 def kruskal():
     tot = 0  # 存已选了的边数
     ans = 0  # 存总的代价
