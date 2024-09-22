@@ -8,7 +8,7 @@ Timsort 由 Python 核心开发者 Tim Peters 于 2002 年设计，并应用于 
 
 Timsort 的核心思想是通过识别和利用数据集中已有的有序性，提高排序效率，其主要包括以下步骤：
 
-1.  **识别 Run**：扫描待排序数组，识别出已有的有序子序列（Run）。
+1.  **识别 Run**：扫描待排序数组，识别出有序的连续子序列（Run）。
 2.  **扩展 Run**：如果识别的 Run 长度小于 `MIN_RUN`，则使用插入排序对其进行扩展。
 3.  **归并 Run**：Timsort 维护一个特殊的栈，采用特定的归并策略将栈中已有的 Run 合并成更大的有序序列。
 
@@ -53,8 +53,8 @@ Timsort 是一种稳定的排序算法，即相同元素在排序后仍然保持
 
 例如，假设存在两个 Run A 和 B，分别为：
 
--   Run A:$[1, 2, 3, 6, 10]$
--   Run B:$[4, 5, 7, 9, 12, 14, 17]$
+-   Run A: $[1, 2, 3, 6, 10]$
+-   Run B: $[4, 5, 7, 9, 12, 14, 17]$
 
 通过二分查找，可以确定：
 
@@ -98,7 +98,7 @@ Timsort 的时间复杂度取决于数据的有序性：
     -   使用插入排序扩展 Run 也需线性遍历数组，其复杂度为 $O(n)$。
 
 -   **归并 Run**：
-    -   归并操作的总次数与 Run 的总数有关，最坏情况下 Run 的数量为 $n / \text{MIN\_RUN}$，由于 `MIN_RUN` 是常数，因此 Run 的数量可看作 $O(n)$。
+    -   归并操作的总次数与 Run 的总数有关，最坏情况下 Run 的数量为 `n / MIN_RUN`，由于 `MIN_RUN` 是常数，因此 Run 的数量可看作 $O(n)$。
     -   $O(n)$ 个 Run 需要进行的归并次数为 $O(\log n)$，每次归并操作的代价为 $O(n)$，因此归并操作的总复杂度为 $O(n \log n)$。
 
 而对于空间复杂度，由于 Timsort 大致需要额外的 $O(n)$ 空间用于存储栈和临时缓冲区，因此总的空间复杂度为 $O(n)$。
@@ -109,7 +109,7 @@ Timsort 的时间复杂度取决于数据的有序性：
     $$
     \begin{array}{ll}
     1 & nRemaining \gets \text{数组长度} \\
-    2 & minRun \gets \text{选择合适的 MIN\_RUN 的值}(nRemaining) \\
+    2 & minRun \gets \text{选择合适的 MIN\textunderscore RUN 的值}(nRemaining) \\
     3 & startIndex \gets 0 \\
     4 & \textbf{while } nRemaining > 0 \ \textbf{do} \\
     5 & \qquad runLength \gets \text{识别 Run }(\text{array}, startIndex, nRemaining) \\
