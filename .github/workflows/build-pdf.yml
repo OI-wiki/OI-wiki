@@ -14,7 +14,7 @@ jobs:
       - name: Build the LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          docker_image: ghcr.io/xu-cheng/texlive-full:20220801
+          docker_image: ghcr.io/xu-cheng/texlive-full:20240901
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
           args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -8bit"
