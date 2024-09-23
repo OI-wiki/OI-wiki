@@ -61,7 +61,7 @@ $$
 
 下面介绍内积运算的一些常见应用。
 
-1. 判定两向量垂直：
+1.  判定两向量垂直：
 
 $$
 \boldsymbol{a} \perp \boldsymbol{b} \iff \boldsymbol{a} \cdot \boldsymbol{b} = 0
@@ -69,19 +69,19 @@ $$
 
 即互相垂直的两个向量的内积，结果为 $0$；向量与零向量内积，结果为 $0$。如果使用内积为零作为垂直的定义，则可以得出零向量与任何向量都垂直。
 
-2. 判定两向量共线：
+2.  判定两向量共线：
 
 $$
 \exists\lambda \in \R (\boldsymbol{a} = \lambda \boldsymbol{b}) \iff |\boldsymbol{a} \cdot \boldsymbol{b}| = |\boldsymbol{a}| |\boldsymbol{b}|
 $$
 
-3. 计算向量的模：
+3.  计算向量的模：
 
 $$
 |\boldsymbol a| = \sqrt{\boldsymbol{a} \cdot \boldsymbol{a}}
 $$
 
-4. 计算两向量的夹角：
+4.  计算两向量的夹角：
 
 $$
 \theta = \arccos \frac{\boldsymbol{a} \cdot \boldsymbol{b}}{|\boldsymbol a| |\boldsymbol b|}
@@ -159,7 +159,7 @@ $$
 
 ### 性质
 
-1. 外积是关于两个向量分别都线性的双线性运算。具体而言，外积满足：
+1.  外积是关于两个向量分别都线性的双线性运算。具体而言，外积满足：
 
 $$
 \begin{aligned}
@@ -172,13 +172,13 @@ $$
 
 前两行性质亦可称为分配律，即外积对于向量加法满足乘法分配律。
 
-2. 外积满足反交换律，即：
+2.  外积满足反交换律，即：
 
 $$
 \boldsymbol a \times \boldsymbol b=-\boldsymbol b \times \boldsymbol a
 $$
 
-3. 根据上文内积与外积的几何定义：
+3.  根据上文内积与外积的几何定义：
 
 $$
 \begin{aligned}
@@ -198,7 +198,7 @@ $$
 
 下面介绍外积运算的一些常见应用。
 
-1. 判定两向量是否共线：
+1.  判定两向量是否共线：
 
 $$
 \exists\lambda \in \R (\boldsymbol{a} = \lambda \boldsymbol{b}) \iff \boldsymbol{a} \times \boldsymbol{b} = \boldsymbol{0}
@@ -206,7 +206,7 @@ $$
 
 即共线的两个三维向量的外积，结果为 $\boldsymbol 0$；三维向量与自身外积，结果为 $\boldsymbol 0$；三维向量与零向量外积，结果为 $\boldsymbol 0$。若使用外积为零作为两向量共线的定义，则可以得出零向量与任何向量都共线。
 
-2. 计算两向量张成的平行四边形面积：
+2.  计算两向量张成的平行四边形面积：
 
 $$
 S \langle \boldsymbol a, \boldsymbol b \rangle = |\boldsymbol a \times \boldsymbol b|
@@ -246,7 +246,7 @@ $$
 
 ### 性质
 
-1. 混合积关于三个向量都分别线性，具体而言，有：
+1.  混合积关于三个向量都分别线性，具体而言，有：
 
 $$
 \begin{aligned}
@@ -256,7 +256,7 @@ $$
 \end{aligned}
 $$
 
-2. 混合积具有反对称性，交换两个向量的位置会使混合积变成其相反数，因此有：
+2.  混合积具有反对称性，交换两个向量的位置会使混合积变成其相反数，因此有：
 
 $$
 \det(\boldsymbol a, \boldsymbol b, \boldsymbol c) = \det(\boldsymbol b, \boldsymbol c, \boldsymbol a) = \det(\boldsymbol c, \boldsymbol a, \boldsymbol b) = -\det(\boldsymbol b, \boldsymbol a, \boldsymbol c) = -\det(\boldsymbol a, \boldsymbol c, \boldsymbol b)= -\det(\boldsymbol c, \boldsymbol b, \boldsymbol a)
@@ -272,22 +272,22 @@ $$
 
 向量的混合积有如下常见应用。
 
-1. 计算四面体 $ABCD$ 的体积：
+1.  计算四面体 $ABCD$ 的体积：
 
 $$
 V=\frac{1}{6}\left|\det(\overrightarrow{AB}, \overrightarrow{AC}, \overrightarrow{AD})\right|
 $$
 
-2. 判定 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 是否共面；
+2.  判定 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 是否共面；
 
 三个三维向量 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 共面的充分必要条件是 $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c)=0$。
 
-3. 判定 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 构成的坐标系的手性；
+3.  判定 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 构成的坐标系的手性；
 
 混合积 $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c)$ 的符号是正还是负，取决于 $\boldsymbol a \times \boldsymbol b$ 与 $\boldsymbol c$ 形成的夹角是锐角还是钝角，即指向 $\boldsymbol a$ 与 $\boldsymbol b$ 张成平面的同侧还是异侧，这相当于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 三个向量依序构成右手系还是左手系。具体而言：
 
-- $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) < 0$ 等价于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 依序构成左手系；
-- $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) > 0$ 等价于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 依序构成右手系。
+-   $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) < 0$ 等价于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 依序构成左手系；
+-   $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) > 0$ 等价于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 依序构成右手系。
 
 ## 二重外积
 
