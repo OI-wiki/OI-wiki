@@ -18,7 +18,7 @@
 
 #### 几何定义
 
-在 $n$ 维欧氏空间 $\R^n$ 下，已知两个向量 $\boldsymbol{a}, \boldsymbol{b}$，它们的夹角为 $\theta$，那么：
+在 $n$ 维欧氏空间 $\mathbf{R}^n$ 下，已知两个向量 $\boldsymbol{a}, \boldsymbol{b}$，它们的夹角为 $\theta$，那么：
 
 $$
 \boldsymbol{a} \cdot \boldsymbol{b} = |\boldsymbol{a}| |\boldsymbol{b}| \cos \theta
@@ -28,7 +28,7 @@ $$
 
 #### 代数定义
 
-在 $n$ 维欧氏空间 $\R^n$ 下，已知两个向量 $\boldsymbol{a} = (a_1, a_2, \dots, a_n), \boldsymbol{b} = (b_1, b_2, \dots, b_n)$，那么：
+在 $n$ 维欧氏空间 $\mathbf{R}^n$ 下，已知两个向量 $\boldsymbol{a} = (a_1, a_2, \dots, a_n), \boldsymbol{b} = (b_1, b_2, \dots, b_n)$，那么：
 
 $$
 \boldsymbol{a} \cdot \boldsymbol{b} = \sum_{i = 1}^{n} a_i b_i
@@ -72,7 +72,7 @@ $$
 2.  判定两向量共线：
 
 $$
-\exists\lambda \in \R (\boldsymbol{a} = \lambda \boldsymbol{b}) \iff |\boldsymbol{a} \cdot \boldsymbol{b}| = |\boldsymbol{a}| |\boldsymbol{b}|
+\exists\lambda \in \mathbf{R} (\boldsymbol{a} = \lambda \boldsymbol{b}) \iff |\boldsymbol{a} \cdot \boldsymbol{b}| = |\boldsymbol{a}| |\boldsymbol{b}|
 $$
 
 3.  计算向量的模：
@@ -128,7 +128,7 @@ $$
 
 #### 几何定义
 
-在三维欧氏空间 $\R^3$ 下，定义向量 $\boldsymbol{a}, \boldsymbol{b}$ 的外积为一个向量，记为 $\boldsymbol{a} \times \boldsymbol{b}$，其模与方向定义如下：
+在三维欧氏空间 $\mathbf{R}^3$ 下，定义向量 $\boldsymbol{a}, \boldsymbol{b}$ 的外积为一个向量，记为 $\boldsymbol{a} \times \boldsymbol{b}$，其模与方向定义如下：
 
 1.  $|\boldsymbol{a} \times \boldsymbol{b}| = |\boldsymbol{a}| |\boldsymbol{b}| \sin \langle \boldsymbol{a}, \boldsymbol{b} \rangle$；
 2.  $\boldsymbol{a} \times \boldsymbol{b}$ 与 $\boldsymbol{a}, \boldsymbol{b}$ 都垂直，且 $\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{a} \times \boldsymbol{b}$ 的方向符合右手法则。
@@ -137,7 +137,7 @@ $$
 
 #### 代数定义
 
-在三维欧氏空间 $\R^3$ 下，定义向量 $\boldsymbol{a} = (x_1, y_1, z_1), \boldsymbol{b} = (x_2, y_2, z_2)$ 的外积为一个向量 $\boldsymbol{c}$，记作 $\boldsymbol{c} = \boldsymbol{a} \times \boldsymbol{b}$，其结果可以使用三阶行列式表示：
+在三维欧氏空间 $\mathbf{R}^3$ 下，定义向量 $\boldsymbol{a} = (x_1, y_1, z_1), \boldsymbol{b} = (x_2, y_2, z_2)$ 的外积为一个向量 $\boldsymbol{c}$，记作 $\boldsymbol{c} = \boldsymbol{a} \times \boldsymbol{b}$，其结果可以使用三阶行列式表示：
 
 $$
 \begin{vmatrix}
@@ -201,7 +201,7 @@ $$
 1.  判定两向量是否共线：
 
 $$
-\exists\lambda \in \R (\boldsymbol{a} = \lambda \boldsymbol{b}) \iff \boldsymbol{a} \times \boldsymbol{b} = \boldsymbol{0}
+\exists\lambda \in \mathbf{R} (\boldsymbol{a} = \lambda \boldsymbol{b}) \iff \boldsymbol{a} \times \boldsymbol{b} = \boldsymbol{0}
 $$
 
 即共线的两个三维向量的外积，结果为 $\boldsymbol 0$；三维向量与自身外积，结果为 $\boldsymbol 0$；三维向量与零向量外积，结果为 $\boldsymbol 0$。若使用外积为零作为两向量共线的定义，则可以得出零向量与任何向量都共线。
