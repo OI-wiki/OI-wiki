@@ -109,7 +109,7 @@ Timsort 的时间复杂度取决于数据的有序性：
     $$
     \begin{array}{ll}
     1 & nRemaining \gets \text{数组长度} \\
-    2 & minRun \gets \text{选择合适的 MIN\textunderscore RUN 的值}(nRemaining) \\
+    2 & minRun \gets \text{选择合适的 MinRun 的值}(nRemaining) \\
     3 & startIndex \gets 0 \\
     4 & \textbf{while } nRemaining > 0 \ \textbf{do} \\
     5 & \qquad runLength \gets \text{识别 Run }(\text{array}, startIndex, nRemaining) \\
