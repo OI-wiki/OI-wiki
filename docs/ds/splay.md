@@ -343,17 +343,9 @@ void del(int k) {
 3.  如果 $fa$ 的两个子节点分别是 $x$ 和 $y$，那么有 $2w(fa) - w(x) - w(y) \geq 2$
 
 ??? note "性质 3 的证明"
-    
-
-    1. 设 $ \text{size}(fa) = z $，$ \text{size}(x) = y $，$ \text{size}(y) = x $，则有 $z = x + y + 1$。
-    2. 因此，  
-      $$
-      2w(fa) - w(x) - w(y) = \log z^2 - \log y - \log x = \log \frac{z^2}{x \cdot y}
-      $$
-    3. 带入 $z = x + y + 1$，可以推导出：  
-      $$
-      \log \frac{(x + y + 1)^2}{x \cdot y} > \log \frac{(x + y)^2}{x \cdot y} \geq \log 4 = 2
-      $$
+    1.  设 $\text{size}(fa) = z$，$\text{size}(x) = y$，$\text{size}(y) = x$，则有 $z = x + y + 1$。
+    2.  因此，$2w(fa) - w(x) - w(y) = \log z^2 - \log y - \log x = \log \frac{z^2}{x \cdot y}$。
+    3.  带入 $z = x + y + 1$，可以推导出：$\log \frac{(x + y + 1)^2}{x \cdot y} > \log \frac{(x + y)^2}{x \cdot y} \geq \log 4 = 2$。
 
 接下来，分别对 **zig**、**zig-zig** 和 **zig-zag** 操作进行势能分析。
 
