@@ -194,6 +194,12 @@ $$
 (\boldsymbol a\times \boldsymbol b) \cdot (\boldsymbol a\times \boldsymbol b) = |\boldsymbol a|^2 |\boldsymbol b|^2-{(\boldsymbol a \cdot \boldsymbol b)}^2
 $$
 
+4.  外积满足 Jacobi 恒等式：
+
+$$
+\boldsymbol a \times (\boldsymbol b \times \boldsymbol c) + \boldsymbol b \times (\boldsymbol c \times \boldsymbol a) + \boldsymbol c \times (\boldsymbol a \times \boldsymbol b) = \boldsymbol 0
+$$
+
 ### 应用
 
 下面介绍外积运算的一些常见应用。
