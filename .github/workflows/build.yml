@@ -82,6 +82,7 @@ jobs:
     name: Update OI-Wiki Feedback System Meta
     needs: build
     runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/master' }}
     steps:
       - name: Checkout latest
         uses: actions/checkout@v4
@@ -92,7 +93,7 @@ jobs:
         with:
           files: docs/**/*.md
           base_sha: ${{ github.event.before }}
-          sha: ${{ github.event.after}}
+          sha: ${{ github.event.after }}
           include_all_old_new_renamed_files: true
           write_output_files: true
       - name: Checkout before
