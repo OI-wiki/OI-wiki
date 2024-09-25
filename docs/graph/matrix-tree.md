@@ -118,12 +118,12 @@ $$
 
 -   首先，所有情形都可以转化为计数有向图上根向树形图的情形；
 -   利用矩阵语言给出选出的若干边可以构成根向树形图的充要条件；
--   将选边的操作利用 Cauchy-Binet 公式和 Laplace 矩阵的行列式联系起来；
+-   将选边的操作利用 Cauchy–Binet 公式和 Laplace 矩阵的行列式联系起来；
 -   最后，将行列式形式的结论转化为特征值形式的结论。
 
-### 引理：Cauchy-Binet 公式
+### 引理：Cauchy–Binet 公式
 
-???+ note "引理 1（Cauchy-Binet）"
+???+ note "引理 1（Cauchy–Binet）"
     给定 $n\times m$ 的矩阵 $A$ 和 $m\times n$ 的矩阵 $B$，则有
 
     $$
@@ -141,7 +141,7 @@ $$
 
     其中，$S_n$ 为 $[n]$ 上的置换群，而 $\mathrm{sgn}(\sigma)$ 为置换 $\sigma$ 的符号（当逆序数为偶数时，它等于 $1$；当逆序数为奇数时，它等于 $-1$）。
 
-    在理解行列式的组合意义后，可以利用如下的组合模型证明 Cauchy-Binet 公式。对于 $n\times m$ 阶矩阵 $A$ 和 $m\times n$ 阶矩阵 $B$，建立有向无环图 $G=(V,E)$。其中，顶点集为 $V=L\cup D\cup R$，这里，$L=\{l_i=(1,i):i\in[n]\}$，$D=\{d_i=(2,i):i\in[m]\}$ 和 $R=\{r_i=(3,i):i\in[n]\}$；而有向边集为 $E=E_L\cup E_R$，其中，$E_L=\{(l_i,d_j):i\in[n],j\in[m]\}$ 和 $E_R=\{(d_j,r_i):j\in[m],i\in[n]\}$，分别赋以边权 $w(l_i,d_j)=A_{i,j}$ 和 $w(d_j,r_i)=B_{j,i}$。同样考虑自 $L$ 经 $D$ 到 $R$ 的路径组（路径间两两不共用顶点），按照权重计数，并用偶数交点的路径组数减去奇数交点的路径组数。下面说明，Cauchy-Binet 公式的左右两侧分别用两种方式计算了这一数目。
+    在理解行列式的组合意义后，可以利用如下的组合模型证明 Cauchy–Binet 公式。对于 $n\times m$ 阶矩阵 $A$ 和 $m\times n$ 阶矩阵 $B$，建立有向无环图 $G=(V,E)$。其中，顶点集为 $V=L\cup D\cup R$，这里，$L=\{l_i=(1,i):i\in[n]\}$，$D=\{d_i=(2,i):i\in[m]\}$ 和 $R=\{r_i=(3,i):i\in[n]\}$；而有向边集为 $E=E_L\cup E_R$，其中，$E_L=\{(l_i,d_j):i\in[n],j\in[m]\}$ 和 $E_R=\{(d_j,r_i):j\in[m],i\in[n]\}$，分别赋以边权 $w(l_i,d_j)=A_{i,j}$ 和 $w(d_j,r_i)=B_{j,i}$。同样考虑自 $L$ 经 $D$ 到 $R$ 的路径组（路径间两两不共用顶点），按照权重计数，并用偶数交点的路径组数减去奇数交点的路径组数。下面说明，Cauchy–Binet 公式的左右两侧分别用两种方式计算了这一数目。
 
     对于左侧，基于上面描述的图 $G$，建立新图 $G'$，其顶点集为 $V'=L\cup R$，边集为 $E'=\{(l_i,r_j):i,j\in[n]\}$，且对于边 $(l_i,r_j)$ 赋以边权 $\sum_{k\in[m]}A_{i,k}B_{k,j}$，即在原图 $G$ 中自 $l_i$ 到 $r_j$ 的简单路径的加权计数。这一边权正是 $(AB)_{i,j}$。这相当于把上述的三层图简化成了两层图。但是，两层图 $G'$ 中的路径组（按权重计）并非和三层图 $G$ 中的路径组一一对应。由于在两层图中，每个路径都对应三层图中若干条简单路径，在对两层图进行路径组的计数时，需要将权重相乘，这相当于对它们对应的三层图中的路径集合两两组合，这必然会造成出现共用中间经停点的情形。但是，这些共用中间经停点的路径对并不会对最后的答案有贡献，因为对于 $i_1< i_2$ 和 $j_1< j_2$ 和任意中间点 $d$，都存在两种简单路径对 $(l_{i_1}\rightarrow d\rightarrow r_{j_1}, l_{i_2}\rightarrow d\rightarrow r_{j_2})$ 和 $(l_{i_1}\rightarrow d\rightarrow r_{j_2}, l_{i_2}\rightarrow d\rightarrow r_{j_1})$，但是这两组路径在三层图中的交点数目奇偶性必然相反，因为如果只看起点和终点，两组路径交换了终点。所以，这些共用中间经停点的路径在简化后的两层图计数时，贡献会两两抵消。对于剩下的情形，如果给定两条路径的起点和终点，那么无论中间的点如何如何选取（只要不选择同一个点），则这两条路径的交点个数的奇偶性不会变。故而，$G'$ 中每一个路径组对应的所有原图 $G$ 中的路径组都具有相同的奇偶性。因而，$\det(AB)$ 提供了前文所述路径组数差值的一种计算方式。
 
@@ -154,7 +154,7 @@ $$
     \mathrm{rank}(AB)\le \min\{\mathrm{rank}(A),\mathrm{rank}(B)\}\le m< n.
     $$
 
-    当 $m=n$ 时，Cauchy-Binet 公式就是，方阵的积的行列式等于方阵的行列式的积。
+    当 $m=n$ 时，Cauchy–Binet 公式就是，方阵的积的行列式等于方阵的行列式的积。
 
     当 $m>n$ 时，注意到
 
@@ -204,7 +204,7 @@ $$
 L^\mathrm{out}(G) = (M^\mathrm{out})^\top (M^\mathrm{out}-M^\mathrm{in}),\ L^\mathrm{in}(G) = (M^\mathrm{out}-M^\mathrm{in})^\top M^\mathrm{in}.
 $$
 
-前文的 Cauchy-Binet 公式表明，Laplace 矩阵的主子式其实是一系列子结构的和。每个子结构都反映了对应的子图的性质。
+前文的 Cauchy–Binet 公式表明，Laplace 矩阵的主子式其实是一系列子结构的和。每个子结构都反映了对应的子图的性质。
 
 ???+ note "引理 2"
     对于 $G$ 的一个子图 $(W,S)$，若它满足 $|W|=|S|\le n$，则子图 $T=(V,S)$ 是一个以 $V\setminus W$ 为根的根向森林，当且仅当对应的算式
@@ -238,7 +238,7 @@ $$
     这里，$\mathcal T^\mathrm{root}(G,k)$ 是 $G$ 的以 $k$ 为根的根向树形图的集合。
 
 ???+ note "证明"
-    记 $W=[n]\setminus\{k\}$ 为除去 $k$ 点外的剩余顶点的集合。那么，根据 Cauchy-Binet 公式，右式可以写作
+    记 $W=[n]\setminus\{k\}$ 为除去 $k$ 点外的剩余顶点的集合。那么，根据 Cauchy–Binet 公式，右式可以写作
 
     $$
     \det L^\mathrm{out}(G)_{W,W} = \sum_{S\in\binom{[m]}{n-1}}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
@@ -286,7 +286,7 @@ $$
     就等于 $G$ 的以 $\{k_1,\cdots,k_r\}$ 为根的根向森林的（带权的）计数。
 
 ??? note "证明"
-    仿照定理 4 的证明，注意到如果令 $W=[n]\setminus\{k_1,\cdots,k_r\}$，那么，定理中的系数就是 $\det L^\mathrm{out}(G)_{W,W}$（这一点不妨直接观察行列式的 Leibniz 展开式）。根据 Cauchy-Binet 公式，它等于
+    仿照定理 4 的证明，注意到如果令 $W=[n]\setminus\{k_1,\cdots,k_r\}$，那么，定理中的系数就是 $\det L^\mathrm{out}(G)_{W,W}$（这一点不妨直接观察行列式的 Leibniz 展开式）。根据 Cauchy–Binet 公式，它等于
 
     $$
     \det L^\mathrm{out}(G)_{W,W} = \sum_{S\in\binom{[m]}{n-r}}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
