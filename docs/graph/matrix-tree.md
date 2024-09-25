@@ -127,7 +127,7 @@ $$
     给定 $n\times m$ 的矩阵 $A$ 和 $m\times n$ 的矩阵 $B$，则有
 
     $$
-    \det(AB)=\sum_{S\in\binom{[m]}{n}}\det A_{[n],S}\det B_{S,[n]},
+    \det(AB)=\sum_{S\subset[m];~|S|=n}\det A_{[n],S}\det B_{S,[n]},
     $$
 
     这里求和记号的含义是，$S$ 取遍所有 $[m]$ 中大小为 $n$ 的子集。如果 $n>m$，必然有 $\det(AB)=0$。
@@ -165,7 +165,7 @@ $$
     又已知结论， $\det(xI_n+C)$ 中 $x^{n-k}$ 的系数是 $C$ 的所有 $k$ 阶主子式的和。故而，比较上式中两侧系数，有
 
     $$
-    \det(AB) = \sum_{S\in\binom{[m]}{n}}\det(BA)_{S,S} = \sum_{S\in\binom{[m]}{n}}\det(B)_{S,[n]}\det(A)_{[n],S} = \sum_{S\in\binom{[m]}{n}}\det(A)_{[n],S}\det(B)_{S,[n]}.
+    \det(AB) = \sum_{S\subset[m];~|S|=n}\det(BA)_{S,S} = \sum_{S\subset[m];~|S|=n}\det(B)_{S,[n]}\det(A)_{[n],S} = \sum_{S\subset[m];~|S|=n}\det(A)_{[n],S}\det(B)_{S,[n]}.
     $$
 
     这里，第二个等号用到了 $m=n$ 的情形的结论。
@@ -195,13 +195,13 @@ $$
 简单计算可知
 
 $$
-D^\mathrm{out}(G) = (M^\mathrm{out})^\top M^\mathrm{out},\ A(G) = (M^\mathrm{out})^\top M^\mathrm{in},\ D^\mathrm{in}(G) = (M^\mathrm{in})^\top M^\mathrm{in}.
+D^\mathrm{out}(G) = (M^\mathrm{out})^T M^\mathrm{out},\ A(G) = (M^\mathrm{out})^T M^\mathrm{in},\ D^\mathrm{in}(G) = (M^\mathrm{in})^T M^\mathrm{in}.
 $$
 
 进而有
 
 $$
-L^\mathrm{out}(G) = (M^\mathrm{out})^\top (M^\mathrm{out}-M^\mathrm{in}),\ L^\mathrm{in}(G) = (M^\mathrm{out}-M^\mathrm{in})^\top M^\mathrm{in}.
+L^\mathrm{out}(G) = (M^\mathrm{out})^T (M^\mathrm{out}-M^\mathrm{in}),\ L^\mathrm{in}(G) = (M^\mathrm{out}-M^\mathrm{in})^T M^\mathrm{in}.
 $$
 
 前文的 Cauchy–Binet 公式表明，Laplace 矩阵的主子式其实是一系列子结构的和。每个子结构都反映了对应的子图的性质。
@@ -241,7 +241,7 @@ $$
     记 $W=[n]\setminus\{k\}$ 为除去 $k$ 点外的剩余顶点的集合。那么，根据 Cauchy–Binet 公式，右式可以写作
 
     $$
-    \det L^\mathrm{out}(G)_{W,W} = \sum_{S\in\binom{[m]}{n-1}}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
+    \det L^\mathrm{out}(G)_{W,W} = \sum_{S\subset[m];~|S|=n-1}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
     $$
 
     遍历所有的 $S$，由引理 2，当且仅当 $T=(V,S)$ 构成一个以 $V\setminus W=\{k\}$ 为根的根向森林时，亦即 $T$ 是一个以 $k$ 为根的根向树形图时，右侧累加一个 $w(T)$。
@@ -289,7 +289,7 @@ $$
     仿照定理 4 的证明，注意到如果令 $W=[n]\setminus\{k_1,\cdots,k_r\}$，那么，定理中的系数就是 $\det L^\mathrm{out}(G)_{W,W}$（这一点不妨直接观察行列式的 Leibniz 展开式）。根据 Cauchy–Binet 公式，它等于
 
     $$
-    \det L^\mathrm{out}(G)_{W,W} = \sum_{S\in\binom{[m]}{n-r}}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
+    \det L^\mathrm{out}(G)_{W,W} = \sum_{S\subset[m];~|S|=n-r}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
     $$
 
     遍历所有的 $S$，由引理 2，当且仅当 $T=(V,S)$ 构成一个以 $V\setminus W=\{k_1,\cdots,k_r\}$ 为根的根向森林时，右侧累加一个 $w(T)$。
@@ -351,7 +351,7 @@ $$
     计算它的任意主子式，有 
 
     $$
-    \det(nI_{n-1}-{\bf 1}{\bf 1}^\top) = n^{n-1}\det(I_{n-1}-n^{-1}{\bf 1}{\bf 1}^\top) = n^{n-1}(1-n^{-1}{\bf 1}^\top{\bf 1}) = n^{n-1}(1-(n-1)/n) = n^{n-2}.
+    \det(nI_{n-1}-{\bf 1}{\bf 1}^T) = n^{n-1}\det(I_{n-1}-n^{-1}{\bf 1}{\bf 1}^T) = n^{n-1}(1-n^{-1}{\bf 1}^T{\bf 1}) = n^{n-1}(1-(n-1)/n) = n^{n-2}.
     $$
 
     应用定理 1 即得到结论。
