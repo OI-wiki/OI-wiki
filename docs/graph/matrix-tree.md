@@ -53,7 +53,7 @@ $$
 L^\mathrm{out}(G) = D^\mathrm{out}(G) - A(G).
 $$
 
-定义入度 Laplace 矩阵 $L^\mathrm{in}$ 为：
+定义入度 Laplace 矩阵 $L^\mathrm{in}$ 为
 
 $$
 L^\mathrm{in}(G) = D^\mathrm{in}(G) - A(G).
@@ -67,7 +67,7 @@ $$
 
 矩阵树定理具有多种形式。
 
-定义 $[n]=\{1,2,\cdots,n\}$，矩阵 $A$ 的子式 $A_{S,T}$ 为选取 $A_{i,j}\pod{i\in S,j\in T}$ 的元素得到的子矩阵。
+定义 $[n]=\{1,2,\cdots,n\}$，矩阵 $A$ 的子矩阵 $A_{S,T}$ 为选取 $A_{i,j}\pod{i\in S,j\in T}$ 的元素得到的子矩阵。
 
 ???+ note "定理 1（矩阵树定理，无向图，行列式形式）"
     对于无向图 $G$ 和任意的 $k$，都有
@@ -117,7 +117,7 @@ $$
 证明的大致思路如下：
 
 -   首先，所有情形都可以转化为计数有向图上根向树形图的情形；
--   利用矩阵语言描述选出的若干边可以构成根向树形图的充要条件；
+-   利用矩阵语言给出选出的若干边可以构成根向树形图的充要条件；
 -   将选边的操作利用 Cauchy-Binet 公式和 Laplace 矩阵的行列式联系起来；
 -   最后，将行列式形式的结论转化为特征值形式的结论。
 
@@ -127,10 +127,10 @@ $$
     给定 $n\times m$ 的矩阵 $A$ 和 $m\times n$ 的矩阵 $B$，则有
 
     $$
-    \det(AB)=\sum_{S\in\binom{[n]}{m}}\det A_{[n],S}\det B_{S,[n]},
+    \det(AB)=\sum_{S\in\binom{[m]}{n}}\det A_{[n],S}\det B_{S,[n]},
     $$
 
-    这里求和记号的含义是，$S$ 取遍所有 $[n]$ 中大小为 $m$ 的子集。如果 $m>n$，必然有 $\det(AB)=0$。
+    这里求和记号的含义是，$S$ 取遍所有 $[m]$ 中大小为 $n$ 的子集。如果 $n>m$，必然有 $\det(AB)=0$。
 
 ??? note "证明（组合视角）"
     参考 [「NOI2021」路径交点](https://loj.ac/p/3533) 的模型，首先考虑行列式的如下组合意义。对于 $n\times n$ 阶矩阵 $C$，建立有向无环图 $G=(V,E)$。其中，顶点集为 $V=[2]\times[n]\subset\mathbb R^2$，亦即平面上的两列点。记左侧一列点为 $L=\{l_i=(1,i):i\in[n]\}$，右侧的一列点为 $R=\{r_i=(2,i):i\in[n]\}$；而有向边集为 $E=\{(l_i,r_j):i,j\in[n]\}$，并赋有边权 $w(l_i,r_j)=C_{i,j}$。在图中，称大小为 $n$ 的边的子集 $E^\sigma\subset E$ 为一个路径组，如果它的起点互不相同，且终点也互不相同。显然，路径组 $E^\sigma$ 和 $[n]$ 上的置换 $\sigma$ 可以一一对应。注意到，如果将一个路径组在平面上画出，这些边之间可能会两两相交，而这些交点的数目（计重数）就等于 $\sigma$ 的逆序数。这是因为边 $(l_i,r_{\sigma(i)})$ 和边 $(l_j,r_{\sigma(j)})$ 相交，当且仅当 $(i-j)(\sigma(i)-\sigma(j))< 0$，即这是一个逆序对。为方便，称对应置换的逆序数的奇偶性，亦即该路径组交点个数的奇偶性，为该路径组的奇偶性。所以，如果将这些路径组按照权重计数，且用偶数交点的路径组数减去奇数交点的路径组数，就会得到行列式的 Leibniz 展开：
@@ -165,7 +165,7 @@ $$
     又已知结论， $\det(xI_n+C)$ 中 $x^{n-k}$ 的系数是 $C$ 的所有 $k$ 阶主子式的和。故而，比较上式中两侧系数，有
 
     $$
-    \det(AB) = \sum_{S\in\binom{[n]}{m}}\det(BA)_{S,S} = \sum_{S\in\binom{[n]}{m}}\det(B)_{S,[n]}\det(A)_{[n],S} = \sum_{S\in\binom{[n]}{m}}\det(A)_{[n],S}\det(B)_{S,[n]}.
+    \det(AB) = \sum_{S\in\binom{[m]}{n}}\det(BA)_{S,S} = \sum_{S\in\binom{[m]}{n}}\det(B)_{S,[n]}\det(A)_{[n],S} = \sum_{S\in\binom{[m]}{n}}\det(A)_{[n],S}\det(B)_{S,[n]}.
     $$
 
     这里，第二个等号用到了 $m=n$ 的情形的结论。
@@ -176,7 +176,7 @@ $$
 
 $$
 M^\mathrm{out}_{ij}=\begin{cases}
-\sqrt{w(e_j)},&\exists u(e_j=(v_i,u)),\\
+\sqrt{w(e_i)},&\exists u(e_i=(v_j,u)),\\
 0,&\textrm{otherwise},
 \end{cases}
 $$
@@ -185,7 +185,7 @@ $$
 
 $$
 M^\mathrm{in}_{ij}=\begin{cases}
-\sqrt{w(e_j)},&\exists u(e_j=(u,v_i)),\\
+\sqrt{w(e_i)},&\exists u(e_i=(u,v_j)),\\
 0,&\textrm{otherwise}.
 \end{cases}
 $$
@@ -213,7 +213,7 @@ $$
     \det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W})
     $$
 
-    不为零。特别地，该式不为零时，必然等于 $\prod_{e\in S}w(e)$，记作 $w(T)$。
+    不为零。而且，该式当不为零时，必然等于 $\prod_{e\in S}w(e)$，记作 $w(T)$。
 
 ??? note "证明"
     不妨设 $w(e)=1$。这是根据行列式的多重线性，每个行列式的每行都可以提取因子 $\sqrt{w(e)}$，这些因子的乘积为 $w(T)$。
@@ -222,7 +222,7 @@ $$
 
     假定前一个因子不为零，则此时子图 $T$ 成为根向森林，当且仅当 $T$ 中没有环。此时，后一项 $\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W})$ 每行中都有一个 $+1$，但可能有一个或零个 $-1$。对于终点也在 $W$ 中的边，如果 $e_i$ 的终点是 $e_j$ 的起点，则将 $e_i$ 对应的行加上 $e_j$ 对应的行，可以消去 $e_i$ 行中的 $-1$。可以想象，此时该行描述的是 $e_i$ 和 $e_j$ 首尾相接的简单路径。如果该行出现了新的 $-1$，那么说明 $e_j$ 的终点也在 $W$ 内，$-1$ 的位置就是 $e_j$ 的终点，于事，可以继续找到以 $e_j$ 的终点为起点的边，再次加到该行上。这样的边总是存在的，因为上一段论述说明，$W$ 中每个点都恰好是 $S$ 中一条边的起点。这一过程一直持续到该行不在出现 $-1$ 为止，相当于不断添加新的边到简单路径 $e_i\rightarrow e_j\rightarrow \cdots\rightarrow e_k$ 中。此时，如果该行只剩下一个 $+1$，那么说明 $e_k$ 的终点不在所选顶点 $W$ 中，过程终止；如果上次加入的边恰巧抵消了现有的 $+1$，即该行只剩下零，那么说明新边 $e_k$ 的终点就是最开始的边 $e_i$ 的起点，即出现了一个环。所以，没有环的充要条件是该一行列式经上述操作可以变形成每行都恰好只有一个 $+1$ 的形式。由于这些 $+1$ 的位置是各行对应边的起点，此时得到的矩阵实际上就是 $\det(M^\mathrm{out}_{S,W})$。
 
-    综上所述，如果 $T$ 不是根向森林，则要么 $\det(M^\mathrm{out}_{S,W})=0$，要么 $\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W})=0$；否则，两者均不为零，且乘积等于 $(\det(M^\mathrm{out}_{S,W}))^2=1$。
+    综上所述，如果 $T$ 不是根向森林，则要么 $\det(M^\mathrm{out}_{S,W})=0$，要么 $\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W})=0$；否则，两者均不为零，且乘积等于 $\left(\det(M^\mathrm{out}_{S,W})\right)^2=1$。
 
 ### 带权有向图的矩阵树定理
 
@@ -241,7 +241,7 @@ $$
     记 $W=[n]\setminus\{k\}$ 为除去 $k$ 点外的剩余顶点的集合。那么，根据 Cauchy-Binet 公式，右式可以写作
 
     $$
-    \det L^\mathrm{out}(G)_{W,W} = \sum_{S\in\binom{[n]}{n-1}}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
+    \det L^\mathrm{out}(G)_{W,W} = \sum_{S\in\binom{[m]}{n-1}}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
     $$
 
     遍历所有的 $S$，由引理 2，当且仅当 $T=(V,S)$ 构成一个以 $V\setminus W=\{k\}$ 为根的根向森林时，亦即 $T$ 是一个以 $k$ 为根的根向树形图时，右侧累加一个 $w(T)$。
@@ -289,7 +289,7 @@ $$
     仿照定理 4 的证明，注意到如果令 $W=[n]\setminus\{k_1,\cdots,k_r\}$，那么，定理中的系数就是 $\det L^\mathrm{out}(G)_{W,W}$（这一点不妨直接观察行列式的 Leibniz 展开式）。根据 Cauchy-Binet 公式，它等于
 
     $$
-    \det L^\mathrm{out}(G)_{W,W} = \sum_{S\in\binom{[n]}{n-r}}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
+    \det L^\mathrm{out}(G)_{W,W} = \sum_{S\in\binom{[m]}{n-r}}\det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W}).
     $$
 
     遍历所有的 $S$，由引理 2，当且仅当 $T=(V,S)$ 构成一个以 $V\setminus W=\{k_1,\cdots,k_r\}$ 为根的根向森林时，右侧累加一个 $w(T)$。
@@ -351,7 +351,7 @@ $$
     计算它的任意主子式，有 
 
     $$
-    \det(nI-{\bf 1}{\bf 1}^\top) = n^{n-1}\det(I-n^{-1}{\bf 1}{\bf 1}^\top) = n^{n-1}(1-n^{-1}{\bf 1}^\top{\bf 1}) = n^{n-1}(1-(n-1)/n) = n^{n-2}.
+    \det(nI_{n-1}-{\bf 1}{\bf 1}^\top) = n^{n-1}\det(I_{n-1}-n^{-1}{\bf 1}{\bf 1}^\top) = n^{n-1}(1-n^{-1}{\bf 1}^\top{\bf 1}) = n^{n-1}(1-(n-1)/n) = n^{n-2}.
     $$
 
     应用定理 1 即得到结论。
@@ -525,10 +525,10 @@ $$
 
 ## 例题
 
-???+ note " 例题 1：[「HEOI2015」小 Z 的房间](https://loj.ac/problem/2122)"
+???+ note "例题 1：[「HEOI2015」小 Z 的房间](https://loj.ac/problem/2122)"
     **解** 矩阵树定理的裸题。将每个空房间看作一个结点，根据输入的信息建图，得到 Laplace 矩阵后，任意删掉 $L$ 的第 $i$ 行第 $i$ 列，求这个子式的行列式即可。求行列式的方法就是高斯消元成上三角阵然后算对角线积。另外本题需要在模 $k$ 的整数子环 $\mathbb{Z}_k$ 上进行高斯消元，采用辗转相除法即可。
 
-???+ note " 例题 2：[「FJOI2007」轮状病毒](https://www.luogu.com.cn/problem/P2144)"
+???+ note "例题 2：[「FJOI2007」轮状病毒](https://www.luogu.com.cn/problem/P2144)"
     **解** 本题的解法很多，这里用矩阵树定理是最直接的解法。当输入为 $n$ 时，容易写出其 $n+1$ 阶的 Laplace 矩阵为：
     
     $$
@@ -612,12 +612,12 @@ $$
 ???+ note "例题 3：「BZOJ3659」WHICH DREAMED IT"
     **解** 本题是 BEST 定理的直接应用，但是要注意，由于题目规定「两种完成任务的方式算作不同当且仅当使用钥匙的顺序不同」，对每个欧拉回路，1 号房间可以沿着任意一条出边出发，从而答案还要乘以 1 号房间的出度。
 
-???+ note " 例题 4：[「联合省选 2020 A」作业题](https://loj.ac/p/3304)"
+???+ note "例题 4：[「联合省选 2020 A」作业题](https://loj.ac/p/3304)"
     **解** 首先需要用莫比乌斯反演转化成计算所有生成树的边权和，因为与本文关系不大所以略去。
     
     将行列式的项写成 $w_ix+1$，最后答案是行列式的一次项系数，因为答案实际上是钦定一条边之后的生成树个数 $\times$ 这条边的边权之和，那么被乘上一次项系数的边就是被钦定的边。此时可以把高于一次的项忽略掉，复杂度 $O(n^3)$。
     
     [「北京省选集训 2019」生成树计数](https://www.luogu.com.cn/problem/P5296) 是较为一般化的情况：计算生成树权值之和的 $k$ 次方之和，用类似方法构造行列式的项即可，具体见洛谷题解。
 
-???+ note " 例题 5：[AGC051D C4](https://atcoder.jp/contests/agc051/tasks/agc051_d)"
+???+ note "例题 5：[AGC051D C4](https://atcoder.jp/contests/agc051/tasks/agc051_d)"
     **解** 无向图欧拉回路计数是 NPC 问题，但这题的图较为简单，确定了 $S-T$ 的边中从 $S$ 指向 $T$ 的有多少条，就可以确定其他三条边的定向方案，然后直接套用 BEST 定理就得到 $O(a+b+c+d)$ 的做法。
