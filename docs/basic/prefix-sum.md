@@ -114,18 +114,18 @@ $$
     
     // Prefix-sum for 3rd dimension.
     for (int i = 1; i <= N1; ++i)
-        for (int j = 1; j <= N2; ++j)
-            for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i][j][k - 1];
+      for (int j = 1; j <= N2; ++j)
+        for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i][j][k - 1];
     
     // Prefix-sum for 2nd dimension.
     for (int i = 1; i <= N1; ++i)
-        for (int j = 1; j <= N2; ++j)
-            for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i][j - 1][k];
+      for (int j = 1; j <= N2; ++j)
+        for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i][j - 1][k];
     
     // Prefix-sum for 1st dimension.
     for (int i = 1; i <= N1; ++i)
-        for (int j = 1; j <= N2; ++j)
-            for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i - 1][j][k];
+      for (int j = 1; j <= N2; ++j)
+        for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i - 1][j][k];
     ```
 
 因为考虑每一个维度的时候，都只遍历了整个数组一遍，这样的算法复杂度是 $O(kN)$ 的，通常可以接受。
@@ -160,14 +160,14 @@ $$
     auto ps = a;
     // Loop over dimensions.
     for (int i = 0; i < n; ++i) {
-        // Loop over i-th dimension.
-        for (int st = 0; st < (1 << n); ++st) {
-            // This condition implies that i-th dimension is 1.
-            if ((st >> i) & 1) {
-                // ps[... 1 ...] += ps[... 0 ...]. (i-th dimension)
-                ps[st] += ps[st ^ (1 << i)];
-            }
+      // Loop over i-th dimension.
+      for (int st = 0; st < (1 << n); ++st) {
+        // This condition implies that i-th dimension is 1.
+        if ((st >> i) & 1) {
+          // ps[... 1 ...] += ps[... 0 ...]. (i-th dimension)
+          ps[st] += ps[st ^ (1 << i)];
         }
+      }
     }
     ```
 
