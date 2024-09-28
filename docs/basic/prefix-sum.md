@@ -88,11 +88,12 @@ $$
     === "C++"
         ```cpp
         int N1, N2, N3;
-        std::cin >> N1 >> N2 >> N3; 
+        std::cin >> N1 >> N2 >> N3;
         std::vector<std::vector<std::vector<int>>> a(
             N1 + 1, std::vector<std::vector<int>>(N2 + 1, std::vector<int>(N3 + 1)));
         // Copy.
         auto ps = a;
+        ```
 
         // Prefix-sum for 3rd dimension.
         for (int i = 1; i <= N1; ++i)
@@ -143,14 +144,14 @@ $$
         auto ps = a;
         // Loop over dimensions.
         for (int i = 0; i < n; ++i) {
-            // Loop over i-th dimension.
-            for (int st = 0; st < (1 << n); ++st) {
-                // This condition implies that i-th dimension is 1.
-                if ((st >> i) & 1) {
-                    // ps[... 1 ...] += ps[... 0 ...]. (i-th dimension)
-                    ps[st] += ps[st ^ (1 << i)];
-                }
+          // Loop over i-th dimension.
+          for (int st = 0; st < (1 << n); ++st) {
+            // This condition implies that i-th dimension is 1.
+            if ((st >> i) & 1) {
+              // ps[... 1 ...] += ps[... 0 ...]. (i-th dimension)
+              ps[st] += ps[st ^ (1 << i)];
             }
+          }
         }
         ```
 
