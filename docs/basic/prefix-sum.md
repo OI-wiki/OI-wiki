@@ -40,35 +40,25 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
 
 ### 二维/多维前缀和
 
-多维前缀和的普通求解方法几乎都是基于容斥原理。
+常见的多维前缀和的求解方法有两种。
 
-???+ note "示例：一维前缀和扩展到二维前缀和"
-    比如我们有这样一个矩阵 $a$，可以视为二维数组：
-    
-    ```text
-    1 2 4 3
-    5 1 2 4
-    6 3 5 9
-    ```
-    
-    我们定义一个矩阵 $\textit{sum}$ 使得 $\textit{sum}_{x,y} = \sum\limits_{i=1}^x \sum\limits_{j=1}^y a_{i,j}$，  
-    那么这个矩阵长这样：
-    
-    ```text
-    1  3  7  10
-    6  9  15 22
-    12 18 29 45
-    ```
-    
-    第一个问题就是递推求 $\textit{sum}$ 的过程，$\textit{sum}_{i,j} = \textit{sum}_{i - 1,j} + \textit{sum}_{i,j - 1} - \textit{sum}_{i - 1,j - 1} + a_{i,j}$。
-    
-    因为同时加了 $\textit{sum}_{i - 1,j}$ 和 $\textit{sum}_{i,j - 1}$，故重复了 $\textit{sum}_{i - 1,j - 1}$，减去。
-    
-    第二个问题就是如何应用，譬如求 $(x_1,y_1) - (x_2,y_2)$ 子矩阵的和。
-    
-    那么，根据类似的思考过程，易得答案为 $\textit{sum}_{x_2,y_2} - \textit{sum}_{x_1 - 1,y_2} - sum_{x_2,y_1 - 1} + sum_{x_1 - 1,y_1 - 1}$。
+#### 基于容斥原理 
 
-#### 例题
+这种方法多用于二维前缀和的情形。给定大小为 $m\times n$ 的二维数组 $A$，要求出其前缀和 $S$。那么，$S$ 同样是大小为 $m\times n$ 的二维数组，且 
+
+$$
+S_{i,j} = \sum_{i'\le i}\sum_{j'\le j}A_{i',j'}.
+$$
+
+类比一维的情形，$S_{i,j}$ 应该可以基于 $S_{i-1,j}$ 或 $S_{i,j-1}$ 计算，从而避免重复计算前面若干项的和。但是，如果基于 $S_{i-1,j}$ 和 $S_{i,j-1}$ 这两项的和进行计算，会导致重复计算 $S_{i-1,j-1}$ 这一重叠部分的前缀和。所以，利用 [容斥原理](../math/combinatorics/inclusion-exclusion-principle.md)，得到如下递推关系：
+
+$$
+S_{i,j} = A_{i,j} + S_{i-1,j} + S_{i,j-1} - S_{i-1,j-1}. 
+$$
+
+实现时，直接遍历 $(i,j)$ 求和即可。
+
+在二维的情形，这一算法的时间复杂度可以简单认为是 $O(mn)$，即与给定数组的大小成线性关系。但是，当维度 $k$ 增大时，由于容斥原理涉及的项数以指数级的速度增长，时间复杂度会成为 $O(2^kN)$，这里 $k$ 是数组维度，而 $N$ 是给定数组大小。因此，该算法不再适用。
 
 ???+ note "[洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)"
     在一个 $n\times m$ 的只包含 $0$ 和 $1$ 的矩阵里找出一个不包含 $0$ 的最大正方形，输出边长。
@@ -84,25 +74,53 @@ C++ 标准库中实现了前缀和函数 [`std::partial_sum`](https://zh.cpprefe
         --8<-- "docs/basic/code/prefix-sum/prefix-sum_2.py"
         ```
 
-### 基于 DP 计算高维前缀和
+#### 逐维前缀和
 
-基于容斥原理来计算高维前缀和的方法，其优点在于形式较为简单，无需特别记忆，但当维数升高时，其复杂度较高。这里介绍一种基于 [DP](../dp/basic.md) 计算高维前缀和的方法。该方法即通常语境中所称的 **高维前缀和**。
-
-设高维空间 $U$ 共有 $D$ 维，需要对 $f[\cdot]$ 求高维前缀和 $\text{sum}[\cdot]$。令 $\text{sum}[i][\text{state}]$ 表示同 $\text{state}$ 后 $D - i$ 维相同的所有点对于 $\text{state}$ 点高维前缀和的贡献。由定义可知 $\text{sum}[0][\text{state}] = f[\text{state}]$，以及 $\text{sum}[\text{state}] = \text{sum}[D][\text{state}]$。
-
-其递推关系为 $\text{sum}[i][\text{state}] = \text{sum}[i - 1][\text{state}] + \text{sum}[i][\text{state}']$，其中 $\text{state}'$ 为第 $i$ 维恰好比 $\text{state}$ 少 $1$ 的点。该方法的复杂度为 $O(D \times |U|)$，其中 $|U|$ 为高维空间 $U$ 的大小。
-
-一种实现的伪代码如下：
+对于一般的情形，给定 $k$ 维数组 $A$，大小为 $N$，同样要求得其前缀和 $S$。这里，
 
 $$
-\begin{array}{ll}
-\textbf{for } state \\
-\qquad sum[state] \gets f[state] \\
-\textbf{for } i \gets 0 \textbf{ to } D \\
-\qquad \textbf{for } state' \textbf{ in } \text{lexicographical order} \\
-\qquad \qquad sum[state] \gets sum[state] + sum[state']
-\end{array}
+S_{i_1,\cdots,i_k} = \sum_{i'_1\le i_1}\cdots\sum_{i'_k\le i_k} A_{i'_1,\cdots,i'_k}.
 $$
+
+从上式可以看出， $k$ 维前缀和就等于 $k$ 次求和。所以，一个显然的算法是，每次只考虑一个维度，固定所有其它维度，然后求若干个一维前缀和，这样对所有 $k$ 个维度分别求和之后，得到的就是 $k$ 维前缀和。
+
+???+ note "三维前缀和的参考实现"
+    === "C++"
+        ```cpp
+        --8<-- "docs/basic/code/prefix-sum/prefix-sum_4.cpp"
+        ```
+
+因为考虑每一个维度的时候，都只遍历了整个数组一遍，这样的算法复杂度是 $O(kN)$ 的，通常可以接受。
+
+#### 特例：子集和 DP 
+
+维度比较大的情形，经常出现在一类叫做 **子集和 (SOS, Sum Over Subsets)** 的问题中。这是高维前缀和的特例。
+
+问题描述如下。考虑大小为 $n$ 的集合的全体子集上面定义的函数 $f$，现在要求出其子集和函数 $g$，它满足
+
+$$
+g(S) = \sum_{T\subseteq S}f(T).
+$$
+
+即 $g(S)$ 等于其所有子集 $T\subseteq S$ 上的函数值 $f(T)$ 的和。
+
+首先，子集和问题可以写成高维前缀和的形式。注意到，子集 $S$ 可以通过状态压缩的思想表示为长度为 $n$ 的 0-1 字符串 $s$。将字符串的每一位都看作是数组下标的一个维度，那么子集的包含关系就等价于下标的大小关系，即
+
+$$
+T\subseteq S \iff \forall i(t_i \le s_i). 
+$$
+
+所以，对子集求和，就是求这个 $n$ 维数组的前缀和。
+
+现在，可以直接使用前文所述的逐维前缀和的方法求得子集和。时间复杂度是 $O(n2^n)$。
+
+???+ note "参考实现"
+    === "C++"
+        ```cpp
+        --8<-- "docs/basic/code/prefix-sum/prefix-sum_5.cpp"
+        ```
+
+子集和的逆操作需要通过 [容斥原理](../math/combinatorics/inclusion-exclusion-principle.md) 进行。子集和问题也是快速莫比乌斯变换的必要步骤之一。
 
 ### 树上前缀和
 
@@ -217,11 +235,6 @@ $$
 -   [HDU 6514 Monitor](https://acm.hdu.edu.cn/showproblem.php?pid=6514)
 -   [洛谷 P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)
 -   [「HNOI2003」激光炸弹](https://www.luogu.com.cn/problem/P2280)
-
-***
-
-基于 DP 计算高维前缀和：
-
 -   [CF 165E Compatible Numbers](https://codeforces.com/contest/165/problem/E)
 -   [CF 383E Vowels](https://codeforces.com/problemset/problem/383/E)
 -   [ARC 100C Or Plus Max](https://atcoder.jp/contests/arc100/tasks/arc100_c)
