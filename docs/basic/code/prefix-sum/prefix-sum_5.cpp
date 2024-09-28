@@ -3,7 +3,7 @@
 
 int main() {
     int n;
-    cin >> n;
+    std::cin >> n;
     std::vector<int> a(1 << n);
     for (int& x: a) std::cin >> x;
 
