@@ -7,7 +7,7 @@ import re
 import requests
 import urllib.parse
 
-API_ENDPOINT = "https://feedback-sys-backend.hikarilan.workers.dev/"
+API_ENDPOINT = "https://feedback-sys.mgt.moe/"
 
 def get_latest_commit_hash():
     return os.popen("git log -1 --pretty=format:%H").read().strip()
