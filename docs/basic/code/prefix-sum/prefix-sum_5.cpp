@@ -1,4 +1,4 @@
-#include<vector>
+#include <vector>
 
 int n;
 std::vector<int> a(1 << n);
