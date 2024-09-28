@@ -21,6 +21,6 @@ int main() {
         }
     }
 
-    for (int x: a) std::cout << x << ' ';
+    for (int x: ps) std::cout << x << ' ';
     return 0;
 }
