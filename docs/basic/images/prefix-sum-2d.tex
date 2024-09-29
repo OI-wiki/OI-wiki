@@ -1,9 +1,10 @@
-\documentclass{standalone}
+\documentclass  {standalone}
 \usepackage{tikz}
 \usetikzlibrary{fit}
 \newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
   baseline=(#1.base)] \node (#1) {#2};}
 \begin{document}
+\scalebox{2.5}{%
 \(
     A = 
     \left(\begin{array}{*4{c}}
@@ -37,5 +38,6 @@
 \tikz[overlay,remember picture] {
   \node[below of=first] {$S_{3,2}$};
   \node[above right of=second] {$S_{2,3}$};
+}%
 }
 \end{document}​
