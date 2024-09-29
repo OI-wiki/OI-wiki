@@ -20,7 +20,7 @@ struct Point {
   bool operator<(const Point p) const {
     return (x == p.x) ? (y < p.y) : (x < p.x);
   }
-} a[N], b[N], zo = {0, 0}, tmp[N];
+} a[N], b[N], zo, tmp[N];
 
 inline short int sgn(double x) {
   return (fabs(x) == 0) ? 0 : ((x > 0) ? 1 : -1);
