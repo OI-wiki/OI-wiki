@@ -113,7 +113,7 @@ $$
 \gcd(a,b) = \sum_{d|\gcd(a,b)}\varphi(d) = \sum_d [d|a][d|b]\varphi(d),
 $$
 
-这里，$[P]$ 只有当命题 $P$ 为真取值为 $1$，否则取 $0$。对上式求和，就可以得到
+其中，$[\cdot]$ 称为 [Iverson 括号](https://mathworld.wolfram.com/IversonBracket.html)，只有当命题 $P$ 为真时 $[P]$ 取值为 $1$，否则取 $0$。对上式求和，就可以得到
 
 $$
 \sum_{i=1}^n\gcd(i,n)=\sum_{d}\sum_{i=1}^n[d|i][d|n]\varphi(d)=\sum_d\left\lfloor\frac{n}{d}\right\rfloor[d|n]\varphi(d)=\sum_{d|n}\left\lfloor\frac{n}{d}\right\rfloor\varphi(d).
