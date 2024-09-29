@@ -39,7 +39,7 @@ jobs:
             wget -O notoserif.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerif-hinted.zip"
             wget -O notoserifcjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKsc-hinted.zip"
             wget -O notosanscjk.zip "https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKsc-hinted.zip"
-            wget "https://mirror.math.princeton.edu/pub/CTAN/fonts/cm-unicode.zip"
+            wget "https://mirror.math.princeton.edu/pub/CTAN/fonts/cm-unicode.zip" --no-check-certificate
             git clone https://github.com/googlefonts/RobotoMono
             unzip notosans.zip -d notosans
             unzip notoserif.zip -d notoserif

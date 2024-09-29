@@ -176,25 +176,29 @@ $$
     
     哪一个对应于 $A-\varepsilon$，哪一个对应于 $A+\varepsilon$，可以通过 $n$ 的奇偶性或通过将它们作为无理数进行比较来确定。
     
-        # check if a < b assuming that a[-1] = b[-1] = infty and a != b
-        def less(a, b):
-            a = [(-1)**i*a[i] for i in range(len(a))]
-            b = [(-1)**i*b[i] for i in range(len(b))]
-            return a < b
+    ```python
+    # check if a < b assuming that a[-1] = b[-1] = infty and a != b
+    def less(a, b):
+        a = [(-1) ** i * a[i] for i in range(len(a))]
+        b = [(-1) ** i * b[i] for i in range(len(b))]
+        return a < b
     
-        # [a0; a1, ..., ak] -> [a0, a1, ..., ak-1, 1]
-        def expand(a):
-            if a: # empty a = inf
-                a[-1] -= 1
-                a.append(1)
-            return a
     
-        # return a-eps, a+eps
-        def pm_eps(a):
-            b = expand(a.copy())
-            a.append(float('inf'))
-            b.append(float('inf'))
-            return (a, b) if less(a, b) else (b, a)
+    # [a0; a1, ..., ak] -> [a0, a1, ..., ak-1, 1]
+    def expand(a):
+        if a:  # empty a = inf
+            a[-1] -= 1
+            a.append(1)
+        return a
+    
+    
+    # return a-eps, a+eps
+    def pm_eps(a):
+        b = expand(a.copy())
+        a.append(float("inf"))
+        b.append(float("inf"))
+        return (a, b) if less(a, b) else (b, a)
+    ```
 
 ??? 例题 "最佳内点"
     对于 $\frac{0}{1} \leq \frac{p_0}{q_0} < \frac{p_1}{q_1} \leq \frac{1}{0}$，找到有理数 $\frac{p}{q}$ 使得 $(q; p)$ 在字典序最小，并且 $\frac{p_0}{q_0} < \frac{p}{q} < \frac{p_1}{q_1}$。
@@ -206,19 +210,21 @@ $$
     
     对于有理数 $r_0$ 和 $r_1$，其中之一可能是 LCA 本身，这需要对其进行讨论。为了简化有理数 $r_0$ 和 $r_1$ 的解决方案，可以使用前面问题中导出的 $r_0 + \varepsilon$ 和 $r_1 - \varepsilon$ 的连分数表示。
     
-        # finds lexicographically smallest (q, p)
-        # such that p0/q0 < p/q < p1/q1
-        def middle(p0, q0, p1, q1):
-            a0 = pm_eps(fraction(p0, q0))[1]
-            a1 = pm_eps(fraction(p1, q1))[0]
-            a = []
-            for i in range(min(len(a0), len(a1))):
-                a.append(min(a0[i], a1[i]))
-                if a0[i] != a1[i]:
-                    break
-            a[-1] += 1
-            p, q = convergents(a)
-            return p[-1], q[-1]
+    ```python
+    # finds lexicographically smallest (q, p)
+    # such that p0/q0 < p/q < p1/q1
+    def middle(p0, q0, p1, q1):
+        a0 = pm_eps(fraction(p0, q0))[1]
+        a1 = pm_eps(fraction(p1, q1))[0]
+        a = []
+        for i in range(min(len(a0), len(a1))):
+            a.append(min(a0[i], a1[i]))
+            if a0[i] != a1[i]:
+                break
+        a[-1] += 1
+        p, q = convergents(a)
+        return p[-1], q[-1]
+    ```
 
 ??? 例题 "[GCJ 2019, Round 2 - New Elements: Part 2](https://codingcompetitions.withgoogle.com/codejam/round/0000000000051679/0000000000146184)"
     您得到 $N$ 个正整数对 $(C_i, J_i)$。您需要找到一个正整数对 $(x, y)$，这样 $C_i x + J_i y$ 就是一个严格递增的序列。
@@ -239,32 +245,33 @@ $$
     
     现在的问题是，给定 $\frac{p_0}{q_0} < \frac{p_1}{q_1}$，找到一个分数 $\frac{p}{q}$ 使得 $(q;p)$ 在字典上最小，并且 $\frac{p_0}{q_0} < \frac{p}{q} < \frac{p_1}{q_1}$。
     
-        def solve():
-            n = int(input())
-            C = [0] * n
-            J = [0] * n
-            # p0/q0 < y/x < p1/q1
-            p0, q0 = 0, 1
-            p1, q1 = 1, 0
-            fail = False
-            for i in range(n):
-                C[i], J[i] = map(int, input().split())
-                if i > 0:
-                    A = C[i] - C[i - 1]
-                    B = J[i] - J[i - 1]
-                    if A <= 0 and B <= 0:
-                        fail = True
-                    elif B > 0 and A < 0:  # y/x > (-A)/B if B > 0
-                        if (-A) * q0 > p0 * B:
-                            p0, q0 = -A, B
-                    elif B < 0 and A > 0:  # y/x < A/(-B) if B < 0
-                        if A * q1 < p1 * (-B):
-                            p1, q1 = A, -B
-            if p0 * q1 >= p1 * q0 or fail:
-                return "IMPOSSIBLE"
-    
-            p, q = middle(p0, q0, p1, q1)
-            return str(q) + " " + str(p)
+    ```python
+    def solve():
+        n = int(input())
+        C = [0] * n
+        J = [0] * n
+        # p0/q0 < y/x < p1/q1
+        p0, q0 = 0, 1
+        p1, q1 = 1, 0
+        fail = False
+        for i in range(n):
+            C[i], J[i] = map(int, input().split())
+            if i > 0:
+                A = C[i] - C[i - 1]
+                B = J[i] - J[i - 1]
+                if A <= 0 and B <= 0:
+                    fail = True
+                elif B > 0 and A < 0:  # y/x > (-A)/B if B > 0
+                    if (-A) * q0 > p0 * B:
+                        p0, q0 = -A, B
+                elif B < 0 and A > 0:  # y/x < A/(-B) if B < 0
+                    if A * q1 < p1 * (-B):
+                        p1, q1 = A, -B
+        if p0 * q1 >= p1 * q0 or fail:
+            return "IMPOSSIBLE"
+        p, q = middle(p0, q0, p1, q1)
+        return str(q) + " " + str(p)
+    ```
 
 ### Calkin–Wilf 树
 
