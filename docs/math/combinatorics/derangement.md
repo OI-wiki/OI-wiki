@@ -73,10 +73,13 @@ $$
 
 ### 其他关系
 
-错位排列数有一个向下取整的简单表达式，增长速度与阶乘仅相差常数：
+错位排列数有一个简单的取整表达式，增长速度与阶乘仅相差常数：
 
 $$
-D_n=\left\lfloor\frac{n!}{\mathrm{e}}\right\rfloor
+D_n=\begin{cases}
+    \left\lceil\frac{n!}{\mathrm{e}}\right\rceil, & \text{if }n\text{ is even}, \\
+    \left\lfloor\frac{n!}{\mathrm{e}}\right\rfloor,            & \text{if }n\text{ is odd}.
+\end{cases}
 $$
 
 随着元素数量的增加，形成错位排列的概率 P 接近：

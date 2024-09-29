@@ -45,10 +45,9 @@ jobs:
           pipenv run mkdocs build -v
       - name: Post-process HTML
         # https://github.com/TypeStrong/ts-node/issues/1997
-        run: node --loader ts-node/esm scripts/post-build/html-postprocess.ts commits-info math external-links inject-feedback-sys-frontend
+        run: node --loader ts-node/esm scripts/post-build/html-postprocess.ts commits-info math external-links
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ADMINISTRATOR_SECRET: ${{ secrets.FEEDBACK_SYS_ADMINISTRATOR_SECRET }}
           NODE_OPTIONS: --max_old_space_size=3072
       - name: Minify html
         run: ./scripts/post-build/minify-html/minify-html.sh
@@ -78,3 +77,40 @@ jobs:
           SITE: oi-wiki.org
           BAIDU_TOKEN: ${{ secrets.BaiduToken }}
         run: ./scripts/post-deploy/baidu-push.sh
+
+  update_feedback_sys_meta:
+    name: Update OI-Wiki Feedback System Meta
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/master' }}
+    steps:
+      - name: Checkout latest
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get changed files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: docs/**/*.md
+          base_sha: ${{ github.event.before }}
+          sha: ${{ github.event.after }}
+          include_all_old_new_renamed_files: true
+          write_output_files: true
+      - name: Checkout before
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.before }}
+          path: before
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+            python-version: '3.10'
+      - name: Install Python dependencies
+        run: |
+          curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
+          pipenv install
+      - name: Update meta
+        run: |
+          pipenv run python scripts/update-feedback-sys-meta.py --modified .github/outputs/modified_files.txt --renamed .github/outputs/all_old_new_renamed_files.txt --before_dir before
+        env:
+          ADMINISTRATOR_SECRET: ${{ secrets.FEEDBACK_SYS_ADMINISTRATOR_SECRET }}

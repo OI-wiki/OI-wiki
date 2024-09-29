@@ -98,7 +98,7 @@ author: accelsao, StudyingFather, t4rf9, wlbksy, yuhuoji
 
 **最大权最大匹配** 允许负边权 $(w(e)<0)$，但是 **最大权匹配** 不会有负边权。
 
-若一张图 $G$ 其所有的边皆为负权，则其 **最大权匹配**  $M=\emptyset$。
+若一张图 $G$ 其所有的边皆为负权，则其 **最大权匹配**  $M=\varnothing$。
 
 #### 调整边的权重
 

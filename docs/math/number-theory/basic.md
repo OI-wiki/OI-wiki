@@ -188,7 +188,7 @@ $p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明�
 -   线性运算：若 $a,b,c,d\in\mathbf{Z},m\in\mathbf{N}^*,a\equiv b\pmod m,c\equiv d\pmod m$ 则有：
     -   $a\pm c\equiv b\pm d\pmod m$。
     -   $a\times c\equiv b\times d\pmod m$。
--   设 $f(x)=\sum_{i=0}^n a_ix^i$ 和 $g(x)=\sum_{i=0}^n b_ix^i$ 是两个整系数多项式，$m\in\mathbf{N}^*$，则对任意整数 $x$ 均有 $f(x)\equiv g(x)\pmod m$。进而若 $a_i\equiv b_i\pmod m,~0\leq i\leq n$，那么若 $s\equiv t\pmod m$，则 $f(s)\equiv g(t)\pmod m$。
+-   设 $f(x)=\sum_{i=0}^n a_ix^i$ 和 $g(x)=\sum_{i=0}^n b_ix^i$ 是两个整系数多项式，$m\in\mathbf{N}^*$，且 $a_i\equiv b_i\pmod m,~0\leq i\leq n$，则对任意整数 $x$ 均有 $f(x)\equiv g(x)\pmod m$。进而若 $s\equiv t\pmod m$，则 $f(s)\equiv g(t)\pmod m$。
 -   若 $a,b\in\mathbf{Z},k,m\in\mathbf{N}^*,a\equiv b\pmod m$, 则 $ak\equiv bk\pmod{mk}$。
 -   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid a,d\mid b,d\mid m$，则当 $a\equiv b\pmod m$ 成立时，有 $\dfrac{a}{d}\equiv\dfrac{b}{d}\left(\bmod\;{\dfrac{m}{d}}\right)$。
 -   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid m$，则当 $a\equiv b\pmod m$ 成立时，有 $a\equiv b\pmod d$。
