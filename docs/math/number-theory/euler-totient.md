@@ -65,14 +65,14 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
         #include <cmath>
         
         int euler_phi(int n) {
-        int ans = n;
-        for (int i = 2; i * i <= n; i++)
+          int ans = n;
+          for (int i = 2; i * i <= n; i++)
             if (n % i == 0) {
-            ans = ans / i * (i - 1);
-            while (n % i == 0) n /= i;
+              ans = ans / i * (i - 1);
+              while (n % i == 0) n /= i;
             }
-        if (n > 1) ans = ans / n * (n - 1);
-        return ans;
+          if (n > 1) ans = ans / n * (n - 1);
+          return ans;
         }
         ```
 
@@ -99,15 +99,15 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 
 ## 应用
 
-欧拉函数常常用于化简一列最大公约数的和。国内有些文章称它为 **欧拉反演** [^1]。
+欧拉函数常常用于化简一列最大公约数的和。国内有些文章称它为 **欧拉反演**[^1]。
 
-在结论 
+在结论
 
 $$
 n=\sum_{d|n}\varphi(d)
 $$
 
-中代入 $n=\gcd(a,b)$，则有 
+中代入 $n=\gcd(a,b)$，则有
 
 $$
 \gcd(a,b) = \sum_{d|\gcd(a,b)}\varphi(d) = \sum_d [d|a][d|b]\varphi(d),
@@ -125,15 +125,18 @@ $$
 
 ???+ note "[GCD SUM](https://www.luogu.com.cn/problem/P2398)"
     给定 $n\le 100000$，求
+    
     $$
     \sum_{i=1}^n\sum_{j=1}^n\gcd(i,j).
     $$
     
     ??? note "思路"
         仿照上文的推导，可以得出
+        
         $$
         \sum_{i=1}^n\sum_{j=1}^n\gcd(i,j) = \sum_{d=1}^n\left\lfloor\frac{n}{d}\right\rfloor^2\varphi(d).
         $$
+        
         此时需要从 $1$ 遍历到 $n$ 求欧拉函数，用线性筛做就可以 $O(N)$ 得到答案。
 
 ## 欧拉定理
