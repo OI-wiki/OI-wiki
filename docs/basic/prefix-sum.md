@@ -103,29 +103,9 @@ $$
 
 从上式可以看出，$k$ 维前缀和就等于 $k$ 次求和。所以，一个显然的算法是，每次只考虑一个维度，固定所有其它维度，然后求若干个一维前缀和，这样对所有 $k$ 个维度分别求和之后，得到的就是 $k$ 维前缀和。
 
-??? note "三维前缀和的参考实现"
+???+ note "三维前缀和的参考实现"
     ```cpp
-    int N1, N2, N3;
-    std::cin >> N1 >> N2 >> N3;
-    std::vector<std::vector<std::vector<int>>> a(
-        N1 + 1, std::vector<std::vector<int>>(N2 + 1, std::vector<int>(N3 + 1)));
-    // Copy.
-    auto ps = a;
-    
-    // Prefix-sum for 3rd dimension.
-    for (int i = 1; i <= N1; ++i)
-      for (int j = 1; j <= N2; ++j)
-        for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i][j][k - 1];
-    
-    // Prefix-sum for 2nd dimension.
-    for (int i = 1; i <= N1; ++i)
-      for (int j = 1; j <= N2; ++j)
-        for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i][j - 1][k];
-    
-    // Prefix-sum for 1st dimension.
-    for (int i = 1; i <= N1; ++i)
-      for (int j = 1; j <= N2; ++j)
-        for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i - 1][j][k];
+    --8<-- "docs/basic/code/prefix-sum/prefix-sum_4.cpp"
     ```
 
 因为考虑每一个维度的时候，都只遍历了整个数组一遍，这样的算法复杂度是 $O(kN)$ 的，通常可以接受。
@@ -152,23 +132,9 @@ $$
 
 现在，可以直接使用前文所述的逐维前缀和的方法求得子集和。时间复杂度是 $O(n2^n)$。
 
-??? note "参考实现"
+???+ note "参考实现"
     ```cpp
-    int n;
-    std::vector<int> a(1 << n);
-    // Copy.
-    auto ps = a;
-    // Loop over dimensions.
-    for (int i = 0; i < n; ++i) {
-      // Loop over i-th dimension.
-      for (int st = 0; st < (1 << n); ++st) {
-        // This condition implies that i-th dimension is 1.
-        if ((st >> i) & 1) {
-          // ps[... 1 ...] += ps[... 0 ...]. (i-th dimension)
-          ps[st] += ps[st ^ (1 << i)];
-        }
-      }
-    }
+    --8<-- "docs/basic/code/prefix-sum/prefix-sum_5.cpp"
     ```
 
 子集和的逆操作需要通过 [容斥原理](../math/combinatorics/inclusion-exclusion-principle.md) 进行。子集和问题也是快速莫比乌斯变换的必要步骤之一。
