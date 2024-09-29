@@ -136,6 +136,7 @@ $$
         $$
         \sum_{i=1}^n\sum_{j=1}^n\gcd(i,j) = \sum_{d=1}^n\left\lfloor\frac{n}{d}\right\rfloor^2\varphi(d).
         $$
+        
         此时需要从 $1$ 遍历到 $n$ 求欧拉函数，用线性筛做就可以 $O(n)$ 得到答案。
 
 ## 欧拉定理
