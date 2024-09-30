@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using u32 = uint32_t;
 using i64 = int64_t;
 using isz = ptrdiff_t;
 using usz = size_t;
@@ -48,7 +49,7 @@ vector<Point<T>> minkowski_sum(vector<Point<T>> a, vector<Point<T>> b) {
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
-  uint32_t n, m, q;
+  u32 n, m, q;
   vector<Point<i64>> a, b;
   cin >> n >> m >> q;
   a.resize(n), b.resize(m);
