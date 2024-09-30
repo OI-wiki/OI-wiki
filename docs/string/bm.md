@@ -326,7 +326,7 @@ $$
 
 ### 引入
 
-在*Communications of the ACM*上 1977 年 10 月的 Boyer、Moor 的论文[^bm]中只描述了 $delta_2$ 静态表，
+在 1977 年 10 月的 *Communications of the ACM*上， Boyer、Moor 的论文[^bm]中只描述了 $delta_2$ 静态表，
 
 构造 $delta_2$ 的具体实现的讨论出现在 1977 年 6 月 Knuth、Morris、Pratt 在*SIAM Journal on Computing*上正式联合发表的 KMP 算法的论文[^kmp]。
 
@@ -971,11 +971,11 @@ Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来�
 
 以下是一般字符集下各算法的表现，纵坐标类似于执行开销（cost 指匹配成功 m 个字符后失配时的代价，skip 指发生失配时向下滑动 k 个字符的概率），越小性能越好。横坐标为模式字符串 pat 的长度：
 
-<img src="../images/BM/plot256.svg" style="zoom: 200%;" />
+![字符串搜索算法性能对比图](../images/BM/plot256.svg "字符串搜索算法性能对比图")
 
 在较小字符集（DNA {A, C, T, G} 碱基对序列）中的表现：
 
-<img src="../images/BM/plot4.svg" style="zoom:200%;" />
+![小字符集下字符串搜索算法性能对比图](../images/BM/plot4.svg "小字符集下字符串搜索算法性能对比图")
 
 综上，在较大的字符集，比如日常搜索的过程中，BoyerMoore 系列算法的优越表现，其中主要依赖 $delta_1$ 表实现字符跳转；
 
