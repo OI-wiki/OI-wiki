@@ -1,6 +1,6 @@
 author: minghu6
 
-*本章节内容需要以 [《前缀函数与 KMP 算法》](./kmp.md) 作为前置章节。*
+前置知识：[前缀函数与 KMP 算法](./kmp.md)。
 
 KMP 算法将前缀匹配的信息用到了极致，
 
@@ -322,7 +322,7 @@ $$
 
 经过改进，比起原算法，在做 **观察 1** 跳转时不必每次进行 $delta_2$ 的多余计算，使得在通常字符集下搜索字符串的性能有了明显的提升。
 
-## $delta_2$ 构建细节
+## delta2 构建细节
 
 ### 引入
 
@@ -330,7 +330,7 @@ $$
 
 构造 $delta_2$ 的具体实现的讨论出现在 1977 年 6 月 Knuth、Morris、Pratt 在*SIAM Journal on Computing*上正式联合发表的 KMP 算法的论文[^kmp]。
 
-### 时间复杂度为 $O(n^3)$ 的构建 $delta_2$ 的朴素算法
+### 朴素算法
 
 在介绍 Knuth 的 $delta_2$ 构建算法之前，根据定义，我们会有一个适用于小规模问题的朴素算法：
 
@@ -390,7 +390,7 @@ $$
 
 显然，该暴力算法的时间复杂度为 $O(n^3)$。
 
-### 时间复杂度为 $O(n)$ 的构建 $delta_2$ 的高效算法
+### 高效算法
 
 下面我们要介绍的是时间复杂度为 $O(n)$，但是需要额外 $O(n)$ 空间复杂度的高效算法。
 
@@ -474,73 +474,75 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
 
 同前缀函数一样，需要一个辅助数组，用于回退，可以使用之前计算第二种情况所生成的前缀数组的空间。
 
-#### 上述实现
+### 实现
 
-```rust
-use std::cmp::PartialEq;
-use std::cmp::min;
-
-pub fn build_delta_2_table_improved_minghu6(p: &[impl PartialEq]) -> Vec<usize> {
-    let patlen = p.len();
-    let lastpos = patlen - 1;
-    let mut delta_2 = Vec::with_capacity(patlen);
-
-    // 第一种情况
-    // delta_2[j] = lastpos * 2 - j
-    for i in 0..patlen {
-        delta_2.push(lastpos * 2 - i);
+??? note "上述实现"
+    ```rust
+    use std::cmp::PartialEq;
+    use std::cmp::min;
+    
+    pub fn build_delta_2_table_improved_minghu6(p: &[impl PartialEq]) -> Vec<usize> {
+        let patlen = p.len();
+        let lastpos = patlen - 1;
+        let mut delta_2 = Vec::with_capacity(patlen);
+    
+        // 第一种情况
+        // delta_2[j] = lastpos * 2 - j
+        for i in 0..patlen {
+            delta_2.push(lastpos * 2 - i);
+        }
+    
+        // 第二种情况
+        // lastpos <= delata2[j] = lastpos * 2 - j
+        let pi = compute_pi(p);  // 计算前缀函数
+        let mut i = lastpos;
+        let mut last_i = lastpos; // 只是为了初始化
+        while pi[i] > 0 {
+            let start;
+            let end;
+    
+            if i == lastpos {
+                start = 0;
+            } else {
+                start = patlen - pi[last_i];
+            }
+    
+            end = patlen - pi[i];
+    
+            for j in start..end {
+                delta_2[j] = lastpos * 2 - j - pi[i];
+            }
+    
+            last_i = i;
+            i = pi[i] - 1;
+        }
+    
+        // 第三种情况
+        // delata2[j] < lastpos
+        let mut j = lastpos;
+        let mut t = patlen;
+        let mut f = pi;
+        loop {
+            f[j] = t;
+            while t < patlen && p[j] != p[t] {
+                // 使用min函数保证后面可能的回退不会覆盖前面的数据
+                delta_2[t] = min(delta_2[t], lastpos - 1 - j);
+                t = f[t];
+            }
+    
+            t -= 1;
+            if j == 0 {
+                break;
+            }
+            j -= 1;
+        }
+    
+        // 没有实际意义，只是为了完整定义
+        delta_2[lastpos] = 0;
+    
+        delta_2
     }
-
-    // 第二种情况
-    // lastpos <= delata2[j] = lastpos * 2 - j
-    let pi = compute_pi(p);  // 计算前缀函数
-    let mut i = lastpos;
-    let mut last_i = lastpos; // 只是为了初始化
-    while pi[i] > 0 {
-        let start;
-        let end;
-
-        if i == lastpos {
-            start = 0;
-        } else {
-            start = patlen - pi[last_i];
-        }
-
-        end = patlen - pi[i];
-
-        for j in start..end {
-            delta_2[j] = lastpos * 2 - j - pi[i];
-        }
-
-        last_i = i;
-        i = pi[i] - 1;
-    }
-
-    // 第三种情况
-    // delata2[j] < lastpos
-    let mut j = lastpos;
-    let mut t = patlen;
-    let mut f = pi;
-    loop {
-        f[j] = t;
-        while t < patlen && p[j] != p[t] {
-            delta_2[t] = min(delta_2[t], lastpos - 1 - j);  // 使用min函数保证后面可能的回退不会覆盖前面的数据
-            t = f[t];
-        }
-
-        t -= 1;
-        if j == 0 {
-            break;
-        }
-        j -= 1;
-    }
-
-    // 没有实际意义，只是为了完整定义
-    delta_2[lastpos] = 0;
-
-    delta_2
-}
-```
+    ```
 
 ## Galil 规则对多次匹配时最坏情况的改善
 
@@ -574,79 +576,78 @@ $pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周�
 
 而最长相等的前后缀长度，$\pi[patlastpos]$，已经在我们在计算 $delta_2$ 的过程中，所以实际不需要额外的预处理时间和空间，就能将后缀匹配算法最坏情况的时间复杂度改善成线性。
 
-### 结合上述优化的 BM 的搜索算法最终实现
-
-```rust
-#[cfg(target_pointer_width = "64")]
-const LARGE: usize = 10_000_000_000_000_000_000;
-
-#[cfg(not(target_pointer_width = "64"))]
-const LARGE: usize = 2_000_000_000;
-
-pub struct BMPattern<'a> {
-    pat_bytes: &'a [u8],
-    delta_1: [usize; 256],
-    delta_2: Vec<usize>,
-    k: usize  // pat的最短周期长度
-}
-
-impl<'a> BMPattern<'a> {
-    // ...
-
-    pub fn find_all(&self, string: &str) -> Vec<usize> {
-        let mut result = vec![];
-        let string_bytes = string.as_bytes();
-        let stringlen = string_bytes.len();
-        let patlen = self.pat_bytes.len();
-        let pat_last_pos = patlen - 1;
-        let mut string_index = pat_last_pos;
-        let mut pat_index;
-        let l0 =  patlen - self.k;
-        let mut l = 0;
-
-        while string_index < stringlen {
-            let old_string_index = string_index;
-
-            while string_index < stringlen {
-                string_index += self.delta0(string_bytes[string_index]);
-            }
-            if string_index < LARGE {
-                break;
-            }
-
-            string_index -= LARGE;
-
-            // 如果string_index发生移动，意味着自从上次成功匹配后发生了至少一次的失败匹配。
-            // 此时需要将Galil规则的二次匹配的偏移量归零。
-            if old_string_index < string_index {
-                l = 0;
-            }
-
-            pat_index = pat_last_pos;
-
-            while pat_index > l && string_bytes[string_index] == self.pat_bytes[pat_index] {
-                string_index -= 1;
-                pat_index -= 1;
-            }
-
-            if pat_index == l && string_bytes[string_index] == self.pat_bytes[pat_index] {
-                result.push(string_index - l);
-
-                string_index += pat_last_pos - l + self.k;
-                l = l0;
-            } else {
-                l = 0;
-                string_index += max(
-                    self.delta_1[string_bytes[string_index] as usize],
-                    self.delta_2[pat_index],
-                );
-            }
-        }
-
-        result
+??? note "结合上述优化的 BM 的搜索算法最终实现"
+    ```rust
+    #[cfg(target_pointer_width = "64")]
+    const LARGE: usize = 10_000_000_000_000_000_000;
+    
+    #[cfg(not(target_pointer_width = "64"))]
+    const LARGE: usize = 2_000_000_000;
+    
+    pub struct BMPattern<'a> {
+        pat_bytes: &'a [u8],
+        delta_1: [usize; 256],
+        delta_2: Vec<usize>,
+        k: usize  // pat的最短周期长度
     }
-}
-```
+    
+    impl<'a> BMPattern<'a> {
+        // ...
+    
+        pub fn find_all(&self, string: &str) -> Vec<usize> {
+            let mut result = vec![];
+            let string_bytes = string.as_bytes();
+            let stringlen = string_bytes.len();
+            let patlen = self.pat_bytes.len();
+            let pat_last_pos = patlen - 1;
+            let mut string_index = pat_last_pos;
+            let mut pat_index;
+            let l0 =  patlen - self.k;
+            let mut l = 0;
+    
+            while string_index < stringlen {
+                let old_string_index = string_index;
+    
+                while string_index < stringlen {
+                    string_index += self.delta0(string_bytes[string_index]);
+                }
+                if string_index < LARGE {
+                    break;
+                }
+    
+                string_index -= LARGE;
+    
+                // 如果string_index发生移动，意味着自从上次成功匹配后发生了至少一次的失败匹配。
+                // 此时需要将Galil规则的二次匹配的偏移量归零。
+                if old_string_index < string_index {
+                    l = 0;
+                }
+    
+                pat_index = pat_last_pos;
+    
+                while pat_index > l && string_bytes[string_index] == self.pat_bytes[pat_index] {
+                    string_index -= 1;
+                    pat_index -= 1;
+                }
+    
+                if pat_index == l && string_bytes[string_index] == self.pat_bytes[pat_index] {
+                    result.push(string_index - l);
+    
+                    string_index += pat_last_pos - l + self.k;
+                    l = l0;
+                } else {
+                    l = 0;
+                    string_index += max(
+                        self.delta_1[string_bytes[string_index] as usize],
+                        self.delta_2[pat_index],
+                    );
+                }
+            }
+    
+            result
+        }
+    }
+    ```
 
 ### 最坏情况在实践中性能影响
 
@@ -850,13 +851,13 @@ B5S 基本思路是：
     pub struct BytesBloomFilter {
         mask: u64,
     }
-    ```
     
-    impl BytesBloomFilter {pub fn new() -> Self {
-    SimpleBloomFilter {
-    mask: 0,
-    }
-    }
+    impl BytesBloomFilter {
+        pub fn new() -> Self {
+            SimpleBloomFilter {
+                mask: 0,
+            }
+        }
     
         fn insert(&mut self, byte: &u8) {
             (self.mask) |= 1u64 << (byte & 63);
@@ -865,10 +866,7 @@ B5S 基本思路是：
         fn contains(&self, char: &u8) -> bool {
             (self.mask & (1u64 << (byte & 63))) != 0
         }
-    
     }
-    
-    ```
     ```
 
 Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来极大地节省存储空间的 `Set` 类型的数据结构，它的特点是会将集合中不存在的项误判为存在（False Positives，简称 FP），但不会把集合中存在的项判断为不存在（False Negatives，简称 FN），因此使用它可能会因为 FP 而没有得到最大的字符跳转，但不会因为 FN 而跳过本应匹配的字符。
@@ -881,7 +879,7 @@ Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来�
 
 另外当 pat 在 30 字节以下时，为了达到最佳的 FP 概率，需要不止一个哈希函数。但这么做意义不大，因为用装有两个 `u128` 数字的数组就已经可以构建字符表的全字符集。
 
-##### 使用 $delta_1(pat[patlastpos])$ 代替整个 $delta_1$
+##### 使用 delta1(pat[patlastpos]) 代替整个 delta1
 
 观察 $delta_1$，最常使用处就是后缀匹配时第一个字符就不匹配是最常见的不匹配的情况，于是令 `skip = delta1(pat[patlastpos])`，
 
@@ -983,7 +981,7 @@ Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来�
 
 如果有一定富裕空间的情况下，完整的空间复杂度为 $O(m)$ 的 BoyerMoore 算法更加通用，综合表现最优。
 
-## 引用
+## 参考资料与注释
 
 [^bm]: [1977 年 Boyer–Moore 算法论文](https://dl.acm.org/doi/10.1145/359842.359859)
 
