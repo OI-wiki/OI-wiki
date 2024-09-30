@@ -35,7 +35,7 @@ jobs:
       - name: Install Python dependencies
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
-          curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
+          pip install pipenv
           pipenv install
       - name: Install C++
         if: steps.changed-files.outputs.any_changed == 'true'
