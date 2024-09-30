@@ -53,4 +53,4 @@ for LIBPATH in "${APT_PREFIX_LD_LIBRARY_PATHS[@]}"; do export LD_LIBRARY_PATH="$
 for BINPATH in "${APT_PREFIX_PATHS[@]}"; do export PATH="$PATH:$APT_PREFIX$BINPATH"; done
 
 # Install Pipenv
-"python$PYTHON_VERSION" install pipenv
+pip install pipenv
