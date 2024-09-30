@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cassert>
+#include <cstdint>
+#include <iostream>
+#include <vector>
 using namespace std;
 using i64 = int64_t;
 using isz = ptrdiff_t;
