@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <cmath>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 using namespace std;
 const int N = 1e5 + 5;
 int n, m, T;
@@ -89,10 +89,10 @@ bool query(Point x) {
 }
 
 int main() {
-  scanf("%d%d%d", &n, &m, &T);
-  for (int i = 1; i <= n; i++) scanf("%lf%lf", &a[i].x, &a[i].y);
-  for (int i = 1; i <= m; i++)
-    scanf("%lf%lf", &b[i].x, &b[i].y), b[i] = zo - b[i];
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m >> T;
+  for (int i = 1; i <= n; i++) cin >> a[i].x >> a[i].y;
+  for (int i = 1; i <= m; i++) (cin >> b[i].x >> b[i].y), b[i] = zo - b[i];
   a1.Andrew(n, a), a2.Andrew(m, b);
   s.minkowski(a1, a2);
   for (int i = 1; i <= s.cnt; i++) tmp[i] = s.p[i];
@@ -101,8 +101,8 @@ int main() {
   for (int i = 1; i <= s.cnt; i++) s.p[i] = s.p[i] - k;
   Point q;
   while (T--) {
-    scanf("%lf%lf", &q.x, &q.y);
-    printf("%d\n", !query(q - k));
+    cin >> q.x >> q.y;
+    cout << !query(q - k) << '\n';
   }
   return 0;
 }
