@@ -22,7 +22,7 @@ struct Point {
   }
 } a[N], b[N], zo, tmp[N];
 
-inline short int sgn(double x) {
+int sgn(double x) {
   return (fabs(x) == 0) ? 0 : ((x > 0) ? 1 : -1);
 }
 
@@ -32,7 +32,7 @@ struct Convex {
 
   void init() {
     cnt = 0;
-    memset(p, 0, sizeof(p));
+    std::fill(p, p + N, Point{});
   }
 
   void Andrew(int n, Point *v) {
@@ -51,7 +51,7 @@ struct Convex {
   }
 
   void minkowski(Convex &a, Convex &b) {
-    Convex s1, s2;
+    static Convex s1, s2;
     s1.init(), s2.init();
     for (int i = 1; i < a.cnt; i++) s1.p[i] = a.p[i + 1] - a.p[i];
     for (int i = 1; i < b.cnt; i++) s2.p[i] = b.p[i + 1] - b.p[i];
