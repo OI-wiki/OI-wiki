@@ -46,6 +46,7 @@ void addEdge(int tail, int head) {
 int get(int u) {
   for (int i = 1; i <= n; i++)
     if (!vertex[u].vis[i]) return i;
+  exit(1);
 }
 
 void DFS(int u, int ori, int upd) {

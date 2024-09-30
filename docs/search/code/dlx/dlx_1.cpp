@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <cctype>
+#include <cstdio>
+#include <cstring>
 const int N = 500 + 10;
 int n, m, ans;
 int stk[N];

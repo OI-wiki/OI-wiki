@@ -81,8 +81,7 @@ inline void process() {
 }
 
 signed main() {
-  cin.tie(0);
-  cout.tie(0);
+  cin.tie(nullptr);
   ios::sync_with_stdio(false);
   cin >> n >> m;
   qsize = pow(n, 2.0 / 3.0);
@@ -92,7 +91,7 @@ signed main() {
   for (int i = 1; i <= m; i++) {
     cin >> op >> x >> y;
     if (op == 'Q') {
-      q[++qcnt] = {qcnt, rcnt, x, y};
+      ++qcnt, q[qcnt] = {qcnt, rcnt, x, y};
     } else if (op == 'R') {
       r[++rcnt] = {x, y};
     }

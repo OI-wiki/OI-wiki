@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <bitset>
+#include <iostream>
+#include <stack>
+#include <vector>
 #define ls (i << 1)
 #define rs (i << 1 | 1)
 #define mid ((l + r) >> 1)
@@ -104,8 +108,7 @@ bitset<M> haveq;
 
 signed main() {
   ios::sync_with_stdio(false);
-  cin.tie(0);
-  cout.tie(0);
+  cin.tie(nullptr);
   cin >> n;
   for (int i = 1; i < n; i++) {
     int u, v;

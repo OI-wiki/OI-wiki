@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <cstdio>
 using namespace std;
 
 int head[1000010 << 1], tot;

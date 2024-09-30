@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cmath>
+#include <cstdio>
 using namespace std;
 
 int n, m, q, a[201][201];

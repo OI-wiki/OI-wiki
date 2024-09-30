@@ -1,7 +1,7 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
 using namespace std;
 const int N = 200020;
-const int INF = 1e9;
 int n, m;
 int ans[N];
 // BIT begin

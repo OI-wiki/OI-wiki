@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <queue>
 using namespace std;
 const int N = 1e6 + 6;
 int n;

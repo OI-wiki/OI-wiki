@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
 using namespace std;
 const int N = 100005;
 typedef long long ll;

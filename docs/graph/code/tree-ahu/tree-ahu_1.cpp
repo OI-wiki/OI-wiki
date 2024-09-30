@@ -1,7 +1,9 @@
 // Tree Isomorphism, O(nlogn)
 // replace quick sort with radix sort ==> O(n)
 // Author: _Backl1ght
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
 using namespace std;
 typedef long long ll;
 const int N = 1e5 + 5;

@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <cassert>
+#include <cstdio>
+#include <cstring>
+#include <vector>
 using namespace std;
 
 const int L = 1e6 + 5;

@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 #ifdef LOCAL
 #define debug(...) fprintf(stderr, ##__VA_ARGS__)

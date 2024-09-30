@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
 
 int n, m;
 int x[500010], y[500010], ans[500010];

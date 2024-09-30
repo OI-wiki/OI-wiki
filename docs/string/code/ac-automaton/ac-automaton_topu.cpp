@@ -1,5 +1,7 @@
 // Code by rickyxrc | https://www.luogu.com.cn/record/115706921
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
+#include <queue>
 #define maxn 8000001
 using namespace std;
 char s[maxn];

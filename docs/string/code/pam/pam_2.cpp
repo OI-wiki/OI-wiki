@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <cstring>
 using namespace std;
 typedef long long ll;
 const int mod = 1e9 + 7;

@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <vector>
 using namespace std;
 const int mod = 1000000007;
 

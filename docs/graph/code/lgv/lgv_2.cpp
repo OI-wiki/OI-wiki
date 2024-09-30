@@ -1,6 +1,5 @@
 #include <cstring>
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -30,7 +29,6 @@ int f(int x1, int y1, int x2, int y2) {
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  cout.tie(nullptr);
 
   int n, m;
   cin >> n >> m;

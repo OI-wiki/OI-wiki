@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
 using namespace std;
 constexpr int N(1e6);
 
@@ -98,7 +99,7 @@ int main() {
   cin >> pw;
   while (pw--) {
     scanf("%s", s + 1);
-    int n{strlen(s + 1)};
+    int n = strlen(s + 1);
     for (int i{1}; i <= n; ++i) s[i] += 1 - 'a';
     copy(s + 1, s + 1 + n, s + 1 + n);
     cout << T.test(s, n) << "\n";

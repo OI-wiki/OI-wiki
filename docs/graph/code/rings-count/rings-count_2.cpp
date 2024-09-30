@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <utility>
 using namespace std;
 
 int n, m, total;

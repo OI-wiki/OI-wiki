@@ -1,9 +1,9 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <queue>
 
 using namespace std;
 typedef long long ll;
 const int maxn = 100010;
-const int INF = 0x3f3f3f3f;
 const long long linf = (1ull << 63) - 1;
 
 ll h, x, y, z;

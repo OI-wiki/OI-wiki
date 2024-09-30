@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 #define Ts *this
@@ -160,6 +161,8 @@ Int w(const vector<int> P) {
   z /= Fact[c];
   return z;
 }
+
+int gcd(int x, int y) { return y ? gcd(y, x % y) : x; }
 
 int c(const vector<int> P) {
   int z = 0;

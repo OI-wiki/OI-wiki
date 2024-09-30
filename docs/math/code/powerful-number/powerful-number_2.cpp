@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <map>
 using namespace std;
 
 const int MOD = 1e9 + 7;
@@ -102,7 +103,7 @@ int G(long long n) { return add(S1(n), mul(2, S2(n / 2))); }
 void dfs(long long d, int hd, int pid) {
   ans = add(ans, mul(hd, G(global_n / d)));
 
-  for (int i = pid, p; i <= pcnt; ++i) {
+  for (int i = pid; i <= pcnt; ++i) {
     if (i > 1 && d > global_n / prime[i] / prime[i]) break;  // 剪枝
 
     int c = 2;

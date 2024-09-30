@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
 using namespace std;
 
 const int maxn = 500010;
@@ -33,7 +35,7 @@ void Build(int root, int l, int r) {
     Tree[root] = g[id[l]];
     return;
   }
-  int Mid = l + r >> 1;
+  int Mid = (l + r) >> 1;
   Build(root << 1, l, Mid);
   Build(root << 1 | 1, Mid + 1, r);
   PushUp(root);
@@ -41,7 +43,7 @@ void Build(int root, int l, int r) {
 
 matrix Query(int root, int l, int r, int L, int R) {
   if (L <= l && r <= R) return Tree[root];
-  int Mid = l + r >> 1;
+  int Mid = (l + r) >> 1;
   if (R <= Mid) return Query(root << 1, l, Mid, L, R);
   if (Mid < L) return Query(root << 1 | 1, Mid + 1, r, L, R);
   return Query(root << 1, l, Mid, L, R) *
@@ -54,7 +56,7 @@ void Modify(int root, int l, int r, int pos) {
     Tree[root] = g[id[l]];
     return;
   }
-  int Mid = l + r >> 1;
+  int Mid = (l + r) >> 1;
   if (pos <= Mid)
     Modify(root << 1, l, Mid, pos);
   else

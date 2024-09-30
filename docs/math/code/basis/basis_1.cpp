@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
 using ull = unsigned long long;
 
 ull p[64];

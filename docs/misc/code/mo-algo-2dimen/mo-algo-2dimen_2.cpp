@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
+#include <vector>
 using namespace std;
 
 void read(int& a) {

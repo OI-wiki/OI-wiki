@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
 using namespace std;
 #define rep(i, a, b) for (int i = (a); i <= (b); ++i)
 const int N = 200005;

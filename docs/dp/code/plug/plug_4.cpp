@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cassert>
+#include <cstring>
+#include <iostream>
 using namespace std;
 typedef long long T_state;
 typedef int T_key;

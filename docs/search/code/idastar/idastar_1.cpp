@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -8,6 +9,8 @@ vector<int> ans;
 vector<int> current;
 
 inline bool better() { return ans.empty() || current.back() < ans.back(); }
+
+long gcd(long x, long y) { return y ? gcd(y, x % y) : x; }
 
 bool dfs(int d, long a, long b, int e) {
   if (d == 0) {

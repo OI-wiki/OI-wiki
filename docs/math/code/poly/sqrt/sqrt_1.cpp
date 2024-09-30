@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
 using namespace std;
 
 const int maxn = 1 << 20, mod = 998244353;
@@ -72,7 +73,7 @@ void inv(int deg, int *f, int *h) {  // 求逆元
     return;
   }
 
-  inv(deg + 1 >> 1, f, h);
+  inv((deg + 1) >> 1, f, h);
 
   int len = 1;
   while (len < deg * 2) {  // 倍增
@@ -104,7 +105,7 @@ void sqrt(int deg, int *f, int *h) {
     return;
   }
 
-  sqrt(deg + 1 >> 1, f, h);
+  sqrt((deg + 1) >> 1, f, h);
 
   int len = 1;
   while (len < deg * 2) {  // 倍增

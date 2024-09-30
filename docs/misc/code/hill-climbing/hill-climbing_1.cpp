@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cmath>
+#include <iostream>
 using namespace std;
 double ans[10001], cans[100001], dis[10001], tot, f[1001][1001];
 int n;

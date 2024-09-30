@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
 using namespace std;
 const int maxn = 1e4 + 5;
 const int maxk = 5005;

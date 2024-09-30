@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <utility>
 #define ls(x) T[x][0]
 #define rs(x) T[x][1]
 #define ms(x) T[x][2]

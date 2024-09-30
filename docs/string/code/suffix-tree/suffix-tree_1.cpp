@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 constexpr int N(1e6), M(2 * N), inf(1e7), RNG{26};
 
@@ -51,9 +51,9 @@ struct SuffixTree {
     int ys{0};
     for (int i{0}; i <= RNG; ++i)
       if (ch[u][i]) {
-        auto [__, _]{search(ch[u][i], dep)};
-        ans = max(ans, __);
-        ys += _;
+        auto res = search(ch[u][i], dep);
+        ans = max(ans, res.first);
+        ys += res.second;
       }
     if (ys > 1) ans = max(ans, 1LL * dep * ys);
     return {ans, ys};

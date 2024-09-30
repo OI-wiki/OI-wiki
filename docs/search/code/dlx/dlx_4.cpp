@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <cstring>
 int numcol, numrow;
 int dfn[3000], tx[2], nxt[2], num[50][50], vis[50];
 char ans[50][50];

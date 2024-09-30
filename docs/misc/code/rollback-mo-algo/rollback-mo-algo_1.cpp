@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cmath>
+#include <cstdio>
 using namespace std;
 typedef long long ll;
 const int N = 1e5 + 5;

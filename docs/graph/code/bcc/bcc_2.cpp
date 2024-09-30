@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 #include <stack>
 #include <vector>
 
@@ -43,19 +43,20 @@ void tarjan(int u, int in) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   int u, v;
   for (int i = 1; i <= m; i++) {
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     if (u != v) uadd(u, v);
   }
   for (int i = 1; i <= n; i++)
     if (!dfn[i]) tarjan(i, 0);
-  printf("%llu\n", ans.size());
+  cout << ans.size() << '\n';
   for (int i = 0; i < ans.size(); i++) {
-    printf("%llu ", ans[i].size());
-    for (int j = 0; j < ans[i].size(); j++) printf("%d ", ans[i][j]);
-    printf("\n");
+    cout << ans[i].size() << ' ';
+    for (int j = 0; j < ans[i].size(); j++) cout << ans[i][j] << ' ';
+    cout << '\n';
   }
   return 0;
 }

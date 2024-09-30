@@ -1,7 +1,5 @@
-#include <cstdio>
 #include <cstring>
-#include <map>
-#include <utility>
+#include <iostream>
 #include <vector>
 using namespace std;
 #define min(x, y) (x < y ? x : y)
@@ -76,20 +74,21 @@ void dfs3(int x) {  // 计算双连通分量
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   int u, v;
-  for (int i = 1; i <= m; i++) scanf("%d%d", &u, &v), uadd(u, v), re[P(u, v)]++;
+  for (int i = 1; i <= m; i++) (cin >> u >> v), uadd(u, v), re[P(u, v)]++;
   for (int i = 1; i <= n; i++)
     if (!dep[i]) dfs(i, 0);
   for (int i = 1; i <= n; i++)
     if (!vis[i]) dfs2(i, 0);
   for (int i = 1; i <= n; i++)
     if (!fa[i]) cnt++, dfs3(i);
-  printf("%d\n", cnt);
+  cout << cnt << '\n';
   for (int i = 1; i <= cnt; i++) {
-    printf("%llu ", ans[i].size());
-    for (int j = 0; j < ans[i].size(); j++) printf("%d ", ans[i][j]);
-    printf("\n");
+    cout << ans[i].size() << ' ';
+    for (int j = 0; j < ans[i].size(); j++) cout << ans[i][j] << ' ';
+    cout << '\n';
   }
   return 0;
 }

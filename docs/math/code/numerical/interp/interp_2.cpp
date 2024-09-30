@@ -1,5 +1,5 @@
 // By: Luogu@rui_er(122461)
-#include <bits/stdc++.h>
+#include <cstdio>
 using namespace std;
 const int N = 1e6 + 5, mod = 1e9 + 7;
 

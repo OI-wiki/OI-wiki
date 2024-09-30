@@ -1,23 +1,20 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <limits>
+#include <queue>
+#include <vector>
 using namespace std;
 
 template <typename T>
 struct hungarian {  // km
   int n;
-  vector<int> matchx;
-  vector<int> matchy;
-  vector<int> pre;
-  vector<bool> visx;
-  vector<bool> visy;
-  vector<T> lx;
-  vector<T> ly;
+  vector<int> matchx, matchy, pre;
+  vector<bool> visx, visy;
+  vector<T> lx, ly;
   vector<vector<T> > g;
   vector<T> slack;
-  T inf;
-  T res;
+  T inf, res;
   queue<int> q;
-  int org_n;
-  int org_m;
+  int org_n, org_m;
 
   hungarian(int _n, int _m) {
     org_n = _n;
@@ -135,7 +132,7 @@ struct hungarian {  // km
 };
 
 int main() {
-  ios::sync_with_stdio(0), cin.tie(0);
+  ios::sync_with_stdio(0), cin.tie(nullptr);
   int n, m, e;
   cin >> n >> m >> e;
 

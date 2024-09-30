@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <climits>
+#include <cstdio>
 #define update(u) \
   if (u->lf->size) u->size = u->lf->size + u->rf->size, u->val = u->rf->val
 #define new_Node(a, b, c, d) (&(*st[cnt++] = Node(a, b, c, d)))

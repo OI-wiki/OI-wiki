@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <cstring>
+#include <queue>
 using namespace std;
 const int N = 156, L = 1e6 + 6;
 

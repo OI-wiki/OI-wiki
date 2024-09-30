@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <utility>
 using ull = unsigned long long;
 const int MAXN = 1e5 + 5;
 

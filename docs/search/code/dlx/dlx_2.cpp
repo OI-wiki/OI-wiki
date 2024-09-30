@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <cctype>
+#include <cstdio>
+#include <cstring>
 const int N = 1e6 + 10;
 int ans[10][10], stk[N];
 

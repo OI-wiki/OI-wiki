@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstdio>
+#include <vector>
 using namespace std;
 
 int n, m, deg[100001], cnt[100001];

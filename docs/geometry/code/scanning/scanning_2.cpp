@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
 
 int n, m, a[1000010], ans[1000010];
 int pre[1000010], lst[1000010];  // 处理 pre

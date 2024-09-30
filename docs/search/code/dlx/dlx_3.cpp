@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cctype>
+#include <cstdio>
+#include <cstring>
 const int oo = 0x3f3f3f3f;
 const int N = 1e5 + 10;
 const int e[] = {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 6, 6, 7,  8,
