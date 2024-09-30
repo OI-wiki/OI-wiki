@@ -19,25 +19,14 @@ function hookMkdocsMaterial() {
   });
 }
 
-// has ?enable_feedback_sys=true parameter
-if (location.search.includes("enable_feedback_sys=true")) {
-  localStorage.setItem("enable_feedback_sys", "true");
-}
+hookMkdocsMaterial();
 
-if (localStorage.getItem("giscus-session")) {
-  localStorage.setItem("enable_feedback_sys", "true");
-}
+document$.subscribe(function () {
+  matchColor();
 
-if (localStorage.getItem("enable_feedback_sys") === "true") {
-  hookMkdocsMaterial();
-
-  document$.subscribe(function () {
-    matchColor();
-
-    globalThis["OIWikiFeedbackSysFrontend"] instanceof Object &&
-      OIWikiFeedbackSysFrontend.setupReview instanceof Function &&
-      OIWikiFeedbackSysFrontend.setupReview(document.body, {
-        apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/pre-build/install-feedback-sys-frontend
-      });
-  });
-}
+  globalThis["OIWikiFeedbackSysFrontend"] instanceof Object &&
+    OIWikiFeedbackSysFrontend.setupReview instanceof Function &&
+    OIWikiFeedbackSysFrontend.setupReview(document.body, {
+      apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/pre-build/install-feedback-sys-frontend
+    });
+});
