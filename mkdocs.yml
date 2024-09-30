@@ -151,7 +151,7 @@ nav:
       - 桶排序: basic/bucket-sort.md
       - 希尔排序: basic/shell-sort.md
       - 锦标赛排序: basic/tournament-sort.md
-      - tim排序: basic/tim-sort.md
+      - Tim 排序: basic/tim-sort.md
       - 排序相关 STL: basic/stl-sort.md
       - 排序应用: basic/use-of-sort.md
     - 前缀和 & 差分: basic/prefix-sum.md
@@ -311,7 +311,7 @@ nav:
       - 线性规划简介: math/linear-programming.md
       - 单纯形算法: math/simplex.md
     - 群论:
-      - 群论简介:  math/group-theory.md
+      - 群论简介: math/group-theory.md
       - 置换群: math/permutation-group.md
     - 概率论:
       - 基本概念: math/probability/basic-conception.md

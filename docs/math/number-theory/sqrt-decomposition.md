@@ -104,20 +104,14 @@ $$
 
 ???+ note " 例题：[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
     题意：$T$ 组数据，每组一个整数 $n$。对于每组数据，输出 $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$。
-    
-    思路：如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
 
-??? note "参考实现"
-    ```cpp
-    --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
-    ```
+    ??? note "思路"
+        如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
 
-???+ note "N 维数论分块"
-    求含有 $\left\lfloor\dfrac {a_1}i\right\rfloor$、$\left\lfloor\dfrac {a_2}i\right\rfloor\cdots\left\lfloor\dfrac {a_n}i\right\rfloor$ 的和式时，数论分块右端点的表达式从一维的 $\left\lfloor\dfrac ni\right\rfloor$ 变为 $\min\limits_{j=1}^n\{\left\lfloor\dfrac {a_j}i\right\rfloor\}$，即对于每一个块的右端点取最小（最接近左端点）的那个作为整体的右端点。可以借助下图理解：
-    
-    ![多维数论分块图解](./images/n-dimension-sqrt-decomposition.png)
-    
-    一般我们用的较多的是二维形式，此时可将代码中 `r = n / (n / i)` 替换成 `r = min(n / (n / i), m / (m / i))`。
+    ??? note "实现"
+        ```cpp
+        --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
+        ```
 
 ## 向上取整的数论分块
 
@@ -153,6 +147,80 @@ $$
         ```cpp
         --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_2.cpp"
         ```
+
+## N 维数论分块
+
+求含有 $\left\lfloor\dfrac {a_1}i\right\rfloor$、$\left\lfloor\dfrac {a_2}i\right\rfloor\cdots\left\lfloor\dfrac {a_n}i\right\rfloor$ 的和式时，数论分块右端点的表达式从一维的 $\left\lfloor\dfrac ni\right\rfloor$ 变为 $\min\limits_{j=1}^n\{\left\lfloor\dfrac {a_j}i\right\rfloor\}$，即对于每一个块的右端点取最小（最接近左端点）的那个作为整体的右端点。可以借助下图理解：
+
+![多维数论分块图解](./images/n-dimension-sqrt-decomposition.png)
+
+一般我们用的较多的是二维形式，此时可将代码中 `r = n / (n / i)` 替换成 `r = min(n / (n / i), m / (m / i))`。
+
+## 数论分块扩展
+
+以计算含有 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 的和式为例。考虑对于一个正整数 $n$，如何求出集合
+
+$$
+S=\left\{\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leq n\right\}
+$$
+
+的所有值，以及对每一种值求出哪些 $d$ 会使其取到这个值。可以发现：
+
+1.  因为 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 是单调不增的，所以对于所有 $v\in S$，使得 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor=v$ 的 $d$ 必然是一段区间。
+2.  对于任意正整数 $t\leq n$，我们对 $\leq t$ 与 $>t$ 的 $v\in S$ 分别分析，可以发现 $t+n/t^2\geq |S|$，取 $t=\sqrt[3]{n}$ 得到 $|S|$ 的一个上界为 $O(\sqrt[3]n)$。
+
+这些结论与数论分块所需的引理相似，因此猜测可以写为数论分块形式。
+
+结论是：使得式子
+
+$$
+\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor
+$$
+
+成立的最大的 $q$ 满足 $p\leq q\leq n$ 为
+
+$$
+\left\lfloor\frac{n}{\left\lfloor\sqrt{n/p}\right\rfloor^2}\right\rfloor
+$$
+
+???+ note "证明"
+    令 $v=\left\lfloor\sqrt{\dfrac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\dfrac{n}{q}}\right\rfloor$，那么
+
+    $$
+    \begin{aligned}
+    v\leq \sqrt{\dfrac{n}{q}}&\implies v^2\leq \dfrac{n}{q}\\
+    &\implies q\leq \dfrac{n}{v^2}\\
+    &\implies q\leq \left\lfloor \dfrac{n}{v^2}\right\rfloor
+    \end{aligned}
+    $$
+
+    同理 $p\leq \left\lfloor n/v^2\right\rfloor$。同时
+
+    $$
+    \left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor\geq \left\lfloor \sqrt\frac{n}{n/v^2}\right\rfloor=\left\lfloor v\right\rfloor=v
+    $$
+
+    又由 $p\leq \left\lfloor n/v^2\right\rfloor$ 以及单调性可推出
+
+    $$
+    v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor\geq\left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor
+    $$
+
+    所以
+
+    $$
+    \left\lfloor\sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor=v
+    $$
+
+    进而 $q=\left\lfloor n/v^2\right\rfloor$ 是最大的使得 $\left\lfloor\sqrt{n/p}\right\rfloor=\left\lfloor\sqrt{n/q}\right\rfloor$ 成立的 $q$。
+
+故原问题可以写为数论分块形式，代码与数论分块形式并无二异。
+
+???+ note "两个更加通用的结论"
+    对于正整数 $n$ 和正实数 $\alpha, \beta$，我们有
+    
+    1.  对于某个不超过 $n^{\alpha/ \beta}$ 的正整数 $i$，使式子 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=\left\lfloor\dfrac{n^\alpha}{j^\beta}\right\rfloor$ 成立的最大的 $j$ 为 $\left\lfloor\dfrac{n^{\alpha/\beta}}{\left\lfloor n^\alpha/i^\beta \right\rfloor^{1/\beta}}\right\rfloor$。
+    2.  集合 $\left\{\left\lfloor\dfrac{n^\alpha}{d^\beta}\right\rfloor: d=1,2,\dots,n\right\}$ 的大小不超过 $\min\{n,2n^{\alpha/(1+\beta)}\}$。
 
 ## 习题
 
