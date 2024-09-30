@@ -231,43 +231,42 @@ $$
 
 ???+ note "实现"
     ```cpp
-    const int N = 1e5 + 5;
-    int n, m;
-    
+    template <class T>
     struct Point {
-      double x, y;
+      T x, y;
     
-      Point(double x = 0, double y = 0) : x(x), y(y) {}
+      Point(T x = 0, T y = 0) : x(x), y(y) {}
     
-      Point operator+(const Point &p) const { return Point(x + p.x, y + p.y); }
+      friend Point operator+(const Point &a, const Point &b) {
+        return {a.x + b.x, a.y + b.y};
+      }
     
-      Point operator-(const Point &p) const { return Point(x - p.x, y - p.y); }
+      friend Point operator-(const Point &a, const Point &b) {
+        return {a.x - b.x, a.y - b.y};
+      }
     
-      double operator*(const Point &p) const { return x * p.y - y * p.x; }
+      // 点乘
+      friend T operator*(const Point &a, const Point &b) {
+        return a.x * b.x + a.y * b.y;
+      }
+    
+      // 叉乘
+      friend T operator^(const Point &a, const Point &b) {
+        return a.x * b.y - a.y * b.x;
+      }
     };
     
-    struct Convex {
-      Point p[N];
-      int cnt;
-    } a, b, s;
-    
-    void minkowski() {
-      // a+b=s
-      Convex s1, s2;
-      for (int i = 1; i < a.cnt; i++) s1.p[i] = a.p[i + 1] - a.p[i];
-      for (int i = 1; i < b.cnt; i++) s2.p[i] = b.p[i + 1] - b.p[i];
-      s2.p[m] = b.p[1] - b.p[m], s1.p[n] = a.p[1] - a.p[n];
-      int i = 1, j = 1;
-      s.p[++s.cnt] = a.p[1] + b.p[1];
-      while (i <= n && j <= m) {
-        if (s1.p[i] * s2.p[j] > 0)
-          s.p[s.cnt + 1] = s.p[s.cnt] + s1.p[i++];
-        else
-          s.p[s.cnt + 1] = s.p[s.cnt] + s2.p[j++];
-        s.cnt++;
-      }
-      while (i <= n) s.p[s.cnt + 1] = s.p[s.cnt] + s1.p[i++], s.cnt++;
-      while (j <= m) s.p[s.cnt + 1] = s.p[s.cnt] + s2.p[j++], s.cnt++;
+    template <class T>
+    vector<Point<T>> minkowski_sum(vector<Point<T>> a, vector<Point<T>> b) {
+      vector<Point<T>> c{a[0] + b[0]};
+      for (usz i = 0; i + 1 < a.size(); ++i) a[i] = a[i + 1] - a[i];
+      for (usz i = 0; i + 1 < b.size(); ++i) b[i] = b[i + 1] - b[i];
+      a.pop_back(), b.pop_back();
+      c.resize(a.size() + b.size() + 1);
+      merge(a.begin(), a.end(), b.begin(), b.end(), c.begin() + 1,
+            [](const Point<i64> &a, const Point<i64> &b) { return (a ^ b) < 0; });
+      for (usz i = 1; i < c.size(); ++i) c[i] = c[i] + c[i - 1];
+      return c;
     }
     ```
 
