@@ -1,8 +1,6 @@
 #include <chrono>
-#include <cstdio>
+#include <iostream>
 #include <map>
-#include <random>
-#include <set>
 #include <vector>
 
 typedef unsigned long long ull;
@@ -38,15 +36,19 @@ void getRoot(int x) {
   }
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int m;
-  scanf("%d", &m);
+  cin >> m;
   for (int t = 1; t <= m; t++) {
     int n, rt = 0;
-    scanf("%d", &n);
+    cin >> n;
     for (int i = 1; i <= n; i++) {
       int fa;
-      scanf("%d", &fa);
+      cin >> fa;
       if (fa) {
         edge[fa].push_back(i);
       } else {
@@ -63,7 +65,7 @@ int main() {
     if (!trees.count(hash)) {
       trees[hash] = t;
     }
-    printf("%d\n", trees[hash]);
+    cout << trees[hash] << '\n';
     for (int i = 1; i <= n; i++) {
       edge[i].clear();
     }

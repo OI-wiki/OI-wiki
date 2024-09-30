@@ -1,6 +1,6 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 #define int long long
 using namespace std;
@@ -55,7 +55,7 @@ struct segtree {
   void print(int o, int l, int r) {
     if (!o || !sum[o]) return;
     if (l == r) {
-      printf("%lld %lld\n", l, sum[o]);
+      cout << l << ' ' << sum[o] << '\n';
       return;
     }
     int mid = (l + r) >> 1;
@@ -118,16 +118,17 @@ void dfz(int x, int fa) {
 }
 
 signed main() {
-  scanf("%lld", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   for (int i = 1; i < n; i++)
-    scanf("%lld%lld%lld", &a, &b, &c), add_edge(a, b, c), add_edge(b, a, c);
-  scanf("%lld", &q);
+    cin >> a >> b >> c, add_edge(a, b, c), add_edge(b, a, c);
+  cin >> q;
   rt = 0;
   maxx[rt] = inf;
   sum = n;
   calcsiz(1, -1);
   calcsiz(rt, -1);
   dfz(rt, -1);
-  printf("%lld\n", ret);
+  cout << ret << '\n';
   return 0;
 }

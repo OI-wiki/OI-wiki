@@ -1,7 +1,8 @@
 // 一道二维最长上升子序列的题
 // 为了确定某一个元素是否在最长上升子序列中可以正反跑两遍 CDQ
 #include <algorithm>
-#include <cstdio>
+#include <iomanip>
+#include <iostream>
 using namespace std;
 typedef double db;
 const int N = 1e6 + 10;
@@ -128,9 +129,10 @@ int len;
 db ans;
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   for (int i = 1; i <= n; i++) {
-    scanf("%d%d", &a[0][i].h, &a[0][i].v);
+    cin >> a[0][i].h >> a[0][i].v;
     a[0][i].p = i;
     a[1][i].h = a[0][i].h;
     a[1][i].v = a[0][i].v;
@@ -147,17 +149,18 @@ int main() {
   for (int i = 1; i <= n; i++) {
     len = max(len, a[0][i].ma);
   }
-  printf("%d\n", len);
+  cout << len << '\n';
   for (int i = 1; i <= n; i++) {
     if (a[0][i].ma == len) {
       ans += a[0][i].ca;
     }
   }
+  cout << fixed << setprecision(5);
   for (int i = 1; i <= n; i++) {
     if (a[0][i].ma + a[1][i].ma - 1 == len) {
-      printf("%.5lf ", (a[0][i].ca * a[1][i].ca) / ans);
+      cout << (a[0][i].ca * a[1][i].ca) / ans << ' ';
     } else {
-      printf("0.00000 ");
+      cout << "0.00000 ";
     }
   }
   return 0;

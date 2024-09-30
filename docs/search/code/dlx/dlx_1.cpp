@@ -1,16 +1,9 @@
 #include <cctype>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 const int N = 500 + 10;
 int n, m, ans;
 int stk[N];
-
-int read() {  // 快读
-  int x = 0, f = 0, ch;
-  while (!isdigit(ch = getchar())) f |= ch == '-';
-  while (isdigit(ch)) x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();
-  return f ? -x : x;
-}
 
 struct DLX {
   static const int MAXSIZE = 1e5 + 10;
@@ -75,18 +68,23 @@ struct DLX {
   }
 } solver;
 
+using std::cin;
+using std::cout;
+
 int main() {
-  n = read(), m = read();
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   solver.build(n, m);
   for (int i = 1; i <= n; ++i)
     for (int j = 1; j <= m; ++j) {
-      int x = read();
+      int x;
+      cin >> x;
       if (x) solver.insert(i, j);
     }
   solver.dance(1);
   if (ans)
-    for (int i = 1; i < ans; ++i) printf("%d ", stk[i]);
+    for (int i = 1; i < ans; ++i) cout << stk[i] << ' ';
   else
-    puts("No Solution!");
+    cout << "No Solution!\n";
   return 0;
 }

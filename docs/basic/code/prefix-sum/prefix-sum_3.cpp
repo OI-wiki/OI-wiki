@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 
 using namespace std;
 #define maxn 50010
@@ -50,20 +50,21 @@ void get_ans(int u, int father) {
 }
 
 int main() {
-  scanf("%d %d", &n, &k);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> k;
   int x, y;
   for (int i = 1; i <= n; i++) {
     lg[i] = lg[i - 1] + (1 << lg[i - 1] == i);
   }
   for (int i = 1; i <= n - 1; i++) {  // 建图
-    scanf("%d %d", &x, &y);
+    cin >> x >> y;
     add(x, y);
     add(y, x);
   }
   dfs(1, 0);
   int s, t;
   for (int i = 1; i <= k; i++) {
-    scanf("%d %d", &s, &t);
+    cin >> s >> t;
     int ancestor = lca(s, t);
     // 树上差分
     power[s]++;
@@ -72,6 +73,6 @@ int main() {
     power[fa[ancestor][0]]--;
   }
   get_ans(1, 0);
-  printf("%d\n", ans);
+  cout << ans << '\n';
   return 0;
 }

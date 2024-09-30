@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 
 int n, m, a[1000010], ans[1000010];
 int pre[1000010], lst[1000010];  // 处理 pre
@@ -42,16 +42,20 @@ int getsum(int x) {
   return ret;
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   for (int i = 1; i <= n; i++) {
-    scanf("%d", &a[i]);
+    cin >> a[i];
     pre[i] = lst[a[i]], lst[a[i]] = i;   // 处理 pre
     op[++tot] = (ope){0, i, pre[i], i};  // 加点操作
   }
-  scanf("%d", &m);
+  cin >> m;
   for (int i = 1, l, r; i <= m; i++) {
-    scanf("%d%d", &l, &r);
+    cin >> l >> r;
     op[++tot] = (ope){1, r, l - 1, i};  // 将查询差分
     op[++tot] = (ope){2, l - 1, l - 1, i};
   }
@@ -64,6 +68,6 @@ int main() {
     else
       ans[op[i].id] -= getsum(op[i].y);
   }
-  for (int i = 1; i <= m; i++) printf("%d\n", ans[i]);
+  for (int i = 1; i <= m; i++) cout << ans[i] << '\n';
   return 0;
 }

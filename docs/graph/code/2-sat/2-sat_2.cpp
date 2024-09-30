@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 const int maxn = 1e4 + 5;
 const int maxk = 5005;
@@ -45,9 +45,10 @@ void tarjan(int x) {  // tarjan算法求强联通
 }
 
 int main() {
-  scanf("%d %d", &k, &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> k >> n;
   for (int i = 1; i <= n; i++) {
-    for (int j = 1; j <= 3; j++) scanf("%d%s", &id[i][j], s[i][j]);
+    for (int j = 1; j <= 3; j++) cin >> id[i][j] >> s[i][j];
 
     for (int j = 1; j <= 3; j++) {
       for (int k = 1; k <= 3; k++) {
@@ -64,7 +65,7 @@ int main() {
 
   for (int i = 1; i <= 2 * k; i += 2)
     if (color[i] == color[i + 1]) {
-      puts("-1");
+      cout << "-1\n";
       return 0;
     }
 
@@ -87,6 +88,6 @@ int main() {
     }
   }
   ans[k + 1] = 0;
-  printf("%s\n", ans + 1);
+  cout << (ans + 1) << '\n';
   return 0;
 }

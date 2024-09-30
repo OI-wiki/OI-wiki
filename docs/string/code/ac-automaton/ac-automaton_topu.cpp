@@ -80,11 +80,12 @@ void query(char *s) {
 }
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   init();
-  for (int i = 1; i <= n; i++) scanf("%s", s), insert(s, i);
+  for (int i = 1; i <= n; i++) cin >> s, insert(s, i);
   getfail();
-  scanf("%s", s);
+  cin >> s;
   query(s);
   topu();
   for (int i = 1; i <= n; i++) cout << vis[rev[i]] << std::endl;

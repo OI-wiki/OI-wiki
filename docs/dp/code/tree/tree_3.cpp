@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 using namespace std;
 
 int head[1000010 << 1], tot;
@@ -37,10 +37,11 @@ void get_ans(int u, int fa) {  // 第二次dfs换根dp
 }
 
 int main() {
-  scanf("%lld", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   int u, v;
   for (int i = 1; i <= n - 1; i++) {
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     add(u, v);
     add(v, u);
   }
@@ -55,6 +56,6 @@ int main() {
       id = i;
     }
   }
-  printf("%d\n", id);
+  cout << id << '\n';
   return 0;
 }

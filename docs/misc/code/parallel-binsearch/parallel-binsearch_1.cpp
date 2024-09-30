@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 const int N = 200020;
 int n, m;
@@ -70,11 +70,12 @@ pair<int, int> b[N];
 int toRaw[N];
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   // read and discrete input data
   for (int i = 1; i <= n; i++) {
     int x;
-    scanf("%d", &x);
+    cin >> x;
     b[i].first = x;
     b[i].second = i;
   }
@@ -90,9 +91,9 @@ int main() {
   }
   for (int i = 1; i <= m; i++) {
     int l, r, k;
-    scanf("%d%d%d", &l, &r, &k);
+    cin >> l >> r >> k;
     q[++tot] = {l, r, k, i, 2};
   }
   solve(0, cnt + 1, 1, tot);
-  for (int i = 1; i <= m; i++) printf("%d\n", toRaw[ans[i]]);
-}
+  for (int i = 1; i <= m; i++) cout << toRaw[ans[i]] << '\n';
+}  // test

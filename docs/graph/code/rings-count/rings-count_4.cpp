@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -8,10 +8,11 @@ vector<int> E[100001], E1[100001];
 long long total;
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   for (int i = 1; i <= m; i++) {
     int u, v;
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     E[u].push_back(v);
     E[v].push_back(u);
     deg[u]++, deg[v]++;
@@ -28,6 +29,6 @@ int main() {
     for (int b : E1[a])
       for (int c : E[b]) cnt[c] = 0;
   }
-  printf("%lld\n", total);
+  cout << total << '\n';
   return 0;
 }

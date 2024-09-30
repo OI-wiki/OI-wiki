@@ -1,13 +1,12 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
-
+#include <string>
 using namespace std;
 
 const int N = 2005;
 
-char s[N], t[N];
+string s, t;
 int na[N][26], nb[N][26], nxt[26];
 int n, m, a[N], b[N], tot = 1, p = 1, f[N][N << 1];
 
@@ -44,10 +43,12 @@ void insert(int x) {
 }
 
 int main() {
-  scanf("%s%s", s + 1, t + 1);
+  cin >> s >> t;
 
-  n = strlen(s + 1);
-  m = strlen(t + 1);
+  n = s.size();
+  m = t.size();
+  s = " " + s;
+  t = " " + t;
 
   for (int i = 1; i <= n; ++i) a[i] = s[i] - 'a';
   for (int i = 1; i <= m; ++i) b[i] = t[i] - 'a';
@@ -80,7 +81,7 @@ int main() {
     }
   }
 
-  printf("%d\n", ans == N ? -1 : ans);
+  cout << (ans == N ? -1 : ans) << '\n';
 
   // 2
   ans = N;
@@ -95,7 +96,7 @@ int main() {
     }
   }
 
-  printf("%d\n", ans == N ? -1 : ans);
+  cout << (ans == N ? -1 : ans) << '\n';
 
   // 3
   for (int i = n; i >= 0; --i) {
@@ -109,7 +110,7 @@ int main() {
     }
   }
 
-  printf("%d\n", f[0][1] == N ? -1 : f[0][1]);
+  cout << (f[0][1] == N ? -1 : f[0][1]) << '\n';
 
   // 4
   memset(f, 0, sizeof(f));
@@ -125,7 +126,7 @@ int main() {
     }
   }
 
-  printf("%d\n", f[0][0] == N ? -1 : f[0][0]);
+  cout << (f[0][0] == N ? -1 : f[0][0]) << '\n';
 
   return 0;
 }

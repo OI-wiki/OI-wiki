@@ -1,12 +1,11 @@
-#include <cstdio>
 #include <cstring>
 #include <iostream>
-
+#include <string>
 using namespace std;
 
 const int N = 500010;
 
-char s[N];
+string s;
 int n, sa[N], rk[N << 1], oldrk[N << 1], id[N], px[N], cnt[N], ht[N], sta[N],
     top, l[N];
 long long ans;
@@ -18,8 +17,9 @@ bool cmp(int x, int y, int w) {
 int main() {
   int i, k, w, p, m = 300;
 
-  scanf("%s", s + 1);
-  n = strlen(s + 1);
+  cin >> s;
+  n = s.size();
+  s = " " + s;
   ans = 1ll * n * (n - 1) * (n + 1) / 2;
   // 求后缀数组
   for (i = 1; i <= n; ++i) ++cnt[rk[i] = s[i]];

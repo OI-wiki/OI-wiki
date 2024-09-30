@@ -1,7 +1,6 @@
 /* 「LOJ #6053」简单的函数 */
-#include <algorithm>
 #include <cmath>
-#include <cstdio>
+#include <iostream>
 
 const int maxs = 200000;  // 2sqrt(n)
 const int mod = 1000000007;
@@ -108,14 +107,18 @@ int F(const int &k, const long long &n) {
   return ans % mod;
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%lld", &global_n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> global_n;
   lim = sqrt(global_n);  // 上限
 
   sieve(lim + 1000);  // 预处理
   init(global_n);
   calcFprime();
-  printf("%lld\n", (F(1, global_n) + 1ll + mod) % mod);
+  cout << (F(1, global_n) + 1ll + mod) % mod << '\n';
 
   return 0;
 }

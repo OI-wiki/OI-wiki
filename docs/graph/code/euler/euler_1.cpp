@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 #include <stack>
 #include <vector>
 using namespace std;
@@ -37,15 +37,16 @@ int deg[505];
 int reftop[505];
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   for (int i = 1; i <= dn; ++i) {
     beg[i].reserve(1050);  // vector 用 reserve 避免动态分配空间，加快速度
   }
 
   int m;
-  scanf("%d", &m);
+  cin >> m;
   for (int i = 1; i <= m; ++i) {
     int a, b;
-    scanf("%d%d", &a, &b);
+    cin >> a >> b;
     beg[a].push_back((edge){b, 1, 0});
     beg[b].push_back((edge){a, 1, 0});
     ++deg[a];
@@ -76,7 +77,7 @@ int main() {
   Hierholzer(bv);
 
   while (!ans.empty()) {
-    printf("%d\n", ans.top());
+    cout << ans.top() << '\n';
     ans.pop();
   }
 }

@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 using namespace std;
 
 int n, m;
@@ -16,10 +16,11 @@ void addEdge(int u, int v) {
 long long answer, dp[1 << 19][20];
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   for (int i = 1; i <= m; i++) {
     int u, v;
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     addEdge(u, v);
     addEdge(v, u);
   }
@@ -36,6 +37,6 @@ int main() {
           dp[s | (1 << (v - 1))][v] += dp[s][u];
       }
     }
-  printf("%lld\n", (answer - m) / 2);
+  cout << (answer - m) / 2 << '\n';
   return 0;
 }

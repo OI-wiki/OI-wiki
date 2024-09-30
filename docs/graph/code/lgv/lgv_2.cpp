@@ -1,5 +1,6 @@
 #include <cstring>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -7,7 +8,7 @@ using ll = long long;
 const int MOD = 1e9 + 7;
 const int SIZE = 3010;
 
-char board[SIZE][SIZE];
+string board[SIZE];
 int dp[SIZE][SIZE];
 
 int f(int x1, int y1, int x2, int y2) {
@@ -34,7 +35,8 @@ int main() {
   cin >> n >> m;
 
   for (int i = 1; i <= n; i++) {
-    cin >> (board[i] + 1);
+    cin >> board[i];
+    board[i] = " " + board[i];
   }
 
   ll f11 = f(1, 2, n - 1, m);

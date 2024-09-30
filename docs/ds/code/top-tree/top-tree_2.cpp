@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 #define ls(x) T[x][0]
 #define rs(x) T[x][1]
 #define ms(x) T[x][2]
@@ -210,16 +210,17 @@ void non_local_search(int x, int lv, int rv, int op) {
 int qu[MAXN], qv[MAXN];
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int TT;
-  scanf("%d", &TT);
+  cin >> TT;
   while (TT--) {
     int n;
-    scanf("%d", &n);
+    cin >> n;
     tot = n;
     long long ANS = 0;
     for (int i = 1; i <= n; i++) ss[i] = 1;
     for (int i = 1; i < n; i++) {
-      scanf("%d %d", &qu[i], &qv[i]);
+      cin >> qu[i] >> qv[i];
       lnk(qu[i], qv[i]);
     }
     for (int i = 1; i < n; i++) {
@@ -238,7 +239,7 @@ int main() {
       if (ans2) acs(ans2);
       lnk(qu[i], qv[i]);
     }
-    printf("%lld\n", ANS);
+    cout << ANS << '\n';
     for (int i = 1; i <= tot; i++)
       T[i][0] = T[i][1] = T[i][2] = ss[i] = r[i] = maxs[i] = f[i] = 0;
     tot = top = 0;

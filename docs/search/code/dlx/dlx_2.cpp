@@ -1,15 +1,8 @@
 #include <cctype>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 const int N = 1e6 + 10;
 int ans[10][10], stk[N];
-
-int read() {
-  int x = 0, f = 0, ch;
-  while (!isdigit(ch = getchar())) f |= ch == '-';
-  while (isdigit(ch)) x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();
-  return f ? -x : x;
-}  // 快读
 
 struct DLX {
   static const int MAXSIZE = 1e5 + 10;
@@ -98,18 +91,22 @@ void Insert(int row, int col, int num) {
   solver.insert(id, f4);
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   solver.build(729, 324);
   for (int i = 1; i <= 9; ++i)
     for (int j = 1; j <= 9; ++j) {
-      ans[i][j] = read();
+      cin >> ans[i][j];
       for (int v = 1; v <= 9; ++v) {
         if (ans[i][j] && ans[i][j] != v) continue;
         Insert(i, j, v);
       }
     }
   solver.dance(1);
-  for (int i = 1; i <= 9; ++i, putchar('\n'))
-    for (int j = 1; j <= 9; ++j, putchar(' ')) printf("%d", ans[i][j]);
+  for (int i = 1; i <= 9; ++i, cout << '\n')
+    for (int j = 1; j <= 9; ++j, cout << ' ') cout << ans[i][j];
   return 0;
 }

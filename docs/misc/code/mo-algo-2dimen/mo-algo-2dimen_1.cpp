@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <cmath>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 
 int n, m, q, a[201][201];
@@ -57,25 +57,25 @@ void mo_algo() {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   for (int i = 1; i <= n; i++)
-    for (int j = 1; j <= m; j++)
-      scanf("%d", a[i] + j), disc[++cntdisc] = a[i][j];
+    for (int j = 1; j <= m; j++) cin >> a[i][j], disc[++cntdisc] = a[i][j];
   sort(disc + 1, disc + 1 + cntdisc);
   cntdisc = unique(disc + 1, disc + cntdisc + 1) - disc - 1;
   for (int i = 1; i <= n; i++)
     for (int j = 1; j <= m; j++)
       a[i][j] = lower_bound(disc + 1, disc + 1 + cntdisc, a[i][j]) - disc;
-  scanf("%d", &q);
+  cin >> q;
   for (int i = 1; i <= q; i++) {
     int x1, y1, x2, y2;
-    scanf("%d%d%d%d", &x1, &y1, &x2, &y2);
+    cin >> x1 >> y1 >> x2 >> y2;
     if (x1 > x2) swap(x1, x2);
     if (y1 > y2) swap(y1, y2);
     Q[++Qcnt] = {x1, y1, x2, y2, i};
   }
 
   mo_algo();
-  for (int i = 1; i <= q; ++i) printf("%lld\n", ans[i]);
+  for (int i = 1; i <= q; ++i) cout << ans[i] << '\n';
   return 0;
 }

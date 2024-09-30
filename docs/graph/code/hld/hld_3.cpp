@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 const int N = 1000005;
 
@@ -56,15 +56,16 @@ void getans(int x) {  // 暴力合并算答案
 }
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   for (int i = 1; i < n; i++) {
     int x, y;
-    scanf("%d%d", &x, &y);
+    cin >> x >> y;
     add(x, y);
     add(y, x);
   }
   dfs1(1);
   dfs2(1);
   getans(1);
-  for (int i = 1; i <= n; i++) printf("%d\n", mxp[i]);
-}
+  for (int i = 1; i <= n; i++) cout << mxp[i] << '\n';
+}  // test

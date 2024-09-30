@@ -77,7 +77,7 @@ int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   cin >> n >> m;
   int u, v;
-  for (int i = 1; i <= m; i++) (cin >> u >> v), uadd(u, v), re[P(u, v)]++;
+  for (int i = 1; i <= m; i++) cin >> u >> v, uadd(u, v), re[P(u, v)]++;
   for (int i = 1; i <= n; i++)
     if (!dep[i]) dfs(i, 0);
   for (int i = 1; i <= n; i++)

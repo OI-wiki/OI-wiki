@@ -1,5 +1,6 @@
 #include <deque>
 #include <iostream>
+#include <string>
 
 void promote() {
   std::ios::sync_with_stdio(0);
@@ -7,16 +8,13 @@ void promote() {
   return;
 }
 
-typedef char chr;
 typedef std::deque<int> dic;
 
 const int maxN = 2e5;
 const int maxS = 2e5;
-const int maxT = 2e6;
 
 int n;
-chr s[maxS + 10];
-chr t[maxT + 10];
+std::string s, t;
 int cnt[maxN + 10];
 
 struct AhoCorasickAutomaton {
@@ -37,7 +35,7 @@ struct AhoCorasickAutomaton {
   int ncnt;
   int ecnt;
 
-  void Insert(chr *str, int i) {
+  void Insert(const std::string &str, int i) {
     int u = root;
     for (int i = 1; str[i]; i++) {
       if (node[u].son[str[i] - 'a' + 1] == 0)
@@ -67,7 +65,7 @@ struct AhoCorasickAutomaton {
     return;
   }
 
-  void Query(chr *str) {
+  void Query(const std::string &str) {
     int u = root;
     for (int i = 1; str[i]; i++) {
       u = node[u].son[str[i] - 'a' + 1];
@@ -102,13 +100,16 @@ struct AhoCorasickAutomaton {
 } ACM;
 
 int main() {
+  promote();
   std::cin >> n;
   for (int i = 1; i <= n; i++) {
-    std::cin >> (s + 1);
+    std::cin >> s;
+    s = " " + s;
     ACM.Insert(s, i);
   }
   ACM.Build();
-  std::cin >> (t + 1);
+  std::cin >> t;
+  t = " " + t;
   ACM.Query(t);
   ACM.FailTree();
   for (int i = 1; i <= n; i++) std::cout << cnt[i] << '\n';

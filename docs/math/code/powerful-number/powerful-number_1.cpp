@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 #include <map>
 using namespace std;
 
@@ -142,7 +142,7 @@ int solve(long long n) {
 int main() {
   PNS::init();
   long long n;
-  scanf("%lld", &n);
-  printf("%d\n", PNS::solve(n));
+  cin >> n;
+  cout << PNS::solve(n) << '\n';
   return 0;
 }

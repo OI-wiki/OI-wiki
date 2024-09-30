@@ -147,9 +147,7 @@ void exp(Int G[], Int C[]) {
 }
 
 int main() {
-#ifndef ONLINE_JUDGE
-  // freopen("in.txt", "r", stdin);
-#endif
+  cin.tie(nullptr)->sync_with_stdio(false);
 
   n = 1000;
   for (int i = 0; i < n + 1; ++i) {
@@ -173,10 +171,9 @@ int main() {
   int T;
   cin >> T;
   while (T--) {
-    scanf("%d", &n);
-    printf("Connected: %d\n", C[n]);
-    printf("Eulerian: %d\n", E[n]);
-    printf("Bipartite: %d\n", B[n]);
-    puts("");
+    cin >> n;
+    cout << "Connected: " << C[n] << '\n'
+         << "Eulerian: " << E[n] << '\n'
+         << "Bipartite: " << B[n] << "\n\n";
   }
 }

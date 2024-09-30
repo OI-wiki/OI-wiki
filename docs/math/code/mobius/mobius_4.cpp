@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 const long long N = 5e4 + 5;
 long long n, m, T, pr[N], mu[N], d[N], t[N],
@@ -38,11 +38,12 @@ long long solve() {
 }
 
 int main() {
-  scanf("%lld", &T);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> T;
   prime_work(50000);  // 预处理
   while (T--) {
-    scanf("%lld%lld", &n, &m);
-    printf("%lld\n", solve());
+    cin >> n >> m;
+    cout << solve() << '\n';
   }
   return 0;
 }

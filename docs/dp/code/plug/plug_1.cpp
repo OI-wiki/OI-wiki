@@ -35,6 +35,7 @@ int main() {
       fill(f1, f1 + (1 << (m + 1)), 0);
       for (int s = 0; s < 1 << m; ++s) f1[s << 1] = f0[s];
     }
-    printf("Case %d: There are %lld ways to eat the trees.\n", Case, f1[0]);
+    cout << "Case " << Case << ": There are " << f1[0]
+         << " ways to eat the trees.\n";
   }
 }

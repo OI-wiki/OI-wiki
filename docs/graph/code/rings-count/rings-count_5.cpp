@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 #include <vector>
 using namespace std;
 const int mod = 1000000007;
@@ -104,15 +104,16 @@ long long solve5() {
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int T;
-  scanf("%d", &T);
+  cin >> T;
   while (T--) {
     ans[5] = ans[1] = ans[2] = ans[4] = ans[3] = -1;
-    scanf("%d%d", &n, &m);
+    cin >> n >> m;
     for (int i = 1; i <= n; i++) E[i].clear(), E1[i].clear(), E2[i].clear();
     while (m--) {
       int x, y;
-      scanf("%d%d", &x, &y);
+      cin >> x >> y;
       E[x].push_back(y), E[y].push_back(x);
     }
     for (int i = 1; i <= n; i++)
@@ -122,10 +123,10 @@ int main() {
         else
           E2[i].push_back(j);
       }
-    printf(
-        "%lld\n",
-        ((solve5() + solve1() + solve2() + solve4() + solve3()) % mod + mod) %
-            mod);
+    cout << ((solve5() + solve1() + solve2() + solve4() + solve3()) % mod +
+             mod) %
+                mod
+         << '\n';
   }
   return 0;
 }

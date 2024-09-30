@@ -1,7 +1,6 @@
 #include <cctype>
 #include <chrono>
-#include <cstdio>
-#include <random>
+#include <iostream>
 #include <set>
 #include <vector>
 
@@ -37,14 +36,18 @@ void getHash(int x, int p) {
   trees.insert(hash[x]);
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   for (int i = 1; i < n; i++) {
     int u, v;
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     edge[u].push_back(v);
     edge[v].push_back(u);
   }
   getHash(1, 0);
-  printf("%lu", trees.size());
+  cout << trees.size();
 }

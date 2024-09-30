@@ -1,8 +1,9 @@
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
+#include <string>
 using namespace std;
-const int N = 156, L = 1e6 + 6;
+const int N = 156;
 
 namespace AC {
 const int SZ = N * 80;
@@ -19,7 +20,7 @@ void init() {
   tot = 0;
 }
 
-void insert(char *s, int id) {  // id 表示原始字符串的编号
+void insert(const string &s, int id) {  // id 表示原始字符串的编号
   int u = 0;
   for (int i = 1; s[i]; i++) {
     if (!tr[u][s[i] - 'a']) tr[u][s[i] - 'a'] = ++tot;
@@ -47,7 +48,7 @@ void build() {
   }
 }
 
-int query(char *t) {  // 返回最大的出现次数
+int query(const string &t) {  // 返回最大的出现次数
   int u = 0, res = 0;
   for (int i = 1; t[i]; i++) {
     u = tr[u][t[i] - 'a'];
@@ -60,20 +61,23 @@ int query(char *t) {  // 返回最大的出现次数
 }  // namespace AC
 
 int n;
-char s[N][100], t[L];
+string s[N], t;
 
 int main() {
-  while (~scanf("%d", &n)) {
+  cin.tie(nullptr)->sync_with_stdio(false);
+  while (cin >> n) {
     if (n == 0) break;
     AC::init();  // 数组清零
     for (int i = 1; i <= n; i++)
-      scanf("%s", s[i] + 1), AC::insert(s[i], i);  // 需要记录该字符串的序号
+      cin >> s[i], s[i] = " " + s[i],
+                   AC::insert(s[i], i);  // 需要记录该字符串的序号
     AC::build();
-    scanf("%s", t + 1);
+    cin >> t;
+    t = " " + t;
     int x = AC::query(t);
-    printf("%d\n", x);
+    cout << x << '\n';
     for (int i = 1; i <= n; i++)
-      if (AC::cnt[i] == x) printf("%s\n", s[i] + 1);
+      if (AC::cnt[i] == x) cout << (s[i].data() + 1) << '\n';
   }
   return 0;
 }

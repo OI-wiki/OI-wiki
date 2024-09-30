@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 constexpr int N(1e6), M(2 * N), inf(1e7), RNG{26};
 
@@ -60,11 +61,11 @@ struct SuffixTree {
   }
 } T;
 
-char s[N + 5];
+string s;
 
 int main() {
-  scanf("%s", s + 1);
-  for (int i{1}; s[i]; ++i) T.extend(s[i] - 'a' + 1);
+  cin >> s;
+  for (int i = 0; i < s.size(); ++i) T.extend(s[i] - 'a' + 1);
   T.extend(0);
   cout << T.search(1).first << endl;
   return 0;

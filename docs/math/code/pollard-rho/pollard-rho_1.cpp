@@ -1,7 +1,7 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 using namespace std;
 
@@ -76,16 +76,16 @@ void fac(long long x) {
 }
 
 int main() {
-  scanf("%d", &t);
+  cin >> t;
   while (t--) {
     srand((unsigned)time(NULL));
     max_factor = 0;
-    scanf("%lld", &n);
+    cin >> n;
     fac(n);
     if (max_factor == n)  // 最大的质因数即自己
-      printf("Prime\n");
+      cout << "Prime\n";
     else
-      printf("%lld\n", max_factor);
+      cout << max_factor << '\n';
   }
   return 0;
 }

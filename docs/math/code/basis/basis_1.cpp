@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using ull = unsigned long long;
 
 ull p[64];
@@ -16,18 +16,21 @@ void insert(ull x) {
   }
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
   int n;
-  scanf("%d", &n);
+  cin >> n;
   ull a;
   for (int i = 1; i <= n; ++i) {
-    scanf("%llu", &a);
+    cin >> a;
     insert(a);
   }
   ull ans = 0;
   for (int i = 63; ~i; --i) {
     ans = std::max(ans, ans ^ p[i]);
   }
-  printf("%llu\n", ans);
+  cout << ans << '\n';
   return 0;
 }

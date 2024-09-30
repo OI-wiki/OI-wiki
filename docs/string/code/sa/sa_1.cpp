@@ -1,8 +1,6 @@
 #include <cctype>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
-
 using namespace std;
 
 const int N = 1000010;
@@ -21,7 +19,7 @@ int main() {
   r = n;
 
   for (i = 1; i <= n; ++i)
-    while (!isalpha(s[i] = getchar()));
+    while (cin >> s[i], !isalpha(s[i]));
   for (i = 1; i <= n; ++i)
     rk[i] = rk[2 * n + 2 - i] = s[i];  // 拼接正反两个字符串，中间空出一个字符
 
@@ -45,8 +43,8 @@ int main() {
   }
   // 利用后缀数组O(1)进行判断
   while (l <= r) {
-    printf("%c", rk[l] < rk[n + 1 - r] ? s[l++] : s[r--]);
-    if ((++tot) % 80 == 0) puts("");  // 回车
+    cout << (rk[l] < rk[n + 1 - r] ? s[l++] : s[r--]);
+    if ((++tot) % 80 == 0) cout << '\n';  // 回车
   }
 
   return 0;

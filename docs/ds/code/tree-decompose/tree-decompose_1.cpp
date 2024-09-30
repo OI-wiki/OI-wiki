@@ -1,18 +1,8 @@
-#include <algorithm>
 #include <bitset>
 #include <cctype>
-#include <cstdio>
 #include <iostream>
 
 using namespace std;
-
-int read() {
-  int out = 0;
-  char c;
-  while (!isdigit(c = getchar()));
-  for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
-  return out;
-}
 
 const int N = 100010;
 const int B = 666;
@@ -28,17 +18,14 @@ bool vis[N];
 bitset<C> bs[N / B + 5][N / B + 5], temp;
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int i, u, v, x, y, k, lastans = 0;
+  cin >> n >> m >> type;
 
-  n = read();
-  m = read();
-  type = read();
-
-  for (i = 1; i <= n; ++i) c[i] = read();
+  for (i = 1; i <= n; ++i) cin >> c[i];
 
   for (i = 1; i < n; ++i) {
-    u = read();
-    v = read();
+    cin >> u >> v;
     add(u, v);
     add(v, u);
   }
@@ -65,11 +52,12 @@ int main() {
   }
 
   while (m--) {
-    k = read();
+    cin >> k;
     temp.reset();
     while (k--) {
-      u = x = read() ^ lastans;
-      v = y = read() ^ lastans;
+      cin >> x >> y;
+      u = x ^= lastans;
+      v = y ^= lastans;
 
       while (key[bl[x]] != key[bl[y]]) {
         if (dep[key[bl[x]]] > dep[key[bl[y]]]) {
@@ -106,7 +94,7 @@ int main() {
       temp[c[x]] = true;
     }
     int ans1 = temp.count(), ans2 = (~temp)._Find_first();
-    printf("%d %d\n", ans1, ans2);
+    cout << ans1 << ' ' << ans2 << '\n';
     lastans = (ans1 + ans2) * type;
   }
 

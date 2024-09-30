@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 
 int n, m;
 int x[500010], y[500010], ans[500010];
@@ -45,12 +45,15 @@ int getsum(int x) {
   return ret;
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%d%d", &n, &m), tx = n, ty = n;
-  for (int i = 1; i <= n; i++)
-    scanf("%d%d", &x[i], &y[i]), ax[i] = x[i], ay[i] = y[i];
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m, tx = n, ty = n;
+  for (int i = 1; i <= n; i++) cin >> x[i] >> y[i], ax[i] = x[i], ay[i] = y[i];
   for (int i = 1, l, r; i <= m; i++) {
-    scanf("%d%d%d%d", &q[i].a, &q[i].b, &q[i].c, &q[i].d);
+    cin >> q[i].a >> q[i].b >> q[i].c >> q[i].d;
     ax[++tx] = q[i].a, ay[++ty] = q[i].b, ax[++tx] = q[i].c, ay[++ty] = q[i].d;
   }
   std::sort(ax + 1, ax + tx + 1), std::sort(ay + 1, ay + ty + 1);
@@ -80,6 +83,6 @@ int main() {
     else
       ans[op[i].id] -= getsum(op[i].y);
   }
-  for (int i = 1; i <= m; i++) printf("%d\n", ans[i]);
+  for (int i = 1; i <= m; i++) cout << ans[i] << '\n';
   return 0;
 }

@@ -117,7 +117,7 @@ int main() {
       int res = 0;
       res = trie::xorv[trie::rt[x]];
       res ^= get(fa[x]);
-      printf("%d\n", res);
+      cout << res << '\n';
     }
   }
   return 0;

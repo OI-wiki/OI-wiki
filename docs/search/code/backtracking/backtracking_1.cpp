@@ -1,5 +1,6 @@
 // 该代码为回溯法的 DFS 实现
-#include <cstdio>
+#include <iostream>
+using namespace std;
 int ans[14], check[3][28] = {0}, sum = 0, n;
 
 void eq(int line) {
@@ -8,8 +9,8 @@ void eq(int line) {
     if (sum > 3)
       return;
     else {
-      for (int i = 1; i <= n; i++) printf("%d ", ans[i]);
-      printf("\n");
+      for (int i = 1; i <= n; i++) cout << ans[i] << ' ';
+      cout << '\n';
       return;
     }
   }
@@ -30,8 +31,9 @@ void eq(int line) {
 }
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   eq(1);
-  printf("%d", sum);
+  cout << sum;
   return 0;
 }

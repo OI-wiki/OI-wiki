@@ -1,10 +1,5 @@
 #include <iostream>
 using namespace std;
-#ifdef LOCAL
-#define debug(...) fprintf(stderr, ##__VA_ARGS__)
-#else
-#define debug(...) void(0)
-#endif
 typedef long long LL;
 
 template <int N>

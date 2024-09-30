@@ -1,5 +1,5 @@
 #include <climits>
-#include <cstdio>
+#include <iostream>
 #define update(u) \
   if (u->lf->size) u->size = u->lf->size + u->rf->size, u->val = u->rf->val
 #define new_Node(a, b, c, d) (&(*st[cnt++] = Node(a, b, c, d)))
@@ -66,31 +66,32 @@ int nxt(int x) { return find(root, Rank(root, x + 1)); }
 
 void debug(Node *u) {
   if (u->lf != null) debug(u->lf);
-  if (u->size == 1) printf(" %d", u->val);
+  if (u->size == 1) cout << ' ' << u->val;
   if (u->rf != null) debug(u->rf);
 }
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   cnt = 0;
   null = new Node(0, 0, 0, 0);
   root = new Node(1, INT_MAX, null, null);
   for (int i = 0; i <= 200000; i++) st[i] = &t[i];
   for (int i = 1; i <= n; i++) {
     int t, a;
-    scanf("%d%d", &t, &a);
+    cin >> t >> a;
     if (t == 1)
       insert(root, a);
     else if (t == 2)
       erase(root, a);
     else if (t == 3)
-      printf("%d\n", Rank(root, a));
+      cout << Rank(root, a) << '\n';
     else if (t == 4)
-      printf("%d\n", find(root, a));
+      cout << find(root, a) << '\n';
     else if (t == 5)
-      printf("%d\n", pre(a));
+      cout << pre(a) << '\n';
     else if (t == 6)
-      printf("%d\n", nxt(a));
+      cout << nxt(a) << '\n';
   }
   return 0;
 }

@@ -1,6 +1,7 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
+
 using namespace std;
 
 const int maxn = 500010;
@@ -132,11 +133,12 @@ void DFS2(int u, int t) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
-  for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
+  for (int i = 1; i <= n; i++) cin >> a[i];
   for (int i = 1; i <= n - 1; i++) {
     int u, v;
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     add(u, v);
     add(v, u);
   }
@@ -146,10 +148,10 @@ int main() {
   Build(1, 1, n);
   for (int i = 1; i <= m; i++) {
     int x, val;
-    scanf("%d%d", &x, &val);
+    cin >> x >> val;
     Update(x, val);
     matrix ans = Query(1, 1, n, 1, End[1]);  // 查询1所在重链的矩阵乘
-    printf("%d\n", max(ans.g[0][0], ans.g[1][0]));
+    cout << max(ans.g[0][0], ans.g[1][0]) << '\n';
   }
   return 0;
 }

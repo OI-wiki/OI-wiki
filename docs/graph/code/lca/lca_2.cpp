@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <cmath>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 
 const int N = 5e5 + 5;
@@ -143,12 +143,13 @@ int LCA(int u, int v) {  // 求解LCA，看题解用RMQ的方法
 }
 
 int main() {
-  scanf("%d %d %d", &n, &m, &s);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m >> s;
 
   init(n);
   int u, v;
   for (int i = 1; i <= n - 1; ++i) {
-    scanf("%d %d", &u, &v);
+    cin >> u >> v;
     addedge(u, v);
   }
 
@@ -158,8 +159,8 @@ int main() {
   build_lca();
 
   for (int i = 1; i <= m; ++i) {
-    scanf("%d %d", &u, &v);
-    printf("%d\n", LCA(u, v));
+    cin >> u >> v;
+    cout << LCA(u, v) << '\n';
   }
 
   return 0;

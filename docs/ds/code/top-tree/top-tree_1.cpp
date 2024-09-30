@@ -1,5 +1,4 @@
-#include <cstdio>
-#include <utility>
+#include <iostream>
 #define ls(x) T[x][0]
 #define rs(x) T[x][1]
 #define ms(x) T[x][2]
@@ -164,19 +163,20 @@ void cu(int x, int y) {
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int n, m;
-  scanf("%d %d", &n, &m);
+  cin >> n >> m;
   tot = n;
   for (int i = 1; i <= n; i++) {
-    scanf("%d", &v[i]);
+    cin >> v[i];
     psu(i, 0);
   }
   for (int i = 1; i <= m; i++) {
     int op, U, V;
-    scanf("%d %d %d", &op, &U, &V);
+    cin >> op >> U >> V;
     if (op == 0) {
       epo(U, V);
-      printf("%d\n", s[V][0]);
+      cout << s[V][0] << '\n';
     }
     if (op == 1) lnk(U, V);
     if (op == 2) cu(U, V);

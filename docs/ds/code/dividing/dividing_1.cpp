@@ -1,22 +1,8 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 using namespace std;
 typedef long long lld;
-
-int getint()  // 本题没有负数输入，因此快读不需判断负号。
-{
-  char ch;
-  while ((ch = getchar()) < '!');
-  int x = ch ^ '0';
-  while ((ch = getchar()) > '!') x = (x * 10) + (ch ^ '0');
-  return x;
-}
-
-void putll(lld x) {  // 输出long long
-  if (x / 10) putll(x / 10);
-  putchar((x % 10) ^ '0');
-}
 
 int ti[2][17][131073];
 
@@ -84,17 +70,13 @@ int nri[1700005];
 int nli[1700005];
 
 int main() {
-  const int n = getint();
-  const int m = getint();
-  for (int i = 1; i <= n; ++i) {
-    ai[i] = getint();
-  }
+  cin.tie(nullptr)->sync_with_stdio(false);
+  int n, m;
+  cin >> n >> m;
+  for (int i = 1; i <= n; ++i) cin >> ai[i];
 
   if (n == 1) {
-    for (int i = 1; i <= m; ++i) {
-      putchar('0');
-      putchar('\n');
-    }
+    for (int i = 1; i <= m; ++i) cout << "0\n";
     return 0;
   }
 
@@ -110,12 +92,11 @@ int main() {
                  min(n + 1, j + (1 << (logn - i + 1))));
     }
   }
-
-  putll(ans);
-  putchar('\n');
+  cout << ans << '\n';
 
   for (int asdf = 1; asdf < m; ++asdf) {
-    int x = getint();
+    int x;
+    cin >> x;
     for (int i = 0, p = 0; i <= logn; ++i, p += n) {
       if (nri[p + x]) {
         ans -= nri[p + x] - querydown(logn - i + 1, x) - 1;
@@ -126,7 +107,6 @@ int main() {
       }
       x = npi[p + x];
     }
-    putll(ans);
-    putchar('\n');
+    cout << ans << '\n';
   }
 }

@@ -1,4 +1,5 @@
 #include <cmath>
+#include <iomanip>
 #include <iostream>
 using namespace std;
 double ans[10001], cans[100001], dis[10001], tot, f[1001][1001];
@@ -33,5 +34,6 @@ int main() {
     check();
     for (int i = 1; i <= n; i++) ans[i] += cans[i] * t;  // 修改
   }
-  for (int i = 1; i <= n; i++) printf("%.3f ", ans[i]);
-}
+  cout << fixed << setprecision(3);
+  for (int i = 1; i <= n; i++) cout << ans[i] << ' ';
+}  // test

@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 #define rep(i, a, b) for (int i = (a); i <= (b); ++i)
 const int N = 200005;
@@ -132,13 +132,14 @@ void divid(int u) {
 }
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   int u, v;
-  rep(i, 1, n) scanf("%d", &c[i]);
-  rep(i, 2, n) scanf("%d%d", &u, &v), tu(u, v), tu(v, u);
+  rep(i, 1, n) cin >> c[i];
+  rep(i, 2, n) cin >> u >> v, tu(u, v), tu(v, u);
   rt = 0, nn = n, mn = n + 1;
   get_root(1, 0);
   divid(rt);
-  rep(i, 1, n) printf("%lld\n", ans[i]);
+  rep(i, 1, n) cout << ans[i] << '\n';
   return 0;
 }

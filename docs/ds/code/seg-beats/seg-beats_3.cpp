@@ -1,25 +1,8 @@
 #include <algorithm>
-#include <cstdio>
+#include <climits>
+#include <iostream>
 using namespace std;
 typedef long long ll;
-
-char nc() {
-  static char buf[1000000], *p = buf, *q = buf;
-  return p == q && (q = (p = buf) + fread(buf, 1, 1000000, stdin), p == q)
-             ? EOF
-             : *p++;
-}
-
-ll rd() {  // LLONG_MIN LMAX=9,223,372,036,854,775,807
-  ll s = 0, w = 1;
-  char ch = nc();
-  while (ch < '0' || ch > '9') {
-    if (ch == '-') w = -1;
-    ch = nc();
-  }
-  while (ch >= '0' && ch <= '9') s = s * 10 + ch - '0', ch = nc();
-  return s * w;
-}
 
 const int N = 1e5 + 7;
 
@@ -106,22 +89,26 @@ int qmaxh(int u = 1, int l = 1, int r = n) {
 }
 
 int main() {
-  n = rd();
-  for (int i = 1; i <= n; ++i) a[i] = rd();
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
+  for (int i = 1; i <= n; ++i) cin >> a[i];
   build();
-  int m = rd(), z;
+  int m, z;
+  cin >> m;
   for (int i = 1; i <= m; ++i) {
-    char op = nc();
-    while (op == ' ' || op == '\r' || op == '\n') op = nc();
-    L = rd(), R = rd();
+    char op;
+    cin >> op;
+    while (op == ' ' || op == '\r' || op == '\n') cin >> op;
+    cin >> L >> R;
+    int x;
     if (op == 'Q')
-      printf("%d\n", qmax());
+      cout << qmax() << '\n';
     else if (op == 'A')
-      printf("%d\n", qmaxh());
+      cout << qmaxh() << '\n';
     else if (op == 'P')
-      add(rd());
+      cin >> x, add(x);
     else
-      tset(rd());
+      cin >> x, tset(x);
   }
   return 0;
 }

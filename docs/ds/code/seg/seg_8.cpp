@@ -1,7 +1,6 @@
 #include <bitset>
-#include <cstdio>
+#include <iostream>
 #include <queue>
-#include <utility>
 #include <vector>
 using namespace std;
 typedef long long ll;
@@ -110,34 +109,35 @@ void dij(int S) {
 }
 
 int main() {
-  scanf("%d%d%d", &n, &q, &s);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> q >> s;
   build(rt1, 1, n);
   build2(rt2, 1, n);
   for (int i = 1, op, u; i <= q; ++i) {
-    scanf("%d%d", &op, &u);
+    cin >> op >> u;
     if (op == 1) {
       int v;
       ll w;
-      scanf("%d%lld", &v, &w);
+      cin >> v >> w;
       e[pos[u]].emplace_back(pos[v], w);
     } else if (op == 2) {
       int l, r;
       ll w;
-      scanf("%d%d%lld", &l, &r, &w);
+      cin >> l >> r >> w;
       add1(rt1, l, r, pos[u], w);
     } else {
       int l, r;
       ll w;
-      scanf("%d%d%lld", &l, &r, &w);
+      cin >> l >> r >> w;
       add2(rt2, l, r, pos[u], w);
     }
   }
   dij(pos[s]);
   for (int i = 1; i <= n; ++i) {
     if (dis[pos[i]] == 1e18) {
-      printf("-1 ");
+      cout << "-1 ";
     } else {
-      printf("%lld ", dis[pos[i]]);
+      cout << dis[pos[i]] << ' ';
     }
   }
   return 0;

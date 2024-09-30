@@ -131,12 +131,12 @@ int main() {
   cin >> n;
 
   for (int i = 0; i < n; i++) {
-    scanf("%d", &a[i]);
+    cin >> a[i];
   }
   sqrt(n, a, b);
 
   for (int i = 0; i < n; i++) {
-    printf("%d ", b[i]);
+    cout << b[i] << ' ';
   }
 
   return 0;

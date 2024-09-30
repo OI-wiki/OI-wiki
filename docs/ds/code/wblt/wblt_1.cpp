@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 
 typedef long long ll;
 
@@ -123,23 +123,27 @@ ll pre(ll x) { return kth(rt, rnk(rt, x) - 1); }
 
 ll nxt(ll x) { return kth(rt, rnk(rt, x + 1)); }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%lld", &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> m;
   rt = add(INF, 1, 0, 0);
   while (m--) {
-    scanf("%lld%lld", &op, &t);
+    cin >> op >> t;
     if (op == 1) {
       ins(rt, t);
     } else if (op == 2) {
       del(rt, t, -1);
     } else if (op == 3) {
-      printf("%lld\n", rnk(rt, t));
+      cout << rnk(rt, t) << '\n';
     } else if (op == 4) {
-      printf("%lld\n", kth(rt, t));
+      cout << kth(rt, t) << '\n';
     } else if (op == 5) {
-      printf("%lld\n", pre(t));
+      cout << pre(t) << '\n';
     } else {
-      printf("%lld\n", nxt(t));
+      cout << nxt(t) << '\n';
     }
   }
   return 0;

@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 #include <map>
 #include <set>
 #define SNI set<nod>::iterator
@@ -53,11 +53,12 @@ int lst[2 * N];
 map<int, int> mp;  // 提前离散化
 
 void prew() {
-  scanf("%d%d", &n, &m);
-  for (int i = 1; i <= n; i++) scanf("%d", &a[i]), mp[a[i]] = 1;
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
+  for (int i = 1; i <= n; i++) cin >> a[i], mp[a[i]] = 1;
   for (int i = 1; i <= m; i++) {
-    scanf("%d%d%d", &tp[i], &lf[i], &rt[i]);
-    if (tp[i] == 1) scanf("%d", &co[i]), mp[co[i]] = 1;
+    cin >> tp[i] >> lf[i] >> rt[i];
+    if (tp[i] == 1) cin >> co[i], mp[co[i]] = 1;
   }
   map<int, int>::iterator it, it1;
   for (it = mp.begin(), it1 = it, ++it1; it1 != mp.end(); ++it, ++it1)
@@ -230,7 +231,7 @@ void mainsolve() {
   sort(qr + 1, qr + tp2 + 1, cmp);
   solve(0, tp1, 0, tp2, 0, cnt);
   sort(qr + 1, qr + tp2 + 1, cmp);
-  for (int i = 1; i <= tp2; i++) printf("%d\n", qr[i].ans);
+  for (int i = 1; i <= tp2; i++) cout << qr[i].ans << '\n';
 }
 }  // namespace CDQ
 

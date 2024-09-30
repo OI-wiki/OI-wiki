@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 
 using namespace std;
@@ -56,12 +56,13 @@ void dfs(P u, int s) {
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   memset(f, INF, sizeof(f));
-  scanf("%d %d", &n, &m);
+  cin >> n >> m;
   int tot = 0;
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
-      scanf("%d", &a[tot]);
+      cin >> a[tot];
       if (!a[tot]) {
         f[tot][1 << (K++)] = 0;
         root = tot;
@@ -81,16 +82,16 @@ int main() {
     }
     spfa(s);
   }
-  printf("%d\n", f[root][(1 << K) - 1]);
+  cout << f[root][(1 << K) - 1] << '\n';
   dfs(mp(root / m, root % m), (1 << K) - 1);
   for (int i = 0, tot = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
       if (!a[tot++])
-        putchar('x');
+        cout << 'x';
       else
-        putchar(ans[i][j] ? 'o' : '_');
+        cout << (ans[i][j] ? 'o' : '_');
     }
-    if (i != n - 1) printf("\n");
+    if (i != n - 1) cout << '\n';
   }
   return 0;
 }

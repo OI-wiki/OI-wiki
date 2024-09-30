@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 #include <queue>
 
 using namespace std;
@@ -42,10 +42,11 @@ void spfa() {  // spfa算法，可看最短路部分
 }
 
 int main() {
-  scanf("%lld", &h);
-  scanf("%lld %lld %lld", &x, &y, &z);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> h;
+  cin >> x >> y >> z;
   if (x == 1 || y == 1 || z == 1) {
-    printf("%lld\n", h);
+    cout << h << '\n';
     return 0;
   }
   --h;
@@ -59,6 +60,6 @@ int main() {
   for (int i = 0; i < x; i++) {
     if (h >= dis[i]) ans += (h - dis[i]) / x + 1;
   }
-  printf("%lld\n", ans);
+  cout << ans << '\n';
   return 0;
 }

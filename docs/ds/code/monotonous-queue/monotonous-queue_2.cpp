@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 const int N = 100005;
 typedef long long ll;
@@ -13,10 +13,9 @@ struct la {
 } a[N];
 
 int main() {
-  scanf("%d%d", &n, &D);
-  for (int i = 1; i <= n; ++i) {
-    scanf("%d%d", &a[i].x, &a[i].y);
-  }
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> D;
+  for (int i = 1; i <= n; ++i) cin >> a[i].x >> a[i].y;
   sort(a + 1, a + n + 1);
   hx = hn = 1;
   ans = 2e9;
@@ -34,8 +33,8 @@ int main() {
     }
   }
   if (ans < 2e9)
-    printf("%d\n", ans);
+    cout << ans << '\n';
   else
-    puts("-1");
+    cout << "-1\n";
   return 0;
 }

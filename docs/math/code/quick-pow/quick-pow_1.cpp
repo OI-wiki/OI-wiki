@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 using namespace std;
 int a[505], b[505], t[505], i, j;
 
@@ -30,8 +30,9 @@ void ksm(int p)  // 快速幂
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int p;
-  scanf("%d", &p);
+  cin >> p;
   a[0] = 1;  // 记录a数组的位数
   a[1] = 2;  // 对2进行平方
   b[0] = 1;  // 记录b数组的位数
@@ -39,8 +40,8 @@ int main() {
   ksm(p);
   for (i = 100; i >= 1; i--) {
     if (i == 1) {
-      printf("%d\n", b[i] - 1);  // 最后一位减1
+      cout << b[i] - 1 << '\n';  // 最后一位减1
     } else
-      printf("%d", b[i]);
+      cout << b[i];
   }
 }

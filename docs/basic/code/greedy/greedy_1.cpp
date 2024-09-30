@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <cmath>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 #include <queue>
@@ -20,7 +19,7 @@ int main() {
   long long n, i;
   cin >> n;
   for (i = 1; i <= n; i++) {
-    scanf("%lld%lld", &a[i].d, &a[i].p);
+    cin >> a[i].d >> a[i].p;
   }
   sort(a + 1, a + n + 1, cmp);
   long long ans = 0;

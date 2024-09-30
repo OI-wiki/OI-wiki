@@ -1,5 +1,6 @@
-#include <cstdio>
 #include <cstring>
+#include <iostream>
+#include <string>
 using namespace std;
 typedef long long ll;
 const int mod = 1e9 + 7;
@@ -64,12 +65,15 @@ using pam::fail;
 using pam::len;
 using pam::slink;
 int n, dp[maxn], g[maxn];
-char s[maxn], t[maxn];
+string s;
+char t[maxn];
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   pam::clear();
-  scanf("%s", s + 1);
-  n = strlen(s + 1);
+  cin >> s;
+  n = s.size();
+  s = " " + s;
   for (int i = 1, j = 0; i <= n; i++) t[++j] = s[i], t[++j] = s[n - i + 1];
   dp[0] = 1;
   for (int i = 1; i <= n; i++) {
@@ -80,6 +84,6 @@ int main() {
       if (i % 2 == 0) dp[i] = add(dp[i], g[x]);  // 在偶数位置更新 dp 数组
     }
   }
-  printf("%d", dp[n]);
+  cout << dp[n];
   return 0;
 }

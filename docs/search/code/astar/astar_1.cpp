@@ -1,6 +1,6 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 #include <set>
 using namespace std;
@@ -38,6 +38,7 @@ priority_queue<node> q;  // 搜索队列
 set<matrix> s;           // 防止搜索队列重复
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   st.a[1][1] = 1;  // 定义标准表
   st.a[1][2] = 2;
   st.a[1][3] = 3;
@@ -49,7 +50,7 @@ int main() {
   st.a[3][3] = 5;
   for (int i = 1; i <= 3; i++)  // 输入
     for (int j = 1; j <= 3; j++) {
-      scanf(" %c", &ch);
+      cin >> ch;
       f.a[i][j] = ch - '0';
     }
   q.push({f, 0});
@@ -57,7 +58,7 @@ int main() {
     x = q.top();
     q.pop();
     if (!h(x.a)) {  // 判断是否与标准矩阵一致
-      printf("%d\n", x.t);
+      cout << x.t << '\n';
       return 0;
     }
     for (int i = 1; i <= 3; i++)
