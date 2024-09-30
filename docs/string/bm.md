@@ -326,7 +326,7 @@ $$
 
 ### 引入
 
-在 1977 年 10 月的 *Communications of the ACM*上， Boyer、Moor 的论文[^bm]中只描述了 $delta_2$ 静态表，
+在 1977 年 10 月的*Communications of the ACM*上，Boyer、Moor 的论文[^bm]中只描述了 $delta_2$ 静态表，
 
 构造 $delta_2$ 的具体实现的讨论出现在 1977 年 6 月 Knuth、Morris、Pratt 在*SIAM Journal on Computing*上正式联合发表的 KMP 算法的论文[^kmp]。
 
