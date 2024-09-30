@@ -107,14 +107,14 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     map = {
         "x86_64 Ubuntu": concat(gen(
             compilers=[('clang++', '.Clang'), ('g++-9', '.GCC9'), ('g++-13', '.GCC13')],
-            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++2a', '.GNU20'), ('', '.NA')],
-            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
             mainfile=mainfile
         ), gen(
             compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
-            standards=[('', '.NA')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
             optimizations=[('', '.NA')],
             sanitizers=[('-fsanitize=undefined,address', '.UBSAN-ASAN')],
             auxfiles=auxfiles,
@@ -122,7 +122,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         )),
         "x86_64 Alpine": gen(
             compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
-            standards=[('', '.NA')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
@@ -130,14 +130,14 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         ),
         "x86_64 Windows": concat(gen(
             compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
-            standards=[('', '.NA')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
             mainfile=mainfile
         ), gen(
             compilers=[(f'{CALL_VCVARS_BAT} && cl.exe', '.MSVC')],
-            standards=[('', '.NA')],
+            standards=[('/std:c++14', '.CPP14'), ('/std:c++17', '.CPP17'), ('/std:c++20', '.CPP20')],
             optimizations=[('/Od', '.O0'), ('/O2', '.O2')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
@@ -146,7 +146,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         )),
         "riscv64 Ubuntu": gen(
             compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
-            standards=[('', '.NA')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
@@ -154,8 +154,8 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         ),
         "arm64 MacOS": gen(
             compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
-            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++20', '.GNU20'), ('', '.NA')],
-            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
             mainfile=mainfile
