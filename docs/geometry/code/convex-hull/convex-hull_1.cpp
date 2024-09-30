@@ -22,9 +22,7 @@ struct Point {
   }
 } a[N], b[N], zo, tmp[N];
 
-int sgn(double x) {
-  return (fabs(x) == 0) ? 0 : ((x > 0) ? 1 : -1);
-}
+int sgn(double x) { return (fabs(x) == 0) ? 0 : ((x > 0) ? 1 : -1); }
 
 struct Convex {
   Point p[N];
