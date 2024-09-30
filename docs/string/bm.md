@@ -843,127 +843,127 @@ B5S 基本思路是：
 #### 空间节省版本
 
 同样在 CPython `stringlib` 中实现，使用了两个整数近似取代了字符表和 $delta_1$ 的作用，极大地节省了空间：
-
-##### 用一个简单的 Bloom 过滤器取代字符表（alphabet）
-
-???+ note "实现"
-    ```rust
-    pub struct BytesBloomFilter {
-        mask: u64,
-    }
     
-    impl BytesBloomFilter {
-        pub fn new() -> Self {
-            SimpleBloomFilter {
-                mask: 0,
-            }
+1.  用一个简单的 Bloom 过滤器取代字符表（alphabet）
+    
+    ???+ note "实现"
+        ```rust
+        pub struct BytesBloomFilter {
+            mask: u64,
         }
-    
-        fn insert(&mut self, byte: &u8) {
-            (self.mask) |= 1u64 << (byte & 63);
-        }
-    
-        fn contains(&self, char: &u8) -> bool {
-            (self.mask & (1u64 << (byte & 63))) != 0
-        }
-    }
-    ```
-
-Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来极大地节省存储空间的 `Set` 类型的数据结构，它的特点是会将集合中不存在的项误判为存在（False Positives，简称 FP），但不会把集合中存在的项判断为不存在（False Negatives，简称 FN），因此使用它可能会因为 FP 而没有得到最大的字符跳转，但不会因为 FN 而跳过本应匹配的字符。
-
-理论上分析，上述「Bloom 过滤器」的实现在 $pat$ 长度在 50 个 Bytes 时，FP 概率约为 0.5，而 $pat$ 长度在 10 个 Bytes 时，FP 概率约为 0.15。
-
-虽然这不是一个标准的 Bloom 过滤器，首先它实际上没有使用一个真正的哈希函数，实际上它只是一个字符映射，将 0-255 的字节映射为它的前六位构成的数。
-
-但考虑到我们在内存上的进行字符搜索，这种简化就非常重要，即使用目前已知最快的非加密哈希算法 [xxHash](https://cyan4973.github.io/xxHash/)，计算所需要的时间仍比它高一个数量级。
-
-另外当 pat 在 30 字节以下时，为了达到最佳的 FP 概率，需要不止一个哈希函数。但这么做意义不大，因为用装有两个 `u128` 数字的数组就已经可以构建字符表的全字符集。
-
-##### 使用 delta1(pat\[patlastpos]) 代替整个 delta1
-
-观察 $delta_1$，最常使用处就是后缀匹配时第一个字符就不匹配是最常见的不匹配的情况，于是令 `skip = delta1(pat[patlastpos])`，
-
-在第一阶段不匹配时，直接向下滑动 `skip` 个字符；但当第二阶段不配时，因为缺乏整个 $delta_1$ 的信息，只能向下滑动一个字符。
-
-???+ note "实现"
-    ```rust
-    pub struct B5SSpacePattern<'a> {
-        pat_bytes: &'a [u8],
-        alphabet: BytesBloomFilter,
-        skip: usize,
-    }
-    
-    impl<'a> B5SSpacePattern<'a> {
-        pub fn new(pat: &'a str) -> Self {
-            assert_ne!(pat.len(), 0);
-    
-            let pat_bytes = pat.as_bytes();
-            let (alphabet, skip) = B5SSpacePattern::build(pat_bytes);
-    
-            B5SSpacePattern { pat_bytes, alphabet, skip}
-        }
-    
-        fn build(p: &'a [u8]) -> (BytesBloomFilter, usize)  {
-            let mut alphabet = BytesBloomFilter::new();
-            let lastpos = p.len() - 1;
-            let mut skip = p.len();
-    
-            for i in 0..p.len()-1 {
-                alphabet.insert(&p[i]);
-    
-                if p[i] == p[lastpos] {
-                    skip = lastpos - i;
+        
+        impl BytesBloomFilter {
+            pub fn new() -> Self {
+                SimpleBloomFilter {
+                    mask: 0,
                 }
             }
-    
-            alphabet.insert(&p[lastpos]);
-    
-            (alphabet, skip)
+        
+            fn insert(&mut self, byte: &u8) {
+                (self.mask) |= 1u64 << (byte & 63);
+            }
+        
+            fn contains(&self, char: &u8) -> bool {
+                (self.mask & (1u64 << (byte & 63))) != 0
+            }
         }
+        ```
     
-        pub fn find_all(&self, string: &'a str) -> Vec<usize> {
-            let mut result = vec![];
-            let string_bytes = string.as_bytes();
-            let pat_last_pos = self.pat_bytes.len() - 1;
-            let patlen = self.pat_bytes.len();
-            let stringlen = string_bytes.len();
-            let mut string_index = pat_last_pos;
+    Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来极大地节省存储空间的 `Set` 类型的数据结构，它的特点是会将集合中不存在的项误判为存在（False Positives，简称 FP），但不会把集合中存在的项判断为不存在（False Negatives，简称 FN），因此使用它可能会因为 FP 而没有得到最大的字符跳转，但不会因为 FN 而跳过本应匹配的字符。
     
-            while string_index < stringlen {
-                if string_bytes[string_index] == self.pat_bytes[pat_last_pos] {
-                    if &string_bytes[string_index-pat_last_pos..string_index] == &self.pat_bytes[..patlen-1] {
-                        result.push(string_index-pat_last_pos);
-                    }
+    理论上分析，上述「Bloom 过滤器」的实现在 $pat$ 长度在 50 个 Bytes 时，FP 概率约为 0.5，而 $pat$ 长度在 10 个 Bytes 时，FP 概率约为 0.15。
     
-                    if string_index + 1 == stringlen {
-                        break;
-                    }
+    虽然这不是一个标准的 Bloom 过滤器，首先它实际上没有使用一个真正的哈希函数，实际上它只是一个字符映射，将 0-255 的字节映射为它的前六位构成的数。
     
-                    if !self.alphabet.contains(&string_bytes[string_index+1]) {
-                        string_index += patlen + 1;  // sunday
-                    } else {
-                        string_index += self.skip;  // horspool
-                    }
-                } else {
-                    if string_index + 1 == stringlen {
-                        break;
-                    }
+    但考虑到我们在内存上的进行字符搜索，这种简化就非常重要，即使用目前已知最快的非加密哈希算法 [xxHash](https://cyan4973.github.io/xxHash/)，计算所需要的时间仍比它高一个数量级。
     
-                    if !self.alphabet.contains(&string_bytes[string_index+1]) {
-                        string_index += patlen + 1;  // sunday
-                    } else {
-                        string_index += 1;
+    另外当 pat 在 30 字节以下时，为了达到最佳的 FP 概率，需要不止一个哈希函数。但这么做意义不大，因为用装有两个 `u128` 数字的数组就已经可以构建字符表的全字符集。
+    
+2.  使用 $delta_1(pat[patlastpos])$ 代替整个 $delta_1$
+    
+    观察 $delta_1$，最常使用处就是后缀匹配时第一个字符就不匹配是最常见的不匹配的情况，于是令 `skip = delta1(pat[patlastpos])`，
+    
+    在第一阶段不匹配时，直接向下滑动 `skip` 个字符；但当第二阶段不配时，因为缺乏整个 $delta_1$ 的信息，只能向下滑动一个字符。
+    
+    ???+ note "实现"
+        ```rust
+        pub struct B5SSpacePattern<'a> {
+            pat_bytes: &'a [u8],
+            alphabet: BytesBloomFilter,
+            skip: usize,
+        }
+        
+        impl<'a> B5SSpacePattern<'a> {
+            pub fn new(pat: &'a str) -> Self {
+                assert_ne!(pat.len(), 0);
+        
+                let pat_bytes = pat.as_bytes();
+                let (alphabet, skip) = B5SSpacePattern::build(pat_bytes);
+        
+                B5SSpacePattern { pat_bytes, alphabet, skip}
+            }
+        
+            fn build(p: &'a [u8]) -> (BytesBloomFilter, usize)  {
+                let mut alphabet = BytesBloomFilter::new();
+                let lastpos = p.len() - 1;
+                let mut skip = p.len();
+        
+                for i in 0..p.len()-1 {
+                    alphabet.insert(&p[i]);
+        
+                    if p[i] == p[lastpos] {
+                        skip = lastpos - i;
                     }
                 }
-    
+        
+                alphabet.insert(&p[lastpos]);
+        
+                (alphabet, skip)
             }
-    
-            result
+        
+            pub fn find_all(&self, string: &'a str) -> Vec<usize> {
+                let mut result = vec![];
+                let string_bytes = string.as_bytes();
+                let pat_last_pos = self.pat_bytes.len() - 1;
+                let patlen = self.pat_bytes.len();
+                let stringlen = string_bytes.len();
+                let mut string_index = pat_last_pos;
+        
+                while string_index < stringlen {
+                    if string_bytes[string_index] == self.pat_bytes[pat_last_pos] {
+                        if &string_bytes[string_index-pat_last_pos..string_index] == &self.pat_bytes[..patlen-1] {
+                            result.push(string_index-pat_last_pos);
+                        }
+        
+                        if string_index + 1 == stringlen {
+                            break;
+                        }
+        
+                        if !self.alphabet.contains(&string_bytes[string_index+1]) {
+                            string_index += patlen + 1;  // sunday
+                        } else {
+                            string_index += self.skip;  // horspool
+                        }
+                    } else {
+                        if string_index + 1 == stringlen {
+                            break;
+                        }
+        
+                        if !self.alphabet.contains(&string_bytes[string_index+1]) {
+                            string_index += patlen + 1;  // sunday
+                        } else {
+                            string_index += 1;
+                        }
+                    }
+        
+                }
+        
+                result
+            }
         }
-    }
-    ```
-
-这个版本的算法相较于前面的后缀匹配算法不够快，但差距不大，性能仍然优于 KMP，得益于它至多两个 `u64` 的整数的优秀空间复杂度。
+        ```
+    
+    这个版本的算法相较于前面的后缀匹配算法不够快，但差距不大，性能仍然优于 KMP，得益于它至多两个 `u64` 的整数的优秀空间复杂度。
 
 ## 理论分析
 
