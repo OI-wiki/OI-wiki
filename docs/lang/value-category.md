@@ -44,26 +44,26 @@ void move_to(MyString &src, MyString &dst) {
 
 C 语言中每个表达式都具有类型和值类别。值类别主要分为三类：
 
-- 左值（lvalue）：隐含指代一个对象的表达式。即我们可以对该表达式取地址。
-- 右值（rvalue）：不指代对象的表达式，即指代没有存储位置的值，我们无法取该值的地址。
-- 函数指代符：函数类型的表达式。
+-   左值（lvalue）：隐含指代一个对象的表达式。即我们可以对该表达式取地址。
+-   右值（rvalue）：不指代对象的表达式，即指代没有存储位置的值，我们无法取该值的地址。
+-   函数指代符：函数类型的表达式。
 
 因此，只有可修改的左值（没有 `const` 修饰且非数组的左值）可以位于赋值表达式左侧。
 
-对于某个要求右值作为它的操作数的运算符，每当左值被用作操作数，都会对该表达式应用左值到右值，数组到指针，或者函数到指针 标准转换以将它转换成右值。 
+对于某个要求右值作为它的操作数的运算符，每当左值被用作操作数，都会对该表达式应用左值到右值，数组到指针，或者函数到指针 标准转换以将它转换成右值。
 
 常见误区：
 
-- 右值表达式继续运算可能是左值。例如 `int *a`，表达式 `a + 1` 是右值，但 `*(a + 1)` 是左值。
-- 表达式才有值类别，变量没有。例如 `int *a`，不能说变量 `a` 是左值，可以说其在表达式 `a` 中做左值，
+-   右值表达式继续运算可能是左值。例如 `int *a`，表达式 `a + 1` 是右值，但 `*(a + 1)` 是左值。
+-   表达式才有值类别，变量没有。例如 `int *a`，不能说变量 `a` 是左值，可以说其在表达式 `a` 中做左值，
 
 ## C++98 中的值类别
 
 C++98 在值类别方面与 C 语言几乎一致，但增加了一些新的规则：
 
-- 函数为左值，因为可以取地址。
-- 左值引用（T&）是左值，因为可以取地址。
-- 仅有 `const T&` 可绑定到右值。
+-   函数为左值，因为可以取地址。
+-   左值引用（T&）是左值，因为可以取地址。
+-   仅有 `const T&` 可绑定到右值。
 
 ### 复制消除
 
@@ -74,7 +74,9 @@ C++ 允许编译器执行复制消除（Copy Elision），可以减少临时对�
 ```cpp
 struct X {
   X() { std::puts("X::X()"); }
+
   X(const X &) { std::puts("X::X(const X &)"); }
+
   ~X() { std::puts("X::~X()"); }
 };
 
@@ -84,8 +86,8 @@ X get() {
 }
 
 int main() {
-    X x = get();
-    X y = X(X(X(X(x))));
+  X x = get();
+  X y = X(X(X(X(x))));
   return 0;
 }
 ```
@@ -109,20 +111,20 @@ struct MyString {
 
 我们现在关注的表达式特性增加了一点：
 
-- 是否具有身份：是否指代一个对象，即是否有地址。
-- 是否可被移动：是否具有移动构造、移动赋值等函数，让我们有办法利用这些临时对象。
+-   是否具有身份：是否指代一个对象，即是否有地址。
+-   是否可被移动：是否具有移动构造、移动赋值等函数，让我们有办法利用这些临时对象。
 
 因此我们有三种值类别：
 
-- 有身份，不可移动：左值（lvalue），`T&`。
-- 有身份，可被移动：亡值（xvalue），`T&&`。
-- 无身份，可被移动：纯右值（prvalue），`T`。
-- 无身份，不可移动：此类表达式无法使用。
+-   有身份，不可移动：左值（lvalue），`T&`。
+-   有身份，可被移动：亡值（xvalue），`T&&`。
+-   无身份，可被移动：纯右值（prvalue），`T`。
+-   无身份，不可移动：此类表达式无法使用。
 
 另外 C++11 还引入了两个复合类别：
 
-- 具有身份：泛左值（glvalue），即左值和亡值。
-- 可被移动：右值（rvalue），即纯右值和亡值。
+-   具有身份：泛左值（glvalue），即左值和亡值。
+-   可被移动：右值（rvalue），即纯右值和亡值。
 
 ### std::move
 
@@ -160,18 +162,16 @@ int main() {
 
 C++17 进一步简化了值类别：
 
-- 左值（lvalue）：有身份，不可移动。
-- 亡值（xvalue）：有身份，可以移动。
-- 纯右值（prvalue）：对象的初始化。
+-   左值（lvalue）：有身份，不可移动。
+-   亡值（xvalue）：有身份，可以移动。
+-   纯右值（prvalue）：对象的初始化。
 
 C++11 将复制消除扩展到了移动上，下面的代码中 `urvo` 在编译器启用 RVO 的情况下是没有移动的。
 
 C++17 要求纯右值非必须不实质化，直接构造到其最终目标的存储中，在构造之前对象尚不存在。因此在 C++17 中我们就没有返回这一步，也就不必依赖 RVO。也可以理解为强制了 NRVO（Unnamed RVO），但对于 NRVO（Named RVO）还是非强制的。
 
 ```cpp
-std::string urvo() {
-  return std::string("123");
-}
+std::string urvo() { return std::string("123"); }
 
 std::string nrvo() {
   std::string s;
@@ -181,8 +181,8 @@ std::string nrvo() {
 }
 
 int main() {
-  std::string str = urvo(); // 直接构造
-  std::string str = nrvo(); // 不一定直接构造，依赖于优化
+  std::string str = urvo();  // 直接构造
+  std::string str = nrvo();  // 不一定直接构造，依赖于优化
 }
 ```
 
@@ -193,5 +193,5 @@ int main() {
 1.  [Value categories](https://en.cppreference.com/w/cpp/language/value_category)
 2.  [Wording for guaranteed copy elision through simplified value categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html)
 3.  [C++ 中的值类别](https://paul.pub/cpp-value-category/)
-4.  [C++的右值引用、移动和值类别系统，你所需要的一切](https://zclll.com/index.php/cpp/value_category.html)
+4.  [C++ 的右值引用、移动和值类别系统，你所需要的一切](https://zclll.com/index.php/cpp/value_category.html)
 5.  [Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision)
