@@ -194,3 +194,4 @@ int main() {
 2.  [Wording for guaranteed copy elision through simplified value categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html)
 3.  [C++ 中的值类别](https://paul.pub/cpp-value-category/)
 4.  [C++的右值引用、移动和值类别系统，你所需要的一切](https://zclll.com/index.php/cpp/value_category.html)
+5.  [Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision)
