@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e9a43a2b7bdb512f9b6c5671fccb94cb470356a117238edea0a49c24c87328f9"
+            "sha256": "9e5482337cc7a2b877a3ea418bc6cec49dae21632bdbdf6f260d40f94b243535"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -299,17 +299,17 @@
                 "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3",
                 "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.9.0.post0"
         },
         "python-markdown-document-offsets-injection-extension": {
             "hashes": [
-                "sha256:717c5285ce4970879cef997212c846e7da2c89ba6b2aaab31ad25230113e0efa",
-                "sha256:f9d7dc86675b6a8647f873d4ed20f9ea50cd8d6c2be9e5fda06af78bf788aff3"
+                "sha256:243ad865e23d2879646492d7fc9cf7123a0ee9f941874beb7b4e19a9bd619255",
+                "sha256:889aed92cd97d84abbfbd67f76b5587fd73019447d2b349b61946f5c86e50d47"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==0.5.9"
+            "version": "==0.5.10"
         },
         "pyyaml": {
             "hashes": [
@@ -392,7 +392,7 @@
                 "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
                 "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==1.16.0"
         },
         "soupsieve": {
