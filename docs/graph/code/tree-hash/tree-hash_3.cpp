@@ -1,13 +1,13 @@
-#include <chrono>
 #include <iostream>
 #include <map>
+#include <random>
 #include <vector>
 
 typedef unsigned long long ull;
 typedef std::pair<ull, ull> Hash2;
 
 const int N = 60, M = 998244353;
-const ull mask = std::chrono::steady_clock::now().time_since_epoch().count();
+const ull mask = std::mt19937_64(time(nullptr))();
 
 ull shift(ull x) {
   x ^= mask;

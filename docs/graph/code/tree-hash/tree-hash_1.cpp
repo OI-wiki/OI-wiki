@@ -1,12 +1,12 @@
 #include <cctype>
-#include <chrono>
 #include <iostream>
 #include <set>
+#include <random>
 #include <vector>
 
 typedef unsigned long long ull;
 
-const ull mask = std::chrono::steady_clock::now().time_since_epoch().count();
+const ull mask = std::mt19937_64(time(nullptr))();
 
 ull shift(ull x) {
   x ^= mask;

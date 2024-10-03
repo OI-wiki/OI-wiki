@@ -1,12 +1,12 @@
-#include <chrono>
 #include <iostream>
 #include <map>
+#include <random>
 #include <vector>
 
 typedef unsigned long long ull;
 
 const int N = 1e5 + 10, M = 998244353;
-const ull mask = std::chrono::steady_clock::now().time_since_epoch().count();
+const ull mask = std::mt19937_64(time(nullptr))();
 
 struct Tree {
   ull hash, deg, ans;

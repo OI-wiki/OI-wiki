@@ -1,4 +1,3 @@
-#include <chrono>
 #include <cstring>
 #include <iostream>
 #include <random>
@@ -91,7 +90,7 @@ int vertices[maxn], girl[maxn];  // girl 是匹配点, 用来输出方案
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
-  auto rng = mt19937(chrono::steady_clock::now().time_since_epoch().count());
+  auto rng = mt19937(random_device{}());
 
   int n, m;
   cin >> n >> m;  // 点数和边数

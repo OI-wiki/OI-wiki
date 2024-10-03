@@ -1,5 +1,4 @@
 #include <cassert>
-#include <chrono>
 #include <cstdint>
 #include <functional>
 #include <iostream>
@@ -425,8 +424,7 @@ class DynamicForest {
   std::vector<std::map<int, Node*>> tree_edges_;
 };
 
-std::mt19937 DynamicForest::rng_(
-    std::chrono::steady_clock::now().time_since_epoch().count());
+std::mt19937 DynamicForest::rng_(std::random_device{}());
 
 void solve_case(int Case) {
   int n, m;
