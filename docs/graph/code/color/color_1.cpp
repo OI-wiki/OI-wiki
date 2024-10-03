@@ -26,7 +26,7 @@ struct Edge {
 int ecnt;
 
 void init() {
-  std::fill(c[0], c[0] + sizeof(c) / 4, 0);
+  for (int i = 0; i < maxN + 10; i++) std::fill(c[i], c[i] + maxN + 10, 0);
   for (int i = 1; i <= 2 * maxN; i++) vertex[i] = e;
   for (int i = 0; i <= 2 * maxN * maxN; i++) edge[i].col = 0;
   ecnt = 1;
