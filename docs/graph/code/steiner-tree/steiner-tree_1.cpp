@@ -17,7 +17,7 @@ struct edge {
 int head[maxn << 1], tree[maxn << 1], tot;
 int dp[maxn][5000], vis[maxn];
 int key[maxn];
-priority_queue<P, vector<P>, greater<P> > q;
+priority_queue<P, vector<P>, greater<P>> q;
 
 void add(int u, int v, int w) {
   e[++tot] = edge{v, head[u], w};

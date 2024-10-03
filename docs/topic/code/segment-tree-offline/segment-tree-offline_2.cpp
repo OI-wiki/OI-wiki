@@ -27,7 +27,7 @@ void update(int ql, int qr, int v, int i, int l, int r) {
   if (qr > mid) update(ql, qr, v, rs, mid + 1, r);
 }
 
-stack<pair<int, int> > fas, sizs;
+stack<pair<int, int>> fas, sizs;
 
 int find(int x) { return fa[x] == x ? x : find(fa[x]); }
 

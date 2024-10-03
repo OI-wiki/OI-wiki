@@ -10,7 +10,7 @@ struct hungarian {  // km
   vector<int> matchx, matchy, pre;
   vector<bool> visx, visy;
   vector<T> lx, ly;
-  vector<vector<T> > g;
+  vector<vector<T>> g;
   vector<T> slack;
   T inf, res;
   queue<int> q;
@@ -22,7 +22,7 @@ struct hungarian {  // km
     n = max(_n, _m);
     inf = numeric_limits<T>::max();
     res = 0;
-    g = vector<vector<T> >(n, vector<T>(n));
+    g = vector<vector<T>>(n, vector<T>(n));
     matchx = vector<int>(n, -1);
     matchy = vector<int>(n, -1);
     pre = vector<int>(n);

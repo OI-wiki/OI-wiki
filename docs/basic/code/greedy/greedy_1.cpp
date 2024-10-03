@@ -12,8 +12,8 @@ struct f {
 
 bool cmp(f A, f B) { return A.d < B.d; }
 
-priority_queue<long long, vector<long long>, greater<long long> >
-    q;  // 小根堆维护最小值
+// 小根堆维护最小值
+priority_queue<long long, vector<long long>, greater<long long>> q;
 
 int main() {
   long long n, i;

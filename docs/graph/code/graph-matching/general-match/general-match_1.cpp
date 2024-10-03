@@ -17,7 +17,7 @@ class graph {
   };
 
   vector<edge> edges;
-  vector<vector<int> > g;
+  vector<vector<int>> g;
   int n;
 
   graph(int _n) : n(_n) { g.resize(n); }

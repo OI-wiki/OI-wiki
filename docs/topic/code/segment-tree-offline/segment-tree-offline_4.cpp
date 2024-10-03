@@ -72,7 +72,7 @@ void update(int ql, int qr, int v, int i, int l, int r) {
   if (qr > mid) update(ql, qr, v, rs, mid + 1, r);
 }
 
-stack<pair<int, int> > stk;
+stack<pair<int, int>> stk;
 int u, v;
 int ans[M];
 

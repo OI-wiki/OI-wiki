@@ -8,9 +8,9 @@ int main() {
   cin >> t;
   while (t--) {
     // 大根堆，维护前一半元素（存小值）
-    priority_queue<int, vector<int>, less<int> > a;
+    priority_queue<int, vector<int>, less<int>> a;
     // 小根堆，维护后一半元素（存大值）
-    priority_queue<int, vector<int>, greater<int> > b;
+    priority_queue<int, vector<int>, greater<int>> b;
     while (cin >> x, x) {
       // 若为查询并删除操作，输出并删除大根堆堆顶元素
       // 因为这题要求输出中位数中较小者（偶数个数字会存在两个中位数候选）

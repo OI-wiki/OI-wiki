@@ -85,7 +85,7 @@ void add2(int u, int lr, int rr, int v, ll w) {  // 区间向点连边
 }
 
 void dij(int S) {
-  priority_queue<pli, vector<pli>, greater<pli> > q;
+  priority_queue<pli, vector<pli>, greater<pli>> q;
   int tot = (n << 2);
   for (int i = 1; i <= tot; ++i) {
     dis[i] = 1e18;
