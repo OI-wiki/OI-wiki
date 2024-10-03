@@ -47,8 +47,8 @@ int main() {
   for (int i = 1; i <= m; ++i) {
     int a, b;
     cin >> a >> b;
-    beg[a].push_back((edge){b, 1, 0});
-    beg[b].push_back((edge){a, 1, 0});
+    beg[a].push_back(edge{b, 1, 0});
+    beg[b].push_back(edge{a, 1, 0});
     ++deg[a];
     ++deg[b];
   }

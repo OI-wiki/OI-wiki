@@ -1,6 +1,10 @@
 #include <algorithm>
 #include <cstring>
 #include <iostream>
+#if defined(_MSC_VER) && !defined(__clang__)
+#include <immintrin.h>
+#define __builtin_clz _lzcnt_u32
+#endif
 using namespace std;
 typedef long long lld;
 

@@ -103,11 +103,11 @@ void init(int n) {
 
 void addedge(int u, int v) {  // 加边
   ++tot;
-  e[tot] = (Edge){v, head[u]};
+  e[tot] = Edge{v, head[u]};
   head[u] = tot;
 
   ++tot;
-  e[tot] = (Edge){u, head[v]};
+  e[tot] = Edge{u, head[v]};
   head[v] = tot;
 }
 

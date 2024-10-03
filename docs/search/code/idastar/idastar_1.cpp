@@ -8,17 +8,17 @@ int a, b;
 vector<int> ans;
 vector<int> current;
 
-inline bool better() { return ans.empty() || current.back() < ans.back(); }
+bool better() { return ans.empty() || current.back() < ans.back(); }
 
-long gcd(long x, long y) { return y ? gcd(y, x % y) : x; }
+long long gcd(long long x, long long y) { return y ? gcd(y, x % y) : x; }
 
-bool dfs(int d, long a, long b, int e) {
+bool dfs(int d, long long a, long long b, int e) {
   if (d == 0) {
     if (a == 0 && better()) ans = current;
     return a == 0;
   }
 
-  long _gcd = gcd(a, b);
+  long long _gcd = gcd(a, b);
   a /= _gcd;
   b /= _gcd;
 

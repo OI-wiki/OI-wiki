@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <numeric>
 #include <queue>
 #include <random>
 #include <vector>

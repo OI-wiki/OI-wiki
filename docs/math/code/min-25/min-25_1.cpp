@@ -89,7 +89,7 @@ void calcFprime() {
 
 int f_p(const int &p, const int &c) {
   /* f(p^{c}) = p xor c */
-  return p xor c;
+  return p ^ c;
 }
 
 int F(const int &k, const long long &n) {

@@ -20,7 +20,7 @@ void work() {
     for (; q.size() && f(q.back(), l.back()) >= f(i, l.back());)  // 队尾出队
       all.pop_back();
     if (q.empty())  // 入队
-      q.emplace_back(i), l.emplace_back(i), r.emplace_back(n);
+      q.emplace_back(i), l.emplace_back(i), r.emplace_back((int)n);
     else if (f(q.back(), n) >= f(i, n)) {
       int ll = l.back(), rr = n, mid;
       for (; ll <= rr;) {
@@ -31,7 +31,7 @@ void work() {
           ll = mid + 1;
       }
       r.back() = rr;
-      q.emplace_back(i), l.emplace_back(ll), r.emplace_back(n);
+      q.emplace_back(i), l.emplace_back(ll), r.emplace_back((int)n);
     }
     sum[i] = f(q.front(), i);
     cnt[i] = cnt[q.front() - 1] + 1;

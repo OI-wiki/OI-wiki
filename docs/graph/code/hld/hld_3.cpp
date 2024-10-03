@@ -13,7 +13,7 @@ int *f[N], g[N], mxp[N];
 int dfn[N];
 
 void add(int x, int y) {
-  e[++tot] = (edge){y, head[x]};
+  e[++tot] = edge{y, head[x]};
   head[x] = tot;
 }
 

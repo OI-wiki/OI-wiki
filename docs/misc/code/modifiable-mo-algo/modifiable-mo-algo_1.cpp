@@ -12,7 +12,7 @@ int qsize;
 struct query {
   int id, t, l, r;
 
-  inline bool operator<(query b) {
+  bool operator<(query b) const {
     if (l / qsize != b.l / qsize) {
       return l / qsize > b.l / qsize;
     } else if (r / qsize != b.r / qsize) {

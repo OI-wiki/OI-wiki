@@ -2,6 +2,10 @@
 #include <cctype>
 #include <iostream>
 
+#if defined(_MSC_VER) && !defined(__clang__)
+#include <immintrin.h>
+#endif
+
 using namespace std;
 
 const int N = 100010;
@@ -16,6 +20,31 @@ int n, m, type, c[N], fa[N], dep[N], sta[N], top, tot, bl[N], key[N / B + 5],
     p[N], keyid[N];
 bool vis[N];
 bitset<C> bs[N / B + 5][N / B + 5], temp;
+
+template <size_t N>
+size_t find_first(std::bitset<N> b) {
+#if defined(__GNUC__) && !defined(__clang__)
+  return b._Find_first();
+#elif defined(_MSC_VER) && !defined(__clang__)
+  using word_t = decltype(b._Getword(0));
+  constexpr ptrdiff_t word_len = CHAR_BIT * sizeof(word_t);
+  constexpr ptrdiff_t words = N == 0 ? 0 : (N - 1) / word_len;
+  size_t ans = 0;
+  for (size_t i = 0; i <= words; ++i)
+    if (b._Getword(i) != 0) {
+      if (sizeof(word_t) == sizeof(unsigned int))
+        return i * word_len + _tzcnt_u32(b._Getword(i));
+      else
+        return i * word_len + _tzcnt_u64(b._Getword(i));
+    }
+  return N;
+#else
+  auto s = b.to_string();
+  for (size_t i = s.size() - 1; ~i; --i)
+    if (s[i] & 1) return s.size() - 1 - i;
+  return N;
+#endif
+}
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
@@ -93,7 +122,7 @@ int main() {
       }
       temp[c[x]] = true;
     }
-    int ans1 = temp.count(), ans2 = (~temp)._Find_first();
+    int ans1 = temp.count(), ans2 = find_first(~temp);
     cout << ans1 << ' ' << ans2 << '\n';
     lastans = (ans1 + ans2) * type;
   }

@@ -50,14 +50,14 @@ int main() {
   cin >> n;
   for (int i = 1; i <= n; i++) {
     cin >> a[i];
-    pre[i] = lst[a[i]], lst[a[i]] = i;   // 处理 pre
-    op[++tot] = (ope){0, i, pre[i], i};  // 加点操作
+    pre[i] = lst[a[i]], lst[a[i]] = i;  // 处理 pre
+    op[++tot] = ope{0, i, pre[i], i};   // 加点操作
   }
   cin >> m;
   for (int i = 1, l, r; i <= m; i++) {
     cin >> l >> r;
-    op[++tot] = (ope){1, r, l - 1, i};  // 将查询差分
-    op[++tot] = (ope){2, l - 1, l - 1, i};
+    op[++tot] = ope{1, r, l - 1, i};  // 将查询差分
+    op[++tot] = ope{2, l - 1, l - 1, i};
   }
   std::sort(op + 1, op + tot + 1);  // 将操作按横坐标排序，且优先执行加点操作
   for (int i = 1; i <= tot; i++) {

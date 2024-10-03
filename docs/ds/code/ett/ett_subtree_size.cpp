@@ -341,8 +341,8 @@ class DynamicForest {
   }
 
   void Insert(int u, int v) {
-    assert(not tree_edges_[u].count(v));
-    assert(not tree_edges_[v].count(u));
+    assert(!tree_edges_[u].count(v));
+    assert(!tree_edges_[v].count(u));
 
     Node* vertex_u = vertices_[u];
     Node* vertex_v = vertices_[v];

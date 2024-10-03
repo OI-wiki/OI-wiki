@@ -13,7 +13,7 @@ struct edge {
 
 int hd[N << 1], tot = 1;
 
-void add(int u, int v) { e[++tot] = (edge){v, hd[u]}, hd[u] = tot; }
+void add(int u, int v) { e[++tot] = edge{v, hd[u]}, hd[u] = tot; }
 
 void uadd(int u, int v) { add(u, v), add(v, u); }
 

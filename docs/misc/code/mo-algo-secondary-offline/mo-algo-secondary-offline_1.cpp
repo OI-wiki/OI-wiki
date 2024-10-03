@@ -165,7 +165,7 @@ void solve() {
   for (int i = 0, l = 1, r = 0; i < query.size(); i++) {
     if (l > query[i].l) {
       offline2::query[r].push_back(
-          (offline2::Query){query[i].i, query[i].l, l - 1, 1});
+          offline2::Query{query[i].i, query[i].l, l - 1, 1});
       while (l > query[i].l) {
         l--;
         ans[query[i].i] -= f[l] + (g[l] - 1) * a[l];
@@ -173,7 +173,7 @@ void solve() {
     }
     if (r < query[i].r) {
       offline2::query[l - 1].push_back(
-          (offline2::Query){query[i].i, r + 1, query[i].r, -1});
+          offline2::Query{query[i].i, r + 1, query[i].r, -1});
       while (r < query[i].r) {
         r++;
         ans[query[i].i] += f[r] + (g[r] + 1) * a[r];
@@ -181,7 +181,7 @@ void solve() {
     }
     if (l < query[i].l) {
       offline2::query[r].push_back(
-          (offline2::Query){query[i].i, l, query[i].l - 1, -1});
+          offline2::Query{query[i].i, l, query[i].l - 1, -1});
       while (l < query[i].l) {
         ans[query[i].i] += f[l] + (g[l] - 1) * a[l];
         l++;
@@ -189,7 +189,7 @@ void solve() {
     }
     if (r > query[i].r) {
       offline2::query[l - 1].push_back(
-          (offline2::Query){query[i].i, query[i].r + 1, r, 1});
+          offline2::Query{query[i].i, query[i].r + 1, r, 1});
       while (r > query[i].r) {
         ans[query[i].i] -= f[r] + (g[r] + 1) * a[r];
         r--;
@@ -213,10 +213,11 @@ int main() {
   std::cin >> n >> m;
   for (int i = 1; i <= n; i++) std::cin >> a[i];
   for (int i = 1; i <= n; i++) b[i] = (i - 1) / sqrN + 1;
-  for (int i = 1; i <= m; i++)
-    std::cin >> l >> r,
-        captainMoSecondaryOffline::offline1::query.push_back(
-            (captainMoSecondaryOffline::offline1::Query){i, l, r});
+  for (int i = 1; i <= m; i++) {
+    std::cin >> l >> r;
+    captainMoSecondaryOffline::offline1::query.push_back(
+        captainMoSecondaryOffline::offline1::Query{i, l, r});
+  }
   captainMoSecondaryOffline::solve();
   for (int i = 1; i <= m; i++) std::cout << ans[i] << '\n';
   return 0;
