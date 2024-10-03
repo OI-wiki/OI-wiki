@@ -136,7 +136,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             auxfiles=auxfiles,
             mainfile=mainfile
         ), gen(
-            compilers=[(f'{CALL_VCVARS_BAT} && cl.exe', '.MSVC')],
+            compilers=[(f'{CALL_VCVARS_BAT} && cl.exe /EHsc', '.MSVC')],
             standards=[('/std:c++14', '.CPP14'), ('/std:c++17', '.CPP17'), ('/std:c++20', '.CPP20')],
             optimizations=[('/Od', '.O0'), ('/O2', '.O2')],
             sanitizers=[('', '.NA')],
