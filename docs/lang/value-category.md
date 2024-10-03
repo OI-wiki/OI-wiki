@@ -40,7 +40,7 @@ void move_to(MyString &src, MyString &dst) {
 
 ## C 语言中的值类别
 
-在 C 语言标准中，对象是一个比变量更为一般化的概念，它指代一块内存区域，具有内存地址。对象的主要属性包括：大小、有效类型、值和标识符。标识符即变量名，值是该内存以其类型解释时的含义。例如，int 和 float 类型虽然都占用 4 字节，但对于同一块内存，我们会解释出不同的含义。
+在 C 语言标准中，对象是一个比变量更为一般化的概念，它指代一块内存区域，具有内存地址。对象的主要属性包括：大小、有效类型、值和标识符。标识符即变量名，值是该内存以其类型解释时的含义。例如，`int` 和 `float` 类型虽然都占用 4 字节，但对于同一块内存，我们会解释出不同的含义。
 
 C 语言中每个表达式都具有类型和值类别。值类别主要分为三类：
 
@@ -139,7 +139,7 @@ int main() {
 }
 ```
 
-因此我们只需将 `push_back(str)` 改为 `push_back(std::move(str))` 即可避免复制。。
+因此我们只需将 `push_back(str)` 改为 `push_back(std::move(str))` 即可避免复制。
 
 ```cpp
 int main() {
@@ -181,8 +181,8 @@ std::string nrvo() {
 }
 
 int main() {
-  std::string str = urvo();
-  std::string str = nrvo();
+  std::string str = urvo(); // 直接构造
+  std::string str = nrvo(); // 不一定直接构造，依赖于优化
 }
 ```
 
