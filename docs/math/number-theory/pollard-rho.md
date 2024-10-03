@@ -183,7 +183,7 @@ $$
 
 实际上，Floyd 判环算法可以有常数上的改进。Brent 判环从 $k=1$ 开始递增 $k$，在第 $k$ 轮，让 A 等在原地，B 向前移动 $2^k$ 步，如果在过程中 B 遇到了 A，则说明已经得到环，否则让 A 瞬移到 B 的位置，然后继续下一轮。
 
-可以证明 [^brent]，这样得到环之前需要调用 $f$ 的次数永远不大于 Floyd 判环算法。原论文中的测试表明， Brent 判环需要的平均时间相较于 Floyd 判环减少了 $24\%$。
+可以证明[^brent]，这样得到环之前需要调用 $f$ 的次数永远不大于 Floyd 判环算法。原论文中的测试表明，Brent 判环需要的平均时间相较于 Floyd 判环减少了 $24\%$。
 
 #### 倍增优化
 
@@ -269,4 +269,5 @@ Pollard-Rho 算法中的期望迭代次数为 $O(\sqrt p)$，这里 $p$ 是 $N$ 
 ## 参考资料与链接
 
 [^ref1]: <https://en.wikipedia.org/wiki/Birthday_problem#Reverse_problem>
+
 [^brent]: Brent, R. P. (1980), An improved Monte Carlo factorization algorithm, BIT Numerical Mathematics, 20(2): 176–184, doi:10.1007/BF01933190
