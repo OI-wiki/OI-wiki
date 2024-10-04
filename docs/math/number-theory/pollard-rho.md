@@ -131,7 +131,7 @@ $$
 
 这一算法并不是总能成功的，因为 $\gcd(|x_i-x_j|,N)$ 可能等于 $N$。也就是说，$x_i\equiv x_j\pmod N$。此时，$\{x_n\bmod p\}$ 首次发生重复时，恰好 $\{x_n\}$ 也发生重复了。我们没有得到一个非平凡因子。而且，$\{x_n\}$ 开始循环后，再继续迭代也没有意义了，因为之后只会重复这一循环。该算法应输出分解失败，需要更换 $f(x)$ 中选取的 $c$ 重新分解。
 
-根据上文分析，任何满足 $\forall x \equiv y \pmod p, f(x) \equiv f(y) \pmod p$ 的函数 $f(x)$（例如多项式函数）都可以用在此处，且我们希望它对大部分初始值尽可能快地进入循环、循环周期尽可能短（但对于一个合数与其任一质因子，循环周期长度不能相同，否则 Pollard-Rho 算法将无法分离出这个因子）。
+根据上文分析，理论上，任何满足 $\forall x \equiv y \pmod p, f(x) \equiv f(y) \pmod p$ ，且能够保证一定伪随机性的函数 $f(x)$（例如某些多项式函数）都可以用在此处。实践中，主要使用 $f(x)=x^2+c\ (c\neq 0,-2)$。[^pseudo]
 
 ### 实现
 
@@ -191,7 +191,7 @@ $$
 
 简单来说，如果 $\gcd(a,N)>1$，那么 $\gcd(ab\bmod N,N)=\gcd(ab,N)>1$ 对于任意 $b\in\mathbb N_+$ 都成立。也就是说，如果计算得到 $\gcd(\prod |x_i-x_j| \bmod N,N)>1$，那么必然有其中一对 $(x_i,x_j)$ 满足 $\gcd(|x_i-x_j|,N)>1$。如果该乘积在某一时刻得到零，则分解失败，退出并返回 $N$ 本身。
 
-如果每 $k$ 对计算一次 $\gcd$，则算法复杂度降低到 $O(\sqrt p+k^{-1}\sqrt p\log N)$，这里，$\log N$ 为单次计算 $\gcd$ 的开销。注意到 $k$ 和 $\sqrt N$ 大概同阶时，可以得到 $O(\sqrt p)$ 的期望复杂度。具体实现中，大多选取 $k=128$。
+如果每 $k$ 对计算一次 $\gcd$，则算法复杂度降低到 $O(\sqrt p+k^{-1}\sqrt p\log N)$，这里，$\log N$ 为单次计算 $\gcd$ 的开销。注意到 $k$ 和 $\log N$ 大致同阶时，可以得到 $O(\sqrt p)$ 的期望复杂度。具体实现中，大多选取 $k=128$。
 
 这里提供 Brent 判环且加上倍增优化的 Pollard-Rho 算法实现。
 
@@ -269,5 +269,7 @@ Pollard-Rho 算法中的期望迭代次数为 $O(\sqrt p)$，这里 $p$ 是 $N$ 
 ## 参考资料与链接
 
 [^ref1]: <https://en.wikipedia.org/wiki/Birthday_problem#Reverse_problem>
+
+[^pseudo]: Menezes, Alfred J.; van Oorschot, Paul C.; Vanstone, Scott A. (2001). Handbook of Applied Cryptography. Section 3.11 and 3.12.
 
 [^brent]: Brent, R. P. (1980), An improved Monte Carlo factorization algorithm, BIT Numerical Mathematics, 20(2): 176–184, doi:10.1007/BF01933190
