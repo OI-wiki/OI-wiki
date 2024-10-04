@@ -144,20 +144,20 @@
       if (br == 1 || (!br && u < v)) upd(rs[root], mid + 1, cr, u);
     }
     
-    void merge(int &u, int &v, int l, int r) {
+    int merge(int &u, int &v, int l, int r) {
       if (!u || !v) {
-        if (!u) u = v;
-        return;
+        return u + v;
       }
       if (l == r) {
         int b = cmp(calc(s[v], l), calc(s[u], l));
-        if (b == 1 || (!b && s[v] < s[u])) u = v;
-        return;
+        if (b == 1 || (!b && s[v] < s[u])) return v;
+        return u;
       }
       upd(u, l, r, s[v]);
       int mid = (l + r) >> 1;
-      merge(ls[u], ls[v], l, mid);
-      merge(rs[u], rs[v], mid + 1, r);
+      ls[u] = merge(ls[u], ls[v], l, mid);
+      rs[u] = merge(rs[u], rs[v], mid + 1, r);
+      return u;
     }
     ```
 
