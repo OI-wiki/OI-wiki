@@ -116,9 +116,9 @@ struct MyString {
 
 因此我们有三种值类别：
 
--   有身份，不可移动：左值（lvalue），`T&`。
--   有身份，可被移动：亡值（xvalue），`T&&`。
--   无身份，可被移动：纯右值（prvalue），`T`。
+-   有身份，不可移动：左值（lvalue）。
+-   有身份，可被移动：亡值（xvalue）。
+-   无身份，可被移动：纯右值（prvalue）。
 -   无身份，不可移动：此类表达式无法使用。
 
 另外 C++11 还引入了两个复合类别：
@@ -128,7 +128,7 @@ struct MyString {
 
 ### std::move
 
-为了配合移动语义，C++11 还引入了一个工具函数 `std::move`，其作用是将左值强制转换为右值引用，以便触发移动语义。
+为了配合移动语义，C++11 还引入了一个工具函数 `std::move`，其作用是将左值强制转换为右值，以便触发移动语义。
 
 ```cpp
 int main() {
@@ -151,7 +151,7 @@ int main() {
     std::string str;
     std::cin >> str;
     vec.push_back(std::move(str));
-    // 另一种巧妙的写法
+    // 另一种巧妙的写法，需要 C++17
     // std::cin >> vec.emplace_back();
   }
   return 0;
