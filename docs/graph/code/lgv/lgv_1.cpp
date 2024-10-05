@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 
 typedef long long ll;
 
@@ -24,17 +24,21 @@ int c(int x, int y) {
          qpow(fact[x - y], mod - 2) % mod;
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   fact[0] = 1;
   for (int i = 1; i < N * 2; ++i) fact[i] = (ll)fact[i - 1] * i % mod;
 
-  scanf("%d", &T);
+  cin >> T;
 
   while (T--) {
-    scanf("%d%d", &n, &k);
+    cin >> n >> k;
 
-    for (int i = 1; i <= k; ++i) scanf("%d", a + i);
-    for (int i = 1; i <= k; ++i) scanf("%d", b + i);
+    for (int i = 1; i <= k; ++i) cin >> a[i];
+    for (int i = 1; i <= k; ++i) cin >> b[i];
 
     for (int i = 1; i <= k; ++i) {
       for (int j = 1; j <= k; ++j) {
@@ -69,7 +73,7 @@ int main() {
 
     for (int i = 1; i <= k; ++i) ans = (ll)ans * m[i][i] % mod;
 
-    printf("%d\n", ans);
+    cout << ans << '\n';
   }
 
   return 0;

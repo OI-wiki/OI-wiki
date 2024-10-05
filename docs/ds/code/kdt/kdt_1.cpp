@@ -1,8 +1,9 @@
 #include <algorithm>
 #include <cmath>
-#include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <iomanip>
+#include <iostream>
 using namespace std;
 const int maxn = 200010;
 int n, d[maxn], lc[maxn], rc[maxn];
@@ -87,10 +88,11 @@ void query(int l, int r, int x) {
 }
 
 int main() {
-  scanf("%d", &n);
-  for (int i = 1; i <= n; i++) scanf("%lf%lf", &s[i].x, &s[i].y);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
+  for (int i = 1; i <= n; i++) cin >> s[i].x >> s[i].y;
   build(1, n);
   for (int i = 1; i <= n; i++) query(1, n, i);
-  printf("%.4lf\n", sqrt(ans));
+  cout << fixed << setprecision(4) << sqrt(ans) << '\n';
   return 0;
 }

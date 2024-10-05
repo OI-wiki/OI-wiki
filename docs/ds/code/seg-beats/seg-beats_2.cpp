@@ -1,16 +1,5 @@
-#include <cstdio>
 #include <iostream>
 using namespace std;
-
-int rd() {
-  char act = 0;
-  int f = 1, x = 0;
-  while (act = getchar(), act < '0' && act != '-');
-  if (act == '-') f = -1, act = getchar();
-  x = act - '0';
-  while (act = getchar(), act >= '0') x = x * 10 + act - '0';
-  return x * f;
-}
 
 const int N = 5e5 + 5, SZ = N << 2, INF = 0x7fffffff;
 
@@ -151,14 +140,15 @@ long long qmin(int L, int R, int u = 1, int l = 1, int r = n) {
 }
 
 int main() {
-  n = rd();
-  for (int i = 1; i <= n; i++) a[i] = rd();
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
+  for (int i = 1; i <= n; i++) cin >> a[i];
   build();
-  m = rd();
+  cin >> m;
   for (int i = 1; i <= m; i++) {
     int op, l, r, x;
-    op = rd(), l = rd(), r = rd();
-    if (op <= 3) x = rd();  // scanf("%d",&x);
+    cin >> op >> l >> r;
+    if (op <= 3) cin >> x;
     if (op == 1)
       add(l, r, x);
     else if (op == 2)
@@ -166,11 +156,11 @@ int main() {
     else if (op == 3)
       tomin(l, r, x);
     else if (op == 4)
-      printf("%lld\n", qsum(l, r));
+      cout << qsum(l, r) << '\n';
     else if (op == 5)
-      printf("%lld\n", qmax(l, r));
+      cout << qmax(l, r) << '\n';
     else
-      printf("%lld\n", qmin(l, r));
+      cout << qmin(l, r) << '\n';
   }
   return 0;
 }

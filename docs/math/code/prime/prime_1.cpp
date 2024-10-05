@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <iostream>
 unsigned long long p[16] = {
     2,  3,  5,  7,  11, 13, 17, 19,
     23, 29, 31, 37, 41, 43, 47, 53};  // 根据数据范围可以确定使用的素数最大为53
@@ -25,10 +25,14 @@ void dfs(unsigned long long depth, unsigned long long temp,
   }
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%llu", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   ans = ~(unsigned long long)0;
   dfs(0, 1, 1, 64);
-  printf("%llu\n", ans);
+  cout << ans << '\n';
   return 0;
 }

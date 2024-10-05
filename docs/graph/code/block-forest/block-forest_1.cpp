@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 #include <vector>
 
 const int MN = 100005;
@@ -52,13 +52,17 @@ void DFS(int u, int fz) {  // dfs求值
   Ans += 2ll * wgh[u] * siz[u] * (num - siz[u]);
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%d%d", &N, &M);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> N >> M;
   for (int u = 1; u <= N; ++u) wgh[u] = -1;
   cnt = N;
   for (int i = 1; i <= M; ++i) {
     int u, v;
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     G[u].push_back(v);
     G[v].push_back(u);
   }
@@ -68,6 +72,6 @@ int main() {
       Tarjan(u), --tp;
       DFS(u, 0);
     }
-  printf("%lld\n", Ans);
+  cout << Ans << '\n';
   return 0;
 }
