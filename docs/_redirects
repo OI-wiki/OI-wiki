@@ -106,7 +106,10 @@
 /math/integral /math/numerical/integral
 /math/newton /math/numerical/newton
 /math/permulation /math/permutation
-/math/number-theory/lagrange /math/number-theory/congruence-equation
+/math/number-theory/lagrange /math/number-theory/congruence-equation 
+/math/group-theory /math/algebra/group-theory
+/math/permutation-group /math/combinatorics/polya
+/math/schreier-sims /math/algebra/schreier-sims
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
