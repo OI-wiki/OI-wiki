@@ -404,9 +404,9 @@ $$
 ### 积性函数
 
 ???+ note "定义"
-    数论中，若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*,~(x,y)=1$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为 **积性函数**。
+    在数论中，若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*,~(x,y)=1$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为 **积性函数**。
     
-    若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为 **完全积性函数**。
+    在数论中，若函数 $f(n)$ 满足 $f(1)=1$ 且 $\forall x,y\in\mathbf{N}^*$ 都有 $f(xy)=f(x)f(y)$，则 $f(n)$ 为 **完全积性函数**。
 
 #### 性质
 
@@ -421,7 +421,7 @@ h(x)&=\sum_{d\mid x}f(d)g\left(\dfrac{x}{d}\right)
 \end{aligned}
 $$
 
-设 $x=\prod p_i^{k_i}$
+设 $x=\prod p_i^{k_i}$。
 
 若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$。
 
@@ -434,7 +434,7 @@ $$
 -   常数函数：$1(n)=1$。（完全积性）
 -   除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$。$\sigma_{0}(n)$ 通常简记作 $d(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
 -   欧拉函数：$\varphi(n)=\sum_{i=1}^n[(i,n)=1]$。
--   莫比乌斯函数：$\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$，其中 $\omega(n)$ 是一个加性函数，表示 $n$ 的本质不同质因子个数。
+-   莫比乌斯函数：$\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数，而且是一个加性函数。
 
 ???+ note "加性函数"
     此处加性函数指数论上的加性函数 (Additive function)。对于加性函数 $f$，当整数 $a,b$ 互质时，均有 $f(ab)=f(a)+f(b)$。
@@ -445,16 +445,24 @@ $$
 ### 加性函数
 
 ???+ note "定义"
-    数论中，若函数 $f(n)$ 满足 $f(1)=0$ 且 $\forall x,y\in\mathbf{N}^*,~(x,y)=1$ 都有 $f(xy)=f(x)+f(y)$，则 $f(n)$ 为 **加性函数**。
+    在数论中，若函数 $f(n)$ 满足 $f(1)=0$ 且 $\forall x,y\in\mathbf{N}^*,~(x,y)=1$ 都有 $f(xy)=f(x)+f(y)$，则 $f(n)$ 为 **加性函数**。
     
-    若函数 $f(n)$ 满足 $f(1)=0$ 且 $\forall x,y\in\mathbf{N}^*$ 都有 $f(xy)=f(x)+f(y)$，则 $f(n)$ 为 **完全加性函数**。
+    在数论中，若函数 $f(n)$ 满足 $f(1)=0$ 且 $\forall x,y\in\mathbf{N}^*$ 都有 $f(xy)=f(x)+f(y)$，则 $f(n)$ 为 **完全加性函数**。
+
+#### 性质
+
+设 $x=\prod p_i^{k_i}$。
+
+若 $F(x)$ 为加性函数，则有 $F(x)=\sum F(p_i^{k_i})$。
+
+若 $F(x)$ 为完全加性函数，则有 $F(x)=\sum F(p_i^{k_i})=\sum F(p_i)\cdot k_i$。
 
 #### 例子
 
--   所有质因子数目：$\Omega(n)$。
+-   所有质因子数目：$\Omega(n)$。（完全加性）
 -   相异质因子数目：$\omega(n)$。
--   所有质因子之和：$a_0(n)$ 或 $sopfr(n)$。
--   相异质因子之和：$a_1(n)$ 或 $sopf(n)$。
+-   所有质因子之和：$a_0(n)$。（完全加性）
+-   相异质因子之和：$a_1(n)$。
 
 ## 参考资料与注释
 
