@@ -138,10 +138,10 @@ Code::Blocks 支持插件来扩展功能，可以通过 `Settings -> Plugins` �
 
 通过以下步骤美化主题和字体：
 
-1.  下载配置文件[default.conf](https://gist.github.com/yzhong52/6852140faa233408de67)。
-2.  替换本地的default.conf文件，其路径一般为`C:\Users\用户名\AppData\Roaming\CodeBlocks`。
-3.  打开 Code::Blocks，点击菜单栏的 `Settings -> editor`， 在 `Syntax highlighting` 选项卡中的`Colour theme` 下拉框选择主题。
-4.  在`General Settings` 选项卡中，单击`Font` 按钮设置字体。
+1.  下载配置文件 [default.conf](https://gist.github.com/yzhong52/6852140faa233408de67)。
+2.  替换本地的 default.conf 文件，其路径一般为 `C:\Users\用户名\AppData\Roaming\CodeBlocks`。
+3.  打开 Code::Blocks，点击菜单栏的 `Settings -> editor`，在 `Syntax highlighting` 选项卡中的 `Colour theme` 下拉框选择主题。
+4.  在 `General Settings` 选项卡中，单击 `Font` 按钮设置字体。
 
 ## 参考资料与注释
 
