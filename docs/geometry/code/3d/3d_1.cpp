@@ -1,6 +1,6 @@
 #include <cmath>
-#include <cstdio>
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
 using namespace std;
 const int N = 2010;
@@ -76,6 +76,6 @@ int main() {
 
   for (int i = 1; i <= cnt; i++) ans += f[i].area();
 
-  printf("%.3f\n", ans);
+  cout << fixed << setprecision(3) << ans << '\n';
   return 0;
 }

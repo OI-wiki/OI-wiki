@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
+#include <random>
+#include <utility>
 using namespace std;
 
 const int maxn = 505, p = (int)1e9 + 7;
@@ -86,14 +89,15 @@ void eliminate(int r, int c) {
 int vertices[maxn], girl[maxn];  // girl 是匹配点, 用来输出方案
 
 int main() {
-  auto rng = mt19937(chrono::steady_clock::now().time_since_epoch().count());
+  cin.tie(nullptr)->sync_with_stdio(false);
+  auto rng = mt19937(random_device{}());
 
   int n, m;
-  scanf("%d%d", &n, &m);  // 点数和边数
+  cin >> n >> m;  // 点数和边数
 
   while (m--) {
     int x, y;
-    scanf("%d%d", &x, &y);
+    cin >> x >> y;
     A[x][y] = rng() % p;
     A[y][x] = -A[x][y];  // Tutte 矩阵
   }
@@ -126,8 +130,8 @@ int main() {
           break;
         }
 
-  printf("%d\n", sub_n / 2);
-  for (int i = 1; i <= n; i++) printf("%d ", girl[i]);
+  cout << sub_n / 2 << '\n';
+  for (int i = 1; i <= n; i++) cout << girl[i] << ' ';
 
   return 0;
 }

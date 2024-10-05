@@ -1,5 +1,6 @@
 #include <cmath>
-#include <cstdio>
+#include <iomanip>
+#include <iostream>
 using namespace std;
 
 const double eps = 0.0000001;
@@ -13,8 +14,9 @@ double f(double x) {
 }
 
 int main() {
-  scanf("%d%lf%lf", &N, &l, &r);
-  for (int i = N; i >= 0; i--) scanf("%lf", &A[i]);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> N >> l >> r;
+  for (int i = N; i >= 0; i--) cin >> A[i];
   while (r - l > eps) {
     mid = (l + r) / 2;
     lmid = mid - eps;
@@ -24,6 +26,6 @@ int main() {
     else
       l = mid;
   }
-  printf("%6lf", l);
+  cout << fixed << setprecision(6) << l;
   return 0;
 }

@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstring>
+#include <iostream>
+
 using namespace std;
 
 const int maxn = 500010;
@@ -33,7 +36,7 @@ void Build(int root, int l, int r) {
     Tree[root] = g[id[l]];
     return;
   }
-  int Mid = l + r >> 1;
+  int Mid = (l + r) >> 1;
   Build(root << 1, l, Mid);
   Build(root << 1 | 1, Mid + 1, r);
   PushUp(root);
@@ -41,7 +44,7 @@ void Build(int root, int l, int r) {
 
 matrix Query(int root, int l, int r, int L, int R) {
   if (L <= l && r <= R) return Tree[root];
-  int Mid = l + r >> 1;
+  int Mid = (l + r) >> 1;
   if (R <= Mid) return Query(root << 1, l, Mid, L, R);
   if (Mid < L) return Query(root << 1 | 1, Mid + 1, r, L, R);
   return Query(root << 1, l, Mid, L, R) *
@@ -54,7 +57,7 @@ void Modify(int root, int l, int r, int pos) {
     Tree[root] = g[id[l]];
     return;
   }
-  int Mid = l + r >> 1;
+  int Mid = (l + r) >> 1;
   if (pos <= Mid)
     Modify(root << 1, l, Mid, pos);
   else
@@ -130,11 +133,12 @@ void DFS2(int u, int t) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
-  for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
+  for (int i = 1; i <= n; i++) cin >> a[i];
   for (int i = 1; i <= n - 1; i++) {
     int u, v;
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     add(u, v);
     add(v, u);
   }
@@ -144,10 +148,10 @@ int main() {
   Build(1, 1, n);
   for (int i = 1; i <= m; i++) {
     int x, val;
-    scanf("%d%d", &x, &val);
+    cin >> x >> val;
     Update(x, val);
     matrix ans = Query(1, 1, n, 1, End[1]);  // 查询1所在重链的矩阵乘
-    printf("%d\n", max(ans.g[0][0], ans.g[1][0]));
+    cout << max(ans.g[0][0], ans.g[1][0]) << '\n';
   }
   return 0;
 }

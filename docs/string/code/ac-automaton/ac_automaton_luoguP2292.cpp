@@ -1,8 +1,8 @@
 // Code by rickyxrc | https://www.luogu.com.cn/record/115806238
-#include <stdio.h>
-#include <string.h>
-
+#include <cstring>
+#include <iostream>
 #include <queue>
+
 #define maxn 3000001
 char T[maxn];
 int n, cnt, vis[maxn], ans, m, dp[maxn];
@@ -30,14 +30,11 @@ void init() {
 void insert(char *s, int num) {
   int u = 1, len = strlen(s);
   for (int i = 0; i < len; i++) {
-    // trie[u].depth = i + 1;
     int v = s[i] - 'a';
     if (!trie[u].son[v]) trie[u].son[v] = ++cnt;
     u = trie[u].son[v];
   }
   trie[u].flag = num;
-  // trie[u].stat = 1;
-  // printf("set %d stat %d\n", u-1, 1);
   return;
 }
 
@@ -76,16 +73,20 @@ int query(char *s) {
   return mx;
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   init();
   for (int i = 1; i <= n; i++) {
-    scanf("%s", T);
+    cin >> T;
     insert(T, i);
   }
   getfail();
   for (int i = 1; i <= m; i++) {
-    scanf("%s", T);
-    printf("%d\n", query(T));
+    cin >> T;
+    cout << query(T) << '\n';
   }
 }

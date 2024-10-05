@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <stack>
+#include <vector>
 
 using std::cin;
 using std::cout;

@@ -1,5 +1,4 @@
 #include <cmath>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 
@@ -85,9 +84,12 @@ const int MAXN = 200020;
 Complex x1[MAXN], x2[MAXN];
 char str1[MAXN / 2], str2[MAXN / 2];
 int sum[MAXN];
+using std::cin;
+using std::cout;
 
 int main() {
-  while (scanf("%s%s", str1, str2) == 2) {
+  cin.tie(nullptr)->sync_with_stdio(false);
+  while (cin >> str1 >> str2) {
     int len1 = strlen(str1);
     int len2 = strlen(str2);
     int len = 1;
@@ -120,9 +122,9 @@ int main() {
 
     while (sum[len] == 0 && len > 0) len--;
 
-    for (int i = len; i >= 0; i--) printf("%c", sum[i] + '0');
+    for (int i = len; i >= 0; i--) cout << char(sum[i] + '0');
 
-    printf("\n");
+    cout << '\n';
   }
 
   return 0;

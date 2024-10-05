@@ -23,7 +23,7 @@ void build(int s, int t, int &p) {
     cin >> sum[p];
     return;
   }
-  int m = s + t >> 1;
+  int m = (s + t) >> 1;
   build(s, m, ls[p]);
   build(m + 1, t, rs[p]);
   push_up(p);
@@ -36,7 +36,7 @@ void update(int x, int c, int s, int t, int &p) {
     sum[p] += c;
     return;
   }
-  int m = s + t >> 1;
+  int m = (s + t) >> 1;
   if (x <= m)
     update(x, c, s, m, ls[p]);
   else
@@ -52,7 +52,7 @@ int merge(int p, int q, int s, int t) {
     Del(q);
     return p;
   }
-  int m = s + t >> 1;
+  int m = (s + t) >> 1;
   ls[p] = merge(ls[p], ls[q], s, m);
   rs[p] = merge(rs[p], rs[q], m + 1, t);
   push_up(p);
@@ -70,7 +70,7 @@ void split(int &p, int &q, int s, int t, int l, int r) {
     return;
   }
   if (!q) q = New();
-  int m = s + t >> 1;
+  int m = (s + t) >> 1;
   if (l <= m) split(ls[p], ls[q], s, m, l, r);
   if (m < r) split(rs[p], rs[q], m + 1, t, l, r);
   push_up(p);
@@ -80,7 +80,7 @@ void split(int &p, int &q, int s, int t, int l, int r) {
 long long query(int l, int r, int s, int t, int p) {
   if (!p) return 0;
   if (l <= s && t <= r) return sum[p];
-  int m = s + t >> 1;
+  int m = (s + t) >> 1;
   long long ans = 0;
   if (l <= m) ans += query(l, r, s, m, ls[p]);
   if (m < r) ans += query(l, r, m + 1, t, rs[p]);
@@ -89,7 +89,7 @@ long long query(int l, int r, int s, int t, int p) {
 
 int kth(int s, int t, int k, int p) {
   if (s == t) return s;
-  int m = s + t >> 1;
+  int m = (s + t) >> 1;
   long long left = sum[ls[p]];
   if (k <= left)
     return kth(s, m, k, ls[p]);

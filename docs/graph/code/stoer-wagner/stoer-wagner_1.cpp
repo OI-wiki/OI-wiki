@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
 using namespace std;
 const int N = 601;
 int fa[N], siz[N], edge[N][N];
@@ -47,7 +48,7 @@ int Stoer_Wagner() {
 }
 
 int main() {
-  ios::sync_with_stdio(0), cin.tie(0);
+  ios::sync_with_stdio(0), cin.tie(nullptr);
   cin >> n >> m;
   if (m < n - 1) {
     cout << 0;

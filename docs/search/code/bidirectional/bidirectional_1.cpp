@@ -1,8 +1,6 @@
 #include <algorithm>
-#include <cstdio>
 #include <iostream>
 #include <map>
-
 using namespace std;
 
 int n, m, ans = 0x7fffffff;
