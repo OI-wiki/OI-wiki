@@ -5,7 +5,7 @@
 using namespace std;
 const int maxn = 100010;
 long long n, k;
-priority_queue<long long, vector<long long>, greater<long long> > q;
+priority_queue<long long, vector<long long>, greater<long long>> q;
 
 struct node {
   long long x, y;

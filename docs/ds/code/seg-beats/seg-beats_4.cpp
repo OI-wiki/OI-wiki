@@ -1,27 +1,7 @@
-#include <stdio.h>
-
 #include <algorithm>
+#include <iostream>
+
 typedef long long i64;
-
-int rd() {
-  int k = 0, f = 1;
-  char c = getchar();
-  while (c < '0' || c > '9') {
-    if (c == '-') f = 0;
-    c = getchar();
-  }
-  while (c >= '0' && c <= '9') {
-    k = (k << 1) + (k << 3) + (c ^ 48);
-    c = getchar();
-  }
-  return f ? k : -k;
-}
-
-void wr(i64 x) {
-  if (x < 0) putchar('-'), x = -x;
-  if (x > 9) wr(x / 10);
-  putchar((x % 10) ^ '0');
-}
 
 const int N = 300010;
 const i64 INF = 1145141919810114514ll;
@@ -175,28 +155,37 @@ inline node _query(int u, int l, int r, int L, int R) {
 
 inline node query(int l, int r) { return _query(1, l, r, 1, n); }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  n = rd(), q = rd();
-  for (int i = 1; i <= n; ++i) a[i] = rd();
-  for (int i = 1; i <= n; ++i) b[i] = rd();
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> q;
+  for (int i = 1; i <= n; ++i) cin >> a[i];
+  for (int i = 1; i <= n; ++i) cin >> b[i];
   build();
   while (q--) {
-    op = rd(), l = rd(), r = rd();
+    cin >> op >> l >> r;
+    int x;
     switch (op) {
       case 1:
-        modify_mn(l, r, rd(), 0);
+        cin >> x;
+        modify_mn(l, r, x, 0);
         break;
       case 2:
-        modify_mn(l, r, rd(), 1);
+        cin >> x;
+        modify_mn(l, r, x, 1);
         break;
       case 3:
-        modify_add(l, r, rd(), 0);
+        cin >> x;
+        modify_add(l, r, x, 0);
         break;
       case 4:
-        modify_add(l, r, rd(), 1);
+        cin >> x;
+        modify_add(l, r, x, 1);
         break;
       case 5:
-        wr(query(l, r).max_val()), putchar('\n');
+        cout << query(l, r).max_val() << '\n';
         break;
       default:
         break;

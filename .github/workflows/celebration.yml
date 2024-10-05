@@ -17,7 +17,7 @@ jobs:
           cache: pipenv
       - name: Install Python dependencies
         run: |
-          curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
+          pip install pipenv
           pipenv install
       - name: Celebrate
         run: pipenv run python scripts/celebration.py "${{ secrets.GITHUB_TOKEN }}"

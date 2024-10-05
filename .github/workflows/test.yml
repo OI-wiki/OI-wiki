@@ -9,9 +9,12 @@ on:
       - master
 
 jobs:
-  test:
+  correctness:
     name: OI-wiki Offline Test
     runs-on: ubuntu-latest
+    outputs:
+      any_changed: ${{ steps.changed-files.outputs.any_changed }}
+      files_to_test: ${{ steps.GetFiles.outputs.files_to_test }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,7 +35,7 @@ jobs:
       - name: Install Python dependencies
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
-          curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
+          pip install pipenv
           pipenv install
       - name: Install C++
         if: steps.changed-files.outputs.any_changed == 'true'
@@ -40,6 +43,208 @@ jobs:
       - name: Make the File list
         if: steps.changed-files.outputs.any_changed == 'true'
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
-      - name: Check the Code
+      - name: Get Files to Test
         if: steps.changed-files.outputs.any_changed == 'true'
-        run: pipenv run python scripts/test.py 2> stderr.txt
+        id: GetFiles
+        run: pipenv run python scripts/get_files_to_test.py
+      - name: Correctness Check
+        if: steps.changed-files.outputs.any_changed == 'true'
+        env: 
+          FILES_TO_TEST: ${{ steps.GetFiles.outputs.files_to_test }}
+        run: pipenv run python scripts/correctness_check.py
+
+  undefinedbehaviors-ubuntu:
+    name: UB Check - x86_64 Ubuntu
+    needs: correctness
+    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    runs-on: ubuntu-latest
+    container: ghcr.io/trickeye/ubuntu_gcc1x:clang
+    outputs:
+      output: ${{ steps.set-output.outputs.output }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install g++-9
+        run: apt-get install -y g++-9
+      - name: Undefined Behaviors Check
+        continue-on-error: true
+        env: 
+          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          RUNS_ON: x86_64 Ubuntu
+        run: python3 scripts/ub-check.py
+      - name: Set Output
+        id: set-output
+        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
+
+  undefinedbehaviors-macos:
+    name: UB Check - Arm64 MacOS
+    needs: correctness
+    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    runs-on: macos-latest
+    outputs:
+      output: ${{ steps.set-output.outputs.output }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check Compiler Version
+        run: |
+          echo "::group::Check G++ Version"
+          g++-14 --version
+          echo "::endgroup::"
+          echo "::group::Check Clang Version"
+          clang --version
+          echo "::endgroup::"
+      - name: Undefined Behaviors Check
+        continue-on-error: true
+        env: 
+          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          RUNS_ON: arm64 MacOS
+        run: python3 scripts/ub-check.py
+      - name: Set Output
+        id: set-output
+        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
+
+  undefinedbehaviors-rv:
+    name: UB Check - RISC-V Ubuntu
+    needs: correctness
+    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    runs-on: ubuntu-latest
+    outputs:
+      output: ${{ steps.set-output.outputs.output }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Launch Risc-V Docker
+        run: |
+          docker pull --platform riscv64 ghcr.io/trickeye/ubtest:latest
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+          docker run -d --name ubtest --platform riscv64 \
+            --volume $PWD:$PWD \
+            --volume $GITHUB_STEP_SUMMARY:$GITHUB_STEP_SUMMARY \
+            --workdir $PWD \
+            --env FILES_TO_TEST="${{ needs.correctness.outputs.files_to_test }}" \
+            --env RUNS_ON="riscv64 Ubuntu" \
+            --env GITHUB_STEP_SUMMARY=$GITHUB_STEP_SUMMARY \
+            ghcr.io/trickeye/ubtest:latest sleep infinity
+          docker exec ubtest uname -a
+      - name: Check Compiler Version
+        run: |
+          echo "::group::gcc --version"
+          docker exec ubtest gcc --version
+          echo "::endgroup::"
+          echo "::group::g++ --version"
+          docker exec ubtest g++ --version
+          echo "::endgroup::"
+          echo "::group::clang --version"
+          docker exec ubtest clang++ --version
+          echo "::endgroup::"
+      - name: Undefined Behaviors Check
+        continue-on-error: true
+        # The environment variables are set in Launch Risc-V Docker step
+        run: docker exec ubtest python3 scripts/ub-check.py
+      - name: Set Output
+        id: set-output
+        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
+
+  undefinedbehaviors-windows:
+    name: UB Check - x86_64 Windows
+    needs: correctness
+    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    runs-on: windows-2022
+    outputs:
+      output: ${{ steps.set-output.outputs.output }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check Compiler Version
+        shell: cmd
+        run: |
+          echo ::group::Install Clang, MinGW
+          choco install -y llvm mingw
+          echo ::endgroup::
+          echo ::group::Check Clang Version
+          clang --version
+          echo ::endgroup::
+          echo ::group::Check G++ Version
+          g++ --version
+          echo ::endgroup::
+          echo ::group::Check MSVC Version
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          cl.exe
+          echo ::endgroup::
+      - name: Undefined Behaviors Check
+        continue-on-error: true
+        env: 
+          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          RUNS_ON: x86_64 Windows
+        run: python scripts/ub-check.py
+      - name: Set Output
+        id: set-output
+        run: |
+          $GITHUB_OUTPUT="output=$(cat output.txt)"
+          echo "output=$(cat output.txt)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        shell: pwsh
+
+
+  undefinedbehaviors-alpine:
+    name: UB Check - x86_64 Alpine
+    needs: correctness
+    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    runs-on: ubuntu-latest
+    outputs:
+      output: ${{ steps.set-output.outputs.output }}
+    container: alpine:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check Compiler Version
+        run: |
+          echo "::group::Install Python, GCC, Clang"
+          apk add build-base python3 llvm clang
+          echo "::endgroup::"
+          echo "::group::Check G++ Version"
+          g++ --version
+          echo "::endgroup::"
+          echo "::group::Check Clang Version"
+          clang --version
+          echo "::endgroup::"
+      - name: Undefined Behaviors Check
+        continue-on-error: true
+        env: 
+          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          RUNS_ON: x86_64 Alpine
+        run: python3 scripts/ub-check.py
+      - name: Set Output
+        id: set-output
+        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
+
+  sum-up:
+    name: Sum Up
+    needs: [correctness, undefinedbehaviors-ubuntu, undefinedbehaviors-macos, undefinedbehaviors-rv, undefinedbehaviors-windows, undefinedbehaviors-alpine]
+    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    runs-on: ubuntu-latest
+    env: 
+      OUTPUT_UBUNTU: ${{ needs.undefinedbehaviors-ubuntu.outputs.output }}
+      OUTPUT_MACOS: ${{ needs.undefinedbehaviors-macos.outputs.output }}
+      OUTPUT_RV: ${{ needs.undefinedbehaviors-rv.outputs.output }}
+      OUTPUT_WINDOWS: ${{ needs.undefinedbehaviors-windows.outputs.output }}
+      OUTPUT_ALPINE: ${{ needs.undefinedbehaviors-alpine.outputs.output }}
+    steps:
+      - name: Check Output
+        run: |
+          echo $OUTPUT_UBUNTU
+          echo $OUTPUT_MACOS
+          echo $OUTPUT_RV
+          echo $OUTPUT_WINDOWS
+          echo $OUTPUT_ALPINE
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Sum Up
+        run: |
+          python3 scripts/sum-up.py

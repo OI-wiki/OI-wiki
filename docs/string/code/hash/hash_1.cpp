@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <cassert>
+#include <cstring>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 const int L = 1e6 + 5;
@@ -70,11 +73,12 @@ void work() {
 }
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   for (int i = 1; i <= n; ++i) {
-    scanf("%s", str);
+    cin >> str;
     work();
   }
-  printf("%s\n", s.s + 1);
+  cout << s.s + 1 << '\n';
   return 0;
 }

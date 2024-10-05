@@ -1,5 +1,4 @@
 #include <cmath>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 using namespace std;
@@ -79,7 +78,7 @@ char str1[MAXN / 2], str2[MAXN / 2];
 int sum[MAXN];
 
 int main() {
-  while (scanf("%s%s", str1, str2) == 2) {
+  while (cin >> str1 >> str2) {
     int len1 = strlen(str1);
     int len2 = strlen(str2);
     int len = 1;
@@ -99,8 +98,8 @@ int main() {
     }
     len = len1 + len2 - 1;
     while (sum[len] == 0 && len > 0) len--;
-    for (int i = len; i >= 0; i--) printf("%c", sum[i] + '0');
-    printf("\n");
+    for (int i = len; i >= 0; i--) cout << char(sum[i] + '0');
+    cout << '\n';
   }
   return 0;
 }

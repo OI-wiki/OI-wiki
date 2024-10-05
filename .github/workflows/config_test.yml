@@ -20,7 +20,7 @@ jobs:
           cache: pipenv
       - name: Install Python Dependencies
         run: |
-          curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
+          pip install pipenv
           pipenv install
       - name: Make Config Files List
         run: find ./docs -name "*.yml" > config.txt
