@@ -1,6 +1,5 @@
-#include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <map>
 using namespace std;
 const int maxn = 2000010;
@@ -30,7 +29,8 @@ long long S_phi(long long x) {  // 求phi的前缀和
 }
 
 int main() {
-  scanf("%lld", &T);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> T;
   mu[1] = 1;
   for (int i = 2; i < maxn; i++) {  // 线性筛预处理mu数组
     if (!vis[i]) {
@@ -50,8 +50,8 @@ int main() {
   for (int i = 1; i < maxn; i++)
     sum_mu[i] = sum_mu[i - 1] + mu[i];  // 求mu数组前缀和
   while (T--) {
-    scanf("%lld", &n);
-    printf("%lld %lld\n", S_phi(n), S_mu(n));
+    cin >> n;
+    cout << S_phi(n) << ' ' << S_mu(n) << '\n';
   }
   return 0;
 }

@@ -1,5 +1,4 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 #define maxn 2018
@@ -65,19 +64,20 @@ void init() {
 }
 
 int main() {
-  while (~scanf("%d%d", &n, &m)) {
+  cin.tie(nullptr)->sync_with_stdio(false);
+  while (cin >> n >> m) {
     init();
     for (int i = 1; i <= m; i++) {
       int a1, a2, c1, c2;
-      scanf("%d%d%d%d", &a1, &a2, &c1, &c2);  // 自己做的时候别用 cin 会被卡
+      cin >> a1 >> a2 >> c1 >> c2;
       add(2 * a1 + c1, 2 * a2 + 1 - c2);
       // 对于第 i 对夫妇，我们用 2i+1 表示丈夫，2i 表示妻子。
       add(2 * a2 + c2, 2 * a1 + 1 - c1);
     }
     if (solve())
-      printf("YES\n");
+      cout << "YES\n";
     else
-      printf("NO\n");
+      cout << "NO\n";
   }
   return 0;
 }

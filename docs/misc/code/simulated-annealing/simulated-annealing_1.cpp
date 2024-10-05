@@ -1,7 +1,8 @@
 #include <cmath>
-#include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <iomanip>
+#include <iostream>
 
 const int N = 10005;
 int n, x[N], y[N], w[N];
@@ -37,14 +38,16 @@ void simulateAnneal() {
 }
 
 int main() {
+  std::cin.tie(nullptr)->sync_with_stdio(false);
   srand(0);  // 注意，在实际使用中，不应使用固定的随机种子。
-  scanf("%d", &n);
+  std::cin >> n;
   for (int i = 1; i <= n; ++i) {
-    scanf("%d%d%d", &x[i], &y[i], &w[i]);
+    std::cin >> x[i] >> y[i] >> w[i];
     ansx += x[i], ansy += y[i];
   }
   ansx /= n, ansy /= n, dis = calc(ansx, ansy);
   simulateAnneal();
-  printf("%.3lf %.3lf\n", ansx, ansy);
+  std::cout << std::fixed << std::setprecision(3) << ansx << ' ' << ansy
+            << '\n';
   return 0;
 }

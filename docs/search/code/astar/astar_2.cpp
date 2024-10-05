@@ -1,6 +1,5 @@
-#include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 using namespace std;
 const int maxn = 5010;
@@ -47,9 +46,10 @@ struct node2 {  // 计算t到所有结点最短路时所需的结构体
 priority_queue<node2> Q;
 
 int main() {
-  scanf("%d%d%lf", &n, &m, &e);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m >> e;
   while (m--) {
-    scanf("%d%d%lf", &u, &v, &ww);
+    cin >> u >> v >> ww;
     add_edge(u, v, ww);   // 正向建图
     add_edge1(v, u, ww);  // 反向建图
   }
@@ -72,7 +72,7 @@ int main() {
     if (x.x == n) {
       e -= x.v;
       if (e < 0) {
-        printf("%d\n", ans);
+        cout << ans << '\n';
         return 0;
       }
       ans++;
@@ -80,6 +80,6 @@ int main() {
     for (int j = h[x.x]; j; j = nxt[j])
       if (cnt[p[j]] <= k && x.v + w[j] <= e) q.push({p[j], x.v + w[j]});
   }
-  printf("%d\n", ans);
+  cout << ans << '\n';
   return 0;
 }

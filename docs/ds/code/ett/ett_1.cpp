@@ -3,7 +3,8 @@
 在某些情况下可能较简单，但对于此题块状链表复杂度有可能无法通过而且实现较繁琐，所以这份代码采用
 FHQ Treap 实现。
 */
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 #define N 1000000
 #define int long long
 using namespace std;

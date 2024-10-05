@@ -1,14 +1,12 @@
-#include <chrono>
-#include <cstdio>
+#include <iostream>
 #include <map>
 #include <random>
-#include <set>
 #include <vector>
 
 typedef unsigned long long ull;
 
 const int N = 1e5 + 10, M = 998244353;
-const ull mask = std::chrono::steady_clock::now().time_since_epoch().count();
+const ull mask = std::mt19937_64(time(nullptr))();
 
 struct Tree {
   ull hash, deg, ans;
@@ -89,14 +87,18 @@ void getRoot(int x, int fa) {
   trees[root[x].hash] = root[x].ans;
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int t, n;
-  scanf("%d", &t);
+  cin >> t;
   while (t--) {
-    scanf("%d", &n);
+    cin >> n;
     for (int i = 1; i < n; i++) {
       int u, v;
-      scanf("%d%d", &u, &v);
+      cin >> u >> v;
       edge[u].push_back(v);
       edge[v].push_back(u);
     }
@@ -107,7 +109,7 @@ int main() {
     for (auto p : trees) {
       tot = (tot + p.second) % M;
     }
-    printf("%lld\n", tot);
+    cout << tot << '\n';
     for (int i = 1; i <= n; i++) {
       edge[i].clear();
       sub[i].clear();

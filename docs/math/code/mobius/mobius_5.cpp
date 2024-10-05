@@ -1,5 +1,5 @@
 #include <cmath>
-#include <cstdio>
+#include <iostream>
 #include <map>
 using namespace std;
 const int N = 5e6, NP = 5e6, SZ = N;
@@ -64,10 +64,11 @@ long long solve() {
 }
 
 int main() {
-  scanf("%lld%lld", &P, &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> P >> n;
   inv2 = ksm(2, P - 2), inv6 = ksm(6, P - 2);
   pn = (long long)pow(n, 0.666667);  // n^(2/3)
   prime_work(pn);
-  printf("%lld", solve());
+  cout << solve();
   return 0;
 }  // 不要为了省什么内存把数组开小,会卡80

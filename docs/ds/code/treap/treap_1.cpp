@@ -1,5 +1,3 @@
-#include <algorithm>
-#include <cstdio>
 #include <iostream>
 
 #define maxn 100005
@@ -119,28 +117,32 @@ struct treap {  // 直接维护成数据结构，可以直接用
   }
 } T;
 
+using std::cin;
+using std::cout;
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   srand(123);
-  scanf("%d", &n);
+  cin >> n;
   int opt, x;
   for (int i = 1; i <= n; i++) {
-    scanf("%d%d", &opt, &x);
+    cin >> opt >> x;
     if (opt == 1)
       T.insert(T.rt, x);
     else if (opt == 2)
       T.del(T.rt, x);
     else if (opt == 3) {
-      printf("%d\n", T.queryrank(T.rt, x));
+      cout << T.queryrank(T.rt, x) << '\n';
     } else if (opt == 4) {
-      printf("%d\n", T.querynum(T.rt, x));
+      cout << T.querynum(T.rt, x) << '\n';
     } else if (opt == 5) {
       T.ans = 0;
       T.querypre(T.rt, x);
-      printf("%d\n", T.val[T.ans]);
+      cout << T.val[T.ans] << '\n';
     } else if (opt == 6) {
       T.ans = 0;
       T.querysub(T.rt, x);
-      printf("%d\n", T.val[T.ans]);
+      cout << T.val[T.ans] << '\n';
     }
   }
   return 0;

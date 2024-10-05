@@ -1,24 +1,8 @@
-#include <algorithm>
 #include <cmath>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 using namespace std;
 const int M = 10005, N = 1005, INF = 1e9;
-
-int read() {  // 快读
-  char c = getchar();
-  int x = 0, f = 1;
-  while (c < '0' || c > '9') {
-    if (c == '-') f = -1;
-    c = getchar();
-  }
-  while (c >= '0' && c <= '9') {
-    x = x * 10 + c - '0';
-    c = getchar();
-  }
-  return x * f;
-}
 
 int n, m;
 double a[M][N], b[M], c[N], v;
@@ -64,13 +48,14 @@ double simplex() {
 }
 
 int main() {
-  n = read();
-  m = read();
-  for (int i = 1; i <= n; i++) c[i] = read();
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
+  for (int i = 1; i <= n; i++) cin >> c[i];
   for (int i = 1; i <= m; i++) {
-    int s = read(), t = read();
+    int s, t;
+    cin >> s >> t;
     for (int j = s; j <= t; j++) a[i][j] = 1;  // 表示第i种志愿者在j时间可以服务
-    b[i] = read();
+    cin >> b[i];
   }
-  printf("%d", (int)(simplex() + 0.5));
+  cout << (int)(simplex() + 0.5);
 }

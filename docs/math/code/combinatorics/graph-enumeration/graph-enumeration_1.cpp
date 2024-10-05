@@ -1,11 +1,12 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 #define Ts *this
 #define rTs return Ts
 typedef long long LL;
-int MOD = int(1e9) + 7;
+const int MOD = int(1e9) + 7;
 
+// <<= '2. Number Theory .,//{
 namespace NT {
 void INC(int& a, int b) {
   a += b;
@@ -125,62 +126,54 @@ struct Int {
 
 using namespace NT;
 
-const int N = int(5e1) + 9;
-Int Fact[N];
-vector<vector<int>> Partition;
-vector<int> cur;
-int n, m;
+const int N = int(1e3) + 9;
+Int binom[N][N], C[N], E[N], B[N], B1[N], G[N];
+int n;
 
-void gen(int n = ::n, int s = 1) {
-  if (!n) {
-    Partition.push_back(cur);
-  } else if (n >= s) {
-    cur.push_back(s);
-    gen(n - s, s);
-    cur.pop_back();
-    gen(n, s + 1);
+void ln(Int C[], Int G[]) {
+  for (int i = 1; i <= n; ++i) {
+    C[i] = G[i];
+    for (int j = 1; j <= i - 1; ++j)
+      C[i] -= binom[i - 1][j - 1] * C[j] * G[i - j];
   }
 }
 
-Int w(const vector<int> P) {
-  Int z = Fact[n];
-  int c = 0, l = P.front();
-
-  for (auto p : P) {
-    z /= p;
-    if (p != l) {
-      z /= Fact[c];
-      l = p;
-      c = 1;
-    } else {
-      ++c;
-    }
+void exp(Int G[], Int C[]) {
+  for (int i = 1; i <= n; ++i) {
+    G[i] = C[i];
+    for (int j = 1; j <= i - 1; ++j)
+      G[i] += binom[i - 1][j - 1] * C[j] * G[i - j];
   }
-
-  z /= Fact[c];
-  return z;
-}
-
-int c(const vector<int> P) {
-  int z = 0;
-  for (int i = 0; i < P.size(); ++i) {
-    z += P[i] / 2;
-    for (int j = 0; j < i; ++j) z += gcd(P[i], P[j]);
-  }
-  return z;
 }
 
 int main() {
-  cin >> n >> m >> MOD;
-  Fact[0] = 1;
-  for (int i = 1; i <= n; ++i) Fact[i] = Fact[i - 1] * i;
+  cin.tie(nullptr)->sync_with_stdio(false);
 
-  gen();
-
-  Int res = 0;
-  for (auto P : Partition) {
-    res += w(P) * pow(m, c(P));
+  n = 1000;
+  for (int i = 0; i < n + 1; ++i) {
+    binom[i][0] = 1;
+    for (int j = 0; j < i; ++j)
+      binom[i][j + 1] = binom[i - 1][j] + binom[i - 1][j + 1];
   }
-  res /= Fact[n];
-  cout << res << endl;
+
+  for (int i = 1; i <= n; ++i) G[i] = pow(2, binom[i][2]);
+  ln(C, G);
+  for (int i = 1; i <= n; ++i) G[i] = pow(2, binom[i - 1][2]);
+  ln(E, G);
+  for (int i = 1; i <= n; ++i) {
+    G[i] = 0;
+    for (int j = 0; j < i + 1; ++j) G[i] += binom[i][j] * pow(2, j * (i - j));
+  }
+  ln(B1, G);
+  for (int i = 1; i <= n; ++i) B1[i] /= 2;
+  exp(B, B1);
+
+  int T;
+  cin >> T;
+  while (T--) {
+    cin >> n;
+    cout << "Connected: " << C[n] << '\n'
+         << "Eulerian: " << E[n] << '\n'
+         << "Bipartite: " << B[n] << "\n\n";
+  }
 }

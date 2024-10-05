@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 const int N = 1000000;
 int tot, p[N + 5];
 long long g[N + 5];
@@ -23,13 +23,17 @@ void solve() {
   }
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int T, n;
   solve();  // 预处理g数组
-  scanf("%d", &T);
+  cin >> T;
   for (int i = 1; i <= T; ++i) {
-    scanf("%d", &n);
-    printf("%lld\n", (g[n] + 1) * n / 2);
+    cin >> n;
+    cout << (g[n] + 1) * n / 2 << '\n';
   }
   return 0;
 }
