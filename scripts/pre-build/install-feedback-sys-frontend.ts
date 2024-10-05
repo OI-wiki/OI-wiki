@@ -23,7 +23,7 @@ const CONTENT_SCRIPT_TARGET_FILE = "_static/js/oiwiki-feedback-sys-frontend.js";
 
 const MKDOCS_CONFIG_FILE = "../mkdocs.yml";
 
-const API_ENDPOINT = "https://feedback-sys-backend.hikarilan.workers.dev/";
+const API_ENDPOINT = "https://feedback-sys.mgt.moe/";
 
 const docsDir = path.resolve("docs");
 

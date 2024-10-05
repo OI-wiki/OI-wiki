@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 using namespace std;
 const int maxn = 130;
 bool mp[maxn][maxn];
@@ -33,18 +33,19 @@ int work() {
 }
 
 int main() {
-  while (~scanf("%d %d", &n, &m)) {
+  cin.tie(nullptr)->sync_with_stdio(false);
+  while (cin >> n >> m) {
     memset(mp, 0, sizeof mp);
     for (int i = 1; i <= m; ++i) {
       int u, v;
-      scanf("%d %d", &u, &v);
+      cin >> u >> v;
       mp[u][v] = mp[v][u] = 1;
     }
     int tmp = work();
     if (tmp > 1000)
-      puts("Too many maximal sets of friends.");
+      cout << "Too many maximal sets of friends.\n";
     else
-      printf("%d\n", tmp);
+      cout << tmp << '\n';
   }
   return 0;
 }

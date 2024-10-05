@@ -1,6 +1,6 @@
 // 仔细推一下就是和三维偏序差不多的式子了，基本就是一个三维偏序的板子
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 typedef long long ll;
 int n;
@@ -89,14 +89,15 @@ void solve(int l, int r) {  // 底下是具体的式子，套用
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   for (int i = 1; i <= n; i++) {
-    scanf("%d", &a[i].val);
+    cin >> a[i].val;
     rv[a[i].val] = i;
   }
   for (int i = 1; i <= m; i++) {
     int p;
-    scanf("%d", &p);
+    cin >> p;
     a[rv[p]].del = i;
   }
   for (int i = 1; i <= n; i++) {
@@ -112,7 +113,7 @@ int main() {
   solve(0, n);
   sort(a + 1, a + n + 1, cmp2);
   for (int i = 1; i <= m; i++) {
-    printf("%lld\n", res);
+    cout << res << '\n';
     res -= a[i].ans;
   }
   return 0;

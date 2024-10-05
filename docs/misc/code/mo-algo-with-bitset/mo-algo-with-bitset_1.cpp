@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <bitset>
 #include <cmath>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 using namespace std;
 const int N = 100005, M = N / 3 + 10;
 int n, m, maxn;
@@ -44,7 +44,7 @@ void solve() {
     ans[tot] = 0;
     sum[tot].set();
     for (int j = 0; j < 3; j++) {
-      scanf("%d%d", &q[cnt].l, &q[cnt].r);
+      cin >> q[cnt].l >> q[cnt].r;
       q[cnt].id = tot;
       ans[tot] += q[cnt].r - q[cnt].l + 1;
       cnt++;
@@ -59,12 +59,13 @@ void solve() {
     sum[q[i].id] &= now;
   }
   for (int i = 0; i < tot; i++)
-    printf("%d\n", ans[i] - (int)sum[i].count() * 3);
+    cout << ans[i] - (int)sum[i].count() * 3 << '\n';
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
-  for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
+  for (int i = 1; i <= n; i++) cin >> a[i];
   static_set();
   maxn = sqrt(n);
   solve();

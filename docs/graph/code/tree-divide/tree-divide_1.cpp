@@ -1,6 +1,6 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 using namespace std;
 const int maxn = 20010;
@@ -71,10 +71,11 @@ void dfz(int x, int fa) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   for (int i = 1; i < n; i++)
-    scanf("%d%d%d", &a, &b, &c), add_edge(a, b, c), add_edge(b, a, c);
-  for (int i = 1; i <= m; i++) scanf("%d", q + i);
+    cin >> a >> b >> c, add_edge(a, b, c), add_edge(b, a, c);
+  for (int i = 1; i <= m; i++) cin >> q[i];
   rt = 0;
   maxx[rt] = inf;
   sum = n;
@@ -83,8 +84,8 @@ int main() {
   dfz(rt, -1);
   for (int i = 1; i <= m; i++)
     if (ret[i])
-      printf("AYE\n");
+      cout << "AYE\n";
     else
-      printf("NAY\n");
+      cout << "NAY\n";
   return 0;
 }

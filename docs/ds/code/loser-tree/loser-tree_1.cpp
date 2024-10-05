@@ -86,16 +86,15 @@ void runTest(const std::vector<std::vector<int>> &data) {
 }
 
 int main() {
+  std::cin.tie(nullptr)->sync_with_stdio(false);
   int n;
-  scanf("%d", &n);
+  std::cin >> n;
   std::vector<std::vector<int>> data(n);
   for (int i = 0; i < n; ++i) {
     int m;
-    scanf("%d", &m);
+    std::cin >> m;
     data[i].resize(m);
-    for (int j = 0; j < m; ++j) {
-      scanf("%d", &data[i][j]);
-    }
+    for (int j = 0; j < m; ++j) std::cin >> data[i][j];
   }
   runTest(data);
 

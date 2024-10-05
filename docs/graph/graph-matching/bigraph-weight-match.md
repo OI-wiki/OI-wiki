@@ -249,7 +249,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
 
 ??? note "动态匈牙利算法参考代码"
     ```cpp
-    --8<-- "docs/graph/graph-matching/code/bigraph-weight-match/bigraph-weight-match_1.cpp"
+    --8<-- "docs/graph/code/graph-matching/bigraph-weight-match/bigraph-weight-match_1.cpp"
     ```
 
 ## 转化为费用流模型
@@ -272,5 +272,5 @@ $a = \min \{ slack(v) | v\in{T'} \}$
     模板题
     
     ```cpp
-    --8<-- "docs/graph/graph-matching/code/bigraph-weight-match/bigraph-weight-match_2.cpp"
+    --8<-- "docs/graph/code/graph-matching/bigraph-weight-match/bigraph-weight-match_2.cpp"
     ```

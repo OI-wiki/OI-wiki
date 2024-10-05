@@ -1,5 +1,4 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 using namespace std;
@@ -40,17 +39,18 @@ int dfs(int x) {  // 一次dfs更新答案就可以了
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int n, hi;
-  while (scanf("%d", &n), n) {
+  while (cin >> n, n) {
     tree[0].init(0, 0, 0);
     for (int i = 1; i <= n; i++) {
-      scanf("%d", &hi);
+      cin >> hi;
       tree[i].init(i, hi, 0);
     }
     root = cartesian_build(n);
     ans = 0;
     dfs(root);
-    printf("%lld\n", ans);
+    cout << ans << '\n';
   }
   return 0;
 }

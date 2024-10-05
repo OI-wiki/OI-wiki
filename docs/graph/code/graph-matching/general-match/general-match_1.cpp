@@ -1,4 +1,10 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cassert>
+#include <iostream>
+#include <numeric>
+#include <queue>
+#include <random>
+#include <vector>
 using namespace std;
 
 // graph
@@ -12,7 +18,7 @@ class graph {
   };
 
   vector<edge> edges;
-  vector<vector<int> > g;
+  vector<vector<int>> g;
   int n;
 
   graph(int _n) : n(_n) { g.resize(n); }
