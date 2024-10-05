@@ -503,7 +503,7 @@ $$
 
 **OI Wiki** 会对例题代码进行全平台测试，为保证您的代码能够顺利通过测试，请遵守如下规则：
 
--   您的代码需要同时符合 C++14、C++17、C++20 标准。
+-   您的代码需要同时支持在 C++14、C++17、C++20 标准下编译和运行。
 -   不要使用 `<bits/stdc++.h>`、`<bits/extc++.h>` 等非标准头文件。
 -   标准答案文件不要有多余空格。
 -   不要使用 [代用记号](https://en.cppreference.com/w/cpp/language/operator_alternative#Alternative_tokens)。
