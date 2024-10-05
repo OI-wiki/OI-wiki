@@ -1,6 +1,6 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 using namespace std;
 const int maxn = 100010;
 const int inf = 2e9;
@@ -121,10 +121,10 @@ void pre(int x) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
-  for (int i = 1; i <= n; i++) scanf("%d", val + i);
-  for (int i = 1; i < n; i++)
-    scanf("%d%d", &u, &v), add_edge(u, v), add_edge(v, u);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
+  for (int i = 1; i <= n; i++) cin >> val[i];
+  for (int i = 1; i < n; i++) cin >> u >> v, add_edge(u, v), add_edge(v, u);
   lca.init();
   rt = 0;
   maxx[rt] = inf;
@@ -132,11 +132,10 @@ int main() {
   calcsiz(1, -1);
   calcsiz(rt, -1);
   pre(rt);
-  // for(int i=1;i<=n;i++)printf("%d ",fa[i]);printf("\n");
   for (int i = 1; i <= n; i++)
     for (int j = i; j; j = fa[j]) d[i][dep[i] - dep[j]] = lca.dist(i, j);
   while (m--) {
-    scanf("%d%d%d", &op, &x, &y);
+    cin >> op >> x >> y;
     x ^= lstans;
     y ^= lstans;
     if (op == 0) {
@@ -147,7 +146,7 @@ int main() {
         lstans += dist.query(dist.rt[fa[i]], 0, n, 0, y - nww);
         lstans -= ch.query(ch.rt[i], 0, n, 0, y - nww);
       }
-      printf("%d\n", lstans);
+      cout << lstans << '\n';
     }
     if (op == 1) {
       int nww = 0;

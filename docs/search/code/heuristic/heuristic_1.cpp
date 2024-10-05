@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 const int N = 105;
 int n, m, ans;
@@ -30,13 +30,14 @@ void work(int t, int p, int v) {
 }
 
 int main() {
-  scanf("%d %d", &m, &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> m >> n;
   for (int i = 1; i <= n; i++) {
-    scanf("%d %d", &node[i].a, &node[i].b);
+    cin >> node[i].a >> node[i].b;
     node[i].f = 1.0 * node[i].b / node[i].a;  // f为性价比
   }
   sort(node + 1, node + n + 1);  // 根据性价比排序
   work(1, m, 0);
-  printf("%d\n", ans);
+  cout << ans << '\n';
   return 0;
 }

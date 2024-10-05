@@ -362,7 +362,7 @@ $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$
 
 感性理解：如果 $height$ 一直大于某个数，前这么多位就一直没变过；反之，由于后缀已经排好序了，不可能变了之后变回来。
 
-严格证明可以参考[\[2004\] 后缀数组 by. 徐智磊][1]。
+严格证明可以参考[\[2004\] 后缀数组 by. 许智磊][1]。
 
 有了这个定理，求两子串最长公共前缀就转化为了 [RMQ 问题](../topic/rmq.md)。
 
@@ -489,6 +489,6 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 2.  [\[2009\] 后缀数组——处理字符串的有力工具 by. 罗穗骞][2]
 
-[1]: https://wenku.baidu.com/view/0dc03d2b1611cc7931b765ce0508763230127479.html "[2004] 后缀数组 by. 徐智磊"
+[1]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2004%E8%AE%BA%E6%96%87%E9%9B%86/%E8%AE%B8%E6%99%BA%E7%A3%8A--%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84.pdf "[2004] 后缀数组 by. 许智磊"
 
-[2]: https://wenku.baidu.com/view/5b886b1ea76e58fafab00374.html "[2009] 后缀数组——处理字符串的有力工具 by. 罗穗骞"
+[2]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2009%E8%AE%BA%E6%96%87%E9%9B%86/11.%E7%BD%97%E7%A9%97%E9%AA%9E%E3%80%8A%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%89%E5%8A%9B%E5%B7%A5%E5%85%B7%E3%80%8B/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%89%E5%8A%9B%E5%B7%A5%E5%85%B7.pdf "[2009] 后缀数组——处理字符串的有力工具 by. 罗穗骞"

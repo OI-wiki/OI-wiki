@@ -1,6 +1,5 @@
-#include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 using namespace std;
 
@@ -20,19 +19,20 @@ void addedge(int u, int v, int w) {  // 加边
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int n, m;
-  scanf("%d%d", &n, &m);
+  cin >> n >> m;
   for (int i = 1; i <= m; i++) {
     int op, x, y, z;
-    scanf("%d", &op);
+    cin >> op;
     if (op == 1) {
-      scanf("%d%d%d", &x, &y, &z);
+      cin >> x >> y >> z;
       addedge(y, x, z);
     } else if (op == 2) {
-      scanf("%d%d%d", &x, &y, &z);
+      cin >> x >> y >> z;
       addedge(x, y, -z);
     } else {
-      scanf("%d%d", &x, &y);
+      cin >> x >> y;
       addedge(x, y, 0);
       addedge(y, x, 0);
     }
@@ -54,12 +54,12 @@ int main() {
           q.push(e[i].v);
           tot[e[i].v]++;
           if (tot[e[i].v] >= n) {
-            puts("No");
+            cout << "No\n";
             return 0;
           }
         }
       }
   }
-  puts("Yes");
+  cout << "Yes\n";
   return 0;
 }

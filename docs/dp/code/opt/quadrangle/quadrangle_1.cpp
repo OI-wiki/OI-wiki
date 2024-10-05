@@ -22,7 +22,7 @@ void work() {
     else if (f(q.back(), n) < f(i, n)) {
       int ll = l.back(), rr = n, mid;
       for (; ll <= rr;) {
-        mid = ll + rr >> 1;
+        mid = (ll + rr) >> 1;
         if (f(q.back(), mid) < f(i, mid))
           rr = mid - 1;
         else

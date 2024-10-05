@@ -1,6 +1,6 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <list>
 using namespace std;
 typedef long long LL;
@@ -14,9 +14,9 @@ bool m[MAXV];
 list<int> Q;
 
 void readMatrix() {
-  scanf("%d", &N);
+  cin >> N;
   for (int i = 0; i < N; i++)
-    for (int j = 0; j < N; j++) scanf("%lld", &W[i][j]);
+    for (int j = 0; j < N; j++) cin >> W[i][j];
 }
 
 void initHungarian() {
@@ -128,9 +128,9 @@ void dynamicHungarian() {
   LL w;
   int i, j;
 
-  scanf("%s", type);
+  cin >> type;
   if (type[0] == 'C') {
-    scanf("%d%d%lld", &i, &j, &w);
+    cin >> i >> j >> w;
     if ((w < W[i][j]) && (mateS[i] == j)) {
       W[i][j] = w;
       if (mateS[i] != -1) {
@@ -148,8 +148,8 @@ void dynamicHungarian() {
     } else
       W[i][j] = w;
   } else if (type[0] == 'X') {
-    scanf("%d", &i);
-    for (int c = 0; c < N; c++) scanf("%lld", &W[i][c]);
+    cin >> i;
+    for (int c = 0; c < N; c++) cin >> W[i][c];
     if (mateS[i] != -1) {
       mateT[mateS[i]] = -1;
       mateS[i] = -1;
@@ -157,8 +157,8 @@ void dynamicHungarian() {
     u[i] = -INF;
     for (int c = 0; c < N; c++) u[i] = max(u[i], W[i][c] - v[c]);
   } else if (type[0] == 'Y') {
-    scanf("%d", &j);
-    for (int r = 0; r < N; r++) scanf("%lld", &W[r][j]);
+    cin >> j;
+    for (int r = 0; r < N; r++) cin >> W[r][j];
     if (mateT[j] != -1) {
       mateS[mateT[j]] = -1;
       mateT[j] = -1;
@@ -172,15 +172,16 @@ void dynamicHungarian() {
     v[j] = -INF;
     for (int r = 0; r < N; r++) v[j] = max(v[j], W[r][j] - u[r]);
   } else if (type[0] == 'Q')
-    printf("%lld\n", hungarian());
+    cout << hungarian() << '\n';
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   readMatrix();
   initHungarian();
   LL ans = hungarian();
   int M;
-  scanf("%d", &M);
+  cin >> M;
   while (M--) dynamicHungarian();
   return 0;
 }

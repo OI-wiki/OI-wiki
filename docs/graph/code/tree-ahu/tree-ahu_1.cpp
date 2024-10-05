@@ -1,7 +1,9 @@
 // Tree Isomorphism, O(nlogn)
 // replace quick sort with radix sort ==> O(n)
 // Author: _Backl1ght
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
+#include <vector>
 using namespace std;
 typedef long long ll;
 const int N = 1e5 + 5;
@@ -71,7 +73,7 @@ void init(int n) {  // 一开始的处理
 
   int u, v;
   for (int i = 1; i <= n - 1; i++) {
-    scanf("%d %d", &u, &v);
+    cin >> u >> v;
     addedge(u, v);
   }
   dfs_size(1, -1);
@@ -79,7 +81,7 @@ void init(int n) {  // 一开始的处理
   dfs_center(1, 1, -1, 0);
 
   for (int i = 1; i <= n - 1; i++) {
-    scanf("%d %d", &u, &v);
+    cin >> u >> v;
     addedge(u + n, v + n);
   }
   dfs_size(1 + n, -1);
@@ -122,12 +124,13 @@ bool treeIsomorphism() {
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int T;
-  scanf("%d", &T);
+  cin >> T;
   while (T--) {
-    scanf("%d", &n);
+    cin >> n;
     init(n);
-    puts(treeIsomorphism() ? "YES" : "NO");
+    cout << (treeIsomorphism() ? "YES" : "NO") << '\n';
   }
   return 0;
 }

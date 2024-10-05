@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <map>
+#include <stack>
+#include <vector>
 #define ls (i << 1)
 #define rs (i << 1 | 1)
 #define mid ((l + r) >> 1)
@@ -42,7 +45,7 @@ void undo() {
   undo_sz.pop();
 }
 
-vector<pair<int, int> > tree[N << 4];
+vector<pair<int, int>> tree[N << 4];
 
 void update(int ql, int qr, pair<int, int> v, int i, int l, int r) {
   if (ql <= l && r <= qr) {
@@ -62,7 +65,7 @@ struct ops {
 
 int opcnt;
 map<int, int> queries;
-map<int, pair<int, int> > querylr;
+map<int, pair<int, int>> querylr;
 int ans[N << 3];
 
 void solve(int i, int l, int r) {
@@ -88,8 +91,7 @@ void solve(int i, int l, int r) {
 
 signed main() {
   ios::sync_with_stdio(false);
-  cin.tie(0);
-  cout.tie(0);
+  cin.tie(nullptr);
   cin >> n >> m;
   for (int i = 1; i <= n; i++) {
     fa[i] = i;

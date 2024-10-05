@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <stack>
+#include <vector>
 #define ls (i << 1)
 #define rs (i << 1 | 1)
 #define mid ((l + r) >> 1)
