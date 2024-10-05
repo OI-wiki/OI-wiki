@@ -250,7 +250,7 @@ $$
 -   对任意整数 $a$，$a+\mathbf{Z}_m=\mathbf{Z}_m$；
 -   对任意与 $m$ 互质的整数 $b$，$b\mathbf{Z}_m=\mathbf{Z}_m$。
 
-由 [商群](../group-theory.md#商群) 的定义可知 $\mathbf{Z}_m=\mathbf{Z}/m\mathbf{Z}$，所以有时我们也会用 $\mathbf{Z}/m\mathbf{Z}$ 表示 $\mathbf{Z}_m$。
+由 [商群](../algebra/group-theory.md#商群) 的定义可知 $\mathbf{Z}_m=\mathbf{Z}/m\mathbf{Z}$，所以有时我们也会用 $\mathbf{Z}/m\mathbf{Z}$ 表示 $\mathbf{Z}_m$。
 
 由 [抽屉原理](../combinatorics/drawer-principle.md) 可知：
 
