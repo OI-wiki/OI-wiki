@@ -1,14 +1,12 @@
+前置知识：[抽象代数基本概念](./basic.md)
+
 ## 引入
 
 **群论**（group theory）主要研究叫做「群」的代数结构。
 
-前置知识：[抽象代数基本概念](./basic.md)
-
 为了研究群的结构，需要掌握一些基本工具，这包括子群、群同态和群作用。算法竞赛中，主要涉及到的群是数论相关的群（比如模 $n$ 的整数乘法单位群 $(\mathbf Z/n\mathbf Z)^\times$）以及置换群，本文将着重介绍相关的概念。本文未涉及的群论部分，比如有限群的结构理论和群的线性表示理论，有兴趣的读者应当参考专业书籍。
 
 在不引起歧义时，本文可能会将 $g\cdot h$ 写作 $gh$，也可能会将群 $(G,\cdot)$ 写作群 $G$。
-
-## 例子：正三角形的空间对称群
 
 理解抽象代数不能够离开实例。作为理解下文概念的例子，首先讨论正三角形的空间对称群 $D_6$。
 
@@ -403,9 +401,10 @@ $$
 
 ## 参考资料与注释
 
--   [^klein]: 这个群可以表示为置换群 $\{(1),(12)(34),(13)(24),(14)(23)\}$，也可以写作 $\mathbf Z_2\times\mathbf Z_2$。
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 -   [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_%28mathematics%29)
 -   [Group theory - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)
 -   [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
 -   [Visual Group Theory](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
+
+[^klein]: 这个群可以表示为置换群 $\{(1),(12)(34),(13)(24),(14)(23)\}$，也可以写作 $\mathbf Z_2\times\mathbf Z_2$。

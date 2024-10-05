@@ -97,6 +97,20 @@ $$
 
 最简单的一些环的例子如下。
 
+<<<<<<< HEAD
+- 零环（zero ring）：集合 $\{0\}$ 在通常意义的加法 $+$ 和乘法 $\times$ 下构成环，称为零环。它是唯一的只有一个元素的环，也是唯一的加法单位元和乘法单位元相等的环。 
+- 整数环：整数集 $\mathbf Z$ 和其上通常定义的加法 $+$ 和乘法 $\times$ 构成了环 $(\mathbf Z,+,\times)$。实际上，这是一个整环，但是它不是除环。
+- 多项式环：给定环 $R$，可以在上面定义 [多项式环](../algebra/ring-theory.md) $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
+- 四元数（quaternion）：类比复数，可以考虑集合 $\mathbf H=\{a+b\mathrm{i}+c\mathrm{j}+d\mathrm{k}:a,b,c,d\in\mathbf R\}$，并且定义其上的加法和乘法，这里，$\mathrm{i},\mathrm{j},\mathrm{k}$ 的乘法运算满足 
+  $$
+  \mathrm{i}^2=\mathrm{j}^2=\mathrm{k}^2=-1,\ \mathrm{i}\mathrm{j}=-\mathrm{j}\mathrm{i}=\mathrm{k},\ \mathrm{j}\mathrm{k}=-\mathrm{k}\mathrm{j}=\mathrm{i},\ \mathrm{k}\mathrm{i}=-\mathrm{i}\mathrm{k}=\mathrm{j}.
+  $$
+  那么可以验证，$\mathbf H$ 构成环，而且，它是一个非交换的除环。
+- 整数集的子集 $2\mathbf Z$，在通常意义的加法和乘法下构成环，它是交换环，没有零因子，但是并不含幺。
+- 模 $n$ 的整数剩余系 $\mathbf Z/n\mathbf Z$ 在剩余系的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）。这样的环含有零因子，当且仅当 $n$ 是合数。所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域。
+- 矩阵环：数域 $F$ 上的 $n$ 维方阵在矩阵的加法和乘法下构成一个环。一般地，这个环含幺，有零因子，且不是交换环。
+- 给定集合 $A$，则它的全体子集 $\mathcal P(A)$ 在集合的对称差 $\triangle$ 和交 $\cap$ 分别作为其加法和乘法运算时构成环。一般地，这个环含幺，有零因子，且是交换环。 
+=======
 -   零环（zero ring）：集合 $\{0\}$ 在通常意义的加法 $+$ 和乘法 $\times$ 下构成环，称为零环。它是唯一的只有一个元素的环，也是唯一的加法单位元和乘法单位元相等的环。
 -   整数环：整数集 $\mathbf Z$ 和其上通常定义的加法 $+$ 和乘法 $\times$ 构成了环 $(\mathbf Z,+,\times)$。实际上，这是一个整环，但是它不是除环。
 -   多项式环：给定环 $R$，可以在上面定义 [多项式环](../algebra/ring-theory.md)  $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
@@ -109,6 +123,7 @@ $$
 -   模 $n$ 的整数剩余系 $\mathbf Z/n\mathbf Z$ 在剩余系的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）。这样的环含有零因子，当且仅当 $n$ 是合数。所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域。
 -   矩阵环：数域 $F$ 上的 $n$ 维方阵在矩阵的加法和乘法下构成一个环。一般地，这个环含幺，有零因子，且不是交换环。
 -   给定集合 $A$，则它的全体子集 $\mathcal P(A)$ 在集合的对称差 $\triangle$ 和交 $\cap$ 分别作为其加法和乘法运算时构成环。一般地，这个环含幺，有零因子，且是交换环。
+>>>>>>> 69790b7bf3bc48ec15793259341f396de9e8ae2d
 
 当然，对于环的结构的讨论远不止这些，要了解更多内容，可以参考 [环论](./ring-theory.md) 或相关书籍。
 
@@ -205,7 +220,7 @@ $$
 
 ## 参考资料与注释
 
--   [^group-definition]: 容易证明以下性质：幺元必然唯一；给定元素的逆元必然唯一；成立消去律，即给定 $a,b,c\in G$，若成立 $a\cdot c=b\cdot c$，必然有 $a=b$。
--   [^ring-wiki]: [Ring（mathematics）- Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
--   [^zero-multiplication]: 第一个等号和第二个等号是加法单位元的定义，第三个等号是分配律，最后的蕴涵关系是加法的消去律。
--   [^semiring]: 半环（semiring）是在幺环的定义中放松了加法运算一定存在逆元的要求，即加法结构是交换幺半群、乘法结构是幺半群的代数结构。更多信息参见 [Wikipedia](https://en.wikipedia.org/wiki/Semiring)。
+[^group-definition]: 容易证明以下性质：幺元必然唯一；给定元素的逆元必然唯一；成立消去律，即给定 $a,b,c\in G$，若成立 $a\cdot c=b\cdot c$，必然有 $a=b$。
+[^ring-wiki]: [Ring（mathematics）- Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
+[^zero-multiplication]: 第一个等号和第二个等号是加法单位元的定义，第三个等号是分配律，最后的蕴涵关系是加法的消去律。
+[^semiring]: 半环（semiring）是在幺环的定义中放松了加法运算一定存在逆元的要求，即加法结构是交换幺半群、乘法结构是幺半群的代数结构。更多信息参见 [Wikipedia](https://en.wikipedia.org/wiki/Semiring)。
