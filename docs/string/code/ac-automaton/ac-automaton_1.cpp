@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <queue>
+#include <string>
 using namespace std;
 const int N = 1e6 + 6;
 int n;
@@ -7,7 +9,7 @@ namespace AC {
 int tr[N][26], tot;
 int e[N], fail[N];
 
-void insert(char *s) {
+void insert(const string& s) {
   int u = 0;
   for (int i = 1; s[i]; i++) {
     if (!tr[u][s[i] - 'a']) tr[u][s[i] - 'a'] = ++tot;  // 如果没有则插入新节点
@@ -35,7 +37,7 @@ void build() {
   }
 }
 
-int query(char *t) {
+int query(const string& t) {
   int u = 0, res = 0;
   for (int i = 1; t[i]; i++) {
     u = tr[u][t[i] - 'a'];  // 转移
@@ -47,13 +49,15 @@ int query(char *t) {
 }
 }  // namespace AC
 
-char s[N];
+string s;
 
 int main() {
-  scanf("%d", &n);
-  for (int i = 1; i <= n; i++) scanf("%s", s + 1), AC::insert(s);
-  scanf("%s", s + 1);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
+  for (int i = 1; i <= n; i++) cin >> s, s = " " + s, AC::insert(s);
+  cin >> s;
+  s = " " + s;
   AC::build();
-  printf("%d", AC::query(s));
+  cout << AC::query(s);
   return 0;
 }

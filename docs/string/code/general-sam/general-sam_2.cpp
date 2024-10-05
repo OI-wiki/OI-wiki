@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <queue>
 using namespace std;
 
 const int MAXN = 2000000;  // 双倍字符串长度

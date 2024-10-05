@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
+#include <queue>
+#include <vector>
 
 using namespace std;
 
@@ -14,7 +17,7 @@ struct edge {
 int head[maxn << 1], tree[maxn << 1], tot;
 int dp[maxn][5000], vis[maxn];
 int key[maxn];
-priority_queue<P, vector<P>, greater<P> > q;
+priority_queue<P, vector<P>, greater<P>> q;
 
 void add(int u, int v, int w) {
   e[++tot] = edge{v, head[u], w};
@@ -38,18 +41,19 @@ void dijkstra(int s) {  // 求解最短路
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   memset(dp, INF, sizeof(dp));
-  scanf("%d %d %d", &n, &m, &k);
+  cin >> n >> m >> k;
   int u, v, w;
   for (int i = 1; i <= m; i++) {
-    scanf("%d %d %d", &u, &v, &w);
+    cin >> u >> v >> w;
     add(u, v, w);
     tree[tot] = v;
     add(v, u, w);
     tree[tot] = u;
   }
   for (int i = 1; i <= k; i++) {
-    scanf("%d", &key[i]);
+    cin >> key[i];
     dp[key[i]][1 << (i - 1)] = 0;
   }
   for (int s = 1; s < (1 << k); s++) {
@@ -61,6 +65,6 @@ int main() {
     }
     dijkstra(s);
   }
-  printf("%d\n", dp[key[1]][(1 << k) - 1]);
+  cout << dp[key[1]][(1 << k) - 1] << '\n';
   return 0;
 }

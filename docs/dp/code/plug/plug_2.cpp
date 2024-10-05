@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <cassert>
+#include <cstring>
+#include <iostream>
 using namespace std;
 const int M = 10;
 const int offset = 3, mask = (1 << offset) - 1;

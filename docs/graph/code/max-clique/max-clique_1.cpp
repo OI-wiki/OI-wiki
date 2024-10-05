@@ -1,5 +1,3 @@
-#include <algorithm>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 using namespace std;
@@ -59,17 +57,18 @@ struct MaxClique {
 } maxclique;
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int n;
-  while (scanf("%d", &n), n) {
+  while (cin >> n, n) {
     maxclique.init(n);
     for (int i = 1; i <= n; i++) {
       for (int j = 1; j <= n; j++) {
         int x;
-        scanf("%d", &x);
+        cin >> x;
         maxclique.addedge(i, j, x);
       }
     }
-    printf("%d\n", maxclique.solver());
+    cout << maxclique.solver() << '\n';
   }
   return 0;
 }

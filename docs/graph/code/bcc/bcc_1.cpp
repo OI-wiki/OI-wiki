@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -42,10 +42,11 @@ void dfs(int x, int id) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   int u, v;
   for (int i = 1; i <= m; i++) {
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     if (u == v) continue;
     uadd(u, v);
   }
@@ -56,11 +57,11 @@ int main() {
       bcc.push_back(vector<int>());
       dfs(i, ++ans);
     }
-  printf("%d\n", ans);
+  cout << ans << '\n';
   for (int i = 0; i < ans; i++) {
-    printf("%llu", bcc[i].size());
-    for (int j = 0; j < bcc[i].size(); j++) printf(" %d", bcc[i][j]);
-    printf("\n");
+    cout << bcc[i].size();
+    for (int j = 0; j < bcc[i].size(); j++) cout << ' ' << bcc[i][j];
+    cout << '\n';
   }
   return 0;
 }

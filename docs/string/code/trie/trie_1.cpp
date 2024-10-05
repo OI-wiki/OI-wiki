@@ -1,15 +1,18 @@
-#include <cstdio>
-
+#include <iostream>
+#include <string>
+using namespace std;
 const int N = 500010;
 
-char s[60];
+string s;
 int n, m, ch[N][26], tag[N], tot = 1;
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
 
   for (int i = 1; i <= n; ++i) {
-    scanf("%s", s + 1);
+    cin >> s;
+    s = " " + s;
     int u = 1;
     for (int j = 1; s[j]; ++j) {
       int c = s[j] - 'a';
@@ -21,10 +24,11 @@ int main() {
     tag[u] = 1;  // 最后一个字符为节点 u 的名字未被访问到记录为 1
   }
 
-  scanf("%d", &m);
+  cin >> m;
 
   while (m--) {
-    scanf("%s", s + 1);
+    cin >> s;
+    s = " " + s;
     int u = 1;
     for (int j = 1; s[j]; ++j) {
       int c = s[j] - 'a';
@@ -33,11 +37,11 @@ int main() {
     }
     if (tag[u] == 1) {
       tag[u] = 2;  // 最后一个字符为节点 u 的名字已经被访问
-      puts("OK");
+      cout << "OK\n";
     } else if (tag[u] == 2)  // 已经被访问，重复访问
-      puts("REPEAT");
+      cout << "REPEAT\n";
     else
-      puts("WRONG");
+      cout << "WRONG\n";
   }
 
   return 0;

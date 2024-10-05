@@ -1,6 +1,6 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 using namespace std;
 const int maxn = 100010;
@@ -124,9 +124,9 @@ struct LCA {
 int d[maxn][20];
 
 int main() {
-  scanf("%d", &n);
-  for (int i = 1; i < n; i++)
-    scanf("%d%d", &a, &b), add_edge(a, b), add_edge(b, a);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
+  for (int i = 1; i < n; i++) cin >> a >> b, add_edge(a, b), add_edge(b, a);
   lca.init();
   rt = 0;
   maxx[rt] = inf;
@@ -134,19 +134,18 @@ int main() {
   calcsiz(1, -1);
   calcsiz(rt, -1);
   pre(rt);
-  // for(int i=1;i<=n;i++)printf("%d ",fa[i]);printf("\n");
   for (int i = 1; i <= n; i++)
     for (int j = i; j; j = fa[j]) d[i][dep[i] - dep[j]] = lca.dist(i, j);
-  scanf("%d", &m);
+  cin >> m;
   while (m--) {
-    scanf(" %c", &op);
+    cin >> op;
     if (op == 'G') {
       if (ans.size())
-        printf("%d\n", ans.top());
+        cout << ans.top() << '\n';
       else
-        printf("-1\n");
+        cout << "-1\n";
     } else {
-      scanf("%d", &x);
+      cin >> x;
       if (!col[x]) {
         if (ch[x].size() >= 2) ans.erase(ch[x].top() + ch[x].top2());
         ch[x].erase(0);

@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <bitset>
+#include <iostream>
+#include <stack>
+#include <vector>
 #define ls (i << 1)
 #define rs (i << 1 | 1)
 #define mid ((l + r) >> 1)
@@ -68,7 +72,7 @@ void update(int ql, int qr, int v, int i, int l, int r) {
   if (qr > mid) update(ql, qr, v, rs, mid + 1, r);
 }
 
-stack<pair<int, int> > stk;
+stack<pair<int, int>> stk;
 int u, v;
 int ans[M];
 
@@ -104,8 +108,7 @@ bitset<M> haveq;
 
 signed main() {
   ios::sync_with_stdio(false);
-  cin.tie(0);
-  cout.tie(0);
+  cin.tie(nullptr);
   cin >> n;
   for (int i = 1; i < n; i++) {
     int u, v;

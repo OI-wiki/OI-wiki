@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cassert>
+#include <cstring>
+#include <iostream>
 using namespace std;
 typedef long long T_state;
 typedef int T_key;
@@ -113,7 +116,7 @@ void trans(int i, int j, int u, int cc) {
 
 void init() {
   cin >> n >> m;
-  for (int i = 0; i < n; i++) scanf("%s", A[i]);
+  for (int i = 0; i < n; i++) cin >> A[i];
 }
 
 void solve() {
@@ -151,12 +154,13 @@ void print() {
         u = H[i][j].pre[u];
       }
     }
-    for (int i = 0; i < n; i++) puts(B[i]);
+    for (int i = 0; i < n; i++) cout << B[i] << '\n';
   }
-  puts("");
+  cout << '\n';
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int T;
   cin >> T;
   while (T--) {
