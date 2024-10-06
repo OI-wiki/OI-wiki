@@ -20,6 +20,8 @@
 --8<-- "docs/dp/code/tree/tree_1.cpp"
 ```
 
+通常，树形 DP 状态一般都为当前节点的最优解。先 DFS 遍历子树的所有最优解，然后向上传递给子树的父节点来转移，最终根节点的值即为所求的最优解。
+
 ### 习题
 
 -   [HDU 2196 Computer](https://acm.hdu.edu.cn/showproblem.php?pid=2196)

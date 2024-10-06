@@ -134,7 +134,7 @@ $$
       double x, y, ang;
     
       Point operator-(const Point& p) const { return {x - p.x, y - p.y, 0}; }
-    } p[MAX];
+    } p[MAXN];
     
     double dis(Point p1, Point p2) {
       return sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
@@ -169,6 +169,115 @@ $$
       }
       return 0;
     }
+    ```
+
+## 闵可夫斯基和
+
+### 定义
+
+点集 $P$ 和点集 $Q$ 的闵可夫斯基和 $P+Q$ 定义为 $P+Q=\{a+b|a\in P,b\in Q\}$，即把点集 $Q$ 中的每个点看做一个向量，将点集 $P$ 中每个点沿这些向量平移，最终得到的结果的集合就是点集 $P+Q$。此处仅讨论 **凸包** 的闵可夫斯基和。
+
+例如：对于点集 $P=\{(0,0),(-3,3),(2,1)\}$ 和 点集 $Q=\{(0,0),(-1,3),(1,4),(2,2)\}$，
+
+![](./images/convex-hull1.svg)
+
+将 $P$ 沿 $Q$ 的每个向量平移：
+
+![](./images/convex-hull2.svg)
+
+不难发现新图形也是一个 **凸包**：
+
+![](./images/convex-hull3.svg)
+
+### 性质
+
+1.  若点集合 $P$，$Q$ 为凸集，则其闵可夫斯基和 $P+Q$ 也是凸集。
+
+    ??? note "证明"
+        设 $e,f\in P+Q$，有 $a,b \in P$，$c,d\in Q$ 且 $e=a+c,f=b+d$，则对任意 $t\in[0,1]$ 均有：
+
+        $$
+        \begin{aligned}
+        te + (1-t)f &= t(a+c)+(1-t)(b+d)\\
+        &=(ta+(1-t)b)+(tc+(1-t)d)\\
+        &\in P+Q.
+        \end{aligned}
+        $$
+
+        证毕。
+
+2.  若点集 $P$，$Q$ 为凸集，则其闵可夫斯基和 $P+Q$ 的边集是由凸集 $P$，$Q$ 的边按极角排序后连接的结果。
+
+    ??? note "证明"
+        不妨假设凸集 $P$ 中任意一条边的斜率与 $Q$ 中任意一条边的斜率均不相同。将坐标系进行旋转，使得 $P$ 上的一条边 $XY$ 与 $x$ 轴平行且在最下方。
+
+        设此时 $Q$ 中最低的点 $U$，$P+Q$ 的 **最低** 且 **靠左** 的点 $A$。
+
+        可知 $\vec{A} = \vec{X} + \vec{U}$，所以 $A$ 必然在 $P+Q$ 的边界上。
+
+        同理，$P+Q$ 中 **最低** 且 **靠右** 的点 $B$ 有 $\vec{B} = \vec{Y} + \vec{U}$，也必然在 $P+Q$ 的边界上。
+
+        因此，有 $\vec{AB} = \vec{XY} + \vec{U}$。
+
+        若按顺序进行旋转，则结果连续的构成了 $P+Q$ 中的每条边。
+
+        证毕。
+
+### 实现
+
+我们可以根据性质 2，将凸集 $P,Q$ 极角排序，得到它们在 $P+Q$ 上的出现顺序，把 $P_1+Q_1$ 看做 $P+Q$ 的起点，然后用类似 **归并** 的做法依次放边即可。
+
+时间复杂度：$O(n+m)$
+
+???+ note "实现"
+    ```cpp
+    template <class T>
+    struct Point {
+      T x, y;
+    
+      Point(T x = 0, T y = 0) : x(x), y(y) {}
+    
+      friend Point operator+(const Point &a, const Point &b) {
+        return {a.x + b.x, a.y + b.y};
+      }
+    
+      friend Point operator-(const Point &a, const Point &b) {
+        return {a.x - b.x, a.y - b.y};
+      }
+    
+      // 点乘
+      friend T operator*(const Point &a, const Point &b) {
+        return a.x * b.x + a.y * b.y;
+      }
+    
+      // 叉乘
+      friend T operator^(const Point &a, const Point &b) {
+        return a.x * b.y - a.y * b.x;
+      }
+    };
+    
+    template <class T>
+    vector<Point<T>> minkowski_sum(vector<Point<T>> a, vector<Point<T>> b) {
+      vector<Point<T>> c{a[0] + b[0]};
+      for (usz i = 0; i + 1 < a.size(); ++i) a[i] = a[i + 1] - a[i];
+      for (usz i = 0; i + 1 < b.size(); ++i) b[i] = b[i + 1] - b[i];
+      a.pop_back(), b.pop_back();
+      c.resize(a.size() + b.size() + 1);
+      merge(a.begin(), a.end(), b.begin(), b.end(), c.begin() + 1,
+            [](const Point<i64> &a, const Point<i64> &b) { return (a ^ b) < 0; });
+      for (usz i = 1; i < c.size(); ++i) c[i] = c[i] + c[i - 1];
+      return c;
+    }
+    ```
+
+### 例题
+
+???+ note "[例题 \[JSOI2018\] 战争](https://loj.ac/p/2549)"
+    有两个凸包 $P,Q$，平移 $q$ 次 $Q$，问每次移动后是否有交点。$1\le n,m\le 10^5,1\le q\le 10^5$。
+
+??? note "实现"
+    ```cpp
+    --8<-- "docs/geometry/code/convex-hull/convex-hull_1.cpp"
     ```
 
 ## 三维凸包
@@ -206,6 +315,8 @@ $$
 -   [POJ1873 The Fortified Forest](http://poj.org/problem?id=1873)
 
 -   [POJ1113 Wall](http://poj.org/problem?id=1113)
+
+-   [USACO22JAN Multiple Choice Test P](https://www.luogu.com.cn/problem/P8101)
 
 -   [「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829)
 
