@@ -12,8 +12,8 @@ AC 自动机本质上是 Trie 上的自动机。
 
 简单来说，建立一个 AC 自动机有两个步骤：
 
-1. 基础的 Trie 结构：将所有的模式串构成一棵 Trie；
-2. KMP 的思想：对 Trie 树上所有的结点构造失配指针。
+1.  基础的 Trie 结构：将所有的模式串构成一棵 Trie；
+2.  KMP 的思想：对 Trie 树上所有的结点构造失配指针。
 
 建立完毕后，就可以利用它进行多模式匹配。
 
@@ -33,8 +33,8 @@ AC 自动机利用一个 fail 指针来辅助多模式串的匹配。
 
 fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
 
-1. 共同点：两者同样是在失配的时候用于跳转的指针。
-2. 不同点：next 指针求的是最长 Border（即最长的相同前后缀），而 fail 指针指向所有模式串的前缀中匹配当前状态的最长后缀。
+1.  共同点：两者同样是在失配的时候用于跳转的指针。
+2.  不同点：next 指针求的是最长 Border（即最长的相同前后缀），而 fail 指针指向所有模式串的前缀中匹配当前状态的最长后缀。
 
 因为 KMP 只对一个模式串做匹配，而 AC 自动机要对多个模式串做匹配。有可能 fail 指针指向的结点对应着另一个模式串，两者前缀不同。
 
@@ -50,9 +50,9 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
 
 考虑字典树中当前的结点 $u$，$u$ 的父结点是 $p$，$p$ 通过字符 $\mathtt{c}$ 的边指向 $u$，即 $trie[p,\mathtt{c}]=u$。假设深度小于 $u$ 的所有结点的 fail 指针都已求得。
 
-1. 如果 $\operatorname{trie}[\operatorname{fail}[p],\mathtt{c}]$ 存在：则让 $u$ 的 fail 指针指向 $\operatorname{trie}[\operatorname{fail}[p],\mathtt{c}]$。相当于在 $p$ 和 $\operatorname{fail}[p]$ 后面加一个字符 $\mathtt{c}$，分别对应 $u$ 和 $\operatorname{fail}[u]$；
-2. 如果 $\operatorname{trie}[\operatorname{fail}[p],\mathtt{c}]$ 不存在：那么我们继续找到 $\operatorname{trie}[\operatorname{fail}[\operatorname{fail}[p]],\mathtt{c}]$。重复判断过程，一直跳 fail 指针直到根结点；
-3. 如果依然不存在，就让 fail 指针指向根结点。
+1.  如果 $\operatorname{trie}[\operatorname{fail}[p],\mathtt{c}]$ 存在：则让 $u$ 的 fail 指针指向 $\operatorname{trie}[\operatorname{fail}[p],\mathtt{c}]$。相当于在 $p$ 和 $\operatorname{fail}[p]$ 后面加一个字符 $\mathtt{c}$，分别对应 $u$ 和 $\operatorname{fail}[u]$；
+2.  如果 $\operatorname{trie}[\operatorname{fail}[p],\mathtt{c}]$ 不存在：那么我们继续找到 $\operatorname{trie}[\operatorname{fail}[\operatorname{fail}[p]],\mathtt{c}]$。重复判断过程，一直跳 fail 指针直到根结点；
+3.  如果依然不存在，就让 fail 指针指向根结点。
 
 如此即完成了 $\operatorname{fail}[u]$ 的构建。
 
@@ -60,10 +60,10 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
 
 下面将使用若干张 GIF 动图来演示对字符串 $\mathtt{i}$、$\mathtt{he}$、$\mathtt{his}$、$\mathtt{she}$、$\mathtt{hers}$ 组成的字典树构建 fail 指针的过程：
 
-1. 黄色结点：当前的结点 $u$。
-2. 绿色结点：表示已经 BFS 遍历完毕的结点。
-3. 橙色的边：fail 指针。
-4. 红色的边：当前求出的 fail 指针。
+1.  黄色结点：当前的结点 $u$。
+2.  绿色结点：表示已经 BFS 遍历完毕的结点。
+3.  橙色的边：fail 指针。
+4.  红色的边：当前求出的 fail 指针。
 
 ![AC\_automation\_gif\_b\_3.gif](./images/ac-automaton1.gif)
 
@@ -81,9 +81,9 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
 
 关注构建函数 `build`，该函数的目标有两个，一个是构建 fail 指针，一个是构建自动机。相关变量定义如下：
 
-1. `tr[u].son[c]`：有两种理解方式。我们可以简单理解为字典树上的一条边，即 $\operatorname{trie}[u,c]$；也可以理解为从状态（结点）$u$ 后加一个字符 `c` 到达的状态（结点），即一个状态转移函数 $\operatorname{trans}[u][c]$。为了方便，下文中我们将用第二种理解方式。
-2. 队列 `q`：用于 BFS 遍历字典树。
-3. `tr[u].fail`：结点 $u$ 的 fail 指针。
+1.  `tr[u].son[c]`：有两种理解方式。我们可以简单理解为字典树上的一条边，即 $\operatorname{trie}[u,c]$；也可以理解为从状态（结点）$u$ 后加一个字符 `c` 到达的状态（结点），即一个状态转移函数 $\operatorname{trans}[u][c]$。为了方便，下文中我们将用第二种理解方式。
+2.  队列 `q`：用于 BFS 遍历字典树。
+3.  `tr[u].fail`：结点 $u$ 的 fail 指针。
 
 ???+ note "实现"
     === "C++"
@@ -128,8 +128,8 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
 
 然后开始 BFS：每次取出队首的结点 $u$（$\operatorname{fail}[u]$ 在之前的 BFS 过程中已求得），然后遍历字符集（这里是 $0 \sim 25$，对应 $\mathtt{a} \sim \mathtt{z}$，即 $u$ 的各个子结点）：
 
-1. 如果 $\operatorname{trans}[u][\mathtt{i}]$ 存在，我们就将 $\operatorname{trans}[u][\mathtt{i}]$ 的 fail 指针赋值为 $\operatorname{trans}[\operatorname{fail}[u]][\mathtt{i}]$。根据之前的描述，我们应该用 `while` 循环，不停地跳 fail 指针，判断是否存在字符 `i` 对应的结点，然后赋值，但此处通过特殊处理简化了这些代码，将在下文说明；
-2. 否则，令 $\operatorname{trans}[u][\mathtt{i}]$ 指向 $\operatorname{trans}[\operatorname{fail}[u]][\mathtt{i}]$ 的状态。
+1.  如果 $\operatorname{trans}[u][\mathtt{i}]$ 存在，我们就将 $\operatorname{trans}[u][\mathtt{i}]$ 的 fail 指针赋值为 $\operatorname{trans}[\operatorname{fail}[u]][\mathtt{i}]$。根据之前的描述，我们应该用 `while` 循环，不停地跳 fail 指针，判断是否存在字符 `i` 对应的结点，然后赋值，但此处通过特殊处理简化了这些代码，将在下文说明；
+2.  否则，令 $\operatorname{trans}[u][\mathtt{i}]$ 指向 $\operatorname{trans}[\operatorname{fail}[u]][\mathtt{i}]$ 的状态。
 
 这里的处理是，通过 `else` 语句的代码修改字典树的结构，将不存在的字典树的状态链接到了失配指针的对应状态。在原字典树中，每一个结点代表一个字符串 $S$，是某个模式串的前缀。而在修改字典树结构后，尽管增加了许多转移关系，但结点（状态）所代表的字符串是不变的。
 
@@ -147,12 +147,12 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ![AC\_automation\_gif\_b\_pro3.gif](./images/ac-automaton2.gif)
 
-1. 蓝色结点：BFS 遍历到的结点 $u$。
-2. 蓝色的边：当前结点下，AC 自动机修改字典树结构连出的边。
-3. 黑色的边：AC 自动机修改字典树结构连出的边。
-4. 红色的边：当前结点求出的 fail 指针。
-5. 黄色的边：fail 指针。
-6. 灰色的边：字典树的边。
+1.  蓝色结点：BFS 遍历到的结点 $u$。
+2.  蓝色的边：当前结点下，AC 自动机修改字典树结构连出的边。
+3.  黑色的边：AC 自动机修改字典树结构连出的边。
+4.  红色的边：当前结点求出的 fail 指针。
+5.  黄色的边：fail 指针。
+6.  灰色的边：字典树的边。
 
 可以发现，众多交错的黑色边将字典树变成了 **字典图**。图中省略了连向根结点的黑边（否则会更乱）。我们重点分析一下结点 $5$ 遍历时的情况。我们求 $\operatorname{trans}[5][s]=6$ 的 fail 指针：
 
@@ -206,10 +206,10 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ![AC\_automation\_gif\_c.gif](./images/ac-automaton3.gif)
 
-1. 红色结点：$p$ 结点。
-2. 粉色箭头：$p$ 在自动机上的跳转。
-3. 蓝色的边：成功匹配的模式串。
-4. 蓝色结点：示跳 fail 指针时的结点（状态）。
+1.  红色结点：$p$ 结点。
+2.  粉色箭头：$p$ 在自动机上的跳转。
+3.  蓝色的边：成功匹配的模式串。
+4.  蓝色结点：示跳 fail 指针时的结点（状态）。
 
 ## 效率优化
 
@@ -269,8 +269,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
     void topu() {
       queue<int> q;
       for (int i = 0; i <= tot; i++)
-        if (tr[i].du == 0)
-          q.push(i);
+        if (tr[i].du == 0) q.push(i);
       while (!q.empty()) {
         int u = q.front();
         q.pop();
@@ -292,8 +291,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
       scanf("%s", s + 1);
       AC::query(s);
       AC::topu();
-      for (int i = 1; i <= n; i++)
-        printf("%d\n", AC::ans[idx[i]]);
+      for (int i = 1; i <= n; i++) printf("%d\n", AC::ans[idx[i]]);
       // do_another_thing();
     }
     ```
@@ -367,7 +365,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
         for (int i = 0; i < 26; i++) {
           if (tr[u].son[i]) {
             tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];
-            tr[tr[u].son[i]].depth = tr[u].depth + 1;  //  记录深度
+            tr[tr[u].son[i]].depth = tr[u].depth + 1;  // 记录深度
             q.push(tr[u].son[i]);
           } else
             tr[u].son[i] = tr[tr[u].fail].son[i];
@@ -422,7 +420,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
     ```
 
 ???+ note "模版 3"
-    [Luogu P5357 【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)
+    [Luogu P5357【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)
     
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_3.cpp"
@@ -436,11 +434,11 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 有限状态自动机（Deterministic Finite Automaton，DFA）是由
 
-1. 状态集合 $Q$。
-2. 字符集 $\Sigma$。
-3. 状态转移函数 $\delta:Q\times \Sigma \to Q$，即 $\delta(q,\sigma)=q',\ q,q'\in Q,\sigma\in \Sigma$。
-4. 一个开始状态 $s\in Q$。
-5. 一个接收的状态集合 $F\subseteq Q$。
+1.  状态集合 $Q$。
+2.  字符集 $\Sigma$。
+3.  状态转移函数 $\delta:Q\times \Sigma \to Q$，即 $\delta(q,\sigma)=q',\ q,q'\in Q,\sigma\in \Sigma$。
+4.  一个开始状态 $s\in Q$。
+5.  一个接收的状态集合 $F\subseteq Q$。
 
 组成的五元组 $(Q,\Sigma,\delta,s,F)$。
 
