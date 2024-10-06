@@ -463,7 +463,7 @@ $$
 -   所有质因子数目：$\Omega(n)=\sum_{p \mid n} [p \in P] \sum_{k=1}^{\lceil\log_p n\rceil} [p^k \mid n \wedge p^{k+1} \nmid n] \cdot k$。（完全加性）
 -   相异质因子数目：$\omega(n)=\sum_{p \mid n} [p \in P]$。
 -   所有质因子之和：$a_0(n)=\sum_{p \mid n} [p \in P] \sum_{k=1}^{\lceil\log_p n\rceil} [p^k \mid n \wedge p^{k+1} \nmid n] \cdot kp$。（完全加性）
--   相异质因子之和：$a_1(n)=\sum{p \mid n}[p \in P] \cdot p$。
+-   相异质因子之和：$a_1(n)=\sum_{p \mid n}[p \in P] \cdot p$。
 
 ## 参考资料与注释
 
