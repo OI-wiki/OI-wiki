@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstring>
+#include <iostream>
+#include <string>
 using namespace std;
 const int maxn = 300000 + 5;
 
@@ -53,14 +56,15 @@ long long solve() {
 }
 }  // namespace pam
 
-char s[maxn];
+string s;
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   pam::clear();
-  scanf("%s", s + 1);
-  for (int i = 1; s[i]; i++) {
+  cin >> s;
+  for (int i = 0; i < s.size(); i++) {
     pam::insert(s[i]);
   }
-  printf("%lld\n", pam::solve());
+  cout << pam::solve() << '\n';
   return 0;
 }

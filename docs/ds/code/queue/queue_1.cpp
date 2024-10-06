@@ -1,14 +1,9 @@
 #include <algorithm>
 #include <cctype>
 #include <cmath>
-#include <cstdio>
 #include <cstdlib>
-#include <cstring>
 #include <iostream>
-#include <map>
-#include <queue>
-#include <set>
-#include <vector>
+#include <string>
 using namespace std;
 /******************heading******************/
 const int M = 5e4 + 5, P = 505;  // 定义常数
@@ -89,22 +84,23 @@ void init() {
 }  // namespace DQ
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   DQ::init();
-  scanf("%d%d%d", &I, &m, &p);
+  cin >> I >> m >> p;
   for (int i = 1; i <= m; i++) {
-    char op[5];
+    string op;
     int x, y;
-    scanf("%s%d%d", op, &x, &y);
-    if (op[0] == 'I' && op[1] == 'F')
-      DQ::push_front(make_pair(_(x), y));
-    else if (op[0] == 'I' && op[1] == 'G')
-      DQ::push_back(make_pair(_(x), y));
-    else if (op[0] == 'D' && op[1] == 'F')
+    cin >> op;
+    if (op == "IF")
+      cin >> x >> y, DQ::push_front(make_pair(_(x), y));
+    else if (op == "IG")
+      cin >> x >> y, DQ::push_back(make_pair(_(x), y));
+    else if (op == "DF")
       DQ::pop_front();
-    else if (op[0] == 'D' && op[1] == 'G')
+    else if (op == "DG")
       DQ::pop_back();
     else
-      printf("%d\n", DQ::query(x, y));
+      cin >> x >> y, cout << DQ::query(x, y) << '\n';
   }
   return 0;
 }

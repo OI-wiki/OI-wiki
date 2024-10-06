@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using std::cin;
 using std::cout;
 const int MAX = 3e5 + 5;

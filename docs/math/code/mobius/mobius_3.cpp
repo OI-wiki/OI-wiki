@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 
 const int N = 1e7;
@@ -58,7 +58,7 @@ void init() {  // 线性筛
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin >> n >> m;
   init();
-  printf("%d\n", solve(n, m));
+  cout << solve(n, m) << '\n';
 }

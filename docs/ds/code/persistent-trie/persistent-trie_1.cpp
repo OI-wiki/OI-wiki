@@ -1,6 +1,6 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 using namespace std;
 const int maxn = 600010;
 int n, q, a[maxn], s[maxn], l, r, x;
@@ -25,13 +25,11 @@ struct Trie {
       }
     }
     val[o] = val[lst] + 1;
-    // printf("%d\n",o);
   }
 
   int query(int o1, int o2, int v) {
     int ret = 0;
     for (int i = 28; i >= 0; i--) {
-      // printf("%d %d %d\n",o1,o2,val[o1]-val[o2]);
       int t = ((v & (1 << i)) ? 1 : 0);
       if (val[ch[o1][!t]] - val[ch[o2][!t]])
         ret += (1 << i), o1 = ch[o1][!t],
@@ -44,27 +42,28 @@ struct Trie {
 } st;
 
 int main() {
-  scanf("%d%d", &n, &q);
-  for (int i = 1; i <= n; i++) scanf("%d", a + i), s[i] = s[i - 1] ^ a[i];
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> q;
+  for (int i = 1; i <= n; i++) cin >> a[i], s[i] = s[i - 1] ^ a[i];
   for (int i = 1; i <= n; i++)
     st.rt[i] = ++st.cnt, st.insert(st.rt[i], st.rt[i - 1], s[i]);
   while (q--) {
-    scanf(" %c", &op);
+    cin >> op;
     if (op == 'A') {
       n++;
-      scanf("%d", a + n);
+      cin >> a[n];
       s[n] = s[n - 1] ^ a[n];
       st.rt[n] = ++st.cnt;
       st.insert(st.rt[n], st.rt[n - 1], s[n]);
     }
     if (op == 'Q') {
-      scanf("%d%d%d", &l, &r, &x);
+      cin >> l >> r >> x;
       l--;
       r--;
       if (l == 0)
-        printf("%d\n", max(s[n] ^ x, st.query(st.rt[r], st.rt[0], s[n] ^ x)));
+        cout << max(s[n] ^ x, st.query(st.rt[r], st.rt[0], s[n] ^ x)) << '\n';
       else
-        printf("%d\n", st.query(st.rt[r], st.rt[l - 1], s[n] ^ x));
+        cout << st.query(st.rt[r], st.rt[l - 1], s[n] ^ x) << '\n';
     }
   }
   return 0;

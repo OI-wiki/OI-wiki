@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <array>
+#include <deque>
+#include <iostream>
 
 constexpr int MAXV = 4e4 + 10;
 constexpr int MAXN = 1e2 + 10;

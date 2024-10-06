@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 using namespace std;
 const int N = 50000;
 int mu[N + 5], p[N + 5];
@@ -35,18 +35,19 @@ int solve(int n, int m) {
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int T, a, b, c, d, k;
   init();  // 预处理mu数组
-  scanf("%d", &T);
+  cin >> T;
   for (int i = 1; i <= T; i++) {
-    scanf("%d%d%d%d%d", &a, &b, &c, &d, &k);
+    cin >> a >> b >> c >> d >> k;
     // 根据容斥原理，1<=x<=b&&1<=y<=d范围中的答案数减去1<=x<=b&&1<=y<=c-1范围中的答案数和
     //   1<=x<=a-1&&1<=y<=d范围中的答案数再加上1<=x<=a-1&&1<=y<=c-1范围中的答案数
     //   即可得到a<=x<=b&&c<=y<=d范围中的答案数
     // 这一步如果不懂可以画坐标图进行理解
-    printf("%d\n", solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
-                       solve((a - 1) / k, d / k) +
-                       solve((a - 1) / k, (c - 1) / k));
+    cout << solve(b / k, d / k) - solve(b / k, (c - 1) / k) -
+                solve((a - 1) / k, d / k) + solve((a - 1) / k, (c - 1) / k)
+         << '\n';
   }
   return 0;
 }

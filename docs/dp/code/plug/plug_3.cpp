@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
 using namespace std;
 
 template <class T>

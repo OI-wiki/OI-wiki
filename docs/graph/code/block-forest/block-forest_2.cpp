@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 #include <set>
 #include <vector>
 
@@ -92,13 +92,17 @@ int Qur(int i, int l, int r, int a, int b) {  // 查询
   return std::min(Qur(ls, a, b), Qur(rs, a, b));
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%d%d%d", &N, &M, &Q);
-  for (int i = 1; i <= N; ++i) scanf("%d", &w[i]);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> N >> M >> Q;
+  for (int i = 1; i <= N; ++i) cin >> w[i];
   cnt = N;
   for (int i = 1; i <= M; ++i) {
     int u, v;
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     G[u].push_back(v);
     G[v].push_back(u);
   }
@@ -110,7 +114,7 @@ int main() {
   for (int q = 1; q <= Q; ++q) {
     char opt[3];
     int x, y;
-    scanf("%s%d%d", opt, &x, &y);
+    cin >> opt >> x >> y;
     if (*opt == 'C') {
       Mdf(1, 1, cnt, dfn[x], y);
       if (faz[x]) {
@@ -133,7 +137,7 @@ int main() {
       if (dfn[x] > dfn[y]) std::swap(x, y);
       Ans = std::min(Ans, Qur(1, 1, cnt, dfn[x], dfn[y]));
       if (x > N) Ans = std::min(Ans, w[faz[x]]);
-      printf("%d\n", Ans);
+      cout << Ans << '\n';
     }
   }
   return 0;

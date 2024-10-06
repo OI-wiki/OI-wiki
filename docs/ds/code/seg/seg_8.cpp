@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <bitset>
+#include <iostream>
+#include <queue>
+#include <vector>
 using namespace std;
 typedef long long ll;
 
@@ -82,7 +85,7 @@ void add2(int u, int lr, int rr, int v, ll w) {  // 区间向点连边
 }
 
 void dij(int S) {
-  priority_queue<pli, vector<pli>, greater<pli> > q;
+  priority_queue<pli, vector<pli>, greater<pli>> q;
   int tot = (n << 2);
   for (int i = 1; i <= tot; ++i) {
     dis[i] = 1e18;
@@ -106,34 +109,35 @@ void dij(int S) {
 }
 
 int main() {
-  scanf("%d%d%d", &n, &q, &s);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> q >> s;
   build(rt1, 1, n);
   build2(rt2, 1, n);
   for (int i = 1, op, u; i <= q; ++i) {
-    scanf("%d%d", &op, &u);
+    cin >> op >> u;
     if (op == 1) {
       int v;
       ll w;
-      scanf("%d%lld", &v, &w);
+      cin >> v >> w;
       e[pos[u]].emplace_back(pos[v], w);
     } else if (op == 2) {
       int l, r;
       ll w;
-      scanf("%d%d%lld", &l, &r, &w);
+      cin >> l >> r >> w;
       add1(rt1, l, r, pos[u], w);
     } else {
       int l, r;
       ll w;
-      scanf("%d%d%lld", &l, &r, &w);
+      cin >> l >> r >> w;
       add2(rt2, l, r, pos[u], w);
     }
   }
   dij(pos[s]);
   for (int i = 1; i <= n; ++i) {
     if (dis[pos[i]] == 1e18) {
-      printf("-1 ");
+      cout << "-1 ";
     } else {
-      printf("%lld ", dis[pos[i]]);
+      cout << dis[pos[i]] << ' ';
     }
   }
   return 0;
