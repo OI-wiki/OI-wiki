@@ -192,7 +192,6 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             this_file_looks_odd = True
             status_vector = [CE(result.returncode)]
             print(status_vector[0].colored())
-        if result.stderr or result.stdout:
             print('  ---- Compile Stdout: ----')
             print('\n'.join(list(map(lambda x: '  ' + x, result.stdout.decode().split('\n')))))
             print('  ---- Compile Stderr: ----')
@@ -211,7 +210,6 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                     this_file_looks_odd = True
                     status_vector.append(RE(result.returncode))
                     print(status_vector[-1].colored())
-                if result.stderr or result.stdout:
                     print('  ---- Execution Stdout: ----')
                     print('\n'.join(list(map(lambda x: '  ' + x, result.stdout.decode().split('\n')))))
                     print('  ---- Execution Stderr: ----')
