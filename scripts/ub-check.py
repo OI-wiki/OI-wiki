@@ -103,7 +103,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         return (arrgen(), productgen())
     
     concat = lambda a, b: (a[0] + b[0], a[1] + b[1])
-    map = {
+    config_map = {
         "x86_64 Ubuntu": concat(gen(
             compilers=[('clang++', '.Clang'), ('g++-9', '.GCC9'), ('g++-13', '.GCC13')],
             standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
@@ -162,19 +162,19 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     }
 
     compile_commands_dict = {
-        "x86_64 Ubuntu": map["x86_64 Ubuntu"][0],
-        "x86_64 Alpine": map["x86_64 Alpine"][0],
-        "x86_64 Windows": map["x86_64 Windows"][0],
-        "riscv64 Ubuntu": map["riscv64 Ubuntu"][0],
-        "arm64 MacOS": map["arm64 MacOS"][0]
+        "x86_64 Ubuntu": config_map["x86_64 Ubuntu"][0],
+        "x86_64 Alpine": config_map["x86_64 Alpine"][0],
+        "x86_64 Windows": config_map["x86_64 Windows"][0],
+        "riscv64 Ubuntu": config_map["riscv64 Ubuntu"][0],
+        "arm64 MacOS": config_map["arm64 MacOS"][0]
     }
 
     compile_products_dict = {
-        "x86_64 Ubuntu": map["x86_64 Ubuntu"][1],
-        "x86_64 Alpine": map["x86_64 Alpine"][1],
-        "x86_64 Windows": map["x86_64 Windows"][1],
-        "riscv64 Ubuntu": map["riscv64 Ubuntu"][1],
-        "arm64 MacOS": map["arm64 MacOS"][1]
+        "x86_64 Ubuntu": config_map["x86_64 Ubuntu"][1],
+        "x86_64 Alpine": config_map["x86_64 Alpine"][1],
+        "x86_64 Windows": config_map["x86_64 Windows"][1],
+        "riscv64 Ubuntu": config_map["riscv64 Ubuntu"][1],
+        "arm64 MacOS": config_map["arm64 MacOS"][1]
     }
     
     compile_commands = compile_commands_dict[runs_on]
@@ -189,10 +189,11 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             this_file_looks_odd = True
             status_vector = [CE(result.returncode)]
             print(status_vector[0].colored())
-            print('---- Stdout: ----')
-            print(result.stdout.decode())
-            print('---- Stderr: ----')
-            print(result.stderr.decode())
+            print('  ---- Compile Stdout: ----')
+            print('\n'.join(list(map(lambda x: '  ' + x, result.stdout.decode().split('\n')))))
+            print('  ---- Compile Stderr: ----')
+            print('\n'.join(list(map(lambda x: '  ' + x, result.stderr.decode().split('\n')))))
+
         else: 
             status_vector = [CompileOK()]
             print(status_vector[0].colored())
@@ -206,10 +207,10 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                     this_file_looks_odd = True
                     status_vector.append(RE(result.returncode))
                     print(status_vector[-1].colored())
-                    print('---- Stdout: ----')
-                    print(result.stdout.decode())
-                    print('---- Stderr: ----')
-                    print(result.stderr.decode())
+                    print('  ---- Execution Stdout: ----')
+                    print('\n'.join(list(map(lambda x: '  ' + x, result.stdout.decode().split('\n')))))
+                    print('  ---- Execution Stderr: ----')
+                    print('\n'.join(list(map(lambda x: '  ' + x, result.stderr.decode().split('\n')))))
 
                 else:
                     print(incolor(GREEN, 'OK'))
