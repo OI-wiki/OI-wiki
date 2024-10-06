@@ -300,6 +300,17 @@ struct WaveletMatrix {
 };
 ```
 
+### 例题 
+
+#### [Luogu P3834 【模板】可持久化线段树 2](https://www.luogu.com.cn/problem/P3834)
+
+$\operatorname{kth}$ 模板。使用模板通过此题。
+
+??? "参考代码"
+    ```cpp
+    --8<-- "docs/ds/code/wavelet-matrix/wavelet-matrix_1.cpp"
+    ```
+
 ## 动态操作
 
 如果使用平衡树来维护位向量，就可以实现位向量的插入和删除。进而实现 Wavelet Matrix 的插入和删除。每个操作的时间复杂度都增加到 $\mathcal O(\log W \log n)$。
@@ -310,4 +321,4 @@ struct WaveletMatrix {
 - [算法学习笔记：Wavelet Tree 求解区间第K小的杀器(一) - 知乎](https://zhuanlan.zhihu.com/p/590974585)
 - [MitI-7/WaveletMatrix: implementation of dynamic wavelet matrix(tree) and static wavelet matrix](https://github.com/MitI-7/WaveletMatrix)
 - [Compact Pat Trees 24-28](https://dspacemainprd01.lib.uwaterloo.ca/server/api/core/bitstreams/d1b108b3-273b-462e-99ba-8b17b237fcf0/content)
-- [ウェーブレット行列(wavelet matrix) - Eating Your Own Cat Food](https://miti-7.hatenablog.com/entry/2018/04/28/152259#:~:text=%E3%82%A6%E3%82%A7%E3%83%BC%E3%83%96%E3%83%AC%E3%83%83)
+- [ウ工一ブレット行列(wavelet matrix) - Eating Your Own Cat Food](https://miti-7.hatenablog.com/entry/2018/04/28/152259#:~:text=%E3%82%A6%E3%82%A7%E3%83%BC%E3%83%96%E3%83%AC%E3%83%83)
