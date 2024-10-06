@@ -183,6 +183,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     return_status = {}
     this_file_looks_odd = False
     for compile_command, compile_product in zip(compile_commands, compile_products):
+        print("::group::" + incolor(BLUE, f"With config: {compile_product.split('/')[-1]}..."))
         print(compile_command, end=' ')
         result = subprocess.run(compile_command, shell=True, capture_output=True)
         if result.returncode != 0:
@@ -226,7 +227,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         print(f'{compile_product.split(os.path.pathsep)[-1]}: ', end='')
         for status in status_vector:
             print(status.colored(), end='; ')
-        print()
+        print("\n::endgroup::")
         return_status[compile_product] = status_vector
 
     print(incolor(BLUE, f'Result for {mainfile}: '))
