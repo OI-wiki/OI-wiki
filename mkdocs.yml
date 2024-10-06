@@ -404,6 +404,7 @@ nav:
     - 手指树: ds/finger-tree.md
     - 霍夫曼树: ds/huffman-tree.md
     - 败者树: ds/loser-tree.md
+    - 小波矩阵: ds/wavelet-matrix.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论相关概念: graph/concept.md
