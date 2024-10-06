@@ -213,7 +213,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ## 效率优化
 
-题目请参考洛谷 [P5357【模板】AC 自动机（二次加强版）](https://www.luogu.com.cn/problem/P5357)。
+题目请参考洛谷 [P5357【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)。
 
 因为我们的 AC 自动机中，每次匹配，会一直向 fail 边跳来找到所有的匹配，但是这样的效率较低，在某些题目中会超时。
 
@@ -299,7 +299,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
     ```
 
 ???+ note "完整代码"
-    [Luogu P5357【模板】AC 自动机（二次加强版）](https://www.luogu.com.cn/problem/P5357)
+    [Luogu P5357【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)
     
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_topu.cpp"
@@ -408,21 +408,21 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 时间复杂度：定义 $|s_i|$ 是模板串的长度，$|S|$ 是文本串的长度，$|\Sigma|$ 是字符集的大小（常数，一般为 $26$）。如果连了 trie 图，时间复杂度就是 $O(\sum|s_i|+n|\Sigma|+|S|)$，其中 $n$ 是 AC 自动机中结点的数目，并且最大可以达到 $O(\sum|s_i|)$。如果不连 trie 图，并且在构建 fail 指针的时候避免遍历到空儿子，时间复杂度就是 $O(\sum|s_i|+|S|)$。
 
 ???+ note "模板 1"
-    [Luogu P3808【模板】AC 自动机（简单版）](https://www.luogu.com.cn/problem/P3808)
+    [Luogu P3808 AC 自动机（简单版）](https://www.luogu.com.cn/problem/P3808)
     
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_1.cpp"
     ```
 
 ???+ note "模板 2"
-    [Luogu P3796【模板】AC 自动机（加强版）](https://www.luogu.com.cn/problem/P3796)
+    [Luogu P3796 AC 自动机（简单版 II）](https://www.luogu.com.cn/problem/P3796)
     
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_2.cpp"
     ```
 
 ???+ note "模版 3"
-    [Luogu P5357【模板】AC 自动机（二次加强版）](https://www.luogu.com.cn/problem/P5357)
+    [Luogu P5357 【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)
     
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_3.cpp"
