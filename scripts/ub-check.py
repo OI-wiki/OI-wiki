@@ -185,34 +185,44 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     this_file_looks_odd = False
     for compile_command, compile_product in zip(compile_commands, compile_products):
         print(compile_command, end=' ')
-        result = subprocess.run(compile_command, shell=True)
+        result = subprocess.run(compile_command, shell=True, capture_output=True)
         if result.returncode != 0:
             this_file_looks_odd = True
             status_vector = [CE(result.returncode)]
             print(status_vector[0].colored())
+            print('---- Stdout: ----')
+            print(result.stdout.decode())
+            print('---- Stderr: ----')
+            print(result.stderr.decode())
         else: 
             status_vector = [CompileOK()]
             print(status_vector[0].colored())
 
             for e in examples:
                 print(f'{compile_product} < {e} > {e.replace(".in", ".out")}', end=' ')
-                with open(e, 'r') as fstdin:
-                    with open(e.replace(".in", ".out"), 'w') as fstdout:
-                        result = subprocess.run(f'{os.path.join(os.path.curdir, compile_product)}', stdin=fstdin, stdout=fstdout, shell=True)
+                result = subprocess.run(f'{os.path.join(os.path.curdir, compile_product)}', capture_output=True, input=open(e, 'rb').read(), shell=True)
+                with open(e.replace(".in", ".out"), 'wb') as f:
+                    f.write(result.stdout)
                 if result.returncode != 0:
                     this_file_looks_odd = True
                     status_vector.append(RE(result.returncode))
                     print(status_vector[-1].colored())
+                    print('---- Stdout: ----')
+                    print(result.stdout.decode())
+                    print('---- Stderr: ----')
+                    print(result.stderr.decode())
+
                 else:
                     print(incolor(GREEN, 'OK'))
                     print(f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")}', end=' ')
-                    result = subprocess.run(f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")}', shell=True)
+                    result = subprocess.run(f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")}', capture_output=True, shell=True)
                     if result.returncode != 0:
                         this_file_looks_odd = True
                         status_vector.append(WA(result.returncode))
                     else:
                         status_vector.append(AC())
                     print(status_vector[-1].colored())
+
         print(f'{compile_product.split(os.path.pathsep)[-1]}: ', end='')
         for status in status_vector:
             print(status.colored(), end='; ')
