@@ -62,6 +62,8 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     Check for undefined behavior.
     """
 
+    print(incolor(BLUE, f"Test for {mainfile}..."))
+
     if skiptest:
         print(incolor(BLUE, f"Test for {mainfile} skipped because file {mainfile + '.skip_test'} exists"))
         return False, {mainfile: [Skipped()]}
@@ -244,9 +246,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
 cnt_ac, cnt_error = 0, 0
 output = {}
 for mainfile, auxfile, example, skiptest in zip(mainfiles, auxfiles, examples, skiptests):
-    print("::group::" + incolor(BLUE, f"Test for {mainfile}..."))
     this_file_looks_odd, return_status = ub_check(mainfile, auxfile, example, skiptest)
-    print("::endgroup::")
     output_status = {}
     for key in return_status:
         output_status[key] = [str(_) for _ in return_status[key]]
