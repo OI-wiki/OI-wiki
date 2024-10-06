@@ -14,12 +14,13 @@ struct Node {
   int son[26];
   int fail;
   int idx;
-  
+
   void init() {
     memset(son, 0, sizeof(son));
     idx = fail = 0;
   }
 } tr[SIZE];
+
 int tot;
 
 void init() {
@@ -62,8 +63,7 @@ int query(char t[], int cnt[]) {
       ++cnt[tr[j].idx];  // 统计每个字符串出现的次数
   }
   for (int i = 0; i <= tot; ++i)
-    if (tr[i].idx)
-      res = max(res, cnt[tr[i].idx]);
+    if (tr[i].idx) res = max(res, cnt[tr[i].idx]);
   return res;
 }
 }  // namespace AC
@@ -84,8 +84,7 @@ int main() {
     int x = AC::query(t, cnt);
     printf("%d\n", x);
     for (int i = 1; i <= n; i++)
-      if (cnt[i] == x)
-        printf("%s\n", s[i] + 1);
+      if (cnt[i] == x) printf("%s\n", s[i] + 1);
   }
   return 0;
 }

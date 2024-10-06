@@ -16,12 +16,13 @@ struct Node {
   int idx;
   int depth;
   unsigned stat;
-  
+
   void init() {
     memset(son, 0, sizeof(son));
     fail = idx = depth = 0;
   }
 } tr[SIZE];
+
 int tot;
 
 void init() {
@@ -56,7 +57,7 @@ void build() {
     for (int i = 0; i < 26; i++) {
       if (tr[u].son[i]) {
         tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];
-        tr[tr[u].son[i]].depth = tr[u].depth + 1;  //  记录深度
+        tr[tr[u].son[i]].depth = tr[u].depth + 1;  // 记录深度
         q.push(tr[u].son[i]);
       } else
         tr[u].son[i] = tr[tr[u].fail].son[i];

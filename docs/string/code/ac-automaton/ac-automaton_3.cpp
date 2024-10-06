@@ -16,12 +16,13 @@ struct Node {
   int ans;
   int fail;
   int idx;
-  
+
   void init() {
     memset(son, 0, sizeof(son));
     ans = idx = 0;
   }
 } tr[SIZE];
+
 int tot;
 int ans[N], pidx;
 
@@ -74,7 +75,7 @@ void query(char t[]) {
 }
 
 void dfs(int u) {
-  for (int v: g[u]) {
+  for (int v : g[u]) {
     dfs(v);
     tr[u].ans += tr[v].ans;
   }
