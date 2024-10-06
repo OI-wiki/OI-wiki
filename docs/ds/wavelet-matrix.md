@@ -10,10 +10,10 @@ Wavelet Matrix 同时是一种简洁数据结构，即使用 $n + o(n)$ 空间�
 
 下面约定一些符号：
 
-- $\operatorname{rank}_a(l, r, w)$ 表示序列 $a$ 区间 $[l, r]$ 内 $w$ 的排名（从小到大）。
-- $\operatorname{kth}_a(l, r, k)$ 表示序列 $a$ 区间 $[l, r]$ 的第 $k$ 大。
-- $\operatorname{count}_a(l, r, w)$ 表示序列 $a$ 区间 $[l, r]$ 内 $w$ 的出现次数。
-- $\operatorname{select}_a(w, k)$ 表示序列 $a$ 中 $w$ 元素第 $k$ 次出现的位置。 
+-   $\operatorname{rank}_a(l, r, w)$ 表示序列 $a$ 区间 $[l, r]$ 内 $w$ 的排名（从小到大）。
+-   $\operatorname{kth}_a(l, r, k)$ 表示序列 $a$ 区间 $[l, r]$ 的第 $k$ 大。
+-   $\operatorname{count}_a(l, r, w)$ 表示序列 $a$ 区间 $[l, r]$ 内 $w$ 的出现次数。
+-   $\operatorname{select}_a(w, k)$ 表示序列 $a$ 中 $w$ 元素第 $k$ 次出现的位置。
 
 由于比较小众，没有一个公认的中文名。不过其英文名 Wavelet 来自于 Wavelet Tree 结构与离散小波变换过程的相似性，所以可以称 Wavelet Matrix 为小波矩阵，称 Wavelet Tree 为小波树。
 
@@ -23,8 +23,7 @@ Wavelet Matrix 同时是一种简洁数据结构，即使用 $n + o(n)$ 空间�
 
 大概 2000 年左右一系列压缩位向量的数据结构被提出，它们可以通过 $\mathcal O(n)$ 时间预处理，$\mathcal o(n)$ 的额外空间，在常数时间内静态实现 01 序列上的 $\operatorname{count},\operatorname{select}$ 操作。
 
-???+ info 
-    $\operatorname{select}$ 操作在算法竞赛中不常见，但是实现很复杂。读者可以先阅读有关 $\operatorname{count}$ 的内容，完全理解后再考虑 $\operatorname{select}$。
+???+ info $\operatorname{select}$ 操作在算法竞赛中不常见，但是实现很复杂。读者可以先阅读有关 $\operatorname{count}$ 的内容，完全理解后再考虑 $\operatorname{select}$。
 
 不难发现 $\operatorname{count}_a(l, r, w) = \operatorname{count}_a(1, r, w) - \operatorname{count}_a(1, l-1, w)$，所以接下来我们只解决前缀 $\operatorname{count}$ 的实现。
 
@@ -32,21 +31,21 @@ Wavelet Matrix 同时是一种简洁数据结构，即使用 $n + o(n)$ 空间�
 
 为了完成 $\operatorname{count}$ 操作，压缩位向量把 01 序列分成长为 $B$ 的块。我们可以处理出每一块内 1 的数量，得到长为 $\lceil \frac{n}{B}\rceil$ 的数列 $c$；再做 $c$ 的前缀和，得到一个长为 $\lceil \frac{n}{B}\rceil$ 的数列 $S$，$S_i$ 表示前 $i$ 块中 1 的出现次数。
 
-???+ note 
-    在竞赛场景下，我们可以设定 $B = 64$，然后简单地调用 `__builtin_popcountll` 直接计算块内的 $\operatorname{count}$。压缩位向量是一个理论数据结构，我们将接着给出完整的实现。
+???+ note
+在竞赛场景下，我们可以设定 $B = 64$，然后简单地调用 `__builtin_popcountll` 直接计算块内的 $\operatorname{count}$。压缩位向量是一个理论数据结构，我们将接着给出完整的实现。
 
 对于一个长为 $B$，含有 $p_i$ 个 1 的块，本质不同的块的个数是 $\binom{B}{p_i}$。我们可以预处理出每一种块的前缀和，这样，块内的前缀 01 个数也可以 $\mathcal O(1)$ 查询。
 
-但是很可惜，这样占用的总空间是 $\lceil \frac{n}{B} \rceil + B 2^B$ 个数。由于一个数需要 $\mathcal O(\log n)$ 个 bit,这样还无法做到 $o(n)$ 的额外空间。
+但是很可惜，这样占用的总空间是 $\lceil \frac{n}{B} \rceil + B 2^B$ 个数。由于一个数需要 $\mathcal O(\log n)$ 个 bit, 这样还无法做到 $o(n)$ 的额外空间。
 
-压缩位向量的做法是首先把序列先分为长度为 $m$ 的超级块，再对于每个超级块进行上述分块。同样维护超级块的前缀和。查询时，先查超级块的和，再查块和，最后查表得到块内前缀和。这样有 $\lceil \frac{n}{m} \rceil$ 个 $\log n$ 位的超级块前缀和， $\lceil \frac{n}{B} \rceil$ 个 $\log m$ 位的块前缀和，$B 2^B$ 个 $\log B$ 位数字组成的表。取 $m = \frac{\log^2 n}{2}$, $B = \frac{\log n}{2}$，总空间占用是 $n + o(n)$ 位。
+压缩位向量的做法是首先把序列先分为长度为 $m$ 的超级块，再对于每个超级块进行上述分块。同样维护超级块的前缀和。查询时，先查超级块的和，再查块和，最后查表得到块内前缀和。这样有 $\lceil \frac{n}{m} \rceil$ 个 $\log n$ 位的超级块前缀和，$\lceil \frac{n}{B} \rceil$ 个 $\log m$ 位的块前缀和，$B 2^B$ 个 $\log B$ 位数字组成的表。取 $m = \frac{\log^2 n}{2}$,$B = \frac{\log n}{2}$，总空间占用是 $n + o(n)$ 位。
 
 上面的做法实现了 $\operatorname{count}_a(1, r, 1)$，显然有 $\operatorname{count}_a(1, r, 0) = r - \operatorname{count}_a(1, r, 1)$。
 
 ### $\operatorname{select}$
 
-???+ info 
-    Wavelet Matrix 只有 $\operatorname{select}$ 操作会使用 压缩位向量的 $\operatorname{select}$ 操作。如果不需要可以跳过这一节。
+???+ info
+Wavelet Matrix 只有 $\operatorname{select}$ 操作会使用 压缩位向量的 $\operatorname{select}$ 操作。如果不需要可以跳过这一节。
 
 一个简单的做法是在超级块和块内进行二分查找，时间复杂度为 $\mathcal O(\log n)$。下面介绍 $\mathcal O(1)$ 的做法。
 
@@ -82,69 +81,82 @@ Wavelet Matrix 同时是一种简洁数据结构，即使用 $n + o(n)$ 空间�
 
 ```cpp
 struct Bits {
-    vector<unsigned long long> b;
-    vector<int> sum;
-    int len;
-    Bits(int n) {
-        len = n >> 6;
-        b.resize(len + 1, 0);
-        sum.resize(len + 1, 0);
+  vector<unsigned long long> b;
+  vector<int> sum;
+  int len;
+
+  Bits(int n) {
+    len = n >> 6;
+    b.resize(len + 1, 0);
+    sum.resize(len + 1, 0);
+  }
+
+  // 第 k 位（从 1 开始编号）设为 1
+  void set(int k) {
+    k--;  // 内部从 0 开始存储
+    b[k >> 6] |= (1ull << (k & 0x3f));
+  }
+
+  // 设定完毕后调用
+  void prepare() {
+    for (int i = 0; i < b.size(); i++) {
+      if (i) sum[i] = sum[i - 1];
+      sum[i] += __builtin_popcountll(b[i]);
     }
-    // 第 k 位（从 1 开始编号）设为 1
-    void set(int k) {
-        k--; // 内部从 0 开始存储
-        b[k >> 6] |= (1ull << (k & 0x3f));
+  }
+
+  int count1(int k) {
+    int res = 0;
+    int hi = (k >> 6), lo = (k & 0x3f);
+    if (hi) res += sum[hi - 1];
+    // (1 << lo) - 1 取了小于 lo 的位，正好符合从 0 开始存储
+    res += __builtin_popcountll(b[hi] & ((1ull << lo) - 1ull));
+    return res;
+  }
+
+  int count0(int k) { return k - count1(k); }
+
+  int select1(int k) {
+    int hi_l = 0, hi_r = len, mid;
+    while (hi_l < hi_r) {
+      mid = (hi_l + hi_r) >> 1;
+      if (sum[mid] < k)
+        hi_l = mid + 1;
+      else
+        hi_r = mid;
     }
-    // 设定完毕后调用
-    void prepare() {
-        for (int i = 0; i < b.size(); i++) {
-            if (i) sum[i] = sum[i - 1];
-            sum[i] += __builtin_popcountll(b[i]);
-        }
+    int lo_l = 1, lo_r = 64;
+    while (lo_l < lo_r) {
+      mid = (lo_l + lo_r) >> 1;
+      int cnt = __builtin_popcountll(b[hi_l] & ((1ull << mid) - 1ull));
+      if (cnt < k)
+        lo_l = mid + 1;
+      else
+        lo_r = mid;
     }
-    int count1(int k) {
-        int res = 0;
-        int hi = (k >> 6), lo = (k & 0x3f);
-        if (hi) res += sum[hi - 1];
-        // (1 << lo) - 1 取了小于 lo 的位，正好符合从 0 开始存储
-        res += __builtin_popcountll(b[hi] & ((1ull << lo) - 1ull));
-        return res;
+    return 64 * hi_l + lo_l;
+  }
+
+  int select0(int k) {
+    int hi_l = 0, hi_r = len, mid;
+    while (hi_l < hi_r) {
+      mid = (hi_l + hi_r) >> 1;
+      if (64 * (mid + 1) - sum[mid] < k)
+        hi_l = mid + 1;
+      else
+        hi_r = mid;
     }
-    int count0(int k) {
-        return k - count1(k);
+    int lo_l = 1, lo_r = 64;
+    while (lo_l < lo_r) {
+      mid = (lo_l + lo_r) >> 1;
+      int cnt = __builtin_popcountll((~b[hi_l]) & ((1ull << mid) - 1ull));
+      if (cnt < k)
+        lo_l = mid + 1;
+      else
+        lo_r = mid;
     }
-    int select1(int k) {
-        int hi_l = 0, hi_r = len, mid;
-        while (hi_l < hi_r) {
-            mid = (hi_l + hi_r) >> 1;
-            if (sum[mid] < k) hi_l = mid + 1;
-            else hi_r = mid;
-        }
-        int lo_l = 1, lo_r = 64;
-        while (lo_l < lo_r) {
-            mid = (lo_l + lo_r) >> 1;
-            int cnt = __builtin_popcountll(b[hi_l] & ((1ull << mid) - 1ull));
-            if (cnt < k) lo_l = mid + 1;
-            else lo_r = mid;
-        }
-        return 64 * hi_l + lo_l;
-    }
-    int select0(int k) {
-        int hi_l = 0, hi_r = len, mid;
-        while (hi_l < hi_r) {
-            mid = (hi_l + hi_r) >> 1;
-            if (64 * (mid + 1) - sum[mid] < k) hi_l = mid + 1;
-            else hi_r = mid;
-        }
-        int lo_l = 1, lo_r = 64;
-        while (lo_l < lo_r) {
-            mid = (lo_l + lo_r) >> 1;
-            int cnt = __builtin_popcountll((~b[hi_l]) & ((1ull << mid) - 1ull));
-            if (cnt < k) lo_l = mid + 1;
-            else lo_r = mid;
-        }
-        return 64 * hi_l + lo_l;
-    }
+    return 64 * hi_l + lo_l;
+  }
 };
 ```
 
@@ -154,7 +166,7 @@ struct Bits {
 
 ### 结构
 
-Wavelet Tree 是 Wavelet Matrix 的原型。对于值域在 $\Sigma$ 上的序列 $a$，对 $\Sigma$ 中的元素进行二进制编码（比如按照 $a$ 内的出现频率进行[霍夫曼编码](./huffman-tree.md)）。
+Wavelet Tree 是 Wavelet Matrix 的原型。对于值域在 $\Sigma$ 上的序列 $a$，对 $\Sigma$ 中的元素进行二进制编码（比如按照 $a$ 内的出现频率进行 [霍夫曼编码](./huffman-tree.md)）。
 
 Wavelet Tree 的基础结构是一个 01 trie，在每个节点上，用一个压缩位向量维护下一位的 01 情况。
 
@@ -224,10 +236,10 @@ Wavelet Matrix 的思想就是，将 Wavelet Tree 的同一层的所有位向量
 
 ### 区间转移
 
-- 原来我们将区间 $[l, r]$ 转移到 $c$ 儿子上时，$[l_c, r_c] = [\operatorname{count}_b(1, l-1, c) + 1, \operatorname{count}_b(1, r, c)]$。
-- 现在：
-  - 当 $c=1$ 时，稳定排序后排在 $l$ 之前的元素只有 $[1, l-1]$ 之内的 1。则 $[l_1, r_1] = [\operatorname{count}_b(1, l-1, 1) + 1, \operatorname{count}_b(1, r, 1)]$。
-  - 当 $c=0$ 时，稳定排序后排在 $l$ 之前的元素既包括 $[1, l-1]$ 之内的 0,也包括所有的 1。记 $cnt_1 = \operatorname{count}_b(1, n, 1)$，$[l_0, r_0] = [cnt_1 + \operatorname{count}_b(1, l-1, 0) + 1, cnt_1 + \operatorname{count}_b(1, r, 0)]$。
+-   原来我们将区间 $[l, r]$ 转移到 $c$ 儿子上时，$[l_c, r_c] = [\operatorname{count}_b(1, l-1, c) + 1, \operatorname{count}_b(1, r, c)]$。
+-   现在：
+    -   当 $c=1$ 时，稳定排序后排在 $l$ 之前的元素只有 $[1, l-1]$ 之内的 1。则 $[l_1, r_1] = [\operatorname{count}_b(1, l-1, 1) + 1, \operatorname{count}_b(1, r, 1)]$。
+    -   当 $c=0$ 时，稳定排序后排在 $l$ 之前的元素既包括 $[1, l-1]$ 之内的 0, 也包括所有的 1。记 $cnt_1 = \operatorname{count}_b(1, n, 1)$，$[l_0, r_0] = [cnt_1 + \operatorname{count}_b(1, l-1, 0) + 1, cnt_1 + \operatorname{count}_b(1, r, 0)]$。
 
 当我们确定区间如何转移之后，所有的操作就和 Wavelet Tree 一致。但是此时不再需要递归组织树状结构，而可以直接用循环实现。
 
@@ -235,75 +247,86 @@ Wavelet Matrix 的思想就是，将 Wavelet Tree 的同一层的所有位向量
 
 ```cpp
 struct WaveletMatrix {
-    vector<Bits> b;
-    int n;
-    // 实际上构造 Wavelet Matrix 之后，不难 O(log n) 求出原始的 a[i]
-    // 注意 a 将被修改
-    WaveletMatrix(int n, int *a) {
-        this -> n = n;
-        b.resize(32, Bits(n));
-        for (int j = 31; j >= 0; j--) {
-            for (int i = 1; i <= n; i++) if ((a[i] >> j) & 1) b[j].set(i);
-            b[j].prepare();
-            stable_partition(a + 1, a + n + 1, [&](int x) { return (x >> j) & 1; });
-        }
+  vector<Bits> b;
+  int n;
+
+  // 实际上构造 Wavelet Matrix 之后，不难 O(log n) 求出原始的 a[i]
+  // 注意 a 将被修改
+  WaveletMatrix(int n, int *a) {
+    this->n = n;
+    b.resize(32, Bits(n));
+    for (int j = 31; j >= 0; j--) {
+      for (int i = 1; i <= n; i++)
+        if ((a[i] >> j) & 1) b[j].set(i);
+      b[j].prepare();
+      stable_partition(a + 1, a + n + 1, [&](int x) { return (x >> j) & 1; });
     }
-    int count(int l, int r, int w) {
-        for (int j = 31; j >= 0; j--) {
-            int c = (w >> j) & 1;
-            int l1 = b[j].count1(l - 1), r1 = b[j].count1(r);
-            if (c) l = l1 + 1, r = r1;
-            else {
-                int l0 = l - 1 - l1, r0 = r - r1;
-                int total = b[j].count1(n);
-                l = total + l0 + 1, r = total + r0;
-            }
-        }
-        return r - l + 1;
+  }
+
+  int count(int l, int r, int w) {
+    for (int j = 31; j >= 0; j--) {
+      int c = (w >> j) & 1;
+      int l1 = b[j].count1(l - 1), r1 = b[j].count1(r);
+      if (c)
+        l = l1 + 1, r = r1;
+      else {
+        int l0 = l - 1 - l1, r0 = r - r1;
+        int total = b[j].count1(n);
+        l = total + l0 + 1, r = total + r0;
+      }
     }
-    int kth(int l, int r, int k) {
-        int res = 0;
-        for (int j = 31; j >= 0; j--) {
-            int l1 = b[j].count1(l - 1), r1 = b[j].count1(r);
-            if (r1 - l1 >= k) l = l1 + 1, r = r1, res |= (1 << j);
-            else {
-                int l0 = l - 1 - l1, r0 = r - r1;
-                int total = b[j].count1(n);
-                l = total + l0 + 1, r = total + r0;
-                k -= (r1 - l1);
-            }
-        }
-        return res;
+    return r - l + 1;
+  }
+
+  int kth(int l, int r, int k) {
+    int res = 0;
+    for (int j = 31; j >= 0; j--) {
+      int l1 = b[j].count1(l - 1), r1 = b[j].count1(r);
+      if (r1 - l1 >= k)
+        l = l1 + 1, r = r1, res |= (1 << j);
+      else {
+        int l0 = l - 1 - l1, r0 = r - r1;
+        int total = b[j].count1(n);
+        l = total + l0 + 1, r = total + r0;
+        k -= (r1 - l1);
+      }
     }
-    int rank(int l, int r, int w) {
-        int res = 1;
-        for (int j = 31; j >= 0; j--) {
-            int c = (w >> j) & 1;
-            int l1 = b[j].count1(l - 1), r1 = b[j].count1(r);
-            int l0 = l - 1 - l1, r0 = r - r1;
-            if (c) l = l1 + 1, r = r1, res += r0 - l0;
-            else {
-                int total = b[j].count1(n);
-                l = total + l0 + 1, r = total + r0;
-            }
-        }
-        return res;
+    return res;
+  }
+
+  int rank(int l, int r, int w) {
+    int res = 1;
+    for (int j = 31; j >= 0; j--) {
+      int c = (w >> j) & 1;
+      int l1 = b[j].count1(l - 1), r1 = b[j].count1(r);
+      int l0 = l - 1 - l1, r0 = r - r1;
+      if (c)
+        l = l1 + 1, r = r1, res += r0 - l0;
+      else {
+        int total = b[j].count1(n);
+        l = total + l0 + 1, r = total + r0;
+      }
     }
-    int select(int w, int k) {
-        int res = k;
-        for (int j = 0; j < 32; j++) {
-            int c = (w >> j) & 1;
-            if (c) res = b[j].select1(res);
-            else res = b[j].select0(res);
-        }
-        return res;
+    return res;
+  }
+
+  int select(int w, int k) {
+    int res = k;
+    for (int j = 0; j < 32; j++) {
+      int c = (w >> j) & 1;
+      if (c)
+        res = b[j].select1(res);
+      else
+        res = b[j].select0(res);
     }
+    return res;
+  }
 };
 ```
 
-### 例题 
+### 例题
 
-#### [Luogu P3834 【模板】可持久化线段树 2](https://www.luogu.com.cn/problem/P3834)
+#### [Luogu P3834【模板】可持久化线段树 2](https://www.luogu.com.cn/problem/P3834)
 
 $\operatorname{kth}$ 模板。使用模板通过此题。
 
@@ -318,8 +341,8 @@ $\operatorname{kth}$ 模板。使用模板通过此题。
 
 ## 参考资料
 
-- [Wavelet Tree - Wikipedia](https://en.wikipedia.org/wiki/Wavelet_Tree)
-- [算法学习笔记：Wavelet Tree 求解区间第K小的杀器(一) - 知乎](https://zhuanlan.zhihu.com/p/590974585)
-- [MitI-7/WaveletMatrix: implementation of dynamic wavelet matrix(tree) and static wavelet matrix](https://github.com/MitI-7/WaveletMatrix)
-- [Compact Pat Trees 24-28](https://dspacemainprd01.lib.uwaterloo.ca/server/api/core/bitstreams/d1b108b3-273b-462e-99ba-8b17b237fcf0/content)
-- [ウ工一ブレット行列(wavelet matrix) - Eating Your Own Cat Food](https://miti-7.hatenablog.com/entry/2018/04/28/152259#:~:text=%E3%82%A6%E3%82%A7%E3%83%BC%E3%83%96%E3%83%AC%E3%83%83)
+-   [Wavelet Tree - Wikipedia](https://en.wikipedia.org/wiki/Wavelet_Tree)
+-   [算法学习笔记：Wavelet Tree 求解区间第 K 小的杀器（一）- 知乎](https://zhuanlan.zhihu.com/p/590974585)
+-   [MitI-7/WaveletMatrix: implementation of dynamic wavelet matrix(tree) and static wavelet matrix](https://github.com/MitI-7/WaveletMatrix)
+-   [Compact Pat Trees 24-28](https://dspacemainprd01.lib.uwaterloo.ca/server/api/core/bitstreams/d1b108b3-273b-462e-99ba-8b17b237fcf0/content)
+-   [ウ工一ブレット行列（wavelet matrix) - Eating Your Own Cat Food](https://miti-7.hatenablog.com/entry/2018/04/28/152259#:~:text=%E3%82%A6%E3%82%A7%E3%83%BC%E3%83%96%E3%83%AC%E3%83%83)
