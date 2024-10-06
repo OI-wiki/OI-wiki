@@ -32,41 +32,6 @@ struct Bits {
         res += __builtin_popcountll(b[hi] & ((1ull << lo) - 1ull));
         return res;
     }
-    int count0(int k) {
-        return k - count1(k);
-    }
-    int select1(int k) {
-        int hi_l = 0, hi_r = len, mid;
-        while (hi_l < hi_r) {
-            mid = (hi_l + hi_r) >> 1;
-            if (sum[mid] < k) hi_l = mid + 1;
-            else hi_r = mid;
-        }
-        int lo_l = 1, lo_r = 64;
-        while (lo_l < lo_r) {
-            mid = (lo_l + lo_r) >> 1;
-            int cnt = __builtin_popcountll(b[hi_l] & ((1ull << mid) - 1ull));
-            if (cnt < k) lo_l = mid + 1;
-            else lo_r = mid;
-        }
-        return 64 * hi_l + lo_l;
-    }
-    int select0(int k) {
-        int hi_l = 0, hi_r = len, mid;
-        while (hi_l < hi_r) {
-            mid = (hi_l + hi_r) >> 1;
-            if (64 * (mid + 1) - sum[mid] < k) hi_l = mid + 1;
-            else hi_r = mid;
-        }
-        int lo_l = 1, lo_r = 64;
-        while (lo_l < lo_r) {
-            mid = (lo_l + lo_r) >> 1;
-            int cnt = __builtin_popcountll((~b[hi_l]) & ((1ull << mid) - 1ull));
-            if (cnt < k) lo_l = mid + 1;
-            else lo_r = mid;
-        }
-        return 64 * hi_l + lo_l;
-    }
 };
 
 struct WaveletMatrix {
@@ -83,19 +48,6 @@ struct WaveletMatrix {
 			stable_partition(a + 1, a + n + 1, [&](int x) { return (x >> j) & 1; });
 		}
 	}
-	int count(int l, int r, int w) {
-		for (int j = 31; j >= 0; j--) {
-			int c = (w >> j) & 1;
-			int l1 = b[j].count1(l - 1), r1 = b[j].count1(r);
-			if (c) l = l1 + 1, r = r1;
-			else {
-				int l0 = l - 1 - l1, r0 = r - r1;
-				int total = b[j].count1(n);
-				l = total + l0 + 1, r = total + r0;
-			}
-		}
-		return r - l + 1;
-	}
 	int kth(int l, int r, int k) {
 		int res = 0;
 		for (int j = 31; j >= 0; j--) {
@@ -107,29 +59,6 @@ struct WaveletMatrix {
 				l = total + l0 + 1, r = total + r0;
 				k -= (r1 - l1);
 			}
-		}
-		return res;
-	}
-	int rank(int l, int r, int w) {
-		int res = 1;
-		for (int j = 31; j >= 0; j--) {
-			int c = (w >> j) & 1;
-			int l1 = b[j].count1(l - 1), r1 = b[j].count1(r);
-			int l0 = l - 1 - l1, r0 = r - r1;
-			if (c) l = l1 + 1, r = r1, res += r0 - l0;
-			else {
-				int total = b[j].count1(n);
-				l = total + l0 + 1, r = total + r0;
-			}
-		}
-		return res;
-	}
-	int select(int w, int k) {
-		int res = k;
-		for (int j = 0; j < 32; j++) {
-			int c = (w >> j) & 1;
-			if (c) res = b[j].select1(res);
-			else res = b[j].select0(res);
 		}
 		return res;
 	}
