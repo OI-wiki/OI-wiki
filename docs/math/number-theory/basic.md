@@ -421,7 +421,7 @@ h(x)&=\sum_{d\mid x}f(d)g\left(\dfrac{x}{d}\right)
 \end{aligned}
 $$
 
-对正整数 $x$，设其唯一质因数分解为 $x=\prod p_i^{k_i}$ ，其中 $p_i$ 为质数。
+对正整数 $x$，设其唯一质因数分解为 $x=\prod p_i^{k_i}$，其中 $p_i$ 为质数。
 
 若 $F(x)$ 为积性函数，则有 $F(x)=\prod F(p_i^{k_i})$。
 
@@ -450,7 +450,7 @@ $$
 
 #### 性质
 
-对正整数 $x$，设其唯一质因数分解为 $x=\prod p_i^{k_i}$ ，其中 $p_i$ 为质数。
+对正整数 $x$，设其唯一质因数分解为 $x=\prod p_i^{k_i}$，其中 $p_i$ 为质数。
 
 若 $F(x)$ 为加性函数，则有 $F(x)=\sum F(p_i^{k_i})$。
 
@@ -458,10 +458,10 @@ $$
 
 #### 例子
 
--   所有质因子数目：$\Omega(n)=\sum_{p \mid n} [\text{$p$ is a prime}] \sum_{k=1}^{\lceil\log_p n\rceil} [p^k \mid n \wedge p^{k+1} \nmid n] \cdot k$。（完全加性）
--   相异质因子数目：$\omega(n)=\sum_{p \mid n}[\text{$p$ is a prime}]$。
--   所有质因子之和：$a_0(n)=\sum_{p \mid n} [\text{$p$ is a prime}] \sum_{k=1}^{\lceil\log_p n\rceil} [p^k \mid n \wedge p^{k+1} \nmid n] \cdot kp$。（完全加性）
--   相异质因子之和：$a_1(n)=\sum{p \mid n}[\text{$p$ is a prime}] \cdot p$。
+-   所有质因子数目：$\Omega(n)=\sum_{p \mid n} [\text{$ p $  is a prime}] \sum_{k=1}^{\lceil\log_p n\rceil} [p^k \mid n \wedge p^{k+1} \nmid n] \cdot k $。（完全加性）
+-   相异质因子数目：$\omega(n)=\sum_{p \mid n}[\text{$ p $  is a prime}] $。
+-   所有质因子之和：$a_0(n)=\sum_{p \mid n} [\text{$ p $  is a prime}] \sum_{k=1}^{\lceil\log_p n\rceil} [p^k \mid n \wedge p^{k+1} \nmid n] \cdot kp $。（完全加性）
+-   相异质因子之和：$a_1(n)=\sum{p \mid n}[\text{$ p $  is a prime}] \cdot p $。
 
 ## 参考资料与注释
 
