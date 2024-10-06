@@ -192,6 +192,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             this_file_looks_odd = True
             status_vector = [CE(result.returncode)]
             print(status_vector[0].colored())
+        if result.stderr or result.stdout:
             print('  ---- Compile Stdout: ----')
             print('\n'.join(list(map(lambda x: '  ' + x, result.stdout.decode().split('\n')))))
             print('  ---- Compile Stderr: ----')
@@ -210,6 +211,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                     this_file_looks_odd = True
                     status_vector.append(RE(result.returncode))
                     print(status_vector[-1].colored())
+                if result.stderr or result.stdout:
                     print('  ---- Execution Stdout: ----')
                     print('\n'.join(list(map(lambda x: '  ' + x, result.stdout.decode().split('\n')))))
                     print('  ---- Execution Stderr: ----')
@@ -225,6 +227,11 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
                     else:
                         status_vector.append(AC())
                     print(status_vector[-1].colored())
+                    if result.returncode != 0:
+                        print('  ---- We expect: ----')
+                        print('\n'.join(list(map(lambda x: '  ' + x, open(e.replace(".in", ".ans")).read().split('\n')))))
+                        print('  ---- We get: ----')
+                        print('\n'.join(list(map(lambda x: '  ' + x, open(e.replace(".in", ".out")).read().split('\n')))))
 
         print(f'{compile_product.split(os.path.pathsep)[-1]}: ', end='')
         for status in status_vector:
@@ -233,13 +240,13 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         return_status[compile_product] = status_vector
 
     print(incolor(BLUE, f'Result for {mainfile}: '))
-    if this_file_looks_odd:
-        print(f'::error file={mainfile},title=Potential UB::Please take a look.')
     for key in return_status:
         print(f'-  {key}: ', end='')
         for status in return_status[key]:
             print(status.colored(), end='; ')
         print()
+    if this_file_looks_odd:
+        print(f'::error file={mainfile},title=Potential UB::Potential UB. Please take a look.')
     print()
     return this_file_looks_odd, return_status
 
@@ -258,3 +265,6 @@ for mainfile, auxfile, example, skiptest in zip(mainfiles, auxfiles, examples, s
 
 with open("output.txt", "w") as f:
     f.write(str(output))
+
+if cnt_error:
+    exit(1)
