@@ -326,12 +326,14 @@ $$
 
 回到群 $D_6$，它的中心是 $\{e\}\neq G$，这说明它不是交换群。元素 $r$ 的中心化子 $C_G(r)$ 是 $\langle r\rangle$，元素 $s$ 的中心化子 $C_G(s)$ 为 $\langle s\rangle$。一般地，对所有 $g\in G$，总成立 $\langle g\rangle\le C_G(g)$。群 $D_6$ 的共轭类共三个，即 $\{e\},\{r,r^2\},\{s,sr,sr^2\}$。容易发现，共轭的元素都是同阶的。
 
-群在共轭作用下划分成若干个共轭类。所以，可以写出类方程。
+群在共轭作用下划分成若干个共轭类。所以，可以写出 **类方程**（class equation）。
 
 -   类方程：给定群 $G$，设 $\{\mathcal K_i\}_{i=1}^r$ 为全体长度大于一的共轭类，且 $g_i$ 是 $\mathcal K_i$ 的代表元，则成立
+
     $$
-    |G|=|Z(G)|+\sum_{i=1}^r|G:C_G(g_i)|.
+    |G|=|Z(G)|+\sum_{i=1}^r[G:C_G(g_i)].
     $$
+
 
 它可以用于分析群的结构。
 
@@ -365,21 +367,11 @@ $$
 
 在掌握分析群结构的基本工具后，现在重点讨论一类群的结构。
 
-在概述中提到，Abel 群因为元素可以交换，结构相较于其它群更为简单。其中尤为简单的是那些可以通过有限多个元素生成的。
+在概述中提到，Abel 群因为元素可以交换，结构相较于其它群更为简单。其中尤为简单的是那些可以通过有限多个元素生成的 Abel 群。
 
--   有限生成：给定群 $G$，称它是 **有限生成的**（finitely generated），如果它的一个生成子集是有限的。
+-   有限生成：给定群 $G$，则称它是 **有限生成的**（finitely generated），如果它的一个生成子集是有限的。
 
-对于这类群，有如下分类定理。
-
--   **有限生成 Abel 群基本定理**（fundamental theorem of finitely generated Abelian groups）：给定有限生成的 Abel 群 $G$，则存在 $r,s\in\mathbf N$，使得
-    $$
-    \mathbf Z^r\times\mathbf Z_{p_1^{k_1}}\times\cdots\times\mathbf Z_{p_s^{k_s}}.
-    $$
-    这里，$p_1,\cdots,p_s$ 都是素数，而 $k_1,\cdots,k_s$ 都是正整数。这些素数幂未必各不相同。
-
-这里的 $\times$ 符号是指群的直积。稍后将要说明，直积是十分简单的群的组合方式。因此，这一结论是在说有限生成的 Abel 群可以看作是有限多个的循环群的简单组合。它完整地分类了有限生成的 Abel 群，给出了它们所有可能具有的结构，因此称为这类群的基本定理。
-
-算法竞赛中涉及的群多为有限群。有限 Abel 群必然是有限生成的。此时，上述形式中的 $r=0$，即直积因子中不存在无限循环群。
+本节的分类定理说明，有限生成的 Abel 群可以看作是有限多个的循环群的简单组合。算法竞赛中涉及的群多为有限群。有限 Abel 群必然是有限生成的，因此总是适用这一结论。
 
 ### 直积
 
@@ -398,6 +390,18 @@ $$
 并不是所有的群都可以写成两个非平凡子群的直积。例如，群 $D_6=\langle r,s\rangle$ 就不同构于 $\langle r\rangle\times\langle s\rangle$，因为后者必然是 Abel 群。
 
 ### 分类定理
+
+对于这类群，有如下分类定理。
+
+-   **有限生成 Abel 群基本定理**（fundamental theorem of finitely generated Abelian groups）：给定有限生成的 Abel 群 $G$，则存在 $r,s\in\mathbf N$，使得
+
+    $$
+    \mathbf Z^r\times\mathbf Z_{p_1^{k_1}}\times\cdots\times\mathbf Z_{p_s^{k_s}}.
+    $$
+    
+    这里，$p_1,\cdots,p_s$ 都是素数，而 $k_1,\cdots,k_s$ 都是正整数。这些素数幂未必各不相同。
+
+这里的 $\times$ 符号是指群的直积。
 
 ## 参考资料与注释
 
