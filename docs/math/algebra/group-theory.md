@@ -334,7 +334,6 @@ $$
     |G|=|Z(G)|+\sum_{i=1}^r[G:C_G(g_i)].
     $$
 
-
 它可以用于分析群的结构。
 
 ### 正规化子和中心化子
@@ -398,7 +397,7 @@ $$
     $$
     \mathbf Z^r\times\mathbf Z_{p_1^{k_1}}\times\cdots\times\mathbf Z_{p_s^{k_s}}.
     $$
-    
+
     这里，$p_1,\cdots,p_s$ 都是素数，而 $k_1,\cdots,k_s$ 都是正整数。这些素数幂未必各不相同。
 
 这里的 $\times$ 符号是指群的直积。
