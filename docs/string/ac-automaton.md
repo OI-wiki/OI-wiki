@@ -48,7 +48,7 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
 
 构建 fail 指针，可以参考 KMP 中构造 next 指针的思想。
 
-考虑字典树中当前的结点 $u$，$u$ 的父结点是 $p$，$p$ 通过字符 $\mathtt{c}$ 的边指向 $u$，即 $trie[p,\mathtt{c}]=u$。假设深度小于 $u$ 的所有结点的 fail 指针都已求得。
+考虑字典树中当前的结点 $u$，$u$ 的父结点是 $p$，$p$ 通过字符 $\mathtt{c}$ 的边指向 $u$，即 $\operatorname{trie}[p][\mathtt{c}]=u$。假设深度小于 $u$ 的所有结点的 fail 指针都已求得。
 
 1.  如果 $\operatorname{trie}[\operatorname{fail}[p],\mathtt{c}]$ 存在：则让 $u$ 的 fail 指针指向 $\operatorname{trie}[\operatorname{fail}[p],\mathtt{c}]$。相当于在 $p$ 和 $\operatorname{fail}[p]$ 后面加一个字符 $\mathtt{c}$，分别对应 $u$ 和 $\operatorname{fail}[u]$；
 2.  如果 $\operatorname{trie}[\operatorname{fail}[p],\mathtt{c}]$ 不存在：那么我们继续找到 $\operatorname{trie}[\operatorname{fail}[\operatorname{fail}[p]],\mathtt{c}]$。重复判断过程，一直跳 fail 指针直到根结点；
