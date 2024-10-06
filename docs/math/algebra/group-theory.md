@@ -386,21 +386,40 @@ $$
 
 -   定理：给定群 $G$ 和它的子群 $H_1,H_2\le G$，则 $G\cong H_1\times H_2$ 当且仅当 $H_1,H_2\trianglelefteq G$，$H_1\cap H_2=\{e\}$ 且 $G=H_1H_2$。
 
-并不是所有的群都可以写成两个非平凡子群的直积。例如，群 $D_6=\langle r,s\rangle$ 就不同构于 $\langle r\rangle\times\langle s\rangle$，因为后者必然是 Abel 群。
+在直积中，两个直积因子的元素必然是可以交换的，这是因为 $hg=(e_G,h)(g,e_H)=(g,h)=gh$。所以，如果两个直积因子都是 Abel 群，那么直积也必然是 Abel 群。
+
+并不是所有的群都可以写成两个非平凡子群的直积。例如，群 $D_6=\langle r,s\rangle$ 就不同构于 $\langle r\rangle\times\langle s\rangle$，因为作为两个循环群的直积，后者必然是 Abel 群。下面的分类定理则说明，有限生成的 Abel 群都可以写作有限多个循环群的直积。
 
 ### 分类定理
 
-对于这类群，有如下分类定理。
+对于有限生成的 Abel 群，有如下分类定理。
 
--   **有限生成 Abel 群基本定理**（fundamental theorem of finitely generated Abelian groups）：给定有限生成的 Abel 群 $G$，则存在 $r,s\in\mathbf N$，使得
+-   **有限生成 Abel 群基本定理**（fundamental theorem of finitely generated Abelian groups）：给定有限生成的 Abel 群 $G$，则存在整数 $r\ge0$ 和 $n_1,\cdots,n_s\ge 2$，使得
 
     $$
-    \mathbf Z^r\times\mathbf Z_{p_1^{k_1}}\times\cdots\times\mathbf Z_{p_s^{k_s}}.
+    G\cong\mathbf Z^r\times\mathbf Z_{n_1}\times\cdots\times\mathbf Z_{n_s}.
     $$
 
-    这里，$p_1,\cdots,p_s$ 都是素数，而 $k_1,\cdots,k_s$ 都是正整数。这些素数幂未必各不相同。
+    特别地，$r$ 是唯一确定的，称为群 $G$ 的 **阶**（rank），而且
+    - 可以选取整数 $n_1,\cdots,n_s$ 使其满足 $n_1\ge2,\ n_1|n_2,\ \cdots,\ n_{s-1}|n_s$，此时，整数 $n_1,\cdots,n_s$ 唯一确定，因子 $\mathbf Z_{n_i}$ 称为群 $G$ 的 **不变因子**（invariant factor）；
+    - 也可以选取整数 $n_1,\cdots,n_s$ 使其都是素数幂的形式，此时，这些素数幂也都唯一确定，因子 $\mathbf Z_{n_i}$ 称为群 $G$ 的 **初等因子**（elementary divisor）。
 
-这里的 $\times$ 符号是指群的直积。
+定理首先断言，有限生成的 Abel 群一定是有限多个循环群的直积。当然，循环群可能是无限阶的或是有限阶的，它们分别是上述分解的 $\mathbf Z$ 部分和 $\mathbf Z_{n_i}$ 部分。然后，定理给出了有限阶循环群 $\mathbf Z_n$ 的结构。定理的初等因子分解的部分其实依赖于如下观察。
+
+-   引理：如果 $m$ 与 $n$ 互质，那么 $\mathbf Z_{mn}\cong \mathbf Z_m\times\mathbf  Z_n$。
+
+要得到这个引理，只要注意到如果设 $x$ 和 $y$ 分别是 $\mathbf Z_m$ 和 $\mathbf Z_n$ 的生成元，那么因为 $(m,n)=1$，可以证明 $xy$ 的阶就是 $mn$，所以，它就是 $\mathbf Z_m\times \mathbf Z_n$ 的生成元。但是群 $\mathbf Z_m\times \mathbf Z_n$ 的阶正是 $mn$；因此，$\mathbf Z_m\times \mathbf Z_n=\langle xy\rangle$，这必然同构于 $\mathbf Z_{mn}$。
+
+给定循环群 $\mathbf Z_{n}$，如果根据算术基本定理有 $n=p_1^{r_1}\cdots p_k^{r_k}$，那么重复利用引理，就可以证明 $\mathbf Z_n$ 可以写成 $\mathbf Z_{p_1^{r_1}},\cdots,\mathbf Z_{p_k^{r_k}}$ 这些素数幂阶循环群的直积。在这两步分解之后，实际上就已经得到了定理中的初等因子分解。再根据引理，重组这些素数幂阶循环群，就可以得到定理中的不变因子分解。
+
+最后，作为分类定理的应用，可以列举出所有的 24 阶 Abel 群如下。
+
+| 不变因子分解 | 初等因子分解 |
+|:-----------:|:-----------:|
+| $\mathbf Z_{24}$ | $\mathbf Z_{3}\times\mathbf Z_{8}$ |
+| $\mathbf Z_{2}\times\mathbf Z_{12}$ | $\mathbf Z_2\times\mathbf Z_{3}\times\mathbf Z_4$ |
+| $\mathbf Z_2\times\mathbf Z_2\times\mathbf Z_6$ | $\mathbf Z_2\times\mathbf Z_2\times\mathbf Z_2\times\mathbf Z_3$ |
+
 
 ## 参考资料与注释
 
