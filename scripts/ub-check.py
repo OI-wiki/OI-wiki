@@ -265,4 +265,5 @@ with open("output.txt", "w") as f:
     f.write(str(output))
 
 if cnt_error:
+    print(f"UB-Check is completed, but we have found {cnt_error} files with potential UB. Call exit(1) to fail this job.")
     exit(1)
