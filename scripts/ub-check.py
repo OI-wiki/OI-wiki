@@ -242,9 +242,9 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
 cnt_ac, cnt_error = 0, 0
 output = {}
 for mainfile, auxfile, example, skiptest in zip(mainfiles, auxfiles, examples, skiptests):
-    print(incolor(BLUE, f"::group::Test for {mainfile}..."))
+    print("::group::" + incolor(BLUE, f"Test for {mainfile}..."))
     this_file_looks_odd, return_status = ub_check(mainfile, auxfile, example, skiptest)
-    print(incolor(BLUE, f"::endgroup::"))
+    print("::endgroup::")
     output_status = {}
     for key in return_status:
         output_status[key] = [str(_) for _ in return_status[key]]
