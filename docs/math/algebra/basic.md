@@ -101,9 +101,11 @@ $$
 -   整数环：整数集 $\mathbf Z$ 和其上通常定义的加法 $+$ 和乘法 $\times$ 构成了环 $(\mathbf Z,+,\times)$。实际上，这是一个整环，但是它不是除环。
 -   多项式环：给定环 $R$，可以在上面定义 [多项式环](../algebra/ring-theory.md)  $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
 -   四元数（quaternion）：类比复数，可以考虑集合 $\mathbf H=\{a+b\mathrm{i}+c\mathrm{j}+d\mathrm{k}:a,b,c,d\in\mathbf R\}$，并且定义其上的加法和乘法，这里，$\mathrm{i},\mathrm{j},\mathrm{k}$ 的乘法运算满足
+
     $$
     \mathrm{i}^2=\mathrm{j}^2=\mathrm{k}^2=-1,\ \mathrm{i}\mathrm{j}=-\mathrm{j}\mathrm{i}=\mathrm{k},\ \mathrm{j}\mathrm{k}=-\mathrm{k}\mathrm{j}=\mathrm{i},\ \mathrm{k}\mathrm{i}=-\mathrm{i}\mathrm{k}=\mathrm{j}.
     $$
+
     那么可以验证，$\mathbf H$ 构成环，而且，它是一个非交换的除环。
 -   整数集的子集 $2\mathbf Z$，在通常意义的加法和乘法下构成环，它是交换环，没有零因子，但是并不含幺。
 -   模 $n$ 的整数剩余系 $\mathbf Z/n\mathbf Z$ 在剩余系的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）。这样的环含有零因子，当且仅当 $n$ 是合数。所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域。
