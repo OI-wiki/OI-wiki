@@ -458,10 +458,10 @@ $$
 
 #### 例子
 
--   所有质因子数目：$\Omega(n)=\sum_{p \mid n} [\text{$ p $  is a prime}] \sum_{k=1}^{\lceil\log_p n\rceil} [p^k \mid n \wedge p^{k+1} \nmid n] \cdot k $。（完全加性）
--   相异质因子数目：$\omega(n)=\sum_{p \mid n}[\text{$ p $  is a prime}] $。
--   所有质因子之和：$a_0(n)=\sum_{p \mid n} [\text{$ p $  is a prime}] \sum_{k=1}^{\lceil\log_p n\rceil} [p^k \mid n \wedge p^{k+1} \nmid n] \cdot kp $。（完全加性）
--   相异质因子之和：$a_1(n)=\sum{p \mid n}[\text{$ p $  is a prime}] \cdot p $。
+-   所有质因子数目：$\Omega(n)=\sum \limits_{p\in \mathbb{P}}\sum \limits_{p^a\mid n}1(a>0)$。（完全加性）
+-   相异质因子数目：$\omega(n)=\sum \limits_{p\in \mathbb{P}}[p\mid n]$。
+-   所有质因子之和：$a_0(n)=\sum \limits_{p\in \mathbb{P}}\sum \limits_{p^a\mid n}p (a>0)$。（完全加性）
+-   相异质因子之和：$a_1(n)=\sum \limits_{p\in \mathbb{P}}[p\mid n]p$。
 
 ## 参考资料与注释
 
