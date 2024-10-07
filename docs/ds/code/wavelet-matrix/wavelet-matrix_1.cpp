@@ -6,9 +6,9 @@ typedef unsigned long long ull;
 struct Bits {
     vector<unsigned long long> b;
     vector<int> sum;
-	int len;
+    int len;
     Bits(int n) {
-		len = n >> 6;
+        len = n >> 6;
         b.resize(len + 1, 0);
         sum.resize(len + 1, 0);
     }
@@ -35,33 +35,33 @@ struct Bits {
 };
 
 struct WaveletMatrix {
-	vector<Bits> b;
-	int n;
-	// 实际上构造 Wavelet Matrix 之后，不难 O(log n) 求出原始的 a[i]
-	// 注意 a 将被修改
-	WaveletMatrix(int n, int *a) {
-		this -> n = n;
-		b.resize(32, Bits(n));
-		for (int j = 31; j >= 0; j--) {
-			for (int i = 1; i <= n; i++) if ((a[i] >> j) & 1) b[j].set(i);
-			b[j].prepare();
-			stable_partition(a + 1, a + n + 1, [&](int x) { return (x >> j) & 1; });
-		}
-	}
-	int kth(int l, int r, int k) {
-		int res = 0;
-		for (int j = 31; j >= 0; j--) {
-			int l1 = b[j].count1(l - 1), r1 = b[j].count1(r);
-			if (r1 - l1 >= k) l = l1 + 1, r = r1, res |= (1 << j);
-			else {
-				int l0 = l - 1 - l1, r0 = r - r1;
-				int total = b[j].count1(n);
-				l = total + l0 + 1, r = total + r0;
-				k -= (r1 - l1);
-			}
-		}
-		return res;
-	}
+    vector<Bits> b;
+    int n;
+    // 实际上构造 Wavelet Matrix 之后，不难 O(log n) 求出原始的 a[i]
+    // 注意 a 将被修改
+    WaveletMatrix(int n, int *a) {
+        this -> n = n;
+        b.resize(32, Bits(n));
+        for (int j = 31; j >= 0; j--) {
+            for (int i = 1; i <= n; i++) if ((a[i] >> j) & 1) b[j].set(i);
+            b[j].prepare();
+            stable_partition(a + 1, a + n + 1, [&](int x) { return (x >> j) & 1; });
+        }
+    }
+    int kth(int l, int r, int k) {
+        int res = 0;
+        for (int j = 31; j >= 0; j--) {
+            int l1 = b[j].count1(l - 1), r1 = b[j].count1(r);
+            if (r1 - l1 >= k) l = l1 + 1, r = r1, res |= (1 << j);
+            else {
+                int l0 = l - 1 - l1, r0 = r - r1;
+                int total = b[j].count1(n);
+                l = total + l0 + 1, r = total + r0;
+                k -= (r1 - l1);
+            }
+        }
+        return res;
+    }
 };
 
 const int MAXN(2e5 + 5);
@@ -70,12 +70,12 @@ int a[MAXN];
 int n, m;
 
 int main() {
-	scanf("%d %d", &n, &m);
-	for (int i = 1; i <= n; i++) scanf("%d", a + i);
-	WaveletMatrix w(n, a);
-	while (m--) {
-		int l, r, k; scanf("%d %d %d", &l, &r, &k);
-		printf("%d\n", w.kth(l, r, r - l + 2 - k));
-	}
-	return 0;
+    scanf("%d %d", &n, &m);
+    for (int i = 1; i <= n; i++) scanf("%d", a + i);
+    WaveletMatrix w(n, a);
+    while (m--) {
+        int l, r, k; scanf("%d %d %d", &l, &r, &k);
+        printf("%d\n", w.kth(l, r, r - l + 2 - k));
+    }
+    return 0;
 }

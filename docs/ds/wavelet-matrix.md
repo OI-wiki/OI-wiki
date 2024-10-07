@@ -180,7 +180,7 @@ Wavelet Tree 的基础结构是一个 01 trie，在每个节点上，用一个�
 
 当转移到叶子节点时，$a_{\text{leaf}}$ 的所有元素都是 $w$，则 $\operatorname{count}_{a_\text{leaf}}(l_\text{leaf}, r_\text{leaf}, w) = r_\text{leaf} - l_\text{leaf} + 1$。
 
-以前文的图为例。$\operatorname{count}_a(3, 7, "a")$，根节点的区间 $[3,7]$ 在左儿子上对应区间 $[3,4]$。这是因为 $a_3$ 之前（不含）元素 $\{"a", "b"\}$ 出现了 2 个，而 $a_7$ 及以前 $\{"a", "b"\}$ 出现了 4 个，则在 $[3,7]$ 内的 $\{"a","b"\}$ 是第 3 个和第 4 个 $\{"a","b"\}$。
+以前文的图为例。$\operatorname{count}_a(3, 7, \text{a})$，根节点的区间 $[3,7]$ 在左儿子上对应区间 $[3,4]$。这是因为 $a_3$ 之前（不含）元素 $\{\text{a}, \text{b}\}$ 出现了 2 个，而 $a_7$ 及以前 $\{\text{a}, \text{b}\}$ 出现了 4 个，则在 $[3,7]$ 内的 $\{\text{a},\text{b}\}$ 是第 3 个和第 4 个 $\{\text{a},\text{b}\}$。
 
 ### $\operatorname{kth}$
 
