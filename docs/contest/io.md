@@ -222,7 +222,8 @@ int rd() {
 
 int main() {
   int fd = open("*.in", O_RDONLY);
-  // int fd = 0; // 如果想在不使用文件操作的题目中使用，可以将 fd 赋值为 0，意思是从 stdin 读入
+  // int fd = 0; // 如果想在不使用文件操作的题目中使用，可以将 fd 赋值为
+  // 0，意思是从 stdin 读入
   struct stat state;
   fstat(fd, &state);
   pc = (char *)mmap(NULL, state.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
