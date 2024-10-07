@@ -200,22 +200,24 @@ void write(int x) {
 ```cpp
 #include <bits/stdc++.h>
 #include <fcntl.h>
-#include <unistd.h>
 #include <sys/mman.h>
+#include <unistd.h>
 char *pr;
+
 int rd() {
   int x = 0, f = 1;
-  char c = *pr ++;
+  char c = *pr++;
   while (!isdigit(c)) {
     if (c == '-') f = -1;
-    c = *pr ++;
+    c = *pr++;
   }
   while (isdigit(c)) x = x * 10 + (c ^ 48), c = gc();
   return x * f;
 }
+
 int main() {
   freopen("*.in", "r", stdin);
-  pr = (char *) mmap(NULL, lseek(0, 0, SEEK_END), PROT_READ, MAP_PRIVATE, 0, 0);
+  pr = (char *)mmap(NULL, lseek(0, 0, SEEK_END), PROT_READ, MAP_PRIVATE, 0, 0);
 }
 ```
 
@@ -226,11 +228,12 @@ int main() {
 ```c++
 #include <bits/stdc++.h>
 #include <fcntl.h>
-#include <unistd.h>
 #include <sys/mman.h>
+#include <unistd.h>
 using namespace std;
 char* pw;
 string out;
+
 void write(int x) {
   static int sta[35];
   int top = 0;
@@ -239,15 +242,19 @@ void write(int x) {
   } while (x);
   while (top) out += sta[--top] + '0';
 }
+
 int main() {
-  freopen("*.out", "w+", stdout); // 务必使用 w+ 以读写模式打开文件，否则将会 RE
-  
+  freopen("*.out", "w+",
+          stdout);  // 务必使用 w+ 以读写模式打开文件，否则将会 RE
+
   write(1234);
 
   int len = out.length();
   lseek(1, len - 1, SEEK_END);
-  write(1, "", 1); // 从指针处写入一个空字符。mmap不能扩展文件长度，这里相当于预先给文件长度，准备一个空架子
-  pw = (char *) mmap(NULL, len, PROT_READ|PROT_WRITE, MAP_SHARED, 1, 0);
+  write(
+      1, "",
+      1);  // 从指针处写入一个空字符。mmap不能扩展文件长度，这里相当于预先给文件长度，准备一个空架子
+  pw = (char*)mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_SHARED, 1, 0);
   memcpy(pw, out.c_str(), len);
 }
 ```
