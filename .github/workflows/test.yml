@@ -73,9 +73,6 @@ jobs:
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: x86_64 Ubuntu
         run: python3 scripts/ub-check.py
-      - name: Set Output
-        id: set-output
-        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
 
   undefinedbehaviors-macos:
     name: UB Check - Arm64 MacOS
@@ -101,9 +98,6 @@ jobs:
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: arm64 MacOS
         run: python3 scripts/ub-check.py
-      - name: Set Output
-        id: set-output
-        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
 
   undefinedbehaviors-rv:
     name: UB Check - RISC-V Ubuntu
@@ -143,9 +137,6 @@ jobs:
       - name: Undefined Behaviors Check
         # The environment variables are set in Launch Risc-V Docker step
         run: docker exec ubtest python3 scripts/ub-check.py
-      - name: Set Output
-        id: set-output
-        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
 
   undefinedbehaviors-windows:
     name: UB Check - x86_64 Windows
@@ -179,12 +170,6 @@ jobs:
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: x86_64 Windows
         run: python scripts/ub-check.py
-      - name: Set Output
-        id: set-output
-        run: |
-          $GITHUB_OUTPUT="output=$(cat output.txt)"
-          echo "output=$(cat output.txt)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-        shell: pwsh
 
 
   undefinedbehaviors-alpine:
@@ -215,6 +200,3 @@ jobs:
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: x86_64 Alpine
         run: python3 scripts/ub-check.py
-      - name: Set Output
-        id: set-output
-        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
