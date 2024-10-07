@@ -1,6 +1,6 @@
-#include <vector>
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
+#include <vector>
 using namespace std;
 
 typedef unsigned long long ull;
