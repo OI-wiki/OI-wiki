@@ -1,6 +1,10 @@
 #include <vector>
 #include <cstdio>
 #include <algorithm>
+#ifdef _MSC_VER
+#include <intrin.h>
+#define __builtin_popcountll __popcnt64
+#endif
 using namespace std;
 
 typedef unsigned long long ull;
