@@ -24,6 +24,7 @@ Wavelet Matrix 同时是一种简洁数据结构，即使用 $n + o(n)$ 空间�
 大概 2000 年左右一系列压缩位向量的数据结构被提出，它们可以通过 $\mathcal O(n)$ 时间预处理，$\mathcal o(n)$ 的额外空间，在常数时间内静态实现 01 序列上的 $\operatorname{count},\operatorname{select}$ 操作。
 
 ???+ info $\operatorname{select}$ 操作在算法竞赛中不常见，但是实现很复杂。读者可以先阅读有关 $\operatorname{count}$ 的内容，完全理解后再考虑 $\operatorname{select}$。
+    
 
 不难发现 $\operatorname{count}_a(l, r, w) = \operatorname{count}_a(1, r, w) - \operatorname{count}_a(1, l-1, w)$，所以接下来我们只解决前缀 $\operatorname{count}$ 的实现。
 
@@ -32,7 +33,9 @@ Wavelet Matrix 同时是一种简洁数据结构，即使用 $n + o(n)$ 空间�
 为了完成 $\operatorname{count}$ 操作，压缩位向量把 01 序列分成长为 $B$ 的块。我们可以处理出每一块内 1 的数量，得到长为 $\lceil \frac{n}{B}\rceil$ 的数列 $c$；再做 $c$ 的前缀和，得到一个长为 $\lceil \frac{n}{B}\rceil$ 的数列 $S$，$S_i$ 表示前 $i$ 块中 1 的出现次数。
 
 ???+ note
-在竞赛场景下，我们可以设定 $B = 64$，然后简单地调用 `__builtin_popcountll` 直接计算块内的 $\operatorname{count}$。压缩位向量是一个理论数据结构，我们将接着给出完整的实现。
+    
+
+竞赛场景下，我们可以设定 $B = 64$，然后简单地调用 `__builtin_popcountll` 直接计算块内的 $\operatorname{count}$。压缩位向量是一个理论数据结构，我们将接着给出完整的实现。
 
 对于一个长为 $B$，含有 $p_i$ 个 1 的块，本质不同的块的个数是 $\binom{B}{p_i}$。我们可以预处理出每一种块的前缀和，这样，块内的前缀 01 个数也可以 $\mathcal O(1)$ 查询。
 
@@ -45,7 +48,9 @@ Wavelet Matrix 同时是一种简洁数据结构，即使用 $n + o(n)$ 空间�
 ### $\operatorname{select}$
 
 ???+ info
-Wavelet Matrix 只有 $\operatorname{select}$ 操作会使用 压缩位向量的 $\operatorname{select}$ 操作。如果不需要可以跳过这一节。
+    
+
+avelet Matrix 只有 $\operatorname{select}$ 操作会使用 压缩位向量的 $\operatorname{select}$ 操作。如果不需要可以跳过这一节。
 
 一个简单的做法是在超级块和块内进行二分查找，时间复杂度为 $\mathcal O(\log n)$。下面介绍 $\mathcal O(1)$ 的做法。
 
