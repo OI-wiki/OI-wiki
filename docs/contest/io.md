@@ -193,69 +193,33 @@ void write(int x) {
 
 `mmap` 是 linux 系统调用，可以将文件一次性地映射到内存中。在一些场景下有更优的速度。
 
-注意 `mmap` 不能在 Windows 环境下使用（例如 CodeForces 的 tester），同时也不建议在正式赛场上使用。在使用前要引入 `fcntl.h`，`unistd.h` 与 `sys/mman.h`。
+注意 `mmap` 不能在 Windows 环境下使用（例如 CodeForces 的 tester），同时也不建议在正式赛场上使用，可以在卡常时使用。在使用前要引入 `fcntl.h`，`unistd.h` 与 `sys/mman.h`。
 
-读入示例：`char *pr = (char *) mmap(NULL, lseek(0, 0, SEEK_END), PROT_READ, MAP_PRIVATE, 0, 0);`，此时指针 `*pr` 指向了我们的文件。可以直接用 `*pr ++` 替代 `getchar()`。如：
+读入示例：`char *pc = (char *) mmap(NULL, lseek(0, 0, SEEK_END), PROT_READ, MAP_PRIVATE, 0, 0);`，此时指针 `*pc` 指向了我们的文件。可以直接用 `*pc ++` 替代 `getchar()`。如：
 
 ```cpp
 #include <bits/stdc++.h>
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <unistd.h>
-char *pr;
+char *pc;
 
 int rd() {
   int x = 0, f = 1;
-  char c = *pr++;
+  char c = *pc++;
   while (!isdigit(c)) {
     if (c == '-') f = -1;
-    c = *pr++;
+    c = *pc++;
   }
-  while (isdigit(c)) x = x * 10 + (c ^ 48), c = gc();
+  while (isdigit(c)) x = x * 10 + (c ^ 48), c = *pc++;
   return x * f;
 }
 
 int main() {
   freopen("*.in", "r", stdin);
-  pr = (char *)mmap(NULL, lseek(0, 0, SEEK_END), PROT_READ, MAP_PRIVATE, 0, 0);
-}
-```
-
-使用 `mmap` 输出较为麻烦，因为 `mmap` 不能扩展文件长度，我们要在写入前手动在文件中预先文件长度。
-
-输出示例：
-
-```c++
-#include <bits/stdc++.h>
-#include <fcntl.h>
-#include <sys/mman.h>
-#include <unistd.h>
-using namespace std;
-char* pw;
-string out;
-
-void write(int x) {
-  static int sta[35];
-  int top = 0;
-  do {
-    sta[top++] = x % 10, x /= 10;
-  } while (x);
-  while (top) out += sta[--top] + '0';
-}
-
-int main() {
-  freopen("*.out", "w+",
-          stdout);  // 务必使用 w+ 以读写模式打开文件，否则将会 RE
-
-  write(1234);
-
-  int len = out.length();
-  lseek(1, len - 1, SEEK_END);
-  write(
-      1, "",
-      1);  // 从指针处写入一个空字符。mmap不能扩展文件长度，这里相当于预先给文件长度，准备一个空架子
-  pw = (char*)mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_SHARED, 1, 0);
-  memcpy(pw, out.c_str(), len);
+  freopen("*.out", "w", stdout);
+  pc = (char *)mmap(NULL, lseek(0, 0, SEEK_END), PROT_READ, MAP_PRIVATE, 0, 0);
+  printf("%d", rd());
 }
 ```
 
