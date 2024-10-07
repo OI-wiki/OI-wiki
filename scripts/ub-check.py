@@ -200,6 +200,11 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         else: 
             status_vector = [CompileOK()]
             print(status_vector[0].colored())
+            if result.stdout or result.stderr:
+                print('  ---- Compile Stdout: ----')
+                print('\n'.join(list(map(lambda x: '  ' + x, result.stdout.decode().split('\n')))))
+                print('  ---- Compile Stderr: ----')
+                print('\n'.join(list(map(lambda x: '  ' + x, result.stderr.decode().split('\n')))))
 
             for e in examples:
                 print(f'{compile_product} < {e} > {e.replace(".in", ".out")}', end=' ')
