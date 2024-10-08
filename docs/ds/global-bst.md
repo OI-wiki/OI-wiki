@@ -164,7 +164,7 @@
     struct Matrix {
       int M[2][2];
     
-      Matrix operator*(const Matrix &B) {
+      Matrix operator*(const Matrix &B) const {
         static Matrix ret;
         for (int i = 0; i < 2; i++)
           for (int j = 0; j < 2; j++) {

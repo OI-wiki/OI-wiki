@@ -23,13 +23,13 @@ struct Node {
 
   double len() { return sqrt(x * x + y * y + z * z); }
 
-  Node operator-(Node A) { return {x - A.x, y - A.y, z - A.z}; }
+  Node operator-(Node A) const { return {x - A.x, y - A.y, z - A.z}; }
 
-  Node operator*(Node A) {
+  Node operator*(Node A) const {
     return {y * A.z - z * A.y, z * A.x - x * A.z, x * A.y - y * A.x};
   }
 
-  double operator&(Node A) { return x * A.x + y * A.y + z * A.z; }
+  double operator&(Node A) const { return x * A.x + y * A.y + z * A.z; }
 } A[N];
 
 struct Face {

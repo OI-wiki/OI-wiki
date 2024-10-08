@@ -11,7 +11,7 @@ struct Element {
   int cnt;
   int res;
 
-  bool operator!=(Element other) {
+  bool operator!=(Element other) const {
     if (a != other.a) return true;
     if (b != other.b) return true;
     if (c != other.c) return true;

@@ -105,7 +105,7 @@ author: hyp1231, 383494
     
       Point(double x = 0, double y = 0) : x(x), y(y) {}
     
-      const bool operator<(Point A) const { return x == A.x ? y < A.y : x < A.x; }
+      bool operator<(Point A) const { return x == A.x ? y < A.y : x < A.x; }
     };  // 点的定义
     
     using Vector = Point;  // 向量的定义
