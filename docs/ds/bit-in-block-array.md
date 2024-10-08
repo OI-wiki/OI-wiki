@@ -66,10 +66,11 @@
 
 ??? note "参考代码（分块套树状数组 - 1s）"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cmath>
+    #include <cstdio>
     using namespace std;
     const int N = 2e5 + 5;
-    const int M = sqrt(N) + 5;
+    const int M = 447 + 5;  // sqrt(N) + 5
     
     int n, m, pa[N], pb[N];
     
@@ -150,10 +151,11 @@
 
 ??? node "参考代码（树状数组套 Treap—TLE）"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cstdio>
+    #include <random>
     using namespace std;
     const int N = 2e5 + 5;
-    mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+    mt19937 rng(random_device{}());
     
     int n, m, pa[N], pb[N];
     
@@ -311,10 +313,12 @@
 
 ??? note "参考代码（分块套树状数组 - 78ms）"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cmath>
+    #include <cstdio>
+    #include <vector>
     using namespace std;
     const int N = 1e5 + 5;
-    const int M = sqrt(N) + 5;
+    const int M = 316 + 5;  // sqrt(N) + 5
     
     // 分块
     int nn, b[N], block_size, block_cnt, block_id[N], L[N], R[N], T[M][N];
@@ -418,14 +422,16 @@
 
 ??? note "参考代码（线段树套 Treap-468ms）"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cstdio>
+    #include <random>
+    #include <vector>
     using namespace std;
     const int N = 1e5 + 5;
     
     vector<int> g[N];
     int n, a[N];
     
-    mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+    mt19937 rng(random_device{}());
     
     struct Treap {
       struct node {

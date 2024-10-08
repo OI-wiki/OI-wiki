@@ -91,8 +91,10 @@ Tarjan 的算法分为 **收缩** 与 **伸展** 两个过程。接下来先介�
 ### 实现
 
 ```cpp
-#include <bits/stdc++.h>
-
+#include <cstdio>
+#include <cstring>
+#include <queue>
+#include <vector>
 using namespace std;
 
 using ll = long long;

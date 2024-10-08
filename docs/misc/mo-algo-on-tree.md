@@ -311,7 +311,10 @@ if (!sta.empty()) {
 
 ??? 参考代码
     ```cpp
-    #include <bits/stdc++.h>
+    #include <algorithm>
+    #include <cmath>
+    #include <cstdio>
+    #include <stack>
     using namespace std;
     
     int gi() {

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #define MOD1 39989
 #define MOD2 1000000000
 #define MAXT 40000

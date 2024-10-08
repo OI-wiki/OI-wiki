@@ -186,7 +186,11 @@ bool erase(const K &key) {
 
 ??? note "参考代码"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cassert>
+    #include <climits>
+    #include <ctime>
+    #include <iostream>
+    #include <map>
     using namespace std;
     
     template <typename K, typename V>

@@ -136,7 +136,8 @@ $$
 
 ??? note "参考实现"
     ```c++
-    #include <bits/stdc++.h>
+    #include <cstdio>
+    #include <cstring>
     using namespace std;
     
     const int maxn = 1e3 + 10;

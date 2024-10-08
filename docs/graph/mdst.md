@@ -91,7 +91,10 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 ??? note "实现"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <algorithm>
+    #include <climits>
+    #include <iostream>
+    #include <vector>
     using namespace std;
     const int MAXN = 502;
     using ll = long long;

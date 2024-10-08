@@ -32,7 +32,8 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? "实现"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <algorithm>
+    #include <iostream>
     using namespace std;
     const int N = 11;
     long long f[2][1 << N], *f0, *f1;
@@ -598,7 +599,8 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? 例题代码
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cstring>
+    #include <iostream>
     using namespace std;
     #define REP(i, n) for (int i = 0; i < n; ++i)
     
@@ -736,9 +738,6 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     
     int main() {
-    #ifndef ONLINE_JUDGE
-      freopen("in.txt", "r", stdin);
-    #endif
       int T;
       cin >> T;
       for (int Case = 1; Case <= T; ++Case) {

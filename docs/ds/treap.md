@@ -870,7 +870,9 @@ void print(Node* cur) {
     
     ```cpp
     // author: (ttzytt)[ttzytt.com]
-    #include <bits/stdc++.h>
+    #include <cstdint>
+    #include <cstdio>
+    #include <cstdlib>
     using namespace std;
     
     struct Node {
@@ -1087,7 +1089,10 @@ void print(Node* cur) {
     ```cpp
     
     // author: (ttzytt)[ttzytt.com]
-    #include <bits/stdc++.h>
+    #include <cstdio>
+    #include <cstdlib>
+    #include <ctime>
+    #include <tuple>
     using namespace std;
     
     struct Node {
@@ -1276,7 +1281,9 @@ void print(Node* cur) {
     ```cpp
     
     // author: (ttzytt)[ttzytt.com]
-    #include <bits/stdc++.h>
+    #include <cstdlib>
+    #include <ctime>
+    #include <iostream>
     using namespace std;
     
     // 参考：https://www.cnblogs.com/Equinox-Flower/p/10785292.html

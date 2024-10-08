@@ -104,8 +104,9 @@
 
 ???+ note "参考代码"
     ```cpp
-    #include <bits/stdc++.h>
-    
+    #include <algorithm>
+    #include <iostream>
+    #include <vector>
     using namespace std;
     
     using IT = vector<int>::iterator;

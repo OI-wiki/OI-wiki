@@ -86,7 +86,8 @@ void merge(int x, int y) {
 
 ???+ note "实现"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cstdio>
+    #include <vector>
     using namespace std;
     
     const int N = 2e5 + 5;

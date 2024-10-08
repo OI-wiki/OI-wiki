@@ -129,8 +129,8 @@ f(i, 0, a.size()) { ... }
 对拍程序的大致框架如下：
 
 ```cpp
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 
 int main() {
   // For Windows

@@ -41,7 +41,7 @@
 
 ???+ note "参考代码"
     ```c++
-    #include <bits/stdc++.h>
+    #include <cstdio>
     using namespace std;
     const int N = 15;
     using ll = long long;
@@ -343,7 +343,10 @@
 
 ???+ note "参考代码"
     ```c++
-    #include <bits/stdc++.h>  //code by Alphnia
+    //code by Alphnia
+    #include <cstdio>
+    #include <cstring>
+    #include <queue>
     using namespace std;
     #define N 1505
     #define ll long long

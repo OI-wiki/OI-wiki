@@ -170,8 +170,8 @@ $$
 最后放一个实现的代码供参考。代码转自 [大米饼的博客](https://www.cnblogs.com/Paul-Guderian/p/11020708.html)，添加了一些注释。
 
 ```cpp
-#include <bits/stdc++.h>
-#define rg register
+#include <algorithm>
+#include <cstdio>
 using namespace std;
 const int N = 200010;
 

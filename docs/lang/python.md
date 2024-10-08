@@ -761,7 +761,10 @@ def fib(n):
 
 === "C++"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cstdio>
+    #include <cstring>
+    #include <queue>
+    #include <vector>
     using namespace std;
     const int N = 1e5 + 5, M = 2e5 + 5;
     ```
@@ -911,7 +914,10 @@ def fib(n):
 
 === "C++"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cstdio>
+    #include <cstring>
+    #include <queue>
+    #include <vector>
     using namespace std;
     const int N = 1e5 + 5, M = 2e5 + 5;
     

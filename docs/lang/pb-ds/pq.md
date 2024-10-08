@@ -119,7 +119,7 @@ int main() {
 从运行下述代码中看出，除了 `binary_heap_tag` 为 `basic_invalidation_guarantee` 在修改后迭代器会失效，其余的均为 `point_invalidation_guarantee` 可以实现修改后点类型迭代器 (point\_iterator) 不失效的需求。
 
 ```cpp
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/priority_queue.hpp>
