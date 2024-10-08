@@ -238,12 +238,17 @@ $$
 
 ### 例子：二次整数环
 
+抽象代数的理解不能离开例子。正是因为费马大定理的研究过程需要研究一类代数整数的性质，才逐渐发展出了今天的环论[^ring-theory-history]。这里讨论最简单的代数整数，即二次整数。
+
 ## 中国剩余定理
 
-### 应用：整数模 $n${ n data-toc-label='<script type="math/tex">n</script>' } 乘法群
+### 应用：整数剩余系的乘法群
 
 ## 多项式环
 
 ## 参考资料和注释
 
+-   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+
 [^ideal-history]: <https://en.wikipedia.org/wiki/Ideal_(ring_theory)#History>
+[^ring-theory-history]: 环论的简要历史可以参看[这里](https://mathshistory.st-andrews.ac.uk/HistTopics/Ring_theory/)。
