@@ -26,21 +26,21 @@ struct operation {
 char op;
 long long n, m, x, y, cur, qcnt, rcnt, mp[1500009], a[150009], ans[150009];
 
-inline void add(long long x) {
+void add(long long x) {
   if (!mp[x]) {
     cur += 1;
   }
   mp[x] += 1;
 }
 
-inline void del(long long x) {
+void del(long long x) {
   mp[x] -= 1;
   if (!mp[x]) {
     cur -= 1;
   }
 }
 
-inline void process() {
+void process() {
   sort(q + 1, q + qcnt + 1);
   long long L = 1, R = 0, last = 0;
   for (long long i = 1; i <= qcnt; i++) {

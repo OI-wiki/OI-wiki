@@ -13,7 +13,7 @@ struct edge {
 
 int hd[N], tot;
 
-inline void add(int u, int v) { e[++tot] = {v, hd[u]}, hd[u] = tot; }
+void add(int u, int v) { e[++tot] = {v, hd[u]}, hd[u] = tot; }
 
 void uadd(int u, int v) { add(u, v), add(v, u); }  // 链式前向星
 

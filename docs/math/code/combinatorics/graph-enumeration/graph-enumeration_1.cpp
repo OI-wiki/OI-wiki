@@ -51,7 +51,7 @@ void DIV(int& a, int b) { MUL(a, _I(b)); }
 
 int qtt(int a, int b) { return pdt(a, _I(b)); }
 
-inline int pow(int a, LL b) {
+int pow(int a, LL b) {
   int c(1);
   while (b) {
     if (b & 1) MUL(c, a);
@@ -61,7 +61,7 @@ inline int pow(int a, LL b) {
 }
 
 template <class T>
-inline T pow(T a, LL b) {
+T pow(T a, LL b) {
   T c(1);
   while (b) {
     if (b & 1) c *= a;
@@ -71,7 +71,7 @@ inline T pow(T a, LL b) {
 }
 
 template <class T>
-inline T pow(T a, int b) {
+T pow(T a, int b) {
   return pow(a, (LL)b);
 }
 

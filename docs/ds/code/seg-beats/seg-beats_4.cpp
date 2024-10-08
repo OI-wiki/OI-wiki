@@ -7,9 +7,9 @@ const ll INF = 1145141919810114514ll;
 int n, q, op, l, r;
 int a[N], b[N];
 
-inline int lc(int u) { return (u << 1); }
+int lc(int u) { return (u << 1); }
 
-inline int rc(int u) { return (u << 1) | 1; }
+int rc(int u) { return (u << 1) | 1; }
 
 struct node {
   ll mx_ab[2][2];  // 0 : not max A or B  1 : is max A or B
@@ -21,16 +21,16 @@ struct node {
   ll mx1[2], mx2[2];  // 0 : A 1 : B
   ll tag_add[2], tag_mn[2];
 
-  inline void clr_tag() {
+  void clr_tag() {
     tag_add[0] = tag_add[1] = 0, tag_mn[0] = tag_mn[1] = INF;
   }
 
-  inline void init(ll a, ll b) {
+  void init(ll a, ll b) {
     mx1[0] = a, mx1[1] = b, mx2[0] = mx2[1] = -INF;
     mx_ab[1][1] = a + b, mx_ab[0][1] = mx_ab[1][0] = mx_ab[0][0] = -INF;
   }
 
-  inline void modify_mn(ll tg, bool id)  // id 0 A 1 B
+  void modify_mn(ll tg, bool id)  // id 0 A 1 B
   {
     if (mx1[id] <= tg) return;
     mx_ab[1][1] += (mx_ab[1][1] > -INF) ? (tg - mx1[id]) : 0;
@@ -39,7 +39,7 @@ struct node {
     mx1[id] = tag_mn[id] = tg;
   }
 
-  inline void modify_add(ll tg, bool id)  // id 0 A 1 B
+  void modify_add(ll tg, bool id)  // id 0 A 1 B
   {
     for (int i = 0; i < 2; ++i)
       for (int j = 0; j < 2; ++j) mx_ab[i][j] += (mx_ab[i][j] > -INF) ? tg : 0;
@@ -47,7 +47,7 @@ struct node {
     tag_mn[id] += (tag_mn[id] < INF) ? tg : 0, tag_add[id] += tg;
   }
 
-  inline void pushup(const node& l, const node& r) {
+  void pushup(const node& l, const node& r) {
     for (int i = 0; i < 2; ++i) {
       if (l.mx1[i] == r.mx1[i])
         mx1[i] = l.mx1[i], mx2[i] = std::max(l.mx2[i], r.mx2[i]);
@@ -90,9 +90,9 @@ struct node {
   }
 } tr[N << 2];
 
-inline void pushup(int u) { tr[u].pushup(tr[lc(u)], tr[rc(u)]); }
+void pushup(int u) { tr[u].pushup(tr[lc(u)], tr[rc(u)]); }
 
-inline void pushdown(int u) {
+void pushdown(int u) {
   for (int i = 0; i < 2; ++i)
     if (tr[u].tag_add[i])
       tr[lc(u)].modify_add(tr[u].tag_add[i], i),
@@ -104,16 +104,16 @@ inline void pushdown(int u) {
   tr[u].clr_tag();
 }
 
-inline void _build(int u, int L, int R) {
+void _build(int u, int L, int R) {
   tr[u].clr_tag();
   if (L == R) return tr[u].init(a[L], b[L]);
   int M = (L + R) >> 1;
   _build(lc(u), L, M), _build(rc(u), M + 1, R), pushup(u);
 }
 
-inline void build() { _build(1, 1, n); }
+void build() { _build(1, 1, n); }
 
-inline void _modify_mn(int u, int l, int r, int L, int R, int v, bool i) {
+void _modify_mn(int u, int l, int r, int L, int R, int v, bool i) {
   if (L > r || R < l || tr[u].mx1[i] <= v) return;
   if (l <= L && R <= r && tr[u].mx2[i] < v) return tr[u].modify_mn(v, i);
   pushdown(u);
@@ -122,11 +122,11 @@ inline void _modify_mn(int u, int l, int r, int L, int R, int v, bool i) {
   pushup(u);
 }
 
-inline void modify_mn(int l, int r, int v, bool i) {
+void modify_mn(int l, int r, int v, bool i) {
   _modify_mn(1, l, r, 1, n, v, i);
 }
 
-inline void _modify_add(int u, int l, int r, int L, int R, int v, bool i) {
+void _modify_add(int u, int l, int r, int L, int R, int v, bool i) {
   if (L > r || R < l) return;
   if (l <= L && R <= r) return tr[u].modify_add(v, i);
   pushdown(u);
@@ -136,11 +136,11 @@ inline void _modify_add(int u, int l, int r, int L, int R, int v, bool i) {
   pushup(u);
 }
 
-inline void modify_add(int l, int r, int v, bool i) {
+void modify_add(int l, int r, int v, bool i) {
   _modify_add(1, l, r, 1, n, v, i);
 }
 
-inline node _query(int u, int l, int r, int L, int R) {
+node _query(int u, int l, int r, int L, int R) {
   if (l <= L && R <= r) return tr[u];
   pushdown(u);
   int M = (L + R) >> 1;
@@ -152,7 +152,7 @@ inline node _query(int u, int l, int r, int L, int R) {
   return ret;
 }
 
-inline node query(int l, int r) { return _query(1, l, r, 1, n); }
+node query(int l, int r) { return _query(1, l, r, 1, n); }
 
 using std::cin;
 using std::cout;

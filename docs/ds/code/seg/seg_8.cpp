@@ -20,11 +20,11 @@ struct seg {
   int l, r, lson, rson;
 } t[N << 3];
 
-inline int ls(int u) {  // 左儿子
+int ls(int u) {  // 左儿子
   return t[u].lson;
 }
 
-inline int rs(int u) {  // 右儿子
+int rs(int u) {  // 右儿子
   return t[u].rson;
 }
 
