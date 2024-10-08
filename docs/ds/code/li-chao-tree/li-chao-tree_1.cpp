@@ -1,7 +1,7 @@
 #include <iostream>
-#define MOD1 39989
-#define MOD2 1000000000
-#define MAXT 40000
+const int MOD1 = 39989;
+const int MOD2 = 1000000000;
+const int MAXT = 40000;
 using namespace std;
 using pdi = pair<double, int>;
 

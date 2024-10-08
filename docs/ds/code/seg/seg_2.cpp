@@ -1,5 +1,5 @@
 #include <iostream>
-#define ll long long
+using ll = long long;
 
 int n, m;
 ll mod;

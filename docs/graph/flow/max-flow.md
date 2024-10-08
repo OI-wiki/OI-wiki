@@ -144,8 +144,8 @@ Edmonds–Karp 算法的可能实现如下。
 
 ??? note "参考代码"
     ```cpp
-    #define maxn 250
-    #define INF 0x3f3f3f3f
+    const int maxn = 250;
+    const int INF = 0x3f3f3f3f;
     
     struct Edge {
       int from, to, cap, flow;

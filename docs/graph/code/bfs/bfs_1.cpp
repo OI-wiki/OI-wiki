@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-#define INF (1 << 29)
+const int INF = 1 << 29;
 int n, m;
 char grid[1001][1001];
 int dist[1001][1001][4];

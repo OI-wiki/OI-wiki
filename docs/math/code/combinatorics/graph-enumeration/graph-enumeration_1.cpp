@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 
-#define Ts *this
-#define rTs return Ts
 using LL = long long;
 const int MOD = int(1e9) + 7;
 
@@ -93,28 +91,28 @@ struct Int {
 
   Int& operator+=(const int& rhs) {
     INC(val, rhs);
-    rTs;
+    return *this;
   }
 
   Int operator+(const int& rhs) const { return sum(val, rhs); }
 
   Int& operator-=(const int& rhs) {
     DEC(val, rhs);
-    rTs;
+    return *this;
   }
 
   Int operator-(const int& rhs) const { return dff(val, rhs); }
 
   Int& operator*=(const int& rhs) {
     MUL(val, rhs);
-    rTs;
+    return *this;
   }
 
   Int operator*(const int& rhs) const { return pdt(val, rhs); }
 
   Int& operator/=(const int& rhs) {
     DIV(val, rhs);
-    rTs;
+    return *this;
   }
 
   Int operator/(const int& rhs) const { return qtt(val, rhs); }

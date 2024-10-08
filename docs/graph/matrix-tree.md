@@ -443,8 +443,8 @@ $$
     #include <cstring>
     #include <iostream>
     using namespace std;
-    #define MOD 100000007
-    #define eps 1e-7
+    const int MOD = 100000007;
+    const double eps = 1e-7;
     
     struct matrix {
       static const int maxn = 20;

@@ -90,8 +90,8 @@
     #include <cstring>
     #include <iostream>
     using namespace std;
-    #define N 50005
-    #define ll long long
+    using ll = long long;
+    const int N = 50005;
     ll a, b;
     ll f[15], ksm[15], p[15], now[15];
     
@@ -348,9 +348,9 @@
     #include <cstring>
     #include <queue>
     using namespace std;
-    #define N 1505
-    #define ll long long
-    #define mod 1000000007
+    using ll = long long;
+    const int N = 1505;
+    const int mod = 1000000007;
     int n, m;
     char s[N], c[N];
     int ch[N][10], fail[N], ed[N], tot, len;

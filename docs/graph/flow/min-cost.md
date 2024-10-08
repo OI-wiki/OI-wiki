@@ -196,7 +196,7 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
     #include <cstdio>
     #include <cstring>
     #include <queue>
-    #define INF 0x3f3f3f3f
+    const int INF = 0x3f3f3f3f;
     using namespace std;
     
     struct edge {

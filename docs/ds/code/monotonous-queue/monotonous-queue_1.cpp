@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
-#define maxn 1000100
+const int maxn = 1000100;
 using namespace std;
 int q[maxn], a[maxn];
 int n, k;

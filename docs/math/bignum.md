@@ -793,11 +793,11 @@ $$
 
 ??? 这里是另一个模板
     ```cpp
-    #define MAXN 9999
+    const int MAXN = 9999;
     // MAXN 是一位中最大的数字
-    #define MAXSIZE 10024
+    const int MAXSIZE = 10024;
     // MAXSIZE 是位数
-    #define DLEN 4
+    const int DLEN = 4;
     
     // DLEN 记录压几位
     struct Big {

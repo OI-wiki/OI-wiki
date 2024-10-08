@@ -148,9 +148,9 @@
     #include <algorithm>
     #include <cstdio>
     #include <cstring>
-    #define MAXN 1000000
-    #define MAXM 3000000
-    #define INF 0x3FFFFFFF
+    const int MAXN = 1000000;
+    const int MAXM = 3000000;
+    const int INF = 0x3FFFFFFF;
     using namespace std;
     
     struct edge {

@@ -71,7 +71,7 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
 using namespace __gnu_pbds;
 // 由于面向OIer, 本文以常用堆 : pairing_heap_tag作为范例
 // 为了更好的阅读体验，定义宏如下 ：
-#define pair_heap __gnu_pbds ::priority_queue<int>
+using pair_heap = __gnu_pbds ::priority_queue<int>;
 pair_heap q1;  // 大根堆, 配对堆
 pair_heap q2;
 pair_heap ::point_iterator id;  // 一个迭代器

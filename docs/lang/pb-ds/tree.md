@@ -60,8 +60,6 @@ using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
 using pii = pair<int, int>;
-#define pb push_back
-#define mp make_pair
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 __gnu_pbds::tree<pair<int, int>, __gnu_pbds::null_type, less<pair<int, int> >,
@@ -71,13 +69,13 @@ __gnu_pbds::tree<pair<int, int>, __gnu_pbds::null_type, less<pair<int, int> >,
 
 int main() {
   int cnt = 0;
-  trr.insert(mp(1, cnt++));
-  trr.insert(mp(5, cnt++));
-  trr.insert(mp(4, cnt++));
-  trr.insert(mp(3, cnt++));
-  trr.insert(mp(2, cnt++));
+  trr.insert(make_pair(1, cnt++));
+  trr.insert(make_pair(5, cnt++));
+  trr.insert(make_pair(4, cnt++));
+  trr.insert(make_pair(3, cnt++));
+  trr.insert(make_pair(2, cnt++));
   // 树上元素 {{1,0},{2,4},{3,3},{4,2},{5,1}}
-  auto it = trr.lower_bound(mp(2, 0));
+  auto it = trr.lower_bound(make_pair(2, 0));
   trr.erase(it);
   // 树上元素 {{1,0},{3,3},{4,2},{5,1}}
   auto it2 = trr.find_by_order(1);

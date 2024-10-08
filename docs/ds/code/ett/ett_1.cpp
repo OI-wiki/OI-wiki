@@ -5,7 +5,7 @@ FHQ Treap 实现。
 */
 #include <iostream>
 #include <vector>
-#define N 1000000
+const int N = 1000000;
 using namespace std;
 /*FHQ TREAP*/
 long long rt, tot, f[N], rnd[N], ls[N], rs[N], siz[N], tag[N], val[N], sum[N], pd[N], pds[N];

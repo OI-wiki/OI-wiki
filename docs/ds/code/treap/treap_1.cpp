@@ -1,7 +1,7 @@
 #include <iostream>
 
-#define maxn 100005
-#define INF (1 << 30)
+const int maxn = 100005;
+const int INF = 1 << 30;
 
 int n;
 
