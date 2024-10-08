@@ -413,8 +413,9 @@ nav:
     - 树上问题:
       - 树基础: graph/tree-basic.md
       - 树的直径: graph/tree-diameter.md
-      - 最近公共祖先: graph/lca.md
+      - 树的中心: graph/tree-center.md
       - 树的重心: graph/tree-centroid.md
+      - 最近公共祖先: graph/lca.md
       - 树链剖分: graph/hld.md
       - 树上启发式合并: graph/dsu-on-tree.md
       - 虚树: graph/virtual-tree.md
@@ -423,7 +424,6 @@ nav:
       - AHU 算法: graph/tree-ahu.md
       - 树哈希: graph/tree-hash.md
       - 树上随机游走: graph/tree-random-walk.md
-      - 树的中心: graph/tree-center.md
     - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md

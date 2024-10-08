@@ -28,11 +28,13 @@ author: littleparrot12345
 
 假设我们有一棵树，如下所示：
 
+```text
            A
           / \
          B   C
         / \   \
        D   E   F
+```
 
 -   树的直径为 $D \rightarrow B \rightarrow A \rightarrow C \rightarrow F$。直径长度为 $4$。
 -   树的中心为节点 $A$，因为从 $A$ 出发的最长链（到 $D$ 或 $F$）均为 $3$。
