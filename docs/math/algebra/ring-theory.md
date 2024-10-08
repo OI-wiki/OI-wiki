@@ -251,4 +251,5 @@ $$
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 
 [^ideal-history]: <https://en.wikipedia.org/wiki/Ideal_(ring_theory)#History>
-[^ring-theory-history]: 环论的简要历史可以参看[这里](https://mathshistory.st-andrews.ac.uk/HistTopics/Ring_theory/)。
+
+[^ring-theory-history]: 环论的简要历史可以参看 [这里](https://mathshistory.st-andrews.ac.uk/HistTopics/Ring_theory/)。
