@@ -24,7 +24,7 @@ author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Gr
 
 ```cpp
 struct augment_path {
-  vector<vector<int> > g;
+  vector<vector<int>> g;
   vector<int> pa;  // 匹配
   vector<int> pb;
   vector<int> vis;  // 访问
@@ -138,7 +138,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
     using namespace std;
     
     struct augment_path {
-      vector<vector<int> > g;
+      vector<vector<int>> g;
       vector<int> pa;  // 匹配
       vector<int> pb;
       vector<int> vis;  // 访问

@@ -128,7 +128,7 @@ constexpr auto expr = 1 + 1 * 4 - 5 - 1 + 4;
 
 int main() {
   std::vector<int> vec = {1, 9, 2, 6, 0};
-  std::tuple<int, int, std::string, std::vector<int> > tup =
+  std::tuple<int, int, std::string, std::vector<int>> tup =
       std::make_tuple(817, 114, "514", vec);
   std::cout << std::tuple_size<decltype(tup)>::value << std::endl;
 

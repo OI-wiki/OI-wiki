@@ -264,7 +264,7 @@ $$
 ```c++
 const double EPS = 1E-9;
 int n;
-vector<vector<double> > a(n, vector<double>(n));
+vector<vector<double>> a(n, vector<double>(n));
 
 double det = 1;
 for (int i = 0; i < n; ++i) {

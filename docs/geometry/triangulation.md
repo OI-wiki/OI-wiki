@@ -255,8 +255,8 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
         }
       }
     
-      std::vector<std::pair<int, int> > getEdge() {
-        std::vector<std::pair<int, int> > ret;
+      std::vector<std::pair<int, int>> getEdge() {
+        std::vector<std::pair<int, int>> ret;
         ret.reserve(n);
         std::list<Edge>::iterator it;
         for (int i = 0; i < n; i++) {

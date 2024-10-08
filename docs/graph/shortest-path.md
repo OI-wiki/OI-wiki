@@ -457,7 +457,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         
         vector<edge> e[maxn];
         int dis[maxn], vis[maxn];
-        priority_queue<node, vector<node>, greater<node> > q;
+        priority_queue<node, vector<node>, greater<node>> q;
         
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));

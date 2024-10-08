@@ -461,8 +461,8 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
       vector<FlowEdge> edges;
       vector<char> alive;
       vector<long long> pin, pout;
-      vector<list<int> > in, out;
-      vector<vector<int> > adj;
+      vector<list<int>> in, out;
+      vector<vector<int>> adj;
       vector<long long> ex;
       int n, m = 0;
       int s, t;

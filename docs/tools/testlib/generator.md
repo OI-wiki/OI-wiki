@@ -78,7 +78,7 @@ forn(i, n) perm[i] = i;
 shuffle(perm.begin() + 1, perm.end());
 
 /* 根据打乱的节点顺序加边 */
-vector<pair<int, int> > edges;
+vector<pair<int, int>> edges;
 for (int i = 1; i < n; i++)
   if (rnd.next(2))
     edges.push_back(make_pair(perm[i], perm[p[i]]));

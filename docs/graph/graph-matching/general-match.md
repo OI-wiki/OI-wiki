@@ -64,7 +64,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
       };
     
       vector<edge> edges;
-      vector<vector<int> > g;
+      vector<vector<int>> g;
       int n;
     
       graph(int _n) : n(_n) { g.resize(n); }

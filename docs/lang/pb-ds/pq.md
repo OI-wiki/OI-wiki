@@ -1,13 +1,13 @@
 author: Xeonacid, ouuan, Ir1d, WAAutoMaton, Chrogeek, abc1763613206, Planet6174, i-Yirannn, opsiff, GoodCoder666
 
-## `__gnu_pbds :: priority_queue`
+## `__gnu_pbds::priority_queue`
 
 附：[官方文档地址——复杂度及常数测试](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/pq_performance_tests.html#std_mod1)
 
 ```cpp
 #include <ext/pb_ds/priority_queue.hpp>
 using namespace __gnu_pbds;
-__gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
+__gnu_pbds::priority_queue<T, Compare, Tag, Allocator>
 ```
 
 ## 模板形参
@@ -16,7 +16,7 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
 -   `Compare`: 提供严格的弱序比较类型
 -   `Tag`: 是 `__gnu_pbds` 提供的不同的五种堆，Tag 参数默认是 `pairing_heap_tag` 五种分别是：
     -   `pairing_heap_tag`：配对堆
-        官方文档认为在非原生元素（如自定义结构体/`std :: string`/`pair`）中，配对堆表现最好
+        官方文档认为在非原生元素（如自定义结构体/`std::string`/`pair`）中，配对堆表现最好
     -   `binary_heap_tag`：二叉堆
         官方文档认为在原生元素中二叉堆表现最好，不过笔者测试的表现并没有那么好
     -   `binomial_heap_tag`：二项堆
@@ -34,11 +34,14 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
 
 要注明命名空间因为和 `std` 的类名称重复。
 
-    __gnu_pbds ::priority_queue<int> __gnu_pbds::priority_queue<int, greater<int> >
-    __gnu_pbds ::priority_queue<int, greater<int>, pairing_heap_tag>
-    __gnu_pbds ::priority_queue<int>::point_iterator id; // 点类型迭代器
-    // 在 modify 和 push 的时候都会返回一个 point_iterator，下文会详细的讲使用方法
-    id = q.push(1);
+```cpp
+// __gnu_pbds::priority_queue<int>;
+// __gnu_pbds::priority_queue<int, greater<int>>;
+// __gnu_pbds::priority_queue<int, greater<int>, pairing_heap_tag>;
+__gnu_pbds::priority_queue<int>::point_iterator id;  // 点类型迭代器
+// 在 modify 和 push 的时候都会返回一个 point_iterator，下文会详细的讲使用方法
+id = q.push(1);
+```
 
 ## 成员函数
 
@@ -49,7 +52,7 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
 -   `empty()` 返回是否非空。
 -   `modify(point_iterator, const key)`: 把迭代器位置的 `key` 修改为传入的 `key`，并对底层储存结构进行排序。
 -   `erase(point_iterator)`: 把迭代器位置的键值从堆中擦除。
--   `join(__gnu_pbds :: priority_queue &other)`: 把 `other` 合并到 `*this` 并把 `other` 清空。
+-   `join(__gnu_pbds::priority_queue &other)`: 把 `other` 合并到 `*this` 并把 `other` 清空。
 
 使用的 tag 决定了每个操作的时间复杂度：
 
@@ -71,17 +74,17 @@ __gnu_pbds ::priority_queue<T, Compare, Tag, Allocator>
 using namespace __gnu_pbds;
 // 由于面向OIer, 本文以常用堆 : pairing_heap_tag作为范例
 // 为了更好的阅读体验，定义宏如下 ：
-using pair_heap = __gnu_pbds ::priority_queue<int>;
+using pair_heap = __gnu_pbds::priority_queue<int>;
 pair_heap q1;  // 大根堆, 配对堆
 pair_heap q2;
-pair_heap ::point_iterator id;  // 一个迭代器
+pair_heap::point_iterator id;  // 一个迭代器
 
 int main() {
   id = q1.push(1);
   // 堆中元素 ： [1];
   for (int i = 2; i <= 5; i++) q1.push(i);
   // 堆中元素 :  [1, 2, 3, 4, 5];
-  std ::cout << q1.top() << std ::endl;
+  std::cout << q1.top() << std::endl;
   // 输出结果 : 5;
   q1.pop();
   // 堆中元素 : [1, 2, 3, 4];
@@ -89,7 +92,7 @@ int main() {
   // 堆中元素 : [1, 2, 3, 4, 10];
   q1.modify(id, 1);
   // 堆中元素 :  [1, 1, 2, 3, 4];
-  std ::cout << q1.top() << std ::endl;
+  std::cout << q1.top() << std::endl;
   // 输出结果 : 4;
   q1.pop();
   // 堆中元素 : [1, 1, 2, 3];

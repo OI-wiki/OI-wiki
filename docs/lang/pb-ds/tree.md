@@ -1,4 +1,4 @@
-## `__gnu_pbds :: tree`
+## `__gnu_pbds::tree`
 
 附：[官方文档地址](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
 
@@ -6,9 +6,9 @@
 #include <ext/pb_ds/assoc_container.hpp>  // 因为tree定义在这里 所以需要包含这个头文件
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
-__gnu_pbds ::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
-                  Node_Update = null_tree_node_update,
-                  Allocator = std::allocator<char> >
+__gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
+                 Node_Update = null_tree_node_update,
+                 Allocator = std::allocator<char>>
 ```
 
 ## 模板形参
@@ -27,7 +27,7 @@ __gnu_pbds ::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 
 ```c++
 __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
-                 std::less<std::pair<int, int> >, __gnu_pbds::rb_tree_tag,
+                 std::less<std::pair<int, int>>, __gnu_pbds::rb_tree_tag,
                  __gnu_pbds::tree_order_statistics_node_update>
     trr;
 ```
@@ -62,7 +62,7 @@ using ld = long double;
 using pii = pair<int, int>;
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
-__gnu_pbds::tree<pair<int, int>, __gnu_pbds::null_type, less<pair<int, int> >,
+__gnu_pbds::tree<pair<int, int>, __gnu_pbds::null_type, less<pair<int, int>>,
                  __gnu_pbds::rb_tree_tag,
                  __gnu_pbds::tree_order_statistics_node_update>
     trr;
