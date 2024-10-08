@@ -1,6 +1,6 @@
 #include <iostream>
 
-typedef char chr;
+using chr = char;
 
 const int maxN = 100;
 

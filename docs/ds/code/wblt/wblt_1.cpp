@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 
-typedef long long ll;
+using ll = long long;
 
 const ll MAX = 2e6 + 5;
 const ll INF = 0x7fffffff;

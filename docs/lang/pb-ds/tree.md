@@ -56,10 +56,10 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 // Common Header Simple over C++11
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
-typedef long double ld;
-typedef pair<int, int> pii;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using pii = pair<int, int>;
 #define pb push_back
 #define mp make_pair
 #include <ext/pb_ds/assoc_container.hpp>

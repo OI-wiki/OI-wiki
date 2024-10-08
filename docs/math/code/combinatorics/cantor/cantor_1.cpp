@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 const int MOD = 998244353;
-typedef long long ll;
+using ll = long long;
 int n, x, d[1000005];
 ll fac[1000005], ans;
 

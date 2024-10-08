@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 
 const int maxn = 150000 + 10;
 const int maxm = 300 + 10;

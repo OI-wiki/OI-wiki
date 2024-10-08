@@ -7,7 +7,7 @@ using namespace std;
 
 const int maxn = 510;
 const int INF = 0x3f3f3f3f;
-typedef pair<int, int> P;
+using P = pair<int, int>;
 int n, m, k;
 
 struct edge {

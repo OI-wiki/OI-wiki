@@ -347,8 +347,8 @@ $$
     #include <random>
     #include <vector>
     
-    typedef std::vector<std::vector<int>> Matrix;
-    typedef long long i64;
+    using Matrix = std::vector<std::vector<int>>;
+    using ll = long long;
     
     Matrix to_upper_Hessenberg(const Matrix &M, int mod) {
       Matrix H(M);
@@ -379,15 +379,15 @@ $$
             if (H[j][i] >= H[i + 1][i]) {
               int q = H[j][i] / H[i + 1][i], mq = mod - q;
               for (int k = i; k < n; ++k)
-                H[j][k] = (H[j][k] + i64(mq) * H[i + 1][k]) % mod;
+                H[j][k] = (H[j][k] + ll(mq) * H[i + 1][k]) % mod;
               for (int k = 0; k < n; ++k)
-                H[k][i + 1] = (H[k][i + 1] + i64(q) * H[k][j]) % mod;
+                H[k][i + 1] = (H[k][i + 1] + ll(q) * H[k][j]) % mod;
             } else {
               int q = H[i + 1][i] / H[j][i], mq = mod - q;
               for (int k = i; k < n; ++k)
-                H[i + 1][k] = (H[i + 1][k] + i64(mq) * H[j][k]) % mod;
+                H[i + 1][k] = (H[i + 1][k] + ll(mq) * H[j][k]) % mod;
               for (int k = 0; k < n; ++k)
-                H[k][j] = (H[k][j] + i64(q) * H[k][i + 1]) % mod;
+                H[k][j] = (H[k][j] + ll(q) * H[k][i + 1]) % mod;
             }
           }
         }
@@ -407,17 +407,17 @@ $$
         int v = mod - H[i - 1][i - 1];
         if (v == mod) v -= mod;
         for (int j = 0; j < i; ++j) {
-          pi[j] = (pi[j] + i64(v) * pi_1[j]) % mod;
+          pi[j] = (pi[j] + ll(v) * pi_1[j]) % mod;
           if ((pi[j + 1] += pi_1[j]) >= mod) pi[j + 1] -= mod;
         }
         int t = 1;
         for (int j = 1; j < i; ++j) {
-          t = i64(t) * H[i - j][i - j - 1] % mod;
-          int prod = i64(t) * H[i - j - 1][i - 1] % mod;
+          t = ll(t) * H[i - j][i - j - 1] % mod;
+          int prod = ll(t) * H[i - j - 1][i - 1] % mod;
           if (prod == 0) continue;
           prod = mod - prod;
           for (int k = 0; k <= i - j - 1; ++k)
-            pi[k] = (pi[k] + i64(prod) * p[i - j - 1][k]) % mod;
+            pi[k] = (pi[k] + ll(prod) * p[i - j - 1][k]) % mod;
         }
       }
       return p[n];
@@ -432,11 +432,11 @@ $$
       for (int i = 0; i < n; ++i) randvec[i] = dis(gen);
       for (int i = 0; i <= n; ++i) {
         int v = charpoly[i];
-        for (int j = 0; j < n; ++j) sum[j] = (sum[j] + i64(v) * randvec[j]) % mod;
+        for (int j = 0; j < n; ++j) sum[j] = (sum[j] + ll(v) * randvec[j]) % mod;
         std::vector<int> prod(n, 0);
         for (int j = 0; j < n; ++j) {
           for (int k = 0; k < n; ++k) {
-            prod[j] = (prod[j] + i64(M[j][k]) * randvec[k]) % mod;
+            prod[j] = (prod[j] + ll(M[j][k]) * randvec[k]) % mod;
           }
         }
         randvec.swap(prod);

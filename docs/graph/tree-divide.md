@@ -108,7 +108,7 @@
     
     using namespace std;
     
-    typedef vector<int>::iterator IT;
+    using IT = vector<int>::iterator;
     
     struct Edge {
       int to, nxt, val;

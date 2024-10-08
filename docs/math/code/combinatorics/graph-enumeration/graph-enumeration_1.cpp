@@ -3,7 +3,7 @@ using namespace std;
 
 #define Ts *this
 #define rTs return Ts
-typedef long long LL;
+using LL = long long;
 const int MOD = int(1e9) + 7;
 
 // <<= '2. Number Theory .,//{

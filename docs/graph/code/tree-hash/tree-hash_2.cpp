@@ -3,7 +3,7 @@
 #include <random>
 #include <vector>
 
-typedef unsigned long long ull;
+using ull = unsigned long long;
 
 const int N = 60, M = 998244353;
 const ull mask = std::mt19937_64(time(nullptr))();

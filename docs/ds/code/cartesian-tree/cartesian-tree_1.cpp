@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 const int N = 100000 + 10, INF = 0x3f3f3f3f;
 
 struct node {

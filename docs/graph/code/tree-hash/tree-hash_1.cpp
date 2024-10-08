@@ -4,7 +4,7 @@
 #include <set>
 #include <vector>
 
-typedef unsigned long long ull;
+using ull = unsigned long long;
 
 const ull mask = std::mt19937_64(time(nullptr))();
 

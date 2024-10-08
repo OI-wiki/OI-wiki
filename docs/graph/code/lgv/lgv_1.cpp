@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 
-typedef long long ll;
+using ll = long long;
 
 const int K = 105;
 const int N = 100005;

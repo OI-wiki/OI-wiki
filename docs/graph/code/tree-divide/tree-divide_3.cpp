@@ -8,7 +8,7 @@ int h[N], nxt[N * 2], to[N * 2], c[N], gr;
 
 il void tu(int x, int y) { to[++gr] = y, nxt[gr] = h[x], h[x] = gr; }
 
-typedef long long ll;
+using ll = long long;
 int n, nn, siz[N], mn, rt;
 bool vis[N];
 

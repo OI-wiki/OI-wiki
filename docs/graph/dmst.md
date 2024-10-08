@@ -95,7 +95,7 @@ Tarjan 的算法分为 **收缩** 与 **伸展** 两个过程。接下来先介�
 
 using namespace std;
 
-typedef long long ll;
+using ll = long long;
 #define maxn 102
 #define INF 0x3f3f3f3f
 

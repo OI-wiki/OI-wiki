@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <iostream>
 using namespace std;
-typedef double db;
+using db = double;
 const int N = 1e6 + 10;
 
 struct data_ {

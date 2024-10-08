@@ -1133,7 +1133,7 @@ st.siz2[y] += st.siz[x];
     #include <cstring>
     using namespace std;
     const int maxn = 100010;
-    typedef long long ll;
+    using ll = long long;
     
     struct Splay {
       int ch[maxn][2], fa[maxn], siz[maxn], siz2[maxn], tag[maxn];

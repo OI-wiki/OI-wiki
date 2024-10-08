@@ -2,7 +2,7 @@
 #include <queue>
 
 using namespace std;
-typedef long long ll;
+using ll = long long;
 const int maxn = 100010;
 const long long linf = (1ull << 63) - 1;
 

@@ -294,14 +294,14 @@
       Node *root_{nullptr};
     
      public:
-      typedef Key KeyType;
-      typedef Key ValueType;
-      typedef std::size_t SizeType;
-      typedef std::ptrdiff_t DifferenceType;
-      typedef Compare KeyCompare;
-      typedef Compare ValueCompare;
-      typedef Key &Reference;
-      typedef const Key &ConstReference;
+      using KeyType = Key;
+      using ValueType = Key;
+      using SizeType = std::size_t;
+      using DifferenceType = std::ptrdiff_t;
+      using KeyCompare = Compare;
+      using ValueCompare = Compare;
+      using Reference = Key&;
+      using ConstReference = const Key &;
     
       Set() = default;
     

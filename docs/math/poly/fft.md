@@ -226,7 +226,7 @@ $$
     #include <cmath>
     #include <complex>
     
-    typedef std::complex<double> Comp;  // STL complex
+    using Comp = std::complex<double>;  // STL complex
     
     const Comp I(0, 1);  // i
     const int MAX_N = 1 << 20;

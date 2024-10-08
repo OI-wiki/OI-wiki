@@ -108,7 +108,7 @@ author: hyp1231, 383494
       const bool operator<(Point A) const { return x == A.x ? y < A.y : x < A.x; }
     };  // 点的定义
     
-    typedef Point Vector;  // 向量的定义
+    using Vector = Point;  // 向量的定义
     
     Vector operator+(Vector A, Vector B) {
       return Vector(A.x + B.x, A.y + B.y);

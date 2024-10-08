@@ -3,7 +3,7 @@
 #include <iostream>
 #include <list>
 using namespace std;
-typedef long long LL;
+using LL = long long;
 const LL INF = (LL)1e15;
 const int MAXV = 105;
 

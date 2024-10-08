@@ -94,8 +94,8 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
     #include <bits/stdc++.h>
     using namespace std;
     const int MAXN = 502;
-    typedef long long ll;
-    typedef pair<int, int> pii;
+    using ll = long long;
+    using pii = pair<int, int>;
     ll d[MAXN][MAXN], dd[MAXN][MAXN], rk[MAXN][MAXN], val[MAXN];
     const ll INF = 1e17;
     int n, m;

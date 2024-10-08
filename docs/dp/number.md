@@ -44,7 +44,7 @@
     #include <bits/stdc++.h>
     using namespace std;
     const int N = 15;
-    typedef long long ll;
+    using ll = long long;
     ll l, r, dp[N], mi[N];
     ll ans1[N], ans2[N];
     int a[N];

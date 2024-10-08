@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-typedef long long lxl;
+using lxl = long long;
 
 const int maxN = 5e5;
 const int maxM = 5e5;
@@ -18,7 +18,7 @@ lxl f[maxN + 10];
 lxl g[maxN + 10];
 lxl ans[maxM + 10];
 
-typedef struct SegmentTree {
+struct SegmentTree {
   struct Node {
     lxl val;
     lxl tag;
@@ -74,9 +74,11 @@ typedef struct SegmentTree {
     if (s >= mid + 1) return Ask(2 * u + 1, mid + 1, r, s, t);
     return Ask(2 * u, l, mid, s, t) + Ask(2 * u + 1, mid + 1, r, s, t);
   }
-} sgt;
+};
 
-typedef struct BlockArray {
+using sgt = SegmentTree;
+
+struct BlockArray {
   struct Block {
     int l, r;
     lxl tag;
@@ -107,7 +109,9 @@ typedef struct BlockArray {
     if (l > r) return 0;
     return Ask(r) - Ask(l - 1);
   }
-} dba;
+};
+
+using dba = BlockArray;
 
 namespace captainMoSecondaryOffline {
 namespace offline2 {

@@ -61,8 +61,8 @@ using std::tie;
 using std::tuple;
 using std::vector;
 
-typedef unsigned int u32;
-typedef unsigned int* u32ptr;
+using u32 = unsigned int;
+using u32ptr = unsigned int*;
 
 void MSD_radix_sort(u32ptr first, u32ptr last) {
   const size_t maxW = 0x100000000llu;
@@ -75,7 +75,7 @@ void MSD_radix_sort(u32ptr first, u32ptr last) {
   u32ptr tmp =
       (u32ptr)calloc(last - first, sizeof(u32));  // 计数排序用的输出空间
 
-  typedef tuple<u32ptr, u32ptr, u32> node;
+  using node = tuple<u32ptr, u32ptr, u32>;
   stack<node, vector<node>> s;
   s.push(make_tuple(first, last, maxlogW - logW));
 
@@ -133,8 +133,8 @@ using std::tie;
 using std::tuple;
 using std::vector;
 
-typedef char* NTBS;  // 空终止字节字符串
-typedef NTBS* NTBSptr;
+using NTBS = char*;  // 空终止字节字符串
+using NTBSptr = NTBS*;
 
 void MSD_radix_sort(NTBSptr first, NTBSptr last) {
   const size_t W = 128;
@@ -143,7 +143,7 @@ void MSD_radix_sort(NTBSptr first, NTBSptr last) {
 
   NTBSptr tmp = (NTBSptr)calloc(last - first, sizeof(NTBS));
 
-  typedef tuple<NTBSptr, NTBSptr, size_t> node;
+  using node = tuple<NTBSptr, NTBSptr, size_t>;
   stack<node, vector<node>> s;
   s.push(make_tuple(first, last, 0));
 

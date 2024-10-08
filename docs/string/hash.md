@@ -292,7 +292,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     const int M = 1e9 + 7;
     const int B = 233;
     
-    typedef long long ll;
+    using ll = long long;
     
     int get_hash(const string& s) {
       int res = 0;
@@ -328,7 +328,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
 
 === "C++"
     ```cpp
-    typedef unsigned long long ull;
+    using ull = unsigned long long;
     ull base = 131;
     ull mod1 = 212370440130137957, mod2 = 1e9 + 7;
     

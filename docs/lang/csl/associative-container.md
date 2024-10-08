@@ -148,7 +148,7 @@ if (it == record.end()) {
 
 ```cpp
 set<int> s;
-typedef set<int>::iterator si;
+using si = set<int>::iterator;
 for (si it = s.begin(); it != s.end(); it++) cout << *it << endl;
 ```
 

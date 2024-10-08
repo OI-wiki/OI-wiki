@@ -2,7 +2,7 @@
 #include <iostream>
 #include <utility>
 using namespace std;
-typedef long long LL;
+using LL = long long;
 
 template <int N>
 struct WBLT {

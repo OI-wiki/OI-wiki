@@ -221,7 +221,7 @@ $$
 
 ??? note "参考实现"
     ```c++
-    typedef long long ll;
+    using ll = long long;
     const int maxn = 10000;
     const int mod = 1e9 + 7;
     ll B[maxn];        // 伯努利数

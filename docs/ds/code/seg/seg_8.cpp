@@ -3,7 +3,7 @@
 #include <queue>
 #include <vector>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 
 const int N = 1e5 + 5;
 

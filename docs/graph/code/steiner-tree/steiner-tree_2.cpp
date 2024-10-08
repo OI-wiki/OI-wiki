@@ -5,8 +5,8 @@
 using namespace std;
 
 #define mp make_pair
-typedef pair<int, int> P;
-typedef pair<P, int> PP;
+using P = pair<int, int>;
+using PP = pair<P, int>;
 const int INF = 0x3f3f3f3f;
 const int dx[] = {0, 0, -1, 1};
 const int dy[] = {1, -1, 0, 0};

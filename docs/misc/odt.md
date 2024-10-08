@@ -164,14 +164,14 @@ void perform(int l, int r) {  // 注意，这里的r是区间右端点+1
 ### 结点存储
 
 ```cpp
-typedef long long int64;
+using ll = long long;
 
 struct Block {
   Block *next;  // 链表下一节点
   int l, r;     // 区间范围
-  int64 val;    // 区间上的值
+  ll val;    // 区间上的值
 
-  Block(Block *next, int l, int r, int64 val)
+  Block(Block *next, int l, int r, ll val)
       : next(next), l(l), r(r), val(val) {}
 
   bool operator<(const Block &b) const { return val < b.val; }
@@ -214,7 +214,7 @@ void prepare(int l, int r) {
 ### assign 操作
 
 ```cpp
-void assign(int l, int r, int64 val) {
+void assign(int l, int r, ll val) {
   prepare(l, r);
   lb->r = r;  // 将区间 [lb.l, lb.r] 修改成 [lb.l, r]
   lb->val = val;

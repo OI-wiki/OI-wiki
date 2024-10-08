@@ -8,7 +8,7 @@ void promote() {
   return;
 }
 
-typedef std::deque<int> dic;
+using dic = std::deque<int>;
 
 const int maxN = 2e5;
 const int maxS = 2e5;

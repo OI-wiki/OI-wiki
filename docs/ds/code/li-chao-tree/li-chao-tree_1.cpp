@@ -4,7 +4,7 @@
 #define MOD2 1000000000
 #define MAXT 40000
 using namespace std;
-typedef pair<double, int> pdi;
+using pdi = pair<double, int>;
 
 const double eps = 1e-9;
 

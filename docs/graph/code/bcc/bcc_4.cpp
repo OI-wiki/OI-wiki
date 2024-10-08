@@ -17,7 +17,7 @@ inline void add(int u, int v) { e[++tot] = {v, hd[u]}, hd[u] = tot; }
 
 void uadd(int u, int v) { add(u, v), add(v, u); }  // 链式前向星
 
-typedef long long ll;
+using ll = long long;
 #define P(x, y) ((ll)min(x, y) * N + (ll)max(x, y))
 const int hmod = 1e5 + 7;
 
@@ -37,7 +37,7 @@ struct hash {
 // re 判断是否有重边，be 记录边是不是桥
 
 // #define P(x, y) {min(x, y), max(x, y)}
-// typedef pair<int, int> pii;
+// using pii = pair<int, int>;
 // map<pii, int> re, be; // 不紧时可以用 map 实现 hash 表
 
 int dep[N], bz[N], sum[N];  // 记录深度、差分值、子树查分和

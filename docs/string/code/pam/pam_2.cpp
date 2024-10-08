@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 const int mod = 1e9 + 7;
 const int maxn = 1000000 + 5;
 

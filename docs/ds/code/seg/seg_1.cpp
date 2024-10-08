@@ -1,5 +1,5 @@
 #include <iostream>
-typedef long long LL;
+using LL = long long;
 LL n, a[100005], d[270000], b[270000];
 
 void build(LL l, LL r, LL p) {  // l:区间左端点 r:区间右端点 p:节点标号

@@ -3,7 +3,7 @@
 #include <stack>
 #include <vector>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 int n;
 int m;
 int ask;

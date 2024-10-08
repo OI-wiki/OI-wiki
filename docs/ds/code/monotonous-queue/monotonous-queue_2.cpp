@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 const int N = 100005;
-typedef long long ll;
+using ll = long long;
 int mxq[N], mnq[N];
 int D, ans, n, hx, rx, hn, rn;
 

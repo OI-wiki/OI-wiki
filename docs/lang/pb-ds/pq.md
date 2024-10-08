@@ -128,25 +128,16 @@ using namespace __gnu_pbds;
 
 template <typename T>
 void print_invalidation_guarantee() {
-  typedef typename __gnu_pbds::container_traits<T>::invalidation_guarantee gute;
+  using gute = __gnu_pbds::container_traits<T>::invalidation_guarantee;
   cout << abi::__cxa_demangle(typeid(gute).name(), 0, 0, 0) << endl;
 }
 
 int main() {
-  typedef
-      typename __gnu_pbds::priority_queue<int, greater<int>, pairing_heap_tag>
-          pairing;
-  typedef
-      typename __gnu_pbds::priority_queue<int, greater<int>, binary_heap_tag>
-          binary;
-  typedef
-      typename __gnu_pbds::priority_queue<int, greater<int>, binomial_heap_tag>
-          binomial;
-  typedef typename __gnu_pbds::priority_queue<int, greater<int>,
-                                              rc_binomial_heap_tag>
-      rc_binomial;
-  typedef typename __gnu_pbds::priority_queue<int, greater<int>, thin_heap_tag>
-      thin;
+  using pairing = __gnu_pbds::priority_queue<int, greater<int>, pairing_heap_tag>;
+  using binary = __gnu_pbds::priority_queue<int, greater<int>, binary_heap_tag>;
+  using binomial = __gnu_pbds::priority_queue<int, greater<int>, binomial_heap_tag>;
+  using rc_binomial = __gnu_pbds::priority_queue<int, greater<int>, rc_binomial_heap_tag>;
+  using thin = __gnu_pbds::priority_queue<int, greater<int>, thin_heap_tag>;
   print_invalidation_guarantee<pairing>();
   print_invalidation_guarantee<binary>();
   print_invalidation_guarantee<binomial>();

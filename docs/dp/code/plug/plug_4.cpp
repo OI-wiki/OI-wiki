@@ -3,8 +3,8 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-typedef long long T_state;
-typedef int T_key;
+using T_state = long long;
+using T_key = int;
 const int N = 8;
 int n, m;
 char A[N + 1][N + 1], B[N + 1][N + 1];
