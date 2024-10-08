@@ -184,9 +184,7 @@ int m;
 int root[500010];
 
 int main() {
-#ifndef LOCAL
   cin.tie(nullptr)->sync_with_stdio(false);
-#endif
   cin >> m;
   root[0] = t.root;
   LL lastans = 0;
