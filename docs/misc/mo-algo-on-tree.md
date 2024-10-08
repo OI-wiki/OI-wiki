@@ -80,7 +80,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
     } a[maxn], b[maxn];
     
     void addedge(int x, int y) {
-      e[++cnt] = (edge){y, head[x]};
+      e[++cnt] = edge{y, head[x]};
       head[x] = cnt;
     }
     
@@ -158,7 +158,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
           last[x] = b[cnt2].t = y;
         } else {
           if (f[x] > f[y]) swap(x, y);
-          a[++cnt1] = (query){lca(x, y) == x ? f[x] : g[x], f[y], cnt2, cnt1};
+          a[++cnt1] = query{lca(x, y) == x ? f[x] : g[x], f[y], cnt2, cnt1};
         }
       }
       sort(a + 1, a + cnt1 + 1);

@@ -388,7 +388,7 @@ $$
     
      public:
       void addedge(int u, int v, int val) {
-        e[++cnt] = (Edge){v, head[u], val};
+        e[++cnt] = Edge{v, head[u], val};
         head[u] = cnt;
       }
     
@@ -486,7 +486,7 @@ $$
       for (int i = 1; i <= m; i++) {
         int u, v, val;
         std::cin >> u >> v >> val;
-        e[i] = (Edge){u, v, val};
+        e[i] = Edge{u, v, val};
       }
     
       Kruskal();

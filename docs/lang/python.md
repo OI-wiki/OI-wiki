@@ -792,7 +792,7 @@ def fib(n):
     qxx e[M];
     int h[N], cnt;
     
-    void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
+    void add_path(int f, int t, int v) { e[++cnt] = qxx{h[f], t, v}, h[f] = cnt; }
     
     using pii = pair<int, int>;
     priority_queue<pii, vector<pii>, greater<pii>> q;
@@ -928,7 +928,7 @@ def fib(n):
     qxx e[M];
     int h[N], cnt;
     
-    void add_path(int f, int t, int v) { e[++cnt] = (qxx){h[f], t, v}, h[f] = cnt; }
+    void add_path(int f, int t, int v) { e[++cnt] = qxx{h[f], t, v}, h[f] = cnt; }
     
     using pii = pair<int, int>;
     priority_queue<pii, vector<pii>, greater<pii>> q;

@@ -73,7 +73,7 @@ struct Data {
   }
 } tmp[maxn];  // 也可以使用 std::pair
 
-for (int i = 1; i <= n; ++i) tmp[i] = (Data){i, arr[i]};
+for (int i = 1; i <= n; ++i) tmp[i] = Data{i, arr[i]};
 std::sort(tmp + 1, tmp + n + 1);
 for (int i = 1; i <= n; ++i) arr[tmp[i].idx] = i;
 ```

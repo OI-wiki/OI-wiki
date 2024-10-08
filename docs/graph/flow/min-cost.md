@@ -53,7 +53,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
     int h[N], cnt = 1;
     
     void add_path(int f, int t, int v, int c) {
-      e[++cnt] = (qxx){h[f], t, v, c}, h[f] = cnt;
+      e[++cnt] = qxx{h[f], t, v, c}, h[f] = cnt;
     }
     
     void add_flow(int f, int t, int v, int c) {

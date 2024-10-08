@@ -266,7 +266,7 @@ struct Edge {
 } E[N << 1];
 
 void add(int u, int v) {  // 树结构加边
-  E[o] = (Edge){v, hd[u]};
+  E[o] = Edge{v, hd[u]};
   hd[u] = o++;
 }
 
