@@ -118,10 +118,9 @@ $$
       int weight;
       HNode *lchild, *rchild;
     };
-    ```
-
+    
     using Htree = HNode*;
-
+    
     int getWPL(Htree root, int len) {  // 递归实现，对于已经建好的霍夫曼树，求 WPL
       if (root == NULL)
         return 0;

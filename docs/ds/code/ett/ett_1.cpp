@@ -120,7 +120,7 @@ void changeFa(long long x, long long y) {
 
 /*main function*/
 long long n, m, w[N];
-vector<int> v[N];
+vector<long long> v[N];
 
 void dfs(long long x) {
   rt = merge(rt, s[x] = newNode(w[x], 1));

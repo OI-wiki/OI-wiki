@@ -41,7 +41,7 @@ void calcdist(long long x, long long fa) {
       dist[p[j]] = dist[x] + w[j], calcdist(p[j], x);
 }
 
-queue<int> tag;
+queue<long long> tag;
 
 struct segtree {
   long long cnt, rt, lc[maxn], rc[maxn], sum[maxn];

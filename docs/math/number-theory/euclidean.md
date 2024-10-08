@@ -188,16 +188,16 @@ $$
     using namespace std;
     const long long P = 998244353;
     long long i2 = 499122177, i6 = 166374059;
-    ```
-
+    
     struct data_t {
       data_t() { f = g = h = 0; }
-
+    
       long long f, g, h;
     };  // 三个函数打包
-
+    
     data_t calc(long long n, long long a, long long b, long long c) {
-      long long ac = a / c, bc = b / c, m = (a * n + b) / c, n1 = n + 1, n21 = n * 2 + 1;
+      long long ac = a / c, bc = b / c, m = (a * n + b) / c, n1 = n + 1,
+                n21 = n * 2 + 1;
       data_t d;
       if (a == 0) {  // 迭代到最底层
         d.f = bc * n1 % P;
@@ -211,9 +211,9 @@ $$
         d.h = ac * ac % P * n % P * n1 % P * n21 % P * i6 % P +
               bc * bc % P * n1 % P + ac * bc % P * n % P * n1 % P;
         d.f %= P, d.g %= P, d.h %= P;
-
+    
         data_t e = calc(n, a % c, b % c, c);  // 迭代
-
+    
         d.h += e.h + 2 * bc % P * e.f % P + 2 * ac % P * e.g % P;
         d.g += e.g, d.f += e.f;
         d.f %= P, d.g %= P, d.h %= P;
@@ -226,9 +226,9 @@ $$
       d.h = (d.h % P + P) % P;
       return d;
     }
-
+    
     long long T, n, a, b, c;
-
+    
     signed main() {
       scanf("%lld", &T);
       while (T--) {
