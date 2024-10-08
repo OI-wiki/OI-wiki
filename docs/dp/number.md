@@ -343,7 +343,7 @@
 
 ???+ note "参考代码"
     ```c++
-    //code by Alphnia
+    // code by Alphnia
     #include <cstdio>
     #include <cstring>
     #include <queue>

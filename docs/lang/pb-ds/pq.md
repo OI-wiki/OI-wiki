@@ -133,10 +133,13 @@ void print_invalidation_guarantee() {
 }
 
 int main() {
-  using pairing = __gnu_pbds::priority_queue<int, greater<int>, pairing_heap_tag>;
+  using pairing =
+      __gnu_pbds::priority_queue<int, greater<int>, pairing_heap_tag>;
   using binary = __gnu_pbds::priority_queue<int, greater<int>, binary_heap_tag>;
-  using binomial = __gnu_pbds::priority_queue<int, greater<int>, binomial_heap_tag>;
-  using rc_binomial = __gnu_pbds::priority_queue<int, greater<int>, rc_binomial_heap_tag>;
+  using binomial =
+      __gnu_pbds::priority_queue<int, greater<int>, binomial_heap_tag>;
+  using rc_binomial =
+      __gnu_pbds::priority_queue<int, greater<int>, rc_binomial_heap_tag>;
   using thin = __gnu_pbds::priority_queue<int, greater<int>, thin_heap_tag>;
   print_invalidation_guarantee<pairing>();
   print_invalidation_guarantee<binary>();

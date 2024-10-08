@@ -62,7 +62,8 @@ struct segtree {
     print(rc[o], mid + 1, r);
   }
 
-  void update(long long& o, long long l, long long r, long long x, long long v) {
+  void update(long long& o, long long l, long long r, long long x,
+              long long v) {
     if (!o) o = ++cnt;
     if (l == r) {
       sum[o] += v;
@@ -78,7 +79,8 @@ struct segtree {
     if (!sum[o]) o = 0;
   }
 
-  long long query(long long o, long long l, long long r, long long ql, long long qr) {
+  long long query(long long o, long long l, long long r, long long ql,
+                  long long qr) {
     if (!o) return 0;
     if (r < ql || l > qr) return 0;
     if (ql <= l && r <= qr) return sum[o];

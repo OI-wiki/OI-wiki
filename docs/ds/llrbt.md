@@ -300,7 +300,7 @@
       using DifferenceType = std::ptrdiff_t;
       using KeyCompare = Compare;
       using ValueCompare = Compare;
-      using Reference = Key&;
+      using Reference = Key &;
       using ConstReference = const Key &;
     
       Set() = default;

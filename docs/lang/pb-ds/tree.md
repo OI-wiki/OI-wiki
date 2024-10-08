@@ -63,8 +63,8 @@ using pii = pair<int, int>;
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 __gnu_pbds::tree<pair<int, int>, __gnu_pbds::null_type, less<pair<int, int> >,
-                  __gnu_pbds::rb_tree_tag,
-                  __gnu_pbds::tree_order_statistics_node_update>
+                 __gnu_pbds::rb_tree_tag,
+                 __gnu_pbds::tree_order_statistics_node_update>
     trr;
 
 int main() {

@@ -8,7 +8,8 @@ FHQ Treap 实现。
 const int N = 1000000;
 using namespace std;
 /*FHQ TREAP*/
-long long rt, tot, f[N], rnd[N], ls[N], rs[N], siz[N], tag[N], val[N], sum[N], pd[N], pds[N];
+long long rt, tot, f[N], rnd[N], ls[N], rs[N], siz[N], tag[N], val[N], sum[N],
+    pd[N], pds[N];
 
 void pushup(long long x) {
   siz[x] = siz[ls[x]] + siz[rs[x]] + 1;

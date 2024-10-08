@@ -169,10 +169,9 @@ using ll = long long;
 struct Block {
   Block *next;  // 链表下一节点
   int l, r;     // 区间范围
-  ll val;    // 区间上的值
+  ll val;       // 区间上的值
 
-  Block(Block *next, int l, int r, ll val)
-      : next(next), l(l), r(r), val(val) {}
+  Block(Block *next, int l, int r, ll val) : next(next), l(l), r(r), val(val) {}
 
   bool operator<(const Block &b) const { return val < b.val; }
 } *root;

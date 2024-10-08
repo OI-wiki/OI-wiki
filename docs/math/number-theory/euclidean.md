@@ -188,6 +188,7 @@ $$
     using namespace std;
     const long long P = 998244353;
     long long i2 = 499122177, i6 = 166374059;
+    ```
 
     struct data_t {
       data_t() { f = g = h = 0; }

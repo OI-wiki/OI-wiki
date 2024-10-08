@@ -21,9 +21,7 @@ struct node {
   ll mx1[2], mx2[2];  // 0 : A 1 : B
   ll tag_add[2], tag_mn[2];
 
-  void clr_tag() {
-    tag_add[0] = tag_add[1] = 0, tag_mn[0] = tag_mn[1] = INF;
-  }
+  void clr_tag() { tag_add[0] = tag_add[1] = 0, tag_mn[0] = tag_mn[1] = INF; }
 
   void init(ll a, ll b) {
     mx1[0] = a, mx1[1] = b, mx2[0] = mx2[1] = -INF;
@@ -122,9 +120,7 @@ void _modify_mn(int u, int l, int r, int L, int R, int v, bool i) {
   pushup(u);
 }
 
-void modify_mn(int l, int r, int v, bool i) {
-  _modify_mn(1, l, r, 1, n, v, i);
-}
+void modify_mn(int l, int r, int v, bool i) { _modify_mn(1, l, r, 1, n, v, i); }
 
 void _modify_add(int u, int l, int r, int L, int R, int v, bool i) {
   if (L > r || R < l) return;

@@ -513,7 +513,8 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
       }
     
       void access(long long x) {
-        for (long long f = 0; x; f = x, x = fa[x]) splay(x), ch[x][1] = f, maintain(x);
+        for (long long f = 0; x; f = x, x = fa[x])
+          splay(x), ch[x][1] = f, maintain(x);
       }
     
       void makeroot(long long x) {
