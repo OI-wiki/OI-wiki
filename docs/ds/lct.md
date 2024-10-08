@@ -419,36 +419,35 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     #include <cstdio>
     #include <cstring>
     using namespace std;
-    #define int long long
-    const int maxn = 100010;
-    const int mod = 51061;
-    int n, q, u, v, c;
+    const long long maxn = 100010;
+    const long long mod = 51061;
+    long long n, q, u, v, c;
     char op;
     
     struct Splay {
-      int ch[maxn][2], fa[maxn], siz[maxn], val[maxn], sum[maxn], rev[maxn],
+      long long ch[maxn][2], fa[maxn], siz[maxn], val[maxn], sum[maxn], rev[maxn],
           add[maxn], mul[maxn];
     
-      void clear(int x) {
+      void clear(long long x) {
         ch[x][0] = ch[x][1] = fa[x] = siz[x] = val[x] = sum[x] = rev[x] = add[x] =
             0;
         mul[x] = 1;
       }
     
-      int getch(int x) { return (ch[fa[x]][1] == x); }
+      long long getch(long long x) { return (ch[fa[x]][1] == x); }
     
-      int isroot(int x) {
+      long long isroot(long long x) {
         clear(0);
         return ch[fa[x]][0] != x && ch[fa[x]][1] != x;
       }
     
-      void maintain(int x) {
+      void maintain(long long x) {
         clear(0);
         siz[x] = (siz[ch[x][0]] + 1 + siz[ch[x][1]]) % mod;
         sum[x] = (sum[ch[x][0]] + val[x] + sum[ch[x][1]]) % mod;
       }
     
-      void pushdown(int x) {
+      void pushdown(long long x) {
         clear(0);
         if (mul[x] != 1) {
           if (ch[x][0])
@@ -481,12 +480,12 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         }
       }
     
-      void update(int x) {
+      void update(long long x) {
         if (!isroot(x)) update(fa[x]);
         pushdown(x);
       }
     
-      void print(int x) {
+      void print(long long x) {
         if (!x) return;
         pushdown(x);
         print(ch[x][0]);
@@ -494,8 +493,8 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         print(ch[x][1]);
       }
     
-      void rotate(int x) {
-        int y = fa[x], z = fa[y], chx = getch(x), chy = getch(y);
+      void rotate(long long x) {
+        long long y = fa[x], z = fa[y], chx = getch(x), chy = getch(y);
         fa[x] = z;
         if (!isroot(y)) ch[z][chy] = x;
         ch[y][chx] = ch[x][chx ^ 1];
@@ -507,24 +506,24 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
         maintain(z);
       }
     
-      void splay(int x) {
+      void splay(long long x) {
         update(x);
-        for (int f = fa[x]; f = fa[x], !isroot(x); rotate(x))
+        for (long long f = fa[x]; f = fa[x], !isroot(x); rotate(x))
           if (!isroot(f)) rotate(getch(x) == getch(f) ? f : x);
       }
     
-      void access(int x) {
-        for (int f = 0; x; f = x, x = fa[x]) splay(x), ch[x][1] = f, maintain(x);
+      void access(long long x) {
+        for (long long f = 0; x; f = x, x = fa[x]) splay(x), ch[x][1] = f, maintain(x);
       }
     
-      void makeroot(int x) {
+      void makeroot(long long x) {
         access(x);
         splay(x);
         swap(ch[x][0], ch[x][1]);
         rev[x] ^= 1;
       }
     
-      int find(int x) {
+      long long find(long long x) {
         access(x);
         splay(x);
         while (ch[x][0]) x = ch[x][0];
@@ -535,8 +534,8 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     
     main() {
       scanf("%lld%lld", &n, &q);
-      for (int i = 1; i <= n; i++) st.val[i] = 1, st.maintain(i);
-      for (int i = 1; i < n; i++) {
+      for (long long i = 1; i <= n; i++) st.val[i] = 1, st.maintain(i);
+      for (long long i = 1; i < n; i++) {
         scanf("%lld%lld", &u, &v);
         if (st.find(u) != st.find(v)) st.makeroot(u), st.fa[u] = v;
       }

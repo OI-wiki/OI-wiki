@@ -185,19 +185,18 @@ $$
 ??? note "[模板题代码实现](https://www.luogu.com.cn/problem/P5170)"
     ```cpp
     #include <cstdio>
-    #define int long long
     using namespace std;
-    const int P = 998244353;
-    int i2 = 499122177, i6 = 166374059;
+    const long long P = 998244353;
+    long long i2 = 499122177, i6 = 166374059;
 
     struct data_t {
       data_t() { f = g = h = 0; }
 
-      int f, g, h;
+      long long f, g, h;
     };  // 三个函数打包
 
-    data_t calc(int n, int a, int b, int c) {
-      int ac = a / c, bc = b / c, m = (a * n + b) / c, n1 = n + 1, n21 = n * 2 + 1;
+    data_t calc(long long n, long long a, long long b, long long c) {
+      long long ac = a / c, bc = b / c, m = (a * n + b) / c, n1 = n + 1, n21 = n * 2 + 1;
       data_t d;
       if (a == 0) {  // 迭代到最底层
         d.f = bc * n1 % P;
@@ -227,7 +226,7 @@ $$
       return d;
     }
 
-    int T, n, a, b, c;
+    long long T, n, a, b, c;
 
     signed main() {
       scanf("%lld", &T);
