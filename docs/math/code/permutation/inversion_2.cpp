@@ -38,16 +38,11 @@ long long merge_sort(std::vector<int>& nums, int b, int e) {
 }
 
 int main() {
-#ifndef ONLINE_JUDGE
-  freopen("data.in", "r", stdin);
-#endif
-  fast_io;
-  int n;
-  std::cin >> n;
-  std::vector<int> nums(n);
-  for (int& num : nums) {
-    std::cin >> num;
-  }
-  std::cout << merge_sort(nums, 0, n);
-  return 0;
+    int n; std::cin >> n;
+    std::vector<int> nums(n);
+    for (int& num: nums) {
+        std::cin >> num;
+    }
+    std::cout << merge_sort(nums, 0, n);
+    return 0;
 }
