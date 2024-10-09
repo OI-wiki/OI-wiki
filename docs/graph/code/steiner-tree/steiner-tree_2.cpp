@@ -30,14 +30,14 @@ void spfa(int s) {
   while (!q.empty()) {
     P u = q.front();
     q.pop();
-    inq[num(u)] = 0;
+    inq[num(u)] = false;
     for (int d = 0; d < 4; d++) {
       P v = mp(u.first + dx[d], u.second + dy[d]);
       int du = num(u), dv = num(v);
       if (legal(v) && f[dv][s] > f[du][s] + a[dv]) {
         f[dv][s] = f[du][s] + a[dv];
         if (!inq[dv]) {
-          inq[dv] = 1;
+          inq[dv] = true;
           q.push(v);
         }
         pre[dv][s] = mp(u, s);

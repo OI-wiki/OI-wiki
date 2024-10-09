@@ -525,7 +525,7 @@ int get_lca(int u, int v) {
           }
         for (int u = 1; u <= n; ++u) {
           if (S[st[u]] == 0) {
-            if (lab[u] == d) return 0;
+            if (lab[u] == d) return false;
             // 如果lab[u]=0就直接结束程序
             lab[u] -= d;
           } else if (S[st[u]] == 1)

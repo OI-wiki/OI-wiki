@@ -333,7 +333,7 @@ std::vector<bool> GaussElimination(
     for (int j = 1; j <= m; j++)
       if (i != j && matrix[j].test(i)) matrix[j] ^= matrix[i];
   }
-  std::vector<bool> ans(n + 1, 0);
+  std::vector<bool> ans(n + 1);
   for (int i = 1; i <= n; i++) ans[i] = matrix[i].test(0);
   return ans;
 }

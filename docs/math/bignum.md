@@ -807,7 +807,7 @@ $$
       Big() {
         len = 1;
         memset(a, 0, sizeof a);
-        flag = 0;
+        flag = false;
       }
     
       Big(const int);
@@ -898,11 +898,11 @@ $$
       if (*this < T) {
         t1 = T;
         t2 = *this;
-        ctf = 1;
+        ctf = true;
       } else {
         t1 = *this;
         t2 = T;
-        ctf = 0;
+        ctf = false;
       }
       big = t1.len;
       int j = 0;
@@ -981,14 +981,14 @@ $$
     
     bool Big::operator<(const Big& T) const {
       int ln;
-      if (len < T.len) return 233;
+      if (len < T.len) return true;
       if (len == T.len) {
         ln = len - 1;
         while (ln >= 0 && a[ln] == T.a[ln]) --ln;
-        if (ln >= 0 && a[ln] < T.a[ln]) return 233;
-        return 0;
+        if (ln >= 0 && a[ln] < T.a[ln]) return true;
+        return false;
       }
-      return 0;
+      return false;
     }
     
     bool Big::operator<(const int& t) const {

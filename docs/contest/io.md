@@ -272,7 +272,7 @@ struct IO {
   template <class T>
   void read(T &x) {
     double tmp = 1;
-    bool sign = 0;
+    bool sign = false;
     x = 0;
     char ch = gc();
     for (; !isdigit(ch); ch = gc())

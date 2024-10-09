@@ -12,13 +12,13 @@ int lc(int u) { return (u << 1); }
 int rc(int u) { return (u << 1) | 1; }
 
 struct node {
-  ll mx_ab[2][2];  // 0 : not max A or B  1 : is max A or B
+  ll mx_ab[2][2];  // 0: not max A or B; 1: is max A or B
 
   ll max_val() {
     return std::max({mx_ab[0][0], mx_ab[0][1], mx_ab[1][0], mx_ab[1][1]});
   }
 
-  ll mx1[2], mx2[2];  // 0 : A 1 : B
+  ll mx1[2], mx2[2];  // 0: A; 1: B
   ll tag_add[2], tag_mn[2];
 
   void clr_tag() { tag_add[0] = tag_add[1] = 0, tag_mn[0] = tag_mn[1] = INF; }
@@ -28,16 +28,15 @@ struct node {
     mx_ab[1][1] = a + b, mx_ab[0][1] = mx_ab[1][0] = mx_ab[0][0] = -INF;
   }
 
-  void modify_mn(ll tg, bool id)  // id 0 A 1 B
+  void modify_mn(ll tg, bool id)  // id 0: A; 1: B
   {
     if (mx1[id] <= tg) return;
     mx_ab[1][1] += (mx_ab[1][1] > -INF) ? (tg - mx1[id]) : 0;
-    mx_ab[id == 0][id == 1] +=
-        (mx_ab[id == 0][id == 1] > -INF) ? (tg - mx1[id]) : 0;
+    mx_ab[!id][id] += (mx_ab[!id][id] > -INF) ? (tg - mx1[id]) : 0;
     mx1[id] = tag_mn[id] = tg;
   }
 
-  void modify_add(ll tg, bool id)  // id 0 A 1 B
+  void modify_add(ll tg, bool id)  // id 0: A; 1: B
   {
     for (int i = 0; i < 2; ++i)
       for (int j = 0; j < 2; ++j) mx_ab[i][j] += (mx_ab[i][j] > -INF) ? tg : 0;

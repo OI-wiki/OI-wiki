@@ -63,7 +63,7 @@ vector<bool> ret;
 
 void solve(int i, int l, int r) {
   auto level = undo_fa.size();
-  bool ans = 1;
+  bool ans = true;
   for (int u : tree[i]) {
     int a = find(g[u].u);
     int b = find(g[u].v);
@@ -71,7 +71,7 @@ void solve(int i, int l, int r) {
       for (int k = l; k <= r; k++) {
         ret.push_back(false);
       }
-      ans = 0;
+      ans = false;
       break;
     }
     merge(g[u].u, g[u].v + n);
@@ -79,7 +79,7 @@ void solve(int i, int l, int r) {
   }
   if (ans) {
     if (l == r) {
-      ret.push_back(1);
+      ret.push_back(true);
     } else {
       solve(ls, l, mid);
       solve(rs, mid + 1, r);

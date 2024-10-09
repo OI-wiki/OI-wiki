@@ -228,7 +228,7 @@ bool erase(const K &key) {
       int level;
     
       SkipList() {
-        srand(time(0));
+        srand(time(nullptr));
     
         level = length = 0;
         tail = new SkipListNode<K, V>(INVALID, 0, 0);

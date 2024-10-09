@@ -44,7 +44,7 @@ LL getsum(LL l, LL r, LL s, LL t, LL p) {
 }
 
 int main() {
-  std::ios::sync_with_stdio(0);
+  std::ios::sync_with_stdio(false);
   LL q, i1, i2, i3, i4;
   std::cin >> n >> q;
   for (LL i = 1; i <= n; i++) std::cin >> a[i];

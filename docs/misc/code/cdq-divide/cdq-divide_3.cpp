@@ -140,10 +140,10 @@ int main() {
   }
   ih(0);
   solve(0, n, 0);
-  tr = 1;
+  tr = true;
   ih(1);
   solve(0, n, 1);
-  tr = 1;
+  tr = true;
   sort(a[0] + 1, a[0] + n + 1, cmp3);
   sort(a[1] + 1, a[1] + n + 1, cmp3);
   for (int i = 1; i <= n; i++) {

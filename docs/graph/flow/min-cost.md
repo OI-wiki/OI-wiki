@@ -71,12 +71,12 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
       while (q.size()) {
         int u = q.front();
         q.pop();
-        vis[u] = 0;
+        vis[u] = false;
         for (int i = h[u]; i; i = e[i].nex) {
           const int &v = e[i].t, &w = e[i].v, &c = e[i].c;
           if (!w || dis[v] <= dis[u] + c) continue;
           dis[v] = dis[u] + c, incf[v] = min(w, incf[u]), pre[v] = i;
-          if (!vis[v]) q.push(v), vis[v] = 1;
+          if (!vis[v]) q.push(v), vis[v] = true;
         }
       }
       return incf[t];
@@ -117,15 +117,15 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
       memset(dis, 0x3f, sizeof(dis));
       memcpy(cur, lnk, sizeof(lnk));
       std::queue<int> q;
-      q.push(s), dis[s] = 0, vis[s] = 1;
+      q.push(s), dis[s] = 0, vis[s] = true;
       while (!q.empty()) {
         int u = q.front();
-        q.pop(), vis[u] = 0;
+        q.pop(), vis[u] = false;
         for (int i = lnk[u]; i; i = nxt[i]) {
           int v = ter[i];
           if (cap[i] && dis[v] > dis[u] + cost[i]) {
             dis[v] = dis[u] + cost[i];
-            if (!vis[v]) q.push(v), vis[v] = 1;
+            if (!vis[v]) q.push(v), vis[v] = true;
           }
         }
       }
@@ -134,7 +134,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
     
     int dfs(int u, int t, int flow) {
       if (u == t) return flow;
-      vis[u] = 1;
+      vis[u] = true;
       int ans = 0;
       for (int &i = cur[u]; i && ans < flow; i = nxt[i]) {
         int v = ter[i];
@@ -143,7 +143,7 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
           if (x) ret += x * cost[i], cap[i] -= x, cap[i ^ 1] += x, ans += x;
         }
       }
-      vis[u] = 0;
+      vis[u] = false;
       return ans;
     }
     

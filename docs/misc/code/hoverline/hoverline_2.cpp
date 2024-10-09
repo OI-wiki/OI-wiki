@@ -5,7 +5,7 @@ int n, a[N], l[N], r[N];
 long long sum[N];
 long long ans;
 int ansl, ansr;
-bool fir = 1;
+bool fir = true;
 using std::cin;
 using std::cout;
 
@@ -16,7 +16,7 @@ int main() {
     if (!fir)
       cout << '\n';
     else
-      fir = 0;
+      fir = false;
     ans = 0;
     ansl = ansr = 1;
     for (int i = 1; i <= n; i++) {

@@ -80,10 +80,10 @@ int main() {
       continue;
     }
     if (f1 < f2) {
-      vis[f1] = 1;
+      vis[f1] = true;
       ans[(i + 1) >> 1] = 'R';
     } else {
-      vis[f2] = 1;
+      vis[f2] = true;
       ans[(i + 1) >> 1] = 'B';
     }
   }

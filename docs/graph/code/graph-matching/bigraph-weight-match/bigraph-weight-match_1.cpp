@@ -66,7 +66,7 @@ LL hungarian() {
       m[i] = true;
       j = 0;
 
-      while (aug == false && j < N) {
+      while (!aug && j < N) {
         if (mateS[i] != j) {
           LL minSlack = u[i] + v[j] - W[i][j];
           if (minSlack < slack[j]) {
@@ -85,7 +85,7 @@ LL hungarian() {
         j++;
       }
 
-      if (aug == false && Q.size() == 0) {
+      if (!aug && Q.size() == 0) {
         LL minSlack = INF;
         for (int k = 0; k < N; k++)
           if (slack[k] > 0) minSlack = min(minSlack, slack[k]);
@@ -115,7 +115,7 @@ LL hungarian() {
           nres--;
         }
       }
-    } while (aug == false);
+    } while (!aug);
   }
 
   LL ans = 0;

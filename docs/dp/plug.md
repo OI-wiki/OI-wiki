@@ -606,7 +606,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     
     template <class T>
     bool checkMin(T &a, const T b) {
-      return b < a ? a = b, 1 : 0;
+      return b < a ? a = b, true : false;
     }
     
     const int N = 10, M = N;

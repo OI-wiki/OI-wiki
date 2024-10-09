@@ -200,7 +200,7 @@ $$
         int u = q.top().u, d = q.top().d;
         q.pop();
         if (vis[u]) continue;
-        vis[u] = 1;
+        vis[u] = true;
         ++cnt;
         res += d;
         for (int i = h[u]; i; i = e[i].x) {
@@ -471,14 +471,14 @@ $$
           tot++;
           tr.insedge(e[i].u, e[i].v, e[i].val);
           sum += e[i].val;
-          used[i] = 1;
+          used[i] = true;
         }
         if (tot == n - 1) break;
       }
     }
     
     int main() {
-      std::ios::sync_with_stdio(0);
+      std::ios::sync_with_stdio(false);
       std::cin.tie(nullptr);
       std::cout.tie(nullptr);
     

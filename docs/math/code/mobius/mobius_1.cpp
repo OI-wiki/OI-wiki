@@ -14,7 +14,7 @@ void init() {
       mu[i] = -1;
     }
     for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
-      flg[i * p[j]] = 1;
+      flg[i * p[j]] = true;
       if (i % p[j] == 0) {
         mu[i * p[j]] = 0;
         break;

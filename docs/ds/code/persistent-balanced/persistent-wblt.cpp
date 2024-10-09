@@ -37,7 +37,7 @@ struct WBLT {
     val[p] = v;
     siz[p] = 1;
     sum[p] = v;
-    rev[p] = 0;
+    rev[p] = false;
     use[p] = 1;
     return p;
   }

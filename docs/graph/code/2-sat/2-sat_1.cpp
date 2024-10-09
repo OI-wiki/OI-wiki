@@ -46,8 +46,8 @@ bool solve() {
   for (int i = 0; i < 2 * n; i++)
     if (!DFN[i]) tarjan(i);
   for (int i = 0; i < 2 * n; i += 2)
-    if (color[i] == color[i + 1]) return 0;
-  return 1;
+    if (color[i] == color[i + 1]) return false;
+  return true;
 }
 
 void init() {

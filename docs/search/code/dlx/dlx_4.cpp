@@ -78,7 +78,7 @@ struct DLX {
   }
 
   bool dance() {  // dance
-    if (!R[0]) return 1;
+    if (!R[0]) return true;
     int i, j, c = R[0];
     for (i = R[0]; i != 0; i = R[i])
       if (siz[i] < siz[c]) c = i;
@@ -89,11 +89,11 @@ struct DLX {
         remove(col[j]);
         if (col[j] <= 55) ans[getx[col[j]]][gety[col[j]]] = dfn[row[j]] + 'A';
       }
-      if (dance()) return 1;
+      if (dance()) return true;
       for (j = L[i]; j != i; j = L[j]) recover(col[j]);
     }
     recover(c);
-    return 0;
+    return false;
   }
 } solver;
 
@@ -119,17 +119,17 @@ int main() {
         for (int dy = 0; dy <= 1; ++dy) {
           for (tx[0] = 1; tx[0] <= 10; ++tx[0]) {
             for (tx[1] = 1; tx[1] <= tx[0]; ++tx[1]) {
-              bool flag = 1;
+              bool flag = true;
               for (int k = 0; k < len[id]; ++k) {
                 nxt[op] = tx[op] + f[dx] * table[id][k][0];
                 nxt[op ^ 1] = tx[op ^ 1] + f[dy] * table[id][k][1];
                 if (vis[id]) {
                   if (ans[nxt[0]][nxt[1]] != id + 'A') {
-                    flag = 0;
+                    flag = false;
                     break;
                   }
                 } else if (ans[nxt[0]][nxt[1]] != '.') {
-                  flag = 0;
+                  flag = false;
                   break;
                 }
               }

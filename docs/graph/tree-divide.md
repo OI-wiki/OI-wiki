@@ -160,7 +160,7 @@
       maxp = 0x7f7f7f7f;
       getG(now, 0);
       int g = root;
-      vis[g] = 1;
+      vis[g] = true;
       for (int i = head[g]; i; i = e[i].nxt) {
         int vs = e[i].to;
         if (vis[vs]) continue;

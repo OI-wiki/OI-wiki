@@ -56,7 +56,7 @@ struct DLX {
         int v = (stk[i] - 1) % 9 + 1;
         ans[x][y] = v;
       }
-      return 1;
+      return true;
     }
     for (i = R[0]; i != 0; i = R[i])
       if (siz[i] < siz[c]) c = i;
@@ -64,11 +64,11 @@ struct DLX {
     for (i = D[c]; i != c; i = D[i]) {
       stk[dep] = row[i];
       for (j = R[i]; j != i; j = R[j]) remove(col[j]);
-      if (dance(dep + 1)) return 1;
+      if (dance(dep + 1)) return true;
       for (j = L[i]; j != i; j = L[j]) recover(col[j]);
     }
     recover(c);
-    return 0;
+    return false;
   }
 } solver;
 

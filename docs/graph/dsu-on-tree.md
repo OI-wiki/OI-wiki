@@ -153,7 +153,7 @@ void merge(int x, int y) {
         }
       add(u);
       ans[u] = getAns();
-      if (keep == false) {
+      if (!keep) {
         for (int i = L[u]; i <= R[u]; i++) {
           del(Node[i]);
         }

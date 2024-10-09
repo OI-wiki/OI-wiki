@@ -397,7 +397,7 @@ if (!sta.empty()) {
     long long w[100001];
     long long v[100001];
     long long now = 0;
-    bool vis[100001] = {0};
+    bool vis[100001] = {false};
     
     void back(int t) {
       if (vis[upd[t].x]) {

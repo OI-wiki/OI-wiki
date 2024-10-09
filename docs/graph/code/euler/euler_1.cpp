@@ -22,8 +22,7 @@ void Hierholzer(int x) {  // 关键函数
   for (int& i = cnt[x]; i < (int)beg[x].size();) {
     if (beg[x][i].exists) {
       edge e = beg[x][i];
-      beg[x][i].exists = 0;
-      beg[e.to][e.revref].exists = 0;
+      beg[x][i].exists = beg[e.to][e.revref].exists = false;
       ++i;
       Hierholzer(e.to);
     } else {
@@ -47,8 +46,8 @@ int main() {
   for (int i = 1; i <= m; ++i) {
     int a, b;
     cin >> a >> b;
-    beg[a].push_back(edge{b, 1, 0});
-    beg[b].push_back(edge{a, 1, 0});
+    beg[a].push_back(edge{b, true, 0});
+    beg[b].push_back(edge{a, true, 0});
     ++deg[a];
     ++deg[b];
   }

@@ -684,7 +684,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
         memset(vis, 0, sizeof(vis));
         queue<int> Q;
         Q.push(t);
-        vis[t] = 1;
+        vis[t] = true;
         d[t] = 0;
         while (!Q.empty()) {
           int x = Q.front();
@@ -692,7 +692,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
           for (int i = 0; i < G[x].size(); i++) {
             Edge& e = edges[G[x][i] ^ 1];
             if (!vis[e.from] && e.cap > e.flow) {
-              vis[e.from] = 1;
+              vis[e.from] = true;
               d[e.from] = d[x] + 1;
               Q.push(e.from);
             }

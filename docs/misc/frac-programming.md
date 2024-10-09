@@ -198,8 +198,8 @@ int SPFA(int u, double mid) {  // 判负环
 bool check(double mid) {  // 如果有负环返回 true
   for (int i = 1; i <= n; ++i) dis[i] = 0, vis[i] = 0;
   for (int i = 1; i <= n; ++i)
-    if (SPFA(i, mid)) return 1;
-  return 0;
+    if (SPFA(i, mid)) return true;
+  return false;
 }
 ```
 

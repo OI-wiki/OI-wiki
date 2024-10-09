@@ -98,7 +98,7 @@
     ll dfs(int u, int x, bool f0,
            bool lim) {  // u 表示位数，f0 是否有前导零，lim 是否都贴在上限上
       if (!u) {
-        if (f0) f0 = 0;
+        if (f0) f0 = false;
         return 0;
       }
       if (!lim && !f0 && (~f[u])) return f[u];
@@ -176,7 +176,7 @@
         p[++cnt] = x % 10;
         x /= 10;
       }
-      bool flag = 0;
+      bool flag = false;
       p[cnt + 1] = 0;
       for (int i = cnt; i; i--) {  // 从高到低枚举数位
         ans += p[i] * dp[i - 1][2];
@@ -186,7 +186,7 @@
           if (p[i] > 4) ans += dp[i - 1][0];
           if (p[i] > 6) ans += dp[i - 1][1];
           if (p[i] > 2 && p[i + 1] == 6) ans += dp[i][1];
-          if (p[i] == 4 || (p[i] == 2 && p[i + 1] == 6)) flag = 1;
+          if (p[i] == 4 || (p[i] == 2 && p[i + 1] == 6)) flag = true;
         }
       }
       return tmp - ans;

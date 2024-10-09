@@ -1240,7 +1240,7 @@ void print(Node* cur) {
     none_rot_treap tr;
     
     int main() {
-      srand(time(0));
+      srand(time(nullptr));
       int t;
       scanf("%d", &t);
       while (t--) {
@@ -1393,7 +1393,7 @@ void print(Node* cur) {
     Seg_treap tr;
     
     int main() {
-      srand(time(0));
+      srand(time(nullptr));
       int n, m;
       cin >> n >> m;
       for (int i = 1; i <= n; i++) tr.insert(i);

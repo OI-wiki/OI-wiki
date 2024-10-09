@@ -48,7 +48,7 @@ int Stoer_Wagner() {
 }
 
 int main() {
-  ios::sync_with_stdio(0), cin.tie(nullptr);
+  ios::sync_with_stdio(false), cin.tie(nullptr);
   cin >> n >> m;
   if (m < n - 1) {
     cout << 0;

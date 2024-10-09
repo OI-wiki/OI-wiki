@@ -90,7 +90,7 @@ void clear2(int u, int f) {
 int son[N];
 
 void divid(int u) {
-  vis[u] = 1;
+  vis[u] = true;
   int tot = 0;
   nowrt = u;
   ans[u]++;

@@ -39,7 +39,7 @@ int main() {
     for (int i = 1; i <= m; ++i) {
       int u, v;
       cin >> u >> v;
-      mp[u][v] = mp[v][u] = 1;
+      mp[u][v] = mp[v][u] = true;
     }
     int tmp = work();
     if (tmp > 1000)

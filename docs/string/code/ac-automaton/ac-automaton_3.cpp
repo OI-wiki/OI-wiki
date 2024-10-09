@@ -3,7 +3,7 @@
 #include <string>
 
 void promote() {
-  std::ios::sync_with_stdio(0);
+  std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   return;
 }
