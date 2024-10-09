@@ -1,9 +1,11 @@
 // Code by rickyxrc | https://www.luogu.com.cn/record/115706921
-#include <bits/stdc++.h>
-#define maxn 8000001
+#include <cstring>
+#include <iostream>
+#include <queue>
+constexpr int MAXN = 8000001;
 using namespace std;
-char s[maxn];
-int n, cnt, vis[maxn], rev[maxn], indeg[maxn], ans;
+char s[MAXN];
+int n, cnt, vis[MAXN], rev[MAXN], indeg[MAXN], ans;
 
 struct trie_node {
   int son[27];
@@ -15,7 +17,7 @@ struct trie_node {
     memset(son, 0, sizeof(son));
     fail = flag = 0;
   }
-} trie[maxn];
+} trie[MAXN];
 
 queue<int> q;
 
@@ -78,11 +80,12 @@ void query(char *s) {
 }
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   init();
-  for (int i = 1; i <= n; i++) scanf("%s", s), insert(s, i);
+  for (int i = 1; i <= n; i++) cin >> s, insert(s, i);
   getfail();
-  scanf("%s", s);
+  cin >> s;
   query(s);
   topu();
   for (int i = 1; i <= n; i++) cout << vis[rev[i]] << std::endl;

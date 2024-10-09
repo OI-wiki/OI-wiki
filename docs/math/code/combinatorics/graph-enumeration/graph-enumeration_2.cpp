@@ -1,9 +1,8 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-#define Ts *this
-#define rTs return Ts
-typedef long long LL;
+using LL = long long;
 int MOD = int(1e9) + 7;
 
 namespace NT {
@@ -50,7 +49,7 @@ void DIV(int& a, int b) { MUL(a, _I(b)); }
 
 int qtt(int a, int b) { return pdt(a, _I(b)); }
 
-inline int pow(int a, LL b) {
+int pow(int a, LL b) {
   int c(1);
   while (b) {
     if (b & 1) MUL(c, a);
@@ -60,7 +59,7 @@ inline int pow(int a, LL b) {
 }
 
 template <class T>
-inline T pow(T a, LL b) {
+T pow(T a, LL b) {
   T c(1);
   while (b) {
     if (b & 1) c *= a;
@@ -70,7 +69,7 @@ inline T pow(T a, LL b) {
 }
 
 template <class T>
-inline T pow(T a, int b) {
+T pow(T a, int b) {
   return pow(a, (LL)b);
 }
 
@@ -92,28 +91,28 @@ struct Int {
 
   Int& operator+=(const int& rhs) {
     INC(val, rhs);
-    rTs;
+    return *this;
   }
 
   Int operator+(const int& rhs) const { return sum(val, rhs); }
 
   Int& operator-=(const int& rhs) {
     DEC(val, rhs);
-    rTs;
+    return *this;
   }
 
   Int operator-(const int& rhs) const { return dff(val, rhs); }
 
   Int& operator*=(const int& rhs) {
     MUL(val, rhs);
-    rTs;
+    return *this;
   }
 
   Int operator*(const int& rhs) const { return pdt(val, rhs); }
 
   Int& operator/=(const int& rhs) {
     DIV(val, rhs);
-    rTs;
+    return *this;
   }
 
   Int operator/(const int& rhs) const { return qtt(val, rhs); }
@@ -125,7 +124,7 @@ struct Int {
 
 using namespace NT;
 
-const int N = int(5e1) + 9;
+constexpr int N = int(5e1) + 9;
 Int Fact[N];
 vector<vector<int>> Partition;
 vector<int> cur;
@@ -160,6 +159,8 @@ Int w(const vector<int> P) {
   z /= Fact[c];
   return z;
 }
+
+int gcd(int x, int y) { return y ? gcd(y, x % y) : x; }
 
 int c(const vector<int> P) {
   int z = 0;

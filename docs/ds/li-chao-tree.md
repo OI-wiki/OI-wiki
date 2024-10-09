@@ -46,7 +46,7 @@
 
 ???+ note "实现"
     ```cpp
-    const double eps = 1e-9;
+    constexpr double eps = 1e-9;
     
     int cmp(double x, double y) {  // 因为用到了浮点数，所以会有精度误差
       if (x - y > eps) return 1;

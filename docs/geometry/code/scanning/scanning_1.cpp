@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
-#define ll long long
+#include <algorithm>
+#include <iostream>
+using ll = long long;
 using namespace std;
 
 struct node {

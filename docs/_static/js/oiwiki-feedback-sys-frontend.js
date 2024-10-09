@@ -1,3 +1,5 @@
+sessionStorage.setItem("commitHash", "{commitHash}"); // commit hash injected here, see: scripts/pre-build/install-feedback-sys-frontend
+
 function matchColor() {
   const palettle = localStorage.getItem("/.__palette");
   if (
@@ -17,16 +19,14 @@ function hookMkdocsMaterial() {
   });
 }
 
-if (localStorage.getItem("enable_paragraph_review") === "true") {
-  hookMkdocsMaterial();
+hookMkdocsMaterial();
 
-  document$.subscribe(function () {
-    matchColor();
+document$.subscribe(function () {
+  matchColor();
 
-    globalThis["OIWikiFeedbackSysFrontend"] instanceof Object &&
+  globalThis["OIWikiFeedbackSysFrontend"] instanceof Object &&
     OIWikiFeedbackSysFrontend.setupReview instanceof Function &&
     OIWikiFeedbackSysFrontend.setupReview(document.body, {
-        apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/post-build/inject-feedback-sys-frontend/task-handler.ts
-      });
-  });
-}
+      apiEndpoint: "{apiEndpoint}" // api endpoint injected here, see: scripts/pre-build/install-feedback-sys-frontend
+    });
+});

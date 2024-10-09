@@ -1,7 +1,7 @@
 // By: Luogu@rui_er(122461)
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
-const int N = 1e6 + 5, mod = 1e9 + 7;
+constexpr int N = 1e6 + 5, mod = 1e9 + 7;
 
 int n, k, tab[N], p[N], pcnt, f[N], pre[N], suf[N], fac[N], inv[N], ans;
 
@@ -29,9 +29,10 @@ void sieve(int lim) {
 }
 
 int main() {
-  scanf("%d%d", &n, &k);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> k;
   sieve(k + 2);
-  if (n <= k + 2) return printf("%d\n", f[n]) & 0;
+  if (n <= k + 2) return cout << f[n], 0;
   pre[0] = suf[k + 3] = 1;
   for (int i = 1; i <= k + 2; i++) pre[i] = 1LL * pre[i - 1] * (n - i) % mod;
   for (int i = k + 2; i >= 1; i--) suf[i] = 1LL * suf[i + 1] * (n - i) % mod;
@@ -47,6 +48,6 @@ int main() {
     int mul = ((k + 2 - i) & 1) ? -1 : 1;
     ans = (ans + 1LL * (Q * mul + mod) % mod * P % mod * f[i] % mod) % mod;
   }
-  printf("%d\n", ans);
+  cout << ans << '\n';
   return 0;
 }

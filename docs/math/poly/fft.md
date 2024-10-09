@@ -226,10 +226,10 @@ $$
     #include <cmath>
     #include <complex>
     
-    typedef std::complex<double> Comp;  // STL complex
+    using Comp = std::complex<double>;  // STL complex
     
-    const Comp I(0, 1);  // i
-    const int MAX_N = 1 << 20;
+    constexpr Comp I(0, 1);  // i
+    constexpr int MAX_N = 1 << 20;
     
     Comp tmp[MAX_N];
     

@@ -91,16 +91,18 @@ Tarjan 的算法分为 **收缩** 与 **伸展** 两个过程。接下来先介�
 ### 实现
 
 ```cpp
-#include <bits/stdc++.h>
-
+#include <cstdio>
+#include <cstring>
+#include <queue>
+#include <vector>
 using namespace std;
 
-typedef long long ll;
-#define maxn 102
-#define INF 0x3f3f3f3f
+using ll = long long;
+constexpr int MAXN = 102;
+constexpr int INF = 0x3f3f3f3f;
 
 struct UnionFind {
-  int fa[maxn << 1];
+  int fa[MAXN << 1];
 
   UnionFind() { memset(fa, 0, sizeof(fa)); }
 
@@ -151,14 +153,14 @@ Edge *extract(Heap *&x) {
   return r;
 }
 
-vector<Edge> in[maxn];
-int n, m, fa[maxn << 1], nxt[maxn << 1];
-Edge *ed[maxn << 1];
-Heap *Q[maxn << 1];
+vector<Edge> in[MAXN];
+int n, m, fa[MAXN << 1], nxt[MAXN << 1];
+Edge *ed[MAXN << 1];
+Heap *Q[MAXN << 1];
 UnionFind id;
 
 void contract() {
-  bool mark[maxn << 1];
+  bool mark[MAXN << 1];
   // 将图上的每一个结点与其相连的那些结点进行记录。
   for (int i = 1; i <= n; i++) {
     queue<Heap *> q;

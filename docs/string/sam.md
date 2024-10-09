@@ -233,7 +233,7 @@ struct state {
 SAM 本身将会存储在一个 `state` 结构体数组中。我们记录当前自动机的大小 `sz` 和变量 `last`，当前整个字符串对应的状态。
 
 ```cpp
-const int MAXLEN = 100000;
+constexpr int MAXLEN = 100000;
 state st[MAXLEN * 2];
 int sz, last;
 ```

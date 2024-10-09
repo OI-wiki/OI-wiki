@@ -1,9 +1,9 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 #include <vector>
 
 using namespace std;
-const int N = 5e5 + 5, M = 2e6 + 5;
+constexpr int N = 5e5 + 5, M = 2e6 + 5;
 int n, m, ans;
 int tot = 1, hd[N];
 
@@ -25,7 +25,7 @@ void tarjan(int x, int in) {
     int v = e[i].to;
     if (dfn[v] == 0) {
       tarjan(v, i);
-      if (dfn[x] < low[v]) bz[i] = bz[i ^ 1] = 1;
+      if (dfn[x] < low[v]) bz[i] = bz[i ^ 1] = true;
       low[x] = min(low[x], low[v]);
     } else if (i != (in ^ 1))
       low[x] = min(low[x], dfn[v]);
@@ -42,10 +42,11 @@ void dfs(int x, int id) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   int u, v;
   for (int i = 1; i <= m; i++) {
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     if (u == v) continue;
     uadd(u, v);
   }
@@ -56,11 +57,11 @@ int main() {
       bcc.push_back(vector<int>());
       dfs(i, ++ans);
     }
-  printf("%d\n", ans);
+  cout << ans << '\n';
   for (int i = 0; i < ans; i++) {
-    printf("%llu", bcc[i].size());
-    for (int j = 0; j < bcc[i].size(); j++) printf(" %d", bcc[i][j]);
-    printf("\n");
+    cout << bcc[i].size();
+    for (int j = 0; j < bcc[i].size(); j++) cout << ' ' << bcc[i][j];
+    cout << '\n';
   }
   return 0;
 }

@@ -55,10 +55,10 @@ class Example {
     
       Vector2D(double a = 0, double b = 0) : x(a), y(b) {}
     
-      Vector2D operator+(Vector2D v) { return Vector2D(x + v.x, y + v.y); }
+      Vector2D operator+(Vector2D v) const { return Vector2D(x + v.x, y + v.y); }
     
       // 注意返回值的类型可以不是这个类
-      double operator*(Vector2D v) { return x * v.x + y * v.y; }
+      double operator*(Vector2D v) const { return x * v.x + y * v.y; }
     };
     ```
 

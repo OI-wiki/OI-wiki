@@ -69,7 +69,7 @@ $$
 ## 代码实现（以无权树为例）
 
 ```cpp
-vector<int> G[maxn];
+vector<int> G[MAXN];
 
 void dfs1(int u, int p) {
   f[u] = G[u].size();

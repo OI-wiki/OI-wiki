@@ -1,10 +1,9 @@
-#include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
-#define maxn 1000100
+constexpr int MAXN = 1000100;
 using namespace std;
-int q[maxn], a[maxn];
+int q[MAXN], a[MAXN];
 int n, k;
 
 void getmin() {  // 得到这个队列里的最小值，直接找到最后的就行了
@@ -17,7 +16,7 @@ void getmin() {  // 得到这个队列里的最小值，直接找到最后的就
     while (head <= tail && a[q[tail]] >= a[i]) tail--;
     q[++tail] = i;
     while (q[head] <= i - k) head++;
-    printf("%d ", a[q[head]]);
+    cout << a[q[head]] << ' ';
   }
 }
 
@@ -31,16 +30,17 @@ void getmax() {  // 和上面同理
     while (head <= tail && a[q[tail]] <= a[i]) tail--;
     q[++tail] = i;
     while (q[head] <= i - k) head++;
-    printf("%d ", a[q[head]]);
+    cout << a[q[head]] << ' ';
   }
 }
 
 int main() {
-  scanf("%d%d", &n, &k);
-  for (int i = 1; i <= n; i++) scanf("%d", &a[i]);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> k;
+  for (int i = 1; i <= n; i++) cin >> a[i];
   getmin();
-  printf("\n");
+  cout << '\n';
   getmax();
-  printf("\n");
+  cout << '\n';
   return 0;
 }

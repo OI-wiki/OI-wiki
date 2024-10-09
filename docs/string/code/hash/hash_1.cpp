@@ -1,8 +1,11 @@
-#include <bits/stdc++.h>
+#include <cassert>
+#include <cstring>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-const int L = 1e6 + 5;
-const int HASH_CNT = 2;
+constexpr int L = 1e6 + 5;
+constexpr int HASH_CNT = 2;
 
 int hashBase[HASH_CNT] = {29, 31};
 int hashMod[HASH_CNT] = {int(1e9 + 9), 998244353};
@@ -70,11 +73,12 @@ void work() {
 }
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   for (int i = 1; i <= n; ++i) {
-    scanf("%s", str);
+    cin >> str;
     work();
   }
-  printf("%s\n", s.s + 1);
+  cout << s.s + 1 << '\n';
   return 0;
 }
