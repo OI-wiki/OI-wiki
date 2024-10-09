@@ -90,7 +90,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
       vector<bool> visy;   // 拜访数组 右
       vector<T> lx;
       vector<T> ly;
-      vector<vector<T> > g;
+      vector<vector<T>> g;
       vector<T> slack;
       T inf;
       T res;
@@ -104,7 +104,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
         n = max(_n, _m);
         inf = numeric_limits<T>::max();
         res = 0;
-        g = vector<vector<T> >(n, vector<T>(n));
+        g = vector<vector<T>>(n, vector<T>(n));
         matchx = vector<int>(n, -1);
         matchy = vector<int>(n, -1);
         pre = vector<int>(n);

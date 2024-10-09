@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-const int N = 3e5 + 5;
+constexpr int N = 3e5 + 5;
 
 int n, q;  // 点数，询问数
 int fa[N];
@@ -31,7 +31,7 @@ void dfs(int u) {
 }
 
 signed main() {
-  ios::sync_with_stdio(0);
+  ios::sync_with_stdio(false);
   cin >> n >> q;
   for (int v = 2; v <= n; v++) cin >> fa[v], son[fa[v]].push_back(v);
   dfs(1);

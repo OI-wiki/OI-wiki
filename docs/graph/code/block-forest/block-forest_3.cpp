@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-const int MN = 100005;
+constexpr int MN = 100005;
 
 int N, M, Q, cnt;
 std::vector<int> G[MN], T[MN * 2];

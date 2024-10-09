@@ -149,7 +149,8 @@ $$
 ??? note "参考代码"
     === "C++"
         ```cpp
-        #include <bits/stdc++.h>
+        #include <algorithm>
+        #include <cstdio>
         using namespace std;
         
         int main() {
@@ -323,7 +324,8 @@ $$
 ??? note "参考代码"
     === "C++"
         ```cpp
-        #include <bits/stdc++.h>
+        #include <algorithm>
+        #include <cstdio>
         using namespace std;
         
         int main() {

@@ -7,11 +7,11 @@ int pre[1000010], lst[1000010];  // 处理 pre
 struct ope {
   int type, x, y, id;
 
-  inline ope(int type = 0, int x = 0, int y = 0, int id = 0) {
+  ope(int type = 0, int x = 0, int y = 0, int id = 0) {
     this->type = type, this->x = x, this->y = y, this->id = id;
   }
 
-  inline bool operator<(const ope& rhs) const {
+  bool operator<(const ope& rhs) const {
     if (x == rhs.x) return type < rhs.type;
     return x < rhs.x;
   }

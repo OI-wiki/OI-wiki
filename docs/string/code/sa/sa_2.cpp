@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const int N = 40010;
+constexpr int N = 40010;
 
 int n, k, a[N], sa[N], rk[N], oldrk[N], id[N], px[N], cnt[1000010], ht[N], ans;
 multiset<int> t;  // multiset 是最好写的实现方式

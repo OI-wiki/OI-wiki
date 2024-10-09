@@ -1,7 +1,7 @@
 // By: Luogu@rui_er(122461)
 #include <iostream>
 using namespace std;
-const int N = 1e6 + 5, mod = 1e9 + 7;
+constexpr int N = 1e6 + 5, mod = 1e9 + 7;
 
 int n, k, tab[N], p[N], pcnt, f[N], pre[N], suf[N], fac[N], inv[N], ans;
 

@@ -29,7 +29,7 @@
 
 同一程序使用相同的 `seed` 两次运行，在同一机器、同一编译器下，随机出的结果将会是相同的。
 
-有一个选择是使用当前系统时间来作为随机种子：`srand(time(0))`。
+有一个选择是使用当前系统时间来作为随机种子：`srand(time(nullptr))`。
 
 ??? warning
     在 `Windows` 系统下 `rand()` 返回值的取值范围为 $\left[0,2^{15}\right)$（即 `RAND_MAX` 等于 $2^{15}-1$），当需要生成的数不小于 $2^{15}$ 时建议使用 `(rand() << 15 | rand())` 来生成更大的随机数。
@@ -68,7 +68,7 @@
     using namespace std;
     
     int main() {
-      mt19937 myrand(time(0));
+      mt19937 myrand(time(nullptr));
       cout << myrand() << endl;
       return 0;
     }
@@ -126,7 +126,7 @@ GCC[^note1]实现的 `shuffle` 符合 C++ 标准的要求，即在所有可能�
 int a[100];
 
 int main() {
-  srand(time(0));
+  srand(time(nullptr));
   int n = rand() % 99 + 1;
   for (int i = 1; i <= n; i++) a[i] = i;
   std::cout << n << '\n';
@@ -150,7 +150,7 @@ int main() {
 int a[100];
 
 int main() {
-  std::mt19937 rng(time(0));
+  std::mt19937 rng(time(nullptr));
   int n = rng() % 99 + 1;
   for (int i = 1; i <= n; i++) a[i] = i;
   std::cout << n << '\n';
@@ -285,7 +285,8 @@ $$
         this->P = P;
       }
     
-      int next() { return x = (A * x + B) % P; }  // 生成随机序列的下一个随机数
+      // 生成随机序列的下一个随机数
+      int next() { return x = (A * x + B) % P; }
     };
     
     myrand rnd(3, 5, 97);  // 初始化一个随机数生成器

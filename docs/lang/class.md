@@ -127,17 +127,17 @@ class Vector {
 
   Vector(int _x, int _y) : x(_x), y(_y) {}
 
-  int operator*(const Vector& other) { return x * other.x + y * other.y; }
+  int operator*(const Vector& other) const { return x * other.x + y * other.y; }
 
-  Vector operator+(const Vector&);
-  Vector operator-(const Vector&);
+  Vector operator+(const Vector&) const;
+  Vector operator-(const Vector&) const;
 };
 
-Vector Vector::operator+(const Vector& other) {
+Vector Vector::operator+(const Vector& other) const {
   return Vector(x + other.x, y + other.y);
 }
 
-Vector Vector::operator-(const Vector& other) {
+Vector Vector::operator-(const Vector& other) const {
   return Vector(x - other.x, y - other.y);
 }
 

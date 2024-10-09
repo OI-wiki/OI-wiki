@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <iostream>
 
-const int N = 10005;
+constexpr int N = 10005;
 int n, x[N], y[N], w[N];
 double ansx, ansy, dis;
 

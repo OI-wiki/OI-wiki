@@ -289,10 +289,10 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     ```cpp
     using std::string;
     
-    const int M = 1e9 + 7;
-    const int B = 233;
+    constexpr int M = 1e9 + 7;
+    constexpr int B = 233;
     
-    typedef long long ll;
+    using ll = long long;
     
     int get_hash(const string& s) {
       int res = 0;
@@ -328,7 +328,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
 
 === "C++"
     ```cpp
-    typedef unsigned long long ull;
+    using ull = unsigned long long;
     ull base = 131;
     ull mod1 = 212370440130137957, mod2 = 1e9 + 7;
     
@@ -426,8 +426,8 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     int count_unique_substrings(string const& s) {
       int n = s.size();
     
-      const int b = 31;
-      const int m = 1e9 + 9;
+      constexpr static int b = 31;
+      constexpr static int m = 1e9 + 9;
       vector<long long> b_pow(n);
       b_pow[0] = 1;
       for (int i = 1; i < n; i++) b_pow[i] = (b_pow[i - 1] * b) % m;

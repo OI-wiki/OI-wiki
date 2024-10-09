@@ -3,10 +3,10 @@
 #include <random>
 #include <vector>
 
-typedef unsigned long long ull;
-typedef std::pair<ull, ull> Hash2;
+using ull = unsigned long long;
+using Hash2 = std::pair<ull, ull>;
 
-const int N = 60, M = 998244353;
+constexpr int N = 60, M = 998244353;
 const ull mask = std::mt19937_64(time(nullptr))();
 
 ull shift(ull x) {
