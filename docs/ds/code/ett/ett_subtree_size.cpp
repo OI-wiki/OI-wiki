@@ -1,31 +1,18 @@
-#include <bits/stdc++.h>
-
-#define CPPIO \
-  std::ios::sync_with_stdio(false), std::cin.tie(0), std::cout.tie(0);
-#define freep(p) p ? delete p, p = nullptr, void(1) : void(0)
-
-#if defined(BACKLIGHT) && !defined(NASSERT)
-#define ASSERT(x)                                                          \
-  ((x) || (fprintf(stderr, "assertion failed (" __FILE__ ":%d): \"%s\"\n", \
-                   __LINE__, #x),                                          \
-           assert(false), false))
-#else
-#define ASSERT(x) ;
-#endif
-
-#ifdef BACKLIGHT
-#include "debug.h"
-#else
-#define logd(...) ;
-#endif
+#include <cassert>
+#include <cstdint>
+#include <functional>
+#include <iostream>
+#include <map>
+#include <random>
+#include <sstream>
 
 using i64 = int64_t;
 using u64 = uint64_t;
 
 void solve_case(int Case);
 
-int main(int argc, char* argv[]) {
-  CPPIO;
+int main() {
+  std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
   int T = 1;
   // std::cin >> T;
   for (int t = 1; t <= T; ++t) {
@@ -167,7 +154,7 @@ class DynamicForest {
      * containing p.
      */
     static int GetPosition(Node* p) {
-      ASSERT(p != nullptr);
+      assert(p != nullptr);
 
       int position = GetSize(p->left_) + 1;
       while (p) {
@@ -220,7 +207,7 @@ class DynamicForest {
      * contains elements after p.
      */
     static std::pair<Node*, Node*> SplitUp2(Node* p) {
-      ASSERT(p != nullptr);
+      assert(p != nullptr);
 
       Node *a = nullptr, *b = nullptr;
       b = p->right_;
@@ -267,7 +254,7 @@ class DynamicForest {
      * the third one contains elements after p.
      */
     static std::tuple<Node*, Node*, Node*> SplitUp3(Node* p) {
-      ASSERT(p != nullptr);
+      assert(p != nullptr);
 
       Node* a = p->left_;
       if (a) a->parent_ = nullptr;
@@ -325,15 +312,15 @@ class DynamicForest {
 
  public:
   DynamicForest(int n) : n_(n), vertices_(n_), tree_edges_(n_) {
-    ASSERT(n_ > 0);
+    assert(n_ > 0);
 
     for (int i = 0; i < n_; ++i) vertices_[i] = AllocateNode(i, i);
   }
 
   ~DynamicForest() {
     for (int i = 0; i < n_; ++i) {
-      for (auto [_, e] : tree_edges_[i]) {
-        FreeNode(e);
+      for (auto p : tree_edges_[i]) {
+        FreeNode(p.second);
       }
     }
     for (int i = 0; i < n_; ++i) {
@@ -346,15 +333,16 @@ class DynamicForest {
 
     int position_u = Treap::GetPosition(vertex_u);
 
-    auto [L1, L2] = Treap::SplitUp2(vertex_u);
-    ASSERT(GetSize(L1) == position_u);
+    auto p1 = Treap::SplitUp2(vertex_u);
+    auto L1 = p1.first, L2 = p1.second;
+    assert(GetSize(L1) == position_u);
 
     Treap::Merge(L2, L1);
   }
 
   void Insert(int u, int v) {
-    ASSERT(not tree_edges_[u].count(v));
-    ASSERT(not tree_edges_[v].count(u));
+    assert(!tree_edges_[u].count(v));
+    assert(!tree_edges_[v].count(u));
 
     Node* vertex_u = vertices_[u];
     Node* vertex_v = vertices_[v];
@@ -367,11 +355,13 @@ class DynamicForest {
     int position_u = Treap::GetPosition(vertex_u);
     int position_v = Treap::GetPosition(vertex_v);
 
-    auto [L11, L12] = Treap::SplitUp2(vertex_u);
-    auto [L21, L22] = Treap::SplitUp2(vertex_v);
+    auto p1 = Treap::SplitUp2(vertex_u);
+    auto p2 = Treap::SplitUp2(vertex_v);
+    auto L11 = p1.first, L12 = p1.second;
+    auto L21 = p2.first, L22 = p2.second;
 
-    ASSERT(GetSize(L11) == position_u);
-    ASSERT(GetSize(L21) == position_v);
+    assert(GetSize(L11) == position_u);
+    assert(GetSize(L21) == position_v);
 
     Node* result = nullptr;
     result = Treap::Merge(result, L12);
@@ -383,8 +373,8 @@ class DynamicForest {
   }
 
   void Delete(int u, int v) {
-    ASSERT(tree_edges_[u].count(v));
-    ASSERT(tree_edges_[v].count(u));
+    assert(tree_edges_[u].count(v));
+    assert(tree_edges_[v].count(u));
 
     Node* edge_uv = tree_edges_[u][v];
     Node* edge_vu = tree_edges_[v][u];
@@ -398,13 +388,15 @@ class DynamicForest {
       std::swap(position_uv, position_vu);
     }
 
-    auto [L1, uv, _] = Treap::SplitUp3(edge_uv);
-    ASSERT(GetSize(L1) == position_uv - 1);
-    ASSERT(GetSize(uv) == 1);
+    auto p1 = Treap::SplitUp3(edge_uv);
+    auto L1 = std::get<0>(p1), uv = std::get<1>(p1);
+    assert(GetSize(L1) == position_uv - 1);
+    assert(GetSize(uv) == 1);
 
-    auto [L2, vu, L3] = Treap::SplitUp3(edge_vu);
-    ASSERT(GetSize(L2) == position_vu - position_uv - 1);
-    ASSERT(GetSize(vu) == 1);
+    auto p2 = Treap::SplitUp3(edge_vu);
+    auto L2 = std::get<0>(p2), vu = std::get<1>(p2), L3 = std::get<2>(p2);
+    assert(GetSize(L2) == position_vu - position_uv - 1);
+    assert(GetSize(vu) == 1);
 
     L1 = Treap::Merge(L1, L3);
 
@@ -449,10 +441,10 @@ class DynamicForest {
       }
     }
     for (int i = 0; i < n_; ++i) {
-      for (auto [_, j] : tree_edges_[i]) {
-        if (j->parent_ == nullptr) {
+      for (auto p : tree_edges_[i]) {
+        if (p.second->parent_ == nullptr) {
           ss << "  Component [";
-          dfs(j);
+          dfs(p.second);
           ss << "]\n";
         }
       }
@@ -469,8 +461,7 @@ class DynamicForest {
   std::vector<std::map<int, Node*>> tree_edges_;
 };
 
-std::mt19937 DynamicForest::rng_(
-    std::chrono::steady_clock::now().time_since_epoch().count());
+std::mt19937 DynamicForest::rng_(std::random_device{}());
 
 void solve_case(int Case) {
   int n, q;

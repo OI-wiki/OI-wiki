@@ -63,9 +63,10 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     """
 
     print(incolor(BLUE, f"Test for {mainfile}..."))
+
     if skiptest:
-        print(incolor(BLUE, f"Test for {mainfile} skipped because file {mainfile + '.skip_test'} exists"))
-        return False, {mainfile, Skipped()}
+        print(incolor(BLUE, f"Test for {mainfile} skipped because file {mainfile + '.skip_test'} exists\n"))
+        return False, {mainfile: [Skipped()]}
     
     CALL_VCVARS_BAT = r'call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"'
 
@@ -104,40 +105,40 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         return (arrgen(), productgen())
     
     concat = lambda a, b: (a[0] + b[0], a[1] + b[1])
-    map = {
+    config_map = {
         "x86_64 Ubuntu": concat(gen(
-            compilers=[('clang++', '.Clang'), ('g++-9', '.GCC9'), ('g++-13', '.GCC13')],
-            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++2a', '.GNU20'), ('', '.NA')],
-            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
+            compilers=[('clang++ -Wno-unused-result', '.Clang'), ('g++-9 -Wno-unused-result', '.GCC9'), ('g++-13 -Wno-unused-result', '.GCC13')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
             mainfile=mainfile
         ), gen(
-            compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
-            standards=[('', '.NA')],
+            compilers=[('clang++ -Wno-unused-result', '.Clang'), ('g++-13 -Wno-unused-result', '.GCC13')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
             optimizations=[('', '.NA')],
             sanitizers=[('-fsanitize=undefined,address', '.UBSAN-ASAN')],
             auxfiles=auxfiles,
             mainfile=mainfile
         )),
         "x86_64 Alpine": gen(
-            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
-            standards=[('', '.NA')],
+            compilers=[('clang++ -Wno-unused-result', '.Clang'), ('g++ -Wno-unused-result', '.GCC')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
             mainfile=mainfile
         ),
         "x86_64 Windows": concat(gen(
-            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
-            standards=[('', '.NA')],
+            compilers=[('clang++ -Wno-unused-result -D_CRT_SECURE_NO_WARNINGS', '.Clang'), ('g++ -Wno-unused-result -D_CRT_SECURE_NO_WARNINGS', '.GCC')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
             mainfile=mainfile
         ), gen(
-            compilers=[(f'{CALL_VCVARS_BAT} && cl.exe', '.MSVC')],
-            standards=[('', '.NA')],
+            compilers=[(f'{CALL_VCVARS_BAT} && cl.exe /EHsc /D_CRT_SECURE_NO_WARNINGS', '.MSVC')],
+            standards=[('/std:c++14', '.CPP14'), ('/std:c++17', '.CPP17'), ('/std:c++20', '.CPP20')],
             optimizations=[('/Od', '.O0'), ('/O2', '.O2')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
@@ -145,17 +146,17 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             omit_ms_style=True
         )),
         "riscv64 Ubuntu": gen(
-            compilers=[('clang++', '.Clang'), ('g++', '.GCC')],
-            standards=[('', '.NA')],
+            compilers=[('clang++ -Wno-unused-result', '.Clang'), ('g++ -Wno-unused-result', '.GCC')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
             optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
             mainfile=mainfile
         ),
         "arm64 MacOS": gen(
-            compilers=[('clang++', '.Clang'), ('g++-13', '.GCC13')],
-            standards=[('-std=c++14', '.CPP14'), ('-std=gnu++20', '.GNU20'), ('', '.NA')],
-            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3'), ('', '.NA')],
+            compilers=[('clang++ -Wno-unused-result', '.Clang'), ('g++-13 -Wno-unused-result', '.GCC13')],
+            standards=[('-std=c++14', '.CPP14'), ('-std=c++17', '.CPP17'), ('-std=c++2a', '.CPP20')],
+            optimizations=[('-O0', '.O0'), ('-O2', '.O2'), ('-O3', '.O3')],
             sanitizers=[('', '.NA')],
             auxfiles=auxfiles,
             mainfile=mainfile
@@ -163,19 +164,19 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     }
 
     compile_commands_dict = {
-        "x86_64 Ubuntu": map["x86_64 Ubuntu"][0],
-        "x86_64 Alpine": map["x86_64 Alpine"][0],
-        "x86_64 Windows": map["x86_64 Windows"][0],
-        "riscv64 Ubuntu": map["riscv64 Ubuntu"][0],
-        "arm64 MacOS": map["arm64 MacOS"][0]
+        "x86_64 Ubuntu": config_map["x86_64 Ubuntu"][0],
+        "x86_64 Alpine": config_map["x86_64 Alpine"][0],
+        "x86_64 Windows": config_map["x86_64 Windows"][0],
+        "riscv64 Ubuntu": config_map["riscv64 Ubuntu"][0],
+        "arm64 MacOS": config_map["arm64 MacOS"][0]
     }
 
     compile_products_dict = {
-        "x86_64 Ubuntu": map["x86_64 Ubuntu"][1],
-        "x86_64 Alpine": map["x86_64 Alpine"][1],
-        "x86_64 Windows": map["x86_64 Windows"][1],
-        "riscv64 Ubuntu": map["riscv64 Ubuntu"][1],
-        "arm64 MacOS": map["arm64 MacOS"][1]
+        "x86_64 Ubuntu": config_map["x86_64 Ubuntu"][1],
+        "x86_64 Alpine": config_map["x86_64 Alpine"][1],
+        "x86_64 Windows": config_map["x86_64 Windows"][1],
+        "riscv64 Ubuntu": config_map["riscv64 Ubuntu"][1],
+        "arm64 MacOS": config_map["arm64 MacOS"][1]
     }
     
     compile_commands = compile_commands_dict[runs_on]
@@ -184,49 +185,71 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     return_status = {}
     this_file_looks_odd = False
     for compile_command, compile_product in zip(compile_commands, compile_products):
+        print("::group::" + incolor(BLUE, f"With config: {compile_product.split('/')[-1]}..."))
         print(compile_command, end=' ')
-        result = subprocess.run(compile_command, shell=True)
+        result = subprocess.run(compile_command, shell=True, capture_output=True)
         if result.returncode != 0:
             this_file_looks_odd = True
             status_vector = [CE(result.returncode)]
             print(status_vector[0].colored())
+            print('  ---- Compile Stdout: ----')
+            print('\n'.join(list(map(lambda x: '  ' + x, result.stdout.decode().split('\n')))))
+            print('  ---- Compile Stderr: ----')
+            print('\n'.join(list(map(lambda x: '  ' + x, result.stderr.decode().split('\n')))))
+
         else: 
             status_vector = [CompileOK()]
             print(status_vector[0].colored())
+            if result.stdout or result.stderr:
+                print('  ---- Compile Stdout: ----')
+                print('\n'.join(list(map(lambda x: '  ' + x, result.stdout.decode().split('\n')))))
+                print('  ---- Compile Stderr: ----')
+                print('\n'.join(list(map(lambda x: '  ' + x, result.stderr.decode().split('\n')))))
 
             for e in examples:
                 print(f'{compile_product} < {e} > {e.replace(".in", ".out")}', end=' ')
-                with open(e, 'r') as fstdin:
-                    with open(e.replace(".in", ".out"), 'w') as fstdout:
-                        result = subprocess.run(f'{os.path.join(os.path.curdir, compile_product)}', stdin=fstdin, stdout=fstdout, shell=True)
+                result = subprocess.run(f'{os.path.join(os.path.curdir, compile_product)}', capture_output=True, input=open(e, 'rb').read(), shell=True)
+                with open(e.replace(".in", ".out"), 'wb') as f:
+                    f.write(result.stdout)
                 if result.returncode != 0:
                     this_file_looks_odd = True
                     status_vector.append(RE(result.returncode))
                     print(status_vector[-1].colored())
+                    print('  ---- Execution Stdout: ----')
+                    print('\n'.join(list(map(lambda x: '  ' + x, result.stdout.decode().split('\n')))))
+                    print('  ---- Execution Stderr: ----')
+                    print('\n'.join(list(map(lambda x: '  ' + x, result.stderr.decode().split('\n')))))
+
                 else:
                     print(incolor(GREEN, 'OK'))
                     print(f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")}', end=' ')
-                    result = subprocess.run(f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")}', shell=True)
+                    result = subprocess.run(f'diff -b -B {e.replace(".in", ".out")} {e.replace(".in", ".ans")}', capture_output=True, shell=True)
                     if result.returncode != 0:
                         this_file_looks_odd = True
                         status_vector.append(WA(result.returncode))
                     else:
                         status_vector.append(AC())
                     print(status_vector[-1].colored())
+                    if result.returncode != 0:
+                        print('  ---- We expect: ----')
+                        print('\n'.join(list(map(lambda x: '  ' + x, open(e.replace(".in", ".ans")).read().split('\n')))))
+                        print('  ---- We get: ----')
+                        print('\n'.join(list(map(lambda x: '  ' + x, open(e.replace(".in", ".out")).read().split('\n')))))
+
         print(f'{compile_product.split(os.path.pathsep)[-1]}: ', end='')
         for status in status_vector:
             print(status.colored(), end='; ')
-        print()
+        print("\n::endgroup::")
         return_status[compile_product] = status_vector
 
     print(incolor(BLUE, f'Result for {mainfile}: '))
-    if this_file_looks_odd:
-        print(f'::error file={mainfile},title=Potential UB::Please take a look.')
     for key in return_status:
         print(f'-  {key}: ', end='')
         for status in return_status[key]:
             print(status.colored(), end='; ')
         print()
+    if this_file_looks_odd:
+        print(f'::error file={mainfile},title=Potential UB::Potential UB. Please take a look.')
     print()
     return this_file_looks_odd, return_status
 
@@ -245,3 +268,7 @@ for mainfile, auxfile, example, skiptest in zip(mainfiles, auxfiles, examples, s
 
 with open("output.txt", "w") as f:
     f.write(str(output))
+
+if cnt_error:
+    print(f"UB-Check is completed, but we have found {cnt_error} files with potential UB. Call exit(1) to fail this job.")
+    exit(1)

@@ -1,4 +1,3 @@
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 #include <set>
@@ -15,12 +14,13 @@ bool cmp(int x, int y, int w) {
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int i, j, w, p, m = 1000000;
 
-  scanf("%d%d", &n, &k);
+  cin >> n >> k;
   --k;
 
-  for (i = 1; i <= n; ++i) scanf("%d", a + i);  // 求后缀数组
+  for (i = 1; i <= n; ++i) cin >> a[i];  // 求后缀数组
   for (i = 1; i <= n; ++i) ++cnt[rk[i] = a[i]];
   for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
   for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;

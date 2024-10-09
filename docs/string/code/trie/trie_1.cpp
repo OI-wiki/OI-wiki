@@ -1,8 +1,8 @@
 #include <cstdio>
-
+using namespace std;
 const int N = 500010;
 
-char s[60];
+char s[N];
 int n, m, ch[N][26], tag[N], tot = 1;
 
 int main() {
@@ -13,9 +13,8 @@ int main() {
     int u = 1;
     for (int j = 1; s[j]; ++j) {
       int c = s[j] - 'a';
-      if (!ch[u][c])
-        ch[u][c] =
-            ++tot;  // 如果这个节点的子节点中没有这个字符，添加上并将该字符的节点号记录为++tot
+      // 如果这个节点的子节点中没有这个字符，添加上并将该字符的节点号记录为++tot
+      if (!ch[u][c]) ch[u][c] = ++tot;
       u = ch[u][c];  // 往更深一层搜索
     }
     tag[u] = 1;  // 最后一个字符为节点 u 的名字未被访问到记录为 1

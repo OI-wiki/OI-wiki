@@ -1,11 +1,11 @@
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <vector>
 
 #define MXN 40005
 using namespace std;
-std::vector<int> v[MXN];
-std::vector<int> w[MXN];
+vector<int> v[MXN];
+vector<int> w[MXN];
 
 int fa[MXN][31], cost[MXN][31], dep[MXN];
 int n, m;
@@ -55,19 +55,20 @@ int lca(int x, int y) {
 }
 
 void Solve() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   // 初始化表示祖先的数组 fa，代价 cost 和深度 dep。
   memset(fa, 0, sizeof(fa));
   memset(cost, 0, sizeof(cost));
   memset(dep, 0, sizeof(dep));
   // 读入树：节点数一共有 n 个，查询 m 次，每一次查找两个节点的 lca 点。
-  scanf("%d %d", &n, &m);
+  cin >> n >> m;
   // 初始化树边和边权
   for (int i = 1; i <= n; ++i) {
     v[i].clear();
     w[i].clear();
   }
   for (int i = 1; i < n; ++i) {
-    scanf("%d %d %d", &a, &b, &c);
+    cin >> a >> b >> c;
     v[a].push_back(b);
     v[b].push_back(a);
     w[a].push_back(c);
@@ -76,14 +77,15 @@ void Solve() {
   // 为了计算 lca 而使用 dfs。
   dfs(1, 0);
   for (int i = 0; i < m; ++i) {
-    scanf("%d %d", &a, &b);
-    printf("%d\n", lca(a, b));
+    cin >> a >> b;
+    cout << lca(a, b) << '\n';
   }
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int T;
-  scanf("%d", &T);
+  cin >> T;
   while (T--) Solve();
   return 0;
 }

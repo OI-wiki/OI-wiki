@@ -1,6 +1,6 @@
 #include <cctype>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 using namespace std;
 static const int sqn = 1e3;
 
@@ -18,7 +18,7 @@ char inits[(int)1e6 + 5];
 int llen, q;
 
 void readch(char& ch) {  // 读入字符
-  do ch = getchar();
+  do cin >> ch;
   while (!isalpha(ch));
 }
 
@@ -55,7 +55,9 @@ char query(int pos) {  // 查询
 }
 
 int main() {
-  scanf("%s %d", inits, &q), llen = strlen(inits);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> inits >> q;
+  llen = strlen(inits);
   node* p = new node;
   head = p;
   for (int i = 0; i < llen; i++) {
@@ -67,9 +69,9 @@ int main() {
   while (q--) {
     readch(a);
     if (a == 'Q')
-      scanf("%d", &k), printf("%c\n", query(k));
+      cin >> k, cout << query(k) << '\n';
     else
-      readch(a), scanf("%d", &k), insert(a, k);
+      readch(a), cin >> k, insert(a, k);
   }
   return 0;
 }

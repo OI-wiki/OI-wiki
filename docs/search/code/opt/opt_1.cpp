@@ -1,7 +1,7 @@
-#include <cstdio>
+#include <iostream>
 #define N 16
 int is_working[N] = {0};  // 某项工作是否被分配
-int time[N][N];           // 完成某项工作所需的时间
+int tm[N][N];             // 完成某项工作所需的时间
 int cost_time_total_min;  // 完成 n 份工作的最小时间总和
 
 // i 表示第几个人，count 表示工作费用总和
@@ -21,7 +21,7 @@ void work(int i, int count, int n) {
         // 分配工作 is_working = 1
         is_working[j] = 1;
         // 工作交给第 i + 1 个人
-        work(i + 1, count + time[i][j], n);
+        work(i + 1, count + tm[i][j], n);
         // 在一轮迭代完成之后，返回到上一个人，要对此次的工作进行重新分配
         // 将 is_working[j] 重设为 0
         is_working[j] = 0;
@@ -30,16 +30,20 @@ void work(int i, int count, int n) {
   }
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int n;
-  scanf("%d", &n);
+  cin >> n;
   for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= n; j++) {
-      scanf("%d", &time[i][j]);
+      cin >> tm[i][j];
     }
-    cost_time_total_min += time[i][i];
+    cost_time_total_min += tm[i][i];
   }
   work(1, 0, n);
-  printf("%d\n", cost_time_total_min);
+  cout << cost_time_total_min << '\n';
   return 0;
 }

@@ -1,5 +1,5 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 
 const int maxN = 1e5 + 10;
 const int maxK = 2e5 + 10;
@@ -79,9 +79,13 @@ void CDQ(int l, int r) {
   return;
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%d%d", &n, &k);
-  for (int i = 1; i <= n; i++) scanf("%d%d%d", &e[i].a, &e[i].b, &e[i].c);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> k;
+  for (int i = 1; i <= n; i++) cin >> e[i].a >> e[i].b >> e[i].c;
   std::sort(e + 1, e + n + 1, cmpA);
   for (int i = 1; i <= n; i++) {
     t++;
@@ -96,6 +100,6 @@ int main() {
   }
   CDQ(1, m);
   for (int i = 1; i <= m; i++) res[ue[i].res + ue[i].cnt - 1] += ue[i].cnt;
-  for (int i = 0; i < n; i++) printf("%d\n", res[i]);
+  for (int i = 0; i < n; i++) cout << res[i] << '\n';
   return 0;
 }

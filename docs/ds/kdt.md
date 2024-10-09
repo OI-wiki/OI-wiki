@@ -1,4 +1,4 @@
-author: hsfzLZH1, Ir1d
+author: hsfzLZH1, Ir1d, JosephusW
 
 k-D Tree(KDT , k-Dimension Tree) 是一种可以 **高效处理 $k$ 维空间信息** 的数据结构。
 
@@ -113,7 +113,7 @@ $$
 
 容易发现需要合并的树的大小一定从 $2^0$ 开始且指数连续。复杂度类似二进制加法，是均摊 $O(n\log^2 n)$ 的，因为重构本身带 $\log$。
 
-查询的时候，直接分别在每颗树上查询，复杂度为 $O\left(\sum_{i\geq0} (\frac n{2^i})^{1-\frac1k}\right)=O(n^{1-\frac1k})$。
+查询的时候，直接分别在每棵树上查询，复杂度为 $O\left(\sum_{i\geq0} (\frac n{2^i})^{1-\frac1k}\right)=O(n^{1-\frac1k})$。
 
 ### 例题
 

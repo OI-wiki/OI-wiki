@@ -219,7 +219,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
 
 ??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)"
     ```cpp
-    --8<-- "docs/graph/graph-matching/code/general-match/general-match_1.cpp"
+    --8<-- "docs/graph/code/graph-matching/general-match/general-match_1.cpp"
     ```
 
 ## 基于高斯消元的一般图匹配算法
@@ -357,7 +357,7 @@ $$
 
 ??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)"
     ```cpp
-    --8<-- "docs/graph/graph-matching/code/general-match/general-match_2.cpp"
+    --8<-- "docs/graph/code/graph-matching/general-match/general-match_2.cpp"
     ```
 
 ## 习题

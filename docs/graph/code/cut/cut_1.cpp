@@ -1,7 +1,8 @@
 /*
 洛谷 P3388 【模板】割点（割顶）
 */
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 int n, m;  // n：点数 m：边数
 int dfn[100001], low[100001], inde, res;
