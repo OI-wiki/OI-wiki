@@ -86,10 +86,11 @@ void merge(int x, int y) {
 
 ???+ note "实现"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cstdio>
+    #include <vector>
     using namespace std;
     
-    const int N = 2e5 + 5;
+    constexpr int N = 2e5 + 5;
     
     int n;
     
@@ -152,7 +153,7 @@ void merge(int x, int y) {
         }
       add(u);
       ans[u] = getAns();
-      if (keep == false) {
+      if (!keep) {
         for (int i = L[u]; i <= R[u]; i++) {
           del(Node[i]);
         }

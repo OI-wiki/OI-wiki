@@ -4,10 +4,10 @@
 
 using namespace std;
 
-const int maxn = 2010;
+constexpr int MAXN = 2010;
 int n, m, v, e;
-int f[maxn][maxn], c[maxn], d[maxn];
-double dp[maxn][maxn][2], p[maxn];
+int f[MAXN][MAXN], c[MAXN], d[MAXN];
+double dp[MAXN][MAXN][2], p[MAXN];
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);

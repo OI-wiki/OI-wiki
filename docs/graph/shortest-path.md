@@ -168,7 +168,7 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
         vector<Edge> edge;
         
         int dis[MAXN], u, v, w;
-        const int INF = 0x3f3f3f3f;
+        constexpr int INF = 0x3f3f3f3f;
         
         bool bellmanford(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
@@ -249,8 +249,8 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
           int v, w;
         };
         
-        vector<edge> e[maxn];
-        int dis[maxn], cnt[maxn], vis[maxn];
+        vector<edge> e[MAXN];
+        int dis[MAXN], cnt[MAXN], vis[MAXN];
         queue<int> q;
         
         bool spfa(int n, int s) {
@@ -287,7 +287,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                 self.w = w
         
         
-        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+        e = [[Edge() for i in range(MAXN)] for j in range(MAXN)]
         INF = 0x3F3F3F3F
         
         
@@ -392,8 +392,8 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
           int v, w;
         };
         
-        vector<edge> e[maxn];
-        int dis[maxn], vis[maxn];
+        vector<edge> e[MAXN];
+        int dis[MAXN], vis[MAXN];
         
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
@@ -419,7 +419,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
                 self.w = w
         
         
-        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+        e = [[Edge() for i in range(MAXN)] for j in range(MAXN)]
         INF = 0x3F3F3F3F
         
         
@@ -455,9 +455,9 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
           bool operator>(const node& a) const { return dis > a.dis; }
         };
         
-        vector<edge> e[maxn];
-        int dis[maxn], vis[maxn];
-        priority_queue<node, vector<node>, greater<node> > q;
+        vector<edge> e[MAXN];
+        int dis[MAXN], vis[MAXN];
+        priority_queue<node, vector<node>, greater<node>> q;
         
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));

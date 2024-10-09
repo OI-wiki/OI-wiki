@@ -311,7 +311,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
       } else {
         Node *cursor = root;
         Node *parent;
-        while (cursor->IS_LEAF == false) {
+        while (!cursor->IS_LEAF) {
           parent = cursor;
           for (int i = 0; i < cursor->size; i++) {
             if (x < cursor->key[i]) {
@@ -454,7 +454,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
         Node *cursor = root;
         Node *parent;
         int leftSibling, rightSibling;
-        while (cursor->IS_LEAF == false) {
+        while (!cursor->IS_LEAF) {
           for (int i = 0; i < cursor->size; i++) {
             parent = cursor;
             leftSibling = i - 1;
@@ -694,7 +694,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
           cout << cursor->key[i] << " ";
         }
         cout << "\n";
-        if (cursor->IS_LEAF != true) {
+        if (!cursor->IS_LEAF) {
           for (int i = 0; i < cursor->size + 1; i++) {
             display(cursor->ptr[i]);
           }

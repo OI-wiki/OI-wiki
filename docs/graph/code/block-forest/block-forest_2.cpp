@@ -3,9 +3,9 @@
 #include <set>
 #include <vector>
 
-const int MN = 100005;
-const int MS = 524288;
-const int Inf = 0x7fffffff;
+constexpr int MN = 100005;
+constexpr int MS = 524288;
+constexpr int Inf = 0x7fffffff;
 
 int N, M, Q, cnt;
 int w[MN * 2];

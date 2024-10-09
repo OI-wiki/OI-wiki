@@ -3,19 +3,19 @@
 #include <string>
 
 void promote() {
-  std::ios::sync_with_stdio(0);
+  std::ios::sync_with_stdio(false);
   std::cin.tie(nullptr);
   return;
 }
 
-typedef std::deque<int> dic;
+using dic = std::deque<int>;
 
-const int maxN = 2e5;
-const int maxS = 2e5;
+constexpr int MAXN = 2e5;
+constexpr int MAXS = 2e5;
 
 int n;
 std::string s, t;
-int cnt[maxN + 10];
+int cnt[MAXN + 10];
 
 struct AhoCorasickAutomaton {
   struct Node {
@@ -24,12 +24,12 @@ struct AhoCorasickAutomaton {
     int fail;
     int head;
     dic index;
-  } node[maxS + 10];
+  } node[MAXS + 10];
 
   struct Edge {
     int head;
     int next;
-  } edge[maxS + 10];
+  } edge[MAXS + 10];
 
   int root;
   int ncnt;

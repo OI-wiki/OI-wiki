@@ -32,9 +32,9 @@ ll qpow(ll x, ll p, ll mod) {  // 快速幂
 }
 
 bool Miller_Rabin(ll p) {  // 判断素数
-  if (p < 2) return 0;
-  if (p == 2) return 1;
-  if (p == 3) return 1;
+  if (p < 2) return false;
+  if (p == 2) return true;
+  if (p == 3) return true;
   ll d = p - 1, r = 0;
   while (!(d & 1)) ++r, d >>= 1;  // 将d处理为奇数
   for (ll k = 0; k < 10; ++k) {
@@ -45,9 +45,9 @@ bool Miller_Rabin(ll p) {  // 判断素数
       x = bmul(x, x, p);
       if (x == p - 1) break;
     }
-    if (x != p - 1) return 0;
+    if (x != p - 1) return false;
   }
-  return 1;
+  return true;
 }
 
 ll Pollard_Rho(ll x) {

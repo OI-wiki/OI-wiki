@@ -35,8 +35,8 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
 
 === "C++"
     ```cpp
-    const int SIZE = 1000000;
-    const int M = 999997;
+    constexpr int SIZE = 1000000;
+    constexpr int M = 999997;
     
     struct HashTable {
       struct Node {
@@ -60,7 +60,7 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
     
       int add(int key, int value) {
         if (get(key) != -1) return -1;
-        data[++size] = (Node){head[f(key)], value, key};
+        data[++size] = Node{head[f(key)], value, key};
         head[f(key)] = size;
         return value;
       }
@@ -138,7 +138,7 @@ struct hash_map {  // 哈希表模板
     int hu = hash(u);  // 获取头指针
     for (int i = h[hu]; i; i = e[i].nex)
       if (e[i].u == u) return e[i].v;
-    return e[++cnt] = (data){u, -1, h[hu]}, h[hu] = cnt, e[cnt].v;
+    return e[++cnt] = data{u, -1, h[hu]}, h[hu] = cnt, e[cnt].v;
   }
 
   hash_map() {
@@ -159,7 +159,7 @@ struct hash_map {  // 哈希表模板
 #### 实现
 
 ```cpp
-const int N = 360007;  // N 是最大可以存储的元素数量
+constexpr int N = 360007;  // N 是最大可以存储的元素数量
 
 class Hash {
  private:

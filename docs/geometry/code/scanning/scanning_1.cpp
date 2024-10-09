@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <iostream>
-#define ll long long
+using ll = long long;
 using namespace std;
 
 struct node {

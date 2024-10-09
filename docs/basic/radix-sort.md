@@ -69,17 +69,17 @@ using std::tie;
 using std::tuple;
 using std::vector;
 
-typedef char* NTBS;  // 空终止字节字符串
-typedef NTBS* NTBSptr;
+using NTBS = char*;  // 空终止字节字符串
+using NTBSptr = NTBS*;
 
 void MSD_radix_sort(NTBSptr first, NTBSptr last) {
-  const size_t W = 128;
-  const size_t logW = 7;
-  const size_t mask = W - 1;
+  static constexpr size_t W = 128;
+  static constexpr size_t logW = 7;
+  static constexpr size_t mask = W - 1;
 
   NTBSptr tmp = (NTBSptr)calloc(last - first, sizeof(NTBS));
 
-  typedef tuple<NTBSptr, NTBSptr, size_t> node;
+  using node = tuple<NTBSptr, NTBSptr, size_t>;
   stack<node, vector<node>> s;
   s.push(make_tuple(first, last, 0));
 
@@ -184,9 +184,9 @@ $$
 下面是使用 LSD 基数排序实现的对 k - 关键字元素的排序。
 
 ```cpp
-const int N = 100010;
-const int W = 100010;
-const int K = 100;
+constexpr int N = 100010;
+constexpr int W = 100010;
+constexpr int K = 100;
 
 int n, w[K], k, cnt[W];
 
@@ -252,7 +252,7 @@ void radix_sort() {
     
     int main() {
       std::ios::sync_with_stdio(false);
-      std::cin.tie(0);
+      std::cin.tie(nullptr);
       int n;
       std::cin >> n;
       int *a = new int[n];

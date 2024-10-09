@@ -8,7 +8,7 @@
 using namespace std;
 
 int n, m, k;
-const int N = 1e5 + 5;
+constexpr int N = 1e5 + 5;
 
 struct edge {
   int u, v, c;

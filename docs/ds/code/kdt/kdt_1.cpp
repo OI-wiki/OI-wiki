@@ -5,15 +5,15 @@
 #include <iomanip>
 #include <iostream>
 using namespace std;
-const int maxn = 200010;
-int n, d[maxn], lc[maxn], rc[maxn];
+constexpr int MAXN = 200010;
+int n, d[MAXN], lc[MAXN], rc[MAXN];
 double ans = 2e18;
 
 struct node {
   double x, y;
-} s[maxn];
+} s[MAXN];
 
-double L[maxn], R[maxn], D[maxn], U[maxn];
+double L[MAXN], R[MAXN], D[MAXN], U[MAXN];
 
 double dist(int a, int b) {
   return (s[a].x - s[b].x) * (s[a].x - s[b].x) +
