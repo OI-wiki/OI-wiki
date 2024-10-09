@@ -170,7 +170,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 === "C++"
     ```cpp
-    int query(char t[]) {
+    int query(const char t[]) {
       int u = 0, res = 0;
       for (int i = 1; t[i]; i++) {
         u = tr[u].son[t[i] - 'a'];
@@ -258,7 +258,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ???+ note "查询"
     ```cpp
-    void query(char t[]) {
+    void query(const char t[]) {
       int u = 0;
       for (int i = 1; t[i]; i++) {
         u = tr[u].son[t[i] - 'a'];
@@ -319,7 +319,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ???+ note "查询部分主要代码"
     ```cpp
-    int query(char t[]) {
+    int query(const char t[]) {
       int u = 0, len = strlen(t + 1);
       for (int i = 1; i <= len; i++) dp[i] = 0;
       for (int i = 1; i <= len; i++) {
@@ -378,7 +378,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ???+ note "查询"
     ```cpp
-    int query(char t[]) {
+    int query(const char t[]) {
       int u = 0, mx = 0;
       unsigned st = 1;
       for (int i = 1; t[i]; i++) {
