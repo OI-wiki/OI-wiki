@@ -326,7 +326,7 @@ $$
 D=-1,-2,-3,-7,-11,-19,-43,-67,-163
 $$
 
-对应的二次整数环是主理想整环。比较上面的结果，可以知道诸如 $D=-19$ 的情形提供了主理想整环不是欧几里得整环的例子。当 $D>=0$，目前尚没有完整的结果。
+对应的二次整数环是主理想整环。比较上面的结果，可以知道诸如 $D=-19$ 的情形提供了主理想整环不是欧几里得整环的例子。当 $D>0$ 时，目前尚没有完整的结果。
 
 但是，可以证明，在二次整数环中，唯一分解整环和主理想整环是等价的。上面的结果说明，比如说 $\mathbf Z[\sqrt{-5}]$ 就不是主理想整环，因而也不是唯一分解整环。之前已经通过例子实际证明过了它不能唯一分解，即
 
@@ -340,7 +340,54 @@ $$
 
 ## 中国剩余定理
 
+相关阅读：[中国剩余定理](../number-theory/crt.md)
+
+在数论中，中国剩余定理常用来求解数论方程组。对于一般的交换幺环，同样可以建立中国剩余定理。每个同余方程都相当于指定了未知元在某个商环里的像，那么，交换幺环中的中国剩余定理就相当于通过这些商环里的像确定环中的元素。
+
+把这个讨论转化为形式语言就是，给定非零交换幺环 $R$ 和它的理想 $I_1,\cdots,I_n$，考虑环同态 $\varphi:R\rightarrow R/I_1\times \cdots R/I_n$，它将 $r$ 映射至 $(r\bmod I_1,\cdots,r\bmod I_n)$。这里，$\times$ 表示环的直积。它的核是 $\ker\varphi=I_1\cap\cdots\cap I_n$。中国剩余定理要回答的问题就是这样的映射在什么情形下是满的。
+
+在数论的情形下，定理的成立需要这些模数互质。这个条件可以推广到环论的情形。
+
+- 互素：给定环 $R$ 和它的理想 $I$ 和 $J$，则称 $I$ 和 $J$ **互素**（comaximal），如果 $I+J=R$。
+
+对于幺环的情形，如果考虑主理想 $(a)$ 和 $(b)$，这个条件就相当于存在 $x,y\in R$ 使得 $ax+by=1$，这类似于整数互素时的裴蜀定理。利用这个定义，可以完全仿照整数环的情形，建立交换幺环上的中国剩余定理。
+
+-   **中国剩余定理**（Chinese remainder theorem）：给定非零交换幺环 $R$ 和它的理想 $I_1,\cdots,I_n$，如果它们两两互质，那么上述定义的环同态 $\varphi$ 是满射，它的核等于这些理想的乘积 $\ker\varphi=I_1\cap\cdots\cap I_n=I_1\cdots I_n$，因此，
+    $$
+    R/(I_1\cdots I_n)=R/(I_1\cap\cdots\cap I_n)\cong R/I_1\times\cdots\times R/I_n.
+    $$
+
 ### 应用：整数剩余系的乘法群
+
+相关阅读：[原根](../number-theory/primitive-root.md)
+
+作为中国剩余定理和群论相关内容的一个应用，这里讨论整数模 $n$ 乘法群的结构。
+
+这里，**整数模 $n$ 乘法群**（multiplicative group of integers modulo $n$）指的是 $(\mathbf Z/n\mathbf Z)^\times$，即商环 $\mathbf Z/n\mathbf Z$ 中的可逆元的乘法群。
+
+对于可逆元 $\bar a$，自然有 $\bar b$ 使得 $\bar a\bar b=\bar 1$，亦即 $ab\equiv 1\pmod n$，也就说明存在 $k\in\mathbf Z$ 使得 $ab-kn=1$，这等价于 $(a,n)=1$。也就是说，$(\mathbf Z/n\mathbf Z)^\times$ 中的元素的代表元都是与 $n$ 互质的整数。这样的剩余系共计 $\varphi(n)$ 个，这里，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)。
+
+根据算术基本定理，模数 $n$ 有分解 
+
+$$
+n=p_1^{\alpha_1}\cdots p_s^{\alpha_s},
+$$
+
+所以，应用中国剩余定理可以得到 
+
+$$
+\mathbf Z/n\mathbf Z\cong\mathbf Z/p_1^{\alpha_1}\mathbf Z\times\cdots\times\mathbf Z/p_s^{\alpha_s}\mathbf Z,
+$$
+
+这里，容易验证，定理中理想互素的条件等价于理想的生成元互素。环的同构意味着相应的乘法结构也同构，所以 
+
+$$
+(\mathbf Z/n\mathbf Z)^\times\cong(\mathbf Z/p_1^{\alpha_1}\mathbf Z)^\times\times\cdots\times(\mathbf Z/p_s^{\alpha_s}\mathbf Z)^\times.
+$$
+
+这说明，$\varphi(n)=\varphi(p_1^{\alpha_1})\cdots\varphi(p_n^{\alpha_n})$，即欧拉函数是积性函数。
+
+根据上面的推理，要研究一般的模数的情形，只要考虑素数幂 $p^{\alpha}$ 作为模数的情形就可以了。对于素数幂的情形，需要分别考虑 $p=2$ 和 $p$ 为奇数的情形。
 
 ## 多项式环
 
