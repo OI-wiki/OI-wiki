@@ -383,10 +383,10 @@ void div(int a[], int b[], int c[], int d[]) {
     if (a[la - 1] != 0) break;
   for (lb = LEN - 1; lb > 0; --lb)
     if (b[lb - 1] != 0) break;
-  if (lb == 0) {
+  if (lb == 0) {  // 除数不能为零
     puts("> <");
     return;
-  }  // 除数不能为零
+  }
 
   // c 是商
   // d 是被除数的剩余部分，算法结束后自然成为余数

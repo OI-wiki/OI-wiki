@@ -284,8 +284,8 @@ $$
         this->B = B;
         this->P = P;
       }
-    
-      int next() { return x = (A * x + B) % P; }  // 生成随机序列的下一个随机数
+    // 生成随机序列的下一个随机数
+      int next() { return x = (A * x + B) % P; }  
     };
     
     myrand rnd(3, 5, 97);  // 初始化一个随机数生成器

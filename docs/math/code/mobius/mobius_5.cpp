@@ -1,3 +1,4 @@
+// 不要为了省什么内存把数组开小,会卡80
 #include <cmath>
 #include <iostream>
 #include <map>
@@ -71,4 +72,4 @@ int main() {
   prime_work(pn);
   cout << solve();
   return 0;
-}  // 不要为了省什么内存把数组开小,会卡80
+}

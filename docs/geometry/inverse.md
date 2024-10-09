@@ -99,51 +99,50 @@ author: hyp1231, 383494
     const double EPS = 1e-8;       // 精度系数
     const double PI = acos(-1.0);  // π
     const int N = 4;
-    
+    // 点的定义
     struct Point {
       double x, y;
     
       Point(double x = 0, double y = 0) : x(x), y(y) {}
     
       bool operator<(Point A) const { return x == A.x ? y < A.y : x < A.x; }
-    };  // 点的定义
-    
-    using Vector = Point;  // 向量的定义
-    
+    };  
+    // 向量的定义
+    using Vector = Point;  
+    // 向量加法
     Vector operator+(Vector A, Vector B) {
       return Vector(A.x + B.x, A.y + B.y);
-    }  // 向量加法
-    
+    }  
+    // 向量减法
     Vector operator-(Vector A, Vector B) {
       return Vector(A.x - B.x, A.y - B.y);
-    }  // 向量减法
-    
+    }  
+    // 向量数乘
     Vector operator*(Vector A, double p) {
       return Vector(A.x * p, A.y * p);
-    }  // 向量数乘
-    
+    }  
+    // 向量数除
     Vector operator/(Vector A, double p) {
       return Vector(A.x / p, A.y / p);
-    }  // 向量数除
-    
+    }  
+    // 与0的关系
     int dcmp(double x) {
       if (fabs(x) < EPS)
         return 0;
-      else
-        return x < 0 ? -1 : 1;
-    }  // 与0的关系
-    
-    double Dot(Vector A, Vector B) { return A.x * B.x + A.y * B.y; }  // 向量点乘
-    
-    double Length(Vector A) { return sqrt(Dot(A, A)); }  // 向量长度
-    
-    double Cross(Vector A, Vector B) { return A.x * B.y - A.y * B.x; }  // 向量叉乘
-    
+      return x < 0 ? -1 : 1;
+    }
+    // 向量点乘
+    double Dot(Vector A, Vector B) { return A.x * B.x + A.y * B.y; }  
+    // 向量长度
+    double Length(Vector A) { return sqrt(Dot(A, A)); }  
+    // 向量叉乘
+    double Cross(Vector A, Vector B) { return A.x * B.y - A.y * B.x; }  
+    // 点在直线上投影
     Point GetLineProjection(Point P, Point A, Point B) {
       Vector v = B - A;
       return A + v * (Dot(v, P - A) / Dot(v, v));
-    }  // 点在直线上投影
-    
+    }  
+    // 圆
     struct Circle {
       Point c;
       double r;
@@ -151,12 +150,12 @@ author: hyp1231, 383494
       Circle() : c(Point(0, 0)), r(0) {}
     
       Circle(Point c, double r = 0) : c(c), r(r) {}
-    
+    // 输入极角返回点坐标
       Point point(double a) {
         return Point(c.x + cos(a) * r, c.y + sin(a) * r);
-      }  // 输入极角返回点坐标
-    };  // 圆
-    
+      }  
+    };  
+    // 两圆公切线 返回切线的条数，-1表示无穷多条切线
     // a[i] 和 b[i] 分别是第i条切线在圆A和圆B上的切点
     int getTangents(Circle A, Circle B, Point* a, Point* b) {
       int cnt = 0;
@@ -200,8 +199,8 @@ author: hyp1231, 383494
         ++cnt;
       }
       return cnt;
-    }  // 两圆公切线 返回切线的条数，-1表示无穷多条切线
-    
+    }  
+    // 点 O 在圆 A 外，求圆 A 的反演圆 B，R 是反演半径
     Circle Inversion_C2C(Point O, double R, Circle A) {
       double OA = Length(A.c - O);
       double RB = 0.5 * ((1 / (OA - A.r)) - (1 / (OA + A.r))) * R * R;
@@ -209,19 +208,19 @@ author: hyp1231, 383494
       double Bx = O.x + (A.c.x - O.x) * OB / OA;
       double By = O.y + (A.c.y - O.y) * OB / OA;
       return Circle(Point(Bx, By), RB);
-    }  // 点 O 在圆 A 外，求圆 A 的反演圆 B，R 是反演半径
-    
+    }  
+    // 直线反演为过 O 点的圆 B，R 是反演半径
     Circle Inversion_L2C(Point O, double R, Point A, Vector v) {
       Point P = GetLineProjection(O, A, A + v);
       double d = Length(O - P);
       double RB = R * R / (2 * d);
       Vector VB = (P - O) / d * RB;
       return Circle(O + VB, RB);
-    }  // 直线反演为过 O 点的圆 B，R 是反演半径
-    
+    }  
+    // 返回 true 如果 A B 两点在直线同侧
     bool theSameSideOfLine(Point A, Point B, Point S, Vector v) {
       return dcmp(Cross(A - S, v)) * dcmp(Cross(B - S, v)) > 0;
-    }  // 返回 true 如果 A B 两点在直线同侧
+    }  
     
     int main() {
       int T;

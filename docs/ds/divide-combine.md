@@ -351,7 +351,7 @@ void build() {
 
   rt = st[1];  // 栈中最后剩下的点是根结点
 }
-
+// 分 lca 为析或和，这里把叶子看成析的
 void query(int l, int r) {
   int x = id[l], y = id[r];
   int z = lca(x, y);
@@ -362,7 +362,7 @@ void query(int l, int r) {
   else
     l = L[z], r = R[z];
   printf("%d %d\n", l, r);
-}  // 分 lca 为析或和，这里把叶子看成析的
+}  
 
 int main() {
   scanf("%d", &n);

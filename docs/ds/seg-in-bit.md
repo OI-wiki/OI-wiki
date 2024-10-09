@@ -66,6 +66,7 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
     } st;
     
     // 树状数组实现
+    namepace fenwick_impl{
     int lowbit(int o) { return (o & (-o)); }
     
     void upd(int o, int x, int v) {
@@ -93,8 +94,11 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
         return qry(mid + 1, r, k - siz);
       }
     }
+    }
+    using namespace fenwick_impl;
     
-    /* 线段树实现
+    // 线段树实现
+    namespace segtree_impl{
     void build(int o,int l,int r)
     {
         st.build(st.rt[o]);
@@ -145,7 +149,7 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
             return query(mid+1,r,k-siz);
         }
     }
-    */
+    }
     
     int main() {
       scanf("%d%d", &n, &m);

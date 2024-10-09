@@ -134,10 +134,10 @@ $$
         for (int i = 0; i < n; i++) result.p[p[i]] = i;
         return (result);
       }
-    
-      bool isdefined() const { return (p[0] > -1); }  // if it is     defined
-    
-      bool isidentity() const {  // if it is the     identity
+      // if it is     defined
+      bool isdefined() const { return (p[0] > -1); }
+      // if it is the     identity
+      bool isidentity() const {
         for (int i = 0; i < n; i++)
           if (p[i] != i) return false;
         return true;
@@ -154,12 +154,12 @@ $$
           cin >> p[i];
           p[i]--;
         }
-      }  // input
+      }
     
       void output() const {
         for (int i = 0; i < n; i++) cout << p[i] + 1 << " ";
         cout << endl;
-      }  // output
+      }
     
       void setn(int m) { n = m; }
     

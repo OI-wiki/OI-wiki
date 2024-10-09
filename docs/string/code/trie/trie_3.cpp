@@ -79,8 +79,8 @@ void dfs0(int o, int f) {  // 得到fa数组
 }
 
 int V[_];
-
-int get(int x) { return (fa[x] == -1 ? 0 : lztar[fa[x]]) + V[x]; }  // 权值函数
+// 权值函数
+int get(int x) { return (fa[x] == -1 ? 0 : lztar[fa[x]]) + V[x]; }  
 
 int main() {
   cin >> n >> m;

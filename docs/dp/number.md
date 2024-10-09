@@ -86,7 +86,7 @@
 
 ???+ note "参考代码"
     ```c++
-    #include <cstdio>  //code by Alphnia
+    #include <cstdio>
     #include <cstring>
     #include <iostream>
     using namespace std;
@@ -154,7 +154,7 @@
 
 ???+ note "参考代码"
     ```c++
-    #include <cstdio>  //code by Alphnia
+    #include <cstdio>
     #include <cstring>
     #include <iostream>
     using namespace std;
@@ -226,7 +226,7 @@
 
 ???+ note "参考代码"
     ```cpp
-    int dfs(int x, int st, int op)  // op=1 =;op=0 <
+    int dfs(int x, int st, int op)  // op=1 =; op=0 <
     {
       if (!x) return 1;
       if (!op && ~f[x][st]) return f[x][st];
@@ -343,7 +343,6 @@
 
 ???+ note "参考代码"
     ```c++
-    // code by Alphnia
     #include <cstdio>
     #include <cstring>
     #include <queue>
