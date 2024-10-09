@@ -144,8 +144,8 @@ Edmonds–Karp 算法的可能实现如下。
 
 ??? note "参考代码"
     ```cpp
-    #define maxn 250
-    #define INF 0x3f3f3f3f
+    constexpr int MAXN = 250;
+    constexpr int INF = 0x3f3f3f3f;
     
     struct Edge {
       int from, to, cap, flow;
@@ -156,8 +156,8 @@ Edmonds–Karp 算法的可能实现如下。
     struct EK {
       int n, m;             // n：点数，m：边数
       vector<Edge> edges;   // edges：所有边的集合
-      vector<int> G[maxn];  // G：点 x -> x 的所有边在 edges 中的下标
-      int a[maxn], p[maxn];  // a：点 x -> BFS 过程中最近接近点 x 的边给它的最大流
+      vector<int> G[MAXN];  // G：点 x -> x 的所有边在 edges 中的下标
+      int a[MAXN], p[MAXN];  // a：点 x -> BFS 过程中最近接近点 x 的边给它的最大流
                              // p：点 x -> BFS 过程中最近接近点 x 的边
     
       void init(int n) {
@@ -457,12 +457,12 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
             : v(_v), u(_u), cap(_cap), flow(0ll) {}
       };
     
-      const long long flow_inf = 1e18;
+      constexpr static long long flow_inf = 1e18;
       vector<FlowEdge> edges;
       vector<char> alive;
       vector<long long> pin, pout;
-      vector<list<int> > in, out;
-      vector<vector<int> > adj;
+      vector<list<int>> in, out;
+      vector<vector<int>> adj;
       vector<long long> ex;
       int n, m = 0;
       int s, t;
@@ -665,12 +665,12 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
     struct ISAP {
       int n, m, s, t;
       vector<Edge> edges;
-      vector<int> G[maxn];
-      bool vis[maxn];
-      int d[maxn];
-      int cur[maxn];
-      int p[maxn];
-      int num[maxn];
+      vector<int> G[MAXN];
+      bool vis[MAXN];
+      int d[MAXN];
+      int cur[MAXN];
+      int p[MAXN];
+      int num[MAXN];
     
       void AddEdge(int from, int to, int cap) {
         edges.push_back(Edge(from, to, cap, 0));
@@ -684,7 +684,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
         memset(vis, 0, sizeof(vis));
         queue<int> Q;
         Q.push(t);
-        vis[t] = 1;
+        vis[t] = true;
         d[t] = 0;
         while (!Q.empty()) {
           int x = Q.front();
@@ -692,7 +692,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
           for (int i = 0; i < G[x].size(); i++) {
             Edge& e = edges[G[x][i] ^ 1];
             if (!vis[e.from] && e.cap > e.flow) {
-              vis[e.from] = 1;
+              vis[e.from] = true;
               d[e.from] = d[x] + 1;
               Q.push(e.from);
             }
@@ -858,7 +858,7 @@ $$
 
 ???+ "核心代码"
     ```cpp
-    const int N = 1e4 + 4, M = 1e5 + 5, INF = 0x3f3f3f3f;
+    constexpr int N = 1e4 + 4, M = 1e5 + 5, INF = 0x3f3f3f3f;
     int n, m, s, t, maxflow, tot;
     int ht[N], ex[N];
     
@@ -923,7 +923,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
     #include <queue>
     #include <stack>
     using namespace std;
-    const int N = 1200, M = 120000, INF = 0x3f3f3f3f;
+    constexpr int N = 1200, M = 120000, INF = 0x3f3f3f3f;
     int n, m, s, t;
     
     struct qxx {

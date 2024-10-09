@@ -1,11 +1,14 @@
-#include <bits/stdc++.h>
+#include <bitset>
+#include <iostream>
+#include <stack>
+#include <vector>
 #define ls (i << 1)
 #define rs (i << 1 | 1)
 #define mid ((l + r) >> 1)
 using namespace std;
 
 int n, m, k;
-const int N = 1e5 + 5;
+constexpr int N = 1e5 + 5;
 
 struct edge {
   int u, v, c;
@@ -24,7 +27,7 @@ void update(int ql, int qr, int v, int i, int l, int r) {
   if (qr > mid) update(ql, qr, v, rs, mid + 1, r);
 }
 
-stack<pair<int, int> > fas, sizs;
+stack<pair<int, int>> fas, sizs;
 
 int find(int x) { return fa[x] == x ? x : find(fa[x]); }
 
@@ -57,8 +60,7 @@ void solve(int i, int l, int r) {
 
 signed main() {
   ios::sync_with_stdio(false);
-  cin.tie(0);
-  cout.tie(0);
+  cin.tie(nullptr);
   cin >> n >> m >> k;
   for (int i = 1; i <= m; i++) {
     cin >> g[i].u >> g[i].v >> g[i].c;

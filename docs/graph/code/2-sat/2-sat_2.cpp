@@ -1,18 +1,19 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
 using namespace std;
-const int maxn = 1e4 + 5;
-const int maxk = 5005;
+constexpr int MAXN = 1e4 + 5;
+constexpr int MAXK = 5005;
 
 int n, k;
-int id[maxn][5];
-char s[maxn][5][5], ans[maxk];
-bool vis[maxn];
+int id[MAXN][5];
+char s[MAXN][5][5], ans[MAXK];
+bool vis[MAXN];
 
 struct Edge {
   int v, nxt;
-} e[maxn * 100];
+} e[MAXN * 100];
 
-int head[maxn], tot = 1;
+int head[MAXN], tot = 1;
 
 void addedge(int u, int v) {
   e[tot].v = v;
@@ -20,7 +21,7 @@ void addedge(int u, int v) {
   head[u] = tot++;
 }
 
-int dfn[maxn], low[maxn], color[maxn], stk[maxn], ins[maxn], top, dfs_clock, c;
+int dfn[MAXN], low[MAXN], color[MAXN], stk[MAXN], ins[MAXN], top, dfs_clock, c;
 
 void tarjan(int x) {  // tarjan算法求强联通
   stk[++top] = x;
@@ -44,9 +45,10 @@ void tarjan(int x) {  // tarjan算法求强联通
 }
 
 int main() {
-  scanf("%d %d", &k, &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> k >> n;
   for (int i = 1; i <= n; i++) {
-    for (int j = 1; j <= 3; j++) scanf("%d%s", &id[i][j], s[i][j]);
+    for (int j = 1; j <= 3; j++) cin >> id[i][j] >> s[i][j];
 
     for (int j = 1; j <= 3; j++) {
       for (int k = 1; k <= 3; k++) {
@@ -63,7 +65,7 @@ int main() {
 
   for (int i = 1; i <= 2 * k; i += 2)
     if (color[i] == color[i + 1]) {
-      puts("-1");
+      cout << "-1\n";
       return 0;
     }
 
@@ -78,14 +80,14 @@ int main() {
       continue;
     }
     if (f1 < f2) {
-      vis[f1] = 1;
+      vis[f1] = true;
       ans[(i + 1) >> 1] = 'R';
     } else {
-      vis[f2] = 1;
+      vis[f2] = true;
       ans[(i + 1) >> 1] = 'B';
     }
   }
   ans[k + 1] = 0;
-  printf("%s\n", ans + 1);
+  cout << (ans + 1) << '\n';
   return 0;
 }

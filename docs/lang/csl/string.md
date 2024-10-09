@@ -41,9 +41,9 @@ printf("%s", s.c_str());  // 一定能够正确输出
 很多函数都可以返回 string 的长度：
 
 ```cpp
-printf("s 的长度为 %lu", s.size());
-printf("s 的长度为 %lu", s.length());
-printf("s 的长度为 %lu", strlen(s.c_str()));
+printf("s 的长度为 %zu", s.size());
+printf("s 的长度为 %zu", s.length());
+printf("s 的长度为 %zu", strlen(s.c_str()));
 ```
 
 ???+ note "这些函数的复杂度"

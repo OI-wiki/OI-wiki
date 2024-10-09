@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
   // 读入选手输出
   int pvalue = 0;
   vector<int> ppath;
-  vector<bool> used(n, false);
+  vector<bool> used(n);
   int plen = ouf.readInt(2, n, "number of vertices");  // 至少包含 s 和 t 两个点
   for (int i = 0; i < plen; i++) {
     int v = ouf.readInt(1, n, format("path[%d]", i + 1).c_str());
@@ -137,7 +137,7 @@ int readAns(InStream& stream) {
   // 读入输出
   int value = 0;
   vector<int> path;
-  vector<bool> used(n, false);
+  vector<bool> used(n);
   int len = stream.readInt(2, n, "number of vertices");
   for (int i = 0; i < len; i++) {
     int v = stream.readInt(1, n, format("path[%d]", i + 1).c_str());

@@ -41,10 +41,10 @@
 
 ???+ note "参考代码"
     ```c++
-    #include <bits/stdc++.h>
+    #include <cstdio>
     using namespace std;
-    const int N = 15;
-    typedef long long ll;
+    constexpr int N = 15;
+    using ll = long long;
     ll l, r, dp[N], mi[N];
     ll ans1[N], ans2[N];
     int a[N];
@@ -86,19 +86,19 @@
 
 ???+ note "参考代码"
     ```c++
-    #include <cstdio>  //code by Alphnia
+    #include <cstdio>
     #include <cstring>
     #include <iostream>
     using namespace std;
-    #define N 50005
-    #define ll long long
+    using ll = long long;
+    constexpr int N = 50005;
     ll a, b;
     ll f[15], ksm[15], p[15], now[15];
     
     ll dfs(int u, int x, bool f0,
            bool lim) {  // u 表示位数，f0 是否有前导零，lim 是否都贴在上限上
       if (!u) {
-        if (f0) f0 = 0;
+        if (f0) f0 = false;
         return 0;
       }
       if (!lim && !f0 && (~f[u])) return f[u];
@@ -154,7 +154,7 @@
 
 ???+ note "参考代码"
     ```c++
-    #include <cstdio>  //code by Alphnia
+    #include <cstdio>
     #include <cstring>
     #include <iostream>
     using namespace std;
@@ -176,7 +176,7 @@
         p[++cnt] = x % 10;
         x /= 10;
       }
-      bool flag = 0;
+      bool flag = false;
       p[cnt + 1] = 0;
       for (int i = cnt; i; i--) {  // 从高到低枚举数位
         ans += p[i] * dp[i - 1][2];
@@ -186,7 +186,7 @@
           if (p[i] > 4) ans += dp[i - 1][0];
           if (p[i] > 6) ans += dp[i - 1][1];
           if (p[i] > 2 && p[i + 1] == 6) ans += dp[i][1];
-          if (p[i] == 4 || (p[i] == 2 && p[i + 1] == 6)) flag = 1;
+          if (p[i] == 4 || (p[i] == 2 && p[i + 1] == 6)) flag = true;
         }
       }
       return tmp - ans;
@@ -226,7 +226,7 @@
 
 ???+ note "参考代码"
     ```cpp
-    int dfs(int x, int st, int op)  // op=1 =;op=0 <
+    int dfs(int x, int st, int op)  // op=1 =; op=0 <
     {
       if (!x) return 1;
       if (!op && ~f[x][st]) return f[x][st];
@@ -343,11 +343,13 @@
 
 ???+ note "参考代码"
     ```c++
-    #include <bits/stdc++.h>  //code by Alphnia
+    #include <cstdio>
+    #include <cstring>
+    #include <queue>
     using namespace std;
-    #define N 1505
-    #define ll long long
-    #define mod 1000000007
+    using ll = long long;
+    constexpr int N = 1505;
+    constexpr int mod = 1000000007;
     int n, m;
     char s[N], c[N];
     int ch[N][10], fail[N], ed[N], tot, len;

@@ -1,4 +1,3 @@
-#include <cstdio>
 #include <iostream>
 
 int p[16] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53};
@@ -27,11 +26,15 @@ void dfs(int depth, unsigned long long temp, unsigned long long num, int up) {
   return;
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  while (scanf("%llu", &n) != EOF) {
+  cin.tie(nullptr)->sync_with_stdio(false);
+  while (cin >> n) {
     ans_num = 0;
     dfs(0, 1, 1, 60);
-    printf("%llu\n", ans);
+    cout << ans << '\n';
   }
   return 0;
 }

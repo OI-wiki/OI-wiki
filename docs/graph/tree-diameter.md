@@ -54,7 +54,7 @@
 代码实现如下。
 
 ```cpp
-const int N = 10000 + 10;
+constexpr int N = 10000 + 10;
 
 int n, c, d[N];
 vector<int> E[N];
@@ -97,7 +97,7 @@ int main() {
 代码实现如下：
 
 ```cpp
-const int N = 10000 + 10;
+constexpr int N = 10000 + 10;
 
 int n, d = 0;
 int d1[N], d2[N];
@@ -145,7 +145,7 @@ int main() {
 代码实现如下：
 
 ```cpp
-const int N = 10000 + 10;
+constexpr int N = 10000 + 10;
 
 int n, d = 0;
 int dp[N];

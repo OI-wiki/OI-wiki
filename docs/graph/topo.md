@@ -135,9 +135,8 @@ bool toposort() {
   if (L.size() == n) {
     for (auto i : L) cout << i << ' ';
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 ```
 

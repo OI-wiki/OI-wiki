@@ -1,10 +1,12 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
+#include <string>
 using namespace std;
 
-const int N = 8e5 + 5;
-const double INF = 1e18;
+constexpr int N = 8e5 + 5;
+constexpr double INF = 1e18;
 
-void decode(char* s, int len, int mask) {
+void decode(string& s, int len, int mask) {
   for (int i = 0; i < len; ++i) {
     mask = (mask * 131 + i) % len;
     swap(s[i], s[mask]);
@@ -12,14 +14,15 @@ void decode(char* s, int len, int mask) {
 }
 
 int q, n, na;
-char a[N], t[N];
+string a;
+char t[N];
 
 // SuffixBST(SGT Ver)
 
 // 顺序加入，查询时将询问串翻转
 // 以i结束的前缀，对应节点的编号为i
 // 注意：不能写懒惰删除，否则可能会破坏树的结构
-const double alpha = 0.75;
+constexpr double alpha = 0.75;
 int root;
 int sz[N], L[N], R[N];
 double tag[N];
@@ -120,7 +123,7 @@ void remove(int& rt, int p, double lv, double rv) {
   if (!balance(rt)) rebuild(rt, lv, rv);
 }
 
-bool cmp1(char* s, int len, int p) {
+bool cmp1(const string& s, int len, int p) {
   for (int i = 1; i <= len; ++i, --p) {
     if (s[i] < t[p]) return true;
     if (s[i] > t[p]) return false;
@@ -128,7 +131,7 @@ bool cmp1(char* s, int len, int p) {
   return false;
 }
 
-int query(int rt, char* s, int len) {
+int query(int rt, const string& s, int len) {
   if (!rt) return 0;
   if (cmp1(s, len, rt))
     return query(L[rt], s, len);
@@ -137,12 +140,14 @@ int query(int rt, char* s, int len) {
 }
 
 void solve() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   n = 0;
-  scanf("%d", &q);
+  cin >> q;
   init();
 
-  scanf("%s", a + 1);
-  na = strlen(a + 1);
+  cin >> a;
+  na = a.size();
+  a = " " + a;
   for (int i = 1; i <= na; ++i) {
     t[++n] = a[i];
     insert(root, n, 0, INF);
@@ -151,14 +156,15 @@ void solve() {
   int mask = 0;
   char op[10];
   for (int i = 1; i <= q; ++i) {
-    scanf("%s", op);
+    cin >> op;
 
     // 三种情况分别处理
 
     if (op[0] == 'A') {  // ADD
-      scanf("%s", a + 1);
-      na = strlen(a + 1);
-      decode(a + 1, na, mask);
+      cin >> a;
+      na = a.size();
+      decode(a, na, mask);
+      a = " " + a;
 
       for (int i = 1; i <= na; ++i) {
         t[++n] = a[i];
@@ -166,18 +172,19 @@ void solve() {
       }
     } else if (op[0] == 'D') {  // DEL
       int x;
-      scanf("%d", &x);
+      cin >> x;
       while (x) {
         remove(root, n, 0, INF);
         --n;
         --x;
       }
     } else if (op[0] == 'Q') {  // QUERY
-      scanf("%s", a + 1);
-      na = strlen(a + 1);
-      decode(a + 1, na, mask);
+      cin >> a;
+      na = a.size();
+      decode(a, na, mask);
+      a = " " + a;
 
-      reverse(a + 1, a + 1 + na);
+      reverse(a.begin() + 1, a.begin() + 1 + na);
 
       a[na + 1] = 'Z' + 1;
       a[na + 2] = 0;
@@ -186,7 +193,7 @@ void solve() {
       --a[na];
       ans -= query(root, a, na + 1);
 
-      printf("%d\n", ans);
+      cout << ans << '\n';
       mask ^= ans;
     }
   }
