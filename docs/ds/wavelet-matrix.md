@@ -2,7 +2,7 @@ author: ShwStone
 
 前置知识：[可持久化 01-trie](./persistent-trie.md)，[Succinct Indexable Dictionaries](./succinct-indexable-dictionaries.md)。
 
-Wavelet Matrix 是一种简洁数据结构，在 $\mathcal O(\log W)$ 的时间内能完成任意序列的 $\operatorname{access},\operatorname{rank},\operatorname{select}$ 操作。对于这三种操作的定义，请参阅[简洁数据结构简介](./succinct-data-structure.md)。
+Wavelet Matrix 是一种简洁数据结构，在 $\mathcal O(\log W)$ 的时间内能完成任意序列的 $\operatorname{access},\operatorname{rank},\operatorname{select}$ 操作。对于这三种操作的定义，请参阅 [简洁数据结构简介](./succinct-data-structure.md)。
 
 同时，在竞赛中，Wavelet Matrix 还可以在 $\mathcal O(\log W)$ 的时间内完成静态区间第 $k$ 大，区间排名查询，区间出现次数，区间第 $k$ 次出现等询问，在许多情况下可以当作持久化权值线段树（主席树）或持久化 01 trie 的小常数替代品。
 
@@ -16,7 +16,7 @@ Wavelet Matrix 是一种简洁数据结构，在 $\mathcal O(\log W)$ 的时间�
 
 ### 结构
 
-Wavelet Tree 是 Wavelet Matrix 的原型。其基础结构是一个 01 trie，在每个节点上，用一个Succinct Indexable Dictionaries 维护下一位的 01 情况。
+Wavelet Tree 是 Wavelet Matrix 的原型。其基础结构是一个 01 trie，在每个节点上，用一个 Succinct Indexable Dictionaries 维护下一位的 01 情况。
 
 以根节点为例，Wavelet Tree 维护一个 01 序列 $b$，其中 $b_i$ 是 $a_i$ 的最高二进制位。接下来，$a$ 按照最高位分成两个子列 $a_0,a_1$，最高位为 0 的子列 $a_0$ 进入左儿子，最高位为 1 的子列 $a_1$ 进入右儿子。
 
@@ -28,7 +28,7 @@ Wavelet Tree 是 Wavelet Matrix 的原型。其基础结构是一个 01 trie，�
 
 ![](./images/wavelet-matrix-1.png)
 
-字符串只是为了帮助理解。实际上 Wavelet Tree 不存储真实数据，只存储Succinct Indexable Dictionaries 。
+字符串只是为了帮助理解。实际上 Wavelet Tree 不存储真实数据，只存储 Succinct Indexable Dictionaries。
 
 ### 下标转移
 
@@ -95,14 +95,12 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
 -   当 $c=1$ 时，稳定排序后排在 $i$ 之前的元素只有 $[1, i]$ 之内的 1。则 $\operatorname{id}_1(a_j, i) = \operatorname{rank}_1(b_j, i)$。
 -   当 $c=0$ 时，稳定排序后排在 $i$ 之前的元素既包括 $[1, i]$ 之内的 0, 则 $\operatorname{id}_0(a_j, i) = \operatorname{rank}_1(b_j, n) + \operatorname{rank}_0(b_j, i)$。
 
-
 为了方便描述，我们定义 $\operatorname{di}_c(a_j, i)$ 操作为 $\operatorname{id}$ 操作的逆运算，即对于第 $j + 1$ 层的第 $i$ 个元素（第 $i$ 位是 $c$）对应的第 $j$ 层的位置：
 
 -   当 $c=1$ 时，第 $i$ 个元素是第 $j$ 层中的第 $i$ 个 1。则 $\operatorname{di}_1(a_j, i) = \operatorname{select}_1(b_j, i)$。
 -   当 $c=0$ 时，第 $i$ 个元素是第 $j$ 层中的第 $i-\operatorname{rank}_1(b_j, n)$ 个 0。则 $\operatorname{di}_0(a_j, i) = \operatorname{select}_0(b_j, i - \operatorname{rank}_1(b_j, n))$。
 
 当确定如何转移之后，算法思路和 Wavelet Tree 一致。不过由于 $\operatorname{id}$ 的含义已经从节点内部序号变成了层内序号，所以上述算法的答案计算过程也要有所修改。
-
 
 ### $\operatorname{access}$
 
@@ -137,6 +135,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
     struct WaveletMatrix {
       vector<Bits> b;
       int n;
+    ```
 
       // 注意 a 将被修改
       WaveletMatrix(int n, int *a) {
@@ -224,7 +223,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
 
 ### 例题 1
 
-??? note+ " [Luogu P3834【模板】可持久化线段树 2](https://www.luogu.com.cn/problem/P3834) "
+??? note+ "[Luogu P3834【模板】可持久化线段树 2](https://www.luogu.com.cn/problem/P3834)"
     静态查询区间第 $k$ 小。$n, q \le 2 \times 10^5$。
 
 这是区间第 $k$ 小的模板题。用上面给出的算法即可。
@@ -236,7 +235,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
 
 ### 例题 2
 
-??? note+ " [Luogu P1972 [SDOI2009] HH的项链](https://www.luogu.com.cn/problem/P1972) "
+??? note+ "[Luogu P1972 \[SDOI2009\] HH 的项链](https://www.luogu.com.cn/problem/P1972)"
     静态查询区间本质不同的数的个数。$n, q \le 10^6$。
 
 首先预处理出 $nxt_i$ 表示下一个与 $a_i$ 相等的数的位置。查询就是问 $[l, r]$ 内有多少数满足 $pre_i > r$。这等价于在 $pre$ 数组上静态询问 $r$ 的区间排名。用上面给出的算法即可。
