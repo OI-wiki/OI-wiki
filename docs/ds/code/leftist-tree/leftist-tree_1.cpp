@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 1000010;
+constexpr int N = 1000010;
 
 struct Node {
   int val, ls, rs, d;
@@ -29,7 +29,8 @@ int merge(int x, int y) {
 
 int f[N];
 
-int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }  // 查找
+// 查找
+int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }
 
 bool kill[N];
 

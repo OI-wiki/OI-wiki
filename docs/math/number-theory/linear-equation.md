@@ -108,11 +108,11 @@ $$
         
         bool liEu(int a, int b, int c, int& x, int& y) {
           int d = ex_gcd(a, b, x, y);
-          if (c % d != 0) return 0;
+          if (c % d != 0) return false;
           int k = c / d;
           x *= k;
           y *= k;
-          return 1;
+          return true;
         }
         ```
     

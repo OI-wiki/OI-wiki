@@ -85,8 +85,8 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
     #include <utility>
     #include <vector>
     
-    const double EPS = 1e-8;
-    const int MAXV = 10000;
+    constexpr double EPS = 1e-8;
+    constexpr int MAXV = 10000;
     
     struct Point {
       double x, y;
@@ -255,8 +255,8 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
         }
       }
     
-      std::vector<std::pair<int, int> > getEdge() {
-        std::vector<std::pair<int, int> > ret;
+      std::vector<std::pair<int, int>> getEdge() {
+        std::vector<std::pair<int, int>> ret;
         ret.reserve(n);
         std::list<Edge>::iterator it;
         for (int i = 0; i < n; i++) {

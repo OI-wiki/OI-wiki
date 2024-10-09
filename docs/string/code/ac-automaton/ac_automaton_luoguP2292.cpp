@@ -3,9 +3,9 @@
 #include <queue>
 using namespace std;
 
-const int N = 20 + 6, M = 50 + 6;
-const int LEN = 2e6 + 6;
-const int SIZE = 450 + 6;
+constexpr int N = 20 + 6, M = 50 + 6;
+constexpr int LEN = 2e6 + 6;
+constexpr int SIZE = 450 + 6;
 
 int n, m;
 

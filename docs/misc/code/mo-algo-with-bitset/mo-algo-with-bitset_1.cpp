@@ -4,7 +4,7 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int N = 100005, M = N / 3 + 10;
+constexpr int N = 100005, M = N / 3 + 10;
 int n, m, maxn;
 int a[N], ans[M], cnt[N];
 bitset<N> sum[M], now;

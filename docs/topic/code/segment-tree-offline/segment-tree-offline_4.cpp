@@ -8,7 +8,7 @@
 #define mid ((l + r) >> 1)
 using namespace std;
 
-const int N = 5e5 + 5, M = 5e5 + 5;
+constexpr int N = 5e5 + 5, M = 5e5 + 5;
 
 int siz[N], dep[N], father[N], top[N], son[N];
 int n, q;

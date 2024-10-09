@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const int MAX_VAL_RANGE = 280010;
+constexpr int MAX_VAL_RANGE = 280010;
 
 int n, m, log2Values[MAX_VAL_RANGE + 1];
 

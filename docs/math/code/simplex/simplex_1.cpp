@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int M = 10005, N = 1005, INF = 1e9;
+constexpr int M = 10005, N = 1005, INF = 1e9;
 
 int n, m;
 double a[M][N], b[M], c[N], v;

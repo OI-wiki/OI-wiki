@@ -65,8 +65,8 @@ $$
 
 === "C++"
     ```cpp
-    const int N = 100010;
-    const int W = 100010;
+    constexpr int N = 100010;
+    constexpr int W = 100010;
     
     int n, w, a[N], cnt[W], b[N];
     

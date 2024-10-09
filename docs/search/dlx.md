@@ -514,18 +514,18 @@ int col[MS], row[MS];
       int i, j, c = R[0];
       if (!R[0]) {
         ans = dep;
-        return 1;
+        return true;
       }
       IT(i, R, 0) if (siz[i] < siz[c]) c = i;
       remove(c);
       IT(i, D, c) {
         stk[dep] = row[i];
         IT(j, R, i) remove(col[j]);
-        if (dance(dep + 1)) return 1;
+        if (dance(dep + 1)) return true;
         IT(j, L, i) recover(col[j]);
       }
       recover(c);
-      return 0;
+      return false;
     }
     ```
 
