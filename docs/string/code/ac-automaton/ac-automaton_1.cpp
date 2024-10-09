@@ -6,6 +6,7 @@ using namespace std;
 constexpr int N = 1e6 + 6;
 constexpr int LEN = 1e6 + 6;
 constexpr int SIZE = 1e6 + 6;
+
 int n;
 
 namespace AC {
