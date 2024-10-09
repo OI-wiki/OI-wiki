@@ -404,8 +404,8 @@ nav:
     - 手指树: ds/finger-tree.md
     - 霍夫曼树: ds/huffman-tree.md
     - 败者树: ds/loser-tree.md
-    - 简介数据结构: 
-      - 简介数据结构简介: ds/succinct-data-structure.md
+    - 简洁数据结构: 
+      - 简洁数据结构简介: ds/succinct-data-structure.md
       - Succinct Indexable Dictionaries: ds/succinct-indexable-dictionaries.md
       - Wavelet Matrix: ds/wavelet-matrix.md
   - 图论:

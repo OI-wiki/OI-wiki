@@ -1,3 +1,5 @@
+author: ShwStone
+
 当序列是一个 01 序列时，如何实现简洁数据结构的操作？
 
 大概 2000 年左右一系列被称为 Succinct Indexable Dictionaries 的数据结构被提出，它们可以通过 $\mathcal O(n)$ 时间预处理，$\mathcal o(n)$ 的额外空间，在常数时间内静态实现 01 序列上的 $\operatorname{access},\operatorname{rank},\operatorname{select}$ 操作。对于这三种操作的定义，请参阅 [简洁数据结构简介](./succinct-data-structure.md)。
