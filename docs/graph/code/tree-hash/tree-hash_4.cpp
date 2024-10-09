@@ -5,7 +5,7 @@
 
 using ull = unsigned long long;
 
-const int N = 1e5 + 10, M = 998244353;
+constexpr int N = 1e5 + 10, M = 998244353;
 const ull mask = std::mt19937_64(time(nullptr))();
 
 struct Tree {

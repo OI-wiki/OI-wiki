@@ -31,7 +31,7 @@ author: countercurrent-time, StudyingFather
 ??? 参考代码
     ```cpp
     #include <cstdio>
-    const int prime[] = {2,  3,  4,  5,  7,  9,  11, 13, 17, 19,
+    constexpr int prime[] = {2,  3,  4,  5,  7,  9,  11, 13, 17, 19,
                          23, 25, 29, 31, 37, 41, 43, 47, 49};
     int cnt = 0;
     char res[5];
@@ -63,7 +63,7 @@ author: countercurrent-time, StudyingFather
     #include <algorithm>
     #include <cstdio>
     #include <cstdlib>
-    const int N = 50005;
+    constexpr int N = 50005;
     int n, start, x;
     int a[N];
     
@@ -193,7 +193,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
     #include <queue>
     #include <vector>
     using namespace std;
-    const int N = 256 + 5;
+    constexpr int N = 256 + 5;
     int T, h, chance;
     bool ok;
     vector<int> to[N], path;

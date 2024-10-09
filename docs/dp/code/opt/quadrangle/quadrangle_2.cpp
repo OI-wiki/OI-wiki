@@ -1,6 +1,6 @@
 #include <iostream>
-const int N = 3009;
-const int M = 309;
+constexpr int N = 3009;
+constexpr int M = 309;
 using namespace std;
 int n, m, a[N], s[N], g[M][N], p[M][N];
 

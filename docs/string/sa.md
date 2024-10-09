@@ -67,7 +67,7 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
     
     using namespace std;
     
-    const int N = 1000010;
+    constexpr int N = 1000010;
     
     char s[N];
     int n, w, sa[N], rk[N << 1], oldrk[N << 1];
@@ -122,7 +122,7 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
     
     using namespace std;
     
-    const int N = 1000010;
+    constexpr int N = 1000010;
     
     char s[N];
     int n, sa[N], rk[N << 1], oldrk[N << 1], id[N], cnt[N];
@@ -214,7 +214,7 @@ for (int i = 1; i <= n; i++)
     
     using namespace std;
     
-    const int N = 1000010;
+    constexpr int N = 1000010;
     
     char s[N];
     int n;

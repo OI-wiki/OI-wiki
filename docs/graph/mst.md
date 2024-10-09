@@ -169,7 +169,7 @@ $$
     #include <iostream>
     #include <queue>
     using namespace std;
-    const int N = 5050, M = 2e5 + 10;
+    constexpr int N = 5050, M = 2e5 + 10;
     
     struct E {
       int v, w, x;
@@ -356,8 +356,8 @@ $$
     #include <algorithm>
     #include <iostream>
     
-    const int INF = 0x3fffffff;
-    const long long INF64 = 0x3fffffffffffffffLL;
+    constexpr int INF = 0x3fffffff;
+    constexpr long long INF64 = 0x3fffffffffffffffLL;
     
     struct Edge {
       int u, v, val;

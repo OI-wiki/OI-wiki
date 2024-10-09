@@ -32,7 +32,7 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
     #define LC o << 1
     #define RC o << 1 | 1
     using namespace std;
-    const int maxn = 1000010;
+    constexpr int maxn = 1000010;
     int n, m, a[maxn], u[maxn], x[maxn], l[maxn], r[maxn], k[maxn], cur, cur1, cur2,
         q1[maxn], q2[maxn], v[maxn];
     char op[maxn];

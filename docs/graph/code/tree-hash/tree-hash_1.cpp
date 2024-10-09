@@ -17,7 +17,7 @@ ull shift(ull x) {
   return x;
 }
 
-const int N = 1e6 + 10;
+constexpr int N = 1e6 + 10;
 
 int n;
 ull hash[N];

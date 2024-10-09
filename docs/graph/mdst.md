@@ -96,11 +96,11 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
     #include <iostream>
     #include <vector>
     using namespace std;
-    const int MAXN = 502;
+    constexpr int MAXN = 502;
     using ll = long long;
     using pii = pair<int, int>;
     ll d[MAXN][MAXN], dd[MAXN][MAXN], rk[MAXN][MAXN], val[MAXN];
-    const ll INF = 1e17;
+    constexpr ll INF = 1e17;
     int n, m;
     
     bool cmp(int a, int b) { return val[a] < val[b]; }

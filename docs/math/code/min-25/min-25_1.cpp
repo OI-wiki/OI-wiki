@@ -2,8 +2,8 @@
 #include <cmath>
 #include <iostream>
 
-const int maxs = 200000;  // 2sqrt(n)
-const int mod = 1000000007;
+constexpr int maxs = 200000;  // 2sqrt(n)
+constexpr int mod = 1000000007;
 
 template <typename x_t, typename y_t>
 void inc(x_t &x, const y_t &y) {

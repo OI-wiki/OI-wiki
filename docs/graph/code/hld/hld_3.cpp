@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-const int N = 1000005;
+constexpr int N = 1000005;
 
 struct edge {
   int to, next;

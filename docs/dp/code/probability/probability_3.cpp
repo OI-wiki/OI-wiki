@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const int maxn = 2010;
+constexpr int maxn = 2010;
 int n, m, v, e;
 int f[maxn][maxn], c[maxn], d[maxn];
 double dp[maxn][maxn][2], p[maxn];

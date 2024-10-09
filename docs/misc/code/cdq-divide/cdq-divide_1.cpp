@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <iostream>
 
-const int maxN = 1e5 + 10;
-const int maxK = 2e5 + 10;
+constexpr int maxN = 1e5 + 10;
+constexpr int maxK = 2e5 + 10;
 
 int n, k;
 

@@ -102,8 +102,8 @@ SSP（Successive Shortest Path）算法是一个贪心的算法。它的思路�
     #include <cstring>
     #include <queue>
     
-    const int N = 5e3 + 5, M = 1e5 + 5;
-    const int INF = 0x3f3f3f3f;
+    constexpr int N = 5e3 + 5, M = 1e5 + 5;
+    constexpr int INF = 0x3f3f3f3f;
     int n, m, tot = 1, lnk[N], cur[N], ter[M], nxt[M], cap[M], cost[M], dis[N], ret;
     bool vis[N];
     
@@ -196,7 +196,7 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
     #include <cstdio>
     #include <cstring>
     #include <queue>
-    const int INF = 0x3f3f3f3f;
+    constexpr int INF = 0x3f3f3f3f;
     using namespace std;
     
     struct edge {

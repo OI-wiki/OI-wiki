@@ -5,7 +5,7 @@
 
 using ull = unsigned long long;
 
-const int N = 60, M = 998244353;
+constexpr int N = 60, M = 998244353;
 const ull mask = std::mt19937_64(time(nullptr))();
 
 ull shift(ull x) {

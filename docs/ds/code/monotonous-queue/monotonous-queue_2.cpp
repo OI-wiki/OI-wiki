@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-const int N = 100005;
+constexpr int N = 100005;
 using ll = long long;
 int mxq[N], mnq[N];
 int D, ans, n, hx, rx, hn, rn;

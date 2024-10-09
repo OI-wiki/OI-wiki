@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <iostream>
 using namespace std;
-const int maxn = 200010;
+constexpr int maxn = 200010;
 int n, d[maxn], lc[maxn], rc[maxn];
 double ans = 2e18;
 

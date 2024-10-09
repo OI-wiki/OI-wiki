@@ -35,7 +35,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     #include <algorithm>
     #include <iostream>
     using namespace std;
-    const int N = 11;
+    constexpr int N = 11;
     long long f[2][1 << N], *f0, *f1;
     int n, m;
     
@@ -162,7 +162,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    const int MaxSZ = 16796, Prime = 9973;
+    constexpr int MaxSZ = 16796, Prime = 9973;
     
     struct hashTable {
       int head[Prime], next[MaxSZ], sz;
@@ -377,7 +377,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    const int Offset = 5, Mask = (1 << Offset) - 1;
+    constexpr int Offset = 5, Mask = (1 << Offset) - 1;
     int c[N + 2];
     int b[N + 2], bb[N + 3];
     
@@ -411,7 +411,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    const int Prime = 9979, MaxSZ = 1 << 20;
+    constexpr int Prime = 9979, MaxSZ = 1 << 20;
     
     template <class T_state, class T_key>
     struct hashTable {
@@ -609,11 +609,11 @@ if (s >> j & 1) {       // 如果已被覆盖
       return b < a ? a = b, true : false;
     }
     
-    const int N = 10, M = N;
-    const int offset = 3, mask = (1 << offset) - 1;
+    constexpr int N = 10, M = N;
+    constexpr int offset = 3, mask = (1 << offset) - 1;
     int n, m;
     int d;
-    const int INF = 0x3f3f3f3f;
+    constexpr int INF = 0x3f3f3f3f;
     int b[M + 1], bb[M + 1];
     
     int encode() {
@@ -637,7 +637,7 @@ if (s >> j & 1) {       // 如果已被覆盖
       }
     }
     
-    const int MaxSZ = 16796, Prime = 9973;
+    constexpr int MaxSZ = 16796, Prime = 9973;
     
     struct hashTable {
       int head[Prime], next[MaxSZ], sz;

@@ -144,8 +144,8 @@ Edmonds–Karp 算法的可能实现如下。
 
 ??? note "参考代码"
     ```cpp
-    const int maxn = 250;
-    const int INF = 0x3f3f3f3f;
+    constexpr int maxn = 250;
+    constexpr int INF = 0x3f3f3f3f;
     
     struct Edge {
       int from, to, cap, flow;
@@ -457,7 +457,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
             : v(_v), u(_u), cap(_cap), flow(0ll) {}
       };
     
-      const long long flow_inf = 1e18;
+      constexpr static long long flow_inf = 1e18;
       vector<FlowEdge> edges;
       vector<char> alive;
       vector<long long> pin, pout;
@@ -858,7 +858,7 @@ $$
 
 ???+ "核心代码"
     ```cpp
-    const int N = 1e4 + 4, M = 1e5 + 5, INF = 0x3f3f3f3f;
+    constexpr int N = 1e4 + 4, M = 1e5 + 5, INF = 0x3f3f3f3f;
     int n, m, s, t, maxflow, tot;
     int ht[N], ex[N];
     
@@ -923,7 +923,7 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
     #include <queue>
     #include <stack>
     using namespace std;
-    const int N = 1200, M = 120000, INF = 0x3f3f3f3f;
+    constexpr int N = 1200, M = 120000, INF = 0x3f3f3f3f;
     int n, m, s, t;
     
     struct qxx {

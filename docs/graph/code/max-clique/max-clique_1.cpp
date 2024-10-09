@@ -1,7 +1,7 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int MAXN = 105;
+constexpr int MAXN = 105;
 
 struct MaxClique {
   bool g[MAXN][MAXN];

@@ -107,7 +107,7 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
     
     using namespace std;
     
-    const int N = 101;
+    constexpr int N = 101;
     
     int n, a[N], b[N];
     bitset<N * N * N> f[N];
@@ -142,8 +142,8 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
     
     using namespace std;
     
-    const int N = 101;
-    const int W = 64;
+    constexpr int N = 101;
+    constexpr int W = 64;
     
     struct Bitset {
       unsigned long long a[N * N * N >> 6];
@@ -197,8 +197,8 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
     
     using namespace std;
     
-    const int N = 101;
-    const int W = 64;
+    constexpr int N = 101;
+    constexpr int W = 64;
     
     bool f[N * N * N];
     
@@ -291,9 +291,9 @@ $$
       return out;
     }
     
-    const int N = 100005;
-    const int M = 1000005;
-    const int V = 7005;
+    constexpr int N = 100005;
+    constexpr int M = 1000005;
+    constexpr int V = 7005;
     
     bitset<V> pre[V], pre2[V], a[N], mu;
     int n, m, tot;

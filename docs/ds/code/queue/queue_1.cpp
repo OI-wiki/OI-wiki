@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 /******************heading******************/
-const int M = 5e4 + 5, P = 505;  // 定义常数
+constexpr int M = 5e4 + 5, P = 505;  // 定义常数
 int I, m, p;
  // 用于取模
 int safe_mod(int d) { return (d + p) % p; } 

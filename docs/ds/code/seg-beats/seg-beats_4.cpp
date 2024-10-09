@@ -3,8 +3,8 @@
 #include <iostream>
 using i64 = int64_t;
 
-const int N = 300010;
-const i64 INF = 1145141919810114514ll;
+constexpr int N = 300010;
+constexpr i64 INF = 1145141919810114514ll;
 int n, q, op, l, r;
 int a[N], b[N];
 

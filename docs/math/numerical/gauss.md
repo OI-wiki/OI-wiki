@@ -262,7 +262,7 @@ $$
 ### 实现
 
 ```c++
-const double EPS = 1E-9;
+constexpr double EPS = 1E-9;
 int n;
 vector<vector<double>> a(n, vector<double>(n));
 

@@ -4,7 +4,7 @@
   if (u->lf->size) u->size = u->lf->size + u->rf->size, u->val = u->rf->val
 #define new_Node(a, b, c, d) (&(*st[cnt++] = Node(a, b, c, d)))
 #define merge(a, b) new_Node(a->size + b->size, b->val, a, b)
-const int ratio = 4;
+constexpr int ratio = 4;
 using namespace std;
 
 int Min(const int x, const int y) { return x < y ? x : y; }

@@ -6,8 +6,8 @@
 #include <vector>
 using namespace std;
 using ll = long long;
-const int N = 1e5 + 5;
-const int maxn = N << 1;
+constexpr int N = 1e5 + 5;
+constexpr int maxn = N << 1;
 
 int n;
 

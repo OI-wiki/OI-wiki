@@ -140,7 +140,7 @@ $$
     #include <cstring>
     using namespace std;
     
-    const int maxn = 1e3 + 10;
+    constexpr int maxn = 1e3 + 10;
     
     double a[maxn][maxn], f[maxn];
     int n, m;

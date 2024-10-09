@@ -72,8 +72,8 @@ Dinkelbach 算法的大概思想是每次用上一轮的答案当做新的 $L$ �
       return X * w;
     }
     
-    const int N = 100000 + 10;
-    const double eps = 1e-6;
+    constexpr int N = 100000 + 10;
+    constexpr double eps = 1e-6;
     
     int n;
     double a[N], b[N];

@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 using ll = long long;
-const int N = 1e5 + 5;
+constexpr int N = 1e5 + 5;
 int n, q;
 int x[N], t[N], m;
 

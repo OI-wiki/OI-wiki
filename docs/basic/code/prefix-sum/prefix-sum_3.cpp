@@ -2,7 +2,7 @@
 #include <iostream>
 
 using namespace std;
-const int maxn = 50010;
+constexpr int maxn = 50010;
 
 struct node {
   int to, next;

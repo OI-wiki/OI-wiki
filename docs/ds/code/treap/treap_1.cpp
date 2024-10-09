@@ -1,7 +1,7 @@
 #include <iostream>
 
-const int maxn = 100005;
-const int INF = 1 << 30;
+constexpr int maxn = 100005;
+constexpr int INF = 1 << 30;
 
 int n;
 

@@ -2,9 +2,9 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-const int maxn = 5010;
-const int maxm = 400010;
-const double inf = 2e9;
+constexpr int maxn = 5010;
+constexpr int maxm = 400010;
+constexpr double inf = 2e9;
 int n, m, k, u, v, cur, h[maxn], nxt[maxm], p[maxm], cnt[maxn], ans;
 int cur1, h1[maxn], nxt1[maxm], p1[maxm];
 double e, ww, w[maxm], f[maxn];

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-const int MXN = 40005;
+constexpr int MXN = 40005;
 using namespace std;
 vector<int> v[MXN];
 vector<int> w[MXN];

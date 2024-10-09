@@ -71,7 +71,7 @@ void print(int a[]) {
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
     int a[LEN], b[LEN];
     
@@ -145,7 +145,7 @@ void add(int a[], int b[], int c[]) {
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
     int a[LEN], b[LEN], c[LEN];
     
@@ -225,7 +225,7 @@ void sub(int a[], int b[], int c[]) {
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
     int a[LEN], b[LEN], c[LEN];
     
@@ -420,7 +420,7 @@ void div(int a[], int b[], int c[], int d[]) {
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
     int a[LEN], b[LEN], c[LEN], d[LEN];
     
@@ -793,11 +793,11 @@ $$
 
 ??? 这里是另一个模板
     ```cpp
-    const int MAXN = 9999;
+    constexpr int MAXN = 9999;
     // MAXN 是一位中最大的数字
-    const int MAXSIZE = 10024;
+    constexpr int MAXSIZE = 10024;
     // MAXSIZE 是位数
-    const int DLEN = 4;
+    constexpr int DLEN = 4;
     
     // DLEN 记录压几位
     struct Big {

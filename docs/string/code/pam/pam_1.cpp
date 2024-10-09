@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-const int maxn = 300000 + 5;
+constexpr int maxn = 300000 + 5;
 
 namespace pam {
 int sz, tot, last;

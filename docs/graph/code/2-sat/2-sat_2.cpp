@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-const int maxn = 1e4 + 5;
-const int maxk = 5005;
+constexpr int maxn = 1e4 + 5;
+constexpr int maxk = 5005;
 
 int n, k;
 int id[maxn][5];

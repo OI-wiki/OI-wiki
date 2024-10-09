@@ -173,7 +173,7 @@ $$
 #include <algorithm>
 #include <cstdio>
 using namespace std;
-const int N = 200010;
+constexpr int N = 200010;
 
 int n, m, a[N], st1[N], st2[N], tp1, tp2, rt;
 int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;

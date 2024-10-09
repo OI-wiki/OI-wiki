@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
-const int _ = 5e5 + 10;
+constexpr int _ = 5e5 + 10;
 
 namespace trie {
-const int _n = _ * 25;
+constexpr int _n = _ * 25;
 int rt[_];
 int ch[_n][2];
 int w[_n];  //`w[o]` 指节点 `o` 到其父亲节点这条边上数值的数量（权值）。

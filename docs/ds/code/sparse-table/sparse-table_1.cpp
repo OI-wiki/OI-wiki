@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-const int logn = 21;
-const int maxn = 2000001;
+constexpr int logn = 21;
+constexpr int maxn = 2000001;
 int f[maxn][logn + 1], Logn[maxn + 1];
 
 void pre() {  // 准备工作，初始化

@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-const int N = 3e5 + 5;
+constexpr int N = 3e5 + 5;
 
 int n, q;  // 点数，询问数
 int fa[N];

@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 #include <queue>
-const int maxn = 8000001;
+constexpr int maxn = 8000001;
 using namespace std;
 char s[maxn];
 int n, cnt, vis[maxn], rev[maxn], indeg[maxn], ans;

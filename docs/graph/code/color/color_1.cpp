@@ -1,6 +1,6 @@
 #include <iostream>
 
-const int maxN = 100;
+constexpr int maxN = 100;
 
 int t;
 int n;

@@ -3,8 +3,8 @@
 #include <string>
 using namespace std;
 using ll = long long;
-const int mod = 1e9 + 7;
-const int maxn = 1000000 + 5;
+constexpr int mod = 1e9 + 7;
+constexpr int maxn = 1000000 + 5;
 
 int add(int x, int y) {
   x += y;

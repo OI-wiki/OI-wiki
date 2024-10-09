@@ -222,8 +222,8 @@ $$
 ??? note "参考实现"
     ```c++
     using ll = long long;
-    const int maxn = 10000;
-    const int mod = 1e9 + 7;
+    constexpr int maxn = 10000;
+    constexpr int mod = 1e9 + 7;
     ll B[maxn];        // 伯努利数
     ll C[maxn][maxn];  // 组合数
     ll inv[maxn];      // 逆元（计算伯努利数）

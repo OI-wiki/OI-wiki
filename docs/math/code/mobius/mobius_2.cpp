@@ -1,5 +1,5 @@
 #include <iostream>
-const int N = 1000000;
+constexpr int N = 1000000;
 int tot, p[N + 5];
 long long g[N + 5];
 bool flg[N + 5];  // 标记数组

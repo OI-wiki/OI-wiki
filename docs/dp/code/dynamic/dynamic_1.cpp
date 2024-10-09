@@ -4,8 +4,8 @@
 
 using namespace std;
 
-const int maxn = 500010;
-const int INF = 0x3f3f3f3f;
+constexpr int maxn = 500010;
+constexpr int INF = 0x3f3f3f3f;
 
 int Begin[maxn], Next[maxn], To[maxn], e, n, m;
 int sz[maxn], son[maxn], top[maxn], fa[maxn], dis[maxn], p[maxn], id[maxn],

@@ -24,9 +24,9 @@ A \* 算法定义了一个对当前状态 $x$ 的估价函数 $f(x)=g(x)+h(x)$�
 #include <cstring>
 #include <queue>
 using namespace std;
-const int maxn = 5010;
-const int maxm = 400010;
-const int inf = 2e9;
+constexpr int maxn = 5010;
+constexpr int maxm = 400010;
+constexpr int inf = 2e9;
 int n, m, s, t, k, u, v, ww, H[maxn], cnt[maxn];
 int cur, h[maxn], nxt[maxm], p[maxm], w[maxm];
 int cur1, h1[maxn], nxt1[maxm], p1[maxm], w1[maxm];
@@ -175,7 +175,7 @@ $P'$ 有如下性质：
 #include <cstring>
 #include <queue>
 using namespace std;
-const int maxn = 200010;
+constexpr int maxn = 200010;
 int n, m, s, t, k, x, y, ww, cnt, fa[maxn];
 
 struct Edge {

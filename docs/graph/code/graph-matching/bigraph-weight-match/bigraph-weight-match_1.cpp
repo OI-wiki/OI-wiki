@@ -4,8 +4,8 @@
 #include <list>
 using namespace std;
 using LL = long long;
-const LL INF = (LL)1e15;
-const int MAXV = 105;
+constexpr LL INF = (LL)1e15;
+constexpr int MAXV = 105;
 
 int N, mateS[MAXV], mateT[MAXV], p[MAXV];
 LL u[MAXV], v[MAXV], slack[MAXV];

@@ -3,8 +3,8 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-const int maxn = 100010;
-const int inf = 2e9;
+constexpr int maxn = 100010;
+constexpr int inf = 2e9;
 int n, a, b, m, x, col[maxn];
 // 0 off 1 on
 char op;

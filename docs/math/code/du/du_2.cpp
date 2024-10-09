@@ -3,7 +3,7 @@
 #include <iostream>
 #include <map>
 using namespace std;
-const int N = 5e6, NP = 5e6, SZ = N;
+constexpr int N = 5e6, NP = 5e6, SZ = N;
 long long n, P, inv2, inv6, s[N];
 int phi[N], p[NP], cnt, pn;
 bool bp[N];

@@ -4,8 +4,8 @@
 using namespace std;
 using ll = long long;
 
-const int maxn = 150000 + 10;
-const int maxm = 300 + 10;
+constexpr int maxn = 150000 + 10;
+constexpr int maxm = 300 + 10;
 
 ll f[2][maxn];
 ll a[maxm], b[maxm], t[maxm];

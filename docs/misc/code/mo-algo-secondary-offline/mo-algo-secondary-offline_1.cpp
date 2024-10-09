@@ -4,11 +4,11 @@
 
 using lxl = long long;
 
-const int maxN = 5e5;
-const int maxM = 5e5;
-const int maxA = 1e5;
-const int sqrN = 708;
-const int sqrA = 317;
+constexpr int maxN = 5e5;
+constexpr int maxM = 5e5;
+constexpr int maxA = 1e5;
+constexpr int sqrN = 708;
+constexpr int sqrA = 317;
 
 int n, m;
 int a[maxN + 10];

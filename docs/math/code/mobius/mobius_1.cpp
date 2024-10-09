@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-const int N = 50000;
+constexpr int N = 50000;
 int mu[N + 5], p[N + 5];
 bool flg[N + 5];
 

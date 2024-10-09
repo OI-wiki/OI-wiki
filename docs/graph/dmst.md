@@ -98,8 +98,8 @@ Tarjan 的算法分为 **收缩** 与 **伸展** 两个过程。接下来先介�
 using namespace std;
 
 using ll = long long;
-const int maxn = 102;
-const int INF = 0x3f3f3f3f;
+constexpr int maxn = 102;
+constexpr int INF = 0x3f3f3f3f;
 
 struct UnionFind {
   int fa[maxn << 1];

@@ -1,11 +1,11 @@
 #include <iostream>
-const int MOD1 = 39989;
-const int MOD2 = 1000000000;
-const int MAXT = 40000;
+constexpr int MOD1 = 39989;
+constexpr int MOD2 = 1000000000;
+constexpr int MAXT = 40000;
 using namespace std;
 using pdi = pair<double, int>;
 
-const double eps = 1e-9;
+constexpr double eps = 1e-9;
 
 int cmp(double x, double y) {
   if (x - y > eps) return 1;

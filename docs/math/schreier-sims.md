@@ -96,8 +96,8 @@ $$
     #include <iostream>
     using namespace std;
     
-    const int maxn = 50;     // Maximum size of omega = {1, ,n}
-    const int maxr = 10000;  // Maximum number of generators
+    constexpr int maxn = 50;     // Maximum size of omega = {1, ,n}
+    constexpr int maxr = 10000;  // Maximum number of generators
     
     class Permutation {  // interface for permutations
      public:

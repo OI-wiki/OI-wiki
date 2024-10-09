@@ -3,8 +3,8 @@
 #include <iomanip>
 #include <iostream>
 using namespace std;
-const int N = 2010;
-const double eps = 1e-9;
+constexpr int N = 2010;
+constexpr double eps = 1e-9;
 int n, cnt, vis[N][N];
 double ans;
 

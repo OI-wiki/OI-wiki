@@ -7,12 +7,12 @@ bool checkMax(T &a, const T b) {
   return a < b ? a = b, true : false;
 }
 
-const int N = 8, M = 8;
-const int offset = 3, mask = (1 << offset) - 1;
+constexpr int N = 8, M = 8;
+constexpr int offset = 3, mask = (1 << offset) - 1;
 int A[N + 1][M + 1];
 int n, m;
 int ans, d;
-const int MaxSZ = 16796, Prime = 9973;
+constexpr int MaxSZ = 16796, Prime = 9973;
 
 struct hashTable {
   int head[Prime], next[MaxSZ], sz;

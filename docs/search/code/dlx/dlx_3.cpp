@@ -2,9 +2,9 @@
 #include <cctype>
 #include <cstring>
 #include <iostream>
-const int oo = 0x3f3f3f3f;
-const int N = 1e5 + 10;
-const int e[] = {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 6, 6, 7,  8,
+constexpr int oo = 0x3f3f3f3f;
+constexpr int N = 1e5 + 10;
+constexpr int e[] = {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 6, 6, 7,  8,
                  8, 8, 8, 8, 7, 6, 6, 7, 8, 9, 9, 9, 8, 7, 6, 6, 7, 8, 9, 10, 9,
                  8, 7, 6, 6, 7, 8, 9, 9, 9, 8, 7, 6, 6, 7, 8, 8, 8, 8, 8, 7,  6,
                  6, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
@@ -15,7 +15,7 @@ int GetWeight(int row, int col, int num) {  // 求数乘上对应的权值
 }
 
 struct DLX {
-  static const int MAXSIZE = 1e5 + 10;
+  static constexpr int MAXSIZE = 1e5 + 10;
   int n, m, tot, first[MAXSIZE + 10], siz[MAXSIZE + 10];
   int L[MAXSIZE + 10], R[MAXSIZE + 10], U[MAXSIZE + 10], D[MAXSIZE + 10];
   int col[MAXSIZE + 10], row[MAXSIZE + 10];

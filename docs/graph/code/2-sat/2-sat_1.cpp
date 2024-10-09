@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <cstring>
 #include <iostream>
-const int maxn = 2018;
-const int maxm = 4000400;
+constexpr int maxn = 2018;
+constexpr int maxm = 4000400;
 using namespace std;
 int Index, instack[maxn], DFN[maxn], LOW[maxn];
 int tot, color[maxn];

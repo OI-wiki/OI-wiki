@@ -7,9 +7,9 @@ using namespace std;
 #define mp make_pair
 using P = pair<int, int>;
 using PP = pair<P, int>;
-const int INF = 0x3f3f3f3f;
-const int dx[] = {0, 0, -1, 1};
-const int dy[] = {1, -1, 0, 0};
+constexpr int INF = 0x3f3f3f3f;
+constexpr int dx[] = {0, 0, -1, 1};
+constexpr int dy[] = {1, -1, 0, 0};
 int n, m, K, root;
 int f[101][1111], a[101], ans[11][11];
 bool inq[101];

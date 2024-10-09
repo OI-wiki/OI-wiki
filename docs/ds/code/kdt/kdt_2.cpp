@@ -3,7 +3,7 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-const int maxn = 100010;
+constexpr int maxn = 100010;
 long long n, k;
 priority_queue<long long, vector<long long>, greater<long long>> q;
 

@@ -55,7 +55,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
     #include <cstdio>
     using namespace std;
     
-    const int maxn = 200010;
+    constexpr int maxn = 200010;
     
     int f[maxn], g[maxn], id[maxn], head[maxn], cnt, last[maxn], dep[maxn],
         fa[maxn][22], v[maxn], w[maxn];

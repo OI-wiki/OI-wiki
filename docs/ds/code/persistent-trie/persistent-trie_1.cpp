@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int maxn = 600010;
+constexpr int maxn = 600010;
 int n, q, a[maxn], s[maxn], l, r, x;
 char op;
 

@@ -897,7 +897,7 @@ void print(Node* cur) {
      private:
       Node *root;
     
-      const static int NIL = -1;  // 用于表示查询的值不存在
+      constexpr static int NIL = -1;  // 用于表示查询的值不存在
     
       enum rot_type { LF = 1, RT = 0 };
     

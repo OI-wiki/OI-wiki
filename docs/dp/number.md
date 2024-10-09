@@ -43,7 +43,7 @@
     ```c++
     #include <cstdio>
     using namespace std;
-    const int N = 15;
+    constexpr int N = 15;
     using ll = long long;
     ll l, r, dp[N], mi[N];
     ll ans1[N], ans2[N];
@@ -91,7 +91,7 @@
     #include <iostream>
     using namespace std;
     using ll = long long;
-    const int N = 50005;
+    constexpr int N = 50005;
     ll a, b;
     ll f[15], ksm[15], p[15], now[15];
     
@@ -348,8 +348,8 @@
     #include <queue>
     using namespace std;
     using ll = long long;
-    const int N = 1505;
-    const int mod = 1000000007;
+    constexpr int N = 1505;
+    constexpr int mod = 1000000007;
     int n, m;
     char s[N], c[N];
     int ch[N][10], fail[N], ed[N], tot, len;

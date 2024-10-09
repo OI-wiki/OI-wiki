@@ -30,7 +30,7 @@
     #include <algorithm>
     #include <cstdio>
     #include <cstring>
-    const int maxn = 300;
+    constexpr int maxn = 300;
     using namespace std;
     
     int lazy[maxn << 3];  // 标记了这条线段出现的次数

@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-const int mod = 1000000007;
+constexpr int mod = 1000000007;
 
-long long power(long long a, long long n = mod - 2) {
+constexpr long long power(long long a, long long n = mod - 2) {
   long long res = 1;
   while (n) {
     if (n & 1) res = res * a % mod;
@@ -13,7 +13,7 @@ long long power(long long a, long long n = mod - 2) {
   return res;
 }
 
-const long long power24 = power(24), power2 = power(2);
+constexpr long long power24 = power(24), power2 = power(2);
 
 int n, m;
 vector<int> E[100001], E1[100001], E2[100001];

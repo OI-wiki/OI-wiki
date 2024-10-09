@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 using std::max;
-const int N = 100010;
+constexpr int N = 100010;
 int n, a[N];
 int l[N], r[N];
 long long ans;

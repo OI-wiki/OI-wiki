@@ -419,8 +419,8 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     #include <cstdio>
     #include <cstring>
     using namespace std;
-    const long long maxn = 100010;
-    const long long mod = 51061;
+    constexpr long long maxn = 100010;
+    constexpr long long mod = 51061;
     long long n, q, u, v, c;
     char op;
     
@@ -600,7 +600,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     #include <cstdio>
     #include <cstring>
     using namespace std;
-    const int maxn = 10010;
+    constexpr int maxn = 10010;
     
     struct Splay {
       int ch[maxn][2], fa[maxn], tag[maxn];
@@ -715,7 +715,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     #include <cstring>
     #include <map>
     using namespace std;
-    const int maxn = 200010;
+    constexpr int maxn = 200010;
     int f[maxn];
     
     int findp(int x) { return f[x] ? f[x] = findp(f[x]) : x; }
@@ -913,7 +913,7 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
     #include <cstring>
     #include <set>
     using namespace std;
-    const int maxn = 5000010;
+    constexpr int maxn = 5000010;
     
     struct Splay {
       int ch[maxn][2], fa[maxn], tag[maxn], val[maxn], minn[maxn];
@@ -1010,7 +1010,7 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
       }
     } st;
     
-    const int inf = 2e9 + 1;
+    constexpr int inf = 2e9 + 1;
     int n, m, ans, nww, x, y;
     
     struct Edge {
@@ -1132,7 +1132,7 @@ st.siz2[y] += st.siz[x];
     #include <cstdio>
     #include <cstring>
     using namespace std;
-    const int maxn = 100010;
+    constexpr int maxn = 100010;
     using ll = long long;
     
     struct Splay {

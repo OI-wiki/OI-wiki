@@ -3,7 +3,7 @@
 #include <vector>
 
 using namespace std;
-const int N = 5e5 + 5, M = 2e6 + 5;
+constexpr int N = 5e5 + 5, M = 2e6 + 5;
 int n, m, ans;
 int tot = 1, hd[N];
 

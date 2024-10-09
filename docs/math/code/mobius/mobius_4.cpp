@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-const long long N = 5e4 + 5;
+constexpr long long N = 5e4 + 5;
 long long n, m, T, pr[N], mu[N], d[N], t[N],
     cnt;  // t 表示 i 的最小质因子出现的次数
 bool bp[N];

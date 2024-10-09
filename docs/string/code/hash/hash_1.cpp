@@ -4,8 +4,8 @@
 #include <vector>
 using namespace std;
 
-const int L = 1e6 + 5;
-const int HASH_CNT = 2;
+constexpr int L = 1e6 + 5;
+constexpr int HASH_CNT = 2;
 
 int hashBase[HASH_CNT] = {29, 31};
 int hashMod[HASH_CNT] = {int(1e9 + 9), 998244353};

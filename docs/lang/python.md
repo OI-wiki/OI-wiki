@@ -766,7 +766,7 @@ def fib(n):
     #include <queue>
     #include <vector>
     using namespace std;
-    const int N = 1e5 + 5, M = 2e5 + 5;
+    constexpr int N = 1e5 + 5, M = 2e5 + 5;
     ```
 
 === "Python"
@@ -919,7 +919,7 @@ def fib(n):
     #include <queue>
     #include <vector>
     using namespace std;
-    const int N = 1e5 + 5, M = 2e5 + 5;
+    constexpr int N = 1e5 + 5, M = 2e5 + 5;
     
     struct qxx {
       int nex, t, v;

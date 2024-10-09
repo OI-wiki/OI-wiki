@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int N = 1000010;
+constexpr int N = 1000010;
 
 struct Node {
   int val, ls, rs, d;

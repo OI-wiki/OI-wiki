@@ -163,8 +163,8 @@ vertex labeling 为 $0$ 的点最后将成为未匹配点。
 
 ???+ note "存储"
     ```c++
-    const int INF = INT_MAX;
-    const int MAXN = 400;
+    constexpr int INF = INT_MAX;
+    constexpr int MAXN = 400;
     
     struct edge {
       int u, v, w;

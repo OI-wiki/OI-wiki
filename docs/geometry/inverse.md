@@ -96,9 +96,9 @@ author: hyp1231, 383494
     #include <vector>
     using namespace std;
     
-    const double EPS = 1e-8;       // 精度系数
+    constexpr double EPS = 1e-8;       // 精度系数
     const double PI = acos(-1.0);  // π
-    const int N = 4;
+    constexpr int N = 4;
     // 点的定义
     struct Point {
       double x, y;

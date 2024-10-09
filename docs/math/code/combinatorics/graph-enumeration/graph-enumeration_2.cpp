@@ -124,7 +124,7 @@ struct Int {
 
 using namespace NT;
 
-const int N = int(5e1) + 9;
+constexpr int N = int(5e1) + 9;
 Int Fact[N];
 vector<vector<int>> Partition;
 vector<int> cur;

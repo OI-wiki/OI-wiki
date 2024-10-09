@@ -136,8 +136,8 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
     #include <cmath>
     #include <cstdio>
     
-    const int MAXN = 1e5 + 5;
-    const int MAXM = 20;
+    constexpr int MAXN = 1e5 + 5;
+    constexpr int MAXM = 20;
     
     struct RMQ {
       int N, A[MAXN];

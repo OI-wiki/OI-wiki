@@ -35,8 +35,8 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
 
 === "C++"
     ```cpp
-    const int SIZE = 1000000;
-    const int M = 999997;
+    constexpr int SIZE = 1000000;
+    constexpr int M = 999997;
     
     struct HashTable {
       struct Node {
@@ -159,7 +159,7 @@ struct hash_map {  // 哈希表模板
 #### 实现
 
 ```cpp
-const int N = 360007;  // N 是最大可以存储的元素数量
+constexpr int N = 360007;  // N 是最大可以存储的元素数量
 
 class Hash {
  private:

@@ -10,8 +10,8 @@ void promote() {
 
 using dic = std::deque<int>;
 
-const int maxN = 2e5;
-const int maxS = 2e5;
+constexpr int maxN = 2e5;
+constexpr int maxS = 2e5;
 
 int n;
 std::string s, t;

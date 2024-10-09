@@ -134,7 +134,7 @@ $f(n)=\omega(g(n))$，当且仅当对于任意给定的正数 $c$，$\exists n_0
 
 === "C++"
     ```cpp
-    const int N = 100000;
+    constexpr int N = 100000;
     for (int i = 0; i < N; ++i) {
       std::cout << "hello world\n";
     }

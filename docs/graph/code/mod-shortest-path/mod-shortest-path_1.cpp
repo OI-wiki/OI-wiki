@@ -3,8 +3,8 @@
 
 using namespace std;
 using ll = long long;
-const int maxn = 100010;
-const long long linf = (1ull << 63) - 1;
+constexpr int maxn = 100010;
+constexpr ll linf = (1ull << 63) - 1;
 
 ll h, x, y, z;
 ll head[maxn << 1], tot;

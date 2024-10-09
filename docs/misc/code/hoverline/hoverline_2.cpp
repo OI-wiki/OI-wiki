@@ -1,6 +1,6 @@
 #include <cstring>
 #include <iostream>
-const int N = 100010;
+constexpr int N = 100010;
 int n, a[N], l[N], r[N];
 long long sum[N];
 long long ans;

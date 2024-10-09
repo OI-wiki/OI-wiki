@@ -1,7 +1,7 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int maxn = 130;
+constexpr int maxn = 130;
 bool mp[maxn][maxn];
 int some[maxn][maxn], none[maxn][maxn], all[maxn][maxn];
 int n, m, ans;

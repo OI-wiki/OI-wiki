@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 using ll = long long;
-const int N = 100000 + 10, INF = 0x3f3f3f3f;
+constexpr int N = 100000 + 10, INF = 0x3f3f3f3f;
 
 struct node {
   int idx, val, par, ch[2];

@@ -2,7 +2,7 @@
 using namespace std;
 
 using LL = long long;
-const int MOD = int(1e9) + 7;
+constexpr int MOD = int(1e9) + 7;
 
 // <<= '2. Number Theory .,//{
 namespace NT {
@@ -124,7 +124,7 @@ struct Int {
 
 using namespace NT;
 
-const int N = int(1e3) + 9;
+constexpr int N = int(1e3) + 9;
 Int binom[N][N], C[N], E[N], B[N], B1[N], G[N];
 int n;
 

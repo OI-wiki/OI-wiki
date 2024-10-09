@@ -2,7 +2,7 @@
 #include <map>
 using namespace std;
 
-const int MOD = 1e9 + 7;
+constexpr int MOD = 1e9 + 7;
 
 template <typename T>
 int mint(T x) {
@@ -30,8 +30,8 @@ int qp(int x, int y) {
 int inv(int x) { return qp(x, MOD - 2); }
 
 namespace PNS {
-const int N = 2e6 + 5;
-const int M = 35;
+constexpr int N = 2e6 + 5;
+constexpr int M = 35;
 
 long long global_n;
 

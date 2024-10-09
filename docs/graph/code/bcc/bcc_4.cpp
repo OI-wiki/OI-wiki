@@ -4,7 +4,7 @@
 using namespace std;
 #define min(x, y) (x < y ? x : y)
 #define max(x, y) (x > y ? x : y)
-const int N = 5e5 + 5, M = 2e6 + 5;
+constexpr int N = 5e5 + 5, M = 2e6 + 5;
 int n, m;
 
 struct edge {
@@ -19,7 +19,7 @@ void uadd(int u, int v) { add(u, v), add(v, u); }  // 链式前向星
 
 using ll = long long;
 #define P(x, y) ((ll)min(x, y) * N + (ll)max(x, y))
-const int hmod = 1e5 + 7;
+constexpr int hmod = 1e5 + 7;
 
 struct hash {
   vector<ll> v1[hmod];

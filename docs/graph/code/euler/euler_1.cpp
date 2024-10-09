@@ -15,7 +15,7 @@ struct edge {
 vector<edge> beg[505];
 int cnt[505];
 
-const int dn = 500;
+constexpr int dn = 500;
 stack<int> ans;
 
 void Hierholzer(int x) {  // 关键函数

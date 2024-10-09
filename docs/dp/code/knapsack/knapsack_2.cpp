@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
-const int maxn = 1e4 + 5;
-const int maxW = 1e7 + 5;
+constexpr int maxn = 1e4 + 5;
+constexpr int maxW = 1e7 + 5;
 int n, W, w[maxn], v[maxn];
 long long f[maxW];
 

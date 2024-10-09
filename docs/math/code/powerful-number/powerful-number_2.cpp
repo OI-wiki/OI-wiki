@@ -2,8 +2,8 @@
 #include <map>
 using namespace std;
 
-const int MOD = 1e9 + 7;
-const int inv2 = (MOD + 1) / 2;
+constexpr int MOD = 1e9 + 7;
+constexpr int inv2 = (MOD + 1) / 2;
 
 template <typename T>
 int mint(T x) {
@@ -22,8 +22,8 @@ int sub(int x, int y) { return x < y ? x - y + MOD : x - y;// 防负数
  }  
 
 namespace PNS {
-const int N = 2e6 + 5;
-const int M = 35;
+constexpr int N = 2e6 + 5;
+constexpr int M = 35;
 
 long long global_n;
 

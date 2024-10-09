@@ -69,8 +69,8 @@
     #include <cmath>
     #include <cstdio>
     using namespace std;
-    const int N = 2e5 + 5;
-    const int M = 447 + 5;  // sqrt(N) + 5
+    constexpr int N = 2e5 + 5;
+    constexpr int M = 447 + 5;  // sqrt(N) + 5
     
     int n, m, pa[N], pb[N];
     
@@ -154,7 +154,7 @@
     #include <cstdio>
     #include <random>
     using namespace std;
-    const int N = 2e5 + 5;
+    constexpr int N = 2e5 + 5;
     mt19937 rng(random_device{}());
     
     int n, m, pa[N], pb[N];
@@ -317,8 +317,8 @@
     #include <cstdio>
     #include <vector>
     using namespace std;
-    const int N = 1e5 + 5;
-    const int M = 316 + 5;  // sqrt(N) + 5
+    constexpr int N = 1e5 + 5;
+    constexpr int M = 316 + 5;  // sqrt(N) + 5
     
     // 分块
     int nn, b[N], block_size, block_cnt, block_id[N], L[N], R[N], T[M][N];
@@ -426,7 +426,7 @@
     #include <random>
     #include <vector>
     using namespace std;
-    const int N = 1e5 + 5;
+    constexpr int N = 1e5 + 5;
     
     vector<int> g[N];
     int n, a[N];

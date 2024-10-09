@@ -52,7 +52,7 @@
 #include <cstdio>
 #include <cstring>
 using namespace std;
-const int maxn = 1e5;  // 数据范围
+constexpr int maxn = 1e5;  // 数据范围
 int tot, n, m;
 int sum[(maxn << 5) + 10], rt[maxn + 10], ls[(maxn << 5) + 10],
     rs[(maxn << 5) + 10];

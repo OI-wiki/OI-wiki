@@ -2,8 +2,8 @@
 #include <iostream>
 using namespace std;
 
-const int N = 1e7;
-const int mod = 20101009;
+constexpr int N = 1e7;
+constexpr int mod = 20101009;
 int n, m, mu[N + 5], p[N / 10 + 5], sum[N + 5];
 bool flg[N + 5];
 

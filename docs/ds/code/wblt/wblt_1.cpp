@@ -3,8 +3,8 @@
 
 using ll = long long;
 
-const ll MAX = 2e6 + 5;
-const ll INF = 0x7fffffff;
+constexpr ll MAX = 2e6 + 5;
+constexpr ll INF = 0x7fffffff;
 
 ll ans, lst, n, m, t, op, rt, cnt;
 ll ls[MAX], rs[MAX], vl[MAX], sz[MAX];

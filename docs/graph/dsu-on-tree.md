@@ -90,7 +90,7 @@ void merge(int x, int y) {
     #include <vector>
     using namespace std;
     
-    const int N = 2e5 + 5;
+    constexpr int N = 2e5 + 5;
     
     int n;
     

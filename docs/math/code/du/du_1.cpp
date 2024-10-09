@@ -2,7 +2,7 @@
 #include <iostream>
 #include <map>
 using namespace std;
-const int maxn = 2000010;
+constexpr int maxn = 2000010;
 long long T, n, pri[maxn], cur, mu[maxn], sum_mu[maxn];
 bool vis[maxn];
 map<long long, long long> mp_mu;

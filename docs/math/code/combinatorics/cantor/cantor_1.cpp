@@ -1,7 +1,7 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int MOD = 998244353;
+constexpr int MOD = 998244353;
 using ll = long long;
 int n, x, d[1000005];
 ll fac[1000005], ans;

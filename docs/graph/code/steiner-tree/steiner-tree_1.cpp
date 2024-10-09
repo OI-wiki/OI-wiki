@@ -5,8 +5,8 @@
 
 using namespace std;
 
-const int maxn = 510;
-const int INF = 0x3f3f3f3f;
+constexpr int maxn = 510;
+constexpr int INF = 0x3f3f3f3f;
 using P = pair<int, int>;
 int n, m, k;
 

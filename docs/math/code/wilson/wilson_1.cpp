@@ -1,6 +1,6 @@
 #include <iostream>
 
-const int M = 1e6 + 5, N = 3 * M + 7;
+constexpr int M = 1e6 + 5, N = 3 * M + 7;
 
 bool not_prime[N];
 int sum[M];

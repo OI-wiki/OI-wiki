@@ -8,9 +8,9 @@
 
 using namespace std;
 
-const int N = 100010;
-const int B = 666;
-const int C = 30000;
+constexpr int N = 100010;
+constexpr int B = 666;
+constexpr int C = 30000;
 
 void add(int u, int v);
 void dfs(int u);

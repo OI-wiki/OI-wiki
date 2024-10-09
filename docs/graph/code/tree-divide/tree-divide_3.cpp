@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 #define rep(i, a, b) for (int i = (a); i <= (b); ++i)
-const int N = 200005;
+constexpr int N = 200005;
 int h[N], nxt[N * 2], to[N * 2], c[N], gr;
 
 void tu(int x, int y) { to[++gr] = y, nxt[gr] = h[x], h[x] = gr; }

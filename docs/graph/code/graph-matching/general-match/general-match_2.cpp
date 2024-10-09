@@ -4,7 +4,7 @@
 #include <utility>
 using namespace std;
 
-const int maxn = 505, p = (int)1e9 + 7;
+constexpr int maxn = 505, p = (int)1e9 + 7;
 
 int qpow(int a, int b) {
   int ans = 1;

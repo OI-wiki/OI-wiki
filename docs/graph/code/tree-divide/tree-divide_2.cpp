@@ -3,8 +3,8 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-const long long maxn = 2000010;
-const long long inf = 2e9;
+constexpr long long maxn = 2000010;
+constexpr long long inf = 2e9;
 long long n, a, b, c, q, rt, siz[maxn], maxx[maxn], dist[maxn];
 long long cur, h[maxn], nxt[maxn], p[maxn], w[maxn], ret;
 bool vis[maxn];

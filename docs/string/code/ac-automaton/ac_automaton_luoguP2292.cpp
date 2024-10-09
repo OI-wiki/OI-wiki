@@ -3,7 +3,7 @@
 #include <iostream>
 #include <queue>
 
-const int maxn = 3000001;
+constexpr int maxn = 3000001;
 char T[maxn];
 int n, cnt, vis[maxn], ans, m, dp[maxn];
 

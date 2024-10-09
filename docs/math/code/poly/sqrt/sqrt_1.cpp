@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-const int maxn = 1 << 20, mod = 998244353;
+constexpr int maxn = 1 << 20, mod = 998244353;
 
 int a[maxn], b[maxn], g[maxn], gg[maxn];
 

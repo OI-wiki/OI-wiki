@@ -3,8 +3,8 @@
 #include <iostream>
 #define lc o << 1
 #define rc o << 1 | 1
-const int maxn = 60010;
-const int inf = 2e9;
+constexpr int maxn = 60010;
+constexpr int inf = 2e9;
 int n, a, b, w[maxn], q, u, v;
 int cur, h[maxn], nxt[maxn], p[maxn];
 int siz[maxn], top[maxn], son[maxn], dep[maxn], fa[maxn], dfn[maxn], rnk[maxn],

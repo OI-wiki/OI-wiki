@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 using db = double;
-const int N = 1e6 + 10;
+constexpr int N = 1e6 + 10;
 
 struct data_ {
   int h;

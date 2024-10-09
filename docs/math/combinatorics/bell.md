@@ -74,7 +74,7 @@ $$
 ??? note "参考实现"
     === "C++"
         ```cpp
-        const int maxn = 2000 + 5;
+        constexpr int maxn = 2000 + 5;
         int bell[maxn][maxn];
         
         void f(int n) {

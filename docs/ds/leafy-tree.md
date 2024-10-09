@@ -32,7 +32,7 @@ Leafy Tree 的旋转操作类似于替罪羊树，仅需一次旋转。
 ```cpp
 #define new_Node(a, b, c, d) (&(*st[cnt++] = Node(a, b, c, d)))
 #define merge(a, b) new_Node(a->size + b->size, b->val, a, b)
-const int ratio = 4;
+constexpr int ratio = 4;
 
 struct Node {
   int size, val;

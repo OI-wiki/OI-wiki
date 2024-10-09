@@ -168,7 +168,7 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
         vector<Edge> edge;
         
         int dis[MAXN], u, v, w;
-        const int INF = 0x3f3f3f3f;
+        constexpr int INF = 0x3f3f3f3f;
         
         bool bellmanford(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));

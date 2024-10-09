@@ -5,7 +5,7 @@
 using namespace std;
 using ll = long long;
 
-const int N = 1e5 + 5;
+constexpr int N = 1e5 + 5;
 
 using pil = pair<int, ll>;
 using pli = pair<ll, int>;

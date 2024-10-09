@@ -2,9 +2,9 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int maxn = 100010;
-const int inf = 2e9;
-const int ddd = 6000010;
+constexpr int maxn = 100010;
+constexpr int inf = 2e9;
+constexpr int ddd = 6000010;
 
 struct Segtree {
   int cnt, rt[maxn], sum[ddd], lc[ddd], rc[ddd];

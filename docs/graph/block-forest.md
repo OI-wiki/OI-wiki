@@ -142,7 +142,7 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
     #include <cstdio>
     #include <vector>
     
-    const int MN = 100005;
+    constexpr int MN = 100005;
     
     int N, M, cnt;
     std::vector<int> G[MN], T[MN * 2];

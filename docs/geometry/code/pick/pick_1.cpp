@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <iostream>
 using namespace std;
-const int MAXN = 110;
+constexpr int MAXN = 110;
 
 struct node {
   int x, y;

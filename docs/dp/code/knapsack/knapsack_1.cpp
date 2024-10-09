@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-const int maxn = 13010;
+constexpr int maxn = 13010;
 int n, W, w[maxn], v[maxn], f[maxn];
 
 int main() {
