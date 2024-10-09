@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cstdint>
 #include <stack>
 #include <tuple>
 #include <vector>
@@ -10,21 +11,22 @@ using std::tie;
 using std::tuple;
 using std::vector;
 
-typedef unsigned int u32;
-typedef unsigned int* u32ptr;
+using u32 = uint32_t;
+using u64 = uint64_t;
+using u32ptr = u32*;
 
 void MSD_radix_sort(u32ptr first, u32ptr last) {
-  const size_t maxW = 0x100000000llu;
-  const u32 maxlogW = 32;  // = log_2 W
+  static constexpr u32 maxlogW = 32;  // = log_2 W
+  static constexpr u64 maxW = (u64)1 << maxlogW;
 
-  const u32 W = 256;  // 计数排序的值域
-  const u32 logW = 8;
-  const u32 mask = W - 1;  // 用位运算替代取模，详见下面的 key 函数
+  static constexpr u32 logW = 8;
+  static constexpr u32 W = 1 << logW;  // 计数排序的值域
+  static constexpr u32 mask = W - 1;  // 用位运算替代取模，详见下面的 key 函数
 
   u32ptr tmp =
       (u32ptr)calloc(last - first, sizeof(u32));  // 计数排序用的输出空间
 
-  typedef tuple<u32ptr, u32ptr, u32> node;
+  using node = tuple<u32ptr, u32ptr, u32>;
   stack<node, vector<node>> s;
   s.push(make_tuple(first, last, maxlogW - logW));
 

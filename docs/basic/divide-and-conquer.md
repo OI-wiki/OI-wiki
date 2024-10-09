@@ -223,15 +223,7 @@ void traverse(TreeNode* root) {
     ```
     
     ```cpp
-    /**
-     * 二叉树结点的定义
-     * struct TreeNode {
-     *     int val;
-     *     TreeNode *left;
-     *     TreeNode *right;
-     *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-     * };
-     */
+    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_1.h"
     ```
 
 ??? note "参考代码"

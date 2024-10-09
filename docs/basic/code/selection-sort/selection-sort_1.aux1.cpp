@@ -1,5 +1,5 @@
 #include <iostream>
-#define MAXN 1000
+constexpr int MAXN = 1000;
 
 extern void selection_sort(int* a, int n);
 

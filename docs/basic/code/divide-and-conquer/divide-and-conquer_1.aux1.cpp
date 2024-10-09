@@ -2,7 +2,7 @@
 
 #include <cstring>
 #include <iostream>
-#define MAXN 1000  // maximum number of nodes
+constexpr int MAXN = 1000;  // maximum number of nodes
 
 extern int pathSum(TreeNode *root, int sum);
 

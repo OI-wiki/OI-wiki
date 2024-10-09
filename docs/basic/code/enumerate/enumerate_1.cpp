@@ -1,5 +1,5 @@
 #include <cstring>
-#define MAXN 100000  // 此处 MAXN 是数组内元素的界
+constexpr int MAXN = 100000;  // 此处 MAXN 是数组内元素的界
 
 int solve(int n, int a[]) {
   bool met[MAXN * 2 + 1];  // 创建一个能装下 [-MAXN, MAXN] 的桶

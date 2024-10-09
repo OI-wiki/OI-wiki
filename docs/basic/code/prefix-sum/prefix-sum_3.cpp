@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
-
 using namespace std;
+
 constexpr int MAXN = 50010;
 
 struct node {

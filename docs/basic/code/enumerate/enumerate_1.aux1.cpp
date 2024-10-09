@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <iostream>
-#define MAXN 100000
+constexpr int MAXN = 100000;
 
 int a[MAXN];
 

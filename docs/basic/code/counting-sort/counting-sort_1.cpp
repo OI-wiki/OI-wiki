@@ -1,6 +1,6 @@
 #include <cstring>
-#define MAXN 1010
-#define MAXW 100010
+constexpr int MAXN = 1010;
+constexpr int MAXW = 100010;
 
 int cnt[MAXW], b[MAXN];
 
