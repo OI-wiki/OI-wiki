@@ -3,11 +3,11 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-constexpr long long maxn = 2000010;
+constexpr long long MAXN = 2000010;
 constexpr long long inf = 2e9;
-long long n, a, b, c, q, rt, siz[maxn], maxx[maxn], dist[maxn];
-long long cur, h[maxn], nxt[maxn], p[maxn], w[maxn], ret;
-bool vis[maxn];
+long long n, a, b, c, q, rt, siz[MAXN], maxx[MAXN], dist[MAXN];
+long long cur, h[MAXN], nxt[MAXN], p[MAXN], w[MAXN], ret;
+bool vis[MAXN];
 
 void add_edge(long long x, long long y, long long z) {
   cur++;
@@ -32,7 +32,7 @@ void calcsiz(long long x, long long fa) {
   if (maxx[x] < maxx[rt]) rt = x;
 }
 
-long long dd[maxn], cnt;
+long long dd[MAXN], cnt;
 
 void calcdist(long long x, long long fa) {
   dd[++cnt] = dist[x];
@@ -44,7 +44,7 @@ void calcdist(long long x, long long fa) {
 queue<long long> tag;
 
 struct segtree {
-  long long cnt, rt, lc[maxn], rc[maxn], sum[maxn];
+  long long cnt, rt, lc[MAXN], rc[MAXN], sum[MAXN];
 
   void clear() {
     while (!tag.empty()) update(rt, 1, 20000000, tag.front(), -1), tag.pop();

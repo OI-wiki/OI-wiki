@@ -4,14 +4,14 @@
 
 using namespace std;
 
-constexpr int maxn = 500010;
+constexpr int MAXN = 500010;
 constexpr int INF = 0x3f3f3f3f;
 
-int Begin[maxn], Next[maxn], To[maxn], e, n, m;
-int sz[maxn], son[maxn], top[maxn], fa[maxn], dis[maxn], p[maxn], id[maxn],
-    End[maxn];
+int Begin[MAXN], Next[MAXN], To[MAXN], e, n, m;
+int sz[MAXN], son[MAXN], top[MAXN], fa[MAXN], dis[MAXN], p[MAXN], id[MAXN],
+    End[MAXN];
 // p[i]表示i树剖后的编号，id[p[i]] = i
-int cnt, tot, a[maxn], f[maxn][2];
+int cnt, tot, a[MAXN], f[MAXN][2];
 
 struct matrix {
   int g[2][2];
@@ -27,7 +27,7 @@ struct matrix {
           c.g[i][j] = max(c.g[i][j], g[i][k] + b.g[k][j]);
     return c;
   }
-} Tree[maxn], g[maxn];  // Tree[]是建出来的线段树，g[]是维护的每个点的矩阵
+} Tree[MAXN], g[MAXN];  // Tree[]是建出来的线段树，g[]是维护的每个点的矩阵
 
 void PushUp(int root) { Tree[root] = Tree[root << 1] * Tree[root << 1 | 1]; }
 

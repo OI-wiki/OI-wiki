@@ -4,7 +4,7 @@
 using namespace std;
 using ll = long long;
 constexpr int mod = 1e9 + 7;
-constexpr int maxn = 1000000 + 5;
+constexpr int MAXN = 1000000 + 5;
 
 int add(int x, int y) {
   x += y;
@@ -13,9 +13,9 @@ int add(int x, int y) {
 
 namespace pam {
 int sz, tot, last;
-int ch[maxn][26], len[maxn], fail[maxn];
-int cnt[maxn], dep[maxn], dif[maxn], slink[maxn];
-char s[maxn];
+int ch[MAXN][26], len[MAXN], fail[MAXN];
+int cnt[MAXN], dep[MAXN], dif[MAXN], slink[MAXN];
+char s[MAXN];
 
 int node(int l) {  // 建立一个长度为 l 的新节点
   sz++;
@@ -64,9 +64,9 @@ using pam::dif;
 using pam::fail;
 using pam::len;
 using pam::slink;
-int n, dp[maxn], g[maxn];
+int n, dp[MAXN], g[MAXN];
 string s;
-char t[maxn];
+char t[MAXN];
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);

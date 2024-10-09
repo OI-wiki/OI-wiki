@@ -24,13 +24,13 @@ A \* 算法定义了一个对当前状态 $x$ 的估价函数 $f(x)=g(x)+h(x)$�
 #include <cstring>
 #include <queue>
 using namespace std;
-constexpr int maxn = 5010;
-constexpr int maxm = 400010;
+constexpr int MAXN = 5010;
+constexpr int MAXM = 400010;
 constexpr int inf = 2e9;
-int n, m, s, t, k, u, v, ww, H[maxn], cnt[maxn];
-int cur, h[maxn], nxt[maxm], p[maxm], w[maxm];
-int cur1, h1[maxn], nxt1[maxm], p1[maxm], w1[maxm];
-bool tf[maxn];
+int n, m, s, t, k, u, v, ww, H[MAXN], cnt[MAXN];
+int cur, h[MAXN], nxt[MAXM], p[MAXM], w[MAXM];
+int cur1, h1[MAXN], nxt1[MAXM], p1[MAXM], w1[MAXM];
+bool tf[MAXN];
 
 void add_edge(int x, int y, double z) {
   cur++;
@@ -175,11 +175,11 @@ $P'$ 有如下性质：
 #include <cstring>
 #include <queue>
 using namespace std;
-constexpr int maxn = 200010;
-int n, m, s, t, k, x, y, ww, cnt, fa[maxn];
+constexpr int MAXN = 200010;
+int n, m, s, t, k, x, y, ww, cnt, fa[MAXN];
 
 struct Edge {
-  int cur, h[maxn], nxt[maxn], p[maxn], w[maxn];
+  int cur, h[MAXN], nxt[MAXN], p[MAXN], w[MAXN];
 
   void add_edge(int x, int y, int z) {
     cur++;
@@ -190,8 +190,8 @@ struct Edge {
   }
 } e1, e2;
 
-int dist[maxn];
-bool tf[maxn], vis[maxn], ontree[maxn];
+int dist[MAXN];
+bool tf[MAXN], vis[MAXN], ontree[MAXN];
 
 struct node {
   int x, v;
@@ -216,8 +216,8 @@ void dfs(int x) {
 }
 
 struct LeftistTree {
-  int cnt, rt[maxn], lc[maxn * 20], rc[maxn * 20], dist[maxn * 20];
-  node v[maxn * 20];
+  int cnt, rt[MAXN], lc[MAXN * 20], rc[MAXN * 20], dist[MAXN * 20];
+  node v[MAXN * 20];
 
   LeftistTree() { dist[0] = -1; }
 

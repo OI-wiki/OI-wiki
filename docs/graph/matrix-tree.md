@@ -449,7 +449,7 @@ $$
     struct matrix {
       static constexpr int MAXN = 20;
       int n, m;
-      double mat[maxn][maxn];
+      double mat[MAXN][MAXN];
     
       matrix() { memset(mat, 0, sizeof(mat)); }
     

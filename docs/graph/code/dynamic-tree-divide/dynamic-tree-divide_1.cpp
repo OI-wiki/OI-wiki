@@ -3,12 +3,12 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-constexpr int maxn = 100010;
+constexpr int MAXN = 100010;
 constexpr int inf = 2e9;
-int n, a, b, m, x, col[maxn];
+int n, a, b, m, x, col[MAXN];
 // 0 off 1 on
 char op;
-int cur, h[maxn * 2], nxt[maxn * 2], p[maxn * 2];
+int cur, h[MAXN * 2], nxt[MAXN * 2], p[MAXN * 2];
 
 void add_edge(int x, int y) {
   cur++;
@@ -17,8 +17,8 @@ void add_edge(int x, int y) {
   p[cur] = y;
 }
 
-bool vis[maxn];
-int rt, sum, siz[maxn], maxx[maxn], fa[maxn], dep[maxn];
+bool vis[MAXN];
+int rt, sum, siz[MAXN], maxx[MAXN], fa[MAXN], dep[MAXN];
 
 void calcsiz(int x, int f) {
   siz[x] = 1;
@@ -61,7 +61,7 @@ struct heap {
   }
 
   int size() { return A.size() - B.size(); }
-} dist[maxn], ch[maxn], ans;
+} dist[MAXN], ch[MAXN], ans;
 
 void dfs(int x, int f, int d, heap& y) {
   y.insert(d);
@@ -92,7 +92,7 @@ void pre(int x) {
 }
 
 struct LCA {
-  int dep[maxn], lg[maxn], fa[maxn][20];
+  int dep[MAXN], lg[MAXN], fa[MAXN][20];
 
   void dfs(int x, int f) {
     for (int j = h[x]; j; j = nxt[j])
@@ -121,7 +121,7 @@ struct LCA {
   int dist(int x, int y) { return dep[x] + dep[y] - 2 * dep[query(x, y)]; }
 } lca;
 
-int d[maxn][20];
+int d[MAXN][20];
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);

@@ -1,18 +1,18 @@
 #include <algorithm>
 #include <cstring>
 #include <iostream>
-constexpr int maxn = 2018;
-constexpr int maxm = 4000400;
+constexpr int MAXN = 2018;
+constexpr int MAXM = 4000400;
 using namespace std;
-int Index, instack[maxn], DFN[maxn], LOW[maxn];
-int tot, color[maxn];
-int numedge, head[maxn];
+int Index, instack[MAXN], DFN[MAXN], LOW[MAXN];
+int tot, color[MAXN];
+int numedge, head[MAXN];
 
 struct Edge {
   int nxt, to;
-} edge[maxm];
+} edge[MAXM];
 
-int sta[maxn], top;
+int sta[MAXN], top;
 int n, m;
 
 void add(int x, int y) {

@@ -96,14 +96,14 @@ $$
     #include <iostream>
     using namespace std;
     
-    constexpr int maxn = 50;     // Maximum size of omega = {1, ,n}
-    constexpr int maxr = 10000;  // Maximum number of generators
+    constexpr int MAXN = 50;     // Maximum size of omega = {1, ,n}
+    constexpr int MAXR = 10000;  // Maximum number of generators
     
     class Permutation {  // interface for permutations
      public:
-      int p[maxn];  // the images of the points 0..   maxn-1
+      int p[MAXN];  // the images of the points 0..   MAXN-1
     
-      Permutation() { n = maxn; };  // constructors
+      Permutation() { n = MAXN; };  // constructors
     
       Permutation(int m) { n = m; };
     
@@ -169,14 +169,14 @@ $$
     
     int n;                                   // size of omega = {1, ,n}
     int r;                                   // number of generators
-    Permutation* g = new Permutation[maxr];  // the generators
+    Permutation* g = new Permutation[MAXR];  // the generators
     int nr;
-    Permutation* newg = new Permutation[maxr];
+    Permutation* newg = new Permutation[MAXR];
     int cosreps;  // number of    (= size of orbit of alpha)
     Permutation* cosrep =
-        new Permutation[maxn];  // coset    representatives (to store the output of
+        new Permutation[MAXN];  // coset    representatives (to store the output of
                                 // SchreierTree)
-    Permutation undefined(maxn, 'u');
+    Permutation undefined(MAXN, 'u');
     
     /****** ScheierTree ******/
     void ScheierTree(

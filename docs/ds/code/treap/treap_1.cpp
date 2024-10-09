@@ -1,12 +1,12 @@
 #include <iostream>
 
-constexpr int maxn = 100005;
+constexpr int MAXN = 100005;
 constexpr int INF = 1 << 30;
 
 int n;
 
 struct treap {  // 直接维护成数据结构，可以直接用
-  int l[maxn], r[maxn], val[maxn], rnd[maxn], size_[maxn], w[maxn];
+  int l[MAXN], r[MAXN], val[MAXN], rnd[MAXN], size_[MAXN], w[MAXN];
   int sz, ans, rt;
 
   void pushup(int x) { size_[x] = size_[l[x]] + size_[r[x]] + w[x]; }

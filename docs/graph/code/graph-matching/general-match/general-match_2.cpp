@@ -4,7 +4,7 @@
 #include <utility>
 using namespace std;
 
-constexpr int maxn = 505, p = (int)1e9 + 7;
+constexpr int MAXN = 505, p = (int)1e9 + 7;
 
 int qpow(int a, int b) {
   int ans = 1;
@@ -16,11 +16,11 @@ int qpow(int a, int b) {
   return ans;
 }
 
-int A[maxn][maxn], B[maxn][maxn], t[maxn][maxn], id[maxn];
+int A[MAXN][MAXN], B[MAXN][MAXN], t[MAXN][MAXN], id[MAXN];
 
 // 高斯消元 O(n^3)
 // 在传入 B 时表示计算逆矩阵, 传入 nullptr 则只需计算矩阵的秩
-void Gauss(int A[][maxn], int B[][maxn], int n) {
+void Gauss(int A[][MAXN], int B[][MAXN], int n) {
   if (B) {
     memset(B, 0, sizeof(t));
     for (int i = 1; i <= n; i++) B[i][i] = 1;
@@ -66,7 +66,7 @@ void Gauss(int A[][maxn], int B[][maxn], int n) {
     }
 }
 
-bool row_marked[maxn] = {false}, col_marked[maxn] = {false};
+bool row_marked[MAXN] = {false}, col_marked[MAXN] = {false};
 
 int sub_n;  // 极大满秩子矩阵的大小
 
@@ -86,7 +86,7 @@ void eliminate(int r, int c) {
     }
 }
 
-int vertices[maxn], girl[maxn];  // girl 是匹配点, 用来输出方案
+int vertices[MAXN], girl[MAXN];  // girl 是匹配点, 用来输出方案
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);

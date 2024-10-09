@@ -1,19 +1,19 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-constexpr int maxn = 1e4 + 5;
-constexpr int maxk = 5005;
+constexpr int MAXN = 1e4 + 5;
+constexpr int MAXK = 5005;
 
 int n, k;
-int id[maxn][5];
-char s[maxn][5][5], ans[maxk];
-bool vis[maxn];
+int id[MAXN][5];
+char s[MAXN][5][5], ans[MAXK];
+bool vis[MAXN];
 
 struct Edge {
   int v, nxt;
-} e[maxn * 100];
+} e[MAXN * 100];
 
-int head[maxn], tot = 1;
+int head[MAXN], tot = 1;
 
 void addedge(int u, int v) {
   e[tot].v = v;
@@ -21,7 +21,7 @@ void addedge(int u, int v) {
   head[u] = tot++;
 }
 
-int dfn[maxn], low[maxn], color[maxn], stk[maxn], ins[maxn], top, dfs_clock, c;
+int dfn[MAXN], low[MAXN], color[MAXN], stk[MAXN], ins[MAXN], top, dfs_clock, c;
 
 void tarjan(int x) {  // tarjan算法求强联通
   stk[++top] = x;

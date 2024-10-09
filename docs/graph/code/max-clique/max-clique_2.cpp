@@ -1,9 +1,9 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-constexpr int maxn = 130;
-bool mp[maxn][maxn];
-int some[maxn][maxn], none[maxn][maxn], all[maxn][maxn];
+constexpr int MAXN = 130;
+bool mp[MAXN][MAXN];
+int some[MAXN][MAXN], none[MAXN][MAXN], all[MAXN][MAXN];
 int n, m, ans;
 
 void dfs(int d, int an, int sn, int nn) {

@@ -2,10 +2,10 @@
 #include <cstring>
 #include <iostream>
 #include <queue>
-constexpr int maxn = 8000001;
+constexpr int MAXN = 8000001;
 using namespace std;
-char s[maxn];
-int n, cnt, vis[maxn], rev[maxn], indeg[maxn], ans;
+char s[MAXN];
+int n, cnt, vis[MAXN], rev[MAXN], indeg[MAXN], ans;
 
 struct trie_node {
   int son[27];
@@ -17,7 +17,7 @@ struct trie_node {
     memset(son, 0, sizeof(son));
     fail = flag = 0;
   }
-} trie[maxn];
+} trie[MAXN];
 
 queue<int> q;
 

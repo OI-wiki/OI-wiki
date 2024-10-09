@@ -1,32 +1,32 @@
 #include <iostream>
 
-constexpr int maxN = 100;
+constexpr int MAXN = 100;
 
 int t;
 int n;
-char a[maxN + 10][maxN + 10];
-int c[maxN + 10][maxN + 10];
+char a[MAXN + 10][MAXN + 10];
+int c[MAXN + 10][MAXN + 10];
 int ans;
 
 namespace graph {
 struct Vertex {
   int head;
   int deg;
-  int vis[maxN + 10];
-} vertex[2 * maxN + 10], e;
+  int vis[MAXN + 10];
+} vertex[2 * MAXN + 10], e;
 
 struct Edge {
   int head;
   int next;
   int col;
-} edge[2 * maxN * maxN + 10];
+} edge[2 * MAXN * MAXN + 10];
 
 int ecnt;
 
 void init() {
-  for (int i = 0; i < maxN + 10; i++) std::fill(c[i], c[i] + maxN + 10, 0);
-  for (int i = 1; i <= 2 * maxN; i++) vertex[i] = e;
-  for (int i = 0; i <= 2 * maxN * maxN; i++) edge[i].col = 0;
+  for (int i = 0; i < MAXN + 10; i++) std::fill(c[i], c[i] + MAXN + 10, 0);
+  for (int i = 1; i <= 2 * MAXN; i++) vertex[i] = e;
+  for (int i = 0; i <= 2 * MAXN * MAXN; i++) edge[i].col = 0;
   ecnt = 1;
   ans = 0;
   return;

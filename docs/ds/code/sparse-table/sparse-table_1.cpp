@@ -1,14 +1,14 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-constexpr int logn = 21;
-constexpr int maxn = 2000001;
-int f[maxn][logn + 1], Logn[maxn + 1];
+constexpr int MAXN = 2000001;
+constexpr int logN = 21;
+int f[MAXN][logN + 1], Logn[MAXN + 1];
 
 void pre() {  // 准备工作，初始化
   Logn[1] = 0;
   Logn[2] = 1;
-  for (int i = 3; i < maxn; i++) {
+  for (int i = 3; i < MAXN; i++) {
     Logn[i] = Logn[i / 2] + 1;
   }
 }
@@ -19,7 +19,7 @@ int main() {
   cin >> n >> m;
   for (int i = 1; i <= n; i++) cin >> f[i][0];
   pre();
-  for (int j = 1; j <= logn; j++)
+  for (int j = 1; j <= logN; j++)
     for (int i = 1; i + (1 << j) - 1 <= n; i++)
       f[i][j] = max(f[i][j - 1], f[i + (1 << (j - 1))][j - 1]);  // ST表具体实现
   for (int i = 1; i <= m; i++) {

@@ -419,14 +419,14 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     #include <cstdio>
     #include <cstring>
     using namespace std;
-    constexpr long long maxn = 100010;
+    constexpr long long MAXN = 100010;
     constexpr long long mod = 51061;
     long long n, q, u, v, c;
     char op;
     
     struct Splay {
-      long long ch[maxn][2], fa[maxn], siz[maxn], val[maxn], sum[maxn], rev[maxn],
-          add[maxn], mul[maxn];
+      long long ch[MAXN][2], fa[MAXN], siz[MAXN], val[MAXN], sum[MAXN], rev[MAXN],
+          add[MAXN], mul[MAXN];
     
       void clear(long long x) {
         ch[x][0] = ch[x][1] = fa[x] = siz[x] = val[x] = sum[x] = rev[x] = add[x] =
@@ -600,10 +600,10 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     #include <cstdio>
     #include <cstring>
     using namespace std;
-    constexpr int maxn = 10010;
+    constexpr int MAXN = 10010;
     
     struct Splay {
-      int ch[maxn][2], fa[maxn], tag[maxn];
+      int ch[MAXN][2], fa[MAXN], tag[MAXN];
     
       void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = tag[x] = 0; }
     
@@ -661,7 +661,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     } st;
     
     int n, q, x, y;
-    char op[maxn];
+    char op[MAXN];
     
     int main() {
       scanf("%d%d", &n, &q);
@@ -715,8 +715,8 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     #include <cstring>
     #include <map>
     using namespace std;
-    constexpr int maxn = 200010;
-    int f[maxn];
+    constexpr int MAXN = 200010;
+    int f[MAXN];
     
     int findp(int x) { return f[x] ? f[x] = findp(f[x]) : x; }
     
@@ -727,7 +727,7 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
     }
     
     struct Splay {
-      int ch[maxn][2], fa[maxn], tag[maxn], siz[maxn];
+      int ch[MAXN][2], fa[MAXN], tag[MAXN], siz[MAXN];
     
       void clear(int x) { ch[x][0] = ch[x][1] = fa[x] = tag[x] = siz[x] = 0; }
     
@@ -813,11 +813,11 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
       }
     } st;
     
-    int n, m, q, x, y, cur, ans[maxn];
+    int n, m, q, x, y, cur, ans[MAXN];
     
     struct oper {
       int op, a, b;
-    } s[maxn];
+    } s[MAXN];
     
     map<pair<int, int>, int> mp;
     
@@ -913,10 +913,10 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
     #include <cstring>
     #include <set>
     using namespace std;
-    constexpr int maxn = 5000010;
+    constexpr int MAXN = 5000010;
     
     struct Splay {
-      int ch[maxn][2], fa[maxn], tag[maxn], val[maxn], minn[maxn];
+      int ch[MAXN][2], fa[MAXN], tag[MAXN], val[MAXN], minn[MAXN];
     
       void clear(int x) {
         ch[x][0] = ch[x][1] = fa[x] = tag[x] = val[x] = minn[x] = 0;
@@ -1017,7 +1017,7 @@ LCT 上没有固定的父子关系，所以不能将边权记录在点权中。
       int u, v, w;
     
       bool operator<(Edge x) const { return w < x.w; };
-    } s[maxn];
+    } s[MAXN];
     
     multiset<int> mp;
     
@@ -1132,11 +1132,11 @@ st.siz2[y] += st.siz[x];
     #include <cstdio>
     #include <cstring>
     using namespace std;
-    constexpr int maxn = 100010;
+    constexpr int MAXN = 100010;
     using ll = long long;
     
     struct Splay {
-      int ch[maxn][2], fa[maxn], siz[maxn], siz2[maxn], tag[maxn];
+      int ch[MAXN][2], fa[MAXN], siz[MAXN], siz2[MAXN], tag[MAXN];
     
       void clear(int x) {
         ch[x][0] = ch[x][1] = fa[x] = siz[x] = siz2[x] = tag[x] = 0;

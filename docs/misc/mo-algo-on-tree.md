@@ -55,18 +55,18 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
     #include <cstdio>
     using namespace std;
     
-    constexpr int maxn = 200010;
+    constexpr int MAXN = 200010;
     
-    int f[maxn], g[maxn], id[maxn], head[maxn], cnt, last[maxn], dep[maxn],
-        fa[maxn][22], v[maxn], w[maxn];
+    int f[MAXN], g[MAXN], id[MAXN], head[MAXN], cnt, last[MAXN], dep[MAXN],
+        fa[MAXN][22], v[MAXN], w[MAXN];
     int block, index, n, m, q;
-    int pos[maxn], col[maxn], app[maxn];
-    bool vis[maxn];
-    long long ans[maxn], cur;
+    int pos[MAXN], col[MAXN], app[MAXN];
+    bool vis[MAXN];
+    long long ans[MAXN], cur;
     
     struct edge {
       int to, nxt;
-    } e[maxn];
+    } e[MAXN];
     
     int cnt1 = 0, cnt2 = 0;  // 时间戳
     
@@ -77,7 +77,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
         return (pos[l] < pos[b.l]) || (pos[l] == pos[b.l] && pos[r] < pos[b.r]) ||
                (pos[l] == pos[b.l] && pos[r] == pos[b.r] && t < b.t);
       }
-    } a[maxn], b[maxn];
+    } a[MAXN], b[MAXN];
     
     void addedge(int x, int y) {
       e[++cnt] = edge{y, head[x]};

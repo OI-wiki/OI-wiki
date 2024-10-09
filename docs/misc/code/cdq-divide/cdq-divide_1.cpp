@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <iostream>
 
-constexpr int maxN = 1e5 + 10;
-constexpr int maxK = 2e5 + 10;
+constexpr int MAXN = 1e5 + 10;
+constexpr int MAXK = 2e5 + 10;
 
 int n, k;
 
@@ -19,13 +19,13 @@ struct Element {
   }
 };
 
-Element e[maxN];
-Element ue[maxN];
+Element e[MAXN];
+Element ue[MAXN];
 int m, t;
-int res[maxN];
+int res[MAXN];
 
 struct BinaryIndexedTree {
-  int node[maxK];
+  int node[MAXK];
 
   int lowbit(int x) { return x & -x; }
 

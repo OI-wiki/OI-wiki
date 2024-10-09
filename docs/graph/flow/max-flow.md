@@ -144,7 +144,7 @@ Edmonds–Karp 算法的可能实现如下。
 
 ??? note "参考代码"
     ```cpp
-    constexpr int maxn = 250;
+    constexpr int MAXN = 250;
     constexpr int INF = 0x3f3f3f3f;
     
     struct Edge {
@@ -156,8 +156,8 @@ Edmonds–Karp 算法的可能实现如下。
     struct EK {
       int n, m;             // n：点数，m：边数
       vector<Edge> edges;   // edges：所有边的集合
-      vector<int> G[maxn];  // G：点 x -> x 的所有边在 edges 中的下标
-      int a[maxn], p[maxn];  // a：点 x -> BFS 过程中最近接近点 x 的边给它的最大流
+      vector<int> G[MAXN];  // G：点 x -> x 的所有边在 edges 中的下标
+      int a[MAXN], p[MAXN];  // a：点 x -> BFS 过程中最近接近点 x 的边给它的最大流
                              // p：点 x -> BFS 过程中最近接近点 x 的边
     
       void init(int n) {
@@ -665,12 +665,12 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
     struct ISAP {
       int n, m, s, t;
       vector<Edge> edges;
-      vector<int> G[maxn];
-      bool vis[maxn];
-      int d[maxn];
-      int cur[maxn];
-      int p[maxn];
-      int num[maxn];
+      vector<int> G[MAXN];
+      bool vis[MAXN];
+      int d[MAXN];
+      int cur[MAXN];
+      int p[MAXN];
+      int num[MAXN];
     
       void AddEdge(int from, int to, int cap) {
         edges.push_back(Edge(from, to, cap, 0));

@@ -74,8 +74,8 @@ $$
 ??? note "参考实现"
     === "C++"
         ```cpp
-        constexpr int maxn = 2000 + 5;
-        int bell[maxn][maxn];
+        constexpr int MAXN = 2000 + 5;
+        int bell[MAXN][MAXN];
         
         void f(int n) {
           bell[0][0] = 1;
@@ -89,8 +89,8 @@ $$
     
     === "Python"
         ```python
-        maxn = 2000 + 5
-        bell = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)]
+        MAXN = 2000 + 5
+        bell = [[0 for i in range(MAXN + 1)] for j in range(MAXN + 1)]
         
         
         def f(n):

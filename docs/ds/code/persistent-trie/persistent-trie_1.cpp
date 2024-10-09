@@ -2,12 +2,12 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-constexpr int maxn = 600010;
-int n, q, a[maxn], s[maxn], l, r, x;
+constexpr int MAXN = 600010;
+int n, q, a[MAXN], s[MAXN], l, r, x;
 char op;
 
 struct Trie {
-  int cnt, rt[maxn], ch[maxn * 33][2], val[maxn * 33];
+  int cnt, rt[MAXN], ch[MAXN * 33][2], val[MAXN * 33];
 
   void insert(int o, int lst, int v) {
     for (int i = 28; i >= 0; i--) {

@@ -3,11 +3,11 @@
 #include <iostream>
 #define lc o << 1
 #define rc o << 1 | 1
-constexpr int maxn = 60010;
+constexpr int MAXN = 60010;
 constexpr int inf = 2e9;
-int n, a, b, w[maxn], q, u, v;
-int cur, h[maxn], nxt[maxn], p[maxn];
-int siz[maxn], top[maxn], son[maxn], dep[maxn], fa[maxn], dfn[maxn], rnk[maxn],
+int n, a, b, w[MAXN], q, u, v;
+int cur, h[MAXN], nxt[MAXN], p[MAXN];
+int siz[MAXN], top[MAXN], son[MAXN], dep[MAXN], fa[MAXN], dfn[MAXN], rnk[MAXN],
     cnt;
 char op[10];
 
@@ -19,7 +19,7 @@ void add_edge(int x, int y) {  // 加边
 }
 
 struct SegTree {
-  int sum[maxn * 4], maxx[maxn * 4];
+  int sum[MAXN * 4], maxx[MAXN * 4];
 
   void build(int o, int l, int r) {
     if (l == r) {

@@ -7,16 +7,16 @@
 using namespace std;
 using ll = long long;
 constexpr int N = 1e5 + 5;
-constexpr int maxn = N << 1;
+constexpr int MAXN = N << 1;
 
 int n;
 
 struct Edge {
   int v, nxt;
-} e[maxn << 1];
+} e[MAXN << 1];
 
-int head[maxn], sz[maxn], f[maxn], maxv[maxn], tag[maxn], tot, Max;
-vector<int> center[2], L[maxn], subtree_tags[maxn];
+int head[MAXN], sz[MAXN], f[MAXN], maxv[MAXN], tag[MAXN], tot, Max;
+vector<int> center[2], L[MAXN], subtree_tags[MAXN];
 
 void addedge(int u, int v) {  // 建图
   e[tot].v = v;

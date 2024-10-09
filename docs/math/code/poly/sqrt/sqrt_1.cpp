@@ -2,9 +2,9 @@
 #include <iostream>
 using namespace std;
 
-constexpr int maxn = 1 << 20, mod = 998244353;
+constexpr int MAXN = 1 << 20, mod = 998244353;
 
-int a[maxn], b[maxn], g[maxn], gg[maxn];
+int a[MAXN], b[MAXN], g[MAXN], gg[MAXN];
 
 int qpow(int x, int y) {  // 快速幂
   int ans = 1;
@@ -94,7 +94,7 @@ void inv(int deg, int *f, int *h) {  // 求逆元
   fill(h + deg, h + len, 0);
 }
 
-int n, t[maxn];
+int n, t[MAXN];
 
 // deg:次数
 // f:被开根数组

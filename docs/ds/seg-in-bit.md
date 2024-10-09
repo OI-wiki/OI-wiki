@@ -32,16 +32,16 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
     #define LC o << 1
     #define RC o << 1 | 1
     using namespace std;
-    constexpr int maxn = 1000010;
-    int n, m, a[maxn], u[maxn], x[maxn], l[maxn], r[maxn], k[maxn], cur, cur1, cur2,
-        q1[maxn], q2[maxn], v[maxn];
-    char op[maxn];
+    constexpr int MAXN = 1000010;
+    int n, m, a[MAXN], u[MAXN], x[MAXN], l[MAXN], r[MAXN], k[MAXN], cur, cur1, cur2,
+        q1[MAXN], q2[MAXN], v[MAXN];
+    char op[MAXN];
     set<int> ST;
     map<int, int> mp;
     
     struct segment_tree  // 封装的动态开点权值线段树
     {
-      int cur, rt[maxn * 4], sum[maxn * 60], lc[maxn * 60], rc[maxn * 60];
+      int cur, rt[MAXN * 4], sum[MAXN * 60], lc[MAXN * 60], rc[MAXN * 60];
     
       void build(int& o) { o = ++cur; }
     

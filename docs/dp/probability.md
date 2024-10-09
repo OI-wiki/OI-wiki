@@ -140,9 +140,9 @@ $$
     #include <cstring>
     using namespace std;
     
-    constexpr int maxn = 1e3 + 10;
+    constexpr int MAXN = 1e3 + 10;
     
-    double a[maxn][maxn], f[maxn];
+    double a[MAXN][MAXN], f[MAXN];
     int n, m;
     
     void solve(int x) {

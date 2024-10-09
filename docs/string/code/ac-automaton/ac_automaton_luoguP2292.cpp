@@ -3,9 +3,9 @@
 #include <iostream>
 #include <queue>
 
-constexpr int maxn = 3000001;
-char T[maxn];
-int n, cnt, vis[maxn], ans, m, dp[maxn];
+constexpr int MAXN = 3000001;
+char T[MAXN];
+int n, cnt, vis[MAXN], ans, m, dp[MAXN];
 
 struct trie_node {
   int son[26];
@@ -16,7 +16,7 @@ struct trie_node {
     memset(son, 0, sizeof(son));
     fail = flag = depth = 0;
   }
-} trie[maxn];
+} trie[MAXN];
 
 std::queue<int> q;
 

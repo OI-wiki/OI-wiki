@@ -4,25 +4,25 @@
 
 using lxl = long long;
 
-constexpr int maxN = 5e5;
-constexpr int maxM = 5e5;
-constexpr int maxA = 1e5;
+constexpr int MAXN = 5e5;
+constexpr int MAXM = 5e5;
+constexpr int MAXA = 1e5;
 constexpr int sqrN = 708;
 constexpr int sqrA = 317;
 
 int n, m;
-int a[maxN + 10];
-int b[maxN + 10];
+int a[MAXN + 10];
+int b[MAXN + 10];
 int l, r;
-lxl f[maxN + 10];
-lxl g[maxN + 10];
-lxl ans[maxM + 10];
+lxl f[MAXN + 10];
+lxl g[MAXN + 10];
+lxl ans[MAXM + 10];
 
 struct SegmentTree {
   struct Node {
     lxl val;
     lxl tag;
-  } node[4 * maxA + 10];
+  } node[4 * MAXA + 10];
 
   void MakeTag(int u, int l, int r, lxl val) {
     node[u].val += val * (r - l + 1);
@@ -87,17 +87,17 @@ struct BlockArray {
   struct Array {
     int bel;
     lxl val;
-  } array[maxA + 10];
+  } array[MAXA + 10];
 
   void Build() {
-    for (int i = 1; i <= maxA; i++) array[i].bel = (i - 1) / sqrA + 1;
-    for (int i = 1; i <= maxA; i++) block[array[i].bel].r = i;
-    for (int i = maxA; i >= 1; i--) block[array[i].bel].l = i;
+    for (int i = 1; i <= MAXA; i++) array[i].bel = (i - 1) / sqrA + 1;
+    for (int i = 1; i <= MAXA; i++) block[array[i].bel].r = i;
+    for (int i = MAXA; i >= 1; i--) block[array[i].bel].l = i;
     return;
   }
 
   void Add(int pos, lxl val) {
-    for (int i = array[pos].bel + 1; i <= array[maxA].bel; i++)
+    for (int i = array[pos].bel + 1; i <= array[MAXA].bel; i++)
       block[i].tag += val;
     for (int i = pos; i <= block[array[pos].bel].r; i++) array[i].val += val;
     return;
@@ -121,7 +121,7 @@ struct Query {
   int k;
 };
 
-std::vector<Query> query[maxN + 10];
+std::vector<Query> query[MAXN + 10];
 
 dba sum, cnt;
 
@@ -135,7 +135,7 @@ void solve() {
       for (int k = query[i][j].l; k <= query[i][j].r; k++) {
         ans[query[i][j].i] +=
             1ll * query[i][j].k *
-            (sum.Ask(a[k] + 1, maxA) + cnt.Ask(1, a[k] - 1) * a[k]);
+            (sum.Ask(a[k] + 1, MAXA) + cnt.Ask(1, a[k] - 1) * a[k]);
       }
     }
   }
@@ -161,10 +161,10 @@ sgt sum, cnt;
 void solve() {
   std::sort(query.begin(), query.end());
   for (int i = 1; i <= n; i++) {
-    f[i] = sum.Ask(1, 1, maxA, a[i] + 1, maxA);
-    g[i] = cnt.Ask(1, 1, maxA, 1, a[i] - 1);
-    sum.Add(1, 1, maxA, a[i], a[i]);
-    cnt.Add(1, 1, maxA, a[i], 1);
+    f[i] = sum.Ask(1, 1, MAXA, a[i] + 1, MAXA);
+    g[i] = cnt.Ask(1, 1, MAXA, 1, a[i] - 1);
+    sum.Add(1, 1, MAXA, a[i], a[i]);
+    cnt.Add(1, 1, MAXA, a[i], 1);
   }
   for (int i = 0, l = 1, r = 0; i < query.size(); i++) {
     if (l > query[i].l) {

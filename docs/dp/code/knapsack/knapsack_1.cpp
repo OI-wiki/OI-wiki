@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
-constexpr int maxn = 13010;
-int n, W, w[maxn], v[maxn], f[maxn];
+constexpr int MAXN = 13010;
+int n, W, w[MAXN], v[MAXN], f[MAXN];
 
 int main() {
   cin >> n >> W;

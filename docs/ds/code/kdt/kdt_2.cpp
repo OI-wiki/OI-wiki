@@ -3,19 +3,19 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-constexpr int maxn = 100010;
+constexpr int MAXN = 100010;
 long long n, k;
 priority_queue<long long, vector<long long>, greater<long long>> q;
 
 struct node {
   long long x, y;
-} s[maxn];
+} s[MAXN];
 
 bool cmp1(node a, node b) { return a.x < b.x; }
 
 bool cmp2(node a, node b) { return a.y < b.y; }
 
-long long lc[maxn], rc[maxn], L[maxn], R[maxn], D[maxn], U[maxn];
+long long lc[MAXN], rc[MAXN], L[MAXN], R[MAXN], D[MAXN], U[MAXN];
 
 void maintain(int x) {
   L[x] = R[x] = s[x].x;

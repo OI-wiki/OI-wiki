@@ -2,13 +2,13 @@
 #include <iostream>
 #include <map>
 using namespace std;
-constexpr int maxn = 2000010;
-long long T, n, pri[maxn], cur, mu[maxn], sum_mu[maxn];
-bool vis[maxn];
+constexpr int MAXN = 2000010;
+long long T, n, pri[MAXN], cur, mu[MAXN], sum_mu[MAXN];
+bool vis[MAXN];
 map<long long, long long> mp_mu;
 
 long long S_mu(long long x) {  // 求mu的前缀和
-  if (x < maxn) return sum_mu[x];
+  if (x < MAXN) return sum_mu[x];
   if (mp_mu[x]) return mp_mu[x];  // 如果map中已有该大小的mu值，则可直接返回
   long long ret = (long long)1;
   for (long long i = 2, j; i <= x; i = j + 1) {
@@ -32,12 +32,12 @@ int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   cin >> T;
   mu[1] = 1;
-  for (int i = 2; i < maxn; i++) {  // 线性筛预处理mu数组
+  for (int i = 2; i < MAXN; i++) {  // 线性筛预处理mu数组
     if (!vis[i]) {
       pri[++cur] = i;
       mu[i] = -1;
     }
-    for (int j = 1; j <= cur && i * pri[j] < maxn; j++) {
+    for (int j = 1; j <= cur && i * pri[j] < MAXN; j++) {
       vis[i * pri[j]] = true;
       if (i % pri[j])
         mu[i * pri[j]] = -mu[i];
@@ -47,7 +47,7 @@ int main() {
       }
     }
   }
-  for (int i = 1; i < maxn; i++)
+  for (int i = 1; i < MAXN; i++)
     sum_mu[i] = sum_mu[i - 1] + mu[i];  // 求mu数组前缀和
   while (T--) {
     cin >> n;

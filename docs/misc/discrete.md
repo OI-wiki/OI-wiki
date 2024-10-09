@@ -71,7 +71,7 @@ struct Data {
       return idx < o.idx;  // 当值相同时，先出现的元素离散化后的值更小
     return val < o.val;
   }
-} tmp[maxn];  // 也可以使用 std::pair
+} tmp[MAXN];  // 也可以使用 std::pair
 
 for (int i = 1; i <= n; ++i) tmp[i] = Data{i, arr[i]};
 std::sort(tmp + 1, tmp + n + 1);

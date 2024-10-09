@@ -2,15 +2,15 @@
 #include <iostream>
 
 using namespace std;
-constexpr int maxn = 50010;
+constexpr int MAXN = 50010;
 
 struct node {
   int to, next;
-} edge[maxn << 1];
+} edge[MAXN << 1];
 
-int fa[maxn][30], head[maxn << 1];
-int power[maxn];
-int depth[maxn], lg[maxn];
+int fa[MAXN][30], head[MAXN << 1];
+int power[MAXN];
+int depth[MAXN], lg[MAXN];
 int n, k, ans = 0, tot = 0;
 
 void add(int x, int y) {  // 加边

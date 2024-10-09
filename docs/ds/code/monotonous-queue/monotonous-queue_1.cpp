@@ -1,9 +1,9 @@
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
-constexpr int maxn = 1000100;
+constexpr int MAXN = 1000100;
 using namespace std;
-int q[maxn], a[maxn];
+int q[MAXN], a[MAXN];
 int n, k;
 
 void getmin() {  // 得到这个队列里的最小值，直接找到最后的就行了
