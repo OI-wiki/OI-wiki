@@ -2,7 +2,7 @@
 
 大概 2000 年左右一系列被称为 Succinct Indexable Dictionaries 的数据结构被提出，它们可以通过 $\mathcal O(n)$ 时间预处理，$\mathcal o(n)$ 的额外空间，在常数时间内静态实现 01 序列上的 $\operatorname{access},\operatorname{rank},\operatorname{select}$ 操作。对于这三种操作的定义，请参阅[简洁数据结构简介](./succinct-data-structure.md)。
 
-由于在国内不常见，没有统一的译名。可以翻译为“简洁索引字典”或“简洁位向量”。
+由于在国内不常见，没有统一的译名。可以翻译为「简洁索引字典」或「简洁位向量」。
 
 ???+ info " 不常用的 $\operatorname{select}$ 操作 "
     $\operatorname{select}$ 操作在算法竞赛中不常见，但是实现很复杂。读者可以先阅读有关 $\operatorname{rank}$ 的内容，完全理解后再考虑 $\operatorname{select}$。
