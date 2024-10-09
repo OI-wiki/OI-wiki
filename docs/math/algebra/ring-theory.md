@@ -355,6 +355,7 @@ $$
 对于幺环的情形，如果考虑主理想 $(a)$ 和 $(b)$，这个条件就相当于存在 $x,y\in R$ 使得 $ax+by=1$，这类似于整数互素时的裴蜀定理。利用这个定义，可以完全仿照整数环的情形，建立交换幺环上的中国剩余定理。
 
 -   **中国剩余定理**（Chinese remainder theorem）：给定非零交换幺环 $R$ 和它的理想 $I_1,\cdots,I_n$，如果它们两两互质，那么上述定义的环同态 $\varphi$ 是满射，它的核等于这些理想的乘积 $\ker\varphi=I_1\cap\cdots\cap I_n=I_1\cdots I_n$，因此，
+
     $$
     R/(I_1\cdots I_n)=R/(I_1\cap\cdots\cap I_n)\cong R/I_1\times\cdots\times R/I_n.
     $$
@@ -391,53 +392,57 @@ $$
 
 根据上面的推理，要研究一般的模数的情形，只要考虑素数幂 $p^k$ 作为模数的情形就可以了。对于素数幂的情形，需要分别考虑 $p=2$ 和 $p$ 为奇数的两种情形。此时已知 $\varphi(p^k)=(p-1)p^{k-1}$ 成立。
 
-对于 $p=2$ 的情形，直接验证可知 $(\mathbf Z/2\mathbf Z)^\times\cong\mathbf Z_1$ 和 $(\mathbf Z/4\mathbf Z)^\times\cong\mathbf Z_2$。对于 $k\ge3$ 的情形，利用二项式定理直接计算可以知道
+对于 $p=2$ 的情形，直接验证可知 $(\mathbf Z/2\mathbf Z)^\times\cong\mathbf Z_1$ 和 $(\mathbf Z/4\mathbf Z)^\times\cong\mathbf Z_2$。对于 $k\ge3$ 的情形，有 $(\mathbf Z/2^k\mathbf Z)^\times\cong\mathbf Z_2\times\mathbf Z_{2^{k-2}}$。
 
-$$
-\begin{aligned}
-5^{2^{k-2}}=(1+2^2)^{2^{k-2}}&\equiv 1\pmod {2^k},\\
-5^{2^{k-3}}=(1+2^2)^{2^{k-3}}&\equiv 1+2^{k-1}\pmod {2^k}.
-\end{aligned}
-$$
+??? note "证明"
+    利用二项式定理直接计算可以知道
 
-所以，$5$ 是 $(\mathbf Z/2^k\mathbf Z)^\times$ 中的 $2^{k-2}$ 阶元。同时，$-1$ 和 $5^{2^{k-3}}$ 是两个不同的二阶元，所以，$-1\notin\langle 5\rangle$。所以，$\langle-1\rangle$ 和 $\langle 5\rangle$ 交集是平凡的，故而根据第二同构定理可知
+    $$
+    \begin{aligned}
+    5^{2^{k-2}}=(1+2^2)^{2^{k-2}}&\equiv 1\pmod {2^k},\\
+    5^{2^{k-3}}=(1+2^2)^{2^{k-3}}&\equiv 1+2^{k-1}\pmod {2^k}.
+    \end{aligned}
+    $$
 
-$$
-(\mathbf Z/2^k\mathbf Z)^\times\cong\langle-1\rangle\times\langle 5\rangle\cong\mathbf Z_2\times\mathbf Z_{2^{k-2}}.
-$$
+    所以，$5$ 是 $(\mathbf Z/2^k\mathbf Z)^\times$ 中的 $2^{k-2}$ 阶元。同时，$-1$ 和 $5^{2^{k-3}}$ 是两个不同的二阶元，所以，$-1\notin\langle 5\rangle$。所以，$\langle-1\rangle$ 和 $\langle 5\rangle$ 交集是平凡的，故而根据第二同构定理可知
 
-对于 $p$ 为奇数的情形，要证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 是循环群，利用有限 Abel 群基本定理可知，只要证明它的每个 Sylow $q$‑子群都是循环群。首先，对于 Sylow $p$‑子群，直接计算可知
+    $$
+    (\mathbf Z/2^k\mathbf Z)^\times\cong\langle-1\rangle\times\langle 5\rangle\cong\mathbf Z_2\times\mathbf Z_{2^{k-2}}.
+    $$
 
-$$
-\begin{aligned}
-(1+p)^{p^{k-1}} &\equiv 1\pmod{p^k},\\
-(1+p)^{p^{k-2}} &\equiv 1+p^{k-1}\pmod{p^k}.
-\end{aligned}
-$$
+对于 $p$ 为奇数的情形，则可以证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 同构于循环群 $\mathbf Z_{\varphi(p^k)}$。
 
-故而，$(1+p)$ 是 $p^{k-1}$ 阶元。也就是说，$(\mathbf Z/p^k\mathbf Z)^\times$ 的唯一的 Sylow $p$‑子群是循环群 $\langle 1+p\rangle$。
+??? note "证明"
+    要证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 是循环群，利用有限 Abel 群基本定理可知，只要证明它的每个 Sylow $q$‑子群都是循环群。首先，对于 Sylow $p$‑子群，直接计算可知
 
-对于其它的 Sylow $q$‑子群（$q\neq p$），可以通过群同态将它转化为 $k=1$ 的情形。考虑群同态 $\varphi:(\mathbf Z/p^k\mathbf Z)^\times\rightarrow(\mathbf Z/p\mathbf Z)^\times$，它将陪集 $r+p^k\mathbf Z$ 映射到陪集 $r+p\mathbf Z$。这个映射的核的大小是 $p^{k-1}$，所以，将映射 $\varphi$ 限制在 $(\mathbf Z/p^k\mathbf Z)^\times$ 的 Sylow $q$‑子群（$q\neq p$）上，限制后的映射的核都是平凡的，所以这个 Sylow $q$‑子群同构于映射的像，即 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群。因此，只要证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群就可以了。
+    $$
+    \begin{aligned}
+    (1+p)^{p^{k-1}} &\equiv 1\pmod{p^k},\\
+    (1+p)^{p^{k-2}} &\equiv 1+p^{k-1}\pmod{p^k}.
+    \end{aligned}
+    $$
 
-最后，证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群。因为 $(\mathbf Z/p\mathbf Z)^\times$ 是有限 Abel 群，可以将它按照不变因子分解为
+    故而，$(1+p)$ 是 $p^{k-1}$ 阶元。也就是说，$(\mathbf Z/p^k\mathbf Z)^\times$ 的唯一的 Sylow $p$‑子群是循环群 $\langle 1+p\rangle$。
 
-$$
-\mathbf Z_{n_1}\times\cdots\times\mathbf Z_{n_r}.
-$$
+    对于其它的 Sylow $q$‑子群（$q\neq p$），可以通过群同态将它转化为 $k=1$ 的情形。考虑群同态 $\varphi:(\mathbf Z/p^k\mathbf Z)^\times\rightarrow(\mathbf Z/p\mathbf Z)^\times$，它将陪集 $r+p^k\mathbf Z$ 映射到陪集 $r+p\mathbf Z$。这个映射的核的大小是 $p^{k-1}$，所以，将映射 $\varphi$ 限制在 $(\mathbf Z/p^k\mathbf Z)^\times$ 的 Sylow $q$‑子群（$q\neq p$）上，限制后的映射的核都是平凡的，所以这个 Sylow $q$‑子群同构于映射的像，即 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群。因此，只要证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群就可以了。
 
-这里，$n_1\mid n_2\mid \cdots \mid n_r$。所以，每个直积因子中都有 $n_1$ 个元素的阶整除 $n_1$。如果 $r>1$，则必然有严格多于 $n_1$ 个元素满足方程 $x^{n_1}=1$。但是，$\mathbf Z/p\mathbf Z$ 是域，而域上的 $n_1$ 次多项式至多 $n_1$ 个根，所以 $r=1$。也就是说，$(\mathbf Z/p\mathbf Z)^\times\cong\mathbf Z_{p-1}$。
+    最后，证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群。因为 $(\mathbf Z/p\mathbf Z)^\times$ 是有限 Abel 群，可以将它按照不变因子分解为
 
-这样就证明 $(\mathbf Z/p^k\mathbf Z)^\times\cong\mathbf Z_{p^{k-1}}\times\mathbf Z_{p-1}=\mathbf Z_{\varphi(p^{k})}$。
+    $$
+    \mathbf Z_{n_1}\times\cdots\times\mathbf Z_{n_r}.
+    $$
 
-一般的模数的情形的乘法群的结构也随之确定。从现有的结果能够知道有且只有模数取
+    这里，$n_1\mid n_2\mid \cdots \mid n_r$。所以，每个直积因子中都有 $n_1$ 个元素的阶整除 $n_1$。如果 $r>1$，则必然有严格多于 $n_1$ 个元素满足方程 $x^{n_1}=1$。但是，$\mathbf Z/p\mathbf Z$ 是域，而域上的 $n_1$ 次多项式至多 $n_1$ 个根，所以 $r=1$。也就是说，$(\mathbf Z/p\mathbf Z)^\times\cong\mathbf Z_{p-1}$。
+
+    这样就证明 $(\mathbf Z/p^k\mathbf Z)^\times\cong\mathbf Z_{p^{k-1}}\times\mathbf Z_{p-1}=\mathbf Z_{\varphi(p^{k})}$。
+
+一般的模数的情形的乘法群的结构也随之确定。从现有的结果能够知道整数模 $n$ 乘法群是循环群有且只有模数 $n$ 取
 
 $$
 1,2,4,p^k,2p^k
 $$
 
-时，这样的乘法群是循环群；否则，乘法群中一定有子群 $\mathbf Z_2\times\mathbf Z_2$，不可能是循环群。
-
-当乘法群是循环群的时候，乘法群的生成元就称为该模的 **原根**（primitive root）。因此，这里的定理给出的正是原根存在的充要条件。
+时，其中，$p$ 是奇素数；否则，整数模 $n$ 乘法群中一定有子群 $\mathbf Z_2\times\mathbf Z_2$，不可能是循环群。当乘法群是循环群的时候，乘法群的生成元就称为该模的 **原根**（primitive root）。因此，这里的定理给出的正是原根存在的充要条件。
 
 ## 参考资料和注释
 
