@@ -223,7 +223,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
 
 ### 例题 1
 
-??? note+ "[Luogu P3834【模板】可持久化线段树 2](https://www.luogu.com.cn/problem/P3834)"
+???+ note "[Luogu P3834【模板】可持久化线段树 2](https://www.luogu.com.cn/problem/P3834)"
     静态查询区间第 $k$ 小。$n, q \le 2 \times 10^5$。
 
 这是区间第 $k$ 小的模板题。用上面给出的算法即可。
@@ -235,7 +235,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
 
 ### 例题 2
 
-??? note+ "[Luogu P1972 \[SDOI2009\] HH 的项链](https://www.luogu.com.cn/problem/P1972)"
+???+ note "[Luogu P1972 \[SDOI2009\] HH 的项链](https://www.luogu.com.cn/problem/P1972)"
     静态查询区间本质不同的数的个数。$n, q \le 10^6$。
 
 首先预处理出 $nxt_i$ 表示下一个与 $a_i$ 相等的数的位置。查询就是问 $[l, r]$ 内有多少数满足 $pre_i > r$。这等价于在 $pre$ 数组上静态询问 $r$ 的区间排名。用上面给出的算法即可。
