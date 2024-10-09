@@ -64,12 +64,8 @@
 为表述方便，这两个二元运算 $+$ 和 $\cdot$ 常称作该环的加法和乘法，相应地，加法单位元称作 **零**（zero），乘法单位元称作 **幺**（identity）。应避免和具体的数集中的加法、乘法，以及自然数零和一产生混淆。
 
 ??? note "关于定义中是否要求乘法单位元"
-    在有的定义中，环必须存在乘法单位元；相对地，不存在乘法单位元的则被称为 **伪环**（rng 或 pseudo-ring）。遇到的时候需根据上下文加以判断。
+    在有的定义中，环必须存在乘法单位元；相对地，不存在乘法单位元的则被称为 **伪环**（rng 或 pseudo-ring）。遇到的时候需根据上下文加以判断。维基百科采用的就是这种定义[^ring-wiki]。
     
-    维基百科采用的就是这种定义：[^ring-wiki]
-    
-    > In the terminology of this article, a ring is defined to have a multiplicative identity, while a structure with the same axiomatic definition but without the requirement for a multiplicative identity is instead called a rng (IPA:/rʊŋ/). For example, the set of even integers with the usual + and ⋅ is a rng, but not a ring. As explained in § History below, many authors apply the term "ring" without requiring a multiplicative identity.
-
 环的加法结构相当简单，但是乘法结构十分原始。因而如果类比群，在乘法上做更多要求，可以得到如下相关定义。
 
 -   交换环：给定环 $(R,+,\cdot)$，如果乘法满足交换律，则称 $(R,+,\cdot)$ 是一个 **交换环**（commutative ring）。
@@ -87,7 +83,7 @@ $$
 这里的启示是，理解一般的环的乘法结构时，要去除加法单位元的影响，考察 $R\setminus\{0\}$。基于这一想法，有如下定义。
 
 -   零因子：给定环 $(R,+,\cdot)$，称非零元素 $a$ 为一个 **零因子**（zero divisor），如果存在 $b\in R$，成立 $a\cdot b=0$ 或 $b\cdot a=0$。
--   可逆元（单位）：给定环 $(R,+,\cdot)$，称元素 $a\in R$ 是一个 **可逆元**，或称 **单位**，（unit），如果元素 $a$ 有乘法逆元，即存在 $b\in R$，成立 $a\cdot b=b\cdot a=1$。
+-   可逆元（单位）：给定环 $(R,+,\cdot)$，称元素 $a\in R$ 是一个 **可逆元**，或称 **单位**（unit），如果元素 $a$ 有乘法逆元，即存在 $b\in R$，成立 $a\cdot b=b\cdot a=1$。
 
 零因子不可能是可逆元，可逆元不可能是零因子。但是，一个非零元素可以既不是零因子，也不是可逆元。
 
