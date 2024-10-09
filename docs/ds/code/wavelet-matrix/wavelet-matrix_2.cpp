@@ -1,6 +1,6 @@
-#include <vector>
 #include <algorithm>
 #include <cstdio>
+#include <vector>
 using namespace std;
 
 #ifdef _MSC_VER
@@ -24,6 +24,7 @@ struct Bits {
     k--;  // 内部从 0 开始存储
     b[k >> 6] |= (1ull << (k & 0x3f));
   }
+
   // 设定完毕后调用
   void prepare() {
     for (int i = 0; i < b.size(); i++) {
@@ -40,6 +41,7 @@ struct Bits {
     res += __builtin_popcountll(b[hi] & ((1ull << lo) - 1ull));
     return res;
   }
+
   int rank0(int k) { return k - rank1(k); }
 };
 
@@ -62,6 +64,7 @@ struct WaveletMatrix {
   int id(int j, int c, int i) {
     return c ? b[j].rank1(i) : b[j].rank0(i) + b[j].rank1(n);
   }
+
   // 与上面讲的不完全相同，返回大于 w 的数的个数
   int ranking(int l, int r, int w) {
     int res = 0;
@@ -96,7 +99,7 @@ int main() {
     lst[a[i]] = i;
   }
   WaveletMatrix w(n, nxt);
-  
+
   scanf("%d", &m);
   while (m--) {
     int l, r;

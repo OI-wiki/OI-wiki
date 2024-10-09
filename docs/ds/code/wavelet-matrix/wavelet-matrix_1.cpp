@@ -23,6 +23,7 @@ struct Bits {
     k--;  // 内部从 0 开始存储
     b[k >> 6] |= (1ull << (k & 0x3f));
   }
+
   // 设定完毕后调用
   void prepare() {
     for (int i = 0; i < b.size(); i++) {
@@ -39,6 +40,7 @@ struct Bits {
     res += __builtin_popcountll(b[hi] & ((1ull << lo) - 1ull));
     return res;
   }
+
   int rank0(int k) { return k - rank1(k); }
 };
 
@@ -61,6 +63,7 @@ struct WaveletMatrix {
   int id(int j, int c, int i) {
     return c ? b[j].rank1(i) : b[j].rank0(i) + b[j].rank1(n);
   }
+
   int kth(int l, int r, int k) {
     int res = 0;
     for (int j = 31; j >= 0; j--) {
@@ -69,7 +72,8 @@ struct WaveletMatrix {
         l = id(j, 0, l - 1) + 1;
         r = id(j, 0, r);
       } else {
-        res |= (1 << j); k -= cnt;
+        res |= (1 << j);
+        k -= cnt;
         l = id(j, 1, l - 1) + 1;
         r = id(j, 1, r);
       }
@@ -94,4 +98,3 @@ int main() {
   }
   return 0;
 }
-
