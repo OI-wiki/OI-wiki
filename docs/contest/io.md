@@ -199,38 +199,39 @@ void write(int x) {
 
 注意 `mmap` 不能在 Windows 环境下使用（例如 CodeForces 的 tester），同时也不建议在正式赛场上使用，可以在卡常时使用。在使用前要引入 `fcntl.h`，`unistd.h`，`sys/stat.h` 与 `sys/mman.h`。
 
-读入示例：`char *pc = (char *) mmap(NULL, lseek(0, 0, SEEK_END), PROT_READ, MAP_PRIVATE, fd, 0);`，其中 `fd` 是文件描述符。此时指针 `*pc` 指向了我们的文件。可以直接用 `*pc ++` 替代 `getchar()`。如：
+读入示例：首先要获取文件描述符 `fd`，然后通过 `fstat` 获取文件信息以得到文件大小，此后通过 `char *pc = (char *) mmap(NULL, state.st_size, PROT_READ, MAP_PRIVATE, fd, 0);` 将指针 `*pc` 指向我们的文件。可以直接用 `*pc ++` 替代 `getchar()`。
 
-```cpp
-#include <bits/stdc++.h>
-#include <fcntl.h>
-#include <sys/mman.h>
-#include <sys/stat.h>
-#include <unistd.h>
-char *pc;
-
-int rd() {
-  int x = 0, f = 1;
-  char c = *pc++;
-  while (!isdigit(c)) {
-    if (c == '-') f = -1;
-    c = *pc++;
-  }
-  while (isdigit(c)) x = x * 10 + (c ^ 48), c = *pc++;
-  return x * f;
-}
-
-int main() {
-  int fd = open("*.in", O_RDONLY);
-  // int fd = 0; // 如果想在不使用文件操作的题目中使用，可以将 fd 赋值为
-  // 0，意思是从 stdin 读入
-  struct stat state;
-  fstat(fd, &state);
-  pc = (char *)mmap(NULL, state.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
-  close(fd);
-  printf("%d", rd());
-}
-```
+???+ note "参考代码"
+    ```cpp
+    #include <bits/stdc++.h>
+    #include <fcntl.h>
+    #include <sys/mman.h>
+    #include <sys/stat.h>
+    #include <unistd.h>
+    char *pc;
+    
+    int rd() {
+      int x = 0, f = 1;
+      char c = *pc++;
+      while (!isdigit(c)) {
+        if (c == '-') f = -1;
+        c = *pc++;
+      }
+      while (isdigit(c)) x = x * 10 + (c ^ 48), c = *pc++;
+      return x * f;
+    }
+    
+    int main() {
+      int fd = open("*.in", O_RDONLY);
+      // int fd = 0; // 如果想在不使用文件操作的题目中使用，可以将 fd 赋值为
+      // 0，意思是从 stdin 读入
+      struct stat state;
+      fstat(fd, &state);
+      pc = (char *)mmap(NULL, state.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+      close(fd);
+      printf("%d", rd());
+    }
+    ```
 
 ## 输入输出的缓冲
 
