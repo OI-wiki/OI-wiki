@@ -32,10 +32,9 @@ struct data_ {
 
 int rv[100010];
 ll res;
- // 重写两个比较
-bool cmp1(const data_& a, const data_& b) {
-  return a.val < b.val;
-} 
+
+// 重写两个比较
+bool cmp1(const data_& a, const data_& b) { return a.val < b.val; }
 
 bool cmp2(const data_& a, const data_& b) { return a.del < b.del; }
 

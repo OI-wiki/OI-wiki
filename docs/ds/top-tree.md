@@ -253,9 +253,7 @@ void pushall(int x, int type) {
 // ms 一个SATT节点的中儿子
 // type==1 在 Rake Tree中
 // type==0 在 Compress Tree中
-bool isroot(int x) {
-  return rs(father[x]) != x && ls(father[x]) != x;
-}
+bool isroot(int x) { return rs(father[x]) != x && ls(father[x]) != x; }
 
 bool direction(int x) { return rs(father[x]) == x; }
 

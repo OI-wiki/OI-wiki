@@ -134,8 +134,10 @@ $$
         for (int i = 0; i < n; i++) result.p[p[i]] = i;
         return (result);
       }
+    
       // if it is     defined
       bool isdefined() const { return (p[0] > -1); }
+    
       // if it is the     identity
       bool isidentity() const {
         for (int i = 0; i < n; i++)

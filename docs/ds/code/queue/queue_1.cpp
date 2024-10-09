@@ -8,8 +8,9 @@ using namespace std;
 /******************heading******************/
 constexpr int M = 5e4 + 5, P = 505;  // 定义常数
 int I, m, p;
- // 用于取模
-int safe_mod(int d) { return (d + p) % p; } 
+
+// 用于取模
+int safe_mod(int d) { return (d + p) % p; }
 
 namespace DQ {                // 双栈模拟双端队列
 pair<int, int> fr[M], bc[M];  // 二元组，详见题目3.4

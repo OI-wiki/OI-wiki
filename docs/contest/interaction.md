@@ -32,7 +32,7 @@ author: countercurrent-time, StudyingFather
     ```cpp
     #include <cstdio>
     constexpr int prime[] = {2,  3,  4,  5,  7,  9,  11, 13, 17, 19,
-                         23, 25, 29, 31, 37, 41, 43, 47, 49};
+                             23, 25, 29, 31, 37, 41, 43, 47, 49};
     int cnt = 0;
     char res[5];
     

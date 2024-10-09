@@ -166,7 +166,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
       if (l <= s && t <= r) {
         d[p] += (t - s + 1) * c, b[p] += c;
         return;
-      } 
+      }
       int m = s + ((t - s) >> 1);
       if (b[p] && s != t) {
         // 如果当前节点的懒标记非空,则更新当前节点两个子节点的值和懒标记值

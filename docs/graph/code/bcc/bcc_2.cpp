@@ -37,7 +37,8 @@ void tarjan(int u, int in) {
   if (dfn[u] == low[u]) {
     vector<int> t;
     t.push_back(u);
-    while (st.top() != u) t.push_back(st.top()), vis[st.top()] = false, st.pop();
+    while (st.top() != u)
+      t.push_back(st.top()), vis[st.top()] = false, st.pop();
     st.pop(), ans.push_back(t);
   }
 }

@@ -15,8 +15,9 @@ int add(int x, int y) { return x + y >= MOD ? x + y - MOD : x + y; }
 
 int mul(int x, int y) { return (long long)1 * x * y % MOD; }
 
-int sub(int x, int y) { return x < y ? x - y + MOD : x - y;// 防止负数
- }  
+int sub(int x, int y) {
+  return x < y ? x - y + MOD : x - y;  // 防止负数
+}
 
 int qp(int x, int y) {
   int r = 1;

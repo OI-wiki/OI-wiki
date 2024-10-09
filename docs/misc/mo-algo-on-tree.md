@@ -98,11 +98,11 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
     
     int lca(int x, int y) {
       if (dep[x] < dep[y]) swap(x, y);
-      if (dep[x] != dep[y]) {// 爬到同一高度
+      if (dep[x] != dep[y]) {  // 爬到同一高度
         int dis = dep[x] - dep[y];
         for (int i = 20; i >= 0; i--)
           if (dis >= (1 << i)) dis -= 1 << i, x = fa[x][i];
-      }  
+      }
       if (x == y) return x;
       for (int i = 20; i >= 0; i--) {
         if (fa[x][i] != fa[y][i]) x = fa[x][i], y = fa[y][i];
@@ -117,6 +117,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
         cur += (long long)v[col[x]] * w[++app[col[x]]];
       vis[x] ^= 1;
     }
+    
     // 在时间维上移动
     void modify(int x, int t) {
       if (vis[x]) {
@@ -125,7 +126,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
         add(x);
       } else
         col[x] = t;
-    }  
+    }
     
     int main() {
       scanf("%d%d%d", &n, &m, &q);

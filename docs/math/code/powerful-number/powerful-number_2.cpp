@@ -13,13 +13,14 @@ int mint(T x) {
 }
 
 int add(int x, int y) {
-  return x + y >= MOD ? x + y - MOD : x + y;// 防止大于模数
-}  
+  return x + y >= MOD ? x + y - MOD : x + y;  // 防止大于模数
+}
 
 int mul(int x, int y) { return (long long)1 * x * y % MOD; }
 
-int sub(int x, int y) { return x < y ? x - y + MOD : x - y;// 防负数
- }  
+int sub(int x, int y) {
+  return x < y ? x - y + MOD : x - y;  // 防负数
+}
 
 namespace PNS {
 constexpr int N = 2e6 + 5;

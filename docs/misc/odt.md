@@ -169,9 +169,10 @@ using i64 = int64_t;
 struct Block {
   Block *next;  // 链表下一节点
   int l, r;     // 区间范围
-  i64 val;       // 区间上的值
+  i64 val;      // 区间上的值
 
-  Block(Block *next, int l, int r, i64 val) : next(next), l(l), r(r), val(val) {}
+  Block(Block *next, int l, int r, i64 val)
+      : next(next), l(l), r(r), val(val) {}
 
   bool operator<(const Block &b) const { return val < b.val; }
 } *root;
