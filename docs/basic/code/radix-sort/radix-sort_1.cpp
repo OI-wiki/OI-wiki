@@ -32,7 +32,8 @@ void MSD_radix_sort(u32ptr first, u32ptr last) {
 
   while (!s.empty()) {
     u32ptr begin, end;
-    size_t shift, length;
+    u32 shift;
+    size_t length;
 
     tie(begin, end, shift) = s.top();
     length = end - begin;
@@ -64,4 +65,5 @@ void MSD_radix_sort(u32ptr first, u32ptr last) {
 
     copy(tmp, tmp + length, begin);
   }
+  free(tmp);
 }
