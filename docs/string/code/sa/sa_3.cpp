@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-const int N = 500010;
+constexpr int N = 500010;
 
 string s;
 int n, sa[N], rk[N << 1], oldrk[N << 1], id[N], px[N], cnt[N], ht[N], sta[N],

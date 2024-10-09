@@ -61,7 +61,7 @@ RMQ 是 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）�
     #include <cstdio>
     using namespace std;
     
-    const int mod = 1000000007;
+    constexpr int mod = 1000000007;
     
     int modadd(int a, int b) {
       if (a + b >= mod) return a + b - mod;  // 减法代替取模，加快运算

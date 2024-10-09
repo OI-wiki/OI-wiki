@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-const int N = 100010;
+constexpr int N = 100010;
 
 int head[N], nxt[N << 1], to[N << 1], weight[N << 1], cnt;
 int n, dis[N], ch[N << 5][2], tot = 1, ans;

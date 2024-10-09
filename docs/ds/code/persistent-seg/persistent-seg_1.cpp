@@ -6,8 +6,8 @@ struct SegmentTree {
   int lc, rc, val, rnk;
 };
 
-const int MAXN = 100000 + 5;
-const int MAXM = 200000 + 5;
+constexpr int MAXN = 100000 + 5;
+constexpr int MAXM = 200000 + 5;
 
 SegmentTree
     t[MAXN * 2 +

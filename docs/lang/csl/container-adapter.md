@@ -113,7 +113,7 @@ std::priority_queue<TypeName, Container, Compare> q;
 auto cmp = [](const std::pair<int, int> &l, const std::pair<int, int> &r) {
   return l.second < r.second;
 };
-std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int> >,
+std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
                     decltype(cmp)>
     pq(cmp);
 ```
@@ -135,9 +135,9 @@ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int> >,
 
 ```cpp
 std::priority_queue<int> q1;
-std::priority_queue<int, std::vector<int> > q2;
+std::priority_queue<int, std::vector<int>> q2;
 // C++11 后空格可省略
-std::priority_queue<int, std::deque<int>, std::greater<int> > q3;
+std::priority_queue<int, std::deque<int>, std::greater<int>> q3;
 // q3 为小根堆
 for (int i = 1; i <= 5; i++) q1.push(i);
 // q1 中元素 :  [1, 2, 3, 4, 5]

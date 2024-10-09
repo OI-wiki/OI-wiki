@@ -47,7 +47,7 @@ int main() {
   cin >> x >> y >> a >> b;
   for (int i = 1, aa, bb; i <= k; i++) {
     cin >> aa >> bb;
-    vis[aa][bb] = 1;  // 障碍位置不可通过
+    vis[aa][bb] = true;  // 障碍位置不可通过
   }
   bfs();
   cout << ans;

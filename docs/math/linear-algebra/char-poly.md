@@ -347,8 +347,8 @@ $$
     #include <random>
     #include <vector>
     
-    typedef std::vector<std::vector<int>> Matrix;
-    typedef long long i64;
+    using Matrix = std::vector<std::vector<int>>;
+    using i64 = int64_t;
     
     Matrix to_upper_Hessenberg(const Matrix &M, int mod) {
       Matrix H(M);
@@ -448,7 +448,7 @@ $$
     
     int main() {
       std::ios::sync_with_stdio(false);
-      std::cin.tie(0);
+      std::cin.tie(nullptr);
       int n, mod;
       std::cin >> n >> mod;
       Matrix M(n, std::vector<int>(n));

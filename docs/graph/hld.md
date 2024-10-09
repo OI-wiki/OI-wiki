@@ -316,7 +316,7 @@ $2999+\sum_{i=1}^{2999}T(i)\le 29940$，事实上这个上界是可以通过构�
     
     using namespace std;
     
-    const int N = 3010;
+    constexpr int N = 3010;
     
     int n, fa[N], ch[N][2], dep[N], siz[N], son[N], bot[N], id[N];
     

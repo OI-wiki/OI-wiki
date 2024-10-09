@@ -77,7 +77,7 @@ void cacl(int x) {
 }
 
 int main() {
-  ios::sync_with_stdio(0);
+  ios::sync_with_stdio(false);
   cin >> n >> m;
   for (int i = 0; i < n - 1; i++) {
     int a, b;

@@ -42,7 +42,7 @@
 
 === "C++"
     ```cpp
-    int n, a[maxn], tmp[maxn << 1];
+    int n, a[MAXN], tmp[MAXN << 1];
     
     int winner(int pos1, int pos2) {
       int u = pos1 >= n ? pos1 : tmp[pos1];
@@ -90,8 +90,8 @@
 === "Python"
     ```python
     n = 0
-    a = [0] * maxn
-    tmp = [0] * maxn * 2
+    a = [0] * MAXN
+    tmp = [0] * MAXN * 2
     
     
     def winner(pos1, pos2):

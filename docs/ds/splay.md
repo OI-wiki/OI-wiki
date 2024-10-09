@@ -426,7 +426,7 @@ $$
 
 ```cpp
 #include <cstdio>
-const int N = 100005;
+constexpr int N = 100005;
 int rt, tot, fa[N], ch[N][2], val[N], cnt[N], sz[N];
 
 struct Splay {
@@ -675,7 +675,7 @@ void reverse(int l, int r) {
 ```cpp
 #include <algorithm>
 #include <cstdio>
-const int N = 100005;
+constexpr int N = 100005;
 
 int n, m, l, r, a[N];
 

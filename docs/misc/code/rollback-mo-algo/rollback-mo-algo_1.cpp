@@ -2,8 +2,8 @@
 #include <cmath>
 #include <iostream>
 using namespace std;
-typedef long long ll;
-const int N = 1e5 + 5;
+using ll = long long;
+constexpr int N = 1e5 + 5;
 int n, q;
 int x[N], t[N], m;
 

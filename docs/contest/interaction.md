@@ -31,8 +31,8 @@ author: countercurrent-time, StudyingFather
 ??? 参考代码
     ```cpp
     #include <cstdio>
-    const int prime[] = {2,  3,  4,  5,  7,  9,  11, 13, 17, 19,
-                         23, 25, 29, 31, 37, 41, 43, 47, 49};
+    constexpr int prime[] = {2,  3,  4,  5,  7,  9,  11, 13, 17, 19,
+                             23, 25, 29, 31, 37, 41, 43, 47, 49};
     int cnt = 0;
     char res[5];
     
@@ -63,7 +63,7 @@ author: countercurrent-time, StudyingFather
     #include <algorithm>
     #include <cstdio>
     #include <cstdlib>
-    const int N = 50005;
+    constexpr int N = 50005;
     int n, start, x;
     int a[N];
     
@@ -193,7 +193,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
     #include <queue>
     #include <vector>
     using namespace std;
-    const int N = 256 + 5;
+    constexpr int N = 256 + 5;
     int T, h, chance;
     bool ok;
     vector<int> to[N], path;
@@ -272,7 +272,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
           dep = h - (h - dep + path.size()) / 2;
           root = path.at((path.size() - (h - dep)) - 1);
         }
-        if (ok == false) bfs(root, 1 << (dep - 2));
+        if (!ok) bfs(root, 1 << (dep - 2));
       }
       return 0;
     }
@@ -448,7 +448,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
         else
           ok = false;
       }
-      if (ok == false) undo(st);
+      if (!ok) undo(st);
       return ok;
     }
     
@@ -484,7 +484,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
       v.clear();
       bfs(s, t, v);
       for (int i : v)
-        if (walk(i, st) == false) return false;
+        if (!walk(i, st)) return false;
       return true;
     }
     
@@ -518,7 +518,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
               ok = false;
             else if (!make_sure(point(i, j - 1), -1))
               ok = false;
-            if (ok == false) {
+            if (!ok) {
               vis[cnt++] = std::make_pair(point(i, j), false);
               a[i][j] = Gate;
               for (int k = 0; k < 8; k++) {
@@ -535,9 +535,9 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
       int cnt = 0;
       std::stack<int> st;
       for (int i = 0; i < k * 2; i++)
-        if (vis[i].second == false)
-          for (int j = 0; vis[i].second == false && j < k * 2; j++)
-            if (j != i && vis[j].second == false) {
+        if (!vis[i].second)
+          for (int j = 0; !vis[i].second && j < k * 2; j++)
+            if (j != i && !vis[j].second) {
               bool ok = true;
               if (!move(start, vis[i].first.side(2), st))
                 ok = false;
@@ -545,7 +545,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
                 ok = false;
               else if (!make_sure(vis[j].first.side(0), -1))
                 ok = false;
-              if (ok == true) {
+              if (ok) {
                 ans[cnt++] = std::make_pair(vis[i].first, vis[j].first);
                 vis[i].second = vis[j].second = true;
               }
