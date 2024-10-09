@@ -1,12 +1,10 @@
 #include <iostream>
 
-using chr = char;
-
 const int maxN = 100;
 
 int t;
 int n;
-chr a[maxN + 10][maxN + 10];
+char a[maxN + 10][maxN + 10];
 int c[maxN + 10][maxN + 10];
 int ans;
 

@@ -61,8 +61,9 @@ using std::tie;
 using std::tuple;
 using std::vector;
 
-using u32 = unsigned int;
-using u32ptr = unsigned int*;
+using u32 = uint32_t;
+using u64 = uint64_t;
+using u32ptr = u32*;
 
 void MSD_radix_sort(u32ptr first, u32ptr last) {
   const size_t maxW = 0x100000000llu;

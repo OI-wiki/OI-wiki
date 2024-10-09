@@ -1,9 +1,10 @@
 #include <algorithm>
+#include <cstdint>
 #include <iostream>
-using ll = long long;
+using i64 = int64_t;
 
 const int N = 300010;
-const ll INF = 1145141919810114514ll;
+const i64 INF = 1145141919810114514ll;
 int n, q, op, l, r;
 int a[N], b[N];
 
@@ -12,23 +13,23 @@ int lc(int u) { return (u << 1); }
 int rc(int u) { return (u << 1) | 1; }
 
 struct node {
-  ll mx_ab[2][2];  // 0: not max A or B; 1: is max A or B
+  i64 mx_ab[2][2];  // 0: not max A or B; 1: is max A or B
 
-  ll max_val() {
+  i64 max_val() {
     return std::max({mx_ab[0][0], mx_ab[0][1], mx_ab[1][0], mx_ab[1][1]});
   }
 
-  ll mx1[2], mx2[2];  // 0: A; 1: B
-  ll tag_add[2], tag_mn[2];
+  i64 mx1[2], mx2[2];  // 0: A; 1: B
+  i64 tag_add[2], tag_mn[2];
 
   void clr_tag() { tag_add[0] = tag_add[1] = 0, tag_mn[0] = tag_mn[1] = INF; }
 
-  void init(ll a, ll b) {
+  void init(i64 a, i64 b) {
     mx1[0] = a, mx1[1] = b, mx2[0] = mx2[1] = -INF;
     mx_ab[1][1] = a + b, mx_ab[0][1] = mx_ab[1][0] = mx_ab[0][0] = -INF;
   }
 
-  void modify_mn(ll tg, bool id)  // id 0: A; 1: B
+  void modify_mn(i64 tg, bool id)  // id 0: A; 1: B
   {
     if (mx1[id] <= tg) return;
     mx_ab[1][1] += (mx_ab[1][1] > -INF) ? (tg - mx1[id]) : 0;
@@ -36,7 +37,7 @@ struct node {
     mx1[id] = tag_mn[id] = tg;
   }
 
-  void modify_add(ll tg, bool id)  // id 0: A; 1: B
+  void modify_add(i64 tg, bool id)  // id 0: A; 1: B
   {
     for (int i = 0; i < 2; ++i)
       for (int j = 0; j < 2; ++j) mx_ab[i][j] += (mx_ab[i][j] > -INF) ? tg : 0;
