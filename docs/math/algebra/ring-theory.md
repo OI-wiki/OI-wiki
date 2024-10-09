@@ -348,7 +348,7 @@ $$
 
 在数论的情形下，定理的成立需要这些模数互质。这个条件可以推广到环论的情形。
 
-- 互素：给定环 $R$ 和它的理想 $I$ 和 $J$，则称 $I$ 和 $J$ **互素**（comaximal），如果 $I+J=R$。
+-   互素：给定环 $R$ 和它的理想 $I$ 和 $J$，则称 $I$ 和 $J$  **互素**（comaximal），如果 $I+J=R$。
 
 对于幺环的情形，如果考虑主理想 $(a)$ 和 $(b)$，这个条件就相当于存在 $x,y\in R$ 使得 $ax+by=1$，这类似于整数互素时的裴蜀定理。利用这个定义，可以完全仿照整数环的情形，建立交换幺环上的中国剩余定理。
 
@@ -367,19 +367,19 @@ $$
 
 对于可逆元 $\bar a$，自然有 $\bar b$ 使得 $\bar a\bar b=\bar 1$，亦即 $ab\equiv 1\pmod n$，也就说明存在 $k\in\mathbf Z$ 使得 $ab-kn=1$，这等价于 $(a,n)=1$。也就是说，$(\mathbf Z/n\mathbf Z)^\times$ 中的元素的代表元都是与 $n$ 互质的整数。这样的剩余系共计 $\varphi(n)$ 个，这里，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)。
 
-根据算术基本定理，模数 $n$ 有分解 
+根据算术基本定理，模数 $n$ 有分解
 
 $$
 n=p_1^{\alpha_1}\cdots p_s^{\alpha_s},
 $$
 
-所以，应用中国剩余定理可以得到 
+所以，应用中国剩余定理可以得到
 
 $$
 \mathbf Z/n\mathbf Z\cong\mathbf Z/p_1^{\alpha_1}\mathbf Z\times\cdots\times\mathbf Z/p_s^{\alpha_s}\mathbf Z,
 $$
 
-这里，容易验证，定理中理想互素的条件等价于理想的生成元互素。环的同构意味着相应的乘法结构也同构，所以 
+这里，容易验证，定理中理想互素的条件等价于理想的生成元互素。环的同构意味着相应的乘法结构也同构，所以
 
 $$
 (\mathbf Z/n\mathbf Z)^\times\cong(\mathbf Z/p_1^{\alpha_1}\mathbf Z)^\times\times\cdots\times(\mathbf Z/p_s^{\alpha_s}\mathbf Z)^\times.

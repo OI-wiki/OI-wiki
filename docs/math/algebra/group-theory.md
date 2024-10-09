@@ -364,16 +364,16 @@ $$
 
 进一步地，对有限群的共轭作用进行分析，可以得到 Sylow 定理。它是处理有限群的结构的有力工具，可以迅速地得到大量小阶群的结构。
 
-- $p$‑群：给定群 $G$，则称它为 **$p$‑群**（$p$-group），如果 $|G|=p^\alpha$，这里，$\alpha$ 是正整数。
-- $p$‑子群：给定群 $G$ 和它的子群 $P\le G$，则称 $P$ 为 **$p$‑子群**（$p$-subgroup），如果 $P$ 本身是一个 $p$‑群。
-- Sylow $p$‑子群：给定群 $G$ 和它的子群 $P\le G$，则称 $P$ 为 **Sylow $p$‑子群**（Sylow $p$-subgroup），如果 $|G|=p^\alpha m$ 且 $p$ 不能整除 $m$，且 $|P|=p^\alpha$。
+-   $p$‑群：给定群 $G$，则称它为 **$p$‑群**（$p$-group），如果 $|G|=p^\alpha$，这里，$\alpha$ 是正整数。
+-   $p$‑子群：给定群 $G$ 和它的子群 $P\le G$，则称 $P$ 为 **$p$‑子群**（$p$-subgroup），如果 $P$ 本身是一个 $p$‑群。
+-   Sylow $p$‑子群：给定群 $G$ 和它的子群 $P\le G$，则称 $P$ 为 **Sylow $p$‑子群**（Sylow $p$-subgroup），如果 $|G|=p^\alpha m$ 且 $p$ 不能整除 $m$，且 $|P|=p^\alpha$。
 
-也就是说，Sylow $p$‑子群是极大的 $p$‑子群。Sylow 定理断言了 Sylow $p$-子群的存在性，这提供了 Lagrange 定理的一定程度的逆命题。
+也就是说，Sylow $p$‑子群是极大的 $p$‑子群。Sylow 定理断言了 Sylow $p$- 子群的存在性，这提供了 Lagrange 定理的一定程度的逆命题。
 
-- Sylow 定理：给定有限群 $G$，且 $|G|=p^\alpha m$，这里，$p$ 是质数且 $p$ 不能整除 $m$，那么有如下结论：
-    1. 存在 Sylow $p$‑子群；
-    2. 给定 Sylow $p$‑子群 $P$ 和 $G$ 的 $p$‑子群 $Q$，那么存在 $g\in G$ 使得 $Q\le gPg^{-1}$ 成立，特别地，所有 Sylow $p$‑子群都共轭；
-    3. 群 $G$ 中的 Sylow $p$‑子群的数目 $n_p$ 满足 $n_p\equiv 1\pmod p$，且 $n_p=[G:N_G(P)]$，这里 $P$ 是任意的 Sylow $p$‑子群，所以同时成立 $n_p\mid m$。
+-   Sylow 定理：给定有限群 $G$，且 $|G|=p^\alpha m$，这里，$p$ 是质数且 $p$ 不能整除 $m$，那么有如下结论：
+    1.  存在 Sylow $p$‑子群；
+    2.  给定 Sylow $p$‑子群 $P$ 和 $G$ 的 $p$‑子群 $Q$，那么存在 $g\in G$ 使得 $Q\le gPg^{-1}$ 成立，特别地，所有 Sylow $p$‑子群都共轭；
+    3.  群 $G$ 中的 Sylow $p$‑子群的数目 $n_p$ 满足 $n_p\equiv 1\pmod p$，且 $n_p=[G:N_G(P)]$，这里 $P$ 是任意的 Sylow $p$‑子群，所以同时成立 $n_p\mid m$。
 
 作为应用，下面证明前文的断言：同构意义下，六阶群只有 $\mathbf Z_6$ 和 $S_3$。
 
