@@ -86,7 +86,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
 
 实现上，构造第 $i$ 层时，将原始数据按照上一层稳定排序（`std::stable_sort`），然后取第 $i$ 位作为第 $i$ 层存储的内容。$a_i$ 按照第 $i$ 高位进行排序之后，在第 $i$ 层的同一节点内的元素按照第 $i$ 高位自动分开，完成了第 $i$ 层到第 $i+1$ 层的划分。
 
-特别注意，下面提到的“最后一层”对应 Wavelet Tree 中的叶子节点，实际不存储任何信息。
+特别注意，下面提到的「最后一层」对应 Wavelet Tree 中的叶子节点，实际不存储任何信息。
 
 ### 下标转移
 
@@ -135,8 +135,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
     struct WaveletMatrix {
       vector<Bits> b;
       int n;
-    ```
-
+    
       // 注意 a 将被修改
       WaveletMatrix(int n, int *a) {
         this->n = n;
@@ -148,14 +147,14 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
           stable_partition(a + 1, a + n + 1, [&](int x) { return (x >> j) & 1; });
         }
       }
-
+    
       int id(int j, int c, int i) {
         return c ? b[j].rank1(i) : b[j].rank0(i) + b[j].rank1(n);
       }
       int di(int j, int c, int i) {
         return c ? b[j].select1(i) : b[j].select0(i - b[j].rank1(n));
       }
-
+    
       int access(int i) {
         int res = 0;
         for (int j = 31; j >= 0; j--) {
@@ -165,7 +164,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
         }
         return res;
       }
-
+    
       int rank(int l, int r, int w) {
         for (int j = 31; j >= 0; j--) { 
           l = id(j, (w >> j) & 1, l - 1) + 1;
@@ -173,7 +172,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
         }
         return r - l + 1;
       }
-
+    
       int select(int w, int l, int k) {
         for (int j = 31; j >= 0; j--) {
           l = id(j, (w >> j) & 1, l - 1) + 1;
