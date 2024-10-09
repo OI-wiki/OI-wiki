@@ -31,7 +31,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
           if (!nex[p][c]) nex[p][c] = ++cnt;  // 如果没有，就添加结点
           p = nex[p][c];
         }
-        exist[p] = 1;
+        exist[p] = true;
       }
     
       bool find(char *s, int l) {  // 查找字符串
@@ -167,7 +167,7 @@ void maintain(int o) {
 ???+ note "实现"
     ```cpp
     namespace trie {
-    const int MAXH = 21;
+    constexpr int MAXH = 21;
     int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
     int tot = 0;
     
@@ -315,13 +315,13 @@ int merge(int a, int b) {
     
     ??? note "参考代码"
         ```cpp
-        const int _ = 526010;
+        constexpr int _ = 526010;
         int n;
         int V[_];
         int debug = 0;
         
         namespace trie {
-        const int MAXH = 21;
+        constexpr int MAXH = 21;
         int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
         int tot = 0;
         

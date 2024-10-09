@@ -159,7 +159,7 @@ char buf[1 << 20], *p1, *p2;
 
 ```cpp
 namespace IO {
-const int MAXSIZE = 1 << 20;
+constexpr int MAXSIZE = 1 << 20;
 char buf[MAXSIZE], *p1, *p2;
 #define gc()                                                               \
   (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin), p1 == p2) \
@@ -308,7 +308,7 @@ struct IO {
   template <class T>
   void read(T &x) {
     double tmp = 1;
-    bool sign = 0;
+    bool sign = false;
     x = 0;
     char ch = gc();
     for (; !isdigit(ch); ch = gc())

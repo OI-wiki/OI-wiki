@@ -4,7 +4,7 @@
 #include <vector>
 
 using namespace std;
-const int N = 5e5 + 5, M = 2e6 + 5;
+constexpr int N = 5e5 + 5, M = 2e6 + 5;
 int n, m;
 
 struct edge {
@@ -25,7 +25,7 @@ stack<int> st;
 
 void tarjan(int u, int in) {
   low[u] = dfn[u] = ++bcc_cnt;
-  st.push(u), vis[u] = 1;
+  st.push(u), vis[u] = true;
   for (int i = hd[u]; i; i = e[i].nt) {
     int v = e[i].to;
     if (i == (in ^ 1)) continue;
@@ -37,7 +37,8 @@ void tarjan(int u, int in) {
   if (dfn[u] == low[u]) {
     vector<int> t;
     t.push_back(u);
-    while (st.top() != u) t.push_back(st.top()), vis[st.top()] = 0, st.pop();
+    while (st.top() != u)
+      t.push_back(st.top()), vis[st.top()] = false, st.pop();
     st.pop(), ans.push_back(t);
   }
 }

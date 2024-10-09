@@ -80,7 +80,7 @@ void fft(Complex y[], int len, int on) {
   }
 }
 
-const int MAXN = 200020;
+constexpr int MAXN = 200020;
 Complex x1[MAXN], x2[MAXN];
 char str1[MAXN / 2], str2[MAXN / 2];
 int sum[MAXN];

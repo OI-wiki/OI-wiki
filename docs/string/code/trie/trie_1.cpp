@@ -1,34 +1,29 @@
-#include <iostream>
-#include <string>
+#include <cstdio>
 using namespace std;
-const int N = 500010;
+constexpr int N = 500010;
 
-string s;
+char s[N];
 int n, m, ch[N][26], tag[N], tot = 1;
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  cin >> n;
+  scanf("%d", &n);
 
   for (int i = 1; i <= n; ++i) {
-    cin >> s;
-    s = " " + s;
+    scanf("%s", s + 1);
     int u = 1;
     for (int j = 1; s[j]; ++j) {
       int c = s[j] - 'a';
-      if (!ch[u][c])
-        ch[u][c] =
-            ++tot;  // 如果这个节点的子节点中没有这个字符，添加上并将该字符的节点号记录为++tot
+      // 如果这个节点的子节点中没有这个字符，添加上并将该字符的节点号记录为++tot
+      if (!ch[u][c]) ch[u][c] = ++tot;
       u = ch[u][c];  // 往更深一层搜索
     }
     tag[u] = 1;  // 最后一个字符为节点 u 的名字未被访问到记录为 1
   }
 
-  cin >> m;
+  scanf("%d", &m);
 
   while (m--) {
-    cin >> s;
-    s = " " + s;
+    scanf("%s", s + 1);
     int u = 1;
     for (int j = 1; s[j]; ++j) {
       int c = s[j] - 'a';
@@ -37,11 +32,11 @@ int main() {
     }
     if (tag[u] == 1) {
       tag[u] = 2;  // 最后一个字符为节点 u 的名字已经被访问
-      cout << "OK\n";
+      puts("OK");
     } else if (tag[u] == 2)  // 已经被访问，重复访问
-      cout << "REPEAT\n";
+      puts("REPEAT");
     else
-      cout << "WRONG\n";
+      puts("WRONG");
   }
 
   return 0;

@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-const long long S = 1e5 + 5;
+constexpr long long S = 1e5 + 5;
 long long c[5], d[5], n, s;
 long long f[S];
 
