@@ -151,6 +151,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
       int id(int j, int c, int i) {
         return c ? b[j].rank1(i) : b[j].rank0(i) + b[j].rank1(n);
       }
+    
       int di(int j, int c, int i) {
         return c ? b[j].select1(i) : b[j].select0(i - b[j].rank1(n));
       }
@@ -166,7 +167,7 @@ Wavelet Matrix 的主要思想是将 Wavelet Tree 的同一层的所有位向量
       }
     
       int rank(int l, int r, int w) {
-        for (int j = 31; j >= 0; j--) { 
+        for (int j = 31; j >= 0; j--) {
           l = id(j, (w >> j) & 1, l - 1) + 1;
           r = id(j, (w >> j) & 1, r);
         }
