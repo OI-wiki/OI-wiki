@@ -293,7 +293,7 @@ nav:
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
       - 范德蒙德卷积: math/combinatorics/vandermonde-convolution.md
-      - Polya 计数: math/combinatorics/polya.md
+      - Pólya 计数: math/combinatorics/polya.md
       - 图论计数: math/combinatorics/graph-enumeration.md
     - 线性代数:
       - 线性代数简介: math/linear-algebra/index.md

@@ -229,7 +229,7 @@ $$
 
 的奇偶性。这里，$\sum_k\alpha_k$ 正是轮换的个数（包括 $1$‑轮换，即不动点）。
 
-置换的型在 [Polya 计数](./combinatorics/polya.md) 中有重要作用。
+置换的型在 [Pólya 计数](./combinatorics/polya.md) 中有重要作用。
 
 ## 参考文献与注释
 
