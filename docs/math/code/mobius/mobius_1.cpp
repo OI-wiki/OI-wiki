@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-const int N = 50000;
+constexpr int N = 50000;
 int mu[N + 5], p[N + 5];
 bool flg[N + 5];
 
@@ -14,7 +14,7 @@ void init() {
       mu[i] = -1;
     }
     for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
-      flg[i * p[j]] = 1;
+      flg[i * p[j]] = true;
       if (i % p[j] == 0) {
         mu[i * p[j]] = 0;
         break;

@@ -2,7 +2,7 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-static const int sqn = 1e3;
+constexpr int sqn = 1e3;
 
 struct node {  // 定义块状链表
   node* nxt;

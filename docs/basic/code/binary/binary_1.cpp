@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-const double eps = 0.0000001;
+constexpr double eps = 1e-7;
 int N;
 double l, r, A[20], mid, lmid, rmid;
 

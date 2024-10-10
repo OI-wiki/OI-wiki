@@ -5,8 +5,8 @@
 using namespace std;
 
 using ll = long long;
-const int MOD = 1e9 + 7;
-const int SIZE = 3010;
+constexpr int MOD = 1e9 + 7;
+constexpr int SIZE = 3010;
 
 string board[SIZE];
 int dp[SIZE][SIZE];

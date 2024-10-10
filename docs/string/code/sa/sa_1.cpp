@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-const int N = 1000010;
+constexpr int N = 1000010;
 
 char s[N];
 int n, sa[N], id[N], oldrk[N * 2], rk[N * 2], px[N], cnt[N];

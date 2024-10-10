@@ -1,6 +1,6 @@
 #include <iostream>
 using ull = unsigned long long;
-const int MAXN = 1e5 + 5;
+constexpr int MAXN = 1e5 + 5;
 
 ull deg(ull num, int deg) { return num & (1ull << deg); }
 

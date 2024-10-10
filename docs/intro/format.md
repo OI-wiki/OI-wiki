@@ -519,7 +519,7 @@ $$
 
 -   代码应尽可能简洁易懂，不要过度压行，不要引入过多无关代码（如未使用的宏定义等）。
 -   不推荐对函数使用 `inline` 关键字，详见 [编译优化](../lang/optimizations.md#inline---内联)。
--   不要混用 `0` 与 `NULL`/`nullptr`。
+-   不要用 `0` 代替 `false`/`NULL`/`nullptr` 等，不要用 `1` 代替 `true` 等。
 -   在声明 [类型别名](https://en.cppreference.com/w/cpp/language/type_alias) 时，不推荐使用 `typedef`，推荐使用 `using`。
 -   不推荐用宏定义定义常量，推荐直接使用 `constexpr`/`const` 等关键字定义常量。
 

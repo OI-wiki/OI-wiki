@@ -2,7 +2,7 @@
 #include <cctype>
 #include <iostream>
 using namespace std;
-const int N = 1e6 + 6;
+constexpr int N = 1e6 + 6;
 
 int t, n, m;
 int a[N];

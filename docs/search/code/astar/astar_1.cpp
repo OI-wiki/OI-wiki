@@ -4,7 +4,7 @@
 #include <queue>
 #include <set>
 using namespace std;
-const int dx[4] = {1, -1, 0, 0}, dy[4] = {0, 0, 1, -1};
+constexpr int dx[4] = {1, -1, 0, 0}, dy[4] = {0, 0, 1, -1};
 int fx, fy;
 char ch;
 

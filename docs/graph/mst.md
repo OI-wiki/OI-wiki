@@ -169,7 +169,7 @@ $$
     #include <iostream>
     #include <queue>
     using namespace std;
-    const int N = 5050, M = 2e5 + 10;
+    constexpr int N = 5050, M = 2e5 + 10;
     
     struct E {
       int v, w, x;
@@ -200,7 +200,7 @@ $$
         int u = q.top().u, d = q.top().d;
         q.pop();
         if (vis[u]) continue;
-        vis[u] = 1;
+        vis[u] = true;
         ++cnt;
         res += d;
         for (int i = h[u]; i; i = e[i].x) {
@@ -356,8 +356,8 @@ $$
     #include <algorithm>
     #include <iostream>
     
-    const int INF = 0x3fffffff;
-    const long long INF64 = 0x3fffffffffffffffLL;
+    constexpr int INF = 0x3fffffff;
+    constexpr long long INF64 = 0x3fffffffffffffffLL;
     
     struct Edge {
       int u, v, val;
@@ -388,7 +388,7 @@ $$
     
      public:
       void addedge(int u, int v, int val) {
-        e[++cnt] = (Edge){v, head[u], val};
+        e[++cnt] = Edge{v, head[u], val};
         head[u] = cnt;
       }
     
@@ -471,22 +471,21 @@ $$
           tot++;
           tr.insedge(e[i].u, e[i].v, e[i].val);
           sum += e[i].val;
-          used[i] = 1;
+          used[i] = true;
         }
         if (tot == n - 1) break;
       }
     }
     
     int main() {
-      std::ios::sync_with_stdio(0);
-      std::cin.tie(0);
-      std::cout.tie(0);
+      std::ios::sync_with_stdio(false);
+      std::cin.tie(nullptr);
     
       std::cin >> n >> m;
       for (int i = 1; i <= m; i++) {
         int u, v, val;
         std::cin >> u >> v >> val;
-        e[i] = (Edge){u, v, val};
+        e[i] = Edge{u, v, val};
       }
     
       Kruskal();

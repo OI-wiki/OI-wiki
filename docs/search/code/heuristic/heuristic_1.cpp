@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-const int N = 105;
+constexpr int N = 105;
 int n, m, ans;
 
 struct Node {

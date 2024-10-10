@@ -48,8 +48,8 @@
 
 ??? note "实现"
     ```cpp
-    #define MAXN 2000000
-    #define CHAR_NUM 30
+    constexpr int MAXN = 2000000;
+    constexpr int CHAR_NUM = 30;
     
     struct Trie {
       int next[MAXN][CHAR_NUM];  // 转移

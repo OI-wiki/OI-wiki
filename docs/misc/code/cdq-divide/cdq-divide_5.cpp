@@ -3,7 +3,7 @@
 #include <stack>
 #include <vector>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 int n;
 int m;
 int ask;
@@ -211,10 +211,10 @@ int main() {
     p.v = e[q[i].num].v;
     vq.push_back(p);
   }
-  for (int i = 1; i <= m; i++) {
+  for (int i = 1; i <= m; i++) {  // 初始静态
     if (book[i]) continue;
     ve[1].push_back(e[i]);
-  }  // 初始静态
+  }
   for (int i = 1; i <= ask; i++) {
     book[q[i].num] = false;
   }

@@ -247,14 +247,13 @@ void pushall(int x, int type) {
 我们知道 SATT 中的 Rake Tree 和 Compress Tree 都是可以旋转的，也就是说它们可以用 Splay 来维护。因此我们可以写出以下代码：
 
 ```cpp
+// 是一个节点的中儿子或无父亲
 // ls 一个SATT节点的左儿子
 // rs 一个SATT节点的右儿子
 // ms 一个SATT节点的中儿子
 // type==1 在 Rake Tree中
 // type==0 在 Compress Tree中
-bool isroot(int x) {
-  return rs(father[x]) != x && ls(father[x]) != x;
-}  // 是一个节点的中儿子或无父亲
+bool isroot(int x) { return rs(father[x]) != x && ls(father[x]) != x; }
 
 bool direction(int x) { return rs(father[x]) == x; }
 
