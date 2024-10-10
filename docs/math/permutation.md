@@ -206,8 +206,10 @@ $2$‑轮换也称作 **对换**（transposition）。也就是说，对换就�
 将 $n$ 个元素的置换做轮换分解，置换的 **型**（cycle type）就是分解中轮换长度的可重集合。这些轮换的长度构成了一个置换长度 $n$ 的整数分划。如果得到的分解中长度为 $k$ 的轮换共计 $\alpha_k$ 个，那么置换的型常记作
 
 $$
-1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n}.
+1^{\alpha_1}2^{\alpha_2}\cdots n^{\alpha_n},
 $$
+
+且这些系数满足 $\sum_{k=1}^nk\alpha_k=n$。
 
 给定置换的型，不同的置换的数目为
 
@@ -224,13 +226,13 @@ $$
 同样地，因为 $k$‑轮换的奇偶性与 $k$ 的奇偶性相反，所以置换 $\sigma$ 的奇偶性就是
 
 $$
-\sum_k(k-1)\alpha_k=\sum_{k}k\alpha_k-\sum_{k}\alpha_k=n-\sum_{k}\alpha_k
+\sum_k(k-1)\alpha_k=\sum_{k}k\alpha_k-\sum_{k}\alpha_k=n-c(\sigma)
 $$
 
-的奇偶性。这里，$\sum_k\alpha_k$ 正是轮换的个数（包括 $1$‑轮换，即不动点）。
+的奇偶性。这里，$c(\sigma)$ 正是轮换的个数（包括 $1$‑轮换，即不动点）。
 
 置换的型在 [Pólya 计数](./combinatorics/polya.md) 中有重要作用。
 
 ## 参考文献与注释
 
--   维基百科的置换条目：<https://en.wikipedia.org/wiki/Permutation>
+-   [置换 - 维基百科](https://en.wikipedia.org/wiki/Permutation)
