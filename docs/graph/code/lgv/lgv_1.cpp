@@ -1,11 +1,11 @@
 #include <algorithm>
 #include <iostream>
 
-typedef long long ll;
+using ll = long long;
 
-const int K = 105;
-const int N = 100005;
-const int mod = 1e9 + 7;
+constexpr int K = 105;
+constexpr int N = 100005;
+constexpr int mod = 1e9 + 7;
 
 int T, n, k, a[K], b[K], fact[N << 1], m[K][K];
 

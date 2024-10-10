@@ -5,7 +5,7 @@
 #define ms(x) T[x][2]
 using namespace std;
 
-const int MAXN = 600005;
+constexpr int MAXN = 600005;
 
 int T[MAXN][3], tot, r[MAXN], top, st[MAXN], f[MAXN], maxs[MAXN], ss[MAXN];
 

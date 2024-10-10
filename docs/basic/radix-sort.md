@@ -61,21 +61,22 @@ using std::tie;
 using std::tuple;
 using std::vector;
 
-typedef unsigned int u32;
-typedef unsigned int* u32ptr;
+using u32 = uint32_t;
+using u64 = uint64_t;
+using u32ptr = u32*;
 
 void MSD_radix_sort(u32ptr first, u32ptr last) {
-  const size_t maxW = 0x100000000llu;
-  const u32 maxlogW = 32;  // = log_2 W
+  static constexpr u32 maxlogW = 32;  // = log_2 W
+  static constexpr u64 maxW = (u64)1 << maxlogW;
 
-  const u32 W = 256;  // 计数排序的值域
-  const u32 logW = 8;
-  const u32 mask = W - 1;  // 用位运算替代取模，详见下面的 key 函数
+  static constexpr u32 logW = 8;
+  static constexpr u32 W = 1 << logW;  // 计数排序的值域
+  static constexpr u32 mask = W - 1;  // 用位运算替代取模，详见下面的 key 函数
 
   u32ptr tmp =
       (u32ptr)calloc(last - first, sizeof(u32));  // 计数排序用的输出空间
 
-  typedef tuple<u32ptr, u32ptr, u32> node;
+  using node = tuple<u32ptr, u32ptr, u32>;
   stack<node, vector<node>> s;
   s.push(make_tuple(first, last, maxlogW - logW));
 
@@ -133,17 +134,17 @@ using std::tie;
 using std::tuple;
 using std::vector;
 
-typedef char* NTBS;  // 空终止字节字符串
-typedef NTBS* NTBSptr;
+using NTBS = char*;  // 空终止字节字符串
+using NTBSptr = NTBS*;
 
 void MSD_radix_sort(NTBSptr first, NTBSptr last) {
-  const size_t W = 128;
-  const size_t logW = 7;
-  const size_t mask = W - 1;
+  static constexpr size_t W = 128;
+  static constexpr size_t logW = 7;
+  static constexpr size_t mask = W - 1;
 
   NTBSptr tmp = (NTBSptr)calloc(last - first, sizeof(NTBS));
 
-  typedef tuple<NTBSptr, NTBSptr, size_t> node;
+  using node = tuple<NTBSptr, NTBSptr, size_t>;
   stack<node, vector<node>> s;
   s.push(make_tuple(first, last, 0));
 
@@ -248,9 +249,9 @@ $$
 下面是使用 LSD 基数排序实现的对 k - 关键字元素的排序。
 
 ```cpp
-const int N = 100010;
-const int W = 100010;
-const int K = 100;
+constexpr int N = 100010;
+constexpr int W = 100010;
+constexpr int K = 100;
 
 int n, w[K], k, cnt[W];
 
@@ -316,7 +317,7 @@ void radix_sort() {
     
     int main() {
       std::ios::sync_with_stdio(false);
-      std::cin.tie(0);
+      std::cin.tie(nullptr);
       int n;
       std::cin >> n;
       int *a = new int[n];

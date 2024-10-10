@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-typedef long long ll;
+using ll = long long;
 int w, b;
 double dp[1010][1010];
 

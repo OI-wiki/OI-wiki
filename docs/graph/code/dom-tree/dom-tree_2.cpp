@@ -7,7 +7,7 @@ using std::cout;
 using std::stack;
 using std::vector;
 
-const int MAX = 65536;
+constexpr int MAX = 65536;
 int n, x, tot;
 int d[MAX], w[MAX], siz[MAX], p[MAX], f[MAX][17];
 vector<int> e[MAX], g[MAX], h[MAX];

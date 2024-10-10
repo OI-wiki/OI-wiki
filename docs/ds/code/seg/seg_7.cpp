@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-const int N = 2e5 + 10;
+constexpr int N = 2e5 + 10;
 int n, m;
 int idx = 1;
 long long sum[N << 5];

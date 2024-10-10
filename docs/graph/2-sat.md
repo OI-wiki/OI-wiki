@@ -35,9 +35,9 @@
     // 来源：刘汝佳白书第 323 页
     struct Twosat {
       int n;
-      vector<int> g[maxn * 2];
-      bool mark[maxn * 2];
-      int s[maxn * 2], c;
+      vector<int> g[MAXN * 2];
+      bool mark[MAXN * 2];
+      int s[MAXN * 2], c;
     
       bool dfs(int x) {
         if (mark[x ^ 1]) return false;

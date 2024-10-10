@@ -2,7 +2,7 @@
 #include <queue>
 #include <string>
 using namespace std;
-const int N = 1e6 + 6;
+constexpr int N = 1e6 + 6;
 int n;
 
 namespace AC {

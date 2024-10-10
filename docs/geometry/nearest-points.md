@@ -170,7 +170,7 @@ $$
     #include <cmath>
     #include <cstdio>
     #include <set>
-    const int N = 200005;
+    constexpr int N = 200005;
     int n;
     double ans = 1e20;
     

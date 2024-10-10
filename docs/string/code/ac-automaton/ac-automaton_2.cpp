@@ -3,10 +3,10 @@
 #include <queue>
 #include <string>
 using namespace std;
-const int N = 156;
+constexpr int N = 156;
 
 namespace AC {
-const int SZ = N * 80;
+constexpr int SZ = N * 80;
 int tot, tr[SZ][26];
 int fail[SZ], idx[SZ], val[SZ];
 int cnt[N];  // 记录第 i 个字符串的出现次数

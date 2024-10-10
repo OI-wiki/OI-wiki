@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-const int MOD = 998244353;
+constexpr int MOD = 998244353;
 using LL = long long;
 
 int inv(int k) {
