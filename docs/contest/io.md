@@ -201,6 +201,8 @@ void write(int x) {
 
 读入示例：首先要获取文件描述符 `fd`，然后通过 `fstat` 获取文件信息以得到文件大小，此后通过 `char *pc = (char *) mmap(NULL, state.st_size, PROT_READ, MAP_PRIVATE, fd, 0);` 将指针 `*pc` 指向我们的文件。可以直接用 `*pc ++` 替代 `getchar()`。
 
+当我们要提交不使用文件操作的题目时，可以将 `fd` 设为 `0`，表示从 stdin 读入。**但是，对 stdin 使用 mmap 是极其危险的行为，同时不能在终端输入，我们不建议您这么做。**
+
 ???+ note "参考代码"
     ```cpp
     #include <bits/stdc++.h>
@@ -223,8 +225,6 @@ void write(int x) {
     
     int main() {
       int fd = open("*.in", O_RDONLY);
-      // int fd = 0; // 如果想在不使用文件操作的题目中使用，可以将 fd 赋值为
-      // 0，意思是从 stdin 读入
       struct stat state;
       fstat(fd, &state);
       pc = (char *)mmap(NULL, state.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
