@@ -39,8 +39,8 @@ $$
 $$
 f(i, j)=
 \begin{cases}
-p_1 f(i-1, j) + p_2 f(i, j-1) + p_3 f(i+1, j) + p_4 f(i, j+1) + 1 & i^2 + j^2 \leq R \\
-0 & i^2 + j^2 > R
+p_1 f(i-1, j) + p_2 f(i, j-1) + p_3 f(i+1, j) + p_4 f(i, j+1) + 1 & i^2 + j^2 \leq R^2 \\
+0 & i^2 + j^2 > R^2
 \end{cases}
 $$
 
