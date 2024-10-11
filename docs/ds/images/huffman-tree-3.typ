@@ -1,6 +1,10 @@
 #import "@preview/fletcher:0.5.1" as fletcher: diagram, node, edge
 
 #set page(height: auto, width: auto, fill: white)
+#set text(font: "Noto Sans")
+
+
+
 
 #grid(
   columns: 2,
@@ -38,6 +42,7 @@
 ],
 
   [
+    
     #table(
       columns: (auto, auto, auto),
       inset: 10pt,
@@ -45,11 +50,11 @@
       table.header(
         [字符], [频率], [编码]
       ),
-      `A`, `35`, `11`,
-      `B`, `25`, `00`,
-      `C`, `15`, `01`,
-      `D`, `15`, `101`,
-      `E`, `10`, `100`,
+      [A], [35], [11],
+      [B], [25], [00],
+      [C], [15], [01],
+      [D], [15], [101],
+      [E], [10], [100],
       
     )
   ]
