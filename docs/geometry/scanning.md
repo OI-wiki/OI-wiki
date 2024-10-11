@@ -22,11 +22,12 @@
 
 给每一个矩形的上下边进行标记，下面的边标记为 1，上面的边标记为 -1。每遇到一个水平边时，让这条边（在横轴投影区间）的权值加上这条边的标记。
 
->   这个操作类似遍历括考序列：开括号加 1，闭括号减 1，「权值」对应当前位置的深度，「权值」是否大于0，对应当前在不在括号里，也就是这段区间是否记入小矩形的宽度。
+> 这个操作类似遍历括考序列：开括号加 1，闭括号减 1，「权值」对应当前位置的深度，「权值」是否大于 0，对应当前在不在括号里，也就是这段区间是否记入小矩形的宽度。
 
 小矩形（不一定只有一个）的宽度就是整个数轴上权值大于 0 的区间总长度。
 
 ### 实现
+
 用线段树维护矩形的长，也就是整个数轴上覆盖次数大于 0 的点。需求列举如下：
 
 -   一段区间权值加 1、减 1。
@@ -34,70 +35,74 @@
 
 如果你尝试直接用普通线段树模板来实现的话，也许会遇到些挫折。具体地，由于在区间加时，即使修改区间和节点管理区间重合，我们还是不能常数时间知道覆盖次数如何变化。这是因为我们不能直接知道：管理范围里有多长的区间会从 1 变成 0（从 0 变成 1）。
 
-这道题只需要朴素的分治就能实现：维护每个节点管理区间中「**整体**修改的权值和 `w[]`」（类似不用下放的懒惰标记）和「覆盖长度 `v[]`」两个信息。
+这道题只需要朴素的分治就能实现：维护每个节点管理区间中「**整体** 修改的权值和 `w[]`」（类似不用下放的懒惰标记）和「覆盖长度 `v[]`」两个信息。
 
 需要 [离散化](../misc/discrete.md)。
 
 ???+ note "代码实现"
     ```cpp
     // Lupgu P5490
-    #include <iostream>
     #include <algorithm>
+    #include <iostream>
     
     using ll = long long;
-    const int N = 1e5+1;
+    const int N = 1e5 + 1;
     
-    int n, a[N*2], tot; // a[] 和 tot 用于把 x 离散化
-    ll v[N*8], w[N*8];  // 完全覆盖区间的次数、已覆盖的长度
+    int n, a[N * 2], tot;   // a[] 和 tot 用于把 x 离散化
+    ll v[N * 8], w[N * 8];  // 完全覆盖区间的次数、已覆盖的长度
     
-    struct St { ll x1, x2, y, o; } b[N*2];  // 矩形上下边缘
+    struct St {
+      ll x1, x2, y, o;
+    } b[N * 2];  // 矩形上下边缘
+    
     int f(int y) {  // 离散化，把坐标映射到 a 中的下标
-        return std::lower_bound(a, a+tot, y) - a;
+      return std::lower_bound(a, a + tot, y) - a;
     }
     
-    void up(int u, int ul, int ur) {    // pushup
-        if (v[u]) w[u] = a[ur] - a[ul];
-        // 如果对叶子节点调用 w[u*2+1]，那么线段树需要开 8 倍空间
-        // 乘上矩形上下两边就是 16 倍
-        else if (ul+1 == ur) w[u] = 0;
-        else w[u] = w[u * 2 + 1] + w[u * 2 + 2];
+    void up(int u, int ul, int ur) {  // pushup
+      if (v[u]) w[u] = a[ur] - a[ul];
+      // 如果对叶子节点调用 w[u*2+1]，那么线段树需要开 8 倍空间
+      // 乘上矩形上下两边就是 16 倍
+      else if (ul + 1 == ur)
+        w[u] = 0;
+      else
+        w[u] = w[u * 2 + 1] + w[u * 2 + 2];
     }
     
-    void add(int lf, int rg, ll o, int u=0, int ul=0, int ur=tot-1) {
-        // 区间加
-        if (lf==ul && rg==ur) return v[u] += o, up(u, ul, ur), void();
-        int um = (ul + ur) / 2;
-        if (lf < um) add(lf, std::min(rg, um), o, u * 2 + 1, ul, um);
-        if (um < rg) add(std::max(lf, um), rg, o, u * 2 + 2, um, ur);
-        up(u, ul, ur);
+    void add(int lf, int rg, ll o, int u = 0, int ul = 0, int ur = tot - 1) {
+      // 区间加
+      if (lf == ul && rg == ur) return v[u] += o, up(u, ul, ur), void();
+      int um = (ul + ur) / 2;
+      if (lf < um) add(lf, std::min(rg, um), o, u * 2 + 1, ul, um);
+      if (um < rg) add(std::max(lf, um), rg, o, u * 2 + 2, um, ur);
+      up(u, ul, ur);
     }
     
     int main() {
-        std::cin >> n;
-        for (int i = 0, x1, x2, y1, y2; i < n; i++) {
-            // 如果使用 using namespace std，要使用其它名字避免重名
-            std::cin >> x1 >> y1 >> x2 >> y2;
-            b[i] = {x1, x2, y1, 1};
-            b[i+n]={x1, x2, y2, -1};
-            a[i] = x1, a[i+n] = x2;
-        }
-        
-        std::sort(a, a + n * 2), tot = 1;
-        for (int i=1; i<n*2; i++)
-            if (a[i] != a[tot - 1]) 
-                a[tot++] = a[i];    // 离散化
-        
-        std::sort(b, b + n * 2, [](St &i, St &j) -> bool
-            { return i.y < j.y; }); // 操作排序
-        
-        ll sum = 0;
-        add(f(b[0].x1), f(b[0].x2), 1);
-        for (int i=1; i<n*2; i++) {
-            int x1 = f(b[i].x1), x2 = f(b[i].x2);
-            sum += (b[i].y - b[i-1].y) * w[0];  // 对每个小矩形面积求和
-            add(x1, x2, b[i].o);
-        }
-        std::cout << sum << '\n';
+      std::cin >> n;
+      for (int i = 0, x1, x2, y1, y2; i < n; i++) {
+        // 如果使用 using namespace std，要使用其它名字避免重名
+        std::cin >> x1 >> y1 >> x2 >> y2;
+        b[i] = {x1, x2, y1, 1};
+        b[i + n] = {x1, x2, y2, -1};
+        a[i] = x1, a[i + n] = x2;
+      }
+    
+      std::sort(a, a + n * 2), tot = 1;
+      for (int i = 1; i < n * 2; i++)
+        if (a[i] != a[tot - 1]) a[tot++] = a[i];  // 离散化
+    
+      std::sort(b, b + n * 2,
+                [](St &i, St &j) -> bool { return i.y < j.y; });  // 操作排序
+    
+      ll sum = 0;
+      add(f(b[0].x1), f(b[0].x2), 1);
+      for (int i = 1; i < n * 2; i++) {
+        int x1 = f(b[i].x1), x2 = f(b[i].x2);
+        sum += (b[i].y - b[i - 1].y) * w[0];  // 对每个小矩形面积求和
+        add(x1, x2, b[i].o);
+      }
+      std::cout << sum << '\n';
     }
     ```
 
