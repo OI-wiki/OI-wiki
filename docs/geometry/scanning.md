@@ -18,105 +18,86 @@
 
 ![](./images/scanning.svg)
 
--   如图所示，我们可以把整个矩形分成如图各个颜色不同的小矩形，那么这个小矩形的高就是我们扫过的距离，那么剩下了一个变量，那就是矩形的长一直在变化。
--   我们的线段树就是为了维护矩形的长，我们给每一个矩形的上下边进行标记，下面的边标记为 1，上面的边标记为 -1，每遇到一个矩形时，我们知道了标记为 1 的边，我们就加进来这一条矩形的长，等到扫描到 -1 时，证明这一条边需要删除，就删去，利用 1 和 -1 可以轻松的到这种状态。
--   还要注意这里的线段树指的并不是线段的一个端点，而指的是一个区间，所以我们要计算的是 $r+1$ 和 $r-1$。
--   需要 [离散化](../misc/discrete.md)。
+如图所示，把整个矩形分成如图各个颜色不同的小矩形，小矩形的高是扫过的距离，然而矩形的水平宽一直在变化。
+
+给每一个矩形的上下边进行标记，下面的边标记为 1，上面的边标记为 -1。每遇到一个水平边时，让这条边（在横轴投影区间）的权值加上这条边的标记。
+
+>   这个操作类似遍历括考序列：开括号加 1，闭括号减 1，「权值」对应当前位置的深度，「权值」是否大于0，对应当前在不在括号里，也就是这段区间是否记入小矩形的宽度。
+
+小矩形（不一定只有一个）的宽度就是整个数轴上权值大于 0 的区间总长度。
 
 ### 实现
+用线段树维护矩形的长，也就是整个数轴上覆盖次数大于 0 的点。需求列举如下：
+
+-   一段区间权值加 1、减 1。
+-   统计整个数轴上，区间权值大于 0 的「区间长度和」。
+
+如果你尝试直接用普通线段树模板来实现的话，也许会遇到些挫折。具体地，由于在区间加时，即使修改区间和节点管理区间重合，我们还是不能常数时间知道覆盖次数如何变化。这是因为我们不能直接知道：管理范围里有多长的区间会从 1 变成 0（从 0 变成 1）。
+
+这道题只需要朴素的分治就能实现：维护每个节点管理区间中「**整体**修改的权值和 `w[]`」（类似不用下放的懒惰标记）和「覆盖长度 `v[]`」两个信息。
+
+需要 [离散化](../misc/discrete.md)。
 
 ???+ note "代码实现"
     ```cpp
+    // Lupgu P5490
+    #include <iostream>
     #include <algorithm>
-    #include <cstdio>
-    #include <cstring>
-    constexpr int MAXN = 300;
-    using namespace std;
     
-    int lazy[MAXN << 3];  // 标记了这条线段出现的次数
-    double s[MAXN << 3];
+    using ll = long long;
+    const int N = 1e5+1;
     
-    struct node1 {
-      double l, r;
-      double sum;
-    } cl[MAXN << 3];  // 线段树
+    int n, a[N*2], tot; // a[] 和 tot 用于把 x 离散化
+    ll v[N*8], w[N*8];  // 完全覆盖区间的次数、已覆盖的长度
     
-    struct node2 {
-      double x, y1, y2;
-      int flag;
-    } p[MAXN << 3];  // 坐标
-    
-    // 定义sort比较
-    bool cmp(node2 a, node2 b) { return a.x < b.x; }
-    
-    // 上传
-    void pushup(int rt) {
-      if (lazy[rt] > 0)
-        cl[rt].sum = cl[rt].r - cl[rt].l;
-      else
-        cl[rt].sum = cl[rt * 2].sum + cl[rt * 2 + 1].sum;
+    struct St { ll x1, x2, y, o; } b[N*2];  // 矩形上下边缘
+    int f(int y) {  // 离散化，把坐标映射到 a 中的下标
+        return std::lower_bound(a, a+tot, y) - a;
     }
     
-    // 建树
-    void build(int rt, int l, int r) {
-      if (r - l > 1) {
-        cl[rt].l = s[l];
-        cl[rt].r = s[r];
-        build(rt * 2, l, (l + r) / 2);
-        build(rt * 2 + 1, (l + r) / 2, r);
-        pushup(rt);
-      } else {
-        cl[rt].l = s[l];
-        cl[rt].r = s[r];
-        cl[rt].sum = 0;
-      }
-      return;
+    void up(int u, int ul, int ur) {    // pushup
+        if (v[u]) w[u] = a[ur] - a[ul];
+        // 如果对叶子节点调用 w[u*2+1]，那么线段树需要开 8 倍空间
+        // 乘上矩形上下两边就是 16 倍
+        else if (ul+1 == ur) w[u] = 0;
+        else w[u] = w[u * 2 + 1] + w[u * 2 + 2];
     }
     
-    // 更新
-    void update(int rt, double y1, double y2, int flag) {
-      if (cl[rt].l == y1 && cl[rt].r == y2) {
-        lazy[rt] += flag;
-        pushup(rt);
-        return;
-      } else {
-        if (cl[rt * 2].r > y1) update(rt * 2, y1, min(cl[rt * 2].r, y2), flag);
-        if (cl[rt * 2 + 1].l < y2)
-          update(rt * 2 + 1, max(cl[rt * 2 + 1].l, y1), y2, flag);
-        pushup(rt);
-      }
+    void add(int lf, int rg, ll o, int u=0, int ul=0, int ur=tot-1) {
+        // 区间加
+        if (lf==ul && rg==ur) return v[u] += o, up(u, ul, ur), void();
+        int um = (ul + ur) / 2;
+        if (lf < um) add(lf, std::min(rg, um), o, u * 2 + 1, ul, um);
+        if (um < rg) add(std::max(lf, um), rg, o, u * 2 + 2, um, ur);
+        up(u, ul, ur);
     }
     
     int main() {
-      int temp = 1, n;
-      double x1, y1, x2, y2, ans;
-      while (scanf("%d", &n) && n) {
-        ans = 0;
-        for (int i = 0; i < n; i++) {
-          scanf("%lf %lf %lf %lf", &x1, &y1, &x2, &y2);
-          p[i].x = x1;
-          p[i].y1 = y1;
-          p[i].y2 = y2;
-          p[i].flag = 1;
-          p[i + n].x = x2;
-          p[i + n].y1 = y1;
-          p[i + n].y2 = y2;
-          p[i + n].flag = -1;
-          s[i + 1] = y1;
-          s[i + n + 1] = y2;
+        std::cin >> n;
+        for (int i = 0, x1, x2, y1, y2; i < n; i++) {
+            // 如果使用 using namespace std，要使用其它名字避免重名
+            std::cin >> x1 >> y1 >> x2 >> y2;
+            b[i] = {x1, x2, y1, 1};
+            b[i+n]={x1, x2, y2, -1};
+            a[i] = x1, a[i+n] = x2;
         }
-        sort(s + 1, s + (2 * n + 1));  // 离散化
-        sort(p, p + 2 * n, cmp);  // 把矩形的边的横坐标从小到大排序
-        build(1, 1, 2 * n);       // 建树
-        memset(lazy, 0, sizeof(lazy));
-        update(1, p[0].y1, p[0].y2, p[0].flag);
-        for (int i = 1; i < 2 * n; i++) {
-          ans += (p[i].x - p[i - 1].x) * cl[1].sum;
-          update(1, p[i].y1, p[i].y2, p[i].flag);
+        
+        std::sort(a, a + n * 2), tot = 1;
+        for (int i=1; i<n*2; i++)
+            if (a[i] != a[tot - 1]) 
+                a[tot++] = a[i];    // 离散化
+        
+        std::sort(b, b + n * 2, [](St &i, St &j) -> bool
+            { return i.y < j.y; }); // 操作排序
+        
+        ll sum = 0;
+        add(f(b[0].x1), f(b[0].x2), 1);
+        for (int i=1; i<n*2; i++) {
+            int x1 = f(b[i].x1), x2 = f(b[i].x2);
+            sum += (b[i].y - b[i-1].y) * w[0];  // 对每个小矩形面积求和
+            add(x1, x2, b[i].o);
         }
-        printf("Test case #%d\nTotal explored area: %.2lf\n\n", temp++, ans);
-      }
-      return 0;
+        std::cout << sum << '\n';
     }
     ```
 
@@ -128,7 +109,11 @@
 
 -   [「POJ3832」Posters](http://poj.org/problem?id=3832)
 
--   [洛谷 P1856\[IOI1998\]\[USACO5.5\] 矩形周长 Picture](https://www.luogu.com.cn/problem/P1856)
+-   [洛谷 P1856 \[IOI1998\] \[USACO5.5\] 矩形周长 Picture](https://www.luogu.com.cn/problem/P1856)
+    -   横边贡献就是覆盖长度变化量。
+    -   两个方向分别算一次可以避免竖直边的讨论。
+    -   操作排序时注意考虑两个矩形边重合的情况。
+    -   数据范围允许不用线段树，直接平方时间模拟。
 
 ## B 维正交范围
 
