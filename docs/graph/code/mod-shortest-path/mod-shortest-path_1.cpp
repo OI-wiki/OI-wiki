@@ -2,18 +2,18 @@
 #include <queue>
 
 using namespace std;
-typedef long long ll;
-const int maxn = 100010;
-const long long linf = (1ull << 63) - 1;
+using ll = long long;
+constexpr int MAXN = 100010;
+constexpr ll linf = (1ull << 63) - 1;
 
 ll h, x, y, z;
-ll head[maxn << 1], tot;
-ll dis[maxn], vis[maxn];
+ll head[MAXN << 1], tot;
+ll dis[MAXN], vis[MAXN];
 queue<int> q;
 
 struct edge {
   ll to, next, w;
-} e[maxn << 1];
+} e[MAXN << 1];
 
 void add(ll u, ll v, ll w) {
   e[++tot] = edge{v, head[u], w};

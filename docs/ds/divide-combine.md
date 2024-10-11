@@ -170,10 +170,10 @@ $$
 最后放一个实现的代码供参考。代码转自 [大米饼的博客](https://www.cnblogs.com/Paul-Guderian/p/11020708.html)，添加了一些注释。
 
 ```cpp
-#include <bits/stdc++.h>
-#define rg register
+#include <algorithm>
+#include <cstdio>
 using namespace std;
-const int N = 200010;
+constexpr int N = 200010;
 
 int n, m, a[N], st1[N], st2[N], tp1, tp2, rt;
 int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;
@@ -266,7 +266,7 @@ struct Edge {
 } E[N << 1];
 
 void add(int u, int v) {  // 树结构加边
-  E[o] = (Edge){v, hd[u]};
+  E[o] = Edge{v, hd[u]};
   hd[u] = o++;
 }
 
@@ -352,6 +352,7 @@ void build() {
   rt = st[1];  // 栈中最后剩下的点是根结点
 }
 
+// 分 lca 为析或和，这里把叶子看成析的
 void query(int l, int r) {
   int x = id[l], y = id[r];
   int z = lca(x, y);
@@ -362,7 +363,7 @@ void query(int l, int r) {
   else
     l = L[z], r = R[z];
   printf("%d %d\n", l, r);
-}  // 分 lca 为析或和，这里把叶子看成析的
+}
 
 int main() {
   scanf("%d", &n);

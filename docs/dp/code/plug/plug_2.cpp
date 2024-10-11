@@ -2,11 +2,11 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int M = 10;
-const int offset = 3, mask = (1 << offset) - 1;
+constexpr int M = 10;
+constexpr int offset = 3, mask = (1 << offset) - 1;
 int n, m;
 long long ans, d;
-const int MaxSZ = 16796, Prime = 9973;
+constexpr int MaxSZ = 16796, Prime = 9973;
 
 struct hashTable {
   int head[Prime], next[MaxSZ], sz;

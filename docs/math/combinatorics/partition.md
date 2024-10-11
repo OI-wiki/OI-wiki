@@ -58,8 +58,8 @@ $$
     观察表格与递推式，按列更新对于存储更有利。不难写出程序：
     
     ```cpp
-    #include <stdio.h>
-    #include <string.h>
+    #include <cstdio>
+    #include <cstring>
     
     int p[10005][1005]; /*将自然数n分拆为k个部分的方法数*/
     
@@ -170,8 +170,8 @@ $$
     观察表格与递推式，按列更新对于存储更有利。代码中将后一位缩减了空间，仅保留相邻两项。
     
     ```cpp
-    #include <stdio.h>
-    #include <string.h>
+    #include <cstdio>
+    #include <cstring>
     
     int pd[50005][2]; /*将自然数n分拆为k个部分的互异方法数*/
     
@@ -315,7 +315,7 @@ $$
     采用五边形数定理的方法。有代码：
     
     ```cpp
-    #include <stdio.h>
+    #include <cstdio>
     
     long long a[100010];
     long long p[50005];

@@ -1,6 +1,6 @@
 #include <cstdio>
 using namespace std;
-const int N = 500010;
+constexpr int N = 500010;
 
 char s[N];
 int n, m, ch[N][26], tag[N], tot = 1;

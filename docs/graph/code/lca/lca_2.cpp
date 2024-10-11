@@ -3,11 +3,11 @@
 #include <iostream>
 using namespace std;
 
-const int N = 5e5 + 5;
+constexpr int N = 5e5 + 5;
 
 struct PlusMinusOneRMQ {  // RMQ
   // Copyright (C) 2018 Skqliao. All rights served.
-  const static int M = 9;
+  constexpr static int M = 9;
 
   int blocklen, block, Minv[N], F[N / M * 2 + 5][M << 1], T[N], f[1 << M][M][M],
       S[N];

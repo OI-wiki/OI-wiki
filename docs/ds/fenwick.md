@@ -623,7 +623,7 @@ $$
 
 ???+ note "实现"
     ```cpp
-    typedef long long ll;
+    using ll = long long;
     ll t1[N][N], t2[N][N], t3[N][N], t4[N][N];
     
     void add(ll x, ll y, ll z) {

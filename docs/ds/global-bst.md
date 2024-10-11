@@ -148,9 +148,9 @@
     #include <algorithm>
     #include <cstdio>
     #include <cstring>
-    #define MAXN 1000000
-    #define MAXM 3000000
-    #define INF 0x3FFFFFFF
+    constexpr int MAXN = 1000000;
+    constexpr int MAXM = 3000000;
+    constexpr int INF = 0x3FFFFFFF;
     using namespace std;
     
     struct edge {
@@ -164,7 +164,7 @@
     struct Matrix {
       int M[2][2];
     
-      Matrix operator*(const Matrix &B) {
+      Matrix operator*(const Matrix &B) const {
         static Matrix ret;
         for (int i = 0; i < 2; i++)
           for (int j = 0; j < 2; j++) {

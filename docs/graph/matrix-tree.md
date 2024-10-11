@@ -443,13 +443,13 @@ $$
     #include <cstring>
     #include <iostream>
     using namespace std;
-    #define MOD 100000007
-    #define eps 1e-7
+    constexpr int MOD = 100000007;
+    constexpr double eps = 1e-7;
     
     struct matrix {
-      static const int maxn = 20;
+      static constexpr int MAXN = 20;
       int n, m;
-      double mat[maxn][maxn];
+      double mat[MAXN][MAXN];
     
       matrix() { memset(mat, 0, sizeof(mat)); }
     

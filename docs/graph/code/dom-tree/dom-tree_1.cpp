@@ -1,8 +1,8 @@
 #include <iostream>
 using std::cin;
 using std::cout;
-const int MAX = 3e5 + 5;
-const int INF = 0x5ffffff;
+constexpr int MAX = 3e5 + 5;
+constexpr int INF = 0x5ffffff;
 
 struct E {
   int v, x;

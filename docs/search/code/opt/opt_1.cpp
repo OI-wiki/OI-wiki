@@ -1,5 +1,5 @@
 #include <iostream>
-#define N 16
+constexpr int N = 16;
 int is_working[N] = {0};  // 某项工作是否被分配
 int tm[N][N];             // 完成某项工作所需的时间
 int cost_time_total_min;  // 完成 n 份工作的最小时间总和

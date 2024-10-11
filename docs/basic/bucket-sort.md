@@ -31,7 +31,7 @@
 
 === "C++"
     ```cpp
-    const int N = 100010;
+    constexpr int N = 100010;
     
     int n, w, a[N];
     vector<int> bucket[N];

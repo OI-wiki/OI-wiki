@@ -3,8 +3,8 @@
 #include <string>
 using namespace std;
 
-const int N = 1e6 + 5;
-const double INF = 1e18;
+constexpr int N = 1e6 + 5;
+constexpr double INF = 1e18;
 
 int n, m, sa[N];
 string t;
@@ -13,7 +13,7 @@ string t;
 
 // 顺序加入，查询时将询问串翻转
 // 以i开始的后缀，对应节点的编号为i
-const double alpha = 0.75;
+constexpr double alpha = 0.75;
 int root;
 int sz[N], L[N], R[N];
 double tag[N];

@@ -1,18 +1,18 @@
 #include <algorithm>
 #include <cstring>
 #include <iostream>
-#define maxn 2018
-#define maxm 4000400
+constexpr int MAXN = 2018;
+constexpr int MAXM = 4000400;
 using namespace std;
-int Index, instack[maxn], DFN[maxn], LOW[maxn];
-int tot, color[maxn];
-int numedge, head[maxn];
+int Index, instack[MAXN], DFN[MAXN], LOW[MAXN];
+int tot, color[MAXN];
+int numedge, head[MAXN];
 
 struct Edge {
   int nxt, to;
-} edge[maxm];
+} edge[MAXM];
 
-int sta[maxn], top;
+int sta[MAXN], top;
 int n, m;
 
 void add(int x, int y) {
@@ -46,8 +46,8 @@ bool solve() {
   for (int i = 0; i < 2 * n; i++)
     if (!DFN[i]) tarjan(i);
   for (int i = 0; i < 2 * n; i += 2)
-    if (color[i] == color[i + 1]) return 0;
-  return 1;
+    if (color[i] == color[i + 1]) return false;
+  return true;
 }
 
 void init() {

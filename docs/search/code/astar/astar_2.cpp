@@ -2,14 +2,14 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-const int maxn = 5010;
-const int maxm = 400010;
-const double inf = 2e9;
-int n, m, k, u, v, cur, h[maxn], nxt[maxm], p[maxm], cnt[maxn], ans;
-int cur1, h1[maxn], nxt1[maxm], p1[maxm];
-double e, ww, w[maxm], f[maxn];
-double w1[maxm];
-bool tf[maxn];
+constexpr int MAXN = 5010;
+constexpr int MAXM = 400010;
+constexpr double inf = 2e9;
+int n, m, k, u, v, cur, h[MAXN], nxt[MAXM], p[MAXM], cnt[MAXN], ans;
+int cur1, h1[MAXN], nxt1[MAXM], p1[MAXM];
+double e, ww, w[MAXM], f[MAXN];
+double w1[MAXM];
+bool tf[MAXN];
 
 void add_edge(int x, int y, double z) {  // 正向建图函数
   cur++;

@@ -2,9 +2,9 @@
 #include <climits>
 #include <iostream>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 
-const int N = 1e5 + 7;
+constexpr int N = 1e5 + 7;
 
 struct Tree {
   int mx, _mx;  // 区间最大值 区间历史最大值
