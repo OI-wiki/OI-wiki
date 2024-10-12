@@ -236,89 +236,26 @@ b = read<long long>();
 c = read<__int128>();
 ```
 
-## 完整带调试版
+## 例题
 
-关闭调试开关时使用 `fread()`,`fwrite()`，退出时自动析构执行 `fwrite()`。
-
-开启调试开关时使用 `getchar()`,`putchar()`，便于调试。
-
-若要开启文件读写时，请在所有读写之前加入 `freopen()`。
-
-```cpp
-// #define DEBUG 1  // 调试开关
-struct IO {
-#define MAXSIZE (1 << 20)
-#define isdigit(x) (x >= '0' && x <= '9')
-  char buf[MAXSIZE], *p1, *p2;
-  char pbuf[MAXSIZE], *pp;
-#if DEBUG
-#else
-  IO() : p1(buf), p2(buf), pp(pbuf) {}
-
-  ~IO() { fwrite(pbuf, 1, pp - pbuf, stdout); }
-#endif
-  char gc() {
-#if DEBUG  // 调试，可显示字符
-    return getchar();
-#endif
-    if (p1 == p2) p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin);
-    return p1 == p2 ? ' ' : *p1++;
-  }
-
-  bool blank(char ch) {
-    return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
-  }
-
-  template <class T>
-  void read(T &x) {
-    double tmp = 1;
-    bool sign = false;
-    x = 0;
-    char ch = gc();
-    for (; !isdigit(ch); ch = gc())
-      if (ch == '-') sign = 1;
-    for (; isdigit(ch); ch = gc()) x = x * 10 + (ch - '0');
-    if (ch == '.')
-      for (ch = gc(); isdigit(ch); ch = gc())
-        tmp /= 10.0, x += tmp * (ch - '0');
-    if (sign) x = -x;
-  }
-
-  void read(char *s) {
-    char ch = gc();
-    for (; blank(ch); ch = gc());
-    for (; !blank(ch); ch = gc()) *s++ = ch;
-    *s = 0;
-  }
-
-  void read(char &c) { for (c = gc(); blank(c); c = gc()); }
-
-  void push(const char &c) {
-#if DEBUG  // 调试，可显示字符
-    putchar(c);
-#else
-    if (pp - pbuf == MAXSIZE) fwrite(pbuf, 1, MAXSIZE, stdout), pp = pbuf;
-    *pp++ = c;
-#endif
-  }
-
-  template <class T>
-  void write(T x) {
-    if (x < 0) x = -x, push('-');  // 负数输出
-    static T sta[35];
-    T top = 0;
-    do {
-      sta[top++] = x % 10, x /= 10;
-    } while (x);
-    while (top) push(sta[--top] + '0');
-  }
-
-  template <class T>
-  void write(T x, char lastChar) {
-    write(x), push(lastChar);
-  }
-} io;
-```
+???+ note "[P10815 【模板】快速读入](https://www.luogu.com.cn/problem/P10815)"
+    读入 $n$ 个范围在 $[-n, n]$ 的整数，求和并输出。其中 $n \leq 10^8$。数据保证对于序列的任何前缀，这个前缀的和在 $32$ 位有符号整形的存储范围内。
+    
+    ??? "解题思路"
+        此题为快速读入模板题。算法理论时间复杂度 $O(n)$ 正确，但是由于读入 $10 ^ 8$ 个数是算法的瓶颈，需要使用快速读入。
+        
+        参考代码中整合了快速读入、快速输出，并使用了宏的条件编译，实现「调试开关」功能，便于本题调试。
+        
+        关闭调试开关时使用 `fread()`,`fwrite()`，退出时自动析构执行 `fwrite()`。
+        
+        开启调试开关时使用 `getchar()`,`putchar()`，便于本地调试。
+        
+        若要开启文件读写时，请在所有读写之前加入 `freopen()`。
+    
+    ??? "参考代码"
+        ```cpp
+        --8<-- "docs/contest/code/io/io_1.cpp"
+        ```
 
 ## 参考
 
