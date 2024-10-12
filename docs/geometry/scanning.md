@@ -38,6 +38,7 @@
 需要 [离散化](../misc/discrete.md)。
 
 ### 实现
+
 ???+ note "模板代码"
     ```cpp
     // Luogu P5490 [模板] 扫描线 矩形面积并
@@ -86,14 +87,14 @@
         b[i + n] = {x1, x2, y2, -1};
         a[i] = x1, a[i + n] = x2;
       }
-      
+    
       std::sort(a, a + n * 2), tot = 1;
       for (int i = 1; i < n * 2; i++)
         if (a[i] != a[tot - 1]) a[tot++] = a[i];  // 离散化
-      
+    
       std::sort(b, b + n * 2,
                 [](St &i, St &j) -> bool { return i.y < j.y; });  // 操作排序
-      
+    
       ll sum = 0;
       add(f(b[0].x1), f(b[0].x2), 1);
       for (int i = 1; i < n * 2; i++) {
