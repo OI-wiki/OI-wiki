@@ -148,19 +148,15 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
 
 ???+ note "[洛谷 P2163\[SHOI2007\] 园丁的烦恼](https://www.luogu.com.cn/problem/P2163)"
     首先离散化。设一个左下角为 $(0, 0)$，右上角为 $(x, y)$ 的矩形内包含 $ans_{x, y}$ 个点。则询问的答案答案可以被差分为 $ans_{c, d} - ans_{a - 1, d} - ans_{c, b - 1} + ans_{a - 1, b - 1}$。
-    
-??? note "代码"
-    ```cpp
-    --8<-- "docs/geometry/code/scanning/scanning_3.cpp"
-    ```
+
+?? note "代码"`cpp     --8<-- "docs/geometry/code/scanning/scanning_3.cpp"
+    `
 
 ???+ note "[洛谷 P1908 逆序对](https://www.luogu.com.cn/problem/P1908)"
     没错，逆序对也可以用扫描线的思维来做。考虑将求逆序对的个数转化为从后向前枚举每个位置 $i$，求在区间 $[i+1,n]$ 中，大小在区间 $[0,a_i]$ 中的点的个数。题目中数据范围为 $10^9$，很显然要先进行离散化，我们可以考虑从后向前遍历数组，每次遍历到一个数时更新树状数组（线段树），之后统计当前一共有多少个数小于当前枚举的数，因为我们是从后向前遍历的，所以比当前值小的数的个数就是他的逆序对的个数，可以用树状数组或线段树进行单点修改和区间查询。
-    
-??? note "代码"
-    ```cpp
-    --8<-- "docs/geometry/code/scanning/scanning_1.cpp"
-    ```
+
+?? note "代码"`cpp     --8<-- "docs/geometry/code/scanning/scanning_1.cpp"
+    `
 
 ???+ note "[洛谷 P1972 \[SDOI2009\] HH 的项链](https://www.luogu.com.cn/problem/P1972)"
     简要题意：给定一个序列，多次询问区间 $[l,r]$ 中有多少种不同的数。
@@ -176,11 +172,9 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
     注意到这个询问是可差分的，我们可以将询问差分为左下角为 $(0,0)$，右上角为 $(r,l - 1)$ 的矩形减去左下角为 $(0,0)$，右上角为 $(l - 1,l - 1)$ 的矩形有几个点，这样方便我们使用扫描线思想。
     
     单次操作复杂度 $O(\log n)$，共有 $n$ 次加点操作和 $2m$ 次查询操作，总时间复杂度 $O((n + m) \log n)$。
-    
-??? note "代码"
-    ```cpp
-    --8<-- "docs/geometry/code/scanning/scanning_2.cpp"
-    ```
+
+?? note "代码"`cpp     --8<-- "docs/geometry/code/scanning/scanning_2.cpp"
+    `
 
 ### 练习
 
