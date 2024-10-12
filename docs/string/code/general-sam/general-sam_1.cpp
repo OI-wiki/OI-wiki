@@ -2,8 +2,8 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-const int MAXN = 2000000;  // 双倍字符串长度
-const int CHAR_NUM = 30;   // 字符集个数，注意修改下方的 (-'a')
+constexpr int MAXN = 2000000;  // 双倍字符串长度
+constexpr int CHAR_NUM = 30;   // 字符集个数，注意修改下方的 (-'a')
 
 struct exSAM {
   int len[MAXN];             // 节点长度

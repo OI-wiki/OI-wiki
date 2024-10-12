@@ -3,8 +3,8 @@
 #include <string>
 using namespace std;
 
-const int N = 8e5 + 5;
-const double INF = 1e18;
+constexpr int N = 8e5 + 5;
+constexpr double INF = 1e18;
 
 void decode(string& s, int len, int mask) {
   for (int i = 0; i < len; ++i) {
@@ -22,7 +22,7 @@ char t[N];
 // 顺序加入，查询时将询问串翻转
 // 以i结束的前缀，对应节点的编号为i
 // 注意：不能写懒惰删除，否则可能会破坏树的结构
-const double alpha = 0.75;
+constexpr double alpha = 0.75;
 int root;
 int sz[N], L[N], R[N];
 double tag[N];

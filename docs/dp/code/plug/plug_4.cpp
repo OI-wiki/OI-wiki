@@ -3,12 +3,12 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-typedef long long T_state;
-typedef int T_key;
-const int N = 8;
+using T_state = long long;
+using T_key = int;
+constexpr int N = 8;
 int n, m;
 char A[N + 1][N + 1], B[N + 1][N + 1];
-const int Offset = 5, Mask = (1 << Offset) - 1;
+constexpr int Offset = 5, Mask = (1 << Offset) - 1;
 int c[N + 2];
 int b[N + 2], bb[N + 3];
 
@@ -34,7 +34,7 @@ void decode(T_state s) {
   }
 }
 
-const int Prime = 9979, MaxSZ = 1 << 20;
+constexpr int Prime = 9979, MaxSZ = 1 << 20;
 
 template <class T_state, class T_key>
 struct hashTable {

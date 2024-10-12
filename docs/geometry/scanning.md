@@ -30,21 +30,21 @@
     #include <algorithm>
     #include <cstdio>
     #include <cstring>
-    #define maxn 300
+    constexpr int MAXN = 300;
     using namespace std;
     
-    int lazy[maxn << 3];  // 标记了这条线段出现的次数
-    double s[maxn << 3];
+    int lazy[MAXN << 3];  // 标记了这条线段出现的次数
+    double s[MAXN << 3];
     
     struct node1 {
       double l, r;
       double sum;
-    } cl[maxn << 3];  // 线段树
+    } cl[MAXN << 3];  // 线段树
     
     struct node2 {
       double x, y1, y2;
       int flag;
-    } p[maxn << 3];  // 坐标
+    } p[MAXN << 3];  // 坐标
     
     // 定义sort比较
     bool cmp(node2 a, node2 b) { return a.x < b.x; }

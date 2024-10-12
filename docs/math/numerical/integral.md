@@ -68,7 +68,7 @@ $$
 
 === "C++"
     ```cpp
-    const int N = 1000 * 1000;
+    constexpr int N = 1000 * 1000;
     
     double simpson_integration(double a, double b) {
       double h = (b - a) / N;

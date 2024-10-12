@@ -72,8 +72,8 @@ Dinkelbach 算法的大概思想是每次用上一轮的答案当做新的 $L$ �
       return X * w;
     }
     
-    const int N = 100000 + 10;
-    const double eps = 1e-6;
+    constexpr int N = 100000 + 10;
+    constexpr double eps = 1e-6;
     
     int n;
     double a[N], b[N];
@@ -198,8 +198,8 @@ int SPFA(int u, double mid) {  // 判负环
 bool check(double mid) {  // 如果有负环返回 true
   for (int i = 1; i <= n; ++i) dis[i] = 0, vis[i] = 0;
   for (int i = 1; i <= n; ++i)
-    if (SPFA(i, mid)) return 1;
-  return 0;
+    if (SPFA(i, mid)) return true;
+  return false;
 }
 ```
 

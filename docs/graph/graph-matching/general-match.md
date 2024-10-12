@@ -64,7 +64,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
       };
     
       vector<edge> edges;
-      vector<vector<int> > g;
+      vector<vector<int>> g;
       int n;
     
       graph(int _n) : n(_n) { g.resize(n); }
@@ -95,7 +95,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
     // blossom / find_max_unweighted_matching
     template <typename T>
     vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
-      std::mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+      std::mt19937 rng(std::random_device{}());
       vector<int> match(g.n, -1);   // 匹配
       vector<int> aux(g.n, -1);     // 时间戳记
       vector<int> label(g.n);       // 「o」或「i」

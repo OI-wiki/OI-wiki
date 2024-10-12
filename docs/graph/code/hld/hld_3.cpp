@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-const int N = 1000005;
+constexpr int N = 1000005;
 
 struct edge {
   int to, next;
@@ -68,4 +68,4 @@ int main() {
   dfs2(1);
   getans(1);
   for (int i = 1; i <= n; i++) cout << mxp[i] << '\n';
-}  // test
+}

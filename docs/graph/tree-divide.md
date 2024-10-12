@@ -104,11 +104,12 @@
 
 ???+ note "参考代码"
     ```cpp
-    #include <bits/stdc++.h>
-    
+    #include <algorithm>
+    #include <iostream>
+    #include <vector>
     using namespace std;
     
-    typedef vector<int>::iterator IT;
+    using IT = vector<int>::iterator;
     
     struct Edge {
       int to, nxt, val;
@@ -159,7 +160,7 @@
       maxp = 0x7f7f7f7f;
       getG(now, 0);
       int g = root;
-      vis[g] = 1;
+      vis[g] = true;
       for (int i = head[g]; i; i = e[i].nxt) {
         int vs = e[i].to;
         if (vis[vs]) continue;

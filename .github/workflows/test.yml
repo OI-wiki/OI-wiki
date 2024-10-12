@@ -68,14 +68,10 @@ jobs:
       - name: Install g++-9
         run: apt-get install -y g++-9
       - name: Undefined Behaviors Check
-        continue-on-error: true
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: x86_64 Ubuntu
         run: python3 scripts/ub-check.py
-      - name: Set Output
-        id: set-output
-        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
 
   undefinedbehaviors-macos:
     name: UB Check - Arm64 MacOS
@@ -97,14 +93,10 @@ jobs:
           clang --version
           echo "::endgroup::"
       - name: Undefined Behaviors Check
-        continue-on-error: true
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: arm64 MacOS
         run: python3 scripts/ub-check.py
-      - name: Set Output
-        id: set-output
-        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
 
   undefinedbehaviors-rv:
     name: UB Check - RISC-V Ubuntu
@@ -142,12 +134,8 @@ jobs:
           docker exec ubtest clang++ --version
           echo "::endgroup::"
       - name: Undefined Behaviors Check
-        continue-on-error: true
         # The environment variables are set in Launch Risc-V Docker step
         run: docker exec ubtest python3 scripts/ub-check.py
-      - name: Set Output
-        id: set-output
-        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
 
   undefinedbehaviors-windows:
     name: UB Check - x86_64 Windows
@@ -177,17 +165,10 @@ jobs:
           cl.exe
           echo ::endgroup::
       - name: Undefined Behaviors Check
-        continue-on-error: true
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: x86_64 Windows
         run: python scripts/ub-check.py
-      - name: Set Output
-        id: set-output
-        run: |
-          $GITHUB_OUTPUT="output=$(cat output.txt)"
-          echo "output=$(cat output.txt)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
-        shell: pwsh
 
 
   undefinedbehaviors-alpine:
@@ -214,37 +195,7 @@ jobs:
           clang --version
           echo "::endgroup::"
       - name: Undefined Behaviors Check
-        continue-on-error: true
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: x86_64 Alpine
         run: python3 scripts/ub-check.py
-      - name: Set Output
-        id: set-output
-        run: echo output=$(cat output.txt) | tee $GITHUB_OUTPUT
-
-  sum-up:
-    name: Sum Up
-    needs: [correctness, undefinedbehaviors-ubuntu, undefinedbehaviors-macos, undefinedbehaviors-rv, undefinedbehaviors-windows, undefinedbehaviors-alpine]
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
-    runs-on: ubuntu-latest
-    env: 
-      OUTPUT_UBUNTU: ${{ needs.undefinedbehaviors-ubuntu.outputs.output }}
-      OUTPUT_MACOS: ${{ needs.undefinedbehaviors-macos.outputs.output }}
-      OUTPUT_RV: ${{ needs.undefinedbehaviors-rv.outputs.output }}
-      OUTPUT_WINDOWS: ${{ needs.undefinedbehaviors-windows.outputs.output }}
-      OUTPUT_ALPINE: ${{ needs.undefinedbehaviors-alpine.outputs.output }}
-    steps:
-      - name: Check Output
-        run: |
-          echo $OUTPUT_UBUNTU
-          echo $OUTPUT_MACOS
-          echo $OUTPUT_RV
-          echo $OUTPUT_WINDOWS
-          echo $OUTPUT_ALPINE
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Sum Up
-        run: |
-          python3 scripts/sum-up.py

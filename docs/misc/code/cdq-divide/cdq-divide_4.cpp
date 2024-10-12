@@ -5,7 +5,7 @@
 #define SNI set<nod>::iterator
 #define SDI set<data>::iterator
 using namespace std;
-const int N = 1e5 + 10;
+constexpr int N = 1e5 + 10;
 int n;
 int m;
 int pre[N];
