@@ -2,16 +2,16 @@ author: littleparrot12345
 
 ## 定义
 
-在树中，节点 $x$ 如果作为根节点时，从根节点出发的最长链的长度最短，那么 $x$ 被称为树的中心。
+在树中，如果节点 $x$ 作为根节点时，从 $x$ 出发的最长链最短，那么称 $x$ 为这棵树的中心。
 
 ## 性质
 
--   树的中心不一定唯一，但最多有 $2$ 个且这两个中心节点是相邻的。
+-   树的中心不一定唯一，但最多有 $2$ 个，且这两个中心是相邻的。
 -   树的中心一定位于树的直径上。
--   树上所有点到最远点的路径一定交会于树的中心。
--   当树的中心为根节点时，其到达直径 $2$ 个端点的链即为最长链和次长链。
--   当两棵树连 $1$ 条边时，选择树的中心可以使新的树的直径最小。
--   树的中心节点到任意其他节点的距离不超过树的直径的一半。
+-   树上所有点到其最远点的路径一定交会于树的中心。
+-   当树的中心为根节点时，其到达直径端点的两条链分别为最长链和次长链。
+-   当通过在两棵树间连一条边以合并为一棵树时，连接两棵树的中心可以使新树的直径最小。
+-   树的中心到其他任意节点的距离不超过树直径的一半。
 
 ## 求法
 
@@ -48,4 +48,4 @@ author: littleparrot12345
 
 -   [TutorialsPoint: Centers of a Tree](https://www.tutorialspoint.com/centers-of-a-tree)
 -   [ProofWiki: Definition of Center of Tree](https://proofwiki.org/wiki/Definition:Center_of_Tree)
--   [Wikipedia: Tree (graph theory)](https://en.wikipedia.org/wiki/Tree_\(graph_theory\)#Properties)
+-   [Wikipedia: Tree (graph theory)](https://en.wikipedia.org/wiki/Tree_%28graph_theory%29#Properties)
