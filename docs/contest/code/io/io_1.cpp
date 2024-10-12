@@ -79,11 +79,11 @@ struct IO {
 int n, x, sum;
 
 int main() {
-    io.read(n);
-    while (n--) {
-        io.read(x);
-        sum += x;
-    }
-    io.write(sum);
-    return 0;
+  io.read(n);
+  while (n--) {
+    io.read(x);
+    sum += x;
+  }
+  io.write(sum);
+  return 0;
 }
