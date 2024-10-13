@@ -1,8 +1,13 @@
 #include <algorithm>
 #include <iostream>
 
-int n, m, a[1000010], ans[1000010];
-int pre[1000010], lst[1000010];  // 处理 pre
+int n, m;
+int x[500010], y[500010], ans[500010];
+int ax[1500010], ay[1500010], tx, ty;  // 离散化
+
+struct query {
+  int a, b, c, d;
+} q[500010];  // 保存查询操作方便离散化
 
 struct ope {
   int type, x, y, id;
@@ -20,20 +25,18 @@ struct ope {
 ope op[2500010];
 int tot;  // 操作总数
 
-int sum[1000010];  // 树状数组
+int sum[1500010];  // 树状数组
 
 int lowbit(int x) { return x & (-x); }
 
 void add(int x, int k) {
-  x++;  // 位置 0 也要进行修改，所以树状数组下标均加 1
-  while (x <= n) {
+  while (x <= 1500000) {
     sum[x] = sum[x] + k;
     x = x + lowbit(x);
   }
 }
 
 int getsum(int x) {
-  x++;
   int ret = 0;
   while (x > 0) {
     ret = ret + sum[x];
@@ -47,17 +50,29 @@ using std::cout;
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
-  cin >> n;
-  for (int i = 1; i <= n; i++) {
-    cin >> a[i];
-    pre[i] = lst[a[i]], lst[a[i]] = i;  // 处理 pre
-    op[++tot] = ope{0, i, pre[i], i};   // 加点操作
-  }
-  cin >> m;
+  cin >> n >> m, tx = n, ty = n;
+  for (int i = 1; i <= n; i++) cin >> x[i] >> y[i], ax[i] = x[i], ay[i] = y[i];
   for (int i = 1, l, r; i <= m; i++) {
-    cin >> l >> r;
-    op[++tot] = ope{1, r, l - 1, i};  // 将查询差分
-    op[++tot] = ope{2, l - 1, l - 1, i};
+    cin >> q[i].a >> q[i].b >> q[i].c >> q[i].d;
+    ax[++tx] = q[i].a, ay[++ty] = q[i].b, ax[++tx] = q[i].c, ay[++ty] = q[i].d;
+  }
+  std::sort(ax + 1, ax + tx + 1), std::sort(ay + 1, ay + ty + 1);
+  tx = std::unique(ax + 1, ax + tx + 1) - ax - 1;
+  ty = std::unique(ay + 1, ay + ty + 1) - ay - 1;
+  for (int i = 1; i <= n; i++) {
+    x[i] = std::lower_bound(ax + 1, ax + tx + 1, x[i]) - ax;
+    y[i] = std::lower_bound(ay + 1, ay + ty + 1, y[i]) - ay;
+    op[++tot] = ope(0, x[i], y[i], i);  // 加点操作
+  }
+  for (int i = 1; i <= m; i++) {
+    q[i].a = std::lower_bound(ax + 1, ax + tx + 1, q[i].a) - ax;
+    q[i].b = std::lower_bound(ay + 1, ay + ty + 1, q[i].b) - ay;
+    q[i].c = std::lower_bound(ax + 1, ax + tx + 1, q[i].c) - ax;
+    q[i].d = std::lower_bound(ay + 1, ay + ty + 1, q[i].d) - ay;
+    op[++tot] = ope(1, q[i].c, q[i].d, i);  // 将查询差分
+    op[++tot] = ope(1, q[i].a - 1, q[i].b - 1, i);
+    op[++tot] = ope(2, q[i].a - 1, q[i].d, i);
+    op[++tot] = ope(2, q[i].c, q[i].b - 1, i);
   }
   std::sort(op + 1, op + tot + 1);  // 将操作按横坐标排序，且优先执行加点操作
   for (int i = 1; i <= tot; i++) {
