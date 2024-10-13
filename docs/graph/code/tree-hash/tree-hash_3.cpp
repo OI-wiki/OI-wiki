@@ -1,15 +1,13 @@
-#include <chrono>
-#include <cstdio>
+#include <iostream>
 #include <map>
 #include <random>
-#include <set>
 #include <vector>
 
-typedef unsigned long long ull;
-typedef std::pair<ull, ull> Hash2;
+using ull = unsigned long long;
+using Hash2 = std::pair<ull, ull>;
 
-const int N = 60, M = 998244353;
-const ull mask = std::chrono::steady_clock::now().time_since_epoch().count();
+constexpr int N = 60, M = 998244353;
+const ull mask = std::mt19937_64(time(nullptr))();
 
 ull shift(ull x) {
   x ^= mask;
@@ -54,14 +52,18 @@ ull getHash(int x, int fa) {
   return hash;
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int m;
-  scanf("%d", &m);
+  cin >> m;
   for (int t = 1; t <= m; t++) {
-    scanf("%d", &n);
+    cin >> n;
     for (int i = 1; i <= n; i++) {
       int fa;
-      scanf("%d", &fa);
+      cin >> fa;
       if (fa) {
         edge[fa].push_back(i);
         edge[i].push_back(fa);
@@ -81,7 +83,7 @@ int main() {
     if (!trees.count(hash)) {
       trees[hash] = t;
     }
-    printf("%d\n", trees[hash]);
+    cout << trees[hash] << '\n';
     for (int i = 1; i <= n; i++) {
       edge[i].clear();
     }

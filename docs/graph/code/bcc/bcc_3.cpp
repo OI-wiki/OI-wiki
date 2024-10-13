@@ -1,7 +1,7 @@
-#include <cstdio>
+#include <iostream>
 #include <vector>
 using namespace std;
-const int N = 5e5 + 5, M = 2e6 + 5;
+constexpr int N = 5e5 + 5, M = 2e6 + 5;
 int n, m;
 
 struct edge {
@@ -10,7 +10,7 @@ struct edge {
 
 int hd[N], tot = 1;
 
-void add(int u, int v) { e[++tot] = (edge){v, hd[u]}, hd[u] = tot; }
+void add(int u, int v) { e[++tot] = edge{v, hd[u]}, hd[u] = tot; }
 
 void uadd(int u, int v) { add(u, v), add(v, u); }
 
@@ -46,19 +46,20 @@ void tarjan(int u) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   int u, v;
   for (int i = 1; i <= m; i++) {
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     if (u != v) uadd(u, v);
   }
   for (int i = 1; i <= n; i++)
     if (!dfn[i]) root = i, tarjan(i);
-  printf("%d\n", cnt);
+  cout << cnt << '\n';
   for (int i = 1; i <= cnt; i++) {
-    printf("%llu ", dcc[i].size());
-    for (int j = 0; j < dcc[i].size(); j++) printf("%d ", dcc[i][j]);
-    printf("\n");
+    cout << dcc[i].size() << ' ';
+    for (int j = 0; j < dcc[i].size(); j++) cout << dcc[i][j] << ' ';
+    cout << '\n';
   }
   return 0;
 }

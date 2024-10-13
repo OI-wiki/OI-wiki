@@ -1,20 +1,22 @@
 // Tree Isomorphism, O(nlogn)
 // replace quick sort with radix sort ==> O(n)
 // Author: _Backl1ght
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
+#include <vector>
 using namespace std;
-typedef long long ll;
-const int N = 1e5 + 5;
-const int maxn = N << 1;
+using ll = long long;
+constexpr int N = 1e5 + 5;
+constexpr int MAXN = N << 1;
 
 int n;
 
 struct Edge {
   int v, nxt;
-} e[maxn << 1];
+} e[MAXN << 1];
 
-int head[maxn], sz[maxn], f[maxn], maxv[maxn], tag[maxn], tot, Max;
-vector<int> center[2], L[maxn], subtree_tags[maxn];
+int head[MAXN], sz[MAXN], f[MAXN], maxv[MAXN], tag[MAXN], tot, Max;
+vector<int> center[2], L[MAXN], subtree_tags[MAXN];
 
 void addedge(int u, int v) {  // 建图
   e[tot].v = v;
@@ -71,7 +73,7 @@ void init(int n) {  // 一开始的处理
 
   int u, v;
   for (int i = 1; i <= n - 1; i++) {
-    scanf("%d %d", &u, &v);
+    cin >> u >> v;
     addedge(u, v);
   }
   dfs_size(1, -1);
@@ -79,7 +81,7 @@ void init(int n) {  // 一开始的处理
   dfs_center(1, 1, -1, 0);
 
   for (int i = 1; i <= n - 1; i++) {
-    scanf("%d %d", &u, &v);
+    cin >> u >> v;
     addedge(u + n, v + n);
   }
   dfs_size(1 + n, -1);
@@ -122,12 +124,13 @@ bool treeIsomorphism() {
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int T;
-  scanf("%d", &T);
+  cin >> T;
   while (T--) {
-    scanf("%d", &n);
+    cin >> n;
     init(n);
-    puts(treeIsomorphism() ? "YES" : "NO");
+    cout << (treeIsomorphism() ? "YES" : "NO") << '\n';
   }
   return 0;
 }

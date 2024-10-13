@@ -1,13 +1,13 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
 using namespace std;
 #define rep(i, a, b) for (int i = (a); i <= (b); ++i)
-const int N = 200005;
+constexpr int N = 200005;
 int h[N], nxt[N * 2], to[N * 2], c[N], gr;
-#define il inline
 
-il void tu(int x, int y) { to[++gr] = y, nxt[gr] = h[x], h[x] = gr; }
+void tu(int x, int y) { to[++gr] = y, nxt[gr] = h[x], h[x] = gr; }
 
-typedef long long ll;
+using ll = long long;
 int n, nn, siz[N], mn, rt;
 bool vis[N];
 
@@ -90,7 +90,7 @@ void clear2(int u, int f) {
 int son[N];
 
 void divid(int u) {
-  vis[u] = 1;
+  vis[u] = true;
   int tot = 0;
   nowrt = u;
   ans[u]++;
@@ -131,13 +131,14 @@ void divid(int u) {
 }
 
 int main() {
-  scanf("%d", &n);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   int u, v;
-  rep(i, 1, n) scanf("%d", &c[i]);
-  rep(i, 2, n) scanf("%d%d", &u, &v), tu(u, v), tu(v, u);
+  rep(i, 1, n) cin >> c[i];
+  rep(i, 2, n) cin >> u >> v, tu(u, v), tu(v, u);
   rt = 0, nn = n, mn = n + 1;
   get_root(1, 0);
   divid(rt);
-  rep(i, 1, n) printf("%lld\n", ans[i]);
+  rep(i, 1, n) cout << ans[i] << '\n';
   return 0;
 }

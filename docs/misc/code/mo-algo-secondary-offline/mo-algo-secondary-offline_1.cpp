@@ -2,27 +2,27 @@
 #include <iostream>
 #include <vector>
 
-typedef long long lxl;
+using lxl = long long;
 
-const int maxN = 5e5;
-const int maxM = 5e5;
-const int maxA = 1e5;
-const int sqrN = 708;
-const int sqrA = 317;
+constexpr int MAXN = 5e5;
+constexpr int MAXM = 5e5;
+constexpr int MAXA = 1e5;
+constexpr int sqrN = 708;
+constexpr int sqrA = 317;
 
 int n, m;
-int a[maxN + 10];
-int b[maxN + 10];
+int a[MAXN + 10];
+int b[MAXN + 10];
 int l, r;
-lxl f[maxN + 10];
-lxl g[maxN + 10];
-lxl ans[maxM + 10];
+lxl f[MAXN + 10];
+lxl g[MAXN + 10];
+lxl ans[MAXM + 10];
 
-typedef struct SegmentTree {
+struct SegmentTree {
   struct Node {
     lxl val;
     lxl tag;
-  } node[4 * maxA + 10];
+  } node[4 * MAXA + 10];
 
   void MakeTag(int u, int l, int r, lxl val) {
     node[u].val += val * (r - l + 1);
@@ -74,9 +74,11 @@ typedef struct SegmentTree {
     if (s >= mid + 1) return Ask(2 * u + 1, mid + 1, r, s, t);
     return Ask(2 * u, l, mid, s, t) + Ask(2 * u + 1, mid + 1, r, s, t);
   }
-} sgt;
+};
 
-typedef struct BlockArray {
+using sgt = SegmentTree;
+
+struct BlockArray {
   struct Block {
     int l, r;
     lxl tag;
@@ -85,17 +87,17 @@ typedef struct BlockArray {
   struct Array {
     int bel;
     lxl val;
-  } array[maxA + 10];
+  } array[MAXA + 10];
 
   void Build() {
-    for (int i = 1; i <= maxA; i++) array[i].bel = (i - 1) / sqrA + 1;
-    for (int i = 1; i <= maxA; i++) block[array[i].bel].r = i;
-    for (int i = maxA; i >= 1; i--) block[array[i].bel].l = i;
+    for (int i = 1; i <= MAXA; i++) array[i].bel = (i - 1) / sqrA + 1;
+    for (int i = 1; i <= MAXA; i++) block[array[i].bel].r = i;
+    for (int i = MAXA; i >= 1; i--) block[array[i].bel].l = i;
     return;
   }
 
   void Add(int pos, lxl val) {
-    for (int i = array[pos].bel + 1; i <= array[maxA].bel; i++)
+    for (int i = array[pos].bel + 1; i <= array[MAXA].bel; i++)
       block[i].tag += val;
     for (int i = pos; i <= block[array[pos].bel].r; i++) array[i].val += val;
     return;
@@ -107,7 +109,9 @@ typedef struct BlockArray {
     if (l > r) return 0;
     return Ask(r) - Ask(l - 1);
   }
-} dba;
+};
+
+using dba = BlockArray;
 
 namespace captainMoSecondaryOffline {
 namespace offline2 {
@@ -117,7 +121,7 @@ struct Query {
   int k;
 };
 
-std::vector<Query> query[maxN + 10];
+std::vector<Query> query[MAXN + 10];
 
 dba sum, cnt;
 
@@ -131,7 +135,7 @@ void solve() {
       for (int k = query[i][j].l; k <= query[i][j].r; k++) {
         ans[query[i][j].i] +=
             1ll * query[i][j].k *
-            (sum.Ask(a[k] + 1, maxA) + cnt.Ask(1, a[k] - 1) * a[k]);
+            (sum.Ask(a[k] + 1, MAXA) + cnt.Ask(1, a[k] - 1) * a[k]);
       }
     }
   }
@@ -157,15 +161,15 @@ sgt sum, cnt;
 void solve() {
   std::sort(query.begin(), query.end());
   for (int i = 1; i <= n; i++) {
-    f[i] = sum.Ask(1, 1, maxA, a[i] + 1, maxA);
-    g[i] = cnt.Ask(1, 1, maxA, 1, a[i] - 1);
-    sum.Add(1, 1, maxA, a[i], a[i]);
-    cnt.Add(1, 1, maxA, a[i], 1);
+    f[i] = sum.Ask(1, 1, MAXA, a[i] + 1, MAXA);
+    g[i] = cnt.Ask(1, 1, MAXA, 1, a[i] - 1);
+    sum.Add(1, 1, MAXA, a[i], a[i]);
+    cnt.Add(1, 1, MAXA, a[i], 1);
   }
   for (int i = 0, l = 1, r = 0; i < query.size(); i++) {
     if (l > query[i].l) {
       offline2::query[r].push_back(
-          (offline2::Query){query[i].i, query[i].l, l - 1, 1});
+          offline2::Query{query[i].i, query[i].l, l - 1, 1});
       while (l > query[i].l) {
         l--;
         ans[query[i].i] -= f[l] + (g[l] - 1) * a[l];
@@ -173,7 +177,7 @@ void solve() {
     }
     if (r < query[i].r) {
       offline2::query[l - 1].push_back(
-          (offline2::Query){query[i].i, r + 1, query[i].r, -1});
+          offline2::Query{query[i].i, r + 1, query[i].r, -1});
       while (r < query[i].r) {
         r++;
         ans[query[i].i] += f[r] + (g[r] + 1) * a[r];
@@ -181,7 +185,7 @@ void solve() {
     }
     if (l < query[i].l) {
       offline2::query[r].push_back(
-          (offline2::Query){query[i].i, l, query[i].l - 1, -1});
+          offline2::Query{query[i].i, l, query[i].l - 1, -1});
       while (l < query[i].l) {
         ans[query[i].i] += f[l] + (g[l] - 1) * a[l];
         l++;
@@ -189,7 +193,7 @@ void solve() {
     }
     if (r > query[i].r) {
       offline2::query[l - 1].push_back(
-          (offline2::Query){query[i].i, query[i].r + 1, r, 1});
+          offline2::Query{query[i].i, query[i].r + 1, r, 1});
       while (r > query[i].r) {
         ans[query[i].i] -= f[r] + (g[r] + 1) * a[r];
         r--;
@@ -203,7 +207,7 @@ void solve() {
 void solve() {
   offline1::solve();
   offline2::solve();
-  for (int i = 0; i < m; i++)
+  for (int i = 1; i < m; i++)
     ans[offline1::query[i].i] += ans[offline1::query[i - 1].i];
   return;
 }
@@ -213,10 +217,11 @@ int main() {
   std::cin >> n >> m;
   for (int i = 1; i <= n; i++) std::cin >> a[i];
   for (int i = 1; i <= n; i++) b[i] = (i - 1) / sqrN + 1;
-  for (int i = 1; i <= m; i++)
-    std::cin >> l >> r,
-        captainMoSecondaryOffline::offline1::query.push_back(
-            (captainMoSecondaryOffline::offline1::Query){i, l, r});
+  for (int i = 1; i <= m; i++) {
+    std::cin >> l >> r;
+    captainMoSecondaryOffline::offline1::query.push_back(
+        captainMoSecondaryOffline::offline1::Query{i, l, r});
+  }
   captainMoSecondaryOffline::solve();
   for (int i = 1; i <= m; i++) std::cout << ans[i] << '\n';
   return 0;

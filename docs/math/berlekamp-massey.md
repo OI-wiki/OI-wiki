@@ -161,11 +161,11 @@ $A^{-1} \mathbf b = -\frac 1 {r_{m - 1}} \sum_{i = 0} ^ {m - 2} A^i \mathbf b r_
 
 ??? note "参考实现"
     ```cpp
-    vector<int> solve_sparse_equations(const vector<tuple<int, int, int> > &A,
+    vector<int> solve_sparse_equations(const vector<tuple<int, int, int>> &A,
                                        const vector<int> &b) {
       int n = (int)b.size();  // 0-based
     
-      vector<vector<int> > f({b});
+      vector<vector<int>> f({b});
     
       for (int i = 1; i < 2 * n; i++) {
         vector<int> v(n);

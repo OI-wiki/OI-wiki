@@ -1,117 +1,105 @@
-#include <deque>
-#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <queue>
+#include <vector>
+using namespace std;
 
-void promote() {
-  std::ios::sync_with_stdio(0);
-  std::cin.tie(0);
-  std::cout.tie(0);
-  return;
-}
-
-typedef char chr;
-typedef std::deque<int> dic;
-
-const int maxN = 2e5;
-const int maxS = 2e5;
-const int maxT = 2e6;
+constexpr int N = 2e5 + 6;
+constexpr int LEN = 2e6 + 6;
+constexpr int SIZE = 2e5 + 6;
 
 int n;
-chr s[maxS + 10];
-chr t[maxT + 10];
-int cnt[maxN + 10];
 
-struct AhoCorasickAutomaton {
-  struct Node {
-    int son[30];
-    int val;
-    int fail;
-    int head;
-    dic index;
-  } node[maxS + 10];
+namespace AC {
+struct Node {
+  int son[26];
+  int ans;
+  int fail;
+  int idx;
 
-  struct Edge {
-    int head;
-    int next;
-  } edge[maxS + 10];
+  void init() {
+    memset(son, 0, sizeof(son));
+    ans = idx = 0;
+  }
+} tr[SIZE];
 
-  int root;
-  int ncnt;
-  int ecnt;
+int tot;
+int ans[N], pidx;
 
-  void Insert(chr *str, int i) {
-    int u = root;
-    for (int i = 1; str[i]; i++) {
-      if (node[u].son[str[i] - 'a' + 1] == 0)
-        node[u].son[str[i] - 'a' + 1] = ++ncnt;
-      u = node[u].son[str[i] - 'a' + 1];
+vector<int> g[SIZE];  // fail 树
+
+void init() {
+  tot = pidx = 0;
+  tr[0].init();
+}
+
+void insert(char s[], int &idx) {
+  int u = 0;
+  for (int i = 1; s[i]; i++) {
+    int &son = tr[u].son[s[i] - 'a'];
+    if (!son) son = ++tot, tr[son].init();
+    u = son;
+  }
+  // 由于有可能出现相同的模式串，需要将相同的映射到同一个编号
+  if (!tr[u].idx) tr[u].idx = ++pidx;  // 第一次出现，新增编号
+  idx = tr[u].idx;  // 这个模式串的编号对应这个结点的编号
+}
+
+void build() {
+  queue<int> q;
+  for (int i = 0; i < 26; i++)
+    if (tr[0].son[i]) {
+      q.push(tr[0].son[i]);
+      g[0].push_back(tr[0].son[i]);  // 不要忘记这里的 fail
     }
-    node[u].index.push_back(i);
-    return;
-  }
-
-  void Build() {
-    dic q;
-    for (int i = 1; i <= 26; i++)
-      if (node[root].son[i]) q.push_back(node[root].son[i]);
-    while (!q.empty()) {
-      int u = q.front();
-      q.pop_front();
-      for (int i = 1; i <= 26; i++) {
-        if (node[u].son[i]) {
-          node[node[u].son[i]].fail = node[node[u].fail].son[i];
-          q.push_back(node[u].son[i]);
-        } else {
-          node[u].son[i] = node[node[u].fail].son[i];
-        }
-      }
+  while (!q.empty()) {
+    int u = q.front();
+    q.pop();
+    for (int i = 0; i < 26; i++) {
+      if (tr[u].son[i]) {
+        tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];
+        g[tr[tr[u].fail].son[i]].push_back(tr[u].son[i]);  // 记录 fail 树
+        q.push(tr[u].son[i]);
+      } else
+        tr[u].son[i] = tr[tr[u].fail].son[i];
     }
-    return;
   }
+}
 
-  void Query(chr *str) {
-    int u = root;
-    for (int i = 1; str[i]; i++) {
-      u = node[u].son[str[i] - 'a' + 1];
-      node[u].val++;
-    }
-    return;
+void query(char t[]) {
+  int u = 0;
+  for (int i = 1; t[i]; i++) {
+    u = tr[u].son[t[i] - 'a'];
+    tr[u].ans++;
   }
+}
 
-  void addEdge(int tail, int head) {
-    ecnt++;
-    edge[ecnt].head = head;
-    edge[ecnt].next = node[tail].head;
-    node[tail].head = ecnt;
-    return;
+void dfs(int u) {
+  for (int v : g[u]) {
+    dfs(v);
+    tr[u].ans += tr[v].ans;
   }
+  ans[tr[u].idx] = tr[u].ans;
+}
+}  // namespace AC
 
-  void DFS(int u) {
-    for (int e = node[u].head; e; e = edge[e].next) {
-      int v = edge[e].head;
-      DFS(v);
-      node[u].val += node[v].val;
-    }
-    for (auto i : node[u].index) cnt[i] += node[u].val;
-    return;
-  }
-
-  void FailTree() {
-    for (int u = 1; u <= ncnt; u++) addEdge(node[u].fail, u);
-    DFS(root);
-    return;
-  }
-} ACM;
+char s[LEN];
+int idx[N];
 
 int main() {
-  std::cin >> n;
+  AC::init();
+  scanf("%d", &n);
   for (int i = 1; i <= n; i++) {
-    std::cin >> (s + 1);
-    ACM.Insert(s, i);
+    scanf("%s", s + 1);
+    AC::insert(s, idx[i]);
+    AC::ans[i] = 0;
   }
-  ACM.Build();
-  std::cin >> (t + 1);
-  ACM.Query(t);
-  ACM.FailTree();
-  for (int i = 1; i <= n; i++) std::cout << cnt[i] << '\n';
+  AC::build();
+  scanf("%s", s + 1);
+  AC::query(s);
+  AC::dfs(0);
+  for (int i = 1; i <= n; i++) {
+    printf("%d\n", AC::ans[idx[i]]);
+  }
   return 0;
 }

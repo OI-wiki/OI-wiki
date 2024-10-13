@@ -24,7 +24,7 @@
 
 ??? note " 例题 [康托展开](https://loj.ac/p/167)"
     ```c++
-    --8<-- "docs/math/combinatorics/code/cantor/cantor_1.cpp"
+    --8<-- "docs/math/code/combinatorics/cantor/cantor_1.cpp"
     ```
 
 ## 逆康托展开

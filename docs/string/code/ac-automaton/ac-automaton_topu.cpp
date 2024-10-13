@@ -1,90 +1,108 @@
-// Code by rickyxrc | https://www.luogu.com.cn/record/115706921
-#include <bits/stdc++.h>
-#define maxn 8000001
+#include <cstdio>
+#include <cstring>
+#include <queue>
 using namespace std;
-char s[maxn];
-int n, cnt, vis[maxn], rev[maxn], indeg[maxn], ans;
 
-struct trie_node {
-  int son[27];
-  int fail;
-  int flag;
-  int ans;
+constexpr int N = 2e5 + 6;
+constexpr int LEN = 2e6 + 6;
+constexpr int SIZE = 2e5 + 6;
 
-  void init() {
+int n;
+
+namespace AC {
+struct Node {
+  int son[26];  // 子结点
+  int ans;      // 匹配计数
+  int fail;     // fail 指针
+  int du;       // 入度
+  int idx;
+
+  void init() {  // 结点初始化
     memset(son, 0, sizeof(son));
-    fail = flag = 0;
+    ans = fail = idx = 0;
   }
-} trie[maxn];
+} tr[SIZE];
 
-queue<int> q;
+int tot;  // 结点总数
+int ans[N], pidx;
 
 void init() {
-  for (int i = 0; i <= cnt; i++) trie[i].init();
-  for (int i = 1; i <= n; i++) vis[i] = 0;
-  cnt = 1;
-  ans = 0;
+  tot = pidx = 0;
+  tr[0].init();
 }
 
-void insert(char *s, int num) {
-  int u = 1, len = strlen(s);
-  for (int i = 0; i < len; i++) {
-    int v = s[i] - 'a';
-    if (!trie[u].son[v]) trie[u].son[v] = ++cnt;
-    u = trie[u].son[v];
+void insert(char s[], int &idx) {
+  int u = 0;
+  for (int i = 1; s[i]; i++) {
+    int &son = tr[u].son[s[i] - 'a'];  // 下一个子结点的引用
+    if (!son) son = ++tot, tr[son].init();  // 如果没有则插入新结点，并初始化
+    u = son;                                // 从下一个结点继续
   }
-  if (!trie[u].flag) trie[u].flag = num;
-  rev[num] = trie[u].flag;
-  return;
+  // 由于有可能出现相同的模式串，需要将相同的映射到同一个编号
+  if (!tr[u].idx) tr[u].idx = ++pidx;  // 第一次出现，新增编号
+  idx = tr[u].idx;  // 这个模式串的编号对应这个结点的编号
 }
 
-void getfail(void) {
-  for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
-  q.push(1);
-  trie[1].fail = 0;
+void build() {
+  queue<int> q;
+  for (int i = 0; i < 26; i++)
+    if (tr[0].son[i]) q.push(tr[0].son[i]);
   while (!q.empty()) {
     int u = q.front();
     q.pop();
-    int Fail = trie[u].fail;
     for (int i = 0; i < 26; i++) {
-      int v = trie[u].son[i];
-      if (!v) {
-        trie[u].son[i] = trie[Fail].son[i];
-        continue;
-      }
-      trie[v].fail = trie[Fail].son[i];
-      indeg[trie[Fail].son[i]]++;
-      q.push(v);
+      if (tr[u].son[i]) {                               // 存在对应子结点
+        tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];  // 只用跳一次 fail 指针
+        tr[tr[tr[u].fail].son[i]].du++;                 // 入度计数
+        q.push(tr[u].son[i]);                           // 并加入队列
+      } else
+        tr[u].son[i] =
+            tr[tr[u].fail]
+                .son[i];  // 将不存在的字典树的状态链接到了失配指针的对应状态
     }
   }
 }
 
-void topu() {
-  for (int i = 1; i <= cnt; i++)
-    if (!indeg[i]) q.push(i);
-  while (!q.empty()) {
-    int fr = q.front();
-    q.pop();
-    vis[trie[fr].flag] = trie[fr].ans;
-    int u = trie[fr].fail;
-    trie[u].ans += trie[fr].ans;
-    if (!(--indeg[u])) q.push(u);
+void query(char t[]) {
+  int u = 0;
+  for (int i = 1; t[i]; i++) {
+    u = tr[u].son[t[i] - 'a'];  // 转移
+    tr[u].ans++;
   }
 }
 
-void query(char *s) {
-  int u = 1, len = strlen(s);
-  for (int i = 0; i < len; i++) u = trie[u].son[s[i] - 'a'], trie[u].ans++;
+void topu() {
+  queue<int> q;
+  for (int i = 0; i <= tot; i++)
+    if (tr[i].du == 0) q.push(i);
+  while (!q.empty()) {
+    int u = q.front();
+    q.pop();
+    ans[tr[u].idx] = tr[u].ans;
+    int v = tr[u].fail;
+    tr[v].ans += tr[u].ans;
+    if (!--tr[v].du) q.push(v);
+  }
 }
+}  // namespace AC
+
+char s[LEN];
+int idx[N];
 
 int main() {
+  AC::init();
   scanf("%d", &n);
-  init();
-  for (int i = 1; i <= n; i++) scanf("%s", s), insert(s, i);
-  getfail();
-  scanf("%s", s);
-  query(s);
-  topu();
-  for (int i = 1; i <= n; i++) cout << vis[rev[i]] << std::endl;
+  for (int i = 1; i <= n; i++) {
+    scanf("%s", s + 1);
+    AC::insert(s, idx[i]);
+    AC::ans[i] = 0;
+  }
+  AC::build();
+  scanf("%s", s + 1);
+  AC::query(s);
+  AC::topu();
+  for (int i = 1; i <= n; i++) {
+    printf("%d\n", AC::ans[idx[i]]);
+  }
   return 0;
 }

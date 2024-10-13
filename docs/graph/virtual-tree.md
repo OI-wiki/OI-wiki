@@ -132,8 +132,8 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
 #### 实现
 
 ```cpp
-int dfn[maxn];
-int h[maxn], m, a[maxn], len;  // 存储关键点
+int dfn[MAXN];
+int h[MAXN], m, a[MAXN], len;  // 存储关键点
 
 bool cmp(int x, int y) {
   return dfn[x] < dfn[y];  // 按照 dfs 序排序

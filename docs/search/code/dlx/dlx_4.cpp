@@ -1,9 +1,11 @@
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
+#include <string>
 int numcol, numrow;
 int dfn[3000], tx[2], nxt[2], num[50][50], vis[50];
-char ans[50][50];
-const int f[2] = {-1, 1};
-const int table[12][5][2] = {
+std::string ans[50];
+constexpr int f[2] = {-1, 1};
+constexpr int table[12][5][2] = {
     // directions of shapes
     {{0, 0}, {1, 0}, {0, 1}},                   // A
     {{0, 0}, {0, 1}, {0, 2}, {0, 3}},           // B
@@ -18,23 +20,23 @@ const int table[12][5][2] = {
     {{0, 0}, {1, 0}, {1, 1}, {2, 1}, {2, 2}},   // K
     {{0, 0}, {1, 0}, {0, 1}, {0, 2}, {0, 3}},   // L
 };
-const int len[12] = {3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5};
-const int getx[] = {0,  1,  2,  2,  3,  3,  3,  4,  4,  4,  4,  5,  5,  5,  5,
-                    5,  6,  6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  8,
-                    8,  8,  8,  8,  8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,
-                    9,  10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11,
-                    11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12,
-                    12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
-                    13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14};
-const int gety[] = {0, 1, 1, 2,  1,  2,  3,  1, 2,  3,  4,  1, 2, 3, 4,  5,  1,
-                    2, 3, 4, 5,  6,  1,  2,  3, 4,  5,  6,  7, 1, 2, 3,  4,  5,
-                    6, 7, 8, 1,  2,  3,  4,  5, 6,  7,  8,  9, 1, 2, 3,  4,  5,
-                    6, 7, 8, 9,  10, 1,  2,  3, 4,  5,  6,  7, 8, 9, 10, 11, 1,
-                    2, 3, 4, 5,  6,  7,  8,  9, 10, 11, 12, 1, 2, 3, 4,  5,  6,
-                    7, 8, 9, 10, 11, 12, 13, 1, 2,  3,  4,  5, 6, 7, 8,  9};
+constexpr int len[12] = {3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5};
+constexpr int getx[] = {
+    0,  1,  2,  2,  3,  3,  3,  4,  4,  4,  4,  5,  5,  5,  5,  5,  6,
+    6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,
+    8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10,
+    10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12,
+    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13,
+    13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14};
+constexpr int gety[] = {
+    0, 1, 1,  2,  1,  2,  3,  1,  2, 3, 4, 1, 2, 3,  4,  5,  1, 2, 3, 4, 5,
+    6, 1, 2,  3,  4,  5,  6,  7,  1, 2, 3, 4, 5, 6,  7,  8,  1, 2, 3, 4, 5,
+    6, 7, 8,  9,  1,  2,  3,  4,  5, 6, 7, 8, 9, 10, 1,  2,  3, 4, 5, 6, 7,
+    8, 9, 10, 11, 1,  2,  3,  4,  5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5,
+    6, 7, 8,  9,  10, 11, 12, 13, 1, 2, 3, 4, 5, 6,  7,  8,  9};
 
 struct DLX {
-  static const int MS = 1e5 + 10;
+  static constexpr int MS = 1e5 + 10;
   int n, m, tot, first[MS], siz[MS];
   int L[MS], R[MS], U[MS], D[MS];
   int col[MS], row[MS];
@@ -76,7 +78,7 @@ struct DLX {
   }
 
   bool dance() {  // dance
-    if (!R[0]) return 1;
+    if (!R[0]) return true;
     int i, j, c = R[0];
     for (i = R[0]; i != 0; i = R[i])
       if (siz[i] < siz[c]) c = i;
@@ -87,16 +89,23 @@ struct DLX {
         remove(col[j]);
         if (col[j] <= 55) ans[getx[col[j]]][gety[col[j]]] = dfn[row[j]] + 'A';
       }
-      if (dance()) return 1;
+      if (dance()) return true;
       for (j = L[i]; j != i; j = L[j]) recover(col[j]);
     }
     recover(c);
-    return 0;
+    return false;
   }
 } solver;
 
+using std::cin;
+using std::cout;
+
 int main() {
-  for (int i = 1; i <= 10; ++i) scanf("%s", ans[i] + 1);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  for (int i = 1; i <= 10; ++i) {
+    cin >> ans[i];
+    ans[i] = " " + ans[i];
+  }
   for (int i = 1; i <= 10; ++i)
     for (int j = 1; j <= i; ++j) {
       if (ans[i][j] != '.') vis[ans[i][j] - 'A'] = 1;
@@ -110,17 +119,17 @@ int main() {
         for (int dy = 0; dy <= 1; ++dy) {
           for (tx[0] = 1; tx[0] <= 10; ++tx[0]) {
             for (tx[1] = 1; tx[1] <= tx[0]; ++tx[1]) {
-              bool flag = 1;
+              bool flag = true;
               for (int k = 0; k < len[id]; ++k) {
                 nxt[op] = tx[op] + f[dx] * table[id][k][0];
                 nxt[op ^ 1] = tx[op ^ 1] + f[dy] * table[id][k][1];
                 if (vis[id]) {
                   if (ans[nxt[0]][nxt[1]] != id + 'A') {
-                    flag = 0;
+                    flag = false;
                     break;
                   }
                 } else if (ans[nxt[0]][nxt[1]] != '.') {
-                  flag = 0;
+                  flag = false;
                   break;
                 }
               }
@@ -140,9 +149,9 @@ int main() {
   }
   /********end********/
   if (!solver.dance())
-    puts("No solution");
+    cout << "No solution\n";
   else
-    for (int i = 1; i <= 10; ++i, puts(""))
-      for (int j = 1; j <= i; ++j) putchar(ans[i][j]);
+    for (int i = 1; i <= 10; ++i, cout << '\n')
+      for (int j = 1; j <= i; ++j) cout << ans[i][j];
   return 0;
 }

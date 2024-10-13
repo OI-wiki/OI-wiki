@@ -1,20 +1,16 @@
 #include <algorithm>
 #include <cctype>
 #include <cmath>
-#include <cstdio>
 #include <cstdlib>
-#include <cstring>
 #include <iostream>
-#include <map>
-#include <queue>
-#include <set>
-#include <vector>
+#include <string>
 using namespace std;
 /******************heading******************/
-const int M = 5e4 + 5, P = 505;  // 定义常数
+constexpr int M = 5e4 + 5, P = 505;  // 定义常数
 int I, m, p;
 
-int _(int d) { return (d + p) % p; }  // 用于取模
+// 用于取模
+int safe_mod(int d) { return (d + p) % p; }
 
 namespace DQ {                // 双栈模拟双端队列
 pair<int, int> fr[M], bc[M];  // 二元组，详见题目3.4
@@ -24,8 +20,8 @@ int ff[M][P], fb[M][P];
 void update(pair<int, int> *s, int f[][P], int i) {  // 用f[i-1]更新f[i]
   for (int j = 0; j <= (p - 1); j++) {
     f[i][j] = f[i - 1][j];
-    if (~f[i - 1][_(j - s[i].first)])  // 按位取反
-      f[i][j] = max(f[i][j], f[i - 1][_(j - s[i].first)] + s[i].second);
+    if (~f[i - 1][safe_mod(j - s[i].first)])  // 按位取反
+      f[i][j] = max(f[i][j], f[i - 1][safe_mod(j - s[i].first)] + s[i].second);
   }
 }
 
@@ -68,17 +64,17 @@ int query(int l, int r) {
   int ans = -1;
   ql = 1, qr = 0;
   for (int i = (l - p + 1); i <= (r - p + 1); i++) {
-    int x = g[_(i)];
+    int x = g[safe_mod(i)];
     while (ql <= qr && g[q[qr]] <= x) --qr;
-    q[++qr] = _(i);
+    q[++qr] = safe_mod(i);
   }
   for (int i = (p - 1); i >= 0; i--) {
     if (ql <= qr && ~f[i] && ~g[q[ql]]) ans = max(ans, f[i] + g[q[ql]]);
     // 删 l-i，加 r-i+1
-    if (ql <= qr && _(l - i) == q[ql]) ++ql;
-    int x = g[_(r - i + 1)];
+    if (ql <= qr && safe_mod(l - i) == q[ql]) ++ql;
+    int x = g[safe_mod(r - i + 1)];
     while (ql <= qr && g[q[qr]] <= x) --qr;
-    q[++qr] = _(r - i + 1);
+    q[++qr] = safe_mod(r - i + 1);
   }
   return ans;
 }
@@ -89,22 +85,23 @@ void init() {
 }  // namespace DQ
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   DQ::init();
-  scanf("%d%d%d", &I, &m, &p);
+  cin >> I >> m >> p;
   for (int i = 1; i <= m; i++) {
-    char op[5];
+    string op;
     int x, y;
-    scanf("%s%d%d", op, &x, &y);
-    if (op[0] == 'I' && op[1] == 'F')
-      DQ::push_front(make_pair(_(x), y));
-    else if (op[0] == 'I' && op[1] == 'G')
-      DQ::push_back(make_pair(_(x), y));
-    else if (op[0] == 'D' && op[1] == 'F')
+    cin >> op;
+    if (op == "IF")
+      cin >> x >> y, DQ::push_front(make_pair(safe_mod(x), y));
+    else if (op == "IG")
+      cin >> x >> y, DQ::push_back(make_pair(safe_mod(x), y));
+    else if (op == "DF")
       DQ::pop_front();
-    else if (op[0] == 'D' && op[1] == 'G')
+    else if (op == "DG")
       DQ::pop_back();
     else
-      printf("%d\n", DQ::query(x, y));
+      cin >> x >> y, cout << DQ::query(x, y) << '\n';
   }
   return 0;
 }

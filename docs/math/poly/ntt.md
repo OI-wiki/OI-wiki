@@ -116,7 +116,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
       putchar(x % 10 + '0');
     }
     
-    const int N = 300100, P = 998244353;
+    constexpr int N = 300100, P = 998244353;
     
     int qpow(int x, int y) {
       int res(1);

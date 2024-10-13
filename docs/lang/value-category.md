@@ -1,117 +1,219 @@
-**注意**：这部分的内容很可能对算法竞赛无用，但如果你希望更深入地理解 C++，写出更高效的代码，那么本文的内容也许会对你有所帮助。
+值类别是 C++ 中一个非常重要的概念，虽然在算法竞赛中可能用处不大，但了解它可以帮助我们发现并避免不必要的复制，从而提高代码的效率和性能。
 
-每个 C++ 表达式都有两个属性：类型 (type) 和值类别 (value category)。前者是大家都熟悉的，但作为算法竞赛选手，很可能完全不知道后者是什么。不管你在不在意，值类别是 C++ 中非常重要的一个概念。
+值类别的概念在 C 语言、C++98、C++11 和 C++17 中经历了多次发展，逐渐成为一个较为复杂的概念。
 
-???+ note "关于名词的翻译"
-    type 和 category 都可以翻译为「类型」或「类别」，但为了区分两者，下文中统一将 type 翻译为「类型」，category 翻译为「类别」。
+## 不必要的复制
 
-## 从 CPL 语言的定义说起
-
-左值与右值的概念最早出现在 C 语言的祖先语言：CPL。
-
-在 CPL 的定义中，lvalue 意为 left-hand side value，即能够出现在赋值运算符（等号）左侧的值，右值的定义亦然。
-
-## C 和 C++11 以前
-
-C 语言沿用了相似的分类方法，但左右值的判断标准已经与赋值运算符无关。在新的定义中，lvalue 意为 locate value，即能进行取地址运算 (`&`) 的值。
-
-可以这么理解：左值是有内存地址的对象，而右值只是一个中间计算结果（虽然编译器往往需要在内存中分配地址来储存这个值，但这个内存地址是无法被程序员感知的，所以可以认为它不存在）。中间计算结果就意味着这个值马上就没用了，以后不会再访问它。
-
-比如在 `int a = 0;` 这段代码中，`a` 就是一个左值，而 `0` 是一个右值。
-
-???+ warning "常见的关于左右值的误解"
-    以下几种类型是经常被误认为右值的左值：
-    
-    -   **字符串字面量**：由于 C++ 兼容 C 风格的字符串，需要能对一个字符串字面量取地址（即头指针）来传参。但是其他的字面量，包括自定义字面量，都是右值。
-    -   **数组**：数组名就是数组首个元素的指针这种说法似乎误导了很多人，但这个说法显然是错误的，对数组进行取地址是可以编译的。数组名可以隐式的退化成首个元素的指针，这才是右值。
-
-## C++11 开始
-
-从 C++11 开始，为了配合移动语义，值的类别就不是左值右值这么简单了。
-
-考虑一个简单的场景：
+我们考虑将字符串塞入 vector 这一过程：
 
 ```cpp
-std::vector<int> a{...};
-std::vector<int> b;
-b = a;
+int main() {
+  std::vector<std::string> vec;
+  vec.reserve(3);
+  for (int i = 0; i < 3; ++i) {
+    std::string str;
+    std::cin >> str;
+    vec.push_back(str);
+  }
+  return 0;
+}
 ```
 
-我们知道第三行的赋值运算复杂度是正比于 `a` 的长度的，复制的开销很大。但有些情况下，比如 `a` 在以后的代码中不会再使用，那么我们完全可以把 `a` 所持有的内存「转移」到 `b` 上，这就是移动语义干的事情。
+可以发现字符串在转移的过程中，在 `str` 和 `vec` 中各保存了一份，内存占用加倍。
 
-我们姑且不管移动是怎么实现的，先来考虑一下我们如何标记 `a` 是可以移动的。显然不管能否移动，这个表达式的类型都是 `vector` 不变，所以只能对值类别下手。不可移动的 `a` 是左值，如果要在原有的体系下标记可以移动的 `a`，我们只能把它标记为右值。但标记为右值又是不合理的，因为这个 `a` 实际上拥有自己的内存地址，与其他右值有有根本上的不同。所以 C++11 引入了 亡值 (xvalue) 这一值类别来标记这一种表达式。
-
-于是我们现在有了三种类别：左值 (lvalue)、纯右值 (prvalue)、亡值 (xvalue)（纯右值就是原先的右值）。
-
-然后我们发现亡值同时具有一些左值和纯右值的性质，比如它可以像左值一样取地址，又像右值一样不会再被访问。
-
-所以又有了两种组合类别：泛左值 (glvalue)（左值和亡值）、右值 (rvalue)（纯右值和亡值）。
-
-有一个初步的感性理解后，来看一下标准委员会对它们的定义：
-
--   A **glvalue**(generalized lvalue) is an expression whose evaluation determines the identity of an object, bit-field, or function.
--   A **prvalue**(pure rvalue) is an expression whose evaluation initializes an object or a bit-field, or computes the value of an operand of an operator, as specified by the context in which it appears, or an expression that has type cv void.
--   An **xvalue**(eXpiring value) is a glvalue that denotes an object or bit-field whose resources can be reused（usually because it is near the end of its lifetime）。
--   An **lvalue** is a glvalue that is not an xvalue.
--   An **rvalue** is a prvalue or an xvalue.
-
-上述定义中提到了一个叫位域 (bit-field) 的东西。如果你不知道位域是什么，忽略它即可，后文也不会提及。
-
-其中关键的两个概念：
-
--   是否拥有身份 (identity)：可以确定表达式是否与另一表达式指代同一实体，例如比较它们所标识的对象或函数的（直接或间接获得的）地址
--   是否可以被移动 (resources can be reused)：对象的资源可以移动到别的对象中
-
-这 5 种类型无非就是根据上面两种属性的是与否区分的，所以用下面的这张表格可以帮助理解：
-
-|             | 拥有身份（glvalue） | 不拥有身份   |
-| ----------- | ------------- | ------- |
-| 可移动（rvalue） | xvalue        | prvalue |
-| 不可移动        | lvalue        | 不存在     |
-
-注意不拥有身份就意味着这个对象以后无法被访问，这样的对象显然是可以被移动的，所以不存在不拥有身份不可移动的值。
-
-## C++17 带来的新变化
-
-从拷贝到移动提升了不少速度，那么我们是否能够优化的更彻底一点，把移动的开销都省去呢？
-
-考虑这样的代码：
+如果非要省下这一部分的内存，我们可以实现一个简陋的移动操作：自定义 `MyString` 结构体，内有一指针指向我们的字符串，即我们只需要把指针复制过去，并小心地清理原对象的指针，防止被错误析构。
 
 ```cpp
-std::vector<int> make_vector(...) {
-  std::vector<int> result;
+struct MyString {
+  char *beg, *end;
   // ...
-  return result;
-}
+};
 
-std::vector<int> a = make_vector(...);
+void move_to(MyString &src, MyString &dst) {
+  dst.beg = src.beg;
+  dst.end = src.end;
+  src.beg = src.end = nullptr;
+}
 ```
 
-`make_vector` 函数根据一输入生成一个 `vector`。这个 `vector` 一开始在 `make_vector` 的栈上被构造，随后又被移动到调用者的栈上，需要一次移动操作，这显然很浪费，能不能省略这次移动？
+由于这种高效转移对象的需求较为常见，且与 C++ 的构造、析构等操作交互困难，C++11 将移动语义引入了语言核心。
 
-答案是肯定的，这就是 RVO 优化，即省略拷贝。通常的方法是编译器让 `make_vector` 返回的对象直接在调用者的栈上构造，然后 `make_vector` 在上面进行修改。这相当与这样的代码：
+## C 语言中的值类别
+
+在 C 语言标准中，对象是一个比变量更为一般化的概念，它指代一块内存区域，具有内存地址。对象的主要属性包括：大小、有效类型、值和标识符。标识符即变量名，值是该内存以其类型解释时的含义。例如，`int` 和 `float` 类型虽然都占用 4 字节，但对于同一块内存，我们会解释出不同的含义。
+
+C 语言中每个表达式都具有类型和值类别。值类别主要分为三类：
+
+-   左值（lvalue）：隐含指代一个对象的表达式。即我们可以对该表达式取地址。
+-   右值（rvalue）：不指代对象的表达式，即指代没有存储位置的值，我们无法取该值的地址。
+-   函数指代符：函数类型的表达式。
+
+因此，只有可修改的左值（没有 `const` 修饰且非数组的左值）可以位于赋值表达式左侧。
+
+对于某个要求右值作为它的操作数的运算符，每当左值被用作操作数，都会对该表达式应用左值到右值，数组到指针，或者函数到指针标准转换以将它转换成右值。
+
+常见误区：
+
+-   右值表达式继续运算可能是左值。例如 `int *a`，表达式 `a + 1` 是右值，但 `*(a + 1)` 是左值。
+-   表达式才有值类别，变量没有。例如 `int *a`，不能说变量 `a` 是左值，可以说其在表达式 `a` 中做左值，
+
+## C++98 中的值类别
+
+C++98 在值类别方面与 C 语言几乎一致，但增加了一些新的规则：
+
+-   函数为左值，因为可以取地址。
+-   左值引用（T&）是左值，因为可以取地址。
+-   仅有 `const T&` 可绑定到右值。
+
+### 复制消除
+
+C++ 允许编译器执行复制消除（Copy Elision），可以减少临时对象的创建和销毁。
+
+例如下面的代码，就触发了复制消除中的返回值优化（Return Value Optimization，RVO），你只会看到一次构造和一次复制构造，即便构造与析构有副作用。
 
 ```cpp
-void make_vector(std::vector<int>& result, ...) {
-  // ... (对 result 进行操作)
+struct X {
+  X() { std::puts("X::X()"); }
+
+  X(const X &) { std::puts("X::X(const X &)"); }
+
+  ~X() { std::puts("X::~X()"); }
+};
+
+X get() {
+  X x;
+  return x;
 }
 
-std::vector<int> a;
-make_vector(a, ...);
+int main() {
+  X x = get();
+  X y = X(X(X(X(x))));
+  return 0;
+}
 ```
 
-在 C++17 以前，尽管标准未做出规定，但主流编译器都实现了这种优化。在 C++17 以后，这种优化成为标准的硬性规定。
+## C++11 中的值类别
 
-回到和移动语义刚被提出时的问题，如何确定一个移动赋值是可以省略的？再引入一种新的值类别？
+C++11 引入了移动语义和右值引用（`T&&`），包括移动构造、移动赋值函数。这给了我们利用临时对象的方法。
 
-不，C++11 的值类别已经够复杂了。我们意识到在 C++11 的标准下，亡值和纯右值都是可以移动的，那么就可以在这两种类别上做文章。
+我们上面的 `move_to` 可以改写如下：
 
-C++17 以后，纯右值不再能移动，但可以隐式地转变为亡值。对于纯右值用于初始化的情况下，可以省略拷贝，而其他不能省略的情况下，隐式转换为亡值进行移动。
+```cpp
+struct MyString {
+  // ...
+  MyString(MyString&& other) {
+    beg = other.beg;
+    end = other.end;
+    other.beg = other.end = nullptr;
+  }
+};
+```
 
-所以在 C++17 之后的值类别，被更为整齐的划分为泛左值与纯右值两大块，右值存在的意义被削弱。这样的改变某种程度上简化了整个值类别体系。
+我们现在关注的表达式特性增加了一点：
+
+-   是否具有身份：是否指代一个对象，即是否有地址。
+-   是否可被移动：是否具有移动构造、移动赋值等函数，让我们有办法利用这些临时对象。
+
+因此我们有三种值类别：
+
+-   有身份，不可移动：左值（lvalue）。
+-   有身份，可被移动：亡值（xvalue）。
+-   无身份，可被移动：纯右值（prvalue）。
+-   无身份，不可移动：此类表达式无法使用。
+
+另外 C++11 还引入了两个复合类别：
+
+-   具有身份：泛左值（glvalue），即左值和亡值。
+-   可被移动：右值（rvalue），即纯右值和亡值。
+
+### std::move
+
+为了配合移动语义，C++11 还引入了一个工具函数 `std::move`，其作用是将左值强制转换为右值，以便触发移动语义。
+
+```cpp
+int main() {
+  std::vector<int> a = {1, 2, 3};
+  std::cout << "a: " << a.data() << std::endl;
+  std::vector<int> b = a;
+  std::cout << "b: " << b.data() << std::endl;
+  std::vector<int> c = std::move(b);
+  std::cout << "c: " << c.data() << std::endl;
+}
+```
+
+因此我们只需将 `push_back(str)` 改为 `push_back(std::move(str))` 即可避免复制。
+
+```cpp
+int main() {
+  std::vector<std::string> vec;
+  vec.reserve(3);
+  for (int i = 0; i < 3; ++i) {
+    std::string str;
+    std::cin >> str;
+    vec.push_back(std::move(str));
+    // 另一种巧妙的写法，需要 C++17
+    // std::cin >> vec.emplace_back();
+  }
+  return 0;
+}
+```
+
+> 由于 `std::string` 有小对象优化（Small String Optimization，SSO），短字符串直接存储于结构体内，你可能得输入较长的字符串才能观察到 `data` 指针的不变性。
+
+## C++17 中的值类别
+
+C++17 进一步简化了值类别：
+
+-   左值（lvalue）：有身份，不可移动。
+-   亡值（xvalue）：有身份，可以移动。
+-   纯右值（prvalue）：对象的初始化。
+
+C++11 将复制消除扩展到了移动上，下面的代码中 `urvo` 在编译器启用 RVO 的情况下是没有移动的。
+
+C++17 要求纯右值非必须不实质化，直接构造到其最终目标的存储中，在构造之前对象尚不存在。因此在 C++17 中我们就没有返回这一步，也就不必依赖 RVO。也可以理解为强制了 URVO（Unnamed RVO），但对于 NRVO（Named RVO）还是非强制的。
+
+```cpp
+std::string urvo() { return std::string("123"); }
+
+std::string nrvo() {
+  std::string s;
+  s = "123";
+  std::cout << s;
+  return s;
+}
+
+int main() {
+  std::string str = urvo();  // 直接构造
+  std::string str = nrvo();  // 不一定直接构造，依赖于优化
+}
+```
+
+同时 C++17 引入了临时量实质化的机制，当我们需要访问成员变量、调用成员函数等需要泛左值的情形时，可以隐式转换为亡值。
+
+### 常见误区
+
+下面的例子中：
+
+-   在 `f1` 中返回 `std::move(x)` 是多余的，并不会带来性能上的提升，反而会干扰编译器进行 NRVO 优化。
+-   在 `f2` 中返回 `std::move(x)` 是危险的，函数返回右值引用指向了已被销毁的局部变量 `s`，出现了悬空引用问题。
+
+```cpp
+std::string f1() {
+  std::string s = "123";
+  // 等价于 return std::string(std::move(s))
+  return std::move(s);
+}
+
+std::string&& f2() {
+  std::string s = "123";
+  return std::move(s);
+}
+```
 
 ## 参考文献与推荐阅读
 
 1.  [Value categories](https://en.cppreference.com/w/cpp/language/value_category)
 2.  [Wording for guaranteed copy elision through simplified value categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html)
 3.  [C++ 中的值类别](https://paul.pub/cpp-value-category/)
+4.  [C++ 的右值引用、移动和值类别系统，你所需要的一切](https://zclll.com/index.php/cpp/value_category.html)
+5.  [Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision)

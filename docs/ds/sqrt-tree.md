@@ -180,7 +180,7 @@ class SqrtTree {
   int n, lg, indexSz;
   vector<SqrtTreeItem> v;
   vector<int> clz, layers, onLayer;
-  vector<vector<SqrtTreeItem> > pref, suf, between;
+  vector<vector<SqrtTreeItem>> pref, suf, between;
 
   void buildBlock(int layer, int l, int r) {
     pref[layer][l] = v[l];
