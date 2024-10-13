@@ -294,7 +294,7 @@ $$
 \sum_{i=0}^m \binom{n}{i}\binom{m}{k-i} = \binom{m+n}{k}\ \ \ (n \geq m)\tag{6}
 $$
 
-拆组合数的式子，在处理某些数据结构题时会用到，被称为[范德蒙恒等式](https://zh.wikipedia.org/wiki/%E8%8C%83%E5%BE%B7%E8%92%99%E6%81%92%E7%AD%89%E5%BC%8F)。
+拆组合数的式子，在处理某些数据结构题时会用到，被称为 [范德蒙恒等式](https://zh.wikipedia.org/wiki/%E8%8C%83%E5%BE%B7%E8%92%99%E6%81%92%E7%AD%89%E5%BC%8F)。
 
 $$
 \sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}\tag{7}
@@ -318,7 +318,7 @@ $$
 \sum_{l=0}^n\binom{l}{k} = \binom{n+1}{k+1}\tag{10}
 $$
 
-通过组合分析一一考虑 $S=\{a_1, a_2, \cdots, a_{n+1}\}$ 的 $k+1$ 子集数可以得证，在恒等式证明中比较常用，被称为[朱世杰恒等式](https://zh.wikipedia.org/wiki/%E6%9C%B1%E4%B8%96%E6%9D%B0%E6%81%92%E7%AD%89%E5%BC%8F)。
+通过组合分析一一考虑 $S=\{a_1, a_2, \cdots, a_{n+1}\}$ 的 $k+1$ 子集数可以得证，在恒等式证明中比较常用，被称为 [朱世杰恒等式](https://zh.wikipedia.org/wiki/%E6%9C%B1%E4%B8%96%E6%9D%B0%E6%81%92%E7%AD%89%E5%BC%8F)。
 
 $$
 \binom{n}{r}\binom{r}{k} = \binom{n}{k}\binom{n-k}{r-k}\tag{11}
@@ -336,7 +336,7 @@ $$
 \binom{n+k}{k}=\sum_{j=0}^k\binom{k}{j}^2\binom{n+2k-j}{2k}\tag{13}
 $$
 
-通过范德蒙恒等式可以证明，被称为[李善兰恒等式](https://zh.wikipedia.org/wiki/%E6%9D%8E%E5%96%84%E5%85%B0%E6%81%92%E7%AD%89%E5%BC%8F)。
+通过范德蒙恒等式可以证明，被称为 [李善兰恒等式](https://zh.wikipedia.org/wiki/%E6%9D%8E%E5%96%84%E5%85%B0%E6%81%92%E7%AD%89%E5%BC%8F)。
 
 ## 二项式反演
 
