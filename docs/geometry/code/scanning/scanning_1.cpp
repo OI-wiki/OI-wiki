@@ -50,7 +50,7 @@ int main() {
     if (a[i] != a[tot - 1]) a[tot++] = a[i];  // 离散化
 
   std::sort(b, b + n * 2,
-      [](St &i, St &j) -> bool { return i.y < j.y; });  // 操作排序
+            [](St &i, St &j) -> bool { return i.y < j.y; });  // 操作排序
 
   ll sum = 0;
   add(f(b[0].x1), f(b[0].x2), 1);
