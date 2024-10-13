@@ -28,8 +28,7 @@ author: littleparrot12345
     ```cpp
     // 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]，使用vector存图
     int d1[N], d2[N], up[N], x, y, mini = 1e9;  // d1,d2对应上文中的len1,len2
-    ```
-
+    
     void dfsd(int cur, int fa) {  // 求取len1和len2
       for (node nxtn : nbr[cur]) {
         int nxt = nxtn.to, w = nxtn.val;  // nxt为这条边通向的节点，val为边权
@@ -46,7 +45,7 @@ author: littleparrot12345
       }
       return;
     }
-
+    
     void dfsu(int cur, int fa) {
       for (node nxtn : nbr[cur]) {
         int nxt = nxtn.to, w = nxtn.val;
@@ -63,7 +62,7 @@ author: littleparrot12345
       }
       return;
     }
-
+    
     void GetTreeCenter() {  // 统计树的中心，记为x和y（若存在）
       dfsd(1, 0);
       dfsu(1, 0);
