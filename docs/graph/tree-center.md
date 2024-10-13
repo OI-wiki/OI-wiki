@@ -23,7 +23,8 @@ author: littleparrot12345
 2.  维护 $len2_x$，表示不与 $len1_x$ 重叠的最长链。
 3.  维护 $up_x$，表示节点 $x$ 子树外的最长链，该链必定经过 $x$ 的父节点。
 4.  找到点 $x$ 使得 $\max(len1_x, up_x)$ 最小，那么 $x$ 即为树的中心。
-    ???+ note "参考代码"
+
+???+ note "参考代码"
     ```cpp
     // 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]，使用vector存图
     int d1[N], d2[N], up[N], x, y, mini = 1e9;  // d1,d2对应上文中的len1,len2
