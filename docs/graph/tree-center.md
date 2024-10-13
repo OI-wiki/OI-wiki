@@ -30,10 +30,12 @@ author: littleparrot12345
     int d1[N], d2[N], up[N], x, y, mini = 1e9;  // d1,d2对应上文中的len1,len2
     
     struct node {
-      int to, val; //to为边指向的节点，val为边权
+      int to, val;  // to为边指向的节点，val为边权
     }
     
-    vector<node> nbr[N];
+    vector<node>
+        nbr[N];
+    ```
 
     void dfsd(int cur, int fa) {  // 求取len1和len2
       for (node nxtn : nbr[cur]) {
@@ -50,7 +52,7 @@ author: littleparrot12345
         }
       }
     }
-    
+
     void dfsu(int cur, int fa) {
       for (node nxtn : nbr[cur]) {
         int nxt = nxtn.to, w = nxtn.val;
@@ -66,7 +68,7 @@ author: littleparrot12345
         dfsu(nxt, cur);
       }
     }
-    
+
     void GetTreeCenter() {  // 统计树的中心，记为x和y（若存在）
       dfsd(1, 0);
       dfsu(1, 0);
