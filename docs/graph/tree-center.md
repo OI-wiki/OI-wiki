@@ -28,6 +28,7 @@ author: littleparrot12345
     ```cpp
     // 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]，使用vector存图
     int d1[N], d2[N], up[N], x, y, mini = 1e9;  // d1,d2对应上文中的len1,len2
+    ```
 
     void dfsd(int cur, int fa) {  // 求取len1和len2
       for (node nxtn : nbr[cur]) {
