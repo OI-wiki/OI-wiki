@@ -291,16 +291,16 @@ $$
 二项式定理的另一种特殊情况，可取 $a=1, b=-1$。式子的特殊情况是取 $n=0$ 时答案为 $1$。
 
 $$
-\sum_{i=0}^m \binom{n}{i}\binom{m}{m-i} = \binom{m+n}{m}\ \ \ (n \geq m)\tag{6}
+\sum_{i=0}^m \binom{n}{i}\binom{m}{k-i} = \binom{m+n}{k}\tag{6}
 $$
 
-拆组合数的式子，在处理某些数据结构题时会用到。
+拆组合数的式子，在处理某些数据结构题时会用到。被称为 [范德蒙恒等式](https://en.wikipedia.org/wiki/Vandermonde%27s_identity)。
 
 $$
 \sum_{i=0}^n\binom{n}{i}^2=\binom{2n}{n}\tag{7}
 $$
 
-这是 $(6)$ 的特殊情况，取 $n=m$ 即可。
+这是 $(6)$ 的特殊情况，取 $n=k=m$ 即可。
 
 $$
 \sum_{i=0}^ni\binom{n}{i}=n2^{n-1}\tag{8}
@@ -318,7 +318,7 @@ $$
 \sum_{l=0}^n\binom{l}{k} = \binom{n+1}{k+1}\tag{10}
 $$
 
-通过组合分析一一考虑 $S=\{a_1, a_2, \cdots, a_{n+1}\}$ 的 $k+1$ 子集数可以得证，在恒等式证明中比较常用。
+通过组合分析一一考虑 $S=\{a_1, a_2, \cdots, a_{n+1}\}$ 的 $k+1$ 子集数可以得证，在恒等式证明中比较常用。被称为 [朱世杰恒等式](https://en.wikipedia.org/wiki/Hockey-stick_identity)。
 
 $$
 \binom{n}{r}\binom{r}{k} = \binom{n}{k}\binom{n-k}{r-k}\tag{11}
@@ -331,6 +331,12 @@ $$
 $$
 
 其中 $F$ 是斐波那契数列。
+
+$$
+\binom{n+k}{k}^2=\sum_{j=0}^k\binom{k}{j}^2\binom{n+2k-j}{2k}\tag{13}
+$$
+
+通过 $(6)$ 可以证明。被称为 [李善兰恒等式](https://en.wikipedia.org/wiki/Li_Shanlan_identity)。
 
 ## 二项式反演
 
