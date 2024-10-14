@@ -12,7 +12,7 @@
 
 === "C++"
     ```cpp
-    bool isPrime(a) {
+    bool isPrime(int a) {
       if (a < 2) return false;
       for (int i = 2; i < a; ++i)
         if (a % i == 0) return false;
@@ -41,9 +41,9 @@
 
 === "C++"
     ```cpp
-    bool isPrime(a) {
+    bool isPrime(int a) {
       if (a < 2) return 0;
-      for (int i = 2; i * i <= a; ++i)
+      for (int i = 2; (long long)i * i <= a; ++i)  // 防溢出
         if (a % i == 0) return 0;
       return 1;
     }
