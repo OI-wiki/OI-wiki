@@ -36,12 +36,12 @@
 
 需要 [离散化](../misc/discrete.md)。
 
-???+ note "[洛谷 P5490【模板】扫描线 & 矩形面积并](https://www.luogu.com.cn/problem/P5490) 参考代码 "
+??? note "[洛谷 P5490【模板】扫描线 & 矩形面积并](https://www.luogu.com.cn/problem/P5490) 参考代码 "
     ```cpp
     --8<-- "docs/geometry/code/scanning/scanning_1.cpp"
     ```
 
-???+ note "[「POJ 1151」Atlantis](http://poj.org/problem?id=1151) 参考代码 "
+??? note "[「POJ 1151」Atlantis](http://poj.org/problem?id=1151) 参考代码 "
     ```cpp
     --8<-- "docs/geometry/code/scanning/scanning_2.cpp"
     ```
@@ -87,7 +87,7 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
     
     ??? note "代码"
         ```cpp
-        --8<-- "docs/geometry/code/scanning/scanning_2.cpp"
+        --8<-- "docs/geometry/code/scanning/scanning_3.cpp"
         ```
 
 ???+ note "[洛谷 P1908 逆序对](https://www.luogu.com.cn/problem/P1908)"
@@ -95,7 +95,7 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
     
     ??? note "代码"
         ```cpp
-        --8<-- "docs/geometry/code/scanning/scanning_3.cpp"
+        --8<-- "docs/geometry/code/scanning/scanning_4.cpp"
         ```
 
 ???+ note "[洛谷 P1972 \[SDOI2009\] HH 的项链](https://www.luogu.com.cn/problem/P1972)"
@@ -115,7 +115,7 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
     
     ??? note "代码"
         ```cpp
-        --8<-- "docs/geometry/code/scanning/scanning_4.cpp"
+        --8<-- "docs/geometry/code/scanning/scanning_5.cpp"
         ```
 
 ### 练习
