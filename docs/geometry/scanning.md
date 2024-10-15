@@ -36,12 +36,12 @@
 
 需要 [离散化](../misc/discrete.md)。
 
-???+ note "[洛谷 P5490【模板】扫描线 & 矩形面积并](https://www.luogu.com.cn/problem/P5490) 参考代码"
+???+ note "[洛谷 P5490【模板】扫描线 & 矩形面积并](https://www.luogu.com.cn/problem/P5490) 参考代码 "
     ```cpp
     --8<-- "docs/geometry/code/scanning/scanning_1.cpp"
     ```
 
-???+ note "[「POJ 1151」Atlantis](http://poj.org/problem?id=1151) 参考代码"
+???+ note "[「POJ 1151」Atlantis](http://poj.org/problem?id=1151) 参考代码 "
     ```cpp
     --8<-- "docs/geometry/code/scanning/scanning_2.cpp"
     ```
