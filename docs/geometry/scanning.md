@@ -132,4 +132,4 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
 -   [cnblogs/Yang1208：扫描线讲解，动态开点版线段树](https://www.cnblogs.com/yangsongyi/p/8378629.html)
 -   [csdn/riba2534：POJ1151 Atlantis 题解](https://blog.csdn.net/riba2534/article/details/76851233)
 -   [csdn/刀刀狗 0102：POJ1151 Atlantis 题解](https://blog.csdn.net/winddreams/article/details/38495093)
--   已失效链接：<https://dregen-yor.cf/2022/10/01/sao-miao-xian>
+-   [浅谈扫描线](https://www.luogu.com.cn/article/f8q5bmnz)
