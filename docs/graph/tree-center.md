@@ -95,7 +95,7 @@ author: littleparrot12345
 ```
 
 -   树的直径为 $D \rightarrow B \rightarrow A \rightarrow C \rightarrow F$。直径长度为 $4$。
--   树的中心为节点 $A$，因为从 $A$ 出发的最长链（到 $D$ 或 $F$）均为 $3$。
+-   树的中心为节点 $A$，因为从 $A$ 出发的最长链（到 $D$ 或 $F$）均为 $2$。
 -   如果将 $B$ 或 $C$ 作为树的根，则从这些节点出发的最长链将增加，因此它们不是树的中心。
 
 ### 时间复杂度
