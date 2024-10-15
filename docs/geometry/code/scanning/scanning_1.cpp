@@ -1,9 +1,8 @@
-// Luogu P5490 [模板] 扫描线 矩形面积并
 #include <algorithm>
 #include <iostream>
 
 using ll = long long;
-const int N = 1e5 + 1;
+constexpr int N = 1e5 + 1;
 
 int n, a[N * 2], tot;   // a[] 和 tot 用于把 x 离散化
 ll v[N * 8], w[N * 8];  // 完全覆盖区间的次数、已覆盖的长度

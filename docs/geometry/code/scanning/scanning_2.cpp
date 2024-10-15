@@ -1,88 +1,91 @@
 #include <algorithm>
-#include <iostream>
+#include <cstdio>
+#include <cstring>
+constexpr int MAXN = 300;
+using namespace std;
 
-int n, m;
-int x[500010], y[500010], ans[500010];
-int ax[1500010], ay[1500010], tx, ty;  // 离散化
+int lazy[MAXN << 3];  // 标记了这条线段出现的次数
+double s[MAXN << 3];
 
-struct query {
-  int a, b, c, d;
-} q[500010];  // 保存查询操作方便离散化
+struct node1 {
+  double l, r;
+  double sum;
+} cl[MAXN << 3];  // 线段树
 
-struct ope {
-  int type, x, y, id;
+struct node2 {
+  double x, y1, y2;
+  int flag;
+} p[MAXN << 3];  // 坐标
 
-  ope(int type = 0, int x = 0, int y = 0, int id = 0) {
-    this->type = type, this->x = x, this->y = y, this->id = id;
-  }
+// 定义sort比较
+bool cmp(node2 a, node2 b) { return a.x < b.x; }
 
-  bool operator<(const ope& rhs) const {
-    if (x == rhs.x) return type < rhs.type;
-    return x < rhs.x;
-  }
-};
-
-ope op[2500010];
-int tot;  // 操作总数
-
-int sum[1500010];  // 树状数组
-
-int lowbit(int x) { return x & (-x); }
-
-void add(int x, int k) {
-  while (x <= 1500000) {
-    sum[x] = sum[x] + k;
-    x = x + lowbit(x);
-  }
+// 上传
+void pushup(int rt) {
+  if (lazy[rt] > 0)
+    cl[rt].sum = cl[rt].r - cl[rt].l;
+  else
+    cl[rt].sum = cl[rt * 2].sum + cl[rt * 2 + 1].sum;
 }
 
-int getsum(int x) {
-  int ret = 0;
-  while (x > 0) {
-    ret = ret + sum[x];
-    x = x - lowbit(x);
+// 建树
+void build(int rt, int l, int r) {
+  if (r - l > 1) {
+    cl[rt].l = s[l];
+    cl[rt].r = s[r];
+    build(rt * 2, l, (l + r) / 2);
+    build(rt * 2 + 1, (l + r) / 2, r);
+    pushup(rt);
+  } else {
+    cl[rt].l = s[l];
+    cl[rt].r = s[r];
+    cl[rt].sum = 0;
   }
-  return ret;
+  return;
 }
 
-using std::cin;
-using std::cout;
+// 更新
+void update(int rt, double y1, double y2, int flag) {
+  if (cl[rt].l == y1 && cl[rt].r == y2) {
+    lazy[rt] += flag;
+    pushup(rt);
+    return;
+  } else {
+    if (cl[rt * 2].r > y1) update(rt * 2, y1, min(cl[rt * 2].r, y2), flag);
+    if (cl[rt * 2 + 1].l < y2)
+      update(rt * 2 + 1, max(cl[rt * 2 + 1].l, y1), y2, flag);
+    pushup(rt);
+  }
+}
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  cin >> n >> m, tx = n, ty = n;
-  for (int i = 1; i <= n; i++) cin >> x[i] >> y[i], ax[i] = x[i], ay[i] = y[i];
-  for (int i = 1, l, r; i <= m; i++) {
-    cin >> q[i].a >> q[i].b >> q[i].c >> q[i].d;
-    ax[++tx] = q[i].a, ay[++ty] = q[i].b, ax[++tx] = q[i].c, ay[++ty] = q[i].d;
+  int temp = 1, n;
+  double x1, y1, x2, y2, ans;
+  while (scanf("%d", &n) && n) {
+    ans = 0;
+    for (int i = 0; i < n; i++) {
+      scanf("%lf %lf %lf %lf", &x1, &y1, &x2, &y2);
+      p[i].x = x1;
+      p[i].y1 = y1;
+      p[i].y2 = y2;
+      p[i].flag = 1;
+      p[i + n].x = x2;
+      p[i + n].y1 = y1;
+      p[i + n].y2 = y2;
+      p[i + n].flag = -1;
+      s[i + 1] = y1;
+      s[i + n + 1] = y2;
+    }
+    sort(s + 1, s + (2 * n + 1));  // 离散化
+    sort(p, p + 2 * n, cmp);  // 把矩形的边的横坐标从小到大排序
+    build(1, 1, 2 * n);       // 建树
+    memset(lazy, 0, sizeof(lazy));
+    update(1, p[0].y1, p[0].y2, p[0].flag);
+    for (int i = 1; i < 2 * n; i++) {
+      ans += (p[i].x - p[i - 1].x) * cl[1].sum;
+      update(1, p[i].y1, p[i].y2, p[i].flag);
+    }
+    printf("Test case #%d\nTotal explored area: %.2lf\n\n", temp++, ans);
   }
-  std::sort(ax + 1, ax + tx + 1), std::sort(ay + 1, ay + ty + 1);
-  tx = std::unique(ax + 1, ax + tx + 1) - ax - 1;
-  ty = std::unique(ay + 1, ay + ty + 1) - ay - 1;
-  for (int i = 1; i <= n; i++) {
-    x[i] = std::lower_bound(ax + 1, ax + tx + 1, x[i]) - ax;
-    y[i] = std::lower_bound(ay + 1, ay + ty + 1, y[i]) - ay;
-    op[++tot] = ope(0, x[i], y[i], i);  // 加点操作
-  }
-  for (int i = 1; i <= m; i++) {
-    q[i].a = std::lower_bound(ax + 1, ax + tx + 1, q[i].a) - ax;
-    q[i].b = std::lower_bound(ay + 1, ay + ty + 1, q[i].b) - ay;
-    q[i].c = std::lower_bound(ax + 1, ax + tx + 1, q[i].c) - ax;
-    q[i].d = std::lower_bound(ay + 1, ay + ty + 1, q[i].d) - ay;
-    op[++tot] = ope(1, q[i].c, q[i].d, i);  // 将查询差分
-    op[++tot] = ope(1, q[i].a - 1, q[i].b - 1, i);
-    op[++tot] = ope(2, q[i].a - 1, q[i].d, i);
-    op[++tot] = ope(2, q[i].c, q[i].b - 1, i);
-  }
-  std::sort(op + 1, op + tot + 1);  // 将操作按横坐标排序，且优先执行加点操作
-  for (int i = 1; i <= tot; i++) {
-    if (op[i].type == 0)
-      add(op[i].y, 1);
-    else if (op[i].type == 1)
-      ans[op[i].id] += getsum(op[i].y);
-    else
-      ans[op[i].id] -= getsum(op[i].y);
-  }
-  for (int i = 1; i <= m; i++) cout << ans[i] << '\n';
   return 0;
 }
