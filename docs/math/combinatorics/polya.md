@@ -360,8 +360,8 @@ $$
 $$
 Z(D_{2n})=\frac12Z(C_n)+
 \begin{cases}
-\frac12t_1t_2^k,&n=2k+1,\\
-\frac14\left(t_1^2t_2^{k-1}+t_2^k\right),&n=2k.
+\dfrac12t_1t_2^k,&n=2k+1,\\
+\dfrac14\left(t_1^2t_2^{k-1}+t_2^k\right),&n=2k.
 \end{cases}
 $$
 
