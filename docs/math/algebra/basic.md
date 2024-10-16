@@ -19,7 +19,7 @@
     2.  有单位元：存在 $e\in G$，使得对于任意 $a\in G$，都成立 $a\cdot e = e\cdot a = a$。这里，$e$ 称为 $G$ 的 **单位元**（identity element），也称幺元。
     3.  存在逆元：对于所有 $a\in G$，都存在相应的 $b\in G$ 使得 $a\cdot b=b\cdot a=e$。这里，$b$ 称为 $a$ 的 **逆元**（inverse element）。
 
-???+ info "关于定义中的封闭性条件"
+??? info "关于定义中的封闭性条件"
     这里的二元运算就隐含了所谓的封闭性条件，即给定任何 $a,b\in G$，都有 $a\cdot b\in G$。有些文章会将其单独列出。
 
 群相当常见。通俗地说，所有不损失结构的变换都自动构成群。以常见的几种类型的群为例。
@@ -240,6 +240,8 @@
     这里提到的热带半环以及上面的矩阵运算其实并不罕见。如果将上文中的 $\max$ 换作 $\min$，则相应的热带半环常用于最短路问题中。如果 $n$ 维方阵 $A$ 给出了顶点数目为 $n$ 的某个图的两点间的（最短）边权，那么，$A^k$ 的 $(i,j)$ 处的元素就是自点 $i$ 经至多 $k$ 条边到点 $j$ 的最短距离；特别地，$A^n$ 就是该图的距离矩阵。当然实际实现的时候并不会真的暴力计算这一矩阵的幂，而是使用复杂度为 $O(n^3)$ 的 Floyd 算法。
 
 ## 参考资料与注释
+
+-   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 
 [^oi-wiki-not-wikipedia]: 因为 [OI Wiki 不是百科全书](https://oi-wiki.org/intro/what-oi-wiki-is-not/#oi-wiki-%E4%B8%8D%E6%98%AF%E7%99%BE%E7%A7%91%E5%85%A8%E4%B9%A6)。
 

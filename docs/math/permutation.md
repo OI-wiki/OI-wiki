@@ -236,6 +236,6 @@ $$
 
 置换的型在 [Pólya 计数](./combinatorics/polya.md) 中有重要作用。
 
-## 参考文献与注释
+## 参考资料与注释
 
 -   [置换 - 维基百科](https://en.wikipedia.org/wiki/Permutation)
