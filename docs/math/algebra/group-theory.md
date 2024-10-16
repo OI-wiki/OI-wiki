@@ -421,7 +421,7 @@ $$
 ???+ abstract "Sylow $p$‑子群 "
     给定群 $G$ 和它的子群 $P\le G$，则称 $P$ 为 **Sylow $p$‑子群**（Sylow $p$-subgroup），如果 $|G|=p^\alpha m$ 且 $p$ 不能整除 $m$，且 $|P|=p^\alpha$。
 
-也就是说，Sylow $p$‑子群是极大的 $p$‑子群。Sylow 定理断言了 Sylow $p$- 子群的存在性，这提供了 Lagrange 定理的一定程度的逆命题。
+也就是说，Sylow $p$‑子群是极大的 $p$‑子群。Sylow 定理断言了 Sylow $p$‑子群的存在性，这提供了 Lagrange 定理的一定程度的逆命题。
 
 ???+ note "Sylow 定理"
     给定有限群 $G$，且 $|G|=p^\alpha m$，这里，$p$ 是质数且 $p$ 不能整除 $m$，那么有如下结论：

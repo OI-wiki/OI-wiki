@@ -12,7 +12,7 @@
     在不引起歧义时，本文可能会省略掉环的乘法记号，并且会将环 $(R,+,\cdot)$ 写作环 $R$。
 
 ??? info "本文环不要求有幺元"
-    注意，本文的环的定义不要求含幺。
+    注意，本文的环的定义不要求含幺。因而，理想可以成为子环。有些文章强制要求环的定义含幺，本文部分结论的叙述需要稍作调整。
 
 ## 理想
 
@@ -553,6 +553,8 @@ $$
     R/(I_1\cdots I_n)=R/(I_1\cap\cdots\cap I_n)\cong R/I_1\times\cdots\times R/I_n.
     $$
 
+### 应用：Lagrange 插值公式
+
 ### 应用：整数剩余系的乘法群
 
 相关阅读：[原根](../number-theory/primitive-root.md)
@@ -642,7 +644,7 @@ $$
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 -   [Quadratic integer - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_integer)
 -   [Formal power series - Wikipedia](https://en.wikipedia.org/wiki/Formal_power_series)
--   [Multiplicative group of integers modulo $n$](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)
+-   [Multiplicative group of integers modulo $n$ - Wikipedia](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)
 
 [^ideal-history]: <https://en.wikipedia.org/wiki/Ideal_(ring_theory)#History>
 
