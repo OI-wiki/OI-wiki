@@ -489,13 +489,13 @@ $$
 -   [Luogu P2561 \[AHOI2002\] 黑白瓷砖](https://www.luogu.com.cn/problem/P2561)
 -   [TRANSP - Transposing is Fun](https://www.spoj.com/problems/TRANSP/)
 -   [TRANSP2 - Transposing is Even More Fun](https://www.spoj.com/problems/TRANSP2/)
--   [Luogu P3307 [SDOI2013] 项链](https://www.luogu.com.cn/problem/P3307)
+-   [Luogu P3307 \[SDOI2013\] 项链](https://www.luogu.com.cn/problem/P3307)
 
 当可以使用的颜色组合受到限制时，需要通过背包 DP 或者组合方法求解对轮换染色的方法数目。
 
 -   [Luogu P1446 \[HNOI2008\] Cards](https://www.luogu.com.cn/problem/P1446)
 -   [UVA10601 Cubes](https://vjudge.net/problem/UVA-10601)
--   [Luogu P4916 [MtOI2018] 魔力环](https://www.luogu.com.cn/problem/P4916)
+-   [Luogu P4916 \[MtOI2018\] 魔力环](https://www.luogu.com.cn/problem/P4916)
 
 ### 图论计数
 
