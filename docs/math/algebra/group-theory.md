@@ -483,8 +483,8 @@ $$
 
     特别地，$r$ 是唯一确定的，称为群 $G$ 的 **阶**（rank），而且
 
-        -   可以选取整数 $n_1,\cdots,n_s$ 使其满足 $n_1\ge2,\ n_1|n_2,\ \cdots,\ n_{s-1}|n_s$，此时，整数 $n_1,\cdots,n_s$ 唯一确定，因子 $\mathbf Z_{n_i}$ 称为群 $G$ 的 **不变因子**（invariant factor）；
-        -   也可以选取整数 $n_1,\cdots,n_s$ 使其都是素数幂的形式，此时，这些素数幂也都唯一确定，因子 $\mathbf Z_{n_i}$ 称为群 $G$ 的 **初等因子**（elementary divisor）。
+    -   可以选取整数 $n_1,\cdots,n_s$ 使其满足 $n_1\ge2,\ n_1|n_2,\ \cdots,\ n_{s-1}|n_s$，此时，整数 $n_1,\cdots,n_s$ 唯一确定，因子 $\mathbf Z_{n_i}$ 称为群 $G$ 的 **不变因子**（invariant factor）；
+    -   也可以选取整数 $n_1,\cdots,n_s$ 使其都是素数幂的形式，此时，这些素数幂也都唯一确定，因子 $\mathbf Z_{n_i}$ 称为群 $G$ 的 **初等因子**（elementary divisor）。
 
 定理首先断言，有限生成的 Abel 群一定是有限多个循环群的直积。当然，循环群可能是无限阶的或是有限阶的，它们分别是上述分解的 $\mathbf Z$ 部分和 $\mathbf Z_{n_i}$ 部分。然后，定理给出了有限阶循环群 $\mathbf Z_n$ 的结构。定理的初等因子分解的部分其实依赖于如下观察。
 
