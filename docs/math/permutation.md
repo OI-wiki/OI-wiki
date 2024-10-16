@@ -238,4 +238,4 @@ $$
 
 ## 参考资料与注释
 
--   [置换 - 维基百科](https://en.wikipedia.org/wiki/Permutation)
+-   [Permutation - Wikipedia](https://en.wikipedia.org/wiki/Permutation)

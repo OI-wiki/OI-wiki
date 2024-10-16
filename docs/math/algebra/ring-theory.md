@@ -383,7 +383,7 @@ $$
 
 ## 多项式环
 
-相关阅读：[多项式技术的基本介绍](../poly/intro.md)
+相关阅读：[多项式技术简介](../poly/intro.md)
 
 在算法竞赛中，时常会遇到多项式的各种运算。多项式的乘法、取逆、取余等运算可以看作数的运算在多项式环上的推广。利用抽象代数的语言，可以更快地理解多项式环上相关运算的性质。
 
@@ -444,7 +444,7 @@ $$
 
 这里设 $\deg 0 = -\infty$。所以，多项式环中的可逆元也一定是它的常数多项式中的那些可逆元。任何一次及以上的多项式都不是可逆的。
 
-在如下的讨论中，本文将仅限于讨论整环上的多项式。
+如下的讨论将仅限于整环上的多项式。
 
 ### 域上的多项式环
 
@@ -487,9 +487,9 @@ $$
 
 这里的 $\mathbf Z[x]$ 提供了唯一分解整环不一定是主理想整环的例子。例如，在 $\mathbf Z[x]$ 中，$(2,x)$ 并不是主理想。
 
-### 多元多项式环
-
 有很多方法可以将多项式环推广到更大的集合。
+
+### 多元多项式环
 
 首先，多项式环可以推广到含有多个不定元的情形。给定交换幺环 $R$，可以定义 $R$ 上的多项式环，即一元多项式环 $R[x]$。进而，可以定义 $R[x]$ 上的多项式环 $R[x][y]$，它可以看作是 $R$ 上的二元多项式环 $R[x,y]$。由此，可以归纳地定义 $R$ 上的 $k$ 元多项式环 $R[x_1,\cdots,x_k]$。当 $R$ 是整环的时候，它上面的任意多元多项式环都是整环；类似地，唯一分解整环的性质也可以传递到任意多元多项式环。
 
@@ -640,6 +640,9 @@ $$
 ## 参考资料和注释
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+-   [Quadratic integer - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_integer)
+-   [Formal power series - Wikipedia](https://en.wikipedia.org/wiki/Formal_power_series)
+-   [Multiplicative group of integers modulo $n$](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)
 
 [^ideal-history]: <https://en.wikipedia.org/wiki/Ideal_(ring_theory)#History>
 

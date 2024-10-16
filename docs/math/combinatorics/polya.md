@@ -512,6 +512,10 @@ Pólya 计数原理可以用于 [图论计数](../combinatorics/graph-enumeratio
 
 ## 参考文献与注释
 
+-   [Pólya enumeration theorem - Wikipedia](https://en.wikipedia.org/wiki/P%C3%B3lya_enumeration_theorem)
+-   [Notes on Pólya's Enumeration Theorem](https://www.diva-portal.org/smash/get/diva2:324594/FULLTEXT01.pdf)
+-   [Cycle index - Wikipedia](https://en.wikipedia.org/wiki/Cycle_index)
+
 [^perm-group]: 因此，空间对称群 $G$ 可以看作是集合 $X$ 上的置换群（permutation group），即对称群 $S_X$ 的子群。
 
 [^g-act]: 严格来说，是子群 $\langle g\rangle\le G$ 的作用。
