@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+// A simple BIT implementation.
 class BIT {
   int n;
   std::vector<int> su;
