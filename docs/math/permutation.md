@@ -230,7 +230,7 @@ $$
 ??? note "分析"
     这是因为，给定任何 $1\sim n$ 的排列，都可以按照置换的型分割成相应的轮换分解。但是，长度相同的轮换之间的顺序并不影响置换，所以总数需要除以 $\prod_k\alpha_k!$。另外，同一轮换内部实际是圆排列，起点的选取也不影响置换，所以需要除以 $\prod_kk^{\alpha_k}$。这就得到上式。
 
-如果仅仅给定置换分解成的轮换个数 $c(\sigma)$，则不同的置换的数目为 [第一类斯特林数](./combinatorics/stirling.md#第一类斯特林数stirling-number) $\begin{bmatrix}n\\ k\end{bmatrix}$。不同的型的个数为置换长度 $n$ 的 [分拆数](./combinatorics/partition.md) $p_n$。
+如果仅仅给定置换分解成的轮换个数 $c(\sigma)$，则不同的置换的数目为 [第一类斯特林数](./combinatorics/stirling.md#第一类斯特林数stirling-number) $\begin{bmatrix}n\\ k\end{bmatrix}$。不同的型的个数为置换长度 $n$ 的 [分拆数](./combinatorics/partition.md)  $p_n$。
 
 从置换的型，可以方便地确定置换的阶和奇偶性等性质。
 
