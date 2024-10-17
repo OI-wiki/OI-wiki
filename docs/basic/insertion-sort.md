@@ -41,29 +41,12 @@ $$
 
 === "C++"
     ```cpp
-    void insertion_sort(int arr[], int len) {
-      for (int i = 1; i < len; ++i) {
-        int key = arr[i];
-        int j = i - 1;
-        while (j >= 0 && arr[j] > key) {
-          arr[j + 1] = arr[j];
-          j--;
-        }
-        arr[j + 1] = key;
-      }
-    }
+    --8<-- "docs/basic/code/insertion-sort/insertion-sort_1.cpp"
     ```
 
 === "Python"
     ```python
-    def insertion_sort(arr, n):
-        for i in range(1, n):
-            key = arr[i]
-            j = i - 1
-            while j >= 0 and arr[j] > key:
-                arr[j + 1] = arr[j]
-                j = j - 1
-            arr[j + 1] = key
+    --8<-- "docs/basic/code/insertion-sort/insertion-sort_1.py"
     ```
 
 ## 折半插入排序
