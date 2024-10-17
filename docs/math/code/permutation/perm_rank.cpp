@@ -33,12 +33,12 @@ int find_rank(const std::vector<int>& nums) {
   int res = 0;
   // Reverse iteration.
   for (int i = n - 1; i >= 0; --i) {
-	// Count the number of elements smaller than the current one.
-	res += bit.query(nums[i] - 1)*fac;
-	// Insert the current element into the BIT.
-	bit.add(nums[i], 1);
-	// Update the factorial.
-	fac *= n - i;
+    // Count the number of elements smaller than the current one.
+    res += bit.query(nums[i] - 1) * fac;
+    // Insert the current element into the BIT.
+    bit.add(nums[i], 1);
+    // Update the factorial.
+    fac *= n - i;
   }
   return res + 1;
 }
