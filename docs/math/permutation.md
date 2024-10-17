@@ -1,3 +1,5 @@
+author: 2008verser, aofall, CoelacanthusHex, Early0v0, Great-designer, Marcythm, Persdre, shuzhouliu, Tiphereth-A, Enter-tainer, gavinliu266, gi-b716, hjsjhn, Ir1d, MegaOwIer, wjy-yy, c-forrest
+
 置换和排列是各类问题中都很常见的概念。
 
 ??? info "本文讨论的不是排列数"
