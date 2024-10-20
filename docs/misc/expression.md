@@ -1,4 +1,4 @@
-author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO, c8ef
+author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO, c8ef, FuSiYu666
 
 表达式求值要解决的问题一般是输入一个字符串表示的表达式，要求输出它的值。当然也有变种比如表达式中是否包含括号，指数运算，含多少变量，判断多个表达式是否等价，等等。
 
@@ -180,7 +180,7 @@ while (!op.empty() &&
     bool is_unary(char c) { return c == '+' || c == '-'; }
     
     int priority(char op) {
-      if (op < 0)  // unary operator
+      if (op < 0)  // 一元运算符
         return 3;
       if (op == '+' || op == '-') return 1;
       if (op == '*' || op == '/') return 2;
