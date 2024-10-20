@@ -90,7 +90,7 @@
 
 其次对于递归情况 $i^{-1}$，我们令 $k = \lfloor \frac{p}{i} \rfloor$，$j = p \bmod i$，有 $p = ki + j$。再放到 $\mod p$ 意义下就会得到：$ki+j \equiv 0 \pmod p$；
 
-当 $p$ 为质数，可知 $j$ 在模 $p$ 意义下的乘法逆元必定存在。这时在上式 $ki+j \equiv 0 \pmod p$ 的两边同时乘 $i^{-1} \times j^{-1}$：
+当 $p$ 为质数时，可知 $j$ 在模 $p$ 意义下的乘法逆元必定存在。这时在上式 $ki+j \equiv 0 \pmod p$ 的两边同时乘 $i^{-1} \times j^{-1}$：
 
 $kj^{-1}+i^{-1} \equiv 0 \pmod p$
 
