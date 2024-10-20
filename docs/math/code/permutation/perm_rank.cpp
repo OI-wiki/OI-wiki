@@ -27,11 +27,11 @@ class BIT {
 };
 
 // Get the rank of a permutation of 1~n.
-int find_rank(const std::vector<int>& nums) {
+long long find_rank(const std::vector<int>& nums) {
   int n = nums.size();
   BIT bit(n);
-  int fac = 1;
-  int res = 0;
+  long long fac = 1;
+  long long res = 0;
   // Reverse iteration.
   for (int i = n - 1; i >= 0; --i) {
     // Count the number of elements smaller than the current one.

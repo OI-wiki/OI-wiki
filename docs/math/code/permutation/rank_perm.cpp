@@ -40,7 +40,7 @@ class BIT {
 };
 
 // Find the k-th permutation of 1~n.
-std::vector<int> find_permutation(int n, int k) {
+std::vector<int> find_permutation(int n, long long k) {
   --k;
   // Expand rank to Lehmer code.
   std::vector<int> lehmer(n);
@@ -62,7 +62,7 @@ std::vector<int> find_permutation(int n, int k) {
 }
 
 int main() {
-  int n, k;
+  int n; long long k;
   std::cin >> n >> k;
   auto res = find_permutation(n, k);
   for (int num : res) {
