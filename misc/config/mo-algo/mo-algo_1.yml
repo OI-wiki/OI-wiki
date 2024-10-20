@@ -1,0 +1,10 @@
+id: oi-wiki:misc/mo-algo-1
+name: Mo Algo
+solution:
+  cpp: docs/misc/code/mo-algo/mo-algo_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/examples/mo-algo/mo-algo_1.ans
+  input: docs/misc/examples/mo-algo/mo-algo_1.in
+version: 1000

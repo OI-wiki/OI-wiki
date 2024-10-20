@@ -1,0 +1,10 @@
+id: oi-wiki:basic/prefix-sum-3
+name: Prefix-Sum Algorithm
+solution:
+  cpp: docs/basic/code/prefix-sum/prefix-sum_3.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/basic/examples/prefix-sum/prefix-sum_3.ans
+  input: docs/basic/examples/prefix-sum/prefix-sum_3.in
+version: 1000
