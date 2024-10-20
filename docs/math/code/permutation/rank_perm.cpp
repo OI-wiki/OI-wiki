@@ -62,7 +62,8 @@ std::vector<int> find_permutation(int n, long long k) {
 }
 
 int main() {
-  int n; long long k;
+  int n;
+  long long k;
   std::cin >> n >> k;
   auto res = find_permutation(n, k);
   for (int num : res) {
