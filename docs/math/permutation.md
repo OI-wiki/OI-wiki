@@ -212,7 +212,7 @@ $$
 置换的 **阶**（order）是指满足如下条件的最小正整数 $a$：重复该置换 $a$ 次后，所有元素都回到了原位。即
 
 $$
-\operatorname{ord}\sigma=\min\{a\in\mathbf N_+:\sigma^a=\mathrm{Id}\}.
+\operatorname{ord}\sigma=\min\{a\in\mathbf N_+:\sigma^a=(1)\}.
 $$
 
 有限集合上，所有置换的阶都是有限的。这意味着，从起始顺序出发，只要重复按照固定模式打乱给定序列，在有限时间内，总可以将排列恢复原样。
