@@ -10,14 +10,14 @@
 
 一个 **拟阵（Matroid）** 可以表示为 $M = (E, \mathcal{I})$，其中：
 
--   $E$ 是一个有限集，称为 **底集（Ground Set）**。
--   $\mathcal{I}$ 是 $E$ 的子集族，称为 **独立集族（Family of Independent Sets）**，有以下三个性质：
+-   $E$ 是一个有限集，称为 **基础集（Ground Set）**。
+-   $\mathcal{I}$ 是 $E$ 的子集族，称为 **独立集族（Family of Independent Sets）**，其中的集合称为 **独立集（Independent Set）**。有以下三个性质：
 
     -   **非空性**：空集是独立的，即 $\emptyset \in \mathcal{I}$。
 
     -   **遗传性**：独立集的任意子集也是独立集。若 $I \in \mathcal{I}$，则对于任意 $I' \subseteq I$，都有 $I' \in \mathcal{I}$。
 
-    -   **交换性**：若 $I, J \in \mathcal{I}$ 且 $ \vert I \vert < \vert J\vert  $，则存在 $j \in J \setminus I$，使得 $I \cup \{j\} \in \mathcal{I}$。
+    -   **扩张性**：若 $I, J \in \mathcal{I}$ 且 $|I| < |J|$，则存在 $j \in J \setminus I$，使得 $I \cup \{j\} \in \mathcal{I}$。
 
 如果一个形如 $(E, \mathcal{I})$ 的结构满足上述三个性质，则称其为一个拟阵。
 
