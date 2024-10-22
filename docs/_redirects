@@ -108,6 +108,8 @@
 /math/permulation /math/permutation
 /math/combinatorics/cantor /math/permutation
 /math/number-theory/lagrange /math/number-theory/congruence-equation
+/math/group-theory /math/abstract-algebra/group-theory
+/math/permutation-group /math/combinatorics/polya
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
