@@ -180,7 +180,7 @@ int main() {
 
 所以 `constexpr` 可以用来替换宏定义的常量，规避 [宏定义的风险](./basic.md#define-命令)。
 
-算法题中可以使用 `constexpr` 存储数据规模较小的变量，以消除对应的运行时计算开销。尤为常见在 “[打表](https://baike.baidu.com/item/%E6%89%93%E8%A1%A8/7928573) ”技巧中，使用 `constexpr` 修饰的数组等容器变量存储答案。
+算法题中可以使用 `constexpr` 存储数据规模较小的变量，以消除对应的运行时计算开销。尤为常见在“[打表](https://baike.baidu.com/item/%E6%89%93%E8%A1%A8/7928573)”技巧中，使用 `constexpr` 修饰的数组等容器变量存储答案。
 
 ???+ note
     实际上把 `const` 理解成 **"readonly"**，而把 constexpr 理解成 **"const"** 更加直观。
