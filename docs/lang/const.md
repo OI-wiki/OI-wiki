@@ -1,12 +1,12 @@
-C++ 定义了一套完整的只读量定义方法，被 `const` 修饰的变量都是只读量，编译器会在编译期进行冲突检查，避免对只读量的修改，同时可能会执行一些优化。
+C++ 定义了一套完善的只读量定义方法，被 `const` 修饰的变量都是只读量，编译器会在编译期进行冲突检查，避免对只读量的修改，同时可能会执行一些优化。
 
 在通常情况下，应该尽可能使用 `const` 修饰变量、参数，提高代码健壮性。
 
-## `const` 类型限定符
+## 常量
 
-### 常量
+### 常量变量
 
-const 修饰的变量在初始化后不可改变值
+const 类型的变量在初始化后不可改变值
 
 ```cpp
 const int a = 0;  // a 的类型为 const int
@@ -16,7 +16,7 @@ const int a = 0;  // a 的类型为 const int
 
 ### 常量引用、常量指针
 
-常量引用和常量指针均限制了对指向的值的修改
+常量引用和常量指针均限制了对值的修改
 
 ```cpp
 int a = 0;
@@ -37,11 +37,11 @@ const int &r2 = a;
 const int &r4 = b;
 ```
 
-另外需要区分开的是常量指针（`const t*`）和指针常量（`t* const`)，例如下列声明
+另外需要区分开的是常量指针( `const t*` )和指针常量( `t* const` )，例如下列声明
 
 ```cpp
-int* const p1;  // 指针常量，初始化后指向地址不可改，可更改指向的值
-const int* p2;  // 常量指针，解引用的值不可改，可指向其他 int 变量
+int* const p1;        // 指针常量，初始化后指向地址不可改，可更改指向的值
+const int* p2;        // 常量指针，解引用的值不可改，可指向其他 int 变量
 const int* const p3;  // 常量指针常量，值不可改，指向地址不可改
 
 // 使用别名能更好提高可读性
@@ -54,7 +54,8 @@ using const_ptr_to_const_int = const ptr_to_const_int;
 
 ```cpp
 void sum(const std::vector<int> &data, int &total) {
-  for (auto iter = data.begin(); iter != data.end(); ++iter)
+  const auto end = data.end();
+  for (auto iter = data.begin(); iter != end; ++iter) // 避免了结尾写成 ++end 的可能性
     total += *iter;  // iter 是迭代器，解引用后的类型是 const int
 }
 ```
@@ -95,19 +96,7 @@ int main() {
 
 常量表达式是指编译时能计算出结果的表达式，`constexpr` 则要求编译器能在编译时求得函数或变量的值。
 
-编译时计算能允许更好的优化，比如将结果硬编码到汇编中，消除运行时计算开销。与 `const` 的带来的优化不同，当 `constexpr` 修饰的变量满足常量表达式的条件，就强制要求编译器在编译时计算出结果而非运行时。
-
-???+ note " 实际上把 `const` 理解成 **"readonly"**，`constexpr` 理解成 **"const"**，这样更加直观 "
-    ```cpp
-    constexpr int a = 10;  // 直接定义常量
-    
-    constexpr int FivePlus(int x) { return 5 + x; }
-    
-    void test(const int x) {
-      std::array<x> c1;            // 错误，x在编译时不可知
-      std::array<FivePlus(6)> c2;  // 可行，FivePlus编译时可知
-    }
-    ```
+编译时计算能允许更好的优化，比如将结果硬编码到汇编中，消除运行时计算开销。
 
 以下例子很好说明了 `const` 和 `constexpr` 的区别，代码使用递归实现计算斐波那契数列，并用控制流输出。
 
@@ -187,46 +176,26 @@ int main() {
 
 `constexpr` 修饰的 `fib0` 函数在唯一的调用处用了常量参数，使得整个函数仅在编译期运行。由于函数没有运行时执行，编译器也就判断不需要生成汇编代码。
 
-在同时注意到汇编中，`v0` 没有初始化代码，在调用 `cout` 输出 `v0` 的代码中，`v0` 已被最终结算结果替代，说明变量值已在编译时求出，优化掉了运行时运算。
+在同时注意到汇编中，`v0` 没有初始化代码 ，在调用 `cout` 输出 `v0` 的代码中， `v0` 已被最终结算结果替代，说明变量值已在编译时求出，优化掉了运行时运算。
 而 `v1` 的初始化还是普通的 `fib1` 递归调用。
 
 所以 `constexpr` 可以用来替换宏定义的常量，规避 [宏定义的风险](./basic.md#define-命令)。
 
-算法题中可以使用 `constexpr` 存储数据规模较小的变量，以消除对应的运行时计算开销。尤为常见在「[打表](../contest/dictionary.md)」技巧中，使用 `constexpr` 修饰的数组等容器存储答案。
+算法题中可以使用 `constexpr` 存储数据规模较小的变量，以消除对应的运行时计算开销。尤为常见在[“打表”](https://baike.baidu.com/item/%E6%89%93%E8%A1%A8/7928573)技巧中，使用 `constexpr` 修饰的数组等容器变量存储答案。
 
-???+ note "编译时计算量过大会导致编译错误"
-    编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译，应该考虑使用 `const`。
-    
-    ```cpp
-    #include <iostream>
-    
-    using namespace std;
-    
-    constexpr unsigned long long fib(unsigned long long i) {
-      return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-    }
-    
-    int main() {
-      // constexpr auto v = fib(32); evaluation exceeded maximum depth
-      const auto v = fib(32);
-      cout << v;
-      return 0;
-    }
-    ```
+???+ note
+    实际上把 `const` 理解成 **"readonly"**，而把 constexpr 理解成 **"const"** 更加直观。
 
-???+ note "使用 constexpr 时 Clang 给出的编译错误"
-    ```text
-    <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
-        10 |     constexpr auto v = fib(32);
-        |                    ^   ~~~~~~~~~~~~
-    <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
-        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-        |                         ^
-    <source>:6:25: note: in call to 'fib(32)'
-        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-        |                         ^~~~~~~~~~
-    <source>:6:25: note: in call to ...
-    ```
+```cpp
+constexpr int a = 10;  // 直接定义常量
+
+constexpr int FivePlus(int x) { return 5 + x; }
+
+void test(const int x) {
+  std::array<x> c1;            // 错误，x在编译时不可知
+  std::array<FivePlus(6)> c2;  // 可行，FivePlus编译时可知
+}
+```
 
 ## 参考资料
 
