@@ -145,6 +145,20 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
                 self.size[x] += self.size[y]
         ```
 
+## 优化空间占用
+
+注意到：
+
+1.  在应用了路径压缩后，对于并查集中的一棵树，我们只需要记录根节点对应的子树大小。
+2.  根节点的父亲一定是自己。
+
+所以我们只需要一个数组即可实现路径压缩与启发式合并。
+
+???+ note "实现"
+    ```cpp
+    --8<-- "docs/ds/code/dsu/dsu_1.cpp"
+    ```
+
 ## 删除
 
 要删除一个叶子节点，我们可以将其父亲设为自己。为了保证要删除的元素都是叶子，我们可以预先为每个节点制作副本，并将其副本作为父亲。
@@ -239,12 +253,12 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
     ??? note "参考代码"
         === "C++"
             ```cpp
-            --8<-- "docs/ds/code/dsu/dsu_1.cpp"
+            --8<-- "docs/ds/code/dsu/dsu_2.cpp"
             ```
         
         === "Python"
             ```python
-            --8<-- "docs/ds/code/dsu/dsu_1.py"
+            --8<-- "docs/ds/code/dsu/dsu_2.py"
             ```
 
 ## 习题
