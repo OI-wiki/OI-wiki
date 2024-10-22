@@ -227,21 +227,21 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 我们还可以在并查集的边上定义某种权值、以及这种权值在路径压缩时产生的运算，从而解决更多的问题。比如对于经典的「NOI2001」食物链，我们可以在边权上维护模 3 意义下的加法群。接下来以该题为例介绍带权并查集。
 
-???+ note "[P2024 [NOI2001] 食物链](https://www.luogu.com.cn/problem/P2024)"
+???+ note "[P2024 \[NOI2001\] 食物链](https://www.luogu.com.cn/problem/P2024)"
     动物王国中有三类动物 $A,B,C$，这三类动物的食物链构成了有趣的环形。$A$ 吃 $B$，$B$ 吃 $C$，$C$ 吃 $A$。
     
     现有 $N$ 个动物，以 $1 \sim N$ 编号。每个动物都是 $A,B,C$ 中的一种，但是我们并不知道它到底是哪一种。
     
     有人用两种说法对这 $N$ 个动物所构成的食物链关系进行描述：
     
-    - 第一种说法是 `1 X Y`，表示 $X$ 和 $Y$ 是同类。
-    - 第二种说法是 `2 X Y`，表示 $X$ 吃 $Y$。
+    -   第一种说法是 `1 X Y`，表示 $X$ 和 $Y$ 是同类。
+    -   第二种说法是 `2 X Y`，表示 $X$ 吃 $Y$。
     
     此人对 $N$ 个动物，用上述两种说法，一句接一句地说出 $K$ 句话，这 $K$ 句话有的是真的，有的是假的。当一句话满足下列三条之一时，这句话就是假话，否则就是真话。
     
-    - 当前的话与前面的某些真的话冲突，就是假话；
-    - 当前的话中 $X$ 或 $Y$ 比 $N$ 大，就是假话；
-    - 当前的话表示 $X$ 吃 $X$，就是假话。
+    -   当前的话与前面的某些真的话冲突，就是假话；
+    -   当前的话中 $X$ 或 $Y$ 比 $N$ 大，就是假话；
+    -   当前的话表示 $X$ 吃 $X$，就是假话。
     
     你的任务是根据给定的 $N$ 和 $K$ 句话，输出假话的总数。
 
@@ -256,12 +256,14 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 ???+ note "实现"
     === "C++"
         ```cpp
-        template<class Ty>
+        template <class Ty>
         struct dsu {
           vector<size_t> pa;
           vector<Ty> dw;
         
-          explicit dsu(size_t size) : pa(size), dw(size) { iota(pa.begin(), pa.end(), 0); }
+          explicit dsu(size_t size) : pa(size), dw(size) {
+            iota(pa.begin(), pa.end(), 0);
+          }
         };
         ```
     
@@ -292,7 +294,7 @@ $$
     === "C++"
         ```cpp
         size_t dsu::find(size_t x) {
-          if(pa[x] == x) {
+          if (pa[x] == x) {
             return x;
           }
           size_t oldpa = pa[x];
