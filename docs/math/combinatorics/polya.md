@@ -1,4 +1,4 @@
-author: Wajov, c-forrest
+author: Wajov, Early0v0, Enter-tainer, Great-designer, iamtwz, Ir1d, MegaOwIer, mgt, StudyingFather, Tiphereth-A, warzone-oier, Xeonacid, c-forrest
 
 前置知识：[置换和排列](../permutation.md)
 
@@ -25,6 +25,8 @@ Pólya 计数原理是 Burnside 引理的应用和推广。在介绍 Pólya 计�
 
 ??? example "解答和分析"
     这个问题足够简单，可以通过枚举的方式加以解答。珠子共计 $4$ 个，每个珠子可以染 $2$ 种颜色，所以，项链所有可能的染色方案共计 $2^4=16$ 种。将可以通过旋转相互得到的分到一组，共计 $6$ 组，如下图所示。
+
+    ![项链染色](./images/necklaces.svg)
 
     从这个例子中可以看到，要计算本质不同的染色的种类数，关键其实是知道每种本质相同的染色对应几种不同的染色方案。也就是说，要搞清楚上图中每个分组的大小。
 
