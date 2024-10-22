@@ -2,7 +2,7 @@ C++ 定义了一套完善的只读量定义方法，被 `const` 修饰的变量�
 
 在通常情况下，应该尽可能使用 `const` 修饰变量、参数，提高代码健壮性。
 
-## const 修饰符
+## `const` 类型限定符
 
 ### 常量
 
@@ -181,6 +181,38 @@ int main() {
 所以 `constexpr` 可以用来替换宏定义的常量，规避 [宏定义的风险](./basic.md#define-命令)。
 
 算法题中可以使用 `constexpr` 存储数据规模较小的变量，以消除对应的运行时计算开销。尤为常见在「[打表](https://baike.baidu.com/item/%E6%89%93%E8%A1%A8/7928573)」技巧中，使用 `constexpr` 修饰的数组等容器变量存储答案。
+
+编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译
+
+```
+#include <iostream>
+
+using namespace std;
+
+constexpr unsigned long long fib(unsigned long long i) {
+    return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+}
+
+int main() {
+    // constexpr auto v = fib(1337094); evaluation exceeded maximum depth
+    // cout << v;
+    return 0;
+}
+
+/* error msg:
+    <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
+       10 |     constexpr auto v = fib(1337094);
+          |                    ^   ~~~~~~~~~~~~
+    <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
+        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+          |                         ^
+    <source>:6:25: note: in call to 'fib(1336072)'
+        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+          |                         ^~~~~~~~~~
+    <source>:6:25: note: in call to ...
+*/
+```
+
 
 ???+ note
     实际上把 `const` 理解成 **"readonly"**，而把 constexpr 理解成 **"const"** 更加直观。
