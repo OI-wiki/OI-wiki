@@ -271,8 +271,7 @@ auto max(auto first, auto... rest)
 // template<typename First, typename... Rest>
 // auto max(First, Rest...);
 
-// int a = max(1);                // 编译不通过，但是对1个参数取最大值本身也没有意义
-// int b = max(1, "abc");         // 编译不通过，没有>操作符能接受int与const char*类型
+// int b = max(1, "abc");         // 编译不通过，没有 > 操作符能接受 int 和 const char* 类型
 int c = max(1, 233);              // 233
 int d = max(1, 233, 666, 10086);  // 10086
 ```
