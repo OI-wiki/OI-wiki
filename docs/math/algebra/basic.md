@@ -50,3 +50,13 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 **域**（field）是一个比环性质更强的代数结构，具体地，域是交换除环。
 
 域的研究方法和环大不相同。在抽象代数中，研究域的分支为 **域论**。
+
+## 参考资料与注释
+
+-   [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_%28mathematics%29)
+-   [Group theory - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)
+-   [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
+-   [Visual Group Theory](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
+
+[^ring-wiki]: [Ring（mathematics）- Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
+
