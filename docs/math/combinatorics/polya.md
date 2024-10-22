@@ -338,6 +338,8 @@ $$
 Z(C_n)=\frac1n\sum_{d\mid n}\varphi(d)t_{d}^{n/d}.
 $$
 
+这里，$\varphi(\cdot)$ 是数论中的 [欧拉函数](../number-theory/euler-totient.md)。
+
 只计旋转操作，长度为 $n$ 的项链的空间对称群就是 $C_n$。
 
 ??? note "分析"
