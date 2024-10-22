@@ -13,7 +13,7 @@ auto b = a + 0.1;  // b 是 double 类型
 
 ## 基于范围的 `for` 循环
 
-下面是 **C++20 前** 基于范围的 `for` 循环的语法：
+下面是一种简单的基于范围的 `for` 循环的语法：
 
 ```cpp
 for (range_declaration : range_expression) loop_statement
@@ -79,7 +79,7 @@ int main() {
 
 ## Lambda 表达式
 
-详见 [Lambda 表达式](../lambda) 页面。
+> 请参考 [Lambda 表达式](../lambda) 页面。
 
 ## decltype 说明符
 
@@ -102,22 +102,9 @@ int main() {
 
 > 另请参阅 [常量表达式 constexpr（C++11）](const.md#常量表达式-constexprc11)
 
-`constexpr` 说明符声明可以在编译时求得函数或变量的值。其与 `const` 的主要区别是一定会在编译时进行初始化。用于对象声明的 `constexpr` 说明符蕴含 `const`，用于函数声明的 `constexpr` 蕴含 `inline`。来看一个例子
+## std::tuple 元组
 
-```cpp
-int fact(int x) { return x ? x * fact(x - 1) : 1; }
-
-int main() {
-  constexpr int a = fact(5);  // ERROR: 函数调用在常量表达式中必须具有常量值
-  return 0;
-}
-```
-
-在 `int fact(int x)` 之前加上 `constexpr` 则编译通过。
-
-## std::tuple
-
-`std::tuple` 定义于头文件 `<tuple>`，是固定大小的异类值汇集（在确定初始元素后不能更改，但是初始元素能有任意多个）。它是 `std::pair` 的推广。来看一个例子：
+定义于头文件 `<tuple>`，即[元组](https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%85%83%E7%BB%84)。它是 `std::pair` 的推广。来看一个例子：
 
 ```cpp
 #include <iostream>
@@ -130,7 +117,7 @@ int main() {
   std::vector<int> vec = {1, 9, 2, 6, 0};
   std::tuple<int, int, std::string, std::vector<int>> tup =
       std::make_tuple(817, 114, "514", vec);
-  std::cout << std::tuple_size<decltype(tup)>::value << std::endl;
+  std::cout << std::tuple_size_v<decltype(tup)> << std::endl; // 元组包含的类型数量
 
   for (auto i : std::get<expr>(tup)) std::cout << i << " ";
   // std::get<> 中尖括号里面的必须是整型常量表达式
@@ -140,41 +127,12 @@ int main() {
 }
 ```
 
-### 成员函数
-
-| 函数          | 作用                   |
-| ----------- | -------------------- |
-| `operator=` | 赋值一个 `tuple` 的内容给另一个 |
-| `swap`      | 交换二个 `tuple` 的内容     |
-
-例子
-
-```cpp
-constexpr std::tuple<int, int> tup = {1, 2};
-std::tuple<int, int> tupA = {2, 3}, tupB;
-tupB = tup;
-tupB.swap(tupA);
-```
-
-### 非成员函数
-
-| 函数             | 作用                           |
-| -------------- | ---------------------------- |
-| `make_tuple`   | 创建一个 `tuple` 对象，其类型根据各实参类型定义 |
-| `std::get`     | 元组式访问指定的元素                   |
-| `operator==` 等 | 按字典顺序比较 `tuple` 中的值          |
-| `std::swap`    | 特化的 `std::swap` 算法           |
-
-例子
-
-```cpp
-std::tuple<int, int> tupA = {2, 3}, tupB;
-tupB = std::make_tuple(1, 2);
-std::swap(tupA, tupB);
-std::cout << std::get<1>(tupA) << std::endl;
-```
-
 ## std::function
+
+???+ note "请注意性能开销"
+    `std::function` 会引入一定的性能开销，通常会造成 2 到 3 倍以上的性能损失。
+    因为它不是直接调用函数，使用了类型擦除的技术。
+    请考虑使用 **函数对象** 或者 [**Lambda 表达式**](./lambda.md) 代替。
 
 类模板 `std::function` 是通用多态函数封装器，定义于头文件 `<functional>`。`std::function` 的实例能存储、复制及调用任何可调用（*Callable*）目标——函数、Lambda 表达式或其他函数对象，还有指向成员函数指针和指向数据成员指针。
 
@@ -225,39 +183,54 @@ int main() {
 }
 ```
 
-## 可变参数宏
+### 成员函数
 
-可变参数宏是 C99 引入的一个特性，C++ 从 C++11 开始支持这一特性。可变参数宏允许宏定义可以拥有可变参数，例如：
+| 函数          | 作用                   |
+| ----------- | -------------------- |
+| `operator=` | 赋值一个 `tuple` 的内容给另一个 |
+| `swap`      | 交换二个 `tuple` 的内容     |
+
+例子
 
 ```cpp
-#define def_name(...) def_body(__VA_ARGS__)
+constexpr std::tuple<int, int> tup = {1, 2};
+std::tuple<int, int> tupA = {2, 3}, tupB;
+tupB = tup;
+tupB.swap(tupA);
 ```
 
-其中，`...` 是缺省符号，`__VA_ARGS__` 在调用时会替换成实际的参数列表，`def_body` 应为可变参数模板函数。
+### 非成员函数
 
-现在就可以这么调用 `def_name`：
+| 函数             | 作用                           |
+| -------------- | ---------------------------- |
+| `make_tuple`   | 创建一个 `tuple` 对象，其类型根据各实参类型定义 |
+| `std::get`     | 元组式访问指定的元素                   |
+| `operator==` 等 | 按字典顺序比较 `tuple` 中的值          |
+| `std::swap`    | 特化的 `std::swap` 算法           |
+
+例子
 
 ```cpp
-def_name();
-def_name(1);
-def_name(1, 2, 3);
-def_name(1, 0.0, "abc");
+std::tuple<int, int> tupA = {2, 3}, tupB;
+tupB = std::make_tuple(1, 2);
+std::swap(tupA, tupB);
+std::cout << std::get<1>(tupA) << std::endl;
 ```
 
 ## 可变参数模板
 
 在 C++11 之前，类模板和函数模板都只能接受固定数目的模板参数。C++11 允许 **任意个数、任意类型** 的模板参数。
 
-### 可变参数模板类
+### 可变参数类模板
 
-例如，下列代码声明的模板类 `tuple` 的对象可以接受任意个数、任意类型的模板参数作为它的模板形参。
+例如，下列代码声明的类模板 `tuple` 的对象可以接受任意个数、任意类型的模板参数作为它的模板形参。
 
 ```cpp
 template <typename... Values>
 class Tuple {};
 ```
 
-其中，`Values` 是一个模板参数包，表示 0 个或多个额外的类型参数。模板类只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
+其中，`Values` 是一个模板参数包，表示 0 个或多个额外的类型参数。类模板只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
 
 所以，可以这么声明 `tuple` 的对象：
 
@@ -268,23 +241,23 @@ Tuple<int, int, int> test2;
 Tuple<int, std::vector<int>, std::map<std::string, std::vector<int>>> test3;
 ```
 
-如果要限制至少有一个模板参数，可以这么定义模板类 `tuple`：
+如果要限制至少有一个模板参数，可以这么定义类模板 `tuple`：
 
 ```cpp
 template <typename First, typename... Rest>
 class Tuple {};
 ```
 
-### 可变参数模板函数
+### 可变参数函数模板
 
-同样的，下列代码声明的模板函数 `fun` 可以接受任意个数、任意类型的模板参数作为它的模板形参。
+同样的，下列代码声明的函数模板 `fun` 可以接受任意个数、任意类型的模板参数作为它的模板形参。
 
 ```cpp
 template <typename... Values>
 void fun(Values... values) {}
 ```
 
-其中，`Values` 是一个模板参数包，`values` 是一个函数参数包，表示 0 个或多个函数参数。模板函数只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
+其中，`Values` 是一个模板参数包，`values` 是一个函数参数包，表示 0 个或多个函数参数。函数模板只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
 
 所以，可以这么调用 `fun` 函数：
 
@@ -295,90 +268,121 @@ fun(1, 2, 3);
 fun(1, 0.0, "abc");
 ```
 
-### 参数包展开
+#### 函数参数包展开
 
-之前说面了如何声明模板类或者模板函数，但是具体怎么使用传进来的参数呢？这个时候就需要参数包展开。
+对于函数模板而言，参数包展开的方式有以下几种：
 
-对于模板函数而言，参数包展开的方式有递归函数方式展开以及逗号表达式和参数列表方式展开。
+1. 函数参数展开
+   ```
+   f(args...);              // expands to f(E1, E2, E3)
+   f(&args...);             // expands to f(&E1, &E2, &E3)
+   f(n, ++args...);         // expands to f(n, ++E1, ++E2, ++E3);
+   f(++args..., n);         // expands to f(++E1, ++E2, ++E3, n);
 
-对于模板类而言，参数包展开的方式有模板递归方式展开和继承方式展开。
+   template<typename... Ts>
+   void f(Ts...) {}
+   ```
 
-#### 递归函数方式展开参数包
+2. 初始化器展开
+   ```
+   Class c1(&args...);             // 调用 Class::Class(&E1, &E2, &E3)
+   ```
 
-递归函数方式展开参数包需要提供展开参数包的递归函数和参数包展开的终止函数。
+3. 模板参数展开
+   ```
+   template<class A, class B, class... C>
+   void func(A arg1, B arg2, C...arg3)
+   {
+       container<A, B, C...> t1; // 展开成 container<A, B, E1, E2, E3>
+       container<C..., A, B> t2; // 展开成 container<E1, E2, E3, A, B>
+       container<A, C..., B> t3; // 展开成 container<A, E1, E2, E3, B>
+   }
+   ```
 
-举个例子，下面这个代码段使用了递归函数方式展开参数包，实现了可接受大于等于 2 个参数的取最大值函数。
+#### 递归展开参数包
+
+如果需要单独访问参数包中的每个参数，则需要递归函数/类方式展开。下面介绍函数的方式
+
+只需要提供展开参数包的递归函数，并提供终止展开的函数重载。
+
+举个例子，下面这个代码段使用了递归函数方式展开参数包，实现了可接受大于等于 1 个参数的取最大值函数。
 
 ```cpp
-// 递归终止函数，可以是0或多个参数。
-template <typename T>
-T MAX(T a, T b) {
-  return a > b ? a : b;
-}
+// 递归终止函数
+// C++20中，使用 auto 也可以定义模板，即“简写函数模板”
+auto max(auto a) { return a; }
+
+// 声明等价于
+// template<typename T>
+// auto max(T);
 
 // 展开参数包的递归函数
-template <typename First, typename... Rest>
-First MAX(First first, Rest... rest) {
-  return MAX(first, MAX(rest...));
+auto max(auto first, auto... rest)
+{
+    const auto second = max(rest...);
+    return first > second ? first : second;
 }
 
-// int a = MAX(1); // 编译不通过，但是对1个参数取最大值本身也没有意义
-// int b = MAX(1, "abc"); //
-// 编译不通过，但是在整数和字符串间取最大值本身也没有意义
-int c = MAX(1, 233);              // 233
-int d = MAX(1, 233, 666, 10086);  // 10086
+// 声明等价于
+// template<typename First, typename... Rest>
+// auto max(First, Rest...);
+
+// int a = max(1);                // 编译不通过，但是对1个参数取最大值本身也没有意义
+// int b = max(1, "abc");         // 编译不通过，没有>操作符能接受int与const char*类型
+int c = max(1, 233);              // 233
+int d = max(1, 233, 666, 10086);  // 10086
 ```
 
 ### 可变参数模板的应用
 
-举个应用的例子，有的人在 debug 的时候可能不喜欢用 IDE 的调试功能，而是喜欢输出中间变量。但是，有时候要输出的中间变量数量有点多，写输出中间变量的代码的时候可能会比较烦躁，这时候就可以用上可变参数模板和可变参数宏。
+在 debug 的时候可能不喜欢用 IDE 的调试功能，而是喜欢输出中间变量。但是，有时候要输出的中间变量数量有点多，写输出中间变量的代码的时候可能会比较烦躁，这时候就可以用上可变参数模板和可变参数宏。
 
 ```cpp
-// Author: Backl1ght
+// Author: Backl1ght, c0nstexpr(Coauthor)
+
 #include <iostream>
 #include <vector>
 using namespace std;
 
 template <typename T>
 ostream& operator<<(ostream& os, const vector<T>& V) {
-  os << "[ ";
-  for (const auto& vv : V) os << vv << ", ";
-  os << "]";
-  return os;
+    os << "[ ";
+    for (const auto& vv : V) os << vv << ", ";
+    os << "]";
+    return os;
 }
 
-namespace DEBUG {
-template <typename T>
-void _debug(const char* format, T t) {
-  cerr << format << '=' << t << endl;
+namespace var_debug {
+auto print(const char* fmt, const auto& t) {
+    for (; *fmt == ' '; ++fmt);
+    for (; *fmt != ',' && *fmt != '\0'; ++fmt) cout << *fmt;
+    cout << '=' << t << *(fmt++) << '\n';
+    return fmt;
 }
 
-template <class First, class... Rest>
-void _debug(const char* format, First first, Rest... rest) {
-  while (*format != ',') cerr << *format++;
-  cerr << '=' << first << ",";
-  _debug(format + 1, rest...);
+void print(const char* fmt, const auto&... args) {
+    ((fmt = print(fmt, args)), ...);  // C++17折叠表达式
 }
+}  // namespace var_debug
 
-#define debug(...) _debug(#__VA_ARGS__, __VA_ARGS__)
-}  // namespace DEBUG
+#define debug(...) var_debug::print(#__VA_ARGS__, __VA_ARGS__)
 
-using namespace DEBUG;
+int main() {
+    int a = 666;
+    vector<int> b({1, 2, 3});
+    string c = "hello world";
 
-int main(int argc, char* argv[]) {
-  int a = 666;
-  vector<int> b({1, 2, 3});
-  string c = "hello world";
+    // before
+    cout << "manual cout print\n"
+         << "a=" << a << ", b=" << b << ", c=" << c
+         << '\n';  // a=666, b=[ 1, 2, 3, ], c=hello world
+    // 如果用printf的话，在只有基本数据类型的时候是比较方便的，然是如果要输出vector等的内容的话，就会比较麻烦
 
-  // before
-  cout << "a=" << a << ", b=" << b << ", c=" << c
-       << endl;  // a=666, b=[ 1, 2, 3, ], c=hello world
-  // 如果用printf的话，在只有基本数据类型的时候是比较方便的，然是如果要输出vector等的内容的话，就会比较麻烦
+    // after
+    cout << "vararg template print\n";
+    debug(a, b, c);  // a=666, b=[ 1, 2, 3, ], c=hello world
 
-  // after
-  debug(a, b, c);  // a=666, b=[ 1, 2, 3, ], c=hello world
-
-  return 0;
+    return 0;
 }
 ```
 
