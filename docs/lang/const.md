@@ -183,35 +183,32 @@ int main() {
 
 编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译
 
-```
-#include <iostream>
+    #include <iostream>
 
-using namespace std;
+    using namespace std;
 
-constexpr unsigned long long fib(unsigned long long i) {
-    return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-}
+    constexpr unsigned long long fib(unsigned long long i) {
+        return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+    }
 
-int main() {
-    // constexpr auto v = fib(1337094); evaluation exceeded maximum depth
-    // cout << v;
-    return 0;
-}
+    int main() {
+        // constexpr auto v = fib(1337094); evaluation exceeded maximum depth
+        // cout << v;
+        return 0;
+    }
 
-/* error msg:
-    <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
-       10 |     constexpr auto v = fib(1337094);
-          |                    ^   ~~~~~~~~~~~~
-    <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
-        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-          |                         ^
-    <source>:6:25: note: in call to 'fib(1336072)'
-        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-          |                         ^~~~~~~~~~
-    <source>:6:25: note: in call to ...
-*/
-```
-
+    /* error msg:
+        <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
+           10 |     constexpr auto v = fib(1337094);
+              |                    ^   ~~~~~~~~~~~~
+        <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
+            6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+              |                         ^
+        <source>:6:25: note: in call to 'fib(1336072)'
+            6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+              |                         ^~~~~~~~~~
+        <source>:6:25: note: in call to ...
+    */
 
 ???+ note
     实际上把 `const` 理解成 **"readonly"**，而把 constexpr 理解成 **"const"** 更加直观。
