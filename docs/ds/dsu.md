@@ -314,7 +314,7 @@ $$
             return self.pa[x]
         ```
 
-## 合并
+### 合并
 
 对于合并而言，有一点小问题：我们希望在 $x$ 和 $y$ 之间连边，但普通的并查集是将 $\operatorname{root}(x)$ 和 $\operatorname{root}(y)$ 连边。如果不想算太多东西，这里可以使用换根技巧：在路径压缩后，由于 $\operatorname{pa}(x) = \operatorname{root}(x)$，因此可以直接将 $x$ 换到根上，此时：
 
