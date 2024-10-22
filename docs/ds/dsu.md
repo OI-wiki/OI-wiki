@@ -225,7 +225,137 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 ## 带权并查集
 
-我们还可以在并查集的边上定义某种权值、以及这种权值在路径压缩时产生的运算，从而解决更多的问题。比如对于经典的「NOI2001」食物链，我们可以在边权上维护模 3 意义下的加法群。
+我们还可以在并查集的边上定义某种权值、以及这种权值在路径压缩时产生的运算，从而解决更多的问题。比如对于经典的「NOI2001」食物链，我们可以在边权上维护模 3 意义下的加法群。接下来以该题为例介绍带权并查集。
+
+???+ note "[P2024 [NOI2001] 食物链](https://www.luogu.com.cn/problem/P2024)"
+    动物王国中有三类动物 $A,B,C$，这三类动物的食物链构成了有趣的环形。$A$ 吃 $B$，$B$ 吃 $C$，$C$ 吃 $A$。
+    
+    现有 $N$ 个动物，以 $1 \sim N$ 编号。每个动物都是 $A,B,C$ 中的一种，但是我们并不知道它到底是哪一种。
+    
+    有人用两种说法对这 $N$ 个动物所构成的食物链关系进行描述：
+    
+    - 第一种说法是 `1 X Y`，表示 $X$ 和 $Y$ 是同类。
+    - 第二种说法是 `2 X Y`，表示 $X$ 吃 $Y$。
+    
+    此人对 $N$ 个动物，用上述两种说法，一句接一句地说出 $K$ 句话，这 $K$ 句话有的是真的，有的是假的。当一句话满足下列三条之一时，这句话就是假话，否则就是真话。
+    
+    - 当前的话与前面的某些真的话冲突，就是假话；
+    - 当前的话中 $X$ 或 $Y$ 比 $N$ 大，就是假话；
+    - 当前的话表示 $X$ 吃 $X$，就是假话。
+    
+    你的任务是根据给定的 $N$ 和 $K$ 句话，输出假话的总数。
+
+用节点 $x$ 表示编号为 $x$ 的动物。本题想要维护的是每个节点 $x$ 的权值 $w_x \in \{0, 1, 2\}$，这里用 $0$ 表示 $A$，用 $1$ 表示 $B$，用 $2$ 表示 $C$。然而直接维护 $w$ 非常困难，其他不说，本题根本就没有断言某个节点具体的权值，自己设定一个类别则又会在合并信息上带来麻烦。
+
+注意到题目给出的实际上是两个点权的差分，这里 $X$ 吃 $Y$ 等价于 $w_Y - w_X \equiv 1 \pmod{3}$，因此对于并查集来说，可以转而去维护 **点权的差分**。具体而言，对于一个节点 $x$ 和它的父节点 $\operatorname{pa}(x)$，定义 $\Delta w_x = w_{\operatorname{pa}(x)} - w_x$。使用这一定义，接下来对原先并查集的每个操作一一改造来维护 $\Delta w_x$。
+
+### 初始化
+
+初始化后 $\operatorname{pa}(x) = x$，因此根据定义即得 $\Delta w_x = 0$。
+
+???+ note "实现"
+    === "C++"
+        ```cpp
+		template<class Ty>
+        struct dsu {
+          vector<size_t> pa;
+		  vector<Ty> dw;
+        
+          explicit dsu(size_t size) : pa(size), dw(size) { iota(pa.begin(), pa.end(), 0); }
+        };
+        ```
+    
+    === "Python"
+        ```python
+        class Dsu:
+            def __init__(self, size):
+                self.pa = list(range(size))
+				self.dw = [0] * size
+        ```
+
+### 查询
+
+在路径压缩之前，设 $x$ 所在的树的根节点为 $r$，从 $x$ 到 $r$ 的路径记为 $x \to v_1 \to \dots \to v_k \to r$，那么在路径压缩后，$\operatorname{pa}'(x) = r$，$x$ 和 $r$ 的点权的差分：
+
+$$
+\begin{aligned}
+\Delta w_x' &= w_r - w_x \\
+&= (w_r - w_{v_k}) + (w_{v_k} - w_{v_{k-1}}) + \dots + (w_{v_2} - w_{v_1}) + (w_{v_1} - w_x) \\
+&= \Delta w_x + \sum_{i = 1}^{k} \Delta w_{v_i} \\
+&= \Delta w_x + \Delta w_{\operatorname{pa}(x)}'
+\end{aligned}
+$$
+
+也就是树上前缀和。将前缀和的计算方法照搬即可。注意要在压缩前存好 $\operatorname{pa}(x)$ 因为路径压缩后就变了。
+
+???+ note "实现"
+    === "C++"
+        ```cpp
+        size_t dsu::find(size_t x) {
+		  if(pa[x] == x) {
+			return x;
+		  }
+		  size_t oldpa = pa[x];
+		  pa[x] = find(pa[x]);
+		  dw[x] += dw[oldpa];
+		  return pa[x];
+		}
+        ```
+    
+    === "Python"
+        ```python
+        def find(self, x):
+            if self.pa[x] != x:
+			    oldpa = self.pa[x]
+                self.pa[x] = self.find(self.pa[x])
+				self.dw[x] += self.dw[oldpa]
+            return self.pa[x]
+        ```
+
+## 合并
+
+对于合并而言，有一点小问题：我们希望在 $x$ 和 $y$ 之间连边，但普通的并查集是将 $\operatorname{root}(x)$ 和 $\operatorname{root}(y)$ 连边。如果不想算太多东西，这里可以使用换根技巧：在路径压缩后，由于 $\operatorname{pa}(x) = \operatorname{root}(x)$，因此可以直接将 $x$ 换到根上，此时：
+
+$$
+\begin{aligned} \\
+\Delta w_{\operatorname{pa}(x)}' &= w_x - w_{\operatorname{pa}(x)} = -\Delta w_x \\
+\Delta w_{x}' &= 0 \\
+\operatorname{pa}'(\operatorname{pa}(x)) &= x \\
+\operatorname{pa}'(x) &= x \\
+\end{aligned}
+$$
+
+其它点权的差分与父节点都不变。换完根后再将 $x$ 和 $y$ 连边，可以减少错误的发生。
+
+???+ note "实现"
+    === "C++"
+        ```cpp
+        void dsu::unite(size_t x, size_t y, const Ty &deltaw) {
+		  // 路径压缩
+		  size_t pa_x = find(x);
+		  find(y);
+		  // 换根到 x
+		  dw[pa_x] = -dw[x];
+		  pa[pa_x] = x;
+		  // x 连边到 y
+		  pa[x] = y;
+		  dw[x] = deltaw;
+		}
+        ```
+    
+    === "Python"
+        ```python
+        def union(self, x, y, deltaw):
+		    # 路径压缩
+		    pa_x = self.find(x)
+			self.find(y)
+			# 换根到 x
+			dw[pa_x] = -dw[x]
+			pa[pa_x] = x
+			# x 连边到 y
+            self.pa[x] = y
+			self.dw[x] = deltaw
+        ```
 
 ## 例题
 
