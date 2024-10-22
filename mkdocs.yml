@@ -282,7 +282,6 @@ nav:
       - 排列组合: math/combinatorics/combination.md
       - 抽屉原理: math/combinatorics/drawer-principle.md
       - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
-      - 康托展开: math/combinatorics/cantor.md
       - 斐波那契数列: math/combinatorics/fibonacci.md
       - 错位排列: math/combinatorics/derangement.md
       - 卡特兰数: math/combinatorics/catalan.md
