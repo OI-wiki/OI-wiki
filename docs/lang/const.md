@@ -97,7 +97,9 @@ int main() {
 
 常量表达式是指编译时能计算出结果的表达式，`constexpr` 则要求编译器能在编译时求得函数或变量的值。
 
-编译时计算能允许更好的优化，比如将结果硬编码到汇编中，消除运行时计算开销。
+编译时计算能允许更好的优化，比如将结果硬编码到汇编中，消除运行时计算开销。与 `const` 的带来的优化不同， 如果 `constexpr` 修饰的变量满足常量表达式的条件，就能强制要求编译器就一定会在编译时计算结果而非运行时。
+
+以下例子很好说明了 `const` 和 `constexpr` 的区别，代码使用递归实现计算斐波那契数列，并用控制流输出。
 
 [示例代码](https://godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAMzwBtMA7AQwFtMQByARg9KtQYEAysib0QXACx8BBAKoBnTAAUAHpwAMvAFYTStJg1DIApACYAQuYukl9ZATwDKjdAGFUtAK4sGe1wAyeAyYAHI%2BAEaYxCDSAA6oCoRODB7evnoJSY4CQSHhLFEx0naYDilCBEzEBGk%2Bfly2mPY5DJXVBHlhkdGxtlU1dRmNCgOdwd2FvZIAlLaoXsTI7BzmAMzByN5YANQma25Oo8SYrPvYJhoAgpdXXklGO8xsCnFMyzuj6PtW17doDFGmFUcWIOy8gLwwBC6B2NAiGggEKS0MwsIYMz2AHZflcdvidicCIsGE89gd9gARHZcckAMRpOxAO2oeAREFJAFoaZjrHC2YiuTszDMZj9biYsZSJddkVCYfyIlwkZDUejeTjCZhicRSaT9m4qYz9gzaczWUqOTtuVxeZZFcqhSKxWsLNjpX9rsECDsWExghANbiCTsAUCQWCmF4iDsAG4acnU%2BGIgCcLuDBLDPqjMdjtKN8OVafFnrxmYWPoNBrjGhLZfxaGj5MNBx2YA4bdWrtuIcblYprbzdcllI4c1onAArLw/NxeKhOIbLHyFAslpg9mY1jxSARNGO5gBrWKTgB0XAAHCnJxpJGssdusViL9IJxxJLwWBINBpSLOtKQC4cLwCggL%2Be4cFocxwLAMCICgqAsHEdDROQlBoEhKExFshjAAA%2BgQxAQoefB0AQ0SgRAET7qQETBNUACenA7nRzDEAxADyETaGUEE7hhbCCBxDC0ExkG8FgEReMAbhiLQoFzqQWB%2BkY4jiUpeAnOUsaYApAHAmU0YrAB3rNDRtBssQjEeFgNGEXgX6KTpxARIkmCUpgKnABZRj7nMVAGMACgAGp4JgADuHFxIwzG8PwggiGI7BSDIgiKCo6jqbojQGL5pjLpY%2BhsqBkBzKgcStApnJfFS%2BVWJYW7WhxazWl8FkRFS7V1dY87OcQeBYCVgZNC0KQuAw7iePU/gTV0BRFJkiTJAIQwNKQWTLQwc09DEIzNLxFRjKteilOUAjtDU21TLt/QdMdIxjFdC22vMizLBI45TjONFATsqgXgAbJyAOSKGuXACyhHEZiEC4IQJCbtuMy8BBUGkBASAYch9BkBQEBY1hICxsgcRxHheYpnhBjkaMeGqCDpG0ORxCUdR6msYxsW0fR7FcTxDhcwJjAEMJok0ZJ0mybQ8lc8puFqQB%2BBaY4Ol6bwBnIEZNGmW%2BAHtVZ7E2cZKP9Y5O7Oa5SgeV5PmgOJ/mBSFYWRdFs47vFwiiOIKUe%2Blag0boaz6LhKDWNYRURENZUVSkCkAPRfKHBUWGYCZxwA6qDGcABq9dE/WDfAcyna042Teka2BBM829I0G2tPd61La0T21yNB3nUdU3DO3Z1tI91c7SdXcV8PHSt7txdru9L1vtOf4/Zwf0g76CjE3GXApqe1O6T6sP4EQYLrLaKN%2BUesQaKek6TlwANYgDk4plikgaCmOWcB%2BpBfgDZinhek5YikGYf%2BgDJDAMnNIf885OAgTAruPy6M4IYxABWOI0Y0L40QtjaIoRWArH%2BkDFeOFHgQChgwQ8yNSBonhgXPQHtEre2kL7JQ/ssp6HClZOICC57fXUkBDi0Y0E%2BlQFQP6gNgag2IRDUhRFyEww8JhHGiMT7wPtujJAqD0F4wJjjXBbBOD01BiwNeyAN5bx3qMdWB8SADTobIBhyUmGyD9plACgdSAcKYFwucn0ODzygYBTgAiCBCJ2CI5eRiTFmO3kwGme8FHYKPluNYlDUYHlIAgU4WAYjDTfJ/L895zxgJAUAkpkgAYLz4TA2wcC0milIMeCBf8uC3mvD/AGF4zBmC4FifQnA1i8IAkBU%2B9tfFmEGdA4CqioJzGckkZwkggA%3D%3D%3D)
 
@@ -170,8 +172,6 @@ int main() {
             pop     r14
             ret
 
-上述代码使用递归实现计算斐波那契数列，并用控制流输出。
-
 `constexpr` 修饰的 `fib0` 函数在唯一的调用处用了常量参数，使得整个函数仅在编译期运行。由于函数没有运行时执行，编译器也就判断不需要生成汇编代码。
 
 在同时注意到汇编中，`v0` 没有初始化代码，在调用 `cout` 输出 `v0` 的代码中，`v0` 已被最终结算结果替代，说明变量值已在编译时求出，优化掉了运行时运算。
@@ -181,7 +181,7 @@ int main() {
 
 算法题中可以使用 `constexpr` 存储数据规模较小的变量，以消除对应的运行时计算开销。尤为常见在「[打表](https://baike.baidu.com/item/%E6%89%93%E8%A1%A8/7928573)」技巧中，使用 `constexpr` 修饰的数组等容器变量存储答案。
 
-编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译
+编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译。使用 `const` 可以通过编译。
 
     #include <iostream>
 
@@ -192,8 +192,9 @@ int main() {
     }
 
     int main() {
-        // constexpr auto v = fib(1337094); evaluation exceeded maximum depth
-        // cout << v;
+        // constexpr auto v = fib(32); evaluation exceeded maximum depth
+        const auto v = fib(32);
+        cout << v;
         return 0;
     }
 
