@@ -256,10 +256,10 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 ???+ note "实现"
     === "C++"
         ```cpp
-		template<class Ty>
+        template<class Ty>
         struct dsu {
           vector<size_t> pa;
-		  vector<Ty> dw;
+          vector<Ty> dw;
         
           explicit dsu(size_t size) : pa(size), dw(size) { iota(pa.begin(), pa.end(), 0); }
         };
@@ -270,7 +270,7 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
         class Dsu:
             def __init__(self, size):
                 self.pa = list(range(size))
-				self.dw = [0] * size
+                self.dw = [0] * size
         ```
 
 ### 查询
@@ -292,23 +292,23 @@ $$
     === "C++"
         ```cpp
         size_t dsu::find(size_t x) {
-		  if(pa[x] == x) {
-			return x;
-		  }
-		  size_t oldpa = pa[x];
-		  pa[x] = find(pa[x]);
-		  dw[x] += dw[oldpa];
-		  return pa[x];
-		}
+          if(pa[x] == x) {
+            return x;
+          }
+          size_t oldpa = pa[x];
+          pa[x] = find(pa[x]);
+          dw[x] += dw[oldpa];
+          return pa[x];
+        }
         ```
     
     === "Python"
         ```python
         def find(self, x):
             if self.pa[x] != x:
-			    oldpa = self.pa[x]
+                oldpa = self.pa[x]
                 self.pa[x] = self.find(self.pa[x])
-				self.dw[x] += self.dw[oldpa]
+                self.dw[x] += self.dw[oldpa]
             return self.pa[x]
         ```
 
@@ -331,30 +331,30 @@ $$
     === "C++"
         ```cpp
         void dsu::unite(size_t x, size_t y, const Ty &deltaw) {
-		  // 路径压缩
-		  size_t pa_x = find(x);
-		  find(y);
-		  // 换根到 x
-		  dw[pa_x] = -dw[x];
-		  pa[pa_x] = x;
-		  // x 连边到 y
-		  pa[x] = y;
-		  dw[x] = deltaw;
-		}
+          // 路径压缩
+          size_t pa_x = find(x);
+          find(y);
+          // 换根到 x
+          dw[pa_x] = -dw[x];
+          pa[pa_x] = x;
+          // x 连边到 y
+          pa[x] = y;
+          dw[x] = deltaw;
+        }
         ```
     
     === "Python"
         ```python
         def union(self, x, y, deltaw):
-		    # 路径压缩
-		    pa_x = self.find(x)
-			self.find(y)
-			# 换根到 x
-			dw[pa_x] = -dw[x]
-			pa[pa_x] = x
-			# x 连边到 y
+            # 路径压缩
+            pa_x = self.find(x)
+            self.find(y)
+            # 换根到 x
+            dw[pa_x] = -dw[x]
+            pa[pa_x] = x
+            # x 连边到 y
             self.pa[x] = y
-			self.dw[x] = deltaw
+            self.dw[x] = deltaw
         ```
 
 ## 例题
