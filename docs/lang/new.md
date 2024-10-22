@@ -104,7 +104,7 @@ int main() {
 
 ## std::tuple 元组
 
-定义于头文件 `<tuple>`，即[元组](https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%85%83%E7%BB%84)，是 `std::pair` 的推广，下面来看一个例子：
+定义于头文件 `<tuple>`，即 [元组](https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%85%83%E7%BB%84)，是 `std::pair` 的推广，下面来看一个例子：
 
 ```cpp
 #include <iostream>
@@ -117,7 +117,8 @@ int main() {
   std::vector<int> vec = {1, 9, 2, 6, 0};
   std::tuple<int, int, std::string, std::vector<int>> tup =
       std::make_tuple(817, 114, "514", vec);
-  std::cout << std::tuple_size_v<decltype(tup)> << std::endl; // 元组包含的类型数量
+  std::cout
+      << std::tuple_size_v<decltype(tup)> << std::endl;  // 元组包含的类型数量
 
   for (auto i : std::get<expr>(tup)) std::cout << i << " ";
   // std::get<> 中尖括号里面的必须是整型常量表达式
@@ -272,32 +273,26 @@ fun(1, 0.0, "abc");
 
 对于函数模板而言，参数包展开的方式有以下几种：
 
-1. 函数参数展开
-   ```
-   f(args...);              // expands to f(E1, E2, E3)
-   f(&args...);             // expands to f(&E1, &E2, &E3)
-   f(n, ++args...);         // expands to f(n, ++E1, ++E2, ++E3);
-   f(++args..., n);         // expands to f(++E1, ++E2, ++E3, n);
+1.  函数参数展开
+        f(args...);              // expands to f(E1, E2, E3)
+        f(&args...);             // expands to f(&E1, &E2, &E3)
+        f(n, ++args...);         // expands to f(n, ++E1, ++E2, ++E3);
+        f(++args..., n);         // expands to f(++E1, ++E2, ++E3, n);
 
-   template<typename... Ts>
-   void f(Ts...) {}
-   ```
+        template<typename... Ts>
+        void f(Ts...) {}
 
-2. 初始化器展开
-   ```
-   Class c1(&args...);             // 调用 Class::Class(&E1, &E2, &E3)
-   ```
+2.  初始化器展开
+        Class c1(&args...);             // 调用 Class::Class(&E1, &E2, &E3)
 
-3. 模板参数展开
-   ```
-   template<class A, class B, class... C>
-   void func(A arg1, B arg2, C...arg3)
-   {
-       container<A, B, C...> t1; // 展开成 container<A, B, E1, E2, E3>
-       container<C..., A, B> t2; // 展开成 container<E1, E2, E3, A, B>
-       container<A, C..., B> t3; // 展开成 container<A, E1, E2, E3, B>
-   }
-   ```
+3.  模板参数展开
+        template<class A, class B, class... C>
+        void func(A arg1, B arg2, C...arg3)
+        {
+            container<A, B, C...> t1; // 展开成 container<A, B, E1, E2, E3>
+            container<C..., A, B> t2; // 展开成 container<E1, E2, E3, A, B>
+            container<A, C..., B> t3; // 展开成 container<A, E1, E2, E3, B>
+        }
 
 #### 递归展开参数包
 
@@ -317,17 +312,17 @@ auto max(auto a) { return a; }
 // auto max(T);
 
 // 展开参数包的递归函数
-auto max(auto first, auto... rest)
-{
-    const auto second = max(rest...);
-    return first > second ? first : second;
+auto max(auto first, auto... rest) {
+  const auto second = max(rest...);
+  return first > second ? first : second;
 }
 
 // 声明等价于
 // template<typename First, typename... Rest>
 // auto max(First, Rest...);
 
-// int b = max(1, "abc");         // 编译不通过，没有 > 操作符能接受 int 和 const char* 类型
+// int b = max(1, "abc");         // 编译不通过，没有 > 操作符能接受 int 和
+// const char* 类型
 int c = max(1, 233);              // 233
 int d = max(1, 233, 666, 10086);  // 10086
 ```
@@ -346,43 +341,43 @@ using namespace std;
 
 template <typename T>
 ostream& operator<<(ostream& os, const vector<T>& V) {
-    os << "[ ";
-    for (const auto& vv : V) os << vv << ", ";
-    os << "]";
-    return os;
+  os << "[ ";
+  for (const auto& vv : V) os << vv << ", ";
+  os << "]";
+  return os;
 }
 
 namespace var_debug {
 auto print(const char* fmt, const auto& t) {
-    for (; *fmt == ' '; ++fmt);
-    for (; *fmt != ',' && *fmt != '\0'; ++fmt) cout << *fmt;
-    cout << '=' << t << *(fmt++) << '\n';
-    return fmt;
+  for (; *fmt == ' '; ++fmt);
+  for (; *fmt != ',' && *fmt != '\0'; ++fmt) cout << *fmt;
+  cout << '=' << t << *(fmt++) << '\n';
+  return fmt;
 }
 
 void print(const char* fmt, const auto&... args) {
-    ((fmt = print(fmt, args)), ...);  // C++17折叠表达式
+  ((fmt = print(fmt, args)), ...);  // C++17折叠表达式
 }
 }  // namespace var_debug
 
 #define debug(...) var_debug::print(#__VA_ARGS__, __VA_ARGS__)
 
 int main() {
-    int a = 666;
-    vector<int> b({1, 2, 3});
-    string c = "hello world";
+  int a = 666;
+  vector<int> b({1, 2, 3});
+  string c = "hello world";
 
-    // before
-    cout << "manual cout print\n"
-         << "a=" << a << ", b=" << b << ", c=" << c
-         << '\n';  // a=666, b=[ 1, 2, 3, ], c=hello world
-    // 如果用printf的话，在只有基本数据类型的时候是比较方便的，然是如果要输出vector等的内容的话，就会比较麻烦
+  // before
+  cout << "manual cout print\n"
+       << "a=" << a << ", b=" << b << ", c=" << c
+       << '\n';  // a=666, b=[ 1, 2, 3, ], c=hello world
+  // 如果用printf的话，在只有基本数据类型的时候是比较方便的，然是如果要输出vector等的内容的话，就会比较麻烦
 
-    // after
-    cout << "vararg template print\n";
-    debug(a, b, c);  // a=666, b=[ 1, 2, 3, ], c=hello world
+  // after
+  cout << "vararg template print\n";
+  debug(a, b, c);  // a=666, b=[ 1, 2, 3, ], c=hello world
 
-    return 0;
+  return 0;
 }
 ```
 
