@@ -107,15 +107,17 @@ $$
 ???+ abstract "群在集合上的作用"
     给定群 $G$ 和集合 $X$，则称映射 $G\times X\rightarrow X$ 为群 $G$ 在集合 $X$ 上的 **群作用**（group action），记作 $g\cdot x$，若该映射对所有 $g_1,g_2\in G$ 和 $x\in X$ 都满足条件 $g_1\cdot(g_2\cdot x)=(g_1g_2)\cdot x$ 和 $e\cdot x=x$。
 
-给定满足上述定义的群作用，自然有如下构造。这一映射，将每个群 $G$ 中的元素 $g$ 都对应到集合 $X$ 上的一个置换 $\varphi_g$，且置换 $\varphi_g$ 将元素 $x$ 映射到 $g\cdot x$。
+给定满足上述定义的群作用，自然有如下构造
 
 $$
 \begin{aligned}
 \varphi:G\rightarrow S_X&\\
 g\mapsto \varphi_g&: X\rightarrow X\\
-&\quad x\mapsto g\cdot x
+&\quad x\mapsto g\cdot x.
 \end{aligned}
 $$
+
+这一映射，将每个群 $G$ 中的元素 $g$ 都对应到集合 $X$ 上的一个置换 $\varphi_g$，且置换 $\varphi_g$ 将元素 $x$ 映射到 $g\cdot x$。
 
 根据定义，群中的幺元 $e$ 对应的双射 $\varphi_e$ 是 $X$ 上的恒等映射，而群中元素 $g$ 对应的映射 $\varphi_g$ 和其逆元 $g^{-1}$ 对应的映射 $\varphi_{g^{-1}}$ 互为逆映射（这也说明为什么 $\varphi_g$ 总是双射）。可以验证，$\varphi_{g_1g_2}=\varphi_{g_1}\varphi_{g_2}$，即 $\varphi$ 是群 $G$ 到群 $S_X$ 的群同态。
 
