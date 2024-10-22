@@ -274,25 +274,25 @@ fun(1, 0.0, "abc");
 对于函数模板而言，参数包展开的方式有以下几种：
 
 1.  函数参数展开
-        f(args...);              // expands to f(E1, E2, E3)
-        f(&args...);             // expands to f(&E1, &E2, &E3)
-        f(n, ++args...);         // expands to f(n, ++E1, ++E2, ++E3);
-        f(++args..., n);         // expands to f(++E1, ++E2, ++E3, n);
+    f(args...);//expands to f(E1, E2, E3)
+    f(&args...);//expands to f(&E1, &E2, &E3)
+    f(n, ++args...);//expands to f(n, ++E1, ++E2, ++E3);
+    f(++args..., n);//expands to f(++E1, ++E2, ++E3, n);
 
         template<typename... Ts>
         void f(Ts...) {}
 
 2.  初始化器展开
-        Class c1(&args...);             // 调用 Class::Class(&E1, &E2, &E3)
+    Class c1(&args...);//调用 Class::Class(&E1, &E2, &E3)
 
 3.  模板参数展开
-        template<class A, class B, class... C>
-        void func(A arg1, B arg2, C...arg3)
-        {
-            container<A, B, C...> t1; // 展开成 container<A, B, E1, E2, E3>
-            container<C..., A, B> t2; // 展开成 container<E1, E2, E3, A, B>
-            container<A, C..., B> t3; // 展开成 container<A, E1, E2, E3, B>
-        }
+    template\<class A, class B, class... C>
+    void func(A arg1, B arg2, C...arg3)
+    {
+    container\<A, B, C...> t1;//展开成 container\<A, B, E1, E2, E3>
+    container\<C..., A, B> t2;//展开成 container\<E1, E2, E3, A, B>
+    container\<A, C..., B> t3;//展开成 container\<A, E1, E2, E3, B>
+    }
 
 #### 递归展开参数包
 
