@@ -394,7 +394,7 @@ $$
             
             结合 $\varphi(p^{\alpha})=\varphi(2p^{\alpha})$ 可知 $G$ 为模 $2p^{\alpha}$ 的原根。
 
-4.  $m\ne 2,4,p^{\alpha},p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in\mathbf{N}^*$.
+4.  $m\ne 2,4,p^{\alpha},2p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in\mathbf{N}^*$.
 
     ???+ note "定理 4"
         对于 $m\ne 2,4$，且不存在奇素数 $p$ 及 $\alpha \in \mathbf{N}^{*}$ 使得 $m=p^{\alpha},2p^{\alpha}$，模 $m$ 的原根不存在。
