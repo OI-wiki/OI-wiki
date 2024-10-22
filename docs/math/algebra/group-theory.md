@@ -1,3 +1,5 @@
+author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, isdanni, Menci, ouuan, Tiphereth-A, warzone-oier, Xeonacid, c-forrest
+
 ## 引入
 
 在数学和抽象代数中，**群论**（Group Theory）主要研究叫做「群」的代数结构。

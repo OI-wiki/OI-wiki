@@ -1,3 +1,5 @@
+author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, isdanni, Menci, ouuan, Tiphereth-A, warzone-oier, Xeonacid, c-forrest
+
 ## 群
 
 在数学中，**群**（group）是由一种集合以及一个二元运算所组成的，符合「群公理」的代数结构。

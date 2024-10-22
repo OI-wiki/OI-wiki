@@ -313,6 +313,7 @@ nav:
     - 抽象代数:
       - 基本概念: math/algebra/basic.md
       - 群论: math/algebra/group-theory.md
+      - Schreier–Sims 算法: math/schreier-sims.md
     - 概率论:
       - 基本概念: math/probability/basic-conception.md
       - 条件概率与独立性: math/probability/conditional-probability.md
@@ -332,7 +333,6 @@ nav:
     - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
-    - Schreier–Sims 算法: math/schreier-sims.md
     - Berlekamp–Massey 算法: math/berlekamp-massey.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
