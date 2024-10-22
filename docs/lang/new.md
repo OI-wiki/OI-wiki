@@ -104,7 +104,7 @@ int main() {
 
 ## std::tuple 元组
 
-定义于头文件 `<tuple>`，即[元组](https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%85%83%E7%BB%84)。它是 `std::pair` 的推广。来看一个例子：
+定义于头文件 `<tuple>`，即[元组](https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%85%83%E7%BB%84)，是 `std::pair` 的推广，下面来看一个例子：
 
 ```cpp
 #include <iostream>
@@ -301,7 +301,7 @@ fun(1, 0.0, "abc");
 
 #### 递归展开参数包
 
-如果需要单独访问参数包中的每个参数，则需要递归函数/类方式展开。下面介绍函数的方式
+如果需要单独访问参数包中的每个参数，则需要递归方式展开。
 
 只需要提供展开参数包的递归函数，并提供终止展开的函数重载。
 
@@ -335,13 +335,14 @@ int d = max(1, 233, 666, 10086);  // 10086
 
 ### 可变参数模板的应用
 
-在 debug 的时候可能不喜欢用 IDE 的调试功能，而是喜欢输出中间变量。但是，有时候要输出的中间变量数量有点多，写输出中间变量的代码的时候可能会比较烦躁，这时候就可以用上可变参数模板和可变参数宏。
+在调试的时候有时会倾向于输出中间变量而不是 IDE 的调试功能。但输出的变量很多时，就要写很多重复地代码，这时候就可以用上可变参数模板和可变参数宏。
 
 ```cpp
 // Author: Backl1ght, c0nstexpr(Coauthor)
 
 #include <iostream>
 #include <vector>
+
 using namespace std;
 
 template <typename T>
