@@ -126,11 +126,12 @@ int main() {
 
 为了避免上述情况，应该严格要求适配器的生命周期位于其使用的任何范围的生命周期内。
 
-???+note "范围被销毁时，视图内元素均悬垂"
+???+ note "范围被销毁时，视图内元素均悬垂"
     ```cpp
     #include <iostream>
     #include <ranges>
     #include <vector>
+    ```
 
     using namespace std;
 
@@ -221,8 +222,8 @@ int main() {
 }
 ```
 
-???+note "输出："
-    by_lexical:
+???+ note "输出："
+    by\_lexical:
 
     a, abc, alice, bar, baz, bob, foo, gh, qux,
 
@@ -400,29 +401,31 @@ fun(1, 0.0, "abc");
 对于函数模板而言，参数包展开的方式有以下几种：
 
 1.  函数参数展开
-```cpp
-f(args...);//expands to f(E1, E2, E3)
-f(&args...);//expands to f(&E1, &E2, &E3)
-f(n, ++args...);//expands to f(n, ++E1, ++E2, ++E3);
-f(++args..., n);//expands to f(++E1, ++E2, ++E3, n);
 
-template<typename... Ts>
+```cpp
+f(args...);       // expands to f(E1, E2, E3)
+f(&args...);      // expands to f(&E1, &E2, &E3)
+f(n, ++args...);  // expands to f(n, ++E1, ++E2, ++E3);
+f(++args..., n);  // expands to f(++E1, ++E2, ++E3, n);
+
+template <typename... Ts>
 void f(Ts...) {}
 ```
 
 2.  初始化器展开
+
 ```cpp
-Class c1(&args...);//调用 Class::Class(&E1, &E2, &E3)
+Class c1(&args...);  // 调用 Class::Class(&E1, &E2, &E3)
 ```
 
 3.  模板参数展开
+
 ```cpp
-template<class A, class B, class... C>
-void func(A arg1, B arg2, C...arg3)
-{
-tuple<A, B, C...>();//展开成 tuple<A, B, E1, E2, E3>()
-tuple<C..., A, B>();//展开成 tuple<E1, E2, E3, A, B>()
-tuple<A, C..., B>();//展开成 tuple<A, E1, E2, E3, B>()
+template <class A, class B, class... C>
+void func(A arg1, B arg2, C... arg3) {
+  tuple<A, B, C...>();  // 展开成 tuple<A, B, E1, E2, E3>()
+  tuple<C..., A, B>();  // 展开成 tuple<E1, E2, E3, A, B>()
+  tuple<A, C..., B>();  // 展开成 tuple<A, E1, E2, E3, B>()
 }
 ```
 
