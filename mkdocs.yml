@@ -335,7 +335,6 @@ nav:
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
     - 拟阵: math/matroid.md
-    - Schreier–Sims 算法: math/schreier-sims.md
     - Berlekamp–Massey 算法: math/berlekamp-massey.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
