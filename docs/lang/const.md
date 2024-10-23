@@ -54,8 +54,7 @@ using const_ptr_to_const_int = const ptr_to_const_int;
 
 ```cpp
 void sum(const std::vector<int> &data, int &total) {
-  for (auto iter = data.begin(); iter != data.end();
-       ++iter)       // 避免了结尾写成 ++end 的可能性
+  for (auto iter = data.begin(); iter != data.end(); ++iter)
     total += *iter;  // iter 是迭代器，解引用后的类型是 const int
 }
 ```
