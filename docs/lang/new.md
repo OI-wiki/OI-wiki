@@ -122,9 +122,29 @@ int main() {
 
 上述代码不需要额外分配堆空间存储每步生成的范围，实际的生成和过滤运算发生在遍历操作中（更具体而言，内部的迭代器构造、自增和解引用），也就是零开销（Zero Overhead）。
 
-这同时也就意味着，**范围适配器闭包对象** 的内部元素的生命周期，属于外部输入的范围生命周期。如果外部范围（比如容器、范围工厂）已经销毁，那么再对这些的视图遍历，其效果与解引用悬垂指针一致，属于未定义行为。
+同时，外部输入的范围生命周期，等同于 **范围适配器闭包对象** 的内部元素的生命周期。如果外部范围（比如容器、范围工厂）已经销毁，那么再对这些的视图遍历，其效果与解引用悬垂指针一致，属于未定义行为。
 
 为了避免上述情况，应该严格要求适配器的生命周期位于其使用的任何范围的生命周期内。
+
+???+note "范围被销毁时，视图内元素均悬垂"
+    ```cpp
+    #include <iostream>
+    #include <ranges>
+    #include <vector>
+
+    using namespace std;
+
+    int main() {
+        auto view = [] {
+            vector<int> vec{1, 2, 3, 4, 5};
+            return vec | std::views::filter([](int i) { return 0 == i % 2; });
+        }();
+
+        for (int i : view) cout << i << ' ';  // runtime undefined behavior
+
+        return 0;
+    }
+    ```
 
 ### Constrained Algorithm 受约束的算法
 
@@ -201,15 +221,14 @@ int main() {
 }
 ```
 
-输出：
+???+note "输出："
+    by_lexical:
 
-> by\_lexical:
->
-> a, abc, alice, bar, baz, bob, foo, gh, qux,
->
-> by\_size:
->
-> a, gh, abc, foo, bar, baz, qux, bob, alice,
+    a, abc, alice, bar, baz, bob, foo, gh, qux,
+
+    by_size:
+
+    a, gh, abc, foo, bar, baz, qux, bob, alice,
 
 ## Lambda 表达式
 
@@ -352,36 +371,9 @@ std::swap(tupA, tupB);
 std::cout << std::get<1>(tupA) << std::endl;
 ```
 
-## 可变参数模板
+## 可变参数函数模板
 
 在 C++11 之前，类模板和函数模板都只能接受固定数目的模板参数。C++11 允许 **任意个数、任意类型** 的模板参数。
-
-### 可变参数类模板
-
-例如，下列代码声明的类模板 `tuple` 的对象可以接受任意个数、任意类型的模板参数作为它的模板形参。
-
-```cpp
-template <typename... Values>
-class Tuple {};
-```
-
-其中，`Values` 是一个模板参数包，表示 0 个或多个额外的类型参数。类模板只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
-
-所以，可以这么声明 `tuple` 的对象：
-
-```cpp
-Tuple<> test0;
-Tuple<int> test1;
-Tuple<int, int, int> test2;
-Tuple<int, std::vector<int>, std::map<std::string, std::vector<int>>> test3;
-```
-
-如果要限制至少有一个模板参数，可以这么定义类模板 `tuple`：
-
-```cpp
-template <typename First, typename... Rest>
-class Tuple {};
-```
 
 ### 可变参数函数模板
 
@@ -408,25 +400,31 @@ fun(1, 0.0, "abc");
 对于函数模板而言，参数包展开的方式有以下几种：
 
 1.  函数参数展开
-    f(args...);//expands to f(E1, E2, E3)
-    f(&args...);//expands to f(&E1, &E2, &E3)
-    f(n, ++args...);//expands to f(n, ++E1, ++E2, ++E3);
-    f(++args..., n);//expands to f(++E1, ++E2, ++E3, n);
+```cpp
+f(args...);//expands to f(E1, E2, E3)
+f(&args...);//expands to f(&E1, &E2, &E3)
+f(n, ++args...);//expands to f(n, ++E1, ++E2, ++E3);
+f(++args..., n);//expands to f(++E1, ++E2, ++E3, n);
 
-        template<typename... Ts>
-        void f(Ts...) {}
+template<typename... Ts>
+void f(Ts...) {}
+```
 
 2.  初始化器展开
-    Class c1(&args...);//调用 Class::Class(&E1, &E2, &E3)
+```cpp
+Class c1(&args...);//调用 Class::Class(&E1, &E2, &E3)
+```
 
 3.  模板参数展开
-    template\<class A, class B, class... C>
-    void func(A arg1, B arg2, C...arg3)
-    {
-    container\<A, B, C...> t1;//展开成 container\<A, B, E1, E2, E3>
-    container\<C..., A, B> t2;//展开成 container\<E1, E2, E3, A, B>
-    container\<A, C..., B> t3;//展开成 container\<A, E1, E2, E3, B>
-    }
+```cpp
+template<class A, class B, class... C>
+void func(A arg1, B arg2, C...arg3)
+{
+tuple<A, B, C...>();//展开成 tuple<A, B, E1, E2, E3>()
+tuple<C..., A, B>();//展开成 tuple<E1, E2, E3, A, B>()
+tuple<A, C..., B>();//展开成 tuple<A, E1, E2, E3, B>()
+}
+```
 
 #### 递归展开参数包
 
