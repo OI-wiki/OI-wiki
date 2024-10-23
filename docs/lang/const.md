@@ -54,8 +54,7 @@ using const_ptr_to_const_int = const ptr_to_const_int;
 
 ```cpp
 void sum(const std::vector<int> &data, int &total) {
-  const auto end = data.end();
-  for (auto iter = data.begin(); iter != end;
+  for (auto iter = data.begin(); iter != data.end();
        ++iter)       // 避免了结尾写成 ++end 的可能性
     total += *iter;  // iter 是迭代器，解引用后的类型是 const int
 }
@@ -99,79 +98,96 @@ int main() {
 
 编译时计算能允许更好的优化，比如将结果硬编码到汇编中，消除运行时计算开销。与 `const` 的带来的优化不同，当 `constexpr` 修饰的变量满足常量表达式的条件，就强制要求编译器在编译时计算出结果而非运行时。
 
-以下例子很好说明了 `const` 和 `constexpr` 的区别，代码使用递归实现计算斐波那契数列，并用控制流输出。
+???+ note "实际上把 `const` 理解成 **"readonly"**，`constexpr` 理解成 **"const"** ，这样更加直观"
+    === "C++"
+        ```cpp
+        constexpr int a = 10;  // 直接定义常量
 
-[示例代码](https://godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAMzwBtMA7AQwFtMQByARg9KtQYEAysib0QXACx8BBAKoBnTAAUAHpwAMvAFYTStJg1DIApACYAQuYukl9ZATwDKjdAGFUtAK4sGe1wAyeAyYAHI%2BAEaYxCDSAA6oCoRODB7evnoJSY4CQSHhLFEx0naYDilCBEzEBGk%2Bfly2mPY5DJXVBHlhkdGxtlU1dRmNCgOdwd2FvZIAlLaoXsTI7BzmAMzByN5YANQma25Oo8SYrPvYJhoAgpdXXklGO8xsCnFMyzuj6PtW17doDFGmFUcWIOy8gLwwBC6B2NAiGggEKS0MwsIYMz2AHZflcdvidicCIsGE89gd9gARHZcckAMRpOxAO2oeAREFJAFoaZjrHC2YiuTszDMZj9biYsZSJddkVCYfyIlwkZDUejeTjCZhicRSaT9m4qYz9gzaczWUqOTtuVxeZZFcqhSKxWsLNjpX9rsECDsWExghANbiCTsAUCQWCmF4iDsAG4acnU%2BGIgCcLuDBLDPqjMdjtKN8OVafFnrxmYWPoNBrjGhLZfxaGj5MNBx2YA4bdWrtuIcblYprbzdcllI4c1onAArLw/NxeKhOIbLHyFAslpg9mY1jxSARNGO5gBrWKTgB0XAAHCnJxpJGssdusViL9IJxxJLwWBINBpSLOtKQC4cLwCggL%2Be4cFocxwLAMCICgqAsHEdDROQlBoEhKExFshjAAA%2BgQxAQoefB0AQ0SgRAET7qQETBNUACenA7nRzDEAxADyETaGUEE7hhbCCBxDC0ExkG8FgEReMAbhiLQoFzqQWB%2BkY4jiUpeAnOUsaYApAHAmU0YrAB3rNDRtBssQjEeFgNGEXgX6KTpxARIkmCUpgKnABZRj7nMVAGMACgAGp4JgADuHFxIwzG8PwggiGI7BSDIgiKCo6jqbojQGL5pjLpY%2BhsqBkBzKgcStApnJfFS%2BVWJYW7WhxazWl8FkRFS7V1dY87OcQeBYCVgZNC0KQuAw7iePU/gTV0BRFJkiTJAIQwNKQWTLQwc09DEIzNLxFRjKteilOUAjtDU21TLt/QdMdIxjFdC22vMizLBI45TjONFATsqgXgAbJyAOSKGuXACyhHEZiEC4IQJCbtuMy8BBUGkBASAYch9BkBQEBY1hICxsgcRxHheYpnhBjkaMeGqCDpG0ORxCUdR6msYxsW0fR7FcTxDhcwJjAEMJok0ZJ0mybQ8lc8puFqQB%2BBaY4Ol6bwBnIEZNGmW%2BAHtVZ7E2cZKP9Y5O7Oa5SgeV5PmgOJ/mBSFYWRdFs47vFwiiOIKUe%2Blag0boaz6LhKDWNYRURENZUVSkCkAPRfKHBUWGYCZxwA6qDGcABq9dE/WDfAcyna042Teka2BBM829I0G2tPd61La0T21yNB3nUdU3DO3Z1tI91c7SdXcV8PHSt7txdru9L1vtOf4/Zwf0g76CjE3GXApqe1O6T6sP4EQYLrLaKN%2BUesQaKek6TlwANYgDk4plikgaCmOWcB%2BpBfgDZinhek5YikGYf%2BgDJDAMnNIf885OAgTAruPy6M4IYxABWOI0Y0L40QtjaIoRWArH%2BkDFeOFHgQChgwQ8yNSBonhgXPQHtEre2kL7JQ/ssp6HClZOICC57fXUkBDi0Y0E%2BlQFQP6gNgag2IRDUhRFyEww8JhHGiMT7wPtujJAqD0F4wJjjXBbBOD01BiwNeyAN5bx3qMdWB8SADTobIBhyUmGyD9plACgdSAcKYFwucn0ODzygYBTgAiCBCJ2CI5eRiTFmO3kwGme8FHYKPluNYlDUYHlIAgU4WAYjDTfJ/L895zxgJAUAkpkgAYLz4TA2wcC0milIMeCBf8uC3mvD/AGF4zBmC4FifQnA1i8IAkBU%2B9tfFmEGdA4CqioJzGckkZwkggA%3D%3D%3D)
+        constexpr int FivePlus(int x) { return 5 + x; }
 
-    #include <iostream>
+        void test(const int x) {
+        std::array<x> c1;            // 错误，x在编译时不可知
+        std::array<FivePlus(6)> c2;  // 可行，FivePlus编译时可知
+        }
+        ```
 
-    using namespace std;
+以下[例子](https://godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAMzwBtMA7AQwFtMQByARg9KtQYEAysib0QXACx8BBAKoBnTAAUAHpwAMvAFYTStJg1DIApACYAQuYukl9ZATwDKjdAGFUtAK4sGe1wAyeAyYAHI%2BAEaYxCDSAA6oCoRODB7evnoJSY4CQSHhLFEx0naYDilCBEzEBGk%2Bfly2mPY5DJXVBHlhkdGxtlU1dRmNCgOdwd2FvZIAlLaoXsTI7BzmAMzByN5YANQma25Oo8SYrPvYJhoAgpdXXklGO8xsCnFMyzuj6PtW17doDFGmFUcWIOy8gLwwBC6B2NAiGggEKS0MwsIYMz2AHZflcdvidicCIsGE89gd9gARHZcckAMRpOxAO2oeAREFJAFoaZjrHC2YiuTszDMZj9biYsZSJddkVCYfyIlwkZDUejeTjCZhicRSaT9m4qYz9gzaczWUqOTtuVxeZZFcqhSKxWsLNjpX9rsECDsWExghANbiCTsAUCQWCmF4iDsAG4acnU%2BGIgCcLuDBLDPqjMdjtKN8OVafFnrxmYWPoNBrjGhLZfxaGj5MNBx2YA4bdWrtuIcblYprbzdcllI4c1onAArLw/NxeKhOIbLHyFAslpg9mY1jxSARNGO5gBrWKTgB0XAAHCnJxpJGssdusViL9IJxxJLwWBINBpSLOtKQC4cLwCggL%2Be4cFocxwLAMCICgqAsHEdDROQlBoEhKExFshjAAA%2BgQxAQoefB0AQ0SgRAET7qQETBNUACenA7nRzDEAxADyETaGUEE7hhbCCBxDC0ExkG8FgEReMAbhiLQoFzqQWB%2BkY4jiUpeAnOUsaYApAHAmU0YrAB3rNDRtBssQjEeFgNGEXgX6KTpxARIkmCUpgKnABZRj7nMVAGMACgAGp4JgADuHFxIwzG8PwggiGI7BSDIgiKCo6jqbojQGL5pjLpY%2BhsqBkBzKgcStApnJfFS%2BVWJYW7WhxazWl8FkRFS7V1dY87OcQeBYCVgZNC0KQuAw7iePU/gTV0BRFJkiTJAIQwNKQWTLQwc09DEIzNLxFRjKteilOUAjtDU21TLt/QdMdIxjFdC22vMizLBI45TjONFATsqgXgAbJyAOSKGuXACyhHEZiEC4IQJCbtuMy8BBUGkBASAYch9BkBQEBY1hICxsgcRxHheYpnhBjkaMeGqCDpG0ORxCUdR6msYxsW0fR7FcTxDhcwJjAEMJok0ZJ0mybQ8lc8puFqQB%2BBaY4Ol6bwBnIEZNGmW%2BAHtVZ7E2cZKP9Y5O7Oa5SgeV5PmgOJ/mBSFYWRdFs47vFwiiOIKUe%2Blag0boaz6LhKDWNYRURENZUVSkCkAPRfKHBUWGYCZxwA6qDGcABq9dE/WDfAcyna042Teka2BBM829I0G2tPd61La0T21yNB3nUdU3DO3Z1tI91c7SdXcV8PHSt7txdru9L1vtOf4/Zwf0g76CjE3GXApqe1O6T6sP4EQYLrLaKN%2BUesQaKek6TlwANYgDk4plikgaCmOWcB%2BpBfgDZinhek5YikGYf%2BgDJDAMnNIf885OAgTAruPy6M4IYxABWOI0Y0L40QtjaIoRWArH%2BkDFeOFHgQChgwQ8yNSBonhgXPQHtEre2kL7JQ/ssp6HClZOICC57fXUkBDi0Y0E%2BlQFQP6gNgag2IRDUhRFyEww8JhHGiMT7wPtujJAqD0F4wJjjXBbBOD01BiwNeyAN5bx3qMdWB8SADTobIBhyUmGyD9plACgdSAcKYFwucn0ODzygYBTgAiCBCJ2CI5eRiTFmO3kwGme8FHYKPluNYlDUYHlIAgU4WAYjDTfJ/L895zxgJAUAkpkgAYLz4TA2wcC0milIMeCBf8uC3mvD/AGF4zBmC4FifQnA1i8IAkBU%2B9tfFmEGdA4CqioJzGckkZwkggA%3D%3D%3D)很好说明了 `const` 和 `constexpr` 的区别，代码使用递归实现计算斐波那契数列，并用控制流输出。
 
-    constexpr unsigned fib0(unsigned n) {
-        return n <= 1 ? 1 : (fib0(n - 1) + fib0(n - 2));
-    }
+???+ note "实现"
+    === "C++"
+        ```cpp
+        #include <iostream>
 
-    unsigned fib1(unsigned n) { return n <= 1 ? 1 : (fib1(n - 1) + fib1(n - 2)); }
+        using namespace std;
 
-    int main() {
-        constexpr auto v0 = fib0(9);
-        const auto v1 = fib1(9);
+        constexpr unsigned fib0(unsigned n) {
+            return n <= 1 ? 1 : (fib0(n - 1) + fib0(n - 2));
+        }
 
-        cout << v0;
-        cout << ' ';
-        cout << v1;
-    }
+        unsigned fib1(unsigned n) { return n <= 1 ? 1 : (fib1(n - 1) + fib1(n - 2)); }
 
-汇编
+        int main() {
+            constexpr auto v0 = fib0(9);
+            const auto v1 = fib1(9);
 
-    fib1(unsigned int):
-            push    r14
-            push    rbx
-            push    rax
-            mov     ebx, 1
-            cmp     edi, 2
-            jb      .LBB0_4
-            mov     r14d, edi
-            xor     ebx, ebx
-    .LBB0_2:
-            lea     edi, [r14 - 1]
-            call    fib1(unsigned int)
-            add     r14d, -2
-            add     ebx, eax
-            cmp     r14d, 1
-            ja      .LBB0_2
-            inc     ebx
-    .LBB0_4:
-            mov     eax, ebx
-            add     rsp, 8
-            pop     rbx
-            pop     r14
-            ret
+            cout << v0;
+            cout << ' ';
+            cout << v1;
+        }
+        ```
 
-    main:
-            push    r14
-            push    rbx
-            push    rax
-            mov     edi, 9
-            call    fib1(unsigned int) # `v1` 的初始化进行了函数调用
-            mov     ebx, eax
-            mov     r14, qword ptr [rip + std::__1::cout@GOTPCREL]
-            mov     rdi, r14
-            mov     esi, 55 # `v0` 被最终计算结果替代
-            call    std::__1::basic_ostream<char, std::__1::char_traits<char>>::operator<<(unsigned int)@PLT
-            mov     byte ptr [rsp + 7], 32
-            lea     rsi, [rsp + 7]
-            mov     edx, 1
-            mov     rdi, r14
-            call    std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200000]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long)
-            mov     rdi, r14
-            mov     esi, ebx # 读取了变量值
-            call    std::__1::basic_ostream<char, std::__1::char_traits<char>>::operator<<(unsigned int)@PLT
-            xor     eax, eax
-            add     rsp, 8
-            pop     rbx
-            pop     r14
-            ret
+???+ note "编译后的汇编代码"
+    === "Assembly"
+        ```assembly
+        fib1(unsigned int):
+                push    r14
+                push    rbx
+                push    rax
+                mov     ebx, 1
+                cmp     edi, 2
+                jb      .LBB0_4
+                mov     r14d, edi
+                xor     ebx, ebx
+        .LBB0_2:
+                lea     edi, [r14 - 1]
+                call    fib1(unsigned int)
+                add     r14d, -2
+                add     ebx, eax
+                cmp     r14d, 1
+                ja      .LBB0_2
+                inc     ebx
+        .LBB0_4:
+                mov     eax, ebx
+                add     rsp, 8
+                pop     rbx
+                pop     r14
+                ret
+
+        main:
+                push    r14
+                push    rbx
+                push    rax
+                mov     edi, 9
+                call    fib1(unsigned int) # `v1` 的初始化进行了函数调用
+                mov     ebx, eax
+                mov     r14, qword ptr [rip + std::__1::cout@GOTPCREL]
+                mov     rdi, r14
+                mov     esi, 55 # `v0` 被最终计算结果替代
+                call    std::__1::basic_ostream<char, std::__1::char_traits<char>>::operator<<(unsigned int)@PLT
+                mov     byte ptr [rsp + 7], 32
+                lea     rsi, [rsp + 7]
+                mov     edx, 1
+                mov     rdi, r14
+                call    std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200000]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long)
+                mov     rdi, r14
+                mov     esi, ebx # 读取了变量值
+                call    std::__1::basic_ostream<char, std::__1::char_traits<char>>::operator<<(unsigned int)@PLT
+                xor     eax, eax
+                add     rsp, 8
+                pop     rbx
+                pop     r14
+                ret
+        ```
 
 `constexpr` 修饰的 `fib0` 函数在唯一的调用处用了常量参数，使得整个函数仅在编译期运行。由于函数没有运行时执行，编译器也就判断不需要生成汇编代码。
 
@@ -180,51 +196,41 @@ int main() {
 
 所以 `constexpr` 可以用来替换宏定义的常量，规避 [宏定义的风险](./basic.md#define-命令)。
 
-算法题中可以使用 `constexpr` 存储数据规模较小的变量，以消除对应的运行时计算开销。尤为常见在「[打表](https://baike.baidu.com/item/%E6%89%93%E8%A1%A8/7928573)」技巧中，使用 `constexpr` 修饰的数组等容器变量存储答案。
+算法题中可以使用 `constexpr` 存储数据规模较小的变量，以消除对应的运行时计算开销。尤为常见在「[打表](../contest/dictionary.md)」技巧中，使用 `constexpr` 修饰的数组等容器存储答案。
 
 编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译。使用 `const` 可以通过编译。
 
-    #include <iostream>
+???+ note "编译时计算量过大导致编译错误"
+    === "C++"
+        ```cpp
+        #include <iostream>
 
-    using namespace std;
+        using namespace std;
 
-    constexpr unsigned long long fib(unsigned long long i) {
-        return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-    }
+        constexpr unsigned long long fib(unsigned long long i) {
+            return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+        }
 
-    int main() {
-        // constexpr auto v = fib(32); evaluation exceeded maximum depth
-        const auto v = fib(32);
-        cout << v;
-        return 0;
-    }
+        int main() {
+            // constexpr auto v = fib(32); evaluation exceeded maximum depth
+            const auto v = fib(32);
+            cout << v;
+            return 0;
+        }
 
-    /* error msg:
-        <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
-           10 |     constexpr auto v = fib(1337094);
-              |                    ^   ~~~~~~~~~~~~
-        <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
-            6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-              |                         ^
-        <source>:6:25: note: in call to 'fib(1336072)'
-            6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-              |                         ^~~~~~~~~~
-        <source>:6:25: note: in call to ...
-    */
-
-???+ note
-    实际上把 `const` 理解成 **"readonly"**，而把 constexpr 理解成 **"const"** 更加直观。
-
-```cpp
-constexpr int a = 10;  // 直接定义常量
-
-constexpr int FivePlus(int x) { return 5 + x; }
-
-void test(const int x) {
-  std::array<x> c1;            // 错误，x在编译时不可知
-  std::array<FivePlus(6)> c2;  // 可行，FivePlus编译时可知
-}
-```
+        /* error msg:
+            <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
+                10 |     constexpr auto v = fib(1337094);
+                |                    ^   ~~~~~~~~~~~~
+            <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
+                6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+                |                         ^
+            <source>:6:25: note: in call to 'fib(1336072)'
+                6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+                |                         ^~~~~~~~~~
+            <source>:6:25: note: in call to ...
+        */
+        ```
 
 ## 参考资料
 
