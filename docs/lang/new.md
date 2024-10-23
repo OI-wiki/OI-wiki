@@ -92,7 +92,9 @@ int main() {
 
 在通常的实现中，函数对象（FunctionObject）重载了 `operator()`，使得其实例能够像函数一样被调用，而 lambda 即为一种典型的函数对象。
 
-类似的，范围适配器闭包对象（RangeAdaptorClosureObject）重载了 `operator|`（此处的 `|` 应该理解成管线运算符，而非按位或运算），使得它们能够像管线（pipeline）一样拼装起来。在复杂操作下，也能保持良好可读性。
+函数对象相较于函数指针，具有更高的灵活性，能够保存状态，也能够作为参数传递给其他函数。在函数中使用函数对象，仅需要将参数类型定义为模板参数，就能允许任意函数对象传入。
+
+范围适配器闭包对象（RangeAdaptorClosureObject）重载了 `operator|`（此处的 `|` 应该理解成管线运算符，而非按位或运算），使得它们能够像管线（pipeline）一样拼装起来。在复杂操作下，也能保持良好可读性。
 
 若 A、B、C 为一些范围适配器闭包对象，R 为某个范围，其他字母为可能的有效参数，表达式
 
@@ -131,7 +133,6 @@ int main() {
     #include <iostream>
     #include <ranges>
     #include <vector>
-    ```
 
     using namespace std;
 
