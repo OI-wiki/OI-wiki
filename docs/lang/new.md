@@ -104,16 +104,18 @@ int main() {
 
 下面以 `ranges::take_view` 与 `ranges::iota_view` 为例：
 
-    #include <iostream>
-    #include <ranges>
-     
-    int main()
-    {
-        const auto even = [](int i){ return 0 == i % 2; };
+```cpp
+#include <iostream>
+#include <ranges>
+ 
+int main()
+{
+    const auto even = [](int i){ return 0 == i % 2; };
 
-        for (int i : std::views::iota(0, 6) | std::views::filter(even))
-            std::cout << i << ' ';
-    }
+    for (int i : std::views::iota(0, 6) | std::views::filter(even))
+        std::cout << i << ' ';
+}
+```
 
 1.  范围工厂 `std::views::iota(0, 6)` 生成了从 1 到 6 的整数序列的范围
 2.  范围适配器 `std::views::filter(even)` 过滤前一个范围，生成了一个只剩下偶数的范围
@@ -129,28 +131,30 @@ int main() {
 
 > C++20 在命名空间 std::ranges 中提供大多数算法的受约束版本，可以迭代器 - 哨位对或单个 range 实参来指定范围，并且支持投影和指向成员指针可调用对象。另外还更改了大多数算法的返回类型，以返回算法执行过程中计算的所有潜在有用信息。
 
-这些算法可以理解成旧标准库算法的改良版本，均为函数对象，提供更友好的重载和入参类型检查（基于 `concept`），让我们先以'std::sort' 和'ranges::sort' 的对比作为例子
+这些算法可以理解成旧标准库算法的改良版本，均为函数对象，提供更友好的重载和入参类型检查（基于 `concept`），让我们先以 `std::sort` 和 `ranges::sort` 的对比作为例子
 
-    #include <algorithm>
-    #include <iostream>
-    #include <vector>
+```cpp
+#include <algorithm>
+#include <iostream>
+#include <vector>
 
-    using namespace std;
+using namespace std;
 
-    int main() {
-        vector<int> vec{4, 2, 5, 3, 1};
+int main() {
+    vector<int> vec{4, 2, 5, 3, 1};
 
-        sort(vec.begin(), vec.end());  // {1, 2, 3, 4, 5}
+    sort(vec.begin(), vec.end());  // {1, 2, 3, 4, 5}
 
-        for (const int i : vec) cout << i << ", ";
-        cout << '\n';
+    for (const int i : vec) cout << i << ", ";
+    cout << '\n';
 
-        ranges::sort(vec, ranges::greater{});  // {5, 4, 3, 2, 1}
+    ranges::sort(vec, ranges::greater{});  // {5, 4, 3, 2, 1}
 
-        for (const int i : vec) cout << i << ", ";
+    for (const int i : vec) cout << i << ", ";
 
-        return 0;
-    }
+    return 0;
+}
+```
 
 `ranges::sort` 和 `sort` 的算法实现相同，但提供了基于范围的重载，使得传参更为简洁。其他的 `std` 命名空间下的算法，多数也有对应的范围重载版本位于 `ranges` 命名空间中。
 
@@ -160,42 +164,44 @@ int main() {
 
 一种好方法是选择下标创建一个数组，来维护多种排序：
 
-    #include <algorithm>
-    #include <iostream>
-    #include <ranges>
-    #include <string>
-    #include <vector>
+```cpp
+#include <algorithm>
+#include <iostream>
+#include <ranges>
+#include <string>
+#include <vector>
 
-    using namespace std;
+using namespace std;
 
-    int main() {
-        const vector<string> vec{"a", "gh", "abc", "foo", "bar", "baz", "qux", "alice", "bob"};
-        vector<unsigned> by_lexical(vec.size());
-        vector<unsigned> by_size(vec.size());
+int main() {
+    const vector<string> vec{"a", "gh", "abc", "foo", "bar", "baz", "qux", "alice", "bob"};
+    vector<unsigned> by_lexical(vec.size());
+    vector<unsigned> by_size(vec.size());
 
-        const auto fn = [&vec](const auto i) -> auto& { return vec[i]; };
-        const auto view = std::views::transform(fn);
+    const auto fn = [&vec](const auto i) -> auto& { return vec[i]; };
+    const auto view = std::views::transform(fn);
 
-        for (unsigned i = 0; i < vec.size(); ++i) {
-            by_lexical[i] = i;
-            by_size[i] = i;
-        }
-
-        ranges::sort(by_lexical, ranges::less{}, fn);
-        ranges::sort(
-            by_size,
-            [](const auto& l, const auto& r) { return l.size() < r.size(); }, fn);
-
-        cout << "by_lexical:\n";
-        for (const auto& str : by_lexical | view) cout << str << ", ";
-
-        cout << "\nby_size:\n";
-        for (const auto& str : by_size | view) cout << str << ", ";
-
-        return 0;
+    for (unsigned i = 0; i < vec.size(); ++i) {
+        by_lexical[i] = i;
+        by_size[i] = i;
     }
 
-输出
+    ranges::sort(by_lexical, ranges::less{}, fn);
+    ranges::sort(
+        by_size,
+        [](const auto& l, const auto& r) { return l.size() < r.size(); }, fn);
+
+    cout << "by_lexical:\n";
+    for (const auto& str : by_lexical | view) cout << str << ", ";
+
+    cout << "\nby_size:\n";
+    for (const auto& str : by_size | view) cout << str << ", ";
+
+    return 0;
+}
+```
+
+输出：
 
 > by\_lexical:
 >
