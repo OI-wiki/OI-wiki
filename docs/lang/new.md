@@ -77,6 +77,140 @@ int main() {
 }
 ```
 
+## 范围库（C++20）
+> 范围库是对迭代器和泛型算法库的一个扩展，使得迭代器和算法可以通过组合变得更强大，并且减少错误。
+
+在需要对容器等范围进行复杂操作时，[范围库](https://zh.cppreference.com/w/cpp/ranges)可以使得算法编写更加容易和清晰。
+
+### View 视图
+视图一种轻量对象，用于给范围提供特定的遍历支持。范围库中已实现了一些常用的视图，大致分为两种：
+1. 范围工厂，用于生成一些特殊的范围。
+2. 范围适配器，这些均为**范围适配器闭包对象**，属于**函数对象**的一类。
+
+在通常的实现中，函数对象（FunctionObject）重载了 `operator()` ，使得其实例能够像函数一样被调用，而lambda即为一种典型的函数对象。
+
+类似的，范围适配器闭包对象（RangeAdaptorClosureObject）重载了 `operator|` （此处的 `|` 应该理解成管线运算符，而非按位或运算），使得它们能够像管线（pipeline）一样拼装起来。在复杂操作下，也能保持良好可读性。
+
+若A、B、C为一些范围适配器闭包对象，R为某个范围，其他字母为可能的有效参数，表达式
+
+```
+R | A(a) | B(b) | C(c, d)
+```
+
+等价于
+
+```
+C(B(A(R, a), b), c, d)
+```
+
+下面以 `ranges::take_view` 与 `ranges::iota_view` 为例：
+
+```
+#include <iostream>
+#include <ranges>
+ 
+int main()
+{
+    const auto even = [](int i){ return 0 == i % 2; };
+
+    for (int i : std::views::iota(0, 6) | std::views::filter(even))
+        std::cout << i << ' ';
+}
+```
+1. 范围工厂 `std::views::iota(0, 6)` 生成了从1到6的整数序列的范围
+2. 范围适配器 `std::views::filter(even)` 过滤前一个范围，生成了一个只剩下偶数的范围
+3. 两个操作使用管线运算符链接
+
+上述代码不需要额外分配堆空间存储每步生成的范围，实际的生成和过滤运算发生在遍历操作中（更具体而言，内部的迭代器构造、自增和解引用），也就是零开销（Zero Overhead）。
+
+这同时也就意味着，**范围适配器闭包对象**的内部元素的生命周期，属于外部输入的范围生命周期。如果外部范围（比如容器、范围工厂）已经销毁，那么再对这些的视图遍历，其效果与解引用悬垂指针一致，属于未定义行为。
+
+为了避免上述情况，应该严格要求适配器的生命周期位于其使用的任何范围的生命周期内。
+
+### Constrained Algorithm 受约束的算法
+
+> C++20 在命名空间 std::ranges 中提供大多数算法的受约束版本，可以迭代器-哨位对或单个 range 实参来指定范围，并且支持投影和指向成员指针可调用对象。另外还更改了大多数算法的返回类型，以返回算法执行过程中计算的所有潜在有用信息。
+
+这些算法可以理解成旧标准库算法的改良版本，均为函数对象，提供更友好的重载和入参类型检查（基于 `concept`），让我们先以 'std::sort' 和 'ranges::sort' 的对比作为例子
+
+```
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    vector<int> vec{4, 2, 5, 3, 1};
+
+    sort(vec.begin(), vec.end());  // {1, 2, 3, 4, 5}
+
+    for (const int i : vec) cout << i << ", ";
+    cout << '\n';
+
+    ranges::sort(vec, ranges::greater{});  // {5, 4, 3, 2, 1}
+
+    for (const int i : vec) cout << i << ", ";
+
+    return 0;
+}
+```
+
+`ranges::sort` 和 `sort` 的算法实现相同，但提供了基于范围的重载，使得传参更为简洁。其他的 `std` 命名空间下的算法，多数也有对应的范围重载版本位于 `ranges` 命名空间中。
+
+使用这些范围入参，再结合使用上节视图，能允许我们在进行复杂操作的同时，保持代码可读性，让我们看一个例子：
+
+在算法题中，我们经常会希望对数组进行多种排序，存储多种排序下的序列，但这些元素可能占用的空间并不小（例如 `string` 、  `vector<string>` ），拷贝和维护元素本身就需要较大的开销。
+
+一种好方法是选择下标创建一个数组，来维护多种排序：
+
+```
+#include <algorithm>
+#include <iostream>
+#include <ranges>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    const vector<string> vec{"a", "gh", "abc", "foo", "bar", "baz", "qux", "alice", "bob"};
+    vector<unsigned> by_lexical(vec.size());
+    vector<unsigned> by_size(vec.size());
+
+    const auto fn = [&vec](const auto i) -> auto& { return vec[i]; };
+    const auto view = std::views::transform(fn);
+
+    for (unsigned i = 0; i < vec.size(); ++i) {
+        by_lexical[i] = i;
+        by_size[i] = i;
+    }
+
+    ranges::sort(by_lexical, ranges::less{}, fn);
+    ranges::sort(
+        by_size,
+        [](const auto& l, const auto& r) { return l.size() < r.size(); }, fn);
+
+    cout << "by_lexical:\n";
+    for (const auto& str : by_lexical | view) cout << str << ", ";
+
+    cout << "\nby_size:\n";
+    for (const auto& str : by_size | view) cout << str << ", ";
+
+    return 0;
+}
+```
+
+输出
+
+> by_lexical:
+> 
+> a, abc, alice, bar, baz, bob, foo, gh, qux,
+> 
+> by_size:
+> 
+> a, gh, abc, foo, bar, baz, qux, bob, alice, 
+
 ## Lambda 表达式
 
 > 请参考 [Lambda 表达式](../lambda) 页面。
