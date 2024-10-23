@@ -107,13 +107,12 @@ int main() {
 ```cpp
 #include <iostream>
 #include <ranges>
- 
-int main()
-{
-    const auto even = [](int i){ return 0 == i % 2; };
 
-    for (int i : std::views::iota(0, 6) | std::views::filter(even))
-        std::cout << i << ' ';
+int main() {
+  const auto even = [](int i) { return 0 == i % 2; };
+
+  for (int i : std::views::iota(0, 6) | std::views::filter(even))
+    std::cout << i << ' ';
 }
 ```
 
@@ -141,18 +140,18 @@ int main()
 using namespace std;
 
 int main() {
-    vector<int> vec{4, 2, 5, 3, 1};
+  vector<int> vec{4, 2, 5, 3, 1};
 
-    sort(vec.begin(), vec.end());  // {1, 2, 3, 4, 5}
+  sort(vec.begin(), vec.end());  // {1, 2, 3, 4, 5}
 
-    for (const int i : vec) cout << i << ", ";
-    cout << '\n';
+  for (const int i : vec) cout << i << ", ";
+  cout << '\n';
 
-    ranges::sort(vec, ranges::greater{});  // {5, 4, 3, 2, 1}
+  ranges::sort(vec, ranges::greater{});  // {5, 4, 3, 2, 1}
 
-    for (const int i : vec) cout << i << ", ";
+  for (const int i : vec) cout << i << ", ";
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -174,30 +173,31 @@ int main() {
 using namespace std;
 
 int main() {
-    const vector<string> vec{"a", "gh", "abc", "foo", "bar", "baz", "qux", "alice", "bob"};
-    vector<unsigned> by_lexical(vec.size());
-    vector<unsigned> by_size(vec.size());
+  const vector<string> vec{"a",   "gh",  "abc",   "foo", "bar",
+                           "baz", "qux", "alice", "bob"};
+  vector<unsigned> by_lexical(vec.size());
+  vector<unsigned> by_size(vec.size());
 
-    const auto fn = [&vec](const auto i) -> auto& { return vec[i]; };
-    const auto view = std::views::transform(fn);
+  const auto fn = [&vec](const auto i) -> auto& { return vec[i]; };
+  const auto view = std::views::transform(fn);
 
-    for (unsigned i = 0; i < vec.size(); ++i) {
-        by_lexical[i] = i;
-        by_size[i] = i;
-    }
+  for (unsigned i = 0; i < vec.size(); ++i) {
+    by_lexical[i] = i;
+    by_size[i] = i;
+  }
 
-    ranges::sort(by_lexical, ranges::less{}, fn);
-    ranges::sort(
-        by_size,
-        [](const auto& l, const auto& r) { return l.size() < r.size(); }, fn);
+  ranges::sort(by_lexical, ranges::less{}, fn);
+  ranges::sort(
+      by_size, [](const auto& l, const auto& r) { return l.size() < r.size(); },
+      fn);
 
-    cout << "by_lexical:\n";
-    for (const auto& str : by_lexical | view) cout << str << ", ";
+  cout << "by_lexical:\n";
+  for (const auto& str : by_lexical | view) cout << str << ", ";
 
-    cout << "\nby_size:\n";
-    for (const auto& str : by_size | view) cout << str << ", ";
+  cout << "\nby_size:\n";
+  for (const auto& str : by_size | view) cout << str << ", ";
 
-    return 0;
+  return 0;
 }
 ```
 
