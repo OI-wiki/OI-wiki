@@ -60,6 +60,8 @@ $$
 
 即求出 $A\left(\lbrace 0,1 \rbrace^n\right)$。Zeta 变换的逆变换被称为 Möbius 变换。我们只需对上述算法稍作修改即可。
 
+上述算法简单来说就是：我们每一次计算两个齐次多项式的乘法，而因为取模导致次数减少的部分正好不需要。
+
 ??? " 子集卷积模板（[LOJ 152. 子集卷积](https://loj.ac/p/152)）"
     ```cpp
     --8<-- "docs/math/code/poly/sps/sps_1.cpp"
@@ -214,7 +216,7 @@ $$
     \end{aligned}
     $$
 
-    也就是对 $k\in\left\lbrace 0,\dots,n-1\right\rbrace$ 计算出了 $\left\lbrack x_2^0\dots x_n^0\right\rbrack F^{\left(k\right)}(G)$，再迭代应用这个方法就可以了。当然我们也可以考虑从 $\left\lbrack x_2^0\dots x_n^0\right\rbrack F^{\left(n-1\right)}\left(G\right)$ 到 $\left\lbrack x_3^0\dots x_n^0\right\rbrack F^{\left(n-2\right)}\left(G\right)$ 类似这样的计算顺序。
+    也就是对 $k\in\left\lbrace 0,\dots,n-1\right\rbrace$ 计算出了 $\left\lbrack x_2^0\dots x_n^0\right\rbrack F^{\left(k\right)}(G)$，再迭代应用这个方法就可以了。当然我们也可以考虑从 $\left\lbrack x_2^0\dots x_n^0\right\rbrack F^{\left(n-1\right)}\left(G\right)$ 到 $\left\lbrack x_3^0\dots x_n^0\right\rbrack F^{\left(n-2\right)}\left(G\right)$ 类似这样的计算顺序（代码使用了后者）。我们也可以考虑一直维护其 Zeta 变换的形式来减少常数。
 
     ```cpp
     #include <algorithm>
@@ -222,7 +224,7 @@ $$
     // 返回 F(G) 其中 deg(F) <= N 且 F 为 EGF
     // 限制 `std::size(F) - 1 = N` 和 `std::size(G) = (1 << N)` 和 `G[0] == 0`
     // 参考 Elegia. Optimal Algorithm on Polynomial Composite Set Power Series.
-    //     https://codeforces.com/blog/entry/92183
+    //      https://codeforces.com/blog/entry/92183
     template <typename T>
     std::vector<T> sps_in_egf(const std::vector<T> &F, const std::vector<T> &G) {
       const int len = static_cast<int>(G.size());
@@ -240,7 +242,7 @@ $$
             std::vector(G.begin() + (1 << j), G.begin() + (2 << j)));
           std::copy(FG.begin(), FG.end(), R.begin() + (1 << j));
         }
-        // 现在 R = F^((N-(i+1)))(G)
+        // 现在 R = F^((n - (i+1)))(G)
         R.swap(res);
       }
       return res;
