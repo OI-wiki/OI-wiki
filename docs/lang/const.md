@@ -138,7 +138,7 @@ int main() {
         }
         ```
 
-???+ note "编译后的可能的汇编代码（使用Compiler Explorer，Clang 19）"
+???+ note "编译后的可能的汇编代码（使用 Compiler Explorer，Clang 19）"
     === "Assembly"
         ```assembly
         fib1(unsigned int):
