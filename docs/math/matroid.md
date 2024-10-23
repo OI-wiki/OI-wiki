@@ -40,7 +40,7 @@
 **秩函数（Rank Function）** $r: 2^E \rightarrow \mathbb{Z}_{\geq 0}$ 将基础集 $E$ 的子集映射到非负整数。对于任意 $S \subseteq E$，$r(S)$ 定义为 $S$ 中最大独立集的大小，即
 
 $$
-r(S) = \max \{ |I| \mid I \subseteq S \text{ 且 } I \text{ 是独立的} \}.
+r(S) = \max \{ |I| \mid I \subseteq S \wedge I \in \mathcal{I} \}.
 $$
 
 **性质**：
