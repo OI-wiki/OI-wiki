@@ -98,10 +98,11 @@ int main() {
 
 编译时计算能允许更好的优化，比如将结果硬编码到汇编中，消除运行时计算开销。与 `const` 的带来的优化不同，当 `constexpr` 修饰的变量满足常量表达式的条件，就强制要求编译器在编译时计算出结果而非运行时。
 
-???+ note "实际上把 `const` 理解成 **"readonly"**，`constexpr` 理解成 **"const"** ，这样更加直观"
+???+ note " 实际上把 `const` 理解成 **"readonly"**，`constexpr` 理解成 **"const"**，这样更加直观 "
     === "C++"
         ```cpp
         constexpr int a = 10;  // 直接定义常量
+        ```
 
         constexpr int FivePlus(int x) { return 5 + x; }
 
@@ -111,12 +112,13 @@ int main() {
         }
         ```
 
-以下[例子](https://godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAMzwBtMA7AQwFtMQByARg9KtQYEAysib0QXACx8BBAKoBnTAAUAHpwAMvAFYTStJg1DIApACYAQuYukl9ZATwDKjdAGFUtAK4sGe1wAyeAyYAHI%2BAEaYxCDSAA6oCoRODB7evnoJSY4CQSHhLFEx0naYDilCBEzEBGk%2Bfly2mPY5DJXVBHlhkdGxtlU1dRmNCgOdwd2FvZIAlLaoXsTI7BzmAMzByN5YANQma25Oo8SYrPvYJhoAgpdXXklGO8xsCnFMyzuj6PtW17doDFGmFUcWIOy8gLwwBC6B2NAiGggEKS0MwsIYMz2AHZflcdvidicCIsGE89gd9gARHZcckAMRpOxAO2oeAREFJAFoaZjrHC2YiuTszDMZj9biYsZSJddkVCYfyIlwkZDUejeTjCZhicRSaT9m4qYz9gzaczWUqOTtuVxeZZFcqhSKxWsLNjpX9rsECDsWExghANbiCTsAUCQWCmF4iDsAG4acnU%2BGIgCcLuDBLDPqjMdjtKN8OVafFnrxmYWPoNBrjGhLZfxaGj5MNBx2YA4bdWrtuIcblYprbzdcllI4c1onAArLw/NxeKhOIbLHyFAslpg9mY1jxSARNGO5gBrWKTgB0XAAHCnJxpJGssdusViL9IJxxJLwWBINBpSLOtKQC4cLwCggL%2Be4cFocxwLAMCICgqAsHEdDROQlBoEhKExFshjAAA%2BgQxAQoefB0AQ0SgRAET7qQETBNUACenA7nRzDEAxADyETaGUEE7hhbCCBxDC0ExkG8FgEReMAbhiLQoFzqQWB%2BkY4jiUpeAnOUsaYApAHAmU0YrAB3rNDRtBssQjEeFgNGEXgX6KTpxARIkmCUpgKnABZRj7nMVAGMACgAGp4JgADuHFxIwzG8PwggiGI7BSDIgiKCo6jqbojQGL5pjLpY%2BhsqBkBzKgcStApnJfFS%2BVWJYW7WhxazWl8FkRFS7V1dY87OcQeBYCVgZNC0KQuAw7iePU/gTV0BRFJkiTJAIQwNKQWTLQwc09DEIzNLxFRjKteilOUAjtDU21TLt/QdMdIxjFdC22vMizLBI45TjONFATsqgXgAbJyAOSKGuXACyhHEZiEC4IQJCbtuMy8BBUGkBASAYch9BkBQEBY1hICxsgcRxHheYpnhBjkaMeGqCDpG0ORxCUdR6msYxsW0fR7FcTxDhcwJjAEMJok0ZJ0mybQ8lc8puFqQB%2BBaY4Ol6bwBnIEZNGmW%2BAHtVZ7E2cZKP9Y5O7Oa5SgeV5PmgOJ/mBSFYWRdFs47vFwiiOIKUe%2Blag0boaz6LhKDWNYRURENZUVSkCkAPRfKHBUWGYCZxwA6qDGcABq9dE/WDfAcyna042Teka2BBM829I0G2tPd61La0T21yNB3nUdU3DO3Z1tI91c7SdXcV8PHSt7txdru9L1vtOf4/Zwf0g76CjE3GXApqe1O6T6sP4EQYLrLaKN%2BUesQaKek6TlwANYgDk4plikgaCmOWcB%2BpBfgDZinhek5YikGYf%2BgDJDAMnNIf885OAgTAruPy6M4IYxABWOI0Y0L40QtjaIoRWArH%2BkDFeOFHgQChgwQ8yNSBonhgXPQHtEre2kL7JQ/ssp6HClZOICC57fXUkBDi0Y0E%2BlQFQP6gNgag2IRDUhRFyEww8JhHGiMT7wPtujJAqD0F4wJjjXBbBOD01BiwNeyAN5bx3qMdWB8SADTobIBhyUmGyD9plACgdSAcKYFwucn0ODzygYBTgAiCBCJ2CI5eRiTFmO3kwGme8FHYKPluNYlDUYHlIAgU4WAYjDTfJ/L895zxgJAUAkpkgAYLz4TA2wcC0milIMeCBf8uC3mvD/AGF4zBmC4FifQnA1i8IAkBU%2B9tfFmEGdA4CqioJzGckkZwkggA%3D%3D%3D)很好说明了 `const` 和 `constexpr` 的区别，代码使用递归实现计算斐波那契数列，并用控制流输出。
+以下 [例子](https://godbolt.org/#z:OYLghAFBqd5QCxAYwPYBMCmBRdBLAF1QCcAaPECAMzwBtMA7AQwFtMQByARg9KtQYEAysib0QXACx8BBAKoBnTAAUAHpwAMvAFYTStJg1DIApACYAQuYukl9ZATwDKjdAGFUtAK4sGe1wAyeAyYAHI%2BAEaYxCDSAA6oCoRODB7evnoJSY4CQSHhLFEx0naYDilCBEzEBGk%2Bfly2mPY5DJXVBHlhkdGxtlU1dRmNCgOdwd2FvZIAlLaoXsTI7BzmAMzByN5YANQma25Oo8SYrPvYJhoAgpdXXklGO8xsCnFMyzuj6PtW17doDFGmFUcWIOy8gLwwBC6B2NAiGggEKS0MwsIYMz2AHZflcdvidicCIsGE89gd9gARHZcckAMRpOxAO2oeAREFJAFoaZjrHC2YiuTszDMZj9biYsZSJddkVCYfyIlwkZDUejeTjCZhicRSaT9m4qYz9gzaczWUqOTtuVxeZZFcqhSKxWsLNjpX9rsECDsWExghANbiCTsAUCQWCmF4iDsAG4acnU%2BGIgCcLuDBLDPqjMdjtKN8OVafFnrxmYWPoNBrjGhLZfxaGj5MNBx2YA4bdWrtuIcblYprbzdcllI4c1onAArLw/NxeKhOIbLHyFAslpg9mY1jxSARNGO5gBrWKTgB0XAAHCnJxpJGssdusViL9IJxxJLwWBINBpSLOtKQC4cLwCggL%2Be4cFocxwLAMCICgqAsHEdDROQlBoEhKExFshjAAA%2BgQxAQoefB0AQ0SgRAET7qQETBNUACenA7nRzDEAxADyETaGUEE7hhbCCBxDC0ExkG8FgEReMAbhiLQoFzqQWB%2BkY4jiUpeAnOUsaYApAHAmU0YrAB3rNDRtBssQjEeFgNGEXgX6KTpxARIkmCUpgKnABZRj7nMVAGMACgAGp4JgADuHFxIwzG8PwggiGI7BSDIgiKCo6jqbojQGL5pjLpY%2BhsqBkBzKgcStApnJfFS%2BVWJYW7WhxazWl8FkRFS7V1dY87OcQeBYCVgZNC0KQuAw7iePU/gTV0BRFJkiTJAIQwNKQWTLQwc09DEIzNLxFRjKteilOUAjtDU21TLt/QdMdIxjFdC22vMizLBI45TjONFATsqgXgAbJyAOSKGuXACyhHEZiEC4IQJCbtuMy8BBUGkBASAYch9BkBQEBY1hICxsgcRxHheYpnhBjkaMeGqCDpG0ORxCUdR6msYxsW0fR7FcTxDhcwJjAEMJok0ZJ0mybQ8lc8puFqQB%2BBaY4Ol6bwBnIEZNGmW%2BAHtVZ7E2cZKP9Y5O7Oa5SgeV5PmgOJ/mBSFYWRdFs47vFwiiOIKUe%2Blag0boaz6LhKDWNYRURENZUVSkCkAPRfKHBUWGYCZxwA6qDGcABq9dE/WDfAcyna042Teka2BBM829I0G2tPd61La0T21yNB3nUdU3DO3Z1tI91c7SdXcV8PHSt7txdru9L1vtOf4/Zwf0g76CjE3GXApqe1O6T6sP4EQYLrLaKN%2BUesQaKek6TlwANYgDk4plikgaCmOWcB%2BpBfgDZinhek5YikGYf%2BgDJDAMnNIf885OAgTAruPy6M4IYxABWOI0Y0L40QtjaIoRWArH%2BkDFeOFHgQChgwQ8yNSBonhgXPQHtEre2kL7JQ/ssp6HClZOICC57fXUkBDi0Y0E%2BlQFQP6gNgag2IRDUhRFyEww8JhHGiMT7wPtujJAqD0F4wJjjXBbBOD01BiwNeyAN5bx3qMdWB8SADTobIBhyUmGyD9plACgdSAcKYFwucn0ODzygYBTgAiCBCJ2CI5eRiTFmO3kwGme8FHYKPluNYlDUYHlIAgU4WAYjDTfJ/L895zxgJAUAkpkgAYLz4TA2wcC0milIMeCBf8uC3mvD/AGF4zBmC4FifQnA1i8IAkBU%2B9tfFmEGdA4CqioJzGckkZwkggA%3D%3D%3D) 很好说明了 `const` 和 `constexpr` 的区别，代码使用递归实现计算斐波那契数列，并用控制流输出。
 
 ???+ note "实现"
     === "C++"
         ```cpp
         #include <iostream>
+        ```
 
         using namespace std;
 
@@ -162,6 +164,7 @@ int main() {
                 pop     rbx
                 pop     r14
                 ret
+        ```
 
         main:
                 push    r14
@@ -204,6 +207,7 @@ int main() {
     === "C++"
         ```cpp
         #include <iostream>
+        ```
 
         using namespace std;
 
