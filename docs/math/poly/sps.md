@@ -196,10 +196,10 @@ $$
 
     $$
     \begin{aligned}
-    \left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F^{\left(\red{n}\right)}(G)&=\frac{1}{\red{n}!}\left\lbrack x^\red{n}\right\rbrack F \\
-    \left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F^{\left(\red{n-1}\right)}(G)&=\frac{1}{\left(\red{n-1}\right)!}\left\lbrack x^\red{n-1}\right\rbrack F \\
+    \left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F^{\left(n\right)}(G)&=\frac{1}{n!}\left\lbrack x^n\right\rbrack F \\
+    \left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F^{\left(n-1\right)}(G)&=\frac{1}{\left(n-1\right)!}\left\lbrack x^n-1\right\rbrack F \\
     \vdots \\
-    \left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F(G)&=\frac{1}{\red{0}!}\left\lbrack x^\red{0}\right\rbrack F
+    \left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F(G)&=\frac{1}{0!}\left\lbrack x^0\right\rbrack F
     \end{aligned}
     $$
 
@@ -207,14 +207,14 @@ $$
 
     $$
     \begin{aligned}
-    \left\lbrack x_1^\red{1}x_2^0\dots x_n^0\right\rbrack F^{\left(\red{n-1}\right)}(G)&=\left(\left\lbrack x_1^\red{0}x_2^0\dots x_n^0\right\rbrack F^{\left(\red{n}\right)}(G)\right)\left(\left\lbrack x_1^{\red{1}}x_2^0\dots x_n^0\right\rbrack G\right) \\
-    \left\lbrack x_1^\red{1}x_2^0\dots x_n^0\right\rbrack F^{\left(\red{n-2}\right)}(G)&=\left(\left\lbrack x_1^\red{0}x_2^0\dots x_n^0\right\rbrack F^{\left(\red{n-1}\right)}(G)\right)\left(\left\lbrack x_1^{\red{1}}x_2^0\dots x_n^0\right\rbrack G\right) \\
+    \left\lbrack x_1^1x_2^0\dots x_n^0\right\rbrack F^{\left(n-1\right)}(G)&=\left(\left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F^{\left(n\right)}(G)\right)\left(\left\lbrack x_1^{1}x_2^0\dots x_n^0\right\rbrack G\right) \\
+    \left\lbrack x_1^1x_2^0\dots x_n^0\right\rbrack F^{\left(n-2\right)}(G)&=\left(\left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F^{\left(n-1\right)}(G)\right)\left(\left\lbrack x_1^{1}x_2^0\dots x_n^0\right\rbrack G\right) \\
     \vdots \\
-    \left\lbrack x_1^\red{1}x_2^0\dots x_n^0\right\rbrack F(G)&=\left(\left\lbrack x_1^\red{0}x_2^0\dots x_n^0\right\rbrack F^{\left(\red{1}\right)}(G)\right)\left(\left\lbrack x_1^{\red{1}}x_2^0\dots x_n^0\right\rbrack G\right)
+    \left\lbrack x_1^1x_2^0\dots x_n^0\right\rbrack F(G)&=\left(\left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F^{\left(1\right)}(G)\right)\left(\left\lbrack x_1^{1}x_2^0\dots x_n^0\right\rbrack G\right)
     \end{aligned}
     $$
 
-    也就是对 $k\in\left\lbrace 0,\dots,n-1\right\rbrace$ 计算出了 $\left\lbrack x_2^\red{0}\dots x_n^0\right\rbrack F^{\left(k\right)}(G)$，再迭代应用这个方法就可以了。当然我们也可以考虑从 $\left\lbrack \red{x_2}^0\dots x_n^0\right\rbrack F^{\left(\red{n-1}\right)}\left(G\right)$ 到 $\left\lbrack \red{x_3}^0\dots x_n^0\right\rbrack F^{\left(\red{n-2}\right)}\left(G\right)$ 类似这样的计算顺序。
+    也就是对 $k\in\left\lbrace 0,\dots,n-1\right\rbrace$ 计算出了 $\left\lbrack x_2^0\dots x_n^0\right\rbrack F^{\left(k\right)}(G)$，再迭代应用这个方法就可以了。当然我们也可以考虑从 $\left\lbrack x_2^0\dots x_n^0\right\rbrack F^{\left(n-1\right)}\left(G\right)$ 到 $\left\lbrack x_3^0\dots x_n^0\right\rbrack F^{\left(n-2\right)}\left(G\right)$ 类似这样的计算顺序。
 
     ```cpp
     #include <algorithm>
@@ -225,56 +225,57 @@ $$
     //     https://codeforces.com/blog/entry/92183
     template <typename T>
     std::vector<T> sps_in_egf(const std::vector<T> &F, const std::vector<T> &G) {
-        const int len = static_cast<int>(G.size());
-        const int n   = __builtin_ctz(len);
-        assert(static_cast<int>(F.size()) - 1 == n);
-        assert(G[0] == 0);
-        std::vector res = {F[n]};
-        for (int i = 0; i < n; ++i) {
-            std::vector<T> R(1 << (i + 1));
-            // 注意我们直接使用了系数这是因为 F 是 EGF
-            R[0] = F[n - (i + 1)];
-            for (int j = 0; j <= i; ++j) {
-                const auto FG = subset_convolution(
-                    std::vector(res.begin(), res.begin() + (1 << j)),
-                    std::vector(G.begin() + (1 << j), G.begin() + (2 << j)));
-                std::copy(FG.begin(), FG.end(), R.begin() + (1 << j));
-            }
-            // now R = F^((N-(i+1)))(G)
-            R.swap(res);
+      const int len = static_cast<int>(G.size());
+      const int n   = __builtin_ctz(len);
+      assert(static_cast<int>(F.size()) - 1 == n);
+      assert(G[0] == 0);
+      std::vector res = {F[n]};
+      for (int i = 0; i < n; ++i) {
+        std::vector<T> R(1 << (i + 1));
+        // 注意我们直接使用了系数这是因为 F 是 EGF
+        R[0] = F[n - (i + 1)];
+        for (int j = 0; j <= i; ++j) {
+          const auto FG = subset_convolution(
+            std::vector(res.begin(), res.begin() + (1 << j)),
+            std::vector(G.begin() + (1 << j), G.begin() + (2 << j)));
+          std::copy(FG.begin(), FG.end(), R.begin() + (1 << j));
         }
-        return res;
+        // 现在 R = F^((N-(i+1)))(G)
+        R.swap(res);
+      }
+      return res;
     }
 
     // 返回 F(G) 其中 F 为多项式
     template <typename T>
     inline std::vector<T> sps_in_poly(std::vector<T> F, std::vector<T> G) {
-        const int len = static_cast<int>(G.size());
-        const int n   = __builtin_ctz(len);
-        // 当 G 的常数项不为 0 时，我们按照上述方法处理
-        if (G[0] != 0) {
-            std::vector<T> bin(n + 1), pw(F.size() + 1), FF(n + 1);
-            // `pw[i]` 为 c^i
-            pw[0] = 1;
-            for (int i = 1; i < static_cast<int>(pw.size()); ++i) pw[i] = pw[i - 1] * G[0];
-            G[0]   = 0;
-            bin[0] = 1;
-            for (int i = 0; i < static_cast<int>(F.size()); ++i) {
-                // `bin[j]` 为 (1+x)^i 中 x^j 的系数
-                // 因为我们只需要计算 F(x+c) mod x^(n+1) 的系数
-                for (int j = 0; j <= std::min(n, i); ++j)
-                    FF[j] += F[i] * bin[j] * pw[i - j];
-                for (int j = n; j > 0; --j) bin[j] += bin[j - 1];
-            }
-            FF.swap(F);
+      const int len = static_cast<int>(G.size());
+      const int n   = __builtin_ctz(len);
+      // 当 G 的常数项不为 0 时，我们按照上述方法处理
+      if (G[0] != 0) {
+        std::vector<T> bin(n + 1), pw(F.size() + 1), FF(n + 1);
+        // `pw[i]` 为 c^i
+        pw[0] = 1;
+        for (int i = 1; i < static_cast<int>(pw.size()); ++i)
+          pw[i] = pw[i - 1] * G[0];
+        G[0] = 0;
+        bin[0] = 1;
+        for (int i = 0; i < static_cast<int>(F.size()); ++i) {
+          // `bin[j]` 为 (1+x)^i 中 x^j 的系数
+          // 因为我们只需要计算 F(x+c) mod x^(n+1) 的系数
+          for (int j = 0; j <= std::min(n, i); ++j)
+            FF[j] += F[i] * bin[j] * pw[i - j];
+          for (int j = n; j > 0; --j) bin[j] += bin[j - 1];
         }
-        // 然后我们将问题转换为 EGF 复合集合幂级数
-        // 如果直接调用后者，我们注意到和计算指数时一样
-        // 我们不需要 1,...,n 存在乘法逆元也是可以计算的
-        F.resize(n + 1);
-        T c = 1;
-        for (int i = 1; i <= n; ++i) F[i] *= c *= i; // to EGF
-        return sps_in_egf(F, G);
+        FF.swap(F);
+      }
+      // 然后我们将问题转换为 EGF 复合集合幂级数
+      // 如果直接调用后者，我们注意到和计算指数时一样
+      // 我们不需要 1,...,n 存在乘法逆元也是可以计算的
+      F.resize(n + 1);
+      T c = 1;
+      for (int i = 1; i <= n; ++i) F[i] *= c *= i;
+      return sps_in_egf(F, G);
     }
     ```
 
