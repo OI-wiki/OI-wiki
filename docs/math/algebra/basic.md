@@ -1,9 +1,11 @@
+author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, isdanni, Menci, ouuan, Tiphereth-A, warzone-oier, Xeonacid, c-forrest
+
 本章节将简要介绍抽象代数的相关知识。现阶段算法竞赛的主要内容并不直接考察抽象代数的知识，但是在算法的描述或是问题的题解中常常会牵涉一些抽象函数的基本概念，这使得掌握了基础抽象代数概念的读者能够更快速理解一些算法。因此，这部分内容并不是任何选手的必修知识，而仅供那些感兴趣或者可能从中受益的读者参考使用。同时，本章节将避免过全过深的介绍抽象代数的知识[^oi-wiki-not-wikipedia]，而会集中在基础概念以及与 OI 其他部分知识联系最为紧密的部分。想系统学习抽象代数知识的读者，应当参考专业的抽象代数教科书学习。
 
-为了更好帮助读者理解从本部分内容可能的收获，列举一些算法竞赛中可能牵涉到抽象代数知识的例子：
+为了更好帮助读者理解阅读本部分内容可能的收获，列举一些算法竞赛中可能牵涉到抽象代数知识的例子：
 
--   数论和多项式的很多定理是抽象代数中结论的特例。
--   数据结构中，[线段树](../../ds/seg.md) 等结构可以维护幺半群的信息，而很多 DP 问题的递推关系可以抽象成这样的幺半群结构。
+-   数论和多项式的很多定理是抽象代数中结论的特例；
+-   数据结构中，[线段树](../../ds/seg.md) 等结构可以维护幺半群的信息，而很多 DP 问题的递推关系可以抽象成这样的幺半群结构；
 -   组合数学中，[Pólya 计数原理](../combinatorics/polya.md) 的严格表述和证明需要用到群论的相关概念。
 
 基于此，本章节将着重介绍无法跳过的基础知识和与这些应用直接相关的部分。作为开始，本文介绍群、环、域的基本概念。
@@ -13,7 +15,7 @@
 群的定义如下。
 
 ???+ abstract "群"
-    给定非空集合 $G$ 和其上的二元运算 $\cdot:G\times G\rightarrow G$，称 $(G,\cdot)$ 是一个 **群**（group），如果它们满足以下性质[^group-definition]：
+    给定非空集合 $G$ 和其上的二元运算 $\cdot:G\times G\rightarrow G$，称 $(G,\cdot)$ 是一个 **群**（group），如果它们满足以下性质：
 
     1.  结合律（associative property）：对于所有 $a,b,c\in G$，成立 $a\cdot(b\cdot c)=(a\cdot b)\cdot c$。
     2.  有单位元：存在 $e\in G$，使得对于任意 $a\in G$，都成立 $a\cdot e = e\cdot a = a$。这里，$e$ 称为 $G$ 的 **单位元**（identity element），也称幺元。
@@ -22,13 +24,21 @@
 ??? info "关于定义中的封闭性条件"
     这里的二元运算就隐含了所谓的封闭性条件，即给定任何 $a,b\in G$，都有 $a\cdot b\in G$。有些文章会将其单独列出。
 
+???+ note "群的基本性质"
+    给定群 $(G,\cdot)$，以下性质总是成立：
+
+    1. 对于任何有限长的列 $\{g_i\}_{i=1}^k\subseteq G$，乘积 $g_1\cdot g_2\cdot\cdots\cdot g_k$ 的运算结果与加括号的方式无关；
+    2. 单位元 $e$ 总是唯一的；
+    3. 对于任何元素 $a\in G$，它的逆 $a^{-1}$ 也是唯一的；
+    4. 消去律（cancellation law）：给定 $a,b,c\in G$，如果 $a\cdot c=b\cdot c$ 或 $c\cdot a=c\cdot b$，那么有 $a=b$。
+
 群相当常见。通俗地说，所有不损失结构的变换都自动构成群。以常见的几种类型的群为例。
 
 ???+ example "群的例子"
-    -   **对称群**（symmetric group）：给定集合 $M$，则所有 $M$ 上的置换，即自 $M$ 到 $M$ 自身的双射，就在映射的复合下构成群 $S_M$。单位元是恒等变换，逆元是逆映射（双射必然存在逆映射）。如果集合 $M$ 有限，大小为 $n$，也常记作 $S_n$，称作 $n$ 次对称群。
+    -   **对称群**（symmetric group）：给定集合 $M$，则所有 $M$ 上的 [置换](../permutation.md)，即自 $M$ 到 $M$ 自身的双射，就在映射的复合下构成群 $S_M$。单位元是恒等变换，逆元是逆映射（双射必然存在逆映射）。如果集合 $M$ 有限，大小为 $n$，也常记作 $S_n$，称作 $n$ 次对称群。
     -   空间对称群（symmetry group）：对于给定几何图形，能够使其与自身重合的变换全体也在映射的复合下构成群。这描述了该几何图形的空间对称性。具体例子可以参考 [常见空间对称群](../combinatorics/polya.md#常见空间对称群)。
     -   整数的加法群：整数集 $\mathbf Z$ 在加法 $+$ 运算下构成群 $(\mathbf Z,+)$。单位元是 $0$，逆元是相反数。
-    -   整数模 $n$ 乘法群（multiplicative group of integers modulo $n$）：给定模 $n$，所有与 $n$ 互质的整数对应的剩余系，在乘法运算下构成群 $((\mathbf Z/n\mathbf Z)^\times,\times)$。单位元是 $\bar 1$，即 $1$ 对应的剩余系，逆元就是模 $n$ 的乘法逆元（对应的剩余系），其存在性由裴蜀定理保证。具体结构分析参考 [整数模 $n$ 乘法群](../algebra/ring-theory.md#应用整数剩余系的乘法群)。
+    -   整数模 $n$ 乘法群（multiplicative group of integers modulo $n$）：给定模 $n$，所有与 $n$ 互质的整数对应的 [剩余系](../number-theory/basic.md#同余类与剩余系)，在乘法运算下构成群 $((\mathbf Z/n\mathbf Z)^\times,\times)$。单位元是 $\bar 1$，即 $1$ 对应的剩余系，逆元就是模 $n$ 的乘法逆元（对应的剩余系），其存在性由 [裴蜀定理](../number-theory/bezouts.md) 保证。具体结构分析参考 [整数模 $n$ 乘法群](../algebra/ring-theory.md#应用整数剩余系的乘法群)。
     -   一般线性群（general linear group）：给定 $n$ 和数域 $F$，则 $n$ 维的全体可逆方阵在乘法运算下构成群 $GL_n(F)$。单位元是单位矩阵，逆元是逆矩阵。
 
 要更好地理解群的定义，不妨对比着看几个不属于群的例子。
@@ -37,7 +47,7 @@
     -   所有 $M$ 到自身的映射（不一定是双射），并不构成群。因为那些不是双射的映射不存在逆元。
     -   整数在乘法下并不构成群，因为 $2$ 在整数范围内没有乘法逆元。
     -   正整数在加法下也不构成群，因为正整数没有加法单位元。
-    -   模 $n$ 的所有非零剩余系在乘法意义下往往不构成群。比如说 $\mathbf Z_6\setminus\{\overline 0\}$ 中，$\overline 2\times\overline 3=\overline 0$ 不属于这个集合，这意味着乘法都不是这个集合上良定义的二元运算（或者说，它不满足封闭性）。
+    -   模 $n$ 的所有非零剩余系在乘法意义下往往不构成群。比如说 $(\mathbf Z/6\mathbf Z)\setminus\{\overline 0\}$ 中，$\overline 2\times\overline 3=\overline 0$ 不属于这个集合，这意味着乘法都不是这个集合上良定义的二元运算（或者说，它不满足封闭性）。
 
 有时，也需要讨论这些更不完善的结构的性质。因此，可以定义如下概念，它们比群更宽泛。
 
@@ -48,16 +58,16 @@
     给定半群 $(G,\cdot)$，如果它还存在幺元，则称 $(G,\cdot)$ 是一个 **幺半群**（monoid）。
 
 ???+ example "幺半群和半群的例子"
-    上面的例子中，$(\mathbf Z,\times)$ 是幺半群，而 $(\mathbf N_+,+)$ 是半群。
+    上面的例子中，$(\mathbf N_+,+)$ 是半群，而 $(\mathbf Z,\times)$ 是幺半群。
 
 最后，很多熟悉的群上的运算除了满足结合律外，还满足交换律。这类群的结构相对简单，它们称作 Abel 群，也称作交换群。
 
 ???+ abstract "Abel 群"
-    给定群 $(G,\cdot)$，则称 $(G,\cdot)$ 是一个 **Abel 群**（Abelian group），如果运算 $\cdot$ 还满足交换律（commutative property），即对于所有 $a,b\in G$，都成立 $a\cdot b=b\cdot a$。
+    给定群 $(G,\cdot)$，则称 $(G,\cdot)$ 是一个 **Abel 群**（Abelian group）或 **交换群**（communicate group），如果运算 $\cdot$ 还满足交换律（commutative property），即对于所有 $a,b\in G$，都成立 $a\cdot b=b\cdot a$。
 
 ???+ example "Abel 群和非 Abel 群的例子"
     -   整数加法群 $(\mathbf Z,+)$ 就是一个 Abel 群。
-    -   当 $n\ge3$ 时，$S_n$ 并不是 Abel 群。
+    -   当 $n\ge3$ 时，对称群 $S_n$ 并不是 Abel 群。
 
 这些就是群论相关的基本定义。群论的更多内容，可以参考 [群论](./group-theory.md) 或相关书籍。
 
@@ -79,14 +89,14 @@
 
 环的加法结构相当简单，但是乘法结构十分原始。因而如果类比群，在乘法上做更多要求，可以得到如下相关定义。
 
-???+ abstract "交换环"
-    给定环 $(R,+,\cdot)$，如果乘法满足交换律，则称 $(R,+,\cdot)$ 是一个 **交换环**（commutative ring）。
-
 ???+ abstract "幺环"
     给定环 $(R,+,\cdot)$，如果存在乘法单位元，记作 $1$，则称 $(R,+,\cdot)$ 是一个 **幺环**（ring with identity）。
 
 ???+ abstract "除环"
     给定非零幺环 $(R,+,\cdot)$，如果对于所有非 $0$ 元素 $a\in R$，都存在乘法逆元，记作 $a^{-1}$，则称 $(R,+,\cdot)$ 是一个 **除环**（division ring）。
+
+???+ abstract "交换环"
+    给定环 $(R,+,\cdot)$，如果乘法满足交换律，则称 $(R,+,\cdot)$ 是一个 **交换环**（commutative ring）。
 
 这里除环的定义中有趣的一点是，它将 $0$ 视为乘法结构中的特殊元素。这是因为 $0 = 0\cdot a = a\cdot 0$[^zero-multiplication]。也就是说，环中加法单位元乘以任何元素都得到其自身。这样，它自然不会存在乘法逆元，除非它本身就是乘法单位元。这样的环只有零环（见下面的例子）。
 
@@ -112,7 +122,7 @@
 
     -   整数环：整数集 $\mathbf Z$ 和其上通常定义的加法 $+$ 和乘法 $\times$ 构成了环 $(\mathbf Z,+,\times)$。实际上，这是一个整环，但是它不是除环。
 
-    -   多项式环：给定环 $R$，可以在上面定义 [多项式环](../algebra/ring-theory.md)  $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
+    -   多项式环：给定环 $R$，可以在上面定义 [多项式环](../algebra/ring-theory.md#多项式环) $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
 
     -   四元数（quaternion）：类比复数，可以考虑集合 $\mathbf H=\{a+b\mathrm{i}+c\mathrm{j}+d\mathrm{k}:a,b,c,d\in\mathbf R\}$，并且定义其上的加法和乘法，这里，$\mathrm{i},\mathrm{j},\mathrm{k}$ 的乘法运算满足
 
@@ -126,7 +136,7 @@
 
     -   整数模 $n$ 剩余系 $\mathbf Z/n\mathbf Z$ 在剩余系的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）。这样的环含有零因子，当且仅当 $n$ 是合数。所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域。
 
-    -   矩阵环：数域 $F$ 上的 $n$ 维方阵在矩阵的加法和乘法下构成一个环。一般地，这个环含幺，有零因子，且不是交换环。
+    -   矩阵环：环 $R$ 上的全体 $n$ 维方阵在矩阵的加法和乘法下构成一个环 $M_n(R)$。一般地，这个环有零因子，且不是交换环。
 
     -   给定集合 $A$，则它的全体子集 $\mathcal P(A)$ 在集合的对称差 $\triangle$ 和交 $\cap$ 分别作为其加法和乘法运算时构成环。一般地，这个环含幺，有零因子，且是交换环。
 
@@ -141,6 +151,8 @@
 
     1.  $(F,+)$ 构成 Abel 群，其单位元记作 $0$，元素 $a\in F$ 在 $+$ 下的逆元记作 $-a$。
     2.  $(F\setminus\{0\},\cdot)$ 构成 Abel 群，其单位元记作 $1$，元素 $a\in F\setminus\{0\}$ 在 $\cdot$ 下的逆元记作 $a^{-1}$。
+
+换句话说，域是对加、减、乘、除四则运算都封闭的代数结构。
 
 常见的域的例子如下。
 
@@ -162,7 +174,7 @@
 
     -   二次域（quadratic field）：它是在有理数域 $\mathbf Q$ 中添加了 $\sqrt d$ 而扩张成的，这里 $d\neq 0,1$ 且没有平方因子。相关内容可以参考 [二次域](../number-theory/quadratic.md)。
 
-域相较于环，拥有着非常简单的加法和乘法结构。所以，域本身的结构往往很简单。这使得域的研究和环的研究大不相同，通常会转而研究域的扩张，以及相应的伽罗瓦理论。域的相关理论与算法竞赛可能涉及的知识关系不大，感兴趣的读者应当阅读相关书籍。
+域相较于环，拥有着非常简单的加法和乘法结构。所以，域本身的结构往往很简单。这使得域的研究和环的研究大不相同，通常会转而研究域的扩张，以及相应的 Galois 理论。在算法竞赛中，有时会需要在有理数域或者有限域的扩域上进行计算。域论的相关内容，可以参考域论或相关书籍。
 
 ## 应用
 
@@ -199,7 +211,7 @@
     c_{ik} = \bigoplus_{j=1}^n(b_{ij}\otimes c_{jk}) = \max_{1\le j\le n}\;(b_{ij}+c_{jk}).
     $$
 
-    有了这些记号，可以将上述递推关系实则是热带半环上的线性变换，可以用矩阵语言写作
+    有了这些记号，可以将上述递推关系看作是热带半环上的线性变换，并用矩阵语言写作
 
     $$
     \left(\begin{matrix}f_{i,1}\\f_{i,0}\end{matrix}\right)
@@ -245,8 +257,6 @@
 -   [Tropical semiring - Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring)
 
 [^oi-wiki-not-wikipedia]: 因为 [OI Wiki 不是百科全书](https://oi-wiki.org/intro/what-oi-wiki-is-not/#oi-wiki-%E4%B8%8D%E6%98%AF%E7%99%BE%E7%A7%91%E5%85%A8%E4%B9%A6)。
-
-[^group-definition]: 容易证明以下性质：幺元必然唯一；给定元素的逆元必然唯一；成立消去律，即给定 $a,b,c\in G$，若成立 $a\cdot c=b\cdot c$，必然有 $a=b$。
 
 [^ring-wiki]: [Ring（mathematics）- Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
 
