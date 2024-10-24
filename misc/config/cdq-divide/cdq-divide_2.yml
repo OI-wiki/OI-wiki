@@ -1,0 +1,10 @@
+id: oi-wiki:misc/cdq-divide-2
+name: Cdq Divide
+solution:
+  cpp: docs/misc/code/cdq-divide/cdq-divide_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/examples/cdq-divide/cdq-divide_2.ans
+  input: docs/misc/examples/cdq-divide/cdq-divide_2.in
+version: 1000

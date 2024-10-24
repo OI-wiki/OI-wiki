@@ -1,0 +1,19 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\tikzset{tree/.style={every node/.style={circle, draw}}}
+
+\begin{document}
+\begin{tikzpicture}
+
+\scoped[tree] \node at (0,0) (a) {a}
+    child {node [draw=none] (p) {p}}
+    child {node [draw=none] (q) {q}};
+
+\draw[->] (a) -- (p);
+\draw[->] (a) -- (q);
+
+\end{tikzpicture}
+\end{document}
