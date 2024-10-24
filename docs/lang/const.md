@@ -98,98 +98,92 @@ int main() {
 编译时计算能允许更好的优化，比如将结果硬编码到汇编中，消除运行时计算开销。与 `const` 的带来的优化不同，当 `constexpr` 修饰的变量满足常量表达式的条件，就强制要求编译器在编译时计算出结果而非运行时。
 
 ???+ note " 实际上把 `const` 理解成 **"readonly"**，`constexpr` 理解成 **"const"**，这样更加直观 "
-    === "C++"
-        ```cpp
-        constexpr int a = 10;  // 直接定义常量
-        ```
-
-        constexpr int FivePlus(int x) { return 5 + x; }
-
-        void test(const int x) {
+    ```cpp
+    constexpr int a = 10;  // 直接定义常量
+    
+    constexpr int FivePlus(int x) { return 5 + x; }
+    
+    void test(const int x) {
         std::array<x> c1;            // 错误，x在编译时不可知
         std::array<FivePlus(6)> c2;  // 可行，FivePlus编译时可知
-        }
-        ```
+    }
+    ```
 
 以下例子很好说明了 `const` 和 `constexpr` 的区别，代码使用递归实现计算斐波那契数列，并用控制流输出。
 
 ???+ note "实现"
-    === "C++"
-        ```cpp
-        #include <iostream>
-        ```
+    ```cpp
+    #include <iostream>
+    
+    using namespace std;
+    
+    constexpr unsigned fib0(unsigned n) {
+        return n <= 1 ? 1 : (fib0(n - 1) + fib0(n - 2));
+    }
+    
+    unsigned fib1(unsigned n) { return n <= 1 ? 1 : (fib1(n - 1) + fib1(n - 2)); }
+    
+    int main() {
+        constexpr auto v0 = fib0(9);
+        const auto v1 = fib1(9);
 
-        using namespace std;
-
-        constexpr unsigned fib0(unsigned n) {
-            return n <= 1 ? 1 : (fib0(n - 1) + fib0(n - 2));
-        }
-
-        unsigned fib1(unsigned n) { return n <= 1 ? 1 : (fib1(n - 1) + fib1(n - 2)); }
-
-        int main() {
-            constexpr auto v0 = fib0(9);
-            const auto v1 = fib1(9);
-
-            cout << v0;
-            cout << ' ';
-            cout << v1;
-        }
-        ```
+        cout << v0;
+        cout << ' ';
+        cout << v1;
+    }
+    ```
 
 ???+ note "编译后的可能的汇编代码（使用 Compiler Explorer，Clang 19）"
-    === "Assembly"
-        ```assembly
-        fib1(unsigned int):
-                push    r14
-                push    rbx
-                push    rax
-                mov     ebx, 1
-                cmp     edi, 2
-                jb      .LBB0_4
-                mov     r14d, edi
-                xor     ebx, ebx
-        .LBB0_2:
-                lea     edi, [r14 - 1]
-                call    fib1(unsigned int)
-                add     r14d, -2
-                add     ebx, eax
-                cmp     r14d, 1
-                ja      .LBB0_2
-                inc     ebx
-        .LBB0_4:
-                mov     eax, ebx
-                add     rsp, 8
-                pop     rbx
-                pop     r14
-                ret
-        ```
-
-        main:
-                push    r14
-                push    rbx
-                push    rax
-                mov     edi, 9
-                call    fib1(unsigned int) # `v1` 的初始化进行了函数调用
-                mov     ebx, eax
-                mov     r14, qword ptr [rip + std::__1::cout@GOTPCREL]
-                mov     rdi, r14
-                mov     esi, 55 # `v0` 被最终计算结果替代
-                call    std::__1::basic_ostream<char, std::__1::char_traits<char>>::operator<<(unsigned int)@PLT
-                mov     byte ptr [rsp + 7], 32
-                lea     rsi, [rsp + 7]
-                mov     edx, 1
-                mov     rdi, r14
-                call    std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200000]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long)
-                mov     rdi, r14
-                mov     esi, ebx # 读取了变量值
-                call    std::__1::basic_ostream<char, std::__1::char_traits<char>>::operator<<(unsigned int)@PLT
-                xor     eax, eax
-                add     rsp, 8
-                pop     rbx
-                pop     r14
-                ret
-        ```
+    ```assembly
+    fib1(unsigned int):
+            push    r14
+            push    rbx
+            push    rax
+            mov     ebx, 1
+            cmp     edi, 2
+            jb      .LBB0_4
+            mov     r14d, edi
+            xor     ebx, ebx
+    .LBB0_2:
+            lea     edi, [r14 - 1]
+            call    fib1(unsigned int)
+            add     r14d, -2
+            add     ebx, eax
+            cmp     r14d, 1
+            ja      .LBB0_2
+            inc     ebx
+    .LBB0_4:
+            mov     eax, ebx
+            add     rsp, 8
+            pop     rbx
+            pop     r14
+            ret
+    
+    main:
+            push    r14
+            push    rbx
+            push    rax
+            mov     edi, 9
+            call    fib1(unsigned int) # `v1` 的初始化进行了函数调用
+            mov     ebx, eax
+            mov     r14, qword ptr [rip + std::__1::cout@GOTPCREL]
+            mov     rdi, r14
+            mov     esi, 55 # `v0` 被最终计算结果替代
+            call    std::__1::basic_ostream<char, std::__1::char_traits<char>>::operator<<(unsigned int)@PLT
+            mov     byte ptr [rsp + 7], 32
+            lea     rsi, [rsp + 7]
+            mov     edx, 1
+            mov     rdi, r14
+            call    std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200000]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long)
+            mov     rdi, r14
+            mov     esi, ebx # 读取了变量值
+            call    std::__1::basic_ostream<char, std::__1::char_traits<char>>::operator<<(unsigned int)@PLT
+            xor     eax, eax
+            add     rsp, 8
+            pop     rbx
+            pop     r14
+            ret
+    ```
 
 `constexpr` 修饰的 `fib0` 函数在唯一的调用处用了常量参数，使得整个函数仅在编译期运行。由于函数没有运行时执行，编译器也就判断不需要生成汇编代码。
 
@@ -203,37 +197,35 @@ int main() {
 编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译。使用 `const` 可以通过编译。
 
 ???+ note "编译时计算量过大导致编译错误"
-    === "C++"
-        ```cpp
-        #include <iostream>
-        ```
-
-        using namespace std;
-
-        constexpr unsigned long long fib(unsigned long long i) {
-            return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-        }
-
-        int main() {
-            // constexpr auto v = fib(32); evaluation exceeded maximum depth
-            const auto v = fib(32);
-            cout << v;
-            return 0;
-        }
-
-        /* error msg:
-            <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
-                10 |     constexpr auto v = fib(1337094);
-                |                    ^   ~~~~~~~~~~~~
-            <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
-                6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-                |                         ^
-            <source>:6:25: note: in call to 'fib(1336072)'
-                6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-                |                         ^~~~~~~~~~
-            <source>:6:25: note: in call to ...
-        */
-        ```
+    ```cpp
+    #include <iostream>
+    
+    using namespace std;
+    
+    constexpr unsigned long long fib(unsigned long long i) {
+        return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+    }
+    
+    int main() {
+        // constexpr auto v = fib(32); evaluation exceeded maximum depth
+        const auto v = fib(32);
+        cout << v;
+        return 0;
+    }
+    
+    /* error msg:
+        <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
+            10 |     constexpr auto v = fib(1337094);
+            |                    ^   ~~~~~~~~~~~~
+        <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
+            6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+            |                         ^
+        <source>:6:25: note: in call to 'fib(1336072)'
+            6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+            |                         ^~~~~~~~~~
+        <source>:6:25: note: in call to ...
+    */
+    ```
 
 ## 参考资料
 
