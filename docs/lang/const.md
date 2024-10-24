@@ -104,8 +104,8 @@ int main() {
     constexpr int FivePlus(int x) { return 5 + x; }
     
     void test(const int x) {
-        std::array<x> c1;            // 错误，x在编译时不可知
-        std::array<FivePlus(6)> c2;  // 可行，FivePlus编译时可知
+      std::array<x> c1;            // 错误，x在编译时不可知
+      std::array<FivePlus(6)> c2;  // 可行，FivePlus编译时可知
     }
     ```
 
@@ -118,14 +118,15 @@ int main() {
     using namespace std;
     
     constexpr unsigned fib0(unsigned n) {
-        return n <= 1 ? 1 : (fib0(n - 1) + fib0(n - 2));
+      return n <= 1 ? 1 : (fib0(n - 1) + fib0(n - 2));
     }
     
     unsigned fib1(unsigned n) { return n <= 1 ? 1 : (fib1(n - 1) + fib1(n - 2)); }
     
     int main() {
-        constexpr auto v0 = fib0(9);
-        const auto v1 = fib1(9);
+      constexpr auto v0 = fib0(9);
+      const auto v1 = fib1(9);
+    ```
 
         cout << v0;
         cout << ' ';
@@ -203,23 +204,21 @@ int main() {
     using namespace std;
     
     constexpr unsigned long long fib(unsigned long long i) {
-        return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+      return i <= 2 ? i : fib(i - 2) + fib(i - 1);
     }
     
     int main() {
-        // constexpr auto v = fib(32); evaluation exceeded maximum depth
-        const auto v = fib(32);
-        cout << v;
-        return 0;
+      // constexpr auto v = fib(32); evaluation exceeded maximum depth
+      const auto v = fib(32);
+      cout << v;
+      return 0;
     }
     
     /* error msg:
-        <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
-            10 |     constexpr auto v = fib(1337094);
-            |                    ^   ~~~~~~~~~~~~
-        <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
-            6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-            |                         ^
+        <source>:10:20: error: constexpr variable 'v' must be initialized by a
+       constant expression 10 |     constexpr auto v = fib(1337094); | ^
+       ~~~~~~~~~~~~ <source>:6:25: note: constexpr evaluation exceeded maximum depth
+       of 512 calls 6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1); | ^
         <source>:6:25: note: in call to 'fib(1336072)'
             6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
             |                         ^~~~~~~~~~
