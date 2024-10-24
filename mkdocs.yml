@@ -521,6 +521,7 @@ nav:
     - 15-puzzle: misc/15-puzzle.md
     - Kahan 求和: misc/kahan-summation.md
     - 珂朵莉树/颜色段均摊: misc/odt.md
+    - 空间优化简介: misc/space-optimization.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md
