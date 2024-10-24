@@ -133,7 +133,7 @@ int main() {
     }
     ```
 
-???+ note "编译后的可能的汇编代码（使用 Compiler Explorer ，Clang 19）"
+???+ note "编译后的可能的汇编代码（使用 Compiler Explorer，Clang 19）"
     ```assembly
     fib1(unsigned int):
             push    r14
@@ -194,9 +194,9 @@ int main() {
 
 算法题中可以使用 `constexpr` 存储数据规模较小的变量，以消除对应的运行时计算开销。尤为常见在「[打表](../contest/dictionary.md)」技巧中，使用 `constexpr` 修饰的数组等容器存储答案。
 
-
 ???+ note "编译时计算量过大会导致编译错误"
-    编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译，应该考虑使用 `const` 。
+    编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译，应该考虑使用 `const`。
+    
     ```cpp
     #include <iostream>
     
