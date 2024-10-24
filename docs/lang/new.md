@@ -133,10 +133,9 @@ int main() {
     #include <iostream>
     #include <ranges>
     #include <vector>
-    ```
-
+    
     using namespace std;
-
+    
     int main() {
         auto view = [] {
             vector<int> vec{1, 2, 3, 4, 5};
@@ -226,11 +225,11 @@ int main() {
 
 ???+ note "输出："
     by\_lexical:
-
+    
     a, abc, alice, bar, baz, bob, foo, gh, qux,
-
-    by_size:
-
+    
+    by\_size:
+    
     a, gh, abc, foo, bar, baz, qux, bob, alice,
 
 ## Lambda 表达式
