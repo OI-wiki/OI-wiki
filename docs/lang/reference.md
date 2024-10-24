@@ -6,14 +6,12 @@
 
 ??? note "引用类型不属于对象类型"
     
-
     如果想让引用能完成一般的复制、赋值等操作，比如作为容器元素，则需要 [`reference_wrapper`](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper)，通常维护一个非空指针实现。
 
 引用主要分为两种，左值引用和右值引用。
 
 ??? note "左值和右值"
     
-
     对左值和右值讲解，请参考 [值类别](./value-category.md) 页面。
 
 ## 左值引用 T&
