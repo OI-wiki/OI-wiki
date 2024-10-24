@@ -1,4 +1,4 @@
-author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie, Early0v0, wy-luke
+author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enhe, ChungZH, Chrogeek, hsfzLZH1, billchenchina, orzAtalod, luoguojie, Early0v0, wy-luke, hhc0001
 
 ## 引入
 
@@ -435,6 +435,81 @@ int query(int p, int s, int t, int l, int r) {
 ???+ note "[2018 Multi-University Training Contest 5 Problem G. Glad You Came](https://acm.hdu.edu.cn/showproblem.php?pid=6356)"
     ??? "解题思路"
         维护一下每个区间的永久标记就可以了，最后在线段树上跑一边 DFS 统计结果即可。注意打标记的时候加个剪枝优化，否则会 TLE。
+
+## 线段树二分
+
+### 过程
+
+用一个例题来引入：
+
+???+ note "引入"
+    你需要写一个数据结构维护一个序列 $a_1, a_2, \cdots, a_n$，支持：
+    
+    1. 给定 $l, r, x$，把 $a_l, a_{l + 1}, \cdots a_r$ 整体加上 $x$；
+    
+    1. 给定 $x$，查询最小的 $i$ 满足 $\sum \limits_{j = 1}^i a_j \ge x$。
+
+    $1 \le n, q \le 10^6$。
+
+显然，由于 $1 \le n \le 10^6$，$O(q \log^2 n)$ 行不通了。
+
+分析一下这个 $\log^2 n$ 的成分：
+
+- 第一个 $\log$ 来源于二分，显然是没法优化了；
+
+- 第二个 $\log$ 来源于线段树的区间查询。要优化只能从这个 $\log$ 入手。
+
+思考一下线段树的本质。线段树本身就是把一个区间一分为二，然后把两个小区间合并起来的数据结构。
+
+所以考虑以线段树为主体，每一轮二分的时候只进行一个节点的查询，就可以把单次查询的复杂度降到 $O(\log n)$ 了。
+
+再用一个例子描述一下具体流程。
+
+比如说有一个这样的线段树。
+
+![](./images/segt3.svg)
+
+然后，我们要查询最小的 $i$ 满足 $\sum \limits_{j = 1}^i a_j \ge 56$。
+
+首先到达了根节点。
+
+看一下根节点的左儿子——和只有 $38 < 56$，所以答案不会在左儿子，那只能是右儿子。
+
+于是，我们使要询问的 $x$ 从 $56$ 变成 $56 - 38 = 18$。
+
+???+ Warning
+    往右儿子走的时候一定要排除掉左儿子的信息。
+
+    否则可能异常的一直走右儿子。
+
+现在我们到达了根节点的右儿子。
+
+然后发现，由于这个节点上面有一个懒标记，这说明左儿子的信息是不准确的。
+
+因此，需要下传标记。
+
+下传标记后发现左儿子的和为 $18 \ge 18$，所以往左儿子走。
+
+然后发现到达了一个叶子。于是答案就是 $4$。
+
+### 实现
+
+```cpp
+// d 是线段树的节点信息，t 是懒标记，pushdn(x, y, z) 表示下传 x 的懒标记（方便实现带上了 y， z 表示 x 的区间的左右端点
+
+int lrmid(int p, int l, int r, int x) {
+	if(l == r) {
+		return l;
+	}
+	int mid = (l + r) >> 1;
+	pushdn(p, l, r);
+	if(d[p * 2] >= x) {
+		return lrmid(p * 2, l, mid, x);
+	}else {
+		return lrmid(p * 2 + 1, mid + 1, r, x - d[p * 2]);
+	}
+}
+```
 
 ## 线段树合并
 
