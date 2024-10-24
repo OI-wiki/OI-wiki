@@ -1,10 +1,3 @@
-***
-
-noteId: "18bff220919211ef9b56057e3b7e7d25"
-tags: \[]
-
-***
-
 ## 引入
 
 **Schreier–Sims 算法** 是计算群论的一种算法，以数学家 Otto Schreier 和 Charles Sims 的名字命名。它可以在多项式时间（polynomial time）内找到有限置换群的阶数、查看给定排列是否包含在群中以及其他许多任务。Schreier–Sims 算法最早由 Sims 在 1970 年基于 Schreier 的子群引理引入。1991 年，Donald Knuth 基于此改进了时序。后来，又有了该算法更快的随机版本。
