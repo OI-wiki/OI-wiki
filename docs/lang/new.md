@@ -133,6 +133,7 @@ int main() {
     #include <iostream>
     #include <ranges>
     #include <vector>
+    ```
 
     using namespace std;
 
@@ -224,7 +225,7 @@ int main() {
 ```
 
 ???+ note "输出："
-    by_lexical:
+    by\_lexical:
 
     a, abc, alice, bar, baz, bob, foo, gh, qux,
 
