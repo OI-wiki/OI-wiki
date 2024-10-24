@@ -1,4 +1,4 @@
-C++ 定义了一套完善的只读量定义方法，被 `const` 修饰的变量都是只读量，编译器会在编译期进行冲突检查，避免对只读量的修改，同时可能会执行一些优化。
+C++ 定义了一套完整的只读量定义方法，被 `const` 修饰的变量都是只读量，编译器会在编译期进行冲突检查，避免对只读量的修改，同时可能会执行一些优化。
 
 在通常情况下，应该尽可能使用 `const` 修饰变量、参数，提高代码健壮性。
 
@@ -133,7 +133,7 @@ int main() {
     }
     ```
 
-???+ note "编译后的可能的汇编代码（使用 Compiler Explorer，Clang 19）"
+???+ note "编译后的可能的汇编代码（使用 Compiler Explorer ，Clang 19）"
     ```assembly
     fib1(unsigned int):
             push    r14
@@ -194,9 +194,9 @@ int main() {
 
 算法题中可以使用 `constexpr` 存储数据规模较小的变量，以消除对应的运行时计算开销。尤为常见在「[打表](../contest/dictionary.md)」技巧中，使用 `constexpr` 修饰的数组等容器存储答案。
 
-编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译。使用 `const` 可以通过编译。
 
-???+ note "编译时计算量过大导致编译错误"
+???+ note "编译时计算量过大会导致编译错误"
+    编译器会限制编译时计算的开销，如果计算量过大会导致无法通过编译，应该考虑使用 `const` 。
     ```cpp
     #include <iostream>
     
@@ -214,11 +214,19 @@ int main() {
     }
     ```
 
-??+ note "Clang 给出的编译错误"`     <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
-        10 |     constexpr auto v = fib(32);         |                    ^   ~~~~~~~~~~~~     <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
-        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);         |                         ^     <source>:6:25: note: in call to 'fib(32)'
-        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);         |                         ^~~~~~~~~~     <source>:6:25: note: in call to ...
-    `
+???+ note "使用 constexpr 时 Clang 给出的编译错误"
+    ```text
+    <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
+        10 |     constexpr auto v = fib(32);
+        |                    ^   ~~~~~~~~~~~~
+    <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
+        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+        |                         ^
+    <source>:6:25: note: in call to 'fib(32)'
+        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+        |                         ^~~~~~~~~~
+    <source>:6:25: note: in call to ...
+    ```
 
 ## 参考资料
 
