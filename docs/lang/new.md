@@ -137,14 +137,13 @@ int main() {
     using namespace std;
     
     int main() {
-      auto view = [] {
-        vector<int> vec{1, 2, 3, 4, 5};
-        return vec | std::views::filter([](int i) { return 0 == i % 2; });
-      }();
-    ```
-
+        auto view = [] {
+            vector<int> vec{1, 2, 3, 4, 5};
+            return vec | std::views::filter([](int i) { return 0 == i % 2; });
+        }();
+        
         for (int i : view) cout << i << ' ';  // runtime undefined behavior
-
+        
         return 0;
     }
     ```
