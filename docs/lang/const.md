@@ -214,19 +214,11 @@ int main() {
     }
     ```
 
-??+ note "Clang给出的编译错误"
-    ```
-    <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
-        10 |     constexpr auto v = fib(32);
-        |                    ^   ~~~~~~~~~~~~
-    <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
-        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-        |                         ^
-    <source>:6:25: note: in call to 'fib(32)'
-        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-        |                         ^~~~~~~~~~
-    <source>:6:25: note: in call to ...
-    ```
+??+ note "Clang 给出的编译错误"`     <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
+        10 |     constexpr auto v = fib(32);         |                    ^   ~~~~~~~~~~~~     <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
+        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);         |                         ^     <source>:6:25: note: in call to 'fib(32)'
+        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);         |                         ^~~~~~~~~~     <source>:6:25: note: in call to ...
+    `
 
 ## 参考资料
 
