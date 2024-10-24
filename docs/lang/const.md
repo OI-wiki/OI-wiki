@@ -126,11 +126,10 @@ int main() {
     int main() {
       constexpr auto v0 = fib0(9);
       const auto v1 = fib1(9);
-    ```
-
-        cout << v0;
-        cout << ' ';
-        cout << v1;
+      
+      cout << v0;
+      cout << ' ';
+      cout << v1;
     }
     ```
 
@@ -213,18 +212,19 @@ int main() {
       cout << v;
       return 0;
     }
-    
-    /* error msg:
-        <source>:10:20: error: constexpr variable 'v' must be initialized by a
-       constant expression 10 |     constexpr auto v = fib(1337094); | ^
-       ~~~~~~~~~~~~ <source>:6:25: note: constexpr evaluation exceeded maximum depth
-       of 512 calls 6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1); | ^
-        <source>:6:25: note: in call to 'fib(1336072)'
-            6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
-            |                         ^~~~~~~~~~
-        <source>:6:25: note: in call to ...
-    */
     ```
+    
+???+ note "编译错误"
+    <source>:10:20: error: constexpr variable 'v' must be initialized by a constant expression
+        10 |     constexpr auto v = fib(32);
+        |                    ^   ~~~~~~~~~~~~
+    <source>:6:25: note: constexpr evaluation exceeded maximum depth of 512 calls
+        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+        |                         ^
+    <source>:6:25: note: in call to 'fib(32)'
+        6 |     return i <= 2 ? i : fib(i - 2) + fib(i - 1);
+        |                         ^~~~~~~~~~
+    <source>:6:25: note: in call to ...
 
 ## 参考资料
 
