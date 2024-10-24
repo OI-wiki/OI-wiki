@@ -116,7 +116,7 @@ nav:
       - 值类别: lang/value-category.md
       - 重载运算符: lang/op-overload.md
       - 引用: lang/reference.md
-      - 常值: lang/const.md
+      - 常量: lang/const.md
       - 新版 C++ 特性: lang/new.md
       - Lambda 表达式: lang/lambda.md
       - pb_ds:
