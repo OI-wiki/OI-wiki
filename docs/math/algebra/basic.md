@@ -15,7 +15,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 群的定义如下。
 
 ???+ abstract "群"
-    给定非空集合 $G$ 和其上的二元运算 $\cdot:G\times G\rightarrow G$，称 $(G,\cdot)$ 是一个 **群**（group），如果它们满足以下性质[^group-definition]：
+    给定非空集合 $G$ 和其上的二元运算 $\cdot:G\times G\rightarrow G$，称 $(G,\cdot)$ 是一个 **群**（group），如果它们满足以下性质：
 
     1.  结合律（associative property）：对于所有 $a,b,c\in G$，成立 $a\cdot(b\cdot c)=(a\cdot b)\cdot c$。
     2.  有单位元：存在 $e\in G$，使得对于任意 $a\in G$，都成立 $a\cdot e = e\cdot a = a$。这里，$e$ 称为 $G$ 的 **单位元**（identity element），也称幺元。
@@ -47,7 +47,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     -   所有 $M$ 到自身的映射（不一定是双射），并不构成群。因为那些不是双射的映射不存在逆元。
     -   整数在乘法下并不构成群，因为 $2$ 在整数范围内没有乘法逆元。
     -   正整数在加法下也不构成群，因为正整数没有加法单位元。
-    -   模 $n$ 的所有非零剩余系在乘法意义下往往不构成群。比如说 $\mathbf Z_6\setminus\{\overline 0\}$ 中，$\overline 2\times\overline 3=\overline 0$ 不属于这个集合，这意味着乘法都不是这个集合上良定义的二元运算（或者说，它不满足封闭性）。
+    -   模 $n$ 的所有非零剩余系在乘法意义下往往不构成群。比如说 $(\mathbf Z/6\mathbf Z)\setminus\{\overline 0\}$ 中，$\overline 2\times\overline 3=\overline 0$ 不属于这个集合，这意味着乘法都不是这个集合上良定义的二元运算（或者说，它不满足封闭性）。
 
 有时，也需要讨论这些更不完善的结构的性质。因此，可以定义如下概念，它们比群更宽泛。
 
@@ -63,11 +63,11 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 最后，很多熟悉的群上的运算除了满足结合律外，还满足交换律。这类群的结构相对简单，它们称作 Abel 群，也称作交换群。
 
 ???+ abstract "Abel 群"
-    给定群 $(G,\cdot)$，则称 $(G,\cdot)$ 是一个 **Abel 群**（Abelian group），如果运算 $\cdot$ 还满足交换律（commutative property），即对于所有 $a,b\in G$，都成立 $a\cdot b=b\cdot a$。
+    给定群 $(G,\cdot)$，则称 $(G,\cdot)$ 是一个 **Abel 群**（Abelian group）或 **交换群**（communicate group），如果运算 $\cdot$ 还满足交换律（commutative property），即对于所有 $a,b\in G$，都成立 $a\cdot b=b\cdot a$。
 
 ???+ example "Abel 群和非 Abel 群的例子"
     -   整数加法群 $(\mathbf Z,+)$ 就是一个 Abel 群。
-    -   当 $n\ge3$ 时，$S_n$ 并不是 Abel 群。
+    -   当 $n\ge3$ 时，对称群 $S_n$ 并不是 Abel 群。
 
 这些就是群论相关的基本定义。群论的更多内容，可以参考 [群论](./group-theory.md) 或相关书籍。
 
@@ -136,7 +136,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     -   整数模 $n$ 剩余系 $\mathbf Z/n\mathbf Z$ 在剩余系的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）。这样的环含有零因子，当且仅当 $n$ 是合数。所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域。
 
-    -   矩阵环：数域 $F$ 上的 $n$ 维方阵在矩阵的加法和乘法下构成一个环。一般地，这个环含幺，有零因子，且不是交换环。
+    -   矩阵环：环 $R$ 上的全体 $n$ 维方阵在矩阵的加法和乘法下构成一个环 $M_n(R)$。一般地，这个环有零因子，且不是交换环。
 
     -   给定集合 $A$，则它的全体子集 $\mathcal P(A)$ 在集合的对称差 $\triangle$ 和交 $\cap$ 分别作为其加法和乘法运算时构成环。一般地，这个环含幺，有零因子，且是交换环。
 
@@ -257,8 +257,6 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 -   [Tropical semiring - Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring)
 
 [^oi-wiki-not-wikipedia]: 因为 [OI Wiki 不是百科全书](https://oi-wiki.org/intro/what-oi-wiki-is-not/#oi-wiki-%E4%B8%8D%E6%98%AF%E7%99%BE%E7%A7%91%E5%85%A8%E4%B9%A6)。
-
-[^group-definition]: 容易证明以下性质：幺元必然唯一；给定元素的逆元必然唯一；成立消去律，即给定 $a,b,c\in G$，若成立 $a\cdot c=b\cdot c$，必然有 $a=b$。
 
 [^ring-wiki]: [Ring（mathematics）- Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
 
