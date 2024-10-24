@@ -1,6 +1,6 @@
 **注意**：考虑到算法竞赛的实际情况，本文将不会全面研究语法，只会讲述在算法竞赛中可能会应用到的部分。
 
-本文语法参照 **C++11** 标准。语义不同的将以 **C++11** 作为标准，C++14、C++17 的语法视情况提及并会特别标注。
+本文语法参照 **C++11** 标准。语义不同的将以 **C++11** 作为标准，C++14、C++17 等语法视情况提及并会特别标注。
 
 ## `auto` 类型说明符
 
@@ -133,7 +133,6 @@ int main() {
     #include <iostream>
     #include <ranges>
     #include <vector>
-    ```
 
     using namespace std;
 
@@ -225,7 +224,7 @@ int main() {
 ```
 
 ???+ note "输出："
-    by\_lexical:
+    by_lexical:
 
     a, abc, alice, bar, baz, bob, foo, gh, qux,
 
