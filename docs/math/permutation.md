@@ -254,7 +254,7 @@ $$
 
 的奇偶性。这里，$c(\sigma)$ 是轮换的个数（包括 $1$‑轮换，即不动点）。
 
-置换的型在 [Pólya 计数](./permutation-group.md) 中有重要作用。
+置换的型在 [Pólya 计数](./combinatorics/polya.md) 中有重要作用。
 
 ## 排列相关
 

@@ -1,57 +1,8 @@
+author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, isdanni, Menci, ouuan, Tiphereth-A, warzone-oier, Xeonacid, c-forrest
+
 ## 引入
 
 在数学和抽象代数中，**群论**（Group Theory）主要研究叫做「群」的代数结构。
-
-## 定义
-
-在数学中，**群**（group）是由一种集合以及一个二元运算所组成的，符合「群公理」的代数结构。
-
-一个群是一个集合 $G$ 加上对 $G$ 的二元运算。二元运算用 $\cdot$ 表示，它结合了任意两个元素 $a$ 和 $b$ 形成了一个属于 $G$ 的元素，记为 $a\cdot b$。
-
-群公理包含下述四个性质（有时略去封闭性，只有三个性质）。若集合 $G\neq\varnothing$ 和 $G$ 上的运算 $\cdot$ 构成的代数结构 $(G,\cdot)$ 满足以下性质：
-
-1.  **封闭性**：对于所有 $G$ 中 $a, b$，运算 $a\cdot b$ 的结果也在 G 中。
-2.  **结合律**（associativity）：对于 $G$ 中所有的 $a, b, c$，等式 $(a \cdot b)\cdot c = a \cdot (b \cdot c)$ 成立。
-3.  **单位元**（identity element，也称幺元）：$G$ 中存在一个元素 $e$，使得对于 $G$ 中的每一个元素 $a$，都有一个 $e \cdot a=a\cdot e=a$ 成立。这样的元素是独一无二的。它被称为群的单位元。
-4.  **逆元**（inverse element）：对于每个 $G$ 中的 $a$，总存在 $G$ 中的一个元素 $b$ 使 $a \cdot b = b \cdot a = e$，此处 $e$ 为单位元，称 $b$ 为 $a$ 的逆元，记为 $a^{-1}$。
-
-则称 $(G,\cdot)$ 为一个 **群**。例如，整数集和整数间的加法 $(\mathbb{Z},+)$ 构成一个群，单位元是 0，一个整数的逆元是它的相反数。
-
-### 群的衍生结构
-
--   若代数结构 $(G,\cdot)$ 满足封闭性、结合律性质，则称 $(G,\cdot)$ 为一个 **半群**（semigroup）。
--   若半群 $(G,\cdot)$ 还满足单位元性质，则称 $(G,\cdot)$ 为一个 **幺半群**（monoid）。
--   若群 $(G,\cdot)$ 还满足 **交换律**（commutativity）：对于 $G$ 中所有的 $a,b$，等式 $a\cdot b=b\cdot a$ 成立。  
-    则称 $(G,\cdot)$ 为一个 **阿贝尔群**（Abelian group），又称 **交换群**（commutative group）。
-
-## 环
-
-形式上，**环**（ring）是一个集合 $R$ 及对 $R$ 的两个二元运算：加法 $+$ 和乘法 $\cdot$（注意这里不是我们一般所熟知的四则运算加法和乘法）所组成的，且满足如下性质的代数结构 $(R,+,\cdot)$：
-
-1.  $(R,+)$ 构成交换群，其单位元记为 $0$，$R$ 中元素 $a$ 的加法逆元记为 $-a$。
-2.  $(R,\cdot)$ 构成半群。
-3.  **分配律**（distributivity）：对于 $R$ 中所有的 $a,b,c$，等式 $a\cdot(b+c)=a\cdot b+a\cdot c$ 和 $(a+b)\cdot c=a\cdot c+b\cdot c$ 成立。
-
-??? warning
-    在有的定义中，环必须存在乘法单位元；相对地，不存在乘法单位元的则被称为 **伪环**（rng 或 pseudo-ring）。遇到的时候需根据上下文加以判断。
-    
-    维基百科采用的就是这种定义：[^ring-wiki]
-    
-    > In the terminology of this article, a ring is defined to have a multiplicative identity, while a structure with the same axiomatic definition but without the requirement for a multiplicative identity is instead called a rng (IPA:/rʊŋ/). For example, the set of even integers with the usual + and ⋅ is a rng, but not a ring. As explained in § History below, many authors apply the term "ring" without requiring a multiplicative identity.
-
-在抽象代数中，研究环的分支为 **环论**。
-
-### 环的衍生结构
-
--   若环 $R$ 上的乘法还满足交换律，则称 $R$ 为 **交换环**（commutative ring）。
--   若环 $R$ 存在乘法单位元 $1$，则称 $R$ 为 **幺环**（ring with identity）。
--   若幺环 $R$ 的所有非 $0$ 元素 $a$ 存在乘法逆元 $a^{-1}$，则称 $R$ 为 **除环**（division ring）。
-
-## 域
-
-**域**（field）是一个比环性质更强的代数结构，具体地，域是交换除环。
-
-域的研究方法和环大不相同。在抽象代数中，研究域的分支为 **域论**。
 
 ## 群的基本概念
 
@@ -147,11 +98,95 @@ $$
     2.  如果群 $G$ 中存在两个元素 $x_1$、$x_2$ 的阶是 $d_1$、$d_2$，那么 $G$ 中一定存在阶为 $d=\operatorname{lcm}(d_1,d_2)$ 的元素。  
         反例：对称群 $S_3$（相当于 $X = \{1, 2, 3\}$ 的置换群）中存在阶为 $2$ 和 $3$ 的元素，却不存在阶为 $6$ 的元素。
 
+## 群作用
+
+理解给定群结构的第三种方法，是考察群在集合上的作用。
+
+比如说，本文考察的正三角形的空间对称群就是通过群的元素（即对称操作）在三角形上的作用来定义的。再比如说，对称群 $S_M$ 的定义可以通过它的元素在集合 $M$ 上的作用给出。这里所谓的作用，指的是每个群的元素都对应一个集合上的置换。
+
+???+ abstract "群在集合上的作用"
+    给定群 $G$ 和集合 $X$，则称映射 $G\times X\rightarrow X$ 为群 $G$ 在集合 $X$ 上的 **群作用**（group action），记作 $g\cdot x$，若该映射对所有 $g_1,g_2\in G$ 和 $x\in X$ 都满足条件 $g_1\cdot(g_2\cdot x)=(g_1g_2)\cdot x$ 和 $e\cdot x=x$。
+
+给定满足上述定义的群作用，自然有如下构造
+
+$$
+\begin{aligned}
+\varphi:G\rightarrow S_X&\\
+g\mapsto \varphi_g&: X\rightarrow X\\
+&\quad x\mapsto g\cdot x.
+\end{aligned}
+$$
+
+这一映射，将每个群 $G$ 中的元素 $g$ 都对应到集合 $X$ 上的一个置换 $\varphi_g$，且置换 $\varphi_g$ 将元素 $x$ 映射到 $g\cdot x$。
+
+根据定义，群中的幺元 $e$ 对应的双射 $\varphi_e$ 是 $X$ 上的恒等映射，而群中元素 $g$ 对应的映射 $\varphi_g$ 和其逆元 $g^{-1}$ 对应的映射 $\varphi_{g^{-1}}$ 互为逆映射（这也说明为什么 $\varphi_g$ 总是双射）。可以验证，$\varphi_{g_1g_2}=\varphi_{g_1}\varphi_{g_2}$，即 $\varphi$ 是群 $G$ 到群 $S_X$ 的群同态。
+
+这一群同态 $\varphi$ 称为该群作用的 **置换表示**（permutation representation）。该群同态的核也称为该群作用的核。如果这一群同态的核是单的，则称该群作用是 **忠实的**（faithful），即该作用的置换表示忠实地反映了群结构的信息。
+
+下文中，为表述方便，将省略群作用中的 $\cdot$ 记号。
+
+### 轨道
+
+群作用是二元映射。固定群中的元素 $g$，则可以得到集合上的置换 $\varphi_g$。而如果固定集合上的元素 $x$，则可以得到群对该元素作用的所有可能的结果。
+
+???+ abstract "轨道"
+    给定群 $G$ 在集合 $X$ 上的作用和 $x\in X$，则称 $x$ 在群 $G$ 作用下的 **轨道**（orbit）是子集 $Gx=\{gx:g\in G\}$。
+
+比如说，如果考虑群 $\langle s\rangle\le D_6$ 在正三角形顶点集合上的作用，则顶点 $1$ 的轨道是 $\{1\}$，而顶点 $2$ 和 $3$ 的轨道是 $\{2,3\}$。但是，群 $\langle r\rangle\le D_6$ 在顶点集合上的作用只有一个轨道，即全体顶点集。
+
+容易证明，群 $G$ 的作用下，集合 $X$ 的全体轨道构成了该集合的一个分划，记作 $X/G$。但是和陪集不同，这些轨道并不一定是等长的。
+
+### 稳定化子
+
+群作用下，一个集合中的元素的轨道长度取决于有多少群里的元素对应的置换以它为不动点。比如说，之所以在群 $\langle s\rangle\le D_6$ 的作用下，顶点 $1$ 的轨道长是一，是因为所有群里的元素都将顶点 $1$ 映到其自身；而顶点 $2$ 的轨道长是二，是因为只有单位元 $e$ 将顶点 $2$ 映射到其自身。
+
+这启发了如下的定义。
+
+???+ abstract "稳定化子"
+    给定群 $G$ 在集合 $X$ 上的作用和 $x\in X$，则称群 $G$ 中 $x$ 的 **稳定化子**（stabilizer）是子群 $G_x=\{g\in G:gx=x\}$。
+
+群作用的核就是集合中所有元素的稳定化子的交。
+
+考虑群 $D_6$ 在顶点集合上的群作用，则顶点 $1$ 的稳定化子是 $\{e,s\}=\langle s\rangle$。这是 $D_6$ 的子群。因为 $D_6$ 可以划分成左陪集 $\langle s\rangle$，$r\langle s\rangle$ 和 $r^2\langle s\rangle$，容易发现，每个左陪集对顶点 $1$ 作用的结果是一样的。也就是说，轨道上的元素，都和稳定化子的左陪集一一对应。这说明如下结果。
+
+???+ note "定理"
+    给定群 $G$ 在集合 $X$ 上的作用，则元素 $x\in X$ 的稳定化子 $G_x$ 是 $X$ 的子群，且子群 $G_x$ 的左陪集与轨道 $Gx$ 存在双射。
+
+利用 Lagrange 定理，可以将轨道长和稳定化子的陪集数目联系起来。这就是 **轨道稳定子定理**（orbit-stabilizer theorem）。
+
+???+ note "轨道稳定子定理"
+    给定群 $G$ 在集合 $X$ 上的作用和 $x\in X$，若 $G$ 有限，则 $|Gx|=[G:G_x]=|G|/|G_x|$。
+
+可以在上面的例子中验证这一结论。
+
+### Burnside 引理
+
+这一引理给出了群作用的轨道个数公式。
+
+???+ note "Burnside 引理"
+    给定群 $G$ 在集合 $X$ 上的作用，则轨道的个数等于群中每个元素对应置换的不动点的平均个数，即
+
+    $$
+    |X/G| = \frac{1}{|G|}\sum_{g\in G}|X^g|.
+    $$
+
+    这里，$X^g=\{x\in X:gx=x\}$ 是元素 $g\in G$ 对应置换的不动点集合。
+
+这一定理的证明十分简明。注意到，轨道个数可以写作
+
+$$
+|X/G|=\sum_{o\in X/G}1=\sum_{x\in X}\frac{1}{|Gx|}=\frac1{|G|}\sum_{x\in X}|G_x|.
+$$
+
+最后一个等号就是上面的推论；而右式和所要求证的只差一个 Fubini 定理，因为它们中的求和式都是对集合 $\{(g,x)\in G\times X:gx=x\}$ 的计数，只不过右式先对 $g$ 求和，而所求证的式子先对 $x$ 求和。
+
+这一定理在组合数学中有很多用处，可以用于统计本质不同的对象的数目。更多例子和讨论可以参考 [Pólya 计数](../combinatorics/polya.md)。
+
 ## 群的主要类别
 
 ### 置换群
 
-**置换群**（Permutation group）是第一类被系统性研究的群。对给定的集合 $X$，$X$ 到自身的一些置换集合 $G$ 如果在复合运算和求逆运算下封闭，那么称 $G$ 是一个作用于 $X$ 上的群。详细内容请看 [置换群](./permutation-group.md) 章节。
+**置换群**（Permutation group）是第一类被系统性研究的群。对给定的集合 $X$，$X$ 到自身的一些置换集合 $G$ 如果在复合运算和求逆运算下封闭，那么称 $G$ 是一个作用于 $X$ 上的群。
 
 ### 循环群
 
@@ -199,5 +234,3 @@ $$
 -   [Group theory - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)
 -   [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
 -   [Visual Group Theory](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
-
-[^ring-wiki]: [Ring（mathematics）- Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
