@@ -5,13 +5,13 @@
 引用不是对象，因此不存在引用的数组、无法获取引用的指针，也不存在引用的引用。
 
 ???-note "引用类型不属于对象类型"
-    如果想让引用能完成一般的复制、赋值等操作，比如作为容器元素，则需要 [`reference_wrapper`](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper) ，通常维护一个非空指针实现。
+如果想让引用能完成一般的复制、赋值等操作，比如作为容器元素，则需要 [`reference_wrapper`](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper)，通常维护一个非空指针实现。
 
 引用主要分为两种，左值引用和右值引用。
 
 ???-note "左值和右值"
-    对左值和右值讲解，请参考 [值类别](./value-category.md) 页面。
-    
+对左值和右值讲解，请参考 [值类别](./value-category.md) 页面。
+
 ## 左值引用 T&
 
 通常我们会接触到的引用为左值引用，即绑定到左值的引用，同时 `const` 限定的左值引用可以绑定右值。以下是来自 [参考手册](https://zh.cppreference.com/w/cpp/language/reference) 的一段示例代码。
@@ -51,7 +51,7 @@ int main() {
 }
 ```
 
-## 右值引用 T&& （C++ 11）
+## 右值引用 T&&（C++ 11）
 
 右值引用是绑定到右值的引用，用于移动对象，也可以用于 **延长临时对象生存期**。
 
@@ -62,34 +62,34 @@ int main() {
 using namespace std;
 
 int main() {
-    string s1 = "Test";
-    // string&& r1 = s1;  错误：不能绑定到左值，需要 std::move 或者 static_cast
+  string s1 = "Test";
+  // string&& r1 = s1;  错误：不能绑定到左值，需要 std::move 或者 static_cast
 
-    const string& r2 = s1 + s1;  // 可行：到常值的左值引用延长生存期
-    // r2 += "Test";                    错误：不能通过到常值的引用修改
-    cout << r2 << '\n';
+  const string& r2 = s1 + s1;  // 可行：到常值的左值引用延长生存期
+  // r2 += "Test";                    错误：不能通过到常值的引用修改
+  cout << r2 << '\n';
 
-    string&& r3 = s1 + s1;  // 可行：右值引用延长生存期
-    r3 += "Test";
-    cout << r3 << '\n';
+  string&& r3 = s1 + s1;  // 可行：右值引用延长生存期
+  r3 += "Test";
+  cout << r3 << '\n';
 
-    const string& r4 = r3;  // 右值引用可以转换到 const 限定的左值
-    cout << r4 << '\n';
+  const string& r4 = r3;  // 右值引用可以转换到 const 限定的左值
+  cout << r4 << '\n';
 
-    string& r5 = r3;  // 右值引用可以转换到左值
-    cout << r5 << '\n';
+  string& r5 = r3;  // 右值引用可以转换到左值
+  cout << r5 << '\n';
 }
 ```
 
 ## 引用相关的优化技巧
 
-###  对 **非轻量对象** 入参使用引用消除拷贝开销
+### 对 **非轻量对象** 入参使用引用消除拷贝开销
 
 常见的 **非轻量对象** 有：
 
-- 容器 `vector` ， `array` ， `map` 等
-- `string`
-- 其他实现了或继承了自定义拷贝构造、移动构造等特殊函数的类型  
+-   容器 `vector`，`array`，`map` 等
+-   `string`
+-   其他实现了或继承了自定义拷贝构造、移动构造等特殊函数的类型
 
 而对 **轻量对象** 使用引用不能带来任何好处，引用类型作为参数的空间占用大小，甚至可能会比类型本身还大。
 
@@ -97,11 +97,11 @@ int main() {
 
 以下属于 **轻量对象**
 
-- 基本类型 `int` ， `float` 等
-- 较小的 [聚合体类型](https://zh.cppreference.com/w/cpp/language/aggregate_initialization)
-- 标准库容器的迭代器
+-   基本类型 `int`，`float` 等
+-   较小的 [聚合体类型](https://zh.cppreference.com/w/cpp/language/aggregate_initialization)
+-   标准库容器的迭代器
 
-###  将左值转换为右值，使用 `std::move` [转移](./value-category.md#stdmove) 对象的所有权。
+### 将左值转换为右值，使用 `std::move` [转移](./value-category.md#stdmove) 对象的所有权。
 
 这通常见于局部变量之间的，和参数与局部变量之间：
 
@@ -115,25 +115,25 @@ using namespace std;
 string world(string str) { return std::move(str) += " world!"; }
 
 int main() {
-    // 1
-    cout << world("hello") << '\n';
+  // 1
+  cout << world("hello") << '\n';
 
-    vector<string> vec0;
+  vector<string> vec0;
 
-    // 2
-    {
-        string&& size = to_string(vec0.size());
+  // 2
+  {
+    string&& size = to_string(vec0.size());
 
-        size += ", " + to_string(size.size());
+    size += ", " + to_string(size.size());
 
-        vec0.emplace_back(std::move(size));
-    }
+    vec0.emplace_back(std::move(size));
+  }
 
-    cout << vec0.front();
+  cout << vec0.front();
 }
 ```
 
-但不是所有时候都需要这么做，比如 [函数返回值优化](./value-category.md#常见误区) 。
+但不是所有时候都需要这么做，比如 [函数返回值优化](./value-category.md#常见误区)。
 
 ### 右值延长临时量生命期，消除可能的复制或移动。
 
