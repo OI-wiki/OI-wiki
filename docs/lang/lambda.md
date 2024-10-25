@@ -1,34 +1,41 @@
 **注意**：考虑到算法竞赛的实际情况，本文将不会全面研究语法，只会讲述在算法竞赛中可能会应用到的部分。
 
-本文语法参照 **C++11** 标准。语义不同的将以 **C++11** 作为标准，C++14、C++17 的语法视情况提及并会特别标注。
+本文语法参照 **C++11** 标准，其他高版本的标准语法视情况提及并会特别标注。
 
 ## Lambda 表达式
 
-Lambda 表达式因数学中的 $\lambda$ 演算得名，直接对应于其中的 lambda 抽象。Lambda 表达式能够捕获作用域中的变量的无名函数对象。我们可以将其理解为一个匿名的内联函数，可以用来替换独立函数或者函数对象，从而使代码更可读。但是从本质上来讲，Lambda 表达式只是一种语法糖，因为它能完成的工作也可以用其他复杂的 C++ 语法来实现。
+Lambda 表达式因数学中的 $\lambda$ 演算得名，直接对应于其中的 lambda 抽象。编译器在编译时会根据语法生成一个匿名的 **函数对象**，以捕获的变量作为其成员，参数和函数体用于实现 `operator()` 重载。
 
-下面是 Lambda 表达式的语法：
+??? note "函数对象（Function Object）"
+    函数对象是一种类对象，一般通过重载 `operator()` 实现，所以能像函数一样调用。相较于使用普通的函数，函数对象有很多优点，例如可以保存状态，可以作为参数传递给其他函数等。
+
+以下是 lambda 的一种语法：
 
 ```text
 [capture] (parameters) mutable -> return-type {statement}
 ```
 
-下面我们分别对其中的 capture, parameters, mutable, return-type, statement 进行介绍。
+下面我们分别对语法中的各部分进行介绍。
+
+### statement 函数体
+
+函数体与普通函数函数体痛兄，除了参数和全局变量等，还可访问 [捕获](#capture-捕获子句) 的变量。
 
 ### capture 捕获子句
 
-Lambda 表达式以 capture 子句开头，它指定哪些变量被捕获，以及捕获是通过值还是引用：有 `&` 符号前缀的变量通过引用访问，没有该前缀的变量通过值访问。空的 capture 子句 `[]` 指示 Lambda 表达式的主体不访问封闭范围中的变量。
+lambda 以 capture 子句开头，它指定哪些变量被捕获，捕获列表可为空，或指定捕获方式：有 `&` 符号前缀的变量通过 [引用](./reference.md) 访问，没有该前缀的变量通过值访问。
 
-我们也可以使用默认捕获模式：`&` 表示捕获到的所有变量都通过引用访问，`=` 表示捕获到的所有变量都通过值访问。之后我们可以为特定的变量 **显式** 指定相反的模式。
+我们也可以使用默认捕获模式，捕获 Lambda 中提及的所有变量：`&` 表示捕获到的所有变量都通过引用访问，`=` 表示捕获到的所有变量都通过值访问。
 
-例如 Lambda 体要通过引用访问外部变量 `a` 并通过值访问外部变量 `b`，则以下子句等效：
+在默认捕获之后，仍然可以为特定的变量 **显式** 指定捕获模式。
+
+如果需要引用访问外部变量 `a`，并通过值访问外部变量 `b`，那么以下捕获子句都可以做到：
 
 -   `[&a, b]`
 -   `[b, &a]`
 -   `[&, b]`
 -   `[b, &]`
 -   `[=, &a]`
-
-默认捕获时，会捕获 Lambda 中提及的变量。获的变量成为 Lambda 的一部分；与函数参数相比，调用 Lambda 时不必传递它们。
 
 以下是一些常见的例子：
 
@@ -37,26 +44,54 @@ int a = 0;
 auto f = []() { return a * 9; };   // Error, 无法访问 'a'
 auto f = [a]() { return a * 9; };  // OK, 'a' 被值「捕获」
 auto f = [&a]() { return a++; };   // OK, 'a' 被引用「捕获」
-                                  // 注意：请保证 Lambda 被调用时 a 没有被销毁
+                                  // 注意：请保证被调用时 a 没有被销毁
 auto b = f();  // f 从捕获列表里获得 a 的值，无需通过参数传入 a
+```
+
+在没有捕获时，lambda 可以转换为函数指针：
+
+```cpp
+int (*f)() = [] {
+  std::cout << "Hello, World!" << std::endl;
+  return 0;
+};
+int v = f();  // 输出 "Hello, World!"
+```
+
+#### 带初始化器的捕获（C++14）
+
+在 **C++14** 中，我们可以使用带初始化器的捕获，此时的捕获成员声明如同使用 `auto`，例如：
+
+```cpp
+int x = 4;
+
+auto y = [&r = x, x = x + 1]() -> int {
+  r += 2;
+  return x * x;
+}();  // 更新 ::x 到 6 并初始化 y 为 25。
+
+```
+
+等价于
+
+```cpp
+int x = 4;
+
+int y;
+{
+  // 捕获列表初始化
+  auto &r = x;
+  auto x = x + 1;  // 本地 x 会隐藏外部 x
+
+  // 函数体及其返回值
+  r += 2;
+  y = x * x;  // 使用本地 x 变量
+}
 ```
 
 ### parameters 参数列表
 
 大多数情况下类似于函数的参数列表，例如：
-
-```cpp
-auto lam = [](int a, int b) { return a + b; };
-std::cout << lam(1, 9) << " " << lam(2, 6) << std::endl;
-```
-
-**C++14** 中，若参数类型是泛型，则可以使用 `auto` 声明类型：
-
-```cpp
-auto lam = [](auto a, auto b)
-```
-
-一个例子：
 
 ```cpp
 int x[] = {5, 1, 7, 6, 1, 4, 2};
@@ -66,92 +101,171 @@ for (auto i : x) std::cout << i << " ";
 
 这将打印出 `x` 数组从大到小排序后的结果。
 
-由于 **parameters 参数列表** 是可选的，如果不将参数传递给 Lambda 表达式，并且其 Lambda 声明器不包含 mutable，且没有后置返回值类型，则可以省略空括号。
+由于 **parameters 参数列表** 是可选的，如果不将参数传递给 lambda，并且其声明不包含 [mutable](#mutable-可变规范)，且没有后置返回值类型，则可以省略空括号。
 
-Lambda 表达式也可以将另一个 Lambda 表达式作为其参数。
-
-一个例子：
-
-```cpp
-#include <functional>
-#include <iostream>
-
-int main() {
-  using namespace std;
-
-  // 返回另一个计算两数之和 Lambda 表达式
-  auto addtwointegers = [](int x) -> function<int(int)> {
-    return [=](int y) { return x + y; };
-  };
-
-  // 接受另外一个函数 f 作为参数，返回 f(z) 的两倍
-  auto higherorder = [](const function<int(int)>& f, int z) {
-    return f(z) * 2;
-  };
-
-  // 调用绑定到 higherorder 的 Lambda 表达式
-  auto answer = higherorder(addtwointegers(7), 8);
-
-  // 答案为 (7 + 8) * 2 = 30
-  cout << answer << endl;
-}
-```
+??? note " 使用 `auto` 声明的参数 "
+    **C++14** 后，若参数使用 `auto` 声明类型，那么会构造一个 [泛型 Lambda 表达式](#泛型-lambdac14)。
 
 ### mutable 可变规范
 
-利用可变规范，Lambda 表达式的主体可以修改通过值捕获的变量。若使用此关键字，则 parameters **不可省略**（即使为空）。
-
-一个例子，使用 **capture 捕获字句** 中的例子，来观察 a 的值的变化：
+使得函数体可以修改通过值捕获的变量。
 
 ```cpp
 int a = 0;
-auto func = [a]() mutable { ++a; };
+auto by_value = [a]() mutable { ++a; };
+auto by_ref = [&a] { ++a; };
+
+by_value();
+by_ref();
 ```
 
-此时 lambda 中的 a 的值改变为 1，lambda 外的 a 保持不变。
+在执行完 `by_value()` 后，`by_value` 的捕获成员 `a` 为 1，但外部的变量 `a` 依然为 0。
+而在执行完 `by_ref()` 后，外部 `a` 的值变为 1。
 
 ### return-type 返回类型
 
-用于指定 Lambda 表达式的返回类型。若没有指定返回类型，则返回类型将被自动推断（行为与用 `auto` 声明返回值的普通函数一致）。具体的，如果函数体中没有 `return` 语句，返回类型将被推导为 `void`，否则根据返回值推导。若有多个 `return` 语句且返回值类型不同，将产生编译错误。
+用于指定 lambda 表达式的返回类型。如果省略，则返回类型将被自动推断（行为与用 `auto` 声明返回值的函数一致）。
 
-例如，上文的 `lam` 也可以写作：
+多个 `return` 语句且推导类型不一致时，将产生编译错误。
 
 ```cpp
-auto lam = [](int a, int b) -> int
+auto lam = [](int a, int b) -> int { return 0; } auto x1 = [](int i) {
+  return i;
+};
+auto x2 = [](bool condition) {
+  if (condition) return 1;
+  return 1.0;
+};  // Error, 推导类型不一致
 ```
 
-再举两个例子：
+### 泛型 Lambda（C++14）
+
+使用 `auto` 作为参数类型，可以构造泛型 lambda。
 
 ```cpp
-auto x1 = [](int i) { return i; };  // OK
-auto x2 = [] { return {1, 2}; };    // Error, 返回类型被推导为 void
+auto add = [](auto a, auto b) { return a + b; };
 ```
 
-### statement Lambda 主体
-
-Lambda 主体可包含任何函数可包含的部分。普通函数和 Lambda 表达式主体均可访问以下变量类型：
-
--   从封闭范围捕获变量
--   参数
--   本地声明的变量
--   在一个 `class` 中声明时，若捕获 `this`，则可以访问该对象的成员
--   具有静态存储时间的任何变量，如全局变量
-
-下面是一个例子
+[cpp insights](https://cppinsights.io) 可以看到编译器生成的 `lambda` 类定义：
 
 ```cpp
-#include <iostream>
+class add_lambda {
+ public:
+  template <class T, class U>
+  auto operator()(T a, U b) const {
+    return a + b;
+  }
+};
 
-int main() {
-  int m = 0, n = 0;
-  [&, n](int a) mutable { m = (++n) + a; }(4);
-  std::cout << m << " " << n << std::endl;
-  return 0;
+add_lambda add{};
+```
+
+`add` 两个参数声明均使用了 `auto`，对应为 `add_lambda` 类的 `operator()` 函数模板的两个模板参数 `T` 和 `U`。
+
+### Lambda 表达式的应用
+
+#### 作为标准库算法的算子
+
+从大到小排序：
+
+```cpp
+std::vector<int> v = {1, 2, 3, 4, 5};
+std::sort(v.begin(), v.end(), [](int a, int b) { return a > b; });
+```
+
+使用 [std::find\_if](https://zh.cppreference.com/w/cpp/algorithm/find) 查找第一个大于 3 的元素：
+
+```cpp
+std::vector<int> v = {1, 2, 3, 4, 5};
+auto it = std::find_if(v.begin(), v.end(), [](int a) { return a > 3; });
+```
+
+#### 控制中间变量的生命周期
+
+在算法竞赛中，我们会遇到这样的场景：一个变量的初始化需要使用之前声明的变量，其初始化过程又生成占用空间较大的中间变量。
+
+我们希望能尽快析构这些中间变量，以降低内存消耗。此时，我们可以使用 lambda 来控制这些中间变量的生命周期。
+
+```cpp
+void solution(const vector<int>& input) {
+  int b = [&] {
+    vector<int> large_objects(input.size());
+    int c = 0;
+
+    for (int i = 0; i < large_objects.size(); ++i)
+      large_objects[i] = i + input[i];
+
+    for (int i = 0; i < input.size(); ++i) c += large_objects[input[i]];
+
+    return c;
+  }();
+
+  // ...
 }
 ```
 
-最后我们得到输出 `5 0`。这是由于 `n` 是通过值捕获的，在调用 Lambda 表达式后仍保持原来的值 `0` 不变。`mutable` 规范允许 `n` 在 Lambda 主体中被修改，将 `mutable` 删去则编译不通过。
+相较于使用块作用域，lambda 可以允许我们使用返回值，使得代码更加简洁；相较于函数，我们不需要额外起名和声明被捕获的各种参数，使得代码更加紧凑。
+
+#### 递归
+
+由于 lambda 在函数体内定义时类型仍不完整，也就无法通过捕获自身的方式实现递归，但我们可以通过其他方式实现。下面通过一个求斐波那契数列的例子来说明。
+
+##### 泛型（C++14）
+
+将参数声明为 `auto`，就避免了定义不完整的问题，函数模板的实例化只在调用处进行，使用时仅需传入 lambda 自身即可。
+
+```cpp
+auto nth_fibonacci = [](auto self, int n, int a = 0, int b = 1) {
+  return n ? self(self, n - 1, a + b, a) : b;
+};
+
+cout << nth_fibonacci(nth_fibonacci, 10);
+```
+
+##### 显式对象形参（C++23）
+
+在 **C++23** 中，[显式对象形参](https://zh.cppreference.com/w/cpp/language/function#.E5.BD.A2.E5.8F.82.E5.88.97.E8.A1.A8) 可以在 lambda 的参数中使用。
+
+```cpp
+auto nth_fibonacci = [](this auto self, int n, int a = 0, int b = 1) {
+  return n ? self(n - 1, a + b, a) : b;
+};
+
+cout << nth_fibonacci(10);
+```
+
+##### 其他方式
+
+从本质上来讲，lambda 只是通过实现匿名函数对象一种语法糖，那么我们可以通过定义函数对象来实现递归。
+
+```cpp
+class fibonacci_fn {
+ public:
+  int operator()(int n) const {
+    return n ? (*this)(n - 1) + (*this)(n - 2) : 1;
+  }
+};
+
+cout << fibonacci_fn{}(10);
+```
+
+??? warning " 不建议使用 `std::function` 实现的递归 "
+    `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
+
+    ```cpp
+    auto nth_fibonacci = [](int n)
+    {
+        std::function<int(int, int, int)> fib = [&](int n, int a, int b)
+        {
+            return n ? fib(n - 1, a + b, a) : b;
+        };
+        return fib(n, 0, 1);
+    };
+
+    cout << n_fibonacci(10);
+    ```
 
 ## 参考文献
 
--   <https://en.cppreference.com/w/cpp/language/lambda>
+-   [cppreference-lambda](https://en.cppreference.com/w/cpp/language/lambda)
+-   [Stackoverflow: Overhead with std::function](https://stackoverflow.com/a/33881130/11120338)
