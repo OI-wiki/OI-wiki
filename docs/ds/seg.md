@@ -501,7 +501,7 @@ int query(int p, int s, int t, int l, int r) {
 
 ```cpp
 // d 是线段树的节点信息，t 是懒标记，pushdn(x, y, z) 表示下传 x
-// 的懒标记（方便实现带上了 y， z 表示 x 的区间的左右端点
+// 的懒标记（方便实现带上了 y， z 表示 x 的区间的左右端点）
 
 int lrmid(int p, int l, int r, int x) {
   if (l == r) {
