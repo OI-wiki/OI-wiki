@@ -601,7 +601,6 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
 读取时可以递归读取，也可以倒序压进栈内再依次弹出。
 
-
 ??? note "关于初始化"
     $$
     \text{pre}_{u}\gets
@@ -619,6 +618,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         struct edge {
           int v, w;
         };
+        ```
 
         struct node {
           int dis, u;
@@ -716,7 +716,6 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
 除了记录前驱，得益于全源特性，Floyd 还可以记录后继完成路径的还原。处理方式类似，记 $\text{suf}_{i,j}$ 表示以 $j$ 为终点 $i$ 的后继，只需在松弛成功时更新 $\text{suf}_{i,j}\gets\text{suf}_{k,j}$ 即可。
 
-
 ??? note "关于初始化"
     $$
     \text{pre}_{i,j}\gets
@@ -741,6 +740,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         #include <iostream>
         using namespace std;
         typedef long long ll;
+        ```
 
         char buf[1<<20], *p1, *p2;
         #define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?0:*p1++)
