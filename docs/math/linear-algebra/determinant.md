@@ -112,7 +112,7 @@ $$
 
 前置知识：[初等变换](../elementary-operations/)。
 
-记 $D_i(k)$ 为[倍乘矩阵](../elementary-operations/#倍乘矩阵)、$P_{ij}$ 为[对换矩阵](../elementary-operations/#对换矩阵)、$T_{ij}(k)$ 为[倍加矩阵](../elementary-operations/#倍加矩阵)。
+记 $D_i(k)$ 为 [倍乘矩阵](../elementary-operations/#倍乘矩阵)、$P_{ij}$ 为 [对换矩阵](../elementary-operations/#对换矩阵)、$T_{ij}(k)$ 为 [倍加矩阵](../elementary-operations/#倍加矩阵)。
 
 对于一个 $n$ 阶矩阵 $A$ 的运算 $\det$，如果满足以下四个性质，称为行列式：
 
@@ -125,20 +125,20 @@ $$
 -   交换一个行列式的两行或两列，行列式改变符号。
 
     $$
-	\det(P_{ij}A) = \det(AP_{ij}) = -\det A
-	$$
+    \det(P_{ij}A) = \det(AP_{ij}) = -\det A
+    $$
 
 -   把行列式的某一行或某一列的元素乘以同一数后加到另一行或另一列的对应元素上，行列式不变。
 
     $$
-	\det(T_{ij}(k)A) = \det(AT_{ij}(k))= \det A
-	$$
+    \det(T_{ij}(k)A) = \det(AT_{ij}(k))= \det A
+    $$
 
 -   单位矩阵的行列式为 $1$。
 
     $$
-	\det I = 1
-	$$
+    \det I = 1
+    $$
 
 利用行列式有关初等变换的性质，可以方便手动计算更高阶的行列式。[「高斯消元」法计算行列式](../../numerical/gauss/#行列式计算)，也用到了这个性质，时间复杂度为 $O(n^3)$。
 
