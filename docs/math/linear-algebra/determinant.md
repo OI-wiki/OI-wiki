@@ -112,7 +112,7 @@ $$
 
 前置知识：[初等变换](./elementary-operations.md)。
 
-记 $D_i(k)$ 为[倍乘矩阵](./elementary-operations.md#倍乘矩阵)、$P_{ij}$ 为[对换矩阵](./elementary-operations.md#对换矩阵)、$T_{ij}(k)$ 为[倍加矩阵](./elementary-operations.md#倍加矩阵)。
+记 $D_i(k)$ 为 [倍乘矩阵](./elementary-operations.md#倍乘矩阵)、$P_{ij}$ 为 [对换矩阵](./elementary-operations.md#对换矩阵)、$T_{ij}(k)$ 为 [倍加矩阵](./elementary-operations.md#倍加矩阵)。
 
 对于一个 $n$ 阶矩阵 $A$ 的运算 $\det$，如果满足以下四个性质，称为行列式：
 
