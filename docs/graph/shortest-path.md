@@ -1,4 +1,4 @@
-author: du33169, lingkerio
+author: du33169, lingkerio, Taoran-01
 
 ## 定义
 
@@ -112,6 +112,8 @@ author: du33169, lingkerio
     在 Floyd 的过程中枚举 $u$，计算这个和的最小值即可。
     
     时间复杂度为 $O(n^3)$。
+
+    更多参见 [最小环](./min-cycle.md) 部分内容。
 
 ???+ question "已知一个有向图中任意两点之间是否有连边，要求判断任意两点是否连通。"
     该问题即是求 **图的传递闭包**。
@@ -461,6 +463,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
+          memset(vis, 0, (n + 1) * sizeof(int));
           dis[s] = 0;
           q.push({0, s});
           while (!q.empty()) {
@@ -588,7 +591,251 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
 开一个 `pre` 数组，在更新距离的时候记录下来后面的点是如何转移过去的，算法结束前再递归地输出路径即可。
 
-比如 Floyd 就要记录 `pre[i][j] = k;`，Bellman–Ford 和 Dijkstra 一般记录 `pre[v] = u`。
+### Bellman-Ford 和 Dijkstra
+
+记 $\text{pre}_v$ 表示点 $v$ 的前驱，即最短路 $s\to v$ 的路径中最后一条边是有向边 $(\text{pre}_v,v)$。则 $v$ 的最短路序列为从 $v$ 不断跳 $\text{pre}$ 到 $s$，再将点的序列倒置，即 $s\to\cdots\to\text{pre}_{\text{pre}_{\text{pre}_\cdots}}\to\cdots\to\text{pre}_{\text{pre}_v}\to\text{pre}_v\to v$。
+
+利用边 $(u,v)$ 成功松弛 $s\to v$ 的最短路时，$\text{dis}_v\gets\text{dis}_u+w$，经过 $u$ 的最短路更新为 $s\to\cdots\to u\to v$。
+
+参考链表的思想，此时只需将 $v$ 的前驱更新为 $u$，即 $\text{pre}_v\gets u$，就可以更新 $v$ 的整个路径序列。
+
+读取时可以递归读取，也可以倒序压进栈内再依次弹出。
+
+
+??? note "关于初始化"
+    $$
+    \text{pre}_{u}\gets
+    \begin{cases}s&u\neq s\\
+    -1&u=s\end{cases}
+    $$
+    
+    $u$ 的最短路默认为 $s\to u$，尽管不存在（即长度为 $+\infty$）。路径长度会随松弛优化，而最短路也会发生变更，直至最优。
+    
+    递归终点为 $-1$，这样的写法在特殊情况下也可以处理。
+
+??? note "实现"
+    === "堆优化 Dijkstra"
+        ```cpp
+        struct edge {
+          int v, w;
+        };
+
+        struct node {
+          int dis, u;
+
+          bool operator>(const node& a) const { return dis > a.dis; }
+        };
+
+        vector<edge> e[MAXN];
+        int dis[MAXN], vis[MAXN], pre[MAXN];
+        priority_queue<node, vector<node>, greater<node>> q;
+
+        void dijkstra(int n, int s) {
+          memset(dis, 0x3f, (n + 1) * sizeof(int));
+          memset(vis, 0, (n + 1) * sizeof(int));
+          for (int i = 1; i <= n; ++i) pre[i] = s;
+          dis[s] = 0, pre[s] = -1;
+          q.push({0, s});
+          while (!q.empty()) {
+            int u = q.top().u;
+            q.pop();
+            if (vis[u]) continue;
+            vis[u] = 1;
+            for (auto ed : e[u]) {
+              int v = ed.v, w = ed.w;
+              if (dis[v] > dis[u] + w) {
+                dis[v] = dis[u] + w;
+                pre[v] = u;
+                q.push({dis[v], v});
+              }
+            }
+          }
+        }
+      
+        void output1(int u) { // 递归写法
+          if (u==-1) return;
+          output1(pre[u]);
+          printf("%d ", u);
+        }
+
+        int stk[MAXN], top; // 非递归写法
+        void output2(int u) {
+          for (int i = u; i != -1; i = pre[i]) stk[++top] = i;
+          while (top) printf("%d ", stk[top--]);
+        }
+        ```
+    === "SPFA"
+        ```cpp
+        struct edge {
+          int v, w;
+        };
+
+        vector<edge> e[MAXN];
+        int dis[MAXN], cnt[MAXN], vis[MAXN], pre[MAXN];
+        queue<int> q;
+
+        bool spfa(int n, int s) {
+          memset(dis, 0x3f, (n + 1) * sizeof(int));
+          for (int i = 1; i <= n; ++i) pre[i] = s;
+          dis[s] = 0, vis[s] = 1, pre[s] = -1;
+          q.push(s);
+          while (!q.empty()) {
+            int u = q.front();
+            q.pop(), vis[u] = 0;
+            for (auto ed : e[u]) {
+              int v = ed.v, w = ed.w;
+              if (dis[v] > dis[u] + w) {
+                dis[v] = dis[u] + w;
+                cnt[v] = cnt[u] + 1;
+                pre[v] = u;
+                if (cnt[v] >= n) return false;
+                if (!vis[v]) q.push(v), vis[v] = 1;
+              }
+            }
+          }
+          return true;
+        }
+
+        void output1(int u) { // 递归写法
+          if (u==-1) return;
+          output1(pre[u]);
+          printf("%d ", u);
+        }
+
+        int stk[MAXN], top;
+        void output2(int u) { // 非递归写法
+          for (int i = u; i != -1; i = pre[i]) stk[++top] = i;
+          while (top) printf("%d ", stk[top--]);
+        }
+        ```
+
+### Floyd
+
+记 $\text{pre}_{i,j}$ 表示以 $i$ 为起点的最短路上 $j$ 的前驱，即最短路 $i\to j$ 的路径中最后一条边是有向边 $(\text{pre}_{i,j},j)$。  
+使用 $k$ 成功松弛 $i\to j$ 的最短路时，$\text{pre}_{i,j}\gets\text{pre}_{k,j}$，经过 $k$ 的最短路更新为 $i\to\cdots\to k\to\cdots\to\text{pre}_{k,j}\to j$。此时只需将 $j$ 的前驱更新为 $\text{pre}_{k,j}$，即 $\text{pre}_{i,j}\gets\text{pre}_{k,j}$，就可以更新 $j$ 的整个路径序列。
+
+除了记录前驱，得益于全源特性，Floyd 还可以记录后继完成路径的还原。处理方式类似，记 $\text{suf}_{i,j}$ 表示以 $j$ 为终点 $i$ 的后继，只需在松弛成功时更新 $\text{suf}_{i,j}\gets\text{suf}_{k,j}$ 即可。
+
+
+??? note "关于初始化"
+    $$
+    \text{pre}_{i,j}\gets
+    \begin{cases}i&i\neq j\\
+    -1&i=j\end{cases}
+    $$
+
+    $$
+    \text{suf}_{i,j}\gets
+    \begin{cases}j&i\neq j\\
+    -1&i=j\end{cases}
+    $$
+
+    原理同上方，先初始化所有都是直接路径，再逐步松弛得到答案。
+
+??? note "实现"
+    === "记录前驱"
+        ```cpp
+        #include <cmath>
+        #include <cstdio>
+        #include <cstring>
+        #include <iostream>
+        using namespace std;
+        typedef long long ll;
+
+        char buf[1<<20], *p1, *p2;
+        #define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?0:*p1++)
+
+        inline ll read() {
+          ll x=0, f=1; char ch=getchar();
+          while (ch<'0'||ch>'9') {if (ch=='-') f=-1; ch=getchar();}
+          while (ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(ch^48), ch=getchar();
+          return x*f;
+        }
+
+        #define N 1010
+        int n, m, k;
+        int d[N][N];
+        int pre[N][N];
+
+        void output1(int s, int t) { // 递归写法
+          if (t==-1) return;
+          output1(s, pre[s][t]), printf("%d ", t);
+        }
+
+        int stk[N], top;
+        void output2(int s, int t) { // 非递归写法
+          for (int i=t; i!=-1; i=pre[s][i]) stk[++top]=i;
+          while (top) printf("%d ", stk[top--]);
+        }
+
+        signed main() {
+          n=read(), m=read(), k=read();
+          memset(d, 0x1f, sizeof(d));
+          for (int i=1; i<=n; ++i) d[i][i]=0;
+          for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) pre[i][j]=i;
+          for (int i=1; i<=n; ++i) pre[i][i]=-1;
+          while (m--) {int x=read(), y=read(); d[x][y]=d[y][x]=1;}
+          for (int k=1; k<=n; ++k) for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) {
+            if (d[i][k]+d[k][j]<d[i][j]) d[i][j]=d[i][k]+d[k][j], pre[i][j]=pre[k][j];
+          }
+          while (k--) {
+            int x=read(), y=read(); output2(x, y), puts("");
+          }
+          return 0;
+        }
+
+        ```
+    === "记录后继"
+        ```cpp
+        #include <cmath>
+        #include <cstdio>
+        #include <cstring>
+        #include <iostream>
+        using namespace std;
+        typedef long long ll;
+
+        char buf[1<<20], *p1, *p2;
+        #define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?0:*p1++)
+
+        inline ll read() {
+          ll x=0, f=1; char ch=getchar();
+          while (ch<'0'||ch>'9') {if (ch=='-') f=-1; ch=getchar();}
+          while (ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(ch^48), ch=getchar();
+          return x*f;
+        }
+
+        #define N 1010
+        int n, m, k;
+        int d[N][N];
+        int suf[N][N];
+
+        void output1(int s, int t) { // 递归写法
+          if (s==-1) return;
+          printf("%d ", s), output1(suf[s][t], t);
+        }
+
+        void output2(int s, int t) { // 非递归写法
+          for (int i=s; i!=-1; i=suf[i][t]) printf("%d ", i);
+        }
+
+        signed main() {
+          freopen("temp.in", "r", stdin);
+          n=read(), m=read(), k=read();
+          memset(d, 0x1f, sizeof(d));
+          for (int i=1; i<=n; ++i) d[i][i]=0;
+          for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) suf[i][j]=j;
+          for (int i=1; i<=n; ++i) suf[i][i]=-1;
+          while (m--) {int x=read(), y=read(); d[x][y]=d[y][x]=1;}
+          for (int k=1; k<=n; ++k) for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) {
+            if (d[i][k]+d[k][j]<d[i][j]) d[i][j]=d[i][k]+d[k][j], suf[i][j]=suf[i][k];
+          }
+          while (k--) {
+            int x=read(), y=read(); output2(x, y), puts("");
+          }
+          return 0;
+        }
+
+        ```
 
 ## 参考资料与注释
 
