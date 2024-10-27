@@ -4,7 +4,7 @@
 
 ## 全排列方法定义
 
-前置知识：[置换](../../permutation/)、[逆序数](../../permutation/#逆序和逆序数)。
+前置知识：[置换](../permutation.md)、[逆序数](../permutation.md#逆序和逆序数)。
 
 手动计算较低阶的行列式可以采用这种方法，它的时间复杂度为阶乘量级。
 
@@ -110,9 +110,9 @@ $$
 
 公理化定义是说，满足了某些性质的运算只能是行列式。
 
-前置知识：[初等变换](../elementary-operations/)。
+前置知识：[初等变换](./elementary-operations.md)。
 
-记 $D_i(k)$ 为 [倍乘矩阵](../elementary-operations/#倍乘矩阵)、$P_{ij}$ 为 [对换矩阵](../elementary-operations/#对换矩阵)、$T_{ij}(k)$ 为 [倍加矩阵](../elementary-operations/#倍加矩阵)。
+记 $D_i(k)$ 为[倍乘矩阵](./elementary-operations.md#倍乘矩阵)、$P_{ij}$ 为[对换矩阵](./elementary-operations.md#对换矩阵)、$T_{ij}(k)$ 为[倍加矩阵](./elementary-operations.md#倍加矩阵)。
 
 对于一个 $n$ 阶矩阵 $A$ 的运算 $\det$，如果满足以下四个性质，称为行列式：
 
@@ -140,7 +140,7 @@ $$
     \det I = 1
     $$
 
-利用行列式有关初等变换的性质，可以方便手动计算更高阶的行列式。[「高斯消元」法计算行列式](../../numerical/gauss/#行列式计算)，也用到了这个性质，时间复杂度为 $O(n^3)$。
+利用行列式有关初等变换的性质，可以方便手动计算更高阶的行列式。[「高斯消元」法计算行列式](../numerical/gauss.md#行列式计算)，也用到了这个性质，时间复杂度为 $O(n^3)$。
 
 上述性质也有若干推论：
 
