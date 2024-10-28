@@ -11,7 +11,7 @@
 ???+ info "记号"
     在不引起歧义时，本文可能会省略掉环的乘法记号，并且会将环 $(R,+,\cdot)$ 写作环 $R$。
 
-??? info "本文的环的定义不要求有幺元"
+??? warning "本文的环的定义不要求有幺元"
     注意，本文的环的定义不要求含幺。有些文章要求环的定义含幺，则本文部分结论的叙述需要稍作调整。比如说，本文中理想可以基于子环定义，但是其它文章中可能需要基于加法子群。
 
 ## 理想
@@ -26,7 +26,7 @@
 ???+ abstract "环同态"
     给定环 $(R,+_R,\cdot_R)$ 和 $(S,+_S,\cdot_S)$，则称映射 $\pi:R\rightarrow S$ 是自环 $R$ 到环 $S$ 的 **同态**（homomorphism），如果 $\pi$ 保持环的加法和乘法运算，即对所有 $r_1,r_2\in R$ 都成立 $\pi(r_1+_Rr_2)=\pi(r_1)+_S\pi(r_2)$ 和 $\pi(r_1\cdot_Rr_2)=\pi(r_1)\cdot_S\pi(r_2)$。
 
-比如说，对任何整数 $n$ 取模的映射，即 $\pi:\mathbf Z\rightarrow\mathbf Z/\mathbf Z_n$，其中，$\pi(a)=\bar a$，都是环同态。
+比如说，对任何整数 $n$ 取模的映射，即 $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$，其中，$\pi(a)=\bar a$，都是环同态。
 
 对群同态的核和像的讨论可以几乎原封不动地搬到此处。同态的像的（相对）大小决定了同态是否是满的，而同态的核的平凡与否则决定了同态是否是单的。这里，环同态的核定义如下。
 
@@ -79,7 +79,7 @@ $$
     给定环 $R$、它的子环 $A$ 以及理想 $B$，那么 $A+B=\{a+b:a\in A,b\in B\}$ 同样是 $R$ 的子环，而 $A\cap B$ 是 $A$ 的理想，$B$ 是 $A+B$ 的理想，并且 $(A+B)/B\cong A/(A\cap B)$。
 
 ???+ note "第三同构定理"
-    给定环 $R$ 和它的理想 $I,J$，并且 $I\subseteq J$，那么 $J/I$ 也是 $R/I$ 的理想，并且 $J/I\subseteq R/I$。
+    给定环 $R$ 和它的理想 $I,J$，并且 $I\subseteq J$，那么 $J/I$ 也是 $R/I$ 的理想，并且 $(R/I)/(J/I)\cong R/J$。
 
 这些定理在后文中讨论环和理想的结构时将起到重要作用。
 
@@ -437,7 +437,7 @@ $$
 
 $$
 \begin{aligned}
-\deg(a(x)+b(x)) &\le \min\{\deg a(x),\deg b(x)\},\\
+\deg(a(x)+b(x)) &\le \max\{\deg a(x),\deg b(x)\},\\
 \deg(a(x)b(x)) &= \deg a(x) + \deg b(x).
 \end{aligned}
 $$
@@ -555,6 +555,47 @@ $$
 
 ### 应用：Lagrange 插值公式
 
+相关阅读：[Lagrange 插值](../numerical/interp.md#lagrange-插值法)、[多项式快速插值](../poly/multipoint-eval-interpolation.md#多项式的快速插值)
+
+插值（interpolation）问题是指，给定一系列点值 $\{(x_i,y_i)\}_{i=1}^n$，寻找域 $F$ 上的多项式 $f(x)$ 使其满足 $f(x_i)=y_i$ 对所有 $i=1,\cdots,n$ 都成立。当然假设所有 $x_i$ 互不相同。Lagrange 插值公式给出了这类问题的通解。
+
+对于域 $F$ 上的多项式 $f(x)$，对 $x-x_i$ 做带余除法，就有 $f(x)=q(x)(x-x_i)+r(x)$，这里，$\deg r(x)<\deg(x-x_i)=1$，所以 $r(x)$ 只能是常数。为确定这一常数，将该等式在 $x=x_i$ 处取值，就有 $r(x)=r(x_i)=f(x_i)$。因而，条件 $f(x_i)=y_i$ 等价于 $f(x)\equiv y_i\pmod{x-x_i}$。所以，插值问题就等价于
+
+$$
+\begin{cases}
+f(x)\equiv y_1&\pmod{x-x_1},\\
+f(x)\equiv y_2&\pmod{x-x_2},\\
+\cdots\\
+f(x)\equiv y_n&\pmod{x-x_n}.
+\end{cases}
+$$
+
+这些一次多项式 $\{x-x_i\}_{i=1}^n$ 两两互质。根据中国剩余定理可知，问题的解应当具有形式
+
+$$
+f(x)=\sum_{i=1}^ny_iM_i(x),
+$$
+
+这里，$M_i(x)=m_i(x)\prod_{j\neq i}(x-x_j)$ 且 $M_i(x)\equiv 1\pmod{x-x_i}$。根据前文推得的等价性可知，这等价于 $M_i(x_i)=1$，亦即
+
+$$
+m_i(x_i)\prod_{j\neq i}(x_i-x_j) = 1.
+$$
+
+不妨取 $m_i(x)$ 是常数多项式，即
+
+$$
+m_i(x) = \frac{1}{\prod_{j\neq i}(x_i-x_j)}.
+$$
+
+由此，就得到 Lagrange 插值公式
+
+$$
+f(x)=\sum_{i=1}^ny_i\frac{\prod_{j\neq i}(x-x_j)}{\prod_{j\neq i}(x_i-x_j)}.
+$$
+
+一般地，将这种方法推广，还可以导出 Hermite 插值公式，它允许限制多项式在各点处的若干项导数值。
+
 ### 应用：整数剩余系的乘法群
 
 相关阅读：[原根](../number-theory/primitive-root.md)
@@ -587,7 +628,7 @@ $$
 
 根据上面的推理，要研究一般的模数的情形，只要考虑素数幂 $p^k$ 作为模数的情形就可以了。对于素数幂的情形，需要分别考虑 $p=2$ 和 $p$ 为奇数的两种情形。此时已知 $\varphi(p^k)=(p-1)p^{k-1}$ 成立。
 
-对于 $p=2$ 的情形，直接验证可知 $(\mathbf Z/2\mathbf Z)^\times\cong\mathbf Z_1$ 和 $(\mathbf Z/4\mathbf Z)^\times\cong\mathbf Z_2$。对于 $k\ge3$ 的情形，有 $(\mathbf Z/2^k\mathbf Z)^\times\cong\mathbf Z_2\times\mathbf Z_{2^{k-2}}$。
+对于 $p=2$ 的情形，直接验证可知 $(\mathbf Z/2\mathbf Z)^\times\cong C_1$ 和 $(\mathbf Z/4\mathbf Z)^\times\cong C_2$。对于 $k\ge3$ 的情形，有 $(\mathbf Z/2^k\mathbf Z)^\times\cong C_2\times C_{2^{k-2}}$。
 
 ??? note "证明"
     利用二项式定理直接计算可以知道
@@ -602,10 +643,10 @@ $$
     所以，$5$ 是 $(\mathbf Z/2^k\mathbf Z)^\times$ 中的 $2^{k-2}$ 阶元。同时，$-1$ 和 $5^{2^{k-3}}$ 是两个不同的二阶元，所以，$-1\notin\langle 5\rangle$。所以，$\langle-1\rangle$ 和 $\langle 5\rangle$ 交集是平凡的，故而根据第二同构定理可知
 
     $$
-    (\mathbf Z/2^k\mathbf Z)^\times\cong\langle-1\rangle\times\langle 5\rangle\cong\mathbf Z_2\times\mathbf Z_{2^{k-2}}.
+    (\mathbf Z/2^k\mathbf Z)^\times\cong\langle-1\rangle\times\langle 5\rangle\cong C_2\times C_{2^{k-2}}.
     $$
 
-对于 $p$ 为奇数的情形，则可以证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 同构于循环群 $\mathbf Z_{\varphi(p^k)}$。
+对于 $p$ 为奇数的情形，则可以证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 同构于循环群 $C_{\varphi(p^k)}$。
 
 ??? note "证明"
     要证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 是循环群，利用有限 Abel 群基本定理可知，只要证明它的每个 Sylow $q$‑子群都是循环群。首先，对于 Sylow $p$‑子群，直接计算可知
@@ -624,12 +665,12 @@ $$
     最后，证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群。因为 $(\mathbf Z/p\mathbf Z)^\times$ 是有限 Abel 群，可以将它按照不变因子分解为
 
     $$
-    \mathbf Z_{n_1}\times\cdots\times\mathbf Z_{n_r}.
+    C_{n_1}\times\cdots\times C_{n_r}.
     $$
 
-    这里，$n_1\mid n_2\mid \cdots \mid n_r$。所以，每个直积因子中都有 $n_1$ 个元素的阶整除 $n_1$。如果 $r>1$，则必然有严格多于 $n_1$ 个元素满足方程 $x^{n_1}=1$。但是，$\mathbf Z/p\mathbf Z$ 是域，而域上的 $n_1$ 次多项式至多 $n_1$ 个根，所以 $r=1$。也就是说，$(\mathbf Z/p\mathbf Z)^\times\cong\mathbf Z_{p-1}$。
+    这里，$n_1\mid n_2\mid \cdots \mid n_r$。所以，每个直积因子中都有 $n_1$ 个元素的阶整除 $n_1$。如果 $r>1$，则必然有严格多于 $n_1$ 个元素满足方程 $x^{n_1}=1$。但是，$\mathbf Z/p\mathbf Z$ 是域，而域上的 $n_1$ 次多项式至多 $n_1$ 个根，所以 $r=1$。也就是说，$(\mathbf Z/p\mathbf Z)^\times\cong C_{p-1}$。
 
-    这样就证明 $(\mathbf Z/p^k\mathbf Z)^\times\cong\mathbf Z_{p^{k-1}}\times\mathbf Z_{p-1}=\mathbf Z_{\varphi(p^{k})}$。
+    这样就证明 $(\mathbf Z/p^k\mathbf Z)^\times\cong C_{p^{k-1}}\times C_{p-1}=C_{\varphi(p^{k})}$。
 
 一般的模数的情形的乘法群的结构也随之确定。从现有的结果能够知道整数模 $n$ 乘法群是循环群有且只有模数 $n$ 取
 
@@ -637,7 +678,7 @@ $$
 1,2,4,p^k,2p^k
 $$
 
-时，其中，$p$ 是奇素数；否则，整数模 $n$ 乘法群中一定有子群 $\mathbf Z_2\times\mathbf Z_2$，不可能是循环群。当乘法群是循环群的时候，乘法群的生成元就称为该模的 **原根**（primitive root）。因此，这里的定理给出的正是原根存在的充要条件。
+时，其中，$p$ 是奇素数；否则，整数模 $n$ 乘法群中一定有子群 $C_2\times C_2$，不可能是循环群。当乘法群是循环群的时候，乘法群的生成元就称为该模的 **原根**（primitive root）。因此，这里的定理给出的正是原根存在的充要条件。
 
 ## 参考资料和注释
 
