@@ -593,7 +593,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
 ### Bellman-Ford 和 Dijkstra
 
-记 $\text{pre}_v$ 表示点 $v$ 的前驱，即最短路 $s\to v$ 的路径中最后一条边是有向边 $(\text{pre}_v,v)$。则 $v$ 的最短路序列为从 $v$ 不断跳 $\text{pre}$ 到 $s$，再将点的序列倒置，即 $s\to\cdots\to\text{pre}_{\text{pre}_{\text{pre}_\cdots}}\to\cdots\to\text{pre}_{\text{pre}_v}\to\text{pre}_v\to v$。
+记 $\text{pre}_v$ 表示点 $v$ 的前驱，即最短路 $s\to v$ 的路径中最后一条边是有向边 $(\text{pre}_v,v)$。则 $v$ 的最短路序列为从 $v$ 不断跳 $\text{pre}$ 到 $s$，再将点的序列倒置，即 $s\to\cdots\to\text{pre}_{\text{pre}_{\text{pre}_{\cdots}}}\to\cdots\to\text{pre}_{\text{pre}_v}\to\text{pre}_v\to v$。
 
 利用边 $(u,v)$ 成功松弛 $s\to v$ 的最短路时，$\text{dis}_v\gets\text{dis}_u+w$，经过 $u$ 的最短路更新为 $s\to\cdots\to u\to v$。
 
