@@ -730,7 +730,9 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
     原理同上方，先初始化所有都是直接路径，再逐步松弛得到答案。
 
 ??? note "实现"
-=== "记录前驱"`cpp         #define N 1010
+    
+
+== "记录前驱"`cpp         #define N 1010
         int n, m, k;
         int d[N][N];
         int pre[N][N];
