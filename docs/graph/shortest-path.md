@@ -618,18 +618,13 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         struct edge {
           int v, w;
         };
-        
         struct node {
           int dis, u;
-        ```
-
           bool operator>(const node& a) const { return dis > a.dis; }
         };
-        
         vector<edge> e[MAXN];
         int dis[MAXN], vis[MAXN], pre[MAXN];
         priority_queue<node, vector<node>, greater<node>> q;
-        
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
           memset(vis, 0, (n + 1) * sizeof(int));
@@ -651,13 +646,11 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
             }
           }
         }
-        
         void output1(int u) { // 递归写法
           if (u==-1) return;
           output1(pre[u]);
           printf("%d ", u);
         }
-        
         int stk[MAXN], top; // 非递归写法
         void output2(int u) {
           for (int i = u; i != -1; i = pre[i]) stk[++top] = i;
@@ -669,11 +662,9 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         struct edge {
           int v, w;
         };
-        
         vector<edge> e[MAXN];
         int dis[MAXN], cnt[MAXN], vis[MAXN], pre[MAXN];
         queue<int> q;
-        
         bool spfa(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
           for (int i = 1; i <= n; ++i) pre[i] = s;
@@ -695,13 +686,11 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           }
           return true;
         }
-        
         void output1(int u) { // 递归写法
           if (u==-1) return;
           output1(pre[u]);
           printf("%d ", u);
         }
-        
         int stk[MAXN], top;
         void output2(int u) { // 非递归写法
           for (int i = u; i != -1; i = pre[i]) stk[++top] = i;
@@ -736,48 +725,19 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 ??? note "实现"
     === "记录前驱"
         ```cpp
-        #include <cmath>
-        #include <cstdio>
-        #include <cstring>
-        #include <iostream>
-        using namespace std;
-        typedef long long ll;
-        
-        char buf[1 << 20], *p1, *p2;
-        #define getchar()                                                          \
-          (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 1 << 20, stdin), p1 == p2) \
-               ? 0                                                                 \
-               : *p1++)
-        
-        inline ll read() {
-          ll x = 0, f = 1;
-          char ch = getchar();
-          while (ch < '0' || ch > '9') {
-            if (ch == '-') f = -1;
-            ch = getchar();
-          }
-          while (ch >= '0' && ch <= '9')
-            x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();
-          return x * f;
-        }
-        
         #define N 1010
         int n, m, k;
         int d[N][N];
         int pre[N][N];
-        
         void output1(int s, int t) {  // 递归写法
           if (t == -1) return;
           output1(s, pre[s][t]), printf("%d ", t);
         }
-        
         int stk[N], top;
-        
         void output2(int s, int t) {  // 非递归写法
           for (int i = t; i != -1; i = pre[s][i]) stk[++top] = i;
           while (top) printf("%d ", stk[top--]);
         }
-        
         signed main() {
           n = read(), m = read(), k = read();
           memset(d, 0x1f, sizeof(d));
@@ -801,40 +761,22 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           }
           return 0;
         }
-        
         ```
     
     == "记录后继"
-    \`\`\`cpp
-    \#include<cmath>#include<cstdio>#include<cstring>#include<iostream>using namespace std;
-    typedef long long ll;
-    
-        char buf[1<<20], *p1, *p2;
-        #define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?0:*p1++)
-    
-        inline ll read() {
-          ll x=0, f=1; char ch=getchar();
-          while (ch<'0'||ch>'9') {if (ch=='-') f=-1; ch=getchar();}
-          while (ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(ch^48), ch=getchar();
-          return x*f;
-        }
-    
+   ```cpp
         #define N 1010
         int n, m, k;
         int d[N][N];
         int suf[N][N];
-    
         void output1(int s, int t) { // 递归写法
           if (s==-1) return;
           printf("%d ", s), output1(suf[s][t], t);
         }
-    
         void output2(int s, int t) { // 非递归写法
           for (int i=s; i!=-1; i=suf[i][t]) printf("%d ", i);
         }
-    
         signed main() {
-          freopen("temp.in", "r", stdin);
           n=read(), m=read(), k=read();
           memset(d, 0x1f, sizeof(d));
           for (int i=1; i<=n; ++i) d[i][i]=0;
@@ -849,7 +791,6 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           }
           return 0;
         }
-    
         ```
 
 ## 参考资料与注释
