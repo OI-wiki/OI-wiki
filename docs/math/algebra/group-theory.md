@@ -78,9 +78,7 @@ $D_6$ 的非平凡子群都有共同的特点，就是它们都可以通过这�
     有限循环群 $G$ 同构于 $C_n$，这里，$n=|G|$；无限循环群 $G$ 同构于 $C_\infty$。
 
 ??? note "证明"
-    
-
-给定循环群 $G=\langle x\rangle$，它总可以写作 $G=\{x^n:n\in\mathbf Z\}$。如果群 $G$ 有限，那么必然存在自然数 $n<m$ 满足 $x^n=x^m$，依消去律，可以得到 $x^{m-n}=e$。此时，不妨取最小的正整数 $n\in\mathbf N_+$ 使得 $x^n=e$，那么列 $\{x^k\}$ 将会是长度为 $n$ 的循环，且循环节内元素各不相同（否则违反 $n$ 的最小性）。此时，映射 $x^k\mapsto\bar k$ 就提供了同构映射 $G\rightarrow\mathbf Z/n\mathbf Z$，亦即 $G\cong C_n$。反之，如果群 $G$ 无限，那么群 $G$ 内元素各不相同，映射 $x^k\mapsto k$ 就提供了同构映射 $G\rightarrow\mathbf Z$，亦即 $G\cong C_\infty$。
+    给定循环群 $G=\langle x\rangle$，它总可以写作 $G=\{x^n:n\in\mathbf Z\}$。如果群 $G$ 有限，那么必然存在自然数 $n<m$ 满足 $x^n=x^m$，依消去律，可以得到 $x^{m-n}=e$。此时，不妨取最小的正整数 $n\in\mathbf N_+$ 使得 $x^n=e$，那么列 $\{x^k\}$ 将会是长度为 $n$ 的循环，且循环节内元素各不相同（否则违反 $n$ 的最小性）。此时，映射 $x^k\mapsto\bar k$ 就提供了同构映射 $G\rightarrow\mathbf Z/n\mathbf Z$，亦即 $G\cong C_n$。反之，如果群 $G$ 无限，那么群 $G$ 内元素各不相同，映射 $x^k\mapsto k$ 就提供了同构映射 $G\rightarrow\mathbf Z$，亦即 $G\cong C_\infty$。
 
 所有循环群都是 Abel 群。本文的例子 $D_6$ 说明，即使群的所有非平凡子群都是循环群，群本身也可能不是 Abel 群。
 
@@ -436,8 +434,33 @@ $$
     给定有限群 $G$，且 $|G|=p^\alpha m$，这里，$p$ 是质数且 $p$ 不能整除 $m$，那么有如下结论：
     
     1.  存在 Sylow $p$‑子群；
-    2.  给定 Sylow $p$‑子群 $P$ 和 $G$ 的 $p$‑子群 $Q$，那么存在 $g\in G$ 使得 $Q\le gPg^{-1}$ 成立，特别地，所有 Sylow $p$‑子群都共轭；
+    2.  给定 Sylow $p$‑子群 $P$ 和群 $G$ 的 $p$‑子群 $Q$，那么存在 $g\in G$ 使得 $Q\le gPg^{-1}$ 成立，特别地，所有 Sylow $p$‑子群都共轭；
     3.  群 $G$ 中的 Sylow $p$‑子群的数目 $n_p$ 满足 $n_p\equiv 1\pmod p$，且 $n_p=[G:N_G(P)]$，这里 $P$ 是任意的 Sylow $p$‑子群，所以同时成立 $n_p\mid m$。
+
+??? note "证明"
+    为证明第一部分，对 $|G|$ 进行归纳。考虑类方程 
+
+    $$
+    |G|=|Z(G)|+\sum_{i=1}^r[G:C_G(g_i)].
+    $$
+
+    如果 $p\mid|Z(G)|$，那么可以任取中心的 $p$ 阶子群 $N\le Z(G)$，则必然有 $N\trianglelefteq Z(G)\trianglelefteq G$，因而，$G/N$ 是更小的群。根据归纳假设，它有 Sylow $p$‑子群 $P/N$，则自然同态下相应的原像 $P$ 就是原来的群 $G$ 的 Sylow $p$‑子群。于是，只要考虑 $p$ 不能整除 $|Z(G)|$ 的情形。此时，可以取 $g_i\in G$，使得 $p$ 不能整除 $[G:C_G(g_i)]$，因而，$|G|$ 中 $p$ 的全部幂次都出现在 $|C_G(g_i)$ 中。再次根据归纳假设，$|C_G(g_i)$ 有 Sylow $p$‑子群 $P$，它正是原来的群 $G$ 的 Sylow $p$‑子群。
+
+    为证明第二部分和第三部分，设群 $G$ 的 Sylow $p$‑子群 $P$ 的共轭类为 $\mathcal S=\{gPg^{-1}:g\in G\}$，并考察群 $G$ 在 $\mathcal S$ 上的共轭作用限制在某一 $p$‑子群 $Q$ 上的结果。集合 $\mathcal S$ 可以在该作用下可以划分成若干轨道。设总共有 $r$ 个轨道，每个轨道的代表元为 $P_i$，则有恒等式
+
+    $$
+    |\mathcal S|=\sum_{i=1}^r[Q:Q\cap N_G(P_i)].
+    $$
+
+    这里，$Q\cap N_G(P_i)$ 是 $P_i$ 在上述群作用下的稳定化子。设 $H=Q\cap N_G(P_i)$，则显然 $H\le N_G(P_i)$，故而根据群的第二同构定理，有 $P_iH/P_i\cong H/(P_i\cap H)$。所以，$|P_iH|=|P_i||H|/|P_i\cap H|$，而右侧是 $p$ 的幂，左侧必然也是 $p$ 的幂，而且需要成立 $|P_i|\le |P_iH|$。但是，$P_i$ 已经是 $G$ 的子群中 $p$ 的幂次最大的，所以 $P_i=P_iH$，亦即 $H=P_i\cap H=Q\cap P_i$。这里用到了显然的关系 $P_i\le N_G(P_i)$。这样，就得到稳定化子 $Q\cap N_G(P_i)$ 实际上就是 $Q\cap P_i$。所以，上式可以写作
+
+    $$
+    |\mathcal S|=\sum_{i=1}^r[Q:Q\cap P_i].
+    $$
+
+    这一等式对于所有 $p$‑子群 $Q$ 都成立。
+
+    自然，Sylow $p$‑子群 $P$ 也是 $p$‑子群。将 $P$ 代入上式中的 $Q$，则右侧有且仅有一项的大小是 $1$，其余都是 $p$ 的倍数。因此，Sylow $p$‑子群 $P$ 的共轭类的大小 $|\mathcal S|$ 必然模 $p$ 余 $1$。同时，因为这一式子对于任何 $p$‑子群 $Q$ 都成立，就自然存在 $g\in G$，使得 $Q\le gPg^{-1}$；否则，对所有上述等式中的 $P_i$ 都有 $|Q\cap P_i|<|Q|$，就与 $|\mathcal S|\equiv 1\pmod p$ 矛盾。如果此时再考虑 $Q$ 是某个不同于 $P$ 的 Sylow $p$‑子群，则必然有 $Q=gPg^{-1}$ 对某个 $g\in G$ 成立，即所有 Sylow $p$‑子群都共轭。因而，Sylow $p$‑子群的数目 $n_p$ 就是 $|\mathcal S|$，它必然满足 $n_p\equiv 1\pmod p$。最后，注意到 $n_p=|S|=[G:N_G(P)]$，且 $P\le N_G(P)$，就成立 $n_p\mid m$。这样就完整地证明了定理的第二部分和第三部分。
 
 作为应用，下面证明前文的断言：同构意义下，六阶群只有 $\mathbf Z_6$ 和 $S_3$。
 
