@@ -13,11 +13,11 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
 理解抽象代数不能够离开实例。作为理解下文概念的例子，这里讨论正三角形的空间对称群 $D_6$。
 
-??? example "例子：正三角形的空间对称群 $D_6$"
+??? example " 例子：正三角形的空间对称群 $D_6$"
     如图所示，对于给定正三角形，共计有六种不同的操作可以使得它与自身重合。
 
     ![正三角形的空间对称群 $D_6$](../images/triangle_d6.svg)
-    
+
     这里，使用 $r$ 表示顺时针旋转，使用 $s$ 表示沿顶点 $1$ 到三角形中心的连线翻转，操作自右向左复合，即 $sr$ 表示先旋转（$r$）再翻转（$s$）。两个操作不同，当且仅当某个三角形的顶点在两个操作之后所处位置不同。
 
     |   记号  |           操作              |  阶  |  置换表示 |
@@ -78,6 +78,7 @@ $D_6$ 的非平凡子群都有共同的特点，就是它们都可以通过这�
     有限循环群 $G$ 同构于 $C_n$，这里，$n=|G|$；无限循环群 $G$ 同构于 $C_\infty$。
 
 ??? note "证明"
+    
 
 给定循环群 $G=\langle x\rangle$，它总可以写作 $G=\{x^n:n\in\mathbf Z\}$。如果群 $G$ 有限，那么必然存在自然数 $n<m$ 满足 $x^n=x^m$，依消去律，可以得到 $x^{m-n}=e$。此时，不妨取最小的正整数 $n\in\mathbf N_+$ 使得 $x^n=e$，那么列 $\{x^k\}$ 将会是长度为 $n$ 的循环，且循环节内元素各不相同（否则违反 $n$ 的最小性）。此时，映射 $x^k\mapsto\bar k$ 就提供了同构映射 $G\rightarrow\mathbf Z/n\mathbf Z$，亦即 $G\cong C_n$。反之，如果群 $G$ 无限，那么群 $G$ 内元素各不相同，映射 $x^k\mapsto k$ 就提供了同构映射 $G\rightarrow\mathbf Z$，亦即 $G\cong C_\infty$。
 
