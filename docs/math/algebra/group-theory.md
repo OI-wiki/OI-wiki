@@ -207,6 +207,9 @@ $$
 ???+ note "推论"
     同态 $\varphi:G\rightarrow H$ 是单的，当且仅当 $\ker\varphi=\{e\}$，此时，$G$ 同构于 $H$ 的一个子群，即 $G\cong\varphi(G)\le H$。
 
+??? note "证明"
+    首先，$N=\ker\varphi$ 是正规子群，因为对于任意 $h\in N$ 都有 $\varphi(ghg^{-1})=\varphi(g)\varphi(h)\varphi(g)^{-1}=\varphi(g)\varphi(g)^{-1}=e$，亦即 $ghg^{-1}\in\ker\varphi$。然后，考察映射 $\Phi:G/N\rightarrow\varphi(G)$，它满足 $\Phi(gN)=\varphi(g)$。映射是良定义的，因为如果 $g_1N=g_2N$，那么 $g_1^{-1}g_2\in N$，则 $\varphi(g_1^{-1}g_2)=e$，即 $\varphi(g_1)=\varphi(g_2)$。映射 $\Phi$ 显然是满的；它也是单的，因为 $\ker\Phi=\{gN:\varphi(g)=e\}=\{N\}$。故而，$\Phi$ 是群同构。最后，$\varphi(g_1)\varphi(g_2)^{-1}=\varphi(g_1g_2^{-1})\in\varphi(G)$，根据子群判别法，$\varphi(G)$ 必然是子群。
+
 也就是说，同态 $\varphi$ 的核是群 $G$ 的正规子群，而模 $\ker\varphi$ 得到的商群 $G/\ker\varphi$ 同构于同态的像 $\varphi(G)$，而这一同态的像正是群 $H$ 的子群。
 
 上文给出的群同态 $\varphi: D_6 \rightarrow C_2$ 的核是 $\langle r\rangle$，前文讨论正规子群时也已经说明 $D_6/\langle r\rangle$ 的确同构于 $C_2$。
@@ -249,7 +252,9 @@ $$
     给定群 $G$ 和子群 $A,B\le G$，且 $A\le N_G(B)$，则 $AB\le G$，且 $B\trianglelefteq AB$，$A\cap B\trianglelefteq A$，$AB/B\cong A/(A\cap B)$。这里，$N_G(B)$ 是 $B$ 的 [正规化子](#正规化子和中心化子)，且 $AB=\{ab:a\in A,b\in B\}$。特别地，$A\le N_G(B)$ 的一个充分条件是 $B\trianglelefteq G$。
 
 ??? note "证明"
-    因为 $A\le N_G(B)$，必然有 $aBa^{-1}=B$ 对于所有 $a\in A$ 都成立，此即 $aB=Ba$。因此，必然有 $AB=BA$，则由上述定理知 $AB$ 是子群。子群 $B$ 作为 $AB$ 的子群，左右陪集相同，因而 $B\trianglelefteq AB$。考察映射 $\varphi:A\rightarrow AB/B$ 满足 $\varphi(a)=aB$，则它是满的，且它的核 $\ker\varphi=\{a\in A:aB=B\}=A\cap B$。应用同态基本定理就可得证。
+    因为 $A\le N_G(B)$，必然有 $aBa^{-1}=B$ 对于所有 $a\in A$ 都成立，此即 $aB=Ba$。因此，必然有 $AB=BA$，则由上述定理知 $AB$ 是子群。子群 $B$ 作为 $AB$ 的子群，左右陪集相同，因而 $B\trianglelefteq AB$。
+    
+    考察映射 $\varphi:A\rightarrow AB/B$ 满足 $\varphi(a)=aB$，则它是满的，且它的核 $\ker\varphi=\{a\in A:aB=B\}=A\cap B$。应用同态基本定理就可得证。
 
 **第三同构定理**（third isomorphism theorem）则给出了商群的正规子群和商群与原来群的正规子群和商群之间的对应关系。
 
@@ -514,6 +519,9 @@ $$
 ???+ note "定理"
     给定群 $G$ 和它的子群 $H_1,H_2\le G$，则 $G\cong H_1\times H_2$ 当且仅当 $H_1,H_2\trianglelefteq G$，$H_1\cap H_2=\{e\}$ 且 $G=H_1H_2$。
 
+??? note "证明"
+    这些条件的必要性在正文中已经讨论过，这里证明它们的充分性。考察映射 $\varphi:G\rightarrow H_1\times H_2$ 满足 $h_1h_2\mapsto(h_1,h_2)$。映射 $\varphi$ 是良定义的，因为对于任意 $h_1,k_1\in H_1$ 和 $h_2,k_2\in H_2$，满足 $h_1h_2=k_1k_2$ 就意味着 $h_1=k_1$ 和 $h_2=k_2$；这是因为 $k_1^{-1}h_1=k_2h_2^{-1}\in H_1\cap H_2=\{e\}$。要说明 $\varphi$ 是群同态，则就是要说明 $(h_1h_2)(k_1k_2)=h_1k_1h_2k_2$，这等价于 $k_1$ 和 $h_2$ 是可交换的，亦即 $k_1h_2k_1^{-1}h_2^{-1}=e$。要证明这一关系，只要注意到 $k_1h_2k_1^{-1}h_2^{-1}=(k_1h_2k_1^{-1})h_2^{-1}\in (k_1H_2k_1^{-1})H_2=H_2$，同理也有 $k_1(h_2k_1^{-1}h_2^{-1})\in H_1$，故而 $k_1h_2k_1^{-1}h_2^{-1}\in H_1\cap H_2=\{e\}$。这些就证明了 $\varphi$ 是群同态。它显然是双射，故而它是同构，即 $G\cong H_1\times H_2$。
+
 在直积中，两个直积因子的元素必然是可以交换的，这是因为 $hg=(e_G,h)(g,e_H)=(g,h)=gh$。所以，如果两个直积因子都是 Abel 群，那么直积也必然是 Abel 群。
 
 并不是所有的群都可以写成两个非平凡子群的直积。例如，群 $D_6=\langle r,s\rangle$ 就不同构于 $\langle r\rangle\times\langle s\rangle$，因为作为两个循环群的直积，后者必然是 Abel 群。下面的分类定理则说明，有限生成的 Abel 群都可以写作有限多个循环群的直积。
@@ -575,7 +583,7 @@ $$
 -   [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
 -   [Visual Group Theory](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
 
-[^klein]: 这个群可以表示为置换群 $\{(1),(12)(34),(13)(24),(14)(23)\}$，也可以写作 $\mathbf Z_2\times\mathbf Z_2$。
+[^klein]: 这个群可以表示为置换群 $\{(1),(12)(34),(13)(24),(14)(23)\}$，也可以写作 $C_2\times C_2$。
 
 [^proof-abelian]: 参见 Milne, J.S. (2021) Group Theory 第 25 页。
 
