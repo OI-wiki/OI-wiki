@@ -165,7 +165,7 @@ $$
 给定两个群，要比较它们的结构，就是要构造两个群之间的映射。但是，这样的映射并不能是任意的，它们要保持群的结构，也就是要保持群的运算在映射前后一致。这样的映射称为群的同态。
 
 ???+ abstract "群同态"
-    给定群 $(G,\cdot_G)$ 和 $(H,\cdot_H)$，则称映射 $\pi:G\rightarrow H$ 是一个自群 $G$ 到群 $H$ 的 **同态**（homomorphism），如果 $\pi$ 保持群的运算，即对所有 $g_1,g_2\in G$ 都成立 $\pi(g_1\cdot_G g_2)=\pi(g_1)\cdot_H\pi(g_2)$。
+    给定群 $(G,\cdot_G)$ 和 $(H,\cdot_H)$，则称映射 $\varphi:G\rightarrow H$ 是一个自群 $G$ 到群 $H$ 的 **同态**（homomorphism），如果 $\varphi$ 保持群的运算，即对所有 $g_1,g_2\in G$ 都成立 $\varphi(g_1\cdot_G g_2)=\varphi(g_1)\cdot_H\varphi(g_2)$。
 
 群同态必然将幺元映射到幺元，也必然将逆元映射到逆元。
 
@@ -173,52 +173,58 @@ $$
 
 ### 群同构
 
-给定自群 $G$ 到群 $H$ 的同态 $\pi:G\rightarrow H$，一个自然的问题是，这一同态在多大程度上反映了群 $G$ 和群 $H$ 的结构是一致的。为此，考察群 $G$ 在同态 $\pi$ 下的像 $\pi(G)$，它将群 $G$ 的结构映射到群 $H$ 中。一方面，$\pi(G)$ 是群 $H$ 的一个子群；但若同态 $\pi$ 不是满的，$\pi(G)$ 与群 $H$ 并不相同。另一方面，同态 $\pi$ 也未必是单的；如果 $\pi$ 不是单的，那么 $\pi(G)$ 只反映了群 $G$ 的部分结构。只有当同态 $\pi$ 既单又满时，群 $G$ 和群 $H$ 的结构才是完全一致的。这种特殊的群同态叫做群同构。
+给定自群 $G$ 到群 $H$ 的同态 $\varphi:G\rightarrow H$，一个自然的问题是，这一同态在多大程度上反映了群 $G$ 和群 $H$ 的结构是一致的。为此，考察群 $G$ 在同态 $\varphi$ 下的像 $\varphi(G)$，它将群 $G$ 的结构映射到群 $H$ 中。一方面，$\varphi(G)$ 是群 $H$ 的一个子群；但若同态 $\varphi$ 不是满的，$\varphi(G)$ 与群 $H$ 并不相同。另一方面，同态 $\varphi$ 也未必是单的；如果 $\varphi$ 不是单的，那么 $\varphi(G)$ 只反映了群 $G$ 的部分结构。只有当同态 $\varphi$ 既单又满时，群 $G$ 和群 $H$ 的结构才是完全一致的。这种特殊的群同态叫做群同构。
 
 ???+ abstract "群同构"
-    给定自群 $G$ 到群 $H$ 的同态 $\pi:G\rightarrow H$，则称 $\pi$ 是群 $G$ 和群 $H$ 之间的 **同构**（isomorphism），记作 $G\cong H$，如果 $\pi$ 是双射。
+    给定自群 $G$ 到群 $H$ 的同态 $\varphi:G\rightarrow H$，则称 $\varphi$ 是群 $G$ 和群 $H$ 之间的 **同构**（isomorphism），记作 $G\cong H$，如果 $\varphi$ 是双射。
 
 同构的两个群结构完全一致。如果只关心群的结构，两个同构的群没有必要区分。前文关于循环群的分类定理就是在同构的意义下给出的。
 
-回到前文的例子，正三角形的每个对称操作都唯一对应了顶点集合上的置换操作。顶点集合上的全体置换也构成群，即 $S_3$。容易验证，这样得到的映射 $\pi:D_6\rightarrow S_3$ 是群同态；进一步地，它也是群同构。所以，$D_6\cong S_3$。事实上，六阶群要么同构于 $\mathbf Z_6$，要么同构于 $S_3$（证明见下文）。将给定阶的有限群的结构进行分类，也是群论中的重要研究内容，但超出了本文的范畴。
+回到前文的例子，正三角形的每个对称操作都唯一对应了顶点集合上的置换操作。顶点集合上的全体置换也构成群，即 $S_3$。容易验证，这样得到的映射 $\varphi:D_6\rightarrow S_3$ 是群同态；进一步地，它也是群同构。所以，$D_6\cong S_3$。事实上，六阶群要么同构于 $\mathbf Z_6$，要么同构于 $S_3$（证明见下文）。将给定阶的有限群的结构进行分类，也是群论中的重要研究内容，但超出了本文的范畴。
 
 ### 同态的核
 
-对于一般的同态，可以进一步讨论有多少关于群的结构的信息损失在了同态中。延续上文的记号。已知 $\pi(G)$ 是群 $H$ 的子群，所以，现在问题的关键在于 $\pi(G)$ 和群 $G$ 之间的关系。
+对于一般的同态，可以进一步讨论有多少关于群的结构的信息损失在了同态中。延续上文的记号。已知 $\varphi(G)$ 是群 $H$ 的子群，所以，现在问题的关键在于 $\varphi(G)$ 和群 $G$ 之间的关系。
 
-考虑如下定义的映射 $\pi: D_6 \rightarrow C_2 = \langle x\rangle$：
+考虑如下定义的映射 $\varphi: D_6 \rightarrow C_2 = \langle x\rangle$：
 
 $$
-\pi(e)=\pi(r)=\pi(r^2)=e,\ \pi(s)=\pi(sr)=\pi(sr^2)=x.
+\varphi(e)=\varphi(r)=\varphi(r^2)=e,\ \varphi(s)=\varphi(sr)=\varphi(sr^2)=x.
 $$
 
-容易验证，$\pi$ 是群同态；它是满的，但不是单的。它的意义很明显，就是在群的每一个对称操作映射到其翻转的有无。这样的同态压缩的群 $D_6$ 中的信息，就是有关它旋转角度的信息。比如说，如果没有翻转，任何角度的旋转都映射到了群 $C_2$ 中的单位元。这启发使用 $\{e\}$ 的原像衡量同态中损失的结构信息。为此，有如下定义。
+容易验证，$\varphi$ 是群同态；它是满的，但不是单的。它的意义很明显，就是在群的每一个对称操作映射到其翻转的有无。这样的同态压缩的群 $D_6$ 中的信息，就是有关它旋转角度的信息。比如说，如果没有翻转，任何角度的旋转都映射到了群 $C_2$ 中的单位元。这启发使用 $\{e\}$ 的原像衡量同态中损失的结构信息。为此，有如下定义。
 
 ???+ abstract "同态的核"
-    给定自群 $G$ 到群 $H$ 的同态 $\pi:G\rightarrow H$，则同态 $\pi$ 的 **核**（kernel）是 $\ker\pi=\{g\in G:\pi(g)=e\}$，这里，$e$ 是 $H$ 的单位元。
+    给定自群 $G$ 到群 $H$ 的同态 $\varphi:G\rightarrow H$，则同态 $\varphi$ 的 **核**（kernel）是 $\ker\varphi=\{g\in G:\varphi(g)=e\}$，这里，$e$ 是 $H$ 的单位元。
 
 ### 同态基本定理
 
-同态的核 $\ker\pi$ 的确刻画了群同态中损失的结构信息。这一结论的精确表述就是 **同态基本定理**（亦称 **第一同构定理**）（fundamental theorem of group homomorphism, a.k.a., first isomorphism theorem）
+同态的核 $\ker\varphi$ 的确刻画了群同态中损失的结构信息。这一结论的精确表述就是 **同态基本定理**（亦称 **第一同构定理**）（fundamental theorem of group homomorphism, a.k.a., first isomorphism theorem）
 
 ???+ note "同态基本定理（第一同构定理）"
-    给定自群 $G$ 到群 $H$ 的同态 $\pi:G\rightarrow H$，则 $\ker\pi\trianglelefteq G$，且 $G/\ker\pi\cong\pi(G)\le H$。
+    给定自群 $G$ 到群 $H$ 的同态 $\varphi:G\rightarrow H$，则 $\ker\varphi\trianglelefteq G$，且 $G/\ker\varphi\cong\varphi(G)\le H$。
 
 ???+ note "推论"
-    同态 $\pi:G\rightarrow H$ 是单的，当且仅当 $\ker\pi=\{e\}$，此时，$G$ 同构于 $H$ 的一个子群，即 $G\cong\pi(G)\le H$。
+    同态 $\varphi:G\rightarrow H$ 是单的，当且仅当 $\ker\varphi=\{e\}$，此时，$G$ 同构于 $H$ 的一个子群，即 $G\cong\varphi(G)\le H$。
 
-也就是说，同态 $\pi$ 的核是群 $G$ 的正规子群，而模 $\ker\pi$ 得到的商群 $G/\ker\pi$ 同构于同态的像 $\pi(G)$，而这一同态的像正是群 $H$ 的子群。
+也就是说，同态 $\varphi$ 的核是群 $G$ 的正规子群，而模 $\ker\varphi$ 得到的商群 $G/\ker\varphi$ 同构于同态的像 $\varphi(G)$，而这一同态的像正是群 $H$ 的子群。
 
-上文给出的群同态 $\pi: D_6 \rightarrow C_2$ 的核是 $\langle r\rangle$，前文讨论正规子群时也已经说明 $D_6/\langle r\rangle$ 的确同构于 $C_2$。
+上文给出的群同态 $\varphi: D_6 \rightarrow C_2$ 的核是 $\langle r\rangle$，前文讨论正规子群时也已经说明 $D_6/\langle r\rangle$ 的确同构于 $C_2$。
 
 ### 自然同态
 
-得到这样的结论并不为奇。这是因为在构造同态 $\pi: D_6 \rightarrow C_2$ 时，利用的正是商群 $D_6/\langle r\rangle$ 的几何意义。这样的现象并不罕见。事实上，对每个商群，都可以构造出群同态，使得同态的像同构于给定的商群。
+得到这样的结论并不为奇。这是因为在构造同态 $\varphi: D_6 \rightarrow C_2$ 时，利用的正是商群 $D_6/\langle r\rangle$ 的几何意义。这样的现象并不罕见。事实上，对每个商群，都可以构造出群同态，使得同态的像同构于给定的商群。
 
 ???+ abstract "自然同态"
     给定群 $G$ 和其正规子群 $N\trianglelefteq G$，则由 $\pi(g)=gN$ 给出的映射 $\pi: G\rightarrow G/N$ 是自 $G$ 到 $G/N$ 的满同态，称为自群 $G$ 到商群 $G/N$ 的 **自然同态**（natural homomorphism）。
 
 这一结论也说明，对于任何给定群的正规子群，都能够找到对应的群同态，使得这一同态的核就是给定的正规子群。前文同态基本定理则说明，任何同态的核都是正规子群。故而，正规子群和同态的核是一体两面。
+
+利用自然映射的概念，群的同态基本定理其实是在说如下的 **交换图**（commutative diagram）成立。
+
+![同态基本定理的交换图](../images/homomorphism.svg)
+
+这里，所有箭头都是群同态，且 $N=\ker\varphi$ 是同态 $\varphi$ 的核，$\varphi(G)$ 是同态 $\varphi$ 的像。这些映射依次是，$\pi:g\mapsto gN$ 为群 $G$ 到商群 $G/N$ 的自然映射，$\Phi:gH\mapsto\varphi(g)$ 是同构映射，$\iota$ 则是嵌入映射。交换图意味着，图中从 $G$ 出发到 $H$ 结束的两条不同路径上的映射的复合得到的结果是一致的，即 $\varphi=\iota\circ\Phi\circ\pi$。
 
 ### 群的同构定理
 
@@ -234,15 +240,24 @@ $$
 ???+ note "定理"
     给定群 $G$ 和子群 $A,B\le G$，则它们的乘积 $AB$ 是子群，当且仅当 $AB=BA$。
 
+??? note "证明"
+    乘积 $AB$ 是子群，则必然有 $ba=(a^{-1}b^{-1})^{-1}\in AB$ 对任意 $a\in A$ 和 $b\in B$ 都成立，所以 $BA\subseteq AB$。反过来，如果 $AB=BA$，则对于任意 $a_1,a_2\in A$ 和 $b_1,b_2\in B$，都有 $(a_1b_1)(a_2b_2)^{-1}=a_1b_1b_2^{-1}a_2^{-1}\in a_1BA=a_1AB=AB$，则根据子群判别法，必然有 $AB$ 是子群。
+
 **第二同构定理**（亦称 **蝶形同构定理**）（second isomorphism theorem, a.k.a., diamond isomorphism theorem）则给出了子群乘积仍是子群的更为简单的充分条件，并且进一步确定了其结构。
 
 ???+ note "第二同构定理（蝶形同构定理）"
-    给定群 $G$ 和子群 $A,B\le G$，且 $A\le N_G(B)$，则 $AB\le G$，且 $B\trianglelefteq AB$，$A\cap B\trianglelefteq A$，$AB/B\cong A/(A\cap B)$。这里，$N_G(B)$ 是 $B$ 的正规化子，且 $AB=\{ab:a\in A,b\in B\}$。特别地，$A\le N_G(B)$ 的一个充分条件是 $B\trianglelefteq G$。
+    给定群 $G$ 和子群 $A,B\le G$，且 $A\le N_G(B)$，则 $AB\le G$，且 $B\trianglelefteq AB$，$A\cap B\trianglelefteq A$，$AB/B\cong A/(A\cap B)$。这里，$N_G(B)$ 是 $B$ 的 [正规化子](#正规化子和中心化子)，且 $AB=\{ab:a\in A,b\in B\}$。特别地，$A\le N_G(B)$ 的一个充分条件是 $B\trianglelefteq G$。
+
+??? note "证明"
+    因为 $A\le N_G(B)$，必然有 $aBa^{-1}=B$ 对于所有 $a\in A$ 都成立，此即 $aB=Ba$。因此，必然有 $AB=BA$，则由上述定理知 $AB$ 是子群。子群 $B$ 作为 $AB$ 的子群，左右陪集相同，因而 $B\trianglelefteq AB$。考察映射 $\varphi:A\rightarrow AB/B$ 满足 $\varphi(a)=aB$，则它是满的，且它的核 $\ker\varphi=\{a\in A:aB=B\}=A\cap B$。应用同态基本定理就可得证。
 
 **第三同构定理**（third isomorphism theorem）则给出了商群的正规子群和商群与原来群的正规子群和商群之间的对应关系。
 
 ???+ note "第三同构定理"
     给定群 $G$ 和正规子群 $H,K\trianglelefteq G$，且 $H\le K$，则 $K/H\trianglelefteq G/H$，且 $(G/H)/(K/H)\cong G/K$。
+
+??? note "证明"
+    考察映射 $\varphi:G/H\rightarrow G/K$ 满足 $\varphi(gH)=gK$，则它是满的群同态，且 $\ker\varphi=\{gH:g\in K\}=K/H$。应用同态基本定理就可得证。
 
 这一结论可以推广到第四同构定理，或称对应定理（correspondence theorem），它进一步给出了群的子群格和商群的子群格之间的对应关系。
 
@@ -320,13 +335,14 @@ $$
 
     这里，$X^g=\{x\in X:gx=x\}$ 是元素 $g\in G$ 对应置换的不动点集合。
 
-这一定理的证明十分简明。注意到，轨道个数可以写作
+??? note "证明"
+    这一定理的证明十分简明。注意到，轨道个数可以写作
 
-$$
-|X/G|=\sum_{o\in X/G}1=\sum_{x\in X}\frac{1}{|Gx|}=\frac1{|G|}\sum_{x\in X}|G_x|.
-$$
+    $$
+    |X/G|=\sum_{o\in X/G}1=\sum_{x\in X}\frac{1}{|Gx|}=\frac1{|G|}\sum_{x\in X}|G_x|.
+    $$
 
-最后一个等号就是上面的推论；而右式和所要求证的只差一个 Fubini 定理，因为它们中的求和式都是对集合 $\{(g,x)\in G\times X:gx=x\}$ 的计数，只不过右式先对 $g$ 求和，而所求证的式子先对 $x$ 求和。
+    最后一个等号就是上面的推论；而右式和所要求证的只差一个 Fubini 定理，因为它们中的求和式都是对集合 $\{(g,x)\in G\times X:gx=x\}$ 的计数，只不过右式先对 $g$ 求和，而所求证的式子先对 $x$ 求和。
 
 这一定理在组合数学中有很多用处，可以用于统计本质不同的对象的数目。更多例子和讨论可以参考 [Pólya 计数](../combinatorics/polya.md)。
 
@@ -444,7 +460,7 @@ $$
     |G|=|Z(G)|+\sum_{i=1}^r[G:C_G(g_i)].
     $$
 
-    如果 $p\mid|Z(G)|$，那么可以任取中心的 $p$ 阶子群 $N\le Z(G)$，则必然有 $N\trianglelefteq Z(G)\trianglelefteq G$，因而，$G/N$ 是更小的群。根据归纳假设，它有 Sylow $p$‑子群 $P/N$，则自然同态下相应的原像 $P$ 就是原来的群 $G$ 的 Sylow $p$‑子群。于是，只要考虑 $p$ 不能整除 $|Z(G)|$ 的情形。此时，可以取 $g_i\in G$，使得 $p$ 不能整除 $[G:C_G(g_i)]$，因而，$|G|$ 中 $p$ 的全部幂次都出现在 $|C_G(g_i)$ 中。再次根据归纳假设，$|C_G(g_i)$ 有 Sylow $p$‑子群 $P$，它正是原来的群 $G$ 的 Sylow $p$‑子群。
+    如果 $p\mid|Z(G)|$，那么可以任取中心的 $p$ 阶子群 $N\le Z(G)$，则必然有 $N\trianglelefteq Z(G)\trianglelefteq G$，因而，$G/N$ 是更小的群。根据归纳假设，它有 Sylow $p$‑子群 $P/N$，则自然同态下相应的原像 $P$ 就是原来的群 $G$ 的 Sylow $p$‑子群。于是，只要考虑 $p$ 不能整除 $|Z(G)|$ 的情形。此时，可以取 $g_i\in G$，使得 $p$ 不能整除 $[G:C_G(g_i)]$，因而，$|G|$ 中 $p$ 的全部幂次都出现在 $|C_G(g_i)|$ 中。再次根据归纳假设，$|C_G(g_i)|$ 有 Sylow $p$‑子群 $P$，它正是原来的群 $G$ 的 Sylow $p$‑子群。
 
     为证明第二部分和第三部分，设群 $G$ 的 Sylow $p$‑子群 $P$ 的共轭类为 $\mathcal S=\{gPg^{-1}:g\in G\}$，并考察群 $G$ 在 $\mathcal S$ 上的共轭作用限制在某一 $p$‑子群 $Q$ 上的结果。集合 $\mathcal S$ 可以在该作用下可以划分成若干轨道。设总共有 $r$ 个轨道，每个轨道的代表元为 $P_i$，则有恒等式
 
@@ -460,7 +476,7 @@ $$
 
     这一等式对于所有 $p$‑子群 $Q$ 都成立。
 
-    自然，Sylow $p$‑子群 $P$ 也是 $p$‑子群。将 $P$ 代入上式中的 $Q$，则右侧有且仅有一项的大小是 $1$，其余都是 $p$ 的倍数。因此，Sylow $p$‑子群 $P$ 的共轭类的大小 $|\mathcal S|$ 必然模 $p$ 余 $1$。同时，因为这一式子对于任何 $p$‑子群 $Q$ 都成立，就自然存在 $g\in G$，使得 $Q\le gPg^{-1}$；否则，对所有上述等式中的 $P_i$ 都有 $|Q\cap P_i|<|Q|$，就与 $|\mathcal S|\equiv 1\pmod p$ 矛盾。如果此时再考虑 $Q$ 是某个不同于 $P$ 的 Sylow $p$‑子群，则必然有 $Q=gPg^{-1}$ 对某个 $g\in G$ 成立，即所有 Sylow $p$‑子群都共轭。因而，Sylow $p$‑子群的数目 $n_p$ 就是 $|\mathcal S|$，它必然满足 $n_p\equiv 1\pmod p$。最后，注意到 $n_p=|S|=[G:N_G(P)]$，且 $P\le N_G(P)$，就成立 $n_p\mid m$。这样就完整地证明了定理的第二部分和第三部分。
+    自然，Sylow $p$‑子群 $P$ 也是 $p$‑子群。将 $P$ 代入上式中的 $Q$，则右侧有且仅有一项的大小是 $1$，其余都是 $p$ 的倍数。因此，Sylow $p$‑子群 $P$ 的共轭类的大小 $|\mathcal S|$ 必然模 $p$ 余 $1$。同时，因为这一式子对于任何 $p$‑子群 $Q$ 都成立，就自然存在 $g\in G$，使得 $Q\le gPg^{-1}$；否则，对所有上述等式中的 $P_i$ 都有 $|Q\cap P_i|<|Q|$，就与 $|\mathcal S|\equiv 1\pmod p$ 矛盾。如果此时再考虑 $Q$ 是某个不同于 $P$ 的 Sylow $p$‑子群，则必然有 $Q=gPg^{-1}$ 对某个 $g\in G$ 成立，即所有 Sylow $p$‑子群都共轭。因而，Sylow $p$‑子群的数目 $n_p$ 就是 $|\mathcal S|$，它必然满足 $n_p\equiv 1\pmod p$。最后，注意到 $n_p=|\mathcal S|=[G:N_G(P)]$，且 $P\le N_G(P)$，就成立 $n_p\mid m$。这样就完整地证明了定理的第二部分和第三部分。
 
 作为应用，下面证明前文的断言：同构意义下，六阶群只有 $\mathbf Z_6$ 和 $S_3$。
 
@@ -518,7 +534,20 @@ $$
     -   可以选取整数 $n_1,\cdots,n_s$ 使其满足 $n_1\ge2,\ n_1|n_2,\ \cdots,\ n_{s-1}|n_s$，此时，整数 $n_1,\cdots,n_s$ 唯一确定，因子 $C_{n_i}$ 称为群 $G$ 的 **不变因子**（invariant factor）；
     -   也可以选取整数 $n_1,\cdots,n_s$ 使其都是素数幂的形式，此时，这些素数幂也都唯一确定，因子 $C_{n_i}$ 称为群 $G$ 的 **初等因子**（elementary divisor）。
 
-定理首先断言，有限生成的 Abel 群一定是有限多个循环群的直积。当然，循环群可能是无限阶的或是有限阶的，它们分别是上述分解的 $C_\infty$ 部分和 $C_{n_i}$ 部分。然后，定理给出了有限阶循环群 $C_n$ 的结构。定理的初等因子分解的部分其实依赖于如下观察。
+定理首先断言，有限生成的 Abel 群一定是有限多个循环群的直积。
+
+??? note "证明"
+    这里给出一个形式简单的证明[^proof-abelian]；更深刻的证明应当参考主理想整环上的有限生成模的结构定理[^module-pid]。在证明中，为书写简便，将使用加法记号代替一般的群中的乘法记号，此时 $0$ 代表单位元，而记号 $mx$ 代表 $x$ 的 $m$ 次幂。 
+
+    设 $G$ 最少可以由 $k$ 个元素生成。定理的证明需要对 $k$ 进行归纳。当 $k=1$ 时结论是平凡的。当 $k>1$ 时，取 $G$ 的全体生成元组 $\langle x_1,x_2,\cdots,x_k\rangle$ 中 $x_1$ 的阶最小的那个。下面要说明 $G=\langle x_1\rangle\times\langle x_2,\cdots,x_k\rangle$，后者则根据归纳假设已经可以分解成 $(k-1)$ 个循环群的直积，故归纳步骤得证。
+
+    根据群的直积的刻画，如果直积分解不成立，必然存在关系 $m_1x_1+m_2x_2+\cdots+m_kx_k=0$，且 $m_1x_1\neq 0$。对于负的系数 $m_i$，可以用逆元 $-x_i$ 代替 $x_i$，则所有系数 $m_i$ 都可以取作非负整数。而且，此时可以取 $0< m_1 <|x_1|$。如果再取 $d=\gcd(m_1,m_2,\cdots,m_k)$ 和 $c_i=m_i/d$，则必然有 $y_1=c_1x_1+c_2x_2+\cdots+c_kx_k$ 满足 $dy_1=0$，因而 $|y_1|\le d\le m_1< |x_1|$，即 $y_1$ 是比 $x_1$ 阶更小的元素。 
+
+    下面证明，$y_1$ 可以扩张成 $G$ 的一组生成元。也就是说，存在元素 $y_2,\cdots,y_k\in G$ 满足 $G=\langle y_1,y_2,\cdots,y_k\rangle$。这里唯一的已知条件是 $y_1$ 本身可以写作 $c_1x_1+c_2x_2+\cdots+c_kx_k$，其中，系数 $c_i$ 都是自然数且它们的最大公约数是一。不妨假设系数（非严格）递减排列，则 $y_1$ 也可以写作 $(c_1-c_2)x_1+c_2(x_1+x_2)+\cdots+c_kx_k$。此时，对比之前的条件，可以发现系数依然全部是自然数，且最大公约数是一，而且 $G=\langle x_1,x_1+x_2,x_3,\cdots,x_k\rangle$，但是全体系数的和减少了 $c_2$。如果 $c_2=0$，则必然有 $c_1=1$，结论是平凡的；否则，系数的和严格地减少了。这意味着，如果对系数的和进行归纳，就可以证明满足上述条件的 $y_1$ 总可以扩张成 $G$ 的一组生成元。
+
+    进而，此时找到了比 $x_1$ 更小阶的生成元 $y_1$，这与 $x_1$ 的选取矛盾。所以，直积分解必然成立，根据归纳原理就知道所求证的结论成立。
+
+当然，循环群可能是无限阶的或是有限阶的，它们分别是上述分解的 $C_\infty$ 部分和 $C_{n_i}$ 部分。然后，定理给出了有限阶循环群 $C_n$ 的结构。定理的初等因子分解的部分其实依赖于如下观察。
 
 ???+ note "引理"
     如果 $m$ 与 $n$ 互质，那么 $C_{mn}\cong C_m\times C_n$。
@@ -547,3 +576,7 @@ $$
 -   [Visual Group Theory](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
 
 [^klein]: 这个群可以表示为置换群 $\{(1),(12)(34),(13)(24),(14)(23)\}$，也可以写作 $\mathbf Z_2\times\mathbf Z_2$。
+
+[^proof-abelian]: 参见 Milne, J.S. (2021) Group Theory 第 25 页。
+
+[^module-pid]: 参见 [Structure theorem for finitely generated modules over a principal ideal domain - Wikipedia](https://en.wikipedia.org/wiki/Structure_theorem_for_finitely_generated_modules_over_a_principal_ideal_domain)。

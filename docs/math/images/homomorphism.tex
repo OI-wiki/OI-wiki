@@ -1,0 +1,11 @@
+\documentclass{standalone}
+\usepackage{tikz-cd}
+\usepackage{adjustbox}
+\begin{document}
+\adjustbox{scale=2}{%
+\begin{tikzcd}
+G \arrow{r}{\varphi} \arrow{d}{\pi} & H  \\
+N \arrow{r}{\Phi}   & \varphi(G) \arrow{u}{\iota}
+\end{tikzcd}%
+}
+\end{document}
