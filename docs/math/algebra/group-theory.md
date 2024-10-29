@@ -106,7 +106,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 元素的阶总是不大于群的阶，事实上，下文即证明，元素的阶总是整除群的阶。但是，群的阶并非总是元素的阶的最大值，比如 $D_6$ 是六阶群，但是元素的阶最大是 $3$。群的阶也并不是所有元素的阶的最小公倍数，比如 Klein 四元群[^klein] $V_4$ 的阶是 $4$，但是里面只有 $1$ 阶元和 $2$ 阶元。
 
 ???+ note "定理"
-    有限循环群 $C_n=\langle x\rangle$ 中，元素 $x^k$ 的阶是 
+    有限循环群 $C_n=\langle x\rangle$ 中，元素 $x^k$ 的阶是
     
     $$
     \frac{n}{\gcd(k,n)}.
