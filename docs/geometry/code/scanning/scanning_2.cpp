@@ -1,73 +1,91 @@
 #include <algorithm>
-#include <iostream>
+#include <cstdio>
+#include <cstring>
+constexpr int MAXN = 300;
+using namespace std;
 
-int n, m, a[1000010], ans[1000010];
-int pre[1000010], lst[1000010];  // 处理 pre
+int lazy[MAXN << 3];  // 标记了这条线段出现的次数
+double s[MAXN << 3];
 
-struct ope {
-  int type, x, y, id;
+struct node1 {
+  double l, r;
+  double sum;
+} cl[MAXN << 3];  // 线段树
 
-  ope(int type = 0, int x = 0, int y = 0, int id = 0) {
-    this->type = type, this->x = x, this->y = y, this->id = id;
-  }
+struct node2 {
+  double x, y1, y2;
+  int flag;
+} p[MAXN << 3];  // 坐标
 
-  bool operator<(const ope& rhs) const {
-    if (x == rhs.x) return type < rhs.type;
-    return x < rhs.x;
-  }
-};
+// 定义sort比较
+bool cmp(node2 a, node2 b) { return a.x < b.x; }
 
-ope op[2500010];
-int tot;  // 操作总数
-
-int sum[1000010];  // 树状数组
-
-int lowbit(int x) { return x & (-x); }
-
-void add(int x, int k) {
-  x++;  // 位置 0 也要进行修改，所以树状数组下标均加 1
-  while (x <= n) {
-    sum[x] = sum[x] + k;
-    x = x + lowbit(x);
-  }
+// 上传
+void pushup(int rt) {
+  if (lazy[rt] > 0)
+    cl[rt].sum = cl[rt].r - cl[rt].l;
+  else
+    cl[rt].sum = cl[rt * 2].sum + cl[rt * 2 + 1].sum;
 }
 
-int getsum(int x) {
-  x++;
-  int ret = 0;
-  while (x > 0) {
-    ret = ret + sum[x];
-    x = x - lowbit(x);
+// 建树
+void build(int rt, int l, int r) {
+  if (r - l > 1) {
+    cl[rt].l = s[l];
+    cl[rt].r = s[r];
+    build(rt * 2, l, (l + r) / 2);
+    build(rt * 2 + 1, (l + r) / 2, r);
+    pushup(rt);
+  } else {
+    cl[rt].l = s[l];
+    cl[rt].r = s[r];
+    cl[rt].sum = 0;
   }
-  return ret;
+  return;
 }
 
-using std::cin;
-using std::cout;
+// 更新
+void update(int rt, double y1, double y2, int flag) {
+  if (cl[rt].l == y1 && cl[rt].r == y2) {
+    lazy[rt] += flag;
+    pushup(rt);
+    return;
+  } else {
+    if (cl[rt * 2].r > y1) update(rt * 2, y1, min(cl[rt * 2].r, y2), flag);
+    if (cl[rt * 2 + 1].l < y2)
+      update(rt * 2 + 1, max(cl[rt * 2 + 1].l, y1), y2, flag);
+    pushup(rt);
+  }
+}
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  cin >> n;
-  for (int i = 1; i <= n; i++) {
-    cin >> a[i];
-    pre[i] = lst[a[i]], lst[a[i]] = i;  // 处理 pre
-    op[++tot] = ope{0, i, pre[i], i};   // 加点操作
+  int temp = 1, n;
+  double x1, y1, x2, y2, ans;
+  while (scanf("%d", &n) && n) {
+    ans = 0;
+    for (int i = 0; i < n; i++) {
+      scanf("%lf %lf %lf %lf", &x1, &y1, &x2, &y2);
+      p[i].x = x1;
+      p[i].y1 = y1;
+      p[i].y2 = y2;
+      p[i].flag = 1;
+      p[i + n].x = x2;
+      p[i + n].y1 = y1;
+      p[i + n].y2 = y2;
+      p[i + n].flag = -1;
+      s[i + 1] = y1;
+      s[i + n + 1] = y2;
+    }
+    sort(s + 1, s + (2 * n + 1));  // 离散化
+    sort(p, p + 2 * n, cmp);  // 把矩形的边的横坐标从小到大排序
+    build(1, 1, 2 * n);       // 建树
+    memset(lazy, 0, sizeof(lazy));
+    update(1, p[0].y1, p[0].y2, p[0].flag);
+    for (int i = 1; i < 2 * n; i++) {
+      ans += (p[i].x - p[i - 1].x) * cl[1].sum;
+      update(1, p[i].y1, p[i].y2, p[i].flag);
+    }
+    printf("Test case #%d\nTotal explored area: %.2lf\n\n", temp++, ans);
   }
-  cin >> m;
-  for (int i = 1, l, r; i <= m; i++) {
-    cin >> l >> r;
-    op[++tot] = ope{1, r, l - 1, i};  // 将查询差分
-    op[++tot] = ope{2, l - 1, l - 1, i};
-  }
-  std::sort(op + 1, op + tot + 1);  // 将操作按横坐标排序，且优先执行加点操作
-  for (int i = 1; i <= tot; i++) {
-    if (op[i].type == 0)
-      add(op[i].y, 1);
-    else if (op[i].type == 1)
-      ans[op[i].id] += getsum(op[i].y);
-    else
-      ans[op[i].id] -= getsum(op[i].y);
-  }
-  for (int i = 1; i <= m; i++) cout << ans[i] << '\n';
   return 0;
 }
