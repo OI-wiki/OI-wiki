@@ -38,7 +38,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     -   **对称群**（symmetric group）：给定集合 $M$，则所有 $M$ 上的 [置换](../permutation.md)，即自 $M$ 到 $M$ 自身的双射，就在映射的复合下构成群 $S_M$。单位元是恒等变换，逆元是逆映射（双射必然存在逆映射）。如果集合 $M$ 有限，大小为 $n$，也常记作 $S_n$，称作 $n$ 次对称群。
     -   空间对称群（symmetry group）：对于给定几何图形，能够使其与自身重合的变换全体也在映射的复合下构成群。这描述了该几何图形的空间对称性。具体例子可以参考 [常见空间对称群](../combinatorics/polya.md#常见空间对称群)。
     -   整数的加法群：整数集 $\mathbf Z$ 在加法 $+$ 运算下构成群 $(\mathbf Z,+)$。单位元是 $0$，逆元是相反数。
-    -   整数模 $n$ 乘法群（multiplicative group of integers modulo $n$）：给定模 $n$，所有与 $n$ 互质的整数对应的 [同余类](../number-theory/basic.md#同余类与剩余系)，在乘法运算下构成群 $((\mathbf Z/n\mathbf Z)^\times,\times)$。单位元是 $\bar 1$，即 $1$ 对应的同余类，逆元就是模 $n$ 的乘法逆元（对应的同余类），其存在性由 [裴蜀定理](../number-theory/bezouts.md) 保证。具体结构分析参考 [整数模 $n$ 乘法群](../algebra/ring-theory.md#应用整数同余类的乘法群)。
+    -   整数模 $n$ 乘法群（multiplicative group of integers modulo $n$）：给定模 $n$，所有与 $n$ 互质的整数对应的 [同余类](../number-theory/basic.md#同余类与剩余系)，在乘法运算下构成群 $((\mathbf Z/n\mathbf Z)^\times,\times)$。单位元是 $\bar 1$，逆元就是模 $n$ 的 [乘法逆元](../number-theory/inverse.md)（对应的同余类），其存在性由 [裴蜀定理](../number-theory/bezouts.md) 保证。具体结构分析参考 [整数模 $n$ 乘法群](../algebra/ring-theory.md#应用整数同余类的乘法群)。
     -   一般线性群（general linear group）：给定 $n$ 和数域 $F$，则 $n$ 维的全体可逆方阵在乘法运算下构成群 $GL_n(F)$。单位元是单位矩阵，逆元是逆矩阵。
 
 要更好地理解群的定义，不妨对比着看几个不属于群的例子。
