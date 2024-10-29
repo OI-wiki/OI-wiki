@@ -664,12 +664,10 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           while (top) printf("%d ", stk[top--]);
         }
         ```
-        
-    === "SPFA"
-        ```cpp
-        struct edge {
-          int v, w;
-        };
+    
+    == "SPFA"
+    \`\`\`cpp
+    struct edge {int v, w;};
     
         vector<edge> e[MAXN];
         int dis[MAXN], cnt[MAXN], vis[MAXN], pre[MAXN];
@@ -810,6 +808,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         #include <iostream>
         using namespace std;
         typedef long long ll;
+        ```
     
         char buf[1<<20], *p1, *p2;
         #define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?0:*p1++)
