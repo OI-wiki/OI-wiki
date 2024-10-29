@@ -71,7 +71,7 @@ $$
 ???+ abstract "自然同态"
     给定环 $R$ 和它的理想 $I$，则由 $\pi(r)=r+I$ 给出的映射 $\pi:R\rightarrow R/I$ 是自 $R$ 到 $R/I$ 的满同态，称为自环 $R$ 到商环 $R/I$ 的 **自然同态**（natural homomorphism）。
 
-作为例子，整数模 $n$ 的剩余系构成的环 $\mathbf Z/n\mathbf Z$ 是 $\mathbf Z$ 模它的理想 $n\mathbf Z$ 得到的商环。这也解释了符号 $\mathbf Z/n\mathbf Z$ 的含义。上面提到的模 $n$ 的映射 $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$ 就是这里提到的自然映射，相应的核正是理想 $n\mathbf Z$。
+作为例子，整数模 $n$ 的同余类构成的环 $\mathbf Z/n\mathbf Z$ 是 $\mathbf Z$ 模它的理想 $n\mathbf Z$ 得到的商环。这也解释了符号 $\mathbf Z/n\mathbf Z$ 的含义。上面提到的模 $n$ 的映射 $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$ 就是这里提到的自然映射，相应的核正是理想 $n\mathbf Z$。
 
 在环的情形，同样成立其他同构定理。
 
@@ -596,15 +596,15 @@ $$
 
 一般地，将这种方法推广，还可以导出 Hermite 插值公式，它允许限制多项式在各点处的若干项导数值。
 
-### 应用：整数剩余系的乘法群
+### 应用：整数同余类的乘法群
 
 相关阅读：[原根](../number-theory/primitive-root.md)
 
-作为中国剩余定理和群论相关内容的一个应用，这里讨论整数模 $n$ 乘法群的结构。本节略去剩余系的横线记号。
+作为中国剩余定理和群论相关内容的一个应用，这里讨论整数模 $n$ 乘法群的结构。本节略去同余类的横线记号。
 
 这里，**整数模 $n$ 乘法群**（multiplicative group of integers modulo $n$）指的是 $(\mathbf Z/n\mathbf Z)^\times$，即商环 $\mathbf Z/n\mathbf Z$ 中的可逆元的乘法群。
 
-对于可逆元 $a$，自然有 $b$ 使得 $ab=1$，亦即 $ab\equiv 1\pmod n$，也就说明存在 $k\in\mathbf Z$ 使得 $ab-kn=1$，这等价于 $(a,n)=1$。也就是说，$(\mathbf Z/n\mathbf Z)^\times$ 中的元素的代表元都是与 $n$ 互质的整数。这样的剩余系共计 $\varphi(n)$ 个，这里，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)。
+对于可逆元 $a$，自然有 $b$ 使得 $ab=1$，亦即 $ab\equiv 1\pmod n$，也就说明存在 $k\in\mathbf Z$ 使得 $ab-kn=1$，这等价于 $(a,n)=1$。也就是说，$(\mathbf Z/n\mathbf Z)^\times$ 中的元素的代表元都是与 $n$ 互质的整数。这样的同余类共计 $\varphi(n)$ 个，这里，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)。
 
 根据算术基本定理，模数 $n$ 有分解
 
