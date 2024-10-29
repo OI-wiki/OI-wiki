@@ -621,8 +621,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         
         struct node {
           int dis, u;
-        ```
-
+        
           bool operator>(const node& a) const { return dis > a.dis; }
         };
         
