@@ -3,12 +3,12 @@
 #include <iostream>
 #include <string>
 using namespace std;
-const int maxn = 300000 + 5;
+constexpr int MAXN = 300000 + 5;
 
 namespace pam {
 int sz, tot, last;
-int cnt[maxn], ch[maxn][26], len[maxn], fail[maxn];
-char s[maxn];
+int cnt[MAXN], ch[MAXN][26], len[MAXN], fail[MAXN];
+char s[MAXN];
 
 int node(int l) {  // 建立一个新节点，长度为 l
   sz++;

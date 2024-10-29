@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 
 ## 为什么要使用 Testlib？
 
-有人说写 generator 不需要用 Testlib，它在这没什么用。实际上这是个不正确的想法。一个好的 generator 应该满足这一点： **在任何环境下对于相同输入它给出相同输出** 。写 generator 就避免不了生成随机值，平时我们用的 `rand()` 或 C++11 的 `mt19937/uniform_int_distribution` ，当操作系统不同、使用不同编译器编译、不同时间运行等，它们的输出都可能不同（对于非常常用的 `srand(time(0))` ，这是显然的），而这就会给生成数据带来不确定性。
+有人说写 generator 不需要用 Testlib，它在这没什么用。实际上这是个不正确的想法。一个好的 generator 应该满足这一点： **在任何环境下对于相同输入它给出相同输出** 。写 generator 就避免不了生成随机值，平时我们用的 `rand()` 或 C++11 的 `mt19937/uniform_int_distribution` ，当操作系统不同、使用不同编译器编译、不同时间运行等，它们的输出都可能不同（对于非常常用的 `srand(time(nullptr))` ，这是显然的），而这就会给生成数据带来不确定性。
 
 需要注意的是，一旦使用了 Testlib，就不能再使用标准库中的 `srand()` ， `rand()` 等随机数函数，否则在编译时会报错。因此， **请确保所有与随机相关的函数均使用 Testlib 而非标准库提供的。** 
 
@@ -78,7 +78,7 @@ forn(i, n) perm[i] = i;
 shuffle(perm.begin() + 1, perm.end());
 
 /* 根据打乱的节点顺序加边 */
-vector<pair<int, int> > edges;
+vector<pair<int, int>> edges;
 for (int i = 1; i < n; i++)
   if (rnd.next(2))
     edges.push_back(make_pair(perm[i], perm[p[i]]));

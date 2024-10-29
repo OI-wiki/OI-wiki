@@ -116,7 +116,7 @@ nav:
       - 值类别: lang/value-category.md
       - 重载运算符: lang/op-overload.md
       - 引用: lang/reference.md
-      - 常值: lang/const.md
+      - 常量: lang/const.md
       - 新版 C++ 特性: lang/new.md
       - Lambda 表达式: lang/lambda.md
       - pb_ds:
@@ -282,7 +282,6 @@ nav:
       - 排列组合: math/combinatorics/combination.md
       - 抽屉原理: math/combinatorics/drawer-principle.md
       - 容斥原理: math/combinatorics/inclusion-exclusion-principle.md
-      - 康托展开: math/combinatorics/cantor.md
       - 斐波那契数列: math/combinatorics/fibonacci.md
       - 错位排列: math/combinatorics/derangement.md
       - 卡特兰数: math/combinatorics/catalan.md
@@ -293,6 +292,7 @@ nav:
       - Eulerian Number: math/combinatorics/eulerian.md
       - 分拆数: math/combinatorics/partition.md
       - 范德蒙德卷积: math/combinatorics/vandermonde-convolution.md
+      - Pólya 计数: math/combinatorics/polya.md
       - 图论计数: math/combinatorics/graph-enumeration.md
     - 线性代数:
       - 线性代数简介: math/linear-algebra/index.md
@@ -310,9 +310,10 @@ nav:
     - 线性规划:
       - 线性规划简介: math/linear-programming.md
       - 单纯形算法: math/simplex.md
-    - 群论:
-      - 群论简介: math/group-theory.md
-      - 置换群: math/permutation-group.md
+    - 抽象代数:
+      - 基本概念: math/algebra/basic.md
+      - 群论: math/algebra/group-theory.md
+      - Schreier–Sims 算法: math/schreier-sims.md
     - 概率论:
       - 基本概念: math/probability/basic-conception.md
       - 条件概率与独立性: math/probability/conditional-probability.md
@@ -332,7 +333,7 @@ nav:
     - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
-    - Schreier–Sims 算法: math/schreier-sims.md
+    - 拟阵: math/matroid.md
     - Berlekamp–Massey 算法: math/berlekamp-massey.md
   - 数据结构:
     - 数据结构部分简介: ds/index.md
@@ -413,8 +414,9 @@ nav:
     - 树上问题:
       - 树基础: graph/tree-basic.md
       - 树的直径: graph/tree-diameter.md
-      - 最近公共祖先: graph/lca.md
+      - 树的中心: graph/tree-center.md
       - 树的重心: graph/tree-centroid.md
+      - 最近公共祖先: graph/lca.md
       - 树链剖分: graph/hld.md
       - 树上启发式合并: graph/dsu-on-tree.md
       - 虚树: graph/virtual-tree.md

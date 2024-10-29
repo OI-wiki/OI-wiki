@@ -12,11 +12,11 @@
 
 === "C++"
     ```cpp
-    bool isPrime(a) {
-      if (a < 2) return 0;
+    bool isPrime(int a) {
+      if (a < 2) return false;
       for (int i = 2; i < a; ++i)
-        if (a % i == 0) return 0;
-      return 1;
+        if (a % i == 0) return false;
+      return true;
     }
     ```
 
@@ -41,9 +41,9 @@
 
 === "C++"
     ```cpp
-    bool isPrime(a) {
+    bool isPrime(int a) {
       if (a < 2) return 0;
-      for (int i = 2; i * i <= a; ++i)
+      for (int i = 2; (long long)i * i <= a; ++i)  // 防溢出
         if (a % i == 0) return 0;
       return 1;
     }
@@ -91,9 +91,9 @@
       // 的整数以保证正确率,但也不宜过大,否则会影响效率
       for (int i = 1; i <= test_time; ++i) {
         int a = rand() % (n - 2) + 2;
-        if (quickPow(a, n - 1, n) != 1) return 0;
+        if (quickPow(a, n - 1, n) != 1) return false;
       }
-      return 1;
+      return true;
     }
     ```
 

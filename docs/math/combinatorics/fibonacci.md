@@ -361,7 +361,7 @@ unsigned long long get_cycle_from_mod(
     unsigned long long mod)  // 这里求解的只是周期，不一定是最小正周期
 {
   pptop = 0;
-  srand(time(0));
+  srand(time(nullptr));
   while (n != 1) {
     __int128_t factor = (__int128_t)10000000000 * 10000000000;
     min_factor(mod, &factor);  // 计算最小素因数

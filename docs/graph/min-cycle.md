@@ -53,10 +53,10 @@
 
 === "C++"
     ```cpp
-    int val[maxn + 1][maxn + 1];  // 原图的邻接矩阵
+    int val[MAXN + 1][MAXN + 1];  // 原图的邻接矩阵
     
     int floyd(const int &n) {
-      static int dis[maxn + 1][maxn + 1];  // 最短路矩阵
+      static int dis[MAXN + 1][MAXN + 1];  // 最短路矩阵
       for (int i = 1; i <= n; ++i)
         for (int j = 1; j <= n; ++j) dis[i][j] = val[i][j];  // 初始化最短路矩阵
       int ans = inf;
@@ -75,11 +75,11 @@
 
 === "Python"
     ```python
-    val = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)]  # 原图的邻接矩阵
+    val = [[0 for i in range(MAXN + 1)] for j in range(MAXN + 1)]  # 原图的邻接矩阵
     
     
     def floyd(n):
-        dis = [[0 for i in range(maxn + 1)] for j in range(maxn + 1)]  # 最短路矩阵
+        dis = [[0 for i in range(MAXN + 1)] for j in range(MAXN + 1)]  # 最短路矩阵
         for i in range(1, n + 1):
             for j in range(1, n + 1):
                 dis[i][j] = val[i][j]  # 初始化最短路矩阵

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const int MAX_E = 1e7;
+constexpr int MAX_E = 1e7;
 int a, b;
 vector<int> ans;
 vector<int> current;

@@ -80,7 +80,7 @@ if (p2 >= p3) {
 由于 `pair` 定义了 STL 中常用的 `<` 与 `==`，使得其能够很好的与其他 STL 函数或数据结构配合。比如，`pair` 可以作为 `priority_queue` 的数据类型。
 
 ```cpp
-priority_queue<pair<int, double> > q;
+priority_queue<pair<int, double>> q;
 ```
 
 ### 赋值与交换
@@ -131,8 +131,8 @@ for (int i = 0; i < n; i++) {
 那么，在 Dijkstra 算法的堆优化中，可以使用 `pair` 与 `priority_queue` 维护节点，将节点当前到起点的距离作为第一个变量，将节点编号作为第二个变量。
 
 ```cpp
-priority_queue<pair<int, int>, std::vector<pair<int, int> >,
-               std::greater<pair<int, int> > >
+priority_queue<pair<int, int>, std::vector<pair<int, int>>,
+               std::greater<pair<int, int>>>
     q;
 ... while (!q.empty()) {
   // dis为入堆时节点到起点的距离，i为节点编号

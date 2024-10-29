@@ -1,16 +1,12 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
-
-#define int long long
-#define endl '\n'
-
 using namespace std;
 
-int qsize;
+long long qsize;
 
 struct query {
-  int id, t, l, r;
+  long long id, t, l, r;
 
   bool operator<(query b) const {
     if (l / qsize != b.l / qsize) {
@@ -24,30 +20,30 @@ struct query {
 } q[150009];
 
 struct operation {
-  int p, x;
+  long long p, x;
 } r[150009];
 
 char op;
-int n, m, x, y, cur, qcnt, rcnt, mp[1500009], a[150009], ans[150009];
+long long n, m, x, y, cur, qcnt, rcnt, mp[1500009], a[150009], ans[150009];
 
-inline void add(int x) {
+void add(long long x) {
   if (!mp[x]) {
     cur += 1;
   }
   mp[x] += 1;
 }
 
-inline void del(int x) {
+void del(long long x) {
   mp[x] -= 1;
   if (!mp[x]) {
     cur -= 1;
   }
 }
 
-inline void process() {
+void process() {
   sort(q + 1, q + qcnt + 1);
-  int L = 1, R = 0, last = 0;
-  for (int i = 1; i <= qcnt; i++) {
+  long long L = 1, R = 0, last = 0;
+  for (long long i = 1; i <= qcnt; i++) {
     while (R < q[i].r) {
       add(a[++R]);
     }
@@ -85,10 +81,10 @@ signed main() {
   ios::sync_with_stdio(false);
   cin >> n >> m;
   qsize = pow(n, 2.0 / 3.0);
-  for (int i = 1; i <= n; i++) {
+  for (long long i = 1; i <= n; i++) {
     cin >> a[i];
   }
-  for (int i = 1; i <= m; i++) {
+  for (long long i = 1; i <= m; i++) {
     cin >> op >> x >> y;
     if (op == 'Q') {
       ++qcnt, q[qcnt] = {qcnt, rcnt, x, y};
@@ -97,7 +93,7 @@ signed main() {
     }
   }
   process();
-  for (int i = 1; i <= qcnt; i++) {
-    cout << ans[i] << endl;
+  for (long long i = 1; i <= qcnt; i++) {
+    cout << ans[i] << '\n';
   }
 }

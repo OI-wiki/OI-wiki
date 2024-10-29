@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-const int N = 5e5 + 5, SZ = N << 2, INF = 0x7fffffff;
+constexpr int N = 5e5 + 5, SZ = N << 2, INF = 0x7fffffff;
 
 int n, m;
 int a[N];

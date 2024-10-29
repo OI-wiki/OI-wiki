@@ -5,18 +5,18 @@
 
 using namespace std;
 
-const int maxn = 510;
-const int INF = 0x3f3f3f3f;
-typedef pair<int, int> P;
+constexpr int MAXN = 510;
+constexpr int INF = 0x3f3f3f3f;
+using P = pair<int, int>;
 int n, m, k;
 
 struct edge {
   int to, next, w;
-} e[maxn << 1];
+} e[MAXN << 1];
 
-int head[maxn << 1], tree[maxn << 1], tot;
-int dp[maxn][5000], vis[maxn];
-int key[maxn];
+int head[MAXN << 1], tree[MAXN << 1], tot;
+int dp[MAXN][5000], vis[MAXN];
+int key[MAXN];
 priority_queue<P, vector<P>, greater<P>> q;
 
 void add(int u, int v, int w) {

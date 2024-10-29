@@ -1,4 +1,4 @@
-author: Ir1d, HeRaNO, Chrogeek, abc1763613206
+author: Ir1d, HeRaNO, Chrogeek, abc1763613206, mxdyzmx
 
 ## 角的定义
 
@@ -232,7 +232,7 @@ $$
 
 其中 $\operatorname{atan2}$ 的定义见 [平面直角坐标系与极坐标系的相互转换](./#平面直角坐标系与极坐标系的相互转换)。
 
-注意对于平面直角坐标系下的点 $(0,0,0)$，其球坐标的 $\vartheta$ 和 $\varphi$ 取值不明确。
+注意对于空间直角坐标系下的点 $(0,0,0)$，其球坐标的 $\vartheta$ 和 $\varphi$ 取值不明确。
 
 从球坐标系到空间直角坐标系：
 

@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-const int N = 200020;
+constexpr int N = 200020;
 int n, m;
 int ans[N];
 // BIT begin
@@ -96,4 +96,4 @@ int main() {
   }
   solve(0, cnt + 1, 1, tot);
   for (int i = 1; i <= m; i++) cout << toRaw[ans[i]] << '\n';
-}  // test
+}

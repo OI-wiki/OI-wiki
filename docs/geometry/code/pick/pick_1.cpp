@@ -2,15 +2,17 @@
 #include <iomanip>
 #include <iostream>
 using namespace std;
-const int MAXN = 110;
+constexpr int MAXN = 110;
 
 struct node {
   int x, y;
 } p[MAXN];
 
-int gcd(int x, int y) { return y == 0 ? x : gcd(y, x % y); }  // 求最大公约数
+// 求最大公约数
+int gcd(int x, int y) { return y == 0 ? x : gcd(y, x % y); }
 
-int area(int a, int b) { return p[a].x * p[b].y - p[a].y * p[b].x; }  // 求区域
+// 求区域
+int area(int a, int b) { return p[a].x * p[b].y - p[a].y * p[b].x; }
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);

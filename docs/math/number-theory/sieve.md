@@ -167,7 +167,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
 ???+ note "实现"
     ```cpp
     int count_primes(int n) {
-      const int S = 10000;
+      constexpr static int S = 10000;
       vector<int> primes;
       int nsqrt = sqrt(n);
       vector<char> is_prime(nsqrt + 1, true);

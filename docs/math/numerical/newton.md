@@ -45,7 +45,7 @@ $$
 === "C++"
     ```cpp
     double sqrt_newton(double n) {
-      const double eps = 1E-15;
+      constexpr static double eps = 1E-15;
       double x = 1;
       while (true) {
         double nx = (x + n / x) / 2;

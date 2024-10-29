@@ -302,7 +302,7 @@ $$
 下面是求斐波那契数列第 $n$ 项对 $10^9+7$ 取模的示例代码（核心部分）。
 
 ```cpp
-const int mod = 1000000007;
+constexpr int mod = 1000000007;
 
 struct Matrix {
   int a[3][3];

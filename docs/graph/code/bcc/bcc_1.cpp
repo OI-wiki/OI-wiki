@@ -3,7 +3,7 @@
 #include <vector>
 
 using namespace std;
-const int N = 5e5 + 5, M = 2e6 + 5;
+constexpr int N = 5e5 + 5, M = 2e6 + 5;
 int n, m, ans;
 int tot = 1, hd[N];
 
@@ -25,7 +25,7 @@ void tarjan(int x, int in) {
     int v = e[i].to;
     if (dfn[v] == 0) {
       tarjan(v, i);
-      if (dfn[x] < low[v]) bz[i] = bz[i ^ 1] = 1;
+      if (dfn[x] < low[v]) bz[i] = bz[i ^ 1] = true;
       low[x] = min(low[x], low[v]);
     } else if (i != (in ^ 1))
       low[x] = min(low[x], dfn[v]);

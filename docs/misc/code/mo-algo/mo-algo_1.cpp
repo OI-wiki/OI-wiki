@@ -2,7 +2,7 @@
 #include <cmath>
 #include <iostream>
 using namespace std;
-const int N = 50005;
+constexpr int N = 50005;
 int n, m, maxn;
 int c[N];
 long long sum;
