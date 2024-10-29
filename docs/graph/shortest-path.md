@@ -817,29 +817,28 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 1 << 20, stdin), p1 == p2) \
                ? 0                                                                 \
                : *p1++)
-        ```
-    
+        
         inline ll read() {
           ll x=0, f=1; char ch=getchar();
           while (ch<'0'||ch>'9') {if (ch=='-') f=-1; ch=getchar();}
           while (ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(ch^48), ch=getchar();
           return x*f;
         }
-    
+        
         #define N 1010
         int n, m, k;
         int d[N][N];
         int suf[N][N];
-    
+        
         void output1(int s, int t) { // 递归写法
           if (s==-1) return;
           printf("%d ", s), output1(suf[s][t], t);
         }
-    
+        
         void output2(int s, int t) { // 非递归写法
           for (int i=s; i!=-1; i=suf[i][t]) printf("%d ", i);
         }
-    
+        
         signed main() {
           freopen("temp.in", "r", stdin);
           n=read(), m=read(), k=read();
@@ -856,7 +855,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           }
           return 0;
         }
-    
+        
         ```
 
 ## 参考资料与注释
