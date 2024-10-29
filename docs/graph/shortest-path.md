@@ -819,10 +819,15 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
                : *p1++)
         
         inline ll read() {
-          ll x=0, f=1; char ch=getchar();
-          while (ch<'0'||ch>'9') {if (ch=='-') f=-1; ch=getchar();}
-          while (ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(ch^48), ch=getchar();
-          return x*f;
+          ll x = 0, f = 1;
+          char ch = getchar();
+          while (ch < '0' || ch > '9') {
+            if (ch == '-') f = -1;
+            ch = getchar();
+          }
+          while (ch >= '0' && ch <= '9')
+            x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();
+          return x * f;
         }
         
         #define N 1010
@@ -830,28 +835,36 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         int d[N][N];
         int suf[N][N];
         
-        void output1(int s, int t) { // 递归写法
-          if (s==-1) return;
+        void output1(int s, int t) {  // 递归写法
+          if (s == -1) return;
           printf("%d ", s), output1(suf[s][t], t);
         }
         
-        void output2(int s, int t) { // 非递归写法
-          for (int i=s; i!=-1; i=suf[i][t]) printf("%d ", i);
+        void output2(int s, int t) {  // 非递归写法
+          for (int i = s; i != -1; i = suf[i][t]) printf("%d ", i);
         }
         
         signed main() {
           freopen("temp.in", "r", stdin);
-          n=read(), m=read(), k=read();
+          n = read(), m = read(), k = read();
           memset(d, 0x1f, sizeof(d));
-          for (int i=1; i<=n; ++i) d[i][i]=0;
-          for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) suf[i][j]=j;
-          for (int i=1; i<=n; ++i) suf[i][i]=-1;
-          while (m--) {int x=read(), y=read(); d[x][y]=d[y][x]=1;}
-          for (int k=1; k<=n; ++k) for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) {
-            if (d[i][k]+d[k][j]<d[i][j]) d[i][j]=d[i][k]+d[k][j], suf[i][j]=suf[i][k];
+          for (int i = 1; i <= n; ++i) d[i][i] = 0;
+          for (int i = 1; i <= n; ++i)
+            for (int j = 1; j <= n; ++j) suf[i][j] = j;
+          for (int i = 1; i <= n; ++i) suf[i][i] = -1;
+          while (m--) {
+            int x = read(), y = read();
+            d[x][y] = d[y][x] = 1;
           }
+          for (int k = 1; k <= n; ++k)
+            for (int i = 1; i <= n; ++i)
+              for (int j = 1; j <= n; ++j) {
+                if (d[i][k] + d[k][j] < d[i][j])
+                  d[i][j] = d[i][k] + d[k][j], suf[i][j] = suf[i][k];
+              }
           while (k--) {
-            int x=read(), y=read(); output2(x, y), puts("");
+            int x = read(), y = read();
+            output2(x, y), puts("");
           }
           return 0;
         }
