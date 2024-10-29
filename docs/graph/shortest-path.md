@@ -602,7 +602,6 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 读取时可以递归读取，也可以倒序压进栈内再依次弹出。
 
 ??? note "关于初始化"
-    
     $$
     \text{pre}_{u}\gets
     \begin{cases}s&u\neq s\\
@@ -614,9 +613,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
     递归终点为 $-1$，这样的写法在特殊情况下也可以处理。
 
 ??? note "实现"
-    
     === "堆优化 Dijkstra"
-        
         ```cpp
         struct edge {
           int v, w;
@@ -624,6 +621,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         
         struct node {
           int dis, u;
+        ```
 
           bool operator>(const node& a) const { return dis > a.dis; }
         };
@@ -721,7 +719,6 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 除了记录前驱，得益于全源特性，Floyd 还可以记录后继完成路径的还原。处理方式类似，记 $\text{suf}_{i,j}$ 表示以 $j$ 为终点 $i$ 的后继，只需在松弛成功时更新 $\text{suf}_{i,j}\gets\text{suf}_{k,j}$ 即可。
 
 ??? note "关于初始化"
-    
     $$
     \text{pre}_{i,j}\gets
     \begin{cases}i&i\neq j\\
@@ -737,9 +734,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
     原理同上方，先初始化所有都是直接路径，再逐步松弛得到答案。
 
 ??? note "实现"
-    
     === "记录前驱"
-        
         ```cpp
         #include <cmath>
         #include <cstdio>
@@ -748,14 +743,22 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         using namespace std;
         typedef long long ll;
         
-        char buf[1<<20], *p1, *p2;
-        #define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?0:*p1++)
+        char buf[1 << 20], *p1, *p2;
+        #define getchar()                                                          \
+          (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 1 << 20, stdin), p1 == p2) \
+               ? 0                                                                 \
+               : *p1++)
         
         inline ll read() {
-          ll x=0, f=1; char ch=getchar();
-          while (ch<'0'||ch>'9') {if (ch=='-') f=-1; ch=getchar();}
-          while (ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(ch^48), ch=getchar();
-          return x*f;
+          ll x = 0, f = 1;
+          char ch = getchar();
+          while (ch < '0' || ch > '9') {
+            if (ch == '-') f = -1;
+            ch = getchar();
+          }
+          while (ch >= '0' && ch <= '9')
+            x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();
+          return x * f;
         }
         
         #define N 1010
@@ -763,36 +766,45 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         int d[N][N];
         int pre[N][N];
         
-        void output1(int s, int t) { // 递归写法
-          if (t==-1) return;
+        void output1(int s, int t) {  // 递归写法
+          if (t == -1) return;
           output1(s, pre[s][t]), printf("%d ", t);
         }
         
         int stk[N], top;
-        void output2(int s, int t) { // 非递归写法
-          for (int i=t; i!=-1; i=pre[s][i]) stk[++top]=i;
+        
+        void output2(int s, int t) {  // 非递归写法
+          for (int i = t; i != -1; i = pre[s][i]) stk[++top] = i;
           while (top) printf("%d ", stk[top--]);
         }
         
         signed main() {
-          n=read(), m=read(), k=read();
+          n = read(), m = read(), k = read();
           memset(d, 0x1f, sizeof(d));
-          for (int i=1; i<=n; ++i) d[i][i]=0;
-          for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) pre[i][j]=i;
-          for (int i=1; i<=n; ++i) pre[i][i]=-1;
-          while (m--) {int x=read(), y=read(); d[x][y]=d[y][x]=1;}
-          for (int k=1; k<=n; ++k) for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) {
-            if (d[i][k]+d[k][j]<d[i][j]) d[i][j]=d[i][k]+d[k][j], pre[i][j]=pre[k][j];
+          for (int i = 1; i <= n; ++i) d[i][i] = 0;
+          for (int i = 1; i <= n; ++i)
+            for (int j = 1; j <= n; ++j) pre[i][j] = i;
+          for (int i = 1; i <= n; ++i) pre[i][i] = -1;
+          while (m--) {
+            int x = read(), y = read();
+            d[x][y] = d[y][x] = 1;
           }
+          for (int k = 1; k <= n; ++k)
+            for (int i = 1; i <= n; ++i)
+              for (int j = 1; j <= n; ++j) {
+                if (d[i][k] + d[k][j] < d[i][j])
+                  d[i][j] = d[i][k] + d[k][j], pre[i][j] = pre[k][j];
+              }
           while (k--) {
-            int x=read(), y=read(); output2(x, y), puts("");
+            int x = read(), y = read();
+            output2(x, y), puts("");
           }
           return 0;
         }
         ```
-        
-    === "记录后继"
-        
+    
+    == "记录后继"
+    
         ```cpp
         #include <cmath>
         #include <cstdio>
@@ -800,31 +812,31 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         #include <iostream>
         using namespace std;
         typedef long long ll;
-        
+    
         char buf[1<<20], *p1, *p2;
         #define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?0:*p1++)
-        
+    
         inline ll read() {
           ll x=0, f=1; char ch=getchar();
           while (ch<'0'||ch>'9') {if (ch=='-') f=-1; ch=getchar();}
           while (ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(ch^48), ch=getchar();
           return x*f;
         }
-        
+    
         #define N 1010
         int n, m, k;
         int d[N][N];
         int suf[N][N];
-        
+    
         void output1(int s, int t) { // 递归写法
           if (s==-1) return;
           printf("%d ", s), output1(suf[s][t], t);
         }
-        
+    
         void output2(int s, int t) { // 非递归写法
           for (int i=s; i!=-1; i=suf[i][t]) printf("%d ", i);
         }
-        
+    
         signed main() {
           freopen("temp.in", "r", stdin);
           n=read(), m=read(), k=read();
@@ -841,7 +853,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           }
           return 0;
         }
-        
+    
         ```
 
 ## 参考资料与注释
