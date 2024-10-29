@@ -628,7 +628,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         vector<edge> e[MAXN];
         int dis[MAXN], vis[MAXN], pre[MAXN];
         priority_queue<node, vector<node>, greater<node>> q;
-
+        
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
           memset(vis, 0, (n + 1) * sizeof(int));
