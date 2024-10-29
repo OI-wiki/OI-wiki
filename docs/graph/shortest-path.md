@@ -651,30 +651,31 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           }
         }
         
-        void output1(int u) { // 递归写法
-          if (u==-1) return;
+        void output1(int u) {  // 递归写法
+          if (u == -1) return;
           output1(pre[u]);
           printf("%d ", u);
         }
         
-        int stk[MAXN], top; // 非递归写法
+        int stk[MAXN], top;  // 非递归写法
+        
         void output2(int u) {
           for (int i = u; i != -1; i = pre[i]) stk[++top] = i;
           while (top) printf("%d ", stk[top--]);
         }
         ```
-        
-    === "SPFA"
-        
+    
+    == "SPFA"
+    
         ```cpp
         struct edge {
           int v, w;
         };
-        
+    
         vector<edge> e[MAXN];
         int dis[MAXN], cnt[MAXN], vis[MAXN], pre[MAXN];
         queue<int> q;
-        
+    
         bool spfa(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
           for (int i = 1; i <= n; ++i) pre[i] = s;
@@ -696,13 +697,13 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           }
           return true;
         }
-        
+    
         void output1(int u) { // 递归写法
           if (u==-1) return;
           output1(pre[u]);
           printf("%d ", u);
         }
-        
+    
         int stk[MAXN], top;
         void output2(int u) { // 非递归写法
           for (int i = u; i != -1; i = pre[i]) stk[++top] = i;
