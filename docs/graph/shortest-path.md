@@ -667,7 +667,9 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
     
     === "SPFA"
         ```cpp
-        struct edge {int v, w;};
+        struct edge {
+          int v, w;
+        };
         
         vector<edge> e[MAXN];
         int dis[MAXN], cnt[MAXN], vis[MAXN], pre[MAXN];
@@ -695,14 +697,15 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           return true;
         }
         
-        void output1(int u) { // 递归写法
-          if (u==-1) return;
+        void output1(int u) {  // 递归写法
+          if (u == -1) return;
           output1(pre[u]);
           printf("%d ", u);
         }
         
         int stk[MAXN], top;
-        void output2(int u) { // 非递归写法
+        
+        void output2(int u) {  // 非递归写法
           for (int i = u; i != -1; i = pre[i]) stk[++top] = i;
           while (top) printf("%d ", stk[top--]);
         }
@@ -809,8 +812,12 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         using namespace std;
         typedef long long ll;
         
-        char buf[1<<20], *p1, *p2;
-        #define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?0:*p1++)
+        char buf[1 << 20], *p1, *p2;
+        #define getchar()                                                          \
+          (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 1 << 20, stdin), p1 == p2) \
+               ? 0                                                                 \
+               : *p1++)
+        ```
     
         inline ll read() {
           ll x=0, f=1; char ch=getchar();
