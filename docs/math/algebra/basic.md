@@ -15,7 +15,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 群的定义如下。
 
 ???+ abstract "群"
-    给定非空集合 $G$ 和其上的二元运算 $\cdot:G\times G\rightarrow G$，称 $(G,\cdot)$ 是一个 **群**（group），如果它们满足以下性质：
+    给定非空集合 $G$ 和其上的二元运算 $\cdot:G\times G\rightarrow G$，如果它们满足以下性质，则称 $(G,\cdot)$ 是一个 **群**（group）：
 
     1.  结合律（associative property）：对于所有 $a,b,c\in G$，成立 $a\cdot(b\cdot c)=(a\cdot b)\cdot c$。
     2.  有单位元：存在 $e\in G$，使得对于任意 $a\in G$，都成立 $a\cdot e = e\cdot a = a$。这里，$e$ 称为 $G$ 的 **单位元**（identity element），也称幺元。
@@ -63,7 +63,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 最后，很多熟悉的群上的运算除了满足结合律外，还满足交换律。这类群的结构相对简单，它们称作 Abel 群，也称作交换群。
 
 ???+ abstract "Abel 群"
-    给定群 $(G,\cdot)$，则称 $(G,\cdot)$ 是一个 **Abel 群**（Abelian group）或 **交换群**（communicate group），如果运算 $\cdot$ 还满足交换律（commutative property），即对于所有 $a,b\in G$，都成立 $a\cdot b=b\cdot a$。
+    给定群 $(G,\cdot)$，如果运算 $\cdot$ 还满足交换律（commutative property），即对于所有 $a,b\in G$，都成立 $a\cdot b=b\cdot a$，则称 $(G,\cdot)$ 是一个 **Abel 群**（Abelian group）或 **交换群**（communicate group）。
 
 ???+ example "Abel 群和非 Abel 群的例子"
     -   整数加法群 $(\mathbf Z,+)$ 就是一个 Abel 群。
@@ -76,7 +76,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 环的定义如下。
 
 ???+ abstract "环"
-    给定非空集合 $R$ 和其上的两个二元运算 $+:R\times R\rightarrow R$ 和 $\cdot:R\times R\rightarrow R$，称 $(R,+,\cdot)$ 是一个 **环**（ring），如果它们满足以下性质：
+    给定非空集合 $R$ 和其上的两个二元运算 $+:R\times R\rightarrow R$ 和 $\cdot:R\times R\rightarrow R$，如果它们满足以下性质，则称 $(R,+,\cdot)$ 是一个 **环**（ring）：
 
     1.  $(R,+)$ 构成 Abel 群，其单位元记作 $0$，元素 $a\in R$ 在 $+$ 下的逆元记作 $-a$。
     2.  $(R,\cdot)$ 构成半群，即 $\cdot$ 满足结合律。
@@ -93,7 +93,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     给定环 $(R,+,\cdot)$，如果存在乘法单位元，记作 $1$，则称 $(R,+,\cdot)$ 是一个 **幺环**（ring with identity）。
 
 ???+ abstract "除环"
-    给定非零幺环 $(R,+,\cdot)$，如果对于所有非 $0$ 元素 $a\in R$，都存在乘法逆元，记作 $a^{-1}$，则称 $(R,+,\cdot)$ 是一个 **除环**（division ring）。
+    给定非零幺环 $(R,+,\cdot)$，如果对于所有非 $0$ 元素 $a\in R$，都存在乘法逆元（记作 $a^{-1}$），则称 $(R,+,\cdot)$ 是一个 **除环**（division ring）。
 
 ???+ abstract "交换环"
     给定环 $(R,+,\cdot)$，如果乘法满足交换律，则称 $(R,+,\cdot)$ 是一个 **交换环**（commutative ring）。
@@ -103,17 +103,17 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 这里的启示是，理解一般的环的乘法结构时，要去除加法单位元的影响，考察 $R\setminus\{0\}$。基于这一想法，有如下定义。
 
 ???+ abstract "零因子"
-    给定环 $(R,+,\cdot)$，称非零元素 $a$ 为一个 **零因子**（zero divisor），如果存在 $b\in R$，成立 $a\cdot b=0$ 或 $b\cdot a=0$。
+    给定环 $(R,+,\cdot)$，如果存在 $b\in R$，成立 $a\cdot b=0$ 或 $b\cdot a=0$，则称非零元素 $a$ 为一个 **零因子**（zero divisor）。
 
 ???+ abstract "可逆元（单位）"
-    给定环 $(R,+,\cdot)$，称元素 $a\in R$ 是一个 **可逆元**，或称 **单位**（unit），如果元素 $a$ 有乘法逆元，即存在 $b\in R$，成立 $a\cdot b=b\cdot a=1$。
+    给定环 $(R,+,\cdot)$，如果元素 $a$ 有乘法逆元，即存在 $b\in R$，成立 $a\cdot b=b\cdot a=1$，则称元素 $a\in R$ 是一个 **可逆元**，或称 **单位**（unit）。
 
 零因子不可能是可逆元，可逆元不可能是零因子。但是，一个非零元素可以既不是零因子，也不是可逆元。
 
 如果一个环没有零因子，就说明所有非零元素的集合在乘法运算下封闭，即 $(R\setminus\{0\},\cdot)$ 构成半群。进一步地，如果还要求它成为交换幺半群，就可以得到整环的定义。
 
 ???+ abstract "整环"
-    给定非零环 $(R,+,\cdot)$，称它为整环（integral domain），如果它是交换环，有乘法单位元，且无零因子。
+    给定非零环 $(R,+,\cdot)$，如果它是交换环，有乘法单位元，且无零因子，则称它为整环（integral domain）。
 
 最简单的一些环的例子如下。
 
@@ -147,7 +147,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 域是一个比环性质更强的代数结构。具体地，域是交换除环。当然也可以写出它完整的定义。
 
 ???+ abstract "域"
-    给定非空集合 $F$ 和其上的两个二元运算 $+:F\times F\rightarrow F$ 和 $\cdot:F\times F\rightarrow F$，称 $(F,+,\cdot)$ 是一个 **域**（field），如果它们满足以下性质：
+    给定非空集合 $F$ 和其上的两个二元运算 $+:F\times F\rightarrow F$ 和 $\cdot:F\times F\rightarrow F$，如果它们满足以下性质，则称 $(F,+,\cdot)$ 是一个 **域**（field）：
 
     1.  $(F,+)$ 构成 Abel 群，其单位元记作 $0$，元素 $a\in F$ 在 $+$ 下的逆元记作 $-a$。
     2.  $(F\setminus\{0\},\cdot)$ 构成 Abel 群，其单位元记作 $1$，元素 $a\in F\setminus\{0\}$ 在 $\cdot$ 下的逆元记作 $a^{-1}$。
