@@ -356,14 +356,14 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 -   暴力：不使用任何数据结构进行维护，每次 2 操作执行完毕后，直接在 $T$ 集合中暴力寻找最短路长度最小的结点。2 操作总时间复杂度为 $O(m)$，1 操作总时间复杂度为 $O(n^2)$，全过程的时间复杂度为 $O(n^2 + m) = O(n^2)$。
 -   二叉堆：每成功松弛一条边 $(u,v)$，就将 $v$ 插入二叉堆中（如果 $v$ 已经在二叉堆中，直接修改相应元素的权值即可），1 操作直接取堆顶结点即可。共计 $O(m)$ 次二叉堆上的插入（修改）操作，$O(n)$ 次删除堆顶操作，而插入（修改）和删除的时间复杂度均为 $O(\log n)$，时间复杂度为 $O((n+m) \log n) = O(m \log n)$。
 -   优先队列：和二叉堆类似，但使用优先队列时，如果同一个点的最短路被更新多次，因为先前更新时插入的元素不能被删除，也不能被修改，只能留在优先队列中，故优先队列内的元素个数是 $O(m)$ 的，时间复杂度为 $O(m \log m)$。
--   Fibonacci 堆：和前面二者类似，但 Fibonacci 堆插入的时间复杂度为 $O(1)$，故时间复杂度为 $O(n \log n + m)$，时间复杂度最优。但因为 Fibonacci 堆较二叉堆不易实现，效率优势也不够大 \[^1]，算法竞赛中较少使用。
+-   Fibonacci 堆：和前面二者类似，但 Fibonacci 堆插入的时间复杂度为 $O(1)$，故时间复杂度为 $O(n \log n + m)$，时间复杂度最优。但因为 Fibonacci 堆较二叉堆不易实现，效率优势也不够大[^1]，算法竞赛中较少使用。
 -   线段树：和二叉堆原理类似，不过将每次成功松弛后插入二叉堆的操作改为在线段树上执行单点修改，而 1 操作则是线段树上的全局查询最小值。时间复杂度为 $O(m \log n)$。
 
 在稀疏图中，$m = O(n)$，使用二叉堆实现的 Dijkstra 算法较 Bellman–Ford 算法具有较大的效率优势；而在稠密图中，$m = O(n^2)$，这时候使用暴力做法较二叉堆实现更优。
 
 ### 正确性证明
 
-下面用数学归纳法证明，在 **所有边权值非负** 的前提下，Dijkstra 算法的正确性 \[^2]。
+下面用数学归纳法证明，在 **所有边权值非负** 的前提下，Dijkstra 算法的正确性[^2]。
 
 简单来说，我们要证明的，就是在执行 1 操作时，取出的结点 $u$ 最短路均已经被确定，即满足 $D(u) = dis(u)$。
 
@@ -602,6 +602,7 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 读取时可以递归读取，也可以倒序压进栈内再依次弹出。
 
 ??? note "关于初始化"
+    
     $$
     \text{pre}_{u}\gets
     \begin{cases}s&u\neq s\\
@@ -613,7 +614,9 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
     递归终点为 $-1$，这样的写法在特殊情况下也可以处理。
 
 ??? note "实现"
+    
     === "堆优化 Dijkstra"
+        
         ```cpp
         struct edge {
           int v, w;
@@ -621,14 +624,14 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
         
         struct node {
           int dis, u;
-        
+
           bool operator>(const node& a) const { return dis > a.dis; }
         };
         
         vector<edge> e[MAXN];
         int dis[MAXN], vis[MAXN], pre[MAXN];
         priority_queue<node, vector<node>, greater<node>> q;
-        
+
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
           memset(vis, 0, (n + 1) * sizeof(int));
@@ -651,27 +654,30 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           }
         }
         
-        void output1(int u) {  // 递归写法
-          if (u == -1) return;
+        void output1(int u) { // 递归写法
+          if (u==-1) return;
           output1(pre[u]);
           printf("%d ", u);
         }
         
-        int stk[MAXN], top;  // 非递归写法
-        
+        int stk[MAXN], top; // 非递归写法
         void output2(int u) {
           for (int i = u; i != -1; i = pre[i]) stk[++top] = i;
           while (top) printf("%d ", stk[top--]);
         }
         ```
-    
-    == "SPFA"`cpp
+        
+    === "SPFA"
+        
+        ```cpp
         struct edge {
           int v, w;
         };
+        
         vector<edge> e[MAXN];
         int dis[MAXN], cnt[MAXN], vis[MAXN], pre[MAXN];
         queue<int> q;
+        
         bool spfa(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
           for (int i = 1; i <= n; ++i) pre[i] = s;
@@ -693,17 +699,19 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
           }
           return true;
         }
+        
         void output1(int u) { // 递归写法
           if (u==-1) return;
           output1(pre[u]);
           printf("%d ", u);
         }
+        
         int stk[MAXN], top;
         void output2(int u) { // 非递归写法
           for (int i = u; i != -1; i = pre[i]) stk[++top] = i;
           while (top) printf("%d ", stk[top--]);
         }
-        `
+        ```
 
 ### Floyd
 
@@ -712,9 +720,8 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
 除了记录前驱，得益于全源特性，Floyd 还可以记录后继完成路径的还原。处理方式类似，记 $\text{suf}_{i,j}$ 表示以 $j$ 为终点 $i$ 的后继，只需在松弛成功时更新 $\text{suf}_{i,j}\gets\text{suf}_{k,j}$ 即可。
 
-记录后继节点，还可以输出字典序最小的最短路，不过面对 `dis[i][k]+dis[k][j]==dis[i][j]` 的情况也需要对路径节点进行更新。
-
 ??? note "关于初始化"
+    
     $$
     \text{pre}_{i,j}\gets
     \begin{cases}i&i\neq j\\
@@ -731,79 +738,114 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
 ??? note "实现"
     
-
-== "记录前驱"`cpp         #define N 1010
+    === "记录前驱"
+        
+        ```cpp
+        #include <cmath>
+        #include <cstdio>
+        #include <cstring>
+        #include <iostream>
+        using namespace std;
+        typedef long long ll;
+        
+        char buf[1<<20], *p1, *p2;
+        #define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?0:*p1++)
+        
+        inline ll read() {
+          ll x=0, f=1; char ch=getchar();
+          while (ch<'0'||ch>'9') {if (ch=='-') f=-1; ch=getchar();}
+          while (ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(ch^48), ch=getchar();
+          return x*f;
+        }
+        
+        #define N 1010
         int n, m, k;
         int d[N][N];
         int pre[N][N];
-        void output1(int s, int t) {  // 递归写法
-          if (t == -1) return;
+        
+        void output1(int s, int t) { // 递归写法
+          if (t==-1) return;
           output1(s, pre[s][t]), printf("%d ", t);
         }
+        
         int stk[N], top;
-        void output2(int s, int t) {  // 非递归写法
-          for (int i = t; i != -1; i = pre[s][i]) stk[++top] = i;
+        void output2(int s, int t) { // 非递归写法
+          for (int i=t; i!=-1; i=pre[s][i]) stk[++top]=i;
           while (top) printf("%d ", stk[top--]);
         }
+        
         signed main() {
-          n = read(), m = read(), k = read();
+          n=read(), m=read(), k=read();
           memset(d, 0x1f, sizeof(d));
-          for (int i = 1; i <= n; ++i) d[i][i] = 0;
-          for (int i = 1; i <= n; ++i)
-            for (int j = 1; j <= n; ++j) pre[i][j] = i;
-          for (int i = 1; i <= n; ++i) pre[i][i] = -1;
-          while (m--) {
-            int x = read(), y = read();
-            d[x][y] = d[y][x] = 1;
+          for (int i=1; i<=n; ++i) d[i][i]=0;
+          for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) pre[i][j]=i;
+          for (int i=1; i<=n; ++i) pre[i][i]=-1;
+          while (m--) {int x=read(), y=read(); d[x][y]=d[y][x]=1;}
+          for (int k=1; k<=n; ++k) for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) {
+            if (d[i][k]+d[k][j]<d[i][j]) d[i][j]=d[i][k]+d[k][j], pre[i][j]=pre[k][j];
           }
-          for (int k = 1; k <= n; ++k)
-            for (int i = 1; i <= n; ++i)
-              for (int j = 1; j <= n; ++j) {
-                if (d[i][k] + d[k][j] < d[i][j])
-                  d[i][j] = d[i][k] + d[k][j], pre[i][j] = pre[k][j];
-              }
           while (k--) {
-            int x = read(), y = read();
-            output2(x, y), puts("");
+            int x=read(), y=read(); output2(x, y), puts("");
           }
           return 0;
         }
-        `
-
-    == "记录后继"
-
-````cpp
-     #define N 1010
-     int n, m, k;
-     int d[N][N];
-     int suf[N][N];
-     void output1(int s, int t) { // 递归写法
-       if (s==-1) return;
-       printf("%d ", s), output1(suf[s][t], t);
-     }
-     void output2(int s, int t) { // 非递归写法
-       for (int i=s; i!=-1; i=suf[i][t]) printf("%d ", i);
-     }
-     signed main() {
-       n=read(), m=read(), k=read();
-       memset(d, 0x1f, sizeof(d));
-       for (int i=1; i<=n; ++i) d[i][i]=0;
-       for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) suf[i][j]=j;
-       for (int i=1; i<=n; ++i) suf[i][i]=-1;
-       while (m--) {int x=read(), y=read(); d[x][y]=d[y][x]=1;}
-       for (int k=1; k<=n; ++k) for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) {
-         if (d[i][k]+d[k][j]<d[i][j]) d[i][j]=d[i][k]+d[k][j], suf[i][j]=suf[i][k];
-       }
-       while (k--) {
-         int x=read(), y=read(); output2(x, y), puts("");
-       }
-       return 0;
-     }
-     ```
+        ```
+        
+    === "记录后继"
+        
+        ```cpp
+        #include <cmath>
+        #include <cstdio>
+        #include <cstring>
+        #include <iostream>
+        using namespace std;
+        typedef long long ll;
+        
+        char buf[1<<20], *p1, *p2;
+        #define getchar() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?0:*p1++)
+        
+        inline ll read() {
+          ll x=0, f=1; char ch=getchar();
+          while (ch<'0'||ch>'9') {if (ch=='-') f=-1; ch=getchar();}
+          while (ch>='0'&&ch<='9') x=(x<<1)+(x<<3)+(ch^48), ch=getchar();
+          return x*f;
+        }
+        
+        #define N 1010
+        int n, m, k;
+        int d[N][N];
+        int suf[N][N];
+        
+        void output1(int s, int t) { // 递归写法
+          if (s==-1) return;
+          printf("%d ", s), output1(suf[s][t], t);
+        }
+        
+        void output2(int s, int t) { // 非递归写法
+          for (int i=s; i!=-1; i=suf[i][t]) printf("%d ", i);
+        }
+        
+        signed main() {
+          freopen("temp.in", "r", stdin);
+          n=read(), m=read(), k=read();
+          memset(d, 0x1f, sizeof(d));
+          for (int i=1; i<=n; ++i) d[i][i]=0;
+          for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) suf[i][j]=j;
+          for (int i=1; i<=n; ++i) suf[i][i]=-1;
+          while (m--) {int x=read(), y=read(); d[x][y]=d[y][x]=1;}
+          for (int k=1; k<=n; ++k) for (int i=1; i<=n; ++i) for (int j=1; j<=n; ++j) {
+            if (d[i][k]+d[k][j]<d[i][j]) d[i][j]=d[i][k]+d[k][j], suf[i][j]=suf[i][k];
+          }
+          while (k--) {
+            int x=read(), y=read(); output2(x, y), puts("");
+          }
+          return 0;
+        }
+        
+        ```
 
 ## 参考资料与注释
 
 [^1]: [Worst case of fibonacci heap - Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_heap#Worst_case)
 
 [^2]: 《算法导论（第 3 版中译本）》，机械工业出版社，2013 年，第 384 - 385 页。
-````
