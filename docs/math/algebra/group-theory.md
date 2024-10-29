@@ -106,7 +106,13 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 元素的阶总是不大于群的阶，事实上，下文即证明，元素的阶总是整除群的阶。但是，群的阶并非总是元素的阶的最大值，比如 $D_6$ 是六阶群，但是元素的阶最大是 $3$。群的阶也并不是所有元素的阶的最小公倍数，比如 Klein 四元群[^klein] $V_4$ 的阶是 $4$，但是里面只有 $1$ 阶元和 $2$ 阶元。
 
 ???+ note "定理"
-    有限循环群 $C_n=\langle x\rangle$ 中，元素 $x^k$ 的阶是 $\gcd(k,n)$。特别地，$C_n$ 的生成元的数目是 $\varphi(n)$，这里，$\varphi(\cdot)$ 是 [欧拉函数](../number-theory/euler-totient.md)。
+    有限循环群 $C_n=\langle x\rangle$ 中，元素 $x^k$ 的阶是 
+    
+    $$
+    \frac{n}{\gcd(k,n)}.
+    $$
+    
+    特别地，$C_n$ 的生成元的数目是 $\varphi(n)$，这里，$\varphi(\cdot)$ 是 [欧拉函数](../number-theory/euler-totient.md)。
 
 作为上述讨论的应用，注意到模 $n$ 整数乘法群的阶是 $\varphi(n)$，群中的任何元素 $a$ 的阶都整除它，故而必然有 $a^{\varphi(n)}=1$。这就是 [欧拉定理](../number-theory/fermat.md)，因为该群中的元素就是所有与 $n$ 互质的元素。
 
