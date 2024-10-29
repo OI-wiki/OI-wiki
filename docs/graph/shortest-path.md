@@ -736,31 +736,6 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 ??? note "实现"
     === "记录前驱"
         ```cpp
-        #include <cmath>
-        #include <cstdio>
-        #include <cstring>
-        #include <iostream>
-        using namespace std;
-        typedef long long ll;
-        
-        char buf[1 << 20], *p1, *p2;
-        #define getchar()                                                          \
-          (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 1 << 20, stdin), p1 == p2) \
-               ? 0                                                                 \
-               : *p1++)
-        
-        inline ll read() {
-          ll x = 0, f = 1;
-          char ch = getchar();
-          while (ch < '0' || ch > '9') {
-            if (ch == '-') f = -1;
-            ch = getchar();
-          }
-          while (ch >= '0' && ch <= '9')
-            x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();
-          return x * f;
-        }
-        
         #define N 1010
         int n, m, k;
         int d[N][N];
@@ -805,31 +780,6 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
     
     === "记录后继"
         ```cpp
-        #include <cmath>
-        #include <cstdio>
-        #include <cstring>
-        #include <iostream>
-        using namespace std;
-        typedef long long ll;
-        
-        char buf[1 << 20], *p1, *p2;
-        #define getchar()                                                          \
-          (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, 1 << 20, stdin), p1 == p2) \
-               ? 0                                                                 \
-               : *p1++)
-        
-        inline ll read() {
-          ll x = 0, f = 1;
-          char ch = getchar();
-          while (ch < '0' || ch > '9') {
-            if (ch == '-') f = -1;
-            ch = getchar();
-          }
-          while (ch >= '0' && ch <= '9')
-            x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();
-          return x * f;
-        }
-        
         #define N 1010
         int n, m, k;
         int d[N][N];
