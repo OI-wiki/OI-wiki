@@ -565,9 +565,6 @@ theme:
     text: 'Fira Sans'
     code: 'Fira Mono'
 
-# plugins:
-#   - search:
-#       separator: '[\s\u200b\-]'
 plugins: []
 
 hooks:
