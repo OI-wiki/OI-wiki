@@ -104,3 +104,7 @@ mjx-container > img {
 div.md-typeset__scrollwrap:has(table[data-review-enabled]) {
   overflow: visible;
 }
+
+.md-typeset kbd {
+  margin:0px 5px;
+}
