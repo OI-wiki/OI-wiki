@@ -63,7 +63,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 有些子集生成的子群是群本身。这样的子集尤为特殊，称为群的生成子集。
 
 ???+ abstract "群的生成子集"
-    群 $(G,\cdot)$ 的子集 $S\subseteq G$ 如果满足 $\langle S\rangle=G$，则称 $S$ 是 $G$ 的 **生成子集**（generating set of a group）。生成子集 $S$ 中的元素称为 **生成元**（generator）。
+    如果群 $(G,\cdot)$ 的子集 $S\subseteq G$ 满足 $\langle S\rangle=G$，则称 $S$ 是 $G$ 的 **生成子集**（generating set of a group）。生成子集 $S$ 中的元素称为 **生成元**（generator）。
 
 群是自身平凡的生成子集。更为有趣的情形是，生成子集远小于群本身的规模。
 
@@ -159,7 +159,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 左右陪集是否相同，反映了相应的子群的性质。
 
 ???+ abstract "正规子群"
-    对于群 $G$ 和它的子群 $N\le G$，如果对所有 $h\in N$ 和 $g\in G$，都成立 $ghg^{-1}\in N$，换言之，对所有 $g\in G$，都成立 $gNg^{-1}\subseteq N$，则称 $N$ 是 $G$ 的一个 **正规子群**（normal subgroup），记作 $N\trianglelefteq G$。
+    设 $N\le G$ 是群 $G$ 的子群 ，如果对所有 $h\in N$ 和 $g\in G$，都成立 $ghg^{-1}\in N$，换言之，对所有 $g\in G$，都成立 $gNg^{-1}\subseteq N$，则称 $N$ 是 $G$ 的一个 **正规子群**（normal subgroup），记作 $N\trianglelefteq G$。
 
 这个定义中的条件正等价于 $gN=Ng$ 永远成立。群 $G$ 总有平凡的正规子群，即 $\langle e\rangle$ 和 $G$ 自身。
 
@@ -334,7 +334,7 @@ $$
 这一群同态 $\varphi$ 称为该群作用的 **置换表示**（permutation representation），它将群 $G$ 映射到了某个置换群上。
 
 ???+ abstract "置换群"
-    对于群 $G$，如果它是某个对称群的子群，则称群 $G$ 是一个 **置换群**（permutation group）。
+    如果群 $G$ 是某个对称群的子群，则称群 $G$ 是一个 **置换群**（permutation group）。
 
 该群同态的核也称为该群作用的核。如果这一群同态的核是平凡的，即这个同态是单的，则称该群作用是 **忠实的**（faithful），即该作用的置换表示忠实地反映了群结构的信息。此时，群 $G$ 与置换表示得到的的置换群同构。
 
@@ -346,7 +346,7 @@ $$
 群作用是二元映射。固定群中的元素 $g$，则可以得到集合上的置换 $\varphi_g$。而如果固定集合上的元素 $x$，则可以得到群对该元素作用的所有可能的结果。
 
 ???+ abstract "轨道"
-    对于群 $G$ 在集合 $X$ 上的作用和 $x\in X$，则称 $x$ 在群 $G$ 作用下的 **轨道**（orbit）是子集 $Gx=\{gx:g\in G\}$。
+    对于群 $G$ 在集合 $X$ 上的作用和 $x\in X$，称 $x$ 在群 $G$ 作用下的 **轨道**（orbit）是子集 $Gx=\{gx:g\in G\}$。
 
 ???+ example " 例子：正三角形的空间对称群 $D_6$（续）"
     比如说，如果考虑群 $\langle s\rangle\le D_6$ 在正三角形顶点集合上的作用，则顶点 $1$ 的轨道是 $\{1\}$，而顶点 $2$ 和 $3$ 的轨道是 $\{2,3\}$。但是，群 $\langle r\rangle\le D_6$ 在顶点集合上的作用只有一个轨道，即全体顶点集。
@@ -363,7 +363,7 @@ $$
 这启发了如下的定义。
 
 ???+ abstract "稳定化子"
-    对于群 $G$ 在集合 $X$ 上的作用和 $x\in X$，则称群 $G$ 中 $x$ 的 **稳定化子**（stabilizer）是子群 $G_x=\{g\in G:gx=x\}$。
+    对于群 $G$ 在集合 $X$ 上的作用和 $x\in X$，称群 $G$ 中 $x$ 的 **稳定化子**（stabilizer）是子群 $G_x=\{g\in G:gx=x\}$。
 
 群作用的核就是集合中所有元素的稳定化子的交。
 
@@ -373,7 +373,7 @@ $$
 这一例子说明，轨道上的元素，都和稳定化子的左陪集一一对应。这说明如下结果。
 
 ???+ note "定理"
-    对于群 $G$ 在集合 $X$ 上的作用，则元素 $x\in X$ 的稳定化子 $G_x$ 是 $X$ 的子群，且子群 $G_x$ 的左陪集与轨道 $Gx$ 存在双射。
+    对于群 $G$ 在集合 $X$ 上的作用，元素 $x\in X$ 的稳定化子 $G_x$ 是 $X$ 的子群，且子群 $G_x$ 的左陪集与轨道 $Gx$ 存在双射。
 
 ??? note "证明"
     验证映射 $gG_x\mapsto gx$ 是良定义的双射即可。
@@ -381,7 +381,7 @@ $$
 利用 Lagrange 定理，可以将轨道长和稳定化子的陪集数目联系起来。这就是 **轨道稳定子定理**（orbit-stabilizer theorem）。
 
 ???+ note "轨道稳定子定理"
-    对于群 $G$ 在集合 $X$ 上的作用和 $x\in X$，若 $G$ 有限，则 $|Gx|=[G:G_x]=|G|/|G_x|$。
+    对于有限群 $G$ 在集合 $X$ 上的作用和 $x\in X$，有 $|Gx|=[G:G_x]=|G|/|G_x|$。
 
 可以在上面的例子中验证这一结论。
 
@@ -556,7 +556,7 @@ $$
 在概述中提到，Abel 群因为元素可以交换，结构相较于其它群更为简单。其中尤为简单的是那些可以通过有限多个元素生成的 Abel 群。
 
 ???+ abstract "有限生成"
-    对于群 $G$，如果它的一个生成子集是有限的，则称它是 **有限生成的**（finitely generated）。
+    如果群 $G$ 有一个有限的生成子集，则称群 $G$ 是 **有限生成的**（finitely generated）。
 
 本节的分类定理说明，有限生成的 Abel 群可以看作是有限多个的循环群的简单组合。算法竞赛中涉及的群多为有限群。有限 Abel 群必然是有限生成的，因此总是适用这一结论。
 
@@ -567,7 +567,7 @@ $$
 群的直积的基本想法是，给定两个群 $G$ 和 $H$，考虑其笛卡尔积 $G\times H$，二元对 $(g,h)$ 的运算定义为对两分量分别运算，分量之间互不影响。这样得到的结果显然是更大的群，且原来的两个群可以平凡地嵌入新的群中。
 
 ???+ abstract "直积"
-    对于群 $(G,\cdot_G)$ 和群 $(H,\cdot_H)$，它们的 **直积**（direct product）是群 $(G\times H,\cdot)$，其中，二元运算 $\cdot:(G\times H)\times(G\times H)\rightarrow G\times H$ 定义为 $(g_1,h_1)\cdot(g_2,h_2)=(g_1\cdot_G g_2,h_1\cdot_H h_2)$。群 $G$ 和群 $H$ 的直积记为 $G\times H$。
+    群 $(G,\cdot_G)$ 和群 $(H,\cdot_H)$ 的 **直积**（direct product）是群 $(G\times H,\cdot)$，其中，二元运算 $\cdot:(G\times H)\times(G\times H)\rightarrow G\times H$ 定义为 $(g_1,h_1)\cdot(g_2,h_2)=(g_1\cdot_G g_2,h_1\cdot_H h_2)$。群 $G$ 和群 $H$ 的直积记为 $G\times H$。
 
 对于直积 $G\times H$，平凡地有嵌入映射 $g\mapsto(g,e_H)$ 和 $h\mapsto(e_G,h)$。反过来，映射 $(g,h)\mapsto g$ 和映射 $(g,h)\mapsto h$ 是群同态，同态的核分别是 $\{e_G\}\times H$ 和 $G\times\{e_H\}$。这两个核恰好是上述嵌入映射的像，且它们的交集是平凡的，即 $\{(e_G,e_H)\}$。所以，群的直积 $G\times H$ 中有两个子群，都是正规子群，交集是平凡的，且它们的乘积就是直积 $G\times H$ 本身。
 
