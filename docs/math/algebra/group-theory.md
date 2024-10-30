@@ -4,7 +4,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
 ## 引入
 
-**群论**（group theory）主要研究群这个代数结构。
+**群论**（group theory）主要研究群这个 [代数结构](https://en.wikipedia.org/wiki/Algebraic_structure)。
 
 为了研究群的结构，需要掌握一些基本工具，这包括子群、群同态和群作用。算法竞赛中，主要涉及到的群是数论相关的群（比如整数模 $n$ 乘法群 $(\mathbf Z/n\mathbf Z)^\times$）以及置换群，本文将着重介绍相关的概念。本文未涉及的群论部分，比如有限群的结构理论和群的线性表示理论，有兴趣的读者应当参考专业书籍。
 
@@ -285,9 +285,9 @@ $$
 ??? note "证明"
     乘积 $AB$ 是子群，则必然有 $ba=(a^{-1}b^{-1})^{-1}\in AB$ 对任意 $a\in A$ 和 $b\in B$ 都成立，所以 $BA\subseteq AB$。反过来，如果 $AB=BA$，则对于任意 $a_1,a_2\in A$ 和 $b_1,b_2\in B$，都有 $(a_1b_1)(a_2b_2)^{-1}=a_1b_1b_2^{-1}a_2^{-1}\in a_1BA=a_1AB=AB$，则根据子群判别法，必然有 $AB$ 是子群。
 
-**第二同构定理**（亦称 **蝶形同构定理**）（second isomorphism theorem, a.k.a., diamond isomorphism theorem）则给出了子群乘积仍是子群的更为简单的充分条件，并且进一步确定了其结构。
+**第二同构定理**（second isomorphism theorem, a.k.a., diamond isomorphism theorem）则给出了子群乘积仍是子群的更为简单的充分条件，并且进一步确定了其结构。
 
-???+ note "第二同构定理（蝶形同构定理）"
+???+ note "第二同构定理"
     设群 $G$ 和子群 $A,B\le G$ 满足 $A\le N_G(B)$，那么，$AB\le G$，且 $B\trianglelefteq AB$，$A\cap B\trianglelefteq A$，$AB/B\cong A/(A\cap B)$。这里，$N_G(B)$ 是 $B$ 的 [正规化子](#正规化子和中心化子)。特别地，$A\le N_G(B)$ 的一个充分条件是 $B\trianglelefteq G$。
 
 ??? note "证明"
