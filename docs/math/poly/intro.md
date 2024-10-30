@@ -38,9 +38,9 @@ $$
 
 则可得到 **形式幂级数环**（formal power series ring）$R[[x]]$，其中的每个元素 $f$ 称为 **形式幂级数**（formal power series），以下简称幂级数。
 
-### 多项式的度
+### 多项式的次数
 
-对于一个多项式 $f(x)$，称其最高次项的次数为该多项式的 **度（degree）**，也称次数，记作 $\operatorname{deg}{f}$。
+对于一个多项式 $f(x)$，称其最高次项的次数为该多项式的 **次数（degree）**，记作 $\operatorname{deg}{f}$。
 
 ### 多项式的乘法
 
