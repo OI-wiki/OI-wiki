@@ -159,7 +159,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 左右陪集是否相同，反映了相应的子群的性质。
 
 ???+ abstract "正规子群"
-    设 $N\le G$ 是群 $G$ 的子群 ，如果对所有 $h\in N$ 和 $g\in G$，都成立 $ghg^{-1}\in N$，换言之，对所有 $g\in G$，都成立 $gNg^{-1}\subseteq N$，则称 $N$ 是 $G$ 的一个 **正规子群**（normal subgroup），记作 $N\trianglelefteq G$。
+    设 $N\le G$ 是群 $G$ 的子群，如果对所有 $h\in N$ 和 $g\in G$，都成立 $ghg^{-1}\in N$，换言之，对所有 $g\in G$，都成立 $gNg^{-1}\subseteq N$，则称 $N$ 是 $G$ 的一个 **正规子群**（normal subgroup），记作 $N\trianglelefteq G$。
 
 这个定义中的条件正等价于 $gN=Ng$ 永远成立。群 $G$ 总有平凡的正规子群，即 $\langle e\rangle$ 和 $G$ 自身。
 
