@@ -639,7 +639,7 @@ $$
 ## 参考资料与注释
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
--   Milne, J.S. (2021) [Group Theory](https://www.jmilne.org/math/CourseNotes/GT.pdf).
+-   Milne, J.S. (2021)[Group Theory](https://www.jmilne.org/math/CourseNotes/GT.pdf).
 -   [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_%28mathematics%29)
 -   [Group theory - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)
 -   [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
