@@ -198,8 +198,10 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
           }
         }
       }
-      // 继续维护size，不写成 --root->size; 是因为value可能不在树中，从而可能未发生删除
-      root->size = root->count + (root->left ? root->left->size: 0) + (root->right ? root->right->size: 0);
+      // 继续维护size，不写成 --root->size;
+      // 是因为value可能不在树中，从而可能未发生删除
+      root->size = root->count + (root->left ? root->left->size : 0) +
+                   (root->right ? root->right->size : 0);
       return root;
     }
     
