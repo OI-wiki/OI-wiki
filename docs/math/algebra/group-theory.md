@@ -111,7 +111,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     
     特别地，$C_n$ 的生成元的数目是 $\varphi(n)$，这里，$\varphi(\cdot)$ 是 [欧拉函数](../number-theory/euler-totient.md)。
 
-作为上述讨论的应用，注意到模 $n$ 整数乘法群的阶是 $\varphi(n)$，群中的任何元素 $a$ 的阶都整除它，故而必然有 $a^{\varphi(n)}=1$。这就是 [欧拉定理](../number-theory/fermat.md)，因为该群中的元素就是所有与 $n$ 互质的元素。
+作为上述讨论的应用，注意到模 $n$ 整数乘法群的阶是 $\varphi(n)$，群中的任何元素 $a$ 的阶都整除它，故而必然有 $a^{\varphi(n)}=1$。这就是 [欧拉定理](../number-theory/fermat.md#欧拉定理)，因为该群中的元素就是所有与 $n$ 互质的元素。
 
 ### 陪集
 
