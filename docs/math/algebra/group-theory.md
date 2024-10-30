@@ -445,7 +445,7 @@ $$
 在群的共轭作用下，轨道和稳定化子都有特别的名字。
 
 ???+ abstract "共轭类"
-   对于群 $G$ 和 $g\in G$，元素 $g$ 在群 $G$ 中的 **共轭类**（conjugacy class）是共轭作用下 $g$ 的轨道。如果元素 $g$ 和 $h$ 处在同一共轭类中，则称 $g$ 和 $h$  **共轭**（conjugate）。
+对于群 $G$ 和 $g\in G$，元素 $g$ 在群 $G$ 中的 **共轭类**（conjugacy class）是共轭作用下 $g$ 的轨道。如果元素 $g$ 和 $h$ 处在同一共轭类中，则称 $g$ 和 $h$  **共轭**（conjugate）。
 
 ???+ abstract "中心化子"
     对于群 $G$ 和 $a\in G$，元素 $a$ 在群 $G$ 中的 **中心化子**（centralizer）是 $C_G(a)=\{g\in G:ga=ag\}$。
