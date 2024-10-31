@@ -101,9 +101,9 @@ int main() {
 -   较小的 [聚合体类型](https://zh.cppreference.com/w/cpp/language/aggregate_initialization)
 -   标准库容器的迭代器
 
-### 将左值转换为右值，使用 `std::move` [转移](./value-category.md#stdmove) 对象的所有权。
+### 将左值转换为右值
 
-这通常见于局部变量之间的，和参数与局部变量之间：
+使用 `std::move` [转移](./value-category.md#stdmove) 对象的所有权。这通常见于局部变量之间，或参数与局部变量之间：
 
 ```cpp
 #include <iostream>
