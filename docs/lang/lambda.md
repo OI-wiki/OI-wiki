@@ -41,11 +41,11 @@ lambda 以 capture 子句开头，它指定哪些变量被捕获，捕获列表�
 
 ```cpp
 int a = 0;
-auto f0 = []() { return a * 9; }; // Error, 无法访问 'a'
-auto f1 = [a]() { return a * 9; }; // OK, 'a' 被值「捕获」
-auto f2 = [&a]() { return a++; }; // OK, 'a' 被引用「捕获」
+auto f0 = []() { return a * 9; };   // Error, 无法访问 'a'
+auto f1 = [a]() { return a * 9; };  // OK, 'a' 被值「捕获」
+auto f2 = [&a]() { return a++; };   // OK, 'a' 被引用「捕获」
 // 注意，请保证被调用时 a 没有被销毁
-auto b = f(); // f 从捕获列表里获得 a 的值，无需通过参数传入 a
+auto b = f();  // f 从捕获列表里获得 a 的值，无需通过参数传入 a
 ```
 
 在没有捕获时，lambda 可以转换为函数指针：
@@ -55,7 +55,7 @@ int (*f)() = [] {
   std::cout << "Hello, World!" << std::endl;
   return 0;
 };
-int v = f(); // 输出 "Hello, World!"
+int v = f();  // 输出 "Hello, World!"
 ```
 
 #### 带初始化器的捕获（C++14）
@@ -68,7 +68,7 @@ int x = 4;
 auto y = [&r = x, x = x + 1]() -> int {
   r += 2;
   return x * x;
-}(); // 更新 ::x 到 6 并初始化 y 为 25。
+}();  // 更新 ::x 到 6 并初始化 y 为 25。
 
 ```
 
@@ -81,11 +81,11 @@ int y;
 {
   // 捕获列表初始化
   auto &r = x;
-  auto x = x + 1; // 本地 x 会隐藏外部 x
+  auto x = x + 1;  // 本地 x 会隐藏外部 x
 
   // 函数体及其返回值
   r += 2;
-  y = x * x; // 使用本地 x 变量
+  y = x * x;  // 使用本地 x 变量
 }
 ```
 
@@ -131,14 +131,12 @@ by_ref();
 ```cpp
 auto lam = [](int a, int b) -> int { return 0; };
 
-auto x1 = [](int i) {
-  return i;
-};
+auto x1 = [](int i) { return i; };
 
 auto x2 = [](bool condition) {
   if (condition) return 1;
   return 1.0;
-}; // Error, 推导类型不一致
+};  // Error, 推导类型不一致
 ```
 
 ### 泛型 Lambda（C++14）
@@ -255,7 +253,7 @@ cout << fibonacci_fn{}(10);
 ??? warning " 不建议使用 `std::function` 实现的递归 "
     `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
     
-    在 [Benchmark](https://quick-bench.com/q/6ZIWCCvBlq_Cakrae05c11vC0BI) 测试中，使用 Clang 17 编译器， libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 7 倍。
+    在 [Benchmark](https://quick-bench.com/q/6ZIWCCvBlq_Cakrae05c11vC0BI) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 7 倍。
     
     以下是测试代码
     
@@ -274,10 +272,11 @@ cout << fibonacci_fn{}(10);
         
         std::iota(arr.begin(), arr.end(), 0u);
         ranges::shuffle(arr, gen);
+    ```
 
         return arr;
     }();
-    
+
     static void std_function_fib(benchmark::State& state) {
         std::function<int(int, int, int)> fib;
         
@@ -297,7 +296,7 @@ cout << fibonacci_fn{}(10);
         }
     }
     BENCHMARK(std_function_fib);
-    
+
     static void template_lambda_fib(benchmark::State& state) {
         auto n_fibonacci = [](const auto& self, int n, int a = 0, int b = 1) -> int {
             return n ? self(self, n - 1, a + b, a) : b;
