@@ -39,14 +39,15 @@ int main() {
 
 // 参数中的 s 是引用，在调用函数时不会发生拷贝
 char& char_number(std::string& s, std::size_t n) {
-  s += s; // 's' 与 main() 的 'str' 是同一对象，此处还说明左值也是可以放在等号右侧的
+  s += s;  // 's' 与 main() 的 'str'
+           // 是同一对象，此处还说明左值也是可以放在等号右侧的
   return s.at(n);  // string::at() 返回 char 的引用
 }
 
 int main() {
   std::string str = "Test";
-  char_number(str, 1) = 'a'; // 函数返回是左值，可被赋值
-  std::cout << str << '\n'; // 此处输出 "TastTest"
+  char_number(str, 1) = 'a';  // 函数返回是左值，可被赋值
+  std::cout << str << '\n';   // 此处输出 "TastTest"
 }
 ```
 
@@ -64,15 +65,15 @@ int main() {
   string s1 = "Test";
   // string&& r1 = s1; // 错误：不能绑定到左值，需要 std::move 或者 static_cast
 
-  const string& r2 = s1 + s1; // 可行：到常量的左值引用延长生存期
+  const string& r2 = s1 + s1;  // 可行：到常量的左值引用延长生存期
   // r2 += "Test"; // 错误：不能通过到常量的引用修改
   cout << r2 << '\n';
 
-  string&& r3 = s1 + s1; // 可行：右值引用延长生存期
+  string&& r3 = s1 + s1;  // 可行：右值引用延长生存期
   r3 += "Test";
   cout << r3 << '\n';
 
-  const string& r4 = r3; // 右值引用可以转换到 const 限定的左值
+  const string& r4 = r3;  // 右值引用可以转换到 const 限定的左值
   cout << r4 << '\n';
 
   string& r5 = r3;  // 右值引用可以转换到左值
