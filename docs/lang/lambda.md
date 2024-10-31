@@ -255,7 +255,7 @@ cout << fibonacci_fn{}(10);
     
     在 [Benchmark](https://quick-bench.com/q/6ZIWCCvBlq_Cakrae05c11vC0BI) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 7 倍。
     
-    以下是测试代码  
+    以下是测试代码
     
     ```cpp
     #include <algorithm>
@@ -266,52 +266,54 @@ cout << fibonacci_fn{}(10);
     using namespace std;
     
     const auto& nums = [] {
-        random_device rd;
-        mt19937 gen{rd()};
-        array<unsigned, 16> arr{};
-        
-        std::iota(arr.begin(), arr.end(), 0u);
-        ranges::shuffle(arr, gen);
-        
-        return arr;
+      random_device rd;
+      mt19937 gen{rd()};
+      array<unsigned, 16> arr{};
+    
+      std::iota(arr.begin(), arr.end(), 0u);
+      ranges::shuffle(arr, gen);
+    
+      return arr;
     }();
     
     static void std_function_fib(benchmark::State& state) {
-        std::function<int(int, int, int)> fib;
-        
-        fib = [&](int n, int a, int b) { return n ? fib(n - 1, a + b, a) : b; };
-        
-        auto n_fibonacci = [&](int n) { return fib(n, 0, 1); };
-        
-        unsigned i = 0;
-        
-        for (auto _ : state) {
-            auto res = n_fibonacci(nums[i]);
-            benchmark::DoNotOptimize(res);
-            
-            ++i;
-            
-            if (i == nums.size()) i = 0;
-        }
+      std::function<int(int, int, int)> fib;
+    
+      fib = [&](int n, int a, int b) { return n ? fib(n - 1, a + b, a) : b; };
+    
+      auto n_fibonacci = [&](int n) { return fib(n, 0, 1); };
+    
+      unsigned i = 0;
+    
+      for (auto _ : state) {
+        auto res = n_fibonacci(nums[i]);
+        benchmark::DoNotOptimize(res);
+    
+        ++i;
+    
+        if (i == nums.size()) i = 0;
+      }
     }
+    
     BENCHMARK(std_function_fib);
     
     static void template_lambda_fib(benchmark::State& state) {
-        auto n_fibonacci = [](const auto& self, int n, int a = 0, int b = 1) -> int {
-            return n ? self(self, n - 1, a + b, a) : b;
-        };
-        
-        unsigned i = 0;
-        
-        for (auto _ : state) {
-            auto res = n_fibonacci(n_fibonacci, nums[i]);
-            benchmark::DoNotOptimize(res);
-            
-            ++i;
-            
-            if (i == nums.size()) i = 0;
-        }
+      auto n_fibonacci = [](const auto& self, int n, int a = 0, int b = 1) -> int {
+        return n ? self(self, n - 1, a + b, a) : b;
+      };
+    
+      unsigned i = 0;
+    
+      for (auto _ : state) {
+        auto res = n_fibonacci(n_fibonacci, nums[i]);
+        benchmark::DoNotOptimize(res);
+    
+        ++i;
+    
+        if (i == nums.size()) i = 0;
+      }
     }
+    
     BENCHMARK(template_lambda_fib);
     ```
 
