@@ -26,7 +26,7 @@ int main() {
   const std::string& r2 = s;
 
   r1 += "ample";  // 修改 r1，即修改了 s
-  // r2 += "!";               // 错误：不能通过到 const 的引用修改
+  // r2 += "!"; // 错误：不能通过到 const 的引用修改
   std::cout << r2 << '\n';  // 打印 r2，访问了s，输出 "Example"
 }
 ```
@@ -39,15 +39,14 @@ int main() {
 
 // 参数中的 s 是引用，在调用函数时不会发生拷贝
 char& char_number(std::string& s, std::size_t n) {
-  s += s;          // 's' 与 main() 的 'str' 是同一对象
-                   // 此处还说明左值也是可以放在等号右侧的
+  s += s; // 's' 与 main() 的 'str' 是同一对象，此处还说明左值也是可以放在等号右侧的
   return s.at(n);  // string::at() 返回 char 的引用
 }
 
 int main() {
   std::string str = "Test";
-  char_number(str, 1) = 'a';  // 函数返回是左值，可被赋值
-  std::cout << str << '\n';   // 此处输出 "TastTest"
+  char_number(str, 1) = 'a'; // 函数返回是左值，可被赋值
+  std::cout << str << '\n'; // 此处输出 "TastTest"
 }
 ```
 
@@ -63,17 +62,17 @@ using namespace std;
 
 int main() {
   string s1 = "Test";
-  // string&& r1 = s1;  错误：不能绑定到左值，需要 std::move 或者 static_cast
+  // string&& r1 = s1; // 错误：不能绑定到左值，需要 std::move 或者 static_cast
 
-  const string& r2 = s1 + s1;  // 可行：到常值的左值引用延长生存期
-  // r2 += "Test";                    错误：不能通过到常值的引用修改
+  const string& r2 = s1 + s1; // 可行：到常量的左值引用延长生存期
+  // r2 += "Test"; // 错误：不能通过到常量的引用修改
   cout << r2 << '\n';
 
-  string&& r3 = s1 + s1;  // 可行：右值引用延长生存期
+  string&& r3 = s1 + s1; // 可行：右值引用延长生存期
   r3 += "Test";
   cout << r3 << '\n';
 
-  const string& r4 = r3;  // 右值引用可以转换到 const 限定的左值
+  const string& r4 = r3; // 右值引用可以转换到 const 限定的左值
   cout << r4 << '\n';
 
   string& r5 = r3;  // 右值引用可以转换到左值
@@ -135,9 +134,9 @@ int main() {
 
 但不是所有时候都需要这么做，比如 [函数返回值优化](./value-category.md#常见误区)。
 
-### 右值延长临时量生命期，消除可能的复制或移动。
+### 右值延长临时量生命期
 
-尽管在多数情况下，编译器能通过 [复制消除](./value-category.md#复制消除) 优化掉多余的拷贝/移动，但引用能强制编译器不进行这些多余操作，避免不确定性。
+从语义上，临时量可能会带来的额外的复制或移动，尽管多数情况下编译器能通过 [复制消除](./value-category.md#复制消除) 进行优化，但引用能强制编译器不进行这些多余操作，避免不确定性。
 
 ## 参考内容
 
