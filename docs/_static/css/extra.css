@@ -106,5 +106,5 @@ div.md-typeset__scrollwrap:has(table[data-review-enabled]) {
 }
 
 .md-typeset kbd {
-  margin:0px 5px;
+  margin:0px 4px;
 }
