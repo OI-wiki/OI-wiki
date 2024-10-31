@@ -314,6 +314,7 @@ nav:
       - 基本概念: math/algebra/basic.md
       - 群论: math/algebra/group-theory.md
       - 环论: math/algebra/ring-theory.md
+      - 域论: math/algebra/field-theory.md
       - Schreier–Sims 算法: math/schreier-sims.md
     - 概率论:
       - 基本概念: math/probability/basic-conception.md
