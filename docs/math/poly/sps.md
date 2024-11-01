@@ -199,7 +199,7 @@ $$
     $$
     \begin{aligned}
     \left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F^{\left(n\right)}(G)&=\frac{1}{n!}\left\lbrack x^n\right\rbrack F \\
-    \left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F^{\left(n-1\right)}(G)&=\frac{1}{\left(n-1\right)!}\left\lbrack x^n-1\right\rbrack F \\
+    \left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F^{\left(n-1\right)}(G)&=\frac{1}{\left(n-1\right)!}\left\lbrack x^{n-1}\right\rbrack F \\
     \vdots \\
     \left\lbrack x_1^0x_2^0\dots x_n^0\right\rbrack F(G)&=\frac{1}{0!}\left\lbrack x^0\right\rbrack F
     \end{aligned}
