@@ -1,4 +1,4 @@
-author: du33169, lingkerio
+author: du33169, lingkerio, Taoran-01
 
 ## 定义
 
@@ -112,6 +112,8 @@ author: du33169, lingkerio
     在 Floyd 的过程中枚举 $u$，计算这个和的最小值即可。
     
     时间复杂度为 $O(n^3)$。
+    
+    更多参见 [最小环](./min-cycle.md) 部分内容。
 
 ???+ question "已知一个有向图中任意两点之间是否有连边，要求判断任意两点是否连通。"
     该问题即是求 **图的传递闭包**。
@@ -461,6 +463,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
+          memset(vis, 0, (n + 1) * sizeof(int));
           dis[s] = 0;
           q.push({0, s});
           while (!q.empty()) {
