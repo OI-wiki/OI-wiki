@@ -506,7 +506,7 @@ $$
     对于群 $G$ 和它的子群 $P\le G$，如果 $P$ 本身是一个 $p$‑群，则称 $P$ 为 **$p$‑子群**（$p$-subgroup）。
 
 ???+ abstract "Sylow $p$‑子群 "
-    对于群 $G$ 和它的子群 $P\le G$，如果 $|G|=p^\alpha m$，$p\prep m$ 且 $|P|=p^\alpha$，则称 $P$ 为 **Sylow $p$‑子群**（Sylow $p$-subgroup）。
+    对于群 $G$ 和它的子群 $P\le G$，如果 $|G|=p^\alpha m$，$p\perp m$ 且 $|P|=p^\alpha$，则称 $P$ 为 **Sylow $p$‑子群**（Sylow $p$-subgroup）。
 
 也就是说，Sylow $p$‑子群是极大的 $p$‑子群。Sylow 定理断言了 Sylow $p$‑子群的存在性，这提供了 Lagrange 定理的一定程度的逆命题。
 
