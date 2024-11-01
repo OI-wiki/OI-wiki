@@ -81,6 +81,63 @@ int main() {
 }
 ```
 
+## 悬垂引用
+当引用指代的对象已经销毁，引用就会变成悬垂引用，访问悬垂引用这是一种未定义行为，可能会导致程序崩溃。
+
+以下为常见的悬垂引用的例子：
+
+-  引用局部变量
+    
+    ```cpp
+    #include <iostream>
+    
+    int& foo() {
+      int a = 1;
+      return a;
+    }
+    
+    int main() {
+      int& b = foo();
+      std::cout << b << std::endl; // 未定义行为
+    }
+    ```
+    
+-  解分配导致的悬垂引用
+    
+    ```cpp
+    #include <iostream>
+    
+    int main() {
+      int* ptr = new int(10);
+      int& ref = *ptr;
+      delete ptr;
+      
+      std::cout << ref << std::endl; // 未定义行为
+    }
+    ```
+
+-  内存重分配导致的悬垂引用
+    
+    ```cpp
+    #include <iostream>
+        
+    int main() {
+      std::string str = "hello";
+      
+      const char& ref = str.front();
+      
+      str.append("world"); // 可能会重新分配内存，导致 ref 指向的内存被释放
+      
+      std::cout << ref << std::endl; // 未定义行为
+    }
+    ```
+    
+    类似 `std::vector`，`std::unordered_map` 等容器的插入操作，均有可能导致内存重新分配。
+
+使用引用时，应时刻关注引用指向的对象的生命周期，避免造成悬垂引用。
+
+通常静态检查工具和良好的代码习惯能让我们避免悬垂引用的问题。
+
 ## 引用相关的优化技巧
 
 ### 消除非轻量对象入参的拷贝开销
