@@ -134,7 +134,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     陪集中的元素称为陪集的代表元（representative element）。
 
-子群本身也是其陪集。给定子群，全体陪集构成群的一个分划，即群是全体陪集的不交并。
+子群本身也是其陪集。给定子群，全体陪集构成群的一个分划，即群是全体陪集的不交并。分划总可以看作某个等价关系的等价类。对于左陪集的分划，这个等价关系就是 $g_1\sim g_2$ 当且仅当 $g_1^{-1}g_2\in H$；对于右陪集的分划，这个等价关系就是 $g_1\sim g_2$ 当且仅当 $g_1g_2^{-1}\in H$。
 
 ???+ example " 例子：正三角形的空间对称群 $D_6$（续）"
     按照陪集的语言，上面的例子中，$D_6$ 可以分别划分成 $\langle r\rangle\cup s\langle r\rangle$ 和 $\langle s\rangle\cup \langle s\rangle r \cup \langle s\rangle r^2$。这里，前者将群划分为若干左陪集，后者将群划分为若干右陪集。应该注意，代表元的选取并无特殊，比如可以验证 $s\langle r\rangle=sr\langle r\rangle$。陪集中的任何元素都是该陪集的代表元。
@@ -303,7 +303,13 @@ $$
 ??? note "证明"
     考察映射 $\varphi:G/H\rightarrow G/K$ 满足 $\varphi(gH)=gK$，则它是满的群同态，且 $\ker\varphi=\{gH:g\in K\}=K/H$。应用同态基本定理就可得证。
 
-这一结论可以推广到第四同构定理，或称对应定理（correspondence theorem），它进一步给出了群的子群格和商群的子群格之间的对应关系。
+这一结论可以推广到第四同构定理，或称 **对应定理**（correspondence theorem），它进一步给出了群的子群格和商群的子群格之间的对应关系。
+
+???+ note "对应定理"
+    设群 $G$ 有正规子群 $N\trianglelefteq G$，则全体包含 $N$ 的群 $G$ 的子群 $\mathcal H=\{H:N\subseteq H\subseteq G\}$ 和商群 $G/N$ 的全体子群 $\mathcal S=\{S:S\le G/N\}$ 之间存在双射 $\varphi:\mathcal H\rightarrow\mathcal S$，它将 $H\in\mathcal H$ 映射至 $H/N\in\mathcal S$。这个双射保持子群的包含关系，且 $G$ 的正规子群总是映射到 $G/N$ 的正规子群。
+
+??? info "关于同构定理的内容"
+    不同的教材中，群的同构定理的内容和名称可能有所差异。这里选取的是常见的一个版本。[维基百科](https://en.wikipedia.org/wiki/Isomorphism_theorems) 总结了常见教材中同构定理内容和名称的差异。
 
 ## 群作用
 
