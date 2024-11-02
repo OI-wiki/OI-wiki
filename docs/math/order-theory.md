@@ -273,7 +273,7 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#�
 
 另请参阅：[排序相关 STL -  算法基础](../basic/stl-sort.md)。
 
-C++ STL 中 [需要使用比较的算法和数据结构](https://en.cppreference.com/w/cpp/named_req/Compare#Standard_library) 中有序理论的应用。我们经常需要在 C++ 中自定义比较器，STL [要求](https://en.cppreference.com/w/cpp/named_req/Compare) 其必须为 **严格弱序**。令 $<$ 为自定义比较器，则可以定义：
+C++ STL 中 [需要使用比较的算法和数据结构](https://zh.cppreference.com/w/cpp/named_req/Compare#Standard_library) 中有序理论的应用。我们经常需要在 C++ 中自定义比较器，STL [要求](https://zh.cppreference.com/w/cpp/named_req/Compare) 其必须为 **严格弱序**。令 $<$ 为自定义比较器，则可以定义：
 
 -   $x>y$ 为 $y<x$；
 -   $x \leq y$ 为 $y \nless x$；

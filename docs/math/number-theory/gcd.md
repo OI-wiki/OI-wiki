@@ -118,7 +118,7 @@
 
 上述算法都可被称作欧几里得算法（Euclidean algorithm）。
 
-另外，对于 C++17，我们可以使用 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
+另外，对于 C++17，我们可以使用 [`<numeric>`](https://zh.cppreference.com/w/cpp/header/numeric) 头中的 [`std::gcd`](https://zh.cppreference.com/w/cpp/numeric/gcd) 与 [`std::lcm`](https://zh.cppreference.com/w/cpp/numeric/lcm) 来求最大公约数和最小公倍数。
 
 ???+ warning "注意"
     在部分编译器中，C++14 中可以用 `std::__gcd(a,b)` 函数来求最大公约数，但是其仅作为 `std::rotate` 的私有辅助函数。[^1]使用该函数可能会导致预期之外的问题，故一般情况下不推荐使用。
@@ -204,7 +204,7 @@
 
 ???+ note "关于 countr_zero"
     1.  gcc 有 [内建函数](../../bit/#内建函数) `__builtin_ctz`（32 位）或 `__builtin_ctzll`（64 位）可替换上述代码的 `countr_zero`；
-    2.  从 C++20 开始，头文件 `<bit>` 包含了 [`std::countr_zero`](https://en.cppreference.com/w/cpp/numeric/countr_zero)；
+    2.  从 C++20 开始，头文件 `<bit>` 包含了 [`std::countr_zero`](https://zh.cppreference.com/w/cpp/numeric/countr_zero)；
     3.  如果不使用不在标准库的函数，又无法使用 C++20 标准，下面的代码是一种在 Word-RAM with multiplication 模型下经过预处理后 $O(1)$ 的实现：
     
     ```cpp

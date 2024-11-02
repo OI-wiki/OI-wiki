@@ -58,7 +58,7 @@ cout << val;
 ???+ warning "注意"
     若原数据中并不存在主元素，则摩尔投票算法给出的结果可能是任意值。此时需要再次遍历一遍数组，统计 `val` 出现次数的最大值，判断是否超过 $\dfrac n 2$。
     
-    另外，为了保证空间复杂度为 $O(1)$，再次遍历数组时可以选择重置输入位置指示器，可利用 [`std::basic_istream<CharT,Traits>::seekg`](https://en.cppreference.com/w/cpp/io/basic_istream/seekg)（流式输入）或 [`rewind`](https://en.cppreference.com/w/c/io/rewind)、[`fseek`](https://en.cppreference.com/w/c/io/fseek)（C 风格输入）等库函数。
+    另外，为了保证空间复杂度为 $O(1)$，再次遍历数组时可以选择重置输入位置指示器，可利用 [`std::basic_istream<CharT,Traits>::seekg`](https://zh.cppreference.com/w/cpp/io/basic_istream/seekg)（流式输入）或 [`rewind`](https://zh.cppreference.com/w/c/io/rewind)、[`fseek`](https://zh.cppreference.com/w/c/io/fseek)（C 风格输入）等库函数。
 
 ## 习题
 

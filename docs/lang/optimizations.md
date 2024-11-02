@@ -6,7 +6,7 @@ OI 界的常用编程语言是 C++。既然使用了这门语言，就注定要�
 
 ### 什么是优化 (Optimization)
 
-根据 [如同规则](https://en.cppreference.com/w/cpp/language/as_if)（The as-if Rule），在保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进。
+根据 [如同规则](https://zh.cppreference.com/w/cpp/language/as_if)（The as-if Rule），在保持语义不变的情况下，对程序运行速度、程序可执行文件大小作出改进。
 
 <!-- ### 开优化的比赛有哪些？ -->
 
@@ -226,7 +226,7 @@ int hotpath_again;  // <-- 热！
 
 我们看到后一种布局中，两个热代码块被放到了一起，执行效率更优秀。
 
-为了告诉编译器分支是否容易被执行，可以使用 C++20 `[[likely]]` 和 `[[unlikely]]`:<https://en.cppreference.com/w/cpp/language/attributes/likely>
+为了告诉编译器分支是否容易被执行，可以使用 C++20 `[[likely]]` 和 `[[unlikely]]`:<https://zh.cppreference.com/w/cpp/language/attributes/likely>
 
 如果比赛没有采用 C++20 以上标准，则可以利用 `__builtin_expect`(GNU Extension)。
 
@@ -535,11 +535,11 @@ void test(int* __restrict a, int* __restrict b, int n) {
 
 现代编译器会直接忽略你的 `register` 关键字，你自己认为的寄存器分配一般没有编译器直接跑寄存器分配算法来的聪明。此关键字于 C++11 被弃用，于 C++17 被删除[^p0001r1]。
 
-<https://en.cppreference.com/w/cpp/keyword/register>
+<https://zh.cppreference.com/w/cpp/keyword/register>
 
 ## 未定义行为（Undefined Behavior）与编译优化
 
-编译器可以认为 C++ 程序不存在 [未定义行为](https://en.cppreference.com/w/cpp/language/ub)（undefined behavior，UB），因此在编译存在 UB 的程序时，编译器可能会产生意想不到的结果。同时，编译器也可以在假定不存在 UB 的情况下进行更加激进而自由的优化。
+编译器可以认为 C++ 程序不存在 [未定义行为](https://zh.cppreference.com/w/cpp/language/ub)（undefined behavior，UB），因此在编译存在 UB 的程序时，编译器可能会产生意想不到的结果。同时，编译器也可以在假定不存在 UB 的情况下进行更加激进而自由的优化。
 
 常见的 UB 有：
 
