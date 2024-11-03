@@ -255,7 +255,7 @@ cout << fibonacci_fn{}(10);
     
     在 [Benchmark](https://quick-bench.com/q/6ZIWCCvBlq_Cakrae05c11vC0BI) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 7 倍。
     
-    ??? note " 测试代码 "
+    ??? note "测试代码"
         ```cpp
         #include <algorithm>
         #include <functional>
