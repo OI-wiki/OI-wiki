@@ -22,7 +22,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     3.  存在逆元：对于所有 $a\in G$，都存在相应的 $b\in G$ 使得 $a\cdot b=b\cdot a=e$。这里，$b$ 称为 $a$ 的 **逆元**（inverse element）。
 
 ??? info "关于定义中的封闭性条件"
-    这里的二元运算就隐含了所谓的封闭性条件，即给定任何 $a,b\in G$，都有 $a\cdot b\in G$。有些文章会将其单独列出。
+    这里的二元运算就隐含了所谓的封闭性条件，即对于任何 $a,b\in G$，都有 $a\cdot b\in G$。有些文章会将其单独列出。
 
 ???+ note "群的基本性质"
     对于群 $(G,\cdot)$，以下性质总是成立：
@@ -30,16 +30,16 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     1. 对于任何有限长的列 $\{g_i\}_{i=1}^k\subseteq G$，乘积 $g_1\cdot g_2\cdot\cdots\cdot g_k$ 的运算结果与加括号的方式无关；
     2. 单位元 $e$ 总是唯一的；
     3. 对于任何元素 $a\in G$，它的逆 $a^{-1}$ 也是唯一的；
-    4. 消去律（cancellation law）：给定 $a,b,c\in G$，如果 $a\cdot c=b\cdot c$ 或 $c\cdot a=c\cdot b$，那么有 $a=b$。
+    4. 消去律（cancellation law）：对于 $a,b,c\in G$，如果 $a\cdot c=b\cdot c$ 或 $c\cdot a=c\cdot b$，那么有 $a=b$。
 
 群相当常见。通俗地说，所有不损失结构的变换都自动构成群。以常见的几种类型的群为例。
 
 ???+ example "群的例子"
-    -   **对称群**（symmetric group）：给定集合 $M$，则所有 $M$ 上的 [置换](../permutation.md)，即自 $M$ 到 $M$ 自身的双射，就在映射的复合下构成群 $S_M$。单位元是恒等变换，逆元是逆映射（双射必然存在逆映射）。如果集合 $M$ 有限，大小为 $n$，也常记作 $S_n$，称作 $n$ 次对称群。
-    -   空间对称群（symmetry group）：对于给定几何图形，能够使其与自身重合的变换全体也在映射的复合下构成群。这描述了该几何图形的空间对称性。具体例子可以参考 [常见空间对称群](../combinatorics/polya.md#常见空间对称群)。
+    -   **对称群**（symmetric group）：集合 $M$ 上的所有 [置换](../permutation.md)，即自 $M$ 到 $M$ 自身的双射，就在映射的复合下构成群 $S_M$。单位元是恒等变换，逆元是逆映射（双射必然存在逆映射）。如果集合 $M$ 有限，大小为 $n$，也常记作 $S_n$，称作 $n$ 次对称群。
+    -   空间对称群（symmetry group）：对于一个几何图形，能够使其与自身重合的变换全体也在映射的复合下构成群。这描述了该几何图形的空间对称性。具体例子可以参考 [常见空间对称群](../combinatorics/polya.md#常见空间对称群)。
     -   整数的加法群：整数集 $\mathbf Z$ 在加法 $+$ 运算下构成群 $(\mathbf Z,+)$。单位元是 $0$，逆元是相反数。
-    -   整数模 $n$ 乘法群（multiplicative group of integers modulo $n$）：给定模 $n$，所有与 $n$ 互质的整数对应的 [同余类](../number-theory/basic.md#同余类与剩余系)，在乘法运算下构成群 $((\mathbf Z/n\mathbf Z)^\times,\times)$。单位元是 $\bar 1$，逆元就是模 $n$ 的 [乘法逆元](../number-theory/inverse.md)（对应的同余类），其存在性由 [裴蜀定理](../number-theory/bezouts.md) 保证。
-    -   一般线性群（general linear group）：给定 $n$ 和数域 $F$，则 $n$ 维的全体可逆方阵在乘法运算下构成群 $GL_n(F)$。单位元是单位矩阵，逆元是逆矩阵。
+    -   整数模 $n$ 乘法群（multiplicative group of integers modulo $n$）：对于模 $n$，所有与 $n$ 互质的整数对应的 [同余类](../number-theory/basic.md#同余类与剩余系)，在乘法运算下构成群 $((\mathbf Z/n\mathbf Z)^\times,\times)$。单位元是 $\bar 1$，逆元就是模 $n$ 的 [乘法逆元](../number-theory/inverse.md)（对应的同余类），其存在性由 [裴蜀定理](../number-theory/bezouts.md) 保证。
+    -   一般线性群（general linear group）：数域 $F$ 上的 $n$ 维的全体可逆方阵在乘法运算下构成群 $GL_n(F)$。单位元是单位矩阵，逆元是逆矩阵。
 
 要更好地理解群的定义，不妨对比着看几个不属于群的例子。
 
@@ -96,7 +96,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     对于非零幺环 $(R,+,\cdot)$，如果对于所有非 $0$ 元素 $a\in R$，都存在乘法逆元（记作 $a^{-1}$），则称 $(R,+,\cdot)$ 是一个 **除环**（division ring）。
 
 ???+ abstract "交换环"
-    给定环 $(R,+,\cdot)$，如果乘法满足交换律，则称 $(R,+,\cdot)$ 是一个 **交换环**（commutative ring）。
+    对于环 $(R,+,\cdot)$，如果乘法满足交换律，则称 $(R,+,\cdot)$ 是一个 **交换环**（commutative ring）。
 
 这里除环的定义中有趣的一点是，它将 $0$ 视为乘法结构中的特殊元素。这是因为 $0 = 0\cdot a = a\cdot 0$[^zero-multiplication]。也就是说，环中加法单位元乘以任何元素都得到其自身。这样，它自然不会存在乘法逆元，除非它本身就是乘法单位元。这样的环只有零环（见下面的例子）。
 
@@ -125,7 +125,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     -   整数环：整数集 $\mathbf Z$ 和其上通常定义的加法 $+$ 和乘法 $\times$ 构成了环 $(\mathbf Z,+,\times)$。实际上，这是一个整环，但是它不是除环。
 
-    -   多项式环：给定环 $R$，可以在上面定义多项式环 $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
+    -   多项式环：对于环 $R$，可以在上面定义多项式环 $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
 
     -   四元数（quaternion）：类比复数，可以考虑集合 $\mathbf H=\{a+b\mathrm{i}+c\mathrm{j}+d\mathrm{k}:a,b,c,d\in\mathbf R\}$，并且定义其上的加法和乘法，这里，$\mathrm{i},\mathrm{j},\mathrm{k}$ 的乘法运算满足
 
@@ -141,7 +141,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     -   矩阵环：环 $R$ 上的全体 $n$ 维方阵在矩阵的加法和乘法下构成一个环 $M_n(R)$。一般地，这个环有零因子，且不是交换环。
 
-    -   给定集合 $A$，则它的全体子集 $\mathcal P(A)$ 在集合的对称差 $\triangle$ 和交 $\cap$ 分别作为其加法和乘法运算时构成环。一般地，这个环含幺，有零因子，且是交换环。
+    -   对于一个集合 $A$，它的全体子集 $\mathcal P(A)$ 在集合的对称差 $\triangle$ 和交 $\cap$ 分别作为其加法和乘法运算时构成环。一般地，这个环含幺，有零因子，且是交换环。
 
 当然，对于环的结构的讨论远不止这些，要了解更多内容，可以参考环论或相关书籍。
 
@@ -160,11 +160,11 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 常见的域的例子如下。
 
 ???+ example "域的例子"
-    -   数域：有理数集 $\mathbf Q$，实数集 $\mathbf R$ 和复数集 $\mathbf C$ 在通常意义的加法和乘法下都是域。
+    -   数域：有理数集 $\mathbf Q$，实数集 $\mathbf R$ 和复数集 $\mathbf C$ 在通常意义的加法和乘法下都构成域。
 
-    -   有限域（finite field）：以质数 $p$ 为模的整数同余类的集合 $\mathbf Z/p\mathbf Z$ 在同余类的加法和乘法意义下都是域。当然，除此之外还有其他的有限域，它们的结构由其大小唯一确定，且大小必然是质数幂的形式。
+    -   有限域（finite field）：以质数 $p$ 为模的整数同余类的集合 $\mathbf Z/p\mathbf Z$ 在同余类的加法和乘法下构成域。当然，除此之外还有其他的有限域，它们的结构由其大小唯一确定，且大小必然是质数幂的形式。
 
-    -   **分式域**（fraction field）：给定整环 $(R,+,\cdot)$，可以考虑形如 $ab^{-1}$ 的元素构成的集合 $Q$，如果定义它上面的运算为
+    -   **分式域**（fraction field）：设 $(R,+,\cdot)$ 为整环，可以考虑形如 $ab^{-1}$ 的元素构成的集合 $Q$。严格地说，在集合 $R\times(R\setminus\{0\})$ 上定义等价关系：$(a_1,b_1)\sim(a_2,b_2)$ 当且仅当 $a_1b_2=a_2b_1$。那么，集合 $Q$ 就是这一关系下的等价类构成的集合 $R\times(R\setminus\{0\})/\sim$，其中，$(a,b)$ 所在等价类就记作 $ab^{-1}$。如果定义它上面的运算为
 
         $$
         \begin{aligned}
@@ -208,7 +208,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     但是，这样的含参变换 $g(\cdot;w_i)$ 如果没有特殊的结构，一般的 $\mathbf R^2$ 到 $\mathbf R^2$ 的映射是不可能用有限维的数据描述的。这里就需要另一项观察，即如果在 $\mathbf R\cup\{-\infty\}$ 上，定义 $\max$ 作为加法、$+$ 作为乘法，那么 $\mathbf R\cup\{-\infty\}$ 构成一种类似环的结构，这里，$-\infty$ 是加法单位元，$0$ 是乘法单位元。但是它不是环，因为其中的元素并非都有加法逆元。这样的结构叫做半环[^semiring]，这里 $(\mathbf R\cup\{-\infty\},\max,+)$ 形成的半环叫做 **热带半环**（tropical semiring）。
 
-    基于热带半环 $(R,\oplus,\otimes)$，可以定义它上面的矩阵乘法。即给定 $m\times n$ 维矩阵 $A=(a_{ij})$ 和 $n\times p$ 维矩阵 $B=(b_{jk})$，可以定义其乘积 $AB$ 为 $(c_{ik})$，它的每项元素等于
+    基于热带半环 $(R,\oplus,\otimes)$，可以定义它上面的矩阵乘法。即对于 $m\times n$ 维矩阵 $A=(a_{ij})$ 和 $n\times p$ 维矩阵 $B=(b_{jk})$，可以定义其乘积 $AB$ 为 $(c_{ik})$，它的每项元素等于
 
     $$
     c_{ik} = \bigoplus_{j=1}^n(b_{ij}\otimes c_{jk}) = \max_{1\le j\le n}\;(b_{ij}+c_{jk}).
