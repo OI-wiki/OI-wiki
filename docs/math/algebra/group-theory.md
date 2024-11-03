@@ -38,7 +38,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 要理解给定群的结构，可以首先分析其子结构。群的子结构就是那些在同一运算下仍然成为一个群的该群的子集。由此，有如下定义。
 
 ???+ abstract "子群"
-    设 $(G,\cdot)$ 是群，且 $H\subseteq G$ 是它的一个子集，如果 $(H,\cdot)$ 也是一个群，则称子集 $H$ 是 $G$ 的一个 **子群**（subgroup），记作 $H\le G$。
+    对于群 $(G,\cdot)$ 和它的一个子集 $H\subseteq G$，如果 $(H,\cdot)$ 也是一个群，则称子集 $H$ 是 $G$ 的一个 **子群**（subgroup），记作 $H\le G$。
 
 ???+ example " 例子：正三角形的空间对称群 $D_6$（续）"
     在 $D_6$ 中，容易验证它的子群有 $\{e\}$，$\{e,s\}$，$\{e,sr\}$，$\{e,sr^2\}$，$\{e,r,r^2\}$ 和 $D_6$ 本身，共计六个。除群 $D_6$ 外，这些子群的结构都是更为简单，而且蕴含了关于原来群的部分信息。
