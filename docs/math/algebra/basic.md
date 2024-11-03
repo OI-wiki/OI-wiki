@@ -82,7 +82,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     2.  $(R,\cdot)$ 构成半群，即 $\cdot$ 满足结合律。
     3.  分配律（distributive property）：对于所有 $a,b,c\in R$，成立 $a\cdot(b+c)=a\cdot b+a\cdot c$ 和 $(a+b)\cdot c=a\cdot c+b\cdot c$。
 
-为表述方便，这两个二元运算 $+$ 和 $\cdot$ 常称作该环的加法和乘法，相应地，加法单位元称作 **零元**（zero），乘法单位元称作 **幺元**（identity）。应避免和具体的数集中的加法、乘法，以及自然数零和一产生混淆。
+为表述方便，这两个二元运算 $+$ 和 $\cdot$ 常称作该环的加法和乘法，相应地，加法单位元称作 **零元**（zero），乘法单位元（如果存在）称作 **幺元**（identity）。应避免和具体的数集中的加法、乘法，以及自然数零和一产生混淆。
 
 ??? info "关于定义中是否要求乘法单位元"
     在有的定义中，环必须存在乘法单位元；相对地，不存在乘法单位元的则被称为 **伪环**（rng 或 pseudo-ring）。遇到的时候需根据上下文加以判断。维基百科采用的就是这种定义[^ring-wiki]。
@@ -90,7 +90,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 环的加法结构相当简单，但是乘法结构十分原始。因而如果类比群，在乘法上做更多要求，可以得到如下相关定义。
 
 ???+ abstract "幺环"
-    对于环 $(R,+,\cdot)$，如果存在乘法单位元，记作 $1$，则称 $(R,+,\cdot)$ 是一个 **幺环**（ring with identity）。
+    对于环 $(R,+,\cdot)$，如果它含幺，即存在乘法单位元，记作 $1$，则称 $(R,+,\cdot)$ 是一个 **幺环**（ring with identity）。
 
 ???+ abstract "除环"
     对于非零幺环 $(R,+,\cdot)$，如果对于所有非 $0$ 元素 $a\in R$，都存在乘法逆元（记作 $a^{-1}$），则称 $(R,+,\cdot)$ 是一个 **除环**（division ring）。
@@ -125,7 +125,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     -   整数环：整数集 $\mathbf Z$ 和其上通常定义的加法 $+$ 和乘法 $\times$ 构成了环 $(\mathbf Z,+,\times)$。实际上，这是一个整环，但是它不是除环。
 
-    -   多项式环：对于环 $R$，可以在上面定义多项式环 $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
+    -   多项式环：对于一个环 $R$，可以在上面定义多项式环 $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
 
     -   四元数（quaternion）：类比复数，可以考虑集合 $\mathbf H=\{a+b\mathrm{i}+c\mathrm{j}+d\mathrm{k}:a,b,c,d\in\mathbf R\}$，并且定义其上的加法和乘法，这里，$\mathrm{i},\mathrm{j},\mathrm{k}$ 的乘法运算满足
 
@@ -141,7 +141,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     -   矩阵环：环 $R$ 上的全体 $n$ 维方阵在矩阵的加法和乘法下构成一个环 $M_n(R)$。一般地，这个环有零因子，且不是交换环。
 
-    -   对于一个集合 $A$，它的全体子集 $\mathcal P(A)$ 在集合的对称差 $\triangle$ 和交 $\cap$ 分别作为其加法和乘法运算时构成环。一般地，这个环含幺，有零因子，且是交换环。
+    -   对于一个集合 $A$ 的全体子集 $\mathcal P(A)$，如果定义集合的对称差 $\triangle$ 和交 $\cap$ 分别为其加法和乘法运算，则 $(\mathcal P(A),\triangle,\cap)$ 构成环。一般地，这个环含幺，有零因子，且是交换环。
 
 当然，对于环的结构的讨论远不止这些，要了解更多内容，可以参考环论或相关书籍。
 
