@@ -83,7 +83,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 可以证明，循环群的结构由其大小唯一确定。如果循环群无限，则它必然和整数的加法群 $(\mathbf Z,+)$ 具有相同的群结构，记作 $C_\infty$ 或 $\mathbf Z$；否则，记群的元素个数为 $n\in\mathbf N_+$，则它必然和整数模 $n$ 的同余类的加法群 $(\mathbf Z/n\mathbf Z,+)$ 具有相同的群结构，记作 $C_n$ 或 $\mathbf Z_n$。这一结论的严格叙述需要用到下文的 [群同构](#群同构) 的概念，它严格描述了两个群结构相同这一事实。
 
 ???+ note "循环群分类定理"
-    有限循环群 $G$ 同构于 $C_n$，这里，$n=|G|$；无限循环群 $G$ 同构于 $C_\infty$。
+    大小为 $n$ 的有限循环群 $G$ 同构于 $C_n$；无限循环群 $G$ 同构于 $C_\infty$。
 
 ??? note "证明"
     给定循环群 $G=\langle x\rangle$，它总可以写作 $G=\{x^n:n\in\mathbf Z\}$。如果群 $G$ 有限，那么必然存在自然数 $n<m$ 满足 $x^n=x^m$，依消去律，可以得到 $x^{m-n}=e$。此时，不妨取最小的正整数 $n\in\mathbf N_+$ 使得 $x^n=e$，那么列 $\{x^k\}$ 将会是长度为 $n$ 的循环，且循环节内元素各不相同（否则违反 $n$ 的最小性）。此时，映射 $x^k\mapsto\bar k$ 就提供了同构映射 $G\rightarrow\mathbf Z/n\mathbf Z$，亦即 $G\cong C_n$。反之，如果群 $G$ 无限，那么群 $G$ 内元素各不相同，映射 $x^k\mapsto k$ 就提供了同构映射 $G\rightarrow\mathbf Z$，亦即 $G\cong C_\infty$。
@@ -196,16 +196,16 @@ $$
 对于两个群，要比较它们的结构，就是要构造两个群之间的映射。但是，这样的映射并不能是任意的，它们要保持群的结构，也就是要保持群的运算在映射前后一致。这样的映射称为群的同态。
 
 ???+ abstract "群同态"
-    设映射 $\varphi:G\rightarrow H$ 是自群 $(G,\cdot_G)$ 到群 $(H,\cdot_H)$ 的映射，如果 $\varphi$ 保持群的运算，即对所有 $g_1,g_2\in G$ 都成立 $\varphi(g_1\cdot_G g_2)=\varphi(g_1)\cdot_H\varphi(g_2)$，则称映射 $\varphi$ 是一个自群 $G$ 到群 $H$ 的 **同态**（homomorphism）。
+    设映射 $\varphi:G\rightarrow H$ 是自群 $(G,\cdot)$ 到群 $(H,*)$ 的映射，如果 $\varphi$ 保持群的运算，即对所有 $g_1,g_2\in G$ 都成立 $\varphi(g_1\cdot g_2)=\varphi(g_1)*\varphi(g_2)$，则称映射 $\varphi$ 是一个自群 $G$ 到群 $H$ 的 **同态**（homomorphism）。
 
-群同态必然将幺元映射到幺元，也必然将逆元映射到逆元。
+群同态必然将单位元映射到单位元，也必然将逆元映射到逆元。
 
 ???+ info "记号"
     在下文中，如果不引起歧义，不会区分群 $G$ 和 $H$ 中的运算的记号，并且为表述简便，将省略这些记号。
 
 ### 群同构
 
-对于自群 $G$ 到群 $H$ 的同态 $\varphi:G\rightarrow H$，一个自然的问题是，这一同态在多大程度上反映了群 $G$ 和群 $H$ 的结构是一致的。为此，考察群 $G$ 在同态 $\varphi$ 下的像 $\varphi(G)$，它将群 $G$ 的结构映射到群 $H$ 中。一方面，$\varphi(G)$ 是群 $H$ 的一个子群；但若同态 $\varphi$ 不是满的，$\varphi(G)$ 与群 $H$ 并不相同。另一方面，同态 $\varphi$ 也未必是单的；如果 $\varphi$ 不是单的，那么 $\varphi(G)$ 只反映了群 $G$ 的部分结构。只有当同态 $\varphi$ 既单又满时，群 $G$ 和群 $H$ 的结构才是完全一致的。这种特殊的群同态叫做群同构。
+对于自群 $G$ 到群 $H$ 的同态 $\varphi:G\rightarrow H$，一个自然的问题是，这一同态在多大程度上反映了群 $G$ 和群 $H$ 的结构是一致的。为此，考察群 $G$ 在同态 $\varphi$ 下的像 $\varphi(G)$，它将群 $G$ 的结构映射到群 $H$ 中。一方面，$\varphi(G)$ 是群 $H$ 的一个子群；但若同态 $\varphi$ 不是满射，$\varphi(G)$ 与群 $H$ 并不相同。另一方面，同态 $\varphi$ 也未必是单射；如果 $\varphi$ 不是单射，那么 $\varphi(G)$ 只反映了群 $G$ 的部分结构。只有当同态 $\varphi$ 是双射时，群 $G$ 和群 $H$ 的结构才是完全一致的。这种特殊的群同态叫做群同构。
 
 ???+ abstract "群同构"
     设 $\varphi:G\rightarrow H$ 是自群 $G$ 到群 $H$ 的同态，如果 $\varphi$ 是双射，则称 $\varphi$ 是群 $G$ 和群 $H$ 之间的 **同构**（isomorphism），记作 $G\cong H$。
@@ -228,7 +228,7 @@ $$
     \varphi(e)=\varphi(r)=\varphi(r^2)=e,\ \varphi(s)=\varphi(sr)=\varphi(sr^2)=x.
     $$
 
-    容易验证，$\varphi$ 是群同态；它是满的，但不是单的。它的意义很明显，就是在群的每一个对称操作映射到其翻转的有无。这样的同态压缩的群 $D_6$ 中的信息，就是有关它旋转角度的信息。比如说，如果没有翻转，任何角度的旋转都映射到了群 $C_2$ 中的单位元。
+    容易验证，$\varphi$ 是群同态；它是满射，但不是单射。它的意义很明显，就是在群的每一个对称操作映射到其翻转的有无。这样的同态压缩的群 $D_6$ 中的信息，就是有关它旋转角度的信息。比如说，如果没有翻转，任何角度的旋转都映射到了群 $C_2$ 中的单位元。
 
 这个例子启发使用 $\{e\}$ 的原像衡量同态中损失的结构信息。为此，有如下定义。
 
@@ -243,10 +243,10 @@ $$
     设 $\varphi:G\rightarrow H$ 是自群 $G$ 到群 $H$ 的同态，则 $\ker\varphi\trianglelefteq G$，且 $G/\ker\varphi\cong\varphi(G)\le H$。
 
 ??? note "证明"
-    首先，$N=\ker\varphi$ 是正规子群，因为对于任意 $h\in N$ 都有 $\varphi(ghg^{-1})=\varphi(g)\varphi(h)\varphi(g)^{-1}=\varphi(g)\varphi(g)^{-1}=e$，亦即 $ghg^{-1}\in\ker\varphi$。然后，考察映射 $\Phi:G/N\rightarrow\varphi(G)$，它满足 $\Phi(gN)=\varphi(g)$。映射是良定义的，因为如果 $g_1N=g_2N$，那么 $g_1^{-1}g_2\in N$，则 $\varphi(g_1^{-1}g_2)=e$，即 $\varphi(g_1)=\varphi(g_2)$。映射 $\Phi$ 显然是满的；它也是单的，因为 $\ker\Phi=\{gN:\varphi(g)=e\}=\{N\}$。故而，$\Phi$ 是群同构。最后，$\varphi(g_1)\varphi(g_2)^{-1}=\varphi(g_1g_2^{-1})\in\varphi(G)$，根据子群判别法，$\varphi(G)$ 必然是子群。
+    首先，$N=\ker\varphi$ 是正规子群，因为对于任意 $h\in N$ 都有 $\varphi(ghg^{-1})=\varphi(g)\varphi(h)\varphi(g)^{-1}=\varphi(g)\varphi(g)^{-1}=e$，亦即 $ghg^{-1}\in\ker\varphi$。然后，考察映射 $\Phi:G/N\rightarrow\varphi(G)$，它满足 $\Phi(gN)=\varphi(g)$。映射是良定义的，因为如果 $g_1N=g_2N$，那么 $g_1^{-1}g_2\in N$，则 $\varphi(g_1^{-1}g_2)=e$，即 $\varphi(g_1)=\varphi(g_2)$。映射 $\Phi$ 显然是满射；它也是单射，因为 $\ker\Phi=\{gN:\varphi(g)=e\}=\{N\}$。故而，$\Phi$ 是群同构。最后，$\varphi(g_1)\varphi(g_2)^{-1}=\varphi(g_1g_2^{-1})\in\varphi(G)$，根据子群判别法，$\varphi(G)$ 必然是子群。
 
 ???+ note "推论"
-    同态 $\varphi:G\rightarrow H$ 是单的，当且仅当 $\ker\varphi=\{e\}$。此时，$G$ 同构于 $H$ 的一个子群，即 $G\cong\varphi(G)\le H$。
+    同态 $\varphi:G\rightarrow H$ 是单射，当且仅当 $\ker\varphi=\{e\}$。此时，$G$ 同构于 $H$ 的一个子群，即 $G\cong\varphi(G)\le H$。
 
 也就是说，同态 $\varphi$ 的核是群 $G$ 的正规子群，而模 $\ker\varphi$ 得到的商群 $G/\ker\varphi$ 同构于同态的像 $\varphi(G)$，而这一同态的像正是群 $H$ 的子群。
 
@@ -293,7 +293,7 @@ $$
 ??? note "证明"
     因为 $A\le N_G(B)$，必然有 $aBa^{-1}=B$ 对于所有 $a\in A$ 都成立，此即 $aB=Ba$。因此，必然有 $AB=BA$，则由上述定理知 $AB$ 是子群。子群 $B$ 作为 $AB$ 的子群，左右陪集相同，因而 $B\trianglelefteq AB$。
     
-    考察映射 $\varphi:A\rightarrow AB/B$ 满足 $\varphi(a)=aB$，则它是满的，且它的核 $\ker\varphi=\{a\in A:aB=B\}=A\cap B$。应用同态基本定理就可得证。
+    考察映射 $\varphi:A\rightarrow AB/B$ 满足 $\varphi(a)=aB$，则它是满射，且它的核 $\ker\varphi=\{a\in A:aB=B\}=A\cap B$。应用同态基本定理就可得证。
 
 **第三同构定理**（third isomorphism theorem）则给出了商群的正规子群和商群与原来群的正规子群和商群之间的对应关系。它解释了将商群进一步分解这一想法的合理性。
 
@@ -309,7 +309,7 @@ $$
     设群 $G$ 有正规子群 $N\trianglelefteq G$，则全体包含 $N$ 的群 $G$ 的子群 $\mathcal H=\{H:N\subseteq H\subseteq G\}$ 和商群 $G/N$ 的全体子群 $\mathcal S=\{S:S\le G/N\}$ 之间存在双射 $\varphi:\mathcal H\rightarrow\mathcal S$，它将 $H\in\mathcal H$ 映射至 $H/N\in\mathcal S$。这个双射保持子群的包含关系，且 $G$ 的正规子群总是映射到 $G/N$ 的正规子群。
 
 ??? info "关于同构定理的内容"
-    不同的教材中，群的同构定理的内容和名称可能有所差异。这里选取的是常见的一个版本。[维基百科](https://en.wikipedia.org/wiki/Isomorphism_theorems) 总结了常见教材中同构定理内容和名称的差异。
+    不同的教材中，群的同构定理的内容和名称可能有所差异。这里选取的是常见的一个版本。[维基百科](https://en.wikipedia.org/wiki/Isomorphism_theorems#Note_on_numbers_and_names) 总结了常见教材中同构定理内容和名称的差异。
 
 ## 群作用
 
@@ -327,22 +327,22 @@ $$
 
 $$
 \begin{aligned}
-\varphi:G\rightarrow S_X&\\
-g\mapsto \varphi_g&: X\rightarrow X\\
-&\quad x\mapsto g\cdot x.
+\varphi:\textcolor{red}{G}\rightarrow \textcolor{blue}{S_X}&\\
+\textcolor{red}{g}\mapsto \textcolor{blue}{\varphi_g}&: \textcolor{green}{X}\rightarrow\textcolor{yellow}{X}\\
+&\quad \textcolor{green}{x}\mapsto \textcolor{yellow}{g\cdot x}.
 \end{aligned}
 $$
 
 这一映射，将每个群 $G$ 中的元素 $g$ 都对应到集合 $X$ 上的一个置换 $\varphi_g$，且置换 $\varphi_g$ 将元素 $x$ 映射到 $g\cdot x$。
 
-根据定义，群中的幺元 $e$ 对应的双射 $\varphi_e$ 是 $X$ 上的恒等映射，而群中元素 $g$ 对应的映射 $\varphi_g$ 和其逆元 $g^{-1}$ 对应的映射 $\varphi_{g^{-1}}$ 互为逆映射（这也说明为什么 $\varphi_g$ 总是双射）。可以验证，$\varphi_{g_1g_2}=\varphi_{g_1}\varphi_{g_2}$，即 $\varphi$ 是群 $G$ 到群 $S_X$ 的群同态。
+根据定义，群中的单位元 $e$ 对应的双射 $\varphi_e$ 是 $X$ 上的恒等映射，而群中元素 $g$ 对应的映射 $\varphi_g$ 和其逆元 $g^{-1}$ 对应的映射 $\varphi_{g^{-1}}$ 互为逆映射（这也说明为什么 $\varphi_g$ 总是双射）。可以验证，$\varphi_{g_1g_2}=\varphi_{g_1}\varphi_{g_2}$，即 $\varphi$ 是群 $G$ 到群 $S_X$ 的群同态。
 
 这一群同态 $\varphi$ 称为该群作用的 **置换表示**（permutation representation），它将群 $G$ 映射到了某个置换群上。
 
 ???+ abstract "置换群"
     如果群 $G$ 是某个对称群的子群，则称群 $G$ 是一个 **置换群**（permutation group）。
 
-该群同态的核也称为该群作用的核。如果这一群同态的核是平凡的，即这个同态是单的，则称该群作用是 **忠实的**（faithful），即该作用的置换表示忠实地反映了群结构的信息。此时，群 $G$ 与置换表示得到的的置换群同构。
+该群同态的核也称为该群作用的核。如果这一群同态的核是平凡的，即这个同态是单射，则称该群作用是 **忠实的**（faithful），即该作用的置换表示忠实地反映了群结构的信息。此时，群 $G$ 与置换表示得到的的置换群同构。
 
 ???+ info "记号"
     下文中，为表述方便，将省略群作用中的 $\cdot$ 记号。
@@ -506,7 +506,7 @@ $$
 进一步地，对有限群的共轭作用进行分析，可以得到 Sylow 定理。它是处理有限群的结构的有力工具，可以迅速地得到大量小阶群的结构。
 
 ???+ abstract "$p$‑群 "
-    对于群 $G$，如果 $|G|=p^\alpha$，这里，$\alpha$ 是正整数，则称它为 **$p$‑群**（$p$-group）。
+    对于群 $G$，如果存在素数 $p$ 和正整数 $\alpha$ 使得 $|G|=p^\alpha$，则称它为 **$p$‑群**（$p$-group）。
 
 ???+ abstract "$p$‑子群 "
     对于群 $G$ 和它的子群 $P\le G$，如果 $P$ 本身是一个 $p$‑群，则称 $P$ 为 **$p$‑子群**（$p$-subgroup）。
@@ -517,10 +517,10 @@ $$
 也就是说，Sylow $p$‑子群是极大的 $p$‑子群。Sylow 定理断言了 Sylow $p$‑子群的存在性，这提供了 Lagrange 定理的一定程度的逆命题。
 
 ???+ note "Sylow 定理"
-    设有限群 $G$ 的阶 $|G|=p^\alpha m$，这里，$p$ 是质数且 $p$ 不能整除 $m$，那么有如下结论：
+    设有限群 $G$ 的阶 $|G|$ 能表达成 $p^\alpha m$ 的形式，其中，$p$ 是质数且 $p$ 不能整除 $m$，那么有如下结论：
     
     1.  存在 Sylow $p$‑子群；
-    2.  给定 Sylow $p$‑子群 $P$ 和群 $G$ 的 $p$‑子群 $Q$，那么存在 $g\in G$ 使得 $Q\le gPg^{-1}$ 成立，特别地，所有 Sylow $p$‑子群都共轭；
+    2.  对于一个 Sylow $p$‑子群 $P$ 和一个群 $G$ 的 $p$‑子群 $Q$，存在 $g\in G$ 使得 $Q\le gPg^{-1}$ 成立，特别地，所有 Sylow $p$‑子群都共轭；
     3.  群 $G$ 中的 Sylow $p$‑子群的数目 $n_p$ 满足 $n_p\equiv 1\pmod p$，$n_p\mid m$ 且 $n_p=[G:N_G(P)]$，其中 $P$ 是任意的 Sylow $p$‑子群。
 
 ??? note "证明"
