@@ -326,7 +326,7 @@ $$
     $$
 
     从而可以归纳得知二次整数必然有上述形式。
-    
+
 可以证明，对于这样的 $\omega$，集合 $\mathbf Z[\omega]=\{a+b\omega:a,b\in\mathbf Z\}$ 构成环。这称为 **二次整数环**（quadratic integer ring），它的分式域就是二次域 $\mathbf Q(\sqrt D)$。
 
 容易验证，所有二次整数环 $\mathbf Z[\omega]$ 都是整环。其中，当 $D=-1$ 时，$\mathbf Z[\rm{i}]$ 也称 Gauss 整环；当 $D=-3$ 时，$\mathbf Z[\omega]$ 则称为 Eisenstein 整环。
