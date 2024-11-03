@@ -196,7 +196,7 @@ $$
 对于两个群，要比较它们的结构，就是要构造两个群之间的映射。但是，这样的映射并不能是任意的，它们要保持群的结构，也就是要保持群的运算在映射前后一致。这样的映射称为群的同态。
 
 ???+ abstract "群同态"
-    设映射 $\varphi:G\rightarrow H$ 是自群 $(G,\cdot)$ 到群 $(H,*)$ 的映射，如果 $\varphi$ 保持群的运算，即对所有 $g_1,g_2\in G$ 都成立 $\varphi(g_1\cdot g_2)=\varphi(g_1)*\varphi(g_2)$，则称映射 $\varphi$ 是一个自群 $G$ 到群 $H$ 的 **同态**（homomorphism）。
+    设映射 $\varphi:G\rightarrow H$ 是自群 $(G,\cdot)$ 到群 $(H,\odot)$ 的映射，如果 $\varphi$ 保持群的运算，即对所有 $g_1,g_2\in G$ 都成立 $\varphi(g_1\cdot g_2)=\varphi(g_1)\odot\varphi(g_2)$，则称映射 $\varphi$ 是一个自群 $G$ 到群 $H$ 的 **同态**（homomorphism）。
 
 群同态必然将单位元映射到单位元，也必然将逆元映射到逆元。
 
@@ -508,8 +508,16 @@ $$
 ???+ abstract "$p$‑群 "
     对于群 $G$，如果存在素数 $p$ 和正整数 $\alpha$ 使得 $|G|=p^\alpha$，则称它为 **$p$‑群**（$p$-group）。
 
+??? info " 关于 $p$‑群的定义 "
+    $p$‑群还有另外一种等价定义，即所有元素的阶都是素数的幂的群。这两种定义是等价的。关于 $p$‑群的定义，不同的文献可能对于是否将 $\{e\}$ 算作 $p$‑群存在分歧，读者在阅读时应当加以分辨。
+
 ???+ abstract "$p$‑子群 "
     对于群 $G$ 和它的子群 $P\le G$，如果 $P$ 本身是一个 $p$‑群，则称 $P$ 为 **$p$‑子群**（$p$-subgroup）。
+
+???+ note "Cauchy 定理"
+    如果素数 $p$ 能够整除群 $G$ 的阶，则必然存在 $p$ 阶元。
+
+Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的分析，能够得到更强的结论，即 Sylow $p$‑子群的存在性。
 
 ???+ abstract "Sylow $p$‑子群 "
     对于群 $G$ 和它的子群 $P\le G$，如果 $|G|=p^\alpha m$，$p\perp m$ 且 $|P|=p^\alpha$，则称 $P$ 为 **Sylow $p$‑子群**（Sylow $p$-subgroup）。
