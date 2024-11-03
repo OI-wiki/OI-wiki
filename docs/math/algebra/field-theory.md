@@ -326,7 +326,7 @@ $$
     5.  域 $F$ 没有非平凡的有限扩张；
     6.  域 $F$ 是某个域的代数闭包。
 
-最后，[代数基本定理](../poly/fundamental.md)[^fundamental-algebra] 说明，$\mathbf C$ 是代数闭域。实数域 $\mathbf R$ 上的不可约多项式至多是二次的，或者等价地，它上面的代数扩张至多是二次扩张，就是因为通过代数扩张能够得到的最大的域就是 $\mathbf C$。
+最后，[代数基本定理](../poly/fundamental.md) [^fundamental-algebra]说明，$\mathbf C$ 是代数闭域。实数域 $\mathbf R$ 上的不可约多项式至多是二次的，或者等价地，它上面的代数扩张至多是二次扩张，就是因为通过代数扩张能够得到的最大的域就是 $\mathbf C$。
 
 ## 有限域
 
