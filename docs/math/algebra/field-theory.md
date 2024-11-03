@@ -326,7 +326,7 @@ $$
     5.  域 $F$ 没有非平凡的有限扩张；
     6.  域 $F$ 是某个域的代数闭包。
 
-最后，$\mathbf C$ 是代数闭域，这就是 [代数基本定理](../poly/fundamental.md)。实数域 $\mathbf R$ 上的不可约多项式至多是二次的，或者等价地，它上面的代数扩张至多是二次扩张，就是因为通过代数扩张能够得到的最大的域就是 $\mathbf C$。
+最后，[代数基本定理](../poly/fundamental.md)[^fundamental-algebra] 说明，$\mathbf C$ 是代数闭域。实数域 $\mathbf R$ 上的不可约多项式至多是二次的，或者等价地，它上面的代数扩张至多是二次扩张，就是因为通过代数扩张能够得到的最大的域就是 $\mathbf C$。
 
 ## 有限域
 
@@ -341,3 +341,5 @@ $$
 [^initial-object-ring]: 熟悉范畴论语言的读者知道，这是在说 $\mathbf Z$ 是幺环范畴的 [始对象](https://en.wikipedia.org/wiki/Initial_and_terminal_objects)。
 
 [^polynomial-universal]: 严格地说，这里指的是多项式环 $R[x]$ 的 [万有性质](https://en.wikipedia.org/wiki/Polynomial_ring#Polynomial_evaluation)（universal property）。
+
+[^fundamental-algebra]: 虽然名字是代数基本定理，这个结论并不是纯代数的，这是因为实数域的构造需要通过拓扑结构进行。
