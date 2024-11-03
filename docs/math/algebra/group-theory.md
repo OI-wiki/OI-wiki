@@ -327,9 +327,9 @@ $$
 
 $$
 \begin{aligned}
-\varphi:G\rightarrow S_X&\\
-g\mapsto \varphi_g&: X\rightarrow X\\
-&\quad x\mapsto g\cdot x.
+\varphi:{\color{blue}{G}}\rightarrow {\color{purple}{S_X}}&\\
+{\color{blue}{g}}\mapsto {\color{purple}{\varphi_g}}&: {\color{olive}{X}}\rightarrow{\color{teal}{X}}\\
+&\quad {\color{olive}{x}}\mapsto {\color{teal}{g\cdot x}}.
 \end{aligned}
 $$
 
