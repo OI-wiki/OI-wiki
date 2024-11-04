@@ -328,8 +328,8 @@ $$
 $$
 \begin{aligned}
 \varphi:{\color{Maroon}{G}}\rightarrow {\color{Orchid}{S_X}}&\\
-{\color{Maroon}{g}}\mapsto {\color{Orchid}{\varphi_g}}&: {\color{Turquoise}{X}}\rightarrow{\color{YellowGreen}{X}}\\
-&\quad {\color{Turquoise}{x}}\mapsto {\color{YellowGreen}{g\cdot x}}.
+{\color{Maroon}{g}}\mapsto {\color{Orchid}{\varphi_g}}&: {\color{TealBlue}{X}}\rightarrow{\color{YellowGreen}{X}}\\
+&\quad {\color{TealBlue}{x}}\mapsto {\color{YellowGreen}{g\cdot x}}.
 \end{aligned}
 $$
 
