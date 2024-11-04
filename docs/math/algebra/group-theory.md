@@ -327,9 +327,9 @@ $$
 
 $$
 \begin{aligned}
-\varphi:{\color{#5a00b3}{G}}\rightarrow {\color{#b30000}{S_X}}&\\
-{\color{#5a00b3}{g}}\mapsto {\color{#b30000}{\varphi_g}}&: {\color{#00b3b3}{X}}\rightarrow{\color{#5ab300}{X}}\\
-&\quad {\color{#00b3b3}{x}}\mapsto {\color{#5ab300}{g\cdot x}}.
+\varphi:{\color{5a00b3}{G}}\rightarrow {\color{b30000}{S_X}}&\\
+{\color{5a00b3}{g}}\mapsto {\color{b30000}{\varphi_g}}&: {\color{00b3b3}{X}}\rightarrow{\color{5ab300}{X}}\\
+&\quad {\color{00b3b3}{x}}\mapsto {\color{5ab300}{g\cdot x}}.
 \end{aligned}
 $$
 
