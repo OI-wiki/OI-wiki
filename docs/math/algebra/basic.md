@@ -118,6 +118,11 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 ???+ abstract "整环"
     对于非零环 $(R,+,\cdot)$，如果它是交换环，有乘法单位元，且无零因子，则称它为整环（integral domain）。
 
+虽然整环中的元素不一定存在逆元，但是没有零因子这一特性已经足够在整环上建立消去律。
+
+???+ note "整环的消去律"
+    设整环 $R$ 有元素 $a,b,c\in R$ 且 $a\neq 0$，如果 $ab=ac$，则必然有 $b=c$。 
+
 最简单的一些环的例子如下。
 
 ???+ example "环的例子"
