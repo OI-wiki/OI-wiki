@@ -326,10 +326,14 @@ $$
 对于满足上述定义的群作用，自然有如下构造
 
 $$
+\definecolor{ca}{RGB}{90,0,179}
+\definecolor{cb}{RGB}{179,0,0}
+\definecolor{cc}{RGB}{0,179,179}
+\definecolor{cd}{RGB}{90,179,0}
 \begin{aligned}
-\varphi:{\color{#5a00b3}{G}}\rightarrow {\color{#b30000}{S_X}}&\\
-{\color{#5a00b3}{g}}\mapsto {\color{#b30000}{\varphi_g}}&: {\color{#00b3b3}{X}}\rightarrow{\color{#5ab300}{X}}\\
-&\quad {\color{#00b3b3}{x}}\mapsto {\color{#5ab300}{g\cdot x}}.
+\varphi:{\color{ca}{G}}\rightarrow {\color{cb}{S_X}}&\\
+{\color{ca}{g}}\mapsto {\color{cb}{\varphi_g}}&: {\color{cc}{X}}\rightarrow{\color{cd}{X}}\\
+&\quad {\color{cc}{x}}\mapsto {\color{cd}{g\cdot x}}.
 \end{aligned}
 $$
 
