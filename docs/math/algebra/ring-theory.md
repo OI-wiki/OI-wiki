@@ -450,7 +450,9 @@ $$
     \sum_{k=0}^{n}a_kx^k = a_0+a_1x+\cdots+a_{n-1}x^{n-1}+a_nx^n,
     $$
 
-    其中，$n\in\mathbf N$，且对于每个 $k$，都有 $a_k\in R$。这些 $a_k$ 称为多项式的 **系数**（coefficient），相应的 $a_kx^k$ 称为多项式的 **项**（term）。项 $a_kx^k$ 中的 $k$ 称为该项的 **次数**（degree）。不妨设 $a_n\neq 0$，即 $a_nx^n$ 是系数不为零的项中次数最高的项。此时，自然数 $n$ 称为多项式的 **次数**（degree），而它所在的项 $a_nx^n$ 称为 **最高次项**（leading term），$a_n$ 也称为 **最高次项系数**（leading coefficient）。最高次项系数等于一（即幺元）的多项式称为 **首一**（monic）多项式。所有系数都为零（即零元）的多项式称为 **零多项式**（zero polynomial），记作 $0$，零多项式的次数不予指定，或者规定为 $-\infty$。
+    其中，$n\in\mathbf N$，且对于每个 $k$，都有 $a_k\in R$。这些 $a_k$ 称为多项式的 **系数**（coefficient），相应的 $a_kx^k$ 称为多项式的 **项**（term）。项 $a_kx^k$ 中的 $k$ 称为该项的 **次数**（degree）。
+    
+    所有系数都为零（即零元）的多项式称为 **零多项式**（zero polynomial），记作 $0$。对于其它多项式，不妨设 $a_n\neq 0$，即 $a_nx^n$ 是系数不为零的项中次数最高的项。此时，自然数 $n$ 称为多项式的 **次数**（degree），而它所在的项 $a_nx^n$ 称为 **最高次项**（leading term），$a_n$ 也称为 **最高次项系数**（leading coefficient）。最高次项系数等于一（即幺元）的多项式称为 **首一**（monic）多项式。零多项式的次数不予指定，或者规定为 $-\infty$。
 
 多项式记号中出现的 $x$ 称为多项式的 **不定元**（indeterminate）。它本身没有任何含义，也没有取值范围。它的存在，仅仅是通过它的指数标记系数的位置。所以，多项式也可以写作 $R$ 上的数列
 
@@ -629,12 +631,12 @@ $$
 
 在数论中，中国剩余定理常用来求解数论方程组。对于一般的交换幺环，同样可以建立中国剩余定理。每个同余方程都相当于指定了未知元在某个商环里的像，那么，交换幺环中的中国剩余定理就相当于通过这些商环里的像确定环中的元素。
 
-这个讨论可以转化为形式语言。对于非零交换幺环 $R$ 和它的理想 $I_1,\cdots,I_n$，考虑环同态 $\varphi:R\rightarrow R/I_1\times \cdots R/I_n$，它将 $r$ 映射至 $(r\bmod I_1,\cdots,r\bmod I_n)$。其中，$\times$ 表示环的直积：
+这个讨论可以转化为形式语言。对于非零交换幺环 $R$ 和它的理想 $I_1,\cdots,I_n$，考虑环同态 $\varphi:R\rightarrow R/I_1\times \cdots R/I_n$，它将 $r$ 映射至 $(r+I_1,\cdots,r+I_n)$。其中，$r+I_i$ 是陪集，而 $\times$ 表示环的直积：
 
 ???+ abstract "直积"
     对于环 $R_1$ 和 $R_2$，它们的加法群的直积 $R_1\times R_2$ 上可以定义乘法为各个分量分别相乘，则 $R_1\times R_2$ 就成为环，称为环 $R_1$ 和 $R_2$ 的 **直积**（direct prodcut），仍记作 $R_1\times R_2$。
 
-同态 $\varphi$ 的核是 $\ker\varphi=I_1\cap\cdots\cap I_n$。中国剩余定理要回答的问题就是这样的映射在什么情形下是满射。
+同态 $\varphi$ 的核是 $\ker\varphi=I_1\cap\cdots\cap I_n$。中国剩余定理要回答的问题就是这样的映射在什么条件下是满射。
 
 在数论的情形下，定理的成立需要这些模数互质。这个条件可以推广到环论的情形。
 
@@ -644,11 +646,20 @@ $$
 对于幺环的情形，如果考虑主理想 $(a)$ 和 $(b)$，这个条件就相当于存在 $x,y\in R$ 使得 $ax+by=1$，这类似于整数互素时的裴蜀定理。利用这个定义，可以完全仿照整数环的情形，建立交换幺环上的 **中国剩余定理**（Chinese remainder theorem）。
 
 ???+ note "中国剩余定理"
-    设非零交换幺环 $R$ 有理想 $I_1,\cdots,I_n$，如果它们两两互素，那么上述定义的环同态 $\varphi$ 是满射，它的核等于这些理想的乘积 $\ker\varphi=I_1\cap\cdots\cap I_n=I_1\cdots I_n$，因此，
+    设非零交换幺环 $R$ 有理想 $I_1,\cdots,I_n$。如果它们两两互素，那么上述定义的环同态 $\varphi$ 是满射，它的核等于这些理想的乘积 $\ker\varphi=I_1\cap\cdots\cap I_n=I_1\cdots I_n$，因此，
 
     $$
     R/(I_1\cdots I_n)=R/(I_1\cap\cdots\cap I_n)\cong R/I_1\times\cdots\times R/I_n.
     $$
+
+??? note "证明"
+    定理内容很丰富，但仍需证明的结论只有两个，即 $\varphi$ 是满射和 $I_1\cap\cdots\cap I_n=I_1\cdots I_n$。关键在于利用好互素的条件。
+
+    首先证明 $n=2$ 的情形。因为理想 $I_1$ 和 $I_2$ 互素，即 $I_1+I_2=R$，所以，$R$ 中幺元 $1$ 可以写成 $a_1+a_2$ 的形式，其中，$a_i\in I_i$。因为 $a_1\in I_1$ 且 $a_1=1-a_2\in 1+I_2$，所以 $\varphi(a_1)=(I_1,1+I_2)$；同理，$\varphi(a_2)=(1+I_1,I_2)$。因而，$(\varphi(a_2),\varphi(a_1))$ 起到了类似向量空间中的「基」的作用。故而，对任意像 $(r_1+I_1,r_2+I_2)$，都能找到同态 $\varphi$ 下的原像 $r_1a_2+r_2a_1$。这说明 $\varphi$ 是满射。
+    
+    还需要证明 $I_1\cap I_2=I_1I_2$。对于一般的环总有 $I_1I_2\subseteq I_1\cap I_2$，关键在于其反面。对于任意 $r\in I_1\cap I_2$，都有 $r=r(a_1+a_2)=ra_1+ra_2\in I_1I_2$。故而也成立 $I_1\cap I_2\subseteq I_1I_2$。所以，所求得证。
+
+    对于 $n>2$ 的情形，需要使用数学归纳法。归纳步骤的关键在于证明对于两两互素的理想 $I_1,\cdots,I_n$ 总有理想 $I_1$ 和 $I_2\cdots I_n$ 互素。由于 $I_1$ 与 $I_2,\cdots,I_n$ 都互素，故而对于每个 $i=2,\cdots,n$ 都存在 $a_i\in I_1$ 和 $b_i\in I_i$ 使得 $1=a_i+b_i$ 成立。因而，有 $1=(a_2+b_2)\cdots(a_n+b_n)$ 成立。所以，$1\in (b_2\cdots b_n)+I_1\subseteq I_1+(I_2\cdots I_n)$。这说明，理想 $I_1$ 和 $I_2\cdots I_n$ 互素。
 
 ### 应用：Lagrange 插值公式
 
