@@ -403,7 +403,7 @@ $$
 
 二次整数的范数一定是整数。特别地，当 $D<0$ 时，范数一定是自然数。范数保持乘法结构，即 $N(ab)=N(a)N(b)$。
 
-二次整数环中的可逆元（单位）能且仅能是那些范数是 $\pm1$ 的元素。对于 $D>0$ 的情形，这就相当于考虑 [Pell 方程](../number-theory/pell-equation.md) $x^2-Dy^2=\pm1$ 或 $x^2-Dy^2=\pm4$ 的解。对于 $D<0$ 的情形，容易验证，除了 Gauss 整环 $\mathbf Z[\rm{i}]$ 中可逆元是 $\{\pm1,\pm\rm{i}\}$ 和 Eisenstein 整环 $\mathbf Z[\omega]$ 中可逆元是 $\{\pm1,\pm\omega,\pm\omega^2\}$ 这两种特殊情形外，其余的可逆元都只有 $\{\pm1\}$。
+二次整数环中的可逆元（单位）能且仅能是那些范数是 $\pm1$ 的元素。对于 $D>0$ 的情形，这就相当于考虑 [Pell 方程](../number-theory/pell-equation.md)  $x^2-Dy^2=\pm1$ 或 $x^2-Dy^2=\pm4$ 的解。对于 $D<0$ 的情形，容易验证，除了 Gauss 整环 $\mathbf Z[\rm{i}]$ 中可逆元是 $\{\pm1,\pm\rm{i}\}$ 和 Eisenstein 整环 $\mathbf Z[\omega]$ 中可逆元是 $\{\pm1,\pm\omega,\pm\omega^2\}$ 这两种特殊情形外，其余的可逆元都只有 $\{\pm1\}$。
 
 二次整数环上定义的范数 $N(\alpha)$ 可以用来证明它是欧几里得整环。对于 $D>0$ 的情形，需要使用它的绝对值 $|N(\alpha)|$ 来作为欧几里得整环定义中的范数。利用这样得到的范数，能够证明在 $D<0$ 时，
 
