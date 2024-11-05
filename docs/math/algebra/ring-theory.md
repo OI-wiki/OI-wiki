@@ -134,7 +134,7 @@ $$
 ???+ note "定理"
     设 $R$ 是交换的非零幺环，那么 $R$ 是域，当且仅当 $R$ 只有平凡理想 $\{0\}$ 和 $R$。
 
-?? note "证明"
+??? note "证明"
 如果 $R$ 是域，则对于任何非零理想 $I$ 都可以任取非零元素 $a\in I$，于是，任何域中的元素 $r\in R$ 都有 $r=(ra^{-1})a\in (ra^{-1})I\subseteq I$，故而 $I=R$。反过来，对于任何 $a\in R$ 且 $a\neq 0$，可以验证 $aR=\{ar:r\in R\}$ 是理想，它必然等于 $R$，因而存在 $b\in R$ 使得 $ab=1$，这就说明 $a$ 存在逆元，故而有 $R$ 是域。
 
 这里交换环的条件是必要的；不然，需要同时限制左理想和右理想都是平凡的，才能保证环是除环。
@@ -452,7 +452,7 @@ $$
 
     其中，$n\in\mathbf N$，且对于每个 $k$，都有 $a_k\in R$。这些 $a_k$ 称为多项式的 **系数**（coefficient），相应的 $a_kx^k$ 称为多项式的 **项**（term）。项 $a_kx^k$ 中的 $k$ 称为该项的 **次数**（degree）。不妨设 $a_n\neq 0$，即 $a_nx^n$ 是系数不为零的项中次数最高的项。此时，自然数 $n$ 称为多项式的 **次数**（degree），而它所在的项 $a_nx^n$ 称为 **最高次项**（leading term），$a_n$ 也称为 **最高次项系数**（leading coefficient）。最高次项系数等于一（即幺元）的多项式称为 **首一**（monic）多项式。所有系数都为零（即零元）的多项式称为 **零多项式**（zero polynomial），记作 $0$，零多项式的次数不予指定，或者规定为 $-\infty$。
 
-多项式记号中出现的 $x$ 称为多项式的 **未定元**（indeterminate）。它本身没有任何含义，也没有取值范围。它的存在，仅仅是通过它的指数标记系数的位置。所以，多项式也可以写作 $R$ 上的数列
+多项式记号中出现的 $x$ 称为多项式的 **不定元**（indeterminate）。它本身没有任何含义，也没有取值范围。它的存在，仅仅是通过它的指数标记系数的位置。所以，多项式也可以写作 $R$ 上的数列
 
 $$
 (a_0,a_1,...,a_{n-1},a_n,0,0,\cdots).
@@ -619,7 +619,12 @@ $$
 
 在数论中，中国剩余定理常用来求解数论方程组。对于一般的交换幺环，同样可以建立中国剩余定理。每个同余方程都相当于指定了未知元在某个商环里的像，那么，交换幺环中的中国剩余定理就相当于通过这些商环里的像确定环中的元素。
 
-这个讨论可以转化为形式语言。对于非零交换幺环 $R$ 和它的理想 $I_1,\cdots,I_n$，考虑环同态 $\varphi:R\rightarrow R/I_1\times \cdots R/I_n$，它将 $r$ 映射至 $(r\bmod I_1,\cdots,r\bmod I_n)$。这里，$\times$ 表示环的直积。它的核是 $\ker\varphi=I_1\cap\cdots\cap I_n$。中国剩余定理要回答的问题就是这样的映射在什么情形下是满射。
+这个讨论可以转化为形式语言。对于非零交换幺环 $R$ 和它的理想 $I_1,\cdots,I_n$，考虑环同态 $\varphi:R\rightarrow R/I_1\times \cdots R/I_n$，它将 $r$ 映射至 $(r\bmod I_1,\cdots,r\bmod I_n)$。其中，$\times$ 表示环的直积：
+
+???+ abstract "直积"
+    对于环 $R_1$ 和 $R_2$，它们的加法群的直积 $R_1\times R_2$ 上可以定义乘法为各个分量分别相乘，则 $R_1\times R_2$ 就成为环，称为环 $R_1$ 和 $R_2$ 的 **直积**（direct prodcut），仍记作 $R_1\times R_2$。
+
+同态 $\varphi$ 的核是 $\ker\varphi=I_1\cap\cdots\cap I_n$。中国剩余定理要回答的问题就是这样的映射在什么情形下是满射。
 
 在数论的情形下，定理的成立需要这些模数互质。这个条件可以推广到环论的情形。
 
@@ -629,7 +634,7 @@ $$
 对于幺环的情形，如果考虑主理想 $(a)$ 和 $(b)$，这个条件就相当于存在 $x,y\in R$ 使得 $ax+by=1$，这类似于整数互素时的裴蜀定理。利用这个定义，可以完全仿照整数环的情形，建立交换幺环上的 **中国剩余定理**（Chinese remainder theorem）。
 
 ???+ note "中国剩余定理"
-    设非零交换幺环 $R$ 有理想 $I_1,\cdots,I_n$，如果它们两两互质，那么上述定义的环同态 $\varphi$ 是满射，它的核等于这些理想的乘积 $\ker\varphi=I_1\cap\cdots\cap I_n=I_1\cdots I_n$，因此，
+    设非零交换幺环 $R$ 有理想 $I_1,\cdots,I_n$，如果它们两两互素，那么上述定义的环同态 $\varphi$ 是满射，它的核等于这些理想的乘积 $\ker\varphi=I_1\cap\cdots\cap I_n=I_1\cdots I_n$，因此，
 
     $$
     R/(I_1\cdots I_n)=R/(I_1\cap\cdots\cap I_n)\cong R/I_1\times\cdots\times R/I_n.
@@ -641,7 +646,7 @@ $$
 
 插值（interpolation）问题是指，给定一系列点值 $\{(x_i,y_i)\}_{i=1}^n$，寻找域 $F$ 上的多项式 $f(x)$ 使其满足 $f(x_i)=y_i$ 对所有 $i=1,\cdots,n$ 都成立。当然假设所有 $x_i$ 互不相同。Lagrange 插值公式给出了这类问题的通解。
 
-对于域 $F$ 上的多项式 $f(x)$，对 $x-x_i$ 做带余除法，就有 $f(x)=q(x)(x-x_i)+r(x)$，这里，$\deg r(x)<\deg(x-x_i)=1$，所以 $r(x)$ 只能是常数。为确定这一常数，将该等式在 $x=x_i$ 处取值，就有 $r(x)=r(x_i)=f(x_i)$。因而，条件 $f(x_i)=y_i$ 等价于 $f(x)\equiv y_i\pmod{x-x_i}$。所以，插值问题就等价于
+对于域 $F$ 上的多项式 $f(x)$，条件 $f(x_i)=y_i$ 等价于 $x_i$ 是多项式 $f(x)-y_i$ 的一个根，因而等价于 $(x-x_i)\mid(f(x)-y_i)$，也就是 $f(x)\equiv y_i\pmod{x-x_i}$。所以，插值问题就等价于求解同余方程组
 
 $$
 \begin{cases}
@@ -680,79 +685,77 @@ $$
 
 ### 应用：整数同余类的乘法群
 
-相关阅读：[原根](../number-theory/primitive-root.md)
+相关阅读：[原根](../number-theory/primitive-root.md)、[有限生成 Abel 群基本定理](./group-theory.md#分类定理)
 
 作为中国剩余定理和群论相关内容的一个应用，这里讨论整数模 $n$ 乘法群的结构。本节略去同余类的横线记号。
 
-这里，**整数模 $n$ 乘法群**（multiplicative group of integers modulo $n$）指的是 $(\mathbf Z/n\mathbf Z)^\times$，即商环 $\mathbf Z/n\mathbf Z$ 中的可逆元的乘法群。
+**整数模 $n$ 乘法群**（multiplicative group of integers modulo $n$）指的是 $(\mathbf Z/n\mathbf Z)^\times$，即商环 $\mathbf Z/n\mathbf Z$ 中的可逆元的乘法群[^unit-group]。群 $(\mathbf Z/n\mathbf Z)^\times$ 的阶是 $\varphi(n)$，因为存在逆元的充要条件就是与 $n$ 互质。这里的 $\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)。而且，群 $(\mathbf Z/n\mathbf Z)^\times$ 总是 Abel 群。
 
-对于可逆元 $a$，自然有 $b$ 使得 $ab=1$，亦即 $ab\equiv 1\pmod n$，也就说明存在 $k\in\mathbf Z$ 使得 $ab-kn=1$，这等价于 $(a,n)=1$。也就是说，$(\mathbf Z/n\mathbf Z)^\times$ 中的元素的代表元都是与 $n$ 互质的整数。这样的同余类共计 $\varphi(n)$ 个，这里，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)。
-
-根据算术基本定理，模数 $n$ 有分解
+根据算术基本定理，模数 $n$ 可以分解为不同的质数的幂的乘积：
 
 $$
-n=p_1^{\alpha_1}\cdots p_s^{\alpha_s},
+n=p_1^{\alpha_1}\cdots p_s^{\alpha_s}.
 $$
 
-所以，应用中国剩余定理可以得到
+容易验证，对于整数环的理想，理想互素的条件等价于理想的生成元互素。所以，应用中国剩余定理可以得到
 
 $$
-\mathbf Z/n\mathbf Z\cong\mathbf Z/p_1^{\alpha_1}\mathbf Z\times\cdots\times\mathbf Z/p_s^{\alpha_s}\mathbf Z,
+\mathbf Z/n\mathbf Z\cong\mathbf Z/p_1^{\alpha_1}\mathbf Z\times\cdots\times\mathbf Z/p_s^{\alpha_s}\mathbf Z.
 $$
 
-这里，容易验证，定理中理想互素的条件等价于理想的生成元互素。环的同构意味着相应的乘法结构也同构，所以
+环的同构意味着相应的乘法结构也同构，所以
 
 $$
 (\mathbf Z/n\mathbf Z)^\times\cong(\mathbf Z/p_1^{\alpha_1}\mathbf Z)^\times\times\cdots\times(\mathbf Z/p_s^{\alpha_s}\mathbf Z)^\times.
 $$
 
-这说明，$\varphi(n)=\varphi(p_1^{\alpha_1})\cdots\varphi(p_n^{\alpha_n})$，即欧拉函数是积性函数。
+这说明 $\varphi(n)=\varphi(p_1^{\alpha_1})\cdots\varphi(p_n^{\alpha_n})$，即欧拉函数是积性函数。
 
-根据上面的推理，要研究一般的模数的情形，只要考虑素数幂 $p^k$ 作为模数的情形就可以了。对于素数幂的情形，需要分别考虑 $p=2$ 和 $p$ 为奇数的两种情形。此时已知 $\varphi(p^k)=(p-1)p^{k-1}$ 成立。
+因此，要研究一般的模数的情形，只要考虑素数幂 $p^k$ 作为模数的情形就可以了。对于素数幂的情形，需要分别考虑 $p=2$ 和 $p$ 为奇素数的两种情形：
 
-对于 $p=2$ 的情形，直接验证可知 $(\mathbf Z/2\mathbf Z)^\times\cong C_1$ 和 $(\mathbf Z/4\mathbf Z)^\times\cong C_2$。对于 $k\ge3$ 的情形，有 $(\mathbf Z/2^k\mathbf Z)^\times\cong C_2\times C_{2^{k-2}}$。
+- 对于 $p=2$ 的情形，直接验证可知 $(\mathbf Z/2\mathbf Z)^\times\cong C_1$ 和 $(\mathbf Z/4\mathbf Z)^\times\cong C_2$。对于 $k\ge3$ 的情形，有 $(\mathbf Z/2^k\mathbf Z)^\times\cong C_2\times C_{2^{k-2}}$。
 
-??? note "证明"
-    利用二项式定理直接计算可以知道
+    ??? note "证明"
+        利用二项式定理直接计算可以知道
 
-    $$
-    \begin{aligned}
-    5^{2^{k-2}}=(1+2^2)^{2^{k-2}}&\equiv 1\pmod {2^k},\\
-    5^{2^{k-3}}=(1+2^2)^{2^{k-3}}&\equiv 1+2^{k-1}\pmod {2^k}.
-    \end{aligned}
-    $$
+        $$
+        \begin{aligned}
+        5^{2^{k-2}}=(1+2^2)^{2^{k-2}}&\equiv 1\pmod {2^k},\\
+        5^{2^{k-3}}=(1+2^2)^{2^{k-3}}&\equiv 1+2^{k-1}\pmod {2^k}.
+        \end{aligned}
+        $$
 
-    所以，$5$ 是 $(\mathbf Z/2^k\mathbf Z)^\times$ 中的 $2^{k-2}$ 阶元。同时，$-1$ 和 $5^{2^{k-3}}$ 是两个不同的二阶元，所以，$-1\notin\langle 5\rangle$。所以，$\langle-1\rangle$ 和 $\langle 5\rangle$ 交集是平凡的，故而根据第二同构定理可知
+        所以，$5$ 是 $(\mathbf Z/2^k\mathbf Z)^\times$ 中的 $2^{k-2}$ 阶元。同时，$-1$ 和 $5^{2^{k-3}}$ 是两个不同的二阶元，所以，$-1\notin\langle 5\rangle$。所以，$\langle-1\rangle$ 和 $\langle 5\rangle$ 交集是平凡的，故而根据第二同构定理可知
 
-    $$
-    (\mathbf Z/2^k\mathbf Z)^\times\cong\langle-1\rangle\times\langle 5\rangle\cong C_2\times C_{2^{k-2}}.
-    $$
+        $$
+        (\mathbf Z/2^k\mathbf Z)^\times\cong\langle-1\rangle\times\langle 5\rangle\cong C_2\times C_{2^{k-2}}.
+        $$
 
-对于 $p$ 为奇数的情形，则可以证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 同构于循环群 $C_{\varphi(p^k)}$。
+- 对于 $p$ 为奇数的情形，可以证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 同构于循环群 $C_{\varphi(p^k)}$。
 
-??? note "证明"
-    要证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 是循环群，利用有限 Abel 群基本定理可知，只要证明它的每个 Sylow $q$‑子群都是循环群。首先，对于 Sylow $p$‑子群，直接计算可知
+    ??? note "证明"
+        要证明 $(\mathbf Z/p^k\mathbf Z)^\times$ 是循环群，利用有限 Abel 群基本定理可知，只要证明它的每个 Sylow $q$‑子群都是循环群。首先，对于 Sylow $p$‑子群，直接计算可知
 
-    $$
-    \begin{aligned}
-    (1+p)^{p^{k-1}} &\equiv 1\pmod{p^k},\\
-    (1+p)^{p^{k-2}} &\equiv 1+p^{k-1}\pmod{p^k}.
-    \end{aligned}
-    $$
+        $$
+        \begin{aligned}
+        (1+p)^{p^{k-1}} &\equiv 1\pmod{p^k},\\
+        (1+p)^{p^{k-2}} &\equiv 1+p^{k-1}\pmod{p^k}.
+        \end{aligned}
+        $$
 
-    故而，$(1+p)$ 是 $p^{k-1}$ 阶元。也就是说，$(\mathbf Z/p^k\mathbf Z)^\times$ 的唯一的 Sylow $p$‑子群是循环群 $\langle 1+p\rangle$。
+        故而，$(1+p)$ 是 $p^{k-1}$ 阶元。也就是说，$(\mathbf Z/p^k\mathbf Z)^\times$ 的唯一的 Sylow $p$‑子群是循环群 $\langle 1+p\rangle$。
 
-    对于其它的 Sylow $q$‑子群（$q\neq p$），可以通过群同态将它转化为 $k=1$ 的情形。考虑群同态 $\varphi:(\mathbf Z/p^k\mathbf Z)^\times\rightarrow(\mathbf Z/p\mathbf Z)^\times$，它将陪集 $r+p^k\mathbf Z$ 映射到陪集 $r+p\mathbf Z$。这个映射的核的大小是 $p^{k-1}$，所以，将映射 $\varphi$ 限制在 $(\mathbf Z/p^k\mathbf Z)^\times$ 的 Sylow $q$‑子群（$q\neq p$）上，限制后的映射的核都是平凡的，所以这个 Sylow $q$‑子群同构于映射的像，即 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群。因此，只要证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群就可以了。
+        对于其它的 Sylow $q$‑子群（$q\neq p$），可以通过群同态将它转化为 $k=1$ 的情形。考虑群同态 $\varphi:(\mathbf Z/p^k\mathbf Z)^\times\rightarrow(\mathbf Z/p\mathbf Z)^\times$，它将陪集 $r+p^k\mathbf Z$ 映射到陪集 $r+p\mathbf Z$。这个映射的核的大小是 $p^{k-1}$，所以，将映射 $\varphi$ 限制在 $(\mathbf Z/p^k\mathbf Z)^\times$ 的 Sylow $q$‑子群（$q\neq p$）上，限制后的映射的核都是平凡的，所以这个 Sylow $q$‑子群同构于映射的像，即 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群。因此，只要证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群就可以了。
 
-    最后，证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群。因为 $(\mathbf Z/p\mathbf Z)^\times$ 是有限 Abel 群，可以将它按照不变因子分解为
+        最后，证明 $(\mathbf Z/p\mathbf Z)^\times$ 的 Sylow $q$‑子群都是循环群。因为 $(\mathbf Z/p\mathbf Z)^\times$ 是有限 Abel 群，可以将它按照不变因子分解为
 
-    $$
-    C_{n_1}\times\cdots\times C_{n_r}.
-    $$
+        $$
+        C_{n_1}\times\cdots\times C_{n_r}.
+        $$
 
-    这里，$n_1\mid n_2\mid \cdots \mid n_r$。所以，每个直积因子中都有 $n_1$ 个元素的阶整除 $n_1$。如果 $r>1$，则必然有严格多于 $n_1$ 个元素满足方程 $x^{n_1}=1$。但是，$\mathbf Z/p\mathbf Z$ 是域，而域上的 $n_1$ 次多项式至多 $n_1$ 个根，所以 $r=1$。也就是说，$(\mathbf Z/p\mathbf Z)^\times\cong C_{p-1}$。
+        这里，$n_1\mid n_2\mid \cdots \mid n_r$。所以，每个直积因子中都有 $n_1$ 个元素的阶整除 $n_1$。如果 $r>1$，则必然有严格多于 $n_1$ 个元素满足方程 $x^{n_1}=1$。但是，$\mathbf Z/p\mathbf Z$ 是域，而域上的 $n_1$ 次多项式至多 $n_1$ 个根，所以 $r=1$。也就是说，$(\mathbf Z/p\mathbf Z)^\times\cong C_{p-1}$。
 
-    这样就证明 $(\mathbf Z/p^k\mathbf Z)^\times\cong C_{p^{k-1}}\times C_{p-1}=C_{\varphi(p^{k})}$。
+        这样就证明 $(\mathbf Z/p^k\mathbf Z)^\times\cong C_{p^{k-1}}\times C_{p-1}=C_{\varphi(p^{k})}$。
 
 一般的模数的情形的乘法群的结构也随之确定。从现有的结果能够知道整数模 $n$ 乘法群是循环群有且只有模数 $n$ 取
 
@@ -761,6 +764,8 @@ $$
 $$
 
 时，其中，$p$ 是奇素数；否则，整数模 $n$ 乘法群一定有子群 $C_2\times C_2$，不可能是循环群。当乘法群是循环群的时候，乘法群的生成元就称为该模的 **原根**（primitive root）。因此，这里的定理给出的正是原根存在的充要条件。
+
+当然，
 
 ## 参考资料和注释
 
@@ -776,3 +781,5 @@ $$
 [^gcd-domain]: 最大公因子存在的整环叫做 [最大公因子整环](https://en.wikipedia.org/wiki/GCD_domain)。
 
 [^ring-theory-history]: 环论的简要历史可以参看 [这里](https://mathshistory.st-andrews.ac.uk/HistTopics/Ring_theory/)。
+
+[^unit-group]: 环中全体可逆元在乘法运算下构成群，也称为环的 **单位群**（unit group）。
