@@ -130,7 +130,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     -   整数环：整数集 $\mathbf Z$ 和其上通常定义的加法 $+$ 和乘法 $\times$ 构成了环 $(\mathbf Z,+,\times)$。实际上，这是一个整环，但是它不是除环。
 
-    -   多项式环：给定环 $R$，可以在上面定义 [多项式环](../algebra/ring-theory.md#多项式环) $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
+    -   多项式环：对于一个环 $R$，可以在上面定义 [多项式环](../algebra/ring-theory.md#多项式环) $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
 
     -   四元数（quaternion）：类比复数，可以考虑集合 $\mathbf H=\{a+b\mathrm{i}+c\mathrm{j}+d\mathrm{k}:a,b,c,d\in\mathbf R\}$，并且定义其上的加法和乘法，这里，$\mathrm{i},\mathrm{j},\mathrm{k}$ 的乘法运算满足
 
