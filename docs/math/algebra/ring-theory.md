@@ -89,7 +89,7 @@ $$
     设环 $R$ 有理想 $I,J$ 且 $I\subseteq J$，那么 $J/I$ 也是 $R/I$ 的理想，并且 $(R/I)/(J/I)\cong R/J$。
 
 ???+ note "对应定理"
-    设环 $R$ 有理想 $I$，则全体包含 $I$ 的环 $R$ 的子环 $\mathcal S=\{S:I\subseteq S\subseteq R\}$ 和商群 $R/I$ 的全体子群 $\mathcal T=\{T:T\le R/I\}$ 之间存在双射 $\varphi:\mathcal S\rightarrow\mathcal T$，它将 $S\in\mathcal S$ 映射至 $S/I\in\mathcal T$。这个双射保持子环的包含关系，且环 $R$ 的理想总是映射到 G/N 的理想。
+    设环 $R$ 有理想 $I$，则全体包含 $I$ 的环 $R$ 的子环 $\mathcal S=\{S:I\subseteq S\subseteq R\}$ 和商群 $R/I$ 的全体子群 $\mathcal T=\{T:T\le R/I\}$ 之间存在双射 $\varphi:\mathcal S\rightarrow\mathcal T$，它将 $S\in\mathcal S$ 映射至 $S/I\in\mathcal T$。这个双射保持子环的包含关系，且环 $R$ 的理想总是映射到 $G/N$ 的理想。
 
 这些定理在后文中讨论环和理想的结构时将起到基础的作用。
 
