@@ -9,7 +9,7 @@
 与域论紧密相关的是 Galois 理论。它将域的扩张与其自同构群联系起来，从而可以通过群论的工具来理解域的扩张的性质。尽管这一理论也往往是相关代数课程的核心内容，但是与算法竞赛的内容相去甚远，故而本文不做介绍。有兴趣的读者应当阅读相关专业书籍。
 
 ???+ info "记号"
-    在不引起歧义时，本文可能会省略掉环和域的乘法记号，并且会将环 $(R,+,\cdot)$ 写作环 $R$，将域 $(F,+,\cdot)$ 写作域 $F$。
+    在不引起歧义时，本文可能会省略掉环和域的乘法记号，并且会将环 $(R,+,\cdot)$ 写作环 $R$，将域 $(F,+,\cdot)$ 写作域 $F$。而且，本文中的 $p$ 总是素数，而 $q$ 总是素数幂，且可以写作 $p^n$，其中，$n$ 是正整数。
 
 ## 域的扩张
 
@@ -58,7 +58,7 @@
 
 ### 域的特征
 
-对域的扩张的研究，有一个自然的起点，就是包含域的幺元的最小的子域，也称为这个域的 **素子域**（prime subfield）。
+对域的扩张的研究，有一个自然的起点，就是包含域的幺元的最小的子域，也称为这个域的 **素子域**（prime subfield）[^prime-field]。
 
 素子域的结构，由域的幺元的性质唯一确定。域的特征的概念就概括了这样的性质。
 
@@ -78,6 +78,18 @@
     域 $F$ 的特征只能是 $0$ 或素数 $p$。特征为 $0$ 的域的素子域是 $\mathbf Q$，特征为素数 $p$ 的域的素子域是 $\mathbf F_p$。
 
 有限域必然是有限特征的，因为特征为 $0$ 的域至少包含子域 $\mathbf Q$。
+
+特征有限的域和零特征的域性质往往不同。比如，有限特征的域有如下性质：
+
+???+ note "定理"
+    设 $F$ 特征为 $p$，则有：
+    1. 域 $F$ 的加法群的所有非零元素的阶都是 $p$，即对所有 $x\in F$ 都有 $px=0$；
+    2. 「大一新生的梦」（freshman's dream），即对所有 $x,y\in F$ 都有 $(x+y)^p=x^p+y^p$。进而，映射 $x\mapsto x^p$ 是 $F$ 上的单自同态，叫做 **Frobenius 自同态**（Frobenius endomorphism）。
+
+??? note "证明"
+    对于第一条性质，只要注意到 $px=(p1)x=0x=0$ 即可。对于第二条性质，只需要注意到 $(x+y)^p$ 的二项式展开中，除了 $x^p$ 和 $y^p$ 外的全部其他项的系数都是 $p$ 的倍数，故而根据第一条性质就有 $(x+y)^p=x^p+y^p$。至于验证 $x\mapsto x^p$ 是自同态，只需要再验证 $(xy)^p=x^py^p$，这是因为域的乘法满足交换律。最后，域之间的环同态且幺元映射到幺元，则必然是单射。
+
+当然，对于有限域，Frobenius 自同态必然也是满的，因而是域的自同构。
 
 ### 单扩张
 
@@ -131,12 +143,14 @@
 ???+ note "极小多项式"
     对于域 $F$ 上的代数元 $\alpha$，以 $\alpha$ 为根的次数最小的首一多项式 $f(x)$ 称作它的 **极小多项式**（minimal polynomial）。
 
-这里的极小多项式就是前文分析中的不可约多项式 $f(x)$。当然，也可以直接证明极小多项式都是不可约的。
+这里的极小多项式就是前文分析中的不可约多项式 $f(x)$。当然，也可以直接证明极小多项式都是不可约的。极小多项式 $f(x)$ 的极小性就意味着，只要域 $F$ 上的多项式以 $\alpha$ 为根，就必然能够分解出因子 $f(x)$。
 
 ???+ example "例子"
     1.  $\sqrt 2$ 是 $\mathbf Q$ 上的代数元，极小多项式是 $x^2-2$。
     2.  $\sqrt 2$ 是 $\mathbf R$ 上的代数元，极小多项式是 $x-\sqrt 2$。
     3.  $\pi$ 是 $\mathbf Q$ 上的超越元。
+
+一般地，$\mathbf Q$ 上的代数元称为 **代数数**（algebraic number），而超越元称为 **超越数**（transcendental number）。
 
 ???+ note "代数扩张与超越扩张"
     对于扩张 $E/K$，如果域 $E$ 的元素都是 $F$ 中的代数元，则称域 $E$ 是 $F$ 上的 **代数扩张**（algebraic extension）；否则，称域 $E$ 是 $F$ 上的 **超越扩张**（transcendental extension）。
@@ -281,7 +295,7 @@ $$
 将多项式的全部根都添加到域中，得到的就是多项式的分裂域。
 
 ???+ abstract "分裂"
-    如果多项式 $f(x)$ 在域 $F$ 中可以分解为一系列一次因子的乘积，就称多项式 $f(x)$ 在域 $F$ 中 **分裂**（split）。
+    设 $F$ 为域。如果多项式 $f(x)$ 在 $F[x]$ 中可以分解为一系列一次因子的乘积，就称多项式 $f(x)$ 在域 $F$ 中 **分裂**（split）。
 
 ???+ abstract "分裂域"
     对于域 $F$ 上的多项式 $f(x)$，如果扩张 $E/F$ 满足 $f(x)$ 在域 $E$ 中分裂但不在任何 $E$ 的真子域中分裂，就称域 $E$ 是多项式 $f(x)$ 的 **分裂域**（splitting field）。
@@ -328,9 +342,124 @@ $$
 
 最后，[代数基本定理](../poly/fundamental.md) [^fundamental-algebra]说明，$\mathbf C$ 是代数闭域。实数域 $\mathbf R$ 上的不可约多项式至多是二次的，或者等价地，它上面的代数扩张至多是二次扩张，就是因为通过代数扩张能够得到的最大的域就是 $\mathbf C$。
 
+## 分圆域
+
+作为域扩张的简单例子，本节讨论分圆域。另一个域扩张的简单例子是 [二次域](../number-theory/quadratic.md)。
+
+### 单位根群
+
+复数域 $\mathbf C$ 中，多项式 $x^n=1$ 的根称为 **$n$ 次单位根**（$n$-th root of unity）。记 $\zeta_n=\mathrm{e}^{2\pi\mathrm{i}/n}$。那么，全体 $n$ 次单位根就是集合 $C_n=\{\zeta_n^k:k\in\mathbf Z\}$。在乘法运算下，$C_n$ 构成 $n$ 次循环群，可以记作 $\langle\zeta_n\rangle$，称为 $n$ 次单位根群。群 $C_n$ 的生成元，也就是那些阶恰好为 $n$ 的元素，称为 **$n$ 次本原单位根**（primitive $n$-th root of unity）。$n$ 次本原单位根的集合 $P_n=\{\zeta_n^k:k\in\mathbf Z,k\perp n\}$，恰有 $\varphi(n)$ 个元素；其中，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)。将单位根群 $C_n$ 的元素按照它的阶分类，就得到如下分解：
+
+$$
+C_n=\bigcup_{d|n}P_d.
+$$
+
+对两边元素计数，就得到恒等式 $n=\sum_{d\mid n}\varphi(d)$。
+
+### 分圆域
+
+分圆域是将单位根添加到有理数域中得到的扩域。
+
+???+ abstract "分圆域"
+    将 $n$ 次复单位根 $\zeta_n=\mathrm{e}^{2\pi\mathrm{i}/n}$ 添加到有理数域 $\mathbf Q$ 中得到的扩域 $\mathbf Q(\zeta_n)$ 称为 **$n$ 次分圆域**（$n$-th cyclotomic field）。
+
+因为全体 $n$ 次单位根在乘法运算下构成循环群 $\langle\zeta_n\rangle$，分圆域 $\mathbf Q(\zeta_n)$ 也包括所有这些 $n$ 次单位根。其实，$\mathbf Q(\zeta_n)$ 正是域 $\mathbf Q$ 上多项式 $x^n-1$ 的分裂域。
+
+???+ note "定理"
+    分圆域 $\mathbf Q(\zeta_n)$ 是有理数域 $\mathbf Q$ 上多项式 $x^n-1$ 的分裂域。
+
+??? note "证明"
+    设 $F$ 为有理数域 $\mathbf Q$ 上多项式 $x^n-1$ 的分裂域。因为 $\mathbf Q(\zeta_n)$ 上有多项式 $x^n-1$ 的全体复根，所以 $F\subseteq\mathbf Q(\zeta_n)$。反过来，因为 $\zeta_n\in F$，就必然有 $\mathbf Q(\zeta_n)=F$。这就说明 $F=\mathbf Q(\zeta_n)$。
+
+这可以作为分圆域的等价定义。其实，将任何 $n$ 次本原单位根添加到分圆域中都能够得到 $\mathbf Q(\zeta_n)$。
+
+### 分圆多项式
+
+分圆域 $\mathbf Q(\zeta_n)$ 是有理数域 $\mathbf Q$ 上的单代数扩张。根据上文的分析，这样的域总是同构于某个多项式环的商环。为了得到这样的同构，需要分析 $\zeta_n$ 的极小多项式 $f(x)$。因为 $\zeta_n$ 是 $x^n-1$ 的根，所以 $f(x)$ 必然是 $x^n-1$ 的某个因子。这说明，需要考察多项式 $x^n-1$ 在 $\mathbf Q[x]$ 内的因式分解。根据 Gauss 引理，它必然可以在 $\mathbf Z[x]$ 中分解为若干个不可约的首一多项式的乘积。
+
+因为 $\mathbf Q(\zeta_n)$ 是分裂域，多项式 $x^n-1$ 有分解：
+
+$$
+x^n-1=\prod_{\zeta\in C_n}(x-\zeta)=\prod_{d\mid n}\prod_{\zeta\in P_d}(x-\zeta).
+$$
+
+因为不同阶的单位根的代数性质不同，它们必然不会是同一个不可约多项式的根。因此，要考察 $\zeta_n$ 的极小多项式，只要考虑上述分解中的因子 
+
+$$
+\Phi_n(x)=\prod_{\zeta\in P_n}(x-\zeta)
+$$
+
+即可。单位根 $\zeta_n$ 的极小多项式，必然是 $\Phi_n(x)$ 的因子。但是，这样定义的 $\Phi_n(x)$ 有如下性质：
+
+???+ note "定理"
+    $\Phi_n(x)$ 是整系数首一多项式，且在 $\mathbf Z[x]$ 上不可约。
+
+这就说明，它就是 $\zeta_n$ 的极小多项式，也称为 **$n$ 次分圆多项式**（$n$-th cyclotomic polynomial）。上面的定义式指出，它有 $\varphi(n)$ 个复根，且这些复根正是全体 $n$ 次本原单位根。这也说明，$\mathbf Q(\zeta_n)/\mathbf Q$ 是 $\varphi(n)$ 次扩张。
+
+上面的表达式同样指出
+
+$$
+x^n-1=\prod_{d\mid n}\Phi_d(x).
+$$
+
+对此式应用 [Mobius 反演](../number-theory/mobius.md) 可得
+
+$$
+\Phi_d(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}.
+$$
+
+利用这个表达式，可以递归地计算出全部的分圆多项式。这里给出前几个分圆多项式的例子，便于读者熟悉。
+
+???+ example "分圆多项式"
+    前 $10$ 个分圆多项式如下：
+
+    $$
+    \begin{aligned}
+    \Phi_1(x) &= x-1,\\
+    \Phi_2(x) &= x+1,\\
+    \Phi_3(x) &= x^2+x+1,\\
+    \Phi_4(x) &= x^2+1,\\
+    \Phi_5(x) &= x^4+x^3+x^2+x+1,\\
+    \Phi_6(x) &= x^2-x+1,\\
+    \Phi_7(x) &= x^6+x^5+x^4+x^3+x^2+x+1,\\
+    \Phi_8(x) &= x^4+1,\\
+    \Phi_9(x) &= x^6+x^3+1,\\
+    \Phi_{10}(x) &= x^4-x^3+x^2-x+1.
+    \end{aligned}
+    $$
+
+    一个有趣的事实是，虽然看起来这些分圆多项式的系数都只能是 $0$ 和 $\pm1$，但是对于一般的 $n$，这个结论是不对的。第一个反例出现在 $\Phi_{105}(x)$，而且可以证明，随着 $n$ 的增大，它的系数可以取到任意大的值。
+
+分圆多项式有如下简单性质，可以简化 $\Phi_n(x)$ 的计算：
+
+???+ note "性质"
+    对于分圆多项式 $\Phi_n(x)$，有：
+    1.  如果 $n$ 是奇数，则 $\Phi_{2n}(x)=\Phi_{n}(-x)$；
+    2.  如果 $r$ 是 $n$ 的全部素因子的乘积，则 $\Phi_n(x)=\Phi_r(x^{n/r})$。
+    3.  特别地，$\Phi_{2^k}(x)=x^{2^{k-1}}+1$。
+
+这些性质说明，对分圆多项式的计算，重点在于那些次数是无平方因子的奇数的情形。
+
 ## 有限域
 
-## 分圆域
+**有限域**（finite field），也称作 **Galois 域**（Galois field），就是只有有限多个元素的域。有限域的结构由其元素个数唯一确定，且它的元素个数必然是素数的幂。
+
+???+ note "定理"
+    大小为 $q$ 的域存在，当且仅当 $q$ 具有素数幂 $p^n$ 的形式。而且，这样的域在同构意义下唯一，记作 $\mathbf F_q$。素数 $p$ 是域 $\mathbf F_q$ 的特征，正整数 $n$ 为域扩张 $\mathbf F_q/\mathbf F_p$ 的次数。最后，$\mathbf F_q$ 是 $\mathbf F_p$ 上多项式 $x^q-x$ 的分裂域，且恰好包括 $x^q-x$ 的 $q$ 个互异的根。
+
+??? note "证明"
+    设域 $F$ 是有限域。域 $F$ 的特征必然有限，记作 $p$；故而，域 $F$ 有素子域 $\mathbf F_p$。而且，域 $F$ 必然是 $\mathbf F_p$ 上的有限扩张，扩张次数记作 $n$。作为 $\mathbf F_p$ 上的 $n$ 维向量空间，域 $F$ 有 $q=p^n$ 个元素。域 $F$ 的全体乘法可逆元构成群 $F^\times$，它的阶为 $q-1$，所以有 $x^{q-1}=1$。因此，$F=F^\times\cup\{0\}$ 的所有元素都满足 $x^q=x$，即它们是多项式 $x^q-x$ 的 $q$ 个互异的根。因此，在域 $F$ 中多项式 $x^q-x$ 有因子 $\prod_{\alpha\in F}(x-\alpha)$，但是这个因子的次数已经是 $q$ 且最高次项系数就等于 $1$，所以有 $x^q-x=\prod_{\alpha\in F}(x-\alpha)$。这说明 $x^q-x$ 在 $F$ 中分裂。对于任何能够使 $x^q-x$ 分裂的域，由于 $x^q-x$ 有 $q$ 个相异的根，必然至少有 $q$ 个元素。这说明 $F$ 是使 $x^q-x$ 可以分裂的最小的域，即 $x^q-x$ 的分裂域。总而言之，大小为 $q$ 的有限域必然是它的素子域上的多项式 $x^q-x$ 的分裂域。因为分裂域在同构意义下唯一，所以大小为 $q$ 的域必然也唯一。
+
+    反过来，给定素数 $p$ 和它的幂 $q=p^n$，要说明 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域恰好有 $q$ 个元素，才能说明所有素数幂 $q$ 阶的域都存在。因为 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域总是存在，所以可以设该分裂域中多项式 $x^q-x$ 的全部根组成的集合为 $F$。现在要证明 $F$ 是域，因而它就是多项式 $x^q-x$ 的分裂域本身。但是，迭代 $n$ 次 Frobenius 自同态就可以知道 $x\mapsto x^q$ 也是自同态，因此对任意 $\alpha,\beta\in F$ 都有 $(\alpha\pm\beta)^q=\alpha^q\pm\beta^q$，$(\alpha\beta)^q=\alpha^q\beta^q$ 和 $(\alpha^{-1})^q=(\alpha^q)^{-1}$。因此，集合 $F$ 对加、减、乘、除都封闭，它是域。这就说明 $F$ 就是 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域。
+
+### 自同构群
+
+有限特征的域上都有 Frobenius 自同态 $\sigma_p:x\mapsto x^p$。对于有限域 $\mathbf F_q$ 的情形，这也是自同构。而且，$\sigma_p^n:x\mapsto x^q$ 是恒等变换，故而 $\sigma_p$ 是域 $\mathbf F_q$ 的自同构群中的至多 $n$ 阶元。其实，域 $\mathbf F_q$ 的自同构群就是 $n$ 阶循环群 $\langle \sigma_p\rangle$。
+
+???+ note "定理"
+    有限域 $\mathbf F_q$ 的自同构群 $\operatorname{Aut}(\mathbf F_q)=\langle\sigma_p\rangle$，阶数为 $n$。
+
+### 包含关系
 
 ## 应用
 
@@ -339,6 +468,8 @@ $$
 [^subfield-one]: 这是因为域 $E$ 的幺元 $1_E$ 必然满足 $F$ 上的关系 $x^2-x=0$，而后者在域 $F$ 内只有两个根 $0_F$ 和 $1_F$，由于域的定义要求 $1_E\neq 0_E$，就必然有 $1_E=1_F$ 和 $0_E=0_F$。
 
 [^initial-object-ring]: 熟悉范畴论语言的读者知道，这是在说 $\mathbf Z$ 是幺环范畴的 [始对象](https://en.wikipedia.org/wiki/Initial_and_terminal_objects)。
+
+[^prime-field]: **素域**（prime field）指没有真子域的域。素域只有 $\mathbf Q$ 和 $\mathbf F_p$。
 
 [^polynomial-universal]: 严格地说，这里指的是多项式环 $R[x]$ 的 [万有性质](https://en.wikipedia.org/wiki/Polynomial_ring#Polynomial_evaluation)（universal property）。
 
