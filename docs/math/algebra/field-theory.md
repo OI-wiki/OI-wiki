@@ -392,7 +392,7 @@ $$
 即可。单位根 $\zeta_n$ 的极小多项式，必然是 $\Phi_n(x)$ 的因子。但是，这样定义的 $\Phi_n(x)$ 有如下性质：
 
 ???+ note "定理"
-    $\Phi_n(x)$ 是整系数首一多项式，且在 $\mathbf Z[x]$ 上不可约。
+    $\Phi_n(x)$ 是整系数首一多项式，且在 $\mathbf Z[x]$ 中不可约。
 
 这就说明，它就是 $\zeta_n$ 的极小多项式，也称为 **$n$ 次分圆多项式**（$n$-th cyclotomic polynomial）。上面的定义式指出，它有 $\varphi(n)$ 个复根，且这些复根正是全体 $n$ 次本原单位根。这也说明，$\mathbf Q(\zeta_n)/\mathbf Q$ 是 $\varphi(n)$ 次扩张。
 
@@ -432,7 +432,7 @@ $$
 
     一个有趣的事实是，虽然看起来这些分圆多项式的系数都只能是 $0$ 和 $\pm1$，但是对于一般的 $n$，这个结论是不对的。第一个反例出现在 $\Phi_{105}(x)$，而且可以证明，随着 $n$ 的增大，它的系数可以取到任意大的值。
 
-分圆多项式有如下简单性质，可以简化 $\Phi_n(x)$ 的计算：
+利用上文的 Möbius 反演式，可以总结出如下性质来简化 $\Phi_n(x)$ 的计算：
 
 ???+ note "性质"
     对于分圆多项式 $\Phi_n(x)$，有：
@@ -443,7 +443,7 @@ $$
     4.  对于素数 $p$，有 $\Phi_{p}(x)=1+x+\cdots+x^{p-1}$；
     5.  特别地，$\Phi_{2^k}(x)=x^{2^{k-1}}+1$。
 
-这些性质说明，对分圆多项式的计算，重点在于那些次数是无平方因子的奇数的情形。而对于这种情形，可以用性质二逐个添加素因子；每个素因子的加入，只需要做一次多项式除法即可。
+这些性质说明，对分圆多项式的计算，重点在于那些次数是无平方因子的奇数的情形。而对于这种情形，可以用性质二逐个添加素因子；每个素因子的加入，只需要做一次多项式除法。
 
 分圆多项式还有很多其它的性质。
 
@@ -454,7 +454,7 @@ $$
     2.  多项式的 $n-1$ 次系数等于 Möbius 函数 $\mu(n)$；
     3.  如果 $n$ 是素数幂 $p^k$，那么 $\Phi_n(1)=p$；否则，$\Phi_n(1)=1$。
 
-分圆多项式可以用于解决一些数论和代数问题，但是很难用于算法竞赛中，故而不再列出。有兴趣的读者可以参考文末的资料。
+分圆多项式还可以用于解决一些数论和代数问题。比如说分数在写成某个进制下的小数时的循环节长度，就和分圆多项式有密切的联系。对于这些具体的应用，有兴趣的读者可以参考文末的资料。
 
 ## 有限域
 
@@ -464,24 +464,64 @@ $$
     大小为 $q$ 的域存在，当且仅当 $q$ 具有素数幂 $p^n$ 的形式。而且，这样的域在同构意义下唯一，记作 $\mathbf F_q$。素数 $p$ 是域 $\mathbf F_q$ 的特征，正整数 $n$ 为域扩张 $\mathbf F_q/\mathbf F_p$ 的次数。最后，$\mathbf F_q$ 是 $\mathbf F_p$ 上多项式 $x^q-x$ 的分裂域，且恰好包括 $x^q-x$ 的 $q$ 个互异的根。
 
 ??? note "证明"
-    设域 $F$ 是有限域。域 $F$ 的特征必然有限，记作 $p$；故而，域 $F$ 有素子域 $\mathbf F_p$。而且，域 $F$ 必然是 $\mathbf F_p$ 上的有限扩张，扩张次数记作 $n$。作为 $\mathbf F_p$ 上的 $n$ 维向量空间，域 $F$ 有 $q=p^n$ 个元素。域 $F$ 的全体乘法可逆元构成群 $F^\times$，它的阶为 $q-1$，所以有 $x^{q-1}=1$。因此，$F=F^\times\cup\{0\}$ 的所有元素都满足 $x^q=x$，即它们是多项式 $x^q-x$ 的 $q$ 个互异的根。因此，在域 $F$ 中多项式 $x^q-x$ 有因子 $\prod_{\alpha\in F}(x-\alpha)$，但是这个因子的次数已经是 $q$ 且最高次项系数就等于 $1$，所以有 $x^q-x=\prod_{\alpha\in F}(x-\alpha)$。这说明 $x^q-x$ 在 $F$ 中分裂。对于任何能够使 $x^q-x$ 分裂的域，由于 $x^q-x$ 有 $q$ 个相异的根，必然至少有 $q$ 个元素。这说明 $F$ 是使 $x^q-x$ 可以分裂的最小的域，即 $x^q-x$ 的分裂域。总而言之，大小为 $q$ 的有限域必然是它的素子域上的多项式 $x^q-x$ 的分裂域。因为分裂域在同构意义下唯一，所以大小为 $q$ 的域必然也唯一。
+    设域 $F$ 是有限域。域 $F$ 的特征必然有限，记作 $p$；故而，域 $F$ 有素子域 $\mathbf F_p$。而且，域 $F$ 必然是 $\mathbf F_p$ 上的有限扩张，扩张次数记作 $n$。作为 $\mathbf F_p$ 上的 $n$ 维向量空间，域 $F$ 有 $q=p^n$ 个元素。域 $F$ 的全体非零元构成群 $F^\times$，它的阶为 $q-1$，所以有 $x^{q-1}=1$。因此，$F=F^\times\cup\{0\}$ 的所有元素都满足 $x^q=x$，即它们是多项式 $x^q-x$ 的 $q$ 个互异的根。因此，在域 $F$ 中多项式 $x^q-x$ 有因子 $\prod_{\alpha\in F}(x-\alpha)$，但是这个因子的次数已经是 $q$ 且最高次项系数就等于 $1$，所以有 $x^q-x=\prod_{\alpha\in F}(x-\alpha)$。这说明 $x^q-x$ 在 $F$ 中分裂。对于任何能够使 $x^q-x$ 分裂的域，由于 $x^q-x$ 有 $q$ 个相异的根，必然至少有 $q$ 个元素。这说明 $F$ 是使 $x^q-x$ 可以分裂的最小的域，即 $x^q-x$ 的分裂域。总而言之，大小为 $q$ 的有限域必然是它的素子域上的多项式 $x^q-x$ 的分裂域。因为分裂域在同构意义下唯一，所以大小为 $q$ 的域必然也唯一。
 
     反过来，给定素数 $p$ 和它的幂 $q=p^n$，要说明 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域恰好有 $q$ 个元素，才能说明所有素数幂 $q$ 阶的域都存在。因为 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域总是存在，所以可以设该分裂域中多项式 $x^q-x$ 的全部根组成的集合为 $F$。现在要证明 $F$ 是域，因而它就是多项式 $x^q-x$ 的分裂域本身。但是，迭代 $n$ 次 Frobenius 自同态就可以知道 $x\mapsto x^q$ 也是自同态，因此对任意 $\alpha,\beta\in F$ 都有 $(\alpha\pm\beta)^q=\alpha^q\pm\beta^q$，$(\alpha\beta)^q=\alpha^q\beta^q$ 和 $(\alpha^{-1})^q=(\alpha^q)^{-1}$。因此，集合 $F$ 对加、减、乘、除都封闭，它是域。这就说明 $F$ 就是 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域。
 
+### 乘法结构
+
+有限域的乘法群 $\mathbf F^\times=\mathbf F\setminus\{0\}$ 一定是循环群。
+
+???+ note "定理"
+    域 $F$ 的乘法群的有限子群一定是循环群。
+
+??? note "证明"
+    设 $G$ 为域 $F$ 的乘法群的子群且 $|G|=n$。因而，$G$ 是有限 Abel 群。根据有限 Abel 群基本定理，群 $G$ 有不变因子分解 $C_{n_1}\times\cdots\times C_{n_s}$ 且 $n_1\mid\cdots\mid n_s$。所以，对于 $G$ 中的所有元素 $x$，都有 $x^{n_s}=1$。也就是说，群 $G$ 中的元素都是域 $F$ 上多项式 $x^{n_s}-1$ 的根。但是，多项式 $x^{n_s}-1$ 至多有 $n_s$ 个相异的根，即 $n\le n_s$。但是，$n_s\le n$，所以其实有 $n_s=n$。这说明 $G\cong C_{n_s}$，即群 $G$ 是循环群。
+
+???+ note "推论"
+    有限域 $\mathbf F_q$ 的乘法群 $\mathbf F_q^\times\cong C_{q-1}$。
+
+循环群 $\mathbf F_q^\times$ 中有 $\varphi(q-1)$ 个生成元，它们称为有限域的本原元。
+
+???+ abstract "本原元"
+    有限域 $\mathbf F_q$ 的乘法群的生成元，称为 $\mathbf F_q$ 的 **本原元**（primitive element）。
+
+通过乘法运算，本原元已经可以生成域的全体非零元素。这说明，有限域作为它的子域的扩张，一定是单扩张。
+
+???+ note "定理"
+    对于有限域 $\mathbf F_q$，设 $F$ 为 $\mathbf F_q$ 的子域，则 $\mathbf F_q$ 是 $F$ 上的单代数扩张；又设 $\alpha$ 为 $\mathbf F_q$ 的本原元，则 $\mathbf F_q=F(\alpha)$。
+
+本原元的极小多项式是有限域的子域上的不可约多项式。
+
+### 包含关系
+
+有限域的子域也是有限域。有限域之间的包含关系，也完全由它们的阶确定。
+
+???+ note "定理"
+    设 $\mathbf F_q$ 和 $\mathbf F_r$ 是有限域，则 $\mathbf F_r$ 是 $\mathbf F_q$ 的子域，当且仅当存在 $k$ 使得 $q=r^k$。换句话说，$\mathbf F_{p^d}$ 是 $\mathbf F_{p^n}$ 的子域，当且仅当 $d\mid n$。
+
+??? note "证明"
+    如果 $\mathbf F_r$ 是 $\mathbf F_q$ 的子域，那么两者必然有相同的特征 $p$。域扩张 $\mathbf F_q/\mathbf F_r$、$\mathbf F_r/\mathbf F_p$ 和 $\mathbf F_q/\mathbf F_p$ 都是单代数扩张，分别记它们的扩张次数为 $k,d,n$，则扩张次数必然满足 $n=kd$。而且，$r=p^d$ 和 $q=p^n$，并成立 $q=p^n=p^{kd}=(p^d)^k=r^k$。
+
+    反过来，要证明对于所有 $d\mid n$，$\mathbf F_{p^d}$ 都是 $\mathbf F_{p^n}$ 的子域。记 $r=p^d$ 且 $q=p^n$。设 $F$ 为有限域 $\mathbf F_q$ 中方程 $x^r-x=0$ 的全体根的集合。........UNDONE.........
+
 ### 自同构群
 
-有限特征的域上都有 Frobenius 自同态 $\sigma_p:x\mapsto x^p$。对于有限域 $\mathbf F_q$ 的情形，这也是自同构。而且，$\sigma_p^n:x\mapsto x^q$ 是恒等变换，故而 $\sigma_p$ 是域 $\mathbf F_q$ 的自同构群中的至多 $n$ 阶元。其实，域 $\mathbf F_q$ 的自同构群就是 $n$ 阶循环群 $\langle \sigma_p\rangle$。
+有限特征的域上都有 Frobenius 自同态 $\sigma_p:x\mapsto x^p$。对于有限域 $\mathbf F_q$ 的情形，这也是自同构；因为有限集合上的单射必然是满射。而且，$\sigma_p^n:x\mapsto x^q$ 是恒等变换，故而 $\sigma_p$ 是域 $\mathbf F_q$ 的自同构群中的至多 $n$ 阶元。其实，域 $\mathbf F_q$ 的自同构群就是 $n$ 阶循环群 $\langle \sigma_p\rangle$。
 
 ???+ note "定理"
     有限域 $\mathbf F_q$ 的自同构群 $\operatorname{Aut}(\mathbf F_q)=\langle\sigma_p\rangle$，阶数为 $n$。
 
-### 包含关系
+### 乘法群
+
+### 不可约多项式
 
 ## 应用
 
 ## 参考资料与注释
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+-   [Cyclotomic Polynomial - Wikipedia](https://en.wikipedia.org/wiki/Cyclotomic_polynomial)
 -   [Brett Porter's Notes on Cyclotomic Polynomials](https://www.whitman.edu/documents/academics/majors/mathematics/2015/Final%20Project%20-%20Porter%2C%20Brett.pdf)
 -   [Jordan Bell's Notes on Cyclotomic Polynomials](https://jordanbell.info/LaTeX/mathematics/cyclotomic/cyclotomic.pdf)
 

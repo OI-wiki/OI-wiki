@@ -38,7 +38,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     -   **对称群**（symmetric group）：集合 $M$ 上的所有 [置换](../permutation.md)，即自 $M$ 到 $M$ 自身的双射，就在映射的复合下构成群 $S_M$。单位元是恒等变换，逆元是逆映射（双射必然存在逆映射）。如果集合 $M$ 有限，大小为 $n$，也常记作 $S_n$，称作 $n$ 次对称群。
     -   空间对称群（symmetry group）：对于一个几何图形，能够使其与自身重合的变换全体也在映射的复合下构成群。这描述了该几何图形的空间对称性。具体例子可以参考 [常见空间对称群](../combinatorics/polya.md#常见空间对称群)。
     -   整数的加法群：整数集 $\mathbf Z$ 在加法 $+$ 运算下构成群 $(\mathbf Z,+)$。单位元是 $0$，逆元是相反数。
-    -   整数模 $n$ 乘法群（multiplicative group of integers modulo $n$）：对于一个模数 $n$，所有与 $n$ 互质的整数对应的 [同余类](../number-theory/basic.md#同余类与剩余系)，在乘法运算下构成群 $((\mathbf Z/n\mathbf Z)^\times,\times)$。单位元是 $\bar 1$，逆元就是模 $n$ 的 [乘法逆元](../number-theory/inverse.md)（对应的同余类），其存在性由 [裴蜀定理](../number-theory/bezouts.md) 保证。具体结构分析参考 [整数模 $n$ 乘法群](../algebra/ring-theory.md#应用整数同余类的乘法群)。
+    -   整数模 $n$ 乘法群（multiplicative group of integers modulo $n$）：对于一个模数 $n$，所有与 $n$ 互质的整数对应的 [同余类](../number-theory/basic.md#同余类与剩余系)，在乘法运算下构成群 $((\mathbf Z/n\mathbf Z)^\times,\times)$。单位元是 $\bar 1$，逆元就是模 $n$ 的 [乘法逆元](../number-theory/inverse.md)（对应的同余类），其存在性由 [裴蜀定理](../number-theory/bezouts.md) 保证。具体结构分析参考 [整数模 $n$ 乘法群](./ring-theory.md#应用整数同余类的乘法群)。
     -   一般线性群（general linear group）：数域 $F$ 上的 $n$ 维的全体可逆方阵在乘法运算下构成群 $GL_n(F)$。单位元是单位矩阵，逆元是逆矩阵。
 
 要更好地理解群的定义，不妨对比着看几个不属于群的例子。
@@ -123,6 +123,11 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 ???+ note "整环的消去律"
     设整环 $R$ 有元素 $a,b,c\in R$ 且 $a\neq 0$，如果 $ab=ac$，则必然有 $b=c$。
 
+对于一般的幺环，如果只考虑它的全体可逆元，那么同样可以得到群结构。这称为环的乘法群或是单位群。
+
+???+ abstract "乘法群（单位群）" 
+    对于幺环 $(R,+,\cdot)$，设 $R^\times$ 为 $R$ 中全体可逆元的集合，则 $(R^\times,\cdot)$ 构成群，称为幺环 $R$ 的 **乘法群**（multiplicative group），或是 **单位群**（unit group）。
+
 最简单的一些环的例子如下。
 
 ???+ example "环的例子"
@@ -130,7 +135,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     -   整数环：整数集 $\mathbf Z$ 和其上通常定义的加法 $+$ 和乘法 $\times$ 构成了环 $(\mathbf Z,+,\times)$。实际上，这是一个整环，但是它不是除环。
 
-    -   多项式环：给定环 $R$，可以在上面定义 [多项式环](../algebra/ring-theory.md#多项式环) $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
+    -   多项式环：对于一个环 $R$，可以在上面定义 [多项式环](./ring-theory.md#多项式环) $R[x]$。如果 $R$ 是整环，则该多项式环必然是整环。
 
     -   四元数（quaternion）：类比复数，可以考虑集合 $\mathbf H=\{a+b\mathrm{i}+c\mathrm{j}+d\mathrm{k}:a,b,c,d\in\mathbf R\}$，并且定义其上的加法和乘法，这里，$\mathrm{i},\mathrm{j},\mathrm{k}$ 的乘法运算满足
 
@@ -142,7 +147,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     -   整数集的子集 $2\mathbf Z$，在通常意义的加法和乘法下构成环，它是交换环，没有零因子，但是并不含幺。
 
-    -   整数模 $n$ 同余类 $\mathbf Z/n\mathbf Z$ 在同余类的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）。这样的环含有零因子，当且仅当 $n$ 是合数。所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域。
+    -   整数模 $n$ 同余类 $\mathbf Z/n\mathbf Z$ 在同余类的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）。这样的环含有零因子，当且仅当 $n$ 是合数。所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域。它的乘法群 $((\mathbf Z/n\mathbf Z)^\times,\times)$ 就是整数模 $n$ 乘法群。
 
     -   矩阵环：环 $R$ 上的全体 $n$ 维方阵在矩阵的加法和乘法下构成一个环 $M_n(R)$。一般地，这个环有零因子，且不是交换环。
 
