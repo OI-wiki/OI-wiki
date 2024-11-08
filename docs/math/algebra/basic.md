@@ -123,6 +123,11 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 ???+ note "整环的消去律"
     设整环 $R$ 有元素 $a,b,c\in R$ 且 $a\neq 0$，如果 $ab=ac$，则必然有 $b=c$。
 
+对于一般的幺环，如果只考虑它的全体可逆元，那么同样可以得到群结构。这称为环的乘法群或是单位群。
+
+???+ abstract "乘法群（单位群）" 
+    对于幺环 $(R,+,\cdot)$，设 $R^\times$ 为 $R$ 中全体可逆元的集合，则 $(R^\times,\cdot)$ 构成群，称为幺环 $R$ 的 **乘法群**（multiplicative group），或是 **单位群**（unit group）。
+
 最简单的一些环的例子如下。
 
 ???+ example "环的例子"
@@ -142,7 +147,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
     -   整数集的子集 $2\mathbf Z$，在通常意义的加法和乘法下构成环，它是交换环，没有零因子，但是并不含幺。
 
-    -   整数模 $n$ 同余类 $\mathbf Z/n\mathbf Z$ 在同余类的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）。这样的环含有零因子，当且仅当 $n$ 是合数。所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域。
+    -   整数模 $n$ 同余类 $\mathbf Z/n\mathbf Z$ 在同余类的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）。这样的环含有零因子，当且仅当 $n$ 是合数。所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域。它的乘法群 $((\mathbf Z/n\mathbf Z)^\times,\times)$ 就是整数模 $n$ 乘法群。
 
     -   矩阵环：环 $R$ 上的全体 $n$ 维方阵在矩阵的加法和乘法下构成一个环 $M_n(R)$。一般地，这个环有零因子，且不是交换环。
 
