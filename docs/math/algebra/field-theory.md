@@ -150,8 +150,7 @@
     1.  $\sqrt 2$ 是 $\mathbf Q$ 上的代数元，极小多项式是 $x^2-2$。
     2.  $\sqrt 2$ 是 $\mathbf R$ 上的代数元，极小多项式是 $x-\sqrt 2$。
     3.  $\pi$ 是 $\mathbf Q$ 上的超越元。
-
-一般地，$\mathbf Q$ 上的代数元称为 **代数数**（algebraic number），而超越元称为 **超越数**（transcendental number）。
+    4.  一般地，$\mathbf Q$ 上的代数元称为 **代数数**（algebraic number），而超越元称为 **超越数**（transcendental number）。特别地，如果代数数的极小多项式是首一多项式，它就称作 **代数整数**（algebraic integer）。代数扩张中的全体代数整数构成环。例如，二次域 $\mathbf Q(\sqrt{d})$ 中的代数整数就构成二次整数环 $\mathbf Z[\omega]$。这里记号的含义见 [二次整数环](./ring-theory.md#例子二次整数环)。
 
 ???+ note "代数扩张与超越扩张"
     对于扩张 $E/K$，如果域 $E$ 的元素都是 $F$ 中的代数元，则称域 $E$ 是 $F$ 上的 **代数扩张**（algebraic extension）；否则，称域 $E$ 是 $F$ 上的 **超越扩张**（transcendental extension）。
@@ -397,13 +396,15 @@ $$
 
 这就说明，它就是 $\zeta_n$ 的极小多项式，也称为 **$n$ 次分圆多项式**（$n$-th cyclotomic polynomial）。上面的定义式指出，它有 $\varphi(n)$ 个复根，且这些复根正是全体 $n$ 次本原单位根。这也说明，$\mathbf Q(\zeta_n)/\mathbf Q$ 是 $\varphi(n)$ 次扩张。
 
+分圆域 $\mathbf Q(\zeta_n)$ 中的代数整数环是 $\mathbf Z[\zeta_n]$。另外，当 $\varphi(n)=2$ 时，分圆域是 [二次扩张](../number-theory/quadratic.md)。具体来说，$\mathbf Q(\zeta_4)$ 是二次域 $\mathbf Q(\sqrt{-1})$；$\mathbf Q(\zeta_3)$ 和 $\mathbf Q(\zeta_6)$ 相同，都是二次域 $\mathbf Q(\sqrt{-3})$。
+
 上面的表达式同样指出
 
 $$
 x^n-1=\prod_{d\mid n}\Phi_d(x).
 $$
 
-对此式应用 [Mobius 反演](../number-theory/mobius.md) 可得
+对此式应用 [Möbius 反演](../number-theory/mobius.md) 可得
 
 $$
 \Phi_d(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}.
@@ -435,12 +436,24 @@ $$
 
 ???+ note "性质"
     对于分圆多项式 $\Phi_n(x)$，有：
-    
-    1.  如果 $n$ 是奇数，则 $\Phi_{2n}(x)=\Phi_{n}(-x)$；
-    2.  如果 $r$ 是 $n$ 的全部素因子的乘积，则 $\Phi_n(x)=\Phi_r(x^{n/r})$。
-    3.  特别地，$\Phi_{2^k}(x)=x^{2^{k-1}}+1$。
 
-这些性质说明，对分圆多项式的计算，重点在于那些次数是无平方因子的奇数的情形。
+    1.  如果素数 $p\mid n$，则 $\Phi_{pn}(x)=\Phi_n(x^p)$；
+    2.  如果素数 $p\perp n$，则 $\Phi_{pn}(x)=\dfrac{\Phi_n(x^p)}{\Phi_n(x)}$；
+    3.  特别地，如果 $n$ 是奇数，则 $\Phi_{2n}(x)=\Phi_n(-x)$；
+    4.  对于素数 $p$，有 $\Phi_{p}(x)=1+x+\cdots+x^{p-1}$；
+    5.  特别地，$\Phi_{2^k}(x)=x^{2^{k-1}}+1$。
+
+这些性质说明，对分圆多项式的计算，重点在于那些次数是无平方因子的奇数的情形。而对于这种情形，可以用性质二逐个添加素因子；每个素因子的加入，只需要做一次多项式除法即可。
+
+分圆多项式还有很多其它的性质。
+
+???+ note "定理"
+    设 $\Phi_n(x)$ 为 $n>1$ 次分圆多项式。于是，有：
+    1.  多项式 $\Phi_n(x)$ 是回文多项式，它的 $j$ 次系数和 $n-j$ 次系数相同，即 $\Phi_n(x)=x^n\Phi_n(1/x)$；
+    2.  多项式的 $n-1$ 次系数等于 Möbius 函数 $\mu(n)$；
+    3.  如果 $n$ 是素数幂 $p^k$，那么 $\Phi_n(1)=p$；否则，$\Phi_n(1)=1$。
+
+分圆多项式可以用于解决一些数论和代数问题，但是很难用于算法竞赛中，故而不再列出。有兴趣的读者可以参考文末的资料。
 
 ## 有限域
 
@@ -466,6 +479,10 @@ $$
 ## 应用
 
 ## 参考资料与注释
+
+-   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+-   [Brett Porter's Notes on Cyclotomic Polynomials](https://www.whitman.edu/documents/academics/majors/mathematics/2015/Final%20Project%20-%20Porter%2C%20Brett.pdf)
+-   [Jordan Bell's Notes on Cyclotomic Polynomials](https://jordanbell.info/LaTeX/mathematics/cyclotomic/cyclotomic.pdf)
 
 [^subfield-one]: 这是因为域 $E$ 的幺元 $1_E$ 必然满足 $F$ 上的关系 $x^2-x=0$，而后者在域 $F$ 内只有两个根 $0_F$ 和 $1_F$，由于域的定义要求 $1_E\neq 0_E$，就必然有 $1_E=1_F$ 和 $0_E=0_F$。
 
