@@ -75,7 +75,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 在「调用堆栈」中，你可以看见当前函数执行的栈帧。
 
 ???+ note "Tip"
-    你可以参照 [教程](https://www.cnblogs.com/artoriax/p/12593815.html) 来查看某个数组一段区间内的内容。
+    你可以参照 [GDB 官方文档](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Arrays.html) 来查看某个数组一段区间内的内容。
 
 在调试模式中，编辑器将以黄色底色显示下一步将要执行的代码。
 
