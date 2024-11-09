@@ -342,6 +342,8 @@ $$
 
 最后，[代数基本定理](../poly/fundamental.md) [^fundamental-algebra]说明，$\mathbf C$ 是代数闭域。实数域 $\mathbf R$ 上的不可约多项式至多是二次的，或者等价地，它上面的代数扩张至多是二次扩张，就是因为通过代数扩张能够得到的最大的域就是 $\mathbf C$。
 
+### 可分扩张
+
 ## 分圆域
 
 作为域扩张的简单例子，本节讨论分圆域。另一个域扩张的简单例子是 [二次域](../number-theory/quadratic.md)。
@@ -389,22 +391,22 @@ $$
 \Phi_n(x)=\prod_{\zeta\in P_n}(x-\zeta)
 $$
 
-即可。单位根 $\zeta_n$ 的极小多项式，必然是 $\Phi_n(x)$ 的因子。但是，这样定义的 $\Phi_n(x)$ 有如下性质：
+即可。单位根 $\zeta_n$ 的极小多项式，必然是 $\Phi_n(x)$ 的因子。而且，这样定义的 $\Phi_n(x)$ 有如下性质：
 
 ???+ note "定理"
     $\Phi_n(x)$ 是整系数首一多项式，且在 $\mathbf Z[x]$ 中不可约。
 
-这就说明，它就是 $\zeta_n$ 的极小多项式，也称为 **$n$ 次分圆多项式**（$n$-th cyclotomic polynomial）。上面的定义式指出，它有 $\varphi(n)$ 个复根，且这些复根正是全体 $n$ 次本原单位根。这也说明，$\mathbf Q(\zeta_n)/\mathbf Q$ 是 $\varphi(n)$ 次扩张。
+这就说明，它就是 $\zeta_n$ 的极小多项式，也称为 **$n$ 次分圆多项式**（$n$-th cyclotomic polynomial）。上面的定义式指出，它有 $\varphi(n)$ 个复根，且这些复根正是全体 $n$ 次本原单位根；其中，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)。这也说明，$\mathbf Q(\zeta_n)/\mathbf Q$ 是 $\varphi(n)$ 次扩张。
 
 分圆域 $\mathbf Q(\zeta_n)$ 中的代数整数环是 $\mathbf Z[\zeta_n]$。另外，当 $\varphi(n)=2$ 时，分圆域是 [二次扩张](../number-theory/quadratic.md)。具体来说，$\mathbf Q(\zeta_4)$ 是二次域 $\mathbf Q(\sqrt{-1})$；$\mathbf Q(\zeta_3)$ 和 $\mathbf Q(\zeta_6)$ 相同，都是二次域 $\mathbf Q(\sqrt{-3})$。
 
-上面的表达式同样指出
+利用分圆多项式，多项式 $x^n-1$ 在 $\mathbf Z[x]$ 中有唯一分解
 
 $$
 x^n-1=\prod_{d\mid n}\Phi_d(x).
 $$
 
-对此式应用 [Möbius 反演](../number-theory/mobius.md) 可得
+因此，$(x^d-1)\mid(x^n-1)$ 当且仅当 $d\mid n$。而且，对此式应用 [Möbius 反演](../number-theory/mobius.md) 可得
 
 $$
 \Phi_d(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}.
@@ -481,10 +483,12 @@ $$
 ???+ note "推论"
     有限域 $\mathbf F_q$ 的乘法群 $\mathbf F_q^\times\cong C_{q-1}$。
 
-循环群 $\mathbf F_q^\times$ 中有 $\varphi(q-1)$ 个生成元，它们称为有限域的本原元。
+循环群 $\mathbf F_q^\times$ 中有 $\varphi(q-1)$ 个生成元，它们称为有限域的本原元；其中，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)。
 
 ???+ abstract "本原元"
     有限域 $\mathbf F_q$ 的乘法群的生成元，称为 $\mathbf F_q$ 的 **本原元**（primitive element）。
+
+设 $\alpha$ 是有限域 $\mathbf F_q$ 的一个本原元。那么，对于所有 $x\in\mathbf F_q$ 都存在唯一的自然数 $k<q-1$ 使得 $x=\alpha^k$；这个 $k$ 就称为 $\mathbf F_q$ 上元素 $x$ 关于基 $\alpha$ 的 **离散对数**（discrete logarithm）。和 $F_p$ 上的情形一致，[离散对数的算法](../number-theory/discrete-logarithm.md) 的复杂度都比较高。
 
 通过乘法运算，本原元已经可以生成域的全体非零元素。这说明，有限域作为它的子域的扩张，一定是单扩张。
 
@@ -495,7 +499,7 @@ $$
 
 ### 包含关系
 
-有限域的子域也是有限域。有限域之间的包含关系，也完全由它们的阶确定。
+有限域的子域也是有限域。有限域之间的包含关系，也完全由它们的阶决定。
 
 ???+ note "定理"
     设 $\mathbf F_q$ 和 $\mathbf F_r$ 是有限域，则 $\mathbf F_r$ 是 $\mathbf F_q$ 的子域，当且仅当存在 $k$ 使得 $q=r^k$。换句话说，$\mathbf F_{p^d}$ 是 $\mathbf F_{p^n}$ 的子域，当且仅当 $d\mid n$。
@@ -503,24 +507,72 @@ $$
 ??? note "证明"
     如果 $\mathbf F_r$ 是 $\mathbf F_q$ 的子域，那么两者必然有相同的特征 $p$。域扩张 $\mathbf F_q/\mathbf F_r$、$\mathbf F_r/\mathbf F_p$ 和 $\mathbf F_q/\mathbf F_p$ 都是单代数扩张，分别记它们的扩张次数为 $k,d,n$，则扩张次数必然满足 $n=kd$。而且，$r=p^d$ 和 $q=p^n$，并成立 $q=p^n=p^{kd}=(p^d)^k=r^k$。
 
-    反过来，要证明对于所有 $d\mid n$，$\mathbf F_{p^d}$ 都是 $\mathbf F_{p^n}$ 的子域。记 $r=p^d$ 且 $q=p^n$。设 $F$ 为有限域 $\mathbf F_q$ 中方程 $x^r-x=0$ 的全体根的集合。........UNDONE.........
+    反过来，要证明对于所有 $d\mid n$，$\mathbf F_{p^d}$ 都是 $\mathbf F_{p^n}$ 的子域。记 $r=p^d$ 且 $q=p^n$。设 $F$ 为有限域 $\mathbf F_q$ 中方程 $x^r-x=0$ 的全体根的集合。通过 Frobenius 自同态可以证明，集合 $F$ 必然构成域；关键是要证明，这样的根恰好有 $r$ 个，所以才有 $F\cong\mathbf F_r$。因为 $d\mid n$，所以 $(p^d-1)\mid(p^n-1)$，所以 $(x^{p^d-1}-1)\mid(x^{p^n-1}-1)$，也就是 $(x^r-x)\mid (x^q-x)$。所以，$x^r-x$ 在 $\mathbf F_q$ 上分裂，故而在 $\mathbf F_q$ 内有 $r$ 个不同的根。这就说明 $F\cong\mathbf F_r$ 是 $\mathbf F_q$ 的子域。
+
+这一定理说明，有限域 $\mathbf F_{p^n}$ 的包含关系，对应着域的阶 $p^n$ 中的指数 $n$ 之间的整除关系。所有特征为 $p$ 的有限域 $\mathbf F_{p^n}$ 之间形成的格，也就同构于整数 $n$ 在整除关系下形成的格。当然，为了让有限域 $\mathbf F_{p^n}$ 之间的交集等运算有意义，需要将所有特征为 $p$ 的域都看作是 $\mathbf F_p$ 的代数闭域的子集。
+
+???+ note "定理"
+    设 $F$ 为 $\mathbf F_p$ 的代数闭包，则域 $F$ 中多项式 $x^{p^n}-x$ 的根的集合构成有限域 $\mathbf F_{p^n}$。那么，有：
+    1.  $F=\bigcup_{n=1}^\infty\mathbf F_{p^n}$，即 $\mathbf F_p$ 的代数闭包就是所有特征为 $p$ 的有限域的并集；
+    2.  全体特征为 $p$ 的有限域 $\mathbf F_{p^n}$ 在包含关系下形成的格，同构于整数 $n$ 在整除关系下形成的格。特别地，$\mathbf F_{p^n}$ 和 $\mathbf F_{p^m}$ 的交集 $\mathbf F_{p^n}\cap\mathbf F_{p^m}=\mathbf F_{p^{\gcd(n,m)}}$，而同时包含 $\mathbf F_{p^n}$ 和 $\mathbf F_{p^m}$ 的最小的域 $\mathbf F_{p^n}\mathbf F_{p^m}=\mathbf F_{p^{\operatorname{lcm}(n,m)}}$。
+
+??? note "证明"
+    关键在于证明第一部分，即 $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 是 $F_p$ 的代数闭包。第二部分是前面关于有限域的子域的定理的简单推论。
+
+    注意到，任取 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$，必然存在 $n\in\mathbf N_+$ 使得 $\alpha\in\mathbf F_{p^n}$ 成立，故而 $\alpha$ 是 $\mathbf F_p$ 上的代数元；因而，$\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 是 $\mathbf F_p$ 的代数扩张。对于任何 $\mathbf F_p$ 上的 $m$ 次多项式 $f(x)$，它在代数闭包 $F$ 中有至多 $m$ 个不同的根 $\{\alpha_i\}_{i=1}^m$。设根 $\alpha_i$ 的极小多项式次数为 $n_i$，则 $\alpha_i$ 必然包含在域 $\mathbf F_{p^{n_i}}$ 内；故而，$f(x)$ 的所有根都在 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 中，亦即 $f(x)$ 在 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 上分裂。根据代数闭包的定义，$\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 就是 $\mathbf F_p$ 的代数闭包。
 
 ### 自同构群
 
-有限特征的域上都有 Frobenius 自同态 $\sigma_p:x\mapsto x^p$。对于有限域 $\mathbf F_q$ 的情形，这也是自同构；因为有限集合上的单射必然是满射。而且，$\sigma_p^n:x\mapsto x^q$ 是恒等变换，故而 $\sigma_p$ 是域 $\mathbf F_q$ 的自同构群中的至多 $n$ 阶元。其实，域 $\mathbf F_q$ 的自同构群就是 $n$ 阶循环群 $\langle \sigma_p\rangle$。
+有限域 $\mathbf F_q$ 上的子域都是形如 $x^r-x$ 的多项式的根的集合。换言之，它们都是某个映射 $x\mapsto x^r$ 的不动点集合。这其实揭示了有限域的子域和自同构群的子群之间的深刻对应关系。
+
+特征为 $p$ 的域上都有 Frobenius 自同态 $\sigma_p:x\mapsto x^p$。对于有限域 $\mathbf F_q$ 的情形，这也是自同构。域 $\mathbf F_q$ 的自同构群就是 $n$ 阶循环群 $\langle \sigma_p\rangle$，它的一个生成元就是 Frobenius 自同态 $\sigma_p$。
 
 ???+ note "定理"
-    有限域 $\mathbf F_q$ 的自同构群 $\operatorname{Aut}(\mathbf F_q)=\langle\sigma_p\rangle$，阶数为 $n$。
+    有限域 $\mathbf F_q$ 的自同构群 $\operatorname{Aut}(\mathbf F_q)=\langle\sigma_p\rangle$ 是 $n$ 阶循环群，且生成元 $\sigma_p$ 是 Frobenius 自同态 $x\mapsto x^p$。
 
-### 乘法群
+??? note "证明"
+    首先，Frobenius 自同态 $\sigma_p$ 在有限域 $\mathbf F_q$ 上是自同构，因为有限集合上的单射必然也是满射。因此，$\sigma_p\in\operatorname{Aut}(\mathbf F_q)$。
+
+    然后，$\sigma_p$ 的阶是 $n$。这是因为对于所有 $x\in\mathbf F_q$ 都有 $\sigma_p^n(x)=x^{p^n}=x$，故而 $x^{p^n}$ 是恒等映射；而且对于任何 $k<n$ 都有 $\sigma_p^k$ 不是恒等映射，否则 $\mathbf F_q$ 的元素都得是 $x^{p^k}-x$ 的根，这不可能。
+
+    最后，$\operatorname{Aut}(\mathbf F_q)$ 至多有 $n$ 个元素。设 $\alpha$ 为 $\mathbf F_q$ 的一个本原元，则自同构 $\sigma\in \operatorname{Aut}(\mathbf F_q)$ 由它在 $\alpha$ 处的取值 $\sigma(\alpha)$ 唯一确定。但是，$\sigma$ 必须将 $\alpha$ 映射到它的共轭元；否则，$\alpha$ 和 $\sigma(\alpha)$ 不再是同一个极小多项式的根。这样的共轭元只有 $n$ 个，这就说明 $\operatorname{Aut}(\mathbf F_q)$ 也至多有 $n$ 个元素。
+
+    因此，$\operatorname{Aut}(\mathbf F_q)$ 中的 $n$ 个元素正是 $\langle\sigma_p\rangle$。定理得证。
+
+自同构群 $\operatorname{Aut}(\mathbf F_q)$ 的子群和有限域 $\mathbf F_q$ 上的子域一一对应。
+
+???+ note "定理"
+    设 $\mathbf F_q$ 为有限域，$\mathcal F$ 为它的全体子域，$\mathcal G$ 为它的自同构群 $\operatorname{Aut}(\mathbf F_q)$ 的全体子群。对此，有：
+    1.  对于 $F\in\mathcal F$，设 $\operatorname{Aut}(\mathbf F_q/F)$ 为 $\operatorname{Aut}(\mathbf F_q)$ 中保持 $F$ 不变的自同构的集合，即 $\operatorname{Aut}(\mathbf F_q/F)=\{\sigma\in\operatorname{Aut}(\mathbf F_q):\forall x\in F(\sigma(x)=x)\}$，则 $\operatorname{Aut}(\mathbf F_q/F)\le\operatorname{Aut}(\mathbf F_q)$；
+    2.  对于 $G\in\mathcal G$，设 $F^G$ 为 $G$ 中的所有自同构的不动点集合的交集，即 $F^G=\{x\in\mathbf F_q:\forall\sigma\in G(\sigma(x)=x)\}$，则 $F^G$ 为 $\mathbf F_q$ 的子域；
+    3.  映射 $F\rightarrow\operatorname{Aut}(\mathbf F_q/F)$ 和映射 $G\rightarrow F^G$ 互为逆映射，且是 $\mathcal F$ 和 $\mathcal G$ 之间的一一对应；
+    4.  这个一一对应，将子域之间的扩张关系映射为子群间的包含关系，即对于任何 $F_1\subseteq F_2$，都有 $\operatorname{Aut}(\mathbf F_q/F_2)\le\operatorname{Aut}(\mathbf F_q/F_1)$。
+
+这个结论是一般的 Galois 理论的基本定理的特殊情形，它将域扩张和群论的内容联系起来，从而可以通过群论的方法解决域扩张的问题。
 
 ### 不可约多项式
 
+最后讨论有限域 $\mathbf F_q$ 上的不可约多项式。
+
 ## 应用
+
+## 习题
+
+这里列举一些直接应用本文内容的题目，以便加深理解。但应注意，很多内容并不是算法竞赛的常规考点。
+
+- 分圆多项式：
+    -   [Luogu P1520 因式分解](https://www.luogu.com.cn/problem/P1520)
+    -   [[FZU 2022 Team Training] Problem C. Call It What You Want](https://codeforces.com/group/dIUimH0NFa/contest/375216/problem/C)
+- 有限域：
+    -   [Luogu P3923 大学数学题](https://www.luogu.com.cn/problem/P3923)
+    -   [[COTS 2021] 菜 Jelo](https://www.luogu.com.cn/problem/P11192)
+    -   [LOJ 178. 多项式求根](https://loj.ac/p/178)
+
 
 ## 参考资料与注释
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+-   [Milne, J.S. Fields and Galois Theory.](https://www.jmilne.org/math/CourseNotes/FT.pdf)
 -   [Cyclotomic Polynomial - Wikipedia](https://en.wikipedia.org/wiki/Cyclotomic_polynomial)
 -   [Brett Porter's Notes on Cyclotomic Polynomials](https://www.whitman.edu/documents/academics/majors/mathematics/2015/Final%20Project%20-%20Porter%2C%20Brett.pdf)
 -   [Jordan Bell's Notes on Cyclotomic Polynomials](https://jordanbell.info/LaTeX/mathematics/cyclotomic/cyclotomic.pdf)
