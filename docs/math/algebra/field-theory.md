@@ -513,6 +513,7 @@ $$
 
 ???+ note "定理"
     设 $F$ 为 $\mathbf F_p$ 的代数闭包，则域 $F$ 中多项式 $x^{p^n}-x$ 的根的集合构成有限域 $\mathbf F_{p^n}$。那么，有：
+    
     1.  $F=\bigcup_{n=1}^\infty\mathbf F_{p^n}$，即 $\mathbf F_p$ 的代数闭包就是所有特征为 $p$ 的有限域的并集；
     2.  全体特征为 $p$ 的有限域 $\mathbf F_{p^n}$ 在包含关系下形成的格，同构于整数 $n$ 在整除关系下形成的格。特别地，$\mathbf F_{p^n}$ 和 $\mathbf F_{p^m}$ 的交集 $\mathbf F_{p^n}\cap\mathbf F_{p^m}=\mathbf F_{p^{\gcd(n,m)}}$，而同时包含 $\mathbf F_{p^n}$ 和 $\mathbf F_{p^m}$ 的最小的域 $\mathbf F_{p^n}\mathbf F_{p^m}=\mathbf F_{p^{\operatorname{lcm}(n,m)}}$。
 
@@ -543,6 +544,7 @@ $$
 
 ???+ note "定理"
     设 $\mathbf F_q$ 为有限域，$\mathcal F$ 为它的全体子域，$\mathcal G$ 为它的自同构群 $\operatorname{Aut}(\mathbf F_q)$ 的全体子群。对此，有：
+    
     1.  对于 $F\in\mathcal F$，设 $\operatorname{Aut}(\mathbf F_q/F)$ 为 $\operatorname{Aut}(\mathbf F_q)$ 中保持 $F$ 不变的自同构的集合，即 $\operatorname{Aut}(\mathbf F_q/F)=\{\sigma\in\operatorname{Aut}(\mathbf F_q):\forall x\in F(\sigma(x)=x)\}$，则 $\operatorname{Aut}(\mathbf F_q/F)\le\operatorname{Aut}(\mathbf F_q)$；
     2.  对于 $G\in\mathcal G$，设 $F^G$ 为 $G$ 中的所有自同构的不动点集合的交集，即 $F^G=\{x\in\mathbf F_q:\forall\sigma\in G(\sigma(x)=x)\}$，则 $F^G$ 为 $\mathbf F_q$ 的子域；
     3.  映射 $F\rightarrow\operatorname{Aut}(\mathbf F_q/F)$ 和映射 $G\rightarrow F^G$ 互为逆映射，且是 $\mathcal F$ 和 $\mathcal G$ 之间的一一对应；
@@ -560,14 +562,13 @@ $$
 
 这里列举一些直接应用本文内容的题目，以便加深理解。但应注意，很多内容并不是算法竞赛的常规考点。
 
-- 分圆多项式：
+-   分圆多项式：
     -   [Luogu P1520 因式分解](https://www.luogu.com.cn/problem/P1520)
-    -   [[FZU 2022 Team Training] Problem C. Call It What You Want](https://codeforces.com/group/dIUimH0NFa/contest/375216/problem/C)
-- 有限域：
+    -   [\[FZU 2022 Team Training\] Problem C. Call It What You Want](https://codeforces.com/group/dIUimH0NFa/contest/375216/problem/C)
+-   有限域：
     -   [Luogu P3923 大学数学题](https://www.luogu.com.cn/problem/P3923)
-    -   [[COTS 2021] 菜 Jelo](https://www.luogu.com.cn/problem/P11192)
+    -   [\[COTS 2021\] 菜 Jelo](https://www.luogu.com.cn/problem/P11192)
     -   [LOJ 178. 多项式求根](https://loj.ac/p/178)
-
 
 ## 参考资料与注释
 
