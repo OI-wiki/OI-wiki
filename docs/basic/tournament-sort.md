@@ -66,7 +66,7 @@
       int i = tmp[1];
       while (i > 1) {
         int j, k = i / 2;
-        if (i % 2 == 0 && i < 2 * n - 1)
+        if (i % 2 == 0)
           j = i + 1;
         else
           j = i - 1;
@@ -118,7 +118,7 @@
         i = tmp[1]
         while i > 1:
             j = k = int(i / 2)
-            if i % 2 == 0 and i < 2 * n - 1:
+            if i % 2 == 0:
                 j = i + 1
             else:
                 j = i - 1
