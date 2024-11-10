@@ -1,12 +1,13 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
 using namespace std;
 
 struct SegmentTree {
   int lc, rc, val, rnk;
 };
 
-const int MAXN = 100000 + 5;
-const int MAXM = 200000 + 5;
+constexpr int MAXN = 100000 + 5;
+constexpr int MAXM = 200000 + 5;
 
 SegmentTree
     t[MAXN * 2 +
@@ -92,14 +93,15 @@ int modify(int now, int l, int r, int pos, int fa) {  // 修改父节点（合�
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   rt[0] = build(1, n);
   for (int i = 1; i <= m; i++) {
     int op, a, b;
 
-    scanf("%d", &op);
+    cin >> op;
     if (op == 1) {
-      scanf("%d%d", &a, &b);
+      cin >> a >> b;
       int fa = findRoot(rt[i - 1], a), fb = findRoot(rt[i - 1], b);
       if (fa != fb) {
         if (getRnk(rt[i - 1], 1, n, fa) >
@@ -112,16 +114,12 @@ int main() {
         rt[i] = rt[i - 1];
       }
     } else if (op == 2) {
-      scanf("%d", &a);
+      cin >> a;
       rt[i] = rt[a];
     } else {
-      scanf("%d%d", &a, &b);
+      cin >> a >> b;
       rt[i] = rt[i - 1];
-      if (findRoot(rt[i], a) == findRoot(rt[i], b)) {
-        printf("1\n");
-      } else {
-        printf("0\n");
-      }
+      cout << (findRoot(rt[i], a) == findRoot(rt[i], b)) << '\n';
     }
   }
 

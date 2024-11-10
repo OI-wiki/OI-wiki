@@ -1,13 +1,13 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 using namespace std;
-const int maxn = 20010;
-const int inf = 2e9;
-int n, m, a, b, c, q[maxn], rt, siz[maxn], maxx[maxn], dist[maxn];
-int cur, h[maxn], nxt[maxn], p[maxn], w[maxn];
-bool tf[10000010], ret[maxn], vis[maxn];
+constexpr int MAXN = 20010;
+constexpr int inf = 2e9;
+int n, m, a, b, c, q[MAXN], rt, siz[MAXN], maxx[MAXN], dist[MAXN];
+int cur, h[MAXN], nxt[MAXN], p[MAXN], w[MAXN];
+bool tf[10000010], ret[MAXN], vis[MAXN];
 
 void add_edge(int x, int y, int z) {
   cur++;
@@ -32,7 +32,7 @@ void calcsiz(int x, int fa) {
   if (maxx[x] < maxx[rt]) rt = x;
 }
 
-int dd[maxn], cnt;
+int dd[MAXN], cnt;
 
 void calcdist(int x, int fa) {
   dd[++cnt] = dist[x];
@@ -71,10 +71,11 @@ void dfz(int x, int fa) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   for (int i = 1; i < n; i++)
-    scanf("%d%d%d", &a, &b, &c), add_edge(a, b, c), add_edge(b, a, c);
-  for (int i = 1; i <= m; i++) scanf("%d", q + i);
+    cin >> a >> b >> c, add_edge(a, b, c), add_edge(b, a, c);
+  for (int i = 1; i <= m; i++) cin >> q[i];
   rt = 0;
   maxx[rt] = inf;
   sum = n;
@@ -83,8 +84,8 @@ int main() {
   dfz(rt, -1);
   for (int i = 1; i <= m; i++)
     if (ret[i])
-      printf("AYE\n");
+      cout << "AYE\n";
     else
-      printf("NAY\n");
+      cout << "NAY\n";
   return 0;
 }

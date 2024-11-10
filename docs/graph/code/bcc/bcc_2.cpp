@@ -1,10 +1,10 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 #include <stack>
 #include <vector>
 
 using namespace std;
-const int N = 5e5 + 5, M = 2e6 + 5;
+constexpr int N = 5e5 + 5, M = 2e6 + 5;
 int n, m;
 
 struct edge {
@@ -13,7 +13,7 @@ struct edge {
 
 int hd[N << 1], tot = 1;
 
-void add(int u, int v) { e[++tot] = (edge){v, hd[u]}, hd[u] = tot; }
+void add(int u, int v) { e[++tot] = edge{v, hd[u]}, hd[u] = tot; }
 
 void uadd(int u, int v) { add(u, v), add(v, u); }
 
@@ -25,7 +25,7 @@ stack<int> st;
 
 void tarjan(int u, int in) {
   low[u] = dfn[u] = ++bcc_cnt;
-  st.push(u), vis[u] = 1;
+  st.push(u), vis[u] = true;
   for (int i = hd[u]; i; i = e[i].nt) {
     int v = e[i].to;
     if (i == (in ^ 1)) continue;
@@ -37,25 +37,27 @@ void tarjan(int u, int in) {
   if (dfn[u] == low[u]) {
     vector<int> t;
     t.push_back(u);
-    while (st.top() != u) t.push_back(st.top()), vis[st.top()] = 0, st.pop();
+    while (st.top() != u)
+      t.push_back(st.top()), vis[st.top()] = false, st.pop();
     st.pop(), ans.push_back(t);
   }
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
   int u, v;
   for (int i = 1; i <= m; i++) {
-    scanf("%d%d", &u, &v);
+    cin >> u >> v;
     if (u != v) uadd(u, v);
   }
   for (int i = 1; i <= n; i++)
     if (!dfn[i]) tarjan(i, 0);
-  printf("%llu\n", ans.size());
+  cout << ans.size() << '\n';
   for (int i = 0; i < ans.size(); i++) {
-    printf("%llu ", ans[i].size());
-    for (int j = 0; j < ans[i].size(); j++) printf("%d ", ans[i][j]);
-    printf("\n");
+    cout << ans[i].size() << ' ';
+    for (int j = 0; j < ans[i].size(); j++) cout << ans[i][j] << ' ';
+    cout << '\n';
   }
   return 0;
 }

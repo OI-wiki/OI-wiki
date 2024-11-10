@@ -6,7 +6,7 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 
 比如说 $\varphi(1) = 1$。
 
-当 n 是质数的时候，显然有 $\varphi(n) = n - 1$。
+当 $n$ 是质数的时候，显然有 $\varphi(n) = n - 1$。
 
 ## 性质
 
@@ -59,78 +59,85 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 
 如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用 [Pollard Rho](./pollard-rho.md) 算法优化。
 
-=== "C++"
-    ```cpp
-    #include <cmath>
-    
-    int euler_phi(int n) {
-      int m = int(sqrt(n + 0.5));
-      int ans = n;
-      for (int i = 2; i <= m; i++)
-        if (n % i == 0) {
-          ans = ans / i * (i - 1);
-          while (n % i == 0) n /= i;
+???+ "参考实现"
+    === "C++"
+        ```cpp
+        #include <cmath>
+        
+        int euler_phi(int n) {
+          int ans = n;
+          for (int i = 2; i * i <= n; i++)
+            if (n % i == 0) {
+              ans = ans / i * (i - 1);
+              while (n % i == 0) n /= i;
+            }
+          if (n > 1) ans = ans / n * (n - 1);
+          return ans;
         }
-      if (n > 1) ans = ans / n * (n - 1);
-      return ans;
-    }
-    ```
+        ```
 
-=== "Python"
-    ```python
-    import math
-    
-    
-    def euler_phi(n):
-        m = math.isqrt(n + 0.5)
-        ans = n
-        for i in range(2, m + 1):
-            if n % i == 0:
-                ans = ans // i * (i - 1)
-                while n % i == 0:
-                    n = n // i
-        if n > 1:
-            ans = ans // n * (n - 1)
-        return ans
-    ```
+    === "Python"
+        ```python
+        import math
+        
 
-注：如果将上面的程序改成如下形式，会提升一点效率：
-
-=== "C++"
-    ```cpp
-    #include <cmath>
-    
-    int euler_phi(int n) {
-      int ans = n;
-      for (int i = 2; i * i <= n; i++)
-        if (n % i == 0) {
-          ans = ans / i * (i - 1);
-          while (n % i == 0) n /= i;
-        }
-      if (n > 1) ans = ans / n * (n - 1);
-      return ans;
-    }
-    ```
-
-=== "Python"
-    ```python
-    import math
-    
-    
-    def euler_phi(n):
-        ans = n
-        for i in range(2, math.isqrt(n) + 1):
-            if n % i == 0:
-                ans = ans // i * (i - 1)
-                while n % i == 0:
-                    n = n // i
-        if n > 1:
-            ans = ans // n * (n - 1)
-        return ans
-    ```
+        def euler_phi(n):
+            ans = n
+            for i in range(2, math.isqrt(n) + 1):
+                if n % i == 0:
+                    ans = ans // i * (i - 1)
+                    while n % i == 0:
+                        n = n // i
+            if n > 1:
+                ans = ans // n * (n - 1)
+            return ans
+        ```
 
 如果是多个数的欧拉函数值，可以利用后面会提到的线性筛法来求得。
+
 详见：[筛法求欧拉函数](./sieve.md#筛法求欧拉函数)
+
+## 应用
+
+欧拉函数常常用于化简一列最大公约数的和。国内有些文章称它为 **欧拉反演**[^1]。
+
+在结论
+
+$$
+n=\sum_{d|n}\varphi(d)
+$$
+
+中代入 $n=\gcd(a,b)$，则有
+
+$$
+\gcd(a,b) = \sum_{d|\gcd(a,b)}\varphi(d) = \sum_d [d|a][d|b]\varphi(d),
+$$
+
+其中，$[\cdot]$ 称为 [Iverson 括号](https://mathworld.wolfram.com/IversonBracket.html)，只有当命题 $P$ 为真时 $[P]$ 取值为 $1$，否则取 $0$。对上式求和，就可以得到
+
+$$
+\sum_{i=1}^n\gcd(i,n)=\sum_{d}\sum_{i=1}^n[d|i][d|n]\varphi(d)=\sum_d\left\lfloor\frac{n}{d}\right\rfloor[d|n]\varphi(d)=\sum_{d|n}\left\lfloor\frac{n}{d}\right\rfloor\varphi(d).
+$$
+
+这里关键的观察是 $\sum_{i=1}^n[d|i]=\lfloor\frac{n}{d}\rfloor$，即在 $1$ 和 $n$ 之间能够被 $d$ 整除的 $i$ 的个数是 $\lfloor\frac{n}{d}\rfloor$。
+
+利用这个式子，就可以遍历约数求和了。需要多组查询的时候，可以预处理欧拉函数的前缀和，利用数论分块查询。
+
+???+ note "[GCD SUM](https://www.luogu.com.cn/problem/P2398)"
+    给定 $n\le 100000$，求
+    
+    $$
+    \sum_{i=1}^n\sum_{j=1}^n\gcd(i,j).
+    $$
+    
+    ??? note "思路"
+        仿照上文的推导，可以得出
+        
+        $$
+        \sum_{i=1}^n\sum_{j=1}^n\gcd(i,j) = \sum_{d=1}^n\left\lfloor\frac{n}{d}\right\rfloor^2\varphi(d).
+        $$
+        
+        此时需要从 $1$ 遍历到 $n$ 求欧拉函数，用线性筛做就可以 $O(n)$ 得到答案。
 
 ## 欧拉定理
 
@@ -138,18 +145,22 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 
 若 $\gcd(a, m) = 1$，则 $a^{\varphi(m)} \equiv 1 \pmod{m}$。
 
-## 扩展欧拉定理
+### 扩展欧拉定理
 
-当然也有扩展欧拉定理
+当然也有扩展欧拉定理，用于处理一般的 $a$ 和 $m$ 的情形。
 
 $$
 a^b\equiv
 \begin{cases}
-a^{b\bmod\varphi(p)},\,&\gcd(a,\,p)=1\\
-a^b,&\gcd(a,\,p)\ne1,\,b<\varphi(p)\\
-a^{b\bmod\varphi(p)+\varphi(p)},&\gcd(a,\,p)\ne1,\,b\ge\varphi(p)
+a^{b\bmod\varphi(m)},\,&\gcd(a,\,m)=1\\
+a^b,&\gcd(a,\,m)\ne1,\,b<\varphi(m)\\
+a^{b\bmod\varphi(m)+\varphi(m)},&\gcd(a,\,m)\ne1,\,b\ge\varphi(m)
 \end{cases}
-\pmod p
+\pmod m
 $$
 
-证明和 **习题** 详见 [欧拉定理](./fermat.md)
+证明和习题详见 [欧拉定理](./fermat.md)。
+
+## 参考资料与注释
+
+[^1]: 这一说法并未见于学术期刊或国外的论坛中，在使用该说法时应当注意。

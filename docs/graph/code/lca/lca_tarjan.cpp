@@ -12,7 +12,7 @@ class Edge {
   Edge(int u, int v, int n) : fromVertex(u), toVertex(v), next(n), LCA(-1) {};
 };
 
-const int MAX = 100;
+constexpr int MAX = 100;
 int head[MAX], queryHead[MAX];
 Edge edge[MAX], queryEdge[MAX];
 int parent[MAX], visited[MAX];

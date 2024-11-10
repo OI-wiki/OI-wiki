@@ -1,14 +1,14 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 using namespace std;
-const int maxn = 100010;
-const int inf = 2e9;
-int n, a, b, m, x, col[maxn];
+constexpr int MAXN = 100010;
+constexpr int inf = 2e9;
+int n, a, b, m, x, col[MAXN];
 // 0 off 1 on
 char op;
-int cur, h[maxn * 2], nxt[maxn * 2], p[maxn * 2];
+int cur, h[MAXN * 2], nxt[MAXN * 2], p[MAXN * 2];
 
 void add_edge(int x, int y) {
   cur++;
@@ -17,8 +17,8 @@ void add_edge(int x, int y) {
   p[cur] = y;
 }
 
-bool vis[maxn];
-int rt, sum, siz[maxn], maxx[maxn], fa[maxn], dep[maxn];
+bool vis[MAXN];
+int rt, sum, siz[MAXN], maxx[MAXN], fa[MAXN], dep[MAXN];
 
 void calcsiz(int x, int f) {
   siz[x] = 1;
@@ -61,7 +61,7 @@ struct heap {
   }
 
   int size() { return A.size() - B.size(); }
-} dist[maxn], ch[maxn], ans;
+} dist[MAXN], ch[MAXN], ans;
 
 void dfs(int x, int f, int d, heap& y) {
   y.insert(d);
@@ -92,7 +92,7 @@ void pre(int x) {
 }
 
 struct LCA {
-  int dep[maxn], lg[maxn], fa[maxn][20];
+  int dep[MAXN], lg[MAXN], fa[MAXN][20];
 
   void dfs(int x, int f) {
     for (int j = h[x]; j; j = nxt[j])
@@ -121,12 +121,12 @@ struct LCA {
   int dist(int x, int y) { return dep[x] + dep[y] - 2 * dep[query(x, y)]; }
 } lca;
 
-int d[maxn][20];
+int d[MAXN][20];
 
 int main() {
-  scanf("%d", &n);
-  for (int i = 1; i < n; i++)
-    scanf("%d%d", &a, &b), add_edge(a, b), add_edge(b, a);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
+  for (int i = 1; i < n; i++) cin >> a >> b, add_edge(a, b), add_edge(b, a);
   lca.init();
   rt = 0;
   maxx[rt] = inf;
@@ -134,19 +134,18 @@ int main() {
   calcsiz(1, -1);
   calcsiz(rt, -1);
   pre(rt);
-  // for(int i=1;i<=n;i++)printf("%d ",fa[i]);printf("\n");
   for (int i = 1; i <= n; i++)
     for (int j = i; j; j = fa[j]) d[i][dep[i] - dep[j]] = lca.dist(i, j);
-  scanf("%d", &m);
+  cin >> m;
   while (m--) {
-    scanf(" %c", &op);
+    cin >> op;
     if (op == 'G') {
       if (ans.size())
-        printf("%d\n", ans.top());
+        cout << ans.top() << '\n';
       else
-        printf("-1\n");
+        cout << "-1\n";
     } else {
-      scanf("%d", &x);
+      cin >> x;
       if (!col[x]) {
         if (ch[x].size() >= 2) ans.erase(ch[x].top() + ch[x].top2());
         ch[x].erase(0);

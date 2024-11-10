@@ -90,7 +90,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
       vector<bool> visy;   // 拜访数组 右
       vector<T> lx;
       vector<T> ly;
-      vector<vector<T> > g;
+      vector<vector<T>> g;
       vector<T> slack;
       T inf;
       T res;
@@ -104,7 +104,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
         n = max(_n, _m);
         inf = numeric_limits<T>::max();
         res = 0;
-        g = vector<vector<T> >(n, vector<T>(n));
+        g = vector<vector<T>>(n, vector<T>(n));
         matchx = vector<int>(n, -1);
         matchy = vector<int>(n, -1);
         pre = vector<int>(n);
@@ -249,7 +249,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
 
 ??? note "动态匈牙利算法参考代码"
     ```cpp
-    --8<-- "docs/graph/graph-matching/code/bigraph-weight-match/bigraph-weight-match_1.cpp"
+    --8<-- "docs/graph/code/graph-matching/bigraph-weight-match/bigraph-weight-match_1.cpp"
     ```
 
 ## 转化为费用流模型
@@ -272,5 +272,5 @@ $a = \min \{ slack(v) | v\in{T'} \}$
     模板题
     
     ```cpp
-    --8<-- "docs/graph/graph-matching/code/bigraph-weight-match/bigraph-weight-match_2.cpp"
+    --8<-- "docs/graph/code/graph-matching/bigraph-weight-match/bigraph-weight-match_2.cpp"
     ```

@@ -30,7 +30,7 @@ void Merge(int x, int y) {
 
 bool cmp(edge A, edge B) { return A.w < B.w; }
 
-// Kurskal 算法
+// Kruskal 算法
 void kruskal() {
   int tot = 0;  // 存已选了的边数
   int ans = 0;  // 存总的代价

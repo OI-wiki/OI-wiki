@@ -127,7 +127,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         
         int n, m;
         vector<bool> vis;
-        vector<vector<bool> > adj;
+        vector<vector<bool>> adj;
         
         bool find_edge(int u, int v) { return adj[u][v]; }
         
@@ -144,8 +144,8 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         int main() {
           cin >> n >> m;
         
-          vis.resize(n + 1, false);
-          adj.resize(n + 1, vector<bool>(n + 1, false));
+          vis.resize(n + 1);
+          adj.resize(n + 1, vector<bool>(n + 1));
         
           for (int i = 1; i <= m; ++i) {
             int u, v;
@@ -214,7 +214,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         
         int n, m;
         vector<bool> vis;
-        vector<vector<int> > adj;
+        vector<vector<int>> adj;
         
         bool find_edge(int u, int v) {
           for (int i = 0; i < adj[u].size(); ++i) {
@@ -234,7 +234,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         int main() {
           cin >> n >> m;
         
-          vis.resize(n + 1, false);
+          vis.resize(n + 1);
           adj.resize(n + 1);
         
           for (int i = 1; i <= m; ++i) {

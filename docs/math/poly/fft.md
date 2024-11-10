@@ -1,6 +1,6 @@
 前置知识：[复数](../complex.md)。
 
-本文将介绍一种算法，它支持在 $O(n\log n)$ 的时间内计算两个 $n$ 度的多项式的乘法，比朴素的 $O(n^2)$ 算法更高效。由于两个整数的乘法也可以被当作多项式乘法，因此这个算法也可以用来加速大整数的乘法计算。
+本文将介绍一种算法，它支持在 $O(n\log n)$ 的时间内计算两个 $n$ 次多项式的乘法，比朴素的 $O(n^2)$ 算法更高效。由于两个整数的乘法也可以被当作多项式乘法，因此这个算法也可以用来加速大整数的乘法计算。
 
 ## 引入
 
@@ -13,7 +13,7 @@ B ={}& 7x^2 + 2x + 1 \\
 \end{aligned}
 $$
 
-两个多项式相乘的积 $C = A \times B$，我们可以在 $O(n^2)$ 的时间复杂度中解得（这里 $n$ 为 $A$ 或者 $B$ 多项式的度）：
+两个多项式相乘的积 $C = A \times B$，我们可以在 $O(n^2)$ 的时间复杂度中解得（这里 $n$ 为 $A$ 或者 $B$ 多项式的次数）：
 
 $$
 \begin{aligned}
@@ -226,10 +226,10 @@ $$
     #include <cmath>
     #include <complex>
     
-    typedef std::complex<double> Comp;  // STL complex
+    using Comp = std::complex<double>;  // STL complex
     
-    const Comp I(0, 1);  // i
-    const int MAX_N = 1 << 20;
+    constexpr Comp I(0, 1);  // i
+    constexpr int MAX_N = 1 << 20;
     
     Comp tmp[MAX_N];
     
