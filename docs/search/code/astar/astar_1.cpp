@@ -23,7 +23,7 @@ int h(matrix a) {
   int ret = 0;
   for (int i = 1; i <= 3; i++)
     for (int j = 1; j <= 3; j++)
-      if (a.a[i][j] != st.a[i][j]) ret++;
+      if (a.a[i][j] != st.a[i][j] && a.a[i][j] != 0) ret++;
   return ret;
 }
 
@@ -53,6 +53,7 @@ int main() {
       cin >> ch;
       f.a[i][j] = ch - '0';
     }
+  s.insert(f);
   q.push({f, 0});
   while (!q.empty()) {
     x = q.top();

@@ -1,18 +1,20 @@
-引用可以看成是 C++ 封装的指针，用来传递它所指向的对象。在 C++ 代码中实际上会经常和引用打交道，但是通常不会显式地表现出来。引用的基本原则是在声明时必须指向对象，以及对引用的一切操作都相当于对原对象操作。另外，引用不是对象，因此不存在引用的数组、无法获取引用的指针，也不存在引用的引用。
+> 声明具名变量为引用，即既存对象或函数的别名。
 
-> 注意引用类型不属于对象类型，所以才需要 [`reference_wrapper`](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper) 这种设施。
+引用可以看成是 C++ 封装的非空指针，可以用来传递它所指向的对象，在声明时必须指向对象。
 
-引用主要分为两种，左值引用和右值引用。此外还有两种特殊的引用：转发引用和垂悬引用，不作详细介绍。另外，本文还牵涉到一部分常值的内容，请用 [常值](./const.md) 一文辅助阅读。
+引用不是对象，因此不存在引用的数组、无法获取引用的指针，也不存在引用的引用。
 
-## 左值引用
+??? note "引用类型不属于对象类型"
+    如果想让引用能完成一般的复制、赋值等操作，比如作为容器元素，则需要 [`reference_wrapper`](https://zh.cppreference.com/w/cpp/utility/functional/reference_wrapper)，通常维护一个非空指针实现。
+
+引用主要分为两种，左值引用和右值引用。
 
 ??? note "左值和右值"
-    如果你不知道什么是左值和右值，可以参考 [值类别](./value-category.md) 页面。
+    对左值和右值的讲解，请参考 [值类别](./value-category.md) 页面。
 
-??? note "左值表达式"
-    如果一个表达式返回的是左值，那么这个表达式被称为左值表达式。右值表达式亦然。
+## 左值引用 T&
 
-通常我们会接触到的引用为左值引用，即绑定到左值的引用，但 `const` 的左值引用可以绑定到右值。以下是来自 [参考手册](https://zh.cppreference.com/w/cpp/language/reference) 的一段示例代码。
+通常我们会接触到的引用为左值引用，即绑定到左值的引用，同时 `const` 限定的左值引用可以绑定右值。以下是来自 [参考手册](https://zh.cppreference.com/w/cpp/language/reference) 的一段示例代码。
 
 ```cpp
 #include <iostream>
@@ -24,12 +26,12 @@ int main() {
   const std::string& r2 = s;
 
   r1 += "ample";  // 修改 r1，即修改了 s
-  // r2 += "!";               // 错误：不能通过到 const 的引用修改
+  // r2 += "!"; // 错误：不能通过到 const 的引用修改
   std::cout << r2 << '\n';  // 打印 r2，访问了s，输出 "Example"
 }
 ```
 
-左值引用最常用的地方是函数参数，通过左值引用传参可以起到与通过指针传参相同的效果。
+左值引用最常用的地方是函数参数，用于避免不需要的拷贝。
 
 ```cpp
 #include <iostream>
@@ -37,8 +39,8 @@ int main() {
 
 // 参数中的 s 是引用，在调用函数时不会发生拷贝
 char& char_number(std::string& s, std::size_t n) {
-  s += s;          // 's' 与 main() 的 'str' 是同一对象
-                   // 此处还说明左值也是可以放在等号右侧的
+  s += s;  // 's' 与 main() 的 'str'
+           // 是同一对象，此处还说明左值也是可以放在等号右侧的
   return s.at(n);  // string::at() 返回 char 的引用
 }
 
@@ -49,109 +51,154 @@ int main() {
 }
 ```
 
-## 右值引用 (C++ 11)
+## 右值引用 T&&（C++ 11）
 
-右值引用是绑定到右值的引用。右值 **可以在内存里也可以在 CPU 寄存器中**。另外，右值引用可以被看作一种 **延长临时对象生存期的方式**。
+右值引用是绑定到右值的引用，用于移动对象，也可以用于 **延长临时对象生存期**。
 
 ```cpp
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 int main() {
-  std::string s1 = "Test";
-  // std::string&& r1 = s1;           // 错误：不能绑定到左值
+  string s1 = "Test";
+  // string&& r1 = s1; // 错误：不能绑定到左值，需要 std::move 或者 static_cast
 
-  const std::string& r2 = s1 + s1;  // 可行：到常值的左值引用延长生存期
-  // r2 += "Test";                    // 错误：不能通过到常值的引用修改
+  const string& r2 = s1 + s1;  // 可行：到常量的左值引用延长生存期
+  // r2 += "Test"; // 错误：不能通过到常量的引用修改
+  cout << r2 << '\n';
 
-  std::string&& r3 = s1 + s1;  // 可行：右值引用延长生存期
-  r3 += "Test";  // 可行：能通过到非常值的右值引用修改
-  std::cout << r3 << '\n';
+  string&& r3 = s1 + s1;  // 可行：右值引用延长生存期
+  r3 += "Test";
+  cout << r3 << '\n';
+
+  const string& r4 = r3;  // 右值引用可以转换到 const 限定的左值
+  cout << r4 << '\n';
+
+  string& r5 = r3;  // 右值引用可以转换到左值
+  cout << r5 << '\n';
 }
 ```
 
-在上述代码中，`r3` 是一个右值引用，引用的是右值 `s1 + s1`。`r2` 是一个左值引用，可以发现 **右值引用可以转为 const 修饰的左值引用**。
+## 悬垂引用
 
-## 一些例子
+当引用指代的对象已经销毁，引用就会变成悬垂引用，访问悬垂引用这是一种未定义行为，可能会导致程序崩溃。
 
-### `++i` 和 `i++`
+以下为常见的悬垂引用的例子：
 
-`++i` 和 `i++` 是典型的左值和右值。`++i` 的实现是直接给 i 变量加一，然后返回 i 本身。因为 i 是内存中的变量，因此可以是左值。实际上前自增的函数签名是 `T& T::operator++();`。而 `i++` 则不一样，它的实现是用临时变量存下 i，然后再对 i 加一，返回的是临时变量，因此是右值。后自增的函数签名是 `T T::operator++(int);`。
+-   引用局部变量
+
+    ```cpp
+    #include <iostream>
+
+    int& foo() {
+      int a = 1;
+      return a;
+    }
+
+    int main() {
+      int& b = foo();
+      std::cout << b << std::endl;  // 未定义行为
+    }
+    ```
+
+-   解分配导致的悬垂引用
+
+    ```cpp
+    #include <iostream>
+
+    int main() {
+      int* ptr = new int(10);
+      int& ref = *ptr;
+      delete ptr;
+
+      std::cout << ref << std::endl;  // 未定义行为
+    }
+    ```
+
+-   内存重分配导致的悬垂引用
+
+    ```cpp
+    #include <iostream>
+
+    int main() {
+      std::string str = "hello";
+
+      const char& ref = str.front();
+
+      str.append("world");  // 可能会重新分配内存，导致 ref 指向的内存被释放
+
+      std::cout << ref << std::endl;  // 未定义行为
+    }
+    ```
+
+    类似 `std::vector`，`std::unordered_map` 等容器的插入操作，均有可能导致内存重新分配。
+
+使用引用时，应时刻关注引用指向的对象的生命周期，避免造成悬垂引用。
+
+通常静态检查工具和良好的代码习惯能让我们避免悬垂引用的问题。
+
+## 引用相关的优化技巧
+
+### 消除非轻量对象入参的拷贝开销
+
+常见的 **非轻量对象** 有：
+
+-   容器 `vector`，`array`，`map` 等
+-   `string`
+-   其他实现了或继承了自定义拷贝构造、移动构造等特殊函数的类型
+
+而对 **轻量对象** 使用引用不能带来任何好处，引用类型作为参数的空间占用大小，甚至可能会比类型本身还大。
+
+这可能会带来些的性能负担，同时可能会阻止编译器优化。
+
+以下属于 **轻量对象**
+
+-   基本类型 `int`，`float` 等
+-   较小的 [聚合体类型](https://zh.cppreference.com/w/cpp/language/aggregate_initialization)
+-   标准库容器的迭代器
+
+### 将左值转换为右值
+
+使用 `std::move` [转移](./value-category.md#stdmove) 对象的所有权。这通常见于局部变量之间，或参数与局部变量之间：
 
 ```cpp
-int n1 = 1;
-int n2 = ++n1;
-int n3 = ++ ++n1;  // 因为是左值，所以可以继续操作
-int n4 = n1++;
-// int n5 = n1++ ++;   // 错误，无法操作右值
-// int n6 = n1 + ++n1; // 未定义行为
-int&& n7 = n1++;  // 利用右值引用延长生命期
-int n8 = n7++;    // n8 = 5
-```
+#include <iostream>
+#include <string>
+#include <vector>
 
-### 移动语义和 `std::move`(C++11)
+using namespace std;
 
-在 C++11 之后，C++ 利用右值引用新增了移动语义的支持，用来避免对象在堆空间的复制（但是无法避免栈空间复制），STL 容器对该特性有完整支持。具体特性有 [移动构造函数](https://zh.cppreference.com/w/cpp/language/move_constructor)、[移动赋值](https://zh.cppreference.com/w/cpp/language/move_assignment) 和具有移动能力的函数（参数里含有右值引用）。
-另外，`std::move` 函数可以用来产生右值引用，需要包含 `<utility>` 头文件。
+string world(string str) { return std::move(str) += " world!"; }
 
-**注意：一个对象被移动后不应对其进行任何操作，无论是修改还是访问**。被移动的对象处于有效但未指定的状态，具体内容依赖于 stl 的实现。如果需要访问（即指定一种状态），可以使用该对象的 `swap` 成员函数或者偏特化的 `std::swap` 交换两个对象（同样可以避免堆空间的复制）。
+int main() {
+  // 1
+  cout << world("hello") << '\n';
 
-```cpp
-// 移动构造函数
-std::vector<int> v{1, 2, 3, 4, 5};
-std::vector<int> v2(std::move(v));  // 移动v到v2, 不发生拷贝
+  vector<string> vec0;
 
-// 移动赋值函数
-std::vector<int> v3;
-v3 = std::move(v2);
+  // 2
+  {
+    string&& size = to_string(vec0.size());
 
-// 有移动能力的函数
-std::string s = "def";
-std::vector<std::string> numbers;
-numbers.push_back(std::move(s));
-```
+    size += ", " + to_string(size.size());
 
-注意上述代码仅在 C++11 之后可用。
+    vec0.emplace_back(std::move(size));
+  }
 
-### 函数返回引用
-
-让函数返回引用值可以避免函数在返回时对返回值进行拷贝，如
-
-```cpp
-char &get_val(std::string &str, int index) { return str[index]; }
-```
-
-你不能返回在函数中的局部变量的引用，如果一定要在函数内的变量。请使用动态内存。例如如下两个函数都会产生悬垂引用，导致未定义行为。
-
-```cpp
-std::vector<int>& getLVector() {  // 错误：返回局部变量的左值引用
-  std::vector<int> x{1};
-  return x;
+  cout << vec0.front();
 }
-
-std::vector<int>&& getRVector() {  // 错误：返回局部变量的右值引用
-  std::vector<int> x{1};
-  return std::move(x);
-}
 ```
 
-当右值引用指向的空间在进入函数前已经分配时，右值引用可以避免返回值拷贝。
+但不是所有时候都需要这么做，比如 [函数返回值优化](./value-category.md#常见误区)。
 
-```cpp
-struct Beta {
-  Beta_ab ab;
+### 右值延长临时量生命期
 
-  Beta_ab const& getAB() const& { return ab; }
-
-  Beta_ab&& getAB() && { return std::move(ab); }
-};
-
-Beta_ab ab = Beta().getAB();  // 这里是移动语义，而非拷贝
-```
+从语义上，临时量可能会带来的额外的复制或移动，尽管多数情况下编译器能通过 [复制消除](./value-category.md#复制消除) 进行优化，但引用能强制编译器不进行这些多余操作，避免不确定性。
 
 ## 参考内容
 
 1.  [C++ 语言文档——引用声明](https://zh.cppreference.com/w/cpp/language/reference)
 2.  [C++ 语言文档——值类别](https://zh.cppreference.com/w/cpp/language/value_category)
-3.  [Is returning by rvalue reference more efficient?](https://stackoverflow.com/questions/1116641/is-returning-by-rvalue-reference-more-efficient)
-4.  [浅谈值类别及其历史](https://www.luogu.com.cn/blog/SuperConstructor/qian-tan-zhi-lei-bie-ji-ji-li-shi)
+3.  [Does const ref lvalue to non-const func return value specifically reduce copies?](https://stackoverflow.com/questions/38909228/does-const-ref-lvalue-to-non-const-func-return-value-specifically-reduce-copies)
