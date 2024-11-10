@@ -8,7 +8,7 @@
 using namespace std;
 
 int n, m;
-const int N = 1e5 + 5;
+constexpr int N = 1e5 + 5;
 int fa[N], siz[N], tim;
 
 struct UndoObject {

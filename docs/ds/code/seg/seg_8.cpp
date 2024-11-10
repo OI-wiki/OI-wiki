@@ -3,9 +3,9 @@
 #include <queue>
 #include <vector>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 
-const int N = 1e5 + 5;
+constexpr int N = 1e5 + 5;
 
 using pil = pair<int, ll>;
 using pli = pair<ll, int>;
@@ -20,11 +20,11 @@ struct seg {
   int l, r, lson, rson;
 } t[N << 3];
 
-inline int ls(int u) {  // 左儿子
+int ls(int u) {  // 左儿子
   return t[u].lson;
 }
 
-inline int rs(int u) {  // 右儿子
+int rs(int u) {  // 右儿子
   return t[u].rson;
 }
 

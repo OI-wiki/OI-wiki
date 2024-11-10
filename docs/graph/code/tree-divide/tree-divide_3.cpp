@@ -2,13 +2,12 @@
 #include <iostream>
 using namespace std;
 #define rep(i, a, b) for (int i = (a); i <= (b); ++i)
-const int N = 200005;
+constexpr int N = 200005;
 int h[N], nxt[N * 2], to[N * 2], c[N], gr;
-#define il inline
 
-il void tu(int x, int y) { to[++gr] = y, nxt[gr] = h[x], h[x] = gr; }
+void tu(int x, int y) { to[++gr] = y, nxt[gr] = h[x], h[x] = gr; }
 
-typedef long long ll;
+using ll = long long;
 int n, nn, siz[N], mn, rt;
 bool vis[N];
 
@@ -91,7 +90,7 @@ void clear2(int u, int f) {
 int son[N];
 
 void divid(int u) {
-  vis[u] = 1;
+  vis[u] = true;
   int tot = 0;
   nowrt = u;
   ans[u]++;

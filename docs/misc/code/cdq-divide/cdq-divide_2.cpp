@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <iostream>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 int n;
 int m;
 
@@ -33,9 +33,8 @@ struct data_ {
 int rv[100010];
 ll res;
 
-bool cmp1(const data_& a, const data_& b) {
-  return a.val < b.val;
-}  // 重写两个比较
+// 重写两个比较
+bool cmp1(const data_& a, const data_& b) { return a.val < b.val; }
 
 bool cmp2(const data_& a, const data_& b) { return a.del < b.del; }
 

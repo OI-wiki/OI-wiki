@@ -1,4 +1,4 @@
-author: du33169, lingkerio
+author: du33169, lingkerio, Taoran-01
 
 ## 定义
 
@@ -112,6 +112,8 @@ author: du33169, lingkerio
     在 Floyd 的过程中枚举 $u$，计算这个和的最小值即可。
     
     时间复杂度为 $O(n^3)$。
+    
+    更多参见 [最小环](./min-cycle.md) 部分内容。
 
 ???+ question "已知一个有向图中任意两点之间是否有连边，要求判断任意两点是否连通。"
     该问题即是求 **图的传递闭包**。
@@ -168,7 +170,7 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
         vector<Edge> edge;
         
         int dis[MAXN], u, v, w;
-        const int INF = 0x3f3f3f3f;
+        constexpr int INF = 0x3f3f3f3f;
         
         bool bellmanford(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
@@ -249,8 +251,8 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
           int v, w;
         };
         
-        vector<edge> e[maxn];
-        int dis[maxn], cnt[maxn], vis[maxn];
+        vector<edge> e[MAXN];
+        int dis[MAXN], cnt[MAXN], vis[MAXN];
         queue<int> q;
         
         bool spfa(int n, int s) {
@@ -287,7 +289,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                 self.w = w
         
         
-        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+        e = [[Edge() for i in range(MAXN)] for j in range(MAXN)]
         INF = 0x3F3F3F3F
         
         
@@ -392,8 +394,8 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
           int v, w;
         };
         
-        vector<edge> e[maxn];
-        int dis[maxn], vis[maxn];
+        vector<edge> e[MAXN];
+        int dis[MAXN], vis[MAXN];
         
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
@@ -419,7 +421,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
                 self.w = w
         
         
-        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+        e = [[Edge() for i in range(MAXN)] for j in range(MAXN)]
         INF = 0x3F3F3F3F
         
         
@@ -455,12 +457,13 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
           bool operator>(const node& a) const { return dis > a.dis; }
         };
         
-        vector<edge> e[maxn];
-        int dis[maxn], vis[maxn];
-        priority_queue<node, vector<node>, greater<node> > q;
+        vector<edge> e[MAXN];
+        int dis[MAXN], vis[MAXN];
+        priority_queue<node, vector<node>, greater<node>> q;
         
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
+          memset(vis, 0, (n + 1) * sizeof(int));
           dis[s] = 0;
           q.push({0, s});
           while (!q.empty()) {

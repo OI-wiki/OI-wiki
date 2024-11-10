@@ -100,7 +100,7 @@ int main() {
 
 ## constexpr
 
-> 另请参阅 [常值：常表达式 constexpr（C++11）](const.md#常表达式-constexprc11)
+> 另请参阅 [常量表达式 constexpr（C++11）](const.md#常量表达式-constexprc11)
 
 `constexpr` 说明符声明可以在编译时求得函数或变量的值。其与 `const` 的主要区别是一定会在编译时进行初始化。用于对象声明的 `constexpr` 说明符蕴含 `const`，用于函数声明的 `constexpr` 蕴含 `inline`。来看一个例子
 
@@ -128,7 +128,7 @@ constexpr auto expr = 1 + 1 * 4 - 5 - 1 + 4;
 
 int main() {
   std::vector<int> vec = {1, 9, 2, 6, 0};
-  std::tuple<int, int, std::string, std::vector<int> > tup =
+  std::tuple<int, int, std::string, std::vector<int>> tup =
       std::make_tuple(817, 114, "514", vec);
   std::cout << std::tuple_size<decltype(tup)>::value << std::endl;
 
@@ -335,8 +335,17 @@ int d = MAX(1, 233, 666, 10086);  // 10086
 
 ```cpp
 // Author: Backl1ght
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
+
+template <typename T>
+ostream& operator<<(ostream& os, const vector<T>& V) {
+  os << "[ ";
+  for (const auto& vv : V) os << vv << ", ";
+  os << "]";
+  return os;
+}
 
 namespace DEBUG {
 template <typename T>
@@ -349,14 +358,6 @@ void _debug(const char* format, First first, Rest... rest) {
   while (*format != ',') cerr << *format++;
   cerr << '=' << first << ",";
   _debug(format + 1, rest...);
-}
-
-template <typename T>
-ostream& operator<<(ostream& os, const vector<T>& V) {
-  os << "[ ";
-  for (const auto& vv : V) os << vv << ", ";
-  os << "]";
-  return os;
 }
 
 #define debug(...) _debug(#__VA_ARGS__, __VA_ARGS__)

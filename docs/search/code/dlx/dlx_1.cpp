@@ -1,12 +1,12 @@
 #include <cctype>
 #include <cstring>
 #include <iostream>
-const int N = 500 + 10;
+constexpr int N = 500 + 10;
 int n, m, ans;
 int stk[N];
 
 struct DLX {
-  static const int MAXSIZE = 1e5 + 10;
+  static constexpr int MAXSIZE = 1e5 + 10;
   int n, m, tot, first[MAXSIZE + 10], siz[MAXSIZE + 10];
   int L[MAXSIZE + 10], R[MAXSIZE + 10], U[MAXSIZE + 10], D[MAXSIZE + 10];
   int col[MAXSIZE + 10], row[MAXSIZE + 10];
@@ -51,7 +51,7 @@ struct DLX {
   bool dance(int dep) {  // dance
     if (!R[0]) {
       ans = dep;
-      return 1;
+      return true;
     }
     int i, j, c = R[0];
     for (i = R[0]; i != 0; i = R[i])
@@ -60,11 +60,11 @@ struct DLX {
     for (i = D[c]; i != c; i = D[i]) {
       stk[dep] = row[i];
       for (j = R[i]; j != i; j = R[j]) remove(col[j]);
-      if (dance(dep + 1)) return 1;
+      if (dance(dep + 1)) return true;
       for (j = L[i]; j != i; j = L[j]) recover(col[j]);
     }
     recover(c);
-    return 0;
+    return false;
   }
 } solver;
 

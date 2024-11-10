@@ -1,92 +1,95 @@
-// Code by rickyxrc | https://www.luogu.com.cn/record/115806238
+#include <cstdio>
 #include <cstring>
-#include <iostream>
 #include <queue>
+using namespace std;
 
-#define maxn 3000001
-char T[maxn];
-int n, cnt, vis[maxn], ans, m, dp[maxn];
+constexpr int N = 20 + 6, M = 50 + 6;
+constexpr int LEN = 2e6 + 6;
+constexpr int SIZE = 450 + 6;
 
-struct trie_node {
+int n, m;
+
+namespace AC {
+struct Node {
   int son[26];
-  int fail, flag, depth;
+  int fail;
+  int idx;
+  int depth;
   unsigned stat;
 
   void init() {
     memset(son, 0, sizeof(son));
-    fail = flag = depth = 0;
+    fail = idx = depth = 0;
   }
-} trie[maxn];
+} tr[SIZE];
 
-std::queue<int> q;
+int tot;
 
 void init() {
-  for (int i = 0; i <= cnt; i++) trie[i].init();
-  for (int i = 1; i <= n; i++) vis[i] = 0;
-  cnt = 1;
-  ans = 0;
+  tot = 0;
+  tr[0].init();
 }
 
-void insert(char *s, int num) {
-  int u = 1, len = strlen(s);
-  for (int i = 0; i < len; i++) {
-    int v = s[i] - 'a';
-    if (!trie[u].son[v]) trie[u].son[v] = ++cnt;
-    u = trie[u].son[v];
+void insert(char s[], int idx) {
+  int u = 0;
+  for (int i = 1; s[i]; i++) {
+    int &son = tr[u].son[s[i] - 'a'];
+    if (!son) son = ++tot, tr[son].init();
+    u = son;
   }
-  trie[u].flag = num;
-  return;
+  tr[u].idx = idx;
 }
 
-void getfail(void) {
-  for (int i = 0; i < 26; i++) trie[0].son[i] = 1;
-  q.push(1);
-  trie[1].fail = 0;
+void build() {
+  queue<int> q;
+  for (int i = 0; i < 26; i++)
+    if (tr[0].son[i]) {
+      q.push(tr[0].son[i]);
+      tr[tr[0].son[i]].depth = 1;
+    }
   while (!q.empty()) {
     int u = q.front();
     q.pop();
-    int Fail = trie[u].fail;
-    trie[u].stat = trie[Fail].stat;
-    if (trie[u].flag) trie[u].stat |= 1 << trie[u].depth;
+    int v = tr[u].fail;
+    // 对状态的更新在这里
+    tr[u].stat = tr[v].stat;
+    if (tr[u].idx) tr[u].stat |= 1 << tr[u].depth;
     for (int i = 0; i < 26; i++) {
-      int v = trie[u].son[i];
-      if (!v)
-        trie[u].son[i] = trie[Fail].son[i];
-      else {
-        trie[v].depth = trie[u].depth + 1;
-        trie[v].fail = trie[Fail].son[i];
-        q.push(v);
-      }
+      if (tr[u].son[i]) {
+        tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];
+        tr[tr[u].son[i]].depth = tr[u].depth + 1;  // 记录深度
+        q.push(tr[u].son[i]);
+      } else
+        tr[u].son[i] = tr[tr[u].fail].son[i];
     }
   }
 }
 
-int query(char *s) {
-  int u = 1, len = strlen(s), mx = 0;
+int query(char t[]) {
+  int u = 0, mx = 0;
   unsigned st = 1;
-  for (int i = 0; i < len; i++) {
-    int v = s[i] - 'a';
-    u = trie[u].son[v];
+  for (int i = 1; t[i]; i++) {
+    u = tr[u].son[t[i] - 'a'];
     st <<= 1;
-    if (trie[u].stat & st) st |= 1, mx = i + 1;
+    if (tr[u].stat & st) st |= 1, mx = i;
   }
   return mx;
 }
+}  // namespace AC
 
-using std::cin;
-using std::cout;
+char s[LEN];
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  cin >> n >> m;
-  init();
+  AC::init();
+  scanf("%d%d", &n, &m);
   for (int i = 1; i <= n; i++) {
-    cin >> T;
-    insert(T, i);
+    scanf("%s", s + 1);
+    AC::insert(s, i);
   }
-  getfail();
+  AC::build();
   for (int i = 1; i <= m; i++) {
-    cin >> T;
-    cout << query(T) << '\n';
+    scanf("%s", s + 1);
+    printf("%d\n", AC::query(s));
   }
+  return 0;
 }

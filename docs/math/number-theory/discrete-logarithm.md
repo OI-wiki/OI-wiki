@@ -192,7 +192,7 @@ $$
       for (int cur = any_ans % delta; cur < n - 1; cur += delta)
         ans.push_back(powmod(g, cur, n));
       sort(ans.begin(), ans.end());
-      printf("%d\n", ans.size());
+      printf("%zu\n", ans.size());
       for (int answer : ans) printf("%d ", answer);
     }
     ```

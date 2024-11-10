@@ -85,14 +85,14 @@ Minimax 算法的整个过程，会从上到下遍历搜索树，回溯时利用
       if (is_max) {
         for (int i = 0; i < son_num[u]; ++i) {
           int d = son[u][i];
-          alph = max(alph, alpha_beta(d, alph, beta, is_max ^ 1));
+          alph = max(alph, alpha_beta(d, alph, beta, !is_max));
           if (alph >= beta) break;
         }
         return alph;
       } else {
         for (int i = 0; i < son_num[u]; ++i) {
           int d = son[u][i];
-          beta = min(beta, alpha_beta(d, alph, beta, is_max ^ 1));
+          beta = min(beta, alpha_beta(d, alph, beta, !is_max));
           if (alph >= beta) break;
         }
         return beta;

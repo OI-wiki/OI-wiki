@@ -30,7 +30,6 @@
     === "C++"
         ```cpp
         int sta[N], top;  // 将凸包上的节点编号存在栈里，第一个和最后一个节点编号相同
-        bool is[N];
         
         ll pf(ll x) { return x * x; }
         

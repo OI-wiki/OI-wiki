@@ -2,7 +2,7 @@
 #include <iostream>
 #include <utility>
 using namespace std;
-typedef long long LL;
+using LL = long long;
 
 template <int N>
 struct WBLT {
@@ -37,7 +37,7 @@ struct WBLT {
     val[p] = v;
     siz[p] = 1;
     sum[p] = v;
-    rev[p] = 0;
+    rev[p] = false;
     use[p] = 1;
     return p;
   }
@@ -184,9 +184,7 @@ int m;
 int root[500010];
 
 int main() {
-#ifndef LOCAL
   cin.tie(nullptr)->sync_with_stdio(false);
-#endif
   cin >> m;
   root[0] = t.root;
   LL lastans = 0;

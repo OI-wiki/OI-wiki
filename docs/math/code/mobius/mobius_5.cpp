@@ -1,8 +1,9 @@
+// 不要为了省什么内存把数组开小,会卡80
 #include <cmath>
 #include <iostream>
 #include <map>
 using namespace std;
-const int N = 5e6, NP = 5e6, SZ = N;
+constexpr int N = 5e6, NP = 5e6, SZ = N;
 long long n, P, inv2, inv6, s[N];
 int phi[N], p[NP], cnt, pn;
 bool bp[N];
@@ -18,11 +19,11 @@ long long ksm(long long a, long long m) {  // 求逆元用
 }
 
 void prime_work(int k) {  // 线性筛phi，s
-  bp[0] = bp[1] = 1, phi[1] = 1;
+  bp[0] = bp[1] = true, phi[1] = 1;
   for (int i = 2; i <= k; i++) {
     if (!bp[i]) p[++cnt] = i, phi[i] = i - 1;
     for (int j = 1; j <= cnt && i * p[j] <= k; j++) {
-      bp[i * p[j]] = 1;
+      bp[i * p[j]] = true;
       if (i % p[j] == 0) {
         phi[i * p[j]] = phi[i] * p[j];
         break;
@@ -71,4 +72,4 @@ int main() {
   prime_work(pn);
   cout << solve();
   return 0;
-}  // 不要为了省什么内存把数组开小,会卡80
+}

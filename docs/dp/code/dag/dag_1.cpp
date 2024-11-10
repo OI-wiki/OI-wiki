@@ -2,8 +2,8 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-#define MAXN (30 + 5)
-#define MAXV (500 + 5)
+constexpr int MAXN = 30 + 5;
+constexpr int MAXV = 500 + 5;
 int d[MAXN][3];
 int x[MAXN], y[MAXN], z[MAXN];
 

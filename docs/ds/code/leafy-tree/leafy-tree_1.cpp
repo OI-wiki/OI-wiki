@@ -4,7 +4,7 @@
   if (u->lf->size) u->size = u->lf->size + u->rf->size, u->val = u->rf->val
 #define new_Node(a, b, c, d) (&(*st[cnt++] = Node(a, b, c, d)))
 #define merge(a, b) new_Node(a->size + b->size, b->val, a, b)
-#define ratio 4
+constexpr int ratio = 4;
 using namespace std;
 
 int Min(const int x, const int y) { return x < y ? x : y; }
@@ -25,9 +25,9 @@ struct Node {
 Node *root, *null, *st[200010], t[200010];
 
 void rotate(Node *u) {
-  if (u->lf->size > u->rf->size * ratio)
+  if (u->lf->size > u->rf->size * ::ratio)
     u->rf = merge(u->lf->rf, u->rf), st[--cnt] = u->lf, u->lf = u->lf->lf;
-  if (u->rf->size > u->lf->size * ratio)
+  if (u->rf->size > u->lf->size * ::ratio)
     u->lf = merge(u->lf, u->rf->lf), st[--cnt] = u->rf, u->rf = u->rf->rf;
 }
 

@@ -1,9 +1,9 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int maxn = 130;
-bool mp[maxn][maxn];
-int some[maxn][maxn], none[maxn][maxn], all[maxn][maxn];
+constexpr int MAXN = 130;
+bool mp[MAXN][MAXN];
+int some[MAXN][MAXN], none[MAXN][MAXN], all[MAXN][MAXN];
 int n, m, ans;
 
 void dfs(int d, int an, int sn, int nn) {
@@ -39,7 +39,7 @@ int main() {
     for (int i = 1; i <= m; ++i) {
       int u, v;
       cin >> u >> v;
-      mp[u][v] = mp[v][u] = 1;
+      mp[u][v] = mp[v][u] = true;
     }
     int tmp = work();
     if (tmp > 1000)

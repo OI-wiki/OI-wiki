@@ -81,7 +81,7 @@ $$
     
     namespace fstdlib {
     
-    typedef long long ll;
+    using ll = long long;
     int mod = 998244353, grt = 3;
     
     class poly {
@@ -637,7 +637,7 @@ $$
       return f;
     }
     
-    typedef arbitrary_module_poly m_poly;
+    using m_poly = arbitrary_module_poly;
     }  // namespace fstdlib
     
     #endif
