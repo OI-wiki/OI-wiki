@@ -223,30 +223,12 @@ void traverse(TreeNode* root) {
     ```
     
     ```cpp
-    /**
-     * 二叉树结点的定义
-     * struct TreeNode {
-     *     int val;
-     *     TreeNode *left;
-     *     TreeNode *right;
-     *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-     * };
-     */
+    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_1.h"
     ```
 
 ??? note "参考代码"
     ```cpp
-    int pathSum(TreeNode *root, int sum) {
-      if (root == nullptr) return 0;
-      return count(root, sum) + pathSum(root->left, sum) +
-             pathSum(root->right, sum);
-    }
-    
-    int count(TreeNode *node, int sum) {
-      if (node == nullptr) return 0;
-      return (node->val == sum) + count(node->left, sum - node->val) +
-             count(node->right, sum - node->val);
-    }
+    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_1.cpp"
     ```
 
 ??? note "题目解析"
