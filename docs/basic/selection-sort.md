@@ -36,28 +36,12 @@ $$
 
 === "C++"
     ```cpp
-    void selection_sort(int* a, int n) {
-      for (int i = 1; i < n; ++i) {
-        int ith = i;
-        for (int j = i + 1; j <= n; ++j) {
-          if (a[j] < a[ith]) {
-            ith = j;
-          }
-        }
-        std::swap(a[i], a[ith]);
-      }
-    }
+    --8<-- "docs/basic/code/selection-sort/selection-sort_1.cpp"
     ```
 
 === "Python"
     ```python
-    def selection_sort(a, n):
-        for i in range(1, n):
-            ith = i
-            for j in range(i + 1, n + 1):
-                if a[j] < a[ith]:
-                    ith = j
-            a[i], a[ith] = a[ith], a[i]
+    --8<-- "docs/basic/code/selection-sort/selection-sort_1.py"
     ```
 
 === "Java"
