@@ -2,7 +2,7 @@
 
 ## 形式幂级数/多项式的复合
 
-我们注意要计算 $f\left(g\left(x\right)\right)\bmod{x^n}$ 那么需要 $f\left(g\left(x\right)\right)$ 的每一项系数都是有限项之和，所以之前要求 $f(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g(x)\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$，而如果 $f(x),g(x)\in\mathbb{C}\left\lbrack x\right\rbrack$ 也可以满足这个条件。因为我们需要将 $f\left(g\left(x\right)\right)$ 的系数截断，不妨直接考虑 $f(x),g(x)$ 都是多项式的情况。对于 $f(x)=\sum_{j=0}^{n-1}f_jx^j$，有
+若要计算 $f\left(g\left(x\right)\right)\bmod{x^n}$ 那么需要 $f\left(g\left(x\right)\right)$ 的每一项系数都是有限项之和，所以之前要求 $f(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g(x)\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$，而如果 $f(x),g(x)\in\mathbb{C}\left\lbrack x\right\rbrack$ 也可以满足这个条件。因为我们需要将 $f\left(g\left(x\right)\right)$ 的系数截断，不妨直接考虑 $f(x),g(x)$ 都是多项式的情况。对于 $f(x)=\sum_{j=0}^{n-1}f_jx^j$，有
 
 $$
 f\left(g\left(x\right)\right)=\sum_{j=0}^{n-1}f_jg\left(x\right)^j
@@ -33,7 +33,7 @@ $$
 \frac{P(y)}{Q(x,y)}\bmod{x}=\frac{P(y)}{Q(0,y)}\in\mathbb{C}\left(\left( y\right)\right)
 $$
 
-注意在计算 $\dfrac{P(y)}{V(z,y)}\bmod{z^{\left\lceil n/2\right\rceil}}\in\mathbb{C}\left\lbrack z\right\rbrack\left(\left( y\right)\right)$ 时我们不需要保留所有 $y$ 的系数，因为最后我们只需要提取 $y^0$ 的系数，所以 $y^{>0}$ 的系数是不需要的，而因为求出前者之后需要将其乘以若干个形如 $Q(-x,y)\in\mathbb{C}\left\lbrack x,y\right\rbrack$ 的「**多项式**」，所以只需要保留对于 $y^0$ 有贡献的系数即可。我们准备好给出伪代码：
+在计算 $\dfrac{P(y)}{V(z,y)}\bmod{z^{\left\lceil n/2\right\rceil}}\in\mathbb{C}\left\lbrack z\right\rbrack\left(\left( y\right)\right)$ 时我们不需要保留所有 $y$ 的系数，因为最后我们只需要提取 $y^0$ 的系数，所以 $y^{>0}$ 的系数是不需要的，而因为求出前者之后需要将其乘以若干个形如 $Q(-x,y)\in\mathbb{C}\left\lbrack x,y\right\rbrack$ 的「**多项式**」，所以只需要保留对于 $y^0$ 有贡献的系数即可。我们准备好给出伪代码：
 
 $$
 \begin{array}{ll}
@@ -59,7 +59,7 @@ $$
 
 注意第三个参数是因为 $g(0)$ 可能不为零，如果 $\deg f\geq n$ 此时不能截断 $f(x)$ 来计算 $f\left(g(x)\right)$，我们也可以选择计算 $f(g)=f\circ \left(x+g(0)\right)\circ \left(g-g(0)\right)$，此时可以取 $F:=f\left(x+g(0)\right)\bmod{x^n}$ 和 $G:=g-g(0)$ 转而计算 $\operatorname{\mathsf{Comp}}\left(F\left(y^{-1}\right),1-y\cdot G(x),n,1\right)$。
 
-另外我们注意因为调用的限制最后递归终止时的 $Q(0,y)^{-1}$ 是可以直接导出的，不需要使用形式幂级数的乘法逆元算法来计算，我们只需计算一次乘法然后提取需要的系数。
+另外因为调用的限制最后递归终止时的 $Q(0,y)^{-1}$ 是可以直接导出的，不需要使用形式幂级数的乘法逆元算法来计算，我们只需计算一次乘法然后提取需要的系数。
 
 ## 常见的特殊形式复合
 
