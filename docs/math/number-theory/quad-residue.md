@@ -96,7 +96,7 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
         \end{aligned}
         $$
 
-2.  $a_1\equiv a_2\pmod p\iff \left(\dfrac{a_1}{p}\right)=\left(\dfrac{a_2}{p}\right)$
+2.  $a_1\equiv a_2\pmod p\implies \left(\dfrac{a_1}{p}\right)=\left(\dfrac{a_2}{p}\right)$
 
 3.  （[完全积性](./basic.md#积性函数)）对任意整数 $a_1,a_2$，
 
@@ -125,13 +125,13 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
     2.  注意到
     
         $$
-        a_1\equiv a_2\pmod p\iff \left(\frac{a_1}{p}\right)\equiv\left(\frac{a_2}{p}\right)\pmod p
+        a_1\equiv a_2\pmod p\implies \left(\frac{a_1}{p}\right)\equiv\left(\frac{a_2}{p}\right)\pmod p
         $$
     
         而 $\left|\left(\dfrac{a_1}{p}\right)-\left(\dfrac{a_2}{p}\right)\right|\leq 2$ 且 $p>2$, 故：
     
         $$
-        a_1\equiv a_2\pmod p\iff \left(\frac{a_1}{p}\right)=\left(\frac{a_2}{p}\right)
+        a_1\equiv a_2\pmod p\implies \left(\frac{a_1}{p}\right)=\left(\frac{a_2}{p}\right)
         $$
     3.  由 1 得
     
