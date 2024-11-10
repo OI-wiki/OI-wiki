@@ -548,7 +548,7 @@ $$
     1.  对于 $F\in\mathcal F$，设 $\operatorname{Aut}(\mathbf F_q/F)$ 为 $\operatorname{Aut}(\mathbf F_q)$ 中保持 $F$ 不变的自同构的集合，即 $\operatorname{Aut}(\mathbf F_q/F)=\{\sigma\in\operatorname{Aut}(\mathbf F_q):\forall x\in F(\sigma(x)=x)\}$，则 $\operatorname{Aut}(\mathbf F_q/F)\le\operatorname{Aut}(\mathbf F_q)$；
     2.  对于 $G\in\mathcal G$，设 $F^G$ 为 $G$ 中的所有自同构的不动点集合的交集，即 $F^G=\{x\in\mathbf F_q:\forall\sigma\in G(\sigma(x)=x)\}$，则 $F^G$ 为 $\mathbf F_q$ 的子域；
     3.  映射 $F\rightarrow\operatorname{Aut}(\mathbf F_q/F)$ 和映射 $G\rightarrow F^G$ 互为逆映射，且是 $\mathcal F$ 和 $\mathcal G$ 之间的一一对应；
-    4.  这个一一对应，将子域之间的扩张关系映射为子群间的包含关系，即对于任何 $F_1\subseteq F_2$，都有 $\operatorname{Aut}(\mathbf F_q/F_2)\le\operatorname{Aut}(\mathbf F_q/F_1)$。
+    4.  这个一一对应，将子域之间的扩张关系映射为子群之间的包含关系，即对于任何 $F_1\subseteq F_2$，都有 $\operatorname{Aut}(\mathbf F_q/F_2)\le\operatorname{Aut}(\mathbf F_q/F_1)$。
 
 这个结论是一般的 Galois 理论的基本定理的特殊情形，它将域扩张和群论的内容联系起来，从而可以通过群论的方法解决域扩张的问题。
 
