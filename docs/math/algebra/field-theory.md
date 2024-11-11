@@ -344,6 +344,79 @@ $$
 
 ### 可分扩张
 
+分裂域的概念保证了对于任何域上的多项式，总有扩域能够包括它的所有根，且分裂域精确地给出了这样的最小的扩域。多项式的性质和它的分裂域的性质紧密联系。但是，如果希望通过多项式的分裂域来研究多项式的性质，那么首先要面临的一个问题就是，多项式的分裂域与多项式的根的重数无关。因而，如果有可能，应当考虑多项式的某种意义上的「最简表示」。受此启发，把在域的代数闭包中也没有重根的多项式称为可分多项式。
+
+???+ abstract "可分多项式"
+    对于域 $F$ 上的多项式 $f(x)$，如果 $f(x)$ 在 $F$ 的代数闭包 $\overline F$ 中没有重根，即它分解成一次因子的乘积时没有重复因子，那么 $f(x)$ 称为 **可分的**（separable）。
+
+因为总是要扩张到域 $F$ 的代数闭包上讨论，可分多项式的判断其实与域 $F$ 的选取无关。但是，因为多项式的系数在 $F$ 中，应当考虑给出一个判断方法，能够使得在域 $F$ 上就能判断多项式是否可分而不必考虑其扩域。
+
+熟悉分析学的读者知道，多项式函数的重根有无可以通过它的导数判断：多项式函数的重根同样是它的导数的根。虽然多项式和多项式函数并非一致的概念，这里判断多项式函数重根有无的方法可以类比地迁移到多项式上。多项式的导数可以形式地定义如下：
+
+???+ abstract "形式导数"
+    域 $F$ 上的多项式 
+    
+    $$
+    f(x)=a_0+a_1x+a_2x^2+\cdots+a_{n-1}x^{n-1}+a_nx^n=\sum_{i=0}^na_ix^i
+    $$
+    
+    的 **（形式）导数**（derivative），记作 $Df(x)$，定义为多项式 
+
+    $$
+    Df(x)=a_1+2a_2x+\cdots+(n-1)a_{n-1}x^{n-1}+na_nx^{n-1}=\sum_{i=1}^nia_ix^{i-1}.
+    $$
+
+进而，要检查多项式 $f(x)$ 和它的导数 $Df(x)$ 是否有相同的根，可以通过它们的最小公因子来判断；这是因为多项式的根总是出现在它的极小多项式中，重复的根意味着相应的极小多项式因子也重复。于是，有重根的判断法则如下：
+
+???+ note "定理"
+    对于域 $F$ 上的多项式 $f(x)$，如果 $f(x)$ 有重根 $\alpha$，那么导数 $Df(x)$ 也有同样的根 $\alpha$。进而，多项式 $f(x)$ 可分的充分必要条件是 $f(x)$ 与它的导数 $Df(x)$ 互素，即 $\gcd(f(x),Df(x))=1$。
+
+域上的多项式总是可以分解为若干个不可约多项式的乘积。因为（相伴意义下）不同的不可约多项式总是有着不同的根，根的重复自然联系到相应的多项式因子的重复。那么，如果多项式的分解中没有重复的不可约因子，是否就能判断多项式可分呢？换句话说，不可约的多项式是否都可分？很遗憾，在一般的情形下，无法得到肯定的答案。问题出现在有限特征的域。
+
+对于域 $F$ 上的不可约多项式 $f(x)$，多项式 $\gcd(f(x),Df(x))$ 作为 $f(x)$ 的因子，只能有两种情形，即 $1$ 或者 $f(x)$。对于前一种情况，多项式 $f(x)$ 自然是可分的；问题出现在后一种情况。但是，由于导数的定义中已经保证 $Df(x)=0$ 或者 $\deg Df(x)<\deg f(x)$，多项式 $f(x)$ 成为 $Df(x)$ 的因子，只能说明 $Df(x)=0$。这在有限特征的域中是有可能的。
+
+对于特征为 $p$ 的域 $F$，如果 $Df(x)=0$，则多项式的所有非零系数都只能出现在次数恰为 $p$ 的倍数的项上，即多项式 $f(x)$ 可以写作 
+
+$$
+f(x)=a_0+a_px^p+a_{2p}x^{2p}+\cdots+a_{(k-1)p}x^{(k-1)p}+a_{kp}x^{kp}.
+$$
+
+如果真的存在域 $F$ 上的多项式 $f(x)$ 既不可约也不可分，则它只能有这种形式。但是，如果域 $F$ 中的所有元素总有 $p$ 次根，即对每个系数 $a_{jp}$ 都存在 $b_j\in F$ 使得 $a_{jp}$ 可以写作 $b_j^p$ 的形式，那么，根据 Frobenius 自同态，总有
+
+$$
+\begin{aligned}
+f(x)&=a_0+a_px^p+a_{2p}x^{2p}+\cdots+a_{(k-1)p}x^{(k-1)p}+a_{kp}x^{kp}\\
+&=b_0^p+b_1^px^p+b_2^px^{2p}+\cdots+b_{k-1}^px^{(k-1)p}+b_k^px^{kp}\\
+&=\left(b_0+b_1x+b_2x+\cdots+b_{k-1}x^{k-1}+b_kx^k\right)^p.
+\end{aligned}
+$$
+
+因而，这样的域 $F$ 上并不存在这种形式的不可约多项式。因而，这种域上，所有不可约多项式都是可分的。这种域称为完美域。
+
+???+ abstract "完美域"
+    域 $F$ 称为 **完美域**（perfect field），如果它的特征是零，或者它的特征是 $p$ 且任何元素 $x\in F$ 都有 $p$ 次根（即 Frobenius 自同态也是自同构）。
+
+有理数域 $\mathbf Q$ 和下文会讨论的有限域 $\mathbf F_q$ 都是完美域。
+
+???+ note "定理"
+    设域 $F$ 是完美域，则 $F$ 上的不可约多项式都是可分多项式。进而，$F$ 上的多项式可分，当且仅当它可以写作若干个（相伴意义下）不同的不可约多项式的乘积。
+
+这意味着，完美域上的可分多项式的概念和没有平方因子的概念是等同的。本节的讨论其实已经足够给出移除多项式中的重复因子的方法，它是对多项式的因式分解算法中的关键步骤。但这超出了本文范畴，有兴趣的读者可以参考文末的相关资料。
+
+对于域不是完美域的情形，的确存在不可分的不可约多项式。
+
+??? example "例子"
+    考虑 $\mathbf F_2$ 的有理分式域 $\mathbf F_2(t)$ 上的多项式 $x^2-t$。因为 $\mathbf F_2(t)$ 是唯一分解整环 $\mathbf F_2[t]$ 的分式域，且 $t$ 是 $\mathbf F_2[t]$ 中的素元，则对素元 $t$ 应用 Eisenstein 判别法可知 $x^2-t$ 在 $\mathbf F_2[t]$ 中不可约，故而在 $\mathbf F_2(t)$ 中也不可约。但是，它的导数为 $0$，因而 $x^2-t$ 并不可分。事实上，在扩域 $\mathbf F_2(t)(\sqrt t)$ 中，它有二重根 $\sqrt t$。
+
+最后回到域的扩张的讨论。
+
+???+ abstract "可分扩张"
+    对于代数扩张 $E/F$，如果对所有 $\alpha\in E$ 都有 $\alpha$ 的极小多项式是可分多项式，那么称域 $E$ 是域 $F$ 的 **可分扩张**（seperable extension）。
+
+完美域上的代数扩张都是可分扩张。
+
+如果一个代数扩张既是正规扩张，也是可分扩张，它也称作 Galois 扩张。Galois 扩张中，任何不可约多项式都没有重根，且根的数目都恰好等于多项式的次数，因而对根的置换可以充分地反映域扩张和多项式的性质。这样的扩张提供了建立 Galois 理论的基石。有兴趣的读者可以参考文末的相关资料。
+
 ## 分圆域
 
 作为域扩张的简单例子，本节讨论分圆域。另一个域扩张的简单例子是 [二次域](../number-theory/quadratic.md)。
@@ -574,6 +647,7 @@ $$
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 -   [Milne, J.S. Fields and Galois Theory.](https://www.jmilne.org/math/CourseNotes/FT.pdf)
+-   [Factorization of polynomials - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials)
 -   [Cyclotomic Polynomial - Wikipedia](https://en.wikipedia.org/wiki/Cyclotomic_polynomial)
 -   [Brett Porter's Notes on Cyclotomic Polynomials](https://www.whitman.edu/documents/academics/majors/mathematics/2015/Final%20Project%20-%20Porter%2C%20Brett.pdf)
 -   [Jordan Bell's Notes on Cyclotomic Polynomials](https://jordanbell.info/LaTeX/mathematics/cyclotomic/cyclotomic.pdf)
