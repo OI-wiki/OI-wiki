@@ -545,7 +545,7 @@ $$
 根的概念可以推广到重根的情形。
 
 ???+ abstract "重根"
-    如果多项式 $f(x)$ 有因子 $(x-\xi)^k$，且 $(x-\xi)^{k+1}$ 不能整除 $f(x)$，则称 $\xi$ 是 $f(x)$ 的 **$k$ 重根**（root of multiplicity $k$）。
+    如果多项式 $f(x)$ 有因子 $(x-\xi)^k$，且 $(x-\xi)^{k+1}$ 不能整除 $f(x)$，则称 $\xi$ 是 $f(x)$ 的 **$k$ 重根**（root of multiplicity $k$）。如果 $k>1$，则根 $\xi$ 称为 $f(x)$ 的 **重根**（multiple root）；如果 $k=1$，则根 $\xi$ 称为 $f(x)$ 的 **单根**（simple root）。
 
 ???+ note "定理"
     如果域 $F$ 上的多项式 $f(x)$ 有（可能重复的）根 $\xi_1,\cdots,\xi_k$，那么，它必然有因子 $(x-\xi_1)\cdots(x-\xi_k)$。进而，域 $F$ 上的多项式 $f(x)$ 次数为 $n$，那么它至多有 $n$ 个根（计重数）。
