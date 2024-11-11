@@ -433,4 +433,4 @@ Tonelli–Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod
 
 [^ref4]: Alin Bostan, Ryuhei Mori.[A Simple and Fast Algorithm for Computing the N-th Term of a Linearly Recurrent Sequence](https://arxiv.org/abs/2008.08822).
 
-[^ref5]: [Quadratic reciprocity - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_reciprocity)
+[^ref5]: [Proofs of quadratic reciprocity - Wikipedia](https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity)
