@@ -216,8 +216,8 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
     }
     ```
 
-??? note "[矩阵游戏](https://www.luogu.com.cn/problem/P1129)"
-    ??? note 解法
+??? note "[luogu P1129 矩阵游戏](https://www.luogu.com.cn/problem/P1129)"
+    ??? note "解法"
         注意到，当存在 $n$ 个 $1$，使得这些 $1$ 不在同一行、同一列，那么必然有解，否则必然无解。
 
         问题转化成了能否找到这 $n$ 个 $1$。
@@ -228,7 +228,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
         于是就可以二分图匹配了。
 
-    ??? note 代码
+    ??? note "代码"
         ```cpp
         #include <bits/stdc++.h>
         using namespace std;
@@ -316,8 +316,8 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         }
         ```
 
-??? note [Lawyers](https://codeforces.com/gym/104427/problem/B)
-    ???+ note 题意
+??? note "[Gym 104427B Lawyers](https://codeforces.com/gym/104427/problem/B)"
+    ???+ note "题意"
         有 $n$ 个律师，都被指控有欺诈罪。于是，他们需要互相辩护，确保每一名律师都被释放。
 
         这 $n$ 个律师有 $m$ 对信任关系，一个信任关系 $(a, b)$ 表示 $a$ 可以为 $b$ 辩护。
@@ -326,12 +326,12 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
         求是否可以使得每一名律师都被释放。
 
-    ??? note 解法
+    ??? note "解法"
         对于每一个 **无序对** $(a, b)$，当 $a$ 可以辩护 $b$，连这个无序对向 $a$ 的边，反之亦然。
 
         只保存有边相连的 $(a, b)$，问题被转化成了一个 $m$ 个左部点、$n$ 个右部点的二分图最大匹配。
 
-    ??? note 代码
+    ??? note "代码"
         ```cpp
         #include <bits/stdc++.h>
         using namespace std;
@@ -416,6 +416,110 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
           return 0;
         }
         ```
+
+??? note "[LibreOJ 6002 最小路径覆盖](https://loj.ac/p/6002)"
+    ??? note 题解
+        对于每一个点，我们建立一个入点、一个出点。对于原图的边 $(u, v)$，在 $v$ 的入点和 $u$ 的出点连边。
+
+        显然一个出点只能和至多一个入点匹配。
+
+        于是就变成了一个最大匹配问题。
+
+    ??? note "代码"
+        ```cpp
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int n, m, vis[220], dis[220], t[220], r[220], ans, u, v;
+        vector<int> to[220];
+        queue<int> q;
+        
+        //There was a delta here...
+        int DFS(int x) {
+          if(vis[x]) {
+            return 0;
+          }
+          vis[x] = 1;
+          for(auto i : to[x]) {
+            if(!r[i]) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+            if(dis[r[i]] == dis[x] + 1 && DFS(r[i])) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+          }
+          return 0;
+        }
+        
+        int BFS() {
+          fill(vis + 1, vis + n + 1, 0);
+          fill(dis + 1, dis + n + 1, 0);
+          for(int i = 1; i <= n; i++) {
+            if(!t[i]) {
+              q.push(i);
+              dis[i] = 1;
+            }
+          }
+          int f = 0;
+          for(; q.size(); q.pop()) {
+            int tmp = q.front();
+            for(auto i : to[tmp]) {
+              if(!r[i]) {
+                f = 1;
+              }
+              if(r[i]) {
+                if(!dis[r[i]]) {
+                  dis[r[i]] = dis[tmp] + 1;
+                  q.push(r[i]);
+                }
+              }
+            }
+          }
+          return f;
+        }
+        
+        void mxf() {
+          for(; BFS(); ) {
+            for(int i = 1; i <= n; i++) {
+              if(!t[i] && DFS(i)) {
+                ans++;
+              }
+            }
+          }
+        }
+        
+        int main() {
+          ios::sync_with_stdio(0);
+          cin.tie(0), cout.tie(0);
+          cin >> n >> m;
+          for(int i = 1; i <= m; i++) {
+            cin >> u >> v;
+            to[v].push_back(u);
+          }
+          mxf();
+          for(int i = 1; i <= n; i++) {
+            if(!t[i]) {
+              cout << i << ' ';
+              for(int j = r[i]; j; j = r[j]) {
+                cout << j << ' ';
+              }
+              cout << '\n';
+            }
+          }
+          cout << n - ans << '\n';
+          return 0;
+        }
+        ```
+
+??? note "[CF 1404E Bricks](https://codeforces.com/problemset/problem/1404/E) + 合并冲突模型"
+    ???+ note "题意"
+         用一些 $1 \times x$ 的砖精确覆盖一个 $n \times m$ 的网格，其中有一些格子不能覆盖。
+
+    ??? note 题解
 
 ## 参考资料
 
