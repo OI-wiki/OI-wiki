@@ -515,9 +515,9 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         }
         ```
 
-??? note "[CF 1404E Bricks](https://codeforces.com/problemset/problem/1404/E) + 合并冲突模型"
+??? note "[CF 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)+ 合并冲突模型 "
     ???+ note "题意"
-         用一些 $1 \times x$ 的砖精确覆盖一个 $n \times m$ 的网格，其中有一些格子不能覆盖。
+        用一些 $1 \times x$ 的砖精确覆盖一个 $n \times m$ 的网格，其中有一些格子不能覆盖。
 
     ??? note 题解
 
