@@ -101,6 +101,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 代码可以参考 [Dinic 算法](../flow/max-flow.md#dinic-算法) 的参考实现，这里不再给出。
 
+
 ## 补充
 
 ### 二分图最小点覆盖（König 定理）
@@ -126,7 +127,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 因为在最小点覆盖中，任意一条边都被至少选了一个顶点，所以对于其点集的补集，任意一条边都被至多选了一个顶点，所以不存在边连接两个点集中的点，且该点集最大。因此二分图中，最大独立集 $=n-$ 最小点覆盖。
 
-## 习题
+## 例题，与常见建模方法
 
 ??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78)"
     模板题
@@ -216,11 +217,105 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
     }
     ```
 
-??? note "[P1640 \[SCOI2010\] 连续攻击游戏](https://www.luogu.com.cn/problem/P1640)"
-    None
+??? note "[矩阵游戏](https://www.luogu.com.cn/problem/P1129)"
+    ??? note 解法
+        注意到，当存在 $n$ 个 $1$，使得这些 $1$ 不在同一行、同一列，那么必然有解，否则必然无解。
 
-??? note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E)"
-    None
+        问题转化成了能否找到这 $n$ 个 $1$。
+
+        考虑对于一个 $1$ 而言，最终的方案中选了这个 $1$ 代表这个 $1$ 的行、列被占用。
+
+        于是可以建出一个 $n$ 个左部点、$n$ 个右部点的二分图，其中对于某个为 $1$ 的元素，我们建一条连接它的行的左部点和它的列的右部点。
+
+        于是就可以二分图匹配了。
+
+    ??? note code
+        ```cpp
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int ct, n, t[100010], x, r[100010], ans, vis[100010], dis[100010];
+        vector<int> to[100010];
+        queue<int> q;
+        
+        //There was a delta here...
+        int DFS(int x) {
+          if(vis[x]) {
+            return 0;
+          }
+          vis[x] = 1;
+          for(auto i : to[x]) {
+            if(!r[i]) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+            if(dis[r[i]] == dis[x] + 1 && DFS(r[i])) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+          }
+          return 0;
+        }
+        
+        int BFS() {
+          fill(vis + 1, vis + n + 1, 0);
+          fill(dis + 1, dis + n + 1, 0);
+          for(int i = 1; i <= n; i++) {
+            if(!t[i]) {
+              q.push(i);
+              dis[i] = 1;
+            }
+          }
+          int f = 0;
+          for(; q.size(); q.pop()) {
+            int tmp = q.front();
+            for(auto i : to[tmp]) {
+              if(!r[i]) {
+                f = 1;
+              }
+              if(r[i]) {
+                if(!dis[r[i]]) {
+                  dis[r[i]] = dis[tmp] + 1;
+                  q.push(r[i]);
+                }
+              }
+            }
+          }
+          return f;
+        }
+
+        int main() {
+          ios::sync_with_stdio(0);
+          cin.tie(0), cout.tie(0);
+          for(cin >> ct; ct--; ) {
+            cin >> n;
+            for(int i = 1; i <= n; i++) {
+              for(int j = 1; j <= n; j++) {
+                cin >> x;
+                if(x) {
+                  to[i].push_back(j);
+                }
+              }
+            }
+            for(; BFS(); ) {
+              for(int i = 1; i <= n; i++) {
+                if(!t[i] && DFS(i)) {
+                  ans++;
+                }
+              }
+            }
+            cout << (ans == n? "Yes" : "No") << '\n';
+            for(int i = 1; i <= n; i++) {
+              t[i] = r[i] = 0;
+              to[i].clear();
+            }
+            ans = 0;
+          }
+          return 0;
+        }
+        ```
 
 ## 参考资料
 
