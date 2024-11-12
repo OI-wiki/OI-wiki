@@ -711,6 +711,7 @@ $$
 -   有限域：
     -   [Luogu P3923 大学数学题](https://www.luogu.com.cn/problem/P3923)
     -   [\[COTS 2021\] 菜 Jelo](https://www.luogu.com.cn/problem/P11192)
+    -   [CF1310F. Bad Cryptography](https://codeforces.com/problemset/problem/1310/F)
     -   [\[Oleksandr Kulkov Contest 2\] Problem A. Square Root Partitioning](https://codeforces.com/gym/102354/problem/A)
     -   [LOJ 178. 多项式求根](https://loj.ac/p/178)
     -   [CF1103E. Radix Sum](https://codeforces.com/problemset/problem/1103/E)
@@ -724,6 +725,7 @@ $$
 -   [Cyclotomic Polynomial - Wikipedia](https://en.wikipedia.org/wiki/Cyclotomic_polynomial)
 -   [Brett Porter's Notes on Cyclotomic Polynomials](https://www.whitman.edu/documents/academics/majors/mathematics/2015/Final%20Project%20-%20Porter%2C%20Brett.pdf)
 -   [Jordan Bell's Notes on Cyclotomic Polynomials](https://jordanbell.info/LaTeX/mathematics/cyclotomic/cyclotomic.pdf)
+-   [Michel Waldschmidt. An introduction to the theory of finite fields](https://webusers.imj-prg.fr/~michel.waldschmidt/articles/pdf/FiniteFields.pdf)
 
 [^subfield-one]: 这是因为域 $E$ 的幺元 $1_E$ 必然满足 $F$ 上的关系 $x^2-x=0$，而后者在域 $F$ 内只有两个根 $0_F$ 和 $1_F$，由于域的定义要求 $1_E\neq 0_E$，就必然有 $1_E=1_F$ 和 $0_E=0_F$。
 
