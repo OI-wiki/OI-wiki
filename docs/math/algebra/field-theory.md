@@ -627,7 +627,46 @@ $$
 
 ### 不可约多项式
 
-最后，讨论有限域 $\mathbf F_q$ 上的不可约多项式。
+有限域 $\mathbf F_q$ 上的不可约多项式十分容易确定。因为有限域 $\mathbf F_q$ 上的每个 $n$ 次不可约多项式都对应着 $n$ 次代数扩张，而这样的扩张是唯一的，故而所有 $n$ 次不可约多项式的根都可以在 $\mathbf F_{q^n}$ 中找到。这说明，$\mathbf F_q$ 上的 $n$ 次不可约多项式必然是 $x^{q^n}-x$ 的因子。要确定有限域 $\mathbf F_q$ 上的所有 $n$ 次不可约多项式，需要考察 $x^{q^n}-x$ 在 $\mathbf F_q$ 上的因式分解。这和分圆多项式的情形十分类似。
+
+有理数域 $\mathbf F_q$ 上的代数元可以根据其极小多项式的次数分类。设 $P_n$ 是极小多项式次数恰为 $n$ 的代数元集合，则
+
+$$
+\mathbf F_{q^n} = \bigcup_{d\mid n}P_d.
+$$
+
+这对应着因式分解
+
+$$
+x^{q^n}-x = \prod_{d|n}\prod_{\zeta\in P_d}(x-\zeta).
+$$
+
+因为 $n$ 次不可约多项式有 $n$ 个根，而且这些根的极小多项式的次数都是 $n$，所以 $n$ 次不可约多项式必然是多项式
+
+$$
+\prod_{\zeta\in P_n}(x-\zeta) = \prod_{d\mid n}\left(x^{q^d}-x\right)^{\mu(n/d)}
+$$
+
+的因子。因为这个多项式的次数是
+
+$$
+\sum_{d\mid n}\mu(d)q^{n/d},
+$$
+ 
+所以，$\mathbf F_q$ 上的 $n$ 次不可约首一多项式共计
+
+$$
+\frac1n\sum_{d\mid n}\mu(d)q^{n/d}
+$$
+
+个。这恰为不计旋转意义下，$q$ 个颜色的珠子能够串成的长度为 $n$ 的项链的种类个数，又称为 [项链多项式](../combinatorics/polya.md#循环群)（necklace polynomial）。
+
+???+ note "定理"
+    有限域 $\mathbf F_q$ 上存在任意次数的不可约多项式。
+
+因为有限域上的不可约多项式有着简单的结构，这使得有限域上的多项式的因式分解十分容易。比如，要确定给定多项式的全体 $n$ 次不可约因子，只要求解给定多项式与 $x^{q^n}-x$ 的最大公因子即可[^ddf]。类似地，只要 $n$ 次多项式对所有的 $k<n$ 都与多项式 $x^{q^k}-1$ 互素，就可以断定该 $n$ 次多项式不可约。
+
+不可约多项式可以用于有限域的实现。但是，要生成有限域 $\mathbf F_q$ 上的 $n$ 次不可约多项式却并没有较好的方法。因为所有 $n$ 次首一多项式中，不可约多项式占的比例是 $\Theta(1/n)$ 的，所以可以随机生成一个 $n$ 次首一多项式再判断它是否可约。这样，可以在期望生成 $\Theta(n)$ 个首一多项式后找到一个不可约多项式。
 
 ## 应用
 
@@ -648,6 +687,7 @@ $$
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 -   [Milne, J.S. Fields and Galois Theory.](https://www.jmilne.org/math/CourseNotes/FT.pdf)
 -   [Factorization of polynomials - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials)
+-   [Factorization of polynomials over finite fields - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials_over_finite_fields)
 -   [Cyclotomic Polynomial - Wikipedia](https://en.wikipedia.org/wiki/Cyclotomic_polynomial)
 -   [Brett Porter's Notes on Cyclotomic Polynomials](https://www.whitman.edu/documents/academics/majors/mathematics/2015/Final%20Project%20-%20Porter%2C%20Brett.pdf)
 -   [Jordan Bell's Notes on Cyclotomic Polynomials](https://jordanbell.info/LaTeX/mathematics/cyclotomic/cyclotomic.pdf)
@@ -661,3 +701,5 @@ $$
 [^polynomial-universal]: 严格地说，这里指的是多项式环 $R[x]$ 的 [万有性质](https://en.wikipedia.org/wiki/Polynomial_ring#Polynomial_evaluation)（universal property）。
 
 [^fundamental-algebra]: 虽然名字是代数基本定理，这个结论并不是纯代数的，这是因为实数域的构造需要通过拓扑结构进行。
+
+[^ddf]: 这样的说法有失严谨，因为还会得到次数 $d\mid n$ 的不可约因子。但是，由于算法实现时通常会从较小的次数的因子开始分离，在分离 $n$ 次不可约多项式因子时，较小的因子应该已经分离完了，所以这说法也是可以接受的。 
