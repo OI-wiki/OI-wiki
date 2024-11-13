@@ -105,7 +105,7 @@
     设 $E/F$ 是域扩张，如果存在有限集 $S=\{\alpha_1,\cdots,\alpha_n\}\subseteq E$ 使得 $E=F(S)$ 成立，则称 $E$ 为域 $F$ 的 **有限生成扩张**（finitely generated extension），也记作 $F(\alpha_1,\cdots,\alpha_n)$。
 
 ???+ abstract "单扩张"
-    设 $E/F$ 是域扩张，如果存在 $\alpha\in E$ 使得 $E=F(\alpha)$ 成立，则称域 $E$ 是域 $F$ 的 **单扩张**（simple extension）。
+    设 $E/F$ 是域扩张，如果存在 $\alpha\in E$ 使得 $E=F(\alpha)$ 成立，则称域 $E$ 是域 $F$ 的 **单扩张**（simple extension）。其中，元素 $\alpha$ 称为这个单扩张的 **本原元**（primitive element）。
 
 ???+ example "例子"
     这些例子都是向 $\mathbf Q$ 中添加 $\mathbf C$ 中的元素得到的。
@@ -562,7 +562,10 @@ $$
 ???+ abstract "本原元"
     有限域 $\mathbf F_q$ 的乘法群的生成元，称为 $\mathbf F_q$ 的 **本原元**（primitive element）。
 
-设 $\alpha$ 是有限域 $\mathbf F_q$ 的一个本原元。那么，对于所有 $x\in\mathbf F_q$ 都存在唯一的自然数 $k<q-1$ 使得 $x=\alpha^k$；这个 $k$ 就称为 $\mathbf F_q$ 上元素 $x$ 关于基 $\alpha$ 的 **离散对数**（discrete logarithm）。和 $F_p$ 上的情形一致，[离散对数的算法](../number-theory/discrete-logarithm.md) 的复杂度都比较高。
+???+ warning "单扩张中的本原元和有限域中的本原元并不相同"
+    尽管单扩张中的本原元和有限域中的本原元的名称一致，两者并不相同。单扩张中的本原元是相应的单扩张的生成元，而有限域中的本原元是相应的乘法群（作为循环群）的生成元。有限域作为它的素子域的单扩张的本原元，未必是有限域本身的本原元。例如，$\mathbf F_{25}\cong\mathbf F_5[x]/(x^2+x+1)$ 中，$\overline x$ 是域扩张的本原元，但是并不是域 $\mathbf F_{25}$ 的本原元，因为它的阶数是 $3$。
+
+设 $\alpha$ 是有限域 $\mathbf F_q$ 的一个本原元。那么，对于所有 $x\in\mathbf F_q$ 都存在唯一的自然数 $k<q-1$ 使得 $x=\alpha^k$；这个 $k$ 就称为 $\mathbf F_q$ 上元素 $x$ 关于基 $\alpha$ 的 **离散对数**（discrete logarithm）。和 $\mathbf F_p$ 上的情形一致，[离散对数的算法](../number-theory/discrete-logarithm.md) 的复杂度都比较高。
 
 通过乘法运算，本原元已经可以生成域的全体非零元素。这说明，有限域作为它的子域的扩张，一定是单扩张。
 
@@ -660,12 +663,12 @@ $$
 \frac1n\sum_{d\mid n}\mu(d)q^{n/d}
 $$
 
-个。这恰为不计旋转意义下，$q$ 个颜色的珠子能够串成的长度为 $n$ 的项链的种类个数，又称为 [项链多项式](../combinatorics/polya.md#循环群)（necklace polynomial）。
+个。这恰为不计旋转意义下，$q$ 个颜色的珠子能够串成的长度为 $n$ 的项链的种类个数（[证明](../combinatorics/polya.md#循环群)），又称为项链多项式（necklace polynomial）。
 
 ???+ note "定理"
     有限域 $\mathbf F_q$ 上存在任意次数的不可约多项式。
 
-因为有限域上的不可约多项式有着简单的结构，这使得有限域上的多项式的因式分解十分容易。比如，要确定给定多项式的全体 $n$ 次不可约因子，只要求解给定多项式与 $x^{q^n}-x$ 的最大公因子即可[^ddf]。类似地，只要 $n$ 次多项式对所有的 $k<n$ 都与多项式 $x^{q^k}-1$ 互素，就可以断定该 $n$ 次多项式不可约。
+因为有限域上的不可约多项式有着简单的结构，这使得有限域上的多项式的因式分解十分容易。比如，要确定给定多项式的全体 $n$ 次不可约因子，只要求解给定多项式与 $x^{q^n}-x$ 的最大公因子即可[^ddf]。类似地，只要 $n$ 次多项式对所有的 $k<n$ 都与多项式 $x^{q^k}-1$ 互素，就可以断定该 $n$ 次多项式在 $\mathbf F_q$ 上不可约。
 
 不可约多项式可以用于有限域的实现。但是，要找到有限域 $\mathbf F_q$ 上的一个 $n$ 次不可约多项式却并没有较好的确定性的方法。这里提供一种随机方法。因为所有 $n$ 次首一多项式中，不可约多项式占的比例是 $\Theta(1/n)$ 的，所以可以先随机生成一个 $n$ 次首一多项式再判断它是否可约。这样，可以在期望生成 $\Theta(n)$ 个首一多项式后找到一个不可约多项式。
 
@@ -697,7 +700,7 @@ $$
 
 ### Cipolla 算法
 
-这是利用有限域的扩域进行计算的典型例子。对于模 $p\neq 2$ 下的二次剩余 $a$，要找到它的平方根，即使得 $x^2\equiv a\pmod p$ 成立的 $x$。虽然这是 $\mathbf F_p$ 上的问题，但是 [Cipolla 算法](../number-theory/quad-residue.md#cipolla-算法) 在有限域 $\mathbf F_{p^2}$ 上进行计算。这里使用域论的语言，对这个算法进行说明；纯粹数论的证明可以参考所给链接。
+这是利用有限域的扩域进行计算的典型例子。对于模 $p\neq 2$ 下的二次剩余 $a$，要找到它的平方根，即使得 $x^2\equiv a\pmod p$ 成立的 $x$。虽然这是 $\mathbf F_p$ 上的问题，但是 [Cipolla 算法](../number-theory/quad-residue.md#cipolla-算法) 在有限域 $\mathbf F_{p^2}$ 上进行计算。本节使用域论的语言对这个算法进行说明。初等数论的证明可以参考所给链接。
 
 具体来说，Cipolla 算法首先选择 $r$ 使得 $r^2-a$ 是模 $p$ 的二次非剩余，这意味着 $x^2-(r^2-a)$ 是不可约多项式。因而，令 $u=r^2-a$，可以考虑扩域 $\mathbf F_p(\sqrt u)$。因为 Frobenius 自同态只能将元素映射到它的共轭，而这样的共轭在二次扩张下是唯一的，即有 $(r-\sqrt u)^p=r+\sqrt u$。故而，$(r-\sqrt u)^{p+1}=(r+\sqrt u)(r-\sqrt u)=r^2-u=a$。因而，要确定平方根，只要计算 $(r-\sqrt u)^{(p+1)/2}$ 就好了。这个值必然位于 $\mathbf F_p$ 中，因为 $x^2-a$ 的分裂域就是 $\mathbf F_p$ 本身。
 
