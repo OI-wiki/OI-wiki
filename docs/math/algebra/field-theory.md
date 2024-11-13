@@ -718,7 +718,7 @@ $$
 
 这是利用有限域的扩域进行计算的典型例子。对于模 $p\neq 2$ 下的二次剩余 $a$，要找到它的平方根，即使得 $x^2\equiv a\pmod p$ 成立的 $x$。虽然这是 $\mathbf F_p$ 上的问题，但是 [Cipolla 算法](../number-theory/quad-residue.md#cipolla-算法) 在有限域 $\mathbf F_{p^2}$ 上进行计算。本节使用域论的语言对这个算法进行说明。初等数论的证明可以参考所给链接。
 
-具体来说，Cipolla 算法首先选择 $r$ 使得 $r^2-a$ 是模 $p$ 的二次非剩余，这意味着 $x^2-(r^2-a)$ 是不可约多项式。因而，令 $u=r^2-a$，可以考虑扩域 $\mathbf F_p(\sqrt u)$。因为 Frobenius 自同态只能将元素映射到它的共轭，而这样的共轭在二次扩张下是唯一的，即有 $(r-\sqrt u)^p=r+\sqrt u$。故而，$(r-\sqrt u)^{p+1}=(r+\sqrt u)(r-\sqrt u)=r^2-u=a$。因而，要确定平方根，只要计算 $(r-\sqrt u)^{(p+1)/2}$ 就好了。这个值必然位于 $\mathbf F_p$ 中，因为 $x^2-a$ 的分裂域就是 $\mathbf F_p$ 本身。
+具体来说，Cipolla 算法首先选择 $r$ 使得 $r^2-a$ 是模 $p$ 的二次非剩余，这意味着 $x^2-(r^2-a)$ 是不可约多项式。因而，令 $u=r^2-a$，可以考虑扩域 $\mathbf F_p(\sqrt u)$。因为 Frobenius 自同态只能将元素映射到它的共轭，而这样的共轭在二次扩张下是唯一的，即有 $(r-\sqrt u)^p=r+\sqrt u$。故而，$(r-\sqrt u)^{p+1}=(r+\sqrt u)(r-\sqrt u)=r^2-u=a$。所以，要确定平方根，只要计算 $(r-\sqrt u)^{(p+1)/2}$ 就好了。这个值必然位于 $\mathbf F_p$ 中，因为 $x^2-a$ 的分裂域就是 $\mathbf F_p$ 本身。
 
 ## 习题
 
