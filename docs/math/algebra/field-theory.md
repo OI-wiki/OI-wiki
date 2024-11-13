@@ -77,7 +77,7 @@
 ???+ note "定理"
     域 $F$ 的特征只能是 $0$ 或素数 $p$。特征为 $0$ 的域的素子域是 $\mathbf Q$，特征为素数 $p$ 的域的素子域是 $\mathbf F_p$。
 
-有限域必然是有限特征的，因为特征为 $0$ 的域至少包含子域 $\mathbf Q$。
+定理中的 $\mathbf Q$ 和 $\mathbf F_p$ 也称为 **素域**（prime field），即子域只有它自身的域。有限域必然是有限特征的，因为特征为 $0$ 的域至少包含子域 $\mathbf Q$。
 
 特征有限的域和零特征的域性质往往不同。比如，有限特征的域有如下性质：
 
@@ -695,7 +695,7 @@ $$
 f(n) = \frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^n-\left(\frac{1-\sqrt{5}}{2}\right)^n\right).
 $$
 
-现在要计算 $f(n)$ 在素数模 $p$ 下的值。将这个问题转化为有限域 $\mathbf F_p$ 上的计算，首先要解决的就是 $\sqrt 5$ 在 $\mathbf F_p$ 中的意义。从代数角度看，它就是元素 $5$ 的平方根。因而，如果 $\mathbf F_p$ 中存在 $5$ 的平方根，即 $5$ 是模 $p$ 的二次剩余的时候，可以直接计算其二次剩余并带入计算；否则，就需要在扩域 $\mathbf F_p(\sqrt 5)\cong\mathbf F_p[x]/(x^2-5)$ 下进行计算。
+现在要计算 $f(n)$ 在素数模 $p\neq 5$ 下的值[^fib-p5]。将这个问题转化为有限域 $\mathbf F_p$ 上的计算，首先要解决的就是 $\sqrt 5$ 在 $\mathbf F_p$ 中的意义。从代数角度看，它就是元素 $5$ 的平方根。因而，如果 $\mathbf F_p$ 中存在 $5$ 的平方根，即 $5$ 是模 $p$ 的二次剩余的时候，可以直接计算其二次剩余并带入计算；否则，就需要在扩域 $\mathbf F_p(\sqrt 5)\cong\mathbf F_p[x]/(x^2-5)$ 下进行计算。
 
 当然，在扩域中进行计算的时候，没有必要一定加入 $\sqrt 5$。比如说，对于斐波那契数列，也可以设 $\phi$ 是多项式 $x^2-x-1$ 的根，从而 $f(n)$ 可以写作
 
@@ -754,3 +754,5 @@ $$
 [^list-prim-poly]: 比如，[Hansen, T., & Mullen, G. L. (1992). Primitive polynomials over finite fields. Mathematics of computation, 59(200), 639-643](https://www.ams.org/journals/mcom/1992-59-200/S0025-5718-1992-1134730-7/S0025-5718-1992-1134730-7.pdf) 的附录就提供了这样的列表。
 
 [^gf-prim-poly]: 此处的本原多项式指的是使得 $\overline x$ 在有限域 $\mathbf F_p[x]/(f(x))$ 恰为有限域的本原元的多项式 $f(x)$。
+
+[^fib-p5]: 当 $p=5$ 时，Fibonacci 数列的特征方程 $x^2-x-1=0$ 有重根 $x=3$，因而在 $\mathbf F_5$ 中，Fibonacci 数列的通项公式是 $f(n)=2n3^n$。
