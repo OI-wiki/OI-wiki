@@ -211,7 +211,6 @@ int main() {
   FiniteField::Element e1(&gf, rand());
   FiniteField::Element e2(&gf, rand());
   FiniteField::Element e3(&gf, rand());
-  std::cout
-      << ((e1 * e2 + e3).pow(p) - e1.pow(p) * e2.pow(p) - e3.pow(p)).idx();
+  std::cout << ((e1 * e2 + e3).pow(p) - e1.pow(p) * e2.pow(p) - e3.pow(p)).idx();
   return 0;
 }
