@@ -678,7 +678,7 @@ $$
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/finite-field/finite-field.cpp"
+    --8<-- "docs/math/code/finite-field/finite-field_1.cpp"
     ```
 
 ## 应用
