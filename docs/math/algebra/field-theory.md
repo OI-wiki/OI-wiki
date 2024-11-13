@@ -676,7 +676,7 @@ $$
 
 这里提供一个朴素的有限域的实现，仅供参考。代码中实现了随机生成不可约多项式的方法。
 
-???+ example "参考实现"
+??? example "参考实现"
     ```cpp
     --8<-- "docs/math/code/finite-field/finite-field_1.cpp"
     ```
