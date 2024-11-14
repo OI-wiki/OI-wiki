@@ -77,19 +77,19 @@ int main() {
 }
 ```
 
-### 初始化语句（ C++20 ）
+### 初始化语句（C++20）
+
 在 C++20 中，范围循环中可以使用初始化语句：
 
 ```cpp
 #include <iostream>
 #include <vector>
- 
-int main()
-{
-    std::vector<int> v = {0, 1, 2, 3, 4, 5}; 
-    
-    for(auto n = v.size(); auto i : v) // the init-statement (C++20)
-        std::cout << --n + i << ' ';
+
+int main() {
+  std::vector<int> v = {0, 1, 2, 3, 4, 5};
+
+  for (auto n = v.size(); auto i : v)  // the init-statement (C++20)
+    std::cout << --n + i << ' ';
 }
 ```
 
@@ -115,13 +115,13 @@ int main()
 
 范围库中已实现了一些常用的视图，大致分为两种：
 
-1.  **范围工厂** ，用于构造一些特殊的范围工厂，使用这类工厂可以省去手动构造容器的步骤，降低开销，直接生成一个范围。
-2.  **范围适配器** ，提供多种多样的遍历支持，既能像函数一样调用，也可以通过管道运算符 `|` 连接，实现链式调用。
-    
-**范围适配器** 作为 [**范围适配器闭包对象**](https://zh.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject)，也属于 [**函数对象**](#函数对象) ，它们重载了 `operator|`，使得它们能够像管道一样拼装起来。
+1.  **范围工厂**，用于构造一些特殊的范围工厂，使用这类工厂可以省去手动构造容器的步骤，降低开销，直接生成一个范围。
+2.  **范围适配器**，提供多种多样的遍历支持，既能像函数一样调用，也可以通过管道运算符 `|` 连接，实现链式调用。
+
+**范围适配器** 作为 [**范围适配器闭包对象**](https://zh.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject)，也属于 [**函数对象**](#函数对象)，它们重载了 `operator|`，使得它们能够像管道一样拼装起来。
 
 ???-note "管道运算符"
-    此处的 `|` 应该理解成管道运算符，而非按位或运算符，这个用法来自于 Linux 中的 [管道](https://zh.wikipedia.org/wiki/%E7%AE%A1%E9%81%93_(Unix))。
+此处的 `|` 应该理解成管道运算符，而非按位或运算符，这个用法来自于 Linux 中的 [管道](https://zh.wikipedia.org/wiki/%E7%AE%A1%E9%81%93_\(Unix\))。
 
 在复杂操作下，也能保持良好可读性，有以下特性：
 
@@ -181,7 +181,7 @@ int main() {
 
 > C++20 在命名空间 std::ranges 中提供大多数算法的受约束版本，可以用迭代器 - 哨位对或单个 range 作为实参来指定范围，并且支持投影和指向成员指针可调用对象。另外还更改了大多数算法的返回类型，以返回算法执行过程中计算的所有潜在有用信息。
 
-这些算法可以理解成旧标准库算法的改良版本，均为函数对象，提供更友好的重载和入参类型检查（基于 [`concept`](https://zh.cppreference.com/w/cpp/language/constraints) ），让我们先以 `std::sort` 和 `ranges::sort` 的对比作为例子
+这些算法可以理解成旧标准库算法的改良版本，均为函数对象，提供更友好的重载和入参类型检查（基于 [`concept`](https://zh.cppreference.com/w/cpp/language/constraints)），让我们先以 `std::sort` 和 `ranges::sort` 的对比作为例子
 
 ```cpp
 #include <algorithm>
@@ -219,14 +219,16 @@ int main() {
 using namespace std;
 
 int main() {
-    const auto& inputs = views::iota(0u, 9u); // 生产 0 到 8 的整数序列
-    const auto& chunks = inputs | views::chunk(3); // 将序列分块，每块 3 个元素
-    const auto& cartesian_product = views::cartesian_product(chunks, chunks); // 计算对块自身进行笛卡尔积
+  const auto& inputs = views::iota(0u, 9u);  // 生产 0 到 8 的整数序列
+  const auto& chunks = inputs | views::chunk(3);  // 将序列分块，每块 3 个元素
+  const auto& cartesian_product =
+      views::cartesian_product(chunks, chunks);  // 计算对块自身进行笛卡尔积
 
-    for (const auto [l_chunk, r_chunk] : cartesian_product)
-        // 计算笛卡尔积下的两个块整数的和
-        cout << ranges::fold_left(l_chunk, 0u, plus{}) + ranges::fold_left(r_chunk, 0u, plus{})
-             << ' ';
+  for (const auto [l_chunk, r_chunk] : cartesian_product)
+    // 计算笛卡尔积下的两个块整数的和
+    cout << ranges::fold_left(l_chunk, 0u, plus{}) +
+                ranges::fold_left(r_chunk, 0u, plus{})
+         << ' ';
 }
 ```
 
@@ -263,13 +265,13 @@ int main() {
 ???+ warning "请注意性能开销"
     `std::function` 会引入一定的性能开销，通常会造成 2 到 3 倍以上的性能损失。
     
-    因为它使用了类型擦除的技术，而这通常借由虚函数机制实现，调用虚函数会引入额外的 [开销](https://stackoverflow.com/questions/5057382/what-is-the-performance-overhead-of-stdfunction) 。
+    因为它使用了类型擦除的技术，而这通常借由虚函数机制实现，调用虚函数会引入额外的 [开销](https://stackoverflow.com/questions/5057382/what-is-the-performance-overhead-of-stdfunction)。
     
     请考虑使用 [**Lambda 表达式**](./lambda.md) 或者 [**函数对象**](#函数对象) 代替。
 
- `std::function` 是通用函数封装器，定义于头文件 `<functional>`。
- 
- `std::function` 的实例能存储、复制及调用任何 [**可调用**](https://zh.cppreference.com/w/cpp/named_req/Callable) 对象，这包括 [**Lambda 表达式**](./lambda.md)、成员函数指针或其他 [**函数对象**](#函数对象)。
+`std::function` 是通用函数封装器，定义于头文件 `<functional>`。
+
+`std::function` 的实例能存储、复制及调用任何 [**可调用**](https://zh.cppreference.com/w/cpp/named_req/Callable) 对象，这包括 [**Lambda 表达式**](./lambda.md)、成员函数指针或其他 [**函数对象**](#函数对象)。
 
 若 `std::function` 不含任何可调用对象（比如默认构造），调用时导致抛出 [`std::bad_function_call`](https://zh.cppreference.com/w/cpp/utility/functional/bad_function_call) 异常。
 
