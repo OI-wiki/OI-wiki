@@ -77,6 +77,22 @@ int main() {
 }
 ```
 
+### 初始化语句（ C++20 ）
+在 C++20 中，范围循环中可以使用初始化语句：
+
+```cpp
+#include <iostream>
+#include <vector>
+ 
+int main()
+{
+    std::vector<int> v = {0, 1, 2, 3, 4, 5}; 
+    
+    for(auto n = v.size(); auto i : v) // the init-statement (C++20)
+        std::cout << --n + i << ' ';
+}
+```
+
 ## 函数对象
 
 函数对象相较于函数指针，具有更高的灵活性，能够保存状态，也能够作为参数传递给其他函数。在函数中使用函数对象，仅需要将参数类型定义为模板参数，就能允许任意函数对象传入。
@@ -84,8 +100,6 @@ int main() {
 它不是一种语言特性，而是一种 [概念或者要求](https://zh.cppreference.com/w/cpp/named_req/FunctionObject)，在标准库中广泛应用。
 
 在通常的实现中，函数对象（FunctionObject）重载了 `operator()`，使得其实例能够像函数一样被调用，而 [lambda](./lambda.md) 即为一种典型的函数对象。
-
-相较于 [std::function](#stdfunction)，函数对象的性能开销更小，因为它是一个模板类，不需要类型擦除。
 
 ## 范围库（C++20）
 
@@ -101,20 +115,23 @@ int main() {
 
 范围库中已实现了一些常用的视图，大致分为两种：
 
-1.  范围工厂，用于构造一些特殊的范围工厂，使用这类工厂可以省去手动构造容器的步骤，降低开销，直接生成一个范围。
-2.  范围适配器，这些均为 **范围适配器闭包对象**（RangeAdaptorClosureObject），也属于 **函数对象** 的一类。
+1.  **范围工厂** ，用于构造一些特殊的范围工厂，使用这类工厂可以省去手动构造容器的步骤，降低开销，直接生成一个范围。
+2.  **范围适配器** ，提供多种多样的遍历支持，既能像函数一样调用，也可以通过管道运算符 `|` 连接，实现链式调用。
+    
+**范围适配器** 作为 [**范围适配器闭包对象**](https://zh.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject)，也属于 [**函数对象**](#函数对象) ，它们重载了 `operator|`，使得它们能够像管道一样拼装起来。
 
-    它们重载了 `operator|`（此处的 `|` 应该理解成管线运算符，而非按位或运算），使得它们能够像管线（pipeline）一样拼装起来。
+???-note "管道运算符"
+    此处的 `|` 应该理解成管道运算符，而非按位或运算符，这个用法来自于 Linux 中的 [管道](https://zh.wikipedia.org/wiki/%E7%AE%A1%E9%81%93_(Unix))。
 
-    在复杂操作下，也能保持良好可读性，有以下特性：
+在复杂操作下，也能保持良好可读性，有以下特性：
 
-    若 A、B、C 为一些范围适配器闭包对象，R 为某个范围，其他字母为可能的有效参数，表达式
+若 A、B、C 为一些范围适配器闭包对象，R 为某个范围，其他字母为可能的有效参数，表达式
 
-        R | A(a) | B(b) | C(c, d)
+    R | A(a) | B(b) | C(c, d)
 
-    等价于
+等价于
 
-        C(B(A(R, a), b), c, d)
+    C(B(A(R, a), b), c, d)
 
 下面以 `ranges::take_view` 与 `ranges::iota_view` 为例：
 
@@ -132,11 +149,11 @@ int main() {
 
 1.  范围工厂 `std::views::iota(0, 6)` 生成了从 1 到 6 的整数序列的范围
 2.  范围适配器 `std::views::filter(even)` 过滤前一个范围，生成了一个只剩下偶数的范围
-3.  两个操作使用管线运算符链接
+3.  两个操作使用管道运算符链接
 
 上述代码不需要额外分配堆空间存储每步生成的范围，实际的生成和过滤运算发生在遍历操作中（更具体而言，内部的迭代器构造、自增和解引用），也就是零开销（Zero Overhead）。
 
-同时，外部输入的范围生命周期，等同于 **范围适配器闭包对象** 的内部元素的生命周期。如果外部范围（比如容器、范围工厂）已经销毁，那么再对这些的视图遍历，其效果与解引用悬垂指针一致，属于未定义行为。
+同时，外部输入的范围生命周期，等同于 **范围适配器** 的内部元素的生命周期。如果外部范围（比如容器、范围工厂）已经销毁，那么再对这些的视图遍历，其效果与解引用悬垂指针一致，属于未定义行为。
 
 为了避免上述情况，应该严格要求适配器的生命周期位于其使用的任何范围的生命周期内。
 
@@ -162,9 +179,9 @@ int main() {
 
 ### Constrained Algorithm 受约束的算法
 
-> C++20 在命名空间 std::ranges 中提供大多数算法的受约束版本，可以迭代器 - 哨位对或单个 range 实参来指定范围，并且支持投影和指向成员指针可调用对象。另外还更改了大多数算法的返回类型，以返回算法执行过程中计算的所有潜在有用信息。
+> C++20 在命名空间 std::ranges 中提供大多数算法的受约束版本，可以用迭代器 - 哨位对或单个 range 作为实参来指定范围，并且支持投影和指向成员指针可调用对象。另外还更改了大多数算法的返回类型，以返回算法执行过程中计算的所有潜在有用信息。
 
-这些算法可以理解成旧标准库算法的改良版本，均为函数对象，提供更友好的重载和入参类型检查（基于 `concept`），让我们先以 `std::sort` 和 `ranges::sort` 的对比作为例子
+这些算法可以理解成旧标准库算法的改良版本，均为函数对象，提供更友好的重载和入参类型检查（基于 [`concept`](https://zh.cppreference.com/w/cpp/language/constraints) ），让我们先以 `std::sort` 和 `ranges::sort` 的对比作为例子
 
 ```cpp
 #include <algorithm>
@@ -193,56 +210,28 @@ int main() {
 
 使用这些范围入参，再结合使用上节视图，能允许我们在进行复杂操作的同时，保持代码可读性，让我们看一个例子：
 
-在算法题中，我们经常会希望对数组进行多种排序，存储多种排序下的序列，但这些元素可能占用的空间并不小（例如 `string`、`vector<string>`），拷贝和维护元素本身就需要较大的开销。
-
-一种好方法是选择下标创建一个数组，来维护多种排序：
-
 ```cpp
 #include <algorithm>
+#include <array>
 #include <iostream>
 #include <ranges>
-#include <string>
-#include <vector>
 
 using namespace std;
 
 int main() {
-  const vector<string> vec{"a",   "gh",  "abc",   "foo", "bar",
-                           "baz", "qux", "alice", "bob"};
-  vector<unsigned> by_lexical(vec.size());
-  vector<unsigned> by_size(vec.size());
+    const auto& inputs = views::iota(0u, 9u); // 生产 0 到 8 的整数序列
+    const auto& chunks = inputs | views::chunk(3); // 将序列分块，每块 3 个元素
+    const auto& cartesian_product = views::cartesian_product(chunks, chunks); // 计算对块自身进行笛卡尔积
 
-  const auto fn = [&vec](const auto i) -> auto& { return vec[i]; };
-  const auto view = std::views::transform(fn);
-
-  for (unsigned i = 0; i < vec.size(); ++i) {
-    by_lexical[i] = i;
-    by_size[i] = i;
-  }
-
-  ranges::sort(by_lexical, ranges::less{}, fn);
-  ranges::sort(
-      by_size, [](const auto& l, const auto& r) { return l.size() < r.size(); },
-      fn);
-
-  cout << "by_lexical:\n";
-  for (const auto& str : by_lexical | view) cout << str << ", ";
-
-  cout << "\nby_size:\n";
-  for (const auto& str : by_size | view) cout << str << ", ";
-
-  return 0;
+    for (const auto [l_chunk, r_chunk] : cartesian_product)
+        // 计算笛卡尔积下的两个块整数的和
+        cout << ranges::fold_left(l_chunk, 0u, plus{}) + ranges::fold_left(r_chunk, 0u, plus{})
+             << ' ';
 }
 ```
 
 ???+ note "输出："
-    by\_lexical:
-    
-    a, abc, alice, bar, baz, bob, foo, gh, qux,
-    
-    by\_size:
-    
-    a, gh, abc, foo, bar, baz, qux, bob, alice,
+    6 15 24 15 24 33 24 33 42
 
 ## Lambda 表达式
 
@@ -269,46 +258,20 @@ int main() {
 
 > 另请参阅 [常量表达式 constexpr（C++11）](const.md#常量表达式-constexprc11)
 
-## std::tuple 元组
-
-定义于头文件 `<tuple>`，即 [元组](https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%85%83%E7%BB%84)，是 `std::pair` 的推广，下面来看一个例子：
-
-```cpp
-#include <iostream>
-#include <tuple>
-#include <vector>
-
-constexpr auto expr = 1 + 1 * 4 - 5 - 1 + 4;
-
-int main() {
-  std::vector<int> vec = {1, 9, 2, 6, 0};
-  std::tuple<int, int, std::string, std::vector<int>> tup =
-      std::make_tuple(817, 114, "514", vec);
-  std::cout
-      << std::tuple_size_v<decltype(tup)> << std::endl;  // 元组包含的类型数量
-
-  for (auto i : std::get<expr>(tup)) std::cout << i << " ";
-  // std::get<> 中尖括号里面的必须是整型常量表达式
-  // expr 常量的值是 3，注意 std::tuple 的首元素编号为 0，
-  // 故我们 std::get 到了一个 std::vector<int>
-  return 0;
-}
-```
-
 ## std::function
 
 ???+ warning "请注意性能开销"
     `std::function` 会引入一定的性能开销，通常会造成 2 到 3 倍以上的性能损失。
     
-    因为它不是直接调用函数，使用了类型擦除的技术。
+    因为它使用了类型擦除的技术，而这通常借由虚函数机制实现，调用虚函数会引入额外的 [开销](https://stackoverflow.com/questions/5057382/what-is-the-performance-overhead-of-stdfunction) 。
+    
+    请考虑使用 [**Lambda 表达式**](./lambda.md) 或者 [**函数对象**](#函数对象) 代替。
 
-    请考虑使用 [**函数对象**](#函数对象) 或者 [**Lambda 表达式**](./lambda.md) 代替。
+ `std::function` 是通用函数封装器，定义于头文件 `<functional>`。
+ 
+ `std::function` 的实例能存储、复制及调用任何 [**可调用**](https://zh.cppreference.com/w/cpp/named_req/Callable) 对象，这包括 [**Lambda 表达式**](./lambda.md)、成员函数指针或其他 [**函数对象**](#函数对象)。
 
-类模板 `std::function` 是通用多态函数封装器，定义于头文件 `<functional>`。`std::function` 的实例能存储、复制及调用任何可调用（*Callable*）目标——函数、Lambda 表达式或其他函数对象，还有指向成员函数指针和指向数据成员指针。
-
-存储的可调用对象被称为 `std::function` 的 **目标**。若 `std::function` 不含目标，则称它为 **空**。调用空 `std::function` 的目标将导致抛出 `std::bad_function_call` 异常。
-
-来看例子
+若 `std::function` 不含任何可调用对象（比如默认构造），调用时导致抛出 [`std::bad_function_call`](https://zh.cppreference.com/w/cpp/utility/functional/bad_function_call) 异常。
 
 ```cpp
 #include <functional>
@@ -353,6 +316,32 @@ int main() {
 }
 ```
 
+## std::tuple 元组
+
+定义于头文件 `<tuple>`，即 [元组](https://zh.wikipedia.org/wiki/%E5%A4%9A%E5%85%83%E7%BB%84)，是 `std::pair` 的推广，下面来看一个例子：
+
+```cpp
+#include <iostream>
+#include <tuple>
+#include <vector>
+
+constexpr auto expr = 1 + 1 * 4 - 5 - 1 + 4;
+
+int main() {
+  std::vector<int> vec = {1, 9, 2, 6, 0};
+  std::tuple<int, int, std::string, std::vector<int>> tup =
+      std::make_tuple(817, 114, "514", vec);
+  std::cout
+      << std::tuple_size_v<decltype(tup)> << std::endl;  // 元组包含的类型数量
+
+  for (auto i : std::get<expr>(tup)) std::cout << i << " ";
+  // std::get<> 中尖括号里面的必须是整型常量表达式
+  // expr 常量的值是 3，注意 std::tuple 的首元素编号为 0，
+  // 故我们 std::get 到了一个 std::vector<int>
+  return 0;
+}
+```
+
 ### 成员函数
 
 | 函数          | 作用                   |
@@ -387,13 +376,13 @@ std::swap(tupA, tupB);
 std::cout << std::get<1>(tupA) << std::endl;
 ```
 
-## 可变参数函数模板
+## 可变参数模板
 
 在 C++11 之前，类模板和函数模板都只能接受固定数目的模板参数。C++11 允许 **任意个数、任意类型** 的模板参数。
 
 ### 可变参数函数模板
 
-同样的，下列代码声明的函数模板 `fun` 可以接受任意个数、任意类型的模板参数作为它的模板形参。
+下列代码声明的函数模板 `fun` 可以接受任意个数、任意类型的模板参数作为它的模板形参。
 
 ```cpp
 template <typename... Values>
@@ -411,7 +400,7 @@ fun(1, 2, 3);
 fun(1, 0.0, "abc");
 ```
 
-#### 函数参数包展开
+#### 参数包展开
 
 对于函数模板而言，参数包展开的方式有以下几种：
 
@@ -444,7 +433,7 @@ void func(A arg1, B arg2, C... arg3) {
 }
 ```
 
-#### 递归展开参数包
+#### 递归展开
 
 如果需要单独访问参数包中的每个参数，则需要递归方式展开。
 
@@ -477,7 +466,7 @@ int c = max(1, 233);              // 233
 int d = max(1, 233, 666, 10086);  // 10086
 ```
 
-### 可变参数模板的应用
+### 应用
 
 在调试的时候有时会倾向于输出中间变量而不是 IDE 的调试功能。但输出的变量很多时，就要写很多重复代码，这时候就可以用上可变参数模板和可变参数宏。
 
@@ -535,8 +524,4 @@ int main() {
 
 ## 参考
 
-1.  [C++ reference](https://en.cppreference.com/)
-2.  [C++ 参考手册](https://zh.cppreference.com/)
-3.  [C++ in Visual Studio](https://docs.microsoft.com/en-us/cpp/overview/visual-cpp-in-visual-studio?view=vs-2019)
-4.  [Variadic template](https://en.wikipedia.org/wiki/Variadic_template)
-5.  [Variadic macros](https://en.wikipedia.org/wiki/Variadic_macro)
+1.  [C++ 参考手册](https://zh.cppreference.com/)
