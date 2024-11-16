@@ -120,7 +120,7 @@ int main() {
 
 **范围适配器** 作为 [**范围适配器闭包对象**](https://zh.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject)，也属于 [**函数对象**](#函数对象)，它们重载了 `operator|`，使得它们能够像管道一样拼装起来。
 
-???-note "管道运算符"
+??? note "管道运算符"
     此处的 `|` 应该理解成管道运算符，而非按位或运算符，这个用法来自于 Linux 中的 [管道](https://zh.wikipedia.org/wiki/%E7%AE%A1%E9%81%93_\(Unix\))。
 
 在复杂操作下，也能保持良好可读性，有以下特性：
