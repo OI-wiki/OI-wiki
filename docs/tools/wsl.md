@@ -313,7 +313,7 @@ $ sudo service xrdp restart
 
 ![不换端口的结果](./images/wsl-result-of-not-changing-ports.png)
 
-运行命令 `sudo sed 's/port=[0-9]{1,5}/port=otherport/' /etc/xrdp/xrdp.ini`，其中 `otherport` 为其他端口（如 `3390`）。
+运行命令 `sudo sed -i 's/port=[0-9]\{1,5\}/port=otherport/' /etc/xrdp/xrdp.ini`，其中 `otherport` 为其他端口（如 `3390`）。
 
     [globals]
     ...
