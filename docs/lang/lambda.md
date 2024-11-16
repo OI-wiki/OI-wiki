@@ -4,7 +4,7 @@
 
 ## Lambda 表达式
 
-Lambda 表达式因数学中的 $\lambda$ 演算得名，直接对应于其中的 lambda 抽象。编译器在编译时会根据语法生成一个匿名的 **函数对象**，以捕获的变量作为其成员，参数和函数体用于实现 `operator()` 重载。
+Lambda 表达式因数学中的 $\lambda$ 演算得名，直接对应于其中的 lambda 抽象。编译器在编译时会根据语法生成一个匿名的 [**函数对象**](./new.md#函数对象) ，以捕获的变量作为其成员，参数和函数体用于实现 `operator()` 重载。
 
 ??? note "函数对象（Function Object）"
     函数对象是一种类对象，一般通过重载 `operator()` 实现，所以能像函数一样调用。相较于使用普通的函数，函数对象有很多优点，例如可以保存状态，可以作为参数传递给其他函数等。
@@ -237,7 +237,7 @@ cout << nth_fibonacci(10);
 
 ##### 其他方式
 
-从本质上来讲，lambda 只是通过实现匿名函数对象一种语法糖，那么我们可以通过定义函数对象来实现递归。
+从本质上来讲，lambda 只是通过实现匿名函数对象一种语法糖，那么我们可以通过定义 **函数对象** 来实现递归。
 
 ```cpp
 class fibonacci_fn {
@@ -250,7 +250,7 @@ class fibonacci_fn {
 cout << fibonacci_fn{}(10);
 ```
 
-??? warning " 不建议使用 `std::function` 实现的递归 "
+??? warning " 不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归 "
     `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
     
     在 [Benchmark](https://quick-bench.com/q/6ZIWCCvBlq_Cakrae05c11vC0BI) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 7 倍。
