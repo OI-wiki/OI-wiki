@@ -23,7 +23,7 @@ class FiniteField {
     }
     return res;
   }
-  
+
   // Multiplicative inverse mod p.
   int inv(int a) const { return pow(a, p - 2); }
 
