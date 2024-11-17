@@ -56,7 +56,7 @@ Hash 冲突是指两个不同的字符串映射到相同的 Hash 值。
 则 Hash 冲突的概率为：
 
 $$
-p(n,d) =1 - \exp(-\frac{n(n-1)}{2d} )
+p(n,d) = \frac{d!}{d^n\left(d-n\right)!} \approx 1 - \exp(-\frac{n(n-1)}{2d} )
 $$
 
 ??? note "证明"
@@ -73,7 +73,6 @@ $$
     \overline{p}(n,d) 
     & = \frac{d}{d}\cdot \frac{d-1}{d}\cdot \frac{d-2}{d} \cdots \frac{d-n+1}{d}\\
     & = \frac{d\cdot (d-1)\cdot (d-2)\cdots(d-n+1)}{d^n}\\
-    & = \frac{\frac{d!}{(d-n)!}}{d^n}\\
     & = \frac{d!}{d^n\left(d-n\right)!}
     \end{aligned}
     $$
@@ -97,14 +96,14 @@ $$
     将它带入 Hash 不冲突的原始公式：
 
     $$
-    \overline{p}(n,d) = 1 \cdot \exp(-\frac{1}{d}) \cdot \exp(-\frac{2}{d}) \cdots \exp(-\frac{n-1}{d})
+    \overline{p}(n,d) \approx 1 \cdot \exp(-\frac{1}{d}) \cdot \exp(-\frac{2}{d}) \cdots \exp(-\frac{n-1}{d})
     $$
 
     化简：
 
     $$
     \begin{aligned}
-    \overline{p}(n,d) & = \exp(-\frac{1}{d} - \frac{2}{d} - \cdots -\frac{n-1}{d})\\
+    \overline{p}(n,d) & \approx \exp(-\frac{1}{d} - \frac{2}{d} - \cdots -\frac{n-1}{d})\\
     &=\exp(-\frac{n(n-1)}{2d} )
     \end{aligned}
     $$
@@ -112,7 +111,7 @@ $$
     则 Hash 冲突的概率为：
 
     $$
-    p(n,d) =1 - \exp(-\frac{n(n-1)}{2d})
+    p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d})
     $$
 
 ### 卡大模数 Hash
@@ -120,7 +119,7 @@ $$
 注意到这个公式：
 
 $$
-p(n,d) =1 - \exp(-\frac{n(n-1)}{2d} )
+p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d} )
 $$
 
 为了卡掉 Hash，我们要满足一下条件：
@@ -132,7 +131,7 @@ $$
 
 若字符集为 **大小写字母和数字**，模数为 $10^9+7$ 时：
 
-$log_{62}10^9+7\approx 6$
+$\log_{62}10^9+7\approx 6$
 
 $p(10^6,62^{6}) \approx 0.9$
 
