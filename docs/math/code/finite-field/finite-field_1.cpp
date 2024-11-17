@@ -4,7 +4,7 @@
 
 class FiniteField {
   int p, k;
-  std::vector<int> mod;  // Monic. 
+  std::vector<int> mod;  // Monic.
 
   // Remove leadings zeros of a polynomial.
   static void trim(std::vector<int>& poly) {
@@ -27,15 +27,15 @@ class FiniteField {
   int inv(int a) const { return pow(a, p - 2); }
 
   // Polynomial GCD. Inputs are supposed to have no leading zeros.
-  std::vector<int> poly_gcd(const std::vector<int>& lhs, 
+  std::vector<int> poly_gcd(const std::vector<int>& lhs,
                             const std::vector<int>& rhs) const {
     if (lhs.size() < rhs.size()) {
       return poly_gcd(rhs, lhs);
     } else if (rhs.size()) {
-      auto rem = lhs; // remainder.
+      auto rem = lhs;  // remainder.
       long long v = inv(rhs.back());
       for (int i = rem.size() - rhs.size(); i >= 0; --i) {
-        auto d = v * (p - rem[i + rhs.size() - 1]) % p;  // d = -rem[i+rhs.size()-1].
+        auto d = v * (p - rem[i + rhs.size() - 1]) % p;
         for (int j = 0; j < rhs.size(); ++j) {
           rem[i + j] = (rem[i + j] + d * rhs[j]) % p;
         }
@@ -48,13 +48,13 @@ class FiniteField {
   }
 
   // Polynomials Ex-GCD. Inputs are supposed to have no leading zeros.
-  void poly_ex_gcd(const std::vector<int>& lhs, const std::vector<int>& rhs, 
+  void poly_ex_gcd(const std::vector<int>& lhs, const std::vector<int>& rhs,
                    std::vector<int>& x, std::vector<int>& y) const {
     if (lhs.size() < rhs.size()) {
       poly_ex_gcd(rhs, lhs, y, x);
     } else if (rhs.size()) {
-      std::vector<int> quo(lhs.size() - rhs.size() + 1); // quotient.
-      auto rem = lhs; // remainder.
+      std::vector<int> quo(lhs.size() - rhs.size() + 1);  // quotient.
+      auto rem = lhs;                                     // remainder.
       long long v = inv(rhs.back());
       for (int i = rem.size() - rhs.size(); i >= 0; --i) {
         quo[i] = v * rem[i + rhs.size() - 1] % p;
@@ -64,15 +64,15 @@ class FiniteField {
         }
       }
       trim(rem); 
-      poly_ex_gcd(rhs, rem, y, x); // Recursively ex_gcd.
+      poly_ex_gcd(rhs, rem, y, x);  // Recursively ex_gcd.
       // y -= a/b*x.
       if (y.size() < quo.size() + x.size() - 1) {
         y.resize(quo.size() + x.size() - 1, 0);
       }
       for (int i = 0; i < quo.size(); ++i) {
         for (int j = 0; j < x.size(); ++j) {
-            y[i + j] = (y[i + j] - (long long)quo[i] * x[j]) % p;
-            if (y[i + j] < 0) y[i + j] += p;
+          y[i + j] = (y[i + j] - (long long)quo[i] * x[j]) % p;
+          if (y[i + j] < 0) y[i + j] += p;
         }
       }
       trim(y);
@@ -151,7 +151,7 @@ class FiniteField {
       }
       return *this;
     }
-    
+
     // Multiplication by a scalar.
     Element operator*(int x) const {
       Element res(*this);
@@ -200,28 +200,28 @@ class FiniteField {
 
     // Multiplicative inverse.
     Element inv() const {
-        Element res(gf);
-        auto& x = res.a;
-        std::vector<int> y;
-        auto lhs = a;
-        trim(lhs);
-        auto rhs = gf->mod;
-        gf->poly_ex_gcd(lhs, rhs, x, y);
-        x.resize(gf->k);
-        return res;
+      Element res(gf);
+      auto& x = res.a;
+      std::vector<int> y;
+      auto lhs = a;
+      trim(lhs);
+      auto rhs = gf->mod;
+      gf->poly_ex_gcd(lhs, rhs, x, y);
+      x.resize(gf->k);
+      return res;
     }
 
     // Division.
     Element& operator/=(const Element& rhs) {
-        *this *= rhs.inv();
-        return *this;
+      *this *= rhs.inv();
+      return *this;
     }
 
     // Division.
     Element operator/(const Element& rhs) const {
-        Element res(*this);
-        res /= rhs;
-        return res;
+      Element res(*this);
+      res /= rhs;
+      return res;
     }
   };
 
