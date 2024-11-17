@@ -13,7 +13,7 @@ class FiniteField {
     poly.resize(m);
   }
 
-  // Modular arithmetic.
+  // Binary exponentiation mod p.
   int pow(int a, int b) const {
     int res = 1, po = a;
     while (b) {
@@ -23,7 +23,8 @@ class FiniteField {
     }
     return res;
   }
-
+  
+  // Multiplicative inverse mod p.
   int inv(int a) const { return pow(a, p - 2); }
 
   // Polynomial GCD. Inputs are supposed to have no leading zeros.
@@ -40,8 +41,8 @@ class FiniteField {
           rem[i + j] = (rem[i + j] + d * rhs[j]) % p;
         }
       }
-      trim(rem);                  // Remove leading zeros.
-      return poly_gcd(rhs, rem);  // Recursively gcd.
+      trim(rem);  // Remove leading zeros.
+      return poly_gcd(rhs, rem);
     } else {
       return lhs;
     }
@@ -63,8 +64,9 @@ class FiniteField {
           rem[i + j] = (rem[i + j] + d * rhs[j]) % p;
         }
       }
-      trim(rem);                    // Remove leading zeros.
-      poly_ex_gcd(rhs, rem, y, x);  // Recursively ex_gcd.
+      trim(rem);  // Remove leading zeros.
+      // Recursively ex_gcd.
+      poly_ex_gcd(rhs, rem, y, x);
       // y -= a/b*x.
       if (y.size() < quo.size() + x.size() - 1) {
         y.resize(quo.size() + x.size() - 1, 0);
