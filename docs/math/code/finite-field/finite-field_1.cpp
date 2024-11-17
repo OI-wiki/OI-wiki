@@ -40,8 +40,8 @@ class FiniteField {
           rem[i + j] = (rem[i + j] + d * rhs[j]) % p;
         }
       }
-      trim(rem); // Remove leading zeros.
-      return poly_gcd(rhs, rem);
+      trim(rem);  // Remove leading zeros.
+      return poly_gcd(rhs, rem);  // Recursively gcd.
     } else {
       return lhs;
     }
@@ -63,7 +63,7 @@ class FiniteField {
           rem[i + j] = (rem[i + j] + d * rhs[j]) % p;
         }
       }
-      trim(rem); 
+      trim(rem);  // Remove leading zeros.
       poly_ex_gcd(rhs, rem, y, x);  // Recursively ex_gcd.
       // y -= a/b*x.
       if (y.size() < quo.size() + x.size() - 1) {
@@ -75,12 +75,12 @@ class FiniteField {
           if (y[i + j] < 0) y[i + j] += p;
         }
       }
-      trim(y);
+      trim(y);  // Remove leading zeros.
     } else {
       // x = 1, y = 0.
-      x.assign(1, inv(lhs.back())); 
-      y.clear(); 
-    }      
+      x.assign(1, inv(lhs.back()));
+      y.clear();
+    }
   }
 
  public:
