@@ -4,7 +4,14 @@
 
 class FiniteField {
   int p, k;
-  std::vector<int> mod;  // Monic. Leading term omitted.
+  std::vector<int> mod;  // Monic. 
+
+  // Remove leadings zeros of a polynomial.
+  static void trim(std::vector<int>& poly) {
+    int m = poly.size();
+    for (; m && !poly[m - 1]; --m);
+    poly.resize(m);
+  }
 
   // Modular arithmetic.
   int pow(int a, int b) const {
@@ -19,44 +26,69 @@ class FiniteField {
 
   int inv(int a) const { return pow(a, p - 2); }
 
-  // Polynomial GCD. Inputs and outputs are supposed to be monic.
-  std::vector<int> poly_mod(const std::vector<int>& lhs,
+  // Polynomial GCD. Inputs are supposed to have no leading zeros.
+  std::vector<int> poly_gcd(const std::vector<int>& lhs, 
                             const std::vector<int>& rhs) const {
-    if (lhs.size() < rhs.size()) return lhs;
-    auto tmp = lhs;
-    for (int i = tmp.size() - rhs.size(); i >= 0; --i) {
-      long long d = p - tmp[i + rhs.size() - 1];  // d = -tmp[i+rhs.size()-1]
-      for (int j = 0; j < rhs.size(); ++j) {
-        tmp[i + j] = (tmp[i + j] + d * rhs[j]) % p;
+    if (lhs.size() < rhs.size()) {
+      return poly_gcd(rhs, lhs);
+    } else if (rhs.size()) {
+      auto rem = lhs; // remainder.
+      long long v = inv(rhs.back());
+      for (int i = rem.size() - rhs.size(); i >= 0; --i) {
+        auto d = v * (p - rem[i + rhs.size() - 1]) % p;  // d = -rem[i+rhs.size()-1].
+        for (int j = 0; j < rhs.size(); ++j) {
+          rem[i + j] = (rem[i + j] + d * rhs[j]) % p;
+        }
       }
-    }
-    int m = tmp.size();
-    for (; m && !tmp[m - 1]; --m);
-    tmp.resize(m);
-    if (m && tmp[m - 1] != 1) {
-      long long d = inv(tmp[m - 1]);
-      for (int i = 0; i < m; ++i) {
-        tmp[i] = d * tmp[i] % p;
-      }
-    }
-    return tmp;
-  }
-
-  std::vector<int> poly_gcd(std::vector<int> lhs, std::vector<int> rhs) const {
-    if (rhs.size()) {
-      return poly_gcd(rhs, poly_mod(lhs, rhs));
+      trim(rem); // Remove leading zeros.
+      return poly_gcd(rhs, rem);
     } else {
       return lhs;
     }
   }
 
+  // Polynomials Ex-GCD. Inputs are supposed to have no leading zeros.
+  void poly_ex_gcd(const std::vector<int>& lhs, const std::vector<int>& rhs, 
+                   std::vector<int>& x, std::vector<int>& y) const {
+    if (lhs.size() < rhs.size()) {
+      poly_ex_gcd(rhs, lhs, y, x);
+    } else if (rhs.size()) {
+      std::vector<int> quo(lhs.size() - rhs.size() + 1); // quotient.
+      auto rem = lhs; // remainder.
+      long long v = inv(rhs.back());
+      for (int i = rem.size() - rhs.size(); i >= 0; --i) {
+        quo[i] = v * rem[i + rhs.size() - 1] % p;
+        long long d = p - quo[i];  // d = -quo[i].
+        for (int j = 0; j < rhs.size(); ++j) {
+          rem[i + j] = (rem[i + j] + d * rhs[j]) % p;
+        }
+      }
+      trim(rem); 
+      poly_ex_gcd(rhs, rem, y, x); // Recursively ex_gcd.
+      // y -= a/b*x.
+      if (y.size() < quo.size() + x.size() - 1) {
+        y.resize(quo.size() + x.size() - 1, 0);
+      }
+      for (int i = 0; i < quo.size(); ++i) {
+        for (int j = 0; j < x.size(); ++j) {
+            y[i + j] = (y[i + j] - (long long)quo[i] * x[j]) % p;
+            if (y[i + j] < 0) y[i + j] += p;
+        }
+      }
+      trim(y);
+    } else {
+      // x = 1, y = 0.
+      x.assign(1, inv(lhs.back())); 
+      y.clear(); 
+    }      
+  }
+
  public:
   // Class for Finite Field Elements.
-  class Element {
+  struct Element {
     const FiniteField* gf;
     std::vector<int> a;
 
-   public:
     // Element initialization as zero.
     Element(const FiniteField* gf) : gf(gf), a(gf->k) {}
 
@@ -89,6 +121,7 @@ class FiniteField {
       return *this;
     }
 
+    // Addition.
     Element operator+(const Element& rhs) const {
       Element res(*this);
       res += rhs;
@@ -104,6 +137,7 @@ class FiniteField {
       return *this;
     }
 
+    // Subtraction.
     Element operator-(const Element& rhs) const {
       Element res(*this);
       res -= rhs;
@@ -117,7 +151,8 @@ class FiniteField {
       }
       return *this;
     }
-
+    
+    // Multiplication by a scalar.
     Element operator*(int x) const {
       Element res(*this);
       res *= x;
@@ -144,6 +179,7 @@ class FiniteField {
       return *this;
     }
 
+    // Multiplication.
     Element operator*(const Element& rhs) const {
       Element res(*this);
       res *= rhs;
@@ -161,6 +197,32 @@ class FiniteField {
       }
       return res;
     }
+
+    // Multiplicative inverse.
+    Element inv() const {
+        Element res(gf);
+        auto& x = res.a;
+        std::vector<int> y;
+        auto lhs = a;
+        trim(lhs);
+        auto rhs = gf->mod;
+        gf->poly_ex_gcd(lhs, rhs, x, y);
+        x.resize(gf->k);
+        return res;
+    }
+
+    // Division.
+    Element& operator/=(const Element& rhs) {
+        *this *= rhs.inv();
+        return *this;
+    }
+
+    // Division.
+    Element operator/(const Element& rhs) const {
+        Element res(*this);
+        res /= rhs;
+        return res;
+    }
   };
 
  private:
@@ -171,23 +233,11 @@ class FiniteField {
       // F = X^{p^j} mod MOD.
       f = f.pow(p);
       // G = X^{p^j}-X mod MOD.
-      std::vector<int> g(k);
-      int m = 0;
-      for (int i = 0; i < k; ++i) {
-        g[i] = f[i];
-        if (i == 1) g[i] = g[i] ? g[i] - 1 : p - 1;
-        if (g[i]) m = i + 1;
-      }
-      if (!m) return false;
-      g.resize(m);
-      // Make G monic.
-      long long d = inv(g[m - 1]);
-      for (int i = 0; i < k; ++i) {
-        g[i] = d * g[i] % p;
-      }
+      auto g = f.a;
+      g[1] = g[1] ? g[1] - 1 : p - 1;
+      trim(g);
       // H = MOD.
       auto h = mod;
-      h.resize(k + 1, 1);
       // Reducible if deg(GCD(G,H))>1.
       if (poly_gcd(h, g).size() > 1) return false;
     }
@@ -195,7 +245,7 @@ class FiniteField {
   }
 
  public:
-  FiniteField(int p, int k) : p(p), k(k), mod(k) {
+  FiniteField(int p, int k) : p(p), k(k), mod(k + 1, 1) {
     do {  // Randomly generate a polynomial.
       for (int i = 0; i < k; ++i) {
         mod[i] = rand() % p;
@@ -207,11 +257,13 @@ class FiniteField {
 int main() {
   int p = 13331, k = 50;
   FiniteField gf(p, k);
+  FiniteField::Element e1(&gf, rand() + 1);
+  FiniteField::Element e2(&gf, rand() + 1);
+  FiniteField::Element e3(&gf, rand() + 1);
   // Test Frobenius endomorphism.
-  FiniteField::Element e1(&gf, rand());
-  FiniteField::Element e2(&gf, rand());
-  FiniteField::Element e3(&gf, rand());
   std::cout
       << ((e1 * e2 + e3).pow(p) - e1.pow(p) * e2.pow(p) - e3.pow(p)).idx();
+  // Test inverse.
+  std::cout << ((e1 * e2).inv() - e1.inv() / e2).idx();
   return 0;
 }
