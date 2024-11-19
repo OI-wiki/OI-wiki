@@ -245,10 +245,10 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
 
 ### 例题
 
-???+ note "[例题：BZOJ 3097 Hash Killer I](https://hydro.ac/d/bzoj/p/3097)"
+???+ note "[例题：BZOJ 3097 Hash Killer I](https://hydro.ac/p/bzoj-P3097)"
     给定一个用 **自然溢出** 实现的 Hash，要求构造一个字符串来卡掉它。
 
-???+ note "[例题：BZOJ 3097 Hash Killer II](https://hydro.ac/d/bzoj/p/3098)"
+???+ note "[例题：BZOJ 3097 Hash Killer II](https://hydro.ac/p/bzoj-P3098)"
     给定一个用 **大模数** 实现的 Hash，要求构造一个字符串来卡掉它。
 
 ???+ note "[例题：洛谷 U461211 字符串 Hash（数据加强）](https://www.luogu.com.cn/problem/U461211)"

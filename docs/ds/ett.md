@@ -238,7 +238,7 @@ void Delete(int u, int v) {
 
 此外，ETT 很难维护树链修改。
 
-### 例题 [「星际探索」](https://darkbzoj.cc/problem/3786)
+### 例题 [「星际探索」](https://hydro.ac/p/bzoj-P3786)
 
 这题的动态树操作只有换父亲，可以看成删边再加边，但是这样可能会改变对应括号的先后顺序。
 
