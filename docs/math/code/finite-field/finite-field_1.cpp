@@ -240,7 +240,7 @@ class FiniteField {
       trim(g);
       // H = MOD.
       auto h = mod;
-      // Reducible if deg(GCD(G,H))>1.
+      // Reducible if deg(GCD(G,H))>0.
       if (poly_gcd(h, g).size() > 1) return false;
     }
     return true;

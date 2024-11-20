@@ -290,7 +290,7 @@ $$
 上文已经对单代数扩张的结构做了详尽的讨论。但是，这样的扩张往往并不充分：
 
 ???+ example "例子"
-    考察扩张 $\mathbf Q(\sqrt[3]{2})/\mathbf Q$。代数元 $\sqrt[3]{2}$ 在域 $\mathbf Q$ 上的极小多项式是 $x^3-2$。在复数域 $\mathbf C$ 中，多项式 $x^3-2$ 有三个根，即 $\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2$，其中，$\omega=\mathrm{e}^{2\pi\mathrm{i}/3}$ 是 $1$ 的三次原根。尽管 $\mathbf Q(\sqrt[3]{2})\cong\mathbf Q(\sqrt[3]{2}\omega)\cong\mathbf Q(\sqrt[3]{2}\omega^2)$，但是 $\mathbf Q(\sqrt[3]{2})$ 中并没有另外的两个根，这使得 $\mathbf Q(\sqrt[3]{2})+\mathbf Q(\sqrt[3]{2})\omega$ 这种运算就已经无法进行。如果要完整地考察这三个根，需要对域 $\mathbf Q(\sqrt[3]{2})$ 做进一步扩张，即扩张至 $\mathbf Q(\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2)$。
+    考察扩张 $\mathbf Q(\sqrt[3]{2})/\mathbf Q$。代数元 $\sqrt[3]{2}$ 在域 $\mathbf Q$ 上的极小多项式是 $x^3-2$。在复数域 $\mathbf C$ 中，多项式 $x^3-2$ 有三个根，即 $\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2$，其中，$\omega=\mathrm{e}^{2\pi\mathrm{i}/3}$ 是 $1$ 的三次原根。尽管 $\mathbf Q(\sqrt[3]{2})\cong\mathbf Q(\sqrt[3]{2}\omega)\cong\mathbf Q(\sqrt[3]{2}\omega^2)$，但是 $\mathbf Q(\sqrt[3]{2})$ 中并没有另外的两个根，这使得 $\sqrt[3]{2}+\sqrt[3]{2}\omega$ 这种运算就已经无法进行。如果要完整地考察这三个根，需要对域 $\mathbf Q(\sqrt[3]{2})$ 做进一步扩张，即扩张至 $\mathbf Q(\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2)$。
     
     前文已经说明，要做这样的扩张，只要对元素逐个做单扩张即可。应当注意的是，$\sqrt[3]{2}\omega$ 在域 $\mathbf Q$ 中和在域 $\mathbf Q(\sqrt[3]{2})$ 中的极小多项式并不相同：前者是 $x^3-2\in\mathbf Q[x]$，后者则是 $x^2+\sqrt[3]{2}x+\sqrt[3]{4}\in \mathbf Q(\sqrt[3]{2})[x]$，因为有
     
@@ -317,7 +317,7 @@ $$
 
 ### 代数闭域
 
-前文提及的多数扩张的概念原则上需要在比扩张更大的域内进行。尽管对于单扩张的情形，通过多项式环可以不依赖于更大的域构造出域的扩张，但是对于一般的情形并没有这样的手段。对于有理数域 $\mathbf Q$ 和实数域 $\mathbf R$，总是可以假定代数扩张包含在复数域 $\mathbf C$ 内部。对于有限域，并没有类似的已知的域。其实，对于所有的域，都存在代数闭包，使得域上所有的代数扩张都可以假定包含在代数闭包内。这就彻底解决了这一问题。
+前文提及的多数扩张的概念原则上需要在比扩张更大的域内进行。尽管对于单扩张的情形，通过多项式环可以不依赖于更大的域构造出域的扩张，但是对于一般的情形并没有这样的手段。对于有理数域 $\mathbf Q$ 和实数域 $\mathbf R$，总是可以假定代数扩张包含在复数域 $\mathbf C$ 内部。对于有限域，并没有类似的已知的域。其实，对于所有的域，都存在代数闭包，使得域上所有的代数扩张都可以假定在代数闭包内进行。这就彻底解决了这一问题。
 
 ???+ abstract "代数闭包"
     对于域 $F$，如果域 $\overline F$ 是域 $F$ 的代数扩张，且所有的 $f(x)\in F[x]$ 都在 $\overline F$ 中分裂，则称域 $\overline F$ 是域 $F$ 的 **代数闭包**（algebraic closure）。
@@ -631,7 +631,7 @@ $$
 
     反过来，要证明对于所有 $d\mid n$，$\mathbf F_{p^d}$ 都是 $\mathbf F_{p^n}$ 的子域。记 $r=p^d$ 且 $q=p^n$。设 $F$ 为有限域 $\mathbf F_q$ 中方程 $x^r-x=0$ 的全体根的集合。通过 Frobenius 自同态可以证明，集合 $F$ 必然构成域；关键是要证明，这样的根恰好有 $r$ 个，所以才有 $F\cong\mathbf F_r$。因为 $d\mid n$，所以 $(p^d-1)\mid(p^n-1)$，所以 $(x^{p^d-1}-1)\mid(x^{p^n-1}-1)$，也就是 $(x^r-x)\mid (x^q-x)$。所以，$x^r-x$ 在 $\mathbf F_q$ 上分裂，故而在 $\mathbf F_q$ 内有 $r$ 个不同的根。这就说明 $F\cong\mathbf F_r$ 是 $\mathbf F_q$ 的子域。
 
-这一定理说明，有限域 $\mathbf F_{p^n}$ 的包含关系，对应着域的阶 $p^n$ 中的指数 $n$ 之间的整除关系。所有特征为 $p$ 的有限域 $\mathbf F_{p^n}$ 之间形成的格，也就同构于整数 $n$ 在整除关系下形成的格。当然，为了让有限域 $\mathbf F_{p^n}$ 之间的交集等运算有意义，需要将所有特征为 $p$ 的域都看作是 $\mathbf F_p$ 的代数闭域的子集。
+这一定理说明，有限域 $\mathbf F_{p^n}$ 的包含关系，对应着域的阶 $p^n$ 中的指数 $n$ 之间的整除关系。所有特征为 $p$ 的有限域 $\mathbf F_{p^n}$ 之间形成的格，也就同构于整数 $n$ 在整除关系下形成的格。当然，为了让有限域 $\mathbf F_{p^n}$ 之间的交集等运算有意义，需要将所有特征为 $p$ 的域都嵌入到 $\mathbf F_p$ 的代数闭包中。
 
 ???+ note "定理"
     设 $F$ 为 $\mathbf F_p$ 的代数闭包，则域 $F$ 中多项式 $x^{p^n}-x$ 的根的集合构成有限域 $\mathbf F_{p^n}$。那么，有：
