@@ -14,16 +14,16 @@ Lambda 表达式因数学中的 $\lambda$ 演算得名，直接对应于其中�
 
 Lambda 表达式本身是一个类，展开后如以下形式：
 
-```cpp
+```text
 class Lambda_1 {
  private:
-  Lambda_1() : capture - list(init - value) {}
+  Lambda_1() : capture-list(init-value) { }
 
  public:
-  return -type operator()(parameters) const { statement }
+  return-type operator()(parameters) const { statement }
 
  private:
-  mutable capture - list
+  mutable capture-list
 };
 ```
 
@@ -68,27 +68,34 @@ capture 不仅可以用来捕获外部变量，还可用于声明新的变量并
 auto f = [val = 520]() {
   return val;
 };  // OK, 定义 val 类型为 int，初始值为 520，返回值类型 int
+
 auto f = [val = 520LL]() {
   return val;
 };  // OK, 定义 val 类型为 long long，初始值为 520，返回值类型 long long
+
 auto f = [val = "520"]() {
   return val;
 };  // OK, 定义 val 类型为 const char*，初始值为 "520"，返回值类型 const char*
+
 auto f = [val = "520"s]() {
   return val;
 };  // 需要 using namespace std; 和 C++14 以上，定义 val 类型为
     // std::string，初始值为 std::string("520")，返回值类型 std::string
+
 auto f = [val = std::string("520")]() {
   return val;
 };  // OK, 定义 val 类型为 std::string，初始值为 std::string("520")，返回值类型
     // std::string
+
 auto f = [val = std::vector<int>(3, 6)]() {
   return val;
 };  // OK, 定义 val 类型为 std::vector<int>，大小为 3，元素填充 6，返回值类型
     // std::vector<int>
+
 auto f = [val = 520]() -> int {
   return val;
 };  // OK, 定义 val 类型为 int，初始值为 520，返回值类型 int
+
 auto f = [val = 520]() -> long long {
   return val;
 };  // OK, 定义 val 类型为 int，初始值为 520，返回值类型 long long
@@ -96,8 +103,8 @@ auto f = [val = 520]() -> long long {
 
 定义新的变量不可以省略初始值，变量的类型由初始值的类型决定，相当于：
 
-```cpp
-auto val = init - value;
+```text
+auto val = init-value;
 ```
 
 以下是错误的写法：
