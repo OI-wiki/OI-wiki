@@ -34,14 +34,14 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 
 ## 成员函数
 
--   `insert(x)`：向树中插入一个元素 x，返回 `std::pair<point_iterator, bool>`。
--   `erase(x)`：从树中删除一个元素/迭代器 x。如果 x 是迭代器，则返回指向 x 下一个的迭代器（如果 x 是 `end()` 则返回 `end()`）；如果 x 是 `Key`，则返回是否删除成功（如果不存在则删除失败）。
--   `order_of_key(x)`：返回 x 以 `Cmp_Fn` 比较的排名。
+-   `insert(x)`：向树中插入一个元素 `x`，返回 `std::pair<point_iterator, bool>`，其中第一个元素代表插入位置的迭代器，第二个元素代表是否插入成功。
+-   `erase(x)`：从树中删除一个元素/迭代器 `x`。如果 `x` 是迭代器，则返回指向 `x` 下一个的迭代器（如果 `x` 是 `end()` 则返回 `end()`）；如果 `x` 是 `Key`，则返回是否删除成功（如果不存在则删除失败）。
+-   `order_of_key(x)`：返回严格小于 `x` 的元素个数（以 `Cmp_Fn` 作为比较逻辑），即从 $0$ 开始的排名。
 -   `find_by_order(x)`：返回 `Cmp_Fn` 比较的排名所对应元素的迭代器。
--   `lower_bound(x)`：以 `Cmp_Fn` 比较做 `lower_bound`，返回迭代器。
--   `upper_bound(x)`：以 `Cmp_Fn` 比较做 `upper_bound`，返回迭代器。
--   `join(x)`：将 x 树并入当前树，前提是两棵树的类型一样，x 树被删除。
--   `split(x,b)`：以 `Cmp_Fn` 比较，小于等于 x 的属于当前树，其余的属于 b 树。
+-   `lower_bound(x)`：返回第一个不小于 `x` 的元素所对应的迭代器（以 `Cmp_Fn` 作为比较逻辑）。
+-   `upper_bound(x)`：返回第一个严格大于 `x` 的元素所对应的迭代器（以 `Cmp_Fn` 作为比较逻辑）。
+-   `join(x)`：将 `x` 树并入当前树，`x` 树被清空（必须确保两树的 **比较函数** 和 **元素类型** 相同）。
+-   `split(x,b)`：以 `Cmp_Fn` 比较，小于等于 `x` 的属于当前树，其余的属于 `b` 树。
 -   `empty()`：返回是否为空。
 -   `size()`：返回大小。
 
@@ -74,30 +74,36 @@ int main() {
   trr.insert(make_pair(4, cnt++));
   trr.insert(make_pair(3, cnt++));
   trr.insert(make_pair(2, cnt++));
-  // 树上元素 {{1,0},{2,4},{3,3},{4,2},{5,1}}
+  // 树上元素 {(1,0), (2,4), (3,3), (4,2), (5,1)}
+
   auto it = trr.lower_bound(make_pair(2, 0));
   trr.erase(it);
-  // 树上元素 {{1,0},{3,3},{4,2},{5,1}}
+  // 树上元素 {(1,0), (3,3), (4,2), (5,1)}
+
+  // 输出排名 0 1 2 3 中的排名 1 的元素的 first
   auto it2 = trr.find_by_order(1);
-  cout << (*it2).first << endl;
-  // 输出排名 0 1 2 3 中的排名 1 的元素的 first:1
+  cout << (*it2).first << endl; // 输出：3
+
+  // 输出其排名
   int pos = trr.order_of_key(*it2);
-  cout << pos << endl;
-  // 输出排名
+  cout << pos << endl; // 输出：1
+
+  // 按照 it2 分裂 trr
   decltype(trr) newtr;
   trr.split(*it2, newtr);
   for (auto i = newtr.begin(); i != newtr.end(); ++i) {
-    cout << (*i).first << ' ';
+    cout << (*i).first << ' '; // 输出：4 5 
   }
   cout << endl;
-  // {4,2},{5,1} 被放入新树
+
+  // 将 newtr 树并入 trr 树，newtr 树被清空。
   trr.join(newtr);
   for (auto i = trr.begin(); i != trr.end(); ++i) {
-    cout << (*i).first << ' ';
+    cout << (*i).first << ' '; // 输出：1 3 4 5 
   }
   cout << endl;
-  cout << newtr.size() << endl;
-  // 将 newtr 树并入 trr 树，newtr 树被删除。
+  cout << newtr.size() << endl; // 输出：0
+
   return 0;
 }
 ```
