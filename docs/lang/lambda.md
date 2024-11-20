@@ -12,6 +12,29 @@ Lambda 表达式因数学中的 $\lambda$ 演算得名，直接对应于其中�
 [capture] (parameters) mutable -> return-type {statement}
 ```
 
+Lambda 表达式本身是一个类，展开后如以下形式：
+```cpp
+class Lambda_1
+{
+private:
+    Lambda_1() : capture-list(init-value) { }
+
+public:
+    return-type operator()(parameters) const
+    {
+        statement
+    }
+
+private:
+    mutable capture-list
+};
+```
+
+空的 capture 可以隐式转换为函数指针，例如：
+```cpp
+void (*f)(int, int) = [](int, int) -> void { };
+```
+
 下面我们分别对其中的 capture, parameters, mutable, return-type, statement 进行介绍。
 
 ### capture 捕获子句
@@ -39,6 +62,73 @@ auto f = [a]() { return a * 9; };  // OK, 'a' 被值「捕获」
 auto f = [&a]() { return a++; };   // OK, 'a' 被引用「捕获」
                                   // 注意：请保证 Lambda 被调用时 a 没有被销毁
 auto b = f();  // f 从捕获列表里获得 a 的值，无需通过参数传入 a
+```
+
+capture 不仅可以用来捕获外部变量，还可用于声明新的变量并初始化，例如：
+```cpp
+auto f = [val = 520]() { return val; };                    // OK, 定义 val 类型为 int，初始值为 520，返回值类型 int
+auto f = [val = 520LL]() { return val; };                  // OK, 定义 val 类型为 long long，初始值为 520，返回值类型 long long
+auto f = [val = "520"]() { return val; };                  // OK, 定义 val 类型为 const char*，初始值为 "520"，返回值类型 const char*
+auto f = [val = "520"s]() { return val; };                 // 需要 using namespace std; 和 C++14 以上，定义 val 类型为 std::string，初始值为 std::string("520")，返回值类型 std::string
+auto f = [val = std::string("520")]() { return val; };     // OK, 定义 val 类型为 std::string，初始值为 std::string("520")，返回值类型 std::string
+auto f = [val = std::vector<int>(3, 6)]() { return val; }; // OK, 定义 val 类型为 std::vector<int>，大小为 3，元素填充 6，返回值类型 std::vector<int>
+auto f = [val = 520]() -> int { return val; };             // OK, 定义 val 类型为 int，初始值为 520，返回值类型 int
+auto f = [val = 520]() -> long long { return val; };       // OK, 定义 val 类型为 int，初始值为 520，返回值类型 long long
+```
+
+定义新的变量不可以省略初始值，变量的类型由初始值的类型决定，相当于：
+```cpp
+auto val = init-value;
+```
+
+以下是错误的写法：
+```cpp
+auto f = [val]() { return val; };  // Error: ‘val’ was not declared in this scope, identifier "val" is undefined
+```
+
+初始化值也可以是外部变量，例如：
+```cpp
+int value = 520;
+auto f = [val = value]() { return val; };
+std::cout << f(); // Output: 520
+```
+
+$val$ 也可以是一个引用类型，可以引用一个外部变量，通过这种方式可以为通过引用捕获的外部变量取个别名，例如：
+```cpp
+int value = 520;
+
+auto f = [&val = value]() { return val; };  // OK, 定义 val 类型为 int&，返回值类型 int，相当于 int& val = value;
+
+std::cout << f() << '\n';  // Output: 520
+
+value = 1314;
+
+std::cout << f() << '\n'; // Output: 1314
+```
+
+捕获外部变量和定义新变量可以同时使用。
+
+如果你想在 Lambda 表达式内修改 capture 中定义的新变量，需要使用 `mutable` 关键字，如果是引用则不需要，例如：
+```cpp
+auto f = [val = 520]() mutable -> int { return val = 1314; };  // 需要 mutable
+std::cout << f();  // Output: 1314
+
+int value = 520;
+auto f = [&val = value]() -> int { return val = 1314; };  // 不需要 mutable
+std::cout << f(); // Output: 1314, value = 1314
+```
+详见 [mutable 可变规范](#mutable-可变规范)。
+
+在 capture 中定义的变量的生命周期跟随 Lambda 表达式的接收方，在以上几个示例中为变量 $f$，因为 Lambda 本身其实是一个类，capture 中的所有内容都是这个类的 `private` 成员变量，例如：
+```cpp
+int main()
+{
+    auto f = [val = 0]() mutable -> int { return ++val; };  // val 被构造和初始化
+
+    std::cout << f() << '\n';  // Output: 1
+    std::cout << f() << '\n';  // Output: 2
+    std::cout << f() << '\n';  // Output: 3
+}  // val 跟随 f 被销毁
 ```
 
 ### parameters 参数列表
@@ -151,6 +241,61 @@ int main() {
 ```
 
 最后我们得到输出 `5 0`。这是由于 `n` 是通过值捕获的，在调用 Lambda 表达式后仍保持原来的值 `0` 不变。`mutable` 规范允许 `n` 在 Lambda 主体中被修改，将 `mutable` 删去则编译不通过。
+
+### Lambda 中的递归
+
+先来看一个编译失败的例子：
+```cpp
+int n = 10;
+
+auto dfs = [&](int i) -> void
+{
+    if (i == n)
+        return;
+    else
+        dfs(i + 1);  // Error: a variable declared with an auto type specifier cannot appear in its own initializer
+};
+```
+
+我们这里尝试在捕获列表中捕获 $dfs$，但是有一个问题，$dfs$ 的类型为 `auto`，要等待等号右边的类型推导完成后才会推导出 $dfs$ 的类型，而 Lambda 要捕获 $dfs$ 就必须要确定 $dfs$ 的类型后才能创建它的引用变量，好，这会陷入了一个套娃过程。
+
+怎么解决这个问题呢？
+
+- 第一种方法是显式指定 $dfs$ 的类型，可以使用 `std::function` 替代。
+
+???+example "修改如上代码为："
+
+    ```cpp
+    int n = 10;
+
+    std::function<void (int)> dfs = [&](int i) -> void
+    {
+        if (i == n)
+            return;
+        else
+            dfs(i + 1);  // OK
+    };
+    ```
+
+- 第二种方式是不通过捕获的方式获取 $dfs$，而是通过函数传参的方式。
+
+???+example "修改如上代码为："
+
+    ```cpp
+    int n = 10;
+
+    // 参数列表中有参数类型为 auto，则这个 Lambda 类中的 operator() 函数将被定义为模板函数
+    auto dfs = [&](auto& self, int i) -> void  // [&] 只会捕获用到的变量，所以不会捕获 auto dfs
+    {
+        if (i == n)
+            return;
+        else
+            self(self, i + 1);  // OK
+    };
+    ```
+
+???+note "`auto& self` 和 `auto&& self` 的区别"
+    理论上都只会使用 $8$ 个字节（指针的大小）用作传参，不会发生任何拷贝。具体要看编译器对 Lambda 的实现方式和对应的优化。
 
 ## 参考文献
 
