@@ -80,7 +80,8 @@ auto f3 = [val = "520"]() {
 auto f4 = [val = "520"s]() {
   return val;
 };  // OK, C++14 起，需要 using namespace std; 或 using namespace std::literals;
-    // 定义 val 类型为 std::string，初始值为 std::string("520")，返回值类型 std::string
+    // 定义 val 类型为 std::string，初始值为 std::string("520")，返回值类型
+    // std::string
 
 auto f5 = [val = std::string("520")]() {
   return val;
