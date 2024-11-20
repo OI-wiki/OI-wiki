@@ -85,10 +85,10 @@
 特征有限的域和零特征的域性质往往不同。比如，有限特征的域有如下性质：
 
 ???+ note "定理"
-    设 $F$ 特征为 $p$，则有：
+    设 $F$ 的特征为 $p$，则有：
     
-    1.  域 $F$ 的加法群的所有非零元素的阶都是 $p$，即对所有 $x\in F$ 都有 $px=0$；
-    2.  「大一新生的梦」（freshman's dream），即对所有 $x,y\in F$ 都有 $(x+y)^p=x^p+y^p$。进而，映射 $x\mapsto x^p$ 是 $F$ 上的单自同态，叫做 **Frobenius 自同态**（Frobenius endomorphism）。
+    1.  域 $F$ 的加法群中，所有非零元素的阶都是 $p$，即对所有 $x\in F$ 都有 $px=0$；
+    2.  「新手之梦」（freshman's dream），即对所有 $x,y\in F$ 都有 $(x+y)^p=x^p+y^p$。进而，映射 $x\mapsto x^p$ 是 $F$ 上的单自同态，叫做 **Frobenius 自同态**（Frobenius endomorphism）。
 
 ??? note "证明"
     对于第一条性质，只要注意到 $px=(p1)x=0x=0$ 即可。对于第二条性质，只需要注意到 $(x+y)^p$ 的二项式展开中，除了 $x^p$ 和 $y^p$ 外的全部其他项的系数都是 $p$ 的倍数，故而根据第一条性质就有 $(x+y)^p=x^p+y^p$。至于验证 $x\mapsto x^p$ 是自同态，只需要再验证 $(xy)^p=x^py^p$，这是因为域的乘法满足交换律。最后，域之间的环同态且幺元映射到幺元，则必然是单射。
@@ -113,7 +113,7 @@
 ???+ example "例子"
     这些例子都是向 $\mathbf Q$ 中添加 $\mathbf C$ 中的元素得到的。
     
-    1.  二次域 $\mathbf Q(\sqrt D)$ 就是在域 $\mathbf Q$ 中添加了 $\sqrt D\in\mathbf C$ 得到的单扩张。它的扩张次数是 $2$，因为 $\{1,\sqrt D\}$ 构成了一组基。
+    1.  对于无平方因子的整数 $D\neq 0,1$，二次域 $\mathbf Q(\sqrt D)$ 就是在域 $\mathbf Q$ 中添加了 $\sqrt D\in\mathbf C\setminus\mathbf Q$ 得到的单扩张。它的扩张次数是 $2$，因为 $\{1,\sqrt D\}$ 构成了一组基。
     2.  域 $\mathbf Q(\sqrt 2,\sqrt 3)$ 就是在域 $\mathbf Q$ 中添加了 $\sqrt 2$ 和 $\sqrt 3$ 得到的扩张。当然有 $\mathbf Q(\sqrt 2,\sqrt 3)=\mathbf Q(\sqrt 2)(\sqrt 3)=\mathbf Q(\sqrt 3)(\sqrt 2)$，即最后的扩张与元素的添加顺序和方式无关。这也是单扩张，因为 $\mathbf Q(\sqrt 2,\sqrt 3)=\mathbf Q(\sqrt 2+\sqrt 3)$。它的扩张次数是 $4$，因为 $\{1,\sqrt 2,\sqrt 3,\sqrt 6\}$ 构成了一组基。
     3.  域 $\mathbf Q(\pi)$ 也是单扩张，其中，$\pi$ 是圆周率。它是无限扩张，因为 $\mathbf Q[\pi]\subseteq \mathbf Q(\pi)$ 已经有一组基 $\{1,\pi,\pi^2,\cdots\}$。
     4.  域 $\mathbf Q(\pi,\mathrm e)$ 是有限生成的扩张，但不是单扩张。其中，$\pi$ 是圆周率，$\mathrm e$ 是自然对数的底。
@@ -153,7 +153,7 @@
     1.  $\sqrt 2$ 是 $\mathbf Q$ 上的代数元，极小多项式是 $x^2-2$。
     2.  $\sqrt 2$ 是 $\mathbf R$ 上的代数元，极小多项式是 $x-\sqrt 2$。
     3.  $\pi$ 是 $\mathbf Q$ 上的超越元。
-    4.  一般地，$\mathbf Q$ 上的代数元称为 **代数数**（algebraic number），而超越元称为 **超越数**（transcendental number）。特别地，如果代数数的极小多项式是首一多项式，它就称作 **代数整数**（algebraic integer）。代数扩张中的全体代数整数构成环。例如，二次域 $\mathbf Q(\sqrt{d})$ 中的代数整数就构成二次整数环 $\mathbf Z[\omega]$。此处记号的含义见 [二次整数环](./ring-theory.md#例子二次整数环)。
+    4.  一般地，$\mathbf Q$ 上的代数元称为 **代数数**（algebraic number），而超越元称为 **超越数**（transcendental number）。特别地，如果代数数的极小多项式是首一多项式，它就称作 **代数整数**（algebraic integer）。代数扩张中的全体代数整数构成环。例如，二次域 $\mathbf Q(\sqrt{D})$ 中的代数整数就构成二次整数环 $\mathbf Z[\omega]$。此处记号的含义见 [二次整数环](./ring-theory.md#例子二次整数环) 页面。
 
 ???+ abstract "代数扩张与超越扩张"
     对于扩张 $E/K$，如果域 $E$ 的元素都是 $F$ 中的代数元，则称域 $E$ 是 $F$ 上的 **代数扩张**（algebraic extension）；否则，称域 $E$ 是 $F$ 上的 **超越扩张**（transcendental extension）。
