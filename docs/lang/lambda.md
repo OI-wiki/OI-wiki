@@ -44,7 +44,7 @@ int a = 0;
 auto f0 = []() { return a * 9; };   // Error, 无法访问 'a'
 auto f1 = [a]() { return a * 9; };  // OK, 'a' 被值「捕获」
 auto f2 = [&a]() { return a++; };   // OK, 'a' 被引用「捕获」
-// 注意，请保证被调用时 a 没有被销毁
+// 注意：请保证 f2 被调用时 a 没有被销毁
 auto b = f();  // f 从捕获列表里获得 a 的值，无需通过参数传入 a
 ```
 
