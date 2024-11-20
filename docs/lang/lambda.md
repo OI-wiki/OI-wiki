@@ -65,38 +65,38 @@ auto b = f();  // f 从捕获列表里获得 a 的值，无需通过参数传入
 capture 不仅可以用来捕获外部变量，还可用于声明新的变量并初始化，例如：
 
 ```cpp
-auto f = [val = 520]() {
+auto f1 = [val = 520]() {
   return val;
 };  // OK, 定义 val 类型为 int，初始值为 520，返回值类型 int
 
-auto f = [val = 520LL]() {
+auto f2 = [val = 520LL]() {
   return val;
 };  // OK, 定义 val 类型为 long long，初始值为 520，返回值类型 long long
 
-auto f = [val = "520"]() {
+auto f3 = [val = "520"]() {
   return val;
 };  // OK, 定义 val 类型为 const char*，初始值为 "520"，返回值类型 const char*
 
-auto f = [val = "520"s]() {
+auto f4 = [val = "520"s]() {
   return val;
-};  // 需要 using namespace std; 和 C++14 以上，定义 val 类型为
-    // std::string，初始值为 std::string("520")，返回值类型 std::string
+};  // OK, C++14 起，需要 using namespace std; 或 using namespace std::literals;
+    // 定义 val 类型为 std::string，初始值为 std::string("520")，返回值类型 std::string
 
-auto f = [val = std::string("520")]() {
+auto f5 = [val = std::string("520")]() {
   return val;
 };  // OK, 定义 val 类型为 std::string，初始值为 std::string("520")，返回值类型
     // std::string
 
-auto f = [val = std::vector<int>(3, 6)]() {
+auto f6 = [val = std::vector<int>(3, 6)]() {
   return val;
 };  // OK, 定义 val 类型为 std::vector<int>，大小为 3，元素填充 6，返回值类型
     // std::vector<int>
 
-auto f = [val = 520]() -> int {
+auto f7 = [val = 520]() -> int {
   return val;
 };  // OK, 定义 val 类型为 int，初始值为 520，返回值类型 int
 
-auto f = [val = 520]() -> long long {
+auto f8 = [val = 520]() -> long long {
   return val;
 };  // OK, 定义 val 类型为 int，初始值为 520，返回值类型 long long
 ```
