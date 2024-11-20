@@ -341,7 +341,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 习题
 
-??? note " 习题 [「BZOJ 2310」ParkII](https://darkbzoj.cc/problem/2310)"
+??? note " 习题 [「BZOJ 2310」ParkII](https://hydro.ac/p/bzoj-P2310)"
     题目大意：$m\times n$ 的棋盘，每个格点有一个权值，求一条路径覆盖，最大化路径经过的点的权值和。
 
 ??? note " 习题 [「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
