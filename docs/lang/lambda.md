@@ -144,12 +144,19 @@ std::cout << f() << '\n';  // Output: 1314
 如果你想在 Lambda 表达式内修改 capture 中定义的新变量，需要使用 `mutable` 关键字，如果是引用则不需要，例如：
 
 ```cpp
-auto f = [val = 520]() mutable -> int { return val = 1314; };  // 需要 mutable
-std::cout << f();                                              // Output: 1314
-
 int value = 520;
-auto f = [&val = value]() -> int { return val = 1314; };  // 不需要 mutable
-std::cout << f();  // Output: 1314, value = 1314
+
+{
+  auto f = [val = value]() mutable -> int { return val = 1314; };  // 需要 mutable
+  auto val_f = f();
+  std::cout << value << ' ' << val_f << std::endl;  // Output: 520 1314
+}
+
+{
+  auto f = [&val = value]() -> int { return val = 1314; };  // 不需要 mutable
+  auto val_f = f();
+  std::cout << value << ' ' << val_f << std::endl;  // Output: 1314 1314
+}
 ```
 
 详见 [mutable 可变规范](#mutable-可变规范)。
