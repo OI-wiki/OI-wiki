@@ -46,7 +46,9 @@ int a = 0;
 auto f0 = []() { return a * 9; };   // Error, 无法访问 'a'
 auto f1 = [a]() { return a * 9; };  // OK, 'a' 被值「捕获」
 auto f2 = [&a]() { return a++; };   // OK, 'a' 被引用「捕获」
-auto f3 = [v = a + 1]() { return v + 1; };   // OK, 使用初始化器声明变量 v，类型与 a 相同
+auto f3 = [v = a + 1]() {
+  return v + 1;
+};  // OK, 使用初始化器声明变量 v，类型与 a 相同
 
 // 注意，使用引用捕获时，请保证被调用时 a 没有被销毁
 auto b = f2();  // f2 从捕获列表里获得 a 的值，无需通过参数传入 a
@@ -71,7 +73,7 @@ int x = 4;
 
 auto y = [&r = x, x = x + 1]() -> int {
   r += 2;
-  return x * x; // 优先使用 lambda 本地 x 变量
+  return x * x;  // 优先使用 lambda 本地 x 变量
 }();  // 更新 ::x 到 6 并初始化 y 为 25。
 
 ```
