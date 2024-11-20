@@ -82,27 +82,27 @@ int main() {
 
   // 输出排名 0 1 2 3 中的排名 1 的元素的 first
   auto it2 = trr.find_by_order(1);
-  cout << (*it2).first << endl; // 输出：3
+  cout << (*it2).first << endl;  // 输出：3
 
   // 输出其排名
   int pos = trr.order_of_key(*it2);
-  cout << pos << endl; // 输出：1
+  cout << pos << endl;  // 输出：1
 
   // 按照 it2 分裂 trr
   decltype(trr) newtr;
   trr.split(*it2, newtr);
   for (auto i = newtr.begin(); i != newtr.end(); ++i) {
-    cout << (*i).first << ' '; // 输出：4 5 
+    cout << (*i).first << ' ';  // 输出：4 5
   }
   cout << endl;
 
   // 将 newtr 树并入 trr 树，newtr 树被清空。
   trr.join(newtr);
   for (auto i = trr.begin(); i != trr.end(); ++i) {
-    cout << (*i).first << ' '; // 输出：1 3 4 5 
+    cout << (*i).first << ' ';  // 输出：1 3 4 5
   }
   cout << endl;
-  cout << newtr.size() << endl; // 输出：0
+  cout << newtr.size() << endl;  // 输出：0
 
   return 0;
 }
