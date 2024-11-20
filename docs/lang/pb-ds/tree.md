@@ -3,7 +3,7 @@
 附：[官方文档地址](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
 
 ```cpp
-#include <ext/pb_ds/assoc_container.hpp>  // 因为tree定义在这里 所以需要包含这个头文件
+#include <ext/pb_ds/assoc_container.hpp>  // 因为 tree 定义在这里 所以需要包含这个头文件
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
 __gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
@@ -35,7 +35,7 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 ## 成员函数
 
 -   `insert(x)`：向树中插入一个元素 x，返回 `std::pair<point_iterator, bool>`。
--   `erase(x)`：从树中删除一个元素/迭代器 x，返回一个 `bool` 表明是否删除成功。
+-   `erase(x)`：从树中删除一个元素/迭代器 x。如果 x 是迭代器，则返回指向 x 下一个的迭代器（如果 x 是 `end()` 则返回 `end()`）；如果 x 是 `Key`，则返回是否删除成功（如果不存在则删除失败）。
 -   `order_of_key(x)`：返回 x 以 `Cmp_Fn` 比较的排名。
 -   `find_by_order(x)`：返回 `Cmp_Fn` 比较的排名所对应元素的迭代器。
 -   `lower_bound(x)`：以 `Cmp_Fn` 比较做 `lower_bound`，返回迭代器。
@@ -105,4 +105,5 @@ int main() {
 ## 参考资料
 
 -   [Tree-Based Containers](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
--   [`join` 函数在 GCC 14.1.0 中的实现](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18376_source.html#l00043)
+-   [`join` 函数在 GCC 14.1.0 中的实现](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18391_source.html#l00043)
+-   [`erase` 函数在 GCC 14.1.0 中的实现](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18211_source.html#l00043)
