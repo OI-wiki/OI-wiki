@@ -31,7 +31,7 @@
 在域的情形，往往更小的域是更为熟悉的域，所以，通常会转而以子域作为基点来考察更大的域。这就是域的扩张的概念。
 
 ???+ abstract "域扩张"
-    对于域 $F$，如果域 $E$ 包含 $F$ 作为子域，则称域 $E$ 是域 $F$ 的 **扩张**（extension），或称 **扩域**，记作 $E/F$。
+    对于域 $F$，如果 $F$ 是 $E$ 的子域，则称域 $E$ 是域 $F$ 的 **扩张**（extension），或称 **扩域**，记作 $E/F$。
 
 ???+ info "域扩张的记号"
     尽管形式上一致，但是域扩张的概念和商环并没有关系，不应混淆。
@@ -70,7 +70,7 @@
 
 域的特征可以通过环同态来理解。整数环 $\mathbf Z$ 就是自 $0$ 和 $1$ 出发，反复施加加、减、乘等运算得到的封闭结构。它可以看作某种「原型」，所有包含幺元的环都应当「继承」了整数环的部分结构[^initial-object-ring]。因而，对于域 $F$，可以考察环同态 $\varphi:\mathbf Z\rightarrow F$ 并要求 $\varphi(1)=1$。这样的环同态是唯一确定的，它将 $n\in\mathbf N_+$ 映射到 $n\cdot 1$，即 $n$ 个幺元 $1$ 相加。该同态的像 $\varphi(\mathbf Z)$ 嵌入了域 $F$ 中，必然含幺、交换、无零因子，故而是整环。所以，同态的核 $\ker\varphi$ 必然是素理想。整数环 $\mathbf Z$ 的素理想只能是 $(n)$ 的形式，其中 $n=0$ 或者 $n$ 是素数。这样得到的 $n$ 就是该域的特征。
 
-域的特征确定了域的素子域的结构：
+域的特征确定了素子域的结构：
 
 1.  当特征为 $0$ 时，同态 $\varphi$ 是单的，整数环 $\mathbf Z$ 嵌入了域 $F$ 中。有理数域 $\mathbf Q$ 作为最小的包含整数环的域必然也可以嵌入域 $F$ 中，它就是域 $F$ 的素子域；
 2.  当特征为素数 $p$ 时，同态 $\varphi$ 的像 $\mathbf Z/p\mathbf Z$ 嵌入了域 $F$ 中。此时，$\mathbf Z/p\mathbf Z$ 已经是域，记作 $\mathbf F_p$，它就是域 $F$ 的素子域。
@@ -91,7 +91,7 @@
     2.  「新手之梦」（freshman's dream），即对所有 $x,y\in F$ 都有 $(x+y)^p=x^p+y^p$。进而，映射 $x\mapsto x^p$ 是 $F$ 上的单自同态，叫做 **Frobenius 自同态**（Frobenius endomorphism）。
 
 ??? note "证明"
-    对于第一条性质，只要注意到 $px=(p1)x=0x=0$ 即可。对于第二条性质，只需要注意到 $(x+y)^p$ 的二项式展开中，除了 $x^p$ 和 $y^p$ 外的全部其他项的系数都是 $p$ 的倍数，故而根据第一条性质就有 $(x+y)^p=x^p+y^p$。至于验证 $x\mapsto x^p$ 是自同态，只需要再验证 $(xy)^p=x^py^p$，这是因为域的乘法满足交换律。最后，域之间的环同态且幺元映射到幺元，则必然是单射。
+    对于第一条性质，只要注意到 $px=(p1)x=0x=0$ 即可。对于第二条性质，只需要注意到 $(x+y)^p$ 的二项式展开中，除了 $x^p$ 和 $y^p$ 外的全部其他项的系数都是 $p$ 的倍数，故而根据第一条性质就有 $(x+y)^p=x^p+y^p$。至于验证 $x\mapsto x^p$ 是自同态，只需要再验证 $(xy)^p=x^py^p$，这是因为域的乘法满足交换律。最后，域之间的环同态将幺元映射到幺元，则必然是单射。
 
 当然，对于有限域，Frobenius 自同态必然也是满的，因而是域的自同构。
 
@@ -156,7 +156,7 @@
     4.  一般地，$\mathbf Q$ 上的代数元称为 **代数数**（algebraic number），而超越元称为 **超越数**（transcendental number）。特别地，如果代数数的极小多项式是首一多项式，它就称作 **代数整数**（algebraic integer）。代数扩张中的全体代数整数构成环。例如，二次域 $\mathbf Q(\sqrt{D})$ 中的代数整数就构成二次整数环 $\mathbf Z[\omega]$。此处记号的含义见 [二次整数环](./ring-theory.md#例子二次整数环) 页面。
 
 ???+ abstract "代数扩张与超越扩张"
-    对于扩张 $E/K$，如果域 $E$ 的元素都是 $F$ 中的代数元，则称域 $E$ 是 $F$ 上的 **代数扩张**（algebraic extension）；否则，称域 $E$ 是 $F$ 上的 **超越扩张**（transcendental extension）。
+    对于扩张 $E/F$，如果域 $E$ 的元素都是 $F$ 中的代数元，则称域 $E$ 是 $F$ 上的 **代数扩张**（algebraic extension）；否则，称域 $E$ 是 $F$ 上的 **超越扩张**（transcendental extension）。
 
 单扩张的结果，根据添加元素的性质不同，可以分为两类。当添加的元素是超越元时，单扩张总是同构于有理分式域。此时，没有任何可以进一步化简的可能性。但是，当添加的元素是代数元时，单扩张实际上就是 $F[\alpha]$，即将 $\alpha$ 直接替换多项式环 $F[x]$ 中的不定元 $x$ 得到的结果。从初等的视角看，相较于超越元的情形，此时扩域中的元素可以没有分母；这意味着，类似于初等算术中「分母有理化」的过程，在代数元的单扩张中总是可行的。因为算法竞赛中涉及到的扩域主要是单代数扩张，下一节要对它的计算做更为细致的讨论。
 
@@ -826,7 +826,7 @@ $$
 
 [^subfield-one]: 这是因为域 $E$ 的幺元 $1_E$ 必然满足 $F$ 上的关系 $x^2-x=0$，而后者在域 $F$ 内只有两个根 $0_F$ 和 $1_F$，由于域的定义要求 $1_E\neq 0_E$，就必然有 $1_E=1_F$ 和 $0_E=0_F$。
 
-[^initial-object-ring]: 熟悉范畴论语言的读者知道，这是在说 $\mathbf Z$ 是幺环范畴的 [始对象](https://en.wikipedia.org/wiki/Initial_and_terminal_objects)。
+[^initial-object-ring]: 用范畴论的语言来说，就是 $\mathbf Z$ 是幺环范畴的 [始对象](https://en.wikipedia.org/wiki/Initial_and_terminal_objects)。
 
 [^polynomial-universal]: 严格地说，这里指的是多项式环 $R[x]$ 的 [万有性质](https://en.wikipedia.org/wiki/Polynomial_ring#Polynomial_evaluation)（universal property）。
 
