@@ -147,7 +147,9 @@ std::cout << f() << '\n';  // Output: 1314
 int value = 520;
 
 {
-  auto f = [val = value]() mutable -> int { return val = 1314; };  // 需要 mutable
+  auto f = [val = value]() mutable -> int {
+    return val = 1314;
+  };  // 需要 mutable
   auto val_f = f();
   std::cout << value << ' ' << val_f << std::endl;  // Output: 520 1314
 }
