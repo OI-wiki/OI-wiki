@@ -94,6 +94,11 @@ class PermutationGroup {
     next = new PermutationGroup(n - 1);
   }
 
+  // Destructor.
+  ~PermutationGroup() {
+    if (next) delete next;
+  }
+
   // Add one more permutation into the group.
   void extend(Permutation g) {
     sift(g);
