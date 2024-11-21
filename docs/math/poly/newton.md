@@ -211,10 +211,8 @@ $$
 
 ## 代数证明
 
-<!-- 以下部份是准备等 [#5984](https://github.com/OI-wiki/OI-wiki/pull/5984) 合并后提交的内容。 -->
-
 ???+ note "引理 1"
-    设整环 $R$ 有多项式或幂级数 $f(X) = \sum_{i\geq 0}a_iX^i$ 和 $r,p\in R$ 使得 $f(r)\in Rp$（亦即 $r$ 是 $f(X)$ 在模 $p$ 意义下的根）且 $f'(r)\in R$ 在模 $p$ 意义下是可逆的。这里 $f'(X) := \sum_{i\geq 0}(i+1)a_{i+1}X^i$ 是 $f(X)$ 的形式导数。那么 $f\left(r-\frac{f(r)}{f'(r)}\right) \equiv 0\pmod p^2$。
+    设[整环](../algebra/ring-theory.md#整环) $R$ 有多项式或[形式幂级数](../algebra/ring-theory.md#形式幂级数环) $f(X) = \sum_{i\geq 0}a_iX^i$ 和 $r,p\in R$ 使得 $f(r)\in Rp$（亦即 $r$ 是 $f(X)$ 在模 $p$ 意义下的根）且 $f'(r)\in R$ 在模 $p$ 意义下是可逆的。这里 $f'(X) := \sum_{i\geq 0}(i+1)a_{i+1}X^i$ 是 $f(X)$ 的**形式导数**。那么 $f\left(r-\frac{f(r)}{f'(r)}\right) \equiv 0\pmod p^2$。
 
 ??? note "证明"
     对所有 $s\in R$，
