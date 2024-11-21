@@ -270,7 +270,7 @@ cout << nth_fibonacci(10);
 
 ```cpp
 class fibonacci_fn {
-public:
+ public:
   int operator()(int n) const {
     return n <= 2 ? 1 : ((*this)(n - 1) + (*this)(n - 2));
   }
@@ -297,26 +297,26 @@ cout << fibonacci_fn{}(10);
           random_device rd;
           mt19937 gen{rd()};
           array<unsigned, 32> arr{};
-          
+        
           std::iota(arr.begin(), arr.end(), 0u);
           ranges::shuffle(arr, gen);
-          
+        
           return arr;
         }();
         
         static void std_function_fib(benchmark::State& state) {
           std::function<int(int)> fib;
-          
+        
           fib = [&](int n) { return n <= 2 ? 1 : fib(n - 1) + fib(n - 2); };
-          
+        
           unsigned i = 0;
-          
+        
           for (auto _ : state) {
             auto res = fib(nums[i]);
             benchmark::DoNotOptimize(res);
-            
+        
             ++i;
-            
+        
             if (i == nums.size()) i = 0;
           }
         }
@@ -327,15 +327,15 @@ cout << fibonacci_fn{}(10);
           auto n_fibonacci = [](const auto& self, int n) -> int {
             return n <= 2 ? 1 : self(self, n - 1) + self(self, n - 2);
           };
-          
+        
           unsigned i = 0;
-          
+        
           for (auto _ : state) {
             auto res = n_fibonacci(n_fibonacci, nums[i]);
             benchmark::DoNotOptimize(res);
-            
+        
             ++i;
-            
+        
             if (i == nums.size()) i = 0;
           }
         }
