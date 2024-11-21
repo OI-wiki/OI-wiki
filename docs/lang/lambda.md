@@ -217,13 +217,36 @@ void solution(const vector<int>& input) {
 
 由于 lambda 在函数体内定义时类型仍不完整，也就无法通过捕获自身的方式实现递归，但我们可以通过其他方式实现。下面通过一个求斐波那契数列的例子来说明。
 
+##### 函数指针
+
+如果 lambda 没有捕获任何变量，那么它可以隐式转换为函数指针。
+
+同时 lambda 此时也可以声明为 `static`，函数指针类型也可以声明为 `static`。
+
+如此依赖，lambda 可以不需要捕获就能访问函数指针，从而实现递归。
+
+```cpp
+static int (*fptr)(int);
+
+static const auto lambda = [](const int a) {
+  return a <= 2 ? 1 : (*fptr)(a - 2) + (*fptr)(a - 1);
+};
+
+static auto init = [] {
+  fptr = +lambda;
+  return 0;
+}();
+
+cout << lambda(10);
+```
+
 ##### 泛型（C++14）
 
 将参数声明为 `auto`，就避免了定义不完整的问题，函数模板的实例化只在调用处进行，使用时仅需传入 lambda 自身即可。
 
 ```cpp
-auto nth_fibonacci = [](auto self, int n, int a = 0, int b = 1) -> int {
-  return n ? self(self, n - 1, a + b, a) : b;
+auto nth_fibonacci = [](auto self, int n) -> int {
+  return n <= 2 ? 1 : self(self, n - 1) + self(self, n - 2);
 };
 
 cout << nth_fibonacci(nth_fibonacci, 10);
@@ -234,8 +257,8 @@ cout << nth_fibonacci(nth_fibonacci, 10);
 在 **C++23** 中，[显式对象形参](https://zh.cppreference.com/w/cpp/language/function#.E5.BD.A2.E5.8F.82.E5.88.97.E8.A1.A8) 可以在 lambda 的参数中使用。
 
 ```cpp
-auto nth_fibonacci = [](this auto self, int n, int a = 0, int b = 1) -> int {
-  return n ? self(n - 1, a + b, a) : b;
+auto nth_fibonacci = [](this auto self, int n) -> int {
+  return n <= 2 ? 1 : self(n - 1) + self(n - 2);
 };
 
 cout << nth_fibonacci(10);
@@ -247,9 +270,9 @@ cout << nth_fibonacci(10);
 
 ```cpp
 class fibonacci_fn {
- public:
+public:
   int operator()(int n) const {
-    return n ? (*this)(n - 1) + (*this)(n - 2) : 1;
+    return n <= 2 ? 1 : ((*this)(n - 1) + (*this)(n - 2));
   }
 };
 
@@ -259,7 +282,7 @@ cout << fibonacci_fn{}(10);
 ??? warning " 不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归 "
     `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
     
-    在 [Benchmark](https://quick-bench.com/q/6ZIWCCvBlq_Cakrae05c11vC0BI) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 7 倍。
+    在 [Benchmark](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 2.5 倍。
     
     ??? note "测试代码"
         ```cpp
@@ -273,29 +296,27 @@ cout << fibonacci_fn{}(10);
         const auto& nums = [] {
           random_device rd;
           mt19937 gen{rd()};
-          array<unsigned, 16> arr{};
-        
+          array<unsigned, 32> arr{};
+          
           std::iota(arr.begin(), arr.end(), 0u);
           ranges::shuffle(arr, gen);
-        
+          
           return arr;
         }();
         
         static void std_function_fib(benchmark::State& state) {
-          std::function<int(int, int, int)> fib;
-        
-          fib = [&](int n, int a, int b) { return n ? fib(n - 1, a + b, a) : b; };
-        
-          auto n_fibonacci = [&](int n) { return fib(n, 0, 1); };
-        
+          std::function<int(int)> fib;
+          
+          fib = [&](int n) { return n <= 2 ? 1 : fib(n - 1) + fib(n - 2); };
+          
           unsigned i = 0;
-        
+          
           for (auto _ : state) {
-            auto res = n_fibonacci(nums[i]);
+            auto res = fib(nums[i]);
             benchmark::DoNotOptimize(res);
-        
+            
             ++i;
-        
+            
             if (i == nums.size()) i = 0;
           }
         }
@@ -303,18 +324,18 @@ cout << fibonacci_fn{}(10);
         BENCHMARK(std_function_fib);
         
         static void template_lambda_fib(benchmark::State& state) {
-          auto n_fibonacci = [](const auto& self, int n, int a = 0, int b = 1) -> int {
-            return n ? self(self, n - 1, a + b, a) : b;
+          auto n_fibonacci = [](const auto& self, int n) -> int {
+            return n <= 2 ? 1 : self(self, n - 1) + self(self, n - 2);
           };
-        
+          
           unsigned i = 0;
-        
+          
           for (auto _ : state) {
             auto res = n_fibonacci(n_fibonacci, nums[i]);
             benchmark::DoNotOptimize(res);
-        
+            
             ++i;
-        
+            
             if (i == nums.size()) i = 0;
           }
         }
