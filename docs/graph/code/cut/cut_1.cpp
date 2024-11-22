@@ -12,10 +12,10 @@ bool vis[100001], flag[100001];  // flag: 答案 vis：标记是否重复
 vector<int> edge[100001];        // 存图用的
 
 void Tarjan(int u, int fa) {  // u 当前点的编号，fa 自己爸爸的编号
-  vis[u] = true;                  // 标记
-  low[u] = dfn[u] = ++idx;  // 打上时间戳
-  int child = 0;             // 每一个点儿子数量
-  for (const auto &v : edge[u]) {   // 访问这个点的所有邻居 （C++11）
+  vis[u] = true;              // 标记
+  low[u] = dfn[u] = ++idx;    // 打上时间戳
+  int child = 0;              // 每一个点儿子数量
+  for (const auto &v : edge[u]) {  // 访问这个点的所有邻居 （C++11）
     if (!vis[v]) {
       child++;                       // 多了一个儿子
       Tarjan(v, u);                  // 继续
@@ -48,7 +48,7 @@ int main() {
   }  // 使用 vector 存图
   for (int i = 1; i <= n; i++)  // 因为 Tarjan 图不一定连通
     if (!vis[i]) {
-      idx = 0;      // 时间戳初始为 0
+      idx = 0;       // 时间戳初始为 0
       Tarjan(i, i);  // 从第 i 个点开始，父亲为自己
     }
   cout << res << endl;

@@ -76,7 +76,7 @@ $$
 
 ### 实现
 
-下面代码实现了对**无重边**的无向图求割边，其中，当 `isbridge[x]` 为真时，`(father[x],x)` 为一条割边。
+下面代码实现了对 **无重边** 的无向图求割边，其中，当 `isbridge[x]` 为真时，`(father[x],x)` 为一条割边。
 
 === "C++"
     ```cpp
@@ -143,7 +143,7 @@ $$
 
 另一种更简单的思路是设立一个标记判断是否已有一条边抵达父节点，标记后再访问到父节点时正常更新。
 
-下面代码实现了对可能**有重边**的无向图求割边。
+下面代码实现了对可能 **有重边** 的无向图求割边。
 
 === "C++"
     ```cpp
@@ -154,7 +154,7 @@ $$
     int father[MAXN];
     
     void tarjan(int u, int fa) {
-      bool flag=false;
+      bool flag = false;
       father[u] = fa;
       low[u] = dfn[u] = ++idx;
       for (const auto &v : G[u]) {
@@ -165,8 +165,8 @@ $$
             isbridge[v] = true;
             ++cnt_bridge;
           }
-        } else { 
-          if (v != fa || flag) 
+        } else {
+          if (v != fa || flag)
             low[u] = min(low[u], dfn[v]);
           else
             flag = true;
