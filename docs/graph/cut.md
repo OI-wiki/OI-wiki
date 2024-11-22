@@ -56,7 +56,7 @@ $$
     --8<-- "docs/graph/code/cut/cut_1.cpp"
     ```
 
-## 割边
+## 割边（无重边时）
 
 和割点差不多，叫做桥。
 
@@ -76,11 +76,11 @@ $$
 
 ### 实现
 
-下面代码实现了求割边，其中，当 `isbridge[x]` 为真时，`(father[x],x)` 为一条割边。
+下面代码实现了对**无重边**的无向图求割边，其中，当 `isbridge[x]` 为真时，`(father[x],x)` 为一条割边。
 
 === "C++"
     ```cpp
-    int low[MAXN], dfn[MAXN], dfs_clock;
+    int low[MAXN], dfn[MAXN], idx;
     bool isbridge[MAXN];
     vector<int> G[MAXN];
     int cnt_bridge;
@@ -88,9 +88,8 @@ $$
     
     void tarjan(int u, int fa) {
       father[u] = fa;
-      low[u] = dfn[u] = ++dfs_clock;
-      for (int i = 0; i < G[u].size(); i++) {
-        int v = G[u][i];
+      low[u] = dfn[u] = ++idx;
+      for (const auto &v : G[u]) {
         if (!dfn[v]) {
           tarjan(v, u);
           low[u] = min(low[u], low[v]);
@@ -98,7 +97,7 @@ $$
             isbridge[v] = true;
             ++cnt_bridge;
           }
-        } else if (dfn[v] < dfn[u] && v != fa) {
+        } else if (v != fa) {
           low[u] = min(low[u], dfn[v]);
         }
       }
@@ -109,7 +108,7 @@ $$
     ```python
     low = [0] * MAXN
     dfn = [0] * MAXN
-    dfs_clock = 0
+    idx = 0
     isbridge = [False] * MAXN
     G = [[0 for i in range(MAXN)] for j in range(MAXN)]
     cnt_bridge = 0
@@ -118,8 +117,8 @@ $$
     
     def tarjan(u, fa):
         father[u] = fa
-        low[u] = dfn[u] = dfs_clock
-        dfs_clock = dfs_clock + 1
+        idx = idx + 1
+        low[u] = dfn[u] = idx
         for i in range(0, len(G[u])):
             v = G[u][i]
             if dfn[v] == False:
@@ -128,8 +127,52 @@ $$
                 if low[v] > dfn[u]:
                     isbridge[v] = True
                     cnt_bridge = cnt_bridge + 1
-            elif dfn[v] < dfn[u] and v != fa:
+            elif v != fa:
                 low[u] = min(low[u], dfn[v])
+    ```
+
+## 割边（有重边时）
+
+然而，上述无重边时的做法在有重边的无向图上是有问题的。
+
+因为两节点间可能不止有一条边，此时它们都不会是桥。
+
+### 过程
+
+一种思路是将参数 `fa` 改为刚刚走过的边的编号（每条边的编号一致）即可，即将“不用父节点更新”改为“不用来时的入边”更新。
+
+另一种更简单的思路是设立一个标记判断是否已有一条边抵达父节点，标记后再访问到父节点时正常更新。
+
+下面代码实现了对可能**有重边**的无向图求割边。
+
+=== "C++"
+    ```cpp
+    int low[MAXN], dfn[MAXN], idx;
+    bool isbridge[MAXN];
+    vector<int> G[MAXN];
+    int cnt_bridge;
+    int father[MAXN];
+    
+    void tarjan(int u, int fa) {
+      bool flag=false;
+      father[u] = fa;
+      low[u] = dfn[u] = ++idx;
+      for (const auto &v : G[u]) {
+        if (!dfn[v]) {
+          tarjan(v, u);
+          low[u] = min(low[u], low[v]);
+          if (low[v] > dfn[u]) {
+            isbridge[v] = true;
+            ++cnt_bridge;
+          }
+        } else { 
+          if (v != fa || flag) 
+            low[u] = min(low[u], dfn[v]);
+          else
+            flag = true;
+        }
+      }
+    }
     ```
 
 ## 练习
