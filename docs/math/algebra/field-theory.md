@@ -615,7 +615,7 @@ $$
 ??? warning "单扩张中的本原元和有限域中的本原元并不相同"
     尽管单扩张中的本原元和有限域中的本原元的名称一致，两者并不相同。单扩张中的本原元是相应的单扩张的生成元，而有限域中的本原元是相应的乘法群（作为循环群）的生成元。有限域作为它的素子域的单扩张的本原元，未必是有限域本身的本原元。例如，$\mathbf F_{25}\cong\mathbf F_5[x]/(x^2+x+1)$ 中，$\overline x$ 是域扩张的本原元，但是并不是域 $\mathbf F_{25}$ 的本原元，因为它的阶数是 $3$。
 
-??? warning "$\mathbf F_{q}$ 中的本原元和模 $q$ 的原根也不相同"
+??? warning "$\mathbf F_{q}$ 中的本原元和模 $q$ 的原根也不相同 "
     对于奇数特征的有限域 $\mathbf F_{q}$，总是存在模 $q$ 的 [原根](./ring-theory.md#应用整数同余类的乘法群)（primitive root）。但是，不应将它与有限域 $\mathbf F_{q}$ 中的本原元（primitive element）混淆。虽然它们都是相应的乘法结构作为循环群时的生成元，但是 $(\mathbf Z/q\mathbf Z)^\times$ 和 $\mathbf F_q$ 在 $q$ 本身不是素数的情况下并不相同。比如，前者的阶是 $\varphi(q)$ 而后者的阶是 $q-1$，两个乘法群的大小就不相同。
 
 设 $\alpha$ 是有限域 $\mathbf F_q$ 的一个本原元。那么，对于所有 $x\in\mathbf F_q$ 都存在唯一的自然数 $k<q-1$ 使得 $x=\alpha^k$；这个 $k$ 就称为 $\mathbf F_q$ 上元素 $x$ 关于基 $\alpha$ 的 **离散对数**（discrete logarithm）。和 $\mathbf F_p$ 上的情形一致，[离散对数的算法](../number-theory/discrete-logarithm.md) 的复杂度都比较高。
