@@ -15,8 +15,7 @@ bool as[M], ok[N], bu[Q];
 int size(int u, int pa) {
   cnt++, d[u] = 1;
   for (int p = hd[u]; ~p; p = nx[p])
-    if (to[p] != pa && !ok[to[p]])
-      d[u] += size(to[p], u);
+    if (to[p] != pa && !ok[to[p]]) d[u] += size(to[p], u);
   return d[u];
 }
 
@@ -33,8 +32,7 @@ void dp(int u, int pa) {
 void get(int u, int pa, int dis) {
   t[top++] = dis;
   for (int p = hd[u]; ~p; p = nx[p])
-    if (to[p] != pa && !ok[to[p]])
-      get(to[p], u, dis + wg[p]);
+    if (to[p] != pa && !ok[to[p]]) get(to[p], u, dis + wg[p]);
 }
 
 void calc(int u) {
@@ -67,9 +65,7 @@ int main() {
     to[i] = v, nx[i] = hd[u], hd[u] = i++;
     to[i] = u, nx[i] = hd[v], hd[v] = i++;
   }
-  for (int i = 0; i < m; i++)
-    std::cin >> ak[i];
+  for (int i = 0; i < m; i++) std::cin >> ak[i];
   calc(1);
-  for (int i = 0; i < m; i++)
-    std::cout << (as[i] ? "AYE\n" : "NAY\n");
+  for (int i = 0; i < m; i++) std::cout << (as[i] ? "AYE\n" : "NAY\n");
 }
