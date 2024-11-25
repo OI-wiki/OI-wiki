@@ -38,7 +38,7 @@ void get(int u, int pa, int dis) {
 void calc(int u) {
   cnt = 0, size(u, u);
   rot = u, dp(u, u);
-  bu[0] = true, t[top++] = 0;
+  bu[0] = true, t[0] = 0, top = 1;
   for (int p = hd[rot], i; ~p; p = nx[p])
     if (!ok[to[p]]) {
       i = top, get(to[p], rot, wg[p]);
