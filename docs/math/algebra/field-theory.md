@@ -850,4 +850,4 @@ $$
 
 [^fib-p5]: 当 $p=5$ 时，Fibonacci 数列的特征方程 $x^2-x-1=0$ 有重根 $x=3$，因而在 $\mathbf F_5$ 中，Fibonacci 数列的通项公式是 $f(n)=n3^{n-1}$。
 
-[^ring-extension]: 所谓的环上的扩张，通常有两种含义：一种是 [群的扩张的推广](https://en.wikipedia.org/wiki/Algebra_extension)，一种是 [域的扩张的推广](https://en.wikipedia.org/wiki/Subring#Ring_extensions)。本文指的是第二种含义。
+[^ring-extension]: 所谓的环上的扩张，通常有两种含义：一种是 [群的扩张的推广](https://en.wikipedia.org/wiki/Algebra_extension)，一种是 [域的扩张的推广](https://en.wikipedia.org/wiki/Subring#Ring_extensions)。本文指的是第二种含义。更具体地说，本节涉及的扩张都是交换幺环上的 [整扩张](https://en.wikipedia.org/wiki/Integral_element#Integral_extensions)，它是域上的代数扩张的概念在交换幺环上的推广。
