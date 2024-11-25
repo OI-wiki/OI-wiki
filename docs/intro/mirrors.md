@@ -28,3 +28,6 @@
 
 -   维护者：Menci（[men.ci](https://men.ci)），线路：Azure + 阿里云 CDN，同步频率：与主站相同
     -   <https://oi.wiki>
+
+-   维护者：FuSiYu666，线路：Github + Cloudflare, 同步频率：每天晚上 12:00
+    -   <https://oi-wiki.fsyfsy.us.kg/>
