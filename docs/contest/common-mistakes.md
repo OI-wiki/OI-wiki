@@ -471,13 +471,12 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
 ??? note "Linux 下的内存占用指标详解"
     
-
     > 太长不看版：
     > 如果你在 CCF 系列的考试时声明了一个特别大的全局静态数组，你需要特别慎重。因为你声明的数组会全部计入内存占用中（而不像大部分在线评测平台仅计算实际使用的部分），在某些情况下这甚至有可能导致整道题全部 MLE。
 
-    ## 关于 RSS 和 VSZ
+    ## 关于 RSS 和 VSZ[^ref1] [^ref2]
 
-    1. VSZ (Virtual Memory Size，虚拟内存大小)
+    1. VSZ (Virtual Memory Size，虚拟内存大小)[^ref3]
         
         VSZ 表示进程的**虚拟内存大小**，是进程可以访问的虚拟地址空间的总大小，通常以 KB 显示。
 
@@ -485,46 +484,32 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
         在 Linux 下你可以使用 `top` 命令来查看某个进程的内存占用组成，其中 `VIRT` 这一列就代表它占用的虚拟内存。
         
-        虚拟内存一般包括进程分配但未实际使用的地址空间。
-        
-        虚拟内存的组成：
-
-        - 代码段（程序可执行部分）。
-
-        - 已分配但未使用的内存（如竞赛中常用的，在全局声明的静态大数组）。
-
-        - 已经分配的堆空间、栈空间，以及 `mmap` 区域。
+        虚拟内存一般包括进程分配但未实际使用的地址空间，简而言之，申请了多少，虚拟内存就大约是多少。
 
         在常用的在线评测平台中（笔者只详细地测试过洛谷和 Codeforces），统计内存占用时仅会统计物理内存大小（详见下方解释）。
 
         而需要特别注意的是，CCF 使用的评测环境中，**内存占用统计的是虚拟内存**，也就是说，如果你声明了一个全局的静态大数组，**即使你仅使用了其中的几 KB**，它也会占用一个**相当可观**的空间，**甚至有可能导致 MLE**。
 
-    2. RSS（Resident Set Size，常驻集大小）
+    2. RSS（Resident Set Size，常驻集大小）[^ref4]
 
         RSS 表示进程实际占用的**物理内存大小**，即驻留在 RAM 中的页帧大小，通常以 KB 显示。
 
         同样的，你也可以用 `top` 在 `RES` 这一列查看某个进程的物理内存。
 
-        RSS 一般仅包含实际加载到物理内存的部分。
-
-        物理内存的组成：
-
-        - 正在使用的代码段。
-        
-        - 正在使用的堆和栈。
+        RSS 一般仅包含实际加载到物理内存的部分，也就是说，实际使用了多少就是多少。
 
     ## 内存占用行为分析
 
     假设声明了以下数组：
 
-        ```cpp
-        const int SIZE = 1e8;
-        int nums[SIZE]; // 占用空间：4 字节 * 1 亿 = 400 MB
-        ```
+    ```cpp
+    const int SIZE = 1e8;
+    int nums[SIZE]; // 占用空间：4 字节 * 1 亿 = 400 MB
+    ```
 
-        - 这是一个静态数组，分配在全局数据段。
+    - 这是一个静态数组，分配在全局数据段。
 
-        - 这个数组未经显式初始化，通常会被分配在 BSS 段（如果显式初始化（如全为 0 或其他值），则分配在 DATA 段）。
+    - 这个数组未经显式初始化，通常会被分配在 BSS 段（如果显式初始化（如全为 0 或其他值），则分配在 DATA 段）。
 
     1. 当完全未使用该数组时（假定编译器不会优化掉该数组）
 
@@ -535,8 +520,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
             - 物理内存不会增加或仅略微增加一点（可能加载了一些元数据页）。
 
         - 虚拟内存：
-
-            - 数组的大小会计入虚拟内存（增加 400 MB），因为整个数组的虚拟地址空间已经被分配。
+            - 数组的大小会计入虚拟内存（增加 `400MB`），因为整个数组的虚拟地址空间已经被分配。
 
     2. 部分使用该数组时
 
@@ -554,11 +538,11 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         - 物理内存：
             - 每次访问数组的一个元素，对应的虚拟页会被加载到物理内存中。
         
-            - 假定系统分页大小为 `4KB`，那么每页包含 `4KB / 4B = 1024` 个 int 元素。访问数组两次可能加载 2 个页，即增加约 `2 * 4KB = 8KB` 的物理内存。
+            - 假定系统分页大小为 `4KB`，那么每页包含 `4 \text{KB} \div 4 \text{B} = 1024` 个 `int` 元素。访问数组两次可能加载 2 个页，即增加约 $2 \times 4 \text{KB} = 8 \text{KB}$ 的物理内存。
 
     3. 数组被大半使用
 
-        假设对数组的前 50,000,000 个元素赋值：
+        假设对数组的前 `50,000,000` 个元素赋值：
 
         ```cpp
         for (int i = 0; i < 50000000; ++i) {
@@ -567,16 +551,16 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         ```
 
         - 虚拟内存 (VSZ)：
-            - VSZ 仍为 400 MB，不会发生变化。
+            - VSZ 仍为 `400MB`，不会发生变化。
 
         - 物理内存 (RSS)：
-            - 每访问 1024 个 int 元素，会触发加载一个新的物理页。假设 50,000,000 个元素被使用，则需要加载：
-                $\lceil \frac{50,000}{0001024} \rceil = 48,828 \text{页}$
+            - 每访问 1024 个 `int` 元素，会触发加载一个新的物理页。假设 `50,000,000` 个元素被使用，则需要加载：
+                $\lceil \frac{50,000,000}{1024} \rceil = 48,828 \text{页}$
 
-            - 每页大小为 4 KB，因此总计：
-            $48,828×4KB ≈ 190MB$
+            - 每页大小为 `4KB`，因此总计：
+            $48,828 \times 4 \text{KB} \approx 190 \text{MB}$
 
-            - 虚拟内存增加到约 190 MB。
+            - 虚拟内存增加到约 `190MB`。
 
         简要总结：随着被访问的部分占的比例增加，物理内存趋近于虚拟内存（假定不存在页面回收）。
 
@@ -610,3 +594,10 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
     -   `freopen()` 中的文件名未加 `.in`/`.out`。
 
 -   使用堆空间后忘记 `delete` 或 `free`。
+
+## 参考资料与注释
+
+[^ref1]: [What is RSS and VSZ in Linux memory management - Stack Overflow](https://stackoverflow.com/questions/7880784/what-is-rss-and-vsz-in-linux-memory-management)
+[^ref2]: [Need explanation on Resident Set Size/Virtual Size - Stack Overflow](https://unix.stackexchange.com/questions/35129/need-explanation-on-resident-set-size-virtual-size)
+[^ref3]: [虚拟内存](https://zh.wikipedia.org/wiki/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98)
+[^ref4]: [常驻集大小](https://zh.wikipedia.org/wiki/%E5%B8%B8%E9%A9%BB%E9%9B%86%E5%A4%A7%E5%B0%8F)
