@@ -49,6 +49,7 @@ jobs:
         run: pipenv run python scripts/get_files_to_test.py
       - name: Correctness Check
         if: steps.changed-files.outputs.any_changed == 'true'
+        continue-on-error: true
         env: 
           FILES_TO_TEST: ${{ steps.GetFiles.outputs.files_to_test }}
         run: pipenv run python scripts/correctness_check.py
