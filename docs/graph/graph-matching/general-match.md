@@ -1,4 +1,4 @@
-author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf
+author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, ShizuhaAki
 
 ## 带花树算法（Blossom Algorithm）
 
@@ -284,7 +284,7 @@ $$
 
 由定理可知，如果只需要求最大匹配数，而无需匹配方案，那么只需要用一次高斯消元求出 $\operatorname{rank}\tilde{A}$ 即可，远比带花树简洁。不过如果需要输出方案，会稍微复杂一些，需要用到下面介绍的算法。
 
-## 构造完美匹配
+### 构造完美匹配
 
 由 Tutte 定理和上面的定理可知，如果 $G$ 存在完美匹配，那么 $\tilde{A}$ 有很大概率满秩。方便起见，以下叙述中均省略「有很大概率」。
 
