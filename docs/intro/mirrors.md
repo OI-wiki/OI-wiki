@@ -13,18 +13,5 @@
 -   维护者：**OI Wiki**，线路：Netlify，同步频率：与主站相同
     -   <https://demo.oi-wiki.org>
 
--   维护者：琴春（[vx.st](https://vx.st)），线路：AWS，同步频率：与主站相同
-    -   <https://oi-wiki.net>
-    -   <https://oi-wiki.wiki>
-    -   <https://oi-wiki.win>
-    -   <https://oi-wiki.xyz>
-    -   <https://oiwiki.moe>
-    -   <https://oiwiki.net>
-    -   <https://oiwiki.org>
-    -   <https://oiwiki.vx.st>
-    -   <https://oiwiki.wiki>
-    -   <https://oiwiki.win>
-    -   <https://oiwiki.com>
-
 -   维护者：Menci（[men.ci](https://men.ci)），线路：Azure + 阿里云 CDN，同步频率：与主站相同
     -   <https://oi.wiki>
