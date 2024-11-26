@@ -470,7 +470,6 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 -   数组过大。
 
 ??? note "Linux 下的内存占用指标详解"
-    
     > 太长不看版：
     > 如果你在 CCF 系列的考试时声明了一个特别大的全局静态数组，你需要特别慎重。因为你声明的数组会全部计入内存占用中（而不像大部分在线评测平台仅计算实际使用的部分），在某些情况下这甚至有可能导致整道题全部 MLE。
 
@@ -598,6 +597,9 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 ## 参考资料与注释
 
 [^ref1]: [What is RSS and VSZ in Linux memory management - Stack Overflow](https://stackoverflow.com/questions/7880784/what-is-rss-and-vsz-in-linux-memory-management)
+
 [^ref2]: [Need explanation on Resident Set Size/Virtual Size - Stack Overflow](https://unix.stackexchange.com/questions/35129/need-explanation-on-resident-set-size-virtual-size)
+
 [^ref3]: [虚拟内存](https://zh.wikipedia.org/wiki/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98)
+
 [^ref4]: [常驻集大小](https://zh.wikipedia.org/wiki/%E5%B8%B8%E9%A9%BB%E9%9B%86%E5%A4%A7%E5%B0%8F)
