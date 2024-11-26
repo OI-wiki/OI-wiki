@@ -3,8 +3,6 @@
 #include <cstring>
 #include <iostream>
 #include <queue>
-#include <ctime>
-#include <cstdlib>
 using namespace std;
 
 struct f {
@@ -18,12 +16,6 @@ bool cmp(f A, f B) { return A.d < B.d; }
 priority_queue<long long, vector<long long>, greater<long long>> q;
 
 int main() {
-
-  srand(time(0));
-  if (rand() % 10 < 2) {
-    cout << "helloworld" << endl;
-  }
-
   long long n, i;
   cin >> n;
   for (i = 1; i <= n; i++) {
