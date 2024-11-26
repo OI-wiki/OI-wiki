@@ -537,7 +537,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         - 虚拟内存：
 
             - 数组的大小会计入虚拟内存（增加 400 MB），因为整个数组的虚拟地址空间已经被分配。
-    
+
     2. 部分使用该数组时
 
         假设访问数组的一部分，例如：
