@@ -1,4 +1,4 @@
-author: Estrella_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint, HuangYiming0608
+author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint, HuangYiming0608
 
 本页面主要列举一些竞赛中很多人经常会出现的错误。
 
@@ -470,6 +470,7 @@ author: Estrella_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 -   数组过大。
 
 ??? note "Linux 下的内存占用指标详解"
+    
 
     > 太长不看版：
     > 如果你在 CCF 系列的考试时声明了一个特别大的全局静态数组，你需要特别慎重。因为你声明的数组会全部计入内存占用中（而不像大部分在线评测平台仅计算实际使用的部分），在某些情况下这甚至有可能导致整道题全部 MLE。
@@ -497,7 +498,7 @@ author: Estrella_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
         在常用的在线评测平台中（笔者只详细地测试过洛谷和 Codeforces），统计内存占用时仅会统计物理内存大小（详见下方解释）。
 
         而需要特别注意的是，CCF 使用的评测环境中，**内存占用统计的是虚拟内存**，也就是说，如果你声明了一个全局的静态大数组，**即使你仅使用了其中的几 KB**，它也会占用一个**相当可观**的空间，**甚至有可能导致 MLE**。
-    
+
     2. RSS（Resident Set Size，常驻集大小）
 
         RSS 表示进程实际占用的**物理内存大小**，即驻留在 RAM 中的页帧大小，通常以 KB 显示。
@@ -511,7 +512,7 @@ author: Estrella_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
             - 正在使用的代码段。
             
             - 正在使用的堆和栈。
-    
+
     ## 内存占用行为分析
 
         假设声明了以下数组：
