@@ -538,7 +538,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         - 物理内存：
             - 每次访问数组的一个元素，对应的虚拟页会被加载到物理内存中。
         
-            - 假定系统分页大小为 `4KB`，那么每页包含 `4 \text{KB} \div 4 \text{B} = 1024` 个 `int` 元素。访问数组两次可能加载 2 个页，即增加约 $2 \times 4 \text{KB} = 8 \text{KB}$ 的物理内存。
+            - 假定系统分页大小为 `4KB`，那么每页包含 $4 \text{KB} \div 4 \text{B} = 1024$ 个 `int` 元素。访问数组两次可能加载 2 个页，即增加约 $2 \times 4 \text{KB} = 8 \text{KB}$ 的物理内存。
 
     3. 数组被大半使用
 
