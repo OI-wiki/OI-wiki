@@ -521,7 +521,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         2. 部分使用该数组时
 
             假设仅使用数组的少部分元素，例如：
-            
+
             ```cpp
             arr[0] = 1; 
             arr[999999] = 2;
@@ -553,10 +553,10 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
                 - 每访问 1024 个 `int` 元素，会触发加载一个新的物理页。假设 `50,000,000` 个元素被使用，则需要加载：
                     $\lceil \frac{50,000,000}{1024} \rceil = 48,828 \text{页}$
 
-                - 每页大小为 `4KB`，因此总计：
+                - 假设每页大小为 `4KB`，因此总计：
                 $48,828 \times 4 \text{KB} \approx 190 \text{MB}$
 
-                - 虚拟内存增加到约 `190MB`。
+                - 物理内存增加到约 `190MB`。
 
             简要总结：随着被访问的部分占的比例增加，物理内存趋近于虚拟内存（假定不存在页面回收）。
 
