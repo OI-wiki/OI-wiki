@@ -520,7 +520,6 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
         2. 部分使用该数组时
             假设访问数组的一部分，例如：
-
                 ```cpp
                 arr[0] = 1; 
                 arr[999999] = 2;
@@ -537,7 +536,6 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
         3. 数组被大半使用
             假设对数组的前 `50,000,000` 个元素赋值：
-
                 ```cpp
                 for (int i = 0; i < 50000000; ++i) {
                     arr[i] = i;
