@@ -528,6 +528,7 @@ $$
       if (on == -1) {
         for (int i = 0; i < len; i++) {
           y[i].x /= len;
+          y[i].y /= len;
         }
       }
     }
@@ -562,6 +563,7 @@ $$
         reverse(y + 1, y + len);
         for (int i = 0; i < len; i++) {
           y[i].x /= len;
+          y[i].y /= len;
         }
       }
     }
