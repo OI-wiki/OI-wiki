@@ -473,7 +473,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
     > 太长不看版：
     > 如果你在 CCF 系列的考试时声明了一个特别大的全局静态数组，你需要特别慎重。因为你声明的数组会全部计入内存占用中（而不像大部分在线评测平台仅计算实际使用的部分），在某些情况下这甚至有可能导致整道题全部 MLE。
 
-    ## 关于 RSS 和 VSZ[^ref1] [^ref2]
+    - 关于 RSS 和 VSZ[^ref1] [^ref2]
 
     1. VSZ (Virtual Memory Size，虚拟内存大小)[^ref3]
         
@@ -485,9 +485,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         
         虚拟内存一般包括进程分配但未实际使用的地址空间，简而言之，申请了多少，虚拟内存就大约是多少。
 
-        在常用的在线评测平台中（笔者只详细地测试过洛谷和 Codeforces），统计内存占用时仅会统计物理内存大小（详见下方解释）。
-
-        而需要特别注意的是，CCF 使用的评测环境中，**内存占用统计的是虚拟内存**，也就是说，如果你声明了一个全局的静态大数组，**即使你仅使用了其中的几 KB**，它也会占用一个**相当可观**的空间，**甚至有可能导致 MLE**。
+        需要特别注意的是，常用的在线评测平台通常只统计物理内存占用。但 **CCF 的评测环境统计的是虚拟内存**，这意味着如果你声明了一个全局静态大数组，即使只使用了其中的一小部分，也会占用大量空间。
 
     2. RSS（Resident Set Size，常驻集大小）[^ref4]
 
@@ -497,7 +495,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
         RSS 一般仅包含实际加载到物理内存的部分，也就是说，实际使用了多少就是多少。
 
-    ## 内存占用行为分析
+    - 内存占用行为分析
 
     假设声明了以下数组：
 
