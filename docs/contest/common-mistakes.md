@@ -500,7 +500,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         假设声明了以下数组：
             ```cpp
             const int SIZE = 1e8;
-            int nums[SIZE]; // 占用空间：4 字节 * 1 亿 = 400 MB
+            int arr[SIZE]; // 占用空间：4 字节 * 1 亿 = 400 MB
             ```
 
         + 这是一个静态数组，分配在全局数据段。
@@ -519,11 +519,13 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
                 - 数组的大小会计入虚拟内存（增加 `400MB`），因为整个数组的虚拟地址空间已经被分配。
 
         2. 部分使用该数组时
-            假设访问数组的一部分，例如：
-                ```cpp
-                arr[0] = 1; 
-                arr[999999] = 2;
-                ```
+
+            假设仅使用数组的少部分元素，例如：
+            
+            ```cpp
+            arr[0] = 1; 
+            arr[999999] = 2;
+            ```
 
             - 虚拟内存：
 
@@ -535,12 +537,14 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
                 - 假定系统分页大小为 `4KB`，那么每页包含 $4 \text{KB} ÷ 4 \text{B} = 1024$ 个 `int` 元素。访问数组两次可能加载 2 个页，即增加约 $2 \times 4 \text{KB} = 8 \text{KB}$ 的物理内存。
 
         3. 数组被大半使用
+
             假设对数组的前 `50,000,000` 个元素赋值：
-                ```cpp
-                for (int i = 0; i < 50000000; ++i) {
-                    arr[i] = i;
-                }
-                ```
+            
+            ```cpp
+            for (int i = 0; i < 50000000; ++i) {
+                arr[i] = i;
+            }
+            ```
 
             - 虚拟内存 (VSZ)：
                 - VSZ 仍为 `400MB`，不会发生变化。
