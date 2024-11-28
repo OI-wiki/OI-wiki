@@ -1,4 +1,4 @@
-author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint, HuangYiming0608
+author: Estrella_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint, HuangYiming0608
 
 本页面主要列举一些竞赛中很多人经常会出现的错误。
 
