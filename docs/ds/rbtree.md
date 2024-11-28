@@ -452,7 +452,7 @@ $p$、$c$ 的颜色不确定，$s$ 为黑色，$d$ 为红色。
     --8<-- "docs/ds/code/rbtree/rbtree.hpp"
     ```
 
-??? note "[Luogu P3369 【模板】普通平衡树](https://www.luogu.com.cn/problem/P3369) 与 [Luogu P6136【模板】普通平衡树（数据加强版）](https://www.luogu.com.cn/problem/P6136)"
+??? note "[Luogu P3369【模板】普通平衡树](https://www.luogu.com.cn/problem/P3369) 与 [Luogu P6136【模板】普通平衡树（数据加强版）](https://www.luogu.com.cn/problem/P6136)"
     ```cpp
     --8<-- "docs/ds/code/rbtree/rbtree_1.cpp"
     ```
