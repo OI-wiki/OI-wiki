@@ -22,12 +22,12 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
     -   示例：如使用 `<algorithm>` 头文件中的 `max` 函数时，传入了一个 `int` 类型参数和一个 `long long` 类型参数。
 
-            ```cpp
-            // query 为返回 long long 类型的自定义函数
-            printf("%lld\n", max(0, query(1, 1, n, l, r));
-
-            //错误    没有与参数列表匹配的 重载函数 "std::max" 实例
-            ```
+        ```cpp
+        // query 为返回 long long 类型的自定义函数
+        printf("%lld\n", max(0, query(1, 1, n, l, r));
+        
+        //错误    没有与参数列表匹配的 重载函数 "std::max" 实例
+        ```
 
 -   使用 `goto` 和 `switch-case` 的时候跳过了一些局部变量的初始化。
 
@@ -39,17 +39,17 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
     -   示例：
 
-            ```cpp
-            std::srand(std::time(nullptr));
-            int n = std::rand();
-            if (n = 1)
-              printf("Yes");
-            else
-              printf("No");
-
-            // 无论 n 的随机所得值为多少，输出肯定是 Yes
-            // 警告    运算符不正确: 在 Boolean 上下文中执行了常量赋值。应考虑改用「==」。
-            ```
+        ```cpp
+        std::srand(std::time(nullptr));
+        int n = std::rand();
+        if (n = 1)
+          printf("Yes");
+        else
+          printf("No");
+        
+        // 无论 n 的随机所得值为多少，输出肯定是 Yes
+        // 警告    运算符不正确: 在 Boolean 上下文中执行了常量赋值。应考虑改用「==」。
+        ```
 
     -   如果确实想在原应使用 `==` 的语句里使用 `=`（比如 `while (foo = bar)`），又不想收到 Warning，可以使用 **双括号**：`while ((foo = bar))`。
 
@@ -57,14 +57,14 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
     -   示例：
 
-            ```cpp
-            // 错误
-            // std::cout << (1 << 1 + 1);
-            // 正确
-            std::cout << ((1 << 1) + 1);
-
-            // 警告    「<<」: 检查运算符优先级是否有可能的错误；使用括号阐明优先级
-            ```
+        ```cpp
+        // 错误
+        // std::cout << (1 << 1 + 1);
+        // 正确
+        std::cout << ((1 << 1) + 1);
+        
+        // 警告    「<<」: 检查运算符优先级是否有可能的错误；使用括号阐明优先级
+        ```
 
 -   不正确地使用 `static` 修饰符。
 
@@ -83,40 +83,40 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
     ???+ note "未初始化变量会发生什么"
         原文：<https://loj.ac/d/3679> by @hly1204
-
-          例如我们在 C++ 中声明一个 `int a;` 但不初始化，可能有时候会认为 `a` 是一个「随机」（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
-          
-          我们在简单的测试代码中
-          
-          <https://wandbox.org/permlink/T2uiVe4n9Hg4EyWT>
-          
-          代码是：
-          
-          ```cpp
-          #include <iostream>
-          
-          int main() {
-            int a;
-            std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
-            return 0;
-          }
-          ```
-          
-          在一些编译器和环境上开启优化后，其输出为 false。
-          
-          有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其是用 Rust 做的实验，但是本质是一样的。
+        
+        例如我们在 C++ 中声明一个 `int a;` 但不初始化，可能有时候会认为 `a` 是一个「随机」（其实可能不是真的随机）的值，但是可能将其认为是一个固定的值，但实际上并非如此。
+        
+        我们在简单的测试代码中
+        
+        <https://wandbox.org/permlink/T2uiVe4n9Hg4EyWT>
+        
+        代码是：
+        
+        ```cpp
+        #include <iostream>
+        
+        int main() {
+        int a;
+        std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
+        return 0;
+        }
+        ```
+        
+        在一些编译器和环境上开启优化后，其输出为 false。
+        
+        有兴趣的话可以看 <https://www.ralfj.de/blog/2019/07/14/uninit.html>，尽管其是用 Rust 做的实验，但是本质是一样的。
 
 -   局部变量与全局变量重名，导致全局变量被意外覆盖。（开 `-Wshadow` 就可检查此类错误。）
 
 -   运算符重载后引发的输出错误。
     -   示例：
 
-            ```cpp
-            // 本意：前一个 << 为重载后的运算符，表示输出；后一个 << 为移位运算符，表示将 1
-            // 左移 1 位。 但由于忘记加括号，导致编译器将后一个 <<
-            // 也判作输出运算符，而导致输出的结果与预期不同。 错误 std::cout << 1 << 1; 正确
-            std::cout << (1 << 1);
-            ```
+        ```cpp
+        // 本意：前一个 << 为重载后的运算符，表示输出；后一个 << 为移位运算符，表示将 1
+        // 左移 1 位。 但由于忘记加括号，导致编译器将后一个 <<
+        // 也判作输出运算符，而导致输出的结果与预期不同。 错误 std::cout << 1 << 1; 正确
+        std::cout << (1 << 1);
+        ```
 
 ## 既不会引起 CE 也不会引发 Warning 的错误
 
@@ -139,34 +139,34 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
     -   示例：
 
-            ```cpp
-            // 这个例子将说明关闭与 stdio 的同步后，混用两种 IO 方式的后果
-            // 建议单步运行来观察效果
-            #include <cstdio>
-            #include <iostream>
-
-            int main() {
-              // 关闭同步后，cin/cout 将使用独立缓冲区，而不是将输出同步至 scanf/printf
-              // 的缓冲区，从而减少 IO 耗时
-              std::ios::sync_with_stdio(false);
-              // cout 下，使用'\n'换行时，内容会被缓冲而不会被立刻输出
-              std::cout << "a\n";
-              // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
-              printf("b\n");
-              std::cout << "c\n";
-              // 程序结束时，cout 的缓冲区才会被输出
-              return 0;
-            }
-            ```
+        ```cpp
+        // 这个例子将说明关闭与 stdio 的同步后，混用两种 IO 方式的后果
+        // 建议单步运行来观察效果
+        #include <cstdio>
+        #include <iostream>
+        
+        int main() {
+          // 关闭同步后，cin/cout 将使用独立缓冲区，而不是将输出同步至 scanf/printf
+          // 的缓冲区，从而减少 IO 耗时
+          std::ios::sync_with_stdio(false);
+          // cout 下，使用'\n'换行时，内容会被缓冲而不会被立刻输出
+          std::cout << "a\n";
+          // printf 的 '\n' 会刷新 printf 的缓冲区，导致输出错位
+          printf("b\n");
+          std::cout << "c\n";
+          // 程序结束时，cout 的缓冲区才会被输出
+          return 0;
+        }
+        ```
 
 -   由于宏的展开，且未加括号导致的错误。
 
     -   示例：该宏返回的值并非 $4^2 = 16$ 而是 $2+2\times 2+2 = 8$。
 
-            ```cpp
-            #define square(x) x* x
-            printf("%d", square(2 + 2));
-            ```
+        ```cpp
+        #define square(x) x* x
+        printf("%d", square(2 + 2));
+        ```
 
 -   哈希的时候没有使用 `unsigned` 导致的运算错误。
     -   对负数的右移运算会在最高位补 1。参见：[位运算](../math/bit.md)
@@ -177,11 +177,11 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
     -   示例：
 
-            ```cpp
-            /* clang-format off */
-            while (1);
-                printf("OI Wiki!\n");
-            ```
+        ```cpp
+        /* clang-format off */
+        while (1);
+            printf("OI Wiki!\n");
+        ```
 
 -   哨兵值设置错误。例如，平衡树的 `0` 节点。
 
@@ -190,33 +190,33 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
     -   成员变量的初始化顺序与它们在类中声明的顺序有关，而与初始化列表中的顺序无关。参见：[构造函数与成员初始化器列表](https://zh.cppreference.com/w/cpp/language/constructor) 的「初始化顺序」
     -   示例：
 
-            ```cpp
-            #include <iostream>
-
-            class Foo {
-             public:
-              int a, b;
-
-              // a 将在 b 前初始化，其值不确定
-              Foo(int x) : b(x), a(b + 1) {}
-            };
-
-            int main() {
-              Foo bar(1, 2);
-              std::cout << bar.a << ' ' << bar.b;
-            }
-
-            // 可能的输出结果：-858993459 1
-            ```
+        ```cpp
+        #include <iostream>
+        
+        class Foo {
+         public:
+          int a, b;
+        
+          // a 将在 b 前初始化，其值不确定
+          Foo(int x) : b(x), a(b + 1) {}
+        };
+        
+        int main() {
+          Foo bar(1, 2);
+          std::cout << bar.a << ' ' << bar.b;
+        }
+        
+        // 可能的输出结果：-858993459 1
+        ```
 
 -   并查集合并集合时没有把两个元素的祖先合并。
 
     -   示例：
 
-            ```cpp
-            f[a] = b;              // 错误
-            f[find(a)] = find(b);  // 正确
-            ```
+        ```cpp
+        f[a] = b;              // 错误
+        f[find(a)] = find(b);  // 正确
+        ```
 
 -   `freopen` 使用 `a` 进行追加写
     -   CCF 的检测环境不会清空输出文件，使用 `a` 会导致上一位选手的输出也被评测机读入引发 WA
@@ -502,10 +502,11 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
     - **内存占用行为分析**
 
         假设声明了以下数组：
-            ```cpp
-            const int SIZE = 1e8;
-            int arr[SIZE]; // 占用空间：4 字节 * 1 亿 = 400 MB
-            ```
+        
+        ```cpp
+        const int SIZE = 1e8;
+        int arr[SIZE]; // 占用空间：4 字节 * 1 亿 = 400 MB
+        ```
 
         + 这是一个静态数组，分配在全局数据段。
 
@@ -578,10 +579,10 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
     -   示例：
 
-            ```cpp
-            // int mod = 998244353;      // 错误
-            const int mod = 998244353;  // 正确，方便编译器按常量处理
-            ```
+        ```cpp
+        // int mod = 998244353;      // 错误
+        const int mod = 998244353;  // 正确，方便编译器按常量处理
+        ```
 
 -   使用了不必要的递归（尾递归不在此列）。
 
