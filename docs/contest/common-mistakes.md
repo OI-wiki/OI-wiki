@@ -25,7 +25,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         ```cpp
         // query 为返回 long long 类型的自定义函数
         printf("%lld\n", max(0, query(1, 1, n, l, r));
-        
+
         //错误    没有与参数列表匹配的 重载函数 "std::max" 实例
         ```
 
@@ -46,7 +46,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
           printf("Yes");
         else
           printf("No");
-        
+
         // 无论 n 的随机所得值为多少，输出肯定是 Yes
         // 警告    运算符不正确: 在 Boolean 上下文中执行了常量赋值。应考虑改用「==」。
         ```
@@ -62,7 +62,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         // std::cout << (1 << 1 + 1);
         // 正确
         std::cout << ((1 << 1) + 1);
-        
+
         // 警告    「<<」: 检查运算符优先级是否有可能的错误；使用括号阐明优先级
         ```
 
@@ -96,9 +96,9 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         #include <iostream>
         
         int main() {
-        int a;
-        std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
-        return 0;
+          int a;
+          std::cout << std::boolalpha << (a < 0 || a == 0 || a > 0);
+          return 0;
         }
         ```
         
@@ -144,7 +144,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
         // 建议单步运行来观察效果
         #include <cstdio>
         #include <iostream>
-        
+
         int main() {
           // 关闭同步后，cin/cout 将使用独立缓冲区，而不是将输出同步至 scanf/printf
           // 的缓冲区，从而减少 IO 耗时
@@ -192,20 +192,20 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
         ```cpp
         #include <iostream>
-        
+
         class Foo {
          public:
           int a, b;
-        
+
           // a 将在 b 前初始化，其值不确定
           Foo(int x) : b(x), a(b + 1) {}
         };
-        
+
         int main() {
           Foo bar(1, 2);
           std::cout << bar.a << ' ' << bar.b;
         }
-        
+
         // 可能的输出结果：-858993459 1
         ```
 
