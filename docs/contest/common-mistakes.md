@@ -275,7 +275,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
     -   写线段树的时候，`pushup` 或 `pushdown` 叶节点。
 
-            正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x`，在定义的下标中。
+        正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x`，在定义的下标中。
 
 -   除 main 外有返回值函数执行至结尾未执行任何 return 语句
 
@@ -302,7 +302,7 @@ author: Estrella\_Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-t
 
     -   指针指向的内存区域已经释放。
 
-            使用 `erase` 或 `delete` 或 `free` 操作应注意不要对同一地址/对象多次使用。
+        使用 `erase` 或 `delete` 或 `free` 操作应注意不要对同一地址/对象多次使用。
 
 -   尝试释放由 `new []` 分配的整块内存的一部分
 
