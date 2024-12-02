@@ -25,31 +25,9 @@ author: LeverImmy
 ## 红黑树类的定义
 
 ```cpp
-template <typename key_t, typename compare_t = std::less<key_t>>
-struct rbtree {
-  // 节点结构体
-  struct node_t {
-    node_t *fa;  // 父节点指针，若为 nullptr 则当前节点为根节点
-    node_t *ch[2];  // 子节点指针，ch[0] 为左子节点，ch[1] 为右子节点
-    key_t data;  // 存储的数据
-    size_t sz;   // 当前节点对应的子树大小
-    bool red;    // 当前节点是否为红色
-
-    // 返回当前节点相是否是父节点的右子节点
-    auto child_dir() const -> bool { return this == fa->ch[1]; }
-  };
-
-  using pointer = node_t *;
-  using const_pointer = const node_t *;
-  using pointer_const = node_t *const;
-
-  // 比较函数
-  const compare_t compare{};
-  // 根节点指针
-  pointer root;
-
-  rbtree() : root{nullptr} {}
-}
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:19:53"
+  // ...
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:396:396"
 ```
 
 ???+ note
@@ -73,27 +51,7 @@ struct rbtree {
 
 ???+ note "实现"
     ```cpp
-    /**
-     * @param p 当前子树的根
-     * @param dir 旋转方向，0 为左旋，1 为右旋
-     * @return 新的子树的根
-     */
-    auto rotate(pointer p, bool dir) -> pointer {
-      auto g = p->fa;        // 祖父节点
-      auto s = p->ch[!dir];  // 旋转后该子树的根
-      assert(s);
-      // 更新 size
-      s->sz = p->sz, p->sz = size(p->ch[dir]) + size(s->ch[dir]) + 1;
-      auto c = s->ch[dir];
-      if (c) c->fa = p;
-      p->ch[!dir] = c, s->ch[dir] = p;
-      p->fa = s, s->fa = g;
-      if (g)
-        g->ch[p == g->ch[1]] = s;
-      else
-        root = s;
-      return s;
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:251:270"
     ```
 
 ### 插入
@@ -102,66 +60,14 @@ struct rbtree {
 
 ???+ note "实现"
     ```cpp
-    /**
-     * 插入数据
-     *
-     * @return 若插入失败则返回 nullptr，否则返回插入节点的指针
-     */
-    auto insert(const key_t &data) -> const_pointer {
-      // 新建节点
-      pointer n = new node_t;
-      n->fa = n->ch[0] = n->ch[1] = nullptr;
-      n->data = data, n->sz = 1;
-      // 寻找要插入的位置
-      pointer now = root, p = nullptr;
-      bool dir = 0;
-      while (now) {
-        p = now;
-        dir = compare(now->data, data);
-        now = now->ch[dir];
-      }
-      // 插入
-      insert_fixup_leaf(p, n, dir);
-      return n;
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:147:163"
     
-    /**
-     * 在 @param p 处插入叶子节点 @param n
-     *
-     * @param p 待插入节点的父节点
-     * @param n 待插入的节点
-     * @param dir n 相对于 p 的方向。0 表示 n 是 p 的左子节点，1 表示 n 是 p
-     * 的右子节点
-     */
-    void insert_leaf(pointer_const p, pointer_const n, bool dir) {
-      if (!p) {  // 当前树为空
-        root = n;
-        return;
-      }
-      // 插入
-      p->ch[dir] = n, n->fa = p;
-      // 维护 size
-      auto now = p;
-      while (now) now->sz++, now = now->fa;
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:217:232"
     
-    /**
-     * 在 @param p 处插入叶子节点 @param n，并维护红黑树平衡
-     *
-     * @param p 待插入节点的父节点
-     * @param n 待插入的节点
-     * @param dir n 相对于 p 的方向。0 表示 n 是 p 的左子节点，1 表示 n 是 p
-     * 的右子节点
-     */
-    void insert_fixup_leaf(pointer p, pointer n, bool dir) {
-      // 若当前树为空，则插入的节点必为根节点，根据性质 5 将其染黑，否则染红
-      n->red = p;
-      insert_leaf(p, n, dir);
-      // 平衡维护
-      // ...
-      // 维护后记得将根节点染黑
-      root->red = false;
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:274:284"
+        // ...
+        // Post process: color root black
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:317:318"
     ```
 
 ### 插入后的平衡维护
@@ -173,11 +79,9 @@ struct rbtree {
 我们从插入的位置开始向上递归维护，若 $p$ 为黑色即可终止，否则分为 3 种情况。
 
 ```cpp
-while (is_red(p = n->fa)) {
-  bool p_dir = p->child_dir();
-  auto g = p->fa, u = g->ch[!p_dir];
-  // ...
-}
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:285:287"
+      // ...
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:316:316"
 ```
 
 #### Insert case 1
@@ -188,19 +92,7 @@ $p$ 和 $u$ 均为红色。此时我们只需重新染色即可。
 
 ???+ note "实现"
     ```cpp
-    // clang-format off
-    //      g              [g]
-    //     / \             / \
-    //   [p] [u]   ==>    p   u
-    //   /               /
-    // [n]             [n]
-    // clang-format on
-    if (is_red(u)) {
-      p->red = u->red = false;
-      g->red = true;
-      n = g;
-      continue;
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:288:299"
     ```
 
 #### Insert case 2
@@ -213,14 +105,7 @@ $p$ 为红色，$u$ 为黑色，$p$ 的方向和 $n$ 的方向不同。
 
 ???+ note "实现"
     ```cpp
-    // clang-format off
-    //    g              g
-    //   / \            / \
-    // [p]  u   ==>   [n]  u
-    //   \            /
-    //   [n]        [p]
-    // clang-format on
-    if (n->child_dir() != p_dir) rotate(p, p_dir), std::swap(n, p);
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:300:307"
     ```
 
 #### Insert case 3
@@ -233,15 +118,7 @@ $p$ 为红色，$u$ 为黑色，$p$ 的方向和 $n$ 的方向相同。
 
 ???+ note "实现"
     ```cpp
-    // clang-format off
-    //      g             p
-    //     / \           / \
-    //   [p]  u   ==>  [n] [g]
-    //   /                   \
-    // [n]                    u
-    // clang-format on
-    p->red = false, g->red = true;
-    rotate(g, !p_dir);
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:308:315"
     ```
 
 ### 删除
@@ -254,71 +131,14 @@ $p$ 为红色，$u$ 为黑色，$p$ 的方向和 $n$ 的方向相同。
 
 ???+ note "实现"
     ```cpp
-    /**
-     * 删除节点 p
-     *
-     * @return {@code next(p)}
-     */
-    auto erase(pointer p) -> const_pointer {
-      if (!p) return nullptr;
-      pointer result;
-      if (p->ch[0] && p->ch[1]) {  // p 有两个子节点
-        auto s = leftmost(p->ch[1]);
-        std::swap(s->data, p->data);
-        result = p, p = s;
-      } else
-        result = next(p);
-      erase_fixup_branch_or_leaf(p);
-      delete p;
-      return result;
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:175:190"
     
-    /**
-     * 删除节点 n，保证 n 没有 2 个子节点
-     *
-     * @param n 待删除的节点，不能有 2 个子节点
-     */
-    void erase_branch_or_leaf(pointer_const n) {
-      auto p = n->fa, s = n->ch[0] ? n->ch[0] : n->ch[1];
-      if (s) s->fa = p;
-      if (!p) {  // n 是根节点
-        root = s;
-        return;
-      }
-      p->ch[n->child_dir()] = s;
-      // 维护 size
-      auto now = p;
-      while (now) now->sz--, now = now->fa;
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:234:249"
     
-    /**
-     * 删除节点 n，保证 n 没有 2 个子节点，并维护红黑树平衡
-     *
-     * @param n 待删除的节点，不能有 2 个子节点
-     */
-    void erase_fixup_branch_or_leaf(pointer n) {
-      // 提前记录 n 在删除前的方向，因为删除后会丢失该信息
-      // 特判 n == root 只是为了防止空指针解引用，实际当 n 为根节点时不会用到该变量
-      bool n_dir = n == root ? false : n->child_dir();
-      erase_branch_or_leaf(n);
-      auto p = n->fa;
-      if (!p) {  // n 是根节点
-        // 维护性质 5
-        if (root) root->red = false;
-        return;
-      } else {
-        auto s = p->ch[n_dir];
-        // 若 n 有一个子节点，则 n 为黑色且 s 为红色，此时将 s 染黑后即可直接退出
-        if (s) {
-          s->red = false;
-          return;
-        }
-      }
-      // 平衡维护
-      // ...
-      // 维护后操作：见 Case 2 和 Case 4
-      n->red = false;
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:320:340"
+        // ...
+        // Post process: see case 2 & case 4
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:394:395"
     ```
 
 ### 删除后的平衡维护
@@ -328,21 +148,13 @@ $p$ 为红色，$u$ 为黑色，$p$ 的方向和 $n$ 的方向相同。
 删除的维护也是从 $n$ 开始向上递归维护，若 $n$ 不是根或 $n$ 为红色即可终止，否则分为 4 种情况。
 
 ```cpp
-// n 是黑色叶子节点且不为根节点
-while (p && !n->red) {
-  auto s = p->ch[!n_dir];
-  // Delete case 1
-  // ...
-  // 此时由性质 4 可知 s 必为非空叶子节点
-  auto c = b->ch[n_dir], d = b->ch[!n_dir];
-  // 其他情况
-  // ...
-  // 结束循环前需要更新 p 和 n_dir 的值
-end_erase_fixup:
-  p = n->fa;
-  if (!p) break;
-  n_dir = n->child_dir();
-}
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:341:342"
+      // Delete case 1
+      // ...
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:354:355"
+      // Other cases
+      // ...
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:389:393"
 ```
 
 #### Delete case 1
@@ -355,18 +167,7 @@ $s$ 为红色。
 
 ???+ note "实现"
     ```cpp
-    // clang-format off
-    //    p               s
-    //   / \             / \
-    // |n| [s]   ==>   [p]  d
-    //     / \         / \
-    //    c   d      |n|  c
-    // clang-format on
-    if (is_red(s)) {
-      s->red = false, p->red = true;
-      rotate(p, n_dir);
-      s = p->ch[!n_dir];
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:343:353"
     ```
 
 #### Delete case 2
@@ -381,19 +182,7 @@ $p$ 的颜色不确定，$s$、$c$、$d$ 均为黑色。
 
 ???+ note "实现"
     ```cpp
-    // clang-format off
-    //   {p}          {p}
-    //   / \          / \
-    // |n|  s   ==> |n| [s]
-    //     / \          / \
-    //    c   d        c   d
-    // clang-format on
-    // p 会在最后染黑
-    if (!is_red(c) && !is_red(d)) {
-      s->red = true;
-      n = p;
-      goto end_erase_fixup;
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:356:367"
     ```
 
 #### Delete case 3
@@ -406,20 +195,7 @@ $p$ 的颜色不确定，$s$、$d$ 均为黑色，$c$ 为红色。
 
 ???+ note "实现"
     ```cpp
-    // clang-format off
-    //   {p}          {p}
-    //   / \          / \
-    // |n|  s   ==> |n|  c
-    //     / \            \
-    //   [c]  d           [s]
-    //                      \
-    //                       d
-    // clang-format on
-    if (!is_red(d)) {
-      c->red = false, s->red = true;
-      rotate(s, !n_dir);
-      s = p->ch[!n_dir], c = s->ch[n_dir], d = s->ch[!n_dir];
-    }
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:368:380"
     ```
 
 #### Delete case 4
@@ -432,15 +208,7 @@ $p$、$c$ 的颜色不确定，$s$ 为黑色，$d$ 为红色。
 
 ???+ note "实现"
     ```cpp
-    // clang-format off
-    //   {p}            {s}
-    //   / \            / \
-    // |n|  s   ==>    p   d
-    //     / \        / \
-    //   {c} [d]    |n| {c}
-    // clang-format on
-    s->red = p->red, p->red = d->red = false;
-    rotate(p, n_dir), n = root;
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:381:388"
     ```
 
 ## 参考代码
@@ -452,9 +220,12 @@ $p$、$c$ 的颜色不确定，$s$ 为黑色，$d$ 为红色。
     --8<-- "docs/ds/code/rbtree/rbtree.hpp"
     ```
 
-??? note "[Luogu P3369【模板】普通平衡树](https://www.luogu.com.cn/problem/P3369) 与 [Luogu P6136【模板】普通平衡树（数据加强版）](https://www.luogu.com.cn/problem/P6136)"
+??? note " 例题：[Luogu P3369【模板】普通平衡树](https://www.luogu.com.cn/problem/P3369) 与 [Luogu P6136【模板】普通平衡树（数据加强版）](https://www.luogu.com.cn/problem/P6136)"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree_1.cpp"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp::1"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:7:9"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:13:399"
+    --8<-- "docs/ds/code/rbtree/rbtree_1.cpp:3"
     ```
 
 ## 实际工程项目中的使用
