@@ -5,7 +5,7 @@ author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Me
 连分数可以将实数表示为一个收敛的有理数数列的极限。这个数列中的有理数易于计算，而且提供了这个实数的最佳逼近，因而在算法竞赛中常常会用到连分数。除此之外，连分数还和欧几里得算法密切相关，因而可以应用到一系列数论问题中。
 
 ???+ info "关于连分数相关的算法实现"
-    本文会提供一系列的连分数的算法实现，其中部分算法可能无法保证所涉及的整数都在 32 位或 64 位整型变量的取值范围内。对于这部分算法，本文会提供相应的 Python 实现，它们的复杂度的计算应该考虑所需要的大数运算的复杂度。
+    本文会提供一系列的连分数的算法实现，其中部分算法可能无法保证计算中间过程所涉及的整数都在 32 位或 64 位整型变量的取值范围内。对于这种情形，请参考相应的 Python 的实现，或将 C++ 实现中的整型变量替换为 [高精度整数类](../bignum.md)。为突出重点，本文行文过程中的部分代码可能会调用前文实现过的函数而不再重复给出实现。
 
 ## 连分数
 
@@ -93,7 +93,7 @@ $$
 a_k = \left\lfloor\frac{p_k}{q_k}\right\rfloor,\ r_{k+1} = \dfrac{1}{r_k-a_k} = \dfrac{q_k}{p_k-a_kq_k} = \dfrac{q_k}{p_k\bmod q_k}.
 $$
 
-此时的计算过程实际上是对 $p$ 和 $q$ 做 [辗转相除法](./gcd.md#欧几里得算法)。这也说明，对于有理数 $r=\dfrac{p}{q}$，连分数表示的长度大致是 $O(\log\min\{p, q\})$ 的。计算有理数 $\dfrac{p}{q}$ 的复杂度也是 $O(\log\min\{p, q\})$ 的。
+此时的计算过程实际上是对 $p$ 和 $q$ 做 [辗转相除法](./gcd.md#欧几里得算法)。这也说明，对于有理数 $r=\dfrac{p}{q}$，连分数表示的长度是 $O(\log\min\{p, q\})$ 的。计算有理数 $\dfrac{p}{q}$ 的复杂度也是 $O(\log\min\{p, q\})$ 的。
 
 ???+ example "参考实现"
     给定分数的分子 $p$ 和分母 $q$，输出连分数的系数序列 $[a_0,a_1,\cdots,a_n]$。
@@ -105,12 +105,7 @@ $$
 
     === "Python"
         ```py
-        def fraction(p, q):
-            a = []
-            while q:
-                a.append(p // q)
-                p, q = q, p % q
-            return a
+        --8<-- "docs/math/code/continued-fraction/diophantine.py:2:8"
         ```
 
 ## 渐近分数
@@ -145,12 +140,12 @@ $$
     其中的 $\phi=\dfrac{1+\sqrt{5}}{2}$ 是黄金分割比。当 $k$ 趋于无穷时，有
 
     $$
-    x=\lim_{k\rightarrow}x_k=\phi.
+    x=\lim_{k\rightarrow\infty}x_k=\phi.
     $$
 
     因而，连分数 $x=[1,1,1,1,\cdots]$ 表示的是黄金分割比 $\phi$。
 
-这些渐近分数趋近于相应的实数，所以可以用于估计该实数。为此，有必要了解这些渐近分数的性质。
+这些渐近分数趋近于相应的实数，所以可以用于逼近该实数。为此，有必要了解渐近分数的性质。
 
 ### 递推关系
 
@@ -299,13 +294,7 @@ $$
 
     === "Python"
         ```py
-        def convergents(a):
-            p = [0, 1]
-            q = [1, 0]
-            for it in a:
-                p.append(p[-1] * it + p[-2])
-                q.append(q[-1] * it + q[-2])
-            return p, q
+        --8<-- "docs/math/code/continued-fraction/diophantine.py:11:19"
         ```
 
 ### 误差估计
@@ -465,13 +454,7 @@ $$
 
     === "Python"
         ```py
-        # return (x, y) such that Ax+By=C
-        # assumes that such (x, y) exists
-        def dio(A, B, C):
-            p, q = convergents(fraction(A, B))
-            C //= A // p[-1]  # divide by gcd(A, B)
-            t = (-1) if len(p) % 2 else 1
-            return t * C * q[-2], -t * C * p[-2]
+        --8<-- "docs/math/code/continued-fraction/diophantine.py:22:28"
         ```
 
 ## 丢番图逼近
@@ -604,6 +587,8 @@ $$
 
 ???+ abstract "中间分数"
     设实数 $x$ 有渐近分数 $x_{k+1}=[a_0,a_1,\cdots,a_k,a_{k+1}]$，且整数 $t$ 满足 $0\le t\le a_{k+1}$[^semi-range]，则分数 $x_{k,t}=[a_0,a_1,\cdots,a_{k},t]$ 称为 $x$ 的 **中间分数**（intermediate fraction）、**半收敛子**（semiconvergent）或 **次渐近分数**（secondary convergent）。[^semiconvergent]
+
+    类似于渐近分数的情形，大于（小于）$x$ 的中间分数称为 **上（下）中间分数**（upper (lower) semiconvergent）。
 
 根据递推公式，中间分数可以写成
 
@@ -965,7 +950,7 @@ $$
 
         又已知三角形边界上已经有了 $\{\vec 0\}\cup\{\vec\xi_{k-1,t}:0\le t\le a_k\}$ 这共计 $a_k+2$ 个整点。这说明，就一定有 $I=0$ 和 $B=a_k+2$。因而，三角形的边上没有更多的整点，三角形内部也没有整点。也就是说，$q_k$ 和 $p_k$ 是既约的，中间分数是连结 $\vec\xi_{k-2}$ 和 $\vec\xi_k$ 的边上的全部整点，且第一象限的所有整点都在上下两个凸包内。
 
-这样得到的上下两个凸包称为 Klein 多边形。在高维空间内也可以做类似定义，得到 [**Klein 多面体**](https://en.wikipedia.org/wiki/Pick%27s_theorem)（Klein polyhedron），它可以将连分数的概念推广到高维空间内。
+这样得到的上下两个凸包称为 Klein 多边形。在高维空间内也可以做类似定义，得到 [Klein 多面体](https://en.wikipedia.org/wiki/Pick%27s_theorem)（Klein polyhedron），它可以将连分数的概念推广到高维空间内。
 
 ## 连分数的树
 
@@ -987,7 +972,17 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
 
     相较于连分数表示，交替地添加正负号，删去末尾的 $1$，并且长度不足的位置用 $0$ 补齐。
 
-想要了解更多 Stern–Brocot 树的性质和应用参见其主条目页面。
+    === "C++"
+        ```cpp
+        --8<-- "docs/math/code/continued-fraction/compare.cpp:6:28"
+        ```
+
+    === "Python"
+        ```py
+        --8<-- "docs/math/code/continued-fraction/compare.py:2:16"
+        ```
+
+想要了解更多 Stern–Brocot 树的性质和应用，可以参考其主条目页面。
 
 ## 分式线性变换
 
@@ -1084,7 +1079,17 @@ $$
     给定正整数数组 $a_1,\cdots,a_n$ 和 $m$ 组查询，每次查询给定 $l\le r$，并要求计算 $[a_l,\cdots,a_r]$ 的值。
 
 ??? note "解答"
-    将连分数理解为一列分式线性变换的复合，那么就可以用线段树来存储这个结构，并解决多次查询的问题。前文已经说明，每个分式线性变换就是一个二阶方阵，分式线性变换的复合就是矩阵的复合，最后在 $x=\infty$ 处取值即可。
+    将连分数理解为一列分式线性变换的复合在 $x=\infty$ 处取值的结果，只需要能够多次查询一段分式线性变换的复合即可。因为每个分式线性变换都可以取逆，所以可以预处理前缀和再用差分的方法查询，复杂度为 $O(n+m)$ 的；如果需要修改，也可以用线段树等结构存储。
+
+    === "C++"
+        ```cpp
+        --8<-- "docs/math/code/continued-fraction/flt-presum.cpp"
+        ```
+
+    === "Python"
+        ```py
+        --8<-- "docs/math/code/continued-fraction/flt-presum.py"
+        ```
 
 ### 连分数的四则运算
 
@@ -1108,7 +1113,7 @@ $$
     L(\alpha) = L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_n}(\infty),
     $$
 
-    所以，可以向 $L$ 通过逐步复合 $L_{\alpha_k}$ 的方式计算 $L(\alpha)$ 的大小。但是，如果是希望得到 $L(\alpha) $ 的连分数表示，那么并不需要完全计算 $L(\alpha) $ 的值再求出连分数表示。可以在复合 $L_{\alpha_i}$ 的过程中就能判断 $\beta_0,\beta_1,\cdots$ 的值。
+    所以，可以向 $L$ 通过逐步复合 $L_{\alpha_k}$ 的方式计算 $L(\alpha)$ 的大小。但是，如果是希望得到 $L(\alpha)$ 的连分数表示，那么并不需要完全计算 $L(\alpha)$ 的值再求出连分数表示。可以在复合 $L_{\alpha_i}$ 的过程中就能判断 $\beta_0,\beta_1,\cdots$ 的值。
 
     比如，假设当前计算到
 
@@ -1130,7 +1135,7 @@ $$
 
     此时，继续添加 $L_{\alpha_{k+1}},L_{\alpha_{k+2}},\cdots$ 就可以确定新的整数部分，即 $\beta_1$。这样计算下去，直到确定出所有的 $\beta_j$ 的值。
 
-    算法要求 $c$ 和 $d$ 同号，是因为要保证函数的不连续点不在 $[0,\infty]$ 范围内。这总是可能的，因为简单连分数的定义要求（除了 $\alpha_0$ 外的）系数都是正整数。所以，可以证明，在有限步内，必然可以保证 $c$ 和 $d$ 同号，且将在之后一致保持同号。
+    算法要求 $c$ 和 $d$ 同号，是因为要保证函数的不连续点不在 $[0,\infty]$ 范围内。这总是可能的，因为简单连分数的定义要求（除了 $\alpha_0$ 外的）系数都是正整数。由此可以证明，必然在有限步内成立 $c$ 和 $d$ 同号，且将在之后一直保持同号。
 
     具体实现时，只需要维护当前的分式线性变换的系数矩阵 $\begin{pmatrix}a&b\\c&d\end{pmatrix}$ 并检查 $c$ 和 $d$ 是否同号以及 $\dfrac{a}{c}$ 和 $\dfrac{b}{d}$ 是否有相同的整数部分。右复合 $L_{\alpha_i}$ 时，就可以得到 $\begin{pmatrix}a\alpha_i+b&a\\ c\alpha_i+d&c\end{pmatrix}$。如果两者整数部分相同为 $\beta_j$，则在结果的连分数内添加 $\beta_j$，并且左复合 $L_{\beta_j}^{-1}$，这相当于计算 $\begin{pmatrix}c&d\\ a\bmod c & b \bmod d \end{pmatrix}$。
 
@@ -1158,7 +1163,7 @@ $$
 
     右复合要替换成计算 $L(x,y)\mapsto L(L_{\alpha_i}(x),y)$ 和 $L(x,y)\mapsto L(x,L_{\beta_j}(y))$，这同样表示成系数的线性变换。左复合则和单变量的情形完全一致，只需要计算取模就可以了。
 
-    相较于单变量的情形，双变量的情形需要决定要先复合 $L_{\alpha_i}$ 还是 $L_{\beta_j}$。因为复合的顺序与最后的结果无关，所以可以自由选择复合顺序，比如交替地复合 $L_{\alpha_i}$ 和 $L_{\beta_j}$。或者采用经验法则，首先复合整数部分差距更大的维度：如果 $\left|\dfrac{b}{f}-\dfrac{d}{h}\right|>\left|\dfrac{c}{g}-\dfrac{d}{h}\right|$，那么就先复合 $L_{\alpha_i}$；否则，就先复合 $L_{\beta_j}$。
+    相较于单变量的情形，双变量的情形需要决定要先复合 $L_{\alpha_i}$ 还是 $L_{\beta_j}$。因为复合的顺序与最后的结果无关，所以可以自由选择复合顺序，比如交替地复合 $L_{\alpha_i}$ 和 $L_{\beta_j}$。或者采用经验法则，优先复合比值差距更大的维度：如果 $\left|\dfrac{b}{f}-\dfrac{d}{h}\right|>\left|\dfrac{c}{g}-\dfrac{d}{h}\right|$，那么就先复合 $L_{\alpha_i}$；否则，就先复合 $L_{\beta_j}$。
 
 ## 循环连分数
 
@@ -1169,7 +1174,7 @@ $$
 
 ### 二次无理数
 
-与循环连分数密切相关的概念是 [（实）二次无理数](./quadratic.md)（quadratic irrational），即整系数二次方程的无理数解。所有的二次无理数都可以唯一地表示成
+与循环连分数密切相关的概念是 [（实）二次无理数](./quadratic.md)（quadratic irrational），即整系数二次方程的无理数解。所有的二次无理数都可以表示成
 
 $$
 a+b\sqrt D
@@ -1322,35 +1327,22 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
     \end{aligned}
     $$
 
-这个递推公式可以直接用于二次无理数的连分数的计算。
+这个递推公式可以直接用于二次无理数的连分数的计算，而且根据定理的证明，$|P_k|<\sqrt{D}$ 且 $Q_k\le 2\sqrt{D}$。该算法的复杂度取决于循环节的长度，而后者可以证明是 $O(\sqrt{D}\log D)$ 的[^period-surd]。
 
 ???+ example "二次无理数"
     给定二次无理数 $\alpha=\dfrac{x+y\sqrt{n}}{z}$，求出其连分数的表示。其中，$x,y,z,n\in\mathbf Z$ 且 $n>0$ 不是完全平方。
 
 ??? "解答"
-    首先将二次无理数表示成上述形式，再利用递推公式计算即可。为了求出循环节，需要存储 $(P_k,Q_k)$ 的值。
+    首先将二次无理数表示成上述形式，再利用递推公式计算即可。连分数的项由 $a_k=\lfloor r_k\rfloor$ 给出。为了求出循环节，需要存储 $(P_k,Q_k)$ 首次出现的下标。
     
+    === "C++"
+        ```cpp
+        --8<-- "docs/math/code/continued-fraction/quadratic-irrational.cpp:8:25"
+        ```
+
     === "Python"
         ```py
-        # compute the continued fraction of sqrt(n)
-        def sqrt(n):
-            n0 = math.floor(math.sqrt(n))
-            x, y, z = 0, 1, 1
-            a = []
-        
-            def step(x, y, z):
-                a.append((x * n0 + y) // z)
-                t = y - a[-1] * z
-                x, y, z = z * t, -z * y, t**2 - n * x**2
-                g = math.gcd(x, math.gcd(y, z))
-                return x // g, y // g, z // g
-        
-            used = dict()
-            for i in range(n):
-                used[x, y, z] = i
-                x, y, z = step(x, y, z)
-                if (x, y, z) in used:
-                    return a
+        --8<-- "docs/math/code/continued-fraction/quadratic-irrational.py:4:20"
         ```
 
 ???+ example "[Tavrida NU Akai Contest - Continued Fraction](https://timus.online/problem.aspx?space=1&num=1814)"
@@ -1358,57 +1350,15 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
 
 ??? note "解答"
     首先利用上述算法解出 $\sqrt{x}$ 的周期，将循环节表示成分式线性变换，就可以用 [快速幂](../binary-exponentiation.md) 获得 $x_k$ 的值。当然，对于没有进入循环节和不足一个循环节的部分，需要单独处理。
-    
+
+    === "C++"
+        ```cpp
+        --8<-- "docs/math/code/continued-fraction/surd-convergent.cpp"
+        ```
+
     === "Python"
         ```py
-        x, k = map(int, input().split())
-        
-        mod = 10**9 + 7
-        
-        
-        # compose (A[0]*x + A[1]) / (A[2]*x + A[3]) and (B[0]*x + B[1]) / (B[2]*x + B[3])
-        def combine(A, B):
-            return [
-                t % mod
-                for t in [
-                    A[0] * B[0] + A[1] * B[2],
-                    A[0] * B[1] + A[1] * B[3],
-                    A[2] * B[0] + A[3] * B[2],
-                    A[2] * B[1] + A[3] * B[3],
-                ]
-            ]
-        
-        
-        A = [1, 0, 0, 1]  # (x + 0) / (0*x + 1) = x
-        
-        a = sqrt(x)
-        
-        T = len(a) - 1  # period of a
-        
-        # apply ak + 1/x = (ak*x+1)/(1x+0) to (Ax + B) / (Cx + D)
-        for i in reversed(range(1, len(a))):
-            A = combine([a[i], 1, 1, 0], A)
-        
-        
-        def bpow(A, n):
-            return (
-                [1, 0, 0, 1]
-                if not n
-                else combine(A, bpow(A, n - 1))
-                if n % 2
-                else bpow(combine(A, A), n // 2)
-            )
-        
-        
-        C = (0, 1, 0, 0)  # = 1 / 0
-        while k % T:
-            i = k % T
-            C = combine([a[i], 1, 1, 0], C)
-            k -= 1
-        
-        C = combine(bpow(A, k // T), C)
-        C = combine([a[0], 1, 1, 0], C)
-        print(str(C[1]) + "/" + str(C[3]))
+        --8<-- "docs/math/code/continued-fraction/surd-convergent.py"
         ```
 
 ### 纯循环连分数
@@ -1522,7 +1472,7 @@ Galois 利用这个观察，进一步地给出了二次无理数有纯循环连�
 
     这意味着最小的能够使得 $r_{k}=r_{k+L}$ 成立的 $k$ 必然是 $0$。也就是说，$x$ 可以表示成纯循环连分数。
 
-Galois 定理揭示了 $\sqrt{r}$ 的连分数表示的规律。
+Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如 $\sqrt{r}$ 的二次无理数——的连分数表示的规律。
 
 ???+ note "推论"
     对于有理数 $r>1$，如果 $\sqrt{r}$ 是无理数，那么
@@ -1592,315 +1542,168 @@ Galois 定理揭示了 $\sqrt{r}$ 的连分数表示的规律。
 
 ## 例题
 
-既然已经介绍了最重要的事实和概念，那么是时候深入研究具体的例题了。
+在掌握了基础概念后，需要研究一些具体的例题来理解如何在算法竞赛中应用连分数的方法。
 
 ???+ example "线下凸包"
-    找到格点 $(x;y)$ 的凸包，使得 $r=[a_0;a_1,\dots,a_k]=\frac{p_k}{q_k}$ 的 $0 \leq x \leq N$ 和 $0 \leq y \leq rx$。
+    给定 $r=[a_0,a_1,\cdots,a_n]$，求出满足 $0\le x\le N$ 和 $0\le y\le rx$ 的整点 $(x,y)$ 的集合的凸包。
 
 ??? note "解答"
-    如果我们考虑无界集合 $0 \leq x$，则上凸包将由线 $y=rx$ 本身给出。
-    
-    然而，在附加约束 $x \leq N$ 的情况下，最终需要偏离直线以保持适当的凸包。
-    
-    设 $t = \lfloor \frac{N}{q_k}\rfloor$，则对于整数 $1 \leq \alpha \leq t$，在 $(0;0)$ 之后的外壳上的第一个 $t$ 格点是 $\alpha \cdot (q_k; p_k)$。
-    
-    然而，$(t+1)(q_k; p_k)$ 不能是下一个格点，因为 $(t+1)q_k$ 大于 $N$。
-    
-    为了到达外壳中的下一个格点，应该到达点 $(x;y)$，该点与 $y=rx$ 相差最小，同时保持 $x \leq N$。
-    
+    对于无界集合 $x\ge 0$，上凸壳就是直线 $y=rx$ 本身。然而，如下图所示，如果还要求 $x\le N$，那么上凸壳最终会偏离直线。
+
     ![](./images/Lattice-hull.svg)
-    
-    设 $(x; y)$ 为凸包中的最后一个当前点。然后，下一点 $(x'; y')$ 是这样的：$x' \leq N$ 和 $(x'; y') - (x; y) = (\Delta x; \Delta y)$ 尽可能接近线 $y=rx$。换句话说，$(\Delta x; \Delta y)$ 根据 $\Delta x \leq N - x$ 和 $\Delta y \leq r \Delta x$ 最大化 $r \Delta x - \Delta y$。
-    
-    这样的点位于 $y=rx$ 以下的格点的凸包上。换句话说，$(\Delta x; \Delta y)$ 必须是 $r$ 的下中间分数。
-    
-    也就是说，对于某些奇数 $i$ 和 $0 \leq t < a_i$，$(\Delta x; \Delta y)$ 的形式为 $(q_{i-1}; p_{i-1}) + t \cdot (q_i; p_i)$。
-    
-    要找到这样的 $i$，可以遍历所有可能的 $i$，从最大的一个开始，并对 $i$ 使用 $t = \lfloor \frac{N-x-q_{i-1}}{q_i} \rfloor$，这样 $N-x-q_{i-1} \geq 0$。
-    
-    当 $(\Delta x; \Delta y) = (q_{i-1}; p_{i-1}) + t \cdot (q_i; p_i)$ 时，条件 $\Delta y \leq r \Delta x$ 由中间分数的性质保持。
-    
-    并且 $t < a_i$ 成立，因为已经耗尽了从 $i+2$ 获得的半收敛，因此 $x + q_{i-1} + a_i q_i = x+q_{i+1}$ 大于 $N$。
-    
-    现在，可以将 $(\Delta x; \Delta y)$ 添加到 $(x;y)$ 中 $k = \lfloor \frac{N-x}{\Delta x} \rfloor$ 次，然后再超过 $N$，之后将尝试下一个中间分数。
-    
+
+    从 $(0,0)$ 开始，可以自左向右地求出上凸壳的所有整点。假设当前已经求出的上凸壳的最后一个整点是 $(x,y)$。现在要求出下一个整点 $(x',y')$。顶点 $(x',y')$ 在 $(x,y)$ 右上方，记 $(\Delta x,\Delta y)=(x'-x,y'-y)$ 为两者的差值。那么，必然有
+
+    $$
+    0<\Delta x\le N-x,\ 0\le \Delta y\le r\Delta x.
+    $$
+
+    第二个不等式成立，因为条件 $\Delta y>r\Delta x$ 与 $(x,y)$ 已经在上凸壳上这件事矛盾。观察 $(\Delta x,\Delta y)$ 需要满足的条件，对于不同的点 $(x,y)$，只有 $\Delta x$ 的上界在变化。所以，只要能解决这个子问题，就可以递归地求出原问题的所有整点。
+
+    进而，考虑子问题的解法。对比于原问题，子问题相当于将 $x$ 的上界修改为 $N'$，并求出上凸壳中与原点相邻的第一个整点。记子问题的解为 $(q,p)$。那么，$p$ 与 $q$ 必然是互素的（否则不是第一个整点），且与原点连线的斜率 $\dfrac{p}{q}$ 是所有位于直线 $y=rx$ 下方且横坐标不超过 $N'$ 的整点中最大的（否则不在凸包上）。结合前文的 [几何解释](#几何解释) 可知，这样的点 $(x,y)$ 必然对应于 $r$ 的一个下中间分数。因为分母越大的下中间分数离 $r$ 越近，所以子问题的解 $(q,p)$ 对应着所有分母不超过 $N'$ 的下中间分数中分母最大的那个。
+
+    当然，实际求解时，没必要对每个子问题都重新求出这样的下中间分数。应该首先求出所有的渐近分数，这相当于提供了遍历所有的下中间分数的方法。然后分母从大到小地遍历下中间分数，每次都尝试将它加到前一个整点 $(x,y)$ 上，直到不能添加为止才继续尝试下一个下中间分数。
+
+    此处有一些显然的优化。首先，对于下中间分数 $(q,p)$，必然存在奇数 $k$ 和 $0\le t<a_k$ 使得 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$。只要找到最大的 $t$ 使得 $q_{k-1}+tq_k+x\le N$ 满足就好了，亦即 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$。不用担心 $t$ 越界，因为更大的下渐近分数 $(q_{k+2},p_{k+2})$ 已经添加完了。而每次确定添加的次数的时候，直接计算 $\left\lfloor\dfrac{N-x}{q}\right\rfloor$ 即可，不必逐个尝试。
+
+    优化后的算法的复杂度是 $O(n)$ 的。虽然下中间分数对应的整点可能有很多，但是真正成为增量的并不多。下面要说明，所有 $0\le t<a_k$ 的下中间分数 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ 中，至多会出现两个增量。假设这些下中间分数中确实出现了增量，则此时必然有 $q_{k-1}\le N-x<q_{k+1}$。不妨设 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$。如果 $t=0$，则增量就有 $\Delta x=q_{k-1}$，故而添加完增量后，就有 $N-x'<q_{k-1}$，不会再在这些下中间分数中出现新的增量；如果 $t>0$，那么添加完增量后，必然有 $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$，即使还会在同一段下中间分数中出现新的增量，下次也只能有 $t'=0$。因此，在这样的一段下中间分数中，至多只能出现两个增量。这就说明，总的时间复杂度是 $O(n)$ 的。
+
     === "C++"
         ```cpp
-        // returns [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute upper
-        // convex hull of lattice points on 0 <= x <= N and 0 <= y <= r * x, where r =
-        // [a0; a1, a2, ...] and there are ah[i]-1 integer points on the segment between
-        // r[i] and r[i+1]
-        auto hull(auto a, int N) {
-          auto [p, q] = convergents(a);
-          int t = N / q.back();
-          vector ah = {t};
-          vector ph = {0, t * p.back()};
-          vector qh = {0, t * q.back()};
-        
-          for (int i = q.size() - 1; i >= 0; i--) {
-            if (i % 2) {
-              while (qh.back() + q[i - 1] <= N) {
-                t = (N - qh.back() - q[i - 1]) / q[i];
-                int dp = p[i - 1] + t * p[i];
-                int dq = q[i - 1] + t * q[i];
-                int k = (N - qh.back()) / dq;
-                ah.push_back(k);
-                ph.push_back(ph.back() + k * dp);
-                qh.push_back(qh.back() + k * dq);
-              }
-            }
-          }
-          return make_tuple(ah, ph, qh);
-        }
+        --8<-- "docs/math/code/continued-fraction/hull-under-line.cpp:28:54"
         ```
-    
+
     === "Python"
         ```py
-        # returns [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute upper convex hull
-        # of lattice points on 0 <= x <= N and 0 <= y <= r * x, where r = [a0; a1, a2, ...]
-        # and there are ah[i]-1 integer points on the segment between r[i] and r[i+1]
-        def hull(a, N):
-            p, q = convergents(a)
-            t = N // q[-1]
-            ah = [t]
-            ph = [0, t * p[-1]]
-            qh = [0, t * q[-1]]
-            for i in reversed(range(len(q))):
-                if i % 2 == 1:
-                    while qh[-1] + q[i - 1] <= N:
-                        t = (N - qh[-1] - q[i - 1]) // q[i]
-                        dp = p[i - 1] + t * p[i]
-                        dq = q[i - 1] + t * q[i]
-                        k = (N - qh[-1]) // dq
-                        ah.append(k)
-                        ph.append(ph[-1] + k * dp)
-                        qh.append(qh[-1] + k * dq)
-            return ah, ph, qh
+        --8<-- "docs/math/code/continued-fraction/hull-under-line.py:22:42"
         ```
 
 ???+ example "[Timus - Crime and Punishment](https://timus.online/problem.aspx?space=1&num=1430)"
-    您将得到整数 $A$、$B$ 和 $N$。查找 $x \geq 0$ 和 $y \geq 0$，使 $Ax + By \leq N$ 和 $Ax + By$ 达到最大值。
+    给定正整数 $A,B,N \le 2\times 10^9$，求 $x,y\ge 0$ 使得 $Ax+By\le N$ 且 $Ax+By$ 尽可能大。
 
 ??? note "解答"
-    在这个问题中有 $1 \leq A, B, N \leq 2 \cdot 10^9$，因此可以用 $O(\sqrt N)$ 来解决。但是，有一个 $O(\log N)$ 解决方案包含连分数。
-    
-    为了方便起见，通过替换 $x \mapsto \lfloor \frac{N}{A}\rfloor - x$ 来反转 $x$ 的方向，因此需要找到点 $(x; y)$，使得 $0 \leq x \leq \lfloor \frac{N}{A} \rfloor$、$By - Ax \leq N \;\bmod\; A$ 和 $By - Ax$ 是可能的最大值。每个 $x$ 的最佳 $y$ 值为 $\lfloor \frac{Ax + (N \bmod A)}{B} \rfloor$。
-    
-    为了更一般地对待它，编写一个函数，该函数在 $0 \leq x \leq N$ 和 $y = \lfloor \frac{Ax+B}{C} \rfloor$ 上找到最佳点。
-    
-    这个问题的核心解决方案思想基本上重复了前面的问题，但不是使用下中间分数来偏离直线，而是使用上中间分数来接近直线，而不跨越直线，也不违反 $x \leq N$。不幸的是，与前一个问题不同，您需要确保在靠近 $y=\frac{Ax+B}{C}$ 线时不会越过该线，因此在计算中间分数的系数 $t$ 时应牢记这一点。
-    
+    这个问题有一个复杂度为 $O(\sqrt N)$ 的解法：不妨设 $A\ge B$，因为 $A(B+x)+By=Ax+B(A+y)$，所以只需要在 $x\le\min\{N/A, B\}$ 中搜索答案即可。这足够通过本题。但是，如果应用连分数方法，那么时间复杂度就可以降低到 $O(\log N)$。
+
+    为了讨论方便，首先通过代换 $x\mapsto\left\lfloor N/A\right\rfloor-x$ 来改变 $x$ 的符号。令 $C=N\bmod A$ 和 $M=\left\lfloor N/A\right\rfloor$，则原问题转化为在 $0\le x\le M$ 且 $By-Ax\le C$ 的条件下，求最优的 $(x,y)$ 使得 $By-Ax$ 最大。对于每个固定的 $x$，最优的 $y$ 的取值为 $\left\lfloor\dfrac{Ax+C}{B}\right\rfloor$。
+
+    接下来要说明的是，这个问题和上一个例题具有类似的解法。但是，与上一个例题中使用下中间分数偏离直线不同，本题需要使用上中间分数来接近直线。具体来说，$C-(By-Ax)$ 的值正比于点 $(x,y)$ 与直线 $By-Ax=C$ 的距离。要最大化 $By-Ax$，就等价于最小化这个距离。算法的目标是要找到直线 $By-Ax=C$ 下方距离它最近的可行的整点。算法的思路就是从最左侧的点开始，沿着这些整点的上凸壳搜索，逐步缩小与直线的距离，直到得到最优解。
+
+    在 $(x,y)$ 的坐标系内，算法从 $(0,\lfloor C/B\rfloor)$ 出发，递归地寻找并添加最优的增量 $(\Delta x,\Delta y)$，且保证添加后的点比起之前更靠近直线 $By-Ax=C$，但是不能到达直线的另一侧，也不能让横坐标大于 $M$。设已经得到的点是 $(x,y)$，那么增量 $(\Delta x,\Delta y)$ 满足的条件就是 
+
+    $$
+    0<B\Delta y-A\Delta x\le C-(By-Ax),\ 0<\Delta x\le M-x.
+    $$
+
+    按照沿下凸壳搜索的思路，只需要找到满足这些条件的点中 $\Delta x$ 最小的即可。将第一个不等式改写成
+
+    $$
+    \Delta y \le \dfrac{A}{B}\Delta x+\dfrac{C-(By-Ax)}{B}.
+    $$
+
+    结合前文的 [几何解释](#几何解释) 可知，只要后面的常数项小于 $1$，那么满足这个不等式的整点 $(\Delta x,\Delta y)$ 中横坐标最小的，一定对应着某个上中间分数。这是因为它是所有分母不超过它的分母的分数中，从上方逼近某个实数效果最好的，这只能是上中间分数。而每次添加增量后，都会导致 $\Delta y$ 的上界变得更紧，这意味着必须考察分母更大的上中间分数。
+
+    仿照上一个例题的思路。分母从小到大考察所有上中间分数，如果能够找到横坐标和纵坐标都不越界的上中间分数，就添加进去，并更新相应的上界。当所有可行的上中间分数都添加结束后，得到的就是最优解。相较于之前，这个题目需要同时保证横纵坐标都不越界，需要格外注意。基于和上一个例题类似的论述，不过这次是使用 $B\Delta y-A\Delta x$ 代替之前的 $\Delta x$，可以说明这个算法的复杂度是 $O(\log\min\{A,B\})$ 的。
+
+    === "C++"
+        ```py
+        --8<-- "docs/math/code/continued-fraction/closest-dio.cpp:28:62"
+        ```
+
     === "Python"
         ```py
-        # (x, y) such that y = (A*x+B) // C,
-        # Cy - Ax is max and 0 <= x <= N.
-        def closest(A, B, C, N):
-            # y <= (A*x + B)/C <=> diff(x, y) <= B
-            def diff(x, y):
-                return C * y - A * x
-        
-            a = fraction(A, C)
-            p, q = convergents(a)
-            ph = [B // C]
-            qh = [0]
-            for i in range(2, len(q) - 1):
-                if i % 2 == 0:
-                    while diff(qh[-1] + q[i + 1], ph[-1] + p[i + 1]) <= B:
-                        t = 1 + (diff(qh[-1] + q[i - 1], ph[-1] + p[i - 1]) - B - 1) // abs(
-                            diff(q[i], p[i])
-                        )
-                        dp = p[i - 1] + t * p[i]
-                        dq = q[i - 1] + t * q[i]
-                        k = (N - qh[-1]) // dq
-                        if k == 0:
-                            return qh[-1], ph[-1]
-                        if diff(dq, dp) != 0:
-                            k = min(k, (B - diff(qh[-1], ph[-1])) // diff(dq, dp))
-                        qh.append(qh[-1] + k * dq)
-                        ph.append(ph[-1] + k * dp)
-            return qh[-1], ph[-1]
-        
-        
-        def solve(A, B, N):
-            x, y = closest(A, N % A, B, N // A)
-            return N // A - x, y
+        --8<-- "docs/math/code/continued-fraction/closest-dio.py:22:50"
         ```
 
 ???+ example "[June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)"
-    计算 $\sum\limits_{x=1}^N \lfloor \mathrm{e}x \rfloor$，其中 $\mathrm{e} = [2; 1, 2, 1, 1, 4, 1, 1, 6, 1, \dots, 1, 2n, 1, \dots]$ 是自然对数的底，$N \leq 10^{4000}$。
+    求 $\sum\limits_{x=1}^N \lfloor \mathrm{e}x \rfloor$ 的值，其中，$\mathrm{e}$ 是自然对数的底。
+
+    提示：$e = [2,1,2,1,1,4,1,1,6,1,\cdots,1,2n,1, \cdots]$。[^continued-fraction-of-e]
 
 ??? note "解答"
-    此和等于格点 $(x;y)$ 的数量，使得 $1 \leq x \leq N$ 和 $1 \leq y \leq \mathrm{e}x$。
-    
-    在构造了 $y=\mathrm{e}x$ 以下的点的凸包之后，可以使用 Pick 定理计算这个数：
-    
+    这个和等于集合 $\{(x,y):1\le x\le N,1\le y\le\mathrm{e}x\}$ 中的整点个数。在构建完直线 $y=\mathrm{e}x$ 下的整点的凸包后，可以使用 [Pick 定理](../../geometry/pick.md) 计算整点个数。时间复杂度为 $O(\log N)$。
+
+    原问题要求 $N \le 10^{4000}$。此处 C++ 代码仅作示意，并没有实现高精度计算类。
+
     === "C++"
         ```cpp
-        // sum floor(k * x) for k in [1, N] and x = [a0; a1, a2, ...]
-        int sum_floor(auto a, int N) {
-          N++;
-          auto [ah, ph, qh] = hull(a, N);
-        
-          // The number of lattice points within a vertical right trapezoid
-          // on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
-          // a+1 integer points on the segment (0; y1) - (dx; y2).
-          auto picks = [](int y1, int y2, int dx, int a) {
-            int b = y1 + y2 + a + dx;
-            int A = (y1 + y2) * dx;
-            return (A - b + 2) / 2 + b - (y2 + 1);
-          };
-        
-          int ans = 0;
-          for (size_t i = 1; i < qh.size(); i++) {
-            ans += picks(ph[i - 1], ph[i], qh[i] - qh[i - 1], ah[i - 1]);
-          }
-          return ans - N;
-        }
+        --8<-- "docs/math/code/continued-fraction/sum-floor.cpp:46:66"
         ```
-    
+
     === "Python"
         ```py
-        # sum floor(k * x) for k in [1, N] and x = [a0; a1, a2, ...]
-        def sum_floor(a, N):
-            N += 1
-            ah, ph, qh = hull(a, N)
-        
-            # The number of lattice points within a vertical right trapezoid
-            # on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
-            # a+1 integer points on the segment (0; y1) - (dx; y2).
-            def picks(y1, y2, dx, a):
-                b = y1 + y2 + a + dx
-                A = (y1 + y2) * dx
-                return (A - b + 2) // 2 + b - (y2 + 1)
-        
-            ans = 0
-            for i in range(1, len(qh)):
-                ans += picks(ph[i - 1], ph[i], qh[i] - qh[i - 1], ah[i - 1])
-            return ans - N
+        --8<-- "docs/math/code/continued-fraction/sum-floor.py:36:53"
         ```
 
 ???+ example "[NAIPC 2019 - It's a Mod, Mod, Mod, Mod World](https://open.kattis.com/problems/itsamodmodmodmodworld)"
-    给定 $p$、$q$ 和 $n$，计算 $\sum\limits_{i=1}^n [p \cdot i \bmod q]$。
+    给定正整数 $p,q,n$，求 $\sum\limits_{i=1}^n [pi \bmod q]$ 的值。
 
 ??? note "解答"
-    如果您注意到 $a \bmod b = a - \lfloor \frac{a}{b} \rfloor b$，则此问题会减少到上一个问题。有了这个事实，总数减少到
-    
+    因为和式可以变形为
+
     $$
-    \sum\limits_{i=1}^n \left(p \cdot i - \left\lfloor \frac{p \cdot i}{q} \right\rfloor q\right) = \frac{pn(n+1)}{2}-q\sum\limits_{i=1}^n \left\lfloor \frac{p \cdot i}{q}\right\rfloor
+    \sum_{i=1}^n [pi \bmod q] 
+    =\sum_{i=1}^n\left(pi - q\left\lfloor\dfrac{pi}{q}\right\rfloor\right) = \dfrac{pn(n+1)}{2} - q\sum_{i=1}^n\left\lfloor\dfrac{p}{q}i\right\rfloor,
     $$
-    
-    然而，将 $x$ 从 $1$ 到 $N$ 的 $\lfloor rx \rfloor$ 相加，是我们能够从上一个问题中得出的结果。
-    
+
+    这个问题可以转化为上一个问题，只要用 $\dfrac{p}{q}$ 替代 $\mathrm{e}$ 即可。单次查询的时间复杂度为 $O(\log\min\{p,q\})$。
+
     === "C++"
         ```cpp
-        void solve(int p, int q, int N) {
-          cout << p * N * (N + 1) / 2 - q * sum_floor(fraction(p, q), N) << "\n";
-        }
+        --8<-- "docs/math/code/continued-fraction/mod-mod-mod.cpp:78:80"
         ```
-    
+
     === "Python"
         ```py
-        def solve(p, q, N):
-            return p * N * (N + 1) // 2 - q * sum_floor(fraction(p, q), N)
+        --8<-- "docs/math/code/continued-fraction/mod-mod-mod.py:65:66"
         ```
 
 ???+ example "[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)"
-    给定 $N$、$M$、$A$ 和 $B$，计算 $\sum\limits_{i=0}^{N-1} \lfloor \frac{A \cdot i + B}{M} \rfloor$。
+    给定正整数 $N,M,A,B$，求 $\displaystyle\sum_{i=0}^{N-1} \left\lfloor \frac{A \cdot i + B}{M} \right\rfloor$ 的值。
 
 ??? note "解答"
-    这是迄今为止技术上最麻烦的问题。
-    
-    可以使用相同的方法来构造线 $y = \frac{Ax+B}{M}$ 以下的点的全凸包。
-    
-    已经知道如何解决 $B = 0$ 的问题。此外，已经知道如何构造这个凸包，直到 $[0, N-1]$ 段上的这条线的最近格点（这在上面的「罪与罚」问题中完成）。
-    
-    现在应该注意到，一旦到达了离直线最近的点，就可以假设直线实际上通过了最近的点。因为在实际直线和稍微向下移动以通过最近点的直线之间，$[0, N-1]$ 上没有其他格点。
-    
-    也就是说，要在 $[0, N-1]$ 上的线 $y=\frac{Ax+B}{M}$ 下方构造全凸包，可以将其构造到与 $[0, N-1]$ 的线最近的点，然后继续，就像该线通过该点一样，重用用于构造 $B=0$ 的凸包的算法：
-    
+    这是到目前为止最为复杂的题目。它可以通过 [类欧几里得算法](./euclidean.md) 计算。此处给出基于连分数的算法，时间复杂度是 $O(\log\min\{A,B\})$。
+
+    可以通过构造直线 $y=\dfrac{Ax+B}{M}$ 以下且 $0\le x< N$ 的全部整点的凸包，并用 Pick 定理计算整点的个数。之前已经解决 $B=0$ 的情形。对于一般的情形，可以分为两步进行。首先通过添加上中间分数来逐步接近直线（即第二个例题），直到找到最接近直线的点，再通过添加下中间分数来逐步远离直线（即第一个例题）。
+
+    === "C++"
+        ```py
+        --8<-- "docs/math/code/continued-fraction/sum-floor-axbc.cpp:28:88"
+        ```
+
     === "Python"
         ```py
-        # hull of lattice (x, y) such that C*y <= A*x+B
-        def hull(A, B, C, N):
-            def diff(x, y):
-                return C * y - A * x
-        
-            a = fraction(A, C)
-            p, q = convergents(a)
-            ah = []
-            ph = [B // C]
-            qh = [0]
-        
-            def insert(dq, dp):
-                k = (N - qh[-1]) // dq
-                if diff(dq, dp) > 0:
-                    k = min(k, (B - diff(qh[-1], ph[-1])) // diff(dq, dp))
-                ah.append(k)
-                qh.append(qh[-1] + k * dq)
-                ph.append(ph[-1] + k * dp)
-        
-            for i in range(1, len(q) - 1):
-                if i % 2 == 0:
-                    while diff(qh[-1] + q[i + 1], ph[-1] + p[i + 1]) <= B:
-                        t = (B - diff(qh[-1] + q[i + 1], ph[-1] + p[i + 1])) // abs(
-                            diff(q[i], p[i])
-                        )
-                        dp = p[i + 1] - t * p[i]
-                        dq = q[i + 1] - t * q[i]
-                        if dq < 0 or qh[-1] + dq > N:
-                            break
-                        insert(dq, dp)
-        
-            insert(q[-1], p[-1])
-        
-            for i in reversed(range(len(q))):
-                if i % 2 == 1:
-                    while qh[-1] + q[i - 1] <= N:
-                        t = (N - qh[-1] - q[i - 1]) // q[i]
-                        dp = p[i - 1] + t * p[i]
-                        dq = q[i - 1] + t * q[i]
-                        insert(dq, dp)
-            return ah, ph, qh
+        --8<-- "docs/math/code/continued-fraction/sum-floor-axbc.py:22:80"
         ```
 
 ???+ example "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
-    有一个有理数 $\frac{p}{q}$，即 $1 \leq p, q \leq 10^9$。您可以询问几个素数 $m$ 的 $p q^{-1}$ 模 $m \sim 10^9$ 的值。恢复 $\frac{p}{q}$。
-    
-    这个问题等价于：查找 $1 \leq x \leq N$ 中，使 $Ax \bmod M$ 最小的 $x$。
+    有个未知的有理数 $\dfrac{p}{q}$ 且 $1\le p, q\le 10^9$，可以询问对某个素数 $m\in[10^9,10^{12}]$ 取模后的 $pq^{-1}$ 的值。请在不超过十次询问内确定 $p$ 和 $q$ 的值。
+
+    这个问题等价于找到 $[1,N]$ 中使得 $Ax\bmod M$ 最小的 $x$。
 
 ??? note "解答"
-    根据中国剩余定理，要求结果模化几个素数与要求其模化其乘积是相同的。因此，在不丧失一般性的情况下，假设知道余数模足够大的数 $m$。
-    
-    对于给定的余数 $r$，可能有几种可能的解决方案 $(p, q)$ 到 $p \equiv qr \pmod m$。然而，如果 $(p_1, q_1)$ 和 $(p_2, q_2)$ 都是解，那么它也认为 $p_1 q_2 \equiv p_2 q_1 \pmod m$。假设 $\frac{p_1}{q_1} \neq \frac{p_2}{q_2}$，则意味着 $|p_1 q_2 - p_2 q_1|$ 至少为 $m$。
-    
-    题面有 $1 \leq p, q \leq 10^9$，因此，如果 $p_1, q_1$ 和 $p_2, q_2$ 最多都是 $10^9$ 的话，那么差额最多为 $10^{18}$。对于 $m > 10^{18}$，这意味着具有 $\frac{p}{q}$ 的解 $1 \leq p, q \leq 10^9$ 作为有理数是唯一的。
-    
-    因此，问题归结为，给定 $r$ 模 $m$，找到任何 $q$，使得 $1 \leq q \leq 10^9$ 和 $qr \;\bmod\; m \leq 10^9$。
-    
-    这实际上与找到 $1 \leq q \leq 10^9$ 的 $q$ 是相同的，该 $q$ 提供了可能的最小 $qr \bmod m$。
-    
-    对于 $qr = km + b$，这意味着需要找到一对 $(q, m)$，使得 $1 \leq q \leq 10^9$ 和 $qr - km \geq 0$ 是可能的最小值。
-    
-    由于 $m$ 是常量，可以除以它，并进一步将其重新表述为求解 $q$，这样 $1 \leq q \leq 10^9$ 和 $\frac{r}{m} q - k \geq 0$ 是可能的最小值。
-    
-    就连分数而言，这意味着 $\frac{k}{q}$ 是 $\frac{r}{m}$ 的最佳丢番图近似值，并且仅检查 $\frac{r}{m}$ 的下中间分数就足够了。
-    
+    根据 [中国剩余定理](./crt.md)，询问对多个素数取模后的结果，相当于询问对这些素数的乘积取模的结果。因此，本题可以看作是询问分数对足够大的模数 $m$ 取模后的结果，要求确定分数的分子和分母。
+
+    对于某个模数 $m$，使得 $qr\equiv p\pmod m$ 成立的数对 $(p,q)$ 可能并不唯一。假设 $(p_1,q_1)$ 和 $(p_2,q_2)$ 都可以使得这个等式成立，那么必然有 $(p_1q_2-p_2q_1)r\equiv 0\pmod m$。根据 $r$ 的构造可知，$r$ 与 $m$ 互素，所以 $p_1q_2-p_2q_1\equiv 0\pmod m$，亦即 $m\mid(p_1q_2-p_2q_1)$。如果 $p_1q_2-p_2q_1$ 不为零，那么它的绝对值至少是 $m$。问题中限制了 $p,q\in[1,10^9]$，这意味着这个差值不应该超过 $10^{18}$，因此只要取 $m>10^{18}$ 就可以保证求出的 $(p,q)$ 是唯一的。
+
+    现在的问题归结为，给定模数 $m$ 和余数 $r$，求不超过 $n$ 的正整数对 $(p,q)$ 使得 $qr\equiv p\pmod m$。在已知这样的解是唯一的情况下，其实只要找到 $q\in[1,n]$ 时使得 $qr\bmod m$ 最小的 $q$ 即可，因为此时有且仅有一个 $q$ 使得余数不超过 $n$。这正是前面提到的等价表述。
+
+    在 $(q,k)$ 所在的平面坐标系内，这相当于要找到 $q\in[1,n]$ 时在直线 $qr-km=0$ 下方最接近它的整点，因为余数 $qr\bmod m$ 就正比于整点与直线的距离。结合前文的 [几何解释](#几何解释) 可知，这样的整点必然对应着有理分数 $\dfrac{r}{m}$ 的某个下中间分数。算法复杂度是 $O(\log\min\{r,m\})$。
+
+    === "C++"
+        ```cpp
+        --8<-- "docs/math/code/continued-fraction/recover-fraction.cpp:28:40"
+        ```
+
     === "Python"
         ```py
-        # find Q that minimizes Q*r mod m for 1 <= k <= n < m
-        def mod_min(r, n, m):
-            a = fraction(r, m)
-            p, q = convergents(a)
-            for i in range(2, len(q)):
-                if i % 2 == 1 and (i + 1 == len(q) or q[i + 1] > n):
-                    t = (n - q[i - 1]) // q[i]
-                    return q[i - 1] + t * q[i]
+        --8<-- "docs/math/code/continued-fraction/recover-fraction.py:22:30"
         ```
 
 ## 习题
 
 -   [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
 -   [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
+-   [「LibreOJ NOI Round #2」单枪匹马](https://loj.ac/p/573)
 -   [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)
 -   [Codeforces Round #201 (Div. 1) - Doodle Jump](https://codeforces.com/contest/346/problem/E)
 -   [Codeforces Round #325 (Div. 1) - Alice, Bob, Oranges and Apples](https://codeforces.com/contest/585/problem/C)
@@ -1933,3 +1736,7 @@ Galois 定理揭示了 $\sqrt{r}$ 的连分数表示的规律。
 [^nose-streching]: 此说法并非专业术语。可能转译自俄文文献 [ЦЕПНЫЕ ДРОБИ](https://old.mccme.ru/free-books/mmmf-lectures/book.14-full.pdf)，在 Алгоритм «вытягивания носов» 一节。
 
 [^pgl2]: 这些性质表明，全体分式线性变换的群同构于 [射影线性群](https://en.wikipedia.org/wiki/Projective_linear_group)  $PGL_2(\mathbf R)$。
+
+[^period-surd]: 证明见 [维基百科页面](https://en.wikipedia.org/wiki/Periodic_continued_fraction#Length_of_the_repeating_block) 的参考文献。
+
+[^continued-fraction-of-e]: 关于自然对数的底 $\mathrm{e}$ 的连分数展开的证明可以参考 [此处](https://proofwiki.org/wiki/Continued_Fraction_Expansion_of_Euler%27s_Number)。
