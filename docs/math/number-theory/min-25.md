@@ -59,7 +59,7 @@ $$
 > Notice：$g(p) = p^{s}$ 是完全积性函数！
 
 于是设 $G_{k}(n) := \sum_{i = 2}^{n} \left[p_{k} < \operatorname{lpf}(i) \lor \operatorname{isprime}(i)\right] g(i)$，即埃筛第 $k$ 轮筛完后剩下的数的 $g$ 值之和。  
-对于一个合数 $x$，必定有 $\operatorname{lpf}(x) \le \sqrt{x}$，则 $F_{\mathrm{prime}} = G_{\pi(\sqrt{n})+1}$，故只需筛到 $G_{\pi(\sqrt{n})+1}$ 即可。  
+对于一个合数 $x \le n$，必定有 $\operatorname{lpf}(x) \le \sqrt{x} \le \sqrt{n}$。设 $p_{\ell(n)}$ 为不大于 $\sqrt{n}$ 的最大质数，则 $F_{\mathrm{prime}}(n) = G_{\ell(n)}(n)$，即在埃筛进行 $\ell$ 轮之后剩下的均为质数。
 考虑 $G$ 的边界值，显然为 $G_{0}(n) = \sum_{i = 2}^{n} g(i)$。（还记得吗？特别约定了 $p_{0} = 1$）  
 对于转移，考虑埃筛的过程，分开讨论每部分的贡献，有：
 
