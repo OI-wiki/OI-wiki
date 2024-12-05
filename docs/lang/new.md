@@ -120,8 +120,8 @@ int main() {
 
 **范围适配器** 作为 [**范围适配器闭包对象**](https://zh.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject)，也属于 [**函数对象**](#函数对象)，它们重载了 `operator|`，使得它们能够像管道一样拼装起来。
 
-???-note "管道运算符"
-此处的 `|` 应该理解成管道运算符，而非按位或运算符，这个用法来自于 Linux 中的 [管道](https://zh.wikipedia.org/wiki/%E7%AE%A1%E9%81%93_\(Unix\))。
+??? note "管道运算符"
+    此处的 `|` 应该理解成管道运算符，而非按位或运算符，这个用法来自于 Linux 中的 [管道](https://zh.wikipedia.org/wiki/%E7%AE%A1%E9%81%93_\(Unix\))。
 
 在复杂操作下，也能保持良好可读性，有以下特性：
 
@@ -263,7 +263,7 @@ int main() {
 ## std::function
 
 ???+ warning "请注意性能开销"
-    `std::function` 会引入一定的性能开销，通常会造成 2 到 3 倍以上的性能损失。
+    `std::function` 会引入一定的性能开销，经 [Benchmark](./lambda.md#其他方式) 测试，通常会造成 2 到 3 倍以上的性能损失。
     
     因为它使用了类型擦除的技术，而这通常借由虚函数机制实现，调用虚函数会引入额外的 [开销](https://stackoverflow.com/questions/5057382/what-is-the-performance-overhead-of-stdfunction)。
     
