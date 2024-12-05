@@ -88,6 +88,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
         public Trie() {
             root = new Node();
         }
+    ```
 
         // 插入字符串
         public void insert(String word) {
