@@ -77,7 +77,6 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
 === "Java"
     ```java
     public class Trie {
-    
         public static class Node {
             Map<Character, Node> map = new HashMap<>();
             boolean end = false;
@@ -88,10 +87,9 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
         public Trie() {
             root = new Node();
         }
-    ```
 
-        // 插入字符串
         public void insert(String word) {
+            // 插入字符串
             Node current = root;
             for (char c : word.toCharArray()) {
                 Node node = current.map.get(c);
@@ -104,8 +102,8 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
             current.end = true;
         }
 
-        // 查找字符串是否存在
         public boolean find(String word) {
+            // 查找字符串是否存在
             Node current = root;
             for (char c : word.toCharArray()) {
                 Node node = current.map.get(c);
