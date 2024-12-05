@@ -74,6 +74,50 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
             return self.exist[p]
     ```
 
+=== "Java"
+    ```java
+    public class Trie {
+    
+        public static class Node {
+            Map<Character, Node> map = new HashMap<>();
+            boolean end = false;
+        }
+    
+        private Node root;
+    
+        public Trie() {
+            root = new Node();
+        }
+
+        // 插入字符串
+        public void insert(String word) {
+            Node current = root;
+            for (char c : word.toCharArray()) {
+                Node node = current.map.get(c);
+                if (node == null) {
+                    node = new Node();
+                    current.map.put(c, node);
+                }
+                current = node;
+            }
+            current.end = true;
+        }
+
+        // 查找字符串是否存在
+        public boolean find(String word) {
+            Node current = root;
+            for (char c : word.toCharArray()) {
+                Node node = current.map.get(c);
+                if (node == null) {
+                    return false;
+                }
+                current = node;
+            }
+            return current.end;
+        }
+    }
+    ```
+
 ## 应用
 
 ### 检索字符串
