@@ -498,7 +498,7 @@ DP 数组的长度我们可以根据子树最深节点算出。
 
 [「洛谷 P3384」【模板】重链剖分/树链剖分](https://www.luogu.com.cn/problem/P3384)
 
-[「洛谷 P1505」[国家集训队] 旅游](https://www.luogu.com.cn/problem/P1505)
+[「洛谷 P1505」\[国家集训队\] 旅游](https://www.luogu.com.cn/problem/P1505)
 
 [「NOI2015」软件包管理器](https://uoj.ac/problem/128)
 
