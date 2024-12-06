@@ -101,8 +101,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
             }
             current.end = true;
         }
-    ```
-
+        
         public boolean find(String word) {
             // 查找字符串是否存在
             Node current = root;
