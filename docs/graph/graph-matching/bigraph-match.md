@@ -126,7 +126,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 因为在最小点覆盖中，任意一条边都被至少选了一个顶点，所以对于其点集的补集，任意一条边都被至多选了一个顶点，所以不存在边连接两个点集中的点，且该点集最大。因此二分图中，最大独立集 $=n-$ 最小点覆盖。
 
-## 习题
+## 例题，与常见建模方法
 
 ??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78)"
     模板题
@@ -216,11 +216,448 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
     }
     ```
 
-??? note "[P1640 \[SCOI2010\] 连续攻击游戏](https://www.luogu.com.cn/problem/P1640)"
-    None
+??? note "[luogu P1129 矩阵游戏](https://www.luogu.com.cn/problem/P1129)"
+    ??? note "解法"
+        注意到，当存在 $n$ 个 $1$，使得这些 $1$ 不在同一行、同一列，那么必然有解，否则必然无解。
 
-??? note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E)"
-    None
+        问题转化成了能否找到这 $n$ 个 $1$。
+
+        考虑对于一个 $1$ 而言，最终的方案中选了这个 $1$ 代表这个 $1$ 的行、列被占用。
+
+        于是可以建出一个 $n$ 个左部点、$n$ 个右部点的二分图，其中对于某个为 $1$ 的元素，我们建一条连接它的行的左部点和它的列的右部点。
+
+        于是就可以二分图匹配了。
+
+    ??? note "代码"
+        ```cpp
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int ct, n, t[100010], x, r[100010], ans, vis[100010], dis[100010];
+        vector<int> to[100010];
+        queue<int> q;
+        
+        //There was a delta here...
+        int DFS(int x) {
+          if(vis[x]) {
+            return 0;
+          }
+          vis[x] = 1;
+          for(auto i : to[x]) {
+            if(!r[i]) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+            if(dis[r[i]] == dis[x] + 1 && DFS(r[i])) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+          }
+          return 0;
+        }
+        
+        int BFS() {
+          fill(vis + 1, vis + n + 1, 0);
+          fill(dis + 1, dis + n + 1, 0);
+          for(int i = 1; i <= n; i++) {
+            if(!t[i]) {
+              q.push(i);
+              dis[i] = 1;
+            }
+          }
+          int f = 0;
+          for(; q.size(); q.pop()) {
+            int tmp = q.front();
+            for(auto i : to[tmp]) {
+              if(!r[i]) {
+                f = 1;
+              }
+              if(r[i]) {
+                if(!dis[r[i]]) {
+                  dis[r[i]] = dis[tmp] + 1;
+                  q.push(r[i]);
+                }
+              }
+            }
+          }
+          return f;
+        }
+
+        int main() {
+          ios::sync_with_stdio(0);
+          cin.tie(0), cout.tie(0);
+          for(cin >> ct; ct--; ) {
+            cin >> n;
+            for(int i = 1; i <= n; i++) {
+              for(int j = 1; j <= n; j++) {
+                cin >> x;
+                if(x) {
+                  to[i].push_back(j);
+                }
+              }
+            }
+            for(; BFS(); ) {
+              for(int i = 1; i <= n; i++) {
+                if(!t[i] && DFS(i)) {
+                  ans++;
+                }
+              }
+            }
+            cout << (ans == n? "Yes" : "No") << '\n';
+            for(int i = 1; i <= n; i++) {
+              t[i] = r[i] = 0;
+              to[i].clear();
+            }
+            ans = 0;
+          }
+          return 0;
+        }
+        ```
+
+??? note "[Gym 104427B Lawyers](https://codeforces.com/gym/104427/problem/B)"
+    ???+ note "题意"
+        有 $n$ 个律师，都被指控有欺诈罪。于是，他们需要互相辩护，确保每一名律师都被释放。
+
+        这 $n$ 个律师有 $m$ 对信任关系，一个信任关系 $(a, b)$ 表示 $a$ 可以为 $b$ 辩护。
+
+        任何一个受到辩护的律师都会被无罪释放，除了一个例外：如果 $a$ 和 $b$ 互相辩护，他们都会被判有罪。
+
+        求是否可以使得每一名律师都被释放。
+
+    ??? note "解法"
+        对于每一个 **无序对** $(a, b)$，当 $a$ 可以辩护 $b$，连这个无序对向 $a$ 的边，反之亦然。
+
+        只保存有边相连的 $(a, b)$，问题被转化成了一个 $m$ 个左部点、$n$ 个右部点的二分图最大匹配。
+
+    ??? note "代码"
+        ```cpp
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int n, k, u, v, t[200020], r[200020], ans, vis[200020], dis[200020], c;
+        map<pair<int, int>, int> mp;
+        vector<int> to[200020];
+        queue<int> q;
+        
+        //There was a delta here...
+        int DFS(int x) {
+          if(vis[x]) {
+            return 0;
+          }
+          vis[x] = 1;
+          for(auto i : to[x]) {
+            if(!r[i]) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+            if(dis[r[i]] == dis[x] + 1 && DFS(r[i])) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+          }
+          return 0;
+        }
+
+        int BFS() {
+          fill(vis + 1, vis + n + 1, 0);
+          fill(dis + 1, dis + n + 1, 0);
+          for(int i = 1; i <= n; i++) {
+            if(!t[i]) {
+              q.push(i);
+              dis[i] = 1;
+            }
+          }
+          int f = 0;
+          for(; q.size(); q.pop()) {
+            int tmp = q.front();
+            for(auto i : to[tmp]) {
+              if(!r[i]) {
+                f = 1;
+              }
+              if(r[i]) {
+                if(!dis[r[i]]) {
+                  dis[r[i]] = dis[tmp] + 1;
+                  q.push(r[i]);
+                }
+              }
+            }
+          }
+          return f;
+        }
+        
+        void mxf() {
+          for(; BFS(); ) {
+            for(int i = 1; i <= n; i++) {
+              if(!t[i] && DFS(i)) {
+                ans++;
+              }
+            }
+          }
+        }
+
+        int main() {
+          ios::sync_with_stdio(0);
+          cin.tie(0), cout.tie(0);
+          cin >> n >> k;
+          for(int i = 1; i <= k; i++) {
+            cin >> u >> v;
+            if(mp.find({u, v}) == mp.end()) {
+              mp[{u, v}] = mp[{v, u}] = ++c;
+            }
+            to[v].push_back({mp[{u, v}]});
+          }
+          mxf();
+          cout << (ans == n? "YES" : "NO") << '\n';
+          ans = 0;
+          return 0;
+        }
+        ```
+
+??? note "[LibreOJ 6002 最小路径覆盖](https://loj.ac/p/6002)"
+    ??? note "解法"
+        对于每一个点，我们建立一个入点、一个出点。对于原图的边 $(u, v)$，在 $v$ 的入点和 $u$ 的出点连边。
+
+        显然一个出点只能和至多一个入点匹配。
+
+        于是就变成了一个最大匹配问题。
+
+    ??? note "代码"
+        ```cpp
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int n, m, vis[220], dis[220], t[220], r[220], ans, u, v;
+        vector<int> to[220];
+        queue<int> q;
+        
+        //There was a delta here...
+        int DFS(int x) {
+          if(vis[x]) {
+            return 0;
+          }
+          vis[x] = 1;
+          for(auto i : to[x]) {
+            if(!r[i]) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+            if(dis[r[i]] == dis[x] + 1 && DFS(r[i])) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+          }
+          return 0;
+        }
+        
+        int BFS() {
+          fill(vis + 1, vis + n + 1, 0);
+          fill(dis + 1, dis + n + 1, 0);
+          for(int i = 1; i <= n; i++) {
+            if(!t[i]) {
+              q.push(i);
+              dis[i] = 1;
+            }
+          }
+          int f = 0;
+          for(; q.size(); q.pop()) {
+            int tmp = q.front();
+            for(auto i : to[tmp]) {
+              if(!r[i]) {
+                f = 1;
+              }
+              if(r[i]) {
+                if(!dis[r[i]]) {
+                  dis[r[i]] = dis[tmp] + 1;
+                  q.push(r[i]);
+                }
+              }
+            }
+          }
+          return f;
+        }
+        
+        void mxf() {
+          for(; BFS(); ) {
+            for(int i = 1; i <= n; i++) {
+              if(!t[i] && DFS(i)) {
+                ans++;
+              }
+            }
+          }
+        }
+        
+        int main() {
+          ios::sync_with_stdio(0);
+          cin.tie(0), cout.tie(0);
+          cin >> n >> m;
+          for(int i = 1; i <= m; i++) {
+            cin >> u >> v;
+            to[v].push_back(u);
+          }
+          mxf();
+          for(int i = 1; i <= n; i++) {
+            if(!t[i]) {
+              cout << i << ' ';
+              for(int j = r[i]; j; j = r[j]) {
+                cout << j << ' ';
+              }
+              cout << '\n';
+            }
+          }
+          cout << n - ans << '\n';
+          return 0;
+        }
+        ```
+
+??? note "[CF 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)"
+    ???+ note "题意"
+        用一些 $1 \times x$ 的砖精确覆盖一个 $n \times m$ 的网格，砖可以旋转，其中有一些格子不能覆盖。
+
+    ??? note "解法"
+        考虑一开始全铺 $1 \times 1$ 的砖。
+
+        然后，每一次把两个砖块合并到一起。
+
+        所以可以对横向的合并和竖向的合并之间的冲突建边。
+
+        然后原问题转化成了一个二分图最大独立集。
+
+    ??? note "代码"
+        ```cpp
+        #include <bits/stdc++.h>
+        using namespace std;
+        
+        int n, m, belr[220][220], beld[220][220], dcnt, rcnt, vis[100010], dis[100010], t[100010], r[100010], cnt;
+        char c[220][220];
+        vector<int> to[100010];
+        queue<int> q;
+        
+        int DFS(int x) {
+          //cout << x << '\n';
+          if(vis[x]) {
+            return 0;
+          }
+          vis[x] = 1;
+          for(auto i : to[x]) {
+            //cout << x << ' ' << i << '\n';
+            if(!r[i]) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+            if(dis[r[i]] == dis[x] + 1 && DFS(r[i])) {
+              r[i] = x;
+              t[x] = i;
+              return 1;
+            }
+          }
+          return 0;
+        }
+        
+        int BFS() {
+          fill(vis + 1, vis + rcnt + 1, 0);
+          fill(dis + 1, dis + rcnt + 1, 0);
+          for(int i = 1; i <= rcnt; i++) {
+            if(!t[i]) {
+              q.push(i);
+              dis[i] = 1;
+            }
+          }
+          int f = 0;
+          for(; q.size(); q.pop()) {
+            int tmp = q.front();
+            for(auto i : to[tmp]) {
+              if(!r[i]) {
+                f = 1;
+              }
+              if(r[i]) {
+                if(!dis[r[i]]) {
+                  dis[r[i]] = dis[tmp] + 1;
+                  q.push(r[i]);
+                }
+              }
+            }
+          }
+          return f;
+        }
+        
+        int solve() {
+          int rt = 0;
+          for(; BFS(); ) {
+            for(int i = 1; i <= rcnt; i++) {
+              if(!t[i] && DFS(i)) {
+                rt++;
+              }
+              //cout << '\n';
+            }
+          }
+          return rt;
+        }
+        
+        int main() {
+          cin >> n >> m;
+          for(int i = 1; i <= n; i++) {
+            for(int j = 1; j <= m; j++) {
+              cin >> c[i][j];
+            }
+          }
+          for(int i = 1; i <= n; i++) {
+            for(int j = 1; j <= m; j++) {
+              if(c[i][j] == '#') {
+                cnt++;
+                if(c[i + 1][j] == '#') {
+                  beld[i][j] = ++dcnt;
+                }
+                if(c[i][j + 1] == '#') {
+                  belr[i][j] = ++rcnt;
+                }
+              }
+            }
+          }
+          for(int i = 1; i <= n; i++) {
+            for(int j = 1; j <= m; j++) {
+              if(c[i][j] == '#') {
+                if(c[i - 1][j] == '#' && c[i][j - 1] == '#') {
+                  to[belr[i][j - 1]].push_back(beld[i - 1][j]);
+                }
+                if(c[i + 1][j] == '#' && c[i][j + 1] == '#') {
+                  to[belr[i][j]].push_back(beld[i][j]);
+                }
+                if(c[i + 1][j] == '#' && c[i][j - 1] == '#') {
+                  to[belr[i][j - 1]].push_back(beld[i][j]);
+                }
+                if(c[i - 1][j] == '#' && c[i][j + 1] == '#') {
+                  to[belr[i][j]].push_back(beld[i - 1][j]);
+                }
+              }
+            }
+          }
+          /*
+          for(int i = 1; i <= rcnt; i++) {
+            cout << i << ": ";
+            for(auto j : to[i]) {
+              cout << j << ' ';
+            }
+            cout << '\n';
+          }
+          */
+          //cout << rcnt << ' ' << dcnt << '\n';
+          cout << cnt - rcnt - dcnt + solve() << '\n';
+          /*
+          for(int i = 1; i <= rcnt; i++) {
+            cout << t[i] << ' ';
+          }
+          cout << '\n';
+          */
+          return 0;
+        }
+        ```
 
 ## 参考资料
 
