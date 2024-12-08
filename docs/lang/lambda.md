@@ -289,6 +289,7 @@ auto dfs = [&](int i) -> void {
 ???+ example "修改如上代码为："
     ```cpp
     int n = 10;
+    ```
 
     std::function<void (int)> dfs = [&](int i) -> void
     {
@@ -297,7 +298,7 @@ auto dfs = [&](int i) -> void {
         else
             dfs(i + 1);  // OK
     };
-    
+
     dfs(1);
     ```
 
@@ -306,6 +307,7 @@ auto dfs = [&](int i) -> void {
 ???+ example "修改如上代码为："
     ```cpp
     int n = 10;
+    ```
 
     // 参数列表中有参数类型为 auto，则这个 Lambda 类中的 operator() 函数将被定义为模板函数，模板函数可以在稍后被调用时再进行实例化
     auto dfs = [&](auto& self, int i) -> void  // [&] 只会捕获用到的变量，所以不会捕获 auto dfs
@@ -315,7 +317,7 @@ auto dfs = [&](int i) -> void {
         else
             self(self, i + 1);  // OK
     };
-    
+
     dfs(dfs, 1);
     ```
 
@@ -383,7 +385,7 @@ static const auto lambda = [](const int a) {
 };
 
 static auto init = [] {
-  fptr = +lambda; // 同等于 fptr = static_cast<int (*)(int)>(lambda);
+  fptr = +lambda;  // 同等于 fptr = static_cast<int (*)(int)>(lambda);
   return 0;
 }();
 
