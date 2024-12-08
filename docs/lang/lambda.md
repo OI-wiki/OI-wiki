@@ -289,7 +289,6 @@ auto dfs = [&](int i) -> void {
 ???+ example "修改如上代码为："
     ```cpp
     int n = 10;
-    ```
 
     std::function<void (int)> dfs = [&](int i) -> void
     {
@@ -307,7 +306,6 @@ auto dfs = [&](int i) -> void {
 ???+ example "修改如上代码为："
     ```cpp
     int n = 10;
-    ```
 
     // 参数列表中有参数类型为 auto，则这个 Lambda 类中的 operator() 函数将被定义为模板函数，模板函数可以在稍后被调用时再进行实例化
     auto dfs = [&](auto& self, int i) -> void  // [&] 只会捕获用到的变量，所以不会捕获 auto dfs
