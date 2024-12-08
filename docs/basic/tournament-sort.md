@@ -147,8 +147,8 @@
         for i in range(n):
             arr[i] = val
             val = recreate()
-    ```
-
+    
+    
     tournament_sort()
     print(arr)
     ```
