@@ -71,6 +71,7 @@ jobs:
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: x86_64 Ubuntu
+          PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
 
   undefinedbehaviors-macos:
@@ -96,6 +97,7 @@ jobs:
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: arm64 MacOS
+          PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
 
   undefinedbehaviors-rv:
@@ -119,6 +121,7 @@ jobs:
             --workdir $PWD \
             --env FILES_TO_TEST="${{ needs.correctness.outputs.files_to_test }}" \
             --env RUNS_ON="riscv64 Ubuntu" \
+            --env PYTHONIOENCODING="UTF-8" \
             --env GITHUB_STEP_SUMMARY=$GITHUB_STEP_SUMMARY \
             ghcr.io/trickeye/ubtest:latest sleep infinity
           docker exec ubtest uname -a
@@ -168,7 +171,10 @@ jobs:
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: x86_64 Windows
-        run: python scripts/ub-check.py
+          PYTHONIOENCODING: UTF-8
+        run: |
+          chcp 65001
+          python scripts/ub-check.py
 
 
   undefinedbehaviors-alpine:
@@ -198,4 +204,5 @@ jobs:
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: x86_64 Alpine
+          PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py

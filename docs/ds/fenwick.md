@@ -213,7 +213,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
     
     所以，如果 $c[x]$ 和 $c[y]$ 相交，那么 $c[x]$ 的管辖范围一定完全包含于 $c[y]$。
 
-**性质 $\boldsymbol{2}$：在 $\boldsymbol{c[x]}$ 真包含于 $\boldsymbol{c[x + \operatorname{lowbit}(x)]}$。**
+**性质 $\boldsymbol{2}$：$\boldsymbol{c[x]}$ 真包含于 $\boldsymbol{c[x + \operatorname{lowbit}(x)]}$。**
 
 ??? note "证明"
     证明：设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$，则 $y = (s + 1) \times 2^{k +1}$，$l(x) = s \times 2^{k + 1} + 1$。
