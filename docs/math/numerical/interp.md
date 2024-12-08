@@ -212,7 +212,7 @@ $$
 
 ## C++ 中的实现
 
-自 C++ 20 起，标准库添加了 [`std::midpoint`](https://en.cppreference.com/w/cpp/numeric/midpoint) 和 [`std::lerp`](https://en.cppreference.com/w/cpp/numeric/lerp) 函数，分别用于求中点和线性插值。
+自 C++ 20 起，标准库添加了 [`std::midpoint`](https://zh.cppreference.com/w/cpp/numeric/midpoint) 和 [`std::lerp`](https://zh.cppreference.com/w/cpp/numeric/lerp) 函数，分别用于求中点和线性插值。
 
 ## 参考资料
 
