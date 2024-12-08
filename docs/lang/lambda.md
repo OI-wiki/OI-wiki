@@ -403,7 +403,7 @@ auto nth_fibonacci = [](this auto self, int n) -> int {
 cout << nth_fibonacci(10);
 ```
 
-##### 其他方式实现递归
+##### 其他方式
 
 从本质上来讲，lambda 只是通过实现匿名函数对象一种语法糖，那么我们可以通过定义 **函数对象** 来实现递归。
 
