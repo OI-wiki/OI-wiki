@@ -287,10 +287,10 @@ auto dfs = [&](int i) -> void {
 -   第一种方法是显式指定 $dfs$ 的类型，可以使用 `std::function` 替代。
 
 ???+ example "修改如上代码为："
+    
     ```cpp
     int n = 10;
-    ```
-
+    
     std::function<void (int)> dfs = [&](int i) -> void
     {
         if (i == n)
@@ -298,17 +298,17 @@ auto dfs = [&](int i) -> void {
         else
             dfs(i + 1);  // OK
     };
-
+    
     dfs(1);
     ```
 
 -   第二种方式是不通过捕获的方式获取 $dfs$，而是通过函数传参的方式。
 
 ???+ example "修改如上代码为："
+    
     ```cpp
     int n = 10;
-    ```
-
+    
     // 参数列表中有参数类型为 auto，则这个 Lambda 类中的 operator() 函数将被定义为模板函数，模板函数可以在稍后被调用时再进行实例化
     auto dfs = [&](auto& self, int i) -> void  // [&] 只会捕获用到的变量，所以不会捕获 auto dfs
     {
@@ -317,7 +317,7 @@ auto dfs = [&](int i) -> void {
         else
             self(self, i + 1);  // OK
     };
-
+    
     dfs(dfs, 1);
     ```
 
