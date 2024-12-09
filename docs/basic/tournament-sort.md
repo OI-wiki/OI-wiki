@@ -89,9 +89,10 @@
 
 === "Python"
     ```python
-    n=0
-    a=[0]*MAXN
-    tmp=[0]*MAXN*2
+    n = 0
+    a = [0] * MAXN
+    tmp = [0] * MAXN * 2
+    ```
 
     def go_to_value_num(num):
         while num<n:
