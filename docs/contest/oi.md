@@ -240,7 +240,7 @@ CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌
 
 全称 Singapore National Olympiad in Informatics，在新加坡国内语境且不引起歧义的情况下也作 NOI。赛制上分为 Online Qualification Contest（在线资格赛）和 Final Contest（全国决赛）。在线资格赛以学校为单位报名参加，选手在本校参赛，通过网络进行远程提交。资格赛成绩只在校内排名，前 5 名且非零分选手有资格作为校代表队参加全国决赛。
 
-目前国内 OJ 对于 NOI SG 的题目收录比较匮乏，可以在 [官方的 GitHub 帐号](https://github.com/noisg) 上找到历年题面、测试数据和官方标准程序。
+目前国内 OJ 对于 NOI SG 的题目收录比较匮乏，[洛谷](https://www.luogu.com.cn/problem/list?tag=436&page=1) 简单地收录了近年的内容，可以在 [官方的 GitHub 帐号](https://github.com/noisg) 上找到历年题面、测试数据和官方标准程序。
 
 ### 台湾地区：資訊奧林匹亞競賽
 
