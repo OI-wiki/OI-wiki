@@ -89,51 +89,54 @@
 
 === "Python"
     ```python
-    n = 0
-    a = [0] * MAXN
-    tmp = [0] * MAXN * 2
-    
-    
-    def winner(pos1, pos2):
-        u = pos1 if pos1 >= n else tmp[pos1]
-        v = pos2 if pos2 >= n else tmp[pos2]
-        if tmp[u] <= tmp[v]:
-            return u
-        return v
-    
-    
-    def creat_tree():
-        for i in range(0, n):
-            tmp[n + i] = a[i]
-        for i in range(2 * n - 1, 1, -2):
-            k = int(i / 2)
-            j = i - 1
-            tmp[k] = winner(i, j)
-        value = tmp[tmp[1]]
-        tmp[tmp[1]] = INF
+    n=0
+    a=[0]*MAXN
+    tmp=[0]*MAXN*2
+
+    def go_to_value_num(num):
+        while num<n:
+            num=tmp[num]
+        return num
+
+    def winner(i,j):
+        u=go_to_value_num(i)
+        v=go_to_value_num(j)
+        if tmp[u]=='INF': return v
+        if tmp[v]=='INF': return u
+        if tmp[u]<=tmp[v]:
+            return i
+        return j
+
+    def create_tree():
+        for i in range(n):
+            tmp[n+i]=a[i]
+        for i in range(2*n-1,1,-2):
+            k=int(i/2)
+            j=i-1
+            tmp[k]=winner(i,j)
+        value=tmp[go_to_value_num(1)]
+        tmp[go_to_value_num(1)]='INF'
         return value
-    
-    
-    def recreat():
-        i = tmp[1]
-        while i > 1:
-            j = k = int(i / 2)
-            if i % 2 == 0:
-                j = i + 1
+    def recreate():
+        i=go_to_value_num(1)
+        while i>1:
+            j=k=int(i/2)
+            if i%2==0:
+                j=i+1
             else:
-                j = i - 1
-            tmp[k] = winner(i, j)
-            i = k
-        value = tmp[tmp[1]]
-        tmp[tmp[1]] = INF
+                j=i-1
+            tmp[k]=winner(i,j)
+            i=k
+        value=tmp[go_to_value_num(1)]
+        tmp[go_to_value_num(1)]='INF'
         return value
-    
-    
     def tournament_sort():
-        value = creat_tree()
-        for i in range(0, n):
-            a[i] = value
-            value = recreat()
+        val=create_tree()
+        for i in range(n):
+            a[i]=val
+            val=recreate()
+
+    tournament_sort()
     ```
 
 ## 外部链接
