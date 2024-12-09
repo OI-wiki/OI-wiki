@@ -30,7 +30,7 @@ author: i-Yirannn, Xeonacid, ouuan
 
 ## 使用
 
-参见 [std::bitset - cppreference.com](https://en.cppreference.com/w/cpp/utility/bitset)。
+参见 [std::bitset - cppreference.com](https://zh.cppreference.com/w/cpp/utility/bitset)。
 
 ### 头文件
 
