@@ -89,68 +89,54 @@
 
 === "Python"
     ```python
-    # example
-    from random import sample
-    
-    arr = sample(range(1, 10), 6)
-    n = 6
-    tmp = [0] * 12
-    
-    
+    n=0
+    a=[0]*MAXN
+    tmp=[0]*MAXN*2
+
     def go_to_value_num(num):
-        while num < n:
-            num = tmp[num]
+        while num<n:
+            num=tmp[num]
         return num
-    
-    
-    def winner(i, j):
-        u = go_to_value_num(i)
-        v = go_to_value_num(j)
-        if tmp[u] == "INF":
-            return v
-        if tmp[v] == "INF":
-            return u
-        if tmp[u] <= tmp[v]:
+
+    def winner(i,j):
+        u=go_to_value_num(i)
+        v=go_to_value_num(j)
+        if tmp[u]=='INF': return v
+        if tmp[v]=='INF': return u
+        if tmp[u]<=tmp[v]:
             return i
         return j
-    
-    
+
     def create_tree():
         for i in range(n):
-            tmp[n + i] = arr[i]
-        for i in range(2 * n - 1, 1, -2):
-            k = int(i / 2)
-            j = i - 1
-            tmp[k] = winner(i, j)
-        value = tmp[go_to_value_num(1)]
-        tmp[go_to_value_num(1)] = "INF"
+            tmp[n+i]=a[i]
+        for i in range(2*n-1,1,-2):
+            k=int(i/2)
+            j=i-1
+            tmp[k]=winner(i,j)
+        value=tmp[go_to_value_num(1)]
+        tmp[go_to_value_num(1)]='INF'
         return value
-    
-    
     def recreate():
-        i = go_to_value_num(1)
-        while i > 1:
-            j = k = int(i / 2)
-            if i % 2 == 0:
-                j = i + 1
+        i=go_to_value_num(1)
+        while i>1:
+            j=k=int(i/2)
+            if i%2==0:
+                j=i+1
             else:
-                j = i - 1
-            tmp[k] = winner(i, j)
-            i = k
-        value = tmp[go_to_value_num(1)]
-        tmp[go_to_value_num(1)] = "INF"
+                j=i-1
+            tmp[k]=winner(i,j)
+            i=k
+        value=tmp[go_to_value_num(1)]
+        tmp[go_to_value_num(1)]='INF'
         return value
-    
-    
     def tournament_sort():
-        val = create_tree()
+        val=create_tree()
         for i in range(n):
-            arr[i] = val
-            val = recreate()
-    
-    
+            a[i]=val
+            val=recreate()
+
     tournament_sort()
-    print(arr)
     ```
 
 ## 外部链接
