@@ -77,42 +77,35 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
 === "Java"
     ```java
     public class Trie {
-        public static class Node {
-            Map<Character, Node> map = new HashMap<>();
-            boolean end = false;
-        }
-    
-        private Node root;
-    
-        public Trie() {
-            root = new Node();
-        }
+        
+        int[][] tree = new int[10000][26];
+        int cnt = 0;
+        boolean[] end = new boolean[10000];
         
         public void insert(String word) {
-            // 插入字符串
-            Node current = root;
-            for (char c : word.toCharArray()) {
-                Node node = current.map.get(c);
-                if (node == null) {
-                    node = new Node();
-                    current.map.put(c, node);
+            int p = 0;
+            char[] chars = word.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                int c = chars[i] - 'a';
+                if (tree[p][c] == 0) {
+                    tree[p][c] = ++cnt;
                 }
-                current = node;
+                p = tree[p][c];
             }
-            current.end = true;
+            end[p] = true;
         }
         
         public boolean find(String word) {
-            // 查找字符串是否存在
-            Node current = root;
-            for (char c : word.toCharArray()) {
-                Node node = current.map.get(c);
-                if (node == null) {
+            int p = 0;
+            char[] chars = word.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                int c = chars[i] - 'a';
+                if (tree[p][c] == 0) {
                     return false;
                 }
-                current = node;
+                p = tree[p][c];
             }
-            return current.end;
+            return end[p];
         }
     }
     ```
