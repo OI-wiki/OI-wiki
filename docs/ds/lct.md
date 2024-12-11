@@ -186,7 +186,7 @@ void Splay(int x) {
 
 ```cpp
 // Access 是 LCT
-// 的核心操作，试想我们像求解一条路径，而这条路径恰好就是我们当前的一棵 Splay，
+// 的核心操作，试想我们想求解一条路径，而这条路径恰好就是我们当前的一棵 Splay，
 // 直接调用其信息即可。先来看一下代码，再结合图来看看过程
 int Access(int x) {
   int p;
@@ -386,7 +386,7 @@ LCT 中的大部分操作都基于 `Access`，其余操作的时间复杂度都�
 
 ## 习题
 
--   [「BZOJ 3282」Tree](https://hydro.ac/d/bzoj/p/3282)
+-   [「BZOJ 3282」Tree](https://hydro.ac/p/bzoj-P3282)
 -   [「HNOI2010」弹飞绵羊](https://www.luogu.com.cn/problem/P3203)
 
 ## 维护树链信息
@@ -883,9 +883,9 @@ LCT 通过 `Split(x,y)` 操作，可以将树上从点 $x$ 到点 $y$ 的路径�
 
 ### 习题
 
--   [luogu P3950 部落冲突](https://www.luogu.com.cn/problem/P3950)
--   [bzoj 4998 星球联盟](https://hydro.ac/d/bzoj/p/4998)
--   [bzoj 2959 长跑](https://hydro.ac/d/bzoj/p/2959)
+-   [洛谷 P3950 部落冲突](https://www.luogu.com.cn/problem/P3950)
+-   [BZOJ 4998 星球联盟](https://hydro.ac/p/bzoj-P4998)
+-   [BZOJ 2959 长跑](https://hydro.ac/p/bzoj-P2959)
 
 ## 维护边权
 
