@@ -98,7 +98,7 @@ std::cout << "Hello World!" << std::endl;
  `std::cout` 是输出（ `cout` 即 C-out）的命令。你可能看过有些 C++ 程序中直接写的是 `cout` 。
 
 ??? note "有关 std:: 前缀"
-    有关 `std::` 这个前缀的问题，请见 [这节](../basic/#cin-与-cout) 底下的注释「什么是 std？」。
+    有关 `std::` 这个前缀的问题，请见 [这节](basic.md/#cin-与-cout) 底下的注释「什么是 std？」。
 
 中间的 `<<` 很形象地表示流动，其实它就是表示输出怎么「流动」的。这句代码的意思就是， `"Hello World!"` 会先被推到输出流，之后 `std::endl` 再被推到输出流。
 
@@ -173,7 +173,7 @@ int a = 0, b = 0, c = 0;
 #### 简单练习
 
 1. 重写一遍代码，提交到 OJ 上，并且 AC。
-2. 更多的输入输出语法参考 [这节内容](../basic/#scanf-与-printf) ，并试着了解 C++ 的格式化输出。
+2. 更多的输入输出语法参考 [这节内容](basic.md/#scanf-与-printf) ，并试着了解 C++ 的格式化输出。
 
 ### 结束语与下一步
 
@@ -399,7 +399,7 @@ C++ 访问数组成员，与 Pascal 类似，不过有很重要的区别：数�
 
 扩展阅读：
 
--  [序列式容器 - OI Wiki](../csl/sequence-container/) 
+-  [序列式容器 - OI Wiki](csl/sequence-container.md) 
 
 #### 字符串：标准库类型 String
 
@@ -423,7 +423,7 @@ int main() {
 
 扩展阅读：
 
--  [string - OI Wiki](../csl/string/) 
+-  [string - OI Wiki](csl/string.md) 
 
 #### C 风格数组 Array
 
@@ -433,7 +433,7 @@ C 风格的数组与指针有密切关系，所以此处不多展开。
 
 扩展阅读：
 
--  [数组 - OI Wiki](../array/) 
+-  [数组 - OI Wiki](array.md) 
 
 ## 重要不同之处 Differences
 
@@ -441,7 +441,7 @@ C 风格的数组与指针有密切关系，所以此处不多展开。
 
 C++ 几乎可以在 **任何地方** 声明变量。
 
-以下对于 C++ 的变量作用域的介绍摘自 [变量作用域 - OI Wiki](../var/#变量作用域) ：
+以下对于 C++ 的变量作用域的介绍摘自 [变量作用域 - OI Wiki](var.md/#变量作用域) ：
 
 > 作用域是变量可以发挥作用的代码块。
 >
@@ -733,9 +733,9 @@ C++ 中函数传递参数还有其他方法，其中一种是 **直接使用全�
 
 ### C++ 标准库
 
-C++ 标准库中 `<algorithm>` 有很多有用的函数比如快排、二分查找等，可以直接调用。请参考这个页面： [STL 算法 - OI Wiki](../csl/algorithm/) 。
+C++ 标准库中 `<algorithm>` 有很多有用的函数比如快排、二分查找等，可以直接调用。请参考这个页面： [STL 算法 - OI Wiki](csl/algorithm.md) 。
 
-还有 STL 容器，比如数组、向量（可变大小的数组）、队列、栈等，附带很多函数。请参考这个页面： [STL 容器简介 - OI Wiki](../csl/container/) 。
+还有 STL 容器，比如数组、向量（可变大小的数组）、队列、栈等，附带很多函数。请参考这个页面： [STL 容器简介 - OI Wiki](csl/container.md) 。
 
 如果要找关于字符串操作的函数见
 
@@ -744,16 +744,16 @@ C++ 标准库中 `<algorithm>` 有很多有用的函数比如快排、二分查�
 
 C/C++ 的指针是很灵活的东西，如果想要彻底理解指针，建议找本书或者参考手册仔细阅读。
 
--  [指针 - OI Wiki](../pointer) 
+-  [指针 - OI Wiki](pointer.md) 
 
 ### 错误排查与技巧
 
--  [常见错误 - OI Wiki](../../contest/common-mistakes/) 
--  [常见技巧 - OI Wiki](../../contest/common-tricks/) 
+-  [常见错误 - OI Wiki](../contest/common-mistakes.md) 
+-  [常见技巧 - OI Wiki](../contest/common-tricks.md) 
 
 ### C++ 语言资料
 
--  [学习资源 - OI Wiki](../../contest/resources/) 
+-  [学习资源 - OI Wiki](../contest/resources.md) 
 -  [cppreference.com](https://zh.cppreference.com/) - 最重要的 C/C++ 参考资料
 -  [C++ 教程 - 菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html) 
 -  [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/) 
