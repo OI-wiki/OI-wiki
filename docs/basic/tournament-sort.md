@@ -103,9 +103,9 @@
     def winner(i, j):
         u = go_to_value_num(i)
         v = go_to_value_num(j)
-        if tmp[u] == 'INF':
+        if tmp[u] == "INF":
             return v
-        if tmp[v] == 'INF':
+        if tmp[v] == "INF":
             return u
         if tmp[u] <= tmp[v]:
             return i
@@ -114,28 +114,28 @@
     
     def create_tree():
         for i in range(n):
-            tmp[n+i] = a[i]
-        for i in range(2*n-1, 1, -2):
-            k = int(i/2)
-            j = i-1
+            tmp[n + i] = a[i]
+        for i in range(2 * n - 1, 1, -2):
+            k = int(i / 2)
+            j = i - 1
             tmp[k] = winner(i, j)
         value = tmp[go_to_value_num(1)]
-        tmp[go_to_value_num(1)] = 'INF'
+        tmp[go_to_value_num(1)] = "INF"
         return value
     
     
     def recreate():
         i = go_to_value_num(1)
         while i > 1:
-            j = k = int(i/2)
+            j = k = int(i / 2)
             if i % 2 == 0:
-                j = i+1
+                j = i + 1
             else:
-                j = i-1
+                j = i - 1
             tmp[k] = winner(i, j)
             i = k
         value = tmp[go_to_value_num(1)]
-        tmp[go_to_value_num(1)] = 'INF'
+        tmp[go_to_value_num(1)] = "INF"
         return value
     
     
