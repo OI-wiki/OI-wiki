@@ -182,16 +182,13 @@ void solve() {
 
 === "压行"
     ```cpp
+    // clang-format off
     // 这里有个小细节等下会讲
-    int unit;  // 块的大小
-    
+    int unit; // 块的大小
     struct node {
       int l, r, id;
-    
-      bool operator<(const node &x) const {
-        return l / unit == x.l / unit
-                   ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r))
-                   : l < x.l;
+      bool operator < (const node &x)const {
+        return l / unit == x.l / unit ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r)) : l < x.l;
       }
     };
     ```
