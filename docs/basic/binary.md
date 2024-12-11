@@ -48,7 +48,7 @@ int binary_search(int start, int end, int key) {
 ```
 
 ???+ note
-    参考 [编译优化 #位运算代替乘法](../lang/optimizations.md/#%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E6%9B%BF%E4%B9%98%E6%B3%95)，对于 $n$ 是有符号数的情况，当你可以保证 $n\ge 0$ 时，`n >> 1` 比 `n / 2` 指令数更少。
+    参考 [编译优化 #位运算代替乘法](../lang/optimizations.md#%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E6%9B%BF%E4%B9%98%E6%B3%95)，对于 $n$ 是有符号数的情况，当你可以保证 $n\ge 0$ 时，`n >> 1` 比 `n / 2` 指令数更少。
 
 ### 最大值最小化
 
