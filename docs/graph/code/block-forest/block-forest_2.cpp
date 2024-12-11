@@ -65,7 +65,7 @@ void DFS1(int u, int fz, int tp) {
 
 int dat[MS];
 
-void Build(int i, int l, int r) {  //建树
+void Build(int i, int l, int r) {  // 建树
   if (l == r) {
     dat[i] = w[idf[l]];
     return;
@@ -74,7 +74,7 @@ void Build(int i, int l, int r) {  //建树
   dat[i] = std::min(dat[li], dat[ri]);
 }
 
-void Mdf(int i, int l, int r, int p, int x) {  //获取最小值
+void Mdf(int i, int l, int r, int p, int x) {  // 获取最小值
   if (l == r) {
     dat[i] = x;
     return;
@@ -86,7 +86,7 @@ void Mdf(int i, int l, int r, int p, int x) {  //获取最小值
   dat[i] = std::min(dat[li], dat[ri]);
 }
 
-int Qur(int i, int l, int r, int a, int b) {  //查询
+int Qur(int i, int l, int r, int a, int b) {  // 查询
   if (r < a || b < l) return Inf;
   if (a <= l && r <= b) return dat[i];
   return std::min(Qur(ls, a, b), Qur(rs, a, b));

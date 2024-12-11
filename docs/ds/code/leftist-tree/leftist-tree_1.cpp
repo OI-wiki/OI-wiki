@@ -5,11 +5,10 @@
 
 using namespace std;
 
-int read() {  //快读
+int read() {  // 快读
   int out = 0;
   char c;
-  while (!isdigit(c = getchar()))
-    ;
+  while (!isdigit(c = getchar()));
   for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
   return out;
 }
@@ -46,7 +45,7 @@ int main() {
     if (op[0] == 'M') {
       x = read();
       y = read();
-      if (kill[x] || kill[y] || find(x) == find(y)) continue;  //这是题意
+      if (kill[x] || kill[y] || find(x) == find(y)) continue;  // 这是题意
       f[find(x)] = f[find(y)] = merge(find(x), find(y));
     } else {
       x = read();
@@ -66,7 +65,7 @@ int main() {
 
 int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
 
-int merge(int x, int y) {  //左偏树并堆
+int merge(int x, int y) {  // 左偏树并堆
   if (!x || !y) return x | y;
   if (t[x].val > t[y].val) swap(x, y);
   rs(x) = merge(rs(x), y);
@@ -74,4 +73,4 @@ int merge(int x, int y) {  //左偏树并堆
   return x;
 }
 
-int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }  //查找
+int find(int x) { return x == f[x] ? x : f[x] = find(f[x]); }  // 查找

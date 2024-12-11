@@ -9,10 +9,10 @@ int e[N], fail[N];
 void insert(char *s) {
   int u = 0;
   for (int i = 1; s[i]; i++) {
-    if (!tr[u][s[i] - 'a']) tr[u][s[i] - 'a'] = ++tot;  //如果没有则插入新节点
-    u = tr[u][s[i] - 'a'];                              //搜索下一个节点
+    if (!tr[u][s[i] - 'a']) tr[u][s[i] - 'a'] = ++tot;  // 如果没有则插入新节点
+    u = tr[u][s[i] - 'a'];                              // 搜索下一个节点
   }
-  e[u]++;  //尾为节点 u 的串的个数
+  e[u]++;  // 尾为节点 u 的串的个数
 }
 queue<int> q;
 void build() {

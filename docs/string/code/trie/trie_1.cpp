@@ -34,7 +34,7 @@ int main() {
     if (tag[u] == 1) {
       tag[u] = 2;  // 最后一个字符为节点 u 的名字已经被访问
       puts("OK");
-    } else if (tag[u] == 2)  //已经被访问，重复访问
+    } else if (tag[u] == 2)  // 已经被访问，重复访问
       puts("REPEAT");
     else
       puts("WRONG");

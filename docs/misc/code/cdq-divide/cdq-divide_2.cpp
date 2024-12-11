@@ -1,5 +1,5 @@
-//一道二维最长上升子序列的题
-//为了确定某一个元素是否在最长上升子序列中可以正反跑两遍 CDQ
+// 一道二维最长上升子序列的题
+// 为了确定某一个元素是否在最长上升子序列中可以正反跑两遍 CDQ
 #include <algorithm>
 #include <cstdio>
 using namespace std;
@@ -14,7 +14,7 @@ struct data {
 } a[2][N];
 int n;
 bool tr;
-//底下是重写比较
+// 底下是重写比较
 inline bool cmp1(const data& a, const data& b) {
   if (tr)
     return a.h > b.h;

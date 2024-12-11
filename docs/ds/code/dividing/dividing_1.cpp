@@ -7,14 +7,13 @@ typedef long long lld;
 int getint()  // 本题没有负数输入，因此快读不需判断负号。
 {
   char ch;
-  while ((ch = getchar()) < '!')
-    ;
+  while ((ch = getchar()) < '!');
   int x = ch ^ '0';
   while ((ch = getchar()) > '!') x = (x * 10) + (ch ^ '0');
   return x;
 }
 
-void putll(lld x) {  //输出long long
+void putll(lld x) {  // 输出long long
   if (x / 10) putll(x / 10);
   putchar((x % 10) ^ '0');
 }

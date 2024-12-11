@@ -13,7 +13,7 @@ int dfs(int u) {
     // 只考虑已经合并过的子树，以及选的课程数超过 m+1 的状态没有意义
     for (int i = min(p, m + 1); i; i--)
       for (int j = 1; j <= siz && i + j <= m + 1; j++)
-        f[u][i + j] = max(f[u][i + j], f[u][i] + f[v][j]);  //转移方程
+        f[u][i + j] = max(f[u][i + j], f[u][i] + f[v][j]);  // 转移方程
     p += siz;
   }
   return p;

@@ -9,8 +9,7 @@ using namespace std;
 int read() {
   int out = 0;
   char c;
-  while (!isdigit(c = getchar()))
-    ;
+  while (!isdigit(c = getchar()));
   for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
   return out;
 }
@@ -114,7 +113,7 @@ int main() {
   return 0;
 }
 
-void dfs(int u) {  //根据题意找点
+void dfs(int u) {  // 根据题意找点
   int i, v, t = top;
   for (i = head[u]; i; i = nxt[i]) {
     v = to[i];

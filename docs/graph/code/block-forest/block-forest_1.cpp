@@ -13,7 +13,7 @@ int stk[MN], tp;
 
 int wgh[MN * 2];
 
-void Tarjan(int u) {  //求点双
+void Tarjan(int u) {  // 求点双
   low[u] = dfn[u] = ++dfc;
   stk[++tp] = u;
   ++num;

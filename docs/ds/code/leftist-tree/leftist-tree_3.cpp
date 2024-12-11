@@ -9,8 +9,7 @@ using namespace std;
 int read() {
   int out = 0, f = 1;
   char c;
-  for (c = getchar(); !isdigit(c) && c != '-'; c = getchar())
-    ;
+  for (c = getchar(); !isdigit(c) && c != '-'; c = getchar());
   if (c == '-') {
     f = -1;
     c = getchar();
@@ -50,7 +49,7 @@ int main() {
 
   m = read();
 
-  while (m--) {  //根据题意处理具体看解法
+  while (m--) {  // 根据题意处理具体看解法
     scanf("%s", op);
     if (op[0] == 'U') {
       x = find(read());
@@ -127,14 +126,14 @@ int main() {
 
 int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
 
-int merge(int x, int y) {  //板子，合并
+int merge(int x, int y) {  // 板子，合并
   if (!x || !y) return x | y;
   if (t[x].val < t[y].val) swap(x, y);
   t[rs(x) = merge(rs(x), y)].fa = x;
   pushup(x);
   return x;
 }
-//以下俩是一个东西
+// 以下俩是一个东西
 void pushup(int x) {
   if (!x) return;
   if (t[x].d != t[rs(x)].d + 1) {

@@ -11,7 +11,7 @@ int main() {
     f0 = f[0];
     f1 = f[1];
     fill(f1, f1 + (1 << m + 1), 0);
-    f1[0] = 1;  //初始化
+    f1[0] = 1;  // 初始化
     for (int i = 0; i < n; ++i) {
       for (int j = 0; j < m; ++j) {
         bool bad;
@@ -19,7 +19,7 @@ int main() {
         bad ^= 1;
         swap(f0, f1);
         fill(f1, f1 + (1 << m + 1), 0);
-        for (int s = 0; s < 1 << m + 1; ++s)  //具体的dp转移，上面都是初始化
+        for (int s = 0; s < 1 << m + 1; ++s)  // 具体的dp转移，上面都是初始化
           if (f0[s]) {
             bool lt = s >> j & 1, up = s >> j + 1 & 1;
             if (bad) {

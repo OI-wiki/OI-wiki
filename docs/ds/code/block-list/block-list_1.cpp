@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 static const int sqn = 1e3;
-struct node {  //定义块状链表
+struct node {  // 定义块状链表
   node* nxt;
   int size;
   char d[(sqn << 1) + 5];
@@ -12,19 +12,18 @@ struct node {  //定义块状链表
 }* head = NULL;
 char inits[(int)1e6 + 5];
 int llen, q;
-void readch(char& ch) {  //读入字符
-  do
-    ch = getchar();
+void readch(char& ch) {  // 读入字符
+  do ch = getchar();
   while (!isalpha(ch));
 }
-void check(node* p) {  //判断，记得要分裂
+void check(node* p) {  // 判断，记得要分裂
   if (p->size >= (sqn << 1)) {
     node* q = new node;
     for (int i = sqn; i < p->size; i++) q->pb(p->d[i]);
     p->size = sqn, q->nxt = p->nxt, p->nxt = q;
   }
 }
-void insert(char c, int pos) {  //元素插入，借助链表来理解
+void insert(char c, int pos) {  // 元素插入，借助链表来理解
   node* p = head;
   int tot, cnt;
   if (pos > llen++) {
@@ -32,19 +31,17 @@ void insert(char c, int pos) {  //元素插入，借助链表来理解
     p->pb(c), check(p);
     return;
   }
-  for (tot = head->size; p != NULL && tot < pos; p = p->nxt, tot += p->size)
-    ;
+  for (tot = head->size; p != NULL && tot < pos; p = p->nxt, tot += p->size);
   tot -= p->size, cnt = pos - tot - 1;
   for (int i = p->size - 1; i >= cnt; i--) p->d[i + 1] = p->d[i];
   p->d[cnt] = c, p->size++;
   check(p);
 }
-char query(int pos) {  //查询
+char query(int pos) {  // 查询
   node* p;
   int tot, cnt;
   for (p = head, tot = head->size; p != NULL && tot < pos;
-       p = p->nxt, tot += p->size)
-    ;
+       p = p->nxt, tot += p->size);
   tot -= p->size;
   return p->d[pos - tot - 1];
 }

@@ -7,7 +7,7 @@
 
 int n;
 
-struct treap {  //直接维护成数据结构，可以直接用
+struct treap {  // 直接维护成数据结构，可以直接用
   int l[maxn], r[maxn], val[maxn], rnd[maxn], size[maxn], w[maxn];
   int sz, ans, rt;
   inline void pushup(int x) { size[x] = size[l[x]] + size[r[x]] + w[x]; }
@@ -27,7 +27,7 @@ struct treap {  //直接维护成数据结构，可以直接用
     pushup(k);
     k = t;
   }
-  void insert(int &k, int x) {  //插入
+  void insert(int &k, int x) {  // 插入
     if (!k) {
       sz++;
       k = sz;
@@ -49,7 +49,7 @@ struct treap {  //直接维护成数据结构，可以直接用
     }
   }
 
-  bool del(int &k, int x) {  //删除节点
+  bool del(int &k, int x) {  // 删除节点
     if (!k) return false;
     if (val[k] == x) {
       if (w[k] > 1) {

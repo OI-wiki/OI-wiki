@@ -7,7 +7,7 @@ struct exSAM {
   int link[MAXN];            // 后缀链接，link
   int next[MAXN][CHAR_NUM];  // 转移
   int tot;                   // 节点总数：[0, tot)
-  void init() {              //初始化函数
+  void init() {              // 初始化函数
     tot = 1;
     link[0] = -1;
   }
@@ -46,8 +46,8 @@ struct exSAM {
     return cur;
   }
   int insertTrie(int cur, int c) {
-    if (next[cur][c]) return next[cur][c];  //已有该节点 直接返回
-    return next[cur][c] = tot++;            //无该节点 建立节点
+    if (next[cur][c]) return next[cur][c];  // 已有该节点 直接返回
+    return next[cur][c] = tot++;            // 无该节点 建立节点
   }
   void insert(const string &s) {
     int root = 0;
@@ -57,13 +57,13 @@ struct exSAM {
     int root = 0;
     for (int i = 0; i < n; ++i)
       root =
-          insertTrie(root, s[i] - 'a');  //一边插入一边更改所插入新节点的父节点
+          insertTrie(root, s[i] - 'a');  // 一边插入一边更改所插入新节点的父节点
   }
   void build() {
     queue<pair<int, int>> q;
     for (int i = 0; i < 26; ++i)
       if (next[0][i]) q.push({i, 0});
-    while (!q.empty()) {  //广搜遍历
+    while (!q.empty()) {  // 广搜遍历
       auto item = q.front();
       q.pop();
       auto last = insertSAM(item.second, item.first);

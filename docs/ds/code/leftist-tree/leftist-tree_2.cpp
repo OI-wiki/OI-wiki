@@ -11,8 +11,7 @@ ll read() {
   ll out = 0;
   int f = 1;
   char c;
-  for (c = getchar(); !isdigit(c) && c != '-'; c = getchar())
-    ;
+  for (c = getchar(); !isdigit(c) && c != '-'; c = getchar());
   if (c == '-') f = -1, c = getchar();
   for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
   return out * f;
@@ -73,7 +72,7 @@ int main() {
 }
 
 void dfs(int u) {
-  int i, v;  //根据题意开始dfs
+  int i, v;  // 根据题意开始dfs
   for (i = head[u]; i; i = nxt[i]) {
     v = to[i];
     dep[v] = dep[u] + 1;
@@ -103,7 +102,7 @@ void add(int u, int v) {
   to[cnt] = v;
 }
 
-int merge(int x, int y) {  //合并
+int merge(int x, int y) {  // 合并
   if (!x || !y) return x | y;
   if (t[x].val > t[y].val) swap(x, y);
   pushdown(x);

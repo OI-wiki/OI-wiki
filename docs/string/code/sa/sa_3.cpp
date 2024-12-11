@@ -21,7 +21,7 @@ int main() {
   scanf("%s", s + 1);
   n = strlen(s + 1);
   ans = 1ll * n * (n - 1) * (n + 1) / 2;
-  //求后缀数组
+  // 求后缀数组
   for (i = 1; i <= n; ++i) ++cnt[rk[i] = s[i]];
   for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
   for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
@@ -38,19 +38,19 @@ int main() {
     for (p = 0, i = 1; i <= n; ++i)
       rk[sa[i]] = cmp(sa[i], sa[i - 1], w) ? p : ++p;
   }
-  //求 height
+  // 求 height
   for (i = 1, k = 0; i <= n; ++i) {
     if (k) --k;
     while (s[i + k] == s[sa[rk[i] - 1] + k]) ++k;
     ht[rk[i]] = k;
   }
-  //维护单调栈
+  // 维护单调栈
   for (i = 1; i <= n; ++i) {
     while (ht[sta[top]] > ht[i]) --top;  // top类似于一个指针
     l[i] = i - sta[top];
     sta[++top] = i;
   }
-  //最后利用单调栈算 ans
+  // 最后利用单调栈算 ans
   sta[++top] = n + 1;
   ht[n + 1] = -1;
   for (i = n; i >= 1; --i) {

@@ -39,7 +39,7 @@ struct Edge {
   inline Edge *init(const int to, Edge *const ls) {
     return v = to, las = ls, this;
   }
-} * las[maxn + 1], pool[maxn << 1], *alc = pool - 1;
+} *las[maxn + 1], pool[maxn << 1], *alc = pool - 1;
 
 inline void lnk(const int u, const int v) {
   if (u == 0) return;

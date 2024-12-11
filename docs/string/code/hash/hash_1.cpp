@@ -12,7 +12,7 @@ struct StringWithHash {
   int ls;
   int hsh[HASH_CNT][L];
   int pwMod[HASH_CNT][L];
-  void init() {  //初始化
+  void init() {  // 初始化
     ls = 0;
     for (int i = 0; i < HASH_CNT; ++i) {
       hsh[i][0] = 0;
@@ -21,14 +21,14 @@ struct StringWithHash {
   }
   StringWithHash() { init(); }
   void extend(char c) {
-    s[++ls] = c;                          //记录字符数和每一个字符
-    for (int i = 0; i < HASH_CNT; ++i) {  //双哈希的预处理
+    s[++ls] = c;                          // 记录字符数和每一个字符
+    for (int i = 0; i < HASH_CNT; ++i) {  // 双哈希的预处理
       pwMod[i][ls] =
-          1ll * pwMod[i][ls - 1] * hashBase[i] % hashMod[i];  //得到b^ls
+          1ll * pwMod[i][ls - 1] * hashBase[i] % hashMod[i];  // 得到b^ls
       hsh[i][ls] = (1ll * hsh[i][ls - 1] * hashBase[i] + c) % hashMod[i];
     }
   }
-  vector<int> getHash(int l, int r) {  //得到哈希值
+  vector<int> getHash(int l, int r) {  // 得到哈希值
     vector<int> res(HASH_CNT, 0);
     for (int i = 0; i < HASH_CNT; ++i) {
       int t =
@@ -52,17 +52,17 @@ StringWithHash s, t;
 char str[L];
 
 void work() {
-  int len = strlen(str);  //取字符串长度
+  int len = strlen(str);  // 取字符串长度
   t.init();
   for (int j = 0; j < len; ++j) t.extend(str[j]);
   int d = 0;
   for (int j = min(len, s.ls); j >= 1; --j) {
-    if (equal(t.getHash(1, j), s.getHash(s.ls - j + 1, s.ls))) {  //比较哈希值
+    if (equal(t.getHash(1, j), s.getHash(s.ls - j + 1, s.ls))) {  // 比较哈希值
       d = j;
       break;
     }
   }
-  for (int j = d; j < len; ++j) s.extend(str[j]);  //更新答案数组
+  for (int j = d; j < len; ++j) s.extend(str[j]);  // 更新答案数组
 }
 int main() {
   scanf("%d", &n);

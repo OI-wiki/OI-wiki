@@ -5,8 +5,7 @@ template <typename _Tp>
 inline void IN(_Tp& dig) {
   char c;
   dig = 0;
-  while (c = getchar(), !isdigit(c))
-    ;
+  while (c = getchar(), !isdigit(c));
   while (isdigit(c)) dig = dig * 10 + c - '0', c = getchar();
 }
 int n, m, sqn, c[SZ], ct[SZ], c1, c2, mem[SZ][3], ans, tot[1000005], nal[SZ];

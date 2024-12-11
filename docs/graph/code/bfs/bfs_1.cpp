@@ -9,7 +9,7 @@ int fx[] = {1, -1, 0, 0};
 int fy[] = {0, 0, 1, -1};
 deque<int> q;  // 双端队列
 
-void add_front(int x, int y, int dir, int d) {  //向前方加
+void add_front(int x, int y, int dir, int d) {  // 向前方加
   if (d < dist[x][y][dir]) {
     dist[x][y][dir] = d;
     q.push_front(dir);
@@ -18,7 +18,7 @@ void add_front(int x, int y, int dir, int d) {  //向前方加
   }
 }
 
-void add_back(int x, int y, int dir, int d) {  //向后方加
+void add_back(int x, int y, int dir, int d) {  // 向后方加
   if (d < dist[x][y][dir]) {
     dist[x][y][dir] = d;
     q.push_back(x);
@@ -37,7 +37,7 @@ int main() {
 
   add_front(n - 1, m - 1, 3, 0);
 
-  while (!q.empty()) {  //具体搜索的过程，可以参考上面写的题解
+  while (!q.empty()) {  // 具体搜索的过程，可以参考上面写的题解
     int x = q[0], y = q[1], dir = q[2];
     q.pop_front();
     q.pop_front();
@@ -45,7 +45,7 @@ int main() {
     int d = dist[x][y][dir];
     int nx = x + fx[dir], ny = y + fy[dir];
     if (nx >= 0 && nx < n && ny >= 0 && ny < m)
-      add_front(nx, ny, dir, d);  //判断条件
+      add_front(nx, ny, dir, d);  // 判断条件
     if (grid[x][y] == '#')
       for (int i = 0; i < 4; i++)
         if (i != dir) add_back(x, y, i, d + 1);

@@ -74,7 +74,7 @@ struct exSAM {
     queue<pair<int, int>> q;
     for (int i = 0; i < 26; ++i)
       if (next[0][i]) q.push({i, 0});
-    while (!q.empty()) {  //广搜遍历
+    while (!q.empty()) {  // 广搜遍历
       auto item = q.front();
       q.pop();
       auto last = insertSAM(item.second, item.first);
@@ -95,7 +95,7 @@ struct exSAM {
   }
 } exSam;
 int main() {
-  exSam.init();  //初始化
+  exSam.init();  // 初始化
   string s;
   while (cin >> s) exSam.insert(s);
   exSam.build();

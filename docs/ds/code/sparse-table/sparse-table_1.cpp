@@ -3,7 +3,7 @@ using namespace std;
 const int logn = 21;
 const int maxn = 2000001;
 int f[maxn][logn + 1], Logn[maxn + 1];
-inline int read() {  //快读
+inline int read() {  // 快读
   char c = getchar();
   int x = 0, f = 1;
   while (c < '0' || c > '9') {
@@ -16,7 +16,7 @@ inline int read() {  //快读
   }
   return x * f;
 }
-void pre() {  //准备工作，初始化
+void pre() {  // 准备工作，初始化
   Logn[1] = 0;
   Logn[2] = 1;
   for (int i = 3; i < maxn; i++) {

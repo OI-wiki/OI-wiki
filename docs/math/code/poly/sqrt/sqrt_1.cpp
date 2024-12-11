@@ -5,7 +5,7 @@ const int maxn = 1 << 20, mod = 998244353;
 
 int a[maxn], b[maxn], g[maxn], gg[maxn];
 
-int qpow(int x, int y) {  //快速幂
+int qpow(int x, int y) {  // 快速幂
   int ans = 1;
 
   while (y) {
@@ -18,7 +18,7 @@ int qpow(int x, int y) {  //快速幂
   return ans;
 }
 
-int inv2 = qpow(2, mod - 2);  //逆元
+int inv2 = qpow(2, mod - 2);  // 逆元
 
 inline void change(int *f, int len) {
   for (int i = 1, j = len / 2; i < len - 1; i++) {
@@ -66,7 +66,7 @@ inline void NTT(int *f, int len, int type) {  // NTT
   }
 }
 
-inline void inv(int deg, int *f, int *h) {  //求逆元
+inline void inv(int deg, int *f, int *h) {  // 求逆元
   if (deg == 1) {
     h[0] = qpow(f[0], mod - 2);
     return;
@@ -75,7 +75,7 @@ inline void inv(int deg, int *f, int *h) {  //求逆元
   inv(deg + 1 >> 1, f, h);
 
   int len = 1;
-  while (len < deg * 2) {  //倍增
+  while (len < deg * 2) {  // 倍增
     len *= 2;
   }
 
@@ -107,7 +107,7 @@ inline void sqrt(int deg, int *f, int *h) {
   sqrt(deg + 1 >> 1, f, h);
 
   int len = 1;
-  while (len < deg * 2) {  //倍增
+  while (len < deg * 2) {  // 倍增
     len *= 2;
   }
   fill(g, g + len, 0);

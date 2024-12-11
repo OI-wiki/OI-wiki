@@ -12,7 +12,7 @@ int sz, tot, last;
 int ch[maxn][26], len[maxn], fail[maxn];
 int cnt[maxn], dep[maxn], dif[maxn], slink[maxn];
 char s[maxn];
-int node(int l) {  //建立一个长度为 l 的新节点
+int node(int l) {  // 建立一个长度为 l 的新节点
   sz++;
   memset(ch[sz], 0, sizeof(ch[sz]));
   len[sz] = l;
@@ -21,7 +21,7 @@ int node(int l) {  //建立一个长度为 l 的新节点
   dep[sz] = 0;
   return sz;
 }
-void clear() {  //初始化
+void clear() {  // 初始化
   sz = -1;
   last = 0;
   s[tot = 0] = '$';
@@ -29,11 +29,11 @@ void clear() {  //初始化
   node(-1);
   fail[0] = 1;
 }
-int getfail(int x) {  //找到后缀回文
+int getfail(int x) {  // 找到后缀回文
   while (s[tot - len[x] - 1] != s[tot]) x = fail[x];
   return x;
 }
-void insert(char c) {  //建树
+void insert(char c) {  // 建树
   s[++tot] = c;
   int now = getfail(last);
   if (!ch[now][c - 'a']) {
@@ -68,7 +68,7 @@ int main() {
     for (int x = pam::last; x > 1; x = slink[x]) {
       g[x] = dp[i - len[slink[x]] - dif[x]];
       if (dif[x] == dif[fail[x]]) g[x] = add(g[x], g[fail[x]]);
-      if (i % 2 == 0) dp[i] = add(dp[i], g[x]);  //在偶数位置更新 dp 数组
+      if (i % 2 == 0) dp[i] = add(dp[i], g[x]);  // 在偶数位置更新 dp 数组
     }
   }
   printf("%d", dp[n]);
