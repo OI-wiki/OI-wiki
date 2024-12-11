@@ -63,9 +63,9 @@ author: du33169, lingkerio, Taoran-01
 === "Python"
     ```python
     for k in range(1, n + 1):
-        for x in range(1, n + 1):  
-            for y in range(1, n + 1):    
-                f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y])  
+        for x in range(1, n + 1):
+            for y in range(1, n + 1):
+                f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y])
     ```
 
 因为第一维对结果无影响，我们可以发现数组的第一维是可以省略的，于是可以直接改成 `f[x][y] = min(f[x][y], f[x][k]+f[k][y])`。
