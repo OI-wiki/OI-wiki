@@ -187,7 +187,7 @@ void solve() {
     int unit; // 块的大小
     struct node {
       int l, r, id;
-      bool operator < (const node &x)const {
+      bool operator < (const node &x) const {
         return l / unit == x.l / unit ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r)) : l < x.l;
       }
     };
