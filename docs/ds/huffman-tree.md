@@ -1,4 +1,4 @@
-author: Alex-McAvoy
+author: Alex-McAvoy, lingkerio
 
 ## 树的带权路径长度
 
