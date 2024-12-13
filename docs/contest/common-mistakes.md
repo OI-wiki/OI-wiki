@@ -225,7 +225,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 ???+ warning
     在正式比赛中会尽量保证选手答题的环境和最终测试的环境相同。
     
-    本节内容仅适用于模拟赛等情况，而我们也建议出题人尽量让数据符合 [数据格式](../problemsetting/#数据的格式)。
+    本节内容仅适用于模拟赛等情况，而我们也建议出题人尽量让数据符合 [数据格式](problemsetting.md#数据的格式)。
 
 不同的操作系统使用不同的符号来标记换行，以下为几种常用系统的换行符：
 
