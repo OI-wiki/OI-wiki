@@ -259,7 +259,6 @@ nav:
       - 连分数: math/number-theory/continued-fraction.md
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
-      - 循环连分数: math/number-theory/periodic-continued-fraction.md
       - Pell 方程: math/number-theory/pell-equation.md
     - 多项式与生成函数:
       - 多项式与生成函数简介: math/poly/intro.md
