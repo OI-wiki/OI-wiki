@@ -1,6 +1,6 @@
-#include<vector>
-#include<queue>
-#include<algorithm>
+#include <algorithm>
+#include <queue>
+#include <vector>
 using namespace std;
 
 int ct, n, t[100010], x, r[100010], ans, vis[100010], dis[100010];
