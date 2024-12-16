@@ -237,7 +237,7 @@ int main() {
 
 ## Lambda 表达式
 
-> 请参考 [Lambda 表达式](../lambda) 页面。
+> 请参考 [Lambda 表达式](lambda.md) 页面。
 
 ## decltype 说明符
 
