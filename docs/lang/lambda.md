@@ -300,6 +300,70 @@ auto dfs = [&](int i) -> void {
     dfs(1);
     ```
 
+??? warning " 不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归 "
+    `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
+    
+    在 [Benchmark](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 2.5 倍。
+    
+    ??? note "测试代码"
+        ```cpp
+        #include <algorithm>
+        #include <functional>
+        #include <numeric>
+        #include <random>
+        
+        using namespace std;
+        
+        const auto& nums = [] {
+          random_device rd;
+          mt19937 gen{rd()};
+          array<unsigned, 32> arr{};
+        
+          std::iota(arr.begin(), arr.end(), 0u);
+          ranges::shuffle(arr, gen);
+        
+          return arr;
+        }();
+        
+        static void std_function_fib(benchmark::State& state) {
+          std::function<int(int)> fib;
+        
+          fib = [&](int n) { return n <= 2 ? 1 : fib(n - 1) + fib(n - 2); };
+        
+          unsigned i = 0;
+        
+          for (auto _ : state) {
+            auto res = fib(nums[i]);
+            benchmark::DoNotOptimize(res);
+        
+            ++i;
+        
+            if (i == nums.size()) i = 0;
+          }
+        }
+        
+        BENCHMARK(std_function_fib);
+        
+        static void template_lambda_fib(benchmark::State& state) {
+          auto n_fibonacci = [](const auto& self, int n) -> int {
+            return n <= 2 ? 1 : self(self, n - 1) + self(self, n - 2);
+          };
+        
+          unsigned i = 0;
+        
+          for (auto _ : state) {
+            auto res = n_fibonacci(n_fibonacci, nums[i]);
+            benchmark::DoNotOptimize(res);
+        
+            ++i;
+        
+            if (i == nums.size()) i = 0;
+          }
+        }
+        
+        BENCHMARK(template_lambda_fib);
+        ```
+
 -   第二种方式是不通过捕获的方式获取 $dfs$，而是通过函数传参的方式。
 
 ???+ example "修改如上代码为："
@@ -323,6 +387,34 @@ auto dfs = [&](int i) -> void {
 ???+ note "`auto self`、`auto& self` 和 `auto&& self` 的区别："
     `auto& self` 和 `auto&& self` 理论上都只会使用 $8$ 个字节（指针的大小）用作传参，不会发生其他的拷贝。具体要看编译器对 Lambda 的实现方式和对应的优化。
     而使用 `auto self` 会发生对象拷贝，拷贝的大小取决于捕获列表中的元素，因为它们都是这个 Lambda 类中的私有成员变量。
+
+- 第三种方法是可以通过手动展开 Lambda 类，或使用类似写法，这样可以直接声明 $dfs$ 的类型。
+
+???+ example "修改如上代码为："
+    ```cpp
+    int n = 10;
+    
+    class Lambda_1
+    {
+    public:
+      auto operator()(int i) const -> void
+      {
+        if (i == n)
+          return;
+        else
+          (*this)(i + 1);  // OK
+      }
+    
+      explicit Lambda_1(int& __n)
+        : n(__n)
+      { }
+    
+    private:
+      int& n;
+    } dfs(n);
+    
+    dfs(1);
+    ```
 
 ### Lambda 表达式的应用
 
@@ -402,85 +494,6 @@ auto nth_fibonacci = [](this auto self, int n) -> int {
 
 cout << nth_fibonacci(10);
 ```
-
-##### 其他方式
-
-从本质上来讲，lambda 只是通过实现匿名函数对象一种语法糖，那么我们可以通过定义 **函数对象** 来实现递归。
-
-```cpp
-class fibonacci_fn {
- public:
-  int operator()(int n) const {
-    return n <= 2 ? 1 : ((*this)(n - 1) + (*this)(n - 2));
-  }
-};
-
-cout << fibonacci_fn{}(10);
-```
-
-??? warning " 不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归 "
-    `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
-    
-    在 [Benchmark](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 2.5 倍。
-    
-    ??? note "测试代码"
-        ```cpp
-        #include <algorithm>
-        #include <functional>
-        #include <numeric>
-        #include <random>
-        
-        using namespace std;
-        
-        const auto& nums = [] {
-          random_device rd;
-          mt19937 gen{rd()};
-          array<unsigned, 32> arr{};
-        
-          std::iota(arr.begin(), arr.end(), 0u);
-          ranges::shuffle(arr, gen);
-        
-          return arr;
-        }();
-        
-        static void std_function_fib(benchmark::State& state) {
-          std::function<int(int)> fib;
-        
-          fib = [&](int n) { return n <= 2 ? 1 : fib(n - 1) + fib(n - 2); };
-        
-          unsigned i = 0;
-        
-          for (auto _ : state) {
-            auto res = fib(nums[i]);
-            benchmark::DoNotOptimize(res);
-        
-            ++i;
-        
-            if (i == nums.size()) i = 0;
-          }
-        }
-        
-        BENCHMARK(std_function_fib);
-        
-        static void template_lambda_fib(benchmark::State& state) {
-          auto n_fibonacci = [](const auto& self, int n) -> int {
-            return n <= 2 ? 1 : self(self, n - 1) + self(self, n - 2);
-          };
-        
-          unsigned i = 0;
-        
-          for (auto _ : state) {
-            auto res = n_fibonacci(n_fibonacci, nums[i]);
-            benchmark::DoNotOptimize(res);
-        
-            ++i;
-        
-            if (i == nums.size()) i = 0;
-          }
-        }
-        
-        BENCHMARK(template_lambda_fib);
-        ```
 
 ## 参考文献
 
