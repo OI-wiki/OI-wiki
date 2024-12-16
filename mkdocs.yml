@@ -274,6 +274,7 @@ nav:
       - 多项式平移|连续点值平移: math/poly/shift.md
       - 符号化方法: math/poly/symbolic-method.md
       - Lagrange 反演: math/poly/lagrange-inversion.md
+      - 形式幂级数复合|复合逆: math/poly/comp-rev.md
       - 普通生成函数: math/poly/ogf.md
       - 指数生成函数: math/poly/egf.md
       - 狄利克雷生成函数: math/poly/dgf.md
