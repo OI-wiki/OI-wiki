@@ -327,13 +327,13 @@ $$
 当 $p$ 是奇素数时，由 [升幂引理](../number-theory/lift-the-exponent.md)，有：
 
 $$
-v_p\left(a^t-1\right)=v_p\left(a-1\right)+v_p(t)
+\nu_p\left(a^t-1\right)=\nu_p\left(a-1\right)+\nu_p(t)
 $$
 
 当 $p=2$ 时，由 [升幂引理](../number-theory/lift-the-exponent.md)，有：
 
 $$
-v_2\left(a^t-1\right)=v_2\left(a-1\right)+v_2\left(a+1\right)+v_2(t)-1
+\nu_2\left(a^t-1\right)=\nu_2\left(a-1\right)+\nu_2\left(a+1\right)+\nu_2(t)-1
 $$
 
 代入 $a$ 为 $\left(\frac{1+\sqrt{5}}{2}\right)$ 和 $\left(\frac{1-\sqrt{5}}{2}\right)$，$t$ 为 $M$ 和 $Mp$，上述条件也就等价于：
