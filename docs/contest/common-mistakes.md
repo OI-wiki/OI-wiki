@@ -475,7 +475,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 ??? note "Linux 下的内存占用指标详解"
     > 太长不看版：
-    > 如果你在 CCF 系列的考试时声明了一个特别大的全局静态数组，你需要特别慎重。因为你声明的数组会全部计入内存占用中（而不像大部分在线评测平台仅计算实际使用的部分），在某些情况下这甚至有可能导致整道题全部 MLE。
+    > 如果在 CCF 系列的考试时声明了一个特别大的全局静态数组，此时需要特别慎重。因为程序声明的数组会全部计入内存占用中（而不像大部分在线评测平台仅计算实际使用的部分），在某些情况下这甚至有可能导致整道题全部 MLE。
 
     - **关于 RSS 和 VSZ**[^ref1] [^ref2]
 
@@ -543,7 +543,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
         3. 数组被大半使用
 
-            假设对数组的前 `50,000,000` 个元素赋值：
+            假设对数组的前 $50,000,000$ 个元素赋值：
             
             ```cpp
             for (int i = 0; i < 50000000; ++i) {
@@ -555,8 +555,8 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
                 - VSZ 仍为 `400MB`，不会发生变化。
 
             - 物理内存 (RSS)：
-                - 此时是连续访问（访问的 `50,000,000` 个元素在内存地址上相邻），需要加载的分页数：
-                    $\lceil \frac{50,000,000}{1024} \rceil = 48,828 \text{页}$
+                - 此时是连续访问（访问的 $50,000,000$ 个元素在内存地址上相邻），需要加载的分页数：
+                    $\lceil \frac{50,000,000}{1024} \rceil = 48,828$ 页
 
                 - 假设每页大小为 `4KB`，因此总计：
                 $48,828 \times 4 \text{KB} \approx 190 \text{MB}$
