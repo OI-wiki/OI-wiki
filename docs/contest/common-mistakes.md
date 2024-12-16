@@ -533,7 +533,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
                 ```
         
                 -   虚拟内存 (VSZ)：VSZ 仍为 `400MB`，不会发生变化。
-                -   物理内存 (RSS)：此时是连续访问（访问的 $50,000,000$ 个元素在内存地址上相邻），需要加载的分页数为 $\lceil \dfrac{50,000,000}{1024} \rceil = 48,828$ 页。
+                -   物理内存 (RSS)：此时是连续访问（访问的 $50,000,000$ 个元素在内存地址上相邻），需要加载的分页数为 $\left\lceil \dfrac{50,000,000}{1024} \right\rceil = 48,828$ 页。
         
                     假设每页大小为 `4KB`，因此总计 $48,828 \times 4 \text{KB} \approx 190 \text{MB}$，物理内存增加到约 `190MB`。
         
