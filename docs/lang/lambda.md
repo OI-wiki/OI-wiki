@@ -297,7 +297,7 @@ auto dfs = [&](int i) -> void {
 怎么解决这个问题呢？
 
 1.  显式指定 $dfs$ 的类型，可以使用 `std::function` 替代。
-    
+
     ???+ example "修改如上代码为："
         ```cpp
         int n = 10;
@@ -311,7 +311,7 @@ auto dfs = [&](int i) -> void {
         
         dfs(1);
         ```
-    
+
     ??? warning " 不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归 "
         `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
         
@@ -375,9 +375,8 @@ auto dfs = [&](int i) -> void {
             
             BENCHMARK(template_lambda_fib);
             ```
-    
 2.  不通过捕获的方式获取 $dfs$，而是通过函数传参的方式。
-    
+
     ???+ example "修改如上代码为："
         ```cpp
         int n = 10;
@@ -385,7 +384,7 @@ auto dfs = [&](int i) -> void {
         // 参数列表中有参数类型为 auto，则这个 Lambda 类中的 operator()
         // 函数将被定义为模板函数，模板函数可以在稍后被调用时再进行实例化
         auto dfs = [&](auto& self,
-                      int i) -> void  // [&] 只会捕获用到的变量，所以不会捕获 auto dfs
+                       int i) -> void  // [&] 只会捕获用到的变量，所以不会捕获 auto dfs
         {
           if (i == n)
             return;
@@ -395,19 +394,18 @@ auto dfs = [&](int i) -> void {
         
         dfs(dfs, 1);
         ```
-    
+
     ???+ note "`auto self`、`auto& self` 和 `auto&& self` 的区别："
         `auto& self` 和 `auto&& self` 理论上都只会使用 $8$ 个字节（指针的大小）用作传参，不会发生其他的拷贝。具体要看编译器对 Lambda 的实现方式和对应的优化。
         而使用 `auto self` 会发生对象拷贝，拷贝的大小取决于捕获列表中的元素，因为它们都是这个 Lambda 类中的私有成员变量。
-    
 3.  可以通过手动展开 Lambda 类，或使用类似写法，这样可以直接声明 $dfs$ 的类型。
-    
+
     ???+ example "修改如上代码为："
         ```cpp
         int n = 10;
         
         class Lambda_1 {
-        public:
+         public:
           auto operator()(int i) const -> void {
             if (i == n)
               return;
@@ -417,17 +415,16 @@ auto dfs = [&](int i) -> void {
         
           explicit Lambda_1(int& __n) : n(__n) {}
         
-        private:
+         private:
           int& n;
         } dfs(n);
         
         dfs(1);
         ```
-    
 4.  如果 lambda 没有捕获任何变量，我们也可以利用函数指针。
-    
+
     如果 lambda 没有捕获任何变量，那么它可以隐式转换为函数指针。同时 lambda 此时也可以声明为 `static`，函数指针类型也可以声明为 `static`。如此依赖，lambda 可以不需要捕获就能访问函数指针，从而实现递归。
-    
+
     ???+ example "示例"
         ```cpp
         static unsigned (*fptr)(unsigned);
