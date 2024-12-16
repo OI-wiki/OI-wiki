@@ -388,28 +388,24 @@ auto dfs = [&](int i) -> void {
     `auto& self` 和 `auto&& self` 理论上都只会使用 $8$ 个字节（指针的大小）用作传参，不会发生其他的拷贝。具体要看编译器对 Lambda 的实现方式和对应的优化。
     而使用 `auto self` 会发生对象拷贝，拷贝的大小取决于捕获列表中的元素，因为它们都是这个 Lambda 类中的私有成员变量。
 
-- 第三种方法是可以通过手动展开 Lambda 类，或使用类似写法，这样可以直接声明 $dfs$ 的类型。
+-   第三种方法是可以通过手动展开 Lambda 类，或使用类似写法，这样可以直接声明 $dfs$ 的类型。
 
 ???+ example "修改如上代码为："
     ```cpp
     int n = 10;
     
-    class Lambda_1
-    {
-    public:
-      auto operator()(int i) const -> void
-      {
+    class Lambda_1 {
+     public:
+      auto operator()(int i) const -> void {
         if (i == n)
           return;
         else
           (*this)(i + 1);  // OK
       }
     
-      explicit Lambda_1(int& __n)
-        : n(__n)
-      { }
+      explicit Lambda_1(int& __n) : n(__n) {}
     
-    private:
+     private:
       int& n;
     } dfs(n);
     
