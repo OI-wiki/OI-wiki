@@ -207,6 +207,18 @@ for (auto i : x) std::cout << i << " ";
 ??? note " 使用 `auto` 声明的参数 "
     **C++14** 后，若参数使用 `auto` 声明类型，那么会构造一个 [泛型 Lambda 表达式](#泛型-lambdac14)。
 
+#### 显式对象形参（C++23）
+
+**C++23** 起，[显式对象形参](https://zh.cppreference.com/w/cpp/language/function#.E5.BD.A2.E5.8F.82.E5.88.97.E8.A1.A8) 可以在 lambda 的参数中使用。
+
+```cpp
+auto nth_fibonacci = [](this auto self, unsigned n) -> unsigned {
+  return n < 2 ? n : self(n - 1) + self(n - 2);
+};
+
+cout << nth_fibonacci(10u);
+```
+
 ### mutable 可变规范
 
 使得函数体可以修改通过值捕获的变量。
@@ -284,133 +296,155 @@ auto dfs = [&](int i) -> void {
 
 怎么解决这个问题呢？
 
--   第一种方法是显式指定 $dfs$ 的类型，可以使用 `std::function` 替代。
-
-???+ example "修改如上代码为："
-    ```cpp
-    int n = 10;
+1.  显式指定 $dfs$ 的类型，可以使用 `std::function` 替代。
     
-    std::function<void(int)> dfs = [&](int i) -> void {
-      if (i == n)
-        return;
-      else
-        dfs(i + 1);  // OK
-    };
-    
-    dfs(1);
-    ```
-
-??? warning " 不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归 "
-    `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
-    
-    在 [Benchmark](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 2.5 倍。
-    
-    ??? note "测试代码"
+    ???+ example "修改如上代码为："
         ```cpp
-        #include <algorithm>
-        #include <functional>
-        #include <numeric>
-        #include <random>
+        int n = 10;
         
-        using namespace std;
+        std::function<void(int)> dfs = [&](int i) -> void {
+          if (i == n)
+            return;
+          else
+            dfs(i + 1);  // OK
+        };
         
-        const auto& nums = [] {
-          random_device rd;
-          mt19937 gen{rd()};
-          array<unsigned, 32> arr{};
+        dfs(1);
+        ```
+    
+    ??? warning " 不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归 "
+        `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
         
-          std::iota(arr.begin(), arr.end(), 0u);
-          ranges::shuffle(arr, gen);
+        在 [Benchmark](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 2.5 倍。
         
-          return arr;
+        ??? note "测试代码"
+            ```cpp
+            #include <algorithm>
+            #include <functional>
+            #include <numeric>
+            #include <random>
+            
+            using namespace std;
+            
+            const auto& nums = [] {
+              random_device rd;
+              mt19937 gen{rd()};
+              array<unsigned, 32> arr{};
+            
+              std::iota(arr.begin(), arr.end(), 0u);
+              ranges::shuffle(arr, gen);
+            
+              return arr;
+            }();
+            
+            static void std_function_fib(benchmark::State& state) {
+              std::function<int(int)> fib;
+            
+              fib = [&](int n) { return n <= 2 ? 1 : fib(n - 1) + fib(n - 2); };
+            
+              unsigned i = 0;
+            
+              for (auto _ : state) {
+                auto res = fib(nums[i]);
+                benchmark::DoNotOptimize(res);
+            
+                ++i;
+            
+                if (i == nums.size()) i = 0;
+              }
+            }
+            
+            BENCHMARK(std_function_fib);
+            
+            static void template_lambda_fib(benchmark::State& state) {
+              auto n_fibonacci = [](const auto& self, int n) -> int {
+                return n <= 2 ? 1 : self(self, n - 1) + self(self, n - 2);
+              };
+            
+              unsigned i = 0;
+            
+              for (auto _ : state) {
+                auto res = n_fibonacci(n_fibonacci, nums[i]);
+                benchmark::DoNotOptimize(res);
+            
+                ++i;
+            
+                if (i == nums.size()) i = 0;
+              }
+            }
+            
+            BENCHMARK(template_lambda_fib);
+            ```
+    
+2.  不通过捕获的方式获取 $dfs$，而是通过函数传参的方式。
+    
+    ???+ example "修改如上代码为："
+        ```cpp
+        int n = 10;
+        
+        // 参数列表中有参数类型为 auto，则这个 Lambda 类中的 operator()
+        // 函数将被定义为模板函数，模板函数可以在稍后被调用时再进行实例化
+        auto dfs = [&](auto& self,
+                      int i) -> void  // [&] 只会捕获用到的变量，所以不会捕获 auto dfs
+        {
+          if (i == n)
+            return;
+          else
+            self(self, i + 1);  // OK
+        };
+        
+        dfs(dfs, 1);
+        ```
+    
+    ???+ note "`auto self`、`auto& self` 和 `auto&& self` 的区别："
+        `auto& self` 和 `auto&& self` 理论上都只会使用 $8$ 个字节（指针的大小）用作传参，不会发生其他的拷贝。具体要看编译器对 Lambda 的实现方式和对应的优化。
+        而使用 `auto self` 会发生对象拷贝，拷贝的大小取决于捕获列表中的元素，因为它们都是这个 Lambda 类中的私有成员变量。
+    
+3.  可以通过手动展开 Lambda 类，或使用类似写法，这样可以直接声明 $dfs$ 的类型。
+    
+    ???+ example "修改如上代码为："
+        ```cpp
+        int n = 10;
+        
+        class Lambda_1 {
+        public:
+          auto operator()(int i) const -> void {
+            if (i == n)
+              return;
+            else
+              (*this)(i + 1);  // OK
+          }
+        
+          explicit Lambda_1(int& __n) : n(__n) {}
+        
+        private:
+          int& n;
+        } dfs(n);
+        
+        dfs(1);
+        ```
+    
+4.  如果 lambda 没有捕获任何变量，我们也可以利用函数指针。
+    
+    如果 lambda 没有捕获任何变量，那么它可以隐式转换为函数指针。同时 lambda 此时也可以声明为 `static`，函数指针类型也可以声明为 `static`。如此依赖，lambda 可以不需要捕获就能访问函数指针，从而实现递归。
+    
+    ???+ example "示例"
+        ```cpp
+        static unsigned (*fptr)(unsigned);
+        
+        static const auto lambda = [](const unsigned a) {
+          return a < 2 ? a : (*fptr)(a - 2) + (*fptr)(a - 1);
+        };
+        
+        static auto init = [] {
+          fptr = +lambda;
+          // Or
+          // fptr = static_cast<unsigned (*)(unsigned)>(lambda);
+          return 0;
         }();
         
-        static void std_function_fib(benchmark::State& state) {
-          std::function<int(int)> fib;
-        
-          fib = [&](int n) { return n <= 2 ? 1 : fib(n - 1) + fib(n - 2); };
-        
-          unsigned i = 0;
-        
-          for (auto _ : state) {
-            auto res = fib(nums[i]);
-            benchmark::DoNotOptimize(res);
-        
-            ++i;
-        
-            if (i == nums.size()) i = 0;
-          }
-        }
-        
-        BENCHMARK(std_function_fib);
-        
-        static void template_lambda_fib(benchmark::State& state) {
-          auto n_fibonacci = [](const auto& self, int n) -> int {
-            return n <= 2 ? 1 : self(self, n - 1) + self(self, n - 2);
-          };
-        
-          unsigned i = 0;
-        
-          for (auto _ : state) {
-            auto res = n_fibonacci(n_fibonacci, nums[i]);
-            benchmark::DoNotOptimize(res);
-        
-            ++i;
-        
-            if (i == nums.size()) i = 0;
-          }
-        }
-        
-        BENCHMARK(template_lambda_fib);
+        cout << lambda(10);
         ```
-
--   第二种方式是不通过捕获的方式获取 $dfs$，而是通过函数传参的方式。
-
-???+ example "修改如上代码为："
-    ```cpp
-    int n = 10;
-    
-    // 参数列表中有参数类型为 auto，则这个 Lambda 类中的 operator()
-    // 函数将被定义为模板函数，模板函数可以在稍后被调用时再进行实例化
-    auto dfs = [&](auto& self,
-                   int i) -> void  // [&] 只会捕获用到的变量，所以不会捕获 auto dfs
-    {
-      if (i == n)
-        return;
-      else
-        self(self, i + 1);  // OK
-    };
-    
-    dfs(dfs, 1);
-    ```
-
-???+ note "`auto self`、`auto& self` 和 `auto&& self` 的区别："
-    `auto& self` 和 `auto&& self` 理论上都只会使用 $8$ 个字节（指针的大小）用作传参，不会发生其他的拷贝。具体要看编译器对 Lambda 的实现方式和对应的优化。
-    而使用 `auto self` 会发生对象拷贝，拷贝的大小取决于捕获列表中的元素，因为它们都是这个 Lambda 类中的私有成员变量。
-
--   第三种方法是可以通过手动展开 Lambda 类，或使用类似写法，这样可以直接声明 $dfs$ 的类型。
-
-???+ example "修改如上代码为："
-    ```cpp
-    int n = 10;
-    
-    class Lambda_1 {
-     public:
-      auto operator()(int i) const -> void {
-        if (i == n)
-          return;
-        else
-          (*this)(i + 1);  // OK
-      }
-    
-      explicit Lambda_1(int& __n) : n(__n) {}
-    
-     private:
-      int& n;
-    } dfs(n);
-    
-    dfs(1);
-    ```
 
 ### Lambda 表达式的应用
 
@@ -455,41 +489,6 @@ void solution(const vector<int>& input) {
 ```
 
 相较于使用块作用域，lambda 可以允许我们使用返回值，使得代码更加简洁；相较于函数，我们不需要额外起名和声明被捕获的各种参数，使得代码更加紧凑。
-
-##### 函数指针
-
-如果 lambda 没有捕获任何变量，那么它可以隐式转换为函数指针。
-
-同时 lambda 此时也可以声明为 `static`，函数指针类型也可以声明为 `static`。
-
-如此依赖，lambda 可以不需要捕获就能访问函数指针，从而实现递归。
-
-```cpp
-static int (*fptr)(int);
-
-static const auto lambda = [](const int a) {
-  return a <= 2 ? 1 : (*fptr)(a - 2) + (*fptr)(a - 1);
-};
-
-static auto init = [] {
-  fptr = +lambda;  // 同等于 fptr = static_cast<int (*)(int)>(lambda);
-  return 0;
-}();
-
-cout << lambda(10);
-```
-
-##### 显式对象形参（C++23）
-
-在 **C++23** 中，[显式对象形参](https://zh.cppreference.com/w/cpp/language/function#.E5.BD.A2.E5.8F.82.E5.88.97.E8.A1.A8) 可以在 lambda 的参数中使用。
-
-```cpp
-auto nth_fibonacci = [](this auto self, int n) -> int {
-  return n <= 2 ? 1 : self(n - 1) + self(n - 2);
-};
-
-cout << nth_fibonacci(10);
-```
 
 ## 参考文献
 
