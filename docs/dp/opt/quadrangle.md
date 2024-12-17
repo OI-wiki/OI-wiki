@@ -1,4 +1,4 @@
-author: Marcythm, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, Chrogeek, StudyingFather, NFLSCode, c-forrest
+author: Marcythm, zyf0726, hsfzLZH1, MingqiHuang, Ir1d, greyqz, billchenchina, Chrogeek, StudyingFather, NFLSCode, c-forrest, wzj33300
 
 四边形不等式优化利用的是状态转移方程中的决策单调性。
 
@@ -93,18 +93,23 @@ $$
         int lt[N], rt[N], f[N];
         deque<int> dq;
         // 初始化队列
-        dq.emplace_back(1);
-        lt[1] = 1;
-        rt[n] = n;
+        dq.emplace_back(0);
+        lt[0] = 1;
+        rt[0] = n;
         // 顺次考虑所有问题和决策
         for (int j = 1; j <= n; ++j) {
           // 出队
-          while (!dq.empty() && rt[dq.front()] < j) {
+          while (rt[dq.front()] < j) {
             dq.pop_front();
           }
           // 计算
           f[j] = val(dq.front(), j);
           // 入队
+          if (rt[dq.front()] == j) {
+            dq.pop_front();
+          } else {
+            lt[dq.front()] = j + 1;
+          }
           while (!dq.empty() && val(j, lt[dq.back()]) < val(dq.back(), lt[dq.back()])) {
             dq.pop_back();
           }
@@ -112,11 +117,11 @@ $$
             dq.emplace_back(j);
             lt[j] = j + 1;
             rt[j] = n;
-          } else if (val(j, rt[dq.back()]) < val(dq.back(), rt[dq.back()])) {
+          } else if (val(j, rt[dq.back()]) >= val(dq.back(), rt[dq.back()])) {
             if (rt[dq.back()] < n) {
-              dq.emplace_back(j);
               lt[j] = rt[dq.back()] + 1;
               rt[j] = n;
+              dq.emplace_back(j);
             }
           } else {
             int ll = lt[dq.back()];
