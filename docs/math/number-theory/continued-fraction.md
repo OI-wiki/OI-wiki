@@ -1710,6 +1710,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 -   [POJ Founder Monthly Contest 2008.03.16 - A Modular Arithmetic Challenge](http://poj.org/problem?id=3530)
 -   [2019 Multi-University Training Contest 5 - fraction](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
 -   [SnackDown 2019 Elimination Round - Election Bait](https://www.codechef.com/SNCKEL19/problems/EBAIT)
+-   [\[NOI2021\] 密码箱](https://www.luogu.com.cn/problem/P7739)
 
 ## 参考文献与拓展阅读
 
