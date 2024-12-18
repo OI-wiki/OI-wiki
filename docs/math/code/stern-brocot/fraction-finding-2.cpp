@@ -28,8 +28,8 @@ int main() {
     int x, y;
     std::cin >> x >> y;
     for (auto cr : find(x, y)) {
-        for (; cr.t; --cr.t) {
-            std::cout << cr.ch;
+        for (; cr.first; --cr.first) {
+            std::cout << cr.second;
         }
     }
     return 0;
