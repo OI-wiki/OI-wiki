@@ -254,7 +254,7 @@ $$
         return p[-1], q[-1]
     ```
 
-??? 例题 "[GCJ 2019, Round 2 - New Elements: Part 2](https://codingcompetitions.withgoogle.com/codejam/round/0000000000051679/0000000000146184)"
+??? 例题 "[GCJ 2019, Round 2 - New Elements: Part 2](https://github.com/google/coding-competitions-archive/blob/main/codejam/2019/round_2/new_elements_part_2/statement.pdf)"
     您得到 $N$ 个正整数对 $(C_i, J_i)$。您需要找到一个正整数对 $(x, y)$，这样 $C_i x + J_i y$ 就是一个严格递增的序列。
     
     在这类配对中，找到词典中最小的一对。
@@ -457,7 +457,7 @@ $$
 
 中解得。两个方程各恰有一组满足 $y<q$ 的正整数解，分别对应位于 $\dfrac{p}{q}$ 左右两侧的邻项。因而，每个位于 $(0,1)$ 内的真分数都有两个分母小于它的分母的 Farey 邻项，再加上 $\dfrac{0}{1}$ 和 $\dfrac{1}{1}$，这说明序列 $F_n$ 中共计 $(2|F_n|-3)$ 对 Farey 邻项。
 
-当然，在这个过程中找到的分数 $\dfrac{a}{b}<\frac{c}{d}$ 就是在序列中插入 $\dfrac{p}{q}$ 时它的左右邻项。因此，它们本就是 Farey 邻项且 $\dfrac{p}{q}$ 是它们的中位分数。设 $\dfrac{p}{q}=[t_0,t_1,\cdots,t_n,1]$，则这两个分母更小的 Farey 邻项就分别是 $[t_0,t_1,\cdots,t_n]$ 和 $[t_0,t_1,\cdots,t_{n-1}]$。
+当然，在这个过程中找到的分数 $\dfrac{a}{b}<\dfrac{c}{d}$ 就是在序列中插入 $\dfrac{p}{q}$ 时它的左右邻项。因此，它们本就是 Farey 邻项且 $\dfrac{p}{q}$ 是它们的中位分数。设 $\dfrac{p}{q}=[t_0,t_1,\cdots,t_n,1]$，则这两个分母更小的 Farey 邻项就分别是 $[t_0,t_1,\cdots,t_n]$ 和 $[t_0,t_1,\cdots,t_{n-1}]$。
 
 要计算当前分数 $\dfrac{p}{q}$ 的其它 Farey 邻项，只需要利用 [扩展欧几里得算法](./linear-equation.md#用扩展欧几里得算法求解) 求出所有符合条件的解即可。
 
