@@ -11,5 +11,6 @@ void build(int n, int a = 0, int b = 1, int c = 1, int d = 0, int level = 1) {
 
 int main() {
     build(4);
+    std::cout << '\n';
     return 0;
 }

@@ -6,7 +6,9 @@
 
 Stern–Brocot 树是一种维护分数的优雅的结构，包含所有不同的正有理数。这个结构分别由 Moritz Stern 在 1858 年和 Achille Brocot 在 1861 年独立发现。
 
-### 逐层构造
+### 构造
+
+#### 逐层构造
 
 Stern–Borcot 树可以通过迭代构造第 $k$ 阶 Stern–Brocot 序列（Stern–Brocot sequence of order $k$）得到。第 $0$ 阶 Stern–Brocot 序列由两个简单的分数组成：
 
@@ -16,7 +18,7 @@ $$
 
 此处的 $\dfrac{1}{0}$ 严格意义上并不算是有理分数，可以理解为表示 $\infty$ 的最简分数。
 
-在第 $k$ 阶 Stern–Brocot 序列相邻的两个分数 $\dfrac{a}{b}$ 和 $\dfrac{c}{d}$ 中间插入它们的中位分数（mediant）[^mediant] $\dfrac{a+c}{b+d}$（不要通分），就得到第 $k+1$ 阶 Stern–Brocot 序列。由此，可以迭代地构造出所有阶的 Stern–Brocot 序列。前几次迭代的结果如下：
+在第 $k$ 阶 Stern–Brocot 序列相邻的两个分数 $\dfrac{a}{b}$ 和 $\dfrac{c}{d}$ 中间插入它们的中位分数（mediant）[^mediant] $\dfrac{a+c}{b+d}$（不要约分），就得到第 $k+1$ 阶 Stern–Brocot 序列。由此，可以迭代地构造出所有阶的 Stern–Brocot 序列。前几次迭代的结果如下：
 
 $$
 \begin{array}{ccccccccc}
@@ -32,7 +34,7 @@ $$
 
 第 $k$ 阶 Stern–Brocot 序列，不计左右端点，就是深度为 $k-1$ 的 Stern–Brocot 树的中序遍历。
 
-### 三元组构造
+#### 三元组构造
 
 另一种等价的构造方式是以三元组
 
@@ -366,7 +368,7 @@ a_{2n+1} &= a_n + a_{n+1}.
 \end{aligned}
 $$
 
-递归起点是 $a_0=0$ 和 $a_1=1$。要求得 Stern 双原子序列中 $a_n$ 的值，直接利用递归关系复杂度为 $O(\log^2n)，并不优秀，应当将它视为 Calkin–Wilf 树上编号为 $n$ 的分数的分子，利用连分数的递归关系求解，复杂度为 $O(\log n)$。
+递归起点是 $a_0=0$ 和 $a_1=1$。要求得 Stern 双原子序列中 $a_n$ 的值，直接利用递归关系复杂度为 $O(\log^2n)$，并不优秀。更好的做法是，将它视为 Calkin–Wilf 树上编号为 $n$ 的分数的分子，利用上文描述的基于连分数的递归关系求解，复杂度为 $O(\log n)$。
 
 ## Farey 序列
 

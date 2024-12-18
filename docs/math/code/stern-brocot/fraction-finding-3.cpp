@@ -19,9 +19,9 @@ auto find(int x, int y) {
 int main() {
     int x, y;
     std::cin >> x >> y;
-    for (auto [t, ch] : find(x, y)) {
-        for (; t; --t) {
-            std::cout << ch;
+    for (auto cr : find(x, y)) {
+        for (; cr.t; --cr.t) {
+            std::cout << cr.ch;
         }
     }
     return 0;
