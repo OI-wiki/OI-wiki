@@ -5,7 +5,7 @@
 
 // Expand [..., n] to [..., n-1, 1] if needed.
 void expand(std::vector<int>& a) {
-  if (a.back() > 1) {
+  if (a.size() == 1 || a.back() > 1) {
     --a.back();
     a.push_back(1);
   }

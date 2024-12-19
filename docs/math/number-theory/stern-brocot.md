@@ -226,81 +226,6 @@ $$
 
 利用连分数表示，可以简单地表达出某个节点的父节点和子节点。对于节点 $[t_0,t_1,\cdots,t_n,1]$，它的父节点就是沿最后的移动方向少移动一步的节点：在 $t_k>1$ 时，父节点是 $[t_0,t_1,\cdots,t_n - 1,1]$；否则，父节点是 $[t_0,t_1,\cdots,t_{n-1},1]$。它的两个子节点则分别是 $[t_0,t_1,\cdots,t_n+1,1]$ 和 $[t_0,t_1,\cdots,t_n,1,1]$；两个节点哪个是左子节点，哪个是右子节点，需要根据 $n$ 的奇偶性判断。
 
-### 例题
-
-??? 例题 "最佳内点"
-    对于 $\frac{0}{1} \leq \frac{p_0}{q_0} < \frac{p_1}{q_1} \leq \frac{1}{0}$，找到有理数 $\frac{p}{q}$ 使得 $(q; p)$ 在字典序最小，并且 $\frac{p_0}{q_0} < \frac{p}{q} < \frac{p_1}{q_1}$。
-
-??? "解答"
-    就 Stern–Brocot 树而言，这意味着需要找到 $\frac{p_0}{q_0}$ 和 $\frac{p_1}{q_1}$ 的 LCA。由于 Stern–Brocot 树和连分数之间的联系，该 LCA 将大致对应于 $\frac{p_0}{q_0}$ 和 $\frac{p_1}{q_1}$ 的连分数表示的最大公共前缀。
-    
-    因此，如果 $\frac{p_0}{q_0} = [a_0; a_1, \dots, a_{k-1}, a_k, \dots]$ 和 $\frac{p_1}{q_1} = [a_0; a_1, \dots, a_{k-1}, b_k, \dots]$ 是无理数，则 LCA 为 $[a_0; a_1, \dots, \min(a_k, b_k)+1]$。
-    
-    对于有理数 $r_0$ 和 $r_1$，其中之一可能是 LCA 本身，这需要对其进行讨论。为了简化有理数 $r_0$ 和 $r_1$ 的解决方案，可以使用前面问题中导出的 $r_0 + \varepsilon$ 和 $r_1 - \varepsilon$ 的连分数表示。
-    
-    ```python
-    # finds lexicographically smallest (q, p)
-    # such that p0/q0 < p/q < p1/q1
-    def middle(p0, q0, p1, q1):
-        a0 = pm_eps(fraction(p0, q0))[1]
-        a1 = pm_eps(fraction(p1, q1))[0]
-        a = []
-        for i in range(min(len(a0), len(a1))):
-            a.append(min(a0[i], a1[i]))
-            if a0[i] != a1[i]:
-                break
-        a[-1] += 1
-        p, q = convergents(a)
-        return p[-1], q[-1]
-    ```
-
-??? 例题 "[GCJ 2019, Round 2 - New Elements: Part 2](https://github.com/google/coding-competitions-archive/blob/main/codejam/2019/round_2/new_elements_part_2/statement.pdf)"
-    您得到 $N$ 个正整数对 $(C_i, J_i)$。您需要找到一个正整数对 $(x, y)$，这样 $C_i x + J_i y$ 就是一个严格递增的序列。
-    
-    在这类配对中，找到词典中最小的一对。
-
-??? "解答"
-    重新表述语句，$A_i x + B_i y$ 对于所有 $i$ 都必须为正，其中 $A_i = C_i - C_{i-1}$，$B_i = J_i - J_{i-1}$。
-    
-    在这些方程中，对于 $A_i x + B_i y > 0$，有四个情况：
-    
-    1.  $A_i, B_i > 0$ 可以忽略，因为正在查找 $x, y > 0$。
-    2.  $A_i, B_i \leq 0$ 将提供「IMPOSSIBLE」作为答案。
-    3.  $A_i > 0$,$B_i \leq 0$。这样的约束相当于 $\frac{y}{x} < \frac{A_i}{-B_i}$。
-    4.  $A_i \leq 0$,$B_i > 0$。这样的约束相当于 $\frac{y}{x} > \frac{-A_i}{B_i}$。
-    
-    让 $\frac{p_0}{q_0}$ 是第四组中最大的 $\frac{-A_i}{B_i}$，而 $\frac{p_1}{q_1}$ 则是第三组中最小的 $\frac{A_i}{-B_i}$。
-    
-    现在的问题是，给定 $\frac{p_0}{q_0} < \frac{p_1}{q_1}$，找到一个分数 $\frac{p}{q}$ 使得 $(q;p)$ 在字典上最小，并且 $\frac{p_0}{q_0} < \frac{p}{q} < \frac{p_1}{q_1}$。
-    
-    ```python
-    def solve():
-        n = int(input())
-        C = [0] * n
-        J = [0] * n
-        # p0/q0 < y/x < p1/q1
-        p0, q0 = 0, 1
-        p1, q1 = 1, 0
-        fail = False
-        for i in range(n):
-            C[i], J[i] = map(int, input().split())
-            if i > 0:
-                A = C[i] - C[i - 1]
-                B = J[i] - J[i - 1]
-                if A <= 0 and B <= 0:
-                    fail = True
-                elif B > 0 and A < 0:  # y/x > (-A)/B if B > 0
-                    if (-A) * q0 > p0 * B:
-                        p0, q0 = -A, B
-                elif B < 0 and A > 0:  # y/x < A/(-B) if B < 0
-                    if A * q1 < p1 * (-B):
-                        p1, q1 = A, -B
-        if p0 * q1 >= p1 * q0 or fail:
-            return "IMPOSSIBLE"
-        p, q = middle(p0, q0, p1, q1)
-        return str(q) + " " + str(p)
-    ```
-
 ## Calkin–Wilf 树
 
 另外一种更为简单的存储正有理分数的结构是 Calkin–Wilf 树。它通常如下所示：
@@ -504,7 +429,6 @@ $$
 
 ## 习题
 
--   [Luogu P5179. Fraction](https://www.luogu.com.cn/problem/P5179)
 -   [AtCoder ABC333G. Nearest Fraction](https://atcoder.jp/contests/abc333/tasks/abc333_g)
 -   [LOJ 6685. 迷宫](https://loj.ac/p/6685)
 -   [UVa 10077. The Stern-Brocot Number System](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=33&page=show_problem&problem=1018)
