@@ -1,0 +1,10 @@
+id: oi-wiki:basic/binary-1
+name: Binary Algorithm
+solution:
+  cpp: docs/basic/code/binary/binary_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/basic/examples/binary/binary_1.ans
+  input: docs/basic/examples/binary/binary_1.in
+version: 1000

@@ -1,0 +1,10 @@
+id: oi-wiki:math/inclusion-exclusion-principle-1
+name: INCLUSION-EXCLUSION-PRINCIPLE Graph
+solution:
+  cpp: docs/math/code/inclusion-exclusion-principle/inclusion-exclusion-principle_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/inclusion-exclusion-principle/inclusion-exclusion-principle_1.ans
+  input: docs/math/examples/inclusion-exclusion-principle/inclusion-exclusion-principle_1.in
+version: 1000

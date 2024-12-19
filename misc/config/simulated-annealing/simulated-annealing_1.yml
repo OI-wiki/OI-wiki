@@ -1,0 +1,10 @@
+id: oi-wiki:misc/simulated-annealing-1
+name: Simulated Annealing
+solution:
+  cpp: docs/misc/code/simulated-annealing/simulated-annealing_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/examples/simulated-annealing/simulated-annealing_1.ans
+  input: docs/misc/examples/simulated-annealing/simulated-annealing_1.in
+version: 1000

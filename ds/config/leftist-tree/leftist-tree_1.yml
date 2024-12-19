@@ -1,0 +1,10 @@
+id: oi-wiki:ds/leftist-tree-1
+name: Leftist Tree
+solution:
+  cpp: docs/ds/code/leftist-tree/leftist-tree_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/leftist-tree/leftist-tree_1.ans
+  input: docs/ds/examples/leftist-tree/leftist-tree_1.in
+version: 1000
