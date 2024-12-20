@@ -259,7 +259,6 @@ nav:
       - 连分数: math/number-theory/continued-fraction.md
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
-      - 循环连分数: math/number-theory/periodic-continued-fraction.md
       - Pell 方程: math/number-theory/pell-equation.md
     - 多项式与生成函数:
       - 多项式与生成函数简介: math/poly/intro.md
@@ -275,6 +274,7 @@ nav:
       - 多项式平移|连续点值平移: math/poly/shift.md
       - 符号化方法: math/poly/symbolic-method.md
       - Lagrange 反演: math/poly/lagrange-inversion.md
+      - 形式幂级数复合|复合逆: math/poly/comp-rev.md
       - 普通生成函数: math/poly/ogf.md
       - 指数生成函数: math/poly/egf.md
       - 狄利克雷生成函数: math/poly/dgf.md
