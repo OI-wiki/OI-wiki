@@ -237,7 +237,7 @@ int main() {
 
 ## Lambda 表达式
 
-> 请参考 [Lambda 表达式](../lambda) 页面。
+> 请参考 [Lambda 表达式](lambda.md) 页面。
 
 ## decltype 说明符
 
@@ -263,7 +263,7 @@ int main() {
 ## std::function
 
 ???+ warning "请注意性能开销"
-    `std::function` 会引入一定的性能开销，经 [Benchmark](./lambda.md#其他方式) 测试，通常会造成 2 到 3 倍以上的性能损失。
+    `std::function` 会引入一定的性能开销，经 [Benchmark](./lambda.md#lambda-中的递归) 测试，通常会造成 2 到 3 倍以上的性能损失。
     
     因为它使用了类型擦除的技术，而这通常借由虚函数机制实现，调用虚函数会引入额外的 [开销](https://stackoverflow.com/questions/5057382/what-is-the-performance-overhead-of-stdfunction)。
     
