@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="531px"
+	height="189px" viewBox="-0.5 -0.5 531 189" style="background-color: rgb(255, 255, 255);">
+	<defs>
+		<style>
+			text {
+				font-family: sans-serif;
+				text-anchor: middle;
+				font-size: 12px;
+				fill: rgb(0, 0, 0);
+			}
+
+			path,
+			rect {
+				stroke: rgb(0, 0, 0);
+			}
+		</style>
+	</defs>
+	<g>
+		<rect x="230" y="0" width="40" height="20" fill="rgb(255, 255, 255)" />
+		<text x="249.5" y="14.5">13</text>
+		<rect x="230" y="20" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="250" y="20" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="90" y="60" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="104.5" y="74.5">4</text>
+		<rect x="90" y="80" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="110" y="80" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="120" y="60" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="134.5" y="74.5">7</text>
+		<rect x="130" y="80" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="350" y="60" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="364.5" y="74.5">17</text>
+		<rect x="350" y="80" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="370" y="80" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="380" y="60" width="30" height="20" fill="#cccccc" />
+		<text x="394.5" y="74.5">23</text>
+		<rect x="390" y="80" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="280" y="150" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="294.5" y="164.5">14</text>
+		<rect x="280" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="300" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="310" y="150" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="324.5" y="164.5">16</text>
+		<rect x="320" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="80" y="150" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="94.5" y="164.5">5</text>
+		<rect x="80" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="100" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="110" y="150" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="124.5" y="164.5">6</text>
+		<rect x="120" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="0" y="150" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="14.5" y="164.5">1</text>
+		<rect x="0" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="20" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="30" y="150" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="44.5" y="164.5">3</text>
+		<rect x="40" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="360" y="150" width="30" height="20" fill="rgb(255, 255, 255)" />
+		<text x="374.5" y="164.5">18</text>
+		<rect x="360" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="380" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="390" y="150" width="30" height="20" fill="#ffffff" />
+		<text x="404.5" y="164.5">19</text>
+		<rect x="400" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<path d="M 240 30 L 124.97 58.76" fill="none" stroke-miterlimit="10" />
+		<path d="M 121.08 59.73 L 124.64 57.47 L 125.29 60.05 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 260 30 L 375.03 58.76" fill="none" stroke-miterlimit="10" />
+		<path d="M 378.92 59.73 L 374.71 60.05 L 375.36 57.47 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 94.62 90 L 33.75 146.52" fill="none" stroke-miterlimit="10" />
+		<path d="M 30.82 149.24 L 32.84 145.54 L 34.66 147.49 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 119.23 90 L 110.78 144.94" fill="none" stroke-miterlimit="10" />
+		<path d="M 110.17 148.9 L 109.46 144.74 L 112.1 145.14 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 143.85 90 L 186.88 145.94" fill="none" stroke-miterlimit="10" />
+		<path d="M 189.32 149.11 L 185.82 146.76 L 187.94 145.13 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 356.15 90 L 313.12 145.94" fill="none" stroke-miterlimit="10" />
+		<path d="M 310.68 149.11 L 312.06 145.13 L 314.18 146.76 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 380.77 90 L 389.22 144.94" fill="none" stroke-miterlimit="10" />
+		<path d="M 389.83 148.9 L 387.9 145.14 L 390.54 144.74 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<path d="M 406.54 90 L 480.93 146.89" fill="none" stroke-miterlimit="10" />
+		<path d="M 484.11 149.32 L 480.12 147.95 L 481.74 145.83 Z" fill="rgb(0, 0, 0)" stroke-miterlimit="10" />
+		<rect x="160" y="150" width="30" height="20" fill="#ffffff" />
+		<text x="174.5" y="164.5">11</text>
+		<rect x="160" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="180" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="190" y="150" width="30" height="20" fill="#ffffff" />
+		<text x="204.5" y="164.5">12</text>
+		<rect x="200" y="170" width="20" height="10" fill="rgb(255, 255, 255)" />
+		<rect x="440" y="150" width="90" height="30" fill="#ffffff" stroke="none" />
+		<rect x="440" y="150" width="30" height="20" fill="#ffffff" />
+		<text x="454.5" y="164.5">24</text>
+		<rect x="440" y="170" width="20" height="10" fill="#ffffff" />
+		<rect x="460" y="170" width="25" height="10" fill="#ffffff" />
+		<rect x="470" y="150" width="30" height="20" fill="#ffffff" />
+		<text x="484.5" y="164.5">25</text>
+		<rect x="485" y="170" width="25" height="10" fill="#ffffff" />
+		<rect x="500" y="150" width="30" height="20" fill="#ffffff" />
+		<text x="514.5" y="164.5">26</text>
+		<rect x="510" y="170" width="20" height="10" fill="#ffffff" />
+	</g>
+</svg>

@@ -1,0 +1,10 @@
+id: oi-wiki:ds/li-chao-tree-1
+name: Li Chao Tree
+solution:
+  cpp: docs/ds/code/li-chao-tree/li-chao-tree_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/li-chao-tree/li-chao-tree_1.ans
+  input: docs/ds/examples/li-chao-tree/li-chao-tree_1.in
+version: 1000

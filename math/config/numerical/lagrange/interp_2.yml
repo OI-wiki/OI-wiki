@@ -1,0 +1,10 @@
+id: oi-wiki:math/interp-2
+name: Interpolation
+solution:
+  cpp: docs/math/code/numerical/interp/interp_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/numerical/interp/interp_2.ans
+  input: docs/math/examples/numerical/interp/interp_2.in
+version: 1000
