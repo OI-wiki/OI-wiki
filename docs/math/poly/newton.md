@@ -237,7 +237,7 @@ $$
 
     因为 $f(r)\in Rp$，且 $f'(r)$ 可逆，所以取 $sp = -\dfrac{f(r)}{f'(r)}$ 即可，这里 $\dfrac{1}{f'(r)}$ 是模 $p^2$ 意义下的逆元。因为 $f'(r)$ 在模 $p$ 意义下可逆，所以它在模 $p^2$ 意义下也必定存在逆元：设有 $a,b,c\in R$ 使 $af'(r) = bp+1$ 和 $f(r)=cp$，那么 $\left(a^2f'(r)-2\right)f'(r) = b^2p^2+1$，故可以取 $s=c(2-a^2f'(r))$。
 
-对于域 $k$ 上的多项式环 $k[X]$，设有 $G(X, Y)\in k[X, Y]$ 和 $f_n\in k[X]$ 使 $G(X, f_n(X))\in k[X]X^n$，那么应用引理 1就可得到
+对于域 $k$ 上的多项式环 $k[X]$，设有 $G(X, Y)\in k[X, Y]$ 和 $f_n\in k[X]$ 使 $G(X, f_n(X))\in k[X]X^n$，那么应用引理 1 就可得到
 
 $$
 G\left(X, f_n(X) - \frac{G(X, f_n(X))}{\frac{\partial G}{\partial Y}(X, f_n(X))} \right)\equiv 0 \pmod {X^{2n}}
@@ -264,9 +264,9 @@ $$
     设 $v$ 是满足上述条件的值，则有 $v = r+tp$ 和 $f(r) + f'(r)tp \in Rp^{2}$。
     于是有 $f'(r)(t-s)p\in Rp^{2}$ 和 $v-u\in Rp^{2}$。
 
-牛顿法可以保证得到模 $X^{2^n}$ 的全部解。假设 $G(X, h)\equiv 0\pmod {X^{2^n}}$，那么令 $h_{2^i} := h\pmod {X^{2^i}}$，然后取 $f_1 = h_1$ 并用牛顿法，根据引理 2可得 $f_{2^i} \equiv h_{2^i}\pmod {X^{2^i}}$，所以一定有 $f_{2^n} = h$。
+牛顿法可以保证得到模 $X^{2^n}$ 的全部解。假设 $G(X, h)\equiv 0\pmod {X^{2^n}}$，那么令 $h_{2^i} := h\pmod {X^{2^i}}$，然后取 $f_1 = h_1$ 并用牛顿法，根据引理 2 可得 $f_{2^i} \equiv h_{2^i}\pmod {X^{2^i}}$，所以一定有 $f_{2^n} = h$。
 
 上面的论证也说明了，在 $\dfrac{\partial G}{\partial y}(0, y)$ 永远可逆时，$G(X, f)\equiv 0\pmod {X^n}$ 的解的个数等于 $G(0, f)\equiv 0\pmod X$ 的解的个数。这个结论并非平凡。请看下面的例子。
 
 ??? example "牛顿法无效时解的个数随次数而变多的例子"
-    模 $X$ 意义下 $X^2$ 的平方根只有 $0$，但是模 $X^4$ 意义下$X^2$ 的平方根有 $X, -X, X^3+X, \ldots$。
+    模 $X$ 意义下 $X^2$ 的平方根只有 $0$，但是模 $X^4$ 意义下 $X^2$ 的平方根有 $X, -X, X^3+X, \ldots$。
