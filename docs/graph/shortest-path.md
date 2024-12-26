@@ -444,7 +444,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
                         dis[v] = dis[u] + w
         ```
 
-???+ note "优先队列实现 "
+???+ note "优先队列实现"
     === "C++"
         ```cpp
         struct edge {
