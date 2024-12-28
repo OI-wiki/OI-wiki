@@ -463,7 +463,7 @@ $$
 
 因此对于 SATT，我们只要证得 Access 函数复杂度正确，就能证得 SATT 的时间复杂度。
 
-我们逐步分析 Accese 的均摊复杂度。
+我们逐步分析 Access 的均摊复杂度。
 
 我们先要将点 $x$ 旋至其所在 Compress Tree 的根，则这一步的均摊复杂度
 
@@ -555,7 +555,7 @@ $$
 
 如果我们能找到足够多的 zig-zig，zig-zag 操作，我们就可以将这 $3k+1$ 平摊到这些操作上去，从而消掉这个 $3k+1$。
 
-我们发现 Globel Splay 里面就有这么多的 zig-zig，zag-zig 来给我们使用，因为 Globel Splay 里面点的个数一定大于 $k$，而从点 $x$ 到 Globel Splay 根部路径的点数一定不少于 $k$，也就是说一次 `access(x)` 中一定会至少有 $\dfrac k2$ 个 zig-zag 操作，算上 Globel Splay 的均摊复杂度 $a \leq 3\log n +1$，一次 `access(x)` 不记 `delete(x)` 的均摊复杂度为
+我们发现 Global Splay 里面就有这么多的 zig-zig，zag-zig 来给我们使用，因为 Global Splay 里面点的个数一定大于 $k$，而从点 $x$ 到 Global Splay 根部路径的点数一定不少于 $k$，也就是说一次 `access(x)` 中一定会至少有 $\dfrac k2$ 个 zig-zag 操作，算上 Global Splay 的均摊复杂度 $a \leq 3\log n +1$，一次 `access(x)` 不记 `delete(x)` 的均摊复杂度为
 
 $$
 \begin{aligned}
@@ -681,7 +681,7 @@ void pushup(int x, int op) {
 
 2.  比较簇 $compress(Z)$ 的 $sum$ 值与簇 $compress(Y)$、簇 $A$ 和点 $X$ 的并（我们暂称为簇 $\beta$）的 $sum$ 值。若 $compress(Z)$ 的 $sum$ 值大于等于后者，说明至少有一个重心在 $compress(Z)$ 的子树中，我们递归到 $compress(Z)$ 搜索。（如果此处取等，点 $X$ 也是一个重心，需要记录）
 
-3.  比较点 $x$ 中儿子 Rake tree 之中 $sum$ 最大的更小簇的 $sum$ 值与簇 $compress(Y)$、簇 $A$、点 $X$ 及其它更小簇的并（我们暂称为簇 $Y$）的 $sum$ 值，若那个更小簇的 $sum$ 值大于等于后者，说明至少有一个重心在那个更小簇的子树中，我们递归到它搜索。如果此处取等，点 $X$ 也是一个重心，需要记录。
+3.  比较点 $x$ 中儿子 Rake tree 之中 $sum$ 最大的更小簇的 $sum$ 值与簇 $compress(Y)$、簇 $compress(Z)$、点 $X$ 及其它更小簇的并（我们暂称为簇 $Y$）的 $sum$ 值，若那个更小簇的 $sum$ 值大于等于后者，说明至少有一个重心在那个更小簇的子树中，我们递归到它搜索。如果此处取等，点 $X$ 也是一个重心，需要记录。
 
 4.  若以上比较都不递归，则点 $X$ 一定是一个重心，记录并退出。
 
@@ -710,8 +710,8 @@ void non_local_search(int x, int lv, int rv, int op) {
           1);
       return;
     }
-    if (ss[rs(x)] + rv >= ss[ms(x)] + ss[ls(x)] + lv + 1) {
-      if (ss[rs(x)] + rv == ss[ms(x)] + ss[ls(x)] + lv + 1) {
+    if (sum[rs(x)] + rv >= sum[ms(x)] + sum[ls(x)] + lv + 1) {
+      if (sum[rs(x)] + rv == sum[ms(x)] + sum[ls(x)] + lv + 1) {
         if (ans1)
           ans2 = x;
         else
