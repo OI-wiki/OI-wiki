@@ -272,15 +272,19 @@ b = read<long long>();
 c = read<__int128>();
 ```
 
-## 例题
+## 示例代码
 
-???+ note "[P10815【模板】快速读入](https://www.luogu.com.cn/problem/P10815)"
+```cpp
+--8<-- "docs/contest/code/io/io_1.cpp:5:77"
+```
+
+注意事项：
+
+-  关闭调试开关时使用 `fread()`，`fwrite()`，退出时自动析构执行 `fwrite()`。开启调试开关时使用 `getchar()`，`putchar()`，便于调试。
+-  若要进行文件读写，请在所有读写进行之前加入 `freopen()`。
+
+???+ note "例题：[洛谷 P10815【模板】快速读入](https://www.luogu.com.cn/problem/P10815)"
     读入 $n$ 个范围在 $[-n, n]$ 的整数，求和并输出。其中 $n \leq 10^8$。数据保证对于序列的任何前缀，这个前缀的和在 $32$ 位有符号整形的存储范围内。
-    
-    ??? "参考代码"
-        ```cpp
-        --8<-- "docs/contest/code/io/io_1.cpp"
-        ```
 
 ## 参考
 
