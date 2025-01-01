@@ -364,7 +364,7 @@ $$
 
 当 $k$ 为偶数（奇数）时为正（负）。同时，因为成立递推关系 $q_{k}=a_kq_{k-1}+q_{k-2}$，分母 $q_k$ 的增长速度不会慢于斐波那契数列的速度。所以，相邻两项的差一定趋近于零。这就说明，偶数项和奇数项渐近分数分别自下而上和自上而下地逼近同一极限。这就证明了无限简单连分数一定收敛。渐近分数趋近于相应实数的动态可以见下图：
 
-![](./images/Golden_ration_convergents.svg)
+![](./images/golden-ratio-convergents.svg)
 
 ???+ abstract "上（下）渐近分数"
     对于实数 $x$ 和它的渐近分数 $x_k$，如果 $x_k>x$（$x_k<x$），就称 $x_k$ 为 $x$ 的 **上（下）渐近分数**（upper (lower) convergent）。
@@ -865,7 +865,7 @@ $$
 
 连分数理论有着优美的几何解释。
 
-![](./images/Continued_convergents_geometry.svg)
+![](./images/continued-convergents-geometry.svg)
 
 如图所示，对于实数 $\xi>0$，直线 $y=\xi x$ 将第一象限（包括 $x$ 和 $y$ 坐标轴上的点但不包括原点，下同）上的整点（lattice point）分成上下两部分。对于有理数 $\xi$ 的情形，直线 $y=\xi x$ 上的点既算作直线上方的点，又算作直线下方的点。考虑这两部分的点的凸包。那么，奇数项渐近分数是上半部分的凸包的顶点，偶数项渐进分数是下半部分的凸包的顶点。凸包上两个相邻顶点之间的连线上的整点就是中间分数。图中展示了 $\xi=\dfrac{9}{7}$ 的渐近分数和中间分数（灰点）。
 
@@ -980,6 +980,47 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
     === "Python"
         ```py
         --8<-- "docs/math/code/continued-fraction/compare.py:2:16"
+        ```
+
+???+ example "最佳内点"
+    对于 $\dfrac{0}{1}\le\dfrac{p_0}{q_0}<\dfrac{p_1}{q_1}\le\dfrac{1}{0}$，求使得 $\dfrac{p_0}{q_0}<\dfrac{p}{q}<\dfrac{p_1}{q_1}$ 成立且 $(q,p)$ 最小的有理数 $\dfrac{p}{q}$。
+
+??? note "解答"
+    因为 Stern–Brocot 树既是 $[0,\infty]$ 中的分数的二叉搜索树，又是二元组 $(q,p)$ 的 [笛卡尔树](../../ds/cartesian-tree.md)，所以题意几乎可以转化为求 Stern–Brocot 树上两个点的 LCA（最近公共祖先）。但是，LCA 只能处理闭区间内的情形，LCA 可能是端点本身。为了避免额外的讨论，可以首先构造出 $\dfrac{p_0}{q_0}+\varepsilon$ 和 $\dfrac{p_1}{q_1}-\varepsilon$，再计算 LCA。在已经通过连分数计算出根到节点的路径的情况下，LCA 只要取最长的公共路径即可。
+
+    要构造出 $x\pm\varepsilon$，只需要在节点 $x$ 处首先向右（左）移动一次，再向左（右）移动 $\infty$ 次即可。转化成连分数的语言，对于分数 $x=[a_0,a_1,\cdots,a_{n-1},1]$，可以知道 $x\pm\varepsilon$ 必然是 $[a_0,a_1,\cdots,a_{n-1}+1,\infty]$ 和 $[a_0,a_1,\cdots,a_{n-1},1,\infty]$，因而只需要比较这两个连分数，将较大（小）的定义为 $x\pm\varepsilon$。
+
+    === "C++"
+        ```cpp
+        --8<-- "docs/math/code/continued-fraction/inner-point.cpp:52:82"
+        ```
+
+    === "Python"
+        ```py
+        --8<-- "docs/math/code/continued-fraction/inner-point.py:39:63"
+        ```
+
+???+ example "[GCJ 2019, Round 2 - New Elements: Part 2](https://github.com/google/coding-competitions-archive/blob/main/codejam/2019/round_2/new_elements_part_2/statement.pdf)"
+    给定 $N$ 个正整数对 $(C_i,J_i)$，求正整数对 $(x,y)$ 使得 $\{C_ix+J_iy\}$ 严格递增。在所有符合要求的数对中，输出字典序最小的一对。
+
+??? "解答"
+    不妨设 $A_i=C_i-C_{i-1}$ 和 $B_i=J_i-J_{i-1}$。问题转化为求 $(x,y)$ 使得所有 $A_ix+B_iy$ 都是整数。这些数对可以分为四种情形：
+
+    1.  $A_i,B_i>0$ 的情形可以忽略，因为已经假设 $(x,y)>0$；
+    2.  $A_i,B_i\le 0$ 的情形直接输出「IMPOSSIBLE」；
+    3.  $A_i>0,B_i\le 0$ 的情形相当于约束 $\dfrac{y}{x}<\dfrac{A_i}{-B_i}$；
+    4.  $A_i\le 0,B_i>0$ 的情形相当于约束 $\dfrac{y}{x}>\dfrac{-A_i}{B_i}$。
+
+    因此，取 $\dfrac{p_0}{q_0}$ 是第四种情形中最大的 $\dfrac{-A_i}{B_i}$，再取 $\dfrac{p_1}{q_1}$ 是第三种情形中最小的 $\dfrac{A_i}{-B_i}$。原问题就变成了找到字典序最小的 $(q,p)$ 使得 $\dfrac{p_0}{q_0}<\dfrac{p}{q}<\dfrac{p_1}{q_1}$ 成立。
+
+    === "C++"
+        ```cpp
+        --8<-- "docs/math/code/continued-fraction/gcj-2019.cpp:83:117"
+        ```
+
+    === "Python"
+        ```py
+        --8<-- "docs/math/code/continued-fraction/gcj-2019.py:66:91"
         ```
 
 想要了解更多 Stern–Brocot 树的性质和应用，可以参考其主条目页面。
@@ -1550,7 +1591,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 ??? note "解答"
     对于无界集合 $x\ge 0$，上凸壳就是直线 $y=rx$ 本身。然而，如下图所示，如果还要求 $x\le N$，那么上凸壳最终会偏离直线。
 
-    ![](./images/Lattice-hull.svg)
+    ![](./images/lattice-hull.svg)
 
     从 $(0,0)$ 开始，可以自左向右地求出上凸壳的所有整点。假设当前已经求出的上凸壳的最后一个整点是 $(x,y)$。现在要求出下一个整点 $(x',y')$。顶点 $(x',y')$ 在 $(x,y)$ 右上方，记 $(\Delta x,\Delta y)=(x'-x,y'-y)$ 为两者的差值。那么，必然有
 
@@ -1710,6 +1751,8 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 -   [POJ Founder Monthly Contest 2008.03.16 - A Modular Arithmetic Challenge](http://poj.org/problem?id=3530)
 -   [2019 Multi-University Training Contest 5 - fraction](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
 -   [SnackDown 2019 Elimination Round - Election Bait](https://www.codechef.com/SNCKEL19/problems/EBAIT)
+-   [Luogu P5179. Fraction](https://www.luogu.com.cn/problem/P5179)
+-   [Luogu P7739. \[NOI2021\] 密码箱](https://www.luogu.com.cn/problem/P7739)
 
 ## 参考文献与拓展阅读
 
