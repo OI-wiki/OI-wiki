@@ -1,0 +1,10 @@
+id: oi-wiki:search/dlx-3
+name: DLX
+solution:
+  cpp: docs/search/code/dlx/dlx_3.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/search/examples/dlx/dlx_3.ans
+  input: docs/search/examples/dlx/dlx_3.in
+version: 1000

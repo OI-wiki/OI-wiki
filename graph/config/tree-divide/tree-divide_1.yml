@@ -1,0 +1,10 @@
+id: oi-wiki:graph/tree-divide-1
+name: Tree Divide
+solution:
+  cpp: docs/graph/code/tree-divide/tree-divide_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/tree-divide/tree-divide_1.ans
+  input: docs/graph/examples/tree-divide/tree-divide_1.in
+version: 1000
