@@ -4,16 +4,27 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
 
 ## 引入
 
-并查集是一种用于管理元素所属集合的数据结构，实现为一个森林，其中每棵树表示一个集合，树中的节点表示对应集合中的元素。
+给定一个集合 $S$，要求支持如下操作：
+
+-   添加新的等价关系：给定 $u, v \in S$，表示 $u = v$；
+-   询问元素是否等价：给定 $u, v \in S$，问是否有 $u = v$。
+
+我们将所有等价的元素分配到同一个集合 $T_i$ 中，这样若 $u \in T_i$ 且 $v \in T_i$ 则 $u = v$，若 $u \in T_i$、$v \in T_j$ 且 $i \neq j$ 则 $u \neq v$。称每个 $T_i$ 为 **等价类**，对每个 $T_i$ 选取任意一个其中的元素作为 $T_i$ 的 **代表元**，全体 $T_i$ 构成的集合 $\mathscr T$ 称为 $S$ 关于 $=$ 的 **商集**。
+
+**并查集** 是一种维护商集，即管理元素所属等价类的数据结构。其实现为一个森林，其中每棵树表示一个等价类，树中的节点表示对应等价类中的元素，根节点表示对应等价类的代表元。例如本文头图表示的是如下商集：
+
+$$
+\mathscr{T} = \{\{1, 2, 3, 4, 5\}, \{6, 7, 8\}\}
+$$
 
 顾名思义，并查集支持两种操作：
 
--   合并（Union）：合并两个元素所属集合（合并对应的树）
--   查询（Find）：查询某个元素所属集合（查询对应的树的根节点），这可以用于判断两个元素是否属于同一集合
+-   合并（Union）：合并两个元素所属等价类（合并对应的树），可以用于添加新的等价关系；
+-   查询（Find）：查询某个元素所属等价类的代表元（查询对应的树的根节点），可以用于判断两个元素是否属于同一等价类。
 
 并查集在经过修改后可以支持单个元素的删除、移动；使用动态开点线段树还可以实现可持久化并查集。
 
-??? warning
+???+ warning
     并查集无法以较低复杂度实现集合的分离。
 
 ## 初始化
@@ -225,33 +236,22 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 ## 带权并查集
 
-我们还可以在并查集的边上定义某种权值、以及这种权值在路径压缩时产生的运算，从而解决更多的问题。比如对于经典的「NOI2001」食物链，我们可以在边权上维护模 3 意义下的加法群。接下来以该题为例介绍带权并查集。
+如果说普通并查集维护的是形如 $a = b$ 这样的等式，那么带权并查集维护的则是形如 $a = b + w$ 这样的等式，其中 $w$ 就是所谓的权值。具体而言，给定集合 $S$，等价关系 $=$ 和二元运算 $+$，要求支持如下操作：
 
-???+ note "[P2024 \[NOI2001\] 食物链](https://www.luogu.com.cn/problem/P2024)"
-    动物王国中有三类动物 $A,B,C$，这三类动物的食物链构成了有趣的环形。$A$ 吃 $B$，$B$ 吃 $C$，$C$ 吃 $A$。
-    
-    现有 $N$ 个动物，以 $1 \sim N$ 编号。每个动物都是 $A,B,C$ 中的一种，但是我们并不知道它到底是哪一种。
-    
-    有人用两种说法对这 $N$ 个动物所构成的食物链关系进行描述：
-    
-    -   第一种说法是 `1 X Y`，表示 $X$ 和 $Y$ 是同类。
-    -   第二种说法是 `2 X Y`，表示 $X$ 吃 $Y$。
-    
-    此人对 $N$ 个动物，用上述两种说法，一句接一句地说出 $K$ 句话，这 $K$ 句话有的是真的，有的是假的。当一句话满足下列三条之一时，这句话就是假话，否则就是真话。
-    
-    -   当前的话与前面的某些真的话冲突，就是假话；
-    -   当前的话中 $X$ 或 $Y$ 比 $N$ 大，就是假话；
-    -   当前的话表示 $X$ 吃 $X$，就是假话。
-    
-    你的任务是根据给定的 $N$ 和 $K$ 句话，输出假话的总数。
+-   添加新的等价关系：给定 $a, b \in S$ 和 $w_l, w_r$，表示 $a = w_l + b + w_r$；
+-   询问元素是否等价：给定 $a, b \in S$ 和 $v_l, v_r, w_l, w_r$，问是否有 $v_l + a + v_r = w_l + b + w_r$；
 
-用节点 $x$ 表示编号为 $x$ 的动物。本题想要维护的是每个节点 $x$ 的权值 $w_x \in \{0, 1, 2\}$，这里用 $0$ 表示 $A$，用 $1$ 表示 $B$，用 $2$ 表示 $C$。然而直接维护 $w$ 非常困难，其他不说，本题根本就没有断言某个节点具体的权值，自己设定一个类别则又会在合并信息上带来麻烦。
+实际用途中很少会遇到性质极其恶劣还要求支持如此全面的操作的情况。比如：
 
-注意到题目给出的实际上是两个点权的差分，这里 $X$ 吃 $Y$ 等价于 $w_Y - w_X \equiv 1 \pmod{3}$，因此对于并查集来说，可以转而去维护 **点权的差分**。具体而言，对于一个节点 $x$ 和它的父节点 $\operatorname{pa}(x)$，定义 $\Delta w_x = w_{\operatorname{pa}(x)} - w_x$。使用这一定义，接下来对原先并查集的每个操作一一改造来维护 $\Delta w_x$。
+-   若 $+$ 满足结合律，则可以使用路径压缩来优化时间复杂度；
+-   若 $+$ 满足交换律，则自然无需区分左右权值从而简化操作；
+-   若 $(S, +)$ 构成 [群](../math/algebra/basic.md#群)，则查询元素是否等价时可以转而去查询是否有 $a = (w_l - v_l) + b + (w_r - v_r)$ 从而简化操作。
+
+带权并查集在实现上，只需在普通并查集上额外维护左右两个权值即可。定义 $x = \operatorname{lhs}(x) + \operatorname{pa}(x) + \operatorname{rhs}(x)$，接下来对原先并查集的每个操作一一改造。
 
 ### 初始化
 
-初始化后 $\operatorname{pa}(x) = x$，因此根据定义即得 $\Delta w_x = 0$。
+初始化后 $\operatorname{pa}(x) = x$，因此直接令 $\operatorname{lhs}(x) = \operatorname{rhs}(x) = 0$ 即可。
 
 ???+ note "实现"
     === "C++"
@@ -259,9 +259,9 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
         template <class Ty>
         struct dsu {
           vector<size_t> pa;
-          vector<Ty> dw;
+          vector<Ty> lhs, rhs;
         
-          explicit dsu(size_t size) : pa(size), dw(size) {
+          explicit dsu(size_t size) : pa(size), lhs(size), rhs(size) {
             iota(pa.begin(), pa.end(), 0);
           }
         };
@@ -272,23 +272,30 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
         class Dsu:
             def __init__(self, size):
                 self.pa = list(range(size))
-                self.dw = [0] * size
+                self.lhs = [0] * size
+                self.rhs = [0] * size
         ```
 
 ### 查询
 
-在路径压缩之前，设 $x$ 所在的树的根节点为 $r$，从 $x$ 到 $r$ 的路径记为 $x \to v_1 \to \dots \to v_k \to r$，那么在路径压缩后，$\operatorname{pa}'(x) = r$，$x$ 和 $r$ 的点权的差分：
+如果启用路径压缩优化，在路径压缩之前，设 $x$ 所在的树的根节点为 $r$，从 $x$ 到 $r$ 的路径记为 $x \to v_1 \to \dots \to v_k \to r$，那么在路径压缩后，$\operatorname{pa}'(x) = r$，$x$ 和 $r$ 原先的关系为：
+
+$$
+x = \operatorname{lhs}(x) + \operatorname{lhs}(v_1) + \dots + \operatorname{lhs}(v_k) + r + \operatorname{rhs}(v_k) + \dots + \operatorname{rhs}(v_1) + \operatorname{rhs}(x)
+$$
+
+那么新的 $\operatorname{lhs}'(x)$ 和 $\operatorname{rhs}'(x)$ 则为：
 
 $$
 \begin{aligned}
-\Delta w_x' &= w_r - w_x \\
-&= (w_r - w_{v_k}) + (w_{v_k} - w_{v_{k-1}}) + \dots + (w_{v_2} - w_{v_1}) + (w_{v_1} - w_x) \\
-&= \Delta w_x + \sum_{i = 1}^{k} \Delta w_{v_i} \\
-&= \Delta w_x + \Delta w_{\operatorname{pa}(x)}'
+\operatorname{lhs}'(x) &= \operatorname{lhs}(x) + \operatorname{lhs}(v_1) + \dots + \operatorname{lhs}(v_k) \\
+&= \operatorname{lhs}(x) + \operatorname{lhs}(\operatorname{pa}'(x)) \\
+\operatorname{rhs}'(x) &= \operatorname{rhs}(v_k) + \dots + \operatorname{rhs}(v_1) + \operatorname{rhs}(x)\\
+&= \operatorname{rhs}(\operatorname{pa}'(x)) + \operatorname{rhs}(x) \\
 \end{aligned}
 $$
 
-也就是树上前缀和。将前缀和的计算方法照搬即可。注意要在压缩前存好 $\operatorname{pa}(x)$ 因为路径压缩后就变了。
+也就是树上前缀和与后缀和，将前缀和与后缀和的计算方法照搬即可。注意要在压缩前存好 $\operatorname{pa}(x)$ 因为路径压缩后就变了。
 
 ???+ note "实现"
     === "C++"
@@ -299,7 +306,8 @@ $$
           }
           size_t oldpa = pa[x];
           pa[x] = find(pa[x]);
-          dw[x] += dw[oldpa];
+          lhs[x] += lhs[oldpa];
+          rhs[x] = rhs[oldpa] + rhs[x];
           return pa[x];
         }
         ```
@@ -310,54 +318,81 @@ $$
             if self.pa[x] != x:
                 oldpa = self.pa[x]
                 self.pa[x] = self.find(self.pa[x])
-                self.dw[x] += self.dw[oldpa]
+                self.lhs[x] += self.lhs[oldpa]
+                self.rhs[x] = self.rhs[oldpa] + self.rhs[x]
             return self.pa[x]
         ```
 
+再次提醒，可以路径压缩的前提是 $+$ 满足结合律，否则强行路径压缩算出来的 $\operatorname{lhs}(x)$ 和 $\operatorname{rhs}(x)$ 可能是错的。
+
 ### 合并
 
-对于合并而言，有一点小问题：我们希望在 $x$ 和 $y$ 之间连边，但普通的并查集是将 $\operatorname{root}(x)$ 和 $\operatorname{root}(y)$ 连边。如果不想算太多东西，这里可以使用换根技巧：在路径压缩后，由于 $\operatorname{pa}(x) = \operatorname{root}(x)$，因此可以直接将 $x$ 换到根上，此时：
+对于合并而言，有一点小问题：我们希望在 $a$ 和 $b$ 之间连边，但普通的并查集是将 $\operatorname{root}(a)$ 和 $\operatorname{root}(b)$ 连边。如果 $(S, +)$ 构成群，那么在路径压缩后，我们有如下等式：
 
 $$
-\begin{aligned} \\
-\Delta w_{\operatorname{pa}(x)}' &= w_x - w_{\operatorname{pa}(x)} = -\Delta w_x \\
-\Delta w_{x}' &= 0 \\
-\operatorname{pa}'(\operatorname{pa}(x)) &= x \\
-\operatorname{pa}'(x) &= x \\
+\begin{aligned}
+a &= \operatorname{lhs}(a) + \operatorname{root}(a) + \operatorname{rhs}(a) \\
+\operatorname{root}(a) &= -\operatorname{lhs}(a) + a - \operatorname{rhs}(a) \\
+b &= \operatorname{lhs}(b) + \operatorname{root}(b) + \operatorname{rhs}(b) \\
+\operatorname{root}(b) &= -\operatorname{lhs}(b) + b - \operatorname{rhs}(b) \\
+a &= w_l + b + w_r \\
+b &= -w_l + a - w_r \\
 \end{aligned}
 $$
 
-其它点权的差分与父节点都不变。换完根后再将 $x$ 和 $y$ 连边，可以减少错误的发生。
+如果选择 $\operatorname{root}(a)$ 往 $\operatorname{root}(b)$ 连边，则：
+
+$$
+\begin{aligned}
+\operatorname{root}(a) &= -\operatorname{lhs}(a) + a - \operatorname{rhs}(a) \\
+&= -\operatorname{lhs}(a) + w_l + b + w_r - \operatorname{rhs}(a) \\
+&= -\operatorname{lhs}(a) + w_l + \operatorname{lhs}(b) + \operatorname{root}(b) + \operatorname{rhs}(b) + w_r - \operatorname{rhs}(a) \\
+&= \operatorname{lhs}(\operatorname{root}(a)) + \operatorname{root}(b) + \operatorname{rhs}(\operatorname{root}(a)) \\
+\operatorname{lhs}(\operatorname{root}(a)) &= -\operatorname{lhs}(a) + w_l + \operatorname{lhs}(b) \\
+\operatorname{rhs}(\operatorname{root}(a)) &= \operatorname{rhs}(b) + w_r - \operatorname{rhs}(a)
+\end{aligned}
+$$
+
+如果选择 $\operatorname{root}(b)$ 往 $\operatorname{root}(a)$ 连边，则：
+
+$$
+\begin{aligned}
+\operatorname{root}(b) &= -\operatorname{lhs}(b) + b - \operatorname{rhs}(b) \\
+&= -\operatorname{lhs}(b) -w_l + a - w_r - \operatorname{rhs}(b) \\
+&= -\operatorname{lhs}(b) -w_l + \operatorname{lhs}(a) + \operatorname{root}(a) + \operatorname{rhs}(a) - w_r - \operatorname{rhs}(b) \\
+&= \operatorname{lhs}(\operatorname{root}(b)) + \operatorname{root}(a) + \operatorname{rhs}(\operatorname{root}(b)) \\
+\operatorname{lhs}(\operatorname{root}(b)) &= - \operatorname{lhs}(b) - w_l + \operatorname{lhs}(a) \\
+\operatorname{rhs}(\operatorname{root}(b)) &= \operatorname{rhs}(a) - w_r - \operatorname{rhs}(b)
+\end{aligned}
+$$
 
 ???+ note "实现"
     === "C++"
         ```cpp
-        void dsu::unite(size_t x, size_t y, const Ty &deltaw) {
+        void dsu::unite(size_t a, size_t b, const Ty &wL, const Ty &wR) {
           // 路径压缩
-          size_t pa_x = find(x);
-          find(y);
-          // 换根到 x
-          dw[pa_x] = -dw[x];
-          pa[pa_x] = x;
-          // x 连边到 y
-          pa[x] = y;
-          dw[x] = deltaw;
+          size_t root_a = find(a);
+          size_t root_b = find(b);
+          // root_a 连边到 root_b
+          pa[root_a] = root_b;
+          lhs[root_a] = -lhs[a] + wL + lhs[b];
+          lhs[root_a] = rhs[a] + wR - rhs[b];
         }
         ```
     
     === "Python"
         ```python
-        def union(self, x, y, deltaw):
+        def union(self, a, b, wL, wR):
             # 路径压缩
-            pa_x = self.find(x)
-            self.find(y)
-            # 换根到 x
-            dw[pa_x] = -dw[x]
-            pa[pa_x] = x
-            # x 连边到 y
-            self.pa[x] = y
-            self.dw[x] = deltaw
+            root_a = self.find(a)
+            root_b = self.find(b)
+            # root_a 连边到 root_b
+            self.pa[root_a] = root_b;
+            self.lhs[root_a] = -self.lhs[a] + wL + self.lhs[b];
+            self.lhs[root_a] = self.rhs[a] + wR - self.rhs[b];
         ```
+
+否则如果 $(S, +)$ 没有逆元，则要求 $\operatorname{root}(b) = b$，否则难以判断等式是否自洽。
 
 ## 例题
 
