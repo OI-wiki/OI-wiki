@@ -392,7 +392,7 @@ $$
             self.lhs[root_a] = self.rhs[a] + wR - self.rhs[b];
         ```
 
-否则如果 $(S, +)$ 没有逆元，则要求 $\operatorname{root}(b) = b$，否则难以判断等式是否自洽。
+否则如果 $(S, +)$ 没有逆元，则要求 $\operatorname{root}(a) = a$，否则难以判断等式是否自洽。
 
 ## 例题
 
