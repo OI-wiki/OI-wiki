@@ -387,9 +387,9 @@ $$
             root_a = self.find(a)
             root_b = self.find(b)
             # root_a 连边到 root_b
-            self.pa[root_a] = root_b;
-            self.lhs[root_a] = -self.lhs[a] + wL + self.lhs[b];
-            self.lhs[root_a] = self.rhs[a] + wR - self.rhs[b];
+            self.pa[root_a] = root_b
+            self.lhs[root_a] = -self.lhs[a] + wL + self.lhs[b]
+            self.lhs[root_a] = self.rhs[a] + wR - self.rhs[b]
         ```
 
 否则如果 $(S, +)$ 没有逆元，则要求 $\operatorname{root}(a) = a$，否则难以判断等式是否自洽。
