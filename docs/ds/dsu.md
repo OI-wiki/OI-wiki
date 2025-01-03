@@ -245,9 +245,9 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 -   若 $+$ 满足结合律，则可以使用路径压缩来优化时间复杂度；
 -   若 $+$ 满足交换律，则自然无需区分左右权值从而简化操作；
--   若 $(S, +)$ 构成 [群](../math/algebra/basic.md#群)，则查询元素是否等价时可以转而去查询是否有 $a = (w_l - v_l) + b + (w_r - v_r)$ 从而简化操作。
+-   若 $(S, +)$ 构成 [群](../math/algebra/basic.md#群)，则添加新的等价关系时不要求 $a$ 是根节点。
 
-带权并查集在实现上，只需在普通并查集上额外维护左右两个权值即可。定义 $x = \operatorname{lhs}(x) + \operatorname{pa}(x) + \operatorname{rhs}(x)$，接下来对原先并查集的每个操作一一改造。
+带权并查集在实现上，只需在普通并查集上额外维护左右两个权值 $\operatorname{lhs}$ 和 $\operatorname{rhs}$ 即可。定义 $x = \operatorname{lhs}(x) + \operatorname{pa}(x) + \operatorname{rhs}(x)$，接下来对原先并查集的每个操作一一改造。
 
 ### 初始化
 
@@ -376,7 +376,7 @@ $$
           // root_a 连边到 root_b
           pa[root_a] = root_b;
           lhs[root_a] = -lhs[a] + wL + lhs[b];
-          lhs[root_a] = rhs[a] + wR - rhs[b];
+          rhs[root_a] = rhs[a] + wR - rhs[b];
         }
         ```
     
@@ -389,7 +389,7 @@ $$
             # root_a 连边到 root_b
             self.pa[root_a] = root_b
             self.lhs[root_a] = -self.lhs[a] + wL + self.lhs[b]
-            self.lhs[root_a] = self.rhs[a] + wR - self.rhs[b]
+            self.rhs[root_a] = self.rhs[a] + wR - self.rhs[b]
         ```
 
 否则如果 $(S, +)$ 没有逆元，则要求 $\operatorname{root}(a) = a$，否则难以判断等式是否自洽。
