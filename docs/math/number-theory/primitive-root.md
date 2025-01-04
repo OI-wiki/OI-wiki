@@ -184,21 +184,11 @@ $$
     
     当对于 $\varphi(m)$ 的每个素因数 $p$，都有 $g^{\frac{\varphi(m)}{p}}\not\equiv 1\pmod m$ 成立时，我们假设存在一个 $g$，其不是模 $m$ 的原根。
     
-    因为 $g$ 不是 $m$ 的原根，则存在一个 $t<\varphi(m)$ 使得 $g^t\equiv 1\pmod{m}$.
+    因为 $g$ 不是 $m$ 的原根，且将 $g^{\varphi(m)}\equiv 1\pmod m$ 带入性质二，得到 $g$ 的阶 $\delta_m(g)$ 应满足 $\delta_m(g) \lt \varphi(m)$ 且 $\delta_m(g) \mid \varphi(m)$.
     
-    由 [裴蜀定理](./bezouts.md) 得，一定存在一组 $k,x$ 满足 $kt=x\varphi(m)+(t,\varphi(m))$.
+    故存在 $\varphi(m)$ 的素因数 $p$ 使得 $\delta_m(g) \mid \frac{\varphi(m)}{p}$.
     
-    又由 [欧拉定理](./fermat.md#欧拉定理) 得 $g^{\varphi(m)}\equiv 1\pmod{m}$，故有：
-    
-    $$
-    1\equiv g^{kt}\equiv g^{x\varphi(m)+(t,\varphi(m))}\equiv g^{(t,\varphi(m))}\pmod{m}
-    $$
-    
-    由于 $(t, \varphi(m)) \mid \varphi(m)$ 且 $(t, \varphi(m))\leqslant t < \varphi(m)$.
-    
-    故存在 $\varphi(m)$ 的素因数 $p$ 使得 $(t, \varphi(m)) \mid \frac{\varphi(m)}{p}$.
-    
-    则 $g^{\frac{\varphi(m)}{p}}\equiv g^{(t, \varphi(m))}\equiv 1\pmod{m}$，与条件矛盾。
+    则 $g^{\frac{\varphi(m)}{p}}\equiv g^{\delta_m(g)}\equiv 1\pmod{m}$，与条件矛盾。
     
     故假设不成立，原命题成立。
 
