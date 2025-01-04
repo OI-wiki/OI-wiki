@@ -1,7 +1,7 @@
 # CONTINUED FRACTION COMPARISON.
 # Expand [..., n] to [..., n-1, 1] if needed.
 def expand(a):
-    if a[-1] != 1:
+    if a[-1] != 1 or len(a) == 1:
         a[-1] -= 1
         a.append(1)
     return a

@@ -1,4 +1,4 @@
-author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint, HuangYiming0608
+author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint, HuangYiming0608
 
 本页面主要列举一些竞赛中很多人经常会出现的错误。
 
@@ -110,6 +110,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 -   运算符重载后引发的输出错误。
     -   示例：
+
         ```cpp
         // 本意：前一个 << 为重载后的运算符，表示输出；后一个 << 为移位运算符，表示将 1
         // 左移 1 位。 但由于忘记加括号，导致编译器将后一个 <<
@@ -367,6 +368,7 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 -   排序时比较函数的错误 `std::sort` 要求比较函数是严格弱序：`a<a` 为 `false`；若 `a<b` 为 `true`，则 `b<a` 为 `false`；若 `a<b` 为 `true` 且 `b<c` 为 `true`，则 `a<c` 为 `true`。其中要特别注意第二点。
     如果不满足上述要求，排序时很可能会 RE。
     例如，编写莫队的奇偶性排序时，这样写是错误的：
+
     ```cpp
     bool operator<(const int a, const int b) {
       if (block[a.l] == block[b.l])
@@ -375,8 +377,10 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
         return block[a.l] < block[b.l];
     }
     ```
+
     上述代码中 `(block[a.l]&1)^(a.r<b.r)` 不满足上述要求的第二点。
     改成这样就正确了：
+
     ```cpp
     bool operator<(const int a, const int b) {
       if (block[a.l] == block[b.l])
@@ -390,7 +394,11 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     ```
 
 -   Windows 下栈空间不足，导致栈空间溢出，Windows 向程序发出 SIGSEGV 信号，程序终止并返回 3221225725（即 0xC00000FD, NTSTATUS 定义为 `STATUS_STACK_OVERFLOW`）。  
-    若使用 gcc 编译器，可在编译时加入命令 `-Wl,--stack=SIZE` 以扩展栈空间，其中 `SIZE` 为栈空间大小字节数。
+    若使用 gcc 编译器，可在编译时加入命令 `-Wl,--stack=SIZE` 以指定栈空间大小限制，其中 `SIZE` 为栈空间大小字节数。
+
+    Linux 下栈空间不足，导致栈空间溢出，Linux 会在栈堆中乱写 `head_info`，此操作绝大多数情况下会导致程序立即退出，显示 `段错误（核心已转储）/segmentation fault (core dumped)` 等字样。  
+    可以在终端下使用 `ulimit -s SIZE` 修改当前终端的栈空间限制，其中 `SIZE` 为栈空间大小千字节数（KB）。  
+    **请注意，如果你将栈空间限制设置过大，无穷递归可能导致递归栈过大进而导致系统崩溃。**
 
 ### 会导致 TLE
 
@@ -469,6 +477,73 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
 
 -   数组过大。
 
+    ??? note "Linux 下的内存占用指标详解"
+        > 太长不看版：如果在 CCF 系列的考试时声明了一个特别大的全局静态数组，此时需要特别慎重。因为程序声明的数组会全部计入内存占用中（而不像大部分在线评测平台仅计算实际使用的部分），在某些情况下这甚至有可能导致整道题全部 MLE。
+        
+        -   **关于 RSS 和 VSZ**[^ref1][^ref2]
+        
+            1.  VSZ (Virtual Memory Size，虚拟内存大小）[^ref3]
+        
+                VSZ 表示进程的 **虚拟内存大小**，是进程可以访问的虚拟地址空间的总大小，通常以 KB 显示。
+        
+                虚拟内存是一个逻辑概念，通常会比实际内存使用大很多。
+        
+                在 Linux 下你可以使用 `top` 命令来查看某个进程的内存占用组成，其中 `VIRT` 这一列就代表它占用的虚拟内存。
+        
+                虚拟内存一般包括进程分配但未实际使用的地址空间，简而言之，申请了多少，虚拟内存就大约是多少。
+        
+                需要特别注意的是，常用的在线评测平台通常只统计物理内存占用。但 **CCF 的评测环境统计的是虚拟内存**，这意味着如果你声明了一个全局静态大数组，即使只使用了其中的一小部分，也会占用大量空间。
+            2.  RSS（Resident Set Size，常驻集大小）[^ref4]
+        
+                RSS 表示进程实际占用的 **物理内存大小**，即驻留在 RAM 中的页帧大小，通常以 KB 显示。
+        
+                同样的，你也可以用 `top` 在 `RES` 这一列查看某个进程的物理内存。
+        
+                RSS 一般仅包含实际加载到物理内存的部分，也就是说，实际使用了多少就是多少。
+        -   **内存占用行为分析**
+        
+            假设声明了以下数组：
+        
+            ```cpp
+            const int SIZE = 1e8;
+            int arr[SIZE];  // 占用空间：4 字节 * 1 亿 = 400 MB
+            ```
+        
+            这是一个静态数组，分配在全局数据段。这个数组未经显式初始化，通常会被分配在 BSS 段（如果显式初始化（如全为 0 或其他值），则分配在 DATA 段）。
+        
+            -   当完全未使用该数组时（假定编译器不会优化掉该数组）
+        
+                -   物理内存：如果数组未被访问，按需分页机制（Demand Paging）会使内存页尚未加载到物理内存中。物理内存不会增加或仅略微增加一点（可能加载了一些元数据页）。
+                -   虚拟内存：数组的大小会计入虚拟内存（增加 `400MB`），因为整个数组的虚拟地址空间已经被分配。
+            -   部分使用该数组时
+        
+                假设仅使用数组的少部分元素，例如：
+        
+                ```cpp
+                arr[0] = 1;
+                arr[999999] = 2;
+                ```
+        
+                -   虚拟内存：虚拟内存不会改变，仍为 `400MB`。
+                -   物理内存：每次访问数组的一个元素，对应的虚拟页会被加载到物理内存中。假定系统分页大小为 `4KB`，那么每页包含 $4 \text{KB} ÷ 4 \text{B} = 1024$ 个 `int` 元素。访问数组两次可能加载 2 个页，即增加约 $2 \times 4 \text{KB} = 8 \text{KB}$ 的物理内存。
+            -   数组被大半使用
+        
+                假设对数组的前 $50,000,000$ 个元素赋值：
+        
+                ```cpp
+                for (int i = 0; i < 50000000; ++i) {
+                  arr[i] = i;
+                }
+                ```
+        
+                -   虚拟内存 (VSZ)：VSZ 仍为 `400MB`，不会发生变化。
+                -   物理内存 (RSS)：此时是连续访问（访问的 $50,000,000$ 个元素在内存地址上相邻），需要加载的分页数为 $\left\lceil \dfrac{50,000,000}{1024} \right\rceil = 48,828$ 页。
+        
+                    假设每页大小为 `4KB`，因此总计 $48,828 \times 4 \text{KB} \approx 190 \text{MB}$，物理内存增加到约 `190MB`。
+        
+                    注：如果对该数组赋值时下标随机，则会导致物理内存占用与预测差距较大（因为内存页加载是以地址为准，导致随机赋值时会加载大量内存页）。
+        
+                简要总结：随着被访问的部分占的比例增加，物理内存趋近于虚拟内存（假定不存在页面回收）。
 -   STL 容器中插入了过多的元素。
 
     -   经常是在一个会向 STL 插入元素的循环中死循环了。
@@ -499,3 +574,13 @@ author: H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, sh
     -   `freopen()` 中的文件名未加 `.in`/`.out`。
 
 -   使用堆空间后忘记 `delete` 或 `free`。
+
+## 参考资料与注释
+
+[^ref1]: [What is RSS and VSZ in Linux memory management - Stack Overflow](https://stackoverflow.com/questions/7880784/what-is-rss-and-vsz-in-linux-memory-management)
+
+[^ref2]: [Need explanation on Resident Set Size/Virtual Size - Stack Overflow](https://unix.stackexchange.com/questions/35129/need-explanation-on-resident-set-size-virtual-size)
+
+[^ref3]: [虚拟内存](https://zh.wikipedia.org/wiki/%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98)
+
+[^ref4]: [常驻集大小](https://zh.wikipedia.org/wiki/%E5%B8%B8%E9%A9%BB%E9%9B%86%E5%A4%A7%E5%B0%8F)
