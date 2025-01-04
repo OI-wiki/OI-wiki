@@ -331,12 +331,9 @@ $$
 
 $$
 \begin{aligned}
-a &= \operatorname{lhs}(a) + \operatorname{root}(a) + \operatorname{rhs}(a) \\
-\operatorname{root}(a) &= -\operatorname{lhs}(a) + a - \operatorname{rhs}(a) \\
-b &= \operatorname{lhs}(b) + \operatorname{root}(b) + \operatorname{rhs}(b) \\
-\operatorname{root}(b) &= -\operatorname{lhs}(b) + b - \operatorname{rhs}(b) \\
-a &= w_l + b + w_r \\
-b &= -w_l + a - w_r \\
+a = \operatorname{lhs}(a) + \operatorname{root}(a) + \operatorname{rhs}(a) &\iff \operatorname{root}(a) = -\operatorname{lhs}(a) + a - \operatorname{rhs}(a) \\
+b = \operatorname{lhs}(b) + \operatorname{root}(b) + \operatorname{rhs}(b) &\iff \operatorname{root}(b) = -\operatorname{lhs}(b) + b - \operatorname{rhs}(b) \\
+a = w_l + b + w_r &\iff b = -w_l + a - w_r \\
 \end{aligned}
 $$
 
@@ -348,8 +345,10 @@ $$
 &= -\operatorname{lhs}(a) + w_l + b + w_r - \operatorname{rhs}(a) \\
 &= -\operatorname{lhs}(a) + w_l + \operatorname{lhs}(b) + \operatorname{root}(b) + \operatorname{rhs}(b) + w_r - \operatorname{rhs}(a) \\
 &= \operatorname{lhs}(\operatorname{root}(a)) + \operatorname{root}(b) + \operatorname{rhs}(\operatorname{root}(a)) \\
-\operatorname{lhs}(\operatorname{root}(a)) &= -\operatorname{lhs}(a) + w_l + \operatorname{lhs}(b) \\
-\operatorname{rhs}(\operatorname{root}(a)) &= \operatorname{rhs}(b) + w_r - \operatorname{rhs}(a)
+\implies &\begin{cases}
+    \operatorname{lhs}(\operatorname{root}(a)) &= -\operatorname{lhs}(a) + w_l + \operatorname{lhs}(b) \\
+    \operatorname{rhs}(\operatorname{root}(a)) &= \operatorname{rhs}(b) + w_r - \operatorname{rhs}(a)
+\end{cases}
 \end{aligned}
 $$
 
@@ -361,8 +360,10 @@ $$
 &= -\operatorname{lhs}(b) -w_l + a - w_r - \operatorname{rhs}(b) \\
 &= -\operatorname{lhs}(b) -w_l + \operatorname{lhs}(a) + \operatorname{root}(a) + \operatorname{rhs}(a) - w_r - \operatorname{rhs}(b) \\
 &= \operatorname{lhs}(\operatorname{root}(b)) + \operatorname{root}(a) + \operatorname{rhs}(\operatorname{root}(b)) \\
-\operatorname{lhs}(\operatorname{root}(b)) &= - \operatorname{lhs}(b) - w_l + \operatorname{lhs}(a) \\
-\operatorname{rhs}(\operatorname{root}(b)) &= \operatorname{rhs}(a) - w_r - \operatorname{rhs}(b)
+\implies &\begin{cases}
+    \operatorname{lhs}(\operatorname{root}(b)) &= - \operatorname{lhs}(b) - w_l + \operatorname{lhs}(a) \\
+    \operatorname{rhs}(\operatorname{root}(b)) &= \operatorname{rhs}(a) - w_r - \operatorname{rhs}(b)
+\end{cases}
 \end{aligned}
 $$
 
