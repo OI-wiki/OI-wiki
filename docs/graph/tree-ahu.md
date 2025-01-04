@@ -2,9 +2,9 @@ author: Backl1ght
 
 AHU 算法用于判断两棵有根树是否同构。
 
-判断树同构外还有一种常见的做法是 [树哈希](/graph/tree-hash)。
+判断树同构外还有一种常见的做法是 [树哈希](tree-hash.md)。
 
-前置知识：[树基础](/graph/tree-basic)，[树的重心](/graph/tree-centroid)
+前置知识：[树基础](tree-basic.md)，[树的重心](tree-centroid.md)
 
 建议配合参考资料里给的例子观看。
 
