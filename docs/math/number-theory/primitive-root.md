@@ -216,8 +216,7 @@ $$
 
 ### 性质 4
 
-???+ note "原根存在定理"
-    一个数 $m$ 存在原根当且仅当 $m=2,4,p^{\alpha},2p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in \mathbf{N}^{*}$.
+一个数 $m$ 存在原根当且仅当 $m=2,4,p^{\alpha},2p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in \mathbf{N}^{*}$.
 
 我们来证明它，分成 $m=2,4$、$m=p^{\alpha}$、$m=2p^{\alpha}$ 与 $m\ne 2,4,p^{\alpha},2p^{\alpha}$，四个部分。
 
