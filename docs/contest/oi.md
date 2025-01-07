@@ -256,8 +256,11 @@ CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌
 
 -   澳大利亚：AIO：<https://orac.amt.edu.au/hub/aio/>
 
-    -   难度与 NOI 类似。
-
+    -   难度与 CSP-j 类似。
+      
+-   澳大利亚与法国，FARIO：<https://orac2.info/hub/fario/>
+    - 难度与 NOI 类似。
+      
 -   英国：British Informatics Olympiad：<https://www.olympiad.org.uk/>
 
     -   难度太低。
