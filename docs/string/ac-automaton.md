@@ -2,7 +2,7 @@ author: iamtwz, Marcythm, 383494, abc1763613206, aofall, Chrogeek, CoelacanthusH
 
 ## 概述
 
-AC（Aho-Corasick）自动机是 **以 Trie 的结构为基础**，结合 **KMP 的思想** 建立的自动机，用于解决多模式匹配等任务。
+AC（Aho–Corasick）自动机是 **以 Trie 的结构为基础**，结合 **KMP 的思想** 建立的自动机，用于解决多模式匹配等任务。
 
 AC 自动机本质上是 Trie 上的自动机。
 
