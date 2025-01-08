@@ -230,7 +230,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
     ??? note "代码"
         ```cpp
-        --8<-- "/docs/code/graph-matching/bigraph-match/bigraph-match_1.cpp"
+        --8<-- "docs/code/graph-matching/bigraph-match/bigraph-match_1.cpp"
         ```
 
 ??? note "[Gym 104427B Lawyers](https://codeforces.com/gym/104427/problem/B)"
