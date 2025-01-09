@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/c4183e4b-1115-446f-80a4-60f540b260d8)author: Persdre
+author: Persdre
 
 ## 引入
 
