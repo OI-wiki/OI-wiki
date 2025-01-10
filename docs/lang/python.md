@@ -180,7 +180,7 @@ Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成
 >>> print(str(a[0]) + ', ' + str(a[1]))  # 输出同上，但是手动拼接成一整个字符串
 ```
 
-input() 函数的行为接近 C++ 中的 getline()，即将一整行作为字符串读入，且末尾没有换行符。
+`input()` 函数的行为接近 C++ 中的 `getline()`，即将一整行作为字符串读入，且末尾没有换行符。
 
 ```pycon
 >>> s = input('请输入一串数字: '); s  # 自己调试时可以向 input() 传入字符串作为提示
@@ -190,7 +190,7 @@ input() 函数的行为接近 C++ 中的 getline()，即将一整行作为字符
 
 #### 字符串
 
-Python 3 提供了强大的基于 [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) 的字符串类型，使用起来和 C++ 中的 string 类似，一些概念如转义字符也都相通，除了加号拼接和索引访问，还额外支持数乘 `*` 重复字符串，和 `in` 操作符。
+Python 3 提供了强大的基于 [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) 的字符串类型，使用起来和 C++ 中的 `string` 类似，一些概念如转义字符也都相通，除了加号拼接和索引访问，还额外支持数乘 `*` 重复字符串，和 `in` 操作符。
 
 ```pycon
 >>> s1 = "O"  # 单引号和双引号都能包起字符串，有时可节省转义字符
@@ -419,7 +419,7 @@ array([[0, 0, 1],
 
 ### [输入输出](https://docs.python.org/3/tutorial/inputoutput.html)
 
-Python 中的输入输出主要通过内置函数 input() 和 print() 完成。前文已经介绍过，下面介绍进阶用法。
+Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成。前文已经介绍过，下面介绍进阶用法。
 
 #### 格式化输出
 
@@ -432,7 +432,7 @@ Python 中的输入输出主要通过内置函数 input() 和 print() 完成。�
 '3.1416 - 0.141600 = 3'
 ```
 
-#### split() 函数
+#### `split()` 函数
 
 `input()` 函数的行为接近 C++ 中的 `getline()`，即将一整行作为字符串读入，且末尾没有换行符，但在算法竞赛中，常见的输入形式是一行输入多个数值，因此就需要使用字符串的 `split()` 方法并搭配列表推导式得到存放数值类型的列表，下面以输入 n 个数求平均值为例演示输入 n 个数得到「数组」的方法：
 
