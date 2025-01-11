@@ -148,24 +148,6 @@ True
 
 特别地，Python 用 `**` 即可进行幂运算，还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/binary-exponentiation.md) 的高效实现。
 
-Python 的字符串类型包含 Unicode 字符，这意味着任何字符串都会存储为 Unicode。[^ref2]在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。
-
-如果想把数转换为对应的字符串，可使用 Python 内置函数 `str()`，也可以使用 f-string 实现；反之，可以使用 `int()` 和 `float()` 两个函数。
-
-Python 的字符串类型还有 [许多方便的功能](https://docs.python.org/zh-cn/3/library/stdtypes.html#text-sequence-type-str)。由于本文篇幅有限，这里不一一介绍。
-
-#### 数据类型判断
-
-对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`。
-
-### 输出和输入
-
-#### 输出
-
-对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`。
-
-Python 中，还可以使用 `**` 运算符和内置的 `pow(base, exp, mod=None)` 函数进行幂运算，使用 `abs(x)` 求数的绝对值。
-
 ```pycon
 >>> 3 ** 4 # 幂运算
 81
@@ -178,9 +160,37 @@ Python 中，还可以使用 `**` 运算符和内置的 `pow(base, exp, mod=None
 False
 ```
 
+#### 数据类型判断
+
+对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`。
+
+#### [基本输入输出](https://docs.python.org/3/tutorial/inputoutput.html)
+
+Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成，`print()` 的用法十分符合直觉：
+
+```pycon
+>>> a = [1,2,3]; print(a[-1])  # 打印时默认末尾换行
+3
+>>> print(ans[0], ans[1])  # 可以输出任意多个变量，默认以空格间隔
+1 2
+>>> print(a[0], a[1], end='')  # 令 end='', 使末尾不换行
+1 2>>>
+>>> print(a[0], a[1], sep=', ')  # 令 sep=', '，改变间隔样式
+1, 2
+>>> print(str(a[0]) + ', ' + str(a[1]))  # 输出同上，但是手动拼接成一整个字符串
+```
+
+`input()` 函数的行为接近 C++ 中的 `getline()`，即将一整行作为字符串读入，且末尾没有换行符。
+
+```pycon
+>>> s = input('请输入一串数字: '); s  # 自己调试时可以向 input() 传入字符串作为提示
+请输入一串数字: 1 2 3 4 5 6
+'1 2 3 4 5 6'
+```
+
 #### 字符串
 
-Python 3 提供了强大的基于 [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) 的字符串类型，使用起来和 C++ 中的 string 类似，一些概念如转义字符也都相通，除了加号拼接和索引访问，还额外支持数乘 `*` 重复字符串，和 `in` 操作符。
+Python 3 提供了强大的基于 [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) 的字符串类型，使用起来和 C++ 中的 `string` 类似，一些概念如转义字符也都相通，除了加号拼接和索引访问，还额外支持数乘 `*` 重复字符串，和 `in` 操作符。
 
 ```pycon
 >>> s1 = "O"  # 单引号和双引号都能包起字符串，有时可节省转义字符
@@ -225,7 +235,7 @@ Python 支持多种复合数据类型，可将不同值组合在一起。最常�
 'OI-Wiki 感谢你的阅读\n欢迎参与贡献!'
 ```
 
-C/C++ 中 `char` 类型可以和 对应的 ASCII 码互转，而在 Python 中你可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。
+在最新的 Python 3 版本中，字符串是以 Unicode 编码的，也就是说，Python 的字符串支持多语言。[^ref2]在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。C/C++ 中 `char` 类型也可以和 对应的 ASCII 码互转。
 
 如果想把数字转换成对应的字符串，可以使用内置函数 `str()`，反之可以使用 `int()` 和 `float()`，你可以类比为 C/C++ 中的强制类型转换，但括号不是加在类型上而是作为函数的一部分括住参数。
 
@@ -385,7 +395,7 @@ array([[0., 0., 0.],
 array([[1, 0],
        [0, 0]])
 
->>> a1[0, 2] # 获取第 1、3 列，无拷贝
+>>> a1[:, [0, 2]] # 获取第 1、3 列，无拷贝
 array([[1, 0],
        [0, 0],
        [0, 0]])
@@ -409,21 +419,11 @@ array([[0, 0, 1],
 
 ### [输入输出](https://docs.python.org/3/tutorial/inputoutput.html)
 
-Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成，`print()` 的用法十分符合直觉：
+Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成。前文已经介绍过，下面介绍进阶用法。
 
-```pycon
->>> a = [1,2,3]; print(a[-1])  # 打印时默认末尾换行
-3
->>> print(ans[0], ans[1])  # 可以输出任意多个变量，默认以空格间隔
-1 2
->>> print(a[0], a[1], end='')  # 令 end='', 使末尾不换行
-1 2>>>
->>> print(a[0], a[1], sep=', ')  # 令 sep=', '，改变间隔样式
-1, 2
->>> print(str(a[0]) + ', ' + str(a[1]))  # 输出同上，但是手动拼接成一整个字符串
-```
+#### 格式化输出
 
-算法竞赛中通常只涉及到基本的数值和字符串输出，以上用法基本足够，只有当涉及到浮点数位数时需要用到格式化字符串输出。格式化有三种方法，第一种也是最老旧的方法是使用 `printf()` 风格的 `%` 操作符；另一种是利用 [`format` 函数](https://docs.python.org/3/library/string.html#formatstrings)，写起来比较长；第三种是 Python 3.6 新增的 [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals)，最为简洁，但不保证考场中的 Python 版本足够新。详细丰富的说明可以参考 [这个网页](https://www.python-course.eu/python3_formatted_output.php)，尽管更推荐使用 `format()` 方法，但为了获得与 C 接近的体验，下面仅演示与 `printf()` 类似的老式方法：
+算法竞赛中通常只涉及到基本的数值和字符串输出，`print()` 已基本足够，只有当涉及到浮点数位数时需要用到格式化字符串输出。格式化有三种方法，第一种也是最老旧的方法是使用 `printf()` 风格的 `%` 操作符；另一种是利用 [`format` 函数](https://docs.python.org/3/library/string.html#formatstrings)，写起来比较长；第三种是 Python 3.6 新增的 [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals)，最为简洁，但不保证考场中的 Python 版本足够新。详细丰富的说明可以参考 [这个网页](https://www.python-course.eu/python3_formatted_output.php)，尽管更推荐使用 `format()` 方法，但为了获得与 C 接近的体验，下面仅演示与 `printf()` 类似的老式方法：
 
 ```pycon
 >>> pi = 3.1415926; print('%.4f' % pi)   # 格式为 %[flags][width][.precision]type
@@ -431,6 +431,8 @@ Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成
 >>> '%.4f - %8f = %d' % (pi, 0.1416, 3)  # 右边多个参数用 () 括住，后面会看到其实是「元组」 
 '3.1416 - 0.141600 = 3'
 ```
+
+#### `split()` 函数
 
 `input()` 函数的行为接近 C++ 中的 `getline()`，即将一整行作为字符串读入，且末尾没有换行符，但在算法竞赛中，常见的输入形式是一行输入多个数值，因此就需要使用字符串的 `split()` 方法并搭配列表推导式得到存放数值类型的列表，下面以输入 n 个数求平均值为例演示输入 n 个数得到「数组」的方法：
 
