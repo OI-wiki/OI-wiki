@@ -41,6 +41,11 @@ jobs:
 
           mkdir .fonts
           curl -L $(gh api /repos/lxgw/LxgwWenKai/releases/latest -q '.assets[].browser_download_url | select(contains("tar.gz"))') | tar xfz - -C .fonts
+          git clone --filter=blob:none --no-checkout --depth 1 --sparse https://github.com/google/fonts.git
+          cd fonts
+          git sparse-checkout add ofl/crimsontext
+          git checkout
+          cd ..
           cp -r fonts/* .fonts
 
       - uses: typst-community/setup-typst@v3
@@ -53,7 +58,7 @@ jobs:
           cd OI-Wiki-export
           cd oi-wiki-export-typst
           node index.js ../../
-          typst compile oi-wiki-export.typ --font-path .fonts
+          typst compile oi-wiki-export.typ --font-path ../.fonts
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
