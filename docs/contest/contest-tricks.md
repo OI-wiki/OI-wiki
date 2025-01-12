@@ -8,11 +8,9 @@ author: jiangmuran
 
 ## 特殊情况
 
-
-
 ### 无解
 
-在很多题目中都有这句话：“若无解，请输出 `-1`.” 
+在很多题目中都有这句话：「若无解，请输出 `-1`. 」
 
 那么，只要打出下面这个程序： `printf("-1");` 就能得到部分分数。
 
@@ -20,11 +18,9 @@ author: jiangmuran
 
 这道题看起来很复杂，但是如果你打出 `printf("-1");`，可以得到 10 分。
 
-
-
 ### 样例
 
-每道题目的后面，都有一组 “样例输入” 和 “样例输出” 。它们的价值极大，不仅能初步帮你检验程序的对错
+每道题目的后面，都有一组 「样例输入」和 「样例输出」 。它们的价值极大，不仅能初步帮你检验程序的对错
 
 而且，如果你不会做这道题，你就可以直接输出样例。
 
@@ -35,8 +31,6 @@ author: jiangmuran
     目前大部分比赛此方法不适用
 
 ## 朴素算法
-
-
 
 ### 模拟
 
@@ -55,14 +49,14 @@ author: jiangmuran
 ```c++
   for(int i=1;i<=q;i++)
   {
-    scanf(“%d%d”,&a,&b);
+    scanf("%d%d",&a,&b);
     int min=INT_MAX,max=INT_MIN;
     for(int i=a;i<=b;i++)
     {
       if(h[i]<min)min=h[i];
       if(h[i]>max)max=h[i];
     }
-    printf(“%d\n”,max-min);
+    printf("%d\n",max-min);
   }
 ```
 
@@ -95,8 +89,6 @@ DFS(d+1,c);
 
 ## 猜想
 
-
-
 ### 随机数
 
 如果你觉得你的人品很好，可以试试输出随机数。
@@ -109,19 +101,19 @@ DFS(d+1,c);
 #include<cstdio>
 //<ctime>和<cstdlib>必不可少 
 using namespace std;
- 
-int random(int start,int end)	//随机数函数 
+
+int random(int start,int end)    //随机数函数 
 {
-	end++;
-	int res=start+(end-start)*rand()/(RAND_MAX + 1.0);
-	return res;
+    end++;
+    int res=start+(end-start)*rand()/(RAND_MAX + 1.0);
+    return res;
 }
 int main()
 {
-	srand(unsigned(time(0)));	//利用时间确定随机数种子 
-	for(int i=1;i<=1000;i++)
-		printf("%d\n",random(1,100));	//重复一千次输出 1~100 之间的任意数 
-	return 0;
+    srand(unsigned(time(0)));    //利用时间确定随机数种子 
+    for(int i=1;i<=1000;i++)
+        printf("%d\n",random(1,100));    //重复一千次输出 1~100 之间的任意数 
+    return 0;
 }
 ```
 
@@ -161,15 +153,13 @@ OIer 们对此表示了强烈不满，详见：[不可以，总司令](https://w
 
 ```c
 int a[18]={1,2,5,14,42,132,429,1430,4862,16796,58786,208012,742900,2674440,9694845,35357670,129644790,477638700}; 
-scanf(“%d”,&n);
-printf(“%d”,ans[n-1]);
+scanf("%d",&n);
+printf("%d",ans[n-1]);
 ```
 
 本题得$100$分
 
 ## 贪心
-
-
 
 ### 贪心的算法
 
@@ -194,7 +184,7 @@ printf(“%d”,ans[n-1]);
 它们同样有样例。我们可以写这个程序
 
 ```cpp
-if(是样例) printf(样例);else printf(“-1”);
+if(是样例) printf(样例);else printf("-1");
 ```
 
 这样也许能变 10 分为 20 分，甚至更多。
@@ -229,5 +219,3 @@ if(是样例) printf(样例);else printf(“-1”);
 1. 《骗分导论》[李博杰](https://baike.baidu.com/item/%E6%9D%8E%E5%8D%9A%E6%9D%B0/64250966) 著
 
 2. 《新版骗分导论》 CYD 著
-
-
