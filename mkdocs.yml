@@ -39,7 +39,8 @@ nav:
       - 读入、输出优化: contest/io.md
       - 分段打表: contest/dictionary.md
       - 常见错误: contest/common-mistakes.md
-      - 常见技巧: contest/common-tricks.md
+      - 编码调试技巧: contest/common-tricks.md
+      - 比赛技巧: contest/content-tricks.md
     - 出题: contest/problemsetting.md
   - 工具软件:
     - 工具软件简介: tools/index.md
