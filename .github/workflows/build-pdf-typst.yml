@@ -46,9 +46,7 @@ jobs:
           git sparse-checkout add ofl/crimsontext
           git checkout
           cd ..
-          pwd
           cp -r fonts/* .fonts
-          ls -alh .fonts
 
       - uses: typst-community/setup-typst@v3
         with:
@@ -61,7 +59,7 @@ jobs:
           cd oi-wiki-export-typst
           node index.js ../../
           pwd
-          typst compile oi-wiki-export.typ --font-path ../.fonts
+          typst compile oi-wiki-export.typ --font-path .fonts
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
