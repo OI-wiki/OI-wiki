@@ -58,7 +58,6 @@ jobs:
           cd OI-Wiki-export
           cd oi-wiki-export-typst
           node index.js ../../
-          pwd
           typst compile oi-wiki-export.typ --font-path .fonts
 
       - name: Upload artifact
