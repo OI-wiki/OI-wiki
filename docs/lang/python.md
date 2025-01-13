@@ -4,29 +4,31 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 
 ### Python 的优点
 
--   Python 是一门 **解释型** 语言：Python 不需要编译和链接，可以在一定程度上减少操作步骤。
--   Python 是一门 **交互式** 语言：Python 解释器实现了交互式操作，可以直接在终端输入并执行指令。
--   Python **易学易用**：Python 提供了大量的数据结构，也支持开发大型程序。
--   Python **兼容性强**：Python 同时支持 Windows、macOS 和 Unix 操作系统。
--   Python **实用性强**：从简单的输入输出到科学计算甚至于大型 WEB 应用，都可以写出适合的 Python 程序。
--   Python **程序简洁、易读**：Python 代码通常比实现同种功能的其他语言的代码短。
--   Python **支持拓展**：Python 会开发 C 语言程序（即 CPython），支持把 Python 解释器和用 C 语言开发的应用链接，用 Python 扩展和控制该应用。
+- Python 是一门 **解释型** 语言：Python 不需要编译和链接，可以在一定程度上减少操作步骤。
+- Python 是一门 **交互式** 语言：Python 解释器实现了交互式操作，可以直接在终端输入并执行指令。
+- Python **易学易用**：Python 提供了大量的数据结构，也支持开发大型程序。
+- Python **兼容性强**：Python 同时支持 Windows、macOS 和 Unix 操作系统。
+- Python **实用性强**：从简单的输入输出到科学计算甚至于大型 WEB 应用，都可以写出适合的 Python 程序。
+- Python **程序简洁、易读**：Python 代码通常比实现同种功能的其他语言的代码短。
+- Python **支持拓展**：Python 会开发 C 语言程序（即 CPython），支持把 Python 解释器和用 C 语言开发的应用链接，用 Python 扩展和控制该应用。
 
 ### 学习 Python 的注意事项
 
--   目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用。本文将 **介绍较新版本的 Python**。如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码。
--   Python 的设计理念和语法结构 **与一些其他语言的差异较大**，隐藏了许多底层细节，所以呈现出实用而优雅的风格。
--   Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时。在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能。
+- 目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用。本文将 **介绍较新版本的 Python**。如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码。
+- Python 的设计理念和语法结构 **与一些其他语言的差异较大**，隐藏了许多底层细节，所以呈现出实用而优雅的风格。
+- Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时。在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能。
 
 ## 环境搭建
 
 参见 [Python 3](../tools/compiler.md#python-3)。或者：
 
--   Windows：也可以在 Microsoft Store 中免费而快捷地获取 Python。
--   macOS/Linux：通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
+- Windows：也可以在 Microsoft Store 中免费而快捷地获取 Python。
 
-    ???+ warning "注意"
-        在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref1]
+- macOS/Linux：通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
+  
+  ???+ warning "注意"
+  
+      在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref1]
 
 此外，也可以通过 venv、conda、Nix 等工具管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题。
 
@@ -36,7 +38,15 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 
 但若要编写完整的程序，你最好还是新建一个文本文件（通常后缀为 `.py`），然后在命令行中执行 `python3 filename.py`，就能够运行代码看到结果了。
 
-### 通过镜像下载安装文件
+### 一些平台提供的Python版本
+
+| 系统名/版本            | python版本                |
+| ----------------- | ----------------------- |
+| Noi Linux         | 3.8.0, Include requests |
+| Luogu 评测机         | 3.11.5, NumPy 1.25.2    |
+| 基于 Hydro  的 OJ    | 3.8.0+ Include NumPy    |
+| Ubuntu 22.04 (内置) | 3.10.4                  |
+| 微软商店              | 最新正式版                   |
 
 目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学自由与开源软件镜像站](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://repo.huaweicloud.com/python/)，可以到那里尝试下载 Python 安装文件。
 
@@ -44,7 +54,11 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 
 Python 的生命力很大程度上来自于丰富的第三方库，编写一些实用程序时「调库」是常规操作，`pip` 是首选的安装第三方库的程序。自 Python 3.4 版本起，它被默认包含在 Python 二进制安装程序中。
 
-`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
+`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，由于大陆网络原因，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
+
+???+info "使用清华大学开源镜像站安装一个包"
+
+    pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple some-package
 
 ## 基本语法
 
@@ -79,12 +93,12 @@ Python 的语法简洁而易懂，也有许多官方和第三方文档与教程�
 >>> f = 3.1415926535897932384626; f  # 实在想加分号也可以，这里节省了一行
 3.141592653589793
 >>> s1 = "O"
->>> s1  # 怎么显示成单引号了？有区别吗？
+>>> s1  # 在python中双引号和单引号具有相同的作用
 'O'
->>> b = 'A' == 65  # 明明在 C/C++ 中是成立的
->>> b  # 与众不同的是 True, False 首字母均大写，可能与内置常量的命名约定有关
+>>> b = 'A' == 65  # 'A' 和 65 不是一个数据类型，所以不相等
+>>> b  # True, False 首字母均大写
 False
->>> True + 1 == 2 and not False != 0  # Python 可能喜欢单词胜过符号
+>>> True + 1 == 2 and not False != 0  # Python 中的表达式中大多使用单词，但是也支持符号
 True
 ```
 
@@ -95,7 +109,7 @@ True
 <class 'int'>
 >>> type(f)
 <class 'float'>
->>> type(s1)  # 请注意，不要给字符串起名为 str，不信试试看是否真的可以这么做
+>>> type(s1)  # 请注意，不要给字符串起名为 str，否则str对象会被篡改
 <class 'str'>
 >>> type(b)
 <class 'bool'>
@@ -164,7 +178,7 @@ False
 
 对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`。
 
-#### [基本输入输出](https://docs.python.org/3/tutorial/inputoutput.html)
+#### [基本输入输出](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
 
 Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成，`print()` 的用法十分符合直觉：
 
@@ -217,13 +231,13 @@ TypeError: 'str' object does not support item assignment
 
 Python 支持多种复合数据类型，可将不同值组合在一起。最常用的 `list`，类型是用方括号标注、逗号分隔的一组值。例如，`[1, 2, 3]` 和 `['a','b','c']` 都是列表。
 
-除了索引，字符串还支持*切片*，它的设计非常精妙又符合直觉，格式为 `s[左闭索引:右开索引:步长]`：
+除了索引，字符串还支持*切片*，它的设计非常精妙，格式为 `s[左闭索引:右开索引:步长]`：
 
 ```pycon
 >>> s = 'OI-Wiki 感谢你的阅读\n欢迎参与贡献!'
 >>> s[:8]  # 省略左闭索引则从头开始
 'OI-Wiki '
->>> s[8:14]  # 左闭右开设计的妙处，长度恰好为14-8=6，还和上一个字符串无缝衔接
+>>> s[8:14]  # 左闭右开设计的妙处，长度为14-8=6，还和上一个字符串无缝衔接
 '感谢你的阅读'
 >>> s[-4:]  # 省略右开索引则直到结尾
 '与贡献!'
@@ -241,9 +255,9 @@ Python 支持多种复合数据类型，可将不同值组合在一起。最常�
 
 Python 的字符串类型提供了许多强大的方法，包括计算某字符的索引与出现次数，转换大小写等等，这里就不一一列举，强烈建议查看 [官方文档](https://docs.python.org/zh-cn/3/library/stdtypes.html#text-sequence-type-str) 熟悉常用方法，遇到字符串操作应当首先考虑使用这些方法而非自力更生。
 
-### 开数组
+### 创建数组
 
-从 C++ 转过来的同学可能很迷惑怎么在 Python 中开数组，这里就介绍在 Python 开「数组」的语法，需要强调我们介绍的其实是几种 [序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#iterator-types)，和 C 的数组有着本质区别，而更接近 C++ 中的 `vector`。
+从 C++ 转过来的同学可能很迷惑怎么在 Python 中创建数组，这里就介绍在 Python 开「数组」的语法，需要强调我们介绍的其实是几种 [序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#iterator-types)，和 C 的数组有着本质区别，而更接近 C++ 中的 `vector`。
 
 #### 使用 `list`
 
@@ -254,7 +268,7 @@ Python 的字符串类型提供了许多强大的方法，包括计算某字符�
 []
 >>> nums = [0, 1, 2, 3, 5, 8, 13]; nums  # 初始化列表，注意整个列表可以直接打印
 [0, 1, 2, 3, 5, 8, 13]
->>> nums[0] = 1; nums  # 支持索引访问，还支持修改元素
+>>> nums[0] = 1; nums  # 支持索引访问，支持修改元素
 [1, 1, 2, 3, 5, 8, 13]
 >>> nums.append(nums[-2]+nums[-1]); nums  # append() 同 vector 的 push_back()，也都没有返回值
 [1, 1, 2, 3, 5, 8, 13, 21]
@@ -339,14 +353,14 @@ False
 [0, 0, 0]
 >>> id(a1) == id(a2) and id(a1) != id(a3)  # 内置函数 id() 给出对象的「标识值」，可类比为地址，地址相同说明是一个对象
 True
->>> vis2 = vis[:]  # 拷贝一份二维列表看看
->>> vis[0][1] = 2; vis  # vis 肯定还是被批量修改
+>>> vis2 = vis[:]  # 拷贝一份二维列表
+>>> vis[0][1] = 2; vis  # vis 会被批量修改
 >>> [[1, 2, 0], [1, 2, 0], [1, 2, 0]]
->>> vis2  # 但 vis2 是切片拷贝的怎么还是被改了
+>>> vis2  # 但 vis2 是切片拷贝还是被改了
 >>> [[1, 2, 0], [1, 2, 0], [1, 2, 0]]
->>> id(vis) != id(vis2)  # vis 和 vis2 确实不是一个对象啊
+>>> id(vis) != id(vis2)  # vis 和 vis2 不是一个对象
 True
->>> # 谜底揭晓，vis2 虽然不是 vis 的引用，但其中对应行都指向相同的对象
+>>> # vis2 虽然不是 vis 的引用，但其中对应行都指向相同的对象
 >>> [id(vis[i]) == id(vis2[i]) for i in range(3)]
 [True, True, True]
 >>> # 回看二维列表自身
@@ -373,7 +387,7 @@ True
 #### 使用 NumPy
 
 ??? note "什么是 NumPy"
-    [NumPy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算。在测试算法原型时可以利用 NumPy 避免手写排序、求最值等算法。NumPy 的核心数据结构是 `ndarray`，即 n 维数组，它在内存中连续存储，是定长的。此外 NumPy 核心是用 C 编写的，运算效率很高。不过需要注意，它不是标准库的一部分，可以使用 `pip install numpy` 安装，但不保证 OI 考场环境中可用。
+    [NumPy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算。在测试算法原型时可以利用 NumPy 避免手写排序、求最值等算法。NumPy 的核心数据结构是 `ndarray`，即 n 维数组，它在内存中连续存储，是定长的。此外 NumPy 核心是用 C 编写的，运算效率很高。不过需要注意，它不是标准库的一部分，可以使用 `pip install numpy` 安装，但不保证 OI 考场环境中可用（参见文首Python版本）。
 
 下面的代码将介绍如何利用 NumPy 建立多维数组并进行访问。
 
@@ -417,13 +431,13 @@ array([[0, 0, 1],
 
 若无特殊说明，后文出现「数组」一般指「列表」。
 
-### [输入输出](https://docs.python.org/3/tutorial/inputoutput.html)
+### [输入输出](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
 
 Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成。前文已经介绍过，下面介绍进阶用法。
 
 #### 格式化输出
 
-算法竞赛中通常只涉及到基本的数值和字符串输出，`print()` 已基本足够，只有当涉及到浮点数位数时需要用到格式化字符串输出。格式化有三种方法，第一种也是最老旧的方法是使用 `printf()` 风格的 `%` 操作符；另一种是利用 [`format` 函数](https://docs.python.org/3/library/string.html#formatstrings)，写起来比较长；第三种是 Python 3.6 新增的 [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals)，最为简洁，但不保证考场中的 Python 版本足够新。详细丰富的说明可以参考 [这个网页](https://www.python-course.eu/python3_formatted_output.php)，尽管更推荐使用 `format()` 方法，但为了获得与 C 接近的体验，下面仅演示与 `printf()` 类似的老式方法：
+算法竞赛中通常只涉及到基本的数值和字符串输出，`print()` 已基本足够，只有当涉及到浮点数位数时需要用到格式化字符串输出。格式化有三种方法，第一种也是最老旧的方法是使用 `printf()` 风格的 `%` 操作符；另一种是利用 [`format` 函数](https://docs.python.org/3/library/string.html#formatstrings)；第三种是 Python 3.6 新增的 [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals)，最为简洁，但不保证考场中的 Python 版本足够新。详细丰富的说明可以参考 [这个网页](https://www.python-course.eu/python3_formatted_output.php)，尽管更推荐使用 `format()` 方法，但为了获得与 C 接近的体验，下面仅演示与 `printf()` 类似的老式方法：
 
 ```pycon
 >>> pi = 3.1415926; print('%.4f' % pi)   # 格式为 %[flags][width][.precision]type
@@ -719,9 +733,9 @@ NameError: name 'nothing' is not defined
 
 `@lru_cache(maxsize=128,typed=False)`
 
--   传入的参数有 2 个：`maxsize` 和 `typed`，如果不传则 `maxsize` 的默认值为 128，`typed` 的默认值为 `False`。
--   其中 `maxsize` 参数表示的是 LRU 缓存的容量，即被装饰的方法的最大可缓存结果的数量。如果该参数值为 128，则表示被装饰方法最多可缓存 128 个返回结果；如果 `maxsize` 传入为 `None` 则表示可以缓存无限个结果。
--   如果 `typed` 设置为 `True`，不同类型的函数参数将被分别缓存，例如，`f(3)` 和 `f(3.0)` 会缓存两次。
+- 传入的参数有 2 个：`maxsize` 和 `typed`，如果不传则 `maxsize` 的默认值为 128，`typed` 的默认值为 `False`。
+- 其中 `maxsize` 参数表示的是 LRU 缓存的容量，即被装饰的方法的最大可缓存结果的数量。如果该参数值为 128，则表示被装饰方法最多可缓存 128 个返回结果；如果 `maxsize` 传入为 `None` 则表示可以缓存无限个结果。
+- 如果 `typed` 设置为 `True`，不同类型的函数参数将被分别缓存，例如，`f(3)` 和 `f(3.0)` 会缓存两次。
 
 以下是使用 `lru_cache` 优化计算斐波那契数列的例子：
 
@@ -777,7 +791,7 @@ def fib(n):
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
-    
+
     N = int(1e5 + 5)
     M = int(2e5 + 5)
     INF = 0x3F3F3F3F
@@ -790,7 +804,7 @@ def fib(n):
     struct qxx {
       int nex, t, v;
     };
-    
+
     qxx e[M];
     int h[N], cnt;
     
@@ -808,8 +822,7 @@ def fib(n):
             self.nex = 0
             self.t = 0
             self.v = 0
-    
-    
+
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
@@ -858,8 +871,7 @@ def fib(n):
         while i:
             yield i
             i = e[i].nex
-    
-    
+
     def dijkstra(s):
         dist[s] = 0
         q.put((0, s))
@@ -881,7 +893,7 @@ def fib(n):
 === "C++"
     ```cpp
     int n, m, s;
-    
+
     int main() {
       scanf("%d%d%d", &n, &m, &s);
       for (int i = 1; i <= m; i++) {
@@ -903,7 +915,7 @@ def fib(n):
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-    
+
         dijkstra(s)
     
         for i in range(1, n + 1):
@@ -922,7 +934,7 @@ def fib(n):
     #include <vector>
     using namespace std;
     constexpr int N = 1e5 + 5, M = 2e5 + 5;
-    
+
     struct qxx {
       int nex, t, v;
     };
@@ -973,7 +985,7 @@ def fib(n):
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
-    
+
     N = int(1e5 + 5)
     M = int(2e5 + 5)
     INF = 0x3F3F3F3F
@@ -1049,12 +1061,12 @@ def fib(n):
 
 ## 参考文档
 
-1.  Python Documentation，<https://www.python.org/doc/>
-2.  Python 官方中文教程，<https://docs.python.org/zh-cn/3/tutorial/>
-3.  Learn Python3 In Y Minutes，<https://learnxinyminutes.com/docs/python3/>
-4.  Real Python Tutorials，<https://realpython.com/>
-5.  廖雪峰的 Python 教程，<https://www.liaoxuefeng.com/wiki/1016959663602400/>
-6.  GeeksforGeeks: Python Tutorials,<https://www.geeksforgeeks.org/python-programming-language/>
+1. Python Documentation，<https://www.python.org/doc/>
+2. Python 官方中文教程，<https://docs.python.org/zh-cn/3/tutorial/>
+3. Learn Python3 In Y Minutes，<https://learnxinyminutes.com/docs/python3/>
+4. Real Python Tutorials，<https://realpython.com/>
+5. 廖雪峰的 Python 教程，<https://www.liaoxuefeng.com/wiki/1016959663602400/>
+6. GeeksforGeeks: Python Tutorials,<https://www.geeksforgeeks.org/python-programming-language/>
 
 ## 参考资料和注释
 
