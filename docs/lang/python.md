@@ -6,31 +6,32 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 
 ### Python 的优点
 
-- Python 是一门 **解释型** 语言：Python 不需要编译和链接，可以在一定程度上减少操作步骤。
-- Python 是一门 **交互式** 语言：Python 解释器实现了交互式操作，可以直接在终端输入并执行指令。
-- Python **易学易用**：Python 提供了大量的数据结构，也支持开发大型程序。
-- Python **兼容性强**：Python 同时支持 Windows、macOS 和 Unix 操作系统。
-- Python **实用性强**：从简单的输入输出到科学计算甚至于大型 WEB 应用，都可以写出适合的 Python 程序。
-- Python **程序简洁、易读**：Python 代码通常比实现同种功能的其他语言的代码短。
-- Python **支持拓展**：Python 会开发 C 语言程序（即 CPython），支持把 Python 解释器和用 C 语言开发的应用链接，用 Python 扩展和控制该应用。
+-   Python 是一门 **解释型** 语言：Python 不需要编译和链接，可以在一定程度上减少操作步骤。
+-   Python 是一门 **交互式** 语言：Python 解释器实现了交互式操作，可以直接在终端输入并执行指令。
+-   Python **易学易用**：Python 提供了大量的数据结构，也支持开发大型程序。
+-   Python **兼容性强**：Python 同时支持 Windows、macOS 和 Unix 操作系统。
+-   Python **实用性强**：从简单的输入输出到科学计算甚至于大型 WEB 应用，都可以写出适合的 Python 程序。
+-   Python **程序简洁、易读**：Python 代码通常比实现同种功能的其他语言的代码短。
+-   Python **支持拓展**：Python 会开发 C 语言程序（即 CPython），支持把 Python 解释器和用 C 语言开发的应用链接，用 Python 扩展和控制该应用。
 
 ### 学习 Python 的注意事项
 
-- 目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用。本文将 **介绍较新版本的 Python**。如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码。
-- Python 的设计理念和语法结构 **与一些其他语言的差异较大**，隐藏了许多底层细节，所以呈现出实用而优雅的风格。
-- Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时。在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能。
+-   目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用。本文将 **介绍较新版本的 Python**。如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码。
+-   Python 的设计理念和语法结构 **与一些其他语言的差异较大**，隐藏了许多底层细节，所以呈现出实用而优雅的风格。
+-   Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时。在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能。
 
 ## 环境搭建
 
 参见 [Python 3](../tools/compiler.md#python-3)。或者：
 
-- Windows：也可以在 Microsoft Store 中免费而快捷地获取 Python。
+-   Windows：也可以在 Microsoft Store 中免费而快捷地获取 Python。
 
-- macOS/Linux：通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
-  
-  ???+ warning "注意"
-  
-      在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref1]
+-   macOS/Linux：通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
+
+    ???+ warning "注意"
+        
+
+        在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref1]
 
 此外，也可以通过 venv、conda、Nix 等工具管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题。
 
@@ -40,15 +41,15 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 
 但若要编写完整的程序，你最好还是新建一个文本文件（通常后缀为 `.py`），然后在命令行中执行 `python3 filename.py`，就能够运行代码看到结果了。
 
-### 一些平台提供的Python版本
+### 一些平台提供的 Python 版本
 
-| 系统名/版本            | python版本                |
-| ----------------- | ----------------------- |
-| Noi Linux         | 3.8.0, Include requests |
-| Luogu 评测机         | 3.11.5, NumPy 1.25.2    |
-| 基于 Hydro  的 OJ    | 3.8.0+ Include NumPy    |
-| Ubuntu 22.04 (内置) | 3.10.4                  |
-| 微软商店              | 最新正式版                   |
+| 系统名/版本           | python 版本               |
+| ---------------- | ----------------------- |
+| Noi Linux        | 3.8.0, Include requests |
+| Luogu 评测机        | 3.11.5, NumPy 1.25.2    |
+| 基于 Hydro  的 OJ   | 3.8.0+ Include NumPy    |
+| Ubuntu 22.04（内置） | 3.10.4                  |
+| 微软商店             | 最新正式版                   |
 
 目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学自由与开源软件镜像站](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://repo.huaweicloud.com/python/)，可以到那里尝试下载 Python 安装文件。
 
@@ -58,7 +59,8 @@ Python 的生命力很大程度上来自于丰富的第三方库，编写一些�
 
 `pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，由于大陆网络原因，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
 
-???+info "使用清华大学开源镜像站安装一个包"
+???+ info "使用清华大学开源镜像站安装一个包"
+    
 
     pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple some-package
 
@@ -389,7 +391,7 @@ True
 #### 使用 NumPy
 
 ??? note "什么是 NumPy"
-    [NumPy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算。在测试算法原型时可以利用 NumPy 避免手写排序、求最值等算法。NumPy 的核心数据结构是 `ndarray`，即 n 维数组，它在内存中连续存储，是定长的。此外 NumPy 核心是用 C 编写的，运算效率很高。不过需要注意，它不是标准库的一部分，可以使用 `pip install numpy` 安装，但不保证 OI 考场环境中可用（参见文首Python版本）。
+    [NumPy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算。在测试算法原型时可以利用 NumPy 避免手写排序、求最值等算法。NumPy 的核心数据结构是 `ndarray`，即 n 维数组，它在内存中连续存储，是定长的。此外 NumPy 核心是用 C 编写的，运算效率很高。不过需要注意，它不是标准库的一部分，可以使用 `pip install numpy` 安装，但不保证 OI 考场环境中可用（参见文首 Python 版本）。
 
 下面的代码将介绍如何利用 NumPy 建立多维数组并进行访问。
 
@@ -735,9 +737,9 @@ NameError: name 'nothing' is not defined
 
 `@lru_cache(maxsize=128,typed=False)`
 
-- 传入的参数有 2 个：`maxsize` 和 `typed`，如果不传则 `maxsize` 的默认值为 128，`typed` 的默认值为 `False`。
-- 其中 `maxsize` 参数表示的是 LRU 缓存的容量，即被装饰的方法的最大可缓存结果的数量。如果该参数值为 128，则表示被装饰方法最多可缓存 128 个返回结果；如果 `maxsize` 传入为 `None` 则表示可以缓存无限个结果。
-- 如果 `typed` 设置为 `True`，不同类型的函数参数将被分别缓存，例如，`f(3)` 和 `f(3.0)` 会缓存两次。
+-   传入的参数有 2 个：`maxsize` 和 `typed`，如果不传则 `maxsize` 的默认值为 128，`typed` 的默认值为 `False`。
+-   其中 `maxsize` 参数表示的是 LRU 缓存的容量，即被装饰的方法的最大可缓存结果的数量。如果该参数值为 128，则表示被装饰方法最多可缓存 128 个返回结果；如果 `maxsize` 传入为 `None` 则表示可以缓存无限个结果。
+-   如果 `typed` 设置为 `True`，不同类型的函数参数将被分别缓存，例如，`f(3)` 和 `f(3.0)` 会缓存两次。
 
 以下是使用 `lru_cache` 优化计算斐波那契数列的例子：
 
@@ -793,6 +795,7 @@ def fib(n):
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
+    ```
 
     N = int(1e5 + 5)
     M = int(2e5 + 5)
@@ -806,12 +809,13 @@ def fib(n):
     struct qxx {
       int nex, t, v;
     };
+    ```
 
     qxx e[M];
     int h[N], cnt;
-    
+
     void add_path(int f, int t, int v) { e[++cnt] = qxx{h[f], t, v}, h[f] = cnt; }
-    
+
     using pii = pair<int, int>;
     priority_queue<pii, vector<pii>, greater<pii>> q;
     int dist[N];
@@ -824,15 +828,16 @@ def fib(n):
             self.nex = 0
             self.t = 0
             self.v = 0
+    ```
 
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
-    
+
     dist = [INF for i in range(N)]
     q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
-    
-    
+
+
     def add_path(f, t, v):  # 在前向星中加边
         # 如果要修改全局变量，要使用 global 来声明
         global cnt, e, h
@@ -873,6 +878,7 @@ def fib(n):
         while i:
             yield i
             i = e[i].nex
+    ```
 
     def dijkstra(s):
         dist[s] = 0
@@ -895,6 +901,7 @@ def fib(n):
 === "C++"
     ```cpp
     int n, m, s;
+    ```
 
     int main() {
       scanf("%d%d%d", &n, &m, &s);
@@ -917,12 +924,13 @@ def fib(n):
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
+    ```
 
         dijkstra(s)
-    
+
         for i in range(1, n + 1):
             print(dist[i], end=" ")
-    
+
         print()
     ```
 
@@ -936,20 +944,21 @@ def fib(n):
     #include <vector>
     using namespace std;
     constexpr int N = 1e5 + 5, M = 2e5 + 5;
+    ```
 
     struct qxx {
       int nex, t, v;
     };
-    
+
     qxx e[M];
     int h[N], cnt;
-    
+
     void add_path(int f, int t, int v) { e[++cnt] = qxx{h[f], t, v}, h[f] = cnt; }
-    
+
     using pii = pair<int, int>;
     priority_queue<pii, vector<pii>, greater<pii>> q;
     int dist[N];
-    
+
     void dijkstra(int s) {
       memset(dist, 0x3f, sizeof(dist));
       dist[s] = 0, q.push(make_pair(0, s));
@@ -965,9 +974,9 @@ def fib(n):
         }
       }
     }
-    
+
     int n, m, s;
-    
+
     int main() {
       scanf("%d%d%d", &n, &m, &s);
       for (int i = 1; i <= m; i++) {
@@ -987,27 +996,28 @@ def fib(n):
         import Queue as pq  # python version < 3.0
     except ImportError:
         import queue as pq  # python3.*
+    ```
 
     N = int(1e5 + 5)
     M = int(2e5 + 5)
     INF = 0x3F3F3F3F
-    
-    
+
+
     class qxx:  # 前向星类（结构体）
         def __init__(self):
             self.nex = 0
             self.t = 0
             self.v = 0
-    
-    
+
+
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
-    
+
     dist = [INF for i in range(N)]
     q = pq.PriorityQueue()  # 定义优先队列，默认第一元小根堆
-    
-    
+
+
     def add_path(f, t, v):  # 在前向星中加边
         # 如果要修改全局变量，要使用 global 来声名
         global cnt, e, h
@@ -1018,15 +1028,15 @@ def fib(n):
         e[cnt].t = t
         e[cnt].v = v
         h[f] = cnt
-    
-    
+
+
     def nextedgeid(u):  # 生成器，可以用在 for 循环里
         i = h[u]
         while i:
             yield i
             i = e[i].nex
-    
-    
+
+
     def dijkstra(s):
         dist[s] = 0
         q.put((0, s))
@@ -1041,8 +1051,8 @@ def fib(n):
                     continue
                 dist[v] = dist[u[1]] + w
                 q.put((dist[v], v))
-    
-    
+
+
     # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
     if __name__ == "__main__":
         # 一行读入多个整数。注意它会把整行都读进来
@@ -1050,25 +1060,25 @@ def fib(n):
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-    
+
         dijkstra(s)
-    
+
         for i in range(1, n + 1):
             # 两种输出语法都是可以用的
             print("{}".format(dist[i]), end=" ")
             # print("%d" % dist[i],end=' ')
-    
+
         print()  # 结尾换行
     ```
 
 ## 参考文档
 
-1. Python Documentation，<https://www.python.org/doc/>
-2. Python 官方中文教程，<https://docs.python.org/zh-cn/3/tutorial/>
-3. Learn Python3 In Y Minutes，<https://learnxinyminutes.com/docs/python3/>
-4. Real Python Tutorials，<https://realpython.com/>
-5. 廖雪峰的 Python 教程，<https://www.liaoxuefeng.com/wiki/1016959663602400/>
-6. GeeksforGeeks: Python Tutorials,<https://www.geeksforgeeks.org/python-programming-language/>
+1.  Python Documentation，<https://www.python.org/doc/>
+2.  Python 官方中文教程，<https://docs.python.org/zh-cn/3/tutorial/>
+3.  Learn Python3 In Y Minutes，<https://learnxinyminutes.com/docs/python3/>
+4.  Real Python Tutorials，<https://realpython.com/>
+5.  廖雪峰的 Python 教程，<https://www.liaoxuefeng.com/wiki/1016959663602400/>
+6.  GeeksforGeeks: Python Tutorials,<https://www.geeksforgeeks.org/python-programming-language/>
 
 ## 参考资料和注释
 
