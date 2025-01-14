@@ -58,8 +58,6 @@ Python 的生命力很大程度上来自于丰富的第三方库，编写一些�
 `pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，由于大陆网络原因，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
 
 ???+ info "使用清华大学开源镜像站安装一个包"
-    
-
     pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple some-package
 
 ## 基本语法
