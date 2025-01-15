@@ -828,6 +828,7 @@ def fib(n):
             self.t = 0
             self.v = 0
     
+    
     e = [qxx() for i in range(M)]  # 链表
     h = [0 for i in range(N)]
     cnt = 0
@@ -876,6 +877,7 @@ def fib(n):
         while i:
             yield i
             i = e[i].nex
+    
     
     def dijkstra(s):
         dist[s] = 0
