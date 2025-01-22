@@ -102,7 +102,7 @@ $$
 
 对于二次整数环 $\mathbf Z[\omega]$ 中的二次整数 $\alpha$ 和 $\beta$，如果存在同一个环中的二次整数 $\gamma$ 使得 $\beta=\alpha\gamma$ 成立，就称 $\alpha$ 整除 $\beta$，记作 $\alpha\mid\beta$。整除关系是二次整数环上的 [偏序](../order-theory.md#二元关系) 关系。如果同时有 $\alpha\mid\beta$ 和 $\beta\mid\alpha$，那么 $\alpha$ 和 $\beta$ 在研究整除理论时就可以视作同一个数，它们称为 **相伴**（associate）。相伴关系是二次整数环上的等价关系。
 
-类比到整数的整除理论上，相伴关系就是互为相反数。整除理论通常只需要考虑自然数就好了，而不必考察负数的情形。对于二次整数而言，相伴关系可能更为复杂一些。如果二次整数 $\alpha$ 和 $\beta$ 相伴，则存在二次整数 $\gamma$ 和 $\delta$ 使得 $\beta=\alpha\gamma$ 和 $\alpha=\beta\delta$ 成立。因此，$\beta$ 和 $\alpha$ 的比值 $\gamma$ 必然是特殊的二次整数，即存在二次整数 $\delta$ 使得 $\gamma\delta=1$。这样的二次整数 $\alpha$ 称为 **单位数**（unit），也称为可逆元。两个二次整数相伴，当且仅当它们的比值是单位数。因此，要理解二次整数环上的相伴关系，就要理解它的单位数的结构。
+类比到整数的整除理论上，相伴关系就是互为相反数。整除理论通常只需要考虑自然数就好了，而不必考察负数的情形。对于二次整数而言，相伴关系可能更为复杂一些。如果二次整数 $\alpha$ 和 $\beta$ 相伴，则存在二次整数 $\gamma$ 和 $\delta$ 使得 $\beta=\alpha\gamma$ 和 $\alpha=\beta\delta$ 成立。因此，$\beta$ 和 $\alpha$ 的比值 $\gamma$ 必然是特殊的二次整数，即存在二次整数 $\delta$ 使得 $\gamma\delta=1$。这样的二次整数 $\gamma$ 称为 **单位数**（unit），也称为可逆元。两个二次整数相伴，当且仅当它们的比值是单位数。因此，要理解二次整数环上的相伴关系，就要理解它的单位数的结构。
 
 因为范数可以保持乘法运算，且二次整数的范数总是整数，所以利用范数可以将二次整数的整除关系转化为整数的整除关系。也就是说，如果 $\alpha\mid\beta$，那么必然有 $N(\alpha)\mid N(\beta)$。同样地，二次整数 $\alpha$ 是单位数，当且仅当它的范数 $N(\alpha)=\pm 1$。因此，要获得二次整数环 $\mathbf Z[\omega]$ 中的全体单位数，只需要求解不定方程：
 
@@ -119,7 +119,7 @@ a^2-db^2, & d\equiv 2,3\pmod 4.
 \end{cases}
 $$
 
-对于虚二次整数环，即 $d<0$ 时，因为范数必然是非负整数，容易验证对于所有的无平方因子的负数 $d\neq -1,-3$，解都只有 $(a,b)=(\pm 1,0)$，即除了 $\mathbf Z[\sqrt{-1}]$ 和 $\mathbf Z[\frac{1+\sqrt{-3}}{2}]$，虚二次整数环的单位数都只有 $\pm 1$。记 $\mathrm{i}=\sqrt{-1}$，则二次整数环 $\mathbf Z[\mathrm{i}]$ 又称作 Eisenstein，它的单位数的集合为 $\{\pm 1,\pm\mathrm{i}\}$。记 $\omega=\frac{1+\sqrt{-3}}{2}$，则二次整数环 $\mathbf Z[\omega]$ 又称为 Eisenstein 整数环，它的单位数的集合为 $\{\pm 1,\pm\omega,\pm\omega^2\}$。
+对于虚二次整数环，即 $d<0$ 时，因为范数必然是非负整数，容易验证对于所有的无平方因子的负数 $d\neq -1,-3$，解都只有 $(a,b)=(\pm 1,0)$，即除了 $\mathbf Z[\sqrt{-1}]$ 和 $\mathbf Z[\frac{1+\sqrt{-3}}{2}]$，虚二次整数环的单位数都只有 $\pm 1$。记 $\mathrm{i}=\sqrt{-1}$，则二次整数环 $\mathbf Z[\mathrm{i}]$ 又称作 Gauss 整数环，它的单位数的集合为 $\{\pm 1,\pm\mathrm{i}\}$。记 $\omega=\frac{1+\sqrt{-3}}{2}$，则二次整数环 $\mathbf Z[\omega]$ 又称为 Eisenstein 整数环，它的单位数的集合为 $\{\pm 1,\pm\omega,\pm\omega^2\}$。
 
 对于实二次整数环，即 $d>0$ 时，情形较为复杂，可以转化为对相应的 [Pell 方程](./pell-equation.md) 的讨论。由 Pell 方程的相关结论可知，此时的全体单位数的集合可以写作 $\{\pm u^k:k\in\mathbf Z\}$，其中的 $u$ 称为 **基本单位数**（fundamental unit）。基本单位数可以通过相应的 Pell 方程进行求解。基本单位数并不是唯一的：如果 $u$ 是基本单位数，那么它的共轭 $\bar u$ 以及 $-u$ 和 $-\bar u$ 都是基本单位数。
 
