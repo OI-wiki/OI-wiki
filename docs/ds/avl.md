@@ -148,12 +148,8 @@ AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通
 ??? note "参考代码"
     ```cpp
     int root, tot, fa[N], ch[N][2], val[N], h[N];
-    ```
-
     void push_up(int x) { h[x] = max(h[ch[x][0]], h[ch[x][1]]) + 1; } // 维护树高
-
     bool get_which(int x) { return x == ch[fa[x]][1]; } // lc -> 0, rc -> 1
-
     // 旋转函数，与通常的 splay 等平衡树的实现类似
     void rotate(int x) // x is lc -> right, x is rc -> left
     {
@@ -169,7 +165,6 @@ AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通
         push_up(x); // 更新高度
         if (!fa[x]) root = x; // 需要更新根节点
     } // 将 x 转到其父的位置
-
     void balance_ins(int x) // 在插入后维护平衡
     {
         while (x)
@@ -192,7 +187,6 @@ AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通
             x = fa[x];
         }
     }
-
     void balance_del(int x) // 在删除后维护平衡。区别在于，要一路维护平衡到根
     {
         while (x)
@@ -213,7 +207,6 @@ AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通
             x = fa[x];
         }
     }
-
     void insert(int k) // 插入操作
     {
         if (!root) // 树为空
@@ -240,7 +233,6 @@ AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通
             }
         }
     }
-
     int pre(int x) // 求前驱
     {
         int cur = ch[x][0];
@@ -250,7 +242,6 @@ AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通
             cur = ch[cur][1];
         return cur;
     }
-
     void del(int k)
     {
         int cur = root, f = 0;
