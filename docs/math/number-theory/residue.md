@@ -74,7 +74,7 @@ $$
 
 求解 $x^n\equiv k \pmod m$。
 
-对 $m$ 分解质因数，$m=\prod p_{i}^{\aplha_{i}}$
+对 $m$ 分解质因数，$m=\prod p_{i}^{\alpha_{i}}$
 
 由中国剩余定理可以分解原方程，逐个求解，最后合并。
 
@@ -92,7 +92,7 @@ $k=u\cdot p^t,\gcd(u,p)=1$
 
 设 $x_{0}$ 为 $x^n\equiv u \pmod p^{q-t}$ 的一个解，
 
-则 $(x_{0}+Ip^{q-t})\codt p^\frac{t}{n}$ 为 $x^n\equiv u\cdot p^t \pmod p^q$ 的一个解。
+则 $(x_{0}+Ip^{q-t})\cdot p^\frac{t}{n}$ 为 $x^n\equiv u\cdot p^t \pmod p^q$ 的一个解。
 
 其中 $0\leq I<p^{t-\frac{t}{n}}$
 
