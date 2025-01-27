@@ -84,7 +84,7 @@ $$
 
 $x^n\equiv 0 \pmod p^q$
 
-等价于 $x\equiv 0 \pmod p^{\lciel \frac{q}{n} \rceil}$
+等价于 $x\equiv 0 \pmod p^{\lceil \frac{q}{n} \rceil}$
 
 情况 2:$k\not\equiv 0 \pmod p^{q},\gcd(k,p^{q})\neq 1$
 
@@ -127,15 +127,15 @@ $5^{bn}\equiv (-1)^{an}k \pmod p^{q}$
 枚举 $a$ 后照情况 3 办法处理。
 
 ???+ note "证明"
-    1.  $x^n\equiv 0 \pmod p^q$ 的解为 $x\equiv 0 \pmod p^{\lciel \frac{q}{n} \rceil}$
+    1.  $x^n\equiv 0 \pmod p^q$ 的解为 $x\equiv 0 \pmod p^{\lceil \frac{q}{n} \rceil}$
 
     设 $p^t||x$ 则  $p^{tn}||x^n$
 
     $tn\geq q$
 
-    $t\geq \lciel \frac{q}{n} \rceil$
+    $t\geq \lceil \frac{q}{n} \rceil$
 
-    2. $x^n\equiv u\codt p^t \pmod p^q,\gcd(u,p)=1$ 有解当且仅当$n|t$
+    2. $x^n\equiv u\cdot p^t \pmod p^q,\gcd(u,p)=1$ 有解当且仅当$n|t$
 
     直接构造即证。
 
