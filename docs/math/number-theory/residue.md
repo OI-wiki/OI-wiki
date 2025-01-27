@@ -78,15 +78,15 @@ $$
 
 由中国剩余定理可以分解原方程，逐个求解，最后合并。
 
-求解  $x^n\equiv k \pmod p^q$
+求解 $x^n\equiv k \pmod p^q$
 
-情况 1: $k\equiv 0 \pmod p^q$
+情况 1:$k\equiv 0 \pmod p^q$
 
 $x^n\equiv 0 \pmod p^q$
 
 等价于 $x\equiv 0 \pmod p^{\lciel \frac{q}{n} \rceil}$
 
-情况 2: $k\not\equiv 0 \pmod p^{q},\gcd(k,p^{q})\neq 1$
+情况 2:$k\not\equiv 0 \pmod p^{q},\gcd(k,p^{q})\neq 1$
 
 $k=u\cdot p^t,\gcd(u,p)=1$
 
@@ -96,7 +96,7 @@ $k=u\cdot p^t,\gcd(u,p)=1$
 
 其中 $0\leq I<p^{t-\frac{t}{n}}$
 
-情况 3: $k\not\equiv 0 \pmod p^{q},\gcd(k,p^{q})= 1,\exist g$ 为 $p^q$ 的原根
+情况 3:$k\not\equiv 0 \pmod p^{q},\gcd(k,p^{q})= 1,\exist g$ 为 $p^q$ 的原根
 
 $x\equiv g^a \pmod p^q,k\equiv g^b \pmod p^q$
 
@@ -108,7 +108,7 @@ $an\equiv b \pmod \varphi(p^q)$
 
 使用 $exgcd$ 算法求出 $a$ 的所有解，快速幂得到 $x$ 的所有解。
 
-情况 4: $k\not\equiv 0 \pmod p^{q},\gcd(k,p^{q})= 1,p^q$ 无原根
+情况 4:$k\not\equiv 0 \pmod p^{q},\gcd(k,p^{q})= 1,p^q$ 无原根
 
 此时有 $p=2,q\geq 3$
 
@@ -124,17 +124,17 @@ $(-1)^{an}5^{bn}\equiv k \pmod p^{q}$
 
 $5^{bn}\equiv (-1)^{an}k \pmod p^{q}$
 
-枚举 $a$ 后照情况3办法处理。
+枚举 $a$ 后照情况 3 办法处理。
 
 ???+ note "证明"
-    1. $x^n\equiv 0 \pmod p^q$ 的解为 $x\equiv 0 \pmod p^{\lciel \frac{q}{n} \rceil}$
+    1.  $x^n\equiv 0 \pmod p^q$ 的解为 $x\equiv 0 \pmod p^{\lciel \frac{q}{n} \rceil}$
 
     设 $p^t||x$ 则  $p^{tn}||x^n$
 
     $tn\geq q$
 
     $t\geq \lciel \frac{q}{n} \rceil$
-    
+
     2. $x^n\equiv u\codt p^t \pmod p^q,\gcd(u,p)=1$ 有解当且仅当$n|t$
 
     直接构造即证。
@@ -174,7 +174,7 @@ $5^{bn}\equiv (-1)^{an}k \pmod p^{q}$
     $(-1)^{a}5^{b} \bmod 2^{q}$ 恰有 $2\times 2^{q-2}=2^{q-1}$ 个数。
 
     只需证 $(-1)^{a}5^{b} \bmod 2^{q},a\in \mathbb{Z}_{2},b\in \mathbb{Z}_{2^{q-2}}$ 互不相同。
-    
+
     由 $5$ 在 $\bmod 2^q$ 意义下的阶为 $2^{q-2}$ 知 $5^{0},\ldots,5^{2^{q-2}-1}$ 互不相同。
 
     假设 $5^b_{1}\eqiuv -5^{b_{2}}\pmod 2^q$
