@@ -61,6 +61,68 @@ $$
     ```cpp
     --8<-- "docs/misc/code/space-optimization/space-optimization_1.cpp"
     ```
+### 利用計算機特性
+
+1. 比如在 C++ 中的 `struct` 和 `class` 还是有差异的，在继承的过程中可能会造成额外的指针。那么就应该优先使用 `struct` 来减少额外的内存丢失。
+   ```cpp
+   // source: https://www.cprogramming.com/tutorial/size_of_class_object.html
+   class ABase{ 
+        int iMem; 
+    }; 
+    class BBase : public virtual ABase { 
+        int iMem; 
+    }; 
+   ```
+2. 在某些数据结构中，善于用 `union` 语法进行压缩，如常见的 `std::string` 在不同的函数库中有不同的实作。
+   ```cpp
+   // source: https://stackoverflow.com/questions/76213003/internal-struct-of-std-string-object
+   class string {
+    ...
+    private:
+        size_type m_size;
+        union {
+            class {
+                std::unique_ptr<char[]> m_data;
+                size_type m_capacity;
+            } m_large;
+            std::array<char, sizeof(m_large)> m_small;
+        };
+    };
+   ```
+3. 指针优化，一般在 64 位平台上需要 8 字节才能完成，所以打 OI 竞赛多半用整数 int 计数索引。
+   ```cpp
+   // source: https://stackoverflow.com/questions/78338138/using-usecompressedoops
+   struct TreeNode {
+       TreeNode *lson, *rson;
+   }
+   struct TreeNode {
+       int lson, rson;
+   }
+   ```
+4. 结构体数组与结构体数组，为注意对齐的问题。有时需要改写结构声明。
+   ```cpp
+   // source: https://en.wikipedia.org/wiki/AoS_and_SoA
+   struct Data {
+       char c;
+       int next;
+   } data[10000];
+
+   int next[10000];
+   char c[10000];
+   ```
+5. 预设的初始大小，如 `std::vector` 为 1、`unordered_map` 为 16，这些细节会在唤醒结构中被凸显出来，例如 `map<int, vector<int>>` 或者 `map<int, unordered_map<int, int>>`。必须额外小心索引运算符 `operation[]` 默认建立的问题。
+6. 除了常見的 compression (壓縮技術)，還有另一種實作方案 compact (緊壓技術) 經常被忽略。這類技術經常用在作業系統。例如，以 trie 為例，我們可以透過資料排列或者想辦法釋出多餘的空間。
+   ```cpp
+   struct Node {
+       int next[26];
+   }
+    
+   // optimized
+   struct OptNode {
+       int next*; // new int[<on-demand-size>], cut off the null values on the tailing of next;
+       int size;
+   }
+   ```
 
 ## 习题
 
