@@ -104,9 +104,9 @@ $g^{an}\equiv g^b \pmod {p^q}$
 
 $an\equiv b \pmod {\varphi(p^q)}$
 
-使用 $BSGS$ 算法求出 $b$
+使用BSGS算法求出 $b$
 
-使用 $exgcd$ 算法求出 $a$ 的所有解，快速幂得到 $x$ 的所有解。
+使用exgcd算法求出 $a$ 的所有解，快速幂得到 $x$ 的所有解。
 
 情况 4:$k\not\equiv 0 \pmod {p^{q}},\gcd(k,p^{q})= 1,p^q$ 无原根
 
@@ -135,27 +135,33 @@ $5^{bn}\equiv (-1)^{an}k \pmod {p^{q}}$
 
     $t\geq \lceil \frac{q}{n} \rceil$
 
+    
+
     2. $x^n\equiv u\cdot p^t \pmod {p^q},\gcd(u,p)=1$ 有解当且仅当$n|t$
 
     直接构造即证。
 
-    3. $5^{2^{q-3}}\eqiuv 2^{q-1}+1 \pmod {2^q} ,q\geq 3$
+    
+
+    3. $5^{2^{q-3}}\equiv 2^{q-1}+1 \pmod {2^q} ,q\geq 3$
 
     数学归纳法，$q=3$ 时显然成立。
 
     假设 $q=k\geq 3$ 时成立
 
-    $5^{2^{k-3}}\eqiuv 2^{k-1}+1 \pmod {2^k}$
+    $5^{2^{k-3}}\equiv 2^{k-1}+1 \pmod {2^k}$
 
-    $5^{2^{k-3}}\eqiuv 2^{k-1}+1 \pmod {2^{k+1}}$ 或者 $5^{2^{k-3}}\eqiuv 2^k+2^{k-1}+1 \pmod {2^{k+1}}$
+    $5^{2^{k-3}}\equiv 2^{k-1}+1 \pmod {2^{k+1}}$ 或者 $5^{2^{k-3}}\equiv 2^k+2^{k-1}+1 \pmod {2^{k+1}}$
 
-    $(2^{k-1}+1)^2\eqiuv 2^{2k-2}+2^k+1\eqiuv 2^k+1\pmod {2^{k+1}}$
+    $(2^{k-1}+1)^2\equiv 2^{2k-2}+2^k+1\equiv 2^k+1\pmod {2^{k+1}}$
 
-    $(2^k+2^{k-1}+1)^2\eqiuv (2^{k-1}-1)^2\eqiuv 2^{2k-2}-2^k+1 \eqiuv 2^k+1\pmod {2^{k+1}}$
+    $(2^k+2^{k-1}+1)^2\equiv (2^{k-1}-1)^2\equiv 2^{2k-2}-2^k+1 \equiv 2^k+1\pmod {2^{k+1}}$
 
-    $5^{2^{k-2}}\eqiuv (5^{2^{k-3}})^2\eqiuv 2^k+1\pmod {2^{k+1}}$
+    $5^{2^{k-2}}\equiv (5^{2^{k-3}})^2\equiv 2^k+1\pmod {2^{k+1}}$
 
     归纳完成。
+
+    
 
     4. $5$ 在模 $2^q$ 意义下的阶为 $2^{q-2}$，其中 $q\geq 3$
 
@@ -163,9 +169,11 @@ $5^{bn}\equiv (-1)^{an}k \pmod {p^{q}}$
 
     由3.知 $2^{q-3}$ 不是 $5$ 在模 $2^q$ 意义下的阶。
 
-    $5^{2^{q-3}}\eqiuv 2^{q-1}+1 \pmod {2^q}$
+    $5^{2^{q-3}}\equiv 2^{q-1}+1 \pmod {2^q}$
 
-    $5^{2^{q-2}}\eqiuv (2^{q-1}+1)^2\eqiuv 2^{2q-2}+2^q+1\eqiuv 1 \pmod {2^q}$
+    $5^{2^{q-2}}\equiv (2^{q-1}+1)^2\equiv 2^{2q-2}+2^q+1\equiv 1 \pmod {2^q}$
+
+    
 
     5. 若 $\gcd(s,2)=1$ 则 $s$ 可以唯一的写成 $s\equiv (-1)^{a}5^{b} \pmod {2^{q}}$ 的形式
 
@@ -177,9 +185,9 @@ $5^{bn}\equiv (-1)^{an}k \pmod {p^{q}}$
 
     由 $5$ 在 $\bmod {2^q}$ 意义下的阶为 $2^{q-2}$ 知 $5^{0},\ldots,5^{2^{q-2}-1}$ 互不相同。
 
-    假设 $5^{b_{1}}\eqiuv -5^{b_{2}}\pmod {2^q}$
+    假设 $5^{b_{1}}\equiv -5^{b_{2}}\pmod {2^q}$
 
-    则 $5^{b_{1}}+5^{b_{2}}\eqiuv 0\pmod {2^q}$
+    则 $5^{b_{1}}+5^{b_{2}}\equiv 0\pmod {2^q}$
 
     左式模 $4$ 余 $2$，右式模 $4$ 余 $0$，矛盾。
 
