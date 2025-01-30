@@ -285,3 +285,119 @@
 我们在结构 `Node` 中定义 `lr = left ^ right`，即前后两个元素地址的 **按位异或值**。正向遍历时用前一个元素的地址异
 或当前节点的 `lr` 可得到后一个元素的地址，反向遍历时用后一个元素的地址异或当前节点的 `lr` 又可得到前一个的元素地址。
 这样一来，便可以用一半的内存实现双向链表同样的功能。
+
+#### 实现
+
+声明`Node`数据类型和负责对地址进行异或操作的`XOR()`函数。
+
+=== "C++"
+    ```cpp
+    struct Node {
+        int data;
+        Node* xor_prev_next;
+    };
+
+    Node* XOR(Node* a, Node* b) {
+        return reinterpret_cast<Node*>(reinterpret_cast<uintptr_t>(a) ^ reinterpret_cast<uintptr_t>(b));
+    }
+    ```
+
+声明`XORList`类，存储指向链表头和尾的指针。
+
+=== "C++"
+    ```cpp
+    class XORList {
+    public:
+        Node* head;
+        Node* tail;
+
+        XORList() {
+            this->head = nullptr;
+            this->tail = nullptr;
+        }
+        
+        ~XORList() {
+            for (Node *p = this->head, *prev = nullptr; p != nullptr;) {
+                Node *next = XOR(prev, p->xor_prev_next);
+                delete p;
+                prev = p;
+                p = next;
+            }
+        }
+    };
+    ```
+
+以下函数将定义在`XORList`类中
+
+将元素附加到链表的末尾：
+
+=== "C++"
+    ```cpp
+    void AppendElement(int value) {
+        Node *new_node = new Node();
+        new_node->data = value;
+        new_node->xor_prev_next = XOR(this->tail, nullptr);
+        if (this->head == nullptr) {
+            this->head = new_node;
+        } else {
+            this->tail->xor_prev_next = XOR(this->tail->xor_prev_next, new_node);
+        }
+        tail = new_node;
+    }
+    ```
+
+在给定的索引后插入一个元素：
+
+=== "C++"
+    ```cpp
+    void InsertElement(int index, int value) {
+        Node *prev = nullptr;
+        Node *p = this->head;
+        for (int i = 0; i <= index; i++) {
+            Node *next = XOR(prev, p->xor_prev_next);
+            prev = p;
+            p = next;
+        }
+        Node *new_node = new Node();
+        new_node->data = value;
+        new_node->xor_prev_next = XOR(prev, p);
+        if (prev != nullptr) {
+            prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), new_node);
+        } else {
+            this->head = new_node;
+        }
+        if (p != nullptr) {
+            p->xor_prev_next = XOR(prev, XOR(p->xor_prev_next, new_node));
+        } else {
+            this->tail = new_node;
+        }
+    }
+    ```
+
+最后，从给定索引删除一个元素：
+
+=== "C++"
+    ```cpp
+    void DeleteElement(int index) {
+        Node *prev = nullptr;
+        Node *p = this->head;
+        for (int i = 0; i < index; i++) {
+            Node *next = XOR(prev, p->xor_prev_next);
+            prev = p;
+            p = next;
+        }
+        // Delete p
+        Node *next = XOR(prev, p->xor_prev_next);
+        if (prev != nullptr) {
+            prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), next);
+        } else {
+            this->head = next;
+        }
+        if (next != nullptr) {
+            next->xor_prev_next = XOR(prev, XOR(next->xor_prev_next, p));
+        } else {
+            this->tail = prev;
+        }
+        delete p;
+    }
+    ```
