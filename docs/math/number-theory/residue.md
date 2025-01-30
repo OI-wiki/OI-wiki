@@ -104,9 +104,9 @@ $g^{an}\equiv g^b \pmod {p^q}$
 
 $an\equiv b \pmod {\varphi(p^q)}$
 
-使用BSGS算法求出 $b$
+使用 BSGS 算法求出 $b$
 
-使用exgcd算法求出 $a$ 的所有解，快速幂得到 $x$ 的所有解。
+使用 exgcd 算法求出 $a$ 的所有解，快速幂得到 $x$ 的所有解。
 
 情况 4:$k\not\equiv 0 \pmod {p^{q}},\gcd(k,p^{q})= 1,p^q$ 无原根
 
@@ -135,13 +135,13 @@ $5^{bn}\equiv (-1)^{an}k \pmod {p^{q}}$
 
     $t\geq \lceil \frac{q}{n} \rceil$
 
-    
+
 
     2. $x^n\equiv u\cdot p^t \pmod {p^q},\gcd(u,p)=1$ 有解当且仅当$n|t$
 
     直接构造即证。
 
-    
+
 
     3. $5^{2^{q-3}}\equiv 2^{q-1}+1 \pmod {2^q} ,q\geq 3$
 
@@ -161,7 +161,7 @@ $5^{bn}\equiv (-1)^{an}k \pmod {p^{q}}$
 
     归纳完成。
 
-    
+
 
     4. $5$ 在模 $2^q$ 意义下的阶为 $2^{q-2}$，其中 $q\geq 3$
 
@@ -173,7 +173,7 @@ $5^{bn}\equiv (-1)^{an}k \pmod {p^{q}}$
 
     $5^{2^{q-2}}\equiv (2^{q-1}+1)^2\equiv 2^{2q-2}+2^q+1\equiv 1 \pmod {2^q}$
 
-    
+
 
     5. 若 $\gcd(s,2)=1$ 则 $s$ 可以唯一的写成 $s\equiv (-1)^{a}5^{b} \pmod {2^{q}}$ 的形式
 
