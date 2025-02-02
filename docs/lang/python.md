@@ -45,7 +45,7 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 | ---------------- | ----------------------- |
 | Noi Linux 2.0    | 3.8.0, Include requests |
 | Luogu 评测机        | 3.11.5, NumPy 1.25.2    |
-| 基于 Hydro 的 OJ   | 3.8.0+ Include NumPy    |
+| 基于 Hydro 的 OJ    | 3.8.0+ Include NumPy    |
 | Ubuntu 22.04（内置） | 3.10.4                  |
 | 微软商店             | 最新正式版                   |
 
