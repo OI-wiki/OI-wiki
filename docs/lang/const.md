@@ -134,7 +134,7 @@ int main() {
     ```
 
 ???+ note "编译后的可能的汇编代码（使用 Compiler Explorer，Clang 19）"
-    ```assembly
+    ```nasm
     fib1(unsigned int):
             push    r14
             push    rbx
