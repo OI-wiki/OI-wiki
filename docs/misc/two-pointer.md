@@ -15,7 +15,9 @@
 ### 例题 1
 
 ???+ note " 例题 1 [leetcode 713. 乘积小于 K 的子数组](https://leetcode-cn.com/problems/subarray-product-less-than-k/)"
-    给定一个长度为 $n$ 的正整数数组 $\mathit{nums}$ 和整数 $k$，找出该数组内乘积小于 $k$ 的连续子数组的个数。$1 \leq n \leq 3 \times 10^4, 1 \leq nums[i] \leq 1000, 0 \leq k \leq 10^6$
+    给定一个长度为 $n$ 的正整数数组 $\mathit{nums}$ 和整数 $k$，找出该数组内乘积小于 $k$ 的连续子数组的个数。
+    
+    其中，$1 \leq n \leq 3 \times 10^4, 1 \leq nums[i] \leq 1000, 0 \leq k \leq 10^6$。
 
 #### 过程
 
