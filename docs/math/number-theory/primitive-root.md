@@ -18,9 +18,7 @@
     
     另外还有「半阶」的概念，在数论中会出现 $\delta^-$ 记号，表示同余式 $a^n \equiv -1 \pmod m$ 的最小正整数。半阶不是群论中的概念。阶一定存在，半阶不一定存在。
 
-### 性质
-
-#### 性质 1
+### 性质 1
 
 $a,a^2,\cdots,a^{\delta_m(a)}$ 模 $m$ 两两不同余。
 
@@ -29,7 +27,7 @@ $a,a^2,\cdots,a^{\delta_m(a)}$ 模 $m$ 两两不同余。
     
     但是显然的有：$0<|i-j|<\delta_m(a)$，这与阶的最小性矛盾，故原命题成立。
 
-#### 性质 2
+### 性质 2
 
 若 $a^n \equiv 1 \pmod m$，则 $\delta_m(a)\mid n$.
 
@@ -50,7 +48,7 @@ $a,a^2,\cdots,a^{\delta_m(a)}$ 模 $m$ 两两不同余。
 
 还有两个与四则运算有关的重要性质。
 
-#### 性质 3
+### 性质 3
 
 设 $m\in\mathbf{N}^{*}$，$a,b\in\mathbf{Z}$，$(a,m)=(b,m)=1$，则
 
@@ -126,7 +124,7 @@ $$
         \delta_m(ab)=\delta_m(a)\delta_m(b)
         $$
 
-#### 性质 4
+### 性质 4
 
 设 $k \in \mathbf{N}$，$m\in \mathbf{N}^{*}$，$a\in\mathbf{Z}$，$(a,m)=1$，则
 
@@ -168,7 +166,11 @@ $$
 ???+ note "定义"
     设 $m \in \mathbf{N}^{*}$，$g\in \mathbf{Z}$. 若 $(g,m)=1$，且 $\delta_m(g)=\varphi(m)$，则称 $g$ 为模 $m$ 的原根。
     
-    即 $g$ 满足 $\delta_m(g) = \left| \mathbf{Z}_m^* \right| = \varphi(m)$. 当 $m$ 是质数时，我们有 $g^i \bmod m,\,0 \lt i \lt m$ 的结果互不相同。
+    即 $g$ 满足 $\delta_m(g) = \left| \mathbf{Z}_m^* \right| = \varphi(m)$.
+
+若一个数 $m$ 有原根 $g$，则 $g,g^2,\ldots,g^{\varphi(m)}$ 构成模 $m$ 的简化剩余系。
+
+特别地，当 $m$ 是质数时，有 $g^i\bmod m$，$0 < i < m$ 的结果两两不同。
 
 ???+ note "注"
     在抽象代数中，原根就是循环群的生成元。这个概念只在模 $m$ 缩剩余系关于乘法形成的群中有「原根」这个名字，在一般的循环群中都称作「生成元」。
@@ -184,45 +186,35 @@ $$
     
     当对于 $\varphi(m)$ 的每个素因数 $p$，都有 $g^{\frac{\varphi(m)}{p}}\not\equiv 1\pmod m$ 成立时，我们假设存在一个 $g$，其不是模 $m$ 的原根。
     
-    因为 $g$ 不是 $m$ 的原根，则存在一个 $t<\varphi(m)$ 使得 $g^t\equiv 1\pmod{m}$.
+    因为 $g$ 不是 $m$ 的原根，且将 $g^{\varphi(m)}\equiv 1\pmod m$ 带入性质二，得到 $g$ 的阶 $\delta_m(g)$ 应满足 $\delta_m(g) < \varphi(m)$ 且 $\delta_m(g) \mid \varphi(m)$.
     
-    由 [裴蜀定理](./bezouts.md) 得，一定存在一组 $k,x$ 满足 $kt=x\varphi(m)+(t,\varphi(m))$.
+    故存在 $\varphi(m)$ 的素因数 $p$ 使得 $\delta_m(g) \mid \frac{\varphi(m)}{p}$.
     
-    又由 [欧拉定理](./fermat.md#欧拉定理) 得 $g^{\varphi(m)}\equiv 1\pmod{m}$，故有：
-    
-    $$
-    1\equiv g^{kt}\equiv g^{x\varphi(m)+(t,\varphi(m))}\equiv g^{(t,\varphi(m))}\pmod{m}
-    $$
-    
-    由于 $(t, \varphi(m)) \mid \varphi(m)$ 且 $(t, \varphi(m))\leqslant t < \varphi(m)$.
-    
-    故存在 $\varphi(m)$ 的素因数 $p$ 使得 $(t, \varphi(m)) \mid \frac{\varphi(m)}{p}$.
-    
-    则 $g^{\frac{\varphi(m)}{p}}\equiv g^{(t, \varphi(m))}\equiv 1\pmod{m}$，与条件矛盾。
+    则 $g^{\frac{\varphi(m)}{p}}\equiv g^{\delta_m(g)}\equiv 1\pmod{m}$，与条件矛盾。
     
     故假设不成立，原命题成立。
 
 ### 原根个数
 
-若一个数 $m$ 有原根，则它原根的个数为 $\varphi(\varphi(m))$.
+若一个数 $m$ 有原根 $g$，那么对于任意 $\varphi(m)$ 的因子 $d$，模 $m$ 的 $d$ 阶元素存在且个数为 $\varphi(d)$。
+
+特别地，$m$ 的原根个数为 $\varphi(\varphi(m))$。
 
 ???+ note "证明"
-    若 $m$ 有原根 $g$，则：
+    设 $d'=\dfrac{\varphi(m)}{d}$，由阶的性质有 $\delta_m(g^{d'})=\dfrac{\delta_m(g)}{(\delta_m(g),d')}=d$。因此模 $m$ 的 $d$ 阶元素存在。
     
-    $$
-    \delta_m(g^k)=\dfrac{\delta_m(g)}{\left(\delta_m(g),k\right)}=\dfrac{\varphi(m)}{\left(\varphi(m),k\right)}
-    $$
+    设 $a=g^{d'}$，$k$ 是不大于 $d$ 的整数。由阶的性质有 $a,a^2,\ldots,a^d$ 互不相同，且 $\delta_m(a^k)=\dfrac{\delta_m(a)}{(\delta_m(a),k)}=\dfrac{d}{(d,k)}$。
     
-    所以若 $\left(k,\varphi(m)\right)=1$，则有：$\delta_m(g^k)=\varphi(m)$，即 $g^k$ 也是模 $m$ 的原根。
+    当且仅当 $(d,k)=1$ 时 $\delta_m(a^k)=d$。这样的 $k$ 有 $\varphi(d)$ 个。所以模 $m$ 的 $d$ 阶元素至少有 $\varphi(d)$ 个。
     
-    而满足 $\left(\varphi(m),k\right)=1$ 且 $1\leq k \leq \varphi(m)$ 的 $k$ 有 $\varphi(\varphi(m))$ 个。所以原根就有 $\varphi(\varphi(m))$ 个。
+    由于 $\varphi(m)=\sum_{d\mid \varphi(m)}\varphi(d)$，因此模 $m$ 的 $d$ 阶元素恰有 $\varphi(d)$ 个。
 
 ### 原根存在定理
 
 ???+ note "原根存在定理"
     一个数 $m$ 存在原根当且仅当 $m=2,4,p^{\alpha},2p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in \mathbf{N}^{*}$.
 
-我们来证明它，分成 $m=2,4$、$m=p^{\alpha}$、$m=2p^{\alpha}$ 与 $m\ne 2,4,p,p^{\alpha}$，四个部分。
+我们来证明它，分成 $m=2,4$、$m=p^{\alpha}$、$m=2p^{\alpha}$ 与 $m\ne 2,4,p^{\alpha},2p^{\alpha}$，四个部分。
 
 1.  $m=2,4$，原根显然存在。
 
@@ -394,7 +386,7 @@ $$
             
             结合 $\varphi(p^{\alpha})=\varphi(2p^{\alpha})$ 可知 $G$ 为模 $2p^{\alpha}$ 的原根。
 
-4.  $m\ne 2,4,p^{\alpha},p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in\mathbf{N}^*$.
+4.  $m\ne 2,4,p^{\alpha},2p^{\alpha}$，其中 $p$ 为奇素数，$\alpha\in\mathbf{N}^*$.
 
     ???+ note "定理 4"
         对于 $m\ne 2,4$，且不存在奇素数 $p$ 及 $\alpha \in \mathbf{N}^{*}$ 使得 $m=p^{\alpha},2p^{\alpha}$，模 $m$ 的原根不存在。

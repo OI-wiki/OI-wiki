@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-const int N = 2005;
+constexpr int N = 2005;
 
 string s, t;
 int na[N][26], nb[N][26], nxt[26];

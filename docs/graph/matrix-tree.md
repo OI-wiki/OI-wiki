@@ -201,7 +201,7 @@ $$
 进而有
 
 $$
-L^\mathrm{out}(G) = (M^\mathrm{out})^T (M^\mathrm{out}-M^\mathrm{in}),\ L^\mathrm{in}(G) = (M^\mathrm{out}-M^\mathrm{in})^T M^\mathrm{in}.
+L^\mathrm{out}(G) = (M^\mathrm{out})^T (M^\mathrm{out}-M^\mathrm{in}),\ L^\mathrm{in}(G) = (M^\mathrm{in}-M^\mathrm{out})^T M^\mathrm{in}.
 $$
 
 前文的 Cauchy–Binet 公式表明，Laplace 矩阵的主子式其实是一系列子结构的和。每个子结构都反映了对应的子图的性质。
@@ -443,13 +443,13 @@ $$
     #include <cstring>
     #include <iostream>
     using namespace std;
-    #define MOD 100000007
-    #define eps 1e-7
+    constexpr int MOD = 100000007;
+    constexpr double eps = 1e-7;
     
     struct matrix {
-      static const int maxn = 20;
+      static constexpr int MAXN = 20;
       int n, m;
-      double mat[maxn][maxn];
+      double mat[MAXN][MAXN];
     
       matrix() { memset(mat, 0, sizeof(mat)); }
     
@@ -609,7 +609,7 @@ $$
     
     改写成 $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$ 后，采用矩阵快速幂即可求出答案。
 
-???+ note "例题 3：「BZOJ3659」WHICH DREAMED IT"
+???+ note " 例题 3：[「BZOJ3659」WHICH DREAMED IT](https://hydro.ac/p/bzoj-P3659)"
     **解** 本题是 BEST 定理的直接应用，但是要注意，由于题目规定「两种完成任务的方式算作不同当且仅当使用钥匙的顺序不同」，对每个欧拉回路，1 号房间可以沿着任意一条出边出发，从而答案还要乘以 1 号房间的出度。
 
 ???+ note " 例题 4：[「联合省选 2020 A」作业题](https://loj.ac/p/3304)"

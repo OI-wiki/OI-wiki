@@ -1,4 +1,4 @@
-在组合数学中，图论计数（Graph Enumeration）是研究满足特定性质的图的计数问题的分支。[生成函数](../poly/intro.md)、[波利亚计数定理](../permutation-group.md#p%C3%B3lya-%E5%AE%9A%E7%90%86) 与 [符号化方法](../poly/symbolic-method.md#%E9%9B%86%E5%90%88%E7%9A%84-cycle-%E6%9E%84%E9%80%A0) 和 [OEIS](https://oeis.org/) 是解决这类问题时最重要的数学工具。图论计数可分为有标号和无标号两大类问题，大多数情况下[^1]有标号版本的问题都比其对应的无标号问题更加简单，因此我们将先考察有标号问题的计数。
+在组合数学中，图论计数（Graph Enumeration）是研究满足特定性质的图的计数问题的分支。[生成函数](../poly/intro.md)、[波利亚计数定理](./polya.md) 与 [符号化方法](../poly/symbolic-method.md#%E9%9B%86%E5%90%88%E7%9A%84-cycle-%E6%9E%84%E9%80%A0) 和 [OEIS](https://oeis.org/) 是解决这类问题时最重要的数学工具。图论计数可分为有标号和无标号两大类问题，大多数情况下[^1]有标号版本的问题都比其对应的无标号问题更加简单，因此我们将先考察有标号问题的计数。
 
 [^1]: 也许无标号二叉树是一个反例，在结构简单的情况下，对应的置换群是恒等群（Identity Group），此时有标号版本可以直接通过乘以 $n!$ 得到。
 
@@ -211,8 +211,8 @@ $$
 ### 习题
 
 -   [UOJ Goodbye Jihai D. 新年的追逐战](https://uoj.ac/contest/50/problem/498)
--   [BZOJ 3864. 大朋友和多叉树](https://darkbzoj.cc/problem/3684)
--   [BZOJ 2863. 愤怒的元首](https://darkbzoj.cc/problem/2863)
+-   [BZOJ 3864. 大朋友和多叉树](https://hydro.ac/p/bzoj-P3864)
+-   [BZOJ 2863. 愤怒的元首](https://hydro.ac/p/bzoj-P2863)
 -   [Luogu P6295. 有标号 DAG 计数](https://www.luogu.com.cn/problem/P6295)
 -   [LOJ 6569. 仙人掌计数](https://loj.ac/p/6569)
 -   [LOJ 6570. 毛毛虫计数](https://loj.ac/p/6570)

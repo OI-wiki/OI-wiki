@@ -56,7 +56,7 @@ Hash 冲突是指两个不同的字符串映射到相同的 Hash 值。
 则 Hash 冲突的概率为：
 
 $$
-p(n,d) =1 - \exp(-\frac{n(n-1)}{2d} )
+p(n,d) = \frac{d!}{d^n\left(d-n\right)!} \approx 1 - \exp(-\frac{n(n-1)}{2d} )
 $$
 
 ??? note "证明"
@@ -73,7 +73,6 @@ $$
     \overline{p}(n,d) 
     & = \frac{d}{d}\cdot \frac{d-1}{d}\cdot \frac{d-2}{d} \cdots \frac{d-n+1}{d}\\
     & = \frac{d\cdot (d-1)\cdot (d-2)\cdots(d-n+1)}{d^n}\\
-    & = \frac{\frac{d!}{(d-n)!}}{d^n}\\
     & = \frac{d!}{d^n\left(d-n\right)!}
     \end{aligned}
     $$
@@ -97,14 +96,14 @@ $$
     将它带入 Hash 不冲突的原始公式：
 
     $$
-    \overline{p}(n,d) = 1 \cdot \exp(-\frac{1}{d}) \cdot \exp(-\frac{2}{d}) \cdots \exp(-\frac{n-1}{d})
+    \overline{p}(n,d) \approx 1 \cdot \exp(-\frac{1}{d}) \cdot \exp(-\frac{2}{d}) \cdots \exp(-\frac{n-1}{d})
     $$
 
     化简：
 
     $$
     \begin{aligned}
-    \overline{p}(n,d) & = \exp(-\frac{1}{d} - \frac{2}{d} - \cdots -\frac{n-1}{d})\\
+    \overline{p}(n,d) & \approx \exp(-\frac{1}{d} - \frac{2}{d} - \cdots -\frac{n-1}{d})\\
     &=\exp(-\frac{n(n-1)}{2d} )
     \end{aligned}
     $$
@@ -112,7 +111,7 @@ $$
     则 Hash 冲突的概率为：
 
     $$
-    p(n,d) =1 - \exp(-\frac{n(n-1)}{2d})
+    p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d})
     $$
 
 ### 卡大模数 Hash
@@ -120,7 +119,7 @@ $$
 注意到这个公式：
 
 $$
-p(n,d) =1 - \exp(-\frac{n(n-1)}{2d} )
+p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d} )
 $$
 
 为了卡掉 Hash，我们要满足一下条件：
@@ -132,9 +131,9 @@ $$
 
 若字符集为 **大小写字母和数字**，模数为 $10^9+7$ 时：
 
-$log_{62}10^9+7\approx 6$
+$\log_{62}10^9+7\approx 6$
 
-$p(10^6,6^{62}) \approx 0.9$
+$p(10^6,62^{6}) \approx 0.9$
 
 所以对于这个范围，我们随机生成 $10^6$ 个长度为 $6$ 的字符串，它们 Hash 值相同的概率高达 $90\%$。
 
@@ -203,7 +202,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     $$
     \begin{aligned}
     f_i = hash_i - !hash_i\\
-    g_i = base^{2^{i-2}-1}
+    g_i = base^{2^{i-2}}-1
     \end{aligned}
     $$
 
@@ -227,7 +226,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     但这样太大了，$i-1\ge 64$ 才能卡掉，继续化简：
 
     $$
-    g_i = base^{2^{i-2}-1} = (base^{2^{i-2}}-1)\cdot(base^{2^{i-2}}+1)\\
+    g_i = base^{2^{i-2}}-1 = (base^{2^{i-3}}-1)\cdot(base^{2^{i-3}}+1)\\
     $$
 
     即 $g_i$ 为 $g_{i-1} \cdot c\ (c \equiv 0 \pmod 2)$ 的形式。
@@ -246,10 +245,10 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
 
 ### 例题
 
-???+ note "[例题：BZOJ 3097 Hash Killer I](https://hydro.ac/d/bzoj/p/3097)"
+???+ note "[例题：BZOJ 3097 Hash Killer I](https://hydro.ac/p/bzoj-P3097)"
     给定一个用 **自然溢出** 实现的 Hash，要求构造一个字符串来卡掉它。
 
-???+ note "[例题：BZOJ 3097 Hash Killer II](https://hydro.ac/d/bzoj/p/3098)"
+???+ note "[例题：BZOJ 3097 Hash Killer II](https://hydro.ac/p/bzoj-P3098)"
     给定一个用 **大模数** 实现的 Hash，要求构造一个字符串来卡掉它。
 
 ???+ note "[例题：洛谷 U461211 字符串 Hash（数据加强）](https://www.luogu.com.cn/problem/U461211)"
@@ -289,10 +288,10 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     ```cpp
     using std::string;
     
-    const int M = 1e9 + 7;
-    const int B = 233;
+    constexpr int M = 1e9 + 7;
+    constexpr int B = 233;
     
-    typedef long long ll;
+    using ll = long long;
     
     int get_hash(const string& s) {
       int res = 0;
@@ -328,7 +327,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
 
 === "C++"
     ```cpp
-    typedef unsigned long long ull;
+    using ull = unsigned long long;
     ull base = 131;
     ull mod1 = 212370440130137957, mod2 = 1e9 + 7;
     
@@ -426,8 +425,8 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     int count_unique_substrings(string const& s) {
       int n = s.size();
     
-      const int b = 31;
-      const int m = 1e9 + 9;
+      constexpr static int b = 31;
+      constexpr static int m = 1e9 + 9;
       vector<long long> b_pow(n);
       b_pow[0] = 1;
       for (int i = 1; i < n; i++) b_pow[i] = (b_pow[i - 1] * b) % m;

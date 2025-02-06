@@ -71,9 +71,9 @@ void print(int a[]) {
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
-    int a[LEN], b[LEN];
+    int a[LEN];
     
     void clear(int a[]) {
       for (int i = 0; i < LEN; ++i) a[i] = 0;
@@ -145,7 +145,7 @@ void add(int a[], int b[], int c[]) {
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
     int a[LEN], b[LEN], c[LEN];
     
@@ -225,7 +225,7 @@ void sub(int a[], int b[], int c[]) {
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
     int a[LEN], b[LEN], c[LEN];
     
@@ -383,10 +383,10 @@ void div(int a[], int b[], int c[], int d[]) {
     if (a[la - 1] != 0) break;
   for (lb = LEN - 1; lb > 0; --lb)
     if (b[lb - 1] != 0) break;
-  if (lb == 0) {
+  if (lb == 0) {  // 除数不能为零
     puts("> <");
     return;
-  }  // 除数不能为零
+  }
 
   // c 是商
   // d 是被除数的剩余部分，算法结束后自然成为余数
@@ -420,7 +420,7 @@ void div(int a[], int b[], int c[], int d[]) {
     #include <cstdio>
     #include <cstring>
     
-    static const int LEN = 1004;
+    constexpr int LEN = 1004;
     
     int a[LEN], b[LEN], c[LEN], d[LEN];
     
@@ -793,11 +793,11 @@ $$
 
 ??? 这里是另一个模板
     ```cpp
-    #define MAXN 9999
+    constexpr int MAXN = 9999;
     // MAXN 是一位中最大的数字
-    #define MAXSIZE 10024
+    constexpr int MAXSIZE = 10024;
     // MAXSIZE 是位数
-    #define DLEN 4
+    constexpr int DLEN = 4;
     
     // DLEN 记录压几位
     struct Big {
@@ -807,7 +807,7 @@ $$
       Big() {
         len = 1;
         memset(a, 0, sizeof a);
-        flag = 0;
+        flag = false;
       }
     
       Big(const int);
@@ -898,11 +898,11 @@ $$
       if (*this < T) {
         t1 = T;
         t2 = *this;
-        ctf = 1;
+        ctf = true;
       } else {
         t1 = *this;
         t2 = T;
-        ctf = 0;
+        ctf = false;
       }
       big = t1.len;
       int j = 0;
@@ -981,14 +981,14 @@ $$
     
     bool Big::operator<(const Big& T) const {
       int ln;
-      if (len < T.len) return 233;
+      if (len < T.len) return true;
       if (len == T.len) {
         ln = len - 1;
         while (ln >= 0 && a[ln] == T.a[ln]) --ln;
-        if (ln >= 0 && a[ln] < T.a[ln]) return 233;
-        return 0;
+        if (ln >= 0 && a[ln] < T.a[ln]) return true;
+        return false;
       }
-      return 0;
+      return false;
     }
     
     bool Big::operator<(const int& t) const {

@@ -4,7 +4,7 @@
 #include <set>
 #include <vector>
 
-typedef unsigned long long ull;
+using ull = unsigned long long;
 
 const ull mask = std::mt19937_64(time(nullptr))();
 
@@ -17,7 +17,7 @@ ull shift(ull x) {
   return x;
 }
 
-const int N = 1e6 + 10;
+constexpr int N = 1e6 + 10;
 
 int n;
 ull hash[N];

@@ -32,9 +32,10 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? "实现"
     ```cpp
-    #include <bits/stdc++.h>
+    #include <algorithm>
+    #include <iostream>
     using namespace std;
-    const int N = 11;
+    constexpr int N = 11;
     long long f[2][1 << N], *f0, *f1;
     int n, m;
     
@@ -161,7 +162,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    const int MaxSZ = 16796, Prime = 9973;
+    constexpr int MaxSZ = 16796, Prime = 9973;
     
     struct hashTable {
       int head[Prime], next[MaxSZ], sz;
@@ -340,7 +341,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 习题
 
-??? note " 习题 [「BZOJ 2310」ParkII](https://darkbzoj.cc/problem/2310)"
+??? note " 习题 [「BZOJ 2310」ParkII](https://hydro.ac/p/bzoj-P2310)"
     题目大意：$m\times n$ 的棋盘，每个格点有一个权值，求一条路径覆盖，最大化路径经过的点的权值和。
 
 ??? note " 习题 [「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
@@ -376,7 +377,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    const int Offset = 5, Mask = (1 << Offset) - 1;
+    constexpr int Offset = 5, Mask = (1 << Offset) - 1;
     int c[N + 2];
     int b[N + 2], bb[N + 3];
     
@@ -410,7 +411,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    const int Prime = 9979, MaxSZ = 1 << 20;
+    constexpr int Prime = 9979, MaxSZ = 1 << 20;
     
     template <class T_state, class T_key>
     struct hashTable {
@@ -598,20 +599,21 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? 例题代码
     ```cpp
-    #include <bits/stdc++.h>
+    #include <cstring>
+    #include <iostream>
     using namespace std;
     #define REP(i, n) for (int i = 0; i < n; ++i)
     
     template <class T>
     bool checkMin(T &a, const T b) {
-      return b < a ? a = b, 1 : 0;
+      return b < a ? a = b, true : false;
     }
     
-    const int N = 10, M = N;
-    const int offset = 3, mask = (1 << offset) - 1;
+    constexpr int N = 10, M = N;
+    constexpr int offset = 3, mask = (1 << offset) - 1;
     int n, m;
     int d;
-    const int INF = 0x3f3f3f3f;
+    constexpr int INF = 0x3f3f3f3f;
     int b[M + 1], bb[M + 1];
     
     int encode() {
@@ -635,7 +637,7 @@ if (s >> j & 1) {       // 如果已被覆盖
       }
     }
     
-    const int MaxSZ = 16796, Prime = 9973;
+    constexpr int MaxSZ = 16796, Prime = 9973;
     
     struct hashTable {
       int head[Prime], next[MaxSZ], sz;
@@ -736,9 +738,6 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     
     int main() {
-    #ifndef ONLINE_JUDGE
-      freopen("in.txt", "r", stdin);
-    #endif
       int T;
       cin >> T;
       for (int Case = 1; Case <= T; ++Case) {

@@ -6,7 +6,7 @@
 #define __builtin_clz _lzcnt_u32
 #endif
 using namespace std;
-typedef long long lld;
+using lld = long long;
 
 int ti[2][17][131073];
 

@@ -52,7 +52,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 ![](images/vscode-9.png)
 
-先按照上文 GDB 的配置过程操作一遍，然后删除 `.vscode/launch.json`，按下<kbd>F5</kbd>，选择 `LLDB`，再把 `launch.json` 中的 `${workspaceFolder}/<executable file>` 更改为 `${fileDirname}/${fileBasenameNoExtension}.exe` 即可。
+先按照上文 GDB 的配置过程操作一遍，然后删除 `.vscode/launch.json`，按下<kbd>F5</kbd>，选择 `LLDB`，再把 `launch.json` 中的 `${workspaceFolder}/<executable file>` 更改为 `${fileDirname}/${fileBasenameNoExtension}` 即可。
 
 至此，LLDB 配置完成。再次按下<kbd>F5</kbd>即可看到软件下方的调试信息。
 
@@ -69,6 +69,13 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 ![](images/vscode-6.png)
 
 如果编辑器未自动跳转，点击左侧工具栏中的「调试」图标进入调试窗口，即可在左侧看到变量的值。
+
+在「监视」中，你可以输入表达式，在每一次进行 `next` 或 `step` 等操作时都会重新求值并显示。
+
+在「调用堆栈」中，你可以看见当前函数执行的栈帧。
+
+???+ note "Tip"
+    你可以参照 [GDB 官方文档](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Arrays.html) 来查看某个数组一段区间内的内容。
 
 在调试模式中，编辑器将以黄色底色显示下一步将要执行的代码。
 

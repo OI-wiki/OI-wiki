@@ -132,7 +132,7 @@ struct hungarian {  // km
 };
 
 int main() {
-  ios::sync_with_stdio(0), cin.tie(nullptr);
+  ios::sync_with_stdio(false), cin.tie(nullptr);
   int n, m, e;
   cin >> n >> m >> e;
 

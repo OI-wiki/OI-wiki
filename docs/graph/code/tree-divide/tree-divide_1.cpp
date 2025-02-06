@@ -1,91 +1,71 @@
-#include <algorithm>
-#include <cstring>
+/* size 处理子树 d[], 连通块大小 cnt
+   dp 最大子树 f[], 树的重心 rot
+   get 计算出点到重心的距离 t[], top
+   calc 点分治 bu[] 长度桶
+   hd to nx wg 链式前向星存图
+   ak[] as[] 离线处理询问
+   ok[] 点分治中已成为重心的点
+ */
 #include <iostream>
-#include <queue>
-using namespace std;
-const int maxn = 20010;
-const int inf = 2e9;
-int n, m, a, b, c, q[maxn], rt, siz[maxn], maxx[maxn], dist[maxn];
-int cur, h[maxn], nxt[maxn], p[maxn], w[maxn];
-bool tf[10000010], ret[maxn], vis[maxn];
+const int N = 1e4 + 4, M = 105, Q = 1e7 + 7;
+int n, m, hd[N], to[N * 2], nx[N * 2], wg[N * 2];
+int ak[M], d[N], f[N], t[N], top, cnt, rot;
+bool as[M], ok[N], bu[Q];
 
-void add_edge(int x, int y, int z) {
-  cur++;
-  nxt[cur] = h[x];
-  h[x] = cur;
-  p[cur] = y;
-  w[cur] = z;
+int size(int u, int pa) {
+  cnt++, d[u] = 1;
+  for (int p = hd[u]; ~p; p = nx[p])
+    if (to[p] != pa && !ok[to[p]]) d[u] += size(to[p], u);
+  return d[u];
 }
 
-int sum;
-
-void calcsiz(int x, int fa) {
-  siz[x] = 1;
-  maxx[x] = 0;
-  for (int j = h[x]; j; j = nxt[j])
-    if (p[j] != fa && !vis[p[j]]) {
-      calcsiz(p[j], x);
-      maxx[x] = max(maxx[x], siz[p[j]]);
-      siz[x] += siz[p[j]];
+void dp(int u, int pa) {
+  f[u] = cnt - d[u];
+  for (int p = hd[u]; ~p; p = nx[p])
+    if (to[p] != pa && !ok[to[p]]) {
+      f[u] = std::max(f[u], d[to[p]]);
+      dp(to[p], u);
     }
-  maxx[x] = max(maxx[x], sum - siz[x]);
-  if (maxx[x] < maxx[rt]) rt = x;
+  if (f[u] < f[rot]) rot = u;
 }
 
-int dd[maxn], cnt;
-
-void calcdist(int x, int fa) {
-  dd[++cnt] = dist[x];
-  for (int j = h[x]; j; j = nxt[j])
-    if (p[j] != fa && !vis[p[j]])
-      dist[p[j]] = dist[x] + w[j], calcdist(p[j], x);
+void get(int u, int pa, int dis) {
+  t[top++] = dis;
+  for (int p = hd[u]; ~p; p = nx[p])
+    if (to[p] != pa && !ok[to[p]]) get(to[p], u, dis + wg[p]);
 }
 
-queue<int> tag;
-
-void dfz(int x, int fa) {
-  tf[0] = true;
-  tag.push(0);
-  vis[x] = true;
-  for (int j = h[x]; j; j = nxt[j])
-    if (p[j] != fa && !vis[p[j]]) {
-      dist[p[j]] = w[j];
-      calcdist(p[j], x);
-      for (int k = 1; k <= cnt; k++)
-        for (int i = 1; i <= m; i++)
-          if (q[i] >= dd[k]) ret[i] |= tf[q[i] - dd[k]];
-      for (int k = 1; k <= cnt; k++)
-        if (dd[k] < 10000010) tag.push(dd[k]), tf[dd[k]] = true;
-      cnt = 0;
+void calc(int u) {
+  cnt = 0, size(u, u);
+  rot = u, dp(u, u);
+  bu[0] = true, t[0] = 0, top = 1;
+  for (int p = hd[rot], i; ~p; p = nx[p])
+    if (!ok[to[p]]) {
+      i = top, get(to[p], rot, wg[p]);
+      for (int q = 0; q < m; q++)
+        for (int j = i; j < top && !as[q]; j++)
+          if (ak[q] >= t[j]) as[q] = bu[ak[q] - t[j]];
+      --i;
+      while (++i < top)
+        if (t[i] < Q) bu[t[i]] = true;
     }
-  while (!tag.empty()) tf[tag.front()] = false, tag.pop();
-  for (int j = h[x]; j; j = nxt[j])
-    if (p[j] != fa && !vis[p[j]]) {
-      sum = siz[p[j]];
-      rt = 0;
-      maxx[rt] = inf;
-      calcsiz(p[j], x);
-      calcsiz(rt, -1);
-      dfz(rt, x);
-    }
+  while (top--)
+    if (t[top] < Q) bu[t[top]] = false;
+  ok[rot] = true;
+  for (int p = hd[rot]; ~p; p = nx[p])
+    if (!ok[to[p]]) calc(to[p]);
 }
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  cin >> n >> m;
-  for (int i = 1; i < n; i++)
-    cin >> a >> b >> c, add_edge(a, b, c), add_edge(b, a, c);
-  for (int i = 1; i <= m; i++) cin >> q[i];
-  rt = 0;
-  maxx[rt] = inf;
-  sum = n;
-  calcsiz(1, -1);
-  calcsiz(rt, -1);
-  dfz(rt, -1);
-  for (int i = 1; i <= m; i++)
-    if (ret[i])
-      cout << "AYE\n";
-    else
-      cout << "NAY\n";
-  return 0;
+  std::cin >> n >> m;
+  for (int i = 1; i <= n; i++) hd[i] = -1;
+  for (int i = 0, u, v; i + 2 < n * 2;) {
+    std::cin >> u >> v >> wg[i];
+    wg[i + 1] = wg[i];
+    to[i] = v, nx[i] = hd[u], hd[u] = i++;
+    to[i] = u, nx[i] = hd[v], hd[v] = i++;
+  }
+  for (int i = 0; i < m; i++) std::cin >> ak[i];
+  calc(1);
+  for (int i = 0; i < m; i++) std::cout << (as[i] ? "AYE\n" : "NAY\n");
 }

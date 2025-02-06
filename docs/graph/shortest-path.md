@@ -1,4 +1,4 @@
-author: du33169, lingkerio
+author: du33169, lingkerio, Taoran-01
 
 ## 定义
 
@@ -71,11 +71,9 @@ author: du33169, lingkerio
 因为第一维对结果无影响，我们可以发现数组的第一维是可以省略的，于是可以直接改成 `f[x][y] = min(f[x][y], f[x][k]+f[k][y])`。
 
 ???+ note "证明第一维对结果无影响"
-    我们注意到如果放在一个给定第一维 `k` 二维数组中，`f[x][k]` 与 `f[k][y]` 在某一行和某一列。而 `f[x][y]` 则是该行和该列的交叉点上的元素。
+    对于给定的 `k`，当更新 `f[k][x][y]` 时，涉及的元素总是来自 `f[k-1]` 数组的第 `k` 行和第 `k` 列。然后我们可以发现，对于给定的 `k`，当更新 `f[k][k][y]` 或 `f[k][x][k]`，总是不会发生数值更新，因为按照公式 `f[k][k][y] = min(f[k-1][k][y], f[k-1][k][k]+f[k-1][k][y])`,`f[k-1][k][k]` 为 0，因此这个值总是 `f[k-1][k][y]`，对于 `f[k][x][k]` 的证明类似。
     
-    现在我们需要证明将 `f[k][x][y]` 直接在原地更改也不会更改它的结果：我们注意到 `f[k][x][y]` 的涵义是第一维为 `k-1` 这一行和这一列的所有元素的最小值，包含了 `f[k-1][x][y]`，那么在原地进行更改也不会改变最小值的值，因为如果将该三维矩阵压缩为二维，则所求结果 `f[x][y]` 一开始即为原 `f[k-1][x][y]` 的值，最后依然会成为该行和该列的最小值。
-    
-    故可以压缩。
+    因此，如果省略第一维，在给定的 `k` 下，每个元素的更新中使用到的元素都没有在这次迭代中更新，因此第一维的省略并不会影响结果。
 
 === "C++"
     ```cpp
@@ -112,6 +110,8 @@ author: du33169, lingkerio
     在 Floyd 的过程中枚举 $u$，计算这个和的最小值即可。
     
     时间复杂度为 $O(n^3)$。
+    
+    更多参见 [最小环](./min-cycle.md) 部分内容。
 
 ???+ question "已知一个有向图中任意两点之间是否有连边，要求判断任意两点是否连通。"
     该问题即是求 **图的传递闭包**。
@@ -168,7 +168,7 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
         vector<Edge> edge;
         
         int dis[MAXN], u, v, w;
-        const int INF = 0x3f3f3f3f;
+        constexpr int INF = 0x3f3f3f3f;
         
         bool bellmanford(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
@@ -249,8 +249,8 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
           int v, w;
         };
         
-        vector<edge> e[maxn];
-        int dis[maxn], cnt[maxn], vis[maxn];
+        vector<edge> e[MAXN];
+        int dis[MAXN], cnt[MAXN], vis[MAXN];
         queue<int> q;
         
         bool spfa(int n, int s) {
@@ -287,7 +287,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                 self.w = w
         
         
-        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+        e = [[Edge() for i in range(MAXN)] for j in range(MAXN)]
         INF = 0x3F3F3F3F
         
         
@@ -349,19 +349,19 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 
 ### 时间复杂度
 
-有多种方法来维护 1 操作中最短路长度最小的结点，不同的实现导致了 Dijkstra 算法时间复杂度上的差异。
+朴素的实现方法为每次 2 操作执行完毕后，直接在 $T$ 集合中暴力寻找最短路长度最小的结点。2 操作总时间复杂度为 $O(m)$，1 操作总时间复杂度为 $O(n^2)$，全过程的时间复杂度为 $O(n^2 + m) = O(n^2)$。
 
--   暴力：不使用任何数据结构进行维护，每次 2 操作执行完毕后，直接在 $T$ 集合中暴力寻找最短路长度最小的结点。2 操作总时间复杂度为 $O(m)$，1 操作总时间复杂度为 $O(n^2)$，全过程的时间复杂度为 $O(n^2 + m) = O(n^2)$。
--   二叉堆：每成功松弛一条边 $(u,v)$，就将 $v$ 插入二叉堆中（如果 $v$ 已经在二叉堆中，直接修改相应元素的权值即可），1 操作直接取堆顶结点即可。共计 $O(m)$ 次二叉堆上的插入（修改）操作，$O(n)$ 次删除堆顶操作，而插入（修改）和删除的时间复杂度均为 $O(\log n)$，时间复杂度为 $O((n+m) \log n) = O(m \log n)$。
--   优先队列：和二叉堆类似，但使用优先队列时，如果同一个点的最短路被更新多次，因为先前更新时插入的元素不能被删除，也不能被修改，只能留在优先队列中，故优先队列内的元素个数是 $O(m)$ 的，时间复杂度为 $O(m \log m)$。
--   Fibonacci 堆：和前面二者类似，但 Fibonacci 堆插入的时间复杂度为 $O(1)$，故时间复杂度为 $O(n \log n + m)$，时间复杂度最优。但因为 Fibonacci 堆较二叉堆不易实现，效率优势也不够大[^1]，算法竞赛中较少使用。
--   线段树：和二叉堆原理类似，不过将每次成功松弛后插入二叉堆的操作改为在线段树上执行单点修改，而 1 操作则是线段树上的全局查询最小值。时间复杂度为 $O(m \log n)$。
+可以用堆来优化这一过程：每成功松弛一条边 $(u,v)$，就将 $v$ 插入堆中（如果 $v$ 已经在堆中，直接执行 Decrease-key），1 操作直接取堆顶结点即可。共计 $O(m)$ 次 Decrease-key，$O(n)$ 次 pop，选择不同堆可以取到不同的复杂度，参考 [堆](../ds/heap.md) 页面。堆优化能做到的最优复杂度为 $O(n\log n+m)$，能做到这一复杂度的有斐波那契堆等。
 
-在稀疏图中，$m = O(n)$，使用二叉堆实现的 Dijkstra 算法较 Bellman–Ford 算法具有较大的效率优势；而在稠密图中，$m = O(n^2)$，这时候使用暴力做法较二叉堆实现更优。
+特别地，可以使用优先队列维护，此时无法执行 Decrease-key 操作，但可以通过每次松弛时重新插入该结点，且弹出时检查该结点是否已被松弛过，若是则跳过，复杂度 $O(m\log n)$，优点是实现较简单。
+
+这里的堆也可以用线段树来实现，复杂度为 $O(m\log n)$，在一些特殊的非递归线段树实现下，该做法常数比堆更小。并且线段树支持的操作更多，在一些特殊图问题上只能用线段树来维护。
+
+在稀疏图中，$m = O(n)$，堆优化的 Dijkstra 算法具有较大的效率优势；而在稠密图中，$m = O(n^2)$，这时候使用朴素实现更优。
 
 ### 正确性证明
 
-下面用数学归纳法证明，在 **所有边权值非负** 的前提下，Dijkstra 算法的正确性[^2]。
+下面用数学归纳法证明，在 **所有边权值非负** 的前提下，Dijkstra 算法的正确性[^1]。
 
 简单来说，我们要证明的，就是在执行 1 操作时，取出的结点 $u$ 最短路均已经被确定，即满足 $D(u) = dis(u)$。
 
@@ -385,15 +385,15 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 
 这里同时给出 $O(n^2)$ 的暴力做法实现和 $O(m \log m)$ 的优先队列做法实现。
 
-???+ note "暴力实现"
+???+ note "朴素实现"
     === "C++"
         ```cpp
         struct edge {
           int v, w;
         };
         
-        vector<edge> e[maxn];
-        int dis[maxn], vis[maxn];
+        vector<edge> e[MAXN];
+        int dis[MAXN], vis[MAXN];
         
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
@@ -419,7 +419,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
                 self.w = w
         
         
-        e = [[Edge() for i in range(maxn)] for j in range(maxn)]
+        e = [[Edge() for i in range(MAXN)] for j in range(MAXN)]
         INF = 0x3F3F3F3F
         
         
@@ -455,12 +455,13 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
           bool operator>(const node& a) const { return dis > a.dis; }
         };
         
-        vector<edge> e[maxn];
-        int dis[maxn], vis[maxn];
-        priority_queue<node, vector<node>, greater<node> > q;
+        vector<edge> e[MAXN];
+        int dis[MAXN], vis[MAXN];
+        priority_queue<node, vector<node>, greater<node>> q;
         
         void dijkstra(int n, int s) {
           memset(dis, 0x3f, (n + 1) * sizeof(int));
+          memset(vis, 0, (n + 1) * sizeof(int));
           dis[s] = 0;
           q.push({0, s});
           while (!q.empty()) {
@@ -592,6 +593,4 @@ $w(s,p_1)+w(p_1,p_2)+ \dots +w(p_k,t)+h_s-h_t$
 
 ## 参考资料与注释
 
-[^1]: [Worst case of fibonacci heap - Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_heap#Worst_case)
-
-[^2]: 《算法导论（第 3 版中译本）》，机械工业出版社，2013 年，第 384 - 385 页。
+[^1]: 《算法导论（第 3 版中译本）》，机械工业出版社，2013 年，第 384 - 385 页。

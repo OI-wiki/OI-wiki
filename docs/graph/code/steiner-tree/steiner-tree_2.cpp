@@ -5,11 +5,11 @@
 using namespace std;
 
 #define mp make_pair
-typedef pair<int, int> P;
-typedef pair<P, int> PP;
-const int INF = 0x3f3f3f3f;
-const int dx[] = {0, 0, -1, 1};
-const int dy[] = {1, -1, 0, 0};
+using P = pair<int, int>;
+using PP = pair<P, int>;
+constexpr int INF = 0x3f3f3f3f;
+constexpr int dx[] = {0, 0, -1, 1};
+constexpr int dy[] = {1, -1, 0, 0};
 int n, m, K, root;
 int f[101][1111], a[101], ans[11][11];
 bool inq[101];
@@ -30,14 +30,14 @@ void spfa(int s) {
   while (!q.empty()) {
     P u = q.front();
     q.pop();
-    inq[num(u)] = 0;
+    inq[num(u)] = false;
     for (int d = 0; d < 4; d++) {
       P v = mp(u.first + dx[d], u.second + dy[d]);
       int du = num(u), dv = num(v);
       if (legal(v) && f[dv][s] > f[du][s] + a[dv]) {
         f[dv][s] = f[du][s] + a[dv];
         if (!inq[dv]) {
-          inq[dv] = 1;
+          inq[dv] = true;
           q.push(v);
         }
         pre[dv][s] = mp(u, s);

@@ -10,7 +10,13 @@
 
 ### 稳定性
 
-由于 swap（交换两个元素）操作的存在，选择排序是一种不稳定的排序算法。
+选择排序的稳定性取决于其具体实现。
+
+倘若使用链表实现，由于链表的任意位置插入和删除均为 $O(1)$，故无需使用 swap（交换两个元素）操作：每次从未排序部分选择最小元素（若有多个，选取第 1 个）后，将其插入到未排序部分的第 1 个元素之前，这样就能够保证稳定性。
+
+假如使用数组实现（OI 中一般的实现方式），由于数组任意位置插入和删除均为 $O(n)$，故只能使用 swap 将未排序部分的元素移到已排序部分。swap 操作使得数组实现的选择排序不稳定。
+
+下面给出的实现示例均是基于数组元素的交换，因此均为 **不稳定的**。
 
 ### 时间复杂度
 
@@ -36,28 +42,12 @@ $$
 
 === "C++"
     ```cpp
-    void selection_sort(int* a, int n) {
-      for (int i = 1; i < n; ++i) {
-        int ith = i;
-        for (int j = i + 1; j <= n; ++j) {
-          if (a[j] < a[ith]) {
-            ith = j;
-          }
-        }
-        std::swap(a[i], a[ith]);
-      }
-    }
+    --8<-- "docs/basic/code/selection-sort/selection-sort_1.cpp"
     ```
 
 === "Python"
     ```python
-    def selection_sort(a, n):
-        for i in range(1, n):
-            ith = i
-            for j in range(i + 1, n + 1):
-                if a[j] < a[ith]:
-                    ith = j
-            a[i], a[ith] = a[ith], a[i]
+    --8<-- "docs/basic/code/selection-sort/selection-sort_1.py"
     ```
 
 === "Java"

@@ -31,7 +31,7 @@ Prüfer 是这样建立的：每次选择一个编号最小的叶结点并删掉
           int n = adj.size();
           set<int> leafs;
           vector<int> degree(n);
-          vector<bool> killed(n, false);
+          vector<bool> killed(n);
           for (int i = 0; i < n; i++) {
             degree[i] = adj[i].size();
             if (degree[i] == 1) leafs.insert(i);

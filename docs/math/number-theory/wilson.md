@@ -123,15 +123,15 @@ $$
 如果想计算二项式系数模 $p$，那么还需要考虑在 $n$ 的阶乘的素因子分解中 $p$ 出现的次数，或在计算修改因子时删除因子 $p$ 的个数。
 
 ???+ note "Legendre 公式"
-    $n!$ 中含有的素数 $p$ 的幂次 $v_p(n!)$ 为：
+    $n!$ 中含有的素数 $p$ 的幂次 $\nu_p(n!)$ 为：
     
     $$
-    v_p(n!) = \sum_{i=1}^{\infty} \left\lfloor \frac{n}{p^i} \right\rfloor = \frac{n-S_p(n)}{p-1}
+    \nu_p(n!) = \sum_{i=1}^{\infty} \left\lfloor \frac{n}{p^i} \right\rfloor = \frac{n-S_p(n)}{p-1}
     $$
     
     其中 $S_p(n)$ 为 $p$ 进制下 $n$ 的各个数位的和。
 
-特别地，阶乘中 2 的幂次是 $v_2(n!)=n-S_2(n)$
+特别地，阶乘中 2 的幂次是 $\nu_2(n!)=n-S_2(n)$
 
 ??? note "证明"
     将 $n!$ 记为 $1\times 2\times \cdots \times p\times \cdots \times 2p\times \cdots \times \lfloor n/p\rfloor p\times \cdots \times n$ 那么其中 $p$ 的倍数有 $p\times 2p\times \cdots \times \lfloor n/p\rfloor p=p^{\lfloor n/p\rfloor }\lfloor n/p\rfloor !$ 然后在 $\lfloor n/p\rfloor !$ 中继续寻找 $p$ 的倍数即可，这是一个递归的过程。
@@ -166,10 +166,10 @@ $$
     即
     
     $$
-    v_p\left(\dbinom{m}{n}\right)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}
+    \nu_p\left(\dbinom{m}{n}\right)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}
     $$
 
-特别地，组合数中 $2$ 的幂次是 $v_2\left(\dbinom{m}{n}\right)=S_2(n)+S_2(m-n)-S_2(m)$.
+特别地，组合数中 $2$ 的幂次是 $\nu_2\left(\dbinom{m}{n}\right)=S_2(n)+S_2(m-n)-S_2(m)$.
 
 ## Wilson 定理的推广
 

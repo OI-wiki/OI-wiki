@@ -31,7 +31,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
           if (!nex[p][c]) nex[p][c] = ++cnt;  // 如果没有，就添加结点
           p = nex[p][c];
         }
-        exist[p] = 1;
+        exist[p] = true;
       }
     
       bool find(char *s, int l) {  // 查找字符串
@@ -72,6 +72,42 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
                     return False
                 p = self.nex[p][c]
             return self.exist[p]
+    ```
+
+=== "Java"
+    ```java
+    public class Trie {
+        
+        int[][] tree = new int[10000][26];
+        int cnt = 0;
+        boolean[] end = new boolean[10000];
+        
+        public void insert(String word) {
+            int p = 0;
+            char[] chars = word.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                int c = chars[i] - 'a';
+                if (tree[p][c] == 0) {
+                    tree[p][c] = ++cnt;
+                }
+                p = tree[p][c];
+            }
+            end[p] = true;
+        }
+        
+        public boolean find(String word) {
+            int p = 0;
+            char[] chars = word.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                int c = chars[i] - 'a';
+                if (tree[p][c] == 0) {
+                    return false;
+                }
+                p = tree[p][c];
+            }
+            return end[p];
+        }
+    }
     ```
 
 ## 应用
@@ -167,7 +203,7 @@ void maintain(int o) {
 ???+ note "实现"
     ```cpp
     namespace trie {
-    const int MAXH = 21;
+    constexpr int MAXH = 21;
     int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
     int tot = 0;
     
@@ -315,13 +351,13 @@ int merge(int a, int b) {
     
     ??? note "参考代码"
         ```cpp
-        const int _ = 526010;
+        constexpr int _ = 526010;
         int n;
         int V[_];
         int debug = 0;
         
         namespace trie {
-        const int MAXH = 21;
+        constexpr int MAXH = 21;
         int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
         int tot = 0;
         

@@ -426,7 +426,7 @@ $$
 
 ```cpp
 #include <cstdio>
-const int N = 100005;
+constexpr int N = 100005;
 int rt, tot, fa[N], ch[N][2], val[N], cnt[N], sz[N];
 
 struct Splay {
@@ -675,7 +675,7 @@ void reverse(int l, int r) {
 ```cpp
 #include <algorithm>
 #include <cstdio>
-const int N = 100005;
+constexpr int N = 100005;
 
 int n, m, l, r, a[N];
 
@@ -797,8 +797,8 @@ int main() {
 
 -   [「Cerc2007」robotic sort 机械排序](https://www.luogu.com.cn/problem/P4402)
 -   [二逼平衡树（树套树）](https://loj.ac/problem/106)
--   [bzoj 2827 千山鸟飞绝](https://hydro.ac/d/bzoj/p/2827)
--   [「Lydsy1706 月赛」K 小值查询](https://hydro.ac/d/bzoj/p/4923)
+-   [BZOJ 2827 千山鸟飞绝](https://hydro.ac/p/bzoj-P2827)
+-   [「Lydsy1706 月赛」K 小值查询](https://hydro.ac/p/bzoj-P4923)
 -   [POJ3580 SuperMemo](http://poj.org/problem?id=3580)
 
 ## 参考资料与注释

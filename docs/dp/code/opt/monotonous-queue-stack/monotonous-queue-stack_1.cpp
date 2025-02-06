@@ -2,16 +2,16 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-typedef long long ll;
+using ll = long long;
 
-const int maxn = 150000 + 10;
-const int maxm = 300 + 10;
+constexpr int MAXN = 150000 + 10;
+constexpr int MAXM = 300 + 10;
 
-ll f[2][maxn];
-ll a[maxm], b[maxm], t[maxm];
+ll f[2][MAXN];
+ll a[MAXM], b[MAXM], t[MAXM];
 int n, m, d;
 
-int que[maxn];
+int que[MAXN];
 
 int fl = 1;
 

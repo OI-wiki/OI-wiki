@@ -327,13 +327,13 @@ $$
 当 $p$ 是奇素数时，由 [升幂引理](../number-theory/lift-the-exponent.md)，有：
 
 $$
-v_p\left(a^t-1\right)=v_p\left(a-1\right)+v_p(t)
+\nu_p\left(a^t-1\right)=\nu_p\left(a-1\right)+\nu_p(t)
 $$
 
 当 $p=2$ 时，由 [升幂引理](../number-theory/lift-the-exponent.md)，有：
 
 $$
-v_2\left(a^t-1\right)=v_2\left(a-1\right)+v_2\left(a+1\right)+v_2(t)-1
+\nu_2\left(a^t-1\right)=\nu_2\left(a-1\right)+\nu_2\left(a+1\right)+\nu_2(t)-1
 $$
 
 代入 $a$ 为 $\left(\frac{1+\sqrt{5}}{2}\right)$ 和 $\left(\frac{1-\sqrt{5}}{2}\right)$，$t$ 为 $M$ 和 $Mp$，上述条件也就等价于：
@@ -361,7 +361,7 @@ unsigned long long get_cycle_from_mod(
     unsigned long long mod)  // 这里求解的只是周期，不一定是最小正周期
 {
   pptop = 0;
-  srand(time(0));
+  srand(time(nullptr));
   while (n != 1) {
     __int128_t factor = (__int128_t)10000000000 * 10000000000;
     min_factor(mod, &factor);  // 计算最小素因数

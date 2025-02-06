@@ -59,7 +59,7 @@
 /math/stirling /math/combinatorics/stirling
 /math/bell /math/combinatorics/bell
 /math/bernoulli /math/combinatorics/bernoulli
-/math/cantor /math/combinatorics/cantor
+/math/cantor /math/permutation
 /math/inclusion-exclusion-principle /math/combinatorics/inclusion-exclusion-principle
 /math/fibonacci /math/combinatorics/fibonacci
 /math/drawer-principle /math/combinatorics/drawer-principle
@@ -106,7 +106,12 @@
 /math/integral /math/numerical/integral
 /math/newton /math/numerical/newton
 /math/permulation /math/permutation
+/math/combinatorics/cantor /math/permutation
 /math/number-theory/lagrange /math/number-theory/congruence-equation
+/math/group-theory /math/algebra/group-theory
+/math/permutation-group /math/combinatorics/polya
+/math/number-theory/periodic-continued-fraction /math/number-theory/continued-fraction
+/math/schreier-sims /math/algebra/schreier-sims
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut

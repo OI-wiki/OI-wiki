@@ -128,9 +128,7 @@ void write(int x) {
 
 `fread` 能将需要的文件部分读入内存缓冲区。`mmap` 则会调度内核级函数，将文件一次性地映射到内存中，类似于可以指针引用的内存区域。所以在日常程序读写时，只需要重复读取部分文件可以使用 `fread`，因为如果用 `mmap` 反复读取一小块文件，做一次性内存映射并且内核处理 page fault 的花费会远比使用 `fread` 的内核级函数调度大。
 
-一次性读入缓冲区的操作比逐个字符读入（`getchar`,`putchar`）要快的多。因为硬盘的多次读写速度是要慢于直接读取内存的，所以先一次性读到缓存区里再从缓存区读入要快的多。并且 `mmap` 确保了进程间自动共享，存储区如果可以也会与内核缓存分享信息，确保了更少的拷贝操作。
-
-更通用的是 `fread`，因为 `mmap` 不能在 Windows 环境下使用（例如 CodeForces 的 tester）。
+同时 `fread` 和 `mmap` 由于是整段整段读取、写入，所以比 `getchar()`/`putchar()` 要快的多。并且 `mmap` 确保了进程间自动共享，存储区如果可以也会与内核缓存分享信息，确保了更少的拷贝操作。
 
 `fread` 类似于参数为 `"%s"` 的 `scanf`，不过它更为快速，而且可以一次性读入若干个字符（包括空格换行等制表符），如果缓存区足够大，甚至可以一次性读入整个文件。
 
@@ -161,7 +159,7 @@ char buf[1 << 20], *p1, *p2;
 
 ```cpp
 namespace IO {
-const int MAXSIZE = 1 << 20;
+constexpr int MAXSIZE = 1 << 20;
 char buf[MAXSIZE], *p1, *p2;
 #define gc()                                                               \
   (p1 == p2 && (p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin), p1 == p2) \
@@ -196,6 +194,44 @@ void write(int x) {
 }
 }  // namespace IO
 ```
+
+`mmap` 是 linux 系统调用，可以将文件一次性地映射到内存中。在一些场景下有更优的速度。
+
+注意 `mmap` 不能在 Windows 环境下使用（例如 CodeForces 的 tester），同时也不建议在正式赛场上使用，可以在卡常时使用。在使用前要引入 `fcntl.h`，`unistd.h`，`sys/stat.h` 与 `sys/mman.h`。
+
+读入示例：首先要获取文件描述符 `fd`，然后通过 `fstat` 获取文件信息以得到文件大小，此后通过 `char *pc = (char *) mmap(NULL, state.st_size, PROT_READ, MAP_PRIVATE, fd, 0);` 将指针 `*pc` 指向我们的文件。可以直接用 `*pc ++` 替代 `getchar()`。
+
+当我们要提交不使用文件操作的题目时，可以将 `fd` 设为 `0`，表示从 stdin 读入。**但是，对 stdin 使用 mmap 是极其危险的行为，同时不能在终端输入，我们不建议您这么做。**
+
+???+ note "参考代码"
+    ```cpp
+    #include <bits/stdc++.h>
+    #include <fcntl.h>
+    #include <sys/mman.h>
+    #include <sys/stat.h>
+    #include <unistd.h>
+    char *pc;
+    
+    int rd() {
+      int x = 0, f = 1;
+      char c = *pc++;
+      while (!isdigit(c)) {
+        if (c == '-') f = -1;
+        c = *pc++;
+      }
+      while (isdigit(c)) x = x * 10 + (c ^ 48), c = *pc++;
+      return x * f;
+    }
+    
+    int main() {
+      int fd = open("*.in", O_RDONLY);
+      struct stat state;
+      fstat(fd, &state);
+      pc = (char *)mmap(NULL, state.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+      close(fd);
+      printf("%d", rd());
+    }
+    ```
 
 ## 输入输出的缓冲
 
@@ -236,89 +272,19 @@ b = read<long long>();
 c = read<__int128>();
 ```
 
-## 完整带调试版
-
-关闭调试开关时使用 `fread()`,`fwrite()`，退出时自动析构执行 `fwrite()`。
-
-开启调试开关时使用 `getchar()`,`putchar()`，便于调试。
-
-若要开启文件读写时，请在所有读写之前加入 `freopen()`。
+## 示例代码
 
 ```cpp
-// #define DEBUG 1  // 调试开关
-struct IO {
-#define MAXSIZE (1 << 20)
-#define isdigit(x) (x >= '0' && x <= '9')
-  char buf[MAXSIZE], *p1, *p2;
-  char pbuf[MAXSIZE], *pp;
-#if DEBUG
-#else
-  IO() : p1(buf), p2(buf), pp(pbuf) {}
-
-  ~IO() { fwrite(pbuf, 1, pp - pbuf, stdout); }
-#endif
-  char gc() {
-#if DEBUG  // 调试，可显示字符
-    return getchar();
-#endif
-    if (p1 == p2) p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin);
-    return p1 == p2 ? ' ' : *p1++;
-  }
-
-  bool blank(char ch) {
-    return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
-  }
-
-  template <class T>
-  void read(T &x) {
-    double tmp = 1;
-    bool sign = 0;
-    x = 0;
-    char ch = gc();
-    for (; !isdigit(ch); ch = gc())
-      if (ch == '-') sign = 1;
-    for (; isdigit(ch); ch = gc()) x = x * 10 + (ch - '0');
-    if (ch == '.')
-      for (ch = gc(); isdigit(ch); ch = gc())
-        tmp /= 10.0, x += tmp * (ch - '0');
-    if (sign) x = -x;
-  }
-
-  void read(char *s) {
-    char ch = gc();
-    for (; blank(ch); ch = gc());
-    for (; !blank(ch); ch = gc()) *s++ = ch;
-    *s = 0;
-  }
-
-  void read(char &c) { for (c = gc(); blank(c); c = gc()); }
-
-  void push(const char &c) {
-#if DEBUG  // 调试，可显示字符
-    putchar(c);
-#else
-    if (pp - pbuf == MAXSIZE) fwrite(pbuf, 1, MAXSIZE, stdout), pp = pbuf;
-    *pp++ = c;
-#endif
-  }
-
-  template <class T>
-  void write(T x) {
-    if (x < 0) x = -x, push('-');  // 负数输出
-    static T sta[35];
-    T top = 0;
-    do {
-      sta[top++] = x % 10, x /= 10;
-    } while (x);
-    while (top) push(sta[--top] + '0');
-  }
-
-  template <class T>
-  void write(T x, char lastChar) {
-    write(x), push(lastChar);
-  }
-} io;
+--8<-- "docs/contest/code/io/io_1.cpp:5:77"
 ```
+
+注意事项：
+
+-   关闭调试开关时使用 `fread()`，`fwrite()`，退出时自动析构执行 `fwrite()`。开启调试开关时使用 `getchar()`，`putchar()`，便于调试。
+-   若要进行文件读写，请在所有读写进行之前加入 `freopen()`。
+
+???+ note " 例题：[洛谷 P10815【模板】快速读入](https://www.luogu.com.cn/problem/P10815)"
+    读入 $n$ 个范围在 $[-n, n]$ 的整数，求和并输出。其中 $n \leq 10^8$。数据保证对于序列的任何前缀，这个前缀的和在 $32$ 位有符号整形的存储范围内。
 
 ## 参考
 

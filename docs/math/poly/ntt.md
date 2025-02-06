@@ -16,7 +16,7 @@ NTT 解决的是多项式乘法带模数的情况，可以说有些受模数的�
 
 ### 数论变换
 
-在数学中，NTT 是关于任意 [环](../group-theory.md#环) 上的离散傅立叶变换（DFT）。在有限域的情况下，通常称为数论变换（NTT）。
+在数学中，NTT 是关于任意 [环](../algebra/basic.md#环) 上的离散傅立叶变换（DFT）。在有限域的情况下，通常称为数论变换（NTT）。
 
 **数论变换**（NTT）是通过将离散傅立叶变换化为 $F={\mathbb {Z}/p}$，整数模质数 $p$。这是一个 **有限域**，只要 $n$ 可除 $p-1$，就存在本原 $n$ 次方根，所以我们有 $p=\xi n+1$ 对于 正整数 $ξ$。具体来说，对于质数 $p=qn+1, (n=2^m)$，原根 $g$ 满足 $g^{qn} \equiv 1 \pmod p$, 将 $g_n=g^q\pmod p$ 看做 $\omega_n$ 的等价，则其满足相似的性质，比如 $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$。
 
@@ -116,7 +116,7 @@ DFT、FFT、NTT、FNTT 的具体关系是：
       putchar(x % 10 + '0');
     }
     
-    const int N = 300100, P = 998244353;
+    constexpr int N = 300100, P = 998244353;
     
     int qpow(int x, int y) {
       int res(1);

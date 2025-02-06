@@ -129,8 +129,8 @@ f(i, 0, a.size()) { ... }
 对拍程序的大致框架如下：
 
 ```cpp
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 
 int main() {
   // For Windows
@@ -164,13 +164,13 @@ int main() {
 ```cpp
 // 申请动态分配 32 位有符号整数数组：
 int* newarr(int sz) {
-  static int pool[maxn], *allocp = pool;
+  static int pool[MAXN], *allocp = pool;
   return allocp += sz, allocp - sz;
 }
 
 // 线段树动态开点的代码：
 Node* newnode() {
-  static Node pool[maxn << 1], *allocp = pool - 1;
+  static Node pool[MAXN << 1], *allocp = pool - 1;
   return ++allocp;
 }
 ```
