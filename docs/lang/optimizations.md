@@ -336,7 +336,7 @@ int test(int a);
 int tailCall(int x) { return test(x); }
 ```
 
-```x86asm
+```nasm
 tailCall(int):                           ; @tailCall(int)
         jmp     test(int)@PLT                    ; TAILCALL
 ```
@@ -471,7 +471,7 @@ int test(int n) {
 
 此函数会被优化为 $O(1)$ 公式求和，参考 <https://godbolt.org/z/ET8d89vvK>。这个行为目前仅有基于 LLVM 的编译器会出现，GCC 编译器更加保守。
 
-```x86asm
+```nasm
 test(int):                               # @test(int)
         test    edi, edi
         jle     .LBB0_1
