@@ -97,16 +97,11 @@ Tarjan 算法基于对图进行 [深度优先搜索](https://oi-wiki.org/graph/d
       }
       if (dfn[u] == low[u]) {
         ++sc;
-        while (s[tp] != u) {
+        do {
           scc[s[tp]] = sc;
           sz[sc]++;
           in_stack[s[tp]] = 0;
-          --tp;
-        }
-        scc[s[tp]] = sc;
-        sz[sc]++;
-        in_stack[s[tp]] = 0;
-        --tp;
+        } while (s[tp--] != u);
       }
     }
     ```
