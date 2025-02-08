@@ -229,8 +229,8 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         于是就可以二分图匹配了。
 
     ??? note "代码"
-        ```cpp
-        --8<-- "docs/code/graph-matching/bigraph-match/bigraph-match_1.cpp"
+        ```
+        --8<-- "docs/code/graph-matching/bigraph-match/bigraph-match_2.cpp"
         ```
 
 ??? note "[Gym 104427B Lawyers](https://codeforces.com/gym/104427/problem/B)"
@@ -248,8 +248,8 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         只保存有边相连的 $(a, b)$，问题被转化成了一个 $m$ 个左部点、$n$ 个右部点的二分图最大匹配。
 
     ??? note "代码"
-        ```cpp
-        --8<-- "/docs/code/graph-matching/bigraph-match/bigraph-match_2.cpp"
+        ```
+        --8<-- "/docs/code/graph-matching/bigraph-match/bigraph-match_3.cpp"
         ```
 
 ??? note "[LibreOJ 6002 最小路径覆盖](https://loj.ac/p/6002)"
@@ -261,8 +261,8 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         于是就变成了一个最大匹配问题。
 
     ??? note "代码"
-        ```cpp
-        --8<-- "/docs/code/graph-matching/bigraph-match/bigraph-match_3.cpp"
+        ```
+        --8<-- "/docs/code/graph-matching/bigraph-match/bigraph-match_4.cpp"
         ```
 
 ??? note "[CodeForces 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)"
@@ -278,8 +278,8 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         然后原问题转化成了一个二分图最大独立集。
 
     ??? note "代码"
-        ```cpp
-        --8<-- "/docs/code/graph-matching/bigraph-match/bigraph-match_4.cpp"
+        ```
+        --8<-- "/docs/code/graph-matching/bigraph-match/bigraph-match_5.cpp"
         ```
 
 ## 参考资料
