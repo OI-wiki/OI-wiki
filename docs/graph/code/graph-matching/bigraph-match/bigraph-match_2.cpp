@@ -57,8 +57,8 @@ int BFS() {
 }
 
 int main() {
-  ios::sync_with_stdio(0);
-  cin.tie(0), cout.tie(0);
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr), cout.tie(nullptr);
   for (cin >> ct; ct--;) {
     cin >> n;
     for (int i = 1; i <= n; i++) {
