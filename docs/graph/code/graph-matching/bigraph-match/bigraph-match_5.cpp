@@ -73,8 +73,8 @@ int solve() {
 }
 
 int main() {
-  ios::sync_with_stdio(0);
-  cin.tie(0), cout.tie(0);
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr), cout.tie(nullptr);
   cin >> n >> m;
   for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= m; j++) {
