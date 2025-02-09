@@ -70,8 +70,8 @@ void mxf() {
 }
 
 int main() {
-  ios::sync_with_stdio(0);
-  cin.tie(0), cout.tie(0);
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr), cout.tie(nullptr);
   cin >> n >> k;
   for (int i = 1; i <= k; i++) {
     cin >> u >> v;
