@@ -131,7 +131,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 ??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78)"
     模板题
     
-        --8<-- "docs/code/graph-matching/bigraph-match/bigraph-match_1.cpp"
+        --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_1.cpp"
 
 ??? note "[luogu P1129 矩阵游戏](https://www.luogu.com.cn/problem/P1129)"
     ??? note "解法"
@@ -147,7 +147,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
     ??? note "代码"
         ```
-        --8<-- "docs/code/graph-matching/bigraph-match/bigraph-match_2.cpp"
+        --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_2.cpp"
         ```
 
 ??? note "[Gym 104427B Lawyers](https://codeforces.com/gym/104427/problem/B)"
@@ -166,7 +166,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
     ??? note "代码"
         ```
-        --8<-- "/docs/code/graph-matching/bigraph-match/bigraph-match_3.cpp"
+        --8<-- "/docs/graph/code/graph-matching/bigraph-match/bigraph-match_3.cpp"
         ```
 
 ??? note "[LibreOJ 6002 最小路径覆盖](https://loj.ac/p/6002)"
@@ -179,7 +179,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
     ??? note "代码"
         ```
-        --8<-- "/docs/code/graph-matching/bigraph-match/bigraph-match_4.cpp"
+        --8<-- "/docs/graph/code/graph-matching/bigraph-match/bigraph-match_4.cpp"
         ```
 
 ??? note "[CodeForces 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)"
@@ -196,7 +196,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
     ??? note "代码"
         ```
-        --8<-- "/docs/code/graph-matching/bigraph-match/bigraph-match_5.cpp"
+        --8<-- "/docs/graph/code/graph-matching/bigraph-match/bigraph-match_5.cpp"
         ```
 
 ## 参考资料
