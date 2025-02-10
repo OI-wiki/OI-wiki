@@ -184,14 +184,14 @@ void ins(int k) {
 
 ```cpp
 int rk(int k) {
-  int res = 0, cur = rt,p = 0;
+  int res = 0, cur = rt, p = 0;
   while (1) {
     if (k < val[cur]) {
       p = cur;
       cur = ch[cur][0];
     } else {
       res += sz[ch[cur][0]];
-      if (!cur){
+      if (!cur) {
         splay(p);
         return res + 1;
       }
