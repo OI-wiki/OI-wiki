@@ -293,11 +293,11 @@
 === "C++"
     ```cpp
     struct Node {
-        int data;
-        Node* xor_prev_next;
+      int data;
+      Node* xor_prev_next;
     };
     Node* XOR(Node* a, Node* b) {
-        return reinterpret_cast<Node*>(reinterpret_cast<uintptr_t>(a) ^ reinterpret_cast<uintptr_t>(b));
+      return reinterpret_cast<Node*>(reinterpret_cast<uintptr_t>(a) ^ reinterpret_cast<uintptr_t>(b));
     }
     ```
 
@@ -309,18 +309,18 @@
     public:
       Node* head;
       Node* tail;
-          XORList() {
-              this->head = nullptr;
-              this->tail = nullptr;
-          }
-          ~XORList() {
-              for (Node *p = this->head, *prev = nullptr; p != nullptr;) {
-                  Node *next = XOR(prev, p->xor_prev_next);
-                  delete p;
-                  prev = p;
-                  p = next;
-              }
-          }
+      XORList() {
+      this->head = nullptr;
+      this->tail = nullptr;
+      }
+      ~XORList() {
+        for (Node *p = this->head, *prev = nullptr; p != nullptr;) {
+          Node *next = XOR(prev, p->xor_prev_next);
+            delete p;
+            prev = p;
+            p = next;
+        }
+      }
     };
     ```
 
@@ -331,43 +331,43 @@
 === "C++"
     ```cpp
     void AppendElement(int value) {
-        Node *new_node = new Node();
-        new_node->data = value;
-        new_node->xor_prev_next = XOR(this->tail, nullptr);
-        if (this->head == nullptr) {
-            this->head = new_node;
-        } else {
-            this->tail->xor_prev_next = XOR(this->tail->xor_prev_next, new_node);
-        }
-        tail = new_node;
+      Node *new_node = new Node();
+      new_node->data = value;
+      new_node->xor_prev_next = XOR(this->tail, nullptr);
+      if (this->head == nullptr) {
+        this->head = new_node;
+      } else {
+        this->tail->xor_prev_next = XOR(this->tail->xor_prev_next, new_node);
+      }
+      tail = new_node;
     }
     ```
 
-2. 在给定的索引后插入一个元素：
+2. 在给定的索引后插入一个元素：****
 
 === "C++"
     ```cpp
     void InsertElement(int index, int value) {
-        Node *prev = nullptr;
-        Node *p = this->head;
-        for (int i = 0; i <= index; i++) {
-            Node *next = XOR(prev, p->xor_prev_next);
-            prev = p;
-            p = next;
-        }
-        Node *new_node = new Node();
-        new_node->data = value;
-        new_node->xor_prev_next = XOR(prev, p);
-        if (prev != nullptr) {
-            prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), new_node);
-        } else {
-            this->head = new_node;
-        }
-        if (p != nullptr) {
-            p->xor_prev_next = XOR(prev, XOR(p->xor_prev_next, new_node));
-        } else {
-            this->tail = new_node;
-        }
+      Node *prev = nullptr;
+      Node *p = this->head;
+      for (int i = 0; i <= index; i++) {
+        Node *next = XOR(prev, p->xor_prev_next);
+        prev = p;
+        p = next;
+      }
+      Node *new_node = new Node();
+      new_node->data = value;
+      new_node->xor_prev_next = XOR(prev, p);
+      if (prev != nullptr) {
+        prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), new_node);
+      } else {
+        this->head = new_node;
+      }
+      if (p != nullptr) {
+        p->xor_prev_next = XOR(prev, XOR(p->xor_prev_next, new_node));
+      } else {
+        this->tail = new_node;
+      }
     }
     ```
 
@@ -376,25 +376,25 @@
 === "C++"
     ```cpp
     void DeleteElement(int index) {
-        Node *prev = nullptr;
-        Node *p = this->head;
-        for (int i = 0; i < index; i++) {
-            Node *next = XOR(prev, p->xor_prev_next);
-            prev = p;
-            p = next;
-        }
-        // Delete p
+      Node *prev = nullptr;
+      Node *p = this->head;
+      for (int i = 0; i < index; i++) {
         Node *next = XOR(prev, p->xor_prev_next);
-        if (prev != nullptr) {
-            prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), next);
-        } else {
-            this->head = next;
-        }
-        if (next != nullptr) {
-            next->xor_prev_next = XOR(prev, XOR(next->xor_prev_next, p));
-        } else {
-            this->tail = prev;
-        }
-        delete p;
+        prev = p;
+        p = next;
+      }
+      // Delete p
+      Node *next = XOR(prev, p->xor_prev_next);
+      if (prev != nullptr) {
+        prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), next);
+      } else {
+        this->head = next;
+      }
+      if (next != nullptr) {
+        next->xor_prev_next = XOR(prev, XOR(next->xor_prev_next, p));
+      } else {
+        this->tail = prev;
+      }
+      delete p;
     }
     ```
