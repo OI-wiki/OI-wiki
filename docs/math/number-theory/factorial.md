@@ -1,14 +1,18 @@
 ## 引入
 
-Wilson 定理提供了素数 $p$ 作为模数时阶乘 $(p-1)!$ 的余数，它的推广将这一结论拓展到一般模数 $m$ 的情形。Wilson 定理可以用于计算任意阶乘在某一模数下的余数，进而提供了计算二项式系数的余数的方法。
+本文讨论了某一模数下阶乘计算的相关问题。
 
-在处理某一模数下的阶乘和二项式系数时，常见的方法是对于素数 $p$ 和正整数 $n$，将阶乘 $n!$ 中的所有因子 $p$ 都提取出来，进而得到分解：
+根据 [中国剩余定理](./crt.md)，问题可以转化为模数为素数幂 $p^\alpha$ 的情形。在处理这类问题时，常常需要对于素数 $p$ 和正整数 $n$，将阶乘 $n!$ 中的所有因子 $p$ 都提取出来，进而得到分解：
 
 $$
 n! = p^{\nu_p(n!)}(n!)_p.
 $$
 
 其中，$\nu_p(n!)$ 表示阶乘 $n!$ 的素因数分解中 $p$ 的幂次，$(n!)_p$ 表示在阶乘 $n!$ 的结果中去除所有 $p$ 的幂次得到的整数。本文将讨论 $(n!)_p$ 在素数（幂）模下的余数以及幂次 $\nu_p(n!)$ 的具体计算方法。
+
+这种分解在解决阶乘同时出现在所求表达式的分子和分母的问题时尤为有用，比如 [计算某一模数下的二项式系数](./lucas.md)。对于这类问题，分子和分母中 $p$ 的幂次可以直接相减，而与 $p$ 互素的部分 $(n!)_p$ 则可以利用 [乘法逆元](./inverse.md) 计算。
+
+本文还介绍了与上述问题相关的 Wilson 定理及其推广、Legendre 公式和 Kummer 定理等内容。
 
 ## Wilson 定理
 
@@ -416,10 +420,10 @@ $$
     --8<-- "docs/math/code/wilson/wilson_1.cpp"
     ```
 
-**本页面主要译自博文 [Вычисление факториала по модулю](http://e-maxx.ru/algo/modular_factorial) 与其英文翻译版 [Factorial modulo p](https://cp-algorithms.com/algebra/factorial-modulo.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
-
 ## 参考资料
 
 -   冯克勤。初等数论及其应用。
 -   [Wilson's theorem - Wikipedia](https://en.wikipedia.org/wiki/Wilson%27s_theorem)
 -   [Legendre's formula - Wikipedia](https://en.wikipedia.org/wiki/Legendre%27s_formula)
+
+**本页面主要译自博文 [Вычисление факториала по модулю](http://e-maxx.ru/algo/modular_factorial) 与其英文翻译版 [Factorial modulo p](https://cp-algorithms.com/algebra/factorial-modulo.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。内容有改动。**
