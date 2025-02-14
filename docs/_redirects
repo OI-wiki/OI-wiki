@@ -108,6 +108,7 @@
 /math/permulation /math/permutation
 /math/combinatorics/cantor /math/permutation
 /math/number-theory/lagrange /math/number-theory/congruence-equation
+/math/number-theory/wilson /math/number-theory/factorial
 /math/group-theory /math/algebra/group-theory
 /math/permutation-group /math/combinatorics/polya
 /math/number-theory/periodic-continued-fraction /math/number-theory/continued-fraction
