@@ -58,7 +58,8 @@ $$
 7 & \qquad v.father\gets u \\
 8 & \qquad \textbf{if }v.size> u.hson.size \\
 9 & \qquad \qquad u.hson\gets v \\
-10 & \textbf{return } u.size
+10 & \qquad \qquad u.hson.size\gets v.size \\
+11 & \textbf{return } u.size
 \end{array}
 \end{array}
 $$
