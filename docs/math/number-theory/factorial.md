@@ -198,20 +198,9 @@ Wilson 定理可以推广到一般模数的情形。
 
 在实现时，因为是尾递归，可以用迭代实现。下面的实现对前 $p-1$ 个阶乘做了预计算，如果需要多次调用，可以将预计算放到函数外进行。
 
-???+ example "实现"
+??? example "参考实现"
     ```cpp
-    int factmod(int n, int p) {
-      vector<int> f(p);
-      f[0] = 1;
-      for (int i = 1; i < p; i++) f[i] = f[i - 1] * i % p;
-      int res = 1;
-      while (n > 1) {
-        if ((n / p) % 2) res = p - res;
-        res = res * f[n % p] % p;
-        n /= p;
-      }
-      return res;
-    }
+    --8<-- "docs/math/code/factorial/fact-mod-p.cpp:4:20"
     ```
 
 如果空间有限，无法存储所有阶乘，也可以将函数调用中实际用到的阶乘 $n!\bmod p$ 中的 $n$ 都计算出来，然后对它们进行排序，从而可以在最后一次性计算出来这些阶乘的值，汇总到最终结果中，而避免存储所有阶乘的值。
@@ -275,7 +264,7 @@ $$
 
     - 完整的块：由 $1\sim 9$ 之间所有不被 $3$ 整除的整数的乘积，共 $\lfloor 32/9\rfloor=3$ 块；
     - 尾部不完整的块：所有不被 $3$ 整除的整数从 $1$ 一直乘到 $32\bmod 9$；
-    - 所有被 $3$ 整除的整数的乘积，对比倒数第二个等号的结果可知，这就是它的前 $\lfloor 32/3=10\rfloor$ 项，亦即 $(\lfloor 32/3\rfloor!)_3\bmod 9$。
+    - 所有被 $3$ 整除的整数的乘积，对比倒数第二个等号的结果可知，这就是它的前 $\lfloor 32/3\rfloor=10$ 项，亦即 $(\lfloor 32/3\rfloor!)_3\bmod 9$。
 
     最后一个括号里的递归求解即可，这样就将原问题转化为了更小的问题。
 
@@ -289,6 +278,15 @@ $$
     $$
 
     其中，$F(m) = \prod_{1\le k\le m,\ k\perp p} k\bmod{p^\alpha}$ 且 $\pm 1$ 的取值与上文所述相同。
+
+素数幂模的情形的实现和素数模的情形类似，只有一些细节上的区别。与上文类似，同样可以将预处理放到函数外进行。
+
+??? example "参考实现"
+    ```cpp
+    --8<-- "docs/math/code/factorial/fact-mod-pa.cpp:4:21"
+    ```
+
+预处理的时间复杂度为 $O(p^\alpha)$，单次询问的时间复杂度为 $O(\log_p n)$。
 
 ## 幂次的计算
 
@@ -344,16 +342,9 @@ $$
 
 求阶乘中素数幂次的参考实现如下：
 
-???+ example "实现"
+??? example "参考实现"
     ```cpp
-    int multiplicity_factorial(int n, int p) {
-      int count = 0;
-      do {
-        n /= p;
-        count += n;
-      } while (n);
-      return count;
-    }
+    --8<-- "docs/math/code/factorial/multiplicity.cpp:3:11"
     ```
 
 它的时间复杂度为 $O(\log n)$。
