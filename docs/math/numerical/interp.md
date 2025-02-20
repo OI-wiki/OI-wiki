@@ -1,4 +1,4 @@
-author: AtomAlpaca, billchenchina, Chrogeek, Early0v0, EndlessCheng, Enter-tainer, Henry-ZHR, hly1204, hsfzLZH1, Ir1d, Ghastlcon, kenlig, Marcythm, megakite, Peanut-Tang, qwqAutomaton, qz-cqy, StudyingFather, swift-zym, swiftqwq, Tiphereth-A, TrisolarisHD, x4Cx58x54, Xeonacid, xiaopangfeiyu, YanWQ-monad
+author: AtomAlpaca, billchenchina, Chrogeek, Early0v0, EndlessCheng, Enter-tainer, Henry-ZHR, hly1204, hsfzLZH1, Ir1d, Ghastlcon, kenlig, Marcythm, megakite, Peanut-Tang, qwqAutomaton, qz-cqy, StudyingFather, swift-zym, swiftqwq, Tiphereth-A, TrisolarisHD, Watersail2005, x4Cx58x54, Xeonacid, xiaopangfeiyu, YanWQ-monad
 
 ## 引入
 
@@ -213,6 +213,12 @@ $$
 ## C++ 中的实现
 
 自 C++ 20 起，标准库添加了 [`std::midpoint`](https://en.cppreference.com/w/cpp/numeric/midpoint) 和 [`std::lerp`](https://en.cppreference.com/w/cpp/numeric/lerp) 函数，分别用于求中点和线性插值。
+
+## 习题
+
+-   [「NOIP2020」微信步数](https://loj.ac/p/3389)
+-   [「联合省选 2022」填树](https://loj.ac/p/3701)
+-   [「NOI2019」机器人](https://loj.ac/p/3157)
 
 ## 参考资料
 
