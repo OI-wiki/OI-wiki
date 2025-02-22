@@ -6,6 +6,8 @@ author: Ir1d, ShadowsEpic, Fomalhauthmj, siger-young, MingqiHuang, Xeonacid, hsf
 
 倍增法（英语：binary lifting），顾名思义就是翻倍。它能够使线性的处理转化为对数级的处理，大大地优化时间复杂度。
 
+倍增，字面意思也可以理解，其主要就是每次翻倍解决关于$2^0 ~ 2^n$，即逐步解决2的正整数幂的问题，利用先前储存的信息递推当前解决的问题的答案。
+
 这个方法在很多算法中均有应用，其中最常用的是 RMQ 问题和求 [LCA（最近公共祖先）](../graph/lca.md)。
 
 ## 应用
