@@ -1,4 +1,4 @@
-author: ouuan, Henry-ZHR, StudyingFather, ChungZH, xyf007
+author: ouuan, Henry-ZHR, StudyingFather, ChungZH, xyf007, Cryflmind
 
 ## 出题前的准备
 
@@ -426,6 +426,34 @@ gen 100000 100000 > 5.in
 > 3.  没有空行。
 > 4.  任何一行的开头和末尾都没有空白字符。
 > 5.  连续的空格不超过 1 个。
+
+??? note "如何在Windows系统中清洗所生成数据的`\r\n`换行符"
+    这里笔者选择了[洛谷帮助中心](https://help.luogu.com.cn/manual/luogu/problem/testcase-format)中清洗换行符的代码dos2unix.cpp，并进行了改进：
+    ```cpp
+    #include <cstdio>
+    const int SIZE = 100000000;
+    char buf[SIZE];
+    int main(int argc, char *argv[]) {
+    	for(int i=1;i<argc;i++){
+    		std::FILE *fin = std::fopen(argv[i], "r");
+    		std::size_t cnt = std::fread(buf, sizeof(char), SIZE, fin);
+    		std::fclose(fin);
+    		std::FILE *fout = std::fopen(argv[i], "wb");
+    		std::fwrite(buf, sizeof(char), cnt, fout);
+    		std::fclose(fout);
+    	}
+    	return 0;
+    }
+    ```
+    使用的时候，只需要全选所有的测试数据，并拖动到该代码所生成的dos2unix.exe上即可。
+    或者读者也可以选择将所生成的可执行文件复制到测试数据所在的文件夹中，并在目录的命令行中执行：
+    ```shell
+    dos2unix.exe <测试数据1> <测试数据2> ...
+    ```
+    例如：
+    ```shell
+    dos2unix.exe 1.in 2.in 3.in
+    ```
 
 ## Special Judge
 
