@@ -1,8 +1,8 @@
 ## 引入
 
-本文讨论了某一模数下阶乘计算的相关问题。
+本文讨论了某一模数下阶乘计算的相关问题。本文的方法主要适用于模数不太大（$\sim 10^6$）的情形。除了本文介绍的方法外，根据场景不同，还可以应用 [多项式技术](../poly/shift.md#模素数意义下阶乘) 进行快速计算。
 
-根据 [中国剩余定理](./crt.md)，问题可以转化为模数为素数幂 $p^\alpha$ 的情形。在处理这类问题时，常常需要对于素数 $p$ 和正整数 $n$，将阶乘 $n!$ 中的所有因子 $p$ 都提取出来，进而得到分解：
+根据 [中国剩余定理](./crt.md)，阶乘取模问题可以转化为模数为素数幂 $p^\alpha$ 的情形。在处理这类问题时，常常需要对于素数 $p$ 和正整数 $n$，将阶乘 $n!$ 中的所有因子 $p$ 都提取出来，进而得到分解：
 
 $$
 n! = p^{\nu_p(n!)}(n!)_p.
@@ -366,7 +366,7 @@ $$
 
 ## 例题
 
-???+ note " 例题 [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
+???+ example " 例题 [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
     给定 $n$, 计算
     
     $$
@@ -406,14 +406,14 @@ $$
     \sum_{k=1}^n\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\sum_{k=1}^n[3k+7\text{ is prime}]
     $$
 
-??? note "参考代码"
+??? example "参考代码"
     ```cpp
-    --8<-- "docs/math/code/wilson/wilson_1.cpp"
+    --8<-- "docs/math/code/factorial/wilson_1.cpp"
     ```
 
 ## 参考资料
 
--   冯克勤。初等数论及其应用。
+-   冯克勤。《初等数论及其应用》。
 -   [Wilson's theorem - Wikipedia](https://en.wikipedia.org/wiki/Wilson%27s_theorem)
 -   [Legendre's formula - Wikipedia](https://en.wikipedia.org/wiki/Legendre%27s_formula)
 
