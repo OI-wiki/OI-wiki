@@ -18,7 +18,7 @@ int inv(int k) {
 std::vector<int> lagrange_interpolation(const std::vector<int> &x,
                                         const std::vector<int> &y) {
   const int n = x.size();
-  std::vector<int> M(n + 1), xx(n), f(n);
+  std::vector<int> M(n + 1), xx(n, 1), f(n);
   M[0] = 1;
   // 求出 M(x) = prod_(i=0..n-1)(x - x_i)
   for (int i = 0; i < n; ++i) {
@@ -27,13 +27,13 @@ std::vector<int> lagrange_interpolation(const std::vector<int> &x,
       M[j] = (LL)M[j] * (MOD - x[i]) % MOD;
     }
   }
-  // 求出 xx_i = M'(x_i) = (M / (x - x_i)) mod (x - x_i) 一定非零
-  for (int i = n - 1; i >= 0; --i) {
-    for (int j = 0; j < n; ++j) {
-      xx[j] = ((LL)xx[j] * x[j] + (LL)M[i + 1] * (i + 1)) % MOD;
+  // 求出 xx_i = prod_(j=0..n-1, j!=i) (x_i - x_j)
+  for (int i = 0; i < n; ++i) {
+    for (int j = 0; j < n; ++j) if (i != j) {
+      xx[i] = (LL)xx[i] * (x[i] - x[j] + MOD) % MOD;
     }
   }
-  // 组合出 f(x) = sum_(i=0..n-1)(y_i / M'(x_i))(M / (x - x_i))
+  // 组合出 f(x) = sum_(i=0..n-1)(y_i / xx_i)(M / (x - x_i))
   for (int i = 0; i < n; ++i) {
     LL t = (LL)y[i] * inv(xx[i]) % MOD, k = M[n];
     for (int j = n - 1; j >= 0; --j) {
