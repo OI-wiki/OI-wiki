@@ -29,9 +29,10 @@ std::vector<int> lagrange_interpolation(const std::vector<int> &x,
   }
   // 求出 xx_i = prod_(j=0..n-1, j!=i) (x_i - x_j)
   for (int i = 0; i < n; ++i) {
-    for (int j = 0; j < n; ++j) if (i != j) {
-      xx[i] = (LL)xx[i] * (x[i] - x[j] + MOD) % MOD;
-    }
+    for (int j = 0; j < n; ++j)
+      if (i != j) {
+        xx[i] = (LL)xx[i] * (x[i] - x[j] + MOD) % MOD;
+      }
   }
   // 组合出 f(x) = sum_(i=0..n-1)(y_i / xx_i)(M / (x - x_i))
   for (int i = 0; i < n; ++i) {
