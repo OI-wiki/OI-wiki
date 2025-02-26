@@ -1,0 +1,10 @@
+id: oi-wiki:string/suffix-bst-2
+name: Suffix Bst
+solution:
+  cpp: docs/string/code/suffix-bst/suffix-bst_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/string/examples/suffix-bst/suffix-bst_2.ans
+  input: docs/string/examples/suffix-bst/suffix-bst_2.in
+version: 1000

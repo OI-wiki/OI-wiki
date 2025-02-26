@@ -1,0 +1,10 @@
+id: oi-wiki:string/sa-1
+name: SA
+solution:
+  cpp: docs/string/code/sa/sa_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/string/examples/sa/sa_1.ans
+  input: docs/string/examples/sa/sa_1.in
+version: 1000
