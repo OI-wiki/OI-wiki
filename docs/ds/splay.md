@@ -184,18 +184,23 @@ void ins(int k) {
 
 ```cpp
 int rk(int k) {
-  int res = 0, cur = rt;
+  int res = 0, cur = rt, p = 0;
   while (1) {
     if (k < val[cur]) {
+      p = cur;
       cur = ch[cur][0];
     } else {
       res += sz[ch[cur][0]];
-      if (!cur) return res + 1;
+      if (!cur) {
+        splay(p);
+        return res + 1;
+      }
       if (k == val[cur]) {
         splay(cur);
         return res + 1;
       }
       res += cnt[cur];
+      p = cur;
       cur = ch[cur][1];
     }
   }
