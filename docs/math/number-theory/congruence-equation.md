@@ -148,7 +148,7 @@ $$
 对素数 $p$，
 
 -   $(\forall x\in\mathbf{Z}),~~x^{p-1}-1 \equiv \prod_{i=1}^{p-1}(x-i)\pmod p$
--   （[Wilson 定理](./wilson.md)）$(p-1)! \equiv -1 \pmod p$
+-   （[Wilson 定理](./factorial.md#wilson-定理)）$(p-1)! \equiv -1 \pmod p$
 
 ### 定理 3（Lagrange 定理）
 
