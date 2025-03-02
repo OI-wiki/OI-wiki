@@ -129,6 +129,9 @@ vector<int> twoSum(vector<int>& numbers, int target) {
 
 ## 在单向链表中找环
 
+???+ note " 例题 5 [leetcode 141. 环形链表](https://leetcode.cn/problems/linked-list-cycle/)"
+    给定一个链表，判断该链表是否存在环。
+
 ### 过程
 
 在单向链表中找环也是有多种办法，不过快慢双指针方法是其中最为简洁的方法之一，接下来介绍这种方法。
@@ -136,6 +139,9 @@ vector<int> twoSum(vector<int>& numbers, int target) {
 首先两个指针都指向链表的头部，令一个指针一次走一步，另一个指针一次走两步，如果它们相遇了，证明有环，否则无环，时间复杂度 $O(n)$。
 
 如果有环的话，怎么找到环的起点呢？
+
+???+ note " 例题 6 [leetcode 142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/)"
+    给定一个链表，找出链表中环的起始节点。
 
 我们列出式子来观察一下，设相遇时，慢指针一共走了 $k$ 步，在环上走了 $l$ 步（快慢指针在环上相遇时，慢指针一定没走完一圈）。快指针走了 $2k$ 步，设环长为 $C$，则有
 
