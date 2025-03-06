@@ -434,7 +434,7 @@ gen 100000 100000 > 5.in
 1.  直接使用 Linux 环境生成数据。
 2.  通过 [`dos2unix`](https://dos2unix.sourceforge.io/) 工具对输入输出文件进行转换，此工具包含于 Cygwin, MinGW 等工具链中。
 3.  使用二进制方式打开输出文件，并且使用 `\n` 换行格式。
-4.  参考[此页面](https://help.luogu.com.cn/manual/luogu/problem/testcase-format#附录windows-环境下造数据注意事项)中 `dos2unix.cpp` 代码自行编写工具。
+4.  参考 [此页面](https://help.luogu.com.cn/manual/luogu/problem/testcase-format#附录windows-环境下造数据注意事项) 中 `dos2unix.cpp` 代码自行编写工具。
 
 ## Special Judge
 
