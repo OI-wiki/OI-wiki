@@ -5,7 +5,7 @@
 #include <vector>
 
 constexpr int MAX = 1e5 + 5;
-constexpr int MAXX = sqrt(MAX) + 5;
+constexpr int MAXX = 4e2 + 5;
 constexpr int MX = 1e5;
 typedef long long ll;
 
