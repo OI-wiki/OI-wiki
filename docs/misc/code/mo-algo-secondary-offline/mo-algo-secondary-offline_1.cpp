@@ -37,7 +37,11 @@ void mdf(int x)
 	for (int i = x; i <= ed[bl[x]]; ++i) { ++b2[i]; }
 }
 
-int qry(int x) { return b1[bl[x] - 1] + b2[x]; }
+int qry(int x)
+{ 
+	if (!x) { return 0; }
+	return b1[bl[x] - 1] + b2[x]; 
+}
 
 int main()
 {
