@@ -1,8 +1,12 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstring>
+#include <cmath>
+#include <iostream>
+#include <vector>
 
-const int MAX = 1e5 + 5;
-const int MAXX = sqrt(MAX) + 5;
-const int MX = 1e5;
+constexpr int MAX = 1e5 + 5;
+constexpr int MAXX = sqrt(MAX) + 5;
+constexpr int MX = 1e5;
 typedef long long ll;
 
 int n, m, sz, _sz;
