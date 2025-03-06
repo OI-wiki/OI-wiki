@@ -592,7 +592,7 @@ $$
 ??? note "证明"
     有限域的全体非零元恰好是多项式 $x^{q-1}-1$ 的 $q-1$ 个根，应用 Vieta 定理即可。
 
-在素域 $\mathbf F_p$ 中，这个推论关于积的结论正是数论中的 [Wilson 定理](../number-theory/wilson.md)（的一部分）。
+在素域 $\mathbf F_p$ 中，这个推论关于积的结论正是数论中的 [Wilson 定理](../number-theory/factorial.md#wilson-定理)（的一部分）。
 
 ### 乘法结构
 
