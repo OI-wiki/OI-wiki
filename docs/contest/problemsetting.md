@@ -421,45 +421,20 @@ gen 100000 100000 > 5.in
 
 这里引用 CodeChef 对题目输入数据的格式要求，可作为一般情况下的参考：
 
-> 1.  不使用 Windows 格式的换行符，即 `\r\n`。
+> 1.  不使用 Windows 格式的换行，即 `\r\n`。
 > 2.  最后一行的末尾有换行符，即整个文件的最后一个字符需要是 `\n`。
 > 3.  没有空行。
 > 4.  任何一行的开头和末尾都没有空白字符。
 > 5.  连续的空格不超过 1 个。
 
-??? note " 如何在 Windows 系统中清洗所生成数据的 `\r\n` 换行符 "
-    这里笔者选择了 [洛谷帮助中心](https://help.luogu.com.cn/manual/luogu/problem/testcase-format) 中清洗换行符的代码 dos2unix.cpp，并进行了改进：
-    
-    ```cpp
-    #include <cstdio>
-    const int SIZE = 100000000;
-    char buf[SIZE];
-    
-    int main(int argc, char *argv[]) {
-      for (int i = 1; i < argc; i++) {
-        std::FILE *fin = std::fopen(argv[i], "r");
-        std::size_t cnt = std::fread(buf, sizeof(char), SIZE, fin);
-        std::fclose(fin);
-        std::FILE *fout = std::fopen(argv[i], "wb");
-        std::fwrite(buf, sizeof(char), cnt, fout);
-        std::fclose(fout);
-      }
-      return 0;
-    }
-    ```
-    
-    使用的时候，只需要全选所有的测试数据，并拖动到该代码所生成的 dos2unix.exe 上即可。
-    或者读者也可以选择将所生成的可执行文件复制到测试数据所在的文件夹中，并在目录的命令行中执行：
-    
-    ```shell
-    dos2unix.exe <测试数据1> <测试数据2> ...
-    ```
-    
-    例如：
-    
-    ```shell
-    dos2unix.exe 1.in 2.in 3.in
-    ```
+在 Windows 环境下生成的数据，其换行格式通常为 `\r\n`，而主流测评系统均在 Linux 环境下运行，其换行格式为 `\n`。若在 Linux 环境下读入 Windows 格式的换行数据，可能会导致读入字符串时换行处理异常，进而导致不同环境下程序运行结果不同；若在 Linux 环境下比较 Linux 环境下生成的输出和 Windows 环境下生成的标准输出，可能由于换行格式不同而导致比较存在差异。为了保持程序行为一致，所有数据的换行格式必须转换为程序运行环境下的换行格式。
+
+一般可以通过如下方式生成 Linux 格式换行的数据：
+
+1.  直接使用 Linux 环境生成数据。
+2.  通过 [`dos2unix`](https://dos2unix.sourceforge.io/) 工具对输入输出文件进行转换，此工具包含于 Cygwin, MinGW 等工具链中。
+3.  使用二进制方式打开输出文件，并且使用 `\n` 换行格式。
+4.  参考[此页面](https://help.luogu.com.cn/manual/luogu/problem/testcase-format#附录windows-环境下造数据注意事项)中 `dos2unix.cpp` 代码自行编写工具。
 
 ## Special Judge
 
