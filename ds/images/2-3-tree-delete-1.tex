@@ -1,0 +1,23 @@
+\documentclass[border=5mm]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+
+\begin{document}
+\begin{tikzpicture}[every tree node/.style={align=center}]
+    \matrix[row sep=1cm, column sep=1cm] {
+    \Tree
+    [.\node[draw, rectangle]{4 6};
+    [.\node[draw, rectangle]{\textcolor{red}{1} 3}; ]
+    [.\node[draw, circle]{5}; ]
+    [.\node[draw, circle]{7}; ]
+    ];
+    &
+    \Tree
+    [.\node[draw, rectangle]{4 6};
+    [.\node[draw, fill=yellow, circle]{3}; ]
+    [.\node[draw, circle]{5}; ]
+    [.\node[draw, circle]{7}; ]
+    ]; \\
+    };
+\end{tikzpicture}
+\end{document}
