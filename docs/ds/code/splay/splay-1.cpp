@@ -2,11 +2,11 @@
 
 constexpr int N = 2e6;
 int id, rt;
-int fa[N], va[N], cn[N], sz[N], ch[N][2];
+int fa[N], val[N], cnt[N], sz[N], ch[N][2];
 
 bool dir(int x) { return x == ch[fa[x]][1]; }
 
-void push_up(int x) { sz[x] = cn[x] + sz[ch[x][0]] + sz[ch[x][1]]; }
+void push_up(int x) { sz[x] = cnt[x] + sz[ch[x][0]] + sz[ch[x][1]]; }
 
 void rotate(int x) {
   int y = fa[x], z = fa[y];
@@ -31,7 +31,7 @@ void splay(int& z, int x) {
 
 void find(int& z, int v) {
   int x = z, y = fa[x];
-  for (; x && va[x] != v; x = ch[y = x][v > va[x]]);
+  for (; x && val[x] != v; x = ch[y = x][v > val[x]]);
   splay(z, x ? x : y);
 }
 
@@ -40,10 +40,10 @@ void loc(int& z, int k) {
   for (;;) {
     if (sz[ch[x][0]] >= k) {
       x = ch[x][0];
-    } else if (sz[ch[x][0]] + cn[x] >= k) {
+    } else if (sz[ch[x][0]] + cnt[x] >= k) {
       break;
     } else {
-      k -= sz[ch[x][0]] + cn[x];
+      k -= sz[ch[x][0]] + cnt[x];
       x = ch[x][1];
     }
   }
@@ -61,26 +61,26 @@ int merge(int x, int y) {
 
 void insert(int v) {
   int x = rt, y = 0;
-  for (; x && va[x] != v; x = ch[y = x][v > va[x]]);
+  for (; x && val[x] != v; x = ch[y = x][v > val[x]]);
   if (x) {
-    ++cn[x];
+    ++cnt[x];
     ++sz[x];
   } else {
     x = ++id;
-    va[x] = v;
-    cn[x] = sz[x] = 1;
+    val[x] = v;
+    cnt[x] = sz[x] = 1;
     fa[x] = y;
-    if (y) ch[y][v > va[y]] = x;
+    if (y) ch[y][v > val[y]] = x;
   }
   splay(rt, x);
 }
 
 bool remove(int v) {
   find(rt, v);
-  if (!rt || va[rt] != v) return false;
-  --cn[rt];
+  if (!rt || val[rt] != v) return false;
+  --cnt[rt];
   --sz[rt];
-  if (!cn[rt]) {
+  if (!cnt[rt]) {
     int x = ch[rt][0];
     int y = ch[rt][1];
     fa[x] = fa[y] = 0;
@@ -91,33 +91,33 @@ bool remove(int v) {
 
 int find_rank(int v) {
   find(rt, v);
-  return sz[ch[rt][0]] + (va[rt] < v ? cn[rt] : 0) + 1;
+  return sz[ch[rt][0]] + (val[rt] < v ? cnt[rt] : 0) + 1;
 }
 
 int find_kth(int k) {
   if (k > sz[rt]) return -1;
   loc(rt, k);
-  return va[rt];
+  return val[rt];
 }
 
 int find_prev(int v) {
   find(rt, v);
-  if (rt && va[rt] < v) return va[rt];
+  if (rt && val[rt] < v) return val[rt];
   int x = ch[rt][0];
   if (!x) return -1;
   for (; ch[x][1]; x = ch[x][1]);
   splay(rt, x);
-  return va[rt];
+  return val[rt];
 }
 
 int find_next(int v) {
   find(rt, v);
-  if (rt && va[rt] > v) return va[rt];
+  if (rt && val[rt] > v) return val[rt];
   int x = ch[rt][1];
   if (!x) return -1;
   for (; ch[x][0]; x = ch[x][0]);
   splay(rt, x);
-  return va[rt];
+  return val[rt];
 }
 
 int main() {

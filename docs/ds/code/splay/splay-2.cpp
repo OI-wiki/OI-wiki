@@ -2,7 +2,7 @@
 
 constexpr int N = 2e6;
 int id, rt;
-int fa[N], va[N], sz[N], lz[N], ch[N][2];
+int fa[N], val[N], sz[N], lz[N], ch[N][2];
 
 bool dir(int x) { return x == ch[fa[x]][1]; }
 
@@ -61,7 +61,7 @@ void build(int n) {
     ch[id][0] = rt;
     if (rt) fa[rt] = id;
     rt = id;
-    va[id] = i - 1;
+    val[id] = i - 1;
   }
   splay(rt, 1);
 }
@@ -79,7 +79,7 @@ void print(int x) {
   if (!x) return;
   push_down(x);
   print(ch[x][0]);
-  std::cout << va[x] << ' ';
+  std::cout << val[x] << ' ';
   print(ch[x][1]);
 }
 
