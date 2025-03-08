@@ -1,3 +1,5 @@
+前置知识：[阶乘取模](./factorial.md)
+
 ## 引入
 
 本文讨论大组合数取模的求解。组合数，又称二项式系数，指表达式：
@@ -24,36 +26,55 @@ $$
     其中，当 $n<k$ 时，二项式系数 $\dbinom{n}{k}$ 规定为 $0$。
 
 ??? note "利用生成函数证明"
-    考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值，注意到 $\displaystyle\binom{p}{n} = \frac{p!}{n!(p-n)!}$，分子的质因子分解中 $p$ 的次数恰好为 $1$，因此只有当 $n = 0$ 或 $n = p$ 的时候 $n!(p-n)!$ 的质因子分解中含有 $p$，因此 $\displaystyle\binom{p}{n} \bmod p = [n = 0 \vee n = p]$。进而我们可以得出
+    考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值。因为
 
     $$
-    \begin{align}
-    (a+b)^p &= \sum_{n=0}^p \binom pn a^n b^{p-n}\\
-    &\equiv \sum_{n=0}^p [n=0\vee n=p] a^n b^{p-n}\\
-    &\equiv a^p + b^p \pmod p
-    \end{align}
+    \binom{p}{n} = \frac{p!}{n!(p-n)!},
     $$
 
-    注意过程中没有用到费马小定理，因此这一推导不仅适用于整数，亦适用于多项式。因此我们可以考虑二项式 $f^p(x)=(ax^n + bx^m)^p \bmod p$ 的结果
+    所以，当 $n\neq 0,p$ 时，分子中都没有因子 $p$，但分母中有因子 $p$，所以分式一定是 $p$ 的倍数，模 $p$ 的余数是 $0$；当 $n=0,p$ 时，分式就是 $1$。因此，
 
     $$
-    \begin{align}
-    (ax^n + bx^m)^p &\equiv a^p x^{pn} + b^p x^{pm} \\
-    &\equiv ax^{pn} + bx^{pm}\\
-    &\equiv f(x^p)
-    \end{align}
+    \binom{p}{n} \equiv [n=0\lor n=p] \pmod p.
     $$
 
-    考虑二项式 $(1+x)^n \bmod p$，那么 $\displaystyle\binom n m$ 就是求其在 $x^m$ 次项的取值。使用上述引理，我们可以得到
+    记 $f(x) = ax^n + bx^m$。一般地，由 [二项式展开](../combinatorics/combination.md#二项式定理) 和 [费马小定理](./fermat.md#费马小定理) 有
 
     $$
-    \begin{align}
-    (1+x)^n &\equiv (1+x)^{p\lfloor n/p \rfloor} (1+x)^{n\bmod p}\\
-    &\equiv (1+x^p)^{\lfloor n/p \rfloor} (1+x)^{n\bmod p}
-    \end{align}
+    \begin{aligned}
+    (f(x))^p 
+    &= \left(ax^n + bx^m\right)^p \\
+    &= \sum_{k=0}^p\binom{p}{k}(ax^n)^k(bx^m)^{p-k}\\
+    &\equiv a^px^{pn} + b^px^{pm} \\
+    &\equiv a(x^p)^n+b(x^p)^m\\
+    &= f(x^p) \pmod p.
+    \end{aligned}
     $$
 
-    注意前者只有在 $p$ 的倍数位置才有取值，而后者最高次项为 $n\bmod p \le p-1$，因此这两部分的卷积在任何一个位置只有最多一种方式贡献取值，即在前者部分取 $p$ 的倍数次项，后者部分取剩余项，即 $\displaystyle\binom{n}{m}\bmod p = \binom{\left\lfloor n/p \right\rfloor}{\left\lfloor m/p\right\rfloor}\cdot\binom{n\bmod p}{m\bmod p}\bmod p$。
+    其中，第三行的同余利用了前文说明的结论，即只有 $k=0,p$ 时，组合数才不是 $p$ 的倍数。
+
+    利用这一结论，考察二项式展开：
+
+    $$
+    \begin{aligned}
+    (1+x)^n &= (1+x)^{p\lfloor n/p\rfloor}(1+x)^{n\bmod p} \\
+    &\equiv (1+x^p)^{\lfloor n/p\rfloor}(1+x)^{n\bmod p} \pmod p.
+    \end{aligned}
+    $$
+
+    等式左侧中，项 $x^k$ 的系数为
+
+    $$
+    \binom{n}{k}\bmod p.
+    $$
+
+    转而计算等式右侧中项 $x^k$ 的系数。第一个因子中各项的次数必然是 $p$ 的倍数，第二个因子中各项的次数必然小于 $p$，而 $k$ 分解成这样两部分的和的方式是唯一的，即带余除法：$k=p\lfloor k/p\rfloor +(k\bmod p)$。因此，第一个因子只能贡献其 $p\lfloor k/p\rfloor$ 次项，第二个因子只能贡献其 $k\bmod p$ 次项。所以，右侧等式中 $x^k$ 系数为两个因子各自贡献的项的系数的乘积：
+
+    $$
+    \binom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}\binom{n\bmod p}{k\bmod p}\bmod p.
+    $$
+
+    令两侧系数相等，就得到 Lucas 定理。
 
 ??? note "利用阶乘取模的结论证明"
     此处提供一种基于 [阶乘取模](./factorial.md#素数模的情形) 相关结论的证明方法，以方便和后文 exLucas 部分的方法建立联系。已知二项式系数
@@ -149,8 +170,6 @@ Lucas 定理指出，模数为素数 $p$ 时，大组合数的计算可以转化
 该实现的时间复杂度为 $O(p+T\log_p n)$，其中，$T$ 为询问次数。
 
 ## exLucas 算法
-
-前置知识：[阶乘取模](./factorial.md)
 
 Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 算法。虽然名字如此，该算法实际操作时并没有用到 Lucas 定理。它的关键步骤是 [计算素数幂模下的阶乘](./factorial.md)。上文的第二个证明指出了它与 Lucas 定理的联系。
 
