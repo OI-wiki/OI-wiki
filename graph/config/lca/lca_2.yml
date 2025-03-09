@@ -1,0 +1,10 @@
+id: oi-wiki:graph/lca-2
+name: LCA
+solution:
+  cpp: docs/graph/code/lca/lca_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/lca/lca_2.ans
+  input: docs/graph/examples/lca/lca_2.in
+version: 1000

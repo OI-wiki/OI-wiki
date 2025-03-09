@@ -1,0 +1,10 @@
+id: oi-wiki:graph/steiner-tree-2
+name: Steiner Tree
+solution:
+  cpp: docs/graph/code/steiner-tree/steiner-tree_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/steiner-tree/steiner-tree_2.ans
+  input: docs/graph/examples/steiner-tree/steiner-tree_2.in
+version: 1000
