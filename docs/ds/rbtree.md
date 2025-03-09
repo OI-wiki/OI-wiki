@@ -2,7 +2,7 @@ author: LeverImmy
 
 红黑树是一种自平衡的二叉搜索树。每个节点额外存储了一个 color 字段 ("RED" or "BLACK")，用于确保树在插入和删除时保持平衡。
 
-红黑树与 4 阶 B 树（[2-3-4 树](./2-3-4-tree.md)）同构
+红黑树是 4 阶 B 树（[2-3-4 树](./2-3-4-tree.md)）的变体。[^gilbas1978]
 
 ## 性质
 
@@ -35,13 +35,17 @@ author: LeverImmy
 
 ## 操作
 
-???+ warning
-    由于红黑树是由 B 树衍生而来（发明时的最初的名字 symmetric binary B-tree 足以证明这点），并非直接由平衡二叉树外加限制条件推导而来，插入操作的后续维护和删除操作的后续维护中部分对操作的解释作用仅是帮助理解，并不能将其作为该操作的原理推导和证明。
-
 ???+ note
     红黑树的插入/删除有多种实现方式，本文采用《算法导论》的实现方式，将插入后的平衡维护分为 3 种情况，删除后的平衡维护分为 4 种情况。
 
 红黑树的遍历、查找最小/最大值、搜索元素、求元素的排名、根据排名反查元素、查找前驱/后继等操作和 [二叉搜索树](./bst.md) 一致，此处不再赘述。
+
+另外，在下文插入/删除平衡维护的代码注释中，我们作如下约定：
+
+- 用 `p` 表示节点 `p` 为黑色；
+- 用 `[p]` 表示节点 `p` 为红色；
+- 用 `{p}` 表示节点 `p` 为红色或黑色；
+- 用 `|p|` 表示节点 `p` 为 NIL 节点或颜色为黑色。
 
 ### 旋转
 
@@ -71,6 +75,9 @@ author: LeverImmy
     ```
 
 ### 插入后的平衡维护
+
+???+ note
+    为加深理解，请读者自行验证平衡维护后是否满足性质 4。
 
 由于插入的节点若不为根节点则必为红色，所以插入后可能违反性质 3，需要维护平衡性。
 
@@ -142,6 +149,9 @@ $p$ 为红色，$u$ 为黑色，$p$ 的方向和 $n$ 的方向相同。
     ```
 
 ### 删除后的平衡维护
+
+???+ note
+    为加深理解，请读者自行验证平衡维护后是否满足性质 4。
 
 由上文讨论可知 $n$ 是黑色叶子节点且不为根节点。我们设 $n$ 的父节点为 $p$，兄弟节点为 $s$，侄节点分别为 $c$ 和 $d$。
 
@@ -295,6 +305,8 @@ JDK 中的 `TreeMap` 和 `TreeSet` 都是使用红黑树作为底层数据结构
 -   Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2022).*Introduction to algorithms*. MIT press.
 -   [Red-Black Tree - Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
 -   [Red-Black Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+
+[^gilbas1978]: L. J. Guibas and R. Sedgewick, "A dichromatic framework for balanced trees," _19th Annual Symposium on Foundations of Computer Science (sfcs 1978)_, Ann Arbor, MI, USA, 1978, pp. 8-21, doi: [10.1109/SFCS.1978.3](https://doi.org/10.1109%2FSFCS.1978.3).
 
 [^cite_note-Cormen2009-18]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Cormen2009-18>
 
