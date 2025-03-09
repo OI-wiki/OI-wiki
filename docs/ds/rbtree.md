@@ -42,10 +42,10 @@ author: LeverImmy
 
 另外，在下文插入/删除平衡维护的代码注释中，我们作如下约定：
 
-- 用 `p` 表示节点 `p` 为黑色；
-- 用 `[p]` 表示节点 `p` 为红色；
-- 用 `{p}` 表示节点 `p` 为红色或黑色；
-- 用 `|p|` 表示节点 `p` 为 NIL 节点或颜色为黑色。
+-   用 `p` 表示节点 `p` 为黑色；
+-   用 `[p]` 表示节点 `p` 为红色；
+-   用 `{p}` 表示节点 `p` 为红色或黑色；
+-   用 `|p|` 表示节点 `p` 为 NIL 节点或颜色为黑色。
 
 ### 旋转
 
@@ -306,7 +306,7 @@ JDK 中的 `TreeMap` 和 `TreeSet` 都是使用红黑树作为底层数据结构
 -   [Red-Black Tree - Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
 -   [Red-Black Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
 
-[^gilbas1978]: L. J. Guibas and R. Sedgewick, "A dichromatic framework for balanced trees," _19th Annual Symposium on Foundations of Computer Science (sfcs 1978)_, Ann Arbor, MI, USA, 1978, pp. 8-21, doi: [10.1109/SFCS.1978.3](https://doi.org/10.1109%2FSFCS.1978.3).
+[^gilbas1978]: L. J. Guibas and R. Sedgewick, "A dichromatic framework for balanced trees,"*19th Annual Symposium on Foundations of Computer Science (sfcs 1978)*, Ann Arbor, MI, USA, 1978, pp. 8-21, doi:[10.1109/SFCS.1978.3](https://doi.org/10.1109%2FSFCS.1978.3).
 
 [^cite_note-Cormen2009-18]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Cormen2009-18>
 
