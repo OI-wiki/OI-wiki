@@ -297,9 +297,9 @@
       Node* xor_prev_next;
     };
     
-    Node* XOR(Node* a, Node* b) {
-      return reinterpret_cast<Node*>(reinterpret_cast<uintptr_t>(a) ^
-                                     reinterpret_cast<uintptr_t>(b));
+    Node* XOR(Node* a, Node* b)
+    {
+      return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b));
     }
     ```
 
@@ -320,8 +320,8 @@
       ~XORList() {
         for (Node *p = this->head, *prev = nullptr; p != nullptr;) {
           Node* next = XOR(prev, p->xor_prev_next);
-          delete p;
           prev = p;
+          delete p;
           p = next;
         }
       }
@@ -356,6 +356,9 @@
       Node *p = this->head;
       for (int i = 0; i <= index; i++) {
         Node *next = XOR(prev, p->xor_prev_next);
+        if (next == nullptr && i < index) {
+          throw std::out_of_range("Index out of range");
+        }
         prev = p;
         p = next;
       }
@@ -384,6 +387,9 @@
       Node *p = this->head;
       for (int i = 0; i < index; i++) {
         Node *next = XOR(prev, p->xor_prev_next);
+        if (next == nullptr && i < index) {
+          throw std::out_of_range("Index out of range");
+        }
         prev = p;
         p = next;
       }
