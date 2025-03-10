@@ -297,10 +297,7 @@
       Node* xor_prev_next;
     };
     
-    Node* XOR(Node* a, Node* b)
-    {
-      return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b));
-    }
+    Node* XOR(Node* a, Node* b) { return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b)); }
     ```
 
 声明 `XORList` 类，存储指向链表头和尾的指针。
