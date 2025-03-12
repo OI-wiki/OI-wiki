@@ -42,3 +42,17 @@ author: Lyccrius, AtomAlpaca
     ```cpp
     --8<-- "docs/misc/code/mo-algo-secondary-offline/mo-algo-secondary-offline_1.cpp"
     ```
+
+???+ note "[Luogu P5501 \[LnOI2019\] 来者不拒，去者不追 (https://www.luogu.com.cn/problem/P5501)"
+    多次询问区间中 $[l, r]$ 中所有数的「Abbi值」之和。
+    
+    Abbi值定义为：若 $a_i$ 在询问区间 $[l,r]$ 中是第 $k$ 小，那么它的「Abbi值」等于 $ka_i$。
+
+我们不妨令 $f(x,r)$ 是 $[1,r]$ 中比 $a_x$ 大的数之和，$g(x,r)$ 是 $[1,r]$ 中比 $a_x$ 大的数的数量，那么我们向右移动右端点时，产生的贡献为 $f(r,r−1)−f(r,l−1) + a_r(r−l+ 1−(g(r,r−1)−g(r,l−1)))$，其它几个方向可同理写出，在此不加赘述。
+
+上式中的 $f(r, r - 1)$ 和 $g(r, r - 1)$ 依旧可以进行预处理，其余的离线到另一端点上，进行扫描线处理。不难发现我们要处理的依然是 $O(n)$ 次插入、$O(n\sqrt{m}$ 次询问排名的问题，因此同样使用值域分块解决。
+
+??? note "示例代码"
+    ```cpp
+    --8<-- "docs/misc/code/mo-algo-secondary-offline/mo-algo-secondary-offline_2.cpp"
+    ```
