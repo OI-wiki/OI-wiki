@@ -43,7 +43,7 @@ author: Lyccrius, AtomAlpaca
     --8<-- "docs/misc/code/mo-algo-secondary-offline/mo-algo-secondary-offline_1.cpp"
     ```
 
-???+ note "[Luogu P5501 [LnOI2019] 来者不拒，去者不追 (<https://www.luogu.com.cn/problem/P5501>)"
+???+ note "[Luogu P5501 \[LnOI2019\] 来者不拒，去者不追](https://www.luogu.com.cn/problem/P5501)"
     多次询问区间中 $[l, r]$ 中所有数的「Abbi 值」之和。
     
     Abbi 值定义为：若 $a_i$ 在询问区间 $[l,r]$ 中是第 $k$ 小，那么它的「Abbi 值」等于 $ka_i$。
