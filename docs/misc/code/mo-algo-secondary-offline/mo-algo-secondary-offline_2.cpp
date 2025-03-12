@@ -40,9 +40,9 @@ void mdf(ll x) {
   }
 }
 
-ll qry(ll x) { return sm1[bl[x] - 1] + sm2[x]; }
+ll qry(ll x) { if (!x) { return 0; } return sm1[bl[x] - 1] + sm2[x]; }
 
-ll _qry(ll x) { return sm3[bl[x] - 1] + sm4[x]; }
+ll _qry(ll x) { if (!x) { return 0; } return sm3[bl[x] - 1] + sm4[x]; }
 
 void clear() {
   sm = 0;
