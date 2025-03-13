@@ -1,0 +1,10 @@
+id: oi-wiki:misc/hill-climbing-1
+name: Hill Climbing
+solution:
+  cpp: docs/misc/code/hill-climbing/hill-climbing_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/examples/hill-climbing/hill-climbing_1.ans
+  input: docs/misc/examples/hill-climbing/hill-climbing_1.in
+version: 1000

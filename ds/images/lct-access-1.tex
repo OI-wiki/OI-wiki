@@ -1,0 +1,31 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+
+\tikzset{real edge/.style={solid,very thick}}
+\tikzset{virtual edge/.style={dashed,thin}}
+
+\begin{document}
+\begin{tikzpicture}
+
+\scoped[every node/.style={solid,thin,circle,draw}]
+\node {$A$}
+    child[real edge] {node {$B$}
+        child[virtual edge] {node {$D$}}
+        child[real edge] {node {$E$}}
+        child[virtual edge] {node {$F$}}}
+    child[virtual edge] {node {$C$}
+        child[missing]
+        child[missing]
+        child[real edge] {node {$G$}
+            child[real edge] {node {$H$}
+                child[virtual edge] {node {$I$}
+                    child[real edge] {node {$K$}}
+                    child[virtual edge] {node {$L$}
+                        child[real edge] {node {$N$}
+                        child[real edge] {node {$O$}}}}
+                    child[virtual edge] {node {$M$}}}
+                child[real edge] {node {$J$}}}}};
+
+\end{tikzpicture}
+\end{document}

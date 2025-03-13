@@ -1,0 +1,10 @@
+id: oi-wiki:dp/tree-1
+name: Tree DP
+solution:
+  cpp: docs/dp/code/tree/tree_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/dp/examples/tree/tree_1.ans
+  input: docs/dp/examples/tree/tree_1.in
+version: 1000

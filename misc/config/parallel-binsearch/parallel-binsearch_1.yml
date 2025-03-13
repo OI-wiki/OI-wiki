@@ -1,0 +1,10 @@
+id: oi-wiki:misc/parallel-binsearch-1
+name: Parallel Binsearch
+solution:
+  cpp: docs/misc/code/parallel-binsearch/parallel-binsearch_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/examples/parallel-binsearch/parallel-binsearch_1.ans
+  input: docs/misc/examples/parallel-binsearch/parallel-binsearch_1.in
+version: 1000
