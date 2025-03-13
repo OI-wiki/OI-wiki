@@ -117,7 +117,7 @@ $E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
     边的数量 m 满足 $1\leq m \leq 1024$。
 
 ??? note "解题思路"
-    用 Fleury 算法解决本题的时候只需要再贪心就好，但是由于复杂度不对，所以要换用 Hierholzer 算法。
+    本题为 Hierholzer 算法的直接应用。
     
     保存答案可以使用 `std::stack<int>`，因为如果找的不是回路的话必须将那一部分放在最后。
     
