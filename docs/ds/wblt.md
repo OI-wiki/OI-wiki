@@ -303,7 +303,7 @@ void split(int p, int k, int &x, int &y) {
     --8<-- "docs/ds/code/wblt/wblt_1.cpp"
     ```
 
-### 指针实现
+#### 指针实现
 
 ??? note "完整代码"
     ```cpp
@@ -319,7 +319,7 @@ void split(int p, int k, int &x, int &y) {
     --8<-- "docs/ds/code/wblt/wblt_2.cpp"
     ```
 
-### 指针实现
+#### 指针实现
 
 ??? note "完整代码"
     ```cpp
