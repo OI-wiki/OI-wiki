@@ -302,14 +302,15 @@ void split(int p, int k, int &x, int &y) {
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt_1.cpp"
     ```
-#### 指针实现
+
+### 指针实现
 
 ??? note "完整代码"
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt_3.cpp"
     ```
-    
-因为 WBLT 可以合并与分裂，这意味着 WBLT 可以像无旋 Treap 一样实现插入删除等基本操作，写法同无旋 Treap。同理也可以实现文艺平衡树，下面是用 WBLT 实现的 [文艺平衡树模板](https://loj.ac/p/105)。
+
+为 WBLT 可以合并与分裂，这意味着 WBLT 可以像无旋 Treap 一样实现插入删除等基本操作，写法同无旋 Treap。同理也可以实现文艺平衡树，下面是用 WBLT 实现的 [文艺平衡树模板](https://loj.ac/p/105)。
 
 #### 数组实现
 
@@ -317,7 +318,8 @@ void split(int p, int k, int &x, int &y) {
     ```cpp
     --8<-- "docs/ds/code/wblt/wblt_2.cpp"
     ```
-#### 指针实现
+
+### 指针实现
 
 ??? note "完整代码"
     ```cpp
