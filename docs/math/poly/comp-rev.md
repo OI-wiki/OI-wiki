@@ -84,6 +84,11 @@ $$
 
 我们使用 Kronecker 代换再计算一元多项式乘法即可，不难发现在 $n$ 为二的幂时上述算法可以在 $O\left(\mathsf{M}\left(n\right)\log n\right)$ 时间完成，因为每一次递归中 $y$ 的次数翻倍，但是 $x$ 的次数减半。
 
+??? note "模板（[P5373 【模板】多项式复合函数](https://www.luogu.com.cn/problem/P5373)）"
+    ```cpp
+    --8<-- "docs/math/code/poly/comp-rev/comp_1.cpp"
+    ```
+
 ## 形式幂级数的复合逆
 
 现给出 $f\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ 且 $f'(0)\neq 0$，求出 $g(x)\bmod{x^n}$ 满足 $f(g)\equiv g(f)\equiv x\pmod{x^n}$。
