@@ -73,7 +73,7 @@ void print(int a[]) {
     
     constexpr int LEN = 1004;
     
-    int a[LEN], b[LEN];
+    int a[LEN];
     
     void clear(int a[]) {
       for (int i = 0; i < LEN; ++i) a[i] = 0;

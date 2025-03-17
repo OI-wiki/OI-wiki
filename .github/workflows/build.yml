@@ -66,7 +66,7 @@ jobs:
         run: pipenv run python scripts/post-build/redirect/check-redirects.py
       - name: Deploy to gh-pages
         if: ${{ github.event_name == 'push' }}
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
@@ -89,11 +89,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: Get changed files
-        uses: tj-actions/changed-files@v44
+        uses: tj-actions/changed-files@v46
         with:
           files: docs/**/*.md
-          base_sha: ${{ github.event.before }}
-          sha: ${{ github.event.after }}
+          since_last_remote_commit: true
           include_all_old_new_renamed_files: true
           write_output_files: true
       - name: Checkout before

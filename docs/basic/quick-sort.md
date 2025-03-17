@@ -62,7 +62,7 @@
     === "递归实现"
         ```cpp
         template <typename T>
-        int Paritition(T A[], int low, int high) {
+        int Partition(T A[], int low, int high) {
           int pivot = A[low];
           while (low < high) {
             while (low < high && pivot <= A[high]) --high;
@@ -76,7 +76,7 @@
         template <typename T>
         void QuickSort(T A[], int low, int high) {
           if (low < high) {
-            int pivot = Paritition(A, low, high);
+            int pivot = Partition(A, low, high);
             QuickSort(A, low, pivot - 1);
             QuickSort(A, pivot + 1, high);
           }
@@ -291,9 +291,9 @@ T find_kth_element(T arr[], int rk, const int len) {
   if (len <= 1) return arr[0];
   // 随机选择基准（pivot）
   const T pivot = arr[rand() % len];
-  // i：当前操作的元素
-  // j：第一个等于 pivot 的元素
-  // k：第一个大于 pivot 的元素
+  // i：当前操作的元素下标
+  // arr[0, j)：存储小于 pivot 的元素
+  // arr[k, len)：存储大于 pivot 的元素
   int i = 0, j = 0, k = len;
   // 完成一趟三路快排，将序列分为：
   // 小于 pivot 的元素 ｜ 等于 pivot 的元素 ｜ 大于 pivot 的元素

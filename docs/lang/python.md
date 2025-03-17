@@ -1,3 +1,5 @@
+author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran
+
 ## 关于 Python
 
 Python 是一门已在世界上广泛使用的解释型语言。它提供了高效的高级数据结构，还能简单有效地面向对象编程，也可以在算法竞赛。
@@ -23,6 +25,7 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 参见 [Python 3](../tools/compiler.md#python-3)。或者：
 
 -   Windows：也可以在 Microsoft Store 中免费而快捷地获取 Python。
+
 -   macOS/Linux：通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
 
     ???+ warning "注意"
@@ -36,7 +39,18 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 
 但若要编写完整的程序，你最好还是新建一个文本文件（通常后缀为 `.py`），然后在命令行中执行 `python3 filename.py`，就能够运行代码看到结果了。
 
-### 通过镜像下载安装文件
+### 一些平台提供的 Python 版本
+
+| 系统名/版本           | python 版本               |
+| ---------------- | ----------------------- |
+| Noi Linux 2.0    | 3.8.0, Include requests |
+| Luogu 评测机        | 3.11.5, NumPy 1.25.2    |
+| 基于 Hydro 的 OJ    | 3.8.0+ Include NumPy    |
+| Ubuntu 22.04（内置） | 3.10.4                  |
+| 微软商店             | 最新正式版                   |
+
+???+ warning "注意"
+    本表格在本文撰写时（2025/01/15）时有效，建议前往相关平台重新查证。
 
 目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学自由与开源软件镜像站](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://repo.huaweicloud.com/python/)，可以到那里尝试下载 Python 安装文件。
 
@@ -45,6 +59,11 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 Python 的生命力很大程度上来自于丰富的第三方库，编写一些实用程序时「调库」是常规操作，`pip` 是首选的安装第三方库的程序。自 Python 3.4 版本起，它被默认包含在 Python 二进制安装程序中。
 
 `pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
+
+???+ info "使用清华大学开源镜像站安装一个包"
+    ```sh
+    pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple <some-package>
+    ```
 
 ## 基本语法
 
@@ -79,12 +98,12 @@ Python 的语法简洁而易懂，也有许多官方和第三方文档与教程�
 >>> f = 3.1415926535897932384626; f  # 实在想加分号也可以，这里节省了一行
 3.141592653589793
 >>> s1 = "O"
->>> s1  # 怎么显示成单引号了？有区别吗？
+>>> s1  # 在 Python 中双引号和单引号的作用相同
 'O'
->>> b = 'A' == 65  # 明明在 C/C++ 中是成立的
->>> b  # 与众不同的是 True, False 首字母均大写，可能与内置常量的命名约定有关
+>>> b = 'A' == 65  # 'A' 和 65 不是一个数据类型，所以不相等
+>>> b  # True, False 首字母均大写
 False
->>> True + 1 == 2 and not False != 0  # Python 可能喜欢单词胜过符号
+>>> True + 1 == 2 and not False != 0  # Python 中的表达式中大多使用单词，但是也支持符号
 True
 ```
 
@@ -95,7 +114,7 @@ True
 <class 'int'>
 >>> type(f)
 <class 'float'>
->>> type(s1)  # 请注意，不要给字符串起名为 str，不信试试看是否真的可以这么做
+>>> type(s1)  # 请注意，不要给字符串起名为 str，否则 str 对象会被篡改
 <class 'str'>
 >>> type(b)
 <class 'bool'>
@@ -148,24 +167,6 @@ True
 
 特别地，Python 用 `**` 即可进行幂运算，还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/binary-exponentiation.md) 的高效实现。
 
-Python 的字符串类型包含 Unicode 字符，这意味着任何字符串都会存储为 Unicode。[^ref2]在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。
-
-如果想把数转换为对应的字符串，可使用 Python 内置函数 `str()`，也可以使用 f-string 实现；反之，可以使用 `int()` 和 `float()` 两个函数。
-
-Python 的字符串类型还有 [许多方便的功能](https://docs.python.org/zh-cn/3/library/stdtypes.html#text-sequence-type-str)。由于本文篇幅有限，这里不一一介绍。
-
-#### 数据类型判断
-
-对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`。
-
-### 输出和输入
-
-#### 输出
-
-对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`。
-
-Python 中，还可以使用 `**` 运算符和内置的 `pow(base, exp, mod=None)` 函数进行幂运算，使用 `abs(x)` 求数的绝对值。
-
 ```pycon
 >>> 3 ** 4 # 幂运算
 81
@@ -178,9 +179,37 @@ Python 中，还可以使用 `**` 运算符和内置的 `pow(base, exp, mod=None
 False
 ```
 
+#### 数据类型判断
+
+对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`。
+
+#### [基本输入输出](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
+
+Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成，`print()` 的用法十分符合直觉：
+
+```pycon
+>>> a = [1,2,3]; print(a[-1])  # 打印时默认末尾换行
+3
+>>> print(ans[0], ans[1])  # 可以输出任意多个变量，默认以空格间隔
+1 2
+>>> print(a[0], a[1], end='')  # 令 end='', 使末尾不换行
+1 2>>>
+>>> print(a[0], a[1], sep=', ')  # 令 sep=', '，改变间隔样式
+1, 2
+>>> print(str(a[0]) + ', ' + str(a[1]))  # 输出同上，但是手动拼接成一整个字符串
+```
+
+`input()` 函数的行为接近 C++ 中的 `getline()`，即将一整行作为字符串读入，且末尾没有换行符。
+
+```pycon
+>>> s = input('请输入一串数字: '); s  # 自己调试时可以向 input() 传入字符串作为提示
+请输入一串数字: 1 2 3 4 5 6
+'1 2 3 4 5 6'
+```
+
 #### 字符串
 
-Python 3 提供了强大的基于 [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) 的字符串类型，使用起来和 C++ 中的 string 类似，一些概念如转义字符也都相通，除了加号拼接和索引访问，还额外支持数乘 `*` 重复字符串，和 `in` 操作符。
+Python 3 提供了强大的基于 [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) 的字符串类型，使用起来和 C++ 中的 `string` 类似，一些概念如转义字符也都相通，除了加号拼接和索引访问，还额外支持数乘 `*` 重复字符串，和 `in` 操作符。
 
 ```pycon
 >>> s1 = "O"  # 单引号和双引号都能包起字符串，有时可节省转义字符
@@ -197,7 +226,7 @@ True
 >>> print(s1 + s2)  # 这里使用了 print() 函数打印字符串
 OI-Wiki 感谢你的阅读
 欢迎参与贡献!
->>> s2[2] * 2 + s2[3] + s2[-1]  # 负数索引从右开始计数，加上len(s)，相当于模n的剩余类环
+>>> s2[2] * 2 + s2[3] + s2[-1]  # 负数索引从右开始计数，加上 len(s)，相当于模 n 的剩余类环
 '谢谢你!'
 >>> s1[0] = 'o'  # str 是不可变类型，不能原地修改，其实 += 也是创建了新的对象
 Traceback (most recent call last):
@@ -207,13 +236,13 @@ TypeError: 'str' object does not support item assignment
 
 Python 支持多种复合数据类型，可将不同值组合在一起。最常用的 `list`，类型是用方括号标注、逗号分隔的一组值。例如，`[1, 2, 3]` 和 `['a','b','c']` 都是列表。
 
-除了索引，字符串还支持*切片*，它的设计非常精妙又符合直觉，格式为 `s[左闭索引:右开索引:步长]`：
+除了索引，字符串还支持*切片*，它的设计非常精妙，格式为 `s[左闭索引:右开索引:步长]`：
 
 ```pycon
 >>> s = 'OI-Wiki 感谢你的阅读\n欢迎参与贡献!'
 >>> s[:8]  # 省略左闭索引则从头开始
 'OI-Wiki '
->>> s[8:14]  # 左闭右开设计的妙处，长度恰好为14-8=6，还和上一个字符串无缝衔接
+>>> s[8:14]  # 左闭右开设计的妙处，长度为 14-8=6，还和上一个字符串无缝衔接
 '感谢你的阅读'
 >>> s[-4:]  # 省略右开索引则直到结尾
 '与贡献!'
@@ -225,15 +254,15 @@ Python 支持多种复合数据类型，可将不同值组合在一起。最常�
 'OI-Wiki 感谢你的阅读\n欢迎参与贡献!'
 ```
 
-C/C++ 中 `char` 类型可以和 对应的 ASCII 码互转，而在 Python 中你可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。
+在最新的 Python 3 版本中，字符串是以 Unicode 编码的，也就是说，Python 的字符串支持多语言。[^ref2]在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。C/C++ 中 `char` 类型也可以和 对应的 ASCII 码互转。
 
 如果想把数字转换成对应的字符串，可以使用内置函数 `str()`，反之可以使用 `int()` 和 `float()`，你可以类比为 C/C++ 中的强制类型转换，但括号不是加在类型上而是作为函数的一部分括住参数。
 
 Python 的字符串类型提供了许多强大的方法，包括计算某字符的索引与出现次数，转换大小写等等，这里就不一一列举，强烈建议查看 [官方文档](https://docs.python.org/zh-cn/3/library/stdtypes.html#text-sequence-type-str) 熟悉常用方法，遇到字符串操作应当首先考虑使用这些方法而非自力更生。
 
-### 开数组
+### 创建数组
 
-从 C++ 转过来的同学可能很迷惑怎么在 Python 中开数组，这里就介绍在 Python 开「数组」的语法，需要强调我们介绍的其实是几种 [序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#iterator-types)，和 C 的数组有着本质区别，而更接近 C++ 中的 `vector`。
+从 C++ 转过来的同学可能很迷惑怎么在 Python 中创建数组，这里就介绍在 Python 开「数组」的语法，需要强调我们介绍的其实是几种 [序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#iterator-types)，和 C 的数组有着本质区别，而更接近 C++ 中的 `vector`。
 
 #### 使用 `list`
 
@@ -244,7 +273,7 @@ Python 的字符串类型提供了许多强大的方法，包括计算某字符�
 []
 >>> nums = [0, 1, 2, 3, 5, 8, 13]; nums  # 初始化列表，注意整个列表可以直接打印
 [0, 1, 2, 3, 5, 8, 13]
->>> nums[0] = 1; nums  # 支持索引访问，还支持修改元素
+>>> nums[0] = 1; nums  # 支持索引访问，支持修改元素
 [1, 1, 2, 3, 5, 8, 13]
 >>> nums.append(nums[-2]+nums[-1]); nums  # append() 同 vector 的 push_back()，也都没有返回值
 [1, 1, 2, 3, 5, 8, 13, 21]
@@ -314,7 +343,7 @@ False
 下面演示一些在 OI 中更常见的场景，比如二维「数组」：
 
 ```pycon
->>> vis = [[0] * 3] * 3  # 开一个3*3的全0数组
+>>> vis = [[0] * 3] * 3  # 开一个 3*3 的全 0 数组
 >>> vis 
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 >>> vis[0][0] = 1; vis  # 怎么会把其他行也修改了？
@@ -329,14 +358,14 @@ False
 [0, 0, 0]
 >>> id(a1) == id(a2) and id(a1) != id(a3)  # 内置函数 id() 给出对象的「标识值」，可类比为地址，地址相同说明是一个对象
 True
->>> vis2 = vis[:]  # 拷贝一份二维列表看看
->>> vis[0][1] = 2; vis  # vis 肯定还是被批量修改
+>>> vis2 = vis[:]  # 拷贝一份二维列表
+>>> vis[0][1] = 2; vis  # vis 会被批量修改
 >>> [[1, 2, 0], [1, 2, 0], [1, 2, 0]]
->>> vis2  # 但 vis2 是切片拷贝的怎么还是被改了
+>>> vis2  # 但 vis2 是切片拷贝还是被改了
 >>> [[1, 2, 0], [1, 2, 0], [1, 2, 0]]
->>> id(vis) != id(vis2)  # vis 和 vis2 确实不是一个对象啊
+>>> id(vis) != id(vis2)  # vis 和 vis2 不是一个对象
 True
->>> # 谜底揭晓，vis2 虽然不是 vis 的引用，但其中对应行都指向相同的对象
+>>> # vis2 虽然不是 vis 的引用，但其中对应行都指向相同的对象
 >>> [id(vis[i]) == id(vis2[i]) for i in range(3)]
 [True, True, True]
 >>> # 回看二维列表自身
@@ -344,7 +373,7 @@ True
 [139760373248192, 139760373248192, 139760373248192]
 ```
 
-其实我们一直隐瞒了一个重要事实，Python 中赋值只传递了引用而非创建新值，你可以创建不同类型的变量并赋给新变量，验证发现二者的标识值是相同的，只不过直到现在我们才介绍了列表这一种可变类型，而给数字、字符串这样的不可变类型赋新值时实际上创建了新的对象，故而前后两个变量互不干扰。但列表是可变类型，所以我们修改一个列表的元素时，另一个列表由于指向同一个对象所以也被修改了。创建二维数组也是类似的情况，示例中用乘法创建二维列表相当于把 `[0]*3` 这个一维列表重复了 3 遍，所以涉及其中一个列表的操作会同时影响其他两个列表。更不幸的是，在将二维列表赋给其他变量的时候，就算用切片来拷贝，也只是「浅拷贝」，其中的元素仍然指向相同的对象，解决这个问题需要使用标准库中的 [`deepcopy`](https://docs.python.org/3/library/copy.html)，或者尽量避免整个赋值二维列表。不过还好，创建二维列表时避免创建重复的列表还是比较简单，只需使用「列表推导式」：
+其实有一个重要的事实，Python 中赋值只传递了引用而非创建新值，你可以创建不同类型的变量并赋给新变量，验证发现二者的标识值是相同的，只不过直到现在我们才介绍了列表这一种可变类型，而给数字、字符串这样的不可变类型赋新值时实际上创建了新的对象，故而前后两个变量互不干扰。但列表是可变类型，所以我们修改一个列表的元素时，另一个列表由于指向同一个对象所以也被修改了。创建二维数组也是类似的情况，示例中用乘法创建二维列表相当于把 `[0]*3` 这个一维列表重复了 3 遍，所以涉及其中一个列表的操作会同时影响其他两个列表。更不幸的是，在将二维列表赋给其他变量的时候，就算用切片来拷贝，也只是「浅拷贝」，其中的元素仍然指向相同的对象，解决这个问题需要使用标准库中的 [`deepcopy`](https://docs.python.org/3/library/copy.html)，或者尽量避免整个赋值二维列表。不过还好，创建二维列表时避免创建重复的列表还是比较简单，只需使用「列表推导式」：
 
 ```pycon
 >>> vis1 = [[0] * 3 for _ in range(3)]  # 把用不到的循环计数变量设为下划线 _ 是一种惯例
@@ -363,19 +392,19 @@ True
 #### 使用 NumPy
 
 ??? note "什么是 NumPy"
-    [NumPy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算。在测试算法原型时可以利用 NumPy 避免手写排序、求最值等算法。NumPy 的核心数据结构是 `ndarray`，即 n 维数组，它在内存中连续存储，是定长的。此外 NumPy 核心是用 C 编写的，运算效率很高。不过需要注意，它不是标准库的一部分，可以使用 `pip install numpy` 安装，但不保证 OI 考场环境中可用。
+    [NumPy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算。在测试算法原型时可以利用 NumPy 避免手写排序、求最值等算法。NumPy 的核心数据结构是 `ndarray`，即 n 维数组，它在内存中连续存储，是定长的。此外 NumPy 核心是用 C 编写的，运算效率很高。不过需要注意，它不是标准库的一部分，可以使用 `pip install numpy` 安装，但不保证 OI 考场环境中可用（参见文首 [Python 版本](#一些平台提供的-python-版本)）。
 
 下面的代码将介绍如何利用 NumPy 建立多维数组并进行访问。
 
 ```pycon
 >>> import numpy as np  # 请自行搜索 import 的意义和用法
->>> np.empty(3) # 开容量为3的空数组，注意没有初始化为0
+>>> np.empty(3) # 开容量为 3 的空数组，注意没有初始化为 0
 array([0.00000000e+000, 0.00000000e+000, 2.01191014e+180])
->>> np.zeros((3, 3)) # 开 3*3 的数组，并初始化为0
+>>> np.zeros((3, 3)) # 开 3*3 的数组，并初始化为 0
 array([[0., 0., 0.],
        [0., 0., 0.],
        [0., 0., 0.]])
->>> a1 = np.zeros((3, 3), dtype=int) # 开3×3的整数数组
+>>> a1 = np.zeros((3, 3), dtype=int) # 开 3×3 的整数数组
 >>> a1[0][0] = 1 # 访问和赋值
 >>> a1[0, 0] = 1 # 更友好的语法
 >>> a1.shape # 数组的形状
@@ -385,7 +414,7 @@ array([[0., 0., 0.],
 array([[1, 0],
        [0, 0]])
 
->>> a1[0, 2] # 获取第 1、3 列，无拷贝
+>>> a1[:, [0, 2]] # 获取第 1、3 列，无拷贝
 array([[1, 0],
        [0, 0],
        [0, 0]])
@@ -407,23 +436,13 @@ array([[0, 0, 1],
 
 若无特殊说明，后文出现「数组」一般指「列表」。
 
-### [输入输出](https://docs.python.org/3/tutorial/inputoutput.html)
+### [输入输出](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
 
-Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成，`print()` 的用法十分符合直觉：
+Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成。前文已经介绍过，下面介绍进阶用法。
 
-```pycon
->>> a = [1,2,3]; print(a[-1])  # 打印时默认末尾换行
-3
->>> print(ans[0], ans[1])  # 可以输出任意多个变量，默认以空格间隔
-1 2
->>> print(a[0], a[1], end='')  # 令 end='', 使末尾不换行
-1 2>>>
->>> print(a[0], a[1], sep=', ')  # 令 sep=', '，改变间隔样式
-1, 2
->>> print(str(a[0]) + ', ' + str(a[1]))  # 输出同上，但是手动拼接成一整个字符串
-```
+#### 格式化输出
 
-算法竞赛中通常只涉及到基本的数值和字符串输出，以上用法基本足够，只有当涉及到浮点数位数时需要用到格式化字符串输出。格式化有三种方法，第一种也是最老旧的方法是使用 `printf()` 风格的 `%` 操作符；另一种是利用 [`format` 函数](https://docs.python.org/3/library/string.html#formatstrings)，写起来比较长；第三种是 Python 3.6 新增的 [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals)，最为简洁，但不保证考场中的 Python 版本足够新。详细丰富的说明可以参考 [这个网页](https://www.python-course.eu/python3_formatted_output.php)，尽管更推荐使用 `format()` 方法，但为了获得与 C 接近的体验，下面仅演示与 `printf()` 类似的老式方法：
+算法竞赛中通常只涉及到基本的数值和字符串输出，`print()` 已基本足够，只有当涉及到浮点数位数时需要用到格式化字符串输出。格式化有三种方法，第一种也是最老旧的方法是使用 `printf()` 风格的 `%` 操作符；另一种是利用 [`format` 函数](https://docs.python.org/3/library/string.html#formatstrings)；第三种是 Python 3.6 新增的 [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals)，最为简洁，但不保证考场中的 Python 版本足够新。详细丰富的说明可以参考 [这个网页](https://www.python-course.eu/python3_formatted_output.php)，尽管更推荐使用 `format()` 方法，但为了获得与 C 接近的体验，下面仅演示与 `printf()` 类似的老式方法：
 
 ```pycon
 >>> pi = 3.1415926; print('%.4f' % pi)   # 格式为 %[flags][width][.precision]type
@@ -431,6 +450,8 @@ Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成
 >>> '%.4f - %8f = %d' % (pi, 0.1416, 3)  # 右边多个参数用 () 括住，后面会看到其实是「元组」 
 '3.1416 - 0.141600 = 3'
 ```
+
+#### `split()` 函数
 
 `input()` 函数的行为接近 C++ 中的 `getline()`，即将一整行作为字符串读入，且末尾没有换行符，但在算法竞赛中，常见的输入形式是一行输入多个数值，因此就需要使用字符串的 `split()` 方法并搭配列表推导式得到存放数值类型的列表，下面以输入 n 个数求平均值为例演示输入 n 个数得到「数组」的方法：
 
@@ -620,7 +641,7 @@ Python 中定义函数无需指定参数类型和返回值类型，无形中为 
 
 ```python
 def add(a, b):
-    return a + b  # 动态类型的优势，a和b也可以是字符串
+    return a + b  # 动态类型的优势，a 和 b 也可以是字符串
 
 
 def add_no_swap(a, b):
@@ -1027,7 +1048,7 @@ def fib(n):
                 q.put((dist[v], v))
     
     
-    # 如果你直接运行这个python代码（不是模块调用什么的）就执行命令
+    # 如果你直接运行这个 Python 代码（不是模块调用什么的）就执行命令
     if __name__ == "__main__":
         # 一行读入多个整数。注意它会把整行都读进来
         n, m, s = map(int, input().split())
@@ -1047,12 +1068,12 @@ def fib(n):
 
 ## 参考文档
 
-1.  Python Documentation，<https://www.python.org/doc/>
-2.  Python 官方中文教程，<https://docs.python.org/zh-cn/3/tutorial/>
-3.  Learn Python3 In Y Minutes，<https://learnxinyminutes.com/docs/python3/>
-4.  Real Python Tutorials，<https://realpython.com/>
-5.  廖雪峰的 Python 教程，<https://www.liaoxuefeng.com/wiki/1016959663602400/>
-6.  GeeksforGeeks: Python Tutorials,<https://www.geeksforgeeks.org/python-programming-language/>
+1.  [Python Documentation](https://www.python.org/doc/)
+2.  [Python 官方中文教程](https://docs.python.org/zh-cn/3/tutorial/)
+3.  [Learn Python3 In Y Minutes](https://learnxinyminutes.com/docs/python3/)
+4.  [Real Python Tutorials](https://realpython.com/)
+5.  [廖雪峰的 Python 教程](https://www.liaoxuefeng.com/wiki/1016959663602400/)
+6.  [GeeksforGeeks: Python Tutorials](https://www.geeksforgeeks.org/python-programming-language/)
 
 ## 参考资料和注释
 

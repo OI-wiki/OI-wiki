@@ -211,8 +211,8 @@ $$
 ### 习题
 
 -   [UOJ Goodbye Jihai D. 新年的追逐战](https://uoj.ac/contest/50/problem/498)
--   [BZOJ 3864. 大朋友和多叉树](https://darkbzoj.cc/problem/3684)
--   [BZOJ 2863. 愤怒的元首](https://darkbzoj.cc/problem/2863)
+-   [BZOJ 3864. 大朋友和多叉树](https://hydro.ac/p/bzoj-P3864)
+-   [BZOJ 2863. 愤怒的元首](https://hydro.ac/p/bzoj-P2863)
 -   [Luogu P6295. 有标号 DAG 计数](https://www.luogu.com.cn/problem/P6295)
 -   [LOJ 6569. 仙人掌计数](https://loj.ac/p/6569)
 -   [LOJ 6570. 毛毛虫计数](https://loj.ac/p/6570)

@@ -74,6 +74,42 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
             return self.exist[p]
     ```
 
+=== "Java"
+    ```java
+    public class Trie {
+        
+        int[][] tree = new int[10000][26];
+        int cnt = 0;
+        boolean[] end = new boolean[10000];
+        
+        public void insert(String word) {
+            int p = 0;
+            char[] chars = word.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                int c = chars[i] - 'a';
+                if (tree[p][c] == 0) {
+                    tree[p][c] = ++cnt;
+                }
+                p = tree[p][c];
+            }
+            end[p] = true;
+        }
+        
+        public boolean find(String word) {
+            int p = 0;
+            char[] chars = word.toCharArray();
+            for (int i = 0; i < chars.length; i++) {
+                int c = chars[i] - 'a';
+                if (tree[p][c] == 0) {
+                    return false;
+                }
+                p = tree[p][c];
+            }
+            return end[p];
+        }
+    }
+    ```
+
 ## 应用
 
 ### 检索字符串

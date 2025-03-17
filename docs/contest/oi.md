@@ -254,7 +254,7 @@ CCC Junior/Senior 贴近 NOIP 普及组/提高组难度。CCO 想要拿到金牌
 
 ### 其他国家
 
--   法国与澳大利亚：FARIO：<http://orac.amt.edu.au/cgi-bin/train/hub.pl>
+-   澳大利亚：AIO：<https://orac.amt.edu.au/hub/aio/>
 
     -   难度与 NOI 类似。
 

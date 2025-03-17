@@ -91,13 +91,13 @@ int main() {
 }
 ```
 
-## 常量表达式 constexpr（C++11）
+## 常量表达式 `constexpr`（C++11）
 
 常量表达式是指编译时能计算出结果的表达式，`constexpr` 则要求编译器能在编译时求得函数或变量的值。
 
 编译时计算能允许更好的优化，比如将结果硬编码到汇编中，消除运行时计算开销。与 `const` 的带来的优化不同，当 `constexpr` 修饰的变量满足常量表达式的条件，就强制要求编译器在编译时计算出结果而非运行时。
 
-???+ note " 实际上把 `const` 理解成 **"readonly"**，`constexpr` 理解成 **"const"**，这样更加直观 "
+???+ note " 更直观的理解是把 `const` 理解成「只读」，`constexpr` 理解成「不可变」"
     ```cpp
     constexpr int a = 10;  // 直接定义常量
     
@@ -134,7 +134,7 @@ int main() {
     ```
 
 ???+ note "编译后的可能的汇编代码（使用 Compiler Explorer，Clang 19）"
-    ```assembly
+    ```nasm
     fib1(unsigned int):
             push    r14
             push    rbx

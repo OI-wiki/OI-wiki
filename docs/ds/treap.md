@@ -33,7 +33,7 @@ Treap 的结点除了被维护的 **权值**（$\textit{val}$）之外，还附�
 
 不过，这只是在随机情况下的复杂度，如果我们按照下面这个非常有序的顺序给一个朴素的搜索树插入节点：
 
-```plaintext
+```plain
 1 2 3 4 5
 ```
 
@@ -105,7 +105,7 @@ E(\operatorname{dep}(x_i))&=\sum_{k=1}^n\Pr(x_k=\min X_{i,k}\land k\neq i)\\
 &=\sum_{k=1}^{n}\Pr(x_k=\min X_{i,k})-1\\
 &=\sum_{k=1}^n\dfrac{1}{|i-k|+1}-1\\
 &=\sum_{k=1}^{i-1}\dfrac{1}{i-k+1}+\sum_{k=i+1}^n\dfrac{1}{k-i+1}\\
-&=\sum_{j=2}^i\dfrac 1j+\sum_{j=2}^{n-k+1}\dfrac 1j\\
+&=\sum_{j=2}^i\dfrac 1j+\sum_{j=2}^{n-i+1}\dfrac 1j\\
 &\le 2\sum_{j=2}^n\dfrac 1j < 2\sum_{j=2}^n\int_{j-1}^j\dfrac 1x\mathrm dx\\
 &=2\int_1^n\dfrac 1x\mathrm dx=2\ln n=O(\log n)
 \end{aligned}

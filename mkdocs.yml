@@ -11,7 +11,7 @@ repo_url: 'https://github.com/OI-wiki/OI-wiki'
 edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2024 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2025 OI Wiki Team'
 
 # Contents
 nav:
@@ -244,7 +244,7 @@ nav:
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
       - 升幂引理: math/number-theory/lift-the-exponent.md
-      - 威尔逊定理: math/number-theory/wilson.md
+      - 阶乘取模: math/number-theory/factorial.md
       - 卢卡斯定理: math/number-theory/lucas.md
       - 同余方程: math/number-theory/congruence-equation.md
       - 二次剩余: math/number-theory/quad-residue.md
@@ -259,7 +259,6 @@ nav:
       - 连分数: math/number-theory/continued-fraction.md
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
-      - 循环连分数: math/number-theory/periodic-continued-fraction.md
       - Pell 方程: math/number-theory/pell-equation.md
     - 多项式与生成函数:
       - 多项式与生成函数简介: math/poly/intro.md
@@ -314,7 +313,9 @@ nav:
     - 抽象代数:
       - 基本概念: math/algebra/basic.md
       - 群论: math/algebra/group-theory.md
-      - Schreier–Sims 算法: math/schreier-sims.md
+      - 环论: math/algebra/ring-theory.md
+      - 域论: math/algebra/field-theory.md
+      - Schreier–Sims 算法: math/algebra/schreier-sims.md
     - 概率论:
       - 基本概念: math/probability/basic-conception.md
       - 条件概率与独立性: math/probability/conditional-probability.md
@@ -522,6 +523,7 @@ nav:
     - 15-puzzle: misc/15-puzzle.md
     - Kahan 求和: misc/kahan-summation.md
     - 珂朵莉树/颜色段均摊: misc/odt.md
+    - 空间优化简介: misc/space-optimization.md
   - 专题:
     - RMQ: topic/rmq.md
     - 并查集应用: topic/dsu-app.md
