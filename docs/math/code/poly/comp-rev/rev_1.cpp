@@ -243,8 +243,8 @@ std::vector<uint> FPSPow1(std::vector<uint> g, uint e, int n) {
   return FPSComposition(f, g, n);
 }
 
-// 形似幂级数复合逆，计算 g mod x^n 满足 g(f) = f(g) = x 要求 g(0) = 0 且 g'(0)
-// ≠ 0
+// 形似幂级数复合逆
+// 计算 g mod x^n 满足 g(f) = f(g) = x 要求 g(0) = 0 且 g'(0) ≠ 0
 std::vector<uint> FPSReversion(std::vector<uint> f, int n) {
   assert(f.size() >= 2);
   assert(f[0] == 0);
