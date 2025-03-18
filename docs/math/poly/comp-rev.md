@@ -85,6 +85,8 @@ $$
 我们使用 Kronecker 代换再计算一元多项式乘法即可，不难发现在 $n$ 为二的幂时上述算法可以在 $O\left(\mathsf{M}\left(n\right)\log n\right)$ 时间完成，因为每一次递归中 $y$ 的次数翻倍，但是 $x$ 的次数减半。
 
 ??? note " 模板（[P5373【模板】多项式复合函数](https://www.luogu.com.cn/problem/P5373)）"
+    代码相对于原算法作了一些简化及修改，使得代码更短。
+
     ```cpp
     --8<-- "docs/math/code/poly/comp-rev/comp_1.cpp"
     ```
@@ -171,6 +173,13 @@ $$
 6&\textbf{return }\left((t^{-1}x) \circ \left(x\cdot H\right)\right)
 \end{array}
 $$
+
+??? note " 模板（[P5809 【模板】多项式复合逆](https://www.luogu.com.cn/problem/P5809)）"
+    代码相对于原算法作了一些简化及修改，使得代码更短。
+
+    ```cpp
+    --8<-- "docs/math/code/poly/comp-rev/rev_1.cpp"
+    ```
 
 ### 由转置原理导出
 

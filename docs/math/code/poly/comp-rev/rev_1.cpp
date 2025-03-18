@@ -1,4 +1,5 @@
-// g++ comp_1.cpp -O2 -Wall -Werror -std=c++17 -oa
+// g++ rev_1.cpp -O2 -Wall -Werror -std=c++17 -oa
+#include <algorithm>
 #include <cassert>
 #include <cstdio>
 #include <vector>
@@ -181,13 +182,105 @@ std::vector<uint> PolyComposition(const std::vector<uint> &f,
   return FPSComposition(TaylorShift(f, g[0]), gg, n);
 }
 
+// Power Projection: [x^(n-1)] (fg^i) for i=0,..,n-1 要求 g(0) = 0
+std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
+                                  int n) {
+  assert(g.empty() || g[0] == 0);
+  int len = 1;
+  while (len < n) len *= 2;
+  const auto [root, inv_root] = GetFftRoot(len * 4);
+  // [x^(n-1)] (f(x) / (-g(x) + y)) mod y^n in R[x]((y^(-1)))
+  auto KinoshitaLi =
+      [&root = root, &inv_root = inv_root, c = g.empty() ? 0u : g[0]](
+          auto &&KinoshitaLi, std::vector<uint> P, std::vector<uint> Q, int d,
+          int n) -> std::vector<uint> {
+    assert((int)P.size() == d * n);
+    assert((int)Q.size() == d * n);
+    if (n == 1) return P;
+    std::vector<uint> dftQ(d * n * 4), dftP(d * n * 4);
+    for (int i = 0; i < d; ++i)
+      for (int j = 0; j < n; ++j)
+        dftP[i * n * 2 + j] = P[i * n + j], dftQ[i * n * 2 + j] = Q[i * n + j];
+    dftQ[d * n * 2] = 1;
+    Fft(d * n * 4, dftP.data(), root.data());
+    Fft(d * n * 4, dftQ.data(), root.data());
+    P.resize(d * n * 2);
+    Q.resize(d * n * 2);
+    for (int i = 0; i < d * n * 4; i += 2) {
+      const uint u = (ull)dftP[i] * dftQ[i + 1] % MOD;
+      const uint v = (ull)dftP[i + 1] * dftQ[i] % MOD;
+      P[i / 2] = (ull)(u + MOD - v) * inv_root[i / 2] % MOD;
+      if (P[i / 2] & 1) P[i / 2] += MOD;
+      P[i / 2] /= 2;
+      Q[i / 2] = (ull)dftQ[i] * dftQ[i + 1] % MOD;
+    }
+    InvFft(d * n * 2, P.data(), inv_root.data());
+    InvFft(d * n * 2, Q.data(), inv_root.data());
+    if ((Q[0] += MOD - 1) >= MOD) Q[0] -= MOD;
+    for (int i = 1; i < d * 2; ++i)
+      for (int j = 0; j < n / 2; ++j)
+        P[i * (n / 2) + j] = P[i * n + j], Q[i * (n / 2) + j] = Q[i * n + j];
+    P.resize(d * n);
+    Q.resize(d * n);
+    return KinoshitaLi(KinoshitaLi, P, Q, d * 2, n / 2);
+  };
+  f.insert(f.begin(), len - n, 0);
+  f.resize(len);
+  g.resize(len);
+  for (int i = 0; i < len; ++i) g[i] = (g[i] != 0 ? MOD - g[i] : 0);
+  std::vector<uint> res = KinoshitaLi(KinoshitaLi, f, g, 1, len);
+  std::reverse(res.begin(), res.end());
+  res.resize(n);
+  return res;
+}
+
+// 形式幂级数幂函数，计算 g^e mod x^n 要求 g(0) = 1
+std::vector<uint> FPSPow1(std::vector<uint> g, uint e, int n) {
+  assert(!g.empty() && g[0] == 1);
+  if (n == 1) return std::vector<uint>{1u};
+  std::vector<uint> inv(n);
+  const auto [factorial, inv_factorial] = GetFactorial(n);
+  std::vector<uint> f(n);
+  uint ep = 1;
+  f[0] = 1;
+  for (int i = 1; i < n; ++i)
+    ep = (ull)ep * (e + MOD + 1 - i) % MOD,
+    f[i] = (ull)ep * inv_factorial[i] % MOD;
+  g[0] = 0;
+  return FPSComposition(f, g, n);
+}
+
+// 形似幂级数复合逆，计算 g 满足 g(f) = f(g) = x 要求 g(0) = 0 且 g'(0) ≠ 0
+std::vector<uint> FPSReversion(std::vector<uint> f, int n) {
+  assert(f.size() >= 2);
+  assert(f[0] == 0);
+  assert(f[1] != 0);
+  if (n == 1) return std::vector<uint>{0u};
+  f.resize(n);
+  const uint invf1 = InvMod(f[1]);
+  uint invf1p = 1;
+  for (int i = 0; i < n; ++i)
+    f[i] = (ull)f[i] * invf1p % MOD, invf1p = (ull)invf1p * invf1 % MOD;
+  std::vector<uint> inv(n);
+  inv[1] = 1;
+  for (int i = 2; i < n; ++i)
+    inv[i] = (ull)(MOD - MOD / i) * inv[MOD % i] % MOD;
+  std::vector<uint> proj = PowerProjection(std::vector<uint>{1u}, f, n);
+  for (int i = 1; i < n; ++i)
+    proj[i] = (ull)proj[i] * (n - 1) % MOD * inv[i] % MOD;
+  std::reverse(proj.begin(), proj.end());
+  std::vector<uint> res = FPSPow1(proj, InvMod(MOD + 1 - n), n - 1);
+  for (int i = 0; i < n - 1; ++i) res[i] = (ull)res[i] * invf1 % MOD;
+  res.insert(res.begin(), 0);
+  return res;
+}
+
 int main() {
-  int n, m;
-  std::scanf("%d%d", &n, &m);
-  std::vector<uint> f(n + 1), g(m + 1);
-  for (int i = 0; i <= n; ++i) std::scanf("%u", &f[i]);
-  for (int i = 0; i <= m; ++i) std::scanf("%u", &g[i]);
-  const std::vector<uint> res = PolyComposition(f, g, n + 1);
-  for (int i = 0; i <= n; ++i) std::printf("%u%c", res[i], " \n"[i == n]);
+  int n;
+  std::scanf("%d", &n);
+  std::vector<uint> f(n);
+  for (int i = 0; i < n; ++i) std::scanf("%u", &f[i]);
+  const std::vector<uint> res = FPSReversion(f, n);
+  for (int i = 0; i < n; ++i) std::printf("%u%c", res[i], " \n"[i + 1 == n]);
   return 0;
 }
