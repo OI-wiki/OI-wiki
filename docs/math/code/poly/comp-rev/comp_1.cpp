@@ -16,9 +16,9 @@ constexpr uint PowMod(uint a, ull e) {
 
 constexpr uint InvMod(uint a) { return PowMod(a, MOD - 2); }
 
-constexpr uint LEAST_QUAD_NONRESIDUE = 3;
-constexpr int LOG2_ORD = __builtin_ctz(MOD - 1);
-constexpr uint ZETA = PowMod(LEAST_QUAD_NONRESIDUE, (MOD - 1) >> LOG2_ORD);
+constexpr uint QUAD_NONRESIDUE = 3;
+constexpr int LOG2_ORD = 23;  // __builtin_ctz(MOD - 1)
+constexpr uint ZETA = PowMod(QUAD_NONRESIDUE, (MOD - 1) >> LOG2_ORD);
 constexpr uint INV_ZETA = InvMod(ZETA);
 
 struct FftRoot {
