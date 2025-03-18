@@ -21,15 +21,15 @@ constexpr int LOG2_ORD = 23;  // __builtin_ctz(MOD - 1)
 constexpr uint ZETA = PowMod(QUAD_NONRESIDUE, (MOD - 1) >> LOG2_ORD);
 constexpr uint INV_ZETA = InvMod(ZETA);
 
-struct FftRoot {
+struct FFTRoot {
   std::vector<uint> root;
   std::vector<uint> inv_root;
 };
 
 // 返回做 n 长 FFT 所需的单位根数组，长度为一半
-FftRoot GetFftRoot(int n) {
+FFTRoot GetFFTRoot(int n) {
   assert((n & (n - 1)) == 0);
-  if (n / 2 == 0) return FftRoot{};
+  if (n / 2 == 0) return FFTRoot{};
   std::vector<uint> root;
   std::vector<uint> inv_root;
   root.resize(n / 2);
@@ -42,7 +42,7 @@ FftRoot GetFftRoot(int n) {
     root[i] = (ull)root[i - (i & (i - 1))] * root[i & (i - 1)] % MOD,
     inv_root[i] =
         (ull)inv_root[i - (i & (i - 1))] * inv_root[i & (i - 1)] % MOD;
-  return FftRoot{root, inv_root};
+  return FFTRoot{root, inv_root};
 }
 
 void Butterfly(int n, uint a[], const uint root[]) {
@@ -68,9 +68,9 @@ void InvButterfly(int n, uint a[], const uint root[]) {
       }
 }
 
-void Fft(int n, uint a[], const uint root[]) { Butterfly(n, a, root); }
+void FFT(int n, uint a[], const uint root[]) { Butterfly(n, a, root); }
 
-void InvFft(int n, uint a[], const uint root[]) {
+void InvFFT(int n, uint a[], const uint root[]) {
   InvButterfly(n, a, root);
   const uint inv_n = InvMod(n);
   for (int i = 0; i < n; ++i) a[i] = (ull)a[i] * inv_n % MOD;
@@ -82,7 +82,7 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
   assert(g.empty() || g[0] == 0);
   int len = 1;
   while (len < n) len *= 2;
-  const auto [root, inv_root] = GetFftRoot(len * 4);
+  const auto [root, inv_root] = GetFFTRoot(len * 4);
   // [y^(-1)] (f(y) / (-g(x) + y)) mod x^n in R[x]((y^(-1)))
   auto KinoshitaLi = [&root = root, &inv_root = inv_root](
                          auto &&KinoshitaLi, const std::vector<uint> &P,
@@ -94,11 +94,11 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
     for (int i = 0; i < d; ++i)
       for (int j = 0; j < n; ++j) dftQ[i * n * 2 + j] = Q[i * n + j];
     dftQ[d * n * 2] = 1;
-    Fft(d * n * 4, dftQ.data(), root.data());
+    FFT(d * n * 4, dftQ.data(), root.data());
     std::vector<uint> V(d * n * 2);
     for (int i = 0; i < d * n * 4; i += 2)
       V[i / 2] = (ull)dftQ[i] * dftQ[i + 1] % MOD;
-    InvFft(d * n * 2, V.data(), inv_root.data());
+    InvFFT(d * n * 2, V.data(), inv_root.data());
     if ((V[0] += MOD - 1) >= MOD) V[0] -= MOD;
     for (int i = 1; i < d * 2; ++i)
       for (int j = 0; j < n / 2; ++j) V[i * (n / 2) + j] = V[i * n + j];
@@ -107,13 +107,13 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
     std::vector<uint> dftT(d * n * 2);
     for (int i = 0; i < d * 2; ++i)
       for (int j = 0; j < n / 2; ++j) dftT[i * n + j] = T[i * (n / 2) + j];
-    Fft(d * n * 2, dftT.data(), root.data());
+    FFT(d * n * 2, dftT.data(), root.data());
     for (int i = 0; i < d * n * 4; i += 2) {
       const uint u = dftQ[i];
       dftQ[i] = (ull)dftT[i / 2] * dftQ[i + 1] % MOD;
       dftQ[i + 1] = (ull)dftT[i / 2] * u % MOD;
     }
-    InvFft(d * n * 4, dftQ.data(), inv_root.data());
+    InvFFT(d * n * 4, dftQ.data(), inv_root.data());
     for (int i = 0; i < d; ++i)
       for (int j = 0; j < n; ++j) dftQ[i * n + j] = dftQ[(i + d) * (n * 2) + j];
     dftQ.resize(d * n);
@@ -160,13 +160,13 @@ std::vector<uint> TaylorShift(std::vector<uint> f, uint c) {
     g[i] = (ull)cp * inv_factorial[i] % MOD, cp = (ull)cp * c % MOD;
   int len = 1;
   while (len < n * 2 - 1) len *= 2;
-  const auto [root, inv_root] = GetFftRoot(len);
+  const auto [root, inv_root] = GetFFTRoot(len);
   f.resize(len);
   g.resize(len);
-  Fft(len, f.data(), inv_root.data());
-  Fft(len, g.data(), root.data());
+  FFT(len, f.data(), inv_root.data());
+  FFT(len, g.data(), root.data());
   for (int i = 0; i < len; ++i) f[i] = (ull)f[i] * g[i] % MOD;
-  InvFft(len, f.data(), root.data());
+  InvFFT(len, f.data(), root.data());
   f.resize(n);
   for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * inv_factorial[i] % MOD;
   return f;
