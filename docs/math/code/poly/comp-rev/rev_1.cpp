@@ -231,7 +231,6 @@ std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
 std::vector<uint> FPSPow1(std::vector<uint> g, uint e, int n) {
   assert(!g.empty() && g[0] == 1);
   if (n == 1) return std::vector<uint>{1u};
-  std::vector<uint> inv(n);
   std::vector<uint> inv_factorial;
   std::tie(std::ignore, inv_factorial) = GetFactorial(n);
   std::vector<uint> f(n);
