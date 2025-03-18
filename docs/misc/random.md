@@ -1,4 +1,5 @@
 author: Kasugan0, StudyingFather, Arielfoever, CCXXXI, Enter-tainer, Henry-ZHR, Ir1d, ksyx, Marcythm, ouuan, partychicken, R-G-Mocoratioen, TianyiQ, Tiphereth-A, Vivian Heleneto, woruo27, Xeonacid
+
 ## 概述
 
 要想使用随机化技巧，前提条件是能够快速生成随机数。本文将介绍生成随机数的常见方法。
