@@ -290,46 +290,43 @@
 
 声明 `Node` 数据类型和负责对地址进行异或操作的 `XOR()` 函数。
 
-=== "C++"
-    ```cpp
-    struct Node {
-      int data;
-      Node* xor_prev_next;
-    };
-    
-    Node* XOR(Node* a, Node* b) { return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b)); }
-    ```
+```cpp
+struct Node {
+  int data;
+  Node* xor_prev_next;
+};
+
+Node* XOR(Node* a, Node* b) { return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b)); }
+```
 
 声明 `XORList` 类，存储指向链表头和尾的指针。
 
-=== "C++"
-    ```cpp
-    class XORList {
-     public:
-      Node* head;
-      Node* tail;
-    
-      XORList() {
-        this->head = nullptr;
-        this->tail = nullptr;
-      }
-    
-      ~XORList() {
-        for (Node *p = this->head, *prev = nullptr; p != nullptr;) {
-          Node* next = XOR(prev, p->xor_prev_next);
-          prev = p;
-          delete p;
-          p = next;
-        }
-      }
-    };
-    ```
+```cpp
+class XORList {
+ public:
+  Node* head;
+  Node* tail;
+
+  XORList() {
+    this->head = nullptr;
+    this->tail = nullptr;
+  }
+
+  ~XORList() {
+    for (Node *p = this->head, *prev = nullptr; p != nullptr;) {
+      Node* next = XOR(prev, p->xor_prev_next);
+      prev = p;
+      delete p;
+      p = next;
+    }
+  }
+};
+```
 
 以下函数将定义在 `XORList` 类中
 
 1.  将元素附加到链表的末尾：
 
-=== "C++"
     ```cpp
     void AppendElement(int value) {
       Node *new_node = new Node();
@@ -346,7 +343,6 @@
 
 2.  在给定的索引后插入一个元素：
 
-=== "C++"
     ```cpp
     void InsertElement(int index, int value) {
       Node *prev = nullptr;
@@ -377,7 +373,6 @@
 
 3.  从给定索引删除一个元素：
 
-=== "C++"
     ```cpp
     void DeleteElement(int index) {
       Node *prev = nullptr;
