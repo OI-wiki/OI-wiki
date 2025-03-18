@@ -1,3 +1,4 @@
+author: Kasugan0, StudyingFather, Arielfoever, CCXXXI, Enter-tainer, Henry-ZHR, Ir1d, ksyx, Marcythm, ouuan, partychicken, R-G-Mocoratioen, TianyiQ, Tiphereth-A, Vivian Heleneto, woruo27, Xeonacid
 ## 概述
 
 要想使用随机化技巧，前提条件是能够快速生成随机数。本文将介绍生成随机数的常见方法。
@@ -186,9 +187,7 @@ int main() {
 
 ### 非确定随机数的均匀分布整数随机数生成器
 
-`random_device` 是一个基于硬件的均匀分布随机数生成器，**在熵池耗尽** 前可以高速生成随机数。该类在 C++11 定义，需要 `random` 头文件。由于熵池耗尽后性能急剧下降，所以建议用此方法生成 `mt19937` 等伪随机数的种子，而不是直接生成。
-
-`random_device` 是非确定的均匀随机位生成器，尽管若不支持非确定随机数生成，则允许实现用伪随机数引擎实现。目前笔者尚未接到报告称 NOIP 评测机不支持基于硬件的均匀分布随机数生成。但出于保守考虑，建议使用该算法生成随机数种子。
+`random_device` 是一个基于硬件的均匀分布随机数生成器，可以高速生成随机数。该类在 C++11 定义，需要 `random` 头文件。
 
 参考代码如下。
 
@@ -203,10 +202,7 @@ int main() {
   std::map<int, int> hist;
   std::uniform_int_distribution<int> dist(0, 9);
   for (int n = 0; n < 20000; ++n) {
-    ++hist[dist(rd)];  // 注意：仅用于演示：一旦熵池耗尽，
-                       // 许多 random_device 实现的性能就急剧下滑
-                       // 对于实践使用， random_device 通常仅用于
-                       // 播种类似 mt19937 的伪随机数生成器
+    ++hist[dist(rd)];
   }
   for (auto p : hist) {
     std::cout << p.first << " : " << std::string(p.second / 100, '*') << '\n';
