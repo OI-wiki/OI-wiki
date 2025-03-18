@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <cassert>
 #include <cstdio>
+#include <tuple>
+#include <utility>
 #include <vector>
 
 using uint = unsigned;
@@ -22,15 +24,10 @@ constexpr int LOG2_ORD = 23;  // __builtin_ctz(MOD - 1)
 constexpr uint ZETA = PowMod(QUAD_NONRESIDUE, (MOD - 1) >> LOG2_ORD);
 constexpr uint INV_ZETA = InvMod(ZETA);
 
-struct FFTRoot {
-  std::vector<uint> root;
-  std::vector<uint> inv_root;
-};
-
 // 返回做 n 长 FFT 所需的单位根数组，长度为一半
-FFTRoot GetFFTRoot(int n) {
+std::pair<std::vector<uint>, std::vector<uint>> GetFFTRoot(int n) {
   assert((n & (n - 1)) == 0);
-  if (n / 2 == 0) return FFTRoot{};
+  if (n / 2 == 0) return {};
   std::vector<uint> root;
   std::vector<uint> inv_root;
   root.resize(n / 2);
@@ -43,7 +40,7 @@ FFTRoot GetFFTRoot(int n) {
     root[i] = (ull)root[i - (i & (i - 1))] * root[i & (i - 1)] % MOD,
     inv_root[i] =
         (ull)inv_root[i - (i & (i - 1))] * inv_root[i & (i - 1)] % MOD;
-  return FFTRoot{root, inv_root};
+  return {root, inv_root};
 }
 
 void Butterfly(int n, uint a[], const uint root[]) {
@@ -83,10 +80,10 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
   assert(g.empty() || g[0] == 0);
   int len = 1;
   while (len < n) len *= 2;
-  const auto [root, inv_root] = GetFFTRoot(len * 4);
+  std::vector<uint> root, inv_root;
+  std::tie(root, inv_root) = GetFFTRoot(len * 4);
   // [y^(-1)] (f(y) / (-g(x) + y)) mod x^n in R[x]((y^(-1)))
-  auto KinoshitaLi = [&root = root, &inv_root = inv_root](
-                         auto &&KinoshitaLi, const std::vector<uint> &P,
+  auto KinoshitaLi = [&](auto &&KinoshitaLi, const std::vector<uint> &P,
                          const std::vector<uint> &Q, int d, int n) {
     assert((int)P.size() == d * n);
     assert((int)Q.size() == d * n);
@@ -128,17 +125,11 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
   return res;
 }
 
-struct Factorial {
-  std::vector<uint> factorial;
-  std::vector<uint> inv_factorial;
-};
-
-Factorial GetFactorial(int n) {
-  if (n == 0) return Factorial{};
-  std::vector<uint> factorial(n);
-  std::vector<uint> inv_factorial(n);
+std::pair<std::vector<uint>, std::vector<uint>> GetFactorial(int n) {
+  if (n == 0) return {};
+  std::vector<uint> factorial(n), inv_factorial(n);
   factorial[0] = inv_factorial[0] = 1;
-  if (n == 1) return Factorial{factorial, inv_factorial};
+  if (n == 1) return {factorial, inv_factorial};
   std::vector<uint> inv(n);
   inv[1] = 1;
   for (int i = 2; i < n; ++i)
@@ -146,14 +137,15 @@ Factorial GetFactorial(int n) {
   for (int i = 1; i < n; ++i)
     factorial[i] = (ull)factorial[i - 1] * i % MOD,
     inv_factorial[i] = (ull)inv_factorial[i - 1] * inv[i] % MOD;
-  return Factorial{factorial, inv_factorial};
+  return {factorial, inv_factorial};
 }
 
 // f(x) |-> f(x + c)
 std::vector<uint> TaylorShift(std::vector<uint> f, uint c) {
   if (f.empty() || c == 0) return f;
   const int n = f.size();
-  const auto [factorial, inv_factorial] = GetFactorial(n);
+  std::vector<uint> factorial, inv_factorial;
+  std::tie(factorial, inv_factorial) = GetFactorial(n);
   for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * factorial[i] % MOD;
   std::vector<uint> g(n);
   uint cp = 1;
@@ -161,7 +153,8 @@ std::vector<uint> TaylorShift(std::vector<uint> f, uint c) {
     g[i] = (ull)cp * inv_factorial[i] % MOD, cp = (ull)cp * c % MOD;
   int len = 1;
   while (len < n * 2 - 1) len *= 2;
-  const auto [root, inv_root] = GetFFTRoot(len);
+  std::vector<uint> root, inv_root;
+  std::tie(root, inv_root) = GetFFTRoot(len);
   f.resize(len);
   g.resize(len);
   FFT(len, f.data(), inv_root.data());
@@ -188,12 +181,12 @@ std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
   assert(g.empty() || g[0] == 0);
   int len = 1;
   while (len < n) len *= 2;
-  const auto [root, inv_root] = GetFFTRoot(len * 4);
+  std::vector<uint> root, inv_root;
+  std::tie(root, inv_root) = GetFFTRoot(len * 4);
   // [x^(n-1)] (f(x) / (-g(x) + y)) mod y^n in R[x]((y^(-1)))
-  auto KinoshitaLi =
-      [&root = root, &inv_root = inv_root, c = g.empty() ? 0u : g[0]](
-          auto &&KinoshitaLi, std::vector<uint> P, std::vector<uint> Q, int d,
-          int n) -> std::vector<uint> {
+  auto KinoshitaLi = [&](auto &&KinoshitaLi, std::vector<uint> P,
+                         std::vector<uint> Q, int d,
+                         int n) -> std::vector<uint> {
     assert((int)P.size() == d * n);
     assert((int)Q.size() == d * n);
     if (n == 1) return P;
@@ -239,7 +232,8 @@ std::vector<uint> FPSPow1(std::vector<uint> g, uint e, int n) {
   assert(!g.empty() && g[0] == 1);
   if (n == 1) return std::vector<uint>{1u};
   std::vector<uint> inv(n);
-  const auto [factorial, inv_factorial] = GetFactorial(n);
+  std::vector<uint> inv_factorial;
+  std::tie(std::ignore, inv_factorial) = GetFactorial(n);
   std::vector<uint> f(n);
   uint ep = 1;
   f[0] = 1;
