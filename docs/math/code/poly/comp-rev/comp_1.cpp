@@ -122,7 +122,7 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
   };
   f.resize(len);
   g.resize(len);
-  for (int i = 0; i < len; ++i) g[i] = (g[i] == 0 ? 0 : MOD - g[i]);
+  for (int i = 0; i < len; ++i) g[i] = (g[i] != 0 ? MOD - g[i] : 0);
   std::vector<uint> res = KinoshitaLi(KinoshitaLi, f, g, 1, len);
   res.resize(n);
   return res;
@@ -138,15 +138,14 @@ Factorial GetFactorial(int n) {
   std::vector<uint> factorial(n);
   std::vector<uint> inv_factorial(n);
   factorial[0] = inv_factorial[0] = 1;
-  if (n > 1) {
-    std::vector<uint> inv(n);
-    inv[1] = 1;
-    for (int i = 2; i < n; ++i)
-      inv[i] = (ull)(MOD - MOD / i) * inv[MOD % i] % MOD;
-    for (int i = 1; i < n; ++i)
-      factorial[i] = (ull)factorial[i - 1] * i % MOD,
-      inv_factorial[i] = (ull)inv_factorial[i - 1] * inv[i] % MOD;
-  }
+  if (n == 1) return Factorial{factorial, inv_factorial};
+  std::vector<uint> inv(n);
+  inv[1] = 1;
+  for (int i = 2; i < n; ++i)
+    inv[i] = (ull)(MOD - MOD / i) * inv[MOD % i] % MOD;
+  for (int i = 1; i < n; ++i)
+    factorial[i] = (ull)factorial[i - 1] * i % MOD,
+    inv_factorial[i] = (ull)inv_factorial[i - 1] * inv[i] % MOD;
   return Factorial{factorial, inv_factorial};
 }
 
