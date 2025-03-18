@@ -174,7 +174,7 @@ $$
 \end{array}
 $$
 
-??? note " 模板（[P5809 【模板】多项式复合逆](https://www.luogu.com.cn/problem/P5809)）"
+??? note " 模板（[P5809【模板】多项式复合逆](https://www.luogu.com.cn/problem/P5809)）"
     代码相对于原算法作了一些简化及修改，使得代码更短。
 
     ```cpp
