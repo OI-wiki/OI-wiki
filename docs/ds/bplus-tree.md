@@ -1,4 +1,4 @@
-author: Persdre
+author: Persdre, jaking
 
 ## 引入
 
@@ -682,6 +682,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
           cursor->ptr[i] = rightNode->ptr[j];
           rightNode->ptr[j] = NULL;
         }
+
         cursor->size += rightNode->size + 1;
         rightNode->size = 0;
         removeInternal(parent->key[rightSibling - 1], parent, rightNode);
