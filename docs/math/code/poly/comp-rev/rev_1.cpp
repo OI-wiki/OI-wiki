@@ -28,10 +28,7 @@ constexpr uint INV_ZETA = InvMod(ZETA);
 std::pair<std::vector<uint>, std::vector<uint>> GetFFTRoot(int n) {
   assert((n & (n - 1)) == 0);
   if (n / 2 == 0) return {};
-  std::vector<uint> root;
-  std::vector<uint> inv_root;
-  root.resize(n / 2);
-  inv_root.resize(n / 2);
+  std::vector<uint> root(n / 2), inv_root(n / 2);
   root[0] = inv_root[0] = 1;
   for (int i = 0; (1 << i) < n / 2; ++i)
     root[1 << i] = PowMod(ZETA, 1LL << (LOG2_ORD - i - 2)),
@@ -125,56 +122,6 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
   return res;
 }
 
-std::pair<std::vector<uint>, std::vector<uint>> GetFactorial(int n) {
-  if (n == 0) return {};
-  std::vector<uint> factorial(n), inv_factorial(n);
-  factorial[0] = inv_factorial[0] = 1;
-  if (n == 1) return {factorial, inv_factorial};
-  std::vector<uint> inv(n);
-  inv[1] = 1;
-  for (int i = 2; i < n; ++i)
-    inv[i] = (ull)(MOD - MOD / i) * inv[MOD % i] % MOD;
-  for (int i = 1; i < n; ++i)
-    factorial[i] = (ull)factorial[i - 1] * i % MOD,
-    inv_factorial[i] = (ull)inv_factorial[i - 1] * inv[i] % MOD;
-  return {factorial, inv_factorial};
-}
-
-// f(x) |-> f(x + c)
-std::vector<uint> TaylorShift(std::vector<uint> f, uint c) {
-  if (f.empty() || c == 0) return f;
-  const int n = f.size();
-  std::vector<uint> factorial, inv_factorial;
-  std::tie(factorial, inv_factorial) = GetFactorial(n);
-  for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * factorial[i] % MOD;
-  std::vector<uint> g(n);
-  uint cp = 1;
-  for (int i = 0; i < n; ++i)
-    g[i] = (ull)cp * inv_factorial[i] % MOD, cp = (ull)cp * c % MOD;
-  int len = 1;
-  while (len < n * 2 - 1) len *= 2;
-  std::vector<uint> root, inv_root;
-  std::tie(root, inv_root) = GetFFTRoot(len);
-  f.resize(len);
-  g.resize(len);
-  FFT(len, f.data(), inv_root.data());
-  FFT(len, g.data(), root.data());
-  for (int i = 0; i < len; ++i) f[i] = (ull)f[i] * g[i] % MOD;
-  InvFFT(len, f.data(), root.data());
-  f.resize(n);
-  for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * inv_factorial[i] % MOD;
-  return f;
-}
-
-// 多项式复合，求出 f(g) mod x^n
-std::vector<uint> PolyComposition(const std::vector<uint> &f,
-                                  const std::vector<uint> &g, int n) {
-  if (g.empty() || g[0] == 0) return FPSComposition(f, g, n);
-  std::vector<uint> gg = g;
-  gg[0] = 0;
-  return FPSComposition(TaylorShift(f, g[0]), gg, n);
-}
-
 // Power Projection: [x^(n-1)] (fg^i) for i=0,..,n-1 要求 g(0) = 0
 std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
                                   int n) {
@@ -183,7 +130,7 @@ std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
   while (len < n) len *= 2;
   std::vector<uint> root, inv_root;
   std::tie(root, inv_root) = GetFFTRoot(len * 4);
-  // [x^(n-1)] (f(x) / (-g(x) + y)) mod y^n in R[x]((y^(-1)))
+  // [x^(n-1)] (f(x) / (-g(x) + y)) in R[x]((y^(-1)))
   auto KinoshitaLi = [&](auto &&KinoshitaLi, std::vector<uint> P,
                          std::vector<uint> Q, int d,
                          int n) -> std::vector<uint> {
@@ -231,14 +178,12 @@ std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
 std::vector<uint> FPSPow1(std::vector<uint> g, uint e, int n) {
   assert(!g.empty() && g[0] == 1);
   if (n == 1) return std::vector<uint>{1u};
-  std::vector<uint> inv_factorial;
-  std::tie(std::ignore, inv_factorial) = GetFactorial(n);
-  std::vector<uint> f(n);
-  uint ep = 1;
-  f[0] = 1;
+  std::vector<uint> inv(n), f(n);
+  inv[1] = f[0] = 1;
+  for (int i = 2; i < n; ++i)
+    inv[i] = (ull)(MOD - MOD / i) * inv[MOD % i] % MOD;
   for (int i = 1; i < n; ++i)
-    ep = (ull)ep * (e + MOD + 1 - i) % MOD,
-    f[i] = (ull)ep * inv_factorial[i] % MOD;
+    f[i] = (ull)f[i - 1] * (e + MOD + 1 - i) % MOD * inv[i] % MOD;
   g[0] = 0;
   return FPSComposition(f, g, n);
 }
@@ -246,9 +191,7 @@ std::vector<uint> FPSPow1(std::vector<uint> g, uint e, int n) {
 // 形式幂级数复合逆
 // 计算 g mod x^n 满足 g(f) = f(g) = x 要求 g(0) = 0 且 g'(0) ≠ 0
 std::vector<uint> FPSReversion(std::vector<uint> f, int n) {
-  assert(f.size() >= 2);
-  assert(f[0] == 0);
-  assert(f[1] != 0);
+  assert(f.size() >= 2 && f[0] == 0 && f[1] != 0);
   if (n == 1) return std::vector<uint>{0u};
   f.resize(n);
   const uint invf1 = InvMod(f[1]);

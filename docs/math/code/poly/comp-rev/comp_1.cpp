@@ -27,10 +27,7 @@ constexpr uint INV_ZETA = InvMod(ZETA);
 std::pair<std::vector<uint>, std::vector<uint>> GetFFTRoot(int n) {
   assert((n & (n - 1)) == 0);
   if (n / 2 == 0) return {};
-  std::vector<uint> root;
-  std::vector<uint> inv_root;
-  root.resize(n / 2);
-  inv_root.resize(n / 2);
+  std::vector<uint> root(n / 2), inv_root(n / 2);
   root[0] = inv_root[0] = 1;
   for (int i = 0; (1 << i) < n / 2; ++i)
     root[1 << i] = PowMod(ZETA, 1LL << (LOG2_ORD - i - 2)),
