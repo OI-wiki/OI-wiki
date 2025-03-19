@@ -1,4 +1,4 @@
-author: Persdre, jaking
+author: Persdre
 
 ## 引入
 
