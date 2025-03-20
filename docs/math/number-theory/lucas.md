@@ -1,228 +1,227 @@
+前置知识：[阶乘取模](./factorial.md)
+
+## 引入
+
+本文讨论大组合数取模的求解。组合数，又称二项式系数，指表达式：
+
+$$
+\binom{n}{k} = \dfrac{n!}{k!(n-k)!}.
+$$
+
+规模不大时，组合数可以通过 [递推公式](../combinatorics/combination.md#组合数性质--二项式推论) 求解，时间复杂度为 $O(nk)$；也可以在较大的素数模数 $p>n$ 下，通过计算分子和分母的阶乘在 $O(n)$ 时间内求解。但当问题规模很大（$n\sim 10^{18}$）时，这些方法不再适用。
+
+基于 Lucas 定理及其推广，本文讨论一种可以在模数不太大 ($m \sim 10^6$) 时求解组合数的方法。更准确地说，只要模数的唯一分解 $m=\prod p_i^{e_i}$ 中所有素数幂的和（即 $\sum p_i^{e_i}$）在 $10^6$ 规模时就可以使用该方法，因为算法的预处理大致相当于这一规模。
+
 ## Lucas 定理
 
-### 引入
+首先讨论模数为素数 $p$ 的情形。此时，有 Lucas 定理：
 
-Lucas 定理用于求解大组合数取模的问题，其中模数必须为素数。正常的组合数运算可以通过递推公式求解（详见 [排列组合](../combinatorics/combination.md)），但当问题规模很大，而模数是一个不大的质数的时候，就不能简单地通过递推求解来得到答案，需要用到 Lucas 定理。
+???+ note "Lucas 定理"
+    对于素数 $p$，有
 
-### 定义
+    $$
+    \binom{n}{k}\equiv \binom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}\binom{n\bmod p}{k\bmod p}\pmod p.
+    $$
 
-Lucas 定理内容如下：对于质数 $p$，有
+    其中，当 $n<k$ 时，二项式系数 $\dbinom{n}{k}$ 规定为 $0$。
 
-$$
-\binom{n}{m}\bmod p = \binom{\left\lfloor n/p \right\rfloor}{\left\lfloor m/p\right\rfloor}\cdot\binom{n\bmod p}{m\bmod p}\bmod p
-$$
+??? note "利用生成函数证明"
+    考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值。因为
 
-观察上述表达式，可知 $n\bmod p$ 和 $m\bmod p$ 一定是小于 $p$ 的数，可以直接求解，$\displaystyle\binom{\left\lfloor n/p \right\rfloor}{\left\lfloor m/p\right\rfloor}$ 可以继续用 Lucas 定理求解。这也就要求 $p$ 的范围不能够太大，一般在 $10^5$ 左右。边界条件：当 $m=0$ 的时候，返回 $1$。
+    $$
+    \binom{p}{n} = \frac{p!}{n!(p-n)!},
+    $$
 
-时间复杂度为 $O(f(p) + g(n)\log n)$，其中 $f(n)$ 为预处理组合数的复杂度，$g(n)$ 为单次求组合数的复杂度。
+    所以，当 $n\neq 0,p$ 时，分子中都没有因子 $p$，但分母中有因子 $p$，所以分式一定是 $p$ 的倍数，模 $p$ 的余数是 $0$；当 $n=0,p$ 时，分式就是 $1$。因此，
 
-???+ note "实现"
-    === "C++"
-        ```cpp
-        long long Lucas(long long n, long long m, long long p) {
-          if (m == 0) return 1;
-          return (C(n % p, m % p, p) * Lucas(n / p, m / p, p)) % p;
-        }
-        ```
-    
-    === "Python"
-        ```python
-        def Lucas(n, m, p):
-            if m == 0:
-                return 1
-            return (C(n % p, m % p, p) * Lucas(n // p, m // p, p)) % p
-        ```
+    $$
+    \binom{p}{n} \equiv [n=0\lor n=p] \pmod p.
+    $$
 
-### 证明
+    记 $f(x) = ax^n + bx^m$。一般地，由 [二项式展开](../combinatorics/combination.md#二项式定理) 和 [费马小定理](./fermat.md#费马小定理) 有
 
-考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值，注意到 $\displaystyle\binom{p}{n} = \frac{p!}{n!(p-n)!}$，分子的质因子分解中 $p$ 的次数恰好为 $1$，因此只有当 $n = 0$ 或 $n = p$ 的时候 $n!(p-n)!$ 的质因子分解中含有 $p$，因此 $\displaystyle\binom{p}{n} \bmod p = [n = 0 \vee n = p]$。进而我们可以得出
+    $$
+    \begin{aligned}
+    (f(x))^p 
+    &= \left(ax^n + bx^m\right)^p \\
+    &= \sum_{k=0}^p\binom{p}{k}(ax^n)^k(bx^m)^{p-k}\\
+    &\equiv a^px^{pn} + b^px^{pm} \\
+    &\equiv a(x^p)^n+b(x^p)^m\\
+    &= f(x^p) \pmod p.
+    \end{aligned}
+    $$
 
-$$
-\begin{align}
-(a+b)^p &= \sum_{n=0}^p \binom pn a^n b^{p-n}\\
-&\equiv \sum_{n=0}^p [n=0\vee n=p] a^n b^{p-n}\\
-&\equiv a^p + b^p \pmod p
-\end{align}
-$$
+    其中，第三行的同余利用了前文说明的结论，即只有 $k=0,p$ 时，组合数才不是 $p$ 的倍数。
 
-注意过程中没有用到费马小定理，因此这一推导不仅适用于整数，亦适用于多项式。因此我们可以考虑二项式 $f^p(x)=(ax^n + bx^m)^p \bmod p$ 的结果
+    利用这一结论，考察二项式展开：
 
-$$
-\begin{align}
-(ax^n + bx^m)^p &\equiv a^p x^{pn} + b^p x^{pm} \\
-&\equiv ax^{pn} + bx^{pm}\\
-&\equiv f(x^p)
-\end{align}
-$$
+    $$
+    \begin{aligned}
+    (1+x)^n &= (1+x)^{p\lfloor n/p\rfloor}(1+x)^{n\bmod p} \\
+    &\equiv (1+x^p)^{\lfloor n/p\rfloor}(1+x)^{n\bmod p} \pmod p.
+    \end{aligned}
+    $$
 
-考虑二项式 $(1+x)^n \bmod p$，那么 $\displaystyle\binom n m$ 就是求其在 $x^m$ 次项的取值。使用上述引理，我们可以得到
+    等式左侧中，项 $x^k$ 的系数为
 
-$$
-\begin{align}
-(1+x)^n &\equiv (1+x)^{p\lfloor n/p \rfloor} (1+x)^{n\bmod p}\\
-&\equiv (1+x^p)^{\lfloor n/p \rfloor} (1+x)^{n\bmod p}
-\end{align}
-$$
+    $$
+    \binom{n}{k}\bmod p.
+    $$
 
-注意前者只有在 $p$ 的倍数位置才有取值，而后者最高次项为 $n\bmod p \le p-1$，因此这两部分的卷积在任何一个位置只有最多一种方式贡献取值，即在前者部分取 $p$ 的倍数次项，后者部分取剩余项，即 $\displaystyle\binom{n}{m}\bmod p = \binom{\left\lfloor n/p \right\rfloor}{\left\lfloor m/p\right\rfloor}\cdot\binom{n\bmod p}{m\bmod p}\bmod p$。
+    转而计算等式右侧中项 $x^k$ 的系数。第一个因子中各项的次数必然是 $p$ 的倍数，第二个因子中各项的次数必然小于 $p$，而 $k$ 分解成这样两部分的和的方式是唯一的，即带余除法：$k=p\lfloor k/p\rfloor +(k\bmod p)$。因此，第一个因子只能贡献其 $p\lfloor k/p\rfloor$ 次项，第二个因子只能贡献其 $k\bmod p$ 次项。所以，右侧等式中 $x^k$ 系数为两个因子各自贡献的项的系数的乘积：
 
-## exLucas 定理
+    $$
+    \binom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}\binom{n\bmod p}{k\bmod p}\bmod p.
+    $$
 
-Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 定理。
+    令两侧系数相等，就得到 Lucas 定理。
 
-### 过程
+??? note "利用阶乘取模的结论证明"
+    此处提供一种基于 [阶乘取模](./factorial.md#素数模的情形) 相关结论的证明方法，以方便和后文 exLucas 部分的方法建立联系。已知二项式系数
 
-#### 第一部分：中国剩余定理
+    $$
+    \binom{n}{k} = \dfrac{n!}{k!(n-k)!}.
+    $$
 
-要求计算二项式系数 $\binom{n}{m}\bmod M$，其中 $M$ 可能为合数。
+    将阶乘 $n!$ 中 $p$ 的幂次和其他因子分离，得到分解：
 
-考虑利用 [中国剩余定理](./crt.md) 合并答案，这种情况下我们只需求出 $\binom{n}{m}\bmod p^\alpha$ 的值即可（其中 $p$ 为素数且 $\alpha$ 为正整数）。
+    $$
+    n! = p^{\nu_p(n!)}(n!)_p.
+    $$
 
-根据 **唯一分解定理**，将 $M$ 质因数分解：
+    就得到二项式系数的表达式：
 
-$$
-M={p_1}^{\alpha_1}\cdot{p_2}^{\alpha_2}\cdots{p_r}^{\alpha_r}=\prod_{i=1}^{r}{p_i}^{\alpha_i}
-$$
+    $$
+    \binom{n}{k} = p^{\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)}\dfrac{(n!)_p}{(k!)_p((n-k)!)_p}.
+    $$
 
-对于任意 $i,j$，有 ${p_i}^{\alpha_i}$ 与 ${p_j}^{\alpha_j}$ 互质，所以可以构造如下 $r$ 个同余方程：
+    幂次 $\nu_p(n!)$ 和阶乘余数 $(n!)_p\bmod p$ 都有递推公式：
 
-$$
-\left\{
-\begin{aligned}
-a_1\equiv \displaystyle\binom{n}{m}&\pmod {{p_1}^{\alpha_1}}\\
-a_2\equiv \displaystyle\binom{n}{m}&\pmod {{p_2}^{\alpha_2}}\\
-&\cdots\\
-a_r\equiv \displaystyle\binom{n}{m}&\pmod {{p_r}^{\alpha_r}}\\
-\end{aligned}
-\right.
-$$
+    $$
+    \begin{aligned}
+    \nu_p(n!) &= \lfloor n/p\rfloor+\nu_p( \lfloor n/p\rfloor!),\\
+    (n!)_p &\equiv (-1)^{\lfloor n/p\rfloor}\cdot (n\bmod p)!\cdot (\lfloor n/p\rfloor!)_p\pmod p.
+    \end{aligned}
+    $$
 
-我们发现，在求出 $a_i$ 后，就可以用中国剩余定理求解出 $\displaystyle\binom{n}{m}$。
+    前者是 Legendre 公式的推论，后者是 Wilson 定理的推论。
 
-#### 第二部分：移除分子分母中的素数
+    将递推公式代入二项式系数的表达式并整理，就得到：
 
-根据同余的定义，$\displaystyle a_i=\binom{n}{m}\bmod {p_i}^{\alpha_i}$，问题转化成，求 $\displaystyle \binom{n}{m} \bmod p^\alpha$（$p$ 为质数）的值。
+    $$
+    \begin{aligned}
+    \binom{n}{k} &\equiv (-p)^{\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor}\cdot\dfrac{(n\bmod p)!}{(k\bmod p)!((n-k)\bmod p)!} \\
+    &\quad \cdot p^{\nu_p(\lfloor n/p\rfloor!)-\nu_p(\lfloor k/p\rfloor!)-\nu_p(\lfloor(n-k)/p\rfloor!)}\dfrac{(\lfloor n/p\rfloor!)_p}{(\lfloor k/p\rfloor!)_p(\lfloor(n-k)/p\rfloor!)_p} \pmod p.
+    \end{aligned}
+    $$
 
-根据组合数定义 $\displaystyle \binom{n}{m} = \frac{n!}{m! (n-m)!}$，$\displaystyle \binom{n}{m} \bmod p^\alpha = \frac{n!}{m! (n-m)!} \bmod p^\alpha$。
+    现在考察 $\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor$ 的取值。因为有
 
-由于式子是在模 $p^\alpha$ 意义下，所以分母要算乘法逆元。
+    $$
+    \begin{aligned}
+    n &= \lfloor n/p\rfloor p + (n\bmod p),\\
+    k &= \lfloor k/p\rfloor p + (k\bmod p),\\
+    n-k &= \lfloor (n-k)/p\rfloor p + ((n-k)\bmod p),\\
+    \end{aligned}
+    $$
 
-同余方程 $ax \equiv 1 \pmod p$（即乘法逆元）**有解** 的充要条件为 $\gcd(a,p)=1$（裴蜀定理），
+    所以，利用第一式减去后两式，就得到
 
-然而 **无法保证有解**，发现无法直接求 $\operatorname{inv}_{m!}$ 和 $\operatorname{inv}_{(n-m)!}$，
+    $$
+    (\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor)p = (k\bmod p)+((n-k)\bmod p)-(n\bmod p).
+    $$
 
-所以将原式转化为：
+    等式右侧，前两项的和严格小于 $2p$，而第三项 $n\bmod p$ 正是前两项的和的余数，所以右侧必然非负，但小于 $2p$，又需要是 $p$ 的倍数，就只能是 $0$ 或 $p$。这说明 $\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor$ 只能是 $0$ 或 $1$：
 
-$$
-\frac{\frac{n!}{p^x}}{\frac{m!}{p^y}\frac{(n-m)!}{p^z}}p^{x-y-z} \bmod p^\alpha
-$$
+    -   如果它是 $0$，那么此时也成立 $(n\bmod p) = (k\bmod p)+((n-k)\bmod p)$。因此，上式中的第一个因子的指数为 $0$，该因子就等于一；第二个因子就是 $\dbinom{n\bmod p}{k\bmod p}$；第三个因子则由前文的展开式可知，就等于 $\dbinom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}$。此时，Lucas 公式成立；
+    -   如果它是 $1$，那么第一个因子的指数为 $1$，该因子就等于零，所以二项式系数的余数为零。同时，Lucas 定理所要证明的等式右侧的 $\dbinom{n\bmod p}{k\bmod p}$ 也必然是零，因为此时必然有 $(n\bmod p)<(k\bmod p)$；否则，将有
 
-$x$ 表示 $n!$ 中包含多少个 $p$ 因子，$y, z$ 同理。
+        $$
+        ((n-k)\bmod p) = p + (n\bmod p)  - (k\bmod p) \ge p.
+        $$
 
-#### 第三部分：Wilson 定理的推论
+        这显然与余数的定义矛盾。
 
-问题转化成，求形如：
+    综合两种情形，就得到了所要求证的 Lucas 定理。这一证明说明，在求解素数模下组合数时，利用 Lucas 定理和利用 exLucas 算法得到的结果是等价的。
 
-$$
-\frac{n!}{q^x}\bmod q^k
-$$
+Lucas 定理指出，模数为素数 $p$ 时，大组合数的计算可以转化为规模更小的组合数的计算。在右式中，第一个组合数可以继续递归，直到 $n,k<p$ 为止；第二个组合数则可以直接计算，或者提前预处理出来。写成代码的形式就是：
 
-的值。这时可以利用 [Wilson 定理的推论](./factorial.md)。如果难以理解，可以看看下面的解释。
-
-#### 解释
-
-一个示例：22! mod 9
-
-先考虑 $n! \bmod q^k$，
-
-比如 $n=22, q=3, k=2$ 时：
-
-$22!=1\times 2\times 3\times 4\times 5\times 6\times 7\times 8\times 9\times 10\times 11\times 12$
-
-$\times 13\times 14\times 15\times 16\times 17\times 18\times 19\times20\times21\times22$
-
-将其中所有 $q$ 的倍数提取，得到：
-
-$22!=3^7 \times (1\times 2\times 3\times 4\times 5\times 6\times 7) \times (1\times 2\times 4\times 5\times 7\times 8\times 10 \times 11\times 13\times 14\times 16\times 17\times 19 \times 20 \times 22 )$
-
-可以看到，式子分为三个整式的乘积：
-
-1.  是 $3$ 的幂，次数是 $\lfloor\frac{n}{q}\rfloor$；
-
-2.  是 $7!$，即 $\lfloor\frac{n}{q}\rfloor!$，由于阶乘中仍然可能有 $q$ 的倍数，考虑递归求解；
-
-3.  是 $n!$ 中与 $q$ 互质的部分的乘积，具有如下性质：  
-    $1\times 2\times 4\times 5\times 7\times 8\equiv10 \times 11\times 13\times 14\times 16\times 17 \pmod{3^2}$，  
-    即：$\displaystyle \prod_{i,(i,q)=1}^{q^k}i\equiv\prod_{i,(i,q)=1}^{q^k}(i+tq^k) \pmod{q^k}$（$t$ 是任意正整数）。  
-    $\displaystyle \prod_{i,(i,q)=1}^{q^k}i$ 一共循环了 $\displaystyle \lfloor\frac{n}{q^k}\rfloor$ 次，暴力求出 $\displaystyle \prod_{i,(i,q)=1}^{q^k}i$，然后用快速幂求 $\displaystyle \lfloor\frac{n}{q^k}\rfloor$ 次幂。  
-    最后要乘上 $\displaystyle \prod_{i,(i,q)=1}^{n \bmod q^k}i$，即 $19\times 20\times 22$，显然长度小于 $q^k$，暴力乘上去。
-
-上述三部分乘积为 $n!$。最终要求的是 $\frac{n!}{q^x}\bmod{q^k}$。
-
-所以有：
-
-$$
-n! = q^{\left\lfloor\frac{n}{q}\right\rfloor} \cdot \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
-$$
-
-于是：
-
-$$
-\frac{n!}{q^{\left\lfloor\frac{n}{q}\right\rfloor}} = \left(\left\lfloor\frac{n}{q}\right\rfloor\right)! \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
-$$
-
-**$\displaystyle \left(\left\lfloor\frac{n}{q}\right\rfloor\right)!$ 同样是一个数的阶乘，所以也可以分为上述三个部分，于是可以递归求解。**
-
-等式的右边两项不含素数 q。事实上，如果直接把 n 的阶乘中所有 q 的幂都拿出来，等式右边的阶乘也照做，这个等式可以直接写成：
-
-$$
-\frac{n!}{q^{x}} = \frac{\left(\left\lfloor\frac{n}{q}\right\rfloor\right)!}{q^{x'}} \cdot {\left(\prod_{i,(i,q)=1}^{q^k}i\right)}^{\left\lfloor\frac{n}{q^k}\right\rfloor} \cdot \left(\prod_{i,(i,q)=1}^{n\bmod q^k}i\right)
-$$
-
-式中的 $x$ 和 $x'$ 都表示把分子中所有的素数 $q$ 都拿出来。改写成这样，每一项就完全不含 $q$ 了。
-
-递归的结果，三个部分中，左边部分随着递归结束而自然消失，中间部分可以利用 Wilson 定理的推论 0，右边部分就是推论 2 中的 $\prod_{j\geq 0}(N_j!)_p$。
-
-下面这种写法，拥有单次询问 $O(p\log p)$ 的时间复杂度。其中 `int inverse(int x)` 函数返回 $x$ 在模 $p$ 意义下的逆元。
-
-???+ note "实现"
+???+ example "示意"
     ```cpp
-    LL calc(LL n, LL x, LL P) {
-      if (!n) return 1;
-      LL s = 1;
-      for (LL i = 1; i <= P; i++)
-        if (i % x) s = s * i % P;
-      s = Pow(s, n / P, P);
-      for (LL i = n / P * P + 1; i <= n; i++)
-        if (i % x) s = i % P * s % P;
-      return s * calc(n / x, x, P) % P;
-    }
-    
-    LL multilucas(LL m, LL n, LL x, LL P) {
-      int cnt = 0;
-      for (LL i = m; i; i /= x) cnt += i / x;
-      for (LL i = n; i; i /= x) cnt -= i / x;
-      for (LL i = m - n; i; i /= x) cnt -= i / x;
-      return Pow(x, cnt, P) % P * calc(m, x, P) % P * inverse(calc(n, x, P), P) %
-             P * inverse(calc(m - n, x, P), P) % P;
-    }
-    
-    LL exlucas(LL m, LL n, LL P) {
-      int cnt = 0;
-      LL p[20], a[20];
-      for (LL i = 2; i * i <= P; i++) {
-        if (P % i == 0) {
-          p[++cnt] = 1;
-          while (P % i == 0) p[cnt] = p[cnt] * i, P /= i;
-          a[cnt] = multilucas(m, n, i, p[cnt]);
-        }
-      }
-      if (P > 1) p[++cnt] = P, a[cnt] = multilucas(m, n, P, P);
-      return CRT(cnt, a, p);
+    long long Lucas(long long n, long long k long long p) {
+      if (k == 0) return 1;
+      return (C(n % p, k % p, p) * Lucas(n / p, k / p, p)) % p;
     }
     ```
 
-若不考虑 excrt 的复杂度，通过预处理 $\frac{n!}{n以内的p的所有倍数的乘积}\bmod{p}$，可以使时间复杂度优化至单次 $O(p + \log p)$。而如果 p 是固定的，我们在一开始就可以对 p 进行分解，并进行预处理，可以达到总复杂度 $O(p + T\log p)$。
+其中，`C(n, k, p)` 用于计算小规模的组合数。
+
+递归至多进行 $O(\log_p n)$ 次，因而算法的复杂度为 $O(f(p)+g(p)\log_p n)$，其中，$f(p)$ 为预处理组合数的复杂度，$g(p)$ 为单次计算组合数的复杂度。
+
+### 参考实现
+
+此处给出的参考实现在 $O(p)$ 时间内预处理 $p$ 以内的阶乘及其逆元后，可以在 $O(1)$ 时间内计算单个组合数：
+
+??? example "参考实现"
+    ```cpp
+    --8<-- "docs/math/code/lucas/lucas.cpp"
+    ```
+
+该实现的时间复杂度为 $O(p+T\log_p n)$，其中，$T$ 为询问次数。
+
+## exLucas 算法
+
+Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 算法。虽然名字如此，该算法实际操作时并没有用到 Lucas 定理。它的关键步骤是 [计算素数幂模下的阶乘](./factorial.md)。上文的第二个证明指出了它与 Lucas 定理的联系。
+
+### 素数幂模的情形
+
+首先考虑模数为素数幂 $p^\alpha$ 的情形。将阶乘 $n!$ 中的 $p$ 的幂次和其他幂次分开，可以得到分解：
+
+$$
+n! = p^{\nu_p(n!)}(n!)_p.
+$$
+
+其中，$\nu_p(n!)$ 为 $n!$ 的素因数分解中 $p$ 的幂次，而 $(n!)_p$ 显然与 $p$ 互素。因此，组合数可以写作：
+
+$$
+\binom{n}{k} = p^{\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)}\dfrac{(n!)_p}{(k!)_p((n-k)!)_p}.
+$$
+
+式子中的 $\nu_p(n!)$ 等可以通过 [Legendre 公式](./factorial.md#legendre-公式) 计算，$(n!)_p$ 等则可以通过 [递推关系](./factorial.md#素数幂模的情形) 计算。因为后者与 $p^\alpha$ 互素，所以分母上的乘积的逆元可以通过 [扩展欧几里得算法](./inverse.md#扩展欧几里得法) 计算。问题就得以解决。
+
+注意，如果幂次 $\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)\ge\alpha$，余数一定为零，不必再做更多计算。
+
+### 一般模数的情形
+
+对于 $m$ 是一般的合数的情形，只需要首先对它做 [素因数分解](./pollard-rho.md)：
+
+$$
+m = p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_s^{\alpha_s}.
+$$
+
+然后，分别计算出模 $p_i^{\alpha_i}$ 下组合数 $\dbinom{n}{k}$ 的余数，就得到 $s$ 个同余方程：
+
+$$
+\begin{cases}
+\dbinom{n}{k} \equiv r_1, &\pmod{p_1^{\alpha_1}}, \\
+\dbinom{n}{k} \equiv r_2, &\pmod{p_2^{\alpha_2}}, \\
+\quad\quad\cdots\\
+\dbinom{n}{k} \equiv r_s, &\pmod{p_s^{\alpha_s}}.
+\end{cases}
+$$
+
+最后，利用 [中国剩余定理](./crt.md) 求出模 $m$ 的余数。
+
+### 参考实现
+
+最后，给出模板题目 [二项式系数](https://loj.ac/p/181) 的参考实现。
+
+??? example "参考实现"
+    ```cpp
+    --8<-- "docs/math/code/lucas/exlucas.cpp"
+    ```
+
+该算法在预处理时将模数 $m$ 分解为素数幂，然后对所有 $p^\alpha$ 预处理了自 $1$ 至 $p^\alpha$ 所有非 $p$ 倍数的自然数的乘积，以及它在中国剩余定理合并答案时对应的系数。预处理的时间复杂度为 $O(\sqrt{m}+\sum_ip_i^{\alpha_i})$。每次询问时，复杂度为 $O(\log m+\sum_i\log_{p_i}n)$，复杂度中的两项分别是计算逆元和计算幂次、阶乘余数的复杂度。
 
 ## 习题
 
