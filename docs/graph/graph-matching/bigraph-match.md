@@ -199,6 +199,29 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_5.cpp"
         ```
 
+??? note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E)"
+    有 $m$ 个共有 $n$ 个元素的可重集，每一次从某一个可重集里面删除一个元素，然后查询“在每一个可重集里面选至多一个元素，可以达到的最大 $\operatorname{mex}$”。
+
+    ??? note "解法"
+        先考虑如果没有删除元素时怎么做。
+
+        对于每一个多重集，开一个新点；
+
+        对于每一个可能的答案，开一个新点。
+
+        然后，对于某一个对应点 $l_i$ 的多重集的一个元素 $a$，连一条 $l_i$ 至 $r_a$ 的边。
+
+        此时这个弱化版本变成了一个二分图最大匹配。
+
+        现在加回来删除元素的操作，发现根本搞不了：删了一条边可能引起匹配的巨变，复杂度无法接受。
+
+        于是，不如反过来，我们每一次加一条边，然后顺过去重新增广。
+
+        可惜的是本题只能使用匈牙利算法。
+        
+    ??? note "代码"
+    
+
 ## 参考资料
 
 1.  <http://www.matrix67.com/blog/archives/116>
