@@ -687,8 +687,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
         removeInternal(parent->key[rightSibling - 1], parent, rightNode);
       }
     }
-    ```
-
+    
     void BPTree::display(Node *cursor) {
       if (cursor != NULL) {
         for (int i = 0; i < cursor->size; i++) {
@@ -702,7 +701,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
         }
       }
     }
-
+    
     Node *BPTree::getRoot() { return root; }
 
     int main() {
@@ -712,11 +711,11 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
       node.insert(25);
       node.insert(35);
       node.insert(45);
-
+    
       node.display(node.getRoot());
-
+    
       node.remove(15);
-
+    
       node.display(node.getRoot());
     }
     ```
