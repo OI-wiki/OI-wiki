@@ -3,25 +3,25 @@ using namespace std;
 
 struct node {
   int u, v;
-}arr[5050];
+} arr[5050];
 
 int n, m, t[5050], r[5050], d, ot[5050], kil[5050], vis[5050], ans, out[5050];
 vector<int> to[5050];
 
 int DFS(int x) {
-  //cout << x << '\n';
-  if(vis[x]) {
+  // cout << x << '\n';
+  if (vis[x]) {
     return 0;
   }
   vis[x] = 1;
-  for(auto i : to[x]) {
-    //cout << x << ' ' << i << '\n';
-    if(r[i] == -1) {
+  for (auto i : to[x]) {
+    // cout << x << ' ' << i << '\n';
+    if (r[i] == -1) {
       r[i] = x;
       t[x] = i;
       return 1;
     }
-    if(DFS(r[i])) {
+    if (DFS(r[i])) {
       r[i] = x;
       t[x] = i;
       return 1;
@@ -32,52 +32,52 @@ int DFS(int x) {
 
 int main() {
   cin >> n >> m;
-  for(int i = 1; i <= n; i++) {
+  for (int i = 1; i <= n; i++) {
     cin >> arr[i].u;
-    if(arr[i].u > m) {
+    if (arr[i].u > m) {
       arr[i].u = m + 1;
     }
   }
-  for(int i = 1; i <= n; i++) {
+  for (int i = 1; i <= n; i++) {
     cin >> arr[i].v;
   }
   cin >> d;
-  for(int i = 1; i <= d; i++) {
+  for (int i = 1; i <= d; i++) {
     cin >> ot[i];
     kil[ot[i]] = 1;
   }
-  for(int i = 1; i <= n; i++) {
-    if(!kil[i]) {
+  for (int i = 1; i <= n; i++) {
+    if (!kil[i]) {
       to[arr[i].u].push_back(arr[i].v);
     }
   }
   fill(r + 1, r + m + 1, -1);
-  for(; ans <= m; ) {
+  for (; ans <= m;) {
     fill(vis, vis + m + 2, 0);
-    if(DFS(ans)) {
-      //cout << '\n';
+    if (DFS(ans)) {
+      // cout << '\n';
       ans++;
-    }else {
-      //cout << '\n';
+    } else {
+      // cout << '\n';
       break;
     }
   }
   out[d] = ans;
-  for(int i = d; i > 1; i--) {
+  for (int i = d; i > 1; i--) {
     to[arr[ot[i]].u].push_back(arr[ot[i]].v);
-    for(; ans <= m; ) {
+    for (; ans <= m;) {
       fill(vis, vis + m + 2, 0);
-      if(DFS(ans)) {
-        //cout << '\n';
+      if (DFS(ans)) {
+        // cout << '\n';
         ans++;
-      }else {
-        //cout << '\n';
+      } else {
+        // cout << '\n';
         break;
       }
     }
     out[i - 1] = ans;
   }
-  for(int i = 1; i <= d; i++) {
+  for (int i = 1; i <= d; i++) {
     cout << out[i] << '\n';
   }
   return 0;
