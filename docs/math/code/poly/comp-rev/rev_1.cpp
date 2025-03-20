@@ -1,4 +1,3 @@
-// g++ rev_1.cpp -O2 -Wall -Werror -std=c++17 -oa
 #include <algorithm>
 #include <cassert>
 #include <cstdio>

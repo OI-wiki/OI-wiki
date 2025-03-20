@@ -1,4 +1,3 @@
-// g++ comp_1.cpp -O2 -Wall -Werror -std=c++17 -oa
 #include <cassert>
 #include <cstdio>
 #include <tuple>
