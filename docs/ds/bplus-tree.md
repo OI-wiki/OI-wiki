@@ -703,7 +703,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
     }
     
     Node *BPTree::getRoot() { return root; }
-
+    
     int main() {
       BPTree node;
       node.insert(5);
