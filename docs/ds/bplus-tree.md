@@ -687,6 +687,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
         removeInternal(parent->key[rightSibling - 1], parent, rightNode);
       }
     }
+    ```
 
     void BPTree::display(Node *cursor) {
       if (cursor != NULL) {
