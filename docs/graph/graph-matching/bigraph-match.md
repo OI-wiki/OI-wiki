@@ -200,7 +200,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         ```
 
 ??? note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E)"
-    有 $m$ 个共有 $n$ 个元素的可重集，每一次从某一个可重集里面删除一个元素，然后查询“在每一个可重集里面选至多一个元素，可以达到的最大 $\operatorname{mex}$”。
+    有 $m$ 个共有 $n$ 个元素的可重集，每一次从某一个可重集里面删除一个元素，然后查询「在每一个可重集里面选至多一个元素，可以达到的最大 $\operatorname{mex}$」。
 
     ??? note "解法"
         先考虑如果没有删除元素时怎么做。
