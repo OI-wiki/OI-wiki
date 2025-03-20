@@ -130,8 +130,11 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 ??? note "[UOJ #78. 二分图最大匹配](https://uoj.ac/problem/78)"
     模板题
-    
-        --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_1.cpp"
+    ```cpp
+    --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_1.cpp"
+    ```
+
+### 通过特殊方法把原问题转化成二分图匹配
 
 ??? note "[luogu P1129 矩阵游戏](https://www.luogu.com.cn/problem/P1129)"
     ??? note "解法"
@@ -146,7 +149,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         于是就可以二分图匹配了。
 
     ??? note "代码"
-        ```
+        ```cpp
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_2.cpp"
         ```
 
@@ -165,7 +168,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         只保存有边相连的 $(a, b)$，问题被转化成了一个 $m$ 个左部点、$n$ 个右部点的二分图最大匹配。
 
     ??? note "代码"
-        ```
+        ```cpp
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_3.cpp"
         ```
 
@@ -178,7 +181,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         于是就变成了一个最大匹配问题。
 
     ??? note "代码"
-        ```
+        ```cpp
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_4.cpp"
         ```
 
@@ -195,7 +198,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         然后原问题转化成了一个二分图最大独立集。
 
     ??? note "代码"
-        ```
+        ```cpp
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_5.cpp"
         ```
 
@@ -220,6 +223,28 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         可惜的是本题只能使用匈牙利算法。
         
     ??? note "代码"
+        ```cpp
+        --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_6.cpp"
+        ```
+
+### 通过对原图黑白染色转化成二分图解决问题
+
+??? note "[洛谷 P3355 - 骑士共存问题](https://www.luogu.com.cn/problem/P3355)"
+    ??? note "解法"
+        可以发现，如果对整个棋盘染色使得所有黑格、白格均不相邻，那么马只能够攻击到与其异色的格子。
+
+        然后就可以直接二分图 MIS 了。
+    ??? note "代码"
+
+## 习题
+
+[Codeforces 1765A - Access Levels](https://codeforces.com/problemset/problem/1765/A)
+
+[AtCoder abc274G - Security Camera 3](https://atcoder.jp/contests/abc274/tasks/abc274_g) 最大匹配求 MVC
+
+[Codeforces 1773D - Dominoes](https://codeforces.com/problemset/problem/1773/D) 答案上限引起质变
+
+[洛谷 P5030 - 长脖子鹿放置](https://www.luogu.com.cn/problem/P5030)
 
 ## 参考资料
 
