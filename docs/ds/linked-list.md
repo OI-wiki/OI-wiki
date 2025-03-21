@@ -292,26 +292,23 @@
 
 === "C++"
     ```cpp
-    struct Node
-    {
-        int data;
-        Node* xor_prev_next;
+    struct Node {
+      int data;
+      Node* xor_prev_next;
     };
-    Node* XOR(Node* a, Node* b)
-    {
-        return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b));
-    }
+    
+    Node* XOR(Node* a, Node* b) { return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b)); }
     ```
 
 声明 `XORList` 类，存储指向链表头和尾的指针。
 
 === "C++"
     ```cpp
-    class XORList
-    {
-    public:
-        Node* head;
-        Node* tail;
+    class XORList {
+     public:
+      Node* head;
+      Node* tail;
+    ```
 
         XORList()
         {
@@ -334,25 +331,22 @@
 
 以下函数将定义在 `XORList` 类中
 
-1. 通过索引查找一个元素，并同时找到存储该元素的结点与其前驱结点的地址
+1.  通过索引查找一个元素，并同时找到存储该元素的结点与其前驱结点的地址
 
 === "C++"
     ```cpp
-    int FindElement(int index, Node** prev, Node** node)
-    {
-        *prev = nullptr;
-        *node = this->head;
-        for (int i = 0; i < index; i++)
-        {
-            Node* next = XOR(*prev, (*node)->xor_prev_next);
-            if (next == nullptr && i < index)
-            {
-                throw std::out_of_range("Index out of range");
-            }
-            *prev = *node;
-            *node = next;
+    int FindElement(int index, Node** prev, Node** node) {
+      *prev = nullptr;
+      *node = this->head;
+      for (int i = 0; i < index; i++) {
+        Node* next = XOR(*prev, (*node)->xor_prev_next);
+        if (next == nullptr && i < index) {
+          throw std::out_of_range("Index out of range");
         }
-        return (*node)->data;
+        *prev = *node;
+        *node = next;
+      }
+      return (*node)->data;
     }
     ```
 
@@ -360,20 +354,16 @@
 
 === "C++"
     ```cpp
-    void AppendElement(int value)
-    {
-        Node* new_node = new Node();
-        new_node->data = value;
-        new_node->xor_prev_next = XOR(this->tail, nullptr);
-        if (this->head == nullptr)
-        {
-            this->head = new_node;
-        }
-        else
-        {
-            this->tail->xor_prev_next = XOR(this->tail->xor_prev_next, new_node);
-        }
-        tail = new_node;
+    void AppendElement(int value) {
+      Node* new_node = new Node();
+      new_node->data = value;
+      new_node->xor_prev_next = XOR(this->tail, nullptr);
+      if (this->head == nullptr) {
+        this->head = new_node;
+      } else {
+        this->tail->xor_prev_next = XOR(this->tail->xor_prev_next, new_node);
+      }
+      tail = new_node;
     }
     ```
 
@@ -381,58 +371,44 @@
 
     ```cpp
     // 插入之后，新元素的下标为index
-    void InsertElement(int index, int value)
-    {
-        Node* prev = nullptr;
-        Node* p = this->head;
-        FindElement(index, &prev, &p);
-        Node* new_node = new Node();
-        new_node->data = value;
-        new_node->xor_prev_next = XOR(prev, p);
-        if (prev != nullptr)
-        {
-            prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), new_node);
-        }
-        else
-        {
-            this->head = new_node;
-        }
-        if (p != nullptr)
-        {
-            p->xor_prev_next = XOR(prev, XOR(p->xor_prev_next, new_node));
-        }
-        else
-        {
-            this->tail = new_node;
-        }
+    void InsertElement(int index, int value) {
+      Node* prev = nullptr;
+      Node* p = this->head;
+      FindElement(index, &prev, &p);
+      Node* new_node = new Node();
+      new_node->data = value;
+      new_node->xor_prev_next = XOR(prev, p);
+      if (prev != nullptr) {
+        prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), new_node);
+      } else {
+        this->head = new_node;
+      }
+      if (p != nullptr) {
+        p->xor_prev_next = XOR(prev, XOR(p->xor_prev_next, new_node));
+      } else {
+        this->tail = new_node;
+      }
     }
     ```
 
-3.  从给定索引删除一个元素：
+2.  从给定索引删除一个元素：
 
     ```cpp
-    void DeleteElement(int index)
-    {
-        Node* prev = nullptr;
-        Node* p = this->head;
-        FindElement(index, &prev, &p);
-        Node* next = XOR(prev, p->xor_prev_next);
-        if (prev != nullptr)
-        {
-            prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), next);
-        }
-        else
-        {
-            this->head = next;
-        }
-        if (next != nullptr)
-        {
-            next->xor_prev_next = XOR(prev, XOR(next->xor_prev_next, p));
-        }
-        else
-        {
-            this->tail = prev;
-        }
-        delete p;
+    void DeleteElement(int index) {
+      Node* prev = nullptr;
+      Node* p = this->head;
+      FindElement(index, &prev, &p);
+      Node* next = XOR(prev, p->xor_prev_next);
+      if (prev != nullptr) {
+        prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), next);
+      } else {
+        this->head = next;
+      }
+      if (next != nullptr) {
+        next->xor_prev_next = XOR(prev, XOR(next->xor_prev_next, p));
+      } else {
+        this->tail = prev;
+      }
+      delete p;
     }
     ```
