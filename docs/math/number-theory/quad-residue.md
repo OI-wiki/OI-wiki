@@ -169,26 +169,26 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
     
     那么有所有 $r_k$ 的乘积为：
     
-    $$\begin{aligned} r_1 r_2 \cdots r_k &\equiv (a)(2a)(3a)\cdots(\frac{p - 1}{2}a) \\ &\equiv a^{\frac{p - 1}{2}} (\frac{p - 1}{2})! \\ &\equiv \prod_{i = 1}^t a_i \prod_{j = 1}^m b_j\end{aligned}$$
+    $\begin{aligned} r_1 r_2 \cdots r_k &\equiv (a)(2a)(3a)\cdots(\frac{p - 1}{2}a) \\ &\equiv a^{\frac{p - 1}{2}} (\frac{p - 1}{2})! \\ &\equiv \prod_{i = 1}^t a_i \prod_{j = 1}^m b_j\end{aligned}$
     
     注意到 $\frac{p}{2} < b_j < p$，故有 $1 \le p - b_j < \frac{p}{2}$。
     
     > 若存在 $i$ 使得 $p - b_j = a_i$，即 $a_i + b_j = p$，设 $a_i = ak_1, b_j = bk_2$，则 $ak_1 + ak_2 \equiv 0 \pmod p$，那么 $k_1 + k_2 \equiv 0 \pmod p$，当 $k_1, k_2 \in [0, \frac{p - 1}{2}]$ 时是不可能的。  
     > 故不可能存在 $i$ 使得 $a_i = p - b_j$。
     
-    所以有 $\{a_1, \cdots, a_t, p - b_1, \cdots, p - b_m\}$ 中没有重复的数字，且 $a_i \le \frac{p - 1}{2}, p - b_i \le \frac{p - 1}{2}, t + m = \frac{p - 1}{2}$，故这是一个 $1 \sim \frac{p - 1}{2}$ 的**满射**。
+    所以有 $\{a_1, \cdots, a_t, p - b_1, \cdots, p - b_m\}$ 中没有重复的数字，且 $a_i \le \frac{p - 1}{2}, p - b_i \le \frac{p - 1}{2}, t + m = \frac{p - 1}{2}$，故这是一个 $1 \sim \frac{p - 1}{2}$ 的 **满射**。
     
     故有：
     
-    $$\begin{aligned} \prod_{i = 1}^t a_i \prod_{j = 1}^m b_j &\equiv (-1)^m \prod_{i = 1}^t a_i \prod_{j = 1}^m (p - b_j) \\ &\equiv (-1)^m (\frac{p - 1}{2})!\end{aligned}$$
+    $\begin{aligned} \prod_{i = 1}^t a_i \prod_{j = 1}^m b_j &\equiv (-1)^m \prod_{i = 1}^t a_i \prod_{j = 1}^m (p - b_j) \\ &\equiv (-1)^m (\frac{p - 1}{2})!\end{aligned}$
     
     那么有：
     
-    $$a^{\frac{p - 1}{2}} (\frac{p - 1}{2})! \equiv (-1)^m (\frac{p - 1}{2})! \pmod p$$
+    $a^{\frac{p - 1}{2}} (\frac{p - 1}{2})! \equiv (-1)^m (\frac{p - 1}{2})! \pmod p$
     
     故：
     
-    $$\left(\frac{a}{p}\right) \equiv a^{\frac{p - 1}{2}} \equiv (-1)^m  \pmod p$$
+    $\left(\frac{a}{p}\right) \equiv a^{\frac{p - 1}{2}} \equiv (-1)^m  \pmod p$
     
     由于 $(-1)^m \in \{1, -1\}$，故得证。
 
@@ -196,15 +196,14 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
 
 ???+ node "引理"
     $\left(\frac{2}{p}\right) = (-1)^{\frac{p^2 - 1}{8}}$。  
-    若 $(a, p) = 1, 2\nmid a$，则：
-    $$\left(\frac{a}{p}\right) = (-1)^{\left( \sum\limits_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor \right)}$$
+    若 $(a, p) = 1, 2\nmid a$，则：$\left(\frac{a}{p}\right) = (-1)^{\left( \sum\limits_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor \right)}$
 
 有证明：
 
 ???+ node "引理证明"
     注意到 $\frac{p^2 - 1}{8}$ 这个奇怪的数字，容易发现：
     
-    $$\sum_{k = 1}^{\frac{p - 1}{2}} k  = \frac{p^2 - 1}{8}$$
+    $\sum_{k = 1}^{\frac{p - 1}{2}} k  = \frac{p^2 - 1}{8}$
     
     且涉及 $\frac{p - 1}{2}$，故考虑使用上述刚讲的高斯引理，$r_k, a_i, b_j, t, m$ 定义与上述一样。
     
@@ -212,39 +211,39 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
     
     故考虑：
     
-    $$\begin{aligned} a \frac{p^2 - 1}{8} &= \sum_{k = 1}^{\frac{p - 1}{2}} ak \\ &= \sum_{k = 1}^{\frac{p - 1}{2}} \left(p \lfloor \frac{ak}{p} \rfloor + r_k\right) \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^{\frac{p - 1}{2}} r_k \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor + \sum_{i = 1}^t a_i + \sum_{j = 1}^m b_j \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^t a_i + \sum_{j = 1}^m(p - b_j) + 2\sum_{j = 1}^m b_i - mp \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \frac{p^2 - 1}{8} + 2\sum_{j = 1}^m b_j - mp\end{aligned}$$
+    $\begin{aligned} a \frac{p^2 - 1}{8} &= \sum_{k = 1}^{\frac{p - 1}{2}} ak \\ &= \sum_{k = 1}^{\frac{p - 1}{2}} \left(p \lfloor \frac{ak}{p} \rfloor + r_k\right) \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^{\frac{p - 1}{2}} r_k \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor + \sum_{i = 1}^t a_i + \sum_{j = 1}^m b_j \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^t a_i + \sum_{j = 1}^m(p - b_j) + 2\sum_{j = 1}^m b_i - mp \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \frac{p^2 - 1}{8} + 2\sum_{j = 1}^m b_j - mp\end{aligned}$
     
     我们知道有：
     
-    $$\left(\frac{a}{p}\right) = (-1)^m$$
+    $\left(\frac{a}{p}\right) = (-1)^m$
     
     只跟 $m$ 的奇偶性相关，故考虑将上述等式化为 $\pmod 2$ 的同余式：
     
-    $$(a - 1) \frac{p^2 - 1}{8} \equiv p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor + 2 \sum_{j = 1}^m b_j - mp \pmod 2$$
+    $(a - 1) \frac{p^2 - 1}{8} \equiv p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor + 2 \sum_{j = 1}^m b_j - mp \pmod 2$
     
     首先 $p$ 是奇素数，可以约为 $1$，对于 $2$ 的倍数的，可以约为 $0$：
     
-    $$(a - 1) \frac{p^2 - 1}{8} \equiv \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor - m \pmod 2$$
+    $(a - 1) \frac{p^2 - 1}{8} \equiv \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor - m \pmod 2$
     
     注意到显然有 $-x \equiv x \pmod 2$，故：
     
-    $$(a - 1) \frac{p^2 - 1}{8} \equiv \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor + m \pmod 2$$
+    $(a - 1) \frac{p^2 - 1}{8} \equiv \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor + m \pmod 2$
     
     当 $a = 2$ 时，有 $0 \le \lfloor \frac{ak}{p} \rfloor \le \lfloor \frac{p - 1}{p} \rfloor = 0$，故有：
     
-    $$m \equiv \frac{p^2 - 1}{8} \pmod 2$$
+    $m \equiv \frac{p^2 - 1}{8} \pmod 2$
     
     那么：
     
-    $$\left(\frac{2}{p}\right) = (-1)^{\frac{p^2 - 1}{8}}$$
+    $\left(\frac{2}{p}\right) = (-1)^{\frac{p^2 - 1}{8}}$
     
     否则若 $2 \nmid a$，那么 $(a - 1)$ 是偶数，可以直接约掉：
     
-    $$m \equiv \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor \pmod 2$$
+    $m \equiv \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor \pmod 2$
     
     故：
     
-    $$\left(\frac{a}{p}\right) = (-1)^{\left( \sum\limits_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor \right)}$$
+    $\left(\frac{a}{p}\right) = (-1)^{\left( \sum\limits_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor \right)}$
     
     得证。
 
@@ -253,17 +252,17 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
 ???+ node "二次互反定律证明"
     考虑使用上面的引理，我们有：
     
-    $$\left( \frac{q}{p} \right) = (-1)^{\left( \sum\limits_{k = 1}^{p'} \lfloor \frac{qk}{p} \rfloor \right)}, \left( \frac{p}{q} \right) = (-1)^{\left( \sum\limits_{k = 1}^{q'} \lfloor \frac{pk}{q} \rfloor \right)}$$
+    $\left( \frac{q}{p} \right) = (-1)^{\left( \sum\limits_{k = 1}^{p'} \lfloor \frac{qk}{p} \rfloor \right)}, \left( \frac{p}{q} \right) = (-1)^{\left( \sum\limits_{k = 1}^{q'} \lfloor \frac{pk}{q} \rfloor \right)}$
     
     为了方便，我们这里令 $p' = \frac{p - 1}{2}, q' = \frac{q - 1}{2}$。
     
     证原式即相当于证：
     
-    $$\left(\frac{q}{p}\right) \left( \frac{p}{q} \right) = (-1)^{p'q'}$$
+    $\left(\frac{q}{p}\right) \left( \frac{p}{q} \right) = (-1)^{p'q'}$
     
     即证：
     
-    $$\sum\limits_{k = 1}^{p'} \lfloor \frac{qk}{p} \rfloor + \sum\limits_{k = 1}^{q'} \lfloor \frac{pk}{q} \rfloor \equiv p'q' \pmod 2$$
+    $\sum\limits_{k = 1}^{p'} \lfloor \frac{qk}{p} \rfloor + \sum\limits_{k = 1}^{q'} \lfloor \frac{pk}{q} \rfloor \equiv p'q' \pmod 2$
     
     考虑几何意义转化为二维平面内一条直线上下的整点个数，很容易得到上面是相等的。
 
