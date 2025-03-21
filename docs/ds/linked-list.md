@@ -379,7 +379,6 @@
 
 1.  在给定的索引后插入一个元素：
 
-=== "C++"
     ```cpp
     // 插入之后，新元素的下标为index
     void InsertElement(int index, int value)
@@ -411,7 +410,6 @@
 
 3.  从给定索引删除一个元素：
 
-=== "C++"
     ```cpp
     void DeleteElement(int index)
     {

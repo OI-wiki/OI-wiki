@@ -21,12 +21,13 @@ jobs:
           fetch-depth: 0
       - name: Get changed code files
         id: changed-files
-        uses: tj-actions/changed-files@v42
+        uses: tj-actions/changed-files@v46
         with:
           files: |
             docs/**/*.cpp
             docs/**/*.in
             docs/**/*.ans
+          since_last_remote_commit: true
       - uses: actions/setup-python@v5
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
