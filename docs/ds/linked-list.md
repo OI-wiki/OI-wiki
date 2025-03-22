@@ -288,42 +288,32 @@
 
 #### 实现
 
-声明 `Node` 数据类型和负责对地址进行异或操作的 `XOR()` 函数。
+定义 `Node` 结构体和负责对地址进行异或操作的 `XOR()` 函数。
 
 === "C++"
     ```cpp
-    struct Node
-    {
+    struct Node {
         int data;
         Node* xor_prev_next;
+        static Node* XOR(Node* a, Node* b) {
+            return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b));
+        }
     };
-    Node* XOR(Node* a, Node* b)
-    {
-        return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b));
-    }
     ```
 
 声明 `XORList` 类，存储指向链表头和尾的指针。
 
 === "C++"
     ```cpp
-    class XORList
-    {
+    class XORList {
+        // head与tail指针将默认被定义为private成员
+        Node* head = nullptr;
+        Node* tail = nullptr;
     public:
-        Node* head;
-        Node* tail;
-
-        XORList()
-        {
-            this->head = nullptr;
-            this->tail = nullptr;
-        }
-
-        ~XORList()
-        {
-            for (Node* p = this->head, *prev = nullptr; p != nullptr;)
-            {
-                Node* next = XOR(prev, p->xor_prev_next);
+        // 释放内存
+        ~XORList() {
+            for (Node* p = this->head, *prev = nullptr; p != nullptr;) {
+                Node* next = Node::XOR(prev, p->xor_prev_next);
                 prev = p;
                 delete p;
                 p = next;
@@ -332,27 +322,27 @@
     };
     ```
 
-以下函数将定义在 `XORList` 类中
+以下函数将定义在 `XORList` 类中并被声明为`public`方法
 
 1. 通过索引查找一个元素，并同时找到存储该元素的结点与其前驱结点的地址
 
 === "C++"
     ```cpp
-    int FindElement(int index, Node** prev, Node** node)
+    // 查找下标为index的结点与其前驱，如果找不到则返回空指针
+    std::tuple<Node*, Node*> FindElement(int index)
     {
-        *prev = nullptr;
-        *node = this->head;
-        for (int i = 0; i < index; i++)
-        {
-            Node* next = XOR(*prev, (*node)->xor_prev_next);
+        if (this->head == nullptr)
+            return std::make_tuple(nullptr, nullptr);
+        Node* node = this->head;
+        Node* prev = nullptr;
+        for (int i = 0; i < index; i++) {
+            Node* next = Node::XOR(prev, node->xor_prev_next);
             if (next == nullptr && i < index)
-            {
-                throw std::out_of_range("Index out of range");
-            }
-            *prev = *node;
-            *node = next;
+                return std::make_tuple(nullptr, nullptr);
+            prev = node;
+            node = next;
         }
-        return (*node)->data;
+        return std::make_tuple(prev, node);
     }
     ```
 
@@ -360,79 +350,66 @@
 
 === "C++"
     ```cpp
-    void AppendElement(int value)
-    {
+    void AppendElement(int value) {
         Node* new_node = new Node();
         new_node->data = value;
-        new_node->xor_prev_next = XOR(this->tail, nullptr);
+        new_node->xor_prev_next = Node::XOR(this->tail, nullptr);
         if (this->head == nullptr)
-        {
             this->head = new_node;
-        }
         else
-        {
-            this->tail->xor_prev_next = XOR(this->tail->xor_prev_next, new_node);
-        }
+            this->tail->xor_prev_next = Node::XOR(this->tail->xor_prev_next, new_node);
         tail = new_node;
     }
     ```
 
 1.  在给定的索引后插入一个元素：
 
+=== "C++"
     ```cpp
     // 插入之后，新元素的下标为index
-    void InsertElement(int index, int value)
-    {
-        Node* prev = nullptr;
-        Node* p = this->head;
-        FindElement(index, &prev, &p);
+    void InsertElement(int index, int value) {
+        auto [prev, p] = FindElement(index);
         Node* new_node = new Node();
         new_node->data = value;
-        new_node->xor_prev_next = XOR(prev, p);
+        new_node->xor_prev_next = Node::XOR(prev, p);
         if (prev != nullptr)
-        {
-            prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), new_node);
-        }
+            prev->xor_prev_next = Node::XOR(Node::XOR(prev->xor_prev_next, p), new_node);
         else
-        {
             this->head = new_node;
-        }
         if (p != nullptr)
-        {
-            p->xor_prev_next = XOR(prev, XOR(p->xor_prev_next, new_node));
-        }
+            p->xor_prev_next = Node::XOR(prev, Node::XOR(p->xor_prev_next, new_node));
         else
-        {
             this->tail = new_node;
-        }
     }
     ```
 
 3.  从给定索引删除一个元素：
 
+=== "C++"
     ```cpp
-    void DeleteElement(int index)
-    {
-        Node* prev = nullptr;
-        Node* p = this->head;
-        FindElement(index, &prev, &p);
-        Node* next = XOR(prev, p->xor_prev_next);
+    void DeleteElement(int index) {
+        auto [prev, p] = FindElement(index);
+        Node* next = Node::XOR(prev, p->xor_prev_next);
         if (prev != nullptr)
-        {
-            prev->xor_prev_next = XOR(XOR(prev->xor_prev_next, p), next);
-        }
+            prev->xor_prev_next = Node::XOR(Node::XOR(prev->xor_prev_next, p), next);
         else
-        {
             this->head = next;
-        }
         if (next != nullptr)
-        {
-            next->xor_prev_next = XOR(prev, XOR(next->xor_prev_next, p));
-        }
+            next->xor_prev_next = Node::XOR(prev, Node::XOR(next->xor_prev_next, p));
         else
-        {
             this->tail = prev;
-        }
         delete p;
+    }
+    ```
+
+4.  因为head与tail被定义为了私有成员，所以在类的外部遍历链表可以这么写：
+
+=== "C++"
+    ```cpp
+    for (int i = 0;; i++) {
+        auto [_, p] = list.FindElement(i);
+        if (p == nullptr)
+            break;
+        printf("%d\n", p->data);
     }
     ```
