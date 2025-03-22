@@ -324,13 +324,12 @@
 
 以下函数将定义在 `XORList` 类中并被声明为`public`方法
 
-1. 通过索引查找一个元素，并同时找到存储该元素的结点与其前驱结点的地址
+1.  通过索引查找一个元素，并同时找到存储该元素的结点与其前驱结点的地址
 
 === "C++"
     ```cpp
     // 查找下标为index的结点与其前驱，如果找不到则返回空指针
-    std::tuple<Node*, Node*> FindElement(int index)
-    {
+    std::tuple<Node*, Node*> FindElement(int index) {
         if (this->head == nullptr)
             return std::make_tuple(nullptr, nullptr);
         Node* node = this->head;
@@ -346,7 +345,7 @@
     }
     ```
 
-2.  将元素附加到链表的末尾：
+1.  将元素附加到链表的末尾：
 
 === "C++"
     ```cpp
@@ -383,7 +382,7 @@
     }
     ```
 
-3.  从给定索引删除一个元素：
+2.  从给定索引删除一个元素：
 
 === "C++"
     ```cpp
