@@ -293,11 +293,12 @@
 === "C++"
     ```cpp
     struct Node {
-        int data;
-        Node* xor_prev_next;
-        static Node* XOR(Node* a, Node* b) {
-            return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b));
-        }
+      int data;
+      Node* xor_prev_next;
+    
+      static Node* XOR(Node* a, Node* b) {
+        return (Node*)((uintptr_t)(a) ^ (uintptr_t)(b));
+      }
     };
     ```
 
@@ -306,23 +307,24 @@
 === "C++"
     ```cpp
     class XORList {
-        // head与tail指针将默认被定义为private成员
-        Node* head = nullptr;
-        Node* tail = nullptr;
-    public:
-        // 释放内存
-        ~XORList() {
-            for (Node* p = this->head, *prev = nullptr; p != nullptr;) {
-                Node* next = Node::XOR(prev, p->xor_prev_next);
-                prev = p;
-                delete p;
-                p = next;
-            }
+      // head与tail指针将默认被定义为private成员
+      Node* head = nullptr;
+      Node* tail = nullptr;
+    
+     public:
+      // 释放内存
+      ~XORList() {
+        for (Node *p = this->head, *prev = nullptr; p != nullptr;) {
+          Node* next = Node::XOR(prev, p->xor_prev_next);
+          prev = p;
+          delete p;
+          p = next;
         }
+      }
     };
     ```
 
-以下函数将定义在 `XORList` 类中并被声明为`public`方法
+以下函数将定义在 `XORList` 类中并被声明为 `public` 方法
 
 1.  通过索引查找一个元素，并同时找到存储该元素的结点与其前驱结点的地址
 
@@ -330,18 +332,16 @@
     ```cpp
     // 查找下标为index的结点与其前驱，如果找不到则返回空指针
     std::tuple<Node*, Node*> FindElement(int index) {
-        if (this->head == nullptr)
-            return std::make_tuple(nullptr, nullptr);
-        Node* node = this->head;
-        Node* prev = nullptr;
-        for (int i = 0; i < index; i++) {
-            Node* next = Node::XOR(prev, node->xor_prev_next);
-            if (next == nullptr && i < index)
-                return std::make_tuple(nullptr, nullptr);
-            prev = node;
-            node = next;
-        }
-        return std::make_tuple(prev, node);
+      if (this->head == nullptr) return std::make_tuple(nullptr, nullptr);
+      Node* node = this->head;
+      Node* prev = nullptr;
+      for (int i = 0; i < index; i++) {
+        Node* next = Node::XOR(prev, node->xor_prev_next);
+        if (next == nullptr && i < index) return std::make_tuple(nullptr, nullptr);
+        prev = node;
+        node = next;
+      }
+      return std::make_tuple(prev, node);
     }
     ```
 
@@ -350,14 +350,14 @@
 === "C++"
     ```cpp
     void AppendElement(int value) {
-        Node* new_node = new Node();
-        new_node->data = value;
-        new_node->xor_prev_next = Node::XOR(this->tail, nullptr);
-        if (this->head == nullptr)
-            this->head = new_node;
-        else
-            this->tail->xor_prev_next = Node::XOR(this->tail->xor_prev_next, new_node);
-        tail = new_node;
+      Node* new_node = new Node();
+      new_node->data = value;
+      new_node->xor_prev_next = Node::XOR(this->tail, nullptr);
+      if (this->head == nullptr)
+        this->head = new_node;
+      else
+        this->tail->xor_prev_next = Node::XOR(this->tail->xor_prev_next, new_node);
+      tail = new_node;
     }
     ```
 
@@ -367,18 +367,19 @@
     ```cpp
     // 插入之后，新元素的下标为index
     void InsertElement(int index, int value) {
-        auto [prev, p] = FindElement(index);
-        Node* new_node = new Node();
-        new_node->data = value;
-        new_node->xor_prev_next = Node::XOR(prev, p);
-        if (prev != nullptr)
-            prev->xor_prev_next = Node::XOR(Node::XOR(prev->xor_prev_next, p), new_node);
-        else
-            this->head = new_node;
-        if (p != nullptr)
-            p->xor_prev_next = Node::XOR(prev, Node::XOR(p->xor_prev_next, new_node));
-        else
-            this->tail = new_node;
+      auto [prev, p] = FindElement(index);
+      Node* new_node = new Node();
+      new_node->data = value;
+      new_node->xor_prev_next = Node::XOR(prev, p);
+      if (prev != nullptr)
+        prev->xor_prev_next =
+            Node::XOR(Node::XOR(prev->xor_prev_next, p), new_node);
+      else
+        this->head = new_node;
+      if (p != nullptr)
+        p->xor_prev_next = Node::XOR(prev, Node::XOR(p->xor_prev_next, new_node));
+      else
+        this->tail = new_node;
     }
     ```
 
@@ -387,28 +388,27 @@
 === "C++"
     ```cpp
     void DeleteElement(int index) {
-        auto [prev, p] = FindElement(index);
-        Node* next = Node::XOR(prev, p->xor_prev_next);
-        if (prev != nullptr)
-            prev->xor_prev_next = Node::XOR(Node::XOR(prev->xor_prev_next, p), next);
-        else
-            this->head = next;
-        if (next != nullptr)
-            next->xor_prev_next = Node::XOR(prev, Node::XOR(next->xor_prev_next, p));
-        else
-            this->tail = prev;
-        delete p;
+      auto [prev, p] = FindElement(index);
+      Node* next = Node::XOR(prev, p->xor_prev_next);
+      if (prev != nullptr)
+        prev->xor_prev_next = Node::XOR(Node::XOR(prev->xor_prev_next, p), next);
+      else
+        this->head = next;
+      if (next != nullptr)
+        next->xor_prev_next = Node::XOR(prev, Node::XOR(next->xor_prev_next, p));
+      else
+        this->tail = prev;
+      delete p;
     }
     ```
 
-4.  因为head与tail被定义为了私有成员，所以在类的外部遍历链表可以这么写：
+4.  因为 head 与 tail 被定义为了私有成员，所以在类的外部遍历链表可以这么写：
 
 === "C++"
     ```cpp
     for (int i = 0;; i++) {
-        auto [_, p] = list.FindElement(i);
-        if (p == nullptr)
-            break;
-        printf("%d\n", p->data);
+      auto [_, p] = list.FindElement(i);
+      if (p == nullptr) break;
+      printf("%d\n", p->data);
     }
     ```
