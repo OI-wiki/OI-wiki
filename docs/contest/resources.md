@@ -19,7 +19,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck)，可以将评测程序的运行时间精确到微秒。（题目较少）
     <!--  - [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。-->
 -   [LibreOJ](https://loj.ac/)：始于 2017 年。基于开源项目 [Lyrio](https://github.com/lyrio-dev/lyrio)，Libre 取自由之意。题目所有测试数据以及提交的代码均对所有用户开放。目前由 [Menci](https://github.com/Menci) 维护。
--   [CDOJ](https://cdoj.site/d/lutece)：电子科技大学在线评测系统，始于 2012 年。
+-   [CDOJ](https://cdoj.site/d/lutece/)：电子科技大学在线评测系统，始于 2012 年。
 -   [洛谷](https://www.luogu.com.cn/)：始于 2013 年，社区群体庞大，各类 OI 的真题和习题较全。提供有偿教育服务。
 -   [牛客网](https://www.nowcoder.com/)：始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务。
 -   [NOJ](http://acm.njupt.edu.cn/)：南京邮电大学在线评测系统，始于 2008 年，[项目开源](https://github.com/ZsgsDesign/NOJ)。自身拥有题目两千余道，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
