@@ -17,7 +17,6 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [HydroOJ](https://hydro.ac/)：始于 2021 年，为开源项目 [Hydro](https://hydro.js.org/) 的官方站。用户可以创建自己的 [域](https://hydro.ac/discuss/6087cc44e098b0cd7dde1a0c)，域中可以使用题库、比赛、讨论等主站可以使用的功能。
 -   [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
 -   [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck)，可以将评测程序的运行时间精确到微秒。（题目较少）
-    <!--  - [JoyOI](http://www.joyoi.cn/) 原 Tyvj， [项目开源](https://github.com/joyoi) 。-->
 -   [LibreOJ](https://loj.ac/)：始于 2017 年。基于开源项目 [Lyrio](https://github.com/lyrio-dev/lyrio)，Libre 取自由之意。题目所有测试数据以及提交的代码均对所有用户开放。目前由 [Menci](https://github.com/Menci) 维护。
 -   [CDOJ](https://cdoj.site/d/lutece/)：电子科技大学在线评测系统，始于 2012 年。
 -   [洛谷](https://www.luogu.com.cn/)：始于 2013 年，社区群体庞大，各类 OI 的真题和习题较全。提供有偿教育服务。
