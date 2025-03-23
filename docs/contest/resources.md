@@ -9,24 +9,17 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 ### 国内
 
 -   [51Nod](https://www.51nod.com/)：有许多值得尝试的数学题和思维题。
-    <!-- -    [BZOJ](https://www.lydsy.com/JudgeOnline/) ：因原属衡阳八中而得此简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。BZOJ 上有大量只有付费用户才能提交的题目。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。 -->
 -   [Comet OJ](https://www.cometoj.com)：始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
--   [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
 -   [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
--   [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
 -   [HydroOJ](https://hydro.ac/)：始于 2021 年，为开源项目 [Hydro](https://hydro.js.org/) 的官方站。用户可以创建自己的 [域](https://hydro.ac/discuss/6087cc44e098b0cd7dde1a0c)，域中可以使用题库、比赛、讨论等主站可以使用的功能。
--   [计蒜客](https://www.jisuanke.com/) 北京矩道优达网络科技有限公司旗下的核心产品，提供按知识点和难度筛选的信息学题库和 ICPC 题库。
 -   [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck)，可以将评测程序的运行时间精确到微秒。（题目较少）
 -   [LibreOJ](https://loj.ac/)：始于 2017 年。基于开源项目 [Lyrio](https://github.com/lyrio-dev/lyrio)，Libre 取自由之意。题目所有测试数据以及提交的代码均对所有用户开放。目前由 [Menci](https://github.com/Menci) 维护。
 -   [CDOJ](https://cdoj.site/d/lutece/)：电子科技大学在线评测系统，始于 2012 年。
 -   [洛谷](https://www.luogu.com.cn/)：始于 2013 年，社区群体庞大，各类 OI 的真题和习题较全。提供有偿教育服务。
 -   [牛客网](https://www.nowcoder.com/)：始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务。
--   [NOJ](http://acm.njupt.edu.cn/)：南京邮电大学在线评测系统，始于 2008 年，[项目开源](https://github.com/ZsgsDesign/NOJ)。自身拥有题目两千余道，同时支持对多个国内外 OJ 的提交，可以直接在 NOJ 提交别的 OJ 的题。
--   [NTUOJ](http://acm.csie.ntu.edu.tw)：台湾大学在线评测系统，始于 2007 年，基于开源项目 [Judge Girl](http://judgegirl.github.io/)。
 -   [OpenJudge](http://openjudge.cn/)：始于 2005 年，由 POJ 团队开发的小组评测平台。
--   [POJ](http://poj.org/)：北京大学在线评测系统，始于 2003 年，国内历史最悠久的 OJ 之一。内有很多英文题，既有基础题，也有值得一试的好题。
+-   [POJ](http://poj.org/)：北京大学在线评测系统，始于 2003 年，国内历史最悠久的 OJ 之一。内有很多英文题，既有基础题，也有值得一试的好题。可以在 [百练](http://bailian.openjudge.cn/practice/) 题库提交 POJ 的题目。
 -   [PTA（拼题 A）](https://pintia.cn/)：始于 2016 年，浙江大学衍生的杭州百腾教育科技有限公司产品。
--   [清澄](http://www.tsinsen.com/)：始于 2005 年，由 [胡伟栋](http://www.hhwdd.com/) 开发。自 2019 年 9 月 1 日起不再对外提供服务。
 -   [QOJ](https://qoj.ac/)：收集了很多国内外 OI 和 ICPC 竞赛题目，具有训练价值。
 -   [Universal Online Judge](https://uoj.ac/)：始于 2014 年，Universal 取通用之意，[项目开源](https://github.com/UniversalOJ/UOJ-System)；[VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高。
 -   [Vijos](https://vijos.org/)：始于 2005 年。[服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
@@ -39,16 +32,13 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [AtCoder](https://atcoder.jp/)：日本 OJ，日文版里会有日本高校的比赛，英文内不会显示。题目有趣，质量较高。
 -   [CodeChef](https://codechef.com/)：印度 OJ，周期举办比赛。系统基于 SPOJ 的 Sphere Engine。
 -   [Codeforces](https://codeforces.com/)：俄罗斯 OJ，始于 2010 年，创始人是 [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/)。有多种系列的比赛，并支持个人出题、申请组织比赛。题目质量较高。
--   [CSES](https://cses.fi/problemset/)(Code Submission Evaluation System)，按专题划分的题库，[旨在](https://cses.fi/problemset/text/1810) 成为综合的高质量题库，目前只有 200 题，主要由 [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf) 作者 Antti Laaksonen 开发，始于 2013。
+-   [CSES](https://cses.fi/problemset/)(Code Submission Evaluation System)，按专题划分的题库，[旨在](https://cses.fi/problemset/text/2433) 成为综合的高质量题库，目前只有 200 题，主要由 [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf) 作者 Antti Laaksonen 开发，始于 2013 年。
 -   [CS Academy](https://csacademy.com/)
 -   [DMOJ](https://dmoj.ca/) 加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛。
 -   [HackerRank](https://www.hackerrank.com/) 有很多比赛
--   [ICPC Live Archive](https://icpcarchive.ecs.baylor.edu/) 存档了 1990 年至今的 ICPC 区域赛和总决赛题目；但部分比赛的评测数据仅为样例数据，且对 Special Judge 的支持不完善。
--   [ICPC Problem Archive](https://judge.icpc.global) 基于 Kattis 系统；存档了 2012 年至今的 ICPC 全球总决赛题目，并且会在总决赛开赛时同步发放题目（但不会有同步赛）。
 -   [Kattis](https://open.kattis.com/) 题库主要包含类似 ICPC 比赛的题目；根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 [ELO 等级分](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86) 系统来评估。
 -   [LeetCode](https://leetcode.com/) 码农面试刷题网站，有中文分站：[LeetCode China](https://leetcode.cn)。
 -   [Light OJ](http://lightoj.com) 一个快挂了的 OJ，`www` 域名无法访问，请使用 [根域名](http://lightoj.com) 访问
--   [opentrains](http://opentrains.snarknews.info/) 俄罗斯 [Open Cup](http://opencup.ru/) 比赛的训练平台，基于 [ejudge](https://ejudge.ru/) 开源系统搭建，支持虚拟比赛；题库包含历年 Open Cup 赛题以及 Petrozavodsk 训练营的题目。
 -   [SPOJ](http://www.spoj.com) 始于 2003 年，其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化；支持题目点赞和标签功能。
 -   [TopCoder](https://www.topcoder.com/) 始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛；目前主营业务是技术众包。
 -   [TimusOJ](http://acm.timus.ru/) 始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛、以及 Petrozavodsk 训练营。
@@ -60,7 +50,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [**OI Wiki**](https://oi-wiki.org)
 -   [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282)
 -   [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
--   [演算法笔记](http://web.ntnu.edu.tw/~algo/)：台湾师范大学总结的教程
+-   [演算法笔记](https://web.ntnu.edu.tw/~algo/)：台湾师范大学总结的教程
 -   [如何为 ACM-ICPC 做准备？- geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
 -   [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/)
 -   [校招面试指南](https://github.com/jwasham/coding-interview-university)
@@ -68,7 +58,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides)
 -   [huzecong 的课件](https://github.com/huzecong/oi-slides)
 -   [Open Data Structure](https://opendatastructures.org/)：内含众多数据结构讲稿
--   [IOI Syllabus (2020)](https://www.cs.utexas.edu/users/utpc/courses/IOI.pdf)
+-   [IOI Syllabus (2020)](https://ioinformatics.org/files/ioi-syllabus-2020.pdf)
 
 ## 书籍
 
@@ -117,7 +107,6 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     英文版原名*Introductory Combinatorics*
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
     通俗易懂。
-    -   [译者博客的介绍页](http://blog.watashi.ws/2382/pccb-etc/)
 -   《算法概论》- Sanjoy Dasgupta/Christos Papadimitriou/Umesh Vazirani
     -   提纲挚领，但内容较少。
 -   [Legend-K 的数据结构与算法的笔记](http://web.archive.org/web/20180826111306/http://www.legend-k.com/Algorithm/Algorithm.pdf)
@@ -147,20 +136,14 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 
 ## 课程
 
--   [Baylor: CSI 3144 (2006)](http://cs.baylor.edu/~contest/syllabus.txt)
--   [CMU 15-295 (2021)](https://contest.cs.cmu.edu/295/)
--   [Georgia Tech: CS 4540 (2020)](https://faculty.cc.gatech.edu/~rpeng/CS4540_F20/)
--   [Georgia Tech: CS 6550 (2021)](https://faculty.cc.gatech.edu/~rpeng/CS6550_S21/)
--   [LSU: CSC 2700 (2021)](http://isaac.lsu.edu/class/)
+-   [CMU 15-295 (2025)](https://contest.cs.cmu.edu/295/)
+-   [LSU: CSC 2700 (2024)](http://isaac.lsu.edu/class/)
 -   [NUS: CS 3233 (2021)](https://www.comp.nus.edu.sg/~stevenha/cs3233.html)
 -   [Reykjavik: T-414-ÁFLV (2016)](https://algo.is/)
--   [SPSU: Coursera (2019)](https://www.coursera.org/learn/competitive-programming-core-skills/)
 -   [Stanford: CS 97SI (2015)](https://web.stanford.edu/class/cs97si/)
 -   [Stonybrook: CSE 392 (2012)](https://www3.cs.stonybrook.edu/~skiena/392/)
--   [TAMU: CSCE 430 (2021)](https://www.cs.utexas.edu/users/utpc/courses/TAMU-CSCE-430.pdf)
 -   [UBC: CPSC 490 (2021)](https://www.students.cs.ubc.ca/~cs-490/2019W2/problem-solving/)
--   [UCF: COP 4516 (2021)](http://www.cs.ucf.edu/~dmarino/progcontests/cop4516/spr2021/)
--   [VT: CS 2984/4984 (2020)](https://www.cs.utexas.edu/users/utpc/courses/VT-CS-2984-4984.pdf)
+-   [UCF: COP 4516 (2025)](https://www.cs.ucf.edu/~dmarino/progcontests/cop4516/spr2025/)
 -   [THU: 数据结构](https://www.xuetangx.com/course/THU08091000384/)
 -   [THU: 计算几何](https://www.xuetangx.com/course/THU08091000327/)
 -   [StanfordOnline: Algorithms: Design and Analysis](https://www.algorithmsilluminated.org/)
@@ -181,7 +164,6 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [Quick C++ Benchmark](https://quick-bench.com/)：在线比较两个及以上函数的运行速度
 -   [Try It Online](https://tio.run)：在线运行 600+ 种语言的代码，支持 IO 交互，超时 60s，可以分享代码
 -   [图论画板](https://csacademy.com/app/graph_editor/) 与 [GraphViz](http://www.graphviz.org/)
--   [Ubuntu Pastebin](https://paste.ubuntu.com)：可用于分享代码
 -   [uDebug](https://www.udebug.com)：提供一些 OJ 题目的调试辅助
 -   [USF](https://www.cs.usfca.edu/~galles/visualization/) 与 [VisuAlgo](https://visualgo.net/zh)：算法可视化
 -   [Wandbox](https://wandbox.org/): 在线代码运行，支持 30+ 种语言，可以分享代码，支持不同编译器版本
