@@ -1,4 +1,4 @@
-author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6, LUTLJS, ZsgsDesign
+author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6, LUTLJS, ZsgsDesign, CB-X2-Jun
 
 本页面主要列举了一些与算法竞赛有关的在线评测网站、题目合集、书籍、工具等资源。
 
@@ -9,9 +9,10 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 ### 国内
 
 -   [51Nod](https://www.51nod.com/)：有许多值得尝试的数学题和思维题。
-    <!-- -    [BZOJ](https://www.lydsy.com/JudgeOnline/) ：因原属衡阳八中而得此简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。BZOJ 上有大量只有付费用户才能提交的题目。2018 年 BZOJ 测试数据泄露，催生了 DarkBZOJ。 -->
+-   [BZOJ](https://new.bzoj.org:88) ：因原属衡阳八中而得此简称，汇聚多种习题和真题，题目质量相对较高，但可能需要联系邮箱。BZOJ 上有大量只有付费用户才能提交的题目。2018 年 BZOJ 测试数据泄露，催生了 [DarkBZOJ](https://darkbzoj.cc/)。
 -   [Comet OJ](https://www.cometoj.com)：始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
     <!-- - [CodeVS](http://www.codevs.cn/) 面向 OI 选手的过气 OJ。 -->
+-   [ETOJ](https://etoj.xyz/)
 -   [FZUOJ](http://acm.fzu.edu.cn/) 始于 2008 年，福州大学在线评测系统。
 -   [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
 -   [hihoCoder](https://hihocoder.com/) 始于 2012 年，面向企业招聘，有些题目来自于每周一题，涉及知识点的学习。（登录后方可查看题面）
@@ -29,6 +30,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [POJ](http://poj.org/)：北京大学在线评测系统，始于 2003 年，国内历史最悠久的 OJ 之一。内有很多英文题，既有基础题，也有值得一试的好题。
 -   [PTA（拼题 A）](https://pintia.cn/)：始于 2016 年，浙江大学衍生的杭州百腾教育科技有限公司产品。
 -   [清澄](http://www.tsinsen.com/)：始于 2005 年，由 [胡伟栋](http://www.hhwdd.com/) 开发。自 2019 年 9 月 1 日起不再对外提供服务。
+-   [QOJ](https://qoj.ac/)
 -   [Universal Online Judge](https://uoj.ac/)：始于 2014 年，Universal 取通用之意，[项目开源](https://github.com/UniversalOJ/UOJ-System)；[VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高。
 -   [Vijos](https://vijos.org/)：始于 2005 年。[服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
 -   [WZOI](https://wzoi.cc)：始于 2017 年，由浙江省温州中学维护的 [开源](https://github.com/massimodong/wzoj) 评测系统。
