@@ -215,7 +215,7 @@ struct rb_tree {
   }
 
   /**
-   * Insert leaf node @param n to @param p
+   * Insert leaf node {@code n} to {@code p}
    *
    * @param p parent of node which will be inserted
    * @param n leaf node which will be inserted
@@ -232,7 +232,7 @@ struct rb_tree {
   }
 
   /**
-   * Erase node @param n
+   * Erase node {@code n}
    *
    * @param n node which will be deleted, must have no more than 2 child
    */
@@ -272,7 +272,7 @@ struct rb_tree {
 #pragma GCC diagnostic ignored "-Wcomment"
 
   /**
-   * Insert leaf node @param n to @param p, then fixup
+   * Insert leaf node {@code n} to {@code p}, then fixup
    *
    * @param p parent of node which will be inserted
    * @param n node which will be inserted
@@ -318,7 +318,7 @@ struct rb_tree {
   }
 
   /**
-   * Erase node @param n, then fixup
+   * Erase node {@code n}, then fixup
    *
    * @param n node which will be deleted, must have no more than 2 child
    */
