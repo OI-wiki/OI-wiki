@@ -38,7 +38,8 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [HackerRank](https://www.hackerrank.com/) 有很多比赛
 -   [Kattis](https://open.kattis.com/) 题库主要包含类似 ICPC 比赛的题目；根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 [ELO 等级分](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86) 系统来评估。
 -   [LeetCode](https://leetcode.com/) 码农面试刷题网站，有中文分站：[LeetCode China](https://leetcode.cn)。
--   [Light OJ](http://lightoj.com) 一个快挂了的 OJ，`www` 域名无法访问，请使用 [根域名](http://lightoj.com) 访问
+-   [Light OJ](http://lightoj.com) 一个快挂了的 OJ，`www` 域名无法访问，请使用 [根域名](http://lightoj.com) 访问。
+-   [Open Trains](https://opentrains.opencup.org/) 俄罗斯 Open Cup 比赛的训练平台，基于 [ejudge](https://ejudge.ru/) 开源系统搭建，支持虚拟比赛；题库包含历年 Open Cup 赛题以及 Petrozavodsk 训练营的题目。
 -   [SPOJ](http://www.spoj.com) 始于 2003 年，其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化；支持题目点赞和标签功能。
 -   [TopCoder](https://www.topcoder.com/) 始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛；目前主营业务是技术众包。
 -   [TimusOJ](http://acm.timus.ru/) 始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛、以及 Petrozavodsk 训练营。
@@ -50,7 +51,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [**OI Wiki**](https://oi-wiki.org)
 -   [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282)
 -   [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
--   [演算法笔记](https://web.ntnu.edu.tw/~algo/)：台湾师范大学总结的教程
+-   [演算法筆記](https://web.ntnu.edu.tw/~algo/)：台湾师范大学总结的教程
 -   [如何为 ACM-ICPC 做准备？- geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
 -   [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/)
 -   [校招面试指南](https://github.com/jwasham/coding-interview-university)
