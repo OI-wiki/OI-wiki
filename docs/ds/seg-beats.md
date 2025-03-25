@@ -1,6 +1,4 @@
-本文讲解吉老师在 2016 年国家集训队论文中提到的线段树处理历史区间最值的问题。
-
-论文链接：[Link](https://yutong.site/wp-content/uploads/2018/09/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf)，具体页码：99 页至 121 页。
+本文讲解吉老师在 [2016 年国家集训队论文](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf) 中提到的线段树处理历史区间最值的问题。
 
 ## 区间最值
 
