@@ -1,4 +1,4 @@
-author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicun, Ycrpro, dbxxx-oi
+author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicun, Ycrpro, dbxxx-oi, HowieHz
 
 ## 引入
 
@@ -442,16 +442,22 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
     
     === "Python"
         ```python
-        t1 = [0] * MAXN, t2 = [0] * MAXN; n = 0
+        t1 = [0] * MAXN
+        t2 = [0] * MAXN
+        n = 0
+        
         
         def lowbit(x):
             return x & (-x)
         
+        
         def add(k, v):
             v1 = k * v
             while k <= n:
-                t1[k] = t1[k] + v; t2[k] = t2[k] + v1
+                t1[k] = t1[k] + v
+                t2[k] = t2[k] + v1
                 k = k + lowbit(k)
+        
         
         def getsum(t, k):
             ret = 0
@@ -460,13 +466,18 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
                 k = k - lowbit(k)
             return ret
         
+        
         def add1(l, r, v):
             add(l, v)
             add(r + 1, -v)
         
+        
         def getsum1(l, r):
-            return (r) * getsum(t1, r) - l * getsum(t1, l - 1) - \
-                  (getsum(t2, r) - getsum(t2, l - 1))
+            return (
+                (r) * getsum(t1, r)
+                - l * getsum(t1, l - 1)
+                - (getsum(t2, r) - getsum(t2, l - 1))
+            )
         ```
 
 根据这个原理，应该可以实现「区间乘区间积」，「区间异或一个数，求区间异或值」等，只要满足维护的信息和区间操作是同种运算即可，感兴趣的读者可以自己尝试。
