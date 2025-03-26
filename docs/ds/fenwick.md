@@ -1,4 +1,4 @@
-author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicun, Ycrpro, dbxxx-oi
+author: HeRaNO, Zhoier, Ir1d, Xeonacid, wangdehu, ouuan, ranwen, ananbaobeichicun, Ycrpro, dbxxx-oi, HowieHz
 
 ## 引入
 
@@ -442,7 +442,7 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
     
     === "Python"
         ```python
-        t1 = [0] * MAXN, t2 = [0] * MAXN; n = 0
+        t1 = [0] * MAXN; t2 = [0] * MAXN; n = 0
         
         def lowbit(x):
             return x & (-x)
