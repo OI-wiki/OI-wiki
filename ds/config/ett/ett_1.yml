@@ -1,0 +1,10 @@
+id: oi-wiki:ds/ett-1
+name: ETT
+solution:
+  cpp: docs/ds/code/ett/ett_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/ett/ett_1.ans
+  input: docs/ds/examples/ett/ett_1.in
+version: 1000
