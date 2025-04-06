@@ -91,6 +91,7 @@ int main() {
 ## 应用
 
 ### 防止子任务间名字冲突
+
 在一些具有多个子任务的问题中，我们可以对每个子任务各定义一个命名空间，在其中定义我们解决该子任务所需要的变量与函数，这样即使两个子任务的实现中即使声明了相同名字也不会冲突，从而使各个子任务间互不干扰，会在一定程度上方便调试，也会改善程序的可读性。
 
 ### 防止与标准库以及环境引入的名字冲突
@@ -99,28 +100,31 @@ int main() {
 
 ```cpp
 #include <math.h>
+
 #include <vector>
 using namespace std;
+
 namespace Sol {
-	int end; // std::end 被 using namespace std; 引入
+int end;  // std::end 被 using namespace std; 引入
 
-	int y1; // y1 是 POSIX 定义的第二类 Bessel 函数
-	// 因此通常情况下，在 Linux 下会有冲突而在 Windows 下没有
+int y1;  // y1 是 POSIX 定义的第二类 Bessel 函数
 
-	void solve() {
-		// 在 Sol::solve() 里无限定（不用 ::）地使用我们声明的 end 以及 y1 并不会导致名字冲突；
-		// 而若以上代码在全局命名空间中，将会导致冲突：
-		// 其中 end 只会在名字查找（即编译使用它的代码）时与 std::end 冲突，而 y1 在声明时就会冲突；
-		// 并且 y1 的冲突因为与环境有关甚至在 Windows 下不会被发现，却会在 Linux 的评测环境下造成编译错误。
-	}
+// 因此通常情况下，在 Linux 下会有冲突而在 Windows 下没有
+
+void solve() {
+  // 在 Sol::solve() 里无限定（不用 ::）地使用我们声明的 end 以及 y1
+  // 并不会导致名字冲突； 而若以上代码在全局命名空间中，将会导致冲突： 其中 end
+  // 只会在名字查找（即编译使用它的代码）时与 std::end 冲突，而 y1
+  // 在声明时就会冲突； 并且 y1 的冲突因为与环境有关甚至在 Windows
+  // 下不会被发现，却会在 Linux 的评测环境下造成编译错误。
 }
-int main() {
-	Sol::solve();
-}
+}  // namespace Sol
+
+int main() { Sol::solve(); }
 ```
 
 此时由于只有一个主要的命名空间，也可以使用 [内联命名空间](https://en.cppreference.com/w/cpp/language/namespace#Inline_namespaces) 或 [无名命名空间](https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces) 等来减少代码量。
 
 ## 参考
 
-- [Namespaces - cppreference.com](https://en.cppreference.com/w/cpp/language/namespace)
+-   [Namespaces - cppreference.com](https://en.cppreference.com/w/cpp/language/namespace)
