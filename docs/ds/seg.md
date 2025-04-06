@@ -438,7 +438,7 @@ int query(int p, int s, int t, int l, int r) {
 
 线段树应用十分广泛，常见的拓展和变体如下：
 
--   [可持久化线段树](./persistent-seg.md)（包括主席树）
+-   [可持久化线段树](./persistent-seg.md)
 -   各类树套树：
     -   [线段树套线段树](./seg-in-seg.md)
     -   [树状数组套线段树](./seg-in-bit.md)
