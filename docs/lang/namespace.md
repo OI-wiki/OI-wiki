@@ -53,6 +53,7 @@ void f()  // 这里定义的是全局命名空间的 f 函数，与 A::f 和 A::
 
 因此，如果执行了 `using namespace std;`，就会在当前作用域将 `std` 中的所有名字引入到全局命名空间当中。这样，我们就可以用 `cin` 代替 `std::cin`，用 `cout` 代替 `std::cout`。
 因此，如果执行了 `using namespace std;`，就会在当前作用域将 `std` 中的所有名字引入到全局命名空间当中。这样，我们就可以用 `cin` 代替 `std::cin`，用 `cout` 代替 `std::cout`。
+因此，如果执行了 `using namespace std;`，就会在当前作用域将 `std` 中的所有名字引入到全局命名空间当中。这样，我们就可以用 `cin` 代替 `std::cin`，用 `cout` 代替 `std::cout`。
 
 ??? warning "`using` 指令可能会导致命名冲突！"
     由于 `using namespace std;` 会将 `std` 中的 **所有名字** 引入，因此如果声明了与 `std` 重名的变量或函数，就可能会因为命名冲突而导致编译错误。
