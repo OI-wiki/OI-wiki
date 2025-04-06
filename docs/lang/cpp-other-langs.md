@@ -100,7 +100,7 @@ Java 与 C++ 都是面向对象的语言，都使用了面向对象的思想（�
 
 Rust 是编译型语言。Rust 前端负责将 Rust 代码转换成 LLVM IR（LLVM 中间代码），让 LLVM 后端将其翻译为特定平台的机器代码。Rust 前端与 LLVM 后端都能够对代码进行优化，而且 Rust 代码具备很强的明确性，不容易出现歧义，因此 Rust 语言对代码的优化程度特别高，其性能已经可以比肩 O2 优化下的 C 和 C++，甚至在大多数情况下会更快。C++ 语言的编译器通常直接将 C++ 代码转换成机器代码（Clang 除外，它也使用 LLVM），因此可能会缺少一层优化。此外，由于使用 LLVM IR，因此 Rust 也具备很强的跨平台性，适合跨平台编程。
 
-另外就是 Rust 成为「最具前途的语言」之一的主要原因：**安全** 。Rust 以安全著称，尤其内存安全，在编译时就能找到可能存在的空指针、悬垂引用、数据竞争、生命周期等问题。例如，Rust 不允许直接操作裸指针，因为这样可能会导致段错误。这是一段 Rust 与 C++ 代码的对比：
+另外就是 Rust 成为「最具前途的语言」之一的主要原因：**安全**。Rust 以安全著称，尤其内存安全，在编译时就能找到可能存在的空指针、悬垂引用、数据竞争、生命周期等问题。例如，Rust 不允许直接操作裸指针，因为这样可能会导致段错误。这是一段 Rust 与 C++ 代码的对比：
 
 ```cpp
 #include <iostream>
@@ -108,17 +108,15 @@ Rust 是编译型语言。Rust 前端负责将 Rust 代码转换成 LLVM IR（LL
 void inc(int* number);
 
 int main() {
-    int a = 1;
-    int* ptr = &a;
-    std::cout << a << ' ';
-    inc(ptr);
-    std::cout << a << std::endl;
-    // Final Output: 1 2
+  int a = 1;
+  int* ptr = &a;
+  std::cout << a << ' ';
+  inc(ptr);
+  std::cout << a << std::endl;
+  // Final Output: 1 2
 }
 
-void inc(int* number) {
-    *number ++;
-}
+void inc(int* number) { *number++; }
 ```
 
 ```rust
