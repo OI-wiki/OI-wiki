@@ -533,6 +533,8 @@ int lrmid(int p, int l, int r, int x) {
 }
 ```
 
+## 拓展
+
 线段树应用十分广泛，常见的拓展和变体如下：
 
 -   [可持久化线段树](./persistent-seg.md)
