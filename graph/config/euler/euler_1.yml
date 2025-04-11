@@ -1,0 +1,10 @@
+id: oi-wiki:graph/euler-1
+name: Euler Algorithm
+solution:
+  cpp: docs/graph/code/euler/euler_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/euler/euler_1.ans
+  input: docs/graph/examples/euler/euler_1.in
+version: 1000
