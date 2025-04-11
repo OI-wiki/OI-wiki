@@ -88,6 +88,12 @@ int main() {
 }
 ```
 
+## 无名命名空间
+
+当我们在一个作用域里只定义了一个用于防止名字冲突的命名空间时，其定义和使用将可以变得非常简洁。我们可以使用无名命名空间。
+
+形如 `namespace { /* something ... */ } `（省略命名空间的名字）定义的命名空间被称为无名命名空间。一个文件里的无名命名空间会被视为拥有独有的名字，和其他命名空间都不同，但同一个作用域内多个无名命名空间被视为相同的命名空间。在无名命名空间定义后，其中的名字在其外的作用域内可以在使用时被查找到，如同在定义后加入了一条 `using namespace` 指令。
+
 ## 应用
 
 ### 防止子任务间名字冲突
@@ -118,8 +124,6 @@ int main() {
 	Sol::solve();
 }
 ```
-
-此时由于只有一个主要的命名空间，也可以使用 [内联命名空间](https://en.cppreference.com/w/cpp/language/namespace#Inline_namespaces) 或 [无名命名空间](https://en.cppreference.com/w/cpp/language/namespace#Unnamed_namespaces) 等来减少代码量。
 
 ## 参考
 
