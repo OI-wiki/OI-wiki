@@ -130,6 +130,8 @@ Code::Blocks 支持插件来扩展功能，可以通过 `Settings -> Plugins` �
 | 全屏切换      | `F11`               |
 | 开关所有折叠    | `Ctrl + Shift + -`  |
 | 展开所有折叠    | `Ctrl + Shift + +`  |
+| 选择下一个匹配项   | `Ctrl + E`  |
+| 选择跳到下一个匹配项   | `Ctrl + Shift + E`   |
 
 ## 参考资料与注释
 
