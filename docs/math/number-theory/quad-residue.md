@@ -206,7 +206,7 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
 为了证明二次互反律，我们需要使用上述刚讲的 Gauss 引理证明下述引理：
 
 ???+ node "引理"
-    $\left(\frac{2}{p}\right) = (-1)^{\frac{p^2 - 1}{8}}$。  
+    有 $\left(\frac{2}{p}\right) = (-1)^{\frac{p^2 - 1}{8}}$。  
     若 $(a, p) = 1, 2\nmid a$，则：$\left(\frac{a}{p}\right) = (-1)^{\left( \sum\limits_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor \right)}$
 
 有证明：
@@ -222,7 +222,16 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
     
     故考虑：
     
-    $\begin{aligned} a \frac{p^2 - 1}{8} &= \sum_{k = 1}^{\frac{p - 1}{2}} ak \\ &= \sum_{k = 1}^{\frac{p - 1}{2}} \left(p \lfloor \frac{ak}{p} \rfloor + r_k\right) \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^{\frac{p - 1}{2}} r_k \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor + \sum_{i = 1}^t a_i + \sum_{j = 1}^m b_j \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^t a_i + \sum_{j = 1}^m(p - b_j) + 2\sum_{j = 1}^m b_i - mp \\ &= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \frac{p^2 - 1}{8} + 2\sum_{j = 1}^m b_j - mp\end{aligned}$
+    $$
+		\begin{aligned}
+			a \frac{p^2 - 1}{8} &= \sum_{k = 1}^{\frac{p - 1}{2}} ak	\\ 
+								&= \sum_{k = 1}^{\frac{p - 1}{2}} \left(p \lfloor \frac{ak}{p} \rfloor + r_k\right)	\\ 
+								&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^{\frac{p - 1}{2}} r_k	\\ 
+								&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor + \sum_{i = 1}^t a_i + \sum_{j = 1}^m b_j	\\
+								&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^t a_i + \sum_{j = 1}^m(p - b_j) + 2\sum_{j = 1}^m b_i - mp	\\
+								&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \frac{p^2 - 1}{8} + 2\sum_{j = 1}^m b_j - mp
+		\end{aligned}
+	$$
     
     我们知道有：
     
