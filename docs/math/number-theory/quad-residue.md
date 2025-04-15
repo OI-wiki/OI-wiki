@@ -170,12 +170,12 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
     那么有所有 $r_k$ 的乘积为：
     
     $$
-	    \begin{aligned}
-	        r_1 r_2 \cdots r_k & \equiv (a)(2a)(3a)\cdots(\frac{p - 1}{2}a)    \\
-	                           & \equiv a^{\frac{p - 1}{2}} (\frac{p - 1}{2})! \\
-	                           & \equiv \prod_{i = 1}^t a_i \prod_{j = 1}^m b_j
-	    \end{aligned}
-	$$
+        \begin{aligned}
+            r_1 r_2 \cdots r_k & \equiv (a)(2a)(3a)\cdots(\frac{p - 1}{2}a)    \\
+                               & \equiv a^{\frac{p - 1}{2}} (\frac{p - 1}{2})! \\
+                               & \equiv \prod_{i = 1}^t a_i \prod_{j = 1}^m b_j
+        \end{aligned}
+    $$
     
     注意到 $\frac{p}{2} < b_j < p$，故有 $1 \le p - b_j < \frac{p}{2}$。
     
@@ -186,12 +186,12 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
     
     故有：
     
-	$$
-		\begin{aligned}
-			\prod_{i = 1}^t a_i \prod_{j = 1}^m b_j &\equiv (-1)^m \prod_{i = 1}^t a_i \prod_{j = 1}^m (p - b_j) 	\\ 
-													&\equiv (-1)^m (\frac{p - 1}{2})!
-		\end{aligned}
-	$$
+    $$
+    	\begin{aligned}
+    		\prod_{i = 1}^t a_i \prod_{j = 1}^m b_j &\equiv (-1)^m \prod_{i = 1}^t a_i \prod_{j = 1}^m (p - b_j) 	\\ 
+    												&\equiv (-1)^m (\frac{p - 1}{2})!
+    	\end{aligned}
+    $$
     
     那么有：
     
