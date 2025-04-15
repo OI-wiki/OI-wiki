@@ -223,15 +223,15 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
     故考虑：
     
     $$
-		\begin{aligned}
-			a \frac{p^2 - 1}{8} &= \sum_{k = 1}^{\frac{p - 1}{2}} ak	\\ 
-								&= \sum_{k = 1}^{\frac{p - 1}{2}} \left(p \lfloor \frac{ak}{p} \rfloor + r_k\right)	\\ 
-								&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^{\frac{p - 1}{2}} r_k	\\ 
-								&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor + \sum_{i = 1}^t a_i + \sum_{j = 1}^m b_j	\\
-								&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^t a_i + \sum_{j = 1}^m(p - b_j) + 2\sum_{j = 1}^m b_i - mp	\\
-								&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \frac{p^2 - 1}{8} + 2\sum_{j = 1}^m b_j - mp
-		\end{aligned}
-	$$
+    	\begin{aligned}
+    		a \frac{p^2 - 1}{8} &= \sum_{k = 1}^{\frac{p - 1}{2}} ak	\\ 
+    							&= \sum_{k = 1}^{\frac{p - 1}{2}} \left(p \lfloor \frac{ak}{p} \rfloor + r_k\right)	\\ 
+    							&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^{\frac{p - 1}{2}} r_k	\\ 
+    							&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor + \sum_{i = 1}^t a_i + \sum_{j = 1}^m b_j	\\
+    							&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \sum_{i = 1}^t a_i + \sum_{j = 1}^m(p - b_j) + 2\sum_{j = 1}^m b_i - mp	\\
+    							&= p \sum_{k = 1}^{\frac{p - 1}{2}} \lfloor \frac{ak}{p} \rfloor  + \frac{p^2 - 1}{8} + 2\sum_{j = 1}^m b_j - mp
+    	\end{aligned}
+    $$
     
     我们知道有：
     
