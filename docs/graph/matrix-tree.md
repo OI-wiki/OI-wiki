@@ -1,4 +1,4 @@
-author: pw384, s0cks5, Xeonacid
+author: pw384, s0cks5, Watersail2005, Xeonacid
 
 矩阵树定理解决了一张图的生成树个数计数问题。
 
@@ -92,7 +92,7 @@ $$
     t^\mathrm{root}(G,k) = \det L^\mathrm{out}(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
 
-    也就是说，有向图的出度 Laplace 矩阵删去第 $k$ 行第 $k$ 列得到的主子式等于以 $k$ 为根的叶向树形图的个数。
+    也就是说，有向图的出度 Laplace 矩阵删去第 $k$ 行第 $k$ 列得到的主子式等于以 $k$ 为根的根向树形图的个数。
 
 因此如果要统计一张图所有的根向树形图，只要枚举所有的根 $k$ 并对 $t^\mathrm{root}(G,k)$ 求和即可。
 
@@ -103,7 +103,7 @@ $$
     t^\mathrm{leaf}(G,k) = \det L^\mathrm{in}(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
 
-    也就是说，有向图的入度 Laplace 矩阵删去第 $k$ 行第 $k$ 列得到的主子式等于以 $k$ 为根的根向树形图的个数。
+    也就是说，有向图的入度 Laplace 矩阵删去第 $k$ 行第 $k$ 列得到的主子式等于以 $k$ 为根的叶向树形图的个数。
 
 因此如果要统计一张图所有的叶向树形图，只要枚举所有的根 $k$ 并对 $t^\mathrm{leaf}(G,k)$ 求和即可。
 
