@@ -140,7 +140,7 @@ $$
 
 几何直观上，$\operatorname{epi}h$ 就是 $\operatorname{epi}f$ 和 $\operatorname{epi}g$ 的 [Minkowski 和](../../geometry/convex-hull.md#闵可夫斯基和)。如果 $f$ 和 $g$ 都是分段线性函数，那么 $h$ 同样是分段线性函数，且它的斜率段可以看作是 $f$ 和 $g$ 的斜率段合并（再排序）的结果。
 
-在实际问题中，如果 $f$ 和 $g$ 其中一个的斜率段数较少，可以直接将较少的斜率段插入到较多的斜率段中；否则，可能需要利用启发式合并或可并堆等方法，降低合并的整体复杂度，或者根据具体问题寻找相应的处理方式。
+在实际问题中，如果 $f$ 和 $g$ 其中一个的斜率段数较少，可以直接将较少的斜率段插入到较多的斜率段中；否则，可能需要利用 [启发式合并](../../graph/dsu-on-tree.md) 或 [可并堆](../../ds/heap.md) 等方法，降低合并的整体复杂度，或者根据具体问题寻找相应的处理方式。
 
 ### 最值操作
 
@@ -416,14 +416,6 @@ $$
 -   [Luogu P2748 \[USACO16OPEN\] Landscaping P](https://www.luogu.com.cn/problem/P2748)
 -   [Kyoto University PC 2016 H - WAAAAAAAAAAAAALL](https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h)
 -   [JAG Practice Contest 2017 J - Farm Village](https://atcoder.jp/contests/jag2017autumn/tasks/jag2017autumn_j)
-
-### 例题：间隔种树问题
-
-模板题：
-
--   [Luogu P1484 种树](https://www.luogu.com.cn/problem/P1484)
--   [Luogu P1792 \[国家集训队\] 种树](https://www.luogu.com.cn/problem/P1792)
--   [AtCoder Beginner Contest 383 G - Bar Cover](https://atcoder.jp/contests/abc383/tasks/abc383_g)
 
 ## 习题
 
