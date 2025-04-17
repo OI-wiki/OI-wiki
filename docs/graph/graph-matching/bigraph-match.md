@@ -249,8 +249,6 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 [洛谷 P2071 - 座位安排](https://www.luogu.com.cn/problem/P2071) 拆点
 
-
-
 ## 参考资料
 
 1.  <http://www.matrix67.com/blog/archives/116>
