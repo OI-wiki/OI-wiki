@@ -516,19 +516,29 @@ int query(int p, int s, int t, int l, int r) {
 ### 实现
 
 ```cpp
-// d 是线段树的节点信息，t 是懒标记，pushdn(x, y, z) 表示下传 x
+// sum 是线段树的节点信息，tag 是懒标记，pushdn(x, y, z) 表示下传 x
 // 的懒标记（方便实现带上了 y， z 表示 x 的区间的左右端点）
+int sum[400040], tag[400040];
 
-int lrmid(int p, int l, int r, int x) {
-  if (l == r) {
-    return l;
+void pushdn(int s, int t, int p) {
+  int mid = (s + t) >> 1;
+  sum[p * 2] += tag[p] * (mid - s + 1);
+  sum[p * 2 + 1] = tag[p] * (t - mid);
+  tag[p * 2] += tag[p];
+  tag[p * 2 + 1] += tag[p];
+  tag[p] = 0;
+}
+
+int lrmid(int s, int t, int p, int x) {
+  if (s == t) {
+    return s;
   }
-  int mid = (l + r) >> 1;
-  pushdn(p, l, r);
-  if (d[p * 2] >= x) {
-    return lrmid(p * 2, l, mid, x);
+  int mid = (s + t) >> 1;
+  pushdn(s, t, p);
+  if (sum[p * 2] >= x) {
+    return lrmid(s, mid, p * 2, x);
   } else {
-    return lrmid(p * 2 + 1, mid + 1, r, x - d[p * 2]);
+    return lrmid(mid + 1, t, p * 2 + 1, x - sum[p * 2]);
   }
 }
 ```
