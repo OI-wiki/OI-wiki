@@ -373,12 +373,12 @@ nav:
       - Treap: ds/treap.md
       - Splay 树: ds/splay.md
       - WBLT: ds/wblt.md
+      - 替罪羊树: ds/sgt.md
+      - 笛卡尔树: ds/cartesian-tree.md
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
       - B 树: ds/b-tree.md
       - B+ 树: ds/bplus-tree.md
-      - 替罪羊树: ds/sgt.md
-      - 笛卡尔树: ds/cartesian-tree.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
       - AA 树: ds/aa-tree.md
