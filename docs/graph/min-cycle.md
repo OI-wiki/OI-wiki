@@ -43,13 +43,35 @@
 
 故在循环时对于每个 $k$ 枚举满足 $i<k,j<k$ 的 $(i,j)$，更新答案即可。
 
+#### 记录路径
+
+现在已经知道了环的形式为 $u\to k\to v$，然后再从 $v$ 回到 $u$（经过的点编号均 $<k$）。
+
+问题转化为求 $v\leadsto u$ 的路径。由三角不等式 $dis_{u,v}\le dis_{u,i}+dis_{i,v}$，考虑记录 $pos_{u,v}=j$ 表示使得 $dis_{u,v}=dis_{u,j}+dis_{j,v}$ 的点。显然 $j$ 就在 $v\leadsto u$ 的路径上。
+
+于是可以将路径转化为 $v\leadsto j$ 和 $j\leadsto u$ 两段，分别递归处理即可。
+
+???+ note "证明递归不会陷入死循环"
+    使用反证法。
+    
+    假设环会重复经过一个点 $u$，那么环上必然会有一条 $u$ 出发经过若干条边回到 $u$ 的边。这就构成了一个新的环。
+    
+    由于图中不会出现负环（如果出现负环就不会有最小环了），所以新环的边权和必然是小于原环的。
+    
+    所以只需要截取这一个环，那么就不会重复经过一个点 $u$，假设不成立，故环不会重复经过一个点。
+
+    所以当递归到 $u,v$ 两点时，其 $pos_{u,v}$ 必然不等于两点编号，也就是新加入了一个点。
+
+    由于总点数为 $n$，那么新加入的次数（即递归次数）不会超过 $n$，因此递归不会陷入死循环。
+    
+
 #### 性质
 
 时间复杂度：$O(n^3)$
 
 #### 实现
 
-下面给出 C++ 的参考实现：
+下面给出 C++ 和 Python 的参考实现（不统计路径）：
 
 === "C++"
     ```cpp
@@ -94,6 +116,48 @@
                         dis[i][j], dis[i][k] + dis[k][j]
                     )  # 正常的 floyd 更新最短路矩阵
         return ans
+    ```
+
+下面是 C++ 的参考实现（统计路径）：
+
+=== "C++"
+    ```cpp
+    // 图的点数为 n
+    int val[MAXN + 1][MAXN + 1];  // 原图的邻接矩阵
+    int cnt, path[MAXN + 5]; // 记录最小环的路径和长度
+    
+    void get_path(int u, int v) { // 获得 u 到 v 之间的路径
+      if (pos[u][v] == 0) return ;
+    
+      int k = pos[u][v];
+      get_path(u, k);
+      path[++cnt] = k;
+      get_path(k, v);
+    }
+    
+    void Floyd(const int &n) {
+      static int dis[MAXN + 1][MAXN + 1];  // 最短路矩阵
+      static int pos[MAXN + 1][MAXN + 1];
+      memcpy(dis, val, sizeof(val));
+      memset(pos, 0, sizeof(pos));
+      for (int k = 1; k <= n; ++k) {
+        for (int i = 1; i < k; ++i)
+          for (int j = 1; j < i; ++j)
+            if (ans > (long long)val[i][k] + val[k][j] + dis[i][j]) { // 发现了更短的环
+              ans = val[i][k] + val[k][j] + dis[i][j], cnt = 0;
+              path[++cnt] = i, path[++cnt] = k, path[++cnt] = j; // 依次加入 i,k,j 三点
+              get_path(j, i); // 加入 j 到 i 的路径
+            }
+        
+        for (int i = 1; i <= n; ++i) // 正常 Floyd 更新最短路
+          for (int j = 1; j <= n; ++j) {
+            if (dis[i][j] > dis[i][k] + dis[k][j]) {
+              dis[i][j] = dis[i][k] + dis[k][j];
+              pos[i][j] = k; // 当前路径可以由 k 更新得到
+            }
+          }
+      }
+    }
     ```
 
 ## 例题
