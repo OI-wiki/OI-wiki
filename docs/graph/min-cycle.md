@@ -63,7 +63,6 @@
     所以当递归到 $u,v$ 两点时，其 $pos_{u,v}$ 必然不等于两点编号，也就是新加入了一个点。
 
     由于总点数为 $n$，那么新加入的次数（即递归次数）不会超过 $n$，因此递归不会陷入死循环。
-    
 
 #### 性质
 
@@ -124,10 +123,10 @@
     ```cpp
     // 图的点数为 n
     int val[MAXN + 1][MAXN + 1];  // 原图的邻接矩阵
-    int cnt, path[MAXN + 5]; // 记录最小环的路径和长度
+    int cnt, path[MAXN + 5];      // 记录最小环的路径和长度
     
-    void get_path(int u, int v) { // 获得 u 到 v 之间的路径
-      if (pos[u][v] == 0) return ;
+    void get_path(int u, int v) {  // 获得 u 到 v 之间的路径
+      if (pos[u][v] == 0) return;
     
       int k = pos[u][v];
       get_path(u, k);
@@ -143,17 +142,19 @@
       for (int k = 1; k <= n; ++k) {
         for (int i = 1; i < k; ++i)
           for (int j = 1; j < i; ++j)
-            if (ans > (long long)val[i][k] + val[k][j] + dis[i][j]) { // 发现了更短的环
+            if (ans >
+                (long long)val[i][k] + val[k][j] + dis[i][j]) {  // 发现了更短的环
               ans = val[i][k] + val[k][j] + dis[i][j], cnt = 0;
-              path[++cnt] = i, path[++cnt] = k, path[++cnt] = j; // 依次加入 i,k,j 三点
-              get_path(j, i); // 加入 j 到 i 的路径
+              path[++cnt] = i, path[++cnt] = k,
+              path[++cnt] = j;  // 依次加入 i,k,j 三点
+              get_path(j, i);   // 加入 j 到 i 的路径
             }
-        
-        for (int i = 1; i <= n; ++i) // 正常 Floyd 更新最短路
+    
+        for (int i = 1; i <= n; ++i)  // 正常 Floyd 更新最短路
           for (int j = 1; j <= n; ++j) {
             if (dis[i][j] > dis[i][k] + dis[k][j]) {
               dis[i][j] = dis[i][k] + dis[k][j];
-              pos[i][j] = k; // 当前路径可以由 k 更新得到
+              pos[i][j] = k;  // 当前路径可以由 k 更新得到
             }
           }
       }
