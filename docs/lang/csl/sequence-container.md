@@ -139,7 +139,7 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 
 -   `capacity()` 返回容器的容量，即不发生拷贝的情况下容器的长度上限。
 
--   `shrink_to_fit()` 使得 `vector` 的容量与长度一致，多退但不会少。
+-   `shrink_to_fit()` 使得 `vector` 的容量与长度一致，多退但不会少补。
 
 ### 元素增删及修改
 
