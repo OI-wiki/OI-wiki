@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 const int N = 5e4;
 int n, m, fa[N * 3 + 5], sz[N * 3 + 5], ans;
@@ -22,13 +23,13 @@ int main() {
   cin >> n >> m;
   iota(fa + 1, fa + n * 3, 1);
   fill(sz + 1, sz + n * 3, 1);
-  while(m--) {
+  while (m--) {
     cin >> op >> x >> y;
-    if(x > n || y > n)
-		++ ans;
-    else if(op == 1) {
-      if(query(x) == query(y + n) || query(x) == query(y + (n << 1)))
-	  	++ ans;
+    if (x > n || y > n)
+		++ans;
+    else if (op == 1) {
+      if (query(x) == query(y + n) || query(x) == query(y + (n << 1)))
+	  	++ans;
       else {
         merge(x, y);
         merge(x + n, y + n);
@@ -36,8 +37,8 @@ int main() {
       }
     }
     else {
-      if(query(x) == query(y) || query(x) == query(y + n))
-	  	++ ans;
+      if (query(x) == query(y) || query(x) == query(y + n))
+	  	++ans;
       else {
         merge(x, y + (n << 1));
         merge(x + n, y);
