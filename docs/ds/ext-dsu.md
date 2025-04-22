@@ -1,16 +1,17 @@
 author: Pig-Eat-Earth
 
-前置知识：[并查集](./dsu.md)
+前置知识：[并查集](./dsu.md)  
+本页面将介绍拓展域并查集。
 
 ## 引入
 
 我们知道，普通的并查集能够维护「在同一集合中」这一关系，而需要处理其他复杂关系时，明显地，普通的并查集已经无法胜任了。
 
-由此，我们就有了**拓展域并查集**。
+由此，我们就有了 **拓展域并查集**。
 
 ## 原理
 
-考虑将元素拆分成不同的**域**，**要求域之间有明确的关系**，则元素之间的关系可以表示为域之间的关系，维护时只需在元素的对应域上进行合并与查询即可。
+考虑将元素拆分成不同的 **域**，**要求域之间有明确的关系**，则元素之间的关系可以表示为域之间的关系，维护时只需在元素的对应域上进行合并与查询即可。
 
 对于要求判断是否关系合法的问题，如果合并后同一元素的不同域在同一集合内，该关系就是不合法的。
 
@@ -27,9 +28,12 @@ author: Pig-Eat-Earth
 ## 例题
 
 ### Case 1
+
 ???+ question "[Luogu P2024「NOI2011」食物链](https://www.luogu.com.cn/problem/P2024)"
     #### 解题思路
-    很典型的拓展域并查集，将一种生物 $x$ 分为三个域：  
+    
+    很典型的拓展域并查集，将一种生物 $x$ 分为三个域：
+
     -   与 `x` 处于同一集合的域与 $x$ 属于同一物种；  
     -   与 `x+n` 处于同一集合的域能被 $x$ 吃；  
     -   与 `x+2n` 处于同一集合的能吃 $x$。
@@ -55,9 +59,12 @@ author: Pig-Eat-Earth
         ```
 
 ### Case 2
+
 ???+ question "[ABC396E Min of Restricted Sum](https://atcoder.jp/contests/abc396/tasks/abc396_e)"
     #### 解题思路
+
     让我们回归异或运算的定义。
+
     ???+ info "原题中关于异或（XOR）的定义"
         对于非负整数 $A$ 和 $B$，它们的异或 $A\oplus B$ 定义如下：  
 
@@ -65,6 +72,7 @@ author: Pig-Eat-Earth
 
         举个例子，$3\oplus 5=6$（在二进制形式下：$011\oplus 101=110$）
     
+
     翻译一下，异或就是单个二进制位上的「相同」或「不同」关系。  
     那么，将 $A_i$ 的所有二进制位拆开，异或关系就能用拓展域并查集维护了。
 
@@ -81,8 +89,8 @@ author: Pig-Eat-Earth
 
 ## 习题
 
-- [Luogu P9869「NOIP2023」三值逻辑](https://www.luogu.com.cn/problem/P9869)
+-   [Luogu P9869「NOIP2023」三值逻辑](https://www.luogu.com.cn/problem/P9869)
 
 ## 参考资料
 
-1. [CSDN：扩展域并查集&带权并查集(from Lostgreen)](https://blog.csdn.net/qqqqqwerttwtwe/article/details/145440100)
+1.  [CSDN：扩展域并查集&带权并查集(from Lostgreen)](https://blog.csdn.net/qqqqqwerttwtwe/article/details/145440100)
