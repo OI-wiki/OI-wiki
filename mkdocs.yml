@@ -345,7 +345,6 @@ nav:
     - 哈希表: ds/hash.md
     - 并查集:
       - 并查集: ds/dsu.md
-      - 拓展域并查集: ds/ext-dsu.md
       - 并查集复杂度: ds/dsu-complexity.md
     - 堆:
       - 堆简介: ds/heap.md
