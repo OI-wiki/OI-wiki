@@ -22,8 +22,8 @@ int main() {
   cout.tie(0);
   cin >> n >> m;
   for (int i = 1; i <= n * 3; ++i) {
-  	fa[i] = i;
-  	sz[i] = 1;
+    fa[i] = i;
+    sz[i] = 1;
   }
   while (m--) {
     cin >> op >> x >> y;
