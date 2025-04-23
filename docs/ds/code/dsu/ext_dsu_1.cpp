@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 using namespace std;
 const int N = 5e4;
 int n, m, fa[N * 3 + 5], sz[N * 3 + 5], ans;
@@ -28,10 +28,10 @@ int main() {
   while (m--) {
     cin >> op >> x >> y;
     if (x > n || y > n)
-	  ++ans;
+      ++ans;
     else if (op == 1) {
       if (query(x) == query(y + n) || query(x) == query(y + (n << 1)))
-	  	++ans;
+        ++ans;
       else {
         merge(x, y);
         merge(x + n, y + n);
@@ -39,7 +39,7 @@ int main() {
       }
     } else {
       if (query(x) == query(y) || query(x) == query(y + n))
-	  	++ans;
+        ++ans;
       else {
         merge(x, y + (n << 1));
         merge(x + n, y);

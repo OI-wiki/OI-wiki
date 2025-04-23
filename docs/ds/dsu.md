@@ -247,13 +247,98 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
             --8<-- "docs/ds/code/dsu/dsu_1.py"
             ```
 
+## 拓展域并查集
+
+### 引入
+
+我们知道，普通的并查集能够维护「在同一集合中」这一关系，而需要处理其他复杂关系时，明显地，普通的并查集已经无法胜任了。
+
+由此，我们就有了 **拓展域并查集**。
+
+### 原理
+
+考虑将元素拆分成不同的 **域**，**要求域之间有明确的关系**，则元素之间的关系可以表示为域之间的关系，维护时只需在元素的对应域上进行合并与查询即可。
+
+对于要求判断是否关系合法的问题，如果合并后同一元素的不同域在同一集合内，该关系就是不合法的。
+
+???+ info "小技巧"
+    如果只有两个域，可以使用相反数表示不同域。然而一般的数组不支持负数下标，下面的技巧能够实现负数下标。
+
+    数组不支持负数下标的原因在于其首地址前的地址就不再属于该数组，访问负数下标属于**越界访问**。只要将其首地址向后「移动」即可实现负数下标。
+
+    ???+ note "实现"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/ext_dsu_trick.cpp"
+        ```
+
+### 例题
+
+让我们从最浅显的开始。
+
+???+ question "[Luogu P2024「NOI2011」食物链](https://www.luogu.com.cn/problem/P2024)"
+    #### 解题思路
+
+    很典型的拓展域并查集，将一种生物 $x$ 分为三个域：
+
+    -   与 `x` 处于同一集合的域与 $x$ 属于同一物种；  
+    -   与 `x+n` 处于同一集合的域能被 $x$ 吃；  
+    -   与 `x+2n` 处于同一集合的能吃 $x$。
+
+    于是，对于一句话：  
+
+    -   `1 x y` 为假话当且仅当：  
+
+        1. $x>N$ 或 $y>N$；  
+        2. `y` 与 `x+n` 或 `x+2n` 中的一个处于同一集合内。  
+
+    -   `2 x y` 为假话当且仅当：  
+
+        1. $x>N$ 或 $y>N$；  
+        2. `y` 与 `x` 或 `x+2n` 中的一个处于同一集合内。  
+
+    -   若为真话，合并对应域。  
+
+    #### 参考代码
+    ???+ node "实现"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/ext_dsu_1.cpp"
+        ```
+
+现在我们已经大概了解了拓展域并查集的大概写法和思路，下面的例题就需要一些转化了。
+
+???+ question "[ABC396E Min of Restricted Sum](https://atcoder.jp/contests/abc396/tasks/abc396_e)"
+    #### 解题思路
+
+    让我们回归异或运算的定义。
+
+    ???+ info "原题中关于异或（XOR）的定义"
+        对于非负整数 $A$ 和 $B$，它们的异或 $A\oplus B$ 定义如下：  
+
+        -   在 $A\oplus B$ 的二进制形式中，表示 $2^k(k\ge 0)$ 的一位为 $1$ 当且仅当在 $A$ 和 $B$ 的该位中正好有一个为 $1$；否则，为 $0$。
+
+        举个例子，$3\oplus 5=6$（在二进制形式下：$011\oplus 101=110$）
+
+    翻译一下，异或就是单个二进制位上的「相同」或「不同」关系。  
+    那么，将 $A_i$ 的所有二进制位拆开，异或关系就能用拓展域并查集维护了。
+
+    另外，不同位会对答案产生不同贡献，因此要使用 [带权并查集](./dsu.md#带权并查集) 进行维护。
+
+    最后，在统计答案时，一个二进制位取 $1$ 或取 $0$ 会确定别的某些二进制位的取值，在两种中选择贡献（即权值）较小者。
+
+    #### 代码
+    *以下代码使用了之前所讲的「小技巧」。*
+    ???+ note "实现"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/ext_dsu_2.cpp"
+        ```
+
 ## 习题
 
 [「NOI2015」程序自动分析](https://uoj.ac/problem/127)
 
 [「JSOI2008」星球大战](https://www.luogu.com.cn/problem/P1197)
 
-[「NOI2001」食物链](https://www.luogu.com.cn/problem/P2024)
+[「NOIP2023」三值逻辑](https://www.luogu.com.cn/problem/P9869)
 
 [「NOI2002」银河英雄传说](https://www.luogu.com.cn/problem/P1196)
 
@@ -267,6 +352,7 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 1.  [知乎回答：是否在并查集中真的有二分路径压缩优化？](https://www.zhihu.com/question/28410263/answer/40966441)
 2.  Gabow, H. N., & Tarjan, R. E. (1985). A Linear-Time Algorithm for a Special Case of Disjoint Set Union. JOURNAL OF COMPUTER AND SYSTEM SCIENCES, 30, 209-221.[PDF](https://dl.acm.org/doi/pdf/10.1145/800061.808753)
+3.  [CSDN：扩展域并查集 & 带权并查集](https://blog.csdn.net/qqqqqwerttwtwe/article/details/145440100)
 
 [^tarjan1984worst]: Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.[ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
 

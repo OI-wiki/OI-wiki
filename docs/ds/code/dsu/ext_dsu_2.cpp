@@ -57,9 +57,9 @@ int main() {
       if (!vis[pf]) {
         vis[pf] = vis[nf] = 1;
         if (wt[pf] < wt[nf])
-		  st[pf] = 1;
+          st[pf] = 1;
         else
-		  st[nf] = 1;
+          st[nf] = 1;
       }
       if (st[pf]) a[i] |= (1 << j);
     }
