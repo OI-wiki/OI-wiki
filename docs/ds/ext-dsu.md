@@ -1,6 +1,6 @@
 author: Pig-Eat-Earth
 
-前置知识：[并查集](./dsu.md)  
+前置知识：[并查集](./dsu.md)   
 本页面将介绍拓展域并查集。
 
 ## 引入
@@ -31,7 +31,7 @@ author: Pig-Eat-Earth
 
 ???+ question "[Luogu P2024「NOI2011」食物链](https://www.luogu.com.cn/problem/P2024)"
     #### 解题思路
-    
+
     很典型的拓展域并查集，将一种生物 $x$ 分为三个域：
 
     -   与 `x` 处于同一集合的域与 $x$ 属于同一物种；  
@@ -93,4 +93,4 @@ author: Pig-Eat-Earth
 
 ## 参考资料
 
-1.  [CSDN：扩展域并查集&带权并查集(from Lostgreen)](https://blog.csdn.net/qqqqqwerttwtwe/article/details/145440100)
+1.  [CSDN：扩展域并查集 & 带权并查集 (from Lostgreen)](https://blog.csdn.net/qqqqqwerttwtwe/article/details/145440100)

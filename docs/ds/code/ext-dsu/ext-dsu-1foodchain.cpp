@@ -21,12 +21,14 @@ int main() {
   cin.tie(0);
   cout.tie(0);
   cin >> n >> m;
-  iota(fa + 1, fa + n * 3, 1);
-  fill(sz + 1, sz + n * 3, 1);
+  for (int i = 1; i <= n * 3; ++i) {
+  	fa[i] = i;
+  	sz[i] = 1;
+  }
   while (m--) {
     cin >> op >> x >> y;
     if (x > n || y > n)
-		++ans;
+	  ++ans;
     else if (op == 1) {
       if (query(x) == query(y + n) || query(x) == query(y + (n << 1)))
 	  	++ans;
@@ -35,8 +37,7 @@ int main() {
         merge(x + n, y + n);
         merge(x + (n << 1), y + (n << 1));
       }
-    }
-    else {
+    } else {
       if (query(x) == query(y) || query(x) == query(y + n))
 	  	++ans;
       else {
