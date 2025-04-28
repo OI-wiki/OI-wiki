@@ -49,9 +49,9 @@ jobs:
           cd ..
           cp -r fonts/* .fonts
 
-      - uses: typst-community/setup-typst@v3
+      - uses: typst-community/setup-typst@v4
         with:
-          typst-version: 0.12.0
+          typst-version: 0.13.1
           cache-dependency-path: OI-Wiki-export/oi-wiki-export-typst/oi-wiki.typ
 
       - name: Build Typst document
