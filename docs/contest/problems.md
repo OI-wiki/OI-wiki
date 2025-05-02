@@ -140,7 +140,7 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 ??? note "参考代码"
     **注意**：源代码不包含下方第一行（即 `// clang-format off`）。
     
-    ```c++
+    ```cpp
     // clang-format off
     #include<cstdio>
     
