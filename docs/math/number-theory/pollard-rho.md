@@ -149,7 +149,7 @@ $$
     === "C++"
         ```cpp
         ll Pollard_Rho(ll N) {
-          if(N == 4) return 2;//因为一开始跳了两步，所以需要特判一下4
+          if (N == 4) return 2;  // 因为一开始跳了两步，所以需要特判一下4
           ll c = rand() % (N - 1) + 1;
           ll t = f(0, c, N);
           ll r = f(f(0, c, N), c, N);
