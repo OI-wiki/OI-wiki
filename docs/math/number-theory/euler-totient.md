@@ -39,17 +39,17 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
         
             证明：显然对于从 1 到 $p^k$ 的所有数中，除了 $p^{k-1}$ 个 $p$ 的倍数以外其它数都与 $p^k$ 互素，故 $\varphi(p^k)=p^k-p^{k-1}=p^{k-1}\times(p-1)$，证毕。
         
-            接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$。由唯一分解定理与 $\varphi(x)$ 函数的积性
+        接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$。由唯一分解定理与 $\varphi(x)$ 函数的积性
         
-            $$
-            \begin{aligned}
-                \varphi(n) &= \prod_{i=1}^{s} \varphi(p_i^{k_i}) \\
-                &= \prod_{i=1}^{s} (p_i-1)\times {p_i}^{k_i-1}\\
-                &=\prod_{i=1}^{s} {p_i}^{k_i} \times(1 - \frac{1}{p_i})\\
-                &=n~ \prod_{i=1}^{s} (1- \frac{1}{p_i})
-                &\square
-            \end{aligned}
-            $$
+        $$
+        \begin{aligned}
+            \varphi(n) &= \prod_{i=1}^{s} \varphi(p_i^{k_i}) \\
+            &= \prod_{i=1}^{s} (p_i-1)\times {p_i}^{k_i-1}\\
+            &=\prod_{i=1}^{s} {p_i}^{k_i} \times(1 - \frac{1}{p_i})\\
+            &=n~ \prod_{i=1}^{s} (1- \frac{1}{p_i})
+            &\square
+        \end{aligned}
+        $$
 
 -   对任意不全为 $0$ 的整数 $m,n$，$\varphi(mn)\varphi(\gcd(m,n))=\varphi(m)\varphi(n)\gcd(m,n)$。
 
@@ -75,12 +75,12 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
           return ans;
         }
         ```
-
+    
     === "Python"
         ```python
         import math
         
-
+        
         def euler_phi(n):
             ans = n
             for i in range(2, math.isqrt(n) + 1):
