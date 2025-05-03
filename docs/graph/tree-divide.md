@@ -58,7 +58,7 @@
 以上是全部统计思路，实现细节详见参考代码。
 
 ??? note "参考代码"
-    ```c++
+    ```cpp
     --8<-- "docs/graph/code/tree-divide/tree-divide_3.cpp"
     ```
 

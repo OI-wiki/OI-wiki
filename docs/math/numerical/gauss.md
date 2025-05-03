@@ -261,7 +261,7 @@ $$
 
 ### 实现
 
-```c++
+```cpp
 constexpr double EPS = 1E-9;
 int n;
 vector<vector<double>> a(n, vector<double>(n));
