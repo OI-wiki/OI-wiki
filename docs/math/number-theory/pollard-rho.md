@@ -52,7 +52,7 @@
     
     最后证明，所有 $N$ 的素因子必然出现在 `result` 中。不妨假设 $p$ 是 $N$ 的一个素因子，但并没有出现在 `result` 中。根据上文的讨论，$p$ 不可能是循环中出现过的 `i`。设 `i` 是退出循环前最后的 `i`，则 `i` 严格小于 $p$，而退出循环后的 `N` 不被之前的 `i` 整除，故而 $p$ 整除 `N`。所以最后的 `N` 大于一，则根据前文所述，它必然是素数，则 `N` 就等于 $p$，必会在最后加入 `result`，与假设矛盾。
 
-值得指出的是，如果开始已经打了一个素数表的话，时间复杂度将从 $O(\sqrt N)$ 下降到 $O(\sqrt{\frac N {\ln N}})$。去 [筛法](./sieve.md) 处查阅更多打表的信息。
+值得指出的是，如果开始已经打了一个素数表的话，时间复杂度将从 $O(\sqrt N)$ 下降到 $O(\frac {\sqrt{N}} {\ln N})$。去 [筛法](./sieve.md) 处查阅更多打表的信息。
 
 例题：[CF 1445C](https://codeforces.com/problemset/problem/1445/C)
 
@@ -149,6 +149,7 @@ $$
     === "C++"
         ```cpp
         ll Pollard_Rho(ll N) {
+          if (N == 4) return 2;  // 因为一开始跳了两步，所以需要特判一下 4
           ll c = rand() % (N - 1) + 1;
           ll t = f(0, c, N);
           ll r = f(f(0, c, N), c, N);
@@ -168,6 +169,8 @@ $$
         
         
         def Pollard_Rho(N):
+            if N == 4:
+                return 2  # 因为一开始跳了两步，所以需要特判一下 4
             c = random.randint(1, N - 1)
             t = f(0, c, N)
             r = f(f(0, c, N), c, N)
