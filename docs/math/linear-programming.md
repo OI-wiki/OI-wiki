@@ -93,17 +93,17 @@ $x,y\in N$
 
 知道这些约束条件以后，我们需要将它们在平面直角坐标系中画出来
 
-$x\leq4$（红色区域）
+$x\leq4$（蓝色区域）
 
-![img](images/linear-programming1.png)
+![img](images/linear-programming-1.svg)
 
-$y\geq3$（黑色区域）
+$y\geq3$（红色区域）
 
-![img](images/linear-programming2.png)
+![img](images/linear-programming-2.svg)
 
-$3x+y\geq9$（蓝色直线右侧区域）
+$3x+y\geq9$（绿色直线右侧区域）
 
-![img](images/linear-programming3.png)
+![img](images/linear-programming-3.svg)
 
 黄色区域为三块区域的交集，这就是这个线性规划的所有可行解。因为题目中说明，需要最小化 $x + y$，观察图像可知，在点 $(2,3)$,$x$ 和 $y$ 同时取到最小值，此时 $x + y$ 当然最小。因此，$\min(x + y) = (2 + 3) = 5$。
 
