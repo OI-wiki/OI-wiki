@@ -272,7 +272,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO, Sam5440
     3 → [4]
     4 → [1]
 
-字符画：
+图形参考：
 
     1 → [2, 3]
          │
