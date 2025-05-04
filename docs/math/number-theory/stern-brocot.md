@@ -91,7 +91,7 @@ $$
         ```cpp
         --8<-- "docs/math/code/stern-brocot/tree-build.cpp:3:10"
         ```
-
+    
     === "Python"
         ```py
         --8<-- "docs/math/code/stern-brocot/tree-build.py:2:9"
@@ -177,7 +177,7 @@ $$
         ```cpp
         --8<-- "docs/math/code/stern-brocot/fraction-finding-1.cpp:4:13"
         ```
-
+    
     === "Python"
         ```python
         --8<-- "docs/math/code/stern-brocot/fraction-finding-1.py:2:11"
@@ -198,7 +198,7 @@ $$
         ```cpp
         --8<-- "docs/math/code/stern-brocot/fraction-finding-2.cpp:5:25"
         ```
-
+    
     === "Python"
         ```python
         --8<-- "docs/math/code/stern-brocot/fraction-finding-2.py:2:19"
@@ -247,7 +247,7 @@ $$
         ```cpp
         --8<-- "docs/math/code/stern-brocot/fraction-finding-3.cpp:5:17"
         ```
-
+    
     === "Python"
         ```python
         --8<-- "docs/math/code/stern-brocot/fraction-finding-3.py:2:11"
@@ -347,7 +347,7 @@ $$
         ```cpp
         --8<-- "docs/math/code/stern-brocot/farey-build.cpp:3:13"
         ```
-
+    
     === "Python"
         ```python
         --8<-- "docs/math/code/stern-brocot/farey-build.py:2:13"

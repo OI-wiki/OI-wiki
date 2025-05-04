@@ -225,7 +225,7 @@
             
         === "C++"
         
-            ``` c++
+            ``` cpp
             #include <iostream>
             
             int main(void) {
@@ -247,7 +247,7 @@
             ```
         
         === "C++"
-            ```c++
+            ```cpp
             #include <iostream>
             
             int main(void) {

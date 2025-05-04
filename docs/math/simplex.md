@@ -413,7 +413,7 @@ $$
 
 把对应出的系数矩阵代入到单纯形算法就可以求出最优解了。
 
-```c++
+```cpp
 --8<-- "docs/math/code/simplex/simplex_1.cpp"
 ```
 
