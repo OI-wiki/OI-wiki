@@ -151,7 +151,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO, Sam5440
 
 链接：
 
-
 -   [图论相关概念](./concept.md)
 
 ### 方法说明
