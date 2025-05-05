@@ -8,7 +8,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO, Sam5440
 
 -   $n$ 表示点数，$m$ 表示边数，$d^+(u)$ 表示点 $u$ 的出度（即 $u$ 的所有出边数）。
 -   部分术语参考：[图论相关概念](./concept.md)
--   详细请查阅：[OI-wiki - 图的存储方式](https://oi-wiki.org/graph/representation/)
 -   相关算法可见：
     -   最小生成树：[Kruskal 算法](./mst.md#kruskal-算法)、[其它 MST 算法](./mst.md)
     -   网络流相关：[网络流基础](./flow.md)
@@ -19,7 +18,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO, Sam5440
 
 详细原理与讨论见：
 
--   [OI-wiki：直接存边](https://oi-wiki.org/graph/representation/#%E7%9B%B4%E6%8E%A5%E5%AD%98%E8%BE%B9)
 -   [图论相关概念](./concept.md)
 -   [Kruskal 算法](./mst.md#kruskal-算法)
 
@@ -153,7 +151,7 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO, Sam5440
 
 链接：
 
--   [OI-wiki：邻接矩阵](https://oi-wiki.org/graph/representation/#%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5)
+
 -   [图论相关概念](./concept.md)
 
 ### 方法说明
@@ -257,7 +255,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO, Sam5440
 
 链接：
 
--   [OI-wiki：邻接表](https://oi-wiki.org/graph/representation/#%E9%82%BB%E6%8E%A5%E8%A1%A8)
 -   [图论相关概念](./concept.md)
 -   辅助查找可用 [基础算法/二分查找](../basic/binary.md)
 
@@ -372,7 +369,6 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO, Sam5440
 
 链接：
 
--   [OI-wiki：链式前向星](https://oi-wiki.org/graph/representation/#%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F)
 -   [图论相关概念](./concept.md)
 -   网络流相关：[网络流基础](./flow.md)
 
