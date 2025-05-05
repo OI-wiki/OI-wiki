@@ -45,28 +45,28 @@ Python 使用 `str` 类型处理字符串对象，支持丰富的方法和操作
 
 参见：[str（文本序列类型）官方文档](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str)
 
-* `print(s)`：输出字符串 `s` 到标准输出。
-* `input()`：读取一行输入并返回字符串类型结果。
-* `str(obj)`：将对象 `obj` 转换为字符串。
-* `len(s)`：返回字符串 `s` 的长度（字符数）。
-* `s[i]`：访问字符串 `s` 中索引为 `i` 的字符（支持负索引）。
-* `s[i:j]`：截取字符串从索引 `i` 到 `j-1` 的子串。
-* `s1 + s2`：连接字符串 `s1` 和 `s2`。
-* `s * n`：重复字符串 `s` 共 `n` 次。
-* `s.find(sub, start=0, end=None)`：查找子串 `sub` 在 `s` 中第一次出现的位置，找不到返回 `-1`。
-* `s.rfind(sub)`：从右向左查找 `sub`，返回最后一次出现的位置。
-* `s.index(sub)` / `s.rindex(sub)`：同 `find/rfind`，但未找到时抛出 `ValueError`。
-* `s.startswith(prefix)`：判断 `s` 是否以 `prefix` 开头。
-* `s.endswith(suffix)`：判断 `s` 是否以 `suffix` 结尾。
-* `s.count(sub)`：返回子串 `sub` 在 `s` 中出现的次数。
-* `s.replace(old, new, count=-1)`：将 `s` 中的 `old` 替换为 `new`，最多替换 `count` 次。
-* `s.strip(chars=None)`：移除字符串首尾的空白符或指定字符集。
-* `s.lstrip()` / `s.rstrip()`：分别移除左侧 / 右侧空白符。
-* `s.upper()` / `s.lower()`：返回大写 / 小写形式。
-* `s.title()` / `s.capitalize()`：返回标题格式 / 首字母大写格式。
-* `s.split(sep=None, maxsplit=-1)`：将 `s` 按分隔符 `sep` 分割成列表。
-* `'sep'.join(iterable)`：使用 `sep` 将多个字符串连接为一个字符串。
-* `s.isalpha()` / `s.isdigit()` / `s.isalnum()`：判断是否全为字母 / 数字 / 字母数字组合。
-* `s.islower()` / `s.isupper()`：判断是否全部为小写 / 大写。
-* `s.zfill(width)`：返回指定宽度的字符串，左侧填充 `0`。
-* `f"{x} + {y} = {x + y}"`：格式化字符串，支持表达式插值（f-string）。
+-   `print(s)`：输出字符串 `s` 到标准输出。
+-   `input()`：读取一行输入并返回字符串类型结果。
+-   `str(obj)`：将对象 `obj` 转换为字符串。
+-   `len(s)`：返回字符串 `s` 的长度（字符数）。
+-   `s[i]`：访问字符串 `s` 中索引为 `i` 的字符（支持负索引）。
+-   `s[i:j]`：截取字符串从索引 `i` 到 `j-1` 的子串。
+-   `s1 + s2`：连接字符串 `s1` 和 `s2`。
+-   `s * n`：重复字符串 `s` 共 `n` 次。
+-   `s.find(sub, start=0, end=None)`：查找子串 `sub` 在 `s` 中第一次出现的位置，找不到返回 `-1`。
+-   `s.rfind(sub)`：从右向左查找 `sub`，返回最后一次出现的位置。
+-   `s.index(sub)`/`s.rindex(sub)`：同 `find/rfind`，但未找到时抛出 `ValueError`。
+-   `s.startswith(prefix)`：判断 `s` 是否以 `prefix` 开头。
+-   `s.endswith(suffix)`：判断 `s` 是否以 `suffix` 结尾。
+-   `s.count(sub)`：返回子串 `sub` 在 `s` 中出现的次数。
+-   `s.replace(old, new, count=-1)`：将 `s` 中的 `old` 替换为 `new`，最多替换 `count` 次。
+-   `s.strip(chars=None)`：移除字符串首尾的空白符或指定字符集。
+-   `s.lstrip()`/`s.rstrip()`：分别移除左侧/右侧空白符。
+-   `s.upper()`/`s.lower()`：返回大写/小写形式。
+-   `s.title()`/`s.capitalize()`：返回标题格式/首字母大写格式。
+-   `s.split(sep=None, maxsplit=-1)`：将 `s` 按分隔符 `sep` 分割成列表。
+-   `'sep'.join(iterable)`：使用 `sep` 将多个字符串连接为一个字符串。
+-   `s.isalpha()`/`s.isdigit()`/`s.isalnum()`：判断是否全为字母/数字/字母数字组合。
+-   `s.islower()`/`s.isupper()`：判断是否全部为小写/大写。
+-   `s.zfill(width)`：返回指定宽度的字符串，左侧填充 `0`。
+-   `f"{x} + {y} = {x + y}"`：格式化字符串，支持表达式插值（f-string）。
