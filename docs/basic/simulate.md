@@ -36,7 +36,7 @@
         ```python
         --8<-- "docs/basic/code/simulate/simulate_1.py"
         ```
-
+    
     === "Java"
         ```java
         --8<-- "docs/basic/code/simulate/simulate_1.java"
