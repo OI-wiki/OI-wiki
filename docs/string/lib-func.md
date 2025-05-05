@@ -1,4 +1,4 @@
-author: Frankaiyou, henrytbtrue, zymooll
+author: Frankaiyou, henrytbtrue, zymooll, suooous
 
 ## C 标准库
 
@@ -38,3 +38,37 @@ C++ 标准库操作字符串对象 [`std::string`](../lang/csl/string.md)，同�
 -   `erase(pos, n)` 删除从 `pos` 开始的 `n` 个字符。
 -   `insert(pos, s)` 在 `pos` 位置插入字符串 `s`。
 -   `std::string` 重载了比较逻辑运算符，复杂度是 $\Theta(N)$ 的。
+
+
+## Python 标准库
+
+Python 标准库中内置了对字符串（`str` 类型）的强大支持，提供了丰富的方法进行字符串的创建、访问、搜索、修改与比较操作。
+
+参考：[Python 官方文档 - str 类型](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str)
+
+* 字符串拼接：使用加号运算符 `+` 可以拼接两个字符串（必须都是 `str` 类型），返回新的字符串对象。
+* 赋值操作：Python 字符串是**不可变**对象，不能原地修改，赋值操作总是生成新对象。右侧可以是字符串或其他类型（需通过 `str()` 转换）。
+* 访问字符：使用索引操作符 `[i]` 获取索引为 `i` 的字符（从 `0` 开始），返回类型为 `str`，长度为 1。
+* 获取原始数据：
+  * `str.encode()` 将字符串编码为字节串（`bytes`）
+  * `str.encode('utf-8')` 常用于将字符串转为特定编码格式的字节序列。
+* 长度函数 `len(s)` 返回字符串中字符的个数。
+* 查找函数：
+  * `s.find(sub, start=0, end=len(s))` 返回子串 `sub` 在 `[start:end]` 范围内第一次出现的位置（找不到返回 `-1`）；
+  * `s.rfind(sub)` 从右侧开始查找，返回最后一次出现的位置（找不到返回 `-1`）。
+* 子串截取：
+  * `s[start:end]` 使用切片语法截取子串，含 `start` 不含 `end`；
+  * `s[start:]` 表示从 `start` 到字符串末尾。
+* 拼接字符串：
+  * `s1 + s2` 返回拼接后的字符串；
+  * `''.join(iterable)` 将可迭代对象中的字符串用 `''` 连接起来，效率优于多次使用 `+`。
+* 替换：
+  * `s.replace(old, new, count=-1)` 将字符串中的 `old` 替换为 `new`，替换最多 `count` 次（默认全部替换）。
+* 删除子串：
+  * 无直接 `erase` 方法，但可以通过切片与拼接如 `s[:pos] + s[pos+n:]` 来删除 `pos` 开始的 `n` 个字符。
+* 插入子串：
+  * 可通过切片和拼接实现：`s[:pos] + insert_str + s[pos:]`。
+* 字符串比较：
+  * Python 中字符串支持使用逻辑运算符 `<`, `>`, `==`, `!=` 等进行按字典序比较，复杂度为 \$\mathcal{O}(N)\$，逐字符比较。
+
+
