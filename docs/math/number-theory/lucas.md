@@ -18,28 +18,28 @@ $$
 
 ???+ note "Lucas 定理"
     对于素数 $p$，有
-
+    
     $$
     \binom{n}{k}\equiv \binom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}\binom{n\bmod p}{k\bmod p}\pmod p.
     $$
-
+    
     其中，当 $n<k$ 时，二项式系数 $\dbinom{n}{k}$ 规定为 $0$。
 
 ??? note "利用生成函数证明"
     考虑 $\displaystyle\binom{p}{n} \bmod p$ 的取值。因为
-
+    
     $$
     \binom{p}{n} = \frac{p!}{n!(p-n)!},
     $$
-
-    所以，当 $n\neq 0,p$ 时，分子中都没有因子 $p$，但分母中有因子 $p$，所以分式一定是 $p$ 的倍数，模 $p$ 的余数是 $0$；当 $n=0,p$ 时，分式就是 $1$。因此，
-
+    
+    所以，当 $n\neq 0,p$ 时，分母中都没有因子 $p$，但分子中有因子 $p$，所以分式一定是 $p$ 的倍数，模 $p$ 的余数是 $0$；当 $n=0,p$ 时，分式就是 $1$。因此，
+    
     $$
     \binom{p}{n} \equiv [n=0\lor n=p] \pmod p.
     $$
-
+    
     记 $f(x) = ax^n + bx^m$。一般地，由 [二项式展开](../combinatorics/combination.md#二项式定理) 和 [费马小定理](./fermat.md#费马小定理) 有
-
+    
     $$
     \begin{aligned}
     (f(x))^p 
@@ -50,73 +50,73 @@ $$
     &= f(x^p) \pmod p.
     \end{aligned}
     $$
-
+    
     其中，第三行的同余利用了前文说明的结论，即只有 $k=0,p$ 时，组合数才不是 $p$ 的倍数。
-
+    
     利用这一结论，考察二项式展开：
-
+    
     $$
     \begin{aligned}
     (1+x)^n &= (1+x)^{p\lfloor n/p\rfloor}(1+x)^{n\bmod p} \\
     &\equiv (1+x^p)^{\lfloor n/p\rfloor}(1+x)^{n\bmod p} \pmod p.
     \end{aligned}
     $$
-
+    
     等式左侧中，项 $x^k$ 的系数为
-
+    
     $$
     \binom{n}{k}\bmod p.
     $$
-
+    
     转而计算等式右侧中项 $x^k$ 的系数。第一个因子中各项的次数必然是 $p$ 的倍数，第二个因子中各项的次数必然小于 $p$，而 $k$ 分解成这样两部分的和的方式是唯一的，即带余除法：$k=p\lfloor k/p\rfloor +(k\bmod p)$。因此，第一个因子只能贡献其 $p\lfloor k/p\rfloor$ 次项，第二个因子只能贡献其 $k\bmod p$ 次项。所以，右侧等式中 $x^k$ 系数为两个因子各自贡献的项的系数的乘积：
-
+    
     $$
     \binom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}\binom{n\bmod p}{k\bmod p}\bmod p.
     $$
-
+    
     令两侧系数相等，就得到 Lucas 定理。
 
 ??? note "利用阶乘取模的结论证明"
     此处提供一种基于 [阶乘取模](./factorial.md#素数模的情形) 相关结论的证明方法，以方便和后文 exLucas 部分的方法建立联系。已知二项式系数
-
+    
     $$
     \binom{n}{k} = \dfrac{n!}{k!(n-k)!}.
     $$
-
+    
     将阶乘 $n!$ 中 $p$ 的幂次和其他因子分离，得到分解：
-
+    
     $$
     n! = p^{\nu_p(n!)}(n!)_p.
     $$
-
+    
     就得到二项式系数的表达式：
-
+    
     $$
     \binom{n}{k} = p^{\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)}\dfrac{(n!)_p}{(k!)_p((n-k)!)_p}.
     $$
-
+    
     幂次 $\nu_p(n!)$ 和阶乘余数 $(n!)_p\bmod p$ 都有递推公式：
-
+    
     $$
     \begin{aligned}
     \nu_p(n!) &= \lfloor n/p\rfloor+\nu_p( \lfloor n/p\rfloor!),\\
     (n!)_p &\equiv (-1)^{\lfloor n/p\rfloor}\cdot (n\bmod p)!\cdot (\lfloor n/p\rfloor!)_p\pmod p.
     \end{aligned}
     $$
-
+    
     前者是 Legendre 公式的推论，后者是 Wilson 定理的推论。
-
+    
     将递推公式代入二项式系数的表达式并整理，就得到：
-
+    
     $$
     \begin{aligned}
     \binom{n}{k} &\equiv (-p)^{\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor}\cdot\dfrac{(n\bmod p)!}{(k\bmod p)!((n-k)\bmod p)!} \\
     &\quad \cdot p^{\nu_p(\lfloor n/p\rfloor!)-\nu_p(\lfloor k/p\rfloor!)-\nu_p(\lfloor(n-k)/p\rfloor!)}\dfrac{(\lfloor n/p\rfloor!)_p}{(\lfloor k/p\rfloor!)_p(\lfloor(n-k)/p\rfloor!)_p} \pmod p.
     \end{aligned}
     $$
-
+    
     现在考察 $\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor$ 的取值。因为有
-
+    
     $$
     \begin{aligned}
     n &= \lfloor n/p\rfloor p + (n\bmod p),\\
@@ -124,24 +124,24 @@ $$
     n-k &= \lfloor (n-k)/p\rfloor p + ((n-k)\bmod p),\\
     \end{aligned}
     $$
-
+    
     所以，利用第一式减去后两式，就得到
-
+    
     $$
     (\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor)p = (k\bmod p)+((n-k)\bmod p)-(n\bmod p).
     $$
-
+    
     等式右侧，前两项的和严格小于 $2p$，而第三项 $n\bmod p$ 正是前两项的和的余数，所以右侧必然非负，但小于 $2p$，又需要是 $p$ 的倍数，就只能是 $0$ 或 $p$。这说明 $\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor$ 只能是 $0$ 或 $1$：
-
+    
     -   如果它是 $0$，那么此时也成立 $(n\bmod p) = (k\bmod p)+((n-k)\bmod p)$。因此，上式中的第一个因子的指数为 $0$，该因子就等于一；第二个因子就是 $\dbinom{n\bmod p}{k\bmod p}$；第三个因子则由前文的展开式可知，就等于 $\dbinom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}$。此时，Lucas 公式成立；
     -   如果它是 $1$，那么第一个因子的指数为 $1$，该因子就等于零，所以二项式系数的余数为零。同时，Lucas 定理所要证明的等式右侧的 $\dbinom{n\bmod p}{k\bmod p}$ 也必然是零，因为此时必然有 $(n\bmod p)<(k\bmod p)$；否则，将有
-
+    
         $$
         ((n-k)\bmod p) = p + (n\bmod p)  - (k\bmod p) \ge p.
         $$
-
+    
         这显然与余数的定义矛盾。
-
+    
     综合两种情形，就得到了所要求证的 Lucas 定理。这一证明说明，在求解素数模下组合数时，利用 Lucas 定理和利用 exLucas 算法得到的结果是等价的。
 
 Lucas 定理指出，模数为素数 $p$ 时，大组合数的计算可以转化为规模更小的组合数的计算。在右式中，第一个组合数可以继续递归，直到 $n,k<p$ 为止；第二个组合数则可以直接计算，或者提前预处理出来。写成代码的形式就是：

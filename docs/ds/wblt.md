@@ -1,14 +1,16 @@
-author: hsfzLZH1, cesonic, AtomAlpaca, caijianhong
+author: hsfzLZH1, cesonic, AtomAlpaca, caijianhong, Persdre, aofall, CoelacanthusHex, Marcythm, shuzhouliu, Tiphereth-A
 
 ## 前言
 
-**Weight Balanced Leafy Tree**，下称 **WBLT**，是一种平衡树，比起其它平衡树主要有实现简单、常数小的优点。
+**Weight Balanced Leafy Tree**，下称 **WBLT**，是一种平衡树，比起其它平衡树主要有实现简单、常数小的优点。它支持区间操作，而且可持久化。
 
 Weight Balanced Leafy Tree 顾名思义是 Weight Balanced Tree 和 Leafy Tree 的结合。
 
 Weight Balanced Tree 的每个结点储存这个结点下子树的大小，并且通过保持左右子树的大小关系在一定范围来保证树高。
 
 Leafy Tree 维护的原始信息仅存储在树的 **叶子节点** 上，而非叶子节点仅用于维护子节点信息和维持数据结构的形态。我们熟知的线段树就是一种 Leafy Tree。
+
+![](images/leafy-tree-1.svg)
 
 ## 平衡树基础操作
 
@@ -26,7 +28,7 @@ Leafy Tree 维护的原始信息仅存储在树的 **叶子节点** 上，而非
 
 代码实现如下：
 
-```c++
+```cpp
 /* 添加一个权值为 v 的节点，返回这个节点的编号 */
 int add(int v) {
   ++cnt;
@@ -75,7 +77,7 @@ int build(int l, int r) {
 
 代码实现：
 
-```c++
+```cpp
 /* 将某一节点的全部信息复制到另一节点上 */
 void copynode(int x, int y) {
   ls[x] = ls[y];
@@ -162,7 +164,7 @@ void delete(int x, int v, int fa) {
 
 代码实现，这里取 $\alpha = 0.25$：
 
-```c++
+```cpp
 constexpr double alpha = 0.25;
 
 int merge(int x, int y) {
@@ -205,7 +207,7 @@ void maintain(int x) {
 
 我们发现 `WBLT` 的形态和线段树十分相似，因此查询排名可以使用类似线段树上二分的方式：如果左子树的最大值比大于等于待查值就往左儿子跳，否则就向右跳，同时答案加上左子树的 `size`。
 
-```c++
+```cpp
 int rank(int x, int v) {
   if (leaf(x)) {
     return 1;
@@ -222,7 +224,7 @@ int rank(int x, int v) {
 
 依然是利用线段树上二分的思想，只不过这里比较的是节点的大小。
 
-```c++
+```cpp
 int kth(int x, int v) {
   if (sz[x] == v) {
     return vl[x];

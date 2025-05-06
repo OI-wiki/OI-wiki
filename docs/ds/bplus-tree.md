@@ -259,7 +259,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
 可以参考 [B 树](./b-tree.md) 中的删除章节。
 
 ??? note "实现"
-    ```c++
+    ```cpp
     // Deletion operation on a B+ tree in C++
     #include <climits>
     #include <fstream>

@@ -25,7 +25,7 @@
 
 ???+ note "实现"
     === "C++"
-        ```c++
+        ```cpp
         struct Node {
           int value;
           Node *next;
@@ -48,7 +48,7 @@
 
 ???+ note "实现"
     === "C++"
-        ```c++
+        ```cpp
         struct Node {
           int value;
           Node *left;
@@ -85,7 +85,7 @@
 
 ???+ note "实现"
     === "C++"
-        ```c++
+        ```cpp
         void insertNode(int i, Node *p) {
           Node *node = new Node;
           node->value = i;
@@ -125,7 +125,7 @@
 
 ???+ note "实现"
     === "C++"
-        ```c++
+        ```cpp
         void insertNode(int i, Node *p) {
           Node *node = new Node;
           node->value = i;
@@ -172,7 +172,7 @@
 
 ???+ note "实现"
     === "C++"
-        ```c++
+        ```cpp
         void insertNode(int i, Node *p) {
           Node *node = new Node;
           node->value = i;
@@ -228,7 +228,7 @@
 
 ???+ note "实现"
     === "C++"
-        ```c++
+        ```cpp
         void deleteNode(Node *p) {
           p->value = p->next->value;
           Node *t = p->next;
@@ -258,7 +258,7 @@
 
 ???+ note "实现"
     === "C++"
-        ```c++
+        ```cpp
         void deleteNode(Node *&p) {
           p->left->right = p->right;
           p->right->left = p->left;
