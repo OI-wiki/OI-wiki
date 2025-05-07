@@ -588,7 +588,7 @@ $$
     虽然直接验证较为繁琐，但是上述定义的状态信息在该乘法下的确构成幺半群，单位元为 $(0,0,0,0,0)$。
     
     ```cpp
-    --8<-- "docs/math/code/euclidean/euclidean-4.cpp:full-text"
+    --8<-- "docs/math/code/euclidean/euclidean-5.cpp"
     ```
 
 ???+ example "[\[清华集训 2014\] Sum](https://www.luogu.com.cn/problem/P5172)"
