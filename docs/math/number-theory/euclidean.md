@@ -648,6 +648,8 @@ $$
 
 ## 习题
 
+模板题：
+
 -   [Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)
 -   [Luogu P5170【模板】类欧几里得算法](https://www.luogu.com.cn/problem/P5170)
 -   [Luogu P5171 Earthquake](https://www.luogu.com.cn/problem/P5171)
@@ -657,6 +659,14 @@ $$
 -   [LOJ 6440. 万能欧几里得](https://loj.ac/p/6440)
 -   [Luogu P5179 Fraction](https://www.luogu.com.cn/problem/P5179)
 -   [Codeforces 1182 F. Maximum Sine](https://codeforces.com/problemset/problem/1182/F)
+
+应用题：
+
+-   [Luogu P4433 \[COCI 2009/2010 #1\] ALADIN](https://www.luogu.com.cn/problem/P4433)
+-   [AtCoder Beginner Contest 313 G - Redistribution of Piles](https://atcoder.jp/contests/abc313/tasks/abc313_g)
+-   [AtCoder Beginner Contest 283 Ex - Popcount Sum](https://atcoder.jp/contests/abc283/tasks/abc283_h)
+-   [Codeforces 1098 E. Fedya the Potter](https://codeforces.com/problemset/problem/1098/E)
+-   [Codeforces 868 G. El Toll Caves](https://codeforces.com/problemset/problem/868/G)
 
 ## 参考资料与注释
 
