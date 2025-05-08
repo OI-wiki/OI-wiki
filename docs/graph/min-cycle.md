@@ -256,7 +256,7 @@
 
 ??? "C++/Python 代码"
     === "C++"
-        ```
+        ```cpp
         #include <bits/stdc++.h>
         using lint = long long;
         // 定义一个足够大的常量，用于表示图的最大节点数
@@ -362,7 +362,7 @@
 
     === "Python"
         ```python
-            import copy
+        import copy
         import sys
         
         # 定义一个足够大的值表示无穷大
@@ -506,7 +506,9 @@
             else:
                 # 打印路径节点 (1-based index)，用空格分隔
                 print(' '.join(map(str, path)))
+                
         ```
+        
 
 ## 例题 2
 
