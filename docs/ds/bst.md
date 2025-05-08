@@ -253,7 +253,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
         if (root->left->size >= k) return querykth(root->left, k);
         if (root->left->size + root->count >= k) return root->key;
       } else {
-        if (k == 1) return root->key;
+        if (k <= root->count) return root->key;
       }
       return querykth(root->right,
                       k - (root->left ? root->left->size : 0) - root->count);
