@@ -119,6 +119,7 @@
     # 定义一个足够大的值表示无穷大
     INF = sys.maxsize
     
+    
     def get_path(i, j, pos, path, cnt):
         """
         递归地获取从节点 i 到节点 j 的最短路径上的中间节点。
@@ -188,7 +189,6 @@
             dis[u][v] = min(dis[u][v], w)
             dis[v][u] = min(dis[v][u], w)
     
-    
         # 初始化最小环长度为无穷大
         min_cycle_len = INF
         # 初始化最小环路径
@@ -201,17 +201,17 @@
             # 环由 i -> k -> j -> ... -> i 组成
             # 这里的 dis[i][j] 是在考虑节点 0 到 k-1 作为中间节点时的最短路径
             # C++ 代码中使用 i < k 和 j < i 的循环顺序，这里也遵循这个逻辑 (0-based)
-            for i in range(k): # 0 <= i < k
-                for j in range(i): # 0 <= j < i
-                     # 检查 i, k, j 是否构成一个环，并且通过 dis[i][j] 连接
-                     # 确保原始边 g[i][k] 和 g[k][j] 存在 (不为 INF)
-                     # 并且 i 到 j 的最短路径 dis[i][j] 存在 (不为 INF)
+            for i in range(k):  # 0 <= i < k
+                for j in range(i):  # 0 <= j < i
+                    # 检查 i, k, j 是否构成一个环，并且通过 dis[i][j] 连接
+                    # 确保原始边 g[i][k] 和 g[k][j] 存在 (不为 INF)
+                    # 并且 i 到 j 的最短路径 dis[i][j] 存在 (不为 INF)
                     if g[i][k] != INF and g[k][j] != INF and dis[i][j] != INF:
                         current_cycle_len = g[i][k] + g[k][j] + dis[i][j]
                         if current_cycle_len < min_cycle_len:
                             min_cycle_len = current_cycle_len
                             # 重构路径
-                            path = [0] * (N + 5) # 临时存储路径的数组，长度足够大
+                            path = [0] * (N + 5)  # 临时存储路径的数组，长度足够大
                             cnt = 0
                             # 按照 i, k, j 的顺序加入路径
                             path[cnt] = i
@@ -226,11 +226,14 @@
                             # 将 0-based 索引转换为 1-based
                             min_cycle_path = [node + 1 for node in path[:cnt]]
     
-    
             # 标准 Floyd-Warshall 更新最短路径
             for i in range(N):
                 for j in range(N):
-                    if dis[i][k] != INF and dis[k][j] != INF and dis[i][j] > dis[i][k] + dis[k][j]:
+                    if (
+                        dis[i][k] != INF
+                        and dis[k][j] != INF
+                        and dis[i][j] > dis[i][k] + dis[k][j]
+                    ):
                         dis[i][j] = dis[i][k] + dis[k][j]
                         # 记录从 i 到 j 的最短路径经过 k
                         pos[i][j] = k
@@ -253,62 +256,63 @@
 
 ??? "C++/Python 代码"
     === "C++"
-    ```cpp
-    #include <bits/stdc++.h>
+        
+    
+    \`\`cpp
+    \#include \<bits/stdc++.h>
     using lint = long long;
-    // 定义一个足够大的常量，用于表示图的最大节点数
+    //定义一个足够大的常量，用于表示图的最大节点数
     const int MAXN = 110;
     
-    // 定义一个足够大的值，用于表示无穷大，初始化最小环长度
-    lint ans = 1e9; // lint 是 long long 的别名
+    //定义一个足够大的值，用于表示无穷大，初始化最小环长度
+    lint ans = 1e9;//lint 是 long long 的别名
     
-    // 图的节点数 n，边数 m
-    // cnt 记录最小环路径中的节点数量
-    // path 存储最小环的路径节点
-    int n, m, cnt, path[MAXN];
+    //图的节点数 n，边数 m
+    //cnt 记录最小环路径中的节点数量
+    //path 存储最小环的路径节点
+    int n, m, cnt, path\[MAXN];
     
-    // g 存储原始图的邻接矩阵
-    // dis 存储最短路径矩阵 (Floyd-Warshall 算法计算过程中更新)
-    // pos 记录最短路径的中间节点，pos[i][j] = k 表示从 i 到 j 的最短路径经过 k
-    int g[MAXN][MAXN], dis[MAXN][MAXN], pos[MAXN][MAXN];
+    //g 存储原始图的邻接矩阵
+    //dis 存储最短路径矩阵 (Floyd-Warshall 算法计算过程中更新）
+    //pos 记录最短路径的中间节点，pos\[i]\[j] = k 表示从 i 到 j 的最短路径经过 k
+    int g\[MAXN]\[MAXN], dis\[MAXN]\[MAXN], pos\[MAXN]\[MAXN];
     
-    // 递归函数：获取从节点 u 到节点 v 的最短路径上的中间节点
-    // 根据 pos 矩阵重构路径
-    void get_path(int u, int v) {
-      // 如果 pos[u][v] 为 0，表示 u 到 v 没有中间节点，直接返回
-      if (pos[u][v] == 0) return ;
+    //递归函数：获取从节点 u 到节点 v 的最短路径上的中间节点
+    //根据 pos 矩阵重构路径
+    void get\_path(int u, int v) {
+    //如果 pos\[u]\[v] 为 0，表示 u 到 v 没有中间节点，直接返回
+    if (pos\[u]\[v] == 0) return ;
     
-      // 获取中间节点 k
-      int k = pos[u][v];
-      // 递归获取 u 到 k 的路径
-      get_path(u, k);
-      // 将中间节点 k 加入路径
-      path[++cnt] = k;
-      // 递归获取 k 到 v 的路径
-      get_path(k, v);
+    //获取中间节点 k
+    int k = pos\[u]\[v];
+    //递归获取 u 到 k 的路径
+    get\_path(u, k);
+    //将中间节点 k 加入路径
+    path\[++cnt] = k;
+    //递归获取 k 到 v 的路径
+    get\_path(k, v);
     }
     
-    // Floyd-Warshall 算法函数：查找图中的最小环
-    void Floyd() {
-      // 外层循环：k 作为中间节点 (1 到 n)
-      for (int k = 1; k <= n; ++k) {
-        // 内层循环：i 和 j，用于检查通过节点 k 是否能形成更小的环
-        // 这里循环顺序是 i 从 1 到 k-1，j 从 1 到 i-1
-        // 这样可以检查由 i -> k -> j -> ... -> i 构成的环
-        for (int i = 1; i < k; ++i)
-          for (int j = 1; j < i; ++j)
-            // 检查通过节点 k 连接 i 和 j 是否形成更小的环
-            // 环的长度是 i 到 k 的原始边权重 g[i][k] + k 到 j 的原始边权重 g[k][j] + i 到 j 的当前最短路径 dis[i][j]
-            if (ans > (long long)g[i][k] + g[k][j] + dis[i][j]) {
-              // 发现了更小的环
-              ans = g[i][k] + g[k][j] + dis[i][j]; // 更新最小环长度
-              cnt = 0; // 重置路径计数
-              // 将 i, k, j 依次加入路径
-              path[++cnt] = i, path[++cnt] = k, path[++cnt] = j;
-              // 获取 j 到 i 的最短路径上的中间节点，加入路径
-              get_path(j, i);
-            }
-       
+    //Floyd-Warshall 算法函数：查找图中的最小环
+    void Floyd() {//外层循环：k 作为中间节点 (1 到 n)
+    for (int k = 1; k <= n; ++k) {
+    //内层循环：i 和 j，用于检查通过节点 k 是否能形成更小的环
+    //这里循环顺序是 i 从 1 到 k-1，j 从 1 到 i-1
+    //这样可以检查由 i -> k -> j -> ... -> i 构成的环
+    for (int i = 1; i < k; ++i)
+    for (int j = 1; j < i; ++j)
+    //检查通过节点 k 连接 i 和 j 是否形成更小的环
+    //环的长度是 i 到 k 的原始边权重 g\[i]\[k] + k 到 j 的原始边权重 g\[k]\[j] + i 到 j 的当前最短路径 dis\[i]\[j]
+    if (ans > (long long)g\[i]\[k] + g\[k]\[j] + dis\[i]\[j]) {
+    //发现了更小的环
+    ans = g\[i]\[k] + g\[k]\[j] + dis\[i]\[j];//更新最小环长度
+    cnt = 0;//重置路径计数
+    //将 i, k, j 依次加入路径
+    path\[++cnt] = i, path\[++cnt] = k, path\[++cnt] = j;
+    //获取 j 到 i 的最短路径上的中间节点，加入路径
+    get\_path(j, i);
+    }
+    
         // 标准 Floyd-Warshall 更新最短路径
         // i 从 1 到 n，j 从 1 到 n
         for (int i = 1; i <= n; ++i)
@@ -321,40 +325,43 @@
               pos[i][j] = k;
             }
           }
-      }
+    
+    }
     }
     
-    // 主函数
+    //主函数
     int main() {
-      // 读取节点数 n 和边数 m
-      std::cin >> n >> m;
-      // 初始化原始邻接矩阵 g，所有边的权重设为无穷大 (0x3f 通常表示一个很大的值)
-      memset(g, 0x3f, sizeof(g));
-      // 将节点到自身的距离设为 0
-      for (int i = 1; i <= n; ++i) g[i][i] = 0;
-      // 读取 m 条边，构建原始邻接矩阵 g
-      // 对于无向图，边是双向的，取较小的权重
-      for (int i = 0, u, v, w; i < m; ++i) {
-        std::cin >> u >> v >> w;
-        g[u][v] = g[v][u] = std::min(g[u][v], w);
-      }
-      // 将原始邻接矩阵 g 复制到最短路径矩阵 dis
-      memcpy(dis, g, sizeof(g));
-      // 调用 Floyd 算法查找最小环
-      Floyd();
-      // 根据最小环长度判断是否存在环
-      if (ans == 1e9) { // 如果最小环长度仍为无穷大，表示不存在环
-        puts("No solution.");
-      } else {
-        // 如果存在环，打印路径节点
-        // std::cout << "ans = " << ans << std::endl; // 打印最小环长度 (注释掉)
-        // 打印路径节点，用空格分隔
-        for (int i = 1; i <= cnt; ++i)
-          std::cout << path[i] << (i == cnt ? "" : " "); // 最后一个节点后面没有空格
-        std::cout << std::endl; // 路径打印完后换行
-      }
-      return 0;
+    //读取节点数 n 和边数 m
+    std::cin >> n >> m;
+    //初始化原始邻接矩阵 g，所有边的权重设为无穷大 (0x3f 通常表示一个很大的值）
+    memset(g, 0x3f, sizeof(g));
+    //将节点到自身的距离设为 0
+    for (int i = 1; i <= n; ++i) g\[i]\[i] = 0;
+    //读取 m 条边，构建原始邻接矩阵 g
+    //对于无向图，边是双向的，取较小的权重
+    for (int i = 0, u, v, w; i < m; ++i) {
+    std::cin >> u >> v >> w;
+    g\[u]\[v] = g\[v]\[u] = std::min(g\[u]\[v], w);
     }
+    //将原始邻接矩阵 g 复制到最短路径矩阵 dis
+    memcpy(dis, g, sizeof(g));
+    //调用 Floyd 算法查找最小环
+    Floyd();
+    //根据最小环长度判断是否存在环
+    if (ans == 1e9) {//如果最小环长度仍为无穷大，表示不存在环
+    puts("No solution.");
+    } else {
+    //如果存在环，打印路径节点
+    //std::cout << "ans =" << ans << std::endl;//打印最小环长度（注释掉）
+    //打印路径节点，用空格分隔
+    for (int i = 1; i <= cnt; ++i)
+    std::cout << path\[i] << (i == cnt ? "":" ");//最后一个节点后面没有空格
+    std::cout << std::endl;//路径打印完后换行
+    }
+    return 0;
+    }
+    
+    ```
     ```
 
 === "Python"
@@ -504,8 +511,6 @@
             # 打印路径节点 (1-based index)，用空格分隔
             print(' '.join(map(str, path)))
     ```
-    
-
 
 ## 例题 2
 
