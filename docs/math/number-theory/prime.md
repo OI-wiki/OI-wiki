@@ -25,7 +25,7 @@
           return true;
         }
         ```
-
+    
     === "Python"
         ```python
         def isPrime(a):
@@ -55,7 +55,7 @@
           return 1;
         }
         ```
-
+    
     === "Python"
         ```python
         def isPrime(a):
@@ -89,7 +89,7 @@
           return true;
         }
         ```
-
+    
     === "Python"
         ```python
         def millerRabin(n):
@@ -260,7 +260,7 @@ Carmichael 数有如下性质：
           return 1;
         }
         ```
-
+    
     === "Python"
         ```python
         def millerRabin(n):

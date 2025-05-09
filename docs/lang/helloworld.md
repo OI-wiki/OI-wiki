@@ -52,7 +52,7 @@ g++ test.cpp -o test -lm
 
 C++ 语言
 
-```c++
+```cpp
 #include <iostream>  // 引用头文件
 
 int main() {                     // 定义 main 函数
