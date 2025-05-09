@@ -371,11 +371,10 @@
     
     # 定义一个足够大的值表示无穷大
     INF = sys.maxsize
-    ```
     
-    def get\_path(i, j, pos, path, cnt):
-    """
-    递归地获取从节点 i 到节点 j 的最短路径上的中间节点。
+    def get_path(i, j, pos, path, cnt):
+        """
+        递归地获取从节点 i 到节点 j 的最短路径上的中间节点。
     
         Args:
             i (int): 起始节点 (0-based index).
@@ -402,9 +401,9 @@
         cnt = get_path(k, j, pos, path, cnt)
         return cnt
     
-    def find\_minimum\_cycle\_undirected(n, edges):
-    """
-    使用 Floyd-Warshall 算法查找无向图中的最小环。
+    def find_minimum_cycle_undirected(n, edges):
+        """
+        使用 Floyd-Warshall 算法查找无向图中的最小环。
     
         Args:
             n (int): 图的节点数 (1 到 n).
@@ -489,10 +488,9 @@
         return min_cycle_len, min_cycle_path
     
     # --- 主程序入口 ---
-    
-    if **name**== "**main**":
-    \# 读取节点数 n 和边数 m
-    n, m = map(int, sys.stdin.readline().split())
+    if __name__ == "__main__":
+        # 读取节点数 n 和边数 m
+        n, m = map(int, sys.stdin.readline().split())
     
         # 读取边信息
         edges = []
@@ -509,8 +507,6 @@
         else:
             # 打印路径节点 (1-based index)，用空格分隔
             print(' '.join(map(str, path)))
-    
-    ```
     ```
 
 ## 例题 2
