@@ -1,5 +1,5 @@
 #include "rbtree.hpp"
-//
+// --8<-- [start:main]
 #include <iostream>
 #include <numeric>
 #include <vector>
@@ -83,3 +83,5 @@ int main() {
   io.print_total_ans();
   return 0;
 }
+
+// --8<-- [end:main]

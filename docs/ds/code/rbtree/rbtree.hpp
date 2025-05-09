@@ -1,3 +1,4 @@
+// --8<-- [start:full]
 /**
  * @file rbtree.hpp
  * @brief An RBTree-based set implementation
@@ -10,12 +11,14 @@
 #ifndef RBTREE_HPP
 #define RBTREE_HPP
 
+// --8<-- [start:class]
 #include <cassert>
 #include <cstdint>
 #include <functional>
 
 using std::size_t;
 
+// --8<-- [start:class-node1]
 /**
  * An RBTree-based set implementation
  *
@@ -51,6 +54,8 @@ struct rb_tree {
   pointer root;
 
   rb_tree() : compare{}, root{nullptr} {}
+
+  // --8<-- [end:class-node1]
 
   ~rb_tree() {
     post_order([](auto it) { delete it; });
@@ -144,6 +149,7 @@ struct rb_tree {
     return ans;
   }
 
+  // --8<-- [start:insert]
   /**
    * @return nullptr if insert failed, otherwise pointer of inserted node
    */
@@ -162,6 +168,8 @@ struct rb_tree {
     return n;
   }
 
+  // --8<-- [end:insert]
+  // --8<-- [start:delete]
   /**
    * @return succeed or not
    */
@@ -189,6 +197,7 @@ struct rb_tree {
     return result;
   }
 
+  // --8<-- [end:delete]
  private:
   static auto size(const_pointer p) -> size_t { return p ? p->sz : 0; }
 
@@ -214,6 +223,7 @@ struct rb_tree {
     return p ? p->fa : nullptr;
   }
 
+  // --8<-- [start:insert-leaf]
   /**
    * Insert leaf node {@code n} to {@code p}
    *
@@ -231,6 +241,8 @@ struct rb_tree {
     while (now) now->sz++, now = now->fa;
   }
 
+  // --8<-- [end:insert-leaf]
+  // --8<-- [start:delete-leaf]
   /**
    * Erase node {@code n}
    *
@@ -248,6 +260,8 @@ struct rb_tree {
     while (now) now->sz--, now = now->fa;
   }
 
+  // --8<-- [end:delete-leaf]
+  // --8<-- [start:rotate]
   /**
    * @param p root of subtree (may be same as {@code root})
    * @param dir direction. 0: left rotate; 1: right rotate
@@ -269,8 +283,10 @@ struct rb_tree {
     return s;
   }
 
+  // --8<-- [end:rotate]
 #pragma GCC diagnostic ignored "-Wcomment"
 
+  // --8<-- [start:insert-fixup1]
   /**
    * Insert leaf node {@code n} to {@code p}, then fixup
    *
@@ -282,9 +298,13 @@ struct rb_tree {
     n->red = p;
     insert_leaf(p, n, dir);
     // Fix double red
+    // --8<-- [end:insert-fixup1]
+    // --8<-- [start:insert-aux1]
     while (is_red(p = n->fa)) {
       bool p_dir = p->child_dir();
       auto g = p->fa, u = g->ch[!p_dir];
+      // --8<-- [end:insert-aux1]
+      // --8<-- [start:insert-case1]
       // Case 1: both p and u are red
       //      g              [g]
       //     / \             / \
@@ -297,6 +317,8 @@ struct rb_tree {
         n = g;
         continue;
       }
+      // --8<-- [end:insert-case1]
+      // --8<-- [start:insert-case2]
       // p is red and u is black
       // Case 2: dir of n is different with dir of p
       //    g              g
@@ -305,6 +327,8 @@ struct rb_tree {
       //   \            /
       //   [n]        [p]
       if (n->child_dir() != p_dir) rotate(p, p_dir), std::swap(n, p);
+      // --8<-- [end:insert-case2]
+      // --8<-- [start:insert-case3]
       // Case 3: p is red, u is black and dir of n is same as dir of p
       //      g             p
       //     / \           / \
@@ -313,10 +337,17 @@ struct rb_tree {
       // [n]                    u
       p->red = false, g->red = true;
       rotate(g, !p_dir);
+      // --8<-- [end:insert-case3]
+      // --8<-- [start:insert-aux2]
     }
+    // --8<-- [end:insert-aux2]
+    // --8<-- [start:insert-fixup2]
+    // Post process: color root black
     root->red = false;
   }
 
+  // --8<-- [end:insert-fixup2]
+  // --8<-- [start:delete-fixup1]
   /**
    * Erase node {@code n}, then fixup
    *
@@ -338,8 +369,12 @@ struct rb_tree {
       }
     }
     // n is not root but leaf with black color, need to be fixup
+    // --8<-- [end:delete-fixup1]
+    // --8<-- [start:delete-aux1]
     while (p && !n->red) {
       auto s = p->ch[!n_dir];
+      // --8<-- [end:delete-aux1]
+      // --8<-- [start:delete-case1]
       // Case 1: s is red
       //    p               s
       //   / \             / \
@@ -351,8 +386,12 @@ struct rb_tree {
         rotate(p, n_dir);
         s = p->ch[!n_dir];
       }
+      // --8<-- [end:delete-case1]
+      // --8<-- [start:delete-aux2]
       // s must be black
       auto c = s->ch[n_dir], d = s->ch[!n_dir];
+      // --8<-- [end:delete-aux2]
+      // --8<-- [start:delete-case2]
       // Case 2: both c and d are black
       //   {p}          {p}
       //   / \          / \
@@ -365,6 +404,8 @@ struct rb_tree {
         n = p;
         goto end_erase_fixup;
       }
+      // --8<-- [end:delete-case2]
+      // --8<-- [start:delete-case3]
       // Case 3: c is red and d is black
       //   {p}          {p}
       //   / \          / \
@@ -378,6 +419,8 @@ struct rb_tree {
         rotate(s, !n_dir);
         s = p->ch[!n_dir], c = s->ch[n_dir], d = s->ch[!n_dir];
       }
+      // --8<-- [end:delete-case3]
+      // --8<-- [start:delete-case4]
       // Case 4: d is red
       //   {p}            {s}
       //   / \            / \
@@ -386,15 +429,26 @@ struct rb_tree {
       //   {c} [d]    |n| {c}
       s->red = p->red, p->red = d->red = false;
       rotate(p, n_dir), n = root;
+      // --8<-- [end:delete-case4]
+      // --8<-- [start:delete-aux3]
     end_erase_fixup:
       p = n->fa;
       if (!p) break;
       n_dir = n->child_dir();
     }
+    // --8<-- [end:delete-aux3]
+    // --8<-- [start:delete-fixup2]
+    // Post process: see case 2 & case 4
     n->red = false;
   }
+
+  // --8<-- [end:delete-fixup2]
+  // --8<-- [start:class-node2]
 };
 
+// --8<-- [end:class-node2]
 #pragma GCC diagnostic warning "-Wcomment"
 
+// --8<-- [end:class]
 #endif  // RBTREE_HPP
+        // --8<-- [end:full]

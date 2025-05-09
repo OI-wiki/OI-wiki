@@ -25,9 +25,9 @@ author: LeverImmy
 ## 红黑树类的定义
 
 ```cpp
---8<-- "docs/ds/code/rbtree/rbtree.hpp:19:53"
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:class-node1"
   // ...
---8<-- "docs/ds/code/rbtree/rbtree.hpp:396:396"
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:class-node2"
 ```
 
 ???+ note
@@ -55,7 +55,7 @@ author: LeverImmy
 
 ???+ note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:251:270"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:rotate"
     ```
 
 ### 插入
@@ -64,14 +64,11 @@ author: LeverImmy
 
 ???+ note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:147:163"
-    
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:217:232"
-    
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:274:284"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-leaf"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-fixup1"
         // ...
-        // Post process: color root black
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:317:318"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-fixup2"
     ```
 
 ### 插入后的平衡维护
@@ -86,9 +83,9 @@ author: LeverImmy
 我们从插入的位置开始向上递归维护，若 $p$ 为黑色即可终止，否则分为 3 种情况。
 
 ```cpp
---8<-- "docs/ds/code/rbtree/rbtree.hpp:285:287"
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-aux1"
       // ...
---8<-- "docs/ds/code/rbtree/rbtree.hpp:316:316"
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-aux2"
 ```
 
 #### Insert case 1
@@ -99,7 +96,7 @@ $p$ 和 $u$ 均为红色。此时我们只需重新染色即可。
 
 ???+ note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:288:299"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-case1"
     ```
 
 #### Insert case 2
@@ -112,7 +109,7 @@ $p$ 为红色，$u$ 为黑色，$p$ 的方向和 $n$ 的方向不同。
 
 ???+ note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:300:307"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-case2"
     ```
 
 #### Insert case 3
@@ -125,7 +122,7 @@ $p$ 为红色，$u$ 为黑色，$p$ 的方向和 $n$ 的方向相同。
 
 ???+ note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:308:315"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:insert-case3"
     ```
 
 ### 删除
@@ -138,14 +135,11 @@ $p$ 为红色，$u$ 为黑色，$p$ 的方向和 $n$ 的方向相同。
 
 ???+ note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:175:190"
-    
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:234:249"
-    
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:320:340"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-leaf"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-fixup1"
         // ...
-        // Post process: see case 2 & case 4
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:394:395"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-fixup2"
     ```
 
 ### 删除后的平衡维护
@@ -158,13 +152,13 @@ $p$ 为红色，$u$ 为黑色，$p$ 的方向和 $n$ 的方向相同。
 删除的维护也是从 $n$ 开始向上递归维护，若 $n$ 不是根或 $n$ 为红色即可终止，否则分为 4 种情况。
 
 ```cpp
---8<-- "docs/ds/code/rbtree/rbtree.hpp:341:342"
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-aux1"
       // Delete case 1
       // ...
---8<-- "docs/ds/code/rbtree/rbtree.hpp:354:355"
       // Other cases
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-aux2"
       // ...
---8<-- "docs/ds/code/rbtree/rbtree.hpp:389:393"
+--8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-aux3"
 ```
 
 #### Delete case 1
@@ -177,7 +171,7 @@ $s$ 为红色。
 
 ???+ note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:343:353"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-case1"
     ```
 
 #### Delete case 2
@@ -192,7 +186,7 @@ $p$ 的颜色不确定，$s$、$c$、$d$ 均为黑色。
 
 ???+ note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:356:367"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-case2"
     ```
 
 #### Delete case 3
@@ -205,7 +199,7 @@ $p$ 的颜色不确定，$s$、$d$ 均为黑色，$c$ 为红色。
 
 ???+ note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:368:380"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-case3"
     ```
 
 #### Delete case 4
@@ -218,7 +212,7 @@ $p$、$c$ 的颜色不确定，$s$ 为黑色，$d$ 为红色。
 
 ???+ note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:381:388"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:delete-case4"
     ```
 
 ## 参考代码
@@ -227,15 +221,13 @@ $p$、$c$ 的颜色不确定，$s$ 为黑色，$d$ 为红色。
 
 ??? note "实现"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:full"
     ```
 
 ??? note " 例题：[Luogu P3369【模板】普通平衡树](https://www.luogu.com.cn/problem/P3369) 与 [Luogu P6136【模板】普通平衡树（数据加强版）](https://www.luogu.com.cn/problem/P6136)"
     ```cpp
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp::1"
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:7:9"
-    --8<-- "docs/ds/code/rbtree/rbtree.hpp:13:399"
-    --8<-- "docs/ds/code/rbtree/rbtree_1.cpp:3"
+    --8<-- "docs/ds/code/rbtree/rbtree.hpp:class"
+    --8<-- "docs/ds/code/rbtree/rbtree_1.cpp:main"
     ```
 
 ## 实际工程项目中的使用
