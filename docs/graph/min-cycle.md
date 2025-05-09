@@ -372,6 +372,7 @@
     # 定义一个足够大的值表示无穷大
     INF = sys.maxsize
     
+    
     def get_path(i, j, pos, path, cnt):
         """
         递归地获取从节点 i 到节点 j 的最短路径上的中间节点。
@@ -400,6 +401,7 @@
         # 递归获取 k 到 j 的路径
         cnt = get_path(k, j, pos, path, cnt)
         return cnt
+    
     
     def find_minimum_cycle_undirected(n, edges):
         """
@@ -452,17 +454,17 @@
             # 环由 i -> k -> j -> ... -> i 组成
             # 这里的 dis[i][j] 是在考虑节点 0 到 k-1 作为中间节点时的最短路径
             # C++ 代码中使用 i < k 和 j < i 的循环顺序，这里也遵循这个逻辑 (0-based)
-            for i in range(k): # 0 <= i < k
-                for j in range(i): # 0 <= j < i
-                     # 检查 i, k, j 是否构成一个环，并且通过 dis[i][j] 连接
-                     # 确保原始边 g[i][k] 和 g[k][j] 存在 (不为 INF)
-                     # 并且 i 到 j 的最短路径 dis[i][j] 存在 (不为 INF)
+            for i in range(k):  # 0 <= i < k
+                for j in range(i):  # 0 <= j < i
+                    # 检查 i, k, j 是否构成一个环，并且通过 dis[i][j] 连接
+                    # 确保原始边 g[i][k] 和 g[k][j] 存在 (不为 INF)
+                    # 并且 i 到 j 的最短路径 dis[i][j] 存在 (不为 INF)
                     if g[i][k] != INF and g[k][j] != INF and dis[i][j] != INF:
                         current_cycle_len = g[i][k] + g[k][j] + dis[i][j]
                         if current_cycle_len < min_cycle_len:
                             min_cycle_len = current_cycle_len
                             # 重构路径
-                            path = [0] * (N + 5) # 临时存储路径的数组，长度足够大
+                            path = [0] * (N + 5)  # 临时存储路径的数组，长度足够大
                             cnt = 0
                             # 按照 i, k, j 的顺序加入路径
                             path[cnt] = i
@@ -480,12 +482,17 @@
             # 标准 Floyd-Warshall 更新最短路径
             for i in range(N):
                 for j in range(N):
-                    if dis[i][k] != INF and dis[k][j] != INF and dis[i][j] > dis[i][k] + dis[k][j]:
+                    if (
+                        dis[i][k] != INF
+                        and dis[k][j] != INF
+                        and dis[i][j] > dis[i][k] + dis[k][j]
+                    ):
                         dis[i][j] = dis[i][k] + dis[k][j]
                         # 记录从 i 到 j 的最短路径经过 k
                         pos[i][j] = k
     
         return min_cycle_len, min_cycle_path
+    
     
     # --- 主程序入口 ---
     if __name__ == "__main__":
@@ -506,7 +513,7 @@
             print("No solution.")
         else:
             # 打印路径节点 (1-based index)，用空格分隔
-            print(' '.join(map(str, path)))
+            print(" ".join(map(str, path)))
     ```
 
 ## 例题 2
