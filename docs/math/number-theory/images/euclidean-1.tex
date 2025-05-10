@@ -50,7 +50,7 @@
       \foreach \y in {1,...,11} {
         \pgfmathparse{8 * \y <= 13 * \x + 12 ? 1 : 0}
         \ifnum\pgfmathresult=1
-          \addplot[only marks, mark=*, mark options={fill=orange}]
+          \addplot[only marks, mark=*, mark options={fill=red}]
             coordinates {(\x, \y)};
         \fi
       }
@@ -108,7 +108,7 @@
       \foreach \y in {1,...,11} {
         \pgfmathparse{((\y > \x + 1) && (8 * \y <= 13 * \x + 12)) ? 1 : 0}
         \ifnum\pgfmathresult=1
-          \addplot[only marks, mark=*, mark options={fill=orange}]
+          \addplot[only marks, mark=*, mark options={fill=red}]
             coordinates {(\x, \y)};
         \fi
       }
@@ -154,7 +154,7 @@
       \foreach \y in {1,...,11} {
         \pgfmathparse{((8 * \y <= 5 * \x + 4)) ? 1 : 0}
         \ifnum\pgfmathresult=1
-          \addplot[only marks, mark=*, mark options={fill=orange}]
+          \addplot[only marks, mark=*, mark options={fill=red}]
             coordinates {(\x, \y)};
         \fi
       }
