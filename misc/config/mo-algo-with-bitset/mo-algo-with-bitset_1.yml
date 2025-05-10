@@ -1,0 +1,10 @@
+id: oi-wiki:misc/mo-algo-with-bitset-1
+name: Mo Algo With Bitset
+solution:
+  cpp: docs/misc/code/mo-algo-with-bitset/mo-algo-with-bitset_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/examples/mo-algo-with-bitset/mo-algo-with-bitset_1.ans
+  input: docs/misc/examples/mo-algo-with-bitset/mo-algo-with-bitset_1.in
+version: 1000
