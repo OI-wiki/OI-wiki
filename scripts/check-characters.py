@@ -1,81 +1,51 @@
 import json
 import os
-import sys
-
-CHAR_MAP = json.load(open("scripts/char-map.json"))
-changed_files = os.environ.get("CHANGED_FILES", "")
-successed_list, skipped_list, failed_list = [], [], {}
-
 
 def str_2_unicode(s):
-    return s.encode("unicode-escape").decode()
+    return s.encode('unicode-escape').decode()
 
+class ChangeNeeded(Exception):
+    pass
 
-def summary(message):
-    if os.environ.get("GITHUB_ACTIONS") == "true":
-        os.system(f'echo "{message}" >> $GITHUB_STEP_SUMMARY')
-    print(message)
+changed = False
+change_list = {}
+cjk_map = None
 
+cjk_map = json.load(open('scripts/cjk-map.json'))
 
-def error(filename, line, col, message):
-    if os.environ.get("GITHUB_ACTIONS") == "true":
-        os.system(
-            f'echo "::error file={filename},line={line},col={col}::Check Characters: {message}"'
-        )
-    print(f"Check Characters: {filename} {line}:{col} {message}")
+for line in open('res.txt'):
+    for filename in line.split(' '):
+        name = filename[:filename.rfind('.')]
+        num = name.rfind('/')
+        filename = name[num:]
+        md = name + '.md'
+        skiptest = name + '.skip_test'
 
+        if os.path.exists(skiptest):
+            print(md + ' test skipped')
+            continue
+        mdfile = open(md)
+        data = mdfile.read()
+        for key, value in cjk_map.items():
+            if data.find(key) != -1:
+                changed = True
+                if md in change_list.keys():
+                    change_list[md] += key
+                else:
+                    change_list[md] = key
 
-def check(filename):
-    if os.path.exists(f"{filename}.skipchars"):
-        skipped_list.append(filename)
-        return
-    failed = False
-    check = open(filename)
-    data = check.read()
-    for key, value in CHAR_MAP.items():
-        if data.find(key) != -1:
-            failed = True
-            if filename in failed_list.keys():
-                failed_list[filename].append(key)
-            else:
-                failed_list[filename] = [key]
-    if not failed:
-        successed_list.append(filename)
+if changed:
+    print('Some CJK radicals are found in modified files. ')
+    print(
+        'You should replace the character before the arrow in the list below (sorted by filename) with the character after the arrow. '
+    )
+    print('')
+    for change_file, change_data in change_list.items():
+        print(f'- {change_file}')
+        for change_char in change_data:
+            print(
+                f'  - {change_char} ({str_2_unicode(change_char)}) -> {cjk_map[change_char]} ({str_2_unicode(cjk_map[change_char])})'
+            )
+    print('')
 
-
-def annotate(filename, char):
-    suggest = f"{char}({str_2_unicode(char)}) -> {CHAR_MAP[char]}({str_2_unicode(CHAR_MAP[char])})"
-    summary(f"  - {suggest}")
-    with open(filename, "r") as file:
-        lines = file.readlines()
-    for line_num, line in enumerate(lines, start=1):
-        col_num = line.find(char) + 1
-        while col_num > 0:
-            error(filename, line_num, col_num, suggest)
-            col_num = line.find(char, col_num) + 1
-
-
-if changed_files != "":
-    for filename in changed_files.replace("\n", " ").split():
-        check(filename)
-else:
-    for root, _, files in os.walk("docs"):
-        for filename in files:
-            if filename.endswith(".md") or filename.endswith(".tex"):
-                check(os.path.join(root, filename))
-summary("## :checkered_flag: 字符检查结果")
-if successed_list:
-    summary("### :white_check_mark: 成功")
-    for filename in successed_list:
-        summary(f"- {filename}")
-if skipped_list:
-    summary("### 跳过")
-    for filename in skipped_list:
-        summary(f"- {filename}")
-if failed_list:
-    summary("### :x: 失败")
-    for filename, failed_chars in failed_list.items():
-        summary(f"- {filename}")
-        for failed_char in failed_chars:
-            annotate(filename, failed_char)
-    sys.exit(1)
+    raise ChangeNeeded('Some characters need to be changed. ')
