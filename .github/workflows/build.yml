@@ -92,7 +92,6 @@ jobs:
         uses: tj-actions/changed-files@v46
         with:
           files: docs/**/*.md
-          since_last_remote_commit: true
           include_all_old_new_renamed_files: true
           write_output_files: true
       - name: Checkout before
