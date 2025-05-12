@@ -1,4 +1,6 @@
-name: Check Characters
+# Check the Markdown file for CJK radicals (or strokes)
+
+name: Check CJK Characters
 
 on:
   push:
@@ -10,7 +12,7 @@ on:
 
 jobs:
   check:
-    name: Check Characters
+    name: Check CJK Characters
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,20 +20,21 @@ jobs:
         with:
           fetch-depth: 2
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: Get Changed Files
+      - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v46
         with:
           files: |
             docs/**/*.md
-            docs/**/*.tex
+          since_last_remote_commit: true
       - name: Setup Python
         if: steps.changed-files.outputs.any_changed == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Check Changed Files
+      - name: Make the File list
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
+      - name: Scan Changed Files
         if: steps.changed-files.outputs.any_changed == 'true'
         run: python scripts/check-characters.py
-        env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
