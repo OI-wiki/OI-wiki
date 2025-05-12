@@ -1,4 +1,4 @@
-author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, isdanni, Menci, ouuan, Tiphereth-A, warzone-oier, Xeonacid, c-forrest
+author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, isdanni, Menci, ouuan, Tiphereth-A, warzone-oier, Xeonacid, c-forrest, cervoliu
 
 前置知识：[抽象代数基本概念](./basic.md)、[置换与排列](../permutation.md)
 
@@ -266,7 +266,7 @@ $$
 
 ![同态基本定理的交换图](../images/homomorphism.svg)
 
-这里，所有箭头都是群同态，且 $N=\ker\varphi$ 是同态 $\varphi$ 的核，$\varphi(G)$ 是同态 $\varphi$ 的像。这些映射依次是，$\pi:g\mapsto gN$ 为群 $G$ 到商群 $G/N$ 的自然映射（满同态），$\Phi:gH\mapsto\varphi(g)$ 是同构映射，$\iota$ 则是嵌入映射（单同态）。交换图意味着，图中从 $G$ 出发到 $H$ 结束的两条不同路径上的映射的复合得到的结果是一致的，即 $\varphi=\iota\circ\Phi\circ\pi$。交换图清晰地说明，同态 $\varphi$ 损失的信息就反映在 $\pi$ 和 $\iota$ 中。
+这里，所有箭头都是群同态，且 $N=\ker\varphi$ 是同态 $\varphi$ 的核，$\varphi(G)$ 是同态 $\varphi$ 的像。这些映射依次是，$\pi:g\mapsto gN$ 为群 $G$ 到商群 $G/N$ 的自然映射（满同态），$\Phi:gN\mapsto\varphi(g)$ 是同构映射，$\iota$ 则是嵌入映射（单同态）。交换图意味着，图中从 $G$ 出发到 $H$ 结束的两条不同路径上的映射的复合得到的结果是一致的，即 $\varphi=\iota\circ\Phi\circ\pi$。交换图清晰地说明，同态 $\varphi$ 损失的信息就反映在 $\pi$ 和 $\iota$ 中。
 
 ### 群的同构定理
 
@@ -379,7 +379,7 @@ $$
 这一例子说明，轨道上的元素，都和稳定化子的左陪集一一对应。这说明如下结果。
 
 ???+ note "定理"
-    对于群 $G$ 在集合 $X$ 上的作用，元素 $x\in X$ 的稳定化子 $G_x$ 是 $X$ 的子群，且子群 $G_x$ 的左陪集与轨道 $Gx$ 存在双射。
+    对于群 $G$ 在集合 $X$ 上的作用，元素 $x\in X$ 的稳定化子 $G_x$ 是 $G$ 的子群，且子群 $G_x$ 的左陪集与轨道 $Gx$ 存在双射。
 
 ??? note "证明"
     验证映射 $gG_x\mapsto gx$ 是良定义的双射即可。
