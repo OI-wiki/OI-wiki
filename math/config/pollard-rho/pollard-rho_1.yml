@@ -1,0 +1,10 @@
+id: oi-wiki:math/pollard-rho-1
+name: Pollard Rho
+solution:
+  cpp: docs/math/code/pollard-rho/pollard-rho_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/pollard-rho/pollard-rho_1.ans
+  input: docs/math/examples/pollard-rho/pollard-rho_1.in
+version: 1000

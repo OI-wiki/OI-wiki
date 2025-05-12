@@ -1,0 +1,10 @@
+id: oi-wiki:math/fft-3
+name: FFT
+solution:
+  cpp: docs/math/code/poly/fft/fft_3.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/math/examples/poly/fft/fft_3.ans
+  input: docs/math/examples/poly/fft/fft_3.in
+version: 1000
