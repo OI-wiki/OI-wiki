@@ -109,6 +109,6 @@ jobs:
           pipenv install
       - name: Update meta
         run: |
-          pipenv run python scripts/update-feedback-sys-meta.py --modified .github/outputs/modified_files.txt --renamed .github/outputs/all_old_new_renamed_files.txt --before_dir before
+          pipenv run python scripts/update-feedback-sys-meta.py --modified .github/outputs/modified_files.txt --renamed .github/outputs/renamed_files.txt  --all_old_new_renamed .github/outputs/all_old_new_renamed_files.txt --before_dir before
         env:
           ADMINISTRATOR_SECRET: ${{ secrets.FEEDBACK_SYS_ADMINISTRATOR_SECRET }}
