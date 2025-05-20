@@ -190,6 +190,7 @@ nav:
       - 斜率优化: dp/opt/slope.md
       - 四边形不等式优化: dp/opt/quadrangle.md
       - Slope Trick 优化: dp/opt/slope-trick.md
+      - WQS 二分: dp/opt/wqs-binary-search.md
       - 状态设计优化: dp/opt/state.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
