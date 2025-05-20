@@ -27,7 +27,6 @@ jobs:
             docs/**/*.cpp
             docs/**/*.in
             docs/**/*.ans
-          since_last_remote_commit: true
       - uses: actions/setup-python@v5
         if: steps.changed-files.outputs.any_changed == 'true'
         with:

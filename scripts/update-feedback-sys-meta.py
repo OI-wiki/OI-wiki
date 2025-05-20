@@ -27,6 +27,7 @@ def update_commit_hash():
 parser = argparse.ArgumentParser("update-feedback-sys-meta")
 parser.add_argument("--modified", type=FileType(encoding="utf-8"), required=True)
 parser.add_argument("--renamed", type=FileType(encoding="utf-8"), required=True)
+parser.add_argument("--all_old_new_renamed", type=FileType(encoding="utf-8"), required=True)
 parser.add_argument("--before_dir", type=str, required=True)
 args = parser.parse_args()
 
@@ -36,12 +37,14 @@ for f in modified_file:
     if(len(f) > 0):
         modified.append(f)
 
-renamed_file = args.renamed.read()
-renamed: list[(str, str)] = []
-for files in renamed_file.split(" "):
+all_old_new_renamed_file = args.all_old_new_renamed.read()
+all_old_new_renamed: list[(str, str)] = []
+for files in all_old_new_renamed_file.split(" "):
     f = files.split(",")
     if(len(f) == 2):
-        renamed.append((f[0], f[1]))
+        all_old_new_renamed.append((f[0], f[1]))
+renamed_file = args.renamed.read().split(" ")
+renamed: list[(str, str)] = [(old,new) for old, new in all_old_new_renamed if new in renamed_file]  
 
 before_dir: str = args.before_dir
 print("Modified:", modified)
