@@ -159,11 +159,11 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     
     int main() {
       int i, lim(1), n;
-      scanf("%s", &a);
+      scanf("%s", a);
       n = strlen(a);
       for (i = 0; i < n; ++i) A[i] = a[n - i - 1] - '0';
       while (lim < (n << 1)) lim <<= 1;
-      scanf("%s", &b);
+      scanf("%s", b);
       n = strlen(b);
       for (i = 0; i < n; ++i) B[i] = b[n - i - 1] - '0';
       while (lim < (n << 1)) lim <<= 1;

@@ -162,7 +162,7 @@ vertex labeling 为 $0$ 的点最后将成为未匹配点。
 这里为了方便实现，使用边权乘 $2$ 来计算 $z_e$ 的值，这样就不会出现浮点数误差了。
 
 ???+ note "存储"
-    ```c++
+    ```cpp
     constexpr int INF = INT_MAX;
     constexpr int MAXN = 400;
     
@@ -203,7 +203,7 @@ flower[b2] = {9, b1, 4, 3, 2, 11, 10}
 flower[b1] = {5, 8, 6}
 ```
 
-```c++
+```cpp
 int lab[MAXN * 2 + 1];
 // lab[u]用来记录z_u, lab[b]用来记录z_B
 int match[MAXN * 2 + 1], slack[MAXN * 2 + 1], st[MAXN * 2 + 1],
@@ -233,7 +233,7 @@ flower_from[b1][6] = 6
 以此类推
 ```
 
-```c++
+```cpp
 int e_delta(const edge &e) {
   // 计算ze，为了方便起见先把所有边的权重乘二
   // 在花里面直接计算 e_delta 值会导致错误
@@ -258,7 +258,7 @@ void set_slack(int x) {
 }
 ```
 
-```c++
+```cpp
 void q_push(int x) {
   // 把x丟到queue里面，我们设定queue不能直接push一朵花
   if (x <= n)
@@ -283,7 +283,7 @@ void set_st(int x, int b) {
 }
 ```
 
-```c++
+```cpp
 int get_pr(int b, int xr) {
   // xr是flower[b]中的一个点，返回值pr是它的位置
   // 为了方便程序运行，我们让 flower[b][0]~flower[b][pr]为花里的交替路
@@ -305,7 +305,7 @@ int get_pr(int b, int xr) {
 
 如果使用 `get_pr(b2,2)`，`flower[b2]` 会变成 `{9,b1,4,3,2,11,10}`，并返回 4。
 
-```c++
+```cpp
 void set_match(int u, int v) {
   // 设置u和v为匹配边，u和v有可能是花
   match[u] = g[u][v].v;
@@ -351,7 +351,7 @@ int get_lca(int u, int v) {
 ```
 
 ???+ note "增加一朵奇花"
-    ```c++
+    ```cpp
     void add_blossom(int u, int lca, int v) {
       // 将u,v,lca这朵花缩成一个点 b
       // 交错树上u,v的lca即为花托
@@ -409,7 +409,7 @@ int get_lca(int u, int v) {
     ```
 
 ???+ note "拆花"
-    ```c++
+    ```cpp
     void expand_blossom(int b) {
       // b是奇花且zB=0时，必须要把b拆开
       // 因为只拆开b而已，所以如果b里面有包含其他的花
@@ -446,7 +446,7 @@ int get_lca(int u, int v) {
     ```
 
 ???+ note "尝试增广一条等边"
-    ```c++
+    ```cpp
     bool on_found_edge(const edge &e) {
       // BFS时找到一条等边e
       // 要对它进行以下的处理
@@ -477,7 +477,7 @@ int get_lca(int u, int v) {
     ```
 
 ???+ note "增广"
-    ```c++
+    ```cpp
     bool matching() {
       memset(S + 1, -1, sizeof(int) * n_x);
       memset(slack + 1, 0, sizeof(int) * n_x);
@@ -556,7 +556,7 @@ int get_lca(int u, int v) {
     ```
 
 ???+ note "主函数"
-    ```c++
+    ```cpp
     pair<long long, int> weight_blossom() {
       // 主函数，一开始先初始化
       memset(match + 1, 0, sizeof(int) * n);
@@ -589,7 +589,7 @@ int get_lca(int u, int v) {
 ???+ note "初始化"
     很重要 使用前一定要初始化
     
-    ```c++
+    ```cpp
     void init_weight_graph() {
       // 在把边输入到图里面前必须要初始化
       // 因为是最大权匹配所以把不存在的边设为0
