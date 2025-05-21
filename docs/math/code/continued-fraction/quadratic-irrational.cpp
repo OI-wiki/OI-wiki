@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <vector>
 
+// --8<-- [start:core]
 // Return the continued fraction and minimal positive period
 //   of a quadratic irrational (x + y * sqrt(n)) / z.
 auto quadratic_irrational(int x, int y, int z, int n) {
@@ -24,6 +25,7 @@ auto quadratic_irrational(int x, int y, int z, int n) {
   return std::make_pair(a, i - used[((1LL << 32) * p) | q]);
 }
 
+// --8<-- [end:core]
 int main() {
   int x, y, z, n;
   std::cin >> x >> y >> z >> n;

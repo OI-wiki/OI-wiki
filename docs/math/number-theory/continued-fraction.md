@@ -100,12 +100,12 @@ $$
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/diophantine.cpp:6:14"
+        --8<-- "docs/math/code/continued-fraction/diophantine.cpp:fraction"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/diophantine.py:2:8"
+        --8<-- "docs/math/code/continued-fraction/diophantine.py:fraction"
         ```
 
 ## 渐近分数
@@ -289,12 +289,12 @@ $$
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/diophantine.cpp:16:26"
+        --8<-- "docs/math/code/continued-fraction/diophantine.cpp:convergents"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/diophantine.py:11:19"
+        --8<-- "docs/math/code/continued-fraction/diophantine.py:convergents"
         ```
 
 ### 误差估计
@@ -449,12 +449,12 @@ $$
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/diophantine.cpp:28:36"
+        --8<-- "docs/math/code/continued-fraction/diophantine.cpp:dio"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/diophantine.py:22:28"
+        --8<-- "docs/math/code/continued-fraction/diophantine.py:dio"
         ```
 
 ## 丢番图逼近
@@ -966,12 +966,12 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/compare.cpp:6:28"
+        --8<-- "docs/math/code/continued-fraction/compare.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/compare.py:2:16"
+        --8<-- "docs/math/code/continued-fraction/compare.py:core"
         ```
 
 ???+ example "最佳内点"
@@ -984,12 +984,12 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/inner-point.cpp:52:82"
+        --8<-- "docs/math/code/continued-fraction/inner-point.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/inner-point.py:39:63"
+        --8<-- "docs/math/code/continued-fraction/inner-point.py:core"
         ```
 
 ???+ example "[GCJ 2019, Round 2 - New Elements: Part 2](https://github.com/google/coding-competitions-archive/blob/main/codejam/2019/round_2/new_elements_part_2/statement.pdf)"
@@ -1007,12 +1007,12 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/gcj-2019.cpp:83:117"
+        --8<-- "docs/math/code/continued-fraction/gcj-2019.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/gcj-2019.py:66:91"
+        --8<-- "docs/math/code/continued-fraction/gcj-2019.py:core"
         ```
 
 想要了解更多 Stern–Brocot 树的性质和应用，可以参考其主条目页面。
@@ -1370,12 +1370,12 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/quadratic-irrational.cpp:8:25"
+        --8<-- "docs/math/code/continued-fraction/quadratic-irrational.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/quadratic-irrational.py:4:20"
+        --8<-- "docs/math/code/continued-fraction/quadratic-irrational.py:core"
         ```
 
 ???+ example "[Tavrida NU Akai Contest - Continued Fraction](https://timus.online/problem.aspx?space=1&num=1814)"
@@ -1603,12 +1603,12 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/hull-under-line.cpp:28:54"
+        --8<-- "docs/math/code/continued-fraction/hull-under-line.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/hull-under-line.py:22:42"
+        --8<-- "docs/math/code/continued-fraction/hull-under-line.py:core"
         ```
 
 ???+ example "[Timus - Crime and Punishment](https://timus.online/problem.aspx?space=1&num=1430)"
@@ -1639,12 +1639,12 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     
     === "C++"
         ```py
-        --8<-- "docs/math/code/continued-fraction/closest-dio.cpp:28:62"
+        --8<-- "docs/math/code/continued-fraction/closest-dio.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/closest-dio.py:22:50"
+        --8<-- "docs/math/code/continued-fraction/closest-dio.py:core"
         ```
 
 ???+ example "[June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)"
@@ -1659,12 +1659,12 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/sum-floor.cpp:46:66"
+        --8<-- "docs/math/code/continued-fraction/sum-floor.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/sum-floor.py:36:53"
+        --8<-- "docs/math/code/continued-fraction/sum-floor.py:core"
         ```
 
 ???+ example "[NAIPC 2019 - It's a Mod, Mod, Mod, Mod World](https://open.kattis.com/problems/itsamodmodmodmodworld)"
@@ -1682,12 +1682,12 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/mod-mod-mod.cpp:78:80"
+        --8<-- "docs/math/code/continued-fraction/mod-mod-mod.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/mod-mod-mod.py:65:66"
+        --8<-- "docs/math/code/continued-fraction/mod-mod-mod.py:core"
         ```
 
 ???+ example "[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)"
@@ -1700,12 +1700,12 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     
     === "C++"
         ```py
-        --8<-- "docs/math/code/continued-fraction/sum-floor-axbc.cpp:28:88"
+        --8<-- "docs/math/code/continued-fraction/sum-floor-axbc.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/sum-floor-axbc.py:22:80"
+        --8<-- "docs/math/code/continued-fraction/sum-floor-axbc.py:core"
         ```
 
 ???+ example "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
@@ -1724,12 +1724,12 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/continued-fraction/recover-fraction.cpp:28:40"
+        --8<-- "docs/math/code/continued-fraction/recover-fraction.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/continued-fraction/recover-fraction.py:22:30"
+        --8<-- "docs/math/code/continued-fraction/recover-fraction.py:core"
         ```
 
 ## 习题

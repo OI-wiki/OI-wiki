@@ -1,4 +1,5 @@
 # CONTINUED FRACTION COMPARISON.
+# --8<-- [start:core]
 # Expand [..., n] to [..., n-1, 1] if needed.
 def expand(a):
     if a[-1] != 1 or len(a) == 1:
@@ -16,6 +17,7 @@ def less_than(a, b):
     return a < b
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     t = int(input())
     for _ in range(t):

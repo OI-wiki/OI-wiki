@@ -275,7 +275,7 @@ c = read<__int128>();
 ## 示例代码
 
 ```cpp
---8<-- "docs/contest/code/io/io_1.cpp:5:77"
+--8<-- "docs/contest/code/io/io_1.cpp:core"
 ```
 
 注意事项：

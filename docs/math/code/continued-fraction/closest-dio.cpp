@@ -25,6 +25,7 @@ auto convergents(std::vector<int> a) {
   return std::make_pair(p, q);
 }
 
+// --8<-- [start:core]
 // Find (x, y) such that y = (A*x+B)/C,
 // such that Cy - Ax is max and 0 <= x <= N.
 auto closest(int A, int B, int C, int N) {
@@ -61,6 +62,7 @@ auto solve(int A, int B, int N) {
   return std::make_pair(N / A - x, y);
 }
 
+// --8<-- [end:core]
 int main() {
   int a, b, n, x, y;
   std::cin >> a >> b >> n;

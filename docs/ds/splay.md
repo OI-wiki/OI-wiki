@@ -31,7 +31,7 @@ Splay 树是一棵二叉查找树，查找某个值时满足性质：左子树�
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:7:9"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:aux"
     ```
 
 ### 旋转操作
@@ -59,7 +59,7 @@ Splay 树是一棵二叉查找树，查找某个值时满足性质：左子树�
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:11:22"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:rotate"
     ```
 
 在所有函数的实现时，都应注意不要修改节点 $0$ 的信息。
@@ -107,7 +107,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:24:30"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:splay"
     ```
 
 伸展操作是 Splay 树的核心操作，也是它的时间复杂度能够得到保证的关键步骤。请务必保证每次向下访问节点后，都进行一次伸展操作。
@@ -246,7 +246,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:32:36"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:find"
     ```
 
 该实现允许指定任何节点 $z$ 作为根节点，并在它的子树内按值查找。
@@ -264,7 +264,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:38:51"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:loc"
     ```
 
 该实现需要保证排名 $k$ 不超过根 $z$ 处的树大小。
@@ -273,7 +273,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:97:101"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:find-kth"
     ```
 
 ### 合并操作
@@ -289,7 +289,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:53:60"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:merge"
     ```
 
 分裂操作类似。因而，Splay 树可以模拟 [无旋 treap](./treap.md#无旋-treap) 的思路做各种操作，包括区间操作。[后文](#序列操作) 会介绍更具有 Splay 树风格的区间操作处理方法。
@@ -304,7 +304,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:62:76"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:insert"
     ```
 
 该实现允许直接向空树内插入值。若不想处理空树，可以在树中提前插入哑节点。
@@ -320,7 +320,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:78:90"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:remove"
     ```
 
 ### 查询排名
@@ -331,7 +331,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:92:95"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:find-rank"
     ```
 
 ### 查询前驱
@@ -346,7 +346,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:103:111"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:find-prev"
     ```
 
 该实现允许前驱不存在，此时返回 $-1$。
@@ -357,7 +357,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:113:121"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:find-next"
     ```
 
 ### 参考实现
@@ -366,7 +366,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:full-text"
     ```
 
 ## 序列操作
@@ -389,7 +389,7 @@ Splay 树也可以运用在序列上，用于维护区间信息。与线段树�
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-2.cpp:58:67"
+    --8<-- "docs/ds/code/splay/splay-2.cpp:build"
     ```
 
 最后的伸展操作自下而上地更新了节点信息。为了后文区间操作方便，序列左右两侧添加了两个哨兵节点。
@@ -407,7 +407,7 @@ Splay 树也可以运用在序列上，用于维护区间信息。与线段树�
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-2.cpp:69:76"
+    --8<-- "docs/ds/code/splay/splay-2.cpp:reverse"
     ```
 
 最后一步的伸展操作并非为了保证复杂度正确，而是为了更新节点信息。因为伸展操作涉及到节点 $x$ 的左右子节点，所以之前需要将节点 $x$ 处的标记先下传一次。当然，仅对于区间翻转操作而言，子区间的翻转不会对祖先节点产生影响，所以省去这一步骤也是正确的。此处实现保留这两行，是为了说明一般的情形下的操作方法。
@@ -418,14 +418,14 @@ Splay 树也可以运用在序列上，用于维护区间信息。与线段树�
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-2.cpp:11:22"
+    --8<-- "docs/ds/code/splay/splay-2.cpp:push-down"
     ```
 
 然后，只需要在向下经过节点时下传标记即可。模板题要求的操作比较简单，只有按照排名寻找的操作（即 `loc`）涉及向下访问节点。注意，需要在函数每次访问一个新的节点 **前** 下传标记。
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-2.cpp:45:56"
+    --8<-- "docs/ds/code/splay/splay-2.cpp:push-down-lazy"
     ```
 
 因为向下访问节点时已经移除了经过的路径的所有懒标记，所以利用伸展操作上移节点时不再需要处理懒标记。但是，对于区间操作的那一个节点要谨慎处理：因为它同样位于伸展操作的路径上，但是刚刚操作完，可能存在尚未下传的标记，需要首先下传再做伸展操作，正如同上文所做的那样。
@@ -436,7 +436,7 @@ Splay 树也可以运用在序列上，用于维护区间信息。与线段树�
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-2.cpp"
+    --8<-- "docs/ds/code/splay/splay-2.cpp:full-text"
     ```
 
 ## 习题
