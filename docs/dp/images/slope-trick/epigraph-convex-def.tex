@@ -1,0 +1,100 @@
+% Modified from https://tex.stackexchange.com/a/261567.
+\documentclass{standalone}
+\usepackage[active,tightpage]{preview}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{arrows.meta,intersections}
+
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{14pt}{16pt}\selectfont}
+
+\DeclareMathOperator{\dom}{dom}
+
+\pgfmathdeclarefunction{func}{1}{%
+  \pgfmathparse{max(6*(#1-4)*(#1-4),17)+3*(#1-4)}%
+}
+
+\pgfplotsset{compat=1.16}
+\makeatletter
+\pgfplotsset{
+    mark max/.style={
+        point meta rel=per plot,
+        visualization depends on={x \as \xvalue},
+        scatter/@pre marker code/.code={%
+        \ifx\pgfplotspointmeta\pgfplots@metamax
+            \def\markopts{mark=none}%
+            \coordinate (maximum);
+        \fi
+            \def\markopts{mark=none}
+            \expandafter\scope\expandafter[\markopts]
+        },%
+        scatter/@post marker code/.code={%
+            \endscope
+        },
+        scatter
+    }
+}
+
+% Syntax
+% \DrawEpigraph[<additional options>]{<min domain x>}{<max domain x>}{<shift on the left>}{<shift on the right>}
+\newcommand\DrawEpigraph[6][draw=white,top color=red!05,bottom color=red!45]{
+  \coordinate (plot-left) at ([yshift=#4]axis cs:#2,\pgfplots@metamax);
+  \coordinate (plot-right) at ([yshift=#5]axis cs:#3,\pgfplots@metamax);
+  \path[name path=diagonal,draw=none] (plot-left) -- (plot-right);
+  \addplot[#1] fill between[of=#6 and diagonal];
+}
+\makeatother
+
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}        
+
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$x$},
+  ylabel={$y$},
+  xtick={\empty},
+  ytick={\empty},
+  domain=0.5:7,
+  ymin=0,
+  ymax=64,
+  xmin=0,
+  xmax=7.5,
+  clip=false,
+  axis on top,
+  scale=2
+] 
+% The curve
+\addplot [mark max,black,thick,name path=B,samples=100] plot {func(x)};
+% The Epigraph
+\DrawEpigraph{0.5}{7}{0}{0}{B}
+% Lines and labels
+\draw[dashed] 
+    (axis cs:1,0) node[below] {$x$} -- (axis cs:1,{func(1)})
+    node[
+        draw,fill,circle,inner sep=-1.5pt,
+        label=180:$f(x)$
+    ] {};
+\draw[dashed] 
+    (axis cs:6,0) node[below] {$y$} -- (axis cs:6,{func(6)})
+    node[
+        draw,fill,circle,inner sep=-1.5pt,
+        label=0:$f(y)$
+    ] {};
+\draw[dashed] 
+    (axis cs:3,0) node[below] {$\alpha x+(1-\alpha)y$} 
+    -- (axis cs:3,{(func(1)*3+func(6)*2)/5})
+    node[
+        draw,fill,circle,inner sep=-1.5pt,
+        label=45:$\alpha f(x)+(1-\alpha)f(y)$
+    ] {};
+\draw[dashed,thick] (axis cs:1,{func(1)}) -- (axis cs:6,{func(6)});
+\node[below left] at (axis cs:0,0) {$O$};
+\node[draw,fill,circle,inner sep=-1.5pt,label=-45:$f\left(\alpha x+(1-\alpha)y\right)$]
+    at (axis cs:3,{func(3)}) {}; 
+\end{axis}
+\end{tikzpicture}
+
+\end{document}
