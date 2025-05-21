@@ -259,7 +259,7 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
 可以参考 [B 树](./b-tree.md) 中的删除章节。
 
 ??? note "实现"
-    ```c++
+    ```cpp
     // Deletion operation on a B+ tree in C++
     #include <climits>
     #include <fstream>
@@ -662,10 +662,10 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
       if (leftSibling >= 0) {
         Node *leftNode = parent->ptr[leftSibling];
         leftNode->key[leftNode->size] = parent->key[leftSibling];
-        for (int i = leftNode->size + 1, j = 0; j < cursor->size; j++) {
+        for (int i = leftNode->size + 1, j = 0; j < cursor->size; i++, j++) {
           leftNode->key[i] = cursor->key[j];
         }
-        for (int i = leftNode->size + 1, j = 0; j < cursor->size + 1; j++) {
+        for (int i = leftNode->size + 1, j = 0; j < cursor->size + 1; i++, j++) {
           leftNode->ptr[i] = cursor->ptr[j];
           cursor->ptr[j] = NULL;
         }
@@ -675,10 +675,10 @@ B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关�
       } else if (rightSibling <= parent->size) {
         Node *rightNode = parent->ptr[rightSibling];
         cursor->key[cursor->size] = parent->key[rightSibling - 1];
-        for (int i = cursor->size + 1, j = 0; j < rightNode->size; j++) {
+        for (int i = cursor->size + 1, j = 0; j < rightNode->size; i++, j++) {
           cursor->key[i] = rightNode->key[j];
         }
-        for (int i = cursor->size + 1, j = 0; j < rightNode->size + 1; j++) {
+        for (int i = cursor->size + 1, j = 0; j < rightNode->size + 1; i++, j++) {
           cursor->ptr[i] = rightNode->ptr[j];
           rightNode->ptr[j] = NULL;
         }

@@ -27,7 +27,6 @@ jobs:
             docs/**/*.cpp
             docs/**/*.in
             docs/**/*.ans
-          since_last_remote_commit: true
       - uses: actions/setup-python@v5
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
@@ -40,7 +39,9 @@ jobs:
           pipenv install
       - name: Install C++
         if: steps.changed-files.outputs.any_changed == 'true'
-        run: sudo apt-get install -y g++
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++
       - name: Make the File list
         if: steps.changed-files.outputs.any_changed == 'true'
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
@@ -67,7 +68,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install g++-9
-        run: apt-get install -y g++-9
+        run: |
+          apt-get update
+          apt-get install -y g++-9
       - name: Undefined Behaviors Check
         env: 
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}

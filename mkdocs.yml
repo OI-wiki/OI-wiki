@@ -361,22 +361,24 @@ nav:
     - 单调队列: ds/monotonous-queue.md
     - ST 表: ds/sparse-table.md
     - 树状数组: ds/fenwick.md
-    - 线段树: ds/seg.md
-    - 李超线段树: ds/li-chao-tree.md
-    - 区间最值操作 & 区间历史最值: ds/seg-beats.md
+    - 线段树:
+      - 线段树基础: ds/seg.md
+      - 线段树合并 & 分裂: ds/seg-merge-split.md
+      - 李超线段树: ds/li-chao-tree.md
+      - 猫树: ds/cat-tree.md
+      - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
       - 二叉搜索树 & 平衡树: ds/bst.md
       - Treap: ds/treap.md
       - Splay 树: ds/splay.md
       - WBLT: ds/wblt.md
+      - 替罪羊树: ds/sgt.md
+      - 笛卡尔树: ds/cartesian-tree.md
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
       - B 树: ds/b-tree.md
       - B+ 树: ds/bplus-tree.md
-      - 替罪羊树: ds/sgt.md
-      - Leafy Tree: ds/leafy-tree.md
-      - 笛卡尔树: ds/cartesian-tree.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
       - AA 树: ds/aa-tree.md
