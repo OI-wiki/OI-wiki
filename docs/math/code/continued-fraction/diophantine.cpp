@@ -15,7 +15,7 @@ auto fraction(int p, int q) {
 }
 
 // --8<-- [end:fraction]
-// --8<-- [start:covergents]
+// --8<-- [start:convergents]
 // Find the convergents of a continued fraction A.
 // Numerators and denominators stored separately in P and Q.
 auto convergents(std::vector<int> a) {
@@ -28,7 +28,7 @@ auto convergents(std::vector<int> a) {
   return std::make_pair(p, q);
 }
 
-// --8<-- [end:covergents]
+// --8<-- [end:convergents]
 // --8<-- [start:dio]
 // Return (x,y) such that Ax+By=C.
 // Assume that such (x,y) exists.
