@@ -1,4 +1,5 @@
 # STERN-BROCOT TREE BUILDING.
+# --8<-- [start:core]
 # In-Order Transversal of Stern-Brocot Tree till Layer N.
 def build(n, a=0, b=1, c=1, d=0, level=1):
     if level > n:
@@ -9,5 +10,6 @@ def build(n, a=0, b=1, c=1, d=0, level=1):
     build(n, x, y, c, d, level + 1)
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     build(int(input()))

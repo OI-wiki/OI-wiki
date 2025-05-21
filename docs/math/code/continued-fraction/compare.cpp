@@ -3,6 +3,7 @@
 #include <tuple>
 #include <vector>
 
+// --8<-- [start:core]
 // Expand [..., n] to [..., n-1, 1] if needed.
 void expand(std::vector<int>& a) {
   if (a.size() == 1 || a.back() > 1) {
@@ -27,6 +28,7 @@ bool less_than(std::vector<int> a, std::vector<int> b) {
   return false;
 }
 
+// --8<-- [end:core]
 int main() {
   int t;
   std::cin >> t;
