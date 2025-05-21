@@ -187,7 +187,9 @@ int upper(const void *p1, const void *p2) {
 
 ### 引入
 
-如果需要求出单峰函数的极值点，通常使用二分法衍生出的三分法求单峰函数的极值点。
+二分法可以用于近似求出函数的零点。如果需要求出单峰函数的极值点，通常需要使用三分法（ternary search）。
+
+对于一个函数 $f(x)$，如果存在 $x^*$ 使得 $f(x)$ 在 $x<x^*$ 时单调递增且 $f(x)$ 在 $x>x^*$ 时单调递减，就称 $f(x)$ 为单峰函数（unimodal function）。显然，$x^*$ 就是它的最大值点，而 $f(x^*)$ 则是它的最大值。
 
 ??? note "为什么不通过求导函数的零点来求极值点？"
     客观上，求出导数后，通过二分法求出导数的零点（由于函数是单峰函数，其导数在同一范围内的零点是唯一的）得到单峰函数的极值点是可行的。
@@ -197,50 +199,111 @@ int upper(const void *p1, const void *p2) {
     其次，某些题中需要求极值点的单峰函数并非一个单独的函数，而是多个函数进行特殊运算得到的函数（如求多个单调性不完全相同的一次函数的最小值的最大值）。此时函数的导函数可能是分段函数，且在函数某些点上可能不可导。
 
 ???+ warning "注意"
-    只要函数是单峰函数，三分法既可以求出其最大值，也可以求出其最小值。为行文方便，除特殊说明外，下文中均以求单峰函数的最小值为例。
+    三分法既可以求出单峰函数的最大值，也可以求出「单谷函数」的最小值。为行文方便，除特殊说明外，下文中均以求单峰函数的最大值为例。
 
-三分法与二分法的基本思想类似，但每次操作需在当前区间 $[l,r]$（下图中除去虚线范围内的部分）内任取两点 $lmid,rmid(lmid < rmid)$（下图中的两蓝点）。如下图，如果 $f(lmid)<f(rmid)$，则在 $[rmid,r]$（下图中的红色部分）中函数必然单调递增，最小值所在点（下图中的绿点）必然不在这一区间内，可舍去这一区间。反之亦然。
+### 过程
 
-![](images/binary1.svg)
+三分法与二分法的基本思想类似，但每次操作需在当前区间 $[l,r]$（下图中两个橙点之间）内任取两点 $lmid < rmid$（下图中的两个蓝点）。如下图所示，如果 $f(lmid)<f(rmid)$，则在 $[l,lmid)$（下图中的红色部分）中函数必然单调递增，最大值点（下图中的绿点）必然不在这一区间内，可舍去这一区间；但是，无法排除最大值点在 $rmid$ 右侧的可能性，所以无法舍去更多区间。反之亦然。
 
-???+ warning "注意"
-    在计算 $lmid$ 和 $rmid$ 时，需要防止数据溢出的现象出现。
+![](images/ternary.svg)
 
-三分法每次操作会舍去两侧区间中的其中一个。为减少三分法的操作次数，应使两侧区间尽可能大。因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择。
+三分法的正确性并不依赖于 $lmid$ 和 $rmid$ 的选择，通常可以取两个三等分点。但是，它们的选择确实会影响三分法的效率。这是因为三分法的每次操作都会舍去两侧区间中的其中一个。为减少三分法的操作次数，应使两侧区间尽可能大。因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择。
 
 ### 实现
 
-#### 伪代码
+伪代码如下：
 
 $$
+\begin{array}{l}
+\textbf{Algorithm}\operatorname{TernarySearch}(f,l,r):\\
+\textbf{Input. } \text{A unimodal function } f(x) \text{ and its domain } [l,r].  \\
+\textbf{Output. } \text{The maximizer }x^*\text{, up to an error of }\varepsilon\text{, and its value } f(x^*). \\
+\textbf{Method. } \\
 \begin{array}{ll}
-1 & \textbf{Input. } \text{A range } [l,r] \text{ meaning that the domain of } f(x) \text{.} \\
-2 & \textbf{Output. } \text{The maximum value of } f(x) \text{ and the value of } x \text{ at that time } \text{.} \\
-3 & \textbf{Method. } \\
-4 & \textbf{while } r - l > \varepsilon\\
-5 & \qquad mid\gets \frac{l+r}{2}\\
-6 & \qquad lmid\gets mid - \varepsilon \\
-7 & \qquad rmid\gets mid + \varepsilon \\
-8 & \qquad \textbf{if } f(lmid) < f(rmid) \\
-9 & \qquad \qquad r\gets mid \\
-10 & \qquad \textbf{else } \\
-11 & \qquad \qquad l\gets mid
+1 & \textbf{while } r - l > \varepsilon\\
+2 & \qquad mid\gets (l+r)/2\\
+3 & \qquad lmid\gets mid - \varepsilon \\
+4 & \qquad rmid\gets mid + \varepsilon \\
+5 & \qquad \textbf{if } f(lmid) < f(rmid) \\
+6 & \qquad \qquad l\gets lmid \\
+7 & \qquad \textbf{else } \\
+8 & \qquad \qquad r\gets rmid \\
+9 & x^* \gets (l+r)/2 \\
+10& \textbf{return } x^*,~ f(x^*)
+\end{array}
 \end{array}
 $$
 
-#### C++
+???+ info "整数的情形"
+    如果函数 $f(x)$ 的定义域是整数，那么上述三分法和后文的黄金分割法都应该在 $r-l$ 很小时就终止。对于 $r-l$ 很小的情形，需要通过暴力遍历的方法求得最大值点。
 
-```cpp
-while (r - l > eps) {
-  mid = (l + r) / 2;
-  lmid = mid - eps;
-  rmid = mid + eps;
-  if (f(lmid) < f(rmid))
-    r = mid;
-  else
-    l = mid;
-}
-```
+### 优化：黄金分割法
+
+如果单次调用 $f(x)$ 的成本很高，需要进一步减少 $f(x)$ 的调用次数，可以通过黄金分割法（golden-section search）进一步改进三分法的常数。这也是华罗庚提出的优选法的重要内容。
+
+三分法中，每轮迭代需要两次函数调用，且单轮迭代后区间长度至多缩短到原来的 $1/2$。这意味着，要达到精度 $\varepsilon$，至少需要
+
+$$
+2\log\dfrac{r-l}{\varepsilon}
+$$
+
+次函数调用（对数以 $2$ 为底）。这是三分法能够取得的最好的结果。如果选取其他分点，例如三等分点，那么调用次数会进一步增加，因为单轮迭代后区间缩短得更慢。
+
+黄金分割法的改进思路是，复用前文已经计算过的分点。这样，除了第一轮迭代需要两次函数调用外，其余轮次的迭代只需要一次函数调用。设黄金分割比为
+
+$$
+\phi = \dfrac{\sqrt{5}-1}{2} \approx 0.618.
+$$
+
+每轮迭代时，选取的分点是左右两个黄金分割点：
+
+$$
+m^l = \phi l +(1-\phi)r,~m^r = (1-\phi)l+\phi r.
+$$
+
+黄金分割点分割线段具有自相似结构。也就是说，$m^l$ 是线段 $[l,r]$ 的左黄金分割点，也是线段 $[l,m^r]$ 的右黄金分割点。这样选取分点的好处是，第 $k>1$ 轮迭代选取的分点中，一定有一个分点是之前已经计算过的，可以直接复用之前的计算结果。
+
+![](./images/golden-section-search.svg)
+
+这样选取分点后，要达到精度 $\varepsilon$，只需要
+
+$$
+1 + \log_{\phi^{-1}}\dfrac{r-l}{\varepsilon} \approx 1 + 1.44\log\dfrac{r-l}{\varepsilon}
+$$
+
+次函数调用。渐进意义上，函数的调用次数更少。
+
+伪代码如下：
+
+$$
+\begin{array}{l}
+\textbf{Algorithm}\operatorname{GoldenSectionSearch}(f,l,r):\\
+\textbf{Input. } \text{A unimodal function } f(x) \text{ and its domain } [l,r].  \\
+\textbf{Output. } \text{The maximizer }x^*\text{, up to an error of }\varepsilon\text{, and its value } f(x^*). \\
+\textbf{Method. } \\
+\begin{array}{ll}
+1 & lmid \gets \phi l + (1-\phi)r \\
+2 & rmid \gets (1-\phi)l + \phi r \\
+3 & lval \gets f(lmid) \\
+4 & rval \gets f(rmid) \\
+5 & \textbf{while } r - l > \varepsilon \\
+6 & \qquad \textbf{if } lval > rval \\
+7 & \qquad \qquad r \gets rmid \\
+8 & \qquad \qquad rmid \gets lmid \\
+9 & \qquad \qquad rval \gets lval \\
+10& \qquad \qquad lmid \gets \phi l + (1-\phi)r \\
+11& \qquad \qquad lval \gets f(lmid) \\
+12& \qquad \textbf{else} \\
+13& \qquad \qquad l \gets lmid \\
+14& \qquad \qquad lmid \gets rmid \\
+15& \qquad \qquad lval \gets rval \\
+16& \qquad \qquad rmid \gets (1-\phi)l + \phi r \\
+17& \qquad \qquad rval \gets f(rmid) \\
+18& x^* \gets (l+r)/2 \\
+19& \textbf{return }x^*,~f(x^*)
+\end{array}
+\end{array}
+$$
 
 ### 例题
 
@@ -277,3 +340,9 @@ while (r - l > eps) {
 经典的例子有最优比率环、最优比率生成树等等。
 
 分数规划可以用二分法来解决。
+
+## 参考资料
+
+-   [Ternary search - Wikipedia](https://en.wikipedia.org/wiki/Ternary_search)
+-   [Golden-section search - Wikipedia](https://en.wikipedia.org/wiki/Golden-section_search)
+-   [Ternary search - CP Algortihms](https://cp-algorithms.com/num_methods/ternary_search.html)
