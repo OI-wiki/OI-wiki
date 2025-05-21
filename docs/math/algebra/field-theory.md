@@ -184,11 +184,11 @@ $$
 
 ???+ note "定理"
     在本节的假设下，扩域 $F(\alpha)$ 可以写作
-
+    
     $$
     F(\alpha)=\{\lambda(\alpha)=\lambda_0+\lambda_1\alpha+\cdots+\lambda_{n-1}\alpha^{n-1}:\lambda_0,\lambda_1,\cdots,\lambda_{n-1}\in F\}.
     $$
-
+    
     其中，$\lambda(x)$ 遍历全体次数小于 $n$ 的多项式。因此，扩张次数 $[F(\alpha):F]=n$，即 $\alpha$ 的极小多项式的次数。扩域中，元素 $\lambda(\alpha)$ 和 $\mu(\alpha)$ 的加法，就是多项式的加法，即对应位置的系数相加；元素 $\lambda(\alpha)$ 和 $\mu(\alpha)$ 的乘法，结果可以写作 $\rho(\alpha)$，其中 $\rho(x)$ 是乘积 $\lambda(x)\mu(x)$ 除以 $f(x)$ 的余式。
 
 当然，作为域，还可以计算 $F(\alpha)$ 中元素的除法。根据定理中描述的乘法的过程，这相当于求解多项式环上的 [线性同余方程](../number-theory/linear-equation.md)。类比整数的做法，要计算商 $\lambda(\alpha)/\mu(\alpha)$，可以先确定 $\mu(\alpha)$ 的乘法逆元，再乘以 $\lambda(\alpha)$ 即可。要计算 $\mu(\alpha)$ 的乘法逆元，只要解同余方程 $\mu(x)\xi(x)\equiv 1\pmod{f(x)}$ 即可。这可以通过扩展欧几里得算法实现。
@@ -197,21 +197,21 @@ $$
 
 ???+ example "例子"
     考察扩域 $\mathbf Q(\alpha)$，其中的 $\alpha$ 是方程 $x^3-2x-2=0$ 的一个根。要计算
-
+    
     $$
     \frac{1+\alpha}{1+\alpha+\alpha^2}
     $$
-
+    
     的值。
-
+    
     第一步是计算 $1+\alpha+\alpha^2$ 的逆元，也就是要计算同余方程
-
+    
     $$
     (x^2+x+1)\xi(x)+(x^3-2x-2)\nu(x)=1
     $$
-
+    
     的解。对此应用扩展欧几里得算法。先做辗转相除法，即有如下过程：
-
+    
     $$
     \begin{aligned}
     x^3-2x-2 &= (x-1)(x^2+x+1)+(-2x-1),\\
@@ -219,9 +219,9 @@ $$
     -2x-1 &= \left(-\frac{8}{3}x-\frac{4}{3}\right)\frac{3}{4}.
     \end{aligned}
     $$
-
+    
     再计算同余方程中的系数，即有
-
+    
     $$
     \begin{aligned}
     \frac{3}{4}
@@ -230,21 +230,21 @@ $$
     &=\left(-\frac12x^2+\frac14x+\frac54\right)(x^2+x+1)+\left(\frac12x+\frac14\right)(x^3-2x-2).
     \end{aligned}
     $$
-
+    
     因而，方程的解为
-
+    
     $$
     \xi(x)=-\frac23x^2+\frac13x+\frac53,\ \nu(x)=\frac23x+\frac13.
     $$
-
+    
     这说明 $1+\alpha+\alpha^2$ 的逆元是
-
+    
     $$
     -\frac23\alpha^2+\frac13\alpha+\frac53.
     $$
-
+    
     第二步，就是计算逆元和 $1+\alpha$ 的乘积。对此，有
-
+    
     $$
     \begin{aligned}
     (1+\alpha)\left(-\frac23\alpha^2+\frac13\alpha+\frac53\right)
@@ -253,7 +253,7 @@ $$
     &=-\frac13\alpha^2+\frac23\alpha+\frac13.
     \end{aligned}
     $$
-
+    
     这就是最后的答案。
 
 在例子中只用到了 $\alpha$ 是方程的一个根这个条件，却并没有指定它是任何一个具体的根。多项式 $x^3-2x-2=0$ 在复数域 $\mathbf C$ 有一个实根和一对共轭复根，将它们中的任何一个添加进有理数域 $\mathbf Q$ 中得到的扩域都是同构的。也就是说，这三个互异的根在代数的视角上是没有区别的。
@@ -262,7 +262,7 @@ $$
 
 ???+ example "例子"
     考察扩域 $\mathbf F_2(\alpha)$，其中的 $\alpha$ 是方程 $x^2+x+1=0$ 的一个根。一般地，对于 $a+b\alpha$ 和 $c+d\alpha$，有运算规则
-
+    
     $$
     \begin{aligned}
     (a+b\alpha)+(c+d\alpha)&=(a+c)+(b+d)\alpha,\\
@@ -270,7 +270,7 @@ $$
     &=(ac+bd)+(ad+bc+bd)\alpha.
     \end{aligned}
     $$
-
+    
     这提供了类似于复数域上的运算法则。大多数读者对于这样的根 $\alpha$ 都应当是陌生的，但这并不妨碍对这样的域中的元素进行运算。实际上，有 $[\mathbf F_2(\alpha):\mathbf F_2]=2$，因而，作为线性空间 $|\mathbf F_2(\alpha)|=4$，即这样得到的是大小为 $4$ 的有限域。稍后会看到，所有的有限域都是这样构造的。
 
 在小规模运算时，对首一多项式取模 $f(x)$ 的运算通常可以通过代入
@@ -297,7 +297,7 @@ $$
     $$
     x^3-2 = (x-\sqrt[3]{2})(x^2+\sqrt[3]{2}x+\sqrt[3]{4}).
     $$
-
+    
     原来的极小多项式在域的扩张后分解出一次因子，因而剩余的根的极小多项式的次数低于原来的域上的极小多项式。域不断扩张的过程，就是多项式不断「分裂」的过程。因此，每次单扩张时，都需要重新确定极小多项式。
 
 将多项式的全部根都添加到域中，得到的就是多项式的分裂域。
@@ -329,11 +329,11 @@ $$
 
 ??? note "证明"
     证明的困难来自于集合论。此处引用 Artin 的一个证明。
-
+    
     证明的第一部分从 $F$ 出发，构造了扩张 $K_1/F$ 使得所有 $F$ 上的多项式在 $K_1$ 中都有至少一个根。对于域 $F$，考察多元多项式环[^multi-poly-ring] $R=F[\cdots,x_f,\cdots]$，其中的不定元 $x_f$ 的下标取遍所有 $F$ 上的首一多项式。此时，由所有 $f(x_f)$ 生成的理想记作 $I$。首先，$I\neq R$，故而极大理想 $M\supseteq I$ 存在。否则，如果 $1\in I$，必然存在有限多个域 $F$ 上的首一多项式 $f_i$ 和相应的环 $R$ 中的元素 $g_i$ 使得 $g_1f_1(x_{f_1})+\cdots+g_kf_k(x_{f_k})=1$ 成立。设 $F(\alpha_1,\cdots,\alpha_k)$ 为向 $F$ 中添加 $f_i(x)$ 的根 $\alpha_i$ 后得到的代数扩张，则在 $F(\alpha_1,\cdots,\alpha_k)$ 中令上面得到的恒等式中 $x_{f_i}$ 都代入 $\alpha_i$，而在各个 $g_i$ 中出现的其它不定元 $x_f$ 都带入 $0$，则得到 $F(\alpha_1,\cdots,\alpha_k)$ 上的等式 $0=1$，这矛盾。故而，$I\neq R$，极大理想 $M$ 的构造是合法的。此时商环 $R/M$ 是域，记作 $K_1$，且任何 $F$ 上的首一多项式 $f(x)$ 都在 $K_1$ 中有根 $\overline{x_f}$。
-
+    
     证明的第二部分则归纳地得到了包含 $F$ 的一个代数闭域 $K$（定义见下文）。重复上述构造，基于域 $K_i$ 可以构造出域 $K_{i+1}$，使得 $K_i$ 的多项式在 $K_{i+1}$ 中都至少有一个根。而且，$K_i$ 自然地嵌入到 $K_{i+1}$ 中，所以可以定义它们的并集 $K=\bigcup_{i=1}^\infty K_i$。容易验证，这也是域，而且 $K$ 上的任何多项式的系数必然全部包含在某个 $K_i$ 中，故而它的一个根必然出现 $K_{i+1}\subseteq K$ 中。这说明 $K$ 上的所有多项式都在 $K$ 上至少有一个根，所以，$K$ 是代数闭域。
-
+    
     最后，令 $K$ 中所有 $F$ 上的代数元组成的集合记作 $\overline F$。它显然是域；因为对于任何 $\alpha,\beta\in\overline F$，都有 $\alpha\pm\beta,\alpha\beta,\alpha/\beta\in F(\alpha,\beta)\subseteq\overline F$。它也是 $F$ 的代数扩张，因为它的元素都是 $F$ 上的代数元。对于 $F$ 上的多项式 $f(x)$，它的所有根都是 $F$ 上的代数元，故而也在 $\overline F$ 中，故而必然可以分裂为一次因子的乘积。这就说明 $\overline F$ 是 $F$ 上的代数闭包。
 
 ???+ example "例子"
@@ -381,7 +381,7 @@ $$
     $$
     
     的 **（形式）导数**（derivative），记作 $Df(x)$，定义为多项式
-
+    
     $$
     Df(x)=a_1+2a_2x+\cdots+(n-1)a_{n-1}x^{n-1}+na_nx^{n-1}=\sum_{i=1}^nia_ix^{i-1}.
     $$
@@ -503,7 +503,7 @@ $$
 
 ??? note "证明"
     由定义，$\Phi_n(x)$ 显然是首一多项式。首先，要证明 $\Phi_n(x)\in\mathbf Z[x]$。根据 Gauss 引理，多项式 $x^n-1$ 在 $\mathbf Z[x]$ 和 $\mathbf Q[x]$ 中有着相同的分解，且每个因子都是整系数首一多项式。这个分解中，每个因子 $f(x)$ 都是 $\mathbf Q[x]$ 上不可约的，且在 $\mathbf Q(\zeta_n)$ 中分裂；它的所有根都是 $n$ 次单位根，且必然有着相同的阶，所以这些根必然全部属于某一个 $P_d$ 而不能分别存在于不同的 $P_d$。这意味着，每个因子 $f(x)$ 都是某个 $\Phi_d(x)$ 的因子。故而，$\Phi_n(x)$ 可以写成若干个的整系数首一多项式的乘积，必然也是整系数首一多项式。
-
+    
     接下来，要证明 $\Phi_n(x)$ 在 $\mathbf Z[x]$ 是不可约的。设它有分解 $f(x)g(x)$，且 $f(x)$ 在 $\mathbf Z[x]$ 中不可约，那么只要证明 $f(x)$ 包含所有 $n$ 次本原单位根即可。也就是说，设 $\zeta$ 是 $f(x)$ 的一个根，要证明对于所有 $k\perp n$，都有 $\zeta^k$ 也是 $f(x)$ 的根；由于 $k$ 总是可以分解为素数的乘积，所以只需要证明对于所有素数 $p\perp n$，$\zeta^p$ 是 $f(x)$ 的根就可以了。假设不然，$\zeta^p$ 是 $g(x)$ 的根。因而，$\zeta$ 是 $\mathbf Z[x]$ 中多项式 $f(x)$ 和 $g(x^p)$ 的共同的根。因为 $f(x)$ 是 $\zeta$ 在 $\mathbf Q$ 上的极小多项式，必然有 $f(x)$ 整除 $g(x^p)$；亦即存在 $h(x)\in\mathbf Z[x]$ 使得 $g(x^p)=f(x)h(x)$。等式两侧同时对 $p$ 取模，得到 $\mathbf F_p[x]$ 上的等式 $\overline{g}(x^p)=\overline{f}(x)\overline{h}(x)$。利用 Frobenius 自同态可知，$\overline{g}(x)^p=\overline{f}(x)\overline{h}(x)$。因为 $\mathbf F_p[x]$ 也是唯一分解整环，$\overline{g}(x)$ 和 $\overline{f}(x)$ 必然有不平凡的公因子，所以，$x^n-\overline 1=\overline{f}(x)\overline{g}(x)$ 在 $\mathbf F_p$ 上不可分。但是，因为 $p\perp n$，它的形式导数 $nx^{n-1}$ 与它自身互素，这与它不可分矛盾。故而，可以证明 $\zeta^p$ 必然还是 $f(x)$ 的根，因而 $f(x)$ 包含所有 $n$ 次本原单位根，它就是 $\Phi_n(x)$。
 
 这就说明，它就是 $\zeta_n$ 的极小多项式，也称为 **$n$ 次分圆多项式**（$n$-th cyclotomic polynomial）。上面的定义式指出，它有 $\varphi(n)$ 个复根，且这些复根正是全体 $n$ 次本原单位根；其中，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)。这也说明，$\mathbf Q(\zeta_n)/\mathbf Q$ 是 $\varphi(n)$ 次扩张。
@@ -526,7 +526,7 @@ $$
 
 ???+ example "分圆多项式"
     前 $10$ 个分圆多项式如下：
-
+    
     $$
     \begin{aligned}
     \Phi_1(x) &= x-1,\\
@@ -541,14 +541,14 @@ $$
     \Phi_{10}(x) &= x^4-x^3+x^2-x+1.
     \end{aligned}
     $$
-
+    
     一个有趣的事实是，虽然看起来这些分圆多项式的系数都只能是 $0$ 和 $\pm1$，但是对于一般的 $n$，这个结论是不对的。第一个反例出现在 $\Phi_{105}(x)$，而且可以证明，随着 $n$ 的增大，它的系数可以取到任意大的值。
 
 利用上文的 Möbius 反演式，可以总结出如下性质来简化 $\Phi_n(x)$ 的计算：
 
 ???+ note "性质"
     对于分圆多项式 $\Phi_n(x)$，有：
-
+    
     1.  如果素数 $p\mid n$，则 $\Phi_{pn}(x)=\Phi_n(x^p)$；
     2.  如果素数 $p\perp n$，则 $\Phi_{pn}(x)=\dfrac{\Phi_n(x^p)}{\Phi_n(x)}$；
     3.  特别地，如果 $n$ 是奇数，则 $\Phi_{2n}(x)=\Phi_n(-x)$；
@@ -569,7 +569,7 @@ $$
 
 ??? note "证明"
     对于前三条性质，只需要利用 Möbius 反演即可。对于 1，直接考察 $\Phi_n(x)$ 的 Möbius 反演形式，即 $\Phi_d(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}$；对于 2，设 $\Phi_n(x)$ 的 $\varphi(n)-1$ 次项系数为 $f(n)$，则比较 $x^n-1=\prod_{d\mid n}\Phi_d(x)$ 等式两侧的 $n-1$ 次项系数可知，$\sum_{d\mid n}f(d)=-[n=1]$，再做 Möbius 反演；对于 3，在 $x^n-1=\prod_{d\mid n}\Phi_n(x)$ 两侧同时除以 $\Phi_1(x)=x-1$，再代入 $x=1$，即有 $n=\prod_{d\mid n,d\neq 1}\Phi_n(1)$，再做 Möbius 反演。
-
+    
     下面证明第四条性质。首先，如果 $n$ 是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶，那么 $n$ 是满足 $p\mid b^n-1$ 的正整数中最小的，故而 $p\mid\Phi_n(b)$。反过来，如果 $p\mid\Phi_n(b)$，则有 $b^n\equiv 1\pmod p$；可如果 $n$ 不是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶，那么设它的阶为 $k$，必然有 $k\mid n$ 且 $p\mid\Phi_k(b)$。此时，$\Phi_k(x)$ 和 $\Phi_n(x)$ 在域 $\mathbf F_p$ 中有公共根 $b$，这说明 $x^n-1$ 有重根 $b$。这说明 $p\mid n$；否则，$x^n-1$ 与它的导数互素，所以在 $\mathbf F_p$ 上可分，不可能有重根。因而，$\Phi_n(b)$ 的素因子 $p$ 只有两种情况：$p\mid n$，或者 $n$ 是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶。这两种情况是互斥的，因为后者意味着 $n\mid p-1$。
 
 分圆多项式还可以用于解决一些数论和代数问题。比如说分数在写成某个进制下的小数时的循环节长度，就和分圆多项式有密切的联系。对于这些具体的应用，有兴趣的读者可以参考文末的资料。
@@ -583,7 +583,7 @@ $$
 
 ??? note "证明"
     设域 $F$ 是有限域。域 $F$ 的特征必然有限，记作 $p$；故而，域 $F$ 有素子域 $\mathbf F_p$。而且，域 $F$ 必然是 $\mathbf F_p$ 上的有限扩张，扩张次数记作 $n$。作为 $\mathbf F_p$ 上的 $n$ 维向量空间，域 $F$ 有 $q=p^n$ 个元素。域 $F$ 的全体非零元构成群 $F^\times$，它的阶为 $q-1$，所以有 $x^{q-1}=1$。因此，$F=F^\times\cup\{0\}$ 的所有元素都满足 $x^q=x$，即它们是多项式 $x^q-x$ 的 $q$ 个互异的根。因此，在域 $F$ 中多项式 $x^q-x$ 有因子 $\prod_{\alpha\in F}(x-\alpha)$，但是这个因子的次数已经是 $q$ 且最高次项系数就等于 $1$，所以有 $x^q-x=\prod_{\alpha\in F}(x-\alpha)$。这说明 $x^q-x$ 在 $F$ 中分裂。对于任何能够使 $x^q-x$ 分裂的域，由于 $x^q-x$ 有 $q$ 个相异的根，必然至少有 $q$ 个元素。这说明 $F$ 是使 $x^q-x$ 可以分裂的最小的域，即 $x^q-x$ 的分裂域。总而言之，大小为 $q$ 的有限域必然是它的素子域上的多项式 $x^q-x$ 的分裂域。因为分裂域在同构意义下唯一，所以大小为 $q$ 的域必然也唯一。
-
+    
     反过来，给定素数 $p$ 和它的幂 $q=p^n$，要说明 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域恰好有 $q$ 个元素，才能说明所有素数幂 $q$ 阶的域都存在。因为 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域总是存在，所以可以设该分裂域中多项式 $x^q-x$ 的全部根组成的集合为 $F$。现在要证明 $F$ 是域，因而它就是多项式 $x^q-x$ 的分裂域本身。但是，迭代 $n$ 次 Frobenius 自同态就可以知道 $x\mapsto x^q$ 也是自同态，因此对任意 $\alpha,\beta\in F$ 都有 $(\alpha\pm\beta)^q=\alpha^q\pm\beta^q$，$(\alpha\beta)^q=\alpha^q\beta^q$ 和 $(\alpha^{-1})^q=(\alpha^q)^{-1}$。因此，集合 $F$ 对加、减、乘、除都封闭，它是域。这就说明 $F$ 就是 $\mathbf F_p$ 上的多项式 $x^q-x$ 的分裂域。
 
 ???+ note "推论"
@@ -636,7 +636,7 @@ $$
 
 ??? note "证明"
     如果 $\mathbf F_r$ 是 $\mathbf F_q$ 的子域，那么两者必然有相同的特征 $p$。域扩张 $\mathbf F_q/\mathbf F_r$、$\mathbf F_r/\mathbf F_p$ 和 $\mathbf F_q/\mathbf F_p$ 都是单代数扩张，分别记它们的扩张次数为 $k,d,n$，则扩张次数必然满足 $n=kd$。而且，$r=p^d$ 和 $q=p^n$，并成立 $q=p^n=p^{kd}=(p^d)^k=r^k$。
-
+    
     反过来，要证明对于所有 $d\mid n$，$\mathbf F_{p^d}$ 都是 $\mathbf F_{p^n}$ 的子域。记 $r=p^d$ 且 $q=p^n$。设 $F$ 为有限域 $\mathbf F_q$ 中方程 $x^r-x=0$ 的全体根的集合。通过 Frobenius 自同态可以证明，集合 $F$ 必然构成域；关键是要证明，这样的根恰好有 $r$ 个，所以才有 $F\cong\mathbf F_r$。因为 $d\mid n$，所以 $(p^d-1)\mid(p^n-1)$，所以 $(x^{p^d-1}-1)\mid(x^{p^n-1}-1)$，也就是 $(x^r-x)\mid (x^q-x)$。所以，$x^r-x$ 在 $\mathbf F_q$ 上分裂，故而在 $\mathbf F_q$ 内有 $r$ 个不同的根。这就说明 $F\cong\mathbf F_r$ 是 $\mathbf F_q$ 的子域。
 
 这一定理说明，有限域 $\mathbf F_{p^n}$ 的包含关系，对应着域的阶 $p^n$ 中的指数 $n$ 之间的整除关系。所有特征为 $p$ 的有限域 $\mathbf F_{p^n}$ 之间形成的格，也就同构于整数 $n$ 在整除关系下形成的格。当然，为了让有限域 $\mathbf F_{p^n}$ 之间的交集等运算有意义，需要将所有特征为 $p$ 的域都嵌入到 $\mathbf F_p$ 的代数闭包中。
@@ -649,7 +649,7 @@ $$
 
 ??? note "证明"
     关键在于证明第一部分，即 $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 是 $F_p$ 的代数闭包。第二部分是前面关于有限域的子域的定理的简单推论。
-
+    
     注意到，任取 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$，必然存在 $n\in\mathbf N_+$ 使得 $\alpha\in\mathbf F_{p^n}$ 成立，故而 $\alpha$ 是 $\mathbf F_p$ 上的代数元；因而，$\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 是 $\mathbf F_p$ 的代数扩张。对于任何 $\mathbf F_p$ 上的 $m$ 次多项式 $f(x)$，它在代数闭包 $F$ 中有至多 $m$ 个不同的根 $\{\alpha_i\}_{i=1}^m$。设根 $\alpha_i$ 的极小多项式次数为 $n_i$，则 $\alpha_i$ 必然包含在域 $\mathbf F_{p^{n_i}}$ 内；故而，$f(x)$ 的所有根都在 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 中，亦即 $f(x)$ 在 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 上分裂。根据代数闭包的定义，$\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 就是 $\mathbf F_p$ 的代数闭包。
 
 ### 自同构群
@@ -663,11 +663,11 @@ $$
 
 ??? note "证明"
     首先，Frobenius 自同态 $\sigma_p$ 在有限域 $\mathbf F_q$ 上是自同构，因为有限集合上的单射必然也是满射。因此，$\sigma_p\in\operatorname{Aut}(\mathbf F_q)$。
-
+    
     然后，$\sigma_p$ 的阶是 $n$。这是因为对于所有 $x\in\mathbf F_q$ 都有 $\sigma_p^n(x)=x^{p^n}=x$，故而 $x^{p^n}$ 是恒等映射；而且对于任何 $k<n$ 都有 $\sigma_p^k$ 不是恒等映射，否则 $\mathbf F_q$ 的元素都得是 $x^{p^k}-x$ 的根，这不可能。
-
+    
     最后，$\operatorname{Aut}(\mathbf F_q)$ 至多有 $n$ 个元素。设 $\alpha$ 为 $\mathbf F_q$ 的一个本原元，则自同构 $\sigma\in \operatorname{Aut}(\mathbf F_q)$ 由它在 $\alpha$ 处的取值 $\sigma(\alpha)$ 唯一确定。但是，$\sigma$ 必须将 $\alpha$ 映射到它的共轭元；否则，$\alpha$ 和 $\sigma(\alpha)$ 不再是同一个极小多项式的根。这样的共轭元只有 $n$ 个，这就说明 $\operatorname{Aut}(\mathbf F_q)$ 也至多有 $n$ 个元素。
-
+    
     因此，$\operatorname{Aut}(\mathbf F_q)$ 中的 $n$ 个元素正是 $\langle\sigma_p\rangle$。定理得证。
 
 自同构群 $\operatorname{Aut}(\mathbf F_q)$ 的子群和有限域 $\mathbf F_q$ 上的子域一一对应。

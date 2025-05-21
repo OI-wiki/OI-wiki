@@ -61,13 +61,13 @@ $$
 
 ??? note "证明"
     当 Hash 中每个值生成概率相同时，Hash 不冲突的概率为：
-
+    
     $$
     \overline{p}(n,d) = 1 \cdot \left (1 - \frac{1}{d} \right) \cdot \left ( 1- \frac{2}{d}\right) \cdots \left ( 1- \frac{n-1}{d}\right)
     $$
-
+    
     化简得到：
-
+    
     $$
     \begin{aligned}
     \overline{p}(n,d) 
@@ -76,40 +76,40 @@ $$
     & = \frac{d!}{d^n\left(d-n\right)!}
     \end{aligned}
     $$
-
+    
     则 Hash 冲突的概率为：
-
+    
     $$
     p(n,d) = 1 - \frac{d!}{d^n\left(d-n\right)!}
     $$
-
+    
     这个公式还是太复杂了，我们进一步化简。
-
+    
     根据泰勒公式：
-
+    
     $$
     \exp(x) = \sum_{k=0}^{\infty}\frac{x^k}{k!}=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\frac{x^4}{24}+\cdots
     $$
-
+    
     当 $x$ 为一个极小值时，$\exp(x)$ 趋近于 $1+x$。
-
+    
     将它带入 Hash 不冲突的原始公式：
-
+    
     $$
     \overline{p}(n,d) \approx 1 \cdot \exp(-\frac{1}{d}) \cdot \exp(-\frac{2}{d}) \cdots \exp(-\frac{n-1}{d})
     $$
-
+    
     化简：
-
+    
     $$
     \begin{aligned}
     \overline{p}(n,d) & \approx \exp(-\frac{1}{d} - \frac{2}{d} - \cdots -\frac{n-1}{d})\\
     &=\exp(-\frac{n(n-1)}{2d} )
     \end{aligned}
     $$
-
+    
     则 Hash 冲突的概率为：
-
+    
     $$
     p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d})
     $$
@@ -176,17 +176,17 @@ $!s_i = babba$
 $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
 
 ??? note "推导"
+    首先，有：
     
-
     $$
     \begin{aligned}
     hash_i = hash_{i-1}\cdot base^{2^{i-2}} + !hash_{i-1}\\
     !hash_{i} = !hash_{i-1}\cdot base^{2^{i-2}}+hash_{i-1}
     \end{aligned}
     $$
-
+    
     尝试相减：
-
+    
     $$
     \begin{aligned}
     &hash_i - !hash_i\\
@@ -194,45 +194,45 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     =\ &(hash_{i-1}-!hash_{i-1})\cdot (base^{2^{i-2}}-1)
     \end{aligned}
     $$
-
+    
     发现出现了 $2^i$，但是原式太复杂，尝试换元：
-
+    
     设：
-
+    
     $$
     \begin{aligned}
     f_i = hash_i - !hash_i\\
     g_i = base^{2^{i-2}}-1
     \end{aligned}
     $$
-
+    
     根据原式得：
-
+    
     $$
     \begin{aligned}
     f_i &= f_{i-1} \cdot g_i\\
         &=f_1 \cdot g_1 \cdot g_2 \cdots g_{i-1}\\
     \end{aligned}
     $$
-
+    
     因为 $base^{2^{i-2}}$ 一定是奇数，所以 $g_i$ 一定是偶数。
-
+    
     所以：
-
+    
     $$
     2^{i-1} | f_i
     $$
-
+    
     但这样太大了，$i-1\ge 64$ 才能卡掉，继续化简：
-
+    
     $$
     g_i = base^{2^{i-2}}-1 = (base^{2^{i-3}}-1)\cdot(base^{2^{i-3}}+1)\\
     $$
-
+    
     即 $g_i$ 为 $g_{i-1} \cdot c\ (c \equiv 0 \pmod 2)$ 的形式。
-
+    
     所以 $2 | s_1$，$4|s_2$...，即
-
+    
     $$
     \begin{aligned}
     & 2^i &| g_i\\
@@ -240,7 +240,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     &2^{i(i-1)/2} &| f_i
     \end{aligned}
     $$
-
+    
     即当 $i=12$ 时就可以使 $2^{64} | hash_i - !hash_i$ 达到要求。
 
 ### 例题
@@ -376,8 +376,6 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
         f1 = get_hash1(s) != get_hash1(t)
         f2 = get_hash2(s) != get_hash2(t)
         return f1 or f2
-    ```
-
     ```
 
 ## Hash 的应用

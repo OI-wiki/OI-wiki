@@ -261,7 +261,7 @@ $$
 
 ### 实现
 
-```c++
+```cpp
 constexpr double EPS = 1E-9;
 int n;
 vector<vector<double>> a(n, vector<double>(n));
@@ -306,7 +306,7 @@ $$
 \begin{cases}
 a_{1,1}x_1 \oplus a_{1,2}x_2 \oplus \cdots \oplus a_{1,n}x_n &= b_1\\
 a_{2,1}x_1 \oplus a_{2,2}x_2 \oplus \cdots \oplus a_{2,n}x_n &= b_2\\
-\cdots &\cdots \\ a_{m,1}x_1 \oplus a_{m,2}x_2 \oplus \cdots \oplus a_{m,n}x_n &= b_1
+\cdots &\cdots \\ a_{m,1}x_1 \oplus a_{m,2}x_2 \oplus \cdots \oplus a_{m,n}x_n &= b_m
 \end{cases}
 $$
 

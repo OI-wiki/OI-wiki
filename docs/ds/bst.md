@@ -19,7 +19,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 ### 二叉搜索树节点的定义
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     struct TreeNode {
       int key;
       TreeNode* left;
@@ -40,7 +40,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 遍历一棵二叉搜索树的代码如下：
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     void inorderTraversal(TreeNode* root) {
       if (root == nullptr) {
         return;
@@ -92,7 +92,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 时间复杂度为 $O(h)$。
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     bool search(TreeNode* root, int target) {
       if (root == nullptr) {
         return false;
@@ -165,7 +165,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 ???+ note "实现"
     方法使用 `root = remove(root, 1)` 表示删除根节点为 `root` 树中值为 1 的节点，并返回新的根节点。
     
-    ```c++
+    ```cpp
     // 此处返回值为删除 value 后的新 root
     TreeNode* remove(TreeNode* root, int value) {
       if (root == nullptr) {
@@ -253,7 +253,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
         if (root->left->size >= k) return querykth(root->left, k);
         if (root->left->size + root->count >= k) return root->key;
       } else {
-        if (k == 1) return root->key;
+        if (k <= root->count) return root->key;
       }
       return querykth(root->right,
                       k - (root->left ? root->left->size : 0) - root->count);
@@ -305,7 +305,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 下面给出左旋和右旋的代码。
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     TreeNode* rotateLeft(TreeNode* root) {
       TreeNode* newRoot = root->right;
       root->right = newRoot->left;

@@ -49,6 +49,11 @@ $$
     --8<-- "docs/basic/code/insertion-sort/insertion-sort_1.py"
     ```
 
+=== "Java"
+    ```java
+    --8<-- "docs/basic/code/insertion-sort/insertion-sort_1.java"
+    ```
+
 ## 折半插入排序
 
 插入排序还可以通过二分算法优化性能，在排序元素数量较多时优化的效果比较明显。
