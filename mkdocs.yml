@@ -189,6 +189,7 @@ nav:
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
       - 四边形不等式优化: dp/opt/quadrangle.md
+      - Slope Trick 优化: dp/opt/slope-trick.md
       - 状态设计优化: dp/opt/state.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
@@ -373,13 +374,12 @@ nav:
       - Treap: ds/treap.md
       - Splay 树: ds/splay.md
       - WBLT: ds/wblt.md
+      - 替罪羊树: ds/sgt.md
+      - 笛卡尔树: ds/cartesian-tree.md
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
       - B 树: ds/b-tree.md
       - B+ 树: ds/bplus-tree.md
-      - 替罪羊树: ds/sgt.md
-      - Leafy Tree: ds/leafy-tree.md
-      - 笛卡尔树: ds/cartesian-tree.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
       - AA 树: ds/aa-tree.md

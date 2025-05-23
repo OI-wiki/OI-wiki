@@ -25,6 +25,7 @@ auto convergents(std::vector<int> a) {
   return std::make_pair(p, q);
 }
 
+// --8<-- [start:core]
 // Find convex hull of lattice (x, y) such that C*y <= A*x+B.
 auto hull(int A, int B, int C, int N) {
   auto diff = [&](int x, int y) -> int { return C * y - A * x; };
@@ -87,6 +88,7 @@ auto solve(int N, int M, int A, int B) {
   return ans - N;
 }
 
+// --8<-- [end:core]
 int main() {
   int t;
   std::cin >> t;

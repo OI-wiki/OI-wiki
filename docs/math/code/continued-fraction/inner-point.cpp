@@ -49,6 +49,7 @@ bool less_than(std::vector<int> a, std::vector<int> b) {
   return false;
 }
 
+// --8<-- [start:core]
 // Get X +- EPSILON.
 auto pm_eps(std::vector<int> a) {
   constexpr int inf = 0x3f3f3f3f;
@@ -81,6 +82,7 @@ auto middle(int p0, int q0, int p1, int q1) {
   return std::make_pair(pq.first.back(), pq.second.back());
 }
 
+// --8<-- [end:core]
 int main() {
   int t;
   std::cin >> t;

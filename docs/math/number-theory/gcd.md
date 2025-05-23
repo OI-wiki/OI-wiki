@@ -218,28 +218,27 @@
       return loghash[(x & -x) * 0x9150D32D8EB9EFC0Ui64 >> 58];
     }
     ```
-
+    
     而对于高精度运算，如果实现方法类似 `bitset`，则搭配上述对 `countr_zero` 的实现可以在 `O(n / w)` 的时间复杂度下完成。但如果不便按二进制位拆分，则只能暴力判断最大的 $2$ 的幂因子，时间复杂度取决于实现。比如：
-
+    
     ```cpp
     // 以小端序实现的二进制 Big，要求能枚举每一个元素
     int countr_zero(Big a) {
       int ans = 0;
-      for(auto x : a) {
-        if(x != 0) {
-          ans += 32; // 每一位数据类型的位长
-        }
-        else {
+      for (auto x : a) {
+        if (x != 0) {
+          ans += 32;  // 每一位数据类型的位长
+        } else {
           return ans + countr_zero(x);
         }
       }
       return ans;
     }
-
+    
     // 暴力计算，如需使用建议直接写进 gcd 加快常数
     int countr_zero(Big a) {
       int ans = 0;
-      while((a & 1) == 0) {
+      while ((a & 1) == 0) {
         a >>= 1;
         ++ans;
       }

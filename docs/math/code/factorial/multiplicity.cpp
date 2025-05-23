@@ -1,5 +1,6 @@
 #include <iostream>
 
+// --8<-- [start:core]
 // Obtain multiplicity of p in n!.
 int multiplicity_factorial(int n, int p) {
   int count = 0;
@@ -10,6 +11,7 @@ int multiplicity_factorial(int n, int p) {
   return count;
 }
 
+// --8<-- [end:core]
 int main() {
   int t;
   std::cin >> t;
