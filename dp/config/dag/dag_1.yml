@@ -1,0 +1,10 @@
+id: oi-wiki:dp/dag-1
+name: Dag DP
+solution:
+  cpp: docs/dp/code/dag/dag_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/dp/examples/dag/dag_1.ans
+  input: docs/dp/examples/dag/dag_1.in
+version: 1000

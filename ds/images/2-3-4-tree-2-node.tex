@@ -1,0 +1,26 @@
+\documentclass[border=5mm,12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+
+\tikzset{tree/.style={every node/.style={circle, draw}}}
+
+\begin{document}
+
+\begin{tikzpicture}[
+        squarenode/.style={draw, rectangle, minimum size=1cm},
+    ]
+    \node[squarenode] (a) {a};
+
+    \node[squarenode, below left=of a] (p) {p};
+    \node[squarenode, below right=of a] (q) {q};
+
+    \draw (a.south) -- (p.north);
+    \draw (a.south) -- (q.north);
+
+    \node[below] at (current bounding box.south) {2-node};
+\end{tikzpicture}
+
+\end{document}

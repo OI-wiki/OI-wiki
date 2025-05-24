@@ -1,0 +1,10 @@
+id: oi-wiki:ds/seg-2
+name: SEG
+solution:
+  cpp: docs/ds/code/seg/seg_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/seg/seg_2.ans
+  input: docs/ds/examples/seg/seg_2.in
+version: 1000
