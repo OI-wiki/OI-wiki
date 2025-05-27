@@ -1,4 +1,4 @@
-author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309
+author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309, shigengxin123456
 
 ## 赛事简介
 
@@ -83,7 +83,7 @@ NOIP 以省为单位排名评奖。截至 2019 年，大部分高校的选手获
 
 省选题目由各个省自行决定，目前的趋势是很多省份选择联合命题。
 
-各个省队的名额有复杂的计算公式，一般和之前的成绩和参赛人数有关。通常来讲，NOIP 分数需要在省选的指标中占一定比例。根据规则，初中选手只能被选拔为 E 类选手，不能参加 A、B 类选拔。A 类选手有 5 人（4 男 1 女），其他选手根据给定名额和所得分数依次进入 B 队。一个学校参加 NOI 的名额不超过本省 A、B 名额总数的三分之一（四舍五入），得分最高且入选 A 队的女选手不占该比例（简称 1/3 限制或 1/3 淘汰）。
+各个省队的名额有复杂的计算公式，一般和之前的成绩和参赛人数有关。通常来讲，NOIP 分数需要在省选的指标中占一定比例。根据规则，初中选手只能被选拔为 E 类选手，不能参加 A、B 类选拔。A 类选手有 5 人（[至少 1 女](https://www.noi.cn/xw/2024-08-26/829152.shtml)），其他选手根据给定名额和所得分数依次进入 B 队。一个学校参加 NOI 的名额不超过本省 A、B 名额总数的三分之一（四舍五入），得分最高且入选 A 队的女选手不占该比例（简称 1/3 限制或 1/3 淘汰，详见 [CCF 官方说明](https://www.noi.cn/xw/2022-12-14/781364.shtml)）。
 
 自 2020 年起，NOI 省队选拔由 CCF 统一命题和评测，有能力命题的省可自行命题，但选拔方式需得到 CCF 的批准。自 2024 年起，NOI 省队选拔恢复各省自主命题，有需求的省份可组织联考或使用他省试题，但具体方案需要得到 CCF 的批准。
 
