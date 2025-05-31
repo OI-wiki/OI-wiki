@@ -12,11 +12,11 @@ unsigned long long f(long long a, long long b, long long c, long long n) {
   a /= d;
   b /= d;
   c /= d;
-  long long k = (a * sqrt_r + b) / c;
+  unsigned long long k = (a * sqrt_r + b) / c;
   if (k) {
     return n * (n + 1) / 2 * k + f(a, b - c * k, c, n);
   } else {
-    long long m = n * (a * sqrt_r + b) / c;
+    unsigned long long m = n * (a * sqrt_r + b) / c;
     return n * m - f(c * a, -c * b, a * a * r - b * b, m);
   }
 }
