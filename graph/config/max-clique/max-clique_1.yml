@@ -1,0 +1,10 @@
+id: oi-wiki:graph/max-clique-1
+name: Max Clique
+solution:
+  cpp: docs/graph/code/max-clique/max-clique_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/max-clique/max-clique_1.ans
+  input: docs/graph/examples/max-clique/max-clique_1.in
+version: 1000

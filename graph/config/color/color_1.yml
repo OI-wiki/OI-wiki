@@ -1,0 +1,10 @@
+id: oi-wiki:graph/color-1
+name: Color
+solution:
+  cpp: docs/graph/code/color/color_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/color/color_1.ans
+  input: docs/graph/examples/color/color_1.in
+version: 1000
