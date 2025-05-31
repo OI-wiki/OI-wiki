@@ -19,26 +19,34 @@ IDA \* 为采用了迭代加深算法的 A \* 算法。
 
 ## 实现（伪代码）
 
-```Pascal
-Procedure IDA_STAR(StartState)
-Begin
-  PathLimit := H(StartState) - 1;
-  Succes := False;
-  Repeat
-    inc(PathLimit);
-    StartState.g = 0;
-    Push(OpenStack, StartState);
-    Repeat
-      CurrentState := Pop(OpenStack);
-      If Solution(CurrentState) then
-        Success = True
-      Elseif PathLimit >= CurrentState.g + H(CurrentState) then
-        For each Child(CurrentState) do
-          Push(OpenStack, Child(CurrentState));
-    until Success or empty(OpenStack);
-  until Success or ResourceLimtsReached;
-end;
-```
+$$
+\begin{array}{ll}
+1 &  \textbf{procedure } \text{IDA\_Star(StartState)} \\
+2 &  \qquad \text{PathLimit} \gets H(\text{StartState}) - 1 \\
+3 &  \qquad \text{Success} \gets \text{false} \\
+4 &  \qquad \textbf{repeat} \\
+5 &  \qquad \qquad \text{PathLimit} \gets \text{PathLimit} + 1 \\
+6 &  \qquad \qquad \text{StartState}.g \gets 0 \\
+7 &  \qquad \qquad \text{OpenStack} \gets \varnothing \quad  \text{// Initialize stack} \\
+8 &  \qquad \qquad \text{Push(OpenStack, StartState)} \\
+9 &  \qquad \qquad \textbf{repeat} \\
+10 &  \qquad \qquad \qquad \textbf{if } \text{empty(OpenStack)} \textbf{ then} \\
+11 &  \qquad \qquad \qquad \qquad \textbf{break} \\
+12 &  \qquad \qquad \qquad \text{CurrentState} \gets \text{Pop(OpenStack)} \\
+13 &  \qquad \qquad \qquad \textbf{if } \text{Solution(CurrentState)} \textbf{ then} \\
+14 &  \qquad \qquad \qquad \qquad \text{Success} \gets \text{true} \\
+15 &  \qquad \qquad \qquad \qquad \textbf{break} \\
+16 &  \qquad \qquad \qquad \textbf{elseif } \text{PathLimit} \geq \text{CurrentState}.g + H(\text{CurrentState}) \textbf{ then} \\
+17 &  \qquad \qquad \qquad \qquad \textbf{for } \text{each Child in Expand(CurrentState)} \textbf{ do} \\
+18 &  \qquad \qquad \qquad \qquad \qquad \text{Child}.g \gets \text{CurrentState}.g + \text{Cost(CurrentState, Child)} \\
+19 &  \qquad \qquad \qquad \qquad \qquad \text{Push(OpenStack, Child)} \\
+20 &  \qquad \qquad \qquad \qquad \textbf{end for} \\
+21 &  \qquad \qquad \qquad \textbf{end if} \\
+22 &  \qquad \qquad \textbf{until } \text{Success} \\
+23 &  \qquad \textbf{until } \text{Success} \textbf{ or } \text{ResourceLimitsReached( )} \\
+24 &  \textbf{end procedure}
+\end{array}
+$$
 
 ## 例题
 
