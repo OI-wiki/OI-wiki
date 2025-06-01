@@ -1,3 +1,5 @@
+author: H-J-Granger, ranwen, abc1763613206, Ahacad, Allenyou1126, AndrewWayne, AngelKitty, AtomAlpaca, Backl1ght, billchenchina, c-forrest, CCXXXI, Cheuring, Chrogeek, ChungZH, countercurrent-time, DepletedPrism, Early0v0, EarthMessenger, Enter-tainer, F1shAndCat, GavinZhengOI, Gesrua, Great-designer, greyqz, Haohu Shen, henryrabbit, heroming, hly1204, Ir1d, isdanni, jiang1997, kenlig, Lewy Zeng, lucifer1004, Menci, muoshuosha, NachtgeistW, needtocalmdown, opsiff, ouuan, ouuan, partychicken, schtonn, Sshwy, sshwy, StudyingFather, SukkaW, Taoran-01, Tiphereth-A, TrisolarisHD, untitledunrevised, Xeonacid, YouXam, Yukimaikoriya
+
 前置知识：[复数](../complex.md)。
 
 本文将介绍一种算法，它支持在 $O(n\log n)$ 的时间内计算两个 $n$ 次多项式的乘法，比朴素的 $O(n^2)$ 算法更高效。由于两个整数的乘法也可以被当作多项式乘法，因此这个算法也可以用来加速大整数的乘法计算。
@@ -233,7 +235,7 @@ $$
     
     Comp tmp[MAX_N];
     
-    // rev=1,DFT; rev=-1,IDFT
+    // rev=-1,DFT; rev=1,IDFT
     void DFT(Comp* f, int n, int rev) {
       if (n == 1) return;
       for (int i = 0; i < n; ++i) tmp[i] = f[i];
