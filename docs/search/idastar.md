@@ -40,11 +40,8 @@ $$
 17 &  \qquad \qquad \qquad \qquad \textbf{for } \text{each Child in Expand(CurrentState)} \textbf{ do} \\
 18 &  \qquad \qquad \qquad \qquad \qquad \text{Child}.g \gets \text{CurrentState}.g + \text{Cost(CurrentState, Child)} \\
 19 &  \qquad \qquad \qquad \qquad \qquad \text{Push(OpenStack, Child)} \\
-20 &  \qquad \qquad \qquad \qquad \textbf{end for} \\
-21 &  \qquad \qquad \qquad \textbf{end if} \\
-22 &  \qquad \qquad \textbf{until } \text{Success} \\
-23 &  \qquad \textbf{until } \text{Success} \textbf{ or } \text{ResourceLimitsReached( )} \\
-24 &  \textbf{end procedure}
+20 &  \qquad \qquad \textbf{until } \text{Success} \\
+21 &  \qquad \textbf{until } \text{Success} \textbf{ or } \text{ResourceLimitsReached( )}
 \end{array}
 $$
 
