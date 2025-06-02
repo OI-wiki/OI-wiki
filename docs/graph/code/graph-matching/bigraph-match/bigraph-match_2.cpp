@@ -8,7 +8,6 @@ int ct, n, t[100010], x, r[100010], ans, vis[100010], dis[100010];
 vector<int> to[100010];
 queue<int> q;
 
-// There was a delta here...
 int DFS(int x) {
   if (vis[x]) {
     return 0;
