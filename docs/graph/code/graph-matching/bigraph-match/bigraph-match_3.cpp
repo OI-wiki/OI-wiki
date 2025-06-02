@@ -11,7 +11,6 @@ map<pair<int, int>, int> mp;
 vector<int> to[200020];
 queue<int> q;
 
-// There was a delta here...
 int DFS(int x) {
   if (vis[x]) {
     return 0;
