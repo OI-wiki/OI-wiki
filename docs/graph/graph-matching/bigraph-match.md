@@ -239,15 +239,15 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 ## 习题
 
-[Codeforces 1765A - Access Levels](https://codeforces.com/problemset/problem/1765/A)
+- [Codeforces 1765A - Access Levels](https://codeforces.com/problemset/problem/1765/A)
 
-[AtCoder abc274G - Security Camera 3](https://atcoder.jp/contests/abc274/tasks/abc274_g) 最大匹配求 MVC
+- [AtCoder abc274G - Security Camera 3](https://atcoder.jp/contests/abc274/tasks/abc274_g) 最大匹配求 MVC
 
-[Codeforces 1773D - Dominoes](https://codeforces.com/problemset/problem/1773/D) 答案上限引起质变
+- [Codeforces 1773D - Dominoes](https://codeforces.com/problemset/problem/1773/D) 答案上限引起质变
 
-[洛谷 P5030 - 长脖子鹿放置](https://www.luogu.com.cn/problem/P5030)
+- [洛谷 P5030 - 长脖子鹿放置](https://www.luogu.com.cn/problem/P5030)
 
-[洛谷 P2071 - 座位安排](https://www.luogu.com.cn/problem/P2071) 拆点
+- [洛谷 P2071 - 座位安排](https://www.luogu.com.cn/problem/P2071) 拆点
 
 ## 参考资料
 
