@@ -236,6 +236,9 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
         然后就可以直接二分图 MIS 了。
     ??? note "代码"
+        ```cpp
+        --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_7.cpp"
+        ```
 
 ## 习题
 
