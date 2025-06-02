@@ -442,35 +442,39 @@ Wiki 内使用 LaTeX 书写伪码，整体处于 array 环境中，缩进使用 
 参考示例：
 
 $$
-\begin{array}{ll}
-1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
-  &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
-2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
-3 &  \textbf{Method. } \\ 
-4 &  \textit{result} \gets \varnothing \\
-5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
-6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
-7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
-8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
-9 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
-10 &  \textbf{return } \textit{result}
+\begin{array}{l}
+\textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
+\text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
+\textbf{Output. } \text{The edges of the MST of the input graph}. \\
+\textbf{Method. } \\
+\begin{array}{ll} 
+1 &  \textit{result} \gets \varnothing \\
+2 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
+3 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
+4 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
+5 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+6 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
+7 &  \textbf{return } \textit{result}
+\end{array}
 \end{array}
 $$
 
 ```latex
 $$
-\begin{array}{ll}
-1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
-  &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
-2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
-3 &  \textbf{Method. } \\
-4 &  \textit{result} \gets \varnothing \\
-5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\
-6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\
-7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
-8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
-9 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
-10 &  \textbf{return } \textit{result}
+\begin{array}{l}
+\textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
+\text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
+\textbf{Output. } \text{The edges of the MST of the input graph}. \\
+\textbf{Method. } \\
+\begin{array}{ll} 
+1 &  \textit{result} \gets \varnothing \\
+2 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
+3 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
+4 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
+5 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+6 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
+7 &  \textbf{return } \textit{result}
+\end{array}
 \end{array}
 $$
 ```
