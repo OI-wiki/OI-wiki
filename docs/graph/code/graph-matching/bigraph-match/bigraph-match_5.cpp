@@ -11,13 +11,11 @@ vector<int> to[100010];
 queue<int> q;
 
 int DFS(int x) {
-  // cout << x << '\n';
   if (vis[x]) {
     return 0;
   }
   vis[x] = 1;
   for (auto i : to[x]) {
-    // cout << x << ' ' << i << '\n';
     if (!r[i]) {
       r[i] = x;
       t[x] = i;
@@ -66,7 +64,6 @@ int solve() {
       if (!t[i] && DFS(i)) {
         rt++;
       }
-      // cout << '\n';
     }
   }
   return rt;
@@ -112,22 +109,6 @@ int main() {
       }
     }
   }
-  /*
-  for(int i = 1; i <= rcnt; i++) {
-    cout << i << ": ";
-    for(auto j : to[i]) {
-      cout << j << ' ';
-    }
-    cout << '\n';
-  }
-  */
-  // cout << rcnt << ' ' << dcnt << '\n';
   cout << cnt - rcnt - dcnt + solve() << '\n';
-  /*
-  for(int i = 1; i <= rcnt; i++) {
-    cout << t[i] << ' ';
-  }
-  cout << '\n';
-  */
   return 0;
 }
