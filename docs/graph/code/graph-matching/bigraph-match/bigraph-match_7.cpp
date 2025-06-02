@@ -13,7 +13,6 @@ int vis[200020], dis[200020], t[200020], r[200020], ans, u, v, cnta,
 vector<int> to[200020];
 queue<int> q;
 
-// There was a delta here...
 int DFS(int x) {
   if (vis[x]) {
     return false;
@@ -107,7 +106,6 @@ int main() {
   }
   for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= n; j++) {
-      // cout << bel[i][j] << ' ';
       if (!x[i][j]) {
         cnta += cl[i][j];
         for (int k = 0; k < 8; k++) {
@@ -123,14 +121,7 @@ int main() {
         }
       }
     }
-    // cout << '\n';
   }
-  // for(int i = 1; i <= cnta; i++) {
-  // for(auto j : to[i]) {
-  // cout << j << ' ';
-  //}
-  // cout << '\n';
-  //}
   din();
   cout << n * n - m - ans << '\n';
   return 0;
