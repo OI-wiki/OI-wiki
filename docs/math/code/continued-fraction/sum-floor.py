@@ -33,6 +33,7 @@ def hull(a, N):
     return ah, ph, qh
 
 
+# --8<-- [start:core]
 # Find sum of floor(k * x) for k in [1, N] and x = [a0; a1, a2, ...].
 def sum_floor(a, N):
     N += 1
@@ -53,6 +54,7 @@ def sum_floor(a, N):
     return ans - N
 
 
+# --8<-- [end:core]
 # Get the continued fraction of e.
 def cf_e(N):
     i, a = 0, 0

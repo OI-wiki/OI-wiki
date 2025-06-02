@@ -202,7 +202,7 @@ Wilson 定理可以推广到一般模数的情形。
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/factorial/fact-mod-p.cpp:4:20"
+    --8<-- "docs/math/code/factorial/fact-mod-p.cpp:core"
     ```
 
 如果空间有限，无法存储所有阶乘，也可以将函数调用中实际用到的阶乘 $n!\bmod p$ 中的 $n$ 都计算出来，然后对它们进行排序，从而可以在最后一次性计算出来这些阶乘的值，汇总到最终结果中，而避免存储所有阶乘的值。
@@ -285,7 +285,7 @@ $$
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/factorial/fact-mod-pa.cpp:4:21"
+    --8<-- "docs/math/code/factorial/fact-mod-pa.cpp:core"
     ```
 
 预处理的时间复杂度为 $O(p^\alpha)$，单次询问的时间复杂度为 $O(\log_p n)$。
@@ -346,7 +346,7 @@ $$
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/factorial/multiplicity.cpp:3:11"
+    --8<-- "docs/math/code/factorial/multiplicity.cpp:core"
     ```
 
 它的时间复杂度为 $O(\log n)$。

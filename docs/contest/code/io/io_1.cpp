@@ -2,6 +2,7 @@
 #include <iostream>
 using namespace std;
 
+// --8<-- [start:core]
 // #define DEBUG 1  // 调试开关
 struct IO {
 #define MAXSIZE (1 << 20)
@@ -76,6 +77,7 @@ struct IO {
   }
 } io;
 
+// --8<-- [end:core]
 int n, x, sum;
 
 int main() {

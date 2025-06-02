@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+// --8<-- [start:core]
 // Locate a given fraction in the Stern-Brocot tree.
 std::string find(int x, int y, int a = 0, int b = 1, int c = 1, int d = 0) {
   int m = a + c, n = b + d;
@@ -12,6 +13,7 @@ std::string find(int x, int y, int a = 0, int b = 1, int c = 1, int d = 0) {
   }
 }
 
+// --8<-- [end:core]
 int main() {
   int x, y;
   std::cin >> x >> y;
