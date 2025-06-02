@@ -19,6 +19,7 @@ def convergents(a):
     return p, q
 
 
+# --8<-- [start:core]
 # Find [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute
 # upper convex hull of lattice points on 0 <= x <= N and 0 <= y <= r * x,
 # where r = [a0, a1, a2, ...] and there are ah[i]-1 integer points on the
@@ -42,6 +43,7 @@ def hull(a, N):
     return ah, ph, qh
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     p, q, N = map(int, input().split())
     ah, ph, qh = hull(fraction(p, q), N)

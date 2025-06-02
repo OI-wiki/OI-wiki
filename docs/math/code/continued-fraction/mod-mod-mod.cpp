@@ -75,10 +75,12 @@ int sum_floor(std::vector<int> a, int N) {
   return ans - N;
 }
 
+// --8<-- [start:core]
 int solve(int p, int q, int n) {
   return p * n * (n + 1) / 2 - q * sum_floor(fraction(p, q), n);
 }
 
+// --8<-- [end:core]
 int main() {
   int t;
   std::cin >> t;

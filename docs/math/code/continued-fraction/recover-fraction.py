@@ -19,6 +19,7 @@ def convergents(a):
     return p, q
 
 
+# --8<-- [start:core]
 # Find Q that minimizes Q*r mod m for 1 <= k <= n < m.
 def mod_min(r, n, m):
     a = fraction(r, m)
@@ -30,6 +31,7 @@ def mod_min(r, n, m):
     return 0
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     r, n, m = map(int, input().split())
     q = mod_min(r, n, m)

@@ -89,12 +89,12 @@ $$
 ???+ example "建树"
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/stern-brocot/tree-build.cpp:3:10"
+        --8<-- "docs/math/code/stern-brocot/tree-build.cpp:core"
         ```
     
     === "Python"
         ```py
-        --8<-- "docs/math/code/stern-brocot/tree-build.py:2:9"
+        --8<-- "docs/math/code/stern-brocot/tree-build.py:core"
         ```
 
 建树算法的复杂度是 $O(n^2)$ 的。
@@ -175,12 +175,12 @@ $$
 ???+ example "朴素分数查找"
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/stern-brocot/fraction-finding-1.cpp:4:13"
+        --8<-- "docs/math/code/stern-brocot/fraction-finding-1.cpp:core"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/math/code/stern-brocot/fraction-finding-1.py:2:11"
+        --8<-- "docs/math/code/stern-brocot/fraction-finding-1.py:core"
         ```
 
 算法的复杂度是 $O(p+q)$ 的，因此在算法竞赛中并不实用。
@@ -196,12 +196,12 @@ $$
 ???+ example "快速分数查找"
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/stern-brocot/fraction-finding-2.cpp:5:25"
+        --8<-- "docs/math/code/stern-brocot/fraction-finding-2.cpp:core"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/math/code/stern-brocot/fraction-finding-2.py:2:19"
+        --8<-- "docs/math/code/stern-brocot/fraction-finding-2.py:core"
         ```
 
 当前查找算法需要在分数 $\dfrac{p}{q}$ 已知。如果目标分数未知，往往需要在每次向右或向左移动时，对移动次数进行倍增查找或者二分查找。此时，分数查找算法的复杂度是 $O(\log^2(p+q))$。
@@ -245,12 +245,12 @@ $$
 ???+ example "基于连分数的分数查找"
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/stern-brocot/fraction-finding-3.cpp:5:17"
+        --8<-- "docs/math/code/stern-brocot/fraction-finding-3.cpp:core"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/math/code/stern-brocot/fraction-finding-3.py:2:11"
+        --8<-- "docs/math/code/stern-brocot/fraction-finding-3.py:core"
         ```
 
 利用连分数表示，可以简单地表达出某个节点的父节点和子节点。对于节点 $[t_0,t_1,\cdots,t_n,1]$，它的父节点就是沿最后的移动方向少移动一步的节点：在 $t_k>1$ 时，父节点是 $[t_0,t_1,\cdots,t_n - 1,1]$；否则，父节点是 $[t_0,t_1,\cdots,t_{n-1},1]$。它的两个子节点则分别是 $[t_0,t_1,\cdots,t_n+1,1]$ 和 $[t_0,t_1,\cdots,t_n,1,1]$；两个节点哪个是左子节点，哪个是右子节点，需要根据 $n$ 的奇偶性判断。
@@ -345,12 +345,12 @@ $$
 ???+ example "构建 Farey 序列"
     === "C++"
         ```cpp
-        --8<-- "docs/math/code/stern-brocot/farey-build.cpp:3:13"
+        --8<-- "docs/math/code/stern-brocot/farey-build.cpp:core"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/math/code/stern-brocot/farey-build.py:2:13"
+        --8<-- "docs/math/code/stern-brocot/farey-build.py:core"
         ```
 
 直接构建 Farey 序列的复杂度是 $O(|F_n|)=O(n^2)$ 的。
