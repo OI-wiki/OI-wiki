@@ -447,13 +447,13 @@ $$
   &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
 2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
 3 &  \textbf{Method. } \\ 
-4 &  result \gets \varnothing \\
+4 &  \textit{result} \gets \varnothing \\
 5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
 6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
 7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
 8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
-9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
-10 &  \textbf{return }  result
+9 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
+10 &  \textbf{return } \textit{result}
 \end{array}
 $$
 
@@ -464,13 +464,13 @@ $$
   &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
 2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
 3 &  \textbf{Method. } \\
-4 &  result \gets \varnothing \\
+4 &  \textit{result} \gets \varnothing \\
 5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\
 6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\
 7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
 8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
-9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
-10 &  \textbf{return }  result
+9 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
+10 &  \textbf{return } \textit{result}
 \end{array}
 $$
 ```
