@@ -19,6 +19,7 @@ def convergents(a):
     return p, q
 
 
+# --8<-- [start:core]
 # Find convex hull of lattice (x, y) such that C*y <= A*x+B.
 def hull(A, B, C, N):
     def diff(x, y):
@@ -80,6 +81,7 @@ def solve(N, M, A, B):
     return ans - N
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     T = int(input())
     for _ in range(T):
