@@ -137,7 +137,9 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 ### 通过特殊方法把原问题转化成二分图匹配
 
-??? note "[luogu P1129 矩阵游戏](https://www.luogu.com.cn/problem/P1129)"
+???+note "[luogu P1129 矩阵游戏](https://www.luogu.com.cn/problem/P1129)"
+    有一个 01 方阵，每一次可以交换两行或两列，问是否可以交换使得主对角线（左上到右下）全都是 1。
+    
     ??? note "解法"
         注意到，当存在 $n$ 个 $1$，使得这些 $1$ 不在同一行、同一列，那么必然有解，否则必然无解。
 
@@ -154,7 +156,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_2.cpp"
         ```
 
-??? note "[Gym 104427B Lawyers](https://codeforces.com/gym/104427/problem/B)"
+???+note "[Gym 104427B Lawyers](https://codeforces.com/gym/104427/problem/B)"
     有 $n$ 个律师，都被指控有欺诈罪。于是，他们需要互相辩护，确保每一名律师都被释放。
 
     这 $n$ 个律师有 $m$ 对信任关系，一个信任关系 $(a, b)$ 表示 $a$ 可以为 $b$ 辩护。
@@ -173,7 +175,9 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_3.cpp"
         ```
 
-??? note "[LibreOJ 6002 最小路径覆盖](https://loj.ac/p/6002)"
+???+note "[LibreOJ 6002 最小路径覆盖](https://loj.ac/p/6002)"
+    有一个有向图，现在用顶点不重复的路径覆盖所有顶点，求最少路径数。
+    
     ??? note "解法"
         对于每一个点，我们建立一个入点、一个出点。对于原图的边 $(u, v)$，在 $v$ 的入点和 $u$ 的出点连边。
 
@@ -186,7 +190,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_4.cpp"
         ```
 
-??? note "[CodeForces 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)"
+???+note "[CodeForces 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)"
     用一些 $1 \times x$ 的砖精确覆盖一个 $n \times m$ 的网格，砖可以旋转，其中有一些格子不能覆盖。
 
     ??? note "解法"
@@ -203,7 +207,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_5.cpp"
         ```
 
-??? note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E)"
+???+note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E)"
     有 $m$ 个共有 $n$ 个元素的可重集，每一次从某一个可重集里面删除一个元素，然后查询「在每一个可重集里面选至多一个元素，可以达到的最大 $\operatorname{mex}$」。
 
     ??? note "解法"
@@ -230,7 +234,9 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
 
 ### 通过对原图黑白染色转化成二分图解决问题
 
-??? note "[洛谷 P3355 - 骑士共存问题](https://www.luogu.com.cn/problem/P3355)"
+???+note "[洛谷 P3355 - 骑士共存问题](https://www.luogu.com.cn/problem/P3355)"
+    有一个 $n \times n$ 的国际象棋棋盘，其中一些位置不能放棋子，问最多可以放多少个马使得这些马不会互相攻击。
+    
     ??? note "解法"
         可以发现，如果对整个棋盘染色使得所有黑格、白格均不相邻，那么马只能够攻击到与其异色的格子。
 
