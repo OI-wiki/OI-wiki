@@ -9,13 +9,11 @@ int n, m, t[5050], r[5050], d, ot[5050], kil[5050], vis[5050], ans, out[5050];
 vector<int> to[5050];
 
 int DFS(int x) {
-  // cout << x << '\n';
   if (vis[x]) {
     return 0;
   }
   vis[x] = 1;
   for (auto i : to[x]) {
-    // cout << x << ' ' << i << '\n';
     if (r[i] == -1) {
       r[i] = x;
       t[x] = i;
@@ -55,10 +53,8 @@ int main() {
   for (; ans <= m;) {
     fill(vis, vis + m + 2, 0);
     if (DFS(ans)) {
-      // cout << '\n';
       ans++;
     } else {
-      // cout << '\n';
       break;
     }
   }
@@ -68,10 +64,8 @@ int main() {
     for (; ans <= m;) {
       fill(vis, vis + m + 2, 0);
       if (DFS(ans)) {
-        // cout << '\n';
         ans++;
       } else {
-        // cout << '\n';
         break;
       }
     }
