@@ -190,7 +190,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_4.cpp"
         ```
 
-???+ note "[CodeForces 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)"
+???+ note "[Codeforces 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)"
     用一些 $1 \times x$ 的砖精确覆盖一个 $n \times m$ 的网格，砖可以旋转，其中有一些格子不能覆盖。
 
     ??? note "解法"
