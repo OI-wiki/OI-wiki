@@ -240,7 +240,7 @@ Dinic 算法分成两部分，第一部分用 $O(m)$ 时间 BFS 建立网络流�
     ??? note "解法"
         可以发现，如果对整个棋盘染色使得所有黑格、白格均不相邻，那么马只能够攻击到与其异色的格子。
 
-        然后就可以直接二分图 MIS 了。
+        然后就可以直接二分图最大独立集了。
     ??? note "代码"
         ```cpp
         --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_7.cpp"
