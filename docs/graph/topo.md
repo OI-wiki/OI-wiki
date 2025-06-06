@@ -145,6 +145,7 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
     ```python
     from collections import defaultdict, deque
     
+    
     def topo_sort(graph):
         lst = []
         in_degree = defaultdict(int)
