@@ -117,8 +117,7 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
     int n, m;
     vector<int> G[MAXN];
     int in[MAXN];  // 存储每个结点的入度
-    ```
-
+    
     bool toposort() {
       vector<int> L;
       queue<int> S;
@@ -145,15 +144,14 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
 === "Python"
     ```python
     from collections import defaultdict, deque
-    ```
-
+    
     def topo_sort(graph):
         lst = []
         in_degree = defaultdict(int)
         for u in graph:
             for v in graph[u]:
                 in_degree[v] += 1
-
+    
         s = deque([u for u in graph if in_degree[u] == 0])
         while s:
             u = s.popleft()
@@ -162,7 +160,7 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
                 in_degree[v] -= 1
                 if in_degree[v] == 0:
                     s.append(v)
-
+    
         return None if any(in_degree.values()) else lst
     ```
 
