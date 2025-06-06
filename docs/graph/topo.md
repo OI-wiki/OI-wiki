@@ -111,11 +111,13 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
 因而总的时间复杂度就有 $O(E+V)$
 
 ### 实现
+
 === "C++"
     ```cpp
     int n, m;
     vector<int> G[MAXN];
     int in[MAXN];  // 存储每个结点的入度
+    ```
 
     bool toposort() {
       vector<int> L;
@@ -139,10 +141,11 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
       return false;
     }
     ```
-=== "Python"
-    ``` python
-    from collections import defaultdict, deque
 
+=== "Python"
+    ```python
+    from collections import defaultdict, deque
+    ```
 
     def topo_sort(graph):
         lst = []
@@ -162,6 +165,7 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
 
         return None if any(in_degree.values()) else lst
     ```
+
 ## DFS 算法
 
 ### 实现
