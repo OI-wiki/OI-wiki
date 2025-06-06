@@ -26,7 +26,7 @@ $$
 
 单纯形法就是通过设置不同的基向量，经过矩阵的线性变换，求得基可行解（可行域顶点），并判断该解是否最优，否则继续设置另一组基向量，重复执行以上步骤，直到找到最优解。所以，单纯形法的求解过程是一个循环迭代的过程。
 
-![kexingyu](./images/kexingyu.jpg)
+![](./images/feasible-region-1.svg)
 
 <center>图1 可行域</center>
 
@@ -167,7 +167,7 @@ $$
 
 $X_1=0$ 表示可行解在 $y$ 轴上；$X_4=0$ 表示可行解在 $x_1+2x_2=9$ 的直线上。那么，求得的可行解即表示这两条直线的交点，也是可行域的顶点，如图所示：
 
-![kexingyu\_point](./images/kexingyu_point.jpg)
+![](./images/feasible-region-2.svg)
 
 <center>图2</center>
 
@@ -413,7 +413,7 @@ $$
 
 把对应出的系数矩阵代入到单纯形算法就可以求出最优解了。
 
-```c++
+```cpp
 --8<-- "docs/math/code/simplex/simplex_1.cpp"
 ```
 

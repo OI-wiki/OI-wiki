@@ -189,6 +189,7 @@ nav:
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
       - 四边形不等式优化: dp/opt/quadrangle.md
+      - Slope Trick 优化: dp/opt/slope-trick.md
       - 状态设计优化: dp/opt/state.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
@@ -373,13 +374,12 @@ nav:
       - Treap: ds/treap.md
       - Splay 树: ds/splay.md
       - WBLT: ds/wblt.md
+      - 替罪羊树: ds/sgt.md
+      - 笛卡尔树: ds/cartesian-tree.md
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
       - B 树: ds/b-tree.md
       - B+ 树: ds/bplus-tree.md
-      - 替罪羊树: ds/sgt.md
-      - Leafy Tree: ds/leafy-tree.md
-      - 笛卡尔树: ds/cartesian-tree.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
       - AA 树: ds/aa-tree.md
@@ -430,18 +430,19 @@ nav:
       - AHU 算法: graph/tree-ahu.md
       - 树哈希: graph/tree-hash.md
       - 树上随机游走: graph/tree-random-walk.md
-    - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
-    - 最小生成树: graph/mst.md
+    - 最短路问题:
+      - 最短路: graph/shortest-path.md
+      - 差分约束: graph/diff-constraints.md
+      - k 短路: graph/kth-path.md
+      - 同余最短路: graph/mod-shortest-path.md
+    - 生成树问题:
+      - 最小生成树: graph/mst.md
+      - 最小树形图: graph/dmst.md
+      - 最小直径生成树: graph/mdst.md
     - 斯坦纳树: graph/steiner-tree.md
-    - 最小树形图: graph/dmst.md
-    - 最小直径生成树: graph/mdst.md
-    - 最短路: graph/shortest-path.md
     - 拆点: graph/node.md
-    - 差分约束: graph/diff-constraints.md
-    - k 短路: graph/kth-path.md
-    - 同余最短路: graph/mod-shortest-path.md
     - 连通性相关:
       - 强连通分量: graph/scc.md
       - 双连通分量: graph/bcc.md
@@ -449,12 +450,13 @@ nav:
       - 圆方树: graph/block-forest.md
       - 点/边连通度: graph/connectivity.md
     - 环计数问题: graph/rings-count.md
+    - 最小环: graph/min-cycle.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
     - 二分图: graph/bi-graph.md
-    - 最小环: graph/min-cycle.md
     - 平面图: graph/planar.md
+    - 弦图: graph/chord.md
     - 图的着色: graph/color.md
     - 网络流:
       - 网络流简介: graph/flow.md
@@ -462,7 +464,7 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
-    - Stoer–Wagner 算法: graph/stoer-wagner.md
+      - Stoer–Wagner 算法: graph/stoer-wagner.md
     - 图的匹配:
       - 图匹配: graph/graph-matching/graph-match.md
       - 增广路: graph/graph-matching/augment.md
@@ -471,8 +473,8 @@ nav:
       - 一般图最大匹配: graph/graph-matching/general-match.md
       - 一般图最大权匹配: graph/graph-matching/general-weight-match.md
     - Prüfer 序列: graph/prufer.md
+    - 矩阵树定理: graph/matrix-tree.md
     - LGV 引理: graph/lgv.md
-    - 弦图: graph/chord.md
     - 最大团搜索算法: graph/max-clique.md
     - 支配树: graph/dominator-tree.md
     - 图上随机游走: graph/graph-random-walk.md

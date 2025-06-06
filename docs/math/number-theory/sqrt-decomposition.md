@@ -10,7 +10,7 @@
 
 例如这里的双曲线下整点的图片：
 
-![双曲线下整点](./images/sqrt-decomposition.png)
+![双曲线下整点](./images/sqrt-decomposition.svg)
 
 图中共分为了 $5$ 块，这 $5$ 块整点的最大纵坐标都相同。如果统计整点的个数，可以从纵向计数改为横向计数，直接计算 $5$ 个矩形即可。
 
@@ -104,10 +104,10 @@ $$
 
 ???+ note " 例题：[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
     题意：$T$ 组数据，每组一个整数 $n$。对于每组数据，输出 $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$。
-
+    
     ??? note "思路"
         如上推导，对于每一块相同的 $\left\lfloor\dfrac ni\right\rfloor$ 一起计算。时间复杂度为 $O(T\sqrt n)$。
-
+    
     ??? note "实现"
         ```cpp
         --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
@@ -133,16 +133,16 @@ $$
 
 ???+ note " 例题：[CF1954E Chain Reaction](https://codeforces.com/contest/1954/problem/E)"
     题意：有一排 $n$ 个怪兽，每个怪兽初始血量为 $a_i$，一次攻击会使一段连续的存活的怪兽血量减 $k$，血量不大于 $0$ 视作死亡，对于所有 $k$ 求出击杀所有怪兽所需攻击次数，$n,a_i\leq 10^5$。
-
+    
     ??? note "思路"
         下面是一种使用二维数论分块的解法：
         
-        使用[积木大赛](https://www.luogu.com.cn/problem/P1969)的技巧，令 $a_0=0$，对于某个 $k$，答案就是 $\sum\limits_{i=1}^n\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right)$。
+        使用 [积木大赛](https://www.luogu.com.cn/problem/P1969) 的技巧，令 $a_0=0$，对于某个 $k$，答案就是 $\sum\limits_{i=1}^n\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right)$。
         
         对于相邻的两个怪兽，使用二维数论分块，分段求出它们对一段 $k$ 的答案的贡献，然后差分累加即可。
         
         复杂度 $O(\sum\sqrt{a_i})$。也存在其他解法。
-
+    
     ??? note "实现"
         ```cpp
         --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_2.cpp"
@@ -185,7 +185,7 @@ $$
 
 ???+ note "证明"
     令 $v=\left\lfloor\sqrt{\dfrac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\dfrac{n}{q}}\right\rfloor$，那么
-
+    
     $$
     \begin{aligned}
     v\leq \sqrt{\dfrac{n}{q}}&\implies v^2\leq \dfrac{n}{q}\\
@@ -193,25 +193,25 @@ $$
     &\implies q\leq \left\lfloor \dfrac{n}{v^2}\right\rfloor
     \end{aligned}
     $$
-
+    
     同理 $p\leq \left\lfloor n/v^2\right\rfloor$。同时
-
+    
     $$
     \left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor\geq \left\lfloor \sqrt\frac{n}{n/v^2}\right\rfloor=\left\lfloor v\right\rfloor=v
     $$
-
+    
     又由 $p\leq \left\lfloor n/v^2\right\rfloor$ 以及单调性可推出
-
+    
     $$
     v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor\geq\left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor
     $$
-
+    
     所以
-
+    
     $$
     \left\lfloor\sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor=v
     $$
-
+    
     进而 $q=\left\lfloor n/v^2\right\rfloor$ 是最大的使得 $\left\lfloor\sqrt{n/p}\right\rfloor=\left\lfloor\sqrt{n/q}\right\rfloor$ 成立的 $q$。
 
 故原问题可以写为数论分块形式，代码与数论分块形式并无二异。

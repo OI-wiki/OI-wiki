@@ -69,7 +69,7 @@ int main() {
 
 ### 越界访问下标
 
-数组的下标 $\mathit{idx}$ 应当满足 $0\leq \mathit{idx}< \mathit{size}$，如果下标越界，则会产生不可预料的后果，如段错误（Segmentation Fault），或者修改预期以外的变量。
+数组的下标 $\mathit{idx}$ 应当满足 $0\leq \mathit{idx}< \mathit{size}$，如果下标不在这个范围内，则是未定义行为，会产生不可预料的后果，如段错误（Segmentation Fault），或者修改预期以外的变量等等。
 
 ## 多维数组
 

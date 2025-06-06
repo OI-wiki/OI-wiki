@@ -1,0 +1,175 @@
+\documentclass{standalone}
+\usepackage[active,tightpage]{preview}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{arrows.meta,intersections}
+\usepackage{pgffor}
+\usepackage{ifthen}
+
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{12pt}{14pt}\selectfont}
+
+\pgfplotsset{compat=1.18}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+  \begin{scope}
+    \begin{axis}[
+      axis lines=middle,
+      xlabel={$x$},
+      ylabel={$y$},
+      xlabel style={xshift=10pt,yshift=-15pt},
+      ylabel style={xshift=-15pt},
+      xtick={0,...,6},
+      ytick={0,...,7},
+      grid=major,
+      major grid style={gray!50}, 
+      ymin=0,
+      ymax=8,
+      xmin=0,
+      xmax=6.5,
+      clip=false,
+      axis on top=false,
+      scale=1.5,
+      axis equal image,
+      axis line style={thick},
+      width=8cm,
+      legend style={at={(0.03,0.97)},anchor=north west},
+    ] 
+    
+    \addplot [thick,black,samples=100,domain=0:6.5] { (5 * x + 4)/8 };
+    \addplot [dashed,thick,black,samples=100,domain=0:6.5] { (5 * x + 5)/8 };
+    \legend {$y=(5x+4)/8$, $y=(5x+5)/8$};
+    
+    \foreach \x in {1,...,6} {
+      \foreach \y in {1,...,4} {
+        \pgfmathparse{((8 * \y <= 5 * \x + 4)) ? 1 : 0}
+        \ifnum\pgfmathresult=1
+          \addplot[only marks, mark=*, mark options={fill=red}]
+            coordinates {(\x, \y)};
+        \fi
+      }
+    }
+
+    \foreach \x in {1,...,6} {
+      \foreach \y in {1,...,4} {
+        \pgfmathparse{((8 * \y > 5 * \x + 4)) ? 1 : 0}
+        \ifnum\pgfmathresult=1
+          \addplot[only marks, mark=*, mark options={fill=blue}]
+            coordinates {(\x, \y)};
+        \fi
+      }
+    }
+
+    \node[below left] at (axis cs: 0, 0) {$O$};
+    
+    \end{axis}
+  \end{scope}
+
+  \begin{scope}[
+    xshift = 7.5cm
+  ]
+    \begin{axis}[
+      axis lines=middle,
+      xlabel={$x$},
+      ylabel={$y$},
+      xlabel style={xshift=10pt,yshift=-15pt},
+      ylabel style={xshift=-15pt},
+      xtick={0,...,6},
+      ytick={0,...,7},
+      grid=major,
+      major grid style={gray!50}, 
+      ymin=0,
+      ymax=8,
+      xmin=0,
+      xmax=6.5,
+      clip=false,
+      axis on top=false,
+      scale=1.5,
+      axis equal image,
+      axis line style={thick},
+      width=8cm,
+      legend style={at={(0.03,0.97)},anchor=north west},
+    ] 
+    
+    \addplot [thick,black,samples=100,domain=5/8:45/8] { (8 * x - 5)/5 };
+    \addplot [dashed,thick,black,samples=100,domain=0.5:44/8] { (8 * x - 4)/5 };
+    \legend {$y=(8x - 5)/5$, $y=(8x - 4)/5$};
+    
+    \foreach \x in {1,...,4} {
+      \foreach \y in {1,...,6} {
+        \pgfmathparse{((5 * \y <= 8 * \x - 5)) ? 1 : 0}
+        \ifnum\pgfmathresult=1
+          \addplot[only marks, mark=*, mark options={fill=red}]
+            coordinates {(\x, \y)};
+        \fi
+      }
+    }
+
+    \foreach \x in {1,...,4} {
+      \foreach \y in {1,...,6} {
+        \pgfmathparse{((5 * \y > 8 * \x - 5)) ? 1 : 0}
+        \ifnum\pgfmathresult=1
+          \addplot[only marks, mark=*, mark options={fill=blue}]
+            coordinates {(\x, \y)};
+        \fi
+      }
+    }
+
+    \node[below left] at (axis cs: 0, 0) {$O$};
+    
+    \end{axis}
+  \end{scope}
+
+
+  \begin{scope}[
+    xshift = 15cm
+  ]
+    \begin{axis}[
+      axis lines=middle,
+      xlabel={$x$},
+      ylabel={$y$},
+      xlabel style={xshift=10pt,yshift=-15pt},
+      ylabel style={xshift=-15pt},
+      xtick={0,...,6},
+      ytick={0,...,7},
+      grid=major,
+      major grid style={gray!50}, 
+      ymin=0,
+      ymax=8,
+      xmin=0,
+      xmax=6.5,
+      clip=false,
+      axis on top=false,
+      scale=1.5,
+      axis equal image,
+      axis line style={thick},
+      width=8cm,
+      legend style={at={(0.03,0.97)},anchor=north west},
+    ]  
+    
+    \addplot [thick,black,samples=100,domain=0:37/8] { (8 * x + 3)/5 };
+    \legend {$y=(8x + 3)/5$};
+    
+    \foreach \x in {0,...,3} {
+      \foreach \y in {1,...,6} {
+        \pgfmathparse{((5 * \y <= 8 * \x + 3)) ? 1 : 0}
+        \ifnum\pgfmathresult=1
+          \addplot[only marks, mark=*, mark options={fill=red}]
+            coordinates {(\x, \y)};
+        \fi
+      }
+    }
+
+    \node[below left] at (axis cs: 0, 0) {$O$};
+    
+    \end{axis}
+  \end{scope}
+
+\end{tikzpicture}
+
+\end{document}

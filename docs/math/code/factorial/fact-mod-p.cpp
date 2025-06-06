@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+// --8<-- [start:core]
 // Calculate (n!)_p mod p.
 int factmod(int n, int p) {
   // Pretreatment.
@@ -19,6 +20,7 @@ int factmod(int n, int p) {
   return res;
 }
 
+// --8<-- [end:core]
 int main() {
   int t;
   std::cin >> t;

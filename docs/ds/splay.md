@@ -31,7 +31,7 @@ Splay 树是一棵二叉查找树，查找某个值时满足性质：左子树�
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:7:9"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:aux"
     ```
 
 ### 旋转操作
@@ -53,13 +53,13 @@ Splay 树是一棵二叉查找树，查找某个值时满足性质：左子树�
 具体分析旋转步骤：（假设需要上移的节点为 $x$，以右旋为例）
 
 1.  首先，记录节点 $x$ 的父节点 $y$，以及 $y$ 的父节点 $z$（可能为空），并记录 $x$ 是 $y$ 的左子节点还是右子节点；
-2.  按照旋转后的树中自下向上的顺序，依次更新 $y$ 的左子节点为 $x$ 的右子节点，$x$ 的右子节点为 $y$，以及若 $z$ 非空，$z$ 的子节点为 $y$；
+2.  按照旋转后的树中自下向上的顺序，依次更新 $y$ 的左子节点为 $x$ 的右子节点，$x$ 的右子节点为 $y$，以及若 $z$ 非空，$z$ 的子节点为 $x$；
 3.  按照同样的顺序，依次更新当前 $y$ 的左子节点（若存在）的父节点为 $y$，$y$ 的父节点为 $x$，以及 $x$ 的父节点为 $z$；
 4.  自下而上维护节点信息。
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:11:22"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:rotate"
     ```
 
 在所有函数的实现时，都应注意不要修改节点 $0$ 的信息。
@@ -107,7 +107,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:24:30"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:splay"
     ```
 
 伸展操作是 Splay 树的核心操作，也是它的时间复杂度能够得到保证的关键步骤。请务必保证每次向下访问节点后，都进行一次伸展操作。
@@ -120,24 +120,22 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ??? note "基于势能分析的复杂度证明"
     为此只需分析 **zig**、**zig-zig** 和 **zig-zag** 三种操作的复杂度。为此，我们采用 **势能分析法**，通过研究势能的变化来推导操作的均摊复杂度。假设对一棵包含 $n$ 个节点的 Splay 树进行了 $m$ 次伸展操作，可以通过如下方式进行分析：
-
+    
     **定义**：
-
+    
     1.  **单个节点的势能**：$w(x) = \log(\text{size}(x))$，其中 $\text{size}(x)$ 表示以节点 $x$ 为根的子树大小。
-
     2.  **整棵树的势能**：$\varphi = \sum w(x)$，即树中所有节点势能的总和，初始势能满足 $\varphi_0 \leq n \log n$。
-
     3.  **第 $i$ 次操作的均摊成本**：$c_i = t_i + \varphi_i - \varphi_{i-1}$，其中 $t_i$ 为实际操作代价，$\varphi_i$ 和 $\varphi_{i-1}$ 分别为操作后和操作前的势能。
-
+    
     **性质**：
-
+    
     1.  如果 $p$ 是 $x$ 的父节点，则有 $w(p) \geq w(x)$，即父节点的势能不小于子节点的势能。
     2.  由于根节点的子树大小在操作前后保持不变，因此根节点的势能在操作过程中不变。
     3.  如果 $\text{size}(p)\ge\text{size}(x)+\text{size}(y)$，那么有 $2w(p) - w(x) - w(y) \geq 2$。
-
+    
     ??? note "性质 3 的证明"
         根据均值不等式可知
-
+        
         $$
         \begin{aligned}
         2w(p) - w(x) - w(y) 
@@ -147,11 +145,11 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
         &= 2.
         \end{aligned}
         $$
-
+    
     接下来，分别对 **zig**、**zig-zig** 和 **zig-zag** 操作进行势能分析。设操作前后的节点 $x$ 的势能分别是 $w(x)$ 和 $w'(x)$。节点的记号与 [上文](#伸展操作) 一致。
-
+    
     **zig**：根据性质 1 和 2，有 $w(p) = w'(x)$，且 $w'(x) \geq w'(p)$。由此，均摊成本为
-
+    
     $$
     \begin{aligned}
     c_i &= 1 + w'(x) + w'(p) - w(x) - w(p)\\
@@ -159,9 +157,9 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     &\leq 1 + w'(x) - w(x).
     \end{aligned}
     $$
-
+    
     **zig-zig**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w'(x) \geq w'(p)$，$w(x) \leq w(p)$。因为
-
+    
     $$
     \begin{aligned}
     \text{size}'(x) 
@@ -170,15 +168,15 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     &= \text{size}(x) + \text{size}'(g),
     \end{aligned}
     $$
-
+    
     根据性质 3 可得
-
+    
     $$
     2 w'(x) - w(x) - w'(g) \geq 2.
     $$
-
+    
     由此，均摊成本为
-
+    
     $$
     \begin{aligned}
     c_i &= 2 + w'(x) + w'(p) + w'(g) - w(x) - w(p) - w(g) \\
@@ -188,15 +186,15 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     &\le 3(w'(x)-w(x)).
     \end{aligned}
     $$
-
+    
     **zig-zag**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(p) \geq w(x)$。因为 $\text{size}'(x)>\text{size}'(p)+\text{size}'(g)$，根据性质 3，可得
-
+    
     $$
     2 \cdot w'(x) - w'(g) - w'(p) \geq 2.
     $$
-
+    
     由此，均摊成本为
-
+    
     $$
     \begin{aligned}
     c_i &= 2 + w'(x) + w'(p) + w'(g) - w(x) - w(p) - w(g) \\
@@ -206,21 +204,21 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     &\le 2(w'(x) - w(x)).
     \end{aligned}
     $$
-
+    
     **单次伸展操作**：
-
+    
     令 $w^{(n)}(x)=(w^{(n-1)})'(x)$ 且 $w^{(0)}(x)=w(x)$。假设一次伸展操作依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$ 等节点，最终 $x_{1}$ 成为根节点。这必然经过若干次 **zig-zig** 和 **zig-zag** 操作和至多一次 **zig** 操作，前两种操作的均摊成本均不超过 $3(w'(x)-w(x))$，而最后一次操作的均摊成本不超过 $3(w'(x) - w(x))+1$，所以总的均摊成本不超过
-
+    
     $$
     3(w^{(n)}(x_1) - w^{(0)}(x_1)) + 1 \le 3\log n + 1.
     $$
-
+    
     因此，一次伸展操作的均摊复杂度是 $O(\log n)$ 的。从而，基于伸展的插入、查询、删除等操作的时间复杂度也为均摊 $O(\log n)$。
-
+    
     **结论**：
-
+    
     在进行 $m$ 次伸展操作之后，实际成本
-
+    
     $$
     \begin{aligned}
     \sum_{i=1}^m t_i &= \sum_{i=1}^m \left(c_i + \varphi_{i-1} - \varphi_i \right) \\
@@ -228,7 +226,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     &\le m(3\log n+1) + n\log n.
     \end{aligned}
     $$
-
+    
     因此，$m$ 次伸展操作的实际时间复杂度为 $O((m+n)\log n)$。
 
 ??? info " 为什么 Splay 树的再平衡操作可以获得 $O(\log n)$ 的均摊复杂度？"
@@ -248,7 +246,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:32:36"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:find"
     ```
 
 该实现允许指定任何节点 $z$ 作为根节点，并在它的子树内按值查找。
@@ -266,7 +264,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:38:51"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:loc"
     ```
 
 该实现需要保证排名 $k$ 不超过根 $z$ 处的树大小。
@@ -275,7 +273,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:97:101"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:find-kth"
     ```
 
 ### 合并操作
@@ -291,7 +289,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:53:60"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:merge"
     ```
 
 分裂操作类似。因而，Splay 树可以模拟 [无旋 treap](./treap.md#无旋-treap) 的思路做各种操作，包括区间操作。[后文](#序列操作) 会介绍更具有 Splay 树风格的区间操作处理方法。
@@ -306,7 +304,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:62:76"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:insert"
     ```
 
 该实现允许直接向空树内插入值。若不想处理空树，可以在树中提前插入哑节点。
@@ -322,7 +320,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:78:90"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:remove"
     ```
 
 ### 查询排名
@@ -333,7 +331,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:92:95"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:find-rank"
     ```
 
 ### 查询前驱
@@ -348,7 +346,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:103:111"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:find-prev"
     ```
 
 该实现允许前驱不存在，此时返回 $-1$。
@@ -359,7 +357,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ???+ example "实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp:113:121"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:find-next"
     ```
 
 ### 参考实现
@@ -368,7 +366,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-1.cpp"
+    --8<-- "docs/ds/code/splay/splay-1.cpp:full-text"
     ```
 
 ## 序列操作
@@ -391,7 +389,7 @@ Splay 树也可以运用在序列上，用于维护区间信息。与线段树�
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-2.cpp:58:67"
+    --8<-- "docs/ds/code/splay/splay-2.cpp:build"
     ```
 
 最后的伸展操作自下而上地更新了节点信息。为了后文区间操作方便，序列左右两侧添加了两个哨兵节点。
@@ -409,7 +407,7 @@ Splay 树也可以运用在序列上，用于维护区间信息。与线段树�
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-2.cpp:69:76"
+    --8<-- "docs/ds/code/splay/splay-2.cpp:reverse"
     ```
 
 最后一步的伸展操作并非为了保证复杂度正确，而是为了更新节点信息。因为伸展操作涉及到节点 $x$ 的左右子节点，所以之前需要将节点 $x$ 处的标记先下传一次。当然，仅对于区间翻转操作而言，子区间的翻转不会对祖先节点产生影响，所以省去这一步骤也是正确的。此处实现保留这两行，是为了说明一般的情形下的操作方法。
@@ -420,14 +418,14 @@ Splay 树也可以运用在序列上，用于维护区间信息。与线段树�
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-2.cpp:11:22"
+    --8<-- "docs/ds/code/splay/splay-2.cpp:push-down"
     ```
 
 然后，只需要在向下经过节点时下传标记即可。模板题要求的操作比较简单，只有按照排名寻找的操作（即 `loc`）涉及向下访问节点。注意，需要在函数每次访问一个新的节点 **前** 下传标记。
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-2.cpp:45:56"
+    --8<-- "docs/ds/code/splay/splay-2.cpp:push-down-lazy"
     ```
 
 因为向下访问节点时已经移除了经过的路径的所有懒标记，所以利用伸展操作上移节点时不再需要处理懒标记。但是，对于区间操作的那一个节点要谨慎处理：因为它同样位于伸展操作的路径上，但是刚刚操作完，可能存在尚未下传的标记，需要首先下传再做伸展操作，正如同上文所做的那样。
@@ -438,7 +436,7 @@ Splay 树也可以运用在序列上，用于维护区间信息。与线段树�
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/splay/splay-2.cpp"
+    --8<-- "docs/ds/code/splay/splay-2.cpp:full-text"
     ```
 
 ## 习题

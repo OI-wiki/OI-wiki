@@ -63,6 +63,7 @@ def middle(p0, q0, p1, q1):
     return p[-1], q[-1]
 
 
+# --8<-- [start:core]
 def solve():
     n = int(input())
     C = [0] * n
@@ -91,6 +92,7 @@ def solve():
     return str(q) + " " + str(p)
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     t = int(input())
     for _ in range(t):
