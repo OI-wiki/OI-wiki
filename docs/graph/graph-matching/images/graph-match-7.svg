@@ -10,8 +10,8 @@
 <path d='M103.9141 19.124999C103.9141 17.57031 102.6523 16.30859 101.0977 16.30859C99.5391 16.30859 98.2773 17.57031 98.2773 19.124999C98.2773 20.68359 99.5391 21.94531 101.0977 21.94531C102.6523 21.94531 103.9141 20.68359 103.9141 19.124999Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
 <path d='M55.5625-54.5313H-23.4492' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
 <path d='M55.9687-53.0195L-66.3828 17.61719' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
-<path d='M57.0742-51.918L-24.9609 90.168' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
-<path d='M58.582-51.5117V89.7656' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M57.0742-51.918L-24.9609 90.168' stroke='#f00' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M58.582-51.5117V89.7656' stroke='#f00' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
 <path d='M60.0898-51.918L99.5977 16.51172' stroke='#f00' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
 <path d='M-27.9766-51.918L-67.4844 16.51172' stroke='#f00' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
 <path d='M265.2383-54.5195C265.2383-56.0781 263.9766-57.3398 262.418-57.3398C260.8633-57.3398 259.6016-56.0781 259.6016-54.5195C259.6016-52.9648 260.8633-51.7031 262.418-51.7031C263.9766-51.7031 265.2383-52.9648 265.2383-54.5195Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
@@ -37,6 +37,6 @@
 <path d='M341.5625 62.8203L430.9141 91.8516' stroke='#f00' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
 <path d='M435.5586 90.3437L490.7773 14.33594' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
 <path d='M340.4687-35.6562L432.0078 90.3437' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
-<path d='M435.5586-66.5508L490.7773 9.45313' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M435.5586-66.5508L490.7773 9.45313' stroke='#f00' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
 </g>
 </svg>

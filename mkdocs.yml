@@ -467,7 +467,6 @@ nav:
       - Stoer–Wagner 算法: graph/stoer-wagner.md
     - 图的匹配:
       - 图匹配: graph/graph-matching/graph-match.md
-      - 增广路: graph/graph-matching/augment.md
       - 二分图最大匹配: graph/graph-matching/bigraph-match.md
       - 二分图最大权匹配: graph/graph-matching/bigraph-weight-match.md
       - 一般图最大匹配: graph/graph-matching/general-match.md

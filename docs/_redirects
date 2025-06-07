@@ -118,6 +118,7 @@
 /graph/bridge /graph/cut
 /graph/misc /graph/concept
 /graph/basic /graph/save
+/graph/graph-matching/augment /graph/graph-matching/graph-match
 /topic/cmd /tools/cmd
 /topic/problemsetting /contest/problemsetting
 /topic/graph-matching/graph-match /graph/graph-matching/graph-match

@@ -3,7 +3,7 @@
 \usepackage{tikz}
 
 \begin{document}
-\begin{tikzpicture}
+\begin{tikzpicture}[xscale=1.5]
 
 \begin{scope}[every node/.style={circle,draw,very thick,color=red}]
     \node (U0) at (0,0) {};
@@ -13,7 +13,7 @@
     \node (U4) at (0,-4) {};
 \end{scope}
 
-\node at (0,0.75) {$U$};
+\node at (0,0.75) {$X$};
 
 \begin{scope}[every node/.style={circle,draw,very thick,color=cyan}]
     \node (V0) at (2,0) {};
@@ -22,7 +22,7 @@
     \node (V3) at (2,-3) {};
 \end{scope}
 
-\node at (2,0.75) {$V$};
+\node at (2,0.75) {$Y$};
 
 \begin{scope}[thick]
     \draw (U0) -- (V0);
