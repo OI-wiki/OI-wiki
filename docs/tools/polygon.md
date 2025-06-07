@@ -55,9 +55,9 @@ Polygon 的大部分功能都不需要学，能看懂英文就基本能用了。
 
 ### General Info
 
-在这个页面中可以设置题目的时间限制、空间限制、题目类型。
+在这个页面中可以设置题目的时间限制、空间限制、题目类型、题目的标签、所属比赛。
 
-需要注意，"Statement description" 和 "Problem tutorial" 并不是用来写题面和题解的，这两个输入框可能是历史遗留原因。
+在页面的最下方的 "statement sketch" 和 "tutorial sketch" 可以编辑题面、题解的 **草稿**，注意这两项不会出现在正式的题面、题解上。
 
 ### Statement
 
