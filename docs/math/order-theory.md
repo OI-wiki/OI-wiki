@@ -200,7 +200,7 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
         
         因此不难得出 $\{f^{-1}(\{i\}):1\leq i\leq d\}$ 是一个反链覆盖，从而最小反链覆盖数至多为 $d$.
 
-Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#霍尔定理) 等价。
+Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#hall-定理) 等价。
 
 我们可以用 Dilworth 定理证明如下定理：
 
