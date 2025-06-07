@@ -56,12 +56,10 @@ ST 表基于 [倍增](../basic/binary-lifting.md) 思想，可以做到 $\Theta(
     ```cpp
     --8<-- "docs/ds/code/sparse-table/sparse-table_1.cpp"
     ```
-    
-=== "C++ 风格"
-    ```cpp
-    --8<-- "docs/ds/code/sparse-table/sparse-table_2.hpp"
-    ```
-    
+
+== "C++ 风格"`cpp     --8<-- "docs/ds/code/sparse-table/sparse-table_2.hpp"
+    `
+
 === "Python"
     ```python
     --8<-- "docs/ds/code/sparse-table/sparse-table.py"
