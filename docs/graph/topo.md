@@ -112,33 +112,58 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
 
 ### 实现
 
-```cpp
-int n, m;
-vector<int> G[MAXN];
-int in[MAXN];  // 存储每个结点的入度
-
-bool toposort() {
-  vector<int> L;
-  queue<int> S;
-  for (int i = 1; i <= n; i++)
-    if (in[i] == 0) S.push(i);
-  while (!S.empty()) {
-    int u = S.front();
-    S.pop();
-    L.push_back(u);
-    for (auto v : G[u]) {
-      if (--in[v] == 0) {
-        S.push(v);
+=== "C++"
+    ```cpp
+    int n, m;
+    vector<int> G[MAXN];
+    int in[MAXN];  // 存储每个结点的入度
+    
+    bool toposort() {
+      vector<int> L;
+      queue<int> S;
+      for (int i = 1; i <= n; i++)
+        if (in[i] == 0) S.push(i);
+      while (!S.empty()) {
+        int u = S.front();
+        S.pop();
+        L.push_back(u);
+        for (auto v : G[u]) {
+          if (--in[v] == 0) {
+            S.push(v);
+          }
+        }
       }
+      if (L.size() == n) {
+        for (auto i : L) cout << i << ' ';
+        return true;
+      }
+      return false;
     }
-  }
-  if (L.size() == n) {
-    for (auto i : L) cout << i << ' ';
-    return true;
-  }
-  return false;
-}
-```
+    ```
+
+=== "Python"
+    ```python
+    from collections import defaultdict, deque
+    
+    
+    def topo_sort(graph):
+        lst = []
+        in_degree = defaultdict(int)
+        for u in graph:
+            for v in graph[u]:
+                in_degree[v] += 1
+    
+        s = deque([u for u in graph if in_degree[u] == 0])
+        while s:
+            u = s.popleft()
+            lst.append(u)
+            for v in graph.get(u, []):
+                in_degree[v] -= 1
+                if in_degree[v] == 0:
+                    s.append(v)
+    
+        return None if any(in_degree.values()) else lst
+    ```
 
 ## DFS 算法
 
