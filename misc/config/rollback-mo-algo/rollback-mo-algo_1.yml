@@ -1,0 +1,10 @@
+id: oi-wiki:misc/rollback-mo-algo-1
+name: Rollback Mo Algo
+solution:
+  cpp: docs/misc/code/rollback-mo-algo/rollback-mo-algo_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/examples/rollback-mo-algo/rollback-mo-algo_1.ans
+  input: docs/misc/examples/rollback-mo-algo/rollback-mo-algo_1.in
+version: 1000
