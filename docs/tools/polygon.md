@@ -57,8 +57,6 @@ Polygon 的大部分功能都不需要学，能看懂英文就基本能用了。
 
 在这个页面中可以设置题目的时间限制、空间限制、题目类型。
 
-需要注意，"Statement description" 和 "Problem tutorial" 并不是用来写题面和题解的，这两个输入框可能是历史遗留原因。
-
 ### Statement
 
 这个页面是用来写题面和题解的。还可以通过 "Review" 按钮来查看题面、validator 与 checker，一般用于审核。
