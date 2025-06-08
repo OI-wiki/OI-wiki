@@ -21,7 +21,7 @@ IDA \* 为采用了迭代加深算法的 A \* 算法。
 
 $$
 \begin{array}{ll}
-1 &  \textbf{procedure } \text{IDAStar}(\textit{StartState}) \\
+1 &  \textbf{Procedure } \text{IDAStar}(\textit{StartState}) \\
 2 &  \qquad \textit{PathLimit} \gets H(\textit{StartState}) - 1 \\
 3 &  \qquad \textit{Success} \gets \text{false} \\
 4 &  \qquad \textbf{repeat} \\
