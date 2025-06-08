@@ -28,9 +28,9 @@ $$
 5 &  \qquad \qquad \textit{PathLimit} \gets \textit{PathLimit} + 1 \\
 6 &  \qquad \qquad \textit{StartState}.g \gets 0 \\
 7 &  \qquad \qquad \textit{OpenStack} \gets \varnothing \\
-8 &  \qquad \qquad \text{Push}(\textit{OpenStack}, \textit{StartState}) \\
+8 &  \qquad \qquad \text{push } \textit{StartState} \text{ to } \textit{OpenStack} \\
 9 &  \qquad \qquad \textbf{repeat} \\
-10 &  \qquad \qquad \qquad \textbf{if } \text{empty}(\textit{OpenStack}) \textbf{ then} \\
+10 &  \qquad \qquad \qquad \textbf{if } \textit{OpenStack} \text{ is empty} \textbf{ then} \\
 11 &  \qquad \qquad \qquad \qquad \textbf{break} \\
 12 &  \qquad \qquad \qquad \textit{CurrentState} \gets \text{Pop}(\textit{OpenStack}) \\
 13 &  \qquad \qquad \qquad \textbf{if } \text{Solution}(\textit{CurrentState}) \textbf{ then} \\
@@ -39,7 +39,7 @@ $$
 16 &  \qquad \qquad \qquad \textbf{elseif } \textit{PathLimit} \geq \textit{CurrentState}.g + H(\textit{CurrentState}) \textbf{ then} \\
 17 &  \qquad \qquad \qquad \qquad \textbf{for } \text{each }\textit{Child }\text{in Expand}(\textit{CurrentState}) \textbf{ do} \\
 18 &  \qquad \qquad \qquad \qquad \qquad \textit{Child}.g \gets \textit{CurrentState}.g + \text{Cost(CurrentState, Child)} \\
-19 &  \qquad \qquad \qquad \qquad \qquad \text{Push}(\textit{OpenStack}, \textit{Child}) \\
+19 &  \qquad \qquad \qquad \qquad \qquad \text{push } \textit{Child} \text{ to } \textit{OpenStack} \\
 20 &  \qquad \qquad \textbf{until } \textit{Success} \\
 21 &  \qquad \textbf{until } \textit{Success} \textbf{ or } \text{ResourceLimitsReached( )}
 \end{array}
