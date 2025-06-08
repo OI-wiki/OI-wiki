@@ -1,11 +1,12 @@
 \documentclass[12pt]{standalone}
+\usepackage{xcolor}
 \usepackage{amssymb}
 
 \usepackage{tikz}
 
-\newcommand{\Cross}{$\mathbin{\tikz [solid,x=2ex,y=2ex,line width=.3ex, red] \draw (0,0) -- (1,1) (0,1) -- (1,0);}$}%
+\newcommand{\Cross}{$\mathbin{\tikz [solid,x=2ex,y=2ex,line width=.4ex, red] \draw (0,0) -- (1,1) (0,1) -- (1,0);}$}%
 
-\newcommand{\Checkmark}{\LARGE $\color{teal}\checkmark$}
+\newcommand{\Checkmark}{\LARGE $\color{green}\checkmark$}
 
 \begin{document}
 
@@ -16,15 +17,15 @@
 
 \begin{scope}
     % vertices.
-    \node [fill=brown]  (1) at (0,0) {};
-    \node [fill=orange] (2) at (-1.25,-1) {};
-    \node [fill=orange] (3) at (0,-1) {};
-    \node [fill=orange] (4) at (1.25,-1) {};
-    \node [fill=brown]  (5) at (-1.75,-2) {};
-    \node [fill=brown]  (6) at (-0.5,-2) {};
-    \node [fill=brown]  (7) at (0.5,-2) {};
-    \node [fill=brown]  (8) at (1.75,-2) {};
-    \node [fill=orange] (9) at (-0.5,-3) {};
+    \node [fill=brown!80!black]   (1) at (0,0) {};
+    \node [fill=yellow!80!orange] (2) at (-1.25,-1) {};
+    \node [fill=yellow!80!orange] (3) at (0,-1) {};
+    \node [fill=yellow!80!orange] (4) at (1.25,-1) {};
+    \node [fill=brown!80!black]   (5) at (-1.75,-2) {};
+    \node [fill=brown!80!black]   (6) at (-0.5,-2) {};
+    \node [fill=brown!80!black]   (7) at (0.5,-2) {};
+    \node [fill=brown!80!black]   (8) at (1.75,-2) {};
+    \node [fill=yellow!80!orange] (9) at (-0.5,-3) {};
     % tree edges.
     \draw [very thick] (1) -- (2);
     \draw [very thick] (1) -- (3);
