@@ -29,7 +29,7 @@ $$
 6 &  \qquad \textbf{repeat} \\
 7 &  \qquad \qquad \text{PathLimit} \gets \text{PathLimit} + 1 \\
 8 &  \qquad \qquad \text{StartState}.g \gets 0 \\
-9 &  \qquad \qquad \text{OpenStack} \gets \varnothing \quad  \text{// Initialize stack} \\
+9 &  \qquad \qquad \text{OpenStack} \gets \varnothing \\
 10 &  \qquad \qquad \text{Push(OpenStack, StartState)} \\
 11 &  \qquad \qquad \textbf{repeat} \\
 12 &  \qquad \qquad \qquad \textbf{if } \text{empty(OpenStack)} \textbf{ then} \\
