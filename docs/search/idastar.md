@@ -21,32 +21,29 @@ IDA \* 为采用了迭代加深算法的 A \* 算法。
 
 $$
 \begin{array}{ll}
-1 &  \textbf{Input.} \\
-2 &  \textbf{Output.} \\
-3 &  \textbf{Method.} \\
-4 &  \qquad \text{PathLimit} \gets H(\text{StartState}) - 1 \\
-5 &  \qquad \text{Success} \gets \text{false} \\
-6 &  \qquad \textbf{repeat} \\
-7 &  \qquad \qquad \text{PathLimit} \gets \text{PathLimit} + 1 \\
-8 &  \qquad \qquad \text{StartState}.g \gets 0 \\
-9 &  \qquad \qquad \text{OpenStack} \gets \varnothing \\
-10 &  \qquad \qquad \text{Push(OpenStack, StartState)} \\
-11 &  \qquad \qquad \textbf{repeat} \\
-12 &  \qquad \qquad \qquad \textbf{if } \text{empty(OpenStack)} \textbf{ then} \\
-13 &  \qquad \qquad \qquad \qquad \textbf{break} \\
-14 &  \qquad \qquad \qquad \text{CurrentState} \gets \text{Pop(OpenStack)} \\
-15 &  \qquad \qquad \qquad \textbf{if } \text{Solution(CurrentState)} \textbf{ then} \\
-16 &  \qquad \qquad \qquad \qquad \text{Success} \gets \text{true} \\
-17 &  \qquad \qquad \qquad \qquad \textbf{break} \\
-18 &  \qquad \qquad \qquad \textbf{elseif } \text{PathLimit} \geq \text{CurrentState}.g + H(\text{CurrentState}) \textbf{ then} \\
-19 &  \qquad \qquad \qquad \qquad \textbf{for } \text{each Child in Expand(CurrentState)} \textbf{ do} \\
-20 &  \qquad \qquad \qquad \qquad \qquad \text{Child}.g \gets \text{CurrentState}.g + \text{Cost(CurrentState, Child)} \\
-21 &  \qquad \qquad \qquad \qquad \qquad \text{Push(OpenStack, Child)} \\
-22 &  \qquad \qquad \textbf{until } \text{Success} \\
-23 &  \qquad \textbf{until } \text{Success} \textbf{ or } \text{ResourceLimitsReached( )}
+1 &  \textbf{procedure } \text{IDAStar}(\textit{StartState}) \\
+2 &  \qquad \textit{PathLimit} \gets H(\textit{StartState}) - 1 \\
+3 &  \qquad \textit{Success} \gets \text{false} \\
+4 &  \qquad \textbf{repeat} \\
+5 &  \qquad \qquad \textit{PathLimit} \gets \textit{PathLimit} + 1 \\
+6 &  \qquad \qquad \textit{StartState}.g \gets 0 \\
+7 &  \qquad \qquad \textit{OpenStack} \gets \varnothing \\
+8 &  \qquad \qquad \text{Push}(\textit{OpenStack}, \textit{StartState}) \\
+9 &  \qquad \qquad \textbf{repeat} \\
+10 &  \qquad \qquad \qquad \textbf{if } \text{empty}(\textit{OpenStack}) \textbf{ then} \\
+11 &  \qquad \qquad \qquad \qquad \textbf{break} \\
+12 &  \qquad \qquad \qquad \textit{CurrentState} \gets \text{Pop}(\textit{OpenStack}) \\
+13 &  \qquad \qquad \qquad \textbf{if } \text{Solution}(\textit{CurrentState}) \textbf{ then} \\
+14 &  \qquad \qquad \qquad \qquad \textit{Success} \gets \text{true} \\
+15 &  \qquad \qquad \qquad \qquad \textbf{break} \\
+16 &  \qquad \qquad \qquad \textbf{elseif } \textit{PathLimit} \geq \textit{CurrentState}.g + H(\textit{CurrentState}) \textbf{ then} \\
+17 &  \qquad \qquad \qquad \qquad \textbf{for } \text{each }\textit{Child }\text{in Expand}(\textit{CurrentState}) \textbf{ do} \\
+18 &  \qquad \qquad \qquad \qquad \qquad \textit{Child}.g \gets \textit{CurrentState}.g + \text{Cost(CurrentState, Child)} \\
+19 &  \qquad \qquad \qquad \qquad \qquad \text{Push}(\textit{OpenStack}, \textit{Child}) \\
+20 &  \qquad \qquad \textbf{until } \textit{Success} \\
+21 &  \qquad \textbf{until } \textit{Success} \textbf{ or } \text{ResourceLimitsReached( )}
 \end{array}
 $$
-
 ## 例题
 
 ???+ note "[埃及分数](https://loj.ac/p/10022)"
