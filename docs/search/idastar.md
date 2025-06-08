@@ -44,6 +44,7 @@ $$
 21 &  \qquad \textbf{until } \textit{Success} \textbf{ or } \text{ResourceLimitsReached( )}
 \end{array}
 $$
+
 ## 例题
 
 ???+ note "[埃及分数](https://loj.ac/p/10022)"
