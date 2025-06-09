@@ -30,10 +30,11 @@ auto& e = a;  // e 是 int& 类型，没有拷贝开销
 
 int main() {
   int a = 1926;
-  decltype(a) b;                       // 根据实体推断， b 是 int 类型
-  decltype(1 + 1) c;                   // 根据表达式推断，c 是 int 类型
-  decltype((a)) d = a;                 // 根据表达式推断，d 是 int& 类型！
-  std::vector<decltype(b)> vec = {0};  // 根据实体推断，vec 是 std::vector <int> 类型
+  decltype(a) b;        // 根据实体推断， b 是 int 类型
+  decltype(1 + 1) c;    // 根据表达式推断，c 是 int 类型
+  decltype((a)) d = a;  // 根据表达式推断，d 是 int& 类型！
+  std::vector<decltype(b)> vec = {
+      0};  // 根据实体推断，vec 是 std::vector <int> 类型
   return 0;
 }
 ```
@@ -54,7 +55,7 @@ for (item_declaration : range_initializer) statement
 
 比如：
 
-```c++
+```cpp
 std::array<int, 4> arr = {1, 2, 3, 4};
 for (int x : arr) {
   std::cout << x << std::endl;
@@ -104,6 +105,7 @@ struct C {
   int a[4];
 
   int* begin() { return a; }
+
   int* end() { return a + 4; }
 };
 
@@ -138,17 +140,18 @@ int main() {
 
 ```cpp
 struct C {
-    int x{1}, y{2};
+  int x{1}, y{2};
 };
-int arr[]{ 4, 5, 6 };
 
-auto [c1, c2] = C{};      // c1=1,c2=2; int 类型
-auto& [a1, a2, a3] = arr; // a1=arr[0],a2=arr[1],a3=arr[2]; int& 类型
+int arr[]{4, 5, 6};
+
+auto [c1, c2] = C{};       // c1=1,c2=2; int 类型
+auto& [a1, a2, a3] = arr;  // a1=arr[0],a2=arr[1],a3=arr[2]; int& 类型
 ```
 
 注意以下几点：
 
--   左侧的变量数和右侧的s子元素数必须一样
+-   左侧的变量数和右侧的 s 子元素数必须一样
 -   类型声明需要使用 `auto`
 -   可以使用 `&` 修饰获取引用
 
@@ -419,12 +422,10 @@ func(1, 2.1, true);
 
 ### 缩写函数模板（C++20）
 
-C++20起可以直接使用 `auto ...` 作为参数类型，实现函数模板的缩写：
+C++20 起可以直接使用 `auto ...` 作为参数类型，实现函数模板的缩写：
 
 ```cpp
-void func(auto... args) {
-  (std::cout << ... << args) << std::endl;
-}
+void func(auto... args) { (std::cout << ... << args) << std::endl; }
 ```
 
 注意它本质上仍然是函数模板，与下面的写法等价：
@@ -435,7 +436,6 @@ void func(T... args) {
   (std::cout << ... << args) << std::endl;
 }
 ```
-
 
 ## 范围库（C++20）
 
