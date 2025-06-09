@@ -11,18 +11,18 @@ auto a = 1;        // a 是 int 类型
 auto b = a + 0.1;  // b 是 double 类型
 ```
 
-`auto` 会去除引用和 const 修饰，如果不希望出现拷贝开销，必须手动指定：
+注意 `auto` 会去除引用，如果不希望出现拷贝开销，需要手动指定：
 
 ```cpp
 int a = 1;
-const int& b = a;
-auto c = b;   // c 是 int 类型，没有const和&，有拷贝开销
+int& b = a;
+auto c = b;   // c 是 int 类型，有拷贝开销
 auto& e = a;  // e 是 int& 类型，没有拷贝开销
 ```
 
 ## decltype 说明符
 
-`decltype` 可以根据实体或表达式推断类型，注意实体和表达式的推导方式不同，错误使用可能造成悬垂引用。竞赛中不常用也不推荐使用，此处仅粗略介绍。
+`decltype` 可以根据 **实体** 或 **表达式** 推断类型，注意二者推导类型的方式不同，错误使用可能造成悬垂引用。竞赛中不常用，此处仅粗略介绍。
 
 ```cpp
 #include <iostream>
@@ -30,10 +30,10 @@ auto& e = a;  // e 是 int& 类型，没有拷贝开销
 
 int main() {
   int a = 1926;
-  decltype(a) b;                       // b 是 int 类型
-  decltype(1 + 1) c;                   // c 是 int 类型
-  decltype((a)) d = a;                 // d 是 int& 类型！！
-  std::vector<decltype(b)> vec = {0};  // vec 是 std::vector <int> 类型
+  decltype(a) b;                       // 根据实体推断， b 是 int 类型
+  decltype(1 + 1) c;                   // 根据表达式推断，c 是 int 类型
+  decltype((a)) d = a;                 // 根据表达式推断，d 是 int& 类型！
+  std::vector<decltype(b)> vec = {0};  // 根据实体推断，vec 是 std::vector <int> 类型
   return 0;
 }
 ```
@@ -44,7 +44,7 @@ int main() {
 
 ## 基于范围的 `for` 循环
 
-遍历数组等对象时，**范围 for 的速度几乎等于条件 for，甚至更快**，因为不需要根据索引寻址。
+使用范围 for 遍历可迭代对象，与使用迭代器遍历的效率相同。上述二者的效率一般优于索引遍历，因为不需要根据索引寻址。
 
 下面是一种简单的基于范围的 `for` 循环的语法：
 
@@ -72,21 +72,21 @@ for (auto px = arr.begin(), ed = arr.end(); px != ed; ++px) {
 
 ### item-declaration 项声明
 
-简单的说，就是声明一个变量，用于接受右边容器的元素。可以用 `auto` 自动推导类型，复杂类型常用引用类型 `auto&` 防止拷贝开销。
+声明一个变量用于接受右侧容器中的元素，变量类型要与容器内子元素类型一致。可以用 `auto` 自动推导类型，复杂类型常用 `auto&` 防止拷贝开销。
 
 ### range-initializer 范围初始化器
 
 范围初始化器可以是任何一种可迭代的对象（比如数组，或定义了 `begin` 和 `end` 成员函数的类对象）。如果放入表达式，表达式也只会计算一次。
 
-这里有一个例子：
+例子：
 
 ```cpp
 int a[] = {1, 1, 4, 5, 1, 4};
 std::vector<int> b{1, 1, 4, 5, 1, 4};
 std::map<std::string, int> c{{"114", 114}, {"514", 514}};
 for (int i : a) std::cout << i;
-for (int i : b) std::cout << i;
-// i 的类型是 std::pair<const std::string, int>&
+for (auto i : b) std::cout << i;
+// 下方 i 的类型是 std::pair<const std::string, int>&
 for (auto& i : c) std::cout << i.first << i.second;
 for (auto i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 ```
@@ -104,7 +104,6 @@ struct C {
   int a[4];
 
   int* begin() { return a; }
-
   int* end() { return a + 4; }
 };
 
@@ -119,7 +118,7 @@ int main() {
 
 ### 初始化语句（C++20）
 
-在 C++20 中还可以使用初始化语句实现一些功能，例如加入计数器：
+在 C++20 中还可以使用初始化语句实现一些功能，例如循环计数器：
 
 ```cpp
 #include <iostream>
@@ -128,8 +127,8 @@ int main() {
 int main() {
   std::vector<int> v = {0, 1, 2, 3, 4, 5};
 
-  for (auto n = v.size(); auto i : v)  // the init-statement (C++20)
-    std::cout << --n + i << ' ';
+  for (int counter = 0; auto i : v)  // the init-statement (C++20)
+    std::cout << counter++ << ' ' << i << std::endl;
 }
 ```
 
@@ -139,30 +138,28 @@ int main() {
 
 ```cpp
 struct C {
-  int x{1}, y{2};
+    int x{1}, y{2};
 };
+int arr[]{ 4, 5, 6 };
 
-auto [c1, c2] = C();
-// c1=1; c2=2;
-int arr[] = {4, 5, 6};
-auto& [a1, a2, a3] = arr;
-// a1=4; a2=5; a3=6;
+auto [c1, c2] = C{};      // c1=1,c2=2; int 类型
+auto& [a1, a2, a3] = arr; // a1=arr[0],a2=arr[1],a3=arr[2]; int& 类型
 ```
 
 注意以下几点：
 
--   左边的变量数和右边的子元素数必须一样
+-   左侧的变量数和右侧的s子元素数必须一样
 -   类型声明需要使用 `auto`
--   可以使用 `&` 和 `const` 等修饰
+-   可以使用 `&` 修饰获取引用
 
-最常用的地方大概是 `map` 的范围 for，比如：
+你可以在遍历 `map` 容器时这样写：
 
 ```cpp
 std::map<std::string, int> m = {{"k1", 1}, {"k2", 2}};
 
 // 使用 "auto&" ，没有拷贝开销
 for (auto& [k, v] : m) {
-  // k 的类型是 const std::string& ，因为键自带const修饰
+  // k 的类型是 const std::string& ，因为键自带 const 修饰
   // v 的类型是 int&
   std::cout << k << ' ' << v << std::endl;
 }
@@ -184,16 +181,14 @@ int main() {
   std::tuple<int, int, std::string, std::vector<int>> tup =
       std::make_tuple(817, 114, "514", vec);
 
-  // 使用 get<> 获取子元素，尖括号里面的必须是整型常量表达式
-
+  // 使用 get<> 获取子元素，尖括号内必须是整型常量表达式
   for (auto i : std::get<expr>(tup)) std::cout << i << " ";
-  // 注意 std::tuple 的首元素编号为 0，
-  // 故我们 std::get<3> 得到了一个 std::vector<int>
+  // 首元素编号为 0，故我们 std::get<3> 得到了一个 std::vector<int>
   return 0;
 }
 ```
 
-在 C++17 后，可以使用结构化绑定提取值，比如：
+在 C++17 之后，可以使用结构化绑定提取值，像这样：
 
 ```cpp
 std::vector<int> vec = {1, 9, 2, 6, 0};
@@ -212,7 +207,7 @@ std::cout << d.size() << ' ' << d[2] << std::endl;
 | `operator=` | 赋值一个 `tuple` 的内容给另一个 |
 | `swap`      | 交换二个 `tuple` 的内容     |
 
-例子
+例子：
 
 ```cpp
 constexpr std::tuple<int, int> tup = {1, 2};
@@ -230,7 +225,7 @@ tupB.swap(tupA);
 | `operator==` 等 | 按字典顺序比较 `tuple` 中的值          |
 | `std::swap`    | 特化的 `std::swap` 算法           |
 
-例子
+例子：
 
 ```cpp
 std::tuple<int, int> tupA = {2, 3}, tupB;
@@ -269,7 +264,7 @@ std::cout << std::get<1>(tupA) << std::endl;
 
 `std::function` 的实例能存储、复制及调用任何 [**可调用**](https://zh.cppreference.com/w/cpp/named_req/Callable) 对象，这包括 [**Lambda 表达式**](./lambda.md)、成员函数指针或其他 [**函数对象**](#函数对象)。
 
-若 `std::function` 不含任何可调用对象（比如默认构造），调用时导致抛出 [`std::bad_function_call`](https://zh.cppreference.com/w/cpp/utility/functional/bad_function_call) 异常。
+若 `std::function` 不含任何可调用对象（比如默认构造），调用时将抛出 [`std::bad_function_call`](https://zh.cppreference.com/w/cpp/utility/functional/bad_function_call) 异常。
 
 ```cpp
 #include <functional>
@@ -327,7 +322,7 @@ template <typename... Clazz>
 void fun(Clazz... paras) {}
 ```
 
-`Clazz` 是一个模板参数包（template parameter pack)。`paras` 是一个函数参数包（function parameter pack)，表示 0 个或多个函数参数。函数模板只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
+`paras` 是一个函数参数包（function parameter pack），表示 0 个或多个函数参数。`Clazz` 是一个模板参数包（template parameter pack），一个函数模板只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
 
 可以简单理解：
 
@@ -343,11 +338,11 @@ fun(1, 2, 3);
 fun(1, 0.0, "abc");
 ```
 
-### 参数包展开（Parameter Pack Expansion）
+### 参数包展开
 
 #### 参数包展开语法
 
-参数包展开非常简单，使用 `...` 即可展开，将自动使用 `,` 分隔。比如：
+参数包展开非常简单，使用 `...` 即可，将自动使用 `,` 分隔。比如：
 
 ```cpp
 template <class A, class... C>
@@ -355,14 +350,14 @@ void func(A arg1, C... arg2) {
   // C 是 模板参数包"template parameter pack"
   tuple<A, C...>();  // 展开成 tuple<int, int, double, bool>();
 
-  // arg2 是函数参数包 "function parameter pack"
+  // arg2 是函数参数包"function parameter pack"
   func(arg2...);  // 展开成 func( 2, 1.1, true );
 }
 
 func(1, 2, 1.1, true);
 ```
 
-注意，参数包展开时可以附带需要的运算，比如：
+参数包展开时还可以附带需要的运算，比如：
 
 ```cpp
 template <class A, class... C>
@@ -376,7 +371,7 @@ func(1, 2, 1.1, 2.1f);
 
 #### 终止函数
 
-上面的函数根本无法运行，因为参数数量不断减少，最后变成空，然后报错。
+上面的函数无法运行，因为参数数量不断减少，最后变为空参并报错。
 
 我们需要指定终止条件，可以提供一个普通函数，像这样：
 
@@ -409,13 +404,12 @@ C++17 提供了一种简便的语法处理 **函数参数包**，他的语法是
 template <class... C>
 void func(C... args) {
   (std::cout << ... << args) << std::endl;
-  // 语法 4, 变成 ↓
+  // 语法 4, 等价于 ↓
   // ( ( ( std::cout << 1 ) << 2.1 ) << true ) << std::endl;
-  // 输出: 12.11
-  // 注意true输出成了1，因为这里没有指定boolalpha
+  // 输出: 12.11  注意true输出成了1，因为这里没有指定boolalpha
 
   std::cout << (args && ...) << std::endl;
-  // 语法 1, 变成 ↓
+  // 语法 1, 等价于 ↓
   // std::cout << ( 1 && ( 2.1 && true ) ) ) << std::endl;
   // 输出: 1
 }
@@ -423,67 +417,29 @@ void func(C... args) {
 func(1, 2.1, true);
 ```
 
-### 应用
+### 缩写函数模板（C++20）
 
-在调试的时候有时会倾向于输出中间变量而不是 IDE 的调试功能。但输出的变量很多时，就要写很多重复代码，这时候就可以用上可变参数模板和可变参数宏。
+C++20起可以直接使用 `auto ...` 作为参数类型，实现函数模板的缩写：
 
 ```cpp
-// Author: Backl1ght, c0nstexpr(Coauthor)
-
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-template <typename T>
-ostream& operator<<(ostream& os, const vector<T>& V) {
-  os << "[ ";
-  for (const auto& vv : V) os << vv << ", ";
-  os << "]";
-  return os;
-}
-
-namespace var_debug {
-auto print(const char* fmt, const auto& t) {
-  for (; *fmt == ' '; ++fmt);
-  for (; *fmt != ',' && *fmt != '\0'; ++fmt) cout << *fmt;
-  cout << '=' << t << *(fmt++) << '\n';
-  return fmt;
-}
-
-void print(const char* fmt, const auto&... args) {
-  ((fmt = print(fmt, args)), ...);  // C++17折叠表达式
-}
-}  // namespace var_debug
-
-#define debug(...) var_debug::print(#__VA_ARGS__, __VA_ARGS__)
-
-int main() {
-  int a = 666;
-  vector<int> b({1, 2, 3});
-  string c = "hello world";
-
-  // before
-  cout << "manual cout print\n"
-       << "a=" << a << ", b=" << b << ", c=" << c
-       << '\n';  // a=666, b=[ 1, 2, 3, ], c=hello world
-  // 如果用printf的话，在只有基本数据类型的时候是比较方便的，然是如果要输出vector等的内容的话，就会比较麻烦
-
-  // after
-  cout << "vararg template print\n";
-  debug(a, b, c);  // a=666, b=[ 1, 2, 3, ], c=hello world
-
-  return 0;
+void func(auto... args) {
+  (std::cout << ... << args) << std::endl;
 }
 ```
 
-这样一来，如果事先在代码模板里写好 DEBUG 的相关代码，后续输出中间变量的时候就会方便许多。
+注意它本质上仍然是函数模板，与下面的写法等价：
+
+```cpp
+template <class... T>
+void func(T... args) {
+  (std::cout << ... << args) << std::endl;
+}
+```
+
 
 ## 范围库（C++20）
 
 > 范围库是对迭代器和泛型算法库的一个扩展，使得迭代器和算法可以通过组合变得更强大，并且减少错误。
-
-*范围库内容需要一定的 C++ 理解，且内容都可通过非范围库算法实现，您可以选择性跳过本内容。*
 
 范围即可遍历的序列，包括数组、容器、视图等。
 
