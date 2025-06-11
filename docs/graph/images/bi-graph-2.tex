@@ -36,9 +36,9 @@
     \draw [very thick] (4) -- (8);
     \draw [very thick] (6) -- (9);
     % other edges.
-    \draw [very thick,dashed] (2) -- (7) node [draw=none,pos=0.4,sloped] {\Checkmark};
-    \draw [very thick,dashed] (9) -- (7) node [draw=none,pos=0.5,sloped] {\Checkmark};
-    \draw [very thick,dashed] (3) -- (4) node [draw=none,pos=0.5,sloped] {\Cross};
+    \draw [very thick,dashed,bend right] (2) to node [draw=none,pos=0.4,sloped] {\Checkmark} (1);
+    \draw [very thick,dashed,bend right=10] (9) to node [draw=none,pos=0.5,sloped] {\Cross} (3);
+    \draw [very thick,dashed,bend left=10] (8) to node [draw=none,pos=0.5,sloped] {\Cross} (1);
 \end{scope}
 
 \end{tikzpicture}

@@ -31,15 +31,13 @@
 <path d='M60.46094 9.9375L90.6797 70.3793' stroke='#000' fill='none' stroke-width='1.19553' stroke-miterlimit='10'/>
 <path d='M149.0664 9.9375L179.285 70.3793' stroke='#000' fill='none' stroke-width='1.19553' stroke-miterlimit='10'/>
 <path d='M22.4102 81.4373V140.6443' stroke='#000' fill='none' stroke-width='1.19553' stroke-miterlimit='10'/>
-<path d='M-25.6836 7.6133L88.2227 72.7033' stroke='#000' fill='none' stroke-width='1.19553' stroke-miterlimit='10' stroke-dasharray='2.98883 2.98883'/>
-<g fill='#0f0' transform='matrix(.8682 .49611 -.49611 .8682 -74.195908 64.331533)'>
+<path d='M-24.9805 3.8398C15-2.25 41.0117-23.0586 55.72656-60.73047' stroke='#000' fill='none' stroke-width='1.19553' stroke-miterlimit='10' stroke-dasharray='2.98883 2.98883'/>
+<g fill='#0f0' transform='matrix(.8488 -.52866 .52866 .8488 -1.191598 86.695782)'>
 <use x='57.851021' y='-66.164663' xlink:href='#g0-88'/>
 </g>
-<path d='M26.5391 142.3553L89.168 79.7263' stroke='#000' fill='none' stroke-width='1.19553' stroke-miterlimit='10' stroke-dasharray='2.98883 2.98883'/>
-<g fill='#0f0' transform='matrix(.70709 -.7071 .7071 .70709 62.700796 209.87784)'>
-<use x='57.851021' y='-66.164663' xlink:href='#g0-88'/>
-</g>
-<path d='M63.6875 4.7188H140.6172' stroke='#000' fill='none' stroke-width='1.19553' stroke-miterlimit='10' stroke-dasharray='2.98883 2.98883'/>
-<path d='M97.003923 9.86719L107.3008-.4297M97.003923-.4297L107.3008 9.86719' stroke='#f00' fill='none' stroke-width='2.05893' stroke-miterlimit='10'/>
+<path d='M24.7891 141.1523C46.1992 93.1363 53.74219 62.9803 57.441405 10.5391' stroke='#000' fill='none' stroke-width='1.19553' stroke-miterlimit='10' stroke-dasharray='2.98883 2.98883'/>
+<path d='M51.500008 83.746113L44.011712 71.265668M41.515625 81.250018L54.000016 73.761713' stroke='#f00' fill='none' stroke-width='2.058876' stroke-miterlimit='10'/>
+<path d='M177.348 71.9413C123.4883 28.6172 96.6641-2.0391 60.875-61.17187' stroke='#000' fill='none' stroke-width='1.19553' stroke-miterlimit='10' stroke-dasharray='2.98883 2.98883'/>
+<path d='M105.07063 10.828152L119.597967 11.79696M112.820646 4.050794L111.851865 18.574225' stroke='#f00' fill='none' stroke-width='2.058844' stroke-miterlimit='10'/>
 </g>
 </svg>
