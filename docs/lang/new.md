@@ -33,8 +33,7 @@ int main() {
   decltype(a) b;        // 根据实体推断， b 是 int 类型
   decltype(1 + 1) c;    // 根据表达式推断，c 是 int 类型
   decltype((a)) d = a;  // 根据表达式推断，d 是 int& 类型！
-  std::vector<decltype(b)> vec = {
-      0};  // 根据实体推断，vec 是 std::vector <int> 类型
+  std::vector<decltype(b)> vec;   // 根据实体推断，vec 是 std::vector <int> 类型
   return 0;
 }
 ```
@@ -151,7 +150,7 @@ auto& [a1, a2, a3] = arr;  // a1=arr[0],a2=arr[1],a3=arr[2]; int& 类型
 
 注意以下几点：
 
--   左侧的变量数和右侧的 s 子元素数必须一样
+-   左侧声明的变量数和右侧对象的子元素数必须一致
 -   类型声明需要使用 `auto`
 -   可以使用 `&` 修饰获取引用
 
@@ -170,7 +169,7 @@ for (auto& [k, v] : m) {
 
 ## std::tuple 元组
 
-定义于头文件 `<tuple>`，即 [元组](https://zh.cppreference.com/w/cpp/utility/tuple)，是 `std::pair` 的推广，可以存储多个不同类型的值，下面来看一个例子：
+[元组](https://zh.cppreference.com/w/cpp/utility/tuple) 定义于头文件 `<tuple>`，是 `std::pair` 的推广，可以存储多个不同类型的值。下面来看一个例子：
 
 ```cpp
 #include <iostream>
@@ -191,7 +190,7 @@ int main() {
 }
 ```
 
-在 C++17 之后，可以使用结构化绑定提取值，像这样：
+在 C++17 之后可以使用结构化绑定提取值，像这样：
 
 ```cpp
 std::vector<int> vec = {1, 9, 2, 6, 0};
