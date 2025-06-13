@@ -30,10 +30,10 @@ auto& e = a;  // e 是 int& 类型，没有拷贝开销
 
 int main() {
   int a = 1926;
-  decltype(a) b;        // 根据实体推断， b 是 int 类型
-  decltype(1 + 1) c;    // 根据表达式推断，c 是 int 类型
-  decltype((a)) d = a;  // 根据表达式推断，d 是 int& 类型！
-  std::vector<decltype(b)> vec;   // 根据实体推断，vec 是 std::vector <int> 类型
+  decltype(a) b;                 // 根据实体推断， b 是 int 类型
+  decltype(1 + 1) c;             // 根据表达式推断，c 是 int 类型
+  decltype((a)) d = a;           // 根据表达式推断，d 是 int& 类型！
+  std::vector<decltype(b)> vec;  // 根据实体推断，vec 是 std::vector <int> 类型
   return 0;
 }
 ```
