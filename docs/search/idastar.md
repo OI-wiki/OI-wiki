@@ -38,7 +38,7 @@ $$
 15 &  \qquad \qquad \qquad \qquad \textbf{break} \\
 16 &  \qquad \qquad \qquad \textbf{elseif } \textit{PathLimit} \geq \textit{CurrentState}.g + H(\textit{CurrentState}) \textbf{ then} \\
 17 &  \qquad \qquad \qquad \qquad \textbf{for } \text{each }\textit{Child }\text{in Expand}(\textit{CurrentState}) \textbf{ do} \\
-18 &  \qquad \qquad \qquad \qquad \qquad \textit{Child}.g \gets \textit{CurrentState}.g + \text{Cost(CurrentState, Child)} \\
+18 &  \qquad \qquad \qquad \qquad \qquad \textit{Child}.g \gets \textit{CurrentState}.g + \text{Cost(\textit{CurrentState}, \textit{Child})} \\
 19 &  \qquad \qquad \qquad \qquad \qquad \text{push } \textit{Child} \text{ to } \textit{OpenStack} \\
 20 &  \qquad \qquad \textbf{until } \textit{Success} \\
 21 &  \qquad \textbf{until } \textit{Success} \textbf{ or } \text{ResourceLimitsReached()}
