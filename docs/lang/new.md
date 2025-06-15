@@ -324,12 +324,12 @@ template <typename... Clazz>
 void fun(Clazz... paras) {}
 ```
 
-`paras` 是一个函数参数包（function parameter pack），表示 0 个或多个函数参数。`Clazz` 是一个模板参数包（template parameter pack），一个函数模板只能含有一个模板参数包，且模板参数包必须位于所有模板参数的最右侧。
+`paras` 是一个函数参数包（function parameter pack），接受 0 个或多个函数实参。`Clazz` 是一个模板参数包（template parameter pack），接受 0 个或多个模板实参（非类型、类型或模板），以 `typename` 标记时只接受类型。
 
 可以简单理解：
 
--   模板参数包 是一堆类型
--   函数参数包 是一堆变量
+-   模板参数包 通常是一堆类型名（但也可用于编译期常量或模板名）
+-   函数参数包 通常是一堆变量名
 
 现在可以这么调用 `fun` 函数：
 
@@ -349,10 +349,10 @@ fun(1, 0.0, "abc");
 ```cpp
 template <class A, class... C>
 void func(A arg1, C... arg2) {
-  // C 是 模板参数包"template parameter pack"
+  // C 是 模板参数包
   tuple<A, C...>();  // 展开成 tuple<int, int, double, bool>();
 
-  // arg2 是函数参数包"function parameter pack"
+  // arg2 是函数参数包
   func(arg2...);  // 展开成 func( 2, 1.1, true );
 }
 
