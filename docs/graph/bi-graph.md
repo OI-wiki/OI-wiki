@@ -58,6 +58,6 @@
 -   [最小边着色](./color.md#二分图-vizing-定理的构造性证明)
 -   [最大匹配](./graph-matching/bigraph-match.md)
 -   [最小边覆盖](./graph-matching/graph-match.md#最小权边覆盖)
--   [最小点覆盖](./graph-matching/bigraph-match.md#二分图最小点覆盖könig-定理)
+-   [最小点覆盖](./graph-matching/bigraph-match.md#二分图最小点覆盖)
 -   [最大独立集](./graph-matching/bigraph-match.md#二分图最大独立集)
 -   [最大权匹配](./graph-matching/bigraph-weight-match.md)
