@@ -33,7 +33,7 @@ $$
 10 &  \qquad \qquad \qquad \textbf{if } \textit{OpenStack} \text{ is empty} \textbf{ then} \\
 11 &  \qquad \qquad \qquad \qquad \textbf{break} \\
 12 &  \qquad \qquad \qquad \textit{CurrentState} \gets \text{Pop}(\textit{OpenStack}) \\
-13 &  \qquad \qquad \qquad \textbf{if } \text{Solution}(\textit{CurrentState}) \textbf{ then} \\
+13 &  \qquad \qquad \qquad \textbf{if } \text{IsSolution}(\textit{CurrentState}) \textbf{ then} \\
 14 &  \qquad \qquad \qquad \qquad \textit{Success} \gets \text{true} \\
 15 &  \qquad \qquad \qquad \qquad \textbf{break} \\
 16 &  \qquad \qquad \qquad \textbf{elseif } \textit{PathLimit} \geq \textit{CurrentState}.g + H(\textit{CurrentState}) \textbf{ then} \\
