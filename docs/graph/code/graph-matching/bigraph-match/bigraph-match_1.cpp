@@ -1,82 +1,87 @@
-#include <cassert>
+#include <algorithm>
+#include <ctime>
 #include <iostream>
+#include <random>
+#include <tuple>
 #include <vector>
-using namespace std;
 
-struct augment_path {
-  vector<vector<int>> g;
-  vector<int> pa;  // 匹配
-  vector<int> pb;
-  vector<int> vis;  // 访问
-  int n, m;         // 顶点和边的数量
-  int dfn;          // 时间戳记
-  int res;          // 匹配数
+std::mt19937_64 rng(
+    static_cast<std::mt19937_64::result_type>(std::time(nullptr)));
 
-  augment_path(int _n, int _m) : n(_n), m(_m) {
-    assert(0 <= n && 0 <= m);
-    pa = vector<int>(n, -1);
-    pb = vector<int>(m, -1);
-    vis = vector<int>(n);
-    g.resize(n);
-    res = 0;
-    dfn = 0;
-  }
+struct BipartiteGraph {
+  int n1, n2;                       // number of vertices in X and Y, resp.
+  std::vector<std::vector<int>> g;  // edges from X to Y
+  std::vector<int> ma, mb;  // matches from X to Y and from Y to X, resp.
+  std::vector<bool> vis;    // visiting marks for DFS.
 
-  void add(int from, int to) {
-    assert(0 <= from && from < n && 0 <= to && to < m);
-    g[from].push_back(to);
-  }
+  BipartiteGraph(int n1, int n2)
+      : n1(n1), n2(n2), g(n1), ma(n1, -1), mb(n2, -1) {}
 
-  bool dfs(int v) {
-    vis[v] = dfn;
-    for (int u : g[v]) {
-      if (pb[u] == -1) {
-        pb[u] = v;
-        pa[v] = u;
+  // Add an edge from u in X to v in Y.
+  void add_edge(int u, int v) { g[u].emplace_back(v); }
+
+  // Find an augmenting path starting at u.
+  bool dfs(int u) {
+    vis[u] = true;
+    // Heuristic: find unsaturated vertices whenever possible.
+    for (int v : g[u]) {
+      if (mb[v] == -1) {
+        ma[u] = v;
+        mb[v] = u;
         return true;
       }
     }
-    for (int u : g[v]) {
-      if (vis[pb[u]] != dfn && dfs(pb[u])) {
-        pa[v] = u;
-        pb[u] = v;
+    for (int v : g[u]) {
+      if (!vis[mb[v]] && dfs(mb[v])) {
+        ma[u] = v;
+        mb[v] = u;
         return true;
       }
     }
     return false;
   }
 
-  int solve() {
-    while (true) {
-      dfn++;
-      int cnt = 0;
-      for (int i = 0; i < n; i++) {
-        if (pa[i] == -1 && dfs(i)) {
-          cnt++;
-        }
-      }
-      if (cnt == 0) {
-        break;
-      }
-      res += cnt;
+  // Kuhn's maximum matching algorithm.
+  std::vector<std::pair<int, int>> kuhn_maximum_matching() {
+    // Randomly shuffle the edges.
+    for (int u = 0; u < n1; ++u) {
+      std::shuffle(g[u].begin(), g[u].end(), rng);
     }
-    return res;
+    // Find a maximal set of vertex-disjoint augmenting paths in each round.
+    while (true) {
+      bool succ = false;
+      vis.assign(n1, false);
+      for (int u = 0; u < n1; ++u) {
+        succ |= ma[u] == -1 && dfs(u);
+      }
+      if (!succ) break;
+    }
+    // Collect the matched pairs.
+    std::vector<std::pair<int, int>> matches;
+    matches.reserve(n1);
+    for (int u = 0; u < n1; ++u) {
+      if (ma[u] != -1) {
+        matches.emplace_back(u, ma[u]);
+      }
+    }
+    return matches;
   }
 };
 
 int main() {
-  int n, m, e;
-  cin >> n >> m >> e;
-  augment_path solver(n, m);
-  int u, v;
-  for (int i = 0; i < e; i++) {
-    cin >> u >> v;
-    u--, v--;
-    solver.add(u, v);
+  std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
+  int n1, n2, m;
+  std::cin >> n1 >> n2 >> m;
+  BipartiteGraph gr(n1, n2);
+  for (int i = 0; i < m; ++i) {
+    int u, v;
+    std::cin >> u >> v;
+    gr.add_edge(u, v);
   }
-  cout << solver.solve() << "\n";
-  for (int i = 0; i < n; i++) {
-    cout << solver.pa[i] + 1 << " ";
+  auto res = gr.kuhn_maximum_matching();
+  std::cout << res.size() << '\n';
+  for (int i = 0; i < res.size(); ++i) {
+    std::cout << res[i].first << ' ' << res[i].second << '\n';
   }
-  cout << "\n";
+  return 0;
 }
