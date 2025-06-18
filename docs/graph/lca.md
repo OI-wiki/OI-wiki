@@ -151,11 +151,11 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 
 树链剖分的预处理时间复杂度为 $O(n)$，单次查询的时间复杂度为 $O(\log n)$，并且常数较小。
 
-### LCT
+### Link Cut Tree
 
-在 [LCT](../ds/lct.md) 中，设连续两次 [access](../ds/lct.md#access) 操作的点分别为 `u` 和 `v`，则第二次 [access](../ds/lct.md#access) 操作返回的点即为 `u` 和 `v` 的 LCA.
+在 [Link Cut Tree](../ds/lct.md) 中，设连续两次 [access](../ds/lct.md#access) 操作的点分别为 `u` 和 `v`，则第二次 [access](../ds/lct.md#access) 操作返回的点即为 `u` 和 `v` 的 LCA.
 
-在无 link 和 cut 等操作的情况下，使用 link cut tree 单次查询的时间复杂度为 $O(\log n)$。
+在无 link 和 cut 等操作的情况下，使用 Link Cut Tree 单次查询的时间复杂度为 $O(\log n)$。
 
 ### 标准 RMQ
 
