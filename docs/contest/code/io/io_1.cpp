@@ -1,5 +1,5 @@
 #include <cstdio>
-#include <iostream>
+#include <concepts>
 using namespace std;
 
 // --8<-- [start:core]
@@ -27,19 +27,14 @@ struct IO {
     return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
   }
 
-  template <class T>
+  template <std::signed_integral T>
   void read(T &x) {
-    double tmp = 1;
     bool sign = false;
     x = 0;
     char ch = gc();
     for (; !isdigit(ch); ch = gc())
-      if (ch == '-') sign = 1;
-    for (; isdigit(ch); ch = gc()) x = x * 10 + (ch - '0');
-    if (ch == '.')
-      for (ch = gc(); isdigit(ch); ch = gc())
-        tmp /= 10.0, x += tmp * (ch - '0');
-    if (sign) x = -x;
+      if (ch == '-') sign = true;
+    for (; isdigit(ch); ch = gc()) x = x * 10 + (sign ? ('0' - ch) : (ch - '0'));
   }
 
   void read(char *s) {
@@ -60,14 +55,16 @@ struct IO {
 #endif
   }
 
-  template <class T>
+  template <std::signed_integral T>
   void write(T x) {
-    if (x < 0) x = -x, push('-');  // 负数输出
-    static T sta[35];
-    T top = 0;
+    using UnsignedType = std::make_unsigned_t<T>;
+    UnsignedType t = static_cast<UnsignedType>(x);
+    if (x < 0) t = -t, push('-');
+    static T sta[40];
+    int top = 0;
     do {
-      sta[top++] = x % 10, x /= 10;
-    } while (x);
+      sta[top++] = t % 10, t /= 10;
+    } while (t);
     while (top) push(sta[--top] + '0');
   }
 
