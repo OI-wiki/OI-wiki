@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <concepts>
+#include <cstdio>
 using namespace std;
 
 // --8<-- [start:core]
@@ -34,7 +34,8 @@ struct IO {
     char ch = gc();
     for (; !isdigit(ch); ch = gc())
       if (ch == '-') sign = true;
-    for (; isdigit(ch); ch = gc()) x = x * 10 + (sign ? ('0' - ch) : (ch - '0'));
+    for (; isdigit(ch); ch = gc())
+      x = x * 10 + (sign ? ('0' - ch) : (ch - '0'));
   }
 
   void read(char *s) {

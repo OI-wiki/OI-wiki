@@ -1,11 +1,12 @@
+#include <cmath>
 #include <cstdio>
 #include <iostream>
-#include <cmath>
 using namespace std;
 
 // --8<-- [start:core]
 template <typename T>
-typename std::enable_if<std::is_integral<T>::value && std::is_signed<T>::value>::type
+typename std::enable_if<std::is_integral<T>::value &&
+                        std::is_signed<T>::value>::type
 read(T &x) {
   bool neg = false;
   x = 0;
@@ -21,7 +22,8 @@ read(T &x) {
 }
 
 template <typename T>
-typename std::enable_if<std::is_integral<T>::value && std::is_signed<T>::value>::type
+typename std::enable_if<std::is_integral<T>::value &&
+                        std::is_signed<T>::value>::type
 write(T x) {
   using UnsignedType = typename std::make_unsigned<T>::type;
   UnsignedType t = static_cast<UnsignedType>(x);
