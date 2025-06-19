@@ -152,7 +152,7 @@ Hello World!
 
 对于名为 `qwq.c/cpp` 的 C，C++ 程序源代码，可以使用 `make qwq` 自动编译成对应名为 `qwq` 的程序。
 
-如需添加额外的编译选项，可使用 `export CFLAGS="xxx"`（C 程序）或 `export CXXFLAGS="xxx"`（C++ 程序）指定。如需添加额外的预编译选项，可使用 `export CPPFLAGS="xxx"` 指定。
+如需添加额外的编译选项，可使用 `export CFLAGS="xxx"`（C 程序）或 `export CXXFLAGS="xxx"`（C++ 程序）指定。如需添加额外的预编译选项，可使用 `export CPPFLAGS="xxx"` 指定。上述设置方法也可以写做类似 `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` 来指定单次命令执行中使用的环境变量。
 
 ### Sanitizers
 
