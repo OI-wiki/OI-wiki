@@ -32,8 +32,9 @@ int main() {
   fstat(fd, &state);  // 获取文件大小
   pc = (char *)mmap(NULL, state.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
   int n, x, sum = 0;
+  rd(n);
   while (n--) {
-    read(x);
+    rd(x);
     sum += x;
   }
   printf("%d\n", sum);
