@@ -55,7 +55,7 @@ std::cin.tie(nullptr);
 ### 实现设计
 
 ???+ note "注意"
-    当前的优化方法着重于进行更快的 I/O，而在数据转换过程中均采用朴素方法，并未充分利用硬件特性。现如今绝大多数 x86 架构 CPU 均支持 AVX2 指令集，可以利用 SIMD 加速整数与字符串之间的转换。标准库函数并未利用 SIMD 优化，如 libstdc++ 的[实现](https://github.com/gcc-mirror/gcc/blob/releases/gcc-14.3.0/libstdc%2B%2B-v3/include/bits/charconv.h#L81)为一次转化连续两位，并通过查表的方式转化为字符，因此优化数据转换过程也可能会带来收益。但在竞赛范畴，本文中提到的优化方法已足够应对绝大多数场景。
+    当前的优化方法着重于进行更快的 I/O，而在数据转换过程中均采用朴素方法，并未充分利用硬件特性。现如今绝大多数 x86 架构 CPU 均支持 AVX2 指令集，可以利用 SIMD 加速整数与字符串之间的转换。标准库函数并未利用 SIMD 优化，如 libstdc++ 的 [实现](https://github.com/gcc-mirror/gcc/blob/releases/gcc-14.3.0/libstdc%2B%2B-v3/include/bits/charconv.h#L81) 为一次转化连续两位，并通过查表的方式转化为字符，因此优化数据转换过程也可能会带来收益。但在竞赛范畴，本文中提到的优化方法已足够应对绝大多数场景。
 
 #### 读入优化
 
