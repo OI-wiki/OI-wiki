@@ -64,9 +64,7 @@ struct IO {
     while (top) push(sta[--top] + '0');
   }
 
-  void write(int x, char lastChar) {
-    write(x), push(lastChar);
-  }
+  void write(int x, char lastChar) { write(x), push(lastChar); }
 } io;
 
 // --8<-- [end:core]
