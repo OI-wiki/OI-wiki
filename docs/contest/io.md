@@ -108,7 +108,7 @@ void read(T &x);
 核心代码如下。
 
 ```cpp
---8<-- "docs/contest/code/io/io_2.cpp:core"
+--8<-- "docs/contest/code/io/io_1.cpp:core"
 ```
 
 #### 使用 `fread` 与 `fwrite` 实现
@@ -139,7 +139,7 @@ char buf[1 << 20], *p1, *p2;
 核心代码如下。
 
 ```cpp
---8<-- "docs/contest/code/io/io_1.cpp:core"
+--8<-- "docs/contest/code/io/io_2.cpp:core"
 ```
 
 使用此方法时需要注意：
@@ -157,7 +157,7 @@ void *mmap(void addr[.length], size_t length, int prot, int flags, int fd,
 ```
 
 ???+ warning "注意"
-    `mmap` 不能在 Windows 环境下使用（例如 CodeForces 与 HDU），同时也不建议在正式赛场上使用。实际上使用 `fread` 已经足够快了，且如果用 `mmap` 反复读取一小块文件，做一次内存映射并且内核处理缺页的开销会远比使用 `fread` 的开销大。
+    `mmap` 不能在 Windows 环境下使用（例如 CodeForces 与 HDU 的评测机系统），同时也不建议在正式赛场上使用。实际上使用 `fread` 已经足够快了，且如果用 `mmap` 反复读取一小块文件，做一次内存映射并且内核处理缺页的开销会远比使用 `fread` 的开销大。
 
 首先需获取文件描述符 `fd`，然后通过 `fstat` 获取文件大小，此后通过 `mmap` 获得文件映射到内存的指针 `*pc`。之后可以直接用 `*pc++` 替代 `getchar()` 进行文件读取。
 
