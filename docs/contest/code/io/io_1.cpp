@@ -31,8 +31,7 @@ struct IO {
     char ch = gc();
     for (; !isdigit(ch); ch = gc())
       if (ch == '-') neg = true;
-    for (; isdigit(ch); ch = gc())
-      x = x * 10 + (neg ? ('0' - ch) : (ch - '0'));
+    for (; isdigit(ch); ch = gc()) x = x * 10 + (neg ? ('0' - ch) : (ch - '0'));
   }
 
   void read(char *s) {
