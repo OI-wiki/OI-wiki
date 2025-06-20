@@ -26,13 +26,13 @@ struct IO {
   }
 
   void read(int &x) {
-    bool sign = false;
+    bool neg = false;
     x = 0;
     char ch = gc();
     for (; !isdigit(ch); ch = gc())
-      if (ch == '-') sign = true;
+      if (ch == '-') neg = true;
     for (; isdigit(ch); ch = gc())
-      x = x * 10 + (sign ? ('0' - ch) : (ch - '0'));
+      x = x * 10 + (neg ? ('0' - ch) : (ch - '0'));
   }
 
   void read(char *s) {
@@ -54,14 +54,18 @@ struct IO {
   }
 
   void write(int x) {
-    unsigned int t = static_cast<unsigned int>(x);
-    if (x < 0) t = -t, push('-');
+    bool neg = false;
+    if (x < 0) {
+      neg = true;
+      push('-');
+    }
     static int sta[40];
     int top = 0;
     do {
-      sta[top++] = t % 10, t /= 10;
-    } while (t);
-    while (top) push(sta[--top] + '0');
+      sta[top++] = x % 10;
+      x /= 10;
+    } while (x);
+    while (top) push((neg ? -sta[--top] : sta[--top]) + '0');
   }
 
   void write(int x, char lastChar) { write(x), push(lastChar); }

@@ -16,18 +16,18 @@ void read(int &x) {
 }
 
 void write(int x) {
-  unsigned int t = static_cast<unsigned int>(x);
+  bool neg = false;
   if (x < 0) {
-    t = -t;
+    neg = true;
     putchar('-');
   }
   static int sta[40];
   int top = 0;
   do {
-    sta[top++] = t % 10;
-    t /= 10;
-  } while (t);
-  while (top) putchar(sta[--top] + '0');
+    sta[top++] = x % 10;
+    x /= 10;
+  } while (x);
+  while (top) putchar((neg ? -sta[--top] : sta[--top]) + '0');
 }
 
 // --8<-- [end:core]

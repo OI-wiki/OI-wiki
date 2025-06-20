@@ -11,9 +11,9 @@ author: Marcythm, YZircon, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan, Ent
 
 ### 关闭同步
 
-使用 [`std::ios::sync_with_stdio(false)`](https://en.cppreference.com/w/cpp/io/ios_base/sync_with_stdio) 函数来关闭与 C 流的同步。C++ 为了兼容 C，保证程序在使用了 `printf` 和 `std::cout` 的时候不发生混乱，因此对这两种流进行了同步。同步的 C++ 流保证是线程安全的。
+使用 [`std::ios::sync_with_stdio(false)`](https://en.cppreference.com/w/cpp/io/ios_base/sync_with_stdio) 函数来关闭与 C 流的同步。C++ 为了兼容 C，并且保证程序在使用了 `printf` 和 `std::cout` 的时候不发生混乱，因此对这两种流进行了同步。同步的 C++ 流保证是线程安全的。
 
-这其实是 C++ 为了兼容而采取的保守措施，也是使 `cin` 与 `cout` 速度较慢的主要原因。我们可以在进行 I/O 操作之前关闭与 C 流的同步，但是在这样做之后要注意后续代码中不能同时使用 `std::cin` 和 `scanf`，也不能同时使用 `std::cout` 和 `printf`，但是可以同时使用 `std::cin` 和 `printf`，也可以同时使用 `scanf` 和 `std::cout`。
+这其实是 C++ 为了兼容而采取的保守措施。若开启同步，在每一次 I/O 操作时，C++ 流会立即将此操作应用于对应的 C 缓冲区中，而如果代码中并不涉及 C 风格的 I/O，这一操作便是多余的。因此可以在进行 I/O 操作之前关闭与 C 流的同步，但是在这样做之后要注意后续代码中不能同时使用 `std::cin` 和 `scanf`，也不能同时使用 `std::cout` 和 `printf`，但是可以同时使用 `std::cin` 和 `printf`，也可以同时使用 `scanf` 和 `std::cout`。
 
 ### 解除关联
 
@@ -80,7 +80,7 @@ std::cin.tie(nullptr);
 
 在实现中需要注意整型溢出的问题。如输出优化中不恰当地取相反数会导致整型最小值变为相反数后超出此整型能表示的最大值，这可能导致输出错误。如果读入整型最小值也会发生类似的溢出，但这种情况下可能并不会导致读入数据错误，这是由于溢出得到的值可能与实际输入的值相等。
 
-由于有符号整型溢出是未定义行为，在实现时可以考虑借助无符号整数来避免上述问题。但如果无需输入输出负数，或不可能输入输出此整型的最小值，则这一问题将不会出现。
+有符号整型溢出是未定义行为，在实现时可以借助 C 语言中负整数除法计算向零取整的性质来避免上述问题。但如果无需输入输出负数，或不可能输入输出此整型的最小值，则这一问题将不会出现。
 
 #### 提升实现的通用性
 
@@ -101,14 +101,6 @@ void read(T &x);
 ```
 
 定义函数。
-
-实现中可能需要获得对应整型的无符号类型，可以利用
-
-```cpp
-using UnsignedType = typename std::make_unsigned<T>::type;
-```
-
-获得。
 
 为了方便阅读，后文中的实现假定仅需读入 `int` 类型的整数，这些实现已足够应对大部分题目的需要。
 
@@ -170,7 +162,7 @@ void *mmap(void addr[.length], size_t length, int prot, int flags, int fd,
 ```
 
 ???+ warning "注意"
-    `mmap` 不能在 Windows 环境下使用（例如 CodeForces 与 HDU），同时也不建议在正式赛场上使用。实际上使用 `fread` 已经足够快了，且如果用 `mmap` 反复读取一小块文件，做一次内存映射并且内核处理缺页的花费会远比使用 `fread` 的开销大。
+    `mmap` 不能在 Windows 环境下使用（例如 CodeForces 与 HDU），同时也不建议在正式赛场上使用。实际上使用 `fread` 已经足够快了，且如果用 `mmap` 反复读取一小块文件，做一次内存映射并且内核处理缺页的开销会远比使用 `fread` 的开销大。
 
 首先需获取文件描述符 `fd`，然后通过 `fstat` 获取文件大小，此后通过 `mmap` 获得文件映射到内存的指针 `*pc`。之后可以直接用 `*pc++` 替代 `getchar()` 进行文件读取。
 
