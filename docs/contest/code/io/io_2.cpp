@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <cctype>
+#include <cstdio>
 
 // --8<-- [start:core]
 // #define DEBUG 1  // 调试开关
