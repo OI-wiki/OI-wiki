@@ -7,7 +7,7 @@ author: Marcythm, YZircon, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan, Ent
 
 ## 基于流的 I/O
 
-对于基于流的 I/O（如 `std::cin` 与 `std::cout`），最常用的优化方法为关闭与 C 流的同步与输入输出流解绑。
+对于基于流的 I/O（如 `std::cin` 与 `std::cout`），最常用的优化方法为关闭与 C 流的同步与解除输入输出流的关联。
 
 ### 关闭同步
 
@@ -15,11 +15,14 @@ author: Marcythm, YZircon, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan, Ent
 
 这其实是 C++ 为了兼容而采取的保守措施，也是使 `cin` 与 `cout` 速度较慢的主要原因。我们可以在进行 I/O 操作之前关闭与 C 流的同步，但是在这样做之后要注意后续代码中不能同时使用 `std::cin` 和 `scanf`，也不能同时使用 `std::cout` 和 `printf`，但是可以同时使用 `std::cin` 和 `printf`，也可以同时使用 `scanf` 和 `std::cout`。
 
-### 解除绑定
+### 解除关联
 
-使用 [`tie()`](https://en.cppreference.com/w/cpp/io/basic_ios/tie) 函数解除输入流与输出流的绑定。
+使用 [`tie()`](https://en.cppreference.com/w/cpp/io/basic_ios/tie) 函数解除输入流与输出流的关联。
 
-在默认的情况下 `std::cin.tie()` 绑定的是 `&std::cout`，每次进行格式化输入的时候都要调用 `std::cout.flush()` 清空输出缓冲区，这样会增加 I/O 负担。可以通过 `std::cin.tie(nullptr)` 来解除绑定，进一步加快执行效率。
+在默认的情况下 `std::cin` 关联的是 `&std::cout`，因此每次进行格式化输入的时候都要调用 `std::cout.flush()` 清空输出缓冲区，这样会增加 I/O 负担。可以通过 `std::cin.tie(nullptr)` 来解除关联，进一步加快执行效率。
+
+???+ warning "注意"
+    使用时不可以省略参数写做 `std::cin.tie()`，这样不会解除关联，而是返回与 `std::cin` 关联的输出流。并且也无需进行 `std::cout.tie(nullptr)`，因为默认情况下没有另一条输出流与 `std::cout` 关联。
 
 ### 代码实现
 
@@ -68,7 +71,7 @@ std::cin.tie(nullptr);
 
 输出时需要将整数转化为字符串，一般采取朴素算法，即直接从低到高计算出整数的每一位，转化为字符后逆序输出。
 
-???+ warn "注意"
+???+ warning "注意"
     实际上上述优化并未充分利用硬件特性。例如现如今绝大多数 CPU 均支持 AVX2，可以利用 SIMD 加速整数与字符串的转换，而标准库函数并未采用优化，因此转换所占时间更值得进行优化。
 
 ### 实现细节
@@ -77,11 +80,37 @@ std::cin.tie(nullptr);
 
 在实现中需要注意整型溢出的问题。如输出优化中不恰当地取相反数会导致整型最小值变为相反数后超出此整型能表示的最大值，这可能导致输出错误。如果读入整型最小值也会发生类似的溢出，但这种情况下可能并不会导致读入数据错误，这是由于溢出得到的值可能与实际输入的值相等。
 
-由于有符号整型溢出是未定义行为，在实现时需要避免上述问题。但如果无需输入输出负数，或永远不会输入输出此整型的最小值，则这一问题将不会出现。如果需要避免，可以考虑转换到无符号整型进行计算。
+由于有符号整型溢出是未定义行为，在实现时可以考虑借助无符号整数来避免上述问题。但如果无需输入输出负数，或不可能输入输出此整型的最小值，则这一问题将不会出现。
 
 #### 提升实现的通用性
 
-如果程序中使用了多个类型的整型变量，那么可能需要实现多个类型不同但逻辑相同的输入输出函数。此时可以使用 C++ 中的 [`template`](https://en.cppreference.com/w/cpp/language/templates.html) 实现对于所有整数类型的输入输出优化。
+如果程序中使用了多个类型的整型变量，那么可能需要实现多个类型不同但逻辑相同的输入输出函数。此时可以使用 C++ 中的 [`template`](https://en.cppreference.com/w/cpp/language/templates.html) 实现对于所有整数类型的输入输出优化。例如在 C++11 标准下使用
+
+```cpp
+template <typename T>
+typename std::enable_if<std::is_integral<T>::value &&
+                        std::is_signed<T>::value>::type
+read(T &x);
+```
+
+或在 C++20 标准下使用
+
+```cpp
+template <std::signed_integral T>
+void read(T &x);
+```
+
+定义函数。
+
+实现中可能需要获得对应整型的无符号类型，可以利用
+
+```cpp
+using UnsignedType = typename std::make_unsigned<T>::type;
+```
+
+获得。
+
+为了方便阅读，后文中的实现假定仅需读入 `int` 类型的整数，这些实现已足够应对大部分题目的需要。
 
 ### 实现
 
@@ -89,7 +118,7 @@ std::cin.tie(nullptr);
 
 #### 使用 `getchar` 与 `putchar` 实现
 
-下面为核心代码，采用 C++11 标准。
+核心代码如下。
 
 ```cpp
 --8<-- "docs/contest/code/io/io_2.cpp:core"
@@ -120,7 +149,7 @@ char buf[1 << 20], *p1, *p2;
 
 输出类似于读入，先将输出内容放入一个缓冲区中，最后通过 `fwrite` 一次性将缓冲区的内容输出即可。
 
-下面为核心代码，采用 C++20 标准。
+核心代码如下。
 
 ```cpp
 --8<-- "docs/contest/code/io/io_1.cpp:core"
@@ -140,7 +169,7 @@ void *mmap(void addr[.length], size_t length, int prot, int flags, int fd,
            off_t offset);
 ```
 
-???+ warn "注意"
+???+ warning "注意"
     `mmap` 不能在 Windows 环境下使用（例如 CodeForces 与 HDU），同时也不建议在正式赛场上使用。实际上使用 `fread` 已经足够快了，且如果用 `mmap` 反复读取一小块文件，做一次内存映射并且内核处理缺页的花费会远比使用 `fread` 的开销大。
 
 首先需获取文件描述符 `fd`，然后通过 `fstat` 获取文件大小，此后通过 `mmap` 获得文件映射到内存的指针 `*pc`。之后可以直接用 `*pc++` 替代 `getchar()` 进行文件读取。
@@ -150,7 +179,7 @@ void *mmap(void addr[.length], size_t length, int prot, int flags, int fd,
 ???+ note " 例题：[洛谷 P10815【模板】快速读入](https://www.luogu.com.cn/problem/P10815)"
     读入 $n$ 个范围在 $[-n, n]$ 的整数，求和并输出。其中 $n \leq 10^8$。数据保证对于序列的任何前缀，这个前缀的和在 $32$ 位有符号整形的存储范围内。
 
-下面为参考代码。
+参考代码如下。
 
 ```cpp
 --8<-- "docs/contest/code/io/io_3.cpp"

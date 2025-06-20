@@ -1,6 +1,4 @@
-#include <concepts>
 #include <cstdio>
-using namespace std;
 
 // --8<-- [start:core]
 // #define DEBUG 1  // 调试开关
@@ -27,8 +25,7 @@ struct IO {
     return ch == ' ' || ch == '\n' || ch == '\r' || ch == '\t';
   }
 
-  template <std::signed_integral T>
-  void read(T &x) {
+  void read(int &x) {
     bool sign = false;
     x = 0;
     char ch = gc();
@@ -56,12 +53,10 @@ struct IO {
 #endif
   }
 
-  template <std::signed_integral T>
-  void write(T x) {
-    using UnsignedType = std::make_unsigned_t<T>;
-    UnsignedType t = static_cast<UnsignedType>(x);
+  void write(int x) {
+    unsigned int t = static_cast<unsigned int>(x);
     if (x < 0) t = -t, push('-');
-    static T sta[40];
+    static int sta[40];
     int top = 0;
     do {
       sta[top++] = t % 10, t /= 10;
@@ -69,8 +64,7 @@ struct IO {
     while (top) push(sta[--top] + '0');
   }
 
-  template <class T>
-  void write(T x, char lastChar) {
+  void write(int x, char lastChar) {
     write(x), push(lastChar);
   }
 } io;

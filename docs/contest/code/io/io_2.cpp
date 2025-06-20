@@ -1,13 +1,7 @@
-#include <cmath>
 #include <cstdio>
-#include <iostream>
-using namespace std;
 
 // --8<-- [start:core]
-template <typename T>
-typename std::enable_if<std::is_integral<T>::value &&
-                        std::is_signed<T>::value>::type
-read(T &x) {
+void read(int &x) {
   bool neg = false;
   x = 0;
   char ch = 0;
@@ -21,17 +15,13 @@ read(T &x) {
   }
 }
 
-template <typename T>
-typename std::enable_if<std::is_integral<T>::value &&
-                        std::is_signed<T>::value>::type
-write(T x) {
-  using UnsignedType = typename std::make_unsigned<T>::type;
-  UnsignedType t = static_cast<UnsignedType>(x);
+void write(int x) {
+  unsigned int t = static_cast<unsigned int>(x);
   if (x < 0) {
     t = -t;
     putchar('-');
   }
-  static T sta[40];
+  static int sta[40];
   int top = 0;
   do {
     sta[top++] = t % 10;
