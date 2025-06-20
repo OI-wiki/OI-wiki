@@ -1,0 +1,27 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+    [level distance=1cm,
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm},
+    level 3/.style={sibling distance=1cm}]
+    \scoped[every node/.style={circle,draw,minimum size=8mm}]
+    \node at (0,0) {1}
+        child {node {2}
+            child {node {4}}
+            child {node {5}
+                child {node {8}}
+                child {node {9}}}}
+        child {node {3}
+            child {node {6}}
+            child {node {7}
+                child {node {10}}
+                child {node {11}}}};
+
+    \node at (0,-4cm) {完整二叉树（proper binary tree）};
+\end{tikzpicture}
+\end{document}
