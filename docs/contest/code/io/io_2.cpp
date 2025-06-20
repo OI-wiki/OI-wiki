@@ -9,9 +9,16 @@ void read(int &x) {
     if (ch == '-') neg = true;
     ch = getchar();
   }
-  while (ch >= '0' && ch <= '9') {
-    x = x * 10 + (neg ? ('0' - ch) : (ch - '0'));
-    ch = getchar();
+  if (neg) {
+    while (ch >= '0' && ch <= '9') {
+      x = x * 10 + ('0' - ch);
+      ch = getchar();
+    }
+  } else {
+    while (ch >= '0' && ch <= '9') {
+      x = x * 10 + (ch - '0');
+      ch = getchar();
+    }
   }
 }
 
@@ -27,7 +34,10 @@ void write(int x) {
     sta[top++] = x % 10;
     x /= 10;
   } while (x);
-  while (top) putchar(neg ? '0' - sta[--top] : '0' + sta[--top]);
+  if (neg)
+    while (top) putchar('0' - sta[--top]);
+  else
+    while (top) putchar('0' + sta[--top]);
 }
 
 // --8<-- [end:core]

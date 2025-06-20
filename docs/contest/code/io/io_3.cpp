@@ -15,9 +15,16 @@ void rd(int &x) {
     if (ch == '-') neg = true;
     ch = *pc++;
   }
-  while (ch >= '0' && ch <= '9') {
-    x = x * 10 + (neg ? ('0' - ch) : (ch - '0'));
-    ch = *pc++;
+  if (neg) {
+    while (ch >= '0' && ch <= '9') {
+      x = x * 10 + ('0' - ch);
+      ch = *pc++;
+    }
+  } else {
+    while (ch >= '0' && ch <= '9') {
+      x = x * 10 + (ch - '0');
+      ch = *pc++;
+    }
   }
 }
 

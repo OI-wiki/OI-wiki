@@ -31,7 +31,10 @@ struct IO {
     char ch = gc();
     for (; !isdigit(ch); ch = gc())
       if (ch == '-') neg = true;
-    for (; isdigit(ch); ch = gc()) x = x * 10 + (neg ? ('0' - ch) : (ch - '0'));
+    if (neg)
+      for (; isdigit(ch); ch = gc()) x = x * 10 + ('0' - ch);
+    else
+      for (; isdigit(ch); ch = gc()) x = x * 10 + (ch - '0');
   }
 
   void read(char *s) {
@@ -64,7 +67,10 @@ struct IO {
       sta[top++] = x % 10;
       x /= 10;
     } while (x);
-    while (top) push(neg ? '0' - sta[--top] : '0' + sta[--top]);
+    if (neg)
+      while (top) push('0' - sta[--top]);
+    else
+      while (top) push('0' + sta[--top]);
   }
 
   void write(int x, char lastChar) { write(x), push(lastChar); }
