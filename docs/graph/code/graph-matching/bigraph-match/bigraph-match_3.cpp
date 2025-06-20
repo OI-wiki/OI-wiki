@@ -1,14 +1,11 @@
 #include <algorithm>
 #include <iostream>
-#include <map>
 #include <queue>
-#include <utility>
 #include <vector>
 using namespace std;
 
-int n, k, u, v, t[200020], r[200020], ans, vis[200020], dis[200020], c;
-map<pair<int, int>, int> mp;
-vector<int> to[200020];
+int ct, n, t[100010], x, r[100010], ans, vis[100010], dis[100010];
+vector<int> to[100010];
 queue<int> q;
 
 int DFS(int x) {
@@ -58,29 +55,32 @@ int BFS() {
   return f;
 }
 
-void mxf() {
-  for (; BFS();) {
-    for (int i = 1; i <= n; i++) {
-      if (!t[i] && DFS(i)) {
-        ans++;
-      }
-    }
-  }
-}
-
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr), cout.tie(nullptr);
-  cin >> n >> k;
-  for (int i = 1; i <= k; i++) {
-    cin >> u >> v;
-    if (mp.find({u, v}) == mp.end()) {
-      mp[{u, v}] = mp[{v, u}] = ++c;
+  for (cin >> ct; ct--;) {
+    cin >> n;
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= n; j++) {
+        cin >> x;
+        if (x) {
+          to[i].push_back(j);
+        }
+      }
     }
-    to[v].push_back({mp[{u, v}]});
+    for (; BFS();) {
+      for (int i = 1; i <= n; i++) {
+        if (!t[i] && DFS(i)) {
+          ans++;
+        }
+      }
+    }
+    cout << (ans == n ? "Yes" : "No") << '\n';
+    for (int i = 1; i <= n; i++) {
+      t[i] = r[i] = 0;
+      to[i].clear();
+    }
+    ans = 0;
   }
-  mxf();
-  cout << (ans == n ? "YES" : "NO") << '\n';
-  ans = 0;
   return 0;
 }

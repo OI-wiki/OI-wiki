@@ -1,11 +1,14 @@
 #include <algorithm>
 #include <iostream>
+#include <map>
 #include <queue>
+#include <utility>
 #include <vector>
 using namespace std;
 
-int n, m, vis[220], dis[220], t[220], r[220], ans, u, v;
-vector<int> to[220];
+int n, k, u, v, t[200020], r[200020], ans, vis[200020], dis[200020], c;
+map<pair<int, int>, int> mp;
+vector<int> to[200020];
 queue<int> q;
 
 int DFS(int x) {
@@ -68,21 +71,16 @@ void mxf() {
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr), cout.tie(nullptr);
-  cin >> n >> m;
-  for (int i = 1; i <= m; i++) {
+  cin >> n >> k;
+  for (int i = 1; i <= k; i++) {
     cin >> u >> v;
-    to[v].push_back(u);
+    if (mp.find({u, v}) == mp.end()) {
+      mp[{u, v}] = mp[{v, u}] = ++c;
+    }
+    to[v].push_back({mp[{u, v}]});
   }
   mxf();
-  for (int i = 1; i <= n; i++) {
-    if (!t[i]) {
-      cout << i << ' ';
-      for (int j = r[i]; j; j = r[j]) {
-        cout << j << ' ';
-      }
-      cout << '\n';
-    }
-  }
-  cout << n - ans << '\n';
+  cout << (ans == n ? "YES" : "NO") << '\n';
+  ans = 0;
   return 0;
 }
