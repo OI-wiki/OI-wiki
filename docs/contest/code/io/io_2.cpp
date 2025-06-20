@@ -27,7 +27,7 @@ void write(int x) {
     sta[top++] = x % 10;
     x /= 10;
   } while (x);
-  while (top) putchar((neg ? -sta[--top] : sta[--top]) + '0');
+  while (top) putchar(neg ? '0' - sta[--top] : '0' + sta[--top]);
 }
 
 // --8<-- [end:core]

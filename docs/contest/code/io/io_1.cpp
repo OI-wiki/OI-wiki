@@ -64,7 +64,7 @@ struct IO {
       sta[top++] = x % 10;
       x /= 10;
     } while (x);
-    while (top) push((neg ? -sta[--top] : sta[--top]) + '0');
+    while (top) push(neg ? '0' - sta[--top] : '0' + sta[--top]);
   }
 
   void write(int x, char lastChar) { write(x), push(lastChar); }
