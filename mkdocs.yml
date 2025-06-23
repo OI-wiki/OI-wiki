@@ -311,8 +311,8 @@ nav:
       - 对角化: math/linear-algebra/diagonalization.md
       - Jordan标准型: math/linear-algebra/jordan.md
     - 线性规划:
-      - 线性规划简介: math/linear-programming.md
-      - 单纯形算法: math/simplex.md
+      - 线性规划基础: math/linear-programming.md
+      - 单纯形法: math/simplex.md
     - 抽象代数:
       - 基本概念: math/algebra/basic.md
       - 群论: math/algebra/group-theory.md
@@ -335,7 +335,6 @@ nav:
       - 数值积分: math/numerical/integral.md
       - 高斯消元: math/numerical/gauss.md
       - 牛顿迭代法: math/numerical/newton.md
-    - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
     - 拟阵: math/matroid.md
