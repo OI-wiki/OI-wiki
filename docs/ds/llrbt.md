@@ -1,3 +1,5 @@
+author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ksyx, luxuryspark567, mgt, orzAtalod, sandyzikun, SunsetGlow95, Tiphereth-A, current2020, untitledunrevised, yuhuoji
+
 左偏红黑树是 [红黑树](./rbtree.md) 的一种变体，它的对红边（点）的位置做了一定限制，使得其插入与删除操作可以与 [2-3 树](https://en.wikipedia.org/wiki/2%E2%80%933_tree) 构成一一对应。
 
 我们假设读者已经至少掌握了一种基于旋转的平衡树，因此本文不会对旋转操作进行讲解。
@@ -515,7 +517,25 @@
     }
     ```
 
+## 与 2-3 树的关系
+
+2-3 树是 3 阶 B 树，每个结点都是 2 结点或 3 结点，存储一个或两个数据元素。非叶结点的 2 结点和 3 结点分别只能有两个或三个孩子。而且，2-3 树中存储的所有数据都是有序的。
+
+2-3 树和左偏红黑树实质是等价的。2-3 树中一个节点可以存储 1 个元素或 2 个元素，而红黑树的一个节点只能存储一个元素。如下图所示，2-3 树的 2 节点对应一个黑色节点，3 节点对应一个红色节点和一个黑色节点（可以将 bc 视作平行）。
+
+![2-3-tree-rbt](images/2-3-tree-rbt-1.svg)
+
+![2-3-tree-rbt](images/2-3-tree-rbt-2.svg)
+
+下图是一棵 2-3 树对应的左偏红黑树。
+
+![2-3-tree-rbt](images/2-3-tree-rbt-3.svg)
+
+2-3 树和左偏红黑树的插入与删除操作是一一对应的。[^23-vs-llrbt]
+
 ## 参考资料与拓展阅读
 
 -   [Left-Leaning Red-Black Trees](https://sedgewick.io/wp-content/themes/sedgewick/papers/2008LLRB.pdf)-  Robert Sedgewick Princeton University
 -   [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/keynote/33BalancedSearchTrees-2x2.pdf)-\_Algorithms\_Robert Sedgewick | Kevin Wayne
+
+[^23-vs-llrbt]: [这篇博文](https://riteme.site/blog/2016-3-12/2-3-tree-and-red-black-tree.html) 提供了详细的描述。文中的「红黑树」实际上指的是「左偏红黑树」。

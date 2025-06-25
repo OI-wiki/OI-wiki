@@ -1,4 +1,4 @@
-author: LeverImmy
+author: 0x03A6, abc1763613206, auuuu4, CCXXXI, Conless, Enter-tainer, fanenr, happyZYM, hsfzLZH1, iamtwz, LeverImmy, leverimmy, Lhcfl, Marcythm, RIvance, Tiphereth-A, trudbot, Xeniume, Xeonacid, YBYCS, yuhuoji
 
 红黑树是一种自平衡的二叉搜索树。每个节点额外存储了一个 color 字段 ("RED" or "BLACK")，用于确保树在插入和删除时保持平衡。
 
@@ -230,6 +230,20 @@ $p$、$c$ 的颜色不确定，$s$ 为黑色，$d$ 为红色。
     --8<-- "docs/ds/code/rbtree/rbtree_1.cpp:main"
     ```
 
+## 与 2-3-4 树的关系
+
+2-3-4 树是 4 阶 B 树，与一般的 B 树一样，2-3-4 树可以实现在 $O(\log n)$ 时间内进行搜索、插入和删除操作。2-3-4 树的节点分为三种，2 节点、3 节点和 4 节点，分别包含一个、两个或三个数据元素。所有的叶子节点都处于同一深度（最底层），所有数据都有序存储。
+
+2-3-4 树和红黑树是同构的，任意一棵红黑树都唯一对应一棵 2-3-4 树。在 2-3-4 树上的插入和删除操作导致节点的扩展、分裂和合并，相当于红黑树中的变色和旋转。下图是 2-3-4 树的 2 节点、3 节点和 4 节点对应的红黑树节点。注意到 2-3-4 树的 3 节点对应红黑树中红色节点左偏和右偏两种情况，所以一棵红黑树可能对应多棵 2-3-4 树。
+
+![2-3-4-tree-rbt-1](images/2-3-4-tree-rbt-1.svg)
+
+下图是一棵红黑树和与之对应的 2-3-4 树。将红黑树中的红色节点上移到父节点的左右两侧，形成一个 B 树节点，就可以得到与之对应的 2-3-4 树。可以发现，红黑树的节点数等于 2-3-4 树的节点个数。
+
+![2-3-4-tree-rbt](images/2-3-4-tree-rbt-2.svg)
+
+可以通过对比 2-3-4 树来理解红黑树的插入和删除操作。[^234-vs-rbt]
+
 ## 实际工程项目中的使用
 
 由于红黑树是目前主流工业界综合效率最高的内存型平衡树，其在实际的工程项目中有着广泛的使用，这里列举几个实际的使用案例并给出相应的源码链接，以便读者进行对比学习。
@@ -305,3 +319,5 @@ JDK 中的 `TreeMap` 和 `TreeSet` 都是使用红黑树作为底层数据结构
 [^cite_note-Mehlhorn2008-17]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Mehlhorn2008-17>
 
 [^cite_note-Algs4-16]: <https://en.wikipedia.org/wiki/Red–black_tree#cite_note-Algs4-16>: 432–447
+
+[^234-vs-rbt]: [这篇博文](https://www.cnblogs.com/zhenbianshu/p/8185345.html) 提供了详细的描述。
