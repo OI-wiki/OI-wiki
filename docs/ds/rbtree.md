@@ -2,7 +2,7 @@ author: LeverImmy
 
 红黑树是一种自平衡的二叉搜索树。每个节点额外存储了一个 color 字段 ("RED" or "BLACK")，用于确保树在插入和删除时保持平衡。
 
-红黑树是 4 阶 B 树（[2-3-4 树](./2-3-4-tree.md)）的变体。[^gilbas1978]
+红黑树是 4 阶 B 树（[2-3-4 树](https://en.wikipedia.org/wiki/2%E2%80%933%E2%80%934_tree)）的变体。[^gilbas1978]
 
 ## 性质
 

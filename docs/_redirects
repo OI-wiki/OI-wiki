@@ -130,4 +130,8 @@
 /ds/persistent-in-bit /ds/seg-in-bit
 /ds/odt /misc/odt
 /ds/leafy-tree /ds/wblt
+/ds/2-3-4-tree /ds/rbtree
+/ds/2-3-tree /ds/llrbt
+/ds/b-tree /ds/bst
+/ds/bplus-tree /ds/bst
 /graph/min-circle /graph/min-cycle
