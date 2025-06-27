@@ -235,7 +235,8 @@ $$
     
     Comp tmp[MAX_N];
     
-    // rev=1,DFT; rev=-1,IDFT
+    // rev=1, DFT; rev=-1, IDFT
+    // 应用完本函数后需要注意归一化系数的处理
     void DFT(Comp* f, int n, int rev) {
       if (n == 1) return;
       for (int i = 0; i < n; ++i) tmp[i] = f[i];
