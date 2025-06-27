@@ -19,29 +19,31 @@ IDA \* 为采用了迭代加深算法的 A \* 算法。
 
 ## 实现（伪代码）
 
+利用合适选取的估价函数 $H$，算法流程大致如下所示： 
+
 $$
+\begin{array}{l}
+\textbf{Procedure } \text{IDAStar}(\textit{StartState}) \\
 \begin{array}{ll}
-1 &  \textbf{Procedure } \text{IDAStar}(\textit{StartState}) \\
-2 &  \qquad \textit{PathLimit} \gets H(\textit{StartState}) - 1 \\
-3 &  \qquad \textit{Success} \gets \text{false} \\
-4 &  \qquad \textbf{repeat} \\
-5 &  \qquad \qquad \textit{PathLimit} \gets \textit{PathLimit} + 1 \\
-6 &  \qquad \qquad \textit{StartState}.g \gets 0 \\
-7 &  \qquad \qquad \textit{OpenStack} \gets \varnothing \\
-8 &  \qquad \qquad \text{push } \textit{StartState} \text{ to } \textit{OpenStack} \\
-9 &  \qquad \qquad \textbf{repeat} \\
-10 &  \qquad \qquad \qquad \textbf{if } \textit{OpenStack} \text{ is empty} \textbf{ then} \\
-11 &  \qquad \qquad \qquad \qquad \textbf{break} \\
-12 &  \qquad \qquad \qquad \textit{CurrentState} \gets \text{Pop}(\textit{OpenStack}) \\
-13 &  \qquad \qquad \qquad \textbf{if } \text{IsSolution}(\textit{CurrentState}) \textbf{ then} \\
-14 &  \qquad \qquad \qquad \qquad \textit{Success} \gets \text{true} \\
-15 &  \qquad \qquad \qquad \qquad \textbf{break} \\
-16 &  \qquad \qquad \qquad \textbf{elseif } \textit{PathLimit} \geq \textit{CurrentState}.g + H(\textit{CurrentState}) \textbf{ then} \\
-17 &  \qquad \qquad \qquad \qquad \textbf{for } \text{each }\textit{Child}\text{ of }\textit{CurrentState}\textbf{ do} \\
-18 &  \qquad \qquad \qquad \qquad \qquad \textit{Child}.g \gets \textit{CurrentState}.g + \text{Cost(\textit{CurrentState}, \textit{Child})} \\
-19 &  \qquad \qquad \qquad \qquad \qquad \text{push } \textit{Child} \text{ to } \textit{OpenStack} \\
-20 &  \qquad \qquad \textbf{until } \textit{Success} \\
-21 &  \qquad \textbf{until } \textit{Success} \textbf{ or } \text{ResourceLimitsReached()}
+1 &  \textit{PathLimit} \gets H(\textit{StartState}) - 1 \\
+2 &  \textit{Success} \gets \text{false} \\
+3 &  \textbf{repeat} \\
+4 &  \qquad \text{increase } \textit{PathLimit} \\
+5 &  \qquad \textit{StartState}.g \gets 0 \\
+6 &  \qquad \textit{OpenStack} \gets \varnothing \\
+7 &  \qquad \text{push } \textit{StartState} \text{ to } \textit{OpenStack} \\
+8 &  \qquad \textbf{repeat} \\
+9 &  \qquad \qquad \textit{CurrentState} \gets \text{Pop}(\textit{OpenStack}) \\
+10 &  \qquad \qquad \textbf{if } \text{IsSolution}(\textit{CurrentState}) \textbf{ then} \\
+11 &  \qquad \qquad \qquad \textit{Success} \gets \text{true} \\
+12 &  \qquad \qquad \qquad \textbf{break} \\
+13 &  \qquad \qquad \textbf{elseif } \textit{PathLimit} \geq \textit{CurrentState}.g + H(\textit{CurrentState}) \textbf{ then} \\
+14 &  \qquad \qquad \qquad \textbf{for } \text{each }\textit{Child}\text{ of }\textit{CurrentState}\textbf{ do} \\
+15 &  \qquad \qquad \qquad \qquad \textit{Child}.g \gets \textit{CurrentState}.g + \text{Cost}(\textit{CurrentState}, \textit{Child}) \\
+16 &  \qquad \qquad \qquad \qquad \text{push } \textit{Child} \text{ to } \textit{OpenStack} \\
+17 &  \qquad \textbf{until } \textit{Success} \text{ or } \textit{OpenStack} \text{ is empty}\\
+18 &  \textbf{until } \textit{Success} \textbf{ or } \text{ResourceLimitsReached()}
+\end{array}
 \end{array}
 $$
 
