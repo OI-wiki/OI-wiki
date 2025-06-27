@@ -190,6 +190,7 @@ nav:
       - 斜率优化: dp/opt/slope.md
       - 四边形不等式优化: dp/opt/quadrangle.md
       - Slope Trick 优化: dp/opt/slope-trick.md
+      - WQS 二分: dp/opt/wqs-binary-search.md
       - 状态设计优化: dp/opt/state.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
@@ -378,13 +379,9 @@ nav:
       - 笛卡尔树: ds/cartesian-tree.md
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
-      - B 树: ds/b-tree.md
-      - B+ 树: ds/bplus-tree.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
       - AA 树: ds/aa-tree.md
-      - 2-3 树: ds/2-3-tree.md
-      - 2-3-4 树: ds/2-3-4-tree.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
@@ -467,7 +464,6 @@ nav:
       - Stoer–Wagner 算法: graph/stoer-wagner.md
     - 图的匹配:
       - 图匹配: graph/graph-matching/graph-match.md
-      - 增广路: graph/graph-matching/augment.md
       - 二分图最大匹配: graph/graph-matching/bigraph-match.md
       - 二分图最大权匹配: graph/graph-matching/bigraph-weight-match.md
       - 一般图最大匹配: graph/graph-matching/general-match.md
