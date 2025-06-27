@@ -42,7 +42,7 @@ $$
 15 &  \qquad \qquad \qquad \qquad \textit{Child}.g \gets \textit{CurrentState}.g + \text{Cost}(\textit{CurrentState}, \textit{Child}) \\
 16 &  \qquad \qquad \qquad \qquad \text{push } \textit{Child} \text{ to } \textit{OpenStack} \\
 17 &  \qquad \textbf{until } \textit{Success} \text{ or } \textit{OpenStack} \text{ is empty}\\
-18 &  \textbf{until } \textit{Success} \textbf{ or } \text{ResourceLimitsReached()}
+18 &  \textbf{until } \textit{Success} \text{ or } \text{ResourceLimitsReached()}
 \end{array}
 \end{array}
 $$
