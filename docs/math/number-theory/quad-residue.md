@@ -1,46 +1,52 @@
+author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, monkeysui, nanmenyangde, rgw2010, sshwy, StudyingFather, TachikakaMin, Tiphereth-A, Xeonacid, xyf007
+
+## 引入
+
+二次剩余可以认为是在讨论求模意义下 **开平方** 运算的可行性。对于更高次方的开方可参见 [k 次剩余](./residue.md)。
+
 ## 定义
 
-令整数 $a$，$p$ 满足 $(a,p)=1$，若存在整数 $x$ 使得
-
-$$
-x^2\equiv a\pmod p
-$$
-
-则称 $a$ 为模 $p$ 的二次剩余，否则称 $a$ 为模 $p$ 的二次非剩余。
-
-通俗一些，可以认为是求模意义下的 **开平方** 运算。对于更高次方的开方可参见 [k 次剩余](./residue.md)。
-
-这里只讨论 $p$ 为 **奇素数** 的求解方法。后文可能在模 $p$ 显然的情况下简写成二次（非）剩余。
+???+ abstract "二次剩余"
+    令整数 $a$，$p$ 满足 $(a,p)=1$，若存在整数 $x$ 使得
+    
+    $$
+    x^2\equiv a\pmod p,
+    $$
+    
+    则称 $a$ 为模 $p$ 的二次剩余，否则称 $a$ 为模 $p$ 的二次非剩余。后文可能在模 $p$ 显然的情况下简写成二次（非）剩余。
 
 ## Euler 判别法
 
-对奇素数 $p$ 和满足 $(a,p)=1$ 的整数 $a$，
+当模数为奇素数时，我们有如下定理：
 
-$$
-a^{\frac{p-1}{2}}\equiv\begin{cases}
-    1 \pmod p,  & (\exists x\in\mathbf{Z}),~~a\equiv x^2\pmod p,\\
-    -1 \pmod p, & \text{otherwise}.\\
-\end{cases}
-$$
-
-即对上述的 $p$ 和 $a$，
-
-1.  $a$ 是 $p$ 的二次剩余当且仅当 $a^{\frac{p-1}{2}}\equiv 1 \pmod p$.
-2.  $a$ 是 $p$ 的二次非剩余当且仅当 $a^{\frac{p-1}{2}}\equiv -1 \pmod p$.
-
-???+ note "证明"
-    首先由 [Fermat 小定理](./fermat.md#费马小定理)，有 $a^{p-1}\equiv 1\pmod p$，故
+???+ abstract "Euler 判别法"
+    对奇素数 $p$ 和满足 $(a,p)=1$ 的整数 $a$，有
     
     $$
-    \left(a^{\frac{p-1}{2}}+1\right)\left(a^{\frac{p-1}{2}}-1\right)\equiv 0\pmod p
+    a^{\frac{p-1}{2}}\equiv\begin{cases}
+        1 \pmod p,  & (\exists x\in\mathbf{Z}),~~a\equiv x^2\pmod p,\\
+        -1 \pmod p, & \text{otherwise}.\\
+    \end{cases}
     $$
     
-    从而对任意满足 $(a,p)=1$ 的 $a$ 均有 $a^{(p-1)/2}\equiv \pm 1\pmod p$
+    即对上述的 $p$ 和 $a$，
+    
+    1.  $a$ 是 $p$ 的二次剩余当且仅当 $a^{\frac{p-1}{2}}\equiv 1 \pmod p$.
+    2.  $a$ 是 $p$ 的二次非剩余当且仅当 $a^{\frac{p-1}{2}}\equiv -1 \pmod p$.
+
+??? note "证明"
+    首先由 [Fermat 小定理](./fermat.md#费马小定理) 有 $a^{p-1}\equiv 1\pmod p$，故
+    
+    $$
+    \left(a^{\frac{p-1}{2}}+1\right)\left(a^{\frac{p-1}{2}}-1\right)\equiv 0\pmod p,
+    $$
+    
+    从而对任意满足 $(a,p)=1$ 的 $a$ 均有 $a^{(p-1)/2}\equiv \pm 1\pmod p.$
     
     另外由 $p$ 是奇素数，我们有：
     
     $$
-    x^{p-1}-a^{\frac{p-1}{2}}={\left(x^2\right)}^{\frac{p-1}{2}}-a^{\frac{p-1}{2}}=(x^2-a)P(x)
+    x^{p-1}-a^{\frac{p-1}{2}}={\left(x^2\right)}^{\frac{p-1}{2}}-a^{\frac{p-1}{2}}=(x^2-a)P(x),
     $$
     
     其中 $P(x)$ 是某个整系数多项式，进而：
@@ -48,16 +54,28 @@ $$
     $$
     \begin{aligned}
         x^p-x&=x\left(x^{p-1}-a^{\frac{p-1}{2}}\right)+x\left(a^{\frac{p-1}{2}}-1\right)\\
-        &=(x^2-a)xP(x)+\left(a^{\frac{p-1}{2}}-1\right)x\\
+        &=(x^2-a)xP(x)+\left(a^{\frac{p-1}{2}}-1\right)x.\\
     \end{aligned}
     $$
     
     由 [同余方程的定理 5](./congruence-equation.md#定理-5) 可知，$a$ 是模 $p$ 的二次剩余当且仅当 $a^{(p-1)/2}\equiv 1\pmod p$. 进而 $a$ 是模 $p$ 的非二次剩余当且仅当 $a^{(p-1)/2}\equiv -1\pmod p$.
 
+基于 Euler 判别法，我们可以得到如下推论：
+
+???+ abstruct "二次剩余的数量"
+    对于奇素数 $p$，模 $p$ 意义下二次剩余和二次非剩余均有 $\dfrac{p-1}{2}$ 个。
+
+??? note "证明"
+    根据 Euler 判别法，考虑 $a^{\frac{p-1}{2}}\equiv 1\pmod p.$
+    
+    注意到 $\dfrac{p-1}{2}\mid (p-1)$，由 [同余方程的定理 6](./congruence-equation.md#定理-6) 可知 $a^{\frac{p-1}{2}}\equiv 1\pmod p$ 有 $\dfrac{p-1}{2}$ 个解。所以模 $p$ 意义下二次剩余和二次非剩余均有 $\dfrac{p-1}{2}$ 个。
+
 ## Legendre 符号
 
-???+ note "定义"
-    对奇素数 $p$ 和整数 $a$，定义 Legendre 符号如下：
+为了方便接下来的讨论，我们引入如下记号：
+
+???+ abstract "Legendre 符号"
+    对 **奇素数**  $p$ 和整数 $a$，定义 Legendre 符号如下：
     
     $$
     \left(\frac{a}{p}\right)=\begin{cases}
@@ -67,7 +85,10 @@ $$
     \end{cases}
     $$
 
-Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wiki/Jacobi_symbol)，Jacobi 符号可进一步推广为 [Kronecker 符号](https://en.wikipedia.org/wiki/Kronecker_symbol)。
+即对于 $(a,p)=1$ 的 $a$，
+
+-   $a$ 是模 $p$ 的二次剩余当且仅当 $\left(\dfrac{a}{p}\right)=1.$
+-   $a$ 是模 $p$ 的二次非剩余当且仅当 $\left(\dfrac{a}{p}\right)=-1.$
 
 下表为部分 Legendre 符号的值（From [Wikipedia](https://en.wikipedia.org/wiki/Legendre_symbol#Table_of_values)）
 
@@ -78,117 +99,191 @@ Legendre 符号可进一步推广为 [Jacobi 符号](https://en.wikipedia.org/wi
 1.  对任意整数 $a$，
 
     $$
-    a^{\frac{p-1}{2}}\equiv \left(\frac{a}{p}\right)\pmod p
+    a^{\frac{p-1}{2}}\equiv \left(\frac{a}{p}\right)\pmod p.
     $$
 
     进一步，我们有推论：
 
     -   $$
-        \left(\dfrac{1}{p}\right)=1
+        \left(\dfrac{1}{p}\right)=1.
         $$
     -   $$
-        \begin{aligned}
-            \left(\dfrac{-1}{p}\right)&=(-1)^{\frac{p-1}{2}}\\
-            &=\begin{cases}
-                1,  & p\equiv 1\pmod 4,\\
-                -1, & p\equiv 3\pmod 4.
-                \end{cases}
-        \end{aligned}
+        \left(\dfrac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}=\begin{cases}
+            1,  & p\equiv 1\pmod 4,\\
+            -1, & p\equiv 3\pmod 4.
+            \end{cases}
         $$
 
-2.  $a_1\equiv a_2\pmod p\implies \left(\dfrac{a_1}{p}\right)=\left(\dfrac{a_2}{p}\right)$
+2.  $a_1\equiv a_2\pmod p\implies \left(\dfrac{a_1}{p}\right)=\left(\dfrac{a_2}{p}\right).$
 
 3.  （[完全积性](./basic.md#积性函数)）对任意整数 $a_1,a_2$，
 
     $$
-    \left(\frac{a_1a_2}{p}\right)=\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right)
+    \left(\frac{a_1a_2}{p}\right)=\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right).
     $$
 
     我们有推论：对整数 $a,b$，$p\nmid b$ 有
 
     $$
-    \left(\frac{ab^2}{p}\right)=\left(\frac{a}{p}\right)
+    \left(\frac{ab^2}{p}\right)=\left(\frac{a}{p}\right).
     $$
 
 4.  $$
-    \begin{aligned}
-        \left(\frac{2}{p}\right)&=(-1)^{\frac{p^2-1}{8}}\\
-        &=\begin{cases}
-                1,  & p\equiv \pm 1\pmod 8 \\
-                -1, & p\equiv \pm 3\pmod 8 \\
-            \end{cases}
-    \end{aligned}
+    \left(\frac{2}{p}\right)=(-1)^{\frac{p^2-1}{8}}=\begin{cases}
+            1,  & p\equiv \pm 1\pmod 8, \\
+            -1, & p\equiv \pm 3\pmod 8. \\
+        \end{cases}
     $$
 
-???+ note "证明"
+??? note "证明"
     1.  由 [Legendre 符号的定义](#legendre-符号) 和 [Euler 判别法](#euler-判别法) 易得。
     2.  注意到
     
         $$
-        a_1\equiv a_2\pmod p\implies \left(\frac{a_1}{p}\right)\equiv\left(\frac{a_2}{p}\right)\pmod p
+        a_1\equiv a_2\pmod p\implies \left(\frac{a_1}{p}\right)\equiv\left(\frac{a_2}{p}\right)\pmod p,
         $$
     
         而 $\left|\left(\dfrac{a_1}{p}\right)-\left(\dfrac{a_2}{p}\right)\right|\leq 2$ 且 $p>2$, 故：
     
         $$
-        a_1\equiv a_2\pmod p\implies \left(\frac{a_1}{p}\right)=\left(\frac{a_2}{p}\right)
+        a_1\equiv a_2\pmod p\implies \left(\frac{a_1}{p}\right)=\left(\frac{a_2}{p}\right).
         $$
     3.  由 1 得
     
         $$
-        \left(\frac{a_1a_2}{p}\right)\equiv a_1^{\frac{p-1}{2}}a_2^{\frac{p-1}{2}}\equiv\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right)\pmod p
+        \left(\frac{a_1a_2}{p}\right)\equiv a_1^{\frac{p-1}{2}}a_2^{\frac{p-1}{2}}\equiv\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right)\pmod p.
         $$
     
-        而 $\left|\left(\dfrac{a_1a_2}{p}\right)-\left(\dfrac{a_1}{p}\right)\left(\dfrac{a_2}{p}\right)\right|\leq 2$ 且 $p>2$, 故：
+        而 $\left|\left(\dfrac{a_1a_2}{p}\right)-\left(\dfrac{a_1}{p}\right)\left(\dfrac{a_2}{p}\right)\right|\leq 2$ 且 $p>2$, 故
     
         $$
-        \left(\frac{a_1a_2}{p}\right)=\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right)
+        \left(\frac{a_1a_2}{p}\right)=\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right).
         $$
     4.  参见 [二次互反律](#二次互反律)
 
+基于如上性质，若对任意奇素数 $p$ 和 $q$，$\left(\dfrac{p}{q}\right)$ 的值均可计算，则我们就可以对任意合法情况计算 Legendre 符号的值。接下来我们有一个优美的定理，这个定理巧妙地在 $\left(\dfrac{p}{q}\right)$ 和 $\left(\dfrac{q}{p}\right)$ 之间建立起了联系，使得我们能用类似 [辗转相除法](./gcd.md#欧几里得算法) 的思路完成计算。
+
 ### 二次互反律
 
-???+ note "二次互反律"
+???+ abstruct "二次互反律"
     设 $p$，$q$ 是两个不同的奇素数，则
     
     $$
-    \left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}
+    \left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}.
     $$
 
-证明方式很多，读者感兴趣的话可参考[^ref5]。一种证明方式是基于如下引理（Gauss 引理）：
+证明方式很多[^ref5]。一种证明方式是基于如下引理：
 
-???+ note "Gauss 引理"
-    设 $(n,p)=1$, 对整数 $k~\left(1\leq k\leq \dfrac{p-1}{2}\right)$，令 $r_k$ 为 $nk$ 模 $p$ 的最小非负剩余，设 $m$ 为所有 $r_k$ 中大于 $\dfrac{p}{2}$ 的个数，则
+???+ abstruct "Gauss 引理"
+    设 $p$ 是奇素数，$(n,p)=1$，对整数 $k~\left(1\leq k\leq (p-1)/2\right)$，令 $r_k$ 为 $nk$ 模 $p$ 的最小非负剩余，设 $A=\{r_k:r_k<p/2\}$，$B=\{r_k:r_k>p/2\}$，则
     
     $$
-    \left(\frac{n}{p}\right)=(-1)^m
+    \left(\frac{n}{p}\right)=(-1)^{|B|}.
     $$
 
-这个引理可以证明如下有用的结论：
+??? note "证明"
+    设 $\lambda=|A|$，$\mu=|B|$，显然 $\lambda+\mu=(p-1)/2$，则
+    
+    $$
+    n^{\frac{p-1}{2}}\left(\frac{p-1}{2}\right)!\equiv\prod_{k=1}^{\frac{p-1}{2}} nk\equiv\prod_{a\in A}a\prod_{b\in B}b\pmod{p}.
+    $$
+    
+    我们知道对 $B$ 中任意元素 $b$，有 $\dfrac{p}{2}<b<p$，所以 $0<p-b<\dfrac{p}{2}$。进一步，对 $B$ 中任意元素 $b$，我们有 $p-b\notin A$，否则若 $A,B$ 中分别存在元素 $a,b$ 使得 $a=p-b$，则存在整数 $0<k_1,k_2<(p-1)/2$ 使得 $a=nk_1$，$b=nk_2$ 且 $p\mid n(k_1+k_2)$，由于 $(n,p)=1$，则 $p\mid (k_1+k_2)$，注意到 $0<k_1+k_2<p$，所以产生矛盾。因此
+    
+    $$
+    n^{\frac{p-1}{2}}\left(\frac{p-1}{2}\right)!\equiv(-1)^{\mu}\prod_{a\in A}a\prod_{b\in B}(p-b)\equiv(-1)^{\mu}\left(\frac{p-1}{2}\right)!\pmod{p},
+    $$
+    
+    即
+    
+    $$
+    n^{\frac{p-1}{2}}\equiv(-1)^{\mu}\pmod{p}.
+    $$
+    
+    从而由 Legendre 符号的 [性质 1](#性质) 即得证。
 
-???+ note "结论"
-    对奇素数 $p$，
+容易得到如下推论：
+
+???+ abstruct "推论"
+    对奇素数 $p$，有
+    
+    $$
+    \left(\frac{2}{p}\right)=(-1)^{\frac{p^2-1}{8}}=\begin{cases}
+            1,  & p\equiv \pm 1\pmod 8, \\
+            -1, & p\equiv \pm 3\pmod 8. \\
+        \end{cases}
+    $$
+    
+    对奇素数 $p$，奇数 $n$ 满足 $(n,p)=1$，有
+    
+    $$
+    \left(\frac{n}{p}\right)=(-1)^{\sum_{i=1}^{(p-1)/2}\lfloor ni/p \rfloor}.
+    $$
+
+??? note "证明"
+    对 Gauss 引理中的 $n,k,r_k,A,B$，有 $nk=p\left\lfloor\dfrac{nk}{p}\right\rfloor+r_k$，进而
     
     $$
     \begin{aligned}
-        \left(\frac{2}{p}\right)&=(-1)^{\frac{p^2-1}{8}}\\
-        &=\begin{cases}
-                1,  & p\equiv \pm 1\pmod 8 \\
-                -1, & p\equiv \pm 3\pmod 8 \\
-            \end{cases}
+        n\cdot\frac{p^2-1}{8}=\sum_{k=1}^{\frac{p-1}{2}}nk&=p\sum_{k=1}^{\frac{p-1}{2}}\left\lfloor\dfrac{nk}{p}\right\rfloor+\sum_{a\in A}a+\sum_{b\in B}b\\
+        &=p\sum_{k=1}^{\frac{p-1}{2}}\left\lfloor\dfrac{nk}{p}\right\rfloor+\sum_{a\in A}a+\sum_{b\in B}(p-b)+2\sum_{b\in B}b-p\mu\\
+        &=p\sum_{k=1}^{\frac{p-1}{2}}\left\lfloor\dfrac{nk}{p}\right\rfloor+\sum_{k=1}^{\frac{p-1}{2}}k+2\sum_{b\in B}b-p\mu\\
+        &=p\sum_{k=1}^{\frac{p-1}{2}}\left\lfloor\dfrac{nk}{p}\right\rfloor+\frac{p^2-1}{8}+2\sum_{b\in B}b-p\mu,
     \end{aligned}
     $$
+    
+    因此
+    
+    $$
+    (n-1)\frac{p^2-1}{8}=p\sum_{k=1}^{\frac{p-1}{2}}\left\lfloor\dfrac{nk}{p}\right\rfloor+2\sum_{b\in B}b-p\mu.
+    $$
+    
+    若 $n=2$, 则有
+    
+    $$
+    \frac{p^2-1}{8}\equiv\mu\pmod{2}.
+    $$
+    
+    若 $2\nmid n$, 则有
+    
+    $$
+    \sum_{k=1}^{\frac{p-1}{2}}\left\lfloor\dfrac{nk}{p}\right\rfloor\equiv\mu\pmod{2}.
+    $$
+
+根据如上推论，证明二次互反律只需验证
+
+$$
+\frac{p-1}{2}\frac{q-1}{2}=\sum_{k=1}^{\frac{p-1}{2}}\left\lfloor\dfrac{qk}{p}\right\rfloor+\sum_{k=1}^{\frac{q-1}{2}}\left\lfloor\dfrac{pk}{q}\right\rfloor.
+$$
+
+考虑由点 $(px,qy)$，$1\leq x\leq \dfrac{q-1}{2},1\leq y\leq \dfrac{p-1}{2}$ 构成的集合 $S$，将其根据 $px$ 与 $qy$ 的大小关系分成两部分（显然 $px\neq qy$），分别验证三个集合的大小即可。
 
 二次互反律不仅能用于判断数 $n$ 是否是模 $p$ 的二次剩余，还能用于确定使数 $n$ 为二次剩余的模数的结构。
 
-## 二次剩余的数量
+???+ example
+    -   使得 $5$ 为二次剩余的奇素数 $p$ 满足 $p\equiv \pm 1\pmod 5.$
+    -   使得 $-3$ 为二次剩余的奇素数 $p$ 满足 $p\equiv 0,1\pmod 3.$
+    -   使得 $-2$，$3$ 同时为二次剩余的奇素数 $p$ 满足 $p\equiv 11\pmod{24}.$
 
-对于奇素数 $p$，模 $p$ 意义下二次剩余和二次非剩余均有 $\frac{p-1}{2}$ 个。
+另外，我们还可以证明诸如「形如 $4k+1$ 的素数有无限多个」之类的结论，这一类结论实际上是 [Dirichlet 定理](https://en.wikipedia.org/wiki/Dirichlet%27s_theorem_on_arithmetic_progressions) 的简单推论。
 
-???+ note "证明"
-    根据 Euler 判别法，考虑 $a^{\frac{p-1}{2}}\equiv 1\pmod p$.
+## Jacobi 符号
+
+根据二次互反律，我们可以很自然地想到一种推广 Legendre 符号的方法：
+
+???+ abstract "Jacobi 符号"
+    对 **正奇数**  $m=p_1^{\alpha_1}\dots p_k^{\alpha_k}$ 和整数 $a$，其中 $p_1,\dots,p_k$ 是素数，$\alpha_1,\dots,\alpha_k$ 是正整数，定义 Jacobi 符号如下：
     
-    注意到 $\frac{p-1}{2}\mid (p-1)$，由 [同余方程的定理 6](./congruence-equation.md#定理-6) 可知 $a^{\frac{p-1}{2}}\equiv 1\pmod p$ 有 $\frac{p-1}{2}$ 个解。所以模 $p$ 意义下二次剩余和二次非剩余均有 $\frac{p-1}{2}$ 个。
+    $$
+    \left(\frac{a}{m}\right):=\prod_{i=1}^k\left(\frac{a}{p_i}\right)^{\alpha_i}.
+    $$
+    
+    其中等式右端的 $\left(\frac{a}{p_i}\right)$ 为 [Legendre 符号](#legendre-符号)。另外对整数 $a$ 有 $\left(\dfrac{a}{1}\right)=1.$
+
+???+ warning
+    我们一般不区分 Legendre 符号和 Jacobi 符号，因为由完全积性可知 Jacobi 符号具有和 Legendre 符号一样的性质，所以这两种符号的计算方法是一致的。但是有一点需要注意：当 $m$  **不是奇素数** 时，$\left(\dfrac{a}{m}\right)$ 的值与 $a$ 是否是模 $m$ 的二次剩余 **无关**，但是若 $\left(\dfrac{a}{m}\right)=-1$，则说明 $m$ 至少存在一个（实际上是奇数个）素因子 $p$ 使得 $a$ 是模 $p$ 的二次非剩余，从而此时 $a$ 是模 $m$ 的二次非剩余。
+
+我们还可以把模数进一步推广为 **整数**（只需补充 $\left(\dfrac{a}{-1}\right)$、$\left(\dfrac{a}{0}\right)$ 和 $\left(\dfrac{a}{2}\right)$ 的定义），这样就得到了 [Kronecker 符号](https://en.wikipedia.org/wiki/Kronecker_symbol)。
 
 ## 相关算法
 
