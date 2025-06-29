@@ -1,0 +1,10 @@
+id: oi-wiki:string/hash-1
+name: HASH
+solution:
+  cpp: docs/string/code/hash/hash_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/string/examples/hash/hash_1.ans
+  input: docs/string/examples/hash/hash_1.in
+version: 1000
