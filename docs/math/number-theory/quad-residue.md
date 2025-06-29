@@ -221,7 +221,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
     $$
 
 ??? note "证明"
-    对 Gauss 引理中的 $n,k,r_k,A,B$，有 $nk=p\left\lfloor\dfrac{nk}{p}\right\rfloor+r_k$，进而
+    对 Gauss 引理中的 $n,k,r_k,A,B,\lambda,\mu$，有 $nk=p\left\lfloor\dfrac{nk}{p}\right\rfloor+r_k$，进而
     
     $$
     \begin{aligned}
