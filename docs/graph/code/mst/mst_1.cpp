@@ -35,7 +35,7 @@ int main() {
         }
         sum1 = 0;
         for (int j = i; j <= m + 1; j++) {
-          if (a[j].z != a[i].z) {
+          if (j > m || a[j].z != a[i].z) {
             tail = j - 1;
             break;
           }
