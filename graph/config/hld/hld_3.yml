@@ -1,0 +1,10 @@
+id: oi-wiki:graph/hld-3
+name: HLD
+solution:
+  cpp: docs/graph/code/hld/hld_3.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/graph/examples/hld/hld_3.ans
+  input: docs/graph/examples/hld/hld_3.in
+version: 1000

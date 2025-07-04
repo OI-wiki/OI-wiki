@@ -1,0 +1,10 @@
+id: oi-wiki:search/bidirectional-1
+name: Bidirectional Search
+solution:
+  cpp: docs/search/code/bidirectional/bidirectional_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/search/examples/bidirectional/bidirectional_1.ans
+  input: docs/search/examples/bidirectional/bidirectional_1.in
+version: 1000
