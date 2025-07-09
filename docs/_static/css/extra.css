@@ -104,3 +104,9 @@ mjx-container > img {
 div.md-typeset__scrollwrap:has(table[data-review-enabled]) {
   overflow: visible;
 }
+
+/* See https://github.com/OI-wiki/OI-wiki/issues/5288#issuecomment-3050538912 */
+
+mjx-c {
+  padding: 1px 0;
+}
