@@ -113,7 +113,7 @@ $$
 
 容易发现需要合并的树的大小一定从 $2^0$ 开始且指数连续。复杂度类似二进制加法，是均摊 $O(n\log^2 n)$ 的，因为重构本身带 $\log$。
 
-查询的时候，直接分别在每棵树上查询，复杂度为 $O\left(\sum_{i\geq0} (\frac n{2^i})^{1-\frac1k}\right)=O(n^{1-\frac1k})$。
+查询的时候，直接分别在每棵树上查询，复杂度为 $O\left(\sum_{i\geqslant0} (\frac n{2^i})^{1-\frac1k}\right)=O(n^{1-\frac1k})$。
 
 ### 例题
 
@@ -125,7 +125,7 @@ $$
     
     强制在线。内存限制 `20M`。保证答案及所有过程量在 `int` 范围内。
     
-    $1\le n\le 500000 , 1\le q\le 200000$
+    $1\leqslant n\leqslant 500000 , 1\leqslant q\leqslant 200000$
 
 20M 的空间卡掉了所有树套树，强制在线卡掉了 CDQ 分治，只能使用 k-D Tree。
 
@@ -144,7 +144,7 @@ $$
 ???+ note " 例题 [luogu P1429 平面最近点对（加强版）](https://www.luogu.com.cn/problem/P1429)"
     给定平面上的 $n$ 个点 $(x_i,y_i)$，找出平面上最近两个点对之间的 [欧几里得距离](../geometry/distance.md#欧氏距离)。
     
-    $2\le n\le 200000 , 0\le x_i,y_i\le 10^9$
+    $2\leqslant n\leqslant 200000 , 0\leqslant x_i,y_i\leqslant 10^9$
 
 首先建出关于这 $n$ 个点的 2-D Tree。
 
@@ -160,7 +160,7 @@ $$
 ???+ note " 例题 [「CQOI2016」K 远点对](https://loj.ac/problem/2043)"
     给定平面上的 $n$ 个点 $(x_i,y_i)$，求欧几里得距离下的第 $k$ 远无序点对之间的距离。
     
-    $n\le 100000 , 1\le k\le 100 , 0\le x_i,y_i<2^{31}$
+    $n\leqslant 100000 , 1\leqslant k\leqslant 100 , 0\leqslant x_i,y_i<2^{31}$
 
 和上一道例题类似，从最近点对变成了 $k$ 远点对，估价函数改成了查询点到子树对应的长方形区域的最远距离。用一个小根堆来维护当前找到的前 $k$ 远点对之间的距离，如果当前找到的点对距离大于堆顶，则弹出堆顶并插入这个距离，同样的，使用堆顶的距离来剪枝。
 

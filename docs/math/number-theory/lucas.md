@@ -137,7 +137,7 @@ $$
     -   如果它是 $1$，那么第一个因子的指数为 $1$，该因子就等于零，所以二项式系数的余数为零。同时，Lucas 定理所要证明的等式右侧的 $\dbinom{n\bmod p}{k\bmod p}$ 也必然是零，因为此时必然有 $(n\bmod p)<(k\bmod p)$；否则，将有
     
         $$
-        ((n-k)\bmod p) = p + (n\bmod p)  - (k\bmod p) \ge p.
+        ((n-k)\bmod p) = p + (n\bmod p)  - (k\bmod p) \geqslant p.
         $$
     
         这显然与余数的定义矛盾。
@@ -189,7 +189,7 @@ $$
 
 式子中的 $\nu_p(n!)$ 等可以通过 [Legendre 公式](./factorial.md#legendre-公式) 计算，$(n!)_p$ 等则可以通过 [递推关系](./factorial.md#素数幂模的情形) 计算。因为后者与 $p^\alpha$ 互素，所以分母上的乘积的逆元可以通过 [扩展欧几里得算法](./inverse.md#扩展欧几里得法) 计算。问题就得以解决。
 
-注意，如果幂次 $\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)\ge\alpha$，余数一定为零，不必再做更多计算。
+注意，如果幂次 $\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)\geqslant\alpha$，余数一定为零，不必再做更多计算。
 
 ### 一般模数的情形
 

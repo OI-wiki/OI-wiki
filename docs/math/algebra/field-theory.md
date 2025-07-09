@@ -602,7 +602,7 @@ $$
     域 $F$ 的乘法群的有限子群一定是循环群。
 
 ??? note "证明"
-    设 $G$ 为域 $F$ 的乘法群的子群且 $|G|=n$。因而，$G$ 是有限 Abel 群。根据有限 Abel 群基本定理，群 $G$ 有不变因子分解 $C_{n_1}\times\cdots\times C_{n_s}$ 且 $n_1\mid\cdots\mid n_s$。所以，对于 $G$ 中的所有元素 $x$，都有 $x^{n_s}=1$。也就是说，群 $G$ 中的元素都是域 $F$ 上多项式 $x^{n_s}-1$ 的根。但是，多项式 $x^{n_s}-1$ 至多有 $n_s$ 个相异的根，即 $n\le n_s$。但是，$n_s\le n$，所以其实有 $n_s=n$。这说明 $G\cong C_{n_s}$，即群 $G$ 是循环群。
+    设 $G$ 为域 $F$ 的乘法群的子群且 $|G|=n$。因而，$G$ 是有限 Abel 群。根据有限 Abel 群基本定理，群 $G$ 有不变因子分解 $C_{n_1}\times\cdots\times C_{n_s}$ 且 $n_1\mid\cdots\mid n_s$。所以，对于 $G$ 中的所有元素 $x$，都有 $x^{n_s}=1$。也就是说，群 $G$ 中的元素都是域 $F$ 上多项式 $x^{n_s}-1$ 的根。但是，多项式 $x^{n_s}-1$ 至多有 $n_s$ 个相异的根，即 $n\leqslant n_s$。但是，$n_s\leqslant n$，所以其实有 $n_s=n$。这说明 $G\cong C_{n_s}$，即群 $G$ 是循环群。
 
 ???+ note "推论"
     有限域 $\mathbf F_q$ 的乘法群 $\mathbf F_q^\times\cong C_{q-1}$。
@@ -675,10 +675,10 @@ $$
 ???+ note "定理"
     设 $\mathbf F_q$ 为有限域，$\mathcal F$ 为它的全体子域，$\mathcal G$ 为它的自同构群 $\operatorname{Aut}(\mathbf F_q)$ 的全体子群。对此，有：
     
-    1.  对于 $F\in\mathcal F$，设 $\operatorname{Aut}(\mathbf F_q/F)$ 为 $\operatorname{Aut}(\mathbf F_q)$ 中保持 $F$ 不变的自同构的集合，即 $\operatorname{Aut}(\mathbf F_q/F)=\{\sigma\in\operatorname{Aut}(\mathbf F_q):\forall x\in F(\sigma(x)=x)\}$，则 $\operatorname{Aut}(\mathbf F_q/F)\le\operatorname{Aut}(\mathbf F_q)$；
+    1.  对于 $F\in\mathcal F$，设 $\operatorname{Aut}(\mathbf F_q/F)$ 为 $\operatorname{Aut}(\mathbf F_q)$ 中保持 $F$ 不变的自同构的集合，即 $\operatorname{Aut}(\mathbf F_q/F)=\{\sigma\in\operatorname{Aut}(\mathbf F_q):\forall x\in F(\sigma(x)=x)\}$，则 $\operatorname{Aut}(\mathbf F_q/F)\leqslant\operatorname{Aut}(\mathbf F_q)$；
     2.  对于 $G\in\mathcal G$，设 $F^G$ 为 $G$ 中的所有自同构的不动点集合的交集，即 $F^G=\{x\in\mathbf F_q:\forall\sigma\in G(\sigma(x)=x)\}$，则 $F^G$ 为 $\mathbf F_q$ 的子域；
     3.  映射 $F\rightarrow\operatorname{Aut}(\mathbf F_q/F)$ 和映射 $G\rightarrow F^G$ 互为逆映射，且是 $\mathcal F$ 和 $\mathcal G$ 之间的一一对应；
-    4.  这个一一对应，将子域之间的扩张关系映射为子群之间的包含关系，即对于任何 $F_1\subseteq F_2$，都有 $\operatorname{Aut}(\mathbf F_q/F_2)\le\operatorname{Aut}(\mathbf F_q/F_1)$。
+    4.  这个一一对应，将子域之间的扩张关系映射为子群之间的包含关系，即对于任何 $F_1\subseteq F_2$，都有 $\operatorname{Aut}(\mathbf F_q/F_2)\leqslant\operatorname{Aut}(\mathbf F_q/F_1)$。
 
 这个结论是一般的 Galois 理论的基本定理的特殊情形，它将域扩张和群论的内容联系起来，从而可以通过群论的方法解决域扩张的问题。
 

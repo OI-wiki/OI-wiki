@@ -37,7 +37,7 @@
 
 ### 秩
 
-**秩函数（Rank Function）** $r: 2^E \rightarrow \mathbb{Z}_{\geq 0}$ 将基础集 $E$ 的子集映射到非负整数。对于任意 $S \subseteq E$，$r(S)$ 定义为 $S$ 中最大独立集的大小，即
+**秩函数（Rank Function）** $r: 2^E \rightarrow \mathbb{Z}_{\geqslant 0}$ 将基础集 $E$ 的子集映射到非负整数。对于任意 $S \subseteq E$，$r(S)$ 定义为 $S$ 中最大独立集的大小，即
 
 $$
 r(S) = \max \{ |I| \mid I \subseteq S \wedge I \in \mathcal{I} \}.
@@ -45,11 +45,11 @@ $$
 
 **性质**：
 
-1.  **非负性**：对于任意 $S \subseteq E$，有 $0 \leq r(S) \leq |S|$。
+1.  **非负性**：对于任意 $S \subseteq E$，有 $0 \leqslant r(S) \leqslant |S|$。
 
-2.  **单调性**：若 $A \subseteq B \subseteq E$，则 $r(A) \leq r(B)$。
+2.  **单调性**：若 $A \subseteq B \subseteq E$，则 $r(A) \leqslant r(B)$。
 
-3.  **次模性**：对于任意 $A, B \subseteq E$，有 $r(A \cup B) + r(A \cap B) \leq r(A) + r(B)$。
+3.  **次模性**：对于任意 $A, B \subseteq E$，有 $r(A \cup B) + r(A \cap B) \leqslant r(A) + r(B)$。
 
 ## 典型示例
 
@@ -58,7 +58,7 @@ $$
 **定义**：给定基础集 $E$ 和非负整数 $k$，均匀拟阵 $U_{k,E}$ 的独立集族是所有大小不超过 $k$ 的子集，表示为：
 
 $$
-\mathcal{I} = \{ I \subseteq E \mid |I| \leq k \}。
+\mathcal{I} = \{ I \subseteq E \mid |I| \leqslant k \}。
 $$
 
 -   **基（Bases）**：所有大小为 $k$ 的子集。
@@ -92,7 +92,7 @@ $$
 **定义**：将基础集 $E$ 划分为不相交的子集 $E_1, E_2, \dots, E_m$，并为每个子集 $E_i$ 指定一个非负整数 $k_i$。划分拟阵的独立集族由满足每个部分选取元素数量不超过 $k_i$ 的子集组成，表示为：
 
 $$
-\mathcal{I} = \left\{ I \subseteq E \mid \forall i,\, |I \cap E_i|  \leq k_i \right\}。
+\mathcal{I} = \left\{ I \subseteq E \mid \forall i,\, |I \cap E_i|  \leqslant k_i \right\}。
 $$
 
 -   **基**：满足 $|I \cap E_i| = k_i$ 的独立集是划分拟阵的基。每个基在每个子集中选取了恰好 $k_i$ 个元素。
@@ -210,9 +210,9 @@ $$
 
 利用 **扩张性**，不断将 $x$ 加入 $A'$，最终构造出一个新的独立集 $A''$，使得 $|A''| = |T|$。
 
-设 $K = A'' \cap T$，此时有 $x = T \setminus K$，$y = A'' \setminus K$。由于 $y$ 为 $P$ 中权值最大的元素，有 $w(x) \leq w(y)$。
+设 $K = A'' \cap T$，此时有 $x = T \setminus K$，$y = A'' \setminus K$。由于 $y$ 为 $P$ 中权值最大的元素，有 $w(x) \leqslant w(y)$。
 
-因此，$w(A'') = w(K) + w(y) \geq w(K) + w(x) = w(T)$，此时：
+因此，$w(A'') = w(K) + w(y) \geqslant w(K) + w(x) = w(T)$，此时：
 
 -   若 $w(A'') > w(T)$，则 $T$ 不是权值最大独立集，与假设矛盾。
 -   若 $w(A'') = w(T)$，则 $A''$ 为权值最大独立集，且 $A'$ 为其子集，与假设 $A'$ 不是任何权值最大独立集的子集矛盾。
@@ -319,7 +319,7 @@ $$
     1.  **拟阵建模**：
     
         -   **图拟阵 ($M_1$)**：定义为所有不形成环的边集，即独立集族 $\mathcal{I}_1$ 包含所有不构成环的边集合。
-        -   **颜色拟阵 ($M_2$)**：定义为每种颜色的边数不超过 $k$ 的边集，即独立集族 $\mathcal{I}_2$ 包含所有满足每种颜色边数 $\leq k$ 的边集合。
+        -   **颜色拟阵 ($M_2$)**：定义为每种颜色的边数不超过 $k$ 的边集，即独立集族 $\mathcal{I}_2$ 包含所有满足每种颜色边数 $\leqslant k$ 的边集合。
     2.  **求解拟阵交**：通过求解 $M = M_1 \cap M_2$，找到既不形成环又满足每种颜色边数不超过 $k$ 的最大边集。
 
 **约束的资源分配问题**:

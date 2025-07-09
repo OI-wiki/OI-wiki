@@ -305,7 +305,7 @@ for (int i = 1; i <= n; i++)
 
 ### LCP（最长公共前缀）
 
-两个字符串 $S$ 和 $T$ 的 LCP 就是最大的 $x$($x\le \min(|S|, |T|)$) 使得 $S_i=T_i\ (\forall\ 1\le i\le x)$。
+两个字符串 $S$ 和 $T$ 的 LCP 就是最大的 $x$($x\leqslant \min(|S|, |T|)$) 使得 $S_i=T_i\ (\forall\ 1\leqslant i\leqslant x)$。
 
 下文中以 $lcp(i,j)$ 表示后缀 $i$ 和后缀 $j$ 的最长公共前缀（的长度）。
 
@@ -317,10 +317,10 @@ $height[1]$ 可以视作 $0$。
 
 ### O(n) 求 height 数组需要的一个引理
 
-$height[rk[i]]\ge height[rk[i-1]]-1$
+$height[rk[i]]\geqslant height[rk[i-1]]-1$
 
 ???+ note "证明"
-    当 $height[rk[i-1]]\le1$ 时，上式显然成立（右边小于等于 $0$）。
+    当 $height[rk[i-1]]\leqslant1$ 时，上式显然成立（右边小于等于 $0$）。
     
     当 $height[rk[i-1]]>1$ 时：
     
@@ -338,7 +338,7 @@ $height[rk[i]]\ge height[rk[i-1]]-1$
     
     所以 $AB \leqslant$ 后缀 $sa[rk[i]-1] < AD$，显然后缀 $i$ 和后缀 $sa[rk[i]-1]$ 有公共前缀 $A$。
     
-    于是就可以得出 $lcp(i,sa[rk[i]-1])$ 至少是 $height[rk[i-1]]-1$，也即 $height[rk[i]]\ge height[rk[i-1]]-1$。
+    于是就可以得出 $lcp(i,sa[rk[i]-1])$ 至少是 $height[rk[i-1]]-1$，也即 $height[rk[i]]\geqslant height[rk[i-1]]-1$。
 
 ### O(n) 求 height 数组的代码实现
 
@@ -371,7 +371,7 @@ $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$
 
 假设需要比较的是 $A=S[a..b]$ 和 $B=S[c..d]$ 的大小关系。
 
-若 $lcp(a, c)\ge\min(|A|, |B|)$，$A<B\iff |A|<|B|$。
+若 $lcp(a, c)\geqslant\min(|A|, |B|)$，$A<B\iff |A|<|B|$。
 
 否则，$A<B\iff rk[a]< rk[c]$。
 
@@ -430,7 +430,7 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 ??? note "题解"
     被加数的前两项很好处理，为 $n(n-1)(n+1)/2$（每个后缀都出现了 $n-1$ 次，后缀总长是 $n(n+1)/2$），关键是最后一项，即后缀的两两 LCP。
     
-    我们知道 $lcp(i,j)=k$ 等价于 $\min\{height[i+1..j]\}=k$。所以，可以把 $lcp(i,j)$ 记作 $\min\{x|i+1\le x\le j, height[x]=lcp(i,j)\}$ 对答案的贡献。
+    我们知道 $lcp(i,j)=k$ 等价于 $\min\{height[i+1..j]\}=k$。所以，可以把 $lcp(i,j)$ 记作 $\min\{x|i+1\leqslant x\leqslant j, height[x]=lcp(i,j)\}$ 对答案的贡献。
     
     考虑每个位置对答案的贡献是哪些后缀的 LCP，其实就是从它开始向左若干个连续的 $height$ 大于它的后缀中选一个，再从向右若干个连续的 $height$ 不小于它的后缀中选一个。这个东西可以用 [单调栈](../ds/monotonous-stack.md) 计算。
     

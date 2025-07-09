@@ -143,7 +143,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
         a_1\equiv a_2\pmod p\implies \left(\frac{a_1}{p}\right)\equiv\left(\frac{a_2}{p}\right)\pmod p,
         $$
     
-        而 $\left|\left(\dfrac{a_1}{p}\right)-\left(\dfrac{a_2}{p}\right)\right|\leq 2$ 且 $p>2$，故：
+        而 $\left|\left(\dfrac{a_1}{p}\right)-\left(\dfrac{a_2}{p}\right)\right|\leqslant 2$ 且 $p>2$，故：
     
         $$
         a_1\equiv a_2\pmod p\implies \left(\frac{a_1}{p}\right)=\left(\frac{a_2}{p}\right).
@@ -154,7 +154,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
         \left(\frac{a_1a_2}{p}\right)\equiv a_1^{\frac{p-1}{2}}a_2^{\frac{p-1}{2}}\equiv\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right)\pmod p.
         $$
     
-        而 $\left|\left(\dfrac{a_1a_2}{p}\right)-\left(\dfrac{a_1}{p}\right)\left(\dfrac{a_2}{p}\right)\right|\leq 2$ 且 $p>2$，故
+        而 $\left|\left(\dfrac{a_1a_2}{p}\right)-\left(\dfrac{a_1}{p}\right)\left(\dfrac{a_2}{p}\right)\right|\leqslant 2$ 且 $p>2$，故
     
         $$
         \left(\frac{a_1a_2}{p}\right)=\left(\frac{a_1}{p}\right)\left(\frac{a_2}{p}\right).
@@ -175,7 +175,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
 证明方式很多[^ref5]。一种证明方式是基于如下引理：
 
 ???+ abstruct "Gauss 引理"
-    设 $p$ 是奇素数，$(n,p)=1$，对整数 $k~\left(1\leq k\leq (p-1)/2\right)$，令 $r_k$ 为 $nk$ 模 $p$ 的最小非负剩余，设 $A=\{r_k:r_k<p/2\}$，$B=\{r_k:r_k>p/2\}$，则
+    设 $p$ 是奇素数，$(n,p)=1$，对整数 $k~\left(1\leqslant k\leqslant (p-1)/2\right)$，令 $r_k$ 为 $nk$ 模 $p$ 的最小非负剩余，设 $A=\{r_k:r_k<p/2\}$，$B=\{r_k:r_k>p/2\}$，则
     
     $$
     \left(\frac{n}{p}\right)=(-1)^{|B|}.
@@ -238,7 +238,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
     (n-1)\frac{p^2-1}{8}=p\sum_{k=1}^{\frac{p-1}{2}}\left\lfloor\dfrac{nk}{p}\right\rfloor+2\sum_{b\in B}b-p\mu.
     $$
     
-    若 $n=2$，则 $0<\dfrac{nk}{p}\leq\dfrac{p-1}{p}<1$，从而有
+    若 $n=2$，则 $0<\dfrac{nk}{p}\leqslant\dfrac{p-1}{p}<1$，从而有
     
     $$
     \frac{p^2-1}{8}\equiv\mu\pmod{2}.
@@ -256,7 +256,7 @@ $$
 \frac{p-1}{2}\frac{q-1}{2}=\sum_{k=1}^{\frac{p-1}{2}}\left\lfloor\dfrac{qk}{p}\right\rfloor+\sum_{k=1}^{\frac{q-1}{2}}\left\lfloor\dfrac{pk}{q}\right\rfloor.
 $$
 
-考虑由点 $(px,qy)$，$1\leq x\leq \dfrac{q-1}{2},1\leq y\leq \dfrac{p-1}{2}$ 构成的集合 $S$，将其根据 $px$ 与 $qy$ 的大小关系分成两部分（显然 $px\neq qy$），分别验证三个集合的大小即可。
+考虑由点 $(px,qy)$，$1\leqslant x\leqslant \dfrac{q-1}{2},1\leqslant y\leqslant \dfrac{p-1}{2}$ 构成的集合 $S$，将其根据 $px$ 与 $qy$ 的大小关系分成两部分（显然 $px\neq qy$），分别验证三个集合的大小即可。
 
 二次互反律不仅能用于判断数 $n$ 是否是模 $p$ 的二次剩余，还能用于确定使数 $n$ 为二次剩余的模数的结构。
 

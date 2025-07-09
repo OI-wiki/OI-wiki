@@ -91,9 +91,9 @@ Hierholzer 算法的时间复杂度为 $O(|E| + |V|)$。
 
 设 $S = \{a_1, a_2, \cdots, a_m\}$，构造 $D=\langle V, E\rangle$，如下：
 
-$V = \{a_{i_1}a_{i_2}\cdots a_{i_{n-1}} |a_i \in S, 1 \leq i \leq n - 1 \}$
+$V = \{a_{i_1}a_{i_2}\cdots a_{i_{n-1}} |a_i \in S, 1 \leqslant i \leqslant n - 1 \}$
 
-$E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
+$E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leqslant j \leqslant n\}$
 
 规定 $D$ 中顶点与边的关联关系如下：
 
@@ -114,7 +114,7 @@ $E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
     
     在本题中，欧拉路或欧拉回路不需要经过所有顶点。
     
-    边的数量 m 满足 $1\leq m \leq 1024$。
+    边的数量 m 满足 $1\leqslant m \leqslant 1024$。
 
 ??? note "解题思路"
     本题为 Hierholzer 算法的直接应用。

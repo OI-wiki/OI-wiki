@@ -69,7 +69,7 @@ $$
 
 其中，$T_x$ 表示以 $x$ 为根的子树，$w(\cdot)$ 表示子树的权重（它的叶子节点的数目），而 $\operatorname{left}(x)$ 和 $\operatorname{right}(x)$ 分别表示 $x$ 的左右叶子节点。特别地，叶子节点处规定 $\rho(x)=1/2$。
 
-对于 $\alpha\in(0,1/2]$，如果某个节点 $x$ 处平衡度 $\rho(x)\ge\alpha$，就称该节点是 **$\alpha$‑平衡** 的。如果树的每个节点处都是 $\alpha$‑平衡的，就称树是 **$\alpha$‑平衡** 的。这样的树的集合记作 $BB[\alpha]$。一个树是 **$\alpha$‑平衡** 的，当且仅当它本身是 $\alpha$‑平衡的，且它的左右子树都是 $\alpha$‑平衡的或者它是叶子节点。
+对于 $\alpha\in(0,1/2]$，如果某个节点 $x$ 处平衡度 $\rho(x)\geqslant\alpha$，就称该节点是 **$\alpha$‑平衡** 的。如果树的每个节点处都是 $\alpha$‑平衡的，就称树是 **$\alpha$‑平衡** 的。这样的树的集合记作 $BB[\alpha]$。一个树是 **$\alpha$‑平衡** 的，当且仅当它本身是 $\alpha$‑平衡的，且它的左右子树都是 $\alpha$‑平衡的或者它是叶子节点。
 
 树是 $\alpha$‑平衡的，有一个显然的好处是，它的高度是 $O(\log n)$ 的。这是因为，从叶子节点每向根移动一步，子树所包含的叶子节点数目就至少扩大到原来的 $1/(1-\alpha)$ 倍，因此只能移动 $O(\log_{\frac{1}{1-\alpha}}n) = O(\log n)$ 次。这就保证了在 $\alpha$‑平衡的树中，单次查询的复杂度总是严格 $O(\log n)$ 的，且算法的常数与 $\log(1/(1-\alpha))$（以 $2$ 为底）正相关。当 $\alpha$ 位于下文提供的合理范围内时，这个常数大致为 $2\sim 3.5$。
 
@@ -105,7 +105,7 @@ WBLT 的旋转操作和 [Treap 的旋转操作](./treap.md#旋转) 完全相同�
 
 这两种旋转的策略分别称为单旋和双旋。单旋和双旋策略的选取，主要取决于子树 $w$ 相对于子树 $x$ 的比重，即存在阈值 $\beta$，使得
 
--   当 $w\le\beta x$ 时，应选取单旋策略；
+-   当 $w\leqslant\beta x$ 时，应选取单旋策略；
 -   当 $w>\beta x$ 时，应选取双旋策略。
 
 难点在于阈值 $\beta$ 的选择，这就需要做一些具体的计算。Blum 和 Mehlhorn 证明了，对于参数[^wrong-range]
@@ -123,28 +123,28 @@ $$
     \rho_1 = \dfrac{y}{x+y}, ~\rho_2 = \dfrac{w}{x}, ~\rho_3 = \dfrac{v}{w}.
     $$
     
-    那么，有 $\rho_1<\alpha\le\rho_2,\rho_3\le 1-\alpha$。此处还有一个隐含条件，是关于 $\rho_1$ 的取值范围的：
+    那么，有 $\rho_1<\alpha\leqslant\rho_2,\rho_3\leqslant 1-\alpha$。此处还有一个隐含条件，是关于 $\rho_1$ 的取值范围的：
     
     -   如果失衡是由插入单个元素引起的，那么，应该有
     
         $$
-        \dfrac{y}{x-1+y} \ge \alpha \implies \rho_1 \ge \dfrac{\alpha y}{y+\alpha} \ge \dfrac{\alpha}{1+\alpha}.
+        \dfrac{y}{x-1+y} \geqslant \alpha \implies \rho_1 \geqslant \dfrac{\alpha y}{y+\alpha} \geqslant \dfrac{\alpha}{1+\alpha}.
         $$
     -   如果失衡是由删除单个元素引起的，那么，应该有
     
         $$
-        \dfrac{y+1}{x+y+1} \ge \alpha \implies \rho_1 \ge \dfrac{\alpha y}{y+1-\alpha} \ge \dfrac{\alpha}{2-\alpha}.
+        \dfrac{y+1}{x+y+1} \geqslant \alpha \implies \rho_1 \geqslant \dfrac{\alpha y}{y+1-\alpha} \geqslant \dfrac{\alpha}{2-\alpha}.
         $$
     
     因为对于 $0<\alpha<1/2$，总有 $\alpha/(2-\alpha)<\alpha/(1+\alpha)$，所以删除元素会导致比增添元素更严重的失衡，尤其是对于树的规模很小的情形。
     
     接下来，恢复平衡的操作分为两种情形：
     
-    ??? note " 情形一：$w$ 没有过重，即 $\rho_2\le\beta$ 时，单旋 "
+    ??? note " 情形一：$w$ 没有过重，即 $\rho_2\leqslant\beta$ 时，单旋 "
         首先，$z$ 和 $w+y$ 平衡。这是因为
         
         $$
-        \left(1-\dfrac{\alpha}{2-\alpha}\right)\alpha+\dfrac{\alpha}{2-\alpha} \le \dfrac{w+y}{x+y} = (1-\rho_1)\rho_2+\rho_1 < (1-\alpha)\dfrac{1}{2-\alpha}+\alpha.
+        \left(1-\dfrac{\alpha}{2-\alpha}\right)\alpha+\dfrac{\alpha}{2-\alpha} \leqslant \dfrac{w+y}{x+y} = (1-\rho_1)\rho_2+\rho_1 < (1-\alpha)\dfrac{1}{2-\alpha}+\alpha.
         $$
         
         左侧表达式在 $\alpha\in(0,1)$ 时总大于 $\alpha$，右侧表达式在 $\alpha\in(0,1-\sqrt{2}/2]$ 时总不大于 $(1-\alpha)$。
@@ -164,19 +164,19 @@ $$
         另一方面，对于所有 $\alpha\in(0,1/3)$，除了删除元素且 $y=1$ 的情形外，都有
         
         $$
-        \rho_1 \ge \min\left\{\dfrac{\alpha}{1+\alpha},\dfrac{2\alpha}{3-\alpha}\right\} = \dfrac{2\alpha}{3-\alpha},
+        \rho_1 \geqslant \min\left\{\dfrac{\alpha}{1+\alpha},\dfrac{2\alpha}{3-\alpha}\right\} = \dfrac{2\alpha}{3-\alpha},
         $$
         
         所以，有
         
         $$
-        \dfrac{y}{w+y} \ge \dfrac{\dfrac{2\alpha}{3-\alpha}}{\left(1-\dfrac{2\alpha}{3-\alpha}\right)\dfrac{1}{2-\alpha}+\dfrac{2\alpha}{3-\alpha}} > \alpha.
+        \dfrac{y}{w+y} \geqslant \dfrac{\dfrac{2\alpha}{3-\alpha}}{\left(1-\dfrac{2\alpha}{3-\alpha}\right)\dfrac{1}{2-\alpha}+\dfrac{2\alpha}{3-\alpha}} > \alpha.
         $$
         
         最后，考虑剩余的情形，即删除元素且 $y=1$ 时。最可能失衡的情形发生在 $x=\lfloor 2/\alpha\rfloor-2$ 且 $w=\lfloor\beta x\rfloor$ 时。树可以恢复平衡，当且仅当
         
         $$
-        \dfrac{1}{1+\lfloor\beta x\rfloor}\ge\alpha \iff \lfloor\beta x\rfloor\le\dfrac{1}{\alpha}-1 \iff \beta x < \dfrac{1}{\alpha} \iff x < \dfrac{2}{\alpha}-1.
+        \dfrac{1}{1+\lfloor\beta x\rfloor}\geqslant\alpha \iff \lfloor\beta x\rfloor\leqslant\dfrac{1}{\alpha}-1 \iff \beta x < \dfrac{1}{\alpha} \iff x < \dfrac{2}{\alpha}-1.
         $$
         
         而这总是成立的。这就完成了该情形的证明。注意，最后一种情形的证明利用了权重总是整数这一性质，并不能合并到之前的讨论中。
@@ -205,26 +205,26 @@ $$
         一方面，对于所有 $\alpha\in(0,1-\sqrt{2}/2]$，都有
         
         $$
-        \dfrac{y}{v+y} < \dfrac{\alpha}{\alpha+(1-\alpha)\dfrac{1}{2-\alpha}\alpha} \le 1-\alpha.
+        \dfrac{y}{v+y} < \dfrac{\alpha}{\alpha+(1-\alpha)\dfrac{1}{2-\alpha}\alpha} \leqslant 1-\alpha.
         $$
         
         另一方面，
         
         $$
-        \dfrac{y}{v+y} \ge \dfrac{\rho_1}{\rho_1+(1-\rho_1)(1-\alpha)^2}.
+        \dfrac{y}{v+y} \geqslant \dfrac{\rho_1}{\rho_1+(1-\rho_1)(1-\alpha)^2}.
         $$
         
         右侧表达式不小于 $\alpha$，当且仅当
         
         $$
-        \rho_1 \ge \dfrac{\alpha(1-\alpha)}{1+\alpha(1-\alpha)}.
+        \rho_1 \geqslant \dfrac{\alpha(1-\alpha)}{1+\alpha(1-\alpha)}.
         $$
         
-        如果失衡是由插入引起的，那么 $\rho_1\ge \alpha/(1+\alpha)$，显然成立。否则，情形有些复杂：
+        如果失衡是由插入引起的，那么 $\rho_1\geqslant \alpha/(1+\alpha)$，显然成立。否则，情形有些复杂：
         
-        -   当 $y\ge 3$ 时，$\rho_1\ge 3\alpha/(4-\alpha)$，且 $3\alpha/(4-\alpha)\ge\alpha(1-\alpha)/(1+\alpha(1-\alpha))$ 对于所有 $\alpha\in[1-\sqrt{3}/2,1)$ 都成立；
-        -   当 $y=2$ 时，最可能失衡的情形发生在 $x=\lfloor 3/\alpha\rfloor-3$，$w=\lfloor(1-\alpha)x\rfloor$ 且 $v=\lfloor(1-\alpha)w\rfloor$ 时，此时 $v/(v+y)\ge\alpha$ 对于所有 $\alpha\in(3/22,1)$ 都成立；
-        -   当 $y=1$ 时，最可能失衡的情形发生在 $x=\lfloor 2/\alpha\rfloor-2$，$w=\lfloor(1-\alpha)x\rfloor$ 且 $v=\lfloor(1-\alpha)w\rfloor$ 时，此时 $v/(v+y)\ge\alpha$ 对于所有 $\alpha\in(2/11,1)$ 都成立。
+        -   当 $y\geqslant 3$ 时，$\rho_1\geqslant 3\alpha/(4-\alpha)$，且 $3\alpha/(4-\alpha)\geqslant\alpha(1-\alpha)/(1+\alpha(1-\alpha))$ 对于所有 $\alpha\in[1-\sqrt{3}/2,1)$ 都成立；
+        -   当 $y=2$ 时，最可能失衡的情形发生在 $x=\lfloor 3/\alpha\rfloor-3$，$w=\lfloor(1-\alpha)x\rfloor$ 且 $v=\lfloor(1-\alpha)w\rfloor$ 时，此时 $v/(v+y)\geqslant\alpha$ 对于所有 $\alpha\in(3/22,1)$ 都成立；
+        -   当 $y=1$ 时，最可能失衡的情形发生在 $x=\lfloor 2/\alpha\rfloor-2$，$w=\lfloor(1-\alpha)x\rfloor$ 且 $v=\lfloor(1-\alpha)w\rfloor$ 时，此时 $v/(v+y)\geqslant\alpha$ 对于所有 $\alpha\in(2/11,1)$ 都成立。
         
         最后两种情形的讨论，同样利用了所有节点的权重都是整数这一点。
     
@@ -239,7 +239,7 @@ $$
 他们在文章中推荐使用如下策略维持平衡：
 
 -   当 $x>3y$ 时，判断失衡；
--   当 $w\le 2z$ 时，选取单旋策略，否则，选取双旋策略。
+-   当 $w\leqslant 2z$ 时，选取单旋策略，否则，选取双旋策略。
 
 原因是，这是可行的参数范围内唯一可以用简单整数表示的策略，从而避免了浮点数运算造成的效率损失。他们推荐的策略相当于取 $(\alpha,\beta)=(1/4,2/3)$。实践中，可以根据具体情况，选择合适的参数。
 
@@ -254,7 +254,7 @@ $$
 实现了维护平衡的策略后，合并两树的算法就非常简单。仍然设 $x>y$，合并的策略如下：
 
 -   如果右子树 $y$ 是空的，直接返回左子树 $x$；
--   如果左右子树 $x$ 和 $y$ 已经平衡，即 $y\ge\alpha(x+y)$，直接连接两子树；
+-   如果左右子树 $x$ 和 $y$ 已经平衡，即 $y\geqslant\alpha(x+y)$，直接连接两子树；
 -   否则，将 $x$ 的右子树 $w$ 与 $y$ 合并，将左子树 $z$ 与它们合并的结果连接，并调整新树的平衡。
 
 参考实现如下：
@@ -269,44 +269,44 @@ $$
 ??? note "平衡和复杂度的证明"
     只需要考虑 $y$ 过轻的情形，即 $y<\alpha(x+y)$。此时，先合并 $w$ 和 $y$，再连接 $z$ 和 $w+y$。需要证明的是，只要在树根处调整树的平衡，就能够保证树的平衡。假设树 $w+y$ 的左、右子树分别是 $c$ 和 $d$，且 $c$ 的左、右子树分别是 $a$ 和 $b$。在树根处调整平衡，可以分为三种情形：
     
-    ??? note " 情形一：$z$ 和 $w+y$ 已经平衡，无需进一步调整，即 $z\ge\alpha(x+y)$"
+    ??? note " 情形一：$z$ 和 $w+y$ 已经平衡，无需进一步调整，即 $z\geqslant\alpha(x+y)$"
         根据平衡的定义，子树 $z$ 和 $w+y$ 都是平衡的，且它们互相也是平衡的，那么整棵树也是平衡的。
     
-    ??? note " 情形二：$z$ 过轻且 $c$ 没有过重，可以通过单旋恢复平衡，即 $z<\alpha(x+y)$ 且 $c\le\beta(w+y)$"
+    ??? note " 情形二：$z$ 过轻且 $c$ 没有过重，可以通过单旋恢复平衡，即 $z<\alpha(x+y)$ 且 $c\leqslant\beta(w+y)$"
         此时，因为 $z$ 和 $w$ 平衡，但 $y$ 相较于 $x = z+w$ 过轻，所以，子树 $z$ 的权重满足
         
         $$
-        \alpha(1-\alpha)(x+y) <  \alpha(z+w) \le z \le \alpha(x+y) .
+        \alpha(1-\alpha)(x+y) <  \alpha(z+w) \leqslant z \leqslant \alpha(x+y) .
         $$
         
         而 $c$ 的权重则满足
         
         $$
-        \alpha(w+y) \le c \le \beta(w+y).
+        \alpha(w+y) \leqslant c \leqslant \beta(w+y).
         $$
         
         由此，$z$ 和 $c$ 互相平衡，只要
         
         $$
-        \dfrac{\alpha}{1-\alpha}<\dfrac{1-\alpha}{\alpha}\alpha<\dfrac{c}{z}=\dfrac{w+y}{z}\dfrac{c}{w+y} < \dfrac{1-\alpha(1-\alpha)}{\alpha(1-\alpha)}\beta\le\dfrac{1-\alpha}{\alpha},
+        \dfrac{\alpha}{1-\alpha}<\dfrac{1-\alpha}{\alpha}\alpha<\dfrac{c}{z}=\dfrac{w+y}{z}\dfrac{c}{w+y} < \dfrac{1-\alpha(1-\alpha)}{\alpha(1-\alpha)}\beta\leqslant\dfrac{1-\alpha}{\alpha},
         $$
         
         这要求
         
         $$
-        \beta\le \dfrac{(1-\alpha)^2}{1-\alpha(1-\alpha)}.
+        \beta\leqslant \dfrac{(1-\alpha)^2}{1-\alpha(1-\alpha)}.
         $$
         
         以及 $z+c$ 和 $d$ 互相平衡，只要
         
         $$
-        \alpha\le (1-\beta)(1-\alpha)\le \dfrac{d}{w+y}\dfrac{w+y}{x+y}  = \dfrac{d}{x+y} < \dfrac{d}{c+d} \le 1-\alpha,
+        \alpha\leqslant (1-\beta)(1-\alpha)\leqslant \dfrac{d}{w+y}\dfrac{w+y}{x+y}  = \dfrac{d}{x+y} < \dfrac{d}{c+d} \leqslant 1-\alpha,
         $$
         
         这要求
         
         $$
-        \beta \le \dfrac{1-2\alpha}{1-\alpha}.
+        \beta \leqslant \dfrac{1-2\alpha}{1-\alpha}.
         $$
     
     ??? note " 情形三：$z$ 过轻且 $c$ 过重，可以通过双旋恢复平衡，即 $z<\alpha(x+y)$ 且 $c>\beta(w+y)$"
@@ -314,52 +314,52 @@ $$
         
         $$
         \begin{aligned}
-        \alpha(1-\alpha)(x+y) < z &\le \alpha(x+y),\\
-        \beta(w+y)<c &\le (1-\alpha)(w+y),\\
-        \alpha c\le a,b &\le (1-\alpha)c.
+        \alpha(1-\alpha)(x+y) < z &\leqslant \alpha(x+y),\\
+        \beta(w+y)<c &\leqslant (1-\alpha)(w+y),\\
+        \alpha c\leqslant a,b &\leqslant (1-\alpha)c.
         \end{aligned}
         $$
         
         由此，$z$ 和 $a$ 互相平衡，只要
         
         $$
-        \dfrac{\alpha}{1-\alpha}\le\dfrac{1-\alpha}{\alpha}\beta\alpha\le\dfrac{a}{z} = \dfrac{w+y}{z}\dfrac{a}{c+d} < \dfrac{1-\alpha(1-\alpha)}{\alpha(1-\alpha)}(1-\alpha)^2,
+        \dfrac{\alpha}{1-\alpha}\leqslant\dfrac{1-\alpha}{\alpha}\beta\alpha\leqslant\dfrac{a}{z} = \dfrac{w+y}{z}\dfrac{a}{c+d} < \dfrac{1-\alpha(1-\alpha)}{\alpha(1-\alpha)}(1-\alpha)^2,
         $$
         
         这要求
         
         $$
-        \beta\ge\dfrac{\alpha}{(1-\alpha)^2}.
+        \beta\geqslant\dfrac{\alpha}{(1-\alpha)^2}.
         $$
         
         其次，$b$ 和 $d$ 互相平衡，只要
         
         $$
-        \dfrac{\alpha}{1-\alpha}\le\dfrac{\beta}{1-\beta}\alpha \le \dfrac{b}{d} = \dfrac{c}{d}\dfrac{b}{c} \le \dfrac{1-\alpha}{\alpha}(1-\alpha) < \dfrac{1-\alpha}{\alpha},
+        \dfrac{\alpha}{1-\alpha}\leqslant\dfrac{\beta}{1-\beta}\alpha \leqslant \dfrac{b}{d} = \dfrac{c}{d}\dfrac{b}{c} \leqslant \dfrac{1-\alpha}{\alpha}(1-\alpha) < \dfrac{1-\alpha}{\alpha},
         $$
         
         这要求
         
         $$
-        \beta\ge\dfrac{1}{2-\alpha}.
+        \beta\geqslant\dfrac{1}{2-\alpha}.
         $$
         
         最后，$z+a$ 和 $b+d$ 互相平衡，只要
         
         $$
-        \alpha<(1-\alpha)(1-(1-\alpha)^2)\le\frac{b+d}{x+y} = \dfrac{w+y}{x+y}\dfrac{b+d}{w+y} < (1-\alpha(1-\alpha))(1-\beta\alpha) \le 1-\alpha,
+        \alpha<(1-\alpha)(1-(1-\alpha)^2)\leqslant\frac{b+d}{x+y} = \dfrac{w+y}{x+y}\dfrac{b+d}{w+y} < (1-\alpha(1-\alpha))(1-\beta\alpha) \leqslant 1-\alpha,
         $$
         
         这要求
         
         $$
-        \beta\ge\dfrac{\alpha}{1-\alpha+\alpha^2}.
+        \beta\geqslant\dfrac{\alpha}{1-\alpha+\alpha^2}.
         $$
     
     综合三种情形，只要
     
     $$
-    0<\alpha\le 1-\dfrac{\sqrt{2}}{2},~\dfrac{1}{2-\alpha}\le\beta\le\dfrac{1-2\alpha}{1-\alpha},
+    0<\alpha\leqslant 1-\dfrac{\sqrt{2}}{2},~\dfrac{1}{2-\alpha}\leqslant\beta\leqslant\dfrac{1-2\alpha}{1-\alpha},
     $$
     
     就能保证合并后的树可以利用单旋和双旋结合的策略调整到平衡。这显然包含正文给出的参数范围。
@@ -375,8 +375,8 @@ $$
 为此，有如下策略[^more-join]：（仍然设 $x>y$）
 
 -   如果右子树 $y$ 是空的，直接返回左子树 $x$；
--   如果左右子树 $x$ 和 $y$ 已经平衡，即 $y\ge\alpha(x+y)$，直接连接两子树；
--   否则，右子树 $y$ 过轻，但如果 $x$ 的左子树 $z$ 和 $w+y$ 可以平衡，即 $z\ge\alpha(x+y)$，就将 $w$ 和 $y$ 先合并，再合并 $z$ 和 $w+y$；
+-   如果左右子树 $x$ 和 $y$ 已经平衡，即 $y\geqslant\alpha(x+y)$，直接连接两子树；
+-   否则，右子树 $y$ 过轻，但如果 $x$ 的左子树 $z$ 和 $w+y$ 可以平衡，即 $z\geqslant\alpha(x+y)$，就将 $w$ 和 $y$ 先合并，再合并 $z$ 和 $w+y$；
 -   否则，$z$ 和 $y$ 都过轻，此时，需要首先合并 $z$ 和 $w$ 的左子树 $u$，再合并 $w$ 的右子树 $v$ 和 $y$，再将两次合并的结果 **合并** 为新树。
 
 将这一策略与前文的平衡策略对比，可以看到后两种情形中节点的组合方式分别和前述平衡策略中单旋和双旋的结果相似，只是将子树的连接换作了合并。
@@ -384,19 +384,19 @@ $$
 可以证明，当
 
 $$
-0<\alpha \le 1-\dfrac{\sqrt{2}}{2}\approx 0.292
+0<\alpha \leqslant 1-\dfrac{\sqrt{2}}{2}\approx 0.292
 $$
 
 时，这样得到的树总是平衡的，且这样操作的复杂度是 $O(|\log(x/y)|)$ 的。也就是说，合并两个树的成本，与两个树的绝对大小无关，而只与它们的相对大小有关。
 
 ??? note "平衡和复杂度的证明"
-    设合并权重分别为 $x$ 和 $y$ 的两棵子树时，需要直接连接两棵子树的次数为 $\tau(x,y)$。严格来说，需要证明当 $0<\alpha\le 1-\sqrt{2}/2$ 时，存在常数 $C>0$，对于任意 $x>y>0$，都有
+    设合并权重分别为 $x$ 和 $y$ 的两棵子树时，需要直接连接两棵子树的次数为 $\tau(x,y)$。严格来说，需要证明当 $0<\alpha\leqslant 1-\sqrt{2}/2$ 时，存在常数 $C>0$，对于任意 $x>y>0$，都有
     
     $$
-    \tau(x,y) \le 1+C\log^+\dfrac{\alpha x}{(1-\alpha)^2y},
+    \tau(x,y) \leqslant 1+C\log^+\dfrac{\alpha x}{(1-\alpha)^2y},
     $$
     
-    其中，$\log^+ x = \max\{0,\log x\}$；而且，对于所有 $x/y\le(1-\alpha)/\alpha$，都有 $\tau(x,y)=1$。实际上，式子中的常数可以取作
+    其中，$\log^+ x = \max\{0,\log x\}$；而且，对于所有 $x/y\leqslant(1-\alpha)/\alpha$，都有 $\tau(x,y)=1$。实际上，式子中的常数可以取作
     
     $$
     C = -\dfrac{2}{\log(1-\alpha)}.
@@ -406,10 +406,10 @@ $$
     
     为了证明合并算法得到的树总是平衡的，且上述复杂度的表达式成立，需要使用归纳法。对于所有第一象限的格点 $(x,y)\in\mathbf N^2_+$，可以赋以 $(x+y,|x-y|)$ 的字典序，这显然是该集合上的良序，可以沿着该顺序进行归纳。归纳起点是 $(x,y)=(1,1)$，此时，两子树都只有一个叶子节点，直接连接得到的子树必然是平衡的，且 $\tau(x,y)=1$，符合上式。下面假设归纳进行到 $(x,y)$，且结论对于所有 $(x,y)$ 之前的点都成立。这分为三种情形：
     
-    ??? note " 情形一：树 $x$ 和 $y$ 平衡，即 $y\ge\alpha(x+y)$"
+    ??? note " 情形一：树 $x$ 和 $y$ 平衡，即 $y\geqslant\alpha(x+y)$"
         此时，直接连接得到树也是平衡的，且只调用树的连接算法一次，所以有 $\tau(x,y)=1$。
     
-    ??? note " 情形二：树 $y$ 过轻，但是 $z$ 并不过轻，即 $y<\alpha(x+y)\le z$"
+    ??? note " 情形二：树 $y$ 过轻，但是 $z$ 并不过轻，即 $y<\alpha(x+y)\leqslant z$"
         此时，首先合并 $w$ 和 $y$，然后合并 $z$ 和 $w+y$，所以
         
         $$
@@ -419,22 +419,22 @@ $$
         由归纳假设，子树 $w+y$ 已经是平衡的。对于第二步合并，其实可以直接证明证明 $z$ 和 $w+y$ 是平衡的：
         
         $$
-        \alpha \le \dfrac{z}{z+(w+y)} = \dfrac{z}{x+y} < \dfrac{z}{z+w} \le 1-\alpha.
+        \alpha \leqslant \dfrac{z}{z+(w+y)} = \dfrac{z}{x+y} < \dfrac{z}{z+w} \leqslant 1-\alpha.
         $$
         
         因此，合并 $z$ 和 $w+y$ 其实是直接连接两个子树，有 $\tau(z,w+y) = 1$。因此，最后得到的树也是平衡的。
         
-        现在估计 $\tau(w,y)$ 的大小。因为 $y>(\alpha/(1-\alpha))x$ 且 $\alpha x\le w\le(1-\alpha)x$，所以，经放缩可知
+        现在估计 $\tau(w,y)$ 的大小。因为 $y>(\alpha/(1-\alpha))x$ 且 $\alpha x\leqslant w\leqslant(1-\alpha)x$，所以，经放缩可知
         
         $$
-        \dfrac{\alpha}{1-\alpha}<1-\alpha=\dfrac{\alpha x}{(\alpha/(1-\alpha))x}< \dfrac{w}{y} \le \dfrac{(1-\alpha)x}{y}.
+        \dfrac{\alpha}{1-\alpha}<1-\alpha=\dfrac{\alpha x}{(\alpha/(1-\alpha))x}< \dfrac{w}{y} \leqslant \dfrac{(1-\alpha)x}{y}.
         $$
         
         这说明，$w$ 和 $y$ 不平衡，只出现在 $w>y$ 时，所以，有
         
         $$
         \begin{aligned}
-        \tau(w,y) &\le 1+C\log^+\dfrac{\alpha w}{(1-\alpha)^2y} \le 1+C\log^+\dfrac{\alpha x}{(1-\alpha)y} \\
+        \tau(w,y) &\leqslant 1+C\log^+\dfrac{\alpha w}{(1-\alpha)^2y} \leqslant 1+C\log^+\dfrac{\alpha x}{(1-\alpha)y} \\
         &= 1 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
         \end{aligned}
         $$
@@ -444,7 +444,7 @@ $$
         因此，有
         
         $$
-        \tau(x,y) \le 2 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
+        \tau(x,y) \leqslant 2 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
         $$
     
     ??? note " 情形三：树 $y$ 和 $z$ 都过轻，即 $y,z<\alpha(x+y)$"
@@ -456,12 +456,12 @@ $$
         
         类似前文情形，可以估计每一步合并时两个子树的权重比值。
         
-        因为 $z,y<\alpha(x+y)$，所以 $w>(1-2\alpha)(x+y)$。同时，利用平衡条件，有 $\alpha\le z/x,w/x,u/w,v/w\le 1-\alpha$。这说明
+        因为 $z,y<\alpha(x+y)$，所以 $w>(1-2\alpha)(x+y)$。同时，利用平衡条件，有 $\alpha\leqslant z/x,w/x,u/w,v/w\leqslant 1-\alpha$。这说明
         
         $$
         \begin{aligned}
-        \dfrac{\alpha}{1-\alpha}<\dfrac{\alpha}{1-\alpha}\frac{1}{1-\alpha}\le \dfrac{z}{u} &= \dfrac{z}{w}\dfrac{w}{u} < \dfrac{\alpha}{1-2\alpha}\dfrac{1}{\alpha} \le \dfrac{1-\alpha}{\alpha},\\
-        \dfrac{\alpha}{1-\alpha}\le\alpha\dfrac{1-2\alpha}{\alpha}< \dfrac{v}{y} &= \dfrac{v}{w}\dfrac{w}{y} \le (1-\alpha)\dfrac{(1-\alpha)x}{y} = (1-\alpha)^2\dfrac{x}{y}.
+        \dfrac{\alpha}{1-\alpha}<\dfrac{\alpha}{1-\alpha}\frac{1}{1-\alpha}\leqslant \dfrac{z}{u} &= \dfrac{z}{w}\dfrac{w}{u} < \dfrac{\alpha}{1-2\alpha}\dfrac{1}{\alpha} \leqslant \dfrac{1-\alpha}{\alpha},\\
+        \dfrac{\alpha}{1-\alpha}\leqslant\alpha\dfrac{1-2\alpha}{\alpha}< \dfrac{v}{y} &= \dfrac{v}{w}\dfrac{w}{y} \leqslant (1-\alpha)\dfrac{(1-\alpha)x}{y} = (1-\alpha)^2\dfrac{x}{y}.
         \end{aligned}
         $$
         
@@ -474,12 +474,12 @@ $$
         反过来，有
         
         $$
-        \dfrac{z+u}{v+y} = \dfrac{x+y}{v+y}-1 \ge \dfrac{x+y}{(1-\alpha)^2x+y}-1 > \dfrac{1}{(1-\alpha)^3+\alpha}-1 > \dfrac{\alpha}{1-\alpha}.
+        \dfrac{z+u}{v+y} = \dfrac{x+y}{v+y}-1 \geqslant \dfrac{x+y}{(1-\alpha)^2x+y}-1 > \dfrac{1}{(1-\alpha)^3+\alpha}-1 > \dfrac{\alpha}{1-\alpha}.
         $$
         
         利用这些不等式，可以说明最后得到的树必然是平衡的。利用归纳假设可知，$z$ 和 $u$ 合并，$v$ 和 $y$ 合并，都可以保证得到的树是平衡的。而且，其中第一步 $z$ 和 $u$ 合并实际上是直接连接两棵树。对于树 $z+u$ 和树 $v+y$ 的合并，又有两种子情形：
         
-        -   如果 $z+u\le v+y$，那么它们的权重比值严格大于 $\alpha/(1-\alpha)$，故而可以直接连接，结果是平衡的；
+        -   如果 $z+u\leqslant v+y$，那么它们的权重比值严格大于 $\alpha/(1-\alpha)$，故而可以直接连接，结果是平衡的；
         -   否则，它们的权重比值必然严格小于 $x/y$，但是 $(z+u)+(v+y)=x+y$，所以 $|(z+u)-(v+y)|<|x-y|$，由前文给出的字典序判断，这种情形也可以应用归纳假设，结果也是平衡的。
         
         进一步应用归纳假设可知：
@@ -487,18 +487,18 @@ $$
         $$
         \begin{aligned}
         \tau(z,u) &= 1,\\
-        \tau(v,y) &\le 1+C\log^+\dfrac{\alpha x}{y},\\
-        \tau(z+u,v+y) &\le 1 + C\log^+\dfrac{\alpha x}{(1-\alpha)y}.
+        \tau(v,y) &\leqslant 1+C\log^+\dfrac{\alpha x}{y},\\
+        \tau(z+u,v+y) &\leqslant 1 + C\log^+\dfrac{\alpha x}{(1-\alpha)y}.
         \end{aligned}
         $$
         
         三个不等式直接相加，会导致对数项前面的系数变成 $2C$，无法完成归纳。因此，此处需要更为细致的估计。
         
-        当 $\max\{v/y,(z+u)/(v+y)\}\le(1-\alpha)/\alpha$ 时，$\tau(v,y)$ 和 $\tau(z+u,v+y)$ 中必然有一项为 $1$，所以，有
+        当 $\max\{v/y,(z+u)/(v+y)\}\leqslant(1-\alpha)/\alpha$ 时，$\tau(v,y)$ 和 $\tau(z+u,v+y)$ 中必然有一项为 $1$，所以，有
         
         $$
         \begin{aligned}
-        \tau(v,y) + \tau(z+u,v+y) &\le 2 + C\log^+\dfrac{\alpha x}{(1-\alpha)y}\\
+        \tau(v,y) + \tau(z+u,v+y) &\leqslant 2 + C\log^+\dfrac{\alpha x}{(1-\alpha)y}\\
         &= 2 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
         \end{aligned}
         $$
@@ -508,12 +508,12 @@ $$
         $$
         \begin{aligned}
         \tau(v,y) + \tau(z+u,v+y) 
-        &\le 2 + C\log^+\dfrac{\alpha v}{(1-\alpha)^2y} + C\log^+\dfrac{\alpha(z+u)}{(1-\alpha)^2(v+y)}\\
+        &\leqslant 2 + C\log^+\dfrac{\alpha v}{(1-\alpha)^2y} + C\log^+\dfrac{\alpha(z+u)}{(1-\alpha)^2(v+y)}\\
         &= 2 + C\log\dfrac{\alpha}{(1-\alpha)^2} + C\log^+\dfrac{\alpha v(z+u)}{(1-\alpha)^2y(v+y)}.
         \end{aligned}
         $$
         
-        对于 $0<\alpha\le 1-\sqrt{2}/2$，有
+        对于 $0<\alpha\leqslant 1-\sqrt{2}/2$，有
         
         $$
         \dfrac{\alpha}{(1-\alpha)^2} < 1-\alpha.
@@ -537,16 +537,16 @@ $$
         整体的合并复杂度为
         
         $$
-        \tau(x,y) \le 3 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
+        \tau(x,y) \leqslant 3 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
         $$
     
     综合所有情形，有
     
     $$
-    \tau(x,y) \le 3 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
+    \tau(x,y) \leqslant 3 + C\log(1-\alpha) + C\log^+\dfrac{\alpha x}{(1-\alpha)^2y}.
     $$
     
-    因此，只要取 $2+C\log(1-\alpha)\le 0$，就可以完成复杂度的归纳。一个显然的选择为
+    因此，只要取 $2+C\log(1-\alpha)\leqslant 0$，就可以完成复杂度的归纳。一个显然的选择为
     
     $$
     C = -\dfrac{2}{\log(1-\alpha)}.
@@ -667,7 +667,7 @@ WBLT 的分裂与 [无旋 Treap](./treap.md#分裂split) 类似，根据子树�
     
     其中，$\tau(T_i,T'_{i-1})$ 是将 $T_i$ 和 $T'_{i-1}$ 合并起来的复杂度。
     
-    如果总是有 $w(T_i)\ge w(T'_{i-1})$，那么根据合并两子树的复杂度表达式，有
+    如果总是有 $w(T_i)\geqslant w(T'_{i-1})$，那么根据合并两子树的复杂度表达式，有
     
     $$
     \tau(T_i,T'_{i-1}) \in O\left(\log\dfrac{w(T_i)}{w(T'_{i-1})}\right) \subseteq O\left(\log\dfrac{w(T'_i)}{w(T'_{i-1})}\right).
@@ -675,7 +675,7 @@ WBLT 的分裂与 [无旋 Treap](./treap.md#分裂split) 类似，根据子树�
     
     因为这些大 $O$ 记号中的常数都是一致的，所以可以直接相加，裂项相消。
     
-    但是，应该注意的是，$w(T_i)\ge w(T'_{i-1})$ 并不总是成立，因为 $T'_{i-1}$ 是从 $T_i$ 在原来的树中对应的右子树分裂出来的，而这个右子树可能比左子树 $T_i$ 更大。尽管如此，即使 $T'_{i-1}$ 比 $T_i$ 大，作为右子树的一部分，权重 $w(T'_{i-1})$ 也不会超过 $w(T_i)$ 的 $(1-\alpha)/\alpha$ 倍，这意味着，此时 $T'_{i-1}$ 和 $T_i$ 一定是平衡的，合并的复杂度是 $O(1)$ 的。
+    但是，应该注意的是，$w(T_i)\geqslant w(T'_{i-1})$ 并不总是成立，因为 $T'_{i-1}$ 是从 $T_i$ 在原来的树中对应的右子树分裂出来的，而这个右子树可能比左子树 $T_i$ 更大。尽管如此，即使 $T'_{i-1}$ 比 $T_i$ 大，作为右子树的一部分，权重 $w(T'_{i-1})$ 也不会超过 $w(T_i)$ 的 $(1-\alpha)/\alpha$ 倍，这意味着，此时 $T'_{i-1}$ 和 $T_i$ 一定是平衡的，合并的复杂度是 $O(1)$ 的。
     
     将这两种情形总结在一起，单次合并的复杂度可以写为
     

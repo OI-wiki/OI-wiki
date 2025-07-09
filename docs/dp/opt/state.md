@@ -9,7 +9,7 @@ author: Marcythm, partychicken, Xeonacid, hhc0001
 ## 例 1
 
 ???+ note "题面"
-    给定两个长度分别为 $n,m$ 且仅由小写字母构成的字符串 $A,B$, 求 $A,B$ 的最长公共子序列。$(n\le 10^6,m\le 10^3)$
+    给定两个长度分别为 $n,m$ 且仅由小写字母构成的字符串 $A,B$, 求 $A,B$ 的最长公共子序列。$(n\leqslant 10^6,m\leqslant 10^3)$
 
 ### 朴素的解法
 
@@ -42,7 +42,7 @@ $$
 ## 例 2
 
 ???+ note "题面"
-    给定一个 $n$ 个点的无权有向图，判断该图是否存在哈密顿回路。$(2\le n\le 20)$
+    给定一个 $n$ 个点的无权有向图，判断该图是否存在哈密顿回路。$(2\leqslant n\leqslant 20)$
 
 ### 朴素的解法
 
@@ -67,7 +67,7 @@ $$
 ## 例 3
 
 ???+ note "题面"
-    常规的背包问题。$n$ 为物品数量，$m$ 为背包容量，$v_i, w_i$ 为第 $i$ 个物品的体积、价值，$1 \le n \le 10^3$，$1 \le m, v_i \le \color{red}{10^{18}}$，$1 \le \sum w_i \le 10^3$。
+    常规的背包问题。$n$ 为物品数量，$m$ 为背包容量，$v_i, w_i$ 为第 $i$ 个物品的体积、价值，$1 \leqslant n \leqslant 10^3$，$1 \leqslant m, v_i \leqslant \color{red}{10^{18}}$，$1 \leqslant \sum w_i \leqslant 10^3$。
 
 ### 朴素的解法
 
@@ -77,7 +77,7 @@ $$
 
 易得 $f_{i, j} = \max(f_{i - 1, j}, f_{i - 1, j - v_i} + w_i)$。
 
-$v_i \le 10^{18}$，无法通过此题。
+$v_i \leqslant 10^{18}$，无法通过此题。
 
 ### 更优的解法
 

@@ -8,7 +8,7 @@ Catalan 数列 $H_n$ 可以应用于以下问题：
 4.  对角线不相交的情况下，将一个凸多边形区域分成三角形区域的方法数？
 5.  一个栈（无穷大）的进栈序列为 $1,2,3, \cdots ,n$ 有多少个不同的出栈序列？
 6.  $n$ 个结点可构造多少个不同的二叉树？
-7.  由 $n$ 个 $+1$ 和 $n$ 个 $-1$ 组成的 $2n$ 个数 $a_1,a_2, \cdots ,a_{2n}$，其部分和满足 $a_1+a_2+ \cdots +a_k \geq 0~(k=1,2,3, \cdots ,2n)$，有多少个满足条件的数列？
+7.  由 $n$ 个 $+1$ 和 $n$ 个 $-1$ 组成的 $2n$ 个数 $a_1,a_2, \cdots ,a_{2n}$，其部分和满足 $a_1+a_2+ \cdots +a_k \geqslant 0~(k=1,2,3, \cdots ,2n)$，有多少个满足条件的数列？
 
 其对应的序列为：
 
@@ -21,14 +21,14 @@ Catalan 数列 $H_n$ 可以应用于以下问题：
 该递推关系的解为：
 
 $$
-H_n = \frac{\binom{2n}{n}}{n+1}(n \geq 2, n \in \mathbf{N_{+}})
+H_n = \frac{\binom{2n}{n}}{n+1}(n \geqslant 2, n \in \mathbf{N_{+}})
 $$
 
 关于 Catalan 数的常见公式：
 
 $$
 H_n = \begin{cases}
-    \sum_{i=1}^{n} H_{i-1} H_{n-i} & n \geq 2, n \in \mathbf{N_{+}}\\
+    \sum_{i=1}^{n} H_{i-1} H_{n-i} & n \geqslant 2, n \in \mathbf{N_{+}}\\
     1 & n = 0, 1
 \end{cases}
 $$
@@ -77,7 +77,7 @@ $$
 卡特兰数的递推式为
 
 $$
-H_n=\sum_{i=0}^{n-1}H_{i}H_{n-i-1} \quad (n\ge 2)
+H_n=\sum_{i=0}^{n-1}H_{i}H_{n-i-1} \quad (n\geqslant 2)
 $$
 
 其中 $H_0=1,H_1=1$。设它的普通生成函数为 $H(x)$。
@@ -86,9 +86,9 @@ $$
 
 $$
 \begin{aligned}
-H(x)&=\sum_{n\ge 0}H_nx^n\\
-&=1+\sum_{n\ge 1}\sum_{i=0}^{n-1}H_ix^iH_{n-i-1}x^{n-i-1}x\\
-&=1+x\sum_{i\ge 0}H_{i}x^i\sum_{n\ge 0}H_{n}x^{n}\\
+H(x)&=\sum_{n\geqslant 0}H_nx^n\\
+&=1+\sum_{n\geqslant 1}\sum_{i=0}^{n-1}H_ix^iH_{n-i-1}x^{n-i-1}x\\
+&=1+x\sum_{i\geqslant 0}H_{i}x^i\sum_{n\geqslant 0}H_{n}x^{n}\\
 &=1+xH^2(x)
 \end{aligned}
 $$
@@ -118,8 +118,8 @@ $$
 $$
 \begin{aligned}
 (1-4x)^{\frac{1}{2}}
-&=\sum_{n\ge 0}\binom{\frac{1}{2}}{n}(-4x)^n\\
-&=1+\sum_{n\ge 1}\frac{\left(\frac{1}{2}\right)^{\underline{n}}}{n!}(-4x)^n
+&=\sum_{n\geqslant 0}\binom{\frac{1}{2}}{n}(-4x)^n\\
+&=1+\sum_{n\geqslant 1}\frac{\left(\frac{1}{2}\right)^{\underline{n}}}{n!}(-4x)^n
 \end{aligned} \tag{1}
 $$
 
@@ -140,9 +140,9 @@ $$
 $$
 \begin{aligned}
 (1-4x)^{\frac{1}{2}}
-&=1+\sum_{n\ge 1}\frac{(-1)^{n-1}(2n-2)!}{2^{2n-1}(n-1)!n!}(-4x)^n\\
-&=1-\sum_{n\ge 1}\frac{(2n-2)!}{(n-1)!n!}2x^n\\
-&=1-\sum_{n\ge 1}\binom{2n-1}{n}\frac{1}{(2n-1)}2x^n
+&=1+\sum_{n\geqslant 1}\frac{(-1)^{n-1}(2n-2)!}{2^{2n-1}(n-1)!n!}(-4x)^n\\
+&=1-\sum_{n\geqslant 1}\frac{(2n-2)!}{(n-1)!n!}2x^n\\
+&=1-\sum_{n\geqslant 1}\binom{2n-1}{n}\frac{1}{(2n-1)}2x^n
 \end{aligned}
 $$
 
@@ -151,10 +151,10 @@ $$
 $$
 \begin{aligned}
 H(x)&=\frac{1- \sqrt{1-4x}}{2x}\\
-&=\frac{1}{2x}\sum_{n\ge 1}\binom{2n-1}{n}\frac{1}{(2n-1)}2x^n\\
-&=\sum_{n\ge 1}\binom{2n-1}{n}\frac{1}{(2n-1)}x^{n-1}\\
-&=\sum_{n\ge 0}\binom{2n+1}{n+1}\frac{1}{(2n+1)}x^{n}\\
-&=\sum_{n\ge 0}\binom{2n}{n}\frac{1}{n+1}x^{n}\\
+&=\frac{1}{2x}\sum_{n\geqslant 1}\binom{2n-1}{n}\frac{1}{(2n-1)}2x^n\\
+&=\sum_{n\geqslant 1}\binom{2n-1}{n}\frac{1}{(2n-1)}x^{n-1}\\
+&=\sum_{n\geqslant 0}\binom{2n+1}{n+1}\frac{1}{(2n+1)}x^{n}\\
+&=\sum_{n\geqslant 0}\binom{2n}{n}\frac{1}{n+1}x^{n}\\
 \end{aligned}
 $$
 

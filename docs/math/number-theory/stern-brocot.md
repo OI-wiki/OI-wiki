@@ -145,19 +145,19 @@ $$
 那么必然有
 
 $$
-bp-aq \ge 1,\ cq-dp \ge 1.
+bp-aq \geqslant 1,\ cq-dp \geqslant 1.
 $$
 
 将两个不等式分别乘以 $(c+d)$ 和 $(a+b)$，就能够得到
 
 $$
-(c+d)(bp-aq) + (a+b)(cq-dp) \ge a+b+c+d.
+(c+d)(bp-aq) + (a+b)(cq-dp) \geqslant a+b+c+d.
 $$
 
 利用前面已经说明的等式 $bc-ad=1$ 可知
 
 $$
-p+q \ge a+b+c+d.
+p+q \geqslant a+b+c+d.
 $$
 
 每次搜索更深入一层的时候，等式右侧都严格地增加，而左侧保持不变，因此搜索必然在有限步内停止。
@@ -387,7 +387,7 @@ $$
 bc-ad=1.
 $$
 
-反过来，这也是两个最简真分数成为 Farey 邻项的充分条件。现在说明这一点。不妨设 $\dfrac{a}{b}$ 是两个分数中分母较大的，那么两个分数都会出现在 $F_b$ 中。设 $\dfrac{e}{f}$ 是序列 $F_b$ 中排在 $\dfrac{a}{b}$ 右侧的一项，按照已经说明的必要性可知，$be-af=1$。但是，[线性同余方程](./linear-equation.md)  $bx-ay=1$ 只有一组 $y\le b$ 的正整数解，故而必然有 $(e,f)=(c,d)$。
+反过来，这也是两个最简真分数成为 Farey 邻项的充分条件。现在说明这一点。不妨设 $\dfrac{a}{b}$ 是两个分数中分母较大的，那么两个分数都会出现在 $F_b$ 中。设 $\dfrac{e}{f}$ 是序列 $F_b$ 中排在 $\dfrac{a}{b}$ 右侧的一项，按照已经说明的必要性可知，$be-af=1$。但是，[线性同余方程](./linear-equation.md)  $bx-ay=1$ 只有一组 $y\leqslant b$ 的正整数解，故而必然有 $(e,f)=(c,d)$。
 
 其实，因为下一个会出现在两者之间的最简分数必然是 $\dfrac{a+c}{b+d}$，所以 $\dfrac{a}{b}$ 和 $\dfrac{c}{d}$ 在第 $\max\{b,d\}$ 到第 $(b+d-1)$ 阶 Farey 序列中都是相邻的。
 
@@ -403,7 +403,7 @@ $$
 \left(\dfrac{a}{b}-\dfrac{c}{d}\right)^2 + \left(\dfrac{1}{2b^2}-\dfrac{1}{2d^2}\right)^2 = \left(\dfrac{1}{2b^2}+\dfrac{1}{2d^2}\right)^2+\frac{(bc-ad)^2-1}{b^2d^2}.
 $$
 
-因为两个最简分数并不相同，所以 $|bc-ad|\ge 1$，故而两圆只能相切或相离。而且，两圆相切，当且仅当 $|bc-ad|=1$，这就等价于两分数是 Ford 邻项。
+因为两个最简分数并不相同，所以 $|bc-ad|\geqslant 1$，故而两圆只能相切或相离。而且，两圆相切，当且仅当 $|bc-ad|=1$，这就等价于两分数是 Ford 邻项。
 
 最后，要计算 Farey 邻项的数目。除了 $\left(\dfrac{0}{1},\dfrac{1}{1}\right)$，其余 Farey 邻项的分母都不相同。不妨设 $\dfrac{p}{q}$ 是其中分母较大的那个，则另一个分数必然可以从线性同余方程
 
@@ -441,7 +441,7 @@ $$
 \frac{kp-a}{kq-b} - \dfrac{p}{q} = \dfrac{bp-aq}{q(kq-b)} = \dfrac{1}{q(kq-b)}
 $$
 
-随着 $k$ 增加而减小，且紧邻着 $\dfrac{p}{q}$ 的应该是所有满足 $kq-d\le n$ 的分数中该差值最小的那个，因而，必然有
+随着 $k$ 增加而减小，且紧邻着 $\dfrac{p}{q}$ 的应该是所有满足 $kq-d\leqslant n$ 的分数中该差值最小的那个，因而，必然有
 
 $$
 k = \left\lfloor\dfrac{n+b}{q}\right\rfloor.

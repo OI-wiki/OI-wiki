@@ -294,19 +294,19 @@ $$
 现在我们要枚举 $d$ 序列，式子变成
 
 $$
-\sum_{d_i\ge 1，\sum_{i=1}^kd_i=2k-2}\binom{k-2}{d_1-1,d_2-1,\cdots,d_k-1}\cdot \prod_{i=1}^k{s_i}^{d_i}
+\sum_{d_i\geqslant 1，\sum_{i=1}^kd_i=2k-2}\binom{k-2}{d_1-1,d_2-1,\cdots,d_k-1}\cdot \prod_{i=1}^k{s_i}^{d_i}
 $$
 
 好的这是一个非常不喜闻乐见的式子。但是别慌！我们有多元二项式定理：
 
 $$
-(x_1 + \dots + x_m)^p = \sum_{\substack{c_i \ge 0 ,\  \sum_{i=1}^m c_i = p}} \binom{p}{c_1, c_2, \cdots ,c_m}\cdot \prod_{i=1}^m{x_i}^{c_i}
+(x_1 + \dots + x_m)^p = \sum_{\substack{c_i \geqslant 0 ,\  \sum_{i=1}^m c_i = p}} \binom{p}{c_1, c_2, \cdots ,c_m}\cdot \prod_{i=1}^m{x_i}^{c_i}
 $$
 
 那么我们对原式做一下换元，设 $e_i=d_i-1$，显然 $\sum_{i=1}^ke_i=k-2$，于是原式变成
 
 $$
-\sum_{e_i\ge 0，\sum_{i=1}^ke_i=k-2}\binom{k-2}{e_1,e_2,\cdots,e_k}\cdot \prod_{i=1}^k{s_i}^{e_i+1}
+\sum_{e_i\geqslant 0，\sum_{i=1}^ke_i=k-2}\binom{k-2}{e_1,e_2,\cdots,e_k}\cdot \prod_{i=1}^k{s_i}^{e_i+1}
 $$
 
 化简得到

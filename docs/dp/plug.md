@@ -251,7 +251,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
 ??? note " 习题 [「USACO 5.4.4」Betsy's Tours](https://nanti.jisuanke.com/t/T3533)"
-    题目大意：一个 $N\times N$ 的方阵（$N\le 7$），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
+    题目大意：一个 $N\times N$ 的方阵（$N\leqslant 7$），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
 
 ??? note " 习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
     题目大意：一个 $N\times M$ 的棋盘，求从左下角出发到右下角结束经过每个格子的路径总数，有些位置有障碍。
@@ -270,7 +270,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 #### 例题
 
 ???+ note " 例题 [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/91827367895)"
-    题目大意：一个 $N\times M$ 的方阵（$N,M\le 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
+    题目大意：一个 $N\times M$ 的方阵（$N,M\leqslant 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
 
 本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头。需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况。独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果一定会出现多个连通块。
 
@@ -573,7 +573,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     生成树的得分为所有节点的得分之积。
     
     你需要求出：最小生成树的边权和，以及所有最小生成树的得分之和。
-    （$n\le 800,m\le 7$）
+    （$n\leqslant 800,m\leqslant 7$）
 
 ## 实战篇
 
@@ -773,10 +773,10 @@ if (s >> j & 1) {       // 如果已被覆盖
     题目大意：可以转化为求解一条从 $\mathit{S}$ 到 $\mathit{T}$ 的不能接触的最长路径，拐角处可以接触。
 
 ??? note " 习题 [「UVa 10531」Maze Statistics](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1472)"
-    题目大意：有一个 $N\times M$ 的图，每个格子有独立概率 $\mathit{p}$ 变成障碍物。你要从迷宫左上角走到迷宫右下角。求每个格子成为一个 **有解迷宫（即起点终点四联通）** 中的障碍物的概率。（$N \le 5$，$M \le 6$）
+    题目大意：有一个 $N\times M$ 的图，每个格子有独立概率 $\mathit{p}$ 变成障碍物。你要从迷宫左上角走到迷宫右下角。求每个格子成为一个 **有解迷宫（即起点终点四联通）** 中的障碍物的概率。（$N \leqslant 5$，$M \leqslant 6$）
 
 ??? note " 习题 [「Aizu 2452」Pipeline Plans](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
-    题目大意：现有一共 12 种图案的瓷砖，每种瓷砖数量给定。要求铺到一块可视为 $R\times C$ 网格图的矩形地板上，一个格子铺一块瓷砖，且左上角格子的中心与右下角格子的中心通过瓷砖图案上的线联通。$(2 \le R \times C \le 15)$
+    题目大意：现有一共 12 种图案的瓷砖，每种瓷砖数量给定。要求铺到一块可视为 $R\times C$ 网格图的矩形地板上，一个格子铺一块瓷砖，且左上角格子的中心与右下角格子的中心通过瓷砖图案上的线联通。$(2 \leqslant R \times C \leqslant 15)$
     
     ![plug2](./images/plug2.png)
 
@@ -784,7 +784,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     题目大意：一块 $N\times M$ 的电路板，上面有些位置是电线不能走的障碍，给定 $K$ 个格子对，要求每对格子都有电线相连，且电线之间互不相交（允许一条电路线从上边界进入当前格子，从左边界离开这个格子，另外一条电路线可以从下边界进入格子，从右边界出去）。视电线为无向边，求满足要求的最短电线长度和方案数。
 
 ??? note " 习题 [「SPOJ CAKE3」Delicious Cake](https://www.spoj.com/problems/CAKE3)"
-    题目大意：一块可视为 $N\times M$ 网格的蛋糕，现沿着格线将蛋糕切成数块，问有多少种不同的切割方法。切法相同当且仅当切成的每块蛋糕都形状相同且在同一位置上。（$\min(N,M) \le 5, \max(N,M) \le 130$）
+    题目大意：一块可视为 $N\times M$ 网格的蛋糕，现沿着格线将蛋糕切成数块，问有多少种不同的切割方法。切法相同当且仅当切成的每块蛋糕都形状相同且在同一位置上。（$\min(N,M) \leqslant 5, \max(N,M) \leqslant 130$）
 
 ## 本章注记
 
@@ -799,11 +799,11 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 当限定 $m=2$ 时，多米诺骨牌覆盖等价于斐波那契数列。[《具体数学》](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) 中使用了该问题以引出斐波那契数列，并使用了多种方法得到其解析解。
 
-当 $m\le 10,n\le 10^9$ 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276)。
+当 $m\leqslant 10,n\leqslant 10^9$ 时，可以将转移方程预处理成矩阵形式，并使用 [矩阵乘法进行加速](http://www.matrix67.com/blog/archives/276)。
 
 ![domino\_v2\_transform\_matrix](./images/domino_v2_transform_matrix.svg)
 
-当 $n,m\le 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
+当 $n,m\leqslant 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 
 -   [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031)
 -   [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)

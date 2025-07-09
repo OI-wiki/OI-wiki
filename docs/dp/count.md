@@ -54,7 +54,7 @@ $$
 
 需要计算的集合的元素为满足其和为 $n$ 的正整数多重集。但是这样显然不好推。
 
-若一个多重集 $T$ 只包含 $\le M$ 的正整数，且 $T$ 中所有元素的和为 $n$，则称 $T \in S_{n, M}$。考虑 $M$ 出现的个数。可能为 $k \in \left[0, \left\lfloor \dfrac nM \right\rfloor\right] \cap \mathbb Z$。于是它可以被转移到 $S_{n - kM, M - 1}$。求和一下即可。复杂度是 $\Theta(n^2 \log n)$（$\log$ 来自于 $k$ 的范围导致的调和级数）。
+若一个多重集 $T$ 只包含 $\leqslant M$ 的正整数，且 $T$ 中所有元素的和为 $n$，则称 $T \in S_{n, M}$。考虑 $M$ 出现的个数。可能为 $k \in \left[0, \left\lfloor \dfrac nM \right\rfloor\right] \cap \mathbb Z$。于是它可以被转移到 $S_{n - kM, M - 1}$。求和一下即可。复杂度是 $\Theta(n^2 \log n)$（$\log$ 来自于 $k$ 的范围导致的调和级数）。
 
 但是这样还不够优秀。考虑下面所示的一个例子：
 
@@ -72,7 +72,7 @@ $$
 等量代换得 $f_{11, 3} = f_{11, 2} + f_{8, 3}$，$f_{12, 3} = f_{12, 2} + f_{9, 3}$，$f_{13, 3} = f_{13, 2} + f_{10, 3}$。同理我们可以得到一个通用的状态转移方程：
 
 $$
-f_{n, M} = f_{n, M - 1} + \begin{cases} f_{n - M, M} & n \ge M, \\ 0 & \text{otherwise}. \end{cases}
+f_{n, M} = f_{n, M - 1} + \begin{cases} f_{n - M, M} & n \geqslant M, \\ 0 & \text{otherwise}. \end{cases}
 $$
 
 此时，时间复杂度为 $\Theta(n^2)$。
@@ -91,4 +91,4 @@ $$
 
 将 $n$ 拆为 $A$ 和 $B$ 两部分。枚举其中一个即可得出另一个。将满足 $\sum T_1 = A$ 的 $T_1$ 个数和 $\sum T_2 = B$ 的 $T_2$ 个数求出，乘起来，对所有的 $A$ 求和便是最终结果。
 
-由于在计算 $T_1$ 个数的过程中，$M \le \sqrt n$，所以我们利用解法 1 计算 $T_1$ 的时间复杂度为 $\Theta(n^{3/2})$。同样地，由于在计算 $T_2$ 个数的过程中，$|T_2| \le \dfrac{\sum T_2}{\sqrt n} \le \dfrac{n}{\sqrt n} = \sqrt n$，所以我们利用解法 2 计算 $T_2$ 的时间复杂度也是 $\Theta(n^{3/2})$。所以总时间复杂度为 $\Theta(n^{3/2})$。
+由于在计算 $T_1$ 个数的过程中，$M \leqslant \sqrt n$，所以我们利用解法 1 计算 $T_1$ 的时间复杂度为 $\Theta(n^{3/2})$。同样地，由于在计算 $T_2$ 个数的过程中，$|T_2| \leqslant \dfrac{\sum T_2}{\sqrt n} \leqslant \dfrac{n}{\sqrt n} = \sqrt n$，所以我们利用解法 2 计算 $T_2$ 的时间复杂度也是 $\Theta(n^{3/2})$。所以总时间复杂度为 $\Theta(n^{3/2})$。

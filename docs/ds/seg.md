@@ -475,7 +475,7 @@ int query(int p, int s, int t, int l, int r) {
     
     求从点 $s$ 到其他点的最短路。
     
-    $1 \le n,q \le 10^5, 1 \le w \le 10^9$。
+    $1 \leqslant n,q \leqslant 10^5, 1 \leqslant w \leqslant 10^9$。
     
     ??? "参考代码"
         ```cpp

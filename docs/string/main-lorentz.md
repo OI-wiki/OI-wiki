@@ -81,7 +81,7 @@ Main–Lorentz 算法的核心思想是 **分治**。
 
 于是，我们可以给出某个长度为 $2l = 2(l_1 + l_2) = 2(|u| - \textit{cntr})$ 的子串是重串的 **充分必要条件**：
 
-记 $k_1$ 为满足 $u[\textit{cntr} - k_1 \dots \textit{cntr} - 1] = u[|u| - k_1 \dots |u| - 1]$ 的最大整数，记 $k_2$ 为满足 $u[\textit{cntr} \dots \textit{cntr} + k_2 - 1] = v[0 \dots k_2 - 1]$ 的最大整数。则对于任意满足 $l_1 \leq k_1$，$l_2 \leq k_2$ 的二元组 $(l_1, l_2)$，我们都能恰好找到一个与之对应的重串。
+记 $k_1$ 为满足 $u[\textit{cntr} - k_1 \dots \textit{cntr} - 1] = u[|u| - k_1 \dots |u| - 1]$ 的最大整数，记 $k_2$ 为满足 $u[\textit{cntr} \dots \textit{cntr} + k_2 - 1] = v[0 \dots k_2 - 1]$ 的最大整数。则对于任意满足 $l_1 \leqslant k_1$，$l_2 \leqslant k_2$ 的二元组 $(l_1, l_2)$，我们都能恰好找到一个与之对应的重串。
 
 总结一下，即有：
 
@@ -91,7 +91,7 @@ Main–Lorentz 算法的核心思想是 **分治**。
 -   则所有符合条件的重串符合条件：
 
 $$
-\begin{align} l_1 + l_2 &= l = |u| - \textit{cntr} \\ l_1 &\le k_1, \\ l_2 &\le k_2. \\ \end{align}
+\begin{align} l_1 + l_2 &= l = |u| - \textit{cntr} \\ l_1 &\leqslant k_1, \\ l_2 &\leqslant k_2. \\ \end{align}
 $$
 
 接下来，只需要考虑如何快速算出 $k_1$ 与 $k_2$ 了。借助 [Z 函数](./z-func.md)，我们可以 $O(1)$ 计算它们：

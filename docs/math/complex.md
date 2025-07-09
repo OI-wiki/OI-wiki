@@ -153,7 +153,7 @@ $$
 任一个 **非零** 复数 $z$ 有无穷多个辐角，故 $\operatorname{Arg} z$ 事实上是一个集合。借助开头小写的 $\operatorname{arg} z$ 表示 **其中一个特定值**，满足条件：
 
 $$
--\pi<\operatorname{arg} z \le \pi
+-\pi<\operatorname{arg} z \leqslant \pi
 $$
 
 称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\operatorname{Arg} z = \{\operatorname{arg} z + 2k\pi \mid k\in \mathbf Z\}$。
@@ -271,7 +271,7 @@ $$
 称集合：
 
 $$
-\{\omega_n^k\mid 0\le k<n, \gcd(n,k)=1\}
+\{\omega_n^k\mid 0\leqslant k<n, \gcd(n,k)=1\}
 $$
 
 中的元素为 **本原单位根**。任意一个本原单位根 $\omega$，与上述 $\omega_n$ 具有相同的性质：对于任意的 $0<k<n$，$\omega$ 的 $k$ 次幂不为 $1$。因此，借助任意一个本原单位根，都可以生成全体单位根。

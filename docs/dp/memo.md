@@ -9,7 +9,7 @@
 ???+ note "[\[NOIP2005\] 采药](https://www.luogu.com.cn/problem/P1048)"
     山洞里有 $M$ 株不同的草药，采每一株都需要一些时间 $t_i$，每一株也有它自身的价值 $v_i$。给你一段时间 $T$，在这段时间里，你可以采到一些草药。让采到的草药的总价值最大。
     
-    $1 \leq T \leq 10^3$，$1 \leq t_i,v_i,M \leq 100$
+    $1 \leqslant T \leqslant 10^3$，$1 \leqslant t_i,v_i,M \leqslant 100$
 
 ### 朴素的 [DFS](../search/dfs.md) 做法
 
@@ -169,7 +169,7 @@ int main() {
 
 举例：
 
-$dp_{i} = \max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升子序列）
+$dp_{i} = \max\{dp_{j}+1\}\quad (1 \leqslant j < i \land a_{j}<a_{i})$（最长上升子序列）
 
 转为
 

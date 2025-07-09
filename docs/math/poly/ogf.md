@@ -9,9 +9,9 @@ $$
 $a$ 既可以是有穷序列，也可以是无穷序列。常见的例子（假设 $a$ 以 $0$ 为起点）：
 
 1.  序列 $a=\langle 1,2,3\rangle$ 的普通生成函数是 $1+2x+3x^2$。
-2.  序列 $a=\langle 1,1,1,\cdots\rangle$ 的普通生成函数是 $\sum_{n\ge 0}x^n$。
-3.  序列 $a=\langle 1,2,4,8,16,\cdots\rangle$ 的生成函数是 $\sum_{n\ge 0}2^nx^n$。
-4.  序列 $a=\langle 1,3,5,7,9,\cdots\rangle$ 的生成函数是 $\sum_{n\ge 0}(2n+1)x^n$。
+2.  序列 $a=\langle 1,1,1,\cdots\rangle$ 的普通生成函数是 $\sum_{n\geqslant 0}x^n$。
+3.  序列 $a=\langle 1,2,4,8,16,\cdots\rangle$ 的生成函数是 $\sum_{n\geqslant 0}2^nx^n$。
+4.  序列 $a=\langle 1,3,5,7,9,\cdots\rangle$ 的生成函数是 $\sum_{n\geqslant 0}(2n+1)x^n$。
 
 换句话说，如果序列 $a$ 有通项公式，那么它的普通生成函数的系数就是通项公式。
 
@@ -37,7 +37,7 @@ $$
 
 在运用生成函数的过程中，我们不会一直使用形式幂级数的形式，而会适时地转化为封闭形式以更好地化简。
 
-例如 $\langle 1,1,1,\cdots\rangle$ 的普通生成函数 $F(x)=\sum_{n\ge 0}x^n$，我们可以发现
+例如 $\langle 1,1,1,\cdots\rangle$ 的普通生成函数 $F(x)=\sum_{n\geqslant 0}x^n$，我们可以发现
 
 $$
 F(x)x+1=F(x)
@@ -49,9 +49,9 @@ $$
 F(x)=\frac{1}{1-x}
 $$
 
-这就是 $\sum_{n\ge 0}x^n$ 的封闭形式。
+这就是 $\sum_{n\geqslant 0}x^n$ 的封闭形式。
 
-考虑等比数列 $\langle 1,p,p^2,p^3,p^4,\cdots\rangle$ 的生成函数 $F(x)=\sum_{n\ge 0}p^nx^n$，有
+考虑等比数列 $\langle 1,p,p^2,p^3,p^4,\cdots\rangle$ 的生成函数 $F(x)=\sum_{n\geqslant 0}p^nx^n$，有
 
 $$
 \begin{aligned}F(x)px+1 &=F(x)\\F(x) &=\frac{1}{1-px}\end{aligned}
@@ -65,22 +65,22 @@ $$
     1.  $a=\langle 0,1,1,1,1,\cdots\rangle$。
     2.  $a=\langle 1,0,1,0,1,\cdots \rangle$。
     3.  $a=\langle 1,2,3,4,\cdots \rangle$。
-    4.  $a_n=\binom{m}{n}$（$m$ 是常数，$n\ge 0$）。
-    5.  $a_n=\binom{m+n}{n}$（$m$ 是常数，$n\ge 0$）。
+    4.  $a_n=\binom{m}{n}$（$m$ 是常数，$n\geqslant 0$）。
+    5.  $a_n=\binom{m+n}{n}$（$m$ 是常数，$n\geqslant 0$）。
 
 ??? note "答案"
     第一个：
     
     $$
-    F(x)=\sum_{n\ge 1}x^n=\dfrac{x}{1-x}
+    F(x)=\sum_{n\geqslant 1}x^n=\dfrac{x}{1-x}
     $$
     
     第二个：
     
     $$
     \begin{aligned}
-    F(x)&=\sum_{n\ge 0}x^{2n}\\
-    &=\sum_{n\ge 0}(x^2)^{n}\\
+    F(x)&=\sum_{n\geqslant 0}x^{2n}\\
+    &=\sum_{n\geqslant 0}(x^2)^{n}\\
     &=\frac{1}{1-x^2}
     \end{aligned}
     $$
@@ -88,19 +88,19 @@ $$
     第三个（求导）：
     
     $$
-    \begin{aligned}F(x)&=\sum_{n\ge 0}(n+1)x^n\\&=\sum_{n\ge 1}nx^{n-1}\\&=\sum_{n\ge 0}(x^n)'\\&=\left(\frac{1}{1-x}\right)'\\&=\frac{1}{(1-x)^2}\end{aligned}
+    \begin{aligned}F(x)&=\sum_{n\geqslant 0}(n+1)x^n\\&=\sum_{n\geqslant 1}nx^{n-1}\\&=\sum_{n\geqslant 0}(x^n)'\\&=\left(\frac{1}{1-x}\right)'\\&=\frac{1}{(1-x)^2}\end{aligned}
     $$
     
     第四个（二项式定理）：
     
     $$
-    F(x)=\sum_{n\ge 0}\binom{m}{n}x^n=(1+x)^m
+    F(x)=\sum_{n\geqslant 0}\binom{m}{n}x^n=(1+x)^m
     $$
     
     第五个：
     
     $$
-    F(x)=\sum_{n\ge 0}\binom{m+n}{n}x^n=\frac{1}{(1-x)^{m+1}}
+    F(x)=\sum_{n\geqslant 0}\binom{m+n}{n}x^n=\frac{1}{(1-x)^{m+1}}
     $$
     
     可以使用归纳法证明。
@@ -113,9 +113,9 @@ $$
     \begin{aligned}
     \frac{1}{(1-x)^{m+1}}
     &=\frac{1}{(1-x)^m}\frac{1}{1-x}\\
-    &=\left(\sum_{n\ge 0}\binom{m+n-1}{n}x^n \right)\left(\sum_{n\ge 0}x^n \right)\\
-    &=\sum_{n\ge 0} x^n\sum_{i=0}^n \binom{m+i-1}{i}\\
-    &=\sum_{n\ge 0}\binom{m+n}{n}x^n
+    &=\left(\sum_{n\geqslant 0}\binom{m+n-1}{n}x^n \right)\left(\sum_{n\geqslant 0}x^n \right)\\
+    &=\sum_{n\geqslant 0} x^n\sum_{i=0}^n \binom{m+i-1}{i}\\
+    &=\sum_{n\geqslant 0}\binom{m+n}{n}x^n
     \end{aligned}
     $$
 
@@ -144,10 +144,10 @@ $$
 $$
 \begin{aligned}
 F(x)&=\frac{x}{1-(x+x^2)}\\
-&=\sum_{n\ge 0}(x+x^2)^n\\
-&=\sum_{n\ge 0}\sum_{i=0}^n\binom{n}{i}x^{2i}x^{n-i}\\
-&=\sum_{n\ge 0}\sum_{i=0}^n\binom{n}{i}x^{n+i}\\
-&=\sum_{n\ge 0}x^n\sum_{i=0}^n\binom{n-i}{i}
+&=\sum_{n\geqslant 0}(x+x^2)^n\\
+&=\sum_{n\geqslant 0}\sum_{i=0}^n\binom{n}{i}x^{2i}x^{n-i}\\
+&=\sum_{n\geqslant 0}\sum_{i=0}^n\binom{n}{i}x^{n+i}\\
+&=\sum_{n\geqslant 0}x^n\sum_{i=0}^n\binom{n-i}{i}
 \end{aligned}
 $$
 
@@ -192,7 +192,7 @@ $$
 那么我们根据等比数列的展开式，就可以得到斐波那契数列的通项公式：
 
 $$
-\frac{x}{1-x-x^2}=\sum_{n\ge 0}x^n
+\frac{x}{1-x-x^2}=\sum_{n\geqslant 0}x^n
 \frac{1}{\sqrt{5}}\left( \left(\frac{1+\sqrt{5}}{2}\right)^n-\left(\frac{1-\sqrt{5}}{2}\right)^n \right)
 $$
 
@@ -239,7 +239,7 @@ $$
 注意 $r$ 的范围是复数域。在这种情况下。对于 $\alpha\in\mathbf{C}$，有
 
 $$
-(1+x)^{\alpha}=\sum_{n\ge 0}\binom{\alpha}{n}x^n
+(1+x)^{\alpha}=\sum_{n\geqslant 0}\binom{\alpha}{n}x^n
 $$
 
 二项式定理其实是牛顿二项式定理的一个特殊情况。
@@ -272,11 +272,11 @@ $$
 
 在理解了方案数可以用卷积表示以后，我们就可以构造生成函数（标号对应题目中食物的标号）：
 
-1.  $\displaystyle\sum_{n\ge 0}x^{2n}=\dfrac{1}{1-x^2}$。
+1.  $\displaystyle\sum_{n\geqslant 0}x^{2n}=\dfrac{1}{1-x^2}$。
 2.  $1+x$。
 3.  $1+x+x^2=\dfrac{1-x^3}{1-x}$。
 4.  $\dfrac{x}{1-x^2}$。
-5.  $\displaystyle \sum_{n\ge 0}x^{4n}=\dfrac{1}{1-x^4}$。
+5.  $\displaystyle \sum_{n\geqslant 0}x^{4n}=\dfrac{1}{1-x^4}$。
 6.  $1+x+x^2+x^3=\dfrac{1-x^4}{1-x}$。
 7.  $1+x$。
 8.  $\dfrac{1}{1-x^3}$。
@@ -291,7 +291,7 @@ $$
 然后将它转化为展开形式（使用封闭形式练习中第五个练习）：
 
 $$
-F(x)=\sum_{n\ge 1}\binom{n+2}{n-1}x^n
+F(x)=\sum_{n\geqslant 1}\binom{n+2}{n-1}x^n
 $$
 
 因此答案就是 $\dbinom{n+2}{n-1}=\dbinom{n+2}{3}$。
@@ -303,7 +303,7 @@ $$
     
     两种方案不同当且仅当吃的个数不同，或者吃的糖果中，某一种糖果的个数在两个方案中不同。
     
-    $n\le 10,0\le a\le b\le 10^7,m_i\le 10^6$。
+    $n\leqslant 10,0\leqslant a\leqslant b\leqslant 10^7,m_i\leqslant 10^6$。
 
 在第 $i$ 堆吃 $j$ 个糖果的方案数（显然为 1）的生成函数为
 
@@ -319,15 +319,15 @@ $$
 
 现在我们要求的是 $\sum_{i=a}^b[x^i]G(x)$。
 
-由于 $n\le 10$，因此我们可以暴力展开 $\prod_{i=1}^n(1-x^{m_i+1})$（最多只有 $2^n$ 项）。
+由于 $n\leqslant 10$，因此我们可以暴力展开 $\prod_{i=1}^n(1-x^{m_i+1})$（最多只有 $2^n$ 项）。
 
 然后对 $(1-x)^{-n}$ 使用牛顿二项式定理：
 
 $$
 \begin{aligned}
 (1-x)^{-n}
-&=\sum_{i\ge 0}\binom{-n}{i}(-x)^i\\
-&=\sum_{i\ge 0}\binom{n-1+i}{i}x^i
+&=\sum_{i\geqslant 0}\binom{-n}{i}(-x)^i\\
+&=\sum_{i\geqslant 0}\binom{n-1+i}{i}x^i
 \end{aligned}
 $$
 

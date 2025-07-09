@@ -114,7 +114,7 @@ $$
 
     曼哈顿距离是一个非负数。
 
-    $d(i,j)\geq 0$
+    $d(i,j)\geqslant 0$
 
 -   **统一性**
 
@@ -132,15 +132,15 @@ $$
 
     从点 $i$ 到 $j$ 的直接距离不会大于途经的任何其它点 $k$ 的距离。
 
-    $d(i,j)\leq d(i,k)+d(k,j)$
+    $d(i,j)\leqslant d(i,k)+d(k,j)$
 
 ### 例题
 
 [P5098「USACO04OPEN」Cave Cows 3](https://www.luogu.com.cn/problem/P5098)
 
-根据题意，对于式子 $|x_1-x_2|+|y_1-y_2|$，我们可以假设 $x_1 - x_2 \geq 0$，根据 $y_1 - y_2$ 的符号分成两种情况：
+根据题意，对于式子 $|x_1-x_2|+|y_1-y_2|$，我们可以假设 $x_1 - x_2 \geqslant 0$，根据 $y_1 - y_2$ 的符号分成两种情况：
 
--   $(y_1 - y_2 \geq 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 + y_1 - (x_2 + y_2)$
+-   $(y_1 - y_2 \geqslant 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 + y_1 - (x_2 + y_2)$
 
 -   $(y_1 - y_2 < 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 - y_1 - (x_2 - y_2)$
 
@@ -226,10 +226,10 @@ $$
 
 $$
 \begin{aligned}
-&y = -x + 1 &(x \geq 0, y \geq 0) \\
-&y = x + 1 &(x \leq 0, y \geq 0) \\
-&y = x - 1  &(x \geq 0, y \leq 0)  \\
-&y = -x - 1  &(x \leq 0, y \leq 0) \\
+&y = -x + 1 &(x \geqslant 0, y \geqslant 0) \\
+&y = x + 1 &(x \leqslant 0, y \geqslant 0) \\
+&y = x - 1  &(x \geqslant 0, y \leqslant 0)  \\
+&y = -x - 1  &(x \leqslant 0, y \leqslant 0) \\
 \end{aligned}
 $$
 
@@ -247,10 +247,10 @@ $$
 
 $$
 \begin{aligned}
-&y = 1&(-1\leq x \leq 1) \\
-&y = -1&(-1\leq x \leq 1) \\
-&x = 1,&(-1\leq y \leq 1) \\
-&x = -1,&(-1\leq y \leq 1) \\
+&y = 1&(-1\leqslant x \leqslant 1) \\
+&y = -1&(-1\leqslant x \leqslant 1) \\
+&x = 1,&(-1\leqslant y \leqslant 1) \\
+&x = -1,&(-1\leqslant y \leqslant 1) \\
 \end{aligned}
 $$
 
@@ -376,7 +376,7 @@ $$
 2.  当 $p=2$ 时，$D(X, Y) = \left(\sum_{i=1}^n (x_i - y_i)^2\right)^{1/2}$ 即为欧几里得距离；
 3.  当 $p \to \infty$ 时，$D(X, Y) = \lim_{p \to \infty}\left(\sum_{i=1}^n \left\vert x_i - y_i \right\vert ^p\right) ^{1/p} = \max\limits_{i=1}^n \left\vert x_i - y_i \right\vert$ 即为切比雪夫距离。
 
-注意：当 $p \ge 1$ 时，闵可夫斯基距离才是度量，具体证明参见 [Minkowski distance - Wikipedia](https://en.wikipedia.org/wiki/Minkowski_distance)。
+注意：当 $p \geqslant 1$ 时，闵可夫斯基距离才是度量，具体证明参见 [Minkowski distance - Wikipedia](https://en.wikipedia.org/wiki/Minkowski_distance)。
 
 ## 参考资料与链接
 

@@ -275,7 +275,7 @@ $$
 
 ### 矩阵加速递推
 
-以 [斐波那契数列（Fibonacci Sequence）](../combinatorics/fibonacci.md) 为例。在斐波那契数列当中，$F_1 = F_2 = 1$，$F_i = F_{i - 1} + F_{i - 2}(i \geq 3)$。
+以 [斐波那契数列（Fibonacci Sequence）](../combinatorics/fibonacci.md) 为例。在斐波那契数列当中，$F_1 = F_2 = 1$，$F_i = F_{i - 1} + F_{i - 2}(i \geqslant 3)$。
 
 如果有一道题目让你求斐波那契数列第 $n$ 项的值，最简单的方法莫过于直接递推了。但是如果 $n$ 的范围达到了 $10^{18}$ 级别，递推就不行了，此时我们可以考虑矩阵加速递推。
 
@@ -295,7 +295,7 @@ $$
 定义初始矩阵 $\text{ans} = \begin{bmatrix}F_2 & F_1\end{bmatrix} = \begin{bmatrix}1 & 1\end{bmatrix}, \text{base} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$。那么，$F_n$ 就等于 $\text{ans} \text{base}^{n-2}$ 这个矩阵的第一行第一列元素，也就是 $\begin{bmatrix}1 & 1\end{bmatrix} \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^{n-2}$ 的第一行第一列元素。
 
 ???+ warning "注意"
-    矩阵乘法不满足交换律，所以一定不能写成 $\begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^{n-2} \begin{bmatrix}1 & 1\end{bmatrix}$ 的第一行第一列元素。另外，对于 $n \leq 2$ 的情况，直接输出 $1$ 即可，不需要执行矩阵快速幂。
+    矩阵乘法不满足交换律，所以一定不能写成 $\begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^{n-2} \begin{bmatrix}1 & 1\end{bmatrix}$ 的第一行第一列元素。另外，对于 $n \leqslant 2$ 的情况，直接输出 $1$ 即可，不需要执行矩阵快速幂。
 
 为什么要乘上 $\text{base}$ 矩阵的 $n-2$ 次方而不是 $n$ 次方呢？因为 $F_1, F_2$ 是不需要进行矩阵乘法就能求的。也就是说，如果只进行一次乘法，就已经求出 $F_3$ 了。如果还不是很理解为什么幂是 $n-2$，建议手算一下。
 
@@ -458,7 +458,7 @@ $$
     2.  $\operatorname{Mul}( x , d )$ 操作：将 $x$ 到根的路径上所有点的 $t_i\leftarrow t_i + d \times k_i$
     3.  $\operatorname{Query}( x )$ 操作：询问点 $x$ 的权值 $t_x$
     
-        $n,~m \leq 100000, ~-10 \leq d \leq 10$
+        $n,~m \leqslant 100000, ~-10 \leqslant d \leqslant 10$
 
 若直接思考，下放操作和维护信息并不是很好想。但是矩阵可以轻松地表达。
 
@@ -522,13 +522,13 @@ $$
 显然上述矩阵对应 $k=1$ 时问题的答案。我们仍假设我们知道 $k$ 的答案，记为矩阵 $L_k$。现在我们想求 $k+1$ 的答案。显然有转移方程
 
 $$
-L_{k+1}[i,j] = \min_{1\le p \le n} \left\{L_k[i,p] + G[p,j]\right\}
+L_{k+1}[i,j] = \min_{1\leqslant p \leqslant n} \left\{L_k[i,p] + G[p,j]\right\}
 $$
 
 事实上我们可以类比矩阵乘法，你发现上述转移只是把矩阵乘法的乘积求和变成相加取最小值，于是我们定义这个运算为 $\odot$，即
 
 $$
-A \odot B = C~~\Longleftrightarrow~~C[i,j]=\min_{1\le p \le n}\left\{A[i,p] + B[p,j]\right\}
+A \odot B = C~~\Longleftrightarrow~~C[i,j]=\min_{1\leqslant p \leqslant n}\left\{A[i,p] + B[p,j]\right\}
 $$
 
 于是得到
@@ -552,7 +552,7 @@ $$
 ???+ note "问题描述"
     给一个 $n$ 阶有向图，边权为 $1$，然后给一个整数 $k$，你的任务是对于每个点对 $(u,v)$ 找到从 $u$ 到 $v$ 长度小于等于 $k$ 的路径的数量（不一定是简单路径，即路径上的点或者边可能走多次）。
 
-我们对于每个点 $v$，建立一个虚点 $v'$ 用于记录答案，并在图中加入 $(v,v')$ 和 $(v',v')$ 这两条边。那么对于点对 $(u,v)$，从 $u$ 到 $v$ 边数小于等于 $k$ 的路径的数量，就和从 $u$ 到 $v'$ 边数恰好等于 $k+1$ 的路径的数量相等，这是因为对于任意一条边数为 $m(m \le k)$ 的路径 $(p_0=u)\to p_1\to p_2 \to \dots \to p_{m-1} \to (p_m=v)$，都存在一条边数为 $k+1$ 的路径 $(p_0=u)\to p_1 \to p_2 \to \dots \to p_{m-1} \to (p_m=v) \to v'  \to \dots \to v'$ 与之一一对应。
+我们对于每个点 $v$，建立一个虚点 $v'$ 用于记录答案，并在图中加入 $(v,v')$ 和 $(v',v')$ 这两条边。那么对于点对 $(u,v)$，从 $u$ 到 $v$ 边数小于等于 $k$ 的路径的数量，就和从 $u$ 到 $v'$ 边数恰好等于 $k+1$ 的路径的数量相等，这是因为对于任意一条边数为 $m(m \leqslant k)$ 的路径 $(p_0=u)\to p_1\to p_2 \to \dots \to p_{m-1} \to (p_m=v)$，都存在一条边数为 $k+1$ 的路径 $(p_0=u)\to p_1 \to p_2 \to \dots \to p_{m-1} \to (p_m=v) \to v'  \to \dots \to v'$ 与之一一对应。
 
 对于求边数小于等于 $k$ 的最短路，只需对每个点加一个边权为 $0$ 的自环即可。
 

@@ -32,10 +32,10 @@ $$
 对于 $B$ 中的每个点 $p_i$，我们当前目标是找到一个同样在 $B$ 中、且到其距离小于 $h$ 的点。为了避免两个点之间互相考虑，我们只考虑那些纵坐标小于 $y_i$ 的点。显然对于一个合法的点 $p_j$，$y_i - y_j$ 必须小于 $h$。于是我们获得了一个集合 $C(p_i)$：
 
 $$
-C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \le y_i \}
+C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \leqslant y_i \}
 $$
 
-在点集 $B$ 中选一点 $p_i$，根据 $C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \le y_i \}$ 的规则，得到了由红色方框内的黄色点组成的 $C$ 点集。
+在点集 $B$ 中选一点 $p_i$，根据 $C(p_i) = \{ p_j\ \big |\ p_j \in B,\ y_i - h < y_j \leqslant y_i \}$ 的规则，得到了由红色方框内的黄色点组成的 $C$ 点集。
 
 ![nearest-points2](./images/nearest-points2.png)
 

@@ -119,7 +119,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
 ???+ note "[于是他错误的点名开始了](https://www.luogu.com.cn/problem/P2580)"
     给你 $n$ 个名字串，然后进行 $m$ 次点名，每次你需要回答「名字不存在」、「第一次点到这个名字」、「已经点过这个名字」之一。
     
-    $1\le n\le 10^4$，$1\le m\le 10^5$，所有字符串长度不超过 $50$。
+    $1\leqslant n\leqslant 10^4$，$1\leqslant m\leqslant 10^5$，所有字符串长度不超过 $50$。
     
     ??? note "题解"
         对所有名字建 trie，再在 trie 中查询字符串是否存在、是否已经点过名，第一次点名时标记为点过名。
@@ -326,7 +326,7 @@ int merge(int a, int b) {
     -   将树上与一个节点 $x$ 距离为 $1$ 的节点上的权值 $+1$。这里树上两点间的距离定义为从一点出发到另外一点的最短路径上边的条数。
     -   在一个节点 $x$ 上的权值 $-v$。
     -   询问树上与一个节点 $x$ 距离为 $1$ 的所有节点上的权值的异或和。
-        对于 $100\%$ 的数据，满足 $1\le n \le 5\times 10^5$，$1\le m \le 5\times 10^5$，$0\le a_i \le 10^5$，$1 \le x \le n$，$opt\in\{1,2,3\}$。
+        对于 $100\%$ 的数据，满足 $1\leqslant n \leqslant 5\times 10^5$，$1\leqslant m \leqslant 5\times 10^5$，$0\leqslant a_i \leqslant 10^5$，$1 \leqslant x \leqslant n$，$opt\in\{1,2,3\}$。
         保证任意时刻每个节点的权值非负。
     
     ??? note "题解"

@@ -26,7 +26,7 @@ $$
 \begin{aligned}
 & \text{设} S\subseteq V \\
 & \gamma(S)=\{(u,v)\in E:u\in S,v\in S\} \\
-& O=\{B\subseteq V:|B|\text{是奇数且}|B|\geq3\} \\
+& O=\{B\subseteq V:|B|\text{是奇数且}|B|\geqslant3\} \\
 \end{aligned}
 $$
 
@@ -38,8 +38,8 @@ $$
     & \max\sum_{e\in E}w(e)x_e \\
     & \text{限制：} \\
     & x(\delta(u))=1:\forall u\in V \\
-    & x(\gamma(B))\leq\lfloor\frac{|B|}{2}\rfloor:\forall B\in O \\
-    & x_e\geq0:\forall e\in E \\
+    & x(\gamma(B))\leqslant\lfloor\frac{|B|}{2}\rfloor:\forall B\in O \\
+    & x_e\geqslant0:\forall e\in E \\
     \end{aligned}
     $$
 
@@ -50,8 +50,8 @@ $$
     \begin{aligned}
     & \min\sum_{u\in V}z_u+\sum_{B\in O}\left\lfloor\frac{|B|}{2}\right\rfloor z_B \\
     & \text{限制：} \\
-    & z_B\geq0:\forall B\in O \\
-    & z_e\geq0:\forall e\in E \\
+    & z_B\geqslant0:\forall B\in O \\
+    & z_e\geqslant0:\forall e\in E \\
     & \text{设} e=(u,v)，\text{这里} \\
     & \begin{array}{lll}
     z_e & = & z_u + z_v - w(e) + \sum_{\substack{B \in O \\ u,v \in \gamma(B)}} z_B
@@ -121,7 +121,7 @@ vertex labeling 仍要维持大于等于的性质，而且既有的「等边」�
     之后所有提到的 $B$ 预设都是花，并同时代表缩花之后的点。  
     花也可以有奇花偶花之分，因此也适用 $B^+$、$B^−$、$B^\varnothing$ 等符号。
 
-设目前有 r 棵交错树 $T_i=(U_{t_i},V_{t_i}):1\leq i\leq r$，令
+设目前有 r 棵交错树 $T_i=(U_{t_i},V_{t_i}):1\leqslant i\leqslant r$，令
 
 $$
 \begin{aligned}
@@ -147,7 +147,7 @@ $$
 如果出现 $z_B=0(d=d3)$，为了防止 $z_B<0$ 的情况，所以要把这朵花拆了 (EXPAND)。
 拆花后只留下花里的交替路径，并把花里不在交替路径上的点设为未走访 ($\varnothing$)。
 
-如此便制造了一条（以上）的等边，既有等边保持不动，并维持了 $z_e\geq0:\forall e\in E$ 的性质，且最低限度增加了 $z_B$，可以继续找增广路了。
+如此便制造了一条（以上）的等边，既有等边保持不动，并维持了 $z_e\geqslant0:\forall e\in E$ 的性质，且最低限度增加了 $z_B$，可以继续找增广路了。
 
 ## 一般图最大权匹配
 

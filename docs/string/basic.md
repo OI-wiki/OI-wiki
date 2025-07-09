@@ -22,7 +22,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 ### 子序列
 
-字符串 $S$ 的 **子序列** 是从 $S$ 中将若干元素提取出来并不改变相对位置形成的序列，即 $S[p_1],S[p_2],\ldots,S[p_k]$，$1\le p_1< p_2<\cdots< p_k\le|S|$。
+字符串 $S$ 的 **子序列** 是从 $S$ 中将若干元素提取出来并不改变相对位置形成的序列，即 $S[p_1],S[p_2],\ldots,S[p_k]$，$1\leqslant p_1< p_2<\cdots< p_k\leqslant|S|$。
 
 ### 后缀
 
@@ -46,7 +46,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 ### 回文串
 
-**回文串** 是正着写和倒着写相同的字符串，即满足 $\forall 1\le i\le|s|, s[i]=s[|s|+1-i]$ 的 $s$。
+**回文串** 是正着写和倒着写相同的字符串，即满足 $\forall 1\leqslant i\leqslant|s|, s[i]=s[|s|+1-i]$ 的 $s$。
 
 ### 汉明距离
 

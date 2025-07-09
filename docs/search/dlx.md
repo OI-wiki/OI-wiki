@@ -6,7 +6,7 @@ author: LeverImmy, 383494
 
 ### 定义
 
-精确覆盖问题（英文：Exact Cover Problem）是指给定许多集合 $S_i (1 \le i \le n)$ 以及一个集合 $X$，求满足以下条件的无序多元组 $(T_1, T_2, \cdots , T_m)$：
+精确覆盖问题（英文：Exact Cover Problem）是指给定许多集合 $S_i (1 \leqslant i \leqslant n)$ 以及一个集合 $X$，求满足以下条件的无序多元组 $(T_1, T_2, \cdots , T_m)$：
 
 1.  $\forall i, j \in [1, m],T_i\bigcap T_j = \varnothing (i \neq j)$
 2.  $X = \bigcup\limits_{i = 1}^{m}T_i$

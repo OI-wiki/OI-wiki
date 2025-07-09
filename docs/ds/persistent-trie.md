@@ -8,7 +8,7 @@
     对一个长度为 $n$ 的数组 $a$ 维护以下操作：
     
     1.  在数组的末尾添加一个数 $x$，数组的长度 $n$ 自增 $1$。
-    2.  给出查询区间 $[l,r]$ 和一个值 $k$，求当 $l\le p\le r$ 时，$k \oplus \bigoplus^{n}_{i=p} a_i$ 的最大值。
+    2.  给出查询区间 $[l,r]$ 和一个值 $k$，求当 $l\leqslant p\leqslant r$ 时，$k \oplus \bigoplus^{n}_{i=p} a_i$ 的最大值。
 
 ## 过程
 

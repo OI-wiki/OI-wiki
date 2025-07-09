@@ -19,7 +19,7 @@ author: Lyccrius, AtomAlpaca
 ???+ note "[Luogu P5047 \[Ynoi2019 模拟赛\] Yuno loves sqrt technology II](https://www.luogu.com.cn/problem/P5047)"
     给你一个长为 $n$ 的序列 $a$，$m$ 次询问，每次查询一个区间的逆序对数。
     
-    数据范围：$1 \leq n,m \leq 10^5$，$0 \leq a_i \leq 10^9$。
+    数据范围：$1 \leqslant n,m \leqslant 10^5$，$0 \leqslant a_i \leqslant 10^9$。
 
 直接莫队每次转移至少是 $O(\log n)$ 的，观察可以发现我们每次转移要求的信息是「一个数在某个区间内的排名」，而这一信息关于区间可以差分，因此考虑二次离线。
 

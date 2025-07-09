@@ -6,7 +6,7 @@
 
 ### 定义
 
-令整数 $k\geq 2$，整数 $a$，$m$ 满足 $(a,m)=1$，若存在整数 $x$ 使得
+令整数 $k\geqslant 2$，整数 $a$，$m$ 满足 $(a,m)=1$，若存在整数 $x$ 使得
 
 $$
 x^k\equiv a\pmod m\tag{1}
@@ -18,7 +18,7 @@ $$
 
 ### 性质
 
-当整数 $k\geq 2$，整数 $a$，$m$ 满足 $(a,m)=1$，模 $m$  **有原根**  $g$ 时，令 $d=(k,\varphi(m))$，则：
+当整数 $k\geqslant 2$，整数 $a$，$m$ 满足 $(a,m)=1$，模 $m$  **有原根**  $g$ 时，令 $d=(k,\varphi(m))$，则：
 
 1.  $a$ 为模 $m$ 的 $k$ 次剩余当且仅当 $d\mid \operatorname{ind}_g a$，即：
 
@@ -31,7 +31,7 @@ $$
 3.  模 $m$ 的 $k$ 次剩余类的个数为 $\dfrac{\varphi(m)}{d}$, 其有形式
 
     $$
-    a\equiv g^{di}\pmod m,\qquad \left(0\leq i<\frac{\varphi(m)}{d}\right)
+    a\equiv g^{di}\pmod m,\qquad \left(0\leqslant i<\frac{\varphi(m)}{d}\right)
     $$
 
 ???+ note "证明"
@@ -61,13 +61,13 @@ $$
     3.  由 1 知 $a$ 为模 $m$ 的 $k$ 次剩余当且仅当 $d\mid \operatorname{ind}_g a$，故
     
         $$
-        \operatorname{ind}_g a\equiv di\pmod{\varphi(m)},\qquad \left(0\leq i<\frac{\varphi(m)}{d}\right)
+        \operatorname{ind}_g a\equiv di\pmod{\varphi(m)},\qquad \left(0\leqslant i<\frac{\varphi(m)}{d}\right)
         $$
     
         故模 $m$ 的 $k$ 次剩余共有 $\dfrac{\varphi(m)}{d}$ 个同余类：
     
         $$
-        a\equiv g^{di}\pmod m,\qquad \left(0\leq i<\frac{\varphi(m)}{d}\right)
+        a\equiv g^{di}\pmod m,\qquad \left(0\leqslant i<\frac{\varphi(m)}{d}\right)
         $$
 
 ## 参考资料

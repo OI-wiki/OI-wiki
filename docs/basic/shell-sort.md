@@ -26,7 +26,7 @@
 
 **命题 $1$**：若间距序列为 $H= \{ 2^k-1\mid k=1,2,\ldots,\lfloor\log_2 n\rfloor \}$（从大到小），则希尔排序算法的时间复杂度为 $O(n^{3/2})$。
 
-**命题 $2$**：若间距序列为 $H= \{ k=2^p\cdot 3^q\mid p,q\in \mathbb N,k\le n \}$（从大到小），则希尔排序算法的时间复杂度为 $O(n\log^2 n)$。
+**命题 $2$**：若间距序列为 $H= \{ k=2^p\cdot 3^q\mid p,q\in \mathbb N,k\leqslant n \}$（从大到小），则希尔排序算法的时间复杂度为 $O(n\log^2 n)$。
 
 为证明这两个命题，我们先给出一个重要的定理并证明它，这个定理反应了希尔排序的最主要特征。
 
@@ -48,7 +48,7 @@ $$
 > **引理 $1$**：对于整数 $n,m$、正整数 $l$ 与两个数组 $X(x_1,x_2,\ldots,x_{n+l}),Y(y_1,y_2,\ldots,y_{m+l})$，满足如下要求：
 >
 > $$
-> y_1 \le x_{n+1},y_2 \le x_{n+2},\ldots,y_l \le x_{n+l}
+> y_1 \leqslant x_{n+1},y_2 \leqslant x_{n+2},\ldots,y_l \leqslant x_{n+l}
 > $$
 >
 > 则我们将两个数组分别升序排序后，上述要求依然成立。
@@ -57,17 +57,17 @@ $$
 >
 > 设数组 $X$ 排序完为数组 $X'(x'_1,\ldots,x'_{n+l})$，数组 $Y$ 排序完为数组 $Y'(y'_1,\ldots,y'_{m+l})$。
 >
-> 对于任何 $1\le i\le l$，$x'_{n+i}$ 小等于数组 $X'$ 中的 $l-i$ 个元素，也小等于数组 $X$ 中的 $l-i$ 个元素（这是因为 $X$ 与 $X'$ 的元素可重集合是相同的）。
+> 对于任何 $1\leqslant i\leqslant l$，$x'_{n+i}$ 小等于数组 $X'$ 中的 $l-i$ 个元素，也小等于数组 $X$ 中的 $l-i$ 个元素（这是因为 $X$ 与 $X'$ 的元素可重集合是相同的）。
 >
 > 那么在可重集合 $\{x_{n+1},\ldots,x_{n+l} \} \subset X$ 中，大等于 $x'_{n+i}$ 的元素个数不超过 $l-i$ 个。
 >
 > 进而小于 $x'_{n+i}$ 的元素个数至少有 $i$ 个，取出其中的 $i$ 个，设它们为 $x_{n+k_1},x_{n+k_2},\ldots,x_{n+k_i}$。于是有：
 >
 > $$
-> y_{k_1}\le x_{n+k_1}\le x'_{n+i},y_{k_2}\le x_{n+k_2}\le x'_{n+i},\ldots,y_{k_i}\le x_{n+k_i}\le x'_{n+i}
+> y_{k_1}\leqslant x_{n+k_1}\leqslant x'_{n+i},y_{k_2}\leqslant x_{n+k_2}\leqslant x'_{n+i},\ldots,y_{k_i}\leqslant x_{n+k_i}\leqslant x'_{n+i}
 > $$
 >
-> 所以 $x'_{n+i}$ 至少大等于 $Y$ 也即 $Y'$ 中的 $i$ 个元素，那么自然有 $y'_i\le x'_{n+i}\,(1\le i\le l)$。
+> 所以 $x'_{n+i}$ 至少大等于 $Y$ 也即 $Y'$ 中的 $i$ 个元素，那么自然有 $y'_i\leqslant x'_{n+i}\,(1\leqslant i\leqslant l)$。
 >
 > **证毕**
 
@@ -97,7 +97,7 @@ A_k,A_{k+k},A_{k+2k},\ldots
 \end{array}
 $$
 
-对于每个 $i$ $(1\le i\le \min(h,k))$，考虑如下两个组：
+对于每个 $i$ $(1\leqslant i\leqslant \min(h,k))$，考虑如下两个组：
 
 $$
 \begin{array}{c}
@@ -106,21 +106,21 @@ A_i,A_{i+k},A_{i+2k},\ldots \\
 \end{array}
 $$
 
-第二个组前面也加上“$\ldots$”的原因是可能 $i+h\ge k$ 从而前面也有元素。
+第二个组前面也加上“$\ldots$”的原因是可能 $i+h\geqslant k$ 从而前面也有元素。
 
 则第二个组就是引理 $1$ 中的 $X$ 数组，第一个组就是 $Y$ 数组，$l$ 就是第二个组从 $i+h$ 之后顶到末尾的长度，$n$ 是第二个组中前面那个“$\ldots$”的长度，$m$ 是第一个组去掉前 $l$ 个后剩下的个数。
 
 又因为有：
 
 $$
-A_i\le A_{i+h},A_{i+k}\le A_{i+h+k},\ldots
+A_i\leqslant A_{i+h},A_{i+k}\leqslant A_{i+h+k},\ldots
 $$
 
-所以由引理 $1$ 可得执行 $\text{InsertionSort}(k)$ 将两个组分别排序后，这个关系依然满足，即依然有 $A_i\le A_{i+h}\,(1\le i\le \min(h,k))$。
+所以由引理 $1$ 可得执行 $\text{InsertionSort}(k)$ 将两个组分别排序后，这个关系依然满足，即依然有 $A_i\leqslant A_{i+h}\,(1\leqslant i\leqslant \min(h,k))$。
 
-若有 $i>\min(h,k)$，容易发现取正整数 $w$ $(1\le w\le \min(h,k))$ 再加上若干个 $k$ 即可得到 $i$，则之前的情况已经蕴含了此情况的证明。
+若有 $i>\min(h,k)$，容易发现取正整数 $w$ $(1\leqslant w\leqslant \min(h,k))$ 再加上若干个 $k$ 即可得到 $i$，则之前的情况已经蕴含了此情况的证明。
 
-综合以上论述便有：执行完 $\text{InsertionSort}(k)$ 依然有 $A_i\le A_{i+h}\,(1\le i\le n-h)$。
+综合以上论述便有：执行完 $\text{InsertionSort}(k)$ 依然有 $A_i\leqslant A_{i+h}\,(1\leqslant i\leqslant n-h)$。
 
 得证。
 
@@ -147,15 +147,15 @@ $$
 >     故不可能有非负整数解。
 > -   再证明对任意整数 $c > ab-a-b$，方程 $ax+by=c$ 有非负整数解：
 >
->     我们找一组解 $(x_0,y_0)$ 满足 $0\le x_0 < b$（由通解的表达式，这可以做到）。
+>     我们找一组解 $(x_0,y_0)$ 满足 $0\leqslant x_0 < b$（由通解的表达式，这可以做到）。
 >
 >     则有：
 >
 >     $$
->     by_0=c-ax_0\ge c-a(b-1)>ab-a-b-ab+a=-b
+>     by_0=c-ax_0\geqslant c-a(b-1)>ab-a-b-ab+a=-b
 >     $$
 >
->     所以 $b(y_0+1) > 0$，又因为 $b>0$，所以 $y_0+1>0$，所以 $y_0\ge 0$。
+>     所以 $b(y_0+1) > 0$，又因为 $b>0$，所以 $y_0+1>0$，所以 $y_0\geqslant 0$。
 >
 >     所以 $(x_0,y_0)$ 为一组非负整数解。
 >
@@ -169,11 +169,11 @@ $$
 
 **证明**：
 
-对于 $j\le h_{t+1}h_t$ 的部分，$i$ 的移动次数显然是是 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 级别的。
+对于 $j\leqslant h_{t+1}h_t$ 的部分，$i$ 的移动次数显然是是 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 级别的。
 
 故以下假设 $j>h_{t+1}h_t$。
 
-对于任意的正整数 $k$ 满足 $1\le k\le j-h_{t+1}h_t$，注意到：$h_{t+1}h_t-h_{t+1}-h_t<h_{t+1}h_t\le j-k\le j-1$
+对于任意的正整数 $k$ 满足 $1\leqslant k\leqslant j-h_{t+1}h_t$，注意到：$h_{t+1}h_t-h_{t+1}-h_t<h_{t+1}h_t\leqslant j-k\leqslant j-1$
 
 又因为 $\gcd(h_{t+1},h_t)=1$，故由引理 $2$，得存在非负整数 $a,b$，使得：$ah_{t+1}+bh_t=j-k$。
 
@@ -186,20 +186,20 @@ $$
 由定理 $1$，得：
 
 $$
-A_{j-bh_t}\le A_{j-(b-1)h_t}\le \ldots\le A_{j-h_t}\le A_j
+A_{j-bh_t}\leqslant A_{j-(b-1)h_t}\leqslant \ldots\leqslant A_{j-h_t}\leqslant A_j
 $$
 
 与
 
 $$
-A_{j-bh_t-ah_{t+1}}\le A_{j-bh_t-(a-1)h_{t+1}}\le \ldots\le A_{j-bh_t-h_{t+1}}\le A_{j-bh_t}
+A_{j-bh_t-ah_{t+1}}\leqslant A_{j-bh_t-(a-1)h_{t+1}}\leqslant \ldots\leqslant A_{j-bh_t-h_{t+1}}\leqslant A_{j-bh_t}
 $$
 
-综合以上既有：$A_k=A_{j-ah_{t+1}-bh_t}\le A_j$。
+综合以上既有：$A_k=A_{j-ah_{t+1}-bh_t}\leqslant A_j$。
 
-所以对于任何 $1\le k\le j-h_{t+1}h_t$，有 $A_k\le A_j$。
+所以对于任何 $1\leqslant k\leqslant j-h_{t+1}h_t$，有 $A_k\leqslant A_j$。
 
-在 Shell-Sort 伪代码中 $i$ 指针每次减 $h_{t-1}$，减 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 次，即可使得 $i\le j-h_{t+1}h_t$，进而有 $A_i\le A_j$，不满足 while 循环的条件退出。
+在 Shell-Sort 伪代码中 $i$ 指针每次减 $h_{t-1}$，减 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 次，即可使得 $i\leqslant j-h_{t+1}h_t$，进而有 $A_i\leqslant A_j$，不满足 while 循环的条件退出。
 
 证明完对于每个 $j$ 的移动复杂度后，即可得到总的时间复杂度：
 
@@ -229,7 +229,7 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 
 分两部分去分析复杂度：
 
--   对于前面的若干个满足 $h_t\ge \sqrt{n}$ 的 $h_t$，显然有 $\text{InsertionSort}(h_t)$ 的时间复杂度为 $O\left(\dfrac{n^2}{h_t} \right)$。
+-   对于前面的若干个满足 $h_t\geqslant \sqrt{n}$ 的 $h_t$，显然有 $\text{InsertionSort}(h_t)$ 的时间复杂度为 $O\left(\dfrac{n^2}{h_t} \right)$。
 
     考虑对最接近 $\sqrt{n}$ 的项 $h_k$，有：
 
@@ -283,7 +283,7 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 
     而这一部分元素个数是 $O(\log^2 n)$ 级别的，所以这一部分时间复杂度为 $O(n\log^2 n)$。
 
--   对于 $h_t\le n/3$ 的部分，因为 $3h_t\le n$，所以这之前已经执行了 $\text{InsertionSort}(2h_t)$ 与 $\text{InsertionSort}(3h_t)$，于是执行 $\text{InsertionSort}(h_t)$ 的时间复杂度是 $O(n)$。
+-   对于 $h_t\leqslant n/3$ 的部分，因为 $3h_t\leqslant n$，所以这之前已经执行了 $\text{InsertionSort}(2h_t)$ 与 $\text{InsertionSort}(3h_t)$，于是执行 $\text{InsertionSort}(h_t)$ 的时间复杂度是 $O(n)$。
 
     还是一样的，这一部分元素个数也是 $O(\log^2 n)$ 级别的，所以这一部分时间复杂度为 $O(n\log^2 n)$。
 

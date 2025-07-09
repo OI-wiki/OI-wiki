@@ -77,7 +77,7 @@ $$
 
 如果点集 $\mathcal D$ 的下凸壳上有三个及以上的红点共线，那么在上述基本流程中，可能无法正确地判断 $g(x_\lambda)$ 与 $y$ 的大小关系。比如，设共线的三个红点的横坐标分别为 $y_1,y_2,y_3$，且它们共线的直线的斜率为 $\lambda^*$。那么，要正确求解 $v(y_2)$，就必须保证算法终止时，最后计算的问题是 $h(\lambda^*)$，因为 $\lambda^*$ 是唯一一个最小化截距时能够经过点 $(y_2,v(y_2))$ 的直线的斜率。但是，因为在求解 $h(\lambda^*)$ 的过程中，记录的 $g(x_{\lambda^*})$ 可能是 $y_1,y_2,y_3$ 中的任意一个。如果记录到的 $g(x_{\lambda^*})$ 不等于 $y_2$，那么算法将错误地继续运行，并向着背离 $y_2$ 的方向调整 $\lambda$ 的区间，最终将得到错误的结果。
 
-为了解决共线的情形，一种处理方法是在记录最优解 $x_\lambda$ 对应的 $g(x_\lambda)$ 时，总是使之尽可能大（或尽可能小）。同时，将二分中的终止条件从寻找恰好满足 $g(x_\lambda)=y$ 的 $\lambda$ 改为寻找满足 $g(x_\lambda)\ge y$（或 $g(x_\lambda)\le y$）的最小（或最大）的 $\lambda$。在上一段的例子中，这相当于计算问题 $h(\lambda^*)$ 时，输出的 $g(x_{\lambda^*})$ 是 $y_3$。这就保证了算法终止时，最后计算的问题是 $h(\lambda^*)$。实现这一方法时，需要注意最后输出的不是 $h(\lambda)+\lambda g(x_{\lambda})$ 而是 $h(\lambda)+\lambda y$，因为记录的 $g(x_\lambda)$ 未必等于实际的限制 $y$。
+为了解决共线的情形，一种处理方法是在记录最优解 $x_\lambda$ 对应的 $g(x_\lambda)$ 时，总是使之尽可能大（或尽可能小）。同时，将二分中的终止条件从寻找恰好满足 $g(x_\lambda)=y$ 的 $\lambda$ 改为寻找满足 $g(x_\lambda)\geqslant y$（或 $g(x_\lambda)\leqslant y$）的最小（或最大）的 $\lambda$。在上一段的例子中，这相当于计算问题 $h(\lambda^*)$ 时，输出的 $g(x_{\lambda^*})$ 是 $y_3$。这就保证了算法终止时，最后计算的问题是 $h(\lambda^*)$。实现这一方法时，需要注意最后输出的不是 $h(\lambda)+\lambda g(x_{\lambda})$ 而是 $h(\lambda)+\lambda y$，因为记录的 $g(x_\lambda)$ 未必等于实际的限制 $y$。
 
 另一种处理方法是实数二分。如果问题涉及的数字都是整数，显然，WQS 二分中的斜率也是整数。在二分中引入实数，是为了保证错误地排除正确选项 $\lambda^*$ 时，可以通过小数部分调整回来，最终逼近正确答案 $\lambda^*$。例如，在上面的例子中，如果计算问题 $h(\lambda^*)$ 时，记录的 $g(x_{\lambda^*})$ 是 $y_1$，小于所希望的 $y_2$，那么，算法就会转而考虑区间 $(\lambda^*,\lambda_r]$，其中，$\lambda_r$ 是 $\lambda$ 所在区间的右端点。对于整数的情形，这一区间实际应该写作 $[\lambda_*+1,\lambda_r]$，这就排除了在后续算法中接近正确答案 $\lambda^*$ 的可能。但是，实数二分时，考虑的区间仍然是 $(\lambda^*,\lambda_r]$，而且，对于该区间中的 $\lambda$，求解 $h(\lambda)$ 时记录的 $g(x_\lambda)$ 总是不小于 $y_3$，从而严格大于 $y_2$ 的。因此，随着算法继续进行，会不断地舍去右半区间，从而，最终得到的 $\lambda$ 的范围可以保证在 $\lambda^*$ 附近。当然，因为已经知道所求的斜率是一个整数，实数二分终止时的精度不必太高，只要能保证二分的区间中只包含一个整数即可，这一整数就是要寻找的 $\lambda^*$。
 
@@ -177,7 +177,7 @@ $$
 几何直观上，函数 $f(x)$ 的凸共轭描述的是，对于所有斜率向量为 $x^*$ 且与函数 $f(x)$ 的上境图
 
 $$
-\operatorname{epi}f = \{(x,y)\in\mathbf R^d\times\mathbf R:f(x)\le y\}
+\operatorname{epi}f = \{(x,y)\in\mathbf R^d\times\mathbf R:f(x)\leqslant y\}
 $$
 
 相交的超平面，截距 $f(x)-x^*\cdot x$ 的最小值就是 $-f^*(x^*)$。换句话说，函数 $f(x)$ 总在超平面 $y = x^*\cdot x-f^*(x^*)$ 上方，且与该平面切于点 $(x_0,f(x_0))$；当然，可能存在其余的切点。这样的超平面，称为 $f(x)$ 在 $x_0$ 处的 **支撑超平面**（supporting hyperplane）。函数 $f(x)$ 的一个支撑超平面的截距由它的斜率向量唯一确定，凸共轭就提供了这个从斜率向量到截距的映射。
@@ -224,27 +224,27 @@ $$
     
     反过来，这些条件也是充分的。和其他强对偶定理的证明一样，证明可以分为两步。
     
-    第一步，说明弱对偶成立，即 $f(x)\ge f^{**}(x)$。由凸共轭的定义可知，对于所有 $x,x^*\in\mathbf R^d$，都有
+    第一步，说明弱对偶成立，即 $f(x)\geqslant f^{**}(x)$。由凸共轭的定义可知，对于所有 $x,x^*\in\mathbf R^d$，都有
     
     $$
-    f^*(x^*) \ge x^*\cdot x-f(x).
+    f^*(x^*) \geqslant x^*\cdot x-f(x).
     $$
     
     这就说明，对于所有 $x,x^*\in\mathbf R^d$，同样有
     
     $$
-    f(x) \ge x^*\cdot x-f^*(x^*).
+    f(x) \geqslant x^*\cdot x-f^*(x^*).
     $$
     
-    对不等式右侧中的 $x^*$ 取上确界，就有 $f(x)\ge f^{**}(x)$。
+    对不等式右侧中的 $x^*$ 取上确界，就有 $f(x)\geqslant f^{**}(x)$。
     
-    第二步，利用 [超平面分离定理](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem) 说明 $f(x)\le f^{**}(x)$。假设不然，存在 $x_0\in\mathbf R^d$ 使得 $f(x_0)>f^{**}(x_0)$ 成立。因为 $f(x)$ 的上境图 $\operatorname{epi}(f)$ 是闭凸集，而且单点集 $\{(x_0,f^{**}(x_0))\}$ 是紧凸集，所以，根据超平面分离定理，存在 $(\lambda,t)\in\mathbf R^d\times\mathbf R$ 和 $\alpha\in\mathbf R$ 使得对于所有 $x\in\operatorname{dom} f:=\{x\in\mathbf R^d:f(x)<+\infty\}$ 和所有 $y\ge f(x)$ 都有
+    第二步，利用 [超平面分离定理](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem) 说明 $f(x)\leqslant f^{**}(x)$。假设不然，存在 $x_0\in\mathbf R^d$ 使得 $f(x_0)>f^{**}(x_0)$ 成立。因为 $f(x)$ 的上境图 $\operatorname{epi}(f)$ 是闭凸集，而且单点集 $\{(x_0,f^{**}(x_0))\}$ 是紧凸集，所以，根据超平面分离定理，存在 $(\lambda,t)\in\mathbf R^d\times\mathbf R$ 和 $\alpha\in\mathbf R$ 使得对于所有 $x\in\operatorname{dom} f:=\{x\in\mathbf R^d:f(x)<+\infty\}$ 和所有 $y\geqslant f(x)$ 都有
     
     $$
     \lambda\cdot x-ty <\alpha <\lambda\cdot x_0 - tf^{**}(x_0)
     $$
     
-    成立。因为 $y$ 可以选得任意大，所以必然有 $t\ge 0$。这又可以分为两种情形。
+    成立。因为 $y$ 可以选得任意大，所以必然有 $t\geqslant 0$。这又可以分为两种情形。
     
     首先，讨论 $t>0$ 的情形。此时，将不等式的各部分都同除以 $t$，并设 $\lambda'=t^{-1}\lambda$ 和 $\alpha'=t^{-1}\alpha$，就得到
     
@@ -261,21 +261,21 @@ $$
     故而，对不等号右侧的 $x$ 取上确界，有
     
     $$
-    \alpha' \ge \sup_{x\in\mathbf R^d}\lambda'\cdot x - f(x) = f^*(\lambda').
+    \alpha' \geqslant \sup_{x\in\mathbf R^d}\lambda'\cdot x - f(x) = f^*(\lambda').
     $$
     
     进而，有
     
     $$
-    f^{**}(x_0) < \lambda'\cdot x_0-f^*(\lambda') \le \sup_{x^*\in\mathbf R^d}x^*\cdot x_0-f^*(x^*) = f^{**}(x_0).
+    f^{**}(x_0) < \lambda'\cdot x_0-f^*(\lambda') \leqslant \sup_{x^*\in\mathbf R^d}x^*\cdot x_0-f^*(x^*) = f^{**}(x_0).
     $$
     
     这一矛盾说明 $t>0$ 的情形并不成立。
     
-    最后，讨论 $t=0$ 的情形。事实上，将要说明的是，可以通过微扰，将它转化为 $t>0$ 的情形。任取 $\lambda_0\in\operatorname{dom}f^*$，根据凸共轭的定义可知，对于任何 $x\in\operatorname{dom}f$ 和 $y\ge f(x)$ 都有
+    最后，讨论 $t=0$ 的情形。事实上，将要说明的是，可以通过微扰，将它转化为 $t>0$ 的情形。任取 $\lambda_0\in\operatorname{dom}f^*$，根据凸共轭的定义可知，对于任何 $x\in\operatorname{dom}f$ 和 $y\geqslant f(x)$ 都有
     
     $$
-    \lambda_0\cdot x-y\le f^*(\lambda_0).
+    \lambda_0\cdot x-y\leqslant f^*(\lambda_0).
     $$
     
     因此，对于任意 $\varepsilon>0$，都有
@@ -298,7 +298,7 @@ $$
     
     这就又回到了前一种情形，仍然会导致矛盾。
     
-    这一矛盾说明，并不存在满足 $f(x_0)>f^{**}(x_0)$ 的点 $x_0\in\mathbf R^d$。故而，总有 $f(x_0)\le f^{**}(x_0)$。
+    这一矛盾说明，并不存在满足 $f(x_0)>f^{**}(x_0)$ 的点 $x_0\in\mathbf R^d$。故而，总有 $f(x_0)\leqslant f^{**}(x_0)$。
     
     结合这两步证明的结果，就得到 $f^{**}(x)=f(x)$ 成立。
 
@@ -312,7 +312,7 @@ $$
     对于凸函数 $f:\mathbf R^d\rightarrow\mathbf R\cup\{\pm\infty\}$ 和 $x_0\in\operatorname{dom}f$，如果向量 $x^*\in\mathbf R^d$ 满足对于任何 $x\in\mathbf R^d$，都有
     
     $$
-    f(x) \ge f(x_0)+x^*\cdot(x-x_0),
+    f(x) \geqslant f(x_0)+x^*\cdot(x-x_0),
     $$
     
     那么，就称 $x^*$ 是 $f(x)$ 在 $x_0$ 处的一个 **次梯度**（subgradient）。函数 $f(x)$ 在 $x_0$ 处的全体次梯度的集合称为它在该处的 **次微分**（subdifferential），记作 $\partial f(x_0)$。
@@ -346,25 +346,25 @@ $$
     按照次梯度的定义，$x^*\in\partial f(x)$，当且仅当
     
     $$
-    f(x') \ge f(x) + x^*\cdot(x'-x),~\forall x'\in\mathbf R^d.
+    f(x') \geqslant f(x) + x^*\cdot(x'-x),~\forall x'\in\mathbf R^d.
     $$
     
     这等价于
     
     $$
-    x^*\cdot x - f(x) \ge x^*\cdot x'-f(x'),~\forall x'\in\mathbf R^d.
+    x^*\cdot x - f(x) \geqslant x^*\cdot x'-f(x'),~\forall x'\in\mathbf R^d.
     $$
     
     这又等价于
     
     $$
-    x^*\cdot x - f(x) \ge \sup_{x'\in\mathbf R^d}x^*\cdot x'-f(x') = f^*(x^*).
+    x^*\cdot x - f(x) \geqslant \sup_{x'\in\mathbf R^d}x^*\cdot x'-f(x') = f^*(x^*).
     $$
     
     但是，依据凸共轭的定义，总是有
     
     $$
-    x^*\cdot x - f(x) \le f^*(x^*).
+    x^*\cdot x - f(x) \leqslant f^*(x^*).
     $$
     
     因此，前一式中的大于等于号实际上等价于等号，也就等价于下式
@@ -466,7 +466,7 @@ $$
     对于任意 $y_1,y_2\in\mathbf R^d$ 和 $\alpha\in(0,1)$，需要证明
     
     $$
-    v(\alpha y_1+(1-\alpha)y_2) \le \alpha v(y_1) + (1-\alpha) v(y_2).
+    v(\alpha y_1+(1-\alpha)y_2) \leqslant \alpha v(y_1) + (1-\alpha) v(y_2).
     $$
     
     如果 $v(y_1)=+\infty$ 或 $v(y_2)=+\infty$，那么不等式的右侧就是 $+\infty$，不等式必然成立。否则，$v(y_1)$ 和 $v(y_2)$ 都是有限值。对于任意 $\varepsilon>0$ 和 $i=1,2$，都存在 $x_i\in\mathcal D(y_i)$ 使得 $f(x_i,y_i)< v(y_i)+\varepsilon$ 成立。利用映射 $\mathcal D$ 的图像的凸性可知
@@ -480,8 +480,8 @@ $$
     $$
     \begin{aligned}
     v(\alpha y_1+(1-\alpha)y_2)
-    &\le f(\alpha x_1+(1-\alpha)x_2,\alpha y_1+(1-\alpha)y_2) \\
-    &\le \alpha f(x_1,y_1) + (1-\alpha)f(x_2,y_2) \\
+    &\leqslant f(\alpha x_1+(1-\alpha)x_2,\alpha y_1+(1-\alpha)y_2) \\
+    &\leqslant \alpha f(x_1,y_1) + (1-\alpha)f(x_2,y_2) \\
     &< \alpha v(y_1) + (1-\alpha) v(y_2) + \varepsilon.
     \end{aligned}
     $$
@@ -489,7 +489,7 @@ $$
     因为 $\varepsilon$ 的选取是任意的，令 $\varepsilon\rightarrow 0$，就有
     
     $$
-    v(\alpha y_1+(1-\alpha)y_2) \le \alpha v(y_1) + (1-\alpha) v(y_2).
+    v(\alpha y_1+(1-\alpha)y_2) \leqslant \alpha v(y_1) + (1-\alpha) v(y_2).
     $$
     
     因此，价值函数 $v(y)$ 的凸性成立。
@@ -500,7 +500,7 @@ $$
     设 $c\in\mathbf R^n$，$A_1\in\mathbf R^{d_1\times n}$，$A_2\in\mathbf R^{d_2\times n}$，$y_1\in\mathbf R^{d_1}$，$y_2\in\mathbf R^{d_2}$。考虑如下含参线性规划问题：
     
     $$
-    v(y_1,y_2)=\min_{x\in\mathbf R^n} c\cdot x \text{ subject to }A_1x\le y_1,A_2x=y_2,x\ge 0.
+    v(y_1,y_2)=\min_{x\in\mathbf R^n} c\cdot x \text{ subject to }A_1x\leqslant y_1,A_2x=y_2,x\geqslant 0.
     $$
     
     那么，价值函数 $v(y_1,y_2)$ 是关于 $(y_1,y_2)$ 的凸函数。
@@ -540,7 +540,7 @@ $$
     0,  & \text{otherwise},
     \end{cases}
     ~\forall i\in V,\\
-    &0\le f_{ij}\le c_{ij},~\forall (i,j)\in E.
+    &0\leqslant f_{ij}\leqslant c_{ij},~\forall (i,j)\in E.
     \end{aligned}
     $$
     
@@ -617,7 +617,7 @@ $$
     $$
     f(i,j) =
     \begin{cases}
-    f(i-1,j), & j\le p_i,\\
+    f(i-1,j), & j\leqslant p_i,\\
     f(i-2,j-1) + a_i, & j> p_i.
     \end{cases}
     $$
@@ -651,7 +651,7 @@ $$
     因为这是最大化问题，需要验证「交叉大于包含」，即对于任意 $a<b<c<d$，都成立
     
     $$
-    w(a,c)+w(b,d) \ge w(a,d)+w(b,c).
+    w(a,c)+w(b,d) \geqslant w(a,d)+w(b,c).
     $$
     
     代入收益函数的表达式，并设
@@ -663,7 +663,7 @@ $$
     则要证明的不等式可以写作
     
     $$
-    \max\{A,B\} + \max\{B,C\} \ge \max\{A,B,C\} + B.
+    \max\{A,B\} + \max\{B,C\} \geqslant \max\{A,B,C\} + B.
     $$
     
     注意到不等号左侧的两项 $\max\{A,B\}$ 和 $\max\{B,C\}$ 中较大的那个就等于 $\max\{A,B,C\}$，而它们中较小的那个总是不小于 $B$，因此该不等式成立。
@@ -679,8 +679,8 @@ $$
     
     用于刻画「边际成本递增」的一个常见性质是函数的超模性（supermodularity）。对于有限集合 $X$ 的子集族 $\mathcal PX$ 上的函数 $f:\mathcal PX\rightarrow\mathbf R$，如果它满足以下两条等价性质之一：
     
-    1.  （交叉小于包含）对于任何子集 $A,B\subseteq X$，都有 $f(A)+f(B) \le f(A\cup B) + f(A\cap B)$ 成立；
-    2.  （边际成本递增）对于任何子集 $A\subseteq B\subseteq X$ 以及 $x\in X\setminus B$，都有 $f(A\cup\{x\})-f(A)\le f(B\cup\{x\})-f(B)$ 成立；
+    1.  （交叉小于包含）对于任何子集 $A,B\subseteq X$，都有 $f(A)+f(B) \leqslant f(A\cup B) + f(A\cap B)$ 成立；
+    2.  （边际成本递增）对于任何子集 $A\subseteq B\subseteq X$ 以及 $x\in X\setminus B$，都有 $f(A\cup\{x\})-f(A)\leqslant f(B\cup\{x\})-f(B)$ 成立；
     
     就称函数 $f$ 是 **超模的**（supermodular）。但是，超模函数作为目标函数的最优化问题中，价值函数
     
@@ -707,7 +707,7 @@ $$
     因此，如果某个极大的连续非零子段中，$z_i$ 的和恰好为 $+1$，也就是说，在该段坑位中，方案 $x^{(m+1)}$ 比方案 $x^{(m-1)}$ 多种了一棵树，那么就可以在该段内交换两个方案的种树位置。这样，就得到了两个各种 $m$ 棵树的可行方案。因为没有改变两个方案中总的种树的位置和数量，只是将它们重新分配，所以总的收益不变，仍然是 $v(m-1)+v(m+1)$。但是，这两个种 $m$ 棵树的方案未必是最优的，因此，它们各自的收益不会超过 $v(m)$。这就证明了
     
     $$
-    v(m-1) + v(m+1) \le 2v(m),
+    v(m-1) + v(m+1) \leqslant 2v(m),
     $$
     
     也就是说，$v(m)$ 是关于 $m$ 的凹函数。
@@ -724,7 +724,7 @@ $$
     有 $n$ 个树坑，**至多** 种 $m$ 棵树。树不能栽种于相邻的两个坑。给定长度为 $n$ 的序列 $\{a_i\}$，表示在每个坑种树的收益，收益可正可负。求种完这 $m$ 棵树最大可能的收益和。
 
 ??? note "解答"
-    与前文讨论的种树问题稍有不同，本题要求至多种 $m$ 棵树，而非恰好种 $m$ 棵树。仍然用 $v(m)$ 表示前文讨论的种树问题的价值函数，本题的答案实际上是 $\tilde v(m)=\max_{k\le m}v(k)$。因为 $v(m)$ 是凹函数，也就是一个单峰函数，本题的答案相当于只保留 $v(m)$ 上升至峰顶的部分，然后函数会一直留在峰顶；这相当于仅仅保留切线斜率非负的部分。因此，本题与前文讨论的题目的唯一差别，就是 WQS 二分时，初始的斜率范围为 $[0,\max_ia_i]$ 而非 $[\min_ia_i,\max_ia_i]$。
+    与前文讨论的种树问题稍有不同，本题要求至多种 $m$ 棵树，而非恰好种 $m$ 棵树。仍然用 $v(m)$ 表示前文讨论的种树问题的价值函数，本题的答案实际上是 $\tilde v(m)=\max_{k\leqslant m}v(k)$。因为 $v(m)$ 是凹函数，也就是一个单峰函数，本题的答案相当于只保留 $v(m)$ 上升至峰顶的部分，然后函数会一直留在峰顶；这相当于仅仅保留切线斜率非负的部分。因此，本题与前文讨论的题目的唯一差别，就是 WQS 二分时，初始的斜率范围为 $[0,\max_ia_i]$ 而非 $[\min_ia_i,\max_ia_i]$。
     
     应用 WQS 二分的方法移除数量限制后，问题转化为计算链上最大权独立集，只是将原本的收益 $\{a_i\}$ 替换为了 $\{a_i+k\}$。这是经典的动态规划题目。可以设 $f(i,j)$ 为第 $i$ 个坑位选择种树（$j=1$）或不种树（$j=0$）时，前 $i$ 个树坑的子问题的最大收益。由此，可以写出状态转移方程为
     
@@ -763,7 +763,7 @@ $$
     
     设 $T_{m-1}$ 和 $T_{m+1}$ 是白边数量分别为 $m-1$ 和 $m+1$ 的最小生成树。设 $e$ 是 $T_{m+1}\setminus T_{m-1}$ 的一条白边，对它应用上述引理可知，存在边 $f\in T_{m-1}\setminus T_{m+1}$，使得 $T'=T_{m+1}-e+f$ 和 $T''=T_{m-1}+e-f$ 都是生成树。因为只是交换了一对边，所以，树 $T'$ 和树 $T''$ 的边权和仍然是 $v(m-1)+v(m+1)$。进而，分两种情形讨论：
     
-    -   如果 $f$ 是一条黑边，那么，$T'$ 和 $T''$ 中的白边数量都是 $m$。它们各自的边权和都不会小于 $v(m)$。这就证明了 $2v(m)\le v(m-1)+v(m+1)$，故而 $v(m)$ 关于 $m$ 是凸的。
+    -   如果 $f$ 是一条黑边，那么，$T'$ 和 $T''$ 中的白边数量都是 $m$。它们各自的边权和都不会小于 $v(m)$。这就证明了 $2v(m)\leqslant v(m-1)+v(m+1)$，故而 $v(m)$ 关于 $m$ 是凸的。
     -   如果 $f$ 是一条白边，那么，$T'$ 和 $T''$ 的白边数量分别是 $m+1$ 和 $m-1$，所以它们的边权和分别不小于 $v(m+1)$ 和 $v(m-1)$。但是，上面已经说明，它们的边权和加在一起就等于 $v(m-1)+v(m+1)$。这说明，$T'$ 的边权和就等于 $v(m+1)$。将 $T'$ 与 $T_{m+1}$ 比较可知，$e$ 和 $f$ 的边权必然相等。这与假设矛盾，所以该情形并不成立。
     
     这就证明了 $v(m)$ 是 $m$ 的凸函数。
@@ -801,7 +801,7 @@ $$
     $$
     \Delta_l\Delta_r w(l,r)
     = \Delta_l(a_{r+1} - a_{\lfloor(l+r+1)/2\rfloor})
-    = a_{\lfloor(l+r+1)/2\rfloor}-a_{\lfloor(l+r+2)/2\rfloor} \le 0.
+    = a_{\lfloor(l+r+1)/2\rfloor}-a_{\lfloor(l+r+2)/2\rfloor} \leqslant 0.
     $$
     
     这说明，可以通过二分队列结合 WQS 二分的方法在 $O(n\log n\log L)$ 的复杂度内求解该问题。
@@ -825,7 +825,7 @@ $$
     
     更一般地，可以抽象为如下问题：
     
-    给定长度为 $n$ 的三个正实数序列 $\{A_i\},\{B_i\},\{C_i\}$，而且，对所有 $i=1,\cdots,n$ 都有 $C_i\le A_i+B_i$ 成立。求最优的下标集合 $X$ 和 $Y$ 满足 $|X|=m_1$ 和 $|Y|=m_2$ 且最大化
+    给定长度为 $n$ 的三个正实数序列 $\{A_i\},\{B_i\},\{C_i\}$，而且，对所有 $i=1,\cdots,n$ 都有 $C_i\leqslant A_i+B_i$ 成立。求最优的下标集合 $X$ 和 $Y$ 满足 $|X|=m_1$ 和 $|Y|=m_2$ 且最大化
     
     $$
     \sum_{i\in X\setminus Y}A_i + \sum_{i\in Y\setminus X}B_i + \sum_{i\in X\cap Y}C_i.
@@ -846,7 +846,7 @@ $$
     -   对于所有 $i=1,\cdots,n$，分别从结点 $x$ 和 $y$ 向结点 $i$ 连一条边，容量均为 $1$，费用分别为 $A_i$ 和 $B_i$；
     -   对于所有 $i=1,\cdots,n$，从结点 $i$ 出发向汇点 $t$ 连两条边，容量均为 $1$，费用分别为 $0$ 和 $C_i-A_i-B_i$。
     
-    问题的答案就是该费用流模型的最大费用最大流。条件 $C_i-A_i-B_i\le 0$ 保证了当流经结点 $i$ 的流量为 $1$ 时，会优先选择费用为 $0$ 的那条边流出。将这个费用流模型写成线性规划问题，那么，$m_1$ 和 $m_2$ 就会分别出现在表示边 $(s,x)$ 和边 $(s,y)$ 的流量限制的不等式中。因此，$v(m_1,m_2)$ 确实是 $(m_1,m_2)$ 的凹函数。
+    问题的答案就是该费用流模型的最大费用最大流。条件 $C_i-A_i-B_i\leqslant 0$ 保证了当流经结点 $i$ 的流量为 $1$ 时，会优先选择费用为 $0$ 的那条边流出。将这个费用流模型写成线性规划问题，那么，$m_1$ 和 $m_2$ 就会分别出现在表示边 $(s,x)$ 和边 $(s,y)$ 的流量限制的不等式中。因此，$v(m_1,m_2)$ 确实是 $(m_1,m_2)$ 的凹函数。
     
     为了应用 WQS 二分，需要考虑移除数量限制后的最优化问题。设 $k_1$ 和 $k_2$ 分别为将一个下标放入集合 $X$ 和 $Y$ 时获得的额外奖励。没有数量限制后，关于每个下标的决策都是独立的，因此，有
     
@@ -902,7 +902,7 @@ $$
     v(m) = \min_{\{m_i\}}\sum_i f(a_i,m_i)\text{ subject to }\sum_i m_i=m,~m_i\in\mathbf N.
     $$
     
-    这是若干个凸函数的 [卷积下确界](./slope-trick.md#卷积下确界minkowski-和)，所以也是凸函数。如果题目要求的是 $v(m)$，那么，可以使用与之前的例题一致的方法求解，时间复杂度为 $O(n\log^2L)$；但是，本题求的是满足 $v(m)\le V$ 的最小的 $m$。利用 WQS 二分计算 $v(m)$ 再对 $m$ 二分的方法是行不通的，它的复杂度达到了 $O(n\log^3L)$。就本题而言，有如下两种处理方法。
+    这是若干个凸函数的 [卷积下确界](./slope-trick.md#卷积下确界minkowski-和)，所以也是凸函数。如果题目要求的是 $v(m)$，那么，可以使用与之前的例题一致的方法求解，时间复杂度为 $O(n\log^2L)$；但是，本题求的是满足 $v(m)\leqslant V$ 的最小的 $m$。利用 WQS 二分计算 $v(m)$ 再对 $m$ 二分的方法是行不通的，它的复杂度达到了 $O(n\log^3L)$。就本题而言，有如下两种处理方法。
     
     **方法一**：仍然二分斜率 $k$，但是二分的依据是对 $v(m)$ 上下界的估计。
     
@@ -921,7 +921,7 @@ $$
     本问题可以直接看作是如下最优化问题：
     
     $$
-    m(v) = \min_{\{m_i\}} \sum_i m_i \text{ subject to }\sum_i f(a_i,m_i) \le V.
+    m(v) = \min_{\{m_i\}} \sum_i m_i \text{ subject to }\sum_i f(a_i,m_i) \leqslant V.
     $$
     
     本文的分析仍然适用于这一问题。故而，可以利用它的对偶问题求解所要求的 $m(v)$：

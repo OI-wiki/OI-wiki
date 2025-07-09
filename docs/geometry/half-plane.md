@@ -6,7 +6,7 @@ author: wjy-yy, Ir1d, Xeonacid
 
 一条直线和直线的一侧。半平面是一个点集，因此是一条直线和直线的一侧构成的点集。当包含直线时，称为闭半平面；当不包含直线时，称为开半平面。
 
-解析式一般为 $Ax+By+C\ge 0$。
+解析式一般为 $Ax+By+C\geqslant 0$。
 
 在计算几何中用向量表示，整个题统一以向量的左侧或右侧为半平面。
 
@@ -22,8 +22,8 @@ author: wjy-yy, Ir1d, Xeonacid
 
 $$
 \begin{cases}
-A_1x+B_1y+C\ge 0\\
-A_2x+B_2y+C\ge 0\\
+A_1x+B_1y+C\geqslant 0\\
+A_2x+B_2y+C\geqslant 0\\
 \cdots
 \end{cases}
 $$

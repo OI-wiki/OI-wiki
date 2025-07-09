@@ -23,7 +23,7 @@ $$
 
 详细解释一下：
 
-令 $n=\prod_{i=1}^kp_i^{c_i}$，其中 $p_i$ 为质因子，$c_i\ge 1$。上述定义表示：
+令 $n=\prod_{i=1}^kp_i^{c_i}$，其中 $p_i$ 为质因子，$c_i\geqslant 1$。上述定义表示：
 
 1.  $n=1$ 时，$\mu(n)=1$；
 2.  对于 $n\not= 1$ 时：
@@ -431,7 +431,7 @@ $$
 多组数据，求
 
 $$
-\sum_{i=1}^n\sum_{j=1}^md(i\cdot j) \qquad \left(n,m,T\leq5\times10^4\right)
+\sum_{i=1}^n\sum_{j=1}^md(i\cdot j) \qquad \left(n,m,T\leqslant5\times10^4\right)
 $$
 
 其中 $d(n)=\sum_{i \mid n}1$，$d(n)$ 表示 $n$ 的约数个数

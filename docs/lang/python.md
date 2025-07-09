@@ -776,7 +776,7 @@ def fib(n):
 ## 从例题对比 C++ 与 Python
 
 ??? note "[例题 洛谷 P4779【模板】单源最短路径（标准版）](https://www.luogu.com.cn/problem/P4779)"
-    给定一个 $n(1 \leq n \leq 10^5)$ 个点、$m(1 \leq m \leq 2\times 10^5)$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离。数据保证能从 $s$ 出发到任意点。
+    给定一个 $n(1 \leqslant n \leqslant 10^5)$ 个点、$m(1 \leqslant m \leqslant 2\times 10^5)$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离。数据保证能从 $s$ 出发到任意点。
 
 ### 声明常量
 

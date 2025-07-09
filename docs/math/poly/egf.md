@@ -15,9 +15,9 @@ $$
 $$
 \begin{aligned}
 \hat{F}(x)\hat{G}(x)
-&=\sum_{i\ge 0}a_i\frac{x^i}{i!}\sum_{j\ge 0}b_j\frac{x^j}{j!}\\
-&=\sum_{n\ge 0}x^{n}\sum_{i=0}^na_ib_{n-i}\frac{1}{i!(n-i)!}\\
-&=\sum_{n\ge 0}\frac{x^{n}}{n!}\sum_{i=0}^n\binom{n}{i}a_ib_{n-i}
+&=\sum_{i\geqslant 0}a_i\frac{x^i}{i!}\sum_{j\geqslant 0}b_j\frac{x^j}{j!}\\
+&=\sum_{n\geqslant 0}x^{n}\sum_{i=0}^na_ib_{n-i}\frac{1}{i!(n-i)!}\\
+&=\sum_{n\geqslant 0}\frac{x^{n}}{n!}\sum_{i=0}^n\binom{n}{i}a_ib_{n-i}
 \end{aligned}
 $$
 
@@ -36,7 +36,7 @@ $$
 序列 $\langle 1,1,1,\cdots\rangle$ 的指数生成函数是：
 
 $$
-\hat{F}(x) = \sum_{n \ge 0}\frac{x^n}{n!} = \mathrm{e}^x
+\hat{F}(x) = \sum_{n \geqslant 0}\frac{x^n}{n!} = \mathrm{e}^x
 $$
 
 因为你将 $\mathrm{e}^x$ 在 $x = 0$ 处泰勒展开就得到了它的无穷级数形式。
@@ -44,7 +44,7 @@ $$
 类似地，等比数列 $\langle 1,p,p^2,\cdots\rangle$ 的指数生成函数是：
 
 $$
-\hat{F}(x) = \sum_{n\ge 0}\frac{p^nx^n}{n!}=\mathrm{e}^{px}
+\hat{F}(x) = \sum_{n\geqslant 0}\frac{p^nx^n}{n!}=\mathrm{e}^{px}
 $$
 
 ## 指数生成函数与普通生成函数
@@ -52,7 +52,7 @@ $$
 如何理解指数生成函数？我们定义序列 $a$ 的指数生成函数是：
 
 $$
-F(x)=\sum_{n\ge 0}a_n\frac{x^n}{n!}
+F(x)=\sum_{n\geqslant 0}a_n\frac{x^n}{n!}
 $$
 
 但 $F(x)$ 实际上也是序列 $\left\langle \dfrac{a_n}{n!} \right\rangle$ 的普通生成函数。
@@ -66,7 +66,7 @@ $$
 EGF 中 $f^n(x)$ 的 $f$ 默认是一个 EGF，那么我们首先考虑任意两个 EGF 的乘积
 
 $$
-\hat{H}(x) = \hat{F}(x)\hat{G}(x) = \sum_{n\geq 0} \left[ \sum_{i = 0}^n\binom {n}{i}f_ig_{n-i} \right] \frac{x^n}{n!}
+\hat{H}(x) = \hat{F}(x)\hat{G}(x) = \sum_{n\geqslant 0} \left[ \sum_{i = 0}^n\binom {n}{i}f_ig_{n-i} \right] \frac{x^n}{n!}
 $$
 
 对于两个 EGF 相乘得到的 $[x^k]\hat{H}(x)$，实际上是一个卷积。而如果考虑多个 EGF 相乘得到的 $[x^k]\hat{H}(x)$，实际上就是对每个 EGF 选择一项 $x^{a_i}$ 使得 $\sum_ia_i=k$ 时每种情况系数的和。
@@ -85,24 +85,24 @@ $$
 设 $f_n$ 的 EGF 为 $\hat{F}(x)$，即：
 
 $$
-\hat{F}(x) = \sum_{n \geq 0} f_n\frac{x^n}{n!}
+\hat{F}(x) = \sum_{n \geqslant 0} f_n\frac{x^n}{n!}
 $$
 
 设 $F_k(n)$ 的 EGF 为 $G_k(x)$，则：
 
 $$
 \begin{aligned}
-G_k(x)&=\sum_{n \geq 0} F_k(n)\frac{x^n}{n!}\\
-&=\sum_{n \geq 0} x^n\frac{1}{k!}\sum_{\sum_i^k a_i=n}\prod_{j=1}^{k}\frac{f_{a_j}}{a_j!}\\
-&=\frac{1}{k!}\sum_{n \geq 0}\sum_{\sum_i^k a_i=n}\prod_{j=1}^{k}\frac{f_{a_j}x^{a_j}}{a_j!}\\
+G_k(x)&=\sum_{n \geqslant 0} F_k(n)\frac{x^n}{n!}\\
+&=\sum_{n \geqslant 0} x^n\frac{1}{k!}\sum_{\sum_i^k a_i=n}\prod_{j=1}^{k}\frac{f_{a_j}}{a_j!}\\
+&=\frac{1}{k!}\sum_{n \geqslant 0}\sum_{\sum_i^k a_i=n}\prod_{j=1}^{k}\frac{f_{a_j}x^{a_j}}{a_j!}\\
 &=\frac{1}{k!}\hat{F}^k(x)
 \end{aligned}
 $$
 
-对于所有的 $k \geq 0$：
+对于所有的 $k \geqslant 0$：
 
 $$
-\sum_{k \geq 0}G_k(x) = \sum_{k \geq 0}\frac{\hat{F}^k(x)}{k!} = \exp{\hat{F}(x)}
+\sum_{k \geqslant 0}G_k(x) = \sum_{k \geqslant 0}\frac{\hat{F}^k(x)}{k!} = \exp{\hat{F}(x)}
 $$
 
 上面是从组合角度直接列式理解，我们也可以从递推方面来证明 $\exp(f(x))$ 和 $f(x)$ 两者间的关系。
@@ -113,14 +113,14 @@ $n$ 个元素中取出 $i$ 个元素作为一个单独划分出去的集合共�
 
 $$
 \begin{aligned}
-H_k(x) &= \sum_{n\ge 0}\cfrac{x^n}{n!}F_k(n)\\
-&=\sum_{n\ge 0}\cfrac{x^n}{n!}\sum_{i=1}^{n-k+1}\binom n {i} F_{k-1}(n-i)\times g_i\times \cfrac{1}{k}\\
-&=\cfrac{1}{k}\sum_{n\ge 0}\cfrac{x^n}{n!}\sum_{i=0}^{n}\binom n {i}F_{k-1}(n-i)\times g_i\\
+H_k(x) &= \sum_{n\geqslant 0}\cfrac{x^n}{n!}F_k(n)\\
+&=\sum_{n\geqslant 0}\cfrac{x^n}{n!}\sum_{i=1}^{n-k+1}\binom n {i} F_{k-1}(n-i)\times g_i\times \cfrac{1}{k}\\
+&=\cfrac{1}{k}\sum_{n\geqslant 0}\cfrac{x^n}{n!}\sum_{i=0}^{n}\binom n {i}F_{k-1}(n-i)\times g_i\\
 &=\cfrac{1}{k}\cdot  H_{k-1}(x)G(x)
 \end{aligned}
 $$
 
-上界是由非空集合划分推出的 $n-(k-1)\geq i$（前 $k-1$ 个集合每个集合最少有一个元素），但是如果超过枚举上界涉及的 $F_{k-1}(n-i)$ 设为 $0$，那么就没有影响。
+上界是由非空集合划分推出的 $n-(k-1)\geqslant i$（前 $k-1$ 个集合每个集合最少有一个元素），但是如果超过枚举上界涉及的 $F_{k-1}(n-i)$ 设为 $0$，那么就没有影响。
 
 得到递推式之后可递归展开，边界为 $k=1$ 时 $H_1(x)=G(x)$。
 
@@ -138,7 +138,7 @@ $$
 
 $$
 \begin{aligned}
-\sum_{k\ge 0}H_k(x)=\sum_{k\ge 0}\cfrac{G^k(x)}{k!}=\exp G(x)
+\sum_{k\geqslant 0}H_k(x)=\sum_{k\geqslant 0}\cfrac{G^k(x)}{k!}=\exp G(x)
 \end{aligned}
 $$
 
@@ -153,7 +153,7 @@ $$
 长度为 $n$ 的排列数的指数生成函数是
 
 $$
-\hat{P}(x)=\sum_{n\ge 0}\frac{n!x^n}{n!}=\sum_{n\ge 0}x^n=\frac{1}{1-x}
+\hat{P}(x)=\sum_{n\geqslant 0}\frac{n!x^n}{n!}=\sum_{n\geqslant 0}x^n=\frac{1}{1-x}
 $$
 
 圆排列的定义是把 $1,2,\cdots,n$ 排成一个环的方案数。也就是说旋转后的方案的等价的（但翻转是不等价的）。
@@ -161,7 +161,7 @@ $$
 $n$ 个数的圆排列数显然是 $(n-1)!$。因此 $n$ 个数的圆排列数的指数生成函数是
 
 $$
-\hat{Q}(x)=\sum_{n\ge 1}\frac{(n-1)!x^n}{n!}=\sum_{n\ge 1}\frac{x^n}{n}=-\ln(1-x)=\ln\left( \frac{1}{1-x} \right)
+\hat{Q}(x)=\sum_{n\geqslant 1}\frac{(n-1)!x^n}{n!}=\sum_{n\geqslant 1}\frac{x^n}{n}=-\ln(1-x)=\ln\left( \frac{1}{1-x} \right)
 $$
 
 也就是说 $\exp \hat{Q}(x)=\hat{P}(x)$。但这只是数学层面的推导。我们该怎样直观理解：圆排列数的 EGF 的 $\exp$ 是排列数的 EGF？
@@ -193,7 +193,7 @@ $$
 -   如果 $n$ 个点带标号无向连通图的 EGF 是 $\hat{F}(x)$，那么 $n$ 个点带标号无向图的 EGF 就是 $\exp \hat{F}(x)$，后者可以很容易计算得到
 
     $$
-    \exp \hat{F}(x)=\sum_{n\ge 0}2^{\binom{n}{2}}\frac{x^n}{n!}
+    \exp \hat{F}(x)=\sum_{n\geqslant 0}2^{\binom{n}{2}}\frac{x^n}{n!}
     $$
 
     因此要计算前者，只需要一次多项式 $\ln$ 即可。
@@ -212,7 +212,7 @@ $$
 从置换环的角度考虑，错排就是指置换环中不存在自环的排列。也就是说不存在长度为 $1$ 的置换环。后者的指数生成函数是
 
 $$
-\sum_{n\ge 2}\frac{x^n}{n}=-\ln\left(1-x\right)-x
+\sum_{n\geqslant 2}\frac{x^n}{n}=-\ln\left(1-x\right)-x
 $$
 
 因此错排数的指数生成函数就是 $\exp(-\ln(1-x)-x)$。
@@ -226,14 +226,14 @@ $$
     \underbrace{f\circ f\circ\cdots\circ f}_{k}=\underbrace{f\circ f\circ\cdots\circ f}_{k-1}
     $$
     
-    $nk\le 2\times 10^6,1\le k\le 3$。
+    $nk\leqslant 2\times 10^6,1\leqslant k\leqslant 3$。
 
 考虑 $i$ 向 $f(i)$ 连边。相当于我们从任意一个 $i$ 走 $k$ 步和走 $k-1$ 步到达的是同一个点。也就是说基环树的环是自环且深度不超过 $k$（根结点深度为 $1$）。把这个基环树当成有根树是一样的。因此我们的问题转化为：$n$ 个点带标号，深度不超过 $k$ 的有根树森林的计数。
 
 考虑 $n$ 个点带标号深度不超过 $k$ 的有根树，假设它的生成函数是：
 
 $$
-\hat{F_k}(x)=\sum_{n\ge 0}f_{n,k}\frac{x^n}{n!}
+\hat{F_k}(x)=\sum_{n\geqslant 0}f_{n,k}\frac{x^n}{n!}
 $$
 
 考虑递推求 $\hat{F_k}(x)$。深度不超过 $k$ 的有根树，实际上就是深度不超过 $k-1$ 的若干棵有根树，把它们的根结点全部连到一个结点上去。因此
@@ -255,7 +255,7 @@ $$
     
     求 $k$ 次操作后 $s$ 的期望。
     
-    $1\le n\le 5000,1\le k\le 10^9,0\le a_i\le 10^9$。
+    $1\leqslant n\leqslant 5000,1\leqslant k\leqslant 10^9,0\leqslant a_i\leqslant 10^9$。
 
 假设 $k$ 次操作后 $a_i$ 减少了 $b_i$，那么实际上
 
@@ -278,7 +278,7 @@ $$
 设 $a_j$ 的指数生成函数是
 
 $$
-F_j(x)=\sum_{i\ge 0}(a_j-i)\frac{x^i}{i!}
+F_j(x)=\sum_{i\geqslant 0}(a_j-i)\frac{x^i}{i!}
 $$
 
 那么答案就是
@@ -291,7 +291,7 @@ $$
 
 $$
 \begin{aligned}
-F_j(x)&=\sum_{i\ge 0}a_j\frac{x^i}{i!}-\sum_{i\ge 1}\frac{x^i}{(i-1)!}\\
+F_j(x)&=\sum_{i\geqslant 0}a_j\frac{x^i}{i!}-\sum_{i\geqslant 1}\frac{x^i}{(i-1)!}\\
 &=a_j\mathrm{e}^x-x\mathrm{e}^x\\
 &=(a_j-x)\mathrm{e}^x
 \end{aligned}
@@ -308,9 +308,9 @@ $$
 $$
 \begin{aligned}
 \prod_{j=1}^nF_j(x)
-&=\left(\sum_{i\ge 0} \frac{n^ix^i}{i!}\right)\left(\sum_{i=0}^nc_ix^i\right)\\
-&=\sum_{i\ge 0}\sum_{j=0}^i c_jx^j\frac{n^{i-j}x^{i-j}}{(i-j)!}\\
-&=\sum_{i\ge 0}\frac{x^{i}}{i!}\sum_{j=0}^i n^{i-j}i^{\underline{j}}c_j
+&=\left(\sum_{i\geqslant 0} \frac{n^ix^i}{i!}\right)\left(\sum_{i=0}^nc_ix^i\right)\\
+&=\sum_{i\geqslant 0}\sum_{j=0}^i c_jx^j\frac{n^{i-j}x^{i-j}}{(i-j)!}\\
+&=\sum_{i\geqslant 0}\frac{x^{i}}{i!}\sum_{j=0}^i n^{i-j}i^{\underline{j}}c_j
 \end{aligned}
 $$
 

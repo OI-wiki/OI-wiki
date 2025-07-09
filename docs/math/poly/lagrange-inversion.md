@@ -3,12 +3,12 @@
 我们已经知道形式幂级数环 $\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$ 了，定义形式 Laurent 级数环：
 
 $$
-\mathbb{C}\left(\left(x\right)\right):=\left\lbrace \sum_{k\geq N}a_kx^k : N\in\mathbb{Z},a_k\in \mathbb{C}\right\rbrace
+\mathbb{C}\left(\left(x\right)\right):=\left\lbrace \sum_{k\geqslant N}a_kx^k : N\in\mathbb{Z},a_k\in \mathbb{C}\right\rbrace
 $$
 
 我们可以仿照形式幂级数的乘法逆元定义来定义 $\mathbb{C}\left(\left(x\right)\right)$ 上元素的乘法逆元：
 
-若对于 $f:=\sum_{k\geq N}f_kx^k$ 且 $f_N\neq 0$ 存在 $g=\sum_{k\geq -N}g_kx^k$ 满足 $fg=1$ 那么
+若对于 $f:=\sum_{k\geqslant N}f_kx^k$ 且 $f_N\neq 0$ 存在 $g=\sum_{k\geqslant -N}g_kx^k$ 满足 $fg=1$ 那么
 
 $$
 g_k:=
@@ -18,7 +18,7 @@ f_N^{-1}, &\text{ if }k=-N\text{,} \\
 \end{cases}
 $$
 
-与形式幂级数类似的，我们也对非零的 $f(x)=\sum_{k\geq N}f_kx^k$ 定义：
+与形式幂级数类似的，我们也对非零的 $f(x)=\sum_{k\geqslant N}f_kx^k$ 定义：
 
 $$
 \operatorname{ord} f:=\min\lbrace k:f_k\neq 0\rbrace
@@ -82,7 +82,7 @@ $$
 
 记 $A(x)\circ B(x):=A(B(x))$。
 
-**命题**：$f(x):=\sum_{k\geq 1}f_kx^k$ 存在复合逆 $f^{\langle -1\rangle}(x)$ 当且仅当 $f(0)=0\neq f'(0)$，此时 $f^{\langle -1\rangle}(x)$ 是唯一的。进一步说：若 $g(x)=\sum_{k\geq 1}g_kx^k$ 满足 $f(g(x))=x$ 或 $g(f(x))=x$ 那么 $g(x)=f^{\langle -1\rangle}(x)$。
+**命题**：$f(x):=\sum_{k\geqslant 1}f_kx^k$ 存在复合逆 $f^{\langle -1\rangle}(x)$ 当且仅当 $f(0)=0\neq f'(0)$，此时 $f^{\langle -1\rangle}(x)$ 是唯一的。进一步说：若 $g(x)=\sum_{k\geqslant 1}g_kx^k$ 满足 $f(g(x))=x$ 或 $g(f(x))=x$ 那么 $g(x)=f^{\langle -1\rangle}(x)$。
 
 **证明**：考虑
 
@@ -132,7 +132,7 @@ $$
 \end{aligned}
 $$
 
-一些读者可能会更加熟悉下面的版本：对于 $k\in\mathbb{Z}_{\geq 0},n\in\mathbb{Z}_{>0}$ 有
+一些读者可能会更加熟悉下面的版本：对于 $k\in\mathbb{Z}_{\geqslant 0},n\in\mathbb{Z}_{>0}$ 有
 
 $$
 \lbrack x^n\rbrack f(x)^k=\frac{k}{n}\lbrack x^{n-k}\rbrack\left(\frac{x}{g(x)}\right)^n

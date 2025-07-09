@@ -24,7 +24,7 @@ $$
 
 $$
 \begin{aligned}
-&\frac{a}{b}=\left\lfloor\frac{a}{b}\right\rfloor+r(0\leq r<1)\\
+&\frac{a}{b}=\left\lfloor\frac{a}{b}\right\rfloor+r(0\leqslant r<1)\\
 \implies
 &\left\lfloor\frac{a}{bc}\right\rfloor
 =\left\lfloor\frac{a}{b}\cdot\frac{1}{c}\right\rfloor
@@ -41,16 +41,16 @@ $$
 ## 引理 2
 
 $$
-\forall n \in \mathbb{N}_{+},  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in \mathbb{N}_{+},d\leq n \right\}\right| \leq \lfloor 2\sqrt{n} \rfloor
+\forall n \in \mathbb{N}_{+},  \left|\left\{ \lfloor \frac{n}{d} \rfloor \mid d \in \mathbb{N}_{+},d\leqslant n \right\}\right| \leqslant \lfloor 2\sqrt{n} \rfloor
 $$
 
 $|V|$ 表示集合 $V$ 的元素个数
 
 略证：
 
-对于 $d\leq \left\lfloor\sqrt{n}\right\rfloor$，$\left\lfloor\frac{n}{d}\right\rfloor$ 有 $\left\lfloor\sqrt{n}\right\rfloor$ 种取值
+对于 $d\leqslant \left\lfloor\sqrt{n}\right\rfloor$，$\left\lfloor\frac{n}{d}\right\rfloor$ 有 $\left\lfloor\sqrt{n}\right\rfloor$ 种取值
 
-对于 $d> \left\lfloor\sqrt{n}\right\rfloor$，有 $\left\lfloor\frac{n}{d}\right\rfloor\leq\left\lfloor\sqrt{n}\right\rfloor$，也只有 $\left\lfloor\sqrt{n}\right\rfloor$ 种取值
+对于 $d> \left\lfloor\sqrt{n}\right\rfloor$，有 $\left\lfloor\frac{n}{d}\right\rfloor\leqslant\left\lfloor\sqrt{n}\right\rfloor$，也只有 $\left\lfloor\sqrt{n}\right\rfloor$ 种取值
 
 综上，得证
 
@@ -62,14 +62,14 @@ $$
 \left\lfloor\dfrac ni\right\rfloor=\left\lfloor\dfrac nj\right\rfloor
 $$
 
-成立且满足 $i\leq j\leq n$ 的 $j$ 值最大为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$，即值 $\left\lfloor\dfrac ni\right\rfloor$ 所在块的右端点为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。
+成立且满足 $i\leqslant j\leqslant n$ 的 $j$ 值最大为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$，即值 $\left\lfloor\dfrac ni\right\rfloor$ 所在块的右端点为 $\left\lfloor\dfrac n{\lfloor\frac ni\rfloor}\right\rfloor$。
 
 ??? note "证明"
-    令 $k=\left\lfloor\dfrac ni\right\rfloor$，可以知道 $k\leq\dfrac ni$。
+    令 $k=\left\lfloor\dfrac ni\right\rfloor$，可以知道 $k\leqslant\dfrac ni$。
     
     $$
     \begin{aligned}
-    &\therefore \left\lfloor\dfrac nk\right\rfloor\geq\left\lfloor\dfrac n{\frac ni}\right\rfloor=\lfloor i\rfloor=i\\
+    &\therefore \left\lfloor\dfrac nk\right\rfloor\geqslant\left\lfloor\dfrac n{\frac ni}\right\rfloor=\lfloor i\rfloor=i\\
     &\therefore j=\max{\text{满足条件的所有 }i}=i_{\max}=\left\lfloor\dfrac nk\right\rfloor=\left\lfloor\dfrac n{\left\lfloor\dfrac ni\right\rfloor}\right\rfloor \square
     \end{aligned}
     $$
@@ -92,7 +92,7 @@ $$
 2 & l \gets 1\\
 3 & r \gets 0\\
 4 & \textit{result} \gets 0 \\
-5 & \textbf{while } l \leq n \textbf{ do} : \\
+5 & \textbf{while } l \leqslant n \textbf{ do} : \\
 6 & \qquad r \gets \left\lfloor \dfrac{n}{\lfloor n/l \rfloor} \right\rfloor\\
 7 & \qquad \textit{result} \gets \textit{result} + [s(r)-s(l-1)] \times\left\lfloor \dfrac{n}{l} \right\rfloor\\
 8 & \qquad l \gets r+1\\
@@ -123,7 +123,7 @@ $$
 \left\lceil\dfrac ni\right\rceil=\left\lceil\dfrac nj\right\rceil
 $$
 
-成立且满足 $i\leq j\leq n$ 的 $j$ 值最大为 $\left\lfloor\dfrac{n-1}{\lfloor\frac{n-1}i\rfloor}\right\rfloor$，即值 $\left\lceil\dfrac ni\right\rceil$ 所在块的右端点为 $\left\lfloor\dfrac{n-1}{\lfloor\frac{n-1}i\rfloor}\right\rfloor$。
+成立且满足 $i\leqslant j\leqslant n$ 的 $j$ 值最大为 $\left\lfloor\dfrac{n-1}{\lfloor\frac{n-1}i\rfloor}\right\rfloor$，即值 $\left\lceil\dfrac ni\right\rceil$ 所在块的右端点为 $\left\lfloor\dfrac{n-1}{\lfloor\frac{n-1}i\rfloor}\right\rfloor$。
 
 ???+ warning "注意"
     当 $i=n$ 时，上式会出现分母为 $0$ 的错误，需要特殊处理。
@@ -132,7 +132,7 @@ $$
     $\left\lceil\dfrac ni\right\rceil=\left\lfloor\dfrac{n-1}i\right\rfloor+1$，可以发现 $n$ 的上取整分块与 $n-1$ 的下取整分块是一样的。
 
 ???+ note " 例题：[CF1954E Chain Reaction](https://codeforces.com/contest/1954/problem/E)"
-    题意：有一排 $n$ 个怪兽，每个怪兽初始血量为 $a_i$，一次攻击会使一段连续的存活的怪兽血量减 $k$，血量不大于 $0$ 视作死亡，对于所有 $k$ 求出击杀所有怪兽所需攻击次数，$n,a_i\leq 10^5$。
+    题意：有一排 $n$ 个怪兽，每个怪兽初始血量为 $a_i$，一次攻击会使一段连续的存活的怪兽血量减 $k$，血量不大于 $0$ 视作死亡，对于所有 $k$ 求出击杀所有怪兽所需攻击次数，$n,a_i\leqslant 10^5$。
     
     ??? note "思路"
         下面是一种使用二维数论分块的解法：
@@ -161,13 +161,13 @@ $$
 以计算含有 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 的和式为例。考虑对于一个正整数 $n$，如何求出集合
 
 $$
-S=\left\{\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leq n\right\}
+S=\left\{\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor\mid d\in \mathbb{N}_{+}, d\leqslant n\right\}
 $$
 
 的所有值，以及对每一种值求出哪些 $d$ 会使其取到这个值。可以发现：
 
 1.  因为 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor$ 是单调不增的，所以对于所有 $v\in S$，使得 $\left\lfloor\sqrt{\frac{n}{d}}\right\rfloor=v$ 的 $d$ 必然是一段区间。
-2.  对于任意正整数 $t\leq n$，我们对 $\leq t$ 与 $>t$ 的 $v\in S$ 分别分析，可以发现 $t+n/t^2\geq |S|$，取 $t=\sqrt[3]{n}$ 得到 $|S|$ 的一个上界为 $O(\sqrt[3]n)$。
+2.  对于任意正整数 $t\leqslant n$，我们对 $\leqslant t$ 与 $>t$ 的 $v\in S$ 分别分析，可以发现 $t+n/t^2\geqslant |S|$，取 $t=\sqrt[3]{n}$ 得到 $|S|$ 的一个上界为 $O(\sqrt[3]n)$。
 
 这些结论与数论分块所需的引理相似，因此猜测可以写为数论分块形式。
 
@@ -177,7 +177,7 @@ $$
 \left\lfloor\sqrt{\frac{n}{p}}\right\rfloor=\left\lfloor\sqrt{\frac{n}{q}}\right\rfloor
 $$
 
-成立的最大的 $q$ 满足 $p\leq q\leq n$ 为
+成立的最大的 $q$ 满足 $p\leqslant q\leqslant n$ 为
 
 $$
 \left\lfloor\frac{n}{\left\lfloor\sqrt{n/p}\right\rfloor^2}\right\rfloor
@@ -188,22 +188,22 @@ $$
     
     $$
     \begin{aligned}
-    v\leq \sqrt{\dfrac{n}{q}}&\implies v^2\leq \dfrac{n}{q}\\
-    &\implies q\leq \dfrac{n}{v^2}\\
-    &\implies q\leq \left\lfloor \dfrac{n}{v^2}\right\rfloor
+    v\leqslant \sqrt{\dfrac{n}{q}}&\implies v^2\leqslant \dfrac{n}{q}\\
+    &\implies q\leqslant \dfrac{n}{v^2}\\
+    &\implies q\leqslant \left\lfloor \dfrac{n}{v^2}\right\rfloor
     \end{aligned}
     $$
     
-    同理 $p\leq \left\lfloor n/v^2\right\rfloor$。同时
+    同理 $p\leqslant \left\lfloor n/v^2\right\rfloor$。同时
     
     $$
-    \left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor\geq \left\lfloor \sqrt\frac{n}{n/v^2}\right\rfloor=\left\lfloor v\right\rfloor=v
+    \left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor\geqslant \left\lfloor \sqrt\frac{n}{n/v^2}\right\rfloor=\left\lfloor v\right\rfloor=v
     $$
     
-    又由 $p\leq \left\lfloor n/v^2\right\rfloor$ 以及单调性可推出
+    又由 $p\leqslant \left\lfloor n/v^2\right\rfloor$ 以及单调性可推出
     
     $$
-    v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor\geq\left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor
+    v=\left\lfloor\sqrt{\frac{n}{p}}\right\rfloor\geqslant\left\lfloor \sqrt\frac{n}{\left\lfloor n/v^2\right\rfloor}\right\rfloor
     $$
     
     所以

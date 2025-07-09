@@ -113,7 +113,7 @@
     \end{aligned}
     $$
     
-    注意到 $2\mid x-y\implies 4\mid x^2-y^2$，从而 $(\forall i\geq 1),~~x^{2^i}+y^{2^i}\equiv 2\pmod 4$，进而上式可变为：
+    注意到 $2\mid x-y\implies 4\mid x^2-y^2$，从而 $(\forall i\geqslant 1),~~x^{2^i}+y^{2^i}\equiv 2\pmod 4$，进而上式可变为：
     
     $$
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+\nu_p(x+y)+\nu_p(n)-1

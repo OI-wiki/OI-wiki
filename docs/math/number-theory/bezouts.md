@@ -24,7 +24,7 @@
 
     由于 $\gcd(a,b)=\gcd(a,-b)$,
 
-    不妨设 $a,b$ 都大于 $0$，$a\geq b,\gcd(a,b)=d$.
+    不妨设 $a,b$ 都大于 $0$，$a\geqslant b,\gcd(a,b)=d$.
 
     对 $ax+by=d$, 两边同时除以 $d$, 可得 $a_1x+b_1y=1$, 其中 $(a_1,b_1)=1$.
 
@@ -39,7 +39,7 @@
     把辗转相除法中的运算展开，做成带余数的除法，得
 
     $$
-    \begin{aligned}a_1 &= q_1b_1+r_1 &(0\leq r_1<b_1) \\ b_1 &= q_2r_1+r_2 &(0\leq r_2<r_1) \\ r_1 &= q_3r_2+r_3 &(0\leq r_3<r_2) \\ &\cdots \\ r_{n-3} &= q_{n-1}r_{n-2}+r_{n-1} \\ r_{n-2} &= q_nr_{n-1}+r_n \\ r_{n-1} &= q_{n+1}r_n\end{aligned}
+    \begin{aligned}a_1 &= q_1b_1+r_1 &(0\leqslant r_1<b_1) \\ b_1 &= q_2r_1+r_2 &(0\leqslant r_2<r_1) \\ r_1 &= q_3r_2+r_3 &(0\leqslant r_3<r_2) \\ &\cdots \\ r_{n-3} &= q_{n-1}r_{n-2}+r_{n-1} \\ r_{n-2} &= q_nr_{n-1}+r_n \\ r_{n-1} &= q_{n+1}r_n\end{aligned}
     $$
 
     不妨令辗转相除法在除到互质的时候退出则 $r_n=1$ 所以有（$q$ 被换成了 $x$，为了符合最终形式）

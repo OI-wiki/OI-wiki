@@ -23,7 +23,7 @@
 | n2.1  | $x \in A$                                  | $x$ 属于 $A$，$x$ 是集合 $A$ 中的元素     | $A \ni x$ 和 $x \in A$ 同义。                                                                                                                                                                                                   |
 | n2.2  | $y \notin A$                               | $y$ 不属于 $A$，$y$ 不是集合 $A$ 中的元素   |                                                                                                                                                                                                                             |
 | n2.3  | $\{x_1, x_2, \dots, x_n\}$                 | 含元素 $x_1, x_2, \dots, x_n$ 的集合  | 也可写作 $\{x_i ~\vert~ i \in I\}$, 其中 $I$ 表示指标集。                                                                                                                                                                               |
-| n2.4  | $\{x \in A ~\vert~ p(x)\}$                 | $A$ 中使命题 $p(x)$ 为真的所有元素组成的集合    | 例如 $\{x \in \textbf{R} ~\vert~ x \geq 5\}$;<br>如果从上下文中可以得知考虑的是哪个集合 $A$，可以使用符号 $\{x ~\vert~ p(x)\}$（如在只考虑实数集时可使用 $\{x ~\vert~ x \geq 5\}$）<br>$\vert$ 也可以使用冒号替代，如 $\{x \in A : p(x)\}$.                                      |
+| n2.4  | $\{x \in A ~\vert~ p(x)\}$                 | $A$ 中使命题 $p(x)$ 为真的所有元素组成的集合    | 例如 $\{x \in \textbf{R} ~\vert~ x \geqslant 5\}$;<br>如果从上下文中可以得知考虑的是哪个集合 $A$，可以使用符号 $\{x ~\vert~ p(x)\}$（如在只考虑实数集时可使用 $\{x ~\vert~ x \geqslant 5\}$）<br>$\vert$ 也可以使用冒号替代，如 $\{x \in A : p(x)\}$.                                      |
 | n2.5  | $\operatorname{card} A$;<br>$\vert A\vert$ | $A$ 中的元素个数，$A$ 的基数              |                                                                                                                                                                                                                             |
 | n2.6  | $\varnothing$                              | 空集                              | 不应使用 $\emptyset$.                                                                                                                                                                                                           |
 | n2.7  | $B \subseteq A$                            | $B$ 包含于 $A$ 中，$B$ 是 $A$ 的子集     | $B$ 的每个元素都属于 $A$.<br>$\subset$ 也可用于该含义，但请参阅 n2.8 的说明。<br>$A \supseteq B$ 和 $B \subseteq A$ 同义。                                                                                                                              |
@@ -49,9 +49,9 @@
 | n3.4  | $\mathbf{R}$ | 实数集               | $\mathbf{R}^* = \mathbf{R}_+ = \{x \in \mathbf{R} ~\vert~ x \ne 0\}$;<br>可用如下方式添加其他限制：$\mathbf{R}_{> 0} = \{x \in \mathbf{R} ~\vert~ x > 0\}$;<br>也可使用 $\mathbb{R}$.                        |
 | n3.5  | $\mathbf{C}$ | 复数集               | $\mathbf{C}^* = \mathbf{C}_+ = \{z \in \mathbf{C} ~\vert~ z \ne 0\}$;<br>也可使用 $\mathbb{C}$.                                                                                                 |
 | n3.6  | $\mathbf{P}$ | （正）素数集            | $\mathbf{P} = \{2, 3, 5, 7, 11, 13, 17, \dots\}$;<br>也可使用 $\mathbb{P}$.                                                                                                                     |
-| n3.7  | $[a, b]$     | $a$ 到 $b$ 的闭区间    | $[a, b] = \{x \in \mathbf{R} ~\vert~ a \leq x \leq b\}$.                                                                                                                                    |
-| n3.8  | $(a, b]$     | $a$ 到 $b$ 的左开右闭区间 | $(a, b] = \{x \in \mathbf{R} ~\vert~ a < x \leq b\}$;<br>$(-\infty, b] = \{x \in \mathbf{R} ~\vert~ x \leq b\}$.                                                                            |
-| n3.9  | $[a, b)$     | $a$ 到 $b$ 的左闭右开区间 | $[a, b) = \{x \in \mathbf{R} ~\vert~ a \leq x < b\}$;<br>$[a, +\infty) = \{x \in \mathbf{R} ~\vert~ a \leq x\}$.                                                                            |
+| n3.7  | $[a, b]$     | $a$ 到 $b$ 的闭区间    | $[a, b] = \{x \in \mathbf{R} ~\vert~ a \leqslant x \leqslant b\}$.                                                                                                                                    |
+| n3.8  | $(a, b]$     | $a$ 到 $b$ 的左开右闭区间 | $(a, b] = \{x \in \mathbf{R} ~\vert~ a < x \leqslant b\}$;<br>$(-\infty, b] = \{x \in \mathbf{R} ~\vert~ x \leqslant b\}$.                                                                            |
+| n3.9  | $[a, b)$     | $a$ 到 $b$ 的左闭右开区间 | $[a, b) = \{x \in \mathbf{R} ~\vert~ a \leqslant x < b\}$;<br>$[a, +\infty) = \{x \in \mathbf{R} ~\vert~ a \leqslant x\}$.                                                                            |
 | n3.10 | $(a, b)$     | $a$ 到 $b$ 的开区间    | $(a, b) = \{x \in \mathbf{R} ~\vert~ a < x < b\}$;<br>$(-\infty, b) = \{x \in \mathbf{R} ~\vert~ x < b\}$;<br>$(a, +\infty) = \{x \in \mathbf{R} ~\vert~ a < x\}$.                          |
 
 ## 关系
@@ -67,8 +67,8 @@
 | n4.7  | $M \cong N$          | $M$ 与 $N$ 全等       | 当 $M$ 和 $N$ 是点集（几何图形）时。<br>该符号也用于表示代数结构的同构。                                                          |
 | n4.8  | $a < b$              | $a$ 小于 $b$         |                                                                                                      |
 | n4.9  | $b > a$              | $b$ 大于 $a$         |                                                                                                      |
-| n4.10 | $a \leq b$           | $a$ 小于等于 $b$       |                                                                                                      |
-| n4.11 | $b \geq a$           | $b$ 大于等于 $a$       |                                                                                                      |
+| n4.10 | $a \leqslant b$           | $a$ 小于等于 $b$       |                                                                                                      |
+| n4.11 | $b \geqslant a$           | $b$ 大于等于 $a$       |                                                                                                      |
 | n4.12 | $a \ll b$            | $a$ 远小于 $b$        |                                                                                                      |
 | n4.13 | $b \gg a$            | $b$ 远大于 $a$        |                                                                                                      |
 | n4.14 | $\infty$             | 无穷大                | 该符号 **不** 是数字。<br>也可以使用 $+\infty$，$-\infty$.                                                         |
@@ -118,7 +118,7 @@
 
 ## 组合数学
 
-本节中的 $n$ 和 $k$ 是自然数，$a$ 是复数，且 $k\leq n$.
+本节中的 $n$ 和 $k$ 是自然数，$a$ 是复数，且 $k\leqslant n$.
 
 | 编号   | 符号，表达式                     | 意义，等同表述        | 备注与示例                                                                                                                                         |
 | ---- | -------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -179,18 +179,18 @@ $x$ 可以是复数。
 | 编号     | 符号，表达式                    | 意义，等同表述    | 备注与示例                                                                                                                                                    |
 | ------ | ------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | n10.1  | $\pi$                     | 圆周率        | $\pi = 3.141~592~6\dots$.                                                                                                                                |
-| n10.2  | $\sin x$                  | $x$ 的正弦    | $\sin x=\dfrac{\mathrm{e}^{\mathrm{i}x}-\mathrm{e}^{-\mathrm{i}x}}{2\mathrm{i}}$;<br>$(\sin x)^n$，$(\cos x)^n$($n\geq 2$) 等通常写为 $\sin^n x$，$\cos^n x$ 等。 |
+| n10.2  | $\sin x$                  | $x$ 的正弦    | $\sin x=\dfrac{\mathrm{e}^{\mathrm{i}x}-\mathrm{e}^{-\mathrm{i}x}}{2\mathrm{i}}$;<br>$(\sin x)^n$，$(\cos x)^n$($n\geqslant 2$) 等通常写为 $\sin^n x$，$\cos^n x$ 等。 |
 | n10.3  | $\cos x$                  | $x$ 的余弦    | $\cos x = \sin(x + \pi/2)$.                                                                                                                              |
 | n10.4  | $\tan x$                  | $x$ 的正切    | $\tan x = \sin x/\cos x$;<br>不可使用 $\operatorname{tg} x$.                                                                                                 |
 | n10.5  | $\cot x$                  | $x$ 的余切    | $\cot x = 1/\tan x$;<br>不可使用 $\operatorname{ctg} x$.                                                                                                     |
 | n10.6  | $\sec x$                  | $x$ 的正割    | $\sec x = 1/\cos x$.                                                                                                                                     |
 | n10.7  | $\csc x$                  | $x$ 的余割    | $\csc x = 1/\sin x$;<br>不可使用 $\operatorname{cosec} x$.                                                                                                   |
-| n10.8  | $\arcsin x$               | $x$ 的反正弦   | $y = \arcsin x \iff x = \sin y\quad (-\pi/2 \leq y \leq \pi/2)$.                                                                                         |
-| n10.9  | $\arccos x$               | $x$ 的反余弦   | $y = \arccos x \iff x = \cos y\quad (0 \leq y \leq \pi)$.                                                                                                |
-| n10.10 | $\arctan x$               | $x$ 反正切    | $y = \arctan x \iff x = \tan y\quad (-\pi/2 \leq y \leq \pi/2)$;<br>不可使用 $\operatorname{arctg} x$.                                                       |
-| n10.11 | $\operatorname{arccot} x$ | $x$ 反余切    | $y = \operatorname{arccot} x \iff x = \cot y\quad (0 \leq y \leq \pi)$;<br>不可使用 $\operatorname{arcctg} x$.                                               |
-| n10.12 | $\operatorname{arcsec} x$ | $x$ 反正割    | $y = \operatorname{arcsec} x \iff x = \sec y\quad (0\leq y \leq \pi, y\ne \pi/2)$.                                                                       |
-| n10.13 | $\operatorname{arccsc} x$ | $x$ 的反余割   | $y = \operatorname{arccsc} x \iff x = \csc y\quad (-\pi/2 \leq y \leq \pi/2, y\ne 0)$;<br>不可使用 $\operatorname{arccosec} x$.                              |
+| n10.8  | $\arcsin x$               | $x$ 的反正弦   | $y = \arcsin x \iff x = \sin y\quad (-\pi/2 \leqslant y \leqslant \pi/2)$.                                                                                         |
+| n10.9  | $\arccos x$               | $x$ 的反余弦   | $y = \arccos x \iff x = \cos y\quad (0 \leqslant y \leqslant \pi)$.                                                                                                |
+| n10.10 | $\arctan x$               | $x$ 反正切    | $y = \arctan x \iff x = \tan y\quad (-\pi/2 \leqslant y \leqslant \pi/2)$;<br>不可使用 $\operatorname{arctg} x$.                                                       |
+| n10.11 | $\operatorname{arccot} x$ | $x$ 反余切    | $y = \operatorname{arccot} x \iff x = \cot y\quad (0 \leqslant y \leqslant \pi)$;<br>不可使用 $\operatorname{arcctg} x$.                                               |
+| n10.12 | $\operatorname{arcsec} x$ | $x$ 反正割    | $y = \operatorname{arcsec} x \iff x = \sec y\quad (0\leqslant y \leqslant \pi, y\ne \pi/2)$.                                                                       |
+| n10.13 | $\operatorname{arccsc} x$ | $x$ 的反余割   | $y = \operatorname{arccsc} x \iff x = \csc y\quad (-\pi/2 \leqslant y \leqslant \pi/2, y\ne 0)$;<br>不可使用 $\operatorname{arccosec} x$.                              |
 | n10.14 | $\sinh x$                 | $x$ 的双曲正弦  | $\sinh x=\dfrac{\mathrm{e}^x-\mathrm{e}^{-x}}{2}$;<br>不可使用 $\operatorname{sh} x$.                                                                        |
 | n10.15 | $\cosh x$                 | $x$ 的双曲余弦  | $\cosh^2 x = \sinh^2 x + 1$;<br>不可使用 $\operatorname{ch} x$.                                                                                              |
 | n10.16 | $\tanh x$                 | $x$ 的双曲正切  | $\tanh x = \sinh x/\cosh x$;<br>不可使用 $\operatorname{th} x$.                                                                                              |
@@ -198,11 +198,11 @@ $x$ 可以是复数。
 | n10.18 | $\operatorname{sech} x$   | $x$ 的双曲正割  | $\operatorname{sech} x = 1/\cosh x$.                                                                                                                     |
 | n10.19 | $\operatorname{csch} x$   | $x$ 的双曲余割  | $\operatorname{csch} x = 1/\sinh x$;<br>不可使用 $\operatorname{cosech} x$.                                                                                  |
 | n10.20 | $\operatorname{arsinh} x$ | $x$ 的反双曲正弦 | $y = \operatorname{arsinh} x \iff x = \sinh y$;<br>不可使用 $\operatorname{arsh} x$.                                                                         |
-| n10.21 | $\operatorname{arcosh} x$ | $x$ 的反双曲余弦 | $y = \operatorname{arcosh} x \iff x = \cosh y\quad (y \geq 0)$;<br>不可使用 $\operatorname{arch} x$.                                                         |
+| n10.21 | $\operatorname{arcosh} x$ | $x$ 的反双曲余弦 | $y = \operatorname{arcosh} x \iff x = \cosh y\quad (y \geqslant 0)$;<br>不可使用 $\operatorname{arch} x$.                                                         |
 | n10.22 | $\operatorname{artanh} x$ | $x$ 的反双曲正切 | $y = \operatorname{artanh} x \iff x = \tanh y$;<br>不可使用 $\operatorname{arth} x$.                                                                         |
 | n10.23 | $\operatorname{arcoth} x$ | $x$ 的反双曲余切 | $y = \operatorname{arcoth} x \iff x = \coth y\quad (y \ne 0)$.                                                                                           |
-| n10.24 | $\operatorname{arsech} x$ | $x$ 的反双曲正割 | $y = \operatorname{arsech} x \iff x = \operatorname{sech} y\quad (y \geq 0)$.                                                                            |
-| n10.25 | $\operatorname{arcsch} x$ | $x$ 的反双曲余割 | $y = \operatorname{arcsch} x \iff x = \operatorname{csch} y\quad (y \geq 0)$;<br>不可使用 $\operatorname{arcosech} x$.                                       |
+| n10.24 | $\operatorname{arsech} x$ | $x$ 的反双曲正割 | $y = \operatorname{arsech} x \iff x = \operatorname{sech} y\quad (y \geqslant 0)$.                                                                            |
+| n10.25 | $\operatorname{arcsch} x$ | $x$ 的反双曲余割 | $y = \operatorname{arcsch} x \iff x = \operatorname{csch} y\quad (y \geqslant 0)$;<br>不可使用 $\operatorname{arcosech} x$.                                       |
 
 ## 复数
 
@@ -212,7 +212,7 @@ $x$ 可以是复数。
 | n11.2 | $\operatorname{Re} z$  | $z$ 的实部    | 参见 n11.3.                                                                                                                                                                                              |
 | n11.3 | $\operatorname{Im} z$  | $z$ 的虚部    | 若 $z = x + \mathrm{i} y\quad (x, y\in\mathbf{R})$, 则 $x = \operatorname{Re} z$，$y = \operatorname{Im} z$.                                                                                              |
 | n11.4 | $\lvert z\rvert$       | $z$ 的模     | $\lvert z\rvert=\sqrt{(\operatorname{Re} z)^2+(\operatorname{Im} z)^2}$.                                                                                                                               |
-| n11.5 | $\arg z$               | $z$ 的辐角    | 若 $z = r \mathrm{e}^{\mathrm{i}\varphi}$, 其中 $r = \lvert z\rvert$ 且 $-\pi < \varphi \leq \pi$, 则 $\varphi = \arg z$.<br>$\operatorname{Re} z = r \cos \varphi$，$\operatorname{Im} z = r \sin \varphi$. |
+| n11.5 | $\arg z$               | $z$ 的辐角    | 若 $z = r \mathrm{e}^{\mathrm{i}\varphi}$, 其中 $r = \lvert z\rvert$ 且 $-\pi < \varphi \leqslant \pi$, 则 $\varphi = \arg z$.<br>$\operatorname{Re} z = r \cos \varphi$，$\operatorname{Im} z = r \sin \varphi$. |
 | n11.6 | $\bar{z}$;<br>$z^*$    | $z$ 的复共轭   | $\bar{z}=\operatorname{Re}z-\mathrm{i}\operatorname{Im}z$.                                                                                                                                             |
 | n11.7 | $\operatorname{sgn} z$ | $z$ 的单位模函数 | $\operatorname{sgn} z =z / \lvert z\rvert = \exp(\mathrm{i} \arg z)\quad (z \ne 0)$;<br>$\operatorname{sgn} 0 = 0$;<br>参见 n6.13.                                                                       |
 
@@ -232,7 +232,7 @@ $x$ 可以是复数。
 | n12.10 | $\det A$;<br>*参见*[^n12.10-ref1]    | 方阵 $A$ 的行列式         | 也可使用 $\lvert A\rvert$.                                                                        |
 | n12.11 | $\operatorname{rank}A$             | 矩阵 $A$ 的秩           |                                                                                               |
 | n12.12 | $\operatorname{tr}A$               | 方阵 $A$ 的迹           | $\displaystyle\operatorname{tr}A=\sum\limits_{i}(A)_{ii}$.                                    |
-| n12.13 | $\lVert A\rVert$                   | 矩阵 $A$ 的范数          | 满足三角不等式：若 $A + B = C$, 则 $\lVert A\rVert+\lVert B\rVert \geq \lVert C\rVert$.                 |
+| n12.13 | $\lVert A\rVert$                   | 矩阵 $A$ 的范数          | 满足三角不等式：若 $A + B = C$, 则 $\lVert A\rVert+\lVert B\rVert \geqslant \lVert C\rVert$.                 |
 
 [^n12.1-ref1]: $\begin{pmatrix}a_{11}&\cdots&a_{1n}\\\vdots&\ddots&\vdots\\a_{m1}&\cdots&a_{mn}\end{pmatrix}$
 
@@ -304,7 +304,7 @@ $x$ 可以是复数。
 
 ## 特殊函数
 
-本节中的 $z$，$w$ 是复数，$k$，$n$ 是自然数，且 $k\leq n$。
+本节中的 $z$，$w$ 是复数，$k$，$n$ 是自然数，且 $k\leqslant n$。
 
 | 编号    | 符号，表达式                   | 意义，等同表述             | 备注与示例                                                                                                                                                                                                                                                                           |
 | ----- | ------------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

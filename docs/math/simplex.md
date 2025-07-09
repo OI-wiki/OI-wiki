@@ -14,9 +14,9 @@ $$
 
 $$
 s.t \begin{cases}  
-2x_1 + x_2 \leq 12 \\ 
-x_1 + 2x_2 \leq 9  \\
-x_1, x_2 \geq 0
+2x_1 + x_2 \leqslant 12 \\ 
+x_1 + 2x_2 \leqslant 9  \\
+x_1, x_2 \geqslant 0
 \end{cases}
 $$
 
@@ -41,7 +41,7 @@ $$
 $$
 s.t \begin{cases}  
 \displaystyle \sum_{j = 1}^{n}a_{ij}x_j = b_i, i = 1,2,\dots,m\\ 
-x_j \geq 0 , j = 1,2,\dots,n  \\
+x_j \geqslant 0 , j = 1,2,\dots,n  \\
 \end{cases}
 $$
 
@@ -56,7 +56,7 @@ AX = b
 $$
 
 $$
-X \geq 0
+X \geqslant 0
 $$
 
 $$
@@ -84,10 +84,10 @@ $$
 2.  约束不等式为小于等于不等式，可以在左端加入非负变量，转变为等式，比如：
 
     $$
-    x_1 + 2x_2 \leq 9 \implies
+    x_1 + 2x_2 \leqslant 9 \implies
     \begin{cases}
       x_1 + 2x_2 + x_3 = 9 \\
-      x_3 \geq 0
+      x_3 \geqslant 0
     \end{cases}
     $$
 
@@ -96,10 +96,10 @@ $$
 3.  若存在取值无约束的变量，可转变为两个非负变量的差，比如：
 
     $$
-    -\infty \leq x_k \leq +\infty \implies
+    -\infty \leqslant x_k \leqslant +\infty \implies
     \begin{cases}
       x_k = x_m - x_n \\
-      x_m,x_n \geq 0
+      x_m,x_n \geqslant 0
     \end{cases}
     $$
 
@@ -113,7 +113,7 @@ $$
 s.t \begin{cases}
   2x_1 + x_2 + x_3 = 12 \\
   x_1 + 2x_2 + x_4 = 9  \\
-  x_1, x_2, x_3, x_4 \geq 0
+  x_1, x_2, x_3, x_4 \geqslant 0
 \end{cases}
 $$
 
@@ -121,7 +121,7 @@ $$
 
 ### 几何意义
 
-在标准形中，有 $m$ 个约束条件（不包括非负约束），$n$ 个决策变量，且 $n \geq m$。首先选取 $m$ 个基变量 $x_j^{'}(j = 1, 2, \ldots, m )$，基变量对应约束系数矩阵的列向量线性无关。通过矩阵的线性变换，基变量可由非基变量表示：
+在标准形中，有 $m$ 个约束条件（不包括非负约束），$n$ 个决策变量，且 $n \geqslant m$。首先选取 $m$ 个基变量 $x_j^{'}(j = 1, 2, \ldots, m )$，基变量对应约束系数矩阵的列向量线性无关。通过矩阵的线性变换，基变量可由非基变量表示：
 
 $$
 x_i^{'} = C_i + \sum_{j = m + 1}^{n}m_{ij}x_j^{'}(i = 1, 2, \ldots , m)
@@ -145,7 +145,7 @@ $$
 s.t \begin{cases}  
 2x_1 + x_2 + x_3 = 12 \\ 
 x_1 + 2x_2 + x_4 = 9  \\
-x_1, x_2, x_3, x_4 \geq 0
+x_1, x_2, x_3, x_4 \geqslant 0
 \end{cases}
 $$
 
@@ -243,11 +243,11 @@ $$
 
 $$
 s.t \begin{cases}  
-x_1 + x_2 + x_3 \leq 4 \\ 
-x_1 \leq 2  \\
-x_3 \leq 3  \\
-3x_2 + x_3 \leq 6 \\
-x_1, x_2, x_3 \geq 0
+x_1 + x_2 + x_3 \leqslant 4 \\ 
+x_1 \leqslant 2  \\
+x_3 \leqslant 3  \\
+3x_2 + x_3 \leqslant 6 \\
+x_1, x_2, x_3 \geqslant 0
 \end{cases}
 $$
 
@@ -263,7 +263,7 @@ x_1 + x_2 + x_3 + x_4 = 4 \\
 x_1 + x_5 = 2  \\
 x_3 + x_6 = 3  \\
 3x_2 + x_3 + x_7 = 6 \\
-x_1, x_2, x_3, x_4, x_5, x_6, x_7 \geq 0
+x_1, x_2, x_3, x_4, x_5, x_6, x_7 \geqslant 0
 \end{cases}
 $$
 
@@ -310,16 +310,16 @@ $$
 
 ### 标准型
 
-$m+n$ 个约束 $n$ 个变量用 $x$ 向量表示，$A$ 是一个 $m\times n$ 的矩阵，$c$ 是一个 $n$ 的向量，$b$ 是一个 $m$ 的向量，最大化 $cx$ 满足约束 $Ax \leq b,x > 0$。
+$m+n$ 个约束 $n$ 个变量用 $x$ 向量表示，$A$ 是一个 $m\times n$ 的矩阵，$c$ 是一个 $n$ 的向量，$b$ 是一个 $m$ 的向量，最大化 $cx$ 满足约束 $Ax \leqslant b,x > 0$。
 
 最大化 $\sum_{j=1}^nc_jx_j$ 满足如下约束条件：
 
 $$
-\sum_{j = 1}^na_{ij}x_j \leq b_i,i = 1,2,\ldots,m
+\sum_{j = 1}^na_{ij}x_j \leqslant b_i,i = 1,2,\ldots,m
 $$
 
 $$
-x_j \geq 0,j = 1,2,\ldots,n
+x_j \geqslant 0,j = 1,2,\ldots,n
 $$
 
 $n$ 个变量，$m+n$ 个约束，构造 $m \times n$ 的矩阵 $A$，$m$ 维向量 $b$，$n$ 维向量 $c$
@@ -327,27 +327,27 @@ $n$ 个变量，$m+n$ 个约束，构造 $m \times n$ 的矩阵 $A$，$m$ 维向
 最大化 $C^Tx$ 满足如下约束条件：
 
 $$
-Ax \leq b
+Ax \leqslant b
 $$
 
 $$
-x \geq 0
+x \geqslant 0
 $$
 
 ### 转换为标准型
 
-若目标函数要求取最小值，那么可以对其取相反数变成取最大值。对于限制条件 $f(x_1, x_2, \ldots ,x_n) = b$，可以用两个不等式 $f(x_1, x_2, \ldots, x_n) \leq b,-f(x_1,x_2,\ldots,x_n) \leq -b$ 描述，对于限制条件 $f(x_1,x_2,\ldots,x_n) \geq b$，可以用不等式 $-f(x_1,x_2,\ldots,x_n) \leq -b$ 描述。对于无限制的变量 $x$，可以将其拆为两个非负变量 $x_0,x_1$，使得 $x = x_0 - x_1$。
+若目标函数要求取最小值，那么可以对其取相反数变成取最大值。对于限制条件 $f(x_1, x_2, \ldots ,x_n) = b$，可以用两个不等式 $f(x_1, x_2, \ldots, x_n) \leqslant b,-f(x_1,x_2,\ldots,x_n) \leqslant -b$ 描述，对于限制条件 $f(x_1,x_2,\ldots,x_n) \geqslant b$，可以用不等式 $-f(x_1,x_2,\ldots,x_n) \leqslant -b$ 描述。对于无限制的变量 $x$，可以将其拆为两个非负变量 $x_0,x_1$，使得 $x = x_0 - x_1$。
 
 ### 松弛型
 
 基本变量 $B$，$|B|=m$，一个约束对应一个，表示松弛量，叫做松弛变量（基本变量）
 
-非基变量 $N$，$|N|=n$，$x_n + i = b_i - \sum a_{ij}x_j \geq 0$
+非基变量 $N$，$|N|=n$，$x_n + i = b_i - \sum a_{ij}x_j \geqslant 0$
 
 松弛变量 $x_{n+i}$
 
 $$
-\sum_{j = 1}^na_{ij}x_j \leq b_i \rightarrow x_{n + i} = b_i - \sum_{j = 1}^{n}a_{ij}x_j, x_{n+i} \geq 0
+\sum_{j = 1}^na_{ij}x_j \leqslant b_i \rightarrow x_{n + i} = b_i - \sum_{j = 1}^{n}a_{ij}x_j, x_{n+i} \geqslant 0
 $$
 
 等式左侧为基本变量，右侧为非基本变量。
@@ -361,7 +361,7 @@ $$
 
 -   基本解：所有非基变量设为 $0$，基本变量为右侧的常数
 
--   基本可行解：所有 $b_i \geq 0$
+-   基本可行解：所有 $b_i \geqslant 0$
 
 > 注：单纯形法的过程中 $B$ 和 $N$ 不断交换，在 $n$ 维空间中不断走，「相当于不等式上的高斯消元」。
 
@@ -399,7 +399,7 @@ $$
 ??? note " 例题 [「NOI2008」志愿者招募](https://www.luogu.com.cn/problem/P3980)"
     题目大意：长度为 $n$ 的序列，第 $i$ 位至少 $b_i$，$m$ 种区间使 $[l_i,r_i] + 1$ 代价为 $a_i$。
 
-原始问题 $m$ 个变量，$n$ 个约束，当 $l_j \leq i \leq r_j$，$a_{ij} = 1$。
+原始问题 $m$ 个变量，$n$ 个约束，当 $l_j \leqslant i \leqslant r_j$，$a_{ij} = 1$。
 
 对偶问题 $n$ 个变量，$m$ 个约束
 
@@ -408,7 +408,7 @@ $$
 $$
 
 $$
-s.t \ \sum_{l_i \leq j \leq r_i}y_j \leq c_i, y_i \geq 0
+s.t \ \sum_{l_i \leqslant j \leqslant r_i}y_j \leqslant c_i, y_i \geqslant 0
 $$
 
 把对应出的系数矩阵代入到单纯形算法就可以求出最优解了。
@@ -422,11 +422,11 @@ $$
 最大化与最小化互换，常数与目标函数互换，改变不等号，变量与约束对应。
 
 $$
-\max \ c^Tx: Ax \leq b, x \geq 0
+\max \ c^Tx: Ax \leqslant b, x \geqslant 0
 $$
 
 $$
-\min \ b^Ty: A^Ty \geq c, y \geq 0
+\min \ b^Ty: A^Ty \geqslant c, y \geqslant 0
 $$
 
 $d_{uv}$ 表示 $u,v$ 是否匹配
@@ -437,8 +437,8 @@ $$
 
 $$
 s.t \begin{cases}  
-\sum_{(v) \in Y} d_{uv} \leq 1, u \in X \\ 
-\sum_{(u) \in X} d_{uv} \leq 1, v \in Y  \\
+\sum_{(v) \in Y} d_{uv} \leqslant 1, u \in X \\ 
+\sum_{(u) \in X} d_{uv} \leqslant 1, v \in Y  \\
 d_{u,v} \in \{0,1\}
 \end{cases}
 $$
@@ -451,9 +451,9 @@ $$
 
 $$
 s.t \begin{cases}  
-p_u + p_v \geq c_{uv} \\ 
+p_u + p_v \geqslant c_{uv} \\ 
 u \in X, v \in Y\\
-p_u, p_v \geq 0
+p_u, p_v \geqslant 0
 \end{cases}
 $$
 

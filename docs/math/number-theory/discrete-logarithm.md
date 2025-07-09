@@ -2,7 +2,7 @@
 
 前置知识：[阶与原根](./primitive-root.md)。
 
-离散对数的定义方式和对数类似。取有原根的正整数模数 $m$，设其一个原根为 $g$. 对满足 $(a,m)=1$ 的整数 $a$，我们知道必存在唯一的整数 $0\leq k<\varphi(m)$ 使得
+离散对数的定义方式和对数类似。取有原根的正整数模数 $m$，设其一个原根为 $g$. 对满足 $(a,m)=1$ 的整数 $a$，我们知道必存在唯一的整数 $0\leqslant k<\varphi(m)$ 使得
 
 $$
 g^k\equiv a\pmod m
@@ -50,11 +50,11 @@ $$
 a^x \equiv b \pmod m
 $$
 
-其中 $a\perp m$。方程的解 $x$ 满足 $0 \le x < m$.（注意 $m$ 不一定是素数）
+其中 $a\perp m$。方程的解 $x$ 满足 $0 \leqslant x < m$.（注意 $m$ 不一定是素数）
 
 ### 算法描述
 
-令 $x = A \left \lceil \sqrt m \right \rceil - B$，其中 $0\le A,B \le \left \lceil \sqrt m \right \rceil$，则有 $a^{A\left \lceil \sqrt m \right \rceil -B} \equiv b \pmod m$，稍加变换，则有 $a^{A\left \lceil \sqrt m \right \rceil} \equiv ba^B \pmod m$.
+令 $x = A \left \lceil \sqrt m \right \rceil - B$，其中 $0\leqslant A,B \leqslant \left \lceil \sqrt m \right \rceil$，则有 $a^{A\left \lceil \sqrt m \right \rceil -B} \equiv b \pmod m$，稍加变换，则有 $a^{A\left \lceil \sqrt m \right \rceil} \equiv ba^B \pmod m$.
 
 我们已知的是 $a,b$，所以我们可以先算出等式右边的 $ba^B$ 的所有取值，枚举 $B$，用 `hash`/`map` 存下来，然后逐一计算 $a^{A\left \lceil \sqrt m \right \rceil}$，枚举 $A$，寻找是否有与之相等的 $ba^B$，从而我们可以得到所有的 $x$，$x=A \left \lceil \sqrt m \right \rceil - B$.
 
@@ -73,7 +73,7 @@ $$
 
 该问题可以转化为 BSGS 求解的问题。
 
-由于式子中的模数 $p$ 是一个质数，那么 $p$ 一定存在一个原根 $g$. 因此对于模 $p$ 意义下的任意的数 $x~(1\le x<p)$ 有且仅有一个数 $i~(0\le i<p-1)$ 满足 $x = g^i$.
+由于式子中的模数 $p$ 是一个质数，那么 $p$ 一定存在一个原根 $g$. 因此对于模 $p$ 意义下的任意的数 $x~(1\leqslant x<p)$ 有且仅有一个数 $i~(0\leqslant i<p-1)$ 满足 $x = g^i$.
 
 #### 方法一
 

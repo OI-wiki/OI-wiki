@@ -95,7 +95,7 @@ author: leoleoasd, yzxoi, Estrella-Explore
     
     如果 $n$ 为奇数，那么我们可以把 $n$ 单拿出来作为一组，剩余的 $n-1$ 个两两配对，即 $\{n\},\{1,n-1\},\{2,n-2\}\cdots$
     
-    这样构造出的图在 $n\ge 3$ 时连通性易证，在此不加赘述。
+    这样构造出的图在 $n\geqslant 3$ 时连通性易证，在此不加赘述。
     
     此题得解。
 
@@ -119,6 +119,6 @@ author: leoleoasd, yzxoi, Estrella-Explore
     
     令 $f_{i,j}$ 表示有 $i$ 个 $1$，方案数为 $j$ 的最小大物品数。
     
-    用 dp 预处理出 $f$，通过计算可知只需预处理 $i\le 20$ 的所有值即可。
+    用 dp 预处理出 $f$，通过计算可知只需预处理 $i\leqslant 20$ 的所有值即可。
     
     此题得解。

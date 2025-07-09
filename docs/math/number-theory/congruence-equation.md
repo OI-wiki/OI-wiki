@@ -113,7 +113,7 @@ $$
 f(x)\equiv 0\pmod p\tag{6}
 $$
 
-有 $k$ 个不同的解 $x_1,x_2,\dots,x_k~(k\leq n)$，则：
+有 $k$ 个不同的解 $x_1,x_2,\dots,x_k~(k\leqslant n)$，则：
 
 $$
 f(x)\equiv g(x)\prod_{i=1}^k(x-x_i)\pmod p
@@ -182,7 +182,7 @@ $$
 方程 $(6)$ 若解的个数不为 $p$，则必存在满足 $\deg r<p$ 的整系数多项式 $r(x)$ 使得 $f(x)\equiv 0\pmod p$ 和 $r(x)\equiv 0\pmod p$ 的解集相同。
 
 ???+ note "证明"
-    不妨设 $n\geq p$，对 $f(x)$ 做多项式带余除法
+    不妨设 $n\geqslant p$，对 $f(x)$ 做多项式带余除法
     
     $$
     f(x)=g(x)\left(x^p-x\right)+r(x)
@@ -199,7 +199,7 @@ $$
 
 ### 定理 5
 
-设 $n\leq p$，则方程
+设 $n\leqslant p$，则方程
 
 $$
 x^n+\sum_{i=0}^{n-1}a_ix^i\equiv 0\pmod p\tag{7}
@@ -227,9 +227,9 @@ $$
     
         即方程 $f(x)q(x)\equiv 0\pmod p$ 有 $p$ 个解。
     
-        设方程 $(7)$ 的解数为 $s$，则由 [Lagrange 定理](#定理-3lagrange-定理) 可知 $s\leq n$.
+        设方程 $(7)$ 的解数为 $s$，则由 [Lagrange 定理](#定理-3lagrange-定理) 可知 $s\leqslant n$.
     
-        又由于 $\deg q=p-n$，则由 [Lagrange 定理](#定理-3lagrange-定理) 可知 $q(x)\equiv 0\pmod p$ 的解数不超过 $p-n$，而方程 $f(x)q(x)\equiv 0\pmod p$ 的解集是 $f(x)\equiv 0\pmod p$ 解集和 $q(x)\equiv 0\pmod p$ 解集的并集，故 $s+(p-n)\geq p$，有 $s\geq n$.
+        又由于 $\deg q=p-n$，则由 [Lagrange 定理](#定理-3lagrange-定理) 可知 $q(x)\equiv 0\pmod p$ 的解数不超过 $p-n$，而方程 $f(x)q(x)\equiv 0\pmod p$ 的解集是 $f(x)\equiv 0\pmod p$ 解集和 $q(x)\equiv 0\pmod p$ 解集的并集，故 $s+(p-n)\geqslant p$，有 $s\geqslant n$.
     
         因此 $s=n$.
 

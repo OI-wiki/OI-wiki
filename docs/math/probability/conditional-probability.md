@@ -54,7 +54,7 @@ $$
 P(AB) = P(A)P(B)
 $$
 
-则称 $A$,$B$  **独立**。对于多个事件 $A_1, A_2, \cdots, A_n$，我们称其独立，当且仅当对任意一组事件 $\{ A_{i_k} : 1 \leq i_1 < i_2 < \cdots < i_k \leq n \}$ 都有
+则称 $A$,$B$  **独立**。对于多个事件 $A_1, A_2, \cdots, A_n$，我们称其独立，当且仅当对任意一组事件 $\{ A_{i_k} : 1 \leqslant i_1 < i_2 < \cdots < i_k \leqslant n \}$ 都有
 
 $$
 P( A_{i_1}A_{i_2} \cdots A_{i_r} ) = \prod_{k=1}^{r} P(A_{i_k})

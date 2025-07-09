@@ -168,7 +168,7 @@ $$
 \end{aligned}
 $$
 
-设 $B(z) = \sum\limits_{i\ge 0}\dfrac{B_i}{i!}z^i$，注意到左边为卷积形式，故：
+设 $B(z) = \sum\limits_{i\geqslant 0}\dfrac{B_i}{i!}z^i$，注意到左边为卷积形式，故：
 
 $$
 \begin{aligned}
@@ -177,12 +177,12 @@ B(z)&=\dfrac{z}{\mathrm{e}^z - 1}
 \end{aligned}
 $$
 
-设 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$，则：
+设 $F_n(z) = \sum_{m\geqslant 0}\dfrac{S_m(n)}{m!}z^m$，则：
 
 $$
 \begin{aligned}
-F_n(z) &= \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m\\
-&= \sum_{m\ge 0}\sum_{i=0}^{n-1}\dfrac{i^mz^m}{m!}\\
+F_n(z) &= \sum_{m\geqslant 0}\dfrac{S_m(n)}{m!}z^m\\
+&= \sum_{m\geqslant 0}\sum_{i=0}^{n-1}\dfrac{i^mz^m}{m!}\\
 \end{aligned}
 $$
 
@@ -190,7 +190,7 @@ $$
 
 $$
 \begin{aligned}
-F_n(z) &=\sum_{i=0}^{n-1}\sum_{m\ge 0}\dfrac{i^mz^m}{m!}\\
+F_n(z) &=\sum_{i=0}^{n-1}\sum_{m\geqslant 0}\dfrac{i^mz^m}{m!}\\
        &=\sum_{i=0}^{n-1}\mathrm{e}^{iz}\\
        &=\dfrac{\mathrm{e}^{nz} - 1}{\mathrm{e}^z - 1}\\
        &=\dfrac{z}{\mathrm{e}^z - 1}\cdot\dfrac{\mathrm{e}^{nz} - 1}{z}
@@ -202,12 +202,12 @@ $$
 $$
 \begin{aligned}
 F_n(z) &= B(z)\cdot\dfrac{\mathrm{e}^{nz} - 1}{z}\\
-&= \left(\sum_{i\ge 0}\dfrac{B_i}{i!} \right)\left(\sum_{i\ge 1}\dfrac{n^i z^{i - 1}}{i!}\right)\\
-&= \left(\sum_{i\ge 0}\dfrac{B_i}{i!} \right)\left(\sum_{i\ge 0}\dfrac{n^{i+1} z^{i}}{(i+1)!}\right)
+&= \left(\sum_{i\geqslant 0}\dfrac{B_i}{i!} \right)\left(\sum_{i\geqslant 1}\dfrac{n^i z^{i - 1}}{i!}\right)\\
+&= \left(\sum_{i\geqslant 0}\dfrac{B_i}{i!} \right)\left(\sum_{i\geqslant 0}\dfrac{n^{i+1} z^{i}}{(i+1)!}\right)
 \end{aligned}
 $$
 
-由于 $F_n(z) = \sum_{m\ge 0}\dfrac{S_m(n)}{m!}z^m$，即 $S_m(n)=m![z^m]F_n(z)$：
+由于 $F_n(z) = \sum_{m\geqslant 0}\dfrac{S_m(n)}{m!}z^m$，即 $S_m(n)=m![z^m]F_n(z)$：
 
 $$
 \begin{aligned}

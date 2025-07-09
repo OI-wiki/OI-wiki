@@ -38,7 +38,7 @@ $$
 
 定义 $A=(P,[a,b]),B=(P,[x,y])$，且 $A,B\in I_P$。于是连续段的关系和运算可以表示为：
 
-1.  $A\subseteq B\iff x\le a\wedge b\le y$.
+1.  $A\subseteq B\iff x\leqslant a\wedge b\leqslant y$.
 2.  $A=B\iff a=x\wedge b=y$.
 3.  $A\cap B=(P,[\max(a,x),\min(b,y)])$.
 4.  $A\cup B=(P,[\min(a,x),\max(b,y)])$.
@@ -127,21 +127,21 @@ $$
 最后，我们考虑如何处理 $L_i$。事实上，一个连续段 $(P,[l,r])$ 等价于区间极差与区间长度 -1 相等。即
 
 $$
-\max_{l\le i\le r}P_i-\min_{l\le i\le r}P_i=r-l
+\max_{l\leqslant i\leqslant r}P_i-\min_{l\leqslant i\leqslant r}P_i=r-l
 $$
 
 而且由于 P 是一个排列，因此对于任意的区间 $[l,r]$ 都有
 
 $$
-\max_{l\le i\le r}P_i-\min_{l\le i\le r}P_i\ge r-l
+\max_{l\leqslant i\leqslant r}P_i-\min_{l\leqslant i\leqslant r}P_i\geqslant r-l
 $$
 
-于是我们就维护 $\max_{l\le i\le r}P_i-\min_{l\le i\le r}P_i-(r-l)$，那么要找到一个连续段相当于查询一个最小值！
+于是我们就维护 $\max_{l\leqslant i\leqslant r}P_i-\min_{l\leqslant i\leqslant r}P_i-(r-l)$，那么要找到一个连续段相当于查询一个最小值！
 
 有了上述思路，不难想到这样的算法。对于增量过程中的当前的 $i$，我们维护一个数组 $Q$ 表示区间 $[j,i]$ 的极差减长度。即
 
 $$
-Q_j=\max_{j\le k\le i}P_k-\min_{j\le k\le i}P_k-(i-j),\ \ 0<j<i
+Q_j=\max_{j\leqslant k\leqslant i}P_k-\min_{j\leqslant k\leqslant i}P_k-(i-j),\ \ 0<j<i
 $$
 
 现在我们想知道在 $1\sim i-1$ 中是否存在一个最小的 $j$ 使得 $Q_j=0$。这等价于求 $Q_{1\sim i-1}$ 的最小值。求得最小的 $j$ 就是 $L_i$。如果没有，那么 $L_i=i$。

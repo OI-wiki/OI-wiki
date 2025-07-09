@@ -4,24 +4,24 @@
 
 对无向图顶点着色，且相邻顶点不能同色。若 G 是 $k$- 可着色的，但不是 $(k-1)$- 可着色的，则称 k 是 G 的色数，记为 $\chi(G)$。
 
-对任意图 G，有 $\chi(G) \leq \Delta(G) + 1$，其中 $\Delta(G)$ 为最大度。
+对任意图 G，有 $\chi(G) \leqslant \Delta(G) + 1$，其中 $\Delta(G)$ 为最大度。
 
 ### Brooks 定理
 
-设连通图不是完全图也不是奇圈，则 $\chi(G) \leq \Delta(G)$。
+设连通图不是完全图也不是奇圈，则 $\chi(G) \leqslant \Delta(G)$。
 
 #### 证明
 
 ???+ note "证明"
     设 $|V(G)|=n$，考虑数学归纳法。
     
-    首先，$n\leq 3$ 时，命题显然成立。
+    首先，$n\leqslant 3$ 时，命题显然成立。
     
     接下来，假设对于 $n-1$ 时的命题成立，下面我们要逐步强化命题。
     
     不妨只考虑 $\Delta(G)$- 正则图，因为对于非正则图来说，可以看作在正则图里删去一些边构成的，而这一过程并不会影响结论。
     
-    对于任意不是完全图也不是奇圈的正则图 G，任取其中一点 v，考虑子图 $H:=G-v$，由归纳假设知 $\chi(H)\leq\Delta(H)=\Delta(G)$，接下来我们只需证明在 H 中插入 v 不会影响结论即可。
+    对于任意不是完全图也不是奇圈的正则图 G，任取其中一点 v，考虑子图 $H:=G-v$，由归纳假设知 $\chi(H)\leqslant\Delta(H)=\Delta(G)$，接下来我们只需证明在 H 中插入 v 不会影响结论即可。
     
     令 $\Delta:=\Delta(G)$，设 H 染的 $\Delta$ 种颜色分别为 $c_1,c_2,\dots,c_{\Delta}$，v 的 $\Delta$ 个邻接点为 $v_1,v_1,\dots,v_{\Delta}$。不妨假设 v 的这些邻接点颜色两两不同，否则命题得证。
     
@@ -45,7 +45,7 @@ Welsh–Powell 算法是一种在 **不限制最大着色数** 时寻找着色�
 
 对于无自环无向图 G，设 $V(G):=\{v_1,v_2,\dots,v_n\}$ 满足。
 
-$\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
+$\deg(v_i)\geqslant\deg(v_{i+1}),~\forall 1\leqslant i\leqslant n-1$
 
 按 Welsh–Powell 算法着色后的颜色数至多为 $\max_{i=1}^n\min\{\deg(v_i)+1,i\}$, 该算法的时间复杂度为 $O\left(n\max_{i=1}^n\min\{\deg(v_i)+1,i\}\right)=O(n^2)$。
 
@@ -95,7 +95,7 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 ???+ note "证明"
     对于无自环无向图 G，设 $V(G):=\{v_1,v_2,\dots,v_n\}$ 满足
     
-    $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
+    $\deg(v_i)\geqslant\deg(v_{i+1}),~\forall 1\leqslant i\leqslant n-1$
     
     令 $V_0=\varnothing$, 我们取 $V(G)\setminus\bigcup_{i=0}^{m-1} V_i$ 中的子集 $V_m$, 其中的元素满足
     
@@ -121,13 +121,13 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
     
     其中
     
-    $\chi(G)\leq\alpha(G)\leq\max_{i=1}^n\min\{\deg(v_i)+1,i\}$
+    $\chi(G)\leqslant\alpha(G)\leqslant\max_{i=1}^n\min\{\deg(v_i)+1,i\}$
     
     上式左边的不等号显然成立，我们考虑右边。
     
     首先我们不难得出：
     
-    若 $v\notin\bigcup_{i=1}^mV_i$，则 v 与 $V_1,V_2,\dots,V_m$ 中分别至少有一个点相邻，从而有 $\deg(v)\geq m$
+    若 $v\notin\bigcup_{i=1}^mV_i$，则 v 与 $V_1,V_2,\dots,V_m$ 中分别至少有一个点相邻，从而有 $\deg(v)\geqslant m$
     
     进而
     
@@ -145,7 +145,7 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 
 ### Vizing 定理
 
-设 G 是简单图，则 $\Delta(G) \leq \chi'(G) \leq \Delta(G) + 1$
+设 G 是简单图，则 $\Delta(G) \leqslant \chi'(G) \leqslant \Delta(G) + 1$
 
 若 G 是二部图，则 $\chi'(G)=\Delta(G)$
 
@@ -209,7 +209,7 @@ $P(N_n, k) = k^n$
 1.  $e=(v_i, v_j) \notin E(G)$，则 $P(G, k) = P(G \cup e, k)+P(G\setminus e, k)$
 2.  $e=(v_i, v_j) \in E(G)$，则 $P(G,k)=P(G-e,k)-P(G\setminus e,k)$
 
-定理：设 $V_1$ 是 G 的点割集，且 $G[V_1]$ 是 G 的 $|V_1|$ 阶完全子图，$G-V_1$ 有 $p(p \geq 2)$ 个连通分支，则：
+定理：设 $V_1$ 是 G 的点割集，且 $G[V_1]$ 是 G 的 $|V_1|$ 阶完全子图，$G-V_1$ 有 $p(p \geqslant 2)$ 个连通分支，则：
 
 $P(G,k)=\frac{\Pi_{i=1}^{p}{(P(H_i, k))}}{P(G[V_1], k)^{p-1}}$
 

@@ -106,7 +106,7 @@ E(\operatorname{dep}(x_i))&=\sum_{k=1}^n\Pr(x_k=\min X_{i,k}\land k\neq i)\\
 &=\sum_{k=1}^n\dfrac{1}{|i-k|+1}-1\\
 &=\sum_{k=1}^{i-1}\dfrac{1}{i-k+1}+\sum_{k=i+1}^n\dfrac{1}{k-i+1}\\
 &=\sum_{j=2}^i\dfrac 1j+\sum_{j=2}^{n-i+1}\dfrac 1j\\
-&\le 2\sum_{j=2}^n\dfrac 1j < 2\sum_{j=2}^n\int_{j-1}^j\dfrac 1x\mathrm dx\\
+&\leqslant 2\sum_{j=2}^n\dfrac 1j < 2\sum_{j=2}^n\int_{j-1}^j\dfrac 1x\mathrm dx\\
 &=2\int_1^n\dfrac 1x\mathrm dx=2\ln n=O(\log n)
 \end{aligned}
 $$
@@ -539,7 +539,7 @@ Node *merge(Node *u, Node *v) {
 
 $$
 \begin{aligned}
-T_1 &\le val\\
+T_1 &\leqslant val\\
 T_2 &> val
 \end{aligned}
 $$
@@ -550,12 +550,12 @@ $$
 
 $$
 \begin{gathered}
-T_{1\ \text{left}} \le val - 1\\
-T_{1\ \text{right}} > val - 1 \ \And \ T_{1\ \text{right}} \le val
+T_{1\ \text{left}} \leqslant val - 1\\
+T_{1\ \text{right}} > val - 1 \ \And \ T_{1\ \text{right}} \leqslant val
 \end{gathered}
 $$
 
-其中 $T_{1\ \text{left}}$ 表示 $T_1$ 分裂后所有被分到第一个 treap 的节点的集合，$T_{1\ \text{right}}$ 则是第二个。并且上面的式子中，后半部分的 $\And \ T_{1\ \text{right}} \le val$ 来自于 $T_1$ 所符合的条件 $T_1 \le val$。
+其中 $T_{1\ \text{left}}$ 表示 $T_1$ 分裂后所有被分到第一个 treap 的节点的集合，$T_{1\ \text{right}}$ 则是第二个。并且上面的式子中，后半部分的 $\And \ T_{1\ \text{right}} \leqslant val$ 来自于 $T_1$ 所符合的条件 $T_1 \leqslant val$。
 
 不难发现，只要 $\textit{val}$ 和节点的值是一个整数（大多数使用场景下会使用整数）那么符合 $T_{1\ \text{right}}$ 条件的节点只有一个，也就是值等于 $\textit{val}$ 的节点。
 
@@ -616,7 +616,7 @@ void del(int val) {
 排名是比这个值小的节点的数量 $+ 1$，所以我们根据 $\textit{val} - 1$ 分裂当前树，那么分裂后的第一个树就符合：
 
 $$
-T_1 \le val - 1
+T_1 \leqslant val - 1
 $$
 
 如果树的值和 $\textit{val}$ 为整数，那么 $T_1$ 就包含了所有值小于 $\textit{val}$ 的节点。
@@ -698,7 +698,7 @@ int qnex(int val) {
 > 您需要写一种数据结构（可参考题目标题），来维护一个有序数列。
 >
 > 其中需要提供以下操作：翻转一个区间，例如原有序序列是 $5\ 4\ 3\ 2\ 1$，翻转区间是 $[2,4]$ 的话，结果是 $5\ 2\ 3\ 4\ 1$。
-> 对于 $100\%$ 的数据，$1 \le n$（初始区间长度）$m$（翻转次数）$\le 10^5$
+> 对于 $100\%$ 的数据，$1 \leqslant n$（初始区间长度）$m$（翻转次数）$\leqslant 10^5$
 
 在这道题目中，我们需要实现的是区间翻转，那么我们首先需要考虑如何建树，建出来的树需要是初始的区间。
 

@@ -124,7 +124,7 @@ $$
 利用这个式子，就可以遍历约数求和了。需要多组查询的时候，可以预处理欧拉函数的前缀和，利用数论分块查询。
 
 ???+ note "[GCD SUM](https://www.luogu.com.cn/problem/P2398)"
-    给定 $n\le 100000$，求
+    给定 $n\leqslant 100000$，求
     
     $$
     \sum_{i=1}^n\sum_{j=1}^n\gcd(i,j).
@@ -154,7 +154,7 @@ a^b\equiv
 \begin{cases}
 a^{b\bmod\varphi(m)},\,&\gcd(a,\,m)=1\\
 a^b,&\gcd(a,\,m)\ne1,\,b<\varphi(m)\\
-a^{b\bmod\varphi(m)+\varphi(m)},&\gcd(a,\,m)\ne1,\,b\ge\varphi(m)
+a^{b\bmod\varphi(m)+\varphi(m)},&\gcd(a,\,m)\ne1,\,b\geqslant\varphi(m)
 \end{cases}
 \pmod m
 $$

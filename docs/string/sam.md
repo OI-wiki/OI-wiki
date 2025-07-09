@@ -94,13 +94,13 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 由 $\operatorname{endpos}$ 的值我们可以得到一些重要结论，它们解释了同一个状态对应的不同的子串之间的关系。
 
 ???+ note "引理 1"
-    字符串 $s$ 的两个非空子串 $u$ 和 $w$（假设 $\left|u\right|\le \left|w\right|$）的 $\operatorname{endpos}$ 相同，当且仅当字符串 $u$ 在 $s$ 中每次出现时，都是以 $w$ 后缀的形式存在的。
+    字符串 $s$ 的两个非空子串 $u$ 和 $w$（假设 $\left|u\right|\leqslant \left|w\right|$）的 $\operatorname{endpos}$ 相同，当且仅当字符串 $u$ 在 $s$ 中每次出现时，都是以 $w$ 后缀的形式存在的。
 
 ??? note "证明"
     引理显然成立。如果 $u$ 和 $w$ 的 $\operatorname{endpos}$ 相同，则 $u$ 是 $w$ 的一个后缀，且在 $s$ 中只以 $w$ 的后缀的形式出现。反过来，根据定义，如果 $u$ 为 $w$ 的一个后缀，且只以 $w$ 的后缀的形式在 $s$ 中出现，那么两个子串的 $\operatorname{endpos}$ 相同。
 
 ???+ note "引理 2"
-    考虑两个非空子串 $u$ 和 $w$（假设 $\left|u\right|\le \left|w\right|$）。那么，要么 $\operatorname{endpos}(u)\cap \operatorname{endpos}(w)=\varnothing$，要么 $\operatorname{endpos}(w)\subseteq \operatorname{endpos}(u)$，取决于 $u$ 是否为 $w$ 的一个后缀：
+    考虑两个非空子串 $u$ 和 $w$（假设 $\left|u\right|\leqslant \left|w\right|$）。那么，要么 $\operatorname{endpos}(u)\cap \operatorname{endpos}(w)=\varnothing$，要么 $\operatorname{endpos}(w)\subseteq \operatorname{endpos}(u)$，取决于 $u$ 是否为 $w$ 的一个后缀：
     
     $$
     \begin{cases}
@@ -381,7 +381,7 @@ void sam_init() {
 
 ### 状态数
 
-对于一个长度为 $n$ 的字符串 $s$，它的 SAM 中的状态数 **不会超过**  $2n-1$（假设 $n\ge 2$）。
+对于一个长度为 $n$ 的字符串 $s$，它的 SAM 中的状态数 **不会超过**  $2n-1$（假设 $n\geqslant 2$）。
 
 ??? note "证明"
     算法本身即可证明该结论。一开始，自动机含有一个状态，第一次和第二次迭代中只会创建一个节点，剩余的 $n-2$ 步中每步会创建至多 $2$ 个状态。
@@ -392,7 +392,7 @@ void sam_init() {
 
 ### 转移数
 
-对于一个长度为 $n$ 的字符串 $s$，它的 SAM 中的转移数 **不会超过**  $3n-4$（假设 $n\ge 3$）。
+对于一个长度为 $n$ 的字符串 $s$，它的 SAM 中的转移数 **不会超过**  $3n-4$（假设 $n\geqslant 3$）。
 
 ??? note "证明"
     我们首先估计连续的转移的数量。考虑自动机中由从状态 $t_0$ 开始到达所有状态的最长路径组成的生成树。生成树只包含连续的边，因此数量少于状态数，即边数不会超过 $2n-2$。
@@ -740,7 +740,7 @@ void sam_init() {
     
     最后，只需要对每个 $S_2,\cdots,S_k$ 都匹配一遍，再对 SAM 上每个状态记录的实际匹配到的长度取最小值，就得到 SAM 上每个状态实际能够匹配到的 $S_2,\cdots,S_k$ 的最长公共子串的长度。然后，遍历 SAM 所有状态，取最大值就是这 $k$ 个串的最长公共子串长度。
     
-    算法时间复杂度是 $O(\sum_i |S_i|)$ 的。字符串 $S_1$ 的 SAM 虽然遍历了 $k$ 遍，但是因为 $|S_1|$ 是最小的，所以 $k|S_1|\le \sum_i |S_i|$，复杂度的主要项依然是匹配过程遍历所有子串。
+    算法时间复杂度是 $O(\sum_i |S_i|)$ 的。字符串 $S_1$ 的 SAM 虽然遍历了 $k$ 遍，但是因为 $|S_1|$ 是最小的，所以 $k|S_1|\leqslant \sum_i |S_i|$，复杂度的主要项依然是匹配过程遍历所有子串。
 
 例题：[SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
 

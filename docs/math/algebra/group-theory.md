@@ -38,7 +38,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 要理解给定群的结构，可以首先分析其子结构。群的子结构就是那些在同一运算下仍然成为一个群的该群的子集。由此，有如下定义。
 
 ???+ abstract "子群"
-    对于群 $(G,\cdot)$ 和它的一个子集 $H\subseteq G$，如果 $(H,\cdot)$ 也是一个群，则称子集 $H$ 是 $G$ 的一个 **子群**（subgroup），记作 $H\le G$。
+    对于群 $(G,\cdot)$ 和它的一个子集 $H\subseteq G$，如果 $(H,\cdot)$ 也是一个群，则称子集 $H$ 是 $G$ 的一个 **子群**（subgroup），记作 $H\leqslant G$。
 
 ???+ example " 例子：正三角形的空间对称群 $D_6$（续）"
     在 $D_6$ 中，容易验证它的子群有 $\{e\}$，$\{e,s\}$，$\{e,sr\}$，$\{e,sr^2\}$，$\{e,r,r^2\}$ 和 $D_6$ 本身，共计六个。除群 $D_6$ 外，这些子群的结构都是更为简单，而且蕴含了关于原来群的部分信息。
@@ -123,7 +123,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 给定子群，可以定义它的陪集。
 
 ???+ abstract "陪集"
-    设 $G$ 是群，$H\le G$ 是它的子群，则子群 $H$ 的包含 $g$ 的 **左陪集**（left coset）和 **右陪集**（right coset）分别定义为集合
+    设 $G$ 是群，$H\leqslant G$ 是它的子群，则子群 $H$ 的包含 $g$ 的 **左陪集**（left coset）和 **右陪集**（right coset）分别定义为集合
     
     $$
     \begin{aligned}
@@ -142,7 +142,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 同一子群的不同陪集大小都相同，都等于对应子群的大小。由于给定子群的全体陪集构成群的一个分划，有限群的阶必然是子群的阶的整数倍。这叫做 Lagrange 定理。
 
 ???+ note "Lagrange 定理"
-    对于有限群 $G$ 和它的子群 $H\le G$，成立 $|G|=[G:H]|H|$，这里，$[G:H]$ 表示 $G$ 中子群 $H$ 的左（右）陪集数，称为群 $G$ 中子群 $H$ 的 **指数**（index）。
+    对于有限群 $G$ 和它的子群 $H\leqslant G$，成立 $|G|=[G:H]|H|$，这里，$[G:H]$ 表示 $G$ 中子群 $H$ 的左（右）陪集数，称为群 $G$ 中子群 $H$ 的 **指数**（index）。
 
 ??? note "证明"
     考察左乘以 $g$ 的映射 $h\mapsto gh$，则它和映射 $h\mapsto g^{-1}h$ 互为逆映射，因而它们都是双射。这说明，$|H|=|gH|$ 总是成立。
@@ -159,7 +159,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 左右陪集是否相同，反映了相应的子群的性质。
 
 ???+ abstract "正规子群"
-    设 $N\le G$ 是群 $G$ 的子群，如果对所有 $h\in N$ 和 $g\in G$，都成立 $ghg^{-1}\in N$，换言之，对所有 $g\in G$，都成立 $gNg^{-1}\subseteq N$，则称 $N$ 是 $G$ 的一个 **正规子群**（normal subgroup），记作 $N\trianglelefteq G$。
+    设 $N\leqslant G$ 是群 $G$ 的子群，如果对所有 $h\in N$ 和 $g\in G$，都成立 $ghg^{-1}\in N$，换言之，对所有 $g\in G$，都成立 $gNg^{-1}\subseteq N$，则称 $N$ 是 $G$ 的一个 **正规子群**（normal subgroup），记作 $N\trianglelefteq G$。
 
 这个定义中的条件正等价于 $gN=Ng$ 永远成立。群 $G$ 总有平凡的正规子群，即 $\langle e\rangle$ 和 $G$ 自身。
 
@@ -240,13 +240,13 @@ $$
 同态的核 $\ker\varphi$ 的确刻画了群同态中损失的结构信息。这一结论的精确表述就是 **同态基本定理**（亦称 **第一同构定理**）（fundamental theorem of group homomorphism, a.k.a., first isomorphism theorem）。
 
 ???+ note "同态基本定理（第一同构定理）"
-    设 $\varphi:G\rightarrow H$ 是自群 $G$ 到群 $H$ 的同态，则 $\ker\varphi\trianglelefteq G$，且 $G/\ker\varphi\cong\varphi(G)\le H$。
+    设 $\varphi:G\rightarrow H$ 是自群 $G$ 到群 $H$ 的同态，则 $\ker\varphi\trianglelefteq G$，且 $G/\ker\varphi\cong\varphi(G)\leqslant H$。
 
 ??? note "证明"
     首先，$N=\ker\varphi$ 是正规子群，因为对于任意 $h\in N$ 都有 $\varphi(ghg^{-1})=\varphi(g)\varphi(h)\varphi(g)^{-1}=\varphi(g)\varphi(g)^{-1}=e$，亦即 $ghg^{-1}\in\ker\varphi$。然后，考察映射 $\Phi:G/N\rightarrow\varphi(G)$，它满足 $\Phi(gN)=\varphi(g)$。映射是良定义的，因为如果 $g_1N=g_2N$，那么 $g_1^{-1}g_2\in N$，则 $\varphi(g_1^{-1}g_2)=e$，即 $\varphi(g_1)=\varphi(g_2)$。映射 $\Phi$ 显然是满射；它也是单射，因为 $\ker\Phi=\{gN:\varphi(g)=e\}=\{N\}$。故而，$\Phi$ 是群同构。最后，$\varphi(g_1)\varphi(g_2)^{-1}=\varphi(g_1g_2^{-1})\in\varphi(G)$，根据子群判别法，$\varphi(G)$ 必然是子群。
 
 ???+ note "推论"
-    同态 $\varphi:G\rightarrow H$ 是单射，当且仅当 $\ker\varphi=\{e\}$。此时，$G$ 同构于 $H$ 的一个子群，即 $G\cong\varphi(G)\le H$。
+    同态 $\varphi:G\rightarrow H$ 是单射，当且仅当 $\ker\varphi=\{e\}$。此时，$G$ 同构于 $H$ 的一个子群，即 $G\cong\varphi(G)\leqslant H$。
 
 也就是说，同态 $\varphi$ 的核是群 $G$ 的正规子群，而模 $\ker\varphi$ 得到的商群 $G/\ker\varphi$ 同构于同态的像 $\varphi(G)$，而这一同态的像正是群 $H$ 的子群。
 
@@ -280,7 +280,7 @@ $$
 子群的乘积并不总是子群。比如，群 $D_6$ 的子群 $A=\langle s\rangle$ 和子群 $B=\langle sr\rangle$ 的乘积等于 $AB=\{e,s,r,sr\}$，这并不是 $G$ 的子群，因为 $(sr)s=r^2\notin AB$。其实，这种 $a\in A$，$b\in B$，但 $ba\notin AB$ 形式的反例正是乘积不是子群的根本原因。对此，有如下定理。
 
 ???+ note "定理"
-    对于群 $G$ 和它的子群 $A,B\le G$，乘积 $AB$ 是子群，当且仅当 $AB=BA$。
+    对于群 $G$ 和它的子群 $A,B\leqslant G$，乘积 $AB$ 是子群，当且仅当 $AB=BA$。
 
 ??? note "证明"
     乘积 $AB$ 是子群，则必然有 $ba=(a^{-1}b^{-1})^{-1}\in AB$ 对任意 $a\in A$ 和 $b\in B$ 都成立，所以 $BA\subseteq AB$。反过来，如果 $AB=BA$，则对于任意 $a_1,a_2\in A$ 和 $b_1,b_2\in B$，都有 $(a_1b_1)(a_2b_2)^{-1}=a_1b_1b_2^{-1}a_2^{-1}\in a_1BA=a_1AB=AB$，则根据子群判别法，必然有 $AB$ 是子群。
@@ -288,17 +288,17 @@ $$
 **第二同构定理**（second isomorphism theorem, a.k.a., diamond isomorphism theorem）则给出了子群乘积仍是子群的更为简单的充分条件，并且进一步确定了其结构。
 
 ???+ note "第二同构定理"
-    设群 $G$ 和子群 $A,B\le G$ 满足 $A\le N_G(B)$，那么，$AB\le G$，且 $B\trianglelefteq AB$，$A\cap B\trianglelefteq A$，$AB/B\cong A/(A\cap B)$。这里，$N_G(B)$ 是 $B$ 的 [正规化子](#正规化子和中心化子)。特别地，$A\le N_G(B)$ 的一个充分条件是 $B\trianglelefteq G$。
+    设群 $G$ 和子群 $A,B\leqslant G$ 满足 $A\leqslant N_G(B)$，那么，$AB\leqslant G$，且 $B\trianglelefteq AB$，$A\cap B\trianglelefteq A$，$AB/B\cong A/(A\cap B)$。这里，$N_G(B)$ 是 $B$ 的 [正规化子](#正规化子和中心化子)。特别地，$A\leqslant N_G(B)$ 的一个充分条件是 $B\trianglelefteq G$。
 
 ??? note "证明"
-    因为 $A\le N_G(B)$，必然有 $aBa^{-1}=B$ 对于所有 $a\in A$ 都成立，此即 $aB=Ba$。因此，必然有 $AB=BA$，则由上述定理知 $AB$ 是子群。子群 $B$ 作为 $AB$ 的子群，左右陪集相同，因而 $B\trianglelefteq AB$。
+    因为 $A\leqslant N_G(B)$，必然有 $aBa^{-1}=B$ 对于所有 $a\in A$ 都成立，此即 $aB=Ba$。因此，必然有 $AB=BA$，则由上述定理知 $AB$ 是子群。子群 $B$ 作为 $AB$ 的子群，左右陪集相同，因而 $B\trianglelefteq AB$。
     
     考察映射 $\varphi:A\rightarrow AB/B$ 满足 $\varphi(a)=aB$，则它是满射，且它的核 $\ker\varphi=\{a\in A:aB=B\}=A\cap B$。应用同态基本定理就可得证。
 
 **第三同构定理**（third isomorphism theorem）则给出了商群的正规子群和商群与原来群的正规子群和商群之间的对应关系。它解释了将商群进一步分解这一想法的合理性。
 
 ???+ note "第三同构定理"
-    设群 $G$ 有正规子群 $H,K\trianglelefteq G$，且 $H\le K$，则 $K/H\trianglelefteq G/H$，且 $(G/H)/(K/H)\cong G/K$。
+    设群 $G$ 有正规子群 $H,K\trianglelefteq G$，且 $H\leqslant K$，则 $K/H\trianglelefteq G/H$，且 $(G/H)/(K/H)\cong G/K$。
 
 ??? note "证明"
     考察映射 $\varphi:G/H\rightarrow G/K$ 满足 $\varphi(gH)=gK$，则它是满的群同态，且 $\ker\varphi=\{gH:g\in K\}=K/H$。应用同态基本定理就可得证。
@@ -306,7 +306,7 @@ $$
 这一结论可以推广到第四同构定理，或称 **对应定理**（correspondence theorem），它进一步给出了群的子群格和商群的子群格之间的对应关系。
 
 ???+ note "对应定理"
-    设群 $G$ 有正规子群 $N\trianglelefteq G$，则全体包含 $N$ 的群 $G$ 的子群 $\mathcal H=\{H:N\subseteq H\subseteq G\}$ 和商群 $G/N$ 的全体子群 $\mathcal S=\{S:S\le G/N\}$ 之间存在双射 $\varphi:\mathcal H\rightarrow\mathcal S$，它将 $H\in\mathcal H$ 映射至 $H/N\in\mathcal S$。这个双射保持子群的包含关系，且 $G$ 的正规子群总是映射到 $G/N$ 的正规子群。
+    设群 $G$ 有正规子群 $N\trianglelefteq G$，则全体包含 $N$ 的群 $G$ 的子群 $\mathcal H=\{H:N\subseteq H\subseteq G\}$ 和商群 $G/N$ 的全体子群 $\mathcal S=\{S:S\leqslant G/N\}$ 之间存在双射 $\varphi:\mathcal H\rightarrow\mathcal S$，它将 $H\in\mathcal H$ 映射至 $H/N\in\mathcal S$。这个双射保持子群的包含关系，且 $G$ 的正规子群总是映射到 $G/N$ 的正规子群。
 
 ??? info "关于同构定理的内容"
     不同的教材中，群的同构定理的内容和名称可能有所差异。这里选取的是常见的一个版本。[维基百科](https://en.wikipedia.org/wiki/Isomorphism_theorems#Note_on_numbers_and_names) 总结了常见教材中同构定理内容和名称的差异。
@@ -355,7 +355,7 @@ $$
     对于群 $G$ 在集合 $X$ 上的作用和 $x\in X$，称 $x$ 在群 $G$ 作用下的 **轨道**（orbit）是子集 $Gx=\{gx:g\in G\}$。
 
 ???+ example " 例子：正三角形的空间对称群 $D_6$（续）"
-    比如说，如果考虑群 $\langle s\rangle\le D_6$ 在正三角形顶点集合上的作用，则顶点 $1$ 的轨道是 $\{1\}$，而顶点 $2$ 和 $3$ 的轨道是 $\{2,3\}$。但是，群 $\langle r\rangle\le D_6$ 在顶点集合上的作用只有一个轨道，即全体顶点集。
+    比如说，如果考虑群 $\langle s\rangle\leqslant D_6$ 在正三角形顶点集合上的作用，则顶点 $1$ 的轨道是 $\{1\}$，而顶点 $2$ 和 $3$ 的轨道是 $\{2,3\}$。但是，群 $\langle r\rangle\leqslant D_6$ 在顶点集合上的作用只有一个轨道，即全体顶点集。
 
 容易证明，群 $G$ 的作用下，集合 $X$ 的全体轨道构成了该集合的一个分划，记作 $X/G$。但是和陪集不同，这些轨道并不一定是等长的。
 
@@ -364,7 +364,7 @@ $$
 群作用下，集合中的一个元素的轨道长度取决于有多少群里的元素对应的置换以它为不动点。
 
 ???+ example " 例子：正三角形的空间对称群 $D_6$（续）"
-    比如说，之所以在群 $\langle s\rangle\le D_6$ 的作用下，顶点 $1$ 的轨道长是一，是因为所有群里的元素都将顶点 $1$ 映到其自身；而顶点 $2$ 的轨道长是二，是因为只有单位元 $e$ 将顶点 $2$ 映射到其自身。
+    比如说，之所以在群 $\langle s\rangle\leqslant D_6$ 的作用下，顶点 $1$ 的轨道长是一，是因为所有群里的元素都将顶点 $1$ 映到其自身；而顶点 $2$ 的轨道长是二，是因为只有单位元 $e$ 将顶点 $2$ 映射到其自身。
 
 这启发了如下的定义。
 
@@ -462,7 +462,7 @@ $$
 群的中心，是与群中所有元素都交换的元素的集合；因为它是群作用的核，它必然是正规子群。群的中心的大小，表明了它和交换群之间的差距。给定元素的中心化子，是与该元素交换的所有元素的集合；也是所有中心包括它的子群中最大的，这也就是它的名字来源；同时，因为它是共轭作用下某元素的稳定化子，所以它是子群。共轭类一般不是子群。
 
 ???+ example " 例子：正三角形的空间对称群 $D_6$（续）"
-    回到群 $D_6$，它的中心是 $\{e\}\neq G$，这说明它不是交换群。元素 $r$ 的中心化子 $C_G(r)$ 是 $\langle r\rangle$，元素 $s$ 的中心化子 $C_G(s)$ 为 $\langle s\rangle$。一般地，对所有 $g\in G$，总成立 $\langle g\rangle\le C_G(g)$。群 $D_6$ 的共轭类共三个，即 $\{e\},\{r,r^2\},\{s,sr,sr^2\}$。容易发现，共轭的元素都是同阶的[^conjugate]。
+    回到群 $D_6$，它的中心是 $\{e\}\neq G$，这说明它不是交换群。元素 $r$ 的中心化子 $C_G(r)$ 是 $\langle r\rangle$，元素 $s$ 的中心化子 $C_G(s)$ 为 $\langle s\rangle$。一般地，对所有 $g\in G$，总成立 $\langle g\rangle\leqslant C_G(g)$。群 $D_6$ 的共轭类共三个，即 $\{e\},\{r,r^2\},\{s,sr,sr^2\}$。容易发现，共轭的元素都是同阶的[^conjugate]。
 
 群在共轭作用下划分成若干个共轭类。所以，可以写出 **类方程**（class equation）。
 
@@ -499,7 +499,7 @@ $$
 ???+ abstract "中心化子"
     对于群 $G$ 和它的子集 $S\subseteq G$，子集 $S$ 在群 $G$ 中的 **中心化子**（centralizer）是 $C_G(S)=\{g\in G:\forall s\in S(gsg^{-1}=s)\}$。
 
-中心化子实际上是群 $N_G(S)$ 在 $S$ 的共轭作用的核。所以，必然有 $C_G(S)\trianglelefteq N_G(S)\le G$，所以由子群的传递性，中心化子也是子群。特别地，群的中心 $Z(G)=C_G(G)\trianglelefteq N_G(G)=G$ 必然是正规子群。
+中心化子实际上是群 $N_G(S)$ 在 $S$ 的共轭作用的核。所以，必然有 $C_G(S)\trianglelefteq N_G(S)\leqslant G$，所以由子群的传递性，中心化子也是子群。特别地，群的中心 $Z(G)=C_G(G)\trianglelefteq N_G(G)=G$ 必然是正规子群。
 
 ### Sylow 定理
 
@@ -512,7 +512,7 @@ $$
     $p$‑群还有另外一种定义，即所有元素的阶都是素数的幂的群。这两种定义对于有限群是等价的；但是，第二种定义同样适用于无限群的情形。另外，关于 $p$‑群的定义，不同的文献可能对于是否将 $\{e\}$ 算作 $p$‑群存在分歧，读者在阅读时应当加以分辨。
 
 ???+ abstract "$p$‑子群 "
-    对于群 $G$ 和它的子群 $P\le G$，如果 $P$ 本身是一个 $p$‑群，则称 $P$ 为 **$p$‑子群**（$p$-subgroup）。
+    对于群 $G$ 和它的子群 $P\leqslant G$，如果 $P$ 本身是一个 $p$‑群，则称 $P$ 为 **$p$‑子群**（$p$-subgroup）。
 
 ???+ note "Cauchy 定理"
     如果素数 $p$ 能够整除群 $G$ 的阶，则必然存在 $p$ 阶元。
@@ -520,7 +520,7 @@ $$
 Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的分析，能够得到更强的结论，即 Sylow $p$‑子群的存在性。
 
 ???+ abstract "Sylow $p$‑子群 "
-    对于群 $G$ 和它的子群 $P\le G$，如果 $|G|=p^\alpha m$，$p\perp m$ 且 $|P|=p^\alpha$，则称 $P$ 为 **Sylow $p$‑子群**（Sylow $p$-subgroup）。
+    对于群 $G$ 和它的子群 $P\leqslant G$，如果 $|G|=p^\alpha m$，$p\perp m$ 且 $|P|=p^\alpha$，则称 $P$ 为 **Sylow $p$‑子群**（Sylow $p$-subgroup）。
 
 也就是说，Sylow $p$‑子群是极大的 $p$‑子群。Sylow 定理断言了 Sylow $p$‑子群的存在性，这提供了 Lagrange 定理的一定程度的逆命题。
 
@@ -528,7 +528,7 @@ Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的
     设有限群 $G$ 的阶 $|G|$ 能表达成 $p^\alpha m$ 的形式，其中，$p$ 是质数且 $p$ 不能整除 $m$，那么有如下结论：
     
     1.  存在 Sylow $p$‑子群；
-    2.  对于一个 Sylow $p$‑子群 $P$ 和一个群 $G$ 的 $p$‑子群 $Q$，存在 $g\in G$ 使得 $Q\le gPg^{-1}$ 成立，特别地，所有 Sylow $p$‑子群都共轭；
+    2.  对于一个 Sylow $p$‑子群 $P$ 和一个群 $G$ 的 $p$‑子群 $Q$，存在 $g\in G$ 使得 $Q\leqslant gPg^{-1}$ 成立，特别地，所有 Sylow $p$‑子群都共轭；
     3.  群 $G$ 中的 Sylow $p$‑子群的数目 $n_p$ 满足 $n_p\equiv 1\pmod p$，$n_p\mid m$ 且 $n_p=[G:N_G(P)]$，其中 $P$ 是任意的 Sylow $p$‑子群。
 
 ??? note "证明"
@@ -538,7 +538,7 @@ Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的
     |G|=|Z(G)|+\sum_{i=1}^r[G:C_G(g_i)].
     $$
     
-    如果 $p\mid|Z(G)|$，那么可以任取中心的 $p$ 阶子群 $N\le Z(G)$，则必然有 $N\trianglelefteq Z(G)\trianglelefteq G$，因而，$G/N$ 是更小的群。根据归纳假设，它有 Sylow $p$‑子群 $P/N$，则自然同态下相应的原像 $P$ 就是原来的群 $G$ 的 Sylow $p$‑子群。于是，只要考虑 $p$ 不能整除 $|Z(G)|$ 的情形。此时，可以取 $g_i\in G$，使得 $p$ 不能整除 $[G:C_G(g_i)]$，因而，$|G|$ 中 $p$ 的全部幂次都出现在 $|C_G(g_i)|$ 中。再次根据归纳假设，$|C_G(g_i)|$ 有 Sylow $p$‑子群 $P$，它正是原来的群 $G$ 的 Sylow $p$‑子群。
+    如果 $p\mid|Z(G)|$，那么可以任取中心的 $p$ 阶子群 $N\leqslant Z(G)$，则必然有 $N\trianglelefteq Z(G)\trianglelefteq G$，因而，$G/N$ 是更小的群。根据归纳假设，它有 Sylow $p$‑子群 $P/N$，则自然同态下相应的原像 $P$ 就是原来的群 $G$ 的 Sylow $p$‑子群。于是，只要考虑 $p$ 不能整除 $|Z(G)|$ 的情形。此时，可以取 $g_i\in G$，使得 $p$ 不能整除 $[G:C_G(g_i)]$，因而，$|G|$ 中 $p$ 的全部幂次都出现在 $|C_G(g_i)|$ 中。再次根据归纳假设，$|C_G(g_i)|$ 有 Sylow $p$‑子群 $P$，它正是原来的群 $G$ 的 Sylow $p$‑子群。
     
     为证明第二部分和第三部分，设群 $G$ 的 Sylow $p$‑子群 $P$ 的共轭类为 $\mathcal S=\{gPg^{-1}:g\in G\}$，并考察群 $G$ 在 $\mathcal S$ 上的共轭作用限制在某一 $p$‑子群 $Q$ 上的结果。集合 $\mathcal S$ 可以在该作用下可以划分成若干轨道。设总共有 $r$ 个轨道，每个轨道的代表元为 $P_i$，则有恒等式
     
@@ -546,7 +546,7 @@ Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的
     |\mathcal S|=\sum_{i=1}^r[Q:Q\cap N_G(P_i)].
     $$
     
-    这里，$Q\cap N_G(P_i)$ 是 $P_i$ 在上述群作用下的稳定化子。设 $H=Q\cap N_G(P_i)$，则显然 $H\le N_G(P_i)$，故而根据群的第二同构定理，有 $P_iH/P_i\cong H/(P_i\cap H)$。所以，$|P_iH|=|P_i||H|/|P_i\cap H|$，而右侧是 $p$ 的幂，左侧必然也是 $p$ 的幂，而且需要成立 $|P_i|\le |P_iH|$。但是，$P_i$ 已经是 $G$ 的子群中 $p$ 的幂次最大的，所以 $P_i=P_iH$。代入前文的同构关系中，就有 $H=P_i\cap H=Q\cap P_i$。这里用到了显然的关系 $P_i\le N_G(P_i)$。这样，就知道稳定化子 $Q\cap N_G(P_i)$ 实际上就是 $Q\cap P_i$。所以，上式可以写作
+    这里，$Q\cap N_G(P_i)$ 是 $P_i$ 在上述群作用下的稳定化子。设 $H=Q\cap N_G(P_i)$，则显然 $H\leqslant N_G(P_i)$，故而根据群的第二同构定理，有 $P_iH/P_i\cong H/(P_i\cap H)$。所以，$|P_iH|=|P_i||H|/|P_i\cap H|$，而右侧是 $p$ 的幂，左侧必然也是 $p$ 的幂，而且需要成立 $|P_i|\leqslant |P_iH|$。但是，$P_i$ 已经是 $G$ 的子群中 $p$ 的幂次最大的，所以 $P_i=P_iH$。代入前文的同构关系中，就有 $H=P_i\cap H=Q\cap P_i$。这里用到了显然的关系 $P_i\leqslant N_G(P_i)$。这样，就知道稳定化子 $Q\cap N_G(P_i)$ 实际上就是 $Q\cap P_i$。所以，上式可以写作
     
     $$
     |\mathcal S|=\sum_{i=1}^r[Q:Q\cap P_i].
@@ -554,14 +554,14 @@ Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的
     
     这一等式对于所有 $p$‑子群 $Q$ 都成立。
     
-    自然，Sylow $p$‑子群 $P$ 也是 $p$‑子群。将 $P$ 代入上式中的 $Q$，则右侧有且仅有一项的大小是 $1$，其余都是 $p$ 的倍数。因此，Sylow $p$‑子群 $P$ 的共轭类的大小 $|\mathcal S|$ 必然模 $p$ 余 $1$。同时，因为这一式子对于任何 $p$‑子群 $Q$ 都成立，就自然存在 $g\in G$，使得 $Q\le gPg^{-1}$；否则，对所有上述等式中的 $P_i$ 都有 $|Q\cap P_i|<|Q|$，就与 $|\mathcal S|\equiv 1\pmod p$ 矛盾。如果此时再考虑 $Q$ 是某个不同于 $P$ 的 Sylow $p$‑子群，则必然有 $Q=gPg^{-1}$ 对某个 $g\in G$ 成立，即所有 Sylow $p$‑子群都共轭。因而，Sylow $p$‑子群的数目 $n_p$ 就是 $|\mathcal S|$，它必然满足 $n_p\equiv 1\pmod p$。最后，注意到 $n_p=|\mathcal S|=[G:N_G(P)]$，且 $P\le N_G(P)$，就成立 $n_p\mid m$。这样就完整地证明了定理的第二部分和第三部分。
+    自然，Sylow $p$‑子群 $P$ 也是 $p$‑子群。将 $P$ 代入上式中的 $Q$，则右侧有且仅有一项的大小是 $1$，其余都是 $p$ 的倍数。因此，Sylow $p$‑子群 $P$ 的共轭类的大小 $|\mathcal S|$ 必然模 $p$ 余 $1$。同时，因为这一式子对于任何 $p$‑子群 $Q$ 都成立，就自然存在 $g\in G$，使得 $Q\leqslant gPg^{-1}$；否则，对所有上述等式中的 $P_i$ 都有 $|Q\cap P_i|<|Q|$，就与 $|\mathcal S|\equiv 1\pmod p$ 矛盾。如果此时再考虑 $Q$ 是某个不同于 $P$ 的 Sylow $p$‑子群，则必然有 $Q=gPg^{-1}$ 对某个 $g\in G$ 成立，即所有 Sylow $p$‑子群都共轭。因而，Sylow $p$‑子群的数目 $n_p$ 就是 $|\mathcal S|$，它必然满足 $n_p\equiv 1\pmod p$。最后，注意到 $n_p=|\mathcal S|=[G:N_G(P)]$，且 $P\leqslant N_G(P)$，就成立 $n_p\mid m$。这样就完整地证明了定理的第二部分和第三部分。
 
 ??? example " 应用：同构意义下，六阶群只有 $C_6$ 和 $S_3$"
     设 $G$ 的阶是 $6$。那么，根据 Sylow 定理，它有 Sylow $2$‑子群，且它的数目满足 $n_2\equiv 1\pmod 2$ 和 $n_2\mid 3$，所以，只有两个情形：$n_2=1$ 或 $n_2=3$。同理，可以证明群 $G$ 有且只有一个 Sylow $3$‑子群，即 $n_3=1$。
     
     对于 $n_2=1$ 的情形，可以发现群 $G$ 中有一个 Sylow $2$‑子群，故而有一个 $2$ 阶元；又有一个 Sylow $3$‑子群，故而有两个 $3$ 阶元。群 $G$ 还有一个单位元，而剩下的元素，根据 Lagrange 定理，它的阶数必须整除 $6$。又不能是新的 $2$ 阶或 $3$ 阶元，否则会出现与前文不同的新的 Sylow $p$‑子群；所以，剩下的元素只能是 $6$ 阶元。存在和群的阶数相同的元素，这意味着群 $G$ 是循环群，所以 $G\cong C_6$。
     
-    对于 $n_2=3$ 的情形，群 $G$ 有三个共轭的 Sylow $3$‑子群。考虑群 $G$ 在这三个 Sylow $3$‑子群上的共轭作用。对于任何一个 Sylow $3$‑子群 $P$，根据 Sylow 定理，有 $|N_G(P)|=2$；但又有 $P\le N_G(P)$，所以 $P=N_G(P)$。因此，这三个 Sylow $3$‑子群的正规化子的交集，即这个共轭作用的核，是平凡的。所以，这个作用是忠实的，它将 $G$ 嵌入到了这三个 Sylow $3$‑子群上的置换群 $S_3$。但是，因为 $|G|=|S_3|$，必然有 $G\cong S_3$。
+    对于 $n_2=3$ 的情形，群 $G$ 有三个共轭的 Sylow $3$‑子群。考虑群 $G$ 在这三个 Sylow $3$‑子群上的共轭作用。对于任何一个 Sylow $3$‑子群 $P$，根据 Sylow 定理，有 $|N_G(P)|=2$；但又有 $P\leqslant N_G(P)$，所以 $P=N_G(P)$。因此，这三个 Sylow $3$‑子群的正规化子的交集，即这个共轭作用的核，是平凡的。所以，这个作用是忠实的，它将 $G$ 嵌入到了这三个 Sylow $3$‑子群上的置换群 $S_3$。但是，因为 $|G|=|S_3|$，必然有 $G\cong S_3$。
 
 ## 有限生成 Abel 群
 
@@ -588,7 +588,7 @@ Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的
 这样的分析其实给出了一个群能够写成它的两个子群的直积的充分必要条件。
 
 ???+ note "定理"
-    对于群 $G$ 和它的子群 $H_1,H_2\le G$，$G\cong H_1\times H_2$ 当且仅当 $H_1,H_2\trianglelefteq G$，$H_1\cap H_2=\{e\}$ 且 $G=H_1H_2$。
+    对于群 $G$ 和它的子群 $H_1,H_2\leqslant G$，$G\cong H_1\times H_2$ 当且仅当 $H_1,H_2\trianglelefteq G$，$H_1\cap H_2=\{e\}$ 且 $G=H_1H_2$。
 
 ??? note "证明"
     这些条件的必要性在正文中已经讨论过，这里证明它们的充分性。考察映射 $\varphi:G\rightarrow H_1\times H_2$ 满足 $h_1h_2\mapsto(h_1,h_2)$。映射 $\varphi$ 是良定义的，因为对于任意 $h_1,k_1\in H_1$ 和 $h_2,k_2\in H_2$，满足 $h_1h_2=k_1k_2$ 就意味着 $h_1=k_1$ 和 $h_2=k_2$；这是因为 $k_1^{-1}h_1=k_2h_2^{-1}\in H_1\cap H_2=\{e\}$。要说明 $\varphi$ 是群同态，则就是要说明 $(h_1h_2)(k_1k_2)=h_1k_1h_2k_2$，这等价于 $k_1$ 和 $h_2$ 是可交换的，亦即 $k_1h_2k_1^{-1}h_2^{-1}=e$。要证明这一关系，只要注意到 $k_1h_2k_1^{-1}h_2^{-1}=(k_1h_2k_1^{-1})h_2^{-1}\in (k_1H_2k_1^{-1})H_2=H_2$，同理也有 $k_1(h_2k_1^{-1}h_2^{-1})\in H_1$，故而 $k_1h_2k_1^{-1}h_2^{-1}\in H_1\cap H_2=\{e\}$。这些就证明了 $\varphi$ 是群同态。它显然是双射，故而它是同构，即 $G\cong H_1\times H_2$。
@@ -607,7 +607,7 @@ Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的
 对于有限生成的 Abel 群，有如下分类定理。它称为 **有限生成 Abel 群基本定理**（fundamental theorem of finitely generated Abelian groups）。
 
 ???+ note "有限生成 Abel 群基本定理"
-    对于有限生成的 Abel 群 $G$，存在整数 $r\ge0$ 和 $n_1,\cdots,n_s\ge 2$，使得
+    对于有限生成的 Abel 群 $G$，存在整数 $r\geqslant0$ 和 $n_1,\cdots,n_s\geqslant 2$，使得
     
     $$
     G\cong C_\infty^r\times C_{n_1}\times\cdots\times C_{n_s}.
@@ -615,7 +615,7 @@ Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的
     
     特别地，$r$ 是唯一确定的，称为群 $G$ 的 **阶**（rank），而且
     
-    -   可以选取整数 $n_1,\cdots,n_s$ 使其满足 $n_1\ge2,\ n_1|n_2,\ \cdots,\ n_{s-1}|n_s$，此时，整数 $n_1,\cdots,n_s$ 唯一确定，因子 $C_{n_i}$ 称为群 $G$ 的 **不变因子**（invariant factor）；
+    -   可以选取整数 $n_1,\cdots,n_s$ 使其满足 $n_1\geqslant2,\ n_1|n_2,\ \cdots,\ n_{s-1}|n_s$，此时，整数 $n_1,\cdots,n_s$ 唯一确定，因子 $C_{n_i}$ 称为群 $G$ 的 **不变因子**（invariant factor）；
     -   也可以选取整数 $n_1,\cdots,n_s$ 使其都是素数幂的形式，此时，这些素数幂也都唯一确定，因子 $C_{n_i}$ 称为群 $G$ 的 **初等因子**（elementary divisor）。
 
 定理首先断言，有限生成的 Abel 群一定是有限多个循环群的直积。
@@ -625,7 +625,7 @@ Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的
     
     设 $G$ 最少可以由 $k$ 个元素生成。定理的证明需要对 $k$ 进行归纳。当 $k=1$ 时结论是平凡的。当 $k>1$ 时，取 $G$ 的全体生成元组 $\langle x_1,x_2,\cdots,x_k\rangle$ 中 $x_1$ 的阶最小的那个。下面要说明 $G=\langle x_1\rangle\times\langle x_2,\cdots,x_k\rangle$，后者则根据归纳假设已经可以分解成 $(k-1)$ 个循环群的直积，故归纳步骤得证。
     
-    根据群的直积的刻画，如果直积分解不成立，必然存在关系 $m_1x_1+m_2x_2+\cdots+m_kx_k=0$，且 $m_1x_1\neq 0$。对于负的系数 $m_i$，可以用逆元 $-x_i$ 代替 $x_i$，则所有系数 $m_i$ 都可以取作非负整数。而且，此时可以取 $0< m_1 <|x_1|$。如果再取 $d=\gcd(m_1,m_2,\cdots,m_k)$ 和 $c_i=m_i/d$，则必然有 $y_1=c_1x_1+c_2x_2+\cdots+c_kx_k$ 满足 $dy_1=0$，因而 $|y_1|\le d\le m_1< |x_1|$，即 $y_1$ 是比 $x_1$ 阶更小的元素。
+    根据群的直积的刻画，如果直积分解不成立，必然存在关系 $m_1x_1+m_2x_2+\cdots+m_kx_k=0$，且 $m_1x_1\neq 0$。对于负的系数 $m_i$，可以用逆元 $-x_i$ 代替 $x_i$，则所有系数 $m_i$ 都可以取作非负整数。而且，此时可以取 $0< m_1 <|x_1|$。如果再取 $d=\gcd(m_1,m_2,\cdots,m_k)$ 和 $c_i=m_i/d$，则必然有 $y_1=c_1x_1+c_2x_2+\cdots+c_kx_k$ 满足 $dy_1=0$，因而 $|y_1|\leqslant d\leqslant m_1< |x_1|$，即 $y_1$ 是比 $x_1$ 阶更小的元素。
     
     下面证明，$y_1$ 可以扩张成 $G$ 的一组生成元。也就是说，存在元素 $y_2,\cdots,y_k\in G$ 满足 $G=\langle y_1,y_2,\cdots,y_k\rangle$。这里唯一的已知条件是 $y_1$ 本身可以写作 $c_1x_1+c_2x_2+\cdots+c_kx_k$，其中，系数 $c_i$ 都是自然数且它们的最大公约数是一。不妨假设系数（非严格）递减排列，则 $y_1$ 也可以写作 $(c_1-c_2)x_1+c_2(x_1+x_2)+\cdots+c_kx_k$。此时，对比之前的条件，可以发现系数依然全部是自然数，且最大公约数是一，而且 $G=\langle x_1,x_1+x_2,x_3,\cdots,x_k\rangle$，但是全体系数的和减少了 $c_2$。如果 $c_2=0$，则必然有 $c_1=1$，结论是平凡的；否则，系数的和严格地减少了。这意味着，如果对系数的和进行归纳，就可以证明满足上述条件的 $y_1$ 总可以扩张成 $G$ 的一组生成元。
     
@@ -661,7 +661,7 @@ Cauchy 定理保证了 $p$‑子群的存在性。其实，通过更为细致的
 
 [^klein]: 这个群可以表示为置换群 $\{(1),(12)(34),(13)(24),(14)(23)\}$，也可以写作 $C_2\times C_2$。
 
-[^quotient]: 对于一般的子群 $H\le G$，也可以在全体左（右）陪集上尝试定义类似的运算。但是，这样的运算是良定义的，当且仅当 $H$ 是 $G$ 的正规子群。
+[^quotient]: 对于一般的子群 $H\leqslant G$，也可以在全体左（右）陪集上尝试定义类似的运算。但是，这样的运算是良定义的，当且仅当 $H$ 是 $G$ 的正规子群。
 
 [^group-action]: 比如 [Group action - Wikipedia](https://en.wikipedia.org/wiki/Group_action)。
 

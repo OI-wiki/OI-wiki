@@ -24,7 +24,7 @@ $$
 
 ### 代数解法
 
-首先，将 $a,b$ 对 $c$ 取模，可以简化问题，将问题转化为 $0\le a,b<c$ 的情形：
+首先，将 $a,b$ 对 $c$ 取模，可以简化问题，将问题转化为 $0\leqslant a,b<c$ 的情形：
 
 $$
 \begin{aligned}
@@ -87,10 +87,10 @@ $$
     
     考察 $S$ 和 $k$ 在算法过程中的变化。第一步取模时，$n$ 保持不变，$k$ 近似由 $a/c$ 变为 $(a\bmod c)/c$，相当于斜率由 $k$ 变为 $k-\lfloor k\rfloor$，而 $S$ 也近似变为原来的 $(k-\lfloor k\rfloor)$ 倍。第二步交换横纵坐标时，$S$ 近似保持不变，$k$ 则变为它的倒数。因此，若设两步操作后，二元组 $(k,S)$ 变为 $(k',S')$，则有 $k'=(k-\lfloor k\rfloor)^{-1}$ 且 $S'=(k-\lfloor k\rfloor)S$。
     
-    因为 $1\le\lfloor k'\rfloor\le k'<\lfloor k'\rfloor+1$，所以，递归计算两轮后，乘积缩小的倍数最少为
+    因为 $1\leqslant\lfloor k'\rfloor\leqslant k'<\lfloor k'\rfloor+1$，所以，递归计算两轮后，乘积缩小的倍数最少为
     
     $$
-    (k'-\lfloor k'\rfloor)(k-\lfloor k\rfloor) = 1-\dfrac{\lfloor k'\rfloor}{k'} < 1-\dfrac{\lfloor k'\rfloor}{\lfloor k'\rfloor+1} = \dfrac{1}{\lfloor k'\rfloor+1}\le \dfrac{1}{2}.
+    (k'-\lfloor k'\rfloor)(k-\lfloor k\rfloor) = 1-\dfrac{\lfloor k'\rfloor}{k'} < 1-\dfrac{\lfloor k'\rfloor}{\lfloor k'\rfloor+1} = \dfrac{1}{\lfloor k'\rfloor+1}\leqslant \dfrac{1}{2}.
     $$
     
     因此，至多 $O(\log S)$ 轮，算法必然终止。因为从第二轮开始，每轮开始时的 $S$ 总是不超过上一轮取模结束后的 $S$，而后者大致为 $kn^2$ 且 $k<1$，因而 $O(\log S)\subseteq O(\log n)$。这就得到了上述结论。
@@ -159,7 +159,7 @@ $$
 ??? note "解答一"
     类似于 $f$ 的推导，可以得到 $g,h$ 的递归表达式。
     
-    首先，利用取模，将问题转化为 $0\le a,b<c$ 的情形：
+    首先，利用取模，将问题转化为 $0\leqslant a,b<c$ 的情形：
     
     $$
     \begin{aligned}
@@ -251,7 +251,7 @@ $$
     k = \dfrac{a\sqrt{r}+b}{c}.
     $$
     
-    同样分为两种情形讨论。如果 $k\ge 1$，那么
+    同样分为两种情形讨论。如果 $k\geqslant 1$，那么
     
     $$
     \begin{aligned}
@@ -264,8 +264,8 @@ $$
     
     $$
     \begin{aligned}
-    f(a,b,c,n) &= \sum_{i=1}^n \lfloor ki\rfloor = \sum_{i=1}^n\sum_{j=1}^m[j\le\lfloor ki\rfloor]\\
-    &= \sum_{j=1}^m\sum_{i=1}^n[i>\lfloor k^{-1}j\rfloor] = nm - \sum_{j=1}^m\sum_{i=1}^n[i\le\lfloor k^{-1}j\rfloor].
+    f(a,b,c,n) &= \sum_{i=1}^n \lfloor ki\rfloor = \sum_{i=1}^n\sum_{j=1}^m[j\leqslant\lfloor ki\rfloor]\\
+    &= \sum_{j=1}^m\sum_{i=1}^n[i>\lfloor k^{-1}j\rfloor] = nm - \sum_{j=1}^m\sum_{i=1}^n[i\leqslant\lfloor k^{-1}j\rfloor].
     \end{aligned}
     $$
     
@@ -310,7 +310,7 @@ $$
     如果 $a/b$ 和 $c/d$ 之间（不含端点）存在至少一个自然数，可以直接取 $(q,p)=(1,\lfloor a/b\rfloor+1)$。否则，必然有
     
     $$
-    \left\lfloor\dfrac{a}{b}\right\rfloor \le \dfrac{a}{b} <\dfrac{p}{q} <\dfrac{c}{d}\le\left\lfloor\dfrac{a}{b}\right\rfloor+1.
+    \left\lfloor\dfrac{a}{b}\right\rfloor \leqslant \dfrac{a}{b} <\dfrac{p}{q} <\dfrac{c}{d}\leqslant\left\lfloor\dfrac{a}{b}\right\rfloor+1.
     $$
     
     从这个不等式中可以看出，$p/q$ 的整数部分可以确定为 $\lfloor a/b\rfloor$，直接消去该整数部分，然后整体取倒数，用于确定它的小数部分。这正是确定 $p/q$ 的连分数的 [基本方法](./continued-fraction.md#连分数表示的求法)。若最终的答案是 $p/q$，那么算法的时间复杂度为 $O(\log\min\{p,q\})$。
@@ -344,7 +344,7 @@ $$
 设参数为 $(a,b,c,n)$ 的线段为
 
 $$
-y = \frac{ax+b}{c},~0< x\le n.
+y = \frac{ax+b}{c},~0< x\leqslant n.
 $$
 
 对于这条线段，可以按照如下方法定义一个由 $U$ 和 $R$ 组成的字符串 $S$，也称为 **操作序列**：
@@ -422,7 +422,7 @@ $$
 
 约化过程具体如下：
 
--   当 $b\ge c$ 时，操作序列的开始有 $\lfloor b/c\rfloor$ 个 $U$，直接计算它们的乘积，并将这些 $U$ 从操作序列中移除。此时，第 $i$ 个 $R$ 前方的 $U$ 的数量等于
+-   当 $b\geqslant c$ 时，操作序列的开始有 $\lfloor b/c\rfloor$ 个 $U$，直接计算它们的乘积，并将这些 $U$ 从操作序列中移除。此时，第 $i$ 个 $R$ 前方的 $U$ 的数量等于
 
     $$
     \left\lfloor\dfrac{ai+b}{c}\right\rfloor - \left\lfloor\dfrac{b}{c}\right\rfloor = \left\lfloor\dfrac{ai+(b\bmod c)}{c}\right\rfloor.
@@ -434,7 +434,7 @@ $$
     F(a,b,c,n,U,R) = U^{\lfloor b/c\rfloor}F(a,b\bmod c,c,n,U,R).
     $$
 
--   当 $a\ge c$ 时，操作序列中每个 $R$ 的前方都至少有 $\lfloor a/c\rfloor$ 个 $U$，可以将它们合并到 $R$ 上。也就是说，可以用 $U^{\lfloor a/c\rfloor}R$ 替代 $R$。合并后的字符串中，第 $i$ 个 $R$ 前方的 $U$ 的数量等于
+-   当 $a\geqslant c$ 时，操作序列中每个 $R$ 的前方都至少有 $\lfloor a/c\rfloor$ 个 $U$，可以将它们合并到 $R$ 上。也就是说，可以用 $U^{\lfloor a/c\rfloor}R$ 替代 $R$。合并后的字符串中，第 $i$ 个 $R$ 前方的 $U$ 的数量等于
 
     $$
     \left\lfloor\dfrac{ai+b}{c}\right\rfloor - \left\lfloor\dfrac{a}{c}\right\rfloor i = \left\lfloor\dfrac{(a\bmod c)i+b}{c}\right\rfloor.
@@ -466,7 +466,7 @@ $$
 
     有两处细节需要处理：
 
-    -   截距项 $-(b+1)/a$ 为负数。注意到，如果将线段向左平移一个单位，就可以让截距项恢复为非负数，因为总有 $(c-b-1)/a\ge 0$。因此，可以将交换前的第一段 $R^{\lfloor(c-b-1)/a\rfloor}U$ 提取出来，只交换剩余操作序列中的 $U$ 和 $R$；
+    -   截距项 $-(b+1)/a$ 为负数。注意到，如果将线段向左平移一个单位，就可以让截距项恢复为非负数，因为总有 $(c-b-1)/a\geqslant 0$。因此，可以将交换前的第一段 $R^{\lfloor(c-b-1)/a\rfloor}U$ 提取出来，只交换剩余操作序列中的 $U$ 和 $R$；
     -   交换 $U$ 和 $R$ 后，结尾存在多余的 $U$。因此，交换 $U$ 和 $R$ 之前，需要首先将最后一段 $R$ 提取出来，只交换剩余操作序列中的 $U$ 和 $R$。这一段 $R$ 的数量为 $n-\lfloor(cm-b-1)/a\rfloor$。
 
     去掉头尾若干个字符后，第 $j$ 个 $U$ 前方的 $R$ 的数量变为：
@@ -508,9 +508,9 @@ $$
     
     $$
     \begin{aligned}
-    \dfrac{c-b_1-1}{a_1} &\le \dfrac{c}{a_1},\\
-    n-\left\lfloor\dfrac{cm-b_1-1}{a_1}\right\rfloor &\le n - \dfrac{cm-b_1-1}{a_1} + 1 \\
-    &\le n - \dfrac{c((a_1n+b_1)/c-1)-b_1-1}{a_1} +1 \\
+    \dfrac{c-b_1-1}{a_1} &\leqslant \dfrac{c}{a_1},\\
+    n-\left\lfloor\dfrac{cm-b_1-1}{a_1}\right\rfloor &\leqslant n - \dfrac{cm-b_1-1}{a_1} + 1 \\
+    &\leqslant n - \dfrac{c((a_1n+b_1)/c-1)-b_1-1}{a_1} +1 \\
     &= \dfrac{c+1}{a_1}+1.
     \end{aligned}
     $$
@@ -675,7 +675,7 @@ $$
     
     本题中，线段的参数为 $(k,n)$，其中，$k\in\mathbf R$ 为直线的斜率。设操作序列对应的乘积为 $F(k,n,U,R)$。那么，有如下递归算法：
     
-    -   如果 $k\ge 1$，那么操作序列中每个 $R$ 前方都有至少 $\lfloor k\rfloor$ 个 $U$，所以，有
+    -   如果 $k\geqslant 1$，那么操作序列中每个 $R$ 前方都有至少 $\lfloor k\rfloor$ 个 $U$，所以，有
     
         $$
         F(k,n,U,R) = F(k-\lfloor k\rfloor,n,U,U^{\lfloor k\rfloor} R).

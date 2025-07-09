@@ -530,4 +530,4 @@ Pólya 计数原理可以用于 [图论计数](../combinatorics/graph-enumeratio
 
 [^perm-group]: 因此，空间对称群 $G$ 可以表示是集合 $X$ 上的置换群，即对称群 $S_X$ 的子群。
 
-[^g-act]: 严格来说，是子群 $\langle g\rangle\le G$ 的作用。
+[^g-act]: 严格来说，是子群 $\langle g\rangle\leqslant G$ 的作用。

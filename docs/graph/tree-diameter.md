@@ -11,7 +11,7 @@
 ## 例题
 
 ???+ note "[SPOJ PT07Z, Longest path in a tree](https://www.spoj.com/problems/PT07Z/)"
-    给定一棵 $n$ 个节点的树，求其直径的长度。$1\leq n\leq 10^4$。
+    给定一棵 $n$ 个节点的树，求其直径的长度。$1\leqslant n\leqslant 10^4$。
 
 ## 做法 1. 两次 DFS
 

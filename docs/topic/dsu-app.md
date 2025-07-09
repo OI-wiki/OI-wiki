@@ -60,7 +60,7 @@ author: sshwy
 ## E
 
 ???+ note "E"
-    给出三个长度为 $n$ 的正整数序列 $a$，$b$，$c$。枚举 $1\le i\le j\le n$，求 $a_i\cdot b_j\cdot \min_{i\le k\le j}c_k$ 的最大值。
+    给出三个长度为 $n$ 的正整数序列 $a$，$b$，$c$。枚举 $1\leqslant i\leqslant j\leqslant n$，求 $a_i\cdot b_j\cdot \min_{i\leqslant k\leqslant j}c_k$ 的最大值。
 
 本题同样有许多做法，这里我们重点讲解并查集思路。按权值从大到小考虑 $c_k$。相当于我们在 $k$ 上加入一个点，然后将 $k-1$ 和 $k+1$ 位置上的点所在的连通块与之合并（如果这两个位置上有点的话）。连通块上记录 $a$ 的最大值和 $b$ 的最大值，即可在合并的时候更新答案。时间复杂度 $O(n\log n)$。
 

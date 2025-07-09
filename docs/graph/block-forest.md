@@ -307,7 +307,7 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
     ??? note "题意简述"
         给出一个简单无向连通图。有 $q$ 次询问：
         
-        每次给出一个点集 $S$（$2 \le |S| \le n$），问有多少个点 $u$ 满足 $u \notin S$ 且删掉 $u$ 之后 $S$ 中的点不全在一个连通分量中。
+        每次给出一个点集 $S$（$2 \leqslant |S| \leqslant n$），问有多少个点 $u$ 满足 $u \notin S$ 且删掉 $u$ 之后 $S$ 中的点不全在一个连通分量中。
         
         每个测试点有多组数据。
     

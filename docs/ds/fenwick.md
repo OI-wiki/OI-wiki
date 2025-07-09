@@ -87,7 +87,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 ### 管辖区间
 
-那么问题来了，$c[x](x \ge 1)$ 管辖的区间到底往左延伸多少？也就是说，区间长度是多少？
+那么问题来了，$c[x](x \geqslant 1)$ 管辖的区间到底往左延伸多少？也就是说，区间长度是多少？
 
 树状数组中，规定 $c[x]$ 管辖的区间长度为 $2^{k}$，其中：
 
@@ -200,16 +200,16 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 -   对于任意正整数 $x$，总能将 $x$ 表示成 $s \times 2^{k + 1} + 2^k$ 的形式，其中 $\operatorname{lowbit}(x) = 2^k$。
 -   下面「$c[x]$ 和 $c[y]$ 不交」指 $c[x]$ 的管辖范围和 $c[y]$ 的管辖范围不相交，即 $[l(x), x]$ 和 $[l(y), y]$ 不相交。「$c[x]$ 包含于 $c[y]$」等表述同理。
 
-**性质 $\boldsymbol{1}$：对于 $\boldsymbol{x \le y}$，要么有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交，要么有 $\boldsymbol{c[x]}$ 包含于 $\boldsymbol{c[y]}$。**
+**性质 $\boldsymbol{1}$：对于 $\boldsymbol{x \leqslant y}$，要么有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交，要么有 $\boldsymbol{c[x]}$ 包含于 $\boldsymbol{c[y]}$。**
 
 ??? note "证明"
-    证明：假设 $c[x]$ 和 $c[y]$ 相交，即 $[l(x), x]$ 和 $[l(y), y]$ 相交，则一定有 $l(y) \le x \le y$。
+    证明：假设 $c[x]$ 和 $c[y]$ 相交，即 $[l(x), x]$ 和 $[l(y), y]$ 相交，则一定有 $l(y) \leqslant x \leqslant y$。
     
-    将 $y$ 表示为 $s \times 2^{k +1} + 2^k$，则 $l(y) = s \times 2^{k + 1} + 1$。所以，$x$ 可以表示为 $s \times 2^{k +1} + b$，其中 $1 \le b \le 2^k$。
+    将 $y$ 表示为 $s \times 2^{k +1} + 2^k$，则 $l(y) = s \times 2^{k + 1} + 1$。所以，$x$ 可以表示为 $s \times 2^{k +1} + b$，其中 $1 \leqslant b \leqslant 2^k$。
     
-    不难发现 $\operatorname{lowbit}(x) = \operatorname{lowbit}(b)$。又因为 $b - \operatorname{lowbit}(b) \ge 0$，
+    不难发现 $\operatorname{lowbit}(x) = \operatorname{lowbit}(b)$。又因为 $b - \operatorname{lowbit}(b) \geqslant 0$，
     
-    所以 $l(x) = x - \operatorname{lowbit}(x) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \ge s \times 2^{k +1} + 1 = l(y)$，即 $l(y) \le l(x) \le x \le y$。
+    所以 $l(x) = x - \operatorname{lowbit}(x) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \geqslant s \times 2^{k +1} + 1 = l(y)$，即 $l(y) \leqslant l(x) \leqslant x \leqslant y$。
     
     所以，如果 $c[x]$ 和 $c[y]$ 相交，那么 $c[x]$ 的管辖范围一定完全包含于 $c[y]$。
 
@@ -218,18 +218,18 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 ??? note "证明"
     证明：设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$，则 $y = (s + 1) \times 2^{k +1}$，$l(x) = s \times 2^{k + 1} + 1$。
     
-    不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1}$，所以 $l(y) = (s + 1) \times 2^{k + 1} - \operatorname{lowbit}(y) + 1 \le s \times 2^{k +1} + 1= l(x)$，即 $l(y) \le l(x) \le x < y$。
+    不难发现 $\operatorname{lowbit}(y) \geqslant 2^{k + 1}$，所以 $l(y) = (s + 1) \times 2^{k + 1} - \operatorname{lowbit}(y) + 1 \leqslant s \times 2^{k +1} + 1= l(x)$，即 $l(y) \leqslant l(x) \leqslant x < y$。
     
     所以，$c[x]$ 真包含于 $c[x + \operatorname{lowbit}(x)]$。
 
 **性质 $3$：对于任意 $\boldsymbol{x < y < x + \operatorname{lowbit}(x)}$，有 $\boldsymbol{c[x]}$ 和 $\boldsymbol{c[y]}$ 不交。**
 
 ??? note "证明"
-    证明：设 $x = s \times 2^{k + 1} + 2^k$，则 $y = x + b = s \times 2^{k + 1} + 2^k + b$，其中 $1 \le b < 2^k$。
+    证明：设 $x = s \times 2^{k + 1} + 2^k$，则 $y = x + b = s \times 2^{k + 1} + 2^k + b$，其中 $1 \leqslant b < 2^k$。
     
-    不难发现 $\operatorname{lowbit}(y) = \operatorname{lowbit}(b)$。又因为 $b - \operatorname{lowbit}(b) \ge 0$，
+    不难发现 $\operatorname{lowbit}(y) = \operatorname{lowbit}(b)$。又因为 $b - \operatorname{lowbit}(b) \geqslant 0$，
     
-    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + b - \operatorname{lowbit}(b) + 1 > x$，即 $l(x) \le x < l(y) \le y$。
+    因此 $l(y) = y - \operatorname{lowbit}(y) + 1 = x + b - \operatorname{lowbit}(b) + 1 > x$，即 $l(x) \leqslant x < l(y) \leqslant y$。
     
     所以，$c[x]$ 和 $c[y]$ 不交。
 
@@ -239,7 +239,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 事实上，树状数组的树形态是 $x$ 向 $x + \operatorname{lowbit}(x)$ 连边得到的图，其中 $x + \operatorname{lowbit}(x)$ 是 $x$ 的父亲。
 
-注意，在考虑树状数组的树形态时，我们不考虑树状数组大小的影响，即我们认为这是一棵无限大的树，方便分析。实际实现时，我们只需用到 $x \le n$ 的 $c[x]$，其中 $n$ 是原数组长度。
+注意，在考虑树状数组的树形态时，我们不考虑树状数组大小的影响，即我们认为这是一棵无限大的树，方便分析。实际实现时，我们只需用到 $x \leqslant n$ 的 $c[x]$，其中 $n$ 是原数组长度。
 
 这棵树天然满足了很多美好性质，下面列举若干（设 $fa[u]$ 表示 $u$ 的直系父亲）：
 
@@ -248,7 +248,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 -   点 $u$ 的 $\operatorname{lowbit}$ 严格小于 $fa[u]$ 的 $\operatorname{lowbit}$。
 
 ??? note "证明"
-    设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$，则 $y = (s + 1) \times 2^{k +1}$，不难发现 $\operatorname{lowbit}(y) \ge 2^{k + 1} > \operatorname{lowbit}(x)$，证毕。
+    设 $y = x + \operatorname{lowbit}(x)$，$x = s \times 2^{k + 1} + 2^k$，则 $y = (s + 1) \times 2^{k +1}$，不难发现 $\operatorname{lowbit}(y) \geqslant 2^{k + 1} > \operatorname{lowbit}(x)$，证毕。
 
 -   点 $x$ 的高度是 $\log_2\operatorname{lowbit}(x)$，即 $x$ 二进制最低位 `1` 的位数。
 
@@ -269,7 +269,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 -   对于任意 $v < u$，如果 $v$ 不在 $u$ 的子树上，则 $c[u]$ 和 $c[v]$ 不交（上面那条性质 $u$，$v'$ 颠倒）。
 -   对于任意 $v > u$，当且仅当 $v$ 是 $u$ 的祖先，$c[u]$ 真包含于 $c[v]$（上面几条性质的总结）。这就是树状数组单点修改的核心原理。
--   设 $u = s \times 2^{k + 1} + 2^k$，则其儿子数量为 $k = \log_2\operatorname{lowbit}(u)$，编号分别为 $u - 2^t(0 \le t < k)$。
+-   设 $u = s \times 2^{k + 1} + 2^k$，则其儿子数量为 $k = \log_2\operatorname{lowbit}(u)$，编号分别为 $u - 2^t(0 \leqslant t < k)$。
     -   举例：假设 $k = 3$，$u$ 的二进制编号为 `...1000`，则 $u$ 有三个儿子，二进制编号分别为 `...0111`、`...0110`、`...0100`。
 
 ??? note "证明"
@@ -277,7 +277,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
     
     考虑 $u$ 的儿子 $v$，有 $v + \operatorname{lowbit}(v) = u$，即 $v = u - 2^t$ 且 $\operatorname{lowbit}(v) = 2^t$。设 $u = s \times 2^{k + 1} + 2^k$。
     
-    **考虑 $\boldsymbol{0 \le t < k}$**，$u$ 的第 $t$ 位及后方均为 $0$，所以 $v = u - 2^t$ 的第 $t$ 位变为 $1$，后面仍为 $0$，**满足** $\operatorname{lowbit}(v) = 2^t$。
+    **考虑 $\boldsymbol{0 \leqslant t < k}$**，$u$ 的第 $t$ 位及后方均为 $0$，所以 $v = u - 2^t$ 的第 $t$ 位变为 $1$，后面仍为 $0$，**满足** $\operatorname{lowbit}(v) = 2^t$。
     
     **考虑 $\boldsymbol{t = k}$**，则 $v = u - 2^k$，$v$ 的第 $k$ 位变为 $0$，**不满足** $\operatorname{lowbit}(v) = 2^t$。
     
@@ -291,7 +291,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
     -   不难发现上面是三个管辖区间的并集恰好是 `a[...0001 ~ ...0111]`，即 $[l(u), u - 1]$。
 
 ??? note "证明"
-    $u$ 的儿子总能表示成 $u - 2^t(0 \le t < k)$，不难发现，$t$ 越小，$u - 2^t$ 越大，代表的区间越靠右。我们设 $f(t) = u - 2^t$，则 $f(k - 1), f(k - 2), \ldots, f(0)$ 分别构成 $u$ 从左到右的儿子。
+    $u$ 的儿子总能表示成 $u - 2^t(0 \leqslant t < k)$，不难发现，$t$ 越小，$u - 2^t$ 越大，代表的区间越靠右。我们设 $f(t) = u - 2^t$，则 $f(k - 1), f(k - 2), \ldots, f(0)$ 分别构成 $u$ 从左到右的儿子。
     
     不难发现 $\operatorname{lowbit}(f(t)) = 2^t$，所以 $l(f(t)) = u - 2^t - 2^t + 1 = u - 2^{t + 1} + 1$。
     
@@ -362,7 +362,7 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 时间复杂度：
 
 -   对于区间查询操作：整个 $x \gets x - \operatorname{lowbit}(x)$ 的迭代过程，可看做将 $x$ 二进制中的所有 $1$，从低位到高位逐渐改成 $0$ 的过程，拆分出的区间数等于 $x$ 二进制中 $1$ 的数量（即 $\operatorname{popcount}(x)$）。因此，单次查询时间复杂度是 $\Theta(\log n)$；
--   对于单点修改操作：跳父亲时，访问到的高度一直严格增加，且始终有 $x \le n$。由于点 $x$ 的高度是 $\log_2\operatorname{lowbit}(x)$，所以跳到的高度不会超过 $\log_2n$，所以访问到的 $c$ 的数量是 $\log n$ 级别。因此，单次单点修改复杂度是 $\Theta(\log n)$。
+-   对于单点修改操作：跳父亲时，访问到的高度一直严格增加，且始终有 $x \leqslant n$。由于点 $x$ 的高度是 $\log_2\operatorname{lowbit}(x)$，所以跳到的高度不会超过 $\log_2n$，所以访问到的 $c$ 的数量是 $\log n$ 级别。因此，单次单点修改复杂度是 $\Theta(\log n)$。
 
 ## 区间加区间和
 
@@ -498,7 +498,7 @@ $$
 
 即 $f(x, i)$ 为 $x$ 在树状数组树形态上的第 $i$ 级祖先（第 $0$ 级祖先是自己）。
 
-则只有 $c(f(x, i), f(y, j))$ 中的元素管辖 $a(x, y)$，修改 $a(x, y)$ 时只需修改所有 $c(f(x, i), f(y, j))$，其中 $f(x, i) \le n$，$f(y, j) \le m$。
+则只有 $c(f(x, i), f(y, j))$ 中的元素管辖 $a(x, y)$，修改 $a(x, y)$ 时只需修改所有 $c(f(x, i), f(y, j))$，其中 $f(x, i) \leqslant n$，$f(y, j) \leqslant m$。
 
 ??? note "正确性证明"
     $c(p, q)$ 管辖 $a(x, y)$，求 $p$ 和 $q$ 的取值范围。
@@ -698,7 +698,7 @@ $$
 
 对于单点修改，只需将对原数列的单点修改转化为对权值数组的单点修改即可。具体来说，原数组 $a[x]$ 从 $y$ 修改为 $z$，转化为对权值数组 $b$ 的单点修改就是 $b[y]$ 单点减 $1$，$b[z]$ 单点加 $1$。
 
-对于查询第 $k$ 小，考虑二分 $x$，查询权值数组中 $[1, x]$ 的前缀和，找到 $x_0$ 使得 $[1, x_0]$ 的前缀和 $< k$ 而 $[1, x_0 + 1]$ 的前缀和 $\ge k$，则第 $k$ 大的数是 $x_0 + 1$（注：这里认为 $[1, 0]$ 的前缀和是 $0$）。
+对于查询第 $k$ 小，考虑二分 $x$，查询权值数组中 $[1, x]$ 的前缀和，找到 $x_0$ 使得 $[1, x_0]$ 的前缀和 $< k$ 而 $[1, x_0 + 1]$ 的前缀和 $\geqslant k$，则第 $k$ 大的数是 $x_0 + 1$（注：这里认为 $[1, 0]$ 的前缀和是 $0$）。
 
 这样做时间复杂度是 $\Theta(\log^2n)$ 的。
 
@@ -783,14 +783,14 @@ $i$ 按照 $5 \to 1$ 扫：
 注意到，遍历 $i$ 后的查询 $b[1 \ldots x - 1]$ 和自增 $b[x]$ 的两个步骤可以颠倒，变成先自增 $b[x]$ 再查询 $b[1 \ldots x - 1]$，不影响答案。两个角度来解释：
 
 -   对 $b[x]$ 的修改不影响对 $b[1 \ldots x - 1]$ 的查询。
--   颠倒后，实质是在查询 $i \le j$ 且 $a[i] > a[j]$ 的数对数量，而 $i = j$ 时不存在 $a[i] > a[j]$，所以 $i \le j$ 相当于 $i < j$，所以这与原来的逆序对问题是等价的。
+-   颠倒后，实质是在查询 $i \leqslant j$ 且 $a[i] > a[j]$ 的数对数量，而 $i = j$ 时不存在 $a[i] > a[j]$，所以 $i \leqslant j$ 相当于 $i < j$，所以这与原来的逆序对问题是等价的。
 
-如果查询非严格逆序对（$i < j$ 且 $a[i] \ge a[j]$）的数量，那就要改为查询 $b[1 \ldots x]$ 的和，这时就不能颠倒两步了，还是两个角度来解释：
+如果查询非严格逆序对（$i < j$ 且 $a[i] \geqslant a[j]$）的数量，那就要改为查询 $b[1 \ldots x]$ 的和，这时就不能颠倒两步了，还是两个角度来解释：
 
 -   对 $b[x]$ 的修改 **影响** 对 $b[1 \ldots x]$ 的查询。
--   颠倒后，实质是在查询 $i \le j$ 且 $a[i] \ge a[j]$ 的数对数量，而 $i = j$ 时恒有 $a[i] \ge a[j]$，所以 $i \le j$  **不相当于**  $i < j$，与原问题 **不等价**。
+-   颠倒后，实质是在查询 $i \leqslant j$ 且 $a[i] \geqslant a[j]$ 的数对数量，而 $i = j$ 时恒有 $a[i] \geqslant a[j]$，所以 $i \leqslant j$  **不相当于**  $i < j$，与原问题 **不等价**。
 
-如果查询 $i \le j$ 且 $a[i] \ge a[j]$ 的数对数量，那这两步就需要颠倒了。
+如果查询 $i \leqslant j$ 且 $a[i] \geqslant a[j]$ 的数对数量，那这两步就需要颠倒了。
 
 另外，对于原逆序对问题，还有一种做法是正着枚举 $j$，查询有多少 $i < j$ 满足 $a[i] > a[j]$。做法如下（设 $x = a[j]$）：
 
@@ -838,9 +838,9 @@ $i$ 按照 $5 \to 1$ 扫：
 可以证明，上述算法的时间复杂度是 $\Theta(\log^2n)$。
 
 ??? note "时间复杂度证明"
-    考虑 $r$ 和 $l$ 不同的最高位，一定有 $r$ 在这一位上为 $1$，$l$ 在这一位上为 $0$（因为 $r \ge l$）。
+    考虑 $r$ 和 $l$ 不同的最高位，一定有 $r$ 在这一位上为 $1$，$l$ 在这一位上为 $0$（因为 $r \geqslant l$）。
     
-    如果 $r$ 在这一位的后面仍然有 $1$，一定有 $r - \operatorname{lowbit}(r) \ge l$，所以下一步一定是把 $r$ 的最低位 $1$ 填为 $0$；
+    如果 $r$ 在这一位的后面仍然有 $1$，一定有 $r - \operatorname{lowbit}(r) \geqslant l$，所以下一步一定是把 $r$ 的最低位 $1$ 填为 $0$；
     
     如果 $r$ 的这一位 $1$ 就是 $r$ 的最低位 $1$，无论是 $r \gets r - \operatorname{lowbit}(r)$ 还是 $r \gets r - 1$，$r$ 的这一位 $1$ 一定会变为 $0$。
     
@@ -851,7 +851,7 @@ $i$ 按照 $5 \to 1$ 扫：
 ???+ note "注"
     请先理解树状数组树形态的以下两条性质，再学习本节。
     
-    -   设 $u = s \times 2^{k + 1} + 2^k$，则其儿子数量为 $k = \log_2\operatorname{lowbit}(u)$，编号分别为 $u - 2^t(0 \le t < k)$。
+    -   设 $u = s \times 2^{k + 1} + 2^k$，则其儿子数量为 $k = \log_2\operatorname{lowbit}(u)$，编号分别为 $u - 2^t(0 \leqslant t < k)$。
     -   $u$ 的所有儿子对应 $c$ 的管辖区间恰好拼接成 $[l(u), u - 1]$。
     
     关于这两条性质的含义及证明，都可以在本页面的 [树状数组与其树形态的性质](#树状数组与其树形态的性质) 一节找到。

@@ -37,7 +37,7 @@ $$
 10 &  \qquad \qquad \textbf{if } \text{IsSolution}(\textit{CurrentState}) \textbf{ then} \\
 11 &  \qquad \qquad \qquad \textit{Success} \gets \text{true} \\
 12 &  \qquad \qquad \qquad \textbf{break} \\
-13 &  \qquad \qquad \textbf{elseif } \textit{PathLimit} \geq \textit{CurrentState}.g + H(\textit{CurrentState}) \textbf{ then} \\
+13 &  \qquad \qquad \textbf{elseif } \textit{PathLimit} \geqslant \textit{CurrentState}.g + H(\textit{CurrentState}) \textbf{ then} \\
 14 &  \qquad \qquad \qquad \textbf{for } \text{each }\textit{Child}\text{ of }\textit{CurrentState}\textbf{ do} \\
 15 &  \qquad \qquad \qquad \qquad \textit{Child}.g \gets \textit{CurrentState}.g + \text{Cost}(\textit{CurrentState}, \textit{Child}) \\
 16 &  \qquad \qquad \qquad \qquad \text{push } \textit{Child} \text{ to } \textit{OpenStack} \\

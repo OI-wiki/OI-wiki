@@ -338,16 +338,16 @@ T find_kth_element(T arr[], int rk, const int len) {
 综上，我们可以列出这样的不等式：
 
 $$
-T(n) \leq T(\dfrac{n}{5}) + T(\dfrac{7n}{10}) + O(n)
+T(n) \leqslant T(\dfrac{n}{5}) + T(\dfrac{7n}{10}) + O(n)
 $$
 
-假设 $T(n) = O(n)$ 在问题规模足够小时成立。根据定义，此时有 $T(n) \leq cn$，其中 $c$ 为一正常数。将不等式右边的所有 $T(n)$ 进行代换：
+假设 $T(n) = O(n)$ 在问题规模足够小时成立。根据定义，此时有 $T(n) \leqslant cn$，其中 $c$ 为一正常数。将不等式右边的所有 $T(n)$ 进行代换：
 
 $$
 \begin{aligned}
-T(n) & \leq T(\dfrac{n}{5}) + T(\dfrac{7n}{10}) + O(n)\\
-     & \leq \dfrac{cn}{5} + \dfrac{7cn}{10} + O(n)\\
-     & \leq \dfrac{9cn}{10} + O(n)\\
+T(n) & \leqslant T(\dfrac{n}{5}) + T(\dfrac{7n}{10}) + O(n)\\
+     & \leqslant \dfrac{cn}{5} + \dfrac{7cn}{10} + O(n)\\
+     & \leqslant \dfrac{9cn}{10} + O(n)\\
      & = O(n)
 \end{aligned}
 $$

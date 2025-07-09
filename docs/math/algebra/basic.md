@@ -67,7 +67,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
 ???+ example "Abel 群和非 Abel 群的例子"
     -   整数加法群 $(\mathbf Z,+)$ 就是一个 Abel 群。
-    -   当 $n\ge3$ 时，对称群 $S_n$ 并不是 Abel 群。
+    -   当 $n\geqslant3$ 时，对称群 $S_n$ 并不是 Abel 群。
 
 这些就是群论相关的基本定义。群论的更多内容，可以参考 [群论](./group-theory.md) 或相关书籍。
 
@@ -211,7 +211,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     基于热带半环 $(R,\oplus,\otimes)$，可以定义它上面的矩阵乘法。即对于 $m\times n$ 维矩阵 $A=(a_{ij})$ 和 $n\times p$ 维矩阵 $B=(b_{jk})$，可以定义其乘积 $AB$ 为 $(c_{ik})$，它的每项元素等于
     
     $$
-    c_{ik} = \bigoplus_{j=1}^n(b_{ij}\otimes c_{jk}) = \max_{1\le j\le n}\;(b_{ij}+c_{jk}).
+    c_{ik} = \bigoplus_{j=1}^n(b_{ij}\otimes c_{jk}) = \max_{1\leqslant j\leqslant n}\;(b_{ij}+c_{jk}).
     $$
     
     有了这些记号，可以将上述递推关系看作是热带半环上的线性变换，并用矩阵语言写作

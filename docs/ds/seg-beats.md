@@ -7,17 +7,17 @@
 ???+ note "[HDU5306 Gorgeous Sequence](https://acm.hdu.edu.cn/showproblem.php?pid=5306)"
     维护一个序列 $a$，执行以下操作：
     
-    1.  `0 l r t` $\forall l\le i\le r,~ a_i=\min(a_i,t)$。
+    1.  `0 l r t` $\forall l\leqslant i\leqslant r,~ a_i=\min(a_i,t)$。
     2.  `1 l r` 输出 $\max\limits_{i=l}^r a_i$。
     3.  `2 l r` 输出 $\sum\limits_{i=l}^r a_i$。
     
-    多组测试数据，保证 $T\le 100,~\sum n,\sum m\le 10^6$。
+    多组测试数据，保证 $T\leqslant 100,~\sum n,\sum m\leqslant 10^6$。
 
 区间取 $\min$，意味着只对那些大于 $t$ 的数有更改。因此这个操作的对象不再是整个区间，而是「这个区间中大于 $t$ 的数」。于是我们可以有这样的思路：每个结点维护该区间的最大值 $Max$、次大值 $Se$、区间和 $Sum$ 以及最大值的个数 $Cnt$。接下来我们考虑区间对 $t$ 取 $\min$ 的操作。
 
-1.  如果 $Max\le t$，显然这个 $t$ 是没有意义的，直接返回；
+1.  如果 $Max\leqslant t$，显然这个 $t$ 是没有意义的，直接返回；
 2.  如果 $Se<t < Max$，那么这个 $t$ 就能更新当前区间中的最大值。于是我们让区间和加上 $Cnt(t-Max)$，然后更新 $Max$ 为 $t$，并打一个标记。
-3.  如果 $t\le Se$，那么这时你发现你不知道有多少个数涉及到更新的问题。于是我们的策略就是，暴力递归向下操作。然后上传信息。
+3.  如果 $t\leqslant Se$，那么这时你发现你不知道有多少个数涉及到更新的问题。于是我们的策略就是，暴力递归向下操作。然后上传信息。
 
 这个算法的复杂度如何？使用势能分析法可以得到复杂度是 $O(m\log n)$ 的。具体分析过程见论文。
 
@@ -28,14 +28,14 @@
 ???+ note "[BZOJ4695 最假女选手](https://loj.ac/p/6565)"
     维护一个序列 $a$，执行以下操作：
     
-    1.  `1 l r x` $\forall l\le i\le r,~ a_i=a_i+x$。
-    2.  `2 l r x` $\forall l\le i\le r,~ a_i=\max(a_i,x)$。
-    3.  `3 l r x` $\forall l\le i\le r,~ a_i=\min(a_i,x)$。
+    1.  `1 l r x` $\forall l\leqslant i\leqslant r,~ a_i=a_i+x$。
+    2.  `2 l r x` $\forall l\leqslant i\leqslant r,~ a_i=\max(a_i,x)$。
+    3.  `3 l r x` $\forall l\leqslant i\leqslant r,~ a_i=\min(a_i,x)$。
     4.  `4 l r` 输出 $\sum\limits_{i=l}^r a_i$。
     5.  `5 l r` 输出 $\max\limits_{i=l}^r a_i$。
     6.  `6 l r` 输出 $\min\limits_{i=l}^r a_i$。
     
-    $n,m\le 5\times 10^5,~|a_i|\le 10^8$。所有类型 $1$ 操作有 $|x|\le 10^3$，其余操作满足 $|x|\le10^8$。
+    $n,m\leqslant 5\times 10^5,~|a_i|\leqslant 10^8$。所有类型 $1$ 操作有 $|x|\leqslant 10^3$，其余操作满足 $|x|\leqslant10^8$。
 
 同样的方法，我们维护最大、次大、最大个数、最小、次小、最小个数、区间和。除了这些信息，我们还需要维护区间 $\max$、区间 $\min$、区间加的标记。相比上一道题，这就涉及到标记下传的顺序问题了。我们采用这样的策略：
 
@@ -60,7 +60,7 @@
     3.  对 $A$ 做区间加
     4.  询问 $B$ 的区间和
     
-    每次操作完后，如果 $A_i$ 的值发生变化，就给 $B_i$ 加 $1$。$n,m\le 3\times 10^5$。
+    每次操作完后，如果 $A_i$ 的值发生变化，就给 $B_i$ 加 $1$。$n,m\leqslant 3\times 10^5$。
 
 先考虑最容易的区间加操作。只要 $x\neq 0$ 那么整个区间的数都变化，所以给 B 作一次区间加即可。
 
@@ -69,13 +69,13 @@
 ???+ note "[CTSN loves segment tree](https://www.luogu.com.cn/problem/U180387)"
     维护两个序列 $a,b$，执行以下操作：
     
-    1.  `1 l r x` $\forall l\le i\le r,~ a_i=\min(a_i,x)$。
-    2.  `2 l r x` $\forall l\le i\le r,~ b_i=\min(b_i,x)$。
-    3.  `3 l r x` $\forall l\le i\le r,~ a_i=a_i+x$。
-    4.  `4 l r x` $\forall l\le i\le r,~ b_i=b_i+x$。
+    1.  `1 l r x` $\forall l\leqslant i\leqslant r,~ a_i=\min(a_i,x)$。
+    2.  `2 l r x` $\forall l\leqslant i\leqslant r,~ b_i=\min(b_i,x)$。
+    3.  `3 l r x` $\forall l\leqslant i\leqslant r,~ a_i=a_i+x$。
+    4.  `4 l r x` $\forall l\leqslant i\leqslant r,~ b_i=b_i+x$。
     5.  `5 l r` 输出 $\max\limits_{i=l}^r (a_i+b_i)$。
     
-    $n,m\le 3\times 10^5,~|a_i|,|b_i|,|x|\le 10^9$。
+    $n,m\leqslant 3\times 10^5,~|a_i|,|b_i|,|x|\leqslant 10^9$。
 
 我们把区间 $[l,r]$ 中的备选答案 $A_i+B_i$ 分成四类：$A_i,B_i$ 均不是序列 $A,B$ 区间最大值、$A_i$ 是序列 $A$ 区间最大值但是 $B_i$ 不是序列 $B$ 区间最大值、$A_i$ 不是序列 $A$ 区间最大值但是 $B_i$ 是序列 $B$ 区间最大值、$A_i,B_i$ 均是序列 $A,B$ 区间最大值。我们不妨分别设为 $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$。此外我们正常维护序列 $A,B$ 的区间最大值和次大值。下传区间加法标记和 $\min$ 标记时对 $A,B$ 最大值和次大值的处理与上述两个例题一致。对 $A$ 的 $\min$ 标记会影响到 $C_{1,1}$ 和 $C_{1,0}$，对 $B$ 的标记会影响到 $C_{1,1}$ 和 $C_{0,1}$。对 $A,B$ 的加法则会对 $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ 均产生影响。只需要注意 $C_{0,0},C_{1,0},C_{0,1}$ 不存在的边界情况即可（例如区间 $[i,i]$ 只有 $A,B$ 的最大值与 $C_{1,1}$ 存在）。
 
@@ -140,7 +140,7 @@ $$
     3.  询问 $A$ 的区间 $\max$
     4.  询问 $B$ 的区间 $\max$
     
-    每次操作后，我们都进行一次更新，$\forall i\in [1,n],\ B_i=\max(B_i,A_i)$。$n,m\le 10^5$。
+    每次操作后，我们都进行一次更新，$\forall i\in [1,n],\ B_i=\max(B_i,A_i)$。$n,m\leqslant 10^5$。
 
 我们先不考虑操作 1。那么只有区间加的操作，我们维护标记 $Add$ 表示当前区间增加的值，这个标记可以解决区间 $\max$ 的问题。接下来考虑历史区间 $\max$。我们定义标记 $Pre$，该标记的含义是：在该标记的生存周期内，$Add$ 标记的历史最大值。
 

@@ -6,7 +6,7 @@ Berlekamp–Massey 算法是一种用于求数列的最短递推式的算法。�
 
 定义一个数列 $\{a_0 \dots a_{n - 1} \}$ 的递推式为满足下式的序列 $\{r_0\dots r_m\}$：
 
-$\sum_{j = 0} ^ m r_j a_{i - j} = 0, \forall i \ge m$
+$\sum_{j = 0} ^ m r_j a_{i - j} = 0, \forall i \geqslant m$
 
 其中 $r_0 = 1$。$m$ 称为该递推式的 **阶数**。
 
@@ -16,7 +16,7 @@ $\sum_{j = 0} ^ m r_j a_{i - j} = 0, \forall i \ge m$
 
 与上面定义的稍有不同，这里定义一个新的递推系数 $\{f_0 \dots f_{m - 1}\}$，满足：
 
-$a_i = \sum_{j = 0} ^ {m - 1} f_j a_{i - j - 1}, \forall i \ge m$
+$a_i = \sum_{j = 0} ^ {m - 1} f_j a_{i - j - 1}, \forall i \geqslant m$
 
 容易看出 $f_i = -r_{i + 1}$，并且阶数 $m$ 与之前的定义是相同的。
 
@@ -143,13 +143,13 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_{k
 
 实际上不用调用矩阵乘法，因为求最小多项式时要用 $Q A P A^T Q$ 乘一个向量，所以我们依次把这几个矩阵乘到向量里就行了。答案就是最小多项式除掉所有 $x$ 因子后剩下的次数。
 
-设 $A$ 有 $k$ 个非零项，且 $n \le m$，则复杂度为 $O(kn + n ^ 2)$。
+设 $A$ 有 $k$ 个非零项，且 $n \leqslant m$，则复杂度为 $O(kn + n ^ 2)$。
 
 #### 解稀疏方程组
 
 **问题**：已知 $A \mathbf x = \mathbf b$, 其中 $A$ 是一个 $n \times n$ 的 **满秩** 稀疏矩阵，$\mathbf b$ 和 $\mathbf x$ 是 $1\times n$ 的列向量。$A, \mathbf b$ 已知，需要在低于 $n^\omega$ 的复杂度内解出 $x$。
 
-**做法**：显然 $\mathbf x = A^{-1} \mathbf b$。如果我们能求出 $\{A^i \mathbf b\}$($i \ge 0$) 的最小递推式 $\{r_0 \dots r_{m - 1}\}$($m \le n$), 那么就有结论
+**做法**：显然 $\mathbf x = A^{-1} \mathbf b$。如果我们能求出 $\{A^i \mathbf b\}$($i \geqslant 0$) 的最小递推式 $\{r_0 \dots r_{m - 1}\}$($m \leqslant n$), 那么就有结论
 
 $A^{-1} \mathbf b = -\frac 1 {r_{m - 1}} \sum_{i = 0} ^ {m - 2} A^i \mathbf b r_{m - 2 - i}$
 

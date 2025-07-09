@@ -3,7 +3,7 @@
 ???+ note "[例题 1：Codeforces Beta Round 11 D. A Simple Task](https://codeforces.com/problemset/problem/11/D)"
     给定一个简单图，求图中简单环的数目。简单环是指没有重复顶点或边的环。
     
-    结点数目 $1\leq n\leq 19$。
+    结点数目 $1\leqslant n\leqslant 19$。
 
 ??? note "解题思路"
     考虑状态压缩动态规划。记 $f(s,i)$ 表示满足当前经过结点集合为 $s$，且现在在结点 $i$ 上，且第一个结点为结点集合 $s$ 中 **编号最小的那个** 的路径条数。
@@ -39,9 +39,9 @@
     
     对于每一对 $(v,\ w)$，$u$ 的数量都不超过 $v$ 的入度 $d^-(v)$。
     
-    若 $d^-(v)\leq\sqrt m$，由于 $w$ 的个数至多为 $n$，所以这部分时间复杂度为 $O(n\sqrt m)$。
+    若 $d^-(v)\leqslant\sqrt m$，由于 $w$ 的个数至多为 $n$，所以这部分时间复杂度为 $O(n\sqrt m)$。
     
-    若 $d^-(v) > \sqrt m$，由于 $v$ 指向 $w$，所以 $d(v) \leq d(w)$，得出 $d(w) > \sqrt m$，但是总边数只有 $m$，所以这样的 $w$ 的个数至多为 $\sqrt m$，故时间复杂度为 $O(m\sqrt m)$。
+    若 $d^-(v) > \sqrt m$，由于 $v$ 指向 $w$，所以 $d(v) \leqslant d(w)$，得出 $d(w) > \sqrt m$，但是总边数只有 $m$，所以这样的 $w$ 的个数至多为 $\sqrt m$，故时间复杂度为 $O(m\sqrt m)$。
     
     总时间复杂度为 $O(n+m+n\sqrt m+m\sqrt m)=O(m\sqrt m)$。
     
@@ -59,7 +59,7 @@
     
     ![](./images/rings-count1.svg)
     
-    $2\leq n\leq 10^5$，$1\leq m\leq\min\left\{2\times 10^5,\ \dfrac{n(n-1)}2\right\}$。
+    $2\leqslant n\leqslant 10^5$，$1\leqslant m\leqslant\min\left\{2\times 10^5,\ \dfrac{n(n-1)}2\right\}$。
 
 ??? note "解题思路"
     这个图形是两个三元环共用了一条边形成的。所以我们先跑一遍三元环计数，统计出一条边上三元环的数量，然后枚举共用的那条边，设有 $x$ 个三元环中有此边，那么对答案的贡献就是 $\dbinom x2$。
@@ -95,7 +95,7 @@
 ???+ note "[Gym 102028L Connected Subgraphs](https://codeforces.com/gym/102028/problem/L)"
     给定一张有 $n$ 个点和 $m$ 条边的无向图，求四条边的导出子图连通的情况数。
     
-    $4\leq n\leq 10^5$，$4\leq m\leq 2\times 10^5$。
+    $4\leqslant n\leqslant 10^5$，$4\leqslant m\leqslant 2\times 10^5$。
 
 ??? note "解题思路"
     容易把情况分为五种：菊花图、四元环、三元环上一个点连出一条边、四个点构成的链中间一个点连出一条边以及五个点构成的链。

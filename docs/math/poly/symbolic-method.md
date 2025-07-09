@@ -9,7 +9,7 @@
 在无标号体系中将使用普通生成函数（OGF）。对于集合 $\mathcal{A}$ 其对应 OGF 记为
 
 $$
-A(z)=\sum_{\alpha\in\mathcal{A}}z^{\lvert \alpha \rvert}=\sum_{n\geq 0}a_nz^n
+A(z)=\sum_{\alpha\in\mathcal{A}}z^{\lvert \alpha \rvert}=\sum_{n\geqslant 0}a_nz^n
 $$
 
 我们约定使用同一组的字母表示同一个类对应的生成函数等，例如用 $a_n$ 表示 $\lbrack z^n\rbrack A(z)$ 即 $A(z)$ 中 $z^n$ 的系数，用 $\mathcal{A}_n$ 表示 $\mathcal{A}$ 中大小函数为 $n$ 的对象的集合（所以 $a_n=\operatorname{card}(\mathcal{A}_n)$ 其中 $\operatorname{card}$ 为基数（cardinality））。
@@ -50,7 +50,7 @@ $$
 考虑
 
 $$
-A(z)+B(z)=\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert} + \sum _ {\beta\in\mathcal{B}}z^{\lvert \beta\rvert}=\sum_{n\geq 0}(a_n+b_n)z^n
+A(z)+B(z)=\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert} + \sum _ {\beta\in\mathcal{B}}z^{\lvert \beta\rvert}=\sum_{n\geqslant 0}(a_n+b_n)z^n
 $$
 
 对应形式幂级数的加法。
@@ -78,7 +78,7 @@ $$
 所以
 
 $$
-A(z)\cdot B(z)=\left(\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert}\right)\left(\sum _ {\beta\in\mathcal{B}}z^{\lvert \beta\rvert}\right)=\sum _ {(\alpha, \beta)\in(\mathcal{A}\times \mathcal{B})}z^{\lvert \alpha\rvert +\lvert \beta\rvert}=\sum_{n\geq 0}\sum_{i+j=n}a_ib_jz^n
+A(z)\cdot B(z)=\left(\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert}\right)\left(\sum _ {\beta\in\mathcal{B}}z^{\lvert \beta\rvert}\right)=\sum _ {(\alpha, \beta)\in(\mathcal{A}\times \mathcal{B})}z^{\lvert \alpha\rvert +\lvert \beta\rvert}=\sum_{n\geqslant 0}\sum_{i+j=n}a_ib_jz^n
 $$
 
 对应形式幂级数的乘法。
@@ -171,21 +171,21 @@ $$
 对应 OGF 为
 
 $$
-\operatorname{Exp}(A(z))=\prod _ {\alpha \in\mathcal{A}}\left(1-z^{\lvert \alpha \rvert}\right)^{-1}=\prod _ {n\geq 1}\left(1-z^n\right)^{-a_n}
+\operatorname{Exp}(A(z))=\prod _ {\alpha \in\mathcal{A}}\left(1-z^{\lvert \alpha \rvert}\right)^{-1}=\prod _ {n\geqslant 1}\left(1-z^n\right)^{-a_n}
 $$
 
 注意到
 
 $$
-\ln(1+z)=\frac{z}{1}-\frac{z^2}{2}+\frac{z^3}{3}-\cdots =\sum_{n\geq 1}\frac{(-1)^{n-1}z^n}{n}
+\ln(1+z)=\frac{z}{1}-\frac{z^2}{2}+\frac{z^3}{3}-\cdots =\sum_{n\geqslant 1}\frac{(-1)^{n-1}z^n}{n}
 $$
 
 且 $A(z)=\exp(\ln(A(z)))$ 所以
 
 $$
 \begin{aligned}
-\operatorname{Exp}(A(z))&=\exp\left(\sum _ {n\geq 1}-a_n\cdot \ln\left(1-z^n\right)\right)\\
-&=\exp\left(\sum _ {n\geq 1}-a_n\cdot \sum _ {m\geq 1}\frac{-z^{nm}}{m}\right)\\
+\operatorname{Exp}(A(z))&=\exp\left(\sum _ {n\geqslant 1}-a_n\cdot \ln\left(1-z^n\right)\right)\\
+&=\exp\left(\sum _ {n\geqslant 1}-a_n\cdot \sum _ {m\geqslant 1}\frac{-z^{nm}}{m}\right)\\
 &=\exp\left(\frac{A(z)}{1}+\frac{A(z^2)}{2}+\frac{A(z^3)}{3}+\cdots \right)
 \end{aligned}
 $$
@@ -195,7 +195,7 @@ $$
 ???+ note " 例题 [LOJ 6268. 分拆数](https://loj.ac/p/6268)"
     **题意**：令 $f(n)$ 表示将 $n$ 进行分拆的方案数，求 $f(1),f(2),\dots,f(10^5)$ 对 $998244353$ 取模的值。
     
-    **解**：设全体正整数类为 $\mathcal{I}$，那么 $\mathcal{I}=\operatorname{SEQ}_{\geq 1}(\mathcal{Z})=\mathcal{Z}\times \operatorname{SEQ}(\mathcal{Z})$（下标 $\geq 1$ 为有限制的构造，见后文）。所求即
+    **解**：设全体正整数类为 $\mathcal{I}$，那么 $\mathcal{I}=\operatorname{SEQ}_{\geqslant 1}(\mathcal{Z})=\mathcal{Z}\times \operatorname{SEQ}(\mathcal{Z})$（下标 $\geqslant 1$ 为有限制的构造，见后文）。所求即
     
     $$
     \operatorname{MSET}(\mathcal{I})
@@ -204,12 +204,12 @@ $$
     对应 OGF 前几项系数为 `1 2 3 5 7 11 15 22 30 42`（忽略常数项）即 OEIS [A000041](https://oeis.org/A000041)。
 
 ???+ note " 例题 [洛谷 P4389 付公主的背包](https://www.luogu.com.cn/problem/P4389)"
-    **题意**：给出 $n$ 种体积分别为 $v_1,\dots ,v_n$ 的商品和正整数 $m$，求体积为 $1,2,\dots,m$ 的背包装满的方案数（商品数量不限，有同体积的不同种商品）对 $998244353$ 取模的值。约定 $1\leq n,m\leq 10^5$ 且 $1\leq v_i\leq m$。
+    **题意**：给出 $n$ 种体积分别为 $v_1,\dots ,v_n$ 的商品和正整数 $m$，求体积为 $1,2,\dots,m$ 的背包装满的方案数（商品数量不限，有同体积的不同种商品）对 $998244353$ 取模的值。约定 $1\leqslant n,m\leqslant 10^5$ 且 $1\leqslant v_i\leqslant m$。
     
     **解**：设商品的组合类为 $\mathcal{A}$，所求即 $\operatorname{MSET}(\mathcal{A})$ 对应 OGF 的系数。
 
 ???+ note " 例题 [洛谷 P5900 无标号无根树计数](https://www.luogu.com.cn/problem/P5900)"
-    **题意**：求出 $n$ 个节点的无标号无根树的个数对 $998244353$ 取模的值。约定 $1\leq n\leq 2\times 10^5$。
+    **题意**：求出 $n$ 个节点的无标号无根树的个数对 $998244353$ 取模的值。约定 $1\leqslant n\leqslant 2\times 10^5$。
     
     **解**：设无标号有根树的组合类为 $\mathcal{T}$，那么
     
@@ -256,9 +256,9 @@ $$
 
 $$
 \begin{aligned}
-\overline{\operatorname{Exp}}(A(z))&=\prod _ {\alpha\in\mathcal{A}}\left(1+z^{\lvert \alpha \rvert}\right)=\prod _ {n\geq 1}\left(1+z^n\right)^{a_n}\\
-&=\exp\left(\sum _ {n\geq 1}a_n\cdot \ln\left(1+z^n\right)\right)\\
-&=\exp\left(\sum _ {n\geq 1}a_n\cdot \sum _ {m\geq 1}\frac{(-1)^{m-1}z^{nm}}{m}\right)\\
+\overline{\operatorname{Exp}}(A(z))&=\prod _ {\alpha\in\mathcal{A}}\left(1+z^{\lvert \alpha \rvert}\right)=\prod _ {n\geqslant 1}\left(1+z^n\right)^{a_n}\\
+&=\exp\left(\sum _ {n\geqslant 1}a_n\cdot \ln\left(1+z^n\right)\right)\\
+&=\exp\left(\sum _ {n\geqslant 1}a_n\cdot \sum _ {m\geqslant 1}\frac{(-1)^{m-1}z^{nm}}{m}\right)\\
 &=\exp\left(\frac{A(z)}{1}-\frac{A(z^2)}{2}+\frac{A(z^3)}{3}-\cdots \right)
 \end{aligned}
 $$
@@ -297,7 +297,7 @@ $$
 对应 OGF 为
 
 $$
-\operatorname{Log}(A(z))=\sum _ {n\geq 1}\frac{\varphi(n)}{n}\ln\frac{1}{1-A(z^n)}
+\operatorname{Log}(A(z))=\sum _ {n\geqslant 1}\frac{\varphi(n)}{n}\ln\frac{1}{1-A(z^n)}
 $$
 
 其中 $\varphi$ 为 Euler 函数，$\operatorname{Log}$ 为 Pólya 对数。
@@ -309,7 +309,7 @@ $$
 对于上述所有构造，我们都没有限制其「组成部分」的个数，若在 $\operatorname{SEQ}$ 的下标给一个作用于整数的谓词用于约束其组成部分，如
 
 $$
-\operatorname{SEQ}_{=k}(\mathcal{B}),\quad \operatorname{SEQ}_{\geq k}(\mathcal{B}),\quad \operatorname{SEQ}_{1..k}(\mathcal{B})
+\operatorname{SEQ}_{=k}(\mathcal{B}),\quad \operatorname{SEQ}_{\geqslant k}(\mathcal{B}),\quad \operatorname{SEQ}_{1..k}(\mathcal{B})
 $$
 
 其中 $\operatorname{SEQ}_{=k}(\mathcal{B})$ 也常简写为 $\operatorname{SEQ}_k(\mathcal{B})$，$\operatorname{SEQ}_{1..k}(\mathcal{B})$ 表示在区间 $\lbrack 1..k\rbrack$ 上。
@@ -344,7 +344,7 @@ $$
 
 $$
 \begin{aligned}
-&{}A(z,u)=\sum _ {k\geq 0}u^kB(z)^k=\frac{1}{1-uB(z)}\\
+&{}A(z,u)=\sum _ {k\geqslant 0}u^kB(z)^k=\frac{1}{1-uB(z)}\\
 \implies &{}A(z)=B(z)^k
 \end{aligned}
 $$
@@ -352,7 +352,7 @@ $$
 显然也有
 
 $$
-\mathcal{A}=\operatorname{SEQ}_{\geq k}(\mathcal{B})\implies A(z)=\frac{B(z)^k}{1-B(z)}
+\mathcal{A}=\operatorname{SEQ}_{\geqslant k}(\mathcal{B})\implies A(z)=\frac{B(z)^k}{1-B(z)}
 $$
 
 而对于 $\operatorname{MSET} _ k(\mathcal{B})$ 和 $\operatorname{PSET} _ k(\mathcal{B})$ 已经有
@@ -432,7 +432,7 @@ $$
 上面的计算方法虽然有效但比较麻烦，读者可阅读 WolframMathWorld 网站的 [Pólya Enumeration Theorem](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) 和 [Cycle Index](https://mathworld.wolfram.com/CycleIndex.html) 等相关资料，后者 Cycle Index 在 OEIS 的生成函数表达式中也经常出现。
 
 ???+ note " 例题 [LOJ 6538. 烷基计数 加强版 加强版](https://loj.ac/p/6538)"
-    **题意**：求出 $n$ 个节点的有根且根节点度数不超过 $3$，其余节点度数不超过 $4$ 的无序树的个数对 $998244353$ 取模的值。约定 $1\leq n\leq 10^5$。
+    **题意**：求出 $n$ 个节点的有根且根节点度数不超过 $3$，其余节点度数不超过 $4$ 的无序树的个数对 $998244353$ 取模的值。约定 $1\leqslant n\leqslant 10^5$。
     
     **解**：设组合类为 $\mathcal{T}$ 那么
     

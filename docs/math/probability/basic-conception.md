@@ -80,13 +80,13 @@ $$
 概率函数 $P$ 是一个从事件域 $\mathcal{F}$ 到闭区间 $[0, 1]$ 的映射，且满足：
 
 -   **规范性**：事件 $\Omega$ 的概率值为 $1$，即 $P(\Omega)=1$。
--   **可数可加性**：若一列事件 $A_1, A_2, \cdots$ 两两不交，则 $P\left( \bigcup_{i \geq 1} A_i \right) = \sum_{i \geq 1} P(A_i)$。
+-   **可数可加性**：若一列事件 $A_1, A_2, \cdots$ 两两不交，则 $P\left( \bigcup_{i \geqslant 1} A_i \right) = \sum_{i \geqslant 1} P(A_i)$。
 
 ### 概率函数的性质
 
 对于任意随机事件 $A, B \in \mathcal{F}$，有
 
--   **单调性**：若 $A \subset B$，则有 $P(A) \leq P(B)$。
+-   **单调性**：若 $A \subset B$，则有 $P(A) \leqslant P(B)$。
 -   **容斥原理**：$P(A+B) = P(A) + P(B) - P(AB)$。
 -   $P(A - B) = P(A) - P(AB)$，这里 $A - B$ 表示差集。
 

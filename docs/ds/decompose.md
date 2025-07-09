@@ -26,7 +26,7 @@ author: Ir1d, HeRaNO, Xeonacid
     1.  给 $a_l \sim a_r$ 之间的所有数加上 $x$；
     2.  求 $\sum_{i=l}^r a_i$。
     
-        $1 \leq n \leq 5 \times 10^4$
+        $1 \leqslant n \leqslant 5 \times 10^4$
 
 我们将序列按每 $s$ 个元素一块进行分块，并记录每块的区间和 $b_i$。
 

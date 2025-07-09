@@ -468,13 +468,13 @@ $$
 我们先要将点 $x$ 旋至其所在 Compress Tree 的根，则这一步的均摊复杂度
 
 $$
-a \leq  3\log n +1
+a \leqslant  3\log n +1
 $$
 
 接着我们要使点 $x$ 无右儿子，则这一步的均摊复杂度
 
 $$
-a = 1 + r'(\gamma)- 0 \leq \log n +1
+a = 1 + r'(\gamma)- 0 \leqslant \log n +1
 $$
 
 ![](./images/top-tree16.jpg)
@@ -496,13 +496,13 @@ $$
 由图，易知由状态 1 到状态 2 的操作（将点 $x$ 的父亲旋至其 Rake Tree 的根部的 Local Splay 操作）的均摊复杂度
 
 $$
-a \leq  3(r_2(\gamma)- r_1(\gamma))+1
+a \leqslant  3(r_2(\gamma)- r_1(\gamma))+1
 $$
 
 由图，易知由状态 2 到状态 3 的操作（将点 $x$ 的爷节点旋至其 Compress Tree 的根部的 Local Splay 操作）的均摊复杂度
 
 $$
-a \leq  3(r_3(B)- r_2(B))+1
+a \leqslant  3(r_3(B)- r_2(B))+1
 $$
 
 重点分析由状态 3 到状态 4 的操作（Splice）
@@ -511,35 +511,35 @@ $$
 a = r_4(\gamma) -r_3(\gamma) +1
 $$
 
-不难发现 $r_4(\gamma) \leq r_3(B)$
+不难发现 $r_4(\gamma) \leqslant r_3(B)$
 
 故这一次操作的均摊复杂度为
 
 $$
 \begin{aligned}
-a &\leq r_3(B)- r_3(\gamma)+1\\
-&\leq 3(r_3(B)- r_3(\gamma))+1\\
+a &\leqslant r_3(B)- r_3(\gamma)+1\\
+&\leqslant 3(r_3(B)- r_3(\gamma))+1\\
 \end{aligned}
 $$
 
 综合上述过程，一次 Splice 的复杂度为
 
 $$
-a\leq 3r_3(B)+3r_3(B)+3r_2(\gamma)-3r_3(\gamma)-3r_2(B)-3r_1(\gamma)+3
+a\leqslant 3r_3(B)+3r_3(B)+3r_2(\gamma)-3r_3(\gamma)-3r_2(B)-3r_1(\gamma)+3
 $$
 
-记下一次 Splice 的点 $X$（即状态 4 中的点 $B$）的 $r$ 值为 $r'(X)$，并注意到 $r_3(\gamma),r_1(\gamma) \ge r_1(X)$，$r_3(B),r_2(\gamma) \leq r'(X)$ 且 $r_3(B)=r_2(B)$，所以
+记下一次 Splice 的点 $X$（即状态 4 中的点 $B$）的 $r$ 值为 $r'(X)$，并注意到 $r_3(\gamma),r_1(\gamma) \geqslant r_1(X)$，$r_3(B),r_2(\gamma) \leqslant r'(X)$ 且 $r_3(B)=r_2(B)$，所以
 
 $$
-a\leq  9(r'(X)-r(X))+3
+a\leqslant  9(r'(X)-r(X))+3
 $$
 
-除了上面这个复杂度以外，在 Splice 中可能还会有因 `delete(x)` 产生的额外均摊复杂度，记这一部分为 $a' \leq 3\log n +1$。
+除了上面这个复杂度以外，在 Splice 中可能还会有因 `delete(x)` 产生的额外均摊复杂度，记这一部分为 $a' \leqslant 3\log n +1$。
 
 先不管 $a'$ 部分，每次 Splice 的 $r'(X)$ 等于下一次的 $r(X)$，且第一次 Splice 的 $r(X)$ 等于我们一开始旋转点 $x$ 到其 Compress Tree 树根时的 $r(X)$，则对于不计 `delete(x)` 的一次 `access(x)` 复杂度，我们有：
 
 $$
-a \leq 9(r'(x)-r(x))+ 3k + 1
+a \leqslant 9(r'(x)-r(x))+ 3k + 1
 $$
 
 其中 $k$ 为 Splice 次数。
@@ -548,20 +548,20 @@ $$
 
 $$
 \begin{aligned}
-a &\leq 3(r'(X)-r(X)) + q\\
-&\leq 3(q-1)(r'(X)-r(X))
+a &\leqslant 3(r'(X)-r(X)) + q\\
+&\leqslant 3(q-1)(r'(X)-r(X))
 \end{aligned}
 $$
 
 如果我们能找到足够多的 zig-zig，zig-zag 操作，我们就可以将这 $3k+1$ 平摊到这些操作上去，从而消掉这个 $3k+1$。
 
-我们发现 Globel Splay 里面就有这么多的 zig-zig，zag-zig 来给我们使用，因为 Globel Splay 里面点的个数一定大于 $k$，而从点 $x$ 到 Globel Splay 根部路径的点数一定不少于 $k$，也就是说一次 `access(x)` 中一定会至少有 $\dfrac k2$ 个 zig-zag 操作，算上 Globel Splay 的均摊复杂度 $a \leq 3\log n +1$，一次 `access(x)` 不记 `delete(x)` 的均摊复杂度为
+我们发现 Globel Splay 里面就有这么多的 zig-zig，zag-zig 来给我们使用，因为 Globel Splay 里面点的个数一定大于 $k$，而从点 $x$ 到 Globel Splay 根部路径的点数一定不少于 $k$，也就是说一次 `access(x)` 中一定会至少有 $\dfrac k2$ 个 zig-zag 操作，算上 Globel Splay 的均摊复杂度 $a \leqslant 3\log n +1$，一次 `access(x)` 不记 `delete(x)` 的均摊复杂度为
 
 $$
 \begin{aligned}
-a&\leq 9(r'(X)-r(X)) + 3k + 1 + 18(r''(X)-r'(X)) -S+1 +3 \log n +1,S \ge 3k\\
-a&\leq 18(r''(X)-r(X)) +2 +3\log n+1\\
-a&\leq 21(r''(X)-r(X)) +3
+a&\leqslant 9(r'(X)-r(X)) + 3k + 1 + 18(r''(X)-r'(X)) -S+1 +3 \log n +1,S \geqslant 3k\\
+a&\leqslant 18(r''(X)-r(X)) +2 +3\log n+1\\
+a&\leqslant 21(r''(X)-r(X)) +3
 \end{aligned}
 $$
 
@@ -576,14 +576,14 @@ $$
 $$
 \begin{aligned}
 \sum_{i=1}^m c_i &= \sum_{i=1}^m a_i +\sum_{i=1}^m a_i' - \varphi(x_n) +\varphi(x_0)\\
-&\le \sum_{i=1}^m a_i' + 21m\log n +n\log n +3m
+&\leqslant \sum_{i=1}^m a_i' + 21m\log n +n\log n +3m
 \end{aligned}
 $$
 
-注意到 `delete(x)` 操作的本质是删掉一个 Rake Node，但我们在 $m$ 次操作中最多只会添加 $m$ 个 Rake Node，由 Rake Node 的定义，我们初始时最多有 $n$ 个 Rake Node，也就是说我们总共只会做 $m+n$ 次 `delete(x)` 操作，由 $a' \leq 3\log n +1$ 可知
+注意到 `delete(x)` 操作的本质是删掉一个 Rake Node，但我们在 $m$ 次操作中最多只会添加 $m$ 个 Rake Node，由 Rake Node 的定义，我们初始时最多有 $n$ 个 Rake Node，也就是说我们总共只会做 $m+n$ 次 `delete(x)` 操作，由 $a' \leqslant 3\log n +1$ 可知
 
 $$
-\sum_{i=1}^m c_i \leq 3(m+n)\log n + 21m\log n +n\log n +4m +n
+\sum_{i=1}^m c_i \leqslant 3(m+n)\log n + 21m\log n +n\log n +4m +n
 $$
 
 所以我们就证明了 Access 的复杂度，而其他函数要么基于 Access 要么单次时间复杂度为常数，所以我们就证明了 SATT 的复杂度。

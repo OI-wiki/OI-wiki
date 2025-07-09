@@ -30,7 +30,7 @@ $a,a^2,\cdots,a^{\delta_m(a)}$ 模 $m$ 两两不同余。
 若 $a^n \equiv 1 \pmod m$，则 $\delta_m(a)\mid n$.
 
 ???+ note "证明"
-    对 $n$ 除以 $\delta_m(a)$ 作带余除法，设 $n=\delta_m(a)q+r,0\leq r<\delta_m(a)$.
+    对 $n$ 除以 $\delta_m(a)$ 作带余除法，设 $n=\delta_m(a)q+r,0\leqslant r<\delta_m(a)$.
     
     若 $r>0$，则
     
@@ -243,7 +243,7 @@ $$
                 
                 -   $Y=\prod_{i=1}^k{p_i^{[\alpha_i>\beta_i]\alpha_i}}$
                 -   $X=\dfrac {\delta_m(a)}Y$
-                -   $W=\prod_{i=1}^k{p_i^{[\alpha_i\le\beta_i]\beta_i}}$
+                -   $W=\prod_{i=1}^k{p_i^{[\alpha_i\leqslant\beta_i]\beta_i}}$
                 -   $Z=\dfrac {\delta_m(b)}W$
                 
                 则由阶的 [性质 4](#性质-4)，可得：
@@ -286,9 +286,9 @@ $$
             x^{\delta_p(g)}\equiv 1\pmod p
             $$
             
-            的根。由拉格朗日定理，可知方程的次数 $\delta_p(g) \geq p-1$.
+            的根。由拉格朗日定理，可知方程的次数 $\delta_p(g) \geqslant p-1$.
             
-            又由费马小定理，易知 $\delta_p(g) \leq p-1$，故 $\delta_p(g)=p-1=\varphi(p)$.
+            又由费马小定理，易知 $\delta_p(g) \leqslant p-1$，故 $\delta_p(g)=p-1=\varphi(p)$.
             
             综上可知 $g$ 为模 $p$ 的原根。
 
@@ -344,7 +344,7 @@ $$
             
             而由 $g$ 为模 $p$ 的原根，及 $g^{\delta}\equiv 1\pmod {p^\alpha}$.
             
-            所以可设 $\delta=p^{\beta-1}(p-1)$，这里 $1\leq \beta\leq \alpha$.
+            所以可设 $\delta=p^{\beta-1}(p-1)$，这里 $1\leqslant \beta\leqslant \alpha$.
             
             现在利用之前的结论，可知：
             
@@ -352,7 +352,7 @@ $$
             g^{\varphi(p^{\beta})}\not\equiv 1\pmod {p^{\beta+1}}\implies g^{\delta}\not\equiv 1\pmod {p^{\beta+1}}
             $$
             
-            结合 $g^{\delta}\equiv 1\pmod {p^\alpha}$ 可知 $\beta \geq \alpha$.
+            结合 $g^{\delta}\equiv 1\pmod {p^\alpha}$ 可知 $\beta \geqslant \alpha$.
             
             综上可知，$\beta=\alpha$，即：
             
@@ -390,7 +390,7 @@ $$
         对于 $m\ne 2,4$，且不存在奇素数 $p$ 及 $\alpha \in \mathbf{N}^{*}$ 使得 $m=p^{\alpha},2p^{\alpha}$，模 $m$ 的原根不存在。
         
         ???+ note "证明"
-            对于 $m=2^{\alpha}$，$\alpha\in\mathbf{N}^{*},\alpha\geq 3$，则对任意奇数 $a=2k+1$ 均有：
+            对于 $m=2^{\alpha}$，$\alpha\in\mathbf{N}^{*},\alpha\geqslant 3$，则对任意奇数 $a=2k+1$ 均有：
             
             $$
             \begin{aligned}
@@ -421,7 +421,7 @@ $$
             进而：
             
             $$
-            \delta_m(a)\leq\dfrac{1}{2}\varphi(r)\varphi(t)=\dfrac{1}{2}\varphi(rt)=\dfrac{1}{2}\varphi(m)<\varphi(m)
+            \delta_m(a)\leqslant\dfrac{1}{2}\varphi(r)\varphi(t)=\dfrac{1}{2}\varphi(rt)=\dfrac{1}{2}\varphi(m)<\varphi(m)
             $$
             
             由原根定义可得：模 $m$ 的原根不存在。

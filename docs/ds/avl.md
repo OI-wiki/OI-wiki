@@ -3,7 +3,7 @@ AVL 树，是一种平衡的二叉搜索树。由于各种算法教材上对 AVL
 ## 性质
 
 1.  空二叉树是一个 AVL 树
-2.  如果 T 是一棵 AVL 树，那么其左右子树也是 AVL 树，并且 $|h(ls) - h(rs)| \leq 1$，h 是其左右子树的高度
+2.  如果 T 是一棵 AVL 树，那么其左右子树也是 AVL 树，并且 $|h(ls) - h(rs)| \leqslant 1$，h 是其左右子树的高度
 3.  树高为 $O(\log n)$
 
 平衡因子：右子树高度 - 左子树高度
@@ -52,7 +52,7 @@ AVL 树，是一种平衡的二叉搜索树。由于各种算法教材上对 AVL
 
 ![](./images/avl1.svg)
 
-#### $h(A)\geq h(C)$
+#### $h(A)\geqslant h(C)$
 
 设 $h(E)=x$，则有
 
@@ -60,11 +60,11 @@ $$
 \begin{cases}
     h(B)=x+2\\
     h(A)=x+1\\
-    x\leq h(C)\leq x+1
+    x\leqslant h(C)\leqslant x+1
 \end{cases}
 $$
 
-其中 $h(C)\geq x$ 是由于节点 B 满足性质 2，因此 $h(C)$ 和 $h(A)$ 的差不会超过 1。此时我们对节点 D 进行一次右旋操作（旋转操作与其它类型的平衡二叉搜索树相同），如下图所示。
+其中 $h(C)\geqslant x$ 是由于节点 B 满足性质 2，因此 $h(C)$ 和 $h(A)$ 的差不会超过 1。此时我们对节点 D 进行一次右旋操作（旋转操作与其它类型的平衡二叉搜索树相同），如下图所示。
 
 ![](./images/avl2.svg)
 
@@ -72,9 +72,9 @@ $$
 
 $$
 \begin{cases}
-    0\leq h(C)-h(E)\leq 1\\
-    x+1\leq h'(D)=\max(h(C),h(E))+1=h(C)+1\leq x+2\\
-    0\leq h'(D)-h(A)\leq 1
+    0\leqslant h(C)-h(E)\leqslant 1\\
+    x+1\leqslant h'(D)=\max(h(C),h(E))+1=h(C)+1\leqslant x+2\\
+    0\leqslant h'(D)-h(A)\leqslant 1
 \end{cases}
 $$
 
@@ -100,9 +100,9 @@ $$
 
 $$
 \begin{cases}
-    x-1\leq h'(rs_B),h'(ls_D)\leq x\\
-    0\leq h(A)-h'(rs_B)\leq 1\\
-    0\leq h(E)-h'(ls_D)\leq 1\\
+    x-1\leqslant h'(rs_B),h'(ls_D)\leqslant x\\
+    0\leqslant h(A)-h'(rs_B)\leqslant 1\\
+    0\leqslant h(E)-h'(ls_D)\leqslant 1\\
     h'(B)=\max(h(A),h'(rs_B))+1=x+1\\
     h'(D)=\max(h(E),h'(ls_D))+1=x+1\\
     h'(B)-h'(D)=0
@@ -117,13 +117,13 @@ $$
     1 &  \textbf{function } \mathrm{MaintainBalance}(p) \\
     2 &  \qquad l \gets ls_p, r \gets rs_p \\
     3 &  \qquad \textbf{if } h(l)-h(r)=2 \\
-    4 &  \qquad\qquad \textbf{if } h(ls_l) \ge h(rs_l) \\
+    4 &  \qquad\qquad \textbf{if } h(ls_l) \geqslant h(rs_l) \\
     5 &  \qquad\qquad\qquad \mathrm{RightRotate}(p) \\
     6 &  \qquad\qquad \textbf{else} \\
     7 &  \qquad\qquad\qquad \mathrm{LeftRotate}(l) \\
     8 &  \qquad\qquad\qquad \mathrm{RightRotate}(p) \\
     9 &  \qquad \textbf{else if } h(l)-h(r)=-2 \\
-    10 &  \qquad\qquad \textbf{if } h(ls_r) \le h(rs_r) \\
+    10 &  \qquad\qquad \textbf{if } h(ls_r) \leqslant h(rs_r) \\
     11 &  \qquad\qquad\qquad \mathrm{LeftRotate}(p) \\
     12 &  \qquad\qquad \textbf{else} \\
     13 &  \qquad\qquad\qquad \mathrm{RightRotate}(r) \\

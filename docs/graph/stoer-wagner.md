@@ -81,7 +81,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 定义诱导割 $C_v$ 为 $C \cap E_v$。$w(C_v) = \sum_{(i,j) \in C_v} d(i, j)$。
 
 ???+ note "Lemma 1"
-    对于任何被激活的点 $v$，$w(A_v, v) \le w(C_v)$。
+    对于任何被激活的点 $v$，$w(A_v, v) \leqslant w(C_v)$。
     
     证明：使用数学归纳法。
     
@@ -93,17 +93,17 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
     
     又，已知：
     
-    $w(A_v, u) \le w(A_v, v)$ 并且 $w(A_v, v) \le w(C_v)$ 联立可得：
+    $w(A_v, u) \leqslant w(A_v, v)$ 并且 $w(A_v, v) \leqslant w(C_v)$ 联立可得：
     
-    $w(A_u, u) \le w(C_v) + w(A_u - A_v, u)$
+    $w(A_u, u) \leqslant w(C_v) + w(A_u - A_v, u)$
     
     由于 $w(A_u - A_v, u)$ 对 $w(C_u)$ 有贡献而对 $w(C_v)$ 没有贡献，在所有边均为正权的情况下，可导出：
     
-    $w(A_u,u) \le w(C_u)$
+    $w(A_u,u) \leqslant w(C_u)$
     
     由归纳法得证。
 
-由于 $\operatorname{pos}(s) < \operatorname{pos}(t)$，并且 $s, t$ 不在同一连通块，因此 $t$ 会被激活，由此可以得出 $w(A_t, t) \le w(C_t) = w(C)$。
+由于 $\operatorname{pos}(s) < \operatorname{pos}(t)$，并且 $s, t$ 不在同一连通块，因此 $t$ 会被激活，由此可以得出 $w(A_t, t) \leqslant w(C_t) = w(C)$。
 
 ??? note "[P5632【模板】Stoer–Wagner 算法](https://www.luogu.com.cn/problem/P5632)"
     ```cpp

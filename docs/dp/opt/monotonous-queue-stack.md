@@ -34,7 +34,7 @@ $$
 
 时间复杂度 $O(W\sum k_i)$。
 
-考虑优化 $f_i$ 的转移。为方便表述，设 $g_{x,y}=f_{i,x\times w_i+y},g'_{x,y}=f_{i-1,x\times w_i+y}$，其中 $0\le y \lt w_i$，则转移方程可以表示为：
+考虑优化 $f_i$ 的转移。为方便表述，设 $g_{x,y}=f_{i,x\times w_i+y},g'_{x,y}=f_{i-1,x\times w_i+y}$，其中 $0\leqslant y \lt w_i$，则转移方程可以表示为：
 
 $$
 g_{x,y}=\max_{k=0}^{k_i}(g'_{x-k,y}+v_i\times k)
@@ -64,7 +64,7 @@ $$
 
 设 $f_{i,j}$ 表示在放第 $i$ 个烟花时，你的位置在 $j$ 所能获得的最大快乐值。
 
-写出状态转移方程：$f_{i,j}=\max\{f_{i-1,k}+b_i-|a_i-j|\}$，其中 $j-(t_{i}-t_{i-1})\times d\le k\le j+(t_{i}-t_{i-1})\times d$。
+写出状态转移方程：$f_{i,j}=\max\{f_{i-1,k}+b_i-|a_i-j|\}$，其中 $j-(t_{i}-t_{i-1})\times d\leqslant k\leqslant j+(t_{i}-t_{i-1})\times d$。
 
 尝试变形：
 

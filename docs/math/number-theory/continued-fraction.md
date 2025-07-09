@@ -280,7 +280,7 @@ $$
     实数 $x>0$ 的渐近分数的倒数是 $x^{-1}$ 的渐近分数。
 
 ??? note "证明"
-    不妨设 $x>1$ 且有连分数表示 $[a_0,a_1,a_2,\cdots]$，则 $x^{-1}$ 的连分数表示是 $[0,a_0,a_1,a_2,\cdots]$。它们的渐近分数可以从递推关系中求得。而且，对于 $x$，有初值条件 $x_{-2}=\dfrac{0}{1}$ 和 $x_{-1}=\dfrac{1}{0}$；对于 $y=x^{-1}$，有初值条件 $y_{-1}=\dfrac{1}{0}$ 和 $y_{0}=\dfrac{0}{1}$。因此，有 $x_{-2}=(y_{-1})^{-1}$ 和 $x_{-1}=(y_0)^{-1}$。根据递推关系，可以得到 $x_k=y_{k+1}^{-1}$。这就说明，$x$ 的渐近分数的倒数是 $y=x^{-1}$ 的渐近分数。对于 $0<x\le 1$ 的情形，也可以做类似讨论。
+    不妨设 $x>1$ 且有连分数表示 $[a_0,a_1,a_2,\cdots]$，则 $x^{-1}$ 的连分数表示是 $[0,a_0,a_1,a_2,\cdots]$。它们的渐近分数可以从递推关系中求得。而且，对于 $x$，有初值条件 $x_{-2}=\dfrac{0}{1}$ 和 $x_{-1}=\dfrac{1}{0}$；对于 $y=x^{-1}$，有初值条件 $y_{-1}=\dfrac{1}{0}$ 和 $y_{0}=\dfrac{0}{1}$。因此，有 $x_{-2}=(y_{-1})^{-1}$ 和 $x_{-1}=(y_0)^{-1}$。根据递推关系，可以得到 $x_k=y_{k+1}^{-1}$。这就说明，$x$ 的渐近分数的倒数是 $y=x^{-1}$ 的渐近分数。对于 $0<x\leqslant 1$ 的情形，也可以做类似讨论。
 
 利用本节得到的递推关系，可以得到计算渐近分数的算法如下：
 
@@ -391,7 +391,7 @@ $$
     其中，$r_{k+1}$ 是实数 $x$ 的第 $k+1$ 个余项。进而，有
     
     $$
-    \dfrac{1}{2q_{k+1}^2} \le \dfrac{1}{q_k(q_k+q_{k+1})} \le \left|x-\frac{p_k}{q_k}\right| \le \dfrac{1}{q_kq_{k+1}} \le \dfrac{1}{q_k^2}.
+    \dfrac{1}{2q_{k+1}^2} \leqslant \dfrac{1}{q_k(q_k+q_{k+1})} \leqslant \left|x-\frac{p_k}{q_k}\right| \leqslant \dfrac{1}{q_kq_{k+1}} \leqslant \dfrac{1}{q_k^2}.
     $$
 
 ??? note "证明"
@@ -406,22 +406,22 @@ $$
     要完成随后的不等式估计，只需要注意到当 $x_k\neq x$ 时，总成立
     
     $$
-    1\le a_{k+1}\le r_{k+1} \le a_{k+1}+1,
+    1\leqslant a_{k+1}\leqslant r_{k+1} \leqslant a_{k+1}+1,
     $$
     
     所以有
     
     $$
-    q_{k+1}=a_{k+1}q_k+q_{k-1}\le r_{k+1}q_k+q_{k-1} \le q_k+(a_{k+1}q_k+q_{k-1}) = q_k+q_{k+1}.
+    q_{k+1}=a_{k+1}q_k+q_{k-1}\leqslant r_{k+1}q_k+q_{k-1} \leqslant q_k+(a_{k+1}q_k+q_{k-1}) = q_k+q_{k+1}.
     $$
     
     因此，有不等式
     
     $$
-    \dfrac{1}{q_k(q_k+q_{k+1})} \le \left|x-\frac{p_k}{q_k}\right| = \dfrac{1}{q_k\left(r_{k+1}q_k+q_{k-1}\right)} \le \dfrac{1}{q_kq_{k+1}}.
+    \dfrac{1}{q_k(q_k+q_{k+1})} \leqslant \left|x-\frac{p_k}{q_k}\right| = \dfrac{1}{q_k\left(r_{k+1}q_k+q_{k-1}\right)} \leqslant \dfrac{1}{q_kq_{k+1}}.
     $$
     
-    要得到外侧的放缩，再注意到 $q_k\le q_{k+1}$ 就可以了。
+    要得到外侧的放缩，再注意到 $q_k\leqslant q_{k+1}$ 就可以了。
 
 本节的差分公式还有一个简单推论：渐近分数 $\dfrac{p_k}{q_k}$ 都是既约的。
 
@@ -478,7 +478,7 @@ $$
     根据渐近分数的误差估计，对于无理数 $x$ 的第 $k$ 个渐近分数 $x_k=\dfrac{p_k}{q_k}$，有
     
     $$
-    \left|x-\dfrac{p_k}{q_k}\right|\le\frac{1}{q_k^2}.
+    \left|x-\dfrac{p_k}{q_k}\right|\leqslant\frac{1}{q_k^2}.
     $$
     
     检查误差公式的证明即可知，对于任一无理数 $x$，取等条件并不成立。因此，它的所有渐近分数的分子和分母都满足要求。
@@ -500,33 +500,33 @@ $$
     反证法。不妨设存在无理数 $x$ 和它的渐近分数 $x_{k-1},x_k,x_{k+1}$，使得
     
     $$
-    \left|x-\dfrac{p_{k-1}}{q_{k-1}}\right|\ge\dfrac{1}{\sqrt{5}q_{k-1}^2},\ 
-    \left|x-\dfrac{p_{k}}{q_{k}}\right|\ge\dfrac{1}{\sqrt{5}q_{k}^2},\ 
-    \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right|\ge\dfrac{1}{\sqrt{5}q_{k+1}^2}
+    \left|x-\dfrac{p_{k-1}}{q_{k-1}}\right|\geqslant\dfrac{1}{\sqrt{5}q_{k-1}^2},\ 
+    \left|x-\dfrac{p_{k}}{q_{k}}\right|\geqslant\dfrac{1}{\sqrt{5}q_{k}^2},\ 
+    \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right|\geqslant\dfrac{1}{\sqrt{5}q_{k+1}^2}
     $$
     
     成立。因为相邻的渐近分数必然位于 $x$ 两侧，所以由差分公式知
     
     $$
-    \dfrac{1}{q_{k-1}q_{k}}=\left|\dfrac{p_{k-1}}{q_{k-1}}-\dfrac{p_{k}}{q_{k}}\right|=\left|x-\dfrac{p_{k-1}}{q_{k-1}}\right|+\left|x-\dfrac{p_{k}}{q_{k}}\right|\ge\dfrac{1}{\sqrt{5}q_{k-1}^2}+\dfrac{1}{\sqrt{5}q_{k}^2}.
+    \dfrac{1}{q_{k-1}q_{k}}=\left|\dfrac{p_{k-1}}{q_{k-1}}-\dfrac{p_{k}}{q_{k}}\right|=\left|x-\dfrac{p_{k-1}}{q_{k-1}}\right|+\left|x-\dfrac{p_{k}}{q_{k}}\right|\geqslant\dfrac{1}{\sqrt{5}q_{k-1}^2}+\dfrac{1}{\sqrt{5}q_{k}^2}.
     $$
     
     它可以写成关于商 $\dfrac{q_{k}}{q_{k-1}}$ 的不等式
     
     $$
-    \dfrac{q_k}{q_{k-1}}+\dfrac{q_{k-1}}{q_k}\le\sqrt 5.
+    \dfrac{q_k}{q_{k-1}}+\dfrac{q_{k-1}}{q_k}\leqslant\sqrt 5.
     $$
     
-    因为左侧是有理数，右侧是无理数，等号必然无法取得。又因为 $q_k\ge q_{k-1}$，所以可以解得
+    因为左侧是有理数，右侧是无理数，等号必然无法取得。又因为 $q_k\geqslant q_{k-1}$，所以可以解得
     
     $$
-    1\le \dfrac{q_{k}}{q_{k-1}} < \dfrac{\sqrt{5}+1}{2}.
+    1\leqslant \dfrac{q_{k}}{q_{k-1}} < \dfrac{\sqrt{5}+1}{2}.
     $$
     
     同理，可以证明
     
     $$
-    1\le \dfrac{q_{k+1}}{q_{k}} < \dfrac{\sqrt{5}+1}{2}.
+    1\leqslant \dfrac{q_{k+1}}{q_{k}} < \dfrac{\sqrt{5}+1}{2}.
     $$
     
     但是根据递推公式，并结合两式可知，
@@ -554,7 +554,7 @@ $$
     代入既约分数 $\dfrac{p}{q}$，就得到
     
     $$
-    \dfrac{1}{q^2}\le\frac{|p^2-pq-q^2|}{q^2}=\left|\dfrac{p}{q}-\phi\right|\left|\dfrac{p}{q}-\phi'\right|\le\left|\dfrac{p}{q}-\phi\right|\left(\left|\dfrac{p}{q}-\phi\right|+|\phi-\phi'|\right)<\dfrac{1}{Cq^2}\left(\dfrac{1}{Cq^2}+\sqrt{5}\right).
+    \dfrac{1}{q^2}\leqslant\frac{|p^2-pq-q^2|}{q^2}=\left|\dfrac{p}{q}-\phi\right|\left|\dfrac{p}{q}-\phi'\right|\leqslant\left|\dfrac{p}{q}-\phi\right|\left(\left|\dfrac{p}{q}-\phi\right|+|\phi-\phi'|\right)<\dfrac{1}{Cq^2}\left(\dfrac{1}{Cq^2}+\sqrt{5}\right).
     $$
     
     对于 $C>\sqrt{5}$，可以直接解出 $q<\sqrt{C(C-\sqrt{5})}$，因而不可能存在无穷多组解满足上述不等式。
@@ -575,7 +575,7 @@ $$
 衡量逼近的程度。
 
 ???+ abstract "第一类最佳逼近"
-    对于实数 $x$ 和有理数 $\dfrac{p}{q}$，如果对于任意的 $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ 且 $0<q'\le q$ 都有
+    对于实数 $x$ 和有理数 $\dfrac{p}{q}$，如果对于任意的 $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ 且 $0<q'\leqslant q$ 都有
     
     $$
     \left|x-\dfrac{p}{q}\right|<\left|x-\dfrac{p'}{q'}\right|,
@@ -586,7 +586,7 @@ $$
 第一类最佳逼近未必是渐近分数，而是一类更宽泛的分数。
 
 ???+ abstract "中间分数"
-    设实数 $x$ 有渐近分数 $x_{k+1}=[a_0,a_1,\cdots,a_k,a_{k+1}]$，且整数 $t$ 满足 $0\le t\le a_{k+1}$[^semi-range]，则分数 $x_{k,t}=[a_0,a_1,\cdots,a_{k},t]$ 称为 $x$ 的 **中间分数**（intermediate fraction）、**半收敛子**（semiconvergent）或 **次渐近分数**（secondary convergent）。[^semiconvergent]
+    设实数 $x$ 有渐近分数 $x_{k+1}=[a_0,a_1,\cdots,a_k,a_{k+1}]$，且整数 $t$ 满足 $0\leqslant t\leqslant a_{k+1}$[^semi-range]，则分数 $x_{k,t}=[a_0,a_1,\cdots,a_{k},t]$ 称为 $x$ 的 **中间分数**（intermediate fraction）、**半收敛子**（semiconvergent）或 **次渐近分数**（secondary convergent）。[^semiconvergent]
     
     类似于渐近分数的情形，大于（小于）$x$ 的中间分数称为 **上（下）中间分数**（upper (lower) semiconvergent）。
 
@@ -610,7 +610,7 @@ $$
     所有的第一类最佳逼近都是中间分数。
 
 ??? note "证明"
-    因为 $a_0\le x\le a_0+1$，所以第一类最佳逼近必然位于 $x_{1,0}=a_0$ 与 $x_{0,1}=a_0+1$ 之间。所有中间分数从小到大可以排列成
+    因为 $a_0\leqslant x\leqslant a_0+1$，所以第一类最佳逼近必然位于 $x_{1,0}=a_0$ 与 $x_{0,1}=a_0+1$ 之间。所有中间分数从小到大可以排列成
     
     $$
     x_{1,0}<x_{1,1}< \cdots < x_{1,a_2}=x_{3,0}<\ldots<x<\ldots<x_{2,0}=x_{0,a_1}<\cdots<x_{0,1}.
@@ -625,13 +625,13 @@ $$
     此时，一方面有
     
     $$
-    \left|x_{k,t}-\dfrac{p}{q}\right| \le \left|x_{k,t}-x_{k,t+1}\right| = \dfrac{1}{((t+1)q_k+q_{k-1})(tq_k+q_{k-1})}.
+    \left|x_{k,t}-\dfrac{p}{q}\right| \leqslant \left|x_{k,t}-x_{k,t+1}\right| = \dfrac{1}{((t+1)q_k+q_{k-1})(tq_k+q_{k-1})}.
     $$
     
     另一方面有
     
     $$
-    \left|x_{k,t}-\dfrac{p}{q}\right| = \dfrac{|q(tp_k+p_{k-1})-p((t+1)q_k+q_{k-1})|}{q(tq_k+q_{k-1})}\ge\dfrac{1}{q(tq_k+q_{k-1})}.
+    \left|x_{k,t}-\dfrac{p}{q}\right| = \dfrac{|q(tp_k+p_{k-1})-p((t+1)q_k+q_{k-1})|}{q(tq_k+q_{k-1})}\geqslant\dfrac{1}{q(tq_k+q_{k-1})}.
     $$
     
     因此，必然有
@@ -672,7 +672,7 @@ $$
     \end{aligned}
     $$
     
-    其中用到了 $r_{k+1}\ge a_{k+1}>t$。因此，$x_{k,t}$ 比 $x_k$ 更接近 $x$，成为第一类最佳逼近，当且仅当
+    其中用到了 $r_{k+1}\geqslant a_{k+1}>t$。因此，$x_{k,t}$ 比 $x_k$ 更接近 $x$，成为第一类最佳逼近，当且仅当
     
     $$
     \dfrac{r_{k+1}-t}{tq_{k}+q_{k-1}}<\dfrac{1}{q_k} \iff r_{k+1}<2t+\dfrac{q_{k-1}}{q_k}.
@@ -680,8 +680,8 @@ $$
     
     此时，有三种可能的情况：
     
-    1.  如果 $t<\dfrac{a_{t+1}}{2}$，那么 $2t<a_{t+1}$。因为两侧都是整数，所以 $2t\le a_{k+1}-1$，故而 $2t+\dfrac{q_{k-1}}{q_k}\le 2t+1\le a_{k+1}\le r_{t+1}$。此时，$x_{k,t}$ 不是第一类最佳逼近；
-    2.  如果 $t>\dfrac{a_{t+1}}{2}$，那么 $2t>a_{t+1}$。因为两侧都是整数，所以 $2t\ge a_{t+1}+1>r_{t+1}$。此时，$x_{k,t}$ 是第一类最佳逼近；
+    1.  如果 $t<\dfrac{a_{t+1}}{2}$，那么 $2t<a_{t+1}$。因为两侧都是整数，所以 $2t\leqslant a_{k+1}-1$，故而 $2t+\dfrac{q_{k-1}}{q_k}\leqslant 2t+1\leqslant a_{k+1}\leqslant r_{t+1}$。此时，$x_{k,t}$ 不是第一类最佳逼近；
+    2.  如果 $t>\dfrac{a_{t+1}}{2}$，那么 $2t>a_{t+1}$。因为两侧都是整数，所以 $2t\geqslant a_{t+1}+1>r_{t+1}$。此时，$x_{k,t}$ 是第一类最佳逼近；
     3.  如果 $a_{t+1}$ 是偶数，还有第三种情况，即 $t=\dfrac{a_{t+1}}{2}$。上述条件等价于 $\dfrac{1}{r_{k+1}}=r_{k+1}-a_{k+1}<\dfrac{q_{k-1}}{q_k}$，亦即 $r_{k+2}>\dfrac{q_k}{q_{k-1}}$。
 
 所以，如果将实数 $x$ 的所有第一类最佳逼近按照分母自小到大的顺序排列，那么它会根据与 $x$ 的大小关系分成若干段。每一段总是由若干个（可以是零个）连续的同阶的中间分数组成，且总以渐近分数结尾。段内总能保持在实数 $x$ 的一侧，段与段之间则交错排列在 $x$ 两侧。
@@ -714,7 +714,7 @@ $$
 第二类最佳逼近使用 $|qx-p|$ 来衡量逼近的程度。
 
 ???+ abstract "第二类最佳逼近"
-    对于实数 $x$ 和有理数 $\dfrac{p}{q}$，如果对于任意的 $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ 且 $0<q'\le q$ 都有
+    对于实数 $x$ 和有理数 $\dfrac{p}{q}$，如果对于任意的 $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ 且 $0<q'\leqslant q$ 都有
     
     $$
     \left|qx-p\right|<\left|q'x-p'\right|,
@@ -728,7 +728,7 @@ $$
 \left|x-\dfrac{p}{q}\right|<\dfrac{q'}{q}\left|x-\dfrac{p'}{q'}\right|.
 $$
 
-因为 $q'\le q$，所以第二类最佳逼近的条件比第一类最佳逼近更为严苛。
+因为 $q'\leqslant q$，所以第二类最佳逼近的条件比第一类最佳逼近更为严苛。
 
 第二类最佳逼近能且仅能是渐近分数。
 
@@ -745,26 +745,26 @@ $$
     因为 $x_{k,t}$ 与 $x$ 之间的误差
     
     $$
-    |x_{k,t}-x|\ge |x_{k,t}-x_{k+1}|=\left|\dfrac{p}{q}-\dfrac{p_{k+1}}{q_{k+1}}\right|=\dfrac{|pq_{k+1}-p_{k+1}q|}{qq_{k+1}}\ge\dfrac{1}{qq_{k+1}},
+    |x_{k,t}-x|\geqslant |x_{k,t}-x_{k+1}|=\left|\dfrac{p}{q}-\dfrac{p_{k+1}}{q_{k+1}}\right|=\dfrac{|pq_{k+1}-p_{k+1}q|}{qq_{k+1}}\geqslant\dfrac{1}{qq_{k+1}},
     $$
     
     并利用渐近分数的误差估计，所以总是有
     
     $$
-    |qx_{k,t}-p| \ge \dfrac{1}{q_{k+1}} \ge |q_kx_k-p_k|,
+    |qx_{k,t}-p| \geqslant \dfrac{1}{q_{k+1}} \geqslant |q_kx_k-p_k|,
     $$
     
     即 $x_{k,t}$ 的逼近程度不优于分母更小的 $x_k$ 逼近程度，所以不可能是第二类最佳逼近。
     
-    反过来，要证明第二部分，即每个渐近分数 $x_k=\dfrac{p_k}{q_k}$ 都是第二类最佳逼近。这就是要说明，对于所有分数 $\dfrac{p}{q}$ 且 $q\le q_k$，都有 $|q_kx-p_k|<|qx-p|$。不考虑半奇数的情形，则可以假定 $k>0$。首先，根据渐近分数逼近实数的误差估计，有
+    反过来，要证明第二部分，即每个渐近分数 $x_k=\dfrac{p_k}{q_k}$ 都是第二类最佳逼近。这就是要说明，对于所有分数 $\dfrac{p}{q}$ 且 $q\leqslant q_k$，都有 $|q_kx-p_k|<|qx-p|$。不考虑半奇数的情形，则可以假定 $k>0$。首先，根据渐近分数逼近实数的误差估计，有
     
     $$
-    |q_{k-1} x-p_{k-1}| \ge \frac{1}{q_{k-1}+q_{k}} \ge \dfrac{1}{q_{k+1}}\ge |q_kx-p_k|.
+    |q_{k-1} x-p_{k-1}| \geqslant \frac{1}{q_{k-1}+q_{k}} \geqslant \dfrac{1}{q_{k+1}}\geqslant |q_kx-p_k|.
     $$
     
     不等式全部成立等号，当且仅当 $a_{k+1}=1$ 且是连分数的末项。不考虑这样的情形，那么 $x_{k-1}=\dfrac{p_{k-1}}{q_{k-1}}$ 严格劣于 $x_k=\dfrac{p_k}{q_k}$。
     
-    任取一分数 $\dfrac{p}{q}\neq x_k$ 且 $0<q\le q_k$，因为有差分公式 $p_{k}q_{k-1} − p_{k-1}q_{k} = (−1)^{k-1}$，所以由 Cramer 法则可知，线性方程组
+    任取一分数 $\dfrac{p}{q}\neq x_k$ 且 $0<q\leqslant q_k$，因为有差分公式 $p_{k}q_{k-1} − p_{k-1}q_{k} = (−1)^{k-1}$，所以由 Cramer 法则可知，线性方程组
     
     $$
     \begin{cases}
@@ -773,7 +773,7 @@ $$
     \end{cases}
     $$
     
-    必然存在唯一的整数解 $(\lambda,\mu)$。如果 $\lambda\mu>0$，那么 $q>|\lambda|q_k\ge q_k$，矛盾。否则，$\lambda\mu\le 0$，即 $\lambda$ 和 $\mu$ 异号，那么因为 $q_{k-1}x-p_{k-1}$ 和 $q_kx-p_k$ 也异号，就有 $\lambda(q_{k-1}x-p_{k-1})$ 和 $\mu(q_kx-p_k)$ 同号，故而
+    必然存在唯一的整数解 $(\lambda,\mu)$。如果 $\lambda\mu>0$，那么 $q>|\lambda|q_k\geqslant q_k$，矛盾。否则，$\lambda\mu\leqslant 0$，即 $\lambda$ 和 $\mu$ 异号，那么因为 $q_{k-1}x-p_{k-1}$ 和 $q_kx-p_k$ 也异号，就有 $\lambda(q_{k-1}x-p_{k-1})$ 和 $\mu(q_kx-p_k)$ 同号，故而
     
     $$
     |qx-p|=|\lambda||q_kx-p_k|+|\mu||q_{k-1}x-p_{k-1}|>|q_{k}x-p_{k}|.
@@ -850,13 +850,13 @@ $$
     假设不然。存在实数 $x$ 有两个相邻的渐近分数 $x_{k-1}$ 和 $x_k$ 满足
     
     $$
-    \left|x-\dfrac{p_k}{q_k}\right|\ge \dfrac{1}{2q_{k}^2},\ \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right|\ge \dfrac{1}{2q_{k+1}^2}.
+    \left|x-\dfrac{p_k}{q_k}\right|\geqslant \dfrac{1}{2q_{k}^2},\ \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right|\geqslant \dfrac{1}{2q_{k+1}^2}.
     $$
     
     因为 $x$ 位于 $x_{k-1}$ 和 $x_k$ 之间，所以
     
     $$
-    \dfrac{1}{2q_{k}^2} + \dfrac{1}{2q_{k+1}^2} \le \left|x-\dfrac{p_k}{q_k}\right| + \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right| = \left|\dfrac{p_k}{q_k}-\dfrac{p_{k+1}}{q_{k+1}}\right| = \dfrac{1}{q_kq_{k+1}}.
+    \dfrac{1}{2q_{k}^2} + \dfrac{1}{2q_{k+1}^2} \leqslant \left|x-\dfrac{p_k}{q_k}\right| + \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right| = \left|\dfrac{p_k}{q_k}-\dfrac{p_{k+1}}{q_{k+1}}\right| = \dfrac{1}{q_kq_{k+1}}.
     $$
     
     这说明 $q_k=q_{k+1}$。故而必然有 $k=0$ 且 $a_1=1$。此时前两个渐近分数是 $x_0=a_0$ 和 $x_1=a_0+1$。故而命题的唯一反例是半奇数，按照前文的说明，本文不考虑这种情形。
@@ -887,7 +887,7 @@ $$
         $$
     
         递归的起点是 $\xi_{-2} = (1,0)$ 和 $\xi_{-1} = (0,1)$。
-    -   对于整数 $t$，如果 $0\le t\le a_k$，那么点
+    -   对于整数 $t$，如果 $0\leqslant t\leqslant a_k$，那么点
     
         $$
         \vec\xi_{k-1,t} = t\vec\xi_{k-1} + \vec\xi_{k-2}
@@ -940,7 +940,7 @@ $$
         I + \dfrac{B}{2} - 1 = \dfrac{a_k}{2}.
         $$
     
-        又已知三角形边界上已经有了 $\{\vec 0\}\cup\{\vec\xi_{k-1,t}:0\le t\le a_k\}$ 这共计 $a_k+2$ 个整点。这说明，就一定有 $I=0$ 和 $B=a_k+2$。因而，三角形的边上没有更多的整点，三角形内部也没有整点。也就是说，$q_k$ 和 $p_k$ 是既约的，中间分数是连结 $\vec\xi_{k-2}$ 和 $\vec\xi_k$ 的边上的全部整点，且第一象限的所有整点都在上下两个凸包内。
+        又已知三角形边界上已经有了 $\{\vec 0\}\cup\{\vec\xi_{k-1,t}:0\leqslant t\leqslant a_k\}$ 这共计 $a_k+2$ 个整点。这说明，就一定有 $I=0$ 和 $B=a_k+2$。因而，三角形的边上没有更多的整点，三角形内部也没有整点。也就是说，$q_k$ 和 $p_k$ 是既约的，中间分数是连结 $\vec\xi_{k-2}$ 和 $\vec\xi_k$ 的边上的全部整点，且第一象限的所有整点都在上下两个凸包内。
 
 这样得到的上下两个凸包称为 Klein 多边形。在高维空间内也可以做类似定义，得到 [Klein 多面体](https://en.wikipedia.org/wiki/Klein_polyhedron)（Klein polyhedron），它可以将连分数的概念推广到高维空间内。
 
@@ -975,7 +975,7 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
         ```
 
 ???+ example "最佳内点"
-    对于 $\dfrac{0}{1}\le\dfrac{p_0}{q_0}<\dfrac{p_1}{q_1}\le\dfrac{1}{0}$，求使得 $\dfrac{p_0}{q_0}<\dfrac{p}{q}<\dfrac{p_1}{q_1}$ 成立且 $(q,p)$ 最小的有理数 $\dfrac{p}{q}$。
+    对于 $\dfrac{0}{1}\leqslant\dfrac{p_0}{q_0}<\dfrac{p_1}{q_1}\leqslant\dfrac{1}{0}$，求使得 $\dfrac{p_0}{q_0}<\dfrac{p}{q}<\dfrac{p_1}{q_1}$ 成立且 $(q,p)$ 最小的有理数 $\dfrac{p}{q}$。
 
 ??? note "解答"
     因为 Stern–Brocot 树既是 $[0,\infty]$ 中的分数的二叉搜索树，又是二元组 $(q,p)$ 的 [笛卡尔树](../../ds/cartesian-tree.md)，所以题意几乎可以转化为求 Stern–Brocot 树上两个点的 LCA（最近公共祖先）。但是，LCA 只能处理闭区间内的情形，LCA 可能是端点本身。为了避免额外的讨论，可以首先构造出 $\dfrac{p_0}{q_0}+\varepsilon$ 和 $\dfrac{p_1}{q_1}-\varepsilon$，再计算 LCA。在已经通过连分数计算出根到节点的路径的情况下，LCA 只要取最长的公共路径即可。
@@ -999,9 +999,9 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
     不妨设 $A_i=C_i-C_{i-1}$ 和 $B_i=J_i-J_{i-1}$。问题转化为求 $(x,y)$ 使得所有 $A_ix+B_iy$ 都是整数。这些数对可以分为四种情形：
     
     1.  $A_i,B_i>0$ 的情形可以忽略，因为已经假设 $(x,y)>0$；
-    2.  $A_i,B_i\le 0$ 的情形直接输出「IMPOSSIBLE」；
-    3.  $A_i>0,B_i\le 0$ 的情形相当于约束 $\dfrac{y}{x}<\dfrac{A_i}{-B_i}$；
-    4.  $A_i\le 0,B_i>0$ 的情形相当于约束 $\dfrac{y}{x}>\dfrac{-A_i}{B_i}$。
+    2.  $A_i,B_i\leqslant 0$ 的情形直接输出「IMPOSSIBLE」；
+    3.  $A_i>0,B_i\leqslant 0$ 的情形相当于约束 $\dfrac{y}{x}<\dfrac{A_i}{-B_i}$；
+    4.  $A_i\leqslant 0,B_i>0$ 的情形相当于约束 $\dfrac{y}{x}>\dfrac{-A_i}{B_i}$。
     
     因此，取 $\dfrac{p_0}{q_0}$ 是第四种情形中最大的 $\dfrac{-A_i}{B_i}$，再取 $\dfrac{p_1}{q_1}$ 是第三种情形中最小的 $\dfrac{A_i}{-B_i}$。原问题就变成了找到字典序最小的 $(q,p)$ 使得 $\dfrac{p_0}{q_0}<\dfrac{p}{q}<\dfrac{p_1}{q_1}$ 成立。
     
@@ -1109,7 +1109,7 @@ $$
 这就可以归纳地得到了上述形式。分式线性变换也提供了递推公式和初值条件的另一个角度的理解。
 
 ???+ example "[DMOPC '19 Contest 7 P4 - Bob and Continued Fractions](https://dmoj.ca/problem/dmopc19c7p4)"
-    给定正整数数组 $a_1,\cdots,a_n$ 和 $m$ 组查询，每次查询给定 $l\le r$，并要求计算 $[a_l,\cdots,a_r]$ 的值。
+    给定正整数数组 $a_1,\cdots,a_n$ 和 $m$ 组查询，每次查询给定 $l\leqslant r$，并要求计算 $[a_l,\cdots,a_r]$ 的值。
 
 ??? note "解答"
     将连分数理解为一列分式线性变换的复合在 $x=\infty$ 处取值的结果，只需要能够多次查询一段分式线性变换的复合即可。因为每个分式线性变换都可以取逆，所以可以预处理前缀和再用差分的方法查询，复杂度为 $O(n+m)$ 的；如果需要修改，也可以用线段树等结构存储。
@@ -1203,7 +1203,7 @@ $$
 类似于循环小数的概念，如果连分数的系数形成了循环，就称为循环连分数。
 
 ???+ abstract "循环连分数"
-    设连分数 $x=[a_0,a_1,a_2,\cdots]$，且存在自然数 $K$ 和正整数 $L$ 使得对于任何 $k\ge K$，都有 $a_k=a_{k+L}$，就称连分数 $x$ 为 **循环连分数**（periodic continued fraction）。满足这个条件的最小的 $L$ 称为它的最小正周期，而在连分数中重复出现的 $a_{k},\cdots,a_{k+L-1}$ 序列就称为它的循环节。利用循环节，循环连分数可以写作 $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$。如果 $K$ 可以取作 $0$，即 $x=[\overline{a_0,\cdots,a_{L-1}}]$，就称它为 **纯循环连分数**（purely periodic continued fraction），否则称它为 **混循环连分数**（eventually periodic continued fraction）。
+    设连分数 $x=[a_0,a_1,a_2,\cdots]$，且存在自然数 $K$ 和正整数 $L$ 使得对于任何 $k\geqslant K$，都有 $a_k=a_{k+L}$，就称连分数 $x$ 为 **循环连分数**（periodic continued fraction）。满足这个条件的最小的 $L$ 称为它的最小正周期，而在连分数中重复出现的 $a_{k},\cdots,a_{k+L-1}$ 序列就称为它的循环节。利用循环节，循环连分数可以写作 $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$。如果 $K$ 可以取作 $0$，即 $x=[\overline{a_0,\cdots,a_{L-1}}]$，就称它为 **纯循环连分数**（purely periodic continued fraction），否则称它为 **混循环连分数**（eventually periodic continued fraction）。
 
 ### 二次无理数
 
@@ -1325,7 +1325,7 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
     这就说明
     
     $$
-    \dfrac{2\sqrt{D}}{Q_k} = r_k-r_k^*>1 \iff 0<Q_k\le 2\sqrt{D}.
+    \dfrac{2\sqrt{D}}{Q_k} = r_k-r_k^*>1 \iff 0<Q_k\leqslant 2\sqrt{D}.
     $$
     
     因此，$Q_k$ 只能取有限多个值。进而，
@@ -1360,7 +1360,7 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
     \end{aligned}
     $$
 
-这个递推公式可以直接用于二次无理数的连分数的计算，而且根据定理的证明，$|P_k|<\sqrt{D}$ 且 $Q_k\le 2\sqrt{D}$。该算法的复杂度取决于循环节的长度，而后者可以证明是 $O(\sqrt{D}\log D)$ 的[^period-surd]。
+这个递推公式可以直接用于二次无理数的连分数的计算，而且根据定理的证明，$|P_k|<\sqrt{D}$ 且 $Q_k\leqslant 2\sqrt{D}$。该算法的复杂度取决于循环节的长度，而后者可以证明是 $O(\sqrt{D}\log D)$ 的[^period-surd]。
 
 ???+ example "二次无理数"
     给定二次无理数 $\alpha=\dfrac{x+y\sqrt{n}}{z}$，求出其连分数的表示。其中，$x,y,z,n\in\mathbf Z$ 且 $n>0$ 不是完全平方。
@@ -1379,7 +1379,7 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
         ```
 
 ???+ example "[Tavrida NU Akai Contest - Continued Fraction](https://timus.online/problem.aspx?space=1&num=1814)"
-    给定 $x$ 和 $k$，且 $x$ 不是完全平方数，$0\le k\le 10^9$。求出 $x$ 的第 $k$ 个渐近分数 $x_k$。
+    给定 $x$ 和 $k$，且 $x$ 不是完全平方数，$0\leqslant k\leqslant 10^9$。求出 $x$ 的第 $k$ 个渐近分数 $x_k$。
 
 ??? note "解答"
     首先利用上述算法解出 $\sqrt{x}$ 的周期，将循环节表示成分式线性变换，就可以用 [快速幂](../binary-exponentiation.md) 获得 $x_k$ 的值。当然，对于没有进入循环节和不足一个循环节的部分，需要单独处理。
@@ -1463,7 +1463,7 @@ Galois 利用这个观察，进一步地给出了二次无理数有纯循环连�
     二次无理数 $x$ 可以表示为纯循环连分数，当且仅当 $x>1$ 且它的共轭 $-1<x^*<0$。
 
 ??? note "证明"
-    如果 $x$ 是纯循环连分数，那么利用前文的记号，有 $a_0=a_{\ell+1}\ge 1$，故而 $x>1$。又因为它的倒数负共轭也是循环连分数，所以它的共轭 $x^*$ 满足 $-\dfrac{1}{x^*}>1$，亦即 $-1<x^*<0$。这就证明了纯循环连分数都满足该条件。
+    如果 $x$ 是纯循环连分数，那么利用前文的记号，有 $a_0=a_{\ell+1}\geqslant 1$，故而 $x>1$。又因为它的倒数负共轭也是循环连分数，所以它的共轭 $x^*$ 满足 $-\dfrac{1}{x^*}>1$，亦即 $-1<x^*<0$。这就证明了纯循环连分数都满足该条件。
     
     反过来，设二次无理数 $x>1$ 且 $-1<x^*<0$。对于 $x$ 的余项 $r_k$，有递推关系
     
@@ -1477,15 +1477,15 @@ Galois 利用这个观察，进一步地给出了二次无理数有纯循环连�
     r_{k}^* = a_k+\dfrac{1}{r_{k+1}^*}.
     $$
     
-    利用这个递推关系，可以证明 $-1<r_{k}^*<0$ 对所有 $k\ge 0$ 都成立。
+    利用这个递推关系，可以证明 $-1<r_{k}^*<0$ 对所有 $k\geqslant 0$ 都成立。
     
-    首先，对于 $k=0$，有 $-1<r_0^*=x_0^*<0$，显然。对于 $k\ge 0$，由简单连分数定义和 $x>1$ 可知，$a_k\ge 1$。故而，假设 $-1<r_k^*<0$，就有
+    首先，对于 $k=0$，有 $-1<r_0^*=x_0^*<0$，显然。对于 $k\geqslant 0$，由简单连分数定义和 $x>1$ 可知，$a_k\geqslant 1$。故而，假设 $-1<r_k^*<0$，就有
     
     $$
     -1<-\dfrac{1}{a_k}< r_{k+1}^* = \dfrac{1}{r_k^*-a_k} < -\dfrac{1}{1+a_k} < 0.
     $$
     
-    这就归纳地证明了 $-1<r_{k}^*<0$ 对所有 $k\ge 0$ 都成立。因此，有
+    这就归纳地证明了 $-1<r_{k}^*<0$ 对所有 $k\geqslant 0$ 都成立。因此，有
     
     $$
     a_k = -\dfrac{1}{r_{k+1}^*}+r_k^* = \left\lfloor-\dfrac{1}{r_{k+1}^*}\right\rfloor.
@@ -1514,7 +1514,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     \sqrt{r} = [\lfloor\sqrt{r}\rfloor,\overline{a_1,\cdots,a_{\ell},2\lfloor\sqrt{r}\rfloor}]
     $$
     
-    且对于任意 $1\le k\le\ell$，都有 $a_k = a_{\ell+1-k}$。
+    且对于任意 $1\leqslant k\leqslant\ell$，都有 $a_k = a_{\ell+1-k}$。
 
 ??? note "证明"
     对于二次无理数 $\sqrt{r}$，因为 $\lfloor\sqrt{r}\rfloor+\sqrt{r}>1$ 且 $-1<\lfloor\sqrt{r}\rfloor-\sqrt{r}<0$，所以 $\lfloor\sqrt{r}\rfloor+\sqrt{r}$ 是纯循环连分数：
@@ -1541,7 +1541,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     \sqrt{r} = -\lfloor\sqrt{r}\rfloor+\left(\lfloor\sqrt{r}\rfloor+\sqrt{r}\right) = [\lfloor\sqrt{r}\rfloor,\overline{a_1,\cdots,a_\ell,2\lfloor\sqrt{r}\rfloor}].
     $$
     
-    因为无理数的连分数表示是唯一的，所以比较中间的系数就知道，$a_k=a_{\ell+1-k}$ 对所有 $1\le k\le\ell$ 都成立。
+    因为无理数的连分数表示是唯一的，所以比较中间的系数就知道，$a_k=a_{\ell+1-k}$ 对所有 $1\leqslant k\leqslant\ell$ 都成立。
 
 ??? example " 例子：$\sqrt{74}$ 的连分数展开 "
     $\sqrt{74}$ 的连分数可以计算如下：（此处仅是为了说明，编程计算应使用前文提到的递归算法）
@@ -1578,17 +1578,17 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 在掌握了基础概念后，需要研究一些具体的例题来理解如何在算法竞赛中应用连分数的方法。
 
 ???+ example "线下凸包"
-    给定 $r=[a_0,a_1,\cdots,a_n]$，求出满足 $0\le x\le N$ 和 $0\le y\le rx$ 的整点 $(x,y)$ 的集合的凸包。
+    给定 $r=[a_0,a_1,\cdots,a_n]$，求出满足 $0\leqslant x\leqslant N$ 和 $0\leqslant y\leqslant rx$ 的整点 $(x,y)$ 的集合的凸包。
 
 ??? note "解答"
-    对于无界集合 $x\ge 0$，上凸壳就是直线 $y=rx$ 本身。然而，如下图所示，如果还要求 $x\le N$，那么上凸壳最终会偏离直线。
+    对于无界集合 $x\geqslant 0$，上凸壳就是直线 $y=rx$ 本身。然而，如下图所示，如果还要求 $x\leqslant N$，那么上凸壳最终会偏离直线。
     
     ![](./images/lattice-hull.svg)
     
     从 $(0,0)$ 开始，可以自左向右地求出上凸壳的所有整点。假设当前已经求出的上凸壳的最后一个整点是 $(x,y)$。现在要求出下一个整点 $(x',y')$。顶点 $(x',y')$ 在 $(x,y)$ 右上方，记 $(\Delta x,\Delta y)=(x'-x,y'-y)$ 为两者的差值。那么，必然有
     
     $$
-    0<\Delta x\le N-x,\ 0\le \Delta y\le r\Delta x.
+    0<\Delta x\leqslant N-x,\ 0\leqslant \Delta y\leqslant r\Delta x.
     $$
     
     第二个不等式成立，因为条件 $\Delta y>r\Delta x$ 与 $(x,y)$ 已经在上凸壳上这件事矛盾。观察 $(\Delta x,\Delta y)$ 需要满足的条件，对于不同的点 $(x,y)$，只有 $\Delta x$ 的上界在变化。所以，只要能解决这个子问题，就可以递归地求出原问题的所有整点。
@@ -1597,9 +1597,9 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     
     当然，实际求解时，没必要对每个子问题都重新求出这样的下中间分数。应该首先求出所有的渐近分数，这相当于提供了遍历所有的下中间分数的方法。然后分母从大到小地遍历下中间分数，每次都尝试将它加到前一个整点 $(x,y)$ 上，直到不能添加为止才继续尝试下一个下中间分数。
     
-    此处有一些显然的优化。首先，对于下中间分数 $(q,p)$，必然存在奇数 $k$ 和 $0\le t<a_k$ 使得 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$。只要找到最大的 $t$ 使得 $q_{k-1}+tq_k+x\le N$ 满足就好了，亦即 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$。不用担心 $t$ 越界，因为更大的下渐近分数 $(q_{k+2},p_{k+2})$ 已经添加完了。而每次确定添加的次数的时候，直接计算 $\left\lfloor\dfrac{N-x}{q}\right\rfloor$ 即可，不必逐个尝试。
+    此处有一些显然的优化。首先，对于下中间分数 $(q,p)$，必然存在奇数 $k$ 和 $0\leqslant t<a_k$ 使得 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$。只要找到最大的 $t$ 使得 $q_{k-1}+tq_k+x\leqslant N$ 满足就好了，亦即 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$。不用担心 $t$ 越界，因为更大的下渐近分数 $(q_{k+2},p_{k+2})$ 已经添加完了。而每次确定添加的次数的时候，直接计算 $\left\lfloor\dfrac{N-x}{q}\right\rfloor$ 即可，不必逐个尝试。
     
-    优化后的算法的复杂度是 $O(n)$ 的。虽然下中间分数对应的整点可能有很多，但是真正成为增量的并不多。下面要说明，所有 $0\le t<a_k$ 的下中间分数 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ 中，至多会出现两个增量。假设这些下中间分数中确实出现了增量，则此时必然有 $q_{k-1}\le N-x<q_{k+1}$。不妨设 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$。如果 $t=0$，则增量就有 $\Delta x=q_{k-1}$，故而添加完增量后，就有 $N-x'<q_{k-1}$，不会再在这些下中间分数中出现新的增量；如果 $t>0$，那么添加完增量后，必然有 $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$，即使还会在同一段下中间分数中出现新的增量，下次也只能有 $t'=0$。因此，在这样的一段下中间分数中，至多只能出现两个增量。这就说明，总的时间复杂度是 $O(n)$ 的。
+    优化后的算法的复杂度是 $O(n)$ 的。虽然下中间分数对应的整点可能有很多，但是真正成为增量的并不多。下面要说明，所有 $0\leqslant t<a_k$ 的下中间分数 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ 中，至多会出现两个增量。假设这些下中间分数中确实出现了增量，则此时必然有 $q_{k-1}\leqslant N-x<q_{k+1}$。不妨设 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$。如果 $t=0$，则增量就有 $\Delta x=q_{k-1}$，故而添加完增量后，就有 $N-x'<q_{k-1}$，不会再在这些下中间分数中出现新的增量；如果 $t>0$，那么添加完增量后，必然有 $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$，即使还会在同一段下中间分数中出现新的增量，下次也只能有 $t'=0$。因此，在这样的一段下中间分数中，至多只能出现两个增量。这就说明，总的时间复杂度是 $O(n)$ 的。
     
     === "C++"
         ```cpp
@@ -1612,25 +1612,25 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
         ```
 
 ???+ example "[Timus - Crime and Punishment](https://timus.online/problem.aspx?space=1&num=1430)"
-    给定正整数 $A,B,N \le 2\times 10^9$，求 $x,y\ge 0$ 使得 $Ax+By\le N$ 且 $Ax+By$ 尽可能大。
+    给定正整数 $A,B,N \leqslant 2\times 10^9$，求 $x,y\geqslant 0$ 使得 $Ax+By\leqslant N$ 且 $Ax+By$ 尽可能大。
 
 ??? note "解答"
-    这个问题有一个复杂度为 $O(\sqrt N)$ 的解法：不妨设 $A\ge B$，因为 $A(B+x)+By=Ax+B(A+y)$，所以只需要在 $x\le\min\{N/A, B\}$ 中搜索答案即可。这足够通过本题。但是，如果应用连分数方法，那么时间复杂度就可以降低到 $O(\log N)$。
+    这个问题有一个复杂度为 $O(\sqrt N)$ 的解法：不妨设 $A\geqslant B$，因为 $A(B+x)+By=Ax+B(A+y)$，所以只需要在 $x\leqslant\min\{N/A, B\}$ 中搜索答案即可。这足够通过本题。但是，如果应用连分数方法，那么时间复杂度就可以降低到 $O(\log N)$。
     
-    为了讨论方便，首先通过代换 $x\mapsto\left\lfloor N/A\right\rfloor-x$ 来改变 $x$ 的符号。令 $C=N\bmod A$ 和 $M=\left\lfloor N/A\right\rfloor$，则原问题转化为在 $0\le x\le M$ 且 $By-Ax\le C$ 的条件下，求最优的 $(x,y)$ 使得 $By-Ax$ 最大。对于每个固定的 $x$，最优的 $y$ 的取值为 $\left\lfloor\dfrac{Ax+C}{B}\right\rfloor$。
+    为了讨论方便，首先通过代换 $x\mapsto\left\lfloor N/A\right\rfloor-x$ 来改变 $x$ 的符号。令 $C=N\bmod A$ 和 $M=\left\lfloor N/A\right\rfloor$，则原问题转化为在 $0\leqslant x\leqslant M$ 且 $By-Ax\leqslant C$ 的条件下，求最优的 $(x,y)$ 使得 $By-Ax$ 最大。对于每个固定的 $x$，最优的 $y$ 的取值为 $\left\lfloor\dfrac{Ax+C}{B}\right\rfloor$。
     
     接下来要说明的是，这个问题和上一个例题具有类似的解法。但是，与上一个例题中使用下中间分数偏离直线不同，本题需要使用上中间分数来接近直线。具体来说，$C-(By-Ax)$ 的值正比于点 $(x,y)$ 与直线 $By-Ax=C$ 的距离。要最大化 $By-Ax$，就等价于最小化这个距离。算法的目标是要找到直线 $By-Ax=C$ 下方距离它最近的可行的整点。算法的思路就是从最左侧的点开始，沿着这些整点的上凸壳搜索，逐步缩小与直线的距离，直到得到最优解。
     
     在 $(x,y)$ 的坐标系内，算法从 $(0,\lfloor C/B\rfloor)$ 出发，递归地寻找并添加最优的增量 $(\Delta x,\Delta y)$，且保证添加后的点比起之前更靠近直线 $By-Ax=C$，但是不能到达直线的另一侧，也不能让横坐标大于 $M$。设已经得到的点是 $(x,y)$，那么增量 $(\Delta x,\Delta y)$ 满足的条件就是
     
     $$
-    0<B\Delta y-A\Delta x\le C-(By-Ax),\ 0<\Delta x\le M-x.
+    0<B\Delta y-A\Delta x\leqslant C-(By-Ax),\ 0<\Delta x\leqslant M-x.
     $$
     
     按照沿下凸壳搜索的思路，只需要找到满足这些条件的点中 $\Delta x$ 最小的即可。将第一个不等式改写成
     
     $$
-    \Delta y \le \dfrac{A}{B}\Delta x+\dfrac{C-(By-Ax)}{B}.
+    \Delta y \leqslant \dfrac{A}{B}\Delta x+\dfrac{C-(By-Ax)}{B}.
     $$
     
     结合前文的 [几何解释](#几何解释) 可知，只要后面的常数项小于 $1$，那么满足这个不等式的整点 $(\Delta x,\Delta y)$ 中横坐标最小的，一定对应着某个上中间分数。这是因为它是所有分母不超过它的分母的分数中，从上方逼近某个实数效果最好的，这只能是上中间分数。而每次添加增量后，都会导致 $\Delta y$ 的上界变得更紧，这意味着必须考察分母更大的上中间分数。
@@ -1653,9 +1653,9 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     提示：$e = [2,1,2,1,1,4,1,1,6,1,\cdots,1,2n,1, \cdots]$。[^continued-fraction-of-e]
 
 ??? note "解答"
-    这个和等于集合 $\{(x,y):1\le x\le N,1\le y\le\mathrm{e}x\}$ 中的整点个数。在构建完直线 $y=\mathrm{e}x$ 下的整点的凸包后，可以使用 [Pick 定理](../../geometry/pick.md) 计算整点个数。时间复杂度为 $O(\log N)$。
+    这个和等于集合 $\{(x,y):1\leqslant x\leqslant N,1\leqslant y\leqslant\mathrm{e}x\}$ 中的整点个数。在构建完直线 $y=\mathrm{e}x$ 下的整点的凸包后，可以使用 [Pick 定理](../../geometry/pick.md) 计算整点个数。时间复杂度为 $O(\log N)$。
     
-    原问题要求 $N \le 10^{4000}$。此处 C++ 代码仅作示意，并没有实现高精度计算类。
+    原问题要求 $N \leqslant 10^{4000}$。此处 C++ 代码仅作示意，并没有实现高精度计算类。
     
     === "C++"
         ```cpp
@@ -1696,7 +1696,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 ??? note "解答"
     这是到目前为止最为复杂的题目。它可以通过 [类欧几里得算法](./euclidean.md) 计算。此处给出基于连分数的算法，时间复杂度是 $O(\log\min\{A,B\})$。
     
-    可以通过构造直线 $y=\dfrac{Ax+B}{M}$ 以下且 $0\le x< N$ 的全部整点的凸包，并用 Pick 定理计算整点的个数。之前已经解决 $B=0$ 的情形。对于一般的情形，可以分为两步进行。首先通过添加上中间分数来逐步接近直线（即第二个例题），直到找到最接近直线的点，再通过添加下中间分数来逐步远离直线（即第一个例题）。
+    可以通过构造直线 $y=\dfrac{Ax+B}{M}$ 以下且 $0\leqslant x< N$ 的全部整点的凸包，并用 Pick 定理计算整点的个数。之前已经解决 $B=0$ 的情形。对于一般的情形，可以分为两步进行。首先通过添加上中间分数来逐步接近直线（即第二个例题），直到找到最接近直线的点，再通过添加下中间分数来逐步远离直线（即第一个例题）。
     
     === "C++"
         ```py
@@ -1709,7 +1709,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
         ```
 
 ???+ example "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
-    有个未知的有理数 $\dfrac{p}{q}$ 且 $1\le p, q\le 10^9$，可以询问对某个素数 $m\in[10^9,10^{12}]$ 取模后的 $pq^{-1}$ 的值。请在不超过十次询问内确定 $p$ 和 $q$ 的值。
+    有个未知的有理数 $\dfrac{p}{q}$ 且 $1\leqslant p, q\leqslant 10^9$，可以询问对某个素数 $m\in[10^9,10^{12}]$ 取模后的 $pq^{-1}$ 的值。请在不超过十次询问内确定 $p$ 和 $q$ 的值。
     
     这个问题等价于找到 $[1,N]$ 中使得 $Ax\bmod M$ 最小的 $x$。
 

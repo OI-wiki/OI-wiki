@@ -7,7 +7,7 @@
 记 $A_1, \cdots, A_m$ 为随机事件，则
 
 $$
-P\left\{ \bigcup_{i=1}^m A_i \right\} \leq \sum_{i=1}^m P\{A_i\}
+P\left\{ \bigcup_{i=1}^m A_i \right\} \leqslant \sum_{i=1}^m P\{A_i\}
 $$
 
 即：一组事件中至少一个发生的概率，不超过每一个的发生概率之和。
@@ -25,23 +25,23 @@ $$
 设 $X$ 是一个取值非负的随机变量，则对任意正实数 $a$ 有
 
 $$
-P\{ X \geq a \} \leq \frac{EX}{a}
+P\{ X \geqslant a \} \leqslant \frac{EX}{a}
 $$
 
 事实上，由于 Markov 不等式本身并没有用到随机变量除期望外的与分布有关的任何信息，因此直接应用这个不等式得到的约束通常很松。
 
 ### 证明
 
-记 $I$ 为事件 $X \geq a$ 的示性函数，则有
+记 $I$ 为事件 $X \geqslant a$ 的示性函数，则有
 
 $$
-I \leq \frac{X}{a}
+I \leqslant \frac{X}{a}
 $$
 
 进而
 
 $$
-P\{ X \geq a \} = EI \leq E \left[ \frac{X}{a} \right] = \frac{EX}{a}
+P\{ X \geqslant a \} = EI \leqslant E \left[ \frac{X}{a} \right] = \frac{EX}{a}
 $$
 
 ## Chebyshev 不等式
@@ -49,13 +49,13 @@ $$
 设 $X$ 是一随机变量，则对任意的 $a > 0$ 都有
 
 $$
-P \{ |X - EX| \geq a \} \leq \frac{DX}{a^2}
+P \{ |X - EX| \geqslant a \} \leqslant \frac{DX}{a^2}
 $$
 
 特别地，当 $a$ 取 $k\sigma$ 时有
 
 $$
-P \{ |X - EX| \geq k\sigma \} \leq \frac{1}{k^2}
+P \{ |X - EX| \geqslant k\sigma \} \leqslant \frac{1}{k^2}
 $$
 
 其中 $\sigma$ 是 $X$ 的标准差。
@@ -65,13 +65,13 @@ $$
 由已知，有
 
 $$
-P \{ |X - EX| \geq a \} = P \{ (X - EX)^2 \geq a^2 \}
+P \{ |X - EX| \geqslant a \} = P \{ (X - EX)^2 \geqslant a^2 \}
 $$
 
 注意到 $(X - EX)^2$ 非负，故由 Markov 不等式可知
 
 $$
-P \{ (X - EX)^2 \geq a^2 \} \leq \frac{E(X - EX)^2}{a^2} = \frac{DX}{a^2}
+P \{ (X - EX)^2 \geqslant a^2 \} \leqslant \frac{E(X - EX)^2}{a^2} = \frac{DX}{a^2}
 $$
 
 ## Chernoff 不等式
@@ -81,13 +81,13 @@ $$
 设 $X$ 是一随机变量，则对任意的 $t > 0$ 都有
 
 $$
-P\{ X \geq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
+P\{ X \geqslant a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leqslant \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 类似地，当 $t < 0$ 时有
 
 $$
-P\{ X \leq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
+P\{ X \leqslant a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leqslant \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 ### Poisson 试验之和的 Chernoff 不等式
@@ -110,7 +110,7 @@ $$
 对于 $n$ 个独立的 Poisson 试验 $X_1, X_2, \cdots, X_n$，记 $X = \sum_{i=1}^{n} X_i$ 以及 $\mu = EX$，则对任意 $0 < \epsilon < 1$ 有
 
 $$
-P\left\{ |X - \mu| \geq \epsilon \mu \right\} \leq 2 \exp\left( - \frac{1}{3} \mu \epsilon^2 \right)
+P\left\{ |X - \mu| \geqslant \epsilon \mu \right\} \leqslant 2 \exp\left( - \frac{1}{3} \mu \epsilon^2 \right)
 $$
 
 ## Hoeffding 不等式
@@ -118,7 +118,7 @@ $$
 若 $X_1, \cdots, X_n$ 为互相独立的实随机变量且 $X_i\in [a_i,b_i]$，记随机变量 $X=\sum\limits_{i=1}^n X_i$，则
 
 $$
-P\{ |X - EX| \geq \epsilon \} \leq 2\exp \left( \frac {-2\epsilon^2}{\sum\limits_{i=1}^n (b_i-a_i)^2} \right)
+P\{ |X - EX| \geqslant \epsilon \} \leqslant 2\exp \left( \frac {-2\epsilon^2}{\sum\limits_{i=1}^n (b_i-a_i)^2} \right)
 $$
 
 Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望值的程度。这两个不等式的证明过程较为冗长，有兴趣的同学可以查阅 Probability and Computing 一书中的相关章节。
@@ -131,7 +131,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
 
 考虑下列估计圆周率 $\pi$ 的精确值的算法：
 
-在正方形区域 $[-1, 1]^2$ 内随机生成 $n$ 个点，记其中落入单位圆盘 $x^2 + y^2 \leq 1$ 的点数为 $m$，则可以取 $\dfrac{4m}{n}$ 为 $\pi$ 的近似值。
+在正方形区域 $[-1, 1]^2$ 内随机生成 $n$ 个点，记其中落入单位圆盘 $x^2 + y^2 \leqslant 1$ 的点数为 $m$，则可以取 $\dfrac{4m}{n}$ 为 $\pi$ 的近似值。
 
 问题：若要保证上述算法以至少 $(1 - \delta)$ 的概率返回相对误差不超过 $\epsilon$ 的结果，$n$ 应该如何取定？
 
@@ -139,25 +139,25 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
     记 $X_i$ 表示事件「随机生成的第 $i$ 个点在单位圆内」，则圆内总点数 $X = \sum_{i=1}^{n} X_i$。我们需要找到一个合适的 $n$ 使得
     
     $$
-    P\left\{ \left| \frac{4X}{n} - \pi \right| \geq \epsilon \pi \right\} \leq \delta
+    P\left\{ \left| \frac{4X}{n} - \pi \right| \geqslant \epsilon \pi \right\} \leqslant \delta
     $$
     
     上式等价于
     
     $$
-    P\left\{ \left| X - \frac{\pi}{4}n \right| \geq \epsilon \cdot \frac{\pi}{4}n  \right\} \leq \delta
+    P\left\{ \left| X - \frac{\pi}{4}n \right| \geqslant \epsilon \cdot \frac{\pi}{4}n  \right\} \leqslant \delta
     $$
     
     根据 Chernoff 不等式，我们只需令
     
     $$
-    2 \exp\left( - \frac{1}{3} \epsilon^2 \cdot \frac{\pi}{4}n \right) \leq \delta
+    2 \exp\left( - \frac{1}{3} \epsilon^2 \cdot \frac{\pi}{4}n \right) \leqslant \delta
     $$
     
     即可，由此可解得
     
     $$
-    n \geq \frac{12}{\pi} \epsilon^{-2} \ln \frac{2}{\delta}
+    n \geqslant \frac{12}{\pi} \epsilon^{-2} \ln \frac{2}{\delta}
     $$
     
     即当 $n = \Omega(\epsilon^{-2} \ln \frac{1}{\delta})$ 时可以达到需要的准确率。
@@ -170,7 +170,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
     假如只有一个奖球，则抽取 $M=n\log\epsilon^{-1}$ 次即可保证，因为 $M$ 次全不中的概率
     
     $$
-    \Big(1-\dfrac 1n\Big)^{n\log\epsilon^{-1}}\leq e^{\log\epsilon}=\epsilon
+    \Big(1-\dfrac 1n\Big)^{n\log\epsilon^{-1}}\leqslant e^{\log\epsilon}=\epsilon
     $$
     
     现在有 $k>1$ 个奖球，那么根据 Union Bound，我们只需保证每个奖球被漏掉的概率都不超过 $\dfrac \epsilon k$ 即可。于是答案是 $n \log \dfrac{k}{\epsilon}$。
@@ -184,7 +184,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
     
     -   通过抛 $n$ 次硬币，可以从所有子集中等概率随机选一个。
     -   不断重复这一过程，直到选出的子集大小恰好为 $\dfrac n2$。
-        -   注意到大小为 $\dfrac n2$ 的子集至少占所有子集的 $\dfrac 1n$，因此重复次数的期望值 $\leq n$。
+        -   注意到大小为 $\dfrac n2$ 的子集至少占所有子集的 $\dfrac 1n$，因此重复次数的期望值 $\leqslant n$。
     
     这一算法期望需要抛 $n^2$ 次硬币。
     
@@ -204,7 +204,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
     
     尝试分析第二、第三步所需的操作次数（即添加/删除元素的次数）：
     
-    -   记 01 随机变量 $X_i$ 表示 $i$ 是否被选入初始的子集，令 $X:=X_1+\cdots+X_n$ 表示子集大小，则第二、第三步所需的操作次数等于 $\big|X-\mathrm{E}[X]\big|$。在 Hoeffding 不等式中取 $t=c\cdot\sqrt n$（其中 $c$ 为任意常数），得到 $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2\mathrm{e}^{-c^2}$。也就是说，我们可以通过允许 $\Theta(\sqrt n)$ 级别的偏移，来得到任意小的常数级别的失败概率。
+    -   记 01 随机变量 $X_i$ 表示 $i$ 是否被选入初始的子集，令 $X:=X_1+\cdots+X_n$ 表示子集大小，则第二、第三步所需的操作次数等于 $\big|X-\mathrm{E}[X]\big|$。在 Hoeffding 不等式中取 $t=c\cdot\sqrt n$（其中 $c$ 为任意常数），得到 $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geqslant t\Big]\leqslant 2\mathrm{e}^{-c^2}$。也就是说，我们可以通过允许 $\Theta(\sqrt n)$ 级别的偏移，来得到任意小的常数级别的失败概率。
     
     至此我们已经说明：该算法可以以很大概率保证抛硬币次数在 $n+\Theta(\sqrt n\log n)$ 以内。
     
@@ -216,7 +216,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
         用 Hoeffding 不等式求第二、第三步中操作次数期望值的上界：
         
         $$
-        E|X - EX| = \int_0^\infty P\{ |X - E[X]| \geq t \} \mathrm{d}t \leq 
+        E|X - EX| = \int_0^\infty P\{ |X - E[X]| \geqslant t \} \mathrm{d}t \leqslant 
         2 \int_0^\infty \exp \left(-\frac {t^2}{n}\right) \mathrm{d}t=\sqrt{\pi n}
         $$
         

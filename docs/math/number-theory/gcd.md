@@ -133,7 +133,7 @@
     当我们求 $\gcd(a,b)$ 的时候，会遇到两种情况：
     
     -   $a < b$，这时候 $\gcd(a,b)=\gcd(b,a)$；
-    -   $a \geq b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log a) = O(n)$ 次。
+    -   $a \geqslant b$，这时候 $\gcd(a,b)=\gcd(b,a \bmod b)$，而对 $a$ 取模会让 $a$ 至少折半。这意味着这一过程最多发生 $O(\log a) = O(n)$ 次。
     
     第一种情况发生后一定会发生第二种情况，因此第一种情况的发生次数一定 **不多于** 第二种情况的发生次数。
     
@@ -149,7 +149,7 @@
 
 已知两数 $a$ 和 $b$，求 $\gcd(a,b)$。
 
-不妨设 $a \ge b$，若 $a = b$，则 $\gcd(a,b)=a=b$。
+不妨设 $a \geqslant b$，若 $a = b$，则 $\gcd(a,b)=a=b$。
 否则，$\forall d\mid a, d\mid b$，可以证明 $d\mid a-b$。
 
 因此，$a$ 和 $b$ 的 **所有** 公因数都是 $a-b$ 和 $b$ 的公因数，$\gcd(a,b) = \gcd(a-b, b)$。
@@ -346,18 +346,18 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
 ### 值域分析
 
 $ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long。  
-万幸的是，若 $b\not= 0$，扩展欧几里得算法求出的可行解必有 $|x|\le b,|y|\le a$。  
+万幸的是，若 $b\not= 0$，扩展欧几里得算法求出的可行解必有 $|x|\leqslant b,|y|\leqslant a$。  
 下面给出这一性质的证明。
 
 ??? note "证明"
     -   $\gcd(a,b)=b$ 时，$a\bmod b=0$，必在下一层终止递归。  
-        得到 $x_1=0,y_1=1$，显然 $a,b\ge 1\ge |x_1|,|y_1|$。
-    -   $\gcd(a,b)\not= b$ 时，设 $|x_2|\le (a\bmod b),|y_2|\le b$。  
+        得到 $x_1=0,y_1=1$，显然 $a,b\geqslant 1\geqslant |x_1|,|y_1|$。
+    -   $\gcd(a,b)\not= b$ 时，设 $|x_2|\leqslant (a\bmod b),|y_2|\leqslant b$。  
         因为 $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$   
-        所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$  
-        $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$   
-        $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$   
-        因此 $|x_1|\le b,|y_1|\le a$ 成立。
+        所以 $|x_1|=|y_2|\leqslant b,|y_1|\leqslant|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\leqslant (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$  
+        $\leqslant a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\leqslant a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$   
+        $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\leqslant a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\leqslant a$   
+        因此 $|x_1|\leqslant b,|y_1|\leqslant a$ 成立。
 
 ### 迭代法编写扩展欧几里得算法
 

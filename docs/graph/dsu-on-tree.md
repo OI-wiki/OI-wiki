@@ -32,7 +32,7 @@ void merge(int x, int y) {
 ???+ note "例题引入"
     给出一棵 $n$ 个节点以 $1$ 为根的树，节点 $u$ 的颜色为 $c_u$，现在对于每个结点 $u$ 询问以 $u$ 为根的子树里一共出现了多少种不同的颜色。
     
-    $n\le 2\times 10^5$。
+    $n\leqslant 2\times 10^5$。
 
 ![dsu-on-tree-1.png](./images/dsu-on-tree-1.svg)
 

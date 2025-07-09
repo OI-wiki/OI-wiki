@@ -138,7 +138,7 @@ bool check(double mid) {
 >
 > 你需要确定一组 $w_i\in\{0,1\}$，使得 $\displaystyle\frac{\sum w_i\times a_i}{\sum w_i\times b_i}$ 最大。
 >
-> 要求 $\displaystyle\sum w_i\times b_i \geq W$。
+> 要求 $\displaystyle\sum w_i\times b_i \geqslant W$。
 
 本题多了分母至少为 $W$ 的限制，因此无法再使用上一题的贪心算法。
 

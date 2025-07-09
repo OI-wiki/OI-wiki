@@ -19,7 +19,7 @@
 ???+ note "[BZOJ 2639 矩形计算](https://hydro.ac/d/bzoj/p/2639)"
     输入一个 $n\times m$ 的矩阵，矩阵的每一个元素都是一个整数，然后有 $q$ 个询问，每次询问一个子矩阵的权值。矩阵的权值是这样定义的，对于一个整数 $x$，如果它在该矩阵中出现了 $p$ 次，那么它给该矩阵的权值就贡献 $p^2$。
     
-    数据范围：$1\leq n,\ m\leq 200$，$0\leq q\leq 10^5$，$|$ 矩阵元素大小 $| \leq 2\times 10^9$。
+    数据范围：$1\leqslant n,\ m\leqslant 200$，$0\leqslant q\leqslant 10^5$，$|$ 矩阵元素大小 $| \leqslant 2\times 10^9$。
 
 ??? note "解题思路"
     先离散化，二维莫队时用一个数组记录每个数当前出现的次数即可。
@@ -34,7 +34,7 @@
 ???+ note "[洛谷 P1527 \[国家集训队\] 矩阵乘法](https://www.luogu.com.cn/problem/P1527)"
     给你一个 $n\times n$ 的矩阵，$q$ 次询问，每次询问一个子矩形的第 $k$ 小数。
     
-    数据范围：$1\leq n\leq 500$，$1\leq q\leq 6\times 10^4$，$0\leq a_{i,j}\leq 10^9$。
+    数据范围：$1\leqslant n\leqslant 500$，$1\leqslant q\leqslant 6\times 10^4$，$0\leqslant a_{i,j}\leqslant 10^9$。
 
 首先和上一题一样，需要离散化整个矩阵。但是需要注意，本题除了需要对数值进行分块，还需要对数值的值域进行分块，才能求出答案。
 

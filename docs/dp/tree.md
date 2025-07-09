@@ -39,7 +39,7 @@
     
     一位学生要学习 $m$ 门课程，求其能获得的最多学分数。
     
-    $n,m \leq 300$
+    $n,m \leqslant 300$
 
 每门课最多只有一门先修课的特点，与有根树中一个点最多只有一个父亲结点的特点类似。
 
@@ -52,7 +52,7 @@
 记点 $x$ 的儿子个数为 $s_x$，以 $x$ 为根的子树大小为 $\textit{siz_x}$，可以写出下面的状态转移方程：
 
 $$
-f(u,i,j)=\max_{v,k \leq j,k \leq \textit{siz_v}} f(u,i-1,j-k)+f(v,s_v,k)
+f(u,i,j)=\max_{v,k \leqslant j,k \leqslant \textit{siz_v}} f(u,i-1,j-k)+f(v,s_v,k)
 $$
 
 注意上面状态转移方程中的几个限制条件，这些限制条件确保了一些无意义的状态不会被访问到。

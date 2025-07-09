@@ -2,15 +2,15 @@
 
 常系数齐次线性递推数列（又称为 C-finite 或 C-recursive 数列）是常见的一类基础的递推数列。
 
-对于数列 $\left(a_j\right)_{j\geq 0}$ 和其递推式
+对于数列 $\left(a_j\right)_{j\geqslant 0}$ 和其递推式
 
 $$
-a_n=\sum_{j=1}^{d}c_ja_{n-j},\qquad (n\geq d)
+a_n=\sum_{j=1}^{d}c_ja_{n-j},\qquad (n\geqslant d)
 $$
 
 其中 $c_j$ 不全为零，我们的目标是在给出初值 $a_0,\dots ,a_{d-1}$ 和递推式中的 $c_1,\dots ,c_d$ 后求出 $a_k$。如果 $k\gg d$，我们想要更快速的算法。
 
-这里 $\left(a_j\right)_{j\geq 0}$ 被称为 $d$ 阶的常系数齐次线性递推数列。
+这里 $\left(a_j\right)_{j\geqslant 0}$ 被称为 $d$ 阶的常系数齐次线性递推数列。
 
 ### Fiduccia 算法
 
@@ -102,15 +102,15 @@ $$
 
 ### 表示为有理函数
 
-对于上述数列 $\left(a_j\right)_{j\geq 0}$ 一定存在有理函数
+对于上述数列 $\left(a_j\right)_{j\geqslant 0}$ 一定存在有理函数
 
 $$
-\frac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j
+\frac{P(x)}{Q(x)}=\sum_{j\geqslant 0}a_jx^j
 $$
 
 且 $Q(x)=x^d\Gamma\left(x^{-1}\right)$，$\deg{P}<d$。我们称其为「**有理函数**」是因为 $P(x),Q(x)$ 是「**多项式**」。
 
-**证明**：对于 $P(x)=\sum_{j=0}^{d-1}p_jx^j$ 和 $Q(x):=\sum_{j=0}^{d}q_jx^j$ 考虑 $\dfrac{P(x)}{Q(x)}=\sum_{j\geq 0}\tilde{q}_jx^j$ 的系数定义，这几乎就是形式幂级数「**除法**」的定义，
+**证明**：对于 $P(x)=\sum_{j=0}^{d-1}p_jx^j$ 和 $Q(x):=\sum_{j=0}^{d}q_jx^j$ 考虑 $\dfrac{P(x)}{Q(x)}=\sum_{j\geqslant 0}\tilde{q}_jx^j$ 的系数定义，这几乎就是形式幂级数「**除法**」的定义，
 
 $$
 \tilde{q}_N=
@@ -124,10 +124,10 @@ $$
 我们只需要令
 
 $$
-P(x)=\left(\left(\sum_{j\geq 0}a_jx^j\right)\cdot x^d\Gamma\left(x^{-1}\right)\right)\bmod{x^d}
+P(x)=\left(\left(\sum_{j\geqslant 0}a_jx^j\right)\cdot x^d\Gamma\left(x^{-1}\right)\right)\bmod{x^d}
 $$
 
-那么根据 $\tilde{q}_N$ 的定义，必然有 $\dfrac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j$。
+那么根据 $\tilde{q}_N$ 的定义，必然有 $\dfrac{P(x)}{Q(x)}=\sum_{j\geqslant 0}a_jx^j$。
 
 ### Bostan–Mori 算法
 
@@ -214,7 +214,7 @@ $$
 &\textbf{Algorithm }\operatorname{Slice-Coefficients}(Q,L)\text{:} \\
 &\textbf{Input}\text{: }Q(x)\in\mathbb{C}\left\lbrack x\right\rbrack,L\in\mathbb{Z}\text{.} \\
 &\textbf{Output}\text{: }\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack Q(x)^{-1}\text{.} \\
-1&\textbf{if }L\leq 1\textbf{ then return }\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack Q(x)^{-1} \\
+1&\textbf{if }L\leqslant 1\textbf{ then return }\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack Q(x)^{-1} \\
 &\text{Use other algorithm to compute }Q(x)^{-1} \\
 2&V(x^2)\gets Q(x)Q(-x) \\
 3&k\gets \left\lceil \frac{L-\deg Q}{2}\right\rceil \\
@@ -228,24 +228,24 @@ $$
 
 ##### 找到新的有理函数表示
 
-我们知道 $Q(x)$ 本身和 $Q(x)^{-1}$ 的一部分连续的系数比如 $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$ 和 $L\geq 0$，我们希望求出 $\left\lbrack x^{\left\lbrack L+\deg Q,L+2\deg Q\right)}\right\rbrack Q(x)^{-1}$，这等价于我们要求某个 $P(x)$ 且 $\deg P< \deg Q$ 使得 $\dfrac{P(x)}{Q(x)}$ 的前 $\deg Q$ 项与 $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$ 相同。简单来说：递推关系（有理函数的分母）是不变的，我们所做的只是更换初值（有理函数的分子）。
+我们知道 $Q(x)$ 本身和 $Q(x)^{-1}$ 的一部分连续的系数比如 $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$ 和 $L\geqslant 0$，我们希望求出 $\left\lbrack x^{\left\lbrack L+\deg Q,L+2\deg Q\right)}\right\rbrack Q(x)^{-1}$，这等价于我们要求某个 $P(x)$ 且 $\deg P< \deg Q$ 使得 $\dfrac{P(x)}{Q(x)}$ 的前 $\deg Q$ 项与 $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$ 相同。简单来说：递推关系（有理函数的分母）是不变的，我们所做的只是更换初值（有理函数的分子）。
 
 具体的，考虑
 
 $$
-\frac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j
+\frac{P(x)}{Q(x)}=\sum_{j\geqslant 0}a_jx^j
 $$
 
 我们现在希望将递推前进 $n$ 项，那么就是
 
 $$
-\sum_{j\geq n}a_jx^{j-n}=\frac{P(x)}{Q(x)x^n}-\frac{Q(x)\sum_{j=0}^{n-1}a_jx^j}{Q(x)x^n}
+\sum_{j\geqslant n}a_jx^{j-n}=\frac{P(x)}{Q(x)x^n}-\frac{Q(x)\sum_{j=0}^{n-1}a_jx^j}{Q(x)x^n}
 $$
 
 我们先用一次 $\operatorname{Slice-Coefficients}(Q,L-\deg{P})$ 计算出 $\left\lbrack x^{\left\lbrack L-\deg{P},L-\deg{P}+\deg{Q}+1\right)}\right\rbrack Q(x)^{-1}$，然后我们扩展合并出 $\left\lbrack x^{\left\lbrack L-\deg{P},L+\deg{Q}\right)}\right\rbrack Q(x)^{-1}$，再重新计算一个分子使得
 
 $$
-\frac{\widetilde{P}(x)}{Q(x)}=\sum_{j\geq 0}\left(\left\lbrack x^{L+j}\right\rbrack \frac{P(x)}{Q(x)}\right)x^j
+\frac{\widetilde{P}(x)}{Q(x)}=\sum_{j\geqslant 0}\left(\left\lbrack x^{L+j}\right\rbrack \frac{P(x)}{Q(x)}\right)x^j
 $$
 
 最后我们使用形式幂级数的除法计算出 $\left\lbrack x^{\left\lbrack 0,R-L\right)}\right\rbrack\dfrac{\widetilde{P}(x)}{Q(x)}$，时间为 $O(\mathsf{M}(d)\log L+\mathsf{M}(R-L))$。

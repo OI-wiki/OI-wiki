@@ -219,15 +219,15 @@ $$
 ### 有解的证明
 
 ???+ note "引理 1"
-    设 [整环](../algebra/ring-theory.md#整环)  $R$ 有多项式或 [形式幂级数](../algebra/ring-theory.md#形式幂级数环)  $f(X) = \sum_{i\geq 0}a_iX^i$ 和 $r,p\in R$ 使得 $f(r)\in Rp$（亦即 $r$ 是 $f(X)$ 在模 $p$ 意义下的根）且 $f'(r)\in R$ 在模 $p$ 意义下是可逆的。这里 $f'(X) := \sum_{i\geq 0}(i+1)a_{i+1}X^i$ 是 $f(X)$ 的 **形式导数**。那么 $f\left(r-\dfrac{f(r)}{f'(r)}\right) \equiv 0\pmod {p^2}$。
+    设 [整环](../algebra/ring-theory.md#整环)  $R$ 有多项式或 [形式幂级数](../algebra/ring-theory.md#形式幂级数环)  $f(X) = \sum_{i\geqslant 0}a_iX^i$ 和 $r,p\in R$ 使得 $f(r)\in Rp$（亦即 $r$ 是 $f(X)$ 在模 $p$ 意义下的根）且 $f'(r)\in R$ 在模 $p$ 意义下是可逆的。这里 $f'(X) := \sum_{i\geqslant 0}(i+1)a_{i+1}X^i$ 是 $f(X)$ 的 **形式导数**。那么 $f\left(r-\dfrac{f(r)}{f'(r)}\right) \equiv 0\pmod {p^2}$。
 
 ??? note "证明"
     对所有 $s\in R$，
     
     $$
     \begin{aligned}
-    f(r+sp) &= \sum_{i\geq 0}a_i(r+sp)^i \\
-    &= \sum_{i\geq 0}a_ir^i + sp\sum_{i\geq 1}ia_ir^{i-1} + s^2p^2\left(\ldots\right) \\
+    f(r+sp) &= \sum_{i\geqslant 0}a_i(r+sp)^i \\
+    &= \sum_{i\geqslant 0}a_ir^i + sp\sum_{i\geqslant 1}ia_ir^{i-1} + s^2p^2\left(\ldots\right) \\
     &= f(r) + spf'(r) + s^2p^2\left(\frac{f''(r)}{2!} + \cdots\right),
     \end{aligned}
     $$

@@ -18,7 +18,7 @@ $$
 其中 $f*g$ 为数论函数 $f$ 和 $g$ 的 [狄利克雷卷积](../poly/dgf.md#dirichlet-%E5%8D%B7%E7%A7%AF)。
 
 ???+ note "略证"
-    $g(d)f\left(\frac{i}{d}\right)$ 就是对所有 $i\leq n$ 的做贡献，因此变换枚举顺序，枚举 $d$,$\frac{i}{d}$（分别对应新的 $i,j$）
+    $g(d)f\left(\frac{i}{d}\right)$ 就是对所有 $i\leqslant n$ 的做贡献，因此变换枚举顺序，枚举 $d$,$\frac{i}{d}$（分别对应新的 $i,j$）
     
     $$
     \begin{aligned}
@@ -53,7 +53,7 @@ $$
     \sum_{k=1}^n (f*g)(k)=\mathrm{i}\frac{n(n+1)}{2}
     $$
     
-    计算 $\sum_{k\leq m} (f*g)(k)$ 和 $\sum_{k \leq m} g(k)$ 的时间复杂度均为 $O(1)$, 故可以考虑使用杜教筛。
+    计算 $\sum_{k\leqslant m} (f*g)(k)$ 和 $\sum_{k \leqslant m} g(k)$ 的时间复杂度均为 $O(1)$, 故可以考虑使用杜教筛。
 
 ## 时间复杂度
 
@@ -82,7 +82,7 @@ $$
 \end{aligned}
 $$
 
-若我们可以预处理出一部分 $S(k)$, 其中 $k=1,2,\dots,m$，$m\geq \lfloor\sqrt n\rfloor$. 设预处理的时间复杂度为 $T_0(m)$, 则此时的 $T(n)$ 为：
+若我们可以预处理出一部分 $S(k)$, 其中 $k=1,2,\dots,m$，$m\geqslant \lfloor\sqrt n\rfloor$. 设预处理的时间复杂度为 $T_0(m)$, 则此时的 $T(n)$ 为：
 
 $$
 \begin{aligned}
@@ -152,7 +152,7 @@ $$
 ### 问题一
 
 ???+ note "[P4213【模板】杜教筛（Sum）](https://www.luogu.com.cn/problem/P4213)"
-    求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值，$1\leq n<2^{31}$.
+    求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值，$1\leqslant n<2^{31}$.
 
 === "莫比乌斯函数前缀和"
     我们知道：
@@ -213,7 +213,7 @@ $$
     \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot\gcd(i,j)\pmod p
     $$
     
-    其中 $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$,$p$ 是质数。
+    其中 $n\leqslant 10^{10},5\times 10^8\leqslant p\leqslant 1.1\times 10^9$,$p$ 是质数。
 
 利用 $\varphi * 1=\operatorname{id}$ 做莫比乌斯反演化为：
 

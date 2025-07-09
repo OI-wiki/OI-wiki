@@ -96,7 +96,7 @@ $x$ 轴 $y$ 轴将坐标平面分成了四个象限（quadrant），右上方的
 
 由终边相同的角的定义可知，$(\rho,\varphi)$ 与 $(\rho,\varphi + 2k\pi)\ (k\in \mathbf{Z})$ 其实表示的是一样的点。特别地，极点的极坐标为 $(0,\varphi)\ (\varphi \in \mathbf{R})$，于是平面内的点的极坐标表示有无数多种。
 
-如果规定 $\rho \ge 0,0 \le \varphi < 2\pi$，那么除极点外，其他平面内的点可以用唯一有序数对 $(\rho,\varphi)$ 表示，而极坐标 $(\rho,\varphi)$ 表示的点是唯一确定的。
+如果规定 $\rho \geqslant 0,0 \leqslant \varphi < 2\pi$，那么除极点外，其他平面内的点可以用唯一有序数对 $(\rho,\varphi)$ 表示，而极坐标 $(\rho,\varphi)$ 表示的点是唯一确定的。
 
 ### 平面直角坐标系与极坐标系的相互转换
 
@@ -125,7 +125,7 @@ $$
 $$
 \operatorname{atan2}(y, x) = \begin{cases}
 \arctan(\frac{y}{x}) & \text{if } x > 0 \\
-\arctan(\frac{y}{x}) + \pi & \text{if } y \ge 0, x < 0 \\
+\arctan(\frac{y}{x}) + \pi & \text{if } y \geqslant 0, x < 0 \\
 \arctan(\frac{y}{x}) - \pi & \text{if } y < 0, x < 0 \\
 \pi/2 & \text{if } y > 0, x = 0 \\
 -\pi/2 & \text{if } y < 0, x = 0 \\

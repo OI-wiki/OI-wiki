@@ -47,7 +47,7 @@ $$
 (a+1)^p=a^p+\binom{p}{1}a^{p-1}+\binom{p}{2}a^{p-2}+\cdots +\binom{p}{p-1}a+1
 $$
 
-因为 $\binom{p}{k}=\frac{p(p-1)\cdots (p-k+1)}{k!}$ 对于 $1\leq k\leq p-1$ 成立，在模 $p$ 意义下 $\binom{p}{1}\equiv \binom{p}{2}\equiv \cdots \equiv \binom{p}{p-1}\equiv 0\pmod p$，那么 $(a+1)^p \equiv a^p +1\pmod p$，将 $a^p\equiv a\pmod p$ 带入得 $(a+1)^p\equiv a+1\pmod p$ 得证。
+因为 $\binom{p}{k}=\frac{p(p-1)\cdots (p-k+1)}{k!}$ 对于 $1\leqslant k\leqslant p-1$ 成立，在模 $p$ 意义下 $\binom{p}{1}\equiv \binom{p}{2}\equiv \cdots \equiv \binom{p}{p-1}\equiv 0\pmod p$，那么 $(a+1)^p \equiv a^p +1\pmod p$，将 $a^p\equiv a\pmod p$ 带入得 $(a+1)^p\equiv a+1\pmod p$ 得证。
 
 ## 欧拉定理
 
@@ -73,7 +73,7 @@ $$
 a^b \equiv \begin{cases}
   a^{b \bmod \varphi(m)},                &\gcd(a,m) =  1,                   \\
   a^b,                                   &\gcd(a,m)\ne 1, b <   \varphi(m), \\
-  a^{(b \bmod \varphi(m)) + \varphi(m)}, &\gcd(a,m)\ne 1, b \ge \varphi(m).
+  a^{(b \bmod \varphi(m)) + \varphi(m)}, &\gcd(a,m)\ne 1, b \geqslant \varphi(m).
 \end{cases} \pmod m
 $$
 
@@ -81,7 +81,7 @@ $$
 
 读者可能对第二行产生疑问，这一行表达的意思是：如果 $b < \varphi(m)$ 的话，就不能降幂了。
 
-主要是因为题目中 $m$ 不会太大，而如果 $b < \varphi(m)$，自然复杂度是可以接受的。而如果 $b \ge \varphi(m)$ 的话，复杂度可能就超出预期了，这个时候我们才需要降幂来降低复杂度。
+主要是因为题目中 $m$ 不会太大，而如果 $b < \varphi(m)$，自然复杂度是可以接受的。而如果 $b \geqslant \varphi(m)$ 的话，复杂度可能就超出预期了，这个时候我们才需要降幂来降低复杂度。
 
 ### 证明
 
@@ -107,7 +107,7 @@ $$
 
         我们把 $r$ 称为 $a$ 幂次模 $m$ 的循环起始点，$s$ 称为循环长度。（注意：$r$ 可以为 $0$）
 
-        用公式表述为：$\forall i \ge r, a^i \equiv a^{i+s} \pmod{m}$
+        用公式表述为：$\forall i \geqslant r, a^i \equiv a^{i+s} \pmod{m}$
 
 2.  **命题**：$a$ 为素数的情况，该式成立。
 
@@ -127,9 +127,9 @@ $$
         b > r \implies a^b \equiv a^{r + ((b-r) \bmod \varphi(m))} \pmod {m}
         $$
 
-        又由于 $m = a^r m'$，所以 $\varphi(m) = \varphi(a^r) \varphi(m') \ge \varphi(a^r)=a^{r-1}(a-1) \ge r$（tips：$a$ 是素数，最小是 $2$，而 $r \ge 1$）。
+        又由于 $m = a^r m'$，所以 $\varphi(m) = \varphi(a^r) \varphi(m') \geqslant \varphi(a^r)=a^{r-1}(a-1) \geqslant r$（tips：$a$ 是素数，最小是 $2$，而 $r \geqslant 1$）。
 
-        所以因为 $\varphi(m) \ge r$，故有：
+        所以因为 $\varphi(m) \geqslant r$，故有：
 
         $$
         a^r \equiv a^{r+\varphi(m)} \equiv a^{r \bmod \varphi(m)+\varphi(m)} \pmod m
@@ -155,7 +155,7 @@ $$
 
         答案是肯定的，由命题 1 可知存在 $s$ 使得 $a^s\equiv 1 \pmod m$，所以 $p^{\mathrm{lcm}(s,k)} \equiv 1 \pmod {m}$，所以令 $s'=\frac{s}{\gcd(s,k)}$ 时，我们能有 $p^{s'k} \equiv 1 \pmod {m}$。
 
-        此时有关系：$s' \mid s$ 且 $s \mid \varphi(m)$，且 $r'= \lceil \frac{r}{k}\rceil \le r \le \varphi(m)$，由 $r',s'$ 与 $\varphi(m)$ 的关系，依然可以得到 $a^b\equiv a^{b \bmod \varphi(m)+\varphi(m)}\pmod m$。
+        此时有关系：$s' \mid s$ 且 $s \mid \varphi(m)$，且 $r'= \lceil \frac{r}{k}\rceil \leqslant r \leqslant \varphi(m)$，由 $r',s'$ 与 $\varphi(m)$ 的关系，依然可以得到 $a^b\equiv a^{b \bmod \varphi(m)+\varphi(m)}\pmod m$。
 
 4.  **命题**：$a$ 为合数的情况，该式成立。
 
@@ -165,7 +165,7 @@ $$
 
         设 $a=a_1a_2$，其中 $a_i=p_i^{k_i}$，而 $a_i$ 的循环长度为 $s_i$；
 
-        则 $s \mid \operatorname{lcm}(s_1,s_2)$，由于 $s_1 \mid \varphi(m),s_2 \mid \varphi(m)$，那么 $\operatorname{lcm}(s_1,s_2) \mid \varphi(m)$，所以 $s \mid \varphi(m)$，$r=\max(\lceil \frac{r_i}{k_i} \rceil) \le \max(r_i) \le \varphi(m)$；
+        则 $s \mid \operatorname{lcm}(s_1,s_2)$，由于 $s_1 \mid \varphi(m),s_2 \mid \varphi(m)$，那么 $\operatorname{lcm}(s_1,s_2) \mid \varphi(m)$，所以 $s \mid \varphi(m)$，$r=\max(\lceil \frac{r_i}{k_i} \rceil) \leqslant \max(r_i) \leqslant \varphi(m)$；
 
         由 $r,s$ 与 $\varphi(m)$ 的关系，依然可以得到 $a^b \equiv a^{b \bmod \varphi(m)+\varphi(m)}\pmod m$。
 

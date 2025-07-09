@@ -182,7 +182,7 @@ $$
 在获得了轨道 $\beta^G$ 和陪集代表系 $T$ 后，Schreier 引理继而提供了获得稳定化子 $G_\beta$ 的生成集的方法。
 
 ???+ note "Schreier 引理"
-    设群 $G=\langle S\rangle$ 有子群 $H\le G$。设 $T$ 是子群 $H$ 的（右）陪集代表系，且 $e\in T$[^schreier-lemma-unity]，并记 $g\in G$ 所在陪集的代表元 $t\in T$ 为 $\overline g$。那么，集合
+    设群 $G=\langle S\rangle$ 有子群 $H\leqslant G$。设 $T$ 是子群 $H$ 的（右）陪集代表系，且 $e\in T$[^schreier-lemma-unity]，并记 $g\in G$ 所在陪集的代表元 $t\in T$ 为 $\overline g$。那么，集合
     
     $$
     U=\{ts(\overline{ts})^{-1}:t\in T,s\in S\}
@@ -193,7 +193,7 @@ $$
 ??? note "证明"
     首先，根据陪集代表元的定义可知，$ts(\overline{ts})^{-1}\in H$ 对所有 $t\in T,s\in S$ 都成立，故而 $\langle U\rangle\subseteq H$。
     
-    反过来，对于任何 $h\in H$，因为 $S$ 是 $G\ge H$ 的生成集，必然存在一列 $s_i\in S\cup S^{-1}$ 使得
+    反过来，对于任何 $h\in H$，因为 $S$ 是 $G\geqslant H$ 的生成集，必然存在一列 $s_i\in S\cup S^{-1}$ 使得
     
     $$
     h=s_1s_2\cdots s_r

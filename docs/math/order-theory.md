@@ -13,7 +13,7 @@
     
     若没有特别说明，下文中的二元关系均为齐次二元关系。
 
-例如 $\mathbf{N}_+$ 上的整除 $\mid$ 和小于等于 $\leq$ 均为二元关系。
+例如 $\mathbf{N}_+$ 上的整除 $\mid$ 和小于等于 $\leqslant$ 均为二元关系。
 
 我们研究二元关系时，往往会关注其是否具有一些特别的性质。对集合 $S$ 上的二元关系 $R$，我们定义如下特殊性质：
 
@@ -45,7 +45,7 @@
 
 对集合 $X$ 和集合 $Y$ 上的二元关系 $R$ 和 $S$，我们可以定义如下运算：
 
-1.  $R$ 和 $S$ 的并 $R\cup S$ 满足 $G(R\cup S):=\{(x,y):xRy \lor xSy\}$（如 $\leq$ 是 $<$ 和 $=$ 的并），
+1.  $R$ 和 $S$ 的并 $R\cup S$ 满足 $G(R\cup S):=\{(x,y):xRy \lor xSy\}$（如 $\leqslant$ 是 $<$ 和 $=$ 的并），
 2.  $R$ 和 $S$ 的交 $R\cap S$ 满足 $G(R\cap S):=\{(x,y):xRy \land xSy\}$，
 3.  $R$ 的补 $\bar{R}$ 满足 $G(\bar{R}):=\{(x,y):\lnot(xRy)\}$，
 4.  $R$ 的对偶 $R^T$ 满足 $G(R^T):=\{(y,x):xRy\}$.
@@ -59,7 +59,7 @@
     
     若偏序 $\preceq$ 还具有 **连接性**，则称其为 **全序**（total order），对应的集合称为 **全序集**（totally ordered set）、**线性序集**（linearly ordered set，loset）、**简单序集**（simply ordered set）。
 
-不难发现 $\mathbf{N}$，$\mathbf{Z}$，$\mathbf{Q}$、$\mathbf{R}$ 均关于 $\leq$ 构成全序集。
+不难发现 $\mathbf{N}$，$\mathbf{Z}$，$\mathbf{Q}$、$\mathbf{R}$ 均关于 $\leqslant$ 构成全序集。
 
 ### 偏序集的可视化表示：Hasse 图
 
@@ -166,7 +166,7 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
     $S$ 的宽度（最长反链长度）等于最小的链覆盖数。
     
     ??? note "证明"
-        考虑数学归纳法。当 $|S|\leq 3$ 时，命题显然成立。
+        考虑数学归纳法。当 $|S|\leqslant 3$ 时，命题显然成立。
         
         假设命题对所有元素个数小于 $|S|$ 的偏序集都成立，令 $S$ 的宽度为 $d$. 若 $|S|$ 中所有元素均不可比，则命题显然成立，否则在 $S$ 中取一条长度大于 $1$ 的链，令其中的最小元为 $m$，最大元为 $M$.
         
@@ -198,7 +198,7 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
         
         令 $f(s)$ 为以 $s$ 为最小元的最长链长度，注意到若 $f(s)=f(t)$，则 $s$ 与 $t$ 不可比，进而 $(\forall~n\in\mathbf{N})~~f^{-1}(\{n\})$ 均为反链，其中 $f^{-1}(\{n\}):=\{a\in S:f(a)=n\}$ 称为 [水平集（level set）](https://en.wikipedia.org/wiki/Level_set)。
         
-        因此不难得出 $\{f^{-1}(\{i\}):1\leq i\leq d\}$ 是一个反链覆盖，从而最小反链覆盖数至多为 $d$.
+        因此不难得出 $\{f^{-1}(\{i\}):1\leqslant i\leqslant d\}$ 是一个反链覆盖，从而最小反链覆盖数至多为 $d$.
 
 Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#hall-定理) 等价。
 
@@ -208,10 +208,10 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#ha
     含至少 $rs+1$ 个元素的实数序列 $\{a_i\}$ 要么有一个长为 $r+1$ 的不下降子序列，要么有一个长为 $s+1$ 的不上升子序列。
     
     ??? note "证明"
-        设序列长度为 $n\geq rs+1$，定义偏序集 $\{(i,a_i)\}_{i=1}^{n}$，其上的偏序 $\preceq$ 定义为：
+        设序列长度为 $n\geqslant rs+1$，定义偏序集 $\{(i,a_i)\}_{i=1}^{n}$，其上的偏序 $\preceq$ 定义为：
         
         $$
-        (i,a_i)\preceq (j,a_j)\iff (i\leq j\land a_i\leq a_j)
+        (i,a_i)\preceq (j,a_j)\iff (i\leqslant j\land a_i\leqslant a_j)
         $$
         
         假设该偏序集的宽度不超过 $s$，则由 Dilworth 定理可知该偏序集可以被至多 $s$ 条链覆盖，若这些链的长度都不超过 $r$，则序列所含元素数至多为 $rs$，与条件矛盾。
@@ -229,7 +229,7 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#ha
         令一共有 $n$ 个导弹，第 $i$ 个导弹的高度为 $h_i$，则集合 $\{(i,h_i)\}_{i=1}^{n}$ 为偏序集，其上的偏序 $\preceq$ 定义为：
         
         $$
-        (i,h_i)\preceq(j,h_j) \iff (i\leq j \land h_i\geq h_j)
+        (i,h_i)\preceq(j,h_j) \iff (i\leqslant j \land h_i\geqslant h_j)
         $$
         
         进而根据 Dilworth 定理有：**序列的不上升子序列的最少覆盖数等于最长上升子序列长度**。从而可以通过 [最长不下降子序列的 $O(n\log n)$ 做法](../dp/basic.md#算法二) 解决本题。
@@ -242,7 +242,7 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#ha
 ???+ note "[\[TJOI2015\] 组合数学](https://www.luogu.com.cn/problem/P3974)"
     给一个 $n$ 行 $m$ 列的网格图，其中每个格子中均有若干块财宝。每次从左上角出发，只能往右或下走，每次经过一个格子至多只能捡走一块财宝。问至少要走几次才可能把财宝全捡完。
     
-    $1\le n \le 1000$，$1\le m \le 1000$，每个格子中的财宝不超过 $10^6$ 块。
+    $1\leqslant n \leqslant 1000$，$1\leqslant m \leqslant 1000$，每个格子中的财宝不超过 $10^6$ 块。
     
     ??? note "题解"
         不考虑网格图的点权，不难发现按给定的规则下在网格图上行走等价于在 DAG 上行走，从而我们可以将其视作 Hasse 图来构造偏序集，进而根据 Dilworth 定理有：**DAG 的最小链覆盖数等于最大的点独立集大小**。
@@ -274,8 +274,8 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#ha
 C++ STL 中 [需要使用比较的算法和数据结构](https://en.cppreference.com/w/cpp/named_req/Compare#Standard_library) 中有序理论的应用。我们经常需要在 C++ 中自定义比较器，STL [要求](https://en.cppreference.com/w/cpp/named_req/Compare) 其必须为 **严格弱序**。令 $<$ 为自定义比较器，则可以定义：
 
 -   $x>y$ 为 $y<x$；
--   $x \leq y$ 为 $y \nless x$；
--   $x \geq y$ 为 $x \nless y$；
+-   $x \leqslant y$ 为 $y \nless x$；
+-   $x \geqslant y$ 为 $x \nless y$；
 -   $x=y$ 为 $x \nless y\land y \nless x$.
 
 ## 参考资料与拓展阅读

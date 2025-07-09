@@ -58,7 +58,7 @@ $$
 
 ## 特征多项式
 
-考虑一个 $n\times n$ 的矩阵 $A$，其中 $n\geq 0\land n\in\mathbb{Z}$。设 $\lambda$ 为一个参量，矩阵 $\lambda I-A$ 称为 $A$ 的 **特征矩阵**。
+考虑一个 $n\times n$ 的矩阵 $A$，其中 $n\geqslant 0\land n\in\mathbb{Z}$。设 $\lambda$ 为一个参量，矩阵 $\lambda I-A$ 称为 $A$ 的 **特征矩阵**。
 
 特征矩阵的行列式称为 $A$ 的 **特征多项式**，展开为一个 $n$ 次多项式，根为 $A$ 的特征值，记为 $p_A(\lambda)$：
 
@@ -301,7 +301,7 @@ x-\alpha_1&-h_{13}\\
 \end{aligned}
 $$
 
-观察并归纳，对 $2\leq i\leq n$ 有
+观察并归纳，对 $2\leqslant i\leqslant n$ 有
 
 $$
 p_i(x)=(x-\alpha_i)p_{i-1}(x)-

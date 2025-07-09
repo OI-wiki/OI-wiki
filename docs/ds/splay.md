@@ -124,14 +124,14 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     **定义**：
     
     1.  **单个节点的势能**：$w(x) = \log(\text{size}(x))$，其中 $\text{size}(x)$ 表示以节点 $x$ 为根的子树大小。
-    2.  **整棵树的势能**：$\varphi = \sum w(x)$，即树中所有节点势能的总和，初始势能满足 $\varphi_0 \leq n \log n$。
+    2.  **整棵树的势能**：$\varphi = \sum w(x)$，即树中所有节点势能的总和，初始势能满足 $\varphi_0 \leqslant n \log n$。
     3.  **第 $i$ 次操作的均摊成本**：$c_i = t_i + \varphi_i - \varphi_{i-1}$，其中 $t_i$ 为实际操作代价，$\varphi_i$ 和 $\varphi_{i-1}$ 分别为操作后和操作前的势能。
     
     **性质**：
     
-    1.  如果 $p$ 是 $x$ 的父节点，则有 $w(p) \geq w(x)$，即父节点的势能不小于子节点的势能。
+    1.  如果 $p$ 是 $x$ 的父节点，则有 $w(p) \geqslant w(x)$，即父节点的势能不小于子节点的势能。
     2.  由于根节点的子树大小在操作前后保持不变，因此根节点的势能在操作过程中不变。
-    3.  如果 $\text{size}(p)\ge\text{size}(x)+\text{size}(y)$，那么有 $2w(p) - w(x) - w(y) \geq 2$。
+    3.  如果 $\text{size}(p)\geqslant\text{size}(x)+\text{size}(y)$，那么有 $2w(p) - w(x) - w(y) \geqslant 2$。
     
     ??? note "性质 3 的证明"
         根据均值不等式可知
@@ -141,24 +141,24 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
         2w(p) - w(x) - w(y) 
         &= \log\dfrac{\text{size}(p)^2}{\text{size}(x)\cdot\text{size}(y)} \\
         &> \log\dfrac{\left(\text{size}(x)+\text{size}(y)\right)^2}{\text{size}(x)\cdot\text{size}(y)} \\
-        &\ge \log 4 \\
+        &\geqslant \log 4 \\
         &= 2.
         \end{aligned}
         $$
     
     接下来，分别对 **zig**、**zig-zig** 和 **zig-zag** 操作进行势能分析。设操作前后的节点 $x$ 的势能分别是 $w(x)$ 和 $w'(x)$。节点的记号与 [上文](#伸展操作) 一致。
     
-    **zig**：根据性质 1 和 2，有 $w(p) = w'(x)$，且 $w'(x) \geq w'(p)$。由此，均摊成本为
+    **zig**：根据性质 1 和 2，有 $w(p) = w'(x)$，且 $w'(x) \geqslant w'(p)$。由此，均摊成本为
     
     $$
     \begin{aligned}
     c_i &= 1 + w'(x) + w'(p) - w(x) - w(p)\\
     &= 1 + w'(p) - w(x)\\
-    &\leq 1 + w'(x) - w(x).
+    &\leqslant 1 + w'(x) - w(x).
     \end{aligned}
     $$
     
-    **zig-zig**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w'(x) \geq w'(p)$，$w(x) \leq w(p)$。因为
+    **zig-zig**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w'(x) \geqslant w'(p)$，$w(x) \leqslant w(p)$。因为
     
     $$
     \begin{aligned}
@@ -172,7 +172,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     根据性质 3 可得
     
     $$
-    2 w'(x) - w(x) - w'(g) \geq 2.
+    2 w'(x) - w(x) - w'(g) \geqslant 2.
     $$
     
     由此，均摊成本为
@@ -181,16 +181,16 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     \begin{aligned}
     c_i &= 2 + w'(x) + w'(p) + w'(g) - w(x) - w(p) - w(g) \\
     &= 2 + w'(p) + w'(g) - w(x) - w(p) \\
-    &\le (2 w'(x) - w(x) - w'(g)) + w'(p) + w'(g) - w(x) - w(p) \\
+    &\leqslant (2 w'(x) - w(x) - w'(g)) + w'(p) + w'(g) - w(x) - w(p) \\
     &= 2(w'(x)-w(x)) + w'(p) - w(p) \\
-    &\le 3(w'(x)-w(x)).
+    &\leqslant 3(w'(x)-w(x)).
     \end{aligned}
     $$
     
-    **zig-zag**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(p) \geq w(x)$。因为 $\text{size}'(x)>\text{size}'(p)+\text{size}'(g)$，根据性质 3，可得
+    **zig-zag**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(p) \geqslant w(x)$。因为 $\text{size}'(x)>\text{size}'(p)+\text{size}'(g)$，根据性质 3，可得
     
     $$
-    2 \cdot w'(x) - w'(g) - w'(p) \geq 2.
+    2 \cdot w'(x) - w'(g) - w'(p) \geqslant 2.
     $$
     
     由此，均摊成本为
@@ -199,9 +199,9 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     \begin{aligned}
     c_i &= 2 + w'(x) + w'(p) + w'(g) - w(x) - w(p) - w(g) \\
     &= 2 + w'(p) + w'(g) - w(x) - w(p) \\
-    &\le (2w'(x) - w'(g) - w'(p)) + w'(p) + w'(g) - w(x) - w(p) \\
+    &\leqslant (2w'(x) - w'(g) - w'(p)) + w'(p) + w'(g) - w(x) - w(p) \\
     &= 2w'(x) - w(x) - w(p) \\
-    &\le 2(w'(x) - w(x)).
+    &\leqslant 2(w'(x) - w(x)).
     \end{aligned}
     $$
     
@@ -210,7 +210,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     令 $w^{(n)}(x)=(w^{(n-1)})'(x)$ 且 $w^{(0)}(x)=w(x)$。假设一次伸展操作依次访问了 $x_{1}, x_{2}, \cdots, x_{n}$ 等节点，最终 $x_{1}$ 成为根节点。这必然经过若干次 **zig-zig** 和 **zig-zag** 操作和至多一次 **zig** 操作，前两种操作的均摊成本均不超过 $3(w'(x)-w(x))$，而最后一次操作的均摊成本不超过 $3(w'(x) - w(x))+1$，所以总的均摊成本不超过
     
     $$
-    3(w^{(n)}(x_1) - w^{(0)}(x_1)) + 1 \le 3\log n + 1.
+    3(w^{(n)}(x_1) - w^{(0)}(x_1)) + 1 \leqslant 3\log n + 1.
     $$
     
     因此，一次伸展操作的均摊复杂度是 $O(\log n)$ 的。从而，基于伸展的插入、查询、删除等操作的时间复杂度也为均摊 $O(\log n)$。
@@ -223,7 +223,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     \begin{aligned}
     \sum_{i=1}^m t_i &= \sum_{i=1}^m \left(c_i + \varphi_{i-1} - \varphi_i \right) \\
     &= \sum_{i=1}^m c_i + \varphi_0 - \varphi_m \\
-    &\le m(3\log n+1) + n\log n.
+    &\leqslant m(3\log n+1) + n\log n.
     \end{aligned}
     $$
     

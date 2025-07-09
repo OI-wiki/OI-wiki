@@ -13,7 +13,7 @@ Powerful Number（以下简称 PN）筛类似于杜教筛，或者说是杜教�
 
 ## Powerful Number
 
-**定义**：对于正整数 $n$，记 $n$ 的质因数分解为 $n = \prod_{i=1}^{m} p_{i}^{e_{i}}$。$n$ 是 PN 当且仅当 $\forall 1 \le i \le m, e_{i} > 1$。
+**定义**：对于正整数 $n$，记 $n$ 的质因数分解为 $n = \prod_{i=1}^{m} p_{i}^{e_{i}}$。$n$ 是 PN 当且仅当 $\forall 1 \leqslant i \leqslant m, e_{i} > 1$。
 
 **性质 1**：所有 PN 都可以表示成 $a^{2}b^{3}$ 的形式。
 

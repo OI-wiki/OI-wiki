@@ -2,7 +2,7 @@ Chirp Z 变换也被称为 Bluestein 算法。与离散傅里叶变换类似，C
 
 ## 方法一
 
-令幂级数 $A_0(x)=\sum_{i\geq 0}a_ic^{i^2}x^i$ 且对于 $\forall j\gt n$ 令 $a_j=0$、$B_0(x)=\sum _ {i\geq 0}c^{-(i-n)^2}x^i$，对于 $t\geq 0$ 有
+令幂级数 $A_0(x)=\sum_{i\geqslant 0}a_ic^{i^2}x^i$ 且对于 $\forall j\gt n$ 令 $a_j=0$、$B_0(x)=\sum _ {i\geqslant 0}c^{-(i-n)^2}x^i$，对于 $t\geqslant 0$ 有
 
 $$
 \begin{aligned}
@@ -29,7 +29,7 @@ $$
 A(c^k)=c^{-\binom{k}{2}}\sum _ {i=0}^na_ic^{\binom{i+k}{2}-\binom{i}{2}}
 $$
 
-令 $A_0(x)=\sum_{i}a_{n-i}c^{-\binom{n-i}{2}}x^i$ 且对于 $\forall j\gt n$ 和 $\forall j\lt 0$ 令 $a_j=0$、$B_0(x)=\sum_{i\geq 0}c^{\binom{i}{2}}x^i$ 那么对于 $t\geq 0$ 有
+令 $A_0(x)=\sum_{i}a_{n-i}c^{-\binom{n-i}{2}}x^i$ 且对于 $\forall j\gt n$ 和 $\forall j\lt 0$ 令 $a_j=0$、$B_0(x)=\sum_{i\geqslant 0}c^{\binom{i}{2}}x^i$ 那么对于 $t\geqslant 0$ 有
 
 $$
 \begin{aligned}
@@ -40,4 +40,4 @@ $$
 \end{aligned}
 $$
 
-通过计算 $c^{-\binom{t}{2}}\lbrack x^{n+t}\rbrack (A_0(x)B_0(x))$ 可得到 $A(1),A(c),\dots$，该算法需一次卷积。且 $\forall i\geq 0$ 有 $c^{\binom{i+1}{2}}=c^{\binom{i}{2}}\cdot c^i$，可递推计算。
+通过计算 $c^{-\binom{t}{2}}\lbrack x^{n+t}\rbrack (A_0(x)B_0(x))$ 可得到 $A(1),A(c),\dots$，该算法需一次卷积。且 $\forall i\geqslant 0$ 有 $c^{\binom{i+1}{2}}=c^{\binom{i}{2}}\cdot c^i$，可递推计算。

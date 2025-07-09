@@ -20,9 +20,9 @@ CDQ 分治解决这类问题的算法流程如下：
 
 2.  将所有点对 $(i,j)$ 划分为 3 类：
 
-    1.  $1 \leq i \leq mid,1 \leq j \leq mid$ 的点对；
-    2.  $1  \leq i \leq mid ,mid+1 \leq j \leq n$ 的点对；
-    3.  $mid+1 \leq  i \leq n,mid+1 \leq j \leq n$ 的点对。
+    1.  $1 \leqslant i \leqslant mid,1 \leqslant j \leqslant mid$ 的点对；
+    2.  $1  \leqslant i \leqslant mid ,mid+1 \leqslant j \leqslant n$ 的点对；
+    3.  $mid+1 \leqslant  i \leqslant n,mid+1 \leqslant j \leqslant n$ 的点对。
 
 3.  将 $(1,n)$ 这个序列拆成两个序列 $(1,mid)$ 和 $(mid+1,n)$。此时第一类点对和第三类点对都在这两个序列之中；
 
@@ -32,12 +32,12 @@ CDQ 分治解决这类问题的算法流程如下：
 
 可以看到 CDQ 分治的思想就是不断地把点对通过递归的方式分给左右两个区间。
 
-在实际应用时，我们通常使用一个函数 `solve(l,r)` 处理 $l \leq i \leq r,l \leq j \leq r$ 的点对。上述算法流程中的递归部分便是通过 `solve(l,mid)` 与 `solve(mid,r)` 来实现的。剩下的第二类点对则需要额外设计算法解决。
+在实际应用时，我们通常使用一个函数 `solve(l,r)` 处理 $l \leqslant i \leqslant r,l \leqslant j \leqslant r$ 的点对。上述算法流程中的递归部分便是通过 `solve(l,mid)` 与 `solve(mid,r)` 来实现的。剩下的第二类点对则需要额外设计算法解决。
 
 ### 例题
 
 ???+ note "[三维偏序](https://www.luogu.com.cn/problem/P3810)"
-    给定一个序列，每个点有 $a_i,b_i,c_i$ 三个属性，试求：这个序列里有多少对点对 $(i,j)$ 满足 $a_j \leq a_i$ 且 $b_j \leq b_i$ 且 $c_j \leq c_i$ 且 $j \ne i$。
+    给定一个序列，每个点有 $a_i,b_i,c_i$ 三个属性，试求：这个序列里有多少对点对 $(i,j)$ 满足 $a_j \leqslant a_i$ 且 $b_j \leqslant b_i$ 且 $c_j \leqslant c_i$ 且 $j \ne i$。
     
     ??? 解题思路
         三维偏序是 CDQ 分治的经典问题。
@@ -46,7 +46,7 @@ CDQ 分治解决这类问题的算法流程如下：
         
         首先将序列按 $a$ 排序。
         
-        假设我们现在写好了 `solve(l,r)`，并且通过递归搞定了 `solve(l,mid)` 和 `solve(mid+1,r)`。现在我们要做的，就是统计满足 $l \leq i \leq mid$,$mid+1 \leq j \leq r$ 的点对 $(i,j)$ 中，有多个点对还满足 $a_{i}<a_{j}$,$b_{i}<b_{j}$,$c_{i}<c_{j}$ 的限制条件。
+        假设我们现在写好了 `solve(l,r)`，并且通过递归搞定了 `solve(l,mid)` 和 `solve(mid+1,r)`。现在我们要做的，就是统计满足 $l \leqslant i \leqslant mid$,$mid+1 \leqslant j \leqslant r$ 的点对 $(i,j)$ 中，有多个点对还满足 $a_{i}<a_{j}$,$b_{i}<b_{j}$,$c_{i}<c_{j}$ 的限制条件。
         
         稍微思考一下就会发现，那个 $a_{i}<a_{j}$ 的限制条件没啥用了：已经将序列按 $a$ 排序，则 $a_{i} < a_{j}$ 可转化为 $i < j$。既然 $i$ 比 $mid$ 小，$j$ 比 $mid$ 大，那 $i$ 肯定比 $j$ 要小。现在还剩下两个限制条件：$b_{i}<b_{j}$ 与 $c_{i}<c_{j}$, 根据这个限制条件我们就可以枚举 $j$, 求出有多少个满足条件的 $i$。
         
@@ -93,14 +93,14 @@ $dp_{i}=1+ \max_{j=1}^{i-1}dp_{j}[a_{j}<a_{i}][b_{j}<b_{i}]$
 
 1.  如果 $l=r$，说明 $dp_{r}$ 值已经被计算好了。直接令 $dp_{r}++$ 然后返回即可；
 2.  递归使用 `solve(l,mid)`；
-3.  处理所有 $l \leq j \leq mid$，$mid+1 \leq i \leq r$ 的转移关系；
+3.  处理所有 $l \leqslant j \leqslant mid$，$mid+1 \leqslant i \leqslant r$ 的转移关系；
 4.  递归使用 `solve(mid+1,r)`。
 
-第三步的做法与 CDQ 分治求三维偏序差不多。处理 $l \leq j \leq mid$，$mid+1 \leq i \leq r$ 的转移关系的时候，我们会发现已经不用管 $j<i$ 这个限制条件了。因此，我们依然先将所有的点 $i$ 和点 $j$ 按 $a$ 值进行排序处理，然后用双指针的方式将 $j$ 点插入到树状数组里，最后查一下前缀最大值更新一下 $dp_{i}$ 就可以了。
+第三步的做法与 CDQ 分治求三维偏序差不多。处理 $l \leqslant j \leqslant mid$，$mid+1 \leqslant i \leqslant r$ 的转移关系的时候，我们会发现已经不用管 $j<i$ 这个限制条件了。因此，我们依然先将所有的点 $i$ 和点 $j$ 按 $a$ 值进行排序处理，然后用双指针的方式将 $j$ 点插入到树状数组里，最后查一下前缀最大值更新一下 $dp_{i}$ 就可以了。
 
 ### 转移过程的正确性证明
 
-该 CDQ 写法和处理点对间关系的 CDQ 写法最大的不同就是处理 $l \leq j \leq mid$，$mid+1 \leq i \leq r$ 的点对这一部分。处理点对间关系的 CDQ 写法中，这一部分放到哪里都是可以的。但是，在用 CDQ 分治优化 DP 的时候，这个流程却必须夹在 $solve(l,mid)$,$solve(mid+1,r)$ 的中间。原因是 DP 的转移是 **有序的**，它必须满足两个条件，否则就是不对的：
+该 CDQ 写法和处理点对间关系的 CDQ 写法最大的不同就是处理 $l \leqslant j \leqslant mid$，$mid+1 \leqslant i \leqslant r$ 的点对这一部分。处理点对间关系的 CDQ 写法中，这一部分放到哪里都是可以的。但是，在用 CDQ 分治优化 DP 的时候，这个流程却必须夹在 $solve(l,mid)$,$solve(mid+1,r)$ 的中间。原因是 DP 的转移是 **有序的**，它必须满足两个条件，否则就是不对的：
 
 1.  用来计算 $dp_{i}$ 的所有 $dp_{j}$ 值都必须是已经计算完毕的，不能存在「半成品」；
 
@@ -157,9 +157,9 @@ CDQ 分治的递归树如下所示。
 
 我们可以使用 CDQ 分治对于这个操作序列进行分治，处理修改和询问之间的关系。
 
-与处理点对关系的 CDQ 分治类似，假设正在分治的序列是 $(l,r)$, 我们先递归地处理 $(l,mid)$ 和 $(mid,r)$ 之间的修改 - 询问关系，再处理所有 $l \leq i \leq mid$，$mid+1 \leq j \leq r$ 的修改 - 询问关系，其中 $i$ 是一个修改，$j$ 是一个询问。
+与处理点对关系的 CDQ 分治类似，假设正在分治的序列是 $(l,r)$, 我们先递归地处理 $(l,mid)$ 和 $(mid,r)$ 之间的修改 - 询问关系，再处理所有 $l \leqslant i \leqslant mid$，$mid+1 \leqslant j \leqslant r$ 的修改 - 询问关系，其中 $i$ 是一个修改，$j$ 是一个询问。
 
-注意，如果各个修改之间是 **独立** 的话，我们无需处理 $l \leq i \leq mid$ 和 $mid+1 \leq j \leq r$，以及 `solve(l,mid)` 和 `solve(mid+1,r)` 之间的时序关系（比如普通的加减法问题）。但是如果各个修改之间并不独立（比如说赋值操作），做完这个修改后，序列长什么样可能依赖于之前的序列。此时处理所有跨越 mid 的修改 - 询问关系的步骤就必须放在 `solve(l,mid)` 和 `solve(mid+1,r)` 之间。理由和 CDQ 分治优化 1D/1D 动态规划的原因是一样的：按照中序遍历序进行分治才能保证每一个修改都是严格按照时间顺序执行的。
+注意，如果各个修改之间是 **独立** 的话，我们无需处理 $l \leqslant i \leqslant mid$ 和 $mid+1 \leqslant j \leqslant r$，以及 `solve(l,mid)` 和 `solve(mid+1,r)` 之间的时序关系（比如普通的加减法问题）。但是如果各个修改之间并不独立（比如说赋值操作），做完这个修改后，序列长什么样可能依赖于之前的序列。此时处理所有跨越 mid 的修改 - 询问关系的步骤就必须放在 `solve(l,mid)` 和 `solve(mid+1,r)` 之间。理由和 CDQ 分治优化 1D/1D 动态规划的原因是一样的：按照中序遍历序进行分治才能保证每一个修改都是严格按照时间顺序执行的。
 
 ### 例题
 

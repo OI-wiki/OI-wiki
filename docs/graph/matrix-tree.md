@@ -79,7 +79,7 @@ $$
     也就是说，无向图的 Laplace 矩阵所有 $n-1$ 阶主子式都相等，且都等于图的生成树的个数。
 
 ???+ note "推论 1（矩阵树定理，无向图，特征值形式）"
-    设 $\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_{n-1}\ge\lambda_n=0$ 为 $L(G)$ 的 $n$ 个特征值，那么有
+    设 $\lambda_1\geqslant\lambda_2\geqslant\cdots\geqslant\lambda_{n-1}\geqslant\lambda_n=0$ 为 $L(G)$ 的 $n$ 个特征值，那么有
     
     $$
     t(G) = \frac{1}{n}\lambda_1\lambda_2\cdots\lambda_{n-1}.
@@ -151,7 +151,7 @@ $$
     上述组合证明其实可以逐字逐句地翻译成代数证明。这里转而提供另一种技巧性较强的代数证明，但用到了几个常见结论。当 $m< n$ 时，行列式为零，因为
     
     $$
-    \mathrm{rank}(AB)\le \min\{\mathrm{rank}(A),\mathrm{rank}(B)\}\le m< n.
+    \mathrm{rank}(AB)\leqslant \min\{\mathrm{rank}(A),\mathrm{rank}(B)\}\leqslant m< n.
     $$
     
     当 $m=n$ 时，Cauchy–Binet 公式就是，方阵的积的行列式等于方阵的行列式的积。
@@ -207,7 +207,7 @@ $$
 前文的 Cauchy–Binet 公式表明，Laplace 矩阵的主子式其实是一系列子结构的和。每个子结构都反映了对应的子图的性质。
 
 ???+ note "引理 2"
-    对于 $G$ 的一个子图 $(W,S)$，若它满足 $|W|=|S|\le n$，则子图 $T=(V,S)$ 是一个以 $V\setminus W$ 为根的根向森林，当且仅当对应的算式
+    对于 $G$ 的一个子图 $(W,S)$，若它满足 $|W|=|S|\leqslant n$，则子图 $T=(V,S)$ 是一个以 $V\setminus W$ 为根的根向森林，当且仅当对应的算式
     
     $$
     \det(M^\mathrm{out}_{S,W})\det(M^\mathrm{out}_{S,W}-M^\mathrm{in}_{S,W})
@@ -546,7 +546,7 @@ $$
     求出它的 $n$ 阶子式的行列式即可，剩下的只有高精度计算了。
 
 ??? note "例题 2+"
-    将例题 2 的数据加强，要求 $n\leq 100000$，但是答案对 1000007 取模。（本题求解需要一些线性代数知识）
+    将例题 2 的数据加强，要求 $n\leqslant 100000$，但是答案对 1000007 取模。（本题求解需要一些线性代数知识）
     
     **解** 推导递推式后利用矩阵快速幂即可求得。
     

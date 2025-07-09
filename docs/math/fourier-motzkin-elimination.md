@@ -12,29 +12,29 @@
 
 考虑一个含 $n$ 个不等式的系统 $S$，有从 $x_{1}$ 到 $x_{r}$ 的 $r$ 个变量，其中 $x_{r}$ 为要消除的变量。根据 $x_r$ 系数的符号（正、负或空），$S$ 中的线性不等式可以分为三类：
 
-1.  形式为 $x_{r}\geq b_{i}-\sum _{k=1}^{r-1}a_{ik}x_{k}$ 的不等式，对于范围从 $1$ 到 $n_{A}$（$n_{A}$ 为这种不等式的数量）的 $j$，用 $x_{r}\geq A_{j}(x_{1},\dots ,x_{r-1})$ 表示；
-2.  形式为 $x_{r}\leq b_{i}-\sum _{k=1}^{r-1}a_{ik}x_{k}$ 的不等式，对于范围从 $1$ 到 $n_{B}$（$n_{B}$ 为这种不等式的数量）的 $j$，用 $x_{r}\leq B_{j}(x_{1},\dots ,x_{r-1})$ 表示；
+1.  形式为 $x_{r}\geqslant b_{i}-\sum _{k=1}^{r-1}a_{ik}x_{k}$ 的不等式，对于范围从 $1$ 到 $n_{A}$（$n_{A}$ 为这种不等式的数量）的 $j$，用 $x_{r}\geqslant A_{j}(x_{1},\dots ,x_{r-1})$ 表示；
+2.  形式为 $x_{r}\leqslant b_{i}-\sum _{k=1}^{r-1}a_{ik}x_{k}$ 的不等式，对于范围从 $1$ 到 $n_{B}$（$n_{B}$ 为这种不等式的数量）的 $j$，用 $x_{r}\leqslant B_{j}(x_{1},\dots ,x_{r-1})$ 表示；
 3.  不包含 $x_{r}$ 的不等式，设它们构成的不等式组为 $\phi$。
 
 因此原系统等价于
 
 $$
-\max(A_{1}(x_{1},\dots ,x_{r-1}),\dots ,A_{n_{A}}(x_{1},\dots ,x_{r-1}))\leq x_{r}\leq \min(B_{1}(x_{1},\dots ,x_{r-1}),\dots ,B_{n_{B}}(x_{1},\dots ,x_{r-1}))\wedge \phi
+\max(A_{1}(x_{1},\dots ,x_{r-1}),\dots ,A_{n_{A}}(x_{1},\dots ,x_{r-1}))\leqslant x_{r}\leqslant \min(B_{1}(x_{1},\dots ,x_{r-1}),\dots ,B_{n_{B}}(x_{1},\dots ,x_{r-1}))\wedge \phi
 $$
 
 消元包括产生一个等价于 $\exists x_{r}~S$ 的系统。显然，这个公式等价于
 
 $$
-\max(A_{1}(x_{1},\dots ,x_{r-1}),\dots ,A_{n_{A}}(x_{1},\dots ,x_{r-1}))\leq \min(B_{1}(x_{1},\dots ,x_{r-1}),\dots ,B_{n_{B}}(x_{1},\dots ,x_{r-1}))\wedge \phi
+\max(A_{1}(x_{1},\dots ,x_{r-1}),\dots ,A_{n_{A}}(x_{1},\dots ,x_{r-1}))\leqslant \min(B_{1}(x_{1},\dots ,x_{r-1}),\dots ,B_{n_{B}}(x_{1},\dots ,x_{r-1}))\wedge \phi
 $$
 
 不等式
 
 $$
-\max(A_{1}(x_{1},\dots ,x_{r-1}),\dots ,A_{n_{A}}(x_{1},\dots ,x_{r-1}))\leq \min(B_{1}(x_{1},\dots ,x_{r-1}),\dots ,B_{n_{B}}(x_{1},\dots ,x_{r-1}))
+\max(A_{1}(x_{1},\dots ,x_{r-1}),\dots ,A_{n_{A}}(x_{1},\dots ,x_{r-1}))\leqslant \min(B_{1}(x_{1},\dots ,x_{r-1}),\dots ,B_{n_{B}}(x_{1},\dots ,x_{r-1}))
 $$
 
-等价于对于 $1 \leq i \leq n_{A}$ 且 $1\leq j\leq n_{B}$，所有 $n_{A}n_{B}$ 个不等式 $A_{i}(x_{1},\dots ,x_{r-1})\leq B_{j}(x_{1},\dots ,x_{r-1})$ 构成的不等式组。
+等价于对于 $1 \leqslant i \leqslant n_{A}$ 且 $1\leqslant j\leqslant n_{B}$，所有 $n_{A}n_{B}$ 个不等式 $A_{i}(x_{1},\dots ,x_{r-1})\leqslant B_{j}(x_{1},\dots ,x_{r-1})$ 构成的不等式组。
 
 因此，我们将原系统 $S$ 转换为另一个消掉 $x_{r}$ 的系统，这个系统有 $(n-n_{A}-n_{B})+n_{A}n_{B}$ 个不等式。特别地，如果 $n_{A}=n_{B}=n/2$，那么新系统不等式的个数为 $n^{2}/4$。
 
@@ -42,33 +42,33 @@ $$
 
 考虑以下不等式系统：
 
-$2x-5y+4z \leq 10$
+$2x-5y+4z \leqslant 10$
 
-$3x-6y+3z \leq 9$
+$3x-6y+3z \leqslant 9$
 
-$-x+5y-2z \leq -7$
+$-x+5y-2z \leqslant -7$
 
-$-3x+2y+6z \leq 12$
+$-3x+2y+6z \leqslant 12$
 
 为了消除 $x$，我们可以根据 $x$ 改写不等式：
 
-$x \leq (10 + 5y - 4z)/2$
+$x \leqslant (10 + 5y - 4z)/2$
 
-$x \leq (9 + 6y - 3z)/3$
+$x \leqslant (9 + 6y - 3z)/3$
 
-$x \geq 7 + 5y - 2z$
+$x \geqslant 7 + 5y - 2z$
 
-$x \geq (-12 + 2y + 6z)/3$
+$x \geqslant (-12 + 2y + 6z)/3$
 
-这样我们得到两个 $\leq$ 不等式和两个 $\geq$ 不等式；如果每个 $\leq$ 不等式的右侧至少是每个 $\geq$ 不等式的右侧，则系统有一个解。我们有 $2\times2$ 这样的组合：
+这样我们得到两个 $\leqslant$ 不等式和两个 $\geqslant$ 不等式；如果每个 $\leqslant$ 不等式的右侧至少是每个 $\geqslant$ 不等式的右侧，则系统有一个解。我们有 $2\times2$ 这样的组合：
 
-$7 + 5y - 2z \leq  (10 + 5y - 4z)/2$
+$7 + 5y - 2z \leqslant  (10 + 5y - 4z)/2$
 
-$7 + 5y - 2z \leq  (9 + 6y - 3z)/3$
+$7 + 5y - 2z \leqslant  (9 + 6y - 3z)/3$
 
-$(-12 + 2y + 6z)/3 \leq (10 + 5y - 4z)/2$
+$(-12 + 2y + 6z)/3 \leqslant (10 + 5y - 4z)/2$
 
-$(-12 + 2y + 6z)/3 \leq (9 + 6y - 3z)/3$
+$(-12 + 2y + 6z)/3 \leqslant (9 + 6y - 3z)/3$
 
 现在我们有了一个新的少了一个变量不等式系统。
 

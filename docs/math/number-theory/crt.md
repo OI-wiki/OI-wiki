@@ -210,7 +210,7 @@ $$
 下面这道题就是一个不错的例子。
 
 ???+ note "[洛谷 P2480 \[SDOI2010\] 古代猪文](https://www.luogu.com.cn/problem/P2480)"
-    给出 $G,n$（$1 \leq G,n \leq 10^9$），求：
+    给出 $G,n$（$1 \leqslant G,n \leqslant 10^9$），求：
     
     $$
     G^{\sum_{k\mid n}\binom{n}{k}} \bmod 999~911~659

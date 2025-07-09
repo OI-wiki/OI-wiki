@@ -1,7 +1,7 @@
 分拆：将自然数 $n$ 写成递降正整数和的表示。
 
 $$
-n=r_1+r_2+\ldots+r_k \quad r_1 \ge r_2 \ge \ldots \ge r_k \ge 1
+n=r_1+r_2+\ldots+r_k \quad r_1 \geqslant r_2 \geqslant \ldots \geqslant r_k \geqslant 1
 $$
 
 和式中每个正整数称为一个部分。
@@ -21,7 +21,7 @@ $$
 显然，$k$ 部分拆数 $p(n,k)$ 同时也是下面方程的解数：
 
 $$
-n-k=y_1+y_2+\ldots+y_k\quad y_1\ge y_2\ge\ldots\ge y_k\ge 0
+n-k=y_1+y_2+\ldots+y_k\quad y_1\geqslant y_2\geqslant\ldots\geqslant y_k\geqslant 0
 $$
 
 如果这个方程里面恰有 $j$ 个部分非 0，则恰有 $p(n-k,j)$ 个解。因此有和式：
@@ -133,13 +133,13 @@ Ferrers 图：将分拆的每个部分用点组成的行表示。每行点的个
 同样地，定义互异 $k$ 部分拆数 $pd(n,k)$，表示最大拆出 $k$ 个部分的互异分拆，是这个方程的解数：
 
 $$
-n=r_1+r_2+\ldots+r_k\quad r_1>r_2>\ldots>r_k\ge 1
+n=r_1+r_2+\ldots+r_k\quad r_1>r_2>\ldots>r_k\geqslant 1
 $$
 
 完全同上，也是这个方程的解数：
 
 $$
-n-k=y_1+y_2+\ldots+y_k\quad y_1>y_2>\ldots>y_k\ge 0
+n-k=y_1+y_2+\ldots+y_k\quad y_1>y_2>\ldots>y_k\geqslant 0
 $$
 
 这里与上面不同的是，由于互异，新方程中至多只有一个部分为零。有不变的结论：恰有 $j$ 个部分非 $0$，则恰有 $pd(n-k,j)$ 个解，这里 $j$ 只取 $k$ 或 $k-1$。因此直接得到递推：

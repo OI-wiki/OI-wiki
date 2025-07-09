@@ -78,11 +78,11 @@ Grader 交互方式常见于 IOI、APIO 等国际 OI 赛事（特别是 CMS 平�
 ??? 例题 "Gap"
     [UOJ #206.【APIO2016】Gap](https://uoj.ac/problem/206)
     
-    有 $N$ 个严格递增的非负整数 $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$。你需要找出 $a_{i+1}−a_i (0\leq i\leq N−1)$ 里的最大的值。
+    有 $N$ 个严格递增的非负整数 $a_1,a_2,\cdots,a_N (0\leqslant a_1<a2<\cdots<a_N\leqslant 10^{18})$。你需要找出 $a_{i+1}−a_i (0\leqslant i\leqslant N−1)$ 里的最大的值。
     
     你的程序不能直接读入这个整数序列，但是你可以通过给定的函数来查询该序列的信息。关于查询函数的细节，请根据你所使用的语言，参考下面的实现细节部分。
     
-    你需要实现一个函数，该函数返回 $a_{i+1}−a_i (0\leq i\leq N−1)$ 中的最大值。
+    你需要实现一个函数，该函数返回 $a_{i+1}−a_i (0\leqslant i\leqslant N−1)$ 中的最大值。
 
 对于这类题目，选手只需编写一个特定的函数完成某项任务，它通过调用给定的若干辅助函数来进行交互。为了便于选手在本地测试，题目会下发一个头文件与一个参考测评程序 `grader.cpp`（对于 Pascal 语言是一个库 `graderlib`），选手将自己的程序与 `grader.cpp` 一同编译方可得到可执行文件。
 

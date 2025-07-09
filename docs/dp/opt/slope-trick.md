@@ -27,12 +27,12 @@ $$
     如果函数 $f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ 对于所有 $x,y\in\mathbf R$ 和 $\alpha\in(0,1)$ 都满足
     
     $$
-    f(\alpha x+(1-\alpha)y) \le \alpha f(x)+(1-\alpha)f(y),
+    f(\alpha x+(1-\alpha)y) \leqslant \alpha f(x)+(1-\alpha)f(y),
     $$
     
     就称函数 $f$ 为 **凸函数**（convex function），其中 $\pm\infty$ 的运算法则规定为 $\pm\infty$ 乘以任何正实数或是加上任何实数都等于其自身，且对于任何实数 $x\in\mathbf R$ 都有 $-\infty<x<+\infty$。
 
-当然，如果不等号换作 $\ge$，就相应地称它为凹函数[^convex-def]。因为对于凹函数 $f$，总有 $-f$ 为凸函数，所以本节只考虑凸函数。
+当然，如果不等号换作 $\geqslant$，就相应地称它为凹函数[^convex-def]。因为对于凹函数 $f$，总有 $-f$ 为凸函数，所以本节只考虑凸函数。
 
 ???+ info "本文只考虑正常凸函数"
     为了避免讨论 $\infty-\infty$ 的取值和额外的复杂分析，本文在讨论凸函数相关概念时，总是默认函数不会取到 $-\infty$，且不总是 $+\infty$。这样的凸函数称为 **正常凸函数**（proper convex function）。这对于理解算法竞赛涉及的内容已经足够。
@@ -65,7 +65,7 @@ $$
     设 $S\subset\mathbf R$ 为离散点集，即对任意闭区间 $[a,b]$，$S\cap[a,b]$ 都是有限集。对于函数 $f:S\rightarrow\mathbf R\cup\{\pm\infty\}$，可以定义函数 $\tilde f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ 使得：
     
     -   当 $x\in S$ 时，$\tilde f(x)=f(x)$，
-    -   当 $x\in(\inf S,\sup S)\setminus S$ 时，设 $s_-=\max\{s\in S:s\le x\}$，$s_+=\min\{s\in S:s\ge x\}$，则
+    -   当 $x\in(\inf S,\sup S)\setminus S$ 时，设 $s_-=\max\{s\in S:s\leqslant x\}$，$s_+=\min\{s\in S:s\geqslant x\}$，则
     
         $$
         \tilde f(x) = \dfrac{s_+-x}{s_+-s_-}f(s_-)+\dfrac{x-s_-}{s_+-s_-}f(s_+),
@@ -82,7 +82,7 @@ $$
     函数 $f:\mathbf Z\rightarrow\mathbf R\cup\{\pm\infty\}$ 是凸的，当且仅当
     
     $$
-    f(x)-f(x-1)\le f(x+1)-f(x)
+    f(x)-f(x-1)\leqslant f(x+1)-f(x)
     $$
     
     对于所有 $x\in\mathbf Z$ 都成立。
@@ -93,7 +93,7 @@ $$
     如果 $f$ 是 $\mathbf Z$ 上的凸函数，那么根据斜率弱增，有
     
     $$
-    \Delta f(x-1,x)\le \Delta f(x-1,x+1) \le\Delta f(x,x+1).
+    \Delta f(x-1,x)\leqslant \Delta f(x-1,x+1) \leqslant\Delta f(x,x+1).
     $$
     
     这就是上述条件。
@@ -104,7 +104,7 @@ $$
     \Delta f(x_1,x_2) = \dfrac{1}{x_2-x_1}\sum_{i=x_1}^{x_2-1}\left(f(i)-f(i-1)\right).
     $$
     
-    这相当于对所有满足 $x_1\le i<x_2$ 的差分的算术平均值。如果 $x_2$ 增加一，就相当于插入一项更大的差分；如果 $x_1$ 增加一，就相当于移除一项最小的差分。这两个操作都会使得平均值上升。这就说明斜率 $\Delta f(x_1,x_2)$ 弱增，即 $f$ 是 $\mathbf Z$ 上的凸函数。
+    这相当于对所有满足 $x_1\leqslant i<x_2$ 的差分的算术平均值。如果 $x_2$ 增加一，就相当于插入一项更大的差分；如果 $x_1$ 增加一，就相当于移除一项最小的差分。这两个操作都会使得平均值上升。这就说明斜率 $\Delta f(x_1,x_2)$ 弱增，即 $f$ 是 $\mathbf Z$ 上的凸函数。
 
 也就是说，只要斜率（差分）单调不减，这个序列就可以看作是 $\mathbf Z$ 上的凸函数。
 
@@ -125,18 +125,18 @@ $$
     对于 $\mathbf R$ 上的函数 $f(x)$ 以及 $x_1<x_2$，对于 $\alpha\in(0,1)$，令 $x_3=\alpha x_1+(1-\alpha)x_2$，那么
     
     $$
-    \Delta f(x_1,x_3) \le \Delta f(x_1,x_2) \le \Delta f(x_3,x_2)
+    \Delta f(x_1,x_3) \leqslant \Delta f(x_1,x_2) \leqslant \Delta f(x_3,x_2)
     $$
     
     就等价于
     
     $$
-    \dfrac{f(x_3)-f(x_1)}{1-\alpha} \le f(x_2)-f(x_1) \le \dfrac{f(x_2)-f(x_3)}{\alpha}.
+    \dfrac{f(x_3)-f(x_1)}{1-\alpha} \leqslant f(x_2)-f(x_1) \leqslant \dfrac{f(x_2)-f(x_3)}{\alpha}.
     $$
     
-    这两侧的不等式都等价于 $f(x_3)\le\alpha f(x_1)+(1-\alpha)f(x_2)$，即函数 $f(x)$ 的凸性。
+    这两侧的不等式都等价于 $f(x_3)\leqslant\alpha f(x_1)+(1-\alpha)f(x_2)$，即函数 $f(x)$ 的凸性。
     
-    对于 $\mathbf R$ 的离散子集 $S$ 上的函数 $f(x)$，斜率弱增这一条件的必要性可以由 $\tilde f(x)$ 的凸性推导出来。现在要证明它的充分性，为此只要证明 $\Delta\tilde f(x_1,x_2)$ 也是弱增的。设 $S=\{s_i\}$ 且 $s_i$ 关于 $i$ 严格递增，并设 $s_{i_1}\le x_1\le s_{i_1+1}$ 且 $s_{i_2}\le x_2\le s_{i_2+1}$，自然有 $i_1\le i_2$。令 $\Delta_i=\Delta f(s_i,s_{i+1})$，那么，可以证明 $\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$。
+    对于 $\mathbf R$ 的离散子集 $S$ 上的函数 $f(x)$，斜率弱增这一条件的必要性可以由 $\tilde f(x)$ 的凸性推导出来。现在要证明它的充分性，为此只要证明 $\Delta\tilde f(x_1,x_2)$ 也是弱增的。设 $S=\{s_i\}$ 且 $s_i$ 关于 $i$ 严格递增，并设 $s_{i_1}\leqslant x_1\leqslant s_{i_1+1}$ 且 $s_{i_2}\leqslant x_2\leqslant s_{i_2+1}$，自然有 $i_1\leqslant i_2$。令 $\Delta_i=\Delta f(s_i,s_{i+1})$，那么，可以证明 $\Delta_{i_1}\leqslant\Delta\tilde f(x_1,x_2)\leqslant\Delta_{i_2}$。
     
     这分两种情形。如果 $i_1=i_2$，那么 $\Delta_{i_1}=\Delta\tilde f(x_1,x_2)=\Delta_{i_2}$，该不等式显然成立。否则，有
     
@@ -144,12 +144,12 @@ $$
     \Delta\tilde f(x_1,x_2) = \dfrac{1}{x_2-x_1}\left((s_{i_1+1}-x_1)\Delta_{i_1}+(x_2-s_{i_2})\Delta_{i_2}+\sum_{j=i_1+1}^{i_2-1}(s_{j+1}-s_j)\Delta_j\right).
     $$
     
-    根据 $S$ 上的斜率递增可知，$\Delta_i$ 关于 $i$ 递增，所以，$\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$。
+    根据 $S$ 上的斜率递增可知，$\Delta_i$ 关于 $i$ 递增，所以，$\Delta_{i_1}\leqslant\Delta\tilde f(x_1,x_2)\leqslant\Delta_{i_2}$。
     
-    利用这个结论，对于 $x_1<x_2$ 和 $\alpha\in(0,1)$，令 $x_3=\alpha x_1+(1-\alpha)x_2$，并取 $i_3$ 使得 $s_{i_3}\le x_3\le s_{i_3+1}$ 成立，则有
+    利用这个结论，对于 $x_1<x_2$ 和 $\alpha\in(0,1)$，令 $x_3=\alpha x_1+(1-\alpha)x_2$，并取 $i_3$ 使得 $s_{i_3}\leqslant x_3\leqslant s_{i_3+1}$ 成立，则有
     
     $$
-    \Delta\tilde f(x_1,x_3) \le \Delta_{i_3} \le \Delta\tilde f(x_3,x_2).
+    \Delta\tilde f(x_1,x_3) \leqslant \Delta_{i_3} \leqslant \Delta\tilde f(x_3,x_2).
     $$
     
     代入 $x_3$ 的表达式，就得到 $\tilde f(x)$ 的凸性。
@@ -159,7 +159,7 @@ $$
 本文还会用到凸函数的另一种等价刻画。对于函数 $f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$，可以考察平面内函数图像上方的区域，即
 
 $$
-\operatorname{epi} f = \{(x,y)\in\mathbf R^2 : y\ge f(x)\}.
+\operatorname{epi} f = \{(x,y)\in\mathbf R^2 : y\geqslant f(x)\}.
 $$
 
 这个区域也称为函数 $f$ 的 **上境图**（epigraph）。函数的凸性，等价于它的上境图的凸性：
@@ -171,7 +171,7 @@ $$
     如果 $f$ 是凸函数，那么对于 $(x_1,y_1),(x_2,y_2)\in\operatorname{epi}f$ 和任意 $\alpha\in(0,1)$，有
     
     $$
-    \alpha y_1+(1-\alpha)y_2 \ge \alpha f(x_1)+(1-\alpha)f(x_2) \ge f(\alpha x_1+(1-\alpha) x_2).
+    \alpha y_1+(1-\alpha)y_2 \geqslant \alpha f(x_1)+(1-\alpha)f(x_2) \geqslant f(\alpha x_1+(1-\alpha) x_2).
     $$
     
     所以，$\alpha(x_1,y_1)+(1-\alpha)(x_2,y_2)\in\operatorname{epi}f$。
@@ -182,7 +182,7 @@ $$
     \alpha(x_1,f(x_1))+(1-\alpha)(x_2,f(x_2)) \in \operatorname{epi}f.
     $$
     
-    这就等价于 $\alpha f(x_1)+(1-\alpha)f(x_2)\ge f\left(\alpha x_1+(1-\alpha)x_2\right)$，即 $f$ 的凸性。
+    这就等价于 $\alpha f(x_1)+(1-\alpha)f(x_2)\geqslant f\left(\alpha x_1+(1-\alpha)x_2\right)$，即 $f$ 的凸性。
 
 稍后会看到，利用上境图，可以将凸函数的卷积下确界与凸集的 Minkowski 和联系起来。
 
@@ -192,7 +192,7 @@ $$
 
 ### 非负线性组合
 
-对于凸函数 $f$ 和 $g$ 以及非负实数 $\alpha,\beta\ge0$，函数 $\alpha f+\beta g$ 也是凸函数。而且，
+对于凸函数 $f$ 和 $g$ 以及非负实数 $\alpha,\beta\geqslant0$，函数 $\alpha f+\beta g$ 也是凸函数。而且，
 
 $$
 \Delta(\alpha f+\beta g) = \alpha\Delta f + \beta\Delta g.
@@ -232,15 +232,15 @@ $$
     \begin{aligned}
     \alpha h(x_1)+(1-\alpha)h(x_2) + \varepsilon 
     &> \alpha f(y_1) + (1-\alpha) f(y_2) + \alpha g(z_1) + (1-\alpha) g(z_2)\\
-    &\ge f\left(\alpha y_1+(1-\alpha)y_2\right) + g\left(\alpha z_1+(1-\alpha)z_2\right)\\
-    &\ge h(\alpha x_1+(1-\alpha)x_2).
+    &\geqslant f\left(\alpha y_1+(1-\alpha)y_2\right) + g\left(\alpha z_1+(1-\alpha)z_2\right)\\
+    &\geqslant h(\alpha x_1+(1-\alpha)x_2).
     \end{aligned}
     $$
     
     因为 $\varepsilon>0$ 是任意选取的，所以
     
     $$
-    \alpha h(x_1)+(1-\alpha)h(x_2) \ge h(\alpha x_1+(1-\alpha)x_2).
+    \alpha h(x_1)+(1-\alpha)h(x_2) \geqslant h(\alpha x_1+(1-\alpha)x_2).
     $$
     
     这就得到 $h$ 的凸性。
@@ -256,12 +256,12 @@ $$
     对于任何 $(x,y)\in\operatorname{epi} f + \operatorname{epi} g$，都存在 $(x_1,y_1)\in\operatorname{epi} f$ 且 $(x_2,y_2)\in\operatorname{epi} g$，使得 $x=x_1+x_2$ 且
     
     $$
-    y = y_1+y_2 \ge f(x_1)+g(x_2) \ge h(x_1+x_2)=h(x).
+    y = y_1+y_2 \geqslant f(x_1)+g(x_2) \geqslant h(x_1+x_2)=h(x).
     $$
     
     故而，$(x,y)\in\operatorname{epi}h$。这说明 $\operatorname{epi} f + \operatorname{epi} g\subseteq \operatorname{epi}h$。
     
-    反过来，对于任何 $(x,y)\in\operatorname{epi}h$，有 $y\ge h(x)$。根据 $h$ 的定义，对任何 $\varepsilon>0$，都存在 $x_1+x_2=x$ 使得
+    反过来，对于任何 $(x,y)\in\operatorname{epi}h$，有 $y\geqslant h(x)$。根据 $h$ 的定义，对任何 $\varepsilon>0$，都存在 $x_1+x_2=x$ 使得
     
     $$
     y + \varepsilon > f(x_1) + g(x_2).
@@ -306,7 +306,7 @@ $$
 
 这类问题通常出现在需要最小化若干个绝对值的和式的问题中。因为这类问题中，价值函数的斜率的绝对值并不大，因此维护斜率变化的拐点更为方便。
 
-维护拐点是指维护分段线性函数中，斜率发生变化的点。相当于对于每个斜率为 $k_i$ 的斜率段 $[l_i,r_i]$，只维护其端点信息，而斜率本身不需要格外维护；因此，这类问题斜率每次发生变化时，都应当只变化一个固定的量。比如，如果维护了拐点集 $\xi_{-s}\le\cdots\le\xi_{-1}\le\xi_{1}\le\cdots\le\xi_{t}$，就相当于说：区间 $[\xi_{-1},\xi_1]$ 内斜率为 $0$；向左每经过一个拐点，斜率减少一；向右每经过一个拐点，斜率增加一；故而，区间 $[\xi_2,\xi_3]$ 内，斜率就是 $2$，区间 $[\xi_{-3},\xi_{-2}]$ 内，斜率就是 $-2$，诸如此类。用形式语言表示，函数可以利用斜率拐点写作
+维护拐点是指维护分段线性函数中，斜率发生变化的点。相当于对于每个斜率为 $k_i$ 的斜率段 $[l_i,r_i]$，只维护其端点信息，而斜率本身不需要格外维护；因此，这类问题斜率每次发生变化时，都应当只变化一个固定的量。比如，如果维护了拐点集 $\xi_{-s}\leqslant\cdots\leqslant\xi_{-1}\leqslant\xi_{1}\leqslant\cdots\leqslant\xi_{t}$，就相当于说：区间 $[\xi_{-1},\xi_1]$ 内斜率为 $0$；向左每经过一个拐点，斜率减少一；向右每经过一个拐点，斜率增加一；故而，区间 $[\xi_2,\xi_3]$ 内，斜率就是 $2$，区间 $[\xi_{-3},\xi_{-2}]$ 内，斜率就是 $-2$，诸如此类。用形式语言表示，函数可以利用斜率拐点写作
 
 $$
 f(x) = f(\xi_1) + \sum_{i=-s}^{-1}\max\{\xi_i-x,0\} + \sum_{i=1}^{\ell}\max\{x-\xi_i,0\}.
@@ -327,28 +327,28 @@ $$
     考虑朴素 DP 解法。设 $f_i(x)$ 是已经选取了序列 $\{b'_i\}$ 中前 $i$ 个数字，且第 $i$ 个数字不超过 $x$ 时，已经选取的数字与 $\{a'_i\}$ 的前 $i$ 个数字的最小差值：
     
     $$
-    f_i(x) = \min\sum_{j=1}^i|a'_j-b'_j|\text{ s.t. }b'_1\le b'_2\le\cdots\le b'_i\le x.
+    f_i(x) = \min\sum_{j=1}^i|a'_j-b'_j|\text{ s.t. }b'_1\leqslant b'_2\leqslant\cdots\leqslant b'_i\leqslant x.
     $$
     
     容易得到状态转移方程为
     
     $$
-    f_i(x) = \min_{y\le x}f_{i-1}(y)+|a'_i-y|.
+    f_i(x) = \min_{y\leqslant x}f_{i-1}(y)+|a'_i-y|.
     $$
     
     初始状态为 $f_0(x)\equiv 0$，最后要求的就是 $\min_xf_n(x)$。利用前文提到的凸函数的变换，从 $f_{i-1}(x)$ 到 $f_i(x)$，需要经过两步变换：
     
     1.  首先，加上 $|a'_i-x|$，这相当于对区间 $(-\infty,a'_i]$ 内的所有斜率段都增加 $-1$，对区间 $[a'_i,+\infty)$ 内的所有斜率段都增加 $1$；
-    2.  对得到的函数取最小值，将 $g(x)=f_{i-1}(x)+|a'_i-x|$ 变为 $f_i(x)=\min_{y\le x}g(y)$。根据前文分析，这相当于对 $g(x)$ 和 $0_{[0,+\infty)}$ 做卷积下确界。因为后者的斜率段只有一段，斜率为 $0$ 且向右延伸至无限长，将其插入 $g(x)$ 的斜率段中，相当于删除其中所有正斜率段。
+    2.  对得到的函数取最小值，将 $g(x)=f_{i-1}(x)+|a'_i-x|$ 变为 $f_i(x)=\min_{y\leqslant x}g(y)$。根据前文分析，这相当于对 $g(x)$ 和 $0_{[0,+\infty)}$ 做卷积下确界。因为后者的斜率段只有一段，斜率为 $0$ 且向右延伸至无限长，将其插入 $g(x)$ 的斜率段中，相当于删除其中所有正斜率段。
     
     明晰了这些操作后，已经可以直接用平衡树维护所有斜率段了，但代码较复杂。注意到问题中斜率每次变化至多 $1$，故而所有斜率段的绝对值都不超过 $n$。不直接维护斜率段，转而直接维护斜率拐点更为方便。
     
-    设 $f_{-1}(x)$ 的拐点集为 $\xi_{-k}\le\cdots\le\xi_{-1}\le\xi_{1}\le\cdots\le\xi_{\ell}$。那么，上面的两步操作分别对应：
+    设 $f_{-1}(x)$ 的拐点集为 $\xi_{-k}\leqslant\cdots\leqslant\xi_{-1}\leqslant\xi_{1}\leqslant\cdots\leqslant\xi_{\ell}$。那么，上面的两步操作分别对应：
     
     1.  增加一个负斜率段的拐点 $a'_i$ 和一个正斜率段的拐点 $a'_i$；
     2.  弹出所有正斜率段的拐点 $\xi_1,\cdots,\xi_{\ell}$。
     
-    实际维护时，因为每次操作结束后都没有正斜率段的拐点，即斜率拐点具有形式 $\xi_{-k}\le\cdots\le\xi_{-1}$，而且操作总发生在正负斜率段交界处，所以直接维护一个最大堆存储所有拐点即可。两步操作分别对应：
+    实际维护时，因为每次操作结束后都没有正斜率段的拐点，即斜率拐点具有形式 $\xi_{-k}\leqslant\cdots\leqslant\xi_{-1}$，而且操作总发生在正负斜率段交界处，所以直接维护一个最大堆存储所有拐点即可。两步操作分别对应：
     
     1.  插入两次 $a'_i$；
     2.  弹出堆顶。
@@ -361,7 +361,7 @@ $$
     
     其中，第一项相等是因为 $f_{i-1}(x)$ 没有正斜率段。因此，每次只需要在最小值上不断累加 $\max\{0,\xi_{-1}-a'_i\}$ 即可。
     
-    本题还要求输出一种最优方案。因为最后操作结束时，最优解就是堆顶，所以 $b'_n$ 的取值可以直接确定。如果已经知道了第 $i$ 个最优解 $b'_i$，要求解 $f_{i-1}(x)$ 满足 $x\le b'$ 的最优解，只需要注意到因为 $f_{i-1}(x)$ 是凸的，所以越接近它的全局最小值点，解就越优，故而只要记录 $f_{i-1}(x)$ 的全局最小值点，并将它与 $b'_i$ 取最小值，就可以得到最优的 $b'_{i-1}$。
+    本题还要求输出一种最优方案。因为最后操作结束时，最优解就是堆顶，所以 $b'_n$ 的取值可以直接确定。如果已经知道了第 $i$ 个最优解 $b'_i$，要求解 $f_{i-1}(x)$ 满足 $x\leqslant b'$ 的最优解，只需要注意到因为 $f_{i-1}(x)$ 是凸的，所以越接近它的全局最小值点，解就越优，故而只要记录 $f_{i-1}(x)$ 的全局最小值点，并将它与 $b'_i$ 取最小值，就可以得到最优的 $b'_{i-1}$。
     
     时间复杂度为 $O(n\log n)$。
     
@@ -380,26 +380,26 @@ $$
 ### 例题：转移带限制的情形
 
 ???+ example "[\[NOISG 2018 Finals\] Safety](https://www.luogu.com.cn/problem/P11598)"
-    给定长度为 $n$ 的序列 $\{a_i\}$，求序列 $\{b_i\}$ 使其满足 $|b_i-b_{i-1}|\le h$ 对所有 $1<i\le n$ 都成立，并使得 $\sum_i|a_i-b_i|$ 最小，输出最小值。
+    给定长度为 $n$ 的序列 $\{a_i\}$，求序列 $\{b_i\}$ 使其满足 $|b_i-b_{i-1}|\leqslant h$ 对所有 $1<i\leqslant n$ 都成立，并使得 $\sum_i|a_i-b_i|$ 最小，输出最小值。
 
 ??? note "解答"
     内容大致与上一个题目相仿，只是序列 $\{b_i\}$ 的限制发生了变化。同样地，设 $f_i(x)$ 为第 $i$ 个数字取 $x$ 时，前 $i$ 个数字的差值的最小值：
     
     $$
-    f_i(x) = \min\sum_{j=1}^i|a_j-b_j|\text{ s.t. }|b_{j-1}-b_j|\le h,\forall 1<j\le i,~b_i=x.
+    f_i(x) = \min\sum_{j=1}^i|a_j-b_j|\text{ s.t. }|b_{j-1}-b_j|\leqslant h,\forall 1<j\leqslant i,~b_i=x.
     $$
     
     由此，有状态转移方程为
     
     $$
-    f_i(x) = |a_i-x| + \min_{|y-x|\le h} f_{i-1}(y). 
+    f_i(x) = |a_i-x| + \min_{|y-x|\leqslant h} f_{i-1}(y). 
     $$
     
     起始条件为 $f_0(x)\equiv 0$。最后要求的仍然是 $\min_xf_n(x)$。
     
     状态转移拆解为对凸函数的操作，分两步：
     
-    1.  首先对 $f_{i-1}(x)$ 取最值，变为 $\min_{|y-x|\le h} f_{i-1}(y)$，这相当于 $f_{i-1}(x)$ 与 $0_{[-h,h]}(x)$ 的卷积下确界；
+    1.  首先对 $f_{i-1}(x)$ 取最值，变为 $\min_{|y-x|\leqslant h} f_{i-1}(y)$，这相当于 $f_{i-1}(x)$ 与 $0_{[-h,h]}(x)$ 的卷积下确界；
     2.  再将得到的函数与 $|a_i-x|$ 相加。
     
     同样因为斜率每次只变化一，可以考虑维护拐点。这样，这两步操作就可以描述为：
@@ -447,7 +447,7 @@ $$
     给定 $n$ 天股票价格序列 $\{p_i\}$（均为正数），初始持股为 $0$，每天可买入一股、卖出一股或不交易，求 $n$ 天后最大利润。
 
 ??? note "解答"
-    首先考虑朴素 DP 解法。设 $f_i(x)$ 为第 $i$ 天结束时持有股票数量为 $x\ge 0$ 的最大利润，则
+    首先考虑朴素 DP 解法。设 $f_i(x)$ 为第 $i$ 天结束时持有股票数量为 $x\geqslant 0$ 的最大利润，则
     
     $$
     f_i(x) = \max\{f_{i-1}(x-1)-p_i,f_{i-1}(x),f_{i-1}(x+1)+p_i\}.
@@ -464,7 +464,7 @@ $$
         $$
     
         对应的分段线性函数 $\tilde h(x)$（显然是凹函数）做卷积上确界；
-    2.  因为这样会导致函数在区间 $[-1,0)$ 内具有有限值，这与 $x\ge 0$ 的要求矛盾，故而需要截取函数在 $[0,+\infty)$ 内的部分。
+    2.  因为这样会导致函数在区间 $[-1,0)$ 内具有有限值，这与 $x\geqslant 0$ 的要求矛盾，故而需要截取函数在 $[0,+\infty)$ 内的部分。
     
     将它们转化为斜率段的变化，就是如下两步：
     
@@ -493,7 +493,7 @@ $$
 ### 例题：搬运土石问题
 
 ???+ example "[\[USACO16OPEN\] Landscaping P](https://www.luogu.com.cn/problem/P2748)"
-    给定长度为 $n$ 的序列 $\{a_i\}$ 和 $\{b_i\}$，分别表示第 $i$ 个花园已经有的泥土数量和需要的泥土数量（不能多也不能少）。购买一单位泥土放入任意花园价格为 $X$，从任意花园运走一单位泥土价格为 $Y$，从花园 $i$ 向花园 $j$ 运送一单位泥土价格为 $Z|i-j|$。求满足所有花园需求的最小成本。（$a_i,b_i\le 10$）
+    给定长度为 $n$ 的序列 $\{a_i\}$ 和 $\{b_i\}$，分别表示第 $i$ 个花园已经有的泥土数量和需要的泥土数量（不能多也不能少）。购买一单位泥土放入任意花园价格为 $X$，从任意花园运走一单位泥土价格为 $Y$，从花园 $i$ 向花园 $j$ 运送一单位泥土价格为 $Z|i-j|$。求满足所有花园需求的最小成本。（$a_i,b_i\leqslant 10$）
 
 ??? note "解答"
     考虑朴素 DP 解法。设 $f_i(x)$ 为满足前 $i$ 个花园需求且净剩余 $x$ 单位泥土运到后面的花园时的最小代价。如果 $x<0$，就相当于净亏空 $|x|$ 单位泥土需要从后面的花园运送过来。那么，可以写成状态转移方程为

@@ -130,7 +130,7 @@ Carmichael 函数有如下性质：
 
     $$
     \lambda\left(p^r\right)=\begin{cases}
-        \frac{1}{2}\varphi\left(p^r\right), & p=2 \land r\geq 3, \\
+        \frac{1}{2}\varphi\left(p^r\right), & p=2 \land r\geqslant 3, \\
         \varphi\left(p^r\right),            & \text{otherwise}.
     \end{cases}
     $$
@@ -140,7 +140,7 @@ Carmichael 函数有如下性质：
         
         若模 $n=p^r$ 有 [原根](./primitive-root.md)，则 $\lambda(n)=\varphi(n)$，否则 $\lambda(n)=\dfrac{1}{2}\varphi(n)$.
         
-        当模 $p^r$ 有原根时，由 [原根存在定理](./primitive-root.md#原根存在定理) 可知命题成立。否则 $p=2$ 且 $r\geq 3$，我们有：
+        当模 $p^r$ 有原根时，由 [原根存在定理](./primitive-root.md#原根存在定理) 可知命题成立。否则 $p=2$ 且 $r\geqslant 3$，我们有：
         
         $$
         \lambda\left(2^r\right)\mid 2^{r-2}
@@ -329,7 +329,7 @@ Carmichael 数有如下性质：
 
 1.  反素数肯定是从 $2$ 开始的连续素数的幂次形式的乘积。
 
-2.  数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$。
+2.  数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geqslant k_2 \geqslant k_3 \geqslant \cdots \geqslant k_n$。
 
 解释：
 

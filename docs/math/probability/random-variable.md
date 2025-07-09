@@ -5,7 +5,7 @@
 给定概率空间 $(\Omega, \mathcal{F}, P)$，定义在样本空间 $\Omega$ 上的函数 $X : \Omega \to \mathbb{R}$ 若满足：对任意 $t \in \mathbb{R}$ 都有
 
 $$
-\{ \omega \in \Omega : X(\omega) \le t \} \in \mathcal{F}
+\{ \omega \in \Omega : X(\omega) \leqslant t \} \in \mathcal{F}
 $$
 
 则称 $X$ 为 **随机变量**。
@@ -28,7 +28,7 @@ $$
 对于随机变量 $X$，称函数
 
 $$
-F(x) = P( X \leq x )
+F(x) = P( X \leqslant x )
 $$
 
 为随机变量 $X$ 的 **分布函数**。记作 $X \sim F(x)$。
@@ -61,7 +61,7 @@ $$
 另一方面，设 $X \sim F(x)$，则
 
 $$
-P( l < x \leq l + \Delta x ) = F(l + \Delta x) - F(l)
+P( l < x \leqslant l + \Delta x ) = F(l + \Delta x) - F(l)
 $$
 
 一个自然的想法是用极限 $\lim\limits_{\Delta x \to 0^+} \frac{F(l + \Delta x) - F(l)}{\Delta x}$ 来描述 $X$ 取值为 $l$ 的可能性。
@@ -83,7 +83,7 @@ $$
 若随机变量 $X, Y$ 满足对任意的 $x, y \in \mathbb{R}$ 都有
 
 $$
-P( X \leq x, Y \leq y ) = P( X \leq x ) P( Y \leq y )
+P( X \leqslant x, Y \leqslant y ) = P( X \leqslant x ) P( Y \leqslant y )
 $$
 
 则称随机变量 $X, Y$  **独立**。
