@@ -6,7 +6,9 @@ const int N=2e6+2;
 int n,m,dfn[N],low[N],t,tot,head[N],a[N];
 bool vis[N];
 stack<int> s;
-struct node{int to,Next;}e[N];
+struct node{
+	int to,Next;
+}e[N];
 
 void adde(int u,int v){
 	e[++tot].to=v;
