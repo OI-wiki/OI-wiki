@@ -1,4 +1,4 @@
-author: cutekibry, woruo27, tinjyu
+author: cutekibry, woruo27, tinjyu, chu-yuehan
 
 经典的公平组合游戏有很多，包括取数游戏，31 点，以及 Nim 游戏等。
 
