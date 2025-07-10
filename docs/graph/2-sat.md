@@ -2,77 +2,103 @@
 
 ## 定义
 
-2-SAT，简单的说就是给出 $n$ 个集合，每个集合有两个元素，已知若干个 $\langle a,b \rangle$，表示 $a$ 与 $b$ 矛盾（其中 $a$ 与 $b$ 属于不同的集合）。然后从每个集合选择一个元素，判断能否一共选 $n$ 个两两不矛盾的元素。显然可能有多种选择方案，一般题中只需要求出一种即可。
+2-SAT，简单的说就是给出 $n$ 个布尔方程，每个方程和两个变量相关，如 $a \vee b$，表示变量 $a, b$ 至少满足一个。然后判断是否存在可行方案，显然可能有多种选择方案，一般题中只需要求出一种即可。另外，$\neg a$ 表示 $a$ 取反。
 
-## 现实意义
+## 例题引入
 
-比如邀请人来吃喜酒，夫妻二人必须去一个，然而某些人之间有矛盾（比如 A 先生与 B 女士有矛盾，C 女士不想和 D 先生在一起），那么我们要确定能否避免来人之间有矛盾，有时需要方案。这是一类生活中常见的问题。
+???+ note "[洛谷的「P4782」](https://www.luogu.com.cn/problem/P4782)"
+    有 $n$ 个布尔变量 $x_1\sim x_n$，另有 $m$ 个需要满足的条件，每个条件的形式都是「$x_i$ 为 `true`/`false` 或 $x_j$ 为 `true`/`false`」。比如「$x_1$ 为真或 $x_3$ 为假」、「$x_7$ 为假或 $x_2$ 为假」。
+    
+    2-SAT 问题的目标是给每个变量赋值使得所有条件得到满足。
 
-使用布尔方程表示上述问题。设 $a$ 表示 A 先生去参加，那么 B 女士就不能参加（$\neg a$）；$b$ 表示 C 女士参加，那么 $\neg b$ 也一定成立（D 先生不参加）。总结一下，即 $(a \vee b)$（变量 $a, b$ 至少满足一个）。对这些变量关系建有向图，则有：$\neg a\to b\wedge\neg b\to a$（$a$ 不成立则 $b$ 一定成立；同理，$b$ 不成立则 $a$ 一定成立）。建图之后，我们就可以使用缩点算法来求解 2-SAT 问题了。
+转化题意为：装饰一个房间，有 $m$ 种装饰品。有 $n$ 个人，每人提出两点要求（要不要用某种装饰品），当其中至少有一条被满足时（当然允许两条都满足），这个人会感到满意。问你是否可以让所有人都感到满意，进一步的，还可以让你输出让所有人都感到满意的方案。
 
-## 常用解决方法
+## 重点：建图
 
-### Tarjan [SCC 缩点](./scc.md)
+使用布尔方程表示上述问题。设 $a$ 表示要用第 A 种装饰品（$\neg a$ 就表示不用第 A 种装饰品）。如果有个人提出的要求分别是 $a$ 和 $b$，即 $(a \vee b)$（变量 $a, b$ 至少满足一个）。对这些变量关系建有向图，**则把 $a$ 成立或不成立用图中的点表示，$\neg a\to b$ $\neg b\to a$，表示 $a$ 不成立则 $b$ 一定成立；同理，$b$ 不成立则 $a$ 一定成立。建图之后，我们就可以使用缩点算法来求解 2-SAT 问题了**。
 
-算法考究在建图这点，我们举个例子来讲：
+|         原式         |                建图               |
+| :----------------: | :-----------------------------: |
+|   $\neg a \vee b$  | $a \to b$ 和 $\neg b \to \neg a$ |
+|     $a \vee b$     | $\neg a \to b$ 和 $\neg b \to a$ |
+| $\neg a\vee\neg b$ |   $a \to -b$ 和 $b \to \neg a$   |
 
-假设有 ${a1,a2}$ 和 ${b1,b2}$ 两对，已知 $a1$ 和 $b2$ 间有矛盾，于是为了方案自洽，由于两者中必须选一个，所以我们就要拉两条有向边 $(a1,b1)$ 和 $(b2,a2)$ 表示选了 $a1$ 则必须选 $b1$，选了 $b2$ 则必须选 $a2$ 才能够自洽。
+**许多 2-SAT 问题都需要找出如 $a$ 不成立，则 $b$ 成立的关系。**
 
-然后通过这样子建边我们跑一遍 Tarjan SCC 判断是否有一个集合中的两个元素在同一个 SCC 中，若有则输出不可能，否则输出方案。构造方案只需要把几个不矛盾的 SCC 拼起来就好了。
+## 求解
 
-输出方案时可以通过变量在图中的拓扑序确定该变量的取值。如果变量 $x$ 的拓扑序在 $\neg x$ 之后，那么取 $x$ 值为真。应用到 Tarjan 算法的缩点，即 $x$ 所在 SCC 编号在 $\neg x$ 之前时，取 $x$ 为真。因为 Tarjan 算法求强连通分量时使用了栈，所以 Tarjan 求得的 SCC 编号相当于反拓扑序。
+思考如果两点在同一强连通分量里有什么含义。根据前文边的逻辑意义可知：若两点在同一强连通分量内，则这两点代表的条件 **要么都满足，要么都不满足**。
 
-显然地，时间复杂度为 $O(n+m)$。
+建图周我们跑一遍 [Tarjan 找 SCC](./scc.md)，判断对于任意布尔变量 $a$，表示 $a$ 成立的点和表示 $a$ 不成立的点是否在同一个 SCC 中（同一条件不可能既满足又不满足，或既不满足，又并非不满足），若有则输出无解，否则有解。
 
-### 暴搜
+输出方案时可以通过变量在图中的拓扑序确定该变量的取值。如果变量 $x$ 的拓扑序在 $\neg x$ 之后，那么取 $x$ 值为真。应用到 Tarjan 算法的缩点，即 $x$ 所在 SCC 编号在 $\neg x$ 之前时，取 $x$ 为真。因为 Tarjan 算法求强连通分量时使用了栈，如果跑完 Tarjan 缩点之后呈现出的拓扑序更大，在 Tarjan 会更晚被遍历到，就会更早地被弹出栈而缩点，分量编号会更小，所以 Tarjan 求得的 SCC 编号 **相当于反拓扑序**。
 
-就是沿着图上一条路径，如果一个点被选择了，那么这条路径以后的点都将被选择，那么，出现不可行的情况就是，存在一个集合中两者都被选择了。
+算法会把整张图遍历一遍，并且在结算答案时复杂度为 $O(n)$，认为 $n$ 和 $m$ 同阶，复杂度为 $O(n)$。
 
-那么，我们只需要枚举一下就可以了，数据不大，答案总是可以出来的。
-
-??? note "暴搜模板"
+??? note "代码实现"
     ```cpp
-    // 来源：刘汝佳白书第 323 页
-    struct Twosat {
-      int n;
-      vector<int> g[MAXN * 2];
-      bool mark[MAXN * 2];
-      int s[MAXN * 2], c;
-    
-      bool dfs(int x) {
-        if (mark[x ^ 1]) return false;
-        if (mark[x]) return true;
-        mark[x] = true;
-        s[c++] = x;
-        for (int i = 0; i < (int)g[x].size(); i++)
-          if (!dfs(g[x][i])) return false;
-        return true;
-      }
-    
-      void init(int n) {
-        this->n = n;
-        for (int i = 0; i < n * 2; i++) g[i].clear();
-        memset(mark, 0, sizeof(mark));
-      }
-    
-      void add_clause(int x, int y) {  // 这个函数随题意变化
-        g[x].push_back(y ^ 1);         // 选了 x 就必须选 y^1
-        g[y].push_back(x ^ 1);
-      }
-    
-      bool solve() {
-        for (int i = 0; i < n * 2; i += 2)
-          if (!mark[i] && !mark[i + 1]) {
-            c = 0;
-            if (!dfs(i)) {
-              while (c > 0) mark[s[--c]] = false;
-              if (!dfs(i + 1)) return false;
-            }
-          }
-        return true;
-      }
-    };
     ```
+
+include<cstdio>#include<algorithm>#include<stack>using namespace std;
+const int N=2e6+2;
+int n,m,dfn\[N],low\[N],t,tot,head\[N],a\[N];
+bool vis\[N];
+stack<int>s;
+struct node{int to,Next;}e\[N];
+
+void adde(int u,int v){
+e\[++tot].to=v;
+e\[tot].Next=head\[u];
+head\[u]=tot;
+}
+
+void Tarjan(int u){
+dfn\[u]=low\[u]=++t;
+s.push(u);
+vis\[u]=1;
+for(int i=head\[u];i;i=e\[i].Next){
+int v=e\[i].to;
+if(!dfn\[v]){
+Tarjan(v);
+low\[u]=min(low\[u],low\[v]);
+}
+else if(vis\[v])
+low\[u]=min(low\[u],dfn\[v]);
+}
+if(dfn\[u]==low\[u]){
+int cur;
+\++tot;
+do{
+cur=s.top();
+s.pop();
+vis\[cur]=0;
+a\[cur]=tot;
+}while(cur!=u);
+}
+}
+
+int main(){scanf("%d%d",&n,&m);
+for(int i=1,I,J,A,B;i<=m;i++){
+scanf("%d%d%d%d",&I,&A,&J,&B);
+adde(A?I+n:I,B?J:J+n);
+adde(B?J+n:J,A?I:I+n);
+}
+tot=0;
+for(int i=1;i<=(n<<1);i++) if(!dfn\[i]) Tarjan(i);
+for(int i=1;i<=n;i++){
+if(a\[i]==a\[i+n]){
+printf("IMPOSSIBLE");
+return 0;
+}
+}
+puts("POSSIBLE");
+for(int i=1;i<=n;i++){
+putchar(a\[i]\<a\[i+n]?'1':'0');
+putchar(' ');
+}
+return 0;
+}
+\`\`\`
 
 ## 例题
 
