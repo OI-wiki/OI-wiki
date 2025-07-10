@@ -23,7 +23,7 @@ author: chu-yuehan
 | :----------------: | :------------------------------: |
 |  $\neg a \vee b$   | $a \to b$ 和 $\neg b \to \neg a$ |
 |     $a \vee b$     | $\neg a \to b$ 和 $\neg b \to a$ |
-| $\neg a\vee\neg b$ |   $a \to -b$ 和 $b \to \neg a$   |
+| $\neg a\vee\neg b$ |  $a \to -b$ 和 $b \to \neg a$    |
 
 **许多 2-SAT 问题都需要找出如 $a$ 不成立，则 $b$ 成立的关系。**
 
