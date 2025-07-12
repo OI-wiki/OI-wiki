@@ -1,4 +1,4 @@
-// --8<-- [start:full-tex]
+// --8<-- [start:full-text]
 #include <algorithm>
 #include <climits>
 #include <cmath>
@@ -233,4 +233,4 @@ int main() {
   return 0;
 }
 
-// --8<-- [end:full-tex]
+// --8<-- [end:full-text]
