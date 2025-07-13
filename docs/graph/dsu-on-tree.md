@@ -1,4 +1,4 @@
-author: abc1763613206, cesonic, Ir1d, MingqiHuang, xinchengo,xiaofu-15191
+author: abc1763613206, cesonic, Ir1d, MingqiHuang, xinchengo, xiaofu-15191, hsefz-ChenJunJie
 
 ## 引入
 
@@ -30,7 +30,7 @@ void merge(int x, int y) {
 考虑下面的问题：[树上数颜色](https://www.luogu.com.cn/problem/U41492)。
 
 ???+ note "例题引入"
-    给出一棵 $n$ 个节点以 $1$ 为根的树，节点 $u$ 的颜色为 $c_u$，现在对于每个结点 $u$ 询问以 $u$ 为根的子树里一共出现了多少种不同的颜色。
+    给出一棵 $n$ 个节点以 $1$ 为根的树，节点 $u$ 的颜色为 $c_u$，现在对于每个节点 $u$ 询问以 $u$ 为根的子树里一共出现了多少种不同的颜色。
     
     $n\le 2\times 10^5$。
 
@@ -48,13 +48,13 @@ void merge(int x, int y) {
 
 我们可以先预处理出每个节点子树的大小和它的重儿子，重儿子同树链剖分一样，是拥有节点最多子树的儿子，这个过程显然可以 $O(n)$ 完成。
 
-我们用 $cnt_i$ 表示颜色 $i$ 的出现次数，$ans_u$ 表示结点 $u$ 的答案。
+我们用 $cnt_i$ 表示颜色 $i$ 的出现次数，$ans_u$ 表示节点 $u$ 的答案。
 
 遍历一个节点 $u$，我们按以下的步骤进行遍历：
 
 1.  先遍历 $u$ 的轻（非重）儿子，并计算答案，但 **不保留遍历后它对 $cnt$ 数组的影响**；
 2.  遍历它的重儿子，**保留它对 $cnt$ 数组的影响**；
-3.  再次遍历 $u$ 的轻儿子的子树结点，加入这些结点的贡献，以得到 $u$ 的答案。
+3.  再次遍历 $u$ 的轻儿子的子树节点，加入这些节点的贡献，以得到 $u$ 的答案。
 
 ![dsu-on-tree-2.png](./images/dsu-on-tree-2.svg)
 
@@ -94,17 +94,17 @@ void merge(int x, int y) {
     
     int n;
     
-    // g[u]: 存储与 u 相邻的结点
+    // g[u]: 存储与 u 相邻的节点
     vector<int> g[N];
     
     // sz: 子树大小
     // big: 重儿子
-    // col: 结点颜色
-    // L[u]: 结点 u 的 DFS 序
-    // R[u]: 结点 u 子树中结点的 DFS 序的最大值
-    // Node[i]: DFS 序为 i 的结点
+    // col: 节点颜色
+    // L[u]: 节点 u 的 DFS 序
+    // R[u]: 节点 u 子树中节点的 DFS 序的最大值
+    // Node[i]: DFS 序为 i 的节点
     // ans: 存答案
-    // cnt[i]: 颜色为 i 的结点个数
+    // cnt[i]: 颜色为 i 的节点个数
     // totColor: 目前出现过的颜色个数
     int sz[N], big[N], col[N], L[N], R[N], Node[N], totdfn;
     int ans[N], cnt[N], totColor;
@@ -146,7 +146,7 @@ void merge(int x, int y) {
       }
       for (int v : g[u])
         if (v != p && v != big[u]) {
-          // 子树结点的 DFS 序构成一段连续区间，可以直接遍历
+          // 子树节点的 DFS 序构成一段连续区间，可以直接遍历
           for (int i = L[v]; i <= R[v]; i++) {
             add(Node[i]);
           }
@@ -162,16 +162,131 @@ void merge(int x, int y) {
     
     int main() {
       scanf("%d", &n);
-      for (int i = 1; i <= n; i++) scanf("%d", &col[i]);
       for (int i = 1; i < n; i++) {
         int u, v;
         scanf("%d%d", &u, &v);
         g[u].push_back(v);
         g[v].push_back(u);
       }
+      for (int i = 1; i <= n; i++) scanf("%d", &col[i]);
       dfs0(1, 0);
       dfs1(1, 0, false);
-      for (int i = 1; i <= n; i++) printf("%d%c", ans[i], " \n"[i == n]);
+      scanf("%d", &m);
+      for (int i = 1; i <= m; i++) {
+        int q; scanf("%d", &q);
+        printf("%d\n", ans[q]);
+      }
+      return 0;
+    }
+    ```
+
+## 优化
+
+在证明过程中我们提到了 dsu on tree 使用了和重链剖分一样的轻重儿子定义加速合并，既然如此，我们也可以直接利用重链剖分得到的 dfs 序，化递归为迭代，进一步加速 dsu on tree 的合并过程。
+
+dfs 序本身就有如下的性质：一个节点的子树在 dfs 序上一定连续。因此，我们想到可以倒序遍历 dfs 序数组，这样保证了在遍历到一个节点时，他的子树中的其他节点一定已经得到了处理。
+
+重链剖分得到的 dfs 序又增加了如下优良的性质：一条重链在 dfs 序上一定是连续的。因此，我们倒序遍历一个数组时，在到达一条重链顶端时，我们要遍历的下一个节点一定不是自己的父亲，所以要清空自己的影响；在到达一条重链的顶端之前，之前遍历的一个节点一定是自己的重儿子（或者是已经清除了影响的其他分支的节点），所以可以直接继承其影响。在此基础上，再利用 dfs 序快速统计所有轻儿子的影响，记录答案。
+
+以上过程被称为 dsu on tree 的非递归/迭代实现（也被称为 dsu on tree 的 dfs 序实现）。相较于原本递归实现，它减小了递归调用函数的时空开销，获得了不小的常数优化，在处理包含大量链状树的数据时拥有显著的栈空间优势。
+
+???+ note "具体代码实现"
+    ```cpp
+    #include <cstdio>
+    #include <vector>
+    using namespace std;
+
+    constexpr int N = 2e5 + 5;
+
+    int n, m;
+
+    // g[u]: 存储与 u 相邻的节点
+    vector<int> g[N];
+
+    // sz: 子树大小
+    // son[u]: 节点u的重儿子的编号
+    // col: 节点颜色
+    // dfn[u]: 节点 u 的 DFS 序
+    // bottom[u]: 节点 u 子树中节点的 DFS 序的最大值
+    // fa[u]: 节点u的父亲编号
+    // top[u]:节点u所在重链的顶端节点编号
+    // rnk[i]: DFS 序为 i 的节点
+    // ans[u]: 存答案
+    // cnt[i]: 颜色为 i 的节点个数
+    // totColor: 目前出现过的颜色个数
+    int sz[N], son[N], col[N], dfn[N], fa[N], bottom[N];
+    int top[N], rnk[N];
+    int ans[N], cnt[N], totColor;
+
+    void add(int u) {
+      if (cnt[col[u]] == 0) ++totColor;
+      cnt[col[u]]++;
+    }
+
+    void del(int u) {
+      cnt[col[u]]--;
+      if (cnt[col[u]] == 0) --totColor;
+    }
+
+    int getAns() { return totColor; }
+
+    void dfs0(int u, int p) {
+      sz[u] = 1;
+      fa[u] = p;
+      for (int v : g[u])
+        if (v != p) {
+          dfs0(v, u);
+          sz[u] += sz[v];
+          if (!son[u] || sz[son[u]] < sz[v]) son[u] = v;
+        }
+    }
+
+    void dfs1(int u, int t) {
+      rnk[bottom[u] = dfn[u] = ++ dfn[0]] = u;
+      top[u] = t;
+      if (!son[u]) return;
+      dfs1(son[u], t);
+      for (int v : g[u])
+        if (v != fa[u] && v != son[u]) dfs1(v, v);
+      bottom[u] = dfn[0];
+    }
+
+    void dsu_on_tree() {
+      for (int i = dfn[0]; i >= 1; i--) {
+        int u = rnk[i];
+        for (int v : g[u])
+          if (v != fa[u] && v != son[u]) {
+            for (int i = dfn[v]; i <= bottom[v]; i++) {
+              add(rnk[i]);
+            }
+          }
+        add(u);
+        ans[u] = getAns();
+        if (u == top[u]) {
+          for (int i = dfn[u]; i <= bottom[u]; i++) {
+            del(rnk[i]);
+          }
+        }
+      }
+    }
+
+    int main() {
+      scanf("%d", &n);
+      for (int i = 1; i < n; i++) {
+        int u, v;
+        scanf("%d%d", &u, &v);
+        g[u].push_back(v);
+        g[v].push_back(u);
+      }
+      for (int i = 1; i <= n; i++) scanf("%d", &col[i]);
+      dfs0(1, 1);
+      dfs1(1, 1);
+      dsu_on_tree();
+      scanf("%d", &m);
+      for (int i = 1; i <= m; i++) {
+        int q; scanf("%d", &q);
+        printf("%d\n", ans[q]);
+      }
       return 0;
     }
     ```
