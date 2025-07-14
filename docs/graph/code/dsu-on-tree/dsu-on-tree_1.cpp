@@ -4,7 +4,7 @@ using namespace std;
 
 constexpr int N = 2e5 + 5;
 
-int n;
+int n, m;
 
 // g[u]: 存储与 u 相邻的节点
 vector<int> g[N];
