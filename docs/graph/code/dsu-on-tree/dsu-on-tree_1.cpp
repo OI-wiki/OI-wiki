@@ -6,17 +6,17 @@ constexpr int N = 2e5 + 5;
 
 int n, m;
 
-// g[u]: 存储与 u 相邻的节点
+// g[u]: 存储与 u 相邻的结点
 vector<int> g[N];
 
 // sz: 子树大小
 // big: 重儿子
-// col: 节点颜色
-// L[u]: 节点 u 的 DFS 序
-// R[u]: 节点 u 子树中节点的 DFS 序的最大值
-// Node[i]: DFS 序为 i 的节点
+// col: 结点颜色
+// L[u]: 结点 u 的 DFS 序
+// R[u]: 结点 u 子树中结点的 DFS 序的最大值
+// Node[i]: DFS 序为 i 的结点
 // ans: 存答案
-// cnt[i]: 颜色为 i 的节点个数
+// cnt[i]: 颜色为 i 的结点个数
 // totColor: 目前出现过的颜色个数
 int sz[N], big[N], col[N], L[N], R[N], Node[N], totdfn;
 int ans[N], cnt[N], totColor;
@@ -58,7 +58,7 @@ void dfs1(int u, int p, bool keep) {
   }
   for (int v : g[u])
     if (v != p && v != big[u]) {
-      // 子树节点的 DFS 序构成一段连续区间，可以直接遍历
+      // 子树结点的 DFS 序构成一段连续区间，可以直接遍历
       for (int i = L[v]; i <= R[v]; i++) {
         add(Node[i]);
       }
