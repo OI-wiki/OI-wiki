@@ -15,6 +15,7 @@ vector<int> g[N];
 // L[u]: 结点 u 的 DFS 序
 // R[u]: 结点 u 子树中结点的 DFS 序的最大值
 // Node[i]: DFS 序为 i 的结点
+// totdfn: 节点计数器，也是当前遍历过节点的 DFS 序最大值
 // ans: 存答案
 // cnt[i]: 颜色为 i 的结点个数
 // totColor: 目前出现过的颜色个数
