@@ -152,9 +152,10 @@ class HuAutomation {
     f[0][0][1] = 1;
     REP(i, 1, n)
     PER(j, 0, m)
-      REP(k, 1, tot) if (f[i - 1][j][k])
+    REP(k, 1, tot)
+    if (f[i - 1][j][k])
         REP(t, 0, 4 - a[i])(f[i][j + t][A[k].state[a[i] + t]] +=
-                             1LL * f[i - 1][j][k] * C(4 - a[i], t) % mod) %= mod;
+                            1LL * f[i - 1][j][k] * C(4 - a[i], t) % mod) %= mod;
   }
 } Hfu;
 
