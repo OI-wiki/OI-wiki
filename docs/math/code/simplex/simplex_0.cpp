@@ -126,8 +126,7 @@ int solve() {
 int main() {
   std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
   std::cout << std::fixed << std::setprecision(8);
-  int t;
-  std::cin >> n >> m >> t;
+  std::cin >> n >> m;
   tab.assign(n + 1, std::vector<long double>(m + 2));
   for (int i = 0; i < n; ++i) {
     std::cin >> tab[i][m];
@@ -147,15 +146,14 @@ int main() {
       break;
     case 0: {
       std::cout << tab[n][m] << std::endl;
-      if (t) {
-        std::vector<long double> x(n);
-        for (int j = 0; j < m; ++j) {
-          if (B[j] < n) x[B[j]] = tab[n][j];
-        }
-        for (int i = 0; i < n; ++i) {
-          std::cout << x[i] << ' ';
-        }
+      std::vector<long double> x(n);
+      for (int j = 0; j < m; ++j) {
+        if (B[j] < n) x[B[j]] = tab[n][j];
       }
+      for (int i = 0; i < n; ++i) {
+        std::cout << x[i] << ' ';
+      }
+      break;
     }
   }
   return 0;
