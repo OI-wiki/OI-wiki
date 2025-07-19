@@ -31,7 +31,14 @@ int ca(int mask, int x) {
   return res;
 }
 
-int popcount(int x) { return __builtin_popcount(x); }
+int popcount(int x) {
+  int res = 0;
+  while (x) {
+    res += x & 1;
+    x >>= 1;
+  }
+  return res;
+}
 
 int main() {
   ios::sync_with_stdio(false);
