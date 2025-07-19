@@ -1,8 +1,8 @@
-#include <iostream>
+#include <algorithm>
 #include <cstdio>
+#include <iostream>
 #include <map>
 #include <unordered_map>
-#include <algorithm>
 using namespace std;
 
 #define umap unordered_map
@@ -59,7 +59,7 @@ class HuAutomation {
 
     inline bool operator<(Mat x) const {
       REP(i, 0, 2)
-        REP(j, 0, 2) if (f[i][j] != x[i][j]) return f[i][j] < x[i][j];
+      REP(j, 0, 2) if (f[i][j] != x[i][j]) return f[i][j] < x[i][j];
       return 0;
     }
 
@@ -70,9 +70,9 @@ class HuAutomation {
 
     inline void Upd(Mat x, int t) {
       REP(i, 0, 2)
-        REP(j, 0, 2) if (x[i][j] != -1) 
-          for (int k = 0; k < 3 && i + j + k <= t; k++)
-            f[j][k] = max(f[j][k], min(i + x[i][j] + (t - i - j - k) / 3, 4));
+      REP(j, 0, 2)
+      if (x[i][j] != -1) for (int k = 0; k < 3 && i + j + k <= t; k++) f[j][k] =
+          max(f[j][k], min(i + x[i][j] + (t - i - j - k) / 3, 4));
     }
   };
 
@@ -86,9 +86,7 @@ class HuAutomation {
       REP(i, 0, 1) F[i] = Mat();
     }
 
-    inline bool Check() {
-      return t == -1 || t >= 7 || F[1].Check();
-    }
+    inline bool Check() { return t == -1 || t >= 7 || F[1].Check(); }
 
     node Hu() {
       node x;
@@ -151,10 +149,10 @@ class HuAutomation {
 
   void DP() {
     f[0][0][1] = 1;
-    REP(i, 1, n) PER(j, 0, m) REP(k, 1, tot) if (f[i - 1][j][k])
-      REP(t, 0, 4 - a[i])
-        (f[i][j + t][A[k].state[a[i] + t]] +=
-         1LL * f[i - 1][j][k] * C(4 - a[i], t) % mod) %= mod;
+    REP(i, 1, n)
+    PER(j, 0, m) REP(k, 1, tot) if (f[i - 1][j][k])
+        REP(t, 0, 4 - a[i])(f[i][j + t][A[k].state[a[i] + t]] +=
+                            1LL * f[i - 1][j][k] * C(4 - a[i], t) % mod) %= mod;
   }
 } Hfu;
 
@@ -193,7 +191,7 @@ int main() {
   REP(i, 1, m) {
     (ans += 1LL * Hfu.f[n][i][1] * fact[i] % mod * fact[m - i] % mod) %= mod;
     REP(j, 3, Hfu.tot)
-      (ans += 1LL * Hfu.f[n][i][j] * fact[i] % mod * fact[m - i] % mod) %= mod;
+    (ans += 1LL * Hfu.f[n][i][j] * fact[i] % mod * fact[m - i] % mod) %= mod;
   }
   we(1LL * ans * inv[m] % mod + 1);
   return 0;
