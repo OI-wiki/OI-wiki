@@ -291,7 +291,7 @@ $$
 二项式定理的另一种特殊情况，可取 $a=1, b=-1$。式子的特殊情况是取 $n=0$ 时答案为 $1$。
 
 $$
-\sum_{i=0}^m \binom{n}{i}\binom{m}{k-i} = \binom{m+n}{k}\tag{6}
+\sum_{i=0}^k \binom{n}{i}\binom{m}{k-i} = \binom{m+n}{k}\tag{6}
 $$
 
 拆组合数的式子，在处理某些数据结构题时会用到。被称为 [范德蒙恒等式](https://en.wikipedia.org/wiki/Vandermonde%27s_identity)。
