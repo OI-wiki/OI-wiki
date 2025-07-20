@@ -5,35 +5,7 @@
 #include <unordered_map>
 using namespace std;
 
-#define umap unordered_map
-#define pr pair
-#define fst first
-#define snd second
-#define pc putchar
-#define pb push_back
-#define REP(i, x, y) for (int i = x; i <= y; i++)
-#define PER(i, x, y) for (int i = y; i >= x; i--)
-#define ws(x) (write(x), pc(' '))
-#define we(x) (write(x), pc('\n'))
-
 const int N = 100, M = 400, mod = 998244353;
-
-inline void read(int& a) {
-  a = 0;
-  char c;
-  int f = 1;
-  while ((c = getchar()) < '0')
-    if (c == '-') f = -1;
-  do a = (a << 3) + (a << 1) + (c ^ 48);
-  while ((c = getchar()) >= '0');
-  a *= f;
-}
-
-inline void write(int x) {
-  if (x < 0) putchar('-'), x = -x;
-  if (x > 9) write(x / 10);
-  putchar(x % 10 + '0');
-}
 
 int n, m, a[N + 5], fact[M + 5], inv[M + 5];
 
@@ -41,39 +13,51 @@ inline int C(int x, int y) {
   return 1LL * fact[x] * inv[y] % mod * inv[x - y] % mod;
 }
 
-class HuAutomation {
+class HuAutomation {  //胡牌自动机
  private:
   class Mat {
    private:
     int f[3][3];
 
    public:
-    Mat() { REP(i, 0, 2) REP(j, 0, 2) f[i][j] = -1; }
+    Mat() {
+      for (int i = 0; i <= 2; i++)
+        for (int j = 0; j <= 2; j++)
+          f[i][j] = -1;
+    }
 
     int* operator[](const int& x) { return f[x]; }
 
     inline bool operator==(Mat x) const {
-      REP(i, 0, 2) REP(j, 0, 2) if (f[i][j] != x[i][j]) return 0;
+      for (int i = 0; i <= 2; i++)
+        for (int j = 0; j <= 2; j++)
+          if (f[i][j] != x[i][j]) return 0;
       return 1;
     }
 
     inline bool operator<(Mat x) const {
-      REP(i, 0, 2)
-      REP(j, 0, 2) if (f[i][j] != x[i][j]) return f[i][j] < x[i][j];
+      for (int i = 0; i <= 2; i++)
+        for (int j = 0; j <= 2; j++)
+          if (f[i][j] != x[i][j]) return f[i][j] < x[i][j];
       return 0;
     }
 
     inline bool Check() {
-      REP(i, 0, 2) REP(j, 0, 2) if (f[i][j] > 3) return 1;
+      for (int i = 0; i <= 2; i++)
+        for (int j = 0; j <= 2; j++)
+          if (f[i][j] > 3) return 1;
       return 0;
     }
 
     inline void Upd(Mat x, int t) {
-      REP(i, 0, 2)
-      REP(j, 0, 2)
-      if (x[i][j] != -1)
-        for (int k = 0; k < 3 && i + j + k <= t; k++)
-          f[j][k] = max(f[j][k], min(i + x[i][j] + (t - i - j - k) / 3, 4));
+      // 将已有矩阵 x 的值更新到当前矩阵中，模拟加入第 t 张牌后的状态
+      for (int i = 0; i <= 2; i++)
+        for (int j = 0; j <= 2; j++)
+          if (x[i][j] != -1)
+            for (int k = 0; k < 3 && i + j + k <= t; k++)
+              f[j][k] = max(f[j][k], min(i + x[i][j] + (t - i - j - k) / 3, 4));
+      //i,j,k分别枚举用于拼面子、用于保留(i-1,i)、用于保留i和直接拼面子的牌数
+      // 更新时限制最多 4 个对子
     }
   };
 
@@ -82,9 +66,9 @@ class HuAutomation {
     Mat F[2];
 
     node() {
-      REP(i, 0, 4) state[i] = 0;
+      for (int i = 0; i <= 4; i++) state[i] = 0;
       t = 0;
-      REP(i, 0, 1) F[i] = Mat();
+      for (int i = 0; i <= 1; i++) F[i] = Mat();
     }
 
     inline bool Check() { return t == -1 || t >= 7 || F[1].Check(); }
@@ -103,13 +87,13 @@ class HuAutomation {
       return t < x.t;
     }
 
-    node operator+(int x) {
-      if (Check()) return Hu();
+    node operator+(int x) {  //加上 x 张新牌
+      if (Check()) return Hu();  //胡了直接返回
       node res;
-      res.F[0].Upd(F[0], x), res.F[1].Upd(F[1], x);
+      res.F[0].Upd(F[0], x), res.F[1].Upd(F[1], x);  //更新
       res.t = t;
       if (x > 1) res.F[1].Upd(F[0], x - 2), ++res.t;
-      if (res.Check()) res = Hu();
+      if (res.Check()) res = Hu();  //判断是否胡了
       return res;
     }
   } A[2100];
@@ -123,7 +107,11 @@ class HuAutomation {
     return tot;
   }
 
-  inline void Expend(int x) { REP(i, 0, 4) A[x].state[i] = Get(A[x] + i); }
+  inline void Expend(int x) {
+    // 构建状态转移图：
+    // 对于当前状态 A[x]，尝试加入 0~4 张同种牌，得到 5 个新状态
+    for (int i = 0; i <= 4; i++) A[x].state[i] = Get(A[x] + i);
+  }
 
   inline node Hu() {
     node x;
@@ -141,21 +129,23 @@ class HuAutomation {
   int tot, f[N + 5][M + 5][2100];
 
   inline void Build() {
-    A[1] = Emp(), A[2] = Hu();
+    A[1] = Emp(), A[2] = Hu();  // 状态1是初始合法状态，2 是胡牌状态
     mp[A[1]] = 1, mp[A[2]] = 2;
     tot = 2;
     Expend(1);
-    for (int i = 3; i <= tot; i++) Expend(i);
+    for (int i = 3; i <= tot; i++) Expend(i); // 枚举所有可达状态，构建状态图（因为 2 是胡牌状态所以不需要拓展）
   }
 
   void DP() {
     f[0][0][1] = 1;
-    REP(i, 1, n)
-    PER(j, 0, m)
-    REP(k, 1, tot)
-    if (f[i - 1][j][k]) REP(t, 0, 4 - a[i])
-    (f[i][j + t][A[k].state[a[i] + t]] +=
-     1LL * f[i - 1][j][k] * C(4 - a[i], t) % mod) %= mod;
+    for (int i = 1; i <= n; i++)
+      for (int j = m; j >= 0; j--)
+        for (int k = 1; k <= tot; k++)
+          if (f[i - 1][j][k])
+            for (int t = 0; t <= 4 - a[i]; t++)
+              // 枚举这张牌能加多少个（不能超过4，总共已有a[i]个），做组合转移
+              (f[i][j + t][A[k].state[a[i] + t]] +=
+               1LL * f[i - 1][j][k] * C(4 - a[i], t) % mod) %= mod;
   }
 } Hfu;
 
@@ -171,9 +161,9 @@ inline long long qpow(long long x, int y) {
 
 void init(int n) {
   fact[0] = 1;
-  REP(i, 1, n) fact[i] = 1LL * fact[i - 1] * i % mod;
+  for (int i = 1; i <= n; i++) fact[i] = 1LL * fact[i - 1] * i % mod;
   inv[n] = qpow(fact[n], mod - 2);
-  PER(i, 0, n - 1) inv[i] = 1LL * inv[i + 1] * (i + 1) % mod;
+  for (int i = n - 1; i >= 0; i--) inv[i] = 1LL * inv[i + 1] * (i + 1) % mod;
 }
 
 int main() {
@@ -181,21 +171,27 @@ int main() {
   cin.tie(nullptr);
 
   int ans = 0;
-  Hfu.Build();
-  read(n);
-  REP(i, 1, 13) {
+  Hfu.Build(); // 状态图构建
+  cin>>n;
+  for (int i = 1; i <= 13; i++) {
     int x, y;
-    read(x), read(y);
+    cin>>x;
+    cin>>y;
     ++a[x];
   }
   m = (n << 2) - 13;
   init(m);
   Hfu.DP();
-  REP(i, 1, m) {
+
+  for (int i = 1; i <= m; i++) {
     (ans += 1LL * Hfu.f[n][i][1] * fact[i] % mod * fact[m - i] % mod) %= mod;
-    REP(j, 3, Hfu.tot)
-    (ans += 1LL * Hfu.f[n][i][j] * fact[i] % mod * fact[m - i] % mod) %= mod;
+    for (int j = 3; j <= Hfu.tot; j++)  //因为 2 节点是胡牌节点所以不统计
+      (ans += 1LL * Hfu.f[n][i][j] * fact[i] % mod * fact[m - i] % mod) %= mod;
+    // f[i][j][k]：表示处理到第 i 张牌，共摸了 j 张牌，走到了胡牌自动机上的 k 号节点的方案数
+    // 每个方案乘以 i!(用于排列这 i 张) × (m - i)! (剩下的牌排列)，求和后取模
   }
-  we(1LL * ans * inv[m] % mod + 1);
+
+  cout<<1LL * ans * inv[m] % mod + 1;
+  // 最终答案乘上 inv[m] 是除以 m!，即去掉总排列数，最后 +1 是 dp 的定义是摸完 i 张还没有胡
   return 0;
 }
