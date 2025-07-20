@@ -513,7 +513,7 @@ Tonelli–Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod
 ## 习题
 
 -   [洛谷 P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491)
--   [「Timus 1132」Square Root](https://acm.timus.ru/problem.aspx?space=1\&num=1132)
+-   [「Timus 1132」Square Root](https://acm.timus.ru/problem.aspx?space=1&num=1132)
 
 ## 参考资料与注释
 

@@ -1734,7 +1734,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 
 ## 习题
 
--   [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&page=show_problem\&problem=775)
+-   [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
 -   [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
 -   [「LibreOJ NOI Round #2」单枪匹马](https://loj.ac/p/573)
 -   [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)

@@ -141,7 +141,7 @@ $$
 
 ### 树上前缀和
 
-设 $\textit{sum}_i$ 表示结点 $i$ 到根节点的权值总和。\
+设 $\textit{sum}_i$ 表示结点 $i$ 到根节点的权值总和。  
 然后：
 
 -   若是点权，$x,y$ 路径上的和为 $\textit{sum}_x + \textit{sum}_y - \textit{sum}_\textit{lca} - \textit{sum}_{\textit{fa}_\textit{lca}}$。

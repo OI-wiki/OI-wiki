@@ -197,4 +197,4 @@ void Shie(double a[], int n, double *p, double *q) {
 
 ## 参考资料与注释
 
-[^note1]: [林士谔。论劈因法解高阶特征方程根值的应用问题。数学进展，1963(03):207-217.](https://cnki.net/kcms/detail/detail.aspx?filename=SXJZ196303000\&dbcode=CJFD\&dbname=CJFD1979)
+[^note1]: [林士谔。论劈因法解高阶特征方程根值的应用问题。数学进展，1963(03):207-217.](https://cnki.net/kcms/detail/detail.aspx?filename=SXJZ196303000&dbcode=CJFD&dbname=CJFD1979)

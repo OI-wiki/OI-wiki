@@ -463,11 +463,11 @@ $$
 以本文材料为背景的题目：
 
 -   [LOJ 6685. 迷宫](https://loj.ac/p/6685)
--   [UVa 10077. The Stern-Brocot Number System](https://onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&category=33\&page=show_problem\&problem=1018)
+-   [UVa 10077. The Stern-Brocot Number System](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=33&page=show_problem&problem=1018)
 -   [Luogu P8058. \[BalkanOI2003\] Farey 序列](https://www.luogu.com.cn/problem/P8058)
--   [UVa 12995. Farey Sequence](https://onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&category=862\&page=show_problem\&problem=4878)
--   [UVa 10408. Farey Sequences](https://onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&category=16\&page=show_problem\&problem=1349)
--   [UVa 12438. Farey Polygon](https://onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&category=279\&page=show_problem\&problem=3869)
+-   [UVa 12995. Farey Sequence](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4878)
+-   [UVa 10408. Farey Sequences](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1349)
+-   [UVa 12438. Farey Polygon](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=279&page=show_problem&problem=3869)
 -   [AtCoder ARC123F. Insert Addition](https://atcoder.jp/contests/arc123/tasks/arc123_f)
 
 需要在 Stern–Brocot 树上作二分的题目：

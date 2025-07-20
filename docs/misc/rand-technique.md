@@ -185,7 +185,7 @@ $$
 
 详见 [随机增量法](../geometry/random-incremental.md)。
 
-### 例：[TopCoder MagicMolecule](https://community.topcoder.com/stat?c=problem_statement\&pm=11705) 随机化解法
+### 例：[TopCoder MagicMolecule](https://community.topcoder.com/stat?c=problem_statement&pm=11705) 随机化解法
 
 ???+ note "简要题意"
     给定一张 $n$ 个点、带点权的无向图，在其中所有大小不小于 $\dfrac {2n}3$ 的团中，找到点权和最大的那个。

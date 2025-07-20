@@ -325,7 +325,7 @@ $$
 
 ## 习题
 
--   [UVa #10843 - Anne's game](https://uva.onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&category=20\&page=show_problem\&problem=1784)
--   [Timus #1069 - Prufer Code](http://acm.timus.ru/problem.aspx?space=1\&num=1069)
+-   [UVa #10843 - Anne's game](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=20&page=show_problem&problem=1784)
+-   [Timus #1069 - Prufer Code](http://acm.timus.ru/problem.aspx?space=1&num=1069)
 -   [Codeforces - Clues](http://codeforces.com/contest/156/problem/D)
--   [Topcoder - TheCitiesAndRoadsDivTwo](https://community.topcoder.com/stat?c=problem_statement\&pm=10774\&rd=14146)
+-   [Topcoder - TheCitiesAndRoadsDivTwo](https://community.topcoder.com/stat?c=problem_statement&pm=10774&rd=14146)

@@ -255,9 +255,9 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 | Fish                | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，补全时可显示参数功能，自动纠错和建议 |
 
 ???+ note
-    PowerShell 的部分功能需要 PSReadline Module 载入或者位于 PowerShell ISE 中。\
-    Bash 的补全功能一般需要一个名为 `bash-completions` 的包才能获得完整功能，部分软件的补全文件由软件包自带。\
-    Zsh 完整的补全功能需要配合用户预定义的文件（一般随 Zsh 包或对应软件包安装）。\
+    PowerShell 的部分功能需要 PSReadline Module 载入或者位于 PowerShell ISE 中。  
+    Bash 的补全功能一般需要一个名为 `bash-completions` 的包才能获得完整功能，部分软件的补全文件由软件包自带。  
+    Zsh 完整的补全功能需要配合用户预定义的文件（一般随 Zsh 包或对应软件包安装）。  
     Fish 在默认配置下提供良好完整的补全功能，但仍有部分官方未覆盖到的软件的补全文件由软件自行提供。
 
 ### 帮助文档
