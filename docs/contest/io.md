@@ -178,4 +178,4 @@ void *mmap(void addr[.length], size_t length, int prot, int flags, int fd,
 
 [C++ 高速化 - Heavy Watal](https://heavywatal.github.io/cxx/speed.html)
 
-['Re: mmap/mlock performance versus read' - MARC](https://marc.info/?l=linux-kernel&m=95496636207616&w=2)
+['Re: mmap/mlock performance versus read' - MARC](https://marc.info/?l=linux-kernel\&m=95496636207616\&w=2)

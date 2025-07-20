@@ -376,4 +376,4 @@ $$
 ## 参考资料与注释
 
 1.  丘维声，高等代数（下）。清华大学出版社。
-2.  [Vector space](https://en.wikipedia.org/w/index.php?title=Vector_space&oldid=1108546097).*Wikipedia, The Free Encyclopedia*.
+2.  [Vector space](https://en.wikipedia.org/w/index.php?title=Vector_space\&oldid=1108546097).*Wikipedia, The Free Encyclopedia*.

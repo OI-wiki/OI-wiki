@@ -93,8 +93,8 @@ $T=\sqrt{n}$ 时，总复杂度 $O(m \sqrt{n})$。
 
 ## 练习题
 
--   [UVa - 12003 - Array Transformer](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3154)
--   [UVa - 11990 Dynamic Inversion](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3141)
+-   [UVa - 12003 - Array Transformer](https://uva.onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&page=show_problem\&problem=3154)
+-   [UVa - 11990 Dynamic Inversion](https://uva.onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&page=show_problem\&problem=3141)
 -   [SPOJ - Give Away](http://www.spoj.com/problems/GIVEAWAY/)
 -   [Codeforces - Till I Collapse](http://codeforces.com/contest/786/problem/C)
 -   [Codeforces - Destiny](http://codeforces.com/contest/840/problem/D)

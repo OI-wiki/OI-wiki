@@ -345,18 +345,18 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
 
 ### 值域分析
 
-$ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long。  
-万幸的是，若 $b\not= 0$，扩展欧几里得算法求出的可行解必有 $|x|\le b,|y|\le a$。  
+$ax+by=\gcd(a,b)$ 的解有无数个，显然其中有的解会爆 long long。\
+万幸的是，若 $b\not= 0$，扩展欧几里得算法求出的可行解必有 $|x|\le b,|y|\le a$。\
 下面给出这一性质的证明。
 
 ??? note "证明"
-    -   $\gcd(a,b)=b$ 时，$a\bmod b=0$，必在下一层终止递归。  
+    -   $\gcd(a,b)=b$ 时，$a\bmod b=0$，必在下一层终止递归。\
         得到 $x_1=0,y_1=1$，显然 $a,b\ge 1\ge |x_1|,|y_1|$。
-    -   $\gcd(a,b)\not= b$ 时，设 $|x_2|\le (a\bmod b),|y_2|\le b$。  
-        因为 $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$   
-        所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$  
-        $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$   
-        $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$   
+    -   $\gcd(a,b)\not= b$ 时，设 $|x_2|\le (a\bmod b),|y_2|\le b$。\
+        因为 $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$ \
+        所以 $|x_1|=|y_2|\le b,|y_1|\le|x_2|+|{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2|\le (a\bmod b)+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|$\
+        $\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b+{\left\lfloor\dfrac{a}{b}\right\rfloor}|y_2|\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)$ \
+        $a\bmod b=a-{\left\lfloor\dfrac{a}{b}\right\rfloor}b\le a-{\left\lfloor\dfrac{a}{b}\right\rfloor}(b-|y_2|)\le a$ \
         因此 $|x_1|\le b,|y_1|\le a$ 成立。
 
 ### 迭代法编写扩展欧几里得算法
@@ -505,9 +505,9 @@ int exgcd(int a, int b, int &x, int &y) {
 
 ## 应用
 
--   [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)
+-   [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&page=show_problem\&problem=1045)
 -   [GYM - (J) once upon a time](http://codeforces.com/gym/100963)
--   [UVa - 12775 - Gift Dilemma](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628)
+-   [UVa - 12775 - Gift Dilemma](https://uva.onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&page=show_problem\&problem=4628)
 
 ## 参考资料与链接
 

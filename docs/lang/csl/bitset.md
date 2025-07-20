@@ -360,17 +360,17 @@ $$
 ??? "速度测试"
     使用 [Quick C++ Benchmarks](https://quick-bench.com) 进行测试，编译器采用 `GCC 13.2`，编译参数为 `-std=c++20 -O2`。
     
-    | 算法                            | 函数名                      |
-    | ----------------------------- | ------------------------ |
-    | 埃氏筛 + C 风格布尔数组，不存储筛出来的素数      | `Eratosthenes_CArray`    |
-    | 埃氏筛 +`vector<bool>`，不存储筛出来的素数 | `Eratosthenes_vector`    |
-    | 埃氏筛 +`bitset`，不存储筛出来的素数       | `Eratosthenes_bitset`    |
-    | 埃氏筛 + C 风格布尔数组，存储筛出来的素数       | `Eratosthenes_CArray_sp` |
-    | 埃氏筛 +`vector<bool>`，存储筛出来的素数  | `Eratosthenes_vector_sp` |
-    | 埃氏筛 +`bitset`，存储筛出来的素数        | `Eratosthenes_bitset_sp` |
-    | 欧拉筛 + C 风格布尔数组                | `Euler_CArray`           |
-    | 欧拉筛 +`vector<bool>`           | `Euler_vector`           |
-    | 欧拉筛 +`bitset`                 | `Euler_bitset`           |
+    | 算法                             | 函数名                      |
+    | ------------------------------ | ------------------------ |
+    | 埃氏筛 + C 风格布尔数组，不存储筛出来的素数       | `Eratosthenes_CArray`    |
+    | 埃氏筛 + `vector<bool>`，不存储筛出来的素数 | `Eratosthenes_vector`    |
+    | 埃氏筛 + `bitset`，不存储筛出来的素数       | `Eratosthenes_bitset`    |
+    | 埃氏筛 + C 风格布尔数组，存储筛出来的素数        | `Eratosthenes_CArray_sp` |
+    | 埃氏筛 + `vector<bool>`，存储筛出来的素数  | `Eratosthenes_vector_sp` |
+    | 埃氏筛 + `bitset`，存储筛出来的素数        | `Eratosthenes_bitset_sp` |
+    | 欧拉筛 + C 风格布尔数组                 | `Euler_CArray`           |
+    | 欧拉筛 + `vector<bool>`           | `Euler_vector`           |
+    | 欧拉筛 + `bitset`                 | `Euler_bitset`           |
     
     -   当埃氏筛 **存储** 筛出来的素数时：
     

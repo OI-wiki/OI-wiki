@@ -45,7 +45,7 @@ NOI 竞赛（自 2021 年 9 月 1 日）的环境要求如下。[^ref2]
 
 这有可能导致一系列的尴尬情况：
 
--   想用<kbd>Ctrl</kbd>+<kbd>C</kbd>复制，结果退出了程序。
+-   想用 <kbd>Ctrl</kbd> + <kbd>C</kbd> 复制，结果退出了程序。
 -   平时 AC 的程序模板到了 Linux 上就 WA。
 
 为了防止考场上出现此类尴尬情况，我们必须要提前熟悉 Linux 系统的操作方法。
@@ -359,7 +359,7 @@ $ xfce4-session
 
 ![](./images/wsl-open-xfce4-session.png)
 
-运行结果如图。（在 Xming 中使用<kbd>Ctrl</kbd>+<kbd>C</kbd>就可以退出该界面。）
+运行结果如图。（在 Xming 中使用 <kbd>Ctrl</kbd> + <kbd>C</kbd> 就可以退出该界面。）
 
 ![](./images/wsl-xfce.png)
 

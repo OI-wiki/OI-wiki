@@ -16,7 +16,7 @@ Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置�
 
 命令在 Emacs 中有很大的作用。
 
-使用 Application 键[^note1]（Windows 系统下 Emacs 未指定这个键，需要手动设置）或者快捷键 M-x（<kbd>Alt</kbd>+<kbd>x</kbd>）可以打开命令输入，输入完按下回车可以执行命令。
+使用 Application 键[^note1]（Windows 系统下 Emacs 未指定这个键，需要手动设置）或者快捷键 M-x（<kbd>Alt</kbd> + <kbd>x</kbd>）可以打开命令输入，输入完按下回车可以执行命令。
 
 通常使用 `es` 或者 `eshell` 命令来打开 Eshell（类似一个终端）。
 
@@ -69,7 +69,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 一般有以下三种：
 
 -   `F?`、`ESC`：直接按下对应的功能键。
--   `M-?`、`C-?`、`C-M-?`：按下<kbd>Alt</kbd>或者<kbd>Ctrl</kbd>的同时按下 `?`。
+-   `M-?`、`C-?`、`C-M-?`：按下 <kbd>Alt</kbd> 或者 <kbd>Ctrl</kbd> 的同时按下 `?`。
 -   `? ?`：先按下第一个 `?` 代表的键，松开再按下第二个 `?` 代表的键。
 
 下面是一些常用的快捷键：
@@ -242,4 +242,4 @@ Emacs 可以使用语言服务器（Language Server Protocol）来提高编辑�
 
 ## 参考资料与注释
 
-[^note1]: 该键的作用是调出鼠标右键菜单，一般为右<kbd>Ctrl</kbd>左边的第一个键。
+[^note1]: 该键的作用是调出鼠标右键菜单，一般为右 <kbd>Ctrl</kbd> 左边的第一个键。

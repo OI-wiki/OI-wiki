@@ -262,7 +262,7 @@ vim stdc++.h
 
 该文件来源于 [10.2.0 版本的 libstdc++](https://github.com/gcc-mirror/gcc/blob/ee5c3db6c5b2c3332912fb4c9cfa2864569ebd9a/libstdc++-v3/include/precompiled/stdc++.h) 并经少许修改以兼容 libc++。
 
-按键盘左上角的<kbd>Esc</kbd>退出编辑模式，然后直接输入 `:wq` 并换行即可保存文件。
+按键盘左上角的 <kbd>Esc</kbd> 退出编辑模式，然后直接输入 `:wq` 并换行即可保存文件。
 
 ### 步骤 3
 

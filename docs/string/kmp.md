@@ -533,12 +533,12 @@ $$
 
 ## 练习题目
 
--   [UVa 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
--   [UVa 11022 "String Factoring"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
--   [UVa 11452 "Dancing the Cheeky-Cheeky"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2447)
--   [UVa 12604 - Caesar Cipher](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4282)
--   [UVa 12467 - Secret Word](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3911)
--   [UVa 11019 - Matrix Matcher](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1960)
+-   [UVa 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge\&page=show_problem\&problem=396)
+-   [UVa 11022 "String Factoring"](http://uva.onlinejudge.org/index.php?option=onlinejudge\&page=show_problem\&problem=1963)
+-   [UVa 11452 "Dancing the Cheeky-Cheeky"](http://uva.onlinejudge.org/index.php?option=onlinejudge\&page=show_problem\&problem=2447)
+-   [UVa 12604 - Caesar Cipher](https://uva.onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&page=show_problem\&problem=4282)
+-   [UVa 12467 - Secret Word](https://uva.onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&page=show_problem\&problem=3911)
+-   [UVa 11019 - Matrix Matcher](https://uva.onlinejudge.org/index.php?option=onlinejudge\&page=show_problem\&problem=1960)
 -   [SPOJ - Pattern Find](http://www.spoj.com/problems/NAJPF/)
 -   [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
 -   [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D)

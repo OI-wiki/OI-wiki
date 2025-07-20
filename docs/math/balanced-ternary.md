@@ -104,6 +104,6 @@ $$
 
 ## 练习题
 
-[Topcoder SRM 604, Div1-250](https://community.topcoder.com/stat?c=problem_statement&pm=12917&rd=15837)
+[Topcoder SRM 604, Div1-250](https://community.topcoder.com/stat?c=problem_statement\&pm=12917\&rd=15837)
 
 **本页面部分内容译自博文 [Троичная сбалансированная система счисления](http://e-maxx.ru/algo/balanced_ternary) 与其英文翻译版 [Balanced Ternary](https://cp-algorithms.com/algebra/balanced-ternary.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

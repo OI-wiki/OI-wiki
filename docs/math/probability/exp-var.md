@@ -131,7 +131,7 @@ $$
 
 ### 应用
 
-例题：[\[LA 7736\]Pocky](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=767&page=show_problem&problem=5758)
+例题：[\[LA 7736\]Pocky](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge\&Itemid=8\&category=767\&page=show_problem\&problem=5758)
 
 题意：有一根长为 $L$ 的 Pocky，每次随机折成两段。若右边一段的长度不大于 $d$ 则停止，否则对右边一段重复上述过程。求重复次数的期望。
 

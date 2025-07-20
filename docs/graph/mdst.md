@@ -228,7 +228,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 [SPOJ MDST](https://www.spoj.com/problems/MDST/)
 
-[timus 1569. Networking the "Iset"](https://acm.timus.ru/problem.aspx?space=1&num=1569)
+[timus 1569. Networking the "Iset"](https://acm.timus.ru/problem.aspx?space=1\&num=1569)
 
 [SPOJ PT07C - The GbAaY Kingdom](https://www.spoj.com/problems/PT07C)
 
