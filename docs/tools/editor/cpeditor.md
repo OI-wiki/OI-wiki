@@ -38,14 +38,14 @@ author: zarttic, xk2013
 
 -   快捷键
 
-    |                         命令                        |    操作   |
-    | :-----------------------------------------------: | :-----: |
-    | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> |   编译。   |
-    | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> |  编译并运行。 |
-    |           <kbd>Ctrl</kbd> + <kbd>R</kbd>          |   运行。   |
-    |  <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>D</kbd>  | 在终端中运行。 |
-    |           <kbd>Ctrl</kbd> + <kbd>K</kbd>          | 终止所有进程。 |
-    | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> |  格式化代码。 |
+    |                       命令                      |    操作   |
+    | :-------------------------------------------: | :-----: |
+    | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> |   编译。   |
+    | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> |  编译并运行。 |
+    |          <kbd>Ctrl</kbd>+<kbd>R</kbd>         |   运行。   |
+    |  <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>  | 在终端中运行。 |
+    |          <kbd>Ctrl</kbd>+<kbd>K</kbd>         | 终止所有进程。 |
+    | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> |  格式化代码。 |
 
     具体可以查阅 [官方文档](https://cpeditor.org/zh/docs/preferences/key-bindings/)。
 

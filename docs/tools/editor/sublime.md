@@ -23,7 +23,7 @@ ST 并不支持中文，如需中文需要安装汉化插件。
 
 #### 安装插件管理器
 
-打开 ST 后键入 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> 唤出命令框，输入 `Install` 后回车（完整命令是 `Install Package Control`，不区分大小写），此时应该会看到左下角有一个 `=` 在不停的左右移动。Package Control 安装完成（或失败）后会有弹窗提示，具体的加载时间取决于网络。
+打开 ST 后键入<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>唤出命令框，输入 `Install` 后回车（完整命令是 `Install Package Control`，不区分大小写），此时应该会看到左下角有一个 `=` 在不停的左右移动。Package Control 安装完成（或失败）后会有弹窗提示，具体的加载时间取决于网络。
 
 如果完成的弹窗显示安装失败（与网络有关），则需要手动下载 [Package Control](https://packagecontrol.io/Package%20Control.sublime-package) 并将下载好的文件放到 ST 的数据目录下的 `\Installed Packages` 文件夹中。稍作等待，ST 会自动识别该插件（有时需要重启 ST）。
 
@@ -38,7 +38,7 @@ ST 并不支持中文，如需中文需要安装汉化插件。
 
 #### 安装汉化插件
 
-再次按下 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> 输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
+再次按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车（完整命令是 `Package Contrl:Install Package`），等待加载完成，接下来应该是这个界面：
 
 ![](./images/sublime3-1.png)
 
@@ -57,7 +57,7 @@ ST 并不支持中文，如需中文需要安装汉化插件。
 
 安装插件与主题的方法与安装汉化插件一致。
 
-输入 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> 输入 `Install` 后回车，然后搜索插件/主题/配色即可。
+输入<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>输入 `Install` 后回车，然后搜索插件/主题/配色即可。
 
 插件推荐：
 
@@ -65,7 +65,7 @@ ST 并不支持中文，如需中文需要安装汉化插件。
 -   C++ Snippets : ST 自带有 C++ 代码补全，格式为大括号不换行。如果不习惯自带大括号换行的码风可以安装这个插件，同时增加了一部分补全。
 -   C++ 11 : 支持 C++ 11 标准高亮（ST4 中不需要）。
 -   SublimeAstyleFormatter : Astyle，用于格式化代码。
--   Diffy : 按 <kbd>Ctrl</kbd> + <kbd>K</kbd>&<kbd>Ctrl</kbd> + <kbd>D</kbd> 即可快速比较第一视窗与第二视窗打开的文件的不同，比较方式为逐行比较。
+-   Diffy : 按<kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>D</kbd>即可快速比较第一视窗与第二视窗打开的文件的不同，比较方式为逐行比较。
 -   ConvertToUTF8 : 自动识别文件编码，并支持编码转换。
 -   SideBarEnhancements : 侧边栏增强，较为推荐。
 -   Transparency : 窗口透明化。
@@ -88,7 +88,7 @@ ST 的开发者为 Vi 使用者提供了一个可选插件 Vintage，可模拟 V
 
 Vintage 插件默认是禁用的。可以通过 `首选项->设置` 在用户设置中，将 `"ignored_packages"` 一项中的 Vintage 删除并保存（不要整个删除，只删除 Vintage），ST 的状态栏左边就会出现 `INSERT MODE`，此时 Vintage 插件已开启。
 
-或者按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>，然后输入 `Enable` 选择 `Package Control: Enable Package` 并回车，选择 Vintage 即可，该方法需要 Package Control。
+或者按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>，然后输入 `Enable` 选择 `Package Control: Enable Package` 并回车，选择 Vintage 即可，该方法需要 Package Control。
 
 #### 相关配置
 
@@ -114,11 +114,11 @@ Vintage 插件默认是禁用的。可以通过 `首选项->设置` 在用户设
 ST 的 Vintage 插件与 Vi 有一定不同，部分列于此处：
 
 -   在插入模式下用选中不会进入可视模式，这时输入不会被识别为命令而是直接替换文本。可视模式只有命令模式下才能进入。
--   `r`、`R`、`zA`、`za`、`zi`、`z=`、`@` 与使用 <kbd>\[</kbd>、<kbd>]</kbd> 或 <kbd>"</kbd> 键的命令不存在。
--   使用 <kbd>Ctrl</kbd>、<kbd>Shift</kbd> 和 <kbd>Alt</kbd> 键的快捷键会保留为 ST 设置的快捷键，如 <kbd>Ctrl</kbd> + <kbd>V</kbd> 不会进入可视模式而是正常粘贴。
+-   `r`、`R`、`zA`、`za`、`zi`、`z=`、`@` 与使用<kbd>\[</kbd>、<kbd>]</kbd>或<kbd>"</kbd>键的命令不存在。
+-   使用<kbd>Ctrl</kbd>、<kbd>Shift</kbd>和<kbd>Alt</kbd>键的快捷键会保留为 ST 设置的快捷键，如<kbd>Ctrl</kbd>+<kbd>V</kbd>不会进入可视模式而是正常粘贴。
 -   命令行模式只保留了 `:e`、`:0`、`:$`、`:s`。
 -   使用 `\` 与 `?` 命令会自动唤出搜索框，而不是直接在命令中键入单词进行搜索。同时，数字将无法生效。
--   `q` 宏录制命令会启动 ST 自带的宏录制，按 <kbd>Q</kbd> 后需要再按一个键启动录制，但录制的宏不会与该键绑定，需要按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Q</kbd> 才能启动。如果需要保存，需要 `工具->保存宏`，快捷键需要设置。
+-   `q` 宏录制命令会启动 ST 自带的宏录制，按<kbd>Q</kbd>后需要再按一个键启动录制，但录制的宏不会与该键绑定，需要按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd>才能启动。如果需要保存，需要 `工具->保存宏`，快捷键需要设置。
 -   无法使用 `数字+.` 的组合。
 
 ### 设置
@@ -170,7 +170,7 @@ ST 的 Vintage 插件与 Vi 有一定不同，部分列于此处：
 
 在 `首选项->快捷键设置` 中设置，在左边找到需要修改的功能，然后复制到右边并修改按键即可。
 
-例如，如果要把 <kbd>Ctrl</kbd> + <kbd>B</kbd> 的编译改为 <kbd>F9</kbd>（如果不令原有的快捷键失效，实际是增加一个触发方式），则可以在 `首选项->快捷键设置` 中添加：
+例如，如果要把<kbd>Ctrl</kbd>+<kbd>B</kbd>的编译改为<kbd>F9</kbd>（如果不令原有的快捷键失效，实际是增加一个触发方式），则可以在 `首选项->快捷键设置` 中添加：
 
 ```JSON
 //将build命令改为f9
@@ -269,48 +269,48 @@ int main() {
 
 ### 设置语法
 
-按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> 后输入语法即可，或者按右下角的 `Plain Text` 然后修改为需要的语言，同时在 `视图->语法` 中也可以设置。
+按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>后输入语法即可，或者按右下角的 `Plain Text` 然后修改为需要的语言，同时在 `视图->语法` 中也可以设置。
 
 ![](images/sublime3-2.png)
 
 ### 快捷键
 
-ST 有复合快捷键，如 <kbd>Ctrl</kbd> + <kbd>K</kbd>&<kbd>Ctrl</kbd> + <kbd>Backspace</kbd> 表示先按 <kbd>Ctrl</kbd> + <kbd>K</kbd> 再按 <kbd>Ctrl</kbd> + <kbd>Backspace</kbd>。
+ST 有复合快捷键，如<kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>表示先按<kbd>Ctrl</kbd>+<kbd>K</kbd>再按<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>。
 
 部分快捷键：
 
-| 按键                                                                               | 命令                                                                 |
-| -------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| <kbd>Ctrl</kbd> + <kbd>X</kbd>                                                   | 剪切当前行                                                              |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>                                | 删除行                                                                |
-| <kbd>Ctrl</kbd> + <kbd>Enter</kbd>                                               | 在下方插入行                                                             |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd>                            | 在上方插入行                                                             |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Up</kbd>                               | 行上移                                                                |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Down</kbd>                             | 行下移                                                                |
-| <kbd>Ctrl</kbd> + <kbd>L</kbd>                                                   | 选择行，重复以向下选择多行                                                      |
-| <kbd>Ctrl</kbd> + <kbd>D</kbd>                                                   | 选择词，重复以选择多个相同词，并进入多重选择模式（用于快速批量更改）                                 |
-| <kbd>Ctrl</kbd> + <kbd>M</kbd>                                                   | 跳转到匹配的括号                                                           |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd>                                | 选择括号内的内容（不包括括号），重复以包括括号                                            |
-| <kbd>Ctrl</kbd> + <kbd>K</kbd>&<kbd>Ctrl</kbd> + <kbd>K</kbd>                    | 删至行尾（复合快捷键，建议使用 Vim 模式代替）                                          |
-| <kbd>Ctrl</kbd> + <kbd>K</kbd>&<kbd>Ctrl</kbd> + <kbd>Backspace</kbd>            | 删至行首（复合快捷键，建议使用 Vim 模式代替）                                          |
-| <kbd>Ctrl</kbd> + <kbd>]</kbd>                                                   | 缩进当前（选择的）行                                                         |
-| <kbd>Ctrl</kbd> + <kbd>\[</kbd>                                                  | 取消缩进当前（选择的）行                                                       |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>                                | 复制当前行，并插入在下一行                                                      |
-| <kbd>Ctrl</kbd> + <kbd>J</kbd>                                                   | 合并下一行与当前行                                                          |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd>                                | 粘贴并缩进（用于整段粘贴代码）                                                    |
-| <kbd>Ctrl</kbd> + <kbd>K</kbd>&<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> | 从历史粘贴（复合快捷键，建议修改为 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd>） |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Down</kbd>                               | 光标下移，并保留当前行光标（进入多重选择模式）                                            |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Up</kbd>                                 | 光标上移，并保留当前行光标（进入多重选择模式）                                            |
-| <kbd>Ctrl</kbd> + <kbd>R</kbd>                                                   | 跳至文件中的任意符号（函数或类型定义）                                                |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>                                | 跳至项目中的任意符号（函数或类型定义）                                                |
-| <kbd>Ctrl</kbd> + <kbd>P</kbd>                                                   | 跳至任意文件（曾经打开过或在项目中且存在的文件）                                           |
-| <kbd>\~</kbd>                                                                    | 转换选择内容的大小写                                                         |
+| 按键                                                                         | 命令                                                            |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| <kbd>Ctrl</kbd>+<kbd>X</kbd>                                               | 剪切当前行                                                         |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                              | 删除行                                                           |
+| <kbd>Ctrl</kbd>+<kbd>Enter</kbd>                                           | 在下方插入行                                                        |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd>                          | 在上方插入行                                                        |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>                             | 行上移                                                           |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Down</kbd>                           | 行下移                                                           |
+| <kbd>Ctrl</kbd>+<kbd>L</kbd>                                               | 选择行，重复以向下选择多行                                                 |
+| <kbd>Ctrl</kbd>+<kbd>D</kbd>                                               | 选择词，重复以选择多个相同词，并进入多重选择模式（用于快速批量更改）                            |
+| <kbd>Ctrl</kbd>+<kbd>M</kbd>                                               | 跳转到匹配的括号                                                      |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>                              | 选择括号内的内容（不包括括号），重复以包括括号                                       |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>K</kbd>                  | 删至行尾（复合快捷键，建议使用 Vim 模式代替）                                     |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Backspace</kbd>          | 删至行首（复合快捷键，建议使用 Vim 模式代替）                                     |
+| <kbd>Ctrl</kbd>+<kbd>]</kbd>                                               | 缩进当前（选择的）行                                                    |
+| <kbd>Ctrl</kbd>+<kbd>\[</kbd>                                              | 取消缩进当前（选择的）行                                                  |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>                              | 复制当前行，并插入在下一行                                                 |
+| <kbd>Ctrl</kbd>+<kbd>J</kbd>                                               | 合并下一行与当前行                                                     |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>                              | 粘贴并缩进（用于整段粘贴代码）                                               |
+| <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> | 从历史粘贴（复合快捷键，建议修改为<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>V</kbd>） |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>                             | 光标下移，并保留当前行光标（进入多重选择模式）                                       |
+| <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>                               | 光标上移，并保留当前行光标（进入多重选择模式）                                       |
+| <kbd>Ctrl</kbd>+<kbd>R</kbd>                                               | 跳至文件中的任意符号（函数或类型定义）                                           |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>                              | 跳至项目中的任意符号（函数或类型定义）                                           |
+| <kbd>Ctrl</kbd>+<kbd>P</kbd>                                               | 跳至任意文件（曾经打开过或在项目中且存在的文件）                                      |
+| <kbd>\~</kbd>                                                              | 转换选择内容的大小写                                                    |
 
 ### 自动补全
 
-ST 有丰富的补全功能，可能的补全内容会在光标下方显示，按 <kbd>Tab</kbd> 或 <kbd>Enter</kbd> 进行补全（ST4 中，如进行一个非 Snippet 类型的补全，接下来再按 <kbd>Tab</kbd> 可继续选择为以该补全为子串的补全）。
+ST 有丰富的补全功能，可能的补全内容会在光标下方显示，按<kbd>Tab</kbd>或<kbd>Enter</kbd>进行补全（ST4 中，如进行一个非 Snippet 类型的补全，接下来再按<kbd>Tab</kbd>可继续选择为以该补全为子串的补全）。
 
-Snippet 类型的补全一般会有一些编辑块，补全后会自动选择为替换文本，如果是 `for` 等含有多个编辑块的复杂补全，编辑完成后再次按 <kbd>Tab</kbd> 完成下一个编辑块，此时要在编辑块中触发补全需要使用 <kbd>Enter</kbd>（在 ST4 中可继续使用 <kbd>Tab</kbd>）。
+Snippet 类型的补全一般会有一些编辑块，补全后会自动选择为替换文本，如果是 `for` 等含有多个编辑块的复杂补全，编辑完成后再次按<kbd>Tab</kbd>完成下一个编辑块，此时要在编辑块中触发补全需要使用<kbd>Enter</kbd>（在 ST4 中可继续使用<kbd>Tab</kbd>）。
 
 如果没有自动补全，请如下修复：
 
@@ -325,11 +325,11 @@ Snippet 类型的补全一般会有一些编辑块，补全后会自动选择为
 
 ### 多重选择
 
-按住 <kbd>Ctrl</kbd> 并用鼠标单击即可在屏幕上增加光标，<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Up</kbd> 或 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Down</kbd> 可以在相邻两行直接增加光标，任何编辑性质的操作会同时应用至所有光标。
+按住<kbd>Ctrl</kbd>并用鼠标单击即可在屏幕上增加光标，<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd>或<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>可以在相邻两行直接增加光标，任何编辑性质的操作会同时应用至所有光标。
 
 ### 查找与替换
 
-<kbd>Ctrl</kbd> + <kbd>F</kbd> 为查找，<kbd>F3</kbd> 为查找下一个 <kbd>Shift</kbd> + <kbd>F3</kbd> 为查找上一个，<kbd>Ctrl</kbd> + <kbd>H</kbd> 为替换。
+<kbd>Ctrl</kbd>+<kbd>F</kbd>为查找，<kbd>F3</kbd>为查找下一个<kbd>Shift</kbd>+<kbd>F3</kbd>为查找上一个，<kbd>Ctrl</kbd>+<kbd>H</kbd>为替换。
 
 五个查找选项分别为正则表达式匹配、大小写敏感、全字匹配、循环查找、在选段中查找。
 
@@ -343,7 +343,7 @@ Snippet 类型的补全一般会有一些编辑块，补全后会自动选择为
 
 ### 多重选择
 
-如果要把以下代码中的所有 `bok` 改为 `book`，只需将光标放置在任意一个 `bok` 中，长按 <kbd>Ctrl</kbd> + <kbd>D</kbd> 即可快速选中。
+如果要把以下代码中的所有 `bok` 改为 `book`，只需将光标放置在任意一个 `bok` 中，长按<kbd>Ctrl</kbd>+<kbd>D</kbd>即可快速选中。
 
 ```cpp
 int check() {
@@ -352,9 +352,9 @@ int check() {
 }
 ```
 
-如果要将下列文件中的所有等号后面改成 `"good"`，只需在将光标放置于第一行的 `aaa` 前，并按五次 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Down</kbd>，再然后按下 <kbd>Ctrl</kbd> + <kbd>D</kbd> 并键入 `good` 即可。
+如果要将下列文件中的所有等号后面改成 `"good"`，只需在将光标放置于第一行的 `aaa` 前，并按五次<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd>，再然后按下<kbd>Ctrl</kbd>+<kbd>D</kbd>并键入 `good` 即可。
 
-或选中 `"a` 并按住 <kbd>Ctrl</kbd> + <kbd>D</kbd>，然后按 <kbd>Right</kbd>、<kbd>Ctrl</kbd> + <kbd>D</kbd>，之后键入即可。
+或选中 `"a` 并按住<kbd>Ctrl</kbd>+<kbd>D</kbd>，然后按<kbd>Right</kbd>、<kbd>Ctrl</kbd>+<kbd>D</kbd>，之后键入即可。
 
 ```cpp
 s[1] = "aaa";
@@ -365,7 +365,7 @@ s[5] = "aae";
 s[6] = "aaf";
 ```
 
-如要为下列所有 `a + b` 加上括号，只需选择一个 `a + b`，按住 <kbd>Ctrl</kbd> + <kbd>D</kbd> 并键入 <kbd>(</kbd> 即可（如选择一定区域，则任意左括号键入会为该区域两边添加匹配的括号）。
+如要为下列所有 `a + b` 加上括号，只需选择一个 `a + b`，按住<kbd>Ctrl</kbd>+<kbd>D</kbd>并键入<kbd>(</kbd>即可（如选择一定区域，则任意左括号键入会为该区域两边添加匹配的括号）。
 
 ```plain
 a + b*a + b*a + b
@@ -373,7 +373,7 @@ a + b*a + b*a + b
 
 ### 查找与替换
 
-如果要将下列文件中的所有等号后面改成 `"good"`，也可以用 <kbd>Ctrl</kbd> + <kbd>H</kbd> 使用替换，打开正则，输入 `".*"`，并替换成 `"good"` 即可。
+如果要将下列文件中的所有等号后面改成 `"good"`，也可以用<kbd>Ctrl</kbd>+<kbd>H</kbd>使用替换，打开正则，输入 `".*"`，并替换成 `"good"` 即可。
 
 ```cpp
 s[1] = "aaa";
@@ -392,7 +392,7 @@ int main() {  int a, b  cin >> a >> b  cout << a + b  return 0}
 
 ### 宏录制
 
-如要为以下代码添加分号，可以按 <kbd>Ctrl</kbd> + <kbd>q</kbd> 启动宏录制接下来依次按 <kbd>End</kbd>、<kbd>;</kbd>、<kbd>Down</kbd> 再按 <kbd>Ctrl</kbd> + <kbd>q</kbd> 结束宏录制（中途左下角不会全程显示正在录制，但确实在录制），接下来重复 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>q</kbd> 即可。
+如要为以下代码添加分号，可以按<kbd>Ctrl</kbd>+<kbd>q</kbd>启动宏录制接下来依次按<kbd>End</kbd>、<kbd>;</kbd>、<kbd>Down</kbd>再按<kbd>Ctrl</kbd>+<kbd>q</kbd>结束宏录制（中途左下角不会全程显示正在录制，但确实在录制），接下来重复<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>即可。
 
 ```plain
 int main() {
@@ -404,7 +404,7 @@ int main() {
 ```
 
 ??? note "如已开启 Vintage 插件"
-    执行一次 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>q</kbd> 后，可以 <kbd>Esc</kbd> 进入命令模式，输入 `..` 即可（`.` 命令可以重复 ST3 命令）
+    执行一次<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd>后，可以<kbd>Esc</kbd>进入命令模式，输入 `..` 即可（`.` 命令可以重复 ST3 命令）
 
 关于宏的保存与绑定按键详见 [社区文档](https://docs.sublimetext.io/guide/extensibility/macros.html)。
 
@@ -416,7 +416,7 @@ Windows 环境下需要将 g++ 所在目录添加到环境变量中，并重启 
 
 ### 编译
 
-直接按 <kbd>Ctrl</kbd> + <kbd>B</kbd> 编译，第一次使用会需要选择编译系统，选择 `C++ Single File`（编译）或 `C++ Single File - Run`（编译并运行）。
+直接按<kbd>Ctrl</kbd>+<kbd>B</kbd>编译，第一次使用会需要选择编译系统，选择 `C++ Single File`（编译）或 `C++ Single File - Run`（编译并运行）。
 
 #### 修改编译选项
 
@@ -433,7 +433,7 @@ ST 默认的编译选项为 `g++ "${file}" -o "${file_path}/${file_base_name}"`�
 "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 ```
 
-保存后按 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>B</kbd> 切换编译系统就可以使用了，这里的配置是编译并在外部 CMD 运行。
+保存后按<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>切换编译系统就可以使用了，这里的配置是编译并在外部 CMD 运行。
 
 保存的文件为数据目录路径下的 `\Packages\User\编译系统名.sublime-build` 可以反复修改。
 
@@ -441,10 +441,10 @@ ST 默认的编译选项为 `g++ "${file}" -o "${file_path}/${file_base_name}"`�
 
 如果编译时选择 `C++ Single File - Run`（即编译后运行）或配置了自动运行，那么在下方弹出的编译信息窗口应该不会有任何显示（除非编译错误），因为 ST 的编译信息窗口实际上是一个终端，可以直接输入数据。
 
-运行结束后会提示程序的运行时间，其计时为从按下 <kbd>Ctrl</kbd> + <kbd>B</kbd> 到全部 CMD 命令运行结束的时间，也就是说包括编译的时间和输入的时间，以及如果在外部 CMD 运行还包括 CMD 开启关闭的时间。
+运行结束后会提示程序的运行时间，其计时为从按下<kbd>Ctrl</kbd>+<kbd>B</kbd>到全部 CMD 命令运行结束的时间，也就是说包括编译的时间和输入的时间，以及如果在外部 CMD 运行还包括 CMD 开启关闭的时间。
 
 ???+ warning
-    这个窗口无法输入 <kbd>F6</kbd> 或 <kbd>Ctrl</kbd> + <kbd>Z</kbd>，如果运行读入到文件末尾的程序请使用文件输入，或配置在外部 CMD 运行。
+    这个窗口无法输入<kbd>F6</kbd>或<kbd>Ctrl</kbd>+<kbd>Z</kbd>，如果运行读入到文件末尾的程序请使用文件输入，或配置在外部 CMD 运行。
 
 ### 调试
 
@@ -454,8 +454,8 @@ ST 默认的编译选项为 `g++ "${file}" -o "${file_path}/${file_base_name}"`�
 
 ## 杂项
 
--   把文件夹拖进 ST 中并按 <kbd>Ctrl</kbd> + <kbd>K</kbd>&<kbd>Ctrl</kbd> + <kbd>B</kbd> 开启侧边栏，从而快速切换文件。
--   善用跳转功能，尤其是 <kbd>Ctrl</kbd> + <kbd>P</kbd> 进行文件间跳转与 <kbd>Ctrl</kbd> + <kbd>R</kbd> 进行函数跳转。
+-   把文件夹拖进 ST 中并按<kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>B</kbd>开启侧边栏，从而快速切换文件。
+-   善用跳转功能，尤其是<kbd>Ctrl</kbd>+<kbd>P</kbd>进行文件间跳转与<kbd>Ctrl</kbd>+<kbd>R</kbd>进行函数跳转。
 -   ST 支持 git[^ref4]。
 -   ST 的所有配置储存在数据目录下，可以随意打包，但注册信息无法在多台电脑上使用。
 

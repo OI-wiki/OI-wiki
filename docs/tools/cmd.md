@@ -240,7 +240,7 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 补全是 Shell 提供的基本功能之一，主要用于减少命令行使用中的输入量和 typo 概率。
 
-一般情况下，使用补全的快捷键一般是 <kbd>Tab</kbd>，按下后 Shell 会根据已输入的字符补全信息。
+一般情况下，使用补全的快捷键一般是<kbd>Tab</kbd>，按下后 Shell 会根据已输入的字符补全信息。
 
 不同的 Shell 提供了能力不尽相同的补全能力。
 

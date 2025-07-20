@@ -16,7 +16,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 ![](./images/vscode-1.jpg)
 
-安装完成后，打开需要运行的文件，点击右上角的小三角图标即可运行代码；按下快捷键 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>N</kbd>（在 macOS 下是 <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd>N</kbd>）也可以得到同样的效果。
+安装完成后，打开需要运行的文件，点击右上角的小三角图标即可运行代码；按下快捷键<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>（在 macOS 下是<kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>）也可以得到同样的效果。
 
 ???+ warning
     如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境，参考 [Hello, World! 页面](../../lang/helloworld.md) 以安装。
@@ -38,7 +38,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 #### GDB
 
-在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}`），保存并按下 <kbd>F5</kbd>，进入调试模式。
+在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}`），保存并按下<kbd>F5</kbd>，进入调试模式。
 如果出现了「选择调试器」的提示，选择 `C++ (GDB/LLDB)`。在「选择配置」中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`。
 
 ???+ warning
@@ -52,9 +52,9 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 ![](images/vscode-9.png)
 
-先按照上文 GDB 的配置过程操作一遍，然后删除 `.vscode/launch.json`，按下 <kbd>F5</kbd>，选择 `LLDB`，再把 `launch.json` 中的 `${workspaceFolder}/<executable file>` 更改为 `${fileDirname}/${fileBasenameNoExtension}` 即可。
+先按照上文 GDB 的配置过程操作一遍，然后删除 `.vscode/launch.json`，按下<kbd>F5</kbd>，选择 `LLDB`，再把 `launch.json` 中的 `${workspaceFolder}/<executable file>` 更改为 `${fileDirname}/${fileBasenameNoExtension}` 即可。
 
-至此，LLDB 配置完成。再次按下 <kbd>F5</kbd> 即可看到软件下方的调试信息。
+至此，LLDB 配置完成。再次按下<kbd>F5</kbd>即可看到软件下方的调试信息。
 
 若要在以后使用 VS Code 编译并调试代码，所有的源代码都需要保存至这个文件夹内。若要编译并调试其他文件夹中存放的代码，需要重新执行上述步骤（或将旧文件夹内的 `.vscode` 子文件夹复制到新文件夹内）。
 
@@ -64,7 +64,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 ![](images/vscode-5.apng)
 
-按下 <kbd>F5</kbd> 进入调试模式，编辑器上方会出现一个调试工具栏，四个蓝色按钮从左至右分别代表 GDB 中的 `continue`,`next`,`step` 和 `until`：
+按下<kbd>F5</kbd>进入调试模式，编辑器上方会出现一个调试工具栏，四个蓝色按钮从左至右分别代表 GDB 中的 `continue`,`next`,`step` 和 `until`：
 
 ![](images/vscode-6.png)
 
@@ -126,28 +126,28 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 
 部分快捷键：
 
-| 按键                                                                | 操作                        |
-| ----------------------------------------------------------------- | ------------------------- |
-| <kbd>Ctrl</kbd> + <kbd>C</kbd>/<kbd>X</kbd>                       | 复制/剪切当前行（当没有选择内容时）        |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd>                 | 删除当前行                     |
-| <kbd>Alt</kbd> + <kbd>Up</kbd>/<kbd>Down</kbd>                    | 行上移/下移                    |
-| <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Up</kbd>/<kbd>Down</kbd> | 行向上/向下复制                  |
-| <kbd>Ctrl</kbd> + <kbd>/</kbd>                                    | 切换行注释                     |
-| <kbd>Ctrl</kbd> + <kbd>\[</kbd>/<kbd>]</kbd>                      | 行向左/右缩进                   |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>\[</kbd>/<kbd>]</kbd>   | 行折叠/展开                    |
-| <kbd>Ctrl</kbd> + <kbd>P</kbd>                                    | 打开最近打开的文件                 |
-| <kbd>Alt</kbd> + <kbd>Z</kbd>                                     | 切换自动折行                    |
-| <kbd>Alt</kbd> + <kbd>F12</kbd>                                   | 速览定义（如函数的定义）              |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>\\</kbd>                | 跳转到匹配括号                   |
-| <kbd>Ctrl</kbd> + <kbd>T</kbd>                                    | 在工作区中查找符号（在文件夹中查找指定名称函数等） |
+| 按键                                                            | 操作                        |
+| ------------------------------------------------------------- | ------------------------- |
+| <kbd>Ctrl</kbd>+<kbd>C</kbd>/<kbd>X</kbd>                     | 复制/剪切当前行（当没有选择内容时）        |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd>                 | 删除当前行                     |
+| <kbd>Alt</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd>                  | 行上移/下移                    |
+| <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Up</kbd>/<kbd>Down</kbd> | 行向上/向下复制                  |
+| <kbd>Ctrl</kbd>+<kbd>/</kbd>                                  | 切换行注释                     |
+| <kbd>Ctrl</kbd>+<kbd>\[</kbd>/<kbd>]</kbd>                    | 行向左/右缩进                   |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\[</kbd>/<kbd>]</kbd>   | 行折叠/展开                    |
+| <kbd>Ctrl</kbd>+<kbd>P</kbd>                                  | 打开最近打开的文件                 |
+| <kbd>Alt</kbd>+<kbd>Z</kbd>                                   | 切换自动折行                    |
+| <kbd>Alt</kbd>+<kbd>F12</kbd>                                 | 速览定义（如函数的定义）              |
+| <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\\</kbd>                | 跳转到匹配括号                   |
+| <kbd>Ctrl</kbd>+<kbd>T</kbd>                                  | 在工作区中查找符号（在文件夹中查找指定名称函数等） |
 
 ### 多光标
 
-按住 <kbd>Alt</kbd> 并单击即可在编辑器中添加光标，多数编辑操作都可同时进行；按住鼠标中键并在编辑器中移动也可添加多行光标，如图：
+按住<kbd>Alt</kbd>并单击即可在编辑器中添加光标，多数编辑操作都可同时进行；按住鼠标中键并在编辑器中移动也可添加多行光标，如图：
 
 ![](images/vscode-12.gif)
 
-按 <kbd>Ctrl</kbd> + <kbd>F2</kbd> 可在编辑器中同时更改所有匹配项，如图：
+按<kbd>Ctrl</kbd>+<kbd>F2</kbd>可在编辑器中同时更改所有匹配项，如图：
 
 ![](images/vscode-13.gif)
 
