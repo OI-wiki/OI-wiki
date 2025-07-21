@@ -157,7 +157,7 @@ export const taskHandler = new (class implements TaskHandler<void> {
     const cssFilePathToHtml = path.relative(path.dirname(htmlFilePathToRoot), MATHJAX_TARGET_CSS_FILE);
     document
       .querySelector("head")
-      .insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="${cssFilePathToHtml}">`);
+      .insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="${cssFilePathToHtml}?v=0">`);
 
     // Remove client-side rendering script
     document
