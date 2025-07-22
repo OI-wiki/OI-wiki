@@ -204,7 +204,6 @@ nav:
     - 前缀函数与 KMP 算法: string/kmp.md
     - Boyer–Moore 算法: string/bm.md
     - Z 函数（扩展 KMP）: string/z-func.md
-    - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
     - 后缀数组 (SA):
       - 后缀数组简介: string/sa.md
@@ -491,6 +490,7 @@ nav:
   - 杂项:
     - 杂项简介: misc/index.md
     - 离散化: misc/discrete.md
+    - 有限状态自动机: misc/fsm.md
     - 双指针: misc/two-pointer.md
     - 离线算法:
       - 离线算法简介: misc/offline.md
