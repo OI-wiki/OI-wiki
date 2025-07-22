@@ -135,3 +135,4 @@
 /ds/b-tree /ds/bst
 /ds/bplus-tree /ds/bst
 /graph/min-circle /graph/min-cycle
+/string/automaton /misc/fsm
