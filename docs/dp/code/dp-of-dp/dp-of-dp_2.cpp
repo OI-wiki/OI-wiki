@@ -49,13 +49,13 @@ class HuAutomation {  // 胡牌自动机
     }
 
     inline void Upd(Mat x, int t) {
-      // 将已有矩阵 x 的值更新到当前矩阵中，模拟加入第 t 张牌后的状态
+      // 将已有矩阵 x 的值更新到当前矩阵中，模拟加入 t 张当前牌后的状态
       for (int i = 0; i <= 2; i++)
         for (int j = 0; j <= 2; j++)
           if (x[i][j] != -1)
             for (int k = 0; k < 3 && i + j + k <= t; k++)
               f[j][k] = max(f[j][k], min(i + x[i][j] + (t - i - j - k) / 3, 4));
-      // i,j,k分别枚举用于拼面子、用于保留(i-1,i)、用于保留i和直接拼面子的牌数
+      // i,j,k,(t-i-j-k) 表示分别枚举用于拼面子、用于保留(i-1,i)、用于保留i和直接拼面子的牌数
       //  更新时限制最多 4 个对子
     }
   };
@@ -106,7 +106,7 @@ class HuAutomation {  // 胡牌自动机
     return tot;
   }
 
-  inline void Expend(int x) {
+  inline void Expand(int x) {
     // 构建状态转移图：
     // 对于当前状态 A[x]，尝试加入 0~4 张同种牌，得到 5 个新状态
     for (int i = 0; i <= 4; i++) A[x].state[i] = Get(A[x] + i);
@@ -131,9 +131,9 @@ class HuAutomation {  // 胡牌自动机
     A[1] = Emp(), A[2] = Hu();  // 状态1是初始合法状态，2 是胡牌状态
     mp[A[1]] = 1, mp[A[2]] = 2;
     tot = 2;
-    Expend(1);
+    Expand(1);
     for (int i = 3; i <= tot; i++)
-      Expend(i);  // 枚举所有可达状态，构建状态图（因为 2
+      Expand(i);  // 枚举所有可达状态，构建状态图（因为 2
                   // 是胡牌状态所以不需要拓展）
   }
 
@@ -193,7 +193,7 @@ int main() {
     // (剩下的牌排列)，求和后取模
   }
 
-  cout << 1LL * ans * inv[m] % mod + 1;
+  cout << (1LL * ans * inv[m] + 1) % mod;
   // 最终答案乘上 inv[m] 是除以 m!，即去掉总排列数，最后 +1 是 dp 的定义是摸完 i
   // 张还没有胡
   return 0;
