@@ -2,6 +2,8 @@ import module from "module";
 import fs from "fs";
 import path from "path";
 import url from "url";
+import stream from "stream/promises";
+import crypto from "crypto";
 import { HTMLElement } from "node-html-parser";
 
 import { mathjax } from "mathjax-full/js/mathjax.js";
@@ -155,9 +157,13 @@ export const taskHandler = new (class implements TaskHandler<void> {
     // Inject CSS <link> element (not checking if we have maths since we use instant loading)
     const htmlFilePathToRoot = path.relative(this.siteDir, filePath);
     const cssFilePathToHtml = path.relative(path.dirname(htmlFilePathToRoot), MATHJAX_TARGET_CSS_FILE);
+    const cssDestFile = path.join(this.siteDir, MATHJAX_TARGET_CSS_FILE);
+    const hash = crypto.createHash("sha256");
+    await stream.pipeline(fs.createReadStream(cssDestFile), hash);
+    const cssChecksum = await hash.digest("hex");
     document
       .querySelector("head")
-      .insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="${cssFilePathToHtml}?v=0">`);
+      .insertAdjacentHTML("beforeend", `<link rel="stylesheet" href="${cssFilePathToHtml}?hash=${cssChecksum}">`);
 
     // Remove client-side rendering script
     document
