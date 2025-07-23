@@ -100,13 +100,13 @@ $$
     -   $\mathbb{P}(X>i)：表示 $X$ 严格大于 $i$ 的概率。
 
     推导：从期望的定义出发（离散随机变量）：
-    
+
     $$
     \mathbb{E}[X]=\sum_{k=1}^\infty k \cdot \mathbb{P}(X=k)
     $$
 
     将这个期望重写为：
-    
+
     $$
     \mathbb{E}[X]=\sum_{k=1}^\infty \sum_{i=1}^k \mathbb{P}(X=k)=\sum_{i=1}^\infty \mathbb{P}(X\ge i)
     $$
@@ -128,7 +128,7 @@ $$
     $$
     \mathbb{E}(X)=1+\sum_{i=1}^\infty \mathbb{P}(X>i)
     $$
-    
+
 设 $h_{i,j,k}$ 表示处理到第 $i$ 张牌，共摸了 $j$ 张牌，走到了胡牌自动机上的 $k$ 号节点的方案数，则 $g_i=\sum_{j=1}^N h_{n,i,j}$，$N$ 为自动机点数。转移时，枚举摸牌数 $0\leq t\leq 4-a_i$，其中 $a_i$ 为初始 $13$ 张牌中用掉的 $i$ 的张数，将原方案数乘以 $4−a_i$ 张牌中选 $t$ 张牌的方案数 $\dbinom{4-a_i}{t}$。形式化地：
 
 $$
