@@ -58,7 +58,7 @@ void hopcroft() {
           ac[++cnt] = ac[i];
           if (S[i].size() * 2 <= sz[i]) {
             // 为了复杂度正确，这里没有从 Q[i] 中删除 S[i]，而是改变它们的
-            // belong 注意实现时，如果需要取用 Q 中的内容，必须先 rebuild
+            // belong。注意实现时，如果需要取用 Q 中的内容，必须先 rebuild。
             // 以及注意 sz 中的值是真正的等价类的大小，sz[i] 不一定等于
             // Q[i].size()
             for (auto j : S[i]) Q[belong[j] = cnt].push_back(j);
