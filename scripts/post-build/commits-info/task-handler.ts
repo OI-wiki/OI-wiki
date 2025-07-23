@@ -25,7 +25,7 @@ async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Dat
        * <AuthorEmail
        * <...
        */
-      `git log --follow '--pretty=format:D %cD%n<%aE%n%w(0,2,2)%b' $FILENAME | sed -nE 's/^(D (.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
+      `git log --follow '--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' $FILENAME | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
     ],
     {
       env: {
@@ -37,15 +37,7 @@ async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Dat
 
   const commits = log.trim().slice(1).split("\n>");
   return commits.map(commit => {
-    /**
-     * Format:
-     *
-     * Date
-     * >AuthorEmail
-     * >CoAuthorEmail
-     * >...
-     */
-    const [dateLine, ...emailLines] = commit.split("\n");
+    const [dateLine, ...emailLines] = commit.split("\n").map(line => line.trim()).filter(line => line);
     return {
       commitDate: new Date(dateLine),
       authorEmails: Array.from(new Set(emailLines.map(emailLine => emailLine.slice(1).toLowerCase())))
