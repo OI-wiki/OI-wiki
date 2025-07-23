@@ -1,0 +1,10 @@
+id: oi-wiki:misc/fsm-1
+name: Fsm
+solution:
+  cpp: docs/misc/code/fsm/fsm_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/misc/code/fsm/fsm_1.ans
+  input: docs/misc/code/fsm/fsm_1.in
+version: 1000
