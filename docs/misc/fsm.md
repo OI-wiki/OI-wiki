@@ -256,8 +256,25 @@ $$
     --8<-- "docs/misc/code/fsm/fsm_1.cpp:full-text"
     ```
 
-## 扩展阅读
+???+ note "[USACO22FEB Phone Numbers P](https://usaco.org/index.php?page=viewproblem2&cpid=1214)"
+    考虑朴素 DP 套 DP，设 $f_{i,s0,s1,s2,a0,a1,a2,f0,f1,f2,f3}$ 表示考虑前 $i$ 个数，前面 $3$ 个真实输入的值，前面 $3$ 个想要输入的值，$[1,i-3]$、$[1,i-2]$、$[1,i-1]$、$[1,i]$ 是否合法的方案数。
 
-在计算复杂性领域中，自动机是一个经典的模型。并且，自动机与正则语言有着密不可分的关系。
+    内层 DP 有大概 $10^7$ 个状态，丢到本地跑出最小化 DFA，只有几十个状态，交上去就好了。
 
-如果对相关内容感兴趣的话，推荐阅读博客 [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/)。
+## Myhill–Nerode 定理
+
+给定一个语言 $L$，对于任意串 $x,y$，定义 $x,y$ 关于语言 $L$ 是等价的，即 $x\equiv_L y$，当且仅当对于任意的 $z$，满足 $xz\in L\Leftrightarrow yz\in L$。
+
+这里的意思是，如果我们定义两个串 $x$ 与 $y$ 关于 $L$ 等价，我们就将 $x$ 后面拼上任意的串 $z$，在 $y$ 后面也拼上任意的串 $z$，它们的接受状态依旧相同。
+
+举个例子，依旧是「奶茶自动机」，「打开点单界面 -> 选择奶茶」与「打开点单界面 -> 选择奶茶 -> 重新选择」这两个串是关于奶茶自动机的语言等价的。在这个例子中，它们等价是因为回到了同一个状态。也有可能两个串等价，但它们不在同一个状态上。
+
+这个定理提供了一种方法，能够利用等价关系构造 DFA。
+
+???+ note "[P12294 \[THUPC 2025 决赛\] 一个 01 串，n 次三目运算符，最后值为 1（加强版）](https://www.luogu.com.cn/problem/P12294)"
+    
+
+## 拓展阅读
+
+- [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/)
+- [国家集训队 2021 论文 徐哲安 浅谈有限状态自动机及其应用](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf)
