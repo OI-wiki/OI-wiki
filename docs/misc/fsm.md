@@ -241,7 +241,7 @@ $$
 
     最终若 $x \in [0, r]$，则称该操作序列是好的。
 
-    现在你需要对每个 $j = 1 \ldots n$，求在强制 $a_j = 0$ 的前提下，有多少“好的”完整序列。特别地，若 $a_j = 1$，则答案为 $0$。
+    现在你需要对每个 $j = 1 \ldots n$，求在强制 $a_j = 0$ 的前提下，有多少「好的」完整序列。特别地，若 $a_j = 1$，则答案为 $0$。
 
     输出对 $998244353$ 取模。
 
@@ -273,6 +273,11 @@ $$
 考虑朴素 DP 套 DP，设 $f_{i,s0,s1,s2,a0,a1,a2,f0,f1,f2,f3}$ 表示考虑前 $i$ 个数，前面 $3$ 个真实输入的值，前面 $3$ 个想要输入的值，$[1,i-3]$、$[1,i-2]$、$[1,i-1]$、$[1,i]$ 是否合法的方案数。
 
 内层 DP 有大概 $10^7$ 个状态，丢到本地跑出最小化 DFA，只有几十个状态，交上去就好了。
+
+### 例题
+
+- [Minimal Subset Difference](https://codeforces.com/contest/956/problem/F)；
+- [Equanimous](https://qoj.ac/problem/7083)。
 
 ## Myhill–Nerode 定理
 
@@ -316,8 +321,12 @@ $$
     --8<-- "docs/misc/code/fsm/fsm_2.cpp"
     ```
 
+### 例题
+
+- [Median Replace Hard](https://qoj.ac/problem/12010)；
+- [JOISC 2024 卡牌收集](https://www.luogu.com.cn/problem/P10436)（通过 Myhill–Nerode 定理建立自动机，本题可以做到多次区间查询）。
 
 ## 拓展阅读
 
--   [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/)
--   [国家集训队 2021 论文 徐哲安 浅谈有限状态自动机及其应用](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf)
+-   [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/)；
+-   [国家集训队 2021 论文 徐哲安 浅谈有限状态自动机及其应用](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf)。
