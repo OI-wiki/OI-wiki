@@ -5,6 +5,6 @@ solution:
 target:
 - 'test'
 testcases:
-  answer: docs/misc/code/fsm/fsm_1.ans
-  input: docs/misc/code/fsm/fsm_1.in
+  answer: docs/misc/examples/fsm/fsm_1.ans
+  input: docs/misc/examples/fsm/fsm_1.in
 version: 1000
