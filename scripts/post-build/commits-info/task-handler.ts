@@ -25,6 +25,17 @@ async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Dat
        * <AuthorEmail
        * <...
        */
+      /**
+       * Regex explanation:
+       * - ^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>): Matches lines in the `git log` output.
+       *   - (>.+): Matches lines starting with '>' (e.g., commit date lines).
+       *   - (<.+): Matches lines starting with '<' (e.g., author or co-author email lines).
+       *   - (  Co-Authored-By: .+?(<.+)>): Matches 'Co-Authored-By' lines and captures the email in '<>'.
+       * - \\2\\3\\4: Replaces the matched line with the content of the second, third, or fourth capture group.
+       * - The `pi` flags:
+       *   - `p`: Prints the substituted line.
+       *   - `i`: Makes the regex case-insensitive.
+       */
       `git log --follow '--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' $FILENAME | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
     ],
     {
