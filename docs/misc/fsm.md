@@ -1,4 +1,4 @@
-author: CCXXXI, countercurrent-time, Enter-tainer, FFjet, H-J-Granger, Ir1d, mgt, NachtgeistW, orzAtalod, ouuan, ouuan, SukkaW
+author: CCXXXI, countercurrent-time, Enter-tainer, FFjet, H-J-Granger, Ir1d, mgt, NachtgeistW, orzAtalod, ouuan, SukkaW
 
 有限状态自动机（Finite State Machine，FSM，以下也简称自动机）是最简单的一类计算模型，体现在它的描述能力与资源都极其有限。自动机在 OI、计算机科学中被广泛使用，其思想在许多字符串算法中都有涉及，因此推荐在学习一些字符串算法（[KMP](../string/kmp.md)、[AC 自动机](../string/ac-automaton.md)、[SAM](../string/sam.md)）前先完成自动机的学习。学习自动机有助于理解上述算法。
 
@@ -12,7 +12,7 @@ author: CCXXXI, countercurrent-time, Enter-tainer, FFjet, H-J-Granger, Ir1d, mgt
 
 ![order fsm](./images/fsm1.svg)
 
-例如，你的选择序列是「打开点单界面 -> 选择奶茶 -> 有奶茶的钱」，那你按顺序经过的路口可能是「外卖平台 -> 点单界面 -> 支付奶茶的钱 -> 买到奶茶」。最后我们发现，我们的这个「奶茶自动机」根据我们的选择，帮我们判定了我们是否买到了奶茶。
+例如，你的选择序列是「打开点单界面 -> 选择奶茶 -> 有奶茶的钱」，那你按顺序经过的状态可能是「外卖平台 -> 点单界面 -> 支付奶茶的钱 -> 买到奶茶」。最后我们发现，我们的这个「奶茶自动机」根据我们的选择，帮我们判定了我们是否买到了奶茶。
 
 可以发现，到达一个状态的方法可能不止一条。同样没有买到奶茶，你可能是在点单界面直接退出，或者没有奶茶的钱以至于没有买到奶茶。
 
@@ -28,7 +28,7 @@ author: CCXXXI, countercurrent-time, Enter-tainer, FFjet, H-J-Granger, Ir1d, mgt
 
 从起始结点开始，从高到低接受这个数的二进制序列，然后看最终停在哪里。如果最终停在红圈结点，则是偶数，否则不是。
 
-在这里，我们需要强调，下文中我们会多次提到「字符」、「字符集」之类的名词，这不代表自动机只能应用于字符串领域，字符不一定是字符串中的字符，也可以是一种选择。
+在这里，我们需要强调，下文中我们会多次提到「字符」、「字符集」之类的名词，这不代表自动机只能应用于字符串领域，字符不一定是 $\tt abc\cdots z$ 之类的字母，也可以是一种选择。
 
 如果需要判定一个有限的信号序列和另外一个信号序列的关系（例如另一个信号序列是不是某个信号序列的子序列），那么常用的方法是针对那个有限的信号序列构建一个自动机。这个在学习 KMP 的时候会讲到。
 
@@ -76,9 +76,11 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
 
 非确定性有限状态自动机（Nondeterministic Finite Automaton，NFA）是 DFA 的自然推广，在非确定性机中，任何一个点和某个转移字符可能存在多个后继，同时，也有空字符的存在。
 
-举个例子，还是「奶茶自动机」。下单后，有可能因为网络不佳从而没有买到奶茶，这是存在多个后继；也有可能因为手速慢了，尽管过程是一样的，却因为奶茶售完从而没有买到奶茶，这是空字符的存在，空字符可走可不走。
+举个例子，还是「奶茶自动机」。下单后，尽管有奶茶的钱，却有可能因为网络不佳从而没有买到奶茶，这是存在多个后继；也有可能因为手速慢了，尽管**过程是一样的**（即输入的串是一样的），却因为奶茶售完从而没有买到奶茶，这是空字符的存在，空字符可走可不走：
 
-下面我们令 $\mathcal{P}(Q)$ 表示 $Q$ 的幂集（所有子集的集合），令 $\Sigma_{\epsilon}=\Sigma\cup\{\epsilon\}$（$\epsilon$ 表示空串，即允许空串的存在，空串可以走或者不走）。下面给出 NFA 的形式化定义：NFA 是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，其中：
+![order nfa](./images/fsm4.svg)
+
+下面我们令 $\mathcal{P}(Q)$ 表示 $Q$ 的幂集（所有子集的集合），令 $\Sigma_{\epsilon}=\Sigma\cup\{\epsilon\}$（$\epsilon$ 表示空串，即允许空字符的存在，空字符可以走或者不走）。下面给出 NFA 的形式化定义：NFA 是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，其中：
 
 1.  **有限状态集合**（$Q$）。
 2.  **字符集**（$\Sigma$）。
@@ -88,7 +90,7 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
 
 同样形式化地定义 NFA 的工作流程，注意这里只要状态集合中存在一个状态属于接受状态集合，整个串就是被接受的：
 
-设 $N=(Q,\Sigma,\delta,q_0,F)$ 是一个 NFA，$w$ 可以被表示为 $y_1,y_2,\cdots,y_m(y_i\in \Sigma_{\epsilon})$（举个例子，因为允许空串的存在，字符串 $\tt abc$ 也可以看作 $\tt {a}\epsilon\tt {bc}\epsilon\epsilon$）。若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_m$ 满足：
+设 $N=(Q,\Sigma,\delta,q_0,F)$ 是一个 NFA，$w$ 可以被表示为 $y_1,y_2,\cdots,y_m(y_i\in \Sigma_{\epsilon})$（举个例子，因为允许空字符的存在，字符串 $\tt abc$ 也可以看作 $\tt {a}\epsilon\tt {bc}\epsilon\epsilon$）。若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_m$ 满足：
 
 1. $r_0=q_0$。
 2. $r_{i+1}\in\delta(r_i,y_{i+1})$（$i\in\{0,1,\cdots,m-1\}$）。
@@ -96,15 +98,7 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
 
 则称 $N$ **接受** $w$。反之，则称 $N$ **不接受** $w$。
 
-DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 NFA 的依次输入可能对应多个结果，形成一个结果集。接下来我们将介绍如何将 NFA 变为 DFA。
-
-## DFA 与 NFA 的等价性
-
-我们称两个自动机等价，当且仅当它们能识别的语言类相同。
-
-DFA 与 NFA 是等价的，即每一个 NFA 都等价于某一个 DFA。
-
-我们可以通过幂集构造（Powerset construction）的方法进行转换。
+DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 NFA 的依次输入可能对应多个结果，形成一个结果集。
 
 ## DFA 与 NFA 的时间复杂度
 
@@ -116,17 +110,25 @@ DFA 与 NFA 是等价的，即每一个 NFA 都等价于某一个 DFA。
 
 当然，可以使用 bitset 或者 Method of Four Russians 将计算的复杂度优化到 $O(\frac{ns^2}{w})$ 或 $O(\frac{ns^2}{w\cdot \log n})$。
 
-## OI 中常用的自动机
+## DFA 与 NFA 的等价性
+
+我们称两个自动机等价，当且仅当它们能识别的语言类相同。
+
+DFA 与 NFA 是等价的，即每一个 NFA 都等价于某一个 DFA。
+
+我们可以通过幂集构造（Powerset construction）的方法进行转换。
+
+## 自动机常见应用
 
 ### 字典树
 
-[字典树](./trie.md) 是大部分 OIer 接触到的第一个自动机，接受且仅接受指定的字符串集合中的元素。
+[字典树](../string/trie.md) 是大部分 OIer 接触到的第一个自动机，接受且仅接受指定的字符串集合中的元素。
 
 转移函数就是 Trie 上的边，接受状态是将每个字符串插入到 Trie 时到达的那个状态。
 
 ### KMP 自动机
 
-[KMP 算法](./kmp.md) 可以视作自动机，基于字符串 $s$ 的 KMP 自动机接受且仅接受以 $s$ 为后缀的字符串，其接受状态为 $|s|$。
+[KMP 算法](../string/kmp.md) 可以视作自动机，基于字符串 $s$ 的 KMP 自动机接受且仅接受以 $s$ 为后缀的字符串，其接受状态为 $|s|$。
 
 转移函数：
 
@@ -141,21 +143,21 @@ $$
 
 ### AC 自动机
 
-[AC 自动机](./ac-automaton.md) 接受且仅接受以指定的字符串集合中的某个元素为后缀的字符串。也就是 Trie + KMP。
+[AC 自动机](../string/ac-automaton.md) 接受且仅接受以指定的字符串集合中的某个元素为后缀的字符串。也就是 Trie + KMP。
 
 ### 后缀自动机
 
-[后缀自动机](./sam.md) 接受且仅接受指定字符串的后缀。
+[后缀自动机](../string/sam.md) 接受且仅接受指定字符串的后缀。
 
 ### 广义后缀自动机
 
-[广义后缀自动机](./general-sam.md) 接受且仅接受指定的字符串集合中的某个元素的后缀。也就是 Trie + SAM。
+[广义后缀自动机](../string/general-sam.md) 接受且仅接受指定的字符串集合中的某个元素的后缀。也就是 Trie + SAM。
 
 广义 SAM 与 SAM 的关系就是 AC 自动机与 KMP 自动机的关系。
 
 ### 回文自动机
 
-[回文自动机](./pam.md) 比较特殊，它不能非常方便地定义为自动机。
+[回文自动机](../string/pam.md) 比较特殊，它不能非常方便地定义为自动机。
 
 如果需要定义的话，它接受且仅接受某个字符串的所有回文子串的 **中心及右半部分**。
 
@@ -163,7 +165,11 @@ $$
 
 ### 序列自动机
 
-[序列自动机](./seq-automaton.md) 接受且仅接受指定字符串的子序列。
+[序列自动机](../string/seq-automaton.md) 接受且仅接受指定字符串的子序列。
+
+### DP 套 DP
+
+[DP 套 DP](../dp/dp-of-dp.md) 是自动机的一个应用，本质上是通过内层 DP 建出自动机，在外面通过 DP 转移实现计数、最优化任务的技巧。
 
 ## 后缀链接
 
@@ -172,6 +178,83 @@ $$
 一个状态会对应若干字符串，而这个状态的后缀链接，是在自动机上的、是这些字符串的公共真后缀的字符串中，最长的那一个。
 
 一般来讲，后缀链接会形成一棵树，并且不同自动机的后缀链接树有着一些相同的性质，学习时可以加以注意。
+
+## DFA 最小化
+
+我们定义两个 DFA 等价当且仅当它们识别相同的正则语言，全体 DFA 被划分为了无穷多个等价类。在进行 DP 套 DP 之类的算法时，建立出来的 DFA 的 $|Q|$ 可能过大，使得外层 DP 转移复杂度过大。我们可能需要找到 DFA 所属等价类中的最小 DFA，以减少外层 DP 转移复杂度。
+
+DFA 最小化常用的算法是 Hopcroft 算法，其核心思想是维护一个用于划分等价类的**证据**集合 $W$，其中每个证据都是一个状态集合。
+
+在最开始我们将所有接受的状态作为一个证据塞入 $W$，即 $W\gets\{F\}$。
+
+然后维护 $Q$ 表示**当前**划分出来的等价类，最开始 $Q\gets\{F,Q\setminus F\}$。同时我们给每个等价类标号，记第 $x$ 个等价类为 $Q_x$。在这里对等价类标号仅仅是为了方便叙述算法过程，对标号方法没有要求。
+
+每次我们从 $W$ 中任意取出一个证据 $A$（一般取出第一个）进行划分。枚举字符 $c\in\Sigma$，然后求出 $S_x=\{u|u\in Q_x,\delta(u,c)\in A\}$。如果对于一个 $x$，$S_x\neq \varnothing$ 且 $|S_x|\neq|Q_x|$，那么就可以将 $Q_x$ 划分为两个等价类：$\{S_x,Q_x\setminus S_x\}$，更新 $Q$。
+
+这里的意思是，通过证据 $A$ 与一个转移字符 $c$，找到能够转移到 $A$ 的这个状态的状态。如果一个等价类中有一部分状态能通过 $c$ 转移到一个证据，但是另一部分不能，那么就可以以此将一个等价类划分为两个等价类。
+
+此时需要更新证据集合 $W$，如果 $Q_x\in W$，那么就需要将 $Q_x$ 从 $W$ 里移除，并插入 $S_x$ 与 $Q_x\setminus S_x$。如果 $Q_x$ 不在 $W$ 内，那么 $S_x$ 与 $Q_x\setminus S_x$ 只需要插入一个就可以保证结果正确。我们选择插入较小的那个到 $W$ 中以保证复杂度正确。
+
+将上述过程写成伪代码就是：
+
+$$
+\begin{array}{l}
+\textbf{Algorithm } \text{Hopcroft's Algorithm}(Q, \Sigma, \delta, q_0, F): \\
+\textbf{Input. } \text{DFA } A=(Q, \Sigma, \delta, q_0, F) \\
+\textbf{Output. } \text{A partition of } Q \text{ into equivalence classes of the minimal DFA.} \\
+\textbf{Method. } \\
+\begin{array}{ll}
+1 & P \gets \{F,\; Q \setminus F\} \\
+2 & W \gets \{F\} \\
+3 & \textbf{while } W \ne \emptyset \\
+4 & \quad \text{choose and remove any } A \in W \\
+5 & \quad \textbf{for each } c \in \Sigma \\
+6 & \quad \quad \text{let } S \gets \{ q \in Q \mid \delta(q,c) \in A \} \\
+7 & \quad \quad \textbf{for each } Y \in P \textbf{ such that } S \cap Y \ne \emptyset \text{ and } Y \setminus S \ne \emptyset \\
+8 & \quad \quad \quad Y_1 \gets S \cap Y,\quad Y_2 \gets Y \setminus S \\
+9 & \quad \quad \quad P \gets (P \setminus \{Y\}) \cup \{Y_1, Y_2\} \\
+10 & \quad \quad \quad \textbf{if } Y \in W \\
+11 & \quad \quad \quad \quad W \gets (W \setminus \{Y\}) \cup \{Y_1, Y_2\} \\
+12 & \quad \quad \quad \textbf{else} \\
+13 & \quad \quad \quad \quad \text{add the smaller of } Y_1 \text{ or } Y_2 \text{ to } W \\
+14 & \textbf{return } P
+\end{array}
+\end{array}
+$$
+
+分裂的时候，我们可以使用启发式分裂，即选择较小的一部分分裂，这么做的话，算法时间复杂度为 $O(n|\Sigma|\log n)$。
+
+算法核心代码：
+
+[TODO]
+
+???+ note "[USACO22FEB Phone Numbers P](https://usaco.org/index.php?page=viewproblem2&cpid=1214)"
+    Bessie 获得了一个九键的新手机，键位如下所示：
+
+    ```
+    123
+    456
+    789
+    ```
+
+    Bessie 正在匆忙中尝试打出一个给定的电话号码，所以她决定通过用她的其中一个蹄子一次按下多个按钮的方式来节省时间。具体来说，Bessie 的蹄子可能按下一个键，两个共用一条边的键（总共有 $12$ 种可能），或者形成一个正方形的四个键（$1245$，$2356$，$4578$，$5689$）
+
+    例如，如果 Bessie 要打的电话号码是 $123659874$，她可能通过如下方法按键来尝试节省时间：
+
+    1. 同时按下 $1$ 和 $2$。
+    2. 按下 $3$。
+    3. 同时按下 $6,5,9,8$。
+    4. 同时按下 $7$ 和 $4$。
+
+    不幸的是，Bessie 大大高估了她执行这项任务的技能——如果 Bessie 的蹄子同时按下多个按键，那么所有这些按键会以任意顺序输入。所以如果 Bessie 尝试按上述按键顺序，结束时她输入的电话号码可能是 $123596847$ 或 $213659874$（或者其他可能的序列）。
+
+    给定一个 Bessie 已经输入的序列，请计算她可能想输入的电话号码的数量对 $10^9+7$ 取模后的值。
+
+    输入序列长度小于等于 $10^5$。
+
+考虑朴素 DP 套 DP，设 $f_{i,a,b,c,0/1,0/1,0/1,0/1}$ 表示当前考虑到第 $i$ 个数，最后三个数是 $a,b,c$，以及 $[1,i-3]$、$[1,i-2]$、$[1,i-1]$、$[1,i]$ 的匹配情况是否合法。转移就枚举 $i+1$ 位的数是什么。
+
+复杂度是 $O(n)$，但是常数比较大。考虑直接将内层 DP 建成 DFA，然后跑 DFA 最小化，再 DP 就可以了。
 
 ## 扩展阅读
 
