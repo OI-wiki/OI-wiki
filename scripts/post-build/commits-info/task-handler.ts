@@ -48,7 +48,7 @@ async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Dat
 
   const commits = log.trim().slice(1).split("\n>");
   return commits.map(commit => {
-    const [dateLine, ...emailLines] = commit.split("\n").map(line => line.trim()).filter(line => line);
+    const [dateLine, ...emailLines] = commit.split("\n").map(line => line.trim()).filter(Boolean);
     return {
       commitDate: new Date(dateLine),
       authorEmails: Array.from(new Set(emailLines.map(emailLine => emailLine.slice(1).toLowerCase())))
