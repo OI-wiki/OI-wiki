@@ -7,7 +7,7 @@
 #define int long long
 #define P 998244353
 using namespace std;
-int n, k, r, tot, sigma, ans[N], nxt[1 << 20][2], trans[M][2], isF[1 << 20];
+int n, k, r, tot, ans[N], nxt[1 << 20][2], trans[M][2], isF[1 << 20];
 int belong[1 << 20], cnt, sz[M], ac[M], f[N][M], g[N][M];
 vector<int> pre[1 << 20][2], Q[M], S[M], pre_trans[M][2];
 bool vis[1 << 20], tag[1 << 20];
