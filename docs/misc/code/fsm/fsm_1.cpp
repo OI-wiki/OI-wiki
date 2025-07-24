@@ -7,7 +7,7 @@
 #define int long long
 #define P 998244353
 using namespace std;
-int n, k, r, ans[N], nxt[1 << 20][2], trans[M][2], isF[1 << 20];
+int n, k, r, tot, sigma, ans[N], nxt[1 << 20][2], trans[M][2], isF[1 << 20];
 int belong[1 << 20], cnt, sz[M], ac[M], f[N][M], g[N][M];
 vector<int> pre[1 << 20][2], Q[M], S[M], pre_trans[M][2];
 bool vis[1 << 20], tag[1 << 20];
@@ -33,16 +33,16 @@ void hopcroft() {
       if (belong[i] == u) tmp.push_back(i);
     swap(Q[u], tmp);
   };
-  queue<int> que;
-  que.push(1);
+  queue<int> W;
+  W.push(1);
   cnt = 2;
-  for (int i = 0; i < (1 << k); i++) {
+  for (int i = 0; i < tot; i++) {
     Q[belong[i] = isF[i] ? 1 : 2].push_back(i);
   }
   sz[1] = Q[1].size(), sz[2] = Q[2].size(), ac[1] = 1;
-  while (!que.empty()) {
-    int u = que.front();
-    que.pop();
+  while (!W.empty()) {
+    int u = W.front();
+    W.pop();
     rebuild(u);
     for (int c = 0; c <= 1; c++) {
       vector<int> td;
@@ -77,7 +77,7 @@ void hopcroft() {
             sz[i] = Q[i].size();
             sz[cnt] = Q[cnt].size();
           }
-          que.push(cnt);
+          W.push(cnt);
         }
         for (auto j : S[i]) tag[j] = 0;
         S[i].clear();
@@ -85,7 +85,7 @@ void hopcroft() {
     }
   }
 
-  for (int i = 0; i < (1 << k); i++)
+  for (int i = 0; i < tot; i++)
     for (int c = 0; c <= 1; c++) trans[belong[i]][c] = belong[nxt[i][c]];
   for (int i = 1; i <= cnt; i++)
     for (int c = 0; c <= 1; c++) pre_trans[trans[i][c]][c].push_back(i);
@@ -96,6 +96,7 @@ signed main() {
   scanf("%lld %lld %lld %s", &n, &k, &r, a + 1);
   dfs(0);
   for (int i = 0; i <= r; i++) isF[i] = 1;
+  tot = 1 << k;
 
   hopcroft();
 

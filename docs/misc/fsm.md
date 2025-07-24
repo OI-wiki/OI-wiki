@@ -234,38 +234,22 @@ $$
 
     输出对 $998244353$ 取模。
 
-    $1\le n\le 10^5,1\le k\le 20$。
+    $1\le n\le 10^5,1\le k\le 20,0\le r<2^k$。
 
 ??? note "题解"
-    考虑朴素 DP，设 $f_{i,j}$ 表示从 $x=0$ 开始，考虑 $[1,i]$，当前数为 $j$ 的方案数，设 $g_{i,j}$ 表示从 $x=j$ 开始，考虑 $[i,n]$，最终 $x \in [0, r]$ 的方案数。转移直接合并即可。
-
-    复杂度是 $O(n2^k)$，考虑直接将 $j$ 的转移建成 DFA，然后跑 DFA 最小化，再 DP 就可以了。
+    考虑朴素 DP，设 $f_{i,j}$ 表示从 $x=0$ 开始，考虑 $[1,i]$，当前数为 $j$ 的方案数，设 $g_{i,j}$ 表示从 $x=j$ 开始，考虑 $[i,n]$，最终 $x \in [0, r]$ 的方案数。转移直接合并即可，复杂度是 $O(n2^k)$。
+    
+    考虑直接将 $j$ 的转移建成 DFA，然后跑 DFA 最小化，再 DP 就可以了。
 
 ??? note "参考代码"
     ```cpp
     --8<-- "docs/misc/code/fsm/fsm_1.cpp:full-text"
     ```
 
-???+ example "[USACO22FEB Phone Numbers P](https://usaco.org/index.php?page=viewproblem2&cpid=1214)"
-    有一个九键手机。你想要打出一个目标序列，为了节省时间，你可以用以下三种手法：
-
-    1. 按下某个键；
-    2. 同时按下相邻的两个键；
-    3. 同时按下组成一个正方形的四个键。
-
-    当你同时按下若干个键时，这些键的输入顺序是随机的。当然，你的输入方式必须可能打出目标序列。
-
-    给定你实际输入的序列 $S$，求有多少种可能的目标序列。
-
-    $1 \le|S| \le 10^5$。
-
-??? note "题解"
-    考虑朴素 DP 套 DP，设 $f_{i,s0,s1,s2,a0,a1,a2,f0,f1,f2,f3}$ 表示考虑前 $i$ 个数，前面 $3$ 个真实输入的值，前面 $3$ 个想要输入的值，$[1,i-3]$、$[1,i-2]$、$[1,i-1]$、$[1,i]$ 是否合法的方案数。
-
-    内层 DP 有大概 $10^7$ 个状态，丢到本地跑出最小化 DFA，只有几十个状态，交上去就好了。
 
 ### 习题
 
+-   [Language Recognition](http://poj.org/problem?id=3576)
 -   [Minimal Subset Difference](https://codeforces.com/contest/956/problem/F)
 -   [Equanimous](https://qoj.ac/problem/7083)
 
