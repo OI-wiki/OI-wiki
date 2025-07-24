@@ -129,7 +129,8 @@ void hopcroft() {
     for (int c = 0; c <= 9; c++) trans[belong[i]][c] = belong[nxt[i][c]];
 }
 
-int a[20], len, f[20][718][10];
+int a[20], len;
+ll f[20][718][10];
 
 ll F(int len, int lim, int x, int k) {
   if (!lim && f[len][x][k] != -1) return f[len][x][k];
