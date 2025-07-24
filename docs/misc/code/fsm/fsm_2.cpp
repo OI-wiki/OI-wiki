@@ -76,7 +76,7 @@ struct DFA {
       for (int j = 1; j <= (n >> 5); j++) {
         int x = i;
         for (int k = (j << 5); k < ((j + 1) << 5); k++) {
-          auto [l, s] = pm[x];
+          int l = pm[x].first, s = pm[x].second;
           x = mp[l + 1][(s << 1) | a[k]];
         }
         f[i][j][0] = x;
@@ -95,7 +95,7 @@ struct DFA {
     int x = mp[1][a[l]];
     l++;
     while (l <= r && (l & 31)) {
-      auto [i, s] = pm[x];
+      int i = pm[x].first, s = pm[x].second;
       x = mp[i + 1][(s << 1) | a[l]];
       l++;
     }
@@ -106,7 +106,7 @@ struct DFA {
       }
     }
     while (l <= r) {
-      auto [i, s] = pm[x];
+      int i = pm[x].first, s = pm[x].second;
       x = mp[i + 1][(s << 1) | a[l]];
       l++;
     }
