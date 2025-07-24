@@ -129,5 +129,4 @@ signed main() {
       printf("%lld\n", ans);
     }
 }
-
 // --8<-- [end:full-text]

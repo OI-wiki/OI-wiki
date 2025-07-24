@@ -102,29 +102,19 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
 
 ## DFA 与 NFA 的时间复杂度
 
-设给定的串长为 $n$，自动机状态数为 $s$，字符集大小为常数。
+设给定的串长为 $n$，自动机状态数为 $s$，字符集大小为常数。那么显然的，DFA 计算的时间复杂度为 $O(n)$，只需要模拟上述的过程即可。
 
-那么显然的，DFA 计算的时间复杂度为 $O(n)$，只需要模拟上述的过程即可。
-
-而朴素计算 NFA 的时间复杂度为 $O(ns^2)$，这是因为需要考虑到每一种后继，以及状态的合并所需的复杂度。
-
-当然，可以使用 bitset 或者 Method of Four Russians 将计算的复杂度优化到 $O(\frac{ns^2}{w})$ 或 $O(\frac{ns^2}{w\cdot \log n})$。
+朴素计算 NFA 的时间复杂度为 $O(ns^2)$，这是因为需要考虑到每一种后继，以及状态的合并所需的复杂度。当然，可以使用 bitset 或者 Method of Four Russians 将计算的复杂度优化到 $O(\frac{ns^2}{w})$ 或 $O(\frac{ns^2}{w\cdot \log n})$。
 
 ## DFA 与 NFA 的等价性
 
-我们称两个自动机等价，当且仅当它们能识别的语言类相同。
-
-DFA 与 NFA 是等价的，即每一个 NFA 都等价于某一个 DFA。
-
-我们可以通过幂集构造（Powerset construction）的方法进行转换。
+我们称两个自动机等价，当且仅当它们能识别的语言类相同。DFA 与 NFA 是等价的，即每一个 NFA 都等价于某一个 DFA。每个 DFA 都可以直接看作一个 NFA，而我们可以通过幂集构造（Powerset construction）的方法将一个 NFA 转换为 DFA。
 
 ## 自动机常见应用
 
 ### 字典树
 
-[字典树](../string/trie.md) 是大部分 OIer 接触到的第一个自动机，接受且仅接受指定的字符串集合中的元素。
-
-转移函数就是 Trie 上的边，接受状态是将每个字符串插入到 Trie 时到达的那个状态。
+[字典树](../string/trie.md) 是大部分 OIer 接触到的第一个自动机，接受且仅接受指定的字符串集合中的元素。转移函数就是 Trie 上的边，接受状态是将每个字符串插入到 Trie 时到达的那个状态。
 
 ### KMP 自动机
 
@@ -169,7 +159,7 @@ $$
 
 ### DP 套 DP
 
-<!--[DP 套 DP](../dp/dp-of-dp.md)--> 是自动机的一个应用，本质上是通过内层 DP 建出自动机，在外面通过 DP 转移实现计数、最优化任务的技巧。
+[DP 套 DP](../dp/dp-of-dp.md) 是自动机的一个应用，本质上是通过内层 DP 建出自动机，在外面通过 DP 转移实现计数、最优化任务的技巧。
 
 ## 后缀链接
 
@@ -275,8 +265,8 @@ $$
 
 ### 习题
 
--   [Minimal Subset Difference](https://codeforces.com/contest/956/problem/F)；
--   [Equanimous](https://qoj.ac/problem/7083)。
+-   [Minimal Subset Difference](https://codeforces.com/contest/956/problem/F)
+-   [Equanimous](https://qoj.ac/problem/7083)
 
 ## Myhill–Nerode 定理
 
@@ -322,8 +312,8 @@ $$
 
 ### 习题
 
--   [Median Replace Hard](https://qoj.ac/problem/12010)；
--   [JOISC 2024 卡牌收集](https://www.luogu.com.cn/problem/P10436)（通过 Myhill–Nerode 定理建立自动机，本题可以做到多次区间查询）。
+-   [Median Replace Hard](https://qoj.ac/problem/12010)
+-   [JOISC 2024 卡牌收集](https://www.luogu.com.cn/problem/P10436)（通过 Myhill–Nerode 定理建立自动机，本题可以做到多次区间查询）
 
 ## 拓展阅读
 
