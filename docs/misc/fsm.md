@@ -246,7 +246,7 @@ $$
     --8<-- "docs/misc/code/fsm/fsm_1.cpp:full-text"
     ```
 
-???+ note "[USACO22FEB Phone Numbers P](https://usaco.org/index.php?page=viewproblem2&cpid=1214)"
+???+ example "[USACO22FEB Phone Numbers P](https://usaco.org/index.php?page=viewproblem2&cpid=1214)"
     有一个九键手机。你想要打出一个目标序列，为了节省时间，你可以用以下三种手法：
 
     1. 按下某个键；
