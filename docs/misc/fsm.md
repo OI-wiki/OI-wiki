@@ -276,7 +276,7 @@ $1 \le|S| \le 10^5$。
 
 内层 DP 有大概 $10^7$ 个状态，丢到本地跑出最小化 DFA，只有几十个状态，交上去就好了。
 
-### 例题
+### 习题
 
 -   [Minimal Subset Difference](https://codeforces.com/contest/956/problem/F)；
 -   [Equanimous](https://qoj.ac/problem/7083)。
@@ -323,7 +323,7 @@ $1 \le|S| \le 10^5$。
     --8<-- "docs/misc/code/fsm/fsm_2.cpp"
     ```
 
-### 例题
+### 习题
 
 -   [Median Replace Hard](https://qoj.ac/problem/12010)；
 -   [JOISC 2024 卡牌收集](https://www.luogu.com.cn/problem/P10436)（通过 Myhill–Nerode 定理建立自动机，本题可以做到多次区间查询）。
