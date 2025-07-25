@@ -337,25 +337,24 @@ Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇�
 
 此时我们可以注意到 $(r+i)^{\frac{p+1}{2}}$ 是原式的解，可以使用快速幂计算。
 
-???+note "证明"
-	容易发现，原命题等价于证明 $(r+i)^{p+1} \equiv a \pmod p$
+???+ note "证明"
+    容易发现，原命题等价于证明 $(r+i)^{p+1} \equiv a \pmod p$
 
-	首先考虑证明两个引理
-    
+    首先考虑证明两个引理
+
     **引理1：** $i^p \equiv -i \pmod p$
-    
-    证明：$i^p \equiv i(i^2)^{\frac{p-1}{2}} \equiv i(r^2-a)^{\frac{p-1}{2}} \equiv i \cdot (-1) \equiv -i \pmod p$
-    
-	其中最后一步 $(r^2-a)^{\frac{p-1}{2}} \equiv -1 \pmod p$ 是由于 $r^2-a$ 是二次非剩余
-    
-    **引理2：** $(a+b)^p \equiv a^p+b^p \pmod p
-    
-    证明：将原式使用二项式定理展开，容易发现对于任何 $\dbinom{p}{x}$ 当 $x \ne 0$ 且 $x \ne p$ 时，分子上的 $p$ 无法消掉，将这一些项去掉之后只剩下第一项及最后一项，即 $a^p+b^p$
-    
-    有了这两个引理，我们来考虑证明原式
-    
-    $$(r+i)^{p+1} \equiv (r+i)^p(a+i) \equiv (r^p+i^p)(a+i) \equiv (r-i)(r+i) \equiv r^2-i^2 \equiv r^2-(r^2-a) \equiv a \pmod p$$
 
+    证明：$i^p \equiv i(i^2)^{\frac{p-1}{2}} \equiv i(r^2-a)^{\frac{p-1}{2}} \equiv i \cdot (-1) \equiv -i \pmod p$
+
+    其中最后一步 $(r^2-a)^{\frac{p-1}{2}} \equiv -1 \pmod p$ 是由于 $r^2-a$ 是二次非剩余
+
+    **引理2：** $(a+b)^p \equiv a^p+b^p \pmod p
+
+    证明：将原式使用二项式定理展开，容易发现对于任何 $\dbinom{p}{x}$ 当 $x \ne 0$ 且 $x \ne p$ 时，分子上的 $p$ 无法消掉，将这一些项去掉之后只剩下第一项及最后一项，即 $a^p+b^p$
+
+    有了这两个引理，我们来考虑证明原式
+
+    $$(r+i)^{p+1} \equiv (r+i)^p(a+i) \equiv (r^p+i^p)(a+i) \equiv (r-i)(r+i) \equiv r^2-i^2 \equiv r^2-(r^2-a) \equiv a \pmod p$$
 
 ### Bostan–Mori 算法
 
