@@ -118,19 +118,19 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
 
 对于一个正则表达式（Regular Expression）$R$，称 $L(R)$ 为正则表达式 $R$ 对应的形式语言。正则表达式 $R$ 可以是：
 
-1. $c$（$c\in \Sigma$），表示语言 $L(R) = \{c\}$。
-2. $\varepsilon$，表示语言 $L(R) = \{\varepsilon\}$。
-3. $\varnothing$，表示语言 $L(R)$ 为空语言；
-4. $(R_1 + R_2)$，表示语言 $L(R) = L(R_1) \cup L(R_2)$。
-5. $(R_1 R_2)$，表示语言 $L(R) = \{uv \mid u \in L(R_1),\ v \in L(R_2)\}$，其中，$uv$ 指将两个串前后拼接在一起。同时也记作 $(R_1\cdot R_2)$。
-6. $(R_1^\ast)$，表示语言 $L(R) = \{u_1 u_2 \cdots u_n \mid u_i \in L(R_1),\ n \in \mathbb{N}^+\} \cup \{\varepsilon\}$。我们称它为闭包。
+1.  $c$（$c\in \Sigma$），表示语言 $L(R) = \{c\}$。
+2.  $\varepsilon$，表示语言 $L(R) = \{\varepsilon\}$。
+3.  $\varnothing$，表示语言 $L(R)$ 为空语言；
+4.  $(R_1 + R_2)$，表示语言 $L(R) = L(R_1) \cup L(R_2)$。
+5.  $(R_1 R_2)$，表示语言 $L(R) = \{uv \mid u \in L(R_1),\ v \in L(R_2)\}$，其中，$uv$ 指将两个串前后拼接在一起。同时也记作 $(R_1\cdot R_2)$。
+6.  $(R_1^\ast)$，表示语言 $L(R) = \{u_1 u_2 \cdots u_n \mid u_i \in L(R_1),\ n \in \mathbb{N}^+\} \cup \{\varepsilon\}$。我们称它为闭包。
 
 下面给出一些例子：
 
-- $L(R_1) = \{0,\ 01\}$，$L(R_2) = \{\varepsilon,\ 1,\ 11,\ 111,\ \dots\}$
-- $L(R_1R_2) = \{0,\ 01,\ 011,\ 0111,\ \dots\}$
-- $R_2^\ast = R_2$
-- $L(R_1 + R_2) = \{0,\ 01,\ \varepsilon,\ 1,\ 11,\ 111,\ \dots\}$
+-   $L(R_1) = \{0,\ 01\}$，$L(R_2) = \{\varepsilon,\ 1,\ 11,\ 111,\ \dots\}$
+-   $L(R_1R_2) = \{0,\ 01,\ 011,\ 0111,\ \dots\}$
+-   $R_2^\ast = R_2$
+-   $L(R_1 + R_2) = \{0,\ 01,\ \varepsilon,\ 1,\ 11,\ 111,\ \dots\}$
 
 同时，每个正则表达式明显可以转换为一个 NFA，每个 DFA 都可以转换为一个正则表达式。所以，正则表达式与 FSM 是等价的。
 
@@ -138,23 +138,23 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
 
 以下正则表达式的代数定律成立：
 
-1. **并的交换律**：$L + M = M + L$
+1.  **并的交换律**：$L + M = M + L$
 
-2. **并的结合律**：$(L + M) + N = L + (M + N)$
+2.  **并的结合律**：$(L + M) + N = L + (M + N)$
 
-3. **连接的结合律**：$(LM)N = L(MN)$
+3.  **连接的结合律**：$(LM)N = L(MN)$
 
-4. **$\varnothing$ 是并运算的单位元**：$\varnothing + L = L + \varnothing = L$
+4.  **$\varnothing$ 是并运算的单位元**：$\varnothing + L = L + \varnothing = L$
 
-5. **$\varepsilon$ 是连接运算的单位元**：$\varepsilon L = L \varepsilon = L$
+5.  **$\varepsilon$ 是连接运算的单位元**：$\varepsilon L = L \varepsilon = L$
 
-6. **$\varnothing$ 是连接运算的零元**：$\varnothing L = L \varnothing = \varnothing$
+6.  **$\varnothing$ 是连接运算的零元**：$\varnothing L = L \varnothing = \varnothing$
 
-7. **分配律**：$L(M + N) = LM + LN$，$(M + N)L = ML + NL$
+7.  **分配律**：$L(M + N) = LM + LN$，$(M + N)L = ML + NL$
 
-8. **并的幂等律**：$L + L = L$
+8.  **并的幂等律**：$L + L = L$
 
-9. **闭包相关的定律**：$(L^\ast)^\ast = L^\ast$，$\varnothing^\ast = \varepsilon$，$\varepsilon^\ast = \varepsilon$
+9.  **闭包相关的定律**：$(L^\ast)^\ast = L^\ast$，$\varnothing^\ast = \varepsilon$，$\varepsilon^\ast = \varepsilon$
 
 ### 正则语言的封闭性
 
@@ -162,23 +162,23 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
 
 关于正则语言的封闭性，我们有：
 
-1. 如果 $L_1$ 和 $L_2$ 是正则语言，则 $L_1 \cup L_2$ 也是正则的。
+1.  如果 $L_1$ 和 $L_2$ 是正则语言，则 $L_1 \cup L_2$ 也是正则的。
 
-2. 如果 $L_1$ 和 $L_2$ 是正则语言，则 $L_1 L_2$ 也是正则的。
+2.  如果 $L_1$ 和 $L_2$ 是正则语言，则 $L_1 L_2$ 也是正则的。
 
-3. 如果 $L$ 是正则语言，则 $L^\ast$ 是正则的。
+3.  如果 $L$ 是正则语言，则 $L^\ast$ 是正则的。
 
-4. 如果 $L$ 是正则语言，则其补集 $\overline{L}$ 也是正则的。
+4.  如果 $L$ 是正则语言，则其补集 $\overline{L}$ 也是正则的。
 
-5. 如果 $L_1$ 和 $L_2$ 是正则语言，则 $L_1 \cap L_2$ 也是正则的。
+5.  如果 $L_1$ 和 $L_2$ 是正则语言，则 $L_1 \cap L_2$ 也是正则的。
 
-6. 如果 $L_1$ 和 $L_2$ 是正则语言，则 $L_1 \setminus L_2$ 是正则的。
+6.  如果 $L_1$ 和 $L_2$ 是正则语言，则 $L_1 \setminus L_2$ 是正则的。
 
-7. 如果 $L$ 是正则语言，则其反转语言 $L^R$（所有字符串反转后组成的集合）是正则的。
+7.  如果 $L$ 是正则语言，则其反转语言 $L^R$（所有字符串反转后组成的集合）是正则的。
 
-8. 若 $h$ 是一个字母到字符串的映射，且 $L$ 是正则语言，则 $h(L)$ 是正则的。
+8.  若 $h$ 是一个字母到字符串的映射，且 $L$ 是正则语言，则 $h(L)$ 是正则的。
 
-9. 若 $h$ 是一个字母到字符串的映射，且 $L$ 是正则语言，则 $h^{-1}(L)$ 是正则的。
+9.  若 $h$ 是一个字母到字符串的映射，且 $L$ 是正则语言，则 $h^{-1}(L)$ 是正则的。
 
 ## 自动机常见应用
 
