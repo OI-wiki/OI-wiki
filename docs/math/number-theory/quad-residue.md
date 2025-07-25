@@ -348,7 +348,7 @@ Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇�
 
     其中最后一步 $(r^2-a)^{\frac{p-1}{2}} \equiv -1 \pmod p$ 是由于 $r^2-a$ 是二次非剩余
 
-    **引理2：** $(a+b)^p \equiv a^p+b^p \pmod p
+    **引理2：** $(a+b)^p \equiv a^p+b^p \pmod p$
 
     证明：将原式使用二项式定理展开，容易发现对于任何 $\dbinom{p}{x}$ 当 $x \ne 0$ 且 $x \ne p$ 时，分子上的 $p$ 无法消掉，将这一些项去掉之后只剩下第一项及最后一项，即 $a^p+b^p$
 
