@@ -46,21 +46,21 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
 
 确定性有限状态自动机（Deterministic Finite Automaton，DFA）体现在它的过程是确定性的，以「奶茶自动机」为例子，你只要打开点单界面，就会进入点单界面，不会出现网络崩溃打不开、手机没电黑屏了之类的意外情况。
 
-???+ abstract "DFA" 
+???+ abstract "DFA"
     DFA 是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，其中：
     
-    1.  **有限状态集合** $Q$。如果把一个 DFA 看成一张有向图，那么 DFA 中的状态就相当于图上的顶点。  
-    2.  **字符集** $\Sigma$。该自动机只能输入这些字符。  
-    3.  **转移函数** $\delta:Q\times \Sigma \to Q$ 是一个接受两个参数返回一个值的函数，其中第一个参数和返回值都是一个状态，第二个参数是字符集中的一个字符。如果把一个 DFA 看成一张有向图，那么 DFA 中的转移函数就相当于顶点间的边，而每条边上都有一个字符。  
-    4.  **起始状态** $q_0\in Q$ 是一个特殊的状态。在不同文章中，起始状态一般用 $s$、$\textit{start}$、$q_0$ 表示，本文中选择使用 $q_0$ 表示。  
-    5.  **接受状态集合** $F\subseteq Q$ 是一组特殊的状态。  
+    1.  **有限状态集合**  $Q$。如果把一个 DFA 看成一张有向图，那么 DFA 中的状态就相当于图上的顶点。
+    2.  **字符集** $\Sigma$。该自动机只能输入这些字符。
+    3.  **转移函数** $\delta:Q\times \Sigma \to Q$ 是一个接受两个参数返回一个值的函数，其中第一个参数和返回值都是一个状态，第二个参数是字符集中的一个字符。如果把一个 DFA 看成一张有向图，那么 DFA 中的转移函数就相当于顶点间的边，而每条边上都有一个字符。
+    4.  **起始状态**  $q_0\in Q$ 是一个特殊的状态。在不同文章中，起始状态一般用 $s$、$\textit{start}$、$q_0$ 表示，本文中选择使用 $q_0$ 表示。
+    5.  **接受状态集合**  $F\subseteq Q$ 是一组特殊的状态。
 
-???+ abstract "DFA 的计算流程" 
+???+ abstract "DFA 的计算流程"
     设 $M=(Q,\Sigma,\delta,q_0,F)$ 是一个 DFA，$w=w_1w_2\cdots w_n~(w_i\in \Sigma)$（也记作 $w\in\Sigma^*$）是一个串。若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_n$ 满足：
     
-    -  $r_0=q_0$，
-    -  $\delta(r_i,w_{i+1})=r_{i+1}$（$i\in\{0,1,\cdots,n-1\}$），
-    -  $r_n\in F$，
+    -   $r_0=q_0$，
+    -   $\delta(r_i,w_{i+1})=r_{i+1}$（$i\in\{0,1,\cdots,n-1\}$），
+    -   $r_n\in F$，
     
     则称 $M$  **接受**  $w$。反之，则称 $M$  **不接受**  $w$。
     
@@ -68,10 +68,10 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
     
     为了方便说明，我们将求出输入串 $w$ 在 DFA 中的状态序列，并判断它是否被接受的过程称为 **计算**。
 
-???+ abstract "形式语言" 
+???+ abstract "形式语言"
     定义 **形式语言**（简称 **语言**）是任意 $\Sigma$ 上串的集合（集合大小可以为无限），令语言 $L(M)=\{w\mid M\text{ 接受 }w\}$，则称 $M$ 识别 $L(M)$。
 
-???+ abstract "正则语言" 
+???+ abstract "正则语言"
     如果一个语言能被某个 DFA 识别，则称它为正则语言（regular language）。
 
 上文提到过，一个自动机可以由状态图表示出来。如下是一个接受且仅接受字符串 $\tt a$、$\tt ab$、$\tt aac$ 的 DFA：
@@ -86,8 +86,8 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
 
 ![order nfa](./images/fsm4.svg)
 
-???+ abstract "NFA" 
-    下面我们令 $\mathcal{P}(Q)$ 表示 $Q$ 的幂集（所有子集的集合），令 $\Sigma_{\epsilon}=\Sigma\cup\{\epsilon\}$（$\epsilon$ 表示空串，即允许空字符的存在，空字符可以走或者不走）。NFA[^nfa-and-nfaepsilon] 是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，其中：
+???+ abstract "NFA"
+    下面我们令 $\mathcal{P}(Q)$ 表示 $Q$ 的幂集（所有子集的集合），令 $\Sigma_{\epsilon}=\Sigma\cup\{\epsilon\}$（$\epsilon$ 表示空串，即允许空字符的存在，空字符可以走或者不走）。NFA[^nfa-and-nfaepsilon]是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，其中：
     
     1.  **有限状态集合**（$Q$）。
     2.  **字符集**（$\Sigma$）。
@@ -95,14 +95,14 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
     4.  **起始状态**（$q_0\in Q$）。
     5.  **接受状态集合**（$F\subseteq Q$）。
 
-???+ abstract "NFA 的计算流程" 
+???+ abstract "NFA 的计算流程"
     注意 NFA 中只要状态集合中存在一个状态属于接受状态集合，整个串就是被接受的。
     
     设 $N=(Q,\Sigma,\delta,q_0,F)$ 是一个 NFA，$w$ 可以被表示为 $y_1y_2\cdots y_m~(y_i\in \Sigma_{\epsilon})$（举个例子，因为允许空字符的存在，字符串 $\tt abc$ 也可以看作 $\tt {a}\epsilon\tt {bc}\epsilon\epsilon$）。若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_m$ 满足：
     
-    -  $r_0=q_0$，
-    -  $r_{i+1}\in\delta(r_i,y_{i+1})$（$i\in\{0,1,\cdots,m-1\}$），
-    -  $r_m\in F$，
+    -   $r_0=q_0$，
+    -   $r_{i+1}\in\delta(r_i,y_{i+1})$（$i\in\{0,1,\cdots,m-1\}$），
+    -   $r_m\in F$，
     
     则称 $N$  **接受**  $w$。反之，则称 $N$  **不接受**  $w$。
 
@@ -126,7 +126,7 @@ NFA 是 DFA 的扩展，似乎一个可能的推论是 NFA 比 DFA 能力强，�
 
 正则表达式是另一种常用的正则语言的描述方法，尽管我们可以在许多现代语言（例如 Python）中看到它的身影，但实际上它们实现的是正则表达式的一个超集。
 
-???+ abstract "正则表达式" 
+???+ abstract "正则表达式"
     给定一个字符集 $\Sigma$，正则表达式（regular expression）是由以下规则归纳定义的符号串：
 
     1. 任意字符 $c \in \Sigma$ 是一个正则表达式；
@@ -137,18 +137,17 @@ NFA 是 DFA 的扩展，似乎一个可能的推论是 NFA 比 DFA 能力强，�
        - $(R_1 R_2)$，也记作 $(R_1 \cdot R_2)$；
        - $(R_1^*)$。
 
-
-???+ abstract "正则表达式所表示的语言" 
+???+ abstract "正则表达式所表示的语言"
     每个正则表达式 $R$ 对应一个语言 $L(R) \subseteq \Sigma^*$：
     
-    1. 若 $R = c$，其中 $c \in \Sigma$，则 $L(R) = \{c\}$。
-    2. 若 $R = \varepsilon$，则 $L(R) = \{\varepsilon\}$。
-    3. 若 $R = \varnothing$，则 $L(R) = \emptyset$。
-    4. 若 $R = R_1 + R_2$，则 $L(R) = L(R_1) \cup L(R_2)$。
-    5. 若 $R = R_1 R_2$，则 $L(R) = \{ uv \mid u \in L(R_1), v \in L(R_2) \}$，其中，$uv$ 指将两个串前后拼接在一起。同时也记作 $(R_1\cdot R_2)$。
-    6. 若 $R = R_1^*$，则 $L(R) = \{u_1 u_2 \cdots u_n \mid u_i \in L(R_1),\ n \in \mathbb{N}^+\} \cup \{\varepsilon\}$。我们称它为闭包。
+    1.  若 $R = c$，其中 $c \in \Sigma$，则 $L(R) = \{c\}$。
+    2.  若 $R = \varepsilon$，则 $L(R) = \{\varepsilon\}$。
+    3.  若 $R = \varnothing$，则 $L(R) = \emptyset$。
+    4.  若 $R = R_1 + R_2$，则 $L(R) = L(R_1) \cup L(R_2)$。
+    5.  若 $R = R_1 R_2$，则 $L(R) = \{ uv \mid u \in L(R_1), v \in L(R_2) \}$，其中，$uv$ 指将两个串前后拼接在一起。同时也记作 $(R_1\cdot R_2)$。
+    6.  若 $R = R_1^*$，则 $L(R) = \{u_1 u_2 \cdots u_n \mid u_i \in L(R_1),\ n \in \mathbb{N}^+\} \cup \{\varepsilon\}$。我们称它为闭包。
 
-???+ example "例子" 
+???+ example "例子"
     -   $L(R_1) = \{0,\ 01\}$，$L(R_2) = \{\varepsilon,\ 1,\ 11,\ 111,\ \dots\}$
     -   $L(R_1R_2) = \{0,\ 01,\ 011,\ 0111,\ \dots\}$
     -   $R_2^\ast = R_2$
@@ -423,4 +422,5 @@ $$
 -   [国家集训队 2021 论文 徐哲安 浅谈有限状态自动机及其应用](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf)。
 
 [^nfa-and-nfaepsilon]: 这个定义中我们允许状态之间通过空字符（$\epsilon$）转移，因此更准确地说，这是一个带 $\epsilon$ 转移的非确定有限自动机（NFA-$\epsilon$）。有些教材中将其直接称为 NFA，为简洁起见，本文采用这一用法。在理论上 NFA 与 NFA-$\epsilon$ 是有所区分的，但是实际上它们的计算能力是一致的。
+
 [^trie-is-dfa]: 自动机应当有失配状态。Trie 只有显式地提供了失配状态，才是一个自动机。
