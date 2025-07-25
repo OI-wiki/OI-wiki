@@ -1,6 +1,6 @@
 author: CCXXXI, countercurrent-time, Enter-tainer, FFjet, H-J-Granger, Ir1d, mgt, NachtgeistW, orzAtalod, ouuan, SukkaW
 
-有限状态自动机（Finite State Machine，FSM，以下也简称自动机）是最简单的一类计算模型，体现在它的描述能力与资源都极其有限。自动机在 OI、计算机科学中被广泛使用，其思想在许多字符串算法中都有涉及，因此推荐在学习一些字符串算法（[KMP](../string/kmp.md)、[AC 自动机](../string/ac-automaton.md)、[SAM](../string/sam.md)）前先完成自动机的学习。学习自动机有助于理解上述算法。
+有限状态自动机（Finite State Machine，FSM，以下也简称自动机）是最简单的一类计算模型，体现在它的描述能力与资源都极其有限。自动机广泛应用在 OI、计算机科学中，其思想在许多字符串算法中都有涉及，因此推荐在学习一些字符串算法（[KMP](../string/kmp.md)、[AC 自动机](../string/ac-automaton.md)、[SAM](../string/sam.md)）前先完成自动机的学习。学习自动机有助于理解上述算法。
 
 ## 自动机入门
 
