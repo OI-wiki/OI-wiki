@@ -96,9 +96,9 @@ dfs 序本身就有如下的性质：一个节点的子树在 dfs 序上一定�
 
 ??? note "参考实现"
     === "递归实现"
-         --8<-- "1.cpp"
+         --8<-- "docs/graph/code/dsu-on-tree/dsu-on-tree_1.cpp"
     === "非递归实现"
-         --8<-- "2.cpp"
+         --8<-- "docs/graph/code/dsu-on-tree/dsu-on-tree_2.cpp"
 
 ## 运用
 
