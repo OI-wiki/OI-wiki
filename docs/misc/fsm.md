@@ -108,7 +108,7 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
 
 ## DFA 与 NFA 的等价性
 
-我们称两个自动机等价，当且仅当它们能识别的语言类相同。DFA 与 NFA 是等价的，即每一个 NFA 都等价于某一个 DFA。每个 DFA 都可以直接看作一个 NFA，而我们可以通过幂集构造（Powerset construction）的方法将一个 NFA 转换为 DFA。
+我们称两个自动机等价，当且仅当它们能识别的语言类相同。DFA 与 NFA 是等价的，即每一个 NFA 都等价于某一个 DFA。每个 DFA 都可以直接看作一个 NFA，而我们可以通过幂集构造（powerset construction）的方法将一个 NFA 转换为 DFA。
 
 ## 正则表达式与正则语言
 
