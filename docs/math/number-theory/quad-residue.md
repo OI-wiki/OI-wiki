@@ -342,7 +342,7 @@ Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇�
 
 于是我们定义一个 $i$ 满足 $i^2=r^2-a$。类比实数域到复数域的扩展，$i$ 类似于虚数单位，只是形式上的记号，实际上不存在。感性的理解，相当于扩展出了一个模 $p$ 意义下的复数域，其中任何一个数都可以表示为 $A+Bi$ 的形式，参照复数，我们下文中为了方便称其中 $A$ 为实部，$B$ 为虚部，运算规则可以参考复数的运算理解。
 
-???  note "更严谨的定义"
+??? note "更严谨的定义"
     在复数域 $\mathbf{C}$ 中，考虑令 $x^2+1\in\mathbf{R}\lbrack x\rbrack$ 和实系数多项式的集合 $\mathbf{R}\lbrack x\rbrack$ 对 $x^2+1$ 取模后的集合记作 $\mathbf{R}\lbrack x\rbrack /(x^2+1)$，那么集合中的元素都可以表示为 $a_0+a_1x$ 的形式，其中 $a_0,a_1\in\mathbf{R}$，又因为 $x^2\equiv -1\pmod{\left(x^2+1\right)}$，考虑多项式的运算可以发现 $\mathbf{R}\lbrack x\rbrack /(x^2+1)$ 中元素的运算与 $\mathbf{C}$ 中一致。
 
     其中的运算相当于考虑对于系数属于有限域 $\mathbb{F}_p$ 的多项式 $\mathbb{F}_p\lbrack x\rbrack$ 和对 $x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$ 取模后的集合 $\mathbb{F}_p\lbrack x\rbrack /(x^2-(r^2-a))$ 中的运算。
