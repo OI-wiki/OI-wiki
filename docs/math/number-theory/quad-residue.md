@@ -1,4 +1,4 @@
-author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, monkeysui, nanmenyangde, rgw2010, sshwy, StudyingFather, TachikakaMin, Tiphereth-A, Xeonacid, xyf007
+author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, monkeysui, nanmenyangde, rgw2010, sshwy, StudyingFather, TachikakaMin, Tiphereth-A, Xeonacid, xyf007, marscheng1
 
 ## 引入
 
@@ -331,69 +331,31 @@ $$
 
 Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇素数且 $a$ 为二次剩余。
 
-算法可描述为找到 $r$ 满足 $r^2-a$ 为二次非剩余，$(r-x)^{(p+1)/2}\bmod (x^2-(r^2-a))$ 为一个解。
+该算法的第一步为找到一个 $r$ 使得 $r^2-a$ 为二次非剩余，显然可随机一个 $r$ 然后判断，期望可以 $2$ 步找到。
 
-在复数域 $\mathbf{C}$ 中，考虑令 $x^2+1\in\mathbf{R}\lbrack x\rbrack$ 和实系数多项式的集合 $\mathbf{R}\lbrack x\rbrack$ 对 $x^2+1$ 取模后的集合记作 $\mathbf{R}\lbrack x\rbrack /(x^2+1)$，那么集合中的元素都可以表示为 $a_0+a_1x$ 的形式，其中 $a_0,a_1\in\mathbf{R}$，又因为 $x^2\equiv -1\pmod{\left(x^2+1\right)}$，考虑多项式的运算可以发现 $\mathbf{R}\lbrack x\rbrack /(x^2+1)$ 中元素的运算与 $\mathbf{C}$ 中一致。
+于是我们定义一个模 $p$ 意义下的虚数单位 $i$ 满足 $i^2=r^2-a$，任何一个数都可以表示为 $A+Bi$ 的形式。
 
-后文考虑对于系数属于有限域 $\mathbb{F}_p$ 的多项式 $\mathbb{F}_p\lbrack x\rbrack$ 和对 $x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$ 取模后的集合 $\mathbb{F}_p\lbrack x\rbrack /(x^2-(r^2-a))$ 中的运算。
+此时我们可以注意到 $(r+i)^{\frac{p+1}{2}}$ 是原式的解，可以使用快速幂计算。
 
-**选择**  $r$：
+???+note "证明"
+	容易发现，原命题等价于证明 $(r+i)^{p+1} \equiv a \pmod p$
 
-若 $a\equiv 0\pmod p$ 那么 $r^2-a$ 为二次剩余，此时解显然为 $x\equiv 0\pmod p$。所以假设 $a\not\equiv 0\pmod p$。使得 $r^2-a$ 为非零二次剩余的选择有 $\dfrac{p-3}{2}$ 个，而使得 $r^2\equiv a\pmod p$ 的选择恰有两个，那么有 $\dfrac{p-1}{2}$ 种选择可以使得 $r^2-a$ 为二次非剩余，使用随机方法平均约两次可得 $r$.
+	首先考虑证明两个引理
+    
+    **引理1：** $i^p \equiv -i \pmod p$
+    
+    证明：$i^p \equiv i(i^2)^{\frac{p-1}{2}} \equiv i(r^2-a)^{\frac{p-1}{2}} \equiv i \cdot (-1) \equiv -i \pmod p$
+    
+	其中最后一步 $(r^2-a)^{\frac{p-1}{2}} \equiv -1 \pmod p$ 是由于 $r^2-a$ 是二次非剩余
+    
+    **引理2：** $(a+b)^p \equiv a^p+b^p \pmod p
+    
+    证明：将原式使用二项式定理展开，容易发现对于任何 $\dbinom{p}{x}$ 当 $x \ne 0$ 且 $x \ne p$ 时，分子上的 $p$ 无法消掉，将这一些项去掉之后只剩下第一项及最后一项，即 $a^p+b^p$
+    
+    有了这两个引理，我们来考虑证明原式
+    
+    $$(r+i)^{p+1} \equiv (r+i)^p(a+i) \equiv (r^p+i^p)(a+i) \equiv (r-i)(r+i) \equiv r^2-i^2 \equiv r^2-(r^2-a) \equiv a \pmod p$$
 
-???+ note "证明"
-    令 $f(x)=x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$ 和 $a_0+a_1x=(r-x)^{(p+1)/2}\bmod (x^2-(r^2-a))$ 那么有 $a_0^2\equiv a\pmod p$ 且 $a_1\equiv 0\pmod p$.
-    
-    $$
-    \begin{aligned}
-    x^p&\equiv x(x^2)^{\frac{p-1}{2}}&\pmod{f(x)}\\
-    &\equiv x(r^2-a)^{\frac{p-1}{2}}&\pmod{f(x)}&\quad (\because{x^2\equiv r^2-a\pmod{f(x)}})\\
-    &\equiv -x&\pmod{f(x)}&\quad (\because{r^2-a}\text{ is quadratic non-residue})
-    \end{aligned}
-    $$
-    
-    又因为二项式定理
-    
-    $$
-    \begin{aligned}
-    (a+b)^p&=\sum_{i=0}^p\binom{p}{i}a^ib^{p-i}\\
-    &=\sum_{i=0}^p\frac{p!}{i!(p-i)!}a^ib^{p-i}\\
-    &\equiv a^p+b^p\pmod p
-    \end{aligned}
-    $$
-    
-    可以发现只有当 $i=0$ 和 $i=p$ 时由于没有因子 $p$ 不会因为模 $p$ 被消去，其他的项都因为有 $p$ 因子被消去了。所以
-    
-    $$
-    \begin{aligned}
-    (r-x)^{p}&\equiv r^p-x^p&\pmod{f(x)}\\
-    &\equiv r+x&\pmod{f(x)}
-    \end{aligned}
-    $$
-    
-    所以
-    
-    $$
-    \begin{aligned}
-    (a_0+a_1x)^2&=a_0^2+2a_0a_1x+a_1^2x^2\\
-    &\equiv (r-x)^{p+1}&\pmod{f(x)}\\
-    &\equiv (r-x)^p(r-x)&\pmod{f(x)}\\
-    &\equiv (r+x)(r-x)&\pmod{f(x)}\\
-    &\equiv r^2-x^2&\pmod{f(x)}\\
-    &\equiv a&\pmod{f(x)}
-    \end{aligned}
-    $$
-    
-    若 $a_1\not\equiv 0\pmod p$ 且
-    
-    $$
-    \begin{aligned}
-    (a_0+a_1x)^2&=a_0^2+2a_0a_1x+a_1^2x^2\\
-    &\equiv a_0^2+2a_0a_1x+a_1^2(r^2-a)\pmod{f(x)}
-    \end{aligned}
-    $$
-    
-    所以 $x$ 的系数必须为零即 $a_0\equiv 0\pmod p$ 此时考虑 Legendre 符号为完全积性函数可知 $r^2-a\equiv a/a_1^2\pmod p$ 显然为二次剩余，不符合定义。因此 $a_1\equiv 0\pmod p$ 且 $a_0^2\equiv a\pmod p$.
 
 ### Bostan–Mori 算法
 
