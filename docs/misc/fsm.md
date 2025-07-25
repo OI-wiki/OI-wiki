@@ -89,13 +89,13 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
 NFA 是 DFA 的扩展，似乎一个可能的推论是 NFA 比 DFA 能力强，能识别更多的语言类？其实不然，我们之后将探讨 DFA 与 NFA 的等价性。
 
 ???+ abstract "NFA"
-    下面我们令 $\mathcal{P}(Q)$ 表示 $Q$ 的幂集（所有子集的集合），令 $\Sigma_{\varepsilon}=\Sigma\cup\{\varepsilon\}$（$\varepsilon$ 表示空串，即允许空字符的存在，空字符可以走或者不走）。NFA是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，其中：
+    下面我们令 $\mathcal{P}(Q)$ 表示 $Q$ 的幂集（所有子集的集合），令 $\Sigma_{\varepsilon}=\Sigma\cup\{\varepsilon\}$（$\varepsilon$ 表示空串，即允许空字符的存在，空字符可以走或者不走）。NFA 是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，其中：
     
-    1.  **有限状态集合** $Q$。
+    1.  **有限状态集合**  $Q$。
     2.  **字符集** $\Sigma$。
     3.  **转移函数** $\delta:Q\times \Sigma_{\varepsilon} \to \mathcal{P}(Q)$ 是一个接受两个参数返回一个 **状态集合** 的函数，其中第一个参数和返回值都是一个状态，第二个参数是字符集中的一个字符，而返回值则是所有可能的后继状态形成的集合。
-    4.  **起始状态** $q_0\in Q$。
-    5.  **接受状态集合** $F\subseteq Q$。
+    4.  **起始状态**  $q_0\in Q$。
+    5.  **接受状态集合**  $F\subseteq Q$。
 
 ???+ abstract "NFA 的计算流程"
     注意 NFA 中只要状态集合中存在一个状态属于接受状态集合，整个串就是被接受的。
@@ -119,9 +119,9 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
     
     我们构造的 DFA 为 $M = (Q', \Sigma, \delta', E(q_0), F')$，其中：
     
-    - **有限状态集合** $Q' = \mathcal{P}(Q)$。
-    - **转移函数** $\delta' : Q' \times \Sigma \to Q'$ 满足 $\delta'(S, c) = \bigcup_{q \in S, q' \in \delta(q, c)} E(q')$。
-    - **接受状态集合** $F' = \{ S \subset Q \mid S \cap F \neq \emptyset \}$。
+    -   **有限状态集合**  $Q' = \mathcal{P}(Q)$。
+    -   **转移函数** $\delta' : Q' \times \Sigma \to Q'$ 满足 $\delta'(S, c) = \bigcup_{q \in S, q' \in \delta(q, c)} E(q')$。
+    -   **接受状态集合**  $F' = \{ S \subset Q \mid S \cap F \neq \emptyset \}$。
     
     显然计算的每一步，$M$ 所在的状态对应 $N$ 所处的状态集合。
 
