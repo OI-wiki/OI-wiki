@@ -77,7 +77,7 @@ void hopcroft() {
   queue<int> W;
   W.push(1);
   cnt = 10;
-  for (int i = 0; i < tot; i++) {
+  for (int i = 1; i <= tot; i++) {
     Q[belong[i] = type[i] + 1].push_back(i);
   }
   for (int i = 1; i <= 10; i++) {
@@ -125,7 +125,7 @@ void hopcroft() {
     }
   }
 
-  for (int i = 0; i < tot; i++)
+  for (int i = 1; i <= tot; i++)
     for (int c = 0; c <= 9; c++) trans[belong[i]][c] = belong[nxt[i][c]];
 }
 
