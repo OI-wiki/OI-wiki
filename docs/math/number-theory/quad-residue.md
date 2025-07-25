@@ -373,6 +373,8 @@ Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇�
 
     证明：$i^p \equiv i(i^2)^{\frac{p-1}{2}} \equiv i(r^2-a)^{\frac{p-1}{2}} \equiv i \cdot (-1) \equiv -i \pmod p$。
 
+    解释：在这里，由于 $i$ 是我们定义的一个实际不存在的数，所以 $a^p \equiv a \pmod p$ 在此处不成立。
+
     其中最后一步 $(r^2-a)^{\frac{p-1}{2}} \equiv -1 \pmod p$ 是由于 $r^2-a$ 是二次非剩余。
 
     **引理2：** $(a+b)^p \equiv a^p+b^p \pmod p$
