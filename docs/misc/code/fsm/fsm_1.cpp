@@ -4,11 +4,12 @@
 #include <vector>
 #define N 100010
 #define M 200
-#define int long long
+#define ll long long
 #define P 998244353
 using namespace std;
 int n, k, r, tot, ans[N], nxt[1 << 20][2], trans[M][2], isF[1 << 20];
-int belong[1 << 20], cnt, sz[M], ac[M], f[N][M], g[N][M];
+int belong[1 << 20], cnt, sz[M], ac[M];
+ll f[N][M], g[N][M];
 vector<int> pre[1 << 20][2], Q[M], S[M], pre_trans[M][2];
 bool vis[1 << 20], tag[1 << 20];
 char a[N];
@@ -92,8 +93,8 @@ void hopcroft() {
 }
 
 // --8<-- [end:core]
-signed main() {
-  scanf("%lld %lld %lld %s", &n, &k, &r, a + 1);
+int main() {
+  scanf("%d %d %d %s", &n, &k, &r, a + 1);
   dfs(0);
   for (int i = 0; i <= r; i++) isF[i] = 1;
   tot = 1 << k;
@@ -123,7 +124,7 @@ signed main() {
     if (a[i] == '1')
       printf("0\n");
     else {
-      int ans = 0;
+      ll ans = 0;
       for (int j = 1; j <= cnt; j++) {
         ans = (ans + f[i - 1][j] * g[i + 1][trans[j][0]]) % P;
       }
