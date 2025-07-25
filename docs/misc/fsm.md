@@ -80,7 +80,7 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
 
 ## 不确定性有限状态自动机
 
-非确定性有限状态自动机（Nondeterministic Finite Automaton，NFA）是 DFA 的自然推广，在 NFA 中，任何一个点和某个转移字符可能存在多个后继，同时，也有空字符的存在。
+非确定性有限状态自动机（Nondeterministic Finite Automaton，NFA）[^nfa-and-nfaepsilon]是 DFA 的自然推广，在 NFA 中，任何一个点和某个转移字符可能存在多个后继，同时，也有空字符的存在。
 
 举个例子，还是「奶茶自动机」。下单后，尽管有奶茶的钱，却有可能因为网络不佳从而没有买到奶茶，这是存在多个后继；也有可能因为手速慢了，尽管 **过程是一样的**（即输入的串是一样的），却因为奶茶售完从而没有买到奶茶，这是空字符的存在，空字符可走可不走。对该自动机稍加修改即可实现上述功能：
 
@@ -89,18 +89,18 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
 NFA 是 DFA 的扩展，似乎一个可能的推论是 NFA 比 DFA 能力强，能识别更多的语言类？其实不然，我们之后将探讨 DFA 与 NFA 的等价性。
 
 ???+ abstract "NFA"
-    下面我们令 $\mathcal{P}(Q)$ 表示 $Q$ 的幂集（所有子集的集合），令 $\Sigma_{\epsilon}=\Sigma\cup\{\epsilon\}$（$\epsilon$ 表示空串，即允许空字符的存在，空字符可以走或者不走）。NFA[^nfa-and-nfaepsilon]是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，其中：
+    下面我们令 $\mathcal{P}(Q)$ 表示 $Q$ 的幂集（所有子集的集合），令 $\Sigma_{\varepsilon}=\Sigma\cup\{\varepsilon\}$（$\varepsilon$ 表示空串，即允许空字符的存在，空字符可以走或者不走）。NFA是一个五元组 $(Q,\Sigma,\delta,q_0,F)$，其中：
     
-    1.  **有限状态集合**（$Q$）。
-    2.  **字符集**（$\Sigma$）。
-    3.  **转移函数**（$\delta:Q\times \Sigma_{\epsilon} \to \mathcal{P}(Q)$）。
-    4.  **起始状态**（$q_0\in Q$）。
-    5.  **接受状态集合**（$F\subseteq Q$）。
+    1.  **有限状态集合** $Q$。
+    2.  **字符集** $\Sigma$。
+    3.  **转移函数** $\delta:Q\times \Sigma_{\varepsilon} \to \mathcal{P}(Q)$ 是一个接受两个参数返回一个 **状态集合** 的函数，其中第一个参数和返回值都是一个状态，第二个参数是字符集中的一个字符，而返回值则是所有可能的后继状态形成的集合。
+    4.  **起始状态** $q_0\in Q$。
+    5.  **接受状态集合** $F\subseteq Q$。
 
 ???+ abstract "NFA 的计算流程"
     注意 NFA 中只要状态集合中存在一个状态属于接受状态集合，整个串就是被接受的。
     
-    设 $N=(Q,\Sigma,\delta,q_0,F)$ 是一个 NFA，$w$ 可以被表示为 $y_1y_2\cdots y_m~(y_i\in \Sigma_{\epsilon})$（举个例子，因为允许空字符的存在，字符串 $\tt abc$ 也可以看作 $\tt {a}\epsilon\tt {bc}\epsilon\epsilon$）。若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_m$ 满足：
+    设 $N=(Q,\Sigma,\delta,q_0,F)$ 是一个 NFA，$w$ 可以被表示为 $y_1y_2\cdots y_m~(y_i\in \Sigma_{\varepsilon})$（举个例子，因为允许空字符的存在，字符串 $\tt abc$ 也可以看作 $\tt {a}\varepsilon\tt {bc}\varepsilon\varepsilon$）。若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_m$ 满足：
     
     -   $r_0=q_0$，
     -   $r_{i+1}\in\delta(r_i,y_{i+1})$（$i\in\{0,1,\cdots,m-1\}$），
@@ -114,6 +114,19 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
 
 我们称两个自动机等价，当且仅当它们能识别的语言相同。DFA 与 NFA 是等价的，即每一个 NFA 都等价于某一个 DFA。每个 DFA 都可以直接看作一个 NFA，而我们可以通过幂集构造（powerset construction）的方法将一个 NFA 转换为 DFA。
 
+???+ abstract "幂集构造"
+    设需要被构造的 NFA 为 $N = (Q, \Sigma, \delta, q_0, F)$，定义 $E(q)$ 表示从状态 $q$ 出发，只沿 $\varepsilon$ 转移能到达的状态集合。
+    
+    我们构造的 DFA 为 $M = (Q', \Sigma, \delta', E(q_0), F')$，其中：
+    
+    - **有限状态集合** $Q' = \mathcal{P}(Q)$。
+    - **转移函数** $\delta' : Q' \times \Sigma \to Q'$ 满足 $\delta'(S, c) = \bigcup_{q \in S, q' \in \delta(q, c)} E(q')$。
+    - **接受状态集合** $F' = \{ S \subset Q \mid S \cap F \neq \emptyset \}$。
+    
+    显然计算的每一步，$M$ 所在的状态对应 $N$ 所处的状态集合。
+
+虽然 NFA 与 DFA 表达语言的能力相同，但我们还是认为 NFA 是有用的。这是因为对于某些正则语言，用 NFA 表示所需的状态数远小于 DFA 所需的状态数。而且，我们也不难构造出一个状态数为 $n$ 的 NFA 使得它对应的最小 DFA 状态数是 $\Theta(2^n)$ 的。此时直接计算 NFA 的时间复杂度是更优的。
+
 ## 计算 DFA 与 NFA 的时间复杂度
 
 设给定的串长为 $n$，自动机状态数为 $s$，字符集大小为常数。那么显然地，DFA 计算的时间复杂度为 $O(n)$，只需要模拟上述的过程即可。
@@ -124,10 +137,10 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
 
 ### 正则表达式
 
-正则表达式是另一种常用的正则语言的描述方法，尽管我们可以在许多现代语言（例如 Python）中看到它的身影，但实际上它们实现的是正则表达式的一个超集。
+正则表达式（regular expression）是另一种常用的正则语言的描述方法，尽管我们可以在许多现代语言（例如 Python）中看到它的身影，但实际上它们实现的是正则表达式的一个超集。
 
 ???+ abstract "正则表达式"
-    给定一个字符集 $\Sigma$，正则表达式（regular expression）是由以下规则归纳定义的符号串：
+    给定一个字符集 $\Sigma$，正则表达式是由以下规则归纳定义的符号串：
 
     1. 任意字符 $c \in \Sigma$ 是一个正则表达式；
     2. 空串符号 $\varepsilon$ 是正则表达式；
@@ -138,7 +151,7 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
         - $(R_1^*)$。
 
 ???+ abstract "正则表达式所表示的语言"
-    每个正则表达式 $R$ 对应一个语言 $L(R) \subseteq \Sigma^*$：
+    设每个正则表达式 $R$ 对应的形式语言为 $L(R)$，则有：
     
     1.  若 $R = c$，其中 $c \in \Sigma$，则 $L(R) = \{c\}$。
     2.  若 $R = \varepsilon$，则 $L(R) = \{\varepsilon\}$。
@@ -148,12 +161,13 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
     6.  若 $R = R_1^*$，则 $L(R) = \{u_1 u_2 \cdots u_n \mid u_i \in L(R_1),\ n \in \mathbb{N}^+\} \cup \{\varepsilon\}$。我们称它为闭包。
 
 ???+ example "例子"
-    -   $L(R_1) = \{0,\ 01\}$，$L(R_2) = \{\varepsilon,\ 1,\ 11,\ 111,\ \dots\}$
+    设 $L(R_1) = \{0,\ 01\}$，$L(R_2) = \{\varepsilon,\ 1,\ 11,\ 111,\ \dots\}$，则有：
+
     -   $L(R_1R_2) = \{0,\ 01,\ 011,\ 0111,\ \dots\}$
     -   $R_2^\ast = R_2$
     -   $L(R_1 + R_2) = \{0,\ 01,\ \varepsilon,\ 1,\ 11,\ 111,\ \dots\}$
 
-同时，每个正则表达式明显可以转换为一个 NFA，每个 DFA 都可以转换为一个正则表达式。所以，正则表达式与 FSM 是等价的。
+同时，每个正则表达式可以通过 [Thompson 构造法（Thompson's construction）](https://zh.wikipedia.org/wiki/%E6%B1%A4%E6%99%AE%E6%A3%AE%E6%9E%84%E9%80%A0%E6%B3%95) 转换为一个 NFA，每个 DFA 都可以通过状态消除法（State Elimination Method）[^state-elimination-method]转换为一个正则表达式。所以，正则表达式与 FSM 是等价的。
 
 ### 正则语言
 
@@ -182,8 +196,8 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
     7.  如果 $L$ 是正则语言，则其反转语言 $L^R$（所有字符串反转后组成的集合）是正则的。
     8.  若 $h$ 是一个字母到字符串的映射，且 $L$ 是正则语言，则 $h(L)$ 是正则的。
     9.  若 $h$ 是一个字母到字符串的映射，且 $L$ 是正则语言，则 $h^{-1}(L)$ 是正则的。
-
-因此所有有限语言都是正则语言。
+    
+    因此所有有限语言都是正则语言。
 
 ## 自动机常见应用
 
@@ -254,7 +268,7 @@ DFA 最小化常用的算法是 Hopcroft 算法，其核心思想是维护一个
 
 然后维护 $Q$ 表示 **当前** 划分出来的等价类，最开始 $Q\gets\{F,Q\setminus F\}$。同时我们给每个等价类标号，记第 $x$ 个等价类为 $Q_x$。在这里对等价类标号仅仅是为了方便叙述算法过程，对标号方法没有要求。
 
-每次我们从 $W$ 中任意取出一个证据 $A$（一般取出第一个）进行划分。枚举字符 $c\in\Sigma$，然后求出 $S_x=\{u|u\in Q_x,\delta(u,c)\in A\}$。如果对于一个 $x$，$S_x\neq \varnothing$ 且 $|S_x|\neq|Q_x|$，那么就可以将 $Q_x$ 划分为两个等价类：$\{S_x,Q_x\setminus S_x\}$，更新 $Q$。
+每次我们从 $W$ 中任意取出一个证据 $A$（一般取出第一个）进行划分。枚举字符 $c\in\Sigma$，然后求出 $S_x=\{u\mid u\in Q_x,\delta(u,c)\in A\}$。如果对于一个 $x$，$S_x\neq \varnothing$ 且 $|S_x|\neq|Q_x|$，那么就可以将 $Q_x$ 划分为两个等价类：$\{S_x,Q_x\setminus S_x\}$，更新 $Q$。
 
 这里的意思是，通过证据 $A$ 与一个转移字符 $c$，找到能够转移到 $A$ 的这个状态的状态。如果一个等价类中有一部分状态能通过 $c$ 转移到一个证据，但是另一部分不能，那么就可以以此将一个等价类划分为两个等价类。
 
@@ -298,7 +312,7 @@ $$
     -   `ac[x]`：等价类 $x$ 的接受状态。
     -   `isF[u]`：状态 $u$ 是否是接受态。
     -   `tag[u]`：根据一个证据对等价类划分时，点 $u$ 是否能够通过字符 $c$ 到达证据中的状态。
-    -   `S[x]`：$S_x=\{u|u\in Q_x,\delta(u,c)\in A\}$。
+    -   `S[x]`：$S_x=\{u\mid u\in Q_x,\delta(u,c)\in A\}$。
     -   `Q[x]`：等价类 $x$ 用的 **临时数组**，临时存储等价类 $x$ 所包含的状态。注意这个数组并不一定是等价类 $x$ 所包含的状态。
     -   `rebuild(x)`：根据 `belong` 重构 `Q[x]` 使得它的值为等价类 $x$ 所包含的状态。
     
@@ -421,6 +435,8 @@ $$
 -   [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/)；
 -   [国家集训队 2021 论文 徐哲安 浅谈有限状态自动机及其应用](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf)。
 
-[^nfa-and-nfaepsilon]: 这个定义中我们允许状态之间通过空字符（$\epsilon$）转移，因此更准确地说，这是一个带 $\epsilon$ 转移的非确定有限自动机（NFA-$\epsilon$）。有些教材中将其直接称为 NFA，为简洁起见，本文采用这一用法。在理论上 NFA 与 NFA-$\epsilon$ 是有所区分的，但是实际上它们的计算能力是一致的。
+[^nfa-and-nfaepsilon]: 这个定义中我们允许状态之间通过空字符（$\varepsilon$）转移，因此更准确地说，这是一个带 $\varepsilon$ 转移的非确定有限自动机（NFA-$\varepsilon$）。有些教材中将其直接称为 NFA，为简洁起见，本文采用这一用法。在理论上 NFA 与 NFA-$\varepsilon$ 是有所区分的，但是实际上它们的计算能力是一致的。
+
+[^state-elimination-method]: 详见 [国家集训队 2021 论文 徐哲安 浅谈有限状态自动机及其应用](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf) 中 3.2 节。
 
 [^trie-is-dfa]: 自动机应当有失配状态。Trie 只有显式地提供了失配状态，才是一个自动机。
