@@ -178,7 +178,7 @@ $$
 
 设 $\boldsymbol a=(x,y)$，倾角为 $\theta$，长度为 $l=\sqrt{x^2+y^2}$。则 $x=l\cos \theta,y=l\sin\theta$。令其逆时针旋转 $\alpha$ 度角，得到向量 $\boldsymbol b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$。
 
-![](./images/misc1.png)
+![](./images/vector-rotation.svg)
 
 由三角恒等变换得，
 

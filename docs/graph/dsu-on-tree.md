@@ -1,4 +1,4 @@
-author: abc1763613206, cesonic, Ir1d, MingqiHuang, xinchengo,xiaofu-15191
+author: abc1763613206, cesonic, Ir1d, MingqiHuang, xinchengo, xiaofu-15191, hsefz-ChenJunJie
 
 ## 引入
 
@@ -82,99 +82,28 @@ void merge(int x, int y) {
 
 *图中标粗的即为重边，重边连向的子节点为重儿子*
 
+## 优化
+
+在证明过程中提到，dsu on tree 利用了重链剖分中的轻重儿子概念加速合并。既然如此，我们也可以直接利用重链剖分得到的 dfs 序，化递归为迭代，进一步优化 dsu on tree 的常数。
+
+dfs 序本身就有如下的性质：一个节点的子树在 dfs 序上一定连续。因此，可以倒序遍历 dfs 序数组。这样保证了在遍历到一个节点时，它的子树中的其他节点一定已经得到了处理。
+
+重链剖分得到的 dfs 序有着如下优良的性质：一条重链在 dfs 序上一定是连续的。因此，当按照 dfs 序倒序遍历节点时，对于一条重链顶端的节点，要遍历的下一个节点一定不是该节点的父亲，所以要清空它的影响；除此之外，对于不在重链顶端的节点，遍历的前一个节点要么是自己的重儿子，要么是已经清除了影响的其他分支的节点，所以可以直接继承其影响。在此基础上，再利用 dfs 序快速统计所有轻儿子的影响，记录答案。
+
+以上过程称为 dsu on tree 的非递归/迭代实现（也被称为 dsu on tree 的 dfs 序实现）。相较于原本递归实现，它减小了递归调用函数的时空开销，获得了不小的常数优化，**尤其在处理包含大量链状结构的树时，拥有显著的栈空间优势。**
+
 ## 实现
 
-???+ note "实现"
-    ```cpp
-    #include <cstdio>
-    #include <vector>
-    using namespace std;
+??? example "参考实现"
+    === "递归实现"
+        ```cpp
+        --8<-- "docs/graph/code/dsu-on-tree/dsu-on-tree_1.cpp"
+        ```
     
-    constexpr int N = 2e5 + 5;
-    
-    int n;
-    
-    // g[u]: 存储与 u 相邻的结点
-    vector<int> g[N];
-    
-    // sz: 子树大小
-    // big: 重儿子
-    // col: 结点颜色
-    // L[u]: 结点 u 的 DFS 序
-    // R[u]: 结点 u 子树中结点的 DFS 序的最大值
-    // Node[i]: DFS 序为 i 的结点
-    // ans: 存答案
-    // cnt[i]: 颜色为 i 的结点个数
-    // totColor: 目前出现过的颜色个数
-    int sz[N], big[N], col[N], L[N], R[N], Node[N], totdfn;
-    int ans[N], cnt[N], totColor;
-    
-    void add(int u) {
-      if (cnt[col[u]] == 0) ++totColor;
-      cnt[col[u]]++;
-    }
-    
-    void del(int u) {
-      cnt[col[u]]--;
-      if (cnt[col[u]] == 0) --totColor;
-    }
-    
-    int getAns() { return totColor; }
-    
-    void dfs0(int u, int p) {
-      L[u] = ++totdfn;
-      Node[totdfn] = u;
-      sz[u] = 1;
-      for (int v : g[u])
-        if (v != p) {
-          dfs0(v, u);
-          sz[u] += sz[v];
-          if (!big[u] || sz[big[u]] < sz[v]) big[u] = v;
-        }
-      R[u] = totdfn;
-    }
-    
-    void dfs1(int u, int p, bool keep) {
-      // 计算轻儿子的答案
-      for (int v : g[u])
-        if (v != p && v != big[u]) {
-          dfs1(v, u, false);
-        }
-      // 计算重儿子答案并保留计算过程中的数据（用于继承）
-      if (big[u]) {
-        dfs1(big[u], u, true);
-      }
-      for (int v : g[u])
-        if (v != p && v != big[u]) {
-          // 子树结点的 DFS 序构成一段连续区间，可以直接遍历
-          for (int i = L[v]; i <= R[v]; i++) {
-            add(Node[i]);
-          }
-        }
-      add(u);
-      ans[u] = getAns();
-      if (!keep) {
-        for (int i = L[u]; i <= R[u]; i++) {
-          del(Node[i]);
-        }
-      }
-    }
-    
-    int main() {
-      scanf("%d", &n);
-      for (int i = 1; i <= n; i++) scanf("%d", &col[i]);
-      for (int i = 1; i < n; i++) {
-        int u, v;
-        scanf("%d%d", &u, &v);
-        g[u].push_back(v);
-        g[v].push_back(u);
-      }
-      dfs0(1, 0);
-      dfs1(1, 0, false);
-      for (int i = 1; i <= n; i++) printf("%d%c", ans[i], " \n"[i == n]);
-      return 0;
-    }
-    ```
+    === "非递归实现"
+        ```cpp
+        --8<-- "docs/graph/code/dsu-on-tree/dsu-on-tree_2.cpp"
+        ```
 
 ## 运用
 
