@@ -1,72 +1,32 @@
-#include <cstring>
+// --8<-- [start:full-text]
 #include <iostream>
-#include <map>
 #include <queue>
 #include <vector>
+#define N 100010
+#define M 200
 #define ll long long
-#define ull unsigned long long
+#define P 998244353
 using namespace std;
+int n, k, r, tot, ans[N], nxt[1 << 20][2], trans[M][2], isF[1 << 20];
+int belong[1 << 20], cnt, sz[M], ac[M];
+ll f[N][M], g[N][M];
+vector<int> pre[1 << 20][2], Q[M], S[M], pre_trans[M][2];
+bool vis[1 << 20], tag[1 << 20];
+char a[N];
 
-struct node {
-  ull a1, a2;
+inline int lowbit(int x) { return x & -x; }
 
-  node() { a1 = a2 = 0; }
-
-  int get(int x) {
-    if (x <= 63) return (a1 >> x) & 1;
-    return (a2 >> (x - 64)) & 1;
-  }
-
-  void upd(int x, int v) {
-    if (x <= 63) {
-      if (v == 0)
-        a1 &= ~(1ULL << x);
-      else
-        a1 |= 1ULL << x;
-    } else {
-      if (v == 0)
-        a2 &= ~(1ULL << (x - 64));
-      else
-        a2 |= 1ULL << (x - 64);
-    }
-  }
-
-  friend bool operator<(const node &x, const node &y) {
-    return x.a1 < y.a1 || (x.a1 == y.a1 && x.a2 < y.a2);
-  }
-};
-
-map<node, int> mp;
-int tot, cnt, T;
-int nxt[20000][10], type[20000], belong[20000], tag[20000], sz[20000],
-    trans[20000][10], ans[20000];
-vector<int> pre[20000][10], Q[20000], S[20000];
-
-int dfs(node &st) {
-  if (mp.count(st)) return mp[st];
-  int res = mp[st] = ++tot;
-  for (int i = 0; i <= 90; i++)
-    if (st.get(i)) {
-      type[res] = i;
-      break;
-    }
-  for (int v = 0; v <= 9; v++) {
-    node nw;
-    for (int i = 0; i <= 90; i++)
-      if (st.get(i)) {
-        if (i + v <= 90) nw.upd(i + v, 1);
-        if (i - v >= 0)
-          nw.upd(i - v, 1);
-        else
-          nw.upd(v - i, 1);
-      }
-    int t = dfs(nw);
-    nxt[res][v] = t;
-    pre[t][v].push_back(res);
-  }
-  return res;
+int dfs(int x) {
+  if (vis[x]) return x;
+  vis[x] = 1;
+  nxt[x][0] = dfs(x - lowbit(x));
+  pre[x - lowbit(x)][0].push_back(x);
+  nxt[x][1] = dfs(x + lowbit((1 << k) - 1 - x));
+  pre[x + lowbit((1 << k) - 1 - x)][1].push_back(x);
+  return x;
 }
 
+// --8<-- [start:core]
 void hopcroft() {
   const auto rebuild = [&](int u) {
     vector<int> tmp;
@@ -76,19 +36,16 @@ void hopcroft() {
   };
   queue<int> W;
   W.push(1);
-  cnt = 10;
-  for (int i = 1; i <= tot; i++) {
-    Q[belong[i] = type[i] + 1].push_back(i);
+  cnt = 2;
+  for (int i = 0; i < tot; i++) {
+    Q[belong[i] = isF[i] ? 1 : 2].push_back(i);
   }
-  for (int i = 1; i <= 10; i++) {
-    sz[i] = Q[i].size();
-    ans[i] = i - 1;
-  }
+  sz[1] = Q[1].size(), sz[2] = Q[2].size(), ac[1] = 1;
   while (!W.empty()) {
     int u = W.front();
     W.pop();
     rebuild(u);
-    for (int c = 0; c <= 9; c++) {
+    for (int c = 0; c <= 1; c++) {
       vector<int> td;
       for (auto x : Q[u]) {
         for (auto y : pre[x][c]) {
@@ -99,8 +56,12 @@ void hopcroft() {
       }
       for (auto i : td) {
         if (S[i].size() < sz[i]) {
-          ans[++cnt] = ans[i];
+          ac[++cnt] = ac[i];
           if (S[i].size() * 2 <= sz[i]) {
+            // 为了复杂度正确，这里没有从 Q[i] 中删除 S[i]，而是改变它们的
+            // belong。注意实现时，如果需要取用 Q 中的内容，必须先 rebuild。
+            // 以及注意 sz 中的值是真正的等价类的大小，sz[i] 不一定等于
+            // Q[i].size()
             for (auto j : S[i]) Q[belong[j] = cnt].push_back(j);
             sz[cnt] = S[i].size();
             sz[i] -= S[i].size();
@@ -125,47 +86,50 @@ void hopcroft() {
     }
   }
 
-  for (int i = 1; i <= tot; i++)
-    for (int c = 0; c <= 9; c++) trans[belong[i]][c] = belong[nxt[i][c]];
+  for (int i = 0; i < tot; i++)
+    for (int c = 0; c <= 1; c++) trans[belong[i]][c] = belong[nxt[i][c]];
+  for (int i = 1; i <= cnt; i++)
+    for (int c = 0; c <= 1; c++) pre_trans[trans[i][c]][c].push_back(i);
 }
 
-int a[20], len;
-ll f[20][718][10];
-
-ll F(int len, int lim, int x, int k) {
-  if (!lim && f[len][x][k] != -1) return f[len][x][k];
-  if (len == 0) return f[len][x][k] = (ans[x] <= k);
-  if (lim) {
-    ll res = 0;
-    for (int i = 0; i < a[len]; i++) res += F(len - 1, 0, trans[x][i], k);
-    res += F(len - 1, 1, trans[x][a[len]], k);
-    return res;
-  }
-  ll res = 0;
-  for (int i = 0; i <= 9; i++) res += F(len - 1, 0, trans[x][i], k);
-  return f[len][x][k] = res;
-}
-
-ll calc(ll x, int k) {
-  len = 0;
-  while (x) {
-    a[++len] = x % 10;
-    x /= 10;
-  }
-  return F(len, 1, belong[1], k);
-}
-
+// --8<-- [end:core]
 int main() {
-  memset(f, -1, sizeof f);
-  node st;
-  st.upd(0, 1);
-  dfs(st);
+  scanf("%d %d %d %s", &n, &k, &r, a + 1);
+  dfs(0);
+  for (int i = 0; i <= r; i++) isF[i] = 1;
+  tot = 1 << k;
+
   hopcroft();
-  scanf("%d", &T);
-  while (T--) {
-    ll l, r;
-    int k;
-    scanf("%lld%lld%d", &l, &r, &k);
-    printf("%lld\n", calc(r, k) - calc(l - 1, k));
-  }
+
+  f[0][belong[0]] = 1;
+  for (int i = 1; i <= n; i++)
+    for (int j = 1; j <= cnt; j++) {
+      for (int c = 0; c <= 1; c++) {
+        if (a[i] == '?' || (a[i] - '0' == c))
+          (f[i][trans[j][c]] += f[i - 1][j]) %= P;
+      }
+    }
+  for (int i = 1; i <= cnt; i++)
+    if (ac[i]) g[n + 1][i]++;
+  for (int i = n; i >= 1; i--)
+    for (int j = 1; j <= cnt; j++) {
+      for (int c = 0; c <= 1; c++) {
+        if (a[i] == '?' || (a[i] - '0' == c))
+          for (int k : pre_trans[j][c]) {
+            (g[i][k] += g[i + 1][j]) %= P;
+          }
+      }
+    }
+  for (int i = 1; i <= n; i++)
+    if (a[i] == '1')
+      printf("0\n");
+    else {
+      ll ans = 0;
+      for (int j = 1; j <= cnt; j++) {
+        ans = (ans + f[i - 1][j] * g[i + 1][trans[j][0]]) % P;
+      }
+      printf("%lld\n", ans);
+    }
 }
+
+// --8<-- [end:full-text]

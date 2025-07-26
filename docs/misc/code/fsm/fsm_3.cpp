@@ -1,180 +1,171 @@
-#include <algorithm>
 #include <cstring>
 #include <iostream>
+#include <map>
+#include <queue>
 #include <vector>
+#define ll long long
+#define ull unsigned long long
 using namespace std;
-// 0:0
-// 1:1
-// 00:2
-// 01:3
-// 10:4
-// 11:5
-char op[9];
-int q, n;
-char a[100010];
 
 struct node {
-  vector<bool> sta;
-  int x, y;
-} l[1 << 10];
+  ull a1, a2;
 
-int len = 0;
+  node() { a1 = a2 = 0; }
 
-struct DFA {
-  bool ac[16][1 << 15], acc[60];
-  pair<int, int> pm[60];
-  int mp[10][1 << 9];
-  unsigned char f[60][100010][12];
-  int cnt = 0;
+  int get(int x) {
+    if (x <= 63) return (a1 >> x) & 1;
+    return (a2 >> (x - 64)) & 1;
+  }
 
-  inline void build(int x) {
-    if (x <= 1)
-      ac[1][x] = 1;
-    else
-      ac[2][x - 2] = 1;
-    for (int i = 3; i <= 15; i++) {
-      for (int s = 0; s < (1 << i); s++) {
-        int s1 = 0, s2 = s;
-        for (int j = 0; j <= i - 3; j++) {
-          int v = op[s2 & 7];
-          int t = ((((s2 >> 3) << 1) | op[s2 & 7]) << j) | s1;
-          ac[i][s] |= ac[i - 2][t];
-          s1 |= (s2 & 1) << j;
-          s2 >>= 1;
+  void upd(int x, int v) {
+    if (x <= 63) {
+      if (v == 0)
+        a1 &= ~(1ULL << x);
+      else
+        a1 |= 1ULL << x;
+    } else {
+      if (v == 0)
+        a2 &= ~(1ULL << (x - 64));
+      else
+        a2 |= 1ULL << (x - 64);
+    }
+  }
+
+  friend bool operator<(const node &x, const node &y) {
+    return x.a1 < y.a1 || (x.a1 == y.a1 && x.a2 < y.a2);
+  }
+};
+
+map<node, int> mp;
+int tot, cnt, T;
+int nxt[20000][10], type[20000], belong[20000], tag[20000], sz[20000],
+    trans[20000][10], ans[20000];
+vector<int> pre[20000][10], Q[20000], S[20000];
+
+int dfs(node &st) {
+  if (mp.count(st)) return mp[st];
+  int res = mp[st] = ++tot;
+  for (int i = 0; i <= 90; i++)
+    if (st.get(i)) {
+      type[res] = i;
+      break;
+    }
+  for (int v = 0; v <= 9; v++) {
+    node nw;
+    for (int i = 0; i <= 90; i++)
+      if (st.get(i)) {
+        if (i + v <= 90) nw.upd(i + v, 1);
+        if (i - v >= 0)
+          nw.upd(i - v, 1);
+        else
+          nw.upd(v - i, 1);
+      }
+    int t = dfs(nw);
+    nxt[res][v] = t;
+    pre[t][v].push_back(res);
+  }
+  return res;
+}
+
+void hopcroft() {
+  const auto rebuild = [&](int u) {
+    vector<int> tmp;
+    for (auto i : Q[u])
+      if (belong[i] == u) tmp.push_back(i);
+    swap(Q[u], tmp);
+  };
+  queue<int> W;
+  W.push(1);
+  cnt = 10;
+  for (int i = 1; i <= tot; i++) {
+    Q[belong[i] = type[i] + 1].push_back(i);
+  }
+  for (int i = 1; i <= 10; i++) {
+    sz[i] = Q[i].size();
+    ans[i] = i - 1;
+  }
+  while (!W.empty()) {
+    int u = W.front();
+    W.pop();
+    rebuild(u);
+    for (int c = 0; c <= 9; c++) {
+      vector<int> td;
+      for (auto x : Q[u]) {
+        for (auto y : pre[x][c]) {
+          if (S[belong[y]].empty()) td.push_back(belong[y]);
+          S[belong[y]].push_back(y);
+          tag[y] = 1;
         }
       }
-    }
-    len = 0;
-    for (int i = 1; i <= 9; i++) {
-      for (int s = 0; s < (1 << i); s++) {
-        l[++len].sta.clear();
-        l[len].x = i, l[len].y = s, l[len].sta.push_back(ac[i][s]);
-        for (int j = 1; j <= 6; j++) {
-          for (int t = 0; t < (1 << j); t++) {
-            l[len].sta.push_back(ac[i + j][(s << j) | t]);
+      for (auto i : td) {
+        if (S[i].size() < sz[i]) {
+          ans[++cnt] = ans[i];
+          if (S[i].size() * 2 <= sz[i]) {
+            for (auto j : S[i]) Q[belong[j] = cnt].push_back(j);
+            sz[cnt] = S[i].size();
+            sz[i] -= S[i].size();
+          } else {
+            rebuild(i);
+            vector<int> tmp;
+            for (auto j : Q[i]) {
+              if (tag[j])
+                tmp.push_back(j);
+              else
+                Q[belong[j] = cnt].push_back(j);
+            }
+            swap(Q[i], tmp);
+            sz[i] = Q[i].size();
+            sz[cnt] = Q[cnt].size();
           }
+          W.push(cnt);
         }
-      }
-    }
-    sort(l + 1, l + len + 1, [](node a, node b) {
-      if (a.sta != b.sta) return a.sta < b.sta;
-      return a.x < b.x;
-    });
-    for (int i = 1; i <= len; i++) {
-      if (i == 1 || l[i].sta != l[i - 1].sta) {
-        mp[l[i].x][l[i].y] = ++cnt;
-        pm[cnt] = make_pair(l[i].x, l[i].y);
-        acc[cnt] = ac[l[i].x][l[i].y];
-      } else {
-        mp[l[i].x][l[i].y] = cnt;
+        for (auto j : S[i]) tag[j] = 0;
+        S[i].clear();
       }
     }
   }
 
-  inline void init() {
-    for (int i = 1; i <= cnt; i++) {
-      for (int j = 1; j <= (n >> 5); j++) {
-        int x = i;
-        for (int k = (j << 5); k < ((j + 1) << 5); k++) {
-          int l = pm[x].first, s = pm[x].second;
-          x = mp[l + 1][(s << 1) | a[k]];
-        }
-        f[i][j][0] = x;
-      }
-    }
-    for (int k = 1; k <= 11; k++) {
-      for (int j = 1; j + (1 << k) - 1 <= (n >> 5); j++) {
-        for (int i = 1; i <= cnt; i++) {
-          f[i][j][k] = f[f[i][j][k - 1]][j + (1 << (k - 1))][k - 1];
-        }
-      }
-    }
-  }
+  for (int i = 1; i <= tot; i++)
+    for (int c = 0; c <= 9; c++) trans[belong[i]][c] = belong[nxt[i][c]];
+}
 
-  inline bool check(int l, int r) {
-    int x = mp[1][a[l]];
-    l++;
-    while (l <= r && (l & 31)) {
-      int i = pm[x].first, s = pm[x].second;
-      x = mp[i + 1][(s << 1) | a[l]];
-      l++;
-    }
-    for (int k = 11; k >= 0; k--) {
-      if (l + (1 << (k + 5)) - 1 <= r) {
-        x = f[x][l >> 5][k];
-        l += (1 << (k + 5));
-      }
-    }
-    while (l <= r) {
-      int i = pm[x].first, s = pm[x].second;
-      x = mp[i + 1][(s << 1) | a[l]];
-      l++;
-    }
-    return acc[x];
-  }
-} d[6];
+int a[20], len;
+ll f[20][718][10];
 
-void solve(int l, int r, int type) {
-  if (l == r) {
-    putchar(a[l] + '0');
-    return;
+ll F(int len, int lim, int x, int k) {
+  if (!lim && f[len][x][k] != -1) return f[len][x][k];
+  if (len == 0) return f[len][x][k] = (ans[x] <= k);
+  if (lim) {
+    ll res = 0;
+    for (int i = 0; i < a[len]; i++) res += F(len - 1, 0, trans[x][i], k);
+    res += F(len - 1, 1, trans[x][a[len]], k);
+    return res;
   }
-  if (type <= 1) {
-    for (int i = l, j = r; i <= j; i += 2, j -= 2) {
-      for (int k = 7; k >= 0; k--) {
-        if (op[k] == type && d[k >> 2].check(l, i) &&
-            d[(k & 3) + 2].check(i + 1, r)) {
-          putchar('(');
-          solve(l, i, k >> 2);
-          solve(i + 1, r, (k & 3) + 2);
-          putchar(')');
-          return;
-        }
-        if (op[k] == type && d[(k >> 1) + 2].check(l, j - 1) &&
-            d[k & 1].check(j, r)) {
-          putchar('(');
-          solve(l, j - 1, (k >> 1) + 2);
-          solve(j, r, k & 1);
-          putchar(')');
-          return;
-        }
-      }
-    }
-  } else {
-    int k = type - 2;
-    for (int i = l, j = r; i <= j; i += 2, j -= 2) {
-      if (d[k >> 1].check(l, i) && d[k & 1].check(i + 1, r)) {
-        solve(l, i, k >> 1);
-        solve(i + 1, r, k & 1);
-        return;
-      }
-      if (d[k >> 1].check(l, j - 1) && d[k & 1].check(j, r)) {
-        solve(l, j - 1, k >> 1);
-        solve(j, r, k & 1);
-        return;
-      }
-    }
+  ll res = 0;
+  for (int i = 0; i <= 9; i++) res += F(len - 1, 0, trans[x][i], k);
+  return f[len][x][k] = res;
+}
+
+ll calc(ll x, int k) {
+  len = 0;
+  while (x) {
+    a[++len] = x % 10;
+    x /= 10;
   }
+  return F(len, 1, belong[1], k);
 }
 
 int main() {
-  scanf("%s %d", op, &q);
-  swap(op[1], op[4]);
-  swap(op[3], op[6]);
-  for (int i = 0; i < 8; i++) op[i] -= '0';
-  for (int i = 0; i < 6; i++) d[i].build(i);
-  while (q--) {
-    scanf("%s", a + 1);
-    n = strlen(a + 1);
-    for (int i = 1; i <= n; i++) a[i] -= '0';
-    for (int i = 0; i < 6; i++) d[i].init();
-    if (!d[1].check(1, n)) {
-      putchar('-');
-      putchar('1');
-      putchar('\n');
-      continue;
-    }
-    solve(1, n, 1);
-    putchar('\n');
+  memset(f, -1, sizeof f);
+  node st;
+  st.upd(0, 1);
+  dfs(st);
+  hopcroft();
+  scanf("%d", &T);
+  while (T--) {
+    ll l, r;
+    int k;
+    scanf("%lld%lld%d", &l, &r, &k);
+    printf("%lld\n", calc(r, k) - calc(l - 1, k));
   }
 }
