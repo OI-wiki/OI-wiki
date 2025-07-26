@@ -1,4 +1,4 @@
-author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, monkeysui, nanmenyangde, rgw2010, sshwy, StudyingFather, TachikakaMin, Tiphereth-A, Xeonacid, xyf007
+author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, monkeysui, nanmenyangde, rgw2010, sshwy, StudyingFather, TachikakaMin, Tiphereth-A, Xeonacid, xyf007, marscheng1
 
 ## 引入
 
@@ -331,69 +331,64 @@ $$
 
 Cipolla 算法用于求解同余方程 $x^2\equiv a\pmod p$，其中 $p$ 为奇素数且 $a$ 为二次剩余。
 
-算法可描述为找到 $r$ 满足 $r^2-a$ 为二次非剩余，$(r-x)^{(p+1)/2}\bmod (x^2-(r^2-a))$ 为一个解。
+该算法的第一步为找到一个 $r$ 使得 $r^2-a$ 为二次非剩余，当然对于 $a \equiv 0 \pmod p$ 不可能找到这样的 $r$，需要进行特判，下文只讨论 $a \not\equiv 0 \pmod p$ 的情况，此时可随机一个 $r$ 然后判断，期望可以 $2$ 步找到。
 
-在复数域 $\mathbf{C}$ 中，考虑令 $x^2+1\in\mathbf{R}\lbrack x\rbrack$ 和实系数多项式的集合 $\mathbf{R}\lbrack x\rbrack$ 对 $x^2+1$ 取模后的集合记作 $\mathbf{R}\lbrack x\rbrack /(x^2+1)$，那么集合中的元素都可以表示为 $a_0+a_1x$ 的形式，其中 $a_0,a_1\in\mathbf{R}$，又因为 $x^2\equiv -1\pmod{\left(x^2+1\right)}$，考虑多项式的运算可以发现 $\mathbf{R}\lbrack x\rbrack /(x^2+1)$ 中元素的运算与 $\mathbf{C}$ 中一致。
+??? note "为什么期望只需要两步"
+    感性理解：由于模 $p$ 意义下的二次剩余和二次非剩余都有 $\frac{p-1}{2}$ 个，每次随机都有一半的概率找到一个二次非剩余，于是期望步数就是 $1+\frac{1}{2}+\frac{1}{4}+... = 2$
 
-后文考虑对于系数属于有限域 $\mathbb{F}_p$ 的多项式 $\mathbb{F}_p\lbrack x\rbrack$ 和对 $x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$ 取模后的集合 $\mathbb{F}_p\lbrack x\rbrack /(x^2-(r^2-a))$ 中的运算。
+    上面的证明显然是不严谨的，因为 $r^2-a$ 并不一定可以取遍 $[0, p-1]$，下面给出一个严谨的证明：
 
-**选择**  $r$：
+    考虑 $r^2-a$ 为二次剩余的情况，则存在一个 $x$ 使得 $r^2-a \equiv x^2 \pmod p$，移项可得 $(r+x)(r-x) \equiv a \pmod p$，不难发现对于每一个 $(r+x) \in [1, p-1]$，都一一对应于一组 $(r,x)$ 的解，所以使原方程成立的解一共有 $p-1$ 组。我们分类讨论 $x \equiv 0$ 和 $x \not\equiv 0$ 两种情况。对于 $x \equiv 0$，由于 $a$ 是二次剩余，对应了 $2$ 种 $r$ 的取值；对于 $x \not\equiv 0$，有 $p-1-2$ 种情况，每一个 $r$ 对应其中两种，一共有 $\frac{p-3}{2}$ 种 $r$ 的取值。综上，一共有 $2+\frac{p-3}{2}=\frac{p+1}{2}$ 种情况使得 $r^2-a$ 为二次剩余，所以每随机一次得到二次非剩余的概率就是 $\frac{p-1}{2p} \approx \frac{1}{2}$ 接下来期望步数的求法与上述感性理解方法相同。
 
-若 $a\equiv 0\pmod p$ 那么 $r^2-a$ 为二次剩余，此时解显然为 $x\equiv 0\pmod p$。所以假设 $a\not\equiv 0\pmod p$。使得 $r^2-a$ 为非零二次剩余的选择有 $\dfrac{p-3}{2}$ 个，而使得 $r^2\equiv a\pmod p$ 的选择恰有两个，那么有 $\dfrac{p-1}{2}$ 种选择可以使得 $r^2-a$ 为二次非剩余，使用随机方法平均约两次可得 $r$.
+于是我们定义一个 $i$ 满足 $i^2=r^2-a$。类比实数域到复数域的扩展，$i$ 类似于虚数单位，只是形式上的记号，实际上不存在。感性的理解，相当于扩展出了一个模 $p$ 意义下的复数域，其中任何一个数都可以表示为 $A+Bi$ 的形式，参照复数，我们下文中为了方便称其中 $A$ 为实部，$B$ 为虚部，运算规则可以参考复数的运算理解。
 
-???+ note "证明"
-    令 $f(x)=x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$ 和 $a_0+a_1x=(r-x)^{(p+1)/2}\bmod (x^2-(r^2-a))$ 那么有 $a_0^2\equiv a\pmod p$ 且 $a_1\equiv 0\pmod p$.
-    
+??? note "更严谨的定义"
+    在复数域 $\mathbf{C}$ 中，考虑令 $x^2+1\in\mathbf{R}\lbrack x\rbrack$ 和实系数多项式的集合 $\mathbf{R}\lbrack x\rbrack$ 对 $x^2+1$ 取模后的集合记作 $\mathbf{R}\lbrack x\rbrack /(x^2+1)$，那么集合中的元素都可以表示为 $a_0+a_1x$ 的形式，其中 $a_0,a_1\in\mathbf{R}$，又因为 $x^2\equiv -1\pmod{\left(x^2+1\right)}$，考虑多项式的运算可以发现 $\mathbf{R}\lbrack x\rbrack /(x^2+1)$ 中元素的运算与 $\mathbf{C}$ 中一致。
+
+    其中的运算相当于考虑对于系数属于有限域 $\mathbb{F}_p$ 的多项式 $\mathbb{F}_p\lbrack x\rbrack$ 和对 $x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$ 取模后的集合 $\mathbb{F}_p\lbrack x\rbrack /(x^2-(r^2-a))$ 中的运算。
+
+???+ note "运算规则"
+    加法：$(A+Bi)+(C+Di) \equiv (A+C)+(B+D)i \pmod p$
+
+    减法：$(A+Bi)-(C+Di) \equiv (A-C)+(B-D)i \pmod p$
+
+    乘法：$(A+Bi)*(C+Di) \equiv AC+BD(r^2-a)+(AD+BC)i \pmod p$
+
+此时我们可以注意到 $(r+i)^{\frac{p+1}{2}}$ 是原式的解，可以使用快速幂计算。
+
+???+ note " 关于解的虚部是否可能非 $0$"
+    这个问题的结论是不会的，下面通过反证法进行证明。
+
+    假设存在一个 $(A+Bi)^2 \equiv a \pmod p$ 满足 $B \not\equiv 0 \pmod p$，即 $A^2+2ABi+B^2i^2 \equiv a \pmod p$，移项并将 $i^2$ 替换为 $r^2-a$ 可得：
+
     $$
-    \begin{aligned}
-    x^p&\equiv x(x^2)^{\frac{p-1}{2}}&\pmod{f(x)}\\
-    &\equiv x(r^2-a)^{\frac{p-1}{2}}&\pmod{f(x)}&\quad (\because{x^2\equiv r^2-a\pmod{f(x)}})\\
-    &\equiv -x&\pmod{f(x)}&\quad (\because{r^2-a}\text{ is quadratic non-residue})
-    \end{aligned}
+    A^2+B^2(r^2-a)-a \equiv -2ABi \pmod p
     $$
-    
-    又因为二项式定理
-    
-    $$
-    \begin{aligned}
-    (a+b)^p&=\sum_{i=0}^p\binom{p}{i}a^ib^{p-i}\\
-    &=\sum_{i=0}^p\frac{p!}{i!(p-i)!}a^ib^{p-i}\\
-    &\equiv a^p+b^p\pmod p
-    \end{aligned}
-    $$
-    
-    可以发现只有当 $i=0$ 和 $i=p$ 时由于没有因子 $p$ 不会因为模 $p$ 被消去，其他的项都因为有 $p$ 因子被消去了。所以
-    
-    $$
-    \begin{aligned}
-    (r-x)^{p}&\equiv r^p-x^p&\pmod{f(x)}\\
-    &\equiv r+x&\pmod{f(x)}
-    \end{aligned}
-    $$
-    
-    所以
-    
-    $$
-    \begin{aligned}
-    (a_0+a_1x)^2&=a_0^2+2a_0a_1x+a_1^2x^2\\
-    &\equiv (r-x)^{p+1}&\pmod{f(x)}\\
-    &\equiv (r-x)^p(r-x)&\pmod{f(x)}\\
-    &\equiv (r+x)(r-x)&\pmod{f(x)}\\
-    &\equiv r^2-x^2&\pmod{f(x)}\\
-    &\equiv a&\pmod{f(x)}
-    \end{aligned}
-    $$
-    
-    若 $a_1\not\equiv 0\pmod p$ 且
-    
-    $$
-    \begin{aligned}
-    (a_0+a_1x)^2&=a_0^2+2a_0a_1x+a_1^2x^2\\
-    &\equiv a_0^2+2a_0a_1x+a_1^2(r^2-a)\pmod{f(x)}
-    \end{aligned}
-    $$
-    
-    所以 $x$ 的系数必须为零即 $a_0\equiv 0\pmod p$ 此时考虑 Legendre 符号为完全积性函数可知 $r^2-a\equiv a/a_1^2\pmod p$ 显然为二次剩余，不符合定义。因此 $a_1\equiv 0\pmod p$ 且 $a_0^2\equiv a\pmod p$.
+
+    式子左边的虚部为 $0$，所以右边虚部也为 $0$，即 $AB \equiv 0 \pmod p$，由于我们令 $B \not\equiv 0 \pmod p$，所以一定有 $A \equiv 0 \pmod p$，于是 $(Bi)^2 \equiv a \pmod p$ 即 $r^2-a \equiv aB^{-2} \pmod p$。
+
+    由于 $a$ 和 $B^{-2}$ 都是二次剩余，故 $aB^{-2}$ 也是二次剩余，这与 $r^2-a$ 是二次非剩余矛盾。于是我们证明了我们得到的解的虚部必然是 $0$。
+
+??? note "证明"
+    容易发现，原命题等价于证明 $(r+i)^{p+1} \equiv a \pmod p$。
+
+    首先考虑证明两个引理：
+
+    **引理1：** $i^p \equiv -i \pmod p$
+
+    证明：$i^p \equiv i(i^2)^{\frac{p-1}{2}} \equiv i(r^2-a)^{\frac{p-1}{2}} \equiv i \cdot (-1) \equiv -i \pmod p$。
+
+    解释：在这里，由于 $i$ 是我们定义的一个实际不存在的数，所以 $a^p \equiv a \pmod p$ 在此处不成立。
+
+    其中最后一步 $(r^2-a)^{\frac{p-1}{2}} \equiv -1 \pmod p$ 是由于 $r^2-a$ 是二次非剩余。
+
+    **引理2：** $(a+b)^p \equiv a^p+b^p \pmod p$
+
+    证明：将原式使用二项式定理展开，容易发现对于任何 $\dbinom{p}{x}$ 当 $x \ne 0$ 且 $x \ne p$ 时，分子上的 $p$ 无法消掉，将这一些项去掉之后只剩下第一项及最后一项，即 $a^p+b^p$。
+
+    有了这两个引理，我们来考虑证明原式：
+
+    $$(r+i)^{p+1} \equiv (r+i)^p(a+i) \equiv (r^p+i^p)(a+i) \equiv (r-i)(r+i) \equiv r^2-i^2 \equiv r^2-(r^2-a) \equiv a \pmod p$$
 
 ### Bostan–Mori 算法
 
