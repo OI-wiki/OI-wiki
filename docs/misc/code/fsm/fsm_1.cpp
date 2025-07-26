@@ -1,135 +1,180 @@
-// --8<-- [start:full-text]
+#include <algorithm>
+#include <cstring>
 #include <iostream>
-#include <queue>
 #include <vector>
-#define N 100010
-#define M 200
-#define ll long long
-#define P 998244353
 using namespace std;
-int n, k, r, tot, ans[N], nxt[1 << 20][2], trans[M][2], isF[1 << 20];
-int belong[1 << 20], cnt, sz[M], ac[M];
-ll f[N][M], g[N][M];
-vector<int> pre[1 << 20][2], Q[M], S[M], pre_trans[M][2];
-bool vis[1 << 20], tag[1 << 20];
-char a[N];
+// 0:0
+// 1:1
+// 00:2
+// 01:3
+// 10:4
+// 11:5
+char op[9];
+int q, n;
+char a[100010];
 
-inline int lowbit(int x) { return x & -x; }
+struct node {
+  vector<bool> sta;
+  int x, y;
+} l[1 << 10];
 
-int dfs(int x) {
-  if (vis[x]) return x;
-  vis[x] = 1;
-  nxt[x][0] = dfs(x - lowbit(x));
-  pre[x - lowbit(x)][0].push_back(x);
-  nxt[x][1] = dfs(x + lowbit((1 << k) - 1 - x));
-  pre[x + lowbit((1 << k) - 1 - x)][1].push_back(x);
-  return x;
-}
+int len = 0;
 
-// --8<-- [start:core]
-void hopcroft() {
-  const auto rebuild = [&](int u) {
-    vector<int> tmp;
-    for (auto i : Q[u])
-      if (belong[i] == u) tmp.push_back(i);
-    swap(Q[u], tmp);
-  };
-  queue<int> W;
-  W.push(1);
-  cnt = 2;
-  for (int i = 0; i < tot; i++) {
-    Q[belong[i] = isF[i] ? 1 : 2].push_back(i);
-  }
-  sz[1] = Q[1].size(), sz[2] = Q[2].size(), ac[1] = 1;
-  while (!W.empty()) {
-    int u = W.front();
-    W.pop();
-    rebuild(u);
-    for (int c = 0; c <= 1; c++) {
-      vector<int> td;
-      for (auto x : Q[u]) {
-        for (auto y : pre[x][c]) {
-          if (S[belong[y]].empty()) td.push_back(belong[y]);
-          S[belong[y]].push_back(y);
-          tag[y] = 1;
+struct DFA {
+  bool ac[16][1 << 15], acc[60];
+  pair<int, int> pm[60];
+  int mp[10][1 << 9];
+  unsigned char f[60][100010][12];
+  int cnt = 0;
+
+  inline void build(int x) {
+    if (x <= 1)
+      ac[1][x] = 1;
+    else
+      ac[2][x - 2] = 1;
+    for (int i = 3; i <= 15; i++) {
+      for (int s = 0; s < (1 << i); s++) {
+        int s1 = 0, s2 = s;
+        for (int j = 0; j <= i - 3; j++) {
+          int v = op[s2 & 7];
+          int t = ((((s2 >> 3) << 1) | op[s2 & 7]) << j) | s1;
+          ac[i][s] |= ac[i - 2][t];
+          s1 |= (s2 & 1) << j;
+          s2 >>= 1;
         }
       }
-      for (auto i : td) {
-        if (S[i].size() < sz[i]) {
-          ac[++cnt] = ac[i];
-          if (S[i].size() * 2 <= sz[i]) {
-            // 为了复杂度正确，这里没有从 Q[i] 中删除 S[i]，而是改变它们的
-            // belong。注意实现时，如果需要取用 Q 中的内容，必须先 rebuild。
-            // 以及注意 sz 中的值是真正的等价类的大小，sz[i] 不一定等于
-            // Q[i].size()
-            for (auto j : S[i]) Q[belong[j] = cnt].push_back(j);
-            sz[cnt] = S[i].size();
-            sz[i] -= S[i].size();
-          } else {
-            rebuild(i);
-            vector<int> tmp;
-            for (auto j : Q[i]) {
-              if (tag[j])
-                tmp.push_back(j);
-              else
-                Q[belong[j] = cnt].push_back(j);
-            }
-            swap(Q[i], tmp);
-            sz[i] = Q[i].size();
-            sz[cnt] = Q[cnt].size();
+    }
+    len = 0;
+    for (int i = 1; i <= 9; i++) {
+      for (int s = 0; s < (1 << i); s++) {
+        l[++len].sta.clear();
+        l[len].x = i, l[len].y = s, l[len].sta.push_back(ac[i][s]);
+        for (int j = 1; j <= 6; j++) {
+          for (int t = 0; t < (1 << j); t++) {
+            l[len].sta.push_back(ac[i + j][(s << j) | t]);
           }
-          W.push(cnt);
         }
-        for (auto j : S[i]) tag[j] = 0;
-        S[i].clear();
+      }
+    }
+    sort(l + 1, l + len + 1, [](node a, node b) {
+      if (a.sta != b.sta) return a.sta < b.sta;
+      return a.x < b.x;
+    });
+    for (int i = 1; i <= len; i++) {
+      if (i == 1 || l[i].sta != l[i - 1].sta) {
+        mp[l[i].x][l[i].y] = ++cnt;
+        pm[cnt] = make_pair(l[i].x, l[i].y);
+        acc[cnt] = ac[l[i].x][l[i].y];
+      } else {
+        mp[l[i].x][l[i].y] = cnt;
       }
     }
   }
 
-  for (int i = 0; i < tot; i++)
-    for (int c = 0; c <= 1; c++) trans[belong[i]][c] = belong[nxt[i][c]];
-  for (int i = 1; i <= cnt; i++)
-    for (int c = 0; c <= 1; c++) pre_trans[trans[i][c]][c].push_back(i);
+  inline void init() {
+    for (int i = 1; i <= cnt; i++) {
+      for (int j = 1; j <= (n >> 5); j++) {
+        int x = i;
+        for (int k = (j << 5); k < ((j + 1) << 5); k++) {
+          int l = pm[x].first, s = pm[x].second;
+          x = mp[l + 1][(s << 1) | a[k]];
+        }
+        f[i][j][0] = x;
+      }
+    }
+    for (int k = 1; k <= 11; k++) {
+      for (int j = 1; j + (1 << k) - 1 <= (n >> 5); j++) {
+        for (int i = 1; i <= cnt; i++) {
+          f[i][j][k] = f[f[i][j][k - 1]][j + (1 << (k - 1))][k - 1];
+        }
+      }
+    }
+  }
+
+  inline bool check(int l, int r) {
+    int x = mp[1][a[l]];
+    l++;
+    while (l <= r && (l & 31)) {
+      int i = pm[x].first, s = pm[x].second;
+      x = mp[i + 1][(s << 1) | a[l]];
+      l++;
+    }
+    for (int k = 11; k >= 0; k--) {
+      if (l + (1 << (k + 5)) - 1 <= r) {
+        x = f[x][l >> 5][k];
+        l += (1 << (k + 5));
+      }
+    }
+    while (l <= r) {
+      int i = pm[x].first, s = pm[x].second;
+      x = mp[i + 1][(s << 1) | a[l]];
+      l++;
+    }
+    return acc[x];
+  }
+} d[6];
+
+void solve(int l, int r, int type) {
+  if (l == r) {
+    putchar(a[l] + '0');
+    return;
+  }
+  if (type <= 1) {
+    for (int i = l, j = r; i <= j; i += 2, j -= 2) {
+      for (int k = 7; k >= 0; k--) {
+        if (op[k] == type && d[k >> 2].check(l, i) &&
+            d[(k & 3) + 2].check(i + 1, r)) {
+          putchar('(');
+          solve(l, i, k >> 2);
+          solve(i + 1, r, (k & 3) + 2);
+          putchar(')');
+          return;
+        }
+        if (op[k] == type && d[(k >> 1) + 2].check(l, j - 1) &&
+            d[k & 1].check(j, r)) {
+          putchar('(');
+          solve(l, j - 1, (k >> 1) + 2);
+          solve(j, r, k & 1);
+          putchar(')');
+          return;
+        }
+      }
+    }
+  } else {
+    int k = type - 2;
+    for (int i = l, j = r; i <= j; i += 2, j -= 2) {
+      if (d[k >> 1].check(l, i) && d[k & 1].check(i + 1, r)) {
+        solve(l, i, k >> 1);
+        solve(i + 1, r, k & 1);
+        return;
+      }
+      if (d[k >> 1].check(l, j - 1) && d[k & 1].check(j, r)) {
+        solve(l, j - 1, k >> 1);
+        solve(j, r, k & 1);
+        return;
+      }
+    }
+  }
 }
 
-// --8<-- [end:core]
 int main() {
-  scanf("%d %d %d %s", &n, &k, &r, a + 1);
-  dfs(0);
-  for (int i = 0; i <= r; i++) isF[i] = 1;
-  tot = 1 << k;
-
-  hopcroft();
-
-  f[0][belong[0]] = 1;
-  for (int i = 1; i <= n; i++)
-    for (int j = 1; j <= cnt; j++) {
-      for (int c = 0; c <= 1; c++) {
-        if (a[i] == '?' || (a[i] - '0' == c))
-          (f[i][trans[j][c]] += f[i - 1][j]) %= P;
-      }
+  scanf("%s %d", op, &q);
+  swap(op[1], op[4]);
+  swap(op[3], op[6]);
+  for (int i = 0; i < 8; i++) op[i] -= '0';
+  for (int i = 0; i < 6; i++) d[i].build(i);
+  while (q--) {
+    scanf("%s", a + 1);
+    n = strlen(a + 1);
+    for (int i = 1; i <= n; i++) a[i] -= '0';
+    for (int i = 0; i < 6; i++) d[i].init();
+    if (!d[1].check(1, n)) {
+      putchar('-');
+      putchar('1');
+      putchar('\n');
+      continue;
     }
-  for (int i = 1; i <= cnt; i++)
-    if (ac[i]) g[n + 1][i]++;
-  for (int i = n; i >= 1; i--)
-    for (int j = 1; j <= cnt; j++) {
-      for (int c = 0; c <= 1; c++) {
-        if (a[i] == '?' || (a[i] - '0' == c))
-          for (int k : pre_trans[j][c]) {
-            (g[i][k] += g[i + 1][j]) %= P;
-          }
-      }
-    }
-  for (int i = 1; i <= n; i++)
-    if (a[i] == '1')
-      printf("0\n");
-    else {
-      ll ans = 0;
-      for (int j = 1; j <= cnt; j++) {
-        ans = (ans + f[i - 1][j] * g[i + 1][trans[j][0]]) % P;
-      }
-      printf("%lld\n", ans);
-    }
+    solve(1, n, 1);
+    putchar('\n');
+  }
 }
-
-// --8<-- [end:full-text]
