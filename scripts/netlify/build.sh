@@ -2,12 +2,13 @@
 
 set -e
 
-DIRNAME="$(dirname -- "${BASH_SOURCE[0]}")"
-
-source "$DIRNAME"/install-python.sh
+# Install uv if not available (Netlify should have it via pip install uv)
+if ! command -v uv &> /dev/null; then
+    pip install uv
+fi
 
 # Install dependencies
-uv sync
+uv sync --index-url ${PYPI_MIRROR:-https://pypi.org/simple/}
 yarn --frozen-lockfile --production
 
 # Install themes and etc.
