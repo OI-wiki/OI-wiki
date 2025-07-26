@@ -1,7 +1,7 @@
 # This script needs to be "source"-d since it sets LD_LIBRARY_PATH and PATH
 
 # Since we don't have root access on netlify, we could only install Python in current user's env
-# This script installs Python binary from PPA and Pipenv, with APT prefix
+# This script installs Python binary from PPA and uv, with APT prefix
 PYTHON_VERSION="3.10"
 
 APT_PACKAGES=(
@@ -52,5 +52,5 @@ for PACKAGE in "$APT_PREFIX"/var/cache/apt/archives/*.deb; do dpkg -x "$PACKAGE"
 for LIBPATH in "${APT_PREFIX_LD_LIBRARY_PATHS[@]}"; do export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$APT_PREFIX$LIBPATH"; done
 for BINPATH in "${APT_PREFIX_PATHS[@]}"; do export PATH="$PATH:$APT_PREFIX$BINPATH"; done
 
-# Install Pipenv
-pip install pipenv
+# Install uv
+pip install uv
