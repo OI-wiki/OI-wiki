@@ -1,0 +1,10 @@
+id: oi-wiki:string/general-sam-1
+name: General Sam
+solution:
+  cpp: docs/string/code/general-sam/general-sam_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/string/examples/general-sam/general-sam_1.ans
+  input: docs/string/examples/general-sam/general-sam_1.in
+version: 1000
