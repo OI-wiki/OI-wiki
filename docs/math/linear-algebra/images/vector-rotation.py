@@ -14,7 +14,7 @@ def draw_vector(ax, origin, vec, color, label):
         fc=color,
         ec=color,
         linewidth=2,
-        length_includes_head=True
+        length_includes_head=True,
     )
     ax.text(
         origin[0] + vec[0] + 0.1,
