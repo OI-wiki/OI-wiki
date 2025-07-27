@@ -337,7 +337,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
 后文考虑对于系数属于有限域 $\mathbb{F}_p$ 的多项式 $\mathbb{F}_p\lbrack x\rbrack$ 和对 $x^2-g\in\mathbb{F}_p\lbrack x\rbrack$ 取模后的集合 $\mathbb{F}_p\lbrack x\rbrack /(x^2-g)$ 中的运算，其中 $g \in \mathbb{F}_p$。
 
-???  note "更简单的说明"
+??? note "更简单的说明"
     如果你看不懂上述内容，这里将给出一个可能较为感性，且可能并不严谨的定义。
     
     类比实数域到复数域的扩展，我们考虑是否有一种方法，使得模 $p$ 意义下的二次非剩余也可以有平方根。
@@ -427,7 +427,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
     由于 $a$ 和 $a_1^{-2}$ 都是二次剩余，由 Legendre 符号的积性可知 $aa_1^{-2}$ 也是二次剩余，这与 $r^2-a$ 是二次非剩余矛盾。于是原式不存在一个解使得 $x$ 的系数非 $0$，我们求出的解的 $x$ 的系数也必定为 $0$。
     
-???  note "参考实现"
+??? note "参考实现"
     ```cpp
     long long p, v;  // 分别是模数和 r^2 - a 的值
 
