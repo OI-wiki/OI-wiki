@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{tikzpicture}[every node/.style={circle,draw,minimum size=18pt,inner sep=2pt},thick]
+
+% 节点
+\node (lca) at (0,0) {LCA};
+\node (up) at (0,1.5) {};
+\node (a1) at (-1.2,-1.2) {1};
+\node (a2) at (1.2,-1.2) {1};
+\node (s1) at (-2.2,-2.2) {$S_1$};
+\node (a3) at (2.2,-2.2) {1};
+\node (t1) at (3.2,-3.2) {$T_1$};
+
+% 连线
+\draw[black,very thick] (lca) -- (up);
+\draw[red,thick] (lca) -- (a1);
+\draw[red,thick] (lca) -- (a2);
+\draw[red,thick] (a1) -- (s1);
+\draw[red,thick] (a2) -- (a3);
+\draw[red,thick] (a3) -- (t1);
+
+\end{tikzpicture}
+
+\end{document}
