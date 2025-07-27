@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1caa6e65ce01e92273175f6d7d05aca696a5ab76bc333faffbca8429e7ec2024"
+            "sha256": "9ebea1b3ed43d4e0bf60bf4e0c46931720398d53d133da0d6828846944e301f7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -304,12 +304,12 @@
         },
         "python-markdown-document-offsets-injection-extension": {
             "hashes": [
-                "sha256:2bad28c8559e88d121a1b1f6d0c32c6c1a5d21934131715011ce68f52d3e7a18",
-                "sha256:60838c0c39b15b19c58cf64aa5d70b24973df31b85f035f09ccba3e81264102a"
+                "sha256:88824b1c0b5c3db78cfdb39f41fa1029945c6c97e15f71c97539cf167bd8a8ea",
+                "sha256:908b4ee3274b3d16b10bf883c5a97d90628066dcc5dd5803c393cf59348a87ef"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==0.5.12"
+            "version": "==0.5.13"
         },
         "pyyaml": {
             "hashes": [
