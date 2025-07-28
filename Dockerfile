@@ -8,14 +8,15 @@ ENV LISTEN_PORT=${LISTEN_PORT:-8000}
 
 WORKDIR /
 RUN apt-get update \
-    && apt-get install -y git wget curl pipenv gcc g++ make \
+    && apt-get install -y git wget curl gcc g++ make \
     && curl -sL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs
+    && apt-get install -y nodejs \
+    && curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # If you can't connect to GitHub, set WIKI_REPO to any mirror repo.
 RUN git clone ${WIKI_REPO:-https://github.com/OI-wiki/OI-wiki.git} --depth=1 \
     && cd OI-wiki \
-    && pipenv install --pypi-mirror ${PYPI_MIRROR:-https://pypi.org/simple/} \
+    && uv sync --index-url ${PYPI_MIRROR:-https://pypi.org/simple/} \
     && yarn --frozen-lockfile
 
 ADD .bashrc /root/
