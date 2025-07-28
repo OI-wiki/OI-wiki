@@ -335,16 +335,16 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
 ??? note "计算方法"
     不熟悉 [多项式环](../algebra/ring-theory.md#多项式环) 的读者，可以简单理解为该集合的元素都具有形式 $a_0+a_1x$ 且 $a_0,a_1\in\mathbf F_p$，且遵循如下运算法则：
-
+    
     $$
     \begin{aligned}
     (a_0+a_1x)+(b_0+b_1x) &\equiv (a_0+b_0)+(a_1+b_1)x &\pmod{(x^2-g)}\\
     (a_0+a_1x)(b_0+b_1x) &\equiv (a_0b_0+a_1b_1g)+(a_1b_0+a_0b_1)x &\pmod{(x^2-g)}
     \end{aligned}
     $$
-
+    
     需要注意的是，此处的 $x$ 并不是一个具体的数，而是表示多项式中的形式记号。运算中一个关键的点在于利用 $x^2 \equiv g \pmod{(x^2-g)}$ 将二次项转化为一次项和常数项。另外，所有整数运算都需要对 $p$ 取模。
-
+    
     关于该结构的更多内容，请参见 [多项式](../poly/intro.md) 和 [域论](../algebra/field-theory.md) 等页面。
 
 该算法的第一步为找到一个 $r$ 使得 $r^2-a$ 为二次非剩余。当然对于 $a \equiv 0 \pmod p$ 不可能找到这样的 $r$，需要进行特判。下文只讨论 $a \not\equiv 0 \pmod p$ 的情况。此时可随机一个 $r$ 然后判断，期望可以 $2$ 步找到。于是，$(r-x)^{\frac{p+1}{2}}\bmod (x^2-(r^2-a))$ 为一个解，可以通过快速幂求值。
@@ -354,13 +354,13 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
 ???+ note "证明"
     为了方便，首先令 $f(x)=x^2-(r^2-a)\in\mathbf{F}_p\lbrack x\rbrack$。
-
+    
     需要证明的是，$(r-x)^{\frac{p+1}{2}} \bmod f(x)$ 是原式的解，并且它属于 $\mathbf{F}_p$。首先考虑证明前者，即证明 $(r-x)^{p+1}\equiv a\pmod {f(x)}$。为此，我们需要先证明两个引理：
-
-    **引理1：** $x^p \equiv -x \pmod {f(x)}$
-
+    
+    **引理 1：** $x^p \equiv -x \pmod {f(x)}$
+    
     证明：
-
+    
     $$
     \begin{aligned}
     x^p&= x(x^2)^{\frac{p-1}{2}}\\
@@ -368,11 +368,11 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     &\equiv -x&\pmod{f(x)}&\quad (\because{r^2-a}\text{ is quadratic non-residue})
     \end{aligned}
     $$
-
-    **引理2：**$(a+b)^p \equiv a^p+b^p \pmod p$
-
+    
+    **引理 2：**$(a+b)^p \equiv a^p+b^p \pmod p$
+    
     使用二项式定理容易发现，除了第一项和最后一项，分子上的 $p$ 无法消掉，于是只剩下 $a^p+b^p$。
-
+    
     $$
     \begin{aligned}
     (a+b)^p&=\sum_{i=0}^p\binom{p}{i}a^ib^{p-i}\\
@@ -380,9 +380,9 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     &\equiv a^p+b^p\pmod p
     \end{aligned}
     $$
-
+    
     有了这两个引理，我们再来考虑证明原式：
-
+    
     $$
     \begin{aligned}
     (r-x)^{p+1}
@@ -394,17 +394,17 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     &= a\\
     \end{aligned}
     $$
-
+    
     下面通过反证法证明我们求出的解属于 $\mathbf{F}_p$，即其 $x$ 的系数为 $0$。
-
+    
     假设存在一个 $(a_0+a_1x)^2 \equiv a \pmod {f(x)}$ 满足 $a_1 \not\equiv 0 \pmod p$，即 $a_0^2+2a_0a_1x+a_1^2x^2 \equiv a \pmod {f(x)}$，移项并化简可得：
-
+    
     $$
     a_0^2+a_1^2(r^2-a)-a \equiv -2a_0a_1x \pmod {f(x)}
     $$
-
+    
     式子左边的 $x$ 的系数为 $0$，所以右边 $x$ 的系数也为 $0$，即 $a_0a_1 \equiv 0 \pmod p$，由于我们令 $a_1 \not\equiv 0 \pmod p$，所以一定有 $a_0 \equiv 0 \pmod p$，于是 $(a_1x)^2 \equiv a \pmod {f(x)}$ 即 $r^2-a \equiv aa_1^{-2} \pmod p$。
-
+    
     由于 $a$ 和 $a_1^{-2}$ 都是二次剩余，由 Legendre 符号的积性可知 $aa_1^{-2}$ 也是二次剩余，这与 $r^2-a$ 是二次非剩余矛盾。于是原式不存在一个解使得 $x$ 的系数非 $0$，我们求出的解的 $x$ 的系数也必定为 $0$。
 
 ??? example " 模板题 [洛谷 P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491)"
