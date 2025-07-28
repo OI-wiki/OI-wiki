@@ -1,11 +1,81 @@
-本章将介绍介绍动态规划（Dynamic Programming, DP）及其解决的问题、根据其设计的算法及优化。
+## 动态规划简介
 
-动态规划是一种通过把原问题分解为相对简单的子问题的方式求解复杂问题的方法。
+本页面将介绍动态规划（Dynamic Programming，DP）的基本原理、设计方法及其在算法竞赛中的典型应用。
 
-由于动态规划并不是某种具体的算法，而是一种解决特定问题的方法，因此它会出现在各式各样的数据结构中，与之相关的题目种类也更为繁杂。
+## 基本原理
 
-在 OI 中，计数等非最优化问题的递推解法也常被不规范地称作 DP，因此本章将它们一并列出。事实上，动态规划与其它类型的递推的确有很多相似之处，学习时可以注意它们之间的异同。
+动态规划是一种通过**将原问题分解为重叠子问题**的方式求解复杂问题的方法。其核心思想包含两个关键要素：
 
-## 参考资料
+1. **最优子结构**：问题的最优解包含子问题的最优解
+2. **重叠子问题**：不同的子问题会重复调用相同的更小子问题
 
-[动态规划 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/动态规划)
+## 方法分类
+
+### 1. 记忆化搜索（自顶向下）
+```text
+function dp(i):
+    if memo[i] exists:
+        return memo[i]
+    res = calculate(dp(subproblems))
+    memo[i] = res
+    return res
+```
+
+### 2. 递推法（自底向上）
+```text
+initialize dp[0..n]
+for i from 1 to n:
+    dp[i] = calculate(dp[0..i-1])
+```
+
+## 典型例题
+
+???+note "[斐波那契数列](https://leetcode-cn.com/problems/fibonacci-number/)"
+    **问题描述**：计算第 n 个斐波那契数（n ≤ 30）
+    
+
+    **DP 状态定义**：
+    ```text
+    dp[i] 表示第 i 个斐波那契数
+    ```
+    
+    **状态转移方程**：
+    ```math
+    dp[i] = \begin{cases}
+    i & \text{if } i \leq 1 \\
+    dp[i-1] + dp[i-2] & \text{otherwise}
+    \end{cases}
+    ```
+
+=== "C++"
+    ```cpp
+    int fib(int n) {
+        vector<int> dp(n+1);
+        dp[0] = 0; dp[1] = 1;
+        for (int i = 2; i <= n; ++i)
+            dp[i] = dp[i-1] + dp[i-2];
+        return dp[n];
+    }
+    ```
+
+=== "Python"
+    ```python
+    def fib(n: int) -> int:
+        dp = [0, 1] + [0]*(n-1)
+        for i in range(2, n+1):
+            dp[i] = dp[i-1] + dp[i-2]
+        return dp[n]
+    ```
+
+## 与其他算法的比较
+
+| 特性         | 动态规划 | 分治算法   | 贪心算法 |
+| ------------ | -------- | ---------- | -------- |
+| 子问题重叠性 | 有       | 通常无     | 无       |
+| 最优子结构   | 必须满足 | 必须满足   | 必须满足 |
+| 决策后效性   | 可能有   | 无         | 无       |
+| 时间复杂度   | 多项式级 | 视情况而定 | 通常较低 |
+
+## 参考资料与注释
+
+[动态规划 - 维基百科](https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92)
