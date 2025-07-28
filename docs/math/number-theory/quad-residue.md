@@ -403,7 +403,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     a_0^2+a_1^2(r^2-a)-a \equiv -2a_0a_1x \pmod p
     $$
 
-    式子左边的 $x$ 的系数为 $0$，所以右边 $x$ 的系数也为 $0$，即 $a_0a_1 \equiv 0 \pmod p$，由于我们令 $a_1 \not\equiv 0 \pmod p$，所以一定有 $a_0 \equiv 0 \pmod p$，于是 $(a_1x)^2 \equiv a \pmod p$ 即 $r^2-a \equiv aa_1^{-2} \pmod p$。
+    式子左边的 $x$ 的系数为 $0$，所以右边 $x$ 的系数也为 $0$，即 $a_0a_1 \equiv 0 \pmod p$，由于我们令 $a_1 \not\equiv 0 \pmod p$，所以一定有 $a_0 \equiv 0 \pmod p$，于是 $(a_1x)^2 \equiv a \pmod {f(x)}$ 即 $r^2-a \equiv aa_1^{-2} \pmod p$。
 
     由于 $a$ 和 $a_1^{-2}$ 都是二次剩余，由 Legendre 符号的积性可知 $aa_1^{-2}$ 也是二次剩余，这与 $r^2-a$ 是二次非剩余矛盾。于是原式不存在一个解使得 $x$ 的系数非 $0$，我们求出的解的 $x$ 的系数也必定为 $0$。
 
