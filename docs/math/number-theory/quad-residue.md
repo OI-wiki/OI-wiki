@@ -334,7 +334,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 本节考虑 $\mathbf{F}_p\lbrack x\rbrack /(x^2-g)$ 中的运算，其中 $g \in \mathbf{F}_p$。
 
 ??? note "计算方法"
-    不熟悉多项式环的读者，可以简单理解为该集合的元素都具有形式 $a_0+a_1x$ 且 $a_0,a_1\in\mathbf F_p$，且遵循如下运算法则：
+    不熟悉 [多项式环](../algebra/ring-theory.md#多项式环) 的读者，可以简单理解为该集合的元素都具有形式 $a_0+a_1x$ 且 $a_0,a_1\in\mathbf F_p$，且遵循如下运算法则：
 
     $$
     \begin{aligned}
