@@ -363,7 +363,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
     $$
     \begin{aligned}
-    x^p&= x(x^2)^{\frac{p-1}{2}}&\pmod{f(x)}\\
+    x^p&= x(x^2)^{\frac{p-1}{2}}\\
     &\equiv x(r^2-a)^{\frac{p-1}{2}}&\pmod{f(x)}&\quad (\because{x^2\equiv r^2-a\pmod{f(x)}})\\
     &\equiv -x&\pmod{f(x)}&\quad (\because{r^2-a}\text{ is quadratic non-residue})
     \end{aligned}
@@ -386,12 +386,12 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     $$
     \begin{aligned}
     (r-x)^{p+1}
-    &= (r-x)^p(r-x)&\pmod{f(x)}\\
+    &= (r-x)^p(r-x)\\
     &\equiv (r^p-x^p)(r-x)&\pmod{f(x)}\\
     &\equiv (r+x)(r-x)&\pmod{f(x)}\\
-    &= r^2-x^2&\pmod{f(x)}\\
+    &= r^2-x^2\\
     &\equiv r^2-(r^2-a)&\pmod{f(x)}\\
-    &= a&\pmod{f(x)}\\
+    &= a\\
     \end{aligned}
     $$
 
@@ -400,7 +400,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     假设存在一个 $(a_0+a_1x)^2 \equiv a \pmod p$ 满足 $a_1 \not\equiv 0 \pmod p$，即 $a_0^2+2a_0a_1x+a_1^2x^2 \equiv a \pmod p$，移项并化简可得：
 
     $$
-    a_0^2+a_1^2(r^2-a)-a \equiv -2a_0a_1x \pmod p
+    a_0^2+a_1^2(r^2-a)-a \equiv -2a_0a_1x \pmod {f(x)}
     $$
 
     式子左边的 $x$ 的系数为 $0$，所以右边 $x$ 的系数也为 $0$，即 $a_0a_1 \equiv 0 \pmod p$，由于我们令 $a_1 \not\equiv 0 \pmod p$，所以一定有 $a_0 \equiv 0 \pmod p$，于是 $(a_1x)^2 \equiv a \pmod {f(x)}$ 即 $r^2-a \equiv aa_1^{-2} \pmod p$。
