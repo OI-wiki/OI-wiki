@@ -339,23 +339,22 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
 ??? note "更简单的说明"
     如果你看不懂上述内容，这里将给出一个可能较为感性，且可能并不严谨的定义。
-    
+
     类比实数域到复数域的扩展，我们考虑是否有一种方法，使得模 $p$ 意义下的二次非剩余也可以有平方根。
-    
+
     事实上，我们可以用多项式取模来做到这件事。假设 $g$ 是模 $p$ 意义下的二次非剩余，在模 $x^2-g$ 时，我们发现 $x^2 \equiv x^2-(x^2-g) \equiv g \pmod {(x^2-g)}$，所以 $x$ 是 $g$ 的平方根。
-    
+
     需要注意的是，上述式子中的 $x$ 表示多项式中的字母，而不是一个具体的数，通过模上一个多项式，我们可以定义出一个二次非剩余的的平方根。
-    
+
     此时，我们可以将任何一个多项式取模之后化为 $a_0+a_1x$ 这样的形式，同时由于我们还模 $p$，$a_0$ 和 $a_1$ 都可以对 $p$ 取模，同时它们之间的计算如下，实际上十分类似于复数的运算，可参考理解：
-    
+
     加法：$(a_0+a_1x)+(b_0+b_1x) \equiv (a_0+b_0)+(a_1+b_1)x \pmod{(x^2-g)}$
    
     减法：$(a_0+a_1x)-(b_0+b_1x) \equiv (a_0-b_0)+(a_1-b_1)x \pmod{(x^2-g)}$
-    
+
     乘法：$(a_0+a_1x)(b_0+b_1x) \equiv (a_0b_0+a_1b_1g)+(a_1b_0-a_0b_1)x \pmod{(x^2-g)}$
    
 #### Cipolla 算法
-
 
 该算法的第一步为找到一个 $r$ 使得 $r^2-a$ 为二次非剩余，当然对于 $a \equiv 0 \pmod p$ 不可能找到这样的 $r$，需要进行特判，下文只讨论 $a \not\equiv 0 \pmod p$ 的情况，此时可随机一个 $r$ 然后判断，期望可以 $2$ 步找到。
 
@@ -370,11 +369,11 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
 ???+ note "证明"
     为了方便，首先令 $f(x)=x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$。
-	
+
     证明 $(r-x)^{\frac{p+1}{2}}$ 是原式的解，即证明 $(r-x)^{p+1}\equiv a\pmod {f(x)}$。为此，我们需要先证明两个引理：
-    
+
     **引理1：** $x^p \equiv -x \pmod {f(x)}$
-   
+
     证明：
    
     $$
@@ -384,11 +383,11 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     &\equiv -x&\pmod{f(x)}&\quad (\because{r^2-a}\text{ is quadratic non-residue})
     \end{aligned}
     $$
-    
+
     **引理2：**$(a+b)^p \equiv a^p+b^p \pmod p$
-   
+
     使用二项式定理容易发现，除了第一项和最后一项，分子上的 $p$ 无法消掉，于是只剩下 $a^p+b^p$。
-    
+
     $$
     \begin{aligned}
     (a+b)^p&\equiv\sum_{i=0}^p\binom{p}{i}a^ib^{p-i}\\
@@ -396,9 +395,9 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     &\equiv a^p+b^p\pmod p
     \end{aligned}
     $$
-    
+
     有了这两个引理，我们再来考虑证明原式：
-    
+
     $$
     \begin{aligned}
     (r-x)^{p+1}
@@ -410,12 +409,8 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     &\equiv a&\pmod{f(x)}\\
     \end{aligned}
     $$
-    
-    证毕。
 
-
-???+ note " 关于解中 $x$ 的系数是否可能非 $0$"
-    这个问题的结论是不会的，下面通过反证法进行证明，下文同样令 $f(x)=x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$。
+    下面通过反证法证明我们求出的解中 $x$ 的系数为 $0$。
 
     假设存在一个 $(a_0+a_1x)^2 \equiv a \pmod p$ 满足 $a_1 \not\equiv 0 \pmod p$，即 $a_0^2+2a_0a_1x+a_1^2x^2 \equiv a \pmod p$，移项并化简可得：
 
@@ -426,6 +421,8 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     式子左边的 $x$ 的系数为 $0$，所以右边 $x$ 的系数也为 $0$，即 $a_0a_1 \equiv 0 \pmod p$，由于我们令 $a_1 \not\equiv 0 \pmod p$，所以一定有 $a_0 \equiv 0 \pmod p$，于是 $(a_1x)^2 \equiv a \pmod p$ 即 $r^2-a \equiv aa_1^{-2} \pmod p$。
 
     由于 $a$ 和 $a_1^{-2}$ 都是二次剩余，由 Legendre 符号的积性可知 $aa_1^{-2}$ 也是二次剩余，这与 $r^2-a$ 是二次非剩余矛盾。于是原式不存在一个解使得 $x$ 的系数非 $0$，我们求出的解的 $x$ 的系数也必定为 $0$。
+
+    证毕。
     
 ??? note "参考实现"
     ```cpp
