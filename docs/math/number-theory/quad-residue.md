@@ -425,48 +425,9 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     证毕。
     
 ??? note "参考实现"
+    下面给出模板题 [洛谷 P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491) 的参考实现
     ```cpp
-    long long p, v;  // 分别是模数和 r^2 - a 的值
-
-    struct Poly {
-        long long a, b;
-        Poly(long long _a = 0, long long _b = 0) : a(_a), b(_b) {}
-    };
-    Poly operator*(const Poly& x, const Poly& y) {
-        // 重载乘法，可以参考上面有关运算性质的说明
-        return Poly((x.a * y.a + v * (x.b * y.b) % p) % p, (x.a * y.b + x.b * y.a) % p);
-    }
-    // 快速幂
-    Poly modpow(Poly a, long long b) {
-        Poly res(1, 0);
-        while (b) {
-            if (b & 1)
-                res = res * a;
-            a = a * a;
-            b >>= 1;
-        }
-        return res;
-    }
-    // 用于生成随机数
-    std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
-
-    long long cipolla(long long a, long long _p) {
-        p = _p;
-        if (a == 0)
-            return 0;  // 特判一下 0 的情况
-        else if (modpow(a, (p - 1) / 2, p) == p - 1)
-            return -1;  // 判断二次非剩余，此时无解
-        else {
-            // 随机 r，使得 r^2 - a 是一个二次非剩余
-            long long r;
-            for (r = rng() % p;; r = rng() % p) {
-                if (modpow((r * r - a + p) % p, (p - 1) / 2, p) == p - 1)
-                    break;
-            }
-            v = (r * r - a + p) % p;
-            return modpow(Poly(r, 1), (p + 1) / 2).a;  // 根据结论式计算结果
-        }
-    }
+    --8<-- "docs/math/code/quad-residue/quad-residue_1.cpp"
     ```
 
 ### Bostan–Mori 算法
