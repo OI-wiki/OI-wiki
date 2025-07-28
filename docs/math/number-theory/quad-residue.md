@@ -349,11 +349,11 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     此时，我们可以将任何一个多项式取模之后化为 $a_0+a_1x$ 这样的形式，同时由于我们还模 $p$，$a_0$ 和 $a_1$ 都可以对 $p$ 取模，同时它们之间的计算如下，实际上十分类似于复数的运算，可参考理解：
 
     加法：$(a_0+a_1x)+(b_0+b_1x) \equiv (a_0+b_0)+(a_1+b_1)x \pmod{(x^2-g)}$
-   
+
     减法：$(a_0+a_1x)-(b_0+b_1x) \equiv (a_0-b_0)+(a_1-b_1)x \pmod{(x^2-g)}$
 
     乘法：$(a_0+a_1x)(b_0+b_1x) \equiv (a_0b_0+a_1b_1g)+(a_1b_0-a_0b_1)x \pmod{(x^2-g)}$
-   
+
 #### Cipolla 算法
 
 该算法的第一步为找到一个 $r$ 使得 $r^2-a$ 为二次非剩余，当然对于 $a \equiv 0 \pmod p$ 不可能找到这样的 $r$，需要进行特判，下文只讨论 $a \not\equiv 0 \pmod p$ 的情况，此时可随机一个 $r$ 然后判断，期望可以 $2$ 步找到。
@@ -375,7 +375,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     **引理1：** $x^p \equiv -x \pmod {f(x)}$
 
     证明：
-   
+
     $$
     \begin{aligned}
     x^p&\equiv x(x^2)^{\frac{p-1}{2}}&\pmod{f(x)}\\
@@ -423,9 +423,10 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     由于 $a$ 和 $a_1^{-2}$ 都是二次剩余，由 Legendre 符号的积性可知 $aa_1^{-2}$ 也是二次剩余，这与 $r^2-a$ 是二次非剩余矛盾。于是原式不存在一个解使得 $x$ 的系数非 $0$，我们求出的解的 $x$ 的系数也必定为 $0$。
 
     证毕。
-    
+
 ??? note "参考实现"
     下面给出模板题 [洛谷 P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491) 的参考实现
+    
     ```cpp
     --8<-- "docs/math/code/quad-residue/quad-residue_1.cpp"
     ```
