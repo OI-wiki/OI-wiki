@@ -336,29 +336,25 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 ??? note "计算方法"
     不熟悉多项式环的读者，可以简单理解为该集合的元素都具有形式 $a_0+a_1x$ 且 $a_0,a_1\in\mathbf F_p$，且遵循如下运算法则：
 
-    加法：$(a_0+a_1x)+(b_0+b_1x) \equiv (a_0+b_0)+(a_1+b_1)x \pmod{(x^2-g)}$
+    $(a_0+a_1x)+(b_0+b_1x) \equiv (a_0+b_0)+(a_1+b_1)x \pmod{(x^2-g)}$
 
-    减法：$(a_0+a_1x)-(b_0+b_1x) \equiv (a_0-b_0)+(a_1-b_1)x \pmod{(x^2-g)}$
+    $(a_0+a_1x)(b_0+b_1x) \equiv (a_0b_0+a_1b_1g)+(a_1b_0+a_0b_1)x \pmod{(x^2-g)}$
 
-    乘法：$(a_0+a_1x)(b_0+b_1x) \equiv (a_0b_0+a_1b_1g)+(a_1b_0+a_0b_1)x \pmod{(x^2-g)}$
+    需要注意的是，此处的 $x$ 并不是一个具体的数，而是表示多项式中的形式记号，运算中一个关键的点在于 $x^2 \equiv g \pmod{(x^2-g)}$。
 
-    需要注意的是，此处的 $x$ 并不是一个具体的数，而是表示多项式中的字母，运算中一个关键的点在于 $x^2 \equiv g \pmod{(x^2-g)}$
+    关于该结构的更多内容，请参见 [多项式](../poly/intro.md) 和 [域论](../algebra/field-theory.md) 等页面。
 
 该算法的第一步为找到一个 $r$ 使得 $r^2-a$ 为二次非剩余，当然对于 $a \equiv 0 \pmod p$ 不可能找到这样的 $r$，需要进行特判，下文只讨论 $a \not\equiv 0 \pmod p$ 的情况，此时可随机一个 $r$ 然后判断，期望可以 $2$ 步找到。
 
 于是，$(r-x)^{\frac{p+1}{2}}\bmod (x^2-(r^2-a))$ 为一个解，可以通过快速幂求值。
 
 ??? note "为什么期望只需要两步"
-    感性理解：由于模 $p$ 意义下的二次剩余和二次非剩余都有 $\frac{p-1}{2}$ 个，每次随机都有一半的概率找到一个二次非剩余，于是期望步数就是 $1+\frac{1}{2}+\frac{1}{4}+... = 2$。
-
-    上面的证明显然是不严谨的，因为 $r^2-a$ 并不一定可以取遍 $[0, p-1]$，下面给出一个严谨的证明：
-
-    考虑 $r^2-a$ 为二次剩余的情况，则存在一个 $x$ 使得 $r^2-a \equiv x^2 \pmod p$，移项可得 $(r+x)(r-x) \equiv a \pmod p$，不难发现对于每一个 $(r+x) \in [1, p-1]$，都一一对应于一组 $(r,x)$ 的解，所以使原方程成立的解一共有 $p-1$ 组。我们分类讨论 $x \equiv 0$ 和 $x \not\equiv 0$ 两种情况。对于 $x \equiv 0$，由于 $a$ 是二次剩余，对应了 $2$ 种 $r$ 的取值；对于 $x \not\equiv 0$，有 $p-1-2$ 种情况，每一个 $r$ 对应其中两种，一共有 $\frac{p-3}{2}$ 种 $r$ 的取值。综上，一共有 $2+\frac{p-3}{2}=\frac{p+1}{2}$ 种情况使得 $r^2-a$ 为二次剩余，所以每随机一次得到二次非剩余的概率就是 $\frac{p-1}{2p} \approx \frac{1}{2}$ 接下来期望步数的求法与上述感性理解方法相同。
+    考虑 $r^2-a$ 为二次剩余的情况，则存在一个 $x$ 使得 $r^2-a \equiv x^2 \pmod p$，移项可得 $(r+x)(r-x) \equiv a \pmod p$，不难发现对于每一个 $(r+x) \in [1, p-1]$，都一一对应于一组 $(r,x)$ 的解，所以使原方程成立的解一共有 $p-1$ 组。我们分类讨论 $x \equiv 0$ 和 $x \not\equiv 0$ 两种情况。对于 $x \equiv 0$，由于 $a$ 是二次剩余，对应了 $2$ 种 $r$ 的取值；对于 $x \not\equiv 0$，有 $p-1-2$ 种情况，每一个 $r$ 对应其中两种，一共有 $\frac{p-3}{2}$ 种 $r$ 的取值。综上，一共有 $2+\frac{p-3}{2}=\frac{p+1}{2}$ 种情况使得 $r^2-a$ 为二次剩余，所以每随机一次得到二次非剩余的概率就是 $\frac{p-1}{2p}$，期望步数为 $\frac{2p}{p-1} \approx \frac{1}{2}$。
 
 ???+ note "证明"
     为了方便，首先令 $f(x)=x^2-(r^2-a)\in\mathbb{F}_p\lbrack x\rbrack$。
 
-    证明 $(r-x)^{\frac{p+1}{2}}$ 是原式的解，即证明 $(r-x)^{p+1}\equiv a\pmod {f(x)}$。为此，我们需要先证明两个引理：
+    证明 $(r-x)^{\frac{p+1}{2}}$ 是原式的解，并且 $(r-x)^{\frac{p+1}{2}}$ 对 $f(x)$ 取模后属于 $\mathbb{F}_p$。首先考虑证明前者，即证明 $(r-x)^{p+1}\equiv a\pmod {f(x)}$。为此，我们需要先证明两个引理：
 
     **引理1：** $x^p \equiv -x \pmod {f(x)}$
 
@@ -366,7 +362,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
     $$
     \begin{aligned}
-    x^p&\equiv x(x^2)^{\frac{p-1}{2}}&\pmod{f(x)}\\
+    x^p&= x(x^2)^{\frac{p-1}{2}}&\pmod{f(x)}\\
     &\equiv x(r^2-a)^{\frac{p-1}{2}}&\pmod{f(x)}&\quad (\because{x^2\equiv r^2-a\pmod{f(x)}})\\
     &\equiv -x&\pmod{f(x)}&\quad (\because{r^2-a}\text{ is quadratic non-residue})
     \end{aligned}
@@ -378,8 +374,8 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
     $$
     \begin{aligned}
-    (a+b)^p&\equiv\sum_{i=0}^p\binom{p}{i}a^ib^{p-i}\\
-    &\equiv\sum_{i=0}^p\frac{p!}{i!(p-i)!}a^ib^{p-i}\\
+    (a+b)^p&=\sum_{i=0}^p\binom{p}{i}a^ib^{p-i}\\
+    &=\sum_{i=0}^p\frac{p!}{i!(p-i)!}a^ib^{p-i}\\
     &\equiv a^p+b^p\pmod p
     \end{aligned}
     $$
@@ -389,16 +385,16 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     $$
     \begin{aligned}
     (r-x)^{p+1}
-    &\equiv (r-x)^p(r-x)&\pmod{f(x)}\\
+    &= (r-x)^p(r-x)&\pmod{f(x)}\\
     &\equiv (r^p-x^p)(r-x)&\pmod{f(x)}\\
     &\equiv (r+x)(r-x)&\pmod{f(x)}\\
-    &\equiv r^2-x^2&\pmod{f(x)}\\
+    &= r^2-x^2&\pmod{f(x)}\\
     &\equiv r^2-(r^2-a)&\pmod{f(x)}\\
-    &\equiv a&\pmod{f(x)}\\
+    &= a&\pmod{f(x)}\\
     \end{aligned}
     $$
 
-    下面通过反证法证明我们求出的解中 $x$ 的系数为 $0$。
+    下面通过反证法证明我们求出的解属于 $\mathbb{F}_p$，即其 $x$ 的系数为 $0$。
 
     假设存在一个 $(a_0+a_1x)^2 \equiv a \pmod p$ 满足 $a_1 \not\equiv 0 \pmod p$，即 $a_0^2+2a_0a_1x+a_1^2x^2 \equiv a \pmod p$，移项并化简可得：
 
@@ -409,8 +405,6 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     式子左边的 $x$ 的系数为 $0$，所以右边 $x$ 的系数也为 $0$，即 $a_0a_1 \equiv 0 \pmod p$，由于我们令 $a_1 \not\equiv 0 \pmod p$，所以一定有 $a_0 \equiv 0 \pmod p$，于是 $(a_1x)^2 \equiv a \pmod p$ 即 $r^2-a \equiv aa_1^{-2} \pmod p$。
 
     由于 $a$ 和 $a_1^{-2}$ 都是二次剩余，由 Legendre 符号的积性可知 $aa_1^{-2}$ 也是二次剩余，这与 $r^2-a$ 是二次非剩余矛盾。于是原式不存在一个解使得 $x$ 的系数非 $0$，我们求出的解的 $x$ 的系数也必定为 $0$。
-
-    证毕。
 
 ??? example " 模板题 [洛谷 P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491)"
     ```cpp
