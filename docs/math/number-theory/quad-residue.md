@@ -340,7 +340,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
     减法：$(a_0+a_1x)-(b_0+b_1x) \equiv (a_0-b_0)+(a_1-b_1)x \pmod{(x^2-g)}$
 
-    乘法：$(a_0+a_1x)(b_0+b_1x) \equiv (a_0b_0+a_1b_1g)+(a_1b_0-a_0b_1)x \pmod{(x^2-g)}$
+    乘法：$(a_0+a_1x)(b_0+b_1x) \equiv (a_0b_0+a_1b_1g)+(a_1b_0+a_0b_1)x \pmod{(x^2-g)}$
 
     需要注意的是，此处的 $x$ 并不是一个具体的数，而是表示多项式中的字母，运算中一个关键的点在于 $x^2 \equiv g \pmod{(x^2-g)}$
 
