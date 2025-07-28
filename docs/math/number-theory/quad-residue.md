@@ -354,7 +354,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 ???+ note "证明"
     为了方便，首先令 $f(x)=x^2-(r^2-a)\in\mathbf{F}_p\lbrack x\rbrack$。
 
-    证明 $(r-x)^{\frac{p+1}{2}}$ 是原式的解，并且 $(r-x)^{\frac{p+1}{2}}$ 对 $f(x)$ 取模后属于 $\mathbf{F}_p$。首先考虑证明前者，即证明 $(r-x)^{p+1}\equiv a\pmod {f(x)}$。为此，我们需要先证明两个引理：
+    需要证明的是，$(r-x)^{\frac{p+1}{2}} \bmod f(x)$ 是原式的解，并且它属于 $\mathbf{F}_p$。首先考虑证明前者，即证明 $(r-x)^{p+1}\equiv a\pmod {f(x)}$。为此，我们需要先证明两个引理：
 
     **引理1：** $x^p \equiv -x \pmod {f(x)}$
 
