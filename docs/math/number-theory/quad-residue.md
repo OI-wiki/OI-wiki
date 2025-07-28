@@ -412,8 +412,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
     证毕。
 
-??? example "模板题 [洛谷 P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491) "
-    
+??? example " 模板题 [洛谷 P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491)"
     ```cpp
     --8<-- "docs/math/code/quad-residue/quad-residue_1.cpp"
     ```
