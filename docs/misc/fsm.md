@@ -28,7 +28,7 @@ author: CCXXXI, countercurrent-time, Enter-tainer, FFjet, H-J-Granger, Ir1d, mgt
 
 举个例子，完成「判断一个二进制数是不是偶数」的自动机如下：
 
-![example fsm](./images/fsm2.png)
+![example fsm](./images/fsm2.svg)
 
 从起始结点开始，从高到低接受这个数的二进制序列，然后看最终停在哪里。如果最终停在红圈结点，则是偶数，否则不是。
 
@@ -76,7 +76,9 @@ FSM 分为两类：确定性有限状态自动机、不确定性有限状态自�
 
 上文提到过，一个自动机可以由状态图表示出来。如下是一个接受且仅接受字符串 $\tt a$、$\tt ab$、$\tt aac$ 的 DFA：
 
-![](./images/fsm3.png)
+![](./images/fsm3.svg)
+
+（图中省略了失配状态，所有未画出的转移均指向该失配状态）
 
 ## 不确定性有限状态自动机
 
