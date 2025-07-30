@@ -160,9 +160,9 @@ int main(void) {
   for (auto& x : v)
     cin >> x;
 
-  loser_tree<int, 25> t;
+  loser_tree<int, 4> t;
   t.mergesort(v);
 
-  for (auto& x : v)
-    cout << x << ' ';
+  for (int i = 0; i < n; ++i)
+    cout << v[i] << " \n"[i == n - 1];
 }
