@@ -134,4 +134,5 @@
 /ds/2-3-tree /ds/llrbt
 /ds/b-tree /ds/bst
 /ds/bplus-tree /ds/bst
+/ds/loser-tree /basic/merge-sort/
 /graph/min-circle /graph/min-cycle
