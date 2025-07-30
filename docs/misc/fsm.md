@@ -200,9 +200,9 @@ DFA 与 NFA 的区别在于：DFA 的每一次输入只对应一个结果，而 
     6.  两个正则语言的差是正则的；
     7.  正则语言的反转是正则的；
     8.  正则语言的同态（相同串替代符号）是正则的；
-        -  设 $h : \Sigma \to \Gamma^\ast$ 是一个映射（同态），那么对正则语言 $L \subseteq \Sigma^\ast$，其映射 $h(L)$ 是正则的。
+        -   设 $h : \Sigma \to \Gamma^\ast$ 是一个映射（同态），那么对正则语言 $L \subseteq \Sigma^\ast$，其映射 $h(L)$ 是正则的。
     9.  正则语言的逆同态是正则的。
-        -  对上面的 $h$，若 $L \subseteq \Gamma^\ast$ 是正则语言，则 $h^{-1}(L) = \{ w \in \Sigma^\ast \mid h(w) \in L \}$ 也是正则语言。
+        -   对上面的 $h$，若 $L \subseteq \Gamma^\ast$ 是正则语言，则 $h^{-1}(L) = \{ w \in \Sigma^\ast \mid h(w) \in L \}$ 也是正则语言。
     
     因此所有有限语言都是正则语言。
 
