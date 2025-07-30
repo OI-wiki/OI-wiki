@@ -185,6 +185,7 @@ nav:
     - 计数 DP: dp/count.md
     - 动态 DP: dp/dynamic.md
     - 概率 DP: dp/probability.md
+    - DP 套 DP: dp/dp-of-dp.md
     - DP 优化:
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md

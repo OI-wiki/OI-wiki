@@ -56,7 +56,7 @@ Hash 冲突是指两个不同的字符串映射到相同的 Hash 值。
 则 Hash 冲突的概率为：
 
 $$
-p(n,d) = \frac{d!}{d^n\left(d-n\right)!} \approx 1 - \exp(-\frac{n(n-1)}{2d} )
+p(n,d) = 1 - \frac{d!}{d^n\left(d-n\right)!} \approx 1 - \exp(-\frac{n(n-1)}{2d} )
 $$
 
 ??? note "证明"
