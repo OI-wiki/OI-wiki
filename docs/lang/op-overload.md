@@ -193,8 +193,8 @@ bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
     -   若 `a < b`，则 `(a <=> b) < 0`；
     -   若 `a > b`，则 `(a <=> b) > 0`；
     -   若 `a` 和 `b` 相等或等价，则 `(a <=> b) == 0`。
-
-    具体实现细节请参考 [比较运算符#三路比较 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison)。
+    
+    具体实现细节请参考 [比较运算符 #三路比较 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison)。
 
 参考资料与注释：
 
