@@ -31,12 +31,14 @@ jobs:
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           python-version: '3.10'
-          cache: pipenv
+      - name: Install uv
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "latest"
       - name: Install Python dependencies
         if: steps.changed-files.outputs.any_changed == 'true'
-        run: |
-          pip install pipenv
-          pipenv install
+        run: uv sync
       - name: Install C++
         if: steps.changed-files.outputs.any_changed == 'true'
         run: |
@@ -48,12 +50,12 @@ jobs:
       - name: Get Files to Test
         if: steps.changed-files.outputs.any_changed == 'true'
         id: GetFiles
-        run: pipenv run python scripts/get_files_to_test.py
+        run: uv run python scripts/get_files_to_test.py
       - name: Correctness Check
         if: steps.changed-files.outputs.any_changed == 'true'
         env: 
           FILES_TO_TEST: ${{ steps.GetFiles.outputs.files_to_test }}
-        run: pipenv run python scripts/correctness_check.py
+        run: uv run python scripts/correctness_check.py
 
   undefinedbehaviors-ubuntu:
     name: UB Check - x86_64 Ubuntu

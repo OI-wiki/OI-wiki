@@ -372,7 +372,7 @@ $$
     $$
     \begin{aligned}
     \nu_p\left(\dbinom{m}{n}\right)
-    &=\nu_p(m!)-\nu_p(n!)-nu_p((m-n)!)\\
+    &=\nu_p(m!)-\nu_p(n!)-\nu_p((m-n)!)\\
     &=\sum_{i=1}^\infty\left(\left\lfloor\dfrac{m}{p^i}\right\rfloor-\left\lfloor\dfrac{n}{p^i}\right\rfloor-\left\lfloor\dfrac{m-n}{p^i}\right\rfloor\right)\\
     &=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}.
     \end{aligned}

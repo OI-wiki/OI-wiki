@@ -265,6 +265,51 @@ int main(int argc, char* argv[]) {
 }
 ```
 
+## HDOJ
+
+HDOJ 和 QDUOJ 的情况基本一致，也需要在 spj 中实现 std 后与选手输出比较。但与 QDUOJ 不同的是，HDOJ 会比较答案与 spj 输出在标准输出的内容后给出最终结果。因此，上传输出时仅需上传 spj 在正确时的输出即可。
+
+HDOJ 需上传 Windows 下编译后的二进制文件，而非源代码。
+
+```cpp
+#include <cmath>
+#include <cstdio>
+
+double solve(FILE* fin) {
+  // std, read input from fin
+}
+
+int main(int argc, char* argv[]) {
+  /*
+   * argv[1]：输入
+   * stdin：选手输出
+   */
+  FILE* fin = fopen(argv[1], "r");
+
+  double pans, jans;
+  if (scanf("%lf", &pans) != 1) {
+    printf("WA\n");
+    goto finish;
+  }
+
+  jans = solve(fin);
+  if (abs(pans - jans) < 1e-3)
+    printf("AC\n");
+  else
+    printf("WA\n");
+
+finish:
+  fclose(fin);
+  return 0;
+}
+```
+
+对应的答案文件为：
+
+```text
+AC
+```
+
 ## SYZOJ 2
 
 ???+ note
