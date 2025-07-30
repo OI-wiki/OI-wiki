@@ -14,11 +14,14 @@ struct loser_tree {
   loser_tree() : losers(way), data(way), empty(way) {}
 
   void reset_empty() { fill(empty.begin(), empty.end(), true); }
+
   void reset_losers() { fill(losers.begin(), losers.end(), -INF); }
+
   void reset() {
     reset_empty();
     reset_losers();
   }
+
   // 设置第 i 元素
   void set(int i, const T& val) {
     empty[i] = false;  // 填充新元素时, 置该路 empty[i] = false
@@ -37,8 +40,7 @@ struct loser_tree {
         const T &a = empty[u] ? INF : data[u],
                 &b = empty[losers[v]] ? INF : data[losers[v]];
 
-        if (a > b)
-          swap(losers[v], u);
+        if (a > b) swap(losers[v], u);
       }
       v /= 2;
     }
@@ -55,29 +57,24 @@ struct loser_tree {
     while (L < n) {
       int R = min(L + way, n), m = R - L;
       new_rg.emplace_back(rg[L].first, rg[R - 1].second);
-      reset_losers();   // 重置上一轮的 losers 数组, 否则可能影响当前轮比较
-      if (m != way)
-        reset_empty();  // 剩下的区间个数不足 K 路时, 还要重置 emtpy
+      reset_losers();  // 重置上一轮的 losers 数组, 否则可能影响当前轮比较
+      if (m != way) reset_empty();  // 剩下的区间个数不足 K 路时, 还要重置 emtpy
 
       for (int i = 0; i < m; ++i) {
         int x = L + i;
-        if (rg[x].first < rg[x].second)
-          set(i, v[rg[x].first++]);
+        if (rg[x].first < rg[x].second) set(i, v[rg[x].first++]);
       }
       // 无论是否填充了 K 路数据, **每路都需要进行一次调整**
-      for (int i = 0; i < way; ++i)
-        adjust(i);
+      for (int i = 0; i < way; ++i) adjust(i);
 
       while (true) {
         int winner = losers[0];
-        if (empty[winner])
-          break;               // 胜者已经没有新元素时, 当前轮合并完成
+        if (empty[winner]) break;  // 胜者已经没有新元素时, 当前轮合并完成
         empty[winner] = true;  // 取出胜者时立即置 empty = true
         res[cur++] = data[winner];
 
         int x = L + winner;
-        if (rg[x].first < rg[x].second)
-          set(winner, v[rg[x].first++]);
+        if (rg[x].first < rg[x].second) set(winner, v[rg[x].first++]);
         adjust(winner);
       }
 
@@ -95,10 +92,8 @@ struct loser_tree {
     reset();
 
     T minimax = -INF;
-    for (int i = 0; i < num; ++i)
-      set(i, v[i]);
-    for (int i = 0; i < way; ++i)
-      adjust(i);
+    for (int i = 0; i < num; ++i) set(i, v[i]);
+    for (int i = 0; i < way; ++i) adjust(i);
 
     int cur = 0;
     while (cur < n) {
@@ -109,19 +104,16 @@ struct loser_tree {
         last = cur;
         minimax = -INF;
         for (int i = 0; i < way; ++i)
-          if (cand[i])
-            empty[i] = cand[i] = false;  // 仅重新输入候补者
-        reset_losers();                  // 重置败者, 否则结果错误
-        for (int i = 0; i < way; ++i)
-          adjust(i);                  // 对**所有路**重新调整
+          if (cand[i]) empty[i] = cand[i] = false;  // 仅重新输入候补者
+        reset_losers();  // 重置败者, 否则结果错误
+        for (int i = 0; i < way; ++i) adjust(i);  // 对**所有路**重新调整
         continue;
       }
 
       empty[winner] = true;
       if (data[winner] >= minimax) {
         res[cur++] = minimax = data[winner];
-        if (num < n)
-          set(winner, v[num++]);
+        if (num < n) set(winner, v[num++]);
       } else {
         cand[winner] = true;  // 小于当前 minimax 的作为候补者
       }
@@ -145,8 +137,7 @@ struct loser_tree {
       merge(x, rg, y);
       f = !f;
     }
-    if (!f)
-      v = t;
+    if (!f) v = t;
   }
 };
 
@@ -157,12 +148,10 @@ int main(void) {
   cin >> n;
   vector<int> v(n);
 
-  for (auto& x : v)
-    cin >> x;
+  for (auto& x : v) cin >> x;
 
   loser_tree<int, 4> t;
   t.mergesort(v);
 
-  for (int i = 0; i < n; ++i)
-    cout << v[i] << " \n"[i == n - 1];
+  for (int i = 0; i < n; ++i) cout << v[i] << " \n"[i == n - 1];
 }
