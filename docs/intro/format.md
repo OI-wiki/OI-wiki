@@ -213,8 +213,7 @@
         注意需要在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
         
         === "C"
-            
-            ``` c
+            ```c
             #include <stdio.h>
             
             int main(void) {
@@ -224,8 +223,7 @@
             ```
             
         === "C++"
-            
-            ``` cpp
+            ```cpp
             #include <iostream>
             
             int main(void) {
