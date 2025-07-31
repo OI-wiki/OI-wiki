@@ -66,11 +66,11 @@ void add(int v, int u = 1, int l = 1, int r = n) {
   pushup(u);
 }
 
-void tset(int v, int u = 1, int l = 1, int r = n) {
+void test(int v, int u = 1, int l = 1, int r = n) {
   if (R < l || r < L) return;
   if (L <= l && r <= R) return pushset(u, v, v);
   pushdown(u, l, r);
-  tset(v, ls, l, mid), tset(v, rs, mid + 1, r);
+  test(v, ls, l, mid), test(v, rs, mid + 1, r);
   pushup(u);
 }
 
@@ -108,7 +108,7 @@ int main() {
     else if (op == 'P')
       cin >> x, add(x);
     else
-      cin >> x, tset(x);
+      cin >> x, test(x);
   }
   return 0;
 }
