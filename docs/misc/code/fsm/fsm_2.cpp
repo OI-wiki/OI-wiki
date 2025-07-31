@@ -2,10 +2,8 @@
 #include <iostream>
 #include <queue>
 #include <vector>
-#define N 100010
-#define M 200
-#define ll long long
-#define P 998244353
+constexpr int N = 100010, M = 200, P = 998244353;
+using ll = long long;
 using namespace std;
 int n, k, r, tot, ans[N], nxt[1 << 20][2], trans[M][2], isF[1 << 20];
 int belong[1 << 20], cnt, sz[M], ac[M];
@@ -130,6 +128,7 @@ int main() {
       }
       printf("%lld\n", ans);
     }
+  return 0;
 }
 
 // --8<-- [end:full-text]

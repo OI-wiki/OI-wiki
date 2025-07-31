@@ -168,4 +168,5 @@ int main() {
     scanf("%lld%lld%d", &l, &r, &k);
     printf("%lld\n", calc(r, k) - calc(l - 1, k));
   }
+  return 0;
 }
