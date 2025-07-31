@@ -42,6 +42,11 @@ while (队列 q 不为空)
 ??? note "解题思路"
     很好想出暴力 bfs。本题使用暴力 bfs 也不会超时。但是这里把它作为双向同时搜索的例题。我们可以使用两个 bfs，一个从起点状态开始正着搜，一个从终点状态开始反着搜，交替使用两个 bfs，搜索树的大小会大大减小。当其中一个 bfs 搜出另一个 bfs 已经搜出的状态，即可得到答案。
 
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/search/code/bidirectional/bidirectional_1.cpp"
+    ```
+
 ## Meet in the middle
 
 ???+ warning
@@ -73,7 +78,7 @@ Meet in the middle 算法的主要思想是将整个搜索过程分成两半，�
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/search/code/bidirectional/bidirectional_1.cpp"
+    --8<-- "docs/search/code/bidirectional/bidirectional_2.cpp"
     ```
 
 ## 外部链接
