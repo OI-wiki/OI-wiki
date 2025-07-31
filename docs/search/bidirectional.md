@@ -1,4 +1,4 @@
-author: FFjet, ChungZH, frank-xjh, hsfzLZH1, Xarfa, AndrewWayne
+author: FFjet, ChungZH, frank-xjh, hsfzLZH1, Xarfa, AndrewWayne, hcx1204
 
 本页面将简要介绍两种双向搜索算法：「双向同时搜索」和「Meet in the middle」。
 
@@ -33,6 +33,14 @@ while (队列 q 不为空)
     那么 将这个 s 个结点标记为 2 并且入队 q
 }
 ```
+
+### 例题
+
+???+ note " 例题 [八数码难题](https://www.luogu.com.cn/problem/P1379)"
+    在 $3\times 3$ 的棋盘上，摆有八个棋子，每个棋子上标有 $1$ 至 $8$ 的某一数字。棋盘中留有一个空格，空格用 $0$ 来表示。空格周围的棋子可以移到空格中。要求解的问题是：给出一种初始布局（初始状态）和目标布局（为了使题目简单,设目标状态为 $123804765$），找到一种最少步骤的移动方法，实现从初始布局到目标布局的转变。
+
+??? note "解题思路"
+    很好想出暴力 bfs。本题使用暴力 bfs 也不会超时。但是这里把它作为双向同时搜索的例题。我们可以使用两个 bfs，一个从起点状态开始正着搜，一个从终点状态开始反着搜，交替使用两个 bfs，搜索树的大小会大大减小。当其中一个 bfs 搜出另一个 bfs 已经搜出的状态，即可得到答案。
 
 ## Meet in the middle
 
