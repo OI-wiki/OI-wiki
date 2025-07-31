@@ -48,7 +48,6 @@ struct DFA {
       for (int s = 0; s < (1 << i); s++) {
         int s1 = 0, s2 = s;
         for (int j = 0; j <= i - 3; j++) {
-          int v = op[s2 & 7];
           int t = ((((s2 >> 3) << 1) | op[s2 & 7]) << j) | s1;
           ac[i][s] |= ac[i - 2][t];
           s1 |= (s2 & 1) << j;
@@ -197,4 +196,5 @@ int main() {
     solve(1, n, 1);
     putchar('\n');
   }
+  return 0;
 }
