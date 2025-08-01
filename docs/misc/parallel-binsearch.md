@@ -60,6 +60,7 @@ struct Query {
 
 int ans[N], a[N];  // ans[i] 表示编号为i的询问的答案，a 为原数列
 int check(int l, int r);  // 返回原数列中值域在 [l,r] 中的数的个数
+int ValueCount[N]; // 记录每个值出现过多少次（离散化之后），我们假设这个数组已经预处理好。
 
 void solve(int l, int r, vector<Query> q)
 // 请补全这个函数
@@ -82,8 +83,8 @@ void solve(int l, int r, vector<Query> q)
     ```cpp
     int check(int l, int r) {
       int res = 0;
-      for (int i = 1; i <= n; i++) {
-        if (l <= a[i] && a[i] <= r) res++;
+      for (int i = l; i <= r; i++) {
+        res+=ValueCount[i];
       }
       return res;
     }
