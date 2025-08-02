@@ -57,13 +57,12 @@ def fix_details(md_content: str):
             continue
 
         if trimmed.startswith(('???', '!!!', '===')):
-            base_indent = index_lfirst_neq(line, ' ')
-            stack.append(base_indent + TAB_WIDTH)
+            stack.append(index_lfirst_neq(line, ' ') + TAB_WIDTH)
             result.append(line)
             continue
 
         cur = index_lfirst_neq((l.strip() for l in lines[i:]), '')
-        indent_len = index_lfirst_neq(lines[cur+i], ' ') if cur > 0 else 0
+        indent_len = index_lfirst_neq(lines[cur+i], ' ') if cur >= 0 else 0
 
         while stack and indent_len < stack[-1]:
             stack.pop()
