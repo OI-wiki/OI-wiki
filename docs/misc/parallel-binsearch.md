@@ -59,9 +59,9 @@
       int id, k;  // 这个询问的编号, 这个询问的 k
     };
     
-    int ans[N], a[N];         // ans[i] 表示编号为i的询问的答案，a 为原数列
+    int ans[N], a[N];  // ans[i] 表示编号为i的询问的答案，a 为原数列
     int check(int l, int r);  // 返回原数列中值域在 [l,r] 中的数的个数
-    int val[N], cnt[N];       // 离散化后，记录对应的值及其计数（假设已经处理好）
+    int val[N], cnt[N];  // 离散化后，记录对应的值及其计数（假设已经处理好）
     
     int check(int l, int r) {
       int res = 0;
