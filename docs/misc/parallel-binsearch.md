@@ -60,9 +60,9 @@
     };
     
     int ans[N], a[N];  // ans[i] 表示编号为i的询问的答案，a 为原数列
-    int check(int l, int r);  // 返回原数列中值域在 [l,r] 中的数的个数
     int val[N], cnt[N];  // 离散化后，记录对应的值及其计数（假设已经处理好）
     
+    // 返回原数列中值域在 [l,r] 中的数的个数
     int check(int l, int r) {
       int res = 0;
       for (int i = l; i <= r; i++) {
@@ -71,6 +71,7 @@
       return res;
     }
     
+    // 整体二分
     void solve(int l, int r, vector<Query> q) {
       int m = (l + r) / 2;
       if (l == r) {
