@@ -246,7 +246,7 @@ $ git commit -a -m "feat: update README.md"
 
 下面用一张图来解释刚才的操作过程。
 
-![](./images/git1.png)
+![](./images/git1.svg)
 
 `master` 分支被标红，表明在这几次操作后，它是当前分支（即 HEAD 指向的位置）。
 
@@ -270,7 +270,7 @@ Merge made by the 'recursive' strategy.
  create mode 100644 aplusb.cpp
 ```
 
-![](./images/git2.png)
+![](./images/git2.svg)
 
 这次合并具体是怎么执行的呢？
 

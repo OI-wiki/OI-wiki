@@ -213,8 +213,7 @@
         注意需要在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
         
         === "C"
-        
-            ``` c
+            ```c
             #include <stdio.h>
             
             int main(void) {
@@ -224,8 +223,7 @@
             ```
             
         === "C++"
-        
-            ``` cpp
+            ```cpp
             #include <iostream>
             
             int main(void) {
@@ -273,7 +271,7 @@
 
     ???+ success "示例"
         前置知识：[时间复杂度](../basic/complexity.md)
-
+        
         本页面将介绍基础的计算理论的知识。
 
 -   请注意文档结构。文档结构应当十分条理，层次清晰。请不要让诸如「五级标题」这种事情再次发生了，一篇正常的文章是用不到如此复杂的结构层次的。
@@ -299,7 +297,7 @@
         ```markdown
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
         ```
-
+        
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
 -   受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末。

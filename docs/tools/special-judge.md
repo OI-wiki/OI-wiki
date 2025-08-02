@@ -314,7 +314,7 @@ AC
 
 ???+ note
     SYZOJ 2 有现成的修改版 [Testlib](#testlib)，建议使用 Testlib。
-
+    
     LibreOJ 的最新版本已不再基于 SYZOJ，而是基于 [Lyrio](https://github.com/lyrio-dev/lyrio)。Lyrio 支持使用原版 Testlib 编写评测器，这也是更加通用且推荐的做法。
 
 ```cpp
