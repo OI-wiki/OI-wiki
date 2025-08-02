@@ -24,6 +24,8 @@ def index_lfirst_neq(l, value):
 
 def fix_details(md_content: str):
     lines = md_content.splitlines()
+    if not lines or lines[-1]:
+        lines.append('')
     stack = [0]
     result = []
 
@@ -61,7 +63,7 @@ def fix_details(md_content: str):
             continue
 
         cur = index_lfirst_neq((l.strip() for l in lines[i:]), '')
-        indent_len = index_lfirst_neq(lines[cur+i], '') if cur > 0 else 0
+        indent_len = index_lfirst_neq(lines[cur+i], ' ') if cur > 0 else 0
 
         while stack and indent_len < stack[-1]:
             stack.pop()
@@ -80,7 +82,7 @@ def check(filename):
         result_lines = fix_details(data)
 
         failed_lnum = list(
-            idx+1 for idx, tup in enumerate(zip(data.splitlines(), result_lines)) if tup[0] == tup[1])
+            idx+1 for idx, tup in enumerate(zip(data.splitlines(), result_lines)) if tup[0] != tup[1])
         if failed_lnum:
             failed_file_lines[filename] = failed_lnum
         else:
@@ -90,7 +92,7 @@ def check(filename):
 if __name__ == '__main__':
     changed_files = os.environ.get("CHANGED_FILES", "")
     if changed_files:
-        for filename in changed_files.splitlines():
+        for filename in changed_files.split():
             check(filename)
     else:
         for root, _, files in os.walk("docs"):
