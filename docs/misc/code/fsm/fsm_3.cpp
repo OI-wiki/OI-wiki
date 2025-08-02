@@ -68,12 +68,6 @@ int dfs(node &st) {
 }
 
 void hopcroft() {
-  const auto rebuild = [&](int u) {
-    vector<int> tmp;
-    for (auto i : Q[u])
-      if (belong[i] == u) tmp.push_back(i);
-    swap(Q[u], tmp);
-  };
   queue<int> W;
   W.push(1);
   cnt = 10;
@@ -87,7 +81,6 @@ void hopcroft() {
   while (!W.empty()) {
     int u = W.front();
     W.pop();
-    rebuild(u);
     for (int c = 0; c <= 9; c++) {
       vector<int> td;
       for (auto x : Q[u]) {
@@ -100,23 +93,25 @@ void hopcroft() {
       for (auto i : td) {
         if (S[i].size() < sz[i]) {
           ans[++cnt] = ans[i];
+          vector<int> tmp;
           if (S[i].size() * 2 <= sz[i]) {
-            for (auto j : S[i]) Q[belong[j] = cnt].push_back(j);
-            sz[cnt] = S[i].size();
-            sz[i] -= S[i].size();
+            for (auto j : Q[i]) {
+              if (tag[j])
+                Q[belong[j] = cnt].push_back(j);
+              else
+                tmp.push_back(j);
+            }
           } else {
-            rebuild(i);
-            vector<int> tmp;
             for (auto j : Q[i]) {
               if (tag[j])
                 tmp.push_back(j);
               else
                 Q[belong[j] = cnt].push_back(j);
             }
-            swap(Q[i], tmp);
-            sz[i] = Q[i].size();
-            sz[cnt] = Q[cnt].size();
           }
+          swap(Q[i], tmp);
+          sz[i] = Q[i].size();
+          sz[cnt] = Q[cnt].size();
           W.push(cnt);
         }
         for (auto j : S[i]) tag[j] = 0;

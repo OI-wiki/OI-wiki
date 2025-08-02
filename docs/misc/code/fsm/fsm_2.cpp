@@ -26,12 +26,6 @@ int dfs(int x) {
 
 // --8<-- [start:core]
 void hopcroft() {
-  const auto rebuild = [&](int u) {
-    vector<int> tmp;
-    for (auto i : Q[u])
-      if (belong[i] == u) tmp.push_back(i);
-    swap(Q[u], tmp);
-  };
   queue<int> W;
   W.push(1);
   cnt = 2;
@@ -42,7 +36,6 @@ void hopcroft() {
   while (!W.empty()) {
     int u = W.front();
     W.pop();
-    rebuild(u);
     for (int c = 0; c <= 1; c++) {
       vector<int> td;
       for (auto x : Q[u]) {
@@ -55,27 +48,25 @@ void hopcroft() {
       for (auto i : td) {
         if (S[i].size() < sz[i]) {
           ac[++cnt] = ac[i];
+          vector<int> tmp;
           if (S[i].size() * 2 <= sz[i]) {
-            // 为了复杂度正确，这里没有从 Q[i] 中删除 S[i]，而是改变它们的
-            // belong。注意实现时，如果需要取用 Q 中的内容，必须先 rebuild。
-            // 以及注意 sz 中的值是真正的等价类的大小，sz[i] 不一定等于
-            // Q[i].size()
-            for (auto j : S[i]) Q[belong[j] = cnt].push_back(j);
-            sz[cnt] = S[i].size();
-            sz[i] -= S[i].size();
+            for (auto j : Q[i]) {
+              if (tag[j])
+                Q[belong[j] = cnt].push_back(j);
+              else
+                tmp.push_back(j);
+            }
           } else {
-            rebuild(i);
-            vector<int> tmp;
             for (auto j : Q[i]) {
               if (tag[j])
                 tmp.push_back(j);
               else
                 Q[belong[j] = cnt].push_back(j);
             }
-            swap(Q[i], tmp);
-            sz[i] = Q[i].size();
-            sz[cnt] = Q[cnt].size();
           }
+          swap(Q[i], tmp);
+          sz[i] = Q[i].size();
+          sz[cnt] = Q[cnt].size();
           W.push(cnt);
         }
         for (auto j : S[i]) tag[j] = 0;
