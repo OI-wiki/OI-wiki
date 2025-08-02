@@ -74,7 +74,7 @@
     void solve(int l, int r, vector<Query> q) {
       int m = (l + r) / 2;
       if (l == r) {
-        for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = l;
+        for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = val[l];
         return;
       }
       vector<Query> q1, q2;
