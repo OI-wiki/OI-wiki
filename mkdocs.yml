@@ -187,6 +187,7 @@ nav:
     - 概率 DP: dp/probability.md
     - DP 套 DP: dp/dp-of-dp.md
     - DP 优化:
+      - DP 优化简介: dp/opt/dp-opt.md
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
       - 四边形不等式优化: dp/opt/quadrangle.md
