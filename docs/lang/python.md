@@ -497,6 +497,22 @@ Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成
 
 上述程序实际上相当于先读入一个 N 行 3 列的矩阵，然后将其转置成 3 行 N 列的矩阵，也就是外层列表中嵌套了 3 个列表，最后将代表这起点、终点、权值的 3 个列表分别赋值给 u, v, w。内置函数 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip) 可以将多个等长序列中的对应元素拼接在「元组」内，得到新序列。而 `map()` 其实是函数式编程的一种操作，它将一个给定函数作用于 `zip()` 所产生序列的元素，这里就是用 `list()` 将元组变成列表。你可以自行练习使用 `*` 和 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip)，[`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 以理解其含义。需要注意的是 Python 3 中 `zip()` 和 `map()` 创建的不再返回列表而是返回迭代器，这里暂不解释它们之间的异同，你可以认为迭代器可以产生列表中的各个元素，用 `list()` 套住迭代器就能生成列表。
 
+#### [文件读写](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
+
+Python 内置函数 [`open()`](https://docs.python.org/3/library/functions.html#open) 用于文件读写，为了防止读写过程中出错导致文件未被正常关闭，这里只介绍使用 [`with`](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement) 语句的安全读写方法：
+
+```python
+a = []
+with open("in.txt") as f:
+    N = int(f.readline())  # 读入第一行的 N
+    a[len(a) :] = [[int(x) for x in f.readline().split()] for i in range(N)]
+
+with open("out.txt", "w") as f:
+    f.write("1\n")
+```
+
+关于文件读写的函数有很多，分别适用于不同的场景，由于 OI 赛事尚不支持使用 Python，这里从略。
+
 ### [控制流程](https://docs.python.org/zh-cn/3/tutorial/controlflow.html)
 
 尽管我们已经学习了 Python 的许多特性，但到目前为止我们展示的 Python 代码都是单行语句，这掩盖了 Python 和 C 在代码风格上的重大差异：首先，Python 中不用 `{}` 而是用缩进表示块结构，如果缩进没有对齐会直接报错，如果 tab 和 空格混用也会报错；其次，块结构开始的地方比如 `if` 和 `for` 语句的行末要有冒号 `:`。这有助于代码的可读性，但你也可能怀念 C 那种自由的体验，毕竟如果复制粘贴时因为丢失缩进而不得不手动对齐是很恼人的。
@@ -571,22 +587,6 @@ except ValueError:
         print("无法输出 y")
         print("原因:", e)
 ```
-
-#### [文件读写](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
-
-Python 内置函数 [`open()`](https://docs.python.org/3/library/functions.html#open) 用于文件读写，为了防止读写过程中出错导致文件未被正常关闭，这里只介绍使用 [`with`](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement) 语句的安全读写方法：
-
-```python
-a = []
-with open("in.txt") as f:
-    N = int(f.readline())  # 读入第一行的 N
-    a[len(a) :] = [[int(x) for x in f.readline().split()] for i in range(N)]
-
-with open("out.txt", "w") as f:
-    f.write("1\n")
-```
-
-关于文件读写的函数有很多，分别适用于不同的场景，由于 OI 赛事尚不支持使用 Python，这里从略。
 
 ### 内置容器
 

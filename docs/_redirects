@@ -113,6 +113,7 @@
 /math/permutation-group /math/combinatorics/polya
 /math/number-theory/periodic-continued-fraction /math/number-theory/continued-fraction
 /math/schreier-sims /math/algebra/schreier-sims
+/math/fourier-motzkin-elimination /math/linear-programming
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
@@ -134,4 +135,5 @@
 /ds/2-3-tree /ds/llrbt
 /ds/b-tree /ds/bst
 /ds/bplus-tree /ds/bst
+/ds/loser-tree /basic/merge-sort/
 /graph/min-circle /graph/min-cycle
