@@ -8,14 +8,14 @@
 
 // Deterministic finite automaton.
 struct DFA {
-  int n;                                // Number of states.
   int m;                                // Alphabet size.
+  int n;                                // Number of states.
   int q0;                               // Initial state.
   std::vector<std::vector<int>> trans;  // Transitions.
   std::vector<bool> acc;                // Indicators for accepting states.
 
-  DFA(int n, int m, int q0 = 0)
-      : n(n), m(m), q0(q0), trans(m, std::vector<int>(n)), acc(n) {}
+  DFA(int m, int n = 0, int q0 = 0)
+      : m(m), n(n), q0(q0), trans(m, std::vector<int>(n)), acc(n) {}
 
   DFA hopcroft_minimize() const;
 };
@@ -112,7 +112,7 @@ DFA DFA::hopcroft_minimize() const {
     }
   }
   // Output.
-  DFA res(ec.size(), m, par[q0]);
+  DFA res(m, ec.size(), par[q0]);
   for (const auto& e : ec) {
     auto i = ids[e.os];
     res.acc[par[i]] = acc[i];

@@ -10,7 +10,7 @@ int main() {
   const auto lowbit = [](int x) { return x & -x; };
   int n, k, r;
   std::cin >> n >> k >> r;
-  DFA raw_dfa(1 << k, 2, 0);
+  DFA raw_dfa(2, 1 << k);
   for (int x = 0; x < (1 << k); ++x) {
     raw_dfa.trans[0][x] = x - lowbit(x);
     raw_dfa.trans[1][x] = x + lowbit((1 << k) - 1 - x);
