@@ -11,9 +11,7 @@ struct DFA {
   int m;   // Alphabet size.
   int n;   // Number of states.
   int q0;  // Initial state.
-  std::vector<std::vector<int>>
-      trans;             // Transition table:
-                         // trans[c][q] = destination state from q on input c.
+  std::vector<std::vector<int>> trans; // Transitions: trans[c][q].
   std::vector<int> acc;  // Acceptance labels per state:
                          // - 0 = non-accepting
                          // - Nonzero = accepting (generalized labels supported)
