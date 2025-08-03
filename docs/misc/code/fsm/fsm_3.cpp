@@ -44,6 +44,7 @@ int dfs(const state& cr) {
 // DP.
 std::vector<long long> memo;
 std::vector<int> nums;
+
 long long sol(int x, int len, bool lim, int k) {
   if (!len) return dfa.acc[x] <= k;
   auto key = (x * 20 + len) * B + k;
@@ -54,7 +55,7 @@ long long sol(int x, int len, bool lim, int k) {
   return lim ? res : memo[key] = res;
 };
 
-long long calc(long long n, int k)  {
+long long calc(long long n, int k) {
   nums.clear();
   for (; n; n /= B) nums.push_back(n % B);
   return sol(dfa.q0, nums.size(), true, k);
