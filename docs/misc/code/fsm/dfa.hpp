@@ -39,7 +39,10 @@ DFA DFA::hopcroft_minimize() const {
     // - OS (i.e., offset) is the starting index of an EC.
     // - SZ is the size of an EC. (Note that ECs are not stored in order.)
     // - CNT is a temporary counter used later.
-    struct EquivClasses { int os, sz, cnt; };
+    struct EquivClasses { 
+        int os, sz, cnt;
+        EquivClasses(int os, int sz, int cnt) : os(os), sz(sz), cnt(cnt) {}
+    };
     // Containers.
     std::vector<EquivClasses> ec(1);  // Current partition.
     std::vector<int> ids(n);          // A permutation of states.
