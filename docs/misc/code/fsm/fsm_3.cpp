@@ -63,10 +63,12 @@ long long calc(long long n, int k) {
 
 int main() {
   // Construct a DFA.
+  for (int c = 0; c < B; ++c) {
+    raw_dfa.trans[c].reserve(20000);
+  }
   dfs(1);
   // DFA minimization.
   dfa = raw_dfa.hopcroft_minimize();
-  std::cout << raw_dfa.n << ' ' << dfa.n << std::endl;
   memo.assign(dfa.n * 20 * B, -1);
   // Queries.
   int t;
