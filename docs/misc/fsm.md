@@ -392,7 +392,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/misc/code/fsm/fsm_3.cpp"
+    --8<-- "docs/misc/code/fsm/fsm_3.cpp:main"
     ```
 
 ### 习题
