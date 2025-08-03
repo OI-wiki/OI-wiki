@@ -3,6 +3,7 @@
 // --8<-- [start:main]
 #include <iostream>
 #include <string>
+#include <vector>
 
 int main() {
   constexpr int M = 998244353;

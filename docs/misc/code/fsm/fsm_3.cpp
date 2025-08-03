@@ -4,8 +4,8 @@
 #include <bitset>
 #include <cmath>
 #include <iostream>
-#include <string>
 #include <unordered_map>
+#include <vector>
 
 constexpr int B = 10, L = 91;
 
