@@ -61,7 +61,7 @@ FSM 分为两类：确定性有限状态自动机、非确定性有限状态自�
     设 $M=(Q,\Sigma,\delta,q_0,F)$ 是一个 DFA，$w=w_1w_2\cdots w_n~\in\Sigma^*$ 是一个串。若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_n$ 满足
     
     -   $r_0=q_0$，
-    -   $\delta(r_i,w_{i+1})=r_{i+1}$ 对于任何 #i=0,1,\cdots,n-1\$ 都成立，
+    -   $\delta(r_i,w_{i+1})=r_{i+1}$ 对于任何 $i=0,1,\cdots,n-1$ 都成立，
     -   $r_n\in F$，
     
     则称 $M$  **接受**（accepts）$w$。反之，则称 $M$  **不接受**  $w$。
@@ -110,7 +110,7 @@ NFA 的计算过程，相当于同时运行多个 DFA。每一步操作都穷举
     设 $N=(Q,\Sigma,\delta,q_0,F)$ 是一个 NFA，串 $w$ 可以表示为 $y_1y_2\cdots y_m\in\Sigma^*_\varepsilon$。若存在 $Q$ 中的状态序列 $r_0,r_1,\cdots,r_m$ 满足
     
     -   $r_0=q_0$，
-    -   $r_{i+1}\in\delta(r_i,y_{i+1})$ 对于任何 #i=0,1,\cdots,m-1\$ 都成立，
+    -   $r_{i+1}\in\delta(r_i,y_{i+1})$ 对于任何 $i=0,1,\cdots,m-1$ 都成立，
     -   $r_m\in F$，
     
     则称 $N$  **接受**  $w$。反之，则称 $N$  **不接受**  $w$。
