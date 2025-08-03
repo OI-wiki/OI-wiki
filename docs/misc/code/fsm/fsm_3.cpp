@@ -11,7 +11,14 @@ constexpr int B = 10, L = 91;
 
 using state = std::bitset<L>;
 DFA raw_dfa(B), dfa(B);
-std::unordered_map<state, int> ids;
+
+struct BitsetHash {
+    std::size_t operator()(const std::bitset<L>& bs) const {
+        return std::hash<std::string>()(bs.to_string());
+    }
+};
+
+std::unordered_map<state, int, BitsetHash> ids;
 
 // Construct a DFA by DFS.
 int dfs(const state& cr) {
