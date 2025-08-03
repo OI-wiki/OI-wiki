@@ -14,7 +14,7 @@ int main() {
   for (int x = 0; x < (1 << k); ++x) {
     raw_dfa.trans[0][x] = x - lowbit(x);
     raw_dfa.trans[1][x] = x + lowbit((1 << k) - 1 - x);
-    if (x <= r) raw_dfa.acc[x] = true;
+    if (x <= r) raw_dfa.acc[x] = 1;
   }
   // DFA minimization.
   auto dfa = raw_dfa.hopcroft_minimize();
