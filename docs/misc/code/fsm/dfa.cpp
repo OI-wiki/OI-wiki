@@ -8,19 +8,21 @@
 
 // Deterministic Finite Automaton (DFA)
 struct DFA {
-  int m;                                // Alphabet size.
-  int n;                                // Number of states.
-  int q0;                               // Initial state.
-  std::vector<std::vector<int>> trans;  // Transition table:
-                                        // trans[c][q] = destination state from q on input c.
-  std::vector<int> acc;                 // Acceptance labels per state:
-                                        // - 0 = non-accepting
-                                        // - Nonzero = accepting (generalized labels supported)
+  int m;   // Alphabet size.
+  int n;   // Number of states.
+  int q0;  // Initial state.
+  std::vector<std::vector<int>>
+      trans;             // Transition table:
+                         // trans[c][q] = destination state from q on input c.
+  std::vector<int> acc;  // Acceptance labels per state:
+                         // - 0 = non-accepting
+                         // - Nonzero = accepting (generalized labels supported)
 
   DFA(int m, int n = 0, int q0 = 0)
       : m(m), n(n), q0(q0), trans(m, std::vector<int>(n)), acc(n) {}
 
-  DFA hopcroft_minimize() const;        // Returns minimized DFA via Hopcroft's algorithm.
+  DFA hopcroft_minimize()
+      const;  // Returns minimized DFA via Hopcroft's algorithm.
 };
 
 // --8<-- [start:hopcroft]
@@ -46,20 +48,22 @@ DFA DFA::hopcroft_minimize() const {
   // - cnt: temporary count of marked states during refinement.
   struct EquivClasses {
     int os, sz, cnt;
+
     EquivClasses(int os = 0, int sz = 0, int cnt = 0)
         : os(os), sz(sz), cnt(cnt) {}
   };
 
   // Partition and helper data structures.
-  std::vector<EquivClasses> ec;     // Current list of equivalence classes.
-  std::vector<int> ids(n);          // Permutation of states, grouped by ECs.
-  std::vector<int> par(n);          // Maps state to its EC index.
-  std::vector<bool> tag(n);         // Temporary marking for splitting.
-  std::queue<int> evidences;        // Worklist of ECs to check.
+  std::vector<EquivClasses> ec;  // Current list of equivalence classes.
+  std::vector<int> ids(n);       // Permutation of states, grouped by ECs.
+  std::vector<int> par(n);       // Maps state to its EC index.
+  std::vector<bool> tag(n);      // Temporary marking for splitting.
+  std::queue<int> evidences;     // Worklist of ECs to check.
 
   // Initial partition by acceptance label.
   std::iota(ids.begin(), ids.end(), 0);
-  std::sort(ids.begin(), ids.end(), [&](int l, int r) { return acc[l] < acc[r]; });
+  std::sort(ids.begin(), ids.end(),
+            [&](int l, int r) { return acc[l] < acc[r]; });
   for (int l = 0, r; l < n; l = r) {
     for (r = l; r < n && acc[ids[r]] == acc[ids[l]]; ++r)
       par[ids[r]] = ec.size();
@@ -89,9 +93,10 @@ DFA DFA::hopcroft_minimize() const {
         if (ec[i].cnt != ec[i].sz) {
           // Split into two: larger vs smaller segment.
           bool majority_tagged = ec[i].cnt * 2 >= ec[i].sz;
-          int mid = std::partition(
-              ids.begin() + ec[i].os, ids.begin() + ec[i].os + ec[i].sz,
-              [&](int x) { return tag[x] == majority_tagged; }) -
+          int mid =
+              std::partition(ids.begin() + ec[i].os,
+                             ids.begin() + ec[i].os + ec[i].sz,
+                             [&](int x) { return tag[x] == majority_tagged; }) -
               ids.begin() - ec[i].os;
 
           // Assign new EC index to the smaller segment.
@@ -116,11 +121,11 @@ DFA DFA::hopcroft_minimize() const {
   for (const auto& e : ec) {
     int i = ids[e.os];  // Representative state.
     res.acc[par[i]] = acc[i];
-    for (int c = 0; c < m; ++c)
-      res.trans[c][par[i]] = par[trans[c][i]];
+    for (int c = 0; c < m; ++c) res.trans[c][par[i]] = par[trans[c][i]];
   }
   return res;
 }
+
 // --8<-- [end:hopcroft]
 
 #endif  // DETERMINISTIC_FINITE_AUTOMATON
