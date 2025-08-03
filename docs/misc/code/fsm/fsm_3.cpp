@@ -177,7 +177,8 @@ int main() {
   auto calc = [&](long long n, int k) -> long long {
     std::vector<int> nums;
     for (; n; n /= B) nums.push_back(n % B);
-    std::function<long long(int, int, int)> sol = [&](int x, int len, bool lim) -> long long {
+    std::function<long long(int, int, int)> sol = [&](int x, int len,
+                                                      bool lim) -> long long {
       if (!len) return dfa.acc[x] <= k;
       auto key = (x * 20 + len) * B + k;
       if (!lim && memo[key] != -1) return memo[key];
