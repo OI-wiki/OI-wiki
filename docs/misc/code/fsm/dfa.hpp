@@ -127,4 +127,3 @@ DFA DFA::hopcroft_minimize() const {
 // --8<-- [end:hopcroft]
 
 #endif  // DETERMINISTIC_FINITE_AUTOMATON
-
