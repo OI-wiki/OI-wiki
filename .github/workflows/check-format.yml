@@ -25,6 +25,19 @@ jobs:
         run: |
           yarn docs:format:check -a
 
+  fix-details:
+    name: Fix indent missing in details
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout Repo
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run fix-details
+        run: |
+          python3 scripts/fix-details.py ./docs
+
   remark-lint:
     name: Check PR with remark-lint
     runs-on: ubuntu-latest
