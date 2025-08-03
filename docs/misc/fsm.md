@@ -343,7 +343,7 @@ $$
     -   `Q[x]`：等价类 $x$ 所包含的状态。
     
     ```cpp
-    --8<-- "docs/misc/code/fsm/dfa.cpp:dfa"
+    --8<-- "docs/misc/code/fsm/dfa.hpp:dfa"
     ```
 
 ### 例题

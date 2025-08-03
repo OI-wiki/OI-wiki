@@ -1,4 +1,4 @@
-#include "dfa.cpp"
+#include "dfa.hpp"
 
 // --8<-- [start:main]
 #include <iostream>
