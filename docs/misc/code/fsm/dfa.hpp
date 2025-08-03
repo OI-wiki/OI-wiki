@@ -1,7 +1,6 @@
 #ifndef DETERMINISTIC_FINITE_AUTOMATON
 #define DETERMINISTIC_FINITE_AUTOMATON
 
-// --8<-- [start:dfa]
 #include <algorithm>
 #include <numeric>
 #include <queue>
@@ -21,6 +20,7 @@ struct DFA {
   DFA hopcroft_minimize() const;
 };
 
+// --8<-- [start:hopcroft]
 DFA DFA::hopcroft_minimize() const {
   // Compute inverse transitions.
   // After this step:
@@ -123,5 +123,5 @@ DFA DFA::hopcroft_minimize() const {
   return res;
 }
 
-// --8<-- [end:dfa]
+// --8<-- [end:hopcroft]
 #endif  // DETERMINISTIC_FINITE_AUTOMATON
