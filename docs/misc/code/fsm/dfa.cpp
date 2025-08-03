@@ -8,12 +8,12 @@
 
 // Deterministic Finite Automaton (DFA)
 struct DFA {
-  int m;   // Alphabet size.
-  int n;   // Number of states.
-  int q0;  // Initial state.
-  std::vector<std::vector<int>> trans; // Transitions: trans[c][q].
-  std::vector<int> acc;  // Acceptance labels per state:
-                         // - 0 = non-accepting
+  int m;                                // Alphabet size.
+  int n;                                // Number of states.
+  int q0;                               // Initial state.
+  std::vector<std::vector<int>> trans;  // Transitions: trans[c][q].
+  std::vector<int> acc;                 // Acceptance labels per state:
+                                        // - 0 = non-accepting
                          // - Nonzero = accepting (generalized labels supported)
 
   DFA(int m, int n = 0, int q0 = 0)
