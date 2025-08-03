@@ -47,8 +47,7 @@ DFA DFA::hopcroft_minimize() const {
   struct EquivClasses {
     int os, sz, cnt;
 
-    EquivClasses(int os = 0, int sz = 0, int cnt = 0)
-        : os(os), sz(sz), cnt(cnt) {}
+    EquivClasses(int os, int sz, int cnt) : os(os), sz(sz), cnt(cnt) {}
   };
 
   // Partition and helper data structures.
