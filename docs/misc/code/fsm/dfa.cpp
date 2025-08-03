@@ -14,7 +14,7 @@ struct DFA {
   std::vector<std::vector<int>> trans;  // Transitions: trans[c][q].
   std::vector<int> acc;                 // Acceptance labels per state:
                                         // - 0 = non-accepting
-                         // - Nonzero = accepting (generalized labels supported)
+                                        // - Nonzero = accepting (labeled)
 
   DFA(int m, int n = 0, int q0 = 0)
       : m(m), n(n), q0(q0), trans(m, std::vector<int>(n)), acc(n) {}
