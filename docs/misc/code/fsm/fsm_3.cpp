@@ -63,9 +63,7 @@ long long calc(long long n, int k) {
 
 int main() {
   // Construct a DFA.
-  for (int c = 0; c < B; ++c) {
-    raw_dfa.trans[c].reserve(20000);
-  }
+  for (int c = 0; c < B; ++c) raw_dfa.trans[c].reserve(20000);
   dfs(1);
   // DFA minimization.
   dfa = raw_dfa.hopcroft_minimize();
