@@ -66,7 +66,7 @@ int main() {
   dfs(1);
   // DFA minimization.
   dfa = raw_dfa.hopcroft_minimize();
-  std::cout << dfa.n << std::endl;
+  std::cout << raw_dfa.n << ' ' << dfa.n << std::endl;
   memo.assign(dfa.n * 20 * B, -1);
   // Queries.
   int t;
