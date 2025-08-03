@@ -343,7 +343,7 @@ $$
     -   `Q[x]`：等价类 $x$ 所包含的状态。
     
     ```cpp
-    --8<-- "docs/misc/code/fsm/fsm_2.cpp:core"
+    --8<-- "docs/misc/code/fsm/dfa.hpp:dfa"
     ```
 
 ### 例题
@@ -372,7 +372,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/misc/code/fsm/fsm_2.cpp:full-text"
+    --8<-- "docs/misc/code/fsm/fsm_2.cpp:main"
     ```
 
 ???+ example "[Minimal Subset Difference](https://codeforces.com/contest/956/problem/F)"
