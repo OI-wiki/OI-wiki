@@ -20,7 +20,7 @@ struct DFA {
       : m(m), n(n), q0(q0), trans(m, std::vector<int>(n)), acc(n) {}
 
   // Returns minimized DFA via Hopcroft's algorithm.
-  DFA hopcroft_minimize() const;  
+  DFA hopcroft_minimize() const;
 };
 
 // --8<-- [end:dfa]
