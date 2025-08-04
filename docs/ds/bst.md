@@ -19,7 +19,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 ### 二叉搜索树节点的定义
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     struct TreeNode {
       int key;
       TreeNode* left;
@@ -40,7 +40,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 遍历一棵二叉搜索树的代码如下：
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     void inorderTraversal(TreeNode* root) {
       if (root == nullptr) {
         return;
@@ -92,7 +92,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 时间复杂度为 $O(h)$。
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     bool search(TreeNode* root, int target) {
       if (root == nullptr) {
         return false;
@@ -158,14 +158,14 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
     -   若 `root` 为链节点，即只有一个儿子的节点，返回这个儿子。
 
-    -   若 `count` 有两个非空子节点，一般是用它左子树的最大值（左子树最右的节点）或右子树的最小值（右子树最左的节点）代替它，然后将它删除。
+    -   若 `root` 有两个非空子节点，一般是用它左子树的最大值（左子树最右的节点）或右子树的最小值（右子树最左的节点）代替它，然后将它删除。
 
 时间复杂度 $O(h)$。
 
 ???+ note "实现"
     方法使用 `root = remove(root, 1)` 表示删除根节点为 `root` 树中值为 1 的节点，并返回新的根节点。
     
-    ```c++
+    ```cpp
     // 此处返回值为删除 value 后的新 root
     TreeNode* remove(TreeNode* root, int value) {
       if (root == nullptr) {
@@ -253,7 +253,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
         if (root->left->size >= k) return querykth(root->left, k);
         if (root->left->size + root->count >= k) return root->key;
       } else {
-        if (k == 1) return root->key;
+        if (k <= root->count) return root->key;
       }
       return querykth(root->right,
                       k - (root->left ? root->left->size : 0) - root->count);
@@ -282,8 +282,6 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 -   [Size Balanced Tree](sbt.md) 每个节点 N 维护以 N 为根节点的树中节点个数 `size`。对平衡性的定义：任意节点的 `size` 不小于其兄弟节点（Sibling）的所有子节点（Nephew）的 `size`。
 
--   [B 树](b-tree.md) 对平衡性的定义：每个节点应该保持在一个预定义的范围内的关键字数量。
-
 此外，对于拥有同样元素值集合的搜索树，平衡状态可能是不唯一的。也就是说，可能两棵不同的搜索树，含有的元素值集合相同，并且都是平衡的。
 
 ### 平衡的调整过程
@@ -305,7 +303,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 下面给出左旋和右旋的代码。
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     TreeNode* rotateLeft(TreeNode* root) {
       TreeNode* newRoot = root->right;
       root->right = newRoot->left;

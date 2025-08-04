@@ -54,7 +54,7 @@
 
 因此我们只要尝试将每一个结点删去后 dfs 即可，代码复杂度为 $O(n^3)$。下面给出核心代码。
 
-```c++
+```cpp
 // 假设图中有 n 个结点, 起始点 s = 1
 std::bitset<N> vis;
 std::vector<int> edge[N];
@@ -103,7 +103,7 @@ $$
 
 下面给出核心代码的参考实现。这里需要预先处理每个点的前驱结点集和图的逆后序，但这不是本文讨论的主要内容，故这里不提供参考实现。
 
-```c++
+```cpp
 std::vector<int> pre[N];  // 每个结点的前驱结点
 std::vector<int> ord;     // 图的逆后序
 std::bitset<N> dom[N];
@@ -156,7 +156,7 @@ void getdom() {
 
 因此，利用前文所述的算法得到每个结点的支配点集之后，我们根据上述定义便能很轻松地得到每个点的直接支配点，从而构造出支配树。下面给出参考代码。
 
-```c++
+```cpp
 std::bitset<N> dom[N];
 std::vector<int> Dom[N];
 int idom[N];
@@ -198,7 +198,7 @@ void getidom() {
 
 下面给出参考实现：
 
-```c++
+```cpp
 std::stack<int> sta;
 std::vector<int> e[N], g[N], tree[N];  // g 是原图的反图，tree 是支配树
 int n, s, in[N], tpn[N], dep[N], idom[N];  // n 为总点数，s 为起始点，in 为入度
@@ -313,7 +313,7 @@ $sdom(u) = \min(v|\exists v=v_0 \rightarrow v_1 \rightarrow\dots \rightarrow v_k
 
 根据定理 1 我们便可以求出每个点的半支配点了。不难发现计算半支配点的复杂度瓶颈在第二种情况上，我们考虑利用带权并查集优化，每次路径压缩时更新最小值即可。
 
-```c++
+```cpp
 void dfs(int u) {
   dfn[u] = ++dfc;
   pos[dfc] = u;
@@ -411,7 +411,7 @@ $$
 
 只要对上面求解半支配点的代码稍作修改即可。
 
-```c++
+```cpp
 struct E {
   int v, x;
 } e[MAX * 4];
@@ -504,7 +504,7 @@ void tar(int st) {
 这里给出后一种解法的代码。
 
 ??? note "参考代码"
-    ```c++
+    ```cpp
     --8<-- "docs/graph/code/dom-tree/dom-tree_1.cpp"
     ```
 
@@ -513,6 +513,6 @@ void tar(int st) {
 在 DAG 上求支配树然后求节点 size 即可。
 
 ??? note "参考代码"
-    ```c++
+    ```cpp
     --8<-- "docs/graph/code/dom-tree/dom-tree_2.cpp"
     ```

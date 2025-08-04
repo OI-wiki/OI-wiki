@@ -25,7 +25,7 @@
           return true;
         }
         ```
-
+    
     === "Python"
         ```python
         def isPrime(a):
@@ -41,7 +41,7 @@
 
 很容易发现这样一个事实：如果 $x$ 是 $a$ 的约数，那么 $\frac{a}{x}$ 也是 $a$ 的约数。
 
-这个结论告诉我们，对于每一对 $(x, \frac{a}{x} )$，只需要检验其中的一个就好了。为了方便起见，我们之考察每一对里面小的那个数。不难发现，所有这些较小数就是 $[1, \sqrt{a}]$ 这个区间里的数。
+这个结论告诉我们，对于每一对 $(x, \frac{a}{x} )$，只检验其中的一个就足够了。为了方便起见，我们只考察每一对的较小数。不难发现，所有这些较小数都在 $[1, \sqrt{a}]$ 这个区间里。
 
 由于 $1$ 肯定是约数，所以不检验它。
 
@@ -55,7 +55,7 @@
           return 1;
         }
         ```
-
+    
     === "Python"
         ```python
         def isPrime(a):
@@ -78,7 +78,7 @@
 ???+ example "参考实现"
     === "C++"
         ```cpp
-        bool millerRabin(int n) {
+        bool fermat(int n) {
           if (n < 3) return n == 2;
           // test_time 为测试次数,建议设为不小于 8
           // 的整数以保证正确率,但也不宜过大,否则会影响效率
@@ -89,10 +89,10 @@
           return true;
         }
         ```
-
+    
     === "Python"
         ```python
-        def millerRabin(n):
+        def fermat(n):
             if n < 3:
                 return n == 2
             # test_time 为测试次数,建议设为不小于 8
@@ -260,7 +260,7 @@ Carmichael 数有如下性质：
           return 1;
         }
         ```
-
+    
     === "Python"
         ```python
         def millerRabin(n):

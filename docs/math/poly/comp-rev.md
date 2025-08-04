@@ -86,7 +86,7 @@ $$
 
 ??? note " 模板（[P5373【模板】多项式复合函数](https://www.luogu.com.cn/problem/P5373)）"
     代码相对于原算法作了一些简化及修改，使得代码更短。
-
+    
     ```cpp
     --8<-- "docs/math/code/poly/comp-rev/comp_1.cpp"
     ```
@@ -176,7 +176,7 @@ $$
 
 ??? note " 模板（[P5809【模板】多项式复合逆](https://www.luogu.com.cn/problem/P5809)）"
     代码相对于原算法作了一些简化及修改，使得代码更短。
-
+    
     ```cpp
     --8<-- "docs/math/code/poly/comp-rev/rev_1.cpp"
     ```

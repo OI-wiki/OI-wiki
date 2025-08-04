@@ -33,7 +33,7 @@
 代码如下：
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     std::vector<int> G[N];
     int n, fa[N], son[N], sz[N];
     
@@ -98,7 +98,7 @@
 代码如下：
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     // a：子树加标记
     // s：子树和（不算加标记的）
     int a[N], s[N];
@@ -144,7 +144,7 @@
 ## 例题
 
 ??? note "[P4751【模板】"动态 DP"& 动态树分治（加强版）](https://www.luogu.com.cn/problem/P4751)"
-    ```c++
+    ```cpp
     #include <algorithm>
     #include <cstdio>
     #include <cstring>

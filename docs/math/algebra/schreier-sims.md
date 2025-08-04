@@ -183,30 +183,30 @@ $$
 
 ???+ note "Schreier 引理"
     设群 $G=\langle S\rangle$ 有子群 $H\le G$。设 $T$ 是子群 $H$ 的（右）陪集代表系，且 $e\in T$[^schreier-lemma-unity]，并记 $g\in G$ 所在陪集的代表元 $t\in T$ 为 $\overline g$。那么，集合
-
+    
     $$
     U=\{ts(\overline{ts})^{-1}:t\in T,s\in S\}
     $$
-
+    
     是子群 $H$ 的一个生成集。它的元素称为子群 $H$ 的 **Schreier 生成元**（Schreier generator）。
 
 ??? note "证明"
     首先，根据陪集代表元的定义可知，$ts(\overline{ts})^{-1}\in H$ 对所有 $t\in T,s\in S$ 都成立，故而 $\langle U\rangle\subseteq H$。
-
+    
     反过来，对于任何 $h\in H$，因为 $S$ 是 $G\ge H$ 的生成集，必然存在一列 $s_i\in S\cup S^{-1}$ 使得
-
+    
     $$
     h=s_1s_2\cdots s_r
     $$
-
+    
     成立。令 $t_1=e$，并递归地定义 $t_{i+1}=\overline{s_it_i}\in T$，于是，有
-
+    
     $$
     \begin{aligned}
     h&=\left(t_1s_1t_2^{-1}\right)\left(t_2s_2t_3^{-1}\right)\cdots(t_rs_rt_{r+1})^{-1}t_{r+1}.
     \end{aligned}
     $$
-
+    
     而对于每个 $i=1,2,\cdots,r$ 都有 $t_is_it_{i+1}^{-1}=t_is_i(\overline{t_is_i})^{-1}\in U\cup U^{-1}\subseteq H$，故而有 $t_{r+1}\in H$。但是，$H\cap T=\{e\}$，所以有 $t_{r+1}=e$。这就说明，任意 $h\in H$ 都可以写作一列 $u_i=t_is_it_{i+1}^{-1}\in U\cup U^{-1}$ 的乘积，亦即 $U$ 生成 $H$。
 
 因为陪集代表系 $T$ 对应的子群就是稳定化子 $G_\beta$，所以求出陪集代表系 $T$ 后再结合群 $G$ 的生成集 $S$ 就能得到稳定化子 $G_\beta$ 的生成集。

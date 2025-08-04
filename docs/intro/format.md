@@ -213,8 +213,7 @@
         注意需要在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
         
         === "C"
-        
-            ``` c
+            ```c
             #include <stdio.h>
             
             int main(void) {
@@ -224,8 +223,7 @@
             ```
             
         === "C++"
-        
-            ``` c++
+            ```cpp
             #include <iostream>
             
             int main(void) {
@@ -247,7 +245,7 @@
             ```
         
         === "C++"
-            ```c++
+            ```cpp
             #include <iostream>
             
             int main(void) {
@@ -273,7 +271,7 @@
 
     ???+ success "示例"
         前置知识：[时间复杂度](../basic/complexity.md)
-
+        
         本页面将介绍基础的计算理论的知识。
 
 -   请注意文档结构。文档结构应当十分条理，层次清晰。请不要让诸如「五级标题」这种事情再次发生了，一篇正常的文章是用不到如此复杂的结构层次的。
@@ -299,7 +297,7 @@
         ```markdown
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
         ```
-
+        
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
 -   受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末。
@@ -435,42 +433,46 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
 
 #### 伪代码格式
 
-伪码具体格式没有严格要求，请参考算法导论或学术论文。注意不要写成 Python。
+伪代码具体格式没有严格要求，请参考算法导论或学术论文。注意不要写成 Python。
 
-Wiki 内使用 LaTeX 书写伪码，整体处于 array 环境中，缩进使用 `$\qquad$`，文字描述使用 `$\text$`，关键字使用 `$\textbf$`，赋值使用 `$\gets$`。
+Wiki 内使用 LaTeX 书写伪代码，整体处于 array 环境中，缩进使用 `$\qquad$`，文字描述使用 `$\text$`，关键字使用 `$\textbf$`，多字母变量使用 `$\textit$`，赋值使用 `$\gets$`。
 
 参考示例：
 
 $$
-\begin{array}{ll}
-1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
-  &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
-2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
-3 &  \textbf{Method. } \\ 
-4 &  result \gets \varnothing \\
-5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
-6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
-7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
-8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
-9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
-10 &  \textbf{return }  result
+\begin{array}{l}
+\textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
+\text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
+\textbf{Output. } \text{The edges of the MST of the input graph}. \\
+\textbf{Method. } \\
+\begin{array}{ll} 
+1 &  \textit{result} \gets \varnothing \\
+2 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
+3 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
+4 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
+5 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+6 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
+7 &  \textbf{return } \textit{result}
+\end{array}
 \end{array}
 $$
 
 ```latex
 $$
-\begin{array}{ll}
-1 &  \textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
-  &  \text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
-2 &  \textbf{Output. } \text{The edges of the MST of the input graph}.\\
-3 &  \textbf{Method. } \\
-4 &  result \gets \varnothing \\
-5 &  \text{sort } e \text{ into nondecreasing order by weight } w \\
-6 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\
-7 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
-8 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
-9 &  \qquad\qquad  result \gets result\;\bigcup\ \{(u, v, w)\} \\
-10 &  \textbf{return }  result
+\begin{array}{l}
+\textbf{Input. } \text{The edges of the graph } e , \text{ where each element in } e \text{ is } (u, v, w) \\
+\text{ denoting that there is an edge between } u \text{ and } v \text{ weighted } w . \\
+\textbf{Output. } \text{The edges of the MST of the input graph}. \\
+\textbf{Method. } \\
+\begin{array}{ll} 
+1 &  \textit{result} \gets \varnothing \\
+2 &  \text{sort } e \text{ into nondecreasing order by weight } w \\ 
+3 &  \textbf{for} \text{ each } (u, v, w) \text{ in the sorted } e \\ 
+4 &  \qquad \textbf{if } u \text{ and } v \text{ are not connected in the union-find set } \\
+5 &  \qquad\qquad \text{connect } u \text{ and } v \text{ in the union-find set} \\
+6 &  \qquad\qquad \textit{result} \gets \textit{result}\;\bigcup\ \{(u, v, w)\} \\
+7 &  \textbf{return } \textit{result}
+\end{array}
 \end{array}
 $$
 ```

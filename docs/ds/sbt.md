@@ -29,7 +29,7 @@ size(N.right) >= size(N.left.right)
 
 SBT 主要通过旋转操作改变自身高度从而进行平衡维护。其旋转操作与绝大部分自平衡二叉搜索树类似，唯一区别在于在完成旋转之后需要对旋转过程中左右子节点发生改变的节点更新 `size`. 示例代码如下：
 
-```c++
+```cpp
 void updateSize() {
   USize leftSize = this->left != nullptr ? this->left->size : 0;
   USize rightSize = this->right != nullptr ? this->right->size : 0;
@@ -83,7 +83,7 @@ static void rotateRight(NodePtr& node) {
 
 `size(N.left) < size(N.right.left)`
 
-```c++
+```cpp
 if (size(node->right->left) > size(node->left)) {
   // clang-format off
   //     |                     |                      |
@@ -106,7 +106,7 @@ if (size(node->right->left) > size(node->left)) {
 
 `size(N.left) < size(N.right.right)`
 
-```c++
+```cpp
 if (size(node->right->right) > size(node->left)) {
   // clang-format off
   //     |                       |
@@ -127,7 +127,7 @@ if (size(node->right->right) > size(node->left)) {
 
 `size(N.right) < size(N.left.left)`
 
-```c++
+```cpp
 if (size(node->left->left) > size(node->right)) {
   // clang-format off
   //       |                       |
@@ -148,7 +148,7 @@ if (size(node->left->left) > size(node->right)) {
 
 `size(N.right) < size(N.left.right)`
 
-```c++
+```cpp
 if (size(node->left->right) > size(node->right)) {
   // clang-format off
   //     |                     |                      |
@@ -173,7 +173,7 @@ if (size(node->left->right) > size(node->right)) {
 
 SBT 的插入操作需要在完成普通二叉搜索树的插入操作的基础上递归地进行节点 `size` 字段的更新及平衡维护。示例代码如下：
 
-```c++
+```cpp
 if (compare(key, node->key)) {
   /* key < node->key */
   if (node->left == nullptr) {
@@ -205,7 +205,7 @@ if (compare(key, node->key)) {
 
 删除操作虽然有可能使得 SBT 的性质被打破，但并不会使树的高度增高，因此不会影响后续操作的效率。但在实际情况下，如果在一次批量插入操作后只进行大量的删除和查询操作，依然有可能由于树的失衡影响整体效率，因此本文在实现 SBT 的删除操作时依然选择加入平衡维护。参考代码如下：
 
-```c++
+```cpp
 bool remove(NodePtr& node, K key, NodeConsumer action) {
   assert(node != nullptr);
 
@@ -333,7 +333,7 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
 
 由于 SBT 节点中储存了子树节点个数的信息，因此可以在 $O(\log n)$ 的时间复杂度下查询某个 `key` 的排名（或者大于/小于某个 `key` 的节点个数）。示例代码如下：
 
-```c++
+```cpp
 USize countLess(ConstNodePtr node, K key, bool countEqual = false) const {
   if (node == nullptr) {
     return 0;

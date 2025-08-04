@@ -47,7 +47,7 @@ jobs:
           yarn docs:format:remark
       - name: Run clang-format
         run: |
-          find . -type f -name "*.cpp" -print0 | xargs -0 clang-format -i
+          find . -type f \( -name "*.c" -o -name "*.cpp" -o -name "*.h" -o -name "*.hpp" \) -print0 | xargs -0 clang-format -i
       - name: Run ruff
         run: |
           ruff format ./docs

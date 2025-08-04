@@ -1,4 +1,4 @@
-author: jifbt
+author: jifbt, Mayuri0v0
 
 ## 定义
 
@@ -12,7 +12,7 @@ author: jifbt
 
 ### Whitney 不等式
 
-**Whitney 不等式**（1932）给出了点连通度 $\lambda$、边连通度 $\kappa$ 和最小度 $\delta$ 之间的关系：
+**Whitney 不等式**（1932）给出了点连通度 $\kappa$、边连通度 $\lambda$ 和最小度 $\delta$ 之间的关系：
 
 $$
 \kappa \le \lambda \le \delta

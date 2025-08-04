@@ -1,4 +1,5 @@
 # FAREY SEQUENCE BUILDING.
+# --8<-- [start:core]
 # Farey Sequence of Order N.
 def build(n, a=0, b=1, c=1, d=1, init=True):
     x, y = a + c, b + d
@@ -13,5 +14,6 @@ def build(n, a=0, b=1, c=1, d=1, init=True):
         print("1/1", end=" ")
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     build(int(input()))

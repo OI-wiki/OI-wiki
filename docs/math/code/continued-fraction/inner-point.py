@@ -36,6 +36,7 @@ def less_than(a, b):
     return a < b
 
 
+# --8<-- [start:core]
 # Get X +- EPSILON.
 def pm_eps(a):
     # Deal with empty continued fraction for 1/0.
@@ -63,6 +64,7 @@ def middle(p0, q0, p1, q1):
     return p[-1], q[-1]
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     t = int(input())
     for _ in range(t):

@@ -43,6 +43,7 @@ auto hull(std::vector<int> a, int N) {
   return make_tuple(ah, ph, qh);
 }
 
+// --8<-- [start:core]
 // Find sum of floor(k * x) for k in [1, N] and x = [a0; a1, a2, ...]
 int sum_floor(std::vector<int> a, int N) {
   N++;
@@ -65,6 +66,7 @@ int sum_floor(std::vector<int> a, int N) {
   return ans - N;
 }
 
+// --8<-- [end:core]
 // Get the continued fraction of e.
 auto cf_e(int N) {
   int q = 0, qq = 1;

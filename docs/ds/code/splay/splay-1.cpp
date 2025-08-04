@@ -1,13 +1,17 @@
+// --8<-- [start:full-text]
 #include <iostream>
 
 constexpr int N = 2e6;
 int id, rt;
 int fa[N], val[N], cnt[N], sz[N], ch[N][2];
 
+// --8<-- [start:aux]
 bool dir(int x) { return x == ch[fa[x]][1]; }
 
 void push_up(int x) { sz[x] = cnt[x] + sz[ch[x][0]] + sz[ch[x][1]]; }
 
+// --8<-- [end:aux]
+// --8<-- [start:rotate]
 void rotate(int x) {
   int y = fa[x], z = fa[y];
   bool r = dir(x);
@@ -21,6 +25,8 @@ void rotate(int x) {
   push_up(x);
 }
 
+// --8<-- [end:rotate]
+// --8<-- [start:splay]
 void splay(int& z, int x) {
   int w = fa[z];
   for (int y; (y = fa[x]) != w; rotate(x)) {
@@ -29,12 +35,16 @@ void splay(int& z, int x) {
   z = x;
 }
 
+// --8<-- [end:splay]
+// --8<-- [start:find]
 void find(int& z, int v) {
   int x = z, y = fa[x];
   for (; x && val[x] != v; x = ch[y = x][v > val[x]]);
   splay(z, x ? x : y);
 }
 
+// --8<-- [end:find]
+// --8<-- [start:loc]
 void loc(int& z, int k) {
   int x = z;
   for (;;) {
@@ -50,6 +60,8 @@ void loc(int& z, int k) {
   splay(z, x);
 }
 
+// --8<-- [end:loc]
+// --8<-- [start:merge]
 int merge(int x, int y) {
   if (!x || !y) return x | y;
   loc(y, 1);
@@ -59,6 +71,8 @@ int merge(int x, int y) {
   return y;
 }
 
+// --8<-- [end:merge]
+// --8<-- [start:insert]
 void insert(int v) {
   int x = rt, y = 0;
   for (; x && val[x] != v; x = ch[y = x][v > val[x]]);
@@ -75,6 +89,8 @@ void insert(int v) {
   splay(rt, x);
 }
 
+// --8<-- [end:insert]
+// --8<-- [start:remove]
 bool remove(int v) {
   find(rt, v);
   if (!rt || val[rt] != v) return false;
@@ -89,17 +105,23 @@ bool remove(int v) {
   return true;
 }
 
+// --8<-- [end:remove]
+// --8<-- [start:find-rank]
 int find_rank(int v) {
   find(rt, v);
   return sz[ch[rt][0]] + (val[rt] < v ? cnt[rt] : 0) + 1;
 }
 
+// --8<-- [end:find-rank]
+// --8<-- [start:find-kth]
 int find_kth(int k) {
   if (k > sz[rt]) return -1;
   loc(rt, k);
   return val[rt];
 }
 
+// --8<-- [end:find-kth]
+// --8<-- [start:find-prev]
 int find_prev(int v) {
   find(rt, v);
   if (rt && val[rt] < v) return val[rt];
@@ -110,6 +132,8 @@ int find_prev(int v) {
   return val[rt];
 }
 
+// --8<-- [end:find-prev]
+// --8<-- [start:find-next]
 int find_next(int v) {
   find(rt, v);
   if (rt && val[rt] > v) return val[rt];
@@ -120,6 +144,7 @@ int find_next(int v) {
   return val[rt];
 }
 
+// --8<-- [end:find-next]
 int main() {
   int n;
   std::cin >> n;
@@ -149,3 +174,5 @@ int main() {
   }
   return 0;
 }
+
+// --8<-- [end:full-text]

@@ -223,7 +223,7 @@ $$
 
 ??? note "证明"
     对所有 $s\in R$，
-
+    
     $$
     \begin{aligned}
     f(r+sp) &= \sum_{i\geq 0}a_i(r+sp)^i \\
@@ -231,13 +231,13 @@ $$
     &= f(r) + spf'(r) + s^2p^2\left(\frac{f''(r)}{2!} + \cdots\right),
     \end{aligned}
     $$
-
+    
     所以
-
+    
     $$
     f(r+sp) \in Rp^2 \iff f(r)+f'(r)sp \in Rp^2
     $$
-
+    
     因为 $f(r)\in Rp$，且 $f'(r)$ 可逆，所以取 $sp = -\dfrac{f(r)}{f'(r)}$ 即可，这里 $\dfrac{1}{f'(r)}$ 是模 $p^2$ 意义下的逆元。因为 $f'(r)$ 在模 $p$ 意义下可逆，所以它在模 $p^2$ 意义下也必定存在逆元：设有 $a,b,c\in R$ 使 $af'(r) = bp+1$ 和 $f(r)=cp$，那么 $\left(a^2f'(r)-2\right)f'(r) = b^2p^2+1$，故可以取 $s=c(2-a^2f'(r))$。
 
 对于域 $k$ 上的多项式环 $k[X]$，设有 $G(X, Y)\in k[X, Y]$ 和 $f_n\in k[X]$ 使 $G(X, f_n(X))\in k[X]X^n$，那么应用引理 1 就可得到
@@ -252,12 +252,12 @@ $$
 
 ???+ note "引理 2"
     若 $R$ 为 [UFD](../algebra/ring-theory.md#唯一分解整环)，$f,r,p$ 定义同引理 1。则引理 1 给出的 $r-\dfrac{f(r)}{f'(r)}$ 是模 $p^{2}$ 意义下唯一满足以下两条件的 $x$ 的值：
-
-    - $f(x)\in Rp^{2}$
-    - $x-r\in Rp$
-
+    
+    -   $f(x)\in Rp^{2}$
+    -   $x-r\in Rp$
+    
     亦即
-
+    
     $$
     \forall x\in R,\qquad p^2\mid f(x)\wedge p\mid (x-r) \implies x\equiv r-\dfrac{f(r)}{f'(r)} \pmod {p^2}
     $$
