@@ -6,6 +6,7 @@
 #include <queue>
 #include <vector>
 
+// --8<-- [start:dfa]
 // Deterministic Finite Automaton (DFA)
 struct DFA {
   int m;                                // Alphabet size.
@@ -14,7 +15,6 @@ struct DFA {
   std::vector<std::vector<int>> trans;  // Transitions: trans[c][q].
   std::vector<int> acc;                 // Acceptance labels per state:
                                         // - 0 = non-accepting
-                                        // - Nonzero = accepting (labeled)
 
   DFA(int m, int n = 0, int q0 = 0)
       : m(m), n(n), q0(q0), trans(m, std::vector<int>(n)), acc(n) {}
@@ -23,6 +23,7 @@ struct DFA {
       const;  // Returns minimized DFA via Hopcroft's algorithm.
 };
 
+// --8<-- [end:dfa]
 // --8<-- [start:hopcroft]
 // DFA minimization via Hopcroft's algorithm.
 // Complexity: O(n * m * log(n)).

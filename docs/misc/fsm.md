@@ -55,6 +55,11 @@ FSM 分为两类：确定性有限状态自动机、非确定性有限状态自�
     4.  **起始状态**  $q_0\in Q$ 是一个特殊的状态。在不同文章中，起始状态一般用 $s$、$\textit{start}$、$q_0$ 表示，本文中选择使用 $q_0$ 表示。
     5.  **接受状态集合**  $F\subseteq Q$ 是一组特殊的状态。
 
+???+ example "参考实现"
+    ```cpp
+    --8<-- "docs/misc/code/fsm/dfa.hpp:dfa"
+    ```
+
 为了方便说明，我们将求出输入串 $w$ 在 DFA 中的状态序列，并判断它是否被接受的过程称为 **计算**。
 
 ???+ abstract "DFA 的计算流程"
@@ -184,15 +189,15 @@ NFA 的计算过程，相当于同时运行多个 DFA。每一步操作都穷举
 在本小节中，我们不考虑具体的正则表达式，转而考虑以变量为参数的正则表达式（变量可以为任意正则语言）。运用正则表达式的代数定律有助于化简正则表达式。
 
 ???+ note "正则语言的代数性质"
-    1.  **并的交换律**：$L + M = M + L$
-    2.  **并的结合律**：$(L + M) + N = L + (M + N)$
-    3.  **连接的结合律**：$(LM)N = L(MN)$
-    4.  **$\varnothing$ 是并运算的单位元**：$\varnothing + L = L + \varnothing = L$
-    5.  **$\varepsilon$ 是连接运算的单位元**：$\varepsilon L = L \varepsilon = L$
-    6.  **$\varnothing$ 是连接运算的零因子**：$\varnothing L = L \varnothing = \varnothing$
-    7.  **分配律**：$L(M + N) = LM + LN$，$(M + N)L = ML + NL$
-    8.  **并的幂等律**：$L + L = L$
-    9.  **闭包相关的定律**：$(L^\ast)^\ast = L^\ast$，$\varnothing^\ast = \varepsilon$，$\varepsilon^\ast = \varepsilon$
+    1.  并的交换律：$L + M = M + L$
+    2.  并的结合律：$(L + M) + N = L + (M + N)$
+    3.  连接的结合律：$(LM)N = L(MN)$
+    4.  $\varnothing$ 是并运算的单位元：$\varnothing + L = L + \varnothing = L$
+    5.  $\varepsilon$ 是连接运算的单位元：$\varepsilon L = L \varepsilon = L$
+    6.  $\varnothing$ 是连接运算的零因子：$\varnothing L = L \varnothing = \varnothing$
+    7.  分配律：$L(M + N) = LM + LN$，$(M + N)L = ML + NL$
+    8.  并的幂等律：$L + L = L$
+    9.  闭包相关的定律：$(L^\ast)^\ast = L^\ast$，$\varnothing^\ast = \varepsilon$，$\varepsilon^\ast = \varepsilon$
 
 正则语言的 **封闭性** 也是重要的性质。这些性质允许我们从一些简单的自动机出发，通过一定的运算，构造能够识别另一些语言的有限状态机（FSM）。简而言之，封闭性可以作为构造复杂 FSM 的工具。
 
@@ -334,6 +339,8 @@ $$
     --8<-- "docs/misc/code/fsm/dfa.hpp:hopcroft"
     ```
 
+这一参考实现允许自动机的状态带有任何整数取值的标签，而并非简单的「接受」与「不接受」的二元标签。从参考实现可以看出，与基础 Hopcroft 算法的唯一不同就在于预处理。这种拓展的自动机也称为 [Moore 机](https://en.wikipedia.org/wiki/Moore_machine)。它的一个应用可以看本节的第二个例题。
+
 ### 例题
 
 本节通过两道例题介绍如何实际应用 DFA 最小化的技巧。
@@ -347,7 +354,7 @@ $$
     
     最终若 $x \in [0, r]$，则称该操作序列是好的。
     
-    现在你需要对每个 $j = 1 \ldots n$，求在强制 $a_j = 0$ 的前提下，有多少「好的」完整序列。特别地，若 $a_j = 1$，则答案为 $0$。
+    现在需要对每个 $j = 1 \ldots n$，求在强制 $a_j = 0$ 的前提下，有多少「好的」完整序列。特别地，若 $a_j = 1$，则答案为 $0$。
     
     输出对 $998244353$ 取模。
     
@@ -378,17 +385,17 @@ $$
     考虑朴素 DP 套 DP，在最开始思考内层 DP 怎么判定一个数的答案：定义 $g_{i,c}$ 表示这个数只根据前 $i$ 位，能否合成出 $c$。$c$ 只用保留小于等于 $90$ 的数。转移就根据当前这一位填的是 $v$，那么：
     
     $$
-    g_{i+1,c+v}\gets g_{i,c} \\
+    g_{i+1,c+v}\gets g_{i,c},~
     g_{i+1,|c-v|}\gets g_{i,c}
     $$
     
-    那么外层 DP 考虑数位 DP，将询问差分，设状态 $f_{\textit{len},\textit{lim},\textit{sta}}$ 表示考虑到第 $\textit{len}$ 位，是否有上界限制，当前到自动机的状态 $\textit{sta}$。
+    外层 DP 考虑数位 DP。将询问差分。设状态为 $f_{\textit{len},\textit{lim},\textit{sta}}$，它的下标分别表示考虑到第 $\textit{len}$ 位，是否有上界限制，当前到自动机的状态 $\textit{sta}$。
     
-    跑一次暴力搜索，会发现内层 DP 的状态数只有一万多。然后接下来直接跑 DFA 最小化，可以将状态数优化到 $717$。
+    跑一次暴力搜索，会发现内层 DP 的状态数只有一万多。然后接下来直接跑 DFA 最小化，可以将状态数优化到 $715$。
     
     此时我们将 $\textit{lim}=0$ 的数位 DP 答案都预处理出来，在多测时就只需要跑 $\textit{lim}=1$ 的情况，可以很快地求出答案。
     
-    时间复杂度 $O(|S||\Sigma|\log |S|+(|Q||\Sigma|+T)|\Sigma|\log_{10} V)$（$|S|=19564$，$|Q|=717$）。
+    时间复杂度 $O(|S||\Sigma|\log |S|+(|Q||\Sigma|+T)|\Sigma|\log_{10} V)$（$|S|=19564$，$|Q|=715$）。
 
 ??? note "参考代码"
     ```cpp

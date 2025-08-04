@@ -19,8 +19,7 @@ constexpr int X = (1 << L) - 2;
 //   0b101 → "1"
 DFA build(int x) {
   constexpr int L1 = 9, L2 = 6;
-  // The DP result for a string `st` of length `len` is stored at index (1 <<
-  // len) | st.
+  // The result for string `st` of length `len` is stored at (1 << len) | st.
   const auto idx = [](int len, int st) -> int { return (1 << len) | st; };
 
   // Compute which bit strings are accepted using dynamic programming.
@@ -75,9 +74,9 @@ DFA build(int x) {
   return dfa;
 }
 
-// Initialize the DFA's.
 std::vector<DFA> dfa;
 
+// Initialize the DFA's.
 void init() {
   std::string s;
   std::cin >> s;
