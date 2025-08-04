@@ -19,7 +19,8 @@ constexpr int X = (1 << L) - 2;
 //   0b101 → "1"
 DFA build(int x) {
   constexpr int L1 = 9, L2 = 6;
-  // The DP result for a string `st` of length `len` is stored at index (1 << len) | st.
+  // The DP result for a string `st` of length `len` is stored at index (1 <<
+  // len) | st.
   const auto idx = [](int len, int st) -> int { return (1 << len) | st; };
 
   // Compute which bit strings are accepted using dynamic programming.
@@ -29,9 +30,11 @@ DFA build(int x) {
   for (int len = (x >> 2) ? 3 : 4; len <= L1 + L2; len += 2) {
     for (int st = 0; st < (1 << len); ++st) {
       for (int i = 0; i + L <= len; ++i) {
-        // Replace st[i..i+2] using the op[] rule, and check if the result is accepted.
-        // Result = st[0..i-1] + op[st[i..i+2]] + st[i+3..end]
-        int pr = ((((st >> (i + L)) << 1) | op[(st >> i) & ((1 << L) - 1)]) << i) | (st & ((1 << i) - 1));
+        // Replace st[i..i+2] using the op[] rule, and check if the result is
+        // accepted. Result = st[0..i-1] + op[st[i..i+2]] + st[i+3..end]
+        int pr =
+            ((((st >> (i + L)) << 1) | op[(st >> i) & ((1 << L) - 1)]) << i) |
+            (st & ((1 << i) - 1));
         if (acc[idx(len - 2, pr)]) {
           acc[idx(len, st)] = true;
           break;
@@ -42,16 +45,18 @@ DFA build(int x) {
 
   // Construct a DFA using the Myhill-Nerode theorem.
   DFA dfa(2);
-  std::unordered_map<std::vector<bool>, int> mp;  // Maps characteristic vectors to state IDs.
-  std::vector<int> sts;                           // Representative 01 strings for each state.
-  std::vector<int> ids(1 << (L1 + 1));            // Maps 01 strings to DFA state IDs.
+  std::unordered_map<std::vector<bool>, int>
+      mp;                // Maps characteristic vectors to state IDs.
+  std::vector<int> sts;  // Representative 01 strings for each state.
+  std::vector<int> ids(1 << (L1 + 1));  // Maps 01 strings to DFA state IDs.
 
   for (int len = 0; len <= L1; ++len) {
     for (int st = (1 << len); st < (2 << len); ++st) {
       // Construct characteristic vector for this prefix.
       std::vector<bool> key(1 << (L2 + 1));
       for (int nxt = 0; nxt <= L2; ++nxt)
-        std::copy(acc.begin() + (st << nxt), acc.begin() + ((st + 1) << nxt), key.begin() + (1 << nxt));
+        std::copy(acc.begin() + (st << nxt), acc.begin() + ((st + 1) << nxt),
+                  key.begin() + (1 << nxt));
       if (!mp.count(key)) {
         mp[key] = dfa.n++;
         sts.push_back(st);
@@ -64,8 +69,7 @@ DFA build(int x) {
   // Build transitions.
   for (int c = 0; c < 2; ++c) {
     dfa.trans[c].resize(dfa.n);
-    for (int i = 0; i < dfa.n; ++i)
-      dfa.trans[c][i] = ids[(sts[i] << 1) | c];
+    for (int i = 0; i < dfa.n; ++i) dfa.trans[c][i] = ids[(sts[i] << 1) | c];
   }
 
   return dfa;
@@ -73,6 +77,7 @@ DFA build(int x) {
 
 // Initialize the DFA's.
 std::vector<DFA> dfa;
+
 void init() {
   std::string s;
   std::cin >> s;
@@ -83,7 +88,7 @@ void init() {
 }
 
 std::string s;
-constexpr int B = 5; // Block size is 2^B.
+constexpr int B = 5;  // Block size is 2^B.
 std::vector<std::vector<std::array<std::vector<int>, X>>> pre;
 
 void precompute() {
@@ -113,7 +118,8 @@ void precompute() {
       for (int x = 0; x < X; ++x) {
         pre[d][i][x].resize(dfa[x].n);
         for (int j = 0; j < dfa[x].n; ++j)
-          pre[d][i][x][j] = pre[d - 1][i + (1 << (d - 1))][x][pre[d - 1][i][x][j]];
+          pre[d][i][x][j] =
+              pre[d - 1][i + (1 << (d - 1))][x][pre[d - 1][i][x][j]];
       }
     }
   }
@@ -126,8 +132,7 @@ bool check(int l, int r, int x) {
   if ((l >> B) == (r >> B)) {
     for (; l <= r; ++l) cr = dfa[x].trans[s[l]][cr];
   } else {
-    for (; (l & ((1 << B) - 1)) && (l <= r); ++l)
-      cr = dfa[x].trans[s[l]][cr];
+    for (; (l & ((1 << B) - 1)) && (l <= r); ++l) cr = dfa[x].trans[s[l]][cr];
     int d = (r >> B) - (l >> B);
     for (int z = 0; z < (int)pre.size(); ++z)
       if ((d >> z) & 1) {
@@ -163,18 +168,18 @@ void calc(int ll, int rr, int x) {
       }
     }
   } else {
-      for (int l = ll, r = rr; l <= r; l += 2, r -= 2) {
-        if (check(ll, l, (x >> 1) | 4) && (check(l + 1, rr, (x & 1) | 4))) {
-          calc(ll, l, (x >> 1) | 4);
-          calc(l + 1, rr, (x & 1) | 4);
-          return;
-        }
-        if (check(ll, r - 1, (x >> 1) | 4) && check(r, rr, (x & 1) | 4)) {
-          calc(ll, r - 1, (x >> 1) | 4);
-          calc(r, rr, (x & 1) | 4);
-          return;
-        }
+    for (int l = ll, r = rr; l <= r; l += 2, r -= 2) {
+      if (check(ll, l, (x >> 1) | 4) && (check(l + 1, rr, (x & 1) | 4))) {
+        calc(ll, l, (x >> 1) | 4);
+        calc(l + 1, rr, (x & 1) | 4);
+        return;
       }
+      if (check(ll, r - 1, (x >> 1) | 4) && check(r, rr, (x & 1) | 4)) {
+        calc(ll, r - 1, (x >> 1) | 4);
+        calc(r, rr, (x & 1) | 4);
+        return;
+      }
+    }
   }
 }
 
@@ -193,7 +198,7 @@ void solve() {
 int main() {
   init();
   int q;
-  std::cin >> q;    
+  std::cin >> q;
   for (; q; --q) {
     solve();
   }
