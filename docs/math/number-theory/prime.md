@@ -78,7 +78,7 @@
 ???+ example "参考实现"
     === "C++"
         ```cpp
-        bool millerRabin(int n) {
+        bool fermat(int n) {
           if (n < 3) return n == 2;
           // test_time 为测试次数,建议设为不小于 8
           // 的整数以保证正确率,但也不宜过大,否则会影响效率
@@ -92,7 +92,7 @@
     
     === "Python"
         ```python
-        def millerRabin(n):
+        def fermat(n):
             if n < 3:
                 return n == 2
             # test_time 为测试次数,建议设为不小于 8

@@ -1,4 +1,4 @@
-author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309, shigengxin123456
+author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309, shigengxin123456, Re-Ori
 
 ## 赛事简介
 
@@ -91,7 +91,7 @@ NOIP 以省为单位排名评奖。截至 2019 年，大部分高校的选手获
 
 **NOI**（英文：National Olympiad in Informatics，中文：全国信息学奥林匹克竞赛）是国内包括港澳在内的省级代表队最高水平的大赛。
 
-NOI 一般在七月份举行，选手分为正式选手与夏令营选手两类。正式选手又分为三类，其中 A、B 类为省队正式选手，C 类选手为邀请赛选手。A、B 类对应省队的 A、B 类选手（其中 A 类在计算成绩时会有 5 分加分）；C 类名义上是学校对 CCF 做出突出贡献后的奖励名额。夏令营选手分为 D、E 类，分别对应以非正式选手身份参赛的高中组与初中组选手。夏令营选手如果成绩超过分数线的话，只有成绩证明而没有奖牌（同等分数含金量要低一些）。排名前 60 的正式选手组成国家集训队，获得保送资格。
+NOI 一般在七月份举行，选手分为正式选手与夏令营选手两类。正式选手又分为三类，其中 A、B 类为省队正式选手，C 类选手为邀请赛选手。A、B 类对应省队的 A、B 类选手（其中 A 类在计算成绩时会有 5 分加分）；C 类名义上是学校对 CCF 做出突出贡献后的奖励名额。夏令营选手分为 D、E 类，分别对应以非正式选手身份参赛的高中组与初中组选手。夏令营选手如果成绩超过分数线的话，只有成绩证明而没有奖牌（同等分数含金量要低一些）。排名前 50 的正式选手组成国家集训队，获得保送资格。
 
 在国际平台上，为了与其他同样称作 NOI 的比赛区分，有时会被称作 CNOI。
 
