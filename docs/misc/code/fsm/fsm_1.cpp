@@ -80,7 +80,7 @@ std::vector<DFA> dfa;
 void init() {
   std::string s;
   std::cin >> s;
-  for (int i = 0; i < 8; ++i) op[i] = s[i] - '0';
+  for (int i = 0; i < (1 << L); ++i) op[i] = s[i] - '0';
   std::swap(op[1], op[4]);
   std::swap(op[3], op[6]);
   for (int x = 0; x < X; ++x) dfa.push_back(build(x));
@@ -143,39 +143,39 @@ bool check(int l, int r, int x) {
   return dfa[x].acc[cr];
 }
 
-// Construct expression for s[ll...rr].
-void calc(int ll, int rr, int x) {
-  if (ll == rr) return (void)(std::cout << (x & 1));
+// Construct expression for s[l...r].
+void calc(int l, int r, int x) {
+  if (l == r) return (void)(std::cout << (x & 1));
   if (x >> 2) {
-    for (int l = ll, r = rr; l <= r; l += 2, r -= 2) {
-      for (int k = 0; k < 8; ++k) {
+    for (int i = l, j = r; i <= j; i += 2, j -= 2) {
+      for (int k = 0; k < (1 << L); ++k) {
         if (op[k] != (x & 1)) continue;
-        if (check(ll, l, (k >> 2) | 4) && check(l + 1, rr, k & 3)) {
+        if (check(l, i, (k >> 2) | 4) && check(i + 1, r, k & 3)) {
           std::cout << '(';
-          calc(ll, l, (k >> 2) | 4);
-          calc(l + 1, rr, k & 3);
+          calc(l, i, (k >> 2) | 4);
+          calc(i + 1, r, k & 3);
           std::cout << ')';
           return;
         }
-        if (check(ll, r - 1, k >> 1) && check(r, rr, (k & 1) | 4)) {
+        if (check(l, j - 1, k >> 1) && check(j, r, (k & 1) | 4)) {
           std::cout << '(';
-          calc(ll, r - 1, k >> 1);
-          calc(r, rr, (k & 1) | 4);
+          calc(l, j - 1, k >> 1);
+          calc(j, r, (k & 1) | 4);
           std::cout << ')';
           return;
         }
       }
     }
   } else {
-    for (int l = ll, r = rr; l <= r; l += 2, r -= 2) {
-      if (check(ll, l, (x >> 1) | 4) && (check(l + 1, rr, (x & 1) | 4))) {
-        calc(ll, l, (x >> 1) | 4);
-        calc(l + 1, rr, (x & 1) | 4);
+    for (int i = l, j = r; i <= j; i += 2, j -= 2) {
+      if (check(l, i, (x >> 1) | 4) && (check(i + 1, r, (x & 1) | 4))) {
+        calc(l, i, (x >> 1) | 4);
+        calc(i + 1, r, (x & 1) | 4);
         return;
       }
-      if (check(ll, r - 1, (x >> 1) | 4) && check(r, rr, (x & 1) | 4)) {
-        calc(ll, r - 1, (x >> 1) | 4);
-        calc(r, rr, (x & 1) | 4);
+      if (check(l, j - 1, (x >> 1) | 4) && check(j, r, (x & 1) | 4)) {
+        calc(l, j - 1, (x >> 1) | 4);
+        calc(j, r, (x & 1) | 4);
         return;
       }
     }
