@@ -247,7 +247,7 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
             --8<-- "docs/ds/code/dsu/dsu_1.py"
             ```
 
-## trick: 拓展域并查集 / 种类并查集
+## trick: 拓展域并查集/种类并查集
 
 ### 引入
 
