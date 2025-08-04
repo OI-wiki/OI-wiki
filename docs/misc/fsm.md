@@ -343,7 +343,7 @@ $$
     --8<-- "docs/misc/code/fsm/dfa.hpp:hopcroft"
     ```
 
-这一参考实现允许自动机的状态带有任何整数取值的标签，而并非简单的「接受」与「不接受」的二元标签。从参考实现可以看出，与基础 Hopcroft 算法的唯一不同就在于预处理。这种拓展的自动机也称为 [Moore 机](https://en.wikipedia.org/wiki/Moore_machine)。它的一个应用可以看本节的第二个例题。
+这一参考实现允许自动机的状态带有任何整数取值的标签，而并非简单的「接受」与「不接受」的二元标签。从参考实现可以看出，与基础 Hopcroft 算法的唯一不同就在于初始划分和证据集合的构造。这种拓展的自动机也称为 [Moore 机](https://en.wikipedia.org/wiki/Moore_machine)。它的一个应用可以看本节的第二个例题。
 
 ### 例题
 
@@ -472,7 +472,7 @@ $$
 
 -   [计算复杂性（1）Warming Up: 自动机模型](https://lingeros-tot.github.io/2019/03/05/Warming-Up-自动机模型/)
 -   [国家集训队 2021 论文 徐哲安 浅谈有限状态自动机及其应用](https://github.com/OIerTFX/IOI/blob/master/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2021%E8%AE%BA%E6%96%87%E9%9B%86/pdf-files/%E5%BE%90%E5%93%B2%E5%AE%89%20%E6%B5%85%E8%B0%88%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8.pdf)
--   [Myhill–Nerode theorem](https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem)
+-   [Myhill–Nerode theorem - Wikipedia](https://en.wikipedia.org/wiki/Myhill%E2%80%93Nerode_theorem)
 -   Knuutila, Timo. "Re-describing an algorithm by Hopcroft." Theoretical Computer Science 250, no. 1-2 (2001): 333-363.
 -   Hopcroft, John E., Rajeev Motwani, and Jeffrey D. Ullman. "Introduction to automata theory, languages, and computation." Acm Sigact News 32, no. 1 (2001): 60-65.
 
