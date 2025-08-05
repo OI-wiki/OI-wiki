@@ -20,7 +20,7 @@ author: cutekibry, woruo27, Backl1ght, c-forrest
 
 ### 零和/非零和博弈
 
-**零和博弈**（zero-sum game）指的是无论各方采取何种行为，所有参与者的收益总和始终为零。通常讨论的零和博弈涉及两名参与者，此时，一方的收益必然是另一方的损失。相对地，**非零和博弈**（non-zero-sum game），包括 **正和博弈**（positive-sum game）和 **负和博弈**（negative-sum game）等。
+**零和博弈**（zero-sum game）指的是无论各方采取何种行为，所有参与者的收益总和始终为零。通常讨论的零和博弈涉及两名参与者，此时，一方的收益必然是另一方的损失。相对地，**非零和博弈**（non-zero-sum game）允许多方共赢或共输，包括 **正和博弈**（positive-sum game）和 **负和博弈**（negative-sum game）等。
 
 ### 同时/序贯博弈
 
