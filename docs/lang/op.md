@@ -157,7 +157,7 @@ auto result5 = *v;      // 获取v指针指向的对象
 
 ## C++ 运算符优先级总表
 
-来自 [C++ 运算符优先级 - cppreference](https://zh.cppreference.com/w/cpp/language/operator_precedence) ，有修改。
+来自 [C++ Operator Precedence - cppreference.com](https://en.cppreference.com/w/cpp/language/operator_precedence.html)，有修改。
 
 |          运算符         |    描述    |                              例子                              | 可重载性 |
 | :------------------: | :------: | :----------------------------------------------------------: | :--: |
