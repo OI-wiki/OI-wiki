@@ -114,6 +114,7 @@
 /math/number-theory/periodic-continued-fraction /math/number-theory/continued-fraction
 /math/schreier-sims /math/algebra/schreier-sims
 /math/fourier-motzkin-elimination /math/linear-programming
+/math/game-theory/misere-game /math/game-theory/impartial-game
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
