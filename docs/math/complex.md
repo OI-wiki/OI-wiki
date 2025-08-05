@@ -147,16 +147,16 @@ $$
 称为复数 $z$ 的 **辐角**，记为：
 
 $$
-\theta= \operatorname{Arg} z
+\theta= \operatorname{arg} z
 $$
 
-任一个 **非零** 复数 $z$ 有无穷多个辐角，故 $\operatorname{Arg} z$ 事实上是一个集合。借助开头小写的 $\operatorname{arg} z$ 表示 **其中一个特定值**，满足条件：
+任一个 **非零** 复数 $z$ 有无穷多个辐角，故 $\operatorname{arg} z$ 事实上是一个集合。借助开头大写的 $\operatorname{Arg} z$ 表示 **其中一个特定值**，满足条件：
 
 $$
--\pi<\operatorname{arg} z \le \pi
+-\pi<\operatorname{Arg} z \le \pi
 $$
 
-称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\operatorname{Arg} z = \{\operatorname{arg} z + 2k\pi \mid k\in \mathbf Z\}$。
+称 $\operatorname{Arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\operatorname{arg} z = \{\operatorname{Arg} z + 2k\pi \mid k\in \mathbf Z\}$。
 
 需要注意的是两个辐角主值相加后不一定还是辐角主值，而两个辐角相加一定还是合法的辐角。
 
@@ -186,7 +186,7 @@ $$
 复指数函数在实数集上与实指数函数的定义完全一致。在复平面上拥有性质：
 
 -   模恒正：$|\operatorname{exp} z|=\operatorname{exp} x>0$。
--   辐角主值：$\operatorname{arg} \operatorname{exp} z=y$。
+-   辐角：$\operatorname{arg}(\operatorname{exp} z)=\{y + 2k\pi \mid k\in\mathbf Z\}$。
 -   加法定理：$\operatorname{exp} (z_1+z_2)=\operatorname{exp} (z_1)\operatorname{exp} (z_2)$。
 -   周期性：$\operatorname{exp} z$ 是以 $2\pi \mathrm{i}$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
 
