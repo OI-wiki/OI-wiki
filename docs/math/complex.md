@@ -147,16 +147,16 @@ $$
 称为复数 $z$ 的 **辐角**，记为：
 
 $$
-\theta= \operatorname{Arg} z
+\theta= \operatorname{arg} z
 $$
 
-任一个 **非零** 复数 $z$ 有无穷多个辐角，故 $\operatorname{Arg} z$ 事实上是一个集合。借助开头小写的 $\operatorname{arg} z$ 表示 **其中一个特定值**，满足条件：
+任一个 **非零** 复数 $z$ 有无穷多个辐角，故 $\operatorname{arg} z$ 事实上是一个集合。借助开头大写的 $\operatorname{Arg} z$ 表示 **其中一个特定值**，满足条件：
 
 $$
--\pi<\operatorname{arg} z \le \pi
+-\pi<\operatorname{Arg} z \le \pi
 $$
 
-称 $\operatorname{arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\operatorname{Arg} z = \{\operatorname{arg} z + 2k\pi \mid k\in \mathbf Z\}$。
+称 $\operatorname{Arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\operatorname{arg} z = \{\operatorname{Arg} z + 2k\pi \mid k\in \mathbf Z\}$。
 
 需要注意的是两个辐角主值相加后不一定还是辐角主值，而两个辐角相加一定还是合法的辐角。
 
@@ -186,7 +186,7 @@ $$
 复指数函数在实数集上与实指数函数的定义完全一致。在复平面上拥有性质：
 
 -   模恒正：$|\operatorname{exp} z|=\operatorname{exp} x>0$。
--   辐角主值：$\operatorname{arg} \operatorname{exp} z=y$。
+-   辐角：$\operatorname{arg}(\operatorname{exp} z)=\{y + 2k\pi \mid k\in\mathbf Z\}$。
 -   加法定理：$\operatorname{exp} (z_1+z_2)=\operatorname{exp} (z_1)\operatorname{exp} (z_2)$。
 -   周期性：$\operatorname{exp} z$ 是以 $2\pi \mathrm{i}$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
 
@@ -300,7 +300,7 @@ $$
 
 函数 `cexp` 计算复指数，`clog` 计算对数主值，`csin` 计算正弦，`ccos` 计算余弦，`ctan` 计算正切。
 
-函数 `cpow` 计算幂函数，`csqrt` 计算平方根，`casin` 计算反正弦，`cacos` 计算反余弦，`ctan` 计算反正切。这部分函数计算的全部都是多值函数的主值。
+函数 `cpow` 计算幂函数，`csqrt` 计算平方根，`casin` 计算反正弦，`cacos` 计算反余弦，`catan` 计算反正切。这部分函数计算的全部都是多值函数的主值。
 
 ### C++ 中的复数
 
@@ -320,7 +320,7 @@ $$
 
 一个复数对象还拥有非成员函数 `exp`、`log`（底为 $\mathrm{e}$ 的对数主值）、`log10`（底为 10 的对数主值，C 中没有）、`pow`、`sqrt`、`sin`、`cos`、`tan`，含义与 C 中的含义相同。
 
-在 C++14 及以后的版本中，定义了 [字面量运算符 `std::literals::complex_literals::""if, ""i, ""il`](https://zh.cppreference.com/w/cpp/numeric/complex/operator%22%22i)。例如输入 `100if`、`100i` 和 `100il`，三者将分别返回 `std::complex<float>{0.0f, 100.0f}`、`std::complex<double>{0.0, 100.0}` 以及 `std::complex<long double>{0.0l, 100.0l}`。这使得我们可以方便地书写形如 `auto z = 4 + 3i` 的复数声明。
+在 C++14 及以后的版本中，定义了 [字面量运算符 `std::literals::complex_literals::""if, ""i, ""il`](https://zh.cppreference.com/w/cpp/numeric/complex/operator%2522%2522i.html)。例如输入 `100if`、`100i` 和 `100il`，三者将分别返回 `std::complex<float>{0.0f, 100.0f}`、`std::complex<double>{0.0, 100.0}` 以及 `std::complex<long double>{0.0l, 100.0l}`。这使得我们可以方便地书写形如 `auto z = 4.0 + 3i` 的复数声明。
 
 ## 参考资料与链接
 
