@@ -329,7 +329,6 @@ nav:
       - 博弈论简介: math/game-theory/intro.md
       - 公平组合游戏: math/game-theory/impartial-game.md
       - 非公平组合游戏: math/game-theory/partizan-game.md
-      - 反常游戏: math/game-theory/misere-game.md
     - 数值算法:
       - 插值: math/numerical/interp.md
       - 数值积分: math/numerical/integral.md
