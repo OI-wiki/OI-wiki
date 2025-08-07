@@ -1,3 +1,5 @@
+author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, aaron20100919
+
 ## 简介
 
 分块套树状数组在特定条件下可以用来做一些树套树可以做的事情，但是相比起树套树，分块套树状数组代码编写更加简短，更加容易实现。
@@ -44,7 +46,7 @@
 
 ### 空间复杂度
 
-分块分了 $\sqrt n$ 个块，每个块一颗线段树 $O (n)$ 的空间，所以空间复杂度为 $O(n \sqrt n)$。
+分块分了 $\sqrt n$ 个块，每个块一个树状数组 $O(n)$ 的空间，所以空间复杂度为 $O(n \sqrt n)$。
 
 ### 时间复杂度
 

@@ -281,7 +281,7 @@ $$
 
 ### 匹配
 
-对于图 $G=(V, E)$，若 $E'\in E$ 且 $E'$ 中任意两条不同的边都没有公共的端点，且 $E'$ 中任意一条边都不是自环，则 $E'$ 是图 $G$ 的一个 **匹配 (matching)**，也可以叫作 **边独立集 (independent edge set)**。如果一个点是匹配中某条边的一个端点，则称这个点是 **被匹配的 (matched)/饱和的 (saturated)**，否则称这个点是 **不被匹配的 (unmatched)**。
+对于图 $G=(V, E)$，若 $E'\subseteq E$ 且 $E'$ 中任意两条不同的边都没有公共的端点，且 $E'$ 中任意一条边都不是自环，则 $E'$ 是图 $G$ 的一个 **匹配 (matching)**，也可以叫作 **边独立集 (independent edge set)**。如果一个点是匹配中某条边的一个端点，则称这个点是 **被匹配的 (matched)/饱和的 (saturated)**，否则称这个点是 **不被匹配的 (unmatched)**。
 
 边数最多的匹配被称作一张图的 **最大匹配 (maximum-cardinality matching)**。图 $G$ 的最大匹配的大小记作 $\nu(G)$。
 
