@@ -357,8 +357,13 @@ $$
 差分：
 
 -   [树状数组 3：区间修改，区间查询](https://loj.ac/problem/132)
--   [P3397 地毯](https://www.luogu.com.cn/problem/P3397)
 -   [「Poetize6」IncDec Sequence](https://www.luogu.com.cn/problem/P4552)
+-   [洛谷 P4231 三步必杀](https://www.luogu.com.cn/problem/P4231)
+
+二维/多维差分：
+
+-   [洛谷 P3397 地毯](https://www.luogu.com.cn/problem/P3397)
+-   [洛谷 P8228 「Wdoi-5」模块化核熔炉](https://www.luogu.com.cn/problem/P8228)
 
 树上差分：
 
