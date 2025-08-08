@@ -363,7 +363,7 @@ $$
 二维/多维差分：
 
 -   [洛谷 P3397 地毯](https://www.luogu.com.cn/problem/P3397)
--   [洛谷 P8228 「Wdoi-5」模块化核熔炉](https://www.luogu.com.cn/problem/P8228)
+-   [洛谷 P8228「Wdoi-5」模块化核熔炉](https://www.luogu.com.cn/problem/P8228)
 
 树上差分：
 
