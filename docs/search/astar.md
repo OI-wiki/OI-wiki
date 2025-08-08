@@ -2,7 +2,7 @@
 
 ## 定义
 
-A\* 搜索算法（英文：A\*search algorithm，A \* 读作 A-star），简称 A \* 算法，是一种在图形平面上，对于有多个节点的路径求出最低通过成本的算法。它属于图遍历（英文：Graph traversal）和最佳优先搜索算法（英文：Best-first search），亦是 [BFS](./bfs.md) 的改进。
+A \* 搜索算法（英文：A\*search algorithm，A \* 读作 A-star），简称 A \* 算法，是一种在图形平面上，对于有多个节点的路径求出最低通过成本的算法。它属于图遍历（英文：Graph traversal）和最佳优先搜索算法（英文：Best-first search），亦是 [BFS](./bfs.md) 的改进。
 
 ## 过程
 
