@@ -406,13 +406,20 @@ Wythoff 游戏允许同时从多堆石子中移除，但是要求每堆移除的
 
 ## 习题
 
--   [Luogu P2197 【模板】Nim 游戏](https://www.luogu.com.cn/problem/P2197) Nim
+-   [Luogu P2197【模板】Nim 游戏](https://www.luogu.com.cn/problem/P2197) Nim
+
 -   [Luogu P4279 \[SHOI2008\] 小约翰的游戏](https://www.luogu.com.cn/problem/P4279) Misere Nim
+
 -   [Luogu P6487 \[COCI 2010/2011 #4\] HRPA](https://www.luogu.com.cn/problem/P6487) Fibonacci
+
 -   [Luogu P2252 \[SHOI2002\] 取石子游戏 |【模板】威佐夫博弈](https://www.luogu.com.cn/problem/P2252) Wythoff
+
 -   [Luogu P7589 黑白棋（2021 CoE-II B）](https://www.luogu.com.cn/problem/P7589) Nim
+
 -   [Luogu P2575 高手过招](https://www.luogu.com.cn/problem/P2575) 打表 or 阶梯 Nim + SG
+
 -   [Luogu P4101 \[HEOI2014\] 人人尽说江南好](https://www.luogu.com.cn/problem/P4101) Bachet or 打表
+
 -   [Luogu P3480 \[POI 2009\] KAM-Pebbles](https://www.luogu.com.cn/problem/P3480) 阶梯 Nim
 
 -   [Luogu P2734 \[USACO3.3\] 游戏 A Game](https://www.luogu.com.cn/problem/P2734) 序贯零和 + 区间 DP
