@@ -1,25 +1,38 @@
 #include <iostream>
-using namespace std;
+#include <vector>
 
-int N, A[10000], B[10000];
+// --8<-- [start:core]
+int n;                // Array size.
+std::vector<int> a;   // Array. (indexed from 1)
+std::vector<int> ps;  // Prefix sum array.
 
+// Calculate prefix sum.
+void prefix_sum() {
+  ps = a;
+  // Or simply:
+  // std::partial_sum(a.begin(), a.end(), ps.begin());
+  for (int i = 1; i <= n; ++i) {
+    ps[i] += ps[i - 1];
+  }
+}
+
+// Query sum of elements in [l, r].
+int query(int l, int r) { return ps[r] - ps[l - 1]; }
+
+// --8<-- [end:core]
 int main() {
-  cin >> N;
-  for (int i = 0; i < N; i++) {
-    cin >> A[i];
+  std::cin >> n;
+  a.resize(n + 1);
+  for (int i = 1; i <= n; ++i) {
+    std::cin >> a[i];
   }
-
-  // 前缀和数组的第一项和原数组的第一项是相等的。
-  B[0] = A[0];
-
-  for (int i = 1; i < N; i++) {
-    // 前缀和数组的第 i 项 = 原数组的 0 到 i-1 项的和 + 原数组的第 i 项。
-    B[i] = B[i - 1] + A[i];
+  prefix_sum();
+  int t;
+  std::cin >> t;
+  for (; t; --t) {
+    int l, r;
+    std::cin >> l >> r;
+    std::cout << query(l, r) << '\n';
   }
-
-  for (int i = 0; i < N; i++) {
-    cout << B[i] << " ";
-  }
-
   return 0;
 }
