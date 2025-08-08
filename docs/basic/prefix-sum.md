@@ -261,7 +261,7 @@ $$
 
 在所有修改操作结束后，只需要执行一遍二维前缀和，就可以快速查询更新后的数组的值。
 
-???+ example "参考代码"
+??? example "参考代码"
     ```cpp
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_7.cpp:core"
     ```
