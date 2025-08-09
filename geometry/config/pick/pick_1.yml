@@ -1,0 +1,10 @@
+id: oi-wiki:geometry/pick-1
+name: Pick
+solution:
+  cpp: docs/geometry/code/pick/pick_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/geometry/examples/pick/pick_1.ans
+  input: docs/geometry/examples/pick/pick_1.in
+version: 1000

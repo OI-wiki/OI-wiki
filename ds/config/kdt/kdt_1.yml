@@ -1,0 +1,10 @@
+id: oi-wiki:ds/kdt-1
+name: KDT
+solution:
+  cpp: docs/ds/code/kdt/kdt_1.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/kdt/kdt_1.ans
+  input: docs/ds/examples/kdt/kdt_1.in
+version: 1000

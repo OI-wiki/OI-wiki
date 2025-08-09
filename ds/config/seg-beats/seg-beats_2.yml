@@ -1,0 +1,10 @@
+id: oi-wiki:ds/seg-beats-2
+name: Seg Beats
+solution:
+  cpp: docs/ds/code/seg-beats/seg-beats_2.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/seg-beats/seg-beats_2.ans
+  input: docs/ds/examples/seg-beats/seg-beats_2.in
+version: 1000
