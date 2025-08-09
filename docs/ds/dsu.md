@@ -1,4 +1,4 @@
-author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan
+author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 ![](images/disjoint-set.svg)
 
@@ -229,6 +229,8 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 ## 例题
 
+### 基本带权并查集
+
 ???+ note "[UVa11987 Almost Union-Find](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=229&page=show_problem&problem=3138)"
     实现类似并查集的数据结构，支持以下操作：
     
@@ -247,13 +249,84 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
             --8<-- "docs/ds/code/dsu/dsu_1.py"
             ```
 
+### 拓展域并查集
+
+接下来，我们将通过两道例题学习「拓展域并查集」或「种类并查集」这个技巧。它可以通过将元素拆分为不同的「状态」（也可以称之为「域」，请注意区分数学中的「域」概念，这两个是完全不同的概念）来维护更加复杂的关系。
+
+???+ warning "注意"
+    此处介绍的仅作为一个 trick 使用，即带权并查集的「二手做法」，无论是「拓展域并查集」还是「种类并查集」，都只是俗称。
+    
+    有些选手将这类题目称为「食物链」。
+
+???+ example "[Luogu P2024「NOI2011」食物链](https://www.luogu.com.cn/problem/P2024)"
+    将一种生物 $x$ 分为三个域（或如上文表述，维护一个模 3 加法群）。在具体实现中，我们可以直接将不同的域当作不同的元素：
+
+    -   与 `x` 处于同一集合的域与 `x` 属于同一物种；  
+    -   与 `x+n` 处于同一集合的域能被 `x` 吃；  
+    -   与 `x+2n` 处于同一集合的能吃 `x`。
+
+    于是，对于一句话：  
+
+    -   `1 x y` 为假话当且仅当：  
+
+        1. $x>N$ 或 $y>N$；  
+        2. `y` 与 `x+n` 或 `x+2n` 中的一个处于同一集合内。  
+
+    -   `2 x y` 为假话当且仅当：  
+
+        1. $x>N$ 或 $y>N$；  
+        2. `y` 与 `x` 或 `x+2n` 中的一个处于同一集合内。  
+
+    -   若为真话，合并对应域。
+
+    ??? note "实现"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/ext_dsu_1.cpp"
+        ```
+
+现在我们已经大概了解了拓展域并查集的大概写法和思路，下面的例题就需要一些转化了。
+
+???+ example "[ABC396E Min of Restricted Sum](https://atcoder.jp/contests/abc396/tasks/abc396_e)"
+    
+
+    让我们回归异或运算的定义。
+
+    ??? info "原题中关于异或（XOR）的定义"
+        对于非负整数 $A$ 和 $B$，它们的异或 $A\oplus B$ 定义如下：  
+
+        -   在 $A\oplus B$ 的二进制形式中，表示 $2^k(k\ge 0)$ 的一位为 $1$ 当且仅当在 $A$ 和 $B$ 的该位中正好有一个为 $1$；否则，为 $0$。
+
+        举个例子，$3\oplus 5=6$（在二进制形式下：$011\oplus 101=110$）
+
+    翻译一下，异或就是单个二进制位上的「相同」或「不同」关系。  
+    那么，将 $A_i$ 的所有二进制位拆开，异或关系就能用拓展域并查集维护了。
+
+    另外，不同位会对答案产生不同贡献，因此要使用 [带权并查集](#带权并查集) 进行维护。
+
+    最后，在统计答案时，一个二进制位取 $1$ 或取 $0$ 会确定别的某些二进制位的取值，在两种中选择贡献（即权值）较小者。
+
+    ??? info "小技巧"
+        如果只有两个域，可以使用相反数表示不同域。然而一般的数组不支持负数下标，下面的技巧能够实现负数下标。
+
+        数组不支持负数下标的原因在于其首地址前的地址就不再属于该数组，访问负数下标属于**越界访问**。只要将其首地址向后「移动」即可实现负数下标。
+
+        ??? note "实现"
+            ```cpp
+            --8<-- "docs/ds/code/dsu/ext_dsu_trick.cpp"
+            ```
+
+    ??? note "实现"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/ext_dsu_2.cpp"
+        ```
+
 ## 习题
 
 [「NOI2015」程序自动分析](https://uoj.ac/problem/127)
 
 [「JSOI2008」星球大战](https://www.luogu.com.cn/problem/P1197)
 
-[「NOI2001」食物链](https://www.luogu.com.cn/problem/P2024)
+[「NOIP2023」三值逻辑](https://www.luogu.com.cn/problem/P9869)
 
 [「NOI2002」银河英雄传说](https://www.luogu.com.cn/problem/P1196)
 
@@ -267,6 +340,7 @@ $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0
 
 1.  [知乎回答：是否在并查集中真的有二分路径压缩优化？](https://www.zhihu.com/question/28410263/answer/40966441)
 2.  Gabow, H. N., & Tarjan, R. E. (1985). A Linear-Time Algorithm for a Special Case of Disjoint Set Union. JOURNAL OF COMPUTER AND SYSTEM SCIENCES, 30, 209-221.[PDF](https://dl.acm.org/doi/pdf/10.1145/800061.808753)
+3.  [CSDN：扩展域并查集 & 带权并查集](https://blog.csdn.net/qqqqqwerttwtwe/article/details/145440100)
 
 [^tarjan1984worst]: Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.[ResearchGate PDF](https://www.researchgate.net/profile/Jan_Van_Leeuwen2/publication/220430653_Worst-case_Analysis_of_Set_Union_Algorithms/links/0a85e53cd28bfdf5eb000000/Worst-case-Analysis-of-Set-Union-Algorithms.pdf)
 
