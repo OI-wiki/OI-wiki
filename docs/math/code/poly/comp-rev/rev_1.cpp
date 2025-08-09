@@ -79,8 +79,8 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
   std::vector<uint> root, inv_root;
   std::tie(root, inv_root) = GetFFTRoot(len * 4);
   // [y^(-1)] (f(y) / (-g(x) + y)) mod x^n in R[x]((y^(-1)))
-  auto KinoshitaLi = [&](auto &&KinoshitaLi, const std::vector<uint> &P,
-                         const std::vector<uint> &Q, int d, int n) {
+  const auto KinoshitaLi = [&](auto &&KinoshitaLi, const std::vector<uint> &P,
+                               const std::vector<uint> &Q, int d, int n) {
     assert((int)P.size() == d * n);
     assert((int)Q.size() == d * n);
     if (n == 1) return P;
@@ -93,7 +93,8 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
     for (int i = 0; i < d * n * 4; i += 2)
       V[i / 2] = (ull)dftQ[i] * dftQ[i + 1] % MOD;
     InvFFT(d * n * 2, V.data(), inv_root.data());
-    if ((V[0] += MOD - 1) >= MOD) V[0] -= MOD;
+    assert(V[0] == 1);
+    V[0] = 0;
     for (int i = 1; i < d * 2; ++i)
       for (int j = 0; j < n / 2; ++j) V[i * (n / 2) + j] = V[i * n + j];
     V.resize(d * n);
@@ -130,35 +131,37 @@ std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
   std::vector<uint> root, inv_root;
   std::tie(root, inv_root) = GetFFTRoot(len * 4);
   // [x^(n-1)] (f(x) / (-g(x) + y)) in R[x]((y^(-1)))
-  auto KinoshitaLi = [&](auto &&KinoshitaLi, std::vector<uint> P,
-                         std::vector<uint> Q, int d,
-                         int n) -> std::vector<uint> {
+  const auto KinoshitaLi = [&](auto &&KinoshitaLi, std::vector<uint> P,
+                               std::vector<uint> Q, int d,
+                               int n) -> std::vector<uint> {
     assert((int)P.size() == d * n);
     assert((int)Q.size() == d * n);
     if (n == 1) return P;
     std::vector<uint> dftQ(d * n * 4), dftP(d * n * 4);
     for (int i = 0; i < d; ++i)
       for (int j = 0; j < n; ++j)
-        dftP[i * n * 2 + j] = P[i * n + j], dftQ[i * n * 2 + j] = Q[i * n + j];
+        dftP[(2 * (i + d) + 1) * n + j] = P[i * n + j],
+                                     dftQ[i * n * 2 + j] = Q[i * n + j];
     dftQ[d * n * 2] = 1;
-    FFT(d * n * 4, dftP.data(), root.data());
+    FFT(d * n * 4, dftP.data(), inv_root.data());
     FFT(d * n * 4, dftQ.data(), root.data());
     P.resize(d * n * 2);
     Q.resize(d * n * 2);
     for (int i = 0; i < d * n * 4; i += 2) {
-      const uint u = (ull)dftP[i] * dftQ[i + 1] % MOD;
-      const uint v = (ull)dftP[i + 1] * dftQ[i] % MOD;
-      P[i / 2] = (ull)(u + MOD - v) * inv_root[i / 2] % MOD;
+      P[i / 2] =
+          ((ull)dftP[i] * dftQ[i + 1] + (ull)dftP[i + 1] * dftQ[i]) % MOD;
       if (P[i / 2] & 1) P[i / 2] += MOD;
       P[i / 2] /= 2;
       Q[i / 2] = (ull)dftQ[i] * dftQ[i + 1] % MOD;
     }
-    InvFFT(d * n * 2, P.data(), inv_root.data());
+    InvFFT(d * n * 2, P.data(), root.data());
     InvFFT(d * n * 2, Q.data(), inv_root.data());
-    if ((Q[0] += MOD - 1) >= MOD) Q[0] -= MOD;
+    for (int i = 0; i < d * 2; ++i)
+      for (int j = 0; j < n / 2; ++j) P[i * (n / 2) + j] = P[i * n + n / 2 + j];
+    assert(Q[0] == 1);
+    Q[0] = 0;
     for (int i = 1; i < d * 2; ++i)
-      for (int j = 0; j < n / 2; ++j)
-        P[i * (n / 2) + j] = P[i * n + j], Q[i * (n / 2) + j] = Q[i * n + j];
+      for (int j = 0; j < n / 2; ++j) Q[i * (n / 2) + j] = Q[i * n + j];
     P.resize(d * n);
     Q.resize(d * n);
     return KinoshitaLi(KinoshitaLi, P, Q, d * 2, n / 2);
@@ -166,9 +169,9 @@ std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
   f.insert(f.begin(), len - n, 0);
   f.resize(len);
   g.resize(len);
+  std::reverse(f.begin(), f.end());
   for (int i = 0; i < len; ++i) g[i] = (g[i] != 0 ? MOD - g[i] : 0);
-  std::vector<uint> res = KinoshitaLi(KinoshitaLi, f, g, 1, len);
-  std::reverse(res.begin(), res.end());
+  auto res = KinoshitaLi(KinoshitaLi, f, g, 1, len);
   res.resize(n);
   return res;
 }
