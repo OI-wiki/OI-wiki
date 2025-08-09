@@ -407,6 +407,7 @@ Wythoff 游戏允许同时从多堆石子中移除，但是要求每堆移除的
 ## 习题
 
 模板题：
+
 -   [Luogu P2197【模板】Nim 游戏](https://www.luogu.com.cn/problem/P2197) Nim
 -   [Luogu P4279 \[SHOI2008\] 小约翰的游戏](https://www.luogu.com.cn/problem/P4279) Misere Nim
 -   [Luogu P6487 \[COCI 2010/2011 #4\] HRPA](https://www.luogu.com.cn/problem/P6487) Fibonacci
@@ -417,6 +418,7 @@ Wythoff 游戏允许同时从多堆石子中移除，但是要求每堆移除的
 -   [Luogu P3480 \[POI 2009\] KAM-Pebbles](https://www.luogu.com.cn/problem/P3480) 阶梯 Nim
 
 博弈 DP：（并不计划在本页面讨论）
+
 -   [Luogu P2734 \[USACO3.3\] 游戏 A Game](https://www.luogu.com.cn/problem/P2734) 序贯零和 + 区间 DP
 
 ## 参考文献
