@@ -105,7 +105,7 @@
 ## 对本文档的格式要求
 
 -   FREQ-1：修订格式手册的条目时需同时补充 Changelog。若只是修正格式，则无需补充 Changelog。
--   FREQ-2：为方便自动化检测，除 [太长不看版](#太长不看版) 一节外，格式手册的条目都需要有不重复的编号，编号需要匹配正则表达式 `(?<category>[A-Z]{4})-(?<id>[1-9][0-9]*(?:\.[1-9][0-9]*)*)`，其中 `category` 应具有直观的含义。说明文字不需要有编号。
+-   FREQ-2：除 [太长不看版](#太长不看版) 一节外，格式手册的条目都需要有不重复的编号，编号需要匹配正则表达式 `(?<category>[A-Z]{4})-(?<id>[1-9][0-9]*(?:\.[1-9][0-9]*)*)`，其中 `category` 应具有直观的含义。说明文字不需要有编号。
 -   FREQ-3：[太长不看版](#太长不看版) 的条目必须来自格式手册其他章节的内容，且需在末尾引用对应的条目编号。
 -   FREQ-4：条目的编号一旦确定就不应更改。如果确需更改（如删除、合并条目），则应用类似「已废止」、「迁移至 XXXX-id」的文字注明。
 
@@ -279,7 +279,7 @@
 
 -   MDFM-5：建议使用主题扩展的 `???+note` 格式（即 [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)）来描述题面和参考代码。也可以用这种格式来展示其他需要补充介绍的内容。
 
-    示例代码（下面的代码中用 `␣` 表示空格 ` `。）：
+    示例代码（下面的代码中用 `␣` 表示空格 ` `）：
 
     ```text
     ??? note "标题"
@@ -627,15 +627,19 @@ $$
 -   CODE-1.1：若代码片段足够短且没有必要测试，可以直接在 Markdown 文档中修改。
 -   CODE-1.2：由于 Markdown 文档中内嵌的代码难以实现自动化测试，所以推荐使用例题代码的格式插入片段代码。有如下两种方式可供选择：
 
-    1.  在代码文件中用 `// --8<-- [start:name]` 和 `// --8<-- [end:name]` 标记片段的起始和结束，之后在文档中用 `--8<-- "你的代码路径:name"` 即可插入该片段。参见 [Snippet Sections](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-sections)。
+    1.  使用多文件编译方案。参见 [#5729](https://github.com/OI-wiki/OI-wiki/pull/5729)。
 
-        示例：[prefix-sum\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/code/prefix-sum/prefix-sum_1.cpp)。
+        示例：[冒泡排序](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/bubble-sort.md?plain=1#L48)。正文引用 [bubble-sort\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.cpp)，测试代码放在 [bubble-sort\_1.aux1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.aux1.cpp) 中。
+
+    2.  在代码文件中用 `// --8<-- [start:name]` 和 `// --8<-- [end:name]` 标记片段的起始和结束，之后在文档中用 `--8<-- "你的代码路径:name"` 即可插入该片段。参见 [Snippet Sections](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-sections)。
+
+        示例：[前缀和](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/prefix-sum.md?plain=1#L37)。正文中不需要引用 [prefix-sum\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/code/prefix-sum/prefix-sum_1.cpp) 中的测试部分，所以选择插入主要的代码片段。
 
         **注意**：不要使用 [Snippet Lines](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-lines) 语法。
 
-    2.  使用多文件编译方案。参见 [#5729](https://github.com/OI-wiki/OI-wiki/pull/5729)。
+    3.  为了提高代码复用率，您也可以将代码拆分成头文件，测试时在不同的测试代码里引用。如果正文中需要出现完整的测试代码作为例题的参考实现，那么正文中应该另外用 Snippet Sections 语法拼接成单文件代码，以便读者阅读。
 
-        示例：[bubble-sort\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.cpp) 与 [bubble-sort\_1.aux1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.aux1.cpp)。
+        示例：[红黑树](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231)。
 
 关于例题代码：
 
