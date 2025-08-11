@@ -182,13 +182,15 @@
     **即使是空行，也必须保持与其他行一致的缩进。请不要使用编辑器的自动裁剪行末空格功能。**
 
     ???+ success "示例"
+        下面的代码中用 `␣` 表示空格 ` `。
+        
         ```text
         ???+ warning
-            请记得在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
-            
-            不添加 4 个空格的话，文本就不会出现在 Details 文本框里了。
-            
-            这个`???`是什么的问题会在下文解答。
+        ␣␣␣␣请记得在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
+        ␣␣␣␣
+        ␣␣␣␣不添加 4 个空格的话，文本就不会出现在 Details 文本框里了。
+        ␣␣␣␣
+        ␣␣␣␣这个`???`是什么的问题会在下文解答。
         ```
         
         ???+ warning
@@ -277,20 +279,20 @@
 
 -   MDFM-5：建议使用主题扩展的 `???+note` 格式（即 [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)）来描述题面和参考代码。也可以用这种格式来展示其他需要补充介绍的内容。
 
-    示例代码：
+    示例代码（下面的代码中用 `␣` 表示空格 ` `。）：
 
     ```text
     ??? note "标题"
-        这个文本框会被默认折叠。
-        
-        推荐将 **解题代码** 放在折叠文本框内。
+    ␣␣␣␣这个文本框会被默认折叠。
+    ␣␣␣␣
+    ␣␣␣␣推荐将 **解题代码** 放在折叠文本框内。
 
     ???+note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
-        标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的「A + B Problem」。
-        
-        而且推荐以这种方式**标注原题链接**。
-        
-        注意双引号的位置。
+    ␣␣␣␣标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的「A + B Problem」。
+    ␣␣␣␣
+    ␣␣␣␣而且推荐以这种方式**标注原题链接**。
+    ␣␣␣␣
+    ␣␣␣␣注意双引号的位置。
     ```
 
     效果：
@@ -314,29 +316,28 @@
 -   MDFM-6：当需要添加不同语言的代码时，推荐使用 Content tabs，可以实现不同语言代码的切换。Content tabs 还有其他的用法，详见 [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/#usage)。其使用方法和效果如下。
 
     ???+ success "示例"
-        ````text
-        注意需要在文本前面添加 4 个空格。其他的语法还是与 Markdown 语法一致。
+        注意需要在文本前面添加 4 个空格（下面用 `␣` 表示）。其他的语法还是与 Markdown 语法一致。
         
+        ````text
         === "C"
-            ```c
-            #include <stdio.h>
-            
-            int main(void) {
-              printf("Hello world!\n");
-              return 0;
-            }
-            ```
-            
+        ␣␣␣␣```c
+        ␣␣␣␣#include <stdio.h>
+        ␣␣␣␣
+        ␣␣␣␣int main(void) {
+        ␣␣␣␣  printf("Hello world!\n");
+        ␣␣␣␣  return 0;
+        ␣␣␣␣}
+        ␣␣␣␣```
+        
         === "C++"
-            ```cpp
-            #include <iostream>
-            
-            int main(void) {
-              std::cout << "Hello world!" << std::endl;
-              return 0;
-            }
-            ```
-            
+        ␣␣␣␣```cpp
+        ␣␣␣␣#include <iostream>
+        ␣␣␣␣
+        ␣␣␣␣int main(void) {
+        ␣␣␣␣  std::cout << "Hello world!" << std::endl;
+        ␣␣␣␣  return 0;
+        ␣␣␣␣}
+        ␣␣␣␣```
         ````
         
         === "C"
