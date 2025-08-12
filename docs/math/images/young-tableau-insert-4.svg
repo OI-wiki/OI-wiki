@@ -1,26 +1,33 @@
-<svg width="200" height="250" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
-  <path d="M 20 20 L 170 20 L 170 70 L 120 70 L 120 120 L 70 120 L 70 170 L 70 220 L 20 220 Z" 
+<svg width="180" height="230" viewBox="0 0 180 230" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 5 5 L 155 5 L 155 55 L 105 55 L 105 105 L 55 105 L 55 155 L 55 205 L 5 205 Z" 
         fill="none" stroke="black" stroke-width="2"/>
   
-  <line x1="70" y1="20" x2="70" y2="70" stroke="black" stroke-width="2"/>
-  <line x1="120" y1="20" x2="120" y2="70" stroke="black" stroke-width="2"/>
+  <line x1="55" y1="5" x2="55" y2="55" stroke="black" stroke-width="2"/>
+  <line x1="105" y1="5" x2="105" y2="55" stroke="black" stroke-width="2"/>
   
-  <line x1="20" y1="70" x2="120" y2="70" stroke="black" stroke-width="2"/>
+  <line x1="5" y1="55" x2="105" y2="55" stroke="black" stroke-width="2"/>
   
-  <line x1="70" y1="70" x2="70" y2="120" stroke="black" stroke-width="2"/>
+  <line x1="55" y1="55" x2="55" y2="105" stroke="black" stroke-width="2"/>
   
-  <line x1="20" y1="120" x2="70" y2="120" stroke="black" stroke-width="2"/>
+  <line x1="5" y1="105" x2="55" y2="105" stroke="black" stroke-width="2"/>
   
-  <line x1="20" y1="170" x2="70" y2="170" stroke="black" stroke-width="2"/>
+  <line x1="5" y1="155" x2="55" y2="155" stroke="black" stroke-width="2"/>
   
-  <text x="45" y="48" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">2</text>
-  <text x="95" y="48" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="blue">3</text>
-  <text x="145" y="48" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">9</text>
+  <text x="30" y="30" text-anchor="middle" dominant-baseline="middle"
+        font-family="Computer Modern, Times, serif" font-size="28" fill="black">2</text>
+  <text x="80" y="30" text-anchor="middle" dominant-baseline="middle"
+        font-family="Computer Modern, Times, serif" font-size="28" fill="blue">3</text>
+  <text x="130" y="30" text-anchor="middle" dominant-baseline="middle"
+        font-family="Computer Modern, Times, serif" font-size="28" fill="black">9</text>
   
-  <text x="45" y="98" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="blue">5</text>
-  <text x="95" y="98" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">7</text>
+  <text x="30" y="80" text-anchor="middle" dominant-baseline="middle"
+        font-family="Computer Modern, Times, serif" font-size="28" fill="blue">5</text>
+  <text x="80" y="80" text-anchor="middle" dominant-baseline="middle"
+        font-family="Computer Modern, Times, serif" font-size="28" fill="black">7</text>
   
-  <text x="45" y="148" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="blue">6</text>
+  <text x="30" y="130" text-anchor="middle" dominant-baseline="middle"
+        font-family="Computer Modern, Times, serif" font-size="28" fill="blue">6</text>
   
-  <text x="45" y="198" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="red">8</text>
+  <text x="30" y="180" text-anchor="middle" dominant-baseline="middle"
+        font-family="Computer Modern, Times, serif" font-size="28" fill="red">8</text>
 </svg>
