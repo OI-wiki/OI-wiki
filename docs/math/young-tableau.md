@@ -104,7 +104,7 @@ $$
 
     例如，对于排列 $X = 1, 5, 7, 2, 8, 6, 3, 4$ 和 $X^R = 4, 3, 6, 8, 2, 7, 5, 1$, 我们可得到如下杨表 $P_{X}$:
 
-    ![](./images/young-tableau-LIS-1.svg)![](./images/young-tableau-LIS-2.svg)
+    ![](./images/young-tableau-LIS.svg)
 
 3.  杨表 $P_{X}$ 中的第一列长度即为排列 $X$ 的 **最长下降子序列（LDS）** 长度。
 

@@ -1,0 +1,88 @@
+<svg width="640" height="300" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 左侧 -->
+  <g transform="translate(0,100)">
+    <!-- 公式 P_X -->
+    <text x="30" y="0" font-family="Computer Modern, Times, serif" font-size="24">P</text>
+    <g transform="translate(39,5)">
+      <text x="0" y="0" font-family="Computer Modern, Times, serif" font-size="18">X</text>
+    </g>
+    <text x="65" y="0" font-family="Computer Modern, Times, serif" font-size="24">=</text>
+
+    <!-- 矩阵 -->
+    <g transform="translate(90,-75)">
+      <path d="M 0 0 L 200 0 L 200 50 L 150 50 L 150 100 L 50 100 L 50 150 L 0 150 Z"
+            fill="none" stroke="black" stroke-width="2"/>
+      <line x1="50" y1="0" x2="50" y2="50" stroke="black" stroke-width="2"/>
+      <line x1="100" y1="0" x2="100" y2="50" stroke="black" stroke-width="2"/>
+      <line x1="150" y1="0" x2="150" y2="50" stroke="black" stroke-width="2"/>
+
+      <line x1="0" y1="50" x2="150" y2="50" stroke="black" stroke-width="2"/>
+      <line x1="50" y1="50" x2="50" y2="100" stroke="black" stroke-width="2"/>
+      <line x1="100" y1="50" x2="100" y2="100" stroke="black" stroke-width="2"/>
+      <line x1="0" y1="100" x2="50" y2="100" stroke="black" stroke-width="2"/>
+
+      <text x="25" y="25" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">1</text>
+      <text x="75" y="25" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">2</text>
+      <text x="125" y="25" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">3</text>
+      <text x="175" y="25" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">4</text>
+
+      <text x="25" y="75" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">5</text>
+      <text x="75" y="75" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">6</text>
+      <text x="125" y="75" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">8</text>
+
+      <text x="25" y="125" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">7</text>
+    </g>
+  </g>
+
+  <!-- 右侧 -->
+  <g transform="translate(350,100)">
+    <!-- 公式 P_{X^R} 紧贴版 -->
+    <text x="30" y="0" font-family="Computer Modern, Times, serif" font-size="24">P</text>
+    <g transform="translate(39,5)">
+      <text x="0" y="0" font-family="Computer Modern, Times, serif" font-size="18">X</text>
+      <text x="12" y="-6" font-family="Computer Modern, Times, serif" font-size="14">R</text>
+    </g>
+    <text x="70" y="0" font-family="Computer Modern, Times, serif" font-size="24">=</text>
+
+    <!-- 矩阵 -->
+    <g transform="translate(110,-95)">
+      <path d="M 0 0 L 150 0 L 150 50 L 100 50 L 100 100 L 100 150 L 50 150 L 50 200 L 0 200 Z"
+            fill="none" stroke="black" stroke-width="2"/>
+      <line x1="50" y1="0" x2="50" y2="50" stroke="black" stroke-width="2"/>
+      <line x1="100" y1="0" x2="100" y2="50" stroke="black" stroke-width="2"/>
+      <line x1="0" y1="50" x2="100" y2="50" stroke="black" stroke-width="2"/>
+      <line x1="50" y1="50" x2="50" y2="100" stroke="black" stroke-width="2"/>
+      <line x1="0" y1="100" x2="100" y2="100" stroke="black" stroke-width="2"/>
+      <line x1="50" y1="100" x2="50" y2="150" stroke="black" stroke-width="2"/>
+      <line x1="0" y1="150" x2="50" y2="150" stroke="black" stroke-width="2"/>
+
+      <text x="25" y="25" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">1</text>
+      <text x="75" y="25" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">5</text>
+      <text x="125" y="25" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">7</text>
+
+      <text x="25" y="75" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">2</text>
+      <text x="75" y="75" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">6</text>
+
+      <text x="25" y="125" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">3</text>
+      <text x="75" y="125" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">8</text>
+
+      <text x="25" y="175" text-anchor="middle" dominant-baseline="middle"
+            font-family="Computer Modern, Times, serif" font-size="32">4</text>
+    </g>
+  </g>
+</svg>
