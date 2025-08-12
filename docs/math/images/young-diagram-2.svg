@@ -1,0 +1,17 @@
+<svg width="340" height="220" viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 20 20 L 80 20 L 80 80 L 260 80 L 260 140 L 320 140 L 320 200 L 20 200 Z" 
+        fill="none" stroke="black" stroke-width="2"/>
+  
+  <line x1="20" y1="80" x2="80" y2="80" stroke="black" stroke-width="2"/>
+  
+  <line x1="20" y1="140" x2="320" y2="140" stroke="black" stroke-width="2"/>
+  
+  <line x1="80" y1="80" x2="80" y2="140" stroke="black" stroke-width="2"/>
+  <line x1="140" y1="80" x2="140" y2="140" stroke="black" stroke-width="2"/>
+  <line x1="200" y1="80" x2="200" y2="140" stroke="black" stroke-width="2"/>
+  
+  <line x1="80" y1="140" x2="80" y2="200" stroke="black" stroke-width="2"/>
+  <line x1="140" y1="140" x2="140" y2="200" stroke="black" stroke-width="2"/>
+  <line x1="200" y1="140" x2="200" y2="200" stroke="black" stroke-width="2"/>
+  <line x1="260" y1="140" x2="260" y2="200" stroke="black" stroke-width="2"/>
+</svg>

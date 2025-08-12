@@ -19,8 +19,8 @@
 
 以下表格中分别为整数分拆 $(5,4,1)$ 对应的杨图不同画法：
 
--   英式画法：![](./images/young-diagram-1.png)
--   法式画法：![](./images/young-diagram-2.png)
+-   英式画法：![](./images/young-diagram-1.svg)
+-   法式画法：![](./images/young-diagram-2.svg)
 
 ### 杨表
 
@@ -49,7 +49,7 @@ $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$（[OEIS](https://en.wikip
 
 例如，将 $3$ 插入杨表 $(2, 5, 9)(6, 7)(8)$ 的步骤为：
 
-![](./images/young-tableau-insert-1.png)![](./images/young-tableau-insert-2.png)![](./images/young-tableau-insert-3.png)![](./images/young-tableau-insert-4.png)
+![](./images/young-tableau-insert-1.svg)![](./images/young-tableau-insert-2.svg)![](./images/young-tableau-insert-3.svg)![](./images/young-tableau-insert-4.svg)
 
 ### 变体
 
@@ -61,7 +61,7 @@ $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$（[OEIS](https://en.wikip
 
 例如，下图为整数分拆 $(5,4,1)$ 对应的一个标准斜杨表：
 
-![](./images/skew-tableau.png)
+![](./images/skew-tableau.svg)
 
 同理，若满足同一列中的数字严格递增，且同一行中的数字单调递增，则该斜杨表被称作 **半标准斜杨表**；若半标准斜杨表满足各方格不重复的填入数字 $1$ 到 $n$（方格总数），则该斜杨表被称作 **标准斜杨表**。注意，由不同的 $\lambda$ 和 $\mu$ 可得到相同的 $\lambda/\mu$。虽然大部分斜杨表的性质都只依赖于取完差集的方格，但是仍然部分运算依赖于 $\lambda$ 和 $\mu$ 的选取。因此，$\lambda/\mu$ 必须被视为包含两个元素信息：$\lambda$ 和 $\mu$。当 $\mu$ 是空分拆（$0$ 的唯一一种分拆）时，斜杨表 $\lambda/\mu$ 就变成杨表 $\lambda$。
 
@@ -83,7 +83,7 @@ $$
 \dim \pi _{\lambda}={\frac {n!}{\prod_{{x\in Y(\lambda)}}{\mathrm {hook}}(x)}}.
 $$
 
-![](./images/young-tableau-2.png)
+![](./images/young-tableau-2.svg)
 
 所以对于整数分拆 $10 = 5 + 4 + 1$ 的杨表，如上图所示。有
 
@@ -105,7 +105,7 @@ $$
 
     例如，对于排列 $X = 1, 5, 7, 2, 8, 6, 3, 4$ 和 $X^R = 4, 3, 6, 8, 2, 7, 5, 1$, 我们可得到如下杨表 $P_{X}$:
 
-    ![](./images/young-tableau-LIS-1.jpg)![](./images/young-tableau-LIS-2.jpg)
+    ![](./images/young-tableau-LIS-1.svg)![](./images/young-tableau-LIS-2.svg)
 
 3.  杨表 $P_{X}$ 中的第一列长度即为排列 $X$ 的 **最长下降子序列（LDS）** 长度。
 

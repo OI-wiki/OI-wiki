@@ -1,0 +1,30 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <text x="30" y="90" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="24" fill="black">P</text>
+  <text x="42" y="100" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="18" fill="black">X</text>
+  <text x="60" y="90" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="24" fill="black">=</text>
+  
+  <path d="M 80 40 L 280 40 L 280 90 L 230 90 L 230 140 L 130 140 L 130 190 L 80 190 Z" 
+        fill="none" stroke="black" stroke-width="2"/>
+  
+  <line x1="130" y1="40" x2="130" y2="90" stroke="black" stroke-width="2"/>
+  <line x1="180" y1="40" x2="180" y2="90" stroke="black" stroke-width="2"/>
+  <line x1="230" y1="40" x2="230" y2="90" stroke="black" stroke-width="2"/>
+  
+  <line x1="80" y1="90" x2="230" y2="90" stroke="black" stroke-width="2"/>
+  
+  <line x1="130" y1="90" x2="130" y2="140" stroke="black" stroke-width="2"/>
+  <line x1="180" y1="90" x2="180" y2="140" stroke="black" stroke-width="2"/>
+  
+  <line x1="80" y1="140" x2="130" y2="140" stroke="black" stroke-width="2"/>
+  
+  <text x="105" y="68" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">1</text>
+  <text x="155" y="68" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">2</text>
+  <text x="205" y="68" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">3</text>
+  <text x="255" y="68" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">4</text>
+  
+  <text x="105" y="118" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">5</text>
+  <text x="155" y="118" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">6</text>
+  <text x="205" y="118" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">8</text>
+  
+  <text x="105" y="168" text-anchor="middle" dominant-baseline="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">7</text>
+</svg>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="100" viewBox="0 0 160 100">
+  <g font-family="Times New Roman, serif" font-size="12" text-anchor="middle" dominant-baseline="middle">
+    <rect x="80" y="10" width="20" height="20" fill="none" stroke="black" stroke-width="0.5"/>
+    <text x="90" y="20">2</text>
+
+    <rect x="100" y="10" width="20" height="20" fill="none" stroke="black" stroke-width="0.5"/>
+    <text x="110" y="20">5</text>
+
+    <rect x="120" y="10" width="20" height="20" fill="none" stroke="black" stroke-width="0.5"/>
+    <text x="130" y="20">9</text>
+
+    <rect x="60" y="30" width="20" height="20" fill="none" stroke="black" stroke-width="0.5"/>
+    <text x="70" y="40">3</text>
+
+    <rect x="80" y="30" width="20" height="20" fill="none" stroke="black" stroke-width="0.5"/>
+    <text x="90" y="40">4</text>
+
+    <rect x="100" y="30" width="20" height="20" fill="none" stroke="black" stroke-width="0.5"/>
+    <text x="110" y="40">6</text>
+
+    <rect x="40" y="50" width="20" height="20" fill="none" stroke="black" stroke-width="0.5"/>
+    <text x="50" y="60">1</text>
+
+    <rect x="60" y="50" width="20" height="20" fill="none" stroke="black" stroke-width="0.5"/>
+    <text x="70" y="60">7</text>
+
+    <rect x="40" y="70" width="20" height="20" fill="none" stroke="black" stroke-width="0.5"/>
+    <text x="50" y="80">8</text>
+
+    <rect x="60" y="70" width="20" height="20" fill="none" stroke="black" stroke-width="0.5"/>
+    <text x="70" y="80">10</text>
+  </g>
+</svg>
