@@ -1,189 +1,146 @@
-本文介绍模意义下乘法运算的逆元（Modular Multiplicative Inverse），并介绍如何使用扩展欧几里德算法（Extended Euclidean algorithm）求解乘法逆元。
+本文介绍模意义下乘法运算的逆元，并讨论它的常见求解方法。
 
-## 定义
+## 基本概念
 
-如果一个线性同余方程 $ax \equiv 1 \pmod b$，则 $x$ 称为 $a \bmod b$ 的逆元，记作 $a^{-1}$。
+非零实数 $a\in\mathbf R$ 的乘法逆元就是它的倒数 $a^{-1}$。类似地，数论中也可以定义一个整数 $a$ 在模 $m$ 意义下的逆元 $a^{-1}\bmod m$，或简单地记作 $a^{-1}$。这就是 **模逆元**（modular multiplicative inverse），也称作 **数论倒数**。
 
-## 如何求逆元
+???+ abstract "逆元"
+    对于非零整数 $a,m$，如果存在 $b$ 使得 $ab\equiv 1\pmod m$，就称 $b$ 是 $a$ 在模 $m$ 意义下的 **逆元**（inverse）。
 
-### 扩展欧几里得法
+这相当于说，$b$ 是线性同余方程 $ax\equiv 1\pmod m$ 的解。根据 [线性同余方程](./linear-equation.md) 的性质可知，当且仅当 $\gcd(a,m)=1$，即 $a,m$ 互素时，逆元 $a^{-1}\bmod m$ 存在，且在模 $m$ 的意义下是唯一的。
 
-???+ note "实现"
+## 单个逆元的求法
+
+利用扩展欧几里得算法或快速幂法，可以在 $O(\log m)$ 时间内求出单个整数的逆元。
+
+### 扩展欧几里得算法
+
+求解逆元，就相当于求解线性同余方程。因此，可以使用 [扩展欧几里得算法](./gcd.md#扩展欧几里得算法) 在 $O(\log\min\{a,m\})$ 时间内求解逆元。同时，由于逆元对应的线性方程比较特殊，可以适当地简化相应的步骤。
+
+???+ example "参考实现"
     === "C++"
         ```cpp
-        void exgcd(int a, int b, int& x, int& y) {
-          if (b == 0) {
-            x = 1, y = 0;
-            return;
-          }
-          exgcd(b, a % b, y, x);
-          y -= a / b * x;
-        }
+        --8<-- "docs/math/code/inverse/inverse-1.cpp:core"
         ```
     
     === "Python"
         ```python
-        def exgcd(a, b):
-            if b == 0:
-                x = 1
-                y = 0
-                return x, y
-            x1, y1 = exgcd(b, a % b)
-            x = y1
-            y = x1 - (a // b) * y1
-            return x, y
+        --8<-- "docs/math/code/inverse/inverse-1.py:core"
         ```
 
-扩展欧几里得法和求解 [线性同余方程](./linear-equation.md) 是一个原理，在这里不展开解释。
+这一算法适用于所有逆元存在的情形。
 
 ### 快速幂法
 
-#### 证明
-
-因为 $ax \equiv 1 \pmod b$；
-
-所以 $ax \equiv a^{b-1} \pmod b$（根据 [费马小定理](./fermat.md)）；
-
-所以 $x \equiv a^{b-2} \pmod b$。
-
-然后我们就可以用快速幂来求了。
-
-???+ note "实现"
-    === "C++"
-        ```cpp
-        int qpow(long long a, int b) {
-          int ans = 1;
-          a = (a % p + p) % p;
-          for (; b; b >>= 1) {
-            if (b & 1) ans = (a * ans) % p;
-            a = (a * a) % p;
-          }
-          return ans;
-        }
-        ```
-    
-    === "Python"
-        ```python
-        def qpow(a, b):
-            ans = 1
-            a = (a % p + p) % p
-            while b:
-                if b & 1:
-                    ans = (a * ans) % p
-                a = (a * a) % p
-                b >>= 1
-            return ans
-        ```
-
-注意：快速幂法使用了 [费马小定理](./fermat.md)，要求 $b$ 是一个素数；而扩展欧几里得法只要求 $\gcd(a, b) = 1$。
-
-### 线性求逆元
-
-求出 $1,2,\dots,n$ 中每个数关于质数 $p$ 的逆元。
-
-如果对于每个数进行单次求解，以上两种方法就显得慢了，很有可能超时，所以下面来讲一下如何线性（$O(n)$）求逆元。
-
-首先，很显然的 $1^{-1} \equiv 1 \pmod p$；
-
-???+ note "证明"
-    对于 $\forall p \in \mathbf{Z}$，有 $1 \times 1 \equiv 1 \pmod p$ 恒成立，故在 $p$ 下 $1$ 的逆元是 $1$，而这是推算出其他情况的基础。
-
-其次对于递归情况 $i^{-1}$，我们令 $k = \lfloor \frac{p}{i} \rfloor$，$j = p \bmod i$，有 $p = ki + j$。再放到 $\mod p$ 意义下就会得到：$ki+j \equiv 0 \pmod p$；
-
-当 $p$ 为质数时，可知 $j$ 在模 $p$ 意义下的乘法逆元必定存在。这时在上式 $ki+j \equiv 0 \pmod p$ 的两边同时乘 $i^{-1} \times j^{-1}$：
-
-$kj^{-1}+i^{-1} \equiv 0 \pmod p$
-
-$i^{-1} \equiv -kj^{-1} \pmod p$
-
-再带入 $j = p \bmod i$，有 $p = ki + j$，有：
-
-$i^{-1} \equiv -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1} \pmod p$
-
-我们注意到 $p \bmod i < i$，而在迭代中我们完全可以假设我们已经知道了所有的模 $p$ 下的逆元 $j^{-1}, j < i$。
-
-故我们就可以推出逆元，利用递归的形式，而使用迭代实现：
+这一方法主要适用于模数是素数 $p$ 的情形。此时，由 [费马小定理](./fermat.md#费马小定理) 可知对于任意 $a\perp p$ 都有
 
 $$
-i^{-1} \equiv \begin{cases}
-    1,                                           & \text{if } i = 1, \\
-    -\lfloor\frac{p}{i}\rfloor (p \bmod i)^{-1}, & \text{otherwise}.
-\end{cases} \pmod p
+a\cdot a^{p-2} = a^{p-1} \equiv 1. \pmod p
 $$
 
-???+ note "实现"
+根据逆元的唯一性可知，逆元 $a^{-1}\bmod p$ 就等于 $a^{p-2}\bmod p$，因此可以直接使用 [快速幂](../binary-exponentiation.md) 在 $O(\log p)$ 时间内计算：
+
+???+ example "参考实现"
     === "C++"
         ```cpp
-        inv[1] = 1;
-        for (int i = 2; i <= n; ++i) {
-          inv[i] = (long long)(p - p / i) * inv[p % i] % p;
-        }
+        --8<-- "docs/math/code/inverse/inverse-2.cpp:core"
         ```
     
     === "Python"
         ```python
-        inv[1] = 1
-        for i in range(2, n + 1):
-            inv[i] = (p - p // i) * inv[p % i] % p
+        --8<-- "docs/math/code/inverse/inverse-2.py:core"
         ```
 
-使用 $p-\lfloor \dfrac{p}{i} \rfloor$ 来防止出现负数。
+当然，理论上，这一方法可以利用 [欧拉定理](./fermat.md#欧拉定理) 推广到一般的模数 $m$ 的情形，即利用 $a^{\varphi(m)-1}\bmod m$ 计算逆元。但是，单次求解 [欧拉函数](./euler-totient.md) $\varphi(m)$ 并不容易，因此该算法在一般情况下效率不高。
 
-???+ note "当 p 不为质数"
-    [线性同余方程](./linear-equation.md) 中指出，如果 $i$ 与 $p$ 不互素时不存在相应的逆元。如果 $p$ 不为质数，则至少有一个 $i$ 的逆元不存在。此时这个建立在递推式上的方法就不能保证结果的正确性。例如当 $p = 8$ 且 $i = 3$ 时，根据递推式，逆元需要从 `inv[p % i]` 即 `inv[2]` 计算。而 2 在模 8 意义下不存在逆元，`inv[2]` 的值是未定义的（准确来讲，递推时 `inv[2]` 依赖于 `inv[0]` 的初始值）。因此 3 在模 8 意义下的乘法逆元便无法正确求出。
+## 多个逆元的求法
 
-另外，根据线性求逆元方法的式子：$i^{-1} \equiv -kj^{-1} \pmod p$
+有些场景下，需要快速处理出多个整数 $a_1,a_2,\cdots,a_n$ 在模 $m$ 意义下的逆元。此时，逐个求解逆元，总共需要 $O(n\log m)$ 的时间。实际上，如果将它们统一处理，就可以在 $O(n+\log m)$ 的时间内求出所有整数的逆元。
 
-递归求解 $j^{-1}$, 直到 $j=1$ 返回 $1$。
+考虑序列 $\{a_i\}$ 的前缀积：
 
-中间优化可以加入一个记忆化来避免多次递归导致的重复，这样求 $1,2,\dots,n$ 中所有数的逆元的时间复杂度仍是 $O(n)$。
+$$
+S_0 = 1,~ S_i = a_iS_{i-1},~ i=1,2,\cdots,n.
+$$
 
-**注意**：如果用以上给出的式子递归进行单个数的逆元求解，目前已知的时间复杂度的上界为 $O(n^{\frac 1 3})$，具体请看 [知乎讨论](https://www.zhihu.com/question/59033693)。算法竞赛中更好地求单个数的逆元的方法有扩展欧几里得法和快速幂法。
+只要每个 $a_i$ 都与 $m$ 互素，它们的乘积 $S_n$ 就与 $m$ 互素。因此，可以通过前文所述算法求出 $S_n^{-1}\bmod m$ 的值。因为乘积的逆元就是逆元的乘积，所以，从 $S_n^{-1}$ 出发，反向遍历序列就能求出每个 $S_i$ 的逆元：
 
-### 线性求任意 n 个数的逆元
+$$
+S_{i-1}^{-1} = a_iS_i^{-1} \bmod m,~ i = n,n-1,\cdots,1.
+$$
 
-上面的方法只能求 $1$ 到 $n$ 的逆元，如果需要求任意给定 $n$ 个数（$1 \le a_i < p$）的逆元，就需要下面的方法：
+由此，单个 $a_i$ 的逆元可以通过下式计算：
 
-首先计算 $n$ 个数的前缀积，记为 $s_i$，然后使用快速幂或扩展欧几里得法计算 $s_n$ 的逆元，记为 $sv_n$。
+$$
+a_i^{-1} = S_{i-1}S_i^{-1} \bmod m,~ i = 1,2,\cdots,n.
+$$
 
-因为 $sv_n$ 是 $n$ 个数的积的逆元，所以当我们把它乘上 $a_n$ 时，就会和 $a_n$ 的逆元抵消，于是就得到了 $a_1$ 到 $a_{n-1}$ 的积逆元，记为 $sv_{n-1}$。
+参考实现如下：
 
-同理我们可以依次计算出所有的 $sv_i$，于是 $a_i^{-1}$ 就可以用 $s_{i-1} \times sv_i$ 求得。
-
-所以我们就在 $O(n + \log p)$ 的时间内计算出了 $n$ 个数的逆元。
-
-???+ note "实现"
+???+ example "参考实现"
     === "C++"
         ```cpp
-        s[0] = 1;
-        for (int i = 1; i <= n; ++i) s[i] = s[i - 1] * a[i] % p;
-        sv[n] = qpow(s[n], p - 2);
-        // 当然这里也可以用 exgcd 来求逆元,视个人喜好而定.
-        for (int i = n; i >= 1; --i) sv[i - 1] = sv[i] * a[i] % p;
-        for (int i = 1; i <= n; ++i) inv[i] = sv[i] * s[i - 1] % p;
+        --8<-- "docs/math/code/inverse/inverse-3.cpp:core"
         ```
     
     === "Python"
         ```python
-        s[0] = 1
-        for i in range(1, n + 1):
-            s[i] = s[i - 1] * a[i] % p
-        sv[n] = qpow(s[n], p - 2)
-        # 当然这里也可以用 exgcd 来求逆元,视个人喜好而定.
-        for i in range(n, 0, -1):
-            sv[i - 1] = sv[i] * a[i] % p
-        for i in range(1, n + 1):
-            inv[i] = sv[i] * s[i - 1] % p
+        --8<-- "docs/math/code/inverse/inverse-3.py:core"
         ```
 
-## 逆元练习题
+算法中，只求了一次单个元素的逆元，因此总的时间复杂度是 $O(n+\log m)$ 的。
 
-[乘法逆元](https://loj.ac/problem/110)
+## 线性时间预处理逆元
 
-[乘法逆元 2](https://loj.ac/problem/161)
+如果要预处理前 $n$ 个正整数在素数模 $p$ 下的逆元，还可以通过本节将要讨论的递推关系在 $O(n)$ 时间内计算。这一方法常用于组合数计算中前 $n$ 个正整数的阶乘的倒数的预处理。
 
-[「NOIP2012」同余方程](https://loj.ac/problem/2605)
+对于 $1< i < p$ 的正整数 $i$，考察带余除法：
 
-[「AHOI2005」洗牌](https://www.luogu.com.cn/problem/P2054)
+$$
+p = \left\lfloor \dfrac{p}{i} \right\rfloor i + (p\bmod i).
+$$
 
-[「SDOI2016」排列计数](https://loj.ac/problem/2034)
+将该等式对素数 $p$ 取模，就得到
+
+$$
+0 \equiv \left\lfloor \dfrac{p}{i} \right\rfloor i + (p\bmod i). \pmod p
+$$
+
+将等式两边同时乘以 $i^{-1}(p\bmod i)^{-1}$ 就得到
+
+$$
+i^{-1} \equiv - \left\lfloor \dfrac{p}{i} \right\rfloor (p\bmod i)^{-1}. \pmod p
+$$
+
+这就是用于线性时间递推求逆元的公式。由于 $p\bmod i < i$，这一公式将求解 $i^{-1}\bmod p$ 的问题转化为规模更小的问题 $(p\bmod i)^{-1}\bmod p$。因此，从 $1^{-1}\bmod p=1$ 开始，对每个 $i$ 顺次应用该公式，就可以在 $O(n)$ 时间内获得前 $n$ 个整数的逆元。
+
+参考实现如下：
+
+???+ example "参考实现"
+    === "C++"
+        ```cpp
+        --8<-- "docs/math/code/inverse/inverse-4.cpp:core"
+        ```
+    
+    === "Python"
+        ```python
+        --8<-- "docs/math/code/inverse/inverse-4.py:core"
+        ```
+
+这一算法只适用于模数是素数的情形。对于模数 $m$ 不是素数的情形，无法保证递推公式中得到的 $m\bmod i$ 仍然与 $m$ 互素，因而递推所需要的 $(m\bmod i)^{-1}$ 可能并不存在。一个这样的例子是 $m=8,i=3$。此时，$m\bmod i = 2$，不存在模 $m$ 的逆元。
+
+另外，得到该递推公式后，一种自然的想法是直接递归求解任意一个数 $a$ 的逆元。每次递归时，都利用递推公式将它转化为更小的余数 $p\bmod a$ 的逆元，直到余数变为 $1$ 时停止。目前尚不清楚这样做的复杂度[^linear-recursion]，因此，推荐使用前文所述的常规方法求解。
+
+## 习题
+
+-   [LOJ 110 乘法逆元](https://loj.ac/problem/110)
+-   [LOJ 161 乘法逆元 2](https://loj.ac/problem/161)
+-   [LOJ 2605「NOIP2012」同余方程](https://loj.ac/problem/2605)
+-   [Luogu P2054「AHOI2005」洗牌](https://www.luogu.com.cn/problem/P2054)
+-   [LOJ 2034「SDOI2016」排列计数](https://loj.ac/problem/2034)
+
+## 参考资料与注释
+
+-   [Modular multiplicative inverse - Wikipedia](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)
+
+[^linear-recursion]: [riteme 在知乎上的回答](https://www.zhihu.com/question/59033693/answer/323292359) 中指出，这样做理论上已知的复杂度的上界是 $O(p^{1/3+\varepsilon})$，而在实际随机数据中的表现接近于 $O(\log p)$。
