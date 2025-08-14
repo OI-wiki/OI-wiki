@@ -434,18 +434,18 @@ Wythoff 游戏允许同时从多堆石子中移除，但是要求每堆移除的
 -   [Luogu P3185 \[HNOI2007\] 分裂游戏](https://www.luogu.com.cn/problem/P3185) 翻硬币 or 打表 or SG
 -   [Luogu P2594 \[ZJOI2009\] 染色游戏](https://www.luogu.com.cn/problem/P2594) 二维翻硬币 + 打表
 
-思维题：
-
--   [Luogu P7864「EVOI-RD1」摘叶子](https://www.luogu.com.cn/problem/P7864) 思维题
-
 综合题：
 
+-   [Luogu P7864「EVOI-RD1」摘叶子](https://www.luogu.com.cn/problem/P7864) 思维题
 -   [Luogu P5675 \[GZOI2017\] 取石子游戏](https://www.luogu.com.cn/problem/P5675) Nim + 计数 DP
 -   [Luogu P2599 \[ZJOI2009\] 取石子游戏](https://www.luogu.com.cn/problem/P2599) 引理 + 区间 DP
 -   [Luogu P6791 \[SNOI2020\] 取石子](https://www.luogu.com.cn/problem/P6791) 反常 Fibonacci + 数位 DP
 -   [Luogu P2490 \[SDOI2011\] 黑白棋](https://www.luogu.com.cn/problem/P2490) Moore Nim-k + 计数 DP
 -   [Luogu P3179 \[HAOI2015\] 数组游戏](https://www.luogu.com.cn/problem/P3179) 翻硬币 + 数论分块
 -   [Luogu P5387 \[Cnoi2019\] 人形演舞](https://www.luogu.com.cn/problem/P5387) 打表 + FWT + 计数
+-   [AtCoder Grand Contest 002 E - Candy Piles](https://atcoder.jp/contests/agc002/tasks/agc002_e) 引理 + DP + 找规律
+-   [SPOJ COT3 - Combat on a tree](https://www.spoj.com/problems/COT3/) SG + 01 trie + 启发式合并
+-   [Codeforces 494 E. Sharti](https://codeforces.com/problemset/problem/494/E) 二维翻石子 + 打表 + 扫描线
 
 博弈 DP：（并不计划在本页面讨论）
 
