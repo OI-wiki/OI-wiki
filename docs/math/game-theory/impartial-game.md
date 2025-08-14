@@ -452,6 +452,7 @@ Wythoff 游戏允许同时从多堆石子中移除，但是要求每堆移除的
 -   [Luogu P2734 \[USACO3.3\] 游戏 A Game](https://www.luogu.com.cn/problem/P2734) 序贯零和 + 区间 DP
 -   [Luogu P4576 \[CQOI2013\] 棋盘游戏](https://www.luogu.com.cn/problem/P4576) 非对称序贯零和 + 暴力搜索（alpha-beta 剪枝）
 -   [Luogu P7097 \[yLOI2020\] 牵丝戏](https://www.luogu.com.cn/problem/P7097) 非对称序贯零和 + 背包 DP
+-   [Codeforces 1628 D2. Game on Sum (Hard Version)](https://codeforces.com/problemset/problem/1628/D2) 非对称序贯零和 + 组合数学
 
 ## 参考文献
 
