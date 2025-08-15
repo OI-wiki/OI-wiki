@@ -457,6 +457,13 @@ Wythoff 游戏允许同时从多堆石子中移除，但是要求每堆移除的
 -   [Luogu P7097 \[yLOI2020\] 牵丝戏](https://www.luogu.com.cn/problem/P7097) 非对称序贯零和 + 背包 DP
 -   [Codeforces 1628 D2. Game on Sum (Hard Version)](https://codeforces.com/problemset/problem/1628/D2) 非对称序贯零和 + 组合数学
 
+二分图博弈：（并不计划在本页面讨论）
+
+-   [Luogu P4617 \[COCI 2017/2018 #5\] Planinarenje](https://www.luogu.com.cn/problem/P4617)
+-   [Luogu P4055 \[JSOI2009\] 游戏](https://www.luogu.com.cn/problem/P4055)
+-   [Luogu P1971 \[NOI2011\] 兔兔与蛋蛋游戏](https://www.luogu.com.cn/problem/P1971)
+-   [Codeforces 1147 F. Zigzag Game](https://codeforces.com/problemset/problem/1147/F)
+
 ## 参考文献
 
 -   [（转载）Nim 游戏博弈（收集完全版）- exponent - 博客园](http://www.cnblogs.com/exponent/articles/2141477.html)
