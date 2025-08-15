@@ -448,6 +448,7 @@ Wythoff 游戏允许同时从多堆石子中移除，但是要求每堆移除的
 -   [Codeforces 494 E. Sharti](https://codeforces.com/problemset/problem/494/E) 二维翻石子 + 打表 + 扫描线
 -   [Codeforces 1149 E. Election Promises](https://www.luogu.com.cn/problem/CF1149E) SG + 无穷 Nimber
 -   [Codeforces 1451 F. Nullify The Matrix](https://codeforces.com/problemset/problem/1451/F) 无穷 Nimber 板子
+-   [Codeforces 1033 G. Chip Game](https://codeforces.com/problemset/problem/1033/G) 打表找规律 + 非公平
 
 博弈 DP：（并不计划在本页面讨论）
 
