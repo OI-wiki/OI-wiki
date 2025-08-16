@@ -439,7 +439,6 @@ Wythoff 游戏允许同时从多堆石子中移除，但是要求每堆移除的
 
 综合题：
 
-
 -   [Luogu P7864「EVOI-RD1」摘叶子](https://www.luogu.com.cn/problem/P7864) 思维题
 -   [Luogu P5675 \[GZOI2017\] 取石子游戏](https://www.luogu.com.cn/problem/P5675) Nim + 计数 DP
 -   [Luogu P2599 \[ZJOI2009\] 取石子游戏](https://www.luogu.com.cn/problem/P2599) 引理 + 区间 DP
