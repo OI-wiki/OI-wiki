@@ -161,6 +161,15 @@ $$
 
 证明和习题详见 [欧拉定理](./fermat.md)。
 
-## 参考资料与注释
+## 习题
+
+-   [SPOJ ETF. Euler Totient Function](http://www.spoj.com/problems/ETF/)
+-   [UVa 10179. Irreducible Basic Fractions](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120)
+-   [UVa 10299. Relatives](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240)
+-   [UVa 11327. Enumerating Rational Numbers](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302)
+-   [TIMUS 1673. Admission to Exam](http://acm.timus.ru/problem.aspx?space=1&num=1673)
+-   [Luogu P1390 公约数的和](https://www.luogu.com.cn/problem/P1390)
+-   [Luogu P2155 \[SDOI2008\] 沙拉公主的困惑](https://www.luogu.com.cn/problem/P2155)
+-   [Luogu P2568 GCD](https://www.luogu.com.cn/problem/P2568)
 
 [^1]: 这一说法并未见于学术期刊或国外的论坛中，在使用该说法时应当注意。
