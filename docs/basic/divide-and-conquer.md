@@ -1,4 +1,4 @@
-author: fudonglai, AngelKitty, labuladong
+author: fudonglai, AngelKitty, labuladong, ohkl
 
 本页面将介绍递归与分治算法的区别与结合运用。
 
@@ -80,10 +80,27 @@ int func(传入数值) {
             merge_sort(a, mid + 1, end)
             merge(a, front, mid, end)
         ```
+    ??? note "关于可变参数函数模板(template)"
+    
+        在 C++11 之前，类模板和函数模板都只能接受固定数目的模板参数。C++11 允许 **任意个数、任意类型** 的模板参数。
+
+        这里仅简要介绍可变参数 **函数** 模板,具体请看"[新版C++ 特性](https://oi-wiki.org/lang/new/#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF)"。
+
+        下列代码声明的函数模板 `fun` 可以接受任意个数、任意类型的模板参数作为它的模板形参。
+
+        ```cpp
+        template <typename... Clazz>
+        void fun(Clazz... paras) {}
+        ```
+        
+        `paras` 是一个函数参数包（function parameter pack），接受 0 个或多个函数实参。`Clazz` 是一个模板参数包（template parameter pack），接受 0 个或多个模板实参（非类型、类型或模板），以 `typename` 标记时只接受类型。
+        
+        下列代码声明的函数模板 fun 可以接受任意个数、任意类型的模板参数作为它的模板形参。
 
     显然，递归版本比非递归版本更易理解。递归版本的做法一目了然：把左半边排序，把右半边排序，最后合并两边。而非递归版本看起来不知所云，充斥着各种难以理解的边界计算细节，特别容易出 bug，且难以调试。
 
-2.  练习分析问题的结构。当发现问题可以被分解成相同结构的小问题时，递归写多了就能敏锐发现这个特点，进而高效解决问题。
+3.  练习分析问题的结构。当发现问题可以被分解成相同结构的小问题时，递归写多了就能敏锐发现这个特点，进而高效解决问题。
+   
 
 ### 递归的缺点
 
