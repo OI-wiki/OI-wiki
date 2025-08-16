@@ -1,0 +1,10 @@
+id: oi-wiki:ds/ett-connectivity
+name: ETT
+solution:
+  cpp: docs/ds/code/ett/ett_connectivity.cpp
+target:
+- 'test'
+testcases:
+  answer: docs/ds/examples/ett/ett_connectivity.ans
+  input: docs/ds/examples/ett/ett_connectivity.in
+version: 1000
