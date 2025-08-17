@@ -7,7 +7,7 @@ author: PeterlitsZo, Tiphereth-A
 **费马小定理**（Fermat's little theorem）是数论中最基础的定理之一。它也是 [Fermat 素性测试](./prime.md#fermat-素性测试) 的理论基础。
 
 ???+ note "费马小定理"
-    如果 $p$ 是素数，且 $p\nmid a$，那么，$a^{p-1}\equiv 1\pmod p$。等价地，对于任意整数 $a$，都有 $a^p\equiv a\pmod p$。
+    如果 $p$ 是素数，且 $p\nmid a$，那么，$a^{p-1}\equiv 1\pmod p$。几乎等价地，对于任意整数 $a$，都有 $a^p\equiv a\pmod p$。
 
 ??? note "证明一"
     设 $p$ 是素数，且 $p\nmid a$。首先证明：对于 $i=1,2,\cdots,p-1$，余数 $ia \bmod p$ 各不相同。反证法。如果有 $1\le i < j < p$ 使得
@@ -196,5 +196,7 @@ author: PeterlitsZo, Tiphereth-A
 -   [Luogu P4139 上帝与集合的正确用法](https://www.luogu.com.cn/problem/P4139)
 -   [Luogu P3934 \[Ynoi Easy Round 2016\] 炸脖龙 I](https://www.luogu.com.cn/problem/P3934)
 -   [Luogu P6736「Wdsr-2」白泽教育](https://www.luogu.com.cn/problem/P6736)
+
+## 参考资料与注释
 
 [^ex-euler]: 这一名字主要出现在算法竞赛圈中，而并非该结论的通用名称。
