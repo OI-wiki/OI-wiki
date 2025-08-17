@@ -206,4 +206,8 @@ author: PeterlitsZo, Tiphereth-A
 
 ## 参考资料与注释
 
+-   [Fermat's little theorem - Wikipedia](https://en.wikipedia.org/wiki/Fermat%27s_little_theorem)
+-   [Euler's theorem - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_theorem)
+-   Hardy, Godfrey Harold, and Edward Maitland Wright. An introduction to the theory of numbers. Oxford university press, 1979.
+
 [^ex-euler]: 这一名字主要出现在算法竞赛圈中，而并非该结论的通用名称。
