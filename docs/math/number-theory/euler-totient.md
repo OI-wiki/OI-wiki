@@ -172,4 +172,6 @@ $$
 -   [Luogu P2155 \[SDOI2008\] 沙拉公主的困惑](https://www.luogu.com.cn/problem/P2155)
 -   [Luogu P2568 GCD](https://www.luogu.com.cn/problem/P2568)
 
+## 参考资料与注释
+
 [^1]: 这一说法并未见于学术期刊或国外的论坛中，在使用该说法时应当注意。

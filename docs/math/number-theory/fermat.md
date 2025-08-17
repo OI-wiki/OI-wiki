@@ -10,7 +10,7 @@ author: PeterlitsZo, Tiphereth-A
     如果 $p$ 是素数，且 $p\nmid a$，那么，$a^{p-1}\equiv 1\pmod p$。等价地，对于任意整数 $a$，都有 $a^p\equiv a\pmod p$。
 
 ??? note "证明一"
-    设 $p$ 是素数，且 $p\nmid a$，那么，对于 $i=1,2,\cdots,p-1$，余数 $ia \bmod p$ 各不相同。反证法。如果有 $1\le i < j < p$ 使得
+    设 $p$ 是素数，且 $p\nmid a$。首先证明：对于 $i=1,2,\cdots,p-1$，余数 $ia \bmod p$ 各不相同。反证法。如果有 $1\le i < j < p$ 使得
     
     $$
     ia \bmod p = ja \bmod p. \iff (j-i)a\equiv 0.\pmod p
