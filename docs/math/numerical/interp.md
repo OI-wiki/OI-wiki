@@ -52,7 +52,7 @@ $$
 那么我们就可以得出 Lagrange 插值的形式为：
 
 $$
-f(x)=\sum_{i=1}^ny_i\cdot\prod_{j\neq i}\dfrac{x-x_j}{x_i-x_j}
+f(x)=\sum_{i=1}^{n+1} y_i\cdot\prod_{j\neq i}\dfrac{x-x_j}{x_i-x_j}
 $$
 
 朴素实现的时间复杂度为 $O(n^2)$，可以优化到 $O(n\log^2 n)$，参见 [多项式快速插值](../poly/multipoint-eval-interpolation.md#多项式的快速插值)。
@@ -94,6 +94,8 @@ $$
 $$
 \dfrac{\prod\limits_{j=1}^{n+1}(x-j)}{x-i}
 $$
+
+这就相当于把所有 $x-j$ 先都乘起来再除掉本来不能乘的 $x-i$。
 
 分母的 $i-j$ 累乘可以拆成两段阶乘来算：
 
