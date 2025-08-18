@@ -1,4 +1,4 @@
-author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6, LUTLJS, ZsgsDesign, CB-X2-Jun
+author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6, LUTLJS, ZsgsDesign, CB-X2-Jun, tallnutliu
 
 本页面主要列举了一些与算法竞赛有关的在线评测网站、题目合集、书籍、工具等资源。
 
@@ -49,7 +49,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 ## 教程资料
 
 -   [**OI Wiki**](https://oi-wiki.org)
--   [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282)
+-   [Codeforces 上网友整理的一份教程合集](https://codeforces.com/blog/entry/125623)
 -   [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
 -   [演算法筆記](https://web.ntnu.edu.tw/~algo/)：台湾师范大学总结的教程
 -   [如何为 ACM-ICPC 做准备？- geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
