@@ -44,7 +44,7 @@ $$
 p = 1004535809 = 479 \times 2^{21}+1, g=3
 $$
 
-就是 $g^{qn}$ 的等价 $\mathrm{e}^{2\pi ni}$。
+就是 $g^{qn}$ 的等价 $\mathrm{e}^{2\pi \mathrm{i} n}$。
 
 迭代到长度 $l$ 时 $g_l = g^{\frac{p-1}{l}}$，或者 $\omega_n = g_l = g_N^{\frac{N}{l}} = g_N^{\frac{p-1}{l}}$。
 
