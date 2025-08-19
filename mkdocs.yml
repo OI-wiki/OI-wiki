@@ -568,7 +568,10 @@ theme:
     text: 'Fira Sans'
     code: 'Fira Mono'
 
-plugins: []
+plugins:
+- toggle-sidebar:
+    theme: material
+    toggle_button: all
 
 hooks:
   - hooks/on_env.py
