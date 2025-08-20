@@ -3,18 +3,19 @@
 ## Codeforces/Atcoder better!
 
 Codeforces/Atcoder better 是两个 tampermonkey 插件，可以多方面增强 CF/AT 功能的插件。常用功能包括：
-- 切换白天/黑暗模式；
-- 题目页显示跳转VJudge/洛谷按钮；
-- 一键翻译题面、复制题面 markdown；
-- 题目页下方添加编辑器，可以一键测样例并提交；
-- 显示题目的 clist rating；
-- （仅限 CF）评论区分页；
-- （仅限 CF）重新着色榜单，使之更好看；
-- 还有更多功能……
+
+-   切换白天/黑暗模式；
+-   题目页显示跳转 VJudge/洛谷按钮；
+-   一键翻译题面、复制题面 markdown；
+-   题目页下方添加编辑器，可以一键测样例并提交；
+-   显示题目的 clist rating；
+-   （仅限 CF）评论区分页；
+-   （仅限 CF）重新着色榜单，使之更好看；
+-   还有更多功能……
 
 这些选项都可以自定义，通过网站右上角“xxx Better! 设置”即可调整。
 
-安装：你需要先安装 tampermonkey，然后访问[官方 GitHub 页](https://github.com/beijixiaohu/OJBetter)，下方的介绍提供了 Greasyfork 和 GitHub 的安装链接。
+安装：你需要先安装 tampermonkey，然后访问 [官方 GitHub 页](https://github.com/beijixiaohu/OJBetter)，下方的介绍提供了 Greasyfork 和 GitHub 的安装链接。
 
 ## cf-tool
 
