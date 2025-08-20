@@ -11,7 +11,7 @@
     记 $d=\gcd(a,b)$。因为 $d\mid a,b$，所以，存在整数 $u,v$ 使得 $a=du,~b=dv$ 成立。因此，总有
     
     $$
-    ax + by = d(au+bv).
+    ax + by = d(ux+vy).
     $$
     
     这就说明 $d\mid ax+by$。
