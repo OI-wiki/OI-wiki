@@ -1,5 +1,21 @@
 本页面将介绍一些 OJ 工具。
 
+## OJ Better!
+
+OJ Better! 是一个多方面增强 OI 网站功能的插件，目前支持 Codeforces 和 Atcoder。主要功能包括：
+- 调节白天/黑暗模式；
+- 题目页添加跳转洛谷、VJudge 按钮；
+- 题目页显示 clist rating；
+- 在题目下方添加编辑器，支持一键测样例和提交；
+- 复制题面 markdown、AI 翻译题面；
+- （仅限 CF）重新着色榜单，使之更好看；
+- （仅限 CF）评论区分页；
+- 还有更多功能。
+
+几乎所有选项都可以自定义。
+
+由于这是一个 tampermonkey 脚本，你需要先安装 tampermonkey。然后从[官方 GitHub 页](https://github.com/beijixiaohu/OJBetter)中给出的链接安装即可。
+
 ## cf-tool
 
 cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux、macOS）工具，支持很多常用操作。
