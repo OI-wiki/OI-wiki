@@ -327,11 +327,12 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
         ```cpp
         --8<-- "docs/graph/code/block-forest/block-forest_3.cpp"
         ```
-## 习题
 
-- 洛谷 [P4630](https://www.luogu.com.cn/problem/P4630) \[APIO2018\] 铁人两项
-- UVa [1464](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4210) Traffic Real Time Query
-- 洛谷 [P4606](https://www.luogu.com.cn/problem/P4606) \[SDOI2018\] 战略游戏
+# 习题
+
+-   洛谷 [P4630](https://www.luogu.com.cn/problem/P4630)\[APIO2018] 铁人两项
+-   UVa [1464](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4210) Traffic Real Time Query
+-   洛谷 [P4606](https://www.luogu.com.cn/problem/P4606)\[SDOI2018] 战略游戏
 
 ## 外部链接
 
