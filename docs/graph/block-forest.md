@@ -330,9 +330,9 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
 
 ## 习题
 
--   [洛谷 P4630 \[APIO2018\] 铁人两项](https://www.luogu.com.cn/problem/P4630)
 -   [UVa 1464 Traffic Real Time Query](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4210)
--   [洛谷 P4606 \[SDOI2018\] 战略游戏](https://www.luogu.com.cn/problem/P4606)
+-   [洛谷 P4320 道路相遇](https://www.luogu.com.cn/problem/P4320)
+-   [P10517 国土规划](https://www.luogu.com.cn/problem/P10517)
 
 ## 外部链接
 
