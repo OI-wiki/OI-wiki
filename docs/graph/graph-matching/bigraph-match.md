@@ -137,7 +137,71 @@ $$
 \end{aligned}
 $$
 
-马上就会看到，这正是二分图的最小点覆盖问题。
+随后就会看到，这正是二分图的最小点覆盖问题。
+
+## Dulmage–Mendelsohn 分解
+
+利用二分图的最大匹配，可以将顶点划分为若干互不相交的子集，从而完整刻画该二分图所有最大匹配的分布及结构特征。这就是 Dulmage–Mendelsohn 分解。算法竞赛中，利用这一分解，可以识别最大匹配中的关键点和关键边，进而判断最大匹配的唯一性或求解二分图博弈等问题。
+
+### 构造方法
+
+设二分图 $G=(X,Y,E)$ 的一个最大匹配为 $M$。
+
+![](images/bigraph-match-4.svg)
+
+如图所示，可以为所有顶点 $V=X\cup Y$ 定义如下三个子集：
+
+-   偶可达点 $\mathcal E$，即所有可以从一个未匹配点出发，沿着偶数长度的交错路可以到达的顶点集合；
+-   奇可达点 $\mathcal O$，即所有可以从一个未匹配点出发，沿着奇数长度的交错路可以到达的顶点集合；
+-   不可达点 $\mathcal U$，即所有无法从一个未匹配点出发，沿着交错路到达的顶点集合。
+
+可以证明，这样得到的三个顶点集合 $\mathcal E,\mathcal O,\mathcal U$ 有如下性质：
+
+???+ note "性质"
+    1.  集合 $\mathcal E,\mathcal O,\mathcal U$ 构成顶点集合的一个划分，且这一划分和最大匹配 $M$ 的选取无关。
+    2.  图 $G$ 的任一最大匹配都包含 $\mathcal U$ 的顶点之间的一个完美匹配，且将 $\mathcal O$ 中的每一个顶点都匹配到 $\mathcal E$ 中的一个顶点。也就是说，图 $G$ 的最大匹配的大小等于 $|\mathcal O|+|\mathcal U|/2$。
+    3.  图 $G$ 中不包含连接 $\mathcal E$ 中顶点和 $\mathcal E\cup\mathcal U$ 中顶点的边。
+
+??? note "证明"
+    1.  按照定义，$\mathcal U$ 和 $\mathcal E\cup\mathcal O$ 不交。只需要证明 $\mathcal E$ 和 $\mathcal O$ 不交。假若不然，对于顶点 $v\in\mathcal E\cap\mathcal O$，存在一条从未匹配点 $a$ 到 $v$ 的长度为偶数的交错路，也存在一条从未匹配点 $b$ 到 $v$ 的长度为奇数的交错路。由于图 $G$ 是二分图，$a\neq b$，且两条路径到达 $v$ 时的边分别是匹配边和非匹配边。因此，将两条路连接起来，就得到一条从 $a$ 经 $v$ 到 $b$ 的交错路。这是一条增广路。这与 $M$ 是最大匹配这一点相矛盾。因此，$\mathcal E\cap\mathcal O=\varnothing$。
+    
+        设 $M'$ 是一个与 $M$ 不同的最大匹配。重复 [Berge 引理的证明](./graph-match.md#berge-引理) 可以说明，$M'\oplus M$ 仅有偶数长度的路径和偶环组成。从最大匹配 $M$ 出发，可以逐个将这些连通块（路径和环）中的边翻转（匹配边和非匹配边交换），就能得到最大匹配 $M'$。翻转偶环时，未匹配点仍然是未匹配点，从它出发的交错路的长度奇偶性也不会改变；翻转偶数长度路径时，路径两个端点的匹配状态互换，但是从它们出发到达路径中的任何一个点的路径长度的奇偶性也是一致的。因此，在翻转过程中，集合 $\mathcal E,\mathcal O,\mathcal U$ 均始终保持不变。这就说明这一分解与最大匹配 $M$ 的选取无关。
+    2.  如果一条匹配边出现在某条从未匹配点 $v$ 出发的交错路中，那么它的两个端点与点 $v$ 的距离的奇偶性必然不同，因而分别属于集合 $\mathcal E$ 和 $\mathcal O$；否则，它的两个端点必然都在 $\mathcal U$ 中。这说明，最大匹配中的匹配边必然是 $\mathcal E\mathcal O$ 边或 $\mathcal U\mathcal U$ 边。反过来说，未匹配点可以沿着从它自身出发、长度为零的交错路到达，所以只会出现在集合 $\mathcal E$ 中，这说明，集合 $\mathcal O$ 和 $\mathcal U$ 中都是匹配点。简单计数可知，最大匹配的大小就是 $|\mathcal O|+|\mathcal U|/2$。
+    3.  按照定义，$\mathcal E$ 中的任一顶点 $a$ 可以从未匹配点 $v$ 出发沿偶数长度交错路到达，也就是说，$\mathcal E$ 中的顶点要么是未匹配点，要么到达该点的交错路 $P$ 以匹配边结束。如果图 $G$ 中存在连接 $a$ 和 $\mathcal E\cup\mathcal U$ 中某个顶点 $b$ 的一条边，那么根据上一段的讨论，这条边必然是非匹配边，可以沿着它延长交错路 $P$。这说明顶点 $b$ 也属于集合 $\mathcal O$，这就与第一条性质矛盾。因此，图 $G$ 中不存在连接 $\mathcal E$ 中顶点和 $\mathcal E\cup\mathcal U$ 中顶点的边。
+
+由此得到的顶点集合的分解 $V=\mathcal E\cup\mathcal O\cup\mathcal U$ 就称为 **Dulmage–Mendelsohn 分解**。在利用前文所述算法求得最大匹配之后，可以通过 BFS 在 $O(|V|+|E|)$ 的时间内求出 Dulmage–Mendelsohn 分解。
+
+### 最大匹配关键点
+
+如果一个顶点 $v$ 在二分图 $G$ 的每一个最大匹配中都是匹配点，那么它就称为最大匹配的关键点。下面的结论说明：一个顶点是关键点，当且仅当在一个最大匹配中，不存在从未匹配点出发到达该顶点的偶数长度的交错路。
+
+???+ note "定理"
+    设二分图 $G=(X,Y,E)$ 的 Dulmage–Mendelsohn 分解为 $V=\mathcal E\cup\mathcal O\cup\mathcal U$。那么，顶点 $v\in V$ 是关键点，当且仅当 $v\in\mathcal O\cup \mathcal U$。
+
+??? note "证明"
+    根据 Dulmage–Mendelsohn 分解的性质可知，在图 $G$ 的任一最大匹配中，$\mathcal O$ 和 $\mathcal U$ 中的顶点都必然是匹配点。因此，$\mathcal O\cup \mathcal U$ 中的顶点必然是关键点。然后，需要说明集合 $\mathcal E$ 中一定没有关键点。如果在最大匹配 $M$ 中，顶点 $a\in\mathcal E$ 是关键点，那么存在一条偶数长度的交错路 $P$ 连接顶点 $a$ 和某个未匹配点 $b\in\mathcal E$。将这条路上的所有边翻转，得到的匹配 $M\oplus P$ 中，顶点 $a$ 就变成未匹配点。因此，集合 $\mathcal E$ 中没有关键点。
+
+因此，要求出最大匹配的关键点，只需要求出 Dulmage–Mendelsohn 分解即可。
+
+### 最大匹配关键边
+
+类似地，如果一条边 $e$ 在二分图 $G$ 的每一个最大匹配中都是匹配边，那么它就称为最大匹配的关键边。
+
+???+ note "定理"
+    设二分图 $G=(X,Y,E)$ 的 Dulmage–Mendelsohn 分解为 $V=\mathcal E\cup\mathcal O\cup\mathcal U$，且 $M$ 是它的一个最大匹配。那么，边 $e\in E$ 是关键边，当且仅当 $e$ 的端点都在 $\mathcal U$ 中，边 $e$ 是 $M$ 中匹配边，且相对于 $M$ 不存在一个包含边 $e$ 的交错环。
+
+??? note "证明"
+    关键边的端点必须是关键点。根据 Dulmage–Mendelsohn 分解的性质，最大匹配的边只能是 $\mathcal E\mathcal O$ 边或 $\mathcal U\mathcal U$ 边。但是，$\mathcal E$ 中没有关键点，所以，关键边只能是 $\mathcal U\mathcal U$ 边。当然，关键边也必须是 $M$ 中的匹配边。设 $e\in M$ 是一条 $\mathcal U\mathcal U$ 边。它不是关键边，当且仅当存在另一个最大匹配 $M'\neq M$ 使得 $e\in M\oplus M'$。重复 [Berge 引理的证明](./graph-match.md#berge-引理) 可以说明，$M'\oplus M$ 仅有偶数长度的路径和偶环组成。这些路径的端点之一是相对于 $M$ 的未匹配点，所以路径中的顶点都不是 $\mathcal U$ 中的点，这与边 $e$ 的选取矛盾。因此，边 $e$ 只能出现在偶环中。因此，一条 $\mathcal U\mathcal U$ 边 $e\in M$ 不是关键边，当且仅当相对于 $M$ 存在一个包含边 $e$ 的交错环。这就是所要求证的。
+
+因此，要求出最大匹配的关键边，需要按照如下步骤进行：
+
+1.  求出图 $G$ 的最大匹配 $M$；
+2.  按照 $M$ 将图 $G$ 的边定向，得到有向图 $G_M$；
+3.  进行 BFS 求出 Dulmage–Mendelsohn 分解中的集合 $\mathcal U$，即无法通过未匹配点沿着交错路到达的顶点集合；
+4.  利用 [Tarjan 算法](../scc.md#tarjan-算法) 求出有向图 $G_M$ 的全部强连通分量；
+5.  遍历匹配 $M$ 中的边，如果它的端点都在 $\mathcal U$ 中，但是不在同一个强连通分量中，它就是一条关键边。
+
+得到最大匹配后，后续步骤的时间复杂度为 $O(|V|+|E|)$。
 
 ## 相关问题
 
@@ -205,76 +269,76 @@ $$
 
 应用二分图匹配的难点在于建图，本节通过一些例题展示建图的技巧。
 
-???+ note "[Luogu P1129 矩阵游戏](https://www.luogu.com.cn/problem/P1129)"
+???+ example "[Luogu P1129 矩阵游戏](https://www.luogu.com.cn/problem/P1129)"
     有一个 01 方阵，每一次可以交换两行或两列，问是否可以交换使得主对角线（左上到右下）全都是 1。
-    
-    ??? note "解法"
-        注意到，当存在 $n$ 个 $1$，使得这些 $1$ 不在同一行、同一列，那么必然有解，否则必然无解。问题转化成了能否找到这 $n$ 个 $1$。
-        
-        考虑对于一个 $1$ 而言，最终的方案中选了这个 $1$ 代表这个 $1$ 的行、列被占用。于是可以建出一个 $n$ 个左部点、$n$ 个右部点的二分图，其中对于某个为 $1$ 的元素，我们建一条连接它的行的左部点和它的列的右部点。于是就可以二分图匹配了。
-    
-    ??? note "代码"
-        ```cpp
-        --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_3.cpp"
-        ```
 
-???+ note "[Gym 104427B Lawyers](https://codeforces.com/gym/104427/problem/B)"
+??? note "解法"
+    注意到，当存在 $n$ 个 $1$，使得这些 $1$ 不在同一行、同一列，那么必然有解，否则必然无解。问题转化成了能否找到这 $n$ 个 $1$。
+    
+    考虑对于一个 $1$ 而言，最终的方案中选了这个 $1$ 代表这个 $1$ 的行、列被占用。于是可以建出一个 $n$ 个左部点、$n$ 个右部点的二分图，其中对于某个为 $1$ 的元素，我们建一条连接它的行的左部点和它的列的右部点。于是就可以二分图匹配了。
+
+??? note "代码"
+    ```cpp
+    --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_3.cpp"
+    ```
+
+???+ example "[Gym 104427B Lawyers](https://codeforces.com/gym/104427/problem/B)"
     有 $n$ 个律师，都被指控有欺诈罪。于是，他们需要互相辩护，确保每一名律师都被释放。这 $n$ 个律师有 $m$ 对信任关系，一个信任关系 $(a, b)$ 表示 $a$ 可以为 $b$ 辩护。任何一个受到辩护的律师都会被无罪释放，除了一个例外：如果 $a$ 和 $b$ 互相辩护，他们都会被判有罪。
     
     求是否可以使得每一名律师都被释放。
-    
-    ??? note "解法"
-        对于每一个 **无序对** $(a, b)$，当 $a$ 可以辩护 $b$，连这个无序对向 $a$ 的边，反之亦然。
-        
-        只保存有边相连的 $(a, b)$，问题被转化成了一个 $m$ 个左部点、$n$ 个右部点的二分图最大匹配。
-    
-    ??? note "代码"
-        ```cpp
-        --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_4.cpp"
-        ```
 
-???+ note "[Codeforces 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)"
+??? note "解法"
+    对于每一个 **无序对** $(a, b)$，当 $a$ 可以辩护 $b$，连这个无序对向 $a$ 的边，反之亦然。
+    
+    只保存有边相连的 $(a, b)$，问题被转化成了一个 $m$ 个左部点、$n$ 个右部点的二分图最大匹配。
+
+??? note "代码"
+    ```cpp
+    --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_4.cpp"
+    ```
+
+???+ example "[Codeforces 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)"
     用一些 $1 \times x$ 的砖精确覆盖一个 $n \times m$ 的网格，砖可以旋转，其中有一些格子不能覆盖。
-    
-    ??? note "解法"
-        考虑最终的方案是如何构成的：
-        
-        先在所有能覆盖的网格上全部铺上 $1 \times 1$ 的砖。对于一个 $1 \times x$ 的砖，可以由同一行的 $x$ 个连续的 $1 \times 1$ 砖依次「行合并」形成。同理，对于一个 $x \times 1$ 的砖。可以由同一列的 $x$ 个连续的 $1 \times 1$ 砖依次「列合并」形成。
-        
-        显然，一次行合并和一次列合并不能干涉到同一个砖，而且合并的次数越多，砖块数量越少。于是，可以以行合并作为左部点，列合并作为右部点，以前面的冲突作为边，建出一个二分图。随即原问题变成了一个二分图最大独立集问题。
-    
-    ??? note "代码"
-        ```cpp
-        --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_5.cpp"
-        ```
 
-???+ note "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E)"
+??? note "解法"
+    考虑最终的方案是如何构成的：
+    
+    先在所有能覆盖的网格上全部铺上 $1 \times 1$ 的砖。对于一个 $1 \times x$ 的砖，可以由同一行的 $x$ 个连续的 $1 \times 1$ 砖依次「行合并」形成。同理，对于一个 $x \times 1$ 的砖。可以由同一列的 $x$ 个连续的 $1 \times 1$ 砖依次「列合并」形成。
+    
+    显然，一次行合并和一次列合并不能干涉到同一个砖，而且合并的次数越多，砖块数量越少。于是，可以以行合并作为左部点，列合并作为右部点，以前面的冲突作为边，建出一个二分图。随即原问题变成了一个二分图最大独立集问题。
+
+??? note "代码"
+    ```cpp
+    --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_5.cpp"
+    ```
+
+???+ example "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E)"
     有 $m$ 个共有 $n$ 个元素的可重集，每一次从某一个可重集里面删除一个元素，然后查询「在每一个可重集里面选至多一个元素，可以达到的最大 $\operatorname{mex}$」。
-    
-    ??? note "解法"
-        先考虑如果没有删除元素时怎么做。
-        
-        对于每一个多重集，开一个新点；对于每一个可能的答案，开一个新点。然后，对于某一个对应点 $l_i$ 的多重集的一个元素 $a$，连一条 $l_i$ 至 $r_a$ 的边。此时这个弱化版本变成了一个二分图最大匹配。
-        
-        现在加回来删除元素的操作，发现根本搞不了：删了一条边可能引起匹配的巨变，复杂度无法接受。于是，不如反过来，我们每一次加一条边，然后顺过去重新增广。所以本题只能使用 Kuhn 算法。
-    
-    ??? note "代码"
-        ```cpp
-        --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_6.cpp"
-        ```
 
-???+ note "[Luogu P3355 - 骑士共存问题](https://www.luogu.com.cn/problem/P3355)"
+??? note "解法"
+    先考虑如果没有删除元素时怎么做。
+    
+    对于每一个多重集，开一个新点；对于每一个可能的答案，开一个新点。然后，对于某一个对应点 $l_i$ 的多重集的一个元素 $a$，连一条 $l_i$ 至 $r_a$ 的边。此时这个弱化版本变成了一个二分图最大匹配。
+    
+    现在加回来删除元素的操作，发现根本搞不了：删了一条边可能引起匹配的巨变，复杂度无法接受。于是，不如反过来，我们每一次加一条边，然后顺过去重新增广。所以本题只能使用 Kuhn 算法。
+
+??? note "代码"
+    ```cpp
+    --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_6.cpp"
+    ```
+
+???+ example "[Luogu P3355 - 骑士共存问题](https://www.luogu.com.cn/problem/P3355)"
     有一个 $n \times n$ 的国际象棋棋盘，其中一些位置不能放棋子，问最多可以放多少个马使得这些马不会互相攻击。
+
+??? note "解法"
+    可以发现，如果对整个棋盘染色使得所有黑格、白格均不相邻，那么马只能够攻击到与其异色的格子。
     
-    ??? note "解法"
-        可以发现，如果对整个棋盘染色使得所有黑格、白格均不相邻，那么马只能够攻击到与其异色的格子。
-        
-        然后就可以直接二分图最大独立集了。
-    
-    ??? note "代码"
-        ```cpp
-        --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_7.cpp"
-        ```
+    然后就可以直接二分图最大独立集了。
+
+??? note "代码"
+    ```cpp
+    --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_7.cpp"
+    ```
 
 ## 习题
 
@@ -291,5 +355,8 @@ $$
 -   [二分图最大匹配的 König 定理及其证明](https://matrix67.com/blog/archives/116)
 -   [Implementing Dinitz on bipartite graphs by adamant - Codeforces blogs](https://codeforces.com/blog/entry/118098)
 -   Bondy, John Adrian, and Uppaluri Siva Ramachandra Murty. Graph theory with applications. Vol. 290. London: Macmillan, 1976.
+-   2015 年《浅谈图的匹配算法及其应用》- 陈胤伯
+-   [Dulmage–Mendelsohn decomposition - Wikipedia](https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition)
+-   [Notes on Dulmage–Mendelsohn decomposition](https://www.cse.iitm.ac.in/~meghana/matchings/bip-decomp.pdf)
 
 [^hk-comp-ref]: Bast, Holger; Mehlhorn, Kurt; Schäfer, Guido; Tamaki, Hisao (2006), "Matching algorithms are fast in sparse random graphs", Theory of Computing Systems, 39 (1): 3–14.
