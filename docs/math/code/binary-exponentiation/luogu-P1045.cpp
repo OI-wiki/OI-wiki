@@ -1,6 +1,6 @@
+#include <cmath>
 #include <cstring>
 #include <iostream>
-#include <cmath>
 using namespace std;
 
 const int M = 500;
@@ -29,7 +29,7 @@ void binpow(int p) {
     return;
   }
   binpow(p / 2);  // (2^(p/2))^2=2^p
-  mult(b, b);  // 对 b 平方
+  mult(b, b);     // 对 b 平方
   if (p % 2 == 1) mult(b, a);
 }
 
