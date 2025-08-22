@@ -295,7 +295,3 @@ $$
 -   [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
 
 **本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
-
-## 参考资料与注释
-
-[^note1]: 参见 [C 语言小数表示法 - 维基百科](https://en.wikipedia.org/wiki/Double-precision_floating-point_format)
