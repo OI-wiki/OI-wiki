@@ -298,10 +298,10 @@ long long binmul(long long a, long long b, long long m) {
 
 #### 过程
 
-1.  选定一个数 $s$，预处理出 $a^0$ 到 $a^s$ 与 $a^{0\cdot s}$ 到 $a^{\lceil\frac ps\rceil\cdot s}$ 的值并存在一个（或两个）数组里；
+1.  选定一个数 $s$，预处理出 $a^0$ 到 $a^s$ 与 $a^{0\cdot s}$ 到 $a^{\lceil\frac ps\rceil\cdot s}$ 的值并存在两个数组里；
 2.  对于每一次询问 $a^b\bmod p$，将 $b$ 拆分成 $\left\lfloor\dfrac bs\right\rfloor\cdot s+b\bmod s$，则 $a^b=a^{\lfloor\frac bs\rfloor\cdot s}\times a^{b\bmod s}$，可以 $O(1)$ 求出答案。
 
-关于这个数 $s$ 的选择，我们一般选择 $\sqrt p$ 或者一个大小适当的 $2$ 的次幂（选择 $\sqrt p$ 可以使预处理较优，选择 $2$ 的次幂可以使用位运算优化并简化计算）。
+关于这个数 $s$ 的选择，我们一般选择 $\sqrt p$ 或者一个大小适当的 $2$ 的次幂。选择 $\sqrt p$ 可以使预处理较优，选择 $2$ 的次幂可以使用位运算简化计算。
 
 ??? note "参考代码"
     ```cpp
@@ -314,7 +314,7 @@ long long binmul(long long a, long long b, long long m) {
       for (int i = 1; i < 65536; i++) pow2[i] = 1LL * pow2[i - 1] * pow65536 % mod;
     }
     
-    int query(int pows) { return 1LL * pow1[pows & 65535] * pow2[pows >> 16]; }
+    int query(int pows) { return 1LL * pow1[pows & 65535] * pow2[pows >> 16] % mod; }
     ```
 
 ## 习题
