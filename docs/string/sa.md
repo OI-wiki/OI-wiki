@@ -463,7 +463,7 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 -   [UVa 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
 -   [UVa 12206 - Stammering Aliens](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3358)
 -   [Codechef - Jarvis and LCP](https://www.codechef.com/problems/INSQ16F)
--   [洛谷 P8617 - 重复模式](hhttps://www.luogu.com.cn/problem/P8617)
+-   [洛谷 P8617 - 重复模式](https://www.luogu.com.cn/problem/P8617)
 -   [UVa 11107 - Life Forms](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2048)
 -   [UVa 12974 - Exquisite Strings](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4853)
 -   [UVa 10526 - Intellectual Property](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1467)
