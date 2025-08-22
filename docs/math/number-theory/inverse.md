@@ -35,7 +35,7 @@
 这一方法主要适用于模数是素数 $p$ 的情形。此时，由 [费马小定理](./fermat.md#费马小定理) 可知对于任意 $a\perp p$ 都有
 
 $$
-a\cdot a^{p-2} = a^{p-1} \equiv 1. \pmod p
+a\cdot a^{p-2} = a^{p-1} \equiv 1 \pmod p.
 $$
 
 根据逆元的唯一性可知，逆元 $a^{-1}\bmod p$ 就等于 $a^{p-2}\bmod p$，因此可以直接使用 [快速幂](../binary-exponentiation.md) 在 $O(\log p)$ 时间内计算：
@@ -103,13 +103,13 @@ $$
 将该等式对素数 $p$ 取模，就得到
 
 $$
-0 \equiv \left\lfloor \dfrac{p}{i} \right\rfloor i + (p\bmod i). \pmod p
+0 \equiv \left\lfloor \dfrac{p}{i} \right\rfloor i + (p\bmod i) \pmod p.
 $$
 
 将等式两边同时乘以 $i^{-1}(p\bmod i)^{-1}$ 就得到
 
 $$
-i^{-1} \equiv - \left\lfloor \dfrac{p}{i} \right\rfloor (p\bmod i)^{-1}. \pmod p
+i^{-1} \equiv - \left\lfloor \dfrac{p}{i} \right\rfloor (p\bmod i)^{-1} \pmod p.
 $$
 
 这就是用于线性时间递推求逆元的公式。由于 $p\bmod i < i$，这一公式将求解 $i^{-1}\bmod p$ 的问题转化为规模更小的问题 $(p\bmod i)^{-1}\bmod p$。因此，从 $1^{-1}\bmod p=1$ 开始，对每个 $i$ 顺次应用该公式，就可以在 $O(n)$ 时间内获得前 $n$ 个整数的逆元。
