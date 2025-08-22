@@ -332,7 +332,7 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
 
 -   [UVa 1464 Traffic Real Time Query](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4210)
 -   [洛谷 P4320 道路相遇](https://www.luogu.com.cn/problem/P4320)
--   [P10517 国土规划](https://www.luogu.com.cn/problem/P10517)
+-   [洛谷 P10517 国土规划](https://www.luogu.com.cn/problem/P10517)
 
 ## 外部链接
 
