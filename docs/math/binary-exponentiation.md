@@ -93,7 +93,7 @@ $$
 ### 模意义下取幂
 
 ???+ example "[洛谷 P1226【模板】快速幂](https://www.luogu.com.cn/problem/P1226)"
-    给定三个整数 $a,b,p$，求 $a^b\bmod p$。
+    给定三个整数 $a,b,p$，求 $a^b\bmod p$。其中 $p\ge 2$。
 
 这是一个非常常见的应用，例如它可以用于计算模意义下的乘法逆元。既然我们知道取模的运算不会干涉乘法运算，因此我们只需要在计算的过程中取模即可。
 
@@ -124,7 +124,8 @@ $$
         ```
 
 ???+ warning "注意"
-    当指数很大时，需利用 [扩展欧拉定理](./number-theory/fermat.md#扩展欧拉定理) 降幂后计算。
+    -   模数通常情况下大于 $1$。在十分特殊的情况下，模数 $p$ 可能等于 $1$，此时需要特殊考虑 $b=0$ 的情况。
+    -   当指数很大时，需利用 [扩展欧拉定理](./number-theory/fermat.md#扩展欧拉定理) 降幂后计算。
 
 ### 计算斐波那契数
 
@@ -236,49 +237,13 @@ $$
 
 $$
 a \cdot b = \begin{cases}
-0 &\text{if }a = 0 \\\\
-2 \cdot \frac{a}{2} \cdot b &\text{if }a > 0 \text{ and }a \text{ even} \\\\
+0 &\text{if }a = 0 \\
+2 \cdot \frac{a}{2} \cdot b &\text{if }a > 0 \text{ and }a \text{ even} \\
 2 \cdot \frac{a-1}{2} \cdot b + b &\text{if }a > 0 \text{ and }a \text{ odd}
 \end{cases}
 $$
 
-#### 快速乘
-
-本节介绍一种可以处理模数在 `long long` 范围内，不需要使用 `__int128` 且复杂度为 $O(1)$ 的「快速乘」。
-
-我们发现：
-
-$$
-a\times b\bmod m=a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m
-$$
-
-我们巧妙运用 `unsigned long long` 的自然溢出：
-
-$$
-a\times b\bmod m=a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m=\left(a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m\right)\bmod 2^{64}
-$$
-
-于是在算出 $\left\lfloor\dfrac{ab}m\right\rfloor$ 后，两边的乘法和中间的减法部分都可以使用 `unsigned long long` 直接计算，现在我们只需要解决如何计算 $\left\lfloor\dfrac {ab}m\right\rfloor$。
-
-我们考虑先使用 `long double` 算出 $\dfrac am$ 再乘上 $b$。
-
-既然使用了 `long double`，就无疑会有精度误差。极端情况就是第一个有效数字（二进制下）在小数点后一位。在 64 位系统中，`long double` 通常表示为 $80$ 位扩展精度浮点数（即符号为 $1$ 位，指数为 $15$ 位，尾数为 $64$ 位），所以 `long double` 最多能精确表示的有效位数为 $64$[^note1]。所以 $\dfrac am$ 最差从第 $65$ 位开始出错，误差范围为 $\left(-2^{-64},2^{-64}\right)$。乘上 $b$ 这个 $64$ 位整数，误差范围为 $(-0.5,0.5)$，再加上 $0.5$ 误差范围为 $(0,1)$，取整后误差范围位 $\{0,1\}$。于是乘上 $-m$ 后，误差范围变成 $\{0,-m\}$，我们需要判断这两种情况。
-
-因为 $m$ 在 `long long` 范围内，所以如果计算结果 $r$ 在 $[0,m)$ 时，直接返回 $r$，否则返回 $r+m$，当然你也可以直接返回 $(r+m)\bmod m$。
-
-代码实现如下：
-
-```cpp
-long long binmul(long long a, long long b, long long m) {
-  unsigned long long c =
-      (unsigned long long)a * b -
-      (unsigned long long)((long double)a / m * b + 0.5L) * m;
-  if (c < m) return c;
-  return c + m;
-}
-```
-
-如今，绝大多数测评系统所配备的 C/C++ 编译器已支持 `__int128` 类型，因此也可以利用 [Barrett Reduction](https://en.wikipedia.org/wiki/Barrett_reduction) 进行快速乘。之所以不直接将乘数类型提升至 `__int128` 后取模计算是因为此方法仍然可以节省一次时间可观的 `__int128` 类型取模。
+但在实际使用中，此方法由于引入了更大的计算复杂度导致时间效率不优。实际编程中通常利用 [快速乘](./number-theory/basic.md#快速乘) 来进行模数范围在 `long long` 时的乘法操作。
 
 ### 高精度快速幂
 
@@ -330,7 +295,3 @@ long long binmul(long long a, long long b, long long m) {
 -   [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
 
 **本页面部分内容译自博文 [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) 与其英文翻译版 [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
-
-## 参考资料与注释
-
-[^note1]: 参见 [C 语言小数表示法 - 维基百科](https://en.wikipedia.org/wiki/Double-precision_floating-point_format)
