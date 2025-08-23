@@ -152,74 +152,7 @@ $$
     
     还有一个特殊的操作，就是将某个操作序列重复 $k$ 次（Repeat），Repeat 操作可以嵌套。输出操作结束后每个点的坐标。
 
-让我们来观察一下这三种操作对坐标的影响：
-
-1.  Shift 操作：将每一维的坐标分别加上一个常量；
-2.  Scale 操作：把每一维坐标分别乘上一个常量；
-3.  Rotate 操作：参考 [Rotation matrix from axis and angle](https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle)，可以用旋转矩阵乘以点对应的向量得到。
-
-可以看到，每一个操作可以用一个 $4\times 4$ 的矩阵来表示：
-
-$$
-\begin{bmatrix}
-a_{11} & a_ {12} & a_ {13} & a_ {14} \\
-a_{21} & a_ {22} & a_ {23} & a_ {24} \\
-a_{31} & a_ {32} & a_ {33} & a_ {34} \\
-a_{41} & a_ {42} & a_ {43} & a_ {44} \\
-\end{bmatrix}
-$$
-
-使用这个矩阵就可以将一个坐标（向量）进行变换，得到新的坐标（向量）：
-
-$$
-\begin{bmatrix}
-a_{11} & a_ {12} & a_ {13} & a_ {14} \\
-a_{21} & a_ {22} & a_ {23} & a_ {24} \\
-a_{31} & a_ {32} & a_ {33} & a_ {34} \\
-a_{41} & a_ {42} & a_ {43} & a_ {44} \\
-\end{bmatrix}\cdot
-\begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix}
- = \begin{bmatrix} x' \\ y' \\ z' \\ 1 \end{bmatrix}
-$$
-
-在矩阵中，我们在三维坐标之外添加了一维，并将其置为 $1$。这样的话，我们就可以使用矩阵乘法来描述 Shift 操作了。
-
-对于每个操作，可以按如下方法构造矩阵。
-
-1.  （Shift 操作）让 $x$ 坐标方向的位移为 $\Delta x$，$y$ 坐标的位移为 $\Delta y$，$z$ 坐标的位移为 $\Delta z$：
-
-    $$
-    \begin{bmatrix}
-    1 & 0 & 0 & \Delta x \\
-    0 & 1 & 0 & \Delta y \\
-    0 & 0 & 1 & \Delta z \\
-    0 & 0 & 0 & 1 \\
-    \end{bmatrix}
-    $$
-
-2.  （Scale 操作）把 $x$ 坐标拉伸 $\Delta x$ 倍，$y$ 坐标拉伸 $\Delta y$ 倍，$z$ 坐标拉伸 $\Delta z$ 倍：
-
-    $$
-    \begin{bmatrix}
-    \Delta x & 0 & 0 & 0 \\
-    0 & \Delta y & 0 & 0 \\
-    0 & 0 & \Delta z & 0 \\
-    0 & 0 & 0 & 1 \\
-    \end{bmatrix}
-    $$
-
-3.  （Rotate 操作）绕单位向量 $\mathbf{u}=(u_x,u_y,u_z)$ 逆时针旋转 $\theta$ 弧度
-
-    $$
-    \begin{bmatrix}
-    u_x^2 \left(1-\cos \theta\right) + \cos \theta & u_x u_y \left(1-\cos \theta\right) - u_z \sin \theta & u_x u_z \left(1-\cos \theta\right) + u_y \sin \theta & 0 \\ 
-    u_x u_y \left(1-\cos \theta\right) + u_z \sin \theta & u_y^2\left(1-\cos \theta\right) + \cos \theta & u_y u_z \left(1-\cos \theta\right) - u_x \sin \theta & 0 \\ 
-    u_x u_z \left(1-\cos \theta\right) - u_y \sin \theta & u_y u_z \left(1-\cos \theta\right) + u_x \sin \theta & u_z^2\left(1-\cos \theta\right) + \cos \theta & 0 \\
-    0 & 0 & 0 & 1
-    \end{bmatrix}
-    $$
-
-现在，每一种操作都被表示为了一个矩阵，变换序列可以用矩阵的乘积来表示，而一个 Repeat 操作相当于取一个矩阵的 $k$ 次幂。这样可以用 $O(m \log k)$ 的时间计算出整个变换序列最终形成的矩阵。最后将它应用到 $n$ 个点上，总复杂度 $O(n + m \log k)$。
+参考 [向量与矩阵](./linear-algebra/vector.md#向量与矩阵) 中的内容，每一种操作都可以用一个变换矩阵表示，一系列连续的变换可以用矩阵的乘积来表示。一个 Repeat 操作就相当于取一个矩阵的 $k$ 次幂。这样可以用 $O(m \log k)$ 的时间计算出整个变换序列最终形成的矩阵。最后将它应用到 $n$ 个点上，总复杂度 $O(n + m \log k)$。
 
 ### 定长路径计数
 
