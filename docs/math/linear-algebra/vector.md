@@ -170,7 +170,7 @@ $$
 
 ## 向量与矩阵
 
-线性代数中，线性变换可以用矩阵表示。令 $T$ 是一个将 $\mathbf R^n$ 映射到 $\mathbf R^m$ 的线性变换，$\mathbf x$ 是一个 $n$ 维列向量，则存在一个 $m\times n$ 矩阵 $A$，使得
+线性代数中，线性变换可以用矩阵表示。令 $T$ 表示一个将 $\mathbf R^n$ 映射到 $\mathbf R^m$ 的线性变换，$\mathbf x$ 表示一个 $n$ 维列向量，则存在一个 $m\times n$ 矩阵 $A$，使得
 
 $$
 T(\mathbf x)=A\mathbf x.
@@ -178,11 +178,13 @@ $$
 
 矩阵 $A$ 称为线性变换 $T$ 的变换矩阵。在算法问题中，一般情况下线性变换在相同维度下进行，因此 $A$ 是一个方阵。这样，对向量的线性变换问题可以转化为矩阵乘法问题。
 
-### 向量放缩
+接下来我们探讨三种竞赛中较为常见的变换与其对应的变换矩阵：放缩变换（变换矩阵用 $S$ 表示）、旋转变换（变换矩阵用 $R$ 表示）和平移变换（变换矩阵用 $T$ 表示）。
 
-对于 $n$ 维列向量 $\boldsymbol a$，将其每一维放缩 $v_1,v_2,\ldots,v_n$ 倍。很容易发现 $R$ 是 $n\times n$ 的对角矩阵，即 $S=\operatorname{diag}\{v_1,v_2,\ldots,v_n\}$。
+### 放缩变换
 
-### 向量旋转
+对于 $n$ 维列向量 $\boldsymbol a$，将其每一维放缩 $v_1,v_2,\ldots,v_n$ 倍。很容易发现放缩操作的变换矩阵 $R$ 是 $n\times n$ 的对角矩阵，即 $S=\operatorname{diag}\{v_1,v_2,\ldots,v_n\}$。
+
+### 旋转变换
 
 向量的旋转是相对复杂的操作，我们仅限于讨论二维和三维的情况。
 
@@ -228,7 +230,7 @@ $$
 
 对于三维向量，更常见的的是绕某直线旋转。同样为了方便，此直线是过原点的。如果直线不过原点，我们仍可以平移坐标系进行转化。
 
-取直线的方向向量 $\boldsymbol u=(u_x,u_y,u_z)$，设三维向量绕其逆时针旋转 $\theta$ 角。则对应的变换矩阵为
+取直线的方向向量 $\boldsymbol u=(u_x,u_y,u_z)$，设三维向量绕其逆时针旋转 $\theta$ 角。则对应的变换矩阵 $R$ 为[^note1]
 
 $$
 R=
@@ -239,11 +241,11 @@ u_x u_z \left(1-\cos \theta\right) - u_y \sin \theta & u_y u_z \left(1-\cos \the
 \end{bmatrix}.
 $$
 
-### 向量平移
+### 平移变换
 
 平移变换并非线性变换，而是仿射变换。但 $\mathbf R^n$ 下的仿射变换仍可以用 $\mathbf R^{n+1}$ 下的线性变换表示。
 
-考虑 $n$ 维列向量 $\boldsymbol a=(a_1\, a_2\, \ldots \, a_n)^{\text{T}}$，现在要将其沿向量 $\boldsymbol t=(t_1\, t_2\, \ldots \, t_n)$ 平移。我们对列向量 $\boldsymbol a$ 添加一维并置为 $1$，得到新列向量 $\boldsymbol a'=(a_1\, a_2\, \ldots \, a_n\, 1)^{\text{T}}$。则变换矩阵 $T$ 可以写作
+考虑 $n$ 维向量 $\boldsymbol a=(a_1,a_2, \ldots , a_n)$，现在要将其沿向量 $\boldsymbol t=(t_1, t_2, \ldots , t_n)$ 平移。我们对列向量 $\boldsymbol a$ 添加一维并置为 $1$，得到新列向量 $\boldsymbol a'=(a_1, a_2, \ldots , a_n, 1)$。则变换矩阵 $T$ 可以写作
 
 $$
 T=
@@ -256,10 +258,10 @@ T=
 \end{bmatrix}.
 $$
 
-对于其他线性变换矩阵，在矩阵中增加一列与一行，除右下角的元素为 $1$ 外其它部分填充为 $0$，通过这种方法，所有的线性变换矩阵都可以转换为仿射变换矩阵。例如，对于二维向量旋转可以变为
+对于其他线性变换矩阵，在矩阵中增加一列与一行，除右下角的元素为 $1$ 外其它部分填充为 $0$，通过这种方法，所有的线性变换矩阵都可以转换为仿射变换矩阵。例如，对于二维向量旋转，变换矩阵可以变为
 
 $$
-R=
+R'=
 \begin{bmatrix}
 \cos\alpha & -\sin\alpha & 0\\
 \sin\alpha & \cos\alpha & 0\\
@@ -270,3 +272,5 @@ $$
 ## 向量的更严格定义
 
 上文中，向量被定义为了空间中的有向线段。但是严格来说，向量不仅是有向线段。要作出向量的更严格定义，需要先定义 [线性空间](./vector-space.md)，具体内容参见 [线性空间](./vector-space.md) 页面的介绍。
+
+[^note1]: 参见 [Rotation matrix from axis and angle - Wikipedia](https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle)
