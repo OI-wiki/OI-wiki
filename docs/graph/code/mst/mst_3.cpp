@@ -31,10 +31,10 @@ void merge(ll a, ll b) {  // 并查集合并
 ll kruskal() {            // kruskal最小生成树算法
   ll cost = 0, tcnt = n;  // tcnt存储当前有几棵树
   for (int i = 0; i < m; ++i) {
-    if (tcnt == k) return cost;                        // 有k棵树时返回
     if (find(edge[i].u) == find(edge[i].v)) continue;  // 查询是否在同一棵树上
     merge(edge[i].u, edge[i].v);                       // 合并两集合
     cost += edge[i].w;                                 // 合并的费用
+    if (tcnt == k) return cost;                        // 有k棵树时返回
     tcnt--;  // 每合并一次树的数量减一
   }
   return -1;  // 无解
@@ -55,3 +55,4 @@ signed main() {
     cout << ans << "\n";
   return 0;
 }
+
