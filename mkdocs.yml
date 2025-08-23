@@ -243,7 +243,7 @@ nav:
       - 裴蜀定理 & 一次不定方程: math/number-theory/bezouts.md
       - 类欧几里德算法: math/number-theory/euclidean.md
       - 费马小定理 & 欧拉定理: math/number-theory/fermat.md
-      - 乘法逆元: math/number-theory/inverse.md
+      - 模逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
       - 升幂引理: math/number-theory/lift-the-exponent.md
