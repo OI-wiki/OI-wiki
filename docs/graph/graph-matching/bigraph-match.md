@@ -165,7 +165,7 @@ $$
 ??? note "证明"
     1.  按照定义，$\mathcal U$ 和 $\mathcal E\cup\mathcal O$ 不交。只需要证明 $\mathcal E$ 和 $\mathcal O$ 不交。假若不然，对于顶点 $v\in\mathcal E\cap\mathcal O$，存在一条从未匹配点 $a$ 到 $v$ 的长度为偶数的交错路，也存在一条从未匹配点 $b$ 到 $v$ 的长度为奇数的交错路。由于图 $G$ 是二分图，$a\neq b$，且两条路径到达 $v$ 时的边分别是匹配边和非匹配边。因此，将两条路连接起来，就得到一条从 $a$ 经 $v$ 到 $b$ 的交错路。这是一条增广路。这与 $M$ 是最大匹配这一点相矛盾。因此，$\mathcal E\cap\mathcal O=\varnothing$。
     
-        设 $M'$ 是一个与 $M$ 不同的最大匹配。重复 [Berge 引理的证明](./graph-match.md#berge-引理) 可以说明，$M'\oplus M$ 仅有偶数长度的路径和偶环组成。从最大匹配 $M$ 出发，可以逐个将这些连通块（路径和环）中的边翻转（匹配边和非匹配边交换），就能得到最大匹配 $M'$。翻转偶环时，未匹配点仍然是未匹配点，从它出发的交错路的长度奇偶性也不会改变；翻转偶数长度路径时，路径两个端点的匹配状态互换，但是从它们出发到达路径中的任何一个点的路径长度的奇偶性也是一致的。因此，在翻转过程中，集合 $\mathcal E,\mathcal O,\mathcal U$ 均始终保持不变。这就说明这一分解与最大匹配 $M$ 的选取无关。
+        设 $M'$ 是一个与 $M$ 不同的最大匹配。重复 [Berge 引理的证明](./graph-match.md#berge-引理) 可以说明，$M'\oplus M$ 仅由偶数长度的路径和偶环组成。从最大匹配 $M$ 出发，可以逐个将这些连通块（路径和环）中的边翻转（匹配边和非匹配边交换），就能得到最大匹配 $M'$。翻转偶环时，未匹配点仍然是未匹配点，从它出发的交错路的长度奇偶性也不会改变；翻转偶数长度路径时，路径两个端点的匹配状态互换，但是从它们出发到达路径中的任何一个点的路径长度的奇偶性也是一致的。因此，在翻转过程中，集合 $\mathcal E,\mathcal O,\mathcal U$ 均始终保持不变。这就说明这一分解与最大匹配 $M$ 的选取无关。
     2.  如果一条匹配边出现在某条从未匹配点 $v$ 出发的交错路中，那么它的两个端点与点 $v$ 的距离的奇偶性必然不同，因而分别属于集合 $\mathcal E$ 和 $\mathcal O$；否则，它的两个端点必然都在 $\mathcal U$ 中。这说明，最大匹配中的匹配边必然是 $\mathcal E\mathcal O$ 边或 $\mathcal U\mathcal U$ 边。反过来说，未匹配点可以沿着从它自身出发、长度为零的交错路到达，所以只会出现在集合 $\mathcal E$ 中，这说明，集合 $\mathcal O$ 和 $\mathcal U$ 中都是匹配点。简单计数可知，最大匹配的大小就是 $|\mathcal O|+|\mathcal U|/2$。
     3.  按照定义，$\mathcal E$ 中的任一顶点 $a$ 可以从未匹配点 $v$ 出发沿偶数长度交错路到达，也就是说，$\mathcal E$ 中的顶点要么是未匹配点，要么到达该点的交错路 $P$ 以匹配边结束。如果图 $G$ 中存在连接 $a$ 和 $\mathcal E\cup\mathcal U$ 中某个顶点 $b$ 的一条边，那么根据上一段的讨论，这条边必然是非匹配边，可以沿着它延长交错路 $P$。这说明顶点 $b$ 也属于集合 $\mathcal O$，这就与第一条性质矛盾。因此，图 $G$ 中不存在连接 $\mathcal E$ 中顶点和 $\mathcal E\cup\mathcal U$ 中顶点的边。
 
@@ -179,19 +179,19 @@ $$
     设二分图 $G=(X,Y,E)$ 的 Dulmage–Mendelsohn 分解为 $V=\mathcal E\cup\mathcal O\cup\mathcal U$。那么，顶点 $v\in V$ 是关键点，当且仅当 $v\in\mathcal O\cup \mathcal U$。
 
 ??? note "证明"
-    根据 Dulmage–Mendelsohn 分解的性质可知，在图 $G$ 的任一最大匹配中，$\mathcal O$ 和 $\mathcal U$ 中的顶点都必然是匹配点。因此，$\mathcal O\cup \mathcal U$ 中的顶点必然是关键点。然后，需要说明集合 $\mathcal E$ 中一定没有关键点。如果在最大匹配 $M$ 中，顶点 $a\in\mathcal E$ 是关键点，那么存在一条偶数长度的交错路 $P$ 连接顶点 $a$ 和某个未匹配点 $b\in\mathcal E$。将这条路上的所有边翻转，得到的匹配 $M\oplus P$ 中，顶点 $a$ 就变成未匹配点。因此，集合 $\mathcal E$ 中没有关键点。
+    根据 Dulmage–Mendelsohn 分解的性质可知，在图 $G$ 的任一最大匹配中，$\mathcal O$ 和 $\mathcal U$ 中的顶点都必然是匹配点。因此，$\mathcal O\cup \mathcal U$ 中的顶点必然是关键点。然后，需要说明集合 $\mathcal E$ 中一定没有关键点。如果在最大匹配 $M$ 中，顶点 $a\in\mathcal E$ 是关键点，那么存在一条偶数长度的交错路 $P$ 连接顶点 $a$ 和某个未匹配点 $b\in\mathcal E$。将这条路上的所有边翻转，得到的最大匹配 $M\oplus P$ 中，顶点 $a$ 就变成未匹配点。因此，集合 $\mathcal E$ 中没有关键点。
 
 因此，要求出最大匹配的关键点，只需要求出 Dulmage–Mendelsohn 分解即可。
 
 ### 最大匹配关键边
 
-类似地，如果一条边 $e$ 在二分图 $G$ 的每一个最大匹配中都是匹配边，那么它就称为最大匹配的关键边。
+类似地，如果一条边 $e$ 在二分图 $G$ 的每一个最大匹配中都是匹配边，那么它就称为最大匹配的关键边。二分图的最大匹配是唯一的，当且仅当它的所有匹配边都是关键边。
 
 ???+ note "定理"
     设二分图 $G=(X,Y,E)$ 的 Dulmage–Mendelsohn 分解为 $V=\mathcal E\cup\mathcal O\cup\mathcal U$，且 $M$ 是它的一个最大匹配。那么，边 $e\in E$ 是关键边，当且仅当 $e$ 的端点都在 $\mathcal U$ 中，边 $e$ 是 $M$ 中匹配边，且相对于 $M$ 不存在一个包含边 $e$ 的交错环。
 
 ??? note "证明"
-    关键边的端点必须是关键点。根据 Dulmage–Mendelsohn 分解的性质，最大匹配的边只能是 $\mathcal E\mathcal O$ 边或 $\mathcal U\mathcal U$ 边。但是，$\mathcal E$ 中没有关键点，所以，关键边只能是 $\mathcal U\mathcal U$ 边。当然，关键边也必须是 $M$ 中的匹配边。设 $e\in M$ 是一条 $\mathcal U\mathcal U$ 边。它不是关键边，当且仅当存在另一个最大匹配 $M'\neq M$ 使得 $e\in M\oplus M'$。重复 [Berge 引理的证明](./graph-match.md#berge-引理) 可以说明，$M'\oplus M$ 仅有偶数长度的路径和偶环组成。这些路径的端点之一是相对于 $M$ 的未匹配点，所以路径中的顶点都不是 $\mathcal U$ 中的点，这与边 $e$ 的选取矛盾。因此，边 $e$ 只能出现在偶环中。因此，一条 $\mathcal U\mathcal U$ 边 $e\in M$ 不是关键边，当且仅当相对于 $M$ 存在一个包含边 $e$ 的交错环。这就是所要求证的。
+    关键边的端点必须是关键点。根据 Dulmage–Mendelsohn 分解的性质，最大匹配的边只能是 $\mathcal E\mathcal O$ 边或 $\mathcal U\mathcal U$ 边。但是，$\mathcal E$ 中没有关键点，所以，关键边只能是 $\mathcal U\mathcal U$ 边。当然，关键边也必须是 $M$ 中的匹配边。设 $e\in M$ 是一条 $\mathcal U\mathcal U$ 边。它不是关键边，当且仅当存在另一个最大匹配 $M'\neq M$ 使得 $e\in M\oplus M'$。重复 [Berge 引理的证明](./graph-match.md#berge-引理) 可以说明，$M'\oplus M$ 仅由偶数长度的路径和偶环组成。这些路径的端点之一是相对于 $M$ 的未匹配点，所以路径中的顶点都不是 $\mathcal U$ 中的点，这与边 $e$ 的选取矛盾。因此，边 $e$ 只能出现在偶环中。因此，一条 $\mathcal U\mathcal U$ 边 $e\in M$ 不是关键边，当且仅当相对于 $M$ 存在一个包含边 $e$ 的交错环。这就是所要求证的。
 
 因此，要求出最大匹配的关键边，需要按照如下步骤进行：
 
