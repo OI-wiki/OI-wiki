@@ -148,7 +148,7 @@ Lucas 定理指出，模数为素数 $p$ 时，大组合数的计算可以转化
 
 ???+ example "示意"
     ```cpp
-    long long Lucas(long long n, long long k long long p) {
+    long long Lucas(long long n, long long k, long long p) {
       if (k == 0) return 1;
       return (C(n % p, k % p, p) * Lucas(n / p, k / p, p)) % p;
     }
