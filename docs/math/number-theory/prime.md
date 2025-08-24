@@ -293,7 +293,7 @@ Carmichael 数有如下性质：
             return True
         ```
 
-可以证明，奇合数 $n > 9$ 可以通过随机选取的一个基底 $a$ 的 Miller–Rabin 素性测试的概率至多为四分之一。因此，随机选取 $k$ 个基底后，仍将合数误判为素数的概率不超过 $1/4^k$。
+可以证明[^millerrabinproof]，奇合数 $n > 9$ 通过随机选取的一个基底 $a$ 的 Miller–Rabin 素性测试的概率至多为四分之一。因此，随机选取 $k$ 个基底后，仍将合数误判为素数的概率不超过 $1/4^k$。
 
 ??? note "证明"
     设 $n-1=u2^t$，其中，$u$ 是奇数且 $t$ 是正整数。那么，整数 $n$ 可以通过基底为 $a$ 的 Miller–Rabin 素性测试说明
@@ -490,3 +490,5 @@ Carmichael 数有如下性质：
 [^erdos1956pseudoprimes]: Erdős, P. (1956). "On pseudoprimes and Carmichael numbers".*Publ. Math. Debrecen*. 4 (3–4): 201–206.
 
 [^pinchcarmichael]: PINCH, Richard GE. The Carmichael numbers up to ${10}^{20}$.
+
+[^millerrabinproof]: 本结论及其证明参考了 Crandall, Richard, and Carl Pomerance. Prime numbers: a computational perspective. New York, NY: Springer New York, 2005. 的第 3.5 节。
