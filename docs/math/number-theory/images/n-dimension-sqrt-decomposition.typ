@@ -1,22 +1,31 @@
 #set page(width: 7.7cm, height: 3.65cm, margin: 0cm)
 #set text(font: "Noto Sans CJK SC", 7.2pt)
 
-#let pair-sum((x1, y1), (x2, y2)) = ((x1 + x2, y1 + y2))
+#let pair-sum((x1, y1), (x2, y2)) = (x1 + x2, y1 + y2)
 
 #let (dx0, dy0) = (2.5, 0.5)
-#let dx1 = (10, 7, 11, 12, 18, 25, 7, 8)
-#for i in range(dx1.len()) { dx1.at(i) = if i > 0 { dx1.at(i - 1) } else { 0 } + dx1.at(i) * 0.05 }
-#let (dx, dy) = (0.5, 0.35)
+#let dx = (10, 7, 11, 12, 18, 25, 7, 8)
+#for i in range(dx.len()) {
+  dx.at(i) = if i > 0 { dx.at(i - 1) } else { 0 } + dx.at(i) * 0.05
+}
+#let dy = 0.35
 
-#let point((x, y)) = ((if x == 0 { 0 } else { dx0 + if x > 1 { dx1.at(x - 2) } else { 0 } } * 1cm, (y * dy + dy0) * 1cm))
-#let point-pair-transform((x, y), step) = pair-sum((x, y), if step > 0 { (step, 0) } else { (0, -step) })
+#let point((x, y)) = (
+  (
+    if x == 0 { 0 } else { dx0 + if x > 1 { dx.at(x - 2) } else { 0 } } * 1cm,
+    (y * dy + dy0) * 1cm,
+  )
+)
+#let point-pair-transform((x, y), step) = pair-sum((x, y), if step > 0 {
+  (step, 0)
+} else { (0, -step) })
 
 #let line-draw(start, step: 1, color: black) = place(
   line(
     start: point(start),
     end: point(point-pair-transform(start, step)),
     stroke: color + 1.5pt,
-  )
+  ),
 )
 
 #let lines-draw(start, steps, color) = {
@@ -32,14 +41,14 @@
 #lines-draw((0, 2), (3, -4, 3, -2, 3, -1), green)
 
 #let grid = 0
-#while grid <= dx1.len() {
+#while grid <= dx.len() {
   place(
     line(
-      start: ((dx0 + if grid >= 1 { dx1.at(grid - 1) } else { 0 }) * 1cm, 0cm),
+      start: ((dx0 + if grid >= 1 { dx.at(grid - 1) } else { 0 }) * 1cm, 0cm),
       length: 3.65cm,
       angle: 90deg,
       stroke: blue + 0.5pt,
-    )
+    ),
   )
   grid += 1
 }
@@ -48,5 +57,5 @@
   top + left,
   dx: (dx0 * 1cm - 9 * 7.2pt) / 2,
   dy: 1.8cm,
-  text()[蓝色细线代表群论分\ 块的边界\ 这样分就可以让每一\ 块里面的 $floor(a_j / i)$ 相同]
+  text()[蓝色细线代表群论分\ 块的边界\ 这样分就可以让每一\ 块里面的 $floor(a_j / i)$ 相同],
 )
