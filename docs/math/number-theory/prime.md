@@ -293,6 +293,87 @@ Carmichael 数有如下性质：
             return True
         ```
 
+可以证明[^millerrabinproof]，奇合数 $n > 9$ 通过随机选取的一个基底 $a$ 的 Miller–Rabin 素性测试的概率至多为四分之一。因此，随机选取 $k$ 个基底后，仍将合数误判为素数的概率不超过 $1/4^k$。
+
+??? note "证明"
+    设 $n-1=u2^t$，其中，$u$ 是奇数且 $t$ 是正整数。那么，整数 $n$ 可以通过基底为 $a$ 的 Miller–Rabin 素性测试说明
+    
+    $$
+    a^u\equiv 1{\textstyle\pmod n},\text{ or }a^{u2^i}\equiv -1{\textstyle\pmod n}\text{ for some }0\le i < t.
+    $$
+    
+    记这样的 $a$（的同余类）集合为 $S$，要说明的是
+    
+    $$
+    |S| \le \dfrac14\varphi(n).
+    $$
+    
+    其中，$\varphi(n)$ 是 [欧拉函数](./euler-totient.md)。证明分为三步。
+    
+    **第一步**：设 $\ell$ 是使得 $2^\ell \mid p-1$ 对所有 $n$ 的素因子 $p$ 都成立的最大正整数。那么，可以证明
+    
+    $$
+    S\subseteq S' = \{a\bmod n:a^{u2^{\ell-1}}\equiv\pm 1{\textstyle\pmod n}\}.
+    $$
+    
+    集合 $S$ 中的元素 $a$ 只有两种可能。如果 $a^u\equiv 1\pmod n$，那么，显然 $a^{u2^{\ell-1}}\equiv 1\pmod n$ 也成立，亦即 $a\in S'$。如果对于 $0\le i < t$ 成立 $a^{u2^i}\equiv -1\pmod n$，那么，对于任意素因子 $p\mid n$，都有 $a^{u2^i}\equiv-1\pmod p$。设 $\delta_p(a)$ 是 $a$ 模 $p$ 的 [阶](./primitive-root.md#阶)，那么，显然有 $\delta_p(a)\mid u2^{i+1}$ 但是 $\delta_p(a)\nmid u2^{i}$，这说明，$\delta_p(a)$ 的素因数分解中，$2$ 的指数恰为 $i+1$，因而 $2^{i+1}\mid\delta_p(a)$。由费马小定理可知，$\delta_p(a)\mid p-1$，所以，$2^{i+1}\mid p-1$。这一点对于 $n$ 的所有素因子 $p$ 都成立。因此，$i+1\le\ell$。这说明 $a^{u2^{\ell-1}} = (a^{u2^i})^{2^{\ell-1-i}} \equiv \pm 1 \pmod n$，同样有 $a\in S'$。综合两种可能，就得到 $S\subseteq S'$。
+    
+    **第二步**：计算 $|S'|$ 的大小。
+    
+    假设 $n$ 有素因数分解 $n = p_1^{e_1}p_2^{e_2}\cdots p_k^{e_k}$，那么，由 [中国剩余定理](./crt.md) 可知，条件 $a^{u2^{\ell - 1}}\equiv 1\pmod n$ 等价于 $a^{u2^{\ell - 1}}\equiv 1\pmod{p_i^{e_i}}$ 对所有 $p_i^{e_i}$ 都成立。由于模奇素数幂 $p_i^{e_i}$ 的 [原根](./primitive-root.md#原根) 总是存在的，所以，同余方程 $a^{u2^{\ell - 1}}\equiv 1\pmod{p_i^{e_i}}$ 的 [解的数量](./residue.md#性质) 为
+    
+    $$
+    \gcd(u2^{\ell-1},p_i^{e_i-1}(p_i-1)) = \gcd(u2^{\ell-1},p_i-1) = 2^{\ell-1}\gcd(u,p_i-1).
+    $$
+    
+    第一个等号成立，是因为 $u$ 是 $n-1$ 的因子，不可能是 $p_i$ 的倍数；第二个等号成立，是因为 $\ell$ 的选取方式。所以，由中国剩余定理可知，同余方程 $a^{u2^{\ell-1}}\equiv 1\pmod n$ 的解的数量为
+    
+    $$
+    \prod_{p\mid n}2^{\ell-1}\gcd(u,p-1).
+    $$
+    
+    同理，条件 $a^{u2^{\ell - 1}}\equiv -1\pmod n$ 等价于 $a^{u2^{\ell - 1}}\equiv -1\pmod{p_i^{e_i}}$ 对所有 $p_i^{e_i}$ 都成立。对于任意因子 $p_i^{e_i}$，条件 $a^{u2^{\ell - 1}}\equiv -1\pmod{p_i^{e_i}}$ 都等价于 $a^{u2^{\ell - 1}}\not\equiv 1\pmod{p_i^{e_i}}$ 且 $a^{u2^{\ell}}\equiv 1\pmod{p_i^{e_i}}$ 成立。类似上文，可以计算出同余方程 $a^{u2^{\ell}}\equiv 1\pmod{p_i^{e_i}}$ 的解的数量为 $2^{\ell}\gcd(u,p_i-1)$，因此，同余方程 $a^{u2^{\ell - 1}}\equiv -1\pmod{p_i^{e_i}}$ 的解的数量也等于
+    
+    $$
+    2^{\ell}\gcd(u,p_i-1) - 2^{\ell-1}\gcd(u,p_i-1) = 2^{\ell-1}\gcd(u,p_i-1).
+    $$
+    
+    再次应用中国剩余定理，就得到同余方程 $a^{u2^{\ell - 1}}\equiv -1\pmod n$ 的解的数量等于
+    
+    $$
+    \prod_{p\mid n}2^{\ell-1}\gcd(u,p-1).
+    $$
+    
+    因此，综合两种情形，有
+    
+    $$
+    |S'| = 2\prod_{p\mid n}2^{\ell-1}\gcd(u,p-1).
+    $$
+    
+    **第三步**：证明 $|S'|\le\varphi(n)/4$．
+    
+    结合欧拉函数的表达式 $\varphi(n)=\prod_ip_i^{e_i-1}(p_i-1)$ 可知
+    
+    $$
+    \dfrac{\varphi(n)}{|S'|} = \dfrac{1}{2}\prod_ip_i^{e_i-1}\dfrac{p_i-1}{2^{\ell-1}\gcd(u,p_i-1)}.
+    $$
+    
+    对于每一个 $i$，相应的因子 $p_i^{e_i-1}\dfrac{p_i-1}{2^{\ell-1}\gcd(u,p_i-1)}$ 都是一个偶数，所以，$\varphi(n)/|S'|$ 是一个整数。假设 $|S'|\le\varphi(n)/4$ 不成立。必然有 $\varphi(n)/|S'|=1,2,3$，亦即
+    
+    $$
+    \prod_ip_i^{e_i-1}\dfrac{p_i-1}{2^{\ell-1}\gcd(u,p_i-1)} = 2,4,6.
+    $$
+    
+    由于连乘式中的每个因子都是偶数，所以，这个连乘式要么只有一个因子且这个因子就等于 $2,4,6$，要么就只有两个因子且都等于 $2$。
+    
+    首先考虑有两个因子的情形。此时，两个因子都没有奇素因子，所以，$p_i^{e_i-1}=1$，亦即 $n$ 没有平方因子。不妨设 $n=p_1p_2$ 且 $p_1<p_2$ 都是素数。两个因子都等于 $2$，所以，总有 $p_i-1=2^{\ell}\gcd(u,p_i-1)$。因此，$p_i=1+2^\ell m_i$，其中，$m_i$ 是奇数，而且 $m_i\mid u$。将 $p_1p_2=n=1+u2^t$ 对 $m_1$ 取模就得到 $p_1p_2\equiv 1\pmod{m_1}$，故而 $p_2\equiv 1\pmod{m_1}$，这说明，$m_1\mid m_2$。反过来也成立。这就说明 $m_1=m_2$，也就是 $p_1=p_2$。这与 $p_1<p_2$ 矛盾。这一情形不成立。
+    
+    最后，考虑只有一个因子的情形，亦即合数 $n=p^e$ 且 $e>1$。此时，必然有 $p^{e-1}\mid 2,4,6$。因此，唯一的情形是 $p=3,e=2$，亦即 $n=9$，与命题所设相矛盾。这一情形也不成立。
+    
+    综合所有情形可知，$|S'|\le\varphi(n)/4$ 成立。
+    
+    结合上述三个步骤可知，$|S|\le |S'|\le \varphi(n)/4$ 对于所有奇合数 $n>9$ 都成立。
+
 另外，假设 [广义 Riemann 猜想](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis)（generalized Riemann hypothesis, GRH）成立，则对数 $n$ 最多只需要测试 $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ 中的全部整数即可 **确定** 数 $n$ 的素性，证明参见注释 7。
 
 而在 OI 范围内，通常都是对 $[1, 2^{64})$ 范围内的数进行素性检验。对于 $[1, 2^{32})$ 范围内的数，选取 $\{2, 7, 61\}$ 三个数作为基底进行 Miller–Rabin 素性检验就可以确定素性；对于 $[1, 2^{64})$ 范围内的数，选取 $\{2, 325, 9375, 28178, 450775, 9780504, 1795265022\}$ 七个数作为基底进行 Miller–Rabin 素性检验就可以确定素性。参见注释 8。
@@ -409,3 +490,5 @@ Carmichael 数有如下性质：
 [^erdos1956pseudoprimes]: Erdős, P. (1956). "On pseudoprimes and Carmichael numbers".*Publ. Math. Debrecen*. 4 (3–4): 201–206.
 
 [^pinchcarmichael]: PINCH, Richard GE. The Carmichael numbers up to ${10}^{20}$.
+
+[^millerrabinproof]: 本结论及其证明参考了 Crandall, Richard, and Carl Pomerance. Prime numbers: a computational perspective. New York, NY: Springer New York, 2005. 的第 3.5 节。
