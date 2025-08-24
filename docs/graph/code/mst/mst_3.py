@@ -38,14 +38,17 @@ def kruskal():
             fa[x] = y  # 合并
             tot += 1  # 边数增加
             ans += e.w  # 代价增加
-        if tot >= (n - k):  # 检查选的边数是否满足 k 个棉花糖
-            print(ans)
-            return
+            if tot == n - k:  # 检查选的边数是否满足 k 个棉花糖
+                print(ans)
+                return
     print("No Answer")  # 无法连成
 
 
 if __name__ == "__main__":
     n, m, k = map(int, input().split())
+    if n == k:  # 特判边界情况
+        print("0")
+        exit()
     for i in range(1, n + 1):  # 初始化
         fa[i] = i
     for i in range(1, m + 1):
