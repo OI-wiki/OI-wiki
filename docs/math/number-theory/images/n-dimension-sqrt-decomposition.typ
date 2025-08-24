@@ -1,12 +1,14 @@
-#set page(width: 6.8cm, height: 3.65cm, margin: 0cm)
+#set page(width: 7.7cm, height: 3.65cm, margin: 0cm)
 #set text(font: "Noto Sans CJK SC", 7.2pt)
 
 #let pair-sum((x1, y1), (x2, y2)) = ((x1 + x2, y1 + y2))
 
 #let (dx0, dy0) = (2.5, 0.5)
+#let dx1 = (10, 7, 11, 12, 18, 25, 7, 8)
+#for i in range(dx1.len()) { dx1.at(i) = if i > 0 { dx1.at(i - 1) } else { 0 } + dx1.at(i) * 0.05 }
 #let (dx, dy) = (0.5, 0.35)
 
-#let point((x, y)) = ((if x == 0 { 0 } else { dx0 + (x - 1) * dx } * 1cm, (y * dy + dy0) * 1cm))
+#let point((x, y)) = ((if x == 0 { 0 } else { dx0 + if x > 1 { dx1.at(x - 2) } else { 0 } } * 1cm, (y * dy + dy0) * 1cm))
 #let point-pair-transform((x, y), step) = pair-sum((x, y), if step > 0 { (step, 0) } else { (0, -step) })
 
 #let line-draw(start, step: 1, color: black) = place(
@@ -30,10 +32,10 @@
 #lines-draw((0, 2), (3, -4, 3, -2, 3, -1), green)
 
 #let grid = 0
-#while grid <= 8 {
+#while grid <= dx1.len() {
   place(
     line(
-      start: ((dx0 + grid * dx) * 1cm, 0cm),
+      start: ((dx0 + if grid >= 1 { dx1.at(grid - 1) } else { 0 }) * 1cm, 0cm),
       length: 3.65cm,
       angle: 90deg,
       stroke: blue + 0.5pt,
