@@ -355,7 +355,7 @@ $$
 -   [二分图最大匹配的 König 定理及其证明](https://matrix67.com/blog/archives/116)
 -   [Implementing Dinitz on bipartite graphs by adamant - Codeforces blogs](https://codeforces.com/blog/entry/118098)
 -   Bondy, John Adrian, and Uppaluri Siva Ramachandra Murty. Graph theory with applications. Vol. 290. London: Macmillan, 1976.
--   2015 年《浅谈图的匹配算法及其应用》- 陈胤伯
+-   陈胤伯。浅谈图的匹配算法及其应用。2015 年信息学奥林匹克中国国家队候选队员论文集。
 -   [Dulmage–Mendelsohn decomposition - Wikipedia](https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition)
 -   [Notes on Dulmage–Mendelsohn decomposition](https://www.cse.iitm.ac.in/~meghana/matchings/bip-decomp.pdf)
 
