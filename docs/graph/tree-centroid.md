@@ -42,7 +42,7 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
     }
     ```
 
-##换根DP求重心
+\## 换根 DP 求重心
 
 根据树中所有点到某个点的距离和中，到重心的距离和是最小的；如果有两个重心，那么到它们的距离和一样。我们只需要找出到所有点距离之和最小的点即可
 
@@ -56,53 +56,55 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
     int n, size[N];
     long long dp[N], ans[N];
     
-    void dfs1(int u, int fa){
-        size[u] = 1;
-        dp[u] = 0;
-        for(int v:e[u]){
-            if(v==fa) continue;
-            dfs1(v,u);
-            size[u] += size[v];
-            dp[u] += dp[v] + size[v]; // 子树节点到 u 的距离和
-        }
+    void dfs1(int u, int fa) {
+      size[u] = 1;
+      dp[u] = 0;
+      for (int v : e[u]) {
+        if (v == fa) continue;
+        dfs1(v, u);
+        size[u] += size[v];
+        dp[u] += dp[v] + size[v];  // 子树节点到 u 的距离和
+      }
     }
     
-    void dfs2(int u, int fa){
-        for(int v:e[u]){
-            if(v==fa) continue;
-            ans[v] = ans[u] - size[v] + (n - size[v]);
-            dfs2(v,u);
-        }
+    void dfs2(int u, int fa) {
+      for (int v : e[u]) {
+        if (v == fa) continue;
+        ans[v] = ans[u] - size[v] + (n - size[v]);
+        dfs2(v, u);
+      }
     }
     
-    int main(){
-        cin >> n;
-        for(int i=1;i<n;i++){
-            int u,v; cin>>u>>v;
-            e[u].push_back(v);
-            e[v].push_back(u);
-        }
+    int main() {
+      cin >> n;
+      for (int i = 1; i < n; i++) {
+        int u, v;
+        cin >> u >> v;
+        e[u].push_back(v);
+        e[v].push_back(u);
+      }
     
-        dfs1(1,0);
-        ans[1] = dp[1];
-        dfs2(1,0);
+      dfs1(1, 0);
+      ans[1] = dp[1];
+      dfs2(1, 0);
     
-        long long mini = LLONG_MAX;
-        vector<int> centers;
-        for(int i=1;i<=n;i++){
-            if(ans[i]<mini){
-                mini = ans[i];
-                centers={i};
-            } else if(ans[i]==mini) centers.push_back(i);
-        }
+      long long mini = LLONG_MAX;
+      vector<int> centers;
+      for (int i = 1; i <= n; i++) {
+        if (ans[i] < mini) {
+          mini = ans[i];
+          centers = {i};
+        } else if (ans[i] == mini)
+          centers.push_back(i);
+      }
     
-        cout << "Distance-sum minimum nodes: ";
-        for(int x:centers) cout << x << " ";
-        cout << "\n";
+      cout << "Distance-sum minimum nodes: ";
+      for (int x : centers) cout << x << " ";
+      cout << "\n";
     }
-
     ```
 
+    ```
 
 ## 例题
 
