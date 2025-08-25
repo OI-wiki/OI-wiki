@@ -84,7 +84,7 @@ author: PeterlitsZo, Tiphereth-A
     
     再次重复之前的论证，消去 $\prod_{r\in R}r$，就得到 $a^{\varphi(m)}\equiv 1\pmod m$。
 
-对于素数 $p$，有 $\varphi(p)=p-1$，因此，费马小定理是欧拉定理的一个特例。另外，欧拉定理中的指数 $\varphi(m)$ 在一般情形下并非使得该式成立的最小指数。它可以改进到 $\lambda(m)$，其中，$\lambda(\cdot)$ 是 [Carmichael 函数](./prime.md#carmichael-函数)。关于相关结论的代数背景，可以参考 [整数同余类的乘法群](../algebra/ring-theory.md#应用整数同余类的乘法群) 一节。
+对于素数 $p$，有 $\varphi(p)=p-1$，因此，费马小定理是欧拉定理的一个特例。另外，欧拉定理中的指数 $\varphi(m)$ 在一般情形下并非使得该式成立的最小指数。它可以改进到 $\lambda(m)$，其中，$\lambda(\cdot)$ 是 [Carmichael 函数](./primitive-root.md#carmichael-函数)。关于相关结论的代数背景，可以参考 [整数同余类的乘法群](../algebra/ring-theory.md#应用整数同余类的乘法群) 一节。
 
 ## 扩展欧拉定理
 
