@@ -104,7 +104,7 @@
             return True
         ```
 
-如果 $a^{n−1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则称 $n$ 为以 $a$ 为底的 **Fermat 伪素数**。我们在实践中观察到，如果 $a^{n−1} \equiv 1 \pmod n$，那么 $n$ 通常是素数。但其实存在反例：对于 $n = 341$ 且 $a = 2$，虽然有 $2^{340}\equiv 1 {\pmod {341}}$，但是 $341 = 11 \cdot 31$ 是合数。事实上，对于任何固定的基底 $a$，这样的反例都有无穷多个。
+如果 $a^{n−1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则称 $n$ 为以 $a$ 为底的 **Fermat 伪素数**。我们在实践中观察到，如果 $a^{n−1} \equiv 1 \pmod n$，那么 $n$ 通常是素数。但其实存在反例：对于 $n = 341$ 且 $a = 2$，虽然有 $2^{340}\equiv 1 {\pmod {341}}$，但是 $341 = 11 \cdot 31$ 是合数。事实上，对于任何固定的基底 $a$，这样的反例都有无穷多个[^inf-fermat-pp]。
 
 既然对于单个基底，Fermat 素性测试无法保证正确性，一个自然的想法就是多检查几组基底。但是，即使检查了所有可能的与 $n$ 互素的基底 $a$，依然无法保证 $n$ 是素数。也就是说，费马小定理的逆命题并不成立：即使对于所有 $a\perp n$，都有 $a^{n-1}\equiv 1\pmod n$，$n$ 也不一定是素数。这样的数称为 [Carmichael 数](./primitive-root.md#carmichael-数)。它也有无穷多个。这迫使我们寻找更为严格的素性测试。
 
@@ -112,9 +112,9 @@
 
 **Miller–Rabin 素性测试**（Miller–Rabin primality test）是更好的素数判定方法。它是由 Miller 和 Rabin 二人根据 Fermat 素性测试优化得到的。和其它概率性素数测试一样，它也只能检测出伪素数。要确保是素数，需要用慢得多的确定性算法。然而，实际上没有已知的数字通过了 Miller–Rabin 测试等高级概率性测试但实际上却是合数，因此我们可以放心使用。
 
-在不考虑乘法的复杂度时，对数 $n$ 进行 $k$ 轮测试的时间复杂度是 $O(k \log n)$。Miller-Rabbin 素性测试常用于对高精度数进行测试，此时时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
+在不考虑乘法的复杂度时，对数 $n$ 进行 $k$ 轮测试的时间复杂度是 $O(k \log n)$。Miller–Rabin 素性测试常用于对高精度数进行测试，此时时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
 
-为了解决 Carmichael 数带来的挑战，Miller-Rabbin 素性测试进一步考虑了素数的如下性质：
+为了解决 Carmichael 数带来的挑战，Miller–Rabin 素性测试进一步考虑了素数的如下性质：
 
 ???+ note "二次探测定理"
     如果 $p$ 是奇素数，则 $x^2 \equiv 1 \pmod p$ 的解为 $x \equiv 1 \pmod p$ 或者 $x \equiv p - 1 \pmod p$。
@@ -122,7 +122,7 @@
 ??? note "证明"
     容易验证，$p$ 为奇素数时，$x\equiv 1\pmod p$ 和 $x\equiv p-1\pmod p$ 都可以使得上式成立。由 [Lagrange 定理](./congruence-equation.md#定理-3lagrange-定理) 可知，这就是该方程的所有解。
 
-将费马小定理和二次探测定理结合起来使用，就得到 Miller-Rabbin 素性测试：
+将费马小定理和二次探测定理结合起来使用，就得到 Miller–Rabin 素性测试：
 
 1.  将 $a^{n-1} \equiv 1 \pmod n$ 中的指数 $n−1$ 分解为 $n−1=u \times 2^t$；
 2.  在每轮测试中对随机出来的 $a$ 先求出 $v = a^{u} \bmod n$，之后对这个值执行最多 $t$ 次平方操作；
@@ -372,12 +372,14 @@
 
 1.  Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
 2.  [数论部分第一节：素数与素性测试](http://www.matrix67.com/blog/archives/234)
-3.  [Miller-Rabin 与 Pollard-Rho 学习笔记 - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
+3.  [Miller–Rabin 与 Pollard-Rho 学习笔记 - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
 4.  [Primality test - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)
 5.  [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)
 6.  [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
 7.  Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
-8.  [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#)
+8.  [Deterministic variant of the Miller–Rabin primality test](https://miller-rabin.appspot.com/#)
 9.  [Highly composite number - Wikipedia](https://en.wikipedia.org/wiki/Highly_composite_number)
+
+[^inf-fermat-pp]: Pomerance, Carl, John L. Selfridge, and Samuel S. Wagstaff. "The pseudoprimes to 25⋅ 10⁹." Mathematics of Computation 35, no. 151 (1980): 1003-1026. 的定理 1 说明了，对于固定的基底 $a$，能够通过更强的 Miller–Rabin 素性测试的合数也是无穷多的。
 
 [^millerrabinproof]: 本结论及其证明参考了 Crandall, Richard, and Carl Pomerance. Prime numbers: a computational perspective. New York, NY: Springer New York, 2005. 的第 3.5 节。
