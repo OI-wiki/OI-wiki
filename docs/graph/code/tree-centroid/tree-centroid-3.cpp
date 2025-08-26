@@ -1,14 +1,18 @@
+// Verified by https://codeforces.com/gym/101649/problem/G.
+// Codes associating I/O streams to files are omitted.
 #include <iostream>
 #include <limits>
 #include <vector>
 using namespace std;
 
+// --8<-- [start:core]
 const int N = 50005;
 
 int n, siz[N];
 long long dp[N], ans[N];
-vector<int> g[N];
+vector<int> g[N], centroids;
 
+// 求 1 号节点到所有其他节点的距离和
 void dfs1(int u, int fa) {
   siz[u] = 1;
   dp[u] = 0;
@@ -20,6 +24,7 @@ void dfs1(int u, int fa) {
   }
 }
 
+// 通过换根 DP 求所有节点为树根时对应的距离和
 void dfs2(int u, int fa) {
   for (int v : g[u]) {
     if (v == fa) continue;
@@ -28,13 +33,26 @@ void dfs2(int u, int fa) {
   }
 }
 
+// 求树的重心
+void get_centroids() {
+  dfs1(1, 0);
+  ans[1] = dp[1];
+  dfs2(1, 0);
+
+  long long mini = std::numeric_limits<long long>::max();
+  for (int i = 1; i <= n; i++) {
+    if (ans[i] < mini) {
+      mini = ans[i];
+      centroids = {i};
+    } else if (ans[i] == mini)
+      centroids.push_back(i);
+  }
+}
+
+// --8<-- [end:core]
 int main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-
-  // freopen("godfather.in", "r", stdin);
-  // freopen("godfather.out", "w", stdout);
-
   cin >> n;
   for (int i = 1; i < n; i++) {
     int u, v;
@@ -42,25 +60,11 @@ int main() {
     g[u].push_back(v);
     g[v].push_back(u);
   }
-
-  dfs1(1, 0);
-  ans[1] = dp[1];
-  dfs2(1, 0);
-
-  long long mini = std::numeric_limits<long long>::max();
-  vector<int> centers;
-  for (int i = 1; i <= n; i++) {
-    if (ans[i] < mini) {
-      mini = ans[i];
-      centers = {i};
-    } else if (ans[i] == mini)
-      centers.push_back(i);
-  }
-
-  if (centers.size() == 1)
-    cout << centers.front() << '\n';
+  get_centroids();
+  if (centroids.size() == 1)
+    cout << centroids.front() << '\n';
   else
-    cout << min(centers.front(), centers.back()) << " "
-         << max(centers.front(), centers.back()) << '\n';
+    cout << min(centroids.front(), centroids.back()) << " "
+         << max(centroids.front(), centroids.back()) << '\n';
   return 0;
 }

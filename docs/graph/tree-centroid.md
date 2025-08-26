@@ -16,25 +16,24 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
 
 ## 求法
 
-???+ example "[Gym 101649G Godfather](https://codeforces.com/gym/101649/problem/G)"
-    给定一棵树，求其重心。
+根据重心的定义及其第三条性质，有两种方法可以在 $O(n)$ 时间内求出树的所有重心，其中，$n$ 为树的大小。
 
 ### DFS 统计子树大小
 
 在 DFS 中计算每个子树的大小，记录「向下」的子树的最大大小，利用总点数减去当前子树（这里的子树指有根树的子树）的大小得到「向上」的子树的大小，然后就可以依据定义找到重心了。
 
-??? note "参考代码"
+??? example "参考实现"
     ```cpp
-    --8<-- "docs/graph/code/tree-centroid/tree-centroid-2.cpp"
+    --8<-- "docs/graph/code/tree-centroid/tree-centroid-2.cpp:core"
     ```
 
 ### 换根 DP
 
 根据树中所有点到某个点的距离和中，到重心的距离和是最小的；如果有两个重心，那么到它们的距离和一样。我们只需要找出到所有点距离之和最小的点即可。
 
-??? note "参考代码"
+??? example "参考实现"
     ```cpp
-    --8<-- "docs/graph/code/tree-centroid/tree-centroid-3.cpp"
+    --8<-- "docs/graph/code/tree-centroid/tree-centroid-3.cpp:core"
     ```
 
 ## 例题
@@ -56,16 +55,17 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
     --8<-- "docs/graph/code/tree-centroid/tree-centroid-1.cpp"
     ```
 
+## 习题
+
+-   [Gym 101649G Godfather](https://codeforces.com/gym/101649/problem/G)
+-   [POJ 1655 Balancing Art](http://poj.org/problem?id=1655)
+-   [洛谷 P1364 医院设置](https://www.luogu.com.cn/problem/P1364)
+-   [Codeforces 1406C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C)
+-   [Codeforces 708C Centroids](https://codeforces.com/problemset/problem/708/C)
+
 ## 参考资料
 
 -   [树的 "重心" 的一些性质及动态维护 - fanhq666](https://web.archive.org/web/20181122041458/http://fanhq666.blog.163.com/blog/static/81943426201172472943638)（[博客园转载](https://www.cnblogs.com/qlky/p/5781081.html)）
 -   [树的直径、树的重心与树的点分治 - cyendra](https://www.cnblogs.com/zinthos/p/3899075.html)
 -   [树的重心的性质及其证明 - suxxsfe](https://www.cnblogs.com/suxxsfe/p/13543253.html)
 -   《信息学奥林匹克辞典》2.4.7.11 章 1. 树的重心
-
-## 习题
-
--   [POJ 1655 Balancing Art](http://poj.org/problem?id=1655)
--   [洛谷 P1364 医院设置](https://www.luogu.com.cn/problem/P1364)
--   [Codeforces 1406C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C)
--   [Codeforces 708C Centroids](https://codeforces.com/problemset/problem/708/C)
