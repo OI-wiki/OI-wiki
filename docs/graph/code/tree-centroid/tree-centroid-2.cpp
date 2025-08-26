@@ -45,6 +45,7 @@ int main() {
   if (centroid[0] == 1)
     cout << centroid[1] << '\n';
   else
-    cout << min(centroid[1], centroid[2]) << " " << max(centroid[1], centroid[2]) << '\n';
+    cout << min(centroid[1], centroid[2]) << " "
+         << max(centroid[1], centroid[2]) << '\n';
   return 0;
 }

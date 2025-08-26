@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <limits>
+#include <vector>
 using namespace std;
 
 const int N = 50005;
@@ -60,6 +60,7 @@ int main() {
   if (centers.size() == 1)
     cout << centers.front() << '\n';
   else
-    cout << min(centers.front(), centers.back()) << " " << max(centers.front(), centers.back()) << '\n';
+    cout << min(centers.front(), centers.back()) << " "
+         << max(centers.front(), centers.back()) << '\n';
   return 0;
 }
