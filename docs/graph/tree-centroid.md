@@ -58,7 +58,7 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
 
 ## 参考资料
 
--   [树的"重心"的一些性质及动态维护 - fanhq666](https://web.archive.org/web/20181122041458/http://fanhq666.blog.163.com/blog/static/81943426201172472943638)（[博客园转载](https://www.cnblogs.com/qlky/p/5781081.html)）
+-   [树的 "重心" 的一些性质及动态维护 - fanhq666](https://web.archive.org/web/20181122041458/http://fanhq666.blog.163.com/blog/static/81943426201172472943638)（[博客园转载](https://www.cnblogs.com/qlky/p/5781081.html)）
 -   [树的直径、树的重心与树的点分治 - cyendra](https://www.cnblogs.com/zinthos/p/3899075.html)
 -   [树的重心的性质及其证明 - suxxsfe](https://www.cnblogs.com/suxxsfe/p/13543253.html)
 -   《信息学奥林匹克辞典》2.4.7.11 章 1. 树的重心
