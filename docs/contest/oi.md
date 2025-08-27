@@ -1,4 +1,4 @@
-author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309, shigengxin123456, Re-Ori
+author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309, shigengxin123456, Re-Ori，hcx1204
 
 ## 赛事简介
 
@@ -288,8 +288,6 @@ BalkanOI 只有某几年公开题面、测试数据和题解，官网地址见 [
 CEOI 2018 的参赛国与上面两个比赛有部分重叠，包括波兰、罗马尼亚、格鲁吉亚、克罗地亚等国。题目难度大。
 
 CEOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](https://loj.ac/article/416)。
-
-在国内 OJ 中，BZOJ 的 CEOI 题相对最齐。
 
 ### eJOI
 

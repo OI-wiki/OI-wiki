@@ -1,4 +1,4 @@
-author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6, LUTLJS, ZsgsDesign, CB-X2-Jun
+author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6, LUTLJS, ZsgsDesign, CB-X2-Jun, tallnutliu
 
 本页面主要列举了一些与算法竞赛有关的在线评测网站、题目合集、书籍、工具等资源。
 
@@ -23,7 +23,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [QOJ](https://qoj.ac/)：收集了很多国内外 OI 和 ICPC 竞赛题目，具有训练价值。
 -   [Universal Online Judge](https://uoj.ac/)：始于 2014 年，Universal 取通用之意，[项目开源](https://github.com/UniversalOJ/UOJ-System)；[VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高。
 -   [Vijos](https://vijos.org/)：始于 2005 年。[服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
--   [WZOI](https://wzoi.cc)：始于 2017 年，由浙江省温州中学维护的 [开源](https://github.com/massimodong/wzoj) 评测系统。
+-   [WZOI](https://wzoi.cn)：始于 2017 年，由浙江省温州中学维护的 [开源](https://github.com/massimodong/wzoj) 评测系统。
 -   [ZOJ](https://zoj.pintia.cn/home)：浙江大学在线评测系统，始于 2001 年。
 
 ### 国外
@@ -49,7 +49,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 ## 教程资料
 
 -   [**OI Wiki**](https://oi-wiki.org)
--   [Codeforces 上网友整理的一份教程合集](http://codeforces.com/blog/entry/57282)
+-   [Codeforces 上网友整理的一份教程合集](https://codeforces.com/blog/entry/125623)
 -   [英文版 E-Maxx 算法教程](https://cp-algorithms.com/)
 -   [演算法筆記](https://web.ntnu.edu.tw/~algo/)：台湾师范大学总结的教程
 -   [如何为 ACM-ICPC 做准备？- geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)

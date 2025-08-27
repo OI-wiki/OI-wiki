@@ -187,6 +187,7 @@ nav:
     - 概率 DP: dp/probability.md
     - DP 套 DP: dp/dp-of-dp.md
     - DP 优化:
+      - DP 优化简介: dp/opt/dp-opt.md
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
       - 四边形不等式优化: dp/opt/quadrangle.md
@@ -239,10 +240,10 @@ nav:
       - 筛法: math/number-theory/sieve.md
       - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 分解质因数: math/number-theory/pollard-rho.md
-      - 裴蜀定理: math/number-theory/bezouts.md
+      - 裴蜀定理 & 一次不定方程: math/number-theory/bezouts.md
       - 类欧几里德算法: math/number-theory/euclidean.md
-      - 欧拉定理 & 费马小定理: math/number-theory/fermat.md
-      - 乘法逆元: math/number-theory/inverse.md
+      - 费马小定理 & 欧拉定理: math/number-theory/fermat.md
+      - 模逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
       - 升幂引理: math/number-theory/lift-the-exponent.md
@@ -328,7 +329,6 @@ nav:
       - 博弈论简介: math/game-theory/intro.md
       - 公平组合游戏: math/game-theory/impartial-game.md
       - 非公平组合游戏: math/game-theory/partizan-game.md
-      - 反常游戏: math/game-theory/misere-game.md
     - 数值算法:
       - 插值: math/numerical/interp.md
       - 数值积分: math/numerical/integral.md
@@ -568,7 +568,10 @@ theme:
     text: 'Fira Sans'
     code: 'Fira Mono'
 
-plugins: []
+plugins:
+- toggle-sidebar:
+    theme: material
+    toggle_button: all
 
 hooks:
   - hooks/on_env.py

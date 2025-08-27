@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.10"
 
 [[package]]
@@ -240,6 +240,18 @@ wheels = [
 ]
 
 [[package]]
+name = "mkdocs-toggle-sidebar-plugin"
+version = "0.0.8"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mkdocs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/04/a2/b4851f24fd3d2fe963f5d9f4b01a360cf3b9c0b5d928f8f1d9d50b02bba2/mkdocs_toggle_sidebar_plugin-0.0.8.tar.gz", hash = "sha256:a640fa60b6485012c5ecd24e927132eec71410ffa16b38ff44cb9c5be49e0a92", size = 13905, upload-time = "2025-08-21T17:47:14.364Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/aa/a9/ca5774f416baade721172d60e0cfbed2e271222cafee205d79f948275d9b/mkdocs_toggle_sidebar_plugin-0.0.8-py3-none-any.whl", hash = "sha256:bec2d4db2be77e2e7d6bf52f05541803a1688839228aea12555db9d1f8db68c2", size = 13642, upload-time = "2025-08-21T17:47:12.98Z" },
+]
+
+[[package]]
 name = "oi-wiki"
 version = "1.0.0"
 source = { virtual = "." }
@@ -247,6 +259,7 @@ dependencies = [
     { name = "beautifulsoup4" },
     { name = "markdown" },
     { name = "mkdocs" },
+    { name = "mkdocs-toggle-sidebar-plugin" },
     { name = "pygments" },
     { name = "pymdown-extensions" },
     { name = "python-markdown-document-offsets-injection-extension" },
@@ -258,6 +271,7 @@ requires-dist = [
     { name = "beautifulsoup4" },
     { name = "markdown", specifier = "==3.6" },
     { name = "mkdocs", specifier = "==1.5.3" },
+    { name = "mkdocs-toggle-sidebar-plugin", specifier = "==0.0.8" },
     { name = "pygments" },
     { name = "pymdown-extensions", specifier = "==10.3.1" },
     { name = "python-markdown-document-offsets-injection-extension", specifier = "==0.5.13" },

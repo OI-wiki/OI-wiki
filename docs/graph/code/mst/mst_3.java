@@ -54,10 +54,10 @@ public class Main {
                 Merge(xr, yr); // 合并
                 tot++; // 边数增加
                 ans += edges[i].w; // 代价增加
-            }
-            if (tot >= (n - k)) {  // 检查选的边数是否满足 k 个棉花糖
-                System.out.println(ans);
-                return;
+                if (tot == n - k) {  // 检查选的边数是否满足 k 个棉花糖
+                    System.out.println(ans);
+                    return;
+                }
             }
         }
         System.out.println("No Answer");  // 无法连成
@@ -68,6 +68,11 @@ public class Main {
         n = scanner.nextInt();
         m = scanner.nextInt();
         k = scanner.nextInt();
+
+        if (n == k) { // 特判边界情况
+            System.out.println("0");
+            return;
+        }
 
         // 初始化
         for (int i = 1; i <= n; i++) {
