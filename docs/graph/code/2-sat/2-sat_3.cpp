@@ -58,9 +58,7 @@ int main() {
     }
   }
   puts("POSSIBLE");
-  for (int i = 1; i <= n; i++) {
-    putchar(a[i] < a[i + n] ? '1' : '0');
-    putchar(' ');
-  }
+  for (int i = 1; i <= n; i++)
+    printf("%c%c", a[i] < a[i + n] ? '1' : '0', " \n"[i == n]);
   return 0;
 }
