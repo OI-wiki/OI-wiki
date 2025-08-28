@@ -51,6 +51,7 @@ struct PersistentRandomizedHeap {
 
 struct Edge {
   int u, v, c;
+
   Edge(int u, int v, int c) : u(u), v(v), c(c) {}
 };
 

@@ -7,6 +7,7 @@ constexpr long long inf = 0x3f3f3f3f3f3f3f3f;
 
 struct Edge {
   int u, v, c;
+
   Edge(int u, int v, int c) : u(u), v(v), c(c) {}
 };
 
