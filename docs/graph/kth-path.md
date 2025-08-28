@@ -18,7 +18,7 @@ A\* 算法定义了一个对当前状态 $x$ 的估价函数 $f(x)=g(x)+h(x)$，
 
 ### 实现
 
-??? example "模板题 [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk) 参考实现"
+??? example " 模板题 [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk) 参考实现 "
     ```cpp
     --8<-- "docs/graph/code/k-shortest-walk/k-shortest-walk-1.cpp"
     ```
@@ -94,7 +94,7 @@ $P'$ 有如下性质：
 
 ### 实现
 
-??? example "模板题 [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk) 参考实现"
+??? example " 模板题 [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk) 参考实现 "
     ```cpp
     --8<-- "docs/graph/code/k-shortest-walk/k-shortest-walk-2.cpp"
     ```
