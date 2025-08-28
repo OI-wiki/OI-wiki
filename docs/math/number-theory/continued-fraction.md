@@ -1379,7 +1379,7 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
         ```
 
 ???+ example "[Tavrida NU Akai Contest - Continued Fraction](https://timus.online/problem.aspx?space=1&num=1814)"
-    给定 $x$ 和 $k$，且 $x$ 不是完全平方数，$0\le k\le 10^9$。求出 $x$ 的第 $k$ 个渐近分数 $x_k$。
+    给定 $x$ 和 $k$，且 $x$ 不是完全平方数，$0\le k\le 10^9$。求出 $\sqrt{x}$ 的第 $k$ 个渐近分数 $x_k$。
 
 ??? note "解答"
     首先利用上述算法解出 $\sqrt{x}$ 的周期，将循环节表示成分式线性变换，就可以用 [快速幂](../binary-exponentiation.md) 获得 $x_k$ 的值。当然，对于没有进入循环节和不足一个循环节的部分，需要单独处理。
