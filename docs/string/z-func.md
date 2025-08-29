@@ -154,8 +154,8 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 
 ## 练习题目
 
--   [luogu P5410 【模板】扩展 KMP/exKMP（Z 函数）](https://www.luogu.com.cn/problem/P5410)
--   [luogu P7114 【NOIP2020】 字符串匹配](https://www.luogu.com.cn/problem/P7114)
+-   [luogu P5410【模板】扩展 KMP/exKMP（Z 函数）](https://www.luogu.com.cn/problem/P5410)
+-   [luogu P7114【NOIP2020】字符串匹配](https://www.luogu.com.cn/problem/P7114)
 -   [AtCoder - Palindrome Construction](https://atcoder.jp/contests/abc349/tasks/abc349_g)
 -   [CF126B Password](http://codeforces.com/problemset/problem/126/B)
 -   [UVa # 455 Periodic Strings](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
