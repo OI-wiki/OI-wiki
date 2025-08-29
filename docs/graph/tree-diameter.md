@@ -189,7 +189,7 @@ int main() {
 -   [Educational Codeforces Round 35, Problem F, Tree Destruction](https://codeforces.com/contest/911/problem/F)
 -   [ZOJ 3820 Building Fire Stations](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827369872&page=28)
 -   [CEOI2019/CodeForces 1192B. Dynamic Diameter](https://codeforces.com/contest/1192/problem/B)
--   [IPSC 2019 网络赛，Lightning Routing I](https://nanti.jisuanke.com/t/41398)
+-   [ICPC 2019 上海赛区网络赛 Lightning Routing I](https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-A2290)
 -   [NOIP2007 提高组 树网的核](https://www.luogu.com.cn/problem/P1099)
 -   [SDOI2011 消防](https://www.luogu.com.cn/problem/P2491)
 -   [APIO2010 巡逻](https://www.luogu.com.cn/problem/P3629)

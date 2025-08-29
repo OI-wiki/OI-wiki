@@ -250,7 +250,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note " 习题 [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
     题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
-??? note " 习题 [「USACO 5.4.4」Betsy's Tours](https://nanti.jisuanke.com/t/T3533)"
+??? note " 习题 [「USACO 5.4.4」Betsy's Tours](https://hydro.ac/d/USACO/p/USACO544)"
     题目大意：一个 $N\times N$ 的方阵（$N\le 7$），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
 
 ??? note " 习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
@@ -805,9 +805,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 当 $n,m\le 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 
--   [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031)
--   [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
--   [「51nod 1034」骨牌覆盖 V3](http://www.51nod.com/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
+-   [「51nod 1031」骨牌覆盖](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1031)
+-   [「51nod 1033」骨牌覆盖 V2](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
+-   [「51nod 1034」骨牌覆盖 V3](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
 -   [Wolfram MathWorld, Chebyshev Polynomial of the Second Kind](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
 
 ### 一条路径
