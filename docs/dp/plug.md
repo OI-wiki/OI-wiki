@@ -62,7 +62,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题 [「SRM 671. Div 1 900」BearDestroys](https://competitiveprogramming.info/topcoder/srm/round/16551/div/1)"
+??? note " 习题 [「SRM 671. Div 1 900」BearDestroys](https://archive.topcoder.com/ProblemStatement/pm/14069)"
     题目大意：给定 $n\times m$ 的矩阵，每个格子有 `E` 或 `S`。
     对于一个矩阵，有一个计分方案。按照行优先的规则扫描每个格子，如果这个格子之前被骨牌占据，则 skip。
     否则尝试放多米诺骨牌。如果放骨牌的方向在矩阵外或被其他骨牌占据，则放置失败，切换另一种方案或 skip。
@@ -553,7 +553,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 习题
 
-??? note " 习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://competitiveprogramming.info/topcoder/srm/round/9992/div/1)"
+??? note " 习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://archive.topcoder.com/ProblemStatement/pm/6482)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最小的连通块。
 
 ??? note " 习题 [「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
