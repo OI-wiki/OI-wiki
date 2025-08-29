@@ -103,7 +103,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 习题
 
-??? note " 习题 [「ZJU 3466」The Hive II](https://pintia.cn/problem-sets/91827364500/exam/problems/91827368730)"
+??? note " 习题 [「ZOJ 3466」The Hive II](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827368730)"
     题目大意：同上题，但格子变成了六边形。
 
 ### 一条回路
@@ -269,7 +269,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 例题
 
-???+ note " 例题 [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/91827367895)"
+???+ note " 例题 [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
     题目大意：一个 $N\times M$ 的方阵（$N,M\le 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
 
 本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头。需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况。独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果一定会出现多个连通块。
@@ -756,10 +756,10 @@ if (s >> j & 1) {       // 如果已被覆盖
     
     ![4796](./images/4796.jpg)
 
-??? note " 习题 [「ZOJ 2125」Rocket Mania](https://pintia.cn/problem-sets/91827364500/exam/problems/91827365624)"
+??? note " 习题 [「ZOJ 2125」Rocket Mania](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365624)"
     题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与第 X 行的左边界通过管道相连。
 
-??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/91827365625)"
+??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365625)"
     题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与左边界通过管道相连。
 
 ??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"

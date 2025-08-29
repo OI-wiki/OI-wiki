@@ -455,7 +455,7 @@ Carmichael 数有如下性质：
     --8<-- "docs/math/code/prime/prime_1.cpp"
     ```
 
-???+ example "[ZOJ - More Divisors](https://zoj.pintia.cn/problem-sets/91827364500/problems/91827366061)"
+???+ example "[ZOJ 2562 More Divisors](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827366061)"
     求不超过 $n$ 的数中，除数最多的数。
 
 ??? note "解题思路"
