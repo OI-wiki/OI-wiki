@@ -47,7 +47,7 @@ A：爬山算法的优势在于当正解的写法你并不了解（常见于毒�
 
 ***
 
-### 例 2 [「BZOJ 3680」吊打 XXX](https://www.luogu.com.cn/problem/P1337)
+### 例 2 [「BZOJ 3680」吊打 XXX](https://hydro.ac/p/bzoj-P3680)
 
 题意：求 $n$ 个点的带权类费马点。
 

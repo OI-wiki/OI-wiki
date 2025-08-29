@@ -746,7 +746,6 @@ void sam_init() {
 
 ## 习题
 
--   [HihoCoder #1441 : 后缀自动机一·基本概念](http://hihocoder.com/problemset/problem/1441)
 -   [【模板】后缀自动机](https://www.luogu.com.cn/problem/P3804)
 -   [SDOI2016 生成魔咒](https://loj.ac/problem/2033)
 -   [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/)

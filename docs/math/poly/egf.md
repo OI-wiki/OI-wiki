@@ -219,7 +219,7 @@ $$
 
 ### 不动点
 
-???+ note "[不动点](https://www.51nod.com/Challenge/Problem.html#problemId=1728)"
+???+ note "[不动点](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1728)"
     题意：求有多少个映射 $f:\{1,2,\cdots,n\}\to \{1,2,\cdots,n\}$，使得
     
     $$

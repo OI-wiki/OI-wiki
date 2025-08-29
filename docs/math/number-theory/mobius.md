@@ -349,7 +349,7 @@ $$
     --8<-- "docs/math/code/mobius/mobius_2.cpp"
     ```
 
-### [「BZOJ 2154」Crash 的数字表格](https://www.luogu.com.cn/problem/P1829)
+### [「BZOJ 2154」Crash 的数字表格](https://hydro.ac/p/bzoj-P2154)
 
 求值（对 $20101009$ 取模）
 

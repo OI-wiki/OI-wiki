@@ -8,7 +8,7 @@
 
 ### 习题
 
--   [Hihocoder 1047. Random Tree](http://hihocoder.com/problemset/problem/1047)
+-   [Hihocoder 1047. Random Tree](https://vjudge.net/problem/HihoCoder-1047)
 
 ## 有标号连通图
 

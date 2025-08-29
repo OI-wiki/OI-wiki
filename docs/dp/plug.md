@@ -62,7 +62,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题 [「SRM 671. Div 1 900」BearDestroys](https://competitiveprogramming.info/topcoder/srm/round/16551/div/1)"
+??? note " 习题 [「SRM 671. Div 1 900」BearDestroys](https://archive.topcoder.com/ProblemStatement/pm/14069)"
     题目大意：给定 $n\times m$ 的矩阵，每个格子有 `E` 或 `S`。
     对于一个矩阵，有一个计分方案。按照行优先的规则扫描每个格子，如果这个格子之前被骨牌占据，则 skip。
     否则尝试放多米诺骨牌。如果放骨牌的方向在矩阵外或被其他骨牌占据，则放置失败，切换另一种方案或 skip。
@@ -103,7 +103,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 习题
 
-??? note " 习题 [「ZJU 3466」The Hive II](https://pintia.cn/problem-sets/91827364500/exam/problems/91827368730)"
+??? note " 习题 [「ZOJ 3466」The Hive II](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827368730)"
     题目大意：同上题，但格子变成了六边形。
 
 ### 一条回路
@@ -250,7 +250,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note " 习题 [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
     题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
-??? note " 习题 [「USACO 5.4.4」Betsy's Tours](https://nanti.jisuanke.com/t/T3533)"
+??? note " 习题 [「USACO 5.4.4」Betsy's Tours](https://hydro.ac/d/USACO/p/USACO544)"
     题目大意：一个 $N\times N$ 的方阵（$N\le 7$），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
 
 ??? note " 习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
@@ -269,7 +269,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 例题
 
-???+ note " 例题 [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/91827367895)"
+???+ note " 例题 [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
     题目大意：一个 $N\times M$ 的方阵（$N,M\le 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
 
 本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头。需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况。独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果一定会出现多个连通块。
@@ -553,7 +553,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 习题
 
-??? note " 习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://competitiveprogramming.info/topcoder/srm/round/9992/div/1)"
+??? note " 习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://archive.topcoder.com/ProblemStatement/pm/6482)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最小的连通块。
 
 ??? note " 习题 [「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
@@ -756,10 +756,10 @@ if (s >> j & 1) {       // 如果已被覆盖
     
     ![4796](./images/4796.jpg)
 
-??? note " 习题 [「ZOJ 2125」Rocket Mania](https://pintia.cn/problem-sets/91827364500/exam/problems/91827365624)"
+??? note " 习题 [「ZOJ 2125」Rocket Mania](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365624)"
     题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与第 X 行的左边界通过管道相连。
 
-??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/91827365625)"
+??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365625)"
     题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与左边界通过管道相连。
 
 ??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
@@ -805,9 +805,9 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 当 $n,m\le 100$，可以用 [FKT Algorithm](https://en.wikipedia.org/wiki/FKT_algorithm) 计算其所对应平面图的完美匹配数。
 
--   [「51nod 1031」骨牌覆盖](http://www.51nod.com/Challenge/Problem.html#problemId=1031)
--   [「51nod 1033」骨牌覆盖 V2](http://www.51nod.com/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
--   [「51nod 1034」骨牌覆盖 V3](http://www.51nod.com/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
+-   [「51nod 1031」骨牌覆盖](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1031)
+-   [「51nod 1033」骨牌覆盖 V2](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
+-   [「51nod 1034」骨牌覆盖 V3](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
 -   [Wolfram MathWorld, Chebyshev Polynomial of the Second Kind](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
 
 ### 一条路径
