@@ -504,7 +504,7 @@ $$
 \left(g^eg^{-(e\bmod 2^k)}\right)^{2^{n-1-k}}\equiv g^{2^{n-1}\cdot e_k}\equiv 
 \begin{cases}
 1\pmod p,&\text{if }e_k=0\\
--1\pmod p,&\text{else if }e_k=1
+-1\pmod p,&\text{if }e_k=1
 \end{cases}
 $$
 
