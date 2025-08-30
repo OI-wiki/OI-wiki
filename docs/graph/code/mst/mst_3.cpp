@@ -36,14 +36,14 @@ void kruskal() {
   int ans = 0;  // 存总的代价
   for (int i = 1; i <= m; i++) {
     int xr = findroot(g[i].u), yr = findroot(g[i].v);
-    if (xr != yr) {   // 如果父亲不一样
-      Merge(xr, yr);  // 合并
-      tot++;          // 边数增加
-      ans += g[i].w;  // 代价增加
-    }
-    if (tot >= (n - k)) {  // 检查选的边数是否满足 k 个棉花糖
-      cout << ans << '\n';
-      return;
+    if (xr != yr) {        // 如果父亲不一样
+      Merge(xr, yr);       // 合并
+      tot++;               // 边数增加
+      ans += g[i].w;       // 代价增加
+      if (tot == n - k) {  // 检查选的边数是否满足 k 个棉花糖
+        cout << ans << '\n';
+        return;
+      }
     }
   }
   cout << "No Answer\n";  // 无法连成
@@ -51,6 +51,10 @@ void kruskal() {
 
 int main() {
   cin >> n >> m >> k;
+  if (n == k) {  // 特判边界情况
+    cout << "0\n";
+    return 0;
+  }
   for (int i = 1; i <= n; i++) {  // 初始化
     fa[i] = i;
   }

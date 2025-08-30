@@ -120,7 +120,7 @@ $$
 
 可以发现数据在 $x_4$ 以后都在 $31,17,45$ 之间循环。如果将这些数如下图一样排列起来，会发现这个图像酷似一个 $\rho$，算法也因此得名 rho。
 
-![Pollard-rho1](./images/Pollard-rho1.png)
+![pollard-rho](./images/pollard-rho.svg)
 
 更重要的是，这样的函数确实提供了 $\mathbb Z_p$ 上一个自映射。也就是说，它满足性质：如果 $x\equiv y\pmod p$，则 $f(x)\equiv f(y)\pmod p$。
 

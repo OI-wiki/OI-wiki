@@ -172,11 +172,11 @@ int upper(const void *p1, const void *p2) {
     
         因为搜到最后，会这样（以合法的最大值为例）：
     
-        ![](./images/binary-final-1.png)
+        ![](./images/binary-final-1.svg)
     
         然后会
     
-        ![](./images/binary-final-2.png)
+        ![](./images/binary-final-2.svg)
     
         合法的最小值恰恰相反。
     2.  为何返回左边值？

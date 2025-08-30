@@ -1,4 +1,4 @@
-author: 310552025atNYCU, accelsao, Chrogeek, Enter-tainer, iamtwz, mcendu, Shen-Linwood, shuzhouliu, StudyingFather, t4rf9, Tiphereth-A, TrickEye, wlbksy, Xeonacid, yuhuoji, c-forrest
+author: 310552025atNYCU, accelsao, Chrogeek, Enter-tainer, iamtwz, mcendu, Shen-Linwood, shuzhouliu, StudyingFather, t4rf9, Tiphereth-A, TrickEye, wlbksy, Xeonacid, yuhuoji, c-forrest, aaron20100919
 
 ## 引入
 
@@ -94,7 +94,7 @@ Berge 引理说明，利用增广路改进匹配的方法是充分的。也就�
 
 ### Hall 定理
 
-假设 $G=(X,Y,E)$ 是二分图，且 $|X|\le |Y|$。对于图 $G$ 的一个匹配 $M$，如果 $X$ 中的所有顶点都是匹配点，那么就称 $M$ 是一个 **$X$‑完美匹配**，有时也简称作（二分图 $G$）的完美匹配。这是二分图中可能达成的最大的匹配。Hall 定理提供了判断这种匹配是否存在的充要条件。
+假设 $G=(X,Y,E)$ 是二分图，且 $|X|\le |Y|$。对于图 $G$ 的一个匹配 $M$，如果 $X$ 中的所有顶点都是匹配点，那么就称 $M$ 是一个 **$X$‑完美匹配**，有时也简称作（二分图 $G$ 的）完美匹配。这是二分图中可能达成的最大的匹配。Hall 定理提供了判断这种匹配是否存在的充要条件。
 
 Hall 定理说明，只要保证对于 $X$ 的任何子集，$Y$ 中都有足够多的顶点可以与它匹配，就一定存在 $X$‑完美匹配。
 

@@ -78,8 +78,8 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
   std::vector<uint> root, inv_root;
   std::tie(root, inv_root) = GetFFTRoot(len * 4);
   // [y^(-1)] (f(y) / (-g(x) + y)) mod x^n in R[x]((y^(-1)))
-  auto KinoshitaLi = [&](auto &&KinoshitaLi, const std::vector<uint> &P,
-                         const std::vector<uint> &Q, int d, int n) {
+  const auto KinoshitaLi = [&](auto &&KinoshitaLi, const std::vector<uint> &P,
+                               const std::vector<uint> &Q, int d, int n) {
     assert((int)P.size() == d * n);
     assert((int)Q.size() == d * n);
     if (n == 1) return P;
@@ -92,7 +92,8 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
     for (int i = 0; i < d * n * 4; i += 2)
       V[i / 2] = (ull)dftQ[i] * dftQ[i + 1] % MOD;
     InvFFT(d * n * 2, V.data(), inv_root.data());
-    if ((V[0] += MOD - 1) >= MOD) V[0] -= MOD;
+    assert(V[0] == 1);
+    V[0] = 0;
     for (int i = 1; i < d * 2; ++i)
       for (int j = 0; j < n / 2; ++j) V[i * (n / 2) + j] = V[i * n + j];
     V.resize(d * n);
