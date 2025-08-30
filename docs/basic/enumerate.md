@@ -42,7 +42,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
           for (int j = 0; j < n; ++j)
             if (a[i] + a[j] == 0) ++ans;
         ```
-    
+      
     === "Python"
         ```python
         for i in range(n):
@@ -50,7 +50,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
                 if a[i] + a[j] == 0:
                     ans += 1
         ```
-    
+  
     === "Java"
         ```java
         for (int i = 0; i < n; ++i)

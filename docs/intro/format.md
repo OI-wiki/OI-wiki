@@ -136,7 +136,7 @@
         #include <cstdio>  //好的写法
         ```
         ````
-        
+      
         ```cpp
         // #include<stdio.h>    //不好的写法
         #include <cstdio>  //好的写法
@@ -156,13 +156,13 @@
     ???+ success "示例"
         ```markdown
         当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者。[^ref1]
-        
+                
         2020年1月21日，CCF宣布恢复NOIP。[^ref2]
-        
+          
         ## 参考资料与注释
-        
+    
         [^ref1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
-        
+      
         [^ref2]: [CCF关于恢复NOIP竞赛的公告-中国计算机学会](https://www.ccf.org.cn/c/2020-01-21/694716.shtml)
         ```
         
