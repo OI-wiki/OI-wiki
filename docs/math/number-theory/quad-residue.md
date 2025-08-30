@@ -489,7 +489,7 @@ Tonelli–Shanks 算法是基于离散对数求解同余方程 $x^2\equiv a\pmod
     因为 $a$ 是二次剩余，所以
     
     $$
-    g^{e2^{n-1}} \equiv a^{m2^{n-1}} = a^{p-1} \equiv 1 \pmod p.
+    g^{e2^{n-1}} \equiv a^{m2^{n-1}} = a^{\frac{p-1}{2}} \equiv 1 \pmod p.
     $$
     
     由阶的性质可知，$2^n\mid e2^{n-1}$，所以，$e$ 是偶数。因此，$abg^{-e/2}\bmod p$ 是良定义的，且
