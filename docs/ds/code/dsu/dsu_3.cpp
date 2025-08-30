@@ -64,5 +64,6 @@ int main() {
       if (st[pf]) a[i] |= (1 << j);
     }
   for (int i = 1; i <= n; ++i) cout << a[i] << ' ';
+  cout << endl;
   return 0;
 }
