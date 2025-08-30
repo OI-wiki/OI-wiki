@@ -504,7 +504,7 @@ $$
 当可以使用的颜色组合受到限制时，需要通过背包 DP 或者组合方法求解对轮换染色的方法数目。
 
 -   [Luogu P1446 \[HNOI2008\] Cards](https://www.luogu.com.cn/problem/P1446)
--   [UVA10601 Cubes](https://vjudge.net/problem/UVA-10601)
+-   [UVA10601 Cubes](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1542)
 -   [Luogu P4916 \[MtOI2018\] 魔力环](https://www.luogu.com.cn/problem/P4916)
 
 ### 图论计数

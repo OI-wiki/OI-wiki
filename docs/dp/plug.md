@@ -762,7 +762,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365625)"
     题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与左边界通过管道相连。
 
-??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://vjudge.net/problem/UVALive-4789)"
+??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://qoj.ac/problem/13134)"
     题目大意：一张方格地图上用 `.` 表示空地、`#` 表示石头，找到最长的一条路径满足：
     
     1.  起点在左上角，终点在右下角。
