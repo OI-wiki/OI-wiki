@@ -6,7 +6,7 @@ author: LeoJacob, Marcythm, minghu6
 
 对于一个长度为 $n$ 的字符串 $s$，定义函数 $z[i]$ 表示 $s$ 和 $s[i,n-1]$（即以 $s[i]$ 开头的后缀）的最长公共前缀（LCP）的长度，则 $z$ 被称为 $s$ 的 **Z 函数**。特别地，$z[0] = 0$。
 
-国外一般将计算该数组的算法称为 **Z Algorithm**，而国内则称其为 **扩展 KMP**。
+国外一般将计算该数组的算法称为 **Z Algorithm**，而国内则称其为 **扩展 KMP**（exKMP）。
 
 这篇文章介绍在 $O(n)$ 时间复杂度内计算 Z 函数的算法以及其各种应用。
 
@@ -154,6 +154,8 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 
 ## 练习题目
 
+-   [luogu P5410【模板】扩展 KMP/exKMP（Z 函数）](https://www.luogu.com.cn/problem/P5410)
+-   [luogu P7114【NOIP2020】字符串匹配](https://www.luogu.com.cn/problem/P7114)
 -   [CF126B Password](http://codeforces.com/problemset/problem/126/B)
 -   [UVa # 455 Periodic Strings](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
 -   [UVa # 11022 String Factoring](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
