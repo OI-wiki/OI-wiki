@@ -73,7 +73,7 @@
 
 我们可以根据 [费马小定理](./fermat.md#费马小定理) 得出一种检验素数的思路：
 
-基本思想是不断地选取在 $[2, n-1]$ 中的基 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$。
+基本思想是不断地选取在 $[2, n-1]$ 中的基底 $a$，并检验是否每次都有 $a^{n-1} \equiv 1 \pmod n$。
 
 ???+ example "参考实现"
     === "C++"
@@ -104,128 +104,30 @@
             return True
         ```
 
-如果 $a^{n−1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则 $n$ 被称为以 $a$ 为底的 **伪素数**。我们在实践中观察到，如果 $a^{n−1} \equiv 1 \pmod n$，那么 $n$ 通常是素数。但这里也有个反例：如果 $n = 341$ 且 $a = 2$，即使 $341 = 11 \cdot 31$ 是合数，有 $2^{340}\equiv 1 {\pmod {341}}$。事实上，$341$ 是最小的伪素数基数。
+如果 $a^{n−1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则称 $n$ 为以 $a$ 为底的 **Fermat 伪素数**。我们在实践中观察到，如果 $a^{n−1} \equiv 1 \pmod n$，那么 $n$ 通常是素数。但其实存在反例：对于 $n = 341$ 且 $a = 2$，虽然有 $2^{340}\equiv 1 {\pmod {341}}$，但是 $341 = 11 \cdot 31$ 是合数。事实上，对于任何固定的基底 $a$，这样的反例都有无穷多个[^inf-fermat-pp]。
 
-很遗憾，费马小定理的逆定理并不成立，换言之，满足了 $a^{n-1} \equiv 1 \pmod n$，$n$ 也不一定是素数。甚至有些合数 $n$ 满足对任意满足 $a\perp n$ 的整数 $a$ 均有 $a^{n−1} \equiv 1 \pmod n$，这样的数称为 [Carmichael 数](#carmichael-数)。
-
-#### Carmichael 函数
-
-对正整数 $n$，定义 Carmichael 函数（卡迈克尔函数）为对任意满足 $(a,n)=1$ 的整数 $a$，使
-
-$$
-a^m\equiv 1\pmod n
-$$
-
-恒成立的最小正整数 $m$.
-
-即：
-
-$$
-\lambda(n)=\max\{\delta_n(a):(a,n)=1\}
-$$
-
-Carmichael 函数有如下性质：
-
-1.  （**Carmichael 定理**）对任意素数 $p$ 和任意正整数 $r$，
-
-    $$
-    \lambda\left(p^r\right)=\begin{cases}
-        \frac{1}{2}\varphi\left(p^r\right), & p=2 \land r\geq 3, \\
-        \varphi\left(p^r\right),            & \text{otherwise}.
-    \end{cases}
-    $$
-
-    ??? note "证明"
-        该定理等价于：
-        
-        若模 $n=p^r$ 有 [原根](./primitive-root.md)，则 $\lambda(n)=\varphi(n)$，否则 $\lambda(n)=\dfrac{1}{2}\varphi(n)$.
-        
-        当模 $p^r$ 有原根时，由 [原根存在定理](./primitive-root.md#原根存在定理) 可知命题成立。否则 $p=2$ 且 $r\geq 3$，我们有：
-        
-        $$
-        \lambda\left(2^r\right)\mid 2^{r-2}
-        $$
-        
-        又由 $5^{2^{r-3}}\equiv 1+2^{r-1}\pmod{2^{r-2}}$ 知 $\lambda\left(2^r\right)>2^{r-3}$，因此
-        
-        $$
-        \lambda\left(p^r\right)=2^{r-2}=\frac{1}{2}\varphi\left(p^r\right)
-        $$
-
-    进而有：
-
-    1.  对任意正整数 $n$，有 $\lambda(n)\mid \varphi(n)$
-
-    2.  对任意正整数 $a$，$b$，有 $a\mid b\implies \lambda(a)\mid \lambda(b)$
-
-2.  令 $n$ 的唯一分解式为 $n=\prod_{i=1}^k p_i^{r_i}$，则
-
-    $$
-    \lambda(n)=\left[\lambda\left(p_1^{r_1}\right),\lambda\left(p_2^{r_2}\right),\dots,\lambda\left(p_k^{r_k}\right)\right]
-    $$
-
-    由 [中国剩余定理](./crt.md) 和 Carmichael 定理易证。
-
-    进而有：
-
-    1.  对任意正整数 $a$，$b$，有 $\lambda([a,b])=[\lambda(a),\lambda(b)]$
-
-#### Carmichael 数
-
-对于合数 $n$，如果对于所有正整数 $a$，$a$ 和 $n$ 互素，都有同余式 $a^{n-1} \equiv 1 \pmod n$ 成立，则合数 $n$ 为 **Carmichael 数**（卡迈克尔数，[OEIS:A002997](https://oeis.org/A002997)）。
-
-比如 $561 = 3 \times 11 \times 17$ 就是一个 Carmichael 数，同时也是最小的 Carmichael 数。
-
-我们可以用如下方法判断合数 $n$ 是否为 Carmichael 数：
-
-???+ note "Korselt 判别法[^korselt1899probleme]"
-    合数 $n$ 是 Carmichael 数当且仅当 $n$ 无平方因子且对 $n$ 的任意质因子 $p$ 均有 $p-1 \mid n-1$.
-
-上述判别法可简化为：
-
-???+ note "Carmichael 数判别法"
-    合数 $n$ 是 Carmichael 数当且仅当 $\lambda(n)\mid n-1$，其中 $\lambda(n)$ 为 [Carmichael 函数](#carmichael-函数)。
-
-Carmichael 数有如下性质：
-
-1.  Carmichael 数无平方因子且至少有 $3$ 个不同的质因子。
-2.  设 $C(n)$ 为小于 $n$ 的 Carmichael 数个数，则：
-    1.  （Alford, Granville, Pomerance. 1994[^alford1994infinitely]）$C(n)>n^{2/7}$。
-
-        由此可知 Carmichael 数有无限多个。
-
-    2.  （Erdős. 1956[^erdos1956pseudoprimes]）$C(n)<n\exp\left(-c\dfrac{\ln n\ln\ln\ln n}{\ln\ln n}\right)$，其中 $c$ 为常数。
-
-        由此可知 Carmichael 数的分布十分稀疏。实际上 $C(10^9)=646$，$C(10^{18})=1~401~644$[^pinchcarmichael]。
-
-???+ warning "注意"
-    「若 $n$ 为 Carmichael 数，则 $2^n-1$ 也为 Carmichael 数」是错误的。
-    
-    如 $561=3 \cdot 11 \cdot 17$ 为 Carmichael 数，考虑 $2^{561}-1$。
-    
-    注意到 $23\cdot 89=2^{11}-1\mid 2^{561}-1$，由 Korselt 判别法知，若 $2^{561}-1$ 是 Carmichael 数，则 $22$ 和 $88$ 均为 $2^{561}-2$ 的因子。
-    
-    而 $v_2\left(2^{561}-2\right)=1<v_2(88)=3$，故 $88\nmid 2^{561}-2$，因此 $2^{561}-1$ 不是 Carmichael 数。
+既然对于单个基底，Fermat 素性测试无法保证正确性，一个自然的想法就是多检查几组基底。但是，即使检查了所有可能的与 $n$ 互素的基底 $a$，依然无法保证 $n$ 是素数。也就是说，费马小定理的逆命题并不成立：即使对于所有 $a\perp n$，都有 $a^{n-1}\equiv 1\pmod n$，$n$ 也不一定是素数。这样的数称为 [Carmichael 数](./primitive-root.md#carmichael-数)。它也有无穷多个。这迫使我们寻找更为严格的素性测试。
 
 ### Miller–Rabin 素性测试
 
 **Miller–Rabin 素性测试**（Miller–Rabin primality test）是更好的素数判定方法。它是由 Miller 和 Rabin 二人根据 Fermat 素性测试优化得到的。和其它概率性素数测试一样，它也只能检测出伪素数。要确保是素数，需要用慢得多的确定性算法。然而，实际上没有已知的数字通过了 Miller–Rabin 测试等高级概率性测试但实际上却是合数，因此我们可以放心使用。
 
-在不考虑乘法的复杂度时，对数 $n$ 进行 $k$ 轮测试的时间复杂度是 $O(k \log n)$。Miller-Rabbin 素性测试常用于对高精度数进行测试，此时时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
+在不考虑乘法的复杂度时，对数 $n$ 进行 $k$ 轮测试的时间复杂度是 $O(k \log n)$。Miller–Rabin 素性测试常用于对高精度数进行测试，此时时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)。
 
-#### 二次探测定理
+为了解决 Carmichael 数带来的挑战，Miller–Rabin 素性测试进一步考虑了素数的如下性质：
 
-如果 $p$ 是奇素数，则 $x^2 \equiv 1 \pmod p$ 的解为 $x \equiv 1 \pmod p$ 或者 $x \equiv p - 1 \pmod p$。
+???+ note "二次探测定理"
+    如果 $p$ 是奇素数，则 $x^2 \equiv 1 \pmod p$ 的解为 $x \equiv 1 \pmod p$ 或者 $x \equiv p - 1 \pmod p$。
 
-要证明该定理，只需将上面的方程移项，再使用平方差公式，得到 $(x+1)(x-1) \equiv 0 \bmod p$，即可得出上面的结论。
+??? note "证明"
+    容易验证，$p$ 为奇素数时，$x\equiv 1\pmod p$ 和 $x\equiv p-1\pmod p$ 都可以使得上式成立。由 [Lagrange 定理](./congruence-equation.md#定理-3lagrange-定理) 可知，这就是该方程的所有解。
 
-#### 实现
+将费马小定理和二次探测定理结合起来使用，就得到 Miller–Rabin 素性测试：
 
-根据 Carmichael 数的性质，可知其一定不是 $p^e$。
-
-不妨将费马小定理和二次探测定理结合起来使用：
-
-将 $a^{n-1} \equiv 1 \pmod n$ 中的指数 $n−1$ 分解为 $n−1=u \times 2^t$，在每轮测试中对随机出来的 $a$ 先求出 $v = a^{u} \bmod n$，之后对这个值执行最多 $t$ 次平方操作，若发现非平凡平方根时即可判断出其不是素数，否则再使用 Fermat 素性测试判断。
+1.  将 $a^{n-1} \equiv 1 \pmod n$ 中的指数 $n−1$ 分解为 $n−1=u \times 2^t$；
+2.  在每轮测试中对随机出来的 $a$ 先求出 $v = a^{u} \bmod n$，之后对这个值执行最多 $t$ 次平方操作；
+3.  在整个过程中，如果发现 $1$ 的非平凡平方根（即除了 $\pm 1$ 之外的其他根），就可以判断该数不是素数；
+4.  否则，再使用 Fermat 素性测试判断。
 
 还有一些实现上的小细节：
 
@@ -374,9 +276,9 @@ Carmichael 数有如下性质：
     
     结合上述三个步骤可知，$|S|\le |S'|\le \varphi(n)/4$ 对于所有奇合数 $n>9$ 都成立。
 
-另外，假设 [广义 Riemann 猜想](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis)（generalized Riemann hypothesis, GRH）成立，则对数 $n$ 最多只需要测试 $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ 中的全部整数即可 **确定** 数 $n$ 的素性，证明参见注释 7。
+另外，假设 [广义 Riemann 猜想](https://en.wikipedia.org/wiki/Generalized_Riemann_hypothesis)（generalized Riemann hypothesis, GRH）成立，则对数 $n$ 最多只需要测试 $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ 中的全部整数即可 **确定** 数 $n$ 的素性。[^deterministic-proof]
 
-而在 OI 范围内，通常都是对 $[1, 2^{64})$ 范围内的数进行素性检验。对于 $[1, 2^{32})$ 范围内的数，选取 $\{2, 7, 61\}$ 三个数作为基底进行 Miller–Rabin 素性检验就可以确定素性；对于 $[1, 2^{64})$ 范围内的数，选取 $\{2, 325, 9375, 28178, 450775, 9780504, 1795265022\}$ 七个数作为基底进行 Miller–Rabin 素性检验就可以确定素性。参见注释 8。
+而在 OI 范围内，通常都是对 $[1, 2^{64})$ 范围内的数进行素性检验。对于 $[1, 2^{32})$ 范围内的数，选取 $\{2, 7, 61\}$ 三个数作为基底进行 Miller–Rabin 素性检验就可以确定素性；对于 $[1, 2^{64})$ 范围内的数，选取 $\{2, 325, 9375, 28178, 450775, 9780504, 1795265022\}$ 七个数作为基底进行 Miller–Rabin 素性检验就可以确定素性。[^witnesses]
 
 也可以选取 $\{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37\}$（即前 $12$ 个素数）检验 $[1, 2^{64})$ 范围内的素数。
 
@@ -470,25 +372,17 @@ Carmichael 数有如下性质：
 
 1.  Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
 2.  [数论部分第一节：素数与素性测试](http://www.matrix67.com/blog/archives/234)
-3.  [Miller-Rabin 与 Pollard-Rho 学习笔记 - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
+3.  [Miller–Rabin 与 Pollard–Rho 学习笔记 - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
 4.  [Primality test - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)
-5.  [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)
-6.  [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
-7.  Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
-8.  [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#)
-9.  [Fermat pseudoprime - Wikipedia](https://en.wikipedia.org/wiki/Fermat_pseudoprime)
-10. [Carmichael number - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_number)
-11. [Carmichael function - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_function)
-12. [Carmichael Number -- from Wolfram MathWorld](https://mathworld.wolfram.com/CarmichaelNumber.html)
-13. [Carmichael's Lambda Function | Brilliant Math & Science Wiki](https://brilliant.org/wiki/carmichaels-lambda-function/)
-14. [Highly composite number - Wikipedia](https://en.wikipedia.org/wiki/Highly_composite_number)
+5.  [Fermat pseudoprime - Wikipedia](https://en.wikipedia.org/wiki/Fermat_pseudoprime)
+6.  [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)
+7.  [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
+8.  [Highly composite number - Wikipedia](https://en.wikipedia.org/wiki/Highly_composite_number)
 
-[^korselt1899probleme]: Korselt, A. R. (1899). "Problème chinois".*L'Intermédiaire des Mathématiciens*.**6**: 142–143.
-
-[^alford1994infinitely]: W. R. Alford; Andrew Granville; Carl Pomerance (1994). "There are Infinitely Many Carmichael Numbers".*Annals of Mathematics*. 140 (3): 703–722.
-
-[^erdos1956pseudoprimes]: Erdős, P. (1956). "On pseudoprimes and Carmichael numbers".*Publ. Math. Debrecen*. 4 (3–4): 201–206.
-
-[^pinchcarmichael]: PINCH, Richard GE. The Carmichael numbers up to ${10}^{20}$.
+[^inf-fermat-pp]: Pomerance, Carl, John L. Selfridge, and Samuel S. Wagstaff. "The pseudoprimes to 25⋅ 10⁹." Mathematics of Computation 35, no. 151 (1980): 1003-1026. 的定理 1 说明了，对于固定的基底 $a$，能够通过更强的 Miller–Rabin 素性测试的合数也是无穷多的。
 
 [^millerrabinproof]: 本结论及其证明参考了 Crandall, Richard, and Carl Pomerance. Prime numbers: a computational perspective. New York, NY: Springer New York, 2005. 的第 3.5 节。
+
+[^deterministic-proof]: Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
+
+[^witnesses]: 更多类似的结果请参考 [Deterministic variant of the Miller–Rabin primality test](https://miller-rabin.appspot.com/#)。
