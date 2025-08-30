@@ -76,7 +76,7 @@ $l$ 共有 $\sqrt n$ 级别种取值，所以直接转移复杂度为 $\displays
 
 与 $g$ 的优化方式类似，注意到 $p_t>l$ 时，能用 $p_t,p_{t+1},\dots,p_m$ 组成的数只有 $1$，此时的 $h(t,l)=f(1)=1$。
 
-类似的，推出 $\forall p_t^2>l,h(t,l)=h(t-1,l)+f(p_t)$。
+类似的，推出 $\forall p_t^2>l,h(t,l)=h(t+1,l)+f(p_t)$。
 
 所以一旦发现 $p_t^2>l$ 就停止转移，记此时的 $t$ 为 $t_l$，之后用到 $h$ 时，把此时的 $h$ 值加上 $\displaystyle\sum_{i=p_{t_l}}^{\min(l,\sqrt n)}[i\in\mathbb P]f(i)$ 即可。
 

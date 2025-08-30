@@ -256,6 +256,8 @@ for (循环物品种类) {
     }
     ```
 
+习题：[HDU 5410 CRB and His Birthday](https://acm.hdu.edu.cn/showproblem.php?pid=5410)
+
 ## 二维费用背包
 
 ???+ note "[「Luogu P1855」榨取 kkksc03](https://www.luogu.com.cn/problem/P1855)"

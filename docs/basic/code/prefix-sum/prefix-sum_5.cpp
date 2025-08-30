@@ -1,14 +1,12 @@
 #include <iostream>
 #include <vector>
 
-int main() {
-  int n;
-  std::cin >> n;
-  std::vector<int> a(1 << n);
-  for (int& x : a) std::cin >> x;
+// --8<-- [start:core]
+int n;
+std::vector<int> a, ps;  // length = 1 << n.
 
-  // Copy.
-  auto ps = a;
+void sum_of_subsets() {
+  ps = a;
   // Loop over dimensions.
   for (int i = 0; i < n; ++i) {
     // Loop over i-th dimension.
@@ -20,7 +18,17 @@ int main() {
       }
     }
   }
+}
+
+// --8<-- [end:core]
+int main() {
+  std::cin >> n;
+  a.resize(1 << n);
+  for (int& x : a) std::cin >> x;
+
+  sum_of_subsets();
 
   for (int x : ps) std::cout << x << ' ';
+  std::cout << std::endl;
   return 0;
 }

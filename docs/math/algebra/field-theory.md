@@ -810,7 +810,7 @@ $$
 
 -   分圆多项式：
     -   [Luogu P1520 因式分解](https://www.luogu.com.cn/problem/P1520)
-    -   [\[FZU 2022 Team Training\] Problem C. Call It What You Want](https://codeforces.com/group/dIUimH0NFa/contest/375216/problem/C)
+    -   [Gym102114C Call It What You Want](https://codeforces.com/gym/102114/problem/C)
 -   有限域：
     -   [Luogu P3923 大学数学题](https://www.luogu.com.cn/problem/P3923)
     -   [\[COTS 2021\] 菜 Jelo](https://www.luogu.com.cn/problem/P11192)

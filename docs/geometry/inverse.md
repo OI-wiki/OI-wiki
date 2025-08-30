@@ -259,7 +259,7 @@ author: hyp1231, 383494
 
 ## 练习
 
-[「ICPC 2017 南宁赛区网络赛」Finding the Radius for an Inserted Circle](https://nanti.jisuanke.com/t/A1283)
+[「ICPC 2017 南宁赛区网络赛」Finding the Radius for an Inserted Circle](https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-A1283)
 
 [「CCPC 2017 网络赛」The Designer](https://acm.hdu.edu.cn/showproblem.php?pid=6158)
 

@@ -97,7 +97,7 @@ BronKerbosch1(R, P, X):
 
 ## 习题
 
--   [ZOJ 1492 最大团](https://zoj.pintia.cn/problem-sets/91827364500/problems/91827364991)
+-   [ZOJ 1492 Maximum Clique](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=4&problemSetProblemId=91827364991)
 -   [POJ 1419 无向图最大团](http://poj.org/problem?id=1419)
 -   [POJ 1129 广播电台](http://poj.org/problem?id=1129)
 

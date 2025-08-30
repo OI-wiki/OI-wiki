@@ -43,7 +43,7 @@ $$
 
 ## 实现
 
-此处代码以 [「BZOJ 3680」吊打 XXX](https://www.luogu.com.cn/problem/P1337)（求 $n$ 个点的带权类费马点）为例。
+此处代码以 [「BZOJ 3680」吊打 XXX](https://hydro.ac/p/bzoj-P3680)（求 $n$ 个点的带权类费马点）为例。
 
 ```cpp
 --8<-- "docs/misc/code/simulated-annealing/simulated-annealing_1.cpp"
@@ -71,6 +71,6 @@ $$
 
 ## 习题
 
--   [「BZOJ 3680」吊打 XXX](https://www.luogu.com.cn/problem/P1337)
+-   [「BZOJ 3680」吊打 XXX](https://hydro.ac/p/bzoj-P3680)
 -   [「JSOI 2016」炸弹攻击](https://loj.ac/problem/2076)
 -   [「HAOI 2006」均分数据](https://www.luogu.com.cn/problem/P2503)

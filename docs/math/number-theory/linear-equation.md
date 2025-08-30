@@ -1,147 +1,97 @@
-## 定义
+本文讨论线性同余方程的求解。
 
-形如
+## 基本概念
+
+设 $a,b,n$ 为整数，$x$ 为未知数，那么，形如
 
 $$
 ax\equiv b\pmod n
 $$
 
-的方程称为 **线性同余方程**（Linear Congruence Equation）。其中，$a$、$b$ 和 $n$ 为给定整数，$x$ 为未知数。需要从区间 $[0, n-1]$ 中求解 $x$，当解不唯一时需要求出全体解。
+的方程称为 **线性同余方程**（linear congruence equation）。
+
+求解线性同余方程，需要找到区间 $[0,n-1]$ 中 $x$ 的全部解。当然，将它们加减 $n$ 的任意倍数，依然是方程的解。在模 $n$ 的意义下，这些就是该方程的全部解。
+
+本文接下来介绍了两种求解线性同余方程的思路，分别利用了逆元和不定方程。对于一般的情形，逆元和不定方程的求解都需要用到 [扩展欧几里得算法](./gcd.md#扩展欧几里得算法)，因此，这两种思路其实是一致的。
 
 ## 用逆元求解
 
-首先考虑简单的情况，当 $a$ 和 $n$ 互素（coprime 或 relatively prime）时，即 $\gcd(a, n) = 1$。
-
-此时可以计算 $a$ 的逆元，并将方程的两边乘以 $a$ 的逆元，可以得到唯一解。
-
-### 证明
+首先，考虑 $a$ 和 $n$ 互素的情形，即 $\gcd(a,n)=1$ 的情形。此时，可以计算 $a$ 的 [逆元](./inverse.md)  $a^{-1}$，并将方程两边同乘以 $a^{-1}$，这就得到方程的唯一解：
 
 $$
-x\equiv ba ^ {- 1} \pmod n
+x \equiv ba^{-1} \pmod n.
 $$
 
-接下来考虑 $a$ 和 $n$ 不互素（not coprime），即 $\gcd(a, n) \ne 1$ 的情况。此时不一定有解。例如，$2x\equiv 1\pmod 4$ 没有解。
+紧接着，考虑 $a$ 和 $n$ 不互素的情形，即 $\gcd(a,n)=d>1$ 的情形。此时，原方程不一定有解。例如，$2x\equiv 1\pmod 4$ 就没有解。因此，需要考虑两种情形：
 
-设 $g = \gcd(a, n)$，即 $a$ 和 $n$ 的最大公约数，其中 $a$ 和 $n$ 在本例中大于 1。
+-   当 $d$ 不能整除 $b$ 时，方程无解。对于任意的 $x$，方程左侧 $ax$ 都是 $d$ 的倍数，但是方程右侧 $b$ 不是 $d$ 的倍数。因此，它们不可能相差 $n$ 的倍数，因为 $n$ 的倍数也一定是 $d$ 的倍数。因此，方程无解。
 
-当 $b$ 不能被 $g$ 整除时无解。此时，对于任意的 $x$，方程 $ax\equiv b\pmod n$ 的左侧始终可被 $g$ 整除，而右侧不可被 $g$ 整除，因此无解。
+-   当 $d$ 可以整除 $b$ 时，可以将方程的参数 $a,b,n$ 都同除以 $d$，得到一个新的方程：
 
-如果 $g$ 整除 $b$，则通过将方程两边 $a$、$b$ 和 $n$ 除以 $g$，得到一个新的方程：
+    $$
+    a'x \equiv b'\pmod{n'}.
+    $$
 
-$$
-a^{'}x\equiv b^{'} \pmod{n^{'}}
-$$
+    其中，$\gcd(a',n')=1$，也就是说，$a'$ 和 $n'$ 互素。这种情形已经在前文解决，所以，可以通过求解逆元得到方程的一个解 $x'$.
 
-其中 $a^{'}$ 和 $n^{'}$ 已经互素，这种情形已经解决，于是得到 $x^{'}$ 作为 $x$ 的解。
+    显然，$x'$ 也是原方程的一个解。但这并非原方程唯一的解。由于转化后的方程的全体解为
 
-很明显，$x^{'}$ 也将是原始方程的解。这不是唯一的解。可以看出，原始方程有如下 $g$ 个解：
+    $$
+    \{x' + kn' : k\in\mathbf Z\}.
+    $$
 
-$$
-x_i\equiv (x^{'} + i\cdot n^{'}) \pmod n \quad \text{for } i = 0 \ldots g-1
-$$
+    这些解中落在区间 $[0,n-1]$ 的那些，就是原方程在区间 $[0,n-1]$ 中的全部解：
 
-总之，线性同余方程的 **解的数量** 等于 $g = \gcd(a, n)$ 或等于 $0$。
+    $$
+    x \equiv (x' + kn')\pmod{n},\quad k = 0, 1, \cdots, d-1.
+    $$
 
-## 用扩展欧几里得算法求解
+总结这两种情形，线性同余方程的 **解的数量** 等于 $d=\gcd(a,n)$ 或 $0$。
 
-根据以下两个定理，可以求出线性同余方程 $ax\equiv b \pmod n$ 的解。
+## 用不定方程求解
 
-**定理 1**：线性同余方程 $ax\equiv b \pmod n$ 可以改写为如下线性不定方程：
-
-$$
-ax + nk = b
-$$
-
-其中 $x$ 和 $k$ 是未知数。这两个方程是等价的，有整数解的充要条件为 $\gcd(a,n) \mid b$。
-
-应用扩展欧几里德算法可以求解该线性不定方程。根据定理 1，对于线性不定方程 $ax+nk=b$，可以先用扩展欧几里得算法求出一组 $x_0,k_0$，也就是 $ax_0+nk_0=\gcd(a,n)$，然后两边同时除以 $\gcd(a,n)$，再乘 $b$。就得到了方程
+线性同余方程等价于关于 $x,y$ 的 [二元一次不定方程](./bezouts.md#两个变量的情形)：
 
 $$
-a\dfrac{b}{\gcd(a,n)}x_0+n\dfrac{b}{\gcd(a,n)}k_0=b
+ax + ny = b.
 $$
 
-于是找到方程的一个解。
-
-**定理 2**：若 $\gcd(a,n)=1$，且 $x_0$、$k_0$ 为方程 $ax+nk=b$ 的一组解，则该方程的任意解可表示为：
+利用所引页面的讨论，方程有解当且仅当 $\gcd(a,n)\mid b$，而且该方程的一组通解是
 
 $$
-x=x_0+nt
+\begin{aligned}
+x &= x_0 + t\dfrac{n}{d},\\
+y &= y_0 - t\dfrac{a}{d},
+\end{aligned}
 $$
 
-$$
-k=k_0-at
-$$
+其中，$d=\gcd(a,n)$ 是它们的最大公约数，$t$ 是任意整数。
 
-并且对任意整数 $t$ 都成立。
-
-根据定理 2，可以从已求出的一个解，求出方程的所有解。实际问题中，往往要求出一个最小整数解，也就是一个特解
+进而，线性同余方程的通解就是
 
 $$
-x=(x \bmod t+t) \bmod t
+x \equiv \left(x_0+t\frac{n}{d}\right)\pmod{n},\quad t\in\mathbf Z.
 $$
 
-其中有
+将 $x_0$ 对 $n/d$ 取模就得到同余方程的最小（非负）整数解，也就是上文的 $x'$.
 
-$$
-t=\dfrac{n}{\gcd(a,n)}
-$$
+## 参考实现
 
-如果仔细考虑，用扩展欧几里得算法求解与用逆元求解，两种方法是等价的。
+本节提供的参考实现可以得到同余方程的最小非负整数解。如果解不存在，则输出 $-1$。
 
-### 实现
-
-???+ note "代码实现"
+???+ example "参考实现"
     === "C++"
         ```cpp
-        int ex_gcd(int a, int b, int& x, int& y) {
-          if (b == 0) {
-            x = 1;
-            y = 0;
-            return a;
-          }
-          int d = ex_gcd(b, a % b, x, y);
-          int temp = x;
-          x = y;
-          y = temp - a / b * y;
-          return d;
-        }
-        
-        bool liEu(int a, int b, int c, int& x, int& y) {
-          int d = ex_gcd(a, b, x, y);
-          if (c % d != 0) return false;
-          int k = c / d;
-          x *= k;
-          y *= k;
-          return true;
-        }
+        --8<-- "docs/math/code/linear-equation/linear-equation.cpp:core"
         ```
     
     === "Python"
         ```python
-        def ex_gcd(a, b, x, y):
-            if b == 0:
-                x = 1
-                y = 0
-                return a
-            d = ex_gcd(b, a % b, x, y)
-            temp = x
-            x = y
-            y = temp - a // b * y
-            return d
-        
-        
-        def liEu(a, b, c, x, y):
-            d = ex_gcd(a, b, x, y)
-            if c % d != 0:
-                return 0
-            k = c // d
-            x = x * k
-            y = y * k
-            return 1
+        --8<-- "docs/math/code/linear-equation/linear-equation.py:core"
         ```
 
-**本页面主要译自博文 [Модульное линейное уравнение первого порядка](http://e-maxx.ru/algo/diofant_1_equation) 与其英文翻译版 [Linear Congruence Equation](https://cp-algorithms.com/algebra/linear_congruence_equation.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+## 习题
 
-### 习题
+-   [「NOIP2012」同余方程](https://loj.ac/problem/2605)
 
-[「NOIP2012」同余方程](https://loj.ac/problem/2605)
+**本页面主要译自博文 [Модульное линейное уравнение первого порядка](http://e-maxx.ru/algo/diofant_1_equation) 与其英文翻译版 [Linear Congruence Equation](https://cp-algorithms.com/algebra/linear_congruence_equation.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。内容有改动。**
