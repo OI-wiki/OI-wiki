@@ -30,12 +30,12 @@
 ## 实现
 
 === "C++"
-    ```cpp
-    constexpr int N = 100010;
-  
+\`\`\`cpp
+constexpr int N = 100010;
+
     int n, w, a[N];
     vector<int> bucket[N];
-   
+
     void insertion_sort(vector<int>& A) {
       for (int i = 1; i < A.size(); ++i) {
         int key = A[i];
@@ -67,13 +67,12 @@
     ```
 
 === "Python"
-    ```python
-    N = 100010
-    w = n = 0
-    a = [0] * N
-    bucket = [[] for i in range(N)]
-        
-  
+\`\`\`python
+N = 100010
+w = n = 0
+a = \[0] \* N
+bucket = \[\[] for i in range(N)]
+
     def insertion_sort(A):
         for i in range(1, len(A)):
             key = A[i]

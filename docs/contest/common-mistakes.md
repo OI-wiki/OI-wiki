@@ -21,11 +21,11 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 -   函数参数类型不匹配。
 
     -   示例：如使用 `<algorithm>` 头文件中的 `max` 函数时，传入了一个 `int` 类型参数和一个 `long long` 类型参数。
-                         
+
         ```cpp
         // query 为返回 long long 类型的自定义函数
         printf("%lld\n", max(0, query(1, 1, n, l, r));
-  
+
         //错误    没有与参数列表匹配的 重载函数 "std::max" 实例
         ```
 
@@ -36,9 +36,9 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 犯这类错误时写下的程序虽然能通过编译，但大概率会得到错误的程序运行结果。这类错误会在使用 `-W{warningtype}` 参数编译时被编译器指出。
 
 -   赋值运算符 `=` 和比较运算符 `==` 不分。
-           
+
     -   示例：
-  
+
         ```cpp
         std::srand(std::time(nullptr));
         int n = std::rand();

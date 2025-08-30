@@ -129,14 +129,10 @@
 
 -   请正确使用 Markdown 的区块功能。插入行内代码请使用一对反引号包围代码区块；行间代码请使用一对 ` ``` ` 包围代码区块，其中反引号就是键盘左上角波浪线下面那个符号，行间代码请在第一个 ` ``` ` 的后面加上语言名称（如：` ```cpp`）。
 
-    ???+ success "示例"
-        ````text
-        ```cpp
-        // #include<stdio.h>    //不好的写法
-        #include <cstdio>  //好的写法
-        ```
-        ````
-      
+    ???+ success "示例"`text     ```cpp
+        // #include<stdio.h>    //不好的写法     #include <cstdio>  //好的写法     ```
+        `
+
         ```cpp
         // #include<stdio.h>    //不好的写法
         #include <cstdio>  //好的写法
@@ -160,14 +156,15 @@
         2020年1月21日，CCF宣布恢复NOIP。[^ref2]
           
         ## 参考资料与注释
-    
+        ```
+
         [^ref1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
-      
+
         [^ref2]: [CCF关于恢复NOIP竞赛的公告-中国计算机学会](https://www.ccf.org.cn/c/2020-01-21/694716.shtml)
         ```
-        
+
         当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者。[^ref1]
-        
+
         2020 年 1 月 21 日，CCF 宣布恢复 NOIP。[^ref2]
 
 -   建议使用主题扩展的 `???+note` 格式（即 [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)）来描述题面和参考代码。也可以用这种格式来展示其他需要补充介绍的内容。
