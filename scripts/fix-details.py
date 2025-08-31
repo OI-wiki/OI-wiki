@@ -10,19 +10,17 @@ def index_lfirst_neq(l: Iterable, value):
 
 
 def fix_details(md_content: str):
+    # Assume that adjacent lines with identical indentation belong to the same block
+    # so blank lines should align with the indentation of the preceding line or succeding line
     lines = md_content.splitlines()
     result = []
     last_indent = 0
-
-    # Assume that adjacent lines with identical indentation belong to the same block, so blank lines should align with the indentation of the preceding line.
     for line in lines:
         if line.strip():  # non-blank line
             last_indent = index_lfirst_neq(line, ' ')
         else:
             line = ' '*last_indent
         result.append(line)
-
-    # make bot happy
     # Align the blank line with the indentation of the succeding line if the indentation of succeding line is shorter
     lines, result = result, []
     last_indent = 0
@@ -32,7 +30,7 @@ def fix_details(md_content: str):
         elif len(line) > last_indent:
             line = ' '*last_indent
         result.append(line)
-    result = reversed(result)
+    result = result[::-1]
 
     return '\n'.join(result)+'\n'
 
