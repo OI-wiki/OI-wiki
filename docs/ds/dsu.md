@@ -325,7 +325,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         --8<-- "docs/ds/code/dsu/dsu_3.py"
         ```
 
-
 ## 习题
 
 -   [「NOI2015」程序自动分析](https://uoj.ac/problem/127)

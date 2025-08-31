@@ -29,9 +29,11 @@ int main() {
   for (; m; --m) {
     int op, x, y;
     std::cin >> op >> x >> y;
-    if (x > n || y > n) ++res;
+    if (x > n || y > n)
+      ++res;
     else if (op == 1) {
-      if (dsu.find(x) == dsu.find(y + n) || dsu.find(x) == dsu.find(y + (n << 1))) {
+      if (dsu.find(x) == dsu.find(y + n) ||
+          dsu.find(x) == dsu.find(y + (n << 1))) {
         ++res;
       } else {
         dsu.unite(x, y);

@@ -44,8 +44,10 @@ int main() {
   for (; m; --m) {
     int op, x, y;
     std::cin >> op >> x >> y;
-    if (x > n || y > n) ++res;
-    else res += !dsu.unite(x, y, op == 1 ? 0 : 1);
+    if (x > n || y > n)
+      ++res;
+    else
+      res += !dsu.unite(x, y, op == 1 ? 0 : 1);
   }
   std::cout << res << std::endl;
   return 0;

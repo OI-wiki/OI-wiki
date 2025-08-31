@@ -6,7 +6,6 @@ class Dsu:
         self.pa = list(range(size, size * 2)) + list(range(size, size * 2 + m))
         # size 的前半段其实没有使用，只是为了让下标计算更简单
         self.size = [1] * (size * 2 + m)
-        
 
     def find(self, x):
         if self.pa[x] != x:
@@ -42,7 +41,7 @@ if __name__ == "__main__":
                 x = int(op[1])
                 y = int(op[2])
                 dsu.unite(x, y)
-            elif op[0] == 'S':
+            elif op[0] == "S":
                 x = int(op[1])
                 dsu.erase(x)
         res = 0
@@ -50,5 +49,5 @@ if __name__ == "__main__":
             if dsu.size[i] and i == dsu.find(i):
                 res += 1
         case_id += 1
-        print(f'Case #{case_id}: {res}')
+        print(f"Case #{case_id}: {res}")
         input()

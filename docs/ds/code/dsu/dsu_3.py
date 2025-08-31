@@ -1,5 +1,6 @@
 M = 2
 
+
 class DSU:
     def __init__(self, size: int):
         self.pa = list(range(size))
