@@ -35,7 +35,7 @@ toleft\[log(N),n]: 也就是每一层 1\~i 进入左儿子的数量，这里需�
       for i:=left to right do 
         if tree[deep,i]<num[mid] then
           dec(same);
-    
+      
       ls:=left; // 分配到左儿子的第一个指针
       rs:=mid+1; // 分配到右儿子的第一个指针
       for i:=left to right do

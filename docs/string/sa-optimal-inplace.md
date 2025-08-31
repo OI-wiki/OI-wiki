@@ -282,10 +282,10 @@ $$
     fn lms_str_cmp<E: Ord>(l1: &[E], l2: &[E]) -> Ordering {
         for (x, y) in l1.iter().zip(l2.iter()) {
             let cmp_res = x.cmp(&y);
-    
+            
             if cmp_res != Ordering::Equal { return cmp_res; }
         }
-    
+        
         Ordering::Equal
     }
     
@@ -301,17 +301,17 @@ $$
         // 全部刷成bucket head
         //sa.fill(0);
         for i in 0..sa.len() { sa[i] = 0 }
-    
+        
         for i in 0..pat.len() { sa[pat[i]] += 1 }
         for i in 1..sa.len() { sa[i] += sa[i - 1] }
-    
+        
         for i in 0..pat.len() - 1 {
             pat[i] = sa[pat[i]] - 1;
         };
         // 将L-suffix刷成bucket head
         //sa.fill(0);
         for i in 0..sa.len() { sa[i] = 0 }
-    
+        
         for i in 0..pat.len() { sa[pat[i]] += 1 }
         let mut last_scanned_type = STYPE;
         pat[patlastpos] = 0;
@@ -330,7 +330,7 @@ $$
     fn sort_lms_char(pat: &mut [usize], sa: &mut [usize]) -> usize {
         //sa.fill(EMPTY);
         for i in 0..sa.len() { sa[i] = EMPTY }
-    
+        
         let mut last_scanned_type = STYPE;
         for i in (0..pat.len() - 1).rev() {
             if pat_char_type(pat[i], pat[i + 1], last_scanned_type) == STYPE {
@@ -339,11 +339,11 @@ $$
                 if last_scanned_type == STYPE {  // pat[i + 1] is LMS type
                     sa[pat[i + 1]] += 1;
                 }
-    
+                
                 last_scanned_type = LTYPE;
             }
         }
-    
+        
         let mut lms_cnt = 0;
         last_scanned_type = STYPE;
         for i in (0..pat.len() - 1).rev() {
@@ -352,7 +352,7 @@ $$
             } else {
                 let e_i = i + 1;
                 let e = pat[e_i];
-    
+                
                 if last_scanned_type == STYPE {  // pat[i + 1] is LMS type
                     lms_cnt += 1;
                     if sa[e] == UNIQUE {
@@ -367,7 +367,7 @@ $$
                         }
                     } else if sa[e] >= MULTI && sa[e - 1] != EMPTY {
                         let c = sa[e - 1];  // get counter
-    
+                        
                         if sa[e - 2 - c] == EMPTY {
                             sa[e - 2 - c] = e_i;
                             sa[e - 1] += 1;  // update counter
@@ -387,11 +387,11 @@ $$
                         }
                     }
                 }
-    
+                
                 last_scanned_type = LTYPE;
             }
         }
-    
+        
         for i in (0..pat.len()).rev() {
             if sa[i] >= MULTI {
                 let c = sa[i - 1];
@@ -402,7 +402,7 @@ $$
                 sa[i - c] = EMPTY;
             }
         }
-    
+        
         lms_cnt
     }
     
@@ -410,7 +410,7 @@ $$
     fn sort_lms_substr(pat: &mut [usize], sa: &mut [usize]) {
         // step 1
         induced_sort(pat, sa);
-    
+        
         // step 2
         let pat_last_pos = pat.len() - 1;
         let mut lms_cnt = 0;
@@ -421,7 +421,7 @@ $$
         while i > 0 {
             if pat[sa[i]] != bucket {  // reach new bucket
                 num = 0;
-    
+                
                 let mut l = 0;
                 while pat[sa[i - l]] == pat[sa[i]] {  // 扫描桶来计算桶中S字符数量，根据定义 当l=i时循环必然终止
                     let pat_i = sa[i - l];             // l < i, 即 i - l > 0, 0 <= pat_i < patlen - 1
@@ -432,14 +432,14 @@ $$
                     } else {
                         break;   // bucket不含S字符，结束扫描
                     }
-    
+                    
                     l += 1;
                 }
-    
+                
                 bucket_tail_ptr = i;
                 bucket = pat[sa[bucket_tail_ptr]];
             }
-    
+            
             if num > 0
             && i > bucket_tail_ptr - num
             && sa[i] > 0
@@ -447,10 +447,10 @@ $$
                 sa[pat_last_pos - lms_cnt] = sa[i];
                 lms_cnt += 1;
             }
-    
+            
             i -= 1;
         }
-    
+        
         sa[pat_last_pos - lms_cnt ] = sa[i];  // i = 0
         lms_cnt += 1;
         //sa[0..pat_last_pos - lms_cnt + 1].fill(EMPTY);
@@ -460,7 +460,7 @@ $$
     
     fn construct_pat1(pat: &mut [usize], sa: &mut [usize], lms_cnt: usize) -> bool {
         let patlen = pat.len();
-    
+        
         let mut prev_lms_str_len = 1;
         let mut rank = 0;
         sa[(patlen - 1) / 2] = rank;
@@ -472,20 +472,20 @@ $$
             while k + 1 < patlen && pat[k] >= pat[k + 1] { k += 1 }  // 找到suf(sa[i])右边第一个LMS字符
             let cur_lms_str_len = k + 1 - sa[i];
             let cmp_res = lms_str_cmp(&pat[sa[i]..sa[i] + cur_lms_str_len], &pat[sa[i - 1]..sa[i - 1] + prev_lms_str_len]);
-    
+            
             if  cmp_res != Ordering::Equal {
                 rank += 1
             }
-    
+            
             if rank == sa[sa[i - 1] / 2] {
                 has_duplicated_char = true;
             }
             let rank_index = sa[i] / 2;
             sa[rank_index] = rank;  // 整除
-    
+            
             prev_lms_str_len = cur_lms_str_len;
         }
-    
+        
         // move to head of sa
         let mut j = 0;
         for i in 0..patlen - lms_cnt {
@@ -499,7 +499,7 @@ $$
         }
         //sa[lms_cnt..patlen].fill(EMPTY);
         for i in lms_cnt..patlen { sa[i] = EMPTY }
-    
+        
         has_duplicated_char
     }
     
@@ -511,19 +511,19 @@ $$
             let sa_ptr = sa.as_mut_ptr();
             let mut pat1 = from_raw_parts_mut(sa_ptr, lms_cnt);
             let mut sa1 = from_raw_parts_mut(sa_ptr.offset((patlen - lms_cnt) as isize), salen - (patlen - lms_cnt));
-    
+            
             if has_duplicated_char {
                 _compute_suffix_array_16_1(&mut pat1, &mut sa1);
             } else {
                 for i in 0..lms_cnt { sa1[pat1[i]] = i }
             }
         }
-    
+        
         // move SA1 to SA[0...n1-1]
         for i in 0..lms_cnt {
             sa[i] = sa[patlen- lms_cnt + i];
         }
-    
+        
         // put all LMS-suffixes in SA tail
         let mut last_scanned_type = STYPE;
         let mut j = 0;
@@ -535,18 +535,18 @@ $$
                     sa[patlen - 1 - j] = i + 1;
                     j += 1;
                 }
-    
+                
                 last_scanned_type = LTYPE;
             }
         }
-    
+        
         // backward map the LMS-suffixes rank
         for i in 0..lms_cnt {
             let relative_rank = sa[i];
             sa[i] = sa[patlen - lms_cnt + relative_rank];
             sa[patlen - lms_cnt + relative_rank] = EMPTY;
         }
-    
+        
         let mut tail = EMPTY;
         let mut rfp = EMPTY;
         for i in (1..lms_cnt).rev() { // sa[0] 保持原位
@@ -554,7 +554,7 @@ $$
                 tail = pat[sa[i]];
                 rfp = tail;
             }
-    
+            
             sa[rfp] = sa[i];
             if rfp != i { sa[i] = EMPTY }
             rfp -= 1;
@@ -564,7 +564,7 @@ $$
     // PASS!
     fn induced_sort(pat: &mut [usize], sa: &mut [usize]) {
         let patlen = pat.len();
-    
+        
         // place L-suff in SA
         // init
         let mut last_scanned_type = STYPE;
@@ -598,7 +598,7 @@ $$
                         }
                     }
                 }
-    
+                
                 if is_ltype {
                     if sa[pat[j]] == UNIQUE {
                         sa[pat[j]] = j;
@@ -638,10 +638,10 @@ $$
             } else if sa[i] >= MULTI {
                 i += 1;
             }
-    
+            
             i += 1;
         }
-    
+        
         // remove LMS-suff form SA, 一个桶里可能有多个LMS后缀
         last_scanned_type = STYPE;
         for i in (0..pat.len() - 1).rev() {
@@ -655,7 +655,7 @@ $$
                         sa[pat[i + 1]] += 1;
                     }
                 }
-    
+                
                 last_scanned_type = LTYPE;
             }
         }
@@ -668,11 +668,11 @@ $$
                 }
                 i -= c - 1;
             }
-    
+            
             i -= 1;
         }
         sa[0] = pat.len() - 1;
-    
+        
         // place S-suff in SA
         // init
         let mut last_scanned_type = STYPE;
@@ -709,7 +709,7 @@ $$
                         }
                     }
                 }
-    
+                
                 if is_stype {
                     if sa[pat[j]] == UNIQUE {
                         sa[pat[j]] = j;
@@ -768,13 +768,13 @@ $$
         pat.push(0);
         let mut sa = vec![0; max(pat.len(), 256) * 1];
         _compute_suffix_array_16_1(&mut pat[..], &mut sa[..]);
-    
+        
         sa
     }
     
     fn input() -> String {
         use std::io;
-    
+        
         let mut input = String::new();
         io::stdin().read_line(&mut input).unwrap();
         String::from(input.trim())
@@ -783,9 +783,9 @@ $$
     
     fn main() {
         let pat = input();
-    
+        
         let sa_16 = suffix_array_16(pat.as_bytes());
-    
+        
         for i in 1..pat.len() + 1 { print!("{} ", sa_16[i] + 1) }
     }
     ```
