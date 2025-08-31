@@ -26,4 +26,4 @@ if __name__ == "__main__":
         if z == 1:
             dsu.union(x, y)
         else:
-            print('Y' if dsu.find(x) == dsu.find(y) else 'N')
+            print("Y" if dsu.find(x) == dsu.find(y) else "N")

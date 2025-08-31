@@ -149,7 +149,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 带有路径压缩、按节点数合并的并查集的实现如下所示：
 
-???+ example "模板题 [Luogu P3367【模板】并查集](https://www.luogu.com.cn/problem/P3367) 参考实现"
+???+ example " 模板题 [Luogu P3367【模板】并查集](https://www.luogu.com.cn/problem/P3367) 参考实现 "
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_0.cpp"
