@@ -32,6 +32,18 @@ def fix_details(md_content: str):
         result.append(line)
     result = result[::-1]
 
+    # Recover lines that marked as skipping
+    lines = md_content.splitlines()
+    recover = False
+    for index, line in enumerate(lines):
+        if line.strip() == f'<!-- preprocess{SKIP_EXTNAME} on -->':
+            recover = True
+        elif line.strip() == f'<!-- preprocess{SKIP_EXTNAME} off -->':
+            recover = False
+
+        if recover:
+            result[index] = line
+
     return '\n'.join(result)+'\n'
 
 
