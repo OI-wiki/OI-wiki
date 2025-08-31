@@ -147,9 +147,9 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 ## 参考实现
 
-带有路径压缩、按节点数合并的并查集的实现如下所示：
+带有路径压缩、按节点数合并的并查集的完整实现如下所示：
 
-???+ example " 模板题 [Luogu P3367【模板】并查集](https://www.luogu.com.cn/problem/P3367) 参考实现 "
+??? example " 模板题 [Luogu P3367【模板】并查集](https://www.luogu.com.cn/problem/P3367) 参考实现 "
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_0.cpp"
@@ -182,6 +182,13 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 普通的并查集无法支持删除操作，是因为删除一个节点的时候，不可避免地会将以它为根的子树上所有节点都删除。为了解决这一问题，在带删除操作的并查集中，可以通过建立虚点的方法保证所有实际存储数据的节点总是叶子节点。为此，需要在初始化时，就为每个数据节点都建立一个虚点，并将数据节点的父节点设置为该虚点。由于每次合并两个集合时，都只会将两个集合的树根连接，所以，从始至终只有虚点会有子节点。这就保证了删除一个节点时，不会误删其他节点。
 
 注意，删除单个节点后，需要重新为该节点建立一个虚点作为其父节点；否则，无法正确执行后续的合并和删除操作。
+
+??? example "模板题 [SPOJ JMFILTER - Junk-Mail Filter](https://www.spoj.com/problems/JMFILTER/) 参考实现"
+    ```cpp
+    --8<-- "docs/ds/code/dsu/dsu_4.cpp"
+    ```
+
+类似的方法还可以用于实现在集合间移动单个元素。实现细节详见例题。
 
 ### 带权并查集
 
