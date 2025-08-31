@@ -34,4 +34,5 @@ int main() {
       std::cout << (dsu.find(x) == dsu.find(y) ? 'Y' : 'N') << '\n';
     }
   }
+  return 0;
 }

@@ -89,7 +89,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
     
     === "Python"
         ```python
-        def union(self, x, y):
+        def unite(self, x, y):
             self.pa[self.find(x)] = self.find(y)
         ```
 
@@ -135,7 +135,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
                 self.pa = list(range(size))
                 self.size = [1] * size
         
-            def union(self, x, y):
+            def unite(self, x, y):
                 x, y = self.find(x), self.find(y)
                 if x == y:
                     return
@@ -154,7 +154,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_0.cpp"
         ```
-
+    
     === "Python"
         ```python
         --8<-- "docs/ds/code/dsu/dsu_0.py"
@@ -184,17 +184,34 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 注意，删除单个节点后，需要重新为该节点建立一个虚点作为其父节点；否则，无法正确执行后续的合并和删除操作。
 
 ??? example " 模板题 [SPOJ JMFILTER - Junk-Mail Filter](https://www.spoj.com/problems/JMFILTER/) 参考实现 "
-    ```cpp
-    --8<-- "docs/ds/code/dsu/dsu_4.cpp"
-    ```
+    === "C++"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/dsu_4.cpp"
+        ```
+    
+    === "Python"
+        ```python
+        --8<-- "docs/ds/code/dsu/dsu_4.py"
+        ```
 
 类似的方法还可以用于实现在集合间移动单个元素。实现细节详见例题。
 
 ### 带权并查集
 
-我们还可以在并查集的边上定义某种权值和这种权值在路径压缩时产生的运算，从而解决更多的问题。比如对于经典的「NOI2001」食物链，我们可以在边权上维护模 $3$ 意义下的加法群。对于这类维护模意义下边权的问题，有时还可以通过将并查集的单个点拆分为多个状态的方式来解决。这种特殊情形下的技巧，也称为「种类并查集」或「拓展域并查集」。后文会通过例题来说明这些做法。
+我们还可以在并查集的边上定义某种权值和这种权值在路径压缩时产生的运算，从而解决更多的问题。比如对于经典的「NOI2001」食物链，我们可以在边权上维护模 $3$ 意义下的加法群。对于这类维护模意义下边权且模数很小的问题，还可以通过将并查集的单个点拆分为多个状态的方式来解决。这种特殊情形下的技巧，也称为「种类并查集」或「拓展域并查集」。后文会通过例题来说明这些做法。
 
-为了维护并查集中的边权，需要将边权下放到子节点中存储。因此，每个节点存储的都是它到它的父节点之间的边权。只有当一个节点的父节点发生变化时，才需要相应地调整边权。
+为了维护并查集中的边权，需要将边权下放到子节点中存储。因此，每个节点存储的都是它到它的父节点之间的边权。只有当一个节点的父节点发生变化时，才需要相应地调整边权。一般情形中，这可能发生在路径压缩和合并两个节点时。例如，如果边权是当前节点与父节点之间的距离，那么，在路径压缩时，每当将当前节点的父节点替换为根节点时，都需要将父节点到根节点的距离加到当前节点存储的边权上；类似地，在合并两个节点所在集合时，需要计算两个根节点之间新连接的边的权值。
+
+??? example " 模板题 [Library Checker - Unionfind with Potential](https://judge.yosupo.jp/problem/unionfind_with_potential) 参考实现 "
+    === "C++"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/dsu_5.cpp"
+        ```
+    
+    === "Python"
+        ```python
+        --8<-- "docs/ds/code/dsu/dsu_5.py"
+        ```
 
 ## 例题
 
@@ -209,8 +226,6 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 ??? note "思路"
     这道题目中，操作 1 和操作 3 都容易处理，难点在于操作 2。假定要将元素 $x$ 移动到元素 $y$ 所在的集合。在普通的并查集中，直接将元素 $x$ 的父亲设为元素 $y$ 所在集合的根节点是不行的，因为这样会将元素 $x$ 所在子树的元素都一起移动。针对这个问题，解决方法就是保证元素 $x$ 没有子节点。为此，在建立并查集时为每个元素 $x$ 都建立一个虚点 $\tilde x$，并将元素 $x$ 的父亲指向对应的虚点 $\tilde x$。这样，在合并两个集合的时候，因为总是将一个树根连接到另一个树根，而树根又全部是虚点，所以，只有虚点会有子节点，而所有实际存储元素的点都没有子节点。此时，要移动元素，就容易实现得多。
-    
-    下面的实现中，元素 $i$ 对应的虚点为 $i+n$。
 
 ??? note "参考代码"
     === "C++"
@@ -241,7 +256,23 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
     
     你的任务是根据给定的 $N$ 和 $K$ 句话，输出假话的总数。
 
-??? note "思路"
+??? note "思路一"
+    考虑用带权并查集维护食物链信息。如果 $x$ 和 $y$ 是同类，那么 $x\equiv y\pmod 3$；如果 $x$ 吃 $y$，那么 $x - y \equiv 1 \pmod 3$。这样就将本题转化为前文的模板题。
+    
+    具体地，对于每一句话，除去那些那些 $x>n$ 或 $y>n$ 的显然的假话外，需要判断 $x$ 和 $y$ 是否已经连接：如果已经连接，计算两者的模意义下的距离，并与这句话声称的信息进行比较；否则，将两者按照这句话提供的信息连接。除了显然的情形外，一句话是假话，当且仅当提到的两个节点已经连接，且对应的距离与这句话声称的信息矛盾。
+
+??? note "实现一"
+    === "C++"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/dsu_6.cpp"
+        ```
+    
+    === "Python"
+        ```python
+        --8<-- "docs/ds/code/dsu/dsu_6.py"
+        ```
+
+??? note "思路二"
     将一种生物 $x$ 拆分为三种状态。在具体实现中，我们可以直接将不同的状态当作不同的元素：
     
     -   与 $x$ 处于同一集合的状态与 $x$ 属于同一物种；
@@ -260,10 +291,16 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         2.  $y$ 与 $x$ 或 $x+2n$ 中的一个处于同一集合内。
     -   若为真话，合并对应状态。
 
-??? note "实现"
-    ```cpp
-    --8<-- "docs/ds/code/dsu/dsu_2.cpp"
-    ```
+??? note "实现二"
+    === "C++"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/dsu_2.cpp"
+        ```
+    
+    === "Python"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/dsu_2.py"
+        ```
 
 ???+ example "[ABC396E Min of Restricted Sum](https://atcoder.jp/contests/abc396/tasks/abc396_e)"
     给定整数 $N, M$ 和长度为 $M$ 的整数序列 $X=(X_1,X_2,\ldots,X_M)$、$Y=(Y_1,Y_2,\ldots,Y_M)$、$Z=(Z_1,Z_2,\ldots,Z_M)$。其中，保证 $X$ 和 $Y$ 的所有元素均在 $1$ 至 $N$ 的范围内。
@@ -275,14 +312,19 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
     请判断是否存在这样的好的整数序列。若存在，请找出使得元素总和 $\displaystyle \sum_{i=1}^N A_i$ 最小的好的整数序列，并输出该序列。
 
 ??? note "思路"
-    异或就是单个二进制位上的「相同」或「不同」关系。那么，将 $A_i$ 的所有二进制位拆开，异或关系就能用种类并查集维护了。另外，不同位会对答案产生不同贡献，因此要使用带权并查集进行维护。
-    
-    最后，在统计答案时，一个二进制位取 $1$ 或取 $0$ 会确定别的某些二进制位的取值，在两种中选择贡献（即权值）较小者。
+    异或就是单个二进制位上的「相同」或「不同」关系。那么，将 $A_i$ 的所有二进制位拆开，异或关系就能用带权并查集（或种类并查集）维护了。同一个连通块内的元素一定对应着 $A$ 中不同数字的同一个数位。统计答案时，同一连通块的元素通常分为两组，两组之间取值应当不同，只需要取其中较大的一组赋值为 $0$，另一组赋值为 $1$ 即可保证总权值最小。
 
 ??? note "实现"
-    ```cpp
-    --8<-- "docs/ds/code/dsu/dsu_3.cpp"
-    ```
+    === "C++"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/dsu_3.cpp"
+        ```
+    
+    === "Python"
+        ```cpp
+        --8<-- "docs/ds/code/dsu/dsu_3.py"
+        ```
+
 
 ## 习题
 

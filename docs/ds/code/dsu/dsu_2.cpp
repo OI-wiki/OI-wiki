@@ -1,51 +1,53 @@
 #include <algorithm>
 #include <iostream>
-using namespace std;
-const int N = 5e4;
-int n, m, fa[N * 3 + 5], sz[N * 3 + 5], ans;
+#include <numeric>
+#include <vector>
 
-int query(int x) { return fa[x] == x ? x : (fa[x] = query(fa[x])); }
+struct DSU {
+  std::vector<size_t> pa, size;
 
-void merge(int x, int y) {
-  x = query(x);
-  y = query(y);
-  if (x == y) return;
-  if (sz[x] < sz[y]) swap(x, y);
-  sz[x] += sz[y];
-  fa[y] = x;
-}
+  explicit DSU(size_t size_) : pa(size_), size(size_, 1) {
+    std::iota(pa.begin(), pa.end(), 0);
+  }
+
+  size_t find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
+
+  void unite(size_t x, size_t y) {
+    x = find(x), y = find(y);
+    if (x == y) return;
+    if (size[x] < size[y]) std::swap(x, y);
+    pa[y] = x;
+    size[x] += size[y];
+  }
+};
 
 int main() {
-  int op, x, y;
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-  cout.tie(0);
-  cin >> n >> m;
-  for (int i = 1; i <= n * 3; ++i) {
-    fa[i] = i;
-    sz[i] = 1;
-  }
-  while (m--) {
-    cin >> op >> x >> y;
-    if (x > n || y > n)
-      ++ans;
+  int n, m;
+  std::cin >> n >> m;
+  DSU dsu(n * 3 + 1);
+  int res = 0;
+  for (; m; --m) {
+    int op, x, y;
+    std::cin >> op >> x >> y;
+    if (x > n || y > n) ++res;
     else if (op == 1) {
-      if (query(x) == query(y + n) || query(x) == query(y + (n << 1)))
-        ++ans;
-      else {
-        merge(x, y);
-        merge(x + n, y + n);
-        merge(x + (n << 1), y + (n << 1));
+      if (dsu.find(x) == dsu.find(y + n) || dsu.find(x) == dsu.find(y + (n << 1))) {
+        ++res;
+      } else {
+        dsu.unite(x, y);
+        dsu.unite(x + n, y + n);
+        dsu.unite(x + n * 2, y + n * 2);
       }
     } else {
-      if (query(x) == query(y) || query(x) == query(y + n))
-        ++ans;
-      else {
-        merge(x, y + (n << 1));
-        merge(x + n, y);
-        merge(x + (n << 1), y + n);
+      if (dsu.find(x) == dsu.find(y) || dsu.find(x) == dsu.find(y + n)) {
+        ++res;
+      } else {
+        dsu.unite(x, y + n * 2);
+        dsu.unite(x + n, y);
+        dsu.unite(x + n * 2, y + n);
       }
     }
   }
-  cout << ans << endl;
+  std::cout << res << std::endl;
+  return 0;
 }

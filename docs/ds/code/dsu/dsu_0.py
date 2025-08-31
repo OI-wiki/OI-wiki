@@ -8,7 +8,7 @@ class Dsu:
             self.pa[x] = self.find(self.pa[x])
         return self.pa[x]
 
-    def union(self, x, y):
+    def unite(self, x, y):
         x, y = self.find(x), self.find(y)
         if x == y:
             return
@@ -24,6 +24,6 @@ if __name__ == "__main__":
     for _ in range(m):
         z, x, y = map(int, input().split())
         if z == 1:
-            dsu.union(x, y)
+            dsu.unite(x, y)
         else:
             print("Y" if dsu.find(x) == dsu.find(y) else "N")

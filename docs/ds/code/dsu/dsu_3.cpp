@@ -1,69 +1,69 @@
+#include <algorithm>
 #include <iostream>
-#define nd(i, j) ((i) * L + (j) + 1)
-using namespace std;
-using ll = long long;
-const int N = 2e5, L = 31, P = N * L, M = 1e5;
-int n, m, a[N + 5], x[M + 5], y[M + 5], z[M + 5], _fa[(P << 1) + 200],
-    _sz[(P << 1) + 200];
-ll _wt[(P << 1) + 200];
-int *fa = _fa + (P + 100), *sz = _sz + (P + 100);
-ll *wt = _wt + (P + 100);
-bool _vis[(P << 1) + 200], _st[(P << 1) + 200];
-bool *vis = _vis + (P + 100), *st = _st + (P + 100);
+#include <numeric>
+#include <vector>
 
-int query(int x) { return fa[x] == x ? x : (fa[x] = query(fa[x])); }
+constexpr int M = 2;
 
-void merge(int x, int y) {
-  x = query(x);
-  y = query(y);
-  if (x == y) return;
-  if (sz[x] < sz[y]) swap(x, y);
-  sz[x] += sz[y];
-  wt[x] += wt[y];
-  fa[y] = x;
-}
+struct DSU {
+  std::vector<size_t> pa, size, dist;
+
+  explicit DSU(size_t size_) : pa(size_), size(size_, 1), dist(size_) {
+    std::iota(pa.begin(), pa.end(), 0);
+  }
+
+  size_t find(size_t x) {
+    if (pa[x] == x) return x;
+    size_t y = find(pa[x]);
+    (dist[x] += dist[pa[x]]) %= M;
+    return pa[x] = y;
+  }
+
+  bool unite(size_t x, size_t y, int d) {
+    find(x), find(y);
+    (d += M - dist[y]) %= M;
+    (d += dist[x]) %= M;
+    x = pa[x], y = pa[y];
+    if (x == y) return d == 0;
+    if (size[x] < size[y]) {
+      std::swap(x, y);
+      d = (M - d) % M;
+    }
+    pa[y] = x;
+    size[x] += size[y];
+    dist[y] = d;
+    return true;
+  }
+};
 
 int main() {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-  cout.tie(0);
-  cin >> n >> m;
-  for (int i = 1; i <= n; ++i)
-    for (int j = 0; j < L; ++j) {
-      fa[nd(i, j)] = nd(i, j);
-      fa[-nd(i, j)] = -nd(i, j);
-      sz[nd(i, j)] = sz[-nd(i, j)] = 1;
-      wt[nd(i, j)] = 1 << j;
-    }
-  for (int i = 1; i <= m; ++i) {
-    cin >> x[i] >> y[i] >> z[i];
-    for (int j = 0; j < L; ++j) {
-      if (z[i] >> j & 1) {
-        merge(nd(x[i], j), -nd(y[i], j));
-        merge(nd(y[i], j), -nd(x[i], j));
-      } else {
-        merge(nd(x[i], j), nd(y[i], j));
-        merge(-nd(x[i], j), -nd(y[i], j));
+  int n, m;
+  std::cin >> n >> m;
+  DSU dsu((n + 1) << 5);
+  for (; m; --m) {
+    int x, y, z;
+    std::cin >> x >> y >> z;
+    for (int i = 0; i < 31; ++i) {
+      if (!dsu.unite((x << 5) | i, (y << 5) | i, (z >> i) & 1)) {
+        std::cout << -1 << std::endl;
+        return 0;
       }
     }
   }
-  for (int i = 1; i <= n; ++i)
-    for (int j = 0; j < L; ++j) {
-      int pf = query(nd(i, j)), nf = query(-nd(i, j));
-      if (pf == nf) {
-        cout << -1;
-        return 0;
+  std::vector<int> a(n + 1), cnt((n + 1) << 5);
+  for (int i = 1; i < ((n + 1) << 5); ++i) {
+    dsu.find(i);
+    if (dsu.dist[i]) ++cnt[dsu.pa[i]];
+  }
+  for (int i = 1; i <= n; ++i) {
+    for (int j = 0; j < 31; ++j) {
+      int x = (i << 5) | j, y = dsu.pa[x];
+      if ((cnt[y] > dsu.size[y] / 2) ^ dsu.dist[x]) {
+        a[i] |= 1 << j;
       }
-      if (!vis[pf]) {
-        vis[pf] = vis[nf] = 1;
-        if (wt[pf] < wt[nf])
-          st[pf] = 1;
-        else
-          st[nf] = 1;
-      }
-      if (st[pf]) a[i] |= (1 << j);
     }
-  for (int i = 1; i <= n; ++i) cout << a[i] << ' ';
-  cout << endl;
+  }
+  for (int i = 1; i <= n; ++i) std::cout << a[i] << ' ';
+  std::cout << std::endl;
   return 0;
 }
