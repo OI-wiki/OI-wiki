@@ -10,30 +10,28 @@ C++ 的 **命名空间** 机制可以用来解决复杂项目中名字冲突的�
 
 ```cpp
 namespace A {
-int cnt;
+  int cnt;
 
-void f(int x) { cnt = x; }
+  void f(int x) { cnt = x; }
 }  // namespace A
 ```
 
-声明之后，在这个命名空间外部，你可以通过 `A::f(x)` 来访问命名空间 `A` 内部的 `f` 函数。
+声明之后，在这个命名空间外部，你可以通过 `A::f(x)` 来访问命名空间 `A` 内部的 `f` 函数，也可以通过 `A::cnt` 来访问命名空间 `A` 内部的 `cnt` 变量。
 
 命名空间的声明是可以嵌套的，因此下面这段代码也是允许的：
 
 ```cpp
 namespace A {
-namespace B {
-void f() { ... }
-}  // namespace B
+  namespace B {
+    void f() { ... }
+  }  // namespace B
 
-void f() {
-  B::f();  // 实际访问的是 A::B::f()，由于当前位于命名空间 A
-           // 内，所以可以省略前面的 A::
-}
+  void f() {
+    B::f();  // 实际访问的是 A::B::f()，由于当前位于命名空间 A 内，所以可以省略前面的 A::
+  }
 }  // namespace A
 
-void f()  // 这里定义的是全局命名空间的 f 函数，与 A::f 和 A::B::f
-          // 都不会产生冲突
+void f()  // 这里定义的是全局命名空间的 f 函数，与 A::f 和 A::B::f 都不会产生冲突
 {
   A::f();
   A::B::f();
@@ -106,24 +104,24 @@ int main() {
 
 ```cpp
 #include <math.h>
-
 #include <vector>
+
 using namespace std;
 
 namespace Sol {
-int end;  // std::end 被 using namespace std; 引入
+  int end;  // std::end 被 using namespace std; 引入
 
-int y1;  // y1 是 POSIX 定义的第二类 Bessel 函数
+  int y1;  // y1 是 POSIX 定义的第二类 Bessel 函数
 
-// 因此通常情况下，在 Linux 下会有冲突而在 Windows 下没有
+  // 因此通常情况下，在 Linux 下会有冲突而在 Windows 下没有
 
-void solve() {
+  void solve() {
   // 在 Sol::solve() 里无限定（不用 ::）地使用我们声明的 end 以及 y1
   // 并不会导致名字冲突； 而若以上代码在全局命名空间中，将会导致冲突： 其中 end
   // 只会在名字查找（即编译使用它的代码）时与 std::end 冲突，而 y1
   // 在声明时就会冲突； 并且 y1 的冲突因为与环境有关甚至在 Windows
   // 下不会被发现，却会在 Linux 的评测环境下造成编译错误。
-}
+  }
 }  // namespace Sol
 
 int main() { Sol::solve(); }
