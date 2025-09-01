@@ -298,7 +298,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         ```
     
     === "Python"
-        ```cpp
+        ```python
         --8<-- "docs/ds/code/dsu/dsu_2.py"
         ```
 
