@@ -6,7 +6,7 @@
 
 模运算下的高次剩余，可以认为是在讨论模意义下开高次方的可行性。它是 [二次剩余](./quad-residue.md) 的推广。
 
-???+ abstract "$k$ 次剩余"
+???+ abstract "$k$ 次剩余 "
     令整数 $k\geq 2$，整数 $a$ 和正整数 $m$ 满足 $(a,m)=1$。若存在整数 $x$ 使得
     
     $$
@@ -74,8 +74,8 @@
         $$
         a\equiv g^{di}\pmod m,\qquad \left(0\leq i<\frac{\varphi(m)}{d}\right)
         $$
-    
-## 单位根
+
+# 单位根
 
 ### 本原单位根
 
