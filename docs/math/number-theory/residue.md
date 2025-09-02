@@ -75,7 +75,7 @@
         a\equiv g^{di}\pmod m,\qquad \left(0\leq i<\frac{\varphi(m)}{d}\right)
         $$
 
-# 单位根
+## 单位根
 
 ### 本原单位根
 
