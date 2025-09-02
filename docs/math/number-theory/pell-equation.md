@@ -77,7 +77,7 @@ $$
     Pell 方程 $x^2-Dy^2=1$ 总是存在除了 $(\pm 1,0)$ 之外的整数解。
 
 ??? note "证明"
-    首先，[Dirichlet 定理](./continued-fraction.md/#用渐近分数逼近实数) 表明存在无数对正整数 $(x,y)$ 使得
+    首先，[Dirichlet 定理](./continued-fraction.md#用渐近分数逼近实数) 表明存在无数对正整数 $(x,y)$ 使得
     
     $$
     \left|\dfrac{x}{y}-\sqrt{D}\right| \le \dfrac{1}{y^2}
