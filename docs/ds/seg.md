@@ -485,6 +485,7 @@ int query(int p, int s, int t, int l, int r) {
 ## 练习题目
 
 -   [luogu P3372【模板】线段树 1](https://www.luogu.com.cn/problem/P3372)
+-   [luogu P13825 线段树 1.5【动态开点线段树】](https://www.luogu.com.cn/problem/P13825)
 -   [luogu P3373【模板】线段树 2](https://www.luogu.com.cn/problem/P3373)
 -   [luogu P4588【TJOI2018】数学计算](https://www.luogu.com.cn/problem/P4588)
 -   [luogu P5490【模板】扫描线 & 矩形面积并](https://www.luogu.com.cn/problem/P5490)
