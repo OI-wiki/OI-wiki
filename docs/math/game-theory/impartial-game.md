@@ -455,7 +455,7 @@ Wythoff 游戏允许同时从多堆石子中移除，但是要求每堆移除的
 利用这一结论，判断某一局面是否必胜，只需要计算其中所有正面朝上的硬币对应的基础局面的 SG 函数值，再求 Nim 和即可。这些基础局面的 SG 函数值也不难计算，因为它们的后续局面已经由映射 $f$ 给出：
 
 $$
-\operatorname{SG}(G_s) = \operatorname{mex}\limits_{T\in f(s)}\bigoplus_{t\in T\setminus s}\operatorname{SG}(G_t).
+\operatorname{SG}(G_s) = \operatorname{mex}\limits_{T\in f(s)}\bigoplus_{t\in T\setminus\{s\}}\operatorname{SG}(G_t).
 $$
 
 这相当于提供了一个基础局面 SG 函数值的递推公式。
@@ -616,7 +616,7 @@ $$
     有 $n$ 堆石子，第 $i$ 堆有 $a_i$ 枚。两人轮流取走石子，每次都只能从最左或最右的两堆中选择一堆取走任意枚石子，但不能不取。取走最后一枚石子的玩家胜利。问先手是否必胜。
 
 ??? note "解答"
-    由于本题中并不存在相互独立的子游戏，所有这道题目原则上只用到 [判断必败和必胜状态的引理](#博弈图和状态)。从最简单的情形开始分析。当 $n\le 2$ 时，就是 Nim 游戏。当 $n \ge 3$ 时，问题变得复杂。但是，由于可操作的石子堆只能是两端的石子堆，不妨设它们中石子数量分别为 $x$ 和 $y$。进一步地，设 $f(x,y)$ 为先手必胜状态的指示函数，即先手必胜时 $f(x,y)=1$，否则 $f(x,y)=0$。容易发现，$f(x,y)$ 的取值满足递推关系：$f(x,y)=0$，当且仅当对于所有 $s<x$ 和 $t<y$ 都有 $f(x,t)=f(s,y)=1$。递推起点在 $x=0$ 或 $y=0$ 时，此时，游戏已经不足 $n$ 堆石子，需要进一步考虑中间石子堆的数量。因此，不妨暂时假设 $f(x,0)$ 和 $f(0,y)$ 是已知的，考虑如何从它们的取值推出所有 $f(x,y)$ 的取值。这并不困难。考虑下标集合为 $\mathbf N\times\mathbf N$ 的无穷大矩阵，求 $f(x,y)$ 相当于向里面填 $0$ 和 $1$，需要满足的条件是，每行和每列都至多一个 $0$，且如果同行或同列中之前的位置都没有出现过 $0$，该位置一定是 $0$。每行中 $0$ 的位置实际上定义了一个从行号 $x$ 到列号 $y$ 的函数。简单尝试几个例子（即打表）之后就可以发现，如果设使得 $f(x,0)=0$ 的唯一的 $x$ 是 $x_0$，使得 $f(0,y)=0$ 的唯一的 $y$ 是 $y_0$，那么，对于任何 $x$，使得 $f(x,y)=0$ 成立的
+    由于本题中并不存在相互独立的子游戏，所有这道题目原则上只用到 [判断必败和必胜状态的引理](#博弈图和状态)。从最简单的情形开始分析。当 $n\le 2$ 时，就是 Nim 游戏。当 $n \ge 3$ 时，问题变得复杂。但是，由于可操作的石子堆只能是两端的石子堆，不妨设它们中石子数量分别为 $x$ 和 $y$。进一步地，设 $f(x,y)$ 为先手必胜状态的指示函数，即先手必胜时 $f(x,y)=1$，否则 $f(x,y)=0$。容易发现，$f(x,y)$ 的取值满足递推关系：$f(x,y)=0$，当且仅当对于所有 $s < x$ 和 $t < y$ 都有 $f(x,t)=f(s,y)=1$。递推起点在 $x=0$ 或 $y=0$ 时，此时，游戏已经不足 $n$ 堆石子，需要进一步考虑中间石子堆的数量。因此，不妨暂时假设 $f(x,0)$ 和 $f(0,y)$ 是已知的，考虑如何从它们的取值推出所有 $f(x,y)$ 的取值。这并不困难。考虑下标集合为 $\mathbf N\times\mathbf N$ 的无穷大矩阵，求 $f(x,y)$ 相当于向里面填 $0$ 和 $1$，需要满足的条件是，每行和每列都至多一个 $0$，且如果同行或同列中之前的位置都没有出现过 $0$，该位置一定是 $0$。每行中 $0$ 的位置实际上定义了一个从行号 $x$ 到列号 $y$ 的函数。简单尝试几个例子（即打表）之后就可以发现，如果设使得 $f(x,0)=0$ 的唯一的 $x$ 是 $x_0$，使得 $f(0,y)=0$ 的唯一的 $y$ 是 $y_0$，那么，对于任何 $x$，使得 $f(x,y)=0$ 成立的
     
     $$
     y = \begin{cases}
@@ -638,41 +638,36 @@ $$
 
 首先是一些模板题。它们是对本页面的结论的简单应用：
 
--   [Luogu P2197【模板】Nim 游戏](https://www.luogu.com.cn/problem/P2197) Nim
--   [Luogu P7589 黑白棋（2021 CoE-II B）](https://www.luogu.com.cn/problem/P7589) Nim
--   [Luogu P4279 \[SHOI2008\] 小约翰的游戏](https://www.luogu.com.cn/problem/P4279) Misere Nim
--   [Luogu P6487 \[COCI 2010/2011 #4\] HRPA](https://www.luogu.com.cn/problem/P6487) Fibonacci
--   [Luogu P2252 \[SHOI2002\] 取石子游戏](https://www.luogu.com.cn/problem/P2252) Wythoff
--   [Luogu P2575 高手过招](https://www.luogu.com.cn/problem/P2575) 打表 or 阶梯 Nim + SG
--   [Luogu P4101 \[HEOI2014\] 人人尽说江南好](https://www.luogu.com.cn/problem/P4101) Bachet or 打表
--   [Luogu P3480 \[POI 2009\] KAM-Pebbles](https://www.luogu.com.cn/problem/P3480) 阶梯 Nim
--   [Luogu P2148 \[SDOI2009\] E&D](https://www.luogu.com.cn/problem/P2148) 打表 + SG
--   [Luogu P6560 \[SBCOI2020\] 时光的流逝](https://www.luogu.com.cn/problem/P6560) 有向图游戏
--   [Luogu P3185 \[HNOI2007\] 分裂游戏](https://www.luogu.com.cn/problem/P3185) 翻硬币 or 打表 or SG
--   [Luogu P2594 \[ZJOI2009\] 染色游戏](https://www.luogu.com.cn/problem/P2594) 二维翻硬币 + 打表
--   [AtCoder Regular Contest 168 B - Arbitrary Nim](https://atcoder.jp/contests/arc168/tasks/arc168_b) Bachet + Nim 和
+-   [Luogu P2197【模板】Nim 游戏](https://www.luogu.com.cn/problem/P2197)
+-   [Luogu P2252 \[SHOI2002\] 取石子游戏](https://www.luogu.com.cn/problem/P2252)
+-   [Luogu P2594 \[ZJOI2009\] 染色游戏](https://www.luogu.com.cn/problem/P2594)
+-   [Luogu P3185 \[HNOI2007\] 分裂游戏](https://www.luogu.com.cn/problem/P3185)
+-   [Luogu P3480 \[POI 2009\] KAM-Pebbles](https://www.luogu.com.cn/problem/P3480)
+-   [Luogu P4101 \[HEOI2014\] 人人尽说江南好](https://www.luogu.com.cn/problem/P4101)
+-   [Luogu P4279 \[SHOI2008\] 小约翰的游戏](https://www.luogu.com.cn/problem/P4279)
+-   [Luogu P6487 \[COCI 2010/2011 #4\] HRPA](https://www.luogu.com.cn/problem/P6487)
+-   [Luogu P6560 \[SBCOI2020\] 时光的流逝](https://www.luogu.com.cn/problem/P6560)
+-   [Luogu P7589 黑白棋（2021 CoE-II B）](https://www.luogu.com.cn/problem/P7589)
+-   [AtCoder Regular Contest 168 B - Arbitrary Nim](https://atcoder.jp/contests/arc168/tasks/arc168_b)
 
 然后是一些思维性更强或更为综合的题目：
 
--   [Luogu P7864「EVOI-RD1」摘叶子](https://www.luogu.com.cn/problem/P7864) 思维题
--   [Luogu P8347「Wdoi-6」另一侧的月](https://www.luogu.com.cn/problem/P8347) 思维题
--   [AtCoder Grand Contest 010 F - Tree Game](https://atcoder.jp/contests/agc010/tasks/agc010_f) 思维题
--   [AtCoder Grand Contest 017 D - Game on Tree](https://atcoder.jp/contests/agc017/tasks/agc017_d) 树上 Nim + SG
--   [AtCoder Beginner Contest 278 G - Generalized Subtraction Game](https://atcoder.jp/contests/abc278/tasks/abc278_g) SG + 交互
--   [Luogu P5970 \[POI 2016\] Nim z utrudnieniem](https://www.luogu.com.cn/problem/P5970) Nim + 计数 DP
--   [Luogu P5675 \[GZOI2017\] 取石子游戏](https://www.luogu.com.cn/problem/P5675) Nim + 计数 DP
--   [Luogu P2599 \[ZJOI2009\] 取石子游戏](https://www.luogu.com.cn/problem/P2599) 引理 + 区间 DP
--   [Luogu P6791 \[SNOI2020\] 取石子](https://www.luogu.com.cn/problem/P6791) 反常 Fibonacci + 数位 DP
--   [Luogu P2490 \[SDOI2011\] 黑白棋](https://www.luogu.com.cn/problem/P2490) Moore Nim-k + 计数 DP
--   [Luogu P5363 \[SDOI2019\] 移动金币](https://www.luogu.com.cn/problem/P5363) 阶梯 Nim + 计数 DP
--   [Luogu P3179 \[HAOI2015\] 数组游戏](https://www.luogu.com.cn/problem/P3179) 翻硬币 + 数论分块
--   [Luogu P5387 \[Cnoi2019\] 人形演舞](https://www.luogu.com.cn/problem/P5387) 打表 + FWT + 计数
--   [SPOJ COT3 - Combat on a tree](https://www.spoj.com/problems/COT3/) SG + 01 trie + 启发式合并
--   [AtCoder Grand Contest 002 E - Candy Piles](https://atcoder.jp/contests/agc002/tasks/agc002_e) 引理 + DP + 找规律
--   [Codeforces 494 E. Sharti](https://codeforces.com/problemset/problem/494/E) 二维翻硬币 + 打表 + 扫描线
--   [Codeforces 1149 E. Election Promises](https://www.luogu.com.cn/problem/CF1149E) SG + 无穷 Nimber
--   [Codeforces 1451 F. Nullify The Matrix](https://codeforces.com/problemset/problem/1451/F) 无穷 Nimber 板子
--   [Codeforces 1704 F. Colouring Game](https://codeforces.com/problemset/problem/1704/F) Nim + SG + 打表找规律
+-   [Luogu P2490 \[SDOI2011\] 黑白棋](https://www.luogu.com.cn/problem/P2490)
+-   [Luogu P3179 \[HAOI2015\] 数组游戏](https://www.luogu.com.cn/problem/P3179)
+-   [Luogu P5363 \[SDOI2019\] 移动金币](https://www.luogu.com.cn/problem/P5363)
+-   [Luogu P5970 \[POI 2016\] Nim z utrudnieniem](https://www.luogu.com.cn/problem/P5970)
+-   [Luogu P6791 \[SNOI2020\] 取石子](https://www.luogu.com.cn/problem/P6791)
+-   [Luogu P7864「EVOI-RD1」摘叶子](https://www.luogu.com.cn/problem/P7864)
+-   [Luogu P8347「Wdoi-6」另一侧的月](https://www.luogu.com.cn/problem/P8347)
+-   [AtCoder Grand Contest 002 E - Candy Piles](https://atcoder.jp/contests/agc002/tasks/agc002_e)
+-   [AtCoder Grand Contest 010 F - Tree Game](https://atcoder.jp/contests/agc010/tasks/agc010_f)
+-   [AtCoder Grand Contest 017 D - Game on Tree](https://atcoder.jp/contests/agc017/tasks/agc017_d)
+-   [AtCoder Beginner Contest 278 G - Generalized Subtraction Game](https://atcoder.jp/contests/abc278/tasks/abc278_g)
+-   [SPOJ COT3 - Combat on a tree](https://www.spoj.com/problems/COT3/)
+-   [Codeforces 494 E. Sharti](https://codeforces.com/problemset/problem/494/E)
+-   [Codeforces 1149 E. Election Promises](https://www.luogu.com.cn/problem/CF1149E)
+-   [Codeforces 1451 F. Nullify The Matrix](https://codeforces.com/problemset/problem/1451/F)
+-   [Codeforces 1704 F. Colouring Game](https://codeforces.com/problemset/problem/1704/F)
 
 最后是一些二分图博弈的题目。由于需要用到一些二分图匹配的算法，故将它们单独列出：
 
