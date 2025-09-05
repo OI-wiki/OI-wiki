@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const labelsRemoved = [
               'More details needed / 内容需增修',
