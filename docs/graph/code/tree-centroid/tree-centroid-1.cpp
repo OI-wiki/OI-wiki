@@ -30,7 +30,7 @@ void dfs(int u) {
   }
 }
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false);
   cin >> n >> q;
   for (int v = 2; v <= n; v++) cin >> fa[v], son[fa[v]].push_back(v);

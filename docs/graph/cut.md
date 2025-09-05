@@ -1,6 +1,6 @@
 author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-cn
 
-相关阅读：[双连通分量](./bcc.md)，
+相关阅读：[双连通分量](./bcc.md)
 
 割点和桥更严谨的定义参见 [图论相关概念](./concept.md)。
 

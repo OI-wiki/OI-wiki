@@ -1,4 +1,5 @@
 # DIOPHANTINE EQUATION SOLVER.
+# --8<-- [start:fraction]
 # Find the continued fraction representation of P/Q.
 def fraction(p, q):
     a = []
@@ -8,6 +9,8 @@ def fraction(p, q):
     return a
 
 
+# --8<-- [end:fraction]
+# --8<-- [start:convergents]
 # Find the convergents of a continued fraction A.
 # Numerators and denominators stored separately in P and Q.
 def convergents(a):
@@ -19,6 +22,8 @@ def convergents(a):
     return p, q
 
 
+# --8<-- [end:convergents]
+# --8<-- [start:dio]
 # Return (x, y) such that Ax+By=C.
 # Assume that such (x, y) exists.
 def dio(A, B, C):
@@ -28,6 +33,7 @@ def dio(A, B, C):
     return t * C * q[-2], -t * C * p[-2]
 
 
+# --8<-- [end:dio]
 if __name__ == "__main__":
     A, B, C = map(int, input().split())
     x, y = dio(A, B, C)

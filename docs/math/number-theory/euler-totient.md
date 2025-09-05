@@ -39,17 +39,17 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
         
             证明：显然对于从 1 到 $p^k$ 的所有数中，除了 $p^{k-1}$ 个 $p$ 的倍数以外其它数都与 $p^k$ 互素，故 $\varphi(p^k)=p^k-p^{k-1}=p^{k-1}\times(p-1)$，证毕。
         
-            接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$。由唯一分解定理与 $\varphi(x)$ 函数的积性
+        接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$。由唯一分解定理与 $\varphi(x)$ 函数的积性
         
-            $$
-            \begin{aligned}
-                \varphi(n) &= \prod_{i=1}^{s} \varphi(p_i^{k_i}) \\
-                &= \prod_{i=1}^{s} (p_i-1)\times {p_i}^{k_i-1}\\
-                &=\prod_{i=1}^{s} {p_i}^{k_i} \times(1 - \frac{1}{p_i})\\
-                &=n~ \prod_{i=1}^{s} (1- \frac{1}{p_i})
-                &\square
-            \end{aligned}
-            $$
+        $$
+        \begin{aligned}
+            \varphi(n) &= \prod_{i=1}^{s} \varphi(p_i^{k_i}) \\
+            &= \prod_{i=1}^{s} (p_i-1)\times {p_i}^{k_i-1}\\
+            &=\prod_{i=1}^{s} {p_i}^{k_i} \times(1 - \frac{1}{p_i})\\
+            &=n~ \prod_{i=1}^{s} (1- \frac{1}{p_i})
+            &\square
+        \end{aligned}
+        $$
 
 -   对任意不全为 $0$ 的整数 $m,n$，$\varphi(mn)\varphi(\gcd(m,n))=\varphi(m)\varphi(n)\gcd(m,n)$。
 
@@ -75,12 +75,12 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
           return ans;
         }
         ```
-
+    
     === "Python"
         ```python
         import math
         
-
+        
         def euler_phi(n):
             ans = n
             for i in range(2, math.isqrt(n) + 1):
@@ -160,6 +160,17 @@ a^{b\bmod\varphi(m)+\varphi(m)},&\gcd(a,\,m)\ne1,\,b\ge\varphi(m)
 $$
 
 证明和习题详见 [欧拉定理](./fermat.md)。
+
+## 习题
+
+-   [SPOJ ETF. Euler Totient Function](http://www.spoj.com/problems/ETF/)
+-   [UVa 10179. Irreducible Basic Fractions](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120)
+-   [UVa 10299. Relatives](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240)
+-   [UVa 11327. Enumerating Rational Numbers](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302)
+-   [TIMUS 1673. Admission to Exam](http://acm.timus.ru/problem.aspx?space=1&num=1673)
+-   [Luogu P1390 公约数的和](https://www.luogu.com.cn/problem/P1390)
+-   [Luogu P2155 \[SDOI2008\] 沙拉公主的困惑](https://www.luogu.com.cn/problem/P2155)
+-   [Luogu P2568 GCD](https://www.luogu.com.cn/problem/P2568)
 
 ## 参考资料与注释
 

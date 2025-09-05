@@ -1,0 +1,46 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{16pt}{18pt}\selectfont}
+
+\tikzset{thick-line/.style={line width=2pt}}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    scale=1.5,
+    every node/.style={draw,thick,circle,inner sep=2pt},
+]
+
+\node [fill=gray!10,label=below:$u$] (-4) at (-4,0) {};
+\node [fill=gray!70] (-3) at (-3,0) {};
+\node [fill=gray!70] (-2) at (-2,0) {};
+\node [fill=gray!70] (-1) at (-1,0) {};
+\node [fill=gray!70,label=below:$x$] (00) at (0,0) {};
+\node [fill=gray!70] (+1) at (1,0) {};
+\node [fill=gray!70] (+2) at (2,0) {};
+\node [fill=gray!70] (+3) at (3,0) {};
+\node [fill=gray!10,label=below:$w$] (+4) at (4,0) {};
+\node [fill=gray!70] (u1) at (0,1) {};
+\node [fill=gray!70] (u2) at (0,2) {};
+\node [fill=gray!70] (u3) at (0,3) {};
+\node [fill=gray!10,label=left:$v$] (u4) at (0,4) {};
+
+\draw [thick-line]         (-3) -- (-4);
+\draw [thick-line, dashed] (-2) -- (-3);
+\draw [thick-line, red]    (-1) -- (-2);
+\draw [thick-line, blue]   (00) -- (-1);
+\draw [thick-line, red]    (00) -- (+1);
+\draw [thick-line, blue]   (+1) -- (+2);
+\draw [thick-line, dashed] (+2) -- (+3);
+\draw [thick-line]         (+3) -- (+4);
+\draw [thick-line, red]    (00) -- (u1);
+\draw [thick-line, blue]   (u1) -- (u2);
+\draw [thick-line, dashed] (u2) -- (u3);
+\draw [thick-line]         (u3) -- (u4);
+
+
+\end{tikzpicture}
+
+\end{document}

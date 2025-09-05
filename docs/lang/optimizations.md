@@ -187,7 +187,7 @@ int hotpath_again;  // <-- 热！
 我们用 label 来表达一种「伪机器码」，这个 C++ 程序有两种翻译方法：
 
 ???+ note "布局 1"
-    ```c++
+    ```cpp
     // clang-format off
     hotblock1:
         Stmts; // <-- 热！
@@ -208,7 +208,7 @@ int hotpath_again;  // <-- 热！
 另一种布局为：
 
 ???+ note "布局 2"
-    ```c++
+    ```cpp
     // clang-format off
     hotblock1:
         Stmts; // <-- 热！
@@ -244,7 +244,7 @@ if (unlikely(/* 一些边界条件检查 */ false)) {
 一个过程 (Procedure) 包含同时包含冷热路径，而冷代码较长，更好的做法是让冷代码作为函数调用，而不是阻断热路径。这同时也提示我们不要自作聪明的让所有函数 `inline`。冷代码对执行速度的阻碍比函数调用要多得多。
 
 ???+ note "不好的代码布局"
-    ```c++
+    ```cpp
     // clang-format off
     void foo() {
           // clang-format off
@@ -266,7 +266,7 @@ if (unlikely(/* 一些边界条件检查 */ false)) {
     ```
 
 ???+ note "好的代码布局"
-    ```c++
+    ```cpp
     // clang-format off
     void foo() {
     hotblock1:
@@ -345,7 +345,7 @@ tailCall(int):                           ; @tailCall(int)
 
 如果一个函数的尾调用是自身，则此函数是尾递归的。广义来讲，间接递归（由两个函数 以上共同形成递归）形成递归，且都是尾调用的，也属于尾递归的范畴。尾递归可以被编译器优化为非递归的形式，减小额外的栈开销和函数调用代价。许多算法竞赛选手热衷于写非递归的代码，在不开优化下这样可以极大优化代码的常数，然而如果开优化，递归代码生成的二进制质量和手写的代码没有什么区别。
 
-```c++
+```cpp
 int fac(int n) {
   if (n < 2) return 1;
   return /* 使用 */ n * fac(n - 1); /* 使用了变量 n ，无法直接做尾递归优化！*/
@@ -354,7 +354,7 @@ int fac(int n) {
 
 注意到这个函数并不是尾递归的，但可以改写为：
 
-```c++
+```cpp
 int fac(int acc, int n) {
   if (n < 2) return acc;
   return fac(acc * n, n - 1);
@@ -411,7 +411,7 @@ a = x << 1;  // good!
 
 需要注意的是有符号数和无符号数在移位 (shifting) 和类型提升 (promotion) 层面有明显的差异。符号位在移位时有着特别的处理，包括算术移位和逻辑移位两种类型。这在编写二分查找/线段树等含有大量除二操作的时候表现突出，有符号整数除法不能直接优化为一步右移位运算。
 
-```c++
+```cpp
 int l, r;
 /* codes */
 int mid = (l + r) / 2; /* 如果编译器不能假定 l, r 非负，则会生成较差的代码 */
@@ -423,7 +423,7 @@ int mid = (l + r) / 2; /* 如果编译器不能假定 l, r 非负，则会生成
                        // mid >> 1 = -64
 ```
 
-```c++
+```cpp
 int mid = (l + r);
 int sign = mid >> 31; /* 逻辑右移, 得到符号位 */
 mid += sign;

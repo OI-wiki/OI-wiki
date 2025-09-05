@@ -14,10 +14,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-          cache: pipenv
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "latest"
       - name: Install Python dependencies
-        run: |
-          pip install pipenv
-          pipenv install
+        run: uv sync
       - name: Celebrate
-        run: pipenv run python scripts/celebration.py "${{ secrets.GITHUB_TOKEN }}"
+        run: uv run python scripts/celebration.py "${{ secrets.GITHUB_TOKEN }}"

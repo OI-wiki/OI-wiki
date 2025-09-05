@@ -1,4 +1,5 @@
 # STERN-BROCOT TREE FRACTION FINDING.
+# --8<-- [start:core]
 # Locate a given fraction in the Stern-Brocot tree.
 def find(x, y, a=0, b=1, c=1, d=0):
     m = a + c
@@ -11,6 +12,7 @@ def find(x, y, a=0, b=1, c=1, d=0):
         return "R" + find(x, y, m, n, c, d)
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     x, y = map(int, input().split())
     print(find(x, y))

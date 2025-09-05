@@ -79,7 +79,7 @@ $$
 4.  查询时就是 1 到其所在的重链末尾的区间乘，最后取一个 $\max$ 即可。
 
 ??? note "代码实现"
-    ```c++
+    ```cpp
     --8<-- "docs/dp/code/dynamic/dynamic_1.cpp"
     ```
 

@@ -40,7 +40,7 @@
 #### 实现
 
 ???+ note "参考代码"
-    ```c++
+    ```cpp
     #include <cstdio>
     using namespace std;
     constexpr int N = 15;
@@ -85,7 +85,7 @@
 #### 过程
 
 ???+ note "参考代码"
-    ```c++
+    ```cpp
     #include <cstdio>
     #include <cstring>
     #include <iostream>
@@ -153,14 +153,14 @@
 ### 实现
 
 ???+ note "参考代码"
-    ```c++
+    ```cpp
     #include <cstdio>
     #include <cstring>
     #include <iostream>
     using namespace std;
     int x, y, dp[15][3], p[50];
     
-    int pre() {
+    void pre() {
       memset(dp, 0, sizeof(dp));
       dp[0][0] = 1;
       for (int i = 1; i <= 10; i++) {
@@ -277,7 +277,7 @@
 ### 实现
 
 ???+ note "参考代码"
-    ```c++
+    ```cpp
     int check(char cc[]) {  // n 的特判
       int strc = strlen(cc);
       for (int i = 0; i < strc; ++i) {
@@ -342,7 +342,7 @@
 ### 实现
 
 ???+ note "参考代码"
-    ```c++
+    ```cpp
     #include <cstdio>
     #include <cstring>
     #include <queue>

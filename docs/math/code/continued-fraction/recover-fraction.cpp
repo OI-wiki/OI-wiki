@@ -25,6 +25,7 @@ auto convergents(std::vector<int> a) {
   return std::make_pair(p, q);
 }
 
+// --8<-- [start:core]
 // Find Q that minimizes Q*r mod m for 1 <= k <= n < m.
 int mod_min(int r, int n, int m) {
   auto a = fraction(r, m);
@@ -39,6 +40,7 @@ int mod_min(int r, int n, int m) {
   return 0;
 }
 
+// --8<-- [end:core]
 int main() {
   int r, n, m;
   std::cin >> r >> n >> m;

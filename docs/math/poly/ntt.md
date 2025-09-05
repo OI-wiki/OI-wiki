@@ -1,4 +1,4 @@
-author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni, Saisyc, 383494, Tiphereth-A
+author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni, Saisyc, 383494, Tiphereth-A, XuYueming520
 
 ## 简介
 
@@ -44,7 +44,7 @@ $$
 p = 1004535809 = 479 \times 2^{21}+1, g=3
 $$
 
-就是 $g^{qn}$ 的等价 $\mathrm{e}^{2\pi n}$。
+就是 $g^{qn}$ 的等价 $\mathrm{e}^{2\pi \mathrm{i} n}$。
 
 迭代到长度 $l$ 时 $g_l = g^{\frac{p-1}{l}}$，或者 $\omega_n = g_l = g_N^{\frac{N}{l}} = g_N^{\frac{p-1}{l}}$。
 
@@ -159,11 +159,11 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     
     int main() {
       int i, lim(1), n;
-      scanf("%s", &a);
+      scanf("%s", a);
       n = strlen(a);
       for (i = 0; i < n; ++i) A[i] = a[n - i - 1] - '0';
       while (lim < (n << 1)) lim <<= 1;
-      scanf("%s", &b);
+      scanf("%s", b);
       n = strlen(b);
       for (i = 0; i < n; ++i) B[i] = b[n - i - 1] - '0';
       while (lim < (n << 1)) lim <<= 1;

@@ -163,7 +163,7 @@ $ git commit # 接下来会弹出编辑器页面，你需要写下 commit 信息
 
 现在重点观察一下这一次 commit 的信息。
 
-`master` 表示当前位于 `master` 分支（关于分支的问题，下文将会详细介绍），`b13c84e` 表示本次提交的 SHA-1 校验和的前几位，后面则是本次提交的信息。
+`master` 表示当前位于 `master` 分支（关于分支的问题，下文将会详细介绍），`f992763` 表示本次提交的 SHA-1 校验和的前几位，后面则是本次提交的信息。
 
 需要特别关注的是这里的 SHA-1 校验码，每个校验码都与某个时刻仓库的一个快照相对应。利用这一特性我们可以访问历史某个时刻的仓库快照，并在该快照上进行更改。
 
@@ -246,7 +246,7 @@ $ git commit -a -m "feat: update README.md"
 
 下面用一张图来解释刚才的操作过程。
 
-![](./images/git1.png)
+![](./images/git1.svg)
 
 `master` 分支被标红，表明在这几次操作后，它是当前分支（即 HEAD 指向的位置）。
 
@@ -270,7 +270,7 @@ Merge made by the 'recursive' strategy.
  create mode 100644 aplusb.cpp
 ```
 
-![](./images/git2.png)
+![](./images/git2.svg)
 
 这次合并具体是怎么执行的呢？
 

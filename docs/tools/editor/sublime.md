@@ -345,7 +345,7 @@ Snippet 类型的补全一般会有一些编辑块，补全后会自动选择为
 
 如果要把以下代码中的所有 `bok` 改为 `book`，只需将光标放置在任意一个 `bok` 中，长按<kbd>Ctrl</kbd>+<kbd>D</kbd>即可快速选中。
 
-```C++
+```cpp
 int check() {
   book[1] = 1, book[2] = 1, book[3] = 1, bok[1] = 1, bok[2] = 1, bok[3] = 1,
   bok[4] = 1, bok[5] = 1;
@@ -356,7 +356,7 @@ int check() {
 
 或选中 `"a` 并按住<kbd>Ctrl</kbd>+<kbd>D</kbd>，然后按<kbd>Right</kbd>、<kbd>Ctrl</kbd>+<kbd>D</kbd>，之后键入即可。
 
-```C++
+```cpp
 s[1] = "aaa";
 s[2] = "aab";
 s[3] = "aac";
@@ -375,7 +375,7 @@ a + b*a + b*a + b
 
 如果要将下列文件中的所有等号后面改成 `"good"`，也可以用<kbd>Ctrl</kbd>+<kbd>H</kbd>使用替换，打开正则，输入 `".*"`，并替换成 `"good"` 即可。
 
-```C++
+```cpp
 s[1] = "aaa";
 s[2] = "aab";
 s[3] = "aac";

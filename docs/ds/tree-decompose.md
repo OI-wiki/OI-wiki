@@ -14,7 +14,7 @@ author: ouuan, Ir1d, Marcythm, Xeonacid
 
 顺带提一句，「gty 的妹子树」的树分块做法可以被菊花图卡掉。
 
-### [BZOJ4763 雪辉](https://www.luogu.com.cn/problem/P3603)
+### [BZOJ4763 雪辉](https://hydro.ac/p/bzoj-P4763)
 
 先进行树分块，然后对每个块的关键点，预处理出它到祖先中每个关键点的路径上颜色的 bitset，以及每个关键点的最近关键点祖先，复杂度是 $O(n\sqrt n+\frac{nc}{32})$，其中 $n\sqrt n$ 是暴力从每个关键点向上跳的复杂度，$\frac{nc}{32}$ 是把 $O(n)$ 个 `bitset` 存下来的复杂度。
 
@@ -27,7 +27,7 @@ author: ouuan, Ir1d, Marcythm, Xeonacid
     --8<-- "docs/ds/code/tree-decompose/tree-decompose_1.cpp"
     ```
 
-### [BZOJ4812 由乃打扑克](https://www.luogu.com.cn/problem/P5356)
+### [BZOJ4812 由乃打扑克](https://hydro.ac/p/bzoj-P4812)
 
 这题和上一题基本一样，唯一的区别是得到 `bitset` 后如何计算答案。
 

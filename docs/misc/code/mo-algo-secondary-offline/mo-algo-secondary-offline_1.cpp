@@ -1,228 +1,146 @@
 #include <algorithm>
+#include <cmath>
+#include <cstring>
 #include <iostream>
 #include <vector>
 
-using lxl = long long;
+constexpr int MAX = 1e5 + 5;
+constexpr int MAXX = 4e2 + 5;
+constexpr int MX = 1e5;
+typedef long long ll;
 
-constexpr int MAXN = 5e5;
-constexpr int MAXM = 5e5;
-constexpr int MAXA = 1e5;
-constexpr int sqrN = 708;
-constexpr int sqrA = 317;
+int n, m, sz, _sz;
+int a[MAX], b[MAX], bl[MAX], st[MAXX], ed[MAXX], b1[MAXX], b2[MAX], p1[MAX],
+    p2[MAX];
+ll ans[MAX];
 
-int n, m;
-int a[MAXN + 10];
-int b[MAXN + 10];
-int l, r;
-lxl f[MAXN + 10];
-lxl g[MAXN + 10];
-lxl ans[MAXM + 10];
-
-struct SegmentTree {
-  struct Node {
-    lxl val;
-    lxl tag;
-  } node[4 * MAXA + 10];
-
-  void MakeTag(int u, int l, int r, lxl val) {
-    node[u].val += val * (r - l + 1);
-    node[u].tag += val;
-    return;
-  }
-
-  void PushDown(int u, int l, int r) {
-    if (!node[u].tag) return;
-    int mid = (l + r) / 2;
-    MakeTag(2 * u, l, mid, node[u].tag);
-    MakeTag(2 * u + 1, mid + 1, r, node[u].tag);
-    node[u].tag = 0;
-    return;
-  }
-
-  void PushUp(int u) {
-    node[u].val = node[2 * u].val + node[2 * u + 1].val;
-    return;
-  }
-
-  void Add(int u, int l, int r, int s, int t, lxl val) {
-    if (s > t) return;
-    if (s <= l && r <= t) {
-      MakeTag(u, l, r, val);
-      return;
-    }
-    PushDown(u, l, r);
-    int mid = (l + r) / 2;
-    if (s <= mid) Add(2 * u, l, mid, s, t, val);
-    if (t >= mid + 1) Add(2 * u + 1, mid + 1, r, s, t, val);
-    PushUp(u);
-    return;
-  }
-
-  void Add(int u, int l, int r, int pos, lxl val) {
-    Add(u, l, r, pos, pos, val);
-    return;
-  }
-
-  lxl Ask(int u, int l, int r, int s, int t) {
-    if (s > t) return 0;
-    if (s <= l && r <= t) {
-      return node[u].val;
-    }
-    PushDown(u, l, r);
-    int mid = (l + r) / 2;
-    if (t <= mid) return Ask(2 * u, l, mid, s, t);
-    if (s >= mid + 1) return Ask(2 * u + 1, mid + 1, r, s, t);
-    return Ask(2 * u, l, mid, s, t) + Ask(2 * u + 1, mid + 1, r, s, t);
-  }
+struct N {
+  int l, r, id, x, y;
 };
 
-using sgt = SegmentTree;
+std::vector<N> v[MAX];
 
-struct BlockArray {
-  struct Block {
-    int l, r;
-    lxl tag;
-  } block[sqrA + 10];
+struct Q {
+  int l, r, id;
+  ll ans = 0;
+} q[MAX];
 
-  struct Array {
-    int bel;
-    lxl val;
-  } array[MAXA + 10];
-
-  void Build() {
-    for (int i = 1; i <= MAXA; i++) array[i].bel = (i - 1) / sqrA + 1;
-    for (int i = 1; i <= MAXA; i++) block[array[i].bel].r = i;
-    for (int i = MAXA; i >= 1; i--) block[array[i].bel].l = i;
-    return;
+bool cmp(Q a, Q b) {
+  if (a.l / _sz != b.l / _sz) {
+    return a.l < b.l;
   }
-
-  void Add(int pos, lxl val) {
-    for (int i = array[pos].bel + 1; i <= array[MAXA].bel; i++)
-      block[i].tag += val;
-    for (int i = pos; i <= block[array[pos].bel].r; i++) array[i].val += val;
-    return;
-  }
-
-  lxl Ask(int pos) { return array[pos].val + block[array[pos].bel].tag; }
-
-  lxl Ask(int l, int r) {
-    if (l > r) return 0;
-    return Ask(r) - Ask(l - 1);
-  }
-};
-
-using dba = BlockArray;
-
-namespace captainMoSecondaryOffline {
-namespace offline2 {
-struct Query {
-  int i;
-  int l, r;
-  int k;
-};
-
-std::vector<Query> query[MAXN + 10];
-
-dba sum, cnt;
-
-void solve() {
-  sum.Build();
-  cnt.Build();
-  for (int i = 1; i <= n; i++) {
-    sum.Add(a[i], a[i]);
-    cnt.Add(a[i], 1);
-    for (int j = 0; j < query[i].size(); j++) {
-      for (int k = query[i][j].l; k <= query[i][j].r; k++) {
-        ans[query[i][j].i] +=
-            1ll * query[i][j].k *
-            (sum.Ask(a[k] + 1, MAXA) + cnt.Ask(1, a[k] - 1) * a[k]);
-      }
-    }
-  }
-  return;
+  return ((a.l / _sz) & 1) ? a.r < b.r : a.r > b.r;
 }
-}  // namespace offline2
 
-namespace offline1 {
-struct Query {
-  int i;
-  int l, r;
-
-  bool operator<(const Query &other) const {
-    if (b[l] != b[other.l]) return l < other.l;
-    return r < other.r;
+void init() {
+  sz = sqrt(MX);
+  for (int i = 1; i <= sz; ++i) {
+    st[i] = (MX / sz) * (i - 1) + 1;
+    ed[i] = (MX / sz) * i;
   }
-};
-
-std::vector<Query> query;
-
-sgt sum, cnt;
-
-void solve() {
-  std::sort(query.begin(), query.end());
-  for (int i = 1; i <= n; i++) {
-    f[i] = sum.Ask(1, 1, MAXA, a[i] + 1, MAXA);
-    g[i] = cnt.Ask(1, 1, MAXA, 1, a[i] - 1);
-    sum.Add(1, 1, MAXA, a[i], a[i]);
-    cnt.Add(1, 1, MAXA, a[i], 1);
-  }
-  for (int i = 0, l = 1, r = 0; i < query.size(); i++) {
-    if (l > query[i].l) {
-      offline2::query[r].push_back(
-          offline2::Query{query[i].i, query[i].l, l - 1, 1});
-      while (l > query[i].l) {
-        l--;
-        ans[query[i].i] -= f[l] + (g[l] - 1) * a[l];
-      }
-    }
-    if (r < query[i].r) {
-      offline2::query[l - 1].push_back(
-          offline2::Query{query[i].i, r + 1, query[i].r, -1});
-      while (r < query[i].r) {
-        r++;
-        ans[query[i].i] += f[r] + (g[r] + 1) * a[r];
-      }
-    }
-    if (l < query[i].l) {
-      offline2::query[r].push_back(
-          offline2::Query{query[i].i, l, query[i].l - 1, -1});
-      while (l < query[i].l) {
-        ans[query[i].i] += f[l] + (g[l] - 1) * a[l];
-        l++;
-      }
-    }
-    if (r > query[i].r) {
-      offline2::query[l - 1].push_back(
-          offline2::Query{query[i].i, query[i].r + 1, r, 1});
-      while (r > query[i].r) {
-        ans[query[i].i] -= f[r] + (g[r] + 1) * a[r];
-        r--;
-      }
+  ed[sz] = MX;
+  for (int i = 1; i <= sz; ++i) {
+    for (int j = st[i]; j <= ed[i]; ++j) {
+      bl[j] = i;
     }
   }
-  return;
 }
-}  // namespace offline1
 
-void solve() {
-  offline1::solve();
-  offline2::solve();
-  for (int i = 1; i < m; i++)
-    ans[offline1::query[i].i] += ans[offline1::query[i - 1].i];
-  return;
+void clear() {
+  memset(b1, 0, sizeof(b1));
+  memset(b2, 0, sizeof(b2));
 }
-}  // namespace captainMoSecondaryOffline
+
+void mdf(int x) {
+  for (int i = bl[x]; i <= sz; ++i) {
+    ++b1[i];
+  }
+  for (int i = x; i <= ed[bl[x]]; ++i) {
+    ++b2[i];
+  }
+}
+
+int qry(int x) {
+  if (!x) {
+    return 0;
+  }
+  return b1[bl[x] - 1] + b2[x];
+}
 
 int main() {
-  std::cin >> n >> m;
-  for (int i = 1; i <= n; i++) std::cin >> a[i];
-  for (int i = 1; i <= n; i++) b[i] = (i - 1) / sqrN + 1;
-  for (int i = 1; i <= m; i++) {
-    std::cin >> l >> r;
-    captainMoSecondaryOffline::offline1::query.push_back(
-        captainMoSecondaryOffline::offline1::Query{i, l, r});
+  scanf("%d%d", &n, &m);
+  init();
+  _sz = sqrt(m);
+  for (int i = 1; i <= n; ++i) {
+    scanf("%d", &a[i]);
+    b[i] = a[i];
   }
-  captainMoSecondaryOffline::solve();
-  for (int i = 1; i <= m; i++) std::cout << ans[i] << '\n';
-  return 0;
+  std::sort(b + 1, b + n + 1);
+  int len = std::unique(b + 1, b + n + 1) - b - 1;
+  for (int i = 1; i <= n; ++i) {
+    a[i] = std::lower_bound(b + 1, b + len + 1, a[i]) - b;
+  }
+  for (int i = 1; i <= n; ++i) {
+    p1[i] = qry(a[i] - 1);
+    p2[i] = qry(n) - qry(a[i]);
+    mdf(a[i]);
+  }
+  for (int i = 1; i <= m; ++i) {
+    scanf("%d%d", &q[i].l, &q[i].r);
+    q[i].id = i;
+  }
+  std::sort(q + 1, q + m + 1, cmp);
+  clear();
+  for (int i = 1, L = 1, R = 0; i <= m; ++i) {
+    int l = q[i].l, r = q[i].r;
+    if (L > l) {
+      v[R].push_back({l, L - 1, i, 1, 0});
+    }
+    while (L > l) {
+      --L;
+      q[i].ans -= p1[L];
+    }
+    if (R < r) {
+      v[L - 1].push_back({R + 1, r, i, -1, 1});
+    }
+    while (R < r) {
+      ++R;
+      q[i].ans += p2[R];
+    }
+    if (L < l) {
+      v[R].push_back({L, l - 1, i, -1, 0});
+    }
+    while (L < l) {
+      q[i].ans += p1[L];
+      ++L;
+    }
+    if (R > r) {
+      v[L - 1].push_back({r + 1, R, i, 1, 1});
+    }
+    while (R > r) {
+      q[i].ans -= p2[R];
+      --R;
+    }
+  }
+  for (int i = 1; i <= n; ++i) {
+    mdf(a[i]);
+    for (N j : v[i]) {
+      for (int k = j.l; k <= j.r; ++k) {
+        if (j.y == 0) {
+          q[j.id].ans += j.x * qry(a[k] - 1);
+        } else {
+          q[j.id].ans += j.x * (i - qry(a[k]));
+        }
+      }
+    }
+  }
+  for (int i = 2; i <= m; ++i) {
+    q[i].ans += q[i - 1].ans;
+  }
+  for (int i = 1; i <= m; ++i) {
+    ans[q[i].id] = q[i].ans;
+  }
+  for (int i = 1; i <= m; ++i) {
+    printf("%lld\n", ans[i]);
+  }
 }

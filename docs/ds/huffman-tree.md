@@ -83,13 +83,13 @@ $$
 ## 示例代码
 
 ??? note "霍夫曼树的构建"
-    ```C++
+    ```cpp
     struct HNode {
       int weight;
       HNode *lchild, *rchild;
     };
     
-    using Htree = HNode*;
+    using Htree = HNode *;
     
     Htree createHuffmanTree(int arr[], int n) {
       Htree forest[N];
@@ -140,13 +140,13 @@ $$
     ```
 
 ??? note "计算构成霍夫曼树的 WPL"
-    ```C++
+    ```cpp
     struct HNode {
       int weight;
       HNode *lchild, *rchild;
     };
     
-    using Htree = HNode*;
+    using Htree = HNode *;
     
     int getWPL(Htree root, int len) {  // 递归实现，对于已经建好的霍夫曼树，求 WPL
       if (root == NULL)
@@ -164,7 +164,7 @@ $$
     ```
 
 ??? note "对于未建好的霍夫曼树，直接求其 WPL"
-    ```C++
+    ```cpp
     int getWPL(int arr[], int n) {  // 对于未建好的霍夫曼树，直接求其 WPL
       priority_queue<int, vector<int>, greater<int>> huffman;  // 小根堆
       for (int i = 0; i < n; i++) huffman.push(arr[i]);
@@ -184,13 +184,13 @@ $$
     ```
 
 ??? note "对于给定序列，计算霍夫曼编码"
-    ```C++
+    ```cpp
     struct HNode {
       int weight;
       HNode *lchild, *rchild;
     };
     
-    using Htree = HNode*;
+    using Htree = HNode *;
     
     void huffmanCoding(Htree root, int len, int arr[]) {  // 计算霍夫曼编码
       if (root != NULL) {

@@ -220,7 +220,7 @@ $$
 故得证。
 
 ??? note "参考实现"
-    ```c++
+    ```cpp
     using ll = long long;
     constexpr int MAXN = 10000;
     constexpr int mod = 1e9 + 7;

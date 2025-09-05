@@ -59,8 +59,6 @@
     
     若偏序 $\preceq$ 还具有 **连接性**，则称其为 **全序**（total order），对应的集合称为 **全序集**（totally ordered set）、**线性序集**（linearly ordered set，loset）、**简单序集**（simply ordered set）。
 
-由传递性和反对称性可以推出自反性，由传递性和自反性也可以推出反对称性。
-
 不难发现 $\mathbf{N}$，$\mathbf{Z}$，$\mathbf{Q}$、$\mathbf{R}$ 均关于 $\leq$ 构成全序集。
 
 ### 偏序集的可视化表示：Hasse 图
@@ -202,7 +200,7 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
         
         因此不难得出 $\{f^{-1}(\{i\}):1\leq i\leq d\}$ 是一个反链覆盖，从而最小反链覆盖数至多为 $d$.
 
-Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#霍尔定理) 等价。
+Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#hall-定理) 等价。
 
 我们可以用 Dilworth 定理证明如下定理：
 

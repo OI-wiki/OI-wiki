@@ -130,7 +130,7 @@ author: xiezheyuan
         然后就自然地想到离线，将所有时间刻插入到线段树中。然后在线段树上分治，每次线段树上的点会记录当前时间段点集新增的点，新增点可以使用上面的推论，找到新点集直径的两个端点。
         
         撤销是平凡的，开一个栈记录一下直径端点的变化即可。
-
+    
     ??? "参考代码"
         ```cpp
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_4.cpp"

@@ -378,12 +378,6 @@ $$
 
 注意：当 $p \ge 1$ 时，闵可夫斯基距离才是度量，具体证明参见 [Minkowski distance - Wikipedia](https://en.wikipedia.org/wiki/Minkowski_distance)。
 
-## 汉明距离
-
-汉明距离是两个字符串之间的距离，它表示两个长度相同的字符串对应位字符不同的数量
-
-我们可以简单的认为对两个串进行异或运算，结果为 1 的数量就是两个串的汉明距离。
-
 ## 参考资料与链接
 
 1.  [浅谈三种常见的距离算法](https://www.luogu.com.cn/blog/xuxing/Distance-Algorithm)，感谢作者 xuxing 的授权。

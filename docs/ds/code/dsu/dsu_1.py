@@ -5,7 +5,7 @@ class Dsu:
         self.size = [1] * size * 2
         self.sum = list(range(size)) * 2
 
-    def union(self, x, y):
+    def unite(self, x, y):
         x, y = self.find(x), self.find(y)
         if x == y:
             return
@@ -40,7 +40,7 @@ if __name__ == "__main__":
                 op_x_y = list(map(int, input().split()))
                 op = op_x_y[0]
                 if op == 1:
-                    dsu.union(op_x_y[1], op_x_y[2])
+                    dsu.unite(op_x_y[1], op_x_y[2])
                 elif op == 2:
                     dsu.move(op_x_y[1], op_x_y[2])
                 elif op == 3:

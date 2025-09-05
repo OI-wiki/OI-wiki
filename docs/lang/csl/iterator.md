@@ -19,7 +19,7 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 // 在C++11后可以使用 auto iter = data.begin() 来简化上述代码
 ```
 
-???+ note "`auto` 在竞赛中的使用 "
+???+ tip "`auto` 在竞赛中的使用 "
     大部分选手都喜欢使用 `auto` 来代替繁琐的迭代器声明。根据 2021 年 9 月发布的 [关于 NOI 系列活动中编程语言使用限制的补充说明](https://www.noi.cn/xw/2021-09-01/735729.shtml)，NOI 系列比赛（包括 CSP J/S）在评测时将使用 **C++14**，这个版本已经支持了 `auto` 关键字。
 
 ## 分类
@@ -28,23 +28,23 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 
 -   InputIterator（输入迭代器）：只要求支持拷贝、自增和解引访问。
 -   OutputIterator（输出迭代器）：只要求支持拷贝、自增和解引赋值。
--   ForwardIterator（向前迭代器）：同时满足 InputIterator 和 OutputIterator 的要求。
+-   ForwardIterator（前向迭代器）：在 InputIterator 的基础上支持多次遍历迭代器解引访问，且保证多次访问的结果一致。
 -   BidirectionalIterator（双向迭代器）：在 ForwardIterator 的基础上支持自减（即反向访问）。
 -   RandomAccessIterator（随机访问迭代器）：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）。
 -   ContiguousIterator（连续迭代器）：在 RandomAccessIterator 的基础上要求对可解引用的迭代器 `a + n` 满足 `*(a + n)` 与 `*(std::address_of(*a) + n)` 等价（即连续存储，其中 `a` 为连续迭代器、`n` 为整型值）。
 
     ContiguousIterator 于 C++17 中正式引入。
 
-???+ note "为什么输入迭代器叫输入迭代器？"
+???+ tip "为什么输入迭代器叫输入迭代器？"
     「输入」指的是「可以从迭代器中获取输入」，而「输出」指的是「可以输出到迭代器」。
-
+    
     「输入」和「输出」的施动者是程序的其它部分，而不是迭代器自身。
 
-其实这个「分类」并不互斥——一个「类别」是可以包含另一个「类别」的。例如，在要求使用向前迭代器的地方，同样可以使用双向迭代器。
+迭代器的这些分类并不互斥。实际上，除了输出迭代器之外，列表中排在前面的迭代器都包含着排在后面的迭代器。例如，在要求使用前向迭代器的地方，同样可以使用双向迭代器。从前向迭代器开始，如果这些迭代器还实现了输出迭代器的功能（即允许写操作），就称它们是可变迭代器。由此，可以衍生出诸如「可变随机访问迭代器」这样的类别。
 
 不同的 [STL 容器](./container.md) 支持的迭代器类型不同，在使用时需要留意。
 
-指针满足随机访问迭代器的所有要求，可以当作随机访问迭代器使用。
+数组指针满足连续迭代器（或随机访问迭代器，对于 C++14 及以前的版本）的所有要求，可以当作连续迭代器使用。
 
 ## 相关函数
 
@@ -52,7 +52,7 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 
 可以使用 `std::advance(it, n)` 将迭代器 `it` 向后移动 `n` 步；若 `n` 为负数，则对应向前移动，此时迭代器必须满足双向迭代器，否则行为未定义。
 
-在 C++11 以后可以使用 `std::next(it)` 获得向前迭代器 `it` 的后继（此时迭代器 `it` 不变），`std::next(it, n)` 获得向前迭代器 `it` 的第 `n` 个后继。
+在 C++11 以后可以使用 `std::next(it)` 获得前向迭代器 `it` 的后继（此时迭代器 `it` 不变），`std::next(it, n)` 获得前向迭代器 `it` 的第 `n` 个后继。
 
 在 C++11 以后可以使用 `std::prev(it)` 获得双向迭代器 `it` 的前驱（此时迭代器 `it` 不变），`std::prev(it, n)` 获得双向迭代器 `it` 的第 `n` 个前驱。
 

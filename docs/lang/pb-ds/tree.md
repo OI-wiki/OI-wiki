@@ -25,7 +25,7 @@ __gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 
 ## 构造方式
 
-```c++
+```cpp
 __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
                  std::less<std::pair<int, int>>, __gnu_pbds::rb_tree_tag,
                  __gnu_pbds::tree_order_statistics_node_update>

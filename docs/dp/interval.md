@@ -64,8 +64,8 @@
 
 ## 几道练习题
 
-[NOIP 2006 能量项链](https://vijos.org/p/1312)
+[NOIP 2006 能量项链](https://www.luogu.com.cn/problem/P1063)
 
-[NOIP 2007 矩阵取数游戏](https://vijos.org/p/1378)
+[NOIP 2007 矩阵取数游戏](https://www.luogu.com.cn/problem/P1005)
 
 [「IOI2000」邮局](https://www.luogu.com.cn/problem/P4767)

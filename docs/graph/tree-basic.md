@@ -165,7 +165,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 按照 **根，左，右** 的顺序遍历二叉树。
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     void preorder(BiTree* root) {
       if (root) {
         cout << root->key << " ";
@@ -182,7 +182,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 按照 **左，根，右** 的顺序遍历二叉树。
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     void inorder(BiTree* root) {
       if (root) {
         inorder(root->left);
@@ -199,7 +199,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 按照 **左，右，根** 的顺序遍历二叉树。
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     void postorder(BiTree* root) {
       if (root) {
         postorder(root->left);
@@ -234,7 +234,7 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
 ![tree-basic-levelOrder](images/tree-basic-levelOrder.svg)
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     vector<vector<int>> levelOrder(Node* root) {
       if (!root) {
         return {};
@@ -289,7 +289,7 @@ Morris 遍历的实质是避免使用栈，利用底层节点空闲的 `right` �
 整棵树的访问顺序是 `1242513637`。可以发现有左子树的节点访问两次，没有左子树的节点只访问一次。
 
 ???+ note "实现"
-    ```c++
+    ```cpp
     void morris(TreeNode* root) {
       TreeNode* cur = root;
       while (cur) {

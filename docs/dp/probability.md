@@ -24,7 +24,7 @@
 ### 实现
 
 ??? note "参考实现"
-    ```c++
+    ```cpp
     --8<-- "docs/dp/code/probability/probability_1.cpp"
     ```
 
@@ -64,7 +64,7 @@ $$
 #### 实现
 
 ??? note "参考实现"
-    ```c++
+    ```cpp
     --8<-- "docs/dp/code/probability/probability_2.cpp"
     ```
 
@@ -93,7 +93,7 @@ $$
 #### 实现
 
 ??? note "参考实现"
-    ```c++
+    ```cpp
     --8<-- "docs/dp/code/probability/probability_3.cpp"
     ```
 
@@ -135,7 +135,7 @@ $$
 ### 实现
 
 ??? note "参考实现"
-    ```c++
+    ```cpp
     #include <cstdio>
     #include <cstring>
     using namespace std;

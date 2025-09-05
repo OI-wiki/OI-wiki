@@ -19,6 +19,7 @@ def convergents(a):
     return p, q
 
 
+# --8<-- [start:core]
 # Find (x, y) such that y = (A*x+B) // C,
 # such that Cy - Ax is max and 0 <= x <= N.
 def closest(A, B, C, N):
@@ -50,6 +51,7 @@ def solve(A, B, N):
     return N // A - x, y
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     A, B, N = map(int, input().split())
     x, y = solve(A, B, N)

@@ -74,7 +74,7 @@ DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容
         stack = [s]  # 用列表来模拟栈，把起点加入栈中
         vis[s] = True  # 起点被遍历
     
-        while not stack:
+        while stack:  # 当栈非空时继续执行
             u = (
                 stack.pop()
             )  # 拿取并丢弃掉最后一个元素（栈顶的元素），可以理解为走到u这个元素
