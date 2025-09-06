@@ -230,8 +230,10 @@ Catalan 数列 $C_n$ 可以应用于以下问题：
 类似问题二，第二、三个部分都是子问题，记 $n$ 边形三角剖分的方案数为 $T_n$，则：
 
 $$
-T_3 = 1\\
-T_n = \sum_{k=2}^{n-1} T_{k} \cdot T_{n-k+1}
+\begin{align*}
+T_3 &= 1\\
+T_n &= \sum_{k=2}^{n-1} T_{k} \cdot T_{n-k+1}
+\end{align*}
 $$
 
 联系 Catalan 数列的递推式，得到 $T_n = C_{n-2}$。
