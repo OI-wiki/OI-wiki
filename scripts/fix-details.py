@@ -1,5 +1,5 @@
 import os
-import sys
+import argparse
 from typing import Iterable
 
 SKIP_EXTNAME = '.skipdetails'
@@ -60,7 +60,25 @@ def check(filename: str):
             f.write(new)
 
 
+parser = argparse.ArgumentParser(description="修复 Markdown 文件的 details 缩进")
+parser.add_argument('directory', nargs='?', help='要递归处理的文件夹')
+parser.add_argument('-f', '--files', nargs='+', help='要处理的 Markdown 文件列表')
+
 if __name__ == '__main__':
-    for root, _, files in os.walk(sys.argv[1]):
-        for filename in filter(lambda f: os.path.splitext(f)[1] == '.md', files):
-            check(os.path.join(root, filename))
+    args = parser.parse_args()
+
+    file_list = []
+
+    if args.files:
+        file_list.extend(
+            filter(lambda f: os.path.splitext(f)[1] == '.md', args.files))
+    elif args.directory:
+        for root, _, files in os.walk(args.directory):
+            file_list.extend(os.path.join(root, fn) for fn in filter(
+                lambda f: os.path.splitext(f)[1] == '.md', files))
+    else:
+        parser.print_help()
+        exit(0)
+
+    for file in filter(lambda f: os.path.isfile(f), file_list):
+        check(file)
