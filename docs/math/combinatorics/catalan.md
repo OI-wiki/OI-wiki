@@ -110,9 +110,7 @@ $$
 $$
 \begin{align}
 C_n &= \frac{1}{n+1}\binom{2n}{n}(n \geq 2, n \in \mathbf{N_{+}}) \\
-
-&= \binom{2n}{n} - \binom{2n}{n-1}\\
-
+&= \binom{2n}{n} - \binom{2n}{n-1} \\
 &= \frac{C_{n-1} (4n-2)}{n+1}
 \end{align}
 $$
@@ -132,31 +130,24 @@ $$
 
 ??? note "证明形式 3"
     展开原式：
-
     $$
     \begin{align*}
     \frac{C_{n-1} (4n-2)}{n+1} &= \frac{1}{n+1} \cdot \frac{1}{n}\binom{2n-2}{n-1}(4n-2)\\
     &= \frac{2(2n-1)}{n(n+1)}\binom{2n-2}{n-1}
     \end{align*}
     $$
-
     因为：
-
     $$
     \binom{2n}{n} = \frac{2(2n-1)}{n}\binom{2n-2}{n-1}
     $$
     因此：
-
     $$
     \binom{2n-2}{n-1} = \frac{n}{2(2n-1)}\binom{2n}{n}
     $$
-
     带回原式：
-
     $$
     \begin{align*}
-    \frac{2(2n-1)}{n(n+1)}\binom{2n-2}{n-1} &= \frac{2(2n-1)}{n(n+1)}\frac{n}{2(2n-1)}\binom{2n}{n}\\
-
+    \frac{2(2n-1)}{n(n+1)}\binom{2n-2}{n-1} &= \frac{2(2n-1)}{n(n+1)}\frac{n}{2(2n-1)}\binom{2n}{n} \\
     &=  \frac{1}{n+1}\binom{2n}{n}
     \end{align*}
     $$
