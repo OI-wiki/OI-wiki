@@ -231,7 +231,7 @@ class Test {
 ```java
 class Test {
     public static void main(String[] args) {
-        for	( /* 元素类型X */ /* 元素名Y */ : /* 集合Z */ ) {
+        for ( /* 元素类型X */ /* 元素名Y */ : /* 集合Z */ ) {
             // 这个语句块的每一次循环时，元素Y分别是集合Z中的一个元素。
         }
     }

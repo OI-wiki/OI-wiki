@@ -129,40 +129,40 @@ ST 的 Vintage 插件与 Vi 有一定不同，部分列于此处：
 
 ```JSON
 {
-	//字体大小
-	"font_size": 11,
-
-	//字体，可以不设置，默认为 Consolas
-	"font_face": "",
-
-	//Tab自动转换为空格
-	"translate_tabs_to_spaces": true,
-
-	//缩进宽度
-	"tab_size": 4,
-
-	//行高亮
-	"highlight_line": true,
-
-	//保存时自动在文件尾增加换行
-	"trim_trailing_white_space_on_save": true,
-
-	//在选择时查找自动只查找选择范围
-	"auto_find_in_selection": true,
-
-	//禁用了OI中不太可能用到的插件，可以自己调整
-	"ignored_packages": [
-		"ActionScript", "AppleScript", "ASP", "Batch File", "C#", 
-		"Clojure", "CSS", "D", "Diff", "Erlang", "Git Formats", 
-		"Go", "Graphviz", "Groovy", "Haskell", "HTML", "Java", 
-		"LaTeX", "Lisp", "Lua", "Makefile", "Matlab", 
-		"Objective-C", "OCaml", "Perl", "PHP", "Python", 
-		"R","Rails", "RestructuredText", "Ruby", "Rust", 
-		"Scala", "ShellScript", "SQL", "TCL", "Textile", "XML", 
-	],
-
-	//相对行号，可配合 Vintage 插件快速跳转
-	"relative_line_numbers": false,
+  //字体大小
+  "font_size": 11,
+  
+  //字体，可以不设置，默认为 Consolas
+  "font_face": "",
+  
+  //Tab自动转换为空格
+  "translate_tabs_to_spaces": true,
+  
+  //缩进宽度
+  "tab_size": 4,
+  
+  //行高亮
+  "highlight_line": true,
+  
+  //保存时自动在文件尾增加换行
+  "trim_trailing_white_space_on_save": true,
+  
+  //在选择时查找自动只查找选择范围
+  "auto_find_in_selection": true,
+  
+  //禁用了OI中不太可能用到的插件，可以自己调整
+  "ignored_packages": [
+    "ActionScript", "AppleScript", "ASP", "Batch File", "C#", 
+    "Clojure", "CSS", "D", "Diff", "Erlang", "Git Formats", 
+    "Go", "Graphviz", "Groovy", "Haskell", "HTML", "Java", 
+    "LaTeX", "Lisp", "Lua", "Makefile", "Matlab", 
+    "Objective-C", "OCaml", "Perl", "PHP", "Python", 
+    "R","Rails", "RestructuredText", "Ruby", "Rust", 
+    "Scala", "ShellScript", "SQL", "TCL", "Textile", "XML", 
+  ],
+  
+  //相对行号，可配合 Vintage 插件快速跳转
+  "relative_line_numbers": false,
 }
 ```
 
@@ -188,31 +188,31 @@ ST 的 Vintage 插件与 Vi 有一定不同，部分列于此处：
 
 ```JSON
 {
-	//在匹配的括号之间行的行首显示一条线，可以快速找到括号的范围
-	"content_highlight_bar": true,
-
-	//在小地图中显示匹配的括号
-	"show_in_minimap": true,
-
-	//忽略匹配范围限制
-	"ignore_threshold": true,
-
-	//style高亮样式，bold为块高亮，underline为加粗下划线，outline为外围一圈
-	//color为颜色，默认设置中已经包含了所有支持的颜色
-	//icon为在侧边栏显示的标志
-	"bracket_styles": {
-		"default": {"icon": "dot", "color": "region.yellowish", "style": "bold",},
-		"unmatched": {"icon": "question", "color": "region.redish", "style": "outline",},
-		"curly": {"icon": "curly_bracket", "color": "region.purplish",},
-		"round": {"icon": "round_bracket", "color": "region.yellowish",},
-		"square": {"icon": "square_bracket", "color": "region.bluish",},
-		"angle": {"icon": "angle_bracket", "color": "region.orangish",},
-		"tag": {"icon": "tag", "color": "region.orangish",},
-		"c_define": {"icon": "hash", "color": "region.yellowish",},
-		"single_quote": {"icon": "single_quote", "color": "region.greenish",},
-		"double_quote": {"icon": "double_quote", "color": "region.greenish",},
-		"regex": {"icon": "star", "color": "region.greenish",}
-	}
+  //在匹配的括号之间行的行首显示一条线，可以快速找到括号的范围
+  "content_highlight_bar": true,
+  
+  //在小地图中显示匹配的括号
+  "show_in_minimap": true,
+  
+  //忽略匹配范围限制
+  "ignore_threshold": true,
+  
+  //style高亮样式，bold为块高亮，underline为加粗下划线，outline为外围一圈
+  //color为颜色，默认设置中已经包含了所有支持的颜色
+  //icon为在侧边栏显示的标志
+  "bracket_styles": {
+    "default": {"icon": "dot", "color": "region.yellowish", "style": "bold",},
+    "unmatched": {"icon": "question", "color": "region.redish", "style": "outline",},
+    "curly": {"icon": "curly_bracket", "color": "region.purplish",},
+    "round": {"icon": "round_bracket", "color": "region.yellowish",},
+    "square": {"icon": "square_bracket", "color": "region.bluish",},
+    "angle": {"icon": "angle_bracket", "color": "region.orangish",},
+    "tag": {"icon": "tag", "color": "region.orangish",},
+    "c_define": {"icon": "hash", "color": "region.yellowish",},
+    "single_quote": {"icon": "single_quote", "color": "region.greenish",},
+    "double_quote": {"icon": "double_quote", "color": "region.greenish",},
+    "regex": {"icon": "star", "color": "region.greenish",}
+  }
 }
 ```
 
@@ -232,8 +232,8 @@ ST 的 Vintage 插件与 Vi 有一定不同，部分列于此处：
 
 ```XML
 <snippet>
-	<description>template_code</description> <!-- 这里的内容是补全内容的预览 -->
-	<content><![CDATA[#include <cstdio>
+  <description>template_code</description> <!-- 这里的内容是补全内容的预览 -->
+  <content><![CDATA[#include <cstdio>
 using namespace std;
 
 int main() {
@@ -244,8 +244,8 @@ int main() {
   fclose(stdout);
   return 0;
 }]]></content>
-	<tabTrigger>code</tabTrigger> <!-- 这里的内容是补全的触发文本 -->
-	<scope>source.c++</scope> <!-- 这里的内容是补全适用语言 -->
+  <tabTrigger>code</tabTrigger> <!-- 这里的内容是补全的触发文本 -->
+  <scope>source.c++</scope> <!-- 这里的内容是补全适用语言 -->
 </snippet>
 ```
 
