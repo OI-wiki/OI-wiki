@@ -2,6 +2,7 @@ import os
 import argparse
 from typing import Iterable
 
+TAB_LENGTH = 2
 SKIP_EXTNAME = '.skipdetails'
 
 
@@ -12,39 +13,65 @@ def index_lfirst_neq(l: Iterable, value):
 def fix_details(md_content: str):
     # Assume that adjacent lines with identical indentation belong to the same block
     # so blank lines should align with the indentation of the preceding line or succeding line
-    lines = md_content.splitlines()
+    lines: list[str] = md_content.splitlines()
     result = []
-    last_indent = 0
-    for line in lines:
-        if line.strip():  # non-blank line
-            last_indent = index_lfirst_neq(line, ' ')
-        else:
-            line = ' '*last_indent
+    past_indent = 0
+    first_nonblank, last_nonblank = -1, len(lines)
+    first_indent, last_indent = 0, 0
+    skip_counter = 0
+    for index, line in enumerate(lines):
+        if line.strip() == f'<!-- preprocess{SKIP_EXTNAME} on -->':
+            skip_counter += 1
+
+        if skip_counter == 0:
+            line = line.replace('\t', ' '*TAB_LENGTH)
+            if line.strip():  # non-blank line
+                past_indent = index_lfirst_neq(line, ' ')
+                if first_nonblank == -1:
+                    first_nonblank, first_indent = index, past_indent
+                last_nonblank, last_indent = index, past_indent
+            else:
+                line = ' '*past_indent
+
+        if line.strip() == f'<!-- preprocess{SKIP_EXTNAME} off -->':
+            skip_counter -= 1
+
         result.append(line)
+
     # Align the blank line with the indentation of the succeding line if the indentation of succeding line is shorter
     lines, result = result, []
-    last_indent = 0
+    past_indent = 0
+    skip_counter = 0
     for line in reversed(lines):
-        if line.strip():  # non-blank line
-            last_indent = index_lfirst_neq(line, ' ')
-        elif len(line) > last_indent:
-            line = ' '*last_indent
+        if line.strip() == f'<!-- preprocess{SKIP_EXTNAME} off -->':
+            skip_counter += 1
+
+        if skip_counter == 0:
+            line = line.replace('\t', ' '*TAB_LENGTH)
+            if line.strip():  # non-blank line
+                past_indent = index_lfirst_neq(line, ' ')
+            elif len(line) > past_indent:
+                line = ' '*past_indent
+
+        if line.strip() == f'<!-- preprocess{SKIP_EXTNAME} on -->':
+            skip_counter -= 1
+
         result.append(line)
     result = result[::-1]
 
-    # Recover lines that marked as skipping
-    lines = md_content.splitlines()
-    recover = False
-    for index, line in enumerate(lines):
-        if line.strip() == f'<!-- preprocess{SKIP_EXTNAME} on -->':
-            recover = True
-        elif line.strip() == f'<!-- preprocess{SKIP_EXTNAME} off -->':
-            recover = False
+    # Align the blank lines before first_nonblank or after last_nonblank
+    for i in range(first_nonblank):
+        if not result[i].strip():
+            result[i] = ' '*first_indent
+    for i in range(last_nonblank+1, len(result)):
+        if not result[i].strip():
+            result[i] = ' '*last_indent
 
-        if recover:
-            result[index] = line
-
-    return '\n'.join(result)+'\n'
+    # concat
+    lines, result = result, ''
+    for line in lines:
+        result += line+'\n'
+    return result
 
 
 def check(filename: str):
