@@ -1,37 +1,42 @@
-## 剩余
-
 前置知识：[离散对数](./discrete-logarithm.md)
 
-模运算下的剩余问题，是将开方运算引入模运算的尝试。
+本文讨论模意义下的高次剩余和单位根，并介绍用于模意义下开方运算的 Adleman–Manders–Miller 算法。
 
-### 定义
+## 高次剩余
 
-令整数 $k\geq 2$，整数 $a$，$m$ 满足 $(a,m)=1$，若存在整数 $x$ 使得
+模运算下的高次剩余，可以认为是在讨论模意义下开高次方的可行性。它是 [二次剩余](./quad-residue.md) 的推广。
 
-$$
-x^k\equiv a\pmod m\tag{1}
-$$
+???+ abstract "$k$ 次剩余 "
+    令整数 $k\geq 2$，整数 $a$ 和正整数 $m$ 满足 $(a,m)=1$。若存在整数 $x$ 使得
+    
+    $$
+    x^k\equiv a\pmod m,
+    $$
+    
+    则称 $a$ 为模 $m$ 的 **$k$ 次剩余**，$x$ 为 $a$ 模 $m$ 的 **$k$ 次方根**；否则称 $a$ 为模 $m$ 的 **$k$ 次非剩余**。
 
-则称 $a$ 为模 $m$ 的 $k$ 次剩余，否则称 $a$ 为模 $m$ 的 $k$ 次非剩余。
-
-[二次剩余](./quad-residue.md) 即是 $k$ 次剩余的特例。
+也就是说，$a$ 模 $m$ 的 $k$ 次方根存在，当且仅当 $a$ 是模 $m$ 的 $k$ 次剩余。
 
 ### 性质
 
-当整数 $k\geq 2$，整数 $a$，$m$ 满足 $(a,m)=1$，模 $m$  **有原根**  $g$ 时，令 $d=(k,\varphi(m))$，则：
+类似二次剩余，可以讨论 $k$ 次剩余的判定、个数以及 $k$ 次剩余类的个数问题。和其他 [同余方程](./congruence-equation.md) 问题一样，可以通过 [中国剩余定理](./crt.md) 将它们转化为素数幂模的情形。根据原根的有无，这进一步区分为奇素数幂模和模数为 $2$ 的幂次的情形。
 
-1.  $a$ 为模 $m$ 的 $k$ 次剩余当且仅当 $d\mid \operatorname{ind}_g a$，即：
+奇数幂模的情形较为简单。
 
+???+ note "定理"
+    设整数 $k\geq 2$，整数 $a$ 和正整数 $m$ 满足 $(a,m)=1$。设模 $m$ 的原根存在，且 $g$ 是模 $m$ 的一个原根。记 $d=(k,\varphi(m))$，其中，$\varphi(m)$ 是 [欧拉函数](./euler-totient.md)。那么，有：
+    
+    1.  $a$ 为模 $m$ 的 $k$ 次剩余，当且仅当 $d\mid\operatorname{ind}_g a$，其中，$\operatorname{ind}_g a$ 是离散对数。进一步地，这等价于同余关系
+    
     $$
-    a^{\frac{\varphi(m)}{d}}\equiv 1\pmod m
+    a^{\frac{\varphi(m)}{d}} \equiv 1 \pmod m.
     $$
-
-2.  方程 $(1)$ 若有解，则模 $m$ 下恰有 $d$ 个解
-
-3.  模 $m$ 的 $k$ 次剩余类的个数为 $\dfrac{\varphi(m)}{d}$, 其有形式
-
+    
+    2.  当 $a$ 为模 $m$ 的 $k$ 次剩余时，同余意义下，$a$ 模 $m$ 恰有 $d$ 个互不相同的 $k$ 次方根。
+    3.  模 $m$ 的 $k$ 次剩余类的个数为 $\dfrac{\varphi(m)}{d}$，且它们的全体就是
+    
     $$
-    a\equiv g^{di}\pmod m,\qquad \left(0\leq i<\frac{\varphi(m)}{d}\right)
+    \{g^{di}\bmod m : 0 \le i < \varphi(m)/d\}.
     $$
 
 ???+ note "证明"
@@ -69,6 +74,18 @@ $$
         $$
         a\equiv g^{di}\pmod m,\qquad \left(0\leq i<\frac{\varphi(m)}{d}\right)
         $$
+
+## 单位根
+
+### 本原单位根
+
+## 模意义下开方
+
+### 基于原根的算法
+
+### Adleman–Manders–Miller 算法
+
+### 一般模数的情形
 
 ## 参考资料
 
