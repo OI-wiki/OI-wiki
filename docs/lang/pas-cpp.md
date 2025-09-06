@@ -8,9 +8,9 @@ author: kexplorning, Ir1d, lvneg1
     - 基本语法（块语句、注释、导入库、简单输入输出、声明变量、赋值……）
     -   C++ 的 Hello World 与 A+B Problem 写法与解释
     
-         [对应语法](#对应语法-syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
-    
-         [重要不同之处](#重要不同之处-differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
+        [对应语法](#对应语法-syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
+        
+        [重要不同之处](#重要不同之处-differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
     
     如要快速查找，请见附录：
     
@@ -73,7 +73,7 @@ C++ 程序都是从 `main` 这个部分开始运行的。
 int main()  // main 部分
 {
   std::cout << "Hello World!" << std::endl;
-
+  
   return 0;
 }
 ```
@@ -124,13 +124,13 @@ std::cout << "Hello World!" << std::endl;
 
 int main() {
   int a, b, c;
-
+  
   std::cin >> a >> b;
-
+  
   c = a + b;
-
+  
   std::cout << c << std::endl;
-
+  
   return 0;
 }
 ```
@@ -372,7 +372,7 @@ C++ 标准库中提供了 `vector` ，相当于不定长数组，调用前需导
 int main() {
   std::vector<int> a;  // 声明 vector a 并定义 a 为空 vector 对象
   int n;
-
+  
   std::cin >> n;
   // 读取 a
   for (int i = 0; i < n; i++) {
@@ -383,14 +383,14 @@ int main() {
     此处使用 `a[i] = t;` 是错误做法。
     */
   }
-
+  
   // 将读入到 a 中的所有数打印出
   for (int i = 0; i < n; i++) {
     std::cout << a[i] << ", ";  // !注意，a 中第一个数是 a[0]；
     // 如果下标越界，它会返回一个未知的值（溢出），而不会报错
   }
   std::cout << std::endl;
-
+  
   return 0;
 }
 ```
@@ -411,12 +411,12 @@ C++ 标准库中提供了 `string` ，与 `vector` 可以进行的操作有些�
 
 int main() {
   std::string s;  // 声明 string s
-
+  
   std::cin >> s;  // 读入 s；
   // 读入时会忽略开头所有空格符（空格、换行符、制表符），读入的字串直到下一个空格符为止。
-
+  
   std::cout << s << std::endl;
-
+  
   return 0;
 }
 ```
@@ -529,12 +529,12 @@ std::cout << (a == '0');  // true 输出 1
 
 int main() {
   int sum = 0, a = 0;
-
+  
   while (std::cin >> a) {
     sum += a;
   }
   std::cout << sum << std::endl;
-
+  
   return 0;
 }
 ```
@@ -592,14 +592,14 @@ end.
 
 void printAns(int ans) {
   std::cout << ans << std::endl;
-
+  
   return;
 }
 
 int main() {
   int ans = 10;
   printAns(ans);
-
+  
   return 0;
 }
 ```
@@ -618,10 +618,10 @@ void printWarning(int x) {
 
 int main() {
   int a;
-
+  
   std::cin >> a;
   printWarning(a);
-
+  
   return 0;
 }
 ```
@@ -696,7 +696,7 @@ int main() {
   int a = 10, b = 20;
   swap(&a, &b);
   std::cout << a << " " << b;
-
+  
   return 0;
 }
 ```
@@ -718,7 +718,7 @@ int main(int argc, char const* argv[]) {
   int a = 10, b = 20;
   swap(a, b);
   std::cout << a << " " << b;
-
+  
   return 0;
 }
 ```

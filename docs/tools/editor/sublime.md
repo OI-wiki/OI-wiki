@@ -131,25 +131,25 @@ ST 的 Vintage 插件与 Vi 有一定不同，部分列于此处：
 {
 	//字体大小
 	"font_size": 11,
-	
+
 	//字体，可以不设置，默认为 Consolas
 	"font_face": "",
-	
+
 	//Tab自动转换为空格
 	"translate_tabs_to_spaces": true,
-	
+
 	//缩进宽度
 	"tab_size": 4,
-	
+
 	//行高亮
 	"highlight_line": true,
-	
+
 	//保存时自动在文件尾增加换行
 	"trim_trailing_white_space_on_save": true,
-	
+
 	//在选择时查找自动只查找选择范围
 	"auto_find_in_selection": true,
-	
+
 	//禁用了OI中不太可能用到的插件，可以自己调整
 	"ignored_packages": [
 		"ActionScript", "AppleScript", "ASP", "Batch File", "C#", 
@@ -160,7 +160,7 @@ ST 的 Vintage 插件与 Vi 有一定不同，部分列于此处：
 		"R","Rails", "RestructuredText", "Ruby", "Rust", 
 		"Scala", "ShellScript", "SQL", "TCL", "Textile", "XML", 
 	],
-    
+
 	//相对行号，可配合 Vintage 插件快速跳转
 	"relative_line_numbers": false,
 }
@@ -196,7 +196,7 @@ ST 的 Vintage 插件与 Vi 有一定不同，部分列于此处：
 
 	//忽略匹配范围限制
 	"ignore_threshold": true,
-    
+
 	//style高亮样式，bold为块高亮，underline为加粗下划线，outline为外围一圈
 	//color为颜色，默认设置中已经包含了所有支持的颜色
 	//icon为在侧边栏显示的标志

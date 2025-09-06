@@ -143,22 +143,7 @@ int main() {
 因此，你可以自由地使用任何代码风格（除了行内注释、字符串字面量与预处理命令必须在单行内），例如：
 
 ```cpp
-/* clang-format off */
-
-#include <iostream>
-
- int 
-
-    main(){
-int/**/x, y;  std::cin
->> x >>y;
-                std::cout <<
-          y  <<std::endl   
-     << x
-          
-          ;
-    
-    return       0;     }
+--8<-- "docs/lang/code/basic/basic_1.cpp:main"
 ```
 
 当然，这么做是不被推荐的。
@@ -166,19 +151,7 @@ int/**/x, y;  std::cin
 一种也被广泛使用但与 **OI Wiki** 要求的码风不同的代码风格：
 
 ```cpp
-/* clang-format off */
-
-#include <iostream>
-
-int main()
-{
-    int x, y;
-
-    std::cin >> x >> y;
-    std::cout << y << std::endl << x;
-
-    return 0;
-}
+--8<-- "docs/lang/code/basic/basic_2.cpp:main"
 ```
 
 ### `#define` 命令

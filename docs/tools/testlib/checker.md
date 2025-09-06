@@ -39,9 +39,8 @@ int main(int argc, char* argv[]) {
 ### 不好的实现
 
 ```cpp
-// clang-format off
-
 #include "testlib.h"
+//
 #include <map>
 #include <vector>
 using namespace std;
@@ -52,7 +51,7 @@ int main(int argc, char* argv[]) {
   registerTestlibCmd(argc, argv);
   int n = inf.readInt();  // 不需要 readSpace() 或 readEoln()
   int m = inf.readInt();  // 因为不需要在 checker 中检查标准输入合法性
-                          //（有 validator）
+                          // （有 validator）
   for (int i = 0; i < m; i++) {
     int a = inf.readInt();
     int b = inf.readInt();
@@ -174,7 +173,7 @@ int main(int argc, char* argv[]) {
   }
   int s = inf.readInt();
   int t = inf.readInt();
-
+  
   int jans = readAns(ans);
   int pans = readAns(ouf);
   if (jans > pans)

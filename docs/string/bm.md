@@ -346,15 +346,15 @@ $$
         let patlen = p.len();
         let lastpos = patlen - 1;
         let mut delta_2 = vec![];
-    
+        
         for i in 0..patlen {
             let subpatlen = (lastpos - i) as isize;
-    
+            
             if subpatlen == 0 {
                 delta_2.push(0);
                 break;
             }
-    
+            
             for j in (-subpatlen..(i + 1) as isize).rev() {
                 // subpat 匹配
                 if (j..j + subpatlen)
@@ -363,11 +363,11 @@ $$
                     if rpr_index < 0 {
                         return true;
                     }
-    
+                    
                     if p[rpr_index as usize] == p[subpat_index] {
                         return true;
                     }
-    
+                    
                     false
                 })
                 && (j <= 0 || p[(j - 1) as usize] != p[i])
@@ -377,7 +377,7 @@ $$
                 }
             }
         }
-    
+        
         delta_2
     }
     ```
@@ -485,13 +485,13 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
         let patlen = p.len();
         let lastpos = patlen - 1;
         let mut delta_2 = Vec::with_capacity(patlen);
-    
+        
         // 第一种情况
         // delta_2[j] = lastpos * 2 - j
         for i in 0..patlen {
             delta_2.push(lastpos * 2 - i);
         }
-    
+        
         // 第二种情况
         // lastpos <= delata2[j] = lastpos * 2 - j
         let pi = compute_pi(p);  // 计算前缀函数
@@ -500,23 +500,23 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
         while pi[i] > 0 {
             let start;
             let end;
-    
+            
             if i == lastpos {
                 start = 0;
             } else {
                 start = patlen - pi[last_i];
             }
-    
+            
             end = patlen - pi[i];
-    
+            
             for j in start..end {
                 delta_2[j] = lastpos * 2 - j - pi[i];
             }
-    
+            
             last_i = i;
             i = pi[i] - 1;
         }
-    
+        
         // 第三种情况
         // delata2[j] < lastpos
         let mut j = lastpos;
@@ -529,17 +529,17 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
                 delta_2[t] = min(delta_2[t], lastpos - 1 - j);
                 t = f[t];
             }
-    
+            
             t -= 1;
             if j == 0 {
                 break;
             }
             j -= 1;
         }
-    
+        
         // 没有实际意义，只是为了完整定义
         delta_2[lastpos] = 0;
-    
+        
         delta_2
     }
     ```
@@ -593,7 +593,7 @@ $pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周�
     
     impl<'a> BMPattern<'a> {
         // ...
-    
+        
         pub fn find_all(&self, string: &str) -> Vec<usize> {
             let mut result = vec![];
             let string_bytes = string.as_bytes();
@@ -604,35 +604,35 @@ $pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周�
             let mut pat_index;
             let l0 =  patlen - self.k;
             let mut l = 0;
-    
+            
             while string_index < stringlen {
                 let old_string_index = string_index;
-    
+                
                 while string_index < stringlen {
                     string_index += self.delta0(string_bytes[string_index]);
                 }
                 if string_index < LARGE {
                     break;
                 }
-    
+                
                 string_index -= LARGE;
-    
+                
                 // 如果string_index发生移动，意味着自从上次成功匹配后发生了至少一次的失败匹配。
                 // 此时需要将Galil规则的二次匹配的偏移量归零。
                 if old_string_index < string_index {
                     l = 0;
                 }
-    
+                
                 pat_index = pat_last_pos;
-    
+                
                 while pat_index > l && string_bytes[string_index] == self.pat_bytes[pat_index] {
                     string_index -= 1;
                     pat_index -= 1;
                 }
-    
+                
                 if pat_index == l && string_bytes[string_index] == self.pat_bytes[pat_index] {
                     result.push(string_index - l);
-    
+                    
                     string_index += pat_last_pos - l + self.k;
                     l = l0;
                 } else {
@@ -643,7 +643,7 @@ $pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周�
                     );
                 }
             }
-    
+            
             result
         }
     }
@@ -680,15 +680,15 @@ Horspol 算法同样是基于坏字符的规则，在与 $pat$ 尾部对齐的�
             let stringlen = string_bytes.len();
             let pat_last_pos = self.pat_bytes.len() - 1;
             let mut string_index = pat_last_pos;
-    
+            
             while string_index < stringlen {
                 if &string_bytes[string_index-pat_last_pos..string_index+1] == self.pat_bytes {
                     result.push(string_index-pat_last_pos);
                 }
-    
+                
                 string_index += self.bm_bc[string_bytes[string_index] as usize];
             }
-    
+            
             result
         }
     }
@@ -713,33 +713,33 @@ Sunday 算法通常用作一般情况下实现最简单而且平均表现最好�
         // ...
         fn build_sunday_bc(p: &'a [u8]) -> [usize; 256] {
             let mut sunday_bc_table = [p.len() + 1; 256];
-    
+            
             for i in 0..p.len() {
                 sunday_bc_table[p[i] as usize] = p.len() - i;
             }
-    
+            
             sunday_bc_table
         }
-    
+        
         pub fn find_all(&self, string: &str) -> Vec<usize> {
             let mut result = vec![];
             let string_bytes = string.as_bytes();
             let pat_last_pos = self.pat_bytes.len() - 1;
             let stringlen = string_bytes.len();
             let mut string_index = pat_last_pos;
-    
+            
             while string_index < stringlen {
                 if &string_bytes[string_index - pat_last_pos..string_index+1] == self.pat_bytes {
                     result.push(string_index - pat_last_pos);
                 }
-    
+                
                 if string_index + 1 == stringlen {
                     break;
                 }
-    
+                
                 string_index += self.sunday_bc[string_bytes[string_index + 1] as usize];
             }
-    
+            
             result
         }
     }
@@ -775,28 +775,28 @@ B5S 基本思路是：
     impl<'a> B5STimePattern<'a> {
         pub fn new(pat: &'a str) -> Self {
             assert_ne!(pat.len(), 0);
-    
+            
             let pat_bytes = pat.as_bytes();
             let (alphabet, bm_bc, k) = B5STimePattern::build(pat_bytes);
-    
+            
             B5STimePattern { pat_bytes, alphabet, bm_bc, k }
         }
-    
+        
         fn build(p: &'a [u8]) -> ([bool;256], [usize;256], usize)  {
             let mut alphabet = [false;256];
             let mut bm_bc = [p.len(); 256];
             let lastpos = p.len() - 1;
-    
+            
             for i in 0..lastpos {
                 alphabet[p[i] as usize] = true;
                 bm_bc[p[i] as usize] = lastpos - i;
             }
-    
+            
             alphabet[p[lastpos] as usize] = true;
-    
+            
             (alphabet, bm_bc, compute_k(p))
         }
-    
+        
         pub fn find_all(&self, string: &str) -> Vec<usize> {
             let mut result = vec![];
             let string_bytes = string.as_bytes();
@@ -806,33 +806,33 @@ B5S 基本思路是：
             let mut string_index = pat_last_pos;
             let mut offset = pat_last_pos;
             let offset0 = self.k - 1;
-    
+            
             while string_index < stringlen {
                 if string_bytes[string_index] == self.pat_bytes[pat_last_pos] {
                     if &string_bytes[string_index-offset..string_index] == &self.pat_bytes[pat_last_pos-offset..pat_last_pos] {
                         result.push(string_index-pat_last_pos);
-    
+                        
                         offset = offset0;
-    
+                        
                         // Galil rule
                         string_index += self.k;
                         continue;
                     }
                 }
-    
+                
                 if string_index + 1 == stringlen {
                     break;
                 }
-    
+                
                 offset = pat_last_pos;
-    
+                
                 if !self.alphabet[string_bytes[string_index+1] as usize] {
                     string_index += patlen + 1;  // sunday
                 } else {
                     string_index += self.bm_bc[string_bytes[string_index] as usize];  // horspool
                 }
             }
-    
+            
             result
         }
     }
@@ -858,11 +858,11 @@ B5S 基本思路是：
                     mask: 0,
                 }
             }
-        
+            
             fn insert(&mut self, byte: &u8) {
                 (self.mask) |= 1u64 << (byte & 63);
             }
-        
+            
             fn contains(&self, char: &u8) -> bool {
                 (self.mask & (1u64 << (byte & 63))) != 0
             }
@@ -896,31 +896,31 @@ B5S 基本思路是：
         impl<'a> B5SSpacePattern<'a> {
             pub fn new(pat: &'a str) -> Self {
                 assert_ne!(pat.len(), 0);
-        
+                
                 let pat_bytes = pat.as_bytes();
                 let (alphabet, skip) = B5SSpacePattern::build(pat_bytes);
-        
+                
                 B5SSpacePattern { pat_bytes, alphabet, skip}
             }
-        
+            
             fn build(p: &'a [u8]) -> (BytesBloomFilter, usize)  {
                 let mut alphabet = BytesBloomFilter::new();
                 let lastpos = p.len() - 1;
                 let mut skip = p.len();
-        
+                
                 for i in 0..p.len()-1 {
                     alphabet.insert(&p[i]);
-        
+                    
                     if p[i] == p[lastpos] {
                         skip = lastpos - i;
                     }
                 }
-        
+                
                 alphabet.insert(&p[lastpos]);
-        
+                
                 (alphabet, skip)
             }
-        
+            
             pub fn find_all(&self, string: &'a str) -> Vec<usize> {
                 let mut result = vec![];
                 let string_bytes = string.as_bytes();
@@ -928,17 +928,17 @@ B5S 基本思路是：
                 let patlen = self.pat_bytes.len();
                 let stringlen = string_bytes.len();
                 let mut string_index = pat_last_pos;
-        
+                
                 while string_index < stringlen {
                     if string_bytes[string_index] == self.pat_bytes[pat_last_pos] {
                         if &string_bytes[string_index-pat_last_pos..string_index] == &self.pat_bytes[..patlen-1] {
                             result.push(string_index-pat_last_pos);
                         }
-        
+                        
                         if string_index + 1 == stringlen {
                             break;
                         }
-        
+                        
                         if !self.alphabet.contains(&string_bytes[string_index+1]) {
                             string_index += patlen + 1;  // sunday
                         } else {
@@ -948,16 +948,16 @@ B5S 基本思路是：
                         if string_index + 1 == stringlen {
                             break;
                         }
-        
+                        
                         if !self.alphabet.contains(&string_bytes[string_index+1]) {
                             string_index += patlen + 1;  // sunday
                         } else {
                             string_index += 1;
                         }
                     }
-        
+                
                 }
-        
+                
                 result
             }
         }
