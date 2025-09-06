@@ -62,11 +62,6 @@ jobs:
         run: |
           ruff format ./docs
       
-      # Placeholder
-      - name: Post process
-        run: |
-          echo ''
-
       - name: Generate patch
         run: |
           mkdir -p .debug
