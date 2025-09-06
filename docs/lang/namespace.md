@@ -16,7 +16,7 @@ void f(int x) { cnt = x; }
 }  // namespace A
 ```
 
-声明之后，在这个命名空间外部，你可以通过 `A::f(x)` 来访问命名空间 `A` 内部的 `f` 函数。
+声明之后，在这个命名空间外部，你可以通过 `A::f(x)` 来访问命名空间 `A` 内部的 `f` 函数，也可以通过 `A::cnt` 来访问命名空间 `A` 内部的 `cnt` 变量。
 
 命名空间的声明是可以嵌套的，因此下面这段代码也是允许的：
 
@@ -108,6 +108,7 @@ int main() {
 #include <math.h>
 
 #include <vector>
+
 using namespace std;
 
 namespace Sol {
