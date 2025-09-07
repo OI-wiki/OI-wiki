@@ -41,7 +41,7 @@ Catalan 数列 $C_n$ 可以应用于以下问题：
 
 相当于从 $(1,0)$ 到 $(k,k-1)$ 的不越过直线 $y=x-1$ 的路径数，不难发现其实是 $T_{k-1}$。
 
-![catalan2](.\images\catalan2.svg)
+![catalan2](./images/catalan2.svg)
 
 从 $(k,k)$ 到 $(n,n)$ 的 **合法路径数**，易得 $T_{n-k}$。
 
