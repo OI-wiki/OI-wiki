@@ -48,9 +48,7 @@ jobs:
       
       - name: Pre process
         run: |
-          echo "::group::Fix indent"
           python3 scripts/fix_details.py ./docs
-          echo "::endgroup::"
       
       - name: Run bot formatter
         run: |
