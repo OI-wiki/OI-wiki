@@ -50,6 +50,36 @@ class TestFixDetails(unittest.TestCase):
         )
         self.assertEqual(fix_details(md), expected)
 
+    def test_skipdetails_on_off_at_start(self):
+        md = (
+            "<!-- preprocess.skipdetails on -->\n"
+            "\n"
+            "<!-- preprocess.skipdetails off -->\n"
+            "  a\n"
+        )
+        expected = (
+            "<!-- preprocess.skipdetails on -->\n"
+            "\n"
+            "<!-- preprocess.skipdetails off -->\n"
+            "  a\n"
+        )
+        self.assertEqual(fix_details(md), expected)
+
+    def test_skipdetails_on_off_at_end(self):
+        md = (
+            "  a\n"
+            "<!-- preprocess.skipdetails on -->\n"
+            "\n"
+            "<!-- preprocess.skipdetails off -->\n"
+        )
+        expected = (
+            "  a\n"
+            "<!-- preprocess.skipdetails on -->\n"
+            "\n"
+            "<!-- preprocess.skipdetails off -->\n"
+        )
+        self.assertEqual(fix_details(md), expected)
+
     def test_blank_line_at_start(self):
         md = "\n  a\n"
         expected = "  \n  a\n"

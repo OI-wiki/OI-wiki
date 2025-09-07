@@ -22,6 +22,7 @@ def fix_details(md_content: str):
     log(f"preceding")
     lines: list[str] = md_content.splitlines()
     result = []
+    skip_lines = []
     past_indent = 0
     first_nonblank, last_nonblank = -1, len(lines)
     first_indent, last_indent = 0, 0
@@ -44,6 +45,8 @@ def fix_details(md_content: str):
             else:
                 line = ' '*past_indent
                 log(f"line {index+1}: set indent = {past_indent}")
+        else:
+            skip_lines.append(index)
 
         if line.strip() == f'<!-- preprocess{SKIP_EXTNAME} off -->':
             skip_counter -= 1
@@ -82,11 +85,11 @@ def fix_details(md_content: str):
     # Align the blank lines before first_nonblank or after last_nonblank
     log(f"boundary")
     for i in range(first_nonblank):
-        if not result[i].strip():
+        if i not in skip_lines and not result[i].strip():
             result[i] = ' '*first_indent
             log(f"line {i+1}: set indent = {first_indent}")
     for i in range(last_nonblank+1, len(result)):
-        if not result[i].strip():
+        if i not in skip_lines and not result[i].strip():
             result[i] = ' '*last_indent
             log(f"line {i+1}: set indent = {last_indent}")
 
