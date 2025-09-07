@@ -533,13 +533,13 @@ $$
     
     $$
     L_n = \begin{bmatrix}
-    n&	-1&	-1&	-1&	\cdots&	-1&	-1\\
-    -1&	3&	-1&	0&	\cdots&	0&	-1\\
-    -1&	-1&	3&	-1&	\cdots&	0&	0\\
-    -1&	0&	-1&	3&	\cdots&	0&	0\\
-    \vdots&	\vdots&	\vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-    -1&	0&	0&	0&	\cdots&	3&	-1\\
-    -1&	-1&	0&	0&	\cdots&	-1&	3\\
+    n&  -1&  -1&  -1&  \cdots&  -1&  -1\\
+    -1&  3&  -1&  0&  \cdots&  0&  -1\\
+    -1&  -1&  3&  -1&  \cdots&  0&  0\\
+    -1&  0&  -1&  3&  \cdots&  0&  0\\
+    \vdots&  \vdots&  \vdots&  \vdots&  \ddots&  \vdots&  \vdots\\
+    -1&  0&  0&  0&  \cdots&  3&  -1\\
+    -1&  -1&  0&  0&  \cdots&  -1&  3\\
     \end{bmatrix}_{n+1}
     $$
     
@@ -556,12 +556,12 @@ $$
     
     $$
     M_n = \begin{bmatrix}
-    3&	-1&	0&	\cdots&	0&	-1\\
-    -1&	3&	-1&	\cdots&	0&	0\\
-    0&	-1&	3&	\cdots&	0&	0\\
-    \vdots&	\vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-    0&	0&	0&	\cdots&	3&	-1\\
-    -1&	0&	0&	\cdots&	-1&	3\\
+    3&  -1&  0&  \cdots&  0&  -1\\
+    -1&  3&  -1&  \cdots&  0&  0\\
+    0&  -1&  3&  \cdots&  0&  0\\
+    \vdots&  \vdots&  \vdots&  \ddots&  \vdots&  \vdots\\
+    0&  0&  0&  \cdots&  3&  -1\\
+    -1&  0&  0&  \cdots&  -1&  3\\
     \end{bmatrix}_{n}
     $$
     
@@ -569,23 +569,23 @@ $$
     
     $$
     \det M_n = 3\det \begin{bmatrix}
-    3&	-1&	\cdots&	0&	0\\
-    -1&	3&	\cdots&	0&	0\\
-    \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-    0&	0&	\cdots&	3&	-1\\
-    0&	0&	\cdots&	-1&	3\\
+    3&  -1&  \cdots&  0&  0\\
+    -1&  3&  \cdots&  0&  0\\
+    \vdots&  \vdots&  \ddots&  \vdots&  \vdots\\
+    0&  0&  \cdots&  3&  -1\\
+    0&  0&  \cdots&  -1&  3\\
     \end{bmatrix}_{n-1} + \det\begin{bmatrix}
-    -1&	0&	\cdots&	0&	-1\\
-    -1&	3&	\cdots&	0&	0\\
-    \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-    0&	0&	\cdots&	3&	-1\\
-    0&	0&	\cdots&	-1&	3\\
+    -1&  0&  \cdots&  0&  -1\\
+    -1&  3&  \cdots&  0&  0\\
+    \vdots&  \vdots&  \ddots&  \vdots&  \vdots\\
+    0&  0&  \cdots&  3&  -1\\
+    0&  0&  \cdots&  -1&  3\\
     \end{bmatrix}_{n-1} + (-1)^n \det\begin{bmatrix}
-    -1&	0&	\cdots&	0&	-1\\
-    3&	-1&	\cdots&	0&	0\\
-    -1&	3&	\cdots&	0&	0\\
-    \vdots&	\vdots&	\ddots&	\vdots&	\vdots\\
-    0&	0&	\cdots&	3&	-1\\
+    -1&  0&  \cdots&  0&  -1\\
+    3&  -1&  \cdots&  0&  0\\
+    -1&  3&  \cdots&  0&  0\\
+    \vdots&  \vdots&  \ddots&  \vdots&  \vdots\\
+    0&  0&  \cdots&  3&  -1\\
     \end{bmatrix}_{n-1}
     $$
     

@@ -364,7 +364,7 @@ $$
 
 $$
 \begin{aligned}
-	f(x) g(x) & \equiv 1 \pmod{h(x)}
+    f(x) g(x) & \equiv 1 \pmod{h(x)}
 \end{aligned}
 $$
 
