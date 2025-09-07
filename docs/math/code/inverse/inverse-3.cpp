@@ -26,12 +26,14 @@ int inverse(int a, int m) {
 // Assume x mod m exists for each x in a.
 std::vector<int> batch_inverse(const std::vector<int>& a, int m) {
   int n = a.size();
-  std::vector<int> prod(n);  // prod[i] stores S_{i-1}.
+  std::vector<int> prod(n);
   long long s = 1;
   for (int i = 0; i < n; ++i) {
+    // prod[i] = product of a[0...i-1]; prod[0] = 1.
     prod[i] = s;
     s = s * a[i] % m;
   }
+  // s = product of all elements in a.
   s = inverse(s, m);
   std::vector<int> res(n);
   for (int i = n - 1; i >= 0; --i) {
