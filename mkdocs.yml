@@ -223,7 +223,7 @@ nav:
   - 数学:
     - 数学部分简介: math/index.md
     - 进位制: math/base.md
-    - 位运算: math/bit.md
+    - 位操作与布尔代数: math/bit.md
     - 二进制集合操作: math/binary-set.md
     - 平衡三进制: math/balanced-ternary.md
     - 高精度计算: math/bignum.md
