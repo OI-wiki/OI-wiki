@@ -21,7 +21,7 @@ def inverse(a, m):
 # Assume x mod m exists for each x in a.
 def batch_inverse(a, m):
     n = len(a)
-    prod = [0] * n
+    prod = [0] * n  # prod[i] stores S_{i-1}.
     s = 1
     for i in range(n):
         prod[i] = s
