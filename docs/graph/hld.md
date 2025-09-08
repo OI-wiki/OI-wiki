@@ -232,10 +232,9 @@ int lca(int u, int v) {
 这样做的复杂度与不带换根的做法相同，均为 $O(n\log^2 n)$。
 
 ??? example "参考实现"
-    === "C++"
-        ```cpp
-        --8<-- "docs/graph/code/hld/hld_4.cpp:core"
-        ```
+    ```cpp
+    --8<-- "docs/graph/code/hld/hld_4.cpp"
+    ```
 
 ??? note "怎么有理有据地卡树剖"
     一般情况下树剖的 $O(\log n)$ 常数不满很难卡，如果要卡只能建立二叉树深度低。

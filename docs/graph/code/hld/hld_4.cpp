@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 
-// --8<-- [start:core]
 using lint = long long;
 constexpr int N = 1e5 + 10;
 
@@ -152,5 +151,3 @@ int main() {
   std::cout.flush();
   return 0;
 }
-
-// --8<-- [end:core]
