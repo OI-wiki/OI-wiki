@@ -1,0 +1,43 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{bqqqsq}{rgb}{0.6901960784313725,0.,0.12549019607843137}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{rvwvcq}{rgb}{0.08235294117647059,0.396078431372549,0.7529411764705882}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{axis}[
+x=1.0cm,y=1.0cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-0.9719812152084254,
+xmax=9.253337995714775,
+ymin=-0.7788350192420073,
+ymax=8.885927940042649,
+xtick={-0.0,1.0,...,9.0},
+ytick={-0.0,1.0,...,8.0},]
+\clip(-0.9719812152084254,-0.7788350192420073) rectangle (9.253337995714775,8.885927940042649);
+\draw [line width=2.pt,domain=-0.9719812152084254:9.253337995714775] plot(\x,{(-0.--1.*\x)/1.});
+\draw [line width=2.pt,color=qqqqff,domain=-0.9719812152084254:9.253337995714775] plot(\x,{(-1.--1.*\x)/1.});
+\begin{scriptsize}
+\draw[color=black] (0.28443796949858396,0.9124984986328075) node {y=x};
+\draw [fill=rvwvcq] (0.,0.) circle (2.5pt);
+\draw[color=rvwvcq] (-0.5080725931627605,0.3712717729128667) node {(0,0)};
+\draw [fill=rvwvcq] (8.,8.) circle (2.5pt);
+\draw[color=rvwvcq] (7.455692085287823,8.528331710549116) node {(8,8)};
+\draw[color=qqqqff] (1.6954933615541485,0.3326127210757281) node {y=x-1};
+\draw [fill=rvwvcq] (6.,6.) circle (2.5pt);
+\draw[color=rvwvcq] (5.426091863838038,6.1701295484836605) node {(k,k)};
+\draw [fill=bqqqsq] (6.,5.) circle (2.5pt);
+\draw[color=bqqqsq] (6.392568159766507,4.6430970009166845) node {(k,k-1)};
+\draw [fill=bqqqsq] (1.,0.) circle (2.5pt);
+\draw[color=bqqqsq] (1.2702437913456222,-0.28593210831848986) node {(1,0)};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{document}
