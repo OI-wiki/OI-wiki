@@ -281,6 +281,7 @@ int querymax(int x, int y) {
 ### [Acwing 2524. 树链剖分 II](https://www.acwing.com/problem/content/description/2526)
 
 #### 题目大意
+
 给定一颗 $n$ 个结点的树（初始根结点为 $1$），要求支持如下的 $m$ 次操作：
 
 -   换根，将节点 $u$ 设为新的树根。
