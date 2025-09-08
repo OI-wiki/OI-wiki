@@ -110,7 +110,7 @@ def Andrew():
         if not used[i]:
             init()
             if labels[stk[-1]] == "5":
-                add_text(["上凸壳","4 已经在凸壳中，跳过"], fontsize=12)
+                add_text(["上凸壳", "4 已经在凸壳中，跳过"], fontsize=12)
             else:
                 add_text(["上凸壳"], fontsize=15)
 
