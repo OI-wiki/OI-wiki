@@ -81,6 +81,8 @@ $ git clone https://github.com/OI-wiki/OI-wiki
 
 举个例子，在一个空仓库中新增了一个 `README.md` 文件后，执行 `git status` 命令的效果如下：
 
+<!-- preprocess.skipdetails on -->
+
 ```bash
 $ git status
 On branch master
@@ -95,9 +97,13 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
+<!-- preprocess.skipdetails off -->
+
 这里的 Untracked files 指的是 Git 之前没有纳入版本跟踪的文件。如果文件没有纳入版本跟踪，对该文件的更改不会被 Git 记录。
 
 执行 `git add <文件>` 命令可以将指定的文件纳入到版本跟踪中。
+
+<!-- preprocess.skipdetails on -->
 
 ```bash
 $ git add README.md # 将这个文件纳入到版本跟踪中
@@ -112,9 +118,13 @@ Changes to be committed:
         new file:   README.md
 ```
 
+<!-- preprocess.skipdetails off -->
+
 这时 `README.md` 已经纳入了版本跟踪，放入了暂存区。接下来只需执行 `git commit` 命令就可以提交这次更改了。
 
 但在进行这一工作之前，让我们先对 `README.md` 做点小更改。
+
+<!-- preprocess.skipdetails on -->
 
 ```bash
 $ vim README.md # 随便更改点东西
@@ -134,6 +144,8 @@ Changes not staged for commit:
 
         modified:   README.md
 ```
+
+<!-- preprocess.skipdetails off -->
 
 你会发现 `README.md` 同时处于暂存区和非暂存区。实际上，是否处于暂存区是对于更改而言的，而不是对于文件而言的，所以对 `README.md` 的前一次更改已被纳入暂存区，而后一次更改还没有。如果这时候执行 `git commit` 命令，只有处于暂存区的更改会被提交，而非暂存区的更改，则不会被提交。
 
@@ -322,6 +334,8 @@ This repo includes some c++ codes.
 
 执行一下 `git status` 命令，可以查看是哪些文件引发了冲突。
 
+<!-- preprocess.skipdetails on -->
+
 ```bash
 $ git status
 On branch master
@@ -335,6 +349,8 @@ Unmerged paths:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
+
+<!-- preprocess.skipdetails off -->
 
 如何解决冲突？对于每个发生了合并冲突的文件，Git 都会在这些文件中加入标准的冲突解决标记。比如这个例子中的 `README.md` 文件，打开后它长这个样子：
 
@@ -425,7 +441,6 @@ $ git remote show origin
     git             tracked
     master          tracked
   ...
- 
 ```
 
 ### 远程仓库的配置

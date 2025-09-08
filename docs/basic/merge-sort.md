@@ -59,7 +59,7 @@
           for (; bBegin != bEnd; ++bBegin, ++c) *c = *bBegin;
         }
         ```
-
+    
     也可使用 `<algorithm>` 库的 `merge` 函数，用法与上述指针式写法的相同。
 
 === "Python"
