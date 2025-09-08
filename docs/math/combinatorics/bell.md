@@ -59,13 +59,13 @@ $$
 
 $$
 \begin{aligned}
-& 1 	\\
-& 1\quad\qquad 2	\\
-& 2\quad\qquad 3\quad\qquad 5	\\
+& 1   \\
+& 1\quad\qquad 2  \\
+& 2\quad\qquad 3\quad\qquad 5  \\
 & 5\quad\qquad 7\quad\qquad 10\,\,\,\qquad 15 \\
-& 15\,\,\,\qquad 20\,\,\,\qquad	27\,\,\,\qquad 37\,\,\,\qquad 52	\\
-& 52\,\,\,\qquad	67\,\,\,\qquad 87\,\,\,\qquad 114\qquad 151\qquad 203\\
-& 203\qquad	255\qquad 322\qquad	409\qquad 523\qquad	674\qquad 877 \\	
+& 15\,\,\,\qquad 20\,\,\,\qquad  27\,\,\,\qquad 37\,\,\,\qquad 52  \\
+& 52\,\,\,\qquad  67\,\,\,\qquad 87\,\,\,\qquad 114\qquad 151\qquad 203\\
+& 203\qquad  255\qquad 322\qquad  409\qquad 523\qquad  674\qquad 877 \\  
 \end{aligned}
 $$
 

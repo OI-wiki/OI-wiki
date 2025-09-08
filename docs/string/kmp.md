@@ -95,12 +95,12 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
             int n = s.length();
             int[] pi = new int[n];
             for (int i = 1; i < n; i++) {
-        	    for (int j = i; j >= 0; j--) {
-        		    if (s.substring(0, j).equals(s.substring(i - j + 1, i + 1))) {
-        			    pi[i] = j;
-        			    break;
-        		    }
-        	    }
+                for (int j = i; j >= 0; j--) {
+                    if (s.substring(0, j).equals(s.substring(i - j + 1, i + 1))) {
+                        pi[i] = j;
+                        break;
+                    }
+                }
             }
             return pi;
         }
@@ -159,12 +159,12 @@ $$
             int n = s.length();
             int[] pi = new int[n];
             for (int i = 1; i < n; i++) {
-        	    for (int j = pi[i - 1] + 1; j >= 0; j--) {
-        		    if (s.substring(0, j).equals(s.substring(i - j + 1, i + 1))) {
-        			    pi[i] = j;
-        			    break;
-        		    }
-        	    }
+                for (int j = pi[i - 1] + 1; j >= 0; j--) {
+                    if (s.substring(0, j).equals(s.substring(i - j + 1, i + 1))) {
+                        pi[i] = j;
+                        break;
+                    }
+                }
             }
             return pi;
         }
@@ -251,14 +251,14 @@ $$
             int n = s.length();
             int[] pi = new int[n];
             for (int i = 1; i < n; i++) {
-        	    int j = pi[i - 1];
-        	    while (j > 0 && s.charAt(i) != s.charAt(j)) {
-        		    j = pi[j - 1];
-        	    }
-        	    if (s.charAt(i) == s.charAt(j)) {
-        		    j++;
-        	    }
-        	    pi[i] = j;
+                int j = pi[i - 1];
+                while (j > 0 && s.charAt(i) != s.charAt(j)) {
+                    j = pi[j - 1];
+                }
+                if (s.charAt(i) == s.charAt(j)) {
+                    j++;
+                }
+                pi[i] = j;
             }
             return pi;
         }
@@ -326,9 +326,9 @@ $$
             List<Integer> v = new ArrayList<>();
             int[] lps = prefix_function(cur);
             for (int i = sz2 + 1; i <= sz1 + sz2; i++) {
-        	    if (lps[i] == sz2) {
-        		    v.add(i - 2 * sz2);
-        	    }
+                if (lps[i] == sz2) {
+                    v.add(i - 2 * sz2);
+                }
             }
             return v;
         }

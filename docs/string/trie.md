@@ -77,7 +77,6 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
 === "Java"
     ```java
     public class Trie {
-        
         int[][] tree = new int[10000][26];
         int cnt = 0;
         boolean[] end = new boolean[10000];

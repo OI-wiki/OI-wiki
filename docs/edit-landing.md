@@ -14,6 +14,8 @@ disqus:
 
 <a id="btn-startedit" style="padding: 0.75em 1.25em; display: inline-block; line-height: 1; text-decoration: none; white-space: nowrap; cursor: pointer; border: 1px solid #6190e8; border-radius: 5px; background-color: #6190e8; color: #fff; outline: none; font-size: 0.75em;">开始编辑</a>
 
+<!-- preprocess.skipdetails on -->
+
 <script>
 	function getQueryVariable(name, dft)
 	{
@@ -27,3 +29,5 @@ disqus:
 	}
 	document.getElementById("btn-startedit").href = "https://github.com/OI-wiki/OI-wiki/edit/master/docs" + getQueryVariable("ref", "");
 </script>
+
+<!-- preprocess.skipdetails off -->
