@@ -10,7 +10,7 @@ int sz, tot, last;
 int cnt[MAXN], ch[MAXN][26], len[MAXN], fail[MAXN];
 char s[MAXN];
 
-int node(int l) {  // 建立一个新节点，长度为 l
+int node(int l) {  // 建立一个新结点，长度为 l
   sz++;
   memset(ch[sz], 0, sizeof(ch[sz]));
   len[sz] = l;

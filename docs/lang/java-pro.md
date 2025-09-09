@@ -929,7 +929,7 @@ Queue<Integer> q = new ArrayDeque<>();
 3. **底层实现**：在底层实现上，`ArrayDeque` 是基于动态数组的，而 `LinkedList` 是基于双向链表的。
 4. **在遍历速度上**：`ArrayDeque` 是一块连续内存空间，基于局部性原理能够更好地命中 CPU 缓存行，而 `LinkedList` 是离散的内存空间对缓存行不友好。
 5. **在操作速度上**：`ArrayDeque` 和 `LinkedList` 的栈和队列行为都是 $O(1)$ 时间复杂度，`ArrayDeque` 的入栈和入队有可能会触发扩容，但从均摊分析上看依然是 $O(1)$ 时间复杂度。
-6. **额外内存消耗上**：`ArrayDeque` 在数组的头指针和尾指针外部有闲置空间，而 `LinkedList` 在节点上增加了前驱和后继指针。
+6. **额外内存消耗上**：`ArrayDeque` 在数组的头指针和尾指针外部有闲置空间，而 `LinkedList` 在结点上增加了前驱和后继指针。
 
 #### PriorityQueue
 

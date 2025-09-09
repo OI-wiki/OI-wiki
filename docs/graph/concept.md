@@ -5,7 +5,7 @@
 
 ## 图
 
-**图 (graph)** 是一个二元组 $G=(V(G), E(G))$。其中 $V(G)$ 是非空集，称为 **点集 (vertex set)**，对于 $V$ 中的每个元素，我们称其为 **顶点 (vertex)** 或 **节点 (node)**，简称 **点**；$E(G)$ 为 $V(G)$ 各结点之间边的集合，称为 **边集 (edge set)**。
+**图 (graph)** 是一个二元组 $G=(V(G), E(G))$。其中 $V(G)$ 是非空集，称为 **点集 (vertex set)**，对于 $V$ 中的每个元素，我们称其为 **顶点 (vertex)** 或 **结点 (node)**，简称 **点**；$E(G)$ 为 $V(G)$ 各结点之间边的集合，称为 **边集 (edge set)**。
 
 常用 $G=(V,E)$ 表示图。
 
@@ -70,7 +70,7 @@ $$
 
 若 $d(v) = 0$，则称 $v$ 为 **孤立点 (isolated vertex)**。
 
-若 $d(v) = 1$，则称 $v$ 为 **叶节点 (leaf vertex)**/**悬挂点 (pendant vertex)**。
+若 $d(v) = 1$，则称 $v$ 为 **叶结点 (leaf vertex)**/**悬挂点 (pendant vertex)**。
 
 若 $2 \mid d(v)$，则称 $v$ 为 **偶点 (even vertex)**。
 
@@ -78,9 +78,9 @@ $$
 
 若 $d(v) = \left| V \right| - 1$，则称 $v$ 为 **支配点 (universal vertex)**。
 
-对一张图，所有节点的度数的最小值称为 $G$ 的 **最小度 (minimum degree)**，记作 $\delta (G)$；最大值称为 **最大度 (maximum degree)**，记作 $\Delta (G)$。即：$\delta (G) = \min_{v \in G} d(v)$，$\Delta (G) = \max_{v \in G} d(v)$。
+对一张图，所有结点的度数的最小值称为 $G$ 的 **最小度 (minimum degree)**，记作 $\delta (G)$；最大值称为 **最大度 (maximum degree)**，记作 $\Delta (G)$。即：$\delta (G) = \min_{v \in G} d(v)$，$\Delta (G) = \max_{v \in G} d(v)$。
 
-在有向图 $G = (V, E)$ 中，以一个顶点 $v$ 为起点的边的条数称为该顶点的 **出度 (out-degree)**，记作 $d^+(v)$。以一个顶点 $v$ 为终点的边的条数称为该节点的 **入度 (in-degree)**，记作 $d^-(v)$。显然 $d^+(v)+d^-(v)=d(v)$。
+在有向图 $G = (V, E)$ 中，以一个顶点 $v$ 为起点的边的条数称为该顶点的 **出度 (out-degree)**，记作 $d^+(v)$。以一个顶点 $v$ 为终点的边的条数称为该结点的 **入度 (in-degree)**，记作 $d^-(v)$。显然 $d^+(v)+d^-(v)=d(v)$。
 
 对于任何有向图 $G = (V, E)$，有：
 
@@ -139,7 +139,7 @@ $$
 
 对于一张有向图 $G = (V, E)$，对于 $u, v \in V$，若存在一条途径使得 $v_0 = u, v_k = v$，则称 $u$  **可达**  $v$。由定义，任意一个顶点可达自身，任意一条边的起点可达终点。（无向图中的连通也可以视作双向可达。）
 
-若一张有向图的节点两两互相可达，则称这张图是 **强连通的 (strongly connected)**。
+若一张有向图的结点两两互相可达，则称这张图是 **强连通的 (strongly connected)**。
 
 若一张有向图的边替换为无向边后可以得到一张连通图，则称原来这张有向图是 **弱连通的 (weakly connected)**。
 
@@ -185,7 +185,7 @@ $$
 
 ## 补图
 
-对于无向简单图 $G = (V, E)$，它的 **补图 (complement graph)** 指的是这样的一张图：记作 $\bar G$，满足 $V \left( \bar G \right) = V \left( G \right)$，且对任意节点对 $(u, v)$，$(u, v) \in E \left( \bar G \right)$ 当且仅当 $(u, v) \notin E \left( G \right)$。
+对于无向简单图 $G = (V, E)$，它的 **补图 (complement graph)** 指的是这样的一张图：记作 $\bar G$，满足 $V \left( \bar G \right) = V \left( G \right)$，且对任意结点对 $(u, v)$，$(u, v) \in E \left( \bar G \right)$ 当且仅当 $(u, v) \notin E \left( G \right)$。
 
 ## 反图
 

@@ -19,7 +19,7 @@ void Tarjan(int u, int fa) {  // u 当前点的编号，fa 自己爸爸的编号
     if (!vis[v]) {
       child++;                       // 多了一个儿子
       Tarjan(v, u);                  // 继续
-      low[u] = min(low[u], low[v]);  // 更新能到的最小节点编号
+      low[u] = min(low[u], low[v]);  // 更新能到的最小结点编号
       if (fa != u && low[v] >= dfn[u] && !flag[u]) {  // 主要代码
         // 如果不是自己，且不通过父亲返回的最小点符合割点的要求，并且没有被标记过
         // 要求即为：删了父亲连不上去了，即为最多连到父亲
@@ -27,7 +27,7 @@ void Tarjan(int u, int fa) {  // u 当前点的编号，fa 自己爸爸的编号
         res++;  // 记录答案
       }
     } else if (v != fa) {
-      // 如果这个点不是自己的父亲，更新能到的最小节点编号
+      // 如果这个点不是自己的父亲，更新能到的最小结点编号
       low[u] = min(low[u], dfn[v]);
     }
   }

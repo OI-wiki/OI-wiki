@@ -51,7 +51,7 @@ struct treap {  // 直接维护成数据结构，可以直接用
     }
   }
 
-  bool del(int &k, int x) {  // 删除节点
+  bool del(int &k, int x) {  // 删除结点
     if (!k) return false;
     if (val[k] == x) {
       if (w[k] > 1) {

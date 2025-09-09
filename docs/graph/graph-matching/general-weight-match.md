@@ -177,7 +177,7 @@ vertex labeling 为 $0$ 的点最后将成为未匹配点。
     
     int n, n_x;
     // 有n个点，编号为 1 ~ n
-    // n_x表示当前点加上花的数量，编号从n+1到n_x为花的节点
+    // n_x表示当前点加上花的数量，编号从n+1到n_x为花的结点
     edge g[MAXN * 2 + 1][MAXN * 2 + 1];
     // 图用邻接矩阵存储，因为最多有n-1朵花，所以大小为MAXN*
     vector<int> flower[MAXN * 2 + 1];
@@ -210,8 +210,8 @@ int match[MAXN * 2 + 1], slack[MAXN * 2 + 1], st[MAXN * 2 + 1],
     pa[MAXN * 2 + 1];
 // match[x]=y表示(x,y)是匹配，这里x、y可能是花
 // slack[x]=u表示z(x,u)是所有和x相邻的边中最小的那条边
-// 表示节点 x 所在的花是 b。如果 x=b 且 b<=n，则表示 x
-// 是一个普通节点（不属于任何花） 表示在交错树中，节点 v 的父节点是 u
+// 表示结点 x 所在的花是 b。如果 x=b 且 b<=n，则表示 x
+// 是一个普通结点（不属于任何花） 表示在交错树中，结点 v 的父结点是 u
 int flower_from[MAXN * 2 + 1][MAXN + 1], S[MAXN * 2 + 1], vis[MAXN * 2 + 1];
 /*
 flower_from[b][x]=xs表示最大的包含x的b的子花是xs
@@ -248,7 +248,7 @@ void update_slack(int u, int x) {
 }
 
 void set_slack(int x) {
-  // 算出slack[x]的值，slack[x]=0表示x是交错树中的节点
+  // 算出slack[x]的值，slack[x]=0表示x是交错树中的结点
   slack[x] = 0;
   for (int u = 1; u <= n; ++u) {
     if (g[u][x].w > 0 && st[u] != x && S[st[u]] == 0) {
@@ -419,7 +419,7 @@ int get_lca(int u, int v) {
         // 先把flower[b]里每个元素所在的花设为自己
       }
       int xr = flower_from[b][g[b][pa[b]].u];
-      // xr表示交错路上b的父母节点在flower[b]里的哪朵花上
+      // xr表示交错路上b的父母结点在flower[b]里的哪朵花上
       int pr = get_pr(b, xr);  // 找出xr的位置并让0~pr为花里的交替路径
       for (int i = 0; i < pr; i += 2) {
         // 把交替路径拆开到交错树中
@@ -453,7 +453,7 @@ int get_lca(int u, int v) {
       // 这里u一定是偶点
       int u = st[e.u], v = st[e.v];
       if (S[v] == -1) {
-        // v是未走访节点
+        // v是未走访结点
         pa[v] = e.u;
         S[v] = 1;
         int nu = st[match[v]];

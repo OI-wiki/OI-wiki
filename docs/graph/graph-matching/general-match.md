@@ -100,7 +100,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
       vector<int> aux(g.n, -1);     // 时间戳记
       vector<int> label(g.n);       // 「o」或「i」
       vector<int> orig(g.n);        // 花根
-      vector<int> parent(g.n, -1);  // 父节点
+      vector<int> parent(g.n, -1);  // 父结点
       queue<int> q;
       int aux_time = -1;
     
@@ -115,7 +115,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
             if (match[v] == -1) {
               v = -1;
             } else {
-              v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
+              v = orig[parent[match[v]]];  // 以匹配点的父结点继续寻找
             }
           }
           swap(v, u);

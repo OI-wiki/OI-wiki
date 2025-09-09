@@ -2,9 +2,9 @@
 using LL = long long;
 LL n, a[100005], d[270000], b[270000];
 
-void build(LL l, LL r, LL p) {  // l:区间左端点 r:区间右端点 p:节点标号
+void build(LL l, LL r, LL p) {  // l:区间左端点 r:区间右端点 p:结点标号
   if (l == r) {
-    d[p] = a[l];  // 将节点赋值
+    d[p] = a[l];  // 将结点赋值
     return;
   }
   LL m = l + ((r - l) >> 1);
@@ -23,9 +23,9 @@ void update(LL l, LL r, LL c, LL s, LL t, LL p) {
         b[p << 1] += b[p], b[(p << 1) | 1] += b[p];
   b[p] = 0;
   if (l <= m)
-    update(l, r, c, s, m, p << 1);  // 本行和下面的一行用来更新p*2和p*2+1的节点
+    update(l, r, c, s, m, p << 1);  // 本行和下面的一行用来更新p*2和p*2+1的结点
   if (r > m) update(l, r, c, m + 1, t, (p << 1) | 1);
-  d[p] = d[p << 1] + d[(p << 1) | 1];  // 计算该节点区间和
+  d[p] = d[p << 1] + d[(p << 1) | 1];  // 计算该结点区间和
 }
 
 LL getsum(LL l, LL r, LL s, LL t, LL p) {

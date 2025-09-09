@@ -17,7 +17,7 @@ int ch[MAXN][26], len[MAXN], fail[MAXN];
 int cnt[MAXN], dep[MAXN], dif[MAXN], slink[MAXN];
 char s[MAXN];
 
-int node(int l) {  // 建立一个长度为 l 的新节点
+int node(int l) {  // 建立一个长度为 l 的新结点
   sz++;
   memset(ch[sz], 0, sizeof(ch[sz]));
   len[sz] = l;

@@ -382,9 +382,9 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
     int main() {
       scanf("%d", &n);
     
-      // 为了减少讨论，加了哨兵节点
+      // 为了减少讨论，加了哨兵结点
       // 因为树状数组添加的时候，为0可能会死循环，所以整体往右偏移一位
-      // a_1和a_{n+2}为哨兵节点
+      // a_1和a_{n+2}为哨兵结点
       for (int i = 2; i <= n + 1; ++i) scanf("%d", &a[i]);
       for (int i = 2; i <= n + 1; ++i) g[a[i]].push_back(i);
     
@@ -549,7 +549,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
       for (int i = 1; i <= n; ++i) scanf("%d", &a[i]);
       for (int i = 1; i <= n; ++i) g[a[i]].push_back(i);
     
-      // a_0 和 a_{n+1}为哨兵节点
+      // a_0 和 a_{n+1}为哨兵结点
       int ans = n + 2, lst, ok;
       for (int i = 1; i <= n + 1; ++i) {
         g[i].push_back(n + 1);

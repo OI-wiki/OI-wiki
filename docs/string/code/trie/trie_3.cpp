@@ -6,7 +6,7 @@ namespace trie {
 constexpr int _n = _ * 25;
 int rt[_];
 int ch[_n][2];
-int w[_n];  //`w[o]` 指节点 `o` 到其父亲节点这条边上数值的数量（权值）。
+int w[_n];  //`w[o]` 指结点 `o` 到其父亲结点这条边上数值的数量（权值）。
 int xorv[_n];
 int tot = 0;
 
@@ -22,7 +22,7 @@ void maintain(int o) {  // 维护w数组和xorv（权值的异或）数组
   }
 }
 
-int mknode() {  // 创造一个新的节点
+int mknode() {  // 创造一个新的结点
   ++tot;
   ch[tot][0] = ch[tot][1] = 0;
   w[tot] = 0;
@@ -42,7 +42,7 @@ void erase(int o, int x, int dp) {
   maintain(o);
 }
 
-void addall(int o) {  // 对所有节点+1即将所有节点的ch[o][1]和ch[o][0]交换
+void addall(int o) {  // 对所有结点+1即将所有结点的ch[o][1]和ch[o][0]交换
   swap(ch[o][1], ch[o][0]);
   if (ch[o][0]) addall(ch[o][0]);
   maintain(o);
@@ -71,7 +71,7 @@ int fa[_];
 
 void dfs0(int o, int f) {  // 得到fa数组
   fa[o] = f;
-  for (int i = head[o]; i; i = edge[i].nxt) {  // 遍历子节点
+  for (int i = head[o]; i; i = edge[i].nxt) {  // 遍历子结点
     int node = edge[i].node;
     if (node == f) continue;
     dfs0(node, o);
@@ -107,7 +107,7 @@ int main() {
         if (fa[fa[x]] != -1)
           trie::insert(trie::rt[fa[fa[x]]], get(fa[x]), 0);  // 重新插入
       }
-      trie::addall(trie::rt[x]);  // 对所有节点+1
+      trie::addall(trie::rt[x]);  // 对所有结点+1
     } else if (opt == 2) {
       int v;
       cin >> v;

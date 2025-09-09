@@ -1,6 +1,6 @@
 符号化方法（symbolic method）是将组合对象快速转换成生成函数的一种方法，我们将考虑对于集合上定义的特定运算，然后导出其对应的生成函数的运算。
 
-我们称一个组合类（或简称为类）为 $(\mathcal{A},\lvert \cdot \rvert)$，其中 $\mathcal{A}$ 为组合对象的集合，函数 $\lvert \cdot \rvert$ 将每一个组合对象映射为一个非负整数，一般称为大小函数。需要注意的是这个非负整数不能是无限大的。例如对于字符集为 $\lbrace 0,1\rbrace$ 的字符串，可以将字符串的长度设置为其大小函数；对于树或图可将节点的数量设置为其大小函数，注意这并非绝对，也可能将某些特定节点的大小函数设置为 $0$ 等。
+我们称一个组合类（或简称为类）为 $(\mathcal{A},\lvert \cdot \rvert)$，其中 $\mathcal{A}$ 为组合对象的集合，函数 $\lvert \cdot \rvert$ 将每一个组合对象映射为一个非负整数，一般称为大小函数。需要注意的是这个非负整数不能是无限大的。例如对于字符集为 $\lbrace 0,1\rbrace$ 的字符串，可以将字符串的长度设置为其大小函数；对于树或图可将结点的数量设置为其大小函数，注意这并非绝对，也可能将某些特定结点的大小函数设置为 $0$ 等。
 
 本文是基于 Analytic Combinatorics 一书第一章的简化。
 
@@ -117,7 +117,7 @@ $$
 其中 $Q$ 为 Pólya 准逆（quasi-inversion）。
 
 ???+ note "例：有序有根树（ordered rooted tree）"
-    我们可以使用 Sequence 构造来定义有序有根树，即孩子之间的顺序有意义的有根树，设该组合类为 $\mathcal{T}$ 那么一棵树为一个根节点和树的 Sequence，即
+    我们可以使用 Sequence 构造来定义有序有根树，即孩子之间的顺序有意义的有根树，设该组合类为 $\mathcal{T}$ 那么一棵树为一个根结点和树的 Sequence，即
     
     $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{SEQ}(\mathcal{T})
@@ -209,7 +209,7 @@ $$
     **解**：设商品的组合类为 $\mathcal{A}$，所求即 $\operatorname{MSET}(\mathcal{A})$ 对应 OGF 的系数。
 
 ???+ note " 例题 [洛谷 P5900 无标号无根树计数](https://www.luogu.com.cn/problem/P5900)"
-    **题意**：求出 $n$ 个节点的无标号无根树的个数对 $998244353$ 取模的值。约定 $1\leq n\leq 2\times 10^5$。
+    **题意**：求出 $n$ 个结点的无标号无根树的个数对 $998244353$ 取模的值。约定 $1\leq n\leq 2\times 10^5$。
     
     **解**：设无标号有根树的组合类为 $\mathcal{T}$，那么
     
@@ -432,7 +432,7 @@ $$
 上面的计算方法虽然有效但比较麻烦，读者可阅读 WolframMathWorld 网站的 [Pólya Enumeration Theorem](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) 和 [Cycle Index](https://mathworld.wolfram.com/CycleIndex.html) 等相关资料，后者 Cycle Index 在 OEIS 的生成函数表达式中也经常出现。
 
 ???+ note " 例题 [LOJ 6538. 烷基计数 加强版 加强版](https://loj.ac/p/6538)"
-    **题意**：求出 $n$ 个节点的有根且根节点度数不超过 $3$，其余节点度数不超过 $4$ 的无序树的个数对 $998244353$ 取模的值。约定 $1\leq n\leq 10^5$。
+    **题意**：求出 $n$ 个结点的有根且根结点度数不超过 $3$，其余结点度数不超过 $4$ 的无序树的个数对 $998244353$ 取模的值。约定 $1\leq n\leq 10^5$。
     
     **解**：设组合类为 $\mathcal{T}$ 那么
     

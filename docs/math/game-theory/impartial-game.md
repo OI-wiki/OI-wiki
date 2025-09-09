@@ -14,9 +14,9 @@ $n$ 堆物品，每堆有 $a_i$ 个，两个玩家轮流取走任意一堆的任
 
 ## 博弈图和状态
 
-如果将每个状态视为一个节点，再从每个状态向它的后继状态连边，我们就可以得到一个博弈状态图。
+如果将每个状态视为一个结点，再从每个状态向它的后继状态连边，我们就可以得到一个博弈状态图。
 
-例如，如果节点 $(i, j, k)$ 表示局面为 $i, j, k$ 时的状态，则我们可以画出下面的博弈图：
+例如，如果结点 $(i, j, k)$ 表示局面为 $i, j, k$ 时的状态，则我们可以画出下面的博弈图：
 
 ![博弈图的例子](./images/nim.svg)
 
@@ -94,17 +94,17 @@ $$
 
 可以使用数学归纳法来证明。
 
-我们假设对于游戏状态 $x'$，其当前节点 $s_1', s_2', \ldots, s_n'$（对于任意 $i$ 有 $s_i' < s_i$），皆满足 SG 定理。
+我们假设对于游戏状态 $x'$，其当前结点 $s_1', s_2', \ldots, s_n'$（对于任意 $i$ 有 $s_i' < s_i$），皆满足 SG 定理。
 
 显然当 $\operatorname{SG}(s_1)'=\operatorname{SG}(s_2)'=\ldots \operatorname{SG}(s_n)'=0$ 时，该状态能满足 SG 定理。
 
-那么只需要证明对于游戏状态 $x$，其当前节点 $s_1', s_2', \ldots, s_n'$ 符合 SG 定理，SG 定理便成立。
+那么只需要证明对于游戏状态 $x$，其当前结点 $s_1', s_2', \ldots, s_n'$ 符合 SG 定理，SG 定理便成立。
 
-事实上这一个状态可以看作一个 Nim 游戏，对于某个节点 $s_i$，它可以移动到任意一个 $\operatorname{SG}$ 值比它小或比它大的节点。
+事实上这一个状态可以看作一个 Nim 游戏，对于某个结点 $s_i$，它可以移动到任意一个 $\operatorname{SG}$ 值比它小或比它大的结点。
 
-在有向图游戏中，当一方将某一节点 $s_i$ 移动到 $\operatorname{SG}$ 值比它大的节点时，另一方可以移动回和 $\operatorname{SG}$ 值和 $\operatorname{SG}(s_i)$ 一样的节点，所以向 SG 值较大节点移动是无效操作。
+在有向图游戏中，当一方将某一结点 $s_i$ 移动到 $\operatorname{SG}$ 值比它大的结点时，另一方可以移动回和 $\operatorname{SG}$ 值和 $\operatorname{SG}(s_i)$ 一样的结点，所以向 SG 值较大结点移动是无效操作。
 
-当移动到 SG 值较小的节点时，情况则会和 Nim 游戏一样，能够到达任何一个游戏状态 $x'$ 使得 $\operatorname{SG}(x')= \operatorname{SG}(s_1') \oplus \operatorname{SG}(s_2') \oplus \ldots \oplus \operatorname{SG}(s_n') < \operatorname{SG}(X)$（注意到前文已经假设 $x'$ 满足 SG 定理），但到达不了 SG 值为 $\operatorname{SG}(s_1) \oplus \operatorname{SG}(s_2) \oplus \ldots \oplus \operatorname{SG}(s_n)$ 的节点。
+当移动到 SG 值较小的结点时，情况则会和 Nim 游戏一样，能够到达任何一个游戏状态 $x'$ 使得 $\operatorname{SG}(x')= \operatorname{SG}(s_1') \oplus \operatorname{SG}(s_2') \oplus \ldots \oplus \operatorname{SG}(s_n') < \operatorname{SG}(X)$（注意到前文已经假设 $x'$ 满足 SG 定理），但到达不了 SG 值为 $\operatorname{SG}(s_1) \oplus \operatorname{SG}(s_2) \oplus \ldots \oplus \operatorname{SG}(s_n)$ 的结点。
 
 所以状态 $x$ 符合 SG 定理。
 
@@ -124,7 +124,7 @@ SG 定理适用于 **任何公平的两人游戏**, 它常被用于决定游戏�
 
 ## 将 Nim 游戏转换为有向图游戏
 
-我们可以将一个有 $x$ 个物品的堆视为节点 $x$，则当且仅当 $y<x$ 时，节点 $x$ 可以到达 $y$。
+我们可以将一个有 $x$ 个物品的堆视为结点 $x$，则当且仅当 $y<x$ 时，结点 $x$ 可以到达 $y$。
 
 那么，由 $n$ 个堆组成的 Nim 游戏，就可以视为 $n$ 个有向图游戏了。
 

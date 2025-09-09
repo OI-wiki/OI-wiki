@@ -181,9 +181,9 @@ int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;
 // 本篇代码原题应为 CERC2017 Intrinsic Interval
 // a 数组即为原题中对应的排列
 // st1 和 st2 分别两个单调栈，tp1、tp2 为对应的栈顶，rt 为析合树的根
-// L、R 数组表示该析合树节点的左右端点，M 数组的作用在析合树构造时有提到
-// id 存储的是排列中某一位置对应的节点编号，typ 用于标记析点还是合点
-// st 为存储析合树节点编号的栈，tp为其栈顶
+// L、R 数组表示该析合树结点的左右端点，M 数组的作用在析合树构造时有提到
+// id 存储的是排列中某一位置对应的结点编号，typ 用于标记析点还是合点
+// st 为存储析合树结点编号的栈，tp为其栈顶
 struct RMQ {  // 预处理 RMQ（Max & Min）
   int lg[N], mn[N][17], mx[N][17];
 
@@ -321,7 +321,7 @@ void build() {
     st2[++tp2] = i;
 
     id[i] = ++cnt;
-    L[cnt] = R[cnt] = i;  // 这里的 L,R 是指节点所对应区间的左右端点
+    L[cnt] = R[cnt] = i;  // 这里的 L,R 是指结点所对应区间的左右端点
     int le = T.query(1, 1, n), now = cnt;
     while (tp && L[st[tp]] >= le) {
       if (typ[st[tp]] && judge(M[st[tp]], i)) {
@@ -330,7 +330,7 @@ void build() {
       } else if (judge(L[st[tp]], i)) {
         typ[++cnt] = 1;  // 合点一定是被这样建出来的
         L[cnt] = L[st[tp]], R[cnt] = i, M[cnt] = L[now];
-        // 这里M数组是记录节点最右面的儿子的左端点，用于上方能否成为儿子的判断
+        // 这里M数组是记录结点最右面的儿子的左端点，用于上方能否成为儿子的判断
         add(cnt, st[tp--]), add(cnt, now);
         now = cnt;
       } else {

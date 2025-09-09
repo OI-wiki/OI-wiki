@@ -17,7 +17,7 @@ int f(int y) {  // 离散化，把坐标映射到 a 中的下标
 
 void up(int u, int ul, int ur) {  // pushup
   if (v[u]) w[u] = a[ur] - a[ul];
-  // 如果对叶子节点调用 w[u*2+1]，那么线段树需要开 8 倍空间
+  // 如果对叶子结点调用 w[u*2+1]，那么线段树需要开 8 倍空间
   // 乘上矩形上下两边就是 16 倍
   else if (ul + 1 == ur)
     w[u] = 0;

@@ -15,7 +15,7 @@ struct SAM {
 } sam[N << 1];
 
 void insert(int x) {
-  int np = ++tot;  // 新节点
+  int np = ++tot;  // 新结点
   sam[np].len = sam[p].len + 1;
   while (p && !sam[p].ch[x]) {
     sam[p].ch[x] = np;

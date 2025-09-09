@@ -113,7 +113,7 @@ void changeFa(long long x, long long y) {
   split(b, rnk(e[x]) - rnk(s[x]) + 1, b, c);
   a = merge(
       a,
-      c);  // 因为我们确定不了要设置为父亲的节点在括号序列中的哪边，所以先把两边合并。
+      c);  // 因为我们确定不了要设置为父亲的结点在括号序列中的哪边，所以先把两边合并。
   split(a, rnk(s[y]), a, d);
   rt = merge(merge(a, b), d);  // 把要进行操作的子树放在父亲括号序列的最前面。
 }

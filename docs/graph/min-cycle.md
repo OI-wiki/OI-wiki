@@ -1,7 +1,7 @@
 ## 引入
 
 ???+ question "问题"
-    给出一个图，问其中的由 $n$ 个节点构成的边权和最小的环 $(n\ge 3)$ 是多大。
+    给出一个图，问其中的由 $n$ 个结点构成的边权和最小的环 $(n\ge 3)$ 是多大。
 
 图的最小环也称围长。
 
@@ -125,27 +125,27 @@
     
     def get_path(i, j, pos, path, cnt):
         """
-        递归地获取从节点 i 到节点 j 的最短路径上的中间节点。
+        递归地获取从结点 i 到结点 j 的最短路径上的中间结点。
     
         Args:
-            i (int): 起始节点 (0-based index).
-            j (int): 结束节点 (0-based index).
-            pos (list[list[int]]): 记录最短路径中间节点的矩阵. pos[i][j] = k 表示从 i 到 j 的最短路径经过 k.
-            path (list[int]): 存储路径节点的列表 (使用 0-based index).
-            cnt (int): 当前路径节点的数量.
+            i (int): 起始结点 (0-based index).
+            j (int): 结束结点 (0-based index).
+            pos (list[list[int]]): 记录最短路径中间结点的矩阵. pos[i][j] = k 表示从 i 到 j 的最短路径经过 k.
+            path (list[int]): 存储路径结点的列表 (使用 0-based index).
+            cnt (int): 当前路径结点的数量.
     
         Returns:
-            int: 更新后的路径节点数量.
+            int: 更新后的路径结点数量.
         """
-        # 如果 pos[i][j] 为 -1，表示 i 到 j 没有中间节点
+        # 如果 pos[i][j] 为 -1，表示 i 到 j 没有中间结点
         if pos[i][j] == -1:
             return cnt
     
-        # 获取中间节点 k
+        # 获取中间结点 k
         k = pos[i][j]
         # 递归获取 i 到 k 的路径
         cnt = get_path(i, k, pos, path, cnt)
-        # 将中间节点 k 加入路径
+        # 将中间结点 k 加入路径
         path[cnt] = k
         cnt += 1
         # 递归获取 k 到 j 的路径
@@ -158,14 +158,14 @@
         使用 Floyd-Warshall 算法查找无向图中的最小环。
     
         Args:
-            n (int): 图的节点数 (1 到 n).
-            edges (list[tuple]): 边的列表，每个元素是 (u, v, w)，表示节点 u 和 v 之间有一条权重为 w 的边。
-                                 节点索引是 1 到 n。
+            n (int): 图的结点数 (1 到 n).
+            edges (list[tuple]): 边的列表，每个元素是 (u, v, w)，表示结点 u 和 v 之间有一条权重为 w 的边。
+                                 结点索引是 1 到 n。
     
         Returns:
             tuple: 包含最小环的长度和路径。
                    如果不存在环，返回 (INF, []).
-                   路径是一个节点索引列表 (1-based index)。
+                   路径是一个结点索引列表 (1-based index)。
         """
         # 内部使用 0-based indexing
         N = n
@@ -173,10 +173,10 @@
         g = [[INF for _ in range(N)] for _ in range(N)]
         # 初始化最短路矩阵 dis，开始时与 g 相同
         dis = [[INF for _ in range(N)] for _ in range(N)]
-        # 初始化 pos 矩阵，记录最短路径的中间节点
+        # 初始化 pos 矩阵，记录最短路径的中间结点
         pos = [[-1 for _ in range(N)] for _ in range(N)]
     
-        # 初始化对角线为 0 (节点到自身的距离)
+        # 初始化对角线为 0 (结点到自身的距离)
         for i in range(N):
             g[i][i] = 0
             dis[i][i] = 0
@@ -198,11 +198,11 @@
         min_cycle_path = []
     
         # Floyd-Warshall 算法核心部分
-        # k 作为中间节点 (0-based index)
+        # k 作为中间结点 (0-based index)
         for k in range(N):
-            # 在更新 dis[i][j] 之前，检查通过节点 k 是否能形成更小的环
+            # 在更新 dis[i][j] 之前，检查通过结点 k 是否能形成更小的环
             # 环由 i -> k -> j -> ... -> i 组成
-            # 这里的 dis[i][j] 是在考虑节点 0 到 k-1 作为中间节点时的最短路径
+            # 这里的 dis[i][j] 是在考虑结点 0 到 k-1 作为中间结点时的最短路径
             # C++ 代码中使用 i < k 和 j < i 的循环顺序，这里也遵循这个逻辑 (0-based)
             for i in range(k):  # 0 <= i < k
                 for j in range(i):  # 0 <= j < i
@@ -223,9 +223,9 @@
                             cnt += 1
                             path[cnt] = j
                             cnt += 1
-                            # 获取 j 到 i 的最短路径上的中间节点 (使用之前计算的 dis 和 pos)
+                            # 获取 j 到 i 的最短路径上的中间结点 (使用之前计算的 dis 和 pos)
                             cnt = get_path(j, i, pos, path, cnt)
-                            # 提取实际路径节点 (去除未使用的部分)
+                            # 提取实际路径结点 (去除未使用的部分)
                             # 将 0-based 索引转换为 1-based
                             min_cycle_path = [node + 1 for node in path[:cnt]]
     
@@ -247,7 +247,7 @@
 ## 模板题
 
 ??? "[AcWing 344 观光之旅](https://www.acwing.com/problem/content/346)"
-    给定一张 $n$ 个点无向图，求图中一个至少包含 $3$ 个点的环，环上的节点不重复，并且环上的边的长度之和最小。
+    给定一张 $n$ 个点无向图，求图中一个至少包含 $3$ 个点的环，环上的结点不重复，并且环上的边的长度之和最小。
     
     该问题称为无向图的最小环问题。
     
@@ -261,33 +261,33 @@
     ```cpp
     #include <bits/stdc++.h>
     using lint = long long;
-    // 定义一个足够大的常量，用于表示图的最大节点数
+    // 定义一个足够大的常量，用于表示图的最大结点数
     const int MAXN = 110;
     
     // 定义一个足够大的值，用于表示无穷大，初始化最小环长度
     lint ans = 1e9;  // lint 是 long long 的别名
     
-    // 图的节点数 n，边数 m
-    // cnt 记录最小环路径中的节点数量
-    // path 存储最小环的路径节点
+    // 图的结点数 n，边数 m
+    // cnt 记录最小环路径中的结点数量
+    // path 存储最小环的路径结点
     int n, m, cnt, path[MAXN];
     
     // g 存储原始图的邻接矩阵
     // dis 存储最短路径矩阵 (Floyd-Warshall 算法计算过程中更新)
-    // pos 记录最短路径的中间节点，pos[i][j] = k 表示从 i 到 j 的最短路径经过 k
+    // pos 记录最短路径的中间结点，pos[i][j] = k 表示从 i 到 j 的最短路径经过 k
     int g[MAXN][MAXN], dis[MAXN][MAXN], pos[MAXN][MAXN];
     
-    // 递归函数：获取从节点 u 到节点 v 的最短路径上的中间节点
+    // 递归函数：获取从结点 u 到结点 v 的最短路径上的中间结点
     // 根据 pos 矩阵重构路径
     void get_path(int u, int v) {
-      // 如果 pos[u][v] 为 0，表示 u 到 v 没有中间节点，直接返回
+      // 如果 pos[u][v] 为 0，表示 u 到 v 没有中间结点，直接返回
       if (pos[u][v] == 0) return;
     
-      // 获取中间节点 k
+      // 获取中间结点 k
       int k = pos[u][v];
       // 递归获取 u 到 k 的路径
       get_path(u, k);
-      // 将中间节点 k 加入路径
+      // 将中间结点 k 加入路径
       path[++cnt] = k;
       // 递归获取 k 到 v 的路径
       get_path(k, v);
@@ -295,14 +295,14 @@
     
     // Floyd-Warshall 算法函数：查找图中的最小环
     void Floyd() {
-      // 外层循环：k 作为中间节点 (1 到 n)
+      // 外层循环：k 作为中间结点 (1 到 n)
       for (int k = 1; k <= n; ++k) {
-        // 内层循环：i 和 j，用于检查通过节点 k 是否能形成更小的环
+        // 内层循环：i 和 j，用于检查通过结点 k 是否能形成更小的环
         // 这里循环顺序是 i 从 1 到 k-1，j 从 1 到 i-1
         // 这样可以检查由 i -> k -> j -> ... -> i 构成的环
         for (int i = 1; i < k; ++i)
           for (int j = 1; j < i; ++j)
-            // 检查通过节点 k 连接 i 和 j 是否形成更小的环
+            // 检查通过结点 k 连接 i 和 j 是否形成更小的环
             // 环的长度是 i 到 k 的原始边权重 g[i][k] + k 到 j 的原始边权重 g[k][j]
             // + i 到 j 的当前最短路径 dis[i][j]
             if (ans > (long long)g[i][k] + g[k][j] + dis[i][j]) {
@@ -311,7 +311,7 @@
               cnt = 0;                              // 重置路径计数
               // 将 i, k, j 依次加入路径
               path[++cnt] = i, path[++cnt] = k, path[++cnt] = j;
-              // 获取 j 到 i 的最短路径上的中间节点，加入路径
+              // 获取 j 到 i 的最短路径上的中间结点，加入路径
               get_path(j, i);
             }
     
@@ -319,7 +319,7 @@
         // i 从 1 到 n，j 从 1 到 n
         for (int i = 1; i <= n; ++i)
           for (int j = 1; j <= n; ++j) {
-            // 如果通过中间节点 k 可以获得更短的从 i 到 j 的路径
+            // 如果通过中间结点 k 可以获得更短的从 i 到 j 的路径
             if (dis[i][j] > dis[i][k] + dis[k][j]) {
               // 更新最短路径
               dis[i][j] = dis[i][k] + dis[k][j];
@@ -332,11 +332,11 @@
     
     // 主函数
     int main() {
-      // 读取节点数 n 和边数 m
+      // 读取结点数 n 和边数 m
       std::cin >> n >> m;
       // 初始化原始邻接矩阵 g，所有边的权重设为无穷大 (0x3f 通常表示一个很大的值)
       memset(g, 0x3f, sizeof(g));
-      // 将节点到自身的距离设为 0
+      // 将结点到自身的距离设为 0
       for (int i = 1; i <= n; ++i) g[i][i] = 0;
       // 读取 m 条边，构建原始邻接矩阵 g
       // 对于无向图，边是双向的，取较小的权重
@@ -352,12 +352,12 @@
       if (ans == 1e9) {  // 如果最小环长度仍为无穷大，表示不存在环
         puts("No solution.");
       } else {
-        // 如果存在环，打印路径节点
+        // 如果存在环，打印路径结点
         // std::cout << "ans = " << ans << std::endl; // 打印最小环长度 (注释掉)
-        // 打印路径节点，用空格分隔
+        // 打印路径结点，用空格分隔
         for (int i = 1; i <= cnt; ++i)
           std::cout << path[i]
-                    << (i == cnt ? "" : " ");  // 最后一个节点后面没有空格
+                    << (i == cnt ? "" : " ");  // 最后一个结点后面没有空格
         std::cout << std::endl;                // 路径打印完后换行
       }
       return 0;
@@ -375,27 +375,27 @@
     
     def get_path(i, j, pos, path, cnt):
         """
-        递归地获取从节点 i 到节点 j 的最短路径上的中间节点。
+        递归地获取从结点 i 到结点 j 的最短路径上的中间结点。
     
         Args:
-            i (int): 起始节点 (0-based index).
-            j (int): 结束节点 (0-based index).
-            pos (list[list[int]]): 记录最短路径中间节点的矩阵. pos[i][j] = k 表示从 i 到 j 的最短路径经过 k.
-            path (list[int]): 存储路径节点的列表 (使用 0-based index).
-            cnt (int): 当前路径节点的数量.
+            i (int): 起始结点 (0-based index).
+            j (int): 结束结点 (0-based index).
+            pos (list[list[int]]): 记录最短路径中间结点的矩阵. pos[i][j] = k 表示从 i 到 j 的最短路径经过 k.
+            path (list[int]): 存储路径结点的列表 (使用 0-based index).
+            cnt (int): 当前路径结点的数量.
     
         Returns:
-            int: 更新后的路径节点数量.
+            int: 更新后的路径结点数量.
         """
-        # 如果 pos[i][j] 为 -1，表示 i 到 j 没有中间节点
+        # 如果 pos[i][j] 为 -1，表示 i 到 j 没有中间结点
         if pos[i][j] == -1:
             return cnt
     
-        # 获取中间节点 k
+        # 获取中间结点 k
         k = pos[i][j]
         # 递归获取 i 到 k 的路径
         cnt = get_path(i, k, pos, path, cnt)
-        # 将中间节点 k 加入路径
+        # 将中间结点 k 加入路径
         path[cnt] = k
         cnt += 1
         # 递归获取 k 到 j 的路径
@@ -408,14 +408,14 @@
         使用 Floyd-Warshall 算法查找无向图中的最小环。
     
         Args:
-            n (int): 图的节点数 (1 到 n).
-            edges (list[tuple]): 边的列表，每个元素是 (u, v, w)，表示节点 u 和 v 之间有一条权重为 w 的边。
-                                 节点索引是 1 到 n。
+            n (int): 图的结点数 (1 到 n).
+            edges (list[tuple]): 边的列表，每个元素是 (u, v, w)，表示结点 u 和 v 之间有一条权重为 w 的边。
+                                 结点索引是 1 到 n。
     
         Returns:
             tuple: 包含最小环的长度和路径。
                    如果不存在环，返回 (INF, []).
-                   路径是一个节点索引列表 (1-based index)。
+                   路径是一个结点索引列表 (1-based index)。
         """
         # 内部使用 0-based indexing
         N = n
@@ -423,10 +423,10 @@
         g = [[INF for _ in range(N)] for _ in range(N)]
         # 初始化最短路矩阵 dis，开始时与 g 相同
         dis = [[INF for _ in range(N)] for _ in range(N)]
-        # 初始化 pos 矩阵，记录最短路径的中间节点
+        # 初始化 pos 矩阵，记录最短路径的中间结点
         pos = [[-1 for _ in range(N)] for _ in range(N)]
     
-        # 初始化对角线为 0 (节点到自身的距离)
+        # 初始化对角线为 0 (结点到自身的距离)
         for i in range(N):
             g[i][i] = 0
             dis[i][i] = 0
@@ -448,11 +448,11 @@
         min_cycle_path = []
     
         # Floyd-Warshall 算法核心部分
-        # k 作为中间节点 (0-based index)
+        # k 作为中间结点 (0-based index)
         for k in range(N):
-            # 在更新 dis[i][j] 之前，检查通过节点 k 是否能形成更小的环
+            # 在更新 dis[i][j] 之前，检查通过结点 k 是否能形成更小的环
             # 环由 i -> k -> j -> ... -> i 组成
-            # 这里的 dis[i][j] 是在考虑节点 0 到 k-1 作为中间节点时的最短路径
+            # 这里的 dis[i][j] 是在考虑结点 0 到 k-1 作为中间结点时的最短路径
             # C++ 代码中使用 i < k 和 j < i 的循环顺序，这里也遵循这个逻辑 (0-based)
             for i in range(k):  # 0 <= i < k
                 for j in range(i):  # 0 <= j < i
@@ -473,9 +473,9 @@
                             cnt += 1
                             path[cnt] = j
                             cnt += 1
-                            # 获取 j 到 i 的最短路径上的中间节点 (使用之前计算的 dis 和 pos)
+                            # 获取 j 到 i 的最短路径上的中间结点 (使用之前计算的 dis 和 pos)
                             cnt = get_path(j, i, pos, path, cnt)
-                            # 提取实际路径节点 (去除未使用的部分)
+                            # 提取实际路径结点 (去除未使用的部分)
                             # 将 0-based 索引转换为 1-based
                             min_cycle_path = [node + 1 for node in path[:cnt]]
     
@@ -496,7 +496,7 @@
     
     # --- 主程序入口 ---
     if __name__ == "__main__":
-        # 读取节点数 n 和边数 m
+        # 读取结点数 n 和边数 m
         n, m = map(int, sys.stdin.readline().split())
     
         # 读取边信息
@@ -512,7 +512,7 @@
         if min_len == INF:
             print("No solution.")
         else:
-            # 打印路径节点 (1-based index)，用空格分隔
+            # 打印路径结点 (1-based index)，用空格分隔
             print(" ".join(map(str, path)))
     ```
 

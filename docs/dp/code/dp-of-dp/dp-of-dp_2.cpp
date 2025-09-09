@@ -187,10 +187,10 @@ int main() {
 
   for (int i = 1; i <= m; i++) {
     (ans += 1LL * Hfu.f[n][i][1] * fact[i] % mod * fact[m - i] % mod) %= mod;
-    for (int j = 3; j <= Hfu.tot; j++)  // 因为 2 节点是胡牌节点所以不统计
+    for (int j = 3; j <= Hfu.tot; j++)  // 因为 2 结点是胡牌结点所以不统计
       (ans += 1LL * Hfu.f[n][i][j] * fact[i] % mod * fact[m - i] % mod) %= mod;
     // f[i][j][k]：表示处理到第 i 张牌，共摸了 j 张牌，走到了胡牌自动机上的 k
-    // 号节点的方案数 每个方案乘以 i!(用于排列这 i 张) × (m - i)!
+    // 号结点的方案数 每个方案乘以 i!(用于排列这 i 张) × (m - i)!
     // (剩下的牌排列)，求和后取模
   }
 

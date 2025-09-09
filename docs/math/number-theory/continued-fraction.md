@@ -948,7 +948,7 @@ $$
 
 主条目：[Stern–Brocot 树与 Farey 序列](./stern-brocot.md)
 
-Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二叉搜索树](../../ds/bst.md)。有限连分数实际上编码了 Stern–Brocot 树上从根到某个分数所在位置的路径。也就是说，有理数 $x$ 的连分数表示 $[a_0,a_1,\cdots,a_{n-1},1]$ 意味着从树根 $\dfrac{1}{1}$ 开始，需要先向右子节点移动 $a_0$ 次，再向左子节点移动 $a_1$ 次，交替方向移动，直到向某个方向移动了 $a_{n-1}$ 次为止。应当注意，此处只能使用末尾为 $1$ 的连分数表示。
+Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二叉搜索树](../../ds/bst.md)。有限连分数实际上编码了 Stern–Brocot 树上从根到某个分数所在位置的路径。也就是说，有理数 $x$ 的连分数表示 $[a_0,a_1,\cdots,a_{n-1},1]$ 意味着从树根 $\dfrac{1}{1}$ 开始，需要先向右子结点移动 $a_0$ 次，再向左子结点移动 $a_1$ 次，交替方向移动，直到向某个方向移动了 $a_{n-1}$ 次为止。应当注意，此处只能使用末尾为 $1$ 的连分数表示。
 
 将连分数表示理解为 Stern–Brocot 树上的路径，可以得到比较连分数大小的算法。
 
@@ -978,9 +978,9 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
     对于 $\dfrac{0}{1}\le\dfrac{p_0}{q_0}<\dfrac{p_1}{q_1}\le\dfrac{1}{0}$，求使得 $\dfrac{p_0}{q_0}<\dfrac{p}{q}<\dfrac{p_1}{q_1}$ 成立且 $(q,p)$ 最小的有理数 $\dfrac{p}{q}$。
 
 ??? note "解答"
-    因为 Stern–Brocot 树既是 $[0,\infty]$ 中的分数的二叉搜索树，又是二元组 $(q,p)$ 的 [笛卡尔树](../../ds/cartesian-tree.md)，所以题意几乎可以转化为求 Stern–Brocot 树上两个点的 LCA（最近公共祖先）。但是，LCA 只能处理闭区间内的情形，LCA 可能是端点本身。为了避免额外的讨论，可以首先构造出 $\dfrac{p_0}{q_0}+\varepsilon$ 和 $\dfrac{p_1}{q_1}-\varepsilon$，再计算 LCA。在已经通过连分数计算出根到节点的路径的情况下，LCA 只要取最长的公共路径即可。
+    因为 Stern–Brocot 树既是 $[0,\infty]$ 中的分数的二叉搜索树，又是二元组 $(q,p)$ 的 [笛卡尔树](../../ds/cartesian-tree.md)，所以题意几乎可以转化为求 Stern–Brocot 树上两个点的 LCA（最近公共祖先）。但是，LCA 只能处理闭区间内的情形，LCA 可能是端点本身。为了避免额外的讨论，可以首先构造出 $\dfrac{p_0}{q_0}+\varepsilon$ 和 $\dfrac{p_1}{q_1}-\varepsilon$，再计算 LCA。在已经通过连分数计算出根到结点的路径的情况下，LCA 只要取最长的公共路径即可。
     
-    要构造出 $x\pm\varepsilon$，只需要在节点 $x$ 处首先向右（左）移动一次，再向左（右）移动 $\infty$ 次即可。转化成连分数的语言，对于分数 $x=[a_0,a_1,\cdots,a_{n-1},1]$，可以知道 $x\pm\varepsilon$ 必然是 $[a_0,a_1,\cdots,a_{n-1}+1,\infty]$ 和 $[a_0,a_1,\cdots,a_{n-1},1,\infty]$，因而只需要比较这两个连分数，将较大（小）的定义为 $x\pm\varepsilon$。
+    要构造出 $x\pm\varepsilon$，只需要在结点 $x$ 处首先向右（左）移动一次，再向左（右）移动 $\infty$ 次即可。转化成连分数的语言，对于分数 $x=[a_0,a_1,\cdots,a_{n-1},1]$，可以知道 $x\pm\varepsilon$ 必然是 $[a_0,a_1,\cdots,a_{n-1}+1,\infty]$ 和 $[a_0,a_1,\cdots,a_{n-1},1,\infty]$，因而只需要比较这两个连分数，将较大（小）的定义为 $x\pm\varepsilon$。
     
     === "C++"
         ```cpp

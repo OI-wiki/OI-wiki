@@ -4,12 +4,12 @@ using i32 = int32_t;
 using u32 = uint32_t;
 
 class dsu {
-  // p[i] < 0 时表示 i 为根节点，其对应的子树大小为 -p[i]
-  // p[i] >= 0 时表示 i 不为根节点，其父亲节点的编号为 p[i]
+  // p[i] < 0 时表示 i 为根结点，其对应的子树大小为 -p[i]
+  // p[i] >= 0 时表示 i 不为根结点，其父亲结点的编号为 p[i]
   std::vector<i32> p;
 
  public:
-  // 节点编号从 0 到 sz-1
+  // 结点编号从 0 到 sz-1
   explicit dsu(u32 sz) : p(sz, -1) {}
 
   i32 find(u32 x) { return p[x] < 0 ? (i32)x : p[x] = find((u32)p[x]); }

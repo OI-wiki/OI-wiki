@@ -70,7 +70,7 @@
 
     ![](images/tree-binary-complete.svg)
 
--   **完美二叉树（perfect binary tree）**：所有叶结点的深度均相同，且所有非叶节点的子节点数量均为 2 的二叉树称为完美二叉树。
+-   **完美二叉树（perfect binary tree）**：所有叶结点的深度均相同，且所有非叶结点的子结点数量均为 2 的二叉树称为完美二叉树。
 
     ![](images/tree-binary-perfect.svg)
 
@@ -152,9 +152,9 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 ### 树上 DFS
 
-在树上 DFS 是这样的一个过程：先访问根节点，然后分别访问根节点每个儿子的子树。
+在树上 DFS 是这样的一个过程：先访问根结点，然后分别访问根结点每个儿子的子树。
 
-可以用来求出每个节点的深度、父亲等信息。
+可以用来求出每个结点的深度、父亲等信息。
 
 ### 二叉树 DFS 遍历
 
@@ -216,18 +216,18 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 ![reverse](images/tree-basic-reverse.svg)
 
 1.  前序的第一个是 `root`，后序的最后一个是 `root`。
-2.  先确定根节点，然后根据中序遍历，在根左边的为左子树，根右边的为右子树。
+2.  先确定根结点，然后根据中序遍历，在根左边的为左子树，根右边的为右子树。
 3.  对于每一个子树可以看成一个全新的树，仍然遵循上面的规律。
 
 ### 树上 BFS
 
-从树根开始，严格按照层次来访问节点。
+从树根开始，严格按照层次来访问结点。
 
-BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
+BFS 过程中也可以顺便求出各个结点的深度和父亲结点。
 
 #### 树的层序遍历
 
-树层序遍历是指按照从根节点到叶子节点的层次关系，一层一层的横向遍历各个节点。根据 BFS 的定义可以知道，BFS 所得到的遍历顺序就是一种层序遍历。但层序遍历要求将不同的层次区分开来，所以其结果通常以二维数组的形式表示。
+树层序遍历是指按照从根结点到叶子结点的层次关系，一层一层的横向遍历各个结点。根据 BFS 的定义可以知道，BFS 所得到的遍历顺序就是一种层序遍历。但层序遍历要求将不同的层次区分开来，所以其结果通常以二维数组的形式表示。
 
 例如，下图的树的层序遍历的结果是 `[[1], [2, 3, 4], [5, 6]]`（每一层从左向右）。
 
@@ -243,13 +243,13 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
       queue<Node*> q;
       q.push(root);
       while (!q.empty()) {
-        int currentLevelSize = q.size();  // 当前层的节点个数
+        int currentLevelSize = q.size();  // 当前层的结点个数
         res.push_back(vector<int>());
         for (int i = 0; i < currentLevelSize; ++i) {
           Node* cur = q.front();
           q.pop();
           res.back().push_back(cur->val);
-          for (Node* child : cur->children) {  // 把子节点都加入
+          for (Node* child : cur->children) {  // 把子结点都加入
             q.push(child);
           }
         }
@@ -260,33 +260,33 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点。
 
 ### 二叉树 Morris 遍历
 
-二叉树遍历的核心问题是，当遍历当前节点的子节点后，如何返回当前节点并继续遍历。遍历二叉树的递归方法和非递归方法都使用了栈结构，记录返回路径，来实现从下层到上层的移动。其空间复杂度最好时为 $O(\log n)$，最坏时为 $O(n)$（二叉树呈线性）。
+二叉树遍历的核心问题是，当遍历当前结点的子结点后，如何返回当前结点并继续遍历。遍历二叉树的递归方法和非递归方法都使用了栈结构，记录返回路径，来实现从下层到上层的移动。其空间复杂度最好时为 $O(\log n)$，最坏时为 $O(n)$（二叉树呈线性）。
 
-Morris 遍历的实质是避免使用栈，利用底层节点空闲的 `right` 指针指回上层的某个节点，从而完成下层到上层的移动。
+Morris 遍历的实质是避免使用栈，利用底层结点空闲的 `right` 指针指回上层的某个结点，从而完成下层到上层的移动。
 
 #### Morris 遍历的过程
 
-假设来到当前节点 `cur`，开始时来到根节点位置。
+假设来到当前结点 `cur`，开始时来到根结点位置。
 
 1.  如果 `cur` 为空时遍历停止，否则进行以下过程。
 2.  如果 `cur` 没有左子树，`cur` 向右移动（`cur = cur->right`）。
-3.  如果 `cur` 有左子树，找到左子树上最右的节点，记为 `mostRight`。
+3.  如果 `cur` 有左子树，找到左子树上最右的结点，记为 `mostRight`。
     -   如果 `mostRight` 的 `right` 指针指向空，让其指向 `cur`，然后 `cur` 向左移动（`cur = cur->left`）。
     -   如果 `mostRight` 的 `right` 指针指向 `cur`，将其修改为 `null`，然后 `cur` 向右移动（`cur = cur->right`）。
 
-例如，`cur` 从节点 1 开始访问。
+例如，`cur` 从结点 1 开始访问。
 
 ![tree-basic-morris-1](images/tree-basic-morris-1.svg)
 
-`cur` 第一次访问节点 2 时，找到左子树上最右的节点 4，将 4 的 `right` 指针指向 `cur`（节点 2)。
+`cur` 第一次访问结点 2 时，找到左子树上最右的结点 4，将 4 的 `right` 指针指向 `cur`（结点 2)。
 
 ![tree-basic-morris-2](images/tree-basic-morris-2.svg)
 
-`cur` 通过 4 的 `right` 指针返回上层，第二次访问节点 2 时，找到左子树上最右节点 4，将 4 的 `right` 指针修改为 `null`，然后继续访问右子树。之后的过程省略。
+`cur` 通过 4 的 `right` 指针返回上层，第二次访问结点 2 时，找到左子树上最右结点 4，将 4 的 `right` 指针修改为 `null`，然后继续访问右子树。之后的过程省略。
 
 ![tree-basic-morris-1](images/tree-basic-morris-1.svg)
 
-整棵树的访问顺序是 `1242513637`。可以发现有左子树的节点访问两次，没有左子树的节点只访问一次。
+整棵树的访问顺序是 `1242513637`。可以发现有左子树的结点访问两次，没有左子树的结点只访问一次。
 
 ???+ note "实现"
     ```cpp
@@ -294,22 +294,22 @@ Morris 遍历的实质是避免使用栈，利用底层节点空闲的 `right` �
       TreeNode* cur = root;
       while (cur) {
         if (!cur->left) {
-          // 如果当前节点没有左子节点，则输出当前节点的值并进入右子树
+          // 如果当前结点没有左子结点，则输出当前结点的值并进入右子树
           std::cout << cur->val << " ";
           cur = cur->right;
           continue;
         }
-        // 找到当前节点的左子树的最右节点
+        // 找到当前结点的左子树的最右结点
         TreeNode* mostRight = cur->left;
         while (mostRight->right && mostRight->right != cur) {
           mostRight = mostRight->right;
         }
         if (!mostRight->right) {
-          // 如果最右节点的right指针为空，将其指向当前节点，并进入左子树
+          // 如果最右结点的right指针为空，将其指向当前结点，并进入左子树
           mostRight->right = cur;
           cur = cur->left;
         } else {
-          // 如果最右节点的right指针指向当前节点，说明左子树已经遍历完毕，输出当前节点的值并进入右子树
+          // 如果最右结点的right指针指向当前结点，说明左子树已经遍历完毕，输出当前结点的值并进入右子树
           mostRight->right = nullptr;
           std::cout << cur->val << " ";
           cur = cur->right;

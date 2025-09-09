@@ -8,17 +8,17 @@ using namespace std;
 const int MAXN = 50005;
 
 int n;
-// 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]
-int siz[MAXN],  // 这个节点的「大小」（所有子树上节点数 + 该节点）
-    weight[MAXN];  // 这个节点的「重量」，即所有子树「大小」的最大值
-vector<int> centroids;  // 用于记录树的重心（存的是节点编号）
+// 这份代码默认结点编号从 1 开始，即 i ∈ [1,n]
+int siz[MAXN],  // 这个结点的「大小」（所有子树上结点数 + 该结点）
+    weight[MAXN];  // 这个结点的「重量」，即所有子树「大小」的最大值
+vector<int> centroids;  // 用于记录树的重心（存的是结点编号）
 vector<int> g[MAXN];
 
-void dfs(int cur, int fa) {  // cur 表示当前节点 (current)
+void dfs(int cur, int fa) {  // cur 表示当前结点 (current)
   siz[cur] = 1;
   weight[cur] = 0;
   for (int v : g[cur]) {
-    if (v != fa) {  // v 表示这条有向边所通向的节点
+    if (v != fa) {  // v 表示这条有向边所通向的结点
       dfs(v, cur);
       siz[cur] += siz[v];
       weight[cur] = max(weight[cur], siz[v]);

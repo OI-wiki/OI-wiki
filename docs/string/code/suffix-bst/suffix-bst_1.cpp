@@ -12,7 +12,7 @@ string t;
 // SuffixBST(SGT Ver)
 
 // 顺序加入，查询时将询问串翻转
-// 以i开始的后缀，对应节点的编号为i
+// 以i开始的后缀，对应结点的编号为i
 constexpr double alpha = 0.75;
 int root;
 int sz[N], L[N], R[N];

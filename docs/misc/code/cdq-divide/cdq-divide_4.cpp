@@ -92,7 +92,7 @@ struct nod {
 set<nod> c[2 * N];
 set<int> bd;
 
-void split(int mid) {  // 将一个节点拆成两个节点
+void split(int mid) {  // 将一个结点拆成两个结点
   SDI it = s.lower_bound(data{0, mid, 0});
   data p = *it;
   if (mid == p.r) return;
@@ -114,7 +114,7 @@ void del(set<data>::iterator it) {  // 删除一个迭代器
   s.erase(it);
 }
 
-void ins(data p) {  // 插入一个节点
+void ins(data p) {  // 插入一个结点
   s.insert(p);
   SNI it = c[p.x].insert(nod{p.l, p.r}).first;
   ++it;

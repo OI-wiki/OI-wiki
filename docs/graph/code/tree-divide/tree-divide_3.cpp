@@ -100,7 +100,7 @@ void divid(int u) {
   }
   siz[u] = sum = cnt[c[u]] = 1;
   v[c[u]]++;
-  rep(i, 1, tot) {  // 统计每个子树和它之前的所有子树中节点组合产生的贡献
+  rep(i, 1, tot) {  // 统计每个子树和它之前的所有子树中结点组合产生的贡献
     int d = son[i];
     get_dis(d, u, 0);
     get_cnt(d, u);
@@ -111,7 +111,7 @@ void divid(int u) {
   clear2(u, 0);  // 清空数组，记得不可以用memset
   siz[u] = sum = cnt[c[u]] = 1;
   for (int i = tot; i >= 1;
-       --i) {  // 统计每个子树和它之后的所有子树中节点组合产生的贡献
+       --i) {  // 统计每个子树和它之后的所有子树中结点组合产生的贡献
     int d = son[i];
     get_dis(d, u, 0);
     get_cnt(d, u);

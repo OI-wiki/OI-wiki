@@ -128,14 +128,14 @@ for (int i = 0; i < n; i++) {
 
 如前所述，`pair` 可以作为 `priority_queue` 的数据类型。
 
-那么，在 Dijkstra 算法的堆优化中，可以使用 `pair` 与 `priority_queue` 维护节点，将节点当前到起点的距离作为第一个变量，将节点编号作为第二个变量。
+那么，在 Dijkstra 算法的堆优化中，可以使用 `pair` 与 `priority_queue` 维护结点，将结点当前到起点的距离作为第一个变量，将结点编号作为第二个变量。
 
 ```cpp
 priority_queue<pair<int, int>, std::vector<pair<int, int>>,
                std::greater<pair<int, int>>>
     q;
 ... while (!q.empty()) {
-  // dis为入堆时节点到起点的距离，i为节点编号
+  // dis为入堆时结点到起点的距离，i为结点编号
   int dis = q.top().first, i = q.top().second;
   q.pop();
   ...

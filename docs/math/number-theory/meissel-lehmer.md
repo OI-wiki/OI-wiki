@@ -77,7 +77,7 @@ $$
 > \phi\left(x,b\right)=\phi\left(x,b-1\right)-\phi\left(\dfrac{x}{p_b},b-1\right)\tag{6}
 > $$
 
-计算 $\phi\left(x,a\right)$ 的简单方法可以从这个定理推导出来：我们重复使用等式 $\left(7\right)$，知道最后得到 $\phi\left(u,0\right)$。这个过程可以看作从根节点 $\phi\left(x,a\right)$ 开始创建有根二叉树，图 $1$ 画出了这一过程。通过这种方法，我们得到如下公式：
+计算 $\phi\left(x,a\right)$ 的简单方法可以从这个定理推导出来：我们重复使用等式 $\left(7\right)$，知道最后得到 $\phi\left(u,0\right)$。这个过程可以看作从根结点 $\phi\left(x,a\right)$ 开始创建有根二叉树，图 $1$ 画出了这一过程。通过这种方法，我们得到如下公式：
 
 $$
 \phi\left(x,a\right)=\sum_{\substack{1\le n\le x\\ P^+\left(n\right)\le y}}{\mu\left(n\right)\left[x/n\right]}
@@ -94,25 +94,25 @@ $$
 \end{gathered}
 $$
 
-上图表示计算 $\phi\left(x,a\right)$ 过程的二叉树：叶子节点权值之和就是 $\phi\left(x,a\right)$。
+上图表示计算 $\phi\left(x,a\right)$ 过程的二叉树：叶子结点权值之和就是 $\phi\left(x,a\right)$。
 
 但是，这样需要计算太多东西。因为 $y\geq x^{1/3}$，仅仅计算为 $3$ 个 不超过 $y$ 质数的乘积的数，如果按照这个方法计算，会有至少 $\dfrac{x}{\log^3 x}$ 个项，没有办法我们对复杂度的需求。
 
 为了限制这个二叉树的「生长」，我们要改变原来的终止条件。这是原来的终止条件。
 
-> **终止条件 $1$：** 如果 $b=0$，则不要再对节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 调用等式 $\left(6\right)$。
+> **终止条件 $1$：** 如果 $b=0$，则不要再对结点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 调用等式 $\left(6\right)$。
 
 我们把它改成更强的终止条件：
 
-> **终止条件 $2$：** 如果满足下面 $2$ 个条件中的一个，不要再对节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 调用等式 $\left(6\right)$:
+> **终止条件 $2$：** 如果满足下面 $2$ 个条件中的一个，不要再对结点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 调用等式 $\left(6\right)$:
 >
 > 1.  $b=0$ 且 $n\le y$；
 > 2.  $n>y$。
 
 我们根据 **终止条件 $2$** 将原二叉树上的叶子分成两种：
 
-1.  如果叶子节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n\le y$，则称这种叶子节点为 **普通叶子**；
-2.  如果叶子节点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n>y$ 且 $n=mp_b\left(m\le y\right)$，则称这种节点为 **特殊叶子**。
+1.  如果叶子结点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n\le y$，则称这种叶子结点为 **普通叶子**；
+2.  如果叶子结点 $\mu\left(n\right)\phi\left(\dfrac xn,b\right)$ 满足 $n>y$ 且 $n=mp_b\left(m\le y\right)$，则称这种结点为 **特殊叶子**。
 
 由此我们得出：
 

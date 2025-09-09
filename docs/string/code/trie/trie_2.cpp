@@ -38,7 +38,7 @@ void add(int u, int v, int w) {  // 建边
 void dfs(int u, int fa) {
   insert(dis[u]);
   get(dis[u]);
-  for (int i = head[u]; i; i = nxt[i]) {  // 遍历子节点
+  for (int i = head[u]; i; i = nxt[i]) {  // 遍历子结点
     int v = to[i];
     if (v == fa) continue;
     dis[v] = dis[u] ^ weight[i];

@@ -2,7 +2,7 @@ author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, Marcythm, Ac
 
 ## 引入
 
-DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)，中文名是深度优先搜索，是一种用于遍历或搜索树或图的算法。所谓深度优先，就是说每次都尝试向更深的节点走。
+DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search)，中文名是深度优先搜索，是一种用于遍历或搜索树或图的算法。所谓深度优先，就是说每次都尝试向更深的结点走。
 
 该算法讲解时常常与 BFS 并列，但两者除了都能遍历图的连通块以外，用途完全不同，很少有能混用两种算法的情况。
 
@@ -16,7 +16,7 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
 
     DFS(v) // v 可以是图中的一个顶点，也可以是抽象的概念，如 dp 状态等。
       在 v 上打访问标记
-      for u in v 的相邻节点
+      for u in v 的相邻结点
         if u 没有打过访问标记 then
           DFS(u)
         end
@@ -38,12 +38,12 @@ DFS 最显著的特征在于其 **递归调用自身**。同时与 BFS 类似，
 
 ### 栈实现
 
-DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容器来实现；这与用 [队列（Queue）](../ds/queue.md) 实现的 BFS 形成高度对应。
+DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中结点的暂存容器来实现；这与用 [队列（Queue）](../ds/queue.md) 实现的 BFS 形成高度对应。
 
 === "C++"
     ```cpp
     vector<vector<int>> adj;  // 邻接表
-    vector<bool> vis;         // 记录节点是否已经遍历
+    vector<bool> vis;         // 记录结点是否已经遍历
     
     void dfs(int s) {
       stack<int> st;
@@ -67,7 +67,7 @@ DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容
 === "Python"
     ```python
     # adj : List[List[int]] 邻接表
-    # vis : List[bool] 记录节点是否已经遍历
+    # vis : List[bool] 记录结点是否已经遍历
     
     
     def dfs(s: int) -> None:
@@ -94,7 +94,7 @@ DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容
 === "C++"
     ```cpp
     vector<vector<int>> adj;  // 邻接表
-    vector<bool> vis;         // 记录节点是否已经遍历
+    vector<bool> vis;         // 记录结点是否已经遍历
     
     void dfs(const int u) {
       vis[u] = true;
@@ -106,7 +106,7 @@ DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容
 === "Python"
     ```python
     # adj : List[List[int]] 邻接表
-    # vis : List[bool] 记录节点是否已经遍历
+    # vis : List[bool] 记录结点是否已经遍历
     
     
     def dfs(u: int) -> None:
@@ -155,15 +155,15 @@ DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容
 
 ### DFS 序列
 
-DFS 序列是指 DFS 调用过程中访问的节点编号的序列。
+DFS 序列是指 DFS 调用过程中访问的结点编号的序列。
 
 我们发现，每个子树都对应 DFS 序列中的连续一段（一段区间）。
 
 ### 括号序列
 
-DFS 进入某个节点的时候记录一个左括号 `(`，退出某个节点的时候记录一个右括号 `)`。
+DFS 进入某个结点的时候记录一个左括号 `(`，退出某个结点的时候记录一个右括号 `)`。
 
-每个节点会出现两次。相邻两个节点的深度相差 1。
+每个结点会出现两次。相邻两个结点的深度相差 1。
 
 ### 一般图上 DFS
 
@@ -173,6 +173,6 @@ DFS 进入某个节点的时候记录一个左括号 `(`，退出某个节点的
 
 注：树的 DFS 序列也是不唯一的。
 
-在 DFS 过程中，通过记录每个节点从哪个点访问而来，可以建立一个树结构，称为 DFS 树。DFS 树是原图的一个生成树。
+在 DFS 过程中，通过记录每个结点从哪个点访问而来，可以建立一个树结构，称为 DFS 树。DFS 树是原图的一个生成树。
 
 [DFS 树](./scc.md#dfs-生成树) 有很多性质，比如可以用来求 [强连通分量](./scc.md)。

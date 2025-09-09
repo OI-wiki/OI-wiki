@@ -79,10 +79,10 @@ author: leoleoasd, yzxoi, Estrella-Explore
 ### 例题 3
 
 ???+ note "[AtCoder Grand Contest 032 B](https://atcoder.jp/contests/agc032/tasks/agc032_b)"
-    给定一个整数 $N$，试构造一个节点数为 $N$ 无向图。令节点编号为 $1\ldots N$，要求其满足以下条件：
+    给定一个整数 $N$，试构造一个结点数为 $N$ 无向图。令结点编号为 $1\ldots N$，要求其满足以下条件：
     
     -   这是一个简单连通图。
-    -   存在一个整数 $S$ 使得对于任意节点，与其相邻节点的下标和为 $S$。
+    -   存在一个整数 $S$ 使得对于任意结点，与其相邻结点的下标和为 $S$。
     
     保证输入数据有解。
 

@@ -131,7 +131,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 -   所用数据类型位宽不足，导致溢出。
     -   如习语「三年 OI 一场空，不开 `long long` 见祖宗」所描述的场景。选手因为没有在正确的地方开 `long long`（将整数定义为 `long long` 类型），导致得出错误的答案而失分。
 
--   存图时，节点编号 0 开始，而题目给的边中两个端点的编号从 1 开始，读入的时候忘记 -1。
+-   存图时，结点编号 0 开始，而题目给的边中两个端点的编号从 1 开始，读入的时候忘记 -1。
 
 -   大/小于号打错或打反。
 
@@ -183,7 +183,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
             printf("OI Wiki!\n");
         ```
 
--   哨兵值设置错误。例如，平衡树的 `0` 节点。
+-   哨兵值设置错误。例如，平衡树的 `0` 结点。
 
 -   在类或结构体的构造函数中使用 `:` 初始化变量时，变量声明顺序不符合初始化时候的依赖关系。
 
@@ -273,7 +273,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
     -   错误预估了算法的空间复杂度。
 
-    -   写线段树的时候，`pushup` 或 `pushdown` 叶节点。
+    -   写线段树的时候，`pushup` 或 `pushdown` 叶结点。
 
         正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x`，在定义的下标中。
 

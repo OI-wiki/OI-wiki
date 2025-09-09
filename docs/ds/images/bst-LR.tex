@@ -3,23 +3,23 @@
 \usepackage{tikz-qtree}
 
 \tikzset{
-    nodebase/.style={ % 定义基础节点样式
+    nodebase/.style={ % 定义基础结点样式
         draw,
         shape=circle,
         minimum size=0.5cm,
         align=center
     },
-    node_a/.style={ % 定义非叶节点样式
+    node_a/.style={ % 定义非叶结点样式
         nodebase,
         text width=0.5cm
     },
-    subtree/.style={ % 定义叶节点样式
+    subtree/.style={ % 定义叶结点样式
         nodebase,
         shape=rectangle,
         text width=0.5cm
     },
     level distance=2cm, % 设置层与层之间的距离
-    sibling distance=1cm % 设置兄弟节点之间的距离
+    sibling distance=1cm % 设置兄弟结点之间的距离
 }
 
 \begin{document}

@@ -7,10 +7,10 @@ constexpr int CHAR_NUM = 30;   // 字符集个数，注意修改下方的 (-'a')
 constexpr int NUM = 15;        // 字符串个数
 
 struct exSAM {
-  int len[MAXN];             // 节点长度
+  int len[MAXN];             // 结点长度
   int link[MAXN];            // 后缀链接，link
   int next[MAXN][CHAR_NUM];  // 转移
-  int tot;                   // 节点总数：[0, tot)
+  int tot;                   // 结点总数：[0, tot)
   int lenSorted[MAXN];   // 按照 len 排序后的数组，仅排序 [1, tot)
                          // 部分，最终下标范围 [0, tot - 1)
   int sizeC[MAXN][NUM];  // 表示某个字符串的子串个数

@@ -12,7 +12,7 @@ int n, siz[N];
 long long dp[N], ans[N];
 vector<int> g[N], centroids;
 
-// 求 1 号节点到所有其他节点的距离和
+// 求 1 号结点到所有其他结点的距离和
 void dfs1(int u, int fa) {
   siz[u] = 1;
   dp[u] = 0;
@@ -20,11 +20,11 @@ void dfs1(int u, int fa) {
     if (v == fa) continue;
     dfs1(v, u);
     siz[u] += siz[v];
-    dp[u] += dp[v] + siz[v];  // 子树节点到 u 的距离和
+    dp[u] += dp[v] + siz[v];  // 子树结点到 u 的距离和
   }
 }
 
-// 通过换根 DP 求所有节点为树根时对应的距离和
+// 通过换根 DP 求所有结点为树根时对应的距离和
 void dfs2(int u, int fa) {
   for (int v : g[u]) {
     if (v == fa) continue;

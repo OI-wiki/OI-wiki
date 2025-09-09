@@ -11,7 +11,7 @@ constexpr int MAXM = 200000 + 5;
 
 SegmentTree
     t[MAXN * 2 +
-      MAXM * 40];  // 每次操作1会修改两次，一次修改父节点，一次修改父节点的秩
+      MAXM * 40];  // 每次操作1会修改两次，一次修改父结点，一次修改父结点的秩
 int rt[MAXM];
 int n, m, tot;
 
@@ -56,7 +56,7 @@ int modifyRnk(int now, int l, int r, int pos, int val) {  // 修改秩（高度�
   return p;
 }
 
-int query(int p, int l, int r, int pos) {  // 查询父节点（序列中的值）
+int query(int p, int l, int r, int pos) {  // 查询父结点（序列中的值）
   if (l == r) {
     return t[p].val;
   }
@@ -68,7 +68,7 @@ int query(int p, int l, int r, int pos) {  // 查询父节点（序列中的值�
   }
 }
 
-int findRoot(int p, int pos) {  // 查询根节点
+int findRoot(int p, int pos) {  // 查询根结点
   int f = query(p, 1, n, pos);
   if (pos == f) {
     return pos;
@@ -76,7 +76,7 @@ int findRoot(int p, int pos) {  // 查询根节点
   return findRoot(p, f);
 }
 
-int modify(int now, int l, int r, int pos, int fa) {  // 修改父节点（合并）
+int modify(int now, int l, int r, int pos, int fa) {  // 修改父结点（合并）
   int p = ++tot;
   t[p] = t[now];
   if (l == r) {

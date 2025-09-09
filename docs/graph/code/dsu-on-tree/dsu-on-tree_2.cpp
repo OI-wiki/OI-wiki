@@ -6,20 +6,20 @@ constexpr int N = 2e5 + 5;
 
 int n, m;
 
-// g[u]: 存储与 u 相邻的节点
+// g[u]: 存储与 u 相邻的结点
 vector<int> g[N];
 
 // sz: 子树大小
-// son[u]: 节点u的重儿子的编号
-// col: 节点颜色
-// dfn[u]: 节点 u 的 DFS 序
-// bottom[u]: 节点 u 子树中节点的 DFS 序的最大值
-// totdfn: 节点计数器，也是当前遍历过节点的 DFS 序最大值
-// fa[u]: 节点u的父亲编号
-// top[u]:节点u所在重链的顶端节点编号
-// rnk[i]: DFS 序为 i 的节点
+// son[u]: 结点u的重儿子的编号
+// col: 结点颜色
+// dfn[u]: 结点 u 的 DFS 序
+// bottom[u]: 结点 u 子树中结点的 DFS 序的最大值
+// totdfn: 结点计数器，也是当前遍历过结点的 DFS 序最大值
+// fa[u]: 结点u的父亲编号
+// top[u]:结点u所在重链的顶端结点编号
+// rnk[i]: DFS 序为 i 的结点
 // ans[u]: 存答案
-// cnt[i]: 颜色为 i 的节点个数
+// cnt[i]: 颜色为 i 的结点个数
 // totColor: 目前出现过的颜色个数
 int sz[N], son[N], col[N], dfn[N], fa[N], bottom[N], totdfn;
 int top[N], rnk[N];

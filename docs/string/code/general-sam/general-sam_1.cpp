@@ -6,10 +6,10 @@ constexpr int MAXN = 2000000;  // 双倍字符串长度
 constexpr int CHAR_NUM = 30;   // 字符集个数，注意修改下方的 (-'a')
 
 struct exSAM {
-  int len[MAXN];             // 节点长度
+  int len[MAXN];             // 结点长度
   int link[MAXN];            // 后缀链接，link
   int next[MAXN][CHAR_NUM];  // 转移
-  int tot;                   // 节点总数：[0, tot)
+  int tot;                   // 结点总数：[0, tot)
 
   void init() {  // 初始化函数
     tot = 1;
@@ -52,8 +52,8 @@ struct exSAM {
   }
 
   int insertTrie(int cur, int c) {
-    if (next[cur][c]) return next[cur][c];  // 已有该节点 直接返回
-    return next[cur][c] = tot++;            // 无该节点 建立节点
+    if (next[cur][c]) return next[cur][c];  // 已有该结点 直接返回
+    return next[cur][c] = tot++;            // 无该结点 建立结点
   }
 
   void insert(const string &s) {
@@ -65,7 +65,7 @@ struct exSAM {
     int root = 0;
     for (int i = 0; i < n; ++i)
       root =
-          insertTrie(root, s[i] - 'a');  // 一边插入一边更改所插入新节点的父节点
+          insertTrie(root, s[i] - 'a');  // 一边插入一边更改所插入新结点的父结点
   }
 
   void build() {
