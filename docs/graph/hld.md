@@ -304,6 +304,8 @@ $1 \le n,m \le 10^5$。
     -   若 $\textit{dep}(\textit{top}(v))=\textit{dep}(u)+1$，说明 $v$ 为 $u$ 的一个轻儿子，那么就找到了。
     -   若 $\textit{dep}(\textit{top}(v))<\textit{dep}(u)+1$，亦即 $\textit{dep}(\textit{top}(v))\le \textit{dep}(u)$，说明 $u,v$ 处在同一条重链上，根据同一条重链上 DFS 序连续的性质，$\textit{dfn}(v)=\textit{dfn}(u)+1$。然后用 $\textit{rnk}$ 就可以找到 $v$ 了。
 
+    此外，还有一种无需分类讨论的做法：在跳完之后直接可以得到 $\textit{dfn}(v)=\textit{dfn}(\textit{top}(v))+\textit{dep}(u)+1-\textit{dep}(\textit{top}(v))$。容易发现这两个式子是等价的，代码中采用的是这个式子。
+    
     由于 $v$ 子树覆盖的区间为 $[\textit{dfn}(v),\textit{dfn}(v)+\textit{siz}(v))$，那么我们只需要对 $[1,\textit{dfn}(v))\cup[\textit{dfn}(v)+\textit{siz}(v),n]$ 操作即可。
 
 -   其它情况。可以发现换根操作不会影响 $u$ 的子树，用正常的方式维护即可。
