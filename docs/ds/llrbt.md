@@ -213,19 +213,19 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
     class Set {
      private:
       enum NodeColor { kBlack = 0, kRed = 1 };
-      
+    
       struct Node {
         Key key;
         Node *lc{nullptr}, *rc{nullptr};
         size_t size{0};
         NodeColor color;  // the color of the parent link
-        
+    
         Node(Key key, NodeColor color, size_t size)
             : key(key), color(color), size(size) {}
-        
+    
         Node() = default;
       };
-      
+    
       void destroyTree(Node *root) const {
         if (root != nullptr) {
           destroyTree(root->lc);
@@ -234,13 +234,13 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
           delete root;
         }
       }
-      
+    
       bool is_red(const Node *nd) const {
         return nd == nullptr ? false : nd->color;  // kRed == 1, kBlack == 0
       }
-      
+    
       size_t size(const Node *nd) const { return nd == nullptr ? 0 : nd->size; }
-      
+    
       Node *rotate_left(Node *node) const {
         // left rotate a red link
         //          <1>                   <2>
@@ -257,7 +257,7 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
         node->size = size(node->lc) + size(node->rc) + 1;
         return res;
       }
-      
+    
       Node *rotate_right(Node *node) const {
         // right rotate a red link
         //            <1>               <2>
@@ -274,15 +274,15 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
         node->size = size(node->lc) + size(node->rc) + 1;
         return res;
       }
-      
+    
       NodeColor neg_color(NodeColor n) const { return n == kBlack ? kRed : kBlack; }
-      
+    
       void color_flip(Node *node) const {
         node->color = neg_color(node->color);
         node->lc->color = neg_color(node->lc->color);
         node->rc->color = neg_color(node->rc->color);
       }
-      
+    
       Node *insert(Node *root, const Key &key) const;
       Node *delete_arbitrary(Node *root, Key key) const;
       Node *delete_min(Node *root) const;
@@ -294,7 +294,7 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
       void print_tree(Set::Node *root, int indent) const;
       Compare cmp_ = Compare();
       Node *root_{nullptr};
-     
+    
      public:
       using KeyType = Key;
       using ValueType = Key;
@@ -304,29 +304,29 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
       using ValueCompare = Compare;
       using Reference = Key &;
       using ConstReference = const Key &;
-      
+    
       Set() = default;
-      
+    
       Set(Set &) = default;
-      
+    
       Set(Set &&) noexcept = default;
-      
+    
       ~Set() { destroyTree(root_); }
-      
+    
       SizeType size() const;
-      
+    
       SizeType count(const KeyType &key) const;
-      
+    
       SizeType erase(const KeyType &key);
-      
+    
       void clear();
-      
+    
       void insert(const KeyType &key);
-      
+    
       bool empty() const;
-      
+    
       std::vector<Key> serialize() const;
-      
+    
       void print_tree() const;
     };
     

@@ -50,12 +50,12 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         
         int main() {
           cin >> n >> m;
-          
+        
           vis.resize(n + 1, false);
           e.resize(m + 1);
-          
+        
           for (int i = 1; i <= m; ++i) cin >> e[i].u >> e[i].v;
-          
+        
           return 0;
         }
         ```
@@ -143,16 +143,16 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         
         int main() {
           cin >> n >> m;
-          
+        
           vis.resize(n + 1);
           adj.resize(n + 1, vector<bool>(n + 1));
-          
+        
           for (int i = 1; i <= m; ++i) {
             int u, v;
             cin >> u >> v;
             adj[u][v] = true;
           }
-          
+        
           return 0;
         }
         ```
@@ -233,16 +233,16 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
         
         int main() {
           cin >> n >> m;
-          
+        
           vis.resize(n + 1);
           adj.resize(n + 1);
-          
+        
           for (int i = 1; i <= m; ++i) {
             int u, v;
             cin >> u >> v;
             adj[u].push_back(v);
           }
-          
+        
           return 0;
         }
         ```
@@ -360,16 +360,16 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
     
     int main() {
       cin >> n >> m;
-      
+    
       vis.resize(n + 1, false);
       head.resize(n + 1, -1);
-      
+    
       for (int i = 1; i <= m; ++i) {
         int u, v;
         cin >> u >> v;
         add(u, v);
       }
-      
+    
       return 0;
     }
     ```

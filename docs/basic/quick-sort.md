@@ -29,7 +29,7 @@
         ```cpp
         struct Range {
           int start, end;
-          
+        
           Range(int s = 0, int e = 0) { start = s, end = e; }
         };
         

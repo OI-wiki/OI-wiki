@@ -26,44 +26,44 @@ author: hyp1231, 383494
 2.  不过点 $O$ 的圆 $A$，其反演图形也是不过点 $O$ 的圆。
 
     ![Inv2](./images/inverse2.png)
-    
+
     -   记圆 $A$ 半径为 $r_1$，其反演图形圆 $B$ 半径为 $r_2$，则有：
-    
+
         $$
         r_2 = \frac{1}{2}\left(\frac{1}{|OA| - r_1} - \frac{1}{|OA| + r_1}\right) R^2
         $$
-        
+
         **证明：**
-        
+
         ![Inv3](./images/inverse3.png)
-        
+
         根据反演变换定义：
-        
+
         $$
         \begin{aligned}
         |OC|\cdot|OC'| &= (|OA|+r_1)\cdot(|OB|-r_2) = R^2 \\
         |OD|\cdot|OD'| &= (|OA|-r_1)\cdot(|OB|+r_2) = R^2
         \end{aligned}
         $$
-        
+
         消掉 $|OB|$，解方程即可。
-    
+
     -   记点 $O$ 坐标为 $(x_0, y_0)$，点 $A$ 坐标为 $x_1, y_1$，点 $B$ 坐标为 $x_2, y_2$，则有：
-    
+
         $$
         \begin{aligned}
         x_2 &= x_0 + \frac{|OB|}{|OA|} (x_1 - x_0) \\
         y_2 &= y_0 + \frac{|OB|}{|OA|} (y_1 - y_0)
         \end{aligned}
         $$
-        
+
         其中 $|OB|$ 可在上述求 $r_2$ 的过程中计算得到。
 
 3.  过点 $O$ 的圆 $A$，其反演图形是不过点 $O$ 的直线。
 
     ??? note
         为什么是一条直线呢？因为圆 $A$ 上无限接近点 $O$ 的一点，其反演点离点 $O$ 无限远。
-    
+
     ![Inv4](./images/inverse4.png)
 
 4.  两个图形相切且存在不为点 $O$ 的切点，则他们的反演图形也相切。
@@ -103,9 +103,9 @@ author: hyp1231, 383494
     // 点的定义
     struct Point {
       double x, y;
-      
+    
       Point(double x = 0, double y = 0) : x(x), y(y) {}
-      
+    
       bool operator<(Point A) const { return x == A.x ? y < A.y : x < A.x; }
     };
     
@@ -149,11 +149,11 @@ author: hyp1231, 383494
     struct Circle {
       Point c;
       double r;
-      
+    
       Circle() : c(Point(0, 0)), r(0) {}
-      
+    
       Circle(Point c, double r = 0) : c(c), r(r) {}
-      
+    
       // 输入极角返回点坐标
       Point point(double a) { return Point(c.x + cos(a) * r, c.y + sin(a) * r); }
     };
@@ -171,7 +171,7 @@ author: hyp1231, 383494
       double rdiff = A.r - B.r;
       double rsum = A.r + B.r;
       if (dcmp(d2 - rdiff * rdiff) < 0) return 0;  // 内含
-      
+    
       double base = atan2(B.c.y - A.c.y, B.c.x - A.c.x);
       if (dcmp(d2) == 0 && dcmp(A.r - B.r) == 0) return -1;  // 无限多条切线
       if (dcmp(d2 - rdiff * rdiff) == 0) {  // 内切，一条切线
@@ -252,7 +252,7 @@ author: hyp1231, 383494
           printf("%.8f %.8f %.8f\n", ansC[i].c.x, ansC[i].c.y, ansC[i].r);
         }
       }
-      
+    
       return 0;
     }
     ```

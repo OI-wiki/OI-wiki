@@ -42,22 +42,22 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
       struct Node {
         int next, value, key;
       } data[SIZE];
-      
+    
       int head[M], size;
-      
+    
       int f(int key) { return (key % M + M) % M; }
-      
+    
       int get(int key) {
         for (int p = head[f(key)]; p; p = data[p].next)
           if (data[p].key == key) return data[p].value;
         return -1;
       }
-      
+    
       int modify(int key, int value) {
         for (int p = head[f(key)]; p; p = data[p].next)
           if (data[p].key == key) return data[p].value = value;
       }
-      
+    
       int add(int key, int value) {
         if (get(key) != -1) return -1;
         data[++size] = Node{head[f(key)], value, key};
@@ -125,22 +125,22 @@ struct hash_map {  // 哈希表模板
     long long u;
     int v, nex;
   };  // 前向星结构
-  
+
   data e[SZ << 1];  // SZ 是 const int 表示大小
   int h[SZ], cnt;
-  
+
   int hash(long long u) { return (u % SZ + SZ) % SZ; }
-  
+
   // 这里使用 (u % SZ + SZ) % SZ 而非 u % SZ 的原因是
   // C++ 中的 % 运算无法将负数转为正数
-  
+
   int& operator[](long long u) {
     int hu = hash(u);  // 获取头指针
     for (int i = h[hu]; i; i = e[i].nex)
       if (e[i].u == u) return e[i].v;
     return e[++cnt] = data{u, -1, h[hu]}, h[hu] = cnt, e[cnt].v;
   }
-  
+
   hash_map() {
     cnt = 0;
     memset(h, 0, sizeof(h));
@@ -165,10 +165,10 @@ class Hash {
  private:
   int keys[N];
   int values[N];
- 
+
  public:
   Hash() { memset(values, 0, sizeof(values)); }
-  
+
   int& operator[](int n) {
     // 返回一个指向对应 Hash[Key] 的引用
     // 修改成不为 0 的值 0 时候视为空

@@ -39,14 +39,14 @@
       int tot, lst;
       int siz[N << 1];
       int buc[N], id[N << 1];
-      
+    
       struct Node {
         int len, link;
         int ch[26];
       } st[N << 1];
-      
+    
       SuffixAutomaton() : tot(1), lst(1) {}
-      
+    
       void extend(int ch) {
         int cur = ++tot, p = lst;
         lst = cur;
@@ -141,16 +141,16 @@ Ukkonen 算法的整体流程如下：
       int ch[M + 5][RNG + 1], st[M + 5], len[M + 5], link[M + 5];
       int s[N + 5];
       int now{1}, rem{0}, n{0}, tot{1};
-      
+    
       SuffixTree() { len[0] = inf; }
-      
+    
       int new_node(int s, int le) {
         ++tot;
         st[tot] = s;
         len[tot] = le;
         return tot;
       }
-      
+    
       void extend(int x) {
         s[++n] = x;
         ++rem;

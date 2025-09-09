@@ -192,7 +192,7 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 -   `char` 拥有与 `signed char` 或 `unsigned char` 之一相同的表示和对齐，但始终是独立的类型。
 
     `char` 的符号性取决于编译器和目标平台：ARM 和 PowerPC 的默认设置通常没有符号，而 x86 与 x64 的默认设置通常有符号。
-    
+
     GCC 可以在编译参数中添加 `-fsigned-char` 或 `-funsigned-char` 指定将 `char` 视作 `signed char` 或 `unsigned char`，其他编译器请参照文档。需要注意指定与架构默认值不同的符号有可能会破坏 ABI，造成程序无法正常工作。
 
 ???+ warning "注意"
@@ -324,19 +324,19 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
         void test(int tot, ...) {
           va_list valist;
           int i;
-          
+        
           // 初始化可变参数列表
           va_start(valist, tot);
-          
+        
           for (i = 0; i < tot; ++i) {
             // 获取第 i 个变量的值
             double xx = va_arg(valist, double);  // Correct
             // float xx = va_arg(valist, float); // Wrong
-            
+        
             // 输出第 i 个变量的底层存储内容
             printf("i = %d, value = 0x%016llx\n", i, *(long long *)(&xx));
           }
-          
+        
           // 清理可变参数列表的内存
           va_end(valist);
         }
@@ -455,7 +455,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 -   整数转换为浮点数时，会舍入到目标类型下最接近的值。
 
     如果该值不能适应到目标类型中，那么行为未定义。
-    
+
     如果源类型是 `bool`，那么 `false` 转换为零，而 `true` 转换为一。
 
 #### 布尔转换

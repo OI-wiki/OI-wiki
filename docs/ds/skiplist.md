@@ -73,7 +73,7 @@ int randomLevel() {
 ```cpp
 V& find(const K& key) {
   SkipListNode<K, V>* p = head;
-  
+
   // 找到该层最后一个键值小于 key 的节点，然后走向下一层
   for (int i = level; i >= 0; --i) {
     while (p->forward[i]->key < key) {
@@ -82,10 +82,10 @@ V& find(const K& key) {
   }
   // 现在是小于，所以还需要再往后走一步
   p = p->forward[0];
-  
+
   // 成功找到节点
   if (p->key == key) return p->value;
-  
+
   // 节点不存在，返回 INVALID
   return tail->value;
 }
@@ -99,7 +99,7 @@ V& find(const K& key) {
 void insert(const K &key, const V &value) {
   // 用于记录需要修改的节点
   SkipListNode<K, V> *update[MAXL + 1];
-  
+
   SkipListNode<K, V> *p = head;
   for (int i = level; i >= 0; --i) {
     while (p->forward[i]->key < key) {
@@ -109,20 +109,20 @@ void insert(const K &key, const V &value) {
     update[i] = p;
   }
   p = p->forward[0];
-  
+
   // 若已存在则修改
   if (p->key == key) {
     p->value = value;
     return;
   }
-  
+
   // 获取新节点的最大层数
   int lv = randomLevel();
   if (lv > level) {
     lv = ++level;
     update[lv] = head;
   }
-  
+
   // 新建节点
   SkipListNode<K, V> *newNode = new SkipListNode<K, V>(key, value, lv);
   // 在第 0~lv 层插入新节点
@@ -131,7 +131,7 @@ void insert(const K &key, const V &value) {
     newNode->forward[i] = p->forward[i];
     p->forward[i] = newNode;
   }
-  
+
   ++length;
 }
 ```
@@ -144,7 +144,7 @@ void insert(const K &key, const V &value) {
 bool erase(const K &key) {
   // 用于记录需要修改的节点
   SkipListNode<K, V> *update[MAXL + 1];
-  
+
   SkipListNode<K, V> *p = head;
   for (int i = level; i >= 0; --i) {
     while (p->forward[i]->key < key) {
@@ -154,10 +154,10 @@ bool erase(const K &key) {
     update[i] = p;
   }
   p = p->forward[0];
-  
+
   // 节点不存在
   if (p->key != key) return false;
-  
+
   // 从最底层开始删除
   for (int i = 0; i <= level; ++i) {
     // 如果这层没有 p 删除就完成了
@@ -167,13 +167,13 @@ bool erase(const K &key) {
     // 断开 p 的连接
     update[i]->forward[i] = p->forward[i];
   }
-  
+
   // 回收空间
   delete p;
-  
+
   // 删除节点可能导致最大层数减少
   while (level > 0 && head->forward[level] == tail) --level;
-  
+
   // 跳表长度
   --length;
   return true;
@@ -199,9 +199,9 @@ bool erase(const K &key) {
       K key;
       V value;
       SkipListNode **forward;
-      
+    
       SkipListNode() {}
-      
+    
       SkipListNode(K k, V v, int l, SkipListNode *nxt = NULL) {
         key = k;
         value = v;
@@ -209,7 +209,7 @@ bool erase(const K &key) {
         forward = new SkipListNode *[l + 1];
         for (int i = 0; i <= l; ++i) forward[i] = nxt;
       }
-      
+    
       ~SkipListNode() {
         if (forward != NULL) delete[] forward;
       }
@@ -222,33 +222,33 @@ bool erase(const K &key) {
       static constexpr int S = 0xFFFF;
       static constexpr int PS = S / P;
       static constexpr int INVALID = INT_MAX;
-      
+    
       SkipListNode<K, V> *head, *tail;
       int length;
       int level;
-      
+    
       SkipList() {
         srand(time(nullptr));
-        
+    
         level = length = 0;
         tail = new SkipListNode<K, V>(INVALID, 0, 0);
         head = new SkipListNode<K, V>(INVALID, 0, MAXL, tail);
       }
-      
+    
       ~SkipList() {
         delete head;
         delete tail;
       }
-      
+    
       int randomLevel() {
         int lv = 1;
         while ((rand() & S) < PS) ++lv;
         return MAXL > lv ? lv : MAXL;
       }
-      
+    
       void insert(const K &key, const V &value) {
         SkipListNode<K, V> *update[MAXL + 1];
-        
+    
         SkipListNode<K, V> *p = head;
         for (int i = level; i >= 0; --i) {
           while (p->forward[i]->key < key) {
@@ -257,32 +257,32 @@ bool erase(const K &key) {
           update[i] = p;
         }
         p = p->forward[0];
-        
+    
         if (p->key == key) {
           p->value = value;
           return;
         }
-        
+    
         int lv = randomLevel();
         if (lv > level) {
           lv = ++level;
           update[lv] = head;
         }
-        
+    
         SkipListNode<K, V> *newNode = new SkipListNode<K, V>(key, value, lv);
         for (int i = lv; i >= 0; --i) {
           p = update[i];
           newNode->forward[i] = p->forward[i];
           p->forward[i] = newNode;
         }
-        
+    
         ++length;
       }
-      
+    
       bool erase(const K &key) {
         SkipListNode<K, V> *update[MAXL + 1];
         SkipListNode<K, V> *p = head;
-        
+    
         for (int i = level; i >= 0; --i) {
           while (p->forward[i]->key < key) {
             p = p->forward[i];
@@ -290,29 +290,29 @@ bool erase(const K &key) {
           update[i] = p;
         }
         p = p->forward[0];
-        
+    
         if (p->key != key) return false;
-        
+    
         for (int i = 0; i <= level; ++i) {
           if (update[i]->forward[i] != p) {
             break;
           }
           update[i]->forward[i] = p->forward[i];
         }
-        
+    
         delete p;
-        
+    
         while (level > 0 && head->forward[level] == tail) --level;
         --length;
         return true;
       }
-      
+    
       V &operator[](const K &key) {
         V v = find(key);
         if (v == tail->value) insert(key, 0);
         return find(key);
       }
-      
+    
       V &find(const K &key) {
         SkipListNode<K, V> *p = head;
         for (int i = level; i >= 0; --i) {
@@ -324,22 +324,22 @@ bool erase(const K &key) {
         if (p->key == key) return p->value;
         return tail->value;
       }
-      
+    
       bool count(const K &key) { return find(key) != tail->value; }
     };
     
     int main() {
       SkipList<int, int> L;
       map<int, int> M;
-      
+    
       clock_t s = clock();
-      
+    
       for (int i = 0; i < 1e5; ++i) {
         int key = rand(), value = rand();
         L[key] = value;
         M[key] = value;
       }
-      
+    
       for (int i = 0; i < 1e5; ++i) {
         int key = rand();
         if (i & 1) {
@@ -351,11 +351,11 @@ bool erase(const K &key) {
           assert(r1 == r2);
         }
       }
-      
+    
       clock_t e = clock();
       cout << "Time elapsed: " << (double)(e - s) / CLOCKS_PER_SEC << endl;
       // about 0.2s
-      
+    
       return 0;
     }
     ```

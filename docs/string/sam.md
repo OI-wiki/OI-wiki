@@ -256,7 +256,7 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
     -   **情况三**：否则就会有些复杂，需要 **复制** 状态 $q$：我们创建一个新的状态 $\textit{clone}$，复制 $q$ 的除了 $\operatorname{len}$ 的值以外的所有信息（后缀链接和转移）。我们将 $\operatorname{len}(\textit{clone})$ 赋值为 $\operatorname{len}(p)+1$。
     
         复制之后，我们将后缀链接从 $\textit{cur}$ 指向 $\textit{clone}$，也从 $q$ 指向 $\textit{clone}$。
-        
+    
         最终我们需要沿着后缀链接从状态 $p$ 往回走，只要经过的状态存在指向状态 $q$ 的转移，就将该转移重新连接到状态 $\textit{clone}$。
     -   处理完以上三种情况后，我们都需要将 $\textit{last}$ 的值更新为状态 $\textit{cur}$。
 
@@ -285,9 +285,9 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
     -   否则转移是不连续的，即 $\operatorname{len}(q)>\operatorname{len}(p)+1$，这意味着状态 $q$ 不只对应于长度为 $\operatorname{len}(p)+1$ 的后缀 $s+c$，还对应于 $s$ 的更长的子串。除了将状态 $q$ 拆成两个子状态以外我们别无他法，所以第一个子状态的长度就是 $\operatorname{len}(p)+1$ 了。
     
         我们如何拆开一个状态呢？我们 **复制** 状态 $q$，产生一个状态 $\textit{clone}$，我们将 $\operatorname{len}(\textit{clone})$ 赋值为 $\operatorname{len}(p)+1$。由于我们不想改变经过 $q$ 的路径，我们将 $q$ 的所有转移复制到 $\textit{clone}$。我们也将从 $\textit{clone}$ 出发的后缀链接设置为 $q$ 的后缀链接的目标，并设置 $q$ 的后缀链接为 $\textit{clone}$。
-        
+    
         在拆开状态后，我们将从 $\textit{cur}$ 出发的后缀链接设置为 $\textit{clone}$。
-        
+    
         最后一步我们将一些原本指向 $q$ 的转移重新连接到 $\textit{clone}$。我们需要修改哪些转移呢？只重新连接相当于所有字符串 $w+c$（其中 $w$ 是状态 $p$ 对应的最长字符串）的后缀就够了。也就是说，我们需要继续沿着后缀链接移动，从结点 $p$ 直到虚拟状态 $-1$，或者当前状态经 $c$ 的转移不再指向状态 $q$。
 
 ### 线性时间复杂度
@@ -679,7 +679,7 @@ void sam_init() {
         $$
         v=\operatorname{link}(v)
         $$
-        
+    
         与此同时，需要缩短当前长度。显然我们需要将 $l$ 赋值为 $\operatorname{len}(v)$，因为经过这个后缀链接后我们到达的状态所对应的最长字符串是一个子串。
     -   如果仍然没有使用这一字符的转移，我们继续重复经过后缀链接并减小 $l$，直到我们找到一个转移或到达虚拟状态 $-1$（这意味着字符 $T_{i}$ 根本没有在 $S$ 中出现过，所以我们设置 $v=l=0$）。
     
@@ -693,7 +693,7 @@ void sam_init() {
     string lcs(const string &S, const string &T) {
       sam_init();
       for (int i = 0; i < S.size(); i++) sam_extend(S[i]);
-      
+    
       int v = 0, l = 0, best = 0, bestpos = 0;
       for (int i = 0; i < T.size(); i++) {
         while (v && !st[v].next.count(T[i])) {

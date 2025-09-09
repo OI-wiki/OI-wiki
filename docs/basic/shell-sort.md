@@ -232,19 +232,19 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 -   对于前面的若干个满足 $h_t\ge \sqrt{n}$ 的 $h_t$，显然有 $\text{InsertionSort}(h_t)$ 的时间复杂度为 $O\left(\dfrac{n^2}{h_t} \right)$。
 
     考虑对最接近 $\sqrt{n}$ 的项 $h_k$，有：
-    
+
     $$
     O\left(\frac{n^2}{h_t} \right)=O(n^{3/2})
     $$
-    
+
     而对于 $i> k$ 的 $h_i$，因为有 $2h_i< h_{i+1}$，所以可得：
-    
+
     $$
     O\left(\frac{n^2}{h_i} \right)=O(n^{3/2}/2^{i-k})\,(i>k)
     $$
-    
+
     所以大等于 $\sqrt n$ 部分的总时间复杂度为：
-    
+
     $$
     \sum_{i=k}^{\lfloor \log_2 n\rfloor}{O(n^{3/2}/2^{i-k})}=O(n^{3/2})
     $$
@@ -254,9 +254,9 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
     $$
     O\left(\frac{nh_{t+2}h_{t+1}}{h_t} \right)=O\left(\frac{nh_{t+2}\cdot h_{t+2}/2}{h_{t+2}/4} \right)=O(nh_{t+2})
     $$
-    
+
     再次利用 $2h_i < h_{i+1}$ 性质可得此部分总时间复杂度为（下式中 $k$ 沿用了上一种情况中的含义）：
-    
+
     $$
     2O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{i+1})}=O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{k-1}/2^{k-i-3})}=O(n^{3/2})+O(nh_{k-1})=O(n^{3/2})
     $$
@@ -280,7 +280,7 @@ Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),
 -   对于 $h_t>n/3$ 的部分，则执行每个 $\text{InsertionSort}(h_t)$ 的复杂度为 $O(n^2/h_t)$。
 
     而 $n^2/h_t<3n$，所以单词插入排序复杂度为 $O(n)$。
-    
+
     而这一部分元素个数是 $O(\log^2 n)$ 级别的，所以这一部分时间复杂度为 $O(n\log^2 n)$。
 
 -   对于 $h_t\le n/3$ 的部分，因为 $3h_t\le n$，所以这之前已经执行了 $\text{InsertionSort}(2h_t)$ 与 $\text{InsertionSort}(3h_t)$，于是执行 $\text{InsertionSort}(h_t)$ 的时间复杂度是 $O(n)$。

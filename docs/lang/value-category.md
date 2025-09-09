@@ -74,9 +74,9 @@ C++ 允许编译器执行复制消除（Copy Elision），可以减少临时对�
 ```cpp
 struct X {
   X() { std::puts("X::X()"); }
-  
+
   X(const X &) { std::puts("X::X(const X &)"); }
-  
+
   ~X() { std::puts("X::~X()"); }
 };
 

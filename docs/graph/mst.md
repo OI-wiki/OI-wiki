@@ -361,7 +361,7 @@ $$
     
     struct Edge {
       int u, v, val;
-      
+    
       bool operator<(const Edge &other) const { return val < other.val; }
     };
     
@@ -376,27 +376,27 @@ $$
       struct Edge {
         int to, nxt, val;
       } e[600010];
-      
+    
       int cnt, head[100010];
-      
+    
       int pnt[100010][22];
       int dpth[100010];
       // 到祖先的路径上边权最大的边
       int maxx[100010][22];
       // 到祖先的路径上边权次大的边，若不存在则为 -INF
       int minn[100010][22];
-     
+    
      public:
       void addedge(int u, int v, int val) {
         e[++cnt] = Edge{v, head[u], val};
         head[u] = cnt;
       }
-      
+    
       void insedge(int u, int v, int val) {
         addedge(u, v, val);
         addedge(v, u, val);
       }
-      
+    
       void dfs(int now, int fa) {
         dpth[now] = dpth[fa] + 1;
         pnt[now][0] = fa;
@@ -413,7 +413,7 @@ $$
           while (ptr >= 0 && kk[ptr] == kk[3]) ptr--;
           minn[now][i] = (ptr == -1 ? -INF : kk[ptr]);
         }
-        
+    
         for (int i = head[now]; i; i = e[i].nxt) {
           if (e[i].to != fa) {
             maxx[e[i].to][0] = e[i].val;
@@ -421,15 +421,15 @@ $$
           }
         }
       }
-      
+    
       int lca(int a, int b) {
         if (dpth[a] < dpth[b]) std::swap(a, b);
-        
+    
         for (int i = 21; i >= 0; i--)
           if (dpth[pnt[a][i]] >= dpth[b]) a = pnt[a][i];
-        
+    
         if (a == b) return a;
-        
+    
         for (int i = 21; i >= 0; i--) {
           if (pnt[a][i] != pnt[b][i]) {
             a = pnt[a][i];
@@ -438,7 +438,7 @@ $$
         }
         return pnt[a][0];
       }
-      
+    
       int query(int a, int b, int val) {
         int res = -INF;
         for (int i = 21; i >= 0; i--) {
@@ -462,7 +462,7 @@ $$
       int tot = 0;
       std::sort(e + 1, e + m + 1);
       for (int i = 1; i <= n; i++) fa[i] = i;
-      
+    
       for (int i = 1; i <= m; i++) {
         int a = find(e[i].u);
         int b = find(e[i].v);
@@ -480,18 +480,18 @@ $$
     int main() {
       std::ios::sync_with_stdio(false);
       std::cin.tie(nullptr);
-      
+    
       std::cin >> n >> m;
       for (int i = 1; i <= m; i++) {
         int u, v, val;
         std::cin >> u >> v >> val;
         e[i] = Edge{u, v, val};
       }
-      
+    
       Kruskal();
       long long ans = INF64;
       tr.dfs(1, 0);
-      
+    
       for (int i = 1; i <= m; i++) {
         if (!used[i]) {
           int _lca = tr.lca(e[i].u, e[i].v);

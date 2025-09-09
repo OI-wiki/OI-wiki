@@ -173,12 +173,12 @@ int main() {
 
 int main() {
   std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-  
+
   std::random_device rd;
   std::mt19937 g(rd());
-  
+
   std::shuffle(v.begin(), v.end(), g);
-  
+
   std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "));
   std::cout << "\n";
 }
@@ -247,7 +247,7 @@ int main() {
   std::random_device rd;   // 将用于为随机数引擎获得种子
   std::mt19937 gen(rd());  // 以播种标准 mersenne_twister_engine
   std::uniform_int_distribution<> dis(1, 6);
-  
+
   for (int n = 0; n < 10; ++n)
     // 用 dis 变换 gen 所生成的随机 unsigned int 到 [1, 6] 中的 int
     std::cout << dis(gen) << ' ';
@@ -278,13 +278,13 @@ $$
     
     struct myrand {
       int A, B, P, x;
-      
+    
       myrand(int A, int B, int P) {
         this->A = A;
         this->B = B;
         this->P = P;
       }
-      
+    
       // 生成随机序列的下一个随机数
       int next() { return x = (A * x + B) % P; }
     };
@@ -319,7 +319,7 @@ $$
     struct myrand {
       vector<unsigned> vec;
       int l, j, k, cur;
-      
+    
       myrand(int l, int j, int k) {
         this->l = l;
         this->j = j;
@@ -329,7 +329,7 @@ $$
           vec.push_back(rand());  // 先用其他方法生成随机序列中的前几个元素
         }
       }
-      
+    
       unsigned next() {
         vec[cur] = vec[(cur - j + l) % l] * vec[(cur - k + l) % l];
         // 这里用 unsigned 类型是为了实现自动对 2^32 取模

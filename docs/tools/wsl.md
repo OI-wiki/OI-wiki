@@ -176,7 +176,7 @@ wsl --set-default-version 2
     Installation successful!
     To run a command as administrator (user "root"), use "sudo <command>".
     See "man sudo_root" for details.
-    
+
     chtholly@SENIORIOUS:~$
 
 ## 基础配置
@@ -416,11 +416,11 @@ Welcome!
 1.  启用「虚拟机平台」功能
 
     使用 PowerShell 以管理员身份运行：
-    
+
     ```shell
     dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
     ```
-    
+
     然后 **重启电脑**。
 
 2.  下载 Linux 内核更新包
@@ -431,9 +431,9 @@ Welcome!
 3.  设置分发版版本
 
     执行命令：`wsl --set-version <分发版名称> <版本号>`
-    
+
     如：将 Ubuntu 18.04 设置为 WSL 2 的命令为 `wsl --set-version Ubuntu-18.04 2`
-    
+
     这一步比较耗时，执行完成后通过命令 `wsl -l -v` 来检查升级是否成功。
 
 ## FAQ
@@ -445,7 +445,7 @@ Welcome!
     可以用自带命令行，或者使用图形界面。
     比如说 vim，在命令行中键入 `man vim`，会给出一份详尽的使用方法。
     亦可使用 `vim --help`。
-    
+
     关于命令行，可阅读 [命令行](./cmd.md)
 
 -   对系统资源的占用量？

@@ -181,7 +181,7 @@ class SqrtTree {
   vector<SqrtTreeItem> v;
   vector<int> clz, layers, onLayer;
   vector<vector<SqrtTreeItem>> pref, suf, between;
-  
+
   void buildBlock(int layer, int l, int r) {
     pref[layer][l] = v[l];
     for (int i = l + 1; i < r; i++) {
@@ -192,7 +192,7 @@ class SqrtTree {
       suf[layer][i] = op(v[i], suf[layer][i + 1]);
     }
   }
-  
+
   void buildBetween(int layer, int lBound, int rBound, int betweenOffs) {
     int bSzLog = (layers[layer] + 1) >> 1;
     int bCntLog = layers[layer] >> 1;
@@ -207,7 +207,7 @@ class SqrtTree {
       }
     }
   }
-  
+
   void buildBetweenZero() {
     int bSzLog = (lg + 1) >> 1;
     for (int i = 0; i < indexSz; i++) {
@@ -215,13 +215,13 @@ class SqrtTree {
     }
     build(1, n, n + indexSz, (1 << lg) - n);
   }
-  
+
   void updateBetweenZero(int bid) {
     int bSzLog = (lg + 1) >> 1;
     v[n + bid] = suf[0][bid << bSzLog];
     update(1, n, n + indexSz, (1 << lg) - n, n + bid);
   }
-  
+
   void build(int layer, int lBound, int rBound, int betweenOffs) {
     if (layer >= (int)layers.size()) {
       return;
@@ -238,7 +238,7 @@ class SqrtTree {
       buildBetween(layer, lBound, rBound, betweenOffs);
     }
   }
-  
+
   void update(int layer, int lBound, int rBound, int betweenOffs, int x) {
     if (layer >= (int)layers.size()) {
       return;
@@ -256,7 +256,7 @@ class SqrtTree {
     }
     update(layer + 1, l, r, betweenOffs, x);
   }
-  
+
   SqrtTreeItem query(int l, int r, int betweenOffs, int base) {
     if (l == r) {
       return v[l];
@@ -281,15 +281,15 @@ class SqrtTree {
     ans = op(ans, pref[layer][r]);
     return ans;
   }
- 
+
  public:
   SqrtTreeItem query(int l, int r) { return query(l, r, 0, 0); }
-  
+
   void update(int x, const SqrtTreeItem &item) {
     v[x] = item;
     update(0, 0, n, 0, x);
   }
-  
+
   SqrtTree(const vector<SqrtTreeItem> &a)
       : n((int)a.size()), lg(log2Up(n)), v(a), clz(1 << lg), onLayer(lg + 1) {
     clz[0] = 0;

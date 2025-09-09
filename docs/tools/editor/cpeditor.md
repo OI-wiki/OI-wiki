@@ -15,21 +15,21 @@ author: zarttic, xk2013
 -   设置默认语言
 
     编辑器默认的语言为 `C++`。
-    
+
     ![cp-setting-lang-1](images/cp-setting-lang-1.png)
-    
+
     ![cp-setting-lang-2](images/cp-setting-lang-2.png)
 
 -   设置 `C++` 命令
 
     需要设置一些必要的编译命令，这个要根据编译器来设定。
-    
+
     ![cp-setting-lang-3](images/cp-setting-lang-3.png)
 
 -   设置模板
 
     新建文件的时候会自动初始化的模板，需要注意的是 CP Editor 需要的是一个 `xxx.cpp` 的文件作为模板文件。
-    
+
     ![cp-setting-lang-4](images/cp-setting-lang-4.png)
 
 > 完成了以上的基本操作你就可以使用最基本的功能了。
@@ -46,21 +46,21 @@ author: zarttic, xk2013
     |  <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>D</kbd>  | 在终端中运行。 |
     |          <kbd>Ctrl</kbd>+<kbd>K</kbd>         | 终止所有进程。 |
     | <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> |  格式化代码。 |
-    
+
     具体可以查阅 [官方文档](https://cpeditor.org/zh/docs/preferences/key-bindings/)。
 
 -   样例测试
 
     可以把题面的样例复制下来，由 CP Editor 自动评测，而且还可以设置时间限制！
-    
+
     ![cp-setting-limits](images/cp-setting-limits.png)
-    
+
     ![cp-judge-1](images/cp-judge-1.png)
-    
+
     ![cp-judge-2](images/cp-judge-2.png)
-    
+
     ![cp-judge-3](images/cp-judge-3.png)
-    
+
     ![cp-judge-4](images/cp-judge-4.png)
 
 ## 参考资料

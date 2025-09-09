@@ -168,12 +168,12 @@ if (s >> j & 1) {       // 如果已被覆盖
       int head[Prime], next[MaxSZ], sz;
       int state[MaxSZ];
       long long key[MaxSZ];
-      
+    
       void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
-      
+    
       void push(int s) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
@@ -186,7 +186,7 @@ if (s >> j & 1) {       // 如果已被覆盖
         next[sz] = head[x];
         head[x] = sz++;
       }
-      
+    
       void roll() { REP(i, sz) state[i] <<= offset; }
     } H[2], *H0, *H1;
     ```
@@ -420,12 +420,12 @@ if (s >> j & 1) {       // 如果已被覆盖
       T_state state[MaxSZ];
       T_key key[MaxSZ];
       int pre[MaxSZ];
-      
+    
       void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
-      
+    
       void push(T_state s, T_key d, T_state u) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
@@ -437,7 +437,7 @@ if (s >> j & 1) {       // 如果已被覆盖
         state[sz] = s, key[sz] = d, pre[sz] = u;
         next[sz] = head[x], head[x] = sz++;
       }
-      
+    
       void roll() { REP(ii, sz) state[ii] <<= Offset; }
     };
     
@@ -643,12 +643,12 @@ if (s >> j & 1) {       // 如果已被覆盖
       int head[Prime], next[MaxSZ], sz;
       int state[MaxSZ];
       int key[MaxSZ];
-      
+    
       void clear() {
         sz = 0;
         memset(head, -1, sizeof(head));
       }
-      
+    
       void push(int s) {
         int x = s % Prime;
         for (int i = head[x]; ~i; i = next[i]) {
@@ -661,7 +661,7 @@ if (s >> j & 1) {       // 如果已被覆盖
         next[sz] = head[x];
         head[x] = sz++;
       }
-      
+    
       void roll() { REP(i, sz) state[i] <<= offset; }
     } H[2], *H0, *H1;
     

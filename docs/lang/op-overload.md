@@ -52,11 +52,11 @@ class Example {
     ```cpp
     struct Vector2D {
       double x, y;
-      
+    
       Vector2D(double a = 0, double b = 0) : x(a), y(b) {}
-      
+    
       Vector2D operator+(Vector2D v) const { return Vector2D(x + v.x, y + v.y); }
-      
+    
       // 注意返回值的类型可以不是这个类
       double operator*(Vector2D v) const { return x * v.x + y * v.y; }
     };
@@ -72,13 +72,13 @@ class Example {
     ```cpp
     struct MyInt {
       int x;
-      
+    
       // 前置，对应 ++a
       MyInt &operator++() {
         x++;
         return *this;
       }
-      
+    
       // 后置，对应 a++
       MyInt operator++(int) {
         MyInt tmp;
@@ -136,7 +136,7 @@ class Example {
     struct student {
       string name;
       int score;
-      
+    
       // 重载 < 号运算符
       bool operator<(const student& a) const {
         return score < a.score || (score == a.score && name > a.name);

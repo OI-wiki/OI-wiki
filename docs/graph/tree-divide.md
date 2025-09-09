@@ -113,9 +113,9 @@
     
     struct Edge {
       int to, nxt, val;
-      
+    
       Edge() {}
-      
+    
       Edge(int to, int nxt, int val) : to(to), nxt(nxt), val(val) {}
     } e[300010];
     

@@ -81,12 +81,12 @@ class Object {
  public:
   int weight;
   int value;
-  
+
   void print() {
     cout << weight << endl;
     return;
   }
-  
+
   void change_w(int);
 };
 
@@ -122,13 +122,13 @@ Object var;
 class Vector {
  public:
   int x, y;
-  
+
   Vector() : x(0), y(0) {}
-  
+
   Vector(int _x, int _y) : x(_x), y(_y) {}
-  
+
   int operator*(const Vector& other) const { return x * other.x + y * other.y; }
-  
+
   Vector operator+(const Vector&) const;
   Vector operator-(const Vector&) const;
 };
@@ -182,7 +182,7 @@ class Object {
  public:
   int weight;
   int value;
-  
+
   Object() {
     weight = 0;
     value = 0;
@@ -221,17 +221,17 @@ class Object {
  public:
   int weight;
   int value;
-  
+
   Object() {
     weight = 0;
     value = 0;
   }
-  
+
   Object(int _weight = 0, int _value = 0) {
     weight = _weight;
     value = _value;
   }
-  
+
   // the same as
   // Object(int _weight,int _value):weight(_weight),value(_value) {}
 };
@@ -255,7 +255,7 @@ Object C{1, 2};  // ok,(C++11)
     class Node {
      public:
       int var;
-      
+    
       Node(int _var) : var(_var) {}
     };
     
@@ -272,7 +272,7 @@ Object C{1, 2};  // ok,(C++11)
     class Node {
      public:
       int var;
-      
+    
       explicit Node(int _var) : var(_var) {}
     };
     ```
@@ -299,12 +299,12 @@ class Object {
   int weight;
   int value;
   int* ned;
-  
+
   Object() {
     weight = 0;
     value = 0;
   }
-  
+
   ~Object() { delete ned; }
 };
 ```

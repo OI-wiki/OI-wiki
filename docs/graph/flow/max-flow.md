@@ -149,7 +149,7 @@ Edmonds–Karp 算法的可能实现如下。
     
     struct Edge {
       int from, to, cap, flow;
-      
+    
       Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
     };
     
@@ -159,12 +159,12 @@ Edmonds–Karp 算法的可能实现如下。
       vector<int> G[MAXN];  // G：点 x -> x 的所有边在 edges 中的下标
       int a[MAXN], p[MAXN];  // a：点 x -> BFS 过程中最近接近点 x 的边给它的最大流
                              // p：点 x -> BFS 过程中最近接近点 x 的边
-      
+    
       void init(int n) {
         for (int i = 0; i < n; i++) G[i].clear();
         edges.clear();
       }
-      
+    
       void AddEdge(int from, int to, int cap) {
         edges.push_back(Edge(from, to, cap, 0));
         edges.push_back(Edge(to, from, 0, 0));
@@ -172,7 +172,7 @@ Edmonds–Karp 算法的可能实现如下。
         G[from].push_back(m - 2);
         G[to].push_back(m - 1);
       }
-      
+    
       int Maxflow(int s, int t) {
         int flow = 0;
         for (;;) {
@@ -341,29 +341,29 @@ Edmonds–Karp 算法的可能实现如下。
       struct edge {
         int v, nxt, cap, flow;
       } e[N];
-      
+    
       int fir[N], cnt = 0;
-      
+    
       int n, S, T;
       ll maxflow = 0;
       int dep[N], cur[N];
-      
+    
       void init() {
         memset(fir, -1, sizeof fir);
         cnt = 0;
       }
-      
+    
       void addedge(int u, int v, int w) {
         e[cnt] = {v, fir[u], w, 0};
         fir[u] = cnt++;
         e[cnt] = {u, fir[v], 0, 0};
         fir[v] = cnt++;
       }
-      
+    
       bool bfs() {
         queue<int> q;
         memset(dep, 0, sizeof(int) * (n + 1));
-        
+    
         dep[S] = 1;
         q.push(S);
         while (q.size()) {
@@ -379,10 +379,10 @@ Edmonds–Karp 算法的可能实现如下。
         }
         return dep[T];
       }
-      
+    
       int dfs(int u, int flow) {
         if ((u == T) || (!flow)) return flow;
-        
+    
         int ret = 0;
         for (int& i = cur[u]; ~i; i = e[i].nxt) {
           int v = e[i].v, d;
@@ -396,7 +396,7 @@ Edmonds–Karp 算法的可能实现如下。
         }
         return ret;
       }
-      
+    
       void dinic() {
         while (bfs()) {
           memcpy(cur, fir, sizeof(int) * (n + 1));
@@ -447,16 +447,16 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
       struct FlowEdge {
         int v, u;
         long long cap, flow;
-        
+    
         FlowEdge() {}
-        
+    
         FlowEdge(int _v, int _u, long long _cap, long long _flow)
             : v(_v), u(_u), cap(_cap), flow(_flow) {}
-        
+    
         FlowEdge(int _v, int _u, long long _cap)
             : v(_v), u(_u), cap(_cap), flow(0ll) {}
       };
-      
+    
       constexpr static long long flow_inf = 1e18;
       vector<FlowEdge> edges;
       vector<char> alive;
@@ -469,7 +469,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
       vector<int> level;
       vector<int> q;
       int qh, qt;
-      
+    
       void resize(int _n) {
         n = _n;
         ex.resize(n);
@@ -481,15 +481,15 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
         in.resize(n);
         out.resize(n);
       }
-      
+    
       MPM() {}
-      
+    
       MPM(int _n, int _s, int _t) {
         resize(_n);
         s = _s;
         t = _t;
       }
-      
+    
       void add_edge(int v, int u, long long cap) {
         edges.push_back(FlowEdge(v, u, cap));
         edges.push_back(FlowEdge(u, v, 0));
@@ -497,7 +497,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
         adj[u].push_back(m + 1);
         m += 2;
       }
-      
+    
       bool bfs() {
         while (qh < qt) {
           int v = q[qh++];
@@ -510,9 +510,9 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
         }
         return level[t] != -1;
       }
-      
+    
       long long pot(int v) { return min(pin[v], pout[v]); }
-      
+    
       void remove_node(int v) {
         for (int i : in[v]) {
           int u = edges[i].v;
@@ -527,7 +527,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
           pin[u] -= edges[i].cap - edges[i].flow;
         }
       }
-      
+    
       void push(int from, int to, long long f, bool forw) {
         qh = qt = 0;
         ex.assign(n, 0);
@@ -571,7 +571,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
           }
         }
       }
-      
+    
       long long flow() {
         long long ans = 0;
         while (true) {
@@ -654,7 +654,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
     ```cpp
     struct Edge {
       int from, to, cap, flow;
-      
+    
       Edge(int u, int v, int c, int f) : from(u), to(v), cap(c), flow(f) {}
     };
     
@@ -671,7 +671,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
       int cur[MAXN];
       int p[MAXN];
       int num[MAXN];
-      
+    
       void AddEdge(int from, int to, int cap) {
         edges.push_back(Edge(from, to, cap, 0));
         edges.push_back(Edge(to, from, 0, 0));
@@ -679,7 +679,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
         G[from].push_back(m - 2);
         G[to].push_back(m - 1);
       }
-      
+    
       bool BFS() {
         memset(vis, 0, sizeof(vis));
         queue<int> Q;
@@ -700,13 +700,13 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
         }
         return vis[s];
       }
-      
+    
       void init(int n) {
         this->n = n;
         for (int i = 0; i < n; i++) G[i].clear();
         edges.clear();
       }
-      
+    
       int Augment() {
         int x = t, a = INF;
         while (x != s) {
@@ -722,7 +722,7 @@ MPM 算法的每个阶段都需要 $O(V^2)$，因为最多有 $V$ 次迭代（�
         }
         return a;
       }
-      
+    
       int Maxflow(int s, int t) {
         this->s = s;
         this->t = t;

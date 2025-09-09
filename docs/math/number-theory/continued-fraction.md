@@ -878,21 +878,21 @@ $$
         $$
         \dfrac{|p-qx|}{\sqrt{1+\xi^2}},
         $$
-        
+    
         对应着分数 $\nu$ 对实数 $\xi$ 的逼近程度。
     -   将渐近分数 $\xi_k=\dfrac{p_k}{q_k}$ 对应的点记作 $\vec\xi_k=(p_k,q_k)$，则递推公式就可以写作
     
         $$
         \vec\xi_k = a_k\vec\xi_{k-1} + \vec\xi_{k-2}.
         $$
-        
+    
         递归的起点是 $\xi_{-2} = (1,0)$ 和 $\xi_{-1} = (0,1)$。
     -   对于整数 $t$，如果 $0\le t\le a_k$，那么点
     
         $$
         \vec\xi_{k-1,t} = t\vec\xi_{k-1} + \vec\xi_{k-2}
         $$
-        
+    
         就落在连结点 $\vec\xi_{k-2}$ 和点 $\vec\xi_k$ 的线段上。它们对应着中间分数 $\xi_{k-1,t}$。
     -   利用几何的方法可以构造出所有的渐近分数和中间分数。从点 $\vec\xi_{-2}=(1,0)$ 和点 $\vec\xi_{-1}=(0,1)$ 开始，两个点位于直线 $y=\xi x$ 两侧，这意味着 $\vec\xi\times\vec\xi_{-2}$ 和 $\vec\xi\times\vec\xi_{-1}$ 符号相反。将 $\vec\xi_{-1}$ 按照向量的加法添加到 $\vec\xi_{-2}$ 上，直到无法继续添加而不穿过直线 $y=\xi x$ 为止，将结果记作 $\vec\xi_0$，此时仍与 $\vec\xi_{-1}$ 不同侧。再将 $\vec\xi_0$ 添加到 $\vec\xi_{-1}$ 上，直到无法继续添加而不穿过直线 $y=\xi x$ 为止，将结果记作 $\vec\xi_1$，此时仍与 $\vec\xi_0$ 不同侧。这个过程可以一直持续到无穷，除非在有限步内某个 $\vec\xi_n$ 就恰好落在直线 $y=\xi x$ 上。后者意味着向量 $\vec\xi$ 与 $\vec\xi_n$ 共线，即 $\xi=\dfrac{p_n}{q_n}$ 为有理点。这个过程就可以得到前面示意图中的图形。Boris Delaunay 将这个过程形象地称为鼻子拉伸算法（nose-streching algorithm）[^nose-streching]。
     -   如果需要快速计算每一步将 $\vec\xi_{k-1}$ 添加到 $\vec\xi_{k-2}$ 需要的次数，可以借助叉积。因为 $\vec\xi\times\vec\xi_{k-1}$ 与 $\vec\xi\times\vec\xi_{k-2}$ 符号相反，所以如果记 $\vec\xi_{k-1,t}=t\vec\xi_{k-1}+\vec\xi_{k-2}$ 为向 $\vec\xi_{k-2}$ 添加 $t$ 次 $\vec\xi_{k-1}$ 得到的结果，则 $\vec\xi\times\vec\xi_{k-1,t}=t(\vec\xi\times\vec\xi_{k-1})+(\vec\xi\times\vec\xi_{k-2})$ 不改变符号，就意味着没有穿过直线。在不变号之前，$\vec\xi\times\vec\xi_{k-1,t}$ 的绝对值会逐渐下降。记
@@ -900,19 +900,19 @@ $$
         $$
         r_{k} = \left|\dfrac{\vec\xi\times\vec\xi_{k-2}}{\vec\xi\times\vec\xi_{k-1}}\right| = -\dfrac{\vec\xi\times\vec\xi_{k-2}}{\vec\xi\times\vec\xi_{k-1}}.
         $$
-        
+    
         那么，最大可以下降的次数就是
-        
+    
         $$
         a_{k} = \lfloor r_{k}\rfloor = \left\lfloor\left|\dfrac{q_{k-1}\xi-p_{k-1}}{q_{k-2}\xi-p_{k-2}}\right|\right\rfloor.
         $$
-        
+    
         这就是连分数展开的第 $k$ 项。而且，$r_k$ 就是连分数展开的余项，它满足关系式：
-        
+    
         $$
         r_k = -\dfrac{q_{k-1}\xi-p_{k-1}}{q_{k-2}\xi-p_{k-2}} \iff \xi = \dfrac{p_{k-1}r_k + p_{k-2}}{q_{k-1}r_k+q_{k-2}}.
         $$
-        
+    
         这就是连分数关系式 $\xi = [a_0,a_1,\cdots,a_{k-1},r_k]$。
     -   因为每次添加向量造成的 $\vec\xi\times\vec\xi_{k-1,t}$ 的变化的步长都是 $|\vec\xi\times\vec\xi_{k-1}|$，所以最后剩余的距离 $|\vec\xi\times\vec\xi_k|$ 必然严格小于 $|\vec\xi\times\vec\xi_{k-1}|$。这说明，渐近分数的逼近程度（由 $|qx-p|$ 衡量）是随着 $k$ 的增加严格更优的。
     -   利用叉积的运算法则，有
@@ -920,26 +920,26 @@ $$
         $$
         \vec\xi_{k}\times\vec\xi_{k+1} = \vec\xi_{k}\times(a_{k+1}\vec\xi_k+\vec\xi_{k-1}) = \vec\xi_{k}\times\vec\xi_{k-1} = -\vec\xi_{k-1}\times\vec\xi_{k}.
         $$
-        
+    
         归纳可知
-        
+    
         $$
         \vec\xi_{k}\times\vec\xi_{k+1} = (-1)^{k+2}\vec\xi_{k-2}\times\vec\xi_{k-1} = (-1)^{k}.
         $$
-        
+    
         这就是渐近分数的差分公式 $p_{k+1}q_k-p_kq_{k+1}=(-1)^k$。
     -   上下两个凸包之间的面积可以剖分成若干个（可能是无穷多个）三角形，其中每个三角形的顶点分别是 $\vec\xi_{k-2}$、$\vec\xi_k$ 和 $\vec 0$。这样的三角形的面积是
     
         $$
         \dfrac12|\vec\xi_{k-2}\times\vec\xi_k| = \dfrac12|\vec\xi_{k-2}\times(a_k\vec\xi_{k-1}+\vec\xi_{k-2})| = \dfrac{a_k}{2}|\vec\xi_{k-2}\times\vec\xi_{k-1}| = \dfrac{a_k}{2}.
         $$
-        
+    
         根据 [Pick 定理](../../geometry/pick.md)，这意味着如果设 $I$ 和 $B$ 分别为三角形内部和边界上的整点个数，则
-        
+    
         $$
         I + \dfrac{B}{2} - 1 = \dfrac{a_k}{2}.
         $$
-        
+    
         又已知三角形边界上已经有了 $\{\vec 0\}\cup\{\vec\xi_{k-1,t}:0\le t\le a_k\}$ 这共计 $a_k+2$ 个整点。这说明，就一定有 $I=0$ 和 $B=a_k+2$。因而，三角形的边上没有更多的整点，三角形内部也没有整点。也就是说，$q_k$ 和 $p_k$ 是既约的，中间分数是连结 $\vec\xi_{k-2}$ 和 $\vec\xi_k$ 的边上的全部整点，且第一象限的所有整点都在上下两个凸包内。
 
 这样得到的上下两个凸包称为 Klein 多边形。在高维空间内也可以做类似定义，得到 [Klein 多面体](https://en.wikipedia.org/wiki/Klein_polyhedron)（Klein polyhedron），它可以将连分数的概念推广到高维空间内。

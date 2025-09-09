@@ -102,9 +102,9 @@ for (auto i : {1, 1, 4, 5, 1, 4}) std::cout << i;
 
 struct C {
   int a[4];
-  
+
   int* begin() { return a; }
-  
+
   int* end() { return a + 4; }
 };
 
@@ -127,7 +127,7 @@ int main() {
 
 int main() {
   std::vector<int> v = {0, 1, 2, 3, 4, 5};
-  
+
   for (int counter = 0; auto i : v)  // the init-statement (C++20)
     std::cout << counter++ << ' ' << i << std::endl;
 }
@@ -182,7 +182,7 @@ int main() {
   std::vector<int> vec = {1, 9, 2, 6, 0};
   std::tuple<int, int, std::string, std::vector<int>> tup =
       std::make_tuple(817, 114, "514", vec);
-  
+
   // 使用 get<> 获取子元素，尖括号内必须是整型常量表达式
   for (auto i : std::get<expr>(tup)) std::cout << i << " ";
   // 首元素编号为 0，故我们 std::get<3> 得到了一个 std::vector<int>
@@ -280,9 +280,9 @@ std::cout << x << std::endl;
 
 struct Foo {
   Foo(int num) : num_(num) {}
-  
+
   void print_add(int i) const { std::cout << num_ + i << '\n'; }
-  
+
   int num_;
 };
 
@@ -296,21 +296,21 @@ int main() {
   // 存储自由函数
   std::function<void(int)> f_display = print_num;
   f_display(-9);
-  
+
   // 存储 Lambda
   std::function<void()> f_display_42 = []() { print_num(42); };
   f_display_42();
-  
+
   // 存储到成员函数的调用
   std::function<void(const Foo&, int)> f_add_display = &Foo::print_add;
   const Foo foo(314159);
   f_add_display(foo, 1);
   f_add_display(314159, 1);
-  
+
   // 存储到数据成员访问器的调用
   std::function<int(Foo const&)> f_num = &Foo::num_;
   std::cout << "num_: " << f_num(foo) << '\n';
-  
+
   // 存储到函数对象的调用
   std::function<void(int)> f_display_obj = PrintNum();
   f_display_obj(18);
@@ -357,7 +357,7 @@ template <class A, class... C>
 void func(A arg1, C... arg2) {
   // C 是 模板参数包
   tuple<A, C...>();  // 展开成 tuple<int, int, double, bool>();
-  
+
   // arg2 是函数参数包
   func(arg2...);  // 展开成 func( 2, 1.1, true );
 }
@@ -415,7 +415,7 @@ void func(C... args) {
   // 语法 4, 等价于 ↓
   // ( ( ( std::cout << 1 ) << 2.1 ) << true ) << std::endl;
   // 输出: 12.11  注意true输出成了1，因为这里没有指定boolalpha
-  
+
   std::cout << (args && ...) << std::endl;
   // 语法 1, 等价于 ↓
   // std::cout << ( 1 && ( 2.1 && true ) ) ) << std::endl;
@@ -482,7 +482,7 @@ void func(T... args) {
 
 int main() {
   const auto even = [](int i) { return 0 == i % 2; };
-  
+
   for (int i : std::views::iota(0, 6) | std::views::filter(even))
     std::cout << i << ' ';
 }
@@ -511,9 +511,9 @@ int main() {
         vector<int> vec{1, 2, 3, 4, 5};
         return vec | std::views::filter([](int i) { return 0 == i % 2; });
       }();
-      
+    
       for (int i : view) cout << i << ' ';  // runtime undefined behavior
-      
+    
       return 0;
     }
     ```
@@ -533,16 +533,16 @@ using namespace std;
 
 int main() {
   vector<int> vec{4, 2, 5, 3, 1};
-  
+
   sort(vec.begin(), vec.end());  // {1, 2, 3, 4, 5}
-  
+
   for (const int i : vec) cout << i << ", ";
   cout << '\n';
-  
+
   ranges::sort(vec, ranges::greater{});  // {5, 4, 3, 2, 1}
-  
+
   for (const int i : vec) cout << i << ", ";
-  
+
   return 0;
 }
 ```
@@ -564,7 +564,7 @@ int main() {
   const auto& chunks = inputs | views::chunk(3);  // 将序列分块，每块 3 个元素
   const auto& cartesian_product =
       views::cartesian_product(chunks, chunks);  // 计算对块自身进行笛卡尔积
-  
+
   for (const auto [l_chunk, r_chunk] : cartesian_product)
     // 计算笛卡尔积下的两个块整数的和
     cout << ranges::fold_left(l_chunk, 0u, plus{}) +

@@ -293,7 +293,7 @@
       if (now == 0) return 1ll;
       if (!fulc && f[now][eff][ful0] != -1)  // 记忆化
         return f[now][eff][ful0];
-      
+    
       int res = 0, maxk = fulc ? dig[now] : 9;
       for (int i = 0; i <= maxk; ++i) {
         if (i != 0 && i != 1 && i != 8) continue;

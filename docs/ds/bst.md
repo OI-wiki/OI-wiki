@@ -27,7 +27,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
       // 维护其他信息，如高度，节点数量等
       int size;   // 当前节点为根的子树大小
       int count;  // 当前节点的重复数量
-      
+    
       TreeNode(int value)
           : key(value), size(1), count(1), left(nullptr), right(nullptr) {}
     };
@@ -155,9 +155,9 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 -   若该节点的附加 `count` 为 $1$：
 
     -   若 `root` 为叶子节点，直接删除该节点即可。
-    
+
     -   若 `root` 为链节点，即只有一个儿子的节点，返回这个儿子。
-    
+
     -   若 `root` 有两个非空子节点，一般是用它左子树的最大值（左子树最右的节点）或右子树的最小值（右子树最左的节点）代替它，然后将它删除。
 
 时间复杂度 $O(h)$。

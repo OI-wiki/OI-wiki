@@ -41,9 +41,9 @@ void clear(int a[]) {
 void read(int a[]) {
   static char s[LEN + 1];
   scanf("%s", s);
-  
+
   clear(a);
-  
+
   int len = strlen(s);
   // 如上所述，反转
   for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
@@ -82,9 +82,9 @@ void print(int a[]) {
     void read(int a[]) {
       static char s[LEN + 1];
       scanf("%s", s);
-      
+    
       clear(a);
-      
+    
       int len = strlen(s);
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
@@ -100,7 +100,7 @@ void print(int a[]) {
     int main() {
       read(a);
       print(a);
-      
+    
       return 0;
     }
     ```
@@ -122,7 +122,7 @@ void print(int a[]) {
 ```cpp
 void add(int a[], int b[], int c[]) {
   clear(c);
-  
+
   // 高精度实现中，一般令数组的最大长度 LEN 比可能的输入大一些
   // 然后略去末尾的几次循环，这样一来可以省去不少边界情况的处理
   // 因为实际输入不会超过 1000 位，故在此循环到 LEN - 1 = 1003 已经足够
@@ -156,9 +156,9 @@ void add(int a[], int b[], int c[]) {
     void read(int a[]) {
       static char s[LEN + 1];
       scanf("%s", s);
-      
+    
       clear(a);
-      
+    
       int len = strlen(s);
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
@@ -173,7 +173,7 @@ void add(int a[], int b[], int c[]) {
     
     void add(int a[], int b[], int c[]) {
       clear(c);
-      
+    
       for (int i = 0; i < LEN - 1; ++i) {
         c[i] += a[i] + b[i];
         if (c[i] >= 10) {
@@ -186,10 +186,10 @@ void add(int a[], int b[], int c[]) {
     int main() {
       read(a);
       read(b);
-      
+    
       add(a, b, c);
       print(c);
-      
+    
       return 0;
     }
     ```
@@ -205,7 +205,7 @@ void add(int a[], int b[], int c[]) {
 ```cpp
 void sub(int a[], int b[], int c[]) {
   clear(c);
-  
+
   for (int i = 0; i < LEN - 1; ++i) {
     // 逐位相减
     c[i] += a[i] - b[i];
@@ -236,9 +236,9 @@ void sub(int a[], int b[], int c[]) {
     void read(int a[]) {
       static char s[LEN + 1];
       scanf("%s", s);
-      
+    
       clear(a);
-      
+    
       int len = strlen(s);
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
@@ -253,7 +253,7 @@ void sub(int a[], int b[], int c[]) {
     
     void sub(int a[], int b[], int c[]) {
       clear(c);
-      
+    
       for (int i = 0; i < LEN - 1; ++i) {
         c[i] += a[i] - b[i];
         if (c[i] < 0) {
@@ -266,10 +266,10 @@ void sub(int a[], int b[], int c[]) {
     int main() {
       read(a);
       read(b);
-      
+    
       sub(a, b, c);
       print(c);
-      
+    
       return 0;
     }
     ```
@@ -301,11 +301,11 @@ $a-b=-(b-a)$
 ```cpp
 void mul_short(int a[], int b, int c[]) {
   clear(c);
-  
+
   for (int i = 0; i < LEN - 1; ++i) {
     // 直接把 a 的第 i 位数码乘以乘数，加入结果
     c[i] += a[i] * b;
-    
+
     if (c[i] >= 10) {
       // 处理进位
       // c[i] / 10 即除法的商数成为进位的增量值
@@ -332,13 +332,13 @@ void mul_short(int a[], int b, int c[]) {
 ```cpp
 void mul(int a[], int b[], int c[]) {
   clear(c);
-  
+
   for (int i = 0; i < LEN - 1; ++i) {
     // 这里直接计算结果中的从低到高第 i 位，且一并处理了进位
     // 第 i 次循环为 c[i] 加上了所有满足 p + q = i 的 a[p] 与 b[q] 的乘积之和
     // 这样做的效果和直接进行上图的运算最后求和是一样的，只是更加简短的一种实现方式
     for (int j = 0; j <= i; ++j) c[i] += a[j] * b[i - j];
-    
+
     if (c[i] >= 10) {
       c[i + 1] += c[i] / 10;
       c[i] %= 10;
@@ -377,7 +377,7 @@ bool greater_eq(int a[], int b[], int last_dg, int len) {
 void div(int a[], int b[], int c[], int d[]) {
   clear(c);
   clear(d);
-  
+
   int la, lb;
   for (la = LEN - 1; la > 0; --la)
     if (a[la - 1] != 0) break;
@@ -387,7 +387,7 @@ void div(int a[], int b[], int c[], int d[]) {
     puts("> <");
     return;
   }
-  
+
   // c 是商
   // d 是被除数的剩余部分，算法结束后自然成为余数
   for (int i = 0; i < la; ++i) d[i] = a[i];
@@ -431,9 +431,9 @@ void div(int a[], int b[], int c[], int d[]) {
     void read(int a[]) {
       static char s[LEN + 1];
       scanf("%s", s);
-      
+    
       clear(a);
-      
+    
       int len = strlen(s);
       for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
     }
@@ -448,7 +448,7 @@ void div(int a[], int b[], int c[], int d[]) {
     
     void add(int a[], int b[], int c[]) {
       clear(c);
-      
+    
       for (int i = 0; i < LEN - 1; ++i) {
         c[i] += a[i] + b[i];
         if (c[i] >= 10) {
@@ -460,7 +460,7 @@ void div(int a[], int b[], int c[], int d[]) {
     
     void sub(int a[], int b[], int c[]) {
       clear(c);
-      
+    
       for (int i = 0; i < LEN - 1; ++i) {
         c[i] += a[i] - b[i];
         if (c[i] < 0) {
@@ -472,10 +472,10 @@ void div(int a[], int b[], int c[], int d[]) {
     
     void mul(int a[], int b[], int c[]) {
       clear(c);
-      
+    
       for (int i = 0; i < LEN - 1; ++i) {
         for (int j = 0; j <= i; ++j) c[i] += a[j] * b[i - j];
-        
+    
         if (c[i] >= 10) {
           c[i + 1] += c[i] / 10;
           c[i] %= 10;
@@ -495,7 +495,7 @@ void div(int a[], int b[], int c[], int d[]) {
     void div(int a[], int b[], int c[], int d[]) {
       clear(c);
       clear(d);
-      
+    
       int la, lb;
       for (la = LEN - 1; la > 0; --la)
         if (a[la - 1] != 0) break;
@@ -505,7 +505,7 @@ void div(int a[], int b[], int c[], int d[]) {
         puts("> <");
         return;
       }
-      
+    
       for (int i = 0; i < la; ++i) d[i] = a[i];
       for (int i = la - lb; i >= 0; --i) {
         while (greater_eq(d, b, i, lb)) {
@@ -523,12 +523,12 @@ void div(int a[], int b[], int c[], int d[]) {
     
     int main() {
       read(a);
-      
+    
       char op[4];
       scanf("%s", op);
-      
+    
       read(b);
-      
+    
       switch (op[0]) {
         case '+':
           add(a, b, c);
@@ -550,7 +550,7 @@ void div(int a[], int b[], int c[], int d[]) {
         default:
           puts("> <");
       }
-      
+    
       return 0;
     }
     ```
@@ -587,7 +587,7 @@ void div(int a[], int b[], int c[], int d[]) {
     // 最终输出答案时需要将数字转为十进制
     void add(int a[], int b[], int c[]) {
       clear(c);
-      
+    
       for (int i = 0; i < LEN - 1; ++i) {
         c[i] += a[i] + b[i];
         if (c[i] >= p) {  // 在普通高精度运算下，p=10
@@ -733,14 +733,14 @@ $$
           for (int j = 0; j <= n; ++j) r[i + j] += a[i] * b[j];
         return r;
       }
-      
+    
       int m = n / 2 + 1;
       int *r = new int[m * 4 + 1]();
       int *z0, *z1, *z2;
-      
+    
       z0 = karatsuba_polymul(m - 1, a, b);
       z2 = karatsuba_polymul(n - m, a + m, b + m);
-      
+    
       // 计算 z1
       // 临时更改，计算完毕后恢复
       for (int i = 0; i + m <= n; ++i) a[i] += a[i + m];
@@ -750,12 +750,12 @@ $$
       for (int i = 0; i + m <= n; ++i) b[i] -= b[i + m];
       for (int i = 0; i <= (m - 1) * 2; ++i) z1[i] -= z0[i];
       for (int i = 0; i <= (n - m) * 2; ++i) z1[i] -= z2[i];
-      
+    
       // 由 z0、z1、z2 组合获得结果
       for (int i = 0; i <= (m - 1) * 2; ++i) r[i] += z0[i];
       for (int i = 0; i <= (m - 1) * 2; ++i) r[i + m] += z1[i];
       for (int i = 0; i <= (n - m) * 2; ++i) r[i + m * 2] += z2[i];
-      
+    
       delete[] z0;
       delete[] z1;
       delete[] z2;
@@ -803,13 +803,13 @@ $$
     struct Big {
       int a[MAXSIZE], len;
       bool flag;  // 标记符号'-'
-      
+    
       Big() {
         len = 1;
         memset(a, 0, sizeof a);
         flag = false;
       }
-      
+    
       Big(const int);
       Big(const char*);
       Big(const Big&);
@@ -821,9 +821,9 @@ $$
       // TODO: Big / Big;
       Big operator^(const int&) const;
       // TODO: Big ^ Big;
-      
+    
       // TODO: Big 位运算;
-      
+    
       int operator%(const int&) const;
       // TODO: Big ^ Big;
       bool operator<(const Big&) const;

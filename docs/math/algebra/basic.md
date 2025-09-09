@@ -139,7 +139,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
         $$
         \mathrm{i}^2=\mathrm{j}^2=\mathrm{k}^2=-1,\ \mathrm{i}\mathrm{j}=-\mathrm{j}\mathrm{i}=\mathrm{k},\ \mathrm{j}\mathrm{k}=-\mathrm{k}\mathrm{j}=\mathrm{i},\ \mathrm{k}\mathrm{i}=-\mathrm{i}\mathrm{k}=\mathrm{j}.
         $$
-        
+    
         那么可以验证，$\mathbf H$ 构成环，而且，它是一个非交换的除环。
     -   整数集的子集 $2\mathbf Z$，在通常意义的加法和乘法下构成环，它是交换环，没有零因子，但是并不含幺。
     -   整数模 $n$ 同余类 $\mathbf Z/n\mathbf Z$ 在同余类的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）。这样的环含有零因子，当且仅当 $n$ 是合数。所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域。它的乘法群 $((\mathbf Z/n\mathbf Z)^\times,\times)$ 就是整数模 $n$ 乘法群。
@@ -173,7 +173,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
         (a_1b_1^{-1})\cdot(a_2b_2^{-1}) &= (a_1\cdot a_2)(b_1\cdot b_2)^{-1}
         \end{aligned}
         $$
-        
+    
         则 $(Q,+,\cdot)$ 构成域，称为 $R$ 的分式域。例如，有理数域 $(\mathbf Q,+,\times)$ 就是整数环 $(\mathbf Z,+,\times)$ 的分式域。
     -   二次域（quadratic field）：它是在有理数域 $\mathbf Q$ 中添加了 $\sqrt d$ 而扩张成的，这里 $d\neq 0,1$ 且没有平方因子。相关内容可以参考 [二次域](../number-theory/quadratic.md)。
 

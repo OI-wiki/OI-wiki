@@ -12,9 +12,9 @@
 struct Node_t {
   int l, r;
   mutable int v;
-  
+
   Node_t(const int &il, const int &ir, const int &iv) : l(il), r(ir), v(iv) {}
-  
+
   bool operator<(const Node_t &o) const { return l < o.l; }
 };
 ```
@@ -170,10 +170,10 @@ struct Block {
   Block *next;  // 链表下一节点
   int l, r;     // 区间范围
   i64 val;      // 区间上的值
-  
+
   Block(Block *next, int l, int r, i64 val)
       : next(next), l(l), r(r), val(val) {}
-  
+
   bool operator<(const Block &b) const { return val < b.val; }
 } *root;
 ```

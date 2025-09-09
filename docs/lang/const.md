@@ -68,15 +68,15 @@ void sum(const std::vector<int> &data, int &total) {
 
 struct ConstMember {
   int s = 0;
-  
+
   void func() { std::cout << "General Function" << std::endl; }
-  
+
   void constFunc1() const { std::cout << "Const Function 1" << std::endl; }
-  
+
   void constFunc2(int ss) const {
     // func(); // const 成员函数不能调用非 const 成员函数
     constFunc1();
-    
+
     // s = ss; // const 成员函数不能修改成员变量
   }
 };
@@ -126,7 +126,7 @@ int main() {
     int main() {
       constexpr auto v0 = fib0(9);
       const auto v1 = fib1(9);
-      
+    
       cout << v0;
       cout << ' ';
       cout << v1;

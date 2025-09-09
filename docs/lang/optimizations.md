@@ -638,7 +638,7 @@ int f(int*) { return 0; }
     
     bool fermat() {
       const int max_value = 1000;
-      
+    
       // Endless loop with no side effects is UB
       for (int a = 1, b = 1, c = 1; true;) {
         if (((a * a * a) == ((b * b * b) + (c * c * c))))
@@ -654,7 +654,7 @@ int f(int*) { return 0; }
         }
         if (c > max_value) c = 1;
       }
-      
+    
       return false;  // not disproved
     }
     

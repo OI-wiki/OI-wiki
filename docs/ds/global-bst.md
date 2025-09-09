@@ -163,7 +163,7 @@
     
     struct Matrix {
       int M[2][2];
-      
+    
       Matrix operator*(const Matrix &B) const {
         static Matrix ret;
         for (int i = 0; i < 2; i++)
@@ -187,7 +187,7 @@
       p->to = v;
       p->nxt = Adj[u];
       Adj[u] = p;
-      
+    
       edge *q = ++ncnt;
       q->to = u;
       q->nxt = Adj[v];

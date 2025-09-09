@@ -36,7 +36,7 @@ Prüfer 是这样建立的：每次选择一个编号最小的叶结点并删掉
             degree[i] = adj[i].size();
             if (degree[i] == 1) leafs.insert(i);
           }
-          
+        
           vector<int> code(n - 2);
           for (int i = 0; i < n - 2; i++) {
             int leaf = *leafs.begin();
@@ -129,14 +129,14 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
       int n = adj.size();
       parent.resize(n), parent[n - 1] = -1;
       dfs(n - 1);
-      
+    
       int ptr = -1;
       vector<int> degree(n);
       for (int i = 0; i < n; i++) {
         degree[i] = adj[i].size();
         if (degree[i] == 1 && ptr == -1) ptr = i;
       }
-      
+    
       vector<int> code(n - 2);
       int leaf = ptr;
       for (int i = 0; i < n - 2; i++) {
@@ -212,16 +212,16 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
       int n = code.size() + 2;
       vector<int> degree(n, 1);
       for (int i : code) degree[i]++;
-      
+    
       set<int> leaves;
       for (int i = 0; i < n; i++)
         if (degree[i] == 1) leaves.insert(i);
-      
+    
       vector<pair<int, int>> edges;
       for (int v : code) {
         int leaf = *leaves.begin();
         leaves.erase(leaves.begin());
-        
+    
         edges.emplace_back(leaf, v);
         if (--degree[v] == 1) leaves.insert(v);
       }
@@ -242,11 +242,11 @@ vector<pair<int, int>> pruefer_decode(vector<int> const& code) {
   int n = code.size() + 2;
   vector<int> degree(n, 1);
   for (int i : code) degree[i]++;
-  
+
   int ptr = 0;
   while (degree[ptr] != 1) ptr++;
   int leaf = ptr;
-  
+
   vector<pair<int, int>> edges;
   for (int v : code) {
     edges.emplace_back(leaf, v);

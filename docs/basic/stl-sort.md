@@ -156,7 +156,7 @@ std::sort(a + 1, a + 1 + n, greater<int>());  // 从大到小排序
 ```cpp
 struct data {
   int a, b;
-  
+
   bool operator<(const data rhs) const {
     return (a == rhs.a) ? (b < rhs.b) : (a < rhs.a);
   }
