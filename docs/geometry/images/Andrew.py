@@ -77,7 +77,7 @@ def draw_lines(stk, x, y, highlight=None):
         ax.plot([x[i], x[j]], [y[i], y[j]], color="red")
 
 
-def add_text(str, fontsize=12,k=0):
+def add_text(str, fontsize=12, k=0):
     """在右下角添加多行文字"""
     ax.text(
         1.0,
@@ -146,7 +146,7 @@ def Andrew():
             init()
             if labels[stk[-1]] == "5":
                 add_text("上凸壳", fontsize=15)
-                add_text("4 已经在凸壳中",fontsize = 10,k=1)
+                add_text("4 已经在凸壳中", fontsize=10, k=1)
             else:
                 add_text("上凸壳", fontsize=15)
 
