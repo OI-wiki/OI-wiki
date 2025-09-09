@@ -271,7 +271,7 @@ int querymax(int x, int y) {
     --8<-- "docs/graph/code/hld/hld_1.cpp"
     ```
 
-### [loj 139. 树链剖分](https://loj.ac/p/139)
+### [LOJ 139. 树链剖分](https://loj.ac/p/139)
 
 #### 题目大意
 
@@ -548,10 +548,10 @@ DP 数组的长度我们可以根据子树最深结点算出。
 
 [「SDOI2011」染色](https://www.luogu.com.cn/problem/P2486)
 
-[「SDOI2014」旅行](https://www.luogu.com.cn/problem/P10641)
+[「SDOI2014」旅行](https://www.luogu.com.cn/problem/P3313)
 
 [「洛谷 P3979」遥远的国度](https://www.luogu.com.cn/problem/P3979)
 
 [「POI2014」Hotel 加强版](https://hydro.ac/p/bzoj-P4543)（长链剖分优化 DP）
 
-[攻略](https://hydro.ac/p/bzoj-P3252)（长链剖分优化贪心）
+[攻略](https://www.luogu.com.cn/problem/P10641)（长链剖分优化贪心）
