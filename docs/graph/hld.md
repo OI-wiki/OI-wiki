@@ -86,39 +86,32 @@ $$
 
 我们先给出一些定义：
 
--   $fa(x)$ 表示结点 $x$ 在树上的父亲。
--   $dep(x)$ 表示结点 $x$ 在树上的深度。
--   $siz(x)$ 表示结点 $x$ 的子树的结点个数。
--   $son(x)$ 表示结点 $x$ 的 **重儿子**。
--   $top(x)$ 表示结点 $x$ 所在 **重链** 的顶部结点（深度最小）。
--   $dfn(x)$ 表示结点 $x$ 的 **DFS 序**，也是其在线段树中的编号。
--   $rnk(x)$ 表示 DFS 序所对应的结点编号，有 $rnk(dfn(x))=x$。
+-   $\textit{fa}(x)$ 表示结点 $x$ 在树上的父亲。
+-   $\textit{dep}(x)$ 表示结点 $x$ 在树上的深度。
+-   $\textit{siz}(x)$ 表示结点 $x$ 的子树的结点个数。
+-   $\textit{son}(x)$ 表示结点 $x$ 的 **重儿子**。
+-   $\textit{top}(x)$ 表示结点 $x$ 所在 **重链** 的顶部结点（深度最小）。
+-   $\textit{dfn}(x)$ 表示结点 $x$ 的 **DFS 序**，也是其在线段树中的编号。
+-   $\textit{rnk}(x)$ 表示 DFS 序所对应的结点编号，有 $rnk(dfn(x))=x$。
 
-我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $fa(x)$，$dep(x)$，$siz(x)$，$son(x)$，第二次 DFS 求出 $top(x)$，$dfn(x)$，$rnk(x)$。
+我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $\textit{fa}(x)$，$\textit{dep}(x)$，$\textit{siz}(x)$，$\textit{son}(x)$，第二次 DFS 求出 $\textit{top}(x)$，$\textit{dfn}(x)$，$\textit{rnk}(x)$。
 
 ```cpp
-void dfs1(int o) {
-  son[o] = -1;
-  siz[o] = 1;
-  for (int j = h[o]; j; j = nxt[j])
-    if (!dep[p[j]]) {
-      dep[p[j]] = dep[o] + 1;
-      fa[p[j]] = o;
-      dfs1(p[j]);
-      siz[o] += siz[p[j]];
-      if (son[o] == -1 || siz[p[j]] > siz[son[o]]) son[o] = p[j];
-    }
+void dfs1(int u, int f) {
+  fa[u] = f, dep[u] = dep[f] + 1, siz[u] = 1;
+  for (auto v : G[u]) {
+    if (v == f) continue;
+    dfs1(v, u);
+    siz[u] += siz[v];
+    if (siz[v] > siz[son[u]]) son[u] = v;
+  }
 }
 
-void dfs2(int o, int t) {
-  top[o] = t;
-  cnt++;
-  dfn[o] = cnt;
-  rnk[cnt] = o;
-  if (son[o] == -1) return;
-  dfs2(son[o], t);  // 优先对重儿子进行 DFS，可以保证同一条重链上的点 DFS 序连续
-  for (int j = h[o]; j; j = nxt[j])
-    if (p[j] != son[o] && p[j] != fa[o]) dfs2(p[j], p[j]);
+void dfs2(int u, int ftop) {
+  top[u] = ftop, dfn[u] = ++idx, rnk[idx] = u;
+  if (son[u]) dfs2(son[u], ftop);
+  for (auto v : G[u])
+    if (v != son[u] && v != fa[u]) dfs2(v, v);
 }
 ```
 
@@ -187,10 +180,8 @@ $$
 ```cpp
 int lca(int u, int v) {
   while (top[u] != top[v]) {
-    if (dep[top[u]] > dep[top[v]])
-      u = fa[top[u]];
-    else
-      v = fa[top[v]];
+    if (dep[top[u]] > dep[top[v]]) u = fa[top[u]];
+    else v = fa[top[v]];
   }
   return dep[u] > dep[v] ? v : u;
 }
@@ -296,19 +287,19 @@ $1 \le n,m \le 10^5$。
 
 先以 $1$ 作为根结点跑 `dfs`，预处理出树链剖分所必需的信息。同时，维护 $\textit{root}$ 为换根后当前树的根结点。
 
-对于换根操作，我们直接令 $root\gets u$。
+对于换根操作，我们直接令 $\textit{root}\gets u$。
 
-下面来考虑操作子树的问题。我们根据 $u$ 和 $root$ 的相对位置关系做分类讨论：
+下面来考虑操作子树的问题。我们根据 $u$ 和 $\textit{root}$ 的相对位置关系做分类讨论：
 
--   $u = root$：这是最特殊的情况，直接对线段树的根结点打上标记/查询答案即可。
+-   $u = \textit{root}$：这是最特殊的情况，直接对线段树的根结点打上标记/查询答案即可。
 
--   $u$ 是 $root$ 的祖先，即 $u$ 位于 $1$ 到 $root$ 的简单路径上。
+-   $u$ 是 $\textit{root}$ 的祖先，即 $u$ 位于 $1$ 到 $\textit{root}$ 的简单路径上。
 
-    这是最值得注意的情况。定义 $v$ 为 $u$ 到 $root$ 的简单路径上除 $u$ 以外的深度最小的点，可以发现 $v$ 及其子树以外的部分都属于 $u$ 及其子树。
+    这是最值得注意的情况。定义 $v$ 为 $u$ 到 $\textit{root}$ 的简单路径上除 $u$ 以外的深度最小的点，可以发现 $v$ 及其子树以外的部分都属于 $u$ 及其子树。
 
-    我们让 $root$ 所对应的点往上跳重链直到所处重链的顶部结点深度大于 $v$ 的深度（$u$ 的深度加一），此时我们已经跳到了和 $u$ 同一条重链上。由于同一条重链上编号是连续的，我们只需要用深度差作为编号差，就可以得到 $v$。
+    我们让 $\textit{root}$ 所对应的点往上跳重链直到所处重链的顶部结点深度大于 $v$ 的深度（$u$ 的深度加一），此时我们已经跳到了和 $u$ 同一条重链上。由于同一条重链上编号是连续的，我们只需要用深度差作为编号差，就可以得到 $v$。
 
-    那么由于 $v$ 子树覆盖的区间为 $[dfn(v),dfn(v)+siz(v))$，那么我们只需要对 $[1,dfn(v))\cup[dfn(v)+siz(v),n]$ 操作即可。
+    那么由于 $v$ 子树覆盖的区间为 $[\textit{dfn}(v),\textit{dfn}(v)+\textit{siz}(v))$，那么我们只需要对 $[1,\textit{dfn}(v))\cup[\textit{dfn}(v)+\textit{siz}(v),n]$ 操作即可。
 
 -   其它情况。可以发现换根操作不会影响 $u$ 的子树，用正常的方式维护即可。
 
@@ -341,7 +332,7 @@ $1 \le n,m \le 10^5$。
 
 ![](./images/hld2.png)
 
-其中红色虚线是一条重链，$d$ 是询问的结果即 $dis(k, bot[u])$，$v$ 的深度为 $(dep[k]+dep[bot[u]]-d)/2$。
+其中红色虚线是一条重链，$d$ 是询问的结果即 $\textit{dis}(k, \textit{bot}(u))$，$v$ 的深度为 $(\textit{dep}(k)+\textit{dep}(\textit{bot}(u))-d)/2$。
 
 这样的话，如果 $v$ 只有一个儿子，$k$ 的父亲就是 $v$，否则可以递归地在 $w$ 的子树中找 $k$ 的父亲。
 
