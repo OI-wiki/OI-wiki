@@ -395,7 +395,7 @@ unsigned long long get_cycle_from_mod(
 
 -   [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/)
 -   [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/)
--   [HackerRank - Is Fibo](https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/problem)
+-   [HackerRank - Is Fibo](https://www.hackerrank.com/challenges/is-fibo/problem)
 -   [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
 -   [洛谷 P4000 斐波那契数列](https://www.luogu.com.cn/problem/P4000)
 
