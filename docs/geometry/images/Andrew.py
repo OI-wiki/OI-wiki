@@ -1,18 +1,50 @@
 import matplotlib.pyplot as plt
 
 # 点的坐标
-points = [(0, 1), (1, 4), (2, 6), (3, 0), (4, 3), (4, 4), (6, 6)]
+points = [(0, 1), (1, 4), (2.5, 6), (3, 0), (4, 3), (4, 4), (6, 6)]
 labels = ["1", "2", "3", "4", "5", "6", "7"]
 
 tot = 0
-fig, ax = plt.subplots(figsize=(5, 5))
+fig, ax = plt.subplots(figsize=(4, 4))
+
+scale_y = 0.7
 
 
-def save():
+def save(id=-1):
     """保存图片（递增编号）"""
     global tot
-    tot += 1
-    plt.savefig(f"data/Andrew{tot}.png", dpi=200, bbox_inches="tight")
+    if id == -1:
+        tot += 1
+        id = tot
+
+    if id < 10:
+        ax.text(
+            0.025,
+            1.0,
+            str(id),
+            transform=ax.transAxes,
+            fontsize=15,
+            fontproperties="SimHei",
+            color="black",
+            ha="right",
+            va="bottom",
+        )
+    else:
+        ax.text(
+            0.055,
+            1.0,
+            str(id),
+            transform=ax.transAxes,
+            fontsize=15,
+            fontproperties="SimHei",
+            color="black",
+            ha="right",
+            va="bottom",
+        )
+
+    plt.savefig(f"png/Andrew{id}.png", dpi=150, bbox_inches="tight")
+
+    plt.savefig(f"svg/Andrew{id}.svg", dpi=150, bbox_inches="tight")
 
 
 def draw_points():
@@ -24,11 +56,15 @@ def draw_points():
     for xi, yi, label in zip(x, y, labels):
         dx, dy = 0.1, 0.1
         if label == "5":
-            dx, dy = -0.3, -0.3
+            dx, dy = -0.4, -0.4
+        elif label == "1":
+            dx, dy = -0.4, -0.4
         elif label == "6":
-            dx, dy = -0.2, -0.3
+            dx, dy = -0.1, 0.3
         elif label == "2":
-            dx, dy = -0.2, 0.1
+            dx, dy = -0.3, 0.1
+        elif label == "4":
+            dx, dy = 0.2, 0.1
         ax.text(xi + dx, yi + dy, label, fontsize=12, color="blue")
 
 
@@ -41,20 +77,19 @@ def draw_lines(stk, x, y, highlight=None):
         ax.plot([x[i], x[j]], [y[i], y[j]], color="red")
 
 
-def add_text(lines, fontsize=12):
+def add_text(str, fontsize=12,k=0):
     """在右下角添加多行文字"""
-    for k, line in enumerate(lines):
-        ax.text(
-            1.0,
-            0.06 * k,
-            line,
-            transform=ax.transAxes,
-            fontsize=fontsize,
-            fontproperties="SimHei",
-            color="black",
-            ha="right",
-            va="bottom",
-        )
+    ax.text(
+        1.0,
+        0.1 * k,
+        str,
+        transform=ax.transAxes,
+        fontsize=fontsize,
+        fontproperties="SimHei",
+        color="black",
+        ha="right",
+        va="bottom",
+    )
 
 
 def cross(p1, p2):
@@ -85,7 +120,7 @@ def Andrew():
     # 下凸壳
     for i in range(1, len(points)):
         init()
-        add_text(["下凸壳"], fontsize=15)
+        add_text("下凸壳", fontsize=15)
         draw_lines(stk, x, y, highlight=(stk[-1], i))
         save()
 
@@ -98,7 +133,7 @@ def Andrew():
         ):
             used[stk.pop()] = False
             init()
-            add_text(["下凸壳"], fontsize=15)
+            add_text("下凸壳", fontsize=15)
             draw_lines(stk, x, y, highlight=(stk[-1], i))
             save()
 
@@ -110,9 +145,10 @@ def Andrew():
         if not used[i]:
             init()
             if labels[stk[-1]] == "5":
-                add_text(["上凸壳", "4 已经在凸壳中，跳过"], fontsize=12)
+                add_text("上凸壳", fontsize=15)
+                add_text("4 已经在凸壳中",fontsize = 10,k=1)
             else:
-                add_text(["上凸壳"], fontsize=15)
+                add_text("上凸壳", fontsize=15)
 
             draw_lines(stk, x, y, highlight=(stk[-1], i))
             save()
@@ -127,7 +163,7 @@ def Andrew():
             ):
                 used[stk.pop()] = False
                 init()
-                add_text(["上凸壳"], fontsize=15)
+                add_text("上凸壳", fontsize=15)
                 draw_lines(stk, x, y, highlight=(stk[-1], i))
                 save()
 
@@ -136,12 +172,19 @@ def Andrew():
 
     # 完成
     init()
-    add_text(["完成"], fontsize=15)
+    add_text("完成", fontsize=15)
     draw_lines(stk, x, y)
     save()
 
+    init()
+    add_text("完成", fontsize=15)
+    draw_lines(stk, x, y)
+    save(0)
+
 
 if __name__ == "__main__":
+    points = [(x, y * scale_y) for (x, y) in points]
+
     init()
     save()
     Andrew()
