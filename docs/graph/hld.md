@@ -180,8 +180,10 @@ $$
 ```cpp
 int lca(int u, int v) {
   while (top[u] != top[v]) {
-    if (dep[top[u]] > dep[top[v]]) u = fa[top[u]];
-    else v = fa[top[v]];
+    if (dep[top[u]] > dep[top[v]])
+      u = fa[top[u]];
+    else
+      v = fa[top[v]];
   }
   return dep[u] > dep[v] ? v : u;
 }
