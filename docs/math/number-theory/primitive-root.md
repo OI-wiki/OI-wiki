@@ -30,7 +30,9 @@ $$
 a^n = a^{\delta_m(a)q + r} = (a^{\delta_m(a)})^q \cdot a^r \equiv a^r \pmod m.
 $$
 
-这说明，对于任意指数的幂，可以将它平移到第一个非负的循环节．由此，可以得到一系列关于阶的性质．<a id="ord-prop-1"></a>
+这说明，对于任意指数的幂，可以将它平移到第一个非负的循环节．由此，可以得到一系列关于阶的性质．
+
+<a id="ord-prop-1"></a>
 
 ???+ note "性质 1"
     对于 $a\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，幂次 $a^0(=1),a,a^2,\cdots,a^{\delta_m(a)-1}$ 模 $m$ 两两不同余．
@@ -48,7 +50,9 @@ $$
 
 [欧拉定理](./fermat.md#欧拉定理) 中，同余关系 $a^{\varphi(m)}\equiv 1\pmod m$ 对于所有 $a\perp m$ 都成立．结合 [性质 2](#ord-prop-2)，这说明对于所有 $a\perp m$，都有 $\delta_m(a)\mid\varphi(m)$．换句话说，$\varphi(m)$ 是所有 $a\perp m$ 的阶的一个公倍数．对于一个正整数 $m$，所有 $a\perp m$ 的阶 $\delta_m(a)$ 的最小公倍数，记作 $\lambda(m)$，就是 $m$ 的 [Carmichael 函数](#carmichael-函数)．后文会详细讨论它的性质．
 
-和其他的循环结构类似，可以根据 $a$ 的阶计算 $a^k$ 的阶．<a id="ord-prop-3"></a>
+和其他的循环结构类似，可以根据 $a$ 的阶计算 $a^k$ 的阶．
+
+<a id="ord-prop-3"></a>
 
 ???+ note "性质 3"
     对于 $k,a\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，有
@@ -72,7 +76,9 @@ $$
 
 ### 乘积的阶
 
-设 $a,b$ 是与 $m$ 互素的不同整数．如果已知阶 $\delta_m(a)$ 和 $\delta_m(b)$，那么，同样可以获得一些关于它们乘积 $ab$ 的阶 $\delta_{m}(ab)$ 的信息．<a id="ord-prop-4"></a>
+设 $a,b$ 是与 $m$ 互素的不同整数．如果已知阶 $\delta_m(a)$ 和 $\delta_m(b)$，那么，同样可以获得一些关于它们乘积 $ab$ 的阶 $\delta_{m}(ab)$ 的信息．
+
+<a id="ord-prop-4"></a>
 
 ???+ note "性质 4"
     对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，那么，有
@@ -128,7 +134,9 @@ $$
     
     这就得到左侧的整除关系．
 
-对于 $a$ 和 $b$ 的阶互素的情形，这一结论有着更为简单的形式．<a id="ord-prop-4p"></a>
+对于 $a$ 和 $b$ 的阶互素的情形，这一结论有着更为简单的形式．
+
+<a id="ord-prop-4p"></a>
 
 ???+ note "性质 4'"
     对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，那么，有
@@ -154,7 +162,9 @@ $$
 
 一般情形中，[性质 4](#ord-prop-4) 得到的界已经是紧的．乘积的阶取得下界的情形很容易构造：例如 $(a,b,m)=(3,5,7)$ 时，$\delta_m(a)=\delta_m(b)=6$，但是它们的乘积的阶 $\delta_m(ab)=1$．
 
-尽管一般情形中，乘积 $ab$ 的阶未必是它们的阶的最小公倍数，但是总能找到一个元素使得它的阶等于这个最小公倍数．<a id="ord-prop-5"></a>
+尽管一般情形中，乘积 $ab$ 的阶未必是它们的阶的最小公倍数，但是总能找到一个元素使得它的阶等于这个最小公倍数．
+
+<a id="ord-prop-5"></a>
 
 ???+ note "性质 5"
     对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，总是存在 $c\in\mathbf Z$ 且 $c\perp m$ 使得
@@ -347,7 +357,9 @@ $$
     ??? note "证明"
         设 $g$ 是模 $p^{e}$ 的原根，则 $g+p^e$ 也是模 $p^{e}$ 的原根．两者之间必然有一个是奇数，不妨设它就是 $g$．显然，$(g,2p^e)=1$．设 $\delta=\delta_{2p^e}(g)$，需要证明 $\delta=\varphi(2p^e)$．由欧拉定理，$\delta\mid\varphi(2p^e)$．同时，根据定义 $g^\delta\equiv 1\pmod{2p^e}$，所以，$g^\delta\equiv 1\pmod{p^e}$，因此，由阶的 [性质 2](#ord-prop-2) 和 $g$ 的选取可知，$\delta_{p^e}(g)=\varphi(p^e)\mid \delta$．由欧拉函数表达式可知，$\varphi(2p^e) = \varphi(p^e)$．所以，$\delta=\delta_{2p^e}(g)=\varphi(p^e)$．这就说明 $\delta$ 是模 $2p^e$ 的原根．
 
-4.  $m\ne 1,2,4,p^{e},2p^{e}$，其中，$p$ 为奇素数，$e\in\mathbf N_+$．<a id="prim-root-lem-4"></a>
+4.  $m\ne 1,2,4,p^{e},2p^{e}$，其中，$p$ 为奇素数，$e\in\mathbf N_+$．
+
+    <a id="prim-root-lem-4"></a>
 
     ???+ note "引理 4"
         假设 $m\neq 1,2,4$ 且不存在奇素数 $p$ 和正整数 $e$ 使得 $m=p^e$ 或 $m=2p^e$．那么，模 $m$ 的原根不存在．
@@ -457,7 +469,9 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
     
     这说明 $\delta_m(5)\nmid 2^{e-3}$，又因为 $\delta_m(5) \mid 2^{e-2}$，所以，$5$ 只能是 $2^{e-2}$ 阶元素．这就说明，$\lambda(m)=2^{e-2}$．
 
-在这个引理的证明过程中，实际上得到了关于模 $2^e$ 既约剩余系结构的刻画：<a id="mod-pow-2"></a>
+在这个引理的证明过程中，实际上得到了关于模 $2^e$ 既约剩余系结构的刻画：
+
+<a id="mod-pow-2"></a>
 
 ???+ note "推论"
     设模数为 $2^e$ 且 $e \ge 2$．那么，所有奇数都同余于唯一一个 $\pm 5^k$ 形式的整数同余，其中，$k\in\mathbf N$ 且 $k < 2^{e-2}$．也就是说，$\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 两两不同余，且构成一个既约剩余系．
