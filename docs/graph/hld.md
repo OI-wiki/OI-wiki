@@ -266,7 +266,6 @@ int lca(int u, int v) {
     重点考虑操作子树的问题。我们根据 $u$ 和 $\textit{root}$ 的相对位置关系做分类讨论：
     
     -   $u = \textit{root}$：这是最特殊的情况，相当于对整棵树做操作。为此，直接对线段树的根结点打上标记或查询答案即可。
-    
     -   $u$ 是 $\textit{root}$ 在原始树上的祖先，即 $u$ 位于 $1$ 到 $\textit{root}$ 的简单路径上。
     
         这是最值得注意的情况。定义 $v$ 为原始树上 $u$ 到 $\textit{root}$ 的简单路径上除 $u$ 以外的深度最小的点，可以发现原始树上 $v$ 及其子树以外的部分恰好是当前树上 $u$ 及其子树。
@@ -277,7 +276,7 @@ int lca(int u, int v) {
         -   若 $\textit{dep}(\textit{top}(v))<\textit{dep}(u)+1$，亦即 $\textit{dep}(\textit{top}(v))\le \textit{dep}(u)$，这说明 $u,v$ 处在同一条重链上。根据同一条重链上 DFS 序连续的性质，所求的 $v$ 必然满足 $\textit{dfn}(v)=\textit{dfn}(u)+1$。所以，可以令 $v\gets\textit{rnk}(\textit{dfn}(u)+1)$。
     
         注意，这两种情形中可以合并：在跳完之后可以发现所求的 $v$ 一定满足
-
+    
         $$
         \textit{dfn}(v)=\textit{dfn}(\textit{top}(v))+\textit{dep}(u)+1-\textit{dep}(\textit{top}(v)).
         $$
@@ -285,7 +284,6 @@ int lca(int u, int v) {
         容易验证，利用这一表达式找到的 $v$，和分类讨论找到的 $v$ 是等价的。参考实现中就用到了这一表达式。
     
         由于 $v$ 子树覆盖的区间为 $[\textit{dfn}(v),\textit{dfn}(v)+\textit{siz}(v))$，所以只需要对 $[1,\textit{dfn}(v))\cup[\textit{dfn}(v)+\textit{siz}(v),n]$ 操作即可。
-    
     -   其它情况。可以发现换根操作不会影响 $u$ 的子树，用正常的方式维护即可。
     
     这样做的复杂度与不带换根的做法相同，均为 $O(n\log^2 n)$。
@@ -388,13 +386,13 @@ int lca(int u, int v) {
     
     定义顶点 $x$ 的深度数组为一个无限序列 $[d_{x, 0}, d_{x, 1}, d_{x, 2}, \dots]$，其中 $d_{x, i}$ 表示满足以下两个条件的顶点 $y$ 的数量：
     
-    - $x$ 是 $y$ 的祖先；
-    - 从 $x$ 到 $y$ 的简单路径恰好经过 $i$ 条边。
+    -   $x$ 是 $y$ 的祖先；
+    -   从 $x$ 到 $y$ 的简单路径恰好经过 $i$ 条边。
     
     顶点 $x$ 的深度数组的主导下标（dominant index）（简称顶点 $x$ 的主导下标）定义为一个下标 $j$，满足：
     
-    - 对于所有 $k < j$，都有 $d_{x, k} < d_{x, j}$；
-    - 对于所有 $k > j$，都有 $d_{x, k} \le d_{x, j}$。
+    -   对于所有 $k < j$，都有 $d_{x, k} < d_{x, j}$；
+    -   对于所有 $k > j$，都有 $d_{x, k} \le d_{x, j}$。
     
     请计算树中每个顶点的主导下标。
 
