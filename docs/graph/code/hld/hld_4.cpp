@@ -92,6 +92,9 @@ void modify_subtree(int u, int w) {
     int v = root;
     while (dep[top[v]] > dep[u] + 1) v = fa[top[v]];  // 向上跳
     v = rnk[dfn[top[v]] + dep[u] + 1 - dep[top[v]]];  // 计算 v
+    // 上面这一句可以替换为如下两句：
+    // if (dep[top[v]] == dep[u] + 1) v = top[v];
+    // else if (dep[top[v]] < dep[u] + 1) v = rnk[dfn[u] + 1];
     if (1 <= dfn[v] - 1) T.upd(1, 1, n, 1, dfn[v] - 1, w);
     if (dfn[v] + siz[v] <= n) T.upd(1, 1, n, dfn[v] + siz[v], n, w);
   } else
@@ -151,3 +154,4 @@ int main() {
   std::cout.flush();
   return 0;
 }
+
