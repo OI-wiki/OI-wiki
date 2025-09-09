@@ -41,40 +41,40 @@ author: GoodCoder666, Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogee
 
 树剖的实现分两个 DFS 的过程。伪代码如下：
 
-第一个 DFS 记录每个结点的父结点（father）、深度（deep）、子树大小（size）、重子结点（hson）。
+第一个 DFS 记录每个结点的父结点（$\textit{father}$）、深度（$\textit{depth}$）、子树大小（$\textit{size}$）、重子结点（$\textit{hson}$）。
 
 $$
 \begin{array}{l}
-\text{TREE-BUILD }(u,dep) \\
+\text{TREE-BUILD }(u,\textit{dep}) \\
 \begin{array}{ll}
-1 & u.hson\gets 0 \\
-2 & u.hson.size\gets 0 \\
-3 & u.deep\gets dep \\
-4 & u.size\gets 1 \\
-5 & \textbf{for }\text{each }u\text{'s son }v \\
-6 & \qquad u.size\gets u.size + \text{TREE-BUILD }(v,dep+1) \\
-7 & \qquad v.father\gets u \\
-8 & \qquad \textbf{if }v.size> u.hson.size \\
-9 & \qquad \qquad u.hson\gets v \\
-10 & \textbf{return } u.size
+1 & u.\textit{hson}\gets 0 \\
+2 & u.\textit{hson}.\textit{size}\gets 0 \\
+3 & u.\textit{depth}\gets \textit{dep} \\
+4 & u.\textit{size}\gets 1 \\
+5 & \textbf{for }\text{each son }v\text{ of }u \\
+6 & \qquad u.\textit{size}\gets u.\textit{size} + \text{TREE-BUILD }(v,\textit{dep}+1) \\
+7 & \qquad v.\textit{father}\gets u \\
+8 & \qquad \textbf{if }v.\textit{size}> u.\textit{hson}.\textit{size} \\
+9 & \qquad \qquad u.\textit{hson}\gets v \\
+10 & \textbf{return } u.\textit{size}
 \end{array}
 \end{array}
 $$
 
-第二个 DFS 记录所在链的链顶（top，应初始化为结点本身）、重边优先遍历时的 DFS 序（dfn）、DFS 序对应的结点编号（rank）。
+第二个 DFS 记录所在链的链顶（$\textit{top}$，应初始化为结点本身）、重边优先遍历时的 DFS 序（$\textit{top}$）、DFS 序对应的结点编号（$\textit{rank}$）。
 
 $$
 \begin{array}{l}
-\text{TREE-DECOMPOSITION }(u,top) \\
+\text{TREE-DECOMPOSITION }(u,\textit{top}) \\
 \begin{array}{ll}
-1 & u.top\gets top \\
-2 & tot\gets tot+1\\
-3 & u.dfn\gets tot \\
-4 & rank(tot)\gets u \\
-5 & \textbf{if }u.hson\text{ is not }0 \\
-6 & \qquad \text{TREE-DECOMPOSITION }(u.hson,top) \\
-7 & \qquad \textbf{for }\text{each }u\text{'s son }v \\
-8 & \qquad \qquad \textbf{if }v\text{ is not }u.hson \\
+1 & u.\textit{top}\gets \textit{top} \\
+2 & \textit{tot}\gets \textit{tot}+1\\
+3 & u.\textit{dfn}\gets \textit{tot} \\
+4 & \textit{rank}(\textit{tot})\gets u \\
+5 & \textbf{if }u.\textit{hson}\text{ is not }0 \\
+6 & \qquad \text{TREE-DECOMPOSITION }(u.\textit{hson},\textit{top}) \\
+7 & \qquad \textbf{for }\text{each son }v\text{ of }u \\
+8 & \qquad \qquad \textbf{if }v\text{ is not }u.\textit{hson} \\
 9 & \qquad \qquad \qquad \text{TREE-DECOMPOSITION }(v,v) 
 \end{array}
 \end{array}
@@ -90,7 +90,7 @@ $$
 -   $\operatorname{son}(x)$ 表示结点 $x$ 的 **重儿子**。
 -   $\operatorname{top}(x)$ 表示结点 $x$ 所在 **重链** 的顶部结点（深度最小）。
 -   $\operatorname{dfn}(x)$ 表示结点 $x$ 的 **DFS 序**，也是其在线段树中的编号。
--   $\operatorname{rnk}(x)$ 表示 DFS 序所对应的结点编号，有 $rnk(dfn(x))=x$。
+-   $\operatorname{rnk}(x)$ 表示 DFS 序所对应的结点编号，有 $\operatorname{rnk}(\operatorname{dfn}(x))=x$。
 
 我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $\operatorname{fa}(x)$，$\operatorname{dep}(x)$，$\operatorname{siz}(x)$，$\operatorname{son}(x)$，第二次 DFS 求出 $\operatorname{top}(x)$，$\operatorname{dfn}(x)$，$\operatorname{rnk}(x)$。
 
