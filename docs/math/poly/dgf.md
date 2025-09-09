@@ -182,9 +182,9 @@ $$
     $$
     g(nm)=-\sum_{d\mid nm,d\ne 1}{f(d)g\left(\dfrac {nm}d \right)}=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(ab)g\left(\dfrac {nm}{ab} \right)}
     $$
-
+    
     又因为 $\dfrac{nm}{ab}<nm$，所以有：
-
+    
     $$
     \begin{aligned}
     g(nm)&=-\sum_{a\mid n,b\mid m,ab\ne 1}{f(ab)g\left(\dfrac {nm}{ab} \right)}\\\\

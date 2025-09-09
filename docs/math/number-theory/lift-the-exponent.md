@@ -62,9 +62,9 @@
             &\equiv px^{p-1} \pmod{p^2}\\
         \end{aligned}
         $$
-    
+        
         从而
-    
+        
         $$
         \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+1
         $$

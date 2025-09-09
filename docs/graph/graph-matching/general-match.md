@@ -62,13 +62,13 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
         int to;
         T cost;
       };
-    
+      
       vector<edge> edges;
       vector<vector<int>> g;
       int n;
-    
+      
       graph(int _n) : n(_n) { g.resize(n); }
-    
+      
       virtual int add(int from, int to, T cost) = 0;
     };
     
@@ -79,9 +79,9 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
       using graph<T>::edges;
       using graph<T>::g;
       using graph<T>::n;
-    
+      
       undirectedgraph(int _n) : graph<T>(_n) {}
-    
+      
       int add(int from, int to, T cost = 1) {
         assert(0 <= from && from < n && 0 <= to && to < n);
         int id = (int)edges.size();
@@ -103,7 +103,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
       vector<int> parent(g.n, -1);  // 父节点
       queue<int> q;
       int aux_time = -1;
-    
+      
       auto lca = [&](int v, int u) {
         aux_time++;
         while (true) {
@@ -121,7 +121,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
           swap(v, u);
         }
       };  // lca
-    
+      
       auto blossom = [&](int v, int u, int a) {
         while (orig[v] != a) {
           parent[v] = u;
@@ -134,7 +134,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
           v = parent[u];
         }
       };  // blossom
-    
+      
       auto augment = [&](int v) {
         while (v != -1) {
           int pv = parent[v];
@@ -144,7 +144,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
           v = next_v;
         }
       };  // augment
-    
+      
       auto bfs = [&](int root) {
         fill(label.begin(), label.end(), -1);
         iota(orig.begin(), orig.end(), 0);
@@ -182,13 +182,13 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
         }
         return false;
       };  // bfs
-    
+      
       auto greedy = [&]() {
         vector<int> order(g.n);
         // 随机打乱 order
         iota(order.begin(), order.end(), 0);
         shuffle(order.begin(), order.end(), rng);
-    
+        
         // 将可以匹配的点匹配
         for (int i : order) {
           if (match[i] == -1) {
@@ -204,7 +204,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
           }
         }
       };  // greedy
-    
+      
       // 一开始先随机匹配
       greedy();
       // 对未匹配点找增广路
@@ -329,13 +329,13 @@ $$
     ```cpp
     void eliminate(int A[][MAXN], int r, int c) {  // 消去第 r 行第 c 列
       row_marked[r] = col_marked[c] = true;        // 已经被消掉
-    
+      
       int inv = quick_power(A[r][c], p - 2);  // 逆元
-    
+      
       for (int i = 1; i <= n; i++)
         if (!row_marked[i] && A[i][c]) {
           int tmp = (long long)A[i][c] * inv % p;
-    
+          
           for (int j = 1; j <= n; j++)
             if (!col_marked[j] && A[r][j])
               A[i][j] = (A[i][j] - (long long)tmp * A[r][j]) % p;

@@ -46,60 +46,60 @@
 -   文件存储：
 
     -   使用小写文件名，以 `-` 代替空格。详见 SAVE-1。
-
+    
     -   不要插入外链图片。详见 SAVE-2。
-
+    
     -   图片尽可能使用 SVG 格式，只应使用 SVG 1.1 标准。详见 SAVE-3。
-
+    
     -   动图应使用 SVG 或 APNG 格式。详见 SAVE-4。
-
+    
     -   有源文件的图片建议同时提交源文件。详见 SAVE-5。
-
+    
     -   插入外链时建议同时插入快照链接。详见 SAVE-6。
-
+    
     -   不要以插入外链的方式插入内链。详见 SAVE-7。
 
 -   标点符号：
 
     -   规范使用标点符号。在每句话的末尾添加 **句号**。详见 PUNC-1 至 PUNC-7。
-
+    
     -   注意区分连接号（hyphen、en dash、em dash）。详见 PUNC-8。
 
 -   Markdown 语法与主题扩展语法：
 
     -   只应使用二级、三级、四级标题。不要使用标题替代加粗。不要在标题写 LaTeX 公式。详见 LINT-1、MDFM-1、CONT-4、CONT-9。
-
+    
     -   使用折叠框[^note3]语法和选项卡[^note6]语法时，须保持内部缩进一致，**对空行也是如此**。**不要漏掉** 空行的空格缩进。详见 LINT-6、MDFM-6。
-
+    
     -   不要使用删除线 `~~foo~~` 语法。详见 LINT-3。
-
+    
     -   行间公式应写作
-
+    
         ```text
         $$
         a^{2}=b^{2}+c^{2}
         $$
         ```
-
+        
         而不是 `$$a^{2}=b^{2}+c^{2}$$`。详见 LINT-5。
-
+    
     -   使用折叠框而不是块引用（Blockquotes）。详见 MDFM-5。
-
+    
     -   代码块只应使用 ` ``` ` 语法，且须标注语言。详见 LINT-7、MDFM-3。
 
 -   LaTeX 公式：
     -   不应与 [数学符号表](./symbol.md) 相冲突。详见 MATH-1.1。
-
+    
     -   注意字体的使用，详见 MATH-1.2、MATH-1.15、MATH-2.6、MATH-2.7。
-
+    
     -   不要滥用 LaTeX 公式。详见 MATH-1.14。
-
+    
     -   不要 LaTeX 公式里使用程序设计语言的表示方式。（如：不要使用 $a==b$、$a<<1$、$a\%b$。）不要使用中括号连缀（$a[i][j]$）。详见 MATH-1.9、MATH-1.10。
 
 -   代码：
 
     -   尽可能简洁易懂，避免压行等不良习惯。尽可能保证可读性，突出算法思想。详见 CONT-10。
-
+    
     -   不推荐直接把代码插入 Markdown 文档中。详见 CODE-1.1、CODE-1.2。
 
 ## 对本文档的格式要求
@@ -141,18 +141,18 @@
 -   STRC-2：逻辑性。
 
     -   STRC-2.1：对于算法或数学概念类内容的撰写应该尽量包含以下的内容：
-
+    
         1.  原理：说明该内容对应的原理；
         2.  例子：给出 1 \~ 2 个典型的例子；
         3.  题目：在该标题下，**只需要给出题目名字和题目链接**。对于算法类题目，题目链接 OJ 的优先级为：原 OJ（国外 OJ 要求国内可流畅访问）> UOJ > LOJ > 洛谷。
-
+        
         示例页面：[IDA\*](../search/idastar.md)
-
+    
     -   STRC-2.2：对于工具类内容的撰写应该尽量包含以下的内容：
-
+    
         1.  简介：阐明该工具的背景与用途。
         2.  配置方式：详细给出配置环境与使用的过程，下载与安装方法建议尽量引用官方文档。
-
+        
         示例页面：[WSL (Windows 10)](../tools/wsl.md)
 
 除现有内容质量较低的情况外，建议尽量从 **补充** 的角度来做贡献，而非采取直接覆盖的方式。如果拿不准主意，可以参考 [关于本项目的交流方式](./about.md#交流方式) 一节，与 **OI Wiki** 项目组联系。
@@ -180,7 +180,7 @@
 -   LINT-6：使用 `???` 或 `!!!` 开头的 Details 语法时，每一行要包括在 Details 语法的文本框的文本，开头必须至少有 4 个空格。
 
     **即使是空行，也必须保持与其他行一致的缩进。请不要使用编辑器的自动裁剪行末空格功能。**
-
+    
     ???+ success "示例"
         下面的代码中用 `␣` 表示空格 ` `。
         
@@ -255,11 +255,11 @@
     文本内容。[^脚注名]
     [^脚注名]: 参考资料内容。注意：冒号是英文冒号，冒号后面跟着一个空格。
     ```
-
+    
     脚注名既可以使用数字也可以使用文本。脚注名摆放的位置与括号的用法一致。为美观起见，建议同一个页面内的脚注名遵循统一的命名规律，如：ref1、ref2、note1……
-
+    
     脚注的内容统一放在 `## 参考资料与注释` 二级标题下。
-
+    
     ???+ success "示例"
         ```markdown
         当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者。[^ref1]
@@ -280,13 +280,13 @@
 -   MDFM-5：建议使用主题扩展的 `???+note` 格式（即 [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)）来描述题面和参考代码。也可以用这种格式来展示其他需要补充介绍的内容。
 
     示例代码（下面的代码中用 `␣` 表示空格 ` `）：
-
+    
     ```text
     ??? note "标题"
     ␣␣␣␣这个文本框会被默认折叠。
     ␣␣␣␣
     ␣␣␣␣推荐将 **解题代码** 放在折叠文本框内。
-
+    
     ???+note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
     ␣␣␣␣标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的「A + B Problem」。
     ␣␣␣␣
@@ -294,23 +294,23 @@
     ␣␣␣␣
     ␣␣␣␣注意双引号的位置。
     ```
-
+    
     效果：
-
+    
     ??? note "标题"
         这个文本框会被默认折叠。
         
         推荐将 **解题代码** 放在折叠文本框内。
-
+    
     ???+ note "[HDOJ 的「A + B Problem」](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
         标题也可以使用 Markdown 的超链接。这里的超链接是 HDOJ 的「A + B Problem」。
         
         而且推荐以这种方式 **标注原题链接**。
         
         注意双引号的位置。
-
+    
     两种格式的区别是，带 `+` 的会默认保持展开，而不带 `+` 的会默认保持折叠。
-
+    
     折叠框的标题，即 `???+note` 中 `note` 后的内容应以 `"` 包裹起来。其中的内容支持 Markdown 语法。详见 [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title)。（不具备折叠功能的为一般的 Admonitions，参考 [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions)）
 
 -   MDFM-6：当需要添加不同语言的代码时，推荐使用 Content tabs，可以实现不同语言代码的切换。Content tabs 还有其他的用法，详见 [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/#usage)。其使用方法和效果如下。
@@ -374,7 +374,7 @@
 -   CONT-3：涉及到「前置知识」的页面，请在开头添加一行 **前置知识：……**，放在页面概述前。格式如下：
 
     `前置知识：[站内页面1](url1)、[站内页面2](url2)和[站内页面3](url3)`
-
+    
     ???+ success "示例"
         前置知识：[时间复杂度](../basic/complexity.md)
         
@@ -387,7 +387,7 @@
 -   CONT-6：请尽量为链接提供完整的标题、或者可被识别的提示，避免使用裸地址和「这」、「此」之类的模糊不清的描述。每一个超链接都应尽量对其加以清楚明确的描述，方便读者明白该超链接将指向何处。
 
     建议使用源文章或者标签页的标题。
-
+    
     ???+ failure "不推荐的写法"
         ```markdown
         请参考[这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
@@ -398,7 +398,7 @@
         请参考 [这个页面](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
         
         请参考 <https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork>
-
+    
     ???+ success "推荐的写法"
         ```markdown
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
@@ -418,21 +418,21 @@
 
     -   CONT-10.1.1：代码应拥有清晰的逻辑，尽可能简洁易懂。不要过度压行，不要引入过多无关代码。尽量避免与算法思想无关的内容。
     -   CONT-10.1.2：建议在参考代码中添加适当注释以方便读者理解。
-
+    
     对 C/C++ 类语言：
-
+    
     -   CONT-10.2.1：尽量避免出现影响阅读的预编译指令和宏定义。
-
+    
     -   CONT-10.2.2：不要用 `0` 代替 `false`/`NULL`/`nullptr` 等，不要用 `1` 代替 `true` 等。
-
+    
     -   CONT-10.2.3：在声明 [类型别名](https://en.cppreference.com/w/cpp/language/type_alias) 时，不推荐使用 `typedef`，推荐使用 `using`。
-
+    
     -   CONT-10.2.4：不推荐用宏定义定义常量，推荐直接使用 `constexpr`/`const` 等关键字定义常量。
-
+    
     -   CONT-10.2.5：不推荐对函数使用 `inline` 关键字，详见 [编译优化](../lang/optimizations.md#inline---内联)。
-
+    
     -   CONT-10.2.6：尽量避免类型萃取、偏特化等复杂的模板元编程技巧。如确需使用，则需添加注释解释含义。
-
+    
         ???+ failure "不推荐的写法"
             ```cpp
             --8<-- "docs/intro/code/format/format_1.cpp:not-recommended"
@@ -446,7 +446,7 @@
             -   第四个 `gcd` 接受一个容器，返回容器中所有数的最大公约数。
             
             对 **OI Wiki** 来说，我们只关注最大公约数这个算法的思想，这份代码涵盖了过多无关且复杂的技术细节，是需要避免的。
-
+        
         ???+ success "推荐的写法"
             ```cpp
             --8<-- "docs/intro/code/format/format_1.cpp:recommended"
@@ -465,17 +465,17 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
     ```latex
     \log, \ln, \lg, \sin, \cos, \tan, \sec, \csc, \cot, \gcd, \min, \max, \exp, \inf, \mod, \bmod, \pmod
     ```
-
+    
     所以在输入常量、函数名、运算符等时，请先检查一下是否应该使用 Roman 体或其它字体。LaTeX 符号的书写可参考 [KaTeX 的 Supported Functions 页面](https://katex.org/docs/supported.html)（不是全部），也可以搜索求解。
-
+    
     由于 LaTeX 书写 Roman 体小写希腊字母较为困难，故小写希腊字母常量、算子和函数可以使用 Italic 体，如 $\pi$ 以及 $\delta x$ 中的 $\delta$.
-
+    
     如果遇到没有预先定义好的需要使用 Roman 体的 **函数名**，我们可以使用 `$\operatorname{something}$` 来产生，如我们可以使用 `$\operatorname{lcm}$` 产生正体的最小公倍数（函数）符号。同理，产生 Roman 体的 **常量** 应用 `$\mathrm{}$`；产生 Roman 体粗体符号应用 `$\mathbf{}$`；产生 Italic 体粗体符号应用 `$\boldsymbol{}$`（如向量 $\boldsymbol{a}$）。对于多字母的变量，应当使用 `$\textit{}$`。其他非数学内容，包括英文、特殊符号等，一律使用 `$\text{}$`。中文我们则建议不放在 LaTeX 公式中。
 
 -   MATH-1.3：如果表达式须折行（常见于较长的行间公式中），则应遵循如下换行规则：
 
     -   MATH-1.3.1：将换行符放在 $=$，$+$，$-$，$\pm$，$\mp$ 之前，如果有必要，也可放在 $\times$，$\cdot$，$/$ 之前，如：
-
+    
         $$
         \begin{aligned}
             \mathrm{e}^x &= \sum\limits_{n=0}^{\infty} \frac{x^n}{n!} \\
@@ -483,9 +483,9 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
             & \phantom{=} + \frac{x^3}{6} + \frac{x^4}{24} + \dots \\
         \end{aligned}
         $$
-
+    
     -   MATH-1.3.2：同一运算符不应在换行符前后同时出现，
-
+    
     -   MATH-1.3.3：换行符尽量不要出现在括号内的表达式中。
 
 -   MATH-1.4：在行内使用分数的时候，请使用 `$\dfrac{}{}$`。比如 `$\dfrac{1}{2}$`，效果 $\dfrac{1}{2}$，而不是 `$\frac{1}{2}$`，效果 $\frac{1}{2}$。
@@ -513,7 +513,7 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它。因此对�
     ```LaTeX
     我们将要学习 $Network-flow$ 中的 $SPFA$ 最小费用流，需要使用 $Edmonds–Karp$ 算法进行增广。
     ```
-
+    
     就是一个典型的 **滥用公式字体** 的例子。（在页面中使用斜体请用 `*文本*` 表示。）
 
 -   MATH-1.15：请正确使用对应的 LaTeX 符号，尤其是公式中的希腊字母等特殊符号。如欧拉函数请使用 `$\varphi$`，圆的直径请使用 `$\Phi$`，黄金分割请使用 `$\phi$`。这些符号虽然同样表示希腊字母 Phi，但是在不同的环境下有不同的含义。切记 **不要使用输入法的插入特殊符号** 来插入这种符号。
@@ -628,17 +628,17 @@ $$
 -   CODE-1.2：由于 Markdown 文档中内嵌的代码难以实现自动化测试，所以推荐使用例题代码的格式插入片段代码。有如下两种方式可供选择：
 
     1.  使用多文件编译方案。参见 [#5729](https://github.com/OI-wiki/OI-wiki/pull/5729)。
-
+    
         示例：[冒泡排序](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/bubble-sort.md?plain=1#L48)。正文引用 [bubble-sort\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.cpp)，测试代码放在 [bubble-sort\_1.aux1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.aux1.cpp) 中。
-
+    
     2.  在代码文件中用 `// --8<-- [start:name]` 和 `// --8<-- [end:name]` 标记片段的起始和结束，之后在文档中用 `--8<-- "你的代码路径:name"` 即可插入该片段。参见 [Snippet Sections](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-sections)。
-
+    
         示例：[前缀和](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/prefix-sum.md?plain=1#L37)。正文中不需要引用 [prefix-sum\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/code/prefix-sum/prefix-sum_1.cpp) 中的测试部分，所以选择插入主要的代码片段。
-
+        
         **注意**：不要使用 [Snippet Lines](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-lines) 语法。
-
+    
     3.  为了提高代码复用率，您也可以将代码拆分成头文件，测试时在不同的测试代码里引用。如果正文中需要出现完整的测试代码作为例题的参考实现，那么正文中应该另外用 Snippet Sections 语法拼接成单文件代码，以便读者阅读。
-
+    
         示例：[红黑树](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231)。
 
 关于例题代码：

@@ -114,21 +114,21 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
     
     int main() {
       int i, j;
-    
+      
       cin >> n;
-    
+      
       for (i = 1; i <= n; ++i) cin >> a[i] >> b[i];
-    
+      
       f[0][0] = 1;
-    
+      
       for (i = 1; i <= n; ++i) {
         for (j = a[i]; j <= b[i]; ++j) {
           f[i] |= (f[i - 1] << (j * j));
         }
       }
-    
+      
       cout << f[n].count();
-    
+      
       return 0;
     }
     ```
@@ -147,16 +147,16 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
     
     struct Bitset {
       unsigned long long a[N * N * N >> 6];
-    
+      
       void shiftor(const Bitset &y, int p, int l, int r) {
         int t = p - p / W * W;
         int tt = (t == 0 ? 0 : W - t);
         int to = (r + p) / W;
         int qaq = (p + W - 1) / W;
-    
+        
         for (int i = (l + p) / W; i <= to; ++i) {
           if (i - qaq >= 0) a[i] |= y.a[i - qaq] >> tt;
-    
+          
           a[i] |= ((y.a[i - qaq + 1] & ((1ull << tt) - 1)) << t);
         }
       }
@@ -164,26 +164,26 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
     
     int main() {
       int n, a, b, l = 0, r = 0, ans = 0;
-    
+      
       scanf("%d", &n);
-    
+      
       f[0].a[0] = 1;
-    
+      
       for (int i = 1; i <= n; ++i) {
         scanf("%d%d", &a, &b);
-    
+        
         for (int j = a; j <= b; ++j) f[i].shiftor(f[i - 1], j * j, l, r);
-    
+        
         l += a * a;
         r += b * b;
       }
-    
+      
       for (int i = l / W; i <= r / W; ++i)
         ans += __builtin_popcount(f[n].a[i] & 0xffffffffu) +
                __builtin_popcount(f[n].a[i] >> 32);
-    
+      
       printf("%d", ans);
-    
+      
       return 0;
     }
     ```
@@ -204,22 +204,22 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
     
     int main() {
       int n, i, j, k, a, b, l = 0, r = 0, ans = 0;
-    
+      
       scanf("%d", &n);
-    
+      
       f[0] = true;
-    
+      
       for (i = 1; i <= n; ++i) {
         scanf("%d%d", &a, &b);
         l += a * a;
         r += b * b;
-    
+        
         for (j = r; j >= l; --j) {
           f[j] = false;
-    
+          
           for (k = a; k <= b; ++k) {
             if (j - k * k < l - a * a) break;
-    
+            
             if (f[j - k * k]) {
               f[j] = true;
               break;
@@ -227,11 +227,11 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
           }
         }
       }
-    
+      
       for (i = l; i <= r; ++i) ans += f[i];
-    
+      
       printf("%d", ans);
-    
+      
       return 0;
     }
     ```
@@ -301,10 +301,10 @@ $$
     
     int main() {
       int i, j, x, y, z;
-    
+      
       n = read();
       m = read();
-    
+      
       mu.set();
       for (i = 2; i * i < V; ++i) {
         for (j = 1; i * i * j < V; ++j) {
@@ -317,7 +317,7 @@ $$
           pre2[i][i * j] = mu[j];
         }
       }
-    
+      
       while (m--) {
         switch (read()) {
           case 1:
@@ -344,9 +344,9 @@ $$
             break;
         }
       }
-    
+      
       printf("%s", ans);
-    
+      
       return 0;
     }
     ```
@@ -375,18 +375,18 @@ $$
     -   当埃氏筛 **存储** 筛出来的素数时：
     
         -   $N=5 \times 10^7 + 1$ 时的 [测试结果](https://quick-bench.com/q/iQL9FhsZ6PVV81HKABsidRw8hB8)：
-    
+        
             ![](./images/bitset-5e7sp.png)
         -   $N=10^8 + 1$ 时的 [测试结果](https://quick-bench.com/q/pwEamEFUW-6nXeXEALRsYPd8FWI)：
-    
+        
             ![](./images/bitset-1e8sp.png)
     -   当埃氏筛 **不存储** 筛出来的素数时：
     
         -   $N=5 \times 10^7 + 1$ 时的 [测试结果](https://quick-bench.com/q/rg2mCUxT02a44w9fWvHtZoNTJyU)：
-    
+        
             ![](./images/bitset-5e7.png)
         -   $N=10^8 + 1$ 时的 [测试结果](https://quick-bench.com/q/lusNWxWsR0VXoRBof7uBtqfvJuY)：
-    
+        
             ![](./images/bitset-1e8.png)
     
     从测试结果中可知：

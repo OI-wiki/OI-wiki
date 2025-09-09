@@ -114,12 +114,12 @@ $$
         sort(a + l, a + r + 1, &cmp_y);
         return;
       }
-    
+      
       int m = (l + r) >> 1;
       int midx = a[m].x;
       rec(l, m), rec(m + 1, r);
       inplace_merge(a + l, a + m + 1, a + r + 1, &cmp_y);
-    
+      
       static pt t[MAXN];
       int tsz = 0;
       for (int i = l; i <= r; ++i)
@@ -176,7 +176,7 @@ $$
     
     struct point {
       double x, y;
-    
+      
       point(double x = 0, double y = 0) : x(x), y(y) {}
     };
     

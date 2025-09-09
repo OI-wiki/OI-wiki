@@ -296,7 +296,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
             cnt = [0] * (n + 1)
             vis = [False] * (n + 1)
             q = deque()
-        
+            
             dis[s] = 0
             vis[s] = True
             q.append(s)
@@ -426,7 +426,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         def dijkstra(n, s):
             dis = [INF] * (n + 1)
             vis = [0] * (n + 1)
-        
+            
             dis[s] = 0
             for i in range(1, n + 1):
                 u = 0
@@ -451,7 +451,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
         
         struct node {
           int dis, u;
-        
+          
           bool operator>(const node& a) const { return dis > a.dis; }
         };
         

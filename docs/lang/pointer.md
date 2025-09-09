@@ -175,7 +175,7 @@ delete p;
 ```cpp
 class A {
   int a;
-
+ 
  public:
   A(int a_) : a(a_) {}
 };
@@ -337,7 +337,7 @@ int main() {
   } else {
     binary_int_op = foo2;
   }
-
+  
   int m, n;
   std::cin >> m >> n;
   std::cout << binary_int_op(m, n);

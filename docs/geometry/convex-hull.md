@@ -132,7 +132,7 @@ $$
     ```cpp
     struct Point {
       double x, y, ang;
-    
+      
       Point operator-(const Point& p) const { return {x - p.x, y - p.y, 0}; }
     } p[MAXN];
     
@@ -233,22 +233,22 @@ $$
     template <class T>
     struct Point {
       T x, y;
-    
+      
       Point(T x = 0, T y = 0) : x(x), y(y) {}
-    
+      
       friend Point operator+(const Point &a, const Point &b) {
         return {a.x + b.x, a.y + b.y};
       }
-    
+      
       friend Point operator-(const Point &a, const Point &b) {
         return {a.x - b.x, a.y - b.y};
       }
-    
+      
       // 点乘
       friend T operator*(const Point &a, const Point &b) {
         return a.x * b.x + a.y * b.y;
       }
-    
+      
       // 叉乘
       friend T operator^(const Point &a, const Point &b) {
         return a.x * b.y - a.y * b.x;

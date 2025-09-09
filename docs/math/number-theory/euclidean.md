@@ -427,9 +427,9 @@ $$
     $$
     \left\lfloor\dfrac{ai+b}{c}\right\rfloor - \left\lfloor\dfrac{b}{c}\right\rfloor = \left\lfloor\dfrac{ai+(b\bmod c)}{c}\right\rfloor.
     $$
-
+    
     因此，这相当于将线段参数由 $(a,b,c,n)$ 变为 $(a,b\bmod c,c,n)$。所以，对于这种情形，有
-
+    
     $$
     F(a,b,c,n,U,R) = U^{\lfloor b/c\rfloor}F(a,b\bmod c,c,n,U,R).
     $$
@@ -439,9 +439,9 @@ $$
     $$
     \left\lfloor\dfrac{ai+b}{c}\right\rfloor - \left\lfloor\dfrac{a}{c}\right\rfloor i = \left\lfloor\dfrac{(a\bmod c)i+b}{c}\right\rfloor.
     $$
-
+    
     因此，这相当于将线段参数由 $(a,b,c,n)$ 变为 $(a\bmod c,b,c,n)$。所以，对于这种情形，有
-
+    
     $$
     F(a,b,c,n,U,R) = F(a\bmod c,b,c,n,U,U^{\lfloor a/c\rfloor}R).
     $$
@@ -451,9 +451,9 @@ $$
     $$
     n'=\left\lfloor\dfrac{an+b}{c}\right\rfloor = m,
     $$
-
+    
     而第 $j$ 个 $U$ 前方的 $R$ 的数量，就等于最大的 $i$ 使得
-
+    
     $$
     \begin{aligned}
     \left\lfloor\dfrac{ai+b}{c}\right\rfloor < j 
@@ -461,34 +461,34 @@ $$
     &\iff i < \left\lceil\dfrac{cj-b}{a}\right\rceil = \left\lfloor\dfrac{cj-b - 1}{a}\right\rfloor + 1.
     \end{aligned}
     $$
-
+    
     因此，$i = \lfloor(cj-b-1)/a\rfloor$。这一推导过程与前文类欧几里得算法的推导类似，同样利用了上下取整函数的性质。
-
+    
     有两处细节需要处理：
-
+    
     -   截距项 $-(b+1)/a$ 为负数。注意到，如果将线段向左平移一个单位，就可以让截距项恢复为非负数，因为总有 $(c-b-1)/a\ge 0$。因此，可以将交换前的第一段 $R^{\lfloor(c-b-1)/a\rfloor}U$ 提取出来，只交换剩余操作序列中的 $U$ 和 $R$；
     -   交换 $U$ 和 $R$ 后，结尾存在多余的 $U$。因此，交换 $U$ 和 $R$ 之前，需要首先将最后一段 $R$ 提取出来，只交换剩余操作序列中的 $U$ 和 $R$。这一段 $R$ 的数量为 $n-\lfloor(cm-b-1)/a\rfloor$。
-
+    
     去掉头尾若干个字符后，第 $j$ 个 $U$ 前方的 $R$ 的数量变为：
-
+    
     $$
     \left\lfloor\dfrac{c(j+1)-b-1}{a}\right\rfloor - \left\lfloor\dfrac{c-b-1}{a}\right\rfloor = \left\lfloor\dfrac{cj+(c-b-1)\bmod a}{a}\right\rfloor.
     $$
-
+    
     回忆起，交换前的序列中 $U$ 的数量为 $m = \lfloor(an+b)/c\rfloor$。而上述左移一个单位的操作，要求保证交换前至少存在一个 $U$，也就是 $m>0$。利用这一条件，可以分为两种情形：
-
+    
     -   对于 $m>0$ 的情形，处理了上面的两点后，交换完 $U$ 和 $R$ 的操作序列就是对应着参数为 $(c,(c-b-1)\bmod a,a,m-1)$ 的线段的合法序列。所以，有
-
+    
         $$
         F(a,b,c,n,U,R) = R^{\lfloor(c-b-1)/a\rfloor}UF(c,(c-b-1)\bmod a,a,m-1,R,U)R^{n-\lfloor(cm-b-1)/a\rfloor}.
         $$
-
+    
     -   特别地，对于 $m=0$ 的情形，交换前的操作序列中只包含 $n$ 个 $R$，无需交换，可以直接返回：
-
+    
         $$
         F(a,b,c,n,U,R) = R^n.
         $$
-
+        
         与类欧几里得算法不同，万能欧几里得算法的这一特殊情形需要单独处理，否则会因涉及负幂次而无法正确计算。
 
 利用这些讨论，就可以将问题递归地解决。

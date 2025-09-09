@@ -103,13 +103,13 @@ constexpr int INF = 0x3f3f3f3f;
 
 struct UnionFind {
   int fa[MAXN << 1];
-
+  
   UnionFind() { memset(fa, 0, sizeof(fa)); }
-
+  
   void clear(int n) { memset(fa + 1, 0, sizeof(int) * n); }
-
+  
   int find(int x) { return fa[x] ? fa[x] = find(fa[x]) : x; }
-
+  
   int operator[](int x) { return find(x); }
 };
 
@@ -121,9 +121,9 @@ struct Heap {
   Edge *e;
   int rk, constant;
   Heap *lch, *rch;
-
+  
   Heap(Edge *_e) : e(_e), rk(1), constant(0), lch(NULL), rch(NULL) {}
-
+  
   void push() {
     if (lch) lch->constant += constant;
     if (rch) rch->constant += constant;

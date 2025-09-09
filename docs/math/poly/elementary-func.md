@@ -41,7 +41,7 @@ author: 97littleleaf11, abc1763613206, CCXXXI, EndlessCheng, Enter-tainer, fps52
         $$
         \frac{\mathrm{e}^{\tan x}}{1+x^2}\sin\left(\sqrt{1+\ln^2 x}\right)
         $$
-    
+        
         $$
         -\mathrm{i} \ln\left(x+\mathrm{i}\sqrt{1-x^2}\right)
         $$
@@ -136,13 +136,13 @@ $$
         const int t2 = t << 1;
         std::copy(h, h + t, inv_t);
         std::fill(inv_t + t, inv_t + t2, 0);
-    
+        
         DFT(f, t2);
         DFT(inv_t, t2);
         for (int i = 0; i != t2; ++i)
           f[i] = (i64)f[i] * sub(2, (i64)f[i] * inv_t[i] % mod) % mod;
         IDFT(f, t2);
-    
+        
         std::fill(f + t, f + t2, 0);
       }
     }
@@ -349,16 +349,16 @@ $$
       assert(h[0] == 1);
       static poly_t ln_t;
       const int t = n << 1;
-    
+      
       derivative(h, n, ln_t);
       std::fill(ln_t + n, ln_t + t, 0);
       polyinv(h, n, f);
-    
+      
       DFT(ln_t, t);
       DFT(f, t);
       for (int i = 0; i != t; ++i) ln_t[i] = (i64)ln_t[i] * f[i] % mod;
       IDFT(ln_t, t);
-    
+      
       integrate(ln_t, n, f);
     }
     
@@ -370,17 +370,17 @@ $$
       f[0] = 1;
       for (int t = 2; t <= n; t <<= 1) {
         const int t2 = t << 1;
-    
+        
         polyln(f, t, exp_t);
         exp_t[0] = sub(pls(h[0], 1), exp_t[0]);
         for (int i = 1; i != t; ++i) exp_t[i] = sub(h[i], exp_t[i]);
         std::fill(exp_t + t, exp_t + t2, 0);
-    
+        
         DFT(f, t2);
         DFT(exp_t, t2);
         for (int i = 0; i != t2; ++i) f[i] = (i64)f[i] * exp_t[i] % mod;
         IDFT(f, t2);
-    
+        
         std::fill(f + t, f + t2, 0);
       }
     }
@@ -391,19 +391,19 @@ $$
 1.  计算 $f^{k}(x)$
 
     普通做法为多项式快速幂，时间复杂度 $O(n\log{n}\log{k})$。
-
+    
     当 $[x^{0}]f(x)=1$ 时，有：
-
+    
     $$
     f^{k}(x)=\exp{\left(k\ln{f(x)}\right)}
     $$
-
+    
     当 $[x^{0}]f(x)\neq 1$ 时，设 $f(x)$ 的最低次项为 $f_{i}x^{i}$，则：
-
+    
     $$
     f^{k}(x)=f_{i}^{k}x^{ik}\exp{\left(k\ln{\frac{f(x)}{f_{i}x^{i}}}\right)}
     $$
-
+    
     **时间复杂度**  $O(n\log{n})$。
 
 ## 多项式三角函数
@@ -460,11 +460,11 @@ $$
       /* tan(f) = sin(f) / cos(f) */
       assert(h[0] == 0);
       static poly_t tri1_t, tri2_t;
-    
+      
       for (int i = 0; i != n; ++i) tri2_t[i] = (i64)h[i] * imgunit % mod;
       polyexp(tri2_t, n, tri1_t);
       polyinv(tri1_t, n, tri2_t);
-    
+      
       if (sin_t != nullptr) {
         const int invi = fpow(pls(imgunit, imgunit), mod - 2);
         for (int i = 0; i != n; ++i)
@@ -537,24 +537,24 @@ $$
       const int t = n << 1;
       std::copy(h, h + n, arcsin_t);
       std::fill(arcsin_t + n, arcsin_t + t, 0);
-    
+      
       DFT(arcsin_t, t);
       for (int i = 0; i != t; ++i) arcsin_t[i] = sqr(arcsin_t[i]);
       IDFT(arcsin_t, t);
-    
+      
       arcsin_t[0] = sub(1, arcsin_t[0]);
       for (int i = 1; i != n; ++i)
         arcsin_t[i] = arcsin_t[i] ? mod - arcsin_t[i] : 0;
-    
+      
       polysqrt(arcsin_t, n, f);
       polyinv(f, n, arcsin_t);
       derivative(h, n, f);
-    
+      
       DFT(f, t);
       DFT(arcsin_t, t);
       for (int i = 0; i != t; ++i) arcsin_t[i] = (i64)f[i] * arcsin_t[i] % mod;
       IDFT(arcsin_t, t);
-    
+      
       integrate(arcsin_t, n, f);
     }
     
@@ -570,22 +570,22 @@ $$
       const int t = n << 1;
       std::copy(h, h + n, arctan_t);
       std::fill(arctan_t + n, arctan_t + t, 0);
-    
+      
       DFT(arctan_t, t);
       for (int i = 0; i != t; ++i) arctan_t[i] = sqr(arctan_t[i]);
       IDFT(arctan_t, t);
-    
+      
       inc(arctan_t[0], 1);
       std::fill(arctan_t + n, arctan_t + t, 0);
-    
+      
       polyinv(arctan_t, n, f);
       derivative(h, n, arctan_t);
-    
+      
       DFT(f, t);
       DFT(arctan_t, t);
       for (int i = 0; i != t; ++i) arctan_t[i] = (i64)f[i] * arctan_t[i] % mod;
       IDFT(arctan_t, t);
-    
+      
       integrate(arctan_t, n, f);
     }
     ```

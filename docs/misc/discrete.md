@@ -65,7 +65,7 @@ for (int i = 0; i < n; ++i)
 ```cpp
 struct Data {
   int idx, val;
-
+  
   bool operator<(const Data& o) const {
     if (val == o.val)
       return idx < o.idx;  // 当值相同时，先出现的元素离散化后的值更小

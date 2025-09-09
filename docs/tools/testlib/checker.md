@@ -16,13 +16,13 @@ Checker 从命令行参数读取到输入文件名、选手输出文件名、标
 
 int main(int argc, char* argv[]) {
   registerTestlibCmd(argc, argv);
-
+  
   int pans = ouf.readInt(-2000, 2000, "sum of numbers");
-
+  
   // 假定标准输出是正确的，不检查其范围
   // 之后我们会看到这并不合理
   int jans = ans.readInt();
-
+  
   if (pans == jans)
     quitf(_ok, "The sum is correct.");
   else
@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
   }
   int s = inf.readInt();
   int t = inf.readInt();
-
+  
   // 读入标准输出
   int jvalue = 0;
   vector<int> jpath;
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
   for (int i = 0; i < jlen - 1; i++) {
     jvalue += edges[make_pair(jpath[i], jpath[i + 1])];
   }
-
+  
   // 读入选手输出
   int pvalue = 0;
   vector<int> ppath;
@@ -98,7 +98,7 @@ int main(int argc, char* argv[]) {
             ppath[i + 1]);
     pvalue += edges[make_pair(ppath[i], ppath[i + 1])];
   }
-
+  
   if (jvalue != pvalue)
     quitf(_wa, "jury has answer %d, participant has answer %d", jvalue, pvalue);
   else
@@ -206,7 +206,7 @@ int main(int argc, char* argv[]) {
 -   读入选手输出时永远限定好范围，如果某些变量忘记了限定且被用于某些参数，你的 checker 可能会判定错误或 RE 等。
 
     -   反面教材
-
+    
     ```cpp
     // ....
     int k = ouf.readInt();
@@ -219,9 +219,9 @@ int main(int argc, char* argv[]) {
     int x = A[pos];
     // 可能会有人输出 -42, 2147483456 或其他一些非法数字导致 checker RE
     ```
-
+    
     -   正面教材
-
+    
     ```cpp
     // ....
     int k = ouf.readInt(0, n);  // 长度不合法会立刻判 WA 而不会继续 check 导致 RE

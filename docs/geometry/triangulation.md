@@ -91,17 +91,17 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
     struct Point {
       double x, y;
       int id;
-    
+      
       Point(double a = 0, double b = 0, int c = -1) : x(a), y(b), id(c) {}
-    
+      
       bool operator<(const Point &a) const {
         return x < a.x || (fabs(x - a.x) < EPS && y < a.y);
       }
-    
+      
       bool operator==(const Point &a) const {
         return fabs(x - a.x) < EPS && fabs(y - a.y) < EPS;
       }
-    
+      
       double dist2(const Point &b) {
         return (x - b.x) * (x - b.x) + (y - b.y) * (y - b.y);
       }
@@ -109,22 +109,22 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
     
     struct Point3D {
       double x, y, z;
-    
+      
       Point3D(double a = 0, double b = 0, double c = 0) : x(a), y(b), z(c) {}
-    
+      
       Point3D(const Point &p) { x = p.x, y = p.y, z = p.x * p.x + p.y * p.y; }
-    
+      
       Point3D operator-(const Point3D &a) const {
         return Point3D(x - a.x, y - a.y, z - a.z);
       }
-    
+      
       double dot(const Point3D &a) { return x * a.x + y * a.y + z * a.z; }
     };
     
     struct Edge {
       int id;
       std::list<Edge>::iterator c;
-    
+      
       Edge(int id = 0) { this->id = id; }
     };
     
@@ -158,7 +158,7 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
       std::list<Edge> head[MAXV];  // graph
       Point p[MAXV];
       int n, rename[MAXV];
-    
+      
       void init(int n, Point p[]) {
         memcpy(this->p, p, sizeof(Point) * n);
         std::sort(this->p, this->p + n);
@@ -166,14 +166,14 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
         this->n = n;
         divide(0, n - 1);
       }
-    
+      
       void addEdge(int u, int v) {
         head[u].push_front(Edge(v));
         head[v].push_front(Edge(u));
         head[u].begin()->c = head[v].begin();
         head[v].begin()->c = head[u].begin();
       }
-    
+      
       void divide(int l, int r) {
         if (r - l <= 2) {  // #point <= 3
           for (int i = l; i <= r; i++)
@@ -183,10 +183,10 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
         int mid = (l + r) / 2;
         divide(l, mid);
         divide(mid + 1, r);
-    
+        
         std::list<Edge>::iterator it;
         int nowl = l, nowr = r;
-    
+        
         for (int update = 1; update;) {
           // find left and right convex, lower common tangent
           update = 0;
@@ -209,9 +209,9 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
             }
           }
         }
-    
+        
         addEdge(nowl, nowr);  // add tangent
-    
+        
         for (int update = 1; true;) {
           update = 0;
           Point ptL = p[nowl], ptR = p[nowr];
@@ -254,7 +254,7 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
           }
         }
       }
-    
+      
       std::vector<std::pair<int, int>> getEdge() {
         std::vector<std::pair<int, int>> ret;
         ret.reserve(n);

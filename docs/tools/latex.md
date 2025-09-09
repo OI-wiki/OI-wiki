@@ -107,7 +107,7 @@ $\rightarrow$ 在 `\begin{document}` 和 命令后紧跟着输入以下文本：
   \author{My Name}
   \date{\today}
   \maketitle
-
+  
   A sentence of text.
 \end{document}
 ```
@@ -159,18 +159,18 @@ Here are my results.
   \author{My Name}
   \date{\today}
   \maketitle
-
+  
   \section{Introduction}
   This is the introduction.
-
+  
   \section{Methods}
-
+  
   \subsection{Stage 1}
   The first part of the methods.
-
+  
   \subsection{Stage 2}
   The second part of the methods.
-
+  
   \section{Results}
   Here are my results.
 \end{document}
@@ -196,18 +196,18 @@ $\rightarrow$ 在 `\subsection{Stage 1}` 下面另起一行，输入 `\label{sec
   \author{My Name}
   \date{\today}
   \maketitle
-
+  
   \section{Introduction}
   This is the introduction.
-
+  
   \section{Methods}
-
+  
   \subsection{Stage 1}
   \label{sec1} The first part of the methods.
-
+  
   \subsection{Stage 2}
   The second part of the methods.
-
+  
   \section{Results}
   Here are my results. Referring to section \ref{sec1} on page \pageref{sec1}
 \end{document}
@@ -343,14 +343,14 @@ $\rightarrow$ 输入下面的内容来生成一个有序列表套无序列表：
 ```tex
 \begin{enumerate}
   \item First thing
-
+  
   \item Second thing
     \begin{itemize}
       \item A sub-thing
-
+      
       \item Another sub-thing
     \end{itemize}
-
+  
   \item Third thing
 \end{enumerate}
 ```
@@ -368,14 +368,14 @@ $\rightarrow$ 编译并核对 PDF 文档。
 ```tex
 \begin{itemize}
   \item[-] First thing
-
+  
   \item[+] Second thing
     \begin{itemize}
       \item[Fish] A sub-thing
-
+      
       \item[Plants] Another sub-thing
     \end{itemize}
-
+  
   \item[Q] Third thing
 \end{itemize}
 ```

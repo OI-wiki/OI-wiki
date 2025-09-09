@@ -209,9 +209,9 @@ Primal-Dual 原始对偶算法的思路与 [Johnson 全源最短路径算法](..
     
     struct mypair {
       int dis, id;
-    
+      
       bool operator<(const mypair& a) const { return dis > a.dis; }
-    
+      
       mypair(int d, int x) { dis = d, id = x; }
     };
     

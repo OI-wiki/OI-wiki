@@ -152,7 +152,7 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
         for u in graph:
             for v in graph[u]:
                 in_degree[v] += 1
-    
+        
         s = deque([u for u in graph if in_degree[u] == 0])
         while s:
             u = s.popleft()
@@ -161,7 +161,7 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
                 in_degree[v] -= 1
                 if in_degree[v] == 0:
                     s.append(v)
-    
+        
         return None if any(in_degree.values()) else lst
     ```
 
@@ -175,27 +175,27 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
     
     struct TopoSort {
       enum class Status : uint8_t { to_visit, visiting, visited };
-    
+      
       const Graph& graph;
       const int n;
       vector<Status> status;
       vector<int> order;
       vector<int>::reverse_iterator it;
-    
+      
       TopoSort(const Graph& graph)
           : graph(graph),
             n(graph.size()),
             status(n, Status::to_visit),
             order(n),
             it(order.rbegin()) {}
-    
+      
       bool sort() {
         for (int i = 0; i < n; ++i) {
           if (status[i] == Status::to_visit && !dfs(i)) return false;
         }
         return true;
       }
-    
+      
       bool dfs(const int u) {
         status[u] = Status::visiting;
         for (const int v : graph[u]) {
@@ -224,7 +224,7 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
         n = len(graph)
         status = [Status.to_visit] * n
         order = []
-    
+        
         def dfs(u: int) -> bool:
             status[u] = Status.visiting
             for v in graph[u]:
@@ -235,11 +235,11 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
             status[u] = Status.visited
             order.append(u)
             return True
-    
+        
         for i in range(n):
             if status[i] == Status.to_visit and not dfs(i):
                 return None
-    
+        
         return order[::-1]
     ```
 

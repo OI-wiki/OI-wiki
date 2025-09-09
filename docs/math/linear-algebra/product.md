@@ -66,7 +66,7 @@ $$
     $$
     \boldsymbol{a} \perp \boldsymbol{b} \iff \boldsymbol{a} \cdot \boldsymbol{b} = 0
     $$
-
+    
     即互相垂直的两个向量的内积，结果为 $0$；向量与零向量内积，结果为 $0$。如果使用内积为零作为垂直的定义，则可以得出零向量与任何向量都垂直。
 
 2.  判定两向量共线：
@@ -169,7 +169,7 @@ $$
     \boldsymbol{a} \times (\lambda \boldsymbol{b}) &= \lambda (\boldsymbol{a} \times \boldsymbol{b})
     \end{aligned}
     $$
-
+    
     前两行性质亦可称为分配律，即外积对于向量加法满足乘法分配律。
 
 2.  外积满足反交换律，即：
@@ -187,9 +187,9 @@ $$
     &= |\boldsymbol a| |\boldsymbol b| \cos \langle \boldsymbol a, \boldsymbol b\rangle
     \end{aligned}
     $$
-
+    
     可以写出恒等式：
-
+    
     $$
     (\boldsymbol a\times \boldsymbol b) \cdot (\boldsymbol a\times \boldsymbol b) = |\boldsymbol a|^2 |\boldsymbol b|^2-{(\boldsymbol a \cdot \boldsymbol b)}^2
     $$
@@ -209,7 +209,7 @@ $$
     $$
     \exists\lambda \in \mathbf{R} (\boldsymbol{a} = \lambda \boldsymbol{b}) \iff \boldsymbol{a} \times \boldsymbol{b} = \boldsymbol{0}
     $$
-
+    
     即共线的两个三维向量的外积，结果为 $\boldsymbol 0$；三维向量与自身外积，结果为 $\boldsymbol 0$；三维向量与零向量外积，结果为 $\boldsymbol 0$。若使用外积为零作为两向量共线的定义，则可以得出零向量与任何向量都共线。
 
 2.  计算两向量张成的平行四边形面积：
@@ -267,9 +267,9 @@ $$
     $$
     \det(\boldsymbol a, \boldsymbol b, \boldsymbol c) = \det(\boldsymbol b, \boldsymbol c, \boldsymbol a) = \det(\boldsymbol c, \boldsymbol a, \boldsymbol b) = -\det(\boldsymbol b, \boldsymbol a, \boldsymbol c) = -\det(\boldsymbol a, \boldsymbol c, \boldsymbol b)= -\det(\boldsymbol c, \boldsymbol b, \boldsymbol a)
     $$
-
+    
     据此还可以得到内积与外积有如下关系：
-
+    
     $$
     (\boldsymbol a \times \boldsymbol b) \cdot \boldsymbol c = \boldsymbol a \cdot (\boldsymbol b \times \boldsymbol c)
     $$
@@ -291,7 +291,7 @@ $$
 3.  判定 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 构成的坐标系的手性；
 
     混合积 $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c)$ 的符号是正还是负，取决于 $\boldsymbol a \times \boldsymbol b$ 与 $\boldsymbol c$ 形成的夹角是锐角还是钝角，即指向 $\boldsymbol a$ 与 $\boldsymbol b$ 张成平面的同侧还是异侧，这相当于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 三个向量依序构成右手系还是左手系。具体而言：
-
+    
     -   $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) < 0$ 等价于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 依序构成左手系；
     -   $\det(\boldsymbol a, \boldsymbol b, \boldsymbol c) > 0$ 等价于 $\boldsymbol a, \boldsymbol b, \boldsymbol c$ 依序构成右手系。
 

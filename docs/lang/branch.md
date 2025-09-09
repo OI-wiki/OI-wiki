@@ -101,10 +101,10 @@ switch (i) {
   case 'A':
     cout << "OI" << endl;
     break;
-
+  
   case 'B':
     cout << "WIKI" << endl;
-
+  
   default:
     cout << "Hello World" << endl;
 }
@@ -119,11 +119,11 @@ switch (i) {
   case 'A':
     cout << "OI" << endl;
     break;
-
+  
   case 'B':
     cout << "WIKI" << endl;
     break;
-
+  
   default:
     cout << "Hello World" << endl;
 }
@@ -140,11 +140,11 @@ switch (i) {
   case 'B':
     cout << "WIKI" << endl;
     break;
-
+  
   default:
     cout << "Hello World" << endl;
     break;
-
+  
   case 'A':
     cout << "OI" << endl;
 }
@@ -162,14 +162,14 @@ switch (i) {
     ans = i + j;
     break;
   }
-
+  
   case 'B': {
     int qwq = 3;
     cout << "WIKI" << endl;
     ans = qwq * qwq;
     break;
   }
-
+  
   default: {
     cout << "Hello World" << endl;
   }

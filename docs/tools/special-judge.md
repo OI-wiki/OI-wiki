@@ -48,9 +48,9 @@ int main(int argc, char *argv[]) {
    * ans：标准输出
    */
   registerTestlibCmd(argc, argv);
-
+  
   double pans = ouf.readDouble(), jans = ans.readDouble();
-
+  
   if (abs(pans - jans) < 1e-3)
     quitf(_ok, "Good job\n");
   else
@@ -81,11 +81,11 @@ int main(int argc, char* argv[]) {
   FILE* fstd = fopen(argv[3], "r");
   FILE* fscore = fopen(argv[5], "w");
   FILE* freport = fopen(argv[6], "w");
-
+  
   double pans, jans;
   fscanf(fout, "%lf", &pans);
   fscanf(fstd, "%lf", &jans);
-
+  
   if (abs(pans - jans) < 1e-3) {
     fprintf(fscore, "%s", argv[4]);
     fprintf(freport, "Good job\n");
@@ -117,11 +117,11 @@ int main(int argc, char* argv[]) {
   FILE* fstd = fopen(argv[2], "r");
   FILE* fscore = fopen("score.log", "w");
   FILE* freport = fopen("report.log", "w");
-
+  
   double pans, jans;
   fscanf(fout, "%lf", &pans);
   fscanf(fstd, "%lf", &jans);
-
+  
   if (abs(pans - jans) < 1e-3) {
     fprintf(fscore, "%s", argv[1]);
     fprintf(freport, "Good job\n");
@@ -149,11 +149,11 @@ int main(int argc, char* argv[]) {
    */
   FILE* fout = fopen(argv[3], "r");
   FILE* fstd = fopen(argv[2], "r");
-
+  
   double pans, jans;
   fscanf(fout, "%lf", &pans);
   fscanf(fstd, "%lf", &jans);
-
+  
   if (abs(pans - jans) < 1e-3) {
     printf("%d\n", 1);
     printf("Good job\n");
@@ -181,11 +181,11 @@ int main(int argc, char* argv[]) {
   FILE* fout = fopen(argv[2], "r");
   FILE* fstd = fopen(argv[3], "r");
   FILE* fscore = fopen("/tmp/_eval.score", "w");
-
+  
   double pans, jans;
   fscanf(fout, "%lf", &pans);
   fscanf(fstd, "%lf", &jans);
-
+  
   if (abs(pans - jans) < 1e-3) {
     fprintf(fscore, "Good job\n");
     fprintf(fscore, "%d", 10);
@@ -216,11 +216,11 @@ int main(int argc, char* argv[]) {
   FILE* fin = fopen(argv[1], "r");
   FILE* fout = fopen(argv[3], "r");
   FILE* fstd = fopen(argv[2], "r");
-
+  
   double pans, jans;
   fscanf(fout, "%lf", &pans);
   fscanf(fstd, "%lf", &jans);
-
+  
   if (abs(pans - jans) < 1e-3)
     return AC;
   else
@@ -252,10 +252,10 @@ int main(int argc, char* argv[]) {
    */
   FILE* fin = fopen(argv[1], "r");
   FILE* fout = fopen(argv[2], "r");
-
+  
   double pans, jans;
   fscanf(fout, "%lf", &pans);
-
+  
   jans = solve(...);
   if (abs(pans - jans) < 1e-3)
     return AC;
@@ -284,13 +284,13 @@ int main(int argc, char* argv[]) {
    * stdin：选手输出
    */
   FILE* fin = fopen(argv[1], "r");
-
+  
   double pans, jans;
   if (scanf("%lf", &pans) != 1) {
     printf("WA\n");
     goto finish;
   }
-
+  
   jans = solve(fin);
   if (abs(pans - jans) < 1e-3)
     printf("AC\n");
@@ -333,11 +333,11 @@ int main(int argc, char* argv[]) {
   FILE* fout = fopen("user_out", "r");
   FILE* fstd = fopen("answer", "r");
   FILE* fcode = fopen("code", "r");
-
+  
   double pans, jans;
   fscanf(fout, "%lf", &pans);
   fscanf(fstd, "%lf", &jans);
-
+  
   if (abs(pans - jans) < 1e-3) {
     printf("%d", 100);
     fprintf(stderr, "Good job\n");
@@ -373,11 +373,11 @@ int main(int argc, char* argv[]) {
   FILE* fin = fopen("input", "r");
   FILE* fout = fopen("user_output", "r");
   FILE* fstd = fopen("output", "r");
-
+  
   double pans, jans;
   fscanf(fout, "%lf", &pans);
   fscanf(fstd, "%lf", &jans);
-
+  
   if (abs(pans - jans) < 1e-3)
     return AC;
   else
@@ -415,11 +415,11 @@ int main(int argc, char* argv[]) {
   FILE* fstd = fopen(argv[2], "r");
   sprintf(reportfile, "%s/judgemessage.txt", argv[3]);
   FILE* freport = fopen(reportfile, "w");
-
+  
   double pans, jans;
   scanf("%lf", &pans);
   fscanf(fstd, "%lf", &jans);
-
+  
   if (abs(pans - jans) < 1e-3) {
     fprintf(freport, "Good job\n");
     return AC;

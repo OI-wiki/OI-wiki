@@ -186,15 +186,15 @@ int L[N], R[N], M[N], id[N], cnt, typ[N], bin[20], st[N], tp;
 // st 为存储析合树节点编号的栈，tp为其栈顶
 struct RMQ {  // 预处理 RMQ（Max & Min）
   int lg[N], mn[N][17], mx[N][17];
-
+  
   void chkmn(int& x, int y) {
     if (x > y) x = y;
   }
-
+  
   void chkmx(int& x, int y) {
     if (x < y) x = y;
   }
-
+  
   void build() {
     for (int i = bin[0] = 1; i < 20; ++i) bin[i] = bin[i - 1] << 1;
     for (int i = 2; i <= n; ++i) lg[i] = lg[i >> 1] + 1;
@@ -204,12 +204,12 @@ struct RMQ {  // 预处理 RMQ（Max & Min）
         mn[j][i] = min(mn[j][i - 1], mn[j + bin[i - 1]][i - 1]),
         mx[j][i] = max(mx[j][i - 1], mx[j + bin[i - 1]][i - 1]);
   }
-
+  
   int ask_mn(int l, int r) {
     int t = lg[r - l + 1];
     return min(mn[l][t], mn[r - bin[t] + 1][t]);
   }
-
+  
   int ask_mx(int l, int r) {
     int t = lg[r - l + 1];
     return max(mx[l][t], mx[r - bin[t] + 1][t]);
@@ -222,15 +222,15 @@ struct SEG {  // 线段树
 #define ls (k << 1)
 #define rs (k << 1 | 1)
   int mn[N << 1], ly[N << 1];  // 区间加；区间最小值
-
+  
   void pushup(int k) { mn[k] = min(mn[ls], mn[rs]); }
-
+  
   void mfy(int k, int v) { mn[k] += v, ly[k] += v; }
-
+  
   void pushdown(int k) {
     if (ly[k]) mfy(ls, ly[k]), mfy(rs, ly[k]), ly[k] = 0;
   }
-
+  
   void update(int k, int l, int r, int x, int y, int v) {
     if (l == x && r == y) {
       mfy(k, v);
@@ -246,7 +246,7 @@ struct SEG {  // 线段树
       update(ls, l, mid, x, mid, v), update(rs, mid + 1, r, mid + 1, y, v);
     pushup(k);
   }
-
+  
   int query(int k, int l, int r) {  // 询问 0 的位置
     if (l == r) return l;
     pushdown(k);
@@ -309,17 +309,17 @@ void build() {
     // 区间加只是一个 Tag。
     // 维护单调栈的目的是辅助线段树从 i-1 更新到 i。
     // 更新到 i 后，只需要查询全局最小值即可知道是否有解
-
+    
     while (tp1 && a[i] <= a[st1[tp1]])  // 单调递增的栈，维护 Min
       T.update(1, 1, n, st1[tp1 - 1] + 1, st1[tp1], a[st1[tp1]]), tp1--;
     while (tp2 && a[i] >= a[st2[tp2]])
       T.update(1, 1, n, st2[tp2 - 1] + 1, st2[tp2], -a[st2[tp2]]), tp2--;
-
+    
     T.update(1, 1, n, st1[tp1] + 1, i, -a[i]);
     st1[++tp1] = i;
     T.update(1, 1, n, st2[tp2] + 1, i, a[i]);
     st2[++tp2] = i;
-
+    
     id[i] = ++cnt;
     L[cnt] = R[cnt] = i;  // 这里的 L,R 是指节点所对应区间的左右端点
     int le = T.query(1, 1, n), now = cnt;
@@ -345,10 +345,10 @@ void build() {
       }
     }
     st[++tp] = now;  // 增量结束，把当前点压栈
-
+    
     T.update(1, 1, n, 1, i, -1);  // 因为区间右端点向后移动一格，因此整体 -1
   }
-
+  
   rt = st[1];  // 栈中最后剩下的点是根结点
 }
 

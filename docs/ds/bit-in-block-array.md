@@ -132,10 +132,10 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
       int v;
       for (int i = 1; i <= n; ++i) scanf("%d", &v), pa[v] = i;
       for (int i = 1; i <= n; ++i) scanf("%d", &v), pb[i] = pa[v];
-    
+      
       build(n);
       for (int i = 1; i <= n; ++i) add(i, pb[i], 1);
-    
+      
       int op, la, lb, ra, rb, x, y;
       for (int i = 1; i <= m; ++i) {
         scanf("%d", &op);
@@ -166,19 +166,19 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
       struct node {
         node *l, *r;
         int sz, rnd, v;
-    
+        
         node(int _v) : l(NULL), r(NULL), sz(1), rnd(rng()), v(_v) {}
       };
-    
+      
       int get_size(node*& p) { return p ? p->sz : 0; }
-    
+      
       void push_up(node*& p) {
         if (!p) return;
         p->sz = get_size(p->l) + get_size(p->r) + 1;
       }
-    
+      
       node* root;
-    
+      
       node* merge(node* a, node* b) {
         if (!a) return b;
         if (!b) return a;
@@ -192,7 +192,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
           return b;
         }
       }
-    
+      
       void split_val(node* p, const int& k, node*& a, node*& b) {
         if (!p)
           a = b = NULL;
@@ -208,7 +208,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
           }
         }
       }
-    
+      
       void split_size(node* p, int k, node*& a, node*& b) {
         if (!p)
           a = b = NULL;
@@ -224,14 +224,14 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
           }
         }
       }
-    
+      
       void ins(int val) {
         node *a, *b;
         split_val(root, val, a, b);
         a = merge(a, new node(val));
         root = merge(a, b);
       }
-    
+      
       void del(int val) {
         node *a, *b, *c, *d;
         split_val(root, val, a, b);
@@ -239,7 +239,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
         delete d;
         root = merge(c, b);
       }
-    
+      
       int qry(int val) {
         node *a, *b;
         split_val(root, val, a, b);
@@ -247,7 +247,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
         root = merge(a, b);
         return res;
       }
-    
+      
       int qry(int l, int r) { return qry(r) - qry(l - 1); }
     };
     
@@ -276,7 +276,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
       for (int i = 1; i <= n; ++i) scanf("%d", &v), pa[v] = i;
       for (int i = 1; i <= n; ++i) scanf("%d", &v), pb[i] = pa[v];
       for (int i = 1; i <= n; ++i) ins(i, pb[i]);
-    
+      
       int op, la, lb, ra, rb, x, y;
       for (int i = 1; i <= m; ++i) {
         scanf("%d", &op);
@@ -381,20 +381,20 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
     
     int main() {
       scanf("%d", &n);
-    
+      
       // 为了减少讨论，加了哨兵节点
       // 因为树状数组添加的时候，为0可能会死循环，所以整体往右偏移一位
       // a_1和a_{n+2}为哨兵节点
       for (int i = 2; i <= n + 1; ++i) scanf("%d", &a[i]);
       for (int i = 2; i <= n + 1; ++i) g[a[i]].push_back(i);
-    
+      
       // 分块
       build(n + 2);
-    
+      
       int ans = n + 2, lst, ok;
       for (int i = 1; i <= n + 1; ++i) {
         g[i].push_back(n + 2);
-    
+        
         lst = 1;
         ok = 0;
         for (int pos : g[i]) {
@@ -404,12 +404,12 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
           }
           lst = pos;
         }
-    
+        
         if (!ok) {
           ans = i;
           break;
         }
-    
+        
         lst = 1;
         g[i].pop_back();
         for (int pos : g[i]) {
@@ -440,19 +440,19 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
         node *l, *r;
         unsigned rnd;
         int sz, v;
-    
+        
         node(int _v) : l(NULL), r(NULL), rnd(rng()), sz(1), v(_v) {}
       };
-    
+      
       int get_size(node*& p) { return p ? p->sz : 0; }
-    
+      
       void push_up(node*& p) {
         if (!p) return;
         p->sz = get_size(p->l) + get_size(p->r) + 1;
       }
-    
+      
       node* root;
-    
+      
       node* merge(node* a, node* b) {
         if (!a) return b;
         if (!b) return a;
@@ -466,7 +466,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
           return b;
         }
       }
-    
+      
       void split_val(node* p, const int& k, node*& a, node*& b) {
         if (!p)
           a = b = NULL;
@@ -482,7 +482,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
           }
         }
       }
-    
+      
       void split_size(node* p, int k, node*& a, node*& b) {
         if (!p)
           a = b = NULL;
@@ -498,14 +498,14 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
           }
         }
       }
-    
+      
       void insert(int val) {
         node *a, *b;
         split_val(root, val, a, b);
         a = merge(a, new node(val));
         root = merge(a, b);
       }
-    
+      
       int query(int val) {
         node *a, *b;
         split_val(root, val, a, b);
@@ -513,7 +513,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
         root = merge(a, b);
         return res;
       }
-    
+      
       int qry(int l, int r) { return query(r) - query(l - 1); }
     };
     
@@ -548,12 +548,12 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
       scanf("%d", &n);
       for (int i = 1; i <= n; ++i) scanf("%d", &a[i]);
       for (int i = 1; i <= n; ++i) g[a[i]].push_back(i);
-    
+      
       // a_0 和 a_{n+1}为哨兵节点
       int ans = n + 2, lst, ok;
       for (int i = 1; i <= n + 1; ++i) {
         g[i].push_back(n + 1);
-    
+        
         lst = 0;
         ok = 0;
         for (int pos : g[i]) {
@@ -563,12 +563,12 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
           }
           lst = pos;
         }
-    
+        
         if (!ok) {
           ans = i;
           break;
         }
-    
+        
         lst = 0;
         g[i].pop_back();
         for (int pos : g[i]) {

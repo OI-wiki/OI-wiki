@@ -77,17 +77,17 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 -   第一次染色：
 
     ![Colored 1](images/color2.png)
-
+    
     染 `4 9 3 11` 号点。
 -   第二次染色：
 
     ![Colored 2](images/color3.png)
-
+    
     染 `5 2 6 7 8` 号点。
 -   第三次染色：
 
     ![Colored 3](images/color4.png)
-
+    
     染 `0 1 10 12` 号点。
 
 #### 证明
@@ -103,9 +103,9 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
     2.  若
     
         $\{v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}\}\subset V_m,~i_{m,1}<i_{m,2}<\dots<i_{m,l_m}$
-    
+        
         则 $v_j\in V_m$ 当且仅当
-    
+        
         1.  $j>i_{m,l_m}$
         2.  $v_j$ 与 $v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}$ 均不相邻
     

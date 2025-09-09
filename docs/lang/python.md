@@ -922,12 +922,12 @@ def fib(n):
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-    
+        
         dijkstra(s)
-    
+        
         for i in range(1, n + 1):
             print(dist[i], end=" ")
-    
+        
         print()
     ```
 
@@ -1055,14 +1055,14 @@ def fib(n):
         for i in range(m):
             u, v, w = map(int, input().split())
             add_path(u, v, w)
-    
+        
         dijkstra(s)
-    
+        
         for i in range(1, n + 1):
             # 两种输出语法都是可以用的
             print("{}".format(dist[i]), end=" ")
             # print("%d" % dist[i],end=' ')
-    
+        
         print()  # 结尾换行
     ```
 

@@ -168,10 +168,10 @@ vertex labeling 为 $0$ 的点最后将成为未匹配点。
     
     struct edge {
       int u, v, w;
-    
+      
       // 表示(u,v)为一条边其权重为w
       edge() {}
-    
+      
       edge(int u, int v, int w) : u(u), v(v), w(w) {}
     };
     

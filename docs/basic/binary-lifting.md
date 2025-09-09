@@ -79,12 +79,12 @@ RMQ 是 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）�
       for (int i = 1; i <= n; ++i) {
         scanf("%d", vi + i);
       }
-    
+      
       for (int i = 1; i <= n; ++i) {
         go[0][i] = (i + k) % n + 1;
         sum[0][i] = vi[i];
       }
-    
+      
       int logn = 31 - __builtin_clz(n);  // 一个快捷的取对数的方法
       for (int i = 1; i <= logn; ++i) {
         for (int j = 1; j <= n; ++j) {
@@ -92,10 +92,10 @@ RMQ 是 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）�
           sum[i][j] = modadd(sum[i - 1][j], sum[i - 1][go[i - 1][j]]);
         }
       }
-    
+      
       long long m;
       scanf("%lld", &m);
-    
+      
       int ans = 0;
       int curx = 1;
       for (int i = 0; m; ++i) {
@@ -105,7 +105,7 @@ RMQ 是 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）�
           m ^= 1ll << i;  // 将第 i 位置零
         }
       }
-    
+      
       printf("%d\n", ans);
     }
     ```

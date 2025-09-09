@@ -100,12 +100,12 @@ static std::pair<Node*, Node*> SplitUp2(Node* p) {
   b = p->right_;
   if (b) b->parent_ = nullptr;
   p->right_ = nullptr;
-
+  
   bool is_p_left_child_of_parent = false;
   bool is_from_left_child = false;
   while (p) {
     Node* parent = p->parent_;
-
+    
     if (parent) {
       is_p_left_child_of_parent = (parent->left_ == p);
       if (is_p_left_child_of_parent) {
@@ -115,18 +115,18 @@ static std::pair<Node*, Node*> SplitUp2(Node* p) {
       }
       p->parent_ = nullptr;
     }
-
+    
     if (!is_from_left_child) {
       a = Merge(p, a);
     } else {
       b = Merge(b, p);
     }
-
+    
     is_from_left_child = is_p_left_child_of_parent;
     p->Maintain();
     p = parent;
   }
-
+  
   return {a, b};
 }
 ```
@@ -157,15 +157,15 @@ void MakeRoot(int u) {
 void Insert(int u, int v) {
   Node* vertex_u = vertices_[u];
   Node* vertex_v = vertices_[v];
-
+  
   Node* edge_uv = AllocateNode(u, v);
   Node* edge_vu = AllocateNode(v, u);
   tree_edges_[u][v] = edge_uv;
   tree_edges_[v][u] = edge_vu;
-
+  
   auto [L11, L12] = Treap::SplitUp2(vertex_u);
   auto [L21, L22] = Treap::SplitUp2(vertex_v);
-
+  
   Node* L = L12;
   L = Treap::Merge(L, L11);
   L = Treap::Merge(L, edge_uv);
@@ -185,18 +185,18 @@ void Delete(int u, int v) {
   Node* edge_vu = tree_edges_[v][u];
   tree_edges_[u].erase(v);
   tree_edges_[v].erase(u);
-
+  
   int position_uv = Treap::GetPosition(edge_uv);
   int position_vu = Treap::GetPosition(edge_vu);
   if (position_uv > position_vu) {
     std::swap(edge_uv, edge_vu);
     std::swap(position_uv, position_vu);
   }
-
+  
   auto [L1, uv, _] = Treap::SplitUp3(edge_uv);
   auto [L2, vu, L3] = Treap::SplitUp3(edge_vu);
   Treap::Merge(L1, L3);
-
+  
   FreeNode(edge_uv);
   FreeNode(edge_vu);
 }

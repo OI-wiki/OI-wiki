@@ -187,7 +187,7 @@ int value = 520;
 ```cpp
 int main() {
   auto f = [val = 0]() mutable -> int { return ++val; };  // val 被构造和初始化
-
+  
   std::cout << f() << '\n';  // Output: 1
   std::cout << f() << '\n';  // Output: 2
   std::cout << f() << '\n';  // Output: 3
@@ -315,7 +315,7 @@ auto dfs = [&](int i) -> void {
         
         dfs(1);
         ```
-
+    
     ??? warning " 不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归 "
         `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
         
@@ -334,26 +334,26 @@ auto dfs = [&](int i) -> void {
               random_device rd;
               mt19937 gen{rd()};
               array<unsigned, 32> arr{};
-            
+              
               std::iota(arr.begin(), arr.end(), 0u);
               ranges::shuffle(arr, gen);
-            
+              
               return arr;
             }();
             
             static void std_function_fib(benchmark::State& state) {
               std::function<int(int)> fib;
-            
+              
               fib = [&](int n) { return n <= 2 ? 1 : fib(n - 1) + fib(n - 2); };
-            
+              
               unsigned i = 0;
-            
+              
               for (auto _ : state) {
                 auto res = fib(nums[i]);
                 benchmark::DoNotOptimize(res);
-            
+                
                 ++i;
-            
+                
                 if (i == nums.size()) i = 0;
               }
             }
@@ -364,15 +364,15 @@ auto dfs = [&](int i) -> void {
               auto n_fibonacci = [](const auto& self, int n) -> int {
                 return n <= 2 ? 1 : self(self, n - 1) + self(self, n - 2);
               };
-            
+              
               unsigned i = 0;
-            
+              
               for (auto _ : state) {
                 auto res = n_fibonacci(n_fibonacci, nums[i]);
                 benchmark::DoNotOptimize(res);
-            
+                
                 ++i;
-            
+                
                 if (i == nums.size()) i = 0;
               }
             }
@@ -398,7 +398,7 @@ auto dfs = [&](int i) -> void {
         
         dfs(dfs, 1);
         ```
-
+    
     ???+ note "`auto self`、`auto& self` 和 `auto&& self` 的区别："
         `auto& self` 和 `auto&& self` 理论上都只会使用 $8$ 个字节（指针的大小）用作传参，不会发生其他的拷贝。具体要看编译器对 Lambda 的实现方式和对应的优化。
         而使用 `auto self` 会发生对象拷贝，拷贝的大小取决于捕获列表中的元素，因为它们都是这个 Lambda 类中的私有成员变量。
@@ -416,9 +416,9 @@ auto dfs = [&](int i) -> void {
             else
               (*this)(i + 1);  // OK
           }
-        
+          
           explicit Lambda_1(int& __n) : n(__n) {}
-        
+         
          private:
           int& n;
         } dfs(n);
@@ -428,7 +428,7 @@ auto dfs = [&](int i) -> void {
 4.  如果 lambda 没有捕获任何变量，我们也可以利用函数指针。
 
     如果 lambda 没有捕获任何变量，那么它可以隐式转换为函数指针。同时 lambda 此时也可以声明为 `static`，函数指针类型也可以声明为 `static`。如此依赖，lambda 可以不需要捕获就能访问函数指针，从而实现递归。
-
+    
     ???+ example "示例"
         ```cpp
         static unsigned (*fptr)(unsigned);
@@ -476,15 +476,15 @@ void solution(const vector<int>& input) {
   int b = [&] {
     vector<int> large_objects(input.size());
     int c = 0;
-
+    
     for (int i = 0; i < large_objects.size(); ++i)
       large_objects[i] = i + input[i];
-
+    
     for (int i = 0; i < input.size(); ++i) c += large_objects[input[i]];
-
+    
     return c;
   }();
-
+  
   // ...
 }
 ```

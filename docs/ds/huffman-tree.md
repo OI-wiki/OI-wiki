@@ -101,7 +101,7 @@ $$
         temp->lchild = temp->rchild = NULL;
         forest[i] = temp;
       }
-    
+      
       for (int i = 1; i < n; i++) {  // n-1 次循环建哈夫曼树
         int minn = -1, minnSub;  // minn 为最小值树根下标，minnsub 为次小值树根下标
         for (int j = 0; j < n; j++) {
@@ -114,7 +114,7 @@ $$
             break;
           }
         }
-    
+        
         for (int j = minnSub; j < n; j++) {  // 根据 minn 与 minnSub 赋值
           if (forest[j] != NULL) {
             if (forest[j]->weight < forest[minn]->weight) {
@@ -125,13 +125,13 @@ $$
             }
           }
         }
-    
+        
         // 建新树
         root = (Htree)malloc(sizeof(HNode));
         root->weight = forest[minn]->weight + forest[minnSub]->weight;
         root->lchild = forest[minn];
         root->rchild = forest[minnSub];
-    
+        
         forest[minn] = root;     // 指向新树的指针赋给 minn 位置
         forest[minnSub] = NULL;  // minnSub 位置为空
       }
@@ -168,7 +168,7 @@ $$
     int getWPL(int arr[], int n) {  // 对于未建好的霍夫曼树，直接求其 WPL
       priority_queue<int, vector<int>, greater<int>> huffman;  // 小根堆
       for (int i = 0; i < n; i++) huffman.push(arr[i]);
-    
+      
       int res = 0;
       for (int i = 0; i < n - 1; i++) {
         int x = huffman.top();

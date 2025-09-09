@@ -97,7 +97,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
       queue<int> q;
       int org_n;
       int org_m;
-    
+      
       hungarian(int _n, int _m) {
         org_n = _n;
         org_m = _m;
@@ -114,11 +114,11 @@ $a = \min \{ slack(v) | v\in{T'} \}$
         ly = vector<T>(n);
         slack = vector<T>(n);
       }
-    
+      
       void addEdge(int u, int v, int w) {
         g[u][v] = max(w, 0);  // 负值还不如不匹配 因此设为0不影响
       }
-    
+      
       bool check(int v) {
         visy[v] = true;
         if (matchy[v] != -1) {
@@ -133,7 +133,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
         }
         return true;
       }
-    
+      
       void bfs(int i) {
         while (!q.empty()) {
           q.pop();
@@ -183,7 +183,7 @@ $a = \min \{ slack(v) | v\in{T'} \}$
           }
         }
       }
-    
+      
       void solve() {
         // 初始顶标
         for (int i = 0; i < n; i++) {
@@ -191,14 +191,14 @@ $a = \min \{ slack(v) | v\in{T'} \}$
             lx[i] = max(lx[i], g[i][j]);
           }
         }
-    
+        
         for (int i = 0; i < n; i++) {
           fill(slack.begin(), slack.end(), inf);
           fill(visx.begin(), visx.end(), false);
           fill(visy.begin(), visy.end(), false);
           bfs(i);
         }
-    
+        
         // custom
         for (int i = 0; i < n; i++) {
           if (g[i][matchx[i]] > 0) {

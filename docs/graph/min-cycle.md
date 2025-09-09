@@ -82,7 +82,7 @@
     
     void get_path(int u, int v) {  // 获得 u 到 v 之间的路径
       if (pos[u][v] == 0) return;
-    
+      
       int k = pos[u][v];
       get_path(u, k);
       path[++cnt] = k;
@@ -105,7 +105,7 @@
               path[++cnt] = j;  // 依次加入 i,k,j 三点
               get_path(j, i);   // 加入 j 到 i 的路径
             }
-    
+        
         for (int i = 1; i <= n; ++i)  // 正常 Floyd 更新最短路
           for (int j = 1; j <= n; ++j) {
             if (dis[i][j] > dis[i][k] + dis[k][j]) {
@@ -126,21 +126,21 @@
     def get_path(i, j, pos, path, cnt):
         """
         递归地获取从节点 i 到节点 j 的最短路径上的中间节点。
-    
+        
         Args:
             i (int): 起始节点 (0-based index).
             j (int): 结束节点 (0-based index).
             pos (list[list[int]]): 记录最短路径中间节点的矩阵. pos[i][j] = k 表示从 i 到 j 的最短路径经过 k.
             path (list[int]): 存储路径节点的列表 (使用 0-based index).
             cnt (int): 当前路径节点的数量.
-    
+        
         Returns:
             int: 更新后的路径节点数量.
         """
         # 如果 pos[i][j] 为 -1，表示 i 到 j 没有中间节点
         if pos[i][j] == -1:
             return cnt
-    
+        
         # 获取中间节点 k
         k = pos[i][j]
         # 递归获取 i 到 k 的路径
@@ -156,12 +156,12 @@
     def find_minimum_cycle_undirected(n, edges):
         """
         使用 Floyd-Warshall 算法查找无向图中的最小环。
-    
+        
         Args:
             n (int): 图的节点数 (1 到 n).
             edges (list[tuple]): 边的列表，每个元素是 (u, v, w)，表示节点 u 和 v 之间有一条权重为 w 的边。
                                  节点索引是 1 到 n。
-    
+        
         Returns:
             tuple: 包含最小环的长度和路径。
                    如果不存在环，返回 (INF, []).
@@ -175,12 +175,12 @@
         dis = [[INF for _ in range(N)] for _ in range(N)]
         # 初始化 pos 矩阵，记录最短路径的中间节点
         pos = [[-1 for _ in range(N)] for _ in range(N)]
-    
+        
         # 初始化对角线为 0 (节点到自身的距离)
         for i in range(N):
             g[i][i] = 0
             dis[i][i] = 0
-    
+        
         # 根据输入的边构建邻接矩阵 (无向图)
         for u, v, w in edges:
             # 将 1-based 索引转换为 0-based
@@ -191,12 +191,12 @@
             g[v][u] = min(g[v][u], w)
             dis[u][v] = min(dis[u][v], w)
             dis[v][u] = min(dis[v][u], w)
-    
+        
         # 初始化最小环长度为无穷大
         min_cycle_len = INF
         # 初始化最小环路径
         min_cycle_path = []
-    
+        
         # Floyd-Warshall 算法核心部分
         # k 作为中间节点 (0-based index)
         for k in range(N):
@@ -228,7 +228,7 @@
                             # 提取实际路径节点 (去除未使用的部分)
                             # 将 0-based 索引转换为 1-based
                             min_cycle_path = [node + 1 for node in path[:cnt]]
-    
+            
             # 标准 Floyd-Warshall 更新最短路径
             for i in range(N):
                 for j in range(N):
@@ -240,7 +240,7 @@
                         dis[i][j] = dis[i][k] + dis[k][j]
                         # 记录从 i 到 j 的最短路径经过 k
                         pos[i][j] = k
-    
+        
         return min_cycle_len, min_cycle_path
     ```
 
@@ -282,7 +282,7 @@
     void get_path(int u, int v) {
       // 如果 pos[u][v] 为 0，表示 u 到 v 没有中间节点，直接返回
       if (pos[u][v] == 0) return;
-    
+      
       // 获取中间节点 k
       int k = pos[u][v];
       // 递归获取 u 到 k 的路径
@@ -314,7 +314,7 @@
               // 获取 j 到 i 的最短路径上的中间节点，加入路径
               get_path(j, i);
             }
-    
+        
         // 标准 Floyd-Warshall 更新最短路径
         // i 从 1 到 n，j 从 1 到 n
         for (int i = 1; i <= n; ++i)
@@ -376,21 +376,21 @@
     def get_path(i, j, pos, path, cnt):
         """
         递归地获取从节点 i 到节点 j 的最短路径上的中间节点。
-    
+        
         Args:
             i (int): 起始节点 (0-based index).
             j (int): 结束节点 (0-based index).
             pos (list[list[int]]): 记录最短路径中间节点的矩阵. pos[i][j] = k 表示从 i 到 j 的最短路径经过 k.
             path (list[int]): 存储路径节点的列表 (使用 0-based index).
             cnt (int): 当前路径节点的数量.
-    
+        
         Returns:
             int: 更新后的路径节点数量.
         """
         # 如果 pos[i][j] 为 -1，表示 i 到 j 没有中间节点
         if pos[i][j] == -1:
             return cnt
-    
+        
         # 获取中间节点 k
         k = pos[i][j]
         # 递归获取 i 到 k 的路径
@@ -406,12 +406,12 @@
     def find_minimum_cycle_undirected(n, edges):
         """
         使用 Floyd-Warshall 算法查找无向图中的最小环。
-    
+        
         Args:
             n (int): 图的节点数 (1 到 n).
             edges (list[tuple]): 边的列表，每个元素是 (u, v, w)，表示节点 u 和 v 之间有一条权重为 w 的边。
                                  节点索引是 1 到 n。
-    
+        
         Returns:
             tuple: 包含最小环的长度和路径。
                    如果不存在环，返回 (INF, []).
@@ -425,12 +425,12 @@
         dis = [[INF for _ in range(N)] for _ in range(N)]
         # 初始化 pos 矩阵，记录最短路径的中间节点
         pos = [[-1 for _ in range(N)] for _ in range(N)]
-    
+        
         # 初始化对角线为 0 (节点到自身的距离)
         for i in range(N):
             g[i][i] = 0
             dis[i][i] = 0
-    
+        
         # 根据输入的边构建邻接矩阵 (无向图)
         for u, v, w in edges:
             # 将 1-based 索引转换为 0-based
@@ -441,12 +441,12 @@
             g[v][u] = min(g[v][u], w)
             dis[u][v] = min(dis[u][v], w)
             dis[v][u] = min(dis[v][u], w)
-    
+        
         # 初始化最小环长度为无穷大
         min_cycle_len = INF
         # 初始化最小环路径
         min_cycle_path = []
-    
+        
         # Floyd-Warshall 算法核心部分
         # k 作为中间节点 (0-based index)
         for k in range(N):
@@ -478,7 +478,7 @@
                             # 提取实际路径节点 (去除未使用的部分)
                             # 将 0-based 索引转换为 1-based
                             min_cycle_path = [node + 1 for node in path[:cnt]]
-    
+            
             # 标准 Floyd-Warshall 更新最短路径
             for i in range(N):
                 for j in range(N):
@@ -490,7 +490,7 @@
                         dis[i][j] = dis[i][k] + dis[k][j]
                         # 记录从 i 到 j 的最短路径经过 k
                         pos[i][j] = k
-    
+        
         return min_cycle_len, min_cycle_path
     
     
@@ -498,16 +498,16 @@
     if __name__ == "__main__":
         # 读取节点数 n 和边数 m
         n, m = map(int, sys.stdin.readline().split())
-    
+        
         # 读取边信息
         edges = []
         for _ in range(m):
             u, v, w = map(int, sys.stdin.readline().split())
             edges.append((u, v, w))
-    
+        
         # 查找最小环
         min_len, path = find_minimum_cycle_undirected(n, edges)
-    
+        
         # 输出结果
         if min_len == INF:
             print("No solution.")

@@ -298,12 +298,12 @@ $1 \le n,m \le 10^5$。
 -   $u$ 是 $\textit{root}$ 的祖先，即 $u$ 位于 $1$ 到 $\textit{root}$ 的简单路径上。
 
     这是最值得注意的情况。定义 $v$ 为 $u$ 到 $\textit{root}$ 的简单路径上除 $u$ 以外的深度最小的点，可以发现 $v$ 及其子树以外的部分都属于 $u$ 及其子树。
-
+    
     考虑如何高效找到 $v$。我们先令 $v\gets\textit{root}$，然后沿着重链往上跳直到 $\textit{dep}(\textit{top}(v))\le\textit{dep}(u)+1$。
-
+    
     -   若 $\textit{dep}(\textit{top}(v))=\textit{dep}(u)+1$，说明 $v$ 为 $u$ 的一个轻儿子，那么就找到了。
     -   若 $\textit{dep}(\textit{top}(v))<\textit{dep}(u)+1$，亦即 $\textit{dep}(\textit{top}(v))\le \textit{dep}(u)$，说明 $u,v$ 处在同一条重链上，根据同一条重链上 DFS 序连续的性质，$\textit{dfn}(v)=\textit{dfn}(\textit{top}(v))+\textit{dep}(u)+1-\textit{dep}(\textit{top}(v))$。然后用 $\textit{rnk}$ 就可以找到 $v$ 了。
-
+    
     由于 $v$ 子树覆盖的区间为 $[\textit{dfn}(v),\textit{dfn}(v)+\textit{siz}(v))$，那么我们只需要对 $[1,\textit{dfn}(v))\cup[\textit{dfn}(v)+\textit{siz}(v),n]$ 操作即可。
 
 -   其它情况。可以发现换根操作不会影响 $u$ 的子树，用正常的方式维护即可。
@@ -386,14 +386,14 @@ $2999+\sum_{i=1}^{2999}T(i)\le 29940$，事实上这个上界是可以通过构�
     void dfs(int u) {
       if (ch[u][0]) dfs(ch[u][0]);
       if (ch[u][1]) dfs(ch[u][1]);
-    
+      
       siz[u] = siz[ch[u][0]] + siz[ch[u][1]] + 1;
-    
+      
       if (ch[u][1])
         son[u] = int(siz[ch[u][0]] < siz[ch[u][1]]);
       else
         son[u] = 0;
-    
+      
       if (ch[u][son[u]])
         bot[u] = bot[ch[u][son[u]]];
       else
@@ -417,26 +417,26 @@ $2999+\sum_{i=1}^{2999}T(i)\le 29940$，事实上这个上界是可以通过构�
     
     int main() {
       int i;
-    
+      
       scanf("%d", &n);
-    
+      
       for (i = 2; i <= n; ++i) {
         id[i] = i;
         dep[i] = query(1, i);
       }
-    
+      
       sort(id + 2, id + n + 1, [](int x, int y) { return dep[x] < dep[y]; });
-    
+      
       for (i = 2; i <= n; ++i) {
         dfs(1);
         solve(1, id[i]);
       }
-    
+      
       printf("!");
       for (i = 2; i <= n; ++i) printf(" %d", fa[i]);
       printf("\n");
       fflush(stdout);
-    
+      
       return 0;
     }
     ```

@@ -15,9 +15,9 @@ author: HeRaNO, konnyakuxzy, littlefrog
       node* nxt;
       int size;
       char d[(sqn << 1) + 5];
-    
+      
       node() { size = 0, nxt = NULL, memset(d, 0, sizeof(d)); }
-    
+      
       void pb(char c) { d[size++] = c; }
     };
     ```

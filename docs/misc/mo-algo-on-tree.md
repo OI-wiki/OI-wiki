@@ -72,7 +72,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
     
     struct query {
       int l, r, t, id;
-    
+      
       bool operator<(const query &b) const {
         return (pos[l] < pos[b.l]) || (pos[l] == pos[b.l] && pos[r] < pos[b.r]) ||
                (pos[l] == pos[b.l] && pos[r] == pos[b.r] && t < b.t);
@@ -378,7 +378,7 @@ if (!sta.empty()) {
     
     struct qu {
       int x, y, t, id;
-    
+      
       bool operator<(const qu a) const {
         return bl[x] == bl[a.x] ? (bl[y] == bl[a.y] ? t < a.t : bl[y] < bl[a.y])
                                 : bl[x] < bl[a.x];

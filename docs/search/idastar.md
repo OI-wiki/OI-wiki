@@ -105,35 +105,35 @@ $$
         $$
         e \le \left(\dfrac{a}{b}-\dfrac{c}{d}\right)^{-1}(C-g) - 1.
         $$
-    
+        
         所以，不必枚举所有的后续分母再逐个判断，只需要枚举到这个上界即可。
     3.  在搜索到最后两个分数时，直接利用二次方程计算是否可行，而非继续搜索。具体地，要找到 $e<x<y\le E_\text{max}$ 使得
     
         $$
         \dfrac{1}{x} + \dfrac{1}{y} = \dfrac{p}{q} := \dfrac{a}{b}-\dfrac{c}{d},
         $$
-    
+        
         只需要求解二元二次方程组
-    
+        
         $$
         \begin{cases}
         x + y = kp,\\
         xy = kq
         \end{cases}
         $$
-    
+        
         即可，其中，$k\in\mathbf N_+$。由二次方程的知识可知，方程组在
-    
+        
         $$
         \Delta = k^2p^2-4kq > 0 \iff k > \dfrac{4q}{p^2}
         $$
-    
+        
         时，才有两个不同的实根
-    
+        
         $$
         x = \dfrac{kp - \sqrt{\Delta}}{2},~ y = \dfrac{kp + \sqrt{\Delta}}{2}.
         $$
-    
+        
         因此，可以直接枚举所有可行的 $k$，判断是否存在这样一组整数解。枚举 $k$ 时，上界通过 $y < E_\text{max}$ 判断。
     4.  每次得到一组答案时，都将分母的上界 $M_e$ 调整到当前答案中的最大分母减一。
     

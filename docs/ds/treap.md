@@ -143,13 +143,13 @@ struct Node {
   int val, rank;
   int rep_cnt;  // 当前这个值（val）重复出现的次数
   int siz;      // 以当前节点为根的子树大小
-
+  
   Node(int val) : val(val), rep_cnt(1), siz(1) {
     ch[0] = ch[1] = nullptr;
     rank = rand();
     // 注意初始化的时候，rank 是随机给出的
   }
-
+  
   void upd_siz() {
     // 用于旋转和删除过后，重新计算 siz 的值
     siz = rep_cnt;
@@ -182,12 +182,12 @@ void _rotate(Node *&cur,
   // 注意传进来的 cur 是指针的引用，也就是改了这个
   // cur，变量是跟着一起改的，如果这个 cur 是别的 树的子节点，根据 ch
   // 找过来的时候，也是会找到这里的
-
+  
   // 以下的代码解释的均是左旋时的情况
   Node *tmp = cur->ch[dir];  // 让 C 变成根节点，
                              // 这里的 tmp
                              // 是一个临时的节点指针，指向成为新的根节点的节点
-
+  
   /* 左旋：也就是让右子节点变成根节点
    *         A                 C
    *        / \               / \
@@ -512,7 +512,7 @@ Node *merge(Node *u, Node *v) {
   if (u == nullptr && v == nullptr) return nullptr;
   if (u != nullptr && v == nullptr) return u;
   if (v != nullptr && u == nullptr) return v;
-
+  
   if (u->prio < v->prio) {
     // u 的 prio 比较小，u应该作为父节点
     u->ch[1] = merge(u->ch[1], v);
@@ -880,12 +880,12 @@ void print(Node* cur) {
       int val, rank;
       int rep_cnt;
       int siz;
-    
+      
       Node(int val) : val(val), rep_cnt(1), siz(1) {
         ch[0] = ch[1] = nullptr;
         rank = rand();
       }
-    
+      
       void upd_siz() {
         siz = rep_cnt;
         if (ch[0] != nullptr) siz += ch[0]->siz;
@@ -896,13 +896,13 @@ void print(Node* cur) {
     class Treap {
      private:
       Node *root;
-    
+      
       constexpr static int NIL = -1;  // 用于表示查询的值不存在
-    
+      
       enum rot_type { LF = 1, RT = 0 };
-    
+      
       int q_prev_tmp = 0, q_nex_tmp = 0;
-    
+      
       void _rotate(Node *&cur, rot_type dir) {  // 0为右旋，1为左旋
         Node *tmp = cur->ch[dir];
         cur->ch[dir] = tmp->ch[!dir];
@@ -910,7 +910,7 @@ void print(Node* cur) {
         cur->upd_siz(), tmp->upd_siz();
         cur = tmp;
       }
-    
+      
       void _insert(Node *&cur, int val) {
         if (cur == nullptr) {
           cur = new Node(val);
@@ -932,7 +932,7 @@ void print(Node* cur) {
           cur->upd_siz();
         }
       }
-    
+      
       void _del(Node *&cur, int val) {
         if (val > cur->val) {
           _del(cur->ch[1], val);
@@ -972,7 +972,7 @@ void print(Node* cur) {
           }
         }
       }
-    
+      
       int _query_rank(Node *cur, int val) {
         int less_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
         if (val == cur->val)
@@ -989,7 +989,7 @@ void print(Node* cur) {
             return cur->siz + 1;
         }
       }
-    
+      
       int _query_val(Node *cur, int rank) {
         int less_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
         if (rank <= less_siz)
@@ -999,7 +999,7 @@ void print(Node* cur) {
         else
           return _query_val(cur->ch[1], rank - less_siz - cur->rep_cnt);
       }
-    
+      
       int _query_prev(Node *cur, int val) {
         if (val <= cur->val) {
           if (cur->ch[0] != nullptr) return _query_prev(cur->ch[0], val);
@@ -1010,7 +1010,7 @@ void print(Node* cur) {
         }
         return NIL;
       }
-    
+      
       int _query_nex(Node *cur, int val) {
         if (val >= cur->val) {
           if (cur->ch[1] != nullptr) return _query_nex(cur->ch[1], val);
@@ -1021,18 +1021,18 @@ void print(Node* cur) {
         }
         return NIL;
       }
-    
+     
      public:
       void insert(int val) { _insert(root, val); }
-    
+      
       void del(int val) { _del(root, val); }
-    
+      
       int query_rank(int val) { return _query_rank(root, val); }
-    
+      
       int query_val(int rank) { return _query_val(root, rank); }
-    
+      
       int query_prev(int val) { return _query_prev(root, val); }
-    
+      
       int query_nex(int val) { return _query_nex(root, val); }
     };
     
@@ -1100,16 +1100,16 @@ void print(Node* cur) {
       int val, prio;
       int cnt;
       int siz;
-    
+      
       Node(int _val) : val(_val), cnt(1), siz(1) {
         ch[0] = ch[1] = nullptr;
         prio = rand();
       }
-    
+      
       Node(Node *_node) {
         val = _node->val, prio = _node->prio, cnt = _node->cnt, siz = _node->siz;
       }
-    
+      
       void upd_siz() {
         siz = cnt;
         if (ch[0] != nullptr) siz += ch[0]->siz;
@@ -1121,7 +1121,7 @@ void print(Node* cur) {
     #define _3 second.second
     #define _2 second.first
       Node *root;
-    
+      
       pair<Node *, Node *> split(Node *cur, int key) {
         if (cur == nullptr) return {nullptr, nullptr};
         if (cur->val <= key) {
@@ -1136,7 +1136,7 @@ void print(Node* cur) {
           return {temp.first, cur};
         }
       }
-    
+      
       tuple<Node *, Node *, Node *> split_by_rk(Node *cur, int rk) {
         if (cur == nullptr) return {nullptr, nullptr, nullptr};
         int ls_siz = cur->ch[0] == nullptr ? 0 : cur->ch[0]->siz;
@@ -1159,7 +1159,7 @@ void print(Node* cur) {
           return {cur, mid, r};
         }
       }
-    
+      
       Node *merge(Node *u, Node *v) {
         if (u == nullptr && v == nullptr) return nullptr;
         if (u != nullptr && v == nullptr) return u;
@@ -1174,7 +1174,7 @@ void print(Node* cur) {
           return v;
         }
       }
-    
+      
       void insert(int val) {
         auto temp = split(root, val);
         auto l_tr = split(temp.first, val - 1);
@@ -1189,7 +1189,7 @@ void print(Node* cur) {
             merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
         root = merge(l_tr_combined, temp.second);
       }
-    
+      
       void del(int val) {
         auto temp = split(root, val);
         auto l_tr = split(temp.first, val - 1);
@@ -1206,14 +1206,14 @@ void print(Node* cur) {
         }
         root = merge(l_tr.first, temp.second);
       }
-    
+      
       int qrank_by_val(Node *cur, int val) {
         auto temp = split(cur, val - 1);
         int ret = (temp.first == nullptr ? 0 : temp.first->siz) + 1;
         root = merge(temp.first, temp.second);
         return ret;
       }
-    
+      
       int qval_by_rank(Node *cur, int rk) {
         Node *l, *mid, *r;
         tie(l, mid, r) = split_by_rk(cur, rk);
@@ -1221,14 +1221,14 @@ void print(Node* cur) {
         root = merge(merge(l, mid), r);
         return ret;
       }
-    
+      
       int qprev(int val) {
         auto temp = split(root, val - 1);
         int ret = qval_by_rank(temp.first, temp.first->siz);
         root = merge(temp.first, temp.second);
         return ret;
       }
-    
+      
       int qnex(int val) {
         auto temp = split(root, val);
         int ret = qval_by_rank(temp.second, 1);
@@ -1293,19 +1293,19 @@ void print(Node* cur) {
       int cnt;
       int siz;
       bool to_rev = false;  // 需要把这个子树下的每一个节点都翻转过来
-    
+      
       Node(int _val) : val(_val), cnt(1), siz(1) {
         ch[0] = ch[1] = nullptr;
         prio = rand();
       }
-    
+      
       int upd_siz() {
         siz = cnt;
         if (ch[0] != nullptr) siz += ch[0]->siz;
         if (ch[1] != nullptr) siz += ch[1]->siz;
         return siz;
       }
-    
+      
       void pushdown() {
         swap(ch[0], ch[1]);
         if (ch[0] != nullptr) ch[0]->to_rev ^= 1;
@@ -1314,7 +1314,7 @@ void print(Node* cur) {
         if (ch[1] != nullptr) ch[1]->to_rev ^= 1;
         to_rev = false;
       }
-    
+      
       void check_tag() {
         if (to_rev) pushdown();
       }
@@ -1343,7 +1343,7 @@ void print(Node* cur) {
           return {cur, temp.second};
         }
       }
-    
+      
       Node* merge(Node* sm, Node* bg) {
         // small, big
         if (sm == nullptr && bg == nullptr) return nullptr;
@@ -1360,7 +1360,7 @@ void print(Node* cur) {
           return bg;
         }
       }
-    
+      
       void insert(int val) {
         auto temp = split(root, val);
         auto l_tr = split(temp.first, val - 1);
@@ -1370,7 +1370,7 @@ void print(Node* cur) {
             merge(l_tr.first, l_tr.second == nullptr ? new_node : l_tr.second);
         root = merge(l_tr_combined, temp.second);
       }
-    
+      
       void seg_rev(int l, int r) {
         // 这里的 less 和 more 是相对于 l 的
         auto less = split(root, l - 1);
@@ -1380,7 +1380,7 @@ void print(Node* cur) {
         more.first->to_rev = true;
         root = merge(less.first, merge(more.first, more.second));
       }
-    
+      
       void print(Node* cur) {
         if (cur == nullptr) return;
         cur->check_tag();

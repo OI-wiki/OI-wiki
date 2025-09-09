@@ -49,10 +49,10 @@ static void rotateLeft(NodePtr& node) {
   NodePtr successor = node->right;
   node->right = successor->left;
   successor->left = node;
-
+  
   node->updateSize();
   successor->updateSize();
-
+  
   node = successor;
 }
 
@@ -69,10 +69,10 @@ static void rotateRight(NodePtr& node) {
   NodePtr successor = node->left;
   node->left = successor->right;
   successor->right = node;
-
+  
   node->updateSize();
   successor->updateSize();
-
+  
   node = successor;
 }
 ```
@@ -208,7 +208,7 @@ if (compare(key, node->key)) {
 ```cpp
 bool remove(NodePtr& node, K key, NodeConsumer action) {
   assert(node != nullptr);
-
+  
   if (key != node->key) {
     if (compare(key, node->key)) {
       /* key < node->key */
@@ -232,10 +232,10 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
       }
     }
   }
-
+  
   assert(key == node->key);
   action(node);
-
+  
   if (node->isLeaf()) {
     // Case 1: no child
     node = nullptr;
@@ -294,35 +294,35 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
     //       R                  R
     //
     // clang-format on
-
+    
     std::stack<NodePtr> path;
-
+    
     // Step 1
     NodePtr successor = node->right;
     NodePtr parent = node;
     path.push(node);
-
+    
     while (successor->left != nullptr) {
       path.push(successor);
       parent = successor;
       successor = parent->left;
     }
-
+    
     // Step 2
     swapNode(node, successor);
-
+    
     // Step 3
     parent->left = node->right;
     // Restore node
     node = successor;
-
+    
     // Step 4
     while (!path.empty()) {
       path.top()->updateSize();
       path.pop();
     }
   }
-
+  
   return true;
 }
 ```

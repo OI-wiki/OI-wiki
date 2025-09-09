@@ -164,14 +164,14 @@ $$
         a[i][i - 1] = -1;
         a[i][m + 1] = 4 + f[i];
       }
-    
+      
       for (int i = 1; i < m; i++) {
         double p = a[i + 1][i] / a[i][i];
         a[i + 1][i] = 0;
         a[i + 1][i + 1] -= a[i][i + 1] * p;
         a[i + 1][m + 1] -= a[i][m + 1] * p;
       }
-    
+      
       f[m] = a[m][m + 1] / a[m][m];
       for (int i = m - 1; i >= 1; i--)
         f[i] = (a[i][m + 1] - f[i + 1] * a[i][i + 1]) / a[i][i];

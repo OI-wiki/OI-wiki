@@ -40,15 +40,15 @@ $$
         $$
         g^{ky}\equiv g^{\operatorname{ind}_g a}\pmod m
         $$
-    
+        
         其等价于
-    
+        
         $$
         ky\equiv \operatorname{ind}_g a\pmod{\varphi(m)}\tag{2}
         $$
-    
+        
         由同余的性质，我们知道 $y$ 有整数解当且仅当 $d=(k,\varphi(m))\mid \operatorname{ind}_g a$，进而
-    
+        
         $$
         \begin{aligned}
             a^{\frac{\varphi(m)}{d}}\equiv 1\pmod m&\iff g^{\frac{\varphi(m)}{d}\operatorname{ind}_g a}\equiv 1\pmod m\\
@@ -63,9 +63,9 @@ $$
         $$
         \operatorname{ind}_g a\equiv di\pmod{\varphi(m)},\qquad \left(0\leq i<\frac{\varphi(m)}{d}\right)
         $$
-    
+        
         故模 $m$ 的 $k$ 次剩余共有 $\dfrac{\varphi(m)}{d}$ 个同余类：
-    
+        
         $$
         a\equiv g^{di}\pmod m,\qquad \left(0\leq i<\frac{\varphi(m)}{d}\right)
         $$

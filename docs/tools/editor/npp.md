@@ -158,9 +158,9 @@ Tips: 如果多次不成功，可以尝试新建一个与插件名相同的文�
     cmd /c $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH) & pause
     #调试命令：
     cmd /c gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe
-
+    
     #如果下载了ConsolePauser可以使用下列代码获得更好的程序运行体验！（注意添加环境变量！）
-
+    
     #编译命令：
     cmd /c (start ConsolePauser "g++.exe -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH)")
     #运行命令：
@@ -180,7 +180,7 @@ Tips: 如果多次不成功，可以尝试新建一个与插件名相同的文�
     > "The best things in life are free. Notepad++ is free. So Notepad++ is the best(.)"
     >
     > （生活中最好的事情都是免费的。Notepad++ 是免费的。所以 Notepad++ 是最好的。）
-
+    
     这牛吹的，不得不说，很有底气。
 
 2.  在一个新开的页面中输入 "random" 并选中，再按 `F1` 就会得到一句很有意思的话。

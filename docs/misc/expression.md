@@ -97,7 +97,7 @@ $$
       stack<char> op;
       for (int i = 0; i < (int)s.size(); i++) {
         if (delim(s[i])) continue;
-    
+        
         if (s[i] == '(') {
           op.push('(');  // 2. 如果遇到左括号，那么将其放在运算符栈上
         } else if (s[i] == ')') {  // 3. 如果遇到右括号，执行一对括号内的所有运算符
@@ -121,7 +121,7 @@ $$
           st.push(number);
         }
       }
-    
+      
       while (!op.empty()) {
         process_op(st, op.top());
         op.pop();
@@ -227,7 +227,7 @@ while (!op.empty() &&
       bool may_be_unary = true;
       for (int i = 0; i < (int)s.size(); i++) {
         if (delim(s[i])) continue;
-    
+        
         if (s[i] == '(') {
           op.push('(');  // 2. 如果遇到左括号，那么将其放在运算符栈上
           may_be_unary = true;
@@ -258,7 +258,7 @@ while (!op.empty() &&
           may_be_unary = false;
         }
       }
-    
+      
       while (!op.empty()) {
         process_op(st, op.top());
         op.pop();

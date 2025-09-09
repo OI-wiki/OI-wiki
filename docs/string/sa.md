@@ -77,11 +77,11 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
     
     int main() {
       int i, p;
-    
+      
       scanf("%s", s + 1);
       n = strlen(s + 1);
       for (i = 1; i <= n; ++i) sa[i] = i, rk[i] = s[i];
-    
+      
       for (w = 1; w < n; w <<= 1) {
         sort(sa + 1, sa + n + 1, [](int x, int y) {
           return rk[x] == rk[y] ? rk[x + w] < rk[y + w] : rk[x] < rk[y];
@@ -98,9 +98,9 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
           }
         }
       }
-    
+      
       for (i = 1; i <= n; ++i) printf("%d ", sa[i]);
-    
+      
       return 0;
     }
     ```
@@ -129,7 +129,7 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
     
     int main() {
       int i, m, p, w;
-    
+      
       scanf("%s", s + 1);
       n = strlen(s + 1);
       m = 127;
@@ -144,7 +144,7 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
           rk[sa[i]] = ++p;
         }
       }
-    
+      
       for (w = 1; w < n; w <<= 1, m = n) {
         // 对第二关键字：id[i] + w进行计数排序
         memset(cnt, 0, sizeof(cnt));
@@ -153,14 +153,14 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
         for (i = 1; i <= n; ++i) ++cnt[rk[id[i] + w]];
         for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
         for (i = n; i >= 1; --i) sa[cnt[rk[id[i] + w]]--] = id[i];
-    
+        
         // 对第一关键字：id[i]进行计数排序
         memset(cnt, 0, sizeof(cnt));
         memcpy(id + 1, sa + 1, n * sizeof(int));
         for (i = 1; i <= n; ++i) ++cnt[rk[id[i]]];
         for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
         for (i = n; i >= 1; --i) sa[cnt[rk[id[i]]]--] = id[i];
-    
+        
         memcpy(oldrk + 1, rk + 1, n * sizeof(int));
         for (p = 0, i = 1; i <= n; ++i) {
           if (oldrk[sa[i]] == oldrk[sa[i - 1]] &&
@@ -171,9 +171,9 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
           }
         }
       }
-    
+      
       for (i = 1; i <= n; ++i) printf("%d ", sa[i]);
-    
+      
       return 0;
     }
     ```
@@ -224,22 +224,22 @@ for (int i = 1; i <= n; i++)
       scanf("%s", s + 1);
       n = strlen(s + 1);
       m = 128;
-    
+      
       for (int i = 1; i <= n; i++) cnt[rk[i] = s[i]]++;
       for (int i = 1; i <= m; i++) cnt[i] += cnt[i - 1];
       for (int i = n; i >= 1; i--) sa[cnt[rk[i]]--] = i;
-    
+      
       for (int w = 1;; w <<= 1, m = p) {  // m = p 即为值域优化
         int cur = 0;
         for (int i = n - w + 1; i <= n; i++) id[++cur] = i;
         for (int i = 1; i <= n; i++)
           if (sa[i] > w) id[++cur] = sa[i] - w;
-    
+        
         memset(cnt, 0, sizeof(cnt));
         for (int i = 1; i <= n; i++) cnt[rk[i]]++;
         for (int i = 1; i <= m; i++) cnt[i] += cnt[i - 1];
         for (int i = n; i >= 1; i--) sa[cnt[rk[id[i]]]--] = id[i];
-    
+        
         p = 0;
         memcpy(oldrk, rk, sizeof(oldrk));
         for (int i = 1; i <= n; i++) {
@@ -249,12 +249,12 @@ for (int i = 1; i <= n; i++)
           else
             rk[sa[i]] = ++p;
         }
-    
+        
         if (p == n) break;  // p = n 时无需再排序
       }
-    
+      
       for (int i = 1; i <= n; i++) printf("%d ", sa[i]);
-    
+      
       return 0;
     }
     ```

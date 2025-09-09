@@ -450,9 +450,9 @@ $$
       static constexpr int MAXN = 20;
       int n, m;
       double mat[MAXN][MAXN];
-    
+      
       matrix() { memset(mat, 0, sizeof(mat)); }
-    
+      
       void print() {
         cout << "MATRIX " << n << " " << m << endl;
         for (int i = 0; i < n; i++) {
@@ -462,14 +462,14 @@ $$
           cout << endl;
         }
       }
-    
+      
       void random(int n) {
         this->n = n;
         this->m = n;
         for (int i = 0; i < n; i++)
           for (int j = 0; j < n; j++) mat[i][j] = rand() % 100;
       }
-    
+      
       void initSquare() {
         this->n = 4;
         this->m = 4;
@@ -482,7 +482,7 @@ $$
         this->n--;  // 去一行
         this->m--;  // 去一列
       }
-    
+      
       double gauss() {
         double ans = 1;
         for (int i = 0; i < n; i++) {

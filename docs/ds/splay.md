@@ -73,25 +73,25 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
 1.  **zig**: 在 $p$ 是根节点时操作。Splay 树会根据 $x$ 和 $p$ 间的边旋转。**zig** 存在是用于处理奇偶校验问题，仅当 $x$ 在伸展操作开始时具有奇数深度时作为伸展操作的最后一步执行。
 
     ![splay-zig](./images/splay-zig.svg)
-
+    
     即直接将 $x$ 右旋或左旋（图 1, 2）。
-
+    
     ![图 1](./images/splay-rotate1.svg)![图 2](./images/splay-rotate2.svg)
 
 2.  **zig-zig**: 在 $p$ 不是根节点且 $x$ 和 $p$ 都是右侧子节点或都是左侧子节点时操作。下方例图显示了 $x$ 和 $p$ 都是左侧子节点时的情况。Splay 树首先按照连接 $p$ 与其父节点 $g$ 边旋转，然后按照连接 $x$ 和 $p$ 的边旋转。
 
     ![splay-zig-zig](./images/splay-zig-zig.svg)
-
+    
     即首先将 $p$ 右旋或左旋，然后将 $x$ 右旋或左旋（图 3, 4）。
-
+    
     ![图 3](./images/splay-rotate3.svg)![图 4](./images/splay-rotate4.svg)
 
 3.  **zig-zag**: 在 $p$ 不是根节点且 $x$ 和 $p$ 一个是右侧子节点一个是左侧子节点时操作。Splay 树首先按 $p$ 和 $x$ 之间的边旋转，然后按 $x$ 和 $g$ 新生成的结果边旋转。
 
     ![splay-zig-zag](./images/splay-zig-zag.svg)
-
+    
     即将 $x$ 先左旋再右旋或先右旋再左旋（图 5, 6）。
-
+    
     ![图 5](./images/splay-rotate5.svg)![图 6](./images/splay-rotate6.svg)
 
 ???+ tip

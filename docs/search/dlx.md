@@ -184,11 +184,11 @@ $$
       \color{Blue}0 & \color{Blue}0 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 & \color{Blue}0 & \color{Blue}1
     \end{pmatrix}
     $$
-
+    
     **这表示这一行已被选择，且这一行的所有 $1$ 所在的列不能有其他 $1$ 了**。
-
+    
     于是得到一个新的小 01 矩阵：
-
+    
     $$
     \begin{pmatrix}
       1 & 0 & 1 & 1 \\
@@ -226,9 +226,9 @@ $$
       \color{Blue}0 & \color{Blue}1 & \color{Blue}0 & \color{Blue}1
     \end{pmatrix}
     $$
-
+    
     这样就得到了一个空矩阵。但是上次删除的行 `1 0 1 1` 不是全 $1$ 的，说明选择有误；
-
+    
     $$
     \begin{pmatrix}
     \end{pmatrix}
@@ -263,9 +263,9 @@ $$
       \color{Blue}0 & 1 & \color{Blue}0 & 1
       \end{pmatrix}
     $$
-
+    
     于是我们得到了这样的一个矩阵：
-
+    
     $$
     \begin{pmatrix}
       1 & 1
@@ -294,7 +294,7 @@ $$
 5.  如果 $M'$ 为空，且 $r$ 为全 $1$，则算法结束，输出被删除的行组成的集合 $S$；
 
     如果 $M'$ 为空，且 $r$ 不全为 $1$，则恢复与 $r$ 相关的行 $r_i$ 以及列 $c_i$，跳转至步骤 1；
-
+    
     如果 $M'$ 不为空，则跳转至步骤 1。
 
 不难看出，X 算法需要大量的「删除行」、「删除列」和「恢复行」、「恢复列」的操作。
@@ -443,35 +443,35 @@ int col[MS], row[MS];
 -   如果第 $r$ 行有元素，那么将这个新元素用一种特殊的方式与 $c$ 和 $first(r)$ 连接起来。
 
     设这个新元素为 $idx$，然后：
-
+    
     -   把 $idx$ 插入到 $c$ 的正下方，此时：
-
+    
         -   $idx$ 下方的结点为原来 $c$ 的下结点；
         -   $idx$ 下方的结点（即原来 $c$ 的下结点）的上结点为 $idx$;
         -   $idx$ 的上结点为 $c$；
         -   $c$ 的下结点为 $idx$。
-
+        
         注意记录 $idx$ 的所在列和所在行，以及更新这一列的元素个数。
-
+        
         ```cpp
         col[++idx] = c, row[idx] = r, ++siz[c];
         U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
         ```
-
+        
         **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
-
+    
     -   把 $idx$ 插入到 $first(r)$ 的正右方，此时：
-
+    
         -   $idx$ 右侧的结点为原来 $first(r)$ 的右结点；
         -   原来 $first(r)$ 右侧的结点的左结点为 $idx$；
         -   $idx$ 的左结点为 $first(r)$；
         -   $first(r)$ 的右结点为 $idx$。
-
+        
         ```cpp
         L[idx] = first[r], R[idx] = R[first[r]];
         L[R[first[r]]] = idx, R[first[r]] = idx;
         ```
-
+        
         **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
 
 `insert(r, c)` 这个操作可以通过图片来辅助理解：

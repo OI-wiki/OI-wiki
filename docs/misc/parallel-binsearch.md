@@ -260,7 +260,7 @@
       while (pos <= n - 1 && a[pos + 1].first <= mid)
         add(a[pos + 1].second, 1), ++pos;
       while (pos >= 1 && a[pos].first > mid) add(a[pos].second, -1), --pos;
-    
+      
       for (int i = l; i <= r; i++) {
         int now = sum(s[i].r) - sum(s[i].l - 1);
         if (s[i].k <= now)
@@ -270,7 +270,7 @@
       }
       for (int i = 1; i <= cnt1; i++) s[l + i - 1] = t1[i];
       for (int i = 1; i <= cnt2; i++) s[l + cnt1 + i - 1] = t2[i];
-    
+      
       overall_binary(l, l + cnt1 - 1, ql, mid);
       overall_binary(l + cnt1, r, mid + 1, qr);
     }

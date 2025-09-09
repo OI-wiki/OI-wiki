@@ -57,7 +57,7 @@ $$
           depth--;
         else
           depth++;
-    
+        
         if (s[i] == '(' && depth > 0) {
           depth--;
           int open = (n - i - 1 - depth) / 2;

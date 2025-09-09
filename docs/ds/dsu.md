@@ -25,7 +25,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         ```cpp
         struct dsu {
           vector<size_t> pa;
-        
+          
           explicit dsu(size_t size) : pa(size) { iota(pa.begin(), pa.end(), 0); }
         };
         ```
@@ -113,11 +113,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         ```cpp
         struct dsu {
           vector<size_t> pa, size;
-        
+          
           explicit dsu(size_t size_) : pa(size_), size(size_, 1) {
             iota(pa.begin(), pa.end(), 0);
           }
-        
+          
           void unite(size_t x, size_t y) {
             x = find(x), y = find(y);
             if (x == y) return;
@@ -134,7 +134,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
             def __init__(self, size):
                 self.pa = list(range(size))
                 self.size = [1] * size
-        
+            
             def unite(self, x, y):
                 x, y = self.find(x), self.find(y)
                 if x == y:

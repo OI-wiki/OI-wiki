@@ -56,34 +56,34 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_{k
     vector<int> berlekamp_massey(const vector<int> &a) {
       vector<int> v, last;  // v is the answer, 0-based, p is the module
       int k = -1, delta = 0;
-    
+      
       for (int i = 0; i < (int)a.size(); i++) {
         int tmp = 0;
         for (int j = 0; j < (int)v.size(); j++)
           tmp = (tmp + (long long)a[i - j - 1] * v[j]) % p;
-    
+        
         if (a[i] == tmp) continue;
-    
+        
         if (k < 0) {
           k = i;
           delta = (a[i] - tmp + p) % p;
           v = vector<int>(i + 1);
-    
+          
           continue;
         }
-    
+        
         vector<int> u = v;
         int val = (long long)(a[i] - tmp + p) * power(delta, p - 2) % p;
-    
+        
         if (v.size() < last.size() + i - k) v.resize(last.size() + i - k);
-    
+        
         (v[i - k - 1] += val) %= p;
-    
+        
         for (int j = 0; j < (int)last.size(); j++) {
           v[i - k + j] = (v[i - k + j] - (long long)val * last[j]) % p;
           if (v[i - k + j] < 0) v[i - k + j] += p;
         }
-    
+        
         if ((int)u.size() - i < (int)last.size() - k) {
           last = u;
           k = i;
@@ -91,10 +91,10 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_{k
           if (delta < 0) delta += p;
         }
       }
-    
+      
       for (auto &x : v) x = (p - x) % p;
       v.insert(v.begin(), 1);
-    
+      
       return v;  // $\forall i, \sum_{j = 0} ^ m a_{i - j} v_j = 0$
     }
     ```
@@ -164,40 +164,40 @@ $A^{-1} \mathbf b = -\frac 1 {r_{m - 1}} \sum_{i = 0} ^ {m - 2} A^i \mathbf b r_
     vector<int> solve_sparse_equations(const vector<tuple<int, int, int>> &A,
                                        const vector<int> &b) {
       int n = (int)b.size();  // 0-based
-    
+      
       vector<vector<int>> f({b});
-    
+      
       for (int i = 1; i < 2 * n; i++) {
         vector<int> v(n);
         auto &u = f.back();
-    
+        
         for (auto [x, y, z] : A)  // [x, y, value]
           v[x] = (v[x] + (long long)u[y] * z) % p;
-    
+        
         f.push_back(v);
       }
-    
+      
       vector<int> w(n);
       mt19937 gen;
       for (auto &x : w) x = uniform_int_distribution<int>(1, p - 1)(gen);
-    
+      
       vector<int> a(2 * n);
       for (int i = 0; i < 2 * n; i++)
         for (int j = 0; j < n; j++) a[i] = (a[i] + (long long)f[i][j] * w[j]) % p;
-    
+      
       auto c = berlekamp_massey(a);
       int m = (int)c.size();
-    
+      
       vector<int> ans(n);
-    
+      
       for (int i = 0; i < m - 1; i++)
         for (int j = 0; j < n; j++)
           ans[j] = (ans[j] + (long long)c[m - 2 - i] * f[i][j]) % p;
-    
+      
       int inv = power(p - c[m - 1], p - 2);
-    
+      
       for (int i = 0; i < n; i++) ans[i] = (long long)ans[i] * inv % p;
-    
+      
       return ans;
     }
     ```

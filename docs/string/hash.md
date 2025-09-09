@@ -422,17 +422,17 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串。
     ```cpp
     int count_unique_substrings(string const& s) {
       int n = s.size();
-    
+      
       constexpr static int b = 31;
       constexpr static int m = 1e9 + 9;
       vector<long long> b_pow(n);
       b_pow[0] = 1;
       for (int i = 1; i < n; i++) b_pow[i] = (b_pow[i - 1] * b) % m;
-    
+      
       vector<long long> h(n + 1, 0);
       for (int i = 0; i < n; i++)
         h[i + 1] = (h[i] + (s[i] - 'a' + 1) * b_pow[i]) % m;
-    
+      
       int cnt = 0;
       for (int l = 1; l <= n; l++) {
         set<long long> hs;

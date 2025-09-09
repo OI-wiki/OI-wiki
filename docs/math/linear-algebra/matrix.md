@@ -195,9 +195,9 @@ mat operator*(const mat& T) const {
 ```cpp
 struct mat {
   LL a[sz][sz];
-
+  
   mat() { memset(a, 0, sizeof a); }
-
+  
   mat operator-(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
@@ -206,7 +206,7 @@ struct mat {
       }
     return res;
   }
-
+  
   mat operator+(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
@@ -215,7 +215,7 @@ struct mat {
       }
     return res;
   }
-
+  
   mat operator*(const mat& T) const {
     mat res;
     int r;
@@ -227,7 +227,7 @@ struct mat {
       }
     return res;
   }
-
+  
   mat operator^(LL x) const {
     mat res, bas;
     for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
@@ -306,9 +306,9 @@ constexpr int mod = 1000000007;
 
 struct Matrix {
   int a[3][3];
-
+  
   Matrix() { memset(a, 0, sizeof a); }
-
+  
   Matrix operator*(const Matrix &b) const {
     Matrix res;
     for (int i = 1; i <= 2; ++i)
@@ -396,7 +396,7 @@ $$
         -   火元素激发水元素能量：令 $A_i = A_i + B_i$。
         -   土元素激发火元素能量：令 $B_i = B_i + C_i$。
         -   水元素激发土元素能量：令 $C_i = C_i + A_i$。
-    
+        
             **需要注意的是，增强一种属性的能量并不会改变另一种属性的能量，例如 $A_i = A_i + B_i$ 并不会使 $B_i$ 增加或减少。**
     2.  魔力增强：小 L 挥舞法杖，消耗自身 $v$ 点法力值，来改变区间里每个水晶球的 **特定属性** 的能量。具体来说，有以下三种可能的表现形式：
     

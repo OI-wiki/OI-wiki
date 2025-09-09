@@ -51,9 +51,9 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
     struct segment_tree  // 封装的动态开点权值线段树
     {
       int cur, rt[MAXN * 4], sum[MAXN * 60], lc[MAXN * 60], rc[MAXN * 60];
-    
+      
       void build(int& o) { o = ++cur; }
-    
+      
       void print(int o, int l, int r) {
         if (!o) return;
         if (l == r && sum[o]) printf("%d ", l);
@@ -61,7 +61,7 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
         print(lc[o], l, mid);
         print(rc[o], mid + 1, r);
       }
-    
+      
       void update(int& o, int l, int r, int x, int v) {
         if (!o) o = ++cur;
         sum[o] += v;
@@ -77,16 +77,16 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
     // 树状数组实现
     namepace fenwick_impl {
       int lowbit(int o) { return (o & (-o)); }
-    
+      
       void upd(int o, int x, int v) {
         for (; o <= n; o += lowbit(o)) st.update(st.rt[o], 1, n, x, v);
       }
-    
+      
       void gtv(int o, int* A, int& p) {
         p = 0;
         for (; o; o -= lowbit(o)) A[++p] = st.rt[o];
       }
-    
+      
       int qry(int l, int r, int k) {
         if (l == r) return l;
         int mid = (l + r) >> 1, siz = 0;

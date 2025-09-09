@@ -24,7 +24,7 @@ int main() {
   std::string s = "Ex";
   std::string& r1 = s;
   const std::string& r2 = s;
-
+  
   r1 += "ample";  // 修改 r1，即修改了 s
   // r2 += "!"; // 错误：不能通过到 const 的引用修改
   std::cout << r2 << '\n';  // 打印 r2，访问了s，输出 "Example"
@@ -64,18 +64,18 @@ using namespace std;
 int main() {
   string s1 = "Test";
   // string&& r1 = s1; // 错误：不能绑定到左值，需要 std::move 或者 static_cast
-
+  
   const string& r2 = s1 + s1;  // 可行：到常量的左值引用延长生存期
   // r2 += "Test"; // 错误：不能通过到常量的引用修改
   cout << r2 << '\n';
-
+  
   string&& r3 = s1 + s1;  // 可行：右值引用延长生存期
   r3 += "Test";
   cout << r3 << '\n';
-
+  
   const string& r4 = r3;  // 右值引用可以转换到 const 限定的左值
   cout << r4 << '\n';
-
+  
   string& r5 = r3;  // 右值引用可以转换到左值
   cout << r5 << '\n';
 }
@@ -91,12 +91,12 @@ int main() {
 
     ```cpp
     #include <iostream>
-
+    
     int& foo() {
       int a = 1;
       return a;
     }
-
+    
     int main() {
       int& b = foo();
       std::cout << b << std::endl;  // 未定义行为
@@ -107,12 +107,12 @@ int main() {
 
     ```cpp
     #include <iostream>
-
+    
     int main() {
       int* ptr = new int(10);
       int& ref = *ptr;
       delete ptr;
-
+      
       std::cout << ref << std::endl;  // 未定义行为
     }
     ```
@@ -121,18 +121,18 @@ int main() {
 
     ```cpp
     #include <iostream>
-
+    
     int main() {
       std::string str = "hello";
-
+      
       const char& ref = str.front();
-
+      
       str.append("world");  // 可能会重新分配内存，导致 ref 指向的内存被释放
-
+      
       std::cout << ref << std::endl;  // 未定义行为
     }
     ```
-
+    
     类似 `std::vector`，`std::unordered_map` 等容器的插入操作，均有可能导致内存重新分配。
 
 使用引用时，应时刻关注引用指向的对象的生命周期，避免造成悬垂引用。
@@ -175,18 +175,18 @@ string world(string str) { return std::move(str) += " world!"; }
 int main() {
   // 1
   cout << world("hello") << '\n';
-
+  
   vector<string> vec0;
-
+  
   // 2
   {
     string&& size = to_string(vec0.size());
-
+    
     size += ", " + to_string(size.size());
-
+    
     vec0.emplace_back(std::move(size));
   }
-
+  
   cout << vec0.front();
 }
 ```

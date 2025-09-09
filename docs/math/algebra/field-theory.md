@@ -133,9 +133,9 @@
     $$
     F[x]/(f(x))\cong F(\alpha).
     $$
-
+    
     此时又可以分为两种情形：
-
+    
     1.  如果 $f(x)$ 是一次多项式，即 $f(x)=x-\alpha$ 时，有 $\alpha\in F$，故而扩张 $F(\alpha)=F$ 是平凡的；
     2.  其余情形，$f(x)$ 是高于一次的不可约多项式，且 $\alpha\in E\setminus F$，此时的像 $F[\alpha]$ 已经是包含 $F$ 和 $\alpha$ 的域，因而，它就是 $F(\alpha)$，即 $F$ 上由 $\alpha$ 生成的扩张，且 $F(\alpha)\supset F$ 不是平凡的。
 

@@ -54,14 +54,14 @@
     struct Trie {
       int next[MAXN][CHAR_NUM];  // 转移
       int tot;                   // 节点总数：[0, tot)
-    
+      
       void init() { tot = 1; }
-    
+      
       int insertTrie(int cur, int c) {
         if (next[cur][c]) return next[cur][c];
         return next[cur][c] = tot++;
       }
-    
+      
       void insert(const string &s) {
         int root = 0;
         for (auto ch : s) root = insertTrie(root, ch - 'a');
@@ -119,7 +119,7 @@
       int link[MAXN];            // 后缀链接，link
       int next[MAXN][CHAR_NUM];  // 转移
       int tot;                   // 节点总数：[0, tot)
-    
+      
       int insertSAM(int last, int c) {
         int cur = next[last][c];
         len[cur] = len[last] + 1;
@@ -153,7 +153,7 @@
         link[q] = clone;
         return cur;
       }
-    
+      
       void build() {
         queue<pair<int, int>> q;
         for (int i = 0; i < 26; ++i)

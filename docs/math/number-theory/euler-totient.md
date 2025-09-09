@@ -13,9 +13,9 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 -   欧拉函数是 [积性函数](./basic.md#积性函数)。
 
     即对任意满足 $\gcd(a, b) = 1$ 的整数 $a,b$，有 $\varphi(ab) = \varphi(a)\varphi(b)$。
-
+    
     特别地，当 $n$ 是奇数时 $\varphi(2n) = \varphi(n)$。
-
+    
     证明参见 [剩余系的复合](./basic.md#剩余系的复合)。
 
 -   $n = \sum_{d \mid n}{\varphi(d)}$。

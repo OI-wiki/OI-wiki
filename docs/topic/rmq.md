@@ -146,7 +146,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
       int Belong[MAXN], Pos[MAXN];
       int Pre[MAXN], Sub[MAXN];
       int F[MAXN];
-    
+      
       void buildST() {
         int cur = 0, id = 1;
         Pos[0] = -1;
@@ -172,7 +172,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
           }
         }
       }
-    
+      
       void buildSubPre() {
         for (int i = 1; i <= N; ++i) {
           if (Belong[i] != Belong[i - 1])
@@ -187,7 +187,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
             Sub[i] = std::max(Sub[i + 1], A[i]);
         }
       }
-    
+      
       void buildBlock() {
         static int S[MAXN], top;
         for (int i = 1; i <= N; ++i) {
@@ -200,7 +200,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
           F[i] |= (1 << Pos[i]);
         }
       }
-    
+      
       void init() {
         for (int i = 1; i <= N; ++i) scanf("%d", &A[i]);
         blockSize = log2(N) * 1.5;
@@ -208,7 +208,7 @@ Four russian 是一个由四位俄罗斯籍的计算机科学家提出来的基�
         buildSubPre();
         buildBlock();
       }
-    
+      
       int queryMax(int l, int r) {
         int bl = Belong[l], br = Belong[r];
         if (bl != br) {
