@@ -299,12 +299,12 @@ $1 \le n,m \le 10^5$。
 
     这是最值得注意的情况。定义 $v$ 为 $u$ 到 $\textit{root}$ 的简单路径上除 $u$ 以外的深度最小的点，可以发现 $v$ 及其子树以外的部分都属于 $u$ 及其子树。
 
-??? note "如何利用树剖信息找到 $v$"
+??? note " 如何利用树剖信息找到 $v$"
     我们先令 $v\gets\textit{root}$，然后沿着重链往上跳直到 $\textit{dep}(\textit{top}(u))\le\textit{dep}(u)+1$。
     
-    - 若 $\textit{dep}(\textit{top}(u))=\textit{dep}(u)+1$，说明 $v$ 为 $u$ 的一个轻儿子，那么就找到了。
-    - 若 $\textit{dep}(\textit{top}(u))<\textit{dep}(u)+1$，说明 $u,v$ 处在同一条重链上，根据同一条重链上 DFS 序连续的性质，$\textit{dfn}(v)=\textit{dfn}(\textit{top}(v))+\textit{dep}(u)+1-\textit{dep}(\textit{top}(v))$。然后用 $\textit{rnk}$ 就可以找到 $v$ 了。
-
+    -   若 $\textit{dep}(\textit{top}(u))=\textit{dep}(u)+1$，说明 $v$ 为 $u$ 的一个轻儿子，那么就找到了。
+    -   若 $\textit{dep}(\textit{top}(u))<\textit{dep}(u)+1$，说明 $u,v$ 处在同一条重链上，根据同一条重链上 DFS 序连续的性质，$\textit{dfn}(v)=\textit{dfn}(\textit{top}(v))+\textit{dep}(u)+1-\textit{dep}(\textit{top}(v))$。然后用 $\textit{rnk}$ 就可以找到 $v$ 了。
+    
     由于 $v$ 子树覆盖的区间为 $[\textit{dfn}(v),\textit{dfn}(v)+\textit{siz}(v))$，那么我们只需要对 $[1,\textit{dfn}(v))\cup[\textit{dfn}(v)+\textit{siz}(v),n]$ 操作即可。
 
 -   其它情况。可以发现换根操作不会影响 $u$ 的子树，用正常的方式维护即可。
