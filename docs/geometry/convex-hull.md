@@ -38,6 +38,8 @@
 
 通常情况下不需要保留位于凸包边上的点，因此上面一段中 $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$ 这个条件中的「$<$」可以视情况改为 $\le$，同时后面一个条件应改为 $>$。
 
+![Andrew](./images/andrew.svg)
+
 #### 实现
 
 ???+ note "代码实现"
