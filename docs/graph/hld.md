@@ -84,15 +84,15 @@ $$
 
 我们先给出一些定义：
 
--   $\textit{fa}(x)$ 表示结点 $x$ 在树上的父亲。
--   $\textit{dep}(x)$ 表示结点 $x$ 在树上的深度。
--   $\textit{siz}(x)$ 表示结点 $x$ 的子树的结点个数。
--   $\textit{son}(x)$ 表示结点 $x$ 的 **重儿子**。
--   $\textit{top}(x)$ 表示结点 $x$ 所在 **重链** 的顶部结点（深度最小）。
--   $\textit{dfn}(x)$ 表示结点 $x$ 的 **DFS 序**，也是其在线段树中的编号。
--   $\textit{rnk}(x)$ 表示 DFS 序所对应的结点编号，有 $rnk(dfn(x))=x$。
+-   $\operatorname{fa}(x)$ 表示结点 $x$ 在树上的父亲。
+-   $\operatorname{dep}(x)$ 表示结点 $x$ 在树上的深度。
+-   $\operatorname{siz}(x)$ 表示结点 $x$ 的子树的结点个数。
+-   $\operatorname{son}(x)$ 表示结点 $x$ 的 **重儿子**。
+-   $\operatorname{top}(x)$ 表示结点 $x$ 所在 **重链** 的顶部结点（深度最小）。
+-   $\operatorname{dfn}(x)$ 表示结点 $x$ 的 **DFS 序**，也是其在线段树中的编号。
+-   $\operatorname{rnk}(x)$ 表示 DFS 序所对应的结点编号，有 $rnk(dfn(x))=x$。
 
-我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $\textit{fa}(x)$，$\textit{dep}(x)$，$\textit{siz}(x)$，$\textit{son}(x)$，第二次 DFS 求出 $\textit{top}(x)$，$\textit{dfn}(x)$，$\textit{rnk}(x)$。
+我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $\operatorname{fa}(x)$，$\operatorname{dep}(x)$，$\operatorname{siz}(x)$，$\operatorname{son}(x)$，第二次 DFS 求出 $\operatorname{top}(x)$，$\operatorname{dfn}(x)$，$\operatorname{rnk}(x)$。
 
 ```cpp
 void dfs1(int u, int f) {
@@ -150,14 +150,14 @@ $$
 \begin{array}{l}
 \text{TREE-PATH-SUM }(u,v) \\
 \begin{array}{ll}
-1 & tot\gets 0 \\
-2 & \textbf{while }u.top\text{ is not }v.top \\
-3 & \qquad \textbf{if }u.top.deep< v.top.deep \\
+1 & \textit{tot}\gets 0 \\
+2 & \textbf{while }u.\textit{top}\text{ is not }v.\textit{top} \\
+3 & \qquad \textbf{if }u.\textit{top}.\textit{depth}< v.\textit{top}.\textit{depth} \\
 4 & \qquad \qquad \text{SWAP}(u, v) \\
-5 & \qquad tot\gets tot + \text{sum of values between }u\text{ and }u.top \\
-6 & \qquad u\gets u.top.father \\
-7 & tot\gets tot + \text{sum of values between }u\text{ and }v \\
-8 & \textbf{return } tot 
+5 & \qquad \textit{tot}\gets \textit{tot} + \text{sum of values between }u\text{ and }u.\textit{top} \\
+6 & \qquad u\gets u.\textit{top}.\textit{father} \\
+7 & \textit{tot}\gets \textit{tot} + \text{sum of values between }u\text{ and }v \\
+8 & \textbf{return } \textit{tot} 
 \end{array}
 \end{array}
 $$
@@ -245,7 +245,7 @@ int lca(int u, int v) {
     --8<-- "docs/graph/code/hld/hld_1.cpp"
     ```
 
-然后，这是一道带换根操作的重链剖分模板题。<a id="loj-139-树链剖分"></a>
+然后是一道带换根操作的重链剖分模板题。<a id="loj-139-树链剖分"></a>
 
 ???+ example "[LOJ 139. 树链剖分](https://loj.ac/p/139)"
     给定一棵 $n$ 个结点的树（初始根结点为 $1$），要求支持如下的 $m$ 次操作：
@@ -270,20 +270,20 @@ int lca(int u, int v) {
     
         这是最值得注意的情况。定义 $v$ 为原始树上 $u$ 到 $\textit{root}$ 的简单路径上除 $u$ 以外的深度最小的点，可以发现原始树上 $v$ 及其子树以外的部分恰好是当前树上 $u$ 及其子树。
     
-        考虑如何高效找到 $v$。我们先令 $v\gets\textit{root}$，然后沿着重链往上跳直到 $\textit{dep}(\textit{top}(v))\le\textit{dep}(u)+1$。
+        考虑如何高效找到 $v$。我们先令 $v\gets\textit{root}$，然后沿着重链往上跳直到 $\operatorname{dep}(\operatorname{top}(v))\le\operatorname{dep}(u)+1$。
     
-        -   若 $\textit{dep}(\textit{top}(v))=\textit{dep}(u)+1$，令 $v\gets\textit{top}(v)$。此时，$v$ 是 $u$ 的一个轻儿子。
-        -   若 $\textit{dep}(\textit{top}(v))<\textit{dep}(u)+1$，亦即 $\textit{dep}(\textit{top}(v))\le \textit{dep}(u)$，这说明 $u,v$ 处在同一条重链上。根据同一条重链上 DFS 序连续的性质，所求的 $v$ 必然满足 $\textit{dfn}(v)=\textit{dfn}(u)+1$。所以，可以令 $v\gets\textit{rnk}(\textit{dfn}(u)+1)$。
+        -   若 $\operatorname{dep}(\operatorname{top}(v))=\operatorname{dep}(u)+1$，令 $v\gets\operatorname{top}(v)$。此时，$v$ 是 $u$ 的一个轻儿子。
+        -   若 $\operatorname{dep}(\operatorname{top}(v))<\operatorname{dep}(u)+1$，亦即 $\operatorname{dep}(\operatorname{top}(v))\le \operatorname{dep}(u)$，这说明 $u,v$ 处在同一条重链上。根据同一条重链上 DFS 序连续的性质，所求的 $v$ 必然满足 $\operatorname{dfn}(v)=\operatorname{dfn}(u)+1$。所以，可以令 $v\gets\operatorname{rnk}(\operatorname{dfn}(u)+1)$。
     
-        注意，这两种情形中可以合并：在跳完之后可以发现所求的 $v$ 一定满足
+        注意，这两种情形中可以合并：在跳完之后可以直接令
     
         $$
-        \textit{dfn}(v)=\textit{dfn}(\textit{top}(v))+\textit{dep}(u)+1-\textit{dep}(\textit{top}(v)).
+        v\gets\operatorname{rnk}(\operatorname{dfn}(\operatorname{top}(v))+\operatorname{dep}(u)+1-\operatorname{dep}(\operatorname{top}(v))).
         $$
     
         容易验证，利用这一表达式找到的 $v$，和分类讨论找到的 $v$ 是等价的。参考实现中就用到了这一表达式。
     
-        由于 $v$ 子树覆盖的区间为 $[\textit{dfn}(v),\textit{dfn}(v)+\textit{siz}(v))$，所以只需要对 $[1,\textit{dfn}(v))\cup[\textit{dfn}(v)+\textit{siz}(v),n]$ 操作即可。
+        由于 $v$ 子树覆盖的区间为 $[\operatorname{dfn}(v),\operatorname{dfn}(v)+\operatorname{siz}(v))$，所以只需要对 $[1,\operatorname{dfn}(v))\cup[\operatorname{dfn}(v)+\operatorname{siz}(v),n]$ 操作即可。
     -   其它情况。可以发现换根操作不会影响 $u$ 的子树，用正常的方式维护即可。
     
     这样做的复杂度与不带换根的做法相同，均为 $O(n\log^2 n)$。
@@ -295,7 +295,7 @@ int lca(int u, int v) {
 
 最后是一道交互题，也是树剖的非传统应用。
 
-??? example "[Nauuo and Binary Tree](https://loj.ac/problem/6669)"
+???+ example "[Nauuo and Binary Tree](https://loj.ac/problem/6669)"
     有一棵以 $1$ 为根的二叉树，你可以询问任意两点之间的距离，求出每个点的父亲。
     
     结点数不超过 $3000$，你最多可以进行 $30000$ 次询问。
