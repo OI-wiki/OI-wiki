@@ -308,28 +308,10 @@ $$
 ??? note "参考代码"
     === "C++"
         ```cpp
-        #include <iostream>
-        using namespace std;
-        int n;
-        long long f[25];
-        
-        int main() {
-          f[0] = 1;
-          cin >> n;
-          for (int i = 1; i <= n; i++) f[i] = f[i - 1] * (4 * i - 2) / (i + 1);
-          // 这里用的是常见形式2
-          cout << f[n] << endl;
-          return 0;
-        }
+        --8<-- "docs/math/code/combinatorics/catalan/catalan_1.cpp"
         ```
     
     === "Python"
         ```python
-        f = [0] * 25
-        f[0] = 1
-        n = int(input())
-        for i in range(1, n + 1):
-            f[i] = int(f[i - 1] * (4 * i - 2) // (i + 1))
-            # 这里用的是常见形式3
-        print(f[n])
+        --8<-- "docs/math/code/combinatorics/catalan/catalan_1.py"
         ```
