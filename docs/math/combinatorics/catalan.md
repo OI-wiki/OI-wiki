@@ -24,8 +24,8 @@ Catalan 数列 $C_n$ 可以应用于以下问题：
 3.  $n$ 个结点可构造多少个不同的二叉树？
 4.  对角线不相交的情况下，将一个凸多边形区域分成三角形区域的方法数？
 5.  由 $n$ 对括号构成的合法括号序列数。
-6.  一个栈（无穷大）的进栈序列为 $1,2,3, \cdots ,n$ 有多少个不同的出栈序列？
-7.  由 $n$ 个 $+1$ 和 $n$ 个 $-1$ 组成的 $2n$ 个数 $a_1,a_2, \cdots ,a_{2n}$，其部分和满足 $a_1+a_2+ \cdots +a_k \geq 0~(k=1,2,3, \cdots ,2n)$，有多少个满足条件的数列？
+6.  一个栈（无穷大）的进栈序列为 $1,2,3, \ldots ,n$ 有多少个不同的出栈序列？
+7.  由 $n$ 个 $+1$ 和 $n$ 个 $-1$ 组成的 $2n$ 个数 $a_1,a_2, \ldots ,a_{2n}$，其部分和满足 $a_1+a_2+ \ldots +a_k \geq 0~(k=1,2,3, \ldots ,2n)$，有多少个满足条件的数列？
 
 接下来，我们将证明这些问题的答案都与 Catalan 数列有关。
 
@@ -57,7 +57,7 @@ Catalan 数列 $C_n$ 可以应用于以下问题：
 
 记 $2n$ 个点的方案数为 $T_n$。
 
-我们将 $2n$ 个点按顺时针标号，分别为 $1,2,\cdots,2n$。
+我们将 $2n$ 个点按顺时针标号，分别为 $1,2,\ldots,2n$。
 
 如果连接了 $1$ 和 $2k~(k\in[1,n])$，那么左边有 $2k-2$ 个点，右边有 $2n-2k$ 个点。
 
@@ -188,7 +188,7 @@ $$
 $$
 \begin{aligned}
 \left(\frac{1}{2}\right)^{\underline{n}}
-&=\frac{1}{2}\frac{-1}{2}\frac{-3}{2}\cdots\frac{-(2n-3)}{2}\\
+&=\frac{1}{2}\frac{-1}{2}\frac{-3}{2}\ldots\frac{-(2n-3)}{2}\\
 &=\frac{(-1)^{n-1}(2n-3)!!}{2^n}\\
 &=\frac{(-1)^{n-1}(2n-2)!}{2^n(2n-2)!!}\\
 &=\frac{(-1)^{n-1}(2n-2)!}{2^{2n-1}(n-1)!}
@@ -302,33 +302,34 @@ $$
 
 ## 例题
 
-??? note " 例题 [洛谷 P1044 栈](https://www.luogu.com.cn/problem/P1044)"
+???+ example "[洛谷 P1044 栈](https://www.luogu.com.cn/problem/P1044)"
     题目大意：入栈顺序为 $1,2,\ldots ,n$，求所有可能的出栈顺序的总数。
 
-=== "C++"
-    ```cpp
-    #include <iostream>
-    using namespace std;
-    int n;
-    long long f[25];
+??? note "参考代码"
+    === "C++"
+        ```cpp
+        #include <iostream>
+        using namespace std;
+        int n;
+        long long f[25];
+        
+        int main() {
+          f[0] = 1;
+          cin >> n;
+          for (int i = 1; i <= n; i++) f[i] = f[i - 1] * (4 * i - 2) / (i + 1);
+          // 这里用的是常见形式2
+          cout << f[n] << endl;
+          return 0;
+        }
+        ```
     
-    int main() {
-      f[0] = 1;
-      cin >> n;
-      for (int i = 1; i <= n; i++) f[i] = f[i - 1] * (4 * i - 2) / (i + 1);
-      // 这里用的是常见形式2
-      cout << f[n] << endl;
-      return 0;
-    }
-    ```
-
-=== "Python"
-    ```python
-    f = [0] * 25
-    f[0] = 1
-    n = int(input())
-    for i in range(1, n + 1):
-        f[i] = int(f[i - 1] * (4 * i - 2) // (i + 1))
-        # 这里用的是常见形式3
-    print(f[n])
-    ```
+    === "Python"
+        ```python
+        f = [0] * 25
+        f[0] = 1
+        n = int(input())
+        for i in range(1, n + 1):
+            f[i] = int(f[i - 1] * (4 * i - 2) // (i + 1))
+            # 这里用的是常见形式3
+        print(f[n])
+        ```
