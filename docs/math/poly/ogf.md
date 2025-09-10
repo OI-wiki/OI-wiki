@@ -246,7 +246,7 @@ $$
 
 ## 卡特兰数的生成函数
 
-参考 [Catalan 数的封闭形式](../combinatorics/catalan.md#封闭形式)
+参考 [Catalan 数形式的代数推演](../combinatorics/catalan.md#代数推演)。
 
 ## 应用
 
