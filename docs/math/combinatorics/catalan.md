@@ -173,14 +173,14 @@ Catalan 数的这些形式都可以高效计算：前两个形式将它转换为
     接下来，需要将它展开为幂级数的形式。利用 $(1+x)^a$ 的 [幂级数展开式](../poly/intro.md#常见的幂级数展开式) 可知：
     
     $$
-    \sqrt{1-4x} = \sum_{n=0}^{\infty} \dfrac{\left(\frac{1}{2}\right)^{\underline{n}}}{n!}(-4x)^n,
+    \sqrt{1-4x} = \sum_{n=0}^{\infty} \dfrac{\left(\frac{1}{2}\right)_{-n}}{n!}(-4x)^n,
     $$
     
-    其中，$\left(\dfrac{1}{2}\right)^{\underline{n}}$ 是下降阶乘幂：
+    其中，$\left(\dfrac{1}{2}\right)_{-n}$ 是下降阶乘幂：
     
     $$
     \begin{aligned}
-    \left(\frac{1}{2}\right)^{\underline{n}} &= \prod_{k=0}^{n-1}\left(\dfrac{1}{2}-k\right) = \dfrac{1}{2^n}\prod_{k=1}^{n-1}(1-2k) = \dfrac{(-1)^{n-1}}{2^n}\prod_{k=1}^{n-1}(2k-1)\\
+    \left(\frac{1}{2}\right)_{-n} &= \prod_{k=0}^{n-1}\left(\dfrac{1}{2}-k\right) = \dfrac{1}{2^n}\prod_{k=1}^{n-1}(1-2k) = \dfrac{(-1)^{n-1}}{2^n}\prod_{k=1}^{n-1}(2k-1)\\
     &= \dfrac{(-1)^{n-1}}{2^{2n-1}}\prod_{k=1}^{n-1}\dfrac{(2k-1)2k}{k} = \dfrac{(-1)^{n-1}}{2^{2n-1}}\dfrac{(2n-2)!}{(n-1)!}.
     \end{aligned}
     $$
@@ -189,8 +189,8 @@ Catalan 数的这些形式都可以高效计算：前两个形式将它转换为
     
     $$
     \begin{aligned}
-    C(x) &= \dfrac{1}{2x}\left(1-\sum_{n=0}^{\infty} \dfrac{\left(\frac{1}{2}\right)^{\underline{n}}}{n!}(-4x)^n\right)\\
-    &= -\dfrac{1}{2x}\sum_{n=1}^\infty \dfrac{(-4x)^n}{n!}\left(\dfrac{1}{2}\right)^{\underline{n}} \\
+    C(x) &= \dfrac{1}{2x}\left(1-\sum_{n=0}^{\infty} \dfrac{\left(\frac{1}{2}\right)_{-n}}{n!}(-4x)^n\right)\\
+    &= -\dfrac{1}{2x}\sum_{n=1}^\infty \dfrac{(-4x)^n}{n!}\left(\frac{1}{2}\right)_{-n} \\
     &= -\dfrac{1}{2x}\sum_{n=1}^\infty \dfrac{(-4x)^n}{n!}\dfrac{(-1)^{n-1}}{2^{2n-1}}\dfrac{(2n-2)!}{(n-1)!} \\
     &= \sum_{n=1}^{\infty}\dfrac{(2n-2)!}{(n-1)!n!}x^{n-1}\\
     &= \sum_{n=0}^{\infty}\dfrac{(2n)!}{n!(n+1)!}x^n.
