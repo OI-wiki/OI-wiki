@@ -17,12 +17,12 @@ int main() {
       return 0;
     }
     int y = x + k[x];
-    if (y <= n) {
+    if (y <= n && d[y] == 0) {
       d[y] = d[x] + 1;
       q.push(y);
     }
     y = x - k[x];
-    if (y >= 1) {
+    if (y >= 1 && d[y] == 0) {
       d[y] = d[x] + 1;
       q.push(y);
     }
