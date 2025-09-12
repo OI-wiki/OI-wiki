@@ -233,9 +233,9 @@ $$
     
         即方程 $f(x)q(x)\equiv 0\pmod p$ 有 $p$ 个解．
     
-        设方程 $(7)$ 的解数为 $s$，则由 [Lagrange 定理](#定理-3lagrange-定理) 可知 $s\leq n$．
+        设方程 $(7)$ 的解数为 $s$，则由 [Lagrange 定理](#thm3-lagrange) 可知 $s\leq n$．
     
-        又由于 $\deg q=p-n$，则由 [Lagrange 定理](#定理-3lagrange-定理) 可知 $q(x)\equiv 0\pmod p$ 的解数不超过 $p-n$，而方程 $f(x)q(x)\equiv 0\pmod p$ 的解集是 $f(x)\equiv 0\pmod p$ 解集和 $q(x)\equiv 0\pmod p$ 解集的并集，故 $s+(p-n)\geq p$，有 $s\geq n$．
+        又由于 $\deg q=p-n$，则由 [Lagrange 定理](#thm3-lagrange) 可知 $q(x)\equiv 0\pmod p$ 的解数不超过 $p-n$，而方程 $f(x)q(x)\equiv 0\pmod p$ 的解集是 $f(x)\equiv 0\pmod p$ 解集和 $q(x)\equiv 0\pmod p$ 解集的并集，故 $s+(p-n)\geq p$，有 $s\geq n$．
     
         因此 $s=n$．
 
