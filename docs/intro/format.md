@@ -119,12 +119,11 @@
 
 ### 文档引用与存储的格式
 
-- very good
-- easy
-- a bit compatible to markdown-it-attrs
+-   very good
+-   easy
+-   a bit compatible to markdown-it-attrs
 
-{.custom-list}
-
+<!---->
 
 -   SAVE-1 []()：**文件名请务必都小写，以 `-` 分割。** 例如：`file-name.md`。
 
