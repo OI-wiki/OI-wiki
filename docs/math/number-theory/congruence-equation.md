@@ -152,7 +152,7 @@ $$
     -   $(\forall x\in\mathbf{Z}),~~x^{p-1}-1 \equiv \prod_{i=1}^{p-1}(x-i)\pmod p$．
     -   （[Wilson 定理](./factorial.md#wilson-定理)）$(p-1)! \equiv -1 \pmod p$．
 
-[](){#thm3-lagrange}
+[]()
 
 ???+ note "定理 3（Lagrange 定理）"
     方程 $(6)$ 至多有 $n$ 个不同解．
