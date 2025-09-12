@@ -6,6 +6,7 @@
   },
   "plugins": [
     "remark-parse",
+    "remark-attr",
     "remark-copywriting-correct",
     "remark-preset-lint-markdown-style-guide",
     [
@@ -33,8 +34,7 @@
       "ordered"
     ],
     "remark-gfm",
-    "remark-details",
-    "remark-attr",
+    "remark-details",    
     "remark-math",
     "remark-math-space",
     "remark-lint-final-newline",
