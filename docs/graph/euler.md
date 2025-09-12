@@ -143,3 +143,5 @@ $E = \{a_{j_1}a_{j_2}\cdots a_{j_{n-1}}|a_j \in S, 1 \leq j \leq n\}$
 -   [洛谷 P6066 \[USACO05JAN\]Watchcow S](https://www.luogu.com.cn/problem/P6066)
 
 -   [洛谷 P6628 \[省选联考 2020 B 卷\] 丁香之路](https://www.luogu.com.cn/problem/P6628)
+
+-   [洛谷 P3520 \[POI 2011\] SMI-Garbage](https://www.luogu.com.cn/problem/P3520)

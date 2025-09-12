@@ -6,6 +6,12 @@
 \tikzset{
     circlenode/.style={draw=black, circle, text=white, minimum size=0.2cm, font=\Large\bfseries\fontspec{Times New Roman}},
     trinode/.style={draw, isosceles triangle, isosceles triangle stretches, text=black, minimum size=0.4cm, shape border rotate=90, isosceles triangle apex angle=40, line width=0.03cm, font=\bfseries\fontspec{Times New Roman}},
+    twocolornode/.style={draw=black, circle, text=white, font=\bfseries\Large, minimum size=0.4cm,
+        path picture={
+            \fill [red] (path picture bounding box.south west) rectangle (path picture bounding box.north);
+            \fill [black] (path picture bounding box.south) rectangle (path picture bounding box.north east);
+        }
+    },
     edge from parent/.style={real edge, draw=black},
     real edge/.style={solid, very thick, -latex}
 }
@@ -13,7 +19,7 @@
 \begin{document}
 \begin{tikzpicture}
     \matrix[row sep=1cm, column sep=1cm] {
-        \node[circlenode, fill=red] {P}
+        \node[twocolornode] {P}
         child[real edge] {node[circlenode, fill=black, draw=blue, line width = 0.1cm] {N}
                 child[real edge] {node[circlenode, draw=none, fill=white] (tree1){}}
                 child[real edge] {node[circlenode, draw=none, fill=white] (tree2){}}
@@ -41,7 +47,7 @@
 
         \\
 
-        \node[circlenode, fill=black] {P}
+        \node[twocolornode] {P}
         child[real edge] {node[circlenode, fill=black] {N}
                 child[real edge] {node[circlenode, draw=none, fill=white] (tree1){}}
                 child[real edge] {node[circlenode, draw=none, fill=white] (tree2){}}

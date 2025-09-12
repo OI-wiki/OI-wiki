@@ -170,7 +170,7 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
         n = len(adj)
         parent[n - 1] = -1
         dfs(n - 1)
-    
+        
         ptr = -1
         degree = [0] * n
         for i in range(0, n):
@@ -328,4 +328,4 @@ $$
 -   [UVa #10843 - Anne's game](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=20&page=show_problem&problem=1784)
 -   [Timus #1069 - Prufer Code](http://acm.timus.ru/problem.aspx?space=1&num=1069)
 -   [Codeforces - Clues](http://codeforces.com/contest/156/problem/D)
--   [Topcoder - TheCitiesAndRoadsDivTwo](https://community.topcoder.com/stat?c=problem_statement&pm=10774&rd=14146)
+-   [Topcoder - TheCitiesAndRoadsDivTwo](https://archive.topcoder.com/ProblemStatement/pm/10774)

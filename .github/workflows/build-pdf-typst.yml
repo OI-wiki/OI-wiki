@@ -34,6 +34,9 @@ jobs:
 
           git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
           cd OI-Wiki-export
+          cd remark-snippet
+          npm install
+          cd ..
           cd remark-typst
           npm install
           cd ..

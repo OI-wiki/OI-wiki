@@ -1,0 +1,71 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    scale=2,
+    every node/.style={draw,circle,minimum size=20pt,inner sep=-5pt}
+]
+
+\begin{scope}
+    % vertices.
+    \node [fill=gray!70] (03) at (0,2) {3};
+    \node [fill=gray!70] (02) at (-0.866,1.5) {2};
+    \node [fill=gray!10] (04) at (0.866,1.5) {4};
+    \node [fill=gray!10] (01) at (-0.866,0.5) {1};
+    \node [fill=gray!10] (05) at (0.866,0.5) {5};
+    \node [fill=gray!70] (06) at (0,0) {6};
+    \node [fill=gray!70] (07) at (-0.866,-0.5) {7};
+    \node [fill=gray!70] (12) at (0,-1) {12};
+    \node [fill=gray!70] (11) at (0.866,-0.5) {11};
+    \node [fill=gray!70] (08) at (-0.866,-1.5) {8};
+    \node [fill=gray!70] (10) at (0.866,-1.5) {10};
+    \node [fill=gray!10] (09) at (0,-2) {9};
+    % edges.
+    \draw [very thick,black] (01) -- (02);
+    \draw [very thick,black] (01) -- (05);
+    \draw [very thick,black] (01) -- (06);
+    \draw [very thick,black] (01) -- (07);
+    \draw [very thick,red]   (02) -- (03);
+    \draw [very thick,black] (02) -- (04);
+    \draw [very thick,black] (03) -- (04);
+    \draw [very thick,black] (04) -- (05);
+    \draw [very thick,black] (05) -- (11);
+    \draw [very thick,red]   (06) -- (12);
+    \draw [very thick,red]   (07) -- (08);
+    \draw [very thick,black] (07) -- (12);
+    \draw [very thick,black] (08) -- (09);
+    \draw [very thick,black] (09) -- (12);
+    \draw [very thick,black] (09) -- (10);
+    \draw [very thick,red]   (10) -- (11);    
+\end{scope}
+
+\begin{scope}[xshift=100pt]
+    % vertices.
+    \node [fill=gray!10] (01) at (0,1.5) {1};
+    \node [fill=gray!70] (02) at (-1.2,0.5) {2};
+    \node [fill=gray!10] (05) at (-0.4,0.5) {5};
+    \node [fill=gray!70] (06) at (0.4,0.5) {6};
+    \node [fill=gray!70] (07) at (1.2,0.5) {7};
+    \node [fill=gray!70] (03) at (-1.2,-0.5) {3};
+    \node [fill=gray!70] (12) at (0.4,-0.5) {12};
+    \node [fill=gray!70] (08) at (1.2,-0.5) {8};
+    \node [fill=gray!10] (04) at (-1.2,-1.5) {4};
+    \node [fill=gray!10] (09) at (0.4,-1.5) {9};
+    % edges.
+    \draw [very thick,black] (01) -- (02);
+    \draw [very thick,black] (01) -- (05);
+    \draw [very thick,black] (01) -- (06);
+    \draw [very thick,black] (01) -- (07);
+    \draw [very thick,red]   (02) -- (03);
+    \draw [very thick,red]   (06) -- (12);
+    \draw [very thick,red]   (07) -- (08);
+    \draw [very thick,black] (03) -- (04);
+    \draw [very thick,black] (09) -- (12);
+\end{scope}
+
+\end{tikzpicture}
+
+\end{document}

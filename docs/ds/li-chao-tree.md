@@ -165,7 +165,7 @@
 
 [「JSOI2008」Blue Mary 开公司](https://www.luogu.com.cn/problem/P4254)
 
-[「CodeChef」TSUM2 Sum on Tree](https://vjudge.net/problem/CodeChef-TSUM2)
+[「CodeChef」TSUM2 Sum on Tree](https://www.codechef.com/problems/TSUM2)
 
 [「USACO13MAR」Hill Walk G](https://www.luogu.com.cn/problem/P3081)
 

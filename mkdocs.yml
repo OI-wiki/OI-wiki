@@ -169,7 +169,7 @@ nav:
     - IDA*: search/idastar.md
     - 回溯法: search/backtracking.md
     - Dancing Links: search/dlx.md
-    - Alpha-Beta 剪枝: search/alpha-beta.md
+    - Alpha–Beta 剪枝: search/alpha-beta.md
     - 优化: search/opt.md
   - 动态规划:
     - 动态规划部分简介: dp/index.md
@@ -185,10 +185,14 @@ nav:
     - 计数 DP: dp/count.md
     - 动态 DP: dp/dynamic.md
     - 概率 DP: dp/probability.md
+    - DP 套 DP: dp/dp-of-dp.md
     - DP 优化:
+      - DP 优化简介: dp/opt/dp-opt.md
       - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
       - 斜率优化: dp/opt/slope.md
       - 四边形不等式优化: dp/opt/quadrangle.md
+      - Slope Trick 优化: dp/opt/slope-trick.md
+      - WQS 二分: dp/opt/wqs-binary-search.md
       - 状态设计优化: dp/opt/state.md
     - 其它 DP 方法: dp/misc.md
   - 字符串:
@@ -201,7 +205,6 @@ nav:
     - 前缀函数与 KMP 算法: string/kmp.md
     - Boyer–Moore 算法: string/bm.md
     - Z 函数（扩展 KMP）: string/z-func.md
-    - 自动机: string/automaton.md
     - AC 自动机: string/ac-automaton.md
     - 后缀数组 (SA):
       - 后缀数组简介: string/sa.md
@@ -237,10 +240,10 @@ nav:
       - 筛法: math/number-theory/sieve.md
       - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 分解质因数: math/number-theory/pollard-rho.md
-      - 裴蜀定理: math/number-theory/bezouts.md
+      - 裴蜀定理 & 一次不定方程: math/number-theory/bezouts.md
       - 类欧几里德算法: math/number-theory/euclidean.md
-      - 欧拉定理 & 费马小定理: math/number-theory/fermat.md
-      - 乘法逆元: math/number-theory/inverse.md
+      - 费马小定理 & 欧拉定理: math/number-theory/fermat.md
+      - 模逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
       - 中国剩余定理: math/number-theory/crt.md
       - 升幂引理: math/number-theory/lift-the-exponent.md
@@ -248,7 +251,7 @@ nav:
       - 卢卡斯定理: math/number-theory/lucas.md
       - 同余方程: math/number-theory/congruence-equation.md
       - 二次剩余: math/number-theory/quad-residue.md
-      - 原根: math/number-theory/primitive-root.md
+      - 阶 & 原根: math/number-theory/primitive-root.md
       - 离散对数: math/number-theory/discrete-logarithm.md
       - 剩余: math/number-theory/residue.md
       - 莫比乌斯反演: math/number-theory/mobius.md
@@ -308,8 +311,8 @@ nav:
       - 对角化: math/linear-algebra/diagonalization.md
       - Jordan标准型: math/linear-algebra/jordan.md
     - 线性规划:
-      - 线性规划简介: math/linear-programming.md
-      - 单纯形算法: math/simplex.md
+      - 线性规划基础: math/linear-programming.md
+      - 单纯形法: math/simplex.md
     - 抽象代数:
       - 基本概念: math/algebra/basic.md
       - 群论: math/algebra/group-theory.md
@@ -326,13 +329,11 @@ nav:
       - 博弈论简介: math/game-theory/intro.md
       - 公平组合游戏: math/game-theory/impartial-game.md
       - 非公平组合游戏: math/game-theory/partizan-game.md
-      - 反常游戏: math/game-theory/misere-game.md
     - 数值算法:
       - 插值: math/numerical/interp.md
       - 数值积分: math/numerical/integral.md
       - 高斯消元: math/numerical/gauss.md
       - 牛顿迭代法: math/numerical/newton.md
-    - 傅里叶-莫茨金消元法: math/fourier-motzkin-elimination.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
     - 拟阵: math/matroid.md
@@ -377,13 +378,9 @@ nav:
       - 笛卡尔树: ds/cartesian-tree.md
       - Size Balanced Tree: ds/sbt.md
       - AVL 树: ds/avl.md
-      - B 树: ds/b-tree.md
-      - B+ 树: ds/bplus-tree.md
       - 红黑树: ds/rbtree.md
       - 左偏红黑树: ds/llrbt.md
       - AA 树: ds/aa-tree.md
-      - 2-3 树: ds/2-3-tree.md
-      - 2-3-4 树: ds/2-3-4-tree.md
     - 跳表: ds/skiplist.md
     - 可持久化数据结构:
       - 可持久化数据结构简介: ds/persistent.md
@@ -408,7 +405,6 @@ nav:
     - PQ 树: ds/pq-tree.md
     - 手指树: ds/finger-tree.md
     - 霍夫曼树: ds/huffman-tree.md
-    - 败者树: ds/loser-tree.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论相关概念: graph/concept.md
@@ -429,18 +425,19 @@ nav:
       - AHU 算法: graph/tree-ahu.md
       - 树哈希: graph/tree-hash.md
       - 树上随机游走: graph/tree-random-walk.md
-    - 矩阵树定理: graph/matrix-tree.md
     - 有向无环图: graph/dag.md
     - 拓扑排序: graph/topo.md
-    - 最小生成树: graph/mst.md
+    - 最短路问题:
+      - 最短路: graph/shortest-path.md
+      - 差分约束: graph/diff-constraints.md
+      - k 短路: graph/kth-path.md
+      - 同余最短路: graph/mod-shortest-path.md
+    - 生成树问题:
+      - 最小生成树: graph/mst.md
+      - 最小树形图: graph/dmst.md
+      - 最小直径生成树: graph/mdst.md
     - 斯坦纳树: graph/steiner-tree.md
-    - 最小树形图: graph/dmst.md
-    - 最小直径生成树: graph/mdst.md
-    - 最短路: graph/shortest-path.md
     - 拆点: graph/node.md
-    - 差分约束: graph/diff-constraints.md
-    - k 短路: graph/kth-path.md
-    - 同余最短路: graph/mod-shortest-path.md
     - 连通性相关:
       - 强连通分量: graph/scc.md
       - 双连通分量: graph/bcc.md
@@ -448,12 +445,13 @@ nav:
       - 圆方树: graph/block-forest.md
       - 点/边连通度: graph/connectivity.md
     - 环计数问题: graph/rings-count.md
+    - 最小环: graph/min-cycle.md
     - 2-SAT: graph/2-sat.md
     - 欧拉图: graph/euler.md
     - 哈密顿图: graph/hamilton.md
     - 二分图: graph/bi-graph.md
-    - 最小环: graph/min-cycle.md
     - 平面图: graph/planar.md
+    - 弦图: graph/chord.md
     - 图的着色: graph/color.md
     - 网络流:
       - 网络流简介: graph/flow.md
@@ -461,17 +459,17 @@ nav:
       - 最小割: graph/flow/min-cut.md
       - 费用流: graph/flow/min-cost.md
       - 上下界网络流: graph/flow/bound.md
-    - Stoer–Wagner 算法: graph/stoer-wagner.md
+      - Stoer–Wagner 算法: graph/stoer-wagner.md
     - 图的匹配:
       - 图匹配: graph/graph-matching/graph-match.md
-      - 增广路: graph/graph-matching/augment.md
       - 二分图最大匹配: graph/graph-matching/bigraph-match.md
       - 二分图最大权匹配: graph/graph-matching/bigraph-weight-match.md
       - 一般图最大匹配: graph/graph-matching/general-match.md
       - 一般图最大权匹配: graph/graph-matching/general-weight-match.md
+      - 稳定匹配: graph/graph-matching/stable-match.md
     - Prüfer 序列: graph/prufer.md
+    - 矩阵树定理: graph/matrix-tree.md
     - LGV 引理: graph/lgv.md
-    - 弦图: graph/chord.md
     - 最大团搜索算法: graph/max-clique.md
     - 支配树: graph/dominator-tree.md
     - 图上随机游走: graph/graph-random-walk.md
@@ -514,6 +512,7 @@ nav:
       - 爬山算法: misc/hill-climbing.md
       - 模拟退火: misc/simulated-annealing.md
     - 悬线法: misc/hoverline.md
+    - 有限状态自动机: misc/fsm.md
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
@@ -570,7 +569,10 @@ theme:
     text: 'Fira Sans'
     code: 'Fira Mono'
 
-plugins: []
+plugins:
+- toggle-sidebar:
+    theme: material
+    toggle_button: all
 
 hooks:
   - hooks/on_env.py

@@ -1,3 +1,4 @@
+// --8<-- [start:full-text]
 #include <cmath>
 #include <iostream>
 
@@ -7,12 +8,15 @@ int id, rt, lc[N], rc[N], tot[N], tot_active;  // Tree structure info.
 int tmp[N], n_tmp;                             // Space for rebuilding trees.
 int val[N], cnt[N], sz[N];                     // Node info.
 
+// --8<-- [start:push-up]
 // Update node info from its children.
 void push_up(int x) {
   tot[x] = 1 + tot[lc[x]] + tot[rc[x]];
   sz[x] = cnt[x] + sz[lc[x]] + sz[rc[x]];
 }
 
+// --8<-- [end:push-up]
+// --8<-- [start:rebuild]
 // Tree -> Array.
 void flatten(int x) {
   if (!x) return;
@@ -39,6 +43,8 @@ void rebuild(int& x) {
   x = build(0, n_tmp - 1);
 }
 
+// --8<-- [end:rebuild]
+// --8<-- [start:insert]
 // Insert v into subtree of x.
 bool insert(int& x, int v, int dep) {
   bool check = false;
@@ -66,6 +72,8 @@ bool insert(int& x, int v, int dep) {
 // Insert v into the tree.
 void insert(int v) { insert(rt, v, 0); }
 
+// --8<-- [end:insert]
+// --8<-- [start:remove]
 // Remove v from subtree of x.
 bool remove(int x, int v) {
   if (!x) return false;
@@ -95,6 +103,8 @@ bool remove(int v) {
   return succ;
 }
 
+// --8<-- [end:remove]
+// --8<-- [start:find-rank]
 // Find the rank of v, i.e., #{val < v} + 1.
 int find_rank(int v) {
   int res = 0;
@@ -110,6 +120,8 @@ int find_rank(int v) {
   return res + sz[lc[x]] + 1;
 }
 
+// --8<-- [end:find-rank]
+// --8<-- [start:find-kth]
 // Find the k-th smallest element.
 int find_kth(int k) {
   if (k <= 0 || sz[rt] < k) return -1;
@@ -127,12 +139,15 @@ int find_kth(int k) {
   return -1;
 }
 
+// --8<-- [end:find-kth]
+// --8<-- [start:pred-succ]
 // Find predecessor.
 int find_prev(int x) { return find_kth(find_rank(x) - 1); }
 
 // Find successor.
 int find_next(int x) { return find_kth(find_rank(x + 1)); }
 
+// --8<-- [end:pred-succ]
 int main() {
   int n;
   std::cin >> n;
@@ -162,3 +177,5 @@ int main() {
   }
   return 0;
 }
+
+// --8<-- [end:full-text]

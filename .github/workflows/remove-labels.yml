@@ -1,0 +1,55 @@
+name: Remove Labels on PR Merge
+
+on:
+  pull_request_target:
+    types: [closed]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  remove-labels:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const labelsRemoved = [
+              'More details needed / 内容需增修',
+              'Need Processing / 需要处理',
+              'Pending apply suggestions / 等待采纳建议',
+              'Pending merge / 等待合并',
+              'Pending review / 等待审核',
+              'Waiting other PRs / 等待其它 PR',
+              '等待取消修改请求 / Pending Cancel Changes Request',
+              'Awaiting Review / PR 待合',
+              'Busy Author / 作者正忙',
+              'Discussion / 需要讨论',
+              'Fix in progress / 正在修锅',
+              'Format fix needed / 格式需修正',
+              'Help needed for format / 需要帮助修正格式',
+              'help wanted / 需要帮助',
+            ];
+            const pr = context.payload.pull_request;
+            const labels = pr.labels.map(label => label.name);
+            const found = labelsRemoved.filter(label => labels.includes(label));
+            if (found.length > 0) {
+              core.info(`🕒 Removing labels: ${found.join(', ')}`);
+              for (const label of found) {
+                try {
+                  await github.rest.issues.removeLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: pr.number,
+                    name: label
+                  });
+                  core.info(`✅ Remove label: ${label}`);
+                } catch (error) {
+                  core.warning(`⚠️ Failed to remove label ${label}: ${error.message}`);
+                }
+              }
+            } else {
+              core.info('✅ No target labels to remove');
+            }

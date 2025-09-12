@@ -62,10 +62,12 @@ def sum_floor(a, N):
     return ans - N
 
 
+# --8<-- [start:core]
 def solve(p, q, N):
     return p * N * (N + 1) // 2 - q * sum_floor(fraction(p, q), N)
 
 
+# --8<-- [end:core]
 if __name__ == "__main__":
     t = int(input())
     for _ in range(t):

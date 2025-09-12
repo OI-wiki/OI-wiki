@@ -133,7 +133,7 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 
 ![](./images/segt2.svg)
 
-现在我们准备给 $[3,5]$ 上的每个数都加上 $5$。根据前面区间查询的经验，我们很快找到了两个极大区间 $[3,3]$ 和 $[4,5]$（分别对应线段树上的 $3$ 号点和 $5$ 号点）。
+现在我们准备给 $[3,5]$ 上的每个数都加上 $5$。根据前面区间查询的经验，我们很快找到了两个极大区间 $[3,3]$ 和 $[4,5]$（分别对应线段树上的 $5$ 号点和 $3$ 号点）。
 
 我们直接在这两个节点上进行修改，并给它们打上标记：
 
@@ -481,3 +481,12 @@ int query(int p, int s, int t, int l, int r) {
         ```cpp
         --8<-- "docs/ds/code/seg/seg_8.cpp"
         ```
+
+## 练习题目
+
+-   [luogu P3372【模板】线段树 1](https://www.luogu.com.cn/problem/P3372)
+-   [luogu P13825 线段树 1.5【动态开点线段树】](https://www.luogu.com.cn/problem/P13825)
+-   [luogu P3373【模板】线段树 2](https://www.luogu.com.cn/problem/P3373)
+-   [luogu P4588【TJOI2018】数学计算](https://www.luogu.com.cn/problem/P4588)
+-   [luogu P5490【模板】扫描线 & 矩形面积并](https://www.luogu.com.cn/problem/P5490)
+-   [luogu P1471 方差](https://www.luogu.com.cn/problem/P1471)

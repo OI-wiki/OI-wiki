@@ -32,7 +32,7 @@ author: Ir1d, 0xis-cn
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/sgt/sgt.cpp:10:14"
+    --8<-- "docs/ds/code/sgt/sgt.cpp:push-up"
     ```
 
 应注意 `tot[x]` 和 `sz[x]` 的更新方式的不同。
@@ -48,7 +48,7 @@ author: Ir1d, 0xis-cn
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/sgt/sgt.cpp:16:40"
+    --8<-- "docs/ds/code/sgt/sgt.cpp:rebuild"
     ```
 
 建树时注意维护节点信息，包括叶子节点的信息。
@@ -78,7 +78,7 @@ $$
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/sgt/sgt.cpp:42:67"
+    --8<-- "docs/ds/code/sgt/sgt.cpp:insert"
     ```
 
 注意，单次插入至多引起一次重构。如果没有新增节点或是新增节点并没有过深，又或是本次回溯过程中已经执行过重构，就不需要继续判断失衡了。多余的重构可能会导致效率损失[^insert-complexity]。回溯过程中的第一个失衡节点，就是所谓的「替罪羊」。
@@ -91,7 +91,7 @@ $$
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/sgt/sgt.cpp:69:96"
+    --8<-- "docs/ds/code/sgt/sgt.cpp:remove"
     ```
 
 ### 时间复杂度
@@ -148,7 +148,7 @@ $$
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/sgt/sgt.cpp:98:111"
+    --8<-- "docs/ds/code/sgt/sgt.cpp:find-rank"
     ```
 
 ### 根据排名查询值
@@ -157,7 +157,7 @@ $$
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/sgt/sgt.cpp:113:128"
+    --8<-- "docs/ds/code/sgt/sgt.cpp:find-kth"
     ```
 
 ### 查询前驱、后继
@@ -166,7 +166,7 @@ $$
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/sgt/sgt.cpp:130:134"
+    --8<-- "docs/ds/code/sgt/sgt.cpp:pred-succ"
     ```
 
 如果想直接实现，应注意处理计数为零的节点。
@@ -177,7 +177,7 @@ $$
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/sgt/sgt.cpp"
+    --8<-- "docs/ds/code/sgt/sgt.cpp:full-text"
     ```
 
 ## 参考资料

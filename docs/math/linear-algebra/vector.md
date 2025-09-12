@@ -168,17 +168,33 @@ $$
 
 计算方法：任取两个面内直线 $\overrightarrow{AB},\overrightarrow{AD}$，使得 $\overrightarrow{AB} \cdot \boldsymbol{n}=\boldsymbol{0}$ 且 $\overrightarrow{AD} \cdot \boldsymbol{n}=\boldsymbol{0}$，利用坐标法即可计算。
 
-## 扩展
+## 向量与矩阵
 
-### 向量与矩阵
+线性代数中，线性变换可以用矩阵表示。令 $T$ 表示一个将 $\mathbf R^n$ 映射到 $\mathbf R^m$ 的线性变换，$\mathbf x$ 表示一个 $n$ 维列向量，则存在一个 $m\times n$ 矩阵 $A$，使得
 
-矩阵运算的相关法则与向量运算相似，于是考虑将向量写成矩阵形式，这样就将向量问题化为矩阵问题了。详细内容请参考线性代数。
+$$
+T(\mathbf x)=A\mathbf x.
+$$
 
-### 向量旋转
+矩阵 $A$ 称为线性变换 $T$ 的变换矩阵。在算法问题中，一般情况下线性变换在相同维度下进行，因此 $A$ 是一个方阵。这样，对向量的线性变换问题可以转化为矩阵乘法问题。
 
-设 $\boldsymbol a=(x,y)$，倾角为 $\theta$，长度为 $l=\sqrt{x^2+y^2}$。则 $x=l\cos \theta,y=l\sin\theta$。令其逆时针旋转 $\alpha$ 度角，得到向量 $\boldsymbol b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$。
+接下来我们探讨三种竞赛中较为常见的变换与其对应的变换矩阵：放缩变换（变换矩阵用 $S$ 表示）、旋转变换（变换矩阵用 $R$ 表示）和平移变换（变换矩阵用 $T$ 表示）。
 
-![](./images/misc1.png)
+### 放缩变换
+
+对于 $n$ 维列向量 $\boldsymbol a$，将其每一维放缩 $v_1,v_2,\ldots,v_n$ 倍。很容易发现放缩操作的变换矩阵 $R$ 是 $n\times n$ 的对角矩阵，即 $S=\operatorname{diag}\{v_1,v_2,\ldots,v_n\}$。
+
+### 旋转变换
+
+向量的旋转是相对复杂的操作，我们仅限于讨论二维和三维的情况。
+
+#### 向量绕点旋转
+
+对于向量绕点旋转，一般指的是向量绕原点旋转。对于某一点绕另一点 $P$ 旋转，可以利用平移变换使得点 $P$ 位于原点，进行向量旋转后再将坐标系平移回原位置即可。设平移操作的变换矩阵为 $T$，绕原点旋转操作的变换矩阵为 $R$，则整个过程的变换矩阵为 $TRT^{-1}$。根据几何意义，$T^{-1}$ 一定存在。
+
+对于二维空间，设 $\boldsymbol a=(x,y)$，倾角为 $\theta$，长度为 $l=\sqrt{x^2+y^2}$。则 $x=l\cos \theta,y=l\sin\theta$。令其绕原点逆时针旋转 $\alpha$ 角，得到向量 $\boldsymbol b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$。
+
+![](./images/vector-rotation.svg)
 
 由三角恒等变换得，
 
@@ -198,8 +214,63 @@ $$
 \boldsymbol b=(x\cos\alpha-y\sin\alpha,y\cos\alpha+x\sin\alpha)
 $$
 
-即使不知道三角恒等变换，这个式子也很容易记下来。
+因此二维空间下，变换矩阵 $R$ 为
+
+$$
+R=
+\begin{bmatrix}
+\cos\alpha & -\sin\alpha\\
+\sin\alpha & \cos\alpha
+\end{bmatrix}.
+$$
+
+对于三维空间，向量旋转需要使用两个角度参量，即天顶角旋转角度与方向角旋转角度，可以利用 [空间球坐标系](../coordinate.md#空间球坐标系) 进行旋转操作。
+
+#### 向量绕直线旋转
+
+对于三维向量，更常见的的是绕某直线旋转。同样为了方便，此直线是过原点的。如果直线不过原点，我们仍可以平移坐标系进行转化。
+
+取直线的方向向量 $\boldsymbol u=(u_x,u_y,u_z)$，设三维向量绕其逆时针旋转 $\theta$ 角。则对应的变换矩阵 $R$ 为[^note1]
+
+$$
+R=
+\begin{bmatrix}
+u_x^2 \left(1-\cos \theta\right) + \cos \theta & u_x u_y \left(1-\cos \theta\right) - u_z \sin \theta & u_x u_z \left(1-\cos \theta\right) + u_y \sin \theta \\ 
+u_x u_y \left(1-\cos \theta\right) + u_z \sin \theta & u_y^2\left(1-\cos \theta\right) + \cos \theta & u_y u_z \left(1-\cos \theta\right) - u_x \sin \theta \\ 
+u_x u_z \left(1-\cos \theta\right) - u_y \sin \theta & u_y u_z \left(1-\cos \theta\right) + u_x \sin \theta & u_z^2\left(1-\cos \theta\right) + \cos \theta
+\end{bmatrix}.
+$$
+
+### 平移变换
+
+平移变换并非线性变换，而是仿射变换。但 $\mathbf R^n$ 下的仿射变换仍可以用 $\mathbf R^{n+1}$ 下的线性变换表示。
+
+考虑 $n$ 维向量 $\boldsymbol a=(a_1,a_2, \ldots , a_n)$，现在要将其沿向量 $\boldsymbol t=(t_1, t_2, \ldots , t_n)$ 平移。我们对列向量 $\boldsymbol a$ 添加一维并置为 $1$，得到新列向量 $\boldsymbol a'=(a_1, a_2, \ldots , a_n, 1)$。则变换矩阵 $T$ 可以写作
+
+$$
+T=
+\begin{bmatrix}
+1 &   &        &   & t_1    \\
+  & 1 &        &   & t_2    \\
+  &   & \ddots &   & \vdots \\
+  &   &        & 1 & t_n    \\
+  &   &        &   & 1      \\
+\end{bmatrix}.
+$$
+
+对于其他线性变换矩阵，在矩阵中增加一列与一行，除右下角的元素为 $1$ 外其它部分填充为 $0$，通过这种方法，所有的线性变换矩阵都可以转换为仿射变换矩阵。例如，对于二维向量旋转，变换矩阵可以变为
+
+$$
+R'=
+\begin{bmatrix}
+\cos\alpha & -\sin\alpha & 0\\
+\sin\alpha & \cos\alpha & 0\\
+0 & 0 & 1
+\end{bmatrix}.
+$$
 
 ## 向量的更严格定义
 
 上文中，向量被定义为了空间中的有向线段。但是严格来说，向量不仅是有向线段。要作出向量的更严格定义，需要先定义 [线性空间](./vector-space.md)，具体内容参见 [线性空间](./vector-space.md) 页面的介绍。
+
+[^note1]: 参见 [Rotation matrix from axis and angle - Wikipedia](https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle)

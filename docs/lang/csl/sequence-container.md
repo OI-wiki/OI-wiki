@@ -18,7 +18,7 @@ author: MingqiHuang, Xeonacid, greyqz, i-Yirannn, ChenZ01
 
 #### `vector` 便利的初始化
 
-由于 `vector` 重载了 `=` 运算符，所以我们可以方便的初始化。此外从 C++11 起 `vector` 还支持 [列表初始化](https://zh.cppreference.com/w/cpp/language/list_initialization)，例如 `vector<int> data {1, 2, 3};`。
+由于 `vector` 重载了 `=` 运算符，所以我们可以方便地进行 `vector` 的整体赋值操作。此外从 C++11 起 `vector` 还支持 [列表初始化](https://zh.cppreference.com/w/cpp/language/list_initialization)，例如 `vector<int> data {1, 2, 3};`。
 
 ### `vector` 的使用方法
 
@@ -95,7 +95,7 @@ vector<int> v6(std::move(v2));  // 或者 v6 = std::move(v2);
 
 5.  `data()`
 
-    `v.data()` 返回指向数组第一个元素的指针。
+    `v.data()` 返回 `v` 内部存储数据使用的连续内存空间中首元素的指针。
 
 #### 迭代器
 
@@ -107,7 +107,7 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 
 2.  `end()/cend()`
 
-    返回指向数组尾端占位符的迭代器，注意是没有元素的。
+    返回指向容器尾端占位符的迭代器，注意是没有元素的。
 
 3.  `rbegin()/crbegin()`
 
@@ -129,17 +129,17 @@ vector 提供了如下几种 [迭代器](./iterator.md)
 
 -   `size()` 返回容器长度（元素数量），即 `std::distance(v.begin(), v.end())`。
 
--   `resize()` 改变 `vector` 的长度，多退少补。补充元素可以由参数指定。
+-   `resize(n)` 改变 `vector` 的长度为 `n`。如果 `n` 大于当前长度，则会补充元素，如果参数中提供了要补充的元素，则使用参数，否则使用默认值；如果 `n` 小于当前长度，则保留前 `n` 个元素，后续元素删除。
 
 -   `max_size()` 返回容器的最大可能长度。
 
     **与容量相关**：
 
--   `reserve()` 使得 `vector` 预留一定的内存空间，避免不必要的内存拷贝。
+-   `reserve()` 使得 `vector` 预留一定的内存空间，避免不必要的内存分配与拷贝。
 
--   `capacity()` 返回容器的容量，即不发生拷贝的情况下容器的长度上限。
+-   `capacity()` 返回容器的容量，即当前 `vector` 已经为多少个元素分配了空间。
 
--   `shrink_to_fit()` 使得 `vector` 的容量与长度一致，多退但不会少。
+-   `shrink_to_fit()` 使得 `vector` 的容量与长度一致，去除该 `vector` 没有用到的容量。
 
 ### 元素增删及修改
 

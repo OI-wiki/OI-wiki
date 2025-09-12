@@ -350,8 +350,8 @@ $$
 $$
 \mu(n)=
 \begin{cases}
-	0 & n' \bmod p_1 = 0\\\\
-	-\mu(n') & \text{otherwise}
+    0 & n' \bmod p_1 = 0\\\\
+    -\mu(n') & \text{otherwise}
 \end{cases}
 $$
 
@@ -555,8 +555,8 @@ $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+
 $$
 g_n=
 \begin{cases}
-	g_x\cdot p & x\bmod p=0\\\\
-	p & \text{otherwise}
+    g_x\cdot p & x\bmod p=0\\\\
+    p & \text{otherwise}
 \end{cases}
 $$
 

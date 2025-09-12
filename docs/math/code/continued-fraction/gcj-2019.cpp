@@ -80,6 +80,7 @@ auto middle(int p0, int q0, int p1, int q1) {
   return std::make_pair(pq.first.back(), pq.second.back());
 }
 
+// --8<-- [start:core]
 void solve() {
   int n;
   std::cin >> n;
@@ -116,6 +117,7 @@ void solve() {
   }
 }
 
+// --8<-- [end:core]
 int main() {
   int t;
   std::cin >> t;

@@ -65,6 +65,9 @@ jobs:
             fc-cache
             git config --global --add safe.directory /github/workspace
             git clone https://github.com/OI-wiki/OI-Wiki-export.git
+            cd ./OI-Wiki-export/remark-snippet
+            npm i
+            cd ../..
             cd ./OI-Wiki-export/remark-latex
             npm i
             cd ../..

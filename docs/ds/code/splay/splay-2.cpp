@@ -1,3 +1,4 @@
+// --8<-- [start:full-text]
 #include <iostream>
 
 constexpr int N = 2e6;
@@ -8,6 +9,7 @@ bool dir(int x) { return x == ch[fa[x]][1]; }
 
 void push_up(int x) { sz[x] = 1 + sz[ch[x][0]] + sz[ch[x][1]]; }
 
+// --8<-- [start:push-down]
 void lazy_reverse(int x) {
   std::swap(ch[x][0], ch[x][1]);
   lz[x] ^= 1;
@@ -21,6 +23,7 @@ void push_down(int x) {
   }
 }
 
+// --8<-- [end:push-down]
 void rotate(int x) {
   int y = fa[x], z = fa[y];
   bool r = dir(x);
@@ -42,6 +45,7 @@ void splay(int& z, int x) {
   z = x;
 }
 
+// --8<-- [start:push-down-lazy]
 void loc(int& z, int k) {
   int x = z;
   for (push_down(x); sz[ch[x][0]] != k - 1; push_down(x)) {
@@ -55,6 +59,8 @@ void loc(int& z, int k) {
   splay(z, x);
 }
 
+// --8<-- [end:push-down-lazy]
+// --8<-- [start:build]
 void build(int n) {
   for (int i = 1; i <= n + 2; ++i) {
     ++id;
@@ -66,6 +72,8 @@ void build(int n) {
   splay(rt, 1);
 }
 
+// --8<-- [end:build]
+// --8<-- [start:reverse]
 void reverse(int l, int r) {
   loc(rt, l);
   loc(ch[rt][1], r - l + 2);
@@ -75,6 +83,7 @@ void reverse(int l, int r) {
   splay(rt, x);
 }
 
+// --8<-- [end:reverse]
 void print(int x) {
   if (!x) return;
   push_down(x);
@@ -101,3 +110,5 @@ int main() {
   print();
   return 0;
 }
+
+// --8<-- [end:full-text]

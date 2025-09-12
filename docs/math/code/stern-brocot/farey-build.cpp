@@ -1,5 +1,6 @@
 #include <iostream>
 
+// --8<-- [start:core]
 // Farey Sequence of Order N.
 void build(int n, int a = 0, int b = 1, int c = 1, int d = 1,
            bool init = true) {
@@ -12,6 +13,7 @@ void build(int n, int a = 0, int b = 1, int c = 1, int d = 1,
   if (init) std::cout << "1/1 ";  // Output 1/1;
 }
 
+// --8<-- [end:core]
 int main() {
   int n;
   std::cin >> n;

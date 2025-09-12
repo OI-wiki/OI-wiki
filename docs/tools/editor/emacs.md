@@ -159,7 +159,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
     (setq-default frame-title-format "")
     
     ;;显示行号
-    (global-linum-mode t)
+    (global-display-line-numbers-mode t)
     
     ;;高亮
     (global-hl-line-mode 1);;高亮当前行
@@ -170,8 +170,8 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
     (setq-default x-select-enable-clipboard t)
     
     ;;设置字体是 Ubuntu Mono 的 16 号，如果字体不存在会报错
-    (set-default-font "Ubuntu Mono-16")
-    ;(set-default-font "Consolas-16") ;; windows 系统请用这条
+    (set-face-attribute 'default nil :font "Ubuntu Mono-16")
+    ;(set-face-attribute 'default nil :font "Consolas-16") ;; windows 系统请用这条
     
     ;;鼠标滚轮支持
     (mouse-wheel-mode t)

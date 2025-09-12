@@ -10,7 +10,7 @@
 
 例如这里的双曲线下整点的图片：
 
-![双曲线下整点](./images/sqrt-decomposition.png)
+![双曲线下整点](./images/sqrt-decomposition.svg)
 
 图中共分为了 $5$ 块，这 $5$ 块整点的最大纵坐标都相同。如果统计整点的个数，可以从纵向计数改为横向计数，直接计算 $5$ 个矩形即可。
 
@@ -152,7 +152,7 @@ $$
 
 求含有 $\left\lfloor\dfrac {a_1}i\right\rfloor$、$\left\lfloor\dfrac {a_2}i\right\rfloor\cdots\left\lfloor\dfrac {a_n}i\right\rfloor$ 的和式时，数论分块右端点的表达式从一维的 $\left\lfloor\dfrac ni\right\rfloor$ 变为 $\min\limits_{j=1}^n\{\left\lfloor\dfrac {a_j}i\right\rfloor\}$，即对于每一个块的右端点取最小（最接近左端点）的那个作为整体的右端点。可以借助下图理解：
 
-![多维数论分块图解](./images/n-dimension-sqrt-decomposition.png)
+![多维数论分块图解](./images/n-dimension-sqrt-decomposition.svg)
 
 一般我们用的较多的是二维形式，此时可将代码中 `r = n / (n / i)` 替换成 `r = min(n / (n / i), m / (m / i))`。
 

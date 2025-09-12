@@ -103,7 +103,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 这里的启示是，理解一般的环的乘法结构时，要去除加法单位元的影响，考察 $R\setminus\{0\}$。基于这一想法，有如下定义。
 
 ???+ abstract "零因子"
-    对于环 $(R,+,\cdot)$，如果存在 $b\in R$，成立 $a\cdot b=0$ 或 $b\cdot a=0$，则称非零元素 $a$ 为一个 **零因子**（zero divisor）。
+    对于环 $(R,+,\cdot)$，如果存在 $b\in R$ 且 $b\ne 0$，成立 $a\cdot b=0$ 或 $b\cdot a=0$，则称非零元素 $a$ 为一个 **零因子**（zero divisor）。
 
 ???+ abstract "可逆元（单位）"
     对于环 $(R,+,\cdot)$，如果元素 $a$ 有乘法逆元，即存在 $b\in R$，成立 $a\cdot b=b\cdot a=1$，则称元素 $a\in R$ 是一个 **可逆元**，或称 **单位**（unit）。

@@ -10,10 +10,10 @@ jobs:
     name: Check PR Format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout Repo
-      - uses: actions/setup-node@v4
-        name: Setup Node.js
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           check-latest: true
@@ -29,28 +29,46 @@ jobs:
     name: Check PR with remark-lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        name: Checkout Repo
-      - uses: actions/setup-node@v4
-        name: Setup Node.js
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           check-latest: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
       - name: Install clang-format-18 and ruff from pypi
         run: pip install clang-format==18.1.5 ruff==0.4.4
       - name: Install Yarn
         run: npm install -g yarn
       - name: Install dependencies
         run: yarn install
+      
+      - name: Pre process
+        run: |
+          python3 scripts/fix_details.py ./docs
+      
       - name: Run bot formatter
         run: |
           yarn docs:format:remark
       - name: Run clang-format
         run: |
-          find . -type f -name "*.cpp" -print0 | xargs -0 clang-format -i
+          find . -type f \( -name "*.c" -o -name "*.cpp" -o -name "*.h" -o -name "*.hpp" \) -print0 | xargs -0 clang-format -i
       - name: Run ruff
         run: |
           ruff format ./docs
+      
+      - name: Generate patch
+        run: |
+          mkdir -p .debug
+          git diff > .debug/changed.patch
+      - name: Upload patch to artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: changes by bot
+          path: .debug/changed.patch
       - name: Check for changes
         run: |
           git diff --exit-code
