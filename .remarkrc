@@ -44,6 +44,8 @@
         "math": false
       }
     ],
-    "remark-attr"
+    ["remark-attr", {
+      "scope": "permissive"
+    }]
   ]
 }
