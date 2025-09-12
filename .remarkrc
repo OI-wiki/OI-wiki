@@ -43,6 +43,7 @@
       {
         "math": false
       }
-    ]
+    ],
+    "remark-attributes"
   ]
 }
