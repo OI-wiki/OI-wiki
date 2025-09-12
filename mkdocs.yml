@@ -570,7 +570,6 @@ theme:
     code: 'Fira Mono'
 
 plugins:
-- attr-list
 - toggle-sidebar:
     theme: material
     toggle_button: all
@@ -604,6 +603,7 @@ extra_css:
 markdown_extensions:
   - document-offsets-injection:
       # debug: true
+  - attr_list
   - admonition
   - def_list
   - footnotes
