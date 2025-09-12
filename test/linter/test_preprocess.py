@@ -1,8 +1,14 @@
 import unittest
-from scripts.fix_details import fix_details
+from scripts.linter.preprocess import fix_details
+from scripts.linter.common import TAB_LENGTH
 
 
 class TestFixDetails(unittest.TestCase):
+    def test_empty(self):
+        md = ""
+        expected = ""
+        self.assertEqual(fix_details(md), expected)
+
     def test_all_blank_lines(self):
         md = "\n\n\n"
         expected = "\n\n\n"
@@ -10,12 +16,17 @@ class TestFixDetails(unittest.TestCase):
 
     def test_blank_lines_with_only_tabs(self):
         md = "\t\n\t\n\t\n"
-        expected = "\n\n\n"
+        expected = md.replace('\t', ' '*TAB_LENGTH)
         self.assertEqual(fix_details(md), expected)
 
     def test_basic_indentation(self):
         md = "    line1\n\n    line2\n"
         expected = "    line1\n    \n    line2\n"
+        self.assertEqual(fix_details(md), expected)
+
+    def test_basic_indentation_with_rspace(self):
+        md = "    line1  \n\n    line2 \n"
+        expected = "    line1  \n    \n    line2 \n"
         self.assertEqual(fix_details(md), expected)
 
     def test_blank_lines_alignment(self):
@@ -33,50 +44,50 @@ class TestFixDetails(unittest.TestCase):
         expected = "a\nb\nc\n"
         self.assertEqual(fix_details(md), expected)
 
-    def test_skipdetails_on_off(self):
+    def test_skipmark_on_off(self):
         md = (
             "  a\n"
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "\n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             " b\n"
         )
         expected = (
             "  a\n"
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "\n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             " b\n"
         )
         self.assertEqual(fix_details(md), expected)
 
-    def test_skipdetails_on_off_at_start(self):
+    def test_skipmark_on_off_at_start(self):
         md = (
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "\n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "  a\n"
         )
         expected = (
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "\n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "  a\n"
         )
         self.assertEqual(fix_details(md), expected)
 
-    def test_skipdetails_on_off_at_end(self):
+    def test_skipmark_on_off_at_end(self):
         md = (
             "  a\n"
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "\n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
         )
         expected = (
             "  a\n"
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "\n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
         )
         self.assertEqual(fix_details(md), expected)
 
@@ -110,26 +121,26 @@ class TestFixDetails(unittest.TestCase):
         expected = "a\n\nb\n"
         self.assertEqual(fix_details(md), expected)
 
-    def test_only_blank_lines_and_skipdetails(self):
-        md = "<!-- preprocess.skipdetails on -->\n\n\n<!-- preprocess.skipdetails off -->"
-        expected = "<!-- preprocess.skipdetails on -->\n\n\n<!-- preprocess.skipdetails off -->\n"
+    def test_only_blank_lines_and_skipmark(self):
+        md = "<!-- scripts.linter.preprocess.fix_details on -->\n\n\n<!-- scripts.linter.preprocess.fix_details off -->"
+        expected = "<!-- scripts.linter.preprocess.fix_details on -->\n\n\n<!-- scripts.linter.preprocess.fix_details off -->\n"
         self.assertEqual(fix_details(md), expected)
 
-    def test_skipdetails_with_blank_lines_inside(self):
+    def test_skipmark_with_blank_lines_inside(self):
         md = (
             "  a\n"
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "     \t \n"
             "   \n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "   b\n"
         )
         expected = (
             "  a\n"
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "     \t \n"
             "   \n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "   b\n"
         )
         self.assertEqual(fix_details(md), expected)
@@ -159,49 +170,49 @@ class TestFixDetails(unittest.TestCase):
         expected = " a\n \n    b\n    \n      c\n"
         self.assertEqual(fix_details(md), expected)
 
-    def test_skipdetails_markers_only(self):
-        md = "<!-- preprocess.skipdetails on -->\n<!-- preprocess.skipdetails off -->"
-        expected = "<!-- preprocess.skipdetails on -->\n<!-- preprocess.skipdetails off -->\n"
+    def test_skipmark_markers_only(self):
+        md = "<!-- scripts.linter.preprocess.fix_details on -->\n<!-- scripts.linter.preprocess.fix_details off -->"
+        expected = "<!-- scripts.linter.preprocess.fix_details on -->\n<!-- scripts.linter.preprocess.fix_details off -->\n"
         self.assertEqual(fix_details(md), expected)
 
-    def test_blank_lines_and_skipdetails_at_start_end(self):
-        md = "\n<!-- preprocess.skipdetails on -->\n   a\n<!-- preprocess.skipdetails off -->\n\n"
-        expected = "\n<!-- preprocess.skipdetails on -->\n   a\n<!-- preprocess.skipdetails off -->\n\n"
+    def test_blank_lines_and_skipmark_at_start_end(self):
+        md = "\n<!-- scripts.linter.preprocess.fix_details on -->\n   a\n<!-- scripts.linter.preprocess.fix_details off -->\n\n"
+        expected = "\n<!-- scripts.linter.preprocess.fix_details on -->\n   a\n<!-- scripts.linter.preprocess.fix_details off -->\n\n"
         self.assertEqual(fix_details(md), expected)
 
-    def test_blank_lines_and_skipdetails_in_middle(self):
-        md = "a\n\n<!-- preprocess.skipdetails on -->\n   a\n<!-- preprocess.skipdetails off -->\nb\n"
-        expected = "a\n\n<!-- preprocess.skipdetails on -->\n   a\n<!-- preprocess.skipdetails off -->\nb\n"
+    def test_blank_lines_and_skipmark_in_middle(self):
+        md = "a\n\n<!-- scripts.linter.preprocess.fix_details on -->\n   a\n<!-- scripts.linter.preprocess.fix_details off -->\nb\n"
+        expected = "a\n\n<!-- scripts.linter.preprocess.fix_details on -->\n   a\n<!-- scripts.linter.preprocess.fix_details off -->\nb\n"
         self.assertEqual(fix_details(md), expected)
 
-    def test_nested_skipdetails_markers(self):
+    def test_nested_skipmark_markers(self):
         md = (
             "     a\n"
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "    b\n"
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "   c\n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "  d\n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             " e\n"
         )
         expected = (
             "     a\n"
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "    b\n"
-            "<!-- preprocess.skipdetails on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "   c\n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "  d\n"
-            "<!-- preprocess.skipdetails off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             " e\n"
         )
         self.assertEqual(fix_details(md), expected)
 
-    def test_blank_lines_before_and_after_skipdetails(self):
-        md = "\n<!-- preprocess.skipdetails on -->\n   \n<!-- preprocess.skipdetails off -->\n"
-        expected = "\n<!-- preprocess.skipdetails on -->\n   \n<!-- preprocess.skipdetails off -->\n"
+    def test_blank_lines_before_and_after_skipmark(self):
+        md = "\n<!-- scripts.linter.preprocess.fix_details on -->\n   \n<!-- scripts.linter.preprocess.fix_details off -->\n"
+        expected = "\n<!-- scripts.linter.preprocess.fix_details on -->\n   \n<!-- scripts.linter.preprocess.fix_details off -->\n"
         self.assertEqual(fix_details(md), expected)
 
     def test_trailing_blank_lines(self):
@@ -213,6 +224,16 @@ class TestFixDetails(unittest.TestCase):
         md = "\n\n  a\n"
         expected = "  \n  \n  a\n"
         self.assertEqual(fix_details(md), expected)
+
+    def test_missing_skipmark_on(self):
+        md = "\n   \n<!-- scripts.linter.preprocess.fix_details off -->\n"
+        with self.assertRaises(RuntimeError):
+            fix_details(md)
+
+    def test_missing_skipmark_off(self):
+        md = "\n<!-- scripts.linter.preprocess.fix_details on -->\n   \n"
+        with self.assertRaises(RuntimeError):
+            fix_details(md)
 
 
 if __name__ == "__main__":
