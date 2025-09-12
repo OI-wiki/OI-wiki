@@ -8,3 +8,5 @@ site/
 .well-known/
 node_modules/
 *.pyc
+.coverage
+.coverage_html_report
