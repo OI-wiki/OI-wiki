@@ -14,7 +14,7 @@ BFS 非常擅于快速求解 **最短路径** 或 **最少步骤**。当算法�
 
 ## 例题
 
-???+ example " 例题 [洛谷 B3625 迷宫寻路](https://www.luogu.com.cn/problem/B3625)"
+???+ example " 例题 [Luogu B3625 迷宫寻路](https://www.luogu.com.cn/problem/B3625)"
     在一个 $n \times m$ 的迷宫矩阵中，`.` 表示可通行区域，`#` 表示障碍物。从起点 $(1,1)$ 出发，每次可向上下左右四个方向移动，问是否能到达终点 $(n,m)$。
 
 ??? note "解答"
@@ -25,7 +25,7 @@ BFS 非常擅于快速求解 **最短路径** 或 **最少步骤**。当算法�
     --8<-- "docs/search/code/bfs/bfs-1.cpp"
     ```
 
-???+ example " 例题 [洛谷 P1135 奇怪的电梯](https://www.luogu.com.cn/problem/P1135)"
+???+ example " 例题 [Luogu P1135 奇怪的电梯](https://www.luogu.com.cn/problem/P1135)"
     有 $n$ 层楼和一架电梯。电梯位于第 $i$ 层楼时，向上或向下移动的层数等于一个固定的数字 $k_i$。如果到达的层数不合法，即不在 $1$ 和 $n$ 之间，相应的操作就无法进行。问：从第 $a$ 楼到第 $b$ 楼至少操作几次电梯？如果无法到达，输出 $-1$。
 
 ??? note "解答"
@@ -35,3 +35,9 @@ BFS 非常擅于快速求解 **最短路径** 或 **最少步骤**。当算法�
     ```cpp
     --8<-- "docs/search/code/bfs/bfs-2.cpp"
     ```
+
+## 习题
+
+-   [Luogu P1443 马的遍历](https://www.luogu.com.cn/problem/P1443)
+-   [Luogu P3956 \[NOIP 2017 普及组\] 棋盘](https://www.luogu.com.cn/problem/P3956)
+-   [Luogu P1126 机器人搬重物](https://www.luogu.com.cn/problem/P1126)
