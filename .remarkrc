@@ -32,7 +32,6 @@
       "ordered"
     ],
     "remark-gfm",
-    "remark-attributes",
     "remark-details",    
     "remark-math",
     "remark-math-space",

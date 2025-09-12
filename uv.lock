@@ -240,20 +240,6 @@ wheels = [
 ]
 
 [[package]]
-name = "mkdocs-autorefs"
-version = "1.4.3"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "markdown" },
-    { name = "markupsafe" },
-    { name = "mkdocs" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/51/fa/9124cd63d822e2bcbea1450ae68cdc3faf3655c69b455f3a7ed36ce6c628/mkdocs_autorefs-1.4.3.tar.gz", hash = "sha256:beee715b254455c4aa93b6ef3c67579c399ca092259cc41b7d9342573ff1fc75", size = 55425, upload-time = "2025-08-26T14:23:17.223Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/9f/4d/7123b6fa2278000688ebd338e2a06d16870aaf9eceae6ba047ea05f92df1/mkdocs_autorefs-1.4.3-py3-none-any.whl", hash = "sha256:469d85eb3114801d08e9cc55d102b3ba65917a869b893403b8987b601cf55dc9", size = 25034, upload-time = "2025-08-26T14:23:15.906Z" },
-]
-
-[[package]]
 name = "mkdocs-toggle-sidebar-plugin"
 version = "0.0.8"
 source = { registry = "https://pypi.org/simple" }
@@ -273,7 +259,6 @@ dependencies = [
     { name = "beautifulsoup4" },
     { name = "markdown" },
     { name = "mkdocs" },
-    { name = "mkdocs-autorefs" },
     { name = "mkdocs-toggle-sidebar-plugin" },
     { name = "pygments" },
     { name = "pymdown-extensions" },
@@ -286,7 +271,6 @@ requires-dist = [
     { name = "beautifulsoup4" },
     { name = "markdown", specifier = "==3.6" },
     { name = "mkdocs", specifier = "==1.5.3" },
-    { name = "mkdocs-autorefs", specifier = ">=1.4.3" },
     { name = "mkdocs-toggle-sidebar-plugin", specifier = "==0.0.8" },
     { name = "pygments" },
     { name = "pymdown-extensions", specifier = "==10.3.1" },

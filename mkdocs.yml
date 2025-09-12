@@ -570,7 +570,6 @@ theme:
     code: 'Fira Mono'
 
 plugins:
-- autorefs
 - toggle-sidebar:
     theme: material
     toggle_button: all

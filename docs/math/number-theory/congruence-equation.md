@@ -55,13 +55,13 @@ $$
         $$
         x=x_0+p^{e-1}t \tag{3}
         $$
-        
+    
         是方程
-        
+    
         $$
         f(x)\equiv 0\pmod{p^e} \tag{4}
         $$
-        
+    
         的解．
     2.  若 $f'(x_0)\equiv 0\pmod p$ 且 $f(x_0)\equiv 0\pmod{p^e}$，则对 $t=0,1,\dots,p-1$，由式 $(3)$ 确定的 $x$ 均为方程 $(4)$ 的解．
     3.  若 $f'(x_0)\equiv 0\pmod p$ 且 $f(x_0)\not\equiv 0\pmod{p^e}$，则不能由式 $(3)$ 构造方程 $(4)$ 的解．

@@ -13,7 +13,6 @@ dependencies = [
     "markdown==3.6",
     "python-markdown-document-offsets-injection-extension==0.5.13",
     "mkdocs-toggle-sidebar-plugin==0.0.8",
-    "mkdocs-autorefs>=1.4.3",
 ]
 
 [tool.uv]
