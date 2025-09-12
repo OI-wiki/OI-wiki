@@ -5,8 +5,6 @@
     "listItemIndent": "tab"
   },
   "plugins": [
-    "remark-parse",
-    "remark-attr",
     "remark-copywriting-correct",
     "remark-preset-lint-markdown-style-guide",
     [
@@ -34,6 +32,7 @@
       "ordered"
     ],
     "remark-gfm",
+    "remark-attributes",
     "remark-details",    
     "remark-math",
     "remark-math-space",
