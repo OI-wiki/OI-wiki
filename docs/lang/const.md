@@ -37,7 +37,7 @@ const int &r2 = a;
 const int &r4 = b;
 ```
 
-另外需要区分开的是常量指针（`const t*`）和指针常量（`t* const`)，例如下列声明
+另外需要区分开的是常量指针（`const t*`）和指针常量（`t* const`），例如下列声明
 
 ```cpp
 int* const p1;  // 指针常量，初始化后指向地址不可改，可更改指向的值
