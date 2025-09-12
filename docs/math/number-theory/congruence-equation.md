@@ -133,15 +133,15 @@ $$
         $$
         (\forall i=2,3,\dots,k),~~0\equiv f(x_i)\equiv (x_i-x_1)h(x_i)\pmod p
         $$
-        
+    
         从而 $h(x)$ 有 $k-1$ 个不同的解 $x_2,x_3,\dots,x_k$，由归纳假设有
-        
+    
         $$
         h(x)\equiv g(x)\prod_{i=2}^k(x-x_i)\pmod p
         $$
-        
+    
         其中 $\deg g=n-k$ 且 $[x^{n-k}]g(x)=a_n$．
-        
+    
         因此命题得证．
 
 <a id="推论-2"></a>
@@ -223,20 +223,20 @@ $$
         $$
         x^p-x=f(x)q(x)+r_1(x).
         $$
-        
+    
         若方程 $(7)$ 有 $n$ 个解，则 $r_1\equiv 0\pmod p$ 也有 $n$ 个相同的解，进而由 [推论 3](#推论-3) 可知存在整系数多项式 $r(x)$ 满足 $r_1(x)=pr(x)$，从而命题得证．
     -   充分性：若式 $(8)$ 成立，则由 [Fermat 小定理](./fermat.md) 可知，对任意整数 $x$,
     
         $$
         0\equiv x^p-x\equiv f(x)q(x)\pmod p.
         $$
-        
+    
         即方程 $f(x)q(x)\equiv 0\pmod p$ 有 $p$ 个解．
-        
+    
         设方程 $(7)$ 的解数为 $s$，则由 [Lagrange 定理](#thm3-lagrange) 可知 $s\leq n$．
-        
+    
         又由于 $\deg q=p-n$，则由 [Lagrange 定理](#thm3-lagrange) 可知 $q(x)\equiv 0\pmod p$ 的解数不超过 $p-n$，而方程 $f(x)q(x)\equiv 0\pmod p$ 的解集是 $f(x)\equiv 0\pmod p$ 解集和 $q(x)\equiv 0\pmod p$ 解集的并集，故 $s+(p-n)\geq p$，有 $s\geq n$．
-        
+    
         因此 $s=n$．
 
 对于非首一多项式，由于 $\mathbf{Z}_p$ 是域，故可以将其化为首一多项式，从而适用该定理．
@@ -276,7 +276,7 @@ $$
             &=\left(x^n-a\right)P(x)+x\left(a^{\frac{p-1}{n}}-1\right)\\
         \end{aligned}
         $$
-        
+    
         其中 $P(x)$ 是某个整系数多项式，因此由 [定理 5](#定理-5) 可知方程 $(9)$ 有 $n$ 个解．
 
 ## 高次同余方程（组）的求解方法
@@ -306,7 +306,7 @@ $$
     $$
     x^n\equiv a\pmod p,
     $$
-    
+
     则求法参见 [k 次剩余](./residue.md)．
 
 ## 参考资料
