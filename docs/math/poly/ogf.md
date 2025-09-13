@@ -143,15 +143,21 @@ $$
 
 $$
 \begin{aligned}
-F(x)&=\frac{x}{1-(x+x^2)}\\
-&=\sum_{n\ge 0}(x+x^2)^n\\
-&=\sum_{n\ge 0}\sum_{i=0}^n\binom{n}{i}x^{2i}x^{n-i}\\
-&=\sum_{n\ge 0}\sum_{i=0}^n\binom{n}{i}x^{n+i}\\
-&=\sum_{n\ge 0}x^n\sum_{i=0}^n\binom{n-i}{i}
+F(x) &= \dfrac{x}{1-(x+x^2)} \\
+&= x\sum_{k=0}^{\infty}(x+x^2)^k \\
+&= x\sum_{k=0}^{\infty}\sum_{i=0}^k\binom{k}{i}x^{k-i}(x^2)^i \\
+&= \sum_{k=0}^{\infty}\sum_{i=0}^k\binom{k}{i}x^{k+i+1} \\
+&= \sum_{n=1}^{\infty}\sum_{i=0}^{\lfloor(n-1)/2\rfloor}\binom{n-i-1}{i}x^n.
 \end{aligned}
 $$
 
-我们得到了 $a_n$ 的通项公式，但那并不是我们熟知的有关黄金分割比的形式。
+最后一步中，令 $n=k+i+1$ 并更换求和顺序。由此，可以得到通项公式：
+
+$$
+a_n = \sum_{i=0}^{\lfloor(n-1)/2\rfloor}\binom{n-i-1}{i}.
+$$
+
+这并不是我们熟知的有关黄金分割比的形式。
 
 ### 展开方式二
 
