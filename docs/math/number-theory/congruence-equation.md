@@ -152,7 +152,7 @@ $$
     -   $(\forall x\in\mathbf{Z}),~~x^{p-1}-1 \equiv \prod_{i=1}^{p-1}(x-i)\pmod p$．
     -   （[Wilson 定理](./factorial.md#wilson-定理)）$(p-1)! \equiv -1 \pmod p$．
 
-<a id="定理-3lagrange-定理"></a>
+[](){#thm3-lagrange}
 
 ???+ note "定理 3（Lagrange 定理）"
     方程 $(6)$ 至多有 $n$ 个不同解．
@@ -233,9 +233,9 @@ $$
     
         即方程 $f(x)q(x)\equiv 0\pmod p$ 有 $p$ 个解．
     
-        设方程 $(7)$ 的解数为 $s$，则由 [Lagrange 定理](#定理-3lagrange-定理) 可知 $s\leq n$．
+        设方程 $(7)$ 的解数为 $s$，则由 [Lagrange 定理](#thm3-lagrange) 可知 $s\leq n$．
     
-        又由于 $\deg q=p-n$，则由 [Lagrange 定理](#定理-3lagrange-定理) 可知 $q(x)\equiv 0\pmod p$ 的解数不超过 $p-n$，而方程 $f(x)q(x)\equiv 0\pmod p$ 的解集是 $f(x)\equiv 0\pmod p$ 解集和 $q(x)\equiv 0\pmod p$ 解集的并集，故 $s+(p-n)\geq p$，有 $s\geq n$．
+        又由于 $\deg q=p-n$，则由 [Lagrange 定理](#thm3-lagrange) 可知 $q(x)\equiv 0\pmod p$ 的解数不超过 $p-n$，而方程 $f(x)q(x)\equiv 0\pmod p$ 的解集是 $f(x)\equiv 0\pmod p$ 解集和 $q(x)\equiv 0\pmod p$ 解集的并集，故 $s+(p-n)\geq p$，有 $s\geq n$．
     
         因此 $s=n$．
 

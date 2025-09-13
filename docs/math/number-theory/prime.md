@@ -120,7 +120,7 @@
     如果 $p$ 是奇素数，则 $x^2 \equiv 1 \pmod p$ 的解为 $x \equiv 1 \pmod p$ 或者 $x \equiv p - 1 \pmod p$。
 
 ??? note "证明"
-    容易验证，$p$ 为奇素数时，$x\equiv 1\pmod p$ 和 $x\equiv p-1\pmod p$ 都可以使得上式成立。由 [Lagrange 定理](./congruence-equation.md#定理-3lagrange-定理) 可知，这就是该方程的所有解。
+    容易验证，$p$ 为奇素数时，$x\equiv 1\pmod p$ 和 $x\equiv p-1\pmod p$ 都可以使得上式成立。由 [Lagrange 定理](./congruence-equation.md#thm3-lagrange) 可知，这就是该方程的所有解。
 
 将费马小定理和二次探测定理结合起来使用，就得到 Miller–Rabin 素性测试：
 

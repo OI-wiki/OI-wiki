@@ -603,6 +603,7 @@ extra_css:
 markdown_extensions:
   - document-offsets-injection:
       # debug: true
+  - attr_list
   - admonition
   - def_list
   - footnotes
