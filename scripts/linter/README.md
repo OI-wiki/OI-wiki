@@ -6,7 +6,8 @@ This directory contains the linter patch system for OI-wiki, which provides prep
 
 The linter system consists of several components:
 
-- **`common.py`**: Core utilities and decorators for the linter pipeline
+- **`utils.py`**: Core utilities
+- **`decorators.py`**: Decorators for the linter pipeline
 - **`preprocess.py`**: Preprocessing functions for fixing Markdown formatting issues
 - **`postprocess.py`**: Postprocessing functions (currently empty, ready for future enhancements)
 - **`linter_patch.py`**: Main entry point script that orchestrates the linting process
@@ -32,12 +33,17 @@ Content that should be skipped during linting
 
 ## Components
 
-### common.py
+### utils.py
 
-Core utilities and decorators:
+Core utilities:
 
 - **`log()`**: Debug logging function that respects `RUNNER_DEBUG` environment variable and uses GitHub Actions [workflow commands](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands)
 - **`index_lfirst_neq()`**: Utility to find first non-equal element in an iterable
+
+### decorators.py
+
+Decorators:
+
 - **`@step` decorator**: Processes content while handling skip blocks and tracking line origins
 - **`@pipeline` decorator**: Wraps functions to handle file operations
 
@@ -127,11 +133,3 @@ The system includes comprehensive error handling:
 - **Unclosed skip blocks**: Raises `RuntimeError` with location information
 - **File I/O errors**: Handled gracefully with appropriate logging
 - **Invalid arguments**: Provides helpful usage information
-
-## Future Enhancements
-
-The `postprocess.py` module is ready for future enhancements such as:
-- Code block formatting
-- Link validation
-- Image optimization
-- Content validation
