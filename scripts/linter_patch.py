@@ -6,7 +6,8 @@ import sys
 # fix ModuleNotFoundError by adding current directory to Python path
 sys.path.append(os.path.abspath('.'))
 
-from scripts.linter.common import log, pipeline
+from scripts.linter.decorators import pipeline
+from scripts.linter.utils import log
 from scripts.linter.preprocess import fix_details
 from scripts.linter.postprocess import fix_punctuations
 

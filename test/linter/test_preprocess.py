@@ -1,7 +1,7 @@
 import unittest
 from parameterized import parameterized
 from scripts.linter.preprocess import fix_details
-from scripts.linter.common import TAB_LENGTH
+from scripts.linter.utils import TAB_LENGTH
 
 
 class TestFixDetailsBasic(unittest.TestCase):
