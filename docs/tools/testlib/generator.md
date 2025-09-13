@@ -151,4 +151,4 @@ g4 --length 5 --total 21 -ord
 
 **本文主要翻译自 [Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291)。新特性翻译自 [Testlib: Opts—parsing command line options](https://codeforces.com/blog/entry/72702)。`testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。**
 
-[^note1]: 事实上，当 `i` 为浮点数时，`rnd.wnext(i, t)` 服从 $[0,i)$ 上的 [Beta 分布](https://en.wikipedia.org/wiki/Beta_distribution)。当 $t>0$ 时，服从 $i\cdot \mathrm{Beta}(t+1,1)$，当 $t<0$ 时，服从 $i\cdot \mathrm{Beta}(1,t+1)$。
+[^note1]: 事实上，当 `i` 为浮点数时，`rnd.wnext(i, t)` 服从 $[0,i)$ 上的 [Beta 分布](https://en.wikipedia.org/wiki/Beta_distribution)：当 $t>0$ 时，服从 $i\cdot \mathrm{Beta}(t+1,1)$；当 $t<0$ 时，服从 $i\cdot \mathrm{Beta}(1,t+1)$。
