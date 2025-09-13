@@ -2533,6 +2533,19 @@ remark-lint-no-duplicate-headings@^3.0.0:
     unist-util-stringify-position "^3.0.0"
     unist-util-visit "^4.0.0"
 
+remark-lint-no-duplicate-headings-in-section@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/remark-lint-no-duplicate-headings-in-section/-/remark-lint-no-duplicate-headings-in-section-4.0.1.tgz"
+  integrity sha512-gGt+tepkW/XyU1tRyYuhNKjljSnRPEoy8vM2MKRHX+l48mPm6oLPA0EA4QAfk6yKHf7rM1sfKjPQwhzEectuEA==
+  dependencies:
+    "@types/mdast" "^4.0.0"
+    devlop "^1.0.0"
+    mdast-util-mdx "^3.0.0"
+    mdast-util-to-string "^4.0.0"
+    unified-lint-rule "^3.0.0"
+    unist-util-visit-parents "^6.0.0"
+    vfile-message "^4.0.0"
+
 remark-lint-no-emphasis-as-heading@^3.0.0:
   version "3.1.1"
   resolved "https://registry.npmjs.org/remark-lint-no-emphasis-as-heading/-/remark-lint-no-emphasis-as-heading-3.1.1.tgz"
