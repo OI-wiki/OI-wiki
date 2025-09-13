@@ -160,7 +160,7 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
     adj = [[]]
     parent = [0] * n
     
-    def dfs()v:
+    def dfs(v):
         for u in adj[v]:
             if u != parent[v]:
                 parent[u] = v
