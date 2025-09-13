@@ -1,4 +1,5 @@
-from scripts.linter.common import index_lfirst_neq, log, step
+from scripts.linter.decorators import step
+from scripts.linter.utils import index_lfirst_neq, log
 
 
 @step

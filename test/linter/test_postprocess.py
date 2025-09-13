@@ -1,6 +1,6 @@
 import unittest
 from parameterized import parameterized
-from scripts.linter.common import TAB_LENGTH
+from scripts.linter.utils import TAB_LENGTH
 from scripts.linter.postprocess import fix_punctuations
 
 
@@ -17,6 +17,40 @@ class TestConstants:
         '!': '！',
         '?': '？'
     }
+
+    CODEBLOCK_SKIP_LANG = [
+        "tex",
+        "text",
+        "plain"
+    ]
+    CODEBLOCK_CONTINUE_LANG = [
+        "bash",
+        "bat",
+        "c",
+        "console",
+        "cpp",
+        "doscon",
+        "haskell",
+        "java",
+        "JSON",
+        "json",
+        "LaTeX",
+        "latex",
+        "markdown",
+        "nasm",
+        "pascal",
+        "powershell",
+        "ps1con",
+        "pycon",
+        "python",
+        "Rust",
+        "rust",
+        "sh",
+        "shell",
+        "vim",
+        "XML",
+    ]
+    CODEBLOCK_ALL_LANG = [*CODEBLOCK_SKIP_LANG, *CODEBLOCK_CONTINUE_LANG]
 
     # Common test patterns
     SIMPLE_MATH_FORMULA = "$x + y$"
@@ -179,6 +213,241 @@ class TestFixPunctuationsChinesePeriod(unittest.TestCase):
         self.assertEqual(result, expected)
 
 
+class TestFixPunctuationsMathBlock(unittest.TestCase):
+    def test_simple(self):
+        content = (
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+        )
+        expected = (
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+            r"$$"+'\n'
+            r"\$foo\$，\$bar\$．\$baz\$．"+'\n'
+        )
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+    def test_empty_math_block(self):
+        content = (
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+        )
+        expected = (
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"\$foo\$，\$bar\$．\$baz\$．"+'\n'
+        )
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+    def test_nested_empty_math_blocks_changed(self):
+        content = (
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+        )
+        expected = (
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"\$foo\$，\$bar\$．\$baz\$．"+'\n'
+        )
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+    def test_nested_empty_math_blocks(self):
+        content = (
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+            r"$$"+'\n'
+        )
+        expected = (
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+            r"$$"+'\n'
+        )
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+
+class TestFixPunctuationsCodeBlock(unittest.TestCase):
+    def setUp(self):
+        self.skip_lang = TestConstants.CODEBLOCK_SKIP_LANG
+
+    @parameterized.expand(TestConstants.CODEBLOCK_ALL_LANG)
+    def test_simple(self, lang):
+        content = (
+            f"```{lang}\n"
+            "$foo$,$bar$。$baz$.\n"
+            "```\n"
+        )
+        changed = (
+            f"```{lang}\n"
+            "$foo$，$bar$．$baz$．\n"
+            "```\n"
+        )
+        expected = content if lang in self.skip_lang else changed
+
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+    @parameterized.expand(TestConstants.CODEBLOCK_ALL_LANG)
+    def test_empty_codeblock(self, lang):
+        content = (
+            f"```{lang}\n"
+            "```\n"
+            "$foo$,$bar$。$baz$.\n"
+        )
+        expected = (
+            f"```{lang}\n"
+            "```\n"
+            "$foo$，$bar$．$baz$．\n"
+        )
+
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+    @parameterized.expand(TestConstants.CODEBLOCK_ALL_LANG)
+    def test_nested_empty_codeblocks(self, lang):
+        content = (
+            f"```{lang}\n"
+            "```\n"
+            f"```{lang}\n"
+            "$foo$,$bar$。$baz$.\n"
+            "```\n"
+        )
+        changed = (
+            f"```{lang}\n"
+            "```\n"
+            f"```{lang}\n"
+            "$foo$，$bar$．$baz$．\n"
+            "```\n"
+        )
+        expected = content if lang in self.skip_lang else changed
+
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+    @parameterized.expand(TestConstants.CODEBLOCK_ALL_LANG)
+    def test_nested_empty_codeblocks_changed(self, lang):
+        content = (
+            f"```{lang}\n"
+            "```\n"
+            f"```{lang}\n"
+            "```\n"
+            "$foo$,$bar$。$baz$.\n"
+        )
+        expected = (
+            f"```{lang}\n"
+            "```\n"
+            f"```{lang}\n"
+            "```\n"
+            "$foo$，$bar$．$baz$．\n"
+        )
+
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+
+class TestFixPunctuationsMathCodeBlock(unittest.TestCase):
+    def setUp(self):
+        self.skip_lang = TestConstants.CODEBLOCK_SKIP_LANG
+
+    @parameterized.expand(TestConstants.CODEBLOCK_ALL_LANG)
+    def test_simple(self, lang):
+        content = (
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+            r"$$"+'\n'
+            f"```{lang}\n"
+            "$foo$,$bar$。$baz$.\n"
+            "```\n"
+        )
+        changed = (
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+            r"$$"+'\n'
+            f"```{lang}\n"
+            "$foo$，$bar$．$baz$．\n"
+            "```\n"
+        )
+        expected = content if lang in self.skip_lang else changed
+
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+    @parameterized.expand(TestConstants.CODEBLOCK_ALL_LANG)
+    def test_empty_math_block(self, lang):
+        content = (
+            r"$$"+'\n'
+            r"$$"+'\n'
+            f"```{lang}\n"
+            "$foo$,$bar$。$baz$.\n"
+            "```\n"
+            r"$$"+'\n'
+            r"$$"+'\n'
+            f"```{lang}\n"
+            "$foo$,$bar$。$baz$.\n"
+            "```\n"
+        )
+        changed = (
+            r"$$"+'\n'
+            r"$$"+'\n'
+            f"```{lang}\n"
+            "$foo$，$bar$．$baz$．\n"
+            "```\n"
+            r"$$"+'\n'
+            r"$$"+'\n'
+            f"```{lang}\n"
+            "$foo$，$bar$．$baz$．\n"
+            "```\n"
+        )
+        expected = content if lang in self.skip_lang else changed
+        
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+    @parameterized.expand(TestConstants.CODEBLOCK_ALL_LANG)
+    def test_empty_code_block(self, lang):
+        content = (
+            f"```{lang}\n"
+            "```\n"
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+            r"$$"+'\n'
+            f"```{lang}\n"
+            "```\n"
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+            r"$$"+'\n'
+        )
+        expected = (
+            f"```{lang}\n"
+            "```\n"
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+            r"$$"+'\n'
+            f"```{lang}\n"
+            "```\n"
+            r"$$"+'\n'
+            r"\$foo\$,\$bar\$。\$baz\$."+'\n'
+            r"$$"+'\n'
+        )
+        result = fix_punctuations(content)
+        self.assertEqual(result, expected)
+
+
 class TestFixPunctuationsEdgeCases(unittest.TestCase):
     """Test cases for edge cases and special scenarios."""
 
@@ -187,8 +456,8 @@ class TestFixPunctuationsEdgeCases(unittest.TestCase):
         self.constants = TestConstants()
 
     @parameterized.expand([
-        ("empty_math", "Empty math $$, and $$. should not be processed",
-         "Empty math $$, and $$. should not be processed\n"),
+        ("empty_math", "Empty math $$, and $$. should be processed",
+         "Empty math $$，and $$．should be processed\n"),
         ("nested_dollars", "Text with $nested$dollar$signs$, should be processed",
          "Text with $nested$dollar$signs$，should be processed\n"),
         ("single_dollar", "Text with $single dollar, should not be processed",
