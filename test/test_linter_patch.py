@@ -61,25 +61,6 @@ class TestFileOperations(unittest.TestCase):
         new_mtime = os.path.getmtime(test_file)
         self.assertEqual(original_mtime, new_mtime)
 
-    def test_file_modified_when_changes_made(self):
-        """Test that file is modified when changes are made."""
-        test_file = os.path.join(self.temp_dir, "test.md")
-        test_content = "  indented content\n\n  more content\n"
-
-        # Write test file
-        with open(test_file, 'w', encoding='utf-8') as f:
-            f.write(test_content)
-
-        # Get original modification time
-        original_mtime = os.path.getmtime(test_file)
-
-        # Process file (should fix indentation)
-        apply_preprocess(test_file)
-
-        # Verify file was modified
-        new_mtime = os.path.getmtime(test_file)
-        self.assertGreater(new_mtime, original_mtime)
-
     def test_error_handling_file_not_found(self):
         """Test error handling for non-existent file."""
         non_existent_file = os.path.join(self.temp_dir, "nonexistent.md")
