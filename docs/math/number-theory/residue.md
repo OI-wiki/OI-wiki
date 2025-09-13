@@ -58,11 +58,11 @@
     $$
     
     <!-- 这是关于 $y$ 的 [线性同余方程](./linear-equation.md)．应用该页面对其解结构的分析，就几乎可以得到本定理的全部内容；唯一需要说明的是判别式 $a^{d'} \equiv 1 \pmod m$．由 [阶的性质 3](./primitive-root.md#ord-prop-3) 可知 -->
-    
+
     $$
     \delta_m(a) = \delta_m(g^{\operatorname{ind}_g a}) = \dfrac{\varphi(m)}{(\varphi(m),\operatorname{ind}_g a)} = \dfrac{\varphi(m)}{\operatorname{ind}_g a}.
     $$
-    
+
     又已知方程有解当且仅当 $d\mid \operatorname{ind}_g a$，亦即 $\delta_m(a)\mid d'$．由 [阶的性质 2](./primitive-root.md#ord-prop-2) 可知，这就等价于该判别式． -->
 
 <!-- 模数为 $2$ 的幂次的情形较为特殊．为处理这种情形，需要用到关于模 $2^e$ 既约剩余系结构的一个 [结论](./primitive-root.md#mod-pow-2)：所有奇数 $a$ 都唯一地同余于某个 $(-1)^s5^r\bmod 2^e$ 形式的整数，其中，$s\in\{0,1\}$ 且 $0\le r < 2^{e-2}$．式子中的 $-1$ 和 $5$ 起到了奇素数幂模情形中原根的作用．注意到，指数 $s=0$ 当且仅当 $a\equiv 1\pmod 4$；对于这种情形，离散对数 $\operatorname{ind}_5 a = r$，仍然是良定义的．借助这一结果，可以得到如下结论： -->
