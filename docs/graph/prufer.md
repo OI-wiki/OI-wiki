@@ -160,24 +160,26 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
     adj = [[]]
     parent = [0] * n
     
-    def dfs()v:
+    
+    def dfs(v):
         for u in adj[v]:
             if u != parent[v]:
                 parent[u] = v
                 dfs(u)
     
+    
     def pruefer_code():
         n = len(adj)
         parent[n - 1] = -1
         dfs(n - 1)
-        
+    
         ptr = -1
         degree = [0] * n
         for i in range(0, n):
             degree[i] = len(adj[i])
             if degree[i] == 1 and ptr == -1:
                 ptr = i
-        
+    
         code = [0] * (n - 2)
         leaf = ptr
         for i in range(0, n - 2):
