@@ -92,7 +92,9 @@ $$
             mu[1] = 1
             for i in range(2, n + 1):
                 if flg[i] != 0:
-                    p[tot] = i; tot = tot + 1; mu[i] = -1
+                    p[tot] = i
+                    tot = tot + 1
+                    mu[i] = -1
                 j = 1
                 while j <= tot and i * p[j] <= n:
                     flg[i * p[j]] = 1
