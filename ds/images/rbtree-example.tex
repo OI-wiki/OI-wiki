@@ -1,0 +1,53 @@
+\documentclass[border=5mm]{standalone}
+\usepackage{tikz}
+\usepackage{fontspec} 
+
+\tikzset{
+    circlenode/.style={draw, circle, text=white, font=\Large\bfseries\fontspec{Times New Roman}},
+    rectnode/.style={draw, rectangle, fill=black, text=white, minimum width=0.8cm, minimum height=0.5cm, font=\Large\fontspec{Times New Roman}},
+    edge from parent/.style={real edge, draw=black},
+    real edge/.style={solid, very thick, -latex},
+}
+
+\begin{document}
+\begin{tikzpicture}
+    \node[circlenode, fill=black] {13}
+    child[real edge] {node[circlenode, fill=red] {8}
+            child[real edge] {node[circlenode, fill=black] {1}
+                    child[real edge] {node[rectnode] {NIL}}
+                    child[real edge] {node[circlenode, fill=red] {6}
+                            child[real edge] {node[rectnode] {NIL}}
+                            child[real edge] {node[rectnode] {NIL}}
+                        }
+                }
+            child[missing]
+            child[real edge] {node[circlenode, fill=black] {11}
+                    child[real edge] {node[rectnode] {NIL}}
+                    child[real edge] {node[rectnode] {NIL}}
+                }
+        }
+    child[missing]
+    child[missing]
+    child[missing]
+    child[missing]
+    child[real edge] {node[circlenode, fill=red] {17}
+            child[real edge] {node[circlenode, fill=black] {15}
+                    child[real edge] {node[rectnode] {NIL}}
+                    child[real edge] {node[rectnode] {NIL}}
+                }
+            child[missing]
+            child[missing]
+            child[real edge] {node[circlenode, fill=black] {25}
+                    child[real edge] {node[circlenode, fill=red] {22}
+                            child[real edge] {node[rectnode] {NIL}}
+                            child[real edge] {node[rectnode] {NIL}}
+                        }
+                    child[missing]
+                    child[real edge] {node[circlenode, fill=red] {27}
+                            child[real edge] {node[rectnode] {NIL}}
+                            child[real edge] {node[rectnode] {NIL}}
+                        }
+                }
+        };
+\end{tikzpicture}
+\end{document}
