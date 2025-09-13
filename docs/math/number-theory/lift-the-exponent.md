@@ -73,6 +73,7 @@
         $$
         \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+a
         $$
+    
     因此命题得证。
     
     对 $p\mid x+y$ 的情况证明方法类似。
