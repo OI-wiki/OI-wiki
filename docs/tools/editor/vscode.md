@@ -12,7 +12,7 @@ C/C++ Compile Run 是一个专注于 C/C++ 单文件编译运行的插件，绕�
 
 打开 VS Code，点击左侧边栏的「扩展」图标（或按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>），在搜索框中输入 `C++`，找到 C/C++ Compile Run，点击「安装/Install」即可。
 
-![](./images/vs-code-14.png)
+![](./images/vscode-14.png)
 
 安装完成后，无需额外配置，插件会根据环境变量自动适配已配置好的 MinGW 编译器。
 
