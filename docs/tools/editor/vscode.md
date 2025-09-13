@@ -10,7 +10,7 @@ Visual Studio Code（以下简称 VS Code）是一个由微软开发，同时支
 
 C/C++ Compile Run 是一个专注于 C/C++ 单文件编译运行的插件，绕过了 C/C++ 插件需要繁琐配置的麻烦，非常合适编程竞赛的需要，上手迅速、操作简单。
 
-打开 VS Code，点击左侧边栏的「扩展」图标（或按下 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>），在搜索框中输入 `C++`，找到 C/C++ Compile Run ，点击「安装/Install」即可。
+打开 VS Code，点击左侧边栏的「扩展」图标（或按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>），在搜索框中输入 `C++`，找到 C/C++ Compile Run，点击「安装/Install」即可。
 
 ![](./images/vs-code-14.png)
 
@@ -20,8 +20,8 @@ C/C++ Compile Run 是一个专注于 C/C++ 单文件编译运行的插件，绕�
 
 快捷键：
 
-- <kbd>F6</kbd> - 在继承终端中运行 / <kbd>F8</kbd> - 在外部终端中运行
-- <kbd>F7</kbd> - 自定义编译参数
+-   <kbd>F6</kbd>- 在继承终端中运行/<kbd>F8</kbd>- 在外部终端中运行
+-   <kbd>F7</kbd>- 自定义编译参数
 
 ## 使用 Code Runner 扩展运行代码
 
