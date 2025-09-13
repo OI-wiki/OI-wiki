@@ -68,7 +68,6 @@
         $$
         \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+1
         $$
-    
     -   若 $n=p^a$，则由数学归纳法可得
     
         $$
