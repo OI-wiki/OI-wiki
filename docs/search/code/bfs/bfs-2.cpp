@@ -7,26 +7,27 @@ int n, a, b, k[N], d[N];
 int main() {
   cin >> n >> a >> b;
   for (int i = 1; i <= n; ++i) cin >> k[i];
+  for (int i = 1; i <= n; ++i) d[i] = -1;
   queue<int> q;
+  d[a] = 0;
   q.push(a);
   while (!q.empty()) {
     int x = q.front();
     q.pop();
     if (x == b) {
-      cout << d[x] << endl;
-      return 0;
+      break;
     }
     int y = x + k[x];
-    if (y <= n && d[y] == 0) {
+    if (y <= n && d[y] == -1) {
       d[y] = d[x] + 1;
       q.push(y);
     }
     y = x - k[x];
-    if (y >= 1 && d[y] == 0) {
+    if (y >= 1 && d[y] == -1) {
       d[y] = d[x] + 1;
       q.push(y);
     }
   }
-  cout << -1 << endl;
+  cout << d[b] << endl;
   return 0;
 }
