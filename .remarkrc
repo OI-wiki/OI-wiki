@@ -7,6 +7,11 @@
   "plugins": [
     "remark-copywriting-correct",
     "remark-preset-lint-markdown-style-guide",
+    "remark-lint-no-duplicate-headings-in-section",
+    [
+      "remark-lint-no-duplicate-headings",
+      false
+    ],
     [
       "remark-lint-list-item-spacing",
       false

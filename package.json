@@ -49,6 +49,7 @@
     "remark-details": "^4.1.1",
     "remark-gfm": "^3.0.1",
     "remark-lint-final-newline": "^2.1.1",
+    "remark-lint-no-duplicate-headings-in-section": "^4.0.1",
     "remark-lint-no-tabs": "^3.1.1",
     "remark-math": "^5.1.1",
     "remark-math-space": "^2.1",
