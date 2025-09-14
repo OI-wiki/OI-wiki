@@ -69,17 +69,17 @@
 
 ??? note "两次 DFS 的参考实现"
     ```cpp
-    --8<-- "docs/graph/code/tree-centroid/tree-diameter_1.cpp"
+    --8<-- "docs/graph/code/tree-diameter/tree-diameter_1.cpp"
     ```
 
 ??? note "使用两个数组的树形 DP 参考实现"
     ```cpp
-    --8<-- "docs/graph/code/tree-centroid/tree-diameter_2.cpp"
+    --8<-- "docs/graph/code/tree-diameter/tree-diameter_2.cpp"
     ```
 
 ??? note "使用一个数组的树形 DP 参考实现"
     ```cpp
-    --8<-- "docs/graph/code/tree-centroid/tree-diameter_3.cpp"
+    --8<-- "docs/graph/code/tree-diameter/tree-diameter_3.cpp"
     ```
 
 ## 性质
