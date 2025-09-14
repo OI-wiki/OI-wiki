@@ -8,13 +8,14 @@ class TestConstants:
     """Constants used across test cases."""
 
     # Punctuation mappings
-    PUNCTUATION_MAP = {
-        ',': '，',
-        '.': '．',
-        ';': '；',
-        ':': '：',
-        '!': '！',
-        '?': '？'
+    PUNCTUATION_MAPPING = {
+        ('。', '．'),
+        (',', '，'),
+        ('.', '．'),
+        (';', '；'),
+        (':', '：'),
+        ('!', '！'),
+        ('?', '？')
     }
 
     CODEBLOCK_SKIP_LANG = [
@@ -58,12 +59,8 @@ class TestConstants:
     FRACTION_FORMULA = r"$\frac{a}{b}$"
     MATRIX_FORMULA = r"$\begin{pmatrix} a & b \\ c & d \end{pmatrix}$"
 
-    # Skip block patterns
-    SKIP_BLOCK_ON = "<!-- scripts.linter.preprocess.fix_punctuations on -->"
-    SKIP_BLOCK_OFF = "<!-- scripts.linter.preprocess.fix_punctuations off -->"
-
     # Performance test parameters
-    LARGE_INPUT_SIZE = 1000
+    LARGE_INPUT_SIZE = 3000
 
 
 class TestFixDetailsBasic(unittest.TestCase):
@@ -378,7 +375,7 @@ class TestFixPunctuationsBasic(unittest.TestCase):
     def test_multiline_content(self):
         """Test punctuation replacement in multiline content."""
         content = "Line 1 with $x$, punctuation.\nLine 2 with $y$. punctuation。\nLine 3 with no changes."
-        expected = "Line 1 with $x$，punctuation.\nLine 2 with $y$．punctuation．\nLine 3 with no changes.\n"
+        expected = "Line 1 with $x$，punctuation.\nLine 2 with $y$．punctuation。\nLine 3 with no changes.\n"
         self.assertEqual(fix_punctuations(content), expected)
 
     def test_no_inline_math_no_changes(self):
@@ -401,14 +398,7 @@ class TestFixPunctuationsInlineMath(unittest.TestCase):
         """Set up test fixtures."""
         self.constants = TestConstants()
 
-    @parameterized.expand([
-        (",", "，"),
-        (".", "．"),
-        (";", "；"),
-        (":", "："),
-        ("!", "！"),
-        ("?", "？"),
-    ])
+    @parameterized.expand(TestConstants.PUNCTUATION_MAPPING)
     def test_all_punctuation_types_coverage(self, english_punct, chinese_punct):
         """Test that all punctuation types are covered."""
 
@@ -418,14 +408,7 @@ class TestFixPunctuationsInlineMath(unittest.TestCase):
         self.assertEqual(
             result, expected, f"Failed to convert {english_punct} to {chinese_punct}")
 
-    @parameterized.expand([
-        (",", "，"),
-        (".", "．"),
-        (";", "；"),
-        (":", "："),
-        ("!", "！"),
-        ("?", "？"),
-    ])
+    @parameterized.expand(TestConstants.PUNCTUATION_MAPPING)
     def test_all_punctuation_types_coverage_no_trailing_space(self, english_punct, chinese_punct):
         """Test that all punctuation types are covered."""
 
@@ -475,31 +458,6 @@ class TestFixPunctuationsInlineMath(unittest.TestCase):
         content = "Formula $x^2 + y^2 = z^2$, is Pythagorean theorem."
         result = fix_punctuations(content)
         expected = "Formula $x^2 + y^2 = z^2$，is Pythagorean theorem.\n"
-        self.assertEqual(result, expected)
-
-
-class TestFixPunctuationsChinesePeriod(unittest.TestCase):
-    """Test cases for Chinese period replacement."""
-
-    def test_period_replacement_chinese_to_fullwidth(self):
-        """Test replacement of Chinese period with fullwidth period."""
-        content = "This is a sentence。 Another sentence。"
-        result = fix_punctuations(content)
-        expected = "This is a sentence． Another sentence．\n"
-        self.assertEqual(result, expected)
-
-    def test_mixed_punctuation_replacements(self):
-        """Test both inline math punctuation and period replacements."""
-        content = "Formula $x$, is correct。 Another formula $y$ . is also correct。"
-        result = fix_punctuations(content)
-        expected = "Formula $x$，is correct． Another formula $y$ . is also correct．\n"
-        self.assertEqual(result, expected)
-
-    def test_unicode_punctuation_mixed(self):
-        """Test with mixed Unicode punctuation."""
-        content = "Mixed punctuation: $x$, Chinese period。 English period. $y$;"
-        result = fix_punctuations(content)
-        expected = "Mixed punctuation: $x$，Chinese period． English period. $y$；\n"
         self.assertEqual(result, expected)
 
 
@@ -807,7 +765,7 @@ class TestFixPunctuationsEdgeCases(unittest.TestCase):
         """Test content with mixed newline types (CRLF and LF)."""
         content = "Line 1 with $x$, punctuation.\r\nLine 2 with $y$. punctuation。\r\n"
         result = fix_punctuations(content)
-        expected = "Line 1 with $x$，punctuation.\nLine 2 with $y$．punctuation．\n"
+        expected = "Line 1 with $x$，punctuation.\nLine 2 with $y$．punctuation。\n"
         self.assertEqual(result, expected)
 
     @parameterized.expand([
@@ -829,18 +787,6 @@ class TestFixPunctuationsEdgeCases(unittest.TestCase):
 
 class TestFixPunctuationsParameterized(unittest.TestCase):
     """Test cases using parameterized tests for comprehensive coverage."""
-
-    @parameterized.expand([
-        ("single_chinese_period", "This is a sentence。", "This is a sentence．\n"),
-        ("multiple_chinese_periods", "Sentence 1。 Sentence 2。",
-         "Sentence 1． Sentence 2．\n"),
-        ("mixed_periods", "English. Chinese。 English.",
-         "English. Chinese． English.\n"),
-    ])
-    def test_chinese_period_replacement(self, name, input_text, expected):
-        """Test replacement of Chinese period with fullwidth period."""
-        result = fix_punctuations(input_text)
-        self.assertEqual(result, expected, f"Failed test case: {name}")
 
     @parameterized.expand([
         ("sum_formula", r"The formula $\sum_{i=1}^{n} x_i$, is the sum",
@@ -943,7 +889,6 @@ class TestFixPunctuationsPerformance(unittest.TestCase):
             # Mix of different content types
             lines.append(f"Simple text line {i}.")
             lines.append(f"Formula $x_{i}$, is correct.")
-            lines.append(f"Chinese period line {i}。")
             lines.append("")  # Empty line
             lines.append("   ")  # Whitespace line
 
@@ -953,7 +898,6 @@ class TestFixPunctuationsPerformance(unittest.TestCase):
         # Verify the result has the expected structure
         self.assertTrue(result.endswith('\n'))
         self.assertEqual(result.count('，'), 500)  # Math formulas
-        self.assertEqual(result.count('．'), 500)  # Chinese periods
 
 
 class TestFixPunctuationsSkipBlocks(unittest.TestCase):
@@ -962,23 +906,25 @@ class TestFixPunctuationsSkipBlocks(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         self.constants = TestConstants()
+        self.SKIP_BLOCK_ON = "<!-- scripts.linter.preprocess.fix_punctuations on -->"
+        self.SKIP_BLOCK_OFF = "<!-- scripts.linter.preprocess.fix_punctuations off -->"
 
     def test_skip_blocks_preserved(self):
         """Test that skip blocks are preserved unchanged."""
         md = (
             f"{self.constants.COMPLEX_MATH_FORMULA}, is the sum\n"
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"{self.constants.INTEGRAL_FORMULA}. is an integral\n"
             f"{self.constants.FRACTION_FORMULA}, is correct\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
             f"{self.constants.MATRIX_FORMULA}; is square\n"
         )
         expected = (
             f"{self.constants.COMPLEX_MATH_FORMULA}，is the sum\n"
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"{self.constants.INTEGRAL_FORMULA}. is an integral\n"
             f"{self.constants.FRACTION_FORMULA}, is correct\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
             f"{self.constants.MATRIX_FORMULA}；is square\n"
         )
         self.assertEqual(fix_punctuations(md), expected)
@@ -987,24 +933,24 @@ class TestFixPunctuationsSkipBlocks(unittest.TestCase):
         """Test multiple skip blocks in the same content."""
         md = (
             f"Before first block: {self.constants.SIMPLE_MATH_FORMULA}, is simple\n"
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"Skipped: {self.constants.SIMPLE_MATH_FORMULA}, should not change\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
             f"Between blocks: {self.constants.SIMPLE_MATH_FORMULA}, is processed\n"
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"Also skipped: {self.constants.SIMPLE_MATH_FORMULA}, should not change\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
             f"After second block: {self.constants.SIMPLE_MATH_FORMULA}, is processed\n"
         )
         expected = (
             f"Before first block: {self.constants.SIMPLE_MATH_FORMULA}，is simple\n"
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"Skipped: {self.constants.SIMPLE_MATH_FORMULA}, should not change\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
             f"Between blocks: {self.constants.SIMPLE_MATH_FORMULA}，is processed\n"
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"Also skipped: {self.constants.SIMPLE_MATH_FORMULA}, should not change\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
             f"After second block: {self.constants.SIMPLE_MATH_FORMULA}，is processed\n"
         )
         self.assertEqual(fix_punctuations(md), expected)
@@ -1012,15 +958,15 @@ class TestFixPunctuationsSkipBlocks(unittest.TestCase):
     def test_skip_block_at_beginning(self):
         """Test skip block at the beginning of content."""
         md = (
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"Skipped: {self.constants.SIMPLE_MATH_FORMULA}, should not change\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
             f"Processed: {self.constants.SIMPLE_MATH_FORMULA}, should change\n"
         )
         expected = (
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"Skipped: {self.constants.SIMPLE_MATH_FORMULA}, should not change\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
             f"Processed: {self.constants.SIMPLE_MATH_FORMULA}，should change\n"
         )
         self.assertEqual(fix_punctuations(md), expected)
@@ -1029,15 +975,15 @@ class TestFixPunctuationsSkipBlocks(unittest.TestCase):
         """Test skip block at the end of content."""
         md = (
             f"Processed: {self.constants.SIMPLE_MATH_FORMULA}, should change\n"
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"Skipped: {self.constants.SIMPLE_MATH_FORMULA}, should not change\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
         )
         expected = (
             f"Processed: {self.constants.SIMPLE_MATH_FORMULA}，should change\n"
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"Skipped: {self.constants.SIMPLE_MATH_FORMULA}, should not change\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
         )
         self.assertEqual(fix_punctuations(md), expected)
 
@@ -1048,6 +994,8 @@ class TestFixPunctuationsSummary(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         self.constants = TestConstants()
+        self.SKIP_BLOCK_ON = "<!-- scripts.linter.preprocess.fix_punctuations on -->"
+        self.SKIP_BLOCK_OFF = "<!-- scripts.linter.preprocess.fix_punctuations off -->"
 
     def test_comprehensive_integration(self):
         """Test comprehensive integration of all punctuation fixes."""
@@ -1056,28 +1004,26 @@ class TestFixPunctuationsSummary(unittest.TestCase):
             "Document with various punctuation scenarios:\n"
             f"1. Simple math: {self.constants.SIMPLE_MATH_FORMULA}, is basic\n"
             f"2. Complex math: {self.constants.COMPLEX_MATH_FORMULA}, is advanced\n"
-            f"3. Chinese period: This is a sentence。 Another sentence。\n"
-            f"4. Mixed content: Formula {self.constants.SIMPLE_MATH_FORMULA}, is correct。\n"
-            f"5. Multiple punctuation: Test {self.constants.SIMPLE_MATH_FORMULA}, {self.constants.SIMPLE_MATH_FORMULA}. {self.constants.SIMPLE_MATH_FORMULA}; {self.constants.SIMPLE_MATH_FORMULA}: {self.constants.SIMPLE_MATH_FORMULA}! {self.constants.SIMPLE_MATH_FORMULA}?\n"
-            f"6. Skip block test:\n"
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"3. Mixed content: Formula {self.constants.SIMPLE_MATH_FORMULA}, is correct。\n"
+            f"4. Multiple punctuation: Test {self.constants.SIMPLE_MATH_FORMULA}, {self.constants.SIMPLE_MATH_FORMULA}. {self.constants.SIMPLE_MATH_FORMULA}; {self.constants.SIMPLE_MATH_FORMULA}: {self.constants.SIMPLE_MATH_FORMULA}! {self.constants.SIMPLE_MATH_FORMULA}?\n"
+            f"5. Skip block test:\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"Skipped: {self.constants.SIMPLE_MATH_FORMULA}, should not change\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
-            f"7. After skip: {self.constants.SIMPLE_MATH_FORMULA}, is processed\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
+            f"6. After skip: {self.constants.SIMPLE_MATH_FORMULA}, is processed\n"
         )
 
         expected = (
             "Document with various punctuation scenarios:\n"
             f"1. Simple math: {self.constants.SIMPLE_MATH_FORMULA}，is basic\n"
             f"2. Complex math: {self.constants.COMPLEX_MATH_FORMULA}，is advanced\n"
-            f"3. Chinese period: This is a sentence． Another sentence．\n"
-            f"4. Mixed content: Formula {self.constants.SIMPLE_MATH_FORMULA}，is correct．\n"
-            f"5. Multiple punctuation: Test {self.constants.SIMPLE_MATH_FORMULA}，{self.constants.SIMPLE_MATH_FORMULA}．{self.constants.SIMPLE_MATH_FORMULA}；{self.constants.SIMPLE_MATH_FORMULA}：{self.constants.SIMPLE_MATH_FORMULA}！{self.constants.SIMPLE_MATH_FORMULA}？\n"
-            f"6. Skip block test:\n"
-            f"{self.constants.SKIP_BLOCK_ON}\n"
+            f"3. Mixed content: Formula {self.constants.SIMPLE_MATH_FORMULA}，is correct。\n"
+            f"4. Multiple punctuation: Test {self.constants.SIMPLE_MATH_FORMULA}，{self.constants.SIMPLE_MATH_FORMULA}．{self.constants.SIMPLE_MATH_FORMULA}；{self.constants.SIMPLE_MATH_FORMULA}：{self.constants.SIMPLE_MATH_FORMULA}！{self.constants.SIMPLE_MATH_FORMULA}？\n"
+            f"5. Skip block test:\n"
+            f"{self.SKIP_BLOCK_ON}\n"
             f"Skipped: {self.constants.SIMPLE_MATH_FORMULA}, should not change\n"
-            f"{self.constants.SKIP_BLOCK_OFF}\n"
-            f"7. After skip: {self.constants.SIMPLE_MATH_FORMULA}，is processed\n"
+            f"{self.SKIP_BLOCK_OFF}\n"
+            f"6. After skip: {self.constants.SIMPLE_MATH_FORMULA}，is processed\n"
         )
 
         result = fix_punctuations(content)

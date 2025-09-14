@@ -153,6 +153,7 @@ def fix_punctuations(md_content: str, skipped_codeblock_lang: list[str] = ['tex'
     """
     # Replace English punctuation with Chinese punctuation
     PUNCTUATION_MAP = {
+        '。': '．',
         ',': '，',
         '.': '．',
         ';': '；',
@@ -181,27 +182,24 @@ def fix_punctuations(md_content: str, skipped_codeblock_lang: list[str] = ['tex'
             # Skip placeholder lines (from skip blocks)
             continue
 
-        current_state, ext_message = next_state(current_state, line,
-                                                codeblock_end_mark=end_mark,
-                                                skipped_codeblock_lang=skipped_codeblock_lang)
+        ext_message = {
+            'codeblock_end_mark': end_mark,
+            'skipped_codeblock_lang': skipped_codeblock_lang
+        }
+        current_state, ext_message = next_state(
+            current_state, line, **ext_message)
         end_mark = ext_message.get('codeblock_end_mark')  # type: ignore
 
         # Skip current line if should
         if current_state not in [markdown_state.normal_line, markdown_state.normal_code_block_content]:
             continue
 
-        original_line = line
-        modified_line = line
-
-        # 1. Fix punctuation after inline math formulas
+        # Fix punctuation after inline math formulas
         modified_line = RE_INLINE_MATH_WITH_TRAILING_PUNCTUATION.sub(lambda match: match.group(
-            1) + PUNCTUATION_MAP[match.group(2)] if match.group(2) else match.group(1), modified_line)
-
-        # 2. Replace "。" with "．"
-        modified_line = modified_line.replace('。', '．')
+            1) + PUNCTUATION_MAP[match.group(2)] if match.group(2) else match.group(1), line)
 
         # Update line if changed
-        if modified_line != original_line:
+        if modified_line != line:
             lines[i] = modified_line
             total_changes += 1
             original_line_num = line_origins[i] + 1  # Convert to 1-based
