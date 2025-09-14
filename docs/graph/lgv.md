@@ -35,7 +35,7 @@ $$
 
 其中 $\sum\limits_{S:A\rightarrow B}$ 表示满足上文要求的 $A\rightarrow B$ 的每一组不相交路径 $S$。
 
-#### 证明
+### 证明
 
 由行列式定义可得
 
@@ -112,6 +112,6 @@ $$
     --8<-- "docs/graph/code/lgv/lgv_1.cpp"
     ```
 
-### 参考资料
+## 参考资料
 
 [^1]: 证明来源于 [知乎 - LGV 引理证明](https://zhuanlan.zhihu.com/p/517819133)
