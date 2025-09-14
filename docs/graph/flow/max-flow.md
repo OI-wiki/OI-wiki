@@ -107,7 +107,7 @@ Ford–Fulkerson 增广是计算最大流的一类算法的总称。该方法运
 
 显然，单轮 BFS 增广的时间复杂度是 $O(|E|)$。
 
-增广总轮数的上界是 $O(|V||E|)$。这一论断在网络资料中常被伪证（或被含糊其辞略过）。以下我们尝试给出一个较正式的证明[^ref_EK]。
+增广总轮数的上界是 $O(|V||E|)$。这一论断在网络资料中常被伪证（或被含糊其辞略过）。以下我们尝试给出一个较正式的证明[^ref_ek]。
 
 ???+ note "增广总轮数的上界的证明"
     首先，我们引入一个引理——最短路非递减引理。具体地，我们记 $d_f(u)$ 为 $G_f$ 上结点 $u$ 到源点 $s$ 的距离（即最短路长度，下同）。对于某一轮增广，我们用 $f$ 和 $f'$ 分别表示增广前的流和增广后的流，我们断言，对于任意结点 $u$，增广总是使得 $d_{f'}(u) \geq d_f(u)$。我们将在稍后证明这一引理。
@@ -259,7 +259,7 @@ Edmonds–Karp 算法的可能实现如下。
     ??? bug
         「当前弧最多变化 $|E|$ 次」并不能推得「每个结点最多访问其出边 $|E|$ 次」。这是因为，访问当前弧并不一定耗尽上面的剩余容量，结点 $u$ 可能多次访问同一条当前弧。
 
-注意到层次图的层数显然不可能超过 $|V|$，如果我们可以证明层次图的层数在增广过程中严格单增，则 Dinic 算法的增广轮数是 $O(|V|)$ 的。接下来我们尝试证明这一结论[^ref_Dinic]。
+注意到层次图的层数显然不可能超过 $|V|$，如果我们可以证明层次图的层数在增广过程中严格单增，则 Dinic 算法的增广轮数是 $O(|V|)$ 的。接下来我们尝试证明这一结论[^ref_dinic]。
 
 ???+ note "层次图层数单调性的证明"
     我们需要引入预流推进类算法（另一类最大流算法）中的一个概念——高度标号。为了更方便地结合高度标号表述我们的证明，在证明过程中，我们令 $d_f(u)$ 为 $G_f$ 上结点 $u$ 到 **汇点**  $t$ 的距离，从 **汇点** 而非源点出发进行分层（这并没有本质上的区别）。对于某一轮增广，我们用 $f$ 和 $f'$ 分别表示增广前的流和增广后的流。在该轮增广中求解并加入阻塞流后，记层次图由 $G_L = (V, E_L)$ 变为 $G'_{L} = (V, E'_L)$。
@@ -1037,9 +1037,9 @@ HLPP 推送的条件是 $h(u)=h(v)+1$，而如果在算法的某一时刻，存�
 
 ## 脚注
 
-[^ref_EK]: <http://pisces.ck.tp.edu.tw/~peng/index.php?action=showfile&file=f6cdf7ef750d7dc79c7d599b942acbaaee86a2e3e>
+[^ref_ek]: <http://pisces.ck.tp.edu.tw/~peng/index.php?action=showfile&file=f6cdf7ef750d7dc79c7d599b942acbaaee86a2e3e>
 
-[^ref_Dinic]: <https://people.orie.cornell.edu/dpw/orie633/LectureNotes/lecture9.pdf>
+[^ref_dinic]: <https://people.orie.cornell.edu/dpw/orie633/LectureNotes/lecture9.pdf>
 
 [^ref1]: Cherkassky B V, Goldberg A V. On implementing push-relabel method for the maximum flow problem\[C]//International Conference on Integer Programming and Combinatorial Optimization. Springer, Berlin, Heidelberg, 1995: 157-171.
 
