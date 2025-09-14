@@ -38,7 +38,7 @@ def fix_full_stop(md_content: str, **kwargs):
             original_line_num = line_origins[i] + 1  # Convert to 1-based
             log(f"line {original_line_num}: punctuation fixes applied")
 
-    log(f"Punctuation fix completed: {total_changes} lines modified")
+    log(f"Fullstop fix completed: {total_changes} lines modified")
     result = '\n'.join(lines) + '\n'
     log(f"Final result: {len(result)} characters")
 
