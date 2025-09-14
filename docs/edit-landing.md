@@ -17,17 +17,17 @@ disqus:
 <!-- preprocess.skipdetails on -->
 
 <script>
-	function getQueryVariable(name, dft)
-	{
-		var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
-		var r = window.location.search.substr(1).match(reg);
-		if (r != null)
-		{
-			return unescape(r[2]);
-		}
-		return dft;
-	}
-	document.getElementById("btn-startedit").href = "https://github.com/OI-wiki/OI-wiki/edit/master/docs" + getQueryVariable("ref", "");
+    function getQueryVariable(name, dft)
+    {
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)
+        {
+            return unescape(r[2]);
+        }
+        return dft;
+    }
+    document.getElementById("btn-startedit").href = "https://github.com/OI-wiki/OI-wiki/edit/master/docs" + getQueryVariable("ref", "");
 </script>
 
 <!-- preprocess.skipdetails off -->
