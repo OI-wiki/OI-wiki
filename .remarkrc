@@ -13,14 +13,6 @@
       false
     ],
     [
-      "remark-lint-list-item-spacing",
-      false
-    ],
-    [
-      "remark-lint-list-item-indent",
-      false
-    ],
-    [
       "remark-lint-code-block-style",
       false
     ],
