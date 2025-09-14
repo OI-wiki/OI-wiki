@@ -24,4 +24,4 @@ jobs:
       - name: Report code coverage
         run: |
           uv run coverage run -m unittest
-          uv run coverage report
+          uv run coverage report -m
