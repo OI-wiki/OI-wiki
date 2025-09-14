@@ -21,10 +21,6 @@
       false
     ],
     [
-      "remark-lint-no-emphasis-as-heading",
-      false
-    ],
-    [
       "remark-lint-code-block-style",
       false
     ],
