@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <cstdio>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 constexpr int N = 100000 + 10;
