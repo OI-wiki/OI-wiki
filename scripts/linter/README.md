@@ -59,7 +59,7 @@ Preprocessing functions:
 
 ### postprocess.py
 
-Postprocessing functions (currently empty, ready for future enhancements).
+Postprocessing functions:
 
 - **`fix_full_stop()`**: Fixes full stop issues in Markdown content
 
