@@ -1,7 +1,4 @@
-
-
 from scripts.linter.decorators import step
-from scripts.linter.dfa import markdown_state, next_state
 from scripts.linter.utils import log
 
 
@@ -27,25 +24,9 @@ def fix_full_stop(md_content: str, **kwargs):
     # Track changes for logging
     total_changes = 0
 
-    current_state: markdown_state = markdown_state._begin
-    end_mark: str = ''
-
     for i, line in enumerate(lines):
         if line_origins[i] == -1:
             # Skip placeholder lines (from skip blocks)
-            continue
-
-        ext_message = {
-            'codeblock_end_mark': end_mark
-        }
-        current_state, ext_message = next_state(
-            current_state, line, **ext_message)
-        end_mark = ext_message.get('codeblock_end_mark')  # type: ignore
-
-        # Skip current line if should
-        if current_state not in [markdown_state.normal_line,
-                                 markdown_state.math_block_content,
-                                 markdown_state.normal_code_block_content]:
             continue
 
         modified_line = line.replace('。', '．')
