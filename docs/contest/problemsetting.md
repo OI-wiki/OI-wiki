@@ -1,4 +1,4 @@
-author: ouuan, Henry-ZHR, StudyingFather, ChungZH, xyf007, Cryflmind
+author: ouuan, Henry-ZHR, StudyingFather, ChungZH, xyf007, Cryflmind, oierlinch
 
 ## 出题前的准备
 
@@ -573,13 +573,9 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 ### 洛谷
 
-#### 个人公开赛
+参与出题工作人员需要有一定的奖项认证等级，创建比赛后由负责人在 [工单系统](https://www.luogu.com.cn/ticket) 中提交申请。
 
-在「我的题库」中出题并提交比赛申请。
-
-#### 团队公开赛
-
-在团队页面中出题并提交比赛申请。
+公开赛规范：<https://help.luogu.com.cn/rules/academic/opencontest-standard>
 
 ## 参考资料
 
