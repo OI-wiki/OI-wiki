@@ -2,6 +2,7 @@ import argparse
 import os
 import sys
 
+
 # autopep8: off
 # fix ModuleNotFoundError by adding current directory to Python path
 sys.path.append(os.path.abspath('.'))
@@ -9,6 +10,7 @@ sys.path.append(os.path.abspath('.'))
 from scripts.linter.decorators import pipeline
 from scripts.linter.utils import log
 from scripts.linter.preprocess import fix_details, fix_punctuations
+from scripts.linter.postprocess import fix_full_stop
 
 sys.path.pop()
 # autopep8: on
@@ -42,16 +44,18 @@ def apply_postprocess(md_content: str):
     """
     Apply postprocessing transformations to Markdown content.
 
-    This function serves as the main postprocessing pipeline for future
-    enhancements. Currently, it's a placeholder that returns content unchanged.
+    This function serves as the main preprocessing pipeline that applies
+    various formatting fixes to Markdown content after it's processed by
+    other tools.
 
     Args:
         md_content: The Markdown content to process
 
     Returns:
-        str: The processed Markdown content (currently unchanged)
+        str: The processed Markdown content
     """
     log("Starting postprocessing pipeline...")
+    md_content = fix_full_stop(md_content)
     log("Postprocessing pipeline completed.")
 
     return md_content

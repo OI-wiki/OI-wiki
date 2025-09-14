@@ -36,7 +36,8 @@ def next_state(current_state: markdown_state, current_line: str, **kwargs):
             raise RuntimeError(f"invalid {x.__name__}: {x}")
 
     def process_codeblock_begin(stripped, current_state, codeblock_end_mark, skipped_codeblock_lang):
-        require_ext_message(skipped_codeblock_lang)
+        if skipped_codeblock_lang is None:
+            skipped_codeblock_lang = []
         if stripped.endswith(tuple(f'```{i}' for i in skipped_codeblock_lang)):
             current_state = markdown_state.skip_code_block_begin
         else:
