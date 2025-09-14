@@ -45,7 +45,7 @@ $$
 
 ## 例题
 
-???+ note "[「HEOI2015」最短不公共子串](https://loj.ac/problem/2123)"
+???+ example "[「HEOI2015」最短不公共子串](https://loj.ac/problem/2123)"
     给你两个由小写英文字母组成的串 $A$ 和 $B$（$1\le |A|, |B|\le 2000$），求：
     
     1.  $A$ 的一个最短的子串，它不是 $B$ 的子串；
@@ -61,10 +61,10 @@ $$
     第 4 问需要 DP。令 $f(i, j)$ 表示在 A 的序列自动机中处于状态 $i$，在 B 的序列自动机中处于状态 $j$，需要再添加多少个字符能够不是公共子序列。状态转移方程为：
     
     $$
-    f(i, j)=\min_{\delta_A(i,c)\ne null}f(\delta_A(i, c), \delta_B(j, c))+1
+    f(i, j)=\min_{\delta_A(i,c)\ne \textit{null}}f(\delta_A(i, c), \delta_B(j, c))+1.
     $$
     
-    其中，$f(i, null)=0$
+    转移起点为 $f(i, \textit{null})=0$。
 
 ??? note "参考代码"
     ```cpp
