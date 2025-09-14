@@ -10,11 +10,10 @@
 
 下文的算法由 Michael Main 和 Richard J. Lorentz 在 1982 年提出。
 
-**声明：**
-
-下文所有的字符串下标从 0 开始。
-
-下文中，记 $\overline{s}$ 为 $s$ 的反串。如 $\overline{\tt abc} = \tt cba$。
+???+ note "约定"
+    下文所有的字符串下标从 $0$ 开始。
+    
+    下文中，记 $\overline{s}$ 为 $s$ 的反串。如 $\overline{\tt abc} = \tt cba$。
 
 ### 解释
 
