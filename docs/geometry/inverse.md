@@ -33,19 +33,20 @@ author: hyp1231, 383494
         r_2 = \frac{1}{2}\left(\frac{1}{|OA| - r_1} - \frac{1}{|OA| + r_1}\right) R^2
         $$
 
-        ???+ note "证明"
-            ![Inv3](./images/inverse3.png)
-            
-            根据反演变换定义：
-            
-            $$
-            \begin{aligned}
-            |OC|\cdot|OC'| &= (|OA|+r_1)\cdot(|OB|-r_2) = R^2 \\
-            |OD|\cdot|OD'| &= (|OA|-r_1)\cdot(|OB|+r_2) = R^2
-            \end{aligned}
-            $$
-            
-            消掉 $|OB|$，解方程即可。
+    ???+ note "证明"
+        ![Inv3](./images/inverse3.png)
+        
+        根据反演变换定义：
+        
+        $$
+        \begin{aligned}
+        |OC|\cdot|OC'| &= (|OA|+r_1)\cdot(|OB|-r_2) = R^2 \\
+        |OD|\cdot|OD'| &= (|OA|-r_1)\cdot(|OB|+r_2) = R^2
+        \end{aligned}
+        $$
+        
+        消掉 $|OB|$，解方程即可。
+
     -   记点 $O$ 坐标为 $(x_0, y_0)$，点 $A$ 坐标为 $x_1, y_1$，点 $B$ 坐标为 $x_2, y_2$，则有：
 
         $$
@@ -57,10 +58,7 @@ author: hyp1231, 383494
 
         其中 $|OB|$ 可在上述求 $r_2$ 的过程中计算得到。
 
-3.  过点 $O$ 的圆 $A$，其反演图形是不过点 $O$ 的直线。
-
-    ??? note
-        为什么是一条直线呢？因为圆 $A$ 上无限接近点 $O$ 的一点，其反演点离点 $O$ 无限远。
+3.  过点 $O$ 的圆 $A$，其反演图形是不过点 $O$ 的直线。因为圆 $A$ 上无限接近点 $O$ 的一点，其反演点离点 $O$ 无限远。
 
     ![Inv4](./images/inverse4.png)
 
