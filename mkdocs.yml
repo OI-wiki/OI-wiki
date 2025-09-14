@@ -607,6 +607,7 @@ markdown_extensions:
   - document-offsets-injection:
       # debug: true
   - admonition
+  - attr_list
   - def_list
   - footnotes
   - meta

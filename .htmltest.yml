@@ -5,3 +5,4 @@ CheckMailto: false
 IgnoreAltMissing: true
 IgnoreDirectoryMissingTrailingSlash: true
 IgnoreInternalEmptyHash: true
+IgnoreEmptyHref: true

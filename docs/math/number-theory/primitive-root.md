@@ -32,7 +32,7 @@ $$
 
 这说明，对于任意指数的幂，可以将它平移到第一个非负的循环节．由此，可以得到一系列关于阶的性质．
 
-<a id="ord-prop-1"></a>
+[](){#ord-prop-1}
 
 ???+ note "性质 1"
     对于 $a\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，幂次 $a^0(=1),a,a^2,\cdots,a^{\delta_m(a)-1}$ 模 $m$ 两两不同余．
@@ -40,7 +40,7 @@ $$
 ??? note "证明"
     考虑反证．假设存在两个数 $0\le i< j<\delta_m(a)$，且 $a^i\equiv a^j\pmod m$，则有 $a^{j - i}\equiv 1\pmod m$．但是，$0 < j - i < \delta_m(a)$．这与阶的最小性矛盾，故原命题成立．
 
-<a id="ord-prop-2"></a>
+[](){#ord-prop-2}
 
 ???+ note "性质 2"
     对于 $a,n\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，同余关系 $a^n \equiv 1 \pmod m$ 成立，当且仅当 $\delta_m(a)\mid n$．
@@ -52,7 +52,7 @@ $$
 
 和其他的循环结构类似，可以根据 $a$ 的阶计算 $a^k$ 的阶．
 
-<a id="ord-prop-3"></a>
+[](){#ord-prop-3}
 
 ???+ note "性质 3"
     对于 $k,a\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，有
@@ -78,7 +78,7 @@ $$
 
 设 $a,b$ 是与 $m$ 互素的不同整数．如果已知阶 $\delta_m(a)$ 和 $\delta_m(b)$，那么，同样可以获得一些关于它们乘积 $ab$ 的阶 $\delta_{m}(ab)$ 的信息．
 
-<a id="ord-prop-4"></a>
+[](){#ord-prop-4}
 
 ???+ note "性质 4"
     对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，那么，有
@@ -136,7 +136,7 @@ $$
 
 对于 $a$ 和 $b$ 的阶互素的情形，这一结论有着更为简单的形式．
 
-<a id="ord-prop-4p"></a>
+[](){#ord-prop-4p}
 
 ???+ note "性质 4'"
     对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，那么，有
@@ -164,7 +164,7 @@ $$
 
 尽管一般情形中，乘积 $ab$ 的阶未必是它们的阶的最小公倍数，但是总能找到一个元素使得它的阶等于这个最小公倍数．
 
-<a id="ord-prop-5"></a>
+[](){#ord-prop-5}
 
 ???+ note "性质 5"
     对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，总是存在 $c\in\mathbf Z$ 且 $c\perp m$ 使得
@@ -359,7 +359,7 @@ $$
 
 4.  $m\ne 1,2,4,p^{e},2p^{e}$，其中，$p$ 为奇素数，$e\in\mathbf N_+$．
 
-    <a id="prim-root-lem-4"></a>
+    [](){#prim-root-lem-4}
 
     ???+ note "引理 4"
         假设 $m\neq 1,2,4$ 且不存在奇素数 $p$ 和正整数 $e$ 使得 $m=p^e$ 或 $m=2p^e$．那么，模 $m$ 的原根不存在．
@@ -485,7 +485,7 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 
 在这个引理的证明过程中，实际上得到了关于模 $2^e$ 既约剩余系结构的刻画：
 
-<a id="mod-pow-2"></a>
+[](){#mod-pow-2}
 
 ???+ note "推论"
     设模数为 $2^e$ 且 $e \ge 2$．那么，所有奇数都同余于唯一一个 $\pm 5^k$ 形式的整数同余，其中，$k\in\mathbf N$ 且 $k < 2^{e-2}$．也就是说，$\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 两两不同余，且构成一个既约剩余系．
