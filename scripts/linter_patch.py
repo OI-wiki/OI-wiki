@@ -8,8 +8,7 @@ sys.path.append(os.path.abspath('.'))
 
 from scripts.linter.decorators import pipeline
 from scripts.linter.utils import log
-from scripts.linter.preprocess import fix_details
-from scripts.linter.postprocess import fix_punctuations
+from scripts.linter.preprocess import fix_details, fix_punctuations
 
 sys.path.pop()
 # autopep8: on
@@ -31,8 +30,8 @@ def apply_preprocess(md_content: str):
         str: The processed Markdown content with formatting fixes applied
     """
     log("Starting preprocessing pipeline...")
-
     md_content = fix_details(md_content)
+    md_content = fix_punctuations(md_content)
     log("Preprocessing pipeline completed.")
 
     return md_content
@@ -53,9 +52,7 @@ def apply_postprocess(md_content: str):
         str: The processed Markdown content (currently unchanged)
     """
     log("Starting postprocessing pipeline...")
-
-    md_content = fix_punctuations(md_content)
-    log("Postprocessing pipeline completed (no transformations applied).")
+    log("Postprocessing pipeline completed.")
 
     return md_content
 
