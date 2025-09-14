@@ -39,6 +39,7 @@ def step(func):
         processed_lines = []  # Store processed content
 
         skip_counter = 0
+        last_skip_index = -1
         current_skip_block = []
         current_skip_block_indent = 0
 
@@ -48,6 +49,7 @@ def step(func):
         for index, line in enumerate(lines):
             stripped = line.strip()
             if stripped == skip_tag_on or stripped == global_skip_tag_on:
+                last_skip_index = index
                 if skip_counter == 0:
                     current_skip_block_indent = index_lfirst_neq(line, ' ')
                 skip_counter += 1
@@ -62,13 +64,13 @@ def step(func):
                 current_skip_block.append(line)
             else:
                 raise RuntimeError(
-                    f"unopened skip block for tag '{tag}' starting at line {index+1}. Please ensure all skip blocks are properly opened with '<!-- {tag} on -->' or '{global_skip_tag_on}'"
+                    f"unopened skip block for tag '{tag}' ending at line {last_skip_index+1}. Please ensure all skip blocks are properly opened with '<!-- {tag} on -->' or '{global_skip_tag_on}'"
                 )
 
             if stripped == skip_tag_off or stripped == global_skip_tag_off:
+                last_skip_index = index
                 skip_counter -= 1
                 log(f"line {index+1}: skip end, level = {skip_counter}")
-
                 if skip_counter == 0:
                     # End of skip block, store it and add placeholder
                     removed_blocks.append(current_skip_block)
@@ -80,11 +82,11 @@ def step(func):
         # Validate skip block structure
         if skip_counter > 0:
             raise RuntimeError(
-                f"unclosed skip block for tag '{tag}' starting at line {current_skip_block_indent + 1}. Please ensure all skip blocks are properly closed with '<!-- {tag} off -->' or '{global_skip_tag_off}'"
+                f"unclosed skip block for tag '{tag}' starting at line {last_skip_index + 1}. Please ensure all skip blocks are properly closed with '<!-- {tag} off -->' or '{global_skip_tag_off}'"
             )
         elif skip_counter < 0:
             raise RuntimeError(
-                f"unopened skip block for tag '{tag}' starting at line {current_skip_block_indent + 1}. Please ensure all skip blocks are properly opened with '<!-- {tag} on -->' or '{global_skip_tag_on}'"
+                f"unopened skip block for tag '{tag}' ending at line {last_skip_index + 1}. Please ensure all skip blocks are properly opened with '<!-- {tag} on -->' or '{global_skip_tag_on}'"
             )
         processed_content = '\n'.join(processed_lines)+'\n'
 
