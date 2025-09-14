@@ -28,7 +28,6 @@ extra-index-url = ["https://pypi.tuna.tsinghua.edu.cn/simple"]
 [tool.coverage.run]
 branch = true
 omit = [
-    "*/__init__.py",
     "test/*"
     ]
 
