@@ -69,16 +69,18 @@ def next_state(current_state: markdown_state, current_line: str, **kwargs):
                 current_state = markdown_state.normal_line
         case markdown_state.normal_code_block_begin | markdown_state.normal_code_block_content:
             require_ext_message(codeblock_end_mark,
-                                lambda x: x.startswith('```'))
+                                lambda x: len(x) >= 3 and x.count('`') == len(x))
             if stripped == codeblock_end_mark:
                 current_state = markdown_state.normal_code_block_end
+                codeblock_end_mark = None
             else:
                 current_state = markdown_state.normal_code_block_content
         case markdown_state.skip_code_block_begin | markdown_state.skip_code_block_content:
             require_ext_message(codeblock_end_mark,
-                                lambda x: x.startswith('```'))
+                                lambda x: len(x) >= 3 and x.count('`') == len(x))
             if stripped == codeblock_end_mark:
                 current_state = markdown_state.skip_code_block_end
+                codeblock_end_mark = None
             else:
                 current_state = markdown_state.skip_code_block_content
         case markdown_state.normal_code_block_end | markdown_state.skip_code_block_end:
