@@ -22,7 +22,7 @@ Git 根据配置文件的应用范围，将配置文件分为不同的等级，�
 
 安装 Git 后，第一件事情就是设置你的用户名和邮箱。这些信息在每次提交时都会用到。
 
-```bash
+```console
 $ git config --global user.name "OI Wiki"
 $ git config --global user.email oi-wiki@example.com
 ```
@@ -36,7 +36,7 @@ $ git config --global user.email oi-wiki@example.com
 
 ### 配置编辑器
 
-```bash
+```console
 $ git config --global core.editor emacs
 ```
 
@@ -54,7 +54,7 @@ $ git config --global core.editor emacs
 
 新建一个 Git 仓库非常简单，只需在想要建立仓库的文件夹输入如下命令：
 
-```bash
+```console
 $ git init
 ```
 
@@ -62,7 +62,7 @@ Git 将在当前文件夹新建一个 `.git` 文件夹，一个仓库就这样�
 
 如果想把一个仓库克隆到自己的电脑上（比如将 **OI Wiki** 的代码拷贝到本地上进行编辑），采用 `git clone` 命令即可。
 
-```bash
+```console
 $ git clone https://github.com/OI-wiki/OI-wiki
 ```
 
@@ -83,7 +83,7 @@ $ git clone https://github.com/OI-wiki/OI-wiki
 
 <!-- preprocess.skipdetails on -->
 
-```bash
+```console
 $ git status
 On branch master
 
@@ -105,7 +105,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 <!-- preprocess.skipdetails on -->
 
-```bash
+```console
 $ git add README.md # 将这个文件纳入到版本跟踪中
 $ git status
 On branch master
@@ -126,7 +126,7 @@ Changes to be committed:
 
 <!-- preprocess.skipdetails on -->
 
-```bash
+```console
 $ vim README.md # 随便更改点东西
 $ git status
 On branch master
@@ -165,7 +165,7 @@ Git 给了一条提示，执行 `git add README.md` 就可以将非暂存区的�
 
 现在将非暂存区的文件加入暂存区，将所有更改一并提交（commit）。
 
-```bash
+```console
 $ git add README.md
 $ git commit # 接下来会弹出编辑器页面，你需要写下 commit 信息
 [master (root-commit) f992763] initial commit
@@ -192,7 +192,7 @@ $ git commit # 接下来会弹出编辑器页面，你需要写下 commit 信息
 
 可以看到，提交历史里记录了每次提交时的 SHA-1 校验和，提交的作者，提交时间和 commit 信息。
 
-```bash
+```console
 $ git log
 commit ae9dd3768a405b348bc6170c7acb8b6cb5fe333e (HEAD -> master)
 Author: OI Wiki <oi-wiki@example.com>
@@ -224,7 +224,7 @@ Date:   Sun Sep 13 00:06:07 2020 +0800
 
 利用 `git branch` 命令可以创建分支，`git switch` 命令可以切换分支，`git switch -c` 命令可以创建分支并切换到这个新分支。
 
-```bash
+```console
 $ git switch -c dev # 创建一个叫做 dev 的新分支并切换当前分支到 dev
 Switched to branch 'dev'
 $ git branch # 查看分支列表
@@ -236,7 +236,7 @@ $ git branch # 查看分支列表
 
 试着创建一个新文件 `aplusb.cpp`。
 
-```bash
+```console
 $ vim aplusb.cpp
 $ git add aplusb.cpp
 $ git commit -m "feat: add A+B Problem code"
@@ -247,7 +247,7 @@ $ git commit -m "feat: add A+B Problem code"
 
 现在切换回 `master` 分支，这时候文件夹中没有了 `aplusb.cpp`，一切都回到了刚刚创建 `dev` 分支时的状态。这时候可以在 `master` 分支上继续完成其他的工作。
 
-```bash
+```console
 $ git switch master
 Switched to branch 'master'
 $ vim README.md # 对 README 做些小改动
@@ -274,7 +274,7 @@ $ git commit -a -m "feat: update README.md"
 
 还是接着上面这个例子，`dev` 分支的工作已经完成，通过 `git merge` 命令可以将该分支合并到当前分支（`master`）上：
 
-```bash
+```console
 $ git merge dev
 Merge made by the 'recursive' strategy.
  aplusb.cpp | 7 +++++++
@@ -294,7 +294,7 @@ Git 会找到这两个状态的最近公共祖先（在上图中是 `ae9dd37`）
 
 在合并完成后，`dev` 分支就完成了它的使命，这时候可以利用下面的命令删除 `dev` 分支：
 
-```bash
+```console
 $ git branch -d dev # 对于未合并的分支，可以使用 -D 参数强制删除
 ```
 
@@ -336,7 +336,7 @@ This repo includes some c++ codes.
 
 <!-- preprocess.skipdetails on -->
 
-```bash
+```console
 $ git status
 On branch master
 You have unmerged paths.
@@ -368,7 +368,7 @@ This repo includes some c++ codes.
 
 通过编辑文本来处理冲突，删除这些冲突标记，保存文件，将这些文件纳入暂存区后提交，就可以解决合并冲突了。
 
-```bash
+```console
 $ git add README.md # 将发生冲突的文件纳入暂存区
 $ git commit
 [master fe92c6b] Merge branch readme-refactor into master
@@ -386,8 +386,8 @@ $ git commit
 
 在 `git merge` 中加入 `--squash` 参数即可使用 Squash 方式进行分支合并。
 
-```bash
-git merge <branch> --squash
+```console
+$ git merge <branch> --squash
 ```
 
 需要注意的是，在执行上述命令后，Git 只会将 B 分支的所有更改存入 A 分支的缓冲区内，接下来还需要执行一次 `git commit` 命令完成合并工作。
@@ -400,16 +400,16 @@ git merge <branch> --squash
 
 首先，切换到 B 分支，接下来将 B 分支变基到 A 分支：
 
-```bash
-git checkout B
-git rebase A
+```console
+$ git checkout B
+$ git rebase A
 ```
 
 现在切回到 A 分支，再执行一次 `git merge` 命令，即可完成将 B 分支的内容合并到 A 分支的工作。
 
-```bash
-git checkout A
-git merge B
+```console
+$ git checkout A
+$ git merge B
 ```
 
 使用 Rebase 完成合并可以让提交历史线性化，在适当的场景下正确地使用 Rebase 可以达到比 Merge 更好的效果。但是这样做会改变提交历史，在进行 Rebase 时和 Rebase 后再进行相关合并操作时都会增加出现冲突的可能，如果操作不当可能反而会使提交历史变得杂乱。因此，如果对 Rebase 操作没有充分的了解，不建议使用。
@@ -424,14 +424,14 @@ git merge B
 
 如果当前仓库是克隆来的，那么应该会有一个叫做 origin 的远程仓库，它的链接就是克隆时用的链接。
 
-```bash
+```console
 $ git remote
 origin
 ```
 
 如果要查看某个远程仓库的详细信息的话，可以这样操作：
 
-```bash
+```console
 $ git remote show origin
 * remote origin
   Fetch URL: git@github.com:OI-wiki/OI-wiki.git
@@ -459,13 +459,13 @@ $ git remote show origin
 
 在远程仓库中，其他人可能会推送一些更改，执行 `git fetch` 命令可以将这些更改获取到本地。
 
-```bash
+```console
 $ git fetch <remote-name> # 获取 <remote-name> 的更改
 ```
 
 需要注意的是，`git fetch` 命令只会获取远程仓库的更改，而不会将这些更改合并到本地仓库中。如果需要将这些更改进行合并，可以使用 `git pull` 命令。在默认情况下，`git pull` 相当于 `git fetch` 后 `git merge FETCH_HEAD`。
 
-```bash
+```console
 $ git pull <remote-name> <branch> # 获取 <remote-name> 的更改，然后将这些更改合并到 HEAD
 ```
 
@@ -473,7 +473,7 @@ $ git pull <remote-name> <branch> # 获取 <remote-name> 的更改，然后将�
 
 当你完成了一些更改之后，使用 `git push` 命令可以将这些更改推送到远程仓库。
 
-```bash
+```console
 $ git push <remote> <from>:<to> # 将本地 <from> 分支的更改推送至 <remote> 的 <to> 分支
 ```
 
@@ -510,7 +510,7 @@ $ git push <remote> <from>:<to> # 将本地 <from> 分支的更改推送至 <rem
 
 完成以上步骤后，你就可以通过 ssh 连接到远程仓库了。下面就是一条通过 ssh 连接 clone **OI Wiki** 仓库的命令：
 
-```bash
+```console
 $ git clone git@github.com:OI-wiki/OI-wiki.git
 ```
 
