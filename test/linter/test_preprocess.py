@@ -418,6 +418,16 @@ class TestFixPunctuationsInlineMath(unittest.TestCase):
         self.assertEqual(
             result, expected, f"Failed to convert {english_punct} to {chinese_punct}")
 
+    @parameterized.expand(TestConstants.PUNCTUATION_MAPPING)
+    def test_all_punctuation_keep_trailing_space_of_the_line(self, english_punct, chinese_punct):
+        """Test that all punctuation types are covered."""
+
+        content = f"Formula {self.constants.SIMPLE_MATH_FORMULA}{english_punct}  \n"
+        expected = f"Formula {self.constants.SIMPLE_MATH_FORMULA}{chinese_punct}  \n"
+        result = fix_punctuations(content)
+        self.assertEqual(
+            result, expected, f"Failed to convert {english_punct} to {chinese_punct}")
+
     def test_multiple_inline_math_punctuations(self):
         """Test multiple punctuation replacements in one line."""
         content = "Formulas $a$, $b$. and $c$; are correct"
