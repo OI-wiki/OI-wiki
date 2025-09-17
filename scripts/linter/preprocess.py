@@ -144,6 +144,13 @@ def fix_punctuations(md_content: str, skipped_codeblock_lang: list[str] = ['tex'
     $foo$，$bar$．$baz$．
     ```
 
+    4. (keep trailing spaces of the line)
+    $foo$。  
+    $bar$.  
+    ->
+    $foo$．  
+    $bar$．  
+
     Args:
         md_content: The Markdown content to process
         **kwargs: Additional arguments including 'line_origins' for tracking
@@ -194,9 +201,16 @@ def fix_punctuations(md_content: str, skipped_codeblock_lang: list[str] = ['tex'
         if current_state not in [markdown_state.normal_line, markdown_state.normal_code_block_content]:
             continue
 
+        # Preserve trailing whitespaces
+        rspace_cnt = len(line)
+        line = line.rstrip()
+        rspace_cnt -= len(line)
+
         # Fix punctuation after inline math formulas
         modified_line = RE_INLINE_MATH_WITH_TRAILING_PUNCTUATION.sub(lambda match: match.group(
             1) + PUNCTUATION_MAP[match.group(2)] if match.group(2) else match.group(1), line)
+        line += ' '*rspace_cnt
+        modified_line += ' '*rspace_cnt
 
         # Update line if changed
         if modified_line != line:
