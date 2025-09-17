@@ -61,3 +61,4 @@
 -   [最小点覆盖](./graph-matching/bigraph-match.md#二分图最小点覆盖)
 -   [最大独立集](./graph-matching/bigraph-match.md#二分图最大独立集)
 -   [最大权匹配](./graph-matching/bigraph-weight-match.md)
+-   [二分图博弈](../math/game-theory/impartial-game.md#二分图博弈)

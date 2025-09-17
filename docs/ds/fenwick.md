@@ -102,7 +102,8 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 
 我们记 $x$ 二进制最低位 `1` 以及后面的 `0` 组成的数为 $\operatorname{lowbit}(x)$，那么 $c[x]$ 管辖的区间就是 $[x-\operatorname{lowbit}(x)+1, x]$。
 
-**这里注意：$\boldsymbol{\operatorname{lowbit}}$ 指的不是最低位 `1` 所在的位数 $\boldsymbol{k}$，而是这个 `1` 和后面所有 `0` 组成的 $\boldsymbol{2^k}$。**
+???+ warning "注意"
+    $\operatorname{lowbit}$ 指的不是最低位 `1` 所在的位数 $k$，而是这个 `1` 和后面所有 `0` 组成的 $2^k$。
 
 怎么计算 `lowbit`？根据位运算知识，可以得到 `lowbit(x) = x & -x`。
 

@@ -480,7 +480,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
     ??? note "Linux 下的内存占用指标详解"
         > 太长不看版：如果在 CCF 系列的考试时声明了一个特别大的全局静态数组，此时需要特别慎重。因为程序声明的数组会全部计入内存占用中（而不像大部分在线评测平台仅计算实际使用的部分），在某些情况下这甚至有可能导致整道题全部 MLE。
         
-        -   **关于 RSS 和 VSZ**[^ref1][^ref2]
+        -   关于 RSS 和 VSZ[^ref1][^ref2]
         
             1.  VSZ (Virtual Memory Size，虚拟内存大小）[^ref3]
         
@@ -500,7 +500,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
                 同样的，你也可以用 `top` 在 `RES` 这一列查看某个进程的物理内存。
         
                 RSS 一般仅包含实际加载到物理内存的部分，也就是说，实际使用了多少就是多少。
-        -   **内存占用行为分析**
+        -   内存占用行为分析
         
             假设声明了以下数组：
         

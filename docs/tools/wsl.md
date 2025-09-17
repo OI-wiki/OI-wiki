@@ -91,7 +91,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 在安装适用于 WSL 的任何 Linux 分发版之前，必须在下述两种方法中选择一种，以确保启用「适用于 Linux 的 Windows 子系统」可选功能：
 
-**使用命令行：**
+使用命令行：
 
 1.  以管理员身份打开 PowerShell 并运行：
 
@@ -103,7 +103,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 2.  出现提示时，重启计算机。
 
-**使用图形界面：**
+使用图形界面：
 
 ![Windows 功能](./images/wsl-windows-features.png)
 
