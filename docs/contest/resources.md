@@ -1,50 +1,50 @@
 author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, GldHkkowo, SukkaW, Rapiz1, Henry-ZHR, H-J-Granger, countercurrent-time, fouzhe, Ir1d, abc1763613206, EndlessCheng, Plaaant6, LUTLJS, ZsgsDesign, CB-X2-Jun, tallnutliu
 
-本页面主要列举了一些与算法竞赛有关的在线评测网站、题目合集、书籍、工具等资源。
+本页面主要列举了一些与算法竞赛有关的在线评测网站、题目合集、书籍、工具等资源．
 
 ## 在线评测平台
 
-在线评测平台（英语：Online Judging System，简称：OJ），一般用于刷题训练，参与和组织比赛，以及用户之间的交流分享。
+在线评测平台（英语：Online Judging System，简称：OJ），一般用于刷题训练，参与和组织比赛，以及用户之间的交流分享．
 
 ### 国内
 
--   [51Nod](https://www.51nod.com/)：有许多值得尝试的数学题和思维题。
--   [Comet OJ](https://www.cometoj.com)：始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库。
--   [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目。
--   [HydroOJ](https://hydro.ac/)：始于 2021 年，为开源项目 [Hydro](https://hydro.js.org/) 的官方站。用户可以创建自己的 [域](https://hydro.ac/discuss/6087cc44e098b0cd7dde1a0c)，域中可以使用题库、比赛、讨论等主站可以使用的功能。
--   [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck)，可以将评测程序的运行时间精确到微秒。（题目较少）
--   [LibreOJ](https://loj.ac/)：始于 2017 年。基于开源项目 [Lyrio](https://github.com/lyrio-dev/lyrio)，Libre 取自由之意。题目所有测试数据以及提交的代码均对所有用户开放。目前由 [Menci](https://github.com/Menci) 维护。
--   [CDOJ](https://cdoj.site/d/lutece/)：电子科技大学在线评测系统，始于 2012 年。
--   [洛谷](https://www.luogu.com.cn/)：始于 2013 年，社区群体庞大，各类 OI 的真题和习题较全。提供有偿教育服务。
--   [牛客网](https://www.nowcoder.com/)：始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务。
--   [OpenJudge](http://openjudge.cn/)：始于 2005 年，由 POJ 团队开发的小组评测平台。
--   [POJ](http://poj.org/)：北京大学在线评测系统，始于 2003 年，国内历史最悠久的 OJ 之一。内有很多英文题，既有基础题，也有值得一试的好题。可以在 [百练](http://bailian.openjudge.cn/practice/) 题库提交 POJ 的题目。
--   [PTA（拼题 A）](https://pintia.cn/)：始于 2016 年，浙江大学衍生的杭州百腾教育科技有限公司产品。
--   [QOJ](https://qoj.ac/)：收集了很多国内外 OI 和 ICPC 竞赛题目，具有训练价值。
--   [Universal Online Judge](https://uoj.ac/)：始于 2014 年，Universal 取通用之意，[项目开源](https://github.com/UniversalOJ/UOJ-System)；[VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高。
--   [Vijos](https://vijos.org/)：始于 2005 年。[服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源。
--   [WZOI](https://wzoi.cn)：始于 2017 年，由浙江省温州中学维护的 [开源](https://github.com/massimodong/wzoj) 评测系统。
--   [ZOJ](https://zoj.pintia.cn/home)：浙江大学在线评测系统，始于 2001 年。
+-   [51Nod](https://www.51nod.com/)：有许多值得尝试的数学题和思维题．
+-   [Comet OJ](https://www.cometoj.com)：始于 2018 年，旨在为广大算法爱好者提供一个竞技、练习、交流的平台，经常举办原创性的高质量比赛，有丰富的题库．
+-   [HDU Online Judge](http://acm.hdu.edu.cn/) 始于 2005 年，杭州电子科技大学在线评测系统，有多校训练的题目．
+-   [HydroOJ](https://hydro.ac/)：始于 2021 年，为开源项目 [Hydro](https://hydro.js.org/) 的官方站．用户可以创建自己的 [域](https://hydro.ac/discuss/6087cc44e098b0cd7dde1a0c)，域中可以使用题库、比赛、讨论等主站可以使用的功能．
+-   [Judge Duck Online](https://duck.ac/) 基于 [松松松](https://github.com/wangyisong1996) 开发的开源项目 [JudgeDuck](https://github.com/JudgeDuck)，可以将评测程序的运行时间精确到微秒．（题目较少）
+-   [LibreOJ](https://loj.ac/)：始于 2017 年．基于开源项目 [Lyrio](https://github.com/lyrio-dev/lyrio)，Libre 取自由之意．题目所有测试数据以及提交的代码均对所有用户开放．目前由 [Menci](https://github.com/Menci) 维护．
+-   [CDOJ](https://cdoj.site/d/lutece/)：电子科技大学在线评测系统，始于 2012 年．
+-   [洛谷](https://www.luogu.com.cn/)：始于 2013 年，社区群体庞大，各类 OI 的真题和习题较全．提供有偿教育服务．
+-   [牛客网](https://www.nowcoder.com/)：始于 2014 年，提供技术类求职备考、社群交流、企业招聘等服务．
+-   [OpenJudge](http://openjudge.cn/)：始于 2005 年，由 POJ 团队开发的小组评测平台．
+-   [POJ](http://poj.org/)：北京大学在线评测系统，始于 2003 年，国内历史最悠久的 OJ 之一．内有很多英文题，既有基础题，也有值得一试的好题．可以在 [百练](http://bailian.openjudge.cn/practice/) 题库提交 POJ 的题目．
+-   [PTA（拼题 A）](https://pintia.cn/)：始于 2016 年，浙江大学衍生的杭州百腾教育科技有限公司产品．
+-   [QOJ](https://qoj.ac/)：收集了很多国内外 OI 和 ICPC 竞赛题目，具有训练价值．
+-   [Universal Online Judge](https://uoj.ac/)：始于 2014 年，Universal 取通用之意，[项目开源](https://github.com/UniversalOJ/UOJ-System)；[VFK](https://github.com/vfleaking) 的 OJ：多原创比赛题和 CCF/THU 题，难度较高．
+-   [Vijos](https://vijos.org/)：始于 2005 年．[服务端](https://github.com/vijos/vj4) 和 [评测机](https://github.com/vijos/jd4) 等项目开源．
+-   [WZOI](https://wzoi.cn)：始于 2017 年，由浙江省温州中学维护的 [开源](https://github.com/massimodong/wzoj) 评测系统．
+-   [ZOJ](https://zoj.pintia.cn/home)：浙江大学在线评测系统，始于 2001 年．
 
 ### 国外
 
--   [AizuOJ](https://onlinejudge.u-aizu.ac.jp)：日本会津大学在线评测系统，始于 2004 年。包含日本若干高中和大学编程比赛的题目，自带编程/数据结构/算法的入门课程。
--   [AtCoder](https://atcoder.jp/)：日本 OJ，日文版里会有日本高校的比赛，英文内不会显示。题目有趣，质量较高。
--   [CodeChef](https://codechef.com/)：印度 OJ，周期举办比赛。系统基于 SPOJ 的 Sphere Engine。
--   [Codeforces](https://codeforces.com/)：俄罗斯 OJ，始于 2010 年，创始人是 [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/)。有多种系列的比赛，并支持个人出题、申请组织比赛。题目质量较高。
--   [CSES](https://cses.fi/problemset/)(Code Submission Evaluation System)，按专题划分的题库，[旨在](https://cses.fi/problemset/text/2433) 成为综合的高质量题库，主要由 [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf) 作者 Antti Laaksonen 开发，始于 2013 年。
+-   [AizuOJ](https://onlinejudge.u-aizu.ac.jp)：日本会津大学在线评测系统，始于 2004 年．包含日本若干高中和大学编程比赛的题目，自带编程/数据结构/算法的入门课程．
+-   [AtCoder](https://atcoder.jp/)：日本 OJ，日文版里会有日本高校的比赛，英文内不会显示．题目有趣，质量较高．
+-   [CodeChef](https://codechef.com/)：印度 OJ，周期举办比赛．系统基于 SPOJ 的 Sphere Engine．
+-   [Codeforces](https://codeforces.com/)：俄罗斯 OJ，始于 2010 年，创始人是 [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/)．有多种系列的比赛，并支持个人出题、申请组织比赛．题目质量较高．
+-   [CSES](https://cses.fi/problemset/)(Code Submission Evaluation System)，按专题划分的题库，[旨在](https://cses.fi/problemset/text/2433) 成为综合的高质量题库，主要由 [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf) 作者 Antti Laaksonen 开发，始于 2013 年．
 -   [CS Academy](https://csacademy.com/)
--   [DMOJ](https://dmoj.ca/) 加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛。
+-   [DMOJ](https://dmoj.ca/) 加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛．
 -   [HackerRank](https://www.hackerrank.com/) 有很多比赛
--   [Kattis](https://open.kattis.com/) 题库主要包含类似 ICPC 比赛的题目；根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 [ELO 等级分](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86) 系统来评估。
--   [LeetCode](https://leetcode.com/) 码农面试刷题网站，有中文分站：[LeetCode China](https://leetcode.cn)。
+-   [Kattis](https://open.kattis.com/) 题库主要包含类似 ICPC 比赛的题目；根据用户解题情况评定用户等级，推荐适合该用户水平的 trivial/easy/medium/hard 四类难度的题目，其中题目难度采用类 [ELO 等级分](https://zh.wikipedia.org/wiki/%E7%AD%89%E7%BA%A7%E5%88%86) 系统来评估．
+-   [LeetCode](https://leetcode.com/) 码农面试刷题网站，有中文分站：[LeetCode China](https://leetcode.cn)．
 -   [Light OJ](https://lightoj.com)
--   [Open Trains](https://opentrains.opencup.org/) 俄罗斯 Open Cup 比赛的训练平台，基于 [ejudge](https://ejudge.ru/) 开源系统搭建，支持虚拟比赛；题库包含历年 Open Cup 赛题以及 Petrozavodsk 训练营的题目。
--   [SPOJ](http://www.spoj.com) 始于 2003 年，其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化；支持题目点赞和标签功能。
--   [TopCoder](https://www.topcoder.com/) 始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛；目前主营业务是技术众包。
--   [TimusOJ](http://acm.timus.ru/) 始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛、以及 Petrozavodsk 训练营。
--   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/)）始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授；由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html)，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge。现在该平台的维护者 [正在 GitHub 上构建新的评测平台](https://github.com/TheOnlineJudge/ojudge)。
--   [Yandex](https://contest.yandex.ru/) 存档了近几年的全俄罗斯信息学奥赛。
+-   [Open Trains](https://opentrains.opencup.org/) 俄罗斯 Open Cup 比赛的训练平台，基于 [ejudge](https://ejudge.ru/) 开源系统搭建，支持虚拟比赛；题库包含历年 Open Cup 赛题以及 Petrozavodsk 训练营的题目．
+-   [SPOJ](http://www.spoj.com) 始于 2003 年，其后台系统 [Sphere Engine](https://sphere-engine.com/) 于 2008 年商业化；支持题目点赞和标签功能．
+-   [TopCoder](https://www.topcoder.com/) 始于 2001 年，其 [竞技编程社区](https://www.topcoder.com/community/competitive-programming/) 有很多比赛；目前主营业务是技术众包．
+-   [TimusOJ](http://acm.timus.ru/) 始于 2000 年，由 Ural Federal University 开发，拥有俄罗斯最大的在线评测题库，题目主要来自乌拉尔联邦大学校赛、乌拉尔锦标赛、ICPC 乌拉尔区域赛、以及 Petrozavodsk 训练营．
+-   Online Judge（前 [UVaOJ](https://uva.onlinejudge.org/)）始于 1995 年，国际成名最早的 OJ，创始人是西班牙 University of Valladolid (UVa) 的 Miguel Ángel Revilla 教授；由于 [Revilla 教授于 2018 年不幸离世](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html)，且 Valladolid 大学终止维护，UVaOJ 自 2019 年 7 月起更名为 Online Judge．现在该平台的维护者 [正在 GitHub 上构建新的评测平台](https://github.com/TheOnlineJudge/ojudge)．
+-   [Yandex](https://contest.yandex.ru/) 存档了近几年的全俄罗斯信息学奥赛．
 
 ## 教程资料
 
@@ -63,7 +63,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 
 ## 书籍
 
-本列表内注明了书籍作者，译者未列其中。因无重名书籍且易于寻找，故不标明 ISBN。
+本列表内注明了书籍作者，译者未列其中．因无重名书籍且易于寻找，故不标明 ISBN．
 
 -   刘汝佳系列
     -   《算法竞赛入门经典》（紫）
@@ -75,10 +75,10 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   《算法竞赛进阶指南》- 李煜东
     -   [配套资源仓库](https://github.com/lydrainbowcat/tedukuri)
 -   《啊哈算法》- 纪磊
-    -   面向初学者或有初步兴趣的人群，有幽默配图。
+    -   面向初学者或有初步兴趣的人群，有幽默配图．
 -   CCF 中学生计算机程序设计系列
     -   《CCF 中学生计算机程序设计 - 入门篇》- 陈颖，邱桂香，朱全民
-        -   [建议配合勘误使用。](https://zhuanlan.zhihu.com/p/85215961)
+        -   [建议配合勘误使用．](https://zhuanlan.zhihu.com/p/85215961)
     -   《CCF 中学生计算机程序设计 - 基础篇》- 江涛，宋新波，朱全民
     -   《CCF 中学生计算机程序设计 - 提高篇》- 徐先友，朱全民
     -   《CCF 中学生计算机程序设计 - 专业篇》（未出）
@@ -87,7 +87,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   一本通系列
     -   《信息学奥赛一本通》- 董永建
     -   《信息学奥赛一本通 - 提高篇》- 黄新军，董永建
-        -   [建议选择性阅读。](https://www.zhihu.com/question/292926937)
+        -   [建议选择性阅读．](https://www.zhihu.com/question/292926937)
     -   《信息学奥赛一本通 - 高手训练》- 黄新军，董永建
 -   其他由国内著名 OI 教练写的教材
     -   《信息学奥赛课课通》- 林厚从
@@ -100,32 +100,32 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     -   《ACM 国际大学生程序设计竞赛系列 题目与解读》- 俞勇
 -   《算法竞赛入门到进阶》- 罗勇军，郭卫斌
 -   《算法导论》第三版 - Thomas H.Cormen/Charles E.Leiserson/Ronald L.Rivest/Clifford Stein  
-    黑书，大学经典教材。英文版原名*Introduction to Algorithms*
+    黑书，大学经典教材．英文版原名*Introduction to Algorithms*
     -   [答案解析 (English)](https://github.com/walkccc/CLRS)
 -   《具体数学》第二版 - Ronald L. Graham/Donald E. Knuth/Oren Patashnik  
     英文版原名*Concrete Mathematics*
 -   《组合数学》第五版 - Richard A.Brualdi  
     英文版原名*Introductory Combinatorics*
 -   《挑战程序设计竞赛》全套 - 秋叶拓哉，岩田阳一，北川宜稔
-    通俗易懂。
+    通俗易懂．
 -   《算法概论》- Sanjoy Dasgupta/Christos Papadimitriou/Umesh Vazirani
-    -   提纲挚领，但内容较少。
+    -   提纲挚领，但内容较少．
 -   [Legend-K 的数据结构与算法的笔记](http://web.archive.org/web/20180826111306/http://www.legend-k.com/Algorithm/Algorithm.pdf)
 -   [acm-cheat-sheet](https://github.com/soulmachine/acm-cheat-sheet)
 -   [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf)- Antti Laaksonen
-    -   作者花了三年个人时间完成。面向算法竞赛，覆盖面广，详略得当。
+    -   作者花了三年个人时间完成．面向算法竞赛，覆盖面广，详略得当．
 -   [《挑战编程：程序设计竞赛训练手册》](http://acm.cs.buap.mx/downloads/Programming_Challenges.pdf)- Steven S. Skiena/Miguel A. Revilla
-    -   由西班牙 University of Valladolid 的两位教授编写。
+    -   由西班牙 University of Valladolid 的两位教授编写．
     -   阅读 [经过翻译的在线电子版图书](http://www.tup.com.cn/upload/books/yz/030502-01.pdf)
     -   购买 [纸质版图书](http://www.tup.tsinghua.edu.cn/booksCenter/book_03050201.html)
 -   《C++，挑战编程——程序设计竞赛进阶训练指南》- 邱秋
     -   [作者博客的介绍页](https://blog.csdn.net/metaphysis/article/details/90288252)
 -   [《数据结构（C++ 语言版 第 3 版）》- 邓俊辉](https://dsa.cs.tsinghua.edu.cn/~deng/ds/dsacpp/index.htm)
-    -   建议随配套课程、配套课件和习题解析一起使用。
+    -   建议随配套课程、配套课件和习题解析一起使用．
 -   《计算几何：算法与应用》- 伯格（Berg,M.D.）著，邓俊辉 译  
     英文版原名*Computational Geometry: Algorithms and Applications*
 -   [《Handbook of Data Structures and Applications, 2nd Edition》](https://www.routledge.com/Handbook-of-Data-Structures-and-Applications/Mehta-Sahni/p/book/9780367572006)
-    -   由许多著名教授如 Sartaj Sahni、Hanan Samet、Weiss 等合著，内容较多，建议有一定基础的数据结构爱好者阅读。
+    -   由许多著名教授如 Sartaj Sahni、Hanan Samet、Weiss 等合著，内容较多，建议有一定基础的数据结构爱好者阅读．
 -   [算法详解 系列](https://www.algorithmsilluminated.org/)
     -   面向有语言基础的初学者的教材，建议同配套课程一起使用
     -   《Algorithms Illuminated, Part 1: The Basics》- Tim Roughgarden
