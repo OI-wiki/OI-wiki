@@ -104,12 +104,11 @@ Find the GDB manual and other documentation resources online at:
 
 ### gdb 基础命令
 
-| 命令 | 描述 |
-| ---- | ---- |
-| `help`  | 显示帮助信息 |
-| `quit`  | 退出 gdb |
-| `file [filename]` | 加载要调试的程序 `[filename]`|
-
+| 命令                | 描述                    |
+| ----------------- | --------------------- |
+| `help`            | 显示帮助信息                |
+| `quit`            | 退出 gdb                |
+| `file [filename]` | 加载要调试的程序 `[filename]` |
 
 ### 运行控制命令
 
@@ -148,14 +147,14 @@ Find the GDB manual and other documentation resources online at:
 
 ### 变量命令
 
-| 命令 | 描述 |
-| ---- | ---- |
-| `print [p]` | 打印表达式 `[p]` 的值，通过表达式可以修改变量的值 |
-| `display [p]` | 每次暂停时打印表达式 `[p]` 的值，但不进入函数 |
-| `watch [var]` | 监视变量 `[var]` 的值，当变量被写入时，会自动打印出来并暂停 |
-| `rwatch [var]` | 监视变量 `[var]` 的值，当变量被读取时，会自动打印出来 |
-| `awatch [var]` | 当变量 `[var]` 被修改或写入时，会自动打印出来并暂停 |
-| `set [assignment]` | 执行赋值语句 |
+| 命令                 | 描述                                 |
+| ------------------ | ---------------------------------- |
+| `print [p]`        | 打印表达式 `[p]` 的值，通过表达式可以修改变量的值       |
+| `display [p]`      | 每次暂停时打印表达式 `[p]` 的值，但不进入函数         |
+| `watch [var]`      | 监视变量 `[var]` 的值，当变量被写入时，会自动打印出来并暂停 |
+| `rwatch [var]`     | 监视变量 `[var]` 的值，当变量被读取时，会自动打印出来    |
+| `awatch [var]`     | 当变量 `[var]` 被修改或写入时，会自动打印出来并暂停     |
+| `set [assignment]` | 执行赋值语句                             |
 
 `display` 和 `print` 指令都支持控制输出格式，其方法是在命令后紧跟 `/` 与格式字符，例如 `print/display [var]`（按照十进制打印变量 `[var]` 的值），支持的格式字符有：
 
@@ -184,13 +183,13 @@ Find the GDB manual and other documentation resources online at:
 
 ### 其他命令
 
-| 命令 | 描述 |
-| ---- | ---- |
-| `enable pretty-printer` | 启用 pretty-printer，可以以人类可读的方式打印 STL 容器 |
-| `checkpoint` | 创建检查点，可以回滚到检查点 |
-| `restart [num]` | 回滚到第 `[num]` 个检查点 |
-| `save breakpoints [filename]`| 保存断点到文件 |
-| `source [filename]` | 导入断点文件 |
+| 命令                            | 描述                                    |
+| ----------------------------- | ------------------------------------- |
+| `enable pretty-printer`       | 启用 pretty-printer，可以以人类可读的方式打印 STL 容器 |
+| `checkpoint`                  | 创建检查点，可以回滚到检查点                        |
+| `restart [num]`               | 回滚到第 `[num]` 个检查点                     |
+| `save breakpoints [filename]` | 保存断点到文件                               |
+| `source [filename]`           | 导入断点文件                                |
 
 ***
 
