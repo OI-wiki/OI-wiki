@@ -215,8 +215,6 @@ $ ./my_code < input > output
 
 [^1]: 刘汝佳《算法竞赛入门经典（第 2 版）》附录 A 开发环境与方法
 
-[^have-to-link-libm-in-gcc]: [Why do you have to link the math library in C?](https://stackoverflow.com/questions/1033898/why-do-you-have-to-link-the-math-library-in-c)
-
 [^autocomplete]: [Comparison\_of\_command\_shells#Interactive\_features](https://en.wikipedia.org/wiki/Comparison_of_command_shells#Interactive_features)
 
 [^bash-time-format]: <https://unix.stackexchange.com/a/70655>

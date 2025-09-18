@@ -80,13 +80,9 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 ## 命令行使用 gdb 调试
 
-首先保证你的程序使用了 `-g` 选项编译。
-
-接着进入 gdb 调试。你可以使用 `gdb ./a` 进入 gdb，或者直接运行 `gdb` 进入 gdb 后再使用 `file a` 加载程序。
-
-如果进入成功，会有如下的提示信息：
-
-```bash
+```console
+$ g++ a.cpp -o a -g
+$ gdb ./a
 GNU gdb (Ubuntu 12.1-0ubuntu1~22.04.2) 12.1
 Copyright (C) 2022 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
@@ -112,7 +108,7 @@ Find the GDB manual and other documentation resources online at:
 | ---- | ---- |
 | `help`  | 显示帮助信息 |
 | `quit`  | 退出 gdb |
-| `file 文件名` | 加载要调试的程序 |
+| `file filename` | 加载要调试的程序 `filename`|
 
 
 ### 运行控制命令
@@ -124,17 +120,17 @@ Find the GDB manual and other documentation resources online at:
 | `next`  | 单步执行，遇到函数调用则进入函数 |
 | `step` | 单步执行，遇到函数调用则进入函数 |
 | `finish`  | 运行到当前函数返回为止，然后停下来等待命令 |
-| `until 行号`  | 运行到指定行号为止，然后停下来等待命令 |
-| `break 行号`  | 设置断点，程序运行到该行时停下来等待命令，并且会输出断点的编号，也可以使用 `break 函数名` 设置函数断点；你也可以使用 `break 行号 表达式` 实现与下方 `condition` 相同的效果|
-| `condition 断点编号 表达式` | 设置断点条件，只有满足表达式条件时，程序运行到该断点时停下来等待命令 |
-| `ignore 断点编号 [num]`  | 忽略前 $num$ 次触发断点 |
-| `delete 断点编号`  | 删除指定**编号**的断点 |
-| `disable 断点编号`  | 禁用指定**编号**的断点 |
-| `enable 断点编号`  | 启用指定**编号**的断点 |
+| `until num`  | 运行到指定行号 `num` 为止，然后停下来等待命令 |
+| `break num`  | 在第 `num` 行设置断点，程序运行到该行时停下来等待命令，并且会输出断点的编号，也可以使用 `break func-name` 设置函数断点；你也可以使用 `break num p` 实现与下方 `condition` 相同的效果 |
+| `condition id p` | 设置编号为 `id` 的断点条件，只有满足表达式 `p` 条件时，程序运行到该断点时停下来等待命令 |
+| `ignore id num`  | 忽略前 `num` 次触发断点 |
+| `delete id`  | 删除指定编号的断点 |
+| `disable id`  | 禁用指定编号的断点 |
+| `enable id`  | 启用指定编号的断点 |
 | `list` | 列出源代码，接着上次的位置往下列，每次列 10 行 |
-| `list 行号` | 列出以第几行为中间行的源代码 |
-| `list 函数名` | 列出某个函数为中间行的源代码 |
-| `call [调用语句]` | 调用函数，并打印返回值 |
+| `list num` | 列出以第 `num` 行为中间行的源代码 |
+| `list func-name` | 列出某个函数为中间行的源代码 |
+| `call function` | 调用函数，并打印返回值 |
 
 ### 栈帧命令
 
@@ -150,14 +146,14 @@ Find the GDB manual and other documentation resources online at:
 
 | 命令 | 描述 |
 | ---- | ---- |
-| `print 表达式` | 打印表达式的值，通过表达式可以修改变量的值 |
-| `display 表达式` | 每次暂停时打印表达式的值，但不进入函数 |
-| `watch 变量` | 监视变量的值，当变量被写入时，会自动打印出来并暂停 |
-| `rwatch 变量` | 监视变量的值，当变量被读取时，会自动打印出来 |
-| `awatch 变量` | 当变量被修改或写入时，会自动打印出来并暂停 |
-| `set var 赋值语句` | 修改变量的值 |
+| `print p` | 打印表达式 `p` 的值，通过表达式可以修改变量的值 |
+| `display p` | 每次暂停时打印表达式 `p` 的值，但不进入函数 |
+| `watch var` | 监视变量 `var` 的值，当变量被写入时，会自动打印出来并暂停 |
+| `rwatch var` | 监视变量 `var` 的值，当变量被读取时，会自动打印出来 |
+| `awatch var` | 当变量 `var` 被修改或写入时，会自动打印出来并暂停 |
+| `set assignment` | 执行赋值语句 |
 
-`display` 和 `print` 指令都支持控制输出格式，其方法是在命令后紧跟 `/` 与格式字符，例如 `p/d test`（按照十进制打印变量 test 的值），支持的格式字符有：
+`display` 和 `print` 指令都支持控制输出格式，其方法是在命令后紧跟 `/` 与格式字符，例如 `p/d var`（按照十进制打印变量 `var` 的值），支持的格式字符有：
 
 | 格式字符 | 对应格式          |
 | ---- | ------------- |
@@ -189,15 +185,17 @@ Find the GDB manual and other documentation resources online at:
 | ---- | ---- |
 | `enable pretty-printer` | 启用 pretty-printer，可以以人类可读的方式打印 STL 容器 |
 | `checkpoint` | 创建检查点，可以回滚到检查点 |
-| `restart [num]` | 回滚到第 $num$ 个检查点 |
-| `save breakpoints [文件名]`| 保存断点到文件 |
-| `source 文件名` | 导入断点文件 |
+| `restart num` | 回滚到第 `num` 个检查点 |
+| `save breakpoints filename`| 保存断点到文件 |
+| `source filename` | 导入断点文件 |
 
 ---
 
 注意，gdb 调试时的命令大多都可以被简写为可以唯一确定的字母缩写，例如 `breakpoint` 简写为 `b`，`step` 简写为 `s`，`info args` 简写为 `i ar`。详见 `help` 命令。
 
 ## 参考资料与注释
+
+[^have-to-link-libm-in-gcc]: [Why do you have to link the math library in C?](https://stackoverflow.com/questions/1033898/why-do-you-have-to-link-the-math-library-in-c)
 
 [^address-sanitizer]: <https://clang.llvm.org/docs/AddressSanitizer.html>
 
