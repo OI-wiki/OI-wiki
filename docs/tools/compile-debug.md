@@ -19,7 +19,7 @@ author: xiaofu-15191
 -   `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
 
 ???+ note
-    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
+    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。\[^have-to-link-libm-in-gcc]
 
 ???+ note "如何开大栈空间？"
     在 Windows 下，可以使用编译选项 `-Wl,--stack=536870912` 将栈空间开大到 512 MB，其中等号后面的数字为字节数。
@@ -134,13 +134,13 @@ Find the GDB manual and other documentation resources online at:
 
 ### 栈帧命令
 
-| 命令 | 描述 |
-| ---- | ---- |
-| `info args` | 查看函数的参数 |
+| 命令          | 描述          |
+| ----------- | ----------- |
+| `info args` | 查看函数的参数     |
 | `backtrace` | 查看各级函数调用及参数 |
-| `frame` | 选择栈帧 |
-| `up` | 向上移动一级栈帧 |
-| `down` | 向下移动一级栈帧 |
+| `frame`     | 选择栈帧        |
+| `up`        | 向上移动一级栈帧    |
+| `down`      | 向下移动一级栈帧    |
 
 ### 变量命令
 
@@ -157,27 +157,26 @@ Find the GDB manual and other documentation resources online at:
 
 | 格式字符 | 对应格式          |
 | ---- | ------------- |
-| `d`    | 按十进制格式显示变量    |
-| `x`    | 按十六进制格式显示变量   |
-| `a`    | 按十六进制格式显示变量   |
-| `t`    | 按二进制格式显示变量    |
-| `c`    | 按字符格式显示变量     |
-| `f`    | 按浮点数格式显示变量    |
-| `u`    | 按十进制格式显示无符号整型 |
-| `o`    | 按八进制格式显示变量    |
-
+| `d`  | 按十进制格式显示变量    |
+| `x`  | 按十六进制格式显示变量   |
+| `a`  | 按十六进制格式显示变量   |
+| `t`  | 按二进制格式显示变量    |
+| `c`  | 按字符格式显示变量     |
+| `f`  | 按浮点数格式显示变量    |
+| `u`  | 按十进制格式显示无符号整型 |
+| `o`  | 按八进制格式显示变量    |
 
 ### 信息命令
 
-| 命令 | 描述 |
-| ---- | ---- |
-| `info breakpoints` | 列出所有断点 |
-| `info locals` | 列出当前栈帧的局部变量 |
-| `info args` | 列出当前栈帧的函数参数 |
-| `info threads` | 列出所有线程 |
-| `info program` | 显示程序的当前状态 |
-| `info registers` | 显示当前寄存器的值 |
-| `info frame` | 显示当前栈帧的信息 |
+| 命令                 | 描述          |
+| ------------------ | ----------- |
+| `info breakpoints` | 列出所有断点      |
+| `info locals`      | 列出当前栈帧的局部变量 |
+| `info args`        | 列出当前栈帧的函数参数 |
+| `info threads`     | 列出所有线程      |
+| `info program`     | 显示程序的当前状态   |
+| `info registers`   | 显示当前寄存器的值   |
+| `info frame`       | 显示当前栈帧的信息   |
 
 ### 其他命令
 
@@ -189,7 +188,7 @@ Find the GDB manual and other documentation resources online at:
 | `save breakpoints [filename]`| 保存断点到文件 |
 | `source [filename]` | 导入断点文件 |
 
----
+***
 
 注意，gdb 调试时的命令大多都可以被简写为可以唯一确定的字母缩写，例如 `breakpoint` 简写为 `b`，`step` 简写为 `s`，`info args` 简写为 `i ar`。详见 `help` 命令。
 
