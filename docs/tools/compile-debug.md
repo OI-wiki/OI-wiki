@@ -121,8 +121,8 @@ Find the GDB manual and other documentation resources online at:
 | `step` | 单步执行，遇到函数调用则进入函数 |
 | `finish`  | 运行到当前函数返回为止，然后停下来等待命令 |
 | `until [num]`  | 运行到指定行号 `[num]` 为止，然后停下来等待命令 |
-| `break [num]`  | 在第 `[num]` 行设置断点，程序运行到该行时停下来等待命令，并且会输出断点的编号，也可以使用 `break [func-name]` 设置函数断点；你也可以使用 `break [num] [p]` 实现与下方 `condition` 相同的效果 |
-| `condition [id] [p]` | 设置编号为 `[id]` 的断点条件，只有满足表达式 `[p]` 条件时，程序运行到该断点时停下来等待命令 |
+| `break [num]`  | 在第 `[num]` 行设置断点，程序运行到该行时停下来等待命令 |
+| `condition [id] [p]` | 设置编号为 `[id]` 的断点条件，只有满足表达式 `[p]` 条件时，断点被启用 |
 | `ignore [id] [num]`  | 忽略前 `[num]` 次触发断点 |
 | `delete [id]`  | 删除指定编号的断点 |
 | `disable [id]`  | 禁用指定编号的断点 |
@@ -131,6 +131,10 @@ Find the GDB manual and other documentation resources online at:
 | `list [num]` | 列出以第 `[num]` 行为中间行的源代码 |
 | `list [func-name]` | 列出某个函数为中间行的源代码 |
 | `call [function]` | 调用函数，并打印返回值 |
+
+`break [num]` 会输出断点的编号，也可以使用 `break [func-name]` 设置函数断点;
+
+你也可以使用 `break [num] [p]` 在设置断点时实现与 `condition [id] [p]` 接近的效果。
 
 ### 栈帧命令
 
