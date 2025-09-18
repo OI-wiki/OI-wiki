@@ -20,9 +20,9 @@ C/C++ Compile Run 是一个专注于 C/C++ 单文件编译与运行的插件。�
 
 快捷键：
 
--   <kbd>F6</kbd>- 在 VS Code 内置集成终端中运行
--   <kbd>F7</kbd>- 自定义参数编译并运行
--   <kbd>F8</kbd>- 在外部终端中运行
+-   <kbd>F6</kbd>- 编译并在 VS Code 内置集成终端中运行
+-   <kbd>F7</kbd>- 以自定义参数编译并以自定义参数在 VS Code 内置集成终端运行
+-   <kbd>F8</kbd>- 编译并在外部终端中运行
 
 ## 使用 Code Runner 扩展运行代码
 
