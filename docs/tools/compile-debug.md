@@ -24,7 +24,7 @@ author: xiaofu-15191
 ???+ note "如何开大栈空间？"
     在 Windows 下，可以使用编译选项 `-Wl,--stack=536870912` 将栈空间开大到 512 MB，其中等号后面的数字为字节数。
     
-    在 Unix 下，使用 `ulimit -s ${num}` 将 **当前终端** 的栈空间调为 `${num}` 字节。
+    在 Unix 下，使用 `ulimit -s ${[num]}` 将 **当前终端** 的栈空间调为 `${[num]}` 字节。
 
 ### 使用 GNU Make 的内置规则[^gnu-make-built-in-rules]
 
@@ -108,7 +108,7 @@ Find the GDB manual and other documentation resources online at:
 | ---- | ---- |
 | `help`  | 显示帮助信息 |
 | `quit`  | 退出 gdb |
-| `file filename` | 加载要调试的程序 `filename`|
+| `file [filename]` | 加载要调试的程序 `[filename]`|
 
 
 ### 运行控制命令
@@ -120,17 +120,17 @@ Find the GDB manual and other documentation resources online at:
 | `next`  | 单步执行，遇到函数调用则进入函数 |
 | `step` | 单步执行，遇到函数调用则进入函数 |
 | `finish`  | 运行到当前函数返回为止，然后停下来等待命令 |
-| `until num`  | 运行到指定行号 `num` 为止，然后停下来等待命令 |
-| `break num`  | 在第 `num` 行设置断点，程序运行到该行时停下来等待命令，并且会输出断点的编号，也可以使用 `break func-name` 设置函数断点；你也可以使用 `break num p` 实现与下方 `condition` 相同的效果 |
-| `condition id p` | 设置编号为 `id` 的断点条件，只有满足表达式 `p` 条件时，程序运行到该断点时停下来等待命令 |
-| `ignore id num`  | 忽略前 `num` 次触发断点 |
-| `delete id`  | 删除指定编号的断点 |
-| `disable id`  | 禁用指定编号的断点 |
-| `enable id`  | 启用指定编号的断点 |
+| `until [num]`  | 运行到指定行号 `[num]` 为止，然后停下来等待命令 |
+| `break [num]`  | 在第 `[num]` 行设置断点，程序运行到该行时停下来等待命令，并且会输出断点的编号，也可以使用 `break [func-name]` 设置函数断点；你也可以使用 `break [num] [p]` 实现与下方 `condition` 相同的效果 |
+| `condition [id] [p]` | 设置编号为 `[id]` 的断点条件，只有满足表达式 `[p]` 条件时，程序运行到该断点时停下来等待命令 |
+| `ignore [id] [num]`  | 忽略前 `[num]` 次触发断点 |
+| `delete [id]`  | 删除指定编号的断点 |
+| `disable [id]`  | 禁用指定编号的断点 |
+| `enable [id]`  | 启用指定编号的断点 |
 | `list` | 列出源代码，接着上次的位置往下列，每次列 10 行 |
-| `list num` | 列出以第 `num` 行为中间行的源代码 |
-| `list func-name` | 列出某个函数为中间行的源代码 |
-| `call function` | 调用函数，并打印返回值 |
+| `list [num]` | 列出以第 `[num]` 行为中间行的源代码 |
+| `list [func-name]` | 列出某个函数为中间行的源代码 |
+| `call [function]` | 调用函数，并打印返回值 |
 
 ### 栈帧命令
 
@@ -146,14 +146,14 @@ Find the GDB manual and other documentation resources online at:
 
 | 命令 | 描述 |
 | ---- | ---- |
-| `print p` | 打印表达式 `p` 的值，通过表达式可以修改变量的值 |
-| `display p` | 每次暂停时打印表达式 `p` 的值，但不进入函数 |
-| `watch var` | 监视变量 `var` 的值，当变量被写入时，会自动打印出来并暂停 |
-| `rwatch var` | 监视变量 `var` 的值，当变量被读取时，会自动打印出来 |
-| `awatch var` | 当变量 `var` 被修改或写入时，会自动打印出来并暂停 |
-| `set assignment` | 执行赋值语句 |
+| `print [p]` | 打印表达式 `[p]` 的值，通过表达式可以修改变量的值 |
+| `display [p]` | 每次暂停时打印表达式 `[p]` 的值，但不进入函数 |
+| `watch [var]` | 监视变量 `[var]` 的值，当变量被写入时，会自动打印出来并暂停 |
+| `rwatch [var]` | 监视变量 `[var]` 的值，当变量被读取时，会自动打印出来 |
+| `awatch [var]` | 当变量 `[var]` 被修改或写入时，会自动打印出来并暂停 |
+| `set [assignment]` | 执行赋值语句 |
 
-`display` 和 `print` 指令都支持控制输出格式，其方法是在命令后紧跟 `/` 与格式字符，例如 `p/d var`（按照十进制打印变量 `var` 的值），支持的格式字符有：
+`display` 和 `print` 指令都支持控制输出格式，其方法是在命令后紧跟 `/` 与格式字符，例如 `print/display [var]`（按照十进制打印变量 `[var]` 的值），支持的格式字符有：
 
 | 格式字符 | 对应格式          |
 | ---- | ------------- |
@@ -185,9 +185,9 @@ Find the GDB manual and other documentation resources online at:
 | ---- | ---- |
 | `enable pretty-printer` | 启用 pretty-printer，可以以人类可读的方式打印 STL 容器 |
 | `checkpoint` | 创建检查点，可以回滚到检查点 |
-| `restart num` | 回滚到第 `num` 个检查点 |
-| `save breakpoints filename`| 保存断点到文件 |
-| `source filename` | 导入断点文件 |
+| `restart [num]` | 回滚到第 `[num]` 个检查点 |
+| `save breakpoints [filename]`| 保存断点到文件 |
+| `source [filename]` | 导入断点文件 |
 
 ---
 
