@@ -1,6 +1,6 @@
 author: xiaofu-15191
 
-阅读本节之前，请先安装 GCC 和 gdb。参见 [OI-Wiki 编译器](compiler.md)。
+阅读本节之前，请先安装 GCC 和 gdb，具体方法参见 [编译器](compiler.md) 一文。
 
 ## 命令行使用 g++ 编译 cpp 文件
 
@@ -19,7 +19,7 @@ author: xiaofu-15191
 -   `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
 
 ???+ note
-    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。\[^have-to-link-libm-in-gcc]
+    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
 
 ???+ note "如何开大栈空间？"
     在 Windows 下，可以使用编译选项 `-Wl,--stack=536870912` 将栈空间开大到 512 MB，其中等号后面的数字为字节数。
