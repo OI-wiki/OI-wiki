@@ -1,6 +1,6 @@
 author: xiaofu-15191
 
-阅读本节之前，请先安装 GCC 和 gdb。参见 [OI-Wiki 编译器](compiler.md)。
+阅读本节之前，请先安装 GCC 和 gdb，具体方法参见 [编译器](compiler.md) 一文。
 
 ## 命令行使用 g++ 编译 cpp 文件
 
@@ -19,7 +19,7 @@ author: xiaofu-15191
 -   `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
 
 ???+ note
-    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。\[^have-to-link-libm-in-gcc]
+    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
 
 ???+ note "如何开大栈空间？"
     在 Windows 下，可以使用编译选项 `-Wl,--stack=536870912` 将栈空间开大到 512 MB，其中等号后面的数字为字节数。
@@ -112,26 +112,26 @@ Find the GDB manual and other documentation resources online at:
 
 ### 运行控制命令
 
-| 命令 | 描述 |
-| ---- | ---- |
-| `run`  | 运行程序，直到遇到断点或程序结束 |
-| `continue`  | 继续运行，直到遇到断点或程序结束 |
-| `next`  | 单步执行，遇到函数调用则进入函数 |
-| `step` | 单步执行，遇到函数调用则进入函数 |
-| `finish`  | 运行到当前函数返回为止，然后停下来等待命令 |
-| `until [num]`  | 运行到指定行号 `[num]` 为止，然后停下来等待命令 |
-| `break [num]`  | 在第 `[num]` 行设置断点，程序运行到该行时停下来等待命令 |
+| 命令                   | 描述                                         |
+| -------------------- | ------------------------------------------ |
+| `run`                | 运行程序，直到遇到断点或程序结束                           |
+| `continue`           | 继续运行，直到遇到断点或程序结束                           |
+| `next`               | 单步执行，遇到函数调用则进入函数                           |
+| `step`               | 单步执行，遇到函数调用则进入函数                           |
+| `finish`             | 运行到当前函数返回为止，然后停下来等待命令                      |
+| `until [num]`        | 运行到指定行号 `[num]` 为止，然后停下来等待命令               |
+| `break [num]`        | 在第 `[num]` 行设置断点，程序运行到该行时停下来等待命令           |
 | `condition [id] [p]` | 设置编号为 `[id]` 的断点条件，只有满足表达式 `[p]` 条件时，断点被启用 |
-| `ignore [id] [num]`  | 忽略前 `[num]` 次触发断点 |
-| `delete [id]`  | 删除指定编号的断点 |
-| `disable [id]`  | 禁用指定编号的断点 |
-| `enable [id]`  | 启用指定编号的断点 |
-| `list` | 列出源代码，接着上次的位置往下列，每次列 10 行 |
-| `list [num]` | 列出以第 `[num]` 行为中间行的源代码 |
-| `list [func-name]` | 列出某个函数为中间行的源代码 |
-| `call [function]` | 调用函数，并打印返回值 |
+| `ignore [id] [num]`  | 忽略前 `[num]` 次触发断点                          |
+| `delete [id]`        | 删除指定编号的断点                                  |
+| `disable [id]`       | 禁用指定编号的断点                                  |
+| `enable [id]`        | 启用指定编号的断点                                  |
+| `list`               | 列出源代码，接着上次的位置往下列，每次列 10 行                  |
+| `list [num]`         | 列出以第 `[num]` 行为中间行的源代码                     |
+| `list [func-name]`   | 列出某个函数为中间行的源代码                             |
+| `call [function]`    | 调用函数，并打印返回值                                |
 
-`break [num]` 会输出断点的编号，也可以使用 `break [func-name]` 设置函数断点;
+`break [num]` 会输出断点的编号，也可以使用 `break [func-name]` 设置函数断点；
 
 你也可以使用 `break [num] [p]` 在设置断点时实现与 `condition [id] [p]` 接近的效果。
 
