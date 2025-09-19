@@ -170,7 +170,7 @@
 
 ## 模意义下开方
 
-最后，本文讨论 $k$ 次方根的求法．相较于 $k=2$ 的情形，有 [很多高效算法](./quad-residue.md#模意义下开平方) 可以用于模意义下开平方运算．对于一般的 $k$，相对高效的算法只有 Adleman–Manders–Miller 算法，它是 Tonelli–Shanks 算法在 $k > 2$ 情形的推广．
+最后，本文讨论 $k$ 次方根的求法．相较于 $k=2$ 的情形，有 [很多高效算法](./quad-residue.md#模意义下开平方) 可以用于模意义下开平方运算．对于一般的 $k$，相对高效的算法只有 Adleman–Manders–Miller 算法，它可以用于求解素数模下开任意次方问题；结合 Newton–Hensel 提升算法和中国剩余定理，就可以完全解决任意模数下开方问题．
 
 ### 基于 BSGS 算法
 
@@ -182,7 +182,7 @@ $$
 y \equiv \operatorname{ind}_g a \pmod{\varphi(m)}.
 $$
 
-其中，$\operatorname{ind}_g a$ 可以通过 [BSGS 算法](./discrete-logarithm.md#大步小步算法) 求出，而 [线性同余方程](./linear-equation.md) 的全体解容易求出。由此，就可以得到 $a$ 的全部 $k$ 次方根 $x\equiv g^y\pmod m$。
+其中，$\operatorname{ind}_g a$ 可以通过 [BSGS 算法](./discrete-logarithm.md#大步小步算法) 求出，而 [线性同余方程](./linear-equation.md) 的全体解容易求出．由此，就可以得到 $a$ 的全部 $k$ 次方根 $x\equiv g^y\pmod m$．
 
 除此之外，同样是设 $x\equiv g^y\pmod m$，还可以通过变形
 
@@ -190,11 +190,11 @@ $$
 x^k \equiv (g^k)^y \equiv a \pmod m
 $$
 
-转化为求底数为 $g^k$ 时 $a$ 的离散对数。这同样可以通过 BSGS 算法找到一组特解。它的通解可以通过前文的解的表达式求出。
+转化为求底数为 $g^k$ 时 $a$ 的离散对数．这同样可以通过 BSGS 算法找到一组特解．它的通解可以通过前文的解的表达式求出．
 
-无论采用哪种思路，原根已知时，该算法求出单个解的复杂度都是 $O(\sqrt{m})$。原根未知时，可以在 $O(m^{1/4})$ 时间内将它求出。
+无论采用哪种思路，原根已知时，该算法求出单个解的复杂度都是 $O(\sqrt{m})$．原根未知时，可以在 $O(m^{1/4})$ 时间内将原根求出．
 
-下面的代码实现的找原根、离散对数解和原问题所有解的过程。
+下面的代码实现的找原根、离散对数解和原问题所有解的过程．
 
 ??? example "参考代码"
     ```cpp
@@ -266,13 +266,15 @@ $$
     }
     ```
 
-利用前文的分析，这一算法同样适用于模 $2^e$ 的情形。
+利用前文的分析，这一算法同样适用于模 $2^e$ 的情形．
 
 ### Adleman–Manders–Miller 算法
 
+Adleman–Manders–Miller 算法将 [Tonelli–Shanks 算法](./quad-residue.md#tonellishanks-算法) 推广到 $k > 2$ 次方根的情形．
+
 ### 一般模数的情形
 
-## 参考资料
+## 参考资料与注释
 
 -   冯克勤．初等数论及其应用．
 -   [Root of unity modulo n - Wikipedia](https://en.wikipedia.org/wiki/Root_of_unity_modulo_n)
