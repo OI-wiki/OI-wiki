@@ -4,8 +4,6 @@ author: GoodCoder666, Ir1d, H-J-Granger, NachtgeistW, StudyingFather, Enter-tain
 
 本章主要介绍了在 Windows 系统下使用 Windows Subsystem for Linux 运行 Linux 环境的方法。
 
-***
-
 ## 引言[^ref1]
 
 现在大部分学校的竞赛练习环境都是构建在 Windows 系操作系统上，但是在 NOI 系列赛中，已经用上了 NOI Linux 这个 Ubuntu 操作系统的修改版。
@@ -60,8 +58,6 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
     WSL 可让开发人员按原样运行 GNU/Linux 环境 - 包括大多数命令行工具、实用工具和应用程序 - 且不会产生虚拟机开销。
     
     WSL 仅在 64 位 Windows 10 版本 1607 及以上、Windows 11 和 Windows Server 2019/2022 中可用。
-
-***
 
 ## 启用 WSL[^ref3]
 
@@ -159,25 +155,33 @@ wsl --set-default-version 2
 
 第一次运行 Ubuntu，需要完成初始化。
 
+```console
     Installing, this may take a few minutes...
+```
 
 等待一两分钟时间，系统会提示创建新的用户帐户。
 
+```console
     Please create a default UNIX user account. The username does not need to match your Windows username.
     For more information visit: https://aka.ms/wslusers
     Enter new UNIX username: chtholly
+```
 
 输入完用户名以后会提示输入密码。在 Linux 中，输入密码时屏幕上不显示文字属于正常现象。
 
+```console
     Enter new UNIX password:
+```
 
 设置好帐户名和密码后，WSL 就安装完成了。
 
+```console
     Installation successful!
     To run a command as administrator (user "root"), use "sudo <command>".
     See "man sudo_root" for details.
 
     chtholly@SENIORIOUS:~$
+```
 
 ## 基础配置
 
