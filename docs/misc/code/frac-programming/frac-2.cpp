@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
 using namespace std;
 
 constexpr int MAXN = 250 + 10;
@@ -12,8 +12,7 @@ double f[MAXW];
 
 bool check(double mid) {
   double s = 0;
-  for (int i = 1; i <= W; i++)
-    f[i] = -1e9;
+  for (int i = 1; i <= W; i++) f[i] = -1e9;
   for (int i = 1; i <= n; i++)
     for (int j = W; j >= 0; j--) {
       int k = min(W, j + w[i]);

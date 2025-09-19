@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
 #include <functional>
 using namespace std;
 
@@ -12,12 +12,11 @@ double c[N];
 
 bool check(double mid) {
   double s = 0;
-  for (int i = 1; i <= n; i++)
-    c[i] = a[i] - b[i] * mid;
+  for (int i = 1; i <= n; i++) c[i] = a[i] - b[i] * mid;
   // 将权值从大到小排序
   sort(c + 1, c + n + 1, greater<double>());
-  for (int i = 1; i <= k; ++i) // 选择前 k 个物品
-      s += c[i];
+  for (int i = 1; i <= k; ++i)  // 选择前 k 个物品
+    s += c[i];
   return s >= 0;
 }
 
