@@ -179,7 +179,7 @@ wsl --set-default-version 2
     Installation successful!
     To run a command as administrator (user "root"), use "sudo <command>".
     See "man sudo_root" for details.
-
+    
     chtholly@SENIORIOUS:~$
 ```
 

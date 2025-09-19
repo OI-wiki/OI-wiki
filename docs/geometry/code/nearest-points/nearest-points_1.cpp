@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <cstdio>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 const int N = 500000 + 10;
@@ -15,35 +15,34 @@ point a[N];
 long long mindist;
 
 void upd_ans(const point& a, const point& b) {
-  long long dist = 1LL * (a.x - b.x) * (a.x - b.x) + 1LL * (a.y - b.y) * (a.y - b.y);
+  long long dist =
+      1LL * (a.x - b.x) * (a.x - b.x) + 1LL * (a.y - b.y) * (a.y - b.y);
   if (dist < mindist) {
     mindist = dist;
-    A = a.id; B = b.id;
+    A = a.id;
+    B = b.id;
   }
 }
 
 void DC(int l, int r) {
-  if (l + 1 == r)
-    return;
+  if (l + 1 == r) return;
 
   int m = (l + r) >> 1;
   int midx = a[m].x;
-  DC(l, m); DC(m, r);
-  inplace_merge(a + l, a + m, a + r, [&](point a, point b){
-    return a.y < b.y;
-  });
+  DC(l, m);
+  DC(m, r);
+  inplace_merge(a + l, a + m, a + r,
+                [&](point a, point b) { return a.y < b.y; });
 
   vector<point> t;
   for (int i = l; i < r; i++)
     // 距离比较时注意平方，并且比较时不取等号
-    if (1LL * (a[i].x - midx) * (a[i].x - midx) < mindist)
-        t.push_back(a[i]);
+    if (1LL * (a[i].x - midx) * (a[i].x - midx) < mindist) t.push_back(a[i]);
   for (int i = 0; i < t.size(); i++)
     for (int j = i + 1; j < t.size(); j++) {
-        if (1LL * (t[i].y - t[j].y) * (t[i].y - t[j].y) >= mindist)
-          break;
-        upd_ans(t[i], t[j]);
-      }
+      if (1LL * (t[i].y - t[j].y) * (t[i].y - t[j].y) >= mindist) break;
+      upd_ans(t[i], t[j]);
+    }
 }
 
 void Solve() {
@@ -52,9 +51,7 @@ void Solve() {
     scanf("%d %d", &a[i].x, &a[i].y);
     a[i].id = i;
   }
-  sort(a, a + n, [&](point x, point y){
-    return x.x < y.x;
-  });
+  sort(a, a + n, [&](point x, point y) { return x.x < y.x; });
   mindist = 9'000'000'000'000'000'000LL;
   DC(0, n);
   printf("%d %d\n", A, B);

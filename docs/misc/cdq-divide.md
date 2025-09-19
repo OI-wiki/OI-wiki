@@ -241,7 +241,7 @@ CDQ 分治的递归树如下所示。
 ??? note "示例代码"
     ```cpp
     --8<-- "docs/misc/code/cdq-divide/cdq-divide_5.cpp"
-     ```
+    ```
 
 ## 参考资料与注释
 
