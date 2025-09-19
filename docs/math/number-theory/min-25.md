@@ -138,7 +138,7 @@ $$
     \end{cases}
     $$
     
-    求 $\displaystyle \sum_{i = 1}^{n} \f(i)$。
+    求 $\displaystyle \sum_{i = 1}^{n} f(i)$。
 
 ??? note "解答"
     易知 $f(p) = p - 1 + 2[p = 2]$。则按照筛 $\varphi$ 的方法筛，对 $2$ 讨论一下即可。
