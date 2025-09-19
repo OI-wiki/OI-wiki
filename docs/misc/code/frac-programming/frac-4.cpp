@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <cstdio>
-#include <vector>
 #include <tuple>
+#include <vector>
 using namespace std;
 
 constexpr int N = 3000 + 10;
@@ -19,7 +19,9 @@ bool check(double mid) {  // 如果有负环返回 true
     flag = false;
     for (int u = 0; u <= n; ++u)
       for (auto vw : g[u]) {
-        int v; double w; tie(v, w) = vw;
+        int v;
+        double w;
+        tie(v, w) = vw;
         if (dis[v] > dis[u] + w - mid) {
           dis[v] = dis[u] + w - mid;
           flag = true;
