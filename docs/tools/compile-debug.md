@@ -191,10 +191,8 @@ Find the GDB manual and other documentation resources online at:
 | `save breakpoints [filename]` | 保存断点到文件                               |
 | `source [filename]`           | 导入断点文件                                |
 
-??? \+tip
-    
-
-注意，gdb 调试时的命令大多都可以被简写为可以唯一确定的字母缩写，例如 `breakpoint` 简写为 `b`，`step` 简写为 `s`，`info args` 简写为 `i ar`。详见 `help` 命令。
+???+ tip "提示"
+    gdb 调试时的命令大多都可以被简写为可以唯一确定的字母缩写，例如 `breakpoint` 简写为 `b`，`step` 简写为 `s`，`info args` 简写为 `i ar`。详见 `help` 命令。
 
 ## 参考资料与注释
 
