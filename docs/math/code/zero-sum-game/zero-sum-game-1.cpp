@@ -29,5 +29,6 @@ int main() {
   }
   ans[n - 1] = *std::max_element(a.begin(), a.end());
   for (auto x : ans) std::cout << x << ' ';
+  std::cout << std::endl;
   return 0;
 }
