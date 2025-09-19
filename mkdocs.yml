@@ -263,6 +263,7 @@ nav:
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
       - Pell 方程: math/number-theory/pell-equation.md
+      - 约数个数定理 & 约数和定理: math/number-theory/divisor-count-and-sum.md
     - 多项式与生成函数:
       - 多项式与生成函数简介: math/poly/intro.md
       - 代数基本定理: math/poly/fundamental.md
