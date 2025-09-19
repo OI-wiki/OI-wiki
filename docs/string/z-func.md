@@ -164,6 +164,4 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 -   [Codeforces - Prefixes and Suffixes](http://codeforces.com/problemset/problem/432/D)
 -   [Leetcode 2223 - Sum of Scores of Built Strings](https://leetcode.com/problems/sum-of-scores-of-built-strings/)
 
-***
-
 **本页面主要译自博文 [Z-функция строки и её вычисление](http://e-maxx.ru/algo/z_function) 与其英文翻译版 [Z-function and its calculation](https://cp-algorithms.com/string/z-function.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

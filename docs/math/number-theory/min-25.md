@@ -26,8 +26,6 @@ author: Marcythm, Xeonacid, CSPNOIP
 
 观察 $F_{k}(n)$ 的定义，可以发现答案即为 $F_{1}(n) + f(1) = F_{1}(n) + 1$。
 
-***
-
 考虑如何求出 $F_{k}(n)$。通过枚举每个 $i$ 的最小质因子及其次数可以得到递推式：
 
 $$
@@ -48,15 +46,14 @@ $$
 1.  直接按照递推式计算。
 2.  从大到小枚举 $p$ 转移，仅当 $p^{2} < n$ 时转移增加值不为零，故按照递推式后缀和优化即可。
 
-***
-
 现在考虑如何计算 $F_{\mathrm{prime}}{(n)}$。  
 观察求 $F_{k}(n)$ 的过程，容易发现 $F_{\mathrm{prime}}$ 有且仅有 $1, 2, \dots, \left\lfloor\sqrt{n}\right\rfloor, n / \sqrt{n}, \dots, n / 2, n$ 这 $O(\sqrt{n})$ 处的点值是有用的。  
 一般情况下，$f(p)$ 是一个关于 $p$ 的低次多项式，可以表示为 $f(p) = \sum a_{i} p^{c_{i}}$。  
 那么对于每个 $p^{c_{i}}$，其对 $F_{\mathrm{prime}}(n)$ 的贡献即为 $a_{i} \sum_{2 \le p \le n} p^{c_{i}}$。  
 分开考虑每个 $p^{c_{i}}$ 的贡献，问题就转变为了：给定 $n, s, g(p) = p^{s}$，对所有的 $m = n / i$，求 $\sum_{p \le m} g(p)$。
 
-> Notice：$g(p) = p^{s}$ 是完全积性函数！
+???+ tip "注意"
+    $g(p) = p^{s}$ 是完全积性函数！
 
 于是设 $G_{k}(n) := \sum_{i = 2}^{n} \left[p_{k} < \operatorname{lpf}(i) \lor \operatorname{isprime}(i)\right] g(i)$，即埃筛第 $k$ 轮筛完后剩下的数的 $g$ 值之和。  
 对于一个合数 $x \le n$，必定有 $\operatorname{lpf}(x) \le \sqrt{x} \le \sqrt{n}$。设 $p_{\ell(n)}$ 为不大于 $\sqrt{n}$ 的最大质数，则 $\sum_{2\le p\le n}g(p) = G_{\ell(n)}(n)$，即在埃筛进行 $\ell$ 轮之后剩下的均为质数。
@@ -72,8 +69,6 @@ $$
 $$
 G_{k}(n) = G_{k - 1}(n) - \left[p_{k}^{2} \le n\right] g(p_{k}) (G_{k - 1}(n / p_{k}) - G_{k - 1}(p_{k - 1}))
 $$
-
-***
 
 ## 复杂度分析
 
@@ -124,38 +119,31 @@ $$
 
 ## 例题
 
-### 求莫比乌斯函数的前缀和
+???+ example "[Luogu P4213【模板】杜教筛](https://www.luogu.com.cn/problem/P4213)"
+    求 $\displaystyle \sum_{i = 1}^{n} \varphi(i)$ 和 $\displaystyle \sum_{i = 1}^{n} \mu(i)$。
 
-求 $\displaystyle \sum_{i = 1}^{n} \mu(i)$。
+??? note "解答"
+    对于求 $\varphi(i)$ 的前缀和，首先易知 $f(p) = p - 1$。对于 $f(p)$ 的一次项 $(p)$，有 $g(p) = p, G_{0}(n) = \sum_{i = 2}^{n} g(i) = \frac{(n + 2) (n - 1)}{2}$；对于 $f(p)$ 的常数项 $(-1)$，有 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$。筛两次加起来即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值。
+    
+    对于求 $\mu(i)$ 的前缀和，易知 $f(p) = -1$。则 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$。直接筛即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值。
 
-易知 $f(p) = -1$。则 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$。  
-直接筛即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值。
+???+ example "[LOJ 6053 简单的函数](https://loj.ac/p/6053)"
+    给定 $f(n)$：
+    
+    $$
+    f(n) = \begin{cases}
+        1 & n = 1 \\
+        p \operatorname{xor} c & n = p^{c} \\
+        f(a)f(b) & n = ab \land a \perp b
+    \end{cases}
+    $$
+    
+    求 $\displaystyle \sum_{i = 1}^{n} \f(i)$。
 
-### 求欧拉函数的前缀和
+??? note "解答"
+    易知 $f(p) = p - 1 + 2[p = 2]$。则按照筛 $\varphi$ 的方法筛，对 $2$ 讨论一下即可。
 
-求 $\displaystyle \sum_{i = 1}^{n} \varphi(i)$。
-
-首先易知 $f(p) = p - 1$。  
-对于 $f(p)$ 的一次项 $(p)$，有 $g(p) = p, G_{0}(n) = \sum_{i = 2}^{n} g(i) = \frac{(n + 2) (n - 1)}{2}$；  
-对于 $f(p)$ 的常数项 $(-1)$，有 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$。  
-筛两次加起来即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值。
-
-### [「LOJ #6053」简单的函数](https://loj.ac/problem/6053)
-
-给定 $f(n)$：
-
-$$
-f(n) = \begin{cases}
-    1 & n = 1 \\
-    p \operatorname{xor} c & n = p^{c} \\
-    f(a)f(b) & n = ab \land a \perp b
-\end{cases}
-$$
-
-易知 $f(p) = p - 1 + 2[p = 2]$。则按照筛 $\varphi$ 的方法筛，对 $2$ 讨论一下即可。  
-此处给出一种 C++ 实现：
-
-???+ 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/math/code/min-25/min-25_1.cpp"
     ```
