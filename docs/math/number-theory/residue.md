@@ -270,7 +270,9 @@ $$
 
 ### Adleman–Manders–Miller 算法
 
-Adleman–Manders–Miller 算法将 [Tonelli–Shanks 算法](./quad-residue.md#tonellishanks-算法) 推广到 $k > 2$ 次方根的情形．
+Adleman–Manders–Miller 算法将 [Tonelli–Shanks 算法](./quad-residue.md#tonellishanks-算法) 推广到 $k > 2$ 次方根的情形．它可以用于素数模下开方运算，即求解 $a$ 模 $p$ 的 $k$ 次方根．
+
+首先做一些转化，并处理边界情形．利用 [费马小定理](./fermat.md#费马小定理)，可以将指数 $k$ 对 $(p-1)$ 取模，将数 $a$ 对 $p$ 取模．当 $k=0$ 时，
 
 ### 一般模数的情形
 
