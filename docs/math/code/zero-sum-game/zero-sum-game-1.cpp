@@ -13,7 +13,7 @@ int main() {
     tmp[i] = std::max(tmp[i], tmp[i + 1]);
   }
   for (int l = n / 2 - 1, r = (n - 1) / 2, ma = 0; l >= 0; --l, ++r) {
-    ma = std::max({ ma, tmp[l], tmp[r] });
+    ma = std::max({ma, tmp[l], tmp[r]});
     ans[r - l] = ma;
   }
   tmp = a;
@@ -24,7 +24,7 @@ int main() {
     tmp[i] = std::max(tmp[i], tmp[i + 1]);
   }
   for (int l = (n - 3) / 2, r = n / 2 - 1, ma = 0; l >= 0; --l, ++r) {
-    ma = std::max({ ma, tmp[l], tmp[r] });
+    ma = std::max({ma, tmp[l], tmp[r]});
     ans[r - l] = ma;
   }
   ans[n - 1] = *std::max_element(a.begin(), a.end());
