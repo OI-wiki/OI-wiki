@@ -63,7 +63,7 @@ $$
 
 由此，每个正方形中最多有 $4$ 个点，矩形中最多有 $8$ 个点，去掉 $p_i$ 本身，$\max(C(p_i))=7$。
 
-??? example "参考实现"
+???+ example "参考实现"
     ```cpp
     --8<-- "docs/geometry/code/nearest-points/nearest-points_1.cpp"
     ```
