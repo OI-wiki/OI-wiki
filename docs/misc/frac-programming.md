@@ -97,4 +97,6 @@ Dinkelbach 算法[^note1]的大概思想是每次用上一轮的答案当做新�
 -   [洛谷 P2868 \[USACO07DEC\] Sightseeing Cows G](https://www.luogu.com.cn/problem/P2868)
 -   [AtCoder Beginner Contest 324 F - Beautiful Path](https://atcoder.jp/contests/abc324/tasks/abc324_f)
 
+## 参考资料与注释
+
 [^note1]: [Dinkelbach, Werner. "On nonlinear fractional programming." Management science 13.7 (1967): 492-498.](https://doi.org/10.1287/mnsc.13.7.492)
