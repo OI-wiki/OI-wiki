@@ -1,3 +1,6 @@
+???+ note "前置知识"
+    前缀和。
+
 ???+ warning "提醒"
     本页面要介绍的不是 [**基数排序**](./radix-sort.md)。
 
@@ -18,8 +21,6 @@
 3.  利用出现次数的前缀和，从右至左计算每个数的排名。
 
 ### 计算前缀和的原因
-
-*阅读本章内容只需要了解前缀和概念即可*
 
 直接将 $C$ 中正数对应的元素依次放入 $A$ 中不能解决元素重复的情形。
 
@@ -51,14 +52,14 @@ $$
 2 & \textbf{Output. } \text{Array }A\text{ after sorting in nondecreasing order stably.} \\
 3 & \textbf{Method. }  \\
 4 & \textbf{for }i\gets0\textbf{ to }w\\
-5 & \qquad cnt[i]\gets0\\
+5 & \qquad \textit{cnt}[i]\gets0\\
 6 & \textbf{for }i\gets1\textbf{ to }n\\
-7 & \qquad cnt[A[i]]\gets cnt[A[i]]+1\\
+7 & \qquad \textit{cnt}[A[i]]\gets\textit{cnt}[A[i]]+1\\
 8 & \textbf{for }i\gets1\textbf{ to }w\\
-9 & \qquad cnt[i]\gets cnt[i]+cnt[i-1]\\
+9 & \qquad \textit{cnt}[i]\gets \textit{cnt}[i]+\textit{cnt}[i-1]\\
 10 & \textbf{for }i\gets n\textbf{ downto }1\\
-11 & \qquad B[cnt[A[i]]]\gets A[i]\\
-12 & \qquad cnt[A[i]]\gets cnt[A[i]]-1\\
+11 & \qquad B[\textit{cnt}[A[i]]]\gets A[i]\\
+12 & \qquad \textit{cnt}[A[i]]\gets \textit{cnt}[A[i]]-1\\
 13 & \textbf{return } B
 \end{array}
 $$
