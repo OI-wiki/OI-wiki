@@ -229,7 +229,7 @@ $
 
 下一个菜单中选择 `zh_CN.UTF-8` 回车。
 
-<!-- scripts.linter.preprocess.fix_details on -->
+<!-- scripts.linter.preprocess.fix_details off -->
 
 ```text
     Default locale for the system environment:
@@ -242,7 +242,7 @@ $
             <Ok>            <Cancel>
 ```
 
-<!-- scripts.linter.preprocess.fix_details off -->
+<!-- scripts.linter.preprocess.fix_details on -->
 
 之后关闭 WSL 并重启，系统就会变成中文。
 

@@ -48,17 +48,17 @@ class TestStepSkipBlocks(unittest.TestCase):
         """Test with single skip block."""
         content = (
             "before\n"
-            f"<!-- {self.__module__}.dummy on -->\n"
-            "skip this\n"
             f"<!-- {self.__module__}.dummy off -->\n"
+            "skip this\n"
+            f"<!-- {self.__module__}.dummy on -->\n"
             "after"
         )
         result = self.dummy_func(content)
         expected = (
             "before\n"
-            "<!-- test.linter.test_decorators.dummy on -->\n"
-            "skip this\n"
             "<!-- test.linter.test_decorators.dummy off -->\n"
+            "skip this\n"
+            "<!-- test.linter.test_decorators.dummy on -->\n"
             "after\n"
         )
         self.assertEqual(result, expected)
@@ -67,52 +67,33 @@ class TestStepSkipBlocks(unittest.TestCase):
         """Test with nested skip blocks."""
         content = (
             "before\n"
-            f"<!-- {self.__module__}.dummy on -->\n"
+            f"<!-- {self.__module__}.dummy off -->\n"
             "outer\n"
-            f"<!-- {self.__module__}.dummy on -->\n"
+            f"<!-- {self.__module__}.dummy off -->\n"
             "inner\n"
-            f"<!-- {self.__module__}.dummy off -->\n"
+            f"<!-- {self.__module__}.dummy on -->\n"
             "outer again\n"
-            f"<!-- {self.__module__}.dummy off -->\n"
+            f"<!-- {self.__module__}.dummy on -->\n"
             "after"
         )
         result = self.dummy_func(content)
         expected = (
             "before\n"
-            "<!-- test.linter.test_decorators.dummy on -->\n"
+            "<!-- test.linter.test_decorators.dummy off -->\n"
             "outer\n"
-            "<!-- test.linter.test_decorators.dummy on -->\n"
+            "<!-- test.linter.test_decorators.dummy off -->\n"
             "inner\n"
-            "<!-- test.linter.test_decorators.dummy off -->\n"
+            "<!-- test.linter.test_decorators.dummy on -->\n"
             "outer again\n"
-            "<!-- test.linter.test_decorators.dummy off -->\n"
-            "after\n"
-        )
-        self.assertEqual(result, expected)
-
-    def test_global_skip_blocks(self):
-        """Test global skip blocks (scripts.linter.*)."""
-        content = (
-            "before\n"
-            "<!-- scripts.linter.* on -->\n"
-            "skip this\n"
-            "<!-- scripts.linter.* off -->\n"
-            "after"
-        )
-        result = self.dummy_func(content)
-        expected = (
-            "before\n"
-            "<!-- scripts.linter.* on -->\n"
-            "skip this\n"
-            "<!-- scripts.linter.* off -->\n"
+            "<!-- test.linter.test_decorators.dummy on -->\n"
             "after\n"
         )
         self.assertEqual(result, expected)
 
     @parameterized.expand([
-        ("unclosed_skip_block", "before\n<!-- test.linter.test_decorators.dummy on -->\nskip this\n",
+        ("unclosed_skip_block", "before\n<!-- test.linter.test_decorators.dummy off -->\nskip this\n",
          "unclosed skip block"),
-        ("unopened_skip_block", "before\n<!-- test.linter.test_decorators.dummy off -->\nafter",
+        ("unopened_skip_block", "before\n<!-- test.linter.test_decorators.dummy on -->\nafter",
          "unopened skip block"),
     ])
     def test_skip_block_error_handling(self, name, content, expected_error):
@@ -158,9 +139,9 @@ class TestStepTabHandling(unittest.TestCase):
         """Test that tabs in skip blocks are preserved."""
         content = (
             "before\n"
-            "<!-- test.linter.test_decorators.dummy on -->\n"
-            "line\twith\ttabs\n"
             "<!-- test.linter.test_decorators.dummy off -->\n"
+            "line\twith\ttabs\n"
+            "<!-- test.linter.test_decorators.dummy on -->\n"
             "after"
         )
         result = self.dummy_func(content)
@@ -193,17 +174,17 @@ class TestStepParameterHandling(unittest.TestCase):
             return content.replace("old", "new")
         content = (
             "old content\n"
-            f"<!-- {self.__module__}.dummy_modify on -->\n"
-            "old in skip\n"
             f"<!-- {self.__module__}.dummy_modify off -->\n"
+            "old in skip\n"
+            f"<!-- {self.__module__}.dummy_modify on -->\n"
             "old after"
         )
         result = dummy_modify(content)
         expected = (
             "new content\n"
-            "<!-- test.linter.test_decorators.dummy_modify on -->\n"
-            "old in skip\n"
             "<!-- test.linter.test_decorators.dummy_modify off -->\n"
+            "old in skip\n"
+            "<!-- test.linter.test_decorators.dummy_modify on -->\n"
             "new after\n"
         )
         self.assertEqual(result, expected)
