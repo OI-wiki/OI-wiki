@@ -110,13 +110,13 @@ $$
 
 简单来说，我们分别进行下面的计算：
 
-1. 用减治法（decrease and conquer）计算 $M(x)$；
-2. 用 Bluestein 算法计算 $M’(1), \dots, M’(q^{n - 1})$；
-3. 用 Bluestein 算法计算 $C\left(q^{-1}\right), \dots, C\left(q^{-n}\right)$；
-4. 用一次多项式乘法计算 $f(x)$。
+1.  用减治法（decrease and conquer）计算 $M(x)$；
+2.  用 Bluestein 算法计算 $M’(1), \dots, M’(q^{n - 1})$；
+3.  用 Bluestein 算法计算 $C\left(q^{-1}\right), \dots, C\left(q^{-n}\right)$；
+4.  用一次多项式乘法计算 $f(x)$。
 
 其中每一步的时间复杂度都等于两个次数小于等于 $n$ 的多项式相乘的时间复杂度。
 
 ## 参考文献
 
-1. [Bostan, A. (2010). Fast algorithms for polynomials and matrices. JNCF 2010. Algorithms Project, INRIA. ](https://specfun.inria.fr/bostan/publications/exposeJNCF.pdf)
+1.  [Bostan, A. (2010). Fast algorithms for polynomials and matrices. JNCF 2010. Algorithms Project, INRIA.](https://specfun.inria.fr/bostan/publications/exposeJNCF.pdf)
