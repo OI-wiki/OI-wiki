@@ -26,9 +26,9 @@ The linter uses a decorator-based pipeline system:
 The linter supports skip blocks to exclude certain sections from processing:
 
 ```markdown
-<!-- module.function_name off -->
+<!-- scripts.linter.(preprocess|postprocess).function_name off -->
 Content that should be skipped during linting
-<!-- module.function_name on -->
+<!-- scripts.linter.(preprocess|postprocess).function_name on -->
 ```
 
 ## Components
@@ -55,7 +55,7 @@ Preprocessing functions:
   - Corrects inconsistent indentation in nested structures
   - Preserves blank line indentation based on surrounding content
   - Uses bidirectional scanning to determine proper indentation levels
-- **`fix_punctuations()`**: Fixes punctuation issues in Markdown content
+- **`fix_punctuations()`**: Fix punctuation issues after inline math formula
 
 ### postprocess.py
 
