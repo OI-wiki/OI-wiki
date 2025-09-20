@@ -411,7 +411,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 
 #### 整数转换
 
-<!-- preprocess.skipdetails on -->
+<!-- scripts.linter.preprocess.fix_details off -->
 
 -   如果目标类型为位宽为 $x$ 的无符号整数类型，则转换结果是原值 $\bmod 2^x$ 后的结果。
 
@@ -440,7 +440,7 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
 
 -   如果源类型是 `bool`，则 `false` 转为对应类型的 0，`true` 转为对应类型的 1。
 
-<!-- preprocess.skipdetails off -->
+<!-- scripts.linter.preprocess.fix_details on -->
 
 #### 浮点转换
 
