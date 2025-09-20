@@ -63,81 +63,9 @@ $$
 
 由此，每个正方形中最多有 $4$ 个点，矩形中最多有 $8$ 个点，去掉 $p_i$ 本身，$\max(C(p_i))=7$。
 
-## 实现
-
-我们使用一个结构体来存储点，并定义用于排序的函数对象：
-
-???+ note "结构体定义"
+???+ example "参考实现"
     ```cpp
-    struct pt {
-      int x, y, id;
-    };
-    
-    struct cmp_x {
-      bool operator()(const pt& a, const pt& b) const {
-        return a.x < b.x || (a.x == b.x && a.y < b.y);
-      }
-    };
-    
-    struct cmp_y {
-      bool operator()(const pt& a, const pt& b) const { return a.y < b.y; }
-    };
-    
-    int n;
-    vector<pt> a;
-    ```
-
-为了方便实现递归，我们引入 `upd_ans()` 辅助函数来计算两点间距离并尝试更新答案：
-
-???+ note "答案更新函数"
-    ```cpp
-    double mindist;
-    int ansa, ansb;
-    
-    void upd_ans(const pt& a, const pt& b) {
-      double dist =
-          sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y) + .0);
-      if (dist < mindist) mindist = dist, ansa = a.id, ansb = b.id;
-    }
-    ```
-
-下面是递归本身：假设在调用前 `a[]` 已按 $x_i$ 排序。如果 $r-l$ 过小，使用暴力算法计算 $h$，终止递归。
-
-我们使用 `std::inplace_merge()` 来执行归并排序，并创建辅助缓冲区 `t[]`，$B$ 存储在其中。
-
-???+ note "主体函数"
-    ```cpp
-    void rec(int l, int r) {
-      if (r - l <= 3) {
-        for (int i = l; i <= r; ++i)
-          for (int j = i + 1; j <= r; ++j) upd_ans(a[i], a[j]);
-        sort(a + l, a + r + 1, &cmp_y);
-        return;
-      }
-    
-      int m = (l + r) >> 1;
-      int midx = a[m].x;
-      rec(l, m), rec(m + 1, r);
-      inplace_merge(a + l, a + m + 1, a + r + 1, &cmp_y);
-    
-      static pt t[MAXN];
-      int tsz = 0;
-      for (int i = l; i <= r; ++i)
-        if (abs(a[i].x - midx) < mindist) {
-          for (int j = tsz - 1; j >= 0 && a[i].y - t[j].y < mindist; --j)
-            upd_ans(a[i], t[j]);
-          t[tsz++] = a[i];
-        }
-    }
-    ```
-
-在主函数中，这样开始递归即可：
-
-???+ note "调用接口"
-    ```cpp
-    sort(a, a + n, &cmp_x);
-    mindist = 1E20;
-    rec(0, n - 1);
+    --8<-- "docs/geometry/code/nearest-points/nearest-points_1.cpp"
     ```
 
 ## 推广：平面最小周长三角形
@@ -148,70 +76,21 @@ $$
 
 ## 非分治算法
 
-### 过程
-
 其实，除了上面提到的分治算法，还有另一种时间复杂度同样是 $O(n \log n)$ 的非分治算法。
 
 我们可以考虑一种常见的统计序列的思想：对于每一个元素，将它和它的左边所有元素的贡献加入到答案中。平面最近点对问题同样可以使用这种思想。
 
-具体地，我们把所有点按照 $x_i$ 为第一关键字、$y_i$ 为第二关键字排序，并建立一个以 $y_i$ 为第一关键字、$x_i$ 为第二关键字排序的 multiset。对于每一个位置 $i$，我们执行以下操作：
+具体地，我们把所有点按照 $x_i$ 为第一关键字、$y_i$ 为第二关键字排序，并建立一个以 $y_i$ 为关键字的 multiset。对于每一个位置 $i$，我们执行以下操作：
 
-1.  将所有满足 $x_i - x_j >= d$ 的点从集合中删除。它们不会再对答案有贡献。
+1.  将所有满足 $x_i - x_j \ge d$ 的点从集合中删除。它们不会再对答案有贡献。
 2.  对于集合内满足 $\lvert y_i - y_j \rvert < d$ 的所有点，统计它们和 $p_i$ 的距离。
 3.  将 $p_i$ 插入到集合中。
 
 由于每个点最多会被插入和删除一次，所以插入和删除点的时间复杂度为 $O(n \log n)$，而统计答案部分的时间复杂度证明与分治算法的时间复杂度证明方法类似，读者不妨一试。
 
-### 实现
-
-??? "参考代码"
+??? example "参考实现"
     ```cpp
-    #include <algorithm>
-    #include <cmath>
-    #include <cstdio>
-    #include <set>
-    constexpr int N = 200005;
-    int n;
-    double ans = 1e20;
-    
-    struct point {
-      double x, y;
-    
-      point(double x = 0, double y = 0) : x(x), y(y) {}
-    };
-    
-    struct cmp_x {
-      bool operator()(const point &a, const point &b) const {
-        return a.x < b.x || (a.x == b.x && a.y < b.y);
-      }
-    };
-    
-    struct cmp_y {
-      bool operator()(const point &a, const point &b) const { return a.y < b.y; }
-    };
-    
-    void upd_ans(const point &a, const point &b) {
-      double dist = sqrt(pow((a.x - b.x), 2) + pow((a.y - b.y), 2));
-      if (ans > dist) ans = dist;
-    }
-    
-    point a[N];
-    std::multiset<point, cmp_y> s;
-    
-    int main() {
-      scanf("%d", &n);
-      for (int i = 0; i < n; i++) scanf("%lf%lf", &a[i].x, &a[i].y);
-      std::sort(a, a + n, cmp_x());
-      for (int i = 0, l = 0; i < n; i++) {
-        while (l < i && a[i].x - a[l].x >= ans) s.erase(s.find(a[l++]));
-        for (auto it = s.lower_bound(point(a[i].x, a[i].y - ans));
-             it != s.end() && it->y - a[i].y < ans; it++)
-          upd_ans(*it, a[i]);
-        s.insert(a[i]);
-      }
-      printf("%.4lf", ans);
-      return 0;
-    }
+    --8<-- "docs/geometry/code/nearest-points/nearest-points_2.cpp"
     ```
 
 ## 期望线性做法
@@ -220,12 +99,9 @@ $$
 
 首先将点对 [随机打乱](../misc/random.md#shuffle)，我们将维护前缀点集的答案。考虑从前 $i - 1$ 个点求出第 $i$ 个点的答案。
 
-记前 $i - 1$ 个点的最近点对距离为 $s$，我们将平面以 $s$ 为边长划分为若干个网格，并存下每个网格内的点（使用 [哈希表](../ds/hash.md)），
-然后检查第 $i$ 个点所在网格的周围九个网格中的所有点，并更新答案。注意到需检查的点的个数是 $O(1)$ 的，因为前 $i - 1$ 个点的最近点对距离为 $s$，
-从而每个网格不超过 4 个点。
+记前 $i - 1$ 个点的最近点对距离为 $s$，我们将平面以 $s$ 为边长划分为若干个网格，并存下每个网格内的点（使用 [哈希表](../ds/hash.md)），然后检查第 $i$ 个点所在网格的周围九个网格中的所有点，并更新答案。注意到需检查的点的个数是 $O(1)$ 的，因为前 $i - 1$ 个点的最近点对距离为 $s$，从而每个网格不超过 $4$ 个点。
 
-如果这一过程中，答案被更新，我们就重构网格图，否则不重构。在前 $i$ 个点中，最近点对包含 $i$ 的概率为 $O\left(\frac{1}{i}\right)$，
-而重构网格的代价为 $O(i)$，从而第 $i$ 个点的期望代价为 $O(1)$。于是对于 $n$ 个点，该算法期望为 $O(n)$。
+如果这一过程中，答案被更新，我们就重构网格图，否则不重构。在前 $i$ 个点中，最近点对包含 $i$ 的概率为 $O\left(\frac{1}{i}\right)$，而重构网格的代价为 $O(i)$，从而第 $i$ 个点的期望代价为 $O(1)$。于是对于 $n$ 个点，该算法期望为 $O(n)$。
 
 ## 习题
 
@@ -234,8 +110,6 @@ $$
 -   [CODEFORCES Team Olympiad Saratov - 2011 "Minimum amount"\[难度：中\]](http://codeforces.com/contest/120/problem/J)
 -   [SPOJ #7029 CLOSEST "Closest Triple"\[难度：中\]](https://www.spoj.com/problems/CLOSEST/)
 -   [Google Code Jam 2009 Final "Min Perimeter"\[难度：中\]](https://github.com/google/coding-competitions-archive/blob/main/codejam/2009/world_finals/min_perimeter/statement.pdf)
-
-***
 
 ## 参考资料与拓展阅读
 

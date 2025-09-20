@@ -46,6 +46,4 @@ Livshits–Kladov 定理成立，当且仅当代价函数是以下三种情况�
 
 定理是在假设代价函数足够平滑（存在三阶导数）的条件下证明的。在这三种情况下，问题的最优解可以通过简单的排序在 $O(n\log n)$ 的时间内解决。
 
-***
-
 **本页面主要译自博文 [Задача Джонсона с одним станком](http://e-maxx.ru/algo/johnson_problem_1) 与其英文翻译版 [Scheduling jobs on one machine](https://cp-algorithms.com/schedules/schedule_one_machine.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

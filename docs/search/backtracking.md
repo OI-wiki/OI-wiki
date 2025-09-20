@@ -18,7 +18,7 @@
 
 ## 例题
 
-???+ note "[USACO 1.5.4 Checker Challenge](https://www.luogu.com.cn/problem/P1219)"
+???+ example "[USACO 1.5.4 Checker Challenge](https://www.luogu.com.cn/problem/P1219)"
     现在有一个如下的 $6 \times 6$ 的跳棋棋盘，有六个棋子被放置在棋盘上，使得每行，每列，每条对角线（包括两条主对角线的所有对角线）上都至多有一个棋子。
     
     ```plain
@@ -51,9 +51,7 @@
     --8<-- "docs/search/code/backtracking/backtracking_1.cpp"
     ```
 
-***
-
-???+ note "[迷宫](https://www.luogu.com.cn/problem/P1605)"
+???+ example "[迷宫](https://www.luogu.com.cn/problem/P1605)"
     现有一个尺寸为 $N \times M$ 的迷宫，迷宫里有 $T$ 处障碍，障碍处不可通过。给定起点坐标和终点坐标，且每个方格最多经过一次，问有多少种从起点坐标到终点坐标的方案。在迷宫中移动有上、下、左、右四种移动方式，每次只能移动一个方格。数据保证起点上没有障碍。
 
 ??? note "参考代码"

@@ -72,7 +72,7 @@ $$
 
 对于 $u(n) = |\mu(n)|$（无平方因子数），它的 DGF 为 $\tilde{U}(x) = \prod_{p\in \mathcal{P}} (1+p^{-x}) = \frac{\zeta(x)}{\zeta(2x)}$。
 
-### Dirichlet 卷积
+## Dirichlet 卷积
 
 ### 定义
 
@@ -213,8 +213,6 @@ d=1 \ast 1&\iff d(n)=\sum_{d\mid n}1\\
 \varphi=\mu \ast \operatorname{id}&\iff\varphi(n)=\sum_{d\mid n}d\cdot\mu(\frac{n}{d})
 \end{aligned}
 $$
-
-***
 
 ## 相关应用
 
