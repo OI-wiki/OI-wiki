@@ -14,6 +14,7 @@ point a[N];
 // mindist 是最近距离的平方
 long long mindist;
 
+// 更新答案
 void upd_ans(const point& a, const point& b) {
   long long dist =
       1LL * (a.x - b.x) * (a.x - b.x) + 1LL * (a.y - b.y) * (a.y - b.y);
@@ -24,13 +25,16 @@ void upd_ans(const point& a, const point& b) {
   }
 }
 
+// 使用 [l, r) 表示当前分治区间
 void DC(int l, int r) {
+  // 当前区间只有一个点，直接返回
   if (l + 1 == r) return;
 
   int m = (l + r) >> 1;
   int midx = a[m].x;
   DC(l, m);
   DC(m, r);
+  // 使用 std::inplace_merge() 进行归并排序
   inplace_merge(a + l, a + m, a + r,
                 [&](point a, point b) { return a.y < b.y; });
 
@@ -51,6 +55,7 @@ void Solve() {
     scanf("%d %d", &a[i].x, &a[i].y);
     a[i].id = i;
   }
+  // 调用前先按横坐标排序
   sort(a, a + n, [&](point x, point y) { return x.x < y.x; });
   mindist = 9'000'000'000'000'000'000LL;
   DC(0, n);
