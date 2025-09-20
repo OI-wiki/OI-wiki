@@ -63,7 +63,7 @@ $$
 
 由此，每个正方形中最多有 $4$ 个点，矩形中最多有 $8$ 个点，去掉 $p_i$ 本身，$\max(C(p_i))=7$。
 
-??? note "参考实现"
+??? example "参考实现"
     ```cpp
     --8<-- "docs/geometry/code/nearest-points/nearest-points_1.cpp"
     ```
@@ -88,7 +88,7 @@ $$
 
 由于每个点最多会被插入和删除一次，所以插入和删除点的时间复杂度为 $O(n \log n)$，而统计答案部分的时间复杂度证明与分治算法的时间复杂度证明方法类似，读者不妨一试。
 
-??? "参考实现"
+??? example "参考实现"
     ```cpp
     --8<-- "docs/geometry/code/nearest-points/nearest-points_2.cpp"
     ```
