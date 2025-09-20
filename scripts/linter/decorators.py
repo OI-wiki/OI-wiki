@@ -9,9 +9,9 @@ def step(func):
     Decorator that processes Markdown content while handling skip blocks.
 
     Skip blocks allow certain sections to be excluded from processing using HTML comments:
-    <!-- module.function_name on --> (or <!-- scripts.linter.* on --> for every process)
+    <!-- scripts.linter.(preprocess|postprocess).function_name off -->
     Content to skip
-    <!-- module.function_name off --> (or <!-- scripts.linter.* off --> for every process)
+    <!-- scripts.linter.(preprocess|postprocess).function_name on -->
 
     Args:
         func: The function to wrap
@@ -20,10 +20,8 @@ def step(func):
         The wrapped function that handles skip blocks and line origin tracking
     """
     tag = f"{func.__module__}.{func.__name__}"
-    skip_tag_on = f'<!-- {tag} on -->'
-    skip_tag_off = f'<!-- {tag} off -->'
-    global_skip_tag_on = '<!-- scripts.linter.* on -->'
-    global_skip_tag_off = '<!-- scripts.linter.* off -->'
+    skip_tag_begin = f'<!-- {tag} off -->'
+    skip_tag_end = f'<!-- {tag} on -->'
     skip_placeholder = f'<!-- {tag} block {random.randint(0, 2147483647)} -->'
 
     @wraps(func)
@@ -48,7 +46,7 @@ def step(func):
         # First pass: identify skip blocks and process non-skipped content
         for index, line in enumerate(lines):
             stripped = line.strip()
-            if stripped == skip_tag_on or stripped == global_skip_tag_on:
+            if stripped == skip_tag_begin:
                 last_skip_index = index
                 if skip_counter == 0:
                     current_skip_block_indent = index_lfirst_neq(line, ' ')
@@ -64,10 +62,10 @@ def step(func):
                 current_skip_block.append(line)
             else:
                 raise RuntimeError(
-                    f"unopened skip block for tag '{tag}' ending at line {last_skip_index+1}. Please ensure all skip blocks are properly opened with '<!-- {tag} on -->' or '{global_skip_tag_on}'"
+                    f"unopened skip block for tag '{tag}' ending at line {last_skip_index+1}. Please ensure all skip blocks are properly opened with '{skip_tag_begin}'"
                 )
 
-            if stripped == skip_tag_off or stripped == global_skip_tag_off:
+            if stripped == skip_tag_end:
                 last_skip_index = index
                 skip_counter -= 1
                 log(f"line {index+1}: skip end, level = {skip_counter}")
@@ -82,11 +80,11 @@ def step(func):
         # Validate skip block structure
         if skip_counter > 0:
             raise RuntimeError(
-                f"unclosed skip block for tag '{tag}' starting at line {last_skip_index + 1}. Please ensure all skip blocks are properly closed with '<!-- {tag} off -->' or '{global_skip_tag_off}'"
+                f"unclosed skip block for tag '{tag}' starting at line {last_skip_index + 1}. Please ensure all skip blocks are properly closed with '{skip_tag_end}'"
             )
         elif skip_counter < 0:
             raise RuntimeError(
-                f"unopened skip block for tag '{tag}' ending at line {last_skip_index + 1}. Please ensure all skip blocks are properly opened with '<!-- {tag} on -->' or '{global_skip_tag_on}'"
+                f"unopened skip block for tag '{tag}' ending at line {last_skip_index + 1}. Please ensure all skip blocks are properly opened with '{skip_tag_begin}'"
             )
         processed_content = '\n'.join(processed_lines)+'\n'
 

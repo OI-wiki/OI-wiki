@@ -26,9 +26,9 @@ The linter uses a decorator-based pipeline system:
 The linter supports skip blocks to exclude certain sections from processing:
 
 ```markdown
-<!-- module.function_name on -->
-Content that should be skipped during linting
 <!-- module.function_name off -->
+Content that should be skipped during linting
+<!-- module.function_name on -->
 ```
 
 ## Components

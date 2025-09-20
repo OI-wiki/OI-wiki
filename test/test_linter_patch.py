@@ -158,9 +158,9 @@ class TestPerformance(unittest.TestCase):
         for i in range(100):
             content_lines.extend([
                 f"    content {i}",
-                "<!-- scripts.linter.preprocess.fix_details on -->",
-                f"    skipped {i}",
                 "<!-- scripts.linter.preprocess.fix_details off -->",
+                f"    skipped {i}",
+                "<!-- scripts.linter.preprocess.fix_details on -->",
                 ""
             ])
 
@@ -345,9 +345,9 @@ class TestApplyPreprocess(unittest.TestCase):
 
         content = (
             "  a\n"
-            "<!-- scripts.linter.preprocess.fix_details on -->\n"
-            "\n"
             "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             " b\n"
         )
 
@@ -363,9 +363,9 @@ class TestApplyPreprocess(unittest.TestCase):
                 result = f.read()
 
             self.assertIn(
-                "<!-- scripts.linter.preprocess.fix_details on -->", result)
-            self.assertIn(
                 "<!-- scripts.linter.preprocess.fix_details off -->", result)
+            self.assertIn(
+                "<!-- scripts.linter.preprocess.fix_details on -->", result)
         finally:
             # Clean up
             os.unlink(test_file)

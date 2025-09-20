@@ -129,9 +129,9 @@ class TestFixDetailsBasic(unittest.TestCase):
         self.assertEqual(fix_details(md), expected)
 
     @parameterized.expand([
-        ("unclosed_skip_block", "\n<!-- scripts.linter.preprocess.fix_details on -->\n   \n",
+        ("unclosed_skip_block", "\n<!-- scripts.linter.preprocess.fix_details off -->\n   \n",
          "unclosed skip block"),
-        ("unopened_skip_block", "\n   \n<!-- scripts.linter.preprocess.fix_details off -->\n",
+        ("unopened_skip_block", "\n   \n<!-- scripts.linter.preprocess.fix_details on -->\n",
          "unopened skip block"),
     ])
     def test_skip_block_error_handling(self, name, input_text, expected_error):
@@ -185,18 +185,18 @@ class TestFixDetailsSkipBlocks(unittest.TestCase):
         """Test that skip blocks are preserved unchanged."""
         md = (
             "  a\n"
-            "<!-- scripts.linter.preprocess.fix_details on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "     \t \n"
             "   \n"
-            "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             " b\n"
         )
         expected = (
             "  a\n"
-            "<!-- scripts.linter.preprocess.fix_details on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "     \t \n"
             "   \n"
-            "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             " b\n"
         )
         self.assertEqual(fix_details(md), expected)
@@ -205,45 +205,25 @@ class TestFixDetailsSkipBlocks(unittest.TestCase):
         """Test nested skip blocks."""
         md = (
             "     a\n"
-            "<!-- scripts.linter.preprocess.fix_details on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "    b\n"
-            "<!-- scripts.linter.preprocess.fix_details on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "   c\n"
-            "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "  d\n"
-            "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             " e\n"
         )
         expected = (
             "     a\n"
-            "<!-- scripts.linter.preprocess.fix_details on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "    b\n"
-            "<!-- scripts.linter.preprocess.fix_details on -->\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
             "   c\n"
-            "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             "  d\n"
-            "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
             " e\n"
-        )
-        self.assertEqual(fix_details(md), expected)
-
-    def test_global_skip_blocks(self):
-        """Test global skip blocks (scripts.linter.*)."""
-        md = (
-            "  a\n"
-            "<!-- scripts.linter.* on -->\n"
-            "     \t \n"
-            "   \n"
-            "<!-- scripts.linter.* off -->\n"
-            " b\n"
-        )
-        expected = (
-            "  a\n"
-            "<!-- scripts.linter.* on -->\n"
-            "     \t \n"
-            "   \n"
-            "<!-- scripts.linter.* off -->\n"
-            " b\n"
         )
         self.assertEqual(fix_details(md), expected)
 
@@ -916,8 +896,8 @@ class TestFixPunctuationsSkipBlocks(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         self.constants = TestConstants()
-        self.SKIP_BLOCK_ON = "<!-- scripts.linter.preprocess.fix_punctuations on -->"
-        self.SKIP_BLOCK_OFF = "<!-- scripts.linter.preprocess.fix_punctuations off -->"
+        self.SKIP_BLOCK_ON = "<!-- scripts.linter.preprocess.fix_punctuations off -->"
+        self.SKIP_BLOCK_OFF = "<!-- scripts.linter.preprocess.fix_punctuations on -->"
 
     def test_skip_blocks_preserved(self):
         """Test that skip blocks are preserved unchanged."""
@@ -1004,8 +984,8 @@ class TestFixPunctuationsSummary(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         self.constants = TestConstants()
-        self.SKIP_BLOCK_ON = "<!-- scripts.linter.preprocess.fix_punctuations on -->"
-        self.SKIP_BLOCK_OFF = "<!-- scripts.linter.preprocess.fix_punctuations off -->"
+        self.SKIP_BLOCK_ON = "<!-- scripts.linter.preprocess.fix_punctuations off -->"
+        self.SKIP_BLOCK_OFF = "<!-- scripts.linter.preprocess.fix_punctuations on -->"
 
     def test_comprehensive_integration(self):
         """Test comprehensive integration of all punctuation fixes."""

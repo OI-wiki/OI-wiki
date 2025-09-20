@@ -328,8 +328,8 @@ class TestFixFullStopSkipBlocks(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         self.constants = TestConstants()
-        self.SKIP_BLOCK_ON = "<!-- scripts.linter.postprocess.fix_full_stop on -->"
-        self.SKIP_BLOCK_OFF = "<!-- scripts.linter.postprocess.fix_full_stop off -->"
+        self.SKIP_BLOCK_ON = "<!-- scripts.linter.postprocess.fix_full_stop off -->"
+        self.SKIP_BLOCK_OFF = "<!-- scripts.linter.postprocess.fix_full_stop on -->"
 
     def test_skip_blocks_preserved(self):
         """Test that skip blocks are preserved unchanged."""
