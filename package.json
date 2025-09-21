@@ -30,12 +30,12 @@
   },
   "homepage": "https://github.com/OI-wiki/OI-wiki#readme",
   "dependencies": {
+    "@mathjax/src": "^4.0.0",
     "@swc/core": "^1.2.210",
     "chalk": "^4.1.0",
     "colors": "^1.4.0",
     "cross-env": "^7.0.3",
     "klaw": "^4.0.1",
-    "mathjax-full": "^3.2.2",
     "node-fetch": "^3.2.8",
     "node-html-parser": "^5.3.3",
     "octokit": "^4.0.2",
