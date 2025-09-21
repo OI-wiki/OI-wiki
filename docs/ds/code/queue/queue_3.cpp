@@ -6,6 +6,7 @@ using namespace std;
 const int M = 1000000 + 5;
 
 struct Deque {
+  // 将 stack 的底层容器从 deque 换为 vector 以减少空间常数
   stack<int, vector<int>> f, s;
 
   bool empty() { return f.empty() && s.empty(); }
