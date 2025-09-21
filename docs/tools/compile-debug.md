@@ -1,4 +1,4 @@
-author: xiaofu-15191
+author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, Enter-tainer, mcendu, Tiphereth-A, ayalhw, CCXXXI, Early0v0, HeRaNO, ouuan, swiftqwq, Xeonacid, xiaofu-15191
 
 阅读本节之前，请先安装 GCC 和 gdb，具体方法参见 [编译器](compiler.md) 一文。
 
