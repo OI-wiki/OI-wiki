@@ -341,8 +341,6 @@ int main() {
 }
 ```
 
-***
-
 这是一个稍微复杂一些的例子。
 
 $$
@@ -384,7 +382,7 @@ $$
 
 ### 矩阵表达修改
 
-???+ note "「THUSCH 2017」大魔法师"
+???+ note "[「THUSCH 2017」大魔法师](https://loj.ac/p/2980)"
     大魔法师小 L 制作了 $n$ 个魔力水晶球，每个水晶球有水、火、土三个属性的能量值。小 L 把这 $n$ 个水晶球在地上从前向后排成一行，然后开始今天的魔法表演。
     
     我们用 $A_i,\ B_i,\ C_i$ 分别表示从前向后第 $i$ 个水晶球（下标从 $1$ 开始）的水、火、土的能量值。
@@ -447,9 +445,7 @@ A & B \cdot v & C & 1\\
 \end{bmatrix}
 $$
 
-***
-
-???+ note "「LibreOJ 6208」树上询问"
+???+ note "[「LibreOJ 6208」树上询问](https://loj.ac/p/6208)"
     有一棵 $n$ 节点的树，根为 $1$ 号节点。每个节点有两个权值 $k_i, t_i$，初始值均为 $0$。
     
     给出三种操作：
@@ -562,4 +558,4 @@ $$
 -   [洛谷 P1349 广义斐波那契数列](https://www.luogu.com.cn/problem/P1349)，$\text{base}$ 矩阵需要变化一下
 -   [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.com.cn/problem/P1939)，$\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
 
-    **本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 与其英文翻译版 [Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+**本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 与其英文翻译版 [Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

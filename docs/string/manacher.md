@@ -232,6 +232,4 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
 -   [「国家集训队」最长双回文串](https://www.luogu.com.cn/problem/P4555)
 -   [CF1326D2. Labyrinth](https://codeforces.com/contest/1326/problem/D2)
 
-***
-
 **本页面主要译自博文 [Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count) 与其英文翻译版 [Finding all sub-palindromes in $O(N)$](https://cp-algorithms.com/string/manacher.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**

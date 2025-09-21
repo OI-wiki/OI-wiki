@@ -1,29 +1,27 @@
 #include <cstdio>
+#include <stack>
 using namespace std;
 
-const int SIZE = 10000 + 5;
-
 struct Queue {
-  int q[SIZE], ql, qr;
+  stack<int> f, s;
 
-  Queue() : ql(1), qr(0) {}
+  bool empty() { return f.empty() && s.empty(); }
 
-  bool empty() { return ql > qr; }
+  void push(int x) { f.push(x); }
 
-  void push(int x) { q[++qr] = x; }
-
-  void pop() { ++ql; }
-
-  int front() { return q[ql]; }
-
-  int back() { return q[qr]; }
-
-  int size() { return qr - ql + 1; }
-
-  int clear() {
-    ql = 1;
-    qr = 0;
+  void pop() {
+    if (s.empty())
+      for (; !f.empty(); f.pop()) s.push(f.top());
+    s.pop();
   }
+
+  int front() {
+    if (s.empty())
+      for (; !f.empty(); f.pop()) s.push(f.top());
+    return s.top();
+  }
+
+  int size() { return f.size() + s.size(); }
 };
 
 int main() {
