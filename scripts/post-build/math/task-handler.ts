@@ -26,7 +26,6 @@ import "@mathjax/src/js/input/tex/noundefined/NoUndefinedConfiguration.js";
 import "@mathjax/src/js/input/tex/physics/PhysicsConfiguration.js";
 
 import { TaskHandler, log } from "../html-postprocess.js";
-import { option } from "yargs";
 
 // All HTML files will reference the CSS file with relative paths (to the HTML file)
 // The CSS file will reference the fonts files with relative paths (to the CSS file)
@@ -69,7 +68,7 @@ export class MathRenderer {
 
     this.document = mathjax.document("", {
       InputJax: inputJax,
-      OutputJax: outputJax,
+      OutputJax: outputJax
     });
 
     await outputJax.font.loadDynamicFiles();
