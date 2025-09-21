@@ -15,6 +15,7 @@ struct Deque {
   void push_front(int x) { s.push_back(x); }
 
   void balance() {
+    // 平衡中需要辅助栈实现栈内元素倒置
     vector<int> t;
     if (s.empty()) {
       int n = f.size() / 2;
