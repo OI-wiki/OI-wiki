@@ -186,8 +186,8 @@ Find the GDB manual and other documentation resources online at:
 | 命令                            | 描述                                    |
 | ----------------------------- | ------------------------------------- |
 | `enable pretty-printer`       | 启用 pretty-printer，可以以人类可读的方式打印 STL 容器 |
-| `checkpoint`                  | 创建检查点，可以回滚到检查点                        |
-| `restart [num]`               | 回滚到第 `[num]` 个检查点                     |
+| `checkpoint`[^checkpoint]     | 创建检查点，可以回滚到检查点                        |
+| `restart [num]`[^checkpoint]  | 回滚到第 `[num]` 个检查点                     |
 | `save breakpoints [filename]` | 保存断点到文件                               |
 | `source [filename]`           | 导入断点文件                                |
 
@@ -207,3 +207,5 @@ Find the GDB manual and other documentation resources online at:
 [^ub-san]: <https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html>
 
 [^gnu-make-built-in-rules]: [Catalogue of Built-In Rules](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)
+
+[^checkpoint]: 与检查点相关的指令仅适用于 GNU/Linux 平台。详见 [GDB 官方手册](https://sourceware.org/gdb/current/onlinedocs/gdb#Checkpoint_002fRestart)。
