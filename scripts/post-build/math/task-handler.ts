@@ -6,21 +6,25 @@ import stream from "stream/promises";
 import crypto from "crypto";
 import { HTMLElement } from "node-html-parser";
 
-import { mathjax } from "mathjax-full/js/mathjax.js";
-import { TeX } from "mathjax-full/js/input/tex.js";
-import { CHTML } from "mathjax-full/js/output/chtml.js";
-import { AssistiveMmlHandler } from "mathjax-full/js/a11y/assistive-mml.js";
-import { LiteAdaptor, liteAdaptor } from "mathjax-full/js/adaptors/liteAdaptor.js";
-import { HTMLHandler } from "mathjax-full/js/handlers/html/HTMLHandler.js";
-import { SafeHandler } from "mathjax-full/js/ui/safe/SafeHandler.js";
-import type { MathDocument } from "mathjax-full/js/core/MathDocument.js";
-import type { LiteDocument } from "mathjax-full/js/adaptors/lite/Document.js";
-import type { LiteElement } from "mathjax-full/js/adaptors/lite/Element.js";
+import { mathjax } from '@mathjax/src/js/mathjax.js';
+import { TeX } from '@mathjax/src/js/input/tex.js';
+import { CHTML } from '@mathjax/src/js/output/chtml.js';
+import { LiteAdaptor, liteAdaptor } from '@mathjax/src/js/adaptors/liteAdaptor.js';
+import { RegisterHTMLHandler } from '@mathjax/src/js/handlers/html.js';
+import type { MathDocument } from "@mathjax/src/js/core/MathDocument.js";
+import type { LiteDocument } from "@mathjax/src/js/adaptors/lite/Document.js";
+import type { LiteElement } from "@mathjax/src/js/adaptors/lite/Element.js";
+import '@mathjax/src/js/util/asyncLoad/esm.js';
+
+import '@mathjax/src/js/input/tex/ams/AmsConfiguration.js';
+import '@mathjax/src/js/input/tex/base/BaseConfiguration.js';
+import '@mathjax/src/js/input/tex/boldsymbol/BoldsymbolConfiguration.js';
+import '@mathjax/src/js/input/tex/colorv2/ColorV2Configuration.js';
+import '@mathjax/src/js/input/tex/html/HtmlConfiguration.js';
+import '@mathjax/src/js/input/tex/noundefined/NoUndefinedConfiguration.js';
+import '@mathjax/src/js/input/tex/physics/PhysicsConfiguration.js';
 
 import { TaskHandler, log } from "../html-postprocess.js";
-
-// Define the MathJax packages to load
-const MATHJAX_PACKAGES = ["ams", "boldsymbol", "colorv2", "html", "noundefined", "physics"];
 
 // All HTML files will reference the CSS file with relative paths (to the HTML file)
 // The CSS file will reference the fonts files with relative paths (to the CSS file)
@@ -30,9 +34,6 @@ const MATHJAX_TARGET_FONTS_DIR = "assets/fonts/mathjax";
 // Mark the client-side math rendering script with an extra query parameter
 // to remove it when using server-side rendering
 const MATH_CSR_SCRIPT_SUFFIX = "?math-csr";
-
-// The directory of package `mathjax-full`
-const MATHJAX_SOURCE = path.dirname(module.createRequire(import.meta.url).resolve("mathjax-full/package.json"));
 
 // Add horizontal scrollbar automatically on narrow screens
 const MATHJAX_EXTRA_CSS = `
@@ -49,41 +50,26 @@ export class MathRenderer {
   private css: string;
 
   async initialize() {
-    // Load MathJax's TeX packages
-    const packagesDir = path.join(MATHJAX_SOURCE, "js/input/tex");
-    await Promise.all(
-      MATHJAX_PACKAGES.map(async packageName => {
-        const packageDir = path.join(packagesDir, packageName);
-        const packageDirFiles = await fs.promises.readdir(packageDir);
-        const packageConfigurationFile = packageDirFiles.find(filename => filename.endsWith("Configuration.js"));
-        const importPath = path.join(packageDir, packageConfigurationFile);
-        const importUrl = url.pathToFileURL(importPath).href;
-        return await import(importUrl);
-      })
-    );
-
     this.adaptor = liteAdaptor();
+    RegisterHTMLHandler(this.adaptor);
+
     const inputJax = new TeX({
-      packages: {
-        "[+]": MATHJAX_PACKAGES
-      }
+      packages: ['ams', 'base', 'boldsymbol', 'colorv2', 'html', 'noundefined', 'physics'],
     });
     const outputJax = new CHTML<LiteElement, unknown, LiteDocument>({
-      fontURL: path.relative(path.dirname(MATHJAX_TARGET_CSS_FILE), MATHJAX_TARGET_FONTS_DIR),
+      // in windows, relative return with \, so need to replace
+      fontURL: path.relative(path.dirname(MATHJAX_TARGET_CSS_FILE), MATHJAX_TARGET_FONTS_DIR).replaceAll('\\', '/'),
       adaptiveCSS: false
     });
-
-    const handler = SafeHandler(new HTMLHandler(this.adaptor));
-    mathjax.handlers.register(handler);
-    AssistiveMmlHandler(handler);
 
     this.document = mathjax.document("", {
       InputJax: inputJax,
       OutputJax: outputJax
     });
+    
+    await outputJax.font.loadDynamicFiles();
 
-    this.document.updateDocument();
-    this.css = this.adaptor.textContent(outputJax.chtmlStyles);
+    this.css = this.adaptor.cssText(outputJax.styleSheet(this.document));
   }
 
   getCSS() {
@@ -109,11 +95,16 @@ export const taskHandler = new (class implements TaskHandler<void> {
   // Emit fonts and CSS file
   async globalInitialize(siteDir: string) {
     log("Copying MathJax fonts");
-    const fontsSourceDir = path.join(MATHJAX_SOURCE, "es5/output/chtml/fonts/woff-v2");
+    const req = module.createRequire(import.meta.url);
+    const FONT_PKG = "@mathjax/mathjax-newcm-font"; // <- change if you use a different font package
+
+    const fontPkgJson = req.resolve(`${FONT_PKG}/package.json`);
+    const fontPkgDir = path.dirname(fontPkgJson);
+    const fontsSourceDir = path.join(fontPkgDir, "chtml", "woff2");
     const fontsDestDir = path.join(siteDir, MATHJAX_TARGET_FONTS_DIR);
 
     const fontFilesToCopy = await fs.promises.readdir(fontsSourceDir);
-
+    
     await fs.promises.mkdir(fontsDestDir, { recursive: true });
     await Promise.all(
       fontFilesToCopy.map(filename =>
