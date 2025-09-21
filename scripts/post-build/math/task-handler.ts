@@ -31,6 +31,8 @@ import { TaskHandler, log } from "../html-postprocess.js";
 const MATHJAX_TARGET_CSS_FILE = "assets/stylesheets/mathjax.css";
 const MATHJAX_TARGET_FONTS_DIR = "assets/fonts/mathjax";
 
+const FONT_PKG = "@mathjax/mathjax-newcm-font";
+
 // Mark the client-side math rendering script with an extra query parameter
 // to remove it when using server-side rendering
 const MATH_CSR_SCRIPT_SUFFIX = "?math-csr";
@@ -96,10 +98,8 @@ export const taskHandler = new (class implements TaskHandler<void> {
   async globalInitialize(siteDir: string) {
     log("Copying MathJax fonts");
     const req = module.createRequire(import.meta.url);
-    const FONT_PKG = "@mathjax/mathjax-newcm-font"; // <- change if you use a different font package
 
-    const fontPkgJson = req.resolve(`${FONT_PKG}/package.json`);
-    const fontPkgDir = path.dirname(fontPkgJson);
+    const fontPkgDir = path.dirname(req.resolve(`${FONT_PKG}/package.json`));
     const fontsSourceDir = path.join(fontPkgDir, "chtml", "woff2");
     const fontsDestDir = path.join(siteDir, MATHJAX_TARGET_FONTS_DIR);
 
