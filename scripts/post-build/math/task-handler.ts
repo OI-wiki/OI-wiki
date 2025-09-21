@@ -6,24 +6,24 @@ import stream from "stream/promises";
 import crypto from "crypto";
 import { HTMLElement } from "node-html-parser";
 
-import { mathjax } from '@mathjax/src/js/mathjax.js';
-import { TeX } from '@mathjax/src/js/input/tex.js';
-import { CHTML } from '@mathjax/src/js/output/chtml.js';
-import { LiteAdaptor, liteAdaptor } from '@mathjax/src/js/adaptors/liteAdaptor.js';
-import { RegisterHTMLHandler } from '@mathjax/src/js/handlers/html.js';
-import { AssistiveMmlHandler } from '@mathjax/src/js/a11y/assistive-mml.js';
+import { mathjax } from "@mathjax/src/js/mathjax.js";
+import { TeX } from "@mathjax/src/js/input/tex.js";
+import { CHTML } from "@mathjax/src/js/output/chtml.js";
+import { LiteAdaptor, liteAdaptor } from "@mathjax/src/js/adaptors/liteAdaptor.js";
+import { RegisterHTMLHandler } from "@mathjax/src/js/handlers/html.js";
+import { AssistiveMmlHandler } from "@mathjax/src/js/a11y/assistive-mml.js";
 import type { MathDocument } from "@mathjax/src/js/core/MathDocument.js";
 import type { LiteDocument } from "@mathjax/src/js/adaptors/lite/Document.js";
 import type { LiteElement } from "@mathjax/src/js/adaptors/lite/Element.js";
-import '@mathjax/src/js/util/asyncLoad/esm.js';
+import "@mathjax/src/js/util/asyncLoad/esm.js";
 
-import '@mathjax/src/js/input/tex/ams/AmsConfiguration.js';
-import '@mathjax/src/js/input/tex/base/BaseConfiguration.js';
-import '@mathjax/src/js/input/tex/boldsymbol/BoldsymbolConfiguration.js';
-import '@mathjax/src/js/input/tex/colorv2/ColorV2Configuration.js';
-import '@mathjax/src/js/input/tex/html/HtmlConfiguration.js';
-import '@mathjax/src/js/input/tex/noundefined/NoUndefinedConfiguration.js';
-import '@mathjax/src/js/input/tex/physics/PhysicsConfiguration.js';
+import "@mathjax/src/js/input/tex/ams/AmsConfiguration.js";
+import "@mathjax/src/js/input/tex/base/BaseConfiguration.js";
+import "@mathjax/src/js/input/tex/boldsymbol/BoldsymbolConfiguration.js";
+import "@mathjax/src/js/input/tex/colorv2/ColorV2Configuration.js";
+import "@mathjax/src/js/input/tex/html/HtmlConfiguration.js";
+import "@mathjax/src/js/input/tex/noundefined/NoUndefinedConfiguration.js";
+import "@mathjax/src/js/input/tex/physics/PhysicsConfiguration.js";
 
 import { TaskHandler, log } from "../html-postprocess.js";
 
@@ -57,11 +57,11 @@ export class MathRenderer {
     AssistiveMmlHandler(RegisterHTMLHandler(this.adaptor));
 
     const inputJax = new TeX({
-      packages: ['ams', 'base', 'boldsymbol', 'colorv2', 'html', 'noundefined', 'physics'],
+      packages: ["ams", "base", "boldsymbol", "colorv2", "html", "noundefined", "physics"]
     });
     const outputJax = new CHTML<LiteElement, unknown, LiteDocument>({
       // in windows, relative return with \, so need to replace
-      fontURL: path.relative(path.dirname(MATHJAX_TARGET_CSS_FILE), MATHJAX_TARGET_FONTS_DIR).replaceAll('\\', '/'),
+      fontURL: path.relative(path.dirname(MATHJAX_TARGET_CSS_FILE), MATHJAX_TARGET_FONTS_DIR).replaceAll("\\", "/"),
       adaptiveCSS: false
     });
 
@@ -69,7 +69,7 @@ export class MathRenderer {
       InputJax: inputJax,
       OutputJax: outputJax
     });
-    
+
     await outputJax.font.loadDynamicFiles();
 
     this.css = this.adaptor.cssText(outputJax.styleSheet(this.document));
@@ -105,7 +105,7 @@ export const taskHandler = new (class implements TaskHandler<void> {
     const fontsDestDir = path.join(siteDir, MATHJAX_TARGET_FONTS_DIR);
 
     const fontFilesToCopy = await fs.promises.readdir(fontsSourceDir);
-    
+
     await fs.promises.mkdir(fontsDestDir, { recursive: true });
     await Promise.all(
       fontFilesToCopy.map(filename =>
