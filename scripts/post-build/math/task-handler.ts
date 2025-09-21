@@ -11,6 +11,7 @@ import { TeX } from '@mathjax/src/js/input/tex.js';
 import { CHTML } from '@mathjax/src/js/output/chtml.js';
 import { LiteAdaptor, liteAdaptor } from '@mathjax/src/js/adaptors/liteAdaptor.js';
 import { RegisterHTMLHandler } from '@mathjax/src/js/handlers/html.js';
+import { AssistiveMmlHandler } from '@mathjax/src/js/a11y/assistive-mml.js';
 import type { MathDocument } from "@mathjax/src/js/core/MathDocument.js";
 import type { LiteDocument } from "@mathjax/src/js/adaptors/lite/Document.js";
 import type { LiteElement } from "@mathjax/src/js/adaptors/lite/Element.js";
@@ -53,7 +54,7 @@ export class MathRenderer {
 
   async initialize() {
     this.adaptor = liteAdaptor();
-    RegisterHTMLHandler(this.adaptor);
+    AssistiveMmlHandler(RegisterHTMLHandler(this.adaptor));
 
     const inputJax = new TeX({
       packages: ['ams', 'base', 'boldsymbol', 'colorv2', 'html', 'noundefined', 'physics'],
