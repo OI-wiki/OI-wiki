@@ -266,7 +266,5 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
 ## 参考
 
 1.  离散数学及其应用。ISBN:9787111555391
-2.  <https://blog.csdn.net/dm_vincent/article/details/7714519>
-3.  Topological sorting,<https://en.wikipedia.org/w/index.php?title=Topological_sorting&oldid=854351542>
-4.  <https://blog.csdn.net/time_money/article/details/109857779>
-5.  <https://zhuanlan.zhihu.com/p/164751109>
+2.  [Topological sorting - Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting)
+3.  [数据结构第九讲（图：拓扑排序，关键路径，最短路径） - 知乎专栏](https://zhuanlan.zhihu.com/p/164751109)
