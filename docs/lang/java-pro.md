@@ -1146,10 +1146,10 @@ TreeSet<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // 降序
 |:-----------------------:|:--------------------------------:|
 |         `first()`          |         返回 this 中第一个元素，无则返回 null         |
 |         `last()`          |         返回 this 中最后一个元素，无则返回 null         |
-|    `floor(Integer val)`     |       返回集合中 <=val 的第一个元素，无则返回 null        |
-|  `ceiling(Integer val)`  |     返回集合中 >=val 的第一个元素，无则返回 null      |
-|  `higher(Integer val)`   | 返回集合中 >val 的第一个元素，无则返回 null|
-| `lower(Integer val)` |  返回集合中 <val 的第一个元素，无则返回 null  |
+|    `floor(Integer val)`     |       返回集合中小于等于 val 的第一个元素，无则返回 null        |
+|  `ceiling(Integer val)`  |     返回集合中大于等于 val 的第一个元素，无则返回 null      |
+|  `higher(Integer val)`   | 返回集合中大于 val 的第一个元素，无则返回 null|
+| `lower(Integer val)` |  返回集合中小于 val 的第一个元素，无则返回 null  |
 | `pollFirst()` |    返回并删除 this 中第一个元素，无则返回 null     |
 | `pollLast()` |     返回并删除 this 中最后一个元素，无则返回 null     |
 
