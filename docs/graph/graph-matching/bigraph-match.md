@@ -1,4 +1,4 @@
-author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Granger, Henry-ZHR, countercurrent-time, william-song-shy, 5ab-juruo, XiaoQuQuSD, hhc0001
+author: accelsao, thallium, Chrogeek, Enter-tainer, ksyx, StudyingFather, H-J-Granger, Henry-ZHR, countercurrent-time, william-song-shy, 5ab-juruo, XiaoQuQuSD, hhc0001, GCVillager
 
 前置知识：[二分图](../bi-graph.md)、[图匹配](./graph-match.md)
 
@@ -288,7 +288,7 @@ $$
     求是否可以使得每一名律师都被释放。
 
 ??? note "解法"
-    对于每一个 **无序对** $(a, b)$，当 $a$ 可以辩护 $b$，连这个无序对向 $a$ 的边，反之亦然。
+    对于每一个 **无序对** $(a, b)$，当 $a$ 可以辩护 $b$，连这个无序对向 $b$ 的边，反之亦然。
     
     只保存有边相连的 $(a, b)$，问题被转化成了一个 $m$ 个左部点、$n$ 个右部点的二分图最大匹配。
 
