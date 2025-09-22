@@ -90,7 +90,7 @@ $$
 M(x) = H(x) \cdot q^{k^2} \cdot H\left(\frac{x}{q^k}\right)
 $$
 
-这使得我们可以快速计算 $M(x)$。然后用 Bluestein 算法来计算 $M’(1), \dots, M’(q^{n - 1})$。令 $c_i := f\left(q^i\right)/M’\left(q^i\right)$，我们有
+这使得我们可以快速计算 $M(x)$。然后用 Bluestein 算法来计算 $M'(1), \dots, M'(q^{n - 1})$。令 $c_i := f\left(q^i\right)/M'\left(q^i\right)$，我们有
 
 $$
 f(x) = M(x)\left(\sum_{i = 0}^{n - 1}\frac{c_i}{x - q^i}\right)
@@ -111,7 +111,7 @@ $$
 简单来说，我们分别进行下面的计算：
 
 1. 用减治法（decrease and conquer）计算 $M(x)$；
-2. 用 Bluestein 算法计算 $M’(1), \dots, M’(q^{n - 1})$；
+2. 用 Bluestein 算法计算 $M'(1), \dots, M'(q^{n - 1})$；
 3. 用 Bluestein 算法计算 $C\left(q^{-1}\right), \dots, C\left(q^{-n}\right)$；
 4. 用一次多项式乘法计算 $f(x)$。
 
