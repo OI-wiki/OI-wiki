@@ -236,7 +236,7 @@ $$
     对于正整数 $n$ 和正实数 $\alpha, \beta$，设
     
     $$
-    D_{n,\alpha,\beta} = \left\{\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor: i=1,2,\cdots,n\right\}.
+    D_{n,\alpha,\beta} = \left\{\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor: i=1,2,\cdots,\lfloor n^{\alpha/\beta}\rfloor\right\}.
     $$
     
     那么，有
