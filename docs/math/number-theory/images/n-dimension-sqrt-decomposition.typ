@@ -1,5 +1,5 @@
-#set page(width: 7.7cm, height: 3.65cm, margin: 0cm)
-#set text(font: "Noto Sans CJK SC", 7.2pt)
+#set page(width: 15.4cm, height: 7.3cm, margin: 0cm)
+#set text(font: "Noto Sans CJK SC", 7pt)
 
 #let pair-sum((x1, y1), (x2, y2)) = (x1 + x2, y1 + y2)
 
@@ -36,26 +36,28 @@
   }
 }
 
-#lines-draw((0, 0), (1, -3, 3, -2, 3, -4), black)
-#lines-draw((0, 1), (2, -3, 3, -3, 3, -2), red)
-#lines-draw((0, 2), (3, -4, 3, -2, 3, -1), green)
-
-#let grid = 0
-#while grid <= dx.len() {
-  place(
-    line(
-      start: ((dx0 + if grid >= 1 { dx.at(grid - 1) } else { 0 }) * 1cm, 0cm),
-      length: 3.65cm,
-      angle: 90deg,
-      stroke: blue + 0.5pt,
-    ),
+#scale(200%)[
+  #let grid = 0
+  #while grid <= dx.len() {
+    place(
+      line(
+        start: ((dx0 + if grid >= 1 { dx.at(grid - 1) } else { 0 }) * 1cm, 0cm),
+        length: 3.65cm,
+        angle: 90deg,
+        stroke: blue + 0.5pt,
+      ),
+    )
+    grid += 1
+  }
+  
+  #lines-draw((0, 0), (1, -3, 3, -2, 3, -4), black)
+  #lines-draw((0, 1), (2, -3, 3, -3, 3, -2), red)
+  #lines-draw((0, 2), (3, -4, 3, -2, 3, -1), green)
+  
+  #place(
+    top + left,
+    dx: (dx0 * 1cm - 9 * 7.2pt) / 2,
+    dy: 1.8cm,
+    text()[蓝色细线代表数论分\ 块的边界\ 这样分就可以让每一\ 块里面的 $floor(n_j / i)$ 相同],
   )
-  grid += 1
-}
-
-#place(
-  top + left,
-  dx: (dx0 * 1cm - 9 * 7.2pt) / 2,
-  dy: 1.8cm,
-  text()[蓝色细线代表群论分\ 块的边界\ 这样分就可以让每一\ 块里面的 $floor(a_j / i)$ 相同],
-)
+]
