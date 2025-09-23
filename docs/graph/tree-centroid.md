@@ -20,7 +20,7 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
 本节讨论重心的性质。首先，树的重心有如下等价定义：
 
 ???+ note "等价定义"
-    树 $T$ 中的结点 $v$ 是它的重心，当且仅当：
+    树 $T$ 中的结点 $v$ 是它的重心，当且仅当以下任意一条成立：
     
     === "无根树版本"
         1.  在树中删去结点 $v$ 后，得到的图 $T\setminus\{v\}$ 中每个连通分量的大小均不超过原树结点数的一半。
