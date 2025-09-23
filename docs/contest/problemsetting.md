@@ -106,7 +106,7 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 
 -   [LaTeX 入门](../tools/latex.md#图表)
 -   [LaTeX 数学公式大全](https://www.luogu.com.cn/blog/IowaBattleship/latex-gong-shi-tai-quan)
--   [LaTeX 各种命令，符号](https://blog.csdn.net/garfielder007/article/details/51646604)
+-   [LaTeX 各种命令，符号](https://blog.csdn.net/anxiaoxi45/article/details/39449445)
 
 使用时请注意 [LaTeX 公式的格式要求](../intro/format.md)。
 

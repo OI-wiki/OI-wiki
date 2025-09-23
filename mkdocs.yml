@@ -236,13 +236,10 @@ nav:
       - 数论基础: math/number-theory/basic.md
       - 素数: math/number-theory/prime.md
       - 最大公约数: math/number-theory/gcd.md
-      - 数论分块: math/number-theory/sqrt-decomposition.md
       - 欧拉函数: math/number-theory/euler-totient.md
       - 筛法: math/number-theory/sieve.md
-      - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 分解质因数: math/number-theory/pollard-rho.md
       - 裴蜀定理 & 一次不定方程: math/number-theory/bezouts.md
-      - 类欧几里德算法: math/number-theory/euclidean.md
       - 费马小定理 & 欧拉定理: math/number-theory/fermat.md
       - 模逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
@@ -255,11 +252,14 @@ nav:
       - 阶 & 原根: math/number-theory/primitive-root.md
       - 离散对数: math/number-theory/discrete-logarithm.md
       - 剩余: math/number-theory/residue.md
+      - 数论分块: math/number-theory/sqrt-decomposition.md
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 杜教筛: math/number-theory/du.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
+      - 类欧几里德算法: math/number-theory/euclidean.md
+      - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
