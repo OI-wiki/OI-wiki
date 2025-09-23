@@ -98,5 +98,3 @@ long long mul(long long a, long long b, long long m) {
 [^long-double-80bit]: 这适用于大多数 64 位系统上的 GCC 或 Clang 编译器。
 
 [^note1]: 参见 [Double-precision floating-point format - Wikipedia](https://en.wikipedia.org/wiki/Double-precision_floating-point_format)。
-
-

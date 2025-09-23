@@ -5,6 +5,7 @@
 template <int M>
 struct ModInt {
   int v;
+
   // Initialization: find remainder.
   // Equivalent to: v = int((x % M + M) % M)
   ModInt(long long x = 0) {
@@ -12,6 +13,7 @@ struct ModInt {
     if (x < 0) x += M;
     v = int(x);
   }
+
   // Addition.
   // Equivalent to: ModInt((l.v + r.v) % M)
   friend ModInt operator+(ModInt l, ModInt r) {
@@ -19,6 +21,7 @@ struct ModInt {
     if (res >= M) res -= M;
     return ModInt(res);
   }
+
   // Subtraction.
   // Equivalent to: ModInt((l.v - r.v + M) % M)
   friend ModInt operator-(ModInt l, ModInt r) {
@@ -26,10 +29,12 @@ struct ModInt {
     if (res < 0) res += M;
     return ModInt(res);
   }
+
   // Multiplication.
   friend ModInt operator*(ModInt l, ModInt r) {
     return ModInt(1LL * l.v * r.v % M);
   }
+
   // Exponentiation.
   ModInt pow(long long b) const {
     ModInt res{1}, po{*this};
@@ -63,7 +68,7 @@ int main() {
   std::cout << (mint(3) - mint(5)) << "\n";
 
   // Test multiplication
-  std::cout << (mint(123456) * mint(789012)) << "\n"; 
+  std::cout << (mint(123456) * mint(789012)) << "\n";
 
   // Test pow
   std::cout << mint(2).pow(10) << "\n";
