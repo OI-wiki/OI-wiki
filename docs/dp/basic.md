@@ -123,7 +123,7 @@ $$
         ```cpp
         --8<-- "docs/dp/code/basic/lis-1.cpp:core"
         ```
-
+    
     === "Python"
         ```python
         --8<-- "docs/dp/code/basic/lis-1.py:core"
@@ -157,7 +157,7 @@ $$
         ```cpp
         --8<-- "docs/dp/code/basic/lis-2.cpp:core"
         ```
-
+    
     === "Python"
         ```python
         --8<-- "docs/dp/code/basic/lis-2.py:core"
