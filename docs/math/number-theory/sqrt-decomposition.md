@@ -241,7 +241,7 @@ $$
     
     那么，有
     
-    1.  $|D_{n,\alpha,\beta}|\le\min\{n,2n^{\alpha/(1+\beta)}\}$．
+    1.  $|D_{n,\alpha,\beta}|\le 2n^{\alpha/(1+\beta)}$．
     2.  对于 $d\in D_{n,\alpha,\beta}$，使得 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=d$ 成立的 $i$ 的取值范围为
     
         $$
@@ -249,7 +249,7 @@ $$
         $$
 
 ??? note "证明"
-    对于第一点，$|D_{n,\alpha,\beta}|\le n$ 显然，关键是要证明 $|D_{n,\alpha,\beta}|\le 2n^{\alpha/(1+\beta)}$．分两种情况：
+    对于第一点，分两种情况：
     
     -   当 $i\le \dfrac{n^\alpha}{i^\beta}$ 时，有 $i\le n^{\alpha/(1+\beta)}$，所以 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ 至多有 $n^{\alpha/(1+\beta)}$ 种取值．
     -   当 $i > \dfrac{n^\alpha}{i^\beta}$ 时，有 $i> n^{\alpha/(1+\beta)}$，进而有 $\dfrac{n^\alpha}{i^\beta} < n^{\alpha/(1+\beta)}$，所以 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ 也至多只有 $n^{\alpha/(1+\beta)}$ 种取值．
@@ -264,7 +264,7 @@ $$
     
     对该不等式取整，就得到第二个命题．
 
-利用这些性质，就可以在 $O(n^{\min\{1,\alpha/(1+\beta)\}})$ 的时间复杂度下实现对任意指数的数论分块．
+利用这些性质，就可以在 $O(n^{\alpha/(1+\beta)\})$ 的时间复杂度下实现对任意指数的数论分块．
 
 ???+ example "例子"
     例如，对于 $\alpha=\beta=1/2$ 时的如下和式
