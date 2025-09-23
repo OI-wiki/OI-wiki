@@ -55,7 +55,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [如何为 ACM-ICPC 做准备？- geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
 -   [Topcoder 整理的教程](https://www.topcoder.com/community/competitive-programming/tutorials/)
 -   [校招面试指南](https://github.com/jwasham/coding-interview-university)
--   [由 hzwer 收集整理自互联网的课件](https://github.com/hzwer/sharePPT)
+-   [由 hzwer 收集整理自互联网的课件](https://github.com/hzwer/shareOI)
 -   [Trinkle23897 的课件](https://github.com/Trinkle23897/oi_slides)
 -   [huzecong 的课件](https://github.com/huzecong/oi-slides)
 -   [Open Data Structure](https://opendatastructures.org/)：内含众多数据结构讲稿
@@ -172,7 +172,7 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 
 ## 题集和资源
 
--   [POJ 训练计划](http://blog.csdn.net/skywalkert/article/details/46594541)
+-   [POJ 训练计划](https://blog.csdn.net/skywalkert/article/details/46594541)
 -   [USACO](http://train.usaco.org/usacogate)
 -   [洛谷题单](https://www.luogu.com.cn/training/list)
 -   [-Morass- 贴在 Codeforces 上的一份题单](https://codeforces.com/blog/entry/55274)
