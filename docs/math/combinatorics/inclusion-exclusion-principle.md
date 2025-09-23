@@ -576,8 +576,8 @@ $$
 
 ## 参考文献
 
-王迪《容斥原理》，2013 年信息学奥林匹克中国国家队候选队员论文集
+[浅探容斥原理 - 王迪](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2013%E8%AE%BA%E6%96%87%E9%9B%86.pdf)，2013 年信息学奥林匹克中国国家队候选队员论文集
 
-[Cyhlnj《有标号的 DAG 计数系列问题》](https://blog.csdn.net/oi_konnyaku/article/details/84862271)
+[有标号的 DAG 计数系列问题 - Cyhlnj](https://www.cnblogs.com/cjoieryl/p/10078167.html)
 
-[Wikipedia - 全序关系](https://en.wikipedia.org/wiki/Total_order)
+[全序关系 - Wikipedia](https://en.wikipedia.org/wiki/Total_order)
