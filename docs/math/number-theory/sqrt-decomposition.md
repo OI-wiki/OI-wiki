@@ -312,3 +312,7 @@ $$
 -   [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)
 -   [Luogu P2261 CQOI2007 余数求和](https://www.luogu.com.cn/problem/P2261)
 -   [Luogu P3455 POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)
+
+## 参考资料与注释
+
+-   [杜教筛的时空复杂度分析 by riteme](https://riteme.site/blog/2018-9-11/time-space-complexity-dyh-algo.html)
