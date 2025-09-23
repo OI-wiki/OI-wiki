@@ -56,8 +56,27 @@ $$
 
 根据这一表达式，可以首先在 $\Theta(\log n)$ 时间内计算出 $a$ 的 $\Theta(\log n)$ 个 $2^k$ 次幂的取值，然后花费 $\Theta(\log n)$ 的时间选择等于 $1$ 的二进制位对应的幂次乘到最终结果中。这就是快速幂的迭代版本实现。
 
-???+ example "参考实现"
-    
+伪代码如下：
+
+$$
+\begin{array}{l}
+\textbf{Algorithm }\text{FastPow}(a, n): \\
+\textbf{Input. }\text{Base }a\text{ and exponent }n.\\
+\textbf{Output. }\text{Power }a^n.\\
+\textbf{Method.}\\
+\begin{array}{ll}
+1 & \textit{result}\gets\mathrm{Id}\\
+2 & \textbf{while }n > 0\textbf{ do}\\
+3 & \qquad \textbf{if }n \bmod 2 = 1\textbf{ then}\\
+4 & \qquad \qquad \textit{result} \gets \textit{result}\cdot a\\
+5 & \qquad \textbf{end if}\\
+6 & \qquad a \gets a \cdot a\\
+7 & \qquad n \gets n / 2\\
+8 & \textbf{end while}\\
+9 & \textbf{return }\textit{result}
+\end{array}
+\end{array}
+$$
 
 利用这一方法计算快速幂，需要进行 $\Theta(\log n)$ 次乘法运算。
 
@@ -81,8 +100,27 @@ $$
 
 这就是快速幂的递归版本实现。
 
-???+ example "参考实现"
-    
+伪代码如下：
+
+$$
+\begin{array}{l}
+\textbf{Algorithm }\text{FastPow}(a, n): \\
+\textbf{Input. }\text{Base }a\text{ and exponent }n.\\
+\textbf{Output. }\text{Power }a^n.\\
+\textbf{Method.}\\
+\begin{array}{ll}
+1 & \textbf{if }n = 0\textbf{ then}\\
+2 & \qquad \textbf{return }\mathrm{Id}\\
+3 & \textbf{end if}\\
+4 & \textit{result} \gets \text{FastPow}(a, n / 2) \\
+5 & \textbf{if }n\bmod 2 = 0\textbf{ then}\\
+6 & \qquad \textbf{return }\textit{result}\cdot\textit{result}\cdot a\\
+7 & \textbf{else}\\
+8 & \qquad \textbf{return }\textit{result}\cdot\textit{result}\\
+9 & \textbf{end if}
+\end{array}
+\end{array}
+$$ 
 
 利用这一方法计算快速幂，需要递归 $\Theta(\log n)$ 次，同样需要 $\Theta(\log n)$ 次乘法运算。尽管复杂度相同，由于递归本身有一定开销，所以实践中迭代版本的速度更快。
 
