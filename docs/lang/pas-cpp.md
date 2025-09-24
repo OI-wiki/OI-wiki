@@ -162,9 +162,7 @@ C++ 与 Pascal 基本上差不多，常见的有
 
 C++ 的单引号是专门用于表示单个字符的（字符型），比如 `'a'`，而字符串（字符型数组）必须要用双引号。
 
-C++ 还要很多额外的数据类型，请参考更多资料。
-
-扩展阅读：[基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)。
+C++ 还要很多额外的数据类型，请参考 [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)。
 
 #### 常量声明
 
@@ -440,9 +438,7 @@ std::cout << (a == '0');  // true 输出 1
 
 其实 C++ 中的 `char` 与 `bool` 本质上是整型。
 
-扩展阅读：
-
--   [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion) 注意内容可能过于专业
+详细内容请参考 [隐式转换 - cppreference.com](https://zh.cppreference.com/w/cpp/language/implicit_conversion) 一文。
 
 ### C++ 很多语句有返回值：以如何实现读取数量不定数据为例
 
@@ -656,7 +652,7 @@ int main(int argc, char const* argv[]) {
 
 C++ 中函数传递参数还有其他方法，其中一种是 **直接使用全局变量传递参数**，如果不会用指针，可以先用这种方法。但是这种方法的缺陷是没有栈保存数据，**没有办法在递归函数中传参**。（除非手写栈，注意，手写栈也是一种突破系统栈限制的方法。）
 
-## C++ 标准库与参考资料 Reference
+## C++ 标准库与参考资料
 
 千万不要重复造轮子（除非为了练习），想要自己动手写一个功能出来之前，先去看看有没有这个函数或者数据结构。
 
