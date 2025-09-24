@@ -38,15 +38,6 @@ const FONT_PKG = "@mathjax/mathjax-newcm-font";
 // to remove it when using server-side rendering
 const MATH_CSR_SCRIPT_SUFFIX = "?math-csr";
 
-// Add horizontal scrollbar automatically on narrow screens
-const MATHJAX_EXTRA_CSS = `
-  mjx-container[jax="CHTML"][display="true"] mjx-math {
-    overflow-x: auto;
-    overflow-y: hidden;
-    max-width: 100%;
-  }
-`;
-
 export class MathRenderer {
   private adaptor: LiteAdaptor;
   private document: MathDocument<LiteElement, any, LiteDocument>;
@@ -62,7 +53,8 @@ export class MathRenderer {
     const outputJax = new CHTML<LiteElement, unknown, LiteDocument>({
       // in windows, relative return with \, so need to replace
       fontURL: path.relative(path.dirname(MATHJAX_TARGET_CSS_FILE), MATHJAX_TARGET_FONTS_DIR).replaceAll("\\", "/"),
-      adaptiveCSS: false
+      adaptiveCSS: false,
+      displayOverflow: "scroll"
     });
 
     this.document = mathjax.document("", {
@@ -76,7 +68,7 @@ export class MathRenderer {
   }
 
   getCSS() {
-    return this.css + "\n" + MATHJAX_EXTRA_CSS;
+    return this.css;
   }
 
   render(math: string, isDisplay: boolean) {
