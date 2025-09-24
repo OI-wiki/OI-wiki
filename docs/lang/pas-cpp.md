@@ -1,59 +1,21 @@
 author: kexplorning, Ir1d, lvneg1
 
-> 用来急救，不多废话。
-
-???+note "药方食用提示"
-    本急救贴可以让您充分了解以下内容（对应 [C++ 语法快速提要](#c-语法快速提要-start-here)）：
-    
-    - 基本语法（块语句、注释、导入库、简单输入输出、声明变量、赋值……）
-    -   C++ 的 Hello World 与 A+B Problem 写法与解释
-    
-        [对应语法](#对应语法-syntax) 部分较为紧凑，正式食用可能需要额外参考资料（已给出）。此部分不包括指针与 C 风格数组的介绍，也没有结构体、运算符重载等等。
-        
-        [重要不同之处](#重要不同之处-differences) 部分为 C++ 的语法特点，也是 Pascal 转 C++ 时会碰到的坑。
-    
-    如要快速查找，请见附录：
-    
-    -  [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#附-apascal-与-c-运算符与数学函数语法对比表-pascal-vs-c-operator-syntax-table) 
-    -  [附 B：文章检索](#附-b文章检索-index) - 按 C++ 语句语法索引
-
-<!-- 
-
-INFO: 恭喜你找到了隐藏彩蛋！
-
-> ！！⚠️ **警告** ⚠️！！
-> 
-> ~~☠ **有毒物品警告**~~  ~~☣️ **腐化身心警告**~~
-> 
-> ~~此药方仅适用于 Pascal 中毒症状早期；若您是晚期，本药方不能使您快速康复（不能让您理解指针），请节哀顺变（顺其自然），或遵循本 Wiki 其他页面等医嘱，或删除技能树重练。~~
-> 
-> ~~本药方治疗机理为**以毒攻毒**，故副作用是 C++ 中毒症状，请服用此方前再三确认。本药方贡献者与本 Wiki 不承担您使用发生意外时的任何责任。~~
-> 
-> 欢迎对本药方进行小白鼠测试（可在初具规模之后，使用猿类进行实验），也非常欢迎通过发评论、发 issue、提交 PR 进行实验结果反馈与药方改进。
-> ~~若您想要特效药，本 Wiki 有[一剂](./python)：~~
-> 
-> > 人生苦短，我用 Python。
-> 
-> 可以让您超脱世间，驾鹤西去，再也不用因 OI 而困扰。 
-
--->
-
 ## C++ 快速安装与环境配置
 
-> 注意：这里假设使用的系统是 Windows。
+以下过程均在 Windows 系统中操作。
 
-### 方式一：使用 IDE
+### 使用 IDE
 
-以下 IDE 选择一个即可：
+可以参考如下页面中内容：
 
--  [Dev-C++](../tools/editor/devcpp.md) 
--  [Code::Blocks](https://sourceforge.net/projects/codeblocks/) 
+- [Dev-C++](../tools/editor/devcpp.md)
+- [Code::Blocks](../tools/editor/codeblocks.md)
 
-### 方式二：使用 代码编辑器 + 编译器 + 调试器
--  [VS Code](../tools/editor/vscode.md)  
+### 使用 代码编辑器 + 编译器 + 调试器
 
-    Visual Studio Code 官方网站上有文档解释如何进行 C++ 的配置。一般而言 VS Code 搭配插件使用更方便，见 [VS Code 的官方网站](https://code.visualstudio.com/)。
-## C++ 语法快速提要 Start Here
+可以参考 [VS Code](../tools/editor/vscode.md) 页面中内容。Visual Studio Code 官方网站上有文档解释如何进行 C++ 的配置。一般而言 VS Code 搭配插件使用更方便，见 [VS Code 的官方网站](https://code.visualstudio.com/)。
+
+## C++ 语法快速提要
 
 C++ 程序都是从 `main` 这个部分开始运行的。
 
@@ -61,7 +23,7 @@ C++ 程序都是从 `main` 这个部分开始运行的。
 
 注意，和 Pascal 一样，C++ 每句话结束要加分号 `;` ，不过大括号结尾不需要有分号，而且程序结束末尾不用打句号 `.` 。
 
- `//` 表示行内注释， `/* */` 表示块注释。
+对于注释，`//` 表示行内注释， `/* */` 表示块注释。
 
 按照惯例，看看 Hello World 吧。
 
@@ -95,14 +57,14 @@ int main()  // main 部分
 std::cout << "Hello World!" << std::endl;
 ```
 
- `std::cout` 是输出（ `cout` 即 C-out）的命令。你可能看过有些 C++ 程序中直接写的是 `cout` 。
+`std::cout` 是输出命令。你可能看过有些 C++ 程序中直接写的是 `cout` 。
 
 ??? note "有关 std:: 前缀"
     有关 `std::` 这个前缀的问题，请见 [这节](basic.md#cin-与-cout) 底下的注释「什么是 std？」。
 
 中间的 `<<` 很形象地表示流动，其实它就是表示输出怎么「流动」的。这句代码的意思就是， `"Hello World!"` 会先被推到输出流，之后 `std::endl` 再被推到输出流。
 
-而 `std::endl` 是 **输出** 换行（ `endl` 即 end-line）命令，这与 Pascal 的 `writeln` 类似，不过 C++ 里面可没有 `coutln` 。Pascal 与 C++ 的区别在于， `write('Hello World!')` 等价于 `std::cout << "Hello World!"` ，而 `writeln('Hello World!')` 等价于 `std::cout << "Hello World!" << std::endl` 。
+而 `std::endl` 是 **输出** 换行命令，这与 Pascal 的 `writeln` 类似，不过 C++ 里面可没有 `coutln` 。Pascal 与 C++ 的区别在于， `write('Hello World!')` 等价于 `std::cout << "Hello World!"` ，而 `writeln('Hello World!')` 等价于 `std::cout << "Hello World!" << std::endl` 。
 
 此处 `"Hello World!"` 是字符串，Pascal 中字符串都是用单引号 `'` 不能用双引号，而 C++ 的字符串必须用双引号。C++ 中单引号包围的字符会有别的含义，后面会再提及的。
 
@@ -141,13 +103,13 @@ int main() {
 
  `std::cin` 是读入（ `cin` 即 C-in）， `>>` 也与输出语法的类似。
 
-这里多出来的语句中最重要的是两个，一个是变量声明语句
+这里多出来的语句中最重要的是两个，一个是变量声明语句。
 
 ```cpp
 int a, b, c;
 ```
 
-你可能习惯于 Pascal 里面的声明变量
+你可能习惯于 Pascal 里面的声明变量：
 
 ```pas
 var
@@ -156,15 +118,15 @@ a, b, c: integer;
 
 C++ 的声明是直接以数据类型名开头的，在这里， `int` （整型）开头表示接下来要声明变量。
 
-接着一个最重要的语句就是赋值语句
+接着一个最重要的语句就是赋值语句。
 
 ```cpp
 c = a + b;
 ```
 
-这是 Pascal 与 C++ 语法较大的不同， **这是个坑** ：Pascal 是 `:=` ，C++ 是 `=` ；而 C++ 判断相等是 `==` 。
+这是 Pascal 与 C++ 语法较大的不同，：Pascal 的赋值是 `:=` ，C++ 是 `=` ；而 C++ 判断相等是 `==` 。
 
-C++ 也可直接在声明时进行变量初始化赋值
+C++ 也可直接在声明时进行变量初始化赋值。
 
 ```cpp
 int a = 0, b = 0, c = 0;
@@ -179,35 +141,32 @@ int a = 0, b = 0, c = 0;
 
 好了，到现在为止，你已经掌握了一些最基本的东西了，剩下就是找 Pascal 和 C++ 里面对应的语法和不同的特征。
 
-不过在此之前，强烈建议先看 [变量作用域：全局变量与局部变量](#变量作用域-scope全局变量与局部变量) ，也可使用 [附 B：文章检索](#附-b文章检索-index) 查阅阅读。
+不过在此之前，强烈建议先看 [变量作用域：全局变量与局部变量](#变量作用域-全局变量与局部变量) 。
 
 请善用<kbd>Alt</kbd>+<kbd>←</kbd>与<kbd>Alt</kbd>+<kbd>→</kbd>返回跳转。
 
-## 对应语法 Syntax
+## 语法
 
-### 变量 Variable
+### 变量
 
-#### 基本数据类型 Fundamental types
+#### 基本数据类型
 
 C++ 与 Pascal 基本上差不多，常见的有
 
--  `bool` Boolean 类型
--  `int` 整型
--   浮点型
-    -  `float` 
-    -  `double` 
--  `char` 字符型
--  `void` 无类型
+-  `bool`：布尔类型
+-  `int`：整型
+-  `float`：单精度浮点型
+-  `double`：双精度浮点型 
+-  `char`：字符型
+-  `void`：无类型
 
 C++ 的单引号是专门用于表示单个字符的（字符型），比如 `'a'` ，而字符串（字符型数组）必须要用双引号。
 
 C++ 还要很多额外的数据类型，请参考更多资料。
 
-扩展阅读：
+扩展阅读：[基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types)。
 
--  [基础类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/types) 
-
-#### 常量声明 Constant
+#### 常量声明
 
 ```cpp
 const double PI = 3.1415926;
@@ -215,12 +174,9 @@ const double PI = 3.1415926;
 
 若不清楚有关宏展开的问题，建议使用常量，而不用宏定义。
 
-### 运算符 Operator
+### 运算符
 
-请直接参考
-
--  [附 A：Pascal 与 C++ 运算符与数学函数语法对比表](#附-apascal-与-c-运算符与数学函数语法对比表-pascal-vs-c-operator-syntax-table) 
--  [运算 - OI Wiki](./op.md) 
+请直接参考 [运算](./op.md) 一文中内容。附录中也提供了运算符与数学函数语法对比表。
 
 ### 条件
 
@@ -247,11 +203,11 @@ if (a == b && a > 0 && b > 0) {
 
 布尔运算与比较
 
--  `and` -> `&&` 
--  `or` -> `||` 
--  `not` -> `!` 
--  `=` -> `==` 
--  `<>` -> `!=` 
+-  `and -> &&` 
+-  `or -> ||` 
+-  `not -> !` 
+-  `= -> ==` 
+-  `<> -> !=` 
 
 注释：
 
@@ -261,10 +217,10 @@ if (a == b && a > 0 && b > 0) {
 4. C++ 不需要思考到底要不要在 `end` 后面加分号。
 5. C++ 布尔运算中，非布尔值可以自动转化为布尔值。
 
-???+note "易错提醒"
+???+ warning "易错提醒"
     特别注意： **不要把 `==` 写成 `=` ！** 
     
-    由于 C/C++ 比 Pascal 语法灵活，如果在判断语句中写了 `if (a=b) {` ，那么程序会顺利运行下去，因为 C++ 中 `a=b` 是有返回值的。
+    由于 C/C++ 比 Pascal 语法灵活，如果在判断语句中写了 `if (a=b)` ，那么程序会顺利运行下去，因为 C++ 中 `a=b` 是有返回值的。
 
 ####  `case` 与 `switch` 
 
@@ -272,7 +228,7 @@ if (a == b && a > 0 && b > 0) {
 
 需要注意：C++ 没有 `1..n` ，也没有连续不等式（比如 `1 < x < 2` ）。
 
-### 循环 Loop
+### 循环
 
 以下三种循环、六份代码实现的功能是一样的。
 
@@ -353,15 +309,17 @@ do {
 } while (i <= 10);
 ```
 
-#### 循环控制 Loop Control
+#### 循环控制
 
 C++ 中 `break` 的作用与 Pascal 是一样的，退出循环。
 
 而 `continue` 也是一样的，跳过当前循环，进入下一次循环（回到开头）。
 
-### 数组与字符串 Array and String
+### 数组与字符串
 
 #### 不定长数组：标准库类型 Vector
+
+请参考 [序列式容器](csl/sequence-container.md) 页面中内容。
 
 C++ 标准库中提供了 `vector` ，相当于不定长数组，调用前需导入库文件。
 
@@ -397,11 +355,9 @@ int main() {
 
 C++ 访问数组成员，与 Pascal 类似，不过有很重要的区别：数组的第一项是 `a[0]` ，而 Pascal 中是可以自行指定的。
 
-扩展阅读：
-
--  [序列式容器 - OI Wiki](csl/sequence-container.md) 
-
 #### 字符串：标准库类型 String
+
+请参考 [string](csl/string.md) 页面中内容。
 
 C++ 标准库中提供了 `string` ，与 `vector` 可以进行的操作有些相同，同样需要导入库文件。
 
@@ -421,55 +377,26 @@ int main() {
 }
 ```
 
-扩展阅读：
+#### C 风格数组
 
--  [string - OI Wiki](csl/string.md) 
+请参考 [数组](array.md) 页面中内容。
 
-#### C 风格数组 Array
-
-如果要用不定长的数组请用 Vector，不要用 C 风格的数组。
+如果要用不定长的数组请用 `vector`，不要用 C 风格的数组。
 
 C 风格的数组与指针有密切关系，所以此处不多展开。
 
-扩展阅读：
+## 重要不同之处
 
--  [数组 - OI Wiki](array.md) 
+### 变量作用域：全局变量与局部变量
 
-## 重要不同之处 Differences
-
-### 变量作用域 Scope：全局变量与局部变量
-
-C++ 几乎可以在 **任何地方** 声明变量。
-
-以下对于 C++ 的变量作用域的介绍摘自 [变量作用域 - OI Wiki](var.md#变量作用域) ：
-
-> 作用域是变量可以发挥作用的代码块。
->
-> 变量分为全局变量和局部变量。在所有函数外部声明的变量，称为全局变量。在函数或一个代码块内部声明的变量，称为局部变量。
->
-> 全局变量的作用域是整个文件，全局变量一旦声明，在整个程序中都是可用的。
->
-> 局部变量的作用域是声明语句所在的代码块，局部变量只能被函数内部或者代码块内部的语句使用。
->
-> 由一对大括号括起来的若干语句构成一个代码块。
->
-> ```cpp
-> int g = 20;  // 声明全局变量
-> int main() {
->   int g = 10;         // 声明局部变量
->   printf("%d\n", g);  // 输出 g
->   return 0;
-> }
-> ```
->
-> 在一个代码块中，局部变量会覆盖掉同名的全局变量，比如上面的代码输出的 `g` 就是 `10` 而不是 `20` 。为了防止出现意料之外的错误，请尽量避免局部变量与全局变量重名的情况。
+C++ 几乎可以在 **任何地方** 声明变量。请参考 [变量作用域](var.md#变量作用域)。
 
 在写 Pascal 过程/函数时，容易忘记声明局部变量 `i` 或者 `j` ，而一般主程序里会有循环，于是大部分情况下 `i` 与 `j` 都是全局变量，于是，在这种情况下，过程/函数中对 `i` 操作极易出错。更要命的是，如果忘记声明这种局部变量，编译器编译不报错，程序可以运行。（有很多难找的 bug 就是这么来的。）
 
 所以，在使用 C++ 时，声明变量，比如循环中使用的 `i` ， **不要用全局变量，能用局部变量就用局部变量** 。如果这么做，不用担心函数中变量名（比如 `i` ）冲突。
 
 ??? note "额外注"
-    Pascal 可在某种程度上避免这个问题，仿照 C++ 的方法，主程序只有调用过程/函数，不声明 `i`  `j` 这类极易名称冲突的全局变量，如果需要循环，另写一个过程进行调用。
+    Pascal 可在某种程度上避免这个问题，仿照 C++ 的方法，主程序只有调用过程/函数，不声明 `i`，`j` 这类极易名称冲突的全局变量，如果需要循环，另写一个过程进行调用。
 
 ### C++ 可以自动转换类型
 
@@ -522,7 +449,7 @@ std::cout << (a == '0');  // true 输出 1
 有些时候需要读取到数据结束，比如，求一组不定数量的数之和（数据可以多行），直到文件末尾，实现方式是
 
 ??? note "文件末尾 EOF"
-    EOF，文件末尾标识符，在命令行中 Windows 上以<kbd>Ctrl</kbd>+<kbd>Z</kbd>输入（还需按<kbd>Enter</kbd>），\*unix 系统以<kbd>Ctrl</kbd>+<kbd>D</kbd>输入。
+    EOF，文件末尾标识符，在命令行中 Windows 上以<kbd>Ctrl</kbd>+<kbd>Z</kbd>输入（还需按<kbd>Enter</kbd>），Unix 系统以<kbd>Ctrl</kbd>+<kbd>D</kbd>输入。
 
 ```cpp
 #include <iostream>
@@ -539,9 +466,11 @@ int main() {
 }
 ```
 
-实现原理： `while (std::cin >> a)` 中 `std::cin >> a` 若在输入有问题或遇到文件结尾时，会返回 false，使得循环中断。
+实现原理： `while (std::cin >> a)` 中 `std::cin >> a` 若在输入有问题或遇到文件结尾时，会返回 `false`，使得循环中断。
 
-### 函数 Function：C++ 只有函数没有过程但有 `void` ，没有函数值变量但有 `return` 。
+### 函数
+
+C++ 只有函数没有过程但有 `void` ，没有函数值变量但有 `return` 。
 
 Pascal 函数与 C++ 函数对比示例：
 
@@ -652,14 +581,14 @@ int abs(int x) {
 }
 ```
 
-???+note "特别提醒"
+???+ note "特别提醒"
     C++ 中 `exit` 是退出程序；不要顺手把 `exit` 打上去，要用 `return` ！
 
 C++ 把函数和过程统统视作函数，连 `main` 都不放过，比如写 `int main` ，C++ 视 `main` 为一个整型的函数，这里返回值是 `0` 。它是一种习惯约定，返回 `0` 代表程序正常退出。
 
 也许你已经猜到了， `main(int argc, char const *argv[])` 中的参数就是 `int argc` 与 `char const *argv[]` ，不过意义请参考其他资料。
 
-### 在函数中传递参数 Passing Parameters to Functions
+### 在函数中传递参数
 
 C++ 中没有 Pascal 的 `var` 关键字可以改变传递的参数，但是 C++ 可以使用引用和指针达到同样的效果。
 
@@ -733,27 +662,25 @@ C++ 中函数传递参数还有其他方法，其中一种是 **直接使用全�
 
 ### C++ 标准库
 
-C++ 标准库中 `<algorithm>` 有很多有用的函数比如快排、二分查找等，可以直接调用。请参考这个页面： [STL 算法 - OI Wiki](csl/algorithm.md) 。
+C++ 标准库中 `<algorithm>` 有很多有用的函数比如快排、二分查找等，可以直接调用。请参考 [STL 算法](csl/algorithm.md) 页面。
 
-还有 STL 容器，比如数组、向量（可变大小的数组）、队列、栈等，附带很多函数。请参考这个页面： [STL 容器简介 - OI Wiki](csl/container.md) 。
+还有 STL 容器，比如数组、向量（可变大小的数组）、队列、栈等，附带很多函数。请参考 [STL 容器简介](csl/container.md) 页面。
 
 如果要找关于字符串操作的函数见
 
 -  [std::basic_string - cppreference.com](https://zh.cppreference.com/w/cpp/string/basic_string) 
 -  [ `<string>` - C++ Reference](https://www.cplusplus.com/reference/string/) 
 
-C/C++ 的指针是很灵活的东西，如果想要彻底理解指针，建议找本书或者参考手册仔细阅读。
-
--  [指针 - OI Wiki](pointer.md) 
+C/C++ 的指针是很灵活的东西，可以参考 [指针](pointer.md) 页面。如果想要彻底理解指针，建议找本书或者参考手册仔细阅读。
 
 ### 错误排查与技巧
 
--  [常见错误 - OI Wiki](../contest/common-mistakes.md) 
--  [常见技巧 - OI Wiki](../contest/common-tricks.md) 
+-  [常见错误](../contest/common-mistakes.md) 
+-  [常见技巧](../contest/common-tricks.md) 
 
 ### C++ 语言资料
 
--  [学习资源 - OI Wiki](../contest/resources.md) 
+-  [学习资源](../contest/resources.md) 
 -  [cppreference.com](https://zh.cppreference.com/) - 最重要的 C/C++ 参考资料
 -  [C++ 教程 - 菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html) 
 -  [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/) 
@@ -779,9 +706,9 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 -  [Lazarus wiki](https://wiki.freepascal.org/) 
 -  [Free Pascal Reference guide](https://freepascal.org/docs-html/current/ref/ref.html) 
 
-## 附 A：Pascal 与 C++ 运算符与数学函数语法对比表 Pascal vs C++ Operator Syntax Table
+## 附录：Pascal 与 C++ 运算符与数学函数语法对比表
 
-> 仅包括最常用的运算符与函数。
+仅包括最常用的运算符与函数。
 
 ### 基本算术
 
@@ -800,7 +727,7 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 | --- | ----------- | ---------- |
 | 非   |  `not(a)`   |  `!a`      |
 | 且   |  `a and b`  |  `a && b`  |
-| 或   |  `a or b`   |  `a || b`  |
+| 或   |  `a or b`   |  <code>a \|\| b</code>  |
 
 ### 比较
 
@@ -815,14 +742,14 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 ### 赋值
 
-|     | Pascal                          | C++        |
-| --- | ------------------------------- | ---------- |
-|     |  `a := b`                       |  `a = b`   |
-|     |  `a := a + b`                   |  `a += b`  |
-|     |  `a := a - b`                   |  `a -= b`  |
-|     |  `a := a * b`                   |  `a *= b`  |
-|     |  `a := a div b` 或 `a := a / b`  |  `a /= b`  |
-|     |  `a := a mod b`                 |  `a %= b`  |
+| Pascal                          | C++        |
+| ------------------------------- | ---------- |
+|  `a := b`                       |  `a = b`   |
+|  `a := a + b`                   |  `a += b`  |
+|  `a := a - b`                   |  `a -= b`  |
+|  `a := a * b`                   |  `a *= b`  |
+|  `a := a div b` 或 `a := a / b`  |  `a /= b`  |
+|  `a := a mod b`                 |  `a %= b`  |
 
 ### 自增/自减
 
@@ -835,45 +762,18 @@ Pascal 在上个世纪后半叶是门很流行的语言，它早于 C 语言，�
 
 ### 数学函数
 
-> 使用需要导入 `<cmath>` 库。
+使用需要导入 `<cmath>` 库。
 
 |         | Pascal       | C++              |
 | ------- | ------------ | ---------------- |
 | 绝对值     |  `abs(a)`    |  `abs(a)` （整数）   |
 | 绝对值     |  `abs(a)`    |  `fabs(a)` （浮点数） |
-|  $a^b$  | N/A (\*)     |  `pow(a, b)`     |
+|  $a^b$  | N/A[^ref1]     |  `pow(a, b)`     |
 | 截断取整    |  `trunc(a)`  |  `trunc(a)`      |
 | 近似取整    |  `round(a)`  |  `round(a)`      |
 
-\*Extended Pascal 中有 `a**b` 不过需要导入 `Math` 库。
+[^ref1]: Extended Pascal 中有 `a**b`，不过需要导入 `Math` 库。
 
 其他函数请参考：
 
 -  [常用数学函数 - cppreference.com](https://zh.cppreference.com/w/cpp/numeric/math) 
-
-## 附 B：文章检索 Index
-
-> 按 C++ 语句语法索引。
-
--  [基本语法](#c-语法快速提要-start-here) 
--    [变量](#变量-variable) 
-    -  [数据类型](#基本数据类型-fundamental-types) 
-    -  [常量声明](#常量声明-constant) 
-    -  [作用域](#变量作用域-scope全局变量与局部变量) 
--  [运算符](#运算符-operator) 
--    [if 语句](#if-语句) 
-    - if
-    - else
--    [循环语句](#循环-loop) 
-    -  [for 语句](#for-循环) 
-    -  [while 语句](#while-循环) 
-    -  [do while 语句](#repeat-until-与-do-while-循环) 
-    -  [break, continue](#循环控制-loop-control) 
--    [函数](#函数-functionc-只有函数没有过程但有-void-没有函数值变量但有-return-) 
-    -  [函数定义，return](#函数-functionc-只有函数没有过程但有-void-没有函数值变量但有-return-) 
-    -  [函数传参](#在函数中传递参数-passing-parameters-to-functions) 
--    [数组与字符串](#数组与字符串-array-and-string) 
-    -  [不定长数组 Vector](#不定长数组标准库类型-vector) 
-    -  [C 风格数组](#c-风格数组-array) 
-    -  [字符串 String](#字符串标准库类型-string) 
--  [资料](#c-标准库与参考资料-reference) 
