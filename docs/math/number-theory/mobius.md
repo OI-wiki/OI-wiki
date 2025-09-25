@@ -1,6 +1,6 @@
 author: hydingsy, hyp1231, ranwen, 383494
 
-前置知识：[数论分块](./sqrt-decomposition.md)、[狄利克雷卷积](../poly/dgf.md#dirichlet-%E5%8D%B7%E7%A7%AF)
+前置知识：[数论分块](./sqrt-decomposition.md)、[狄利克雷卷积](./dirichlet.md#dirichlet-卷积)
 
 莫比乌斯反演是数论中的重要内容．对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值．
 
@@ -226,7 +226,7 @@ $$
     
     其中，$a\uparrow b = a^b$ 是 Knuth 箭头．对比基本形式的证明可以发现，唯一的区别就是加法换成了乘法，且乘法换成了取幂．
 
-从 Dirichlet 卷积的角度看，莫比乌斯反演只是利用了「莫比乌斯函数是常值函数的 Dirichlet 逆」这一点．容易想象，类似莫比乌斯反演的关系对于一般的 Dirichlet 逆同样成立．
+从 Dirichlet 卷积的角度看，莫比乌斯反演只是利用了「莫比乌斯函数是常值函数的 Dirichlet 逆」这一点．容易想象，类似莫比乌斯反演的关系对于一般的 [Dirichlet 逆](./dirichlet.md#dirichlet-卷积) 同样成立．
 
 ???+ note "拓展三"
     设 $f(n),g(n),\alpha(n)$ 都是数论函数，且 $\alpha^{-1}(n)$ 是 $\alpha(n)$ 的 Dirichlet 逆，即
@@ -265,13 +265,7 @@ $$
     $$
 
 ??? note "证明"
-    只需要验证对于完全积性函数 $t(n)$，它的 Dirichlet 逆就是 $\mu(n)t(n)$．直接验证，有：
-    
-    $$
-    \sum_{d\mid n}\mu(d)t(d)t\left(\dfrac{n}{d}\right) = \sum_{d\mid n}\mu(d)t(n) = t(n)[n = 1] = [n = 1].
-    $$
-    
-    最后一步用到了 $t(1)=1$．这对于 [完全积性函数](./basic.md#积性函数) 是成立的．
+    由 Dirichlet 卷积的 [性质](./dirichlet.md#性质) 可知，对于完全积性函数 $t(n)$，它的 Dirichlet 逆就是 $\mu(n)t(n)$．
 
 最后，莫比乌斯反演还可以推广到 $[1,+\infty)$ 上的复值函数，而不仅仅局限于数论函数．基本形式的莫比乌斯反演可以看作是复值函数在所有非整数点处均取零值的特殊情形．
 
