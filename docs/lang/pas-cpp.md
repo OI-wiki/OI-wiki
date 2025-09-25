@@ -445,7 +445,7 @@ std::cout << (a == '0');  // true 输出 1
 有些时候需要读取到数据结束，比如，求一组不定数量的数之和（数据可以多行），直到文件末尾，实现方式是
 
 ??? note "文件末尾 EOF"
-    EOF，文件末尾标识符，在命令行中 Windows 上以<kbd>Ctrl</kbd>+<kbd>Z</kbd>输入（还需按<kbd>Enter</kbd>），Unix 系统以<kbd>Ctrl</kbd>+<kbd>D</kbd>输入。
+    EOF，文件末尾标识符，在命令行中 Windows 上以<kbd>Ctrl</kbd>+<kbd>Z</kbd>输入（还需按<kbd>Enter</kbd>），Unix-like 系统以<kbd>Ctrl</kbd>+<kbd>D</kbd>输入。
 
 ```cpp
 #include <iostream>
@@ -677,7 +677,7 @@ C/C++ 的指针是很灵活的东西，可以参考 [指针](pointer.md) 页面�
 ### C++ 语言资料
 
 -   [学习资源](../contest/resources.md)
--   [cppreference.com](https://zh.cppreference.com/)- 最重要的 C/C++ 参考资料
+-   [cppreference.com](https://zh.cppreference.com/)：最重要的 C/C++ 参考资料
 -   [C++ 教程 - 菜鸟教程](https://www.runoob.com/cplusplus/cpp-tutorial.html)
 -   [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/)
 -   [Reference - C++ Reference](https://www.cplusplus.com/reference/)
