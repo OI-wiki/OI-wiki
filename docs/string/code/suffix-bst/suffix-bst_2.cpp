@@ -186,8 +186,7 @@ void solve() {
 
       reverse(a.begin() + 1, a.begin() + 1 + na);
 
-      a[na + 1] = 'Z' + 1;
-      a[na + 2] = 0;
+      a.push_back('Z' + 1);
       int ans = query(root, a, na + 1);
 
       --a[na];
