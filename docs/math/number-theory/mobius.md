@@ -12,8 +12,8 @@ $$
 \mu(n)=
 \begin{cases}
 1,&n=1,\\
-0,&n\text{ 含有平方因子},\\
-(-1)^k,&n\text{ 是 }k\text{ 个互异素因子的乘积}.\\
+0,&n\text{ is divisible by a square }>1,\\
+(-1)^k,&n\text{ is the product of }k\text{ distinct primes}.\\
 \end{cases}
 $$
 
@@ -138,7 +138,7 @@ $$
         $$
         n^k = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\sigma_k(d).
         $$
-    3.  互异素因子数目函数 $\omega(n)=\sum_{d\mid n}[d\in\mathbf P]$，亦即 $\omega = 1* 1_{\mathbf P}$。对它进行反演，就得到 $1_{\mathbf P} = \mu * \omega$，亦即
+    3.  互异素因子数目函数 $\omega(n)=\sum_{d\mid n}[d\in\mathbf P]$，亦即 $\omega = 1* 1_{\mathbf P}$，其中 $1_{\mathbf P}$ 是素数集 $\mathcal P$ 的指示函数。对它进行反演，就得到 $1_{\mathbf P} = \mu * \omega$，亦即
     
         $$
         [n\in\mathbf P] = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\omega(d).
@@ -260,25 +260,29 @@ $$
     设 $F(x)$ 和 $G(x)$ 都是 $[1,+\infty)$ 上的复值函数。那么，有
     
     $$
-    F(x) = \sum_{1\le n\le x}G\left(\dfrac{x}{n}\right) \iff G(x) = \sum_{1\le n\le x}\mu(n)F\left(\dfrac{x}{n}\right).
+    F(x) = \sum_{n = 1}^{\lfloor x\rfloor}G\left(\dfrac{x}{n}\right) \iff G(x) = \sum_{n = 1}^{\lfloor x\rfloor}\mu(n)F\left(\dfrac{x}{n}\right).
     $$
-    
-    其中，求和对 $[1,x]$ 内的所有整数进行。
 
 ??? note "证明"
+    不妨对 $F$ 和 $G$ 补充定义，设当 $x < 1$ 时，恒有 $F(x)=G(x)=0$。那么，命题就等价于：
+    
+    $$
+    F(x) = \sum_n G\left(\dfrac{x}{n}\right) \iff G(x) = \sum_n \mu(n)F\left(\dfrac{x}{n}\right).
+    $$
+    
     直接验证，有：
     
     $$
     \begin{aligned}
-    \sum_{1\le n\le x}\mu(n)F\left(\dfrac{x}{n}\right)
-    &= \sum_{1\le n\le x}\mu(n)\sum_{1\le d\le x/n}G\left(\dfrac{x/n}{d}\right)\\
-    &= \sum_{1\le k\le x}G\left(\dfrac{x}{k}\right)\sum_{n\mid k}\mu(n)\\
-    &= \sum_{1\le k\le x}G\left(\dfrac{x}{k}\right)[k=1]\\
+    \sum_n \mu(n)F\left(\dfrac{x}{n}\right)
+    &= \sum_n\mu(n)\sum_d G\left(\dfrac{x/n}{d}\right)\\
+    &= \sum_k G\left(\dfrac{x}{k}\right)\sum_{n\mid k}\mu(n)\\
+    &= \sum_k G\left(\dfrac{x}{k}\right)[k=1]\\
     &= G(x).
     \end{aligned}
     $$
     
-    与基本性质证明的主要不同之处就在于交换求和次序时的处理：此处需要将集合 $\{1\le n \le x,~1\le d\le x/n\}$ 变形为 $\{1\le k\le x,~n\mid k\}$，这只需要取 $k=nd$ 即可。
+    其中，为得到第二个等号，需要令 $k = nd$。
 
 ???+ note "推论"
     设 $f(n),g(n)$ 是数论函数。那么，有
@@ -678,4 +682,4 @@ $$
 -   [Möbius function - Wikipedia](https://en.wikipedia.org/wiki/M%C3%B6bius_function)
 -   [Möbius inversion formula - Wikipedia](https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
 -   [Von Mangoldt function - Wikipedia](https://en.wikipedia.org/wiki/Von_Mangoldt_function)
--   algocode 算法博客
+-   [algocode 算法博客](https://web.archive.org/web/20190523150159/https://algocode.net/2018/04/18/20180418-KB-Mobius-Inversion-Formula/)
