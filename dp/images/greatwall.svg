@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="708"
+   height="327"
+   viewBox="0 0 708 327"
+   version="1.1"
+   id="svg8">
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     style="display:inline">
+    <g
+       id="g1241"
+       style="stroke:#000000;stroke-opacity:1;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none">
+      <path
+         d="m 48,106 h 252 v 84 H 48 Z m 84,-84 h 84 V 274 H 132 Z M 48,22 H 300 V 274 H 48 Z"
+         style="display:inline;opacity:0.99499998;fill:none;fill-opacity:1;paint-order:stroke fill markers;"
+         id="rect960-6" />
+      <path
+         id="path1024"
+         d="M 48,22 V 274 H 300 V 190 H 132 v -84 h 84 V 22 Z"
+         style="fill:none;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:round" />
+      <circle
+         r="34"
+         cy="64"
+         cx="174"
+         id="path1026"
+         style="opacity:0.997;fill:none;fill-opacity:1;paint-order:stroke fill markers;" />
+      <circle
+         r="34"
+         cy="232"
+         cx="258"
+         id="path1028"
+         style="opacity:0.997;fill:none;fill-opacity:1;paint-order:stroke fill markers;" />
+      <circle
+         r="34"
+         cy="232"
+         cx="90"
+         id="path1030"
+         style="opacity:0.997;fill:none;fill-opacity:1;paint-order:stroke fill markers;" />
+      <path
+         id="path1034"
+         d="m 140,114 68,68"
+         style="fill:none;" />
+      <path
+         style="display:inline;fill:none;"
+         d="m 208,114 -68,68"
+         id="path1034-8" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.3333px;line-height:1.25;font-family:'Courier New', monospace;-inkscape-font-specification:'Courier New, monospace Bold';text-align:center;text-anchor:middle;fill-opacity:1;"
+       x="174"
+       y="302"
+       id="text1053"><tspan
+         style="-inkscape-font-specification:'Courier New, monospace Bold';font-family:'Courier New', monospace;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;"
+         id="tspan1051"
+         x="174"
+         y="302">Figure.1</tspan></text>
+    <text
+       id="text1053-6"
+       y="302"
+       x="534"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:21.3333px;line-height:1.25;font-family:'Courier New', monospace;-inkscape-font-specification:'Courier New, monospace Bold';text-align:center;text-anchor:middle;display:inline;fill-opacity:1;"
+       xml:space="preserve"><tspan
+         style="-inkscape-font-specification:'Courier New, monospace Bold';font-family:'Courier New', monospace;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;"
+         y="302"
+         x="534"
+         id="tspan1075">Figure.2</tspan></text>
+    <g
+       id="g1251"
+       style="stroke:#000000;stroke-opacity:1;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none">
+      <path
+         d="m 534,148 h 63 v 63 h -63 z m -63,0 h 63 v 63 h -63 z m 63,-63 h 63 v 63 h -63 z m -63,0 h 63 v 63 h -63 z m 126,0 h 63 v 63 h -63 z m 0,63 h 63 v 63 h -63 z m 0,63 h 63 v 63 h -63 z m -63,0 h 63 v 63 h -63 z m -63,0 h 63 v 63 h -63 z m -63,0 h 63 v 63 h -63 z m 0,-63 h 63 v 63 h -63 z m 0,-63 h 63 v 63 H 408 Z M 597,22 h 63 v 63 h -63 z m -63,0 h 63 v 63 h -63 z m -63,0 h 63 v 63 h -63 z m -63,0 h 63 v 63 h -63 z"
+         style="display:inline;opacity:0.995;fill:none;fill-opacity:1;paint-order:stroke fill markers;"
+         id="rect1055-8" />
+      <circle
+         r="23.5"
+         cy="116.5"
+         cx="502.5"
+         id="path1195"
+         style="opacity:0.995;fill:none;fill-opacity:1;paint-order:stroke fill markers;" />
+      <circle
+         r="23.5"
+         cy="179.5"
+         cx="565.5"
+         id="path1197"
+         style="opacity:0.995;fill:none;fill-opacity:1;paint-order:stroke fill markers;" />
+      <path
+         d="m 589,93 -47,47 m 0,-47 47,47"
+         style="display:inline;fill:none;"
+         id="path1199-2" />
+      <path
+         id="path1199-2-4"
+         style="display:inline;fill:none;"
+         d="m 526,156 -47,47 m 0,-47 47,47" />
+      <path
+         id="path1243"
+         d="M 408,274 V 85 h 126 v 126 h -63 v -63 h 126 v 126 z"
+         style="fill:none;stroke-width:8;stroke-miterlimit:4;stroke-dasharray:none;stroke-linejoin:round" />
+    </g>
+  </g>
+</svg>
