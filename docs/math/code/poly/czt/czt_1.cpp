@@ -70,6 +70,13 @@ void InvFFT(int n, uint a[], const uint root[]) {
   for (int i = 0; i < n; ++i) a[i] = (ull)a[i] * inv_n % MOD;
 }
 
+// Guillaume Hanrot, Michel Quercia, Paul Zimmermann.
+// The Middle Product Algorithm I.
+// Appl. Algebra Eng. Commun. Comput. 14(6): 415-438 (2004)
+// url: https://inria.hal.science/inria-00071921/document
+// 与论文中稍微不同的是我们令 f 的长度大于等于 g 的长度，
+// 然后计算出 fg 的高位系数，这就是在计算 fg mod x^m，
+// 然后丢掉系数“混乱”的部分。
 std::vector<uint> MiddleProduct(std::vector<uint> f, std::vector<uint> g) {
   assert(!g.empty());
   const int m = f.size();
