@@ -138,7 +138,7 @@ $$
         $$
         n^k = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\sigma_k(d).
         $$
-    3.  互异素因子数目函数 $\omega(n)=\sum_{d\mid n}[d\in\mathbf P]$，亦即 $\omega = 1* 1_{\mathbf P}$，其中 $1_{\mathbf P}$ 是素数集 $\mathcal P$ 的指示函数．对它进行反演，就得到 $1_{\mathbf P} = \mu * \omega$，亦即
+    3.  互异素因子数目函数 $\omega(n)=\sum_{d\mid n}[d\in\mathbf P]$，亦即 $\omega = 1* 1_{\mathbf P}$，其中 $1_{\mathbf P}$ 是素数集 $\mathbf P$ 的指示函数．对它进行反演，就得到 $1_{\mathbf P} = \mu * \omega$，亦即
     
         $$
         [n\in\mathbf P] = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\omega(d).
