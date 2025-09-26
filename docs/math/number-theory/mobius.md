@@ -143,17 +143,36 @@ $$
         $$
         [n\in\mathbf P] = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\omega(d).
         $$
-    4.  考察满足 $\log n = \sum_{d\mid n}\Lambda(d)$ 的数论函数 $\Lambda(n)$。它就是对数函数的莫比乌斯反演，也称为 Von Mangoldt 函数：
+    4.  考察满足 $\log n = \sum_{d\mid n}\Lambda(d)$ 的数论函数 $\Lambda(n)$。它就是对数函数的莫比乌斯反演，也称为 von Mangoldt 函数：
     
         $$
         \Lambda(n) = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\log d = 
         \begin{cases}
-        \log p, & n = p^e,~p\in\mathbf P,~e\in\mathbf N, \\
+        \log p, & n = p^e,~p\in\mathbf P,~e\in\mathbf N_+, \\
         0, &\text{otherwise}.
         \end{cases}
         $$
+
+??? note " 附：$\lambda(n)$ 表达式的证明 "
+    对于素数幂 $n=p^e~(e\in\mathbf N_+)$，有
     
-        要验证这一表达式，只需要考察 $n$ 的素因数分解就可以了。
+    $$
+    \Lambda(n) = \sum_{i=0}^e\mu(p^{e-i})\log p^i = \log p^{e} - \log p^{e-1} = \log p.
+    $$
+    
+    对于 $n=1$，显然有 $\Lambda(n)=\log 1=0$。对于其他合数 $n$，有
+    
+    $$
+    \Lambda(n) = \sum_{d\mid n}\mu(d)(\log n-\log d) = \left(\sum_{d\mid n}\mu(d)\right)\log n-\sum_{d\mid n}\mu(d)\log d.
+    $$
+    
+    根据莫比乌斯函数的性质，$\log n$ 一项的系数为 $[n=1]=0$。对于后面的一项，可以进一步将 $d$ 分解为素因数之积。对于任何素数 $p\mid n$，考察 $\log p$ 的系数，都有：
+    
+    $$
+    -\sum_{p\mid d\mid n}\mu(d) = \sum_{(d/p)\mid(n/p)}\mu\left(\dfrac{d}{p}\right) = \left[\dfrac{n}{p}=1\right]=0.
+    $$
+    
+    由此，对于不止一个素因子的合数 $n$，都有 $\Lambda(n)=0$。
 
 ### 拓展形式
 
@@ -269,6 +288,8 @@ $$
     $$
     F(x) = \sum_n G\left(\dfrac{x}{n}\right) \iff G(x) = \sum_n \mu(n)F\left(\dfrac{x}{n}\right).
     $$
+    
+    这些求和式都是对 $n\in\mathbf N_+$ 求和。
     
     直接验证，有：
     
@@ -545,7 +566,7 @@ $$
     --8<-- "docs/math/code/mobius/mobius_2.cpp"
     ```
 
-???+ example "[「BZOJ 2154」Crash 的数字表格](https://hydro.ac/p/bzoj-P2154)"
+???+ example "[BZOJ 2154 \[国家集训队\] Crash 的数字表格](https://hydro.ac/p/bzoj-P2154)"
     求值：
     
     $$
@@ -604,9 +625,9 @@ $$
     --8<-- "docs/math/code/mobius/mobius_3.cpp"
     ```
 
-最后一道例题较为特殊，需要对乘积的约数个数函数进行转换。
+接下来的一道例题较为特殊，需要对乘积的约数个数函数进行转换。
 
-???+ example "[「SDOI2015」约数个数和](https://loj.ac/problem/2185)"
+???+ example "[LOJ 2185. \[SDOI2015\] 约数个数和](https://loj.ac/problem/2185)"
     $T$ 组数据。对每组数据，求值：
     
     $$
@@ -676,6 +697,141 @@ $$
     ```cpp
     --8<-- "docs/math/code/mobius/mobius_4.cpp"
     ```
+
+最后一道例题展示了如何应用乘法版本的莫比乌斯反演。
+
+???+ example "[Luogu P5221 Product](https://www.luogu.com.cn/problem/P5221)"
+    求值：
+    
+    $$
+    \prod_{i=1}^n\prod_{j=1}^n\dfrac{\operatorname{lcm}(i,j)}{\gcd(i,j)}\pmod{104857601}.
+    $$
+    
+    数据范围：$1\le n\le 1\times 10^6$。
+
+??? note "解答一"
+    推导过程中忽略模数。设
+    
+    $$
+    f(n) = \prod_{i=1}^n\prod_{j=1}^n\dfrac{\operatorname{lcm}(i,j)}{\gcd(i,j)}.
+    $$
+    
+    依然是将最小公倍数转换为最大公因数：
+    
+    $$
+    f(n) = \prod_{i=1}^n\prod_{j=1}^n\dfrac{ij}{(\gcd(i,j))^2}.
+    $$
+    
+    注意，对这些因子的乘积是相互独立的，可以分别计算。令
+    
+    $$
+    g(n) = \prod_{i=1}^n\prod_{j=1}^n\gcd(i,j).
+    $$
+    
+    原式就等于：
+    
+    $$
+    f(n) = \dfrac{(n!)^{2n}}{g(n)^2}.
+    $$
+    
+    重点是解决 $g(n)$ 的计算问题。对它的处理流程和前文描述的相仿，但是需要换成相应的乘法版本。首先，枚举并提取公因数：
+    
+    $$
+    \begin{aligned}
+    g(n) &= \prod_k\prod_{i=1}^n\prod_{j=1}^nk\uparrow[\gcd(i,j)=k]\\
+    &= \prod_k\prod_{i=1}^{\lfloor n/k\rfloor}\prod_{j=1}^{\lfloor n/k\rfloor}k\uparrow[\gcd(i,j)=1].
+    \end{aligned}
+    $$
+    
+    其中，$a\uparrow b=a^b$ 是 [Knuth 箭头](https://mathworld.wolfram.com/KnuthUp-ArrowNotation.html)。然后，代入 $[\gcd(i,j)=1]=\sum_d\mu(d)[d\mid i][d\mid j]$，并将指数上的和式转换为幂的乘积式，得到：
+    
+    $$
+    g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/k\rfloor}\prod_{j=1}^{\lfloor n/k\rfloor}k\uparrow(\mu(d)[d\mid i][d\mid j]).
+    $$
+    
+    进一步地提取因数（即令 $i=di'$，$j=dj'$），并应用下取整函数的 [特性](./sqrt-decomposition.md#性质)，就得到：
+    
+    $$
+    g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/(kd)\rfloor}\prod_{j=1}^{\lfloor n/(kd)\rfloor}k\uparrow\mu(d).
+    $$
+    
+    然后分离关于 $i,j$ 的乘积，就发现乘式中并不含有 $i,j$，因此它就相当于对乘式取幂：
+    
+    $$
+    g(n) = \prod_k\prod_d k\uparrow\left(\mu(d)\left\lfloor\dfrac{n}{kd}\right\rfloor^2\right).
+    $$
+    
+    因为前面枚举了公因数，所以对于这个式子需要再次交换求乘积的次序。令 $\ell = kd$，有：
+    
+    $$
+    \begin{aligned}
+    g(n) &= \prod_{\ell}\prod_{d\mid\ell}\left(\dfrac{\ell}{d}\right)\uparrow\left(\mu(d)\left\lfloor\dfrac{n}{\ell}\right\rfloor^2\right)\\
+    &= \prod_\ell\left(\prod_{d\mid\ell}\left(\dfrac{\ell}{d}\right)\uparrow\mu(d)\right)\uparrow\left\lfloor\dfrac{n}{\ell}\right\rfloor^2.
+    \end{aligned}
+    $$
+    
+    设
+    
+    $$
+    F(n) = \prod_{d\mid n}\left(\dfrac{n}{d}\right)\uparrow\mu(d).
+    $$
+    
+    容易发现这是关于 $\tilde F(n)=n$ 的乘积形式莫比乌斯反演。即使不知道它的表达式，也可以应用 [Dirichlet 差分](#dirichlet-前缀和) 方法在 $O(n\log\log n)$ 时间内预处理。当然，由于 $\tilde F(n)$ 的形式非常简单，$F(n)$ 的表达式可以直接求出：
+    
+    $$
+    F(n) = 
+    \begin{cases}
+    p, & n = p^e,~p\in\mathbf P,~e\in\mathbf N_+, \\
+    1, &\text{otherwise}.
+    \end{cases}
+    $$
+    
+    [von Mangoldt 函数](#莫比乌斯反演) 就是它的自然对数。得到 $F(n)$ 的取值后，直接应用乘积版本的数论分块就可以在 $O(\sqrt{n})$ 时间内求出 $g(n)$ 的取值，进而得到 $f(n)$ 的取值。总的时间复杂度为 $O(n)$。
+    
+    值得注意的是，涉及乘积的计算时，往往需要用到 [欧拉定理](./fermat.md)，因此指数部分取模用到的模数与题目所给的模数并不相同。
+
+??? note "解答二"
+    乘积版本推导的难点在于对乘积和幂次的处理相对陌生，因此，对于这类问题，也可以取对数后再推导。对于本题，仅考虑 $g(n)$ 的推导。将它取对数后，有：
+    
+    $$
+    \log g(n) = \sum_{i=1}^n\sum_{j=1}^n\log\gcd(i,j).
+    $$
+    
+    对于这类含有最大公因数的式子，直接应用标准的推导流程，就得到：
+    
+    $$
+    \begin{aligned}
+    \log g(n) 
+    &= \sum_k\log k\sum_{i=1}^n\sum_{j=1}^n[\gcd(i,j)=k]\\
+    &= \sum_k\log k\sum_{i=1}^{\lfloor n/k\rfloor}\sum_{j=1}^{\lfloor n/k\rfloor}[\gcd(i,j)=1]\\
+    &= \sum_k\log k\sum_d\mu(d)\left(\sum_{i=1}^{\lfloor n/k\rfloor}[i\mid d]\right)\left(\sum_{j=1}^{\lfloor n/k\rfloor}[j\mid d]\right)\\
+    &= \sum_k\log k\sum_d\mu(d)\left\lfloor\dfrac{n}{kd}\right\rfloor^2\\
+    &= \sum_{\ell}\left(\sum_d\mu(d)\log\dfrac{\ell}{d}\right)\left\lfloor\dfrac{n}{\ell}\right\rfloor^2\\
+    &= \sum_{\ell}\Lambda(\ell)\left\lfloor\dfrac{n}{\ell}\right\rfloor^2.
+    \end{aligned}
+    $$
+    
+    其中，$\Lambda(n)$ 是 [von Mangoldt 函数](#莫比乌斯反演)。将这一推导结果取幂，就得到解答一的结果。
+
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/math/code/mobius/mobius_5.cpp"
+    ```
+
+## 习题
+
+-   [Luogu P3312 \[SDOI2014\] 数表](https://www.luogu.com.cn/problem/P3312)
+-   [Luogu P3700 \[CQOI2017\] 小 Q 的表格](https://www.luogu.com.cn/problem/P3700)
+-   [Luogu P3704 \[SDOI2017\] 数字表格](https://www.luogu.com.cn/problem/P3704)
+-   [Luogu P3768 简单的数学题](https://www.luogu.com.cn/problem/P3768)
+-   [Luogu P4464 \[国家集训队\] JZPKIL](https://www.luogu.com.cn/problem/P4464)
+-   [Luogu P4619 \[SDOI2018\] 旧试题](https://www.luogu.com.cn/problem/P4619)
+-   [Luogu P5518 \[MtOI2019\] 幽灵乐团](https://www.luogu.com.cn/problem/P5518)
+-   [Luogu P6222 简单题 加强版](https://www.luogu.com.cn/problem/P6222)
+-   [Luogu P6825「EZEC-4」求和](https://www.luogu.com.cn/problem/P6825)
+-   [Luogu P7486「Stoi2031」彩虹](https://www.luogu.com.cn/problem/P7486)
+-   [AtCoder Grand Contest 038 C - LCMs](https://atcoder.jp/contests/agc038/tasks/agc038_c)
+-   [Codeforeces 1139 D. Steps to One](https://codeforces.com/problemset/problem/1139/D)
 
 ## 参考文献
 
