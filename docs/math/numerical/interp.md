@@ -60,7 +60,7 @@ $$
 朴素实现的时间复杂度为 $O(n^2)$，可以优化到 $O(n\log^2 n)$，参见 [多项式快速插值](../poly/multipoint-eval-interpolation.md#多项式的快速插值)。
 
 ???+ note "[Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)"
-    给出 $n$ 个点对 $(x_i,y_i)$ 和 $k$，且 $\forall i,j$ 有 $i\neq j \iff x_i\neq x_j$ 且 $f(x_i)\equiv y_i\pmod{998244353}$ 和 $\deg(f(x))<n$（定义 $\deg(0)=-\infty$），求 $f(k)\bmod{998244353}$.
+    给出 $n$ 个点对 $(x_i,y_i)$ 和 $k$，且 $\forall i,j$ 有 $i\neq j \iff x_i\neq x_j$ 且 $f(x_i)\equiv y_i\pmod{998244353}$ 和 $\deg(f(x)) < n$（定义 $\deg(0)=-\infty$），求 $f(k)\bmod{998244353}$.
     
     ??? note "题解"
         本题中只用求出 $f(k)$ 的值，所以在计算上式的过程中直接将 $k$ 代入即可；有时候则需要进行多次求值等等更为复杂的操作，这时候需要求出 $f$ 的各项系数。代码给出了一种求出系数的实现。
