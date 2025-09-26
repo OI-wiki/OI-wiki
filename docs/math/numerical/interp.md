@@ -160,7 +160,7 @@ $$
 
 此即 Newton 插值的形式。朴素实现的时间复杂度为 $O(n^2)$.
 
-若样本点是等距的（即 $x_i=x_0+ih$，$i=1,\dots,n$），令 $x=x_0+sh$，我们还可以推出
+若样本点是等距的（即 $x_i=x_0+ih$，$i=1,\dots,n$），我们可以推出
 
 $$
 [y_k,\dots,y_{k+j}]=\frac{1}{j!h^j}\Delta^{(j)}y_k,
@@ -175,7 +175,7 @@ $$
 \end{aligned}
 $$
 
-进而 Newton 插值的公式可化为
+令 $x=x_0+sh$，则 Newton 插值的公式可化为
 
 $$
 f(x)=\sum_{j=0}^n \binom{s}{j}j!h^j[y_0,\dots,y_j]=\sum_{j=0}^n \binom{s}{j}\Delta^{(j)}y_0.
