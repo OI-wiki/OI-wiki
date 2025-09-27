@@ -70,13 +70,13 @@ $$
 回顾 Lagrange 插值公式为
 
 $$
-f(x) = \sum_{i = 0}^{n - 1}\left(f\left(x_i\right)\prod_{0 \leq j \lt n \land j \neq i} \frac{x - x_j}{x_i - x_j}\right)
+f(x) = \sum_{i = 0}^{n - 1}\left(f\left(x_i\right)\prod_{j \neq i} \frac{x - x_j}{x_i - x_j}\right)
 $$
 
 且 $x_i \neq x_j$ 对于所有 $i \neq j$ 成立。令 $M(x) := \prod_{i = 0}^{n - 1}\left(x - x_i\right)$，根据洛必达法则，我们有
 
 $$
-M'(x_i)=\prod_{0 \leq j\lt n \land j \neq i}\left(x_i - x_j\right)
+M'(x_i)=\prod_{j \neq i}\left(x_i - x_j\right)
 $$
 
 **Lagrange 插值公式·改** 就是
