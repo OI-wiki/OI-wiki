@@ -29,11 +29,13 @@ author: AtomAlpaca, billchenchina, caibyte, Chrogeek, Early0v0, EndlessCheng, En
 多项式插值的一般形式如下：
 
 ???+ note "多项式插值"
-    对已知的 $n+1$ 的点 $(x_0,y_0),(x_1,y_1),\dots,(x_n,y_n)$，求 $n$ 阶多项式 $f(x)$ 满足
+    对已知的 $n+1$ 的点 $(x_0,y_0),(x_1,y_1),\dots,(x_n,y_n)$，求形如 $f(x)=\sum_{i=0}^n a_ix^i$ 且满足
     
     $$
     f(x_i)=y_i,\qquad\forall i=0,1,\dots,n
     $$
+    
+    的多项式 $f(x)$。
 
 下面介绍多项式插值中的两种方式：Lagrange 插值法与 Newton 插值法。不难证明这两种方法得到的结果是相等的。
 
@@ -58,7 +60,7 @@ $$
 朴素实现的时间复杂度为 $O(n^2)$，可以优化到 $O(n\log^2 n)$，参见 [多项式快速插值](../poly/multipoint-eval-interpolation.md#多项式的快速插值)。
 
 ???+ note "[Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)"
-    给出 $n$ 个点对 $(x_i,y_i)$ 和 $k$，且 $\forall i,j$ 有 $i\neq j \iff x_i\neq x_j$ 且 $f(x_i)\equiv y_i\pmod{998244353}$ 和 $\deg(f(x))<n$（定义 $\deg(0)=-\infty$），求 $f(k)\bmod{998244353}$.
+    给出 $n$ 个点对 $(x_i,y_i)$ 和 $k$，且 $\forall i,j$ 有 $i\neq j \iff x_i\neq x_j$ 且 $f(x_i)\equiv y_i\pmod{998244353}$ 和 $\deg(f(x)) < n$（定义 $\deg(0)=-\infty$），求 $f(k)\bmod{998244353}$.
     
     ??? note "题解"
         本题中只用求出 $f(k)$ 的值，所以在计算上式的过程中直接将 $k$ 代入即可；有时候则需要进行多次求值等等更为复杂的操作，这时候需要求出 $f$ 的各项系数。代码给出了一种求出系数的实现。
@@ -80,7 +82,7 @@ $$
 
 如果已知点的横坐标是连续整数，我们可以做到 $O(n)$ 插值。
 
-设要求 $n$ 次多项式为 $f(x)$，我们已知 $f(1),\cdots,f(n+1)$（$1\le i\le n+1$），考虑代入上面的插值公式：
+设要求的多项式为 $f(x)$，我们已知 $f(1),\cdots,f(n+1)$（$1\le i\le n+1$），考虑代入上面的插值公式：
 
 $$
 \begin{aligned}
@@ -158,29 +160,26 @@ $$
 
 此即 Newton 插值的形式。朴素实现的时间复杂度为 $O(n^2)$.
 
-若样本点是等距的（即 $x_i=x_0+ih$，$i=1,\dots,n$），令 $x=x_0+sh$，Newton 插值的公式可化为：
+若样本点是等距的（即 $x_i=x_0+ih$，$i=1,\dots,n$），我们可以推出
 
 $$
-f(x)=\sum_{j=0}^n \binom{s}{j}j!h^j[y_0,\dots,y_j]
+[y_k,\dots,y_{k+j}]=\frac{1}{j!h^j}\Delta^{(j)}y_k,
 $$
 
-上式称为 **Newton 前向差分公式**（Newton forward divided difference formula）。
+其中 $\Delta^{(j)}y_k$ 为 **前向差分**（forward differences），定义如下：
 
-???+ note
-    若样本点是等距的，我们还可以推出：
-    
-    $$
-    [y_k,\dots,y_{k+j}]=\frac{1}{j!h^j}\Delta^{(j)}y_k
-    $$
-    
-    其中 $\Delta^{(j)}y_k$ 为 **前向差分**（forward differences），定义如下：
-    
-    $$
-    \begin{aligned}
-        \Delta^{(0)}y_k & := y_k,                                       & k=0,\dots,n, \\
-        \Delta^{(j)}y_k & := \Delta^{(j-1)} y_{k+1}-\Delta^{(j-1)} y_k, & k=0,\dots,n-j,~j=1,\dots,n.
-    \end{aligned}
-    $$
+$$
+\begin{aligned}
+    \Delta^{(0)}y_k & := y_k,                                       & k=0,\dots,n, \\
+    \Delta^{(j)}y_k & := \Delta^{(j-1)} y_{k+1}-\Delta^{(j-1)} y_k, & k=0,\dots,n-j,~j=1,\dots,n.
+\end{aligned}
+$$
+
+令 $x=x_0+sh$，则 Newton 插值的公式可化为
+
+$$
+f(x)=\sum_{j=0}^n \binom{s}{j}j!h^j[y_0,\dots,y_j]=\sum_{j=0}^n \binom{s}{j}\Delta^{(j)}y_0.
+$$
 
 ??? note " 代码实现（[Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)）"
     ```cpp
@@ -189,7 +188,7 @@ $$
 
 ### 横坐标是连续整数的 Newton 插值
 
-例如：求某三次多项式 $f(x)=\sum_{i=0}^{3} a_ix^i$ 的多项式系数，已知 $f(1)$ 至 $f(6)$ 的值分别为 $1, 5, 14, 30, 55, 91$。
+例如：求多项式 $f(x)=\sum_{i=0}^{3} a_ix^i$ 的系数，已知 $f(1)$ 至 $f(6)$ 的值分别为 $1, 5, 14, 30, 55, 91$。
 
 $$
 \begin{array}{cccccccccccc}

@@ -57,21 +57,9 @@ $$
 
 ## 时间复杂度
 
-令 $R(n)=\left\{\left\lfloor \dfrac{n}{k} \right\rfloor: k=2,3,\dots,n\right\}$, 我们有如下引理：
+令 $R(n)=\left\{\left\lfloor \dfrac{n}{k} \right\rfloor: k=2,3,\dots,n\right\}$。利用数论分块的 [性质](./sqrt-decomposition.md#性质) 可知，对任意的 $m\in R(n)$，都有 $R(m)\subseteq R(n)$。也就是说，使用记忆化之后，只需要对所有 $k\in R(n)$ 计算一次 $S(k)$ 就可以得到 $R(n)$ 的值。而这些点的数目 $|R(n)|=O(\sqrt{n})$。
 
-???+ abstract "引理"
-    对任意的 $m\in R(n)$，我们有 $R(m)\subseteq R(n)$.
-    
-    ???+ note "证明"
-        令 $m=\left\lfloor\dfrac{n}{x}\right\rfloor$, 任取 $\left\lfloor\dfrac{m}{y}\right\rfloor \in R(m)$, 由整除分块/数论分块的 [引理 1](./sqrt-decomposition.md#引理-1) 可知：
-        
-        $$
-        \left\lfloor\dfrac{m}{y}\right\rfloor=\left\lfloor\dfrac{n}{xy}\right\rfloor\in R(n).
-        $$
-
-设计算 $\sum_{i=1}^n(f * g)(i)$ 和 $\sum_{i=1}^n g(i)$ 的时间复杂度均为 $O(1)$. 由引理可知：使用记忆化之后，每个 $S(k)~(k\in R(n))$ 均只会计算一次。
-
-由整除分块/数论分块的 [引理 2](./sqrt-decomposition.md) 可知 $|R(n)|=2\sqrt{n}+\Theta(1)$. 设计算 $S(n)$ 的时间复杂度为 $T(n)$, 则：
+设计算 $\sum_{i=1}^n(f * g)(i)$ 和 $\sum_{i=1}^n g(i)$ 的时间复杂度均为 $O(1)$. 设计算 $S(n)$ 的时间复杂度为 $T(n)$, 则：
 
 $$
 \begin{aligned}
@@ -82,7 +70,7 @@ $$
 \end{aligned}
 $$
 
-若我们可以预处理出一部分 $S(k)$, 其中 $k=1,2,\dots,m$，$m\geq \lfloor\sqrt n\rfloor$. 设预处理的时间复杂度为 $T_0(m)$, 则此时的 $T(n)$ 为：
+若我们可以预处理出一部分 $S(k)$, 其中 $k=1,2,\dots,m$，$m\geq \lfloor\sqrt n\rfloor$。设预处理的时间复杂度为 $T_0(m)$，则此时的 $T(n)$ 为：
 
 $$
 \begin{aligned}
@@ -109,10 +97,7 @@ $$
     \end{aligned}
     $$
     
-    ???+ note
-        $O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\dfrac{n}{ij}\right\rfloor\right)\right)$ 视作高阶无穷小，从而可以舍去。
-    
-    故：
+    其中，$O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\dfrac{n}{ij}\right\rfloor\right)\right)$ 视作高阶无穷小，从而可以舍去。故：
     
     $$
     \begin{aligned}
