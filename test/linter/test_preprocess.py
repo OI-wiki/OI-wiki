@@ -451,6 +451,86 @@ class TestFixPunctuationsInlineMath(unittest.TestCase):
         self.assertEqual(result, expected)
 
 
+class TestFixPunctuationsBlockMath(unittest.TestCase):
+    """Test cases for block math punctuation replacement."""
+
+    def setUp(self):
+        """Set up test fixtures."""
+        self.constants = TestConstants()
+
+    @parameterized.expand(TestConstants.PUNCTUATION_MAPPING)
+    def test_all_punctuation_types_coverage(self, english_punct, chinese_punct):
+        """Test that all punctuation types are covered."""
+
+        content = f"Formula ${self.constants.SIMPLE_MATH_FORMULA}${english_punct} is correct"
+        expected = f"Formula ${self.constants.SIMPLE_MATH_FORMULA}${chinese_punct}is correct\n"
+        result = fix_punctuations(content)
+        self.assertEqual(
+            result, expected, f"Failed to convert {english_punct} to {chinese_punct}")
+
+    @parameterized.expand(TestConstants.PUNCTUATION_MAPPING)
+    def test_all_punctuation_types_coverage_no_trailing_space(self, english_punct, chinese_punct):
+        """Test that all punctuation types are covered."""
+
+        content = f"Formula ${self.constants.SIMPLE_MATH_FORMULA}${english_punct}is correct"
+        expected = f"Formula ${self.constants.SIMPLE_MATH_FORMULA}${chinese_punct}is correct\n"
+        result = fix_punctuations(content)
+        self.assertEqual(
+            result, expected, f"Failed to convert {english_punct} to {chinese_punct}")
+
+    @parameterized.expand(TestConstants.PUNCTUATION_MAPPING)
+    def test_all_punctuation_keep_trailing_space_of_the_line(self, english_punct, chinese_punct):
+        """Test that all punctuation types are covered."""
+
+        content = f"Formula ${self.constants.SIMPLE_MATH_FORMULA}${english_punct}  \n"
+        expected = f"Formula ${self.constants.SIMPLE_MATH_FORMULA}${chinese_punct}  \n"
+        result = fix_punctuations(content)
+        self.assertEqual(
+            result, expected, f"Failed to convert {english_punct} to {chinese_punct}")
+
+    def test_all_punctuation_types_empty_math_in_one_line(self):
+        """Test all punctuation types in a single line."""
+        content = "Test $$, $$. $$; $$: $$! $$?"
+        result = fix_punctuations(content)
+        expected = "Test $$, $$．$$; $$：$$! $$？\n"
+        self.assertEqual(result, expected)
+
+    def test_all_punctuation_types_in_one_line(self):
+        """Test all punctuation types in a single line."""
+        content = "Test $$a$$, $$b$$. $$c$$; $$d$$: $$e$$! $$f$$?"
+        result = fix_punctuations(content)
+        expected = "Test $$a$$，$$b$$．$$c$$；$$d$$：$$e$$！$$f$$？\n"
+        self.assertEqual(result, expected)
+
+    def test_punctuation_at_end_of_line(self):
+        """Test punctuation at the end of lines."""
+        content = "Line ending with $$x$$,\nLine ending with $$y$$.\nLine ending with $$z$$;"
+        result = fix_punctuations(content)
+        expected = "Line ending with $$x$$，\nLine ending with $$y$$．\nLine ending with $$z$$；\n"
+        self.assertEqual(result, expected)
+
+    def test_inline_math_in_the_middle(self):
+        """Test inline math in the middle."""
+        content = "Formulas $$a$$, $b$. $$c$$; are consecutive"
+        result = fix_punctuations(content)
+        expected = "Formulas $$a$$，$b$．$$c$$；are consecutive\n"
+        self.assertEqual(result, expected)
+
+    def test_block_math_in_the_middle(self):
+        """Test block math in the middle."""
+        content = "Formulas $a$, $$b$$. $c$; are consecutive"
+        result = fix_punctuations(content)
+        expected = "Formulas $a$，$$b$$．$c$；are consecutive\n"
+        self.assertEqual(result, expected)
+
+    def test_block_math_with_special_characters(self):
+        """Test block math with special characters and punctuation."""
+        content = "Formula $$x^2 + y^2 = z^2$$, is Pythagorean theorem."
+        result = fix_punctuations(content)
+        expected = "Formula $$x^2 + y^2 = z^2$$，is Pythagorean theorem.\n"
+        self.assertEqual(result, expected)
+
+
 class TestFixPunctuationsMathBlock(unittest.TestCase):
     def test_simple(self):
         content = (
@@ -694,14 +774,14 @@ class TestFixPunctuationsEdgeCases(unittest.TestCase):
         self.constants = TestConstants()
 
     @parameterized.expand([
-        ("empty_math", "Empty math $$, and $$. should be processed",
-         "Empty math $$，and $$．should be processed\n"),
+        ("empty_math", "Empty math $$, and $$. should be identified as a block math mark",
+         "Empty math $$, and $$．should be identified as a block math mark\n"),
         ("nested_dollars", "Text with $nested$dollar$signs$, should be processed",
          "Text with $nested$dollar$signs$，should be processed\n"),
         ("single_dollar", "Text with $single dollar, should not be processed",
          "Text with $single dollar, should not be processed\n"),
-        ("unmatched_dollars", "Text with $$unmatched$, should not be processed",
-         "Text with $$unmatched$, should not be processed\n"),
+        ("unmatched_dollars", "Text with $unmatched, should not be processed",
+         "Text with $unmatched, should not be processed\n"),
     ])
     def test_edge_cases_inline_math(self, name, input_text, expected):
         """Test edge cases with inline math formulas."""

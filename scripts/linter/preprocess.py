@@ -171,7 +171,7 @@ def fix_punctuations(md_content: str, skipped_codeblock_lang: list[str] = ['tex'
 
     # (?P<formula>)(?:(?P<punctuation>) ?)?
     RE_INLINE_MATH_WITH_TRAILING_PUNCTUATION = re.compile(
-        rf"(\$[^$]*?\$)(?:([{''.join(PUNCTUATION_MAP.keys())}]) ?)?")
+        rf"(\$[^$]+?\$|\$\$[^$]+?\$\$)(?:([{''.join(PUNCTUATION_MAP.keys())}]) ?)?")
 
     line_origins: list[int] = kwargs.get('line_origins', [])  # type: ignore
     lines = md_content.splitlines()
