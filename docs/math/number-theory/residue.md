@@ -237,7 +237,7 @@ $$
 
 求解任一模数下 $k$ 次方根的参考实现如下：
 
-??? example "模板题 [Luogu P5668【模板】N 次剩余](https://www.luogu.com.cn/problem/P5668) 参考代码"
+??? example " 模板题 [Luogu P5668【模板】N 次剩余](https://www.luogu.com.cn/problem/P5668) 参考代码 "
     ```cpp
     int gcd(int a, int b) { return a ? gcd(b % a, a) : b; }
     
