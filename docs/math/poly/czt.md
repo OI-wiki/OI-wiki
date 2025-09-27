@@ -70,13 +70,13 @@ $$
 回顾 Lagrange 插值公式为
 
 $$
-f(x) = \sum_{i = 0}^{n - 1}\left(f\left(x_i\right)\prod_{j \neq i} \frac{x - x_j}{x_i - x_j}\right)
+f(x) = \sum_{i = 0}^{n - 1}\left(f\left(x_i\right)\prod_{0 \leq j < n \atop j \neq i} \frac{x - x_j}{x_i - x_j}\right)
 $$
 
 且 $x_i \neq x_j$ 对于所有 $i \neq j$ 成立。令 $M(x) := \prod_{i = 0}^{n - 1}\left(x - x_i\right)$，根据洛必达法则，我们有
 
 $$
-M'(x_i)=\prod_{j \neq i}\left(x_i - x_j\right)
+M'(x_i)=\prod_{0 \leq j < n \atop j \neq i}\left(x_i - x_j\right)
 $$
 
 **Lagrange 插值公式·改** 就是
@@ -103,7 +103,7 @@ $$
 f(x) = M(x)\left(\sum_{i = 0}^{n - 1}\frac{c_i}{x - q^i}\right)
 $$
 
-因为 $\deg f(x) \lt n$，我们只需计算 $\sum_{i = 0}^{n - 1}\frac{c_i}{x - q^i}\bmod{x^n}$，其中 $\frac{c_i}{x - q^i} \in \mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$，也就是
+因为 $\deg f(x) < n$，我们只需计算 $\sum_{i = 0}^{n - 1}\frac{c_i}{x - q^i}\bmod{x^n}$，其中 $\frac{c_i}{x - q^i} \in \mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$，也就是
 
 $$
 \begin{aligned}
