@@ -235,7 +235,7 @@ int main() {
   std::vector<uint> f(n);
   for (int i = 0; i < n; ++i) std::scanf("%u", &f[i]);
   if (a == 0) {
-    if (n > 0) std::printf("%u\n", f[0]);
+    if (n) std::printf("%u", f[0]);
   } else {
     std::vector<uint> res = InvCZT(f, q);
     if (a != 1) {
@@ -248,7 +248,7 @@ int main() {
       if (i) std::printf(" ");
       std::printf("%u", res[i]);
     }
-    std::puts("");
   }
+  std::puts("");
   return 0;
 }
