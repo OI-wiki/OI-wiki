@@ -187,7 +187,7 @@ std::vector<uint> InvCZT(const std::vector<uint>& f, uint q) {
     return {f[1], (f[0] + MOD - f[1]) % MOD};  // deg(f) < 2
   }
   // prod[0 ≤ i < n] (x - q^i)
-  const auto DaC = [q, iq = InvMod(q)](auto&& DaC, int n) -> std::vector<uint> {
+  const auto DaC = [q](auto&& DaC, int n) -> std::vector<uint> {
     if (n == 1) return {MOD - 1, 1u};
     // H = prod[0 ≤ i < ⌊n/2⌋] (x - q^i)
     const std::vector<uint> H = DaC(DaC, n / 2);
