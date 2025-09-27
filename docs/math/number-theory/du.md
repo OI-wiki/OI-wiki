@@ -1,10 +1,10 @@
 author: hsfzLZH1, sshwy, StudyingFather, Marcythm
 
-杜教筛被用于处理一类数论函数的前缀和问题。对于数论函数 $f$，杜教筛可以在低于线性时间的复杂度内计算 $S(n)=\sum_{i=1}^{n}f(i)$。
+杜教筛被用于处理一类数论函数的前缀和问题．对于数论函数 $f$，杜教筛可以在低于线性时间的复杂度内计算 $S(n)=\sum_{i=1}^{n}f(i)$．
 
 ## 算法思想
 
-我们想办法构造一个 $S(n)$ 关于 $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 的递推式。
+我们想办法构造一个 $S(n)$ 关于 $S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)$ 的递推式．
 
 对于任意一个数论函数 $g$，必满足：
 
@@ -15,10 +15,10 @@ $$
 \end{aligned}
 $$
 
-其中 $f*g$ 为数论函数 $f$ 和 $g$ 的 [狄利克雷卷积](../poly/dgf.md#dirichlet-%E5%8D%B7%E7%A7%AF)。
+其中 $f*g$ 为数论函数 $f$ 和 $g$ 的 [狄利克雷卷积](../poly/dgf.md#dirichlet-%E5%8D%B7%E7%A7%AF)．
 
 ???+ note "略证"
-    $g(d)f\left(\frac{i}{d}\right)$ 就是对所有 $i\leq n$ 的做贡献，因此变换枚举顺序，枚举 $d$,$\frac{i}{d}$（分别对应新的 $i,j$）
+    $g(d)f\left(\frac{i}{d}\right)$ 就是对所有 $i\leq n$ 的做贡献，因此变换枚举顺序，枚举 $d$，$\frac{i}{d}$（分别对应新的 $i,j$）
     
     $$
     \begin{aligned}
@@ -40,26 +40,26 @@ $$
 假如我们可以构造恰当的数论函数 $g$ 使得：
 
 1.  可以快速计算 $\sum_{i=1}^n(f * g)(i)$；
-2.  可以快速计算 $g$ 的前缀和，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$。
+2.  可以快速计算 $g$ 的前缀和，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$．
 
-则我们可以在较短时间内求得 $g(1)S(n)$。
+则我们可以在较短时间内求得 $g(1)S(n)$．
 
 ???+ warning "注意"
-    无论数论函数 $f$ 是否为积性函数，只要可以构造出恰当的数论函数 $g$, 便都可以考虑用杜教筛求 $f$ 的前缀和。
+    无论数论函数 $f$ 是否为积性函数，只要可以构造出恰当的数论函数 $g$，便都可以考虑用杜教筛求 $f$ 的前缀和．
     
-    如考虑 $f(n)=\mathrm{i}\varphi(n)$, 显然 $f$ 不是积性函数，但可取 $g(n)=1$, 从而：
+    如考虑 $f(n)=\mathrm{i}\varphi(n)$，显然 $f$ 不是积性函数，但可取 $g(n)=1$，从而：
     
     $$
     \sum_{k=1}^n (f*g)(k)=\mathrm{i}\frac{n(n+1)}{2}
     $$
     
-    计算 $\sum_{k\leq m} (f*g)(k)$ 和 $\sum_{k \leq m} g(k)$ 的时间复杂度均为 $O(1)$, 故可以考虑使用杜教筛。
+    计算 $\sum_{k\leq m} (f*g)(k)$ 和 $\sum_{k \leq m} g(k)$ 的时间复杂度均为 $O(1)$，故可以考虑使用杜教筛．
 
 ## 时间复杂度
 
-令 $R(n)=\left\{\left\lfloor \dfrac{n}{k} \right\rfloor: k=2,3,\dots,n\right\}$。利用数论分块的 [性质](./sqrt-decomposition.md#性质) 可知，对任意的 $m\in R(n)$，都有 $R(m)\subseteq R(n)$。也就是说，使用记忆化之后，只需要对所有 $k\in R(n)$ 计算一次 $S(k)$ 就可以得到 $R(n)$ 的值。而这些点的数目 $|R(n)|=O(\sqrt{n})$。
+令 $R(n)=\left\{\left\lfloor \dfrac{n}{k} \right\rfloor: k=2,3,\dots,n\right\}$．利用数论分块的 [性质](./sqrt-decomposition.md#性质) 可知，对任意的 $m\in R(n)$，都有 $R(m)\subseteq R(n)$．也就是说，使用记忆化之后，只需要对所有 $k\in R(n)$ 计算一次 $S(k)$ 就可以得到 $R(n)$ 的值．而这些点的数目 $|R(n)|=O(\sqrt{n})$．
 
-设计算 $\sum_{i=1}^n(f * g)(i)$ 和 $\sum_{i=1}^n g(i)$ 的时间复杂度均为 $O(1)$. 设计算 $S(n)$ 的时间复杂度为 $T(n)$, 则：
+设计算 $\sum_{i=1}^n(f * g)(i)$ 和 $\sum_{i=1}^n g(i)$ 的时间复杂度均为 $O(1)$．设计算 $S(n)$ 的时间复杂度为 $T(n)$，则：
 
 $$
 \begin{aligned}
@@ -70,7 +70,7 @@ $$
 \end{aligned}
 $$
 
-若我们可以预处理出一部分 $S(k)$, 其中 $k=1,2,\dots,m$，$m\geq \lfloor\sqrt n\rfloor$。设预处理的时间复杂度为 $T_0(m)$，则此时的 $T(n)$ 为：
+若我们可以预处理出一部分 $S(k)$，其中 $k=1,2,\dots,m$，$m\geq \lfloor\sqrt n\rfloor$．设预处理的时间复杂度为 $T_0(m)$，则此时的 $T(n)$ 为：
 
 $$
 \begin{aligned}
@@ -81,10 +81,10 @@ $$
 \end{aligned}
 $$
 
-若 $T_0(m)=O(m)$（如线性筛），由均值不等式可知：当 $m=\Theta\left(n^{2/3}\right)$ 时，$T(n)$ 取得最小值 $O\left(n^{2/3}\right)$.
+若 $T_0(m)=O(m)$（如线性筛），由均值不等式可知：当 $m=\Theta\left(n^{2/3}\right)$ 时，$T(n)$ 取得最小值 $O\left(n^{2/3}\right)$．
 
 ??? failure "伪证一例"
-    设计算 $S(n)$ 的复杂度为 $T(n)$, 则有：
+    设计算 $S(n)$ 的复杂度为 $T(n)$，则有：
     
     $$
     T(n)=\Theta\left(\sqrt{n}\right)+O\left(\sum_{i=2}^{\lfloor\sqrt{n}\rfloor} T\left(\left\lfloor\frac{n}{i}\right\rfloor\right)\right)
@@ -97,7 +97,7 @@ $$
     \end{aligned}
     $$
     
-    其中，$O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\dfrac{n}{ij}\right\rfloor\right)\right)$ 视作高阶无穷小，从而可以舍去。故：
+    其中，$O\left(\sum_{j=2}^{\lfloor\sqrt{n/i}\rfloor} T\left(\left\lfloor\dfrac{n}{ij}\right\rfloor\right)\right)$ 视作高阶无穷小，从而可以舍去．故：
     
     $$
     \begin{aligned}
@@ -109,7 +109,7 @@ $$
     $$
     
     ??? bug
-        问题在于「视作高阶无穷小，从而可以舍去」这一处。我们将 $T\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$ 代入 $T(n)$ 的式子里，有：
+        问题在于「视作高阶无穷小，从而可以舍去」这一处．我们将 $T\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$ 代入 $T(n)$ 的式子里，有：
         
         $$
         \begin{aligned}
@@ -128,16 +128,16 @@ $$
         \end{aligned}
         $$
         
-        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{\dfrac{n}{i}}\right\rfloor\right)$ 仍然是 $\Omega\left(\left(\dfrac{n}{i}\right)^{1/4}\right)$ 的，进而所谓的「高阶无穷小」部分是不可以舍去的。
+        由于没有引入记忆化，因此上式中的 $T\left(\left\lfloor\sqrt{\dfrac{n}{i}}\right\rfloor\right)$ 仍然是 $\Omega\left(\left(\dfrac{n}{i}\right)^{1/4}\right)$ 的，进而所谓的「高阶无穷小」部分是不可以舍去的．
         
-        实际上杜教筛的亚线性时间复杂度是由记忆化保证的。只有使用了记忆化之后才能保证不会出现那个多重求和的项。
+        实际上杜教筛的亚线性时间复杂度是由记忆化保证的．只有使用了记忆化之后才能保证不会出现那个多重求和的项．
 
 ## 例题
 
 ### 问题一
 
 ???+ note "[P4213【模板】杜教筛（Sum）](https://www.luogu.com.cn/problem/P4213)"
-    求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值，$1\leq n<2^{31}$.
+    求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值，$1\leq n<2^{31}$．
 
 === "莫比乌斯函数前缀和"
     我们知道：
@@ -153,12 +153,12 @@ $$
     \end{aligned}
     $$
     
-    时间复杂度的推导见 [时间复杂度](#时间复杂度) 一节。
+    时间复杂度的推导见 [时间复杂度](#时间复杂度) 一节．
     
-    对于较大的值，需要用 `map`/`unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果。
+    对于较大的值，需要用 `map`/`unordered_map` 存下其对应的值，方便以后使用时直接使用之前计算的结果．
 
 === "欧拉函数前缀和"
-    当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演。
+    当然也可以用杜教筛求出 $\varphi (x)$ 的前缀和，但是更好的方法是应用莫比乌斯反演．
     
     === "莫比乌斯反演"
         $$
@@ -168,14 +168,14 @@ $$
         \end{aligned}
         $$
         
-        由于题目所求的是 $\sum_{i=1}^n \sum_{j=1}^i [\gcd(i,j)=1]$, 所以我们排除掉 $i=1,j=1$ 的情况，并将结果除以 $2$ 即可。
+        由于题目所求的是 $\sum_{i=1}^n \sum_{j=1}^i [\gcd(i,j)=1]$，所以我们排除掉 $i=1,j=1$ 的情况，并将结果除以 $2$ 即可．
         
-        观察到，只需求出莫比乌斯函数的前缀和，就可以快速计算出欧拉函数的前缀和了。时间复杂度 $O\left(n^{\frac 2 3}\right)$.
+        观察到，只需求出莫比乌斯函数的前缀和，就可以快速计算出欧拉函数的前缀和了．时间复杂度 $O\left(n^{\frac 2 3}\right)$．
     
     === "杜教筛"
-        求 $S(n)=\sum_{i=1}^n\varphi(i)$.
+        求 $S(n)=\sum_{i=1}^n\varphi(i)$．
         
-        同样的，$\varphi * 1=\operatorname{id}$, 从而：
+        同样的，$\varphi * 1=\operatorname{id}$，从而：
         
         $$
             \begin{aligned}
@@ -198,7 +198,7 @@ $$
     \sum_{i=1}^n\sum_{j=1}^ni\cdot j\cdot\gcd(i,j)\pmod p
     $$
     
-    其中 $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$,$p$ 是质数。
+    其中 $n\leq 10^{10},5\times 10^8\leq p\leq 1.1\times 10^9$，$p$ 是质数．
 
 利用 $\varphi * 1=\operatorname{id}$ 做莫比乌斯反演化为：
 
@@ -218,7 +218,7 @@ $$
 S(n)=\sum_{i=1}^nf(i)=\sum_{i=1}^n(\operatorname{id}^2\varphi)(i)
 $$
 
-需要构造积性函数 $g$，使得 $f\times g$ 和 $g$ 能快速求和。
+需要构造积性函数 $g$，使得 $f\times g$ 和 $g$ 能快速求和．
 
 单纯的 $\varphi$ 的前缀和可以用 $\varphi * 1$ 的杜教筛处理，但是这里的 $f$ 多了一个 $\operatorname{id}^2$，那么我们就卷一个 $\operatorname{id}^2$ 上去，让它变成常数：
 
@@ -237,7 +237,7 @@ $$
 \end{aligned}
 $$
 
-再化一下 $S(n)$:
+再化一下 $S(n)$：
 
 $$
 \begin{aligned}
@@ -247,7 +247,7 @@ $$
 \end{aligned}
 $$
 
-分块求解即可。
+分块求解即可．
 
 ??? note "代码实现"
     ```cpp

@@ -1,49 +1,49 @@
 author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, Enter-tainer, mcendu, Tiphereth-A, ayalhw, CCXXXI, Early0v0, HeRaNO, ouuan, swiftqwq, Xeonacid, xiaofu-15191
 
-阅读本节之前，请先安装 GCC 和 gdb，具体方法参见 [编译器](compiler.md) 一文。
+阅读本节之前，请先安装 GCC 和 gdb，具体方法参见 [编译器](compiler.md) 一文．
 
 ## 命令行使用 g++ 编译 cpp 文件
 
 ### 手动编译
 
-在命令行下输入 `g++ a.cpp` 就可以编译 `a.cpp` 这个文件了（Windows 系统需提前把编译器所在目录加入到 `PATH` 中）。
+在命令行下输入 `g++ a.cpp` 就可以编译 `a.cpp` 这个文件了（Windows 系统需提前把编译器所在目录加入到 `PATH` 中）．
 
 编译过程中可以加入一些编译选项：
 
--   `-o <文件名>`：指定编译器输出可执行文件的文件名。
--   `-g`：在编译时添加调试信息（使用 gdb 调试时需要）。
--   `-Wall`：显示所有编译警告信息。
--   `-O1`，`-O2`，`-O3`：对编译的程序进行优化，数字越大表示采用的优化手段越多（开启优化会影响使用 gdb 调试）。
--   `-DDEBUG`：在编译时定义 `DEBUG` 符号（符号可以随意更换，例如 `-DONLINE_JUDGE` 定义了 `ONLINE_JUDGE` 符号）。
--   `-UDEBUG`：在编译时取消定义 `DEBUG` 符号。
--   `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
+-   `-o <文件名>`：指定编译器输出可执行文件的文件名．
+-   `-g`：在编译时添加调试信息（使用 gdb 调试时需要）．
+-   `-Wall`：显示所有编译警告信息．
+-   `-O1`，`-O2`，`-O3`：对编译的程序进行优化，数字越大表示采用的优化手段越多（开启优化会影响使用 gdb 调试）．
+-   `-DDEBUG`：在编译时定义 `DEBUG` 符号（符号可以随意更换，例如 `-DONLINE_JUDGE` 定义了 `ONLINE_JUDGE` 符号）．
+-   `-UDEBUG`：在编译时取消定义 `DEBUG` 符号．
+-   `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）．
 
 ???+ note
-    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
+    在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数．[^have-to-link-libm-in-gcc]
 
 ???+ note "如何开大栈空间？"
-    在 Windows 下，可以使用编译选项 `-Wl,--stack=536870912` 将栈空间开大到 512 MB，其中等号后面的数字为字节数。
+    在 Windows 下，可以使用编译选项 `-Wl,--stack=536870912` 将栈空间开大到 512 MB，其中等号后面的数字为字节数．
     
-    在 Unix 下，使用 `ulimit -s ${[num]}` 将 **当前终端** 的栈空间调为 `${[num]}` 字节。
+    在 Unix 下，使用 `ulimit -s ${[num]}` 将 **当前终端** 的栈空间调为 `${[num]}` 字节．
 
 ### 使用 GNU Make 的内置规则[^gnu-make-built-in-rules]
 
-对于名为 `qwq.c/cpp` 的 C，C++ 程序源代码，可以使用 `make qwq` 自动编译成对应名为 `qwq` 的程序。
+对于名为 `qwq.c/cpp` 的 C，C++ 程序源代码，可以使用 `make qwq` 自动编译成对应名为 `qwq` 的程序．
 
-如需添加额外的编译选项，可使用 `export CFLAGS="xxx"`（C 程序）或 `export CXXFLAGS="xxx"`（C++ 程序）指定。如需添加额外的预编译选项，可使用 `export CPPFLAGS="xxx"` 指定。上述设置方法也可以写做类似 `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` 来指定单次命令执行中使用的环境变量。
+如需添加额外的编译选项，可使用 `export CFLAGS="xxx"`（C 程序）或 `export CXXFLAGS="xxx"`（C++ 程序）指定．如需添加额外的预编译选项，可使用 `export CPPFLAGS="xxx"` 指定．上述设置方法也可以写做类似 `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` 来指定单次命令执行中使用的环境变量．
 
 ### Sanitizers
 
 #### 介绍
 
-`sanitizers` 是一种集成于编译器中，用于调试 `C/C++` 代码的工具，通过在编译过程中插入检查代码来检查代码运行时出现的内存访问越界、未定义行为等错误。
+`sanitizers` 是一种集成于编译器中，用于调试 `C/C++` 代码的工具，通过在编译过程中插入检查代码来检查代码运行时出现的内存访问越界、未定义行为等错误．
 
 它分为以下几种：
 
--   AddressSanitizer[^address-sanitizer]：检测对堆、栈、全局变量的越界访问，无效的释放内存、内存泄漏（实验性）。
--   ThreadSanitizer[^thread-sanitizer]：检测多线程的数据竞争。
--   MemorySanitizer[^memory-sanitizer]：检测对未初始化内存的读取。
--   UndefinedBehaviorSanitizer[^ub-san]：检测未定义行为。
+-   AddressSanitizer[^address-sanitizer]：检测对堆、栈、全局变量的越界访问，无效的释放内存、内存泄漏（实验性）．
+-   ThreadSanitizer[^thread-sanitizer]：检测多线程的数据竞争．
+-   MemorySanitizer[^memory-sanitizer]：检测对未初始化内存的读取．
+-   UndefinedBehaviorSanitizer[^ub-san]：检测未定义行为．
 
 #### 使用方式
 
@@ -98,7 +98,7 @@ Find the GDB manual and other documentation resources online at:
 --Type <RET> for more, q to quit, c to continue without paging--
 ```
 
-按下 `c` 继续。接着提示 `Reading symbols from [filename]...`，出现 `(gdb)` 字样时，就可以输入命令调试了。
+按下 `c` 继续．接着提示 `Reading symbols from [filename]...`，出现 `(gdb)` 字样时，就可以输入命令调试了．
 
 以下是按照分类列表的常用命令：
 
@@ -133,7 +133,7 @@ Find the GDB manual and other documentation resources online at:
 
 `break [num]` 会输出断点的编号，也可以使用 `break [func-name]` 设置函数断点；
 
-你也可以使用 `break [num] [p]` 在设置断点时实现与 `condition [id] [p]` 接近的效果。
+你也可以使用 `break [num] [p]` 在设置断点时实现与 `condition [id] [p]` 接近的效果．
 
 ### 栈帧命令
 
@@ -192,7 +192,7 @@ Find the GDB manual and other documentation resources online at:
 | `source [filename]`           | 导入断点文件                                |
 
 ???+ tip "提示"
-    gdb 调试时的命令大多都可以被简写为可以唯一确定的字母缩写，例如 `breakpoint` 简写为 `b`，`step` 简写为 `s`，`info args` 简写为 `i ar`。详见 `help` 命令。
+    gdb 调试时的命令大多都可以被简写为可以唯一确定的字母缩写，例如 `breakpoint` 简写为 `b`，`step` 简写为 `s`，`info args` 简写为 `i ar`．详见 `help` 命令．
 
 ## 参考资料与注释
 
@@ -208,4 +208,4 @@ Find the GDB manual and other documentation resources online at:
 
 [^gnu-make-built-in-rules]: [Catalogue of Built-In Rules](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)
 
-[^checkpoint]: 与检查点相关的指令仅适用于 GNU/Linux 平台。详见 [GDB 官方手册](https://sourceware.org/gdb/current/onlinedocs/gdb#Checkpoint_002fRestart)。
+[^checkpoint]: 与检查点相关的指令仅适用于 GNU/Linux 平台．详见 [GDB 官方手册](https://sourceware.org/gdb/current/onlinedocs/gdb#Checkpoint_002fRestart)．
