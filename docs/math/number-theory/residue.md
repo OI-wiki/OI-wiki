@@ -221,7 +221,13 @@
 
 #### 一般的情形
 
-考虑一般的情形，仍然设模数是素数幂，即 $m=p^e$，但是 $\gcd(a,m)>1$．设 $a = p^sa'$ 且 $p\perp a'$．不妨设 $x=p^zx'$ 且 $p\perp x'$，就有
+考虑一般的情形，仍然设模数是素数幂，即 $m=p^e$，但是 $\gcd(a,m)>1$．设 $a = p^sa'$ 且 $p\perp a'$．如果 $a\equiv 0\pmod{m}$，那么
+
+$$
+x = p^{\lceil e/k \rceil}\ell\pmod{p^e},~\ell=0,1,\cdots,p^{e-\lceil e/k\rceil}-1
+$$
+
+都是原方程的解．接下来，考察 $a\not\equiv 0\pmod{m}$ 的情形．不妨设 $x=p^zx'$ 且 $p\perp x'$，就有
 
 $$
 x^k = p^{kz}(x')^k\equiv p^sa'\pmod{p^e}.
