@@ -67,7 +67,7 @@ $$
 
 ### Bostan–Schost 算法
 
-回顾 [Lagrange 插值公式](../numerical/interp.md#Lagrange-插值法) 为
+回顾 [Lagrange 插值公式](../numerical/interp.md#lagrange-插值法) 为
 
 $$
 f(x) = \sum_{i = 0}^{n - 1}\left(f\left(x_i\right)\prod_{0 \leq j < n \atop j \neq i} \frac{x - x_j}{x_i - x_j}\right)
