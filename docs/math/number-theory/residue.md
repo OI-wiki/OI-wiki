@@ -172,31 +172,72 @@
 
 最后，本文讨论 $k$ 次方根的求法．相较于 $k=2$ 的情形，有 [很多高效算法](./quad-residue.md#模意义下开平方) 可以用于模意义下开平方运算．对于一般的 $k$，相对高效的算法只有 Adleman–Manders–Miller 算法，它可以用于求解素数模下开任意次方问题；结合 Newton–Hensel 提升算法和中国剩余定理，就可以完全解决任意模数下开方问题．
 
+利用中国剩余定理总是可以将问题转换为素数幂模的情形，本节主要讨论素数幂模情形的解法．
+
 ### 基于 BSGS 算法
 
 前文对于 $k$ 次剩余性质的 [分析](#性质) 实际上已经指出了一种求解 $k$ 次方根的方法．
 
-当模 $m$ 的原根存在时，设一个原根是 $g$．那么，方程 $x^k\equiv a\pmod m$ 可以转化为线性同余方程
+#### 与模数互素的情形
+
+严格来说，前文解决的情形是被开方数 $a$ 与模数 $m$ 互素的情形．算法过程如下：
+
+-   当 $m=p^e$ 是奇素数幂时，设模 $m$ 的一个原根是 $g$．那么，方程 $x^k\equiv a\pmod m$ 可以转化为线性同余方程
+
+    $$
+    y \equiv \operatorname{ind}_g a \pmod{\varphi(m)}.
+    $$
+
+    其中，$\operatorname{ind}_g a$ 可以通过 [BSGS 算法](./discrete-logarithm.md#大步小步算法) 求出，而 [线性同余方程](./linear-equation.md) 的全体解容易求出．由此，就可以得到 $a$ 的全部 $k$ 次方根 $x\equiv g^y\pmod m$．
+
+    除此之外，还有另一种相仿的思路．同样是设 $x\equiv g^y\pmod m$，还可以通过变形
+
+    $$
+    x^k \equiv (g^k)^y \equiv a \pmod m
+    $$
+
+    转化为求底数为 $g^k$ 时 $a$ 的离散对数．这同样可以通过 BSGS 算法找到一组特解．它的通解可以通过前文的解的表达式求出．
+
+    无论采用哪种思路，原根已知时，该算法求出单个解的复杂度都是 $O(\sqrt{m})$．原根未知时，可以在 $O(m^{1/4})$ 时间内将原根求出．总的时间复杂度都是 $O(\sqrt{m})$．
+
+-   当 $m=2^e$ 且 $e\in\mathbf N_+$ 时，可以首先求出 $a\equiv (-1)^s5^r\pmod m$ 中的 $s,r$．这两个指数中，$s$ 可以在 $O(1)$ 时间内确定：
+
+    $$
+    s = \begin{cases}0, & a\equiv 1\pmod 4, \\ 1, & a\equiv 3\pmod 4.\end{cases}
+    $$
+
+    而 $r=\operatorname{ind}_5((-1)^sa)$ 可以通过 BSGS 算法在 $\sqrt{m}$ 时间内求出．接下来，只需要求解线性同余方程组：
+
+    $$
+    \begin{aligned}
+    kz &\equiv s \pmod{2},\\
+    ky &\equiv r \pmod{2^{e-2}}.
+    \end{aligned}
+    $$
+
+    这个线性方程组的通解 $(x,y)$ 容易求出，而 $x=(-1)^z5^y$ 就是所求的方根．这一算法求出单个解的复杂度仍然是 $O(\sqrt{m})$．
+
+当然，对于无解的情形，其实可以通过前文叙述的判别方法在 $O(\log m)$ 时间内快速判断，而无需在求解过程中判断．
+
+#### 一般的情形
+
+考虑一般的情形，仍然设模数是素数幂，即 $m=p^e$，但是 $\gcd(a,m)>1$．设 $a = p^sa'$ 且 $p\perp a'$．不妨设 $x=p^zx'$ 且 $p\perp x'$，就有
 
 $$
-y \equiv \operatorname{ind}_g a \pmod{\varphi(m)}.
+x^k = p^{kz}(x')^k\equiv p^sa'\pmod{p^e}.
 $$
 
-其中，$\operatorname{ind}_g a$ 可以通过 [BSGS 算法](./discrete-logarithm.md#大步小步算法) 求出，而 [线性同余方程](./linear-equation.md) 的全体解容易求出．由此，就可以得到 $a$ 的全部 $k$ 次方根 $x\equiv g^y\pmod m$．
-
-除此之外，同样是设 $x\equiv g^y\pmod m$，还可以通过变形
+由于 $(x')^k\perp p$，所以该式成立当且仅当 $kz = s$ 且 $(x')^k\equiv a'\pmod{p^{e-s}}$．当且仅当 $k\mid s$ 时，第一个方程有解 $z=\dfrac{s}{k}$；而第二个方程的求解已经解决．需要注意的是，因为第二个方程的通解的模数与原方程通解的模数并不相同，所以第二个方程的每一个解 $x'$，都对应原方程的若干解：
 
 $$
-x^k \equiv (g^k)^y \equiv a \pmod m
+x \equiv p^{s/k}(x' + \ell p^{e-s})\pmod{p^e},~\ell = 0,1,\cdots, p^{s-s/k}-1.
 $$
 
-转化为求底数为 $g^k$ 时 $a$ 的离散对数．这同样可以通过 BSGS 算法找到一组特解．它的通解可以通过前文的解的表达式求出．
+原根已知时，仍然可以在 $O(\log m)$ 时间内快速判断该方程是否有解．
 
-无论采用哪种思路，原根已知时，该算法求出单个解的复杂度都是 $O(\sqrt{m})$．原根未知时，可以在 $O(m^{1/4})$ 时间内将原根求出．
+求解任一模数下 $k$ 次方根的参考实现如下：
 
-下面的代码实现的找原根、离散对数解和原问题所有解的过程．
-
-??? example "参考代码"
+??? example "模板题 [Luogu P5668【模板】N 次剩余](https://www.luogu.com.cn/problem/P5668) 参考代码"
     ```cpp
     int gcd(int a, int b) { return a ? gcd(b % a, a) : b; }
     
@@ -266,7 +307,7 @@ $$
     }
     ```
 
-利用前文的分析，这一算法同样适用于模 $2^e$ 的情形．
+该实现的时间复杂度大致为 $O(\sqrt{m}\log m + S)$，其中，$S$ 是解的数量．算法的瓶颈在于利用 BSGS 求离散对数．
 
 ### Adleman–Manders–Miller 算法
 
