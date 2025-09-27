@@ -67,13 +67,13 @@ $$
 
 ### Bostan–Schost 算法
 
-回顾 Lagrange 插值公式为
+回顾 [Lagrange 插值公式](../numerical/interp.md#Lagrange-插值法) 为
 
 $$
 f(x) = \sum_{i = 0}^{n - 1}\left(f\left(x_i\right)\prod_{0 \leq j < n \atop j \neq i} \frac{x - x_j}{x_i - x_j}\right)
 $$
 
-且 $x_i \neq x_j$ 对于所有 $i \neq j$ 成立。令 $M(x) := \prod_{i = 0}^{n - 1}\left(x - x_i\right)$，根据洛必达法则，我们有
+且 $x_i \neq x_j$ 对于所有 $i \neq j$ 成立。与 [多项式的快速插值](./multipoint-eval-interpolation.md#多项式的快速插值) 中相同，我们令 $M(x) := \prod_{i = 0}^{n - 1}\left(x - x_i\right)$，根据洛必达法则，有
 
 $$
 M'(x_i)=\prod_{0 \leq j < n \atop j \neq i}\left(x_i - x_j\right)
@@ -91,7 +91,7 @@ $$
 f(x) = M(x)\left(\sum_{i = 0}^{n - 1}\frac{f\left(q^i\right)/M'\left(q^i\right)}{x - q^i}\right)
 $$
 
-其中 $M(x)=\prod_{j = 0}^{n - 1}\left(x - q^j\right)$。若我们令 $n - 1 = 2k$ 和 $H(x) := \prod_{j = 0}^{k - 1}\left(x - q^j\right)$，那么
+其中 $M(x)=\prod_{j = 0}^{n - 1}\left(x - q^j\right)$。若我们设 $n$ 为偶数，令 $n = 2k$ 和 $H(x) := \prod_{j = 0}^{k - 1}\left(x - q^j\right)$，那么
 
 $$
 M(x) = H(x) \cdot q^{k^2} \cdot H\left(\frac{x}{q^k}\right)
