@@ -15,7 +15,7 @@ function getArchiveLinkMap(jsonPath: string): Record<string, any> {
   }
 }
 
-const archiveLinkData = getArchiveLinkMap("scripts\\post-build\\archive-link\\data.json");
+const archiveLinkData = getArchiveLinkMap("scripts/post-build/archive-link/data.json");
 
 export const taskHandler = new (class implements TaskHandler<void> {
   async process(document: HTMLElement) {
