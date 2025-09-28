@@ -34,7 +34,7 @@ export const taskHandler = new (class implements TaskHandler<void> {
       if (archiveUrl == null) return;
 
       let archivedA = null;
-      if (data[link]["status"] != 0) {
+      if (data[link]["fail"] == false) {
         archivedA = new HTMLElement("a", {}, "[存档]");
         archivedA.setAttribute("href", archiveUrl);
         archivedA.setAttribute("target", "_blank");
