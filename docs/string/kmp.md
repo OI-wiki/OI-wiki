@@ -270,9 +270,7 @@ $$
 
 ### 在字符串中查找子串：Knuth–Morris–Pratt 算法
 
-该算法由 Knuth、Pratt 和 Morris 在 1977 年共同发布<sup>[\[1\]](https://epubs.siam.org/doi/abs/10.1137/0206024)</sup>。
-
-该任务是前缀函数的一个典型应用。
+该算法由 Knuth、Pratt 和 Morris 在 1977 年共同发布[^kmp]。该任务是前缀函数的一个典型应用。
 
 #### 过程
 
@@ -547,4 +545,6 @@ $$
 
 **本页面主要译自博文 [Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function) 与其英文翻译版 [Prefix function. Knuth–Morris–Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
 
-[^ref1]: [金策 - 字符串算法选讲](https://wenku.baidu.com/view/850f93f4fbb069dc5022aaea998fcc22bcd1433e.html)
+[^ref1]: [金策 - 字符串算法选讲](https://github.com/hzwer/shareOI/blob/master/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%80%89%E8%AE%B2_%E9%87%91%E7%AD%96.pdf)
+
+[^kmp]: Knuth, Donald E., James H. Morris, Jr, and Vaughan R. Pratt. "Fast pattern matching in strings." SIAM journal on computing 6.2 (1977): 323-350.[doi: 10.1137/0206024](https://epubs.siam.org/doi/abs/10.1137/0206024)

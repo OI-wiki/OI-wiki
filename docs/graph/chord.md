@@ -280,7 +280,7 @@ for (int i = 1; i <= n; i++)
 
 [弦图相关](https://yhx-12243.github.io/OI-transit/memos/15.html)
 
-[2009 WC 讲稿](https://wenku.baidu.com/view/cd36284ba31614791711cc7931b765ce05087a30.html)
+[2009 WC 讲稿](https://github.com/hzwer/shareOI/blob/master/%E5%9B%BE%E8%AE%BA/%E5%BC%A6%E5%9B%BE%E4%B8%8E%E5%8C%BA%E9%97%B4%E5%9B%BE_%E9%99%88%E4%B8%B9%E7%90%A6.pptx)
 
 [弦图总结 - 租酥雨](https://www.cnblogs.com/zhoushuyu/p/8716935.html)
 

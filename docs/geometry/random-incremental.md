@@ -118,10 +118,10 @@ $$
 
 ## 参考资料与扩展阅读
 
-<http://www.doc88.com/p-007257893177.html>
+[随机增量算法 - 解轶伦](https://github.com/hzwer/shareOI/blob/master/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/%E9%9A%8F%E6%9C%BA%E5%A2%9E%E9%87%8F%E7%AE%97%E6%B3%95_%E8%A7%A3%E8%BD%B6%E4%BC%A6.pdf)
 
 <https://www.cnblogs.com/aininot260/p/9635757.html>
 
-<https://wenku.baidu.com/view/162699d63186bceb19e8bbe6.html>
+<https://www.cise.ufl.edu/~sitharam/COURSES/CG/kreveldnbhd.pdf>
 
 <https://blog.csdn.net/u014609452/article/details/62039612>

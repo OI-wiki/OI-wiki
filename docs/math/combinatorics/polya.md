@@ -81,7 +81,7 @@ Pólya 计数原理是 Burnside 引理的应用和推广。在介绍 Pólya 计�
     \end{aligned}
     $$
     
-    这里，$[\cdot]$ 称为 [Iverson 括号](https://mathworld.wolfram.com/IversonBracket.html)，只有当命题 $P$ 为真时 $[P]$ 取值为 $1$，否则取 $0$。交换求和记号的结果中，$X^g=\{x\in X:gx=x\}$ 是指在操作 $g$ 下保持不变的染色方案 $x$ 的集合。简言之，它是操作 $g$ 的不动点。
+    其中 $[\cdot]$ 为 Iverson 括号。交换求和记号的结果中，$X^g=\{x\in X:gx=x\}$ 是指在操作 $g$ 下保持不变的染色方案 $x$ 的集合。简言之，它是操作 $g$ 的不动点。
     
     在这些讨论之后，现在可以将分组的个数写作
     
