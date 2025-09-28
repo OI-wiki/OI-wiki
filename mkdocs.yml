@@ -222,7 +222,6 @@ nav:
     - Main–Lorentz 算法: string/main-lorentz.md
   - 数学:
     - 数学部分简介: math/index.md
-    - 符号: math/notation.md
     - 进位制: math/base.md
     - 位运算: math/bit.md
     - 二进制集合操作: math/binary-set.md
