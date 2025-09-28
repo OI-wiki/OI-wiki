@@ -24,8 +24,7 @@ def solve_linear_congruence_equation(a, b, n):
     if b % d != 0:
         return -1
     n //= d
-    x *= b // d
-    return (x % n + n) % n
+    return (x * (b // d) % n + n) % n
 
 
 # --8<-- [end:core]
