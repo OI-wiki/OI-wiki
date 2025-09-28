@@ -249,31 +249,31 @@ $x$ 可以是复数。
 
 | 编号                      | 坐标                        | 位置向量和微分                                                                                                                                                                                                                      | 坐标名   | 备注                                                                                                                                                                                                                                                   |
 | ----------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <a id="n13.1"></a>n13.1 | $x$，$y$，$z$               | $\boldsymbol{r} = x \boldsymbol{e}_x + y \boldsymbol{e}_y + z \boldsymbol{e}_z$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}x~\boldsymbol{e}_x + \mathrm{d}y~\boldsymbol{e}_y + \mathrm{d}z~\boldsymbol{e}_z$                  | 笛卡尔坐标 | 基向量 $\boldsymbol{e}_x$，$\boldsymbol{e}_y$，$\boldsymbol{e}_z$ 构成右手正交系，见图 1 和图 4。<br>基向量也可用 $\boldsymbol{e}_1$，$\boldsymbol{e}_2$，$\boldsymbol{e}_3$ 或 $\boldsymbol{i}$，$\boldsymbol{j}$，$\boldsymbol{k}$ 表示，坐标也可用 $x_1$，$x_2$，$x_3$ 或 $i$，$j$，$k$ 表示。 |
-| <a id="n13.2"></a>n13.2 | $\rho$，$\varphi$，$z$      | $\boldsymbol{r} = \rho~\boldsymbol{e}_{\rho} + z~\boldsymbol{e}_z$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}\rho~\boldsymbol{e}_{\rho} +\rho~\mathrm{d}\varphi~\boldsymbol{e}_{\varphi} + \mathrm{d}z~\boldsymbol{e}_z$     | 柱坐标   | $\boldsymbol{e}_{\rho}(\varphi)$，$\boldsymbol{e}_{\varphi}(\varphi)$，$\boldsymbol{e}_z$ 组成右手正交系，见图 2。<br>若 $z = 0$, 则 $\rho$ 和 $\varphi$ 是平面上的极坐标。                                                                                                   |
-| <a id="n13.3"></a>n13.3 | $r$，$\vartheta$，$\varphi$ | $\boldsymbol{r} = r \boldsymbol{e}_r$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}r~\boldsymbol{e}_r + r~\mathrm{d}\vartheta~\boldsymbol{e}_{\vartheta} + r~\sin\vartheta~\mathrm{\mathrm{d}}\varphi~\boldsymbol{e}_{\varphi}$ | 球坐标   | $\boldsymbol{e}_r(\vartheta, \varphi)$，$\boldsymbol{e}_{\vartheta}(\vartheta, \varphi)$，$\boldsymbol{e}_{\varphi}(\varphi)$ 组成右手正交系，见图 3。                                                                                                            |
+| <a id="n13.1"></a>n13.1 | $x$，$y$，$z$               | $\boldsymbol{r} = x \boldsymbol{e}_x + y \boldsymbol{e}_y + z \boldsymbol{e}_z$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}x~\boldsymbol{e}_x + \mathrm{d}y~\boldsymbol{e}_y + \mathrm{d}z~\boldsymbol{e}_z$                  | 笛卡尔坐标 | 基向量 $\boldsymbol{e}_x$，$\boldsymbol{e}_y$，$\boldsymbol{e}_z$ 构成右手正交系，见 [图 1](#图-1) 和 [图 4](#图-4)。<br>基向量也可用 $\boldsymbol{e}_1$，$\boldsymbol{e}_2$，$\boldsymbol{e}_3$ 或 $\boldsymbol{i}$，$\boldsymbol{j}$，$\boldsymbol{k}$ 表示，坐标也可用 $x_1$，$x_2$，$x_3$ 或 $i$，$j$，$k$ 表示。 |
+| <a id="n13.2"></a>n13.2 | $\rho$，$\varphi$，$z$      | $\boldsymbol{r} = \rho~\boldsymbol{e}_{\rho} + z~\boldsymbol{e}_z$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}\rho~\boldsymbol{e}_{\rho} +\rho~\mathrm{d}\varphi~\boldsymbol{e}_{\varphi} + \mathrm{d}z~\boldsymbol{e}_z$     | 柱坐标   | $\boldsymbol{e}_{\rho}(\varphi)$，$\boldsymbol{e}_{\varphi}(\varphi)$，$\boldsymbol{e}_z$ 组成右手正交系，见 [图 2](#图-2)。<br>若 $z = 0$, 则 $\rho$ 和 $\varphi$ 是平面上的极坐标。                                                                                                   |
+| <a id="n13.3"></a>n13.3 | $r$，$\vartheta$，$\varphi$ | $\boldsymbol{r} = r \boldsymbol{e}_r$;<br>$\mathrm{d}\boldsymbol{r} = \mathrm{d}r~\boldsymbol{e}_r + r~\mathrm{d}\vartheta~\boldsymbol{e}_{\vartheta} + r~\sin\vartheta~\mathrm{\mathrm{d}}\varphi~\boldsymbol{e}_{\varphi}$ | 球坐标   | $\boldsymbol{e}_r(\vartheta, \varphi)$，$\boldsymbol{e}_{\vartheta}(\vartheta, \varphi)$，$\boldsymbol{e}_{\varphi}(\varphi)$ 组成右手正交系，见 [图 3](#图-3)。                                                                                                            |
 
-如果不使用右手坐标系（见图 4），而使用左手坐标系（见图 5），则应在之前明确强调，以免符号误用。
+如果不使用 [右手坐标系](#图-4)，而使用 [左手坐标系](#图-5)，则应在之前明确强调，以免符号误用。
 
 ![](./images/symbol-1.svg)
 
-**图 1** 右手笛卡尔坐标系
+<a id="图-1"></a>**图 1** 右手笛卡尔坐标系
 
 ![](./images/symbol-2.svg)
 
-**图 2** 右手柱坐标系
+<a id="图-2"></a>**图 2** 右手柱坐标系
 
 ![](./images/symbol-3.svg)
 
-**图 3** 右手球坐标系
+<a id="图-3"></a>**图 3** 右手球坐标系
 
 ![](./images/symbol-4.svg)
 
-**图 4** 右手坐标系
+<a id="图-4"></a>**图 4** 右手坐标系
 
 ![](./images/symbol-5.svg)
 
-**图 5** 左手坐标系
+<a id="图-5"></a>**图 5** 左手坐标系
 
 ## 标量和向量
 
