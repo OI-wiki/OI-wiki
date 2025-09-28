@@ -1,6 +1,6 @@
 本文规定了 **OI Wiki** 中数学符号的推荐写法，并给出了一些应用范例。
 
-本文参考了 [GB/T 3102.11-1993](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=3DE79450D562E62D41CB6E79FF411054) 和 [ISO 80000-2:2019](https://www.iso.org/standard/64973.html) 修订，故基本与国内通行教材的符号体系兼容。
+本文参考了 [GB/T 3102.11-1993](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=3DE79450D562E62D41CB6E79FF411054)、[ISO 80000-2:2019](https://www.iso.org/standard/64973.html) 和《具体数学》的符号表修订，故基本与国内通行教材的符号体系和 OI 场景的惯用符号体系兼容。
 
 符号的 LaTeX 写法请参考 [本文章的源代码](https://github.com/OI-wiki/OI-wiki/blob/master/docs/intro/symbol.md?plain=1)
 
