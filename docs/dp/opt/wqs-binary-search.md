@@ -135,7 +135,7 @@ v(y) &= \min_{x\in X}\sup_{\lambda\in\mathbf R^d}L(x,\lambda,y).
 \end{aligned}
 $$
 
-交换两次最值操作，就得到它的 [对偶问题](https://en.wikipedia.org/wiki/Duality_\(optimization\))：
+交换两次最值操作，就得到它的 [对偶问题](https://en.wikipedia.org/wiki/Duality_%28optimization%29)：
 
 $$
 \begin{aligned}
@@ -978,7 +978,7 @@ $$
 
 ## 参考资料与注释
 
--   [王钦石《浅析一类二分方法》](https://www.doc88.com/p-949564862405.html)
+-   [王钦石《浅析一类二分方法》](https://github.com/hzwer/shareOI/blob/master/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B5%85%E6%9E%90%E4%B8%80%E7%B1%BB%E4%BA%8C%E5%88%86%E6%96%B9%E6%B3%95_%E7%8E%8B%E9%92%A6%E7%9F%B3.pdf)
 -   [Theoretical grounds of lambda optimization by adamant - Codeforces blog](https://codeforces.com/blog/entry/98334)
 -   [严谨的 WQS 二分方法 by YeahPotato - 洛谷博客](https://www.luogu.com.cn/article/vsffwrc3)
 -   [【学习笔记】WQS 二分详解及常见理解误区解释 by ikrvxt - CSDN 博客](https://blog.csdn.net/Emm_Titan/article/details/124035796)

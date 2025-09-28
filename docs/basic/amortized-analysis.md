@@ -178,4 +178,4 @@ $$
 ## 参考资料
 
 -   [Amortized Analysis - Wikipedia](https://en.wikipedia.org/wiki/Amortized_analysis)
--   [Cornell CS 3110 - Lecture 20: Amortized Analysis](https://www.cs.cornell.edu/courses/cs3110/2011sp/Lectures/lec20-amortized/amortized.html)
+-   [Cornell CS 3110 - Lecture 20: Amortized Analysis](https://www.cs.cornell.edu/courses/cs3110/2011sp/Lectures/lec20-amortized/amortized.htm)
