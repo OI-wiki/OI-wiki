@@ -64,6 +64,7 @@
 /math/fibonacci /math/combinatorics/fibonacci
 /math/drawer-principle /math/combinatorics/drawer-principle
 /math/eulerian /math/combinatorics/eulerian
+/math/notation /intro/symbol
 /math/prime /math/number-theory/prime
 /math/meissel-lehmer /math/number-theory/meissel-lehmer
 /math/gcd /math/number-theory/gcd
