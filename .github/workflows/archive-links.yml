@@ -1,0 +1,28 @@
+name: Archive external links (Regular task on 90 days)
+
+on:
+  schedule:
+    - cron: '0 0 1 1,4,7,10 *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Archive external links (Regular task on 90 days)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: master
+      - uses: actions/checkout@v4
+        with:
+          ref: archiveLink
+          path: scripts/archive-link/data
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Install Python dependencies
+        run: pip install -r scripts/archive-link/requirements.txt
+      - name: Scan all the links in the repo
+        run: python -u scripts/archive-link/regularArchive.py
+      

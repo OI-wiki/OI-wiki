@@ -1,0 +1,13 @@
+beautifulsoup4==4.13.5
+bs4==0.0.2
+certifi==2025.8.3
+cffi==2.0.0
+curl_cffi==0.13.0
+importlib_metadata==8.7.0
+Markdown==3.9
+pycparser==2.23
+pymdown-extensions==10.16.1
+PyYAML==6.0.3
+soupsieve==2.8
+typing_extensions==4.15.0
+zipp==3.23.0
