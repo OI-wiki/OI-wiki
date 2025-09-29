@@ -3,8 +3,9 @@
 from curl_cffi import requests
 from urllib.parse import quote
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import time
+from ratelimit import limits, sleep_and_retry
 
+ONE_MINUTE = 60
 sparkline = "https://web.archive.org/__wb/sparkline?output=json&url="
 detail = "https://web.archive.org/__wb/calendarcaptures/2?date={}&url={}"
 archive_link = "https://web.archive.org/web/{}/{}"
@@ -18,10 +19,11 @@ def retry_request(func, *args, retries=3, **kwargs):
             if attempt == retries - 1:
                 raise
 
+@sleep_and_retry
+@limits(calls=15, period=ONE_MINUTE)
 def latest_snapshot(url):
     """Get the latest snapshot of a certain url
     """
-    time.sleep(4)
     encoded_url = quote(url, safe='')
     referer_url = referer_link.format(encoded_url)
     headers = {
@@ -49,10 +51,11 @@ def latest_snapshot(url):
         print(f"fail reason, {str(e)}")
         return None
 
+@sleep_and_retry
+@limits(calls=15, period=ONE_MINUTE)
 def history_snapshot(url):
     """Get all the snapshots for a certain url.
     """
-    time.sleep(4)
     encoded_url = quote(url, safe='')
     referer_url = referer_link.format(encoded_url)
     headers = {
@@ -112,15 +115,3 @@ def history_snapshot(url):
                                   'link': archive_link.format(exact_time, url)})
 
     return snapshots
-            
-"""
-{
-    "items": [
-        [
-            101,
-            301,
-            2
-        ]
-    ]
-}
-"""

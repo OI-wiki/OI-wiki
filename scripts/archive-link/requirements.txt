@@ -8,6 +8,7 @@ Markdown==3.9
 pycparser==2.23
 pymdown-extensions==10.16.1
 PyYAML==6.0.3
+ratelimit==2.2.1
 soupsieve==2.8
 typing_extensions==4.15.0
 zipp==3.23.0

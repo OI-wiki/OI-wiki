@@ -1,8 +1,9 @@
 from curl_cffi import requests
 from urllib.parse import quote
 from datetime import datetime, timezone
-import time
+from ratelimit import limits, sleep_and_retry
 
+ONE_MINUTE = 60
 SAVE_URL = "https://web.archive.org/save/{}"
 
 def retry_request(func, *args, retries=3, **kwargs):
@@ -13,8 +14,9 @@ def retry_request(func, *args, retries=3, **kwargs):
             if attempt == retries - 1:
                 raise
 
+@sleep_and_retry
+@limits(calls=15, period=ONE_MINUTE)
 def save(url):
-    time.sleep(4)
     encoded_url = quote(url, safe='')
     save_link = SAVE_URL.format(encoded_url)
     print("Start Archiving: " + datetime.now(timezone.utc).isoformat())
