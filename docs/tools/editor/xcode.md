@@ -2,13 +2,13 @@ author: shenyouran, Xeonacid, StudyingFather, CoelacanthusHex
 
 ## 简介
 
-Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc. 开发。
+Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc. 开发．
 
 ## 安装
 
 ### 方法一
 
-打开苹果电脑自带的 App Store（或者尝试 [快捷链接](https://apps.apple.com/cn/app/xcode/id497799835?mt=12)）下载 Xcode。点击获取，然后输入苹果账号密码开始下载安装。
+打开苹果电脑自带的 App Store（或者尝试 [快捷链接](https://apps.apple.com/cn/app/xcode/id497799835?mt=12)）下载 Xcode．点击获取，然后输入苹果账号密码开始下载安装．
 
 ![](images/xcode-1.jpg)
 
@@ -18,7 +18,7 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 ![](images/xcode-2.jpg)
 
-点击弹出框内蓝色的文件名即可下载。得到压缩包之后，用系统自带的工具进行解压，然后得到文件 Xcode.app。把这个文件移动到【应用程序】文件夹后即可使用。
+点击弹出框内蓝色的文件名即可下载．得到压缩包之后，用系统自带的工具进行解压，然后得到文件 Xcode.app．把这个文件移动到【应用程序】文件夹后即可使用．
 
 ## 基础配置
 
@@ -26,47 +26,47 @@ Xcode 是一个运行在 macOS 上的集成开发工具（IDE），由 Apple Inc
 
 ![](images/xcode-3.jpg)
 
-这个窗口是 Xcode 元件的安装引导。点击 `Install` 并输入当前用户密码即可。
+这个窗口是 Xcode 元件的安装引导．点击 `Install` 并输入当前用户密码即可．
 
 安装完毕后，界面左侧显示：
 
 ![](images/xcode-4.jpg)
 
-点击 `Create a new Xcode project`（创建一个新的 Xcode 项目），然后选择上方 `macOS` 中的 `Command Line Tool`（命令行工具），并点击右下角的 `Next`。
+点击 `Create a new Xcode project`（创建一个新的 Xcode 项目），然后选择上方 `macOS` 中的 `Command Line Tool`（命令行工具），并点击右下角的 `Next`．
 
 ![](images/xcode-5.jpg)
 
-接下来，我们可以给项目命名，但最重要的是选择项目的语言。我们可以根据自己的需求，在最下方 `Language` 处选择 C 或者 C++：
+接下来，我们可以给项目命名，但最重要的是选择项目的语言．我们可以根据自己的需求，在最下方 `Language` 处选择 C 或者 C++：
 
 ![](images/xcode-6.jpg)
 
-项目的目录可以根据需要选择。创建完毕后，Xcode 会自动打开这个项目，并自动创建一个 `main` 文件（C 语言的后缀为 `.c`，C++ 语言的后缀为 `.cpp`）。
+项目的目录可以根据需要选择．创建完毕后，Xcode 会自动打开这个项目，并自动创建一个 `main` 文件（C 语言的后缀为 `.c`，C++ 语言的后缀为 `.cpp`）．
 
 点击这个文件，就可以打开编辑区域：
 
 ![](images/xcode-7.jpg)
 
-编写代码后，可以按⌘B 编译（Build），⌘R 运行（Run）。运行后拖动，得到三个部分：
+编写代码后，可以按⌘B 编译（Build），⌘R 运行（Run）．运行后拖动，得到三个部分：
 
 ![](images/xcode-8.jpg)
 
-一般来说我们只使用【编辑区】和【运行区】。若程序有输入，那么在【运行区】中进行输入之后，就可以得到输出。界面呈现效果：
+一般来说我们只使用【编辑区】和【运行区】．若程序有输入，那么在【运行区】中进行输入之后，就可以得到输出．界面呈现效果：
 
 ![](images/xcode-9.jpg)
 
-仿照这种方式，我们就可以运行任何的单个 C/C++ 程序。
+仿照这种方式，我们就可以运行任何的单个 C/C++ 程序．
 
 ## 万能头文件的使用
 
-在编写代码过程中，我们可能会使用到很多头文件。常用的解决方法是使用万能头文件。
+在编写代码过程中，我们可能会使用到很多头文件．常用的解决方法是使用万能头文件．
 
-我们在源代码第一行引入万能头文件，然而编译过程中却提示：`'bits/stdc++.h' file not found`。即该头文件未找到。
+我们在源代码第一行引入万能头文件，然而编译过程中却提示：`'bits/stdc++.h' file not found`．即该头文件未找到．
 
 ![](images/xcode-10.jpg)
 
-这是因为在 macOS 上默认使用 [libc++](https://libcxx.llvm.org/) 作为 C++ 标准库实现，而万能头 `bits/stdc++.h` 是 [GNU libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/) 所独有的。
+这是因为在 macOS 上默认使用 [libc++](https://libcxx.llvm.org/) 作为 C++ 标准库实现，而万能头 `bits/stdc++.h` 是 [GNU libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/) 所独有的．
 
-不过，我们可以手动编写一个万能头文件来使用。
+不过，我们可以手动编写一个万能头文件来使用．
 
 ### 步骤 1
 
@@ -101,7 +101,7 @@ vim stdc++.h
 
 ![](images/xcode-11.jpg)
 
-接着，我们需要通过 vim 编辑文件。敲击 i（insert）键盘即可进入插入/编辑模式（下方出现 `-- INSERT --`）：
+接着，我们需要通过 vim 编辑文件．敲击 i（insert）键盘即可进入插入/编辑模式（下方出现 `-- INSERT --`）：
 
 ![](images/xcode-12.jpg)
 
@@ -260,18 +260,18 @@ vim stdc++.h
     #endif
     ```
 
-该文件来源于 [10.2.0 版本的 libstdc++](https://github.com/gcc-mirror/gcc/blob/ee5c3db6c5b2c3332912fb4c9cfa2864569ebd9a/libstdc++-v3/include/precompiled/stdc++.h) 并经少许修改以兼容 libc++。
+该文件来源于 [10.2.0 版本的 libstdc++](https://github.com/gcc-mirror/gcc/blob/ee5c3db6c5b2c3332912fb4c9cfa2864569ebd9a/libstdc++-v3/include/precompiled/stdc++.h) 并经少许修改以兼容 libc++．
 
-按键盘左上角的<kbd>Esc</kbd>退出编辑模式，然后直接输入 `:wq` 并换行即可保存文件。
+按键盘左上角的<kbd>Esc</kbd>退出编辑模式，然后直接输入 `:wq` 并换行即可保存文件．
 
 ### 步骤 3
 
-关闭终端，回到 Xcode。重新按下 ⌘B/⌘R 进行编译，发现编译成功：
+关闭终端，回到 Xcode．重新按下 ⌘B/⌘R 进行编译，发现编译成功：
 
 ![](images/xcode-13.jpg)
 
 ## 优缺点
 
-优点：由苹果开发，适合 Mac 用户，界面齐全、美观。
+优点：由苹果开发，适合 Mac 用户，界面齐全、美观．
 
-缺点：Xcode 主要用来苹果程序的开发，对于竞赛来说功能冗余，安装包大小较大，而且仅能在 Mac 端上使用。
+缺点：Xcode 主要用来苹果程序的开发，对于竞赛来说功能冗余，安装包大小较大，而且仅能在 Mac 端上使用．
