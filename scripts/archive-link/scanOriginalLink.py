@@ -41,7 +41,7 @@ def detectURL(link):
         return -2 # Need to check later
     
 def main():
-    content = readExistingFile('archiveLink/data/data.json')
+    content = readExistingFile('scripts/archive-link/data/data.json')
     updateContent = content
     cnt = 0
     tot = len(content)
@@ -58,7 +58,7 @@ def main():
             updateContent[key]["fail"] = True
 
     j = json.dumps(updateContent, indent=4, ensure_ascii=False)
-    with open("archiveLink/data/data.json", "w", encoding="utf-8") as f:
+    with open("scripts/archive-link/data/data.json", "w", encoding="utf-8") as f:
         f.write(j)
 
 if __name__ == '__main__':

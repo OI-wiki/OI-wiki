@@ -90,7 +90,7 @@ def retryUnarchiveLink(data):
     return updateContent
 
 def main():
-    pastContent = readExistingFile('archiveLink/data/data.json')
+    pastContent = readExistingFile('scripts/archive-link/data/data.json')
     pastContent = retryUnarchiveLink(pastContent)
     currentContent = getLatestFile("docs")
     updateContent = {}
@@ -105,7 +105,7 @@ def main():
             updateContent[key] = newLink(key, value)
                 
     j = json.dumps(updateContent, indent=4, ensure_ascii=False)
-    with open("archiveLink/data/data.json", "w", encoding="utf-8") as f:
+    with open("scripts/archive-link/data/data.json", "w", encoding="utf-8") as f:
         f.write(j)
     # print(j)
 
