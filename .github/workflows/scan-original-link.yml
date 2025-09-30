@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: master
+          ref: patch-4
       - uses: actions/checkout@v4
         with:
           ref: archiveLink
@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: '3.9'
       - name: Install Python dependencies
-        run: pip install -r scripts/archive-link/requirements.txt
+        run: pip install -r scripts/archive-link/archive_link/requirements.txt
       - name: Scan all the links in the repo
         run: python -u -m archive_link.scanOriginalLink
         working-directory: scripts/archive-link
