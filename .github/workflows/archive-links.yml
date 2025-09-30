@@ -24,5 +24,6 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r scripts/archive-link/requirements.txt
       - name: Scan all the links in the repo
-        run: python -u scripts/archive-link/regularArchive.py
+        run: python -u -m archive_link.regularArchive
+        working-directory: scripts/archive-link
       

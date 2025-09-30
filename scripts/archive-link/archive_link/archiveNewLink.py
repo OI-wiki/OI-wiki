@@ -1,11 +1,11 @@
-import fetchurl
+import archive_link.fetchurl as fetchurl
 import json
-from Service.ArchiveOrg.history import latest_snapshot
-from Service.ArchiveOrg.create import save
-from blacklist import inBlacklist
-from redirect import finalRedirect
-from shortLink import shortLink
-from scanOriginalLink import detectURL, Web
+from archive_link.Service.ArchiveOrg.history import latest_snapshot
+from archive_link.Service.ArchiveOrg.create import save
+from archive_link.blacklist import inBlacklist
+from archive_link.redirect import finalRedirect
+from archive_link.shortLink import shortLink
+from archive_link.scanOriginalLink import detectURL, Web
 
 
 def readExistingFile(filename):
@@ -96,9 +96,9 @@ def retryUnarchiveLink(data):
 
 
 def main():
-    pastContent = readExistingFile('scripts/archive-link/data/data.json')
+    pastContent = readExistingFile('data/data.json')
     pastContent = retryUnarchiveLink(pastContent)
-    currentContent = getLatestFile("docs")
+    currentContent = getLatestFile("../../docs")
     updateContent = {}
 
     for key, value in currentContent.items():
@@ -111,7 +111,7 @@ def main():
             updateContent[key] = newLink(key, value)
 
     j = json.dumps(updateContent, indent=4, ensure_ascii=False)
-    with open("scripts/archive-link/data/data.json", "w", encoding="utf-8") as f:
+    with open("data/data.json", "w", encoding="utf-8") as f:
         f.write(j)
     # print(j)
 

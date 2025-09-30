@@ -4,21 +4,13 @@ from curl_cffi import requests
 from urllib.parse import quote
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from ratelimit import limits, sleep_and_retry
+from archive_link.utils import retry_request
 
 ONE_MINUTE = 60
 sparkline = "https://web.archive.org/__wb/sparkline?output=json&url="
 detail = "https://web.archive.org/__wb/calendarcaptures/2?date={}&url={}"
 archive_link = "https://web.archive.org/web/{}/{}"
 referer_link = "https://web.archive.org/web/20250000000000*/{}"
-
-
-def retry_request(func, *args, retries=3, **kwargs):
-    for attempt in range(retries):
-        try:
-            return func(*args, **kwargs)
-        except Exception as e:
-            if attempt == retries - 1:
-                raise
 
 
 @sleep_and_retry

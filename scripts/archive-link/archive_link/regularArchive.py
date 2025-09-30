@@ -1,8 +1,8 @@
-import fetchurl
+import archive_link.fetchurl as fetchurl
 import json
-from Service.ArchiveOrg.history import latest_snapshot
-from Service.ArchiveOrg.create import save
-from blacklist import inBlacklist
+from archive_link.Service.ArchiveOrg.history import latest_snapshot
+from archive_link.Service.ArchiveOrg.create import save
+from archive_link.blacklist import inBlacklist
 import datetime
 
 
@@ -57,7 +57,8 @@ def links_to_be_saved(content, days=90):
 
 
 def main():
-    currentContent = getLatestFile("docs")  # 默认是在OI-wiki根目录下调用执行
+    # 默认是在scripts/archive-link目录下调用执行
+    currentContent = getLatestFile("../../docs")
     currentTime = get_timestamp()
     links_to_be_saved(currentContent)
     endTime = get_timestamp()

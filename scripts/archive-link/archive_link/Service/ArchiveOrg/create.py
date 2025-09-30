@@ -2,18 +2,10 @@ from curl_cffi import requests
 from urllib.parse import quote
 from datetime import datetime, timezone
 from ratelimit import limits, sleep_and_retry
+from archive_link.utils import retry_request
 
 ONE_MINUTE = 60
 SAVE_URL = "https://web.archive.org/save/{}"
-
-
-def retry_request(func, *args, retries=3, **kwargs):
-    for attempt in range(retries):
-        try:
-            return func(*args, **kwargs)
-        except Exception as e:
-            if attempt == retries - 1:
-                raise
 
 
 @sleep_and_retry

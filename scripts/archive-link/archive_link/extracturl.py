@@ -5,7 +5,7 @@ import re
 
 # extension list should be align with mkdocs's extension list
 
-with open('mkdocs.yml', mode='r', encoding='utf-8') as f:
+with open('../../mkdocs.yml', mode='r', encoding='utf-8') as f:
     s = f.read()
 
 s = re.sub(r'!!python/name:([^\s]+)', r'"\1"', s)

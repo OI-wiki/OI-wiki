@@ -1,6 +1,7 @@
 import json
 from curl_cffi import requests
 from enum import Enum
+from archive_link.utils import retry_request
 
 
 class Web(Enum):
@@ -15,15 +16,6 @@ def readExistingFile(filename):
         c = f.read()
     j = json.loads(c)
     return j
-
-
-def retry_request(func, *args, retries=3, **kwargs):
-    for attempt in range(retries):
-        try:
-            return func(*args, **kwargs)
-        except Exception as e:
-            if attempt == retries - 1:
-                raise
 
 
 def codeToStatus(status):
@@ -57,7 +49,7 @@ def detectURL(link):
 
 
 def main(failTime=3):
-    content = readExistingFile('scripts/archive-link/data/data.json')
+    content = readExistingFile('data/data.json')
     updateContent = content
     cnt = 0
     tot = len(content)
@@ -74,7 +66,7 @@ def main(failTime=3):
             updateContent[key]["fail"] = True
 
     j = json.dumps(updateContent, indent=4, ensure_ascii=False)
-    with open("scripts/archive-link/data/data.json", "w", encoding="utf-8") as f:
+    with open("data/data.json", "w", encoding="utf-8") as f:
         f.write(j)
 
 

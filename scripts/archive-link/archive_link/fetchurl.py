@@ -1,6 +1,6 @@
 import os
-import extracturl
-from url import links
+import archive_link.extracturl as extracturl
+from archive_link.url import links
 
 
 class fetchurl:
