@@ -30,6 +30,8 @@ jobs:
       - name: Update data.json based on latest commit
         run: python -u -m archive_link.archiveNewLink
         working-directory: scripts/archive-link
+        env:
+          PYTHONPATH: ${{ github.workspace }}/scripts/archive-link
       - name: Upload data.json
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then

@@ -26,4 +26,6 @@ jobs:
       - name: Scan all the links in the repo
         run: python -u -m archive_link.regularArchive
         working-directory: scripts/archive-link
+        env:
+          PYTHONPATH: ${{ github.workspace }}/scripts/archive-link
       
