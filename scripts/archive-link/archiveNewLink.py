@@ -5,7 +5,7 @@ from Service.ArchiveOrg.create import save
 from blacklist import inBlacklist
 from redirect import finalRedirect
 from shortLink import shortLink
-from scanOriginalLink import detectURL
+from scanOriginalLink import detectURL, Web
 
 def readExistingFile(filename):
     with open(filename, 'r', encoding='utf-8') as f:
@@ -32,7 +32,7 @@ def newLink(key, value):
     # deal with status, failTime, fail
     status = detectURL(key)
     value["status"] = status
-    if status == 0:
+    if status == Web.FAIL.value:
         value["failTime"] = 1
     else:
         value["failTime"] = 0

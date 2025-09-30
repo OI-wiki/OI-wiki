@@ -1,5 +1,12 @@
 import json
 from curl_cffi import requests
+from enum import Enum
+
+class Web(Enum):
+    FAIL = 0
+    SUCCESS = 1
+    UNKNOWN = -1
+    REQUEST_FAIL = -2
 
 def readExistingFile(filename):
     with open(filename, 'r', encoding='utf-8') as f:
@@ -17,18 +24,17 @@ def retry_request(func, *args, retries=3, **kwargs):
 
 def codeToStatus(status):
     """Generate the status of the website
-    0: fail, 1: success, -1: unknown
     """
     if status == None:
-        return 0
+        return Web.FAIL.value
     if status == 403: #needs to know whether the server is banned
-        return -1
+        return Web.UNKNOWN.value
     elif status == 429: # too many requests
-        return -1
+        return Web.UNKNOWN.value
     elif status >= 400:
-        return 0
+        return Web.FAIL.value
     else:
-        return 1
+        return Web.SUCCESS.value
 
 def detectURL(link):
     try:
@@ -38,9 +44,9 @@ def detectURL(link):
         return codeToStatus(status)
     except Exception as e:
         print("Exception: ", e)
-        return -2 # Need to check later
+        return Web.REQUEST_FAIL.value # Need to check later
     
-def main():
+def main(failTime = 3):
     content = readExistingFile('scripts/archive-link/data/data.json')
     updateContent = content
     cnt = 0
@@ -52,9 +58,9 @@ def main():
         status = detectURL(key)
         print(f"{cnt}/{tot}: Dealing with {key} with status {status}")
         updateContent[key]["status"] = status
-        if status == 0:
+        if status == Web.FAIL.value:
             updateContent[key]["failTime"] = content[key]["failTime"] + 1
-        if updateContent[key]["failTime"] >= 3:
+        if updateContent[key]["failTime"] >= failTime:
             updateContent[key]["fail"] = True
 
     j = json.dumps(updateContent, indent=4, ensure_ascii=False)
