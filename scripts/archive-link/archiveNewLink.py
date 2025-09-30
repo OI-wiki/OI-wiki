@@ -7,21 +7,25 @@ from redirect import finalRedirect
 from shortLink import shortLink
 from scanOriginalLink import detectURL, Web
 
+
 def readExistingFile(filename):
     with open(filename, 'r', encoding='utf-8') as f:
         c = f.read()
     j = json.loads(c)
     return j
 
+
 def getLatestFile(path):
     oiwikifetch = fetchurl.fetchurl(path)
-    all_files =  oiwikifetch.fetchfiles()
+    all_files = oiwikifetch.fetchfiles()
     oiwikifetch.fetch()
     return oiwikifetch.url.link
+
 
 def getArchiveLink(link):
     archiveLink = latest_snapshot(link)
     return archiveLink
+
 
 def newLink(key, value):
     """
@@ -38,12 +42,12 @@ def newLink(key, value):
         value["failTime"] = 0
     value["fail"] = False
 
-    if inBlacklist(key) == True:
+    if inBlacklist(key):
         # deal with archiveLink, shortArchiveLink
         value["archiveLink"] = None
         value["shortArchiveLink"] = None
         return value
-    
+
     # deal with archiveLink, shortArchiveLink
     redirectUrl = finalRedirect(key)
     a = latest_snapshot(key)
@@ -53,9 +57,9 @@ def newLink(key, value):
     if redirectUrl != key:
         # web.archive.org saves the content in the redirectUrl
         b = latest_snapshot(redirectUrl)
-    if a != None:
+    if a is not None:
         value["archiveLink"] = a
-    elif b != None:
+    elif b is not None:
         value["archiveLink"] = b
     else:
         # 该链接从未被存档
@@ -64,18 +68,19 @@ def newLink(key, value):
         value["archiveLink"] = None
         value["shortArchiveLink"] = None
 
-    if value["archiveLink"] != None:
+    if value["archiveLink"] is not None:
         value["shortArchiveLink"] = shortLink(value["archiveLink"])
     return value
 
+
 def retryUnarchiveLink(data):
-    """Some links has been archived for the first time 
+    """Some links has been archived for the first time
     when it was added into the document.
     This function will try to fetch these links.
     """
     updateContent = data
-    for key, data in data.items(): #content is a dict
-        if data["archiveLink"] == None and inBlacklist(key) == False:
+    for key, data in data.items():  # content is a dict
+        if data["archiveLink"] is None and inBlacklist(key) == False:
             print("deal with " + key)
             redirectUrl = finalRedirect(key)
             a = latest_snapshot(key)
@@ -89,6 +94,7 @@ def retryUnarchiveLink(data):
                 updateContent[key]["archiveLink"] = b
     return updateContent
 
+
 def main():
     pastContent = readExistingFile('scripts/archive-link/data/data.json')
     pastContent = retryUnarchiveLink(pastContent)
@@ -97,17 +103,18 @@ def main():
 
     for key, value in currentContent.items():
         if key in pastContent:
-        # 去除冗余链接，只保留文档里还存在的链接
+            # 去除冗余链接，只保留文档里还存在的链接
             updateContent[key] = pastContent[key]
         elif key.startswith("http"):
             # 处理新增的链接
             print(f"New link: {key}")
             updateContent[key] = newLink(key, value)
-                
+
     j = json.dumps(updateContent, indent=4, ensure_ascii=False)
     with open("scripts/archive-link/data/data.json", "w", encoding="utf-8") as f:
         f.write(j)
     # print(j)
+
 
 if __name__ == "__main__":
     main()

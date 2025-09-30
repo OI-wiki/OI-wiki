@@ -6,6 +6,7 @@ from ratelimit import limits, sleep_and_retry
 ONE_MINUTE = 60
 SAVE_URL = "https://web.archive.org/save/{}"
 
+
 def retry_request(func, *args, retries=3, **kwargs):
     for attempt in range(retries):
         try:
@@ -14,13 +15,14 @@ def retry_request(func, *args, retries=3, **kwargs):
             if attempt == retries - 1:
                 raise
 
+
 @sleep_and_retry
 @limits(calls=15, period=ONE_MINUTE)
 def save(url):
     encoded_url = quote(url, safe='')
     save_link = SAVE_URL.format(encoded_url)
     print("Start Archiving: " + datetime.now(timezone.utc).isoformat())
-    
+
     payload = {
         "url": url,
         "capture_all": "on",
@@ -39,5 +41,6 @@ def save(url):
     if save_content.history:
         final_url = save_content.url
         return final_url
-    # We cannot get the archivedLink. And archiveLink needs to take some time until it is shown in the sparkline. So we may need further update later.
+    # We cannot get the archivedLink. And archiveLink needs to take some time
+    # until it is shown in the sparkline. So we may need further update later.
     return None

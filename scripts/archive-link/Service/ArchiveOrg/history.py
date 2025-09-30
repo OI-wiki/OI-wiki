@@ -11,6 +11,7 @@ detail = "https://web.archive.org/__wb/calendarcaptures/2?date={}&url={}"
 archive_link = "https://web.archive.org/web/{}/{}"
 referer_link = "https://web.archive.org/web/20250000000000*/{}"
 
+
 def retry_request(func, *args, retries=3, **kwargs):
     for attempt in range(retries):
         try:
@@ -18,6 +19,7 @@ def retry_request(func, *args, retries=3, **kwargs):
         except Exception as e:
             if attempt == retries - 1:
                 raise
+
 
 @sleep_and_retry
 @limits(calls=15, period=ONE_MINUTE)
@@ -43,13 +45,14 @@ def latest_snapshot(url):
         print(page_sparkline.status_code)
         page_sparkline = page_sparkline.json()
         latest_ts = page_sparkline.get("last_ts", [])
-        if latest_ts == None:
+        if latest_ts is None:
             return None
         else:
             return archive_link.format(latest_ts, url)
     except Exception as e:
         print(f"fail reason, {str(e)}")
         return None
+
 
 @sleep_and_retry
 @limits(calls=15, period=ONE_MINUTE)
@@ -87,7 +90,8 @@ def history_snapshot(url):
         for year in years:
             url_detail = detail.format(year, encoded_url)
             print(url_detail)
-            # submit the retry_request wrapper so each task will retry on failure
+            # submit the retry_request wrapper so each task will retry on
+            # failure
             future = executor.submit(
                 retry_request,
                 requests.get,
@@ -107,8 +111,9 @@ def history_snapshot(url):
                 # skip this year on error and continue with others
                 continue
 
-            for item_time, status, times in year_detail.get("items", []): # times不是一天抓了几次
-                if item_time < 1000000000: #date format: (M)MDDHHMMSS
+            for item_time, status, times in year_detail.get(
+                    "items", []):  # times不是一天抓了几次
+                if item_time < 1000000000:  # date format: (M)MDDHHMMSS
                     item_time = "0" + str(item_time)
                 exact_time = str(year) + str(item_time)
                 snapshots.append({'url': int(exact_time),

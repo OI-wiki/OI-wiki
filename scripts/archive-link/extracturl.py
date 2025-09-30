@@ -17,6 +17,7 @@ for d in data['markdown_extensions']:
     elif isinstance(d, dict):
         extensions = extensions + list(d.keys())
 
+
 def extract_links(md_text):
     html = markdown.markdown(md_text, extensions=extensions)
     soup = BeautifulSoup(html, 'html.parser')
@@ -27,9 +28,10 @@ def extract_links(md_text):
             links.append(a['href'])
     return links
 
-    
+
 def main():
     pass
+
 
 if __name__ == "__main__":
     main()

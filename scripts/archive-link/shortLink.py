@@ -1,5 +1,6 @@
 from curl_cffi import requests
 
+
 def retry_request(func, *args, retries=3, **kwargs):
     for attempt in range(retries):
         try:
@@ -8,10 +9,12 @@ def retry_request(func, *args, retries=3, **kwargs):
             if attempt == retries - 1:
                 raise
 
+
 def shortLink(url):
     urldata = {'url': url}
     try:
-        shorten_link_data = retry_request(requests.post, 'https://d.00.mk/create', json=urldata)
+        shorten_link_data = retry_request(
+            requests.post, 'https://d.00.mk/create', json=urldata)
         link = shorten_link_data.json().get('link')
         if link:
             return link

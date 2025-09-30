@@ -2,12 +2,13 @@ import os
 import extracturl
 from url import links
 
+
 class fetchurl:
     def __init__(self, folder):
         self.folder = folder
         self.files = []
         self.url = links()
-    
+
     def fetchfiles(self):
         """Get all the relative path of all files in the folder
         """
@@ -17,7 +18,7 @@ class fetchurl:
                 if ".md" in file:
                     self.files.append(os.path.join(root, file))
         return self.files
-        
+
     def fetchUrlFromFiles(self, file):
         """Get all the external urls from a given file
         """
