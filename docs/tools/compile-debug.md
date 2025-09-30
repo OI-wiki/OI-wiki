@@ -53,7 +53,7 @@ author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, E
 $ clang++ -fsanitize=<name> test.cc
 ```
 
-其中 `<name>` 即为要启用的功能（一个 `sanitizer` 可理解为一些功能的集合），例如： 
+其中 `<name>` 即为要启用的功能（一个 `sanitizer` 可理解为一些功能的集合），例如：
 
 ```console
 $ clang++ -fsanitize=memory test.cc # 启用 MemorySanitizer
@@ -68,8 +68,8 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 ```
 
 ???+ warning
-    Windows 下的 `g++` 不支持 `sanitizers`，需要使用[修改过后的 MinGW64](https://github.com/ssbssa/gcc/releases) 或使用其它编译器。
-
+    Windows 下的 `g++` 不支持 `sanitizers`，需要使用 [修改过后的 MinGW64](https://github.com/ssbssa/gcc/releases) 或使用其它编译器。
+    
     `MSVC` 从 16.0 截至版本 17.14 仅支持 `AddressSanitizer`。
 
 #### 时间/内存代价
