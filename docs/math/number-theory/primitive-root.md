@@ -46,7 +46,7 @@ $$
     对于 $a,n\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，同余关系 $a^n \equiv 1 \pmod m$ 成立，当且仅当 $\delta_m(a)\mid n$．
 
 ??? note "证明"
-    如前文所述，$a^{n}\equiv a^{n\bmod\delta_m(a)}\pmod m$．由 [性质 1](#ord-prop-1) 可知，$0\le r < \delta_m(a)$ 中唯一一个使得 $a^r\equiv 1\pmod m$ 成立的 $r$ 就是 $r=0$．因此，$a^n \equiv 1 \pmod m$，当且仅当 $n\bmod \delta_m(a) = 0$，也就是 $\delta_m(a)\mid a$．
+    如前文所述，$a^{n}\equiv a^{n\bmod\delta_m(a)}\pmod m$．由 [性质 1](#ord-prop-1) 可知，$0\le r < \delta_m(a)$ 中唯一一个使得 $a^r\equiv 1\pmod m$ 成立的 $r$ 就是 $r=0$．因此，$a^n \equiv 1 \pmod m$，当且仅当 $n\bmod \delta_m(a) = 0$，也就是 $\delta_m(a)\mid n$．
 
 [欧拉定理](./fermat.md#欧拉定理) 中，同余关系 $a^{\varphi(m)}\equiv 1\pmod m$ 对于所有 $a\perp m$ 都成立．结合 [性质 2](#ord-prop-2)，这说明对于所有 $a\perp m$，都有 $\delta_m(a)\mid\varphi(m)$．换句话说，$\varphi(m)$ 是所有 $a\perp m$ 的阶的一个公倍数．对于一个正整数 $m$，所有 $a\perp m$ 的阶 $\delta_m(a)$ 的最小公倍数，记作 $\lambda(m)$，就是 $m$ 的 [Carmichael 函数](#carmichael-函数)．后文会详细讨论它的性质．
 

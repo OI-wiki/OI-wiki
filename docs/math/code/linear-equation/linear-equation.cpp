@@ -25,8 +25,7 @@ int solve_linear_congruence_equation(int a, int b, int n) {
   int d = ex_gcd(a, n, x, y);
   if (b % d) return -1;
   n /= d;
-  x *= b / d;
-  return (x % n + n) % n;
+  return ((long long)x * (b / d) % n + n) % n;
 }
 
 // --8<-- [end:core]
