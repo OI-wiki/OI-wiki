@@ -30,7 +30,7 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}/scripts/archive-link
       - name: Upload data.json
         run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
+          if [[ -n "$(git diff --quiet data.json)" ]]; then
             git config user.name github-actions
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git commit -a -m "Update the status of each links on $(date '+%Y-%m-%d %H:%M:%S')"
