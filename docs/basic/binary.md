@@ -271,7 +271,7 @@ $$
 1 + \log_{\phi^{-1}}\dfrac{r-l}{\varepsilon} \approx 1 + 1.44\log_2\dfrac{r-l}{\varepsilon}
 $$
 
-次函数调用。渐进意义上，函数的调用次数更少。
+次函数调用。渐近意义上，函数的调用次数更少。
 
 伪代码如下：
 
