@@ -76,7 +76,7 @@ $$
 且 $x_i \neq x_j$ 对于所有 $i \neq j$ 成立。与 [多项式的快速插值](./multipoint-eval-interpolation.md#多项式的快速插值) 中相同，我们令 $M(x) := \prod_{i = 0}^{n - 1}\left(x - x_i\right)$，根据洛必达法则，有
 
 $$
-M'(x_i)=\prod_{0 \leq j < n \atop j \neq i}\left(x_i - x_j\right)
+M'(x_i) = \lim_{x \to x_i} \frac{M(x)}{x - x_i} = \prod_{0 \leq j < n \atop j \neq i}\left(x_i - x_j\right)
 $$
 
 **修正 Lagrange 插值公式** 就是
