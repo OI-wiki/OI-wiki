@@ -295,12 +295,6 @@ CEOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](ht
 
 eJOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](https://loj.ac/article/416)。
 
-### ISIJ
-
-**ISIJ** 全名 International School in Informatics "Junior"，中文名「国际初中生信息学竞赛」。
-
-官网地址：<http://isi-junior.com/>
-
 ### NOI
 
 ???+ warning

@@ -38,7 +38,7 @@ $$
     \end{cases}
     $$
     
-    其中，$[\cdot]$ 是 [Iverson 括号](https://mathworld.wolfram.com/IversonBracket.html)，当且仅当括号内表达式为真时取 $1$，否则取 $0$．
+    其中 $[\cdot]$ 是 Iverson 括号．
 
 ??? note "证明"
     令 $n=\prod_{i=1}^kp_i^{e_i}$，设 $n' = \prod_{i=1}^kp_i$．根据 [二项式定理](../combinatorics/combination.md#二项式定理)，有
@@ -138,7 +138,7 @@ $$
         $$
         n^k = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\sigma_k(d).
         $$
-    3.  互异素因子数目函数 $\omega(n)=\sum_{d\mid n}[d\in\mathbf P]$，亦即 $\omega = 1* 1_{\mathbf P}$，其中 $1_{\mathbf P}$ 是素数集 $\mathbf P$ 的指示函数．对它进行反演，就得到 $1_{\mathbf P} = \mu * \omega$，亦即
+    3.  互异素因子数目函数 $\omega(n)=\sum_{d\mid n}[d\in\mathbf P]$，亦即 $\omega = 1* \mathbf{1}_{\mathbf P}$，其中 $\mathbf{1}_{\mathbf P}$ 是素数集 $\mathbf P$ 的指示函数．对它进行反演，就得到 $\mathbf{1}_{\mathbf P} = \mu * \omega$，亦即
     
         $$
         [n\in\mathbf P] = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\omega(d).
@@ -224,7 +224,7 @@ $$
     \end{aligned}
     $$
     
-    其中，$a\uparrow b = a^b$ 是 [Knuth 箭头](https://mathworld.wolfram.com/KnuthUp-ArrowNotation.html)．对比基本形式的证明可以发现，唯一的区别就是加法换成了乘法，且乘法换成了取幂．
+    其中，$a\uparrow b = a^b$ 是 Knuth 箭头．对比基本形式的证明可以发现，唯一的区别就是加法换成了乘法，且乘法换成了取幂．
 
 从 Dirichlet 卷积的角度看，莫比乌斯反演只是利用了「莫比乌斯函数是常值函数的 Dirichlet 逆」这一点．容易想象，类似莫比乌斯反演的关系对于一般的 Dirichlet 逆同样成立．
 
@@ -743,7 +743,7 @@ $$
     \end{aligned}
     $$
     
-    其中，$a\uparrow b=a^b$ 是 [Knuth 箭头](https://mathworld.wolfram.com/KnuthUp-ArrowNotation.html)．然后，代入 $[\gcd(i,j)=1]=\sum_d\mu(d)[d\mid i][d\mid j]$，并将指数上的和式转换为幂的乘积式，得到：
+    其中，$a\uparrow b=a^b$ 是 Knuth 箭头．然后，代入 $[\gcd(i,j)=1]=\sum_d\mu(d)[d\mid i][d\mid j]$，并将指数上的和式转换为幂的乘积式，得到：
     
     $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/k\rfloor}\prod_{j=1}^{\lfloor n/k\rfloor}k\uparrow(\mu(d)[d\mid i][d\mid j]).
