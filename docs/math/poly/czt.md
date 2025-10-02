@@ -79,7 +79,7 @@ $$
 M'(x_i)=\prod_{0 \leq j < n \atop j \neq i}\left(x_i - x_j\right)
 $$
 
-**Lagrange 插值公式·改** 就是
+**修正 Lagrange 插值公式** 就是
 
 $$
 f(x) = M(x)\left(\sum_{i = 0}^{n - 1}\frac{f\left(x_i\right)/M'(x_i)}{x - x_i}\right)
