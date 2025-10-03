@@ -64,7 +64,7 @@
 | <a id="n4.2"></a>n4.2   | $a \ne b$            | $a$ 不等于 $b$        |                                                                                                               |
 | <a id="n4.3"></a>n4.3   | $a := b$             | $a$ 定义为 $b$        | 参见 [n2.9](#n2.9),[n2.10](#n2.10)                                                                              |
 | <a id="n4.4"></a>n4.4   | $a \approx b$        | $a$ 约等于 $b$        | 不排除相等。                                                                                                        |
-| <a id="n4.5"></a>n4.5   | $a \simeq b$         | $a$ 渐进等于 $b$       | 例如：<br>当 $x\to a$ 时，$\dfrac{1}{\sin(x-a)} \simeq \dfrac{1}{x-a}$;<br>$x \to a$ 的含义参见 n4.15.                   |
+| <a id="n4.5"></a>n4.5   | $a \simeq b$         | $a$ 渐近等于 $b$       | 例如：<br>当 $x\to a$ 时，$\dfrac{1}{\sin(x-a)} \simeq \dfrac{1}{x-a}$;<br>$x \to a$ 的含义参见 n4.15.                   |
 | <a id="n4.6"></a>n4.6   | $a \propto b$        | $a$ 与 $b$ 成正比      | 也可使用 $a \sim b$.<br>$\sim$ 也用于表示等价关系。                                                                         |
 | <a id="n4.7"></a>n4.7   | $M \cong N$          | $M$ 与 $N$ 全等       | 当 $M$ 和 $N$ 是点集（几何图形）时。<br>该符号也用于表示代数结构的同构。                                                                   |
 | <a id="n4.8"></a>n4.8   | $a < b$              | $a$ 小于 $b$         |                                                                                                               |
