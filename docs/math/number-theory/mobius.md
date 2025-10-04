@@ -1,6 +1,6 @@
 author: hydingsy, hyp1231, ranwen, 383494
 
-前置知识：[数论分块](./sqrt-decomposition.md)、[狄利克雷卷积](../poly/dgf.md#dirichlet-%E5%8D%B7%E7%A7%AF)
+前置知识：[数论分块](./sqrt-decomposition.md)、[狄利克雷卷积](./dirichlet.md#dirichlet-卷积)
 
 莫比乌斯反演是数论中的重要内容．对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值．
 
