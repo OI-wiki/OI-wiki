@@ -13,7 +13,7 @@ author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, E
 -   `-o <文件名>`：指定编译器输出可执行文件的文件名。
 -   `-g`：在编译时添加调试信息（使用 gdb 调试时需要）。
 -   `-Wall`：显示所有编译警告信息。
--   `-O1`，`-O2`，`-O3`：对编译的程序进行优化，数字越大表示采用的优化手段越多（开启优化会影响使用 gdb 调试）。
+-   `-O1`，`-O2`，`-O3`，`-Ofast`：对编译的程序进行优化，越往后的优化级别表示采用的优化手段越多（开启优化会影响使用 gdb 调试）。
 -   `-DDEBUG`：在编译时定义 `DEBUG` 符号（符号可以随意更换，例如 `-DONLINE_JUDGE` 定义了 `ONLINE_JUDGE` 符号）。
 -   `-UDEBUG`：在编译时取消定义 `DEBUG` 符号。
 -   `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
@@ -24,11 +24,11 @@ author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, E
 ???+ note "如何开大栈空间？"
     在 Windows 下，可以使用编译选项 `-Wl,--stack=536870912` 将栈空间开大到 512 MB，其中等号后面的数字为字节数。
     
-    在 Unix 下，使用 `ulimit -s ${[num]}` 将 **当前终端** 的栈空间调为 `${[num]}` 字节。
+    在 Unix 下，使用 `ulimit -s [num]` 将 **当前终端** 的栈空间调为 `[num]` 字节。
 
 ### 使用 GNU Make 的内置规则[^gnu-make-built-in-rules]
 
-对于名为 `qwq.c/cpp` 的 C，C++ 程序源代码，可以使用 `make qwq` 自动编译成对应名为 `qwq` 的程序。
+对于名为 `qwq.c/cpp` 的 C/C++ 程序源代码，可以使用 `make qwq` 自动编译成对应名为 `qwq` 的程序。
 
 如需添加额外的编译选项，可使用 `export CFLAGS="xxx"`（C 程序）或 `export CXXFLAGS="xxx"`（C++ 程序）指定。如需添加额外的预编译选项，可使用 `export CPPFLAGS="xxx"` 指定。上述设置方法也可以写做类似 `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` 来指定单次命令执行中使用的环境变量。
 
@@ -36,7 +36,7 @@ author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, E
 
 #### 介绍
 
-`sanitizers` 是一种集成于编译器中，用于调试 `C/C++` 代码的工具，通过在编译过程中插入检查代码来检查代码运行时出现的内存访问越界、未定义行为等错误。
+sanitizers 是一种集成于编译器中，用于调试 C/C++ 代码的工具，通过在编译过程中插入检查代码来检查代码运行时出现的内存访问越界、未定义行为等错误。
 
 它分为以下几种：
 
@@ -47,13 +47,13 @@ author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, E
 
 #### 使用方式
 
-最新版本的 `clang++`、`g++` 以及 `MSVC`（部分支持）均已内置 `sanitizers`，但功能和使用方法有所不同，这里以 `clang++` 为例，它的使用方法如下：
+最新版本的 clang++、g++ 以及 MSVC（部分支持）均已内置 sanitizers，但功能和使用方法有所不同，这里以 clang++ 为例，它的使用方法如下：
 
 ```console
 $ clang++ -fsanitize=<name> test.cc
 ```
 
-其中 `<name>` 即为要启用的功能（一个 `sanitizer` 可理解为一些功能的集合），例如：
+其中 `<name>` 即为要启用的功能（一个 sanitizer 可理解为一些功能的集合），例如：
 
 ```console
 $ clang++ -fsanitize=memory test.cc # 启用 MemorySanitizer
@@ -66,6 +66,11 @@ $ clang++ -fsanitize=signed-integer-overflow test.cc # 启用有符号整型溢�
 $ ./a.out
 test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'
 ```
+
+???+ warning
+    Windows 下的 g++ 不支持 sanitizers，需要使用 [修改过后的 MinGW64](https://github.com/ssbssa/gcc/releases) 或使用其它编译器。
+    
+    MSVC 从 16.0 截至版本 17.14 仅支持 AddressSanitizer。
 
 #### 时间/内存代价
 
