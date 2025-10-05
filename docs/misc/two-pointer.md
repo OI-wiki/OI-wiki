@@ -191,4 +191,4 @@ pair<bool, vector<int>> findRing(
 }
 ```
 
-时间复杂度为 $O(n)$
+时间复杂度为 $O(n)$。
