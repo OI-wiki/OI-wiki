@@ -1,7 +1,6 @@
 # --8<-- [start:core]
 def dp(n, a):
-    d = [0] * (n + 1)
-    d[1] = 1
+    d = [1] * (n + 1)
     ans = 1
     for i in range(2, n + 1):
         for j in range(1, i):
@@ -13,6 +12,8 @@ def dp(n, a):
 
 # --8<-- [end:core]
 if __name__ == "__main__":
-    n = int(input())
-    a = [0] + list(map(int, input().split()))
-    print(dp(n, a))
+    t = int(input())
+    for _ in range(t):
+        n = int(input())
+        a = [0] + list(map(int, input().split()))
+        print(dp(n, a))
