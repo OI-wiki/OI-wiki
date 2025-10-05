@@ -15,10 +15,7 @@ pair<bool, vector<int>> findCycle(
     }
     fast = nxt[nxt[fast]];
     slow = nxt[slow];
-  } while (fast != -1 && slow != -1 && fast != slow);
-  if (fast == -1 || slow == -1) {
-    return make_pair(false, vector<int>());  // 没有环
-  }
+  } while (fast != slow);
   slow = 0;
   while (slow != fast)  // 再找入环位置
   {
