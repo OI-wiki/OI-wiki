@@ -2,7 +2,7 @@
 #include<vector>
 using namespace std;
 // --8<-- [start:core]
-pair<bool, vector<int>> findRing(vector<int> nxt)  // nxt[i]表示i在单向链表中指向的节点（0-indexed），-1表示没有指向任何节点
+pair<bool, vector<int>> findCycle(vector<int> nxt)  // nxt[i]表示i在单向链表中指向的节点（0-indexed），-1表示没有指向任何节点
 {
   int fast = 0, slow = 0;
   do  // 先判断有没有环
@@ -22,36 +22,39 @@ pair<bool, vector<int>> findRing(vector<int> nxt)  // nxt[i]表示i在单向链�
     slow = nxt[slow];
     fast = nxt[fast];
   }
-  vector<int> ring;
+  vector<int> cycle;
   do  // 最后找出整个环
   {
-    ring.push_back(slow);
+    cycle.push_back(slow);
     slow = nxt[slow];
   } while (slow != fast);
-  return make_pair(true, ring);
+  return make_pair(true, cycle);
 }
 // --8<-- [end:core]
 int main()
 {
 	int n;
-	cin>>n;
-	vector<int> nxt;
-	nxt.resize(n);
-	for(int i=0;i<n;i++)
+	while(cin>>n)
 	{
-		cin>>nxt[i];
-	}
-	pair<bool,vector<int>> ring=findRing(nxt);
-	if(ring.first)
-	{
-		cout<<"Ring:";
-		for(int i=0;i<ring.second.size();i++)
+		vector<int> nxt;
+		nxt.resize(n);
+		for(int i=0;i<n;i++)
 		{
-			cout<<" "<<ring.second[i];
+			cin>>nxt[i];
 		}
-	}
-	else
-	{
-		cout<<"No ring.\n";
+		pair<bool,vector<int>> cycle=findCycle(nxt);
+		if(cycle.first)
+		{
+			cout<<"Cycle:";
+			for(int i=0;i<cycle.second.size();i++)
+			{
+				cout<<" "<<cycle.second[i];
+			}
+			cout<<endl;
+		}
+		else
+		{
+			cout<<"No cycle.\n";
+		}
 	}
 }

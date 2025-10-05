@@ -158,9 +158,8 @@ $$
 
 ### 实现
 
-===+"C++"
-    ```cpp
-    --8<-- "docs/misc/code/two-pointer/two-pointer_1.cpp:core"
-    ```
+```cpp
+--8<-- "docs/misc/code/two-pointer/two-pointer_1.cpp:core"
+```
 
 时间复杂度 $O(n)$。
