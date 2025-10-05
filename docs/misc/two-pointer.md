@@ -52,6 +52,10 @@ int numSubarrayProductLessThanK(vector<int>& nums, int k) {
 从根开始用 dfs 遍历整棵树，使用一个栈来记录根到当前节点的树链，设一个指针 $u$ 指向当前节点，另一个指针 $p$ 指向与 $u$ 距离不大于 $t$ 的节点中深度最小的节点。记录到根的距离，每次二分查找确定 $p$。此时 $u$ 对 $p$ 到 $u$ 路径上的所有节点都有一个贡献，可以用树上差分来记录。  
 注意不能直接暴力移动 $p$，否则时间复杂度可能会退化至 $O(n^2)$。
 
+### 习题
+
+[leetcode 1438. 绝对差不超过限制的最长连续子数组](https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/)
+
 ## 子序列匹配
 
 ???+ note " 例题 3 [leetcode 524. 通过删除字母匹配到字典里最长单词](https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/)"
@@ -127,6 +131,10 @@ vector<int> twoSum(vector<int>& numbers, int target) {
 
 在归并排序中，在 $O(n+m)$ 时间内合并两个有序数组，也是保证数组的有序性条件下使用的双指针法。
 
+### 习题
+
+[leetcode 15. 三数之和](https://leetcode-cn.com/problems/3sum/)
+
 ## 在单向链表中找环
 
 ### 过程
@@ -147,9 +155,3 @@ $$
 $$
 
 第一次相遇时 $n$ 取最小正整数 1。也就是说 $k=C$。那么利用这个等式，可以在两个指针相遇后，将其中一个指针移到表头，让两者都一步一步走，再度相遇的位置即为环的起点。
-
-### 习题
-
-[leetcode 15. 三数之和](https://leetcode-cn.com/problems/3sum/)
-
-[leetcode 1438. 绝对差不超过限制的最长连续子数组](https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/)
