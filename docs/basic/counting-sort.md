@@ -70,7 +70,7 @@ $$
 
 === "Python"
     ```python
-    --8<-- "docs/basic/code/counting-sort/counting-sort_1.py"
+    --8<-- "docs/basic/code/counting-sort/counting-sort_1.py:core"
     ```
 
 ## 参考资料与注释
