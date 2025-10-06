@@ -28,109 +28,6 @@
 -   如果对字符串基于字典序进行比较，一个字符串从左往右数第 $i$ 个字符就可以作为第 $i$ 关键字；
 -   C++ 自带的 `std::pair` 与 `std::tuple` 的默认比较方法与上述的相同。
 
-## MSD 基数排序
-
-基于 k - 关键字元素的比较方法，可以想到：先比较所有元素的第 $1$ 关键字，就可以确定出各元素大致的大小关系；然后对 **具有相同第 $1$ 关键字的元素**，再比较它们的第 $2$ 关键字……以此类推。
-
-由于是从第 $1$ 关键字到第 $k$ 关键字顺序进行比较，由上述思想导出的排序算法称为 MSD（Most Significant Digit first）基数排序。
-
-### 算法流程
-
-将待排序的元素拆分为 $k$ 个关键字，先对第 $1$ 关键字进行稳定排序，然后对于每组 **具有相同关键字的元素** 再对第 $2$ 关键字进行稳定排序（递归执行）……最后对于每组 **具有相同关键字的元素** 再对第 $k$ 关键字进行稳定排序。
-
-一般而言，我们默认基数排序是稳定的，所以在 MSD 基数排序中，我们也仅仅考虑借助 **稳定算法**（通常使用计数排序）完成内层对关键字的排序。
-
-正确性参考上文 k - 关键字元素的比较。
-
-### 参考代码
-
-#### 对自然数排序
-
-下面是使用迭代式 MSD 基数排序对 `unsigned int` 范围内元素进行排序的 C++ 参考代码，可调整 $W$ 和 $\log_2 W$ 的值（建议将 $\log_2 W$ 设为 $2^k$ 以便位运算优化）。
-
-```cpp
---8<-- "docs/basic/code/radix-sort/radix-sort_1.cpp"
-```
-
-#### 对字符串排序
-
-下面是使用迭代式 MSD 基数排序对 [空终止字节字符串](https://zh.cppreference.com/w/cpp/string/byte) 基于字典序进行排序的 C++ 参考代码：
-
-```cpp
-#include <algorithm>
-#include <stack>
-#include <tuple>
-#include <vector>
-
-using std::copy;  // from <algorithm>
-using std::make_tuple;
-using std::stack;
-using std::tie;
-using std::tuple;
-using std::vector;
-
-using NTBS = char*;  // 空终止字节字符串
-using NTBSptr = NTBS*;
-
-void MSD_radix_sort(NTBSptr first, NTBSptr last) {
-  static constexpr size_t W = 128;
-  static constexpr size_t logW = 7;
-  static constexpr size_t mask = W - 1;
-
-  NTBSptr tmp = (NTBSptr)calloc(last - first, sizeof(NTBS));
-
-  using node = tuple<NTBSptr, NTBSptr, size_t>;
-  stack<node, vector<node>> s;
-  s.push(make_tuple(first, last, 0));
-
-  while (!s.empty()) {
-    NTBSptr begin, end;
-    size_t index, length;
-
-    tie(begin, end, index) = s.top();
-    length = end - begin;
-    s.pop();
-
-    if (begin + 1 >= end) continue;  // elements <= 1
-
-    // 计数排序
-    size_t cnt[W] = {};
-    auto key = [](const NTBS str, const size_t index) { return str[index]; };
-
-    for (NTBSptr it = begin; it != end; ++it) ++cnt[key(*it, index)];
-    for (char ch = 1; value < W; ++value) cnt[ch] += cnt[ch - 1];
-
-    // 求完前缀和后，计算相同关键字的元素范围
-    // 对于 NTBS，如果此刻末尾的字符是 \0 则说明这两个字符串相等，不必继续迭代
-    for (char ch = 1; ch < W; ++ch)
-      s.push(make_tuple(begin + cnt[ch - 1], begin + cnt[ch], index + 1));
-
-    NTBSptr it = end;
-    do {
-      --it;
-      --cnt[key(*it, index)];
-      tmp[cnt[key(*it, index)]] = *it;
-    } while (it != begin);
-
-    copy(tmp, tmp + length, begin);
-  }
-
-  free(tmp);
-}
-```
-
-由于两个字符串的比较很容易冲上 $O(n)$ 的线性复杂度，因此在字符串排序这件事情上，MSD 基数排序比大多数基于比较的排序算法在时间复杂度和实际用时上都更加优秀。
-
-### 与桶排序的关系
-
-前置知识：[桶排序](./bucket-sort.md)
-
-桶排序需要其它的排序算法来完成对每个桶内部元素的排序。但实际上，完全可以对每个桶继续执行桶排序，直至某一步桶的元素数量 $\le 1$。
-
-因此 MSD 基数排序的另一种理解方式是：使用桶排序实现的桶排序。
-
-也因此，可以提出 MSD 基数排序在时间常数上的一种优化方法：假如到某一步桶的元素数量 $\le B$（$B$ 是自己选的常数），则直接执行插入排序然后返回，降低递归次数。
-
 ## LSD 基数排序
 
 MSD 基数排序从第 $1$ 关键字到第 $k$ 关键字顺序进行比较，为此需要借助递归或迭代来实现，时间常数还是较大，而且在比较自然数上还是略显不便。
@@ -263,6 +160,50 @@ void radix_sort() {
       return 0;
     }
     ```
+
+## MSD 基数排序
+
+基于 k - 关键字元素的比较方法，可以想到：先比较所有元素的第 $1$ 关键字，就可以确定出各元素大致的大小关系；然后对 **具有相同第 $1$ 关键字的元素**，再比较它们的第 $2$ 关键字……以此类推。
+
+由于是从第 $1$ 关键字到第 $k$ 关键字顺序进行比较，由上述思想导出的排序算法称为 MSD（Most Significant Digit first）基数排序。
+
+### 算法流程
+
+将待排序的元素拆分为 $k$ 个关键字，先对第 $1$ 关键字进行稳定排序，然后对于每组 **具有相同关键字的元素** 再对第 $2$ 关键字进行稳定排序（递归执行）……最后对于每组 **具有相同关键字的元素** 再对第 $k$ 关键字进行稳定排序。
+
+一般而言，我们默认基数排序是稳定的，所以在 MSD 基数排序中，我们也仅仅考虑借助 **稳定算法**（通常使用计数排序）完成内层对关键字的排序。
+
+正确性参考上文 k - 关键字元素的比较。
+
+### 参考代码
+
+#### 对自然数排序
+
+下面是使用迭代式 MSD 基数排序对 `unsigned int` 范围内元素进行排序的 C++ 参考代码，可调整 $W$ 和 $\log_2 W$ 的值（建议将 $\log_2 W$ 设为 $2^k$ 以便位运算优化）。
+
+```cpp
+--8<-- "docs/basic/code/radix-sort/radix-sort_1.cpp:core"
+```
+
+#### 对字符串排序
+
+下面是使用迭代式  MSD 基数排序对 [空终止字节字符串](https://zh.cppreference.com/w/cpp/string/byte) 基于字典序进行排序的 C++ 参考代码：
+
+```cpp
+--8<-- "docs/basic/code/radix-sort/radix-sort_2.cpp:core"
+```
+
+由于两个字符串的比较很容易冲上 $O(n)$ 的线性复杂度，因此在字符串排序这件事情上，MSD 基数排序比大多数基于比较的排序算法在时间复杂度和实际用时上都更加优秀。
+
+### 与桶排序的关系
+
+前置知识：[桶排序](./bucket-sort.md)
+
+桶排序需要其它的排序算法来完成对每个桶内部元素的排序。但实际上，完全可以对每个桶继续执行桶排序，直至某一步桶的元素数量 $\le 1$。
+
+因此 MSD 基数排序的另一种理解方式是：使用桶排序实现的桶排序。
+
+也因此，可以提出 MSD 基数排序在时间常数上的一种优化方法：假如到某一步桶的元素数量 $\le B$（$B$ 是自己选的常数），则直接执行插入排序然后返回，降低递归次数。
 
 ## 性质
 
