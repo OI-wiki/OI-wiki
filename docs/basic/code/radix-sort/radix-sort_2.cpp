@@ -50,7 +50,6 @@ void MSD_radix_sort_string(string* begin, string* end)  // 调用接口
 {
   static string tmp[MAXN + 5];
   int n = end - begin;
-  cout << n << endl;
   for (int i = 0; i < n; i++) {
     label[i] = i;
     tmp[i] = *(begin + i);
