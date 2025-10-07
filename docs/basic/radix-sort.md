@@ -48,17 +48,19 @@
 
 下面是使用迭代式 MSD 基数排序对 `unsigned int` 范围内元素进行排序的 C++ 参考代码，可调整 $W$ 和 $\log_2 W$ 的值（建议将 $\log_2 W$ 设为 $2^k$ 以便位运算优化）。
 
-```cpp
---8<-- "docs/basic/code/radix-sort/radix-sort_1.cpp:core"
-```
+??? example "参考代码"
+    ```cpp
+    --8<-- "docs/basic/code/radix-sort/radix-sort_1.cpp:core"
+    ```
 
 #### 对字符串排序
 
 下面是使用迭代式  MSD 基数排序对 [空终止字节字符串](https://zh.cppreference.com/w/cpp/string/byte) 基于字典序进行排序的 C++ 参考代码：
 
-```cpp
---8<-- "docs/basic/code/radix-sort/radix-sort_2.cpp:core"
-```
+??? example "参考代码"
+    ```cpp
+    --8<-- "docs/basic/code/radix-sort/radix-sort_2.cpp:core"
+    ```
 
 由于两个字符串的比较很容易冲上 $O(n)$ 的线性复杂度，因此在字符串排序这件事情上，MSD 基数排序比大多数基于比较的排序算法在时间复杂度和实际用时上都更加优秀。
 
@@ -124,9 +126,10 @@ $$
 
 下面是使用 LSD 基数排序实现的对 k - 关键字元素的排序。
 
-```cpp
---8<-- "docs/basic/code/radix-sort/radix-sort_lsd.cpp:core"
-```
+??? example "参考代码"
+    ```cpp
+    --8<-- "docs/basic/code/radix-sort/radix-sort_lsd.cpp:core"
+    ```
 
 实际上并非必须从后往前枚举才是稳定排序，只需对 `cnt` 数组进行等价于 `std::exclusive_scan` 的操作即可。
 
