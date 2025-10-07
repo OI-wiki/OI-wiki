@@ -472,8 +472,8 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 -   没删文件操作（某些 OJ）。
 
 -   在 `for/while` 循环中重复执行复杂度非 $O(1)$ 的函数。严格来说，这可能会引起时间复杂度的改变。
-  
--   进行二分搜索时中点公式或终止条件错误。  
+
+-   进行二分搜索时中点公式或终止条件错误。
 
 ### 会导致 MLE
 
