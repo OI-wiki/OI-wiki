@@ -5,12 +5,14 @@ using namespace std;
 constexpr unsigned MAXN = 1000;  // 要排序的数的个数
 constexpr unsigned RADIX = 10;   // 基数
 constexpr unsigned powRADIX[10] = {1,         10,        100,     1000,
-                              10000,     100000,    1000000, 10000000,
-                              100000000, 1000000000};  // RADIX 的幂
-unsigned get_digit(unsigned value,int digit)// 提取第 digit 位
+                                   10000,     100000,    1000000, 10000000,
+                                   100000000, 1000000000};  // RADIX 的幂
+
+unsigned get_digit(unsigned value, int digit)  // 提取第 digit 位
 {
   return (value / powRADIX[digit]) % 10;
 }
+
 void MSD_radix_sort(unsigned* begin, unsigned* end, int digit)
 // 表示现在 [begin,end) 内的元素（10 进制下）前若干位都相同
 // 只有最后 digit 位（第 digit-1 到 0 位）需要进行排序
@@ -32,7 +34,7 @@ void MSD_radix_sort(unsigned* begin, unsigned* end, int digit)
   }
   for (unsigned* it = begin; it != end; it++)  // 计数
   {
-    int bitVal = get_digit(*it,digit-1);  
+    int bitVal = get_digit(*it, digit - 1);
     cnt[bitVal] += 1;
   }
   beg[0] = 0;  // 计算每个数码开始存储的位置（偏移量）
@@ -46,7 +48,7 @@ void MSD_radix_sort(unsigned* begin, unsigned* end, int digit)
   }
   for (unsigned* it = begin; it != end; it++)  // 将计数排序结果放入 tmp
   {
-    unsigned bitVal = get_digit(*it,digit-1);  // 提取第 bit-1 位
+    unsigned bitVal = get_digit(*it, digit - 1);  // 提取第 bit-1 位
     tmp[beg[bitVal] + cnt[bitVal]] =
         *it;  // 因为是倒序枚举，所以当前是第 cnt[bitVal]+1 个第 bit-1 位是
               // cnt[bitVal] 的
@@ -77,4 +79,3 @@ int main() {
   MSD_radix_sort(a + 1, a + n + 1, 9);
   for (int i = 1; i <= n; i++) cout << a[i] << " \n"[i == n];
 }
-
