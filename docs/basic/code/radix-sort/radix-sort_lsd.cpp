@@ -10,15 +10,6 @@ int n, w, k, cnt[W];
 
 struct Element {
   int key[K];
-
-  bool operator<(const Element& y) const {
-    // 两个元素的比较流程
-    for (int i = 1; i <= k; ++i) {
-      if (key[i] == y.key[i]) continue;
-      return key[i] < y.key[i];
-    }
-    return false;
-  }
 } a[N], b[N];
 
 void counting_sort(int p) {

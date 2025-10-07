@@ -10,7 +10,7 @@ constexpr unsigned powRADIX[10] = {1,         10,        100,     1000,
 
 unsigned get_digit(unsigned value, int digit)  // 提取第 digit 位
 {
-  return (value / powRADIX[digit]) % 10;
+  return (value / powRADIX[digit]) % RADIX;
 }
 
 void MSD_radix_sort(unsigned* begin, unsigned* end, int digit)
