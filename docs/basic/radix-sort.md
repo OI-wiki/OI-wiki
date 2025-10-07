@@ -48,76 +48,19 @@
 
 下面是使用迭代式 MSD 基数排序对 `unsigned int` 范围内元素进行排序的 C++ 参考代码，可调整 $W$ 和 $\log_2 W$ 的值（建议将 $\log_2 W$ 设为 $2^k$ 以便位运算优化）。
 
-```cpp
---8<-- "docs/basic/code/radix-sort/radix-sort_1.cpp"
-```
+??? example "参考代码"
+    ```cpp
+    --8<-- "docs/basic/code/radix-sort/radix-sort_1.cpp:core"
+    ```
 
 #### 对字符串排序
 
-下面是使用迭代式 MSD 基数排序对 [空终止字节字符串](https://zh.cppreference.com/w/cpp/string/byte) 基于字典序进行排序的 C++ 参考代码：
+下面是使用迭代式  MSD 基数排序对 [空终止字节字符串](https://zh.cppreference.com/w/cpp/string/byte) 基于字典序进行排序的 C++ 参考代码：
 
-```cpp
-#include <algorithm>
-#include <stack>
-#include <tuple>
-#include <vector>
-
-using std::copy;  // from <algorithm>
-using std::make_tuple;
-using std::stack;
-using std::tie;
-using std::tuple;
-using std::vector;
-
-using NTBS = char*;  // 空终止字节字符串
-using NTBSptr = NTBS*;
-
-void MSD_radix_sort(NTBSptr first, NTBSptr last) {
-  static constexpr size_t W = 128;
-  static constexpr size_t logW = 7;
-  static constexpr size_t mask = W - 1;
-
-  NTBSptr tmp = (NTBSptr)calloc(last - first, sizeof(NTBS));
-
-  using node = tuple<NTBSptr, NTBSptr, size_t>;
-  stack<node, vector<node>> s;
-  s.push(make_tuple(first, last, 0));
-
-  while (!s.empty()) {
-    NTBSptr begin, end;
-    size_t index, length;
-
-    tie(begin, end, index) = s.top();
-    length = end - begin;
-    s.pop();
-
-    if (begin + 1 >= end) continue;  // elements <= 1
-
-    // 计数排序
-    size_t cnt[W] = {};
-    auto key = [](const NTBS str, const size_t index) { return str[index]; };
-
-    for (NTBSptr it = begin; it != end; ++it) ++cnt[key(*it, index)];
-    for (char ch = 1; value < W; ++value) cnt[ch] += cnt[ch - 1];
-
-    // 求完前缀和后，计算相同关键字的元素范围
-    // 对于 NTBS，如果此刻末尾的字符是 \0 则说明这两个字符串相等，不必继续迭代
-    for (char ch = 1; ch < W; ++ch)
-      s.push(make_tuple(begin + cnt[ch - 1], begin + cnt[ch], index + 1));
-
-    NTBSptr it = end;
-    do {
-      --it;
-      --cnt[key(*it, index)];
-      tmp[cnt[key(*it, index)]] = *it;
-    } while (it != begin);
-
-    copy(tmp, tmp + length, begin);
-  }
-
-  free(tmp);
-}
-```
+??? example "参考代码"
+    ```cpp
+    --8<-- "docs/basic/code/radix-sort/radix-sort_2.cpp:core"
+    ```
 
 由于两个字符串的比较很容易冲上 $O(n)$ 的线性复杂度，因此在字符串排序这件事情上，MSD 基数排序比大多数基于比较的排序算法在时间复杂度和实际用时上都更加优秀。
 
@@ -183,43 +126,10 @@ $$
 
 下面是使用 LSD 基数排序实现的对 k - 关键字元素的排序。
 
-```cpp
-constexpr int N = 100010;
-constexpr int W = 100010;
-constexpr int K = 100;
-
-int n, w[K], k, cnt[W];
-
-struct Element {
-  int key[K];
-
-  bool operator<(const Element& y) const {
-    // 两个元素的比较流程
-    for (int i = 1; i <= k; ++i) {
-      if (key[i] == y.key[i]) continue;
-      return key[i] < y.key[i];
-    }
-    return false;
-  }
-} a[N], b[N];
-
-void counting_sort(int p) {
-  memset(cnt, 0, sizeof(cnt));
-  for (int i = 1; i <= n; ++i) ++cnt[a[i].key[p]];
-  for (int i = 1; i <= w[p]; ++i) cnt[i] += cnt[i - 1];
-  // 为保证排序的稳定性，此处循环i应从n到1
-  // 即当两元素关键字的值相同时，原先排在后面的元素在排序后仍应排在后面
-  for (int i = n; i >= 1; --i) b[cnt[a[i].key[p]]--] = a[i];
-  memcpy(a, b, sizeof(a));
-}
-
-void radix_sort() {
-  for (int i = k; i >= 1; --i) {
-    // 借助计数排序完成对关键字的排序
-    counting_sort(i);
-  }
-}
-```
+??? example "参考代码"
+    ```cpp
+    --8<-- "docs/basic/code/radix-sort/radix-sort_lsd.cpp:core"
+    ```
 
 实际上并非必须从后往前枚举才是稳定排序，只需对 `cnt` 数组进行等价于 `std::exclusive_scan` 的操作即可。
 
