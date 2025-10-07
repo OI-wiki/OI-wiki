@@ -57,6 +57,6 @@ int main() {
       cout << "0";
     else
       for (; l <= k; l++) cout << a[i].key[l];
-    cout << endl;
+    cout << " \n"[i == n];
   }
 }
