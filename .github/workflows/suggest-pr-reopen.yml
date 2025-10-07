@@ -1,0 +1,55 @@
+name: Suggest Reopen Quickly Closed PR
+
+on:
+  pull_request_target:
+    types: [closed]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  comment:
+    if: github.event.pull_request.merged == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post comment
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const createdAt = new Date(pr.created_at);
+            const closedAt = new Date(pr.closed_at);
+            const diffMinutes = (closedAt - createdAt) / (1000 * 60);
+            if (diffMinutes <= 60) {
+              const branchLink = `https://github.com/${pr.head.repo.full_name}/tree/${pr.head.ref}`;
+              const body = [
+                `你好 :wave:`,
+                ``,
+                `这个 Pull Request 创建后很快就被关闭了（约 ${Math.round(diffMinutes)} 分钟）。`,
+                ``,
+                `如果你并不打算放弃 PR 中的所有修改，只是想修改 PR 标题或再提交新内容，不需关闭这个 PR，可重新打开这个 PR，并`,
+                `- 通过 PR 标题旁的 \`Edit\` 按钮修改 PR 的标题；`,
+                `- 进入 [\`${pr.head.ref}\`](${branchLink}) 分支，继续在原分支提交新修改；`,
+                ``,
+                `这样做能让讨论、记录保持完整，方便 reviewers 跟进。感谢理解与支持。`,
+              ].join('\n');
+              const { data: comments } = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                per_page: 25
+              });
+              const alreadyCommented = comments.some(c =>
+                c.user.type === 'Bot' &&
+                c.body?.includes('这个 Pull Request 创建后很快就被关闭了')
+              );
+              if (!alreadyCommented) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: pr.number,
+                  body
+                });
+              }
+            }
