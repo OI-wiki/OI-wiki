@@ -41,7 +41,7 @@
     设 $d=gcd(x,y)$，设 $x=d \times a,y=d \times b$，有 $gcd(a,b)=1$。
     
     考虑从 $u$ 出发走 $k$ 步，到达 $(u+ky) \bmod x$。若成环，则 $ky \equiv 0 \bmod x$，即有 $kb \equiv 0 \bmod a$。
-
+    
     由于 $gcd(a,b)=1$，最小的 $k=a$，即环长为 $b \div d$。由于是从任意点开始，故每个可能的环长相等，环的数量为 $d$。
     
     即证
