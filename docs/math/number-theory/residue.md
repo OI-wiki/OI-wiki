@@ -307,6 +307,16 @@ $$
 O\left(\sum_{e < s}p^{1/2+\varepsilon}\right).
 $$
 
+由于满足 $e < s$ 的素因子 $p$ 至少在 $\varphi(m)$ 中出现 $2$ 次，必然有 $p < m^{1/2}$．故而，总时间复杂度为 $O(m^{1/4+\varepsilon})$．
+
+事实上，在这一情景中，无需使用 Phollard Rho 算法分解素因数，仍然可以获得 $O(m^{1/4+\varepsilon})$ 的时间复杂度．事实上，只需要对
+
+$$
+z = \gcd\left(d,\dfrac{\varphi(m)}{d}\right)
+$$
+
+暴力分解，并只考虑到不超过 $m^{1/4}$ 的素因子．
+
 ### 一般情形的处理
 
 考虑一般的情形，仍然设模数是素数幂，即 $m=p^e$，但是 $\gcd(a,m)>1$．如果 $a\equiv 0\pmod{m}$，那么
