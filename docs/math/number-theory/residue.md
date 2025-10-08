@@ -346,8 +346,6 @@ $$
     --8<-- "docs/math/code/residue/bsgs.cpp"
     ```
 
-这一算法的时间复杂度为 $O(f(m)+\sum_p\sqrt{p^{e_p}}+S\log m)$，其中，$f(m)$ 为质因数分解的时间复杂度，$m=\prod_pp^{e_p}$，且 $S$ 是解的数量．利用 [Pollard Rho 算法](./pollard-rho.md)，质因数分解的复杂度 $f(m)$ 可以降低到 $O(m^{1/4})$，但是 $\sum_p\sqrt{p^{e_p}}\in O(\sqrt{m})$，因此，这一算法的瓶颈就在于利用 BSGS 求离散对数．
-
 ## 参考资料与注释
 
 -   冯克勤．初等数论及其应用．
