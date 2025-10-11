@@ -54,7 +54,7 @@ int main() {
     }  // 返回值不为 0，两个文件不同
     else
       printf("test %d AC\n", i);
-    fflush(stdout);//清空缓存，使得 time 和 diff 的输出与 printf 的输出同步
+    fflush(stdout);  // 清空缓存，使得 time 和 diff 的输出与 printf 的输出同步
   }
   return 0;
 }
