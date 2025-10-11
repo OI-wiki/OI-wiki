@@ -99,7 +99,7 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
 
 发现可以用 `bitset` 优化，左移再或起来就好了：
 
-??? note " 提交记录：[std::bitset](https://loj.ac/submission/395274)"
+??? note "提交记录：[std::bitset](https://loj.ac/submission/395274)"
     ```cpp
     #include <bitset>
     #include <cstdio>
@@ -135,7 +135,7 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
 
 由于 libstdc++ 的实现为压 `__CHAR_BIT__ * sizeof(unsigned long)` 位的[^bitset2]，在一些平台中其为 $32$。所以，可以手写 `bitset`（只需要支持左移后或起来这一种操作）压 $64$ 位（`__CHAR_BIT__ * sizeof(unsigned long long)`）来进一步优化：
 
-??? note " 提交记录：[手写 bitset](https://loj.ac/submission/395619)"
+??? note "提交记录：[手写 bitset](https://loj.ac/submission/395619)"
     ```cpp
     #include <cstdio>
     #include <iostream>
@@ -190,7 +190,7 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
 
 另外，加了几个剪枝的暴力也能过：
 
-??? note " 提交记录：[加了几个剪枝的暴力](https://loj.ac/submission/395673)"
+??? note "提交记录：[加了几个剪枝的暴力](https://loj.ac/submission/395673)"
     ```cpp
     #include <cstdio>
     #include <iostream>

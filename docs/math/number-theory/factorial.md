@@ -388,7 +388,7 @@ $$
 
 ## 例题
 
-???+ example " 例题 [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
+???+ example "例题 [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
     给定 $n$, 计算
     
     $$

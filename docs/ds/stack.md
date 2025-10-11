@@ -63,7 +63,7 @@
 
 C++ 中的 STL 也提供了一个容器 `std::stack`，使用前需要引入 `stack` 头文件。
 
-???+ info "STL 中对 `stack` 的定义 "
+???+ info "STL 中对 `stack` 的定义"
     ```cpp
     // clang-format off
     template<
