@@ -8,3 +8,4 @@ author: Ir1d, HeRaNO, NachtgeistW, i-Yirannn, bear-good, ranwen, CoelacanthusHex
 -   [CCR Plus](./ccr-plus.md)
 -   [Cena](./cena.md)
 -   [Lemon](./lemon.md)
+-   [自制评测工具](./manual.md)
