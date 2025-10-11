@@ -13,7 +13,7 @@
 main() {
   system("g++ tree.cpp -o tree -O2 -lm");  // 编译
   system("cat tree1.in > tree.in");  // 把 tree1.in 中的内容复制到 tree.in 中
-  if (system("./tree"))               // 运行
+  if (system("./tree"))              // 运行
   {
     printf("RE");  // 返回值不为 0，出现运行时错误
     return 0;
@@ -36,19 +36,18 @@ main() {
 
 main() {
   system("g++ tree.cpp -o tree -O2 -lm");  // 编译
-  for(int i=1;i<=100;++i)
-  {
+  for (int i = 1; i <= 100; ++i) {
     char cmd[999];
-    sprintf(cmd,"cat tree%d.in > tree.in",i);
-    system(cmd);  // 把 tree%d.in 中的内容复制到 tree.in 中
-    if (system("./tree"))               // 运行
+    sprintf(cmd, "cat tree%d.in > tree.in", i);
+    system(cmd);           // 把 tree%d.in 中的内容复制到 tree.in 中
+    if (system("./tree"))  // 运行
     {
       printf("RE");  // 返回值不为 0，出现运行时错误
       return 0;
     }
-    sprintf(cmd,"diff -sb tree.out tree%d.ans",i);
+    sprintf(cmd, "diff -sb tree.out tree%d.ans", i);
     if (system(cmd))  // 比较输出与答案
-      printf("WA");  // 返回值不为 0，两个文件不同
+      printf("WA");   // 返回值不为 0，两个文件不同
     else
       printf("AC");
   }
