@@ -18,7 +18,7 @@ int main() {
     printf("RE");  // 返回值不为 0，出现运行时错误
     return 0;
   }
-  if (system("diff -sb tree.out tree1.ans"))  // 比较输出与答案，其中 -b
+  if (system("diff -b tree.out tree1.ans"))  // 比较输出与答案，其中 -b
                                               // 选项意为忽略空白字符
     printf("WA");  // 返回值不为 0，两个文件不同
   else
@@ -46,7 +46,7 @@ int main() {
       printf("RE on test %d", i);  // 返回值不为 0，出现运行时错误
       return 0;
     }
-    sprintf(cmd, "diff -sb tree.out tree%d.ans", i);
+    sprintf(cmd, "diff -b tree.out tree%d.ans", i);
     if (system(cmd))  // 比较输出与答案
     {
       printf("WA on test %d", i);
@@ -54,7 +54,7 @@ int main() {
     }  // 返回值不为 0，两个文件不同
     else
       printf("test %d AC\n", i);
-    fflush(stdout);  // 清空缓存，使得 time 和 diff 的输出与 printf 的输出同步
+    fflush(stdout);  // 清空缓冲区，使得 time 的输出与 printf 的输出同步
   }
   return 0;
 }
