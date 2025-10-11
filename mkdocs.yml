@@ -65,6 +65,7 @@ nav:
       - Cena: tools/judger/cena.md
       - CCR Plus: tools/judger/ccr-plus.md
       - Lemon: tools/judger/lemon.md
+      - 手写评测工具: tools/judger/manual.md
     - 命令行: tools/cmd.md
     - 命令行编译与调试: tools/compile-debug.md
     - 编译器: tools/compiler.md
