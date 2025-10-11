@@ -8,7 +8,7 @@
 
 ```cpp
 #include <stdio.h>
-
+#include<stdlib.h>
 main() {
   system("g++ tree.cpp -o tree -O2 -lm");  // 编译
   system("echo tree1.in > tree.in");  // 把 tree1.in 中的内容复制到 tree.in 中
@@ -17,7 +17,7 @@ main() {
     printf("RE");  // 返回值不为 0，出现运行时错误
     return 0;
   }
-  if(system("diff -sb tree.out tree1.ans")//比较输出与答案，其中 -b 选项意为忽略空白字符
+  if(system("diff -sb tree.out tree1.ans"))//比较输出与答案，其中 -b 选项意为忽略空白字符
     printf("WA");//返回值不为 0，两个文件不同
   else printf("AC");
 }
