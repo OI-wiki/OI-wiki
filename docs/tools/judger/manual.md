@@ -19,7 +19,7 @@ int main() {
     return 0;
   }
   if (system("diff -b tree.out tree1.ans"))  // 比较输出与答案，其中 -b
-                                              // 选项意为忽略空白字符
+                                             // 选项意为忽略空白字符
     printf("WA");  // 返回值不为 0，两个文件不同
   else
     printf("AC");
