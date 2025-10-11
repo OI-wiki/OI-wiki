@@ -172,12 +172,12 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
     
     总构造时间复杂度为 $O(nm)$。
 
-???+ note " 示例代码 [UVa10615 Rooks](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=18&page=show_problem&problem=1556)"
+???+ note "示例代码 [UVa10615 Rooks](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=18&page=show_problem&problem=1556)"
     ```cpp
     --8<-- "docs/graph/code/color/color_1.cpp"
     ```
 
-??? note " 一道很不简单的例题 [uoj 444 二分图](https://uoj.ac/problem/444)"
+??? note "一道很不简单的例题 [uoj 444 二分图](https://uoj.ac/problem/444)"
     本题为笔者于 2018 年命制的集训队第一轮作业题。
     
     首先我们可以发现答案下界为度数不为 k 倍数的点的个数。

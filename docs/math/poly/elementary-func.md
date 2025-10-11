@@ -210,7 +210,7 @@ $$
 
 -   若 $k$ 是偶数，则求出 $h(x)$ 的平方根 $\sqrt{h(x)}$，然后得到 $f(x) \equiv x^{k/2} \sqrt{h(x)} \pmod{x^{n}}$。
 
-??? " 洛谷模板题 [P5205【模板】多项式开根](https://www.luogu.com.cn/problem/P5205) 参考代码 "
+??? "洛谷模板题 [P5205【模板】多项式开根](https://www.luogu.com.cn/problem/P5205) 参考代码"
     ```cpp
     --8<-- "docs/math/code/poly/sqrt/sqrt_1.cpp"
     ```

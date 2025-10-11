@@ -141,7 +141,7 @@ $$
 ???+ warning
     使用 k-D Tree 单次查询最近点的时间复杂度最坏还是 $O(n)$ 的，但不失为一种优秀的骗分算法，使用时请注意。在这里对邻域查询的讲解仅限于加强对 k-D Tree 结构的认识。
 
-???+ note " 例题 [luogu P1429 平面最近点对（加强版）](https://www.luogu.com.cn/problem/P1429)"
+???+ note "例题 [luogu P1429 平面最近点对（加强版）](https://www.luogu.com.cn/problem/P1429)"
     给定平面上的 $n$ 个点 $(x_i,y_i)$，找出平面上最近两个点对之间的 [欧几里得距离](../geometry/distance.md#欧氏距离)。
     
     $2\le n\le 200000 , 0\le x_i,y_i\le 10^9$
@@ -157,7 +157,7 @@ $$
     --8<-- "docs/ds/code/kdt/kdt_1.cpp"
     ```
 
-???+ note " 例题 [「CQOI2016」K 远点对](https://loj.ac/problem/2043)"
+???+ note "例题 [「CQOI2016」K 远点对](https://loj.ac/problem/2043)"
     给定平面上的 $n$ 个点 $(x_i,y_i)$，求欧几里得距离下的第 $k$ 远无序点对之间的距离。
     
     $n\le 100000 , 1\le k\le 100 , 0\le x_i,y_i<2^{31}$
