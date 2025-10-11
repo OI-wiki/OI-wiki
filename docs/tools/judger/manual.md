@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-main() {
+int main() {
   system("g++ tree.cpp -o tree -O2 -lm");  // 编译
   system("cat tree1.in > tree.in");  // 把 tree1.in 中的内容复制到 tree.in 中
   if (system("time -p ./tree"))  // 运行
@@ -23,6 +23,7 @@ main() {
     printf("WA");  // 返回值不为 0，两个文件不同
   else
     printf("AC");
+  return 0;
 }
 ```
 
@@ -34,7 +35,7 @@ main() {
 #include <stdio.h>
 #include <stdlib.h>
 
-main() {
+int main() {
   system("g++ tree.cpp -o tree -O2 -lm");  // 编译
   for (int i = 1; i <= 100; ++i) {
     char cmd[999];
@@ -54,5 +55,6 @@ main() {
     else
       printf("test %d AC\n", i);
   }
+  return 0;
 }
 ```
