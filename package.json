@@ -43,6 +43,8 @@
     "patch-package": "^6.5.1",
     "postinstall-postinstall": "^2.1.0",
     "remark": "^14.0.2",
+    "remark-anchor": "github:c-forrest/remark-anchor#main",
+    "remark-attributes": "^0.3.2",
     "remark-clang-format": "2.4.5",
     "remark-cli": "^10.0.1",
     "remark-copywriting-correct": "0.6.0",
