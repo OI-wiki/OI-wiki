@@ -252,6 +252,7 @@ nav:
       - 离散对数: math/number-theory/discrete-logarithm.md
       - 剩余: math/number-theory/residue.md
       - 数论分块: math/number-theory/sqrt-decomposition.md
+      - 狄利克雷卷积: math/number-theory/dirichlet.md
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 杜教筛: math/number-theory/du.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
@@ -280,7 +281,6 @@ nav:
       - 形式幂级数复合|复合逆: math/poly/comp-rev.md
       - 普通生成函数: math/poly/ogf.md
       - 指数生成函数: math/poly/egf.md
-      - 狄利克雷生成函数: math/poly/dgf.md
     - 组合数学:
       - 排列组合: math/combinatorics/combination.md
       - 抽屉原理: math/combinatorics/drawer-principle.md
