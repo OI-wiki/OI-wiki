@@ -13,7 +13,7 @@
 main() {
   system("g++ tree.cpp -o tree -O2 -lm");  // 编译
   system("cat tree1.in > tree.in");  // 把 tree1.in 中的内容复制到 tree.in 中
-  if (system("time ./tree"))         // 运行
+  if (system("time -p ./tree"))         // 运行
   {
     printf("RE");  // 返回值不为 0，出现运行时错误
     return 0;
@@ -40,7 +40,7 @@ main() {
     char cmd[999];
     sprintf(cmd, "cat tree%d.in > tree.in", i);
     system(cmd);  // 把 tree%d.in 中的内容复制到 tree.in 中
-    if (system("time ./tree"))  // 运行
+    if (system("time -p ./tree"))  // 运行
     {
       printf("RE on test %d", i);  // 返回值不为 0，出现运行时错误
       return 0;
