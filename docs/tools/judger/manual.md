@@ -42,12 +42,15 @@ main() {
     system(cmd);           // 把 tree%d.in 中的内容复制到 tree.in 中
     if (system("./tree"))  // 运行
     {
-      printf("RE on test %d",i);  // 返回值不为 0，出现运行时错误
+      printf("RE on test %d", i);  // 返回值不为 0，出现运行时错误
       return 0;
     }
     sprintf(cmd, "diff -sb tree.out tree%d.ans", i);
     if (system(cmd))  // 比较输出与答案
-      {printf("WA on test %d",i);return 0;}   // 返回值不为 0，两个文件不同
+    {
+      printf("WA on test %d", i);
+      return 0;
+    }  // 返回值不为 0，两个文件不同
   }
   printf("AC");
 }
