@@ -4,7 +4,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 ## 因环境不同导致的错误
 
--   `scanf` 或 `printf` 使用 `%I64d` 格式指示符在 Linux 下可能导致输出格式错误。
+-   `scanf` 或 `printf` 使用 `%I64d` 格式指示符在 Linux 下可能导致输入输出格式错误。
 
 ## 会引起 CE 的错误
 
@@ -223,7 +223,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 #### 换行符不同
 
-???+ warning
+???+ warning "Warning"
     在正式比赛中会尽量保证选手答题的环境和最终测试的环境相同。
     
     本节内容仅适用于模拟赛等情况，而我们也建议出题人尽量让数据符合 [数据格式](problemsetting.md#数据的格式)。
@@ -234,7 +234,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 -   CR+LF（用 `\r\n` 表示）：`Windows`
 
--   CR（用 `\r` 表示）：`Mac OS` 至版本 9
+-   CR（用 `\r` 表示）：`Mac OS` 版本 9 及以前
 
 而 C/C++ 利用转义序列 `\n` 来换行，这可能会导致我们认为输入中的换行符也一定是由 `\n` 来表示，而只读入了一个字符来代表换行符，这就会导致我们没有完全读入输入文件。
 
@@ -275,7 +275,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
     -   写线段树的时候，`pushup` 或 `pushdown` 叶节点。
 
-        正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x`，在定义的下标中。
+        正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x` 在定义的下标中。
 
 -   除 main 外有返回值函数执行至结尾未执行任何 return 语句
 
@@ -472,6 +472,8 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 -   没删文件操作（某些 OJ）。
 
 -   在 `for/while` 循环中重复执行复杂度非 $O(1)$ 的函数。严格来说，这可能会引起时间复杂度的改变。
+
+-   进行二分搜索时中点公式或终止条件错误。
 
 ### 会导致 MLE
 

@@ -108,7 +108,7 @@ $$
     \end{aligned}
     $$
     
-    ??? bug
+    ??? bug "Bug"
         问题在于「视作高阶无穷小，从而可以舍去」这一处。我们将 $T\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$ 代入 $T(n)$ 的式子里，有：
         
         $$

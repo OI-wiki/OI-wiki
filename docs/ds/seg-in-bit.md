@@ -4,7 +4,7 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
 
 如果区间变成动态的呢？即，如果还要求支持一种操作：单点修改某一位上的值，又该怎么办呢？
 
-??? note " 例题 [二逼平衡树（树套树）](https://loj.ac/problem/106)"
+??? note "例题 [二逼平衡树（树套树）](https://loj.ac/problem/106)"
     维护一个有序数列，其中需要提供以下操作：
     
     -   查询 $x$ 在区间内的排名；
@@ -13,7 +13,7 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
     -   查询 $x$ 在区间内的前驱（前驱定义为小于 $x$，且最大的数）；
     -   查询 $x$ 在区间内的后继（后继定义为大于 $x$，且最小的数）。
 
-??? note " 例题 [洛谷 P2617 Dynamic Rankings](https://www.luogu.com.cn/problem/P2617)"
+??? note "例题 [洛谷 P2617 Dynamic Rankings](https://www.luogu.com.cn/problem/P2617)"
     给定一个含有 $n$ 个数的序列 $a_1,a_2 \dots a_n$，需要支持两种操作：
     
     -   `Q l r k` 表示查询下标在区间 $[l,r]$ 中的第 $k$ 小的数

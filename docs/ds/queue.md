@@ -24,7 +24,7 @@ int q[SIZE], ql = 1, qr;
 -   访问队尾：`q[qr]`
 -   清空队列：`ql = 1; qr = 0;`
 
-??? example "[Luogu B3616【模板】队列](https://www.luogu.com.cn/problem/B3616) 数组模拟参考实现 "
+??? example "[Luogu B3616【模板】队列](https://www.luogu.com.cn/problem/B3616) 数组模拟参考实现"
     ```cpp
     --8<-- "docs/ds/code/queue/queue_1.cpp"
     ```
@@ -40,7 +40,7 @@ int q[SIZE], ql = 1, qr;
 
 容易证明，每个元素只会进入/转移/弹出一次，均摊复杂度 $O(1)$。
 
-??? example "[Luogu B3616【模板】队列](https://www.luogu.com.cn/problem/B3616) 双栈模拟参考实现 "
+??? example "[Luogu B3616【模板】队列](https://www.luogu.com.cn/problem/B3616) 双栈模拟参考实现"
     ```cpp
     --8<-- "docs/ds/code/queue/queue_2.cpp"
     ```
@@ -49,7 +49,7 @@ int q[SIZE], ql = 1, qr;
 
 C++ 在 STL 中提供了一个容器 `std::queue`，使用前需要先引入 `<queue>` 头文件。
 
-???+ info "STL 中对 `queue` 的定义 "
+???+ info "STL 中对 `queue` 的定义"
     ```cpp
     // clang-format off
     template<
@@ -121,7 +121,7 @@ std::cout << q2.front() << std::endl;
     
     根据主定理，解得 $T(m)=O(m)$。于是，这种维护方式的总复杂度仍是均摊常数的。
 
-??? example "[Luogu B3656【模板】双端队列 1](https://www.luogu.com.cn/problem/B3656) 参考实现 "
+??? example "[Luogu B3656【模板】双端队列 1](https://www.luogu.com.cn/problem/B3656) 参考实现"
     ```cpp
     --8<-- "docs/ds/code/queue/queue_3.cpp"
     ```
@@ -130,7 +130,7 @@ std::cout << q2.front() << std::endl;
 
 C++ 在 STL 中也提供了一个容器 `std::deque`，使用前需要先引入 `<deque>` 头文件。
 
-??? info "STL 中对 `deque` 的定义 "
+??? info "STL 中对 `deque` 的定义"
     ```cpp
     // clang-format off
     template<

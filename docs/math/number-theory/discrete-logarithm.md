@@ -60,7 +60,7 @@ $$
 
 注意到 $A,B$ 均小于 $\left \lceil \sqrt m \right \rceil$，所以时间复杂度为 $\Theta\left  (\sqrt m\right )$，用 `map` 则多一个 $\log$.
 
-??? note " 为什么要求 $a$ 与 $m$ 互质 "
+??? note "为什么要求 $a$ 与 $m$ 互质"
     注意到我们求出的是 $A,B$，我们需要保证从 $a^{A\left \lceil \sqrt m \right \rceil} \equiv ba^B \pmod m$ 可以推回 $a^{A\left \lceil \sqrt m \right \rceil -B} \equiv b \pmod m$，后式是前式左右两边除以 $a^B$ 得到，所以必须有 $a^B \perp m$ 即 $a\perp m$.
 
 ### 进阶篇
@@ -127,7 +127,7 @@ $$
 
 下面的代码实现的找原根、离散对数解和原问题所有解的过程。
 
-??? "参考代码"
+??? note "参考代码"
     ```cpp
     int gcd(int a, int b) { return a ? gcd(b % a, a) : b; }
     

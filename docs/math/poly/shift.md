@@ -84,7 +84,7 @@ $$
 
 ## 连续点值平移
 
-???+ note " 例题 [LOJ 166 拉格朗日插值 2](https://loj.ac/p/166)"
+???+ note "例题 [LOJ 166 拉格朗日插值 2](https://loj.ac/p/166)"
     给出度数小于等于 $n$ 的多项式 $f$ 的连续点值 $f(0),f(1),\dots ,f(n)$，在模 $998244353$ 意义下计算 $f(c),f(c+1),\dots ,f(c+n)$，其中 $1\leq n\leq 10^5,n < m\leq 10^8$。
 
 ### Lagrange 插值公式法
@@ -128,7 +128,7 @@ Lagrange 插值公式也给出了通过维护一些前后缀积的线性计算�
 
 ### 同一行第一类无符号 Stirling 数
 
-???+ note " 例题 [P5408 第一类斯特林数·行](https://www.luogu.com.cn/problem/P5408)"
+???+ note "例题 [P5408 第一类斯特林数·行](https://www.luogu.com.cn/problem/P5408)"
     在模素数 $167772161$ 意义下求 $\displaystyle {n\brack 0},{n\brack 1},\dots ,{n\brack n}$，其中 $1\leq n< 262144$。
 
 考虑
@@ -151,7 +151,7 @@ $$
 
 ### 模素数意义下阶乘
 
-???+ note " 例题 [P5282【模板】快速阶乘算法](https://www.luogu.com.cn/problem/P5282)"
+???+ note "例题 [P5282【模板】快速阶乘算法](https://www.luogu.com.cn/problem/P5282)"
     求 $n!\bmod p$，其中 $p$ 为素数且 $1\leq n< p\leq 2^{31}-1$。
 
 令 $v=\lfloor\sqrt{n}\rfloor$ 和 $g(x)=\prod _ {i=1}^v(x+i)$ 那么
@@ -192,7 +192,7 @@ $$
 
 ### 模素数意义下二项式系数前缀和
 
-???+ note " 例题 [LOJ 6386 组合数前缀和](https://loj.ac/p/6386)"
+???+ note "例题 [LOJ 6386 组合数前缀和](https://loj.ac/p/6386)"
     求 $\displaystyle \sum _ {i=0}^m\binom{n}{i}\bmod 998244353$，其中 $0\leq m\leq n\leq 9\times 10^8$。
 
 考虑使用矩阵描述 $n!=n\cdot (n-1)!$ 这一步递推，我们有
@@ -349,7 +349,7 @@ $$
 
 ### 模素数意义下调和数
 
-???+ note " 例题 [P5702 调和级数求和](https://www.luogu.com.cn/problem/P5702)"
+???+ note "例题 [P5702 调和级数求和](https://www.luogu.com.cn/problem/P5702)"
     求 $\sum _ {i=1}^ni^{-1}\bmod p$，其中 $p$ 为素数且 $1\leq n< p< 2^{30}$。
 
 记 $H_n=\sum _ {k=1}^nk^{-1}$，一步递推为
@@ -392,7 +392,7 @@ $$
 
 对于更一般的情况，类似于上述快速阶乘算法的案例，我们期望得到一个怎么样的算法？
 
-???+ note " 例题 [P6115【模板】整式递推](https://www.luogu.com.cn/problem/P6115)"
+???+ note "例题 [P6115【模板】整式递推](https://www.luogu.com.cn/problem/P6115)"
     现有数列 $a$ 满足 $\forall n\ge m,\sum_{k=0}^ma_{n-k}P_k(n)=0$，其中 $P_k$ 为不超过 $d$ 次的多项式。  
     给定所有 $P_k$ 的系数，和 $a_0,a_1,\dots,a_{m-1}$，求 $a_n$。
     对 $998244353$ 取模。$n\le6\times10^8$，$1\le m,d\le7$，时限 $7s$。

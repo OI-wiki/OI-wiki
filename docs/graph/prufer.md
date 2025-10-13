@@ -1,4 +1,4 @@
-???+ note
+???+ note "Note"
     本文翻译自 [e-maxx Prüfer Code](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/graph/pruefer_code.md)。另外解释一下，原文的结点是从 $0$ 开始标号的，本文按照大多数人的习惯改成了从 $1$ 标号。
 
 这篇文章介绍 Prüfer 序列 (Prüfer code)，这是一种将带标号的树用一个唯一的整数序列表示的方法。
@@ -327,6 +327,8 @@ $$
 
 ## 习题
 
+-   [Luogu P6086【模板】Prüfer 序列](https://www.luogu.com.cn/problem/P6086)（模板题）
+-   [Luogu P11039【MX-X3-T6】「RiOI-4」TECHNOPOLIS 2085](https://www.luogu.com.cn/problem/P11039)
 -   [UVa #10843 - Anne's game](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=20&page=show_problem&problem=1784)
 -   [Timus #1069 - Prufer Code](http://acm.timus.ru/problem.aspx?space=1&num=1069)
 -   [Codeforces - Clues](http://codeforces.com/contest/156/problem/D)

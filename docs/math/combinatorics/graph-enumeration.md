@@ -14,7 +14,7 @@
 
 ### 例题「POJ 1737」Connected Graph
 
-???+ note " 例题 [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)"
+???+ note "例题 [「POJ 1737」Connected Graph](http://poj.org/problem?id=1737)"
     题目大意：求有 $n$ 个结点的有标号连通图的方案数（$n \leq 50$）。
 
 这类问题最早出现于楼教主的男人八题系列中，我们设 $g_n$ 为 $n$ 个点有标号图的方案数，$c_n$ 为待求序列。$n$ 个点的图至多有 $\binom{n}{2}$ 条边，每条边根据其出现与否有两种状态，每种状态之间独立，因而有 $g_n = 2^{\binom{n}{2}}$。我们固定其中一个节点，枚举其所在连通块的大小，那么还需要从剩下的 $n-1$ 个节点中选择 $i-1$ 个节点组成一个连通块。连通块之外的节点可以任意连边，因而有如下递推关系：
@@ -30,7 +30,7 @@ $$
 
 ### 例题「集训队作业 2013」城市规划
 
-???+ note " 例题 [「集训队作业 2013」城市规划](https://www.luogu.com.cn/problem/P4841)"
+???+ note "例题 [「集训队作业 2013」城市规划](https://www.luogu.com.cn/problem/P4841)"
     题目大意：求有 $n$ 个结点的有标号连通图的方案数（$n \leq 130000$）。
 
 对于数据范围更大的序列问题，往往我们需要构造这些序列的生成函数，以使用高效的多项式算法。
@@ -79,7 +79,7 @@ $$
 
 ### 例题「SPOJ KPGRAPHS」Counting Graphs
 
-???+ note " 例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
+???+ note "例题 [「SPOJ KPGRAPHS」Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
     题目大意：求有 $n$ 个结点的分别满足下列性质的有标号图的方案数（$n \leq 1000$）。
     
     -   连通图 [A001187](https://oeis.org/A001187)。
@@ -203,7 +203,7 @@ B_n^2 &= G  \\
 \end{align}
 $$
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/math/code/combinatorics/graph-enumeration/graph-enumeration_1.cpp"
     ```
@@ -249,7 +249,7 @@ $$
 
 ### 例题「SPOJ PT07D」Let us count 1 2 3
 
-???+ note " 例题 [「SPOJ PT07D」Let us count 1 2 3](https://www.spoj.com/problems/PT07D/)"
+???+ note "例题 [「SPOJ PT07D」Let us count 1 2 3](https://www.spoj.com/problems/PT07D/)"
     题目大意：求有 n 个结点的分别满足下列性质的树的方案数。
     
     -   有标号有根树 [A000169](https://oeis.org/A000169)。
@@ -289,7 +289,7 @@ $$
 
 ### 例题「Luogu P5900」无标号无根树计数
 
-???+ note " 例题 [「Luogu P5900」无标号无根树计数](https://www.luogu.com.cn/problem/P5900)"
+???+ note "例题 [「Luogu P5900」无标号无根树计数](https://www.luogu.com.cn/problem/P5900)"
     题目大意：求有 n 个结点的无标号无根树的方案数（$n \leq 200000$）。
 
 对于数据范围更大的情况，做法同理，欧拉变换后使用多项式模板即可。
@@ -298,7 +298,7 @@ $$
 
 ### 例题「SGU 282. Isomorphism」Isomorphism
 
-???+ note " 例题 [「SGU 282. Isomorphism」Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)"
+???+ note "例题 [「SGU 282. Isomorphism」Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)"
     题目大意：求有 n 个结点的无标号完全图的边进行 m 染色的方案数。
 
 注意到当 m = 2 时，所求对象就是无标号简单图 [A000088](https://oeis.org/A000088)，考察波利亚计数定理，
@@ -329,7 +329,7 @@ $$
 
 如果一条边关联的顶点处在两个不同的循环中，设分别为 $p_i$,$p_j$，每个循环节的长度均为 $\operatorname{lcm}(p_i,p_j)$，因而边所生成的循环数恰好为 $\frac{p_i p_j}{\operatorname{lcm}(p_i,p_j)} = \gcd(p_i, p_j)$。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/math/code/combinatorics/graph-enumeration/graph-enumeration_2.cpp"
     ```

@@ -8,7 +8,7 @@ disqus:
 
 在阅读完之后，请点击下方的按钮，然后开始编辑。
 
-???+ 敬请留意
+???+ note "敬请留意"
     -   请您记得在文件头的 author 字段后方按照格式加上您的 GitHub ID；
     -   根据 Issue [#3061](https://github.com/OI-wiki/OI-wiki/issues/3061)，现在您的更改将会视 Commit Message 质量以 Rebase 或 Squash 方式之一合并，且在 Squash 方式下您可能会是该 commit 的 author 而不是 committer，敬请留意。
 

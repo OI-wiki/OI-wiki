@@ -66,7 +66,7 @@ void print(int a[]) {
 
 拼起来就是一个完整的复读机程序咯。
 
-??? "`copycat.cpp`"
+??? note "`copycat.cpp`"
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -140,7 +140,7 @@ void add(int a[], int b[], int c[]) {
 
 试着和上一部分结合，可以得到一个加法计算器。
 
-??? "`adder.cpp`"
+??? note "`adder.cpp`"
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -220,7 +220,7 @@ void sub(int a[], int b[], int c[]) {
 
 将上一个程序中的 `add()` 替换成 `sub()`，就有了一个减法计算器。
 
-??? "`subtractor.cpp`"
+??? note "`subtractor.cpp`"
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -415,7 +415,7 @@ void div(int a[], int b[], int c[], int d[]) {
 
 将上面介绍的四则运算的实现结合，即可完成开头提到的计算器程序。
 
-??? "`calculator.cpp`"
+??? note "`calculator.cpp`"
     ```cpp
     #include <cstdio>
     #include <cstring>
@@ -723,7 +723,7 @@ $$
 
 整个过程可以递归实现。为清晰起见，下面的代码通过 Karatsuba 算法实现了多项式乘法，最后再处理所有的进位问题。
 
-??? "karatsuba_mulc.cpp"
+??? note "karatsuba_mulc.cpp"
     ```cpp
     int *karatsuba_polymul(int n, int *a, int *b) {
       if (n <= 32) {
@@ -774,7 +774,7 @@ $$
     }
     ```
 
-??? " 关于 `new` 和 `delete`"
+??? note "关于 `new` 和 `delete`"
     见 [内存池](../contest/common-tricks.md#内存池)。
 
 但是这样的实现存在一个问题：在 $b$ 进制下，多项式的每一个系数都有可能达到 $n \cdot b^2$ 量级，在压位高精度实现中可能造成整数溢出；而若在多项式乘法的过程中处理进位问题，则 $x_1 + x_0$ 与 $y_1 + y_0$ 的结果可能达到 $2 \cdot b^m$，增加一个位（如果采用 $x_1 - x_0$ 的计算方式，则不得不特殊处理负数的情况）。因此，需要依照实际的应用场景来决定采用何种实现方式。
@@ -791,7 +791,7 @@ $$
 
 [这里](https://paste.ubuntu.com/p/7VKYzpC7dn/) 有一个封装好的高精度整数类，以及 [这里](https://github.com/Baobaobear/MiniBigInteger/blob/main/bigint_tiny.h) 支持动态长度及四则运算的超迷你实现类。
 
-??? 这里是另一个模板
+??? note "这里是另一个模板"
     ```cpp
     constexpr int MAXN = 9999;
     // MAXN 是一位中最大的数字

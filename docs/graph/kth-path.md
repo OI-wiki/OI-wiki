@@ -15,11 +15,11 @@ A\* 算法是一个搜索算法。它为每个当前状态 $x$ 都设置了一�
 
 这一搜索过程可以优化。由于只需要求出从初始结点到目标结点的第 $k$ 短路，所以已经取出的状态到达一个结点的次数大于 $k$ 次时，可以不扩展其后继状态。这一状态不会影响到最后的答案。这是因为之前 $k$ 次取出该结点时，已经形成了到达该结点的 $k$ 条合法路径，足以构造到达目标结点的前 $k$ 条最短路。
 
-若使用优先队列优化 Dijkstra 算法，由于至多会将所有边加入优先队列 $k$ 次，所以算法的时间复杂度是 $O(km\log km)$ 的，空间复杂度是 $O(km)$ 的。相较于直接搜索，A\* 算法针对目标结点 $t$ 进行了剪枝，但这仅仅改良了常数，而非渐进复杂度。本节所述算法虽然复杂度并不优秀，但是可以在相同的复杂度内求出从起始点 $s$ 到（以 $t$ 为根的最短路树中）每个结点的前 $k$ 短路。
+若使用优先队列优化 Dijkstra 算法，由于至多会将所有边加入优先队列 $k$ 次，所以算法的时间复杂度是 $O(km\log km)$ 的，空间复杂度是 $O(km)$ 的。相较于直接搜索，A\* 算法针对目标结点 $t$ 进行了剪枝，但这仅仅改良了常数，而非渐近复杂度。本节所述算法虽然复杂度并不优秀，但是可以在相同的复杂度内求出从起始点 $s$ 到（以 $t$ 为根的最短路树中）每个结点的前 $k$ 短路。
 
 ### 实现
 
-??? example " 模板题 [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk) 参考实现 "
+??? example "模板题 [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk) 参考实现"
     ```cpp
     --8<-- "docs/graph/code/k-shortest-walk/k-shortest-walk-1.cpp"
     ```
@@ -82,7 +82,7 @@ $$
 
 ### 实现
 
-??? example " 模板题 [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk) 参考实现 "
+??? example "模板题 [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk) 参考实现"
     ```cpp
     --8<-- "docs/graph/code/k-shortest-walk/k-shortest-walk-2.cpp"
     ```

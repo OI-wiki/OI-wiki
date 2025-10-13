@@ -151,7 +151,7 @@ author: Backl1ght, Tiphereth-A, Enter-tainer, Ir1d, ksyx, leoleoasd, Xeonacid, a
     }
     ```
 
-??? node "参考代码（树状数组套 Treap—TLE）"
+??? note "参考代码（树状数组套 Treap—TLE）"
     ```cpp
     #include <cstdio>
     #include <random>
