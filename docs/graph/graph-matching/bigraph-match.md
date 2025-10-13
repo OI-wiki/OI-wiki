@@ -45,7 +45,7 @@ Kuhn 算法是 [Berge 引理](./graph-match.md#berge-引理) 的直接应用。�
 
 实现时，不需要真正维护定向，只需要为每个顶点都维护与它相匹配的顶点即可。
 
-??? example " 模板题 [Library Checker - Matching on Bipartite Graph](https://judge.yosupo.jp/problem/bipartitematching)"
+??? example "模板题 [Library Checker - Matching on Bipartite Graph](https://judge.yosupo.jp/problem/bipartitematching)"
     ```cpp
     --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_1.cpp"
     ```
@@ -96,7 +96,7 @@ Hopcroft–Karp 算法进一步优化了 Kuhn 算法查找增广路的过程，�
 
 ### 参考实现
 
-??? example " 模板题 [Library Checker - Matching on Bipartite Graph](https://judge.yosupo.jp/problem/bipartitematching)"
+??? example "模板题 [Library Checker - Matching on Bipartite Graph](https://judge.yosupo.jp/problem/bipartitematching)"
     ```cpp
     --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_2.cpp"
     ```

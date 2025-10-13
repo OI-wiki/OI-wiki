@@ -118,7 +118,7 @@ $$
 
 ### 代码
 
-??? "多项式求逆"
+??? note "多项式求逆"
     ```cpp
     constexpr int MAXN = 262144;
     constexpr int mod = 998244353;
@@ -210,7 +210,7 @@ $$
 
 -   若 $k$ 是偶数，则求出 $h(x)$ 的平方根 $\sqrt{h(x)}$，然后得到 $f(x) \equiv x^{k/2} \sqrt{h(x)} \pmod{x^{n}}$。
 
-??? " 洛谷模板题 [P5205【模板】多项式开根](https://www.luogu.com.cn/problem/P5205) 参考代码 "
+??? note "洛谷模板题 [P5205【模板】多项式开根](https://www.luogu.com.cn/problem/P5205) 参考代码"
     ```cpp
     --8<-- "docs/math/code/poly/sqrt/sqrt_1.cpp"
     ```
@@ -325,7 +325,7 @@ $$
 
 ### 代码
 
-??? "多项式 ln/exp"
+??? note "多项式 ln/exp"
     ```cpp
     constexpr int MAXN = 262144;
     constexpr int mod = 998244353;
@@ -434,7 +434,7 @@ $$
 
 ### 代码
 
-??? "多项式三角函数"
+??? note "多项式三角函数"
     注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，虚数单位 $\mathrm{i}$ 应该被换成 $86583718$ 或 $911660635$：
     
     $$
@@ -512,7 +512,7 @@ $$
 
 ### 代码
 
-??? "多项式反三角函数"
+??? note "多项式反三角函数"
     ```cpp
     constexpr int MAXN = 262144;
     constexpr int mod = 998244353;

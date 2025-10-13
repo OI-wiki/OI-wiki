@@ -1,6 +1,6 @@
 本章介绍线性时间复杂度的后缀排序的就地算法[^in-place-sa-sort]（Optimal In-Place Suffix Sorting）。
 
-???+ warning
+???+ warning "Warning"
     本章 **只建议** 在 **非常非常熟悉** SA-IS[^nzc09a][^sa-is介绍]的前提下阅读。
 
 ## 全局设定
