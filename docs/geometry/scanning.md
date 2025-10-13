@@ -18,7 +18,7 @@
 
 给每一个矩形的上下边进行标记，下面的边标记为 1，上面的边标记为 -1。每遇到一个水平边时，让这条边（在横轴投影区间）的权值加上这条边的标记。
 
-???+ note
+???+ note "Note"
     这个操作类似遍历括号序列：开括号加 1，闭括号减 1，「权值」对应当前位置的深度，「权值」是否大于 0，对应当前在不在括号里，也就是这段区间是否记入小矩形的宽度。
 
 小矩形（不一定只有一个）的宽度就是整个数轴上权值大于 0 的区间总长度。
@@ -36,12 +36,12 @@
 
 需要 [离散化](../misc/discrete.md)。
 
-??? note "[洛谷 P5490【模板】扫描线 & 矩形面积并](https://www.luogu.com.cn/problem/P5490) 参考代码 "
+??? note "[洛谷 P5490【模板】扫描线 & 矩形面积并](https://www.luogu.com.cn/problem/P5490) 参考代码"
     ```cpp
     --8<-- "docs/geometry/code/scanning/scanning_1.cpp"
     ```
 
-??? note "[「POJ 1151」Atlantis](http://poj.org/problem?id=1151) 参考代码 "
+??? note "[「POJ 1151」Atlantis](http://poj.org/problem?id=1151) 参考代码"
     ```cpp
     --8<-- "docs/geometry/code/scanning/scanning_2.cpp"
     ```

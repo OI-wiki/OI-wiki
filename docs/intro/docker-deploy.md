@@ -1,6 +1,6 @@
 本页面将介绍使用 Docker 部署 **OI Wiki** 环境的方式。
 
-???+ warning
+???+ warning "Warning"
     以下步骤须在 root 用户下或 docker 组用户下执行。
 
 ## 拉取 **OI Wiki** 镜像
@@ -57,7 +57,7 @@ docker run -d -it [image]
 
 ## 使用容器
 
-???+ note
+???+ note "Note"
     示例基于 Ubuntu latest 部署。
 
 进入容器：

@@ -46,10 +46,10 @@ int merge(int a, int b, int l, int r) {
 ### 例题
 
 ???+ note "[luogu P4556 \[Vani 有约会\] 雨天的尾巴/【模板】线段树合并](https://www.luogu.com.cn/problem/P4556)"
-    ??? "解题思路"
+    ??? note "解题思路"
         线段树合并模板题，用差分把树上修改转化为单点修改，然后向上 dfs 线段树合并统计答案即可。
     
-    ??? "参考代码"
+    ??? note "参考代码"
         ```cpp
         --8<-- "docs/ds/code/seg/seg_6.cpp"
         ```
@@ -96,15 +96,18 @@ void split(int &p, int &q, int s, int t, int l, int r) {
 ### 例题
 
 ???+ note "[P5494【模板】线段树分裂](https://www.luogu.com.cn/problem/P5494)"
-    ??? "解题思路"
+    ??? note "解题思路"
         线段树分裂模板题，将 $[x,y]$ 分裂出来。
         
         -   将 $t$ 树合并入 $p$ 树：单次合并即可。
+        
         -   $p$ 树中插入 $x$ 个 $q$：单点修改。
+        
         -   查询 $[x,y]$ 中数的个数：区间求和。
+        
         -   查询第 $k$ 小。
     
-    ??? "参考代码"
+    ??? note "参考代码"
         ```cpp
         --8<-- "docs/ds/code/seg/seg_7.cpp"
         ```

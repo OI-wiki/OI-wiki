@@ -17,7 +17,7 @@ author: 0x03A6, abc1763613206, auuuu4, CCXXXI, Conless, Enter-tainer, fanenr, ha
 
 ![rbtree-example](images/rbtree-example.svg)
 
-???+ note
+???+ note "Note"
     部分资料中还加入了第五条性质，即根节点必须为黑色，这条性质要求完成插入操作后若根节点为红色则将其染黑，但由于将根节点染黑的操作也可以延迟至删除操作时进行，因此，该条性质并非必须满足（本文给出的代码实现中满足该性质）。为严谨起见，这里同时引用 [维基百科原文](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Properties) 进行说明：
     
     > Some authors, e.g. Cormen & al.,[^cite_note-cormen2009-18]claim "the root is black" as fifth requirement; but not Mehlhorn & Sanders[^cite_note-mehlhorn2008-17]or Sedgewick & Wayne.[^cite_note-algs4-16]Since the root can always be changed from red to black, this rule has little effect on analysis. This article also omits it, because it slightly disturbs the recursive algorithms and proofs.
@@ -30,12 +30,12 @@ author: 0x03A6, abc1763613206, auuuu4, CCXXXI, Conless, Enter-tainer, fanenr, ha
 --8<-- "docs/ds/code/rbtree/rbtree.hpp:class-node2"
 ```
 
-???+ note
+???+ note "Note"
     在红黑树节点的存储中，用数组来存储子节点指针可以提高代码复用率。
 
 ## 操作
 
-???+ note
+???+ note "Note"
     红黑树的插入/删除有多种实现方式，本文采用《算法导论》的实现方式，将插入后的平衡维护分为 3 种情况，删除后的平衡维护分为 4 种情况。
 
 红黑树的遍历、查找最小/最大值、搜索元素、求元素的排名、根据排名反查元素、查找前驱/后继等操作和 [二叉搜索树](./bst.md) 一致，此处不再赘述。
@@ -73,7 +73,7 @@ author: 0x03A6, abc1763613206, auuuu4, CCXXXI, Conless, Enter-tainer, fanenr, ha
 
 ### 插入后的平衡维护
 
-???+ note
+???+ note "Note"
     为加深理解，请读者自行验证平衡维护后是否满足性质 4。
 
 由于插入的节点若不为根节点则必为红色，所以插入后可能违反性质 3，需要维护平衡性。
@@ -144,7 +144,7 @@ $p$ 为红色，$u$ 为黑色，$p$ 的方向和 $n$ 的方向相同。
 
 ### 删除后的平衡维护
 
-???+ note
+???+ note "Note"
     为加深理解，请读者自行验证平衡维护后是否满足性质 4。
 
 由上文讨论可知 $n$ 是黑色叶子节点且不为根节点。我们设 $n$ 的父节点为 $p$，兄弟节点为 $s$，侄节点分别为 $c$ 和 $d$。
@@ -224,7 +224,7 @@ $p$、$c$ 的颜色不确定，$s$ 为黑色，$d$ 为红色。
     --8<-- "docs/ds/code/rbtree/rbtree.hpp:full"
     ```
 
-??? note " 例题：[Luogu P3369【模板】普通平衡树](https://www.luogu.com.cn/problem/P3369) 与 [Luogu P6136【模板】普通平衡树（数据加强版）](https://www.luogu.com.cn/problem/P6136)"
+??? note "例题：[Luogu P3369【模板】普通平衡树](https://www.luogu.com.cn/problem/P3369) 与 [Luogu P6136【模板】普通平衡树（数据加强版）](https://www.luogu.com.cn/problem/P6136)"
     ```cpp
     --8<-- "docs/ds/code/rbtree/rbtree.hpp:class"
     --8<-- "docs/ds/code/rbtree/rbtree_1.cpp:main"

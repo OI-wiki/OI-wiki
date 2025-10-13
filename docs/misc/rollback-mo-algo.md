@@ -33,7 +33,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ## 实现
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/misc/code/rollback-mo-algo/rollback-mo-algo_1.cpp"
     ```

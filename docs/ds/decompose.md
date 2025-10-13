@@ -20,7 +20,7 @@ author: Ir1d, HeRaNO, Xeonacid
 
 ## 区间和
 
-??? " 例题 [LibreOJ 6280 数列分块入门 4](https://loj.ac/problem/6280)"
+??? note "例题 [LibreOJ 6280 数列分块入门 4](https://loj.ac/problem/6280)"
     给定一个长度为 $n$ 的序列 $\{a_i\}$，需要执行 $n$ 次操作。操作分为两种：
     
     1.  给 $a_l \sim a_r$ 之间的所有数加上 $x$；

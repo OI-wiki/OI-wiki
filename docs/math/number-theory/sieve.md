@@ -262,7 +262,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
 
 上面的这种 **线性筛法** 也称为 **Euler 筛法**（欧拉筛法）。
 
-???+ note
+???+ note "Note"
     注意到筛法求素数的同时也得到了每个数的最小质因子。
 
 ## 筛法求欧拉函数

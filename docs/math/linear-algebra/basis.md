@@ -61,10 +61,12 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
 3.  令 $V_1,V_2$ 是关于 $\Bbb{P}$ 的有限维线性空间，且 $V_1+V_2$ 和 $V_1\cap V_2$ 也是有限维的，则下列诸款等价：
 
     1.  $V_1+V_2=V_1\oplus V_2$.
+
     2.  $\dim V_1+\dim V_2=\dim(V_1+V_2)$.
+
     3.  若 $a_1,a_2,\dots,a_n$ 是 $V_1$ 的一组基，$b_1,b_2,\dots,b_m$ 是 $V_2$ 的一组基，则 $a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m$ 是 $V_1+V_2$ 的一组基。
 
-    ???+ note
+    ???+ note "Note"
         1,3 两条可推广到无限维线性空间中
 
 ## 例子
@@ -115,7 +117,7 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
 
 在 OI 中，我们一般将 $n$ 维实线性空间 $\mathbf{R}^n$ 下的线性基称为 **实数线性基**，$n$ 维布尔域线性空间 $\mathbf{Z}_2^n$ 下的线性基称为 **异或线性基**。
 
-???+ tip
+???+ tip "Tip"
     $\mathbf{Z}_2$ 中的加法为异或，乘法为与，可以证明 $\mathbf{Z}_2$ 是域。
     
     可以证明代数系统 $(\mathbf{Z}_2^n,+,\cdot,\mathbf{Z}_2)$ 是线性空间，其中：
@@ -159,7 +161,7 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
 
 查询某个数是否能被异或出来，类似于插入，如果最后插入的数 $p$ 被异或成了 $0$，则能被异或出来。
 
-??? example " 代码（洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）"
+??? example "代码（洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）"
     ```cpp
     --8<-- "docs/math/code/basis/basis_1.cpp"
     ```
@@ -168,7 +170,7 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
 
 高斯消元法相当于从线性方程组的角度去构造线性基，正确性显然。
 
-??? example " 代码（洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）"
+??? example "代码（洛谷 P3812 [【模板】线性基](https://www.luogu.com.cn/problem/P3812)）"
     ```cpp
     --8<-- "docs/math/code/basis/basis_2.cpp"
     ```
@@ -295,7 +297,7 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
 
 模板题代码如下：
 
-??? example " 代码（Library Checker [Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces)）"
+??? example "代码（Library Checker [Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces)）"
     ```cpp
     --8<-- "docs/math/code/basis/basis_intersect_1.cpp"
     ```
@@ -338,7 +340,7 @@ OI 中有关线性基的应用一般只涉及两类线性空间：$n$ 维实线�
 
 模板题代码如下：
 
-??? example " 代码（Library Checker [Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces)）"
+??? example "代码（Library Checker [Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces)）"
     ```cpp
     --8<-- "docs/math/code/basis/basis_intersect_2.cpp"
     ```
@@ -373,7 +375,7 @@ $$
 
 模板题代码如下：
 
-??? example " 代码（Codeforces [1100F Ivan and Burgers](https://codeforces.com/problemset/problem/1100/F)）"
+??? example "代码（Codeforces [1100F Ivan and Burgers](https://codeforces.com/problemset/problem/1100/F)）"
     ```cpp
     --8<-- "docs/math/code/basis/prefix_basis.cpp"
     ```

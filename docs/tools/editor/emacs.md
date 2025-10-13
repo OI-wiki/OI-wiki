@@ -122,7 +122,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率。使�
 (setq-default c-default-style "awk")
 ```
 
-??? "完整配置"
+??? note "完整配置"
     ```text
     ;;设置一键编译
     (defun compile-file ()(interactive)(compile (format "g++ -o %s %s -g -lm -Wall" (file-name-sans-extension (buffer-name))(buffer-name))))

@@ -15,13 +15,12 @@ def prefix_sum():
 
 
 # Find the sum of elements in submatrix [x1, y1] to [x2, y2].
-def query(l1, r1, l2, r2):
+def query(x1, y1, x2, y2):
     return ps[x2][y2] - ps[x1 - 1][y2] - ps[x2][y1 - 1] + ps[x1 - 1][y1 - 1]
 
 
 # --8<-- [end:core]
 if __name__ == "__main__":
-    global n, m, a
     n, m = map(int, input().split())
 
     # Initialize with zero padding for 1-based indexing

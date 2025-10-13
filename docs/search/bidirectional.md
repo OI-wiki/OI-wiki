@@ -36,7 +36,7 @@ while (队列 q 不为空)
 
 ### 例题
 
-???+ note " 例题 [八数码难题](https://www.luogu.com.cn/problem/P1379)"
+???+ note "例题 [八数码难题](https://www.luogu.com.cn/problem/P1379)"
     在 $3\times 3$ 的棋盘上，摆有八个棋子，每个棋子上标有 $1$ 至 $8$ 的某一数字。棋盘中留有一个空格，空格用 $0$ 来表示。空格周围的棋子可以移到空格中。要求解的问题是：给出一种初始布局（初始状态）和目标布局（为了使题目简单，设目标状态为 $123804765$），找到一种最少步骤的移动方法，实现从初始布局到目标布局的转变。
 
 ??? note "解题思路"
@@ -49,7 +49,7 @@ while (队列 q 不为空)
 
 ## Meet in the middle
 
-???+ warning
+???+ warning "Warning"
     本节要介绍的不是 [**二分搜索**](../basic/binary.md)（二分搜索的另外一个译名为「折半搜索」）。
 
 ### 引入
@@ -68,7 +68,7 @@ Meet in the middle 算法的主要思想是将整个搜索过程分成两半，�
 
 ### 例题
 
-???+ note " 例题 [「USACO09NOV」灯 Lights](https://www.luogu.com.cn/problem/P2962)"
+???+ note "例题 [「USACO09NOV」灯 Lights](https://www.luogu.com.cn/problem/P2962)"
     有 $n$ 盏灯，每盏灯与若干盏灯相连，每盏灯上都有一个开关，如果按下一盏灯上的开关，这盏灯以及与之相连的所有灯的开关状态都会改变。一开始所有灯都是关着的，你需要将所有灯打开，求最小的按开关次数。
     
     $1\le n\le 35$。

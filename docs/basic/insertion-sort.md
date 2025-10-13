@@ -46,7 +46,7 @@ $$
 
 === "Python"
     ```python
-    --8<-- "docs/basic/code/insertion-sort/insertion-sort_1.py"
+    --8<-- "docs/basic/code/insertion-sort/insertion-sort_1.py:core"
     ```
 
 === "Java"

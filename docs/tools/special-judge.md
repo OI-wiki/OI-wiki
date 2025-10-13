@@ -6,14 +6,14 @@ author: Xeonacid, NachtgeistW, 2014CAIS01, sshwy, Chrogeek, Menci, yzy-1
 
 **Special Judge**（简称：spj，别名：checker）是当一道题有多组解时，用来判断答案合法性的程序。
 
-???+ warning
+???+ warning "Warning"
     spj 还应当判断文件尾是否有多余内容，及输出格式是否正确（如题目要求数字间用一个空格隔开，而选手却使用了换行）。但是，目前前者只有 Testlib 可以方便地做到这一点，而后者几乎无人去特意进行这种判断。
     
     判断浮点数时应注意 NaN。不合理的判断方式会导致输出 NaN 即可 AC 的情况。
     
     在对选手文件进行读入操作时应该要检查是否正确读入了所需的内容，防止造成 spj 的运行错误。（部分 OJ 会将 spj 的运行错误作为系统错误处理）
 
-???+ note
+???+ note "Note"
     以下均以 C++ 作为编程语言，以「要求标准答案与选手答案差值小于 1e-3，文件名为 num，单个测试点满分为 10 分」为例。
 
 ## Testlib
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
 
 ## Lemon
 
-???+ note
+???+ note "Note"
     Lemon 有现成的修改版 [Testlib](#testlib)，建议使用 Testlib。
 
 ```cpp
@@ -311,7 +311,7 @@ AC
 
 ## SYZOJ 2
 
-???+ note
+???+ note "Note"
     SYZOJ 2 有现成的修改版 [Testlib](#testlib)，建议使用 Testlib。
     
     LibreOJ 的最新版本已不再基于 SYZOJ，而是基于 [Lyrio](https://github.com/lyrio-dev/lyrio)。Lyrio 支持使用原版 Testlib 编写评测器，这也是更加通用且推荐的做法。
@@ -351,7 +351,7 @@ int main(int argc, char* argv[]) {
 
 ## 牛客网
 
-???+ note
+???+ note "Note"
     牛客网有现成的修改版 [Testlib](#testlib)，建议使用 Testlib。
 
 参见：[如何在牛客网出 Special Judge 的编程题](https://www.nowcoder.com/discuss/84666)
@@ -387,7 +387,7 @@ int main(int argc, char* argv[]) {
 
 ## DOMJudge
 
-???+ note
+???+ note "Note"
     DOMJudge 支持任何语言编写的 spj，参见：[problemarchive.org output validator 格式](https://www.problemarchive.org/wiki/index.php/Output_validator)。
     
     DOMJudge 有现成的修改版 [Testlib](#testlib)，建议使用 Testlib。

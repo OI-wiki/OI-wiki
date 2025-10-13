@@ -89,7 +89,7 @@ def solve():
     if fail or p0 * q1 >= p1 * q0:
         return "IMPOSSIBLE"
     p, q = middle(p0, q0, p1, q1)
-    return str(q) + " " + str(p)
+    return str(p) + " " + str(q)
 
 
 # --8<-- [end:core]

@@ -6,7 +6,7 @@ Checker 从命令行参数读取到输入文件名、选手输出文件名、标
 
 ## 简单的例子
 
-???+ note 题目
+???+ note "题目"
     给定两个整数 $a,b$（$-1000 \le a,b \le 1000$），输出它们的和。
 
 这题显然不需要 checker 对吧，但是如果一定要的话也可以写一个：
@@ -189,14 +189,14 @@ int main(int argc, char* argv[]) {
 
 注意到这种写法我们同时也检查了标准输出是否合法，这样写 checker 让程序更短，且易于理解和 debug。此种写法也适用于输出 YES（并输出方案什么的），或 NO 的题目。
 
-???+ note
+???+ note "Note"
     对于某些限制的检查可以用 `InStream::ensure/ensuref()` 函数更简洁地实现。如上例第 23 至 25 行也可以等价地写成如下形式：
     
     ```cpp
     stream.ensuref(!used[v - 1], "vertex %d was used twice", v);
     ```
 
-???+ warning
+???+ warning "Warning"
     请在 `readAns` 中避免调用 **全局** 函数 `::ensure/ensuref()`，这会导致在某些应判为 WA 的选手输出下返回 `_fail`，产生错误。
 
 ## 建议与常见错误

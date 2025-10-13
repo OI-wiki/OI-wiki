@@ -36,7 +36,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 安装完成后，打开需要运行的文件，点击右上角的小三角图标即可运行代码；按下快捷键<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>（在 macOS 下是<kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>）也可以得到同样的效果。
 
-???+ warning
+???+ warning "Warning"
     如果安装了 VS Code 与 Code Runner 后，代码仍然无法运行，很有可能是因为系统尚未安装 C/C++ 的运行环境，参考 [Hello, World! 页面](../../lang/helloworld.md) 以安装。
     
     记得勾选设置中的 Run In Terminal 选项，如图：![](./images/vscode-7.png)
@@ -49,7 +49,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 ![](./images/vscode-2.png)
 
-???+ warning
+???+ warning "Warning"
     在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了 `PATH` 中。请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端。
 
 ### 配置 GDB/LLDB 调试器
@@ -59,7 +59,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 在 VS Code 中新建一份 C++ 代码文件，按照 C++ 语法写入一些内容（如 `int main(){}`），保存并按下<kbd>F5</kbd>，进入调试模式。
 如果出现了「选择调试器」的提示，选择 `C++ (GDB/LLDB)`。在「选择配置」中，G++ 用户选择 `g++.exe - 生成和调试活动文件`；Clang 用户选择 `clang++ - 生成和调试活动文件`。
 
-???+ warning
+???+ warning "Warning"
     配置名称并非固定，而是可以自定义的。不同的操作系统可能具有不同的配置名称。
 
 完成后，VS Code 将自动完成初始化操作在下方的集成终端中启动调试。至此，GDB 所有的配置流程已经完毕。
@@ -107,7 +107,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 ## 配置 clangd
 
-???+ warning
+???+ warning "Warning"
     由于功能冲突，安装 clangd 扩展后 C/C++ 扩展的 IntelliSense 功能将被禁用（调试等功能仍然使用 C/C++ 扩展）。如果 clangd 扩展的功能出现问题，可以查看是否禁用了 C/C++ 扩展的 IntelliSense 功能。
 
 ### clangd 简介

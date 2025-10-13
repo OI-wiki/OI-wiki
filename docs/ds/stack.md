@@ -6,7 +6,7 @@
 
 栈的修改与访问是按照后进先出的原则进行的，因此栈通常被称为是后进先出（last in first out）表，简称 LIFO 表。
 
-??? warning
+??? warning "Warning"
     LIFO 表达的是 **当前在容器** 内最后进来的最先出去。
     
     我们考虑这样一个栈
@@ -63,7 +63,7 @@
 
 C++ 中的 STL 也提供了一个容器 `std::stack`，使用前需要引入 `stack` 头文件。
 
-???+ info "STL 中对 `stack` 的定义 "
+???+ info "STL 中对 `stack` 的定义"
     ```cpp
     // clang-format off
     template<

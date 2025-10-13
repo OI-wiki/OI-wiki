@@ -35,7 +35,12 @@
     "remark-attributes",
     "remark-anchor",
     "remark-gfm",
-    "remark-details",
+    [
+      "remark-details",
+      {
+        "normalize": true
+      }
+    ],
     "remark-math",
     "remark-math-space",
     "remark-lint-final-newline",

@@ -39,12 +39,12 @@
 -   `empty()` 返回容器是否为空。
 -   `size()` 返回容器内元素个数。
 
-???+ warning "`lower_bound` 和 `upper_bound` 的时间复杂度 "
+???+ warning "`lower_bound` 和 `upper_bound` 的时间复杂度"
     `set` 自带的 `lower_bound` 和 `upper_bound` 的时间复杂度为 $O(\log n)$。
     
     但使用 `algorithm` 库中的 `lower_bound` 和 `upper_bound` 函数对 `set` 中的元素进行查询，时间复杂度为 $O(n)$。
 
-???+ warning "`nth_element` 的时间复杂度 "
+???+ warning "`nth_element` 的时间复杂度"
     `set` 没有提供自带的 `nth_element`。使用 `algorithm` 库中的 `nth_element` 查找第 $k$ 大的元素时间复杂度为 $O(n)$。
     
     如果需要实现平衡二叉树所具备的 $O(\log n)$ 查找第 $k$ 大元素的功能，需要自己手写平衡二叉树或权值线段树，或者选择使用 pb\_ds 库中的平衡二叉树。
@@ -92,7 +92,7 @@ map<string, int> mp;
 
 `map` 中不会存在键相同的元素，`multimap` 中允许多个元素拥有同一键。`multimap` 的使用方法与 `map` 的使用方法基本相同。
 
-??? warning
+??? warning "Warning"
     正是因为 `multimap` 允许多个元素拥有同一键的特点，`multimap` 并没有提供给出键访问其对应值的方法。
 
 ### 插入与删除操作

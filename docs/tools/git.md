@@ -1,4 +1,4 @@
-???+ note
+???+ note "Note"
     本页面将着重介绍 Git 这一版本控制系统，与 GitHub 相关的内容，请参考 [GitHub 帮助](https://docs.github.com/cn) 和 [如何参与 - OI Wiki](../intro/htc.md)。
 
 Git 是目前使用最广泛的版本控制系统之一。**OI Wiki** 也使用了 Git 作为版本控制系统。
@@ -27,7 +27,7 @@ $ git config --global user.name "OI Wiki"
 $ git config --global user.email oi-wiki@example.com
 ```
 
-???+ note
+???+ note "Note"
     这里给出的用户名和邮箱仅供演示。您在根据本页面的内容配置时，请记得将这里的用户名和邮箱改成自己的信息。
 
 这里的 `--global` 表示修改的是全局配置，即该设置对当前用户下的所有仓库均有效。如果不添加 `--global` 选项，则会默认修改当前仓库下的配置文件。
@@ -491,7 +491,7 @@ $ git push <remote> <from>:<to> # 将本地 <from> 分支的更改推送至 <rem
 
 接下来执行 `git switch <remote-branch>`，会在本地自动创建名字为 `<remote-branch>` 的新分支，并设定该分支自动追踪相应的远程分支。
 
-???+ note
+???+ note "Note"
     需要注意，只有当本地不存在该分支，且恰好只有一个远程分支的名字与该分支匹配时，Git 才会自动创建该分支且设定其追踪相应的远程分支。
 
 这时候执行 `git status` 命令，会提示当前分支与远程分支之间的差别。

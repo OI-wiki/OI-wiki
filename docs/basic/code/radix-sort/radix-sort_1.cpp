@@ -1,69 +1,81 @@
-#include <algorithm>
-#include <cstdint>
-#include <stack>
-#include <tuple>
+#include <iostream>
 #include <vector>
+using namespace std;
+// --8<-- [start:core]
+constexpr unsigned MAXN = 1000;  // 要排序的数的个数
+constexpr unsigned RADIX = 10;   // 基数
+constexpr unsigned powRADIX[10] = {1,         10,        100,     1000,
+                                   10000,     100000,    1000000, 10000000,
+                                   100000000, 1000000000};  // RADIX 的幂
 
-using std::copy;  // from <algorithm>
-using std::make_tuple;
-using std::stack;
-using std::tie;
-using std::tuple;
-using std::vector;
+unsigned get_digit(unsigned value, int digit)  // 提取第 digit 位
+{
+  return (value / powRADIX[digit]) % RADIX;
+}
 
-using u32 = uint32_t;
-using u64 = uint64_t;
-using u32ptr = u32*;
-
-void MSD_radix_sort(u32ptr first, u32ptr last) {
-  static constexpr u32 maxlogW = 32;  // = log_2 W
-  static constexpr u64 maxW = (u64)1 << maxlogW;
-
-  static constexpr u32 logW = 8;
-  static constexpr u32 W = 1 << logW;  // 计数排序的值域
-  static constexpr u32 mask = W - 1;  // 用位运算替代取模，详见下面的 key 函数
-
-  u32ptr tmp =
-      (u32ptr)calloc(last - first, sizeof(u32));  // 计数排序用的输出空间
-
-  using node = tuple<u32ptr, u32ptr, u32>;
-  stack<node, vector<node>> s;
-  s.push(make_tuple(first, last, maxlogW - logW));
-
-  while (!s.empty()) {
-    u32ptr begin, end;
-    u32 shift;
-    size_t length;
-
-    tie(begin, end, shift) = s.top();
-    length = end - begin;
-    s.pop();
-
-    if (begin + 1 >= end) continue;  // elements <= 1
-
-    // 计数排序
-    u32 cnt[W] = {};
-    auto key = [](const u32 x, const u32 shift) { return (x >> shift) & mask; };
-
-    for (u32ptr it = begin; it != end; ++it) ++cnt[key(*it, shift)];
-    for (u32 value = 1; value < W; ++value) cnt[value] += cnt[value - 1];
-
-    // 求完前缀和后，计算相同关键字的元素范围
-    if (shift >= logW) {
-      s.push(make_tuple(begin, begin + cnt[0], shift - logW));
-      for (u32 value = 1; value < W; ++value)
-        s.push(make_tuple(begin + cnt[value - 1], begin + cnt[value],
-                          shift - logW));
-    }
-
-    u32ptr it = end;
-    do {
-      --it;
-      --cnt[key(*it, shift)];
-      tmp[cnt[key(*it, shift)]] = *it;
-    } while (it != begin);
-
-    copy(tmp, tmp + length, begin);
+void MSD_radix_sort(unsigned* begin, unsigned* end, int digit)
+// 表示现在 [begin,end) 内的元素（10 进制下）前若干位都相同
+// 只有最后 digit 位（第 digit-1 到 0 位）需要进行排序
+// 调用示例：MSD_radix_sort(a,a+n,9)
+{
+  if (begin >= end)  // 空区间
+  {
+    return;
   }
-  free(tmp);
+  /**计数排序（个人写法仅供参考）**/
+  static unsigned cnt[RADIX + 1],
+      tmp[MAXN + 5];  // 由于不同层递归不会同时使用 cnt,tmp
+                      // 数组（每层使用完毕才会调用下一层），使用 static
+                      // 关键字可以节省空间
+  vector<unsigned> beg;
+  beg.resize(RADIX + 1);  // 对 beg 的访问可能冲突，使用局部变量
+  for (int i = 0; i <= RADIX; i++) {
+    cnt[i] = beg[i] = 0;  // 清空是一个好习惯
+  }
+  for (unsigned* it = begin; it != end; it++)  // 计数
+  {
+    int bitVal = get_digit(*it, digit - 1);
+    cnt[bitVal] += 1;
+  }
+  beg[0] = 0;  // 计算每个数码开始存储的位置（偏移量）
+  for (int i = 1; i <= RADIX; i++) {
+    beg[i] = beg[i - 1] + cnt[i - 1];
+  }
+  // 多计算 beg[RADIX] 是因为这样可以直接定义 i 对应的范围是 [beg[i],beg[i+1])
+  // 而不用担心那个 beg[i+1] 越界
+  for (int i = 0; i < RADIX; i++) {
+    cnt[i] = 0;
+  }
+  for (unsigned* it = begin; it != end; it++)  // 将计数排序结果放入 tmp
+  {
+    unsigned bitVal = get_digit(*it, digit - 1);  // 提取第 bit-1 位
+    tmp[beg[bitVal] + cnt[bitVal]] =
+        *it;  // 因为是倒序枚举，所以当前是第 cnt[bitVal]+1 个第 bit-1 位是
+              // cnt[bitVal] 的
+    cnt[bitVal]++;
+  }
+  for (unsigned* it = begin; it != end; it++)  // 将 tmp 拷贝回原数组
+  {
+    *it = tmp[it - begin];
+  }
+  /**迭代计算**/
+  if (digit == 1)  // 已经是最低位
+  {
+    return;
+  }
+  for (int i = 0; i < RADIX; i++)  // 递归排序下一位
+  {
+    MSD_radix_sort(begin + beg[i], begin + beg[i + 1], digit - 1);
+  }
+}
+
+// --8<-- [end:core]
+unsigned a[MAXN + 5];
+
+int main() {
+  int n;
+  cin >> n;
+  for (int i = 1; i <= n; i++) cin >> a[i];
+  MSD_radix_sort(a + 1, a + n + 1, 9);
+  for (int i = 1; i <= n; i++) cout << a[i] << " \n"[i == n];
 }

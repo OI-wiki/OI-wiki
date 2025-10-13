@@ -50,7 +50,7 @@ $$
 
 === "Python"
     ```python
-    --8<-- "docs/basic/code/bubble-sort/bubble-sort_1.py"
+    --8<-- "docs/basic/code/bubble-sort/bubble-sort_1.py:core"
     ```
 
 === "Java"
