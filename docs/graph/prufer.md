@@ -1,4 +1,4 @@
-???+ note
+???+ note "Note"
     本文翻译自 [e-maxx Prüfer Code](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/graph/pruefer_code.md)。另外解释一下，原文的结点是从 $0$ 开始标号的，本文按照大多数人的习惯改成了从 $1$ 标号。
 
 这篇文章介绍 Prüfer 序列 (Prüfer code)，这是一种将带标号的树用一个唯一的整数序列表示的方法。

@@ -72,7 +72,7 @@ $ command < input > output
 
 例如，`./prog < 1.in > 1.out` 这个命令就将让 `prog` 这个程序从当前目录下的 `1.in` 中读入数据，并将程序输出覆盖写入到 `1.out`。
 
-???+ warning
+???+ warning "Warning"
     `1.out` 原本的内容会被覆盖，如果想要在原输出文件末尾追加写入，请使用 `>>`，即 `./prog >> 1.out` 的方式做输出重定向
 
 注意，PowerShell 只支持输出重定向，不支持输入重定向。
@@ -151,7 +151,7 @@ Hello World!
 | Zsh                 | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，自动纠错和建议            |
 | Fish                | 文件路径、PATH 中的命令名、内建命令名、函数名、命令参数，支持模糊匹配，补全时可显示参数功能，自动纠错和建议 |
 
-???+ note
+???+ note "Note"
     PowerShell 的部分功能需要 PSReadline Module 载入或者位于 PowerShell ISE 中。  
     Bash 的补全功能一般需要一个名为 `bash-completions` 的包才能获得完整功能，部分软件的补全文件由软件包自带。  
     Zsh 完整的补全功能需要配合用户预定义的文件（一般随 Zsh 包或对应软件包安装）。  

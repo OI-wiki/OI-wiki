@@ -50,7 +50,7 @@ ST 并不支持中文，如需中文需要安装汉化插件。
 
 一般而言，如果单论对中文的显示的话，Microsoft Yahei Consolas 和 Microsoft YaHei Mono 是比较好的选择。
 
-???+ warning
+???+ warning "Warning"
     注意任何设置（包括插件设置）即使能也不要在左边的的默认设置中修改，这是不被推荐的，如果软件（或插件）更新，默认设置会被重置。
 
 ### 安装插件与主题
@@ -443,7 +443,7 @@ ST 默认的编译选项为 `g++ "${file}" -o "${file_path}/${file_base_name}"`�
 
 运行结束后会提示程序的运行时间，其计时为从按下<kbd>Ctrl</kbd>+<kbd>B</kbd>到全部 CMD 命令运行结束的时间，也就是说包括编译的时间和输入的时间，以及如果在外部 CMD 运行还包括 CMD 开启关闭的时间。
 
-???+ warning
+???+ warning "Warning"
     这个窗口无法输入<kbd>F6</kbd>或<kbd>Ctrl</kbd>+<kbd>Z</kbd>，如果运行读入到文件末尾的程序请使用文件输入，或配置在外部 CMD 运行。
 
 ### 调试

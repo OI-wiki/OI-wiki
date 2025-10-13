@@ -4,7 +4,7 @@ author: i-Yirannn, Xeonacid, ouuan
 
 `std::bitset` 是标准库中的一个存储 `0/1` 的大小不可变容器。严格来讲，它并不属于 STL。
 
-??? "bitset 与 STL"
+??? note "bitset 与 STL"
     > The C++ standard library provides some special container classes, the so-called container adapters (stack, queue, priority queue). In addition, a few classes provide a container-like interface (for example, strings, bitsets, and valarrays). All these classes are covered separately.1 Container adapters and bitsets are covered in Chapter 12.
     >
     > The C++ standard library provides not only the containers for the STL framework but also some containers that fit some special needs and provide simple, almost self-explanatory, interfaces. You can group these containers into either the so-called container adapters, which adapt standard STL containers to fit special needs, or a bitset, which is a containers for bits or Boolean values. There are three standard container adapters: stacks, queues, and priority queues. In priority queues, the elements are sorted automatically according to a sorting criterion. Thus, the "next" element of a priority queue is the element with the "highest" value. A bitset is a bitfield with an arbitrary but fixed number of bits. Note that the C++ standard library also provides a special container with a variable size for Boolean values: vector.
@@ -99,7 +99,7 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
 
 发现可以用 `bitset` 优化，左移再或起来就好了：
 
-??? note " 提交记录：[std::bitset](https://loj.ac/submission/395274)"
+??? note "提交记录：[std::bitset](https://loj.ac/submission/395274)"
     ```cpp
     #include <bitset>
     #include <cstdio>
@@ -135,7 +135,7 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
 
 由于 libstdc++ 的实现为压 `__CHAR_BIT__ * sizeof(unsigned long)` 位的[^bitset2]，在一些平台中其为 $32$。所以，可以手写 `bitset`（只需要支持左移后或起来这一种操作）压 $64$ 位（`__CHAR_BIT__ * sizeof(unsigned long long)`）来进一步优化：
 
-??? note " 提交记录：[手写 bitset](https://loj.ac/submission/395619)"
+??? note "提交记录：[手写 bitset](https://loj.ac/submission/395619)"
     ```cpp
     #include <cstdio>
     #include <iostream>
@@ -190,7 +190,7 @@ $f(i,j)$ 表示前 $i$ 个数的平方和能否为 $j$，那么 $f(i,j)=\bigvee\
 
 另外，加了几个剪枝的暴力也能过：
 
-??? note " 提交记录：[加了几个剪枝的暴力](https://loj.ac/submission/395673)"
+??? note "提交记录：[加了几个剪枝的暴力](https://loj.ac/submission/395673)"
     ```cpp
     #include <cstdio>
     #include <iostream>
@@ -273,7 +273,7 @@ $$
 
 至于预处理的部分，$O(v\sqrt v)$ 或者 $O(v^2)$ 预处理比较简单，$\log$ 预处理就如下面代码所示，复杂度为调和级数，所以是 $O(v\log v)$。
 
-??? "参考代码"
+??? note "参考代码"
     ```cpp
     #include <bitset>
     #include <cctype>
@@ -357,7 +357,7 @@ $$
 
 使用的方式也很简单，只需要将埃氏筛中的布尔数组替换成 `bitset` 即可。
 
-??? "速度测试"
+??? note "速度测试"
     使用 [Quick C++ Benchmarks](https://quick-bench.com) 进行测试，编译器采用 `GCC 13.2`，编译参数为 `-std=c++20 -O2`。
     
     | 算法                            | 函数名                      |
@@ -395,7 +395,7 @@ $$
     2.  欧拉筛使用 `bitset` 或 `vector<bool>` 后的优化效果在大多数情况下均不明显；
     3.  `bitset` 的优化效果略强于 `vector<bool>`。
 
-??? "参考代码"
+??? note "参考代码"
     需安装 [google/benchmark](https://github.com/google/benchmark)。
     
     ```cpp

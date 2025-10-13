@@ -1406,7 +1406,7 @@ public class Main {
 5.  和 3 同理，用 Lambda 表达式优化了代码长度。
 6.  和 4 同理，用 Lambda 表达式优化了代码长度。
 
-???+ note "`Arrays.sort()` 底层函数 "
+???+ note "`Arrays.sort()` 底层函数"
     1.  当 `Arrays.sort` 的参数数组元素类型为基本数据类型（`byte`、`short`、`char`、`int`、`long`、`double`、`float`）时，默认为 `DualPivotQuicksort`（双轴快排），复杂度最坏可以达到 $O(n^2)$。
     2.  当 `Arrays.sort` 的参数数组元素类型为非基本数据类型时，则默认为 `legacyMergeSort` 和 `TimSort`（归并排序），复杂度为 $O(n\log n)$。
 

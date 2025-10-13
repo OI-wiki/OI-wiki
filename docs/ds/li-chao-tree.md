@@ -108,7 +108,7 @@
 
 根据上面的描述，查询过程的时间复杂度显然为 $O(\log n)$，而插入过程中，我们需要将原线段拆分到 $O(\log n)$ 个区间中，对于每个区间，我们又需要花费 $O(\log n)$ 的时间递归下传，从而插入过程的时间复杂度为 $O(\log^2 n)$。
 
-??? note "[\[HEOI2013\]Segment](https://www.luogu.com.cn/problem/P4097) 参考代码 "
+??? note "[\[HEOI2013\]Segment](https://www.luogu.com.cn/problem/P4097) 参考代码"
     ```cpp
     --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp"
     ```
