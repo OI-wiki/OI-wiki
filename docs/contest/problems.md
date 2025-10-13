@@ -124,7 +124,7 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 
 ## 其他类型
 
-???+ note "例题 [Quine](https://loj.ac/problem/4)"    
+???+ note "例题 [Quine](https://loj.ac/problem/4)"
     写一个程序，使其能输出自己的源代码。
     
     代码中必须至少包含十个可见字符。
