@@ -281,6 +281,7 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
         给定一张简单无向连通图，要求支持两种操作：
         
         1.  修改一个点的点权。
+        
         2.  询问两点之间所有简单路径上点权的最小值。
     
     ??? note "题解"

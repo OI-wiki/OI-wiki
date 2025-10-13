@@ -246,7 +246,7 @@
 
 ## 模板题
 
-??? "[AcWing 344 观光之旅](https://www.acwing.com/problem/content/346)"
+??? note "[AcWing 344 观光之旅](https://www.acwing.com/problem/content/346)"
     给定一张 $n$ 个点无向图，求图中一个至少包含 $3$ 个点的环，环上的节点不重复，并且环上的边的长度之和最小。
     
     该问题称为无向图的最小环问题。

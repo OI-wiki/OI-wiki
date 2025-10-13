@@ -54,7 +54,7 @@ author: StudyingFather, NachtgeistW, countercurrent-time, Ir1d, H-J-Granger, Chr
 
 STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的交互手段，也是 ICPC 系列赛事中的标准。Codeforces 提供了一个更加简要的 [说明（英文）](https://codeforces.com/blog/entry/45307)。
 
-??? 例题 "ZQC 的迷宫"
+??? note "ZQC 的迷宫"
     [LOJ #559.「LibreOJ Round #9」ZQC 的迷宫](https://loj.ac/problem/559)
     
     请注意最下方添加内容。
@@ -75,7 +75,7 @@ STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的�
 
 Grader 交互方式常见于 IOI、APIO 等国际 OI 赛事（特别是 CMS 平台的竞赛）。
 
-??? 例题 "Gap"
+??? note "Gap"
     [UOJ #206.【APIO2016】Gap](https://uoj.ac/problem/206)
     
     有 $N$ 个严格递增的非负整数 $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$。你需要找出 $a_{i+1}−a_i (0\leq i\leq N−1)$ 里的最大的值。
@@ -128,7 +128,7 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 
 ## 其他类型
 
-??? 例题 "Quine"
+??? note "Quine"
     [Quine](https://loj.ac/problem/4)
     
     写一个程序，使其能输出自己的源代码。

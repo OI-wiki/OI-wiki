@@ -8,10 +8,10 @@
 
 ## 参与协作
 
-???+ warning
+???+ warning "Warning"
     在开始编写一段内容之前，请查阅 [Issues](https://github.com/OI-wiki/OI-wiki/issues)，确认没有别人在做相同的工作之后，开个 [新 issue](https://github.com/OI-wiki/OI-wiki/issues/new) 记录待编写的内容。
 
-???+ tip
+???+ tip "Tip"
     在 Issues 中也有很多待修复/解决的问题，尤其是我们的迭代计划（Iteration Plan）。从这里获取任务是一个很好的开始！
 
 为了保证条目内容的专业性和准确性，我们建议您在编辑前先考虑以下几点：
@@ -28,7 +28,7 @@
 
 参与 **OI Wiki** 的编写 **需要** 一个 GitHub 账号（可以前往 [GitHub 的账号注册页面](https://github.com/signup) 页面注册），但 **不需要** 高超的 GitHub 技巧，即使你是一名新手，只要按照下面所述的步骤操作，也能够 **非常出色** 地完成编辑。
 
-???+ tip
+???+ tip "Tip"
     在你的更改被合并到 **OI Wiki** 的主仓库之前，你对 **OI Wiki** 的内容所作出的修改均不会出现在 **OI Wiki** 的主站上，所以无需担心你的修改会破坏 **OI Wiki** 上正在显示的内容。
     
     如果还是不放心，可以查看 [GitHub 的官方教程](https://skills.github.com/)。
@@ -65,7 +65,7 @@
 
 ### 使用 Git 在本地进行编辑
 
-???+ warning
+???+ warning "Warning"
     对于一般用户，我们更推荐使用上方所述的 GitHub 的 Web 编辑器进行编辑。
 
 虽然大多数情况下您可以直接在 GitHub 上进行编辑，但对于一些较为特殊的情况（如需要使用 GPG 签名），我们更推荐使用 Git 在本地进行编辑。

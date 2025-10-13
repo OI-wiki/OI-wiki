@@ -577,7 +577,7 @@ $$
 
 要撰写不标号的公式就在环境标志的后面添加 `*` 字符，如 `{equation*}`，`{eqnarray*}`。
 
-??? warning
+??? warning "Warning"
     可以发现，使用 `eqnarray` 时，会出现等号周围的空隙过大之类的问题。
     
     可以使用 `amsmath` 宏包中的 `align` 环境：

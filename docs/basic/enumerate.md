@@ -30,7 +30,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
 
 以下是一个使用枚举解题与优化枚举范围的例子。
 
-??? 例题
+??? note "例题"
     一个数组中的数互不相同，求其中和为 $0$ 的数对的个数。
 
 ??? note "解题思路"

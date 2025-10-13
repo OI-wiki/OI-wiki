@@ -23,7 +23,7 @@ $$
 
 ![](../images/slope-trick/epigraph-convex-def.svg)
 
-???+ abstract "$\mathbf R$ 上的凸函数 "
+???+ abstract "$\mathbf R$ 上的凸函数"
     如果函数 $f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ 对于所有 $x,y\in\mathbf R$ 和 $\alpha\in(0,1)$ 都满足
     
     $$
@@ -78,7 +78,7 @@ $$
 
 整数集 $\mathbf Z$ 上的凸函数有一个更为直观的等价定义：
 
-???+ note "$\mathbf Z$ 上的凸函数的等价定义 "
+???+ note "$\mathbf Z$ 上的凸函数的等价定义"
     函数 $f:\mathbf Z\rightarrow\mathbf R\cup\{\pm\infty\}$ 是凸的，当且仅当
     
     $$

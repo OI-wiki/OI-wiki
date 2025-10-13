@@ -97,7 +97,7 @@ $$
 
 模板题的参考实现如下：
 
-??? example " 模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
+??? example "模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-0.cpp:full-text"
     ```
@@ -536,7 +536,7 @@ $$
 
 利用万能欧几里得算法可以得到模板题的实现如下：
 
-??? example " 模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
+??? example "模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-4.cpp:full-text"
     ```
