@@ -2658,10 +2658,10 @@ remark-copywriting-correct@0.6.0:
     unist-util-is "^2.1.1"
     unist-util-visit "^1.1.3"
 
-remark-details@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/remark-details/-/remark-details-5.0.0.tgz#c3206b3f4ef379efe38c09152fc7715d911c8040"
-  integrity sha512-f03ttvwNZQFOpE/Lz9lgA6z006RPUSYcR4acglsznVxKlmgohRkZV1wgsfa6HUaTwZeavWI9VqnQKRifwCxSjQ==
+remark-details@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/remark-details/-/remark-details-5.0.1.tgz#8970834971bee80b59816cf1166c77e84f9e0229"
+  integrity sha512-Ml2L1qitwn6s5KVNMUyrPUClXzw7q81J7UpFCmkkX3GVMi1zhygrfGK9LpxISft5tTAJqoNhqN1VjXE6AB3TKA==
   dependencies:
     hast "^1.0.0"
     hastscript "^7.0.2"
