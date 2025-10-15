@@ -8,7 +8,7 @@
 
 ```bash
 g++ tree.cpp -o tree -O2 -lm
-cat tree1.in > tree.in
+cp tree1.in tree.in
 time -p ./tree
 diff -sb tree.out tree1.ans
 ```
@@ -23,7 +23,7 @@ diff -sb tree.out tree1.ans
 
 int main() {
   system("g++ tree.cpp -o tree -O2 -lm");  // 编译
-  system("cat tree1.in > tree.in");  // 把 tree1.in 中的内容复制到 tree.in 中
+  system("cp tree1.in tree.in");  // 把 tree1.in 中的内容复制到 tree.in 中
   if (system("time -p ./tree"))  // 运行
   {
     printf("RE");  // 返回值不为 0，出现运行时错误
@@ -48,7 +48,7 @@ int main() {
   system("g++ tree.cpp -o tree -O2 -lm");  // 编译
   for (int i = 1; i <= 100; ++i) {
     char cmd[999];
-    sprintf(cmd, "cat tree%d.in > tree.in", i);
+    sprintf(cmd, "cp tree%d.in tree.in", i);
     system(cmd);  // 把 tree%d.in 中的内容复制到 tree.in 中
     if (system("time -p ./tree"))  // 运行
     {
