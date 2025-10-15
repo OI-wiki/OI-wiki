@@ -4,9 +4,20 @@
 
 假设 `tree.cpp` 使用文件输入输出，即从 `tree.in` 读入，输出到 `tree.out`。否则，应使用 [重定向机制](../cmd.md#重定向机制) 进行输入输出重定向。
 
-先展示测试一组数据的评测机写法。
+下面是用 Bash 实现的测试一组数据的评测机。请先阅读 [命令行](../cmd.md) 来了解 Bash。
 
-```cpp
+```bash
+g++ tree.cpp -o tree -O2 -lm
+cat tree1.in > tree.in
+time -p ./tree
+diff -sb tree.out tree1.ans
+```
+
+当然，在 C/C++ 中，我们可以使用 `system` 函数来执行命令，来达到相同的效果并简化实现。
+
+`system` 函数接受一个字符串作为参数，以整个字符串为一行命令，直接在终端中执行，该命令在终端中的返回值就是该函数在程序中的返回值。这个函数在头文件 `<stdlib.h>` 里。
+
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -27,11 +38,9 @@ int main() {
 }
 ```
 
-`system` 函数接受一个字符串作为参数，以整个字符串为一行命令，直接在终端中执行，该命令在终端中的返回值就是该函数在程序中的返回值。这个函数在头文件 `<stdlib.h>` 里。
+那么，为了支持评测多个测试点，我们只需要使用 `sprintf` 来构造传递给 `system` 函数的字符串即可。
 
-那么，为了支持评测多个测试点，我们只需要使用 `sprintf` 来构造这个字符串即可。
-
-```cpp
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
