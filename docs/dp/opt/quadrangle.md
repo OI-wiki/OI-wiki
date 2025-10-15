@@ -147,7 +147,7 @@ $$
 
 类似于单调队列，每个决策点至多入队一次，出队一次。这里，出队是 $O(1)$ 的，而入队是 $O(\log n)$ 的（可能需要二分），所以总的时间复杂度是 $O(n\log n)$。
 
-???+ note " 例题 1：[「POI2011」Lightning Conductor](https://loj.ac/problem/2157)"
+???+ note "例题 1：[「POI2011」Lightning Conductor](https://loj.ac/problem/2157)"
     给定一个长度为 $n$ 的序列 $a_1,a_2,\cdots,a_n$，要求对于每一个 $1 \leq i \leq n$，找到最小的非负整数 $f_i$ 满足
     
     $$
@@ -256,7 +256,7 @@ $$
 
 对于限制区间个数的区间分拆问题的三种算法，在不同的数据范围时表现各有优劣，需要结合具体的题目选择合适的算法。
 
-???+ note " 例题 2：[P4767 \[IOI2000\] 邮局 加强版](https://www.luogu.com.cn/problem/P4767)  [P6246 \[IOI2000\] 邮局 加强版 加强版](https://www.luogu.com.cn/problem/P6246)"
+???+ note "例题 2：[P4767 \[IOI2000\] 邮局 加强版](https://www.luogu.com.cn/problem/P4767)  [P6246 \[IOI2000\] 邮局 加强版 加强版](https://www.luogu.com.cn/problem/P6246)"
     高速公路旁边有一些村庄。高速公路表示为整数轴，每个村庄的位置用单个整数坐标标识。没有两个在同样地方的村庄。两个位置之间的距离是其整数坐标差的绝对值。
     
     邮局将建在一些，但不一定是所有的村庄中。为了建立邮局，应选择他们建造的位置，使每个村庄与其最近的邮局之间的距离总和最小。
@@ -272,12 +272,12 @@ $$
         
         问题转化为限制区间个数的区间分拆问题。可以证明，$w$ 函数满足四边形不等式。直接应用上述优化方法即可。
     
-    ??? example " 实现 1，前文第二种优化，复杂度 $O(n(n+m))$"
+    ??? example "实现 1，前文第二种优化，复杂度 $O(n(n+m))$"
         ```cpp
         --8<-- "docs/dp/code/opt/quadrangle/quadrangle_2.cpp"
         ```
     
-    ??? example " 实现 2，WQS 二分，复杂度 $O(n\log n\log C)$"
+    ??? example "实现 2，WQS 二分，复杂度 $O(n\log n\log C)$"
         ```cpp
         --8<-- "docs/dp/code/opt/quadrangle/quadrangle_3.cpp"
         ```

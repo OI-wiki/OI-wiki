@@ -153,7 +153,7 @@ $$
         \end{cases}
         $$
 
-??? note " 附：$\Lambda(n)$ 表达式的证明 "
+??? note "附：$\Lambda(n)$ 表达式的证明"
     对于素数幂 $n=p^e~(e\in\mathbf N_+)$，有
     
     $$

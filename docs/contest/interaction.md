@@ -28,7 +28,7 @@ author: countercurrent-time, StudyingFather
 
 由于本题对拍比较容易，可以直接把值域内的数都尝试一遍。我们会发现程序无法有效处理质数的平方。所以我们要把 2,3,5,7 的平方 4,9,25,49 都放进去，总共 19 个数字，符合题意。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     #include <cstdio>
     constexpr int prime[] = {2,  3,  4,  5,  7,  9,  11, 13, 17, 19,
@@ -58,7 +58,7 @@ author: countercurrent-time, StudyingFather
 
 同时由于 Codeforces 具有 hack 机制，很多人会刻意卡掉没有初始化随机种子的代码，所以在 `random_shuffle()` 函数前需要 `srand((size_t)new char)`。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -122,7 +122,7 @@ author: countercurrent-time, StudyingFather
 
     不过这种方法也不能很好地适用于子任务 1，因为最坏可能很多询问的值域内一个数都没有。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -186,7 +186,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
 
 此时我们的算法可以刚好卡到最坏 16 次。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     #include <algorithm>
     #include <cstdio>
@@ -297,7 +297,7 @@ $h \le 4$ 时可以直接暴力枚举。然而 $h > 4$ 时需要很高效的遍�
 
 不过刘汝佳的标程质量还是比下面这份代码质量高很多的，可以在 UOJ 上查看到 [通过了 UOJ 镜像题的标程](http://uoj.ac/submission/105789)。同一份数据下，标程使用的移动次数非常少。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     #include <algorithm>
     #include <cstdio>

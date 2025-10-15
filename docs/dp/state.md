@@ -31,7 +31,7 @@ $$
 
 ### 实现
 
-??? "参考代码"
+??? note "参考代码"
     ```cpp
     --8<-- "docs/dp/code/state/state_1.cpp"
     ```
@@ -58,7 +58,7 @@ $$
 
 ### 实现
 
-??? "参考代码"
+??? note "参考代码"
     ```cpp
     --8<-- "docs/dp/code/state/state_2.cpp"
     ```

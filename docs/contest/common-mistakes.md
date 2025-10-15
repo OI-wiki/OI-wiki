@@ -223,7 +223,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 #### 换行符不同
 
-???+ warning
+???+ warning "Warning"
     在正式比赛中会尽量保证选手答题的环境和最终测试的环境相同。
     
     本节内容仅适用于模拟赛等情况，而我们也建议出题人尽量让数据符合 [数据格式](problemsetting.md#数据的格式)。

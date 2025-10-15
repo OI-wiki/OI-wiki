@@ -69,7 +69,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ## 例题
 
-???+ note " 例题 [「国家集训队」数颜色/维护队列](https://www.luogu.com.cn/problem/P1903)"
+???+ note "例题 [「国家集训队」数颜色/维护队列](https://www.luogu.com.cn/problem/P1903)"
     题目大意：给你一个序列，M 个操作，有两种操作：
     
     1.  修改序列上某一位的数字
@@ -100,7 +100,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ### 实现
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/misc/code/modifiable-mo-algo/modifiable-mo-algo_1.cpp"
     ```

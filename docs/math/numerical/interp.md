@@ -111,7 +111,7 @@ $$
 
 预处理 $(x-i)$ 前后缀积、阶乘阶乘逆，然后代入这个式子，复杂度为 $O(n)$.
 
-???+ note " 例题 [CF622F The Sum of the k-th Powers](https://codeforces.com/contest/622/problem/F)"
+???+ note "例题 [CF622F The Sum of the k-th Powers](https://codeforces.com/contest/622/problem/F)"
     给出 $n,k$，求 $\sum\limits_{i=1}^ni^k$ 对 $10^9+7$ 取模的值。
     
     ??? note "题解"
@@ -181,7 +181,7 @@ $$
 f(x)=\sum_{j=0}^n \binom{s}{j}j!h^j[y_0,\dots,y_j]=\sum_{j=0}^n \binom{s}{j}\Delta^{(j)}y_0.
 $$
 
-??? note " 代码实现（[Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)）"
+??? note "代码实现（[Luogu P4781【模板】拉格朗日插值](https://www.luogu.com.cn/problem/P4781)）"
     ```cpp
     --8<-- "docs/math/code/numerical/interp/interp_3.cpp"
     ```

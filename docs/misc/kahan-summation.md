@@ -22,7 +22,7 @@ Kahan 求和算法主要通过一个单独变量用来累积误差。如下方�
 
 ## 实现
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     float kahanSum(vector<float> nums) {
       float sum = 0.0f;
@@ -41,10 +41,10 @@ Kahan 求和算法主要通过一个单独变量用来累积误差。如下方�
 
 在 OI 中，Kahan 求和主要作为辅助工具存在，为计算结果提供误差更小的值。
 
-???+ note " 例题 [CodeForces Contest 800 Problem A. Voltage Keepsake](https://codeforces.com/contest/800/problem/A)"
+???+ note "例题 [CodeForces Contest 800 Problem A. Voltage Keepsake](https://codeforces.com/contest/800/problem/A)"
     有 $n$ 个同时使用的设备。第 $i$ 个设备每秒使用 $a_{i}$ 单位的功率。这种用法是连续的。也就是说，在 $\lambda$ 秒内，设备将使用 $\lambda \times a_{i}$ 单位的功率。第 $i$ 个设备当前存储了 $b_{i}$ 单位的电力。所有设备都可以存储任意数量的电量。有一个可以插入任何单个设备的充电器。充电器每秒会为设备增加 $p$ 个单位的电量。这种充电是连续的。也就是说，如果将设备插入 $\lambda$ 秒，它将获得 $\lambda \times p$ 单位的功率。我们可以在任意时间单位内（包括实数）切换哪个设备正在充电（切换所需时间忽略不计）。求其中一个设备达到 $0$ 单位功率前，可以使用这些设备的最长时间。
 
-???+ note " 例题 [CodeForces Contest 504 Problem B. Misha and Permutations Summation](https://codeforces.com/problemset/problem/504/B)"
+???+ note "例题 [CodeForces Contest 504 Problem B. Misha and Permutations Summation](https://codeforces.com/problemset/problem/504/B)"
     定义数字 $0, 1, \cdots, (n - 1)$ 的两个排列 $p$ 和 $q$ 的和为 $Perm((Ord(p)+Ord(q))\bmod n!)$，其中 $Perm(x)$ 是数字 $0, 1, \cdots, (n-1)$ 的第 $x$ 个字典排列（从零开始计数），$Ord(p)$ 是字典序排列 $p$ 的个数。例如，$Perm(0) = (0, 1, \cdots , n - 2, n - 1)$，$Perm(n! - 1) = (n - 1, n-2,\cdots, 1,0))$。Misha 有两个排列 $p$ 和 $q$，找到它们的总和。
 
 ## 编程语言的求和

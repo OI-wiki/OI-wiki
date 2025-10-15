@@ -8,7 +8,7 @@
 
 温故而知新，在开始学习插头 DP 之前，不妨先让我们回顾一个经典问题。
 
-???+ note " 例题 [「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400)"
+???+ note "例题 [「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400)"
     题目大意：在 $N\times M$ 的棋盘内铺满 $1\times 2$ 或 $2\times 1$ 的多米诺骨牌，求方案数。
 
 当 $n$ 或 $m$ 规模不大的时候，这类问题可以使用 [状压 DP](./state.md) 解决。逐行划分阶段，设 $dp(i,s)$ 表示当前已考虑过前 $i$ 行，且第 $i$ 行的状态为 $s$ 的方案数。这里的状态 $s$ 的每一位可以表示这个这个位置是否已被上一行覆盖。
@@ -30,7 +30,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 观察到这里不放和竖放的方程可以合并。
 
-??? "实现"
+??? note "实现"
     ```cpp
     #include <algorithm>
     #include <iostream>
@@ -62,7 +62,7 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? note " 习题 [「SRM 671. Div 1 900」BearDestroys](https://archive.topcoder.com/ProblemStatement/pm/14069)"
+??? note "习题 [「SRM 671. Div 1 900」BearDestroys](https://archive.topcoder.com/ProblemStatement/pm/14069)"
     题目大意：给定 $n\times m$ 的矩阵，每个格子有 `E` 或 `S`。
     对于一个矩阵，有一个计分方案。按照行优先的规则扫描每个格子，如果这个格子之前被骨牌占据，则 skip。
     否则尝试放多米诺骨牌。如果放骨牌的方向在矩阵外或被其他骨牌占据，则放置失败，切换另一种方案或 skip。
@@ -89,28 +89,28 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 #### 例题
 
-???+ note " 例题 [「HDU 1693」Eat the Trees](https://acm.hdu.edu.cn/showproblem.php?pid=1693)"
+???+ note "例题 [「HDU 1693」Eat the Trees](https://acm.hdu.edu.cn/showproblem.php?pid=1693)"
     题目大意：求用若干条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
 严格来说，多条回路问题并不属于插头 DP，因为我们只需要和上面的骨牌覆盖问题一样，记录插头是否存在，然后成对的合并和生成插头就可以了。
 
 注意对于一个宽度为 $m$ 的棋盘，轮廓线的宽度为 $m+1$，因为包含 $m$ 个上插头，和 $1$ 个左插头。注意，当一行迭代完成之后，最右边的左插头通常是不合法的状态，同时我们需要补上下一行第一个左插头，这需要我们调整当前轮廓线的状态，通常是所有状态进行左移，我们把这个操作称为滚动 `roll()`。
 
-??? 例题代码
+??? note "例题代码"
     ```cpp
     --8<-- "docs/dp/code/plug/plug_1.cpp"
     ```
 
 #### 习题
 
-??? note " 习题 [「ZOJ 3466」The Hive II](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827368730)"
+??? note "习题 [「ZOJ 3466」The Hive II](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827368730)"
     题目大意：同上题，但格子变成了六边形。
 
 ### 一条回路
 
 #### 例题
 
-???+ note " 例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
+???+ note "例题 [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
     题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数。
 
 在上面的状态表示中我们每合并一组连通的插头，就会生成一条独立的回路，因而在本题中，我们还需要区分插头之间的连通性（出现了！）。这需要我们对状态进行额外的编码。
@@ -240,36 +240,36 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? 例题代码
+??? note "例题代码"
     ```cpp
     --8<-- "docs/dp/code/plug/plug_2.cpp"
     ```
 
 #### 习题
 
-??? note " 习题 [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
+??? note "习题 [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
     题目大意：求用一条回路覆盖 $N\times M$ 棋盘的方案数，有些位置有障碍。
 
-??? note " 习题 [「USACO 5.4.4」Betsy's Tours](https://hydro.ac/d/USACO/p/USACO544)"
+??? note "习题 [「USACO 5.4.4」Betsy's Tours](https://hydro.ac/d/USACO/p/USACO544)"
     题目大意：一个 $N\times N$ 的方阵（$N\le 7$），求从左上角出发到左下角结束经过每个格子的路径总数。虽然是一条路径，但因为起点和终点固定，可以转化为一条回路问题。
 
-??? note " 习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
+??? note "习题 [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
     题目大意：一个 $N\times M$ 的棋盘，求从左下角出发到右下角结束经过每个格子的路径总数，有些位置有障碍。
 
-??? note " 习题 [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
+??? note "习题 [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
     题目大意：求用一条有向回路覆盖 $4\times N$ 的棋盘的方案数，需要高精度。
 
-??? note " 习题 [「HNOI 2007」神奇游乐园](https://www.luogu.com.cn/problem/P3190)"
+??? note "习题 [「HNOI 2007」神奇游乐园](https://www.luogu.com.cn/problem/P3190)"
     题目大意：给定一个 $n\times m$ 的网格图，每格内有一个权值，求一个任意一个回路，最大化经过的权值和。
 
-??? note " 习题 [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
+??? note "习题 [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
     题目大意：用多条回路覆盖 $n\times n$ 的方阵，每个有 $m$ 条回路的方案对答案的贡献是 $2^m$，求所有方案的贡献和。
 
 ### 一条路径
 
 #### 例题
 
-???+ note " 例题 [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
+???+ note "例题 [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
     题目大意：一个 $N\times M$ 的方阵（$N,M\le 8$），每个格点有一个权值，求一段路径，最大化路径覆盖的格点的权值和。
 
 本题是标准的一条路径问题，在一条路径问题中，编码的状态中还会存在不能配对的独立插头。需要在状态转移函数中，额外讨论独立插头的生成、合并与消失的情况。独立插头的生成和消失对应着路径的一端，因而这类事件不会发生超过两次（一次生成一次消失，或者两次生成一次合并），否则最终结果一定会出现多个连通块。
@@ -334,17 +334,17 @@ if (s >> j & 1) {       // 如果已被覆盖
     }
     ```
 
-??? 例题代码
+??? note "例题代码"
     ```cpp
     --8<-- "docs/dp/code/plug/plug_3.cpp"
     ```
 
 #### 习题
 
-??? note " 习题 [「BZOJ 2310」ParkII](https://hydro.ac/p/bzoj-P2310)"
+??? note "习题 [「BZOJ 2310」ParkII](https://hydro.ac/p/bzoj-P2310)"
     题目大意：$m\times n$ 的棋盘，每个格点有一个权值，求一条路径覆盖，最大化路径经过的点的权值和。
 
-??? note " 习题 [「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
+??? note "习题 [「NOI 2010 Day2」旅行路线](https://www.luogu.com.cn/problem/P1933)"
     题目大意：$n\times m$ 的棋盘，棋盘的每个格子有一个 01 权值 T\[x]\[y]，要求寻找一个路径覆盖，满足：
     
     -   第 i 个参观的格点 (x, y)，满足 T\[x]\[y]= L\[i]
@@ -358,7 +358,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 例题「UVa 10572」Black & White
 
-???+ note " 例题 [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513)"
+???+ note "例题 [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白染色，要求所有黑色区域和白色区域连通，且任意一个 $2\times 2$ 的子矩形内的颜色不能完全相同（例如下图中的情况非法），求合法的方案数，并构造一组合法的方案。
     
     ![black\_and\_white1](./images/black_and_white1.svg)
@@ -546,28 +546,28 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 我们特判掉这种情况，这样在本题中，就可以偷懒不用记录之前是否已经生成了封闭的连通块了。
 
-??? 例题代码
+??? note "例题代码"
     ```cpp
     --8<-- "docs/dp/code/plug/plug_4.cpp"
     ```
 
 ### 习题
 
-??? note " 习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://archive.topcoder.com/ProblemStatement/pm/6482)"
+??? note "习题 [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://archive.topcoder.com/ProblemStatement/pm/6482)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最小的连通块。
 
-??? note " 习题 [「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
+??? note "习题 [「JLOI 2009」神秘的生物](https://www.luogu.com.cn/problem/P3886)"
     题目大意：给一个棋盘图，每个格子有权值，求权值之和最大的连通块。
 
-??? note " 习题 [「AtCoder Beginner Contest 211. Problem E」Red Polyomino](https://atcoder.jp/contests/abc211/tasks/abc211_e)"
+??? note "习题 [「AtCoder Beginner Contest 211. Problem E」Red Polyomino](https://atcoder.jp/contests/abc211/tasks/abc211_e)"
     题目大意：给一个 $N\times N$ 大小的棋盘图，每个格子初始为黑色或白色。你可以从白色格子中挑选恰好 $K$ 个并将之染成红色，问有多少种染色方案满足红色格子形成一个连通块。
 
 ## 图论模型
 
-???+ note " 例题 [「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
+???+ note "例题 [「NOI 2007 Day2」生成树计数](https://www.luogu.com.cn/problem/P2109)"
     题目大意：某类特殊图的生成树计数，每个节点恰好与其前 $k$ 个节点之间有边相连。
 
-???+ note " 例题 [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://acm.hdu.edu.cn/showproblem.php?pid=5513)"
+???+ note "例题 [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://acm.hdu.edu.cn/showproblem.php?pid=5513)"
     题目大意：给出一个 $N\times M$ 的网格图，以及相邻四连通格子之间的边权。
     对于一颗生成树，每个节点的得分为 1+\[有一条连向上的边]+\[有一条连向左的边]。
     生成树的得分为所有节点的得分之积。
@@ -579,7 +579,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 例题
 
-???+ note " 例题 [「HDU 4113」Construct the Great Wall](https://acm.hdu.edu.cn/showproblem.php?pid=4113)"
+???+ note "例题 [「HDU 4113」Construct the Great Wall](https://acm.hdu.edu.cn/showproblem.php?pid=4113)"
     题目大意：在 $N\times M$ 的棋盘内构造一组回路，分割所有的 `x` 和 `o`。
 
 有一类插头 DP 问题要求我们在棋盘上构造一组墙，以分割棋盘上的某些元素。不妨称之为修墙问题，这类问题既可视作染色模型，也可视作路径模型。
@@ -597,7 +597,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 我们沿着棋盘的交叉点进行 DP（因而长宽需要增加 $1$），每次转移时，需要保证所有的 `x` 在回路之外，`o` 在回路之内。因此我们还需要维护当前位置是否在回路内部。对于这个信息我们可以加维，也可以直接统计轮廓线上到这个位置之前出现下插头次数的奇偶性（射线法）。
 
-??? 例题代码
+??? note "例题代码"
     ```cpp
     #include <cstring>
     #include <iostream>
@@ -748,42 +748,42 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 习题
 
-??? note " 习题 [「SCOI 2011」地板](https://www.luogu.com.cn/problem/P3272)"
+??? note "习题 [「SCOI 2011」地板](https://www.luogu.com.cn/problem/P3272)"
     题目大意：$r\times c$ 的棋盘上有一些位置设置障碍，问使用 L 型的瓷砖铺满所有没有障碍的格子，有多少种方案。
 
-??? note " 习题 [「HDU 4796」Winter's Coming](https://acm.hdu.edu.cn/showproblem.php?pid=4796)"
+??? note "习题 [「HDU 4796」Winter's Coming](https://acm.hdu.edu.cn/showproblem.php?pid=4796)"
     题目大意：在 $N\times M$ 的棋盘内对未染色的格点进行黑白灰染色，要求所有黑色区域和白色区域连通，且黑色区域与白色区域分别与棋盘的上下边界连通，且其中黑色区域与白色区域不能相邻。每个格子有对应的代价，求一组染色方案，最小化灰色区域的代价。
     
     ![4796](./images/4796.jpg)
 
-??? note " 习题 [「ZOJ 2125」Rocket Mania](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365624)"
+??? note "习题 [「ZOJ 2125」Rocket Mania](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365624)"
     题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与第 X 行的左边界通过管道相连。
 
-??? note " 习题 [「ZOJ 2126」Rocket Mania Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365625)"
+??? note "习题 [「ZOJ 2126」Rocket Mania Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365625)"
     题目大意：$9\times6$ 的地图上每个格子里是一种管道（`-`,`T`,`L`,`+` 型或没有），可以把管道旋转 0°,90°,180°,270°, 问地图最多能有几行的右边界与左边界通过管道相连。
 
-??? note " 习题 [「World Finals 2009/2010 Harbin」Channel](https://qoj.ac/problem/13134)"
+??? note "习题 [「World Finals 2009/2010 Harbin」Channel](https://qoj.ac/problem/13134)"
     题目大意：一张方格地图上用 `.` 表示空地、`#` 表示石头，找到最长的一条路径满足：
     
     1.  起点在左上角，终点在右下角。
     2.  不能经过石头。
     3.  路径自身不能在八连通的意义下成环。（即包括拐角处也不能接触）
 
-??? note " 习题 [「HDU 3958」Tower Defence](https://acm.hdu.edu.cn/showproblem.php?pid=3958)"
+??? note "习题 [「HDU 3958」Tower Defence](https://acm.hdu.edu.cn/showproblem.php?pid=3958)"
     题目大意：可以转化为求解一条从 $\mathit{S}$ 到 $\mathit{T}$ 的不能接触的最长路径，拐角处可以接触。
 
-??? note " 习题 [「UVa 10531」Maze Statistics](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1472)"
+??? note "习题 [「UVa 10531」Maze Statistics](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1472)"
     题目大意：有一个 $N\times M$ 的图，每个格子有独立概率 $\mathit{p}$ 变成障碍物。你要从迷宫左上角走到迷宫右下角。求每个格子成为一个 **有解迷宫（即起点终点四联通）** 中的障碍物的概率。（$N \le 5$，$M \le 6$）
 
-??? note " 习题 [「Aizu 2452」Pipeline Plans](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
+??? note "习题 [「Aizu 2452」Pipeline Plans](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
     题目大意：现有一共 12 种图案的瓷砖，每种瓷砖数量给定。要求铺到一块可视为 $R\times C$ 网格图的矩形地板上，一个格子铺一块瓷砖，且左上角格子的中心与右下角格子的中心通过瓷砖图案上的线联通。$(2 \le R \times C \le 15)$
     
     ![plug2](./images/plug2.png)
 
-??? note " 习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
+??? note "习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
     题目大意：一块 $N\times M$ 的电路板，上面有些位置是电线不能走的障碍，给定 $K$ 个格子对，要求每对格子都有电线相连，且电线之间互不相交（允许一条电路线从上边界进入当前格子，从左边界离开这个格子，另外一条电路线可以从下边界进入格子，从右边界出去）。视电线为无向边，求满足要求的最短电线长度和方案数。
 
-??? note " 习题 [「SPOJ CAKE3」Delicious Cake](https://www.spoj.com/problems/CAKE3)"
+??? note "习题 [「SPOJ CAKE3」Delicious Cake](https://www.spoj.com/problems/CAKE3)"
     题目大意：一块可视为 $N\times M$ 网格的蛋糕，现沿着格线将蛋糕切成数块，问有多少种不同的切割方法。切法相同当且仅当切成的每块蛋糕都形状相同且在同一位置上。（$\min(N,M) \le 5, \max(N,M) \le 130$）
 
 ## 本章注记

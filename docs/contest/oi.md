@@ -297,7 +297,7 @@ eJOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](ht
 
 ### NOI
 
-???+ warning
+???+ warning "Warning"
     此处介绍的不是「全国信息学奥林匹克竞赛」。
 
 **NOI** 全名 Nordic Olympiads in Informatics。

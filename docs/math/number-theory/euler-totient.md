@@ -59,7 +59,7 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 
 如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了。这个过程可以用 [Pollard Rho](./pollard-rho.md) 算法优化。
 
-???+ "参考实现"
+???+ note "参考实现"
     === "C++"
         ```cpp
         #include <cmath>
