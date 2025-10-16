@@ -205,7 +205,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
 ??? tip "推广"
     Gauss 引理可做如下推广[^ref7]：
     
-    设 $p$ 是奇素数，令 $I\subset\mathrm{Z}_p^*$ 满足 $I\cup -I=\mathrm{Z}_p^*$ 且 $I\cap -I=\varnothing$，其中 $-I:=\{-i:i\in I\}$，则对任意与 $p$ 互质的整数 $n$，
+    设 $p$ 是奇素数，令 $I\subset\mathbf{Z}_p^*$ 满足 $I\cup -I=\mathbf{Z}_p^*$ 且 $I\cap -I=\varnothing$，其中 $-I:=\{-i:i\in I\}$，则对任意与 $p$ 互质的整数 $n$，
     
     $$
     \left(\frac{n}{p}\right)=(-1)^{|J|},
