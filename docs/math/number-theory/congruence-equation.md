@@ -244,7 +244,7 @@ $$
 <a id="定理-6"></a>
 
 ???+ note "定理 6"
-    设 $n\nmid p-1$，$p\nmid a$，则方程
+    设 $n\mid p-1$，$p\nmid a$，则方程
     
     $$
     x^n\equiv a\pmod p\tag{9}
