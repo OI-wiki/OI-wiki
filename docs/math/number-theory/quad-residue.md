@@ -211,7 +211,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
     \left(\frac{n}{p}\right)=(-1)^{|J|},
     $$
     
-    其中 $J=\{j\in I:aj\in -I\}$.
+    其中 $J=\{j\in I:nj\in -I\}$.
     
     不难发现取 $I=\{1,2,\dots,(p-1)/2\}$ 即可得到 Gauss 引理。证明方法和 Gauss 引理的证明基本相同，故省略。
 
