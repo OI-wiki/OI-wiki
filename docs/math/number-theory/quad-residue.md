@@ -172,10 +172,10 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
     \left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}.
     $$
 
-证明方式很多[^ref5]。一种证明方式是基于如下引理：
+证明方式很多[^ref5]。一种证明方式是基于如下引理[^ref6]：
 
 ???+ note "Gauss 引理"
-    设 $p$ 是奇素数，$(n,p)=1$，对整数 $k~\left(1\leq k\leq (p-1)/2\right)$，令 $r_k$ 为 $nk$ 模 $p$ 的最小非负剩余，设 $A=\{r_k:r_k < p/2\}$，$B=\{r_k:r_k>p/2\}$，则
+    设 $p$ 是奇素数，$(n,p)=1$，对整数 $k~\left(1\leq k\leq (p-1)/2\right)$，令 $r_k=nk\bmod p$，设 $A=\{r_k:r_k < p/2\}$，$B=\{r_k:r_k > p/2\}$，则
     
     $$
     \left(\frac{n}{p}\right)=(-1)^{|B|}.
@@ -201,6 +201,19 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
     $$
     
     从而由 Legendre 符号的 [性质 1](#性质) 即得证。
+
+??? tip "推广"
+    Gauss 引理可做如下推广[^ref7]：
+    
+    设 $p$ 是奇素数，令 $I\subset\mathbf{Z}_p^*$ 满足 $I\cup -I=\mathbf{Z}_p^*$ 且 $I\cap -I=\varnothing$，其中 $-I:=\{-i:i\in I\}$，则对任意与 $p$ 互质的整数 $n$，
+    
+    $$
+    \left(\frac{n}{p}\right)=(-1)^{|J|},
+    $$
+    
+    其中 $J=\{j\in I:nj\in -I\}$.
+    
+    不难发现取 $I=\{1,2,\dots,(p-1)/2\}$ 即可得到 Gauss 引理。证明方法和 Gauss 引理的证明基本相同，故省略。
 
 容易得到如下推论：
 
@@ -529,3 +542,7 @@ $$
 [^ref4]: Alin Bostan, Ryuhei Mori. A Simple and Fast Algorithm for Computing the N-th Term of a Linearly Recurrent Sequence. Available at <https://arxiv.org/abs/2008.08822>.
 
 [^ref5]: [Proofs of quadratic reciprocity - Wikipedia](https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity)
+
+[^ref6]: Carl Friedrich Gauss. Untersuchungen über höhere Arithmetik, 1965. Page 458-462.
+
+[^ref7]: Kobi Kremnizer.[Lectures in number theory 2022](https://courses.maths.ox.ac.uk/pluginfile.php/29788/mod_resource/content/1/numbertheory-2022.pdf). Proposition 4.3.
