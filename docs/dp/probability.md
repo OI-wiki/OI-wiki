@@ -2,11 +2,11 @@ author: Tiphereth-A, ShaoChenHeng, Enter-tainer, ksyx, c-forrest, StudyingFather
 
 ## 引入
 
-概率 DP 用于解决概率问题与期望问题，建议先对 [概率 & 期望](../math/probability/exp-var.md) 的内容有一定了解。一般情况下，解决概率问题需要顺序循环，而解决期望问题使用逆序循环，如果定义的状态转移方程存在后效性问题，还需要用到 [高斯消元](../math/numerical/gauss.md) 来优化。概率 DP 也会结合其他知识进行考察，例如 [状态压缩](./state.md)，树上进行 DP 转移等。
+概率 DP 用于解决概率问题与期望问题，建议先对 [概率 & 期望](../math/probability/exp-var.md) 的内容有一定了解。一般情况下，解决概率问题需要顺序循环，而解决期望问题使用逆序循环。如果定义的状态转移方程存在后效性问题，还需要用到 [高斯消元](../math/numerical/gauss.md) 来优化。概率 DP 也会结合其他知识进行考察，例如 [状态压缩](./state.md)、树上进行 DP 转移等。
 
 ## 概率 DP
 
-这类题目采用顺推，也就是从初始状态推向结果。同一般的 DP 类似的，难点依然是对状态转移方程的刻画，只是这类题目经过了概率论知识的包装。
+这类题目采用顺推，也就是从初始状态推向结果。同一般的 DP 类似，难点依然是对状态转移方程的刻画，只是这类题目经过了概率论知识的包装。
 
 ### 例题
 
@@ -46,17 +46,17 @@ author: Tiphereth-A, ShaoChenHeng, Enter-tainer, ksyx, c-forrest, StudyingFather
     
     考虑 $f_{i,j}$ 的状态转移：
     
-    -   $f_{i,j}$，发现一个 bug 属于已经发现的 $i$ 种 bug 分类，$j$ 个子系统，概率为 $p_1=\frac{i}{n}\cdot\frac{j}{s}$
-    -   $f_{i,j+1}$，发现一个 bug 属于已经发现的 $i$ 种 bug 分类，不属于已经发现的子系统，概率为 $p_2=\frac{i}{n}\cdot(1-\frac{j}{s})$
-    -   $f_{i+1,j}$，发现一个 bug 不属于已经发现 bug 分类，属于 $j$ 个子系统，概率为 $p_3=(1-\frac{i}{n})\cdot\frac{j}{s}$
-    -   $f_{i+1,j+1}$，发现一个 bug 不属于已经发现 bug 分类，不属于已经发现的子系统，概率为 $p_4=(1-\frac{i}{n})\cdot(1-\frac{j}{s})$
+    -   $f_{i,j}$，发现一个 bug 属于已经发现的 $i$ 种 bug 分类，$j$ 个子系统，概率为 $p_1=\dfrac{i}{n}\cdot\dfrac{j}{s}$。
+    -   $f_{i,j+1}$，发现一个 bug 属于已经发现的 $i$ 种 bug 分类，不属于已经发现的子系统，概率为 $p_2=\dfrac{i}{n}\cdot(1-\dfrac{j}{s})$。
+    -   $f_{i+1,j}$，发现一个 bug 不属于已经发现 bug 分类，属于 $j$ 个子系统，概率为 $p_3=(1-\dfrac{i}{n})\cdot\dfrac{j}{s}$。
+    -   $f_{i+1,j+1}$，发现一个 bug 不属于已经发现 bug 分类，不属于已经发现的子系统，概率为 $p_4=(1-\dfrac{i}{n})\cdot(1-\dfrac{j}{s})$。
     
     再根据期望的线性性质，就可以得到状态转移方程：
     
     $$
     \begin{aligned}
     f_{i,j} &= p_1\cdot f_{i,j}+p_2\cdot f_{i,j+1}+p_3\cdot f_{i+1,j}+p_4\cdot f_{i+1,j+1} + 1\\
-    &= \frac{p_2\cdot f_{i,j+1}+p_3\cdot f_{i+1,j}+p_4\cdot f_{i+1,j+1}+1}{1-p_1}
+    &= \dfrac{p_2\cdot f_{i,j+1}+p_3\cdot f_{i+1,j}+p_4\cdot f_{i+1,j+1}+1}{1-p_1}
     \end{aligned}
     $$
 
@@ -75,7 +75,7 @@ author: Tiphereth-A, ShaoChenHeng, Enter-tainer, ksyx, c-forrest, StudyingFather
     
     考虑 $f_{i,j,0/1}$ 的状态转移：
     
-    -   如果这一阶段不换，即 $f_{i,j,0}$。可能是由上一次不换的状态转移来的，那么就是 $f_{i-1,j,0}+w_{c_{i-1},c_{i}}$, 也有可能是由上一次交换的状态转移来的，这里结合条件概率和全概率的知识分析可以得到 $f_{i-1,j,1}+w_{d_{i-1},c_{i}}\cdot p_{i-1}+w_{c_{i-1},c_{i}}\cdot (1-p_{i-1})$，状态转移方程就有
+    -   如果这一阶段不换，即 $f_{i,j,0}$。可能是由上一次不换的状态转移来的，那么就是 $f_{i-1,j,0}+w_{c_{i-1},c_{i}}$, 也有可能是由上一次交换的状态转移来的，这里结合条件概率和全概率的知识分析可以得到 $f_{i-1,j,1}+w_{d_{i-1},c_{i}}\cdot p_{i-1}+w_{c_{i-1},c_{i}}\cdot (1-p_{i-1})$，状态转移方程就有：
     
     $$
     \begin{aligned}
@@ -103,7 +103,7 @@ author: Tiphereth-A, ShaoChenHeng, Enter-tainer, ksyx, c-forrest, StudyingFather
 ### 例题
 
 ???+ example "[CodeForces 24D Broken robot](https://codeforces.com/problemset/problem/24/D)"
-    题目大意：给出一个 $n \times m$ 的矩阵区域，一个机器人初始在第 $x$ 行第 $y$ 列，每一步机器人会等概率地选择停在原地，左移一步，右移一步，下移一步，如果机器人在边界则不会往区域外移动，问机器人到达最后一行的期望步数。
+    给出一个 $n \times m$ 的矩阵区域。一个机器人初始在第 $x$ 行第 $y$ 列，每一步机器人会等概率地选择停在原地、左移一步、右移一步、下移一步。如果机器人在边界则不会往区域外移动，问机器人到达最后一行的期望步数。
 
 ??? note "解答"
     在 $m=1$ 时每次有 $\dfrac{1}{2}$ 的概率不动，有 $\dfrac{1}{2}$ 的概率向下移动一格，答案为 $2\cdot (n-x)$。
@@ -122,7 +122,7 @@ author: Tiphereth-A, ShaoChenHeng, Enter-tainer, ksyx, c-forrest, StudyingFather
     -   $2f_{i,m}-f_{i,m-1}=3+f_{i+1,m}$
     
     由于是逆序的递推，所以每一个 $f_{i+1,j}$ 是已知的。
-    由于有 $m$ 列，所以右边相当于是一个 $m$ 行的列向量，那么左边就是 $m$ 行 $m$ 列的矩阵。使用增广矩阵，就变成了 m 行 m+1 列的矩阵，然后进行 [高斯消元](../math/numerical/gauss.md) 即可解出答案。
+    由于有 $m$ 列，所以右边相当于是一个 $m$ 行的列向量，那么左边就是 $m$ 行 $m$ 列的矩阵。使用增广矩阵，就变成了 $m$ 行 $m+1$ 列的矩阵，然后进行 [高斯消元](../math/numerical/gauss.md) 即可解出答案。
 
 ??? note "参考代码"
     ```cpp
