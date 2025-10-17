@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
  public:
   vector<int> majorityElement(vector<int>& nums) {
-    // 将摩尔投票算法的「抵消2个不同元素」变为「抵消3个两两不同的元素」
+    // 将多数投票算法的「抵消2个不同元素」变为「抵消3个两两不同的元素」
     int maj1, maj2;
     int cnt1 = 0, cnt2 = 0;
     for (int num : nums) {
