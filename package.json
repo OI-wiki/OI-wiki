@@ -37,7 +37,7 @@
     "cross-env": "^7.0.3",
     "klaw": "^4.0.1",
     "node-fetch": "^3.2.8",
-    "node-html-parser": "^5.3.3",
+    "node-html-parser": "7.0.1",
     "octokit": "^4.0.2",
     "oiwiki-feedback-sys-frontend": "^0.5.13",
     "patch-package": "^6.5.1",
