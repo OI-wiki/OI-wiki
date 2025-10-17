@@ -4,7 +4,7 @@ using namespace std;
 
 // --8<-- [start:core]
 class Solution {
-public:
+ public:
   vector<int> majorityElement(vector<int>& nums) {
     // 将摩尔投票算法的「抵消2个不同元素」变为「抵消3个两两不同的元素」
     int maj1, maj2;
@@ -45,9 +45,10 @@ public:
 
 // --8<-- [end:core]
 int main() {
-  int n; scanf("%d", &n);
+  int n;
+  scanf("%d", &n);
   vector<int> nums(n);
-  for (int &i : nums) scanf("%d", &i);
+  for (int& i : nums) scanf("%d", &i);
   Solution sol;
   vector<int> ans = sol.majorityElement(nums);
   for (int i = 0; i < ans.size(); i++)

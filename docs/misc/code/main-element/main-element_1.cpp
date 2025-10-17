@@ -5,7 +5,8 @@ int main() {
   scanf("%d", &n);
   int val, cnt = 0;
   while (n--) {
-    int x; scanf("%d", &x);
+    int x;
+    scanf("%d", &x);
     if (!cnt) val = x;
     (val == x) ? ++cnt : --cnt;
   }
