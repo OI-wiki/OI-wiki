@@ -108,7 +108,7 @@ $$
 \frac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j
 $$
 
-且 $Q(x)=x^d\Gamma\left(x^{-1}\right)$，$\deg{P}<d$。我们称其为「**有理函数**」是因为 $P(x),Q(x)$ 是「**多项式**」。
+且 $Q(x)=x^d\Gamma\left(x^{-1}\right)$，$\deg{P} < d$。我们称其为「**有理函数**」是因为 $P(x),Q(x)$ 是「**多项式**」。
 
 **证明**：对于 $P(x)=\sum_{j=0}^{d-1}p_jx^j$ 和 $Q(x):=\sum_{j=0}^{d}q_jx^j$ 考虑 $\dfrac{P(x)}{Q(x)}=\sum_{j\geq 0}\tilde{q}_jx^j$ 的系数定义，这几乎就是形式幂级数「**除法**」的定义，
 
@@ -116,7 +116,7 @@ $$
 \tilde{q}_N=
 \begin{cases}
 p_0q_0^{-1},&\text{ if }N=0, \\
-\left(p_N-\sum_{j=1}^{N}q_j\tilde{q}_{N-j}\right)\cdot q_0^{-1},&\text{ else if }N<d, \\
+\left(p_N-\sum_{j=1}^{N}q_j\tilde{q}_{N-j}\right)\cdot q_0^{-1},&\text{ else if }N < d, \\
 -q_0^{-1}\sum_{j=1}^{d}q_j\tilde{q}_{N-j},&\text{ otherwise}.
 \end{cases}
 $$
@@ -153,7 +153,7 @@ $$
 
 目标是给出上述多项式 $P(x),Q(x)$，求算 $\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\dfrac{P(x)}{Q(x)}$。下面的计算中我们只需考虑对答案「**有影响**」的系数，这是 Bostan–Mori 算法的关键。
 
-我们不妨假设 $\deg{P}<\deg{Q}$，否则我们也可以通过一次带余除法使问题回到这种情况。
+我们不妨假设 $\deg{P} < \deg{Q}$，否则我们也可以通过一次带余除法使问题回到这种情况。
 
 我们先考虑更简单的问题：
 

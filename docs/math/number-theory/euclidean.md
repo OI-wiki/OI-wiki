@@ -24,7 +24,7 @@ $$
 
 ### 代数解法
 
-首先，将 $a,b$ 对 $c$ 取模，可以简化问题，将问题转化为 $0\le a,b<c$ 的情形：
+首先，将 $a,b$ 对 $c$ 取模，可以简化问题，将问题转化为 $0\le a,b < c$ 的情形：
 
 $$
 \begin{aligned}
@@ -48,14 +48,14 @@ $$
 
 $$
 \sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor
-=\sum_{i=0}^n\sum_{j=0}^{m-1}\left[j<\left\lfloor \frac{ai+b}{c} \right\rfloor\right].
+=\sum_{i=0}^n\sum_{j=0}^{m-1}\left[j < \left\lfloor \frac{ai+b}{c} \right\rfloor\right].
 $$
 
 交换求和次序，这需要对于每个 $j$ 计算满足条件的 $i$ 的范围。为此，将条件变形：
 
 $$
 \begin{aligned}
-&j<\left\lfloor \frac{ai+b}{c} \right\rfloor = \left\lceil \frac{ai+b+1}{c} \right\rceil-1\\
+&j < \left\lfloor \frac{ai+b}{c} \right\rfloor = \left\lceil \frac{ai+b+1}{c} \right\rceil-1\\
 &\iff j + 1 < \left\lceil \frac{ai+b+1}{c} \right\rceil
 \iff j+1< \frac{ai+b+1}{c} \\
 &\iff \dfrac{cj+c-b-1}{a} < i
@@ -68,13 +68,13 @@ $$
 $$
 \begin{aligned}
 f(a,b,c,n)&=\sum_{j=0}^{m-1}
-\sum_{i=0}^n\left[i>\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor \right]\\
+\sum_{i=0}^n\left[i > \left\lfloor\frac{cj+c-b-1}{a}\right\rfloor \right]\\
 &=\sum_{j=0}^{m-1}\left(n-\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor\right)\\
 &=nm-f\left(c,c-b-1,a,m-1\right).
 \end{aligned}
 $$
 
-令 $(a',b',c',n')=(c,c-b-1,a,m-1)$，这就又回到了前面讨论过的 $a'>c'$ 的情形。
+令 $(a',b',c',n')=(c,c-b-1,a,m-1)$，这就又回到了前面讨论过的 $a' > c'$ 的情形。
 
 将这两步转化结合在一起，可以发现在过程中，$(a,c)$ 不断地取模后交换位置，直到 $a=0$。这就类似于对 $(a,c)$ 进行辗转相除，这也是类欧几里德算法的得名。它的时间复杂度是 $O(\log\min\{a,c\})$ 的。
 
@@ -87,13 +87,13 @@ $$
     
     考察 $S$ 和 $k$ 在算法过程中的变化。第一步取模时，$n$ 保持不变，$k$ 近似由 $a/c$ 变为 $(a\bmod c)/c$，相当于斜率由 $k$ 变为 $k-\lfloor k\rfloor$，而 $S$ 也近似变为原来的 $(k-\lfloor k\rfloor)$ 倍。第二步交换横纵坐标时，$S$ 近似保持不变，$k$ 则变为它的倒数。因此，若设两步操作后，二元组 $(k,S)$ 变为 $(k',S')$，则有 $k'=(k-\lfloor k\rfloor)^{-1}$ 且 $S'=(k-\lfloor k\rfloor)S$。
     
-    因为 $1\le\lfloor k'\rfloor\le k'<\lfloor k'\rfloor+1$，所以，递归计算两轮后，乘积缩小的倍数最少为
+    因为 $1\le\lfloor k'\rfloor\le k' < \lfloor k'\rfloor+1$，所以，递归计算两轮后，乘积缩小的倍数最少为
     
     $$
     (k'-\lfloor k'\rfloor)(k-\lfloor k\rfloor) = 1-\dfrac{\lfloor k'\rfloor}{k'} < 1-\dfrac{\lfloor k'\rfloor}{\lfloor k'\rfloor+1} = \dfrac{1}{\lfloor k'\rfloor+1}\le \dfrac{1}{2}.
     $$
     
-    因此，至多 $O(\log S)$ 轮，算法必然终止。因为从第二轮开始，每轮开始时的 $S$ 总是不超过上一轮取模结束后的 $S$，而后者大致为 $kn^2$ 且 $k<1$，因而 $O(\log S)\subseteq O(\log n)$。这就得到了上述结论。
+    因此，至多 $O(\log S)$ 轮，算法必然终止。因为从第二轮开始，每轮开始时的 $S$ 总是不超过上一轮取模结束后的 $S$，而后者大致为 $kn^2$ 且 $k < 1$，因而 $O(\log S)\subseteq O(\log n)$。这就得到了上述结论。
 
 模板题的参考实现如下：
 
@@ -137,7 +137,7 @@ $$
 这种递归的算法行得通，主要有两个原因：
 
 -   第一，直线的斜率不断地先取小数部分再取倒数，这等价于计算直线斜率 $k=a/c$ 的 [连分数展开](./continued-fraction.md#连分数表示的求法)。因为有理分数的连分数展开的长度是 $O(\log\min\{a,c\})$ 的，所以这一过程一定在 $O(\log\min\{a,c\})$ 步后终止；
--   第二，因为每次翻转坐标轴的时候，直线斜率都是小于一的，因此，直觉上应该有 $m<n$，也就是说，经过这样一轮迭代后，横坐标的范围一直是在缩小的。前文的复杂度计算中通过严格的分析说明，每两轮迭代后，$n$ 至多为原来的一半，故而这一过程一定在 $O(\log n)$ 步后终止。
+-   第二，因为每次翻转坐标轴的时候，直线斜率都是小于一的，因此，直觉上应该有 $m < n$，也就是说，经过这样一轮迭代后，横坐标的范围一直是在缩小的。前文的复杂度计算中通过严格的分析说明，每两轮迭代后，$n$ 至多为原来的一半，故而这一过程一定在 $O(\log n)$ 步后终止。
 
 这也是斜率为有理数时的类欧几里得算法的复杂度是 $O(\log\min\{a,c,n\})$ 的原因。
 
@@ -159,7 +159,7 @@ $$
 ??? note "解答一"
     类似于 $f$ 的推导，可以得到 $g,h$ 的递归表达式。
     
-    首先，利用取模，将问题转化为 $0\le a,b<c$ 的情形：
+    首先，利用取模，将问题转化为 $0\le a,b < c$ 的情形：
     
     $$
     \begin{aligned}
@@ -185,8 +185,8 @@ $$
     \begin{aligned}
     g(a,b,c,n)&=\sum_{i=0}^ni\left\lfloor \frac{ai+b}{c} \right\rfloor\\
     &=\sum_{i=0}^n \sum_{j=0}^{m-1}i
-    \left[j<\left\lfloor\frac{ai+b}{c}\right\rfloor\right] \\
-    &=\sum_{j=0}^{m-1}\sum_{i=0}^n i\left[i>\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor \right]\\
+    \left[j < \left\lfloor\frac{ai+b}{c}\right\rfloor\right] \\
+    &=\sum_{j=0}^{m-1}\sum_{i=0}^n i\left[i > \left\lfloor\frac{cj+c-b-1}{a}\right\rfloor \right]\\
     &=\sum_{j=0}^{m-1}\dfrac{1}{2}\left(\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor+n+1\right)\left(n-\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor\right)\\
     &=\dfrac{1}{2}mn(n+1) - \dfrac{1}{2}\sum_{j=0}^{m-1}\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor - \dfrac{1}{2}\sum_{j=0}^{m-1}\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor^2\\
     &=\dfrac{1}{2}mn(n+1) - \dfrac{1}{2}f(c,c-b-1,a,m-1) - \dfrac{1}{2}h(c,c-b-1,a,m-1).
@@ -198,8 +198,8 @@ $$
     $$
     \begin{aligned}
     h(a,b,c,n)&=\sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor^2\\
-    &=\sum_{i=0}^n\sum_{j=0}^{m-1}(2j+1)\left[j<\left\lfloor\frac{ai+b}{c}\right\rfloor\right]\\
-    &=\sum_{j=0}^{m-1}\sum_{i=0}^n(2j+1)\left[i>\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor \right]\\
+    &=\sum_{i=0}^n\sum_{j=0}^{m-1}(2j+1)\left[j < \left\lfloor\frac{ai+b}{c}\right\rfloor\right]\\
+    &=\sum_{j=0}^{m-1}\sum_{i=0}^n(2j+1)\left[i > \left\lfloor\frac{cj+c-b-1}{a}\right\rfloor \right]\\
     &=\sum_{j=0}^{m-1}(2j+1)\left(n-\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor\right)\\
     &=nm^2 - \sum_{j=0}^{m-1}\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor - 2\sum_{j=0}^{m-1}j\left\lfloor\frac{cj+c-b-1}{a}\right\rfloor\\
     &=nm^2 - f(c,c-b-1,a,m-1) - 2g(c,c-b-1,a,m-1).
@@ -209,7 +209,7 @@ $$
     从几何直观的角度看，这些非线性的求和式相当于给区域中的每个点 $(i,j)$ 都赋予了相应的权重 $w(i,j)$。除了这些权重之外，其余部分的计算过程是完全一致的。对于权重的选择，一般地，有
     
     $$
-    \sum_{i=0}^ni^r\left\lfloor \frac{ai+b}{c} \right\rfloor^s = \sum_{i=0}^n\sum_{j=0}^{m-1} i^r\left((j+1)^s-j^s\right)\left[j<\left\lfloor\frac{ai+b}{c}\right\rfloor\right].
+    \sum_{i=0}^ni^r\left\lfloor \frac{ai+b}{c} \right\rfloor^s = \sum_{i=0}^n\sum_{j=0}^{m-1} i^r\left((j+1)^s-j^s\right)\left[j < \left\lfloor\frac{ai+b}{c}\right\rfloor\right].
     $$
     
     本题的另一个特点是，$g$ 和 $h$ 在递归计算时，会相互交错。因此，需要将 $(f,g,h)$ 作为三元组同时递归。
@@ -260,12 +260,12 @@ $$
     \end{aligned}
     $$
     
-    问题转化为斜率小于一的情形。如果 $k<1$，那么设 $m=\lfloor nk\rfloor$，有
+    问题转化为斜率小于一的情形。如果 $k < 1$，那么设 $m=\lfloor nk\rfloor$，有
     
     $$
     \begin{aligned}
     f(a,b,c,n) &= \sum_{i=1}^n \lfloor ki\rfloor = \sum_{i=1}^n\sum_{j=1}^m[j\le\lfloor ki\rfloor]\\
-    &= \sum_{j=1}^m\sum_{i=1}^n[i>\lfloor k^{-1}j\rfloor] = nm - \sum_{j=1}^m\sum_{i=1}^n[i\le\lfloor k^{-1}j\rfloor].
+    &= \sum_{j=1}^m\sum_{i=1}^n[i > \lfloor k^{-1}j\rfloor] = nm - \sum_{j=1}^m\sum_{i=1}^n[i\le\lfloor k^{-1}j\rfloor].
     \end{aligned}
     $$
     
@@ -302,7 +302,7 @@ $$
     ```
 
 ???+ example "[Fraction](https://www.luogu.com.cn/problem/P5179)"
-    给定正整数 $a,b,c,d$，求所有满足 $a/b<p/q<c/d$ 的最简分数 $p/q$ 中 $(q,p)$ 的字典序最小的那个。
+    给定正整数 $a,b,c,d$，求所有满足 $a/b < p/q < c/d$ 的最简分数 $p/q$ 中 $(q,p)$ 的字典序最小的那个。
 
 ??? note "解答"
     这道题目也是 [Stern–Brocot 树](./stern-brocot.md) 的经典应用，相关题解可以在 [此处](./continued-fraction.md#连分数的树) 找到。因为它只依赖于分数的递归结构，所以它同样可以利用类似欧几里得算法的方法求解，故而也可以视作类欧几里得算法的一个应用。
@@ -315,7 +315,7 @@ $$
     
     从这个不等式中可以看出，$p/q$ 的整数部分可以确定为 $\lfloor a/b\rfloor$，直接消去该整数部分，然后整体取倒数，用于确定它的小数部分。这正是确定 $p/q$ 的连分数的 [基本方法](./continued-fraction.md#连分数表示的求法)。若最终的答案是 $p/q$，那么算法的时间复杂度为 $O(\log\min\{p,q\})$。
     
-    此处，有一个细节问题，即取倒数之后得到的字典序最小的分数，是否是取倒数之前的字典序最小的分数。换句话说，满足 $a/b<p/q<c/d$ 的分数 $p/q$ 中，字典序 $(q,p)$ 最小的，是否也是字典序 $(p,q)$ 最小的。假设不然，设 $p/q$ 是字典序 $(q,p)$ 最小的，但是 $r/s\neq p/q$ 是字典序 $(r,s)$ 最小的。这必然有 $r<p$ 且 $q<s$。但是，这说明
+    此处，有一个细节问题，即取倒数之后得到的字典序最小的分数，是否是取倒数之前的字典序最小的分数。换句话说，满足 $a/b < p/q < c/d$ 的分数 $p/q$ 中，字典序 $(q,p)$ 最小的，是否也是字典序 $(p,q)$ 最小的。假设不然，设 $p/q$ 是字典序 $(q,p)$ 最小的，但是 $r/s\neq p/q$ 是字典序 $(r,s)$ 最小的。这必然有 $r < p$ 且 $q < s$。但是，这说明
     
     $$
     \dfrac{a}{b} < \dfrac{r}{s} < \dfrac{r}{q} < \dfrac{p}{q} < \dfrac{c}{d}.
@@ -475,9 +475,9 @@ $$
     \left\lfloor\dfrac{c(j+1)-b-1}{a}\right\rfloor - \left\lfloor\dfrac{c-b-1}{a}\right\rfloor = \left\lfloor\dfrac{cj+(c-b-1)\bmod a}{a}\right\rfloor.
     $$
 
-    回忆起，交换前的序列中 $U$ 的数量为 $m = \lfloor(an+b)/c\rfloor$。而上述左移一个单位的操作，要求保证交换前至少存在一个 $U$，也就是 $m>0$。利用这一条件，可以分为两种情形：
+    回忆起，交换前的序列中 $U$ 的数量为 $m = \lfloor(an+b)/c\rfloor$。而上述左移一个单位的操作，要求保证交换前至少存在一个 $U$，也就是 $m > 0$。利用这一条件，可以分为两种情形：
 
-    -   对于 $m>0$ 的情形，处理了上面的两点后，交换完 $U$ 和 $R$ 的操作序列就是对应着参数为 $(c,(c-b-1)\bmod a,a,m-1)$ 的线段的合法序列。所以，有
+    -   对于 $m > 0$ 的情形，处理了上面的两点后，交换完 $U$ 和 $R$ 的操作序列就是对应着参数为 $(c,(c-b-1)\bmod a,a,m-1)$ 的线段的合法序列。所以，有
 
         $$
         F(a,b,c,n,U,R) = R^{\lfloor(c-b-1)/a\rfloor}UF(c,(c-b-1)\bmod a,a,m-1,R,U)R^{n-\lfloor(cm-b-1)/a\rfloor}.
@@ -498,7 +498,7 @@ $$
 ??? note "对复杂度的解释"
     对比（类）欧几里得算法，万能欧几里得算法只是多了求快速幂的步骤。其余的计算过程的复杂度和类欧几里得算法相仿，已经说明是 $O(\log\min\{a,c,n\})$ 的。现在，需要计算这些快速幂的总复杂度。
     
-    除了第一轮迭代，都有 $b<c$，因此这些迭代每轮都涉及三次快速幂的计算，总的复杂度是：
+    除了第一轮迭代，都有 $b < c$，因此这些迭代每轮都涉及三次快速幂的计算，总的复杂度是：
     
     $$
     O\left(\log\left\lfloor\dfrac{a}{c}\right\rfloor+\log\left\lfloor\dfrac{c-b_1-1}{a_1}\right\rfloor+\log\left(n-\left\lfloor\dfrac{cm-b_1-1}{a_1}\right\rfloor\right)\right),
@@ -680,7 +680,7 @@ $$
         $$
         F(k,n,U,R) = F(k-\lfloor k\rfloor,n,U,U^{\lfloor k\rfloor} R).
         $$
-    -   如果 $k<1$，那么交换操作序列中的 $U$ 和 $R$，并舍去末尾的 $U$（即交换前的 $R$），所以，有
+    -   如果 $k < 1$，那么交换操作序列中的 $U$ 和 $R$，并舍去末尾的 $U$（即交换前的 $R$），所以，有
     
         $$
         F(k,n,U,R) = F(k^{-1},m,R,U)R^{n-\lfloor k^{-1}m\rfloor}.

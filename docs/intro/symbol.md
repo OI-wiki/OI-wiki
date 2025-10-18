@@ -127,7 +127,7 @@
 
 | 编号                    | 符号，表达式                             | 意义，等同表述        | 备注与示例                                                                                                                                         |
 | --------------------- | ---------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| <a id="n7.1"></a>n7.1 | $n!$                               | 阶乘             | $n!=\prod_{k=1}^n k=1\cdot 2\cdot 3\cdot \dots \cdot n\quad (n>0)$;<br>$0!=1$.                                                                |
+| <a id="n7.1"></a>n7.1 | $n!$                               | 阶乘             | $n!=\prod_{k=1}^n k=1\cdot 2\cdot 3\cdot \dots \cdot n\quad (n > 0)$;<br>$0!=1$.                                                              |
 | <a id="n7.2"></a>n7.2 | $a^{\underline{k}}$;<br>$(a)_{-k}$ | 下降阶乘幂          | $a^{\underline{k}}=a\cdot(a-1)\cdot \dots \cdot(a-k+1)\quad (k>0)$;<br>$a^{\underline{0}}=1$;<br>$n^{\underline{k}}=\dfrac{n!}{(n-k)!}$.      |
 | <a id="n7.3"></a>n7.3 | $a^{\overline{k}}$;<br>$(a)_{+k}$  | 上升阶乘幂          | $a^{\overline{k}}=a\cdot(a+1)\cdot \dots \cdot(a+k-1)\quad (k>0)$;<br>$a^{\overline{0}}=1$;<br>$n^{\overline{k}}=\dfrac{(n+k-1)!}{(n-1)!}$.   |
 | <a id="n7.4"></a>n7.4 | $\dbinom{n}{k}$                    | 组合数            | $\dbinom{n}{k}=\dfrac{n!}{k!(n-k)!}$.                                                                                                         |

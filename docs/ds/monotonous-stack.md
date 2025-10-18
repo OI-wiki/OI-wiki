@@ -23,7 +23,7 @@
 ???+ note "实现"
     ```text
     insert x
-    while !sta.empty() && sta.top()<x
+    while !sta.empty() && sta.top() < x
         sta.pop()
     sta.push(x)
     ```

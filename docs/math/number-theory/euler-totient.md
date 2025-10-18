@@ -153,7 +153,7 @@ $$
 a^b\equiv
 \begin{cases}
 a^{b\bmod\varphi(m)},\,&\gcd(a,\,m)=1\\
-a^b,&\gcd(a,\,m)\ne1,\,b<\varphi(m)\\
+a^b,&\gcd(a,\,m)\ne1,\,b < \varphi(m)\\
 a^{b\bmod\varphi(m)+\varphi(m)},&\gcd(a,\,m)\ne1,\,b\ge\varphi(m)
 \end{cases}
 \pmod m

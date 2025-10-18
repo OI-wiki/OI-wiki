@@ -343,7 +343,7 @@ $$
     对于 $A\in\mathbf R^{m\times n}$ 和 $b\in\mathbf R^n$，下列情形中恰有一种成立：
     
     1.  存在 $x\in\mathbf R^n$，使得 $Ax=b$ 且 $x\ge 0$；
-    2.  存在 $y\in\mathbf R^m$，使得 $A^T y\ge 0$ 且 $b^Ty<0$。
+    2.  存在 $y\in\mathbf R^m$，使得 $A^T y\ge 0$ 且 $b^Ty < 0$。
 
 ??? note "证明"
     考虑线性规划问题 $\max\{0:Ax=b,~x\ge 0\}$，它的对偶问题是 $\min\{b^Ty:A^Ty\ge 0\}$。对偶问题显然是可行的，因为至少 $0\in\mathbf R^m$ 是一组可行解。因此，根据弱对偶定理，要么原问题可行，要么对偶问题无界，二者必择其一。原问题可行就是 Farkas 引理中的情形 1，而对偶问题无界就等价于 Farkas 引理中的情形 2。这就证明了 Farkas 引理。
@@ -388,7 +388,7 @@ Farkas 实际上是一种 [超平面分离定理](https://en.wikipedia.org/wiki/
     c^T\mu^* - b^T\lambda^* <0,~ ct^* - A^T\lambda^* \ge 0,~ -bt^* + A\mu^* = 0,~t^*\ge 0,~\mu^*\ge 0.
     $$
     
-    此时，如果 $t^*>0$，那么这些不等式实际说明 $(x,y)=(\mu^*/t^*,\lambda^*/t^*)$ 是前述问题的一组可行解，与假设矛盾。所以，只能有 $t^*=0$。这说明
+    此时，如果 $t^* > 0$，那么这些不等式实际说明 $(x,y)=(\mu^*/t^*,\lambda^*/t^*)$ 是前述问题的一组可行解，与假设矛盾。所以，只能有 $t^*=0$。这说明
     
     $$
     c^T\mu^* < b^T\lambda^*,~ A^T\lambda^*\le 0,~ A\mu^*=0,~\mu^*\ge 0.
@@ -485,7 +485,7 @@ $$
     I = \{i : (A^Ty - c)_i = 0\}.
     $$
 
-2.  根据互补松弛条件，如果存在问题 $(P)$ 的可行解 $x$ 使得 $x_i>0$ 仅在 $i\in I$ 上成立，就意味着已经找到一组最优解。因此，考虑线性规划问题
+2.  根据互补松弛条件，如果存在问题 $(P)$ 的可行解 $x$ 使得 $x_i > 0$ 仅在 $i\in I$ 上成立，就意味着已经找到一组最优解。因此，考虑线性规划问题
 
     $$
     (RP)\qquad
@@ -509,9 +509,9 @@ $$
     \end{aligned}
     $$
 
-    根据强对偶定理可知，$b^T\bar y = 1^Ts^*>0$。
+    根据强对偶定理可知，$b^T\bar y = 1^Ts^* > 0$。
 
-4.  根据问题 $(DRP)$ 的解改进对偶问题 $(D)$ 的可行解。设 $y' = y + \varepsilon \bar y$，其中，$\varepsilon>0$，则一定有 $b^Ty' = b^Ty + \varepsilon b^T\bar y > b^Ty$。因此，只要保证 $y'$ 仍然是对偶问题的可行解 $(D)$，就要尽可能大地选取 $\varepsilon$ 的值。
+4.  根据问题 $(DRP)$ 的解改进对偶问题 $(D)$ 的可行解。设 $y' = y + \varepsilon \bar y$，其中，$\varepsilon > 0$，则一定有 $b^Ty' = b^Ty + \varepsilon b^T\bar y > b^Ty$。因此，只要保证 $y'$ 仍然是对偶问题的可行解 $(D)$，就要尽可能大地选取 $\varepsilon$ 的值。
 
     对于 $i\in I$，有
 
@@ -524,7 +524,7 @@ $$
     对于剩下的约束，即 $i\notin I$ 时，只需要取
 
     $$
-    \varepsilon = \min\left\{\dfrac{c_i - \sum_{j}a_{ji}y_j}{\sum_{j}a_{ji}\bar y_j}:i\notin I,~\textstyle\sum_{j}a_{ji}\bar y_j>0\right\}
+    \varepsilon = \min\left\{\dfrac{c_i - \sum_{j}a_{ji}y_j}{\sum_{j}a_{ji}\bar y_j}:i\notin I,~\textstyle\sum_{j}a_{ji}\bar y_j > 0\right\}
     $$
 
     就可以在保证可行性的前提下，尽可能大地改进对偶问题的解，然后回到步骤 1 继续迭代。特别地，如果上式中的集合为空集，即 $\varepsilon=+\infty$，那么，对偶问题 $(D)$ 无界，原问题 $(P)$ 不可行。

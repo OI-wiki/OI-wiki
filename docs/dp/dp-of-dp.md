@@ -85,13 +85,13 @@ $$
     因为麻将牌序列的总数为 $(4n-13)!$，所以，只摸前 $i$ 张牌无法胡牌的概率为
     
     $$
-    \mathbf P[X>i] = \dfrac{h_i\cdot i!(4n-13-i)!}{(4n-13)!}.
+    \mathbf P[X > i] = \dfrac{h_i\cdot i!(4n-13-i)!}{(4n-13)!}.
     $$
     
     利用尾求和公式，就可以得到所求期望
     
     $$
-    \mathbf E[X] = \sum_{i=0}^\infty\mathbf P[X>i] = 1 + \sum_{i=1}^{4n-13}\dfrac{h_i\cdot i!(4n-13-i)!}{(4n-13)!}.
+    \mathbf E[X] = \sum_{i=0}^\infty\mathbf P[X > i] = 1 + \sum_{i=1}^{4n-13}\dfrac{h_i\cdot i!(4n-13-i)!}{(4n-13)!}.
     $$
     
     至此，问题转化为如何计算 $h_i$。我们采用 DP 套 DP 的方法来解决这一问题。

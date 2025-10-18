@@ -102,18 +102,18 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
     1.  $v_{k_m}\in V_m$, 其中 $k_m=\min\{k:v_k\notin\bigcup_{i=0}^{m-1} V_i\}$
     2.  若
     
-        $\{v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}\}\subset V_m,~i_{m,1}<i_{m,2}<\dots<i_{m,l_m}$
+        $\{v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}\}\subset V_m,~i_{m,1} < i_{m,2} < \dots < i_{m,l_m}$
     
         则 $v_j\in V_m$ 当且仅当
     
-        1.  $j>i_{m,l_m}$
+        1.  $j > i_{m,l_m}$
         2.  $v_j$ 与 $v_{i_{m,1}},v_{i_{m,2}},\dots,v_{i_{m,l_m}}$ 均不相邻
     
     显然若将 $V_i$ 中的点染成第 i 种颜色，则该染色方案即为 Welsh–Powell 算法给出的方案，显然有
     
     -   $V_1\neq\varnothing$
     -   $V_i\cap V_j=\varnothing\iff i\neq j$
-    -   $\exists \alpha(G)\in\Bbb{N}^*,\forall i>\alpha(G),~s.t.~ V_i=\varnothing$
+    -   $\exists \alpha(G)\in\Bbb{N}^*,\forall i > \alpha(G),~s.t.~ V_i=\varnothing$
     
     我们只需要证明：
     
@@ -160,7 +160,7 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
     
     如果 $l_x=l_y$ 此时我们可以直接将这条边的颜色设置为 $l_x$。
     
-    否则假设 $l_x<l_y$, 我们可以尝试将节点 $y$ 连出去的颜色为 $l_x$ 的边的颜色修改为 $l_y$。
+    否则假设 $l_x < l_y$, 我们可以尝试将节点 $y$ 连出去的颜色为 $l_x$ 的边的颜色修改为 $l_y$。
     
     修改的过程可以被近似的看成是一条从 $y$ 出发，依次经过颜色为 $l_x,l_y,\cdots$ 的边的有限唯一增广路。
     

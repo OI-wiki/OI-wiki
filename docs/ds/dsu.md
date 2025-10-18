@@ -167,7 +167,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ???+ info "反 Ackermann 函数"
     [Ackermann 函数](https://en.wikipedia.org/wiki/Ackermann_function)  $A(m, n)$ 的定义是这样的：
     
-    $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m>0\text{ and }n=0\\A(m-1,A(m,n-1))&\text{otherwise}\end{cases}$
+    $A(m, n) = \begin{cases}n+1&\text{if }m=0\\A(m-1,1)&\text{if }m > 0\text{ and }n=0\\A(m-1,A(m,n-1))&\text{otherwise}\end{cases}$
     
     而反 Ackermann 函数 $\alpha(n)$ 的定义是 Ackermann 函数的反函数，即为最大的整数 $m$ 使得 $A(m, m) \leqslant n$。
 
@@ -259,7 +259,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ??? note "解答一"
     考虑用带权并查集维护食物链信息。如果 $x$ 和 $y$ 是同类，那么 $x\equiv y\pmod 3$；如果 $x$ 吃 $y$，那么 $x - y \equiv 1 \pmod 3$。这样就将本题转化为前文的模板题。
     
-    具体地，对于每一句话，除去那些那些 $x>n$ 或 $y>n$ 的显然的假话外，需要判断 $x$ 和 $y$ 是否已经连接：如果已经连接，计算两者的模意义下的距离，并与这句话声称的信息进行比较；否则，将两者按照这句话提供的信息连接。除了显然的情形外，一句话是假话，当且仅当提到的两个节点已经连接，且对应的距离与这句话声称的信息矛盾。
+    具体地，对于每一句话，除去那些那些 $x > n$ 或 $y > n$ 的显然的假话外，需要判断 $x$ 和 $y$ 是否已经连接：如果已经连接，计算两者的模意义下的距离，并与这句话声称的信息进行比较；否则，将两者按照这句话提供的信息连接。除了显然的情形外，一句话是假话，当且仅当提到的两个节点已经连接，且对应的距离与这句话声称的信息矛盾。
 
 ??? note "参考实现一"
     === "C++"
@@ -283,11 +283,11 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
     
     -   `1 x y` 为假话当且仅当：
     
-        1.  $x>N$ 或 $y>N$；
+        1.  $x > N$ 或 $y > N$；
         2.  $y$ 与 $x+n$ 或 $x+2n$ 中的一个处于同一集合内。
     -   `2 x y` 为假话当且仅当：
     
-        1.  $x>N$ 或 $y>N$；
+        1.  $x > N$ 或 $y > N$；
         2.  $y$ 与 $x$ 或 $x+2n$ 中的一个处于同一集合内。
     -   若为真话，合并对应状态。
 

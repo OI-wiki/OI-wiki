@@ -37,7 +37,7 @@ $$
 5 & \textbf{while }flag\\
 6 & \qquad flag\gets False\\
 7 & \qquad\textbf{for }i\gets1\textbf{ to }n-1\\
-8 & \qquad\qquad\textbf{if }A[i]>A[i + 1]\\
+8 & \qquad\qquad\textbf{if }A[i] > A[i + 1]\\
 9 & \qquad\qquad\qquad flag\gets True\\
 10 & \qquad\qquad\qquad \text{Swap } A[i]\text{ and }A[i + 1]
 \end{array}

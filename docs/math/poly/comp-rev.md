@@ -33,12 +33,12 @@ $$
 \frac{P(y)}{Q(x,y)}\bmod{x}=\frac{P(y)}{Q(0,y)}\in\mathbb{C}\left(\left( y\right)\right)
 $$
 
-在计算 $\dfrac{P(y)}{V(z,y)}\bmod{z^{\left\lceil n/2\right\rceil}}\in\mathbb{C}\left\lbrack z\right\rbrack\left(\left( y\right)\right)$ 时我们不需要保留所有 $y$ 的系数，因为最后我们只需要提取 $y^0$ 的系数，所以 $y^{>0}$ 的系数是不需要的，而因为求出前者之后需要将其乘以若干个形如 $Q(-x,y)\in\mathbb{C}\left\lbrack x,y\right\rbrack$ 的「**多项式**」，所以只需要保留对于 $y^0$ 有贡献的系数即可。我们准备好给出伪代码：
+在计算 $\dfrac{P(y)}{V(z,y)}\bmod{z^{\left\lceil n/2\right\rceil}}\in\mathbb{C}\left\lbrack z\right\rbrack\left(\left( y\right)\right)$ 时我们不需要保留所有 $y$ 的系数，因为最后我们只需要提取 $y^0$ 的系数，所以 $y^{ > 0}$ 的系数是不需要的，而因为求出前者之后需要将其乘以若干个形如 $Q(-x,y)\in\mathbb{C}\left\lbrack x,y\right\rbrack$ 的「**多项式**」，所以只需要保留对于 $y^0$ 有贡献的系数即可。我们准备好给出伪代码：
 
 $$
 \begin{array}{ll}
 &\textbf{Algorithm }\operatorname{\mathsf{Comp}}\left(P(y),Q(x,y),n,m\right)\text{:} \\
-&\textbf{Input}\text{: }P=\sum_{0\leq j< n}p_jy^{-j}\in\mathbb{C}((y)),Q\in\mathbb{C}\left\lbrack x,y\right\rbrack ,n,m\in\mathbb{N}_{>0}\text{.} \\
+&\textbf{Input}\text{: }P=\sum_{0\leq j< n}p_jy^{-j}\in\mathbb{C}((y)),Q\in\mathbb{C}\left\lbrack x,y\right\rbrack ,n,m\in\mathbb{N}_{ > 0}\text{.} \\
 &\textbf{Output}\text{: }\left\lbrack y^{\left(-m,0\right\rbrack}\right\rbrack\dfrac{P(y)}{Q(x,y)}\bmod{x^n}\text{.} \\
 &\textbf{Require}\text{: }\left\lbrack x^0y^0\right\rbrack Q=1\text{.} \\
 1&\textbf{if }n=1\textbf{ then return }\left(\left\lbrack y^{-m+1}\right\rbrack\frac{P(y)}{Q(0,y)},\dots ,\left\lbrack y^0\right\rbrack\frac{P(y)}{Q(0,y)}\right) \\
@@ -80,7 +80,7 @@ $$
 
 在分析时间复杂度之前我们先考虑如何作二元多项式乘法，一种想法是将系数「打包」，这一方法由 Kronecker 在 1882 年通过 $y\mapsto x^N$ 将 $R\left\lbrack x,y\right\rbrack$ 上的乘法缩减为 $R\left\lbrack x\right\rbrack$ 上的乘法，但是要求 $N$ 足够大。
 
-不妨设 $\deg_x \left(AB\right)<N$，那么我们计算 $A\left(x,x^N\right)B\left(x,x^N\right)$ 之后仍然可以还原出 $A(x,y)B(x,y)$ 且「打包」和「拆包」的时间为线性。
+不妨设 $\deg_x \left(AB\right) < N$，那么我们计算 $A\left(x,x^N\right)B\left(x,x^N\right)$ 之后仍然可以还原出 $A(x,y)B(x,y)$ 且「打包」和「拆包」的时间为线性。
 
 我们使用 Kronecker 代换再计算一元多项式乘法即可，不难发现在 $n$ 为二的幂时上述算法可以在 $O\left(\mathsf{M}\left(n\right)\log n\right)$ 时间完成，因为每一次递归中 $y$ 的次数翻倍，但是 $x$ 的次数减半。
 
@@ -95,7 +95,7 @@ $$
 
 现给出 $f\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ 且 $f'(0)\neq 0$，求出 $g(x)\bmod{x^n}$ 满足 $f(g)\equiv g(f)\equiv x\pmod{x^n}$。
 
-根据 [Lagrange 反演](./lagrange-inversion.md)，对于 $n>1,k\geq 0$ 我们有
+根据 [Lagrange 反演](./lagrange-inversion.md)，对于 $n > 1,k\geq 0$ 我们有
 
 $$
 \left\lbrack x^{n-1}\right\rbrack f(x)^k=\frac{k}{n-1}\left\lbrack x^{n-1-k}\right\rbrack \left(\frac{g(x)}{x}\right)^{-(n-1)}
@@ -141,10 +141,10 @@ $$
 $$
 \begin{array}{ll}
 &\textbf{Algorithm }\operatorname{\mathsf{PowProj}}\left(P(x,y),Q(x,y),n,m\right)\text{:} \\
-&\textbf{Input}\text{: }P,Q\in\mathbb{C}\left\lbrack x,y\right\rbrack ,n,m\in\mathbb{N}_{>0}\text{.} \\
+&\textbf{Input}\text{: }P,Q\in\mathbb{C}\left\lbrack x,y\right\rbrack ,n,m\in\mathbb{N}_{ > 0}\text{.} \\
 &\textbf{Output}\text{: }\left\lbrack x^{n-1}\right\rbrack\dfrac{P(x,y)}{Q(x,y)}\bmod{y^m}\text{.} \\
 &\textbf{Require}\text{: }\left\lbrack x^0y^0\right\rbrack Q=1\text{.} \\
-1&\textbf{while }n>1\textbf{ do} \\
+1&\textbf{while }n > 1\textbf{ do} \\
 2&\qquad U(x,y)\gets P(x,y)Q(-x,y)\bmod{x^n}\bmod{y^m} \\
 3&\qquad \textbf{if }n-1\text{ is even }\textbf{then} \\
 4&\qquad\qquad P(x,y)\gets \sum_{j=0}^{\left\lceil n/2\right\rceil +1}\left(\left\lbrack x^{2j}\right\rbrack U(x,y)\right)x^j \\
