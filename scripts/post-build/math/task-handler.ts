@@ -27,6 +27,11 @@ import "@mathjax/src/js/input/tex/physics/PhysicsConfiguration.js";
 
 import { TaskHandler, log } from "../html-postprocess.js";
 
+// More details: https://github.com/mathjax/MathJax/issues/3443
+// Should remove after mathjax v4.0.1 release
+import { Styles } from '@mathjax/src/js/util/Styles.js';
+Styles.connect.margin = { ...Styles.connect.padding };
+
 // All HTML files will reference the CSS file with relative paths (to the HTML file)
 // The CSS file will reference the fonts files with relative paths (to the CSS file)
 const MATHJAX_TARGET_CSS_FILE = "assets/stylesheets/mathjax.css";
