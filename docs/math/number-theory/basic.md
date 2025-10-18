@@ -36,16 +36,16 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 ## 带余数除法
 
 ???+ note "余数"
-    设 $a,b$ 为两个给定的整数，$a\ne0$。设 $d$ 是一个给定的整数。那么，一定存在唯一的一对整数 $q$ 和 $r$，满足 $b=qa+r,d\le r<|a|+d$。
+    设 $a,b$ 为两个给定的整数，$a\ne0$。设 $d$ 是一个给定的整数。那么，一定存在唯一的一对整数 $q$ 和 $r$，满足 $b=qa+r,d\le r < |a|+d$。
 
 无论整数 $d$ 取何值，$r$ 统称为余数。$a\mid b$ 等价于 $a\mid r$。
 
-一般情况下，$d$ 取 $0$，此时等式 $b=qa+r,0\le r<|a|$ 称为带余数除法（带余除法）。这里的余数 $r$ 称为最小非负余数。
+一般情况下，$d$ 取 $0$，此时等式 $b=qa+r,0\le r < |a|$ 称为带余数除法（带余除法）。这里的余数 $r$ 称为最小非负余数。
 
 余数往往还有两种常见取法：
 
--   绝对最小余数：$d$ 取 $a$ 的绝对值的一半的相反数。即 $b=qa+r,-\dfrac{|a|}{2}\le r<|a|-\dfrac{|a|}{2}$。
--   最小正余数：$d$ 取 $1$。即 $b=qa+r,1\le r<|a|+1$。
+-   绝对最小余数：$d$ 取 $a$ 的绝对值的一半的相反数。即 $b=qa+r,-\dfrac{|a|}{2}\le r < |a|-\dfrac{|a|}{2}$。
+-   最小正余数：$d$ 取 $1$。即 $b=qa+r,1\le r < |a|+1$。
 
 带余数除法的余数只有最小非负余数。**如果没有特别说明，余数总是指最小非负余数。**
 
@@ -67,7 +67,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 -   $(a,b)=(b,a)$；
 -   若 $a\ne 0$，则 $(a,0)=(a,a)=|a|$；
 -   $(bq+r,b)=(r,b)$；
--   $(a_1,\dots,a_n)=((a_1,a_2),a_3,\dots,a_n)$。进而 $\forall 1<k<n-1,~(a_1,\dots,a_n)=((a_1,\dots,a_k),(a_{k+1},\dots,a_n))$；
+-   $(a_1,\dots,a_n)=((a_1,a_2),a_3,\dots,a_n)$。进而 $\forall 1 < k < n-1,~(a_1,\dots,a_n)=((a_1,\dots,a_k),(a_{k+1},\dots,a_n))$；
 -   对不全为 $0$ 的整数 $a_1,\dots,a_n$ 和非零整数 $m$，$(ma_1,\dots,ma_n)=|m|(a_1,\dots,a_n)$；
 -   对不全为 $0$ 的整数 $a_1,\dots,a_n$，若 $(a_1,\dots,a_n)=d$，则 $(a_1/d,\dots,a_n/d)=1$；
 -   $(a^n,b^n)=(a,b)^n$。
@@ -86,7 +86,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 -   $[a,b]=[b,a]$；
 -   若 $a\ne 0$，则 $[a,1]=[a,a]=|a|$；
 -   若 $a\mid b$，则 $[a,b]=|b|$；
--   $[a_1,\dots,a_n]=[[a_1,a_2],a_3,\dots,a_n]$。进而 $\forall 1<k<n-1,~[a_1,\dots,a_n]=[[a_1,\dots,a_k],[a_{k+1},\dots,a_n]]$；
+-   $[a_1,\dots,a_n]=[[a_1,a_2],a_3,\dots,a_n]$。进而 $\forall 1 < k < n-1,~[a_1,\dots,a_n]=[[a_1,\dots,a_k],[a_{k+1},\dots,a_n]]$；
 -   若 $a_i\mid m,~\forall 1\leq i\leq n$，则 $[a_1,\dots,a_n]\mid m$；
 -   $[ma_1,\dots,ma_n]=|m|[a_1,\dots,a_n]$；
 -   $[a,b,c][ab,bc,ca]=[a,b][b,c][c,a]$；
@@ -130,7 +130,7 @@ $p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明�
 
 素数与合数的简单性质：
 
--   大于 $1$ 的整数 $a$ 是合数，等价于 $a$ 可以表示为整数 $d$ 和 $e$（$1<d,e<a$）的乘积。
+-   大于 $1$ 的整数 $a$ 是合数，等价于 $a$ 可以表示为整数 $d$ 和 $e$（$1 < d,e < a$）的乘积。
 -   如果素数 $p$ 有大于 $1$ 的约数 $d$，那么 $d=p$。
 -   大于 $1$ 的整数 $a$ 一定可以表示为素数的乘积。
 -   对于合数 $a$，一定存在素数 $p\le\sqrt{a}$ 使得 $p\mid a$。
@@ -163,7 +163,7 @@ $p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明�
     将上述表示中，相同的素数合并，可得：
     
     $$
-    a={p_1}^{\alpha_1}{p_2}^{\alpha_2}\cdots{p_s}^{\alpha_s},p_1<p_2<\cdots<p_s
+    a={p_1}^{\alpha_1}{p_2}^{\alpha_2}\cdots{p_s}^{\alpha_s},p_1 < p_2 < \cdots < p_s
     $$
     
     称为正整数 $a$ 的标准素因数分解式。
@@ -286,7 +286,7 @@ long long binmul(long long a, long long b, long long m) {
 我们把模 $m$ 的同余类全体构成的集合记为 $\mathbf{Z}_m$，即
 
 $$
-\mathbf{Z}_m:=\{r\bmod m:0\leq r<m\}
+\mathbf{Z}_m:=\{r\bmod m:0\leq r < m\}
 $$
 
 不难发现：
@@ -330,7 +330,7 @@ $$
 我们把模 $m$ 的既约同余类全体构成的集合记为 $\mathbf{Z}_m^*$，即
 
 $$
-\mathbf{Z}_m^*:=\{r\bmod m:0\leq r<m,(r,m)=1\}
+\mathbf{Z}_m^*:=\{r\bmod m:0\leq r < m,(r,m)=1\}
 $$
 
 ???+ warning "Warning"
@@ -476,7 +476,7 @@ $$
 -   常数函数：$1(n)=1$。（完全积性）
 -   除数函数：$\sigma_{k}(n)=\sum_{d\mid n}d^{k}$。$\sigma_{0}(n)$ 通常简记作 $d(n)$ 或 $\tau(n)$，$\sigma_{1}(n)$ 通常简记作 $\sigma(n)$。
 -   欧拉函数：$\varphi(n)=\sum_{i=1}^n[(i,n)=1]$。
--   莫比乌斯函数：$\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数。
+-   莫比乌斯函数：$\mu(n)=\begin{cases}1&n=1\\0&\exists d > 1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{otherwise}\end{cases}$，其中 $\omega(n)$ 表示 $n$ 的本质不同质因子个数。
 
 ### 加性函数
 

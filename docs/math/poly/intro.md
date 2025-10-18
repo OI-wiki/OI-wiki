@@ -19,7 +19,7 @@
 每个元素 $f$ 称为 $R$ 上的 **多项式**（polynomial），可表示为
 
 $$
-f=\left<f_0,f_1,f_2,\cdots,f_n\right>\quad(f_0,f_1,f_2,\cdots,f_n\in R)
+f=\left < f_0,f_1,f_2,\cdots,f_n\right > \quad(f_0,f_1,f_2,\cdots,f_n\in R)
 $$
 
 换言之，我们将多项式直接定义为系数序列。也可以表示为

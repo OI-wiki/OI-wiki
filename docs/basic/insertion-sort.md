@@ -32,7 +32,7 @@ $$
 4 & \textbf{for } i\gets 2\textbf{ to }n\\
 5 & \qquad key\gets A[i]\\
 6 & \qquad j\gets i-1\\
-7 & \qquad\textbf{while }j>0\textbf{ and }A[j]>key\\
+7 & \qquad\textbf{while }j > 0\textbf{ and }A[j] > key\\
 8 & \qquad\qquad A[j + 1]\gets A[j]\\
 9 & \qquad\qquad j\gets j - 1\\
 10 & \qquad A[j + 1]\gets key

@@ -29,14 +29,14 @@ $$
 
 每个节点都有一个 rank。这里的 rank 不是节点个数，而是深度。节点的初始 rank 为 0，在合并的时候，如果两个节点的 rank 不同，则将 rank 小的节点合并到 rank 大的节点上，并且不更新大节点的 rank 值。否则，随机将某个节点合并到另外一个节点上，将根节点的 rank 值 +1。这里根节点的 rank 给出了该树的高度。记 x 的 rank 为 $rnk(x)$，类似的，记 x 的父节点为 $fa(x)$。我们总有 $rnk(x)+1\leq rnk(fa(x))$。
 
-为了定义势函数，需要预先定义一个辅助函数 $level(x)$。其中，$level(x)=\max(k:rnk(fa(x))\geq A_k(rnk(x)))$。当 $rnk(x)\geq1$ 的时候，再定义一个辅助函数 $iter(x)=\max(i:rnk(fa(x))\geq A_{level(x)}^i(rnk(x))$。这些函数定义的 $x$ 都满足 $rnk(x)>0$ 且 $x$ 不是某个树的根。
+为了定义势函数，需要预先定义一个辅助函数 $level(x)$。其中，$level(x)=\max(k:rnk(fa(x))\geq A_k(rnk(x)))$。当 $rnk(x)\geq1$ 的时候，再定义一个辅助函数 $iter(x)=\max(i:rnk(fa(x))\geq A_{level(x)}^i(rnk(x))$。这些函数定义的 $x$ 都满足 $rnk(x) > 0$ 且 $x$ 不是某个树的根。
 
-上面那些定义可能让你有点头晕。再理一下，对于一个 $x$ 和 $fa(x)$，如果 $rnk(x)>0$，总是可以找到一对 $i,k$ 令 $rnk(fa(x))\geq A_k^i(rnk(x))$，而 $level(x)=\max(k)$，在这个前提下，$iter(x)=\max(i)$。$level$ 描述了 $A$ 的最大迭代级数，而 $iter$ 描述了在最大迭代级数时的最大迭代次数。
+上面那些定义可能让你有点头晕。再理一下，对于一个 $x$ 和 $fa(x)$，如果 $rnk(x) > 0$，总是可以找到一对 $i,k$ 令 $rnk(fa(x))\geq A_k^i(rnk(x))$，而 $level(x)=\max(k)$，在这个前提下，$iter(x)=\max(i)$。$level$ 描述了 $A$ 的最大迭代级数，而 $iter$ 描述了在最大迭代级数时的最大迭代次数。
 
 对于这两个函数，$level(x)$ 总是随着操作的进行而增加或不变，如果 $level(x)$ 不增加，$iter(x)$ 也只会增加或不变。并且，它们总是满足以下两个不等式：
 
 $$
-0\leq level(x)<\alpha(n)
+0\leq level(x) < \alpha(n)
 $$
 
 $$
@@ -67,11 +67,11 @@ $$
 
 这里，我们假设 $rnk(x)\leq rnk(y)$，即 $x$ 被接到 $y$ 上。这样，势能增加的节点仅有 $x$（从树根变成非树根），$y$（秩可能增加）和操作前 $y$ 的子节点（父节点的秩可能增加）。我们先证明操作前 $y$ 的子节点 $c$ 的势能不可能增加，并且如果减少了，至少减少 $1$。
 
-设操作前 $c$ 的势能为 $\Phi(c)$，操作后为 $\Phi(c')$，这里 $c$ 可以是任意一个 $rnk(c)>0$ 的非根节点，操作可以是任意操作，包括下面的 find 操作。我们分三种情况讨论。
+设操作前 $c$ 的势能为 $\Phi(c)$，操作后为 $\Phi(c')$，这里 $c$ 可以是任意一个 $rnk(c) > 0$ 的非根节点，操作可以是任意操作，包括下面的 find 操作。我们分三种情况讨论。
 
 1.  $iter(c)$ 和 $level(c)$ 并未增加。显然有 $\Phi(c)=\Phi(c')$。
 2.  $iter(c)$ 增加了，$level(c)$ 并未增加。这里 $iter(c)$ 至少增加一，即 $\Phi(c')\leq \Phi(c)-1$，势能函数减少了，并且至少减少 1。
-3.  $level(c)$ 增加了，$iter(c)$ 可能减少。但是由于 $0<iter(c)\leq rnk(c)$，$iter(c)$ 最多减少 $rnk(c)-1$，而 $level(c)$ 至少增加 $1$。由定义 $\Phi(c)=(\alpha(n)-level(c))\times rnk(c)-iter(c)$，可得 $\Phi(c')\leq\Phi(c)-1$。
+3.  $level(c)$ 增加了，$iter(c)$ 可能减少。但是由于 $0 < iter(c)\leq rnk(c)$，$iter(c)$ 最多减少 $rnk(c)-1$，而 $level(c)$ 至少增加 $1$。由定义 $\Phi(c)=(\alpha(n)-level(c))\times rnk(c)-iter(c)$，可得 $\Phi(c')\leq\Phi(c)-1$。
 4.  其他情况。由于 $rnk(c)$ 不变，$rnk(fa(c))$ 不减，所以不存在。
 
 所以，势能增加的节点仅可能是 $x$ 或 $y$。而 $x$ 从树根变成了非树根，如果 $rnk(x)=0$，则一直有 $\Phi(x)=\Phi(x')=0$。否则，一定有 $\alpha(x)\times rnk(x)\geq(\alpha(n)-level(x))\times rnk(x)-iter(x)$。即，$\Phi(x')\leq \Phi(x)$。

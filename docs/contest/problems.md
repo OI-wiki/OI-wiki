@@ -74,7 +74,7 @@ STDIO 交互（标准 I/O 交互）是 Codeforces、AtCoder 等在线平台的�
 Grader 交互方式常见于 IOI、APIO 等国际 OI 赛事（特别是 CMS 平台的竞赛）。
 
 ???+ note "例题 [UOJ #206.【APIO2016】Gap](https://uoj.ac/problem/206)"
-    有 $N$ 个严格递增的非负整数 $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$。你需要找出 $a_{i+1}−a_i (0\leq i\leq N−1)$ 里的最大的值。
+    有 $N$ 个严格递增的非负整数 $a_1,a_2,\cdots,a_N (0\leq a_1 < a2 < \cdots < a_N\leq 10^{18})$。你需要找出 $a_{i+1}−a_i (0\leq i\leq N−1)$ 里的最大的值。
     
     你的程序不能直接读入这个整数序列，但是你可以通过给定的函数来查询该序列的信息。关于查询函数的细节，请根据你所使用的语言，参考下面的实现细节部分。
     

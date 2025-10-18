@@ -21,15 +21,15 @@ $$
 
 $$
 \begin{aligned}
-\left|\bigcup_{i=1}^{n}S_i\right|=&\sum_{i}|S_i|-\sum_{i<j}|S_i\cap S_j|+\sum_{i<j<k}|S_i\cap S_j\cap S_k|-\cdots\\
-&+(-1)^{m-1}\sum_{a_i<a_{i+1} }\left|\bigcap_{i=1}^{m}S_{a_i}\right|+\cdots+(-1)^{n-1}|S_1\cap\cdots\cap S_n|
+\left|\bigcup_{i=1}^{n}S_i\right|=&\sum_{i}|S_i|-\sum_{i < j}|S_i\cap S_j|+\sum_{i < j < k}|S_i\cap S_j\cap S_k|-\cdots\\
+&+(-1)^{m-1}\sum_{a_i < a_{i+1} }\left|\bigcap_{i=1}^{m}S_{a_i}\right|+\cdots+(-1)^{n-1}|S_1\cap\cdots\cap S_n|
 \end{aligned}
 $$
 
 即
 
 $$
-\left|\bigcup_{i=1}^{n}S_i\right|=\sum_{m=1}^n(-1)^{m-1}\sum_{a_i<a_{i+1} }\left|\bigcap_{i=1}^mS_{a_i}\right|
+\left|\bigcup_{i=1}^{n}S_i\right|=\sum_{m=1}^n(-1)^{m-1}\sum_{a_i < a_{i+1} }\left|\bigcap_{i=1}^mS_{a_i}\right|
 $$
 
 ### 证明
@@ -38,7 +38,7 @@ $$
 
 $$
 \begin{aligned}
-Cnt=&|\{T_i\}|-|\{T_i\cap T_j|i<j\}|+\cdots+(-1)^{k-1}\left|\left\{\bigcap_{i=1}^{k}T_{a_i}|a_i<a_{i+1}\right\}\right|\\
+Cnt=&|\{T_i\}|-|\{T_i\cap T_j|i < j\}|+\cdots+(-1)^{k-1}\left|\left\{\bigcap_{i=1}^{k}T_{a_i}|a_i < a_{i+1}\right\}\right|\\
 &+\cdots+(-1)^{m-1}|\{T_1\cap\cdots\cap T_m\}|\\
 =&\dbinom{m}{1}-\dbinom{m}{2}+\cdots+(-1)^{m-1}\dbinom{m}{m}\\
 =&\dbinom{m}{0}-\sum_{i=0}^m(-1)^i\dbinom{m}{i}\\
@@ -94,7 +94,7 @@ $$
 能否消除这些下界限制呢？既然要求的是非负整数解，而有些变量的下界又大于 $0$，那么我们直接 **把这个下界减掉**，就可以使得这些变量的下界变成 $0$，即没有下界啦。因此对于
 
 $$
-\left|\bigcap_{a_i<a_{i+1} }^{1\leq i\leq k}S_{a_i}\right|
+\left|\bigcap_{a_i < a_{i+1} }^{1\leq i\leq k}S_{a_i}\right|
 $$
 
 的不定方程形式为
@@ -173,7 +173,7 @@ $$
 $$
 \begin{aligned}
 Ans &= \sum_{K\subseteq M}(-1)^{|K|-1}\left|\bigcap_{k_i\in K}Q_{k_i}\right|\\
-    &= \sum_{i}|Q_i|-\sum_{i<j}|Q_i\cap Q_j|+\sum_{i<j<k}|Q_i\cap Q_j\cap Q_k|-\cdots+(-1)^{T-1}\left|\bigcap_{i=1}^TQ_i\right|
+    &= \sum_{i}|Q_i|-\sum_{i < j}|Q_i\cap Q_j|+\sum_{i < j < k}|Q_i\cap Q_j\cap Q_k|-\cdots+(-1)^{T-1}\left|\bigcap_{i=1}^TQ_i\right|
 \end{aligned}
 $$
 
@@ -212,7 +212,7 @@ $$
 f(k)= \lfloor (N/k) \rfloor ^2 - \sum_{i=2}^{i*k \le N} f(i*k)
 $$
 
-由于当 $k>N/2$ 时，我们可以直接算出 $f(k)= \lfloor (N/k) \rfloor ^2$，因此我们可以倒过来，从 $f(N)$ 算到 $f(1)$ 就可以了。于是，我们使用容斥原理完成了本题。
+由于当 $k > N/2$ 时，我们可以直接算出 $f(k)= \lfloor (N/k) \rfloor ^2$，因此我们可以倒过来，从 $f(N)$ 算到 $f(1)$ 就可以了。于是，我们使用容斥原理完成了本题。
 
 ```cpp
 for (long long k = N; k >= 1; k--) {
@@ -253,14 +253,14 @@ $$
 全集大小 $|U|=n$，而 $\overline{S_i}$ 表示的是 $p_i\mid x$ 构成的集合，显然 $|\overline{S_i}|=\frac{n}{p_i}$，并由此推出
 
 $$
-\left|\bigcap_{a_i<a_{i+1}}S_{a_i}\right|=\frac{n}{\prod p_{a_i}}
+\left|\bigcap_{a_i < a_{i+1}}S_{a_i}\right|=\frac{n}{\prod p_{a_i}}
 $$
 
 因此可得
 
 $$
 \begin{aligned}
-\varphi(n)&=n-\sum_{i}\frac{n}{p_i}+\sum_{i<j}\frac{n}{p_ip_j}-\cdots+(-1)^k\frac{n}{p_1p_2 \cdots p_k}\\
+\varphi(n)&=n-\sum_{i}\frac{n}{p_i}+\sum_{i < j}\frac{n}{p_ip_j}-\cdots+(-1)^k\frac{n}{p_1p_2 \cdots p_k}\\
 &=n\left(1-\frac{1}{p_1}\right)\left(1-\frac{1}{p_2}\right)\cdots\left(1-\frac{1}{p_k}\right)\\
 &=n\prod_{i=1}^k\left(1-\frac{1}{p_i}\right)
 \end{aligned}
@@ -452,7 +452,7 @@ $$
 
 规定若 $n< m$，则 $\dbinom nm=0$。
 
-**证明：** 不妨设 $\forall 1\le i<n,x_i\le x_{i+1}$。则有：
+**证明：** 不妨设 $\forall 1\le i < n,x_i\le x_{i+1}$。则有：
 
 $$
 \begin{aligned}

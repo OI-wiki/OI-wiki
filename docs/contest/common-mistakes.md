@@ -365,7 +365,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 -   没删文件操作（某些 OJ）。
 
--   排序时比较函数的错误 `std::sort` 要求比较函数是严格弱序：`a<a` 为 `false`；若 `a<b` 为 `true`，则 `b<a` 为 `false`；若 `a<b` 为 `true` 且 `b<c` 为 `true`，则 `a<c` 为 `true`。其中要特别注意第二点。
+-   排序时比较函数的错误 `std::sort` 要求比较函数是严格弱序：`a < a` 为 `false`；若 `a < b` 为 `true`，则 `b < a` 为 `false`；若 `a < b` 为 `true` 且 `b < c` 为 `true`，则 `a < c` 为 `true`。其中要特别注意第二点。
     如果不满足上述要求，排序时很可能会 RE。
     例如，编写莫队的奇偶性排序时，这样写是错误的：
 
@@ -378,7 +378,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
     }
     ```
 
-    上述代码中 `(block[a.l]&1)^(a.r<b.r)` 不满足上述要求的第二点。
+    上述代码中 `(block[a.l] & 1 ) ^ (a.r < b.r)` 不满足上述要求的第二点。
     改成这样就正确了：
 
     ```cpp
