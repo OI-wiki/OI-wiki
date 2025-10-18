@@ -1,4 +1,4 @@
-author: StudyingFather, CCXXXI, Chrogeek, ChungZH, countercurrent-time, Early0v0, Enter-tainer, GavinZhengOI, Great-designer, H-J-Granger, henrytbtrue, HeRaNO, huayucaiji, iamtwz, Ir1d, ksyx, MegaOwIer, NachtgeistW, P-Y-Y, qwqAutomaton, shuzhouliu, shuzhouliu-bot, Siger Young, sshwy, SukkaW, Tiphereth-A, tsentau, WhenMelancholy, Xeonacid, Yukimaikoriya, Zhoier, zyj-111
+author: StudyingFather, CCXXXI, Chrogeek, ChungZH, countercurrent-time, Early0v0, Enter-tainer, GavinZhengOI, Great-designer, H-J-Granger, henrytbtrue, HeRaNO, huayucaiji, iamtwz, Ir1d, ksyx, MegaOwIer, NachtgeistW, P-Y-Y, qwqAutomaton, shuzhouliu, shuzhouliu-bot, Siger Young, sshwy, SukkaW, Tiphereth-A, tsentau, WhenMelancholy, Xeonacid, Yukimaikoriya, Zhoier, zyj-111, qute-firefly-26710-zjyjoe-lg-592080
 
 ## 引入
 
@@ -25,15 +25,27 @@ $$
 
 解：将方程组中两方程相加，消元 $y$ 可得：
 
-$5x = 200$
+$$
+\begin{aligned}
+5x = 200
+\end{aligned}
+$$
 
 解得：
 
-$x = 40$
+$$
+\begin{aligned}
+x = 40
+\end{aligned}
+$$
 
 将 $x = 40$ 代入方程组中第二个方程可得：
 
-$y = -60$
+$$
+\begin{aligned}
+y = -60
+\end{aligned}
+$$
 
 ### 消元法理论的核心
 
