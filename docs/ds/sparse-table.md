@@ -12,9 +12,8 @@ ST 表（Sparse Table，稀疏表）是用于解决 **可重复贡献问题** �
 
 ## 引入
 
-[ST 表模板题](https://www.luogu.com.cn/problem/P3865)
-
-题目大意：给定 $n$ 个数，有 $m$ 个询问，对于每个询问，你需要回答区间 $[l,r]$ 中的最大值。
+???+ example "[Luogu P3865 【模板】ST 表 & RMQ 问题](https://www.luogu.com.cn/problem/P3865)"
+    给定 $n$（$1\le n\le 10^5$）个整数，有 $m$（$1\le m\le 2\times 10^6$）个询问，对于每个询问，你需要回答区间 $[l,r]$ 中的最大值。
 
 考虑暴力做法。每次都对区间 $[l,r]$ 扫描一遍，求出最大值。
 
@@ -48,30 +47,29 @@ ST 表基于 [倍增](../basic/binary-lifting.md) 思想，可以做到 $\Theta(
 
 根据上面对于「可重复贡献问题」的论证，由于最大值是「可重复贡献问题」，重叠并不会对区间最大值产生影响。又因为这两个区间完全覆盖了 $[l,r]$，可以保证答案的正确性。
 
-## 模板代码
-
-[ST 表模板题](https://www.luogu.com.cn/problem/P3865)
-
-=== "C 风格"
-    ```cpp
-    --8<-- "docs/ds/code/sparse-table/sparse-table_1.cpp"
-    ```
-
-=== "C++ 风格"
-    ```cpp
-    --8<-- "docs/ds/code/sparse-table/sparse-table_2.hpp"
-    ```
-
-=== "Python"
-    ```python
-    --8<-- "docs/ds/code/sparse-table/sparse-table.py"
-    ```
+???+ example "[Luogu P3865 【模板】ST 表 & RMQ 问题](https://www.luogu.com.cn/problem/P3865) 参考实现 "
+    === "C 风格"
+        ```cpp
+        --8<-- "docs/ds/code/sparse-table/sparse-table_1.cpp"
+        ```
+    
+    === "C++ 风格"
+        ```cpp
+        --8<-- "docs/ds/code/sparse-table/sparse-table_2.cpp"
+        ```
+    
+    === "Python"
+        ```python
+        --8<-- "docs/ds/code/sparse-table/sparse-table_1.py"
+        ```
 
 ## 注意点
 
 1.  输入输出数据一般很多，建议开启输入输出优化。
 
-2.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算 log 函数值并不值得，建议进行如下的预处理：
+2.  在预处理 ST 表时通常需要建立一个一维大小为 $\log n$，另一维大小为 $n$ 的数组，此时应优先让大小为 $\log n$ 的维度作为第一维，以提升缓存局部性。
+
+3.  每次用 [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) 重新计算对数函数值并不值得，建议利用 `__builtin_clz` 或 `__lg` 等内建函数进行计算。如无法利用这些内建函数，也可以预处理对数函数值。预处理方式如下所示：
 
 $$
 \begin{cases}
@@ -92,23 +90,21 @@ $$
 
 ST 表能较好的维护「可重复贡献」的区间信息（同时也应满足结合律），时间复杂度较低，代码量相对其他算法很小。但是，ST 表能维护的信息非常有限，不能较好地扩展，并且不支持修改操作。
 
-## 练习
+## 习题
 
-[RMQ 模板题](https://www.luogu.com.cn/problem/P3865)
+-   [「SCOI2007」降雨量](https://loj.ac/p/2279)
 
-[「SCOI2007」降雨量](https://loj.ac/problem/2279)
-
-[\[USACO07JAN\] 平衡的阵容 Balanced Lineup](https://www.luogu.com.cn/problem/P2880)
+-   [\[USACO07JAN\] 平衡的阵容 Balanced Lineup](https://www.luogu.com.cn/problem/P2880)
 
 ## 附录：ST 表求区间 GCD 的时间复杂度分析
 
 在算法运行的时候，可能要经过 $\Theta(\log n)$ 次迭代。每一次迭代都可能会使用 GCD 函数进行递归，令值域为 $w$，GCD 函数的时间复杂度最高是 $\Omega(\log w)$ 的，所以总时间复杂度看似有 $O(n\log n\log w)$。
 
-但是，在 GCD 的过程中，每一次递归（除最后一次递归之外）都会使数列中的某个数至少减半，而数列中的数最多减半的次数为 $\log_2 (w^n)=\Theta(n\log w)$，所以，GCD 的递归部分最多只会运行 $O(n\log w)$ 次。再加上循环部分（以及最后一层递归）的 $\Theta(n\log n)$，最终时间复杂度则是 $O(n(\log w+\log x))$，由于可以构造数据使得时间复杂度为 $\Omega(n(\log w+\log x))$，所以最终的时间复杂度即为 $\Theta(n(\log w+\log x))$。
+但是，在 GCD 的过程中，每一次递归（除最后一次递归之外）都会使数列中的某个数至少减半，而数列中的数最多减半的次数为 $\log_2 (w^n)=\Theta(n\log w)$，所以，GCD 的递归部分最多只会运行 $O(n\log w)$ 次。再加上循环部分（以及最后一层递归）的 $\Theta(n\log n)$，最终时间复杂度则是 $O(n(\log w+\log n))$，由于可以构造数据使得时间复杂度为 $\Omega(n(\log w+\log n))$，所以最终的时间复杂度即为 $\Theta(n(\log w+\log n))$。
 
 而查询部分的时间复杂度很好分析，考虑最劣情况，即每次询问都询问最劣的一对数，时间复杂度为 $\Theta(\log w)$。因此，ST 表维护「区间 GCD」的时间复杂度为预处理 $\Theta(n(\log n+\log w))$，单次查询 $\Theta(\log w)$。
 
-线段树的相应操作是预处理 $\Theta(n\log x)$，查询 $\Theta(n(\log n+\log x))$。
+线段树的相应操作是预处理 $\Theta(n\log w)$，单次查询 $\Theta(\log n+\log w)$。
 
 这并不是一个严谨的数学论证，更为严谨的附在下方：
 
