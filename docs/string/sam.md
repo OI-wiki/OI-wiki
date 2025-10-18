@@ -251,7 +251,7 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
     -   创建一个新的状态 $\textit{cur}$，并将 $\operatorname{len}(\textit{cur})$ 赋值为 $\operatorname{len}(\textit{last})+1$，在这时 $\operatorname{link}(\textit{cur})$ 的值还未知。
     -   现在我们进行如下流程：从状态 $\textit{last}$ 开始，如果当前状态还没有标号为字符 $c$ 的转移，我们就添加一个经字符 $c$ 到状态 $\textit{cur}$ 的转移，并将当前状态沿后缀链接移动。如果过程中遇到某个状态已经存在到字符 $c$ 的转移，我们就停下来，并将这个状态标记为 $p$。
     -   **情况一**：如果没有找到这样的状态 $p$，我们就到达了虚拟状态 $-1$，我们将 $\operatorname{link}(\textit{cur})$ 赋值为 $0$ 并退出。
-    -   假设现在我们找到了一个状态 $p$，它可以通过字符 $c$ 转移。我们将转移到的状态标记为 $q$。此时，要么 $\operatorname{len}(p)+1=\operatorname{len}(q)$，要么 $\operatorname{len}(p)+1<\operatorname{len}(q)$。
+    -   假设现在我们找到了一个状态 $p$，它可以通过字符 $c$ 转移。我们将转移到的状态标记为 $q$。此时，要么 $\operatorname{len}(p)+1=\operatorname{len}(q)$，要么 $\operatorname{len}(p)+1 < \operatorname{len}(q)$。
     -   **情况二**：如果 $\operatorname{len}(p)+1=\operatorname{len}(q)$，我们只要将 $\operatorname{link}(\textit{cur})$ 赋值为 $q$ 并退出。
     -   **情况三**：否则就会有些复杂，需要 **复制** 状态 $q$：我们创建一个新的状态 $\textit{clone}$，复制 $q$ 的除了 $\operatorname{len}$ 的值以外的所有信息（后缀链接和转移）。我们将 $\operatorname{len}(\textit{clone})$ 赋值为 $\operatorname{len}(p)+1$。
     
@@ -269,7 +269,7 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 我们详细解释算法每一步的细节，并说明它的 **正确性**。
 
 ???+ note "对算法的详细解释"
-    -   若一个转移 $(p,q)$ 满足 $\operatorname{len}(p)+1=\operatorname{len}(q)$，则我们称这个转移是 **连续的**。否则，即当 $\operatorname{len}(p)+1<\operatorname{len}(q)$ 时，这个转移被称为 **不连续的**。
+    -   若一个转移 $(p,q)$ 满足 $\operatorname{len}(p)+1=\operatorname{len}(q)$，则我们称这个转移是 **连续的**。否则，即当 $\operatorname{len}(p)+1 < \operatorname{len}(q)$ 时，这个转移被称为 **不连续的**。
     
         从算法描述中可以看出，连续的和不连续的转移，在算法中的处理也并不相同。连续的转移是固定的，我们不会再改变了。与此相反，当向字符串中插入一个新的字符时，不连续的转移可能会改变（转移边的端点可能会改变）。
     -   为了避免引起歧义，我们记向 SAM 中插入当前字符 $c$ 之前的字符串为 $s$。
@@ -280,9 +280,9 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
     -   最简单的情况是我们到达了虚拟状态 $-1$，这意味着我们为所有 $s$ 的后缀添加了 $c$ 的转移。这也意味着，字符 $c$ 从未在字符串 $s$ 中出现过。因此 $\textit{cur}$ 的后缀链接为状态 $0$。
     -   第二种情况下，我们找到了现有的转移 $(p,q)$。这意味着我们尝试向自动机内添加一个 **已经存在的** 字符串 $x+c$（其中 $x$ 为 $s$ 的一个后缀，且字符串 $x+c$ 已经作为 $s$ 的一个子串出现过了）。因为我们假设字符串 $s$ 的自动机的构造是正确的，我们不应该在这里添加一个新的转移。
     
-        然而，难点在于，从状态 $\textit{cur}$ 出发的后缀链接应该连接到哪个状态呢？我们要把后缀链接连到一个状态上，且对应的最长的字符串恰好是 $x+c$，即这个状态的 $\operatorname{len}$ 应该是 $\operatorname{len}(p)+1$。然而这样的状态有可能并不存在，即 $\operatorname{len}(q)>\operatorname{len}(p)+1$。这种情况下，我们必须通过拆开状态 $q$ 来创建一个这样的状态。
+        然而，难点在于，从状态 $\textit{cur}$ 出发的后缀链接应该连接到哪个状态呢？我们要把后缀链接连到一个状态上，且对应的最长的字符串恰好是 $x+c$，即这个状态的 $\operatorname{len}$ 应该是 $\operatorname{len}(p)+1$。然而这样的状态有可能并不存在，即 $\operatorname{len}(q) > \operatorname{len}(p)+1$。这种情况下，我们必须通过拆开状态 $q$ 来创建一个这样的状态。
     -   当然，如果转移 $(p,\,q)$ 是连续的，那么 $\operatorname{len}(q)=\operatorname{len}(p)+1$。在这种情况下一切都很简单。我们只需要将 $\textit{cur}$ 的后缀链接指向状态 $q$。
-    -   否则转移是不连续的，即 $\operatorname{len}(q)>\operatorname{len}(p)+1$，这意味着状态 $q$ 不只对应于长度为 $\operatorname{len}(p)+1$ 的后缀 $s+c$，还对应于 $s$ 的更长的子串。除了将状态 $q$ 拆成两个子状态以外我们别无他法，所以第一个子状态的长度就是 $\operatorname{len}(p)+1$ 了。
+    -   否则转移是不连续的，即 $\operatorname{len}(q) > \operatorname{len}(p)+1$，这意味着状态 $q$ 不只对应于长度为 $\operatorname{len}(p)+1$ 的后缀 $s+c$，还对应于 $s$ 的更长的子串。除了将状态 $q$ 拆成两个子状态以外我们别无他法，所以第一个子状态的长度就是 $\operatorname{len}(p)+1$ 了。
     
         我们如何拆开一个状态呢？我们 **复制** 状态 $q$，产生一个状态 $\textit{clone}$，我们将 $\operatorname{len}(\textit{clone})$ 赋值为 $\operatorname{len}(p)+1$。由于我们不想改变经过 $q$ 的路径，我们将 $q$ 的所有转移复制到 $\textit{clone}$。我们也将从 $\textit{clone}$ 出发的后缀链接设置为 $q$ 的后缀链接的目标，并设置 $q$ 的后缀链接为 $\textit{clone}$。
     
@@ -792,4 +792,4 @@ void sam_init() {
 
 [^time-complexity]: 如果不额外使用列表记录当前状态的可用转移，只用数组存储所有可能的转移（无论是否存在）并在复制节点时直接复制，那么时间复杂度也是 $O(n\left|\Sigma\right|)$ 的。
 
-[^monotone-loc]: 此处正文没有解释的是，在第一种和第二种情况中，$\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 的位置是否也是单调（弱）递增的。第一种情况容易验证，因为更新后 $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 是空串，起止位置在字符串 $s$ 的末尾。第二种情况，转移是连续的，说明 $\operatorname{longest}(q) = \operatorname{longest}(p)+c$。然而，向子串的末尾添加新的字符只会使得该子串更难以出现在字符串中，也就是说，当字符串 $\operatorname{longest}(p)$ 的长度为 $\operatorname{len}(\operatorname{link}(p))$ 的后缀的结束位置集合严格包含 $\operatorname{endpos}(p)$ 时，字符串 $\operatorname{longest}(q)$ 的长度为 $\operatorname{len}(\operatorname{link}(p))+1$ 的后缀的结束位置集合可能仍然与 $\operatorname{endpos}(q)$ 相同。故而，$\operatorname{len}(\operatorname{link}(q))<\operatorname{len}(\operatorname{link}(p))+1$，亦即 $\operatorname{longest}(\operatorname{link}(p))$ 作为 $s$ 的后缀的起始位置必然不大于 $\operatorname{longest}(\operatorname{link}(q))$ 作为 $s+c$ 的后缀的起始位置。而当一次找到状态 $p$ 使得存在经由 $c$ 的转移时，必定移动了至少一次，这说明 $\operatorname{longest}(\operatorname{link}(p))$ 作为 $s$ 的后缀的起始位置不小于 $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 作为 $s$ 的后缀的起始位置。最后，$\operatorname{longest}(\operatorname{link}(q))=\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{cur})))$。这就说明，在第二种情况中，$\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 的位置也是单调递增的。
+[^monotone-loc]: 此处正文没有解释的是，在第一种和第二种情况中，$\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 的位置是否也是单调（弱）递增的。第一种情况容易验证，因为更新后 $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 是空串，起止位置在字符串 $s$ 的末尾。第二种情况，转移是连续的，说明 $\operatorname{longest}(q) = \operatorname{longest}(p)+c$。然而，向子串的末尾添加新的字符只会使得该子串更难以出现在字符串中，也就是说，当字符串 $\operatorname{longest}(p)$ 的长度为 $\operatorname{len}(\operatorname{link}(p))$ 的后缀的结束位置集合严格包含 $\operatorname{endpos}(p)$ 时，字符串 $\operatorname{longest}(q)$ 的长度为 $\operatorname{len}(\operatorname{link}(p))+1$ 的后缀的结束位置集合可能仍然与 $\operatorname{endpos}(q)$ 相同。故而，$\operatorname{len}(\operatorname{link}(q)) < \operatorname{len}(\operatorname{link}(p))+1$，亦即 $\operatorname{longest}(\operatorname{link}(p))$ 作为 $s$ 的后缀的起始位置必然不大于 $\operatorname{longest}(\operatorname{link}(q))$ 作为 $s+c$ 的后缀的起始位置。而当一次找到状态 $p$ 使得存在经由 $c$ 的转移时，必定移动了至少一次，这说明 $\operatorname{longest}(\operatorname{link}(p))$ 作为 $s$ 的后缀的起始位置不小于 $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 作为 $s$ 的后缀的起始位置。最后，$\operatorname{longest}(\operatorname{link}(q))=\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{cur})))$。这就说明，在第二种情况中，$\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last})))$ 的位置也是单调递增的。

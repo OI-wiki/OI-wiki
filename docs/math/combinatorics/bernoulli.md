@@ -39,7 +39,7 @@ $$
 
 $$
 \begin{aligned}
-\sum_{j=0}^{m}\binom{m+1}{j}B_j&=0,(m>0)\\
+\sum_{j=0}^{m}\binom{m+1}{j}B_j&=0,(m > 0)\\
 B_0&=1
 \end{aligned}
 $$
@@ -135,7 +135,7 @@ $$
 
 $$
 \begin{aligned}
-\sum_{j=0}^{m}\binom{m+1}{j}B_j&=0,(m>0)\\
+\sum_{j=0}^{m}\binom{m+1}{j}B_j&=0,(m > 0)\\
 B_0&=1\\
 \sum_{j=0}^{m}\binom{m+1}{j}B_j&=[m = 0]
 \end{aligned}

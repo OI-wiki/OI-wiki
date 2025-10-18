@@ -63,20 +63,20 @@ $x_e=1$ 的边是匹配边，$x_e=0$ 的边是非匹配边。和二分图一样�
 
 和二分图不同的是，一般图多了 $z_B$ 要处理。下面考虑 $z_B$ 什么时候大于 $0$。
 
-可以看出，尽量使 $z_B=0$ 是最好的做法，但在不得已时还是要让 $z_B>0$。在 $x(\gamma(B)) = \left\lfloor \dfrac{|B|}2 \right\rfloor \text{且} x(\delta(B)) = 1$ 时，让 $z_B>0$ 即可。因为除了在这种情况下，$z_B>0$ 是无意义的。
+可以看出，尽量使 $z_B=0$ 是最好的做法，但在不得已时还是要让 $z_B > 0$。在 $x(\gamma(B)) = \left\lfloor \dfrac{|B|}2 \right\rfloor \text{且} x(\delta(B)) = 1$ 时，让 $z_B > 0$ 即可。因为除了在这种情况下，$z_B > 0$ 是无意义的。
 
 根据互补松弛条件，有以下的对应关系：
 
 -   对于选中的边 $e$，必有 $z_e=0$。
 
     $$
-    x_e>0 \longrightarrow z_e=0,\quad \forall e\in E
+    x_e > 0 \longrightarrow z_e=0,\quad \forall e\in E
     $$
 
--   对于选中的集合*B*，$z_B>0 \longrightarrow x(\gamma(B))= \left\lfloor \dfrac{|B|}2 \right\rfloor$，即所有 $z_B>0$ 的集合 $B$，都被选了集合大小一半的边，也即集合 $B$ 是一朵花，选中花中的一条边进行增广。同时，我们加入一个条件：$x(\delta(B))=1$，即只有花 $B$ 向外连了一条边的时候，$z_B>0$ 才是有意义的。
+-   对于选中的集合*B*，$z_B > 0 \longrightarrow x(\gamma(B))= \left\lfloor \dfrac{|B|}2 \right\rfloor$，即所有 $z_B > 0$ 的集合 $B$，都被选了集合大小一半的边，也即集合 $B$ 是一朵花，选中花中的一条边进行增广。同时，我们加入一个条件：$x(\delta(B))=1$，即只有花 $B$ 向外连了一条边的时候，$z_B > 0$ 才是有意义的。
 
     $$
-    z_B>0 \longrightarrow x(\gamma(B))=\left\lfloor\frac{|B|}2\right\rfloor, x(\delta(B))=1\quad \forall B\in O
+    z_B > 0 \longrightarrow x(\gamma(B))=\left\lfloor\frac{|B|}2\right\rfloor, x(\delta(B))=1\quad \forall B\in O
     $$
 
 以「**等边**」的概念，结合之前的带花树算法：用「等边」构成的增广路不断进行扩充，由于用来扩充的边全是「等边」，最后得到的最大权完美匹配仍然全是「等边」。
@@ -144,14 +144,14 @@ z_{B^-} - &= 2d \\
 \end{aligned}
 $$
 
-如果出现 $z_B=0(d=d3)$，为了防止 $z_B<0$ 的情况，所以要把这朵花拆了 (EXPAND)。
+如果出现 $z_B=0(d=d3)$，为了防止 $z_B < 0$ 的情况，所以要把这朵花拆了 (EXPAND)。
 拆花后只留下花里的交替路径，并把花里不在交替路径上的点设为未走访 ($\varnothing$)。
 
 如此便制造了一条（以上）的等边，既有等边保持不动，并维持了 $z_e\geq0:\forall e\in E$ 的性质，且最低限度增加了 $z_B$，可以继续找增广路了。
 
 ## 一般图最大权匹配
 
-以上求的是最大权完美匹配，求最大权匹配需要在 vertex labeling 额外增加一个限制：对于所有匹配点 $u$，$z_u>0$。
+以上求的是最大权完美匹配，求最大权匹配需要在 vertex labeling 额外增加一个限制：对于所有匹配点 $u$，$z_u > 0$。
 
 开始时先设所有的 $z_u=max(\{w(e):e\in E\})/2$。
 
@@ -509,7 +509,7 @@ int get_lca(int u, int v) {
         // 修改lab值
         int d = INF;
         for (int u = 1; u <= n; ++u) {
-          // 这是为了防止出现lab<0的情况发生
+          // 这是为了防止出现lab < 0的情况发生
           // 只要有任何一个lab[u]=0就结束程序
           if (S[st[u]] == 0) d = min(d, lab[u]);
         }

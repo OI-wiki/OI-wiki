@@ -70,7 +70,7 @@ $\rightarrow$ 输入以下文字：
 
 空行不是必要的，但它可以让长的文档更易读。
 
-$\rightarrow$ 按下 **Save** 按扭；$\rightarrow$ 在 **Libraries>Documents** 中新建一个名为 **LaTeX course** 文件夹；$\rightarrow$ 将你的文档命名为 **Doc1** 并将其保存为 **TeX document** 放在这个文件夹中。
+$\rightarrow$ 按下 **Save** 按扭；$\rightarrow$ 在 **Libraries > Documents** 中新建一个名为 **LaTeX course** 文件夹；$\rightarrow$ 将你的文档命名为 **Doc1** 并将其保存为 **TeX document** 放在这个文件夹中。
 
 将不同的 LaTeX 文档放在不同的目录下，在编译的时候组合多个文件是一个很好的想法。
 

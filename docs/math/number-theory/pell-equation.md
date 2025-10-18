@@ -45,7 +45,7 @@ $$
 
 方程 $x^2-Dy^2=1$ 的几何意义是实轴在 $x$ 轴、虚轴在 $y$ 轴的双曲线。双曲线上的每个点都唯一对应了 $x+y\sqrt{D}$ 的一个非零取值：双曲线的左支对应着 $x+y\sqrt{D}$ 的负值，右支则对应正值。而且，在每一支上，双曲线自下而上对应的 $x+y\sqrt{D}$ 的取值是严格递增的。二次整数的取值给 Pell 方程的解赋予了自然的顺序。
 
-双曲线同时关于 $x$ 轴和 $y$ 轴对称，因此讨论 Pell 方程的解只需要考虑在第一象限内的那一段即可，其余解可以通过对称性获得。这相当于只考虑 $x+y\sqrt{D}>1$ 的解。如果方程除了 $(\pm 1,0)$ 之外还存在不平凡的解，那么一定在第一象限内存在 $x+y\sqrt{D}$ 取值最小的解 $(x_1,y_1)$，这也是第一象限内（不含坐标轴）横纵坐标都最小的整点，它称为 Pell 方程的基本解（fundamental solution）[^fundamental-solution]。根据前文的讨论，满足 $x_k+y_k\sqrt{D}=(x_1+y_1\sqrt{D})^k$ 的整数对 $(x_k,y_k)$ 都是 Pell 方程的解，而且都在第一象限。反过来，这也的确是 Pell 方程在第一象限内的全部解。再利用对称性，就可以得到如下结论：
+双曲线同时关于 $x$ 轴和 $y$ 轴对称，因此讨论 Pell 方程的解只需要考虑在第一象限内的那一段即可，其余解可以通过对称性获得。这相当于只考虑 $x+y\sqrt{D} > 1$ 的解。如果方程除了 $(\pm 1,0)$ 之外还存在不平凡的解，那么一定在第一象限内存在 $x+y\sqrt{D}$ 取值最小的解 $(x_1,y_1)$，这也是第一象限内（不含坐标轴）横纵坐标都最小的整点，它称为 Pell 方程的基本解（fundamental solution）[^fundamental-solution]。根据前文的讨论，满足 $x_k+y_k\sqrt{D}=(x_1+y_1\sqrt{D})^k$ 的整数对 $(x_k,y_k)$ 都是 Pell 方程的解，而且都在第一象限。反过来，这也的确是 Pell 方程在第一象限内的全部解。再利用对称性，就可以得到如下结论：
 
 ???+ note "定理"
     设 Pell 方程 $x^2-Dy^2=1$ 的基本解是 $(x_1,y_1)$。那么，它的全部解就是
@@ -86,7 +86,7 @@ $$
     成立，它们都满足不等式
     
     $$
-    |x^2-Dy^2|=y^2\left|\dfrac{x}{y}-\sqrt{D}\right|\left|\dfrac{x}{y}+\sqrt{D}\right| \le \dfrac{1}{y^2}+2\sqrt{D}<1+2\sqrt{D}.
+    |x^2-Dy^2|=y^2\left|\dfrac{x}{y}-\sqrt{D}\right|\left|\dfrac{x}{y}+\sqrt{D}\right| \le \dfrac{1}{y^2}+2\sqrt{D} < 1+2\sqrt{D}.
     $$
     
     因而，必然存在整数 $m\in(-1-2\sqrt{D},1+2\sqrt{D})$ 使得有无数对 $(x,y)$ 都满足 $x^2-Dy^2 = m$。将这些 $(x,y)$ 根据对 $m$ 的余数分类，就知道对某一对整数 $(x_0,y_0)$，一定存在无数对 $(x,y)$ 使得 $x\equiv x_0\pmod m$ 以及 $y\equiv y_0\pmod m$ 成立。任取满足这些条件的两对互异的 $(x_1,y_1)$ 和 $(x_2,y_2)$，则
@@ -116,7 +116,7 @@ $$
 N\mid (x_1x_2-Dy_1y_2),\ N\mid (x_2y_1-x_1y_2).
 $$
 
-因为 Pell 方程的解相对容易求出，一个自然的想法是在上述的每个等价类中各求出一个解。只要知道这些解，就可以利用相应的 Pell 方程的解得到所要求的广义 Pell 方程的全部解。在广义 Pell 方程的解的等价类中，由于对称性，每个等价类都存在纵坐标 $y$ 非负但是尽可能小的解：如果这样的解唯一，它就称为该等价类的基本解；否则，该等价类必然有两个 $y$ 非负且最小的解，而且它们关于 $y$ 轴对称，此时选择 $x>0$ 的那个作为基本解。由此，求解广义 Pell 方程 $x^2-Dy^2=N$，就相当于求解它的基本解集 $U$。设它对应的 Pell 方程的基本解是 $(r,s)$，则广义 Pell 方程的全部解的集合是
+因为 Pell 方程的解相对容易求出，一个自然的想法是在上述的每个等价类中各求出一个解。只要知道这些解，就可以利用相应的 Pell 方程的解得到所要求的广义 Pell 方程的全部解。在广义 Pell 方程的解的等价类中，由于对称性，每个等价类都存在纵坐标 $y$ 非负但是尽可能小的解：如果这样的解唯一，它就称为该等价类的基本解；否则，该等价类必然有两个 $y$ 非负且最小的解，而且它们关于 $y$ 轴对称，此时选择 $x > 0$ 的那个作为基本解。由此，求解广义 Pell 方程 $x^2-Dy^2=N$，就相当于求解它的基本解集 $U$。设它对应的 Pell 方程的基本解是 $(r,s)$，则广义 Pell 方程的全部解的集合是
 
 $$
 \{(x,y):x+y\sqrt{D}=\pm(r+s\sqrt{D})^k(u+v\sqrt{D}),k\in\mathbf Z,u+v\sqrt{D}\in U\}.
@@ -140,7 +140,7 @@ Pell 方程和广义 Pell 方程的求解都可以基于连分数进行。
 
 本文讨论的算法都基于 PQa 算法，它可以用于求出特定的二次无理数的连分数展开。
 
-设整数 $P_0,Q_0,D$ 满足 $Q_0\neq 0$，$D>0$ 且不是完全平方数，以及 $P_0^2\equiv D\pmod{Q_0}$。那么，二次无理数
+设整数 $P_0,Q_0,D$ 满足 $Q_0\neq 0$，$D > 0$ 且不是完全平方数，以及 $P_0^2\equiv D\pmod{Q_0}$。那么，二次无理数
 
 $$
 \omega=\dfrac{P_0+\sqrt{D}}{Q_0}
@@ -225,7 +225,7 @@ $$
     
     故而，$\gcd(G_{k-1},B_{k-1}) = \gcd(Q_0A_{k-1},B_{k-1})$ 整除 $Q_k$。
 
-这个结论提供了一种寻找方程 $x^2-Dy^2=N$ 的解的方法。如果合理地选择 $Q_0>0$ 并选择 $P_0$ 为同余方程 $P_0^2\equiv D\pmod{Q_0}$ 的解，那么通过对 $(P_0+\sqrt{D})/Q_0$ 执行 PQa 算法，直到找到 $(-1)^kQ_0Q_{k}=N$，此时 $(G_{k-1},B_{k-1})$ 就成为原方程的一组解。而且，如果 $Q_k=\pm 1$，那么这样得到的解一定是本原解，也就是说 $G_{k-1}$ 和 $B_{k-1}$ 一定是互素的。
+这个结论提供了一种寻找方程 $x^2-Dy^2=N$ 的解的方法。如果合理地选择 $Q_0 > 0$ 并选择 $P_0$ 为同余方程 $P_0^2\equiv D\pmod{Q_0}$ 的解，那么通过对 $(P_0+\sqrt{D})/Q_0$ 执行 PQa 算法，直到找到 $(-1)^kQ_0Q_{k}=N$，此时 $(G_{k-1},B_{k-1})$ 就成为原方程的一组解。而且，如果 $Q_k=\pm 1$，那么这样得到的解一定是本原解，也就是说 $G_{k-1}$ 和 $B_{k-1}$ 一定是互素的。
 
 这个思想是解决 Pell 方程和广义 Pell 方程的核心。理解了这一思想后，下面就着手处理算法的一些细节，并证明所有的解都可以通过该方式得到。
 
@@ -244,24 +244,24 @@ $$
 接下来要说明，刚刚得到的这组解一定是基础解。这个结论基于两点理由：第一，Pell 方程的所有正整数解 $(x,y)$ 对应的分数 $x/y$ 都出现在 $\sqrt{D}$ 的渐近分数中，这就保证了 $(x,y)$ 必定是 PQa 算法过程中的某个 $(A_k,B_k)$；第二，除了循环节末尾，不会再出现其他位置有 $Q_k=1$，因为 $A_k$ 和 $B_k$ 的递推关系保证了它们的大小随着下标增加而增加，所以最小的正整数解（即基础解）必然出现在刚刚指明的位置。这两点理由可以分别从如下的两条定理得出：
 
 ???+ note "定理"
-    设方程 $x^2-Dy^2=N$ 有正整数解 $(x,y)$，如果 $|N|<\sqrt{D}$，那么 $\dfrac{x}{y}$ 一定等于 $\sqrt{D}$ 的渐近分数。
+    设方程 $x^2-Dy^2=N$ 有正整数解 $(x,y)$，如果 $|N| < \sqrt{D}$，那么 $\dfrac{x}{y}$ 一定等于 $\sqrt{D}$ 的渐近分数。
 
 ??? note "证明"
-    当 $N>0$ 时，因为 $x^2-Dy^2>0$，所以 $x>y\sqrt{D}$。故而，有
+    当 $N > 0$ 时，因为 $x^2-Dy^2 > 0$，所以 $x > y\sqrt{D}$。故而，有
     
     $$
-    \left|\dfrac{x}{y}-\sqrt{D}\right| = \dfrac{N}{y(x+y\sqrt{D})}<\dfrac{N}{2y^2\sqrt{D}}<\dfrac{1}{2y^2}.
+    \left|\dfrac{x}{y}-\sqrt{D}\right| = \dfrac{N}{y(x+y\sqrt{D})} < \dfrac{N}{2y^2\sqrt{D}} < \dfrac{1}{2y^2}.
     $$
     
     根据 [Legendre 判别法](./continued-fraction.md#渐近分数的判定) 可知，$\dfrac{x}{y}$ 是 $\sqrt{D}$ 的渐近分数。
     
-    当 $N<0$ 时，$x>y\sqrt{D}$ 不再成立。所以，转而考虑方程 $y^2-\dfrac{1}{D}x^2=-\dfrac{N}{D}$ 的解。因为 $\dfrac{|N|}{D}<\sqrt{\dfrac{1}{D}}$，所以上面的论证依然成立。这说明 $\dfrac{y}{x}$ 是 $\dfrac{1}{\sqrt{D}}$ 的渐近分数。根据 [倒数定理](./continued-fraction.md#递推关系) 可知，$\dfrac{x}{y}$ 也是 $\sqrt{D}$ 的渐近分数。
+    当 $N < 0$ 时，$x > y\sqrt{D}$ 不再成立。所以，转而考虑方程 $y^2-\dfrac{1}{D}x^2=-\dfrac{N}{D}$ 的解。因为 $\dfrac{|N|}{D} < \sqrt{\dfrac{1}{D}}$，所以上面的论证依然成立。这说明 $\dfrac{y}{x}$ 是 $\dfrac{1}{\sqrt{D}}$ 的渐近分数。根据 [倒数定理](./continued-fraction.md#递推关系) 可知，$\dfrac{x}{y}$ 也是 $\sqrt{D}$ 的渐近分数。
 
 ???+ note "定理"
     在对 $(P_0,Q_0,D)=(0,1,D)$ 运行上述 PQa 算法的过程中，$Q_k=1$ 必然推出 $\ell\mid k$。
 
 ??? note "证明"
-    在 $\sqrt{D}$ 的连分数展开中，除了第 $0$ 个余项，所有其他余项都是 [纯循环连分数](./continued-fraction.md#纯循环连分数)。设 $Q_k=1$。根据 Galois 的结论，必然有余项 $\omega_k=P_k+\sqrt{D}>1$，且它的共轭 $-1<P_k-\sqrt{D}<0$，这说明 $P_k=\lfloor\sqrt{D}\rfloor$。因此，余项 $\omega_k$ 就等于 $\omega_\ell$。但是，余项的重复意味着连分数的循环，如果 $k$ 不是 $\ell$ 的整数倍，就与 $\ell$ 是最小正周期相矛盾。所以，必然有 $\ell\mid k$。
+    在 $\sqrt{D}$ 的连分数展开中，除了第 $0$ 个余项，所有其他余项都是 [纯循环连分数](./continued-fraction.md#纯循环连分数)。设 $Q_k=1$。根据 Galois 的结论，必然有余项 $\omega_k=P_k+\sqrt{D} > 1$，且它的共轭 $-1 < P_k-\sqrt{D} < 0$，这说明 $P_k=\lfloor\sqrt{D}\rfloor$。因此，余项 $\omega_k$ 就等于 $\omega_\ell$。但是，余项的重复意味着连分数的循环，如果 $k$ 不是 $\ell$ 的整数倍，就与 $\ell$ 是最小正周期相矛盾。所以，必然有 $\ell\mid k$。
 
 综合本节的讨论可知，只要对 $\sqrt{D}$ 做连分数展开，亦即以 $(P_0,Q_0,D)=(0,1,D)$ 为起点做 PQa 算法，当首次得到 $Q_\ell=1$ 时，就到达了第一个循环节的末尾。此时，如果 $\ell$ 是偶数，那么 $(A_{\ell-1},B_{\ell-1})$ 就是 Pell 方程的基本解；否则，$(A_{2\ell-1},B_{2\ell-1})$ 是 Pell 方程的基本解。对于循环节长度 $\ell$ 为奇数的情形，并不需要继续 PQa 算法到两倍的循环节处，马上就会说明 $A_{2\ell-1}+B_{2\ell-1}\sqrt{D}=(A_{\ell-1}+B_{\ell-1}\sqrt{D})^2$，因而可以直接从 $(A_{\ell-1},B_{\ell-1})$ 直接计算出 Pell 方程的基本解。Pell 方程所有其他解都可以通过 Pell 方程的基本解计算。
 
@@ -317,11 +317,11 @@ $$
     特别地，满足 $x_2+y_2\sqrt{D}=(x_1+y_1\sqrt{D})^2$ 的整数解 $(x_2,y_2)$ 正是 $x^2-Dy^2=1$ 的基本解。
 
 ??? note "证明"
-    由于对称性，只需要考虑正整数解，即 $x+y\sqrt{D}>1$ 的情形。但是由于 $x^2-Dy^2=\pm 1$ 是两段双曲线，所以 $x+y\sqrt{D}$ 无法和 $(x,y)$ 建立一一对应。为了处理这种困难，首先证明上述的 $(x_2,y_2)$ 是 $x^2-Dy^2=1$ 的基本解。
+    由于对称性，只需要考虑正整数解，即 $x+y\sqrt{D} > 1$ 的情形。但是由于 $x^2-Dy^2=\pm 1$ 是两段双曲线，所以 $x+y\sqrt{D}$ 无法和 $(x,y)$ 建立一一对应。为了处理这种困难，首先证明上述的 $(x_2,y_2)$ 是 $x^2-Dy^2=1$ 的基本解。
     
-    显然，$(x_2,y_2)$ 是 $x^2-Dy^2=1$ 的解。如果设 $(z,w)$ 是 $x^2-Dy^2=1$ 的基本解，那么必然有 $1<z+w\sqrt{D}\le x_2+y_2\sqrt{D}$。如果右侧的不等式不含有等号，那么将不等式同除以 $x_1+y_1\sqrt{D}$ 就得到 $-x_1+y_1\sqrt{D}<(z+w\sqrt{D})(-x_1+y_1\sqrt{D})<x_1+y_1\sqrt{D}$。将该不等式的中间项的表达式展开就能得到 $x'+y'\sqrt{D}$ 的形式，它的范数是 $-1$ 且 $(x',y')$ 也是整数解。将该不等式取倒数，就发现 $-x'+y'\sqrt{D}$ 同样落入 $-x_1+y_1\sqrt{D}$ 和 $x_1+y_1\sqrt{D}$ 之间。二次整数 $\pm x'+y'\sqrt{D}$ 互为倒数，必然有一个大于 $1$。但是 $1$ 和 $x_1+y_1\sqrt{D}$ 不应该再出现别的范数为 $-1$ 的二次整数，这与 $x_1+y_1\sqrt{D}$ 的最小性矛盾。所以，必然成立 $x_2+y_2\sqrt{D}=z+w\sqrt{D}$，即 $(x_2,y_2)$ 是方程 $x^2-Dy^2=1$ 的基本解。
+    显然，$(x_2,y_2)$ 是 $x^2-Dy^2=1$ 的解。如果设 $(z,w)$ 是 $x^2-Dy^2=1$ 的基本解，那么必然有 $1 < z+w\sqrt{D}\le x_2+y_2\sqrt{D}$。如果右侧的不等式不含有等号，那么将不等式同除以 $x_1+y_1\sqrt{D}$ 就得到 $-x_1+y_1\sqrt{D} < (z+w\sqrt{D})(-x_1+y_1\sqrt{D}) < x_1+y_1\sqrt{D}$。将该不等式的中间项的表达式展开就能得到 $x'+y'\sqrt{D}$ 的形式，它的范数是 $-1$ 且 $(x',y')$ 也是整数解。将该不等式取倒数，就发现 $-x'+y'\sqrt{D}$ 同样落入 $-x_1+y_1\sqrt{D}$ 和 $x_1+y_1\sqrt{D}$ 之间。二次整数 $\pm x'+y'\sqrt{D}$ 互为倒数，必然有一个大于 $1$。但是 $1$ 和 $x_1+y_1\sqrt{D}$ 不应该再出现别的范数为 $-1$ 的二次整数，这与 $x_1+y_1\sqrt{D}$ 的最小性矛盾。所以，必然成立 $x_2+y_2\sqrt{D}=z+w\sqrt{D}$，即 $(x_2,y_2)$ 是方程 $x^2-Dy^2=1$ 的基本解。
     
-    基于此，如果出现方程 $x^2-Dy^2=\pm 1$ 的解 $(x,y)$ 不对应某个 $(x_1+y_1\sqrt{D})^k$，那么必然存在 $k$ 使得 $(x_1+y_1\sqrt{D})^{2k}<x+y\sqrt{D}<(x_1+y_1\sqrt{D})^{2k+2}$，消去因子 $(x_1+y_1)^{2k+1}$，就说明存在位于 $-x_1+y_1\sqrt{D}$ 和 $x_1+y_1\sqrt{D}$ 之间的范数为 $\pm 1$ 的二次整数 $x'+y'\sqrt{D}\neq 1$。重复上一段利用倒数的论证可知，这与 $x_1+y_1\sqrt{D}$ 的最小性矛盾。因而原命题得证。
+    基于此，如果出现方程 $x^2-Dy^2=\pm 1$ 的解 $(x,y)$ 不对应某个 $(x_1+y_1\sqrt{D})^k$，那么必然存在 $k$ 使得 $(x_1+y_1\sqrt{D})^{2k} < x+y\sqrt{D} < (x_1+y_1\sqrt{D})^{2k+2}$，消去因子 $(x_1+y_1)^{2k+1}$，就说明存在位于 $-x_1+y_1\sqrt{D}$ 和 $x_1+y_1\sqrt{D}$ 之间的范数为 $\pm 1$ 的二次整数 $x'+y'\sqrt{D}\neq 1$。重复上一段利用倒数的论证可知，这与 $x_1+y_1\sqrt{D}$ 的最小性矛盾。因而原命题得证。
 
 因为 $(A_{\ell-1},B_{\ell-1})$ 是负 Pell 方程的最小正整数解，而 $x^2-Dy^2=\pm 1$ 的所有正整数解都出现在集合
 
@@ -372,15 +372,15 @@ $$
     设方程 $x^2-Dy^2=\pm 4$ 有正整数解 $(x,y)$。如果 $D\equiv 1\pmod 4$，那么，$\dfrac{(x+y)/2}{y}$ 一定是 $\dfrac{1+\sqrt{D}}{2}$ 的渐近分数。
 
 ??? note "证明"
-    首先注意到，此时 $x,y$ 必然奇偶性相同，所以 $(x+y)/2$ 是整数。如果 $(x,y)$ 是方程 $x^2-Dy^2=4$ 的解，那么 $x>y\sqrt{D}>2y$，所以，
+    首先注意到，此时 $x,y$ 必然奇偶性相同，所以 $(x+y)/2$ 是整数。如果 $(x,y)$ 是方程 $x^2-Dy^2=4$ 的解，那么 $x > y\sqrt{D} > 2y$，所以，
     
     $$
-    \left|\dfrac{(x+y)/2}{y}-\dfrac{1+\sqrt{D}}{2}\right| = \dfrac{2}{y(x+y\sqrt{D})}<\dfrac{1}{2y^2}.
+    \left|\dfrac{(x+y)/2}{y}-\dfrac{1+\sqrt{D}}{2}\right| = \dfrac{2}{y(x+y\sqrt{D})} < \dfrac{1}{2y^2}.
     $$
     
     根据 [Legendre 判别法](./continued-fraction.md#渐近分数的判定) 可知，$\dfrac{(x+y)/2}{y}$ 是 $\dfrac{1+\sqrt{D}}{2}$ 的渐近分数。
     
-    如果 $(x,y)$ 是方程 $x^2-Dy^2=-4$ 的解，那么要建立上述不等式，只需要证明 $4y<x+y\sqrt{D}$。这至少对于除了 $D=5,13$ 之外的情形都成立。对于 $D=5,13$ 的情形，将 $x=\sqrt{Dy^2-4}$ 代入该不等式可知，它等价于 $2(\sqrt{D}-2)y^2>1$ 成立。除了 $(D,y)=(5,1)$ 之外，该不等式对于所有 $D=5,13$ 和正整数 $y$ 都成立。剩下的就是验证 $(D,y)=(5,1)$ 的情形，此时，方程 $x^2-5y^2=-4$ 的解是 $(x,y)=(1,1)$，需要验证的是 $\dfrac{1}{1}$ 是 $\dfrac{1+\sqrt{5}}{2}=[\overline{1}]$ 的渐近分数，而这是显然成立的。
+    如果 $(x,y)$ 是方程 $x^2-Dy^2=-4$ 的解，那么要建立上述不等式，只需要证明 $4y < x+y\sqrt{D}$。这至少对于除了 $D=5,13$ 之外的情形都成立。对于 $D=5,13$ 的情形，将 $x=\sqrt{Dy^2-4}$ 代入该不等式可知，它等价于 $2(\sqrt{D}-2)y^2 > 1$ 成立。除了 $(D,y)=(5,1)$ 之外，该不等式对于所有 $D=5,13$ 和正整数 $y$ 都成立。剩下的就是验证 $(D,y)=(5,1)$ 的情形，此时，方程 $x^2-5y^2=-4$ 的解是 $(x,y)=(1,1)$，需要验证的是 $\dfrac{1}{1}$ 是 $\dfrac{1+\sqrt{5}}{2}=[\overline{1}]$ 的渐近分数，而这是显然成立的。
 
 ???+ note "定理"
     设 $D$ 是正整数但不是完全平方数。二次无理数 $\omega=\dfrac{1+\sqrt{D}}{2}$ 的连分数展开具有形式
@@ -389,10 +389,10 @@ $$
     \omega = [\lfloor\omega\rfloor,\overline{a_1,\cdots,a_{\ell-1},2\lfloor\omega\rfloor-1}],
     $$
     
-    其中，$\ell$ 为循环节长度，且 $a_k=a_{\ell-k}$ 对任何 $1<k<\ell$ 都成立。
+    其中，$\ell$ 为循环节长度，且 $a_k=a_{\ell-k}$ 对任何 $1 < k < \ell$ 都成立。
 
 ??? note "证明"
-    因为 $\lfloor\omega\rfloor-1+\omega>1$，而且它的共轭等于 $\lfloor\omega\rfloor - \omega$，位于 $-1$ 和 $0$ 之间，所以根据 [Galois 的结论](./continued-fraction.md#纯循环连分数) 可知，$\lfloor\omega\rfloor-1+\omega$ 是纯循环连分数，可以写成
+    因为 $\lfloor\omega\rfloor-1+\omega > 1$，而且它的共轭等于 $\lfloor\omega\rfloor - \omega$，位于 $-1$ 和 $0$ 之间，所以根据 [Galois 的结论](./continued-fraction.md#纯循环连分数) 可知，$\lfloor\omega\rfloor-1+\omega$ 是纯循环连分数，可以写成
     
     $$
     \lfloor\omega\rfloor-1+\omega = [\overline{2\lfloor\omega\rfloor-1,a_1,\cdots,a_{\ell-1}}].
@@ -410,13 +410,13 @@ $$
     \lfloor\omega\rfloor-1+\omega = 2\lfloor\omega\rfloor-1 + \dfrac{1}{\dfrac{1}{\omega-\lfloor\omega\rfloor}} = [2\lfloor\omega\rfloor-1,\overline{a_{\ell-1},\cdots,a_1,2\lfloor\omega\rfloor-1}].
     $$
     
-    连分数展开的唯一性就说明 $a_k=a_{\ell-k}$ 对所有 $1<k<\ell$ 都成立，因而要证明的展开式也成立。
+    连分数展开的唯一性就说明 $a_k=a_{\ell-k}$ 对所有 $1 < k < \ell$ 都成立，因而要证明的展开式也成立。
 
 ???+ note "定理"
     设 $D\equiv 1\pmod 4$。在对 $(P_0,Q_0,D)=(1,2,D)$ 运行上述 PQa 算法的过程中，$Q_k=2$ 必然推出 $\ell\mid k$。
 
 ??? note "证明"
-    在 $\dfrac{1+\sqrt{D}}{2}$ 的连分数展开中，除了第 $0$ 个余项，所有其他余项都是 [纯循环连分数](./continued-fraction.md#纯循环连分数)。设 $Q_k=2$。根据 Galois 的结论，必然有余项 $\omega_k=\dfrac{P_k+\sqrt{D}}{2}$ 的共轭 $-1<\dfrac{P_k-\sqrt{D}}{2}<0$，亦即 $\sqrt{D}-2<P_k<\sqrt{D}$。因为 PQa 算法中总有 $Q_k\mid P_k^2-D$（见 [算法正确性证明](./continued-fraction.md#二次无理数)），所以 $P_k$ 一定是奇数，这就说明 $P_k$ 取值唯一，即 $P_k=P_0+2(\lfloor\omega\rfloor-1)$，也就是说余项 $\omega_k=\omega\ell$。但是，余项的重复意味着连分数的循环，如果 $k$ 不是 $\ell$ 的整数倍，就与 $\ell$ 是最小正周期相矛盾。所以，必然有 $\ell\mid k$。
+    在 $\dfrac{1+\sqrt{D}}{2}$ 的连分数展开中，除了第 $0$ 个余项，所有其他余项都是 [纯循环连分数](./continued-fraction.md#纯循环连分数)。设 $Q_k=2$。根据 Galois 的结论，必然有余项 $\omega_k=\dfrac{P_k+\sqrt{D}}{2}$ 的共轭 $-1 < \dfrac{P_k-\sqrt{D}}{2} < 0$，亦即 $\sqrt{D}-2 < P_k < \sqrt{D}$。因为 PQa 算法中总有 $Q_k\mid P_k^2-D$（见 [算法正确性证明](./continued-fraction.md#二次无理数)），所以 $P_k$ 一定是奇数，这就说明 $P_k$ 取值唯一，即 $P_k=P_0+2(\lfloor\omega\rfloor-1)$，也就是说余项 $\omega_k=\omega\ell$。但是，余项的重复意味着连分数的循环，如果 $k$ 不是 $\ell$ 的整数倍，就与 $\ell$ 是最小正周期相矛盾。所以，必然有 $\ell\mid k$。
 
 ???+ note "定理"
     设方程 $x^2-Dy^2=\pm 4$ 的最小正整数解为 $(x_1,y_1)$。那么，它的全部解就是
@@ -564,7 +564,7 @@ $$
 
 最后，讨论广义 Pell 方程的解法。
 
-对于 $|N|<\sqrt{D}$ 的情形有一个简单的解法。前文的结论说明方程 $x^2-Dy^2=N$ 的解 $(x,y)$ 一定满足 $\dfrac{x}{y}$ 等于 $\sqrt{D}$ 的某个渐近分数。而且，根据前文讨论的解的结构可知，每个基础解 $(x,y)$ 都满足 $x+y\sqrt{D}$ 小于等于相应的 Pell 方程 $x^2-Dy^2=1$ 的基础解 $x_1+y_1\sqrt{D}$。利用 PQa 算法中分母序列 $B_k$ 的单调性可知，广义 Pell 方程的这些基础解一定出现在相应的 Pell 方程的基础解出现之前。由此，只需要对 $(P_0,Q_0,D)=(0,1,D)$ 运行 PQa 算法，直到 $Q_{\ell'}=1$ 且 $\ell'$ 为偶数时为止，过程中对出现的每个 $(A_k,B_k)$ 检验是否存在整数 $f$ 使得
+对于 $|N| < \sqrt{D}$ 的情形有一个简单的解法。前文的结论说明方程 $x^2-Dy^2=N$ 的解 $(x,y)$ 一定满足 $\dfrac{x}{y}$ 等于 $\sqrt{D}$ 的某个渐近分数。而且，根据前文讨论的解的结构可知，每个基础解 $(x,y)$ 都满足 $x+y\sqrt{D}$ 小于等于相应的 Pell 方程 $x^2-Dy^2=1$ 的基础解 $x_1+y_1\sqrt{D}$。利用 PQa 算法中分母序列 $B_k$ 的单调性可知，广义 Pell 方程的这些基础解一定出现在相应的 Pell 方程的基础解出现之前。由此，只需要对 $(P_0,Q_0,D)=(0,1,D)$ 运行 PQa 算法，直到 $Q_{\ell'}=1$ 且 $\ell'$ 为偶数时为止，过程中对出现的每个 $(A_k,B_k)$ 检验是否存在整数 $f$ 使得
 
 $$
 A_k^2-DB_k^2 = (-1)^{k+1}Q_{k+1} = N/f^2
@@ -572,12 +572,12 @@ $$
 
 成立，如果成立，则记录 $(fA_{k},fB_{k})$ 是一个最小正整数解。这个过程记录的所有 $(fA_k,fB_k)$ 就是方程 $x^2-Dy^2=N$ 的全部最小正整数解。利用 $(A_{\ell'-1},B_{\ell'-1})$，即相应的 Pell 方程的基本解，就可以根据求出的这些最小正整数解，生成广义 Pell 方程的所有解。注意，取决于循环节长度 $\ell$ 是偶数还是奇数，上述的 $\ell'$ 可能是 $\ell$ 或是 $2\ell$。
 
-对于更为一般的 $N$ 的情形，上述方法不再适用。首先，枚举 $N$ 的所有平方因子 $f^2$，设 $m=N/f^2$，并枚举同余方程 $z^2\equiv D\pmod{|m|}$ 的所有满足 $-|m|/2<z \le |m|/2$ 的解 $z$。然后，对 $(P_0,Q_0,D)=(z,|m|,D)$ 运行 PQa 算法，直到 $Q_k=\pm 1$ 或已经结束了一个循环节。在第二种情形，那么与该组 $(f,z)$ 相关的方程的解并不存在。在第一种情形，需要进一步判断 $(-1)^kQ_k=N/|N|$ 与否。如果符号一致，那么 $(fG_{k-1},fB_{k-1})$ 就是方程 $x^2-Dy^2=N$ 的解。否则，它是方程 $x^2-Dy^2=-N$ 的解，而且当且仅当相应的负 Pell 方程的解存在时，才可以通过复合它与相应的负 Pell 方程的基本解来得到方程 $x^2-Dy^2=N$ 的解。当完成对所有组 $(f,z)$ 的遍历之后，就可以得到方程 $x^2-Dy^2=N$ 在每个解的等价类中各恰好一个解，且该解为该等价类中的基本解或最小正整数解。利用它们和相应的 Pell 方程的基本解，可以生成该方程的所有整数解。这一算法称为 **Lagrange–Matthews–Mollin 算法**。
+对于更为一般的 $N$ 的情形，上述方法不再适用。首先，枚举 $N$ 的所有平方因子 $f^2$，设 $m=N/f^2$，并枚举同余方程 $z^2\equiv D\pmod{|m|}$ 的所有满足 $-|m|/2 < z \le |m|/2$ 的解 $z$。然后，对 $(P_0,Q_0,D)=(z,|m|,D)$ 运行 PQa 算法，直到 $Q_k=\pm 1$ 或已经结束了一个循环节。在第二种情形，那么与该组 $(f,z)$ 相关的方程的解并不存在。在第一种情形，需要进一步判断 $(-1)^kQ_k=N/|N|$ 与否。如果符号一致，那么 $(fG_{k-1},fB_{k-1})$ 就是方程 $x^2-Dy^2=N$ 的解。否则，它是方程 $x^2-Dy^2=-N$ 的解，而且当且仅当相应的负 Pell 方程的解存在时，才可以通过复合它与相应的负 Pell 方程的基本解来得到方程 $x^2-Dy^2=N$ 的解。当完成对所有组 $(f,z)$ 的遍历之后，就可以得到方程 $x^2-Dy^2=N$ 在每个解的等价类中各恰好一个解，且该解为该等价类中的基本解或最小正整数解。利用它们和相应的 Pell 方程的基本解，可以生成该方程的所有整数解。这一算法称为 **Lagrange–Matthews–Mollin 算法**。
 
 该算法的正确性由如下定理保证：
 
 ???+ note "定理"
-    设方程 $x^2-Dy^2=N$ 有整数解 $(x,y)$ 且 $x\ge 0, y>0,\gcd(x,y)=1$。令 $Q_0=|N|$，则 $\gcd(Q_0,y)=1$。设 $P_0$ 是同余方程 $x\equiv -P_0y\pmod{Q_0}$ 的解且 $-Q_0/2<P_0\le Q_0/2$，并设整数 $X$ 使得 $x=Q_0X-P_0y$ 成立。那么，$P_0^2\equiv D\pmod{Q_0}$，$\dfrac{X}{y}$ 是 $\omega=\dfrac{P_0+\sqrt{D}}{Q_0}$ 的一个渐近分数 $\dfrac{A_{k-1}}{B_{k-1}}$，且 $Q_k=(-1)^k\dfrac{N}{|N|}$。
+    设方程 $x^2-Dy^2=N$ 有整数解 $(x,y)$ 且 $x\ge 0, y > 0,\gcd(x,y)=1$。令 $Q_0=|N|$，则 $\gcd(Q_0,y)=1$。设 $P_0$ 是同余方程 $x\equiv -P_0y\pmod{Q_0}$ 的解且 $-Q_0/2 < P_0\le Q_0/2$，并设整数 $X$ 使得 $x=Q_0X-P_0y$ 成立。那么，$P_0^2\equiv D\pmod{Q_0}$，$\dfrac{X}{y}$ 是 $\omega=\dfrac{P_0+\sqrt{D}}{Q_0}$ 的一个渐近分数 $\dfrac{A_{k-1}}{B_{k-1}}$，且 $Q_k=(-1)^k\dfrac{N}{|N|}$。
 
 ??? note "证明"
     利用 $x\equiv -P_0y\pmod{Q_0}$ 和 $x^2-Dy^2=N\equiv 0\pmod{Q_0}$，显然有 $P_0^2\equiv D\pmod{Q_0}$。因而，
@@ -621,10 +621,10 @@ $$
     分情况讨论：
     
     -   如果 $S=0$，那么容易验证 $Q=R=1$，因而 $\omega=P+\zeta^{-1}=[P,\zeta]$，故而 $\dfrac{P}{Q}=P$ 是 $\omega$ 的第 $0$ 个渐近分数；
-    -   如果 $Q=S>0$，那么 $Q=S=1$ 且 $P-R=\pm 1$。此时，
+    -   如果 $Q=S > 0$，那么 $Q=S=1$ 且 $P-R=\pm 1$。此时，
         -   如果 $P=R+1$，那么 $\omega=R+\dfrac{1}{1+\zeta^{-1}}=[R,1,\zeta]$，故而 $\dfrac{P}{Q}=\dfrac{R+1}{1}=[R,1]$ 是 $\omega$ 的第 $1$ 个渐近分数；
         -   如果 $P=R-1$，那么 $\omega=R-1+\dfrac{1}{1+\zeta}=[R-1,\zeta-1]$，故而 $\dfrac{P}{Q}=R-1$ 是 $\omega$ 的第 $0$ 个渐近分数；
-    -   如果 $Q\neq S>0$，那么由于 $Q=q_k\mid(S-q_{k-1})$，总存在整数 $\kappa$ 使得 $S=\kappa q_k+q_{k-1}$ 和 $R=\kappa p_k+p_{k-1}$ 成立。因为 $q_k\ge q_{k-1}$ 且 $S>0$，所以 $\kappa\ge 0$。因而，$\omega=\dfrac{(\kappa+\zeta)p_k+p_{k-1}}{(\kappa+\zeta)q_k+q_{k-1}}=[a_0,a_1,\cdots,a_k,\kappa+\zeta]$，故而 $\dfrac{P}{Q}$ 是它的第 $k$ 个渐近分数。
+    -   如果 $Q\neq S > 0$，那么由于 $Q=q_k\mid(S-q_{k-1})$，总存在整数 $\kappa$ 使得 $S=\kappa q_k+q_{k-1}$ 和 $R=\kappa p_k+p_{k-1}$ 成立。因为 $q_k\ge q_{k-1}$ 且 $S > 0$，所以 $\kappa\ge 0$。因而，$\omega=\dfrac{(\kappa+\zeta)p_k+p_{k-1}}{(\kappa+\zeta)q_k+q_{k-1}}=[a_0,a_1,\cdots,a_k,\kappa+\zeta]$，故而 $\dfrac{P}{Q}$ 是它的第 $k$ 个渐近分数。
     
     综上所述，总有 $\dfrac{X}{y}$ 是 $\omega=\dfrac{P_0+\sqrt{D}}{Q_0}$ 的渐近分数，并按照 PQa 算法中的记号记作 $\dfrac{A_{k-1}}{B_{k-1}}$。因为 $A_{k-1}^2-DB_{k-1}^2=(-1)^kQ_0Q_k$，所以 $Q_k=(-1)^k\dfrac{N}{|N|}$。
 
@@ -633,7 +633,7 @@ $$
 ??? example "示例"
     1.  求解方程 $x^2-157y^2=12$。
     
-        因为 $12^2<157$，所以对 $(P_0,Q_0,D)=(0,1,157)$ 运行 PQa 算法结果如下：（标红部分为第一个循环节）
+        因为 $12^2 < 157$，所以对 $(P_0,Q_0,D)=(0,1,157)$ 运行 PQa 算法结果如下：（标红部分为第一个循环节）
     
         |  $k$ |  $P$ |  $Q$ |        $a$        |         $A$        |        $B$       |         $G$        | $G^2-DB^2$ |
         | :--: | :--: | :--: | :---------------: | :----------------: | :--------------: | :----------------: | :--------: |
@@ -738,7 +738,7 @@ $$
 
 -   [Pell's equation - Wikipedia](https://en.wikipedia.org/wiki/Pell%27s_equation)
 -   [John P. Robertson - Solving the generalized Pell equation $x^2-Dy^2=N$](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=5ac34a344ee346855184ff949eeaed18685b155c)
--   [Keith Matthews - The Diophantine Equation $x^2-Dy^2=N$,$D>0$](http://www.numbertheory.org/PDFS/patz5.pdf)
+-   [Keith Matthews - The Diophantine Equation $x^2-Dy^2=N$,$D > 0$](http://www.numbertheory.org/PDFS/patz5.pdf)
 -   [Existence of Solution to Pell’s Equation - Suryateja Gavva's Blog](https://surya-teja.com/2011/01/11/existence-of-solution-to-pells-equation/)
 -   [Calculating the simple continued fraction of a quadratic irrational - Number Theory Web](http://www.numbertheory.org/php/surd.html)（PQa 算法）
 -   [Solving the diophantine equation x2–Dy2 = N, D > 0 and not a perfect square, N ≠ 0 - Number Theory Web](http://www.numbertheory.org/php/patz.html)（Lagrange–Matthews–Mollin 算法）

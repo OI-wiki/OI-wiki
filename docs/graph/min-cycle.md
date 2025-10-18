@@ -41,11 +41,11 @@
 
 由最小环的定义可知其至少有三个顶点，设其中编号最大的顶点为 $w$，环上与 $w$ 相邻两侧的两个点为 $u,v$，则在最外层循环枚举到 $k=w$ 时，该环的长度即为 $dis_{u,v}+val\left(v,w\right)+val\left(w,u\right)$。
 
-故在循环时对于每个 $k$ 枚举满足 $i<k,j<k$ 的 $(i,j)$，更新答案即可。
+故在循环时对于每个 $k$ 枚举满足 $i < k,j < k$ 的 $(i,j)$，更新答案即可。
 
 #### 记录路径
 
-现在已经知道了环的形式为 $u\to k\to v$，然后再从 $v$ 回到 $u$（经过的点编号均 $<k$）。
+现在已经知道了环的形式为 $u\to k\to v$，然后再从 $v$ 回到 $u$（经过的点编号均 $< k$）。
 
 问题转化为求 $v\leadsto u$ 的路径。由三角不等式 $dis_{u,v}\le dis_{u,i}+dis_{i,v}$，考虑记录 $pos_{u,v}=j$ 表示使得 $dis_{u,v}=dis_{u,j}+dis_{j,v}$ 的点。显然 $j$ 就在 $v\leadsto u$ 的路径上。
 
@@ -99,7 +99,7 @@
           for (int j = 1; j < i; ++j)
             if (ans >
                 (long long)val[i][k] + val[k][j] + dis[i][j]) {  // 发现了更短的环
-              // 由于这里保证了 j<i<k，所以三个点不同，不会出现零环。
+              // 由于这里保证了 j < i < k，所以三个点不同，不会出现零环。
               ans = val[i][k] + val[k][j] + dis[i][j], cnt = 0;
               path[++cnt] = i, path[++cnt] = k,
               path[++cnt] = j;  // 依次加入 i,k,j 三点

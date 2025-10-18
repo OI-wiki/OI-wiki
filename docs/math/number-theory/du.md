@@ -74,7 +74,7 @@ $$
 
 $$
 \begin{aligned}
-    T(n) & = T_0(m)+\sum_{k\in R(n);k>m} T(k)\\
+    T(n) & = T_0(m)+\sum_{k\in R(n);k > m} T(k)\\
          & = T_0(m)+\sum_{k=1}^{\lfloor n/m \rfloor} O\left(\sqrt{\dfrac{n}{k}}\right)\\
          & = O\left(T_0(m)+\int_{0}^{n/m} \sqrt{\dfrac{n}{x}} \mathrm{d}x\right)\\
          & = O\left(T_0(m)+\dfrac{n}{\sqrt m}\right).
@@ -137,7 +137,7 @@ $$
 ### 问题一
 
 ???+ note "[P4213【模板】杜教筛（Sum）](https://www.luogu.com.cn/problem/P4213)"
-    求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值，$1\leq n<2^{31}$.
+    求 $S_1(n)= \sum_{i=1}^{n} \mu(i)$ 和 $S_2(n)= \sum_{i=1}^{n} \varphi(i)$ 的值，$1\leq n < 2^{31}$.
 
 === "莫比乌斯函数前缀和"
     我们知道：

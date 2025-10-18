@@ -252,7 +252,7 @@ $$
 
 注意到上式中 $R^{R}\left(x\right)$ 的系数为 $x^{n-m+1}$，则将其放到模 $x^{n-m+1}$ 意义下即可消除 $R^{R}\left(x\right)$ 带来的影响。
 
-又因 $Q^{R}\left(x\right)$ 的次数为 $\left(n-m\right)<\left(n-m+1\right)$，故 $Q^{R}\left(x\right)$ 不会受到影响。
+又因 $Q^{R}\left(x\right)$ 的次数为 $\left(n-m\right) < \left(n-m+1\right)$，故 $Q^{R}\left(x\right)$ 不会受到影响。
 
 则：
 

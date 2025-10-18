@@ -54,7 +54,7 @@
 规定「实数 $\lambda$ 与向量 $\boldsymbol a$ 的积」为一个向量，这种运算就是向量的 **数乘运算**，记作 $\lambda \boldsymbol a$，它的长度与方向规定如下：
 
 1.  $|\lambda \boldsymbol a|=|\lambda||\boldsymbol a|$；
-2.  当 $\lambda >0$ 时，$\lambda\boldsymbol a$ 与 $\boldsymbol a$ 同向，当 $\lambda =0$ 时，$\lambda \boldsymbol a=\boldsymbol 0$，当 $\lambda<0$ 时，$\lambda \boldsymbol a$ 与 $\boldsymbol a$ 方向相反。
+2.  当 $\lambda >0$ 时，$\lambda\boldsymbol a$ 与 $\boldsymbol a$ 同向，当 $\lambda =0$ 时，$\lambda \boldsymbol a=\boldsymbol 0$，当 $\lambda < 0$ 时，$\lambda \boldsymbol a$ 与 $\boldsymbol a$ 方向相反。
 
 根据数乘的定义，可以验证有如下运算律：
 

@@ -23,7 +23,7 @@ author: iamtwz, aofall, CCXXXI, CoelacanthusHex, Great-designer, Marcythm, Persd
 
 ## 素数幂模同余方程
 
-以下假设模数 $m=p^e~(p\in\mathbf{P},~e\in\mathbf{Z}_{>1})$．
+以下假设模数 $m=p^e~(p\in\mathbf{P},~e\in\mathbf{Z}_{ > 1})$．
 
 注意到，若 $x_0$ 是方程
 
@@ -42,7 +42,7 @@ $$
 <a id="定理-1"></a>
 
 ???+ note "定理 1（Hensel 引理）"
-    对素数 $p$ 和整数 $e>1$，取整系数多项式 $f(x)=\sum_{i=0}^na_ix^i~(p^e\nmid a_n)$，令 $f'(x)=\sum_{i=1}^nia_ix^{i-1}$ 为其导数．令 $x_0$ 为方程
+    对素数 $p$ 和整数 $e > 1$，取整系数多项式 $f(x)=\sum_{i=0}^na_ix^i~(p^e\nmid a_n)$，令 $f'(x)=\sum_{i=1}^nia_ix^{i-1}$ 为其导数．令 $x_0$ 为方程
     
     $$
     f(x)\equiv 0\pmod{p^{e-1}}\tag{2}
@@ -128,7 +128,7 @@ $$
     -   当 $k=1$ 时，做多项式带余除法，有 $f(x)=(x-x_1)g(x)+r$，其中 $r\in\mathbf{Z}$．
     
         由 $f(x_1)\equiv 0\pmod p$ 可知 $r\equiv 0\pmod p$，从而 $f(x)\equiv(x-x_1)g(x)\pmod p$．
-    -   假设命题对 $k-1$($k>1$) 时的情况成立，现在设 $f(x)$ 有 $k$ 个不同的解 $x_1,x_2,\dots,x_k$，则 $f(x)\equiv(x-x_1)h(x)\pmod p$，进而有
+    -   假设命题对 $k-1$($k > 1$) 时的情况成立，现在设 $f(x)$ 有 $k$ 个不同的解 $x_1,x_2,\dots,x_k$，则 $f(x)\equiv(x-x_1)h(x)\pmod p$，进而有
     
         $$
         (\forall i=2,3,\dots,k),~~0\equiv f(x_i)\equiv (x_i-x_1)h(x_i)\pmod p
@@ -184,7 +184,7 @@ $$
 <a id="定理-4"></a>
 
 ???+ note "定理 4"
-    方程 $(6)$ 若解的个数不为 $p$，则必存在满足 $\deg r<p$ 的整系数多项式 $r(x)$ 使得 $f(x)\equiv 0\pmod p$ 和 $r(x)\equiv 0\pmod p$ 的解集相同．
+    方程 $(6)$ 若解的个数不为 $p$，则必存在满足 $\deg r < p$ 的整系数多项式 $r(x)$ 使得 $f(x)\equiv 0\pmod p$ 和 $r(x)\equiv 0\pmod p$ 的解集相同．
 
 ???+ note "证明"
     不妨设 $n\geq p$，对 $f(x)$ 做多项式带余除法
@@ -193,7 +193,7 @@ $$
     f(x)=g(x)\left(x^p-x\right)+r(x)
     $$
     
-    其中 $\deg r<p$．
+    其中 $\deg r < p$．
     
     由 [Fermat 小定理](./fermat.md) 知对任意整数 $x$ 有 $x^p\equiv x\pmod p$，从而
     
@@ -289,7 +289,7 @@ $$
 x^n+\sum_{i=0}^{n-1}a_ix^i\equiv 0\pmod p
 $$
 
-的求法，其中 $p$ 是素数，$n<p$．
+的求法，其中 $p$ 是素数，$n < p$．
 
 我们可以通过将 $x$ 代换为 $x-\dfrac{a_{n-1}}{n}$ 来消去 $x^{n-1}$ 项，从而我们只需考虑方程
 
@@ -297,7 +297,7 @@ $$
 x^n+\sum_{i=0}^{n-2}a_ix^i\equiv 0\pmod p\tag{10}
 $$
 
-的求法，其中 $p$ 是素数，$n<p$．
+的求法，其中 $p$ 是素数，$n < p$．
 
 -   若 $n=1$，则求法参见 [线性同余方程](./linear-equation.md)．
 -   若 $n=2$，则求法参见 [二次剩余](./quad-residue.md)．

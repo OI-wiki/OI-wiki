@@ -33,7 +33,7 @@ toleft\[log(N),n]: 也就是每一层 1\~i 进入左儿子的数量，这里需�
       mid:=(left+right) >> 1;
       same:=mid-left+1;
       for i:=left to right do 
-        if tree[deep,i]<num[mid] then
+        if tree[deep,i] < num[mid] then
           dec(same);
       
       ls:=left; // 分配到左儿子的第一个指针
@@ -41,7 +41,7 @@ toleft\[log(N),n]: 也就是每一层 1\~i 进入左儿子的数量，这里需�
       for i:=left to right do
       begin
         flag:=0;
-        if (tree[deep,i]<num[mid])or((tree[deep,i]=num[mid])and(same>0)) then // 分配到左边的条件
+        if (tree[deep,i] < num[mid])or((tree[deep,i]=num[mid])and(same > 0)) then // 分配到左边的条件
         begin
           flag:=1; tree[deep+1,ls]:=tree[deep,i]; inc(ls);
           if tree[deep,i]=num[mid] then // 平衡左右个数
@@ -124,7 +124,7 @@ toleft\[log(N),n]: 也就是每一层 1\~i 进入左儿子的数量，这里需�
 
 回忆一下树状数组的原理，在向上跳的时候，我们每次 `x += lowbit(x)`。如果在向上跳的时候可以保证不跳出块，就可以保证只会影响到块内元素的值。向上查询也类似。
 
-而如果要在向上跳的同时保证不跳出块，只需要保证在跳的时候满足 $lowbit(x)<2^{lev}$ 即可。
+而如果要在向上跳的同时保证不跳出块，只需要保证在跳的时候满足 $lowbit(x) < 2^{lev}$ 即可。
 
 而向下跳则是完全不同的处理方式。每一块的下标如果使用 0-index 表示的话，即为 $[c\times 2^k,(c+1)\times 2^k)$ 的形式。那么，只需将某一个下标的值右位移 k，即可得出它在哪一块中。在向下跳的时候时刻判断是否跳出块即可。
 

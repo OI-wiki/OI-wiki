@@ -16,7 +16,7 @@ $$
 
 的形式，其中，$a$ 与 $b$ 为有理数，$d$ 为整数且无平方因子。任意这种形式的数也都是二次代数数。二次代数数可以分为有理数和 **二次无理数**（quadratic irrational number）。显然，二次无理数表示成上述形式的方法是唯一的。
 
-对于任意无平方因子的整数 $d\neq 0,1$，都可以验证集合 $Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ 对于加、减、乘、除是封闭的。由于对于四则运算封闭的集合称为 [域](../algebra/basic.md#域)，集合 $Q(\sqrt{d})$ 就称为 **二次域**（quadratic field）。每一个二次域都包含全体有理数，因此它们都是有理数域 $\mathbf Q$ 的 [二次扩域](../algebra/field-theory.md#域的扩张)。当 $d>0$ 时，二次域 $\mathbf Q(\sqrt{d})$ 中所有数都是实数，此时的 $\mathbf Q(\sqrt{d})$ 称为实二次域；当 $d<0$ 时，二次域中除了有理数都是复数，此时的 $\mathbf Q(\sqrt{d})$ 称为虚二次域。
+对于任意无平方因子的整数 $d\neq 0,1$，都可以验证集合 $Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ 对于加、减、乘、除是封闭的。由于对于四则运算封闭的集合称为 [域](../algebra/basic.md#域)，集合 $Q(\sqrt{d})$ 就称为 **二次域**（quadratic field）。每一个二次域都包含全体有理数，因此它们都是有理数域 $\mathbf Q$ 的 [二次扩域](../algebra/field-theory.md#域的扩张)。当 $d > 0$ 时，二次域 $\mathbf Q(\sqrt{d})$ 中所有数都是实数，此时的 $\mathbf Q(\sqrt{d})$ 称为实二次域；当 $d < 0$ 时，二次域中除了有理数都是复数，此时的 $\mathbf Q(\sqrt{d})$ 称为虚二次域。
 
 ### 共轭与范数
 
@@ -119,9 +119,9 @@ a^2-db^2, & d\equiv 2,3\pmod 4.
 \end{cases}
 $$
 
-对于虚二次整数环，即 $d<0$ 时，因为范数必然是非负整数，容易验证对于所有的无平方因子的负数 $d\neq -1,-3$，解都只有 $(a,b)=(\pm 1,0)$，即除了 $\mathbf Z[\sqrt{-1}]$ 和 $\mathbf Z[\frac{1+\sqrt{-3}}{2}]$，虚二次整数环的单位数都只有 $\pm 1$。记 $\mathrm{i}=\sqrt{-1}$，则二次整数环 $\mathbf Z[\mathrm{i}]$ 又称作 Gauss 整数环，它的单位数的集合为 $\{\pm 1,\pm\mathrm{i}\}$。记 $\omega=\frac{1+\sqrt{-3}}{2}$，则二次整数环 $\mathbf Z[\omega]$ 又称为 Eisenstein 整数环，它的单位数的集合为 $\{\pm 1,\pm\omega,\pm\omega^2\}$。
+对于虚二次整数环，即 $d < 0$ 时，因为范数必然是非负整数，容易验证对于所有的无平方因子的负数 $d\neq -1,-3$，解都只有 $(a,b)=(\pm 1,0)$，即除了 $\mathbf Z[\sqrt{-1}]$ 和 $\mathbf Z[\frac{1+\sqrt{-3}}{2}]$，虚二次整数环的单位数都只有 $\pm 1$。记 $\mathrm{i}=\sqrt{-1}$，则二次整数环 $\mathbf Z[\mathrm{i}]$ 又称作 Gauss 整数环，它的单位数的集合为 $\{\pm 1,\pm\mathrm{i}\}$。记 $\omega=\frac{1+\sqrt{-3}}{2}$，则二次整数环 $\mathbf Z[\omega]$ 又称为 Eisenstein 整数环，它的单位数的集合为 $\{\pm 1,\pm\omega,\pm\omega^2\}$。
 
-对于实二次整数环，即 $d>0$ 时，情形较为复杂，可以转化为对相应的 [Pell 方程](./pell-equation.md) 的讨论。由 Pell 方程的相关结论可知，此时的全体单位数的集合可以写作 $\{\pm u^k:k\in\mathbf Z\}$，其中的 $u$ 称为 **基本单位数**（fundamental unit）。基本单位数可以通过相应的 Pell 方程进行求解。基本单位数并不是唯一的：如果 $u$ 是基本单位数，那么它的共轭 $\bar u$ 以及 $-u$ 和 $-\bar u$ 都是基本单位数。
+对于实二次整数环，即 $d > 0$ 时，情形较为复杂，可以转化为对相应的 [Pell 方程](./pell-equation.md) 的讨论。由 Pell 方程的相关结论可知，此时的全体单位数的集合可以写作 $\{\pm u^k:k\in\mathbf Z\}$，其中的 $u$ 称为 **基本单位数**（fundamental unit）。基本单位数可以通过相应的 Pell 方程进行求解。基本单位数并不是唯一的：如果 $u$ 是基本单位数，那么它的共轭 $\bar u$ 以及 $-u$ 和 $-\bar u$ 都是基本单位数。
 
 二次整数环的单位数的结构可以推广到一般的 [代数整数环](../algebra/field-theory.md#代数扩张)。代数数论中的 [Dirichlet 单位定理](https://en.wikipedia.org/wiki/Dirichlet%27s_unit_theorem) 指出，所有代数整数环的全体单位数都构成 [有限生成 Abel 群](../algebra/group-theory.md#有限生成-abel-群)，同时这一定理也给出了这个群的阶。
 
@@ -151,7 +151,7 @@ $$
 
 ![](./images/gaussian-integer.svg)
 
-Gauss 整数上可以做带余除法：对于 Gauss 整数 $a$ 和 $b\neq 0$，总存在 Gauss 整数 $q$ 和 $r$ 使得 $a=bq+r$ 成立，且 $N(r)<N(b)$。要计算这样的带余除法，可以首先在 $\mathbf Q(\mathrm{i})$ 内计算 $\dfrac{a}{b}$，再在复平面内寻找最近的整点作为 $q$，然后计算 $r=a-bq$；这样得到的余数总是满足 $N(r)\le\dfrac{1}{2}N(b)$。利用带余除法，可以将辗转相除法（Euclid 算法）和 Bezout 定理等迁移到 Gauss 整数上，进而建立唯一分解定理。
+Gauss 整数上可以做带余除法：对于 Gauss 整数 $a$ 和 $b\neq 0$，总存在 Gauss 整数 $q$ 和 $r$ 使得 $a=bq+r$ 成立，且 $N(r) < N(b)$。要计算这样的带余除法，可以首先在 $\mathbf Q(\mathrm{i})$ 内计算 $\dfrac{a}{b}$，再在复平面内寻找最近的整点作为 $q$，然后计算 $r=a-bq$；这样得到的余数总是满足 $N(r)\le\dfrac{1}{2}N(b)$。利用带余除法，可以将辗转相除法（Euclid 算法）和 Bezout 定理等迁移到 Gauss 整数上，进而建立唯一分解定理。
 
 ### Gauss 素数
 

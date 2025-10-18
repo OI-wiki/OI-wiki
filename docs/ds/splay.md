@@ -189,7 +189,7 @@ Splay 树要求每访问一个节点 $x$ 后都要强制将其旋转到根节点
     \end{aligned}
     $$
     
-    **zig-zag**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(p) \geq w(x)$。因为 $\text{size}'(x)>\text{size}'(p)+\text{size}'(g)$，根据性质 3，可得
+    **zig-zag**：根据性质 1 和 2，有 $w(g) = w'(x)$，且 $w(p) \geq w(x)$。因为 $\text{size}'(x) > \text{size}'(p)+\text{size}'(g)$，根据性质 3，可得
     
     $$
     2 \cdot w'(x) - w'(g) - w'(p) \geq 2.

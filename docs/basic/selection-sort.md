@@ -34,7 +34,7 @@ $$
 4 & \textbf{for } i\gets 1\textbf{ to }n-1\\
 5 & \qquad ith\gets i\\
 6 & \qquad \textbf{for }j\gets i+1\textbf{ to }n\\
-7 & \qquad\qquad\textbf{if }A[j]<A[ith]\\
+7 & \qquad\qquad\textbf{if }A[j] < A[ith]\\
 8 & \qquad\qquad\qquad ith\gets j\\
 9 & \qquad \text{swap }A[i]\text{ and }A[ith]\\
 \end{array}

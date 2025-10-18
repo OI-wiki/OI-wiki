@@ -12,7 +12,7 @@ $$
 \mu(n)=
 \begin{cases}
 1,&n=1,\\
-0,&n\text{ is divisible by a square }>1,\\
+0,&n\text{ is divisible by a square } > 1,\\
 (-1)^k,&n\text{ is the product of }k\text{ distinct primes}.\\
 \end{cases}
 $$
@@ -499,7 +499,7 @@ $$
     f(n) = n\sum_{k\mid n}\sum_{i=1}^{n/k}i\left[\gcd\left(i,\dfrac{n}{k}\right)=1\right] = n\sum_{k\mid n}F\left(\dfrac{n}{k}\right).
     $$
     
-    如果在这一步不继续做莫比乌斯反演，而是观察后面的求和式实际上是不超过 $d=n/k$ 且与之互素的整数之和．对于 $d>1$，因为与 $d$ 互素的整数成对出现，即 $i$ 和 $d-i$ 必定同时与 $d$ 互素，所以，有
+    如果在这一步不继续做莫比乌斯反演，而是观察后面的求和式实际上是不超过 $d=n/k$ 且与之互素的整数之和．对于 $d > 1$，因为与 $d$ 互素的整数成对出现，即 $i$ 和 $d-i$ 必定同时与 $d$ 互素，所以，有
     
     $$
     F(d)=\sum_{i=1}^{n'}i[i\perp d] = \sum_{i=1}^{d}(d-i)[i\perp d] = \dfrac{1}{2}d\sum_{i=1}^{d}[i\perp d] = \dfrac{1}{2}d\varphi(d).

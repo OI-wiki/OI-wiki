@@ -275,7 +275,7 @@ int lca(int u, int v) {
         考虑如何高效找到 $v$。我们先令 $v\gets\textit{root}$，然后沿着重链往上跳直到 $\operatorname{dep}(\operatorname{top}(v))\le\operatorname{dep}(u)+1$。
     
         -   若 $\operatorname{dep}(\operatorname{top}(v))=\operatorname{dep}(u)+1$，令 $v\gets\operatorname{top}(v)$。此时，$v$ 是 $u$ 的一个轻儿子。
-        -   若 $\operatorname{dep}(\operatorname{top}(v))<\operatorname{dep}(u)+1$，亦即 $\operatorname{dep}(\operatorname{top}(v))\le \operatorname{dep}(u)$，这说明 $u,v$ 处在同一条重链上。根据同一条重链上 DFS 序连续的性质，所求的 $v$ 必然满足 $\operatorname{dfn}(v)=\operatorname{dfn}(u)+1$。所以，可以令 $v\gets\operatorname{rnk}(\operatorname{dfn}(u)+1)$。
+        -   若 $\operatorname{dep}(\operatorname{top}(v))< \operatorname{dep}(u)+1$，亦即 $\operatorname{dep}(\operatorname{top}(v))\le \operatorname{dep}(u)$，这说明 $u,v$ 处在同一条重链上。根据同一条重链上 DFS 序连续的性质，所求的 $v$ 必然满足 $\operatorname{dfn}(v)=\operatorname{dfn}(u)+1$。所以，可以令 $v\gets\operatorname{rnk}(\operatorname{dfn}(u)+1)$。
     
         注意，这两种情形中可以合并：在跳完之后可以直接令
     

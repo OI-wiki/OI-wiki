@@ -4,7 +4,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 ### 字符集
 
-一个 **字符集** $\Sigma$ 是一个建立了 [全序](../math/order-theory.md#偏序集) 关系的集合，也就是说，$\Sigma$ 中的任意两个不同的元素 $\alpha$ 和 $\beta$ 都可以比较大小，要么 $\alpha<\beta$，要么 $\beta<\alpha$。字符集 $\Sigma$ 中的元素称为字符。
+一个 **字符集** $\Sigma$ 是一个建立了 [全序](../math/order-theory.md#偏序集) 关系的集合，也就是说，$\Sigma$ 中的任意两个不同的元素 $\alpha$ 和 $\beta$ 都可以比较大小，要么 $\alpha < \beta$，要么 $\beta < \alpha$。字符集 $\Sigma$ 中的元素称为字符。
 
 ### 字符串
 
@@ -18,11 +18,11 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 字符串 $S$ 的 **子串**  $S[i..j]，i≤j$，表示 $S$ 串中从 $i$ 到 $j$ 这一段，也就是顺次排列 $S[i],S[i+1],\ldots,S[j]$ 形成的字符串。
 
-有时也会用 $S[i..j]$，$i>j$ 来表示空串。
+有时也会用 $S[i..j]$，$i > j$ 来表示空串。
 
 ### 子序列
 
-字符串 $S$ 的 **子序列** 是从 $S$ 中将若干元素提取出来并不改变相对位置形成的序列，即 $S[p_1],S[p_2],\ldots,S[p_k]$，$1\le p_1< p_2<\cdots< p_k\le|S|$。
+字符串 $S$ 的 **子序列** 是从 $S$ 中将若干元素提取出来并不改变相对位置形成的序列，即 $S[p_1],S[p_2],\ldots,S[p_k]$，$1\le p_1< p_2 < \cdots< p_k\le|S|$。
 
 ### 后缀
 

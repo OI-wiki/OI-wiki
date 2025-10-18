@@ -17,7 +17,7 @@
 ???+ note "实现（伪代码）"
     ```text
     IDDFS(u,d)
-        if d>limit
+        if d > limit
             return
         else
             for each edge (u,v)

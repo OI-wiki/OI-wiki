@@ -61,7 +61,7 @@ author: PeterlitsZo, Tiphereth-A
 **欧拉定理**（Euler's theorem）将费马小定理推广到了一般模数的情形，但仍然要求底数与指数互素。
 
 ???+ note "欧拉定理"
-    对于整数 $m>0$ 和整数 $a$，且 $\gcd(a,m)=1$，有 $a^{\varphi(m)}\equiv 1\pmod{m}$，其中，$\varphi(\cdot)$ 为 [欧拉函数](./euler-totient.md)。
+    对于整数 $m > 0$ 和整数 $a$，且 $\gcd(a,m)=1$，有 $a^{\varphi(m)}\equiv 1\pmod{m}$，其中，$\varphi(\cdot)$ 为 [欧拉函数](./euler-totient.md)。
 
 ??? note "证明"
     与费马小定理的证明一类似，仍然是取一个与 $m$ 互质的数列，再进行操作。考虑集合
@@ -121,7 +121,7 @@ author: PeterlitsZo, Tiphereth-A
     首先说明，存在 $k_0\in\mathbf N$，使得整数 $a$ 和 $m':=\dfrac{m}{\gcd(a^{k_0},m)}$ 互素。为此，设 $\nu_p(n)$ 是整数 $n$ 的质因数分解中素数 $p$ 的幂次，那么，不妨取
     
     $$
-    k_0 = \max\left\{\left\lceil\dfrac{\nu_p(m)}{\nu_p(a)}\right\rceil : \nu_p(a)>0\right\}.
+    k_0 = \max\left\{\left\lceil\dfrac{\nu_p(m)}{\nu_p(a)}\right\rceil : \nu_p(a) > 0\right\}.
     $$
     
     因为 $m$ 中所有和 $a$ 的公共素因子的幂次都已经包含在 $a^{k_0}$ 中，所以，$a$ 就与 $m$ 中剩下的因子 $m'=\dfrac{m}{\gcd(a^{k_0},m)}$ 互素。

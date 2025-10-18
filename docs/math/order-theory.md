@@ -186,7 +186,7 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
         
         -   $S^+\cup S^-=S$，
         -   $S^+\cap S^-=A$，
-        -   $|S^+|<|S|$,$|S^-|<|S|$（因为 $m\notin S^+$ 且 $M\notin S^-$）。
+        -   $|S^+| < |S|$,$|S^-| < |S|$（因为 $m\notin S^+$ 且 $M\notin S^-$）。
         
         对 $S^+$ 和 $S^-$ 都应用归纳假设，则这两个集合的最小链覆盖数为 $d$，且这些链中恰好包含一个 $A$ 中的元素 $a$，设这些链分别为 $C_a^+$，$C_a^-$，则 $\{C_a^-\cup\{a\}\cup C_a^+\}_{a\in A}$ 是 $S$ 的一个最小链覆盖，命题得证。
 
@@ -273,7 +273,7 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#ha
 
 C++ STL 中 [需要使用比较的算法和数据结构](https://en.cppreference.com/w/cpp/named_req/Compare#Standard_library) 中有序理论的应用。我们经常需要在 C++ 中自定义比较器，STL [要求](https://en.cppreference.com/w/cpp/named_req/Compare) 其必须为 **严格弱序**。令 $<$ 为自定义比较器，则可以定义：
 
--   $x>y$ 为 $y<x$；
+-   $x > y$ 为 $y < x$；
 -   $x \leq y$ 为 $y \nless x$；
 -   $x \geq y$ 为 $x \nless y$；
 -   $x=y$ 为 $x \nless y\land y \nless x$.

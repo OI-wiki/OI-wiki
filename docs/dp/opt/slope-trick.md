@@ -30,7 +30,7 @@ $$
     f(\alpha x+(1-\alpha)y) \le \alpha f(x)+(1-\alpha)f(y),
     $$
     
-    就称函数 $f$ 为 **凸函数**（convex function），其中 $\pm\infty$ 的运算法则规定为 $\pm\infty$ 乘以任何正实数或是加上任何实数都等于其自身，且对于任何实数 $x\in\mathbf R$ 都有 $-\infty<x<+\infty$。
+    就称函数 $f$ 为 **凸函数**（convex function），其中 $\pm\infty$ 的运算法则规定为 $\pm\infty$ 乘以任何正实数或是加上任何实数都等于其自身，且对于任何实数 $x\in\mathbf R$ 都有 $-\infty < x < +\infty$。
 
 当然，如果不等号换作 $\ge$，就相应地称它为凹函数[^convex-def]。因为对于凹函数 $f$，总有 $-f$ 为凸函数，所以本节只考虑凸函数。
 
@@ -98,13 +98,13 @@ $$
     
     这就是上述条件。
     
-    反过来，如果上述条件成立，那么对于任何 $x_1<x_2$，都有
+    反过来，如果上述条件成立，那么对于任何 $x_1 < x_2$，都有
     
     $$
     \Delta f(x_1,x_2) = \dfrac{1}{x_2-x_1}\sum_{i=x_1}^{x_2-1}\left(f(i)-f(i-1)\right).
     $$
     
-    这相当于对所有满足 $x_1\le i<x_2$ 的差分的算术平均值。如果 $x_2$ 增加一，就相当于插入一项更大的差分；如果 $x_1$ 增加一，就相当于移除一项最小的差分。这两个操作都会使得平均值上升。这就说明斜率 $\Delta f(x_1,x_2)$ 弱增，即 $f$ 是 $\mathbf Z$ 上的凸函数。
+    这相当于对所有满足 $x_1\le i < x_2$ 的差分的算术平均值。如果 $x_2$ 增加一，就相当于插入一项更大的差分；如果 $x_1$ 增加一，就相当于移除一项最小的差分。这两个操作都会使得平均值上升。这就说明斜率 $\Delta f(x_1,x_2)$ 弱增，即 $f$ 是 $\mathbf Z$ 上的凸函数。
 
 也就是说，只要斜率（差分）单调不减，这个序列就可以看作是 $\mathbf Z$ 上的凸函数。
 
@@ -119,10 +119,10 @@ $$
     \Delta f(x_1,x_2) = \dfrac{f(x_2)-f(x_1)}{x_2-x_1}
     $$
     
-    对于任何 $x_1,x_2\in S$ 且 $x_1<x_2$ 都是 $x_1$ 和 $x_2$ 的弱增函数。
+    对于任何 $x_1,x_2\in S$ 且 $x_1 < x_2$ 都是 $x_1$ 和 $x_2$ 的弱增函数。
 
 ??? note "证明"
-    对于 $\mathbf R$ 上的函数 $f(x)$ 以及 $x_1<x_2$，对于 $\alpha\in(0,1)$，令 $x_3=\alpha x_1+(1-\alpha)x_2$，那么
+    对于 $\mathbf R$ 上的函数 $f(x)$ 以及 $x_1 < x_2$，对于 $\alpha\in(0,1)$，令 $x_3=\alpha x_1+(1-\alpha)x_2$，那么
     
     $$
     \Delta f(x_1,x_3) \le \Delta f(x_1,x_2) \le \Delta f(x_3,x_2)
@@ -146,7 +146,7 @@ $$
     
     根据 $S$ 上的斜率递增可知，$\Delta_i$ 关于 $i$ 递增，所以，$\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$。
     
-    利用这个结论，对于 $x_1<x_2$ 和 $\alpha\in(0,1)$，令 $x_3=\alpha x_1+(1-\alpha)x_2$，并取 $i_3$ 使得 $s_{i_3}\le x_3\le s_{i_3+1}$ 成立，则有
+    利用这个结论，对于 $x_1 < x_2$ 和 $\alpha\in(0,1)$，令 $x_3=\alpha x_1+(1-\alpha)x_2$，并取 $i_3$ 使得 $s_{i_3}\le x_3\le s_{i_3+1}$ 成立，则有
     
     $$
     \Delta\tilde f(x_1,x_3) \le \Delta_{i_3} \le \Delta\tilde f(x_3,x_2).
@@ -176,7 +176,7 @@ $$
     
     所以，$\alpha(x_1,y_1)+(1-\alpha)(x_2,y_2)\in\operatorname{epi}f$。
     
-    反过来，如果 $\operatorname{epi}f$ 是凸集，那么对于任意 $x_1<x_2$ 以及 $\alpha\in(0,1)$，有
+    反过来，如果 $\operatorname{epi}f$ 是凸集，那么对于任意 $x_1 < x_2$ 以及 $\alpha\in(0,1)$，有
     
     $$
     \alpha(x_1,f(x_1))+(1-\alpha)(x_2,f(x_2)) \in \operatorname{epi}f.
@@ -220,7 +220,7 @@ $$
 几何直观上，$\operatorname{epi}h$ 就是 $\operatorname{epi}f$ 和 $\operatorname{epi}g$ 的 [Minkowski 和](../../geometry/convex-hull.md#闵可夫斯基和)。如果 $f$ 和 $g$ 都是分段线性函数，那么 $h$ 同样是分段线性函数，且它的斜率段可以看作是 $f$ 和 $g$ 的斜率段合并（再排序）的结果。
 
 ??? note "证明"
-    设 $f,g$ 都是凸函数，$h$ 是它们的卷积下确界。设 $x_1<x_2$，且 $\alpha\in(0,1)$。根据卷积下确界的定义，对任意 $\varepsilon>0$，存在 $y_i,z_i\in\mathbf R$ 使得 $y_i+z_i=x_i$ 且
+    设 $f,g$ 都是凸函数，$h$ 是它们的卷积下确界。设 $x_1 < x_2$，且 $\alpha\in(0,1)$。根据卷积下确界的定义，对任意 $\varepsilon > 0$，存在 $y_i,z_i\in\mathbf R$ 使得 $y_i+z_i=x_i$ 且
     
     $$
     h(x_i) + \varepsilon > f(y_i) + g(z_i).
@@ -237,7 +237,7 @@ $$
     \end{aligned}
     $$
     
-    因为 $\varepsilon>0$ 是任意选取的，所以
+    因为 $\varepsilon > 0$ 是任意选取的，所以
     
     $$
     \alpha h(x_1)+(1-\alpha)h(x_2) \ge h(\alpha x_1+(1-\alpha)x_2).
@@ -261,13 +261,13 @@ $$
     
     故而，$(x,y)\in\operatorname{epi}h$。这说明 $\operatorname{epi} f + \operatorname{epi} g\subseteq \operatorname{epi}h$。
     
-    反过来，对于任何 $(x,y)\in\operatorname{epi}h$，有 $y\ge h(x)$。根据 $h$ 的定义，对任何 $\varepsilon>0$，都存在 $x_1+x_2=x$ 使得
+    反过来，对于任何 $(x,y)\in\operatorname{epi}h$，有 $y\ge h(x)$。根据 $h$ 的定义，对任何 $\varepsilon > 0$，都存在 $x_1+x_2=x$ 使得
     
     $$
     y + \varepsilon > f(x_1) + g(x_2).
     $$
     
-    令 $y_1=f(x_1)$ 且 $y_2=g(x_2)$，就有 $y+\varepsilon>y_1+y_2$。这说明，对于任何 $\varepsilon>0$，都有 $(x_1,y_1)+(x_2,y_2)\in\operatorname{epi} f + \operatorname{epi} g$ 位于点 $(x,y)$ 与点 $(x,y+\varepsilon)$ 的连线上。取 $\varepsilon\rightarrow 0$，就有 $\operatorname{epi}h \subseteq \operatorname{cl}(\operatorname{epi} f + \operatorname{epi} g)$。
+    令 $y_1=f(x_1)$ 且 $y_2=g(x_2)$，就有 $y+\varepsilon > y_1+y_2$。这说明，对于任何 $\varepsilon > 0$，都有 $(x_1,y_1)+(x_2,y_2)\in\operatorname{epi} f + \operatorname{epi} g$ 位于点 $(x,y)$ 与点 $(x,y+\varepsilon)$ 的连线上。取 $\varepsilon\rightarrow 0$，就有 $\operatorname{epi}h \subseteq \operatorname{cl}(\operatorname{epi} f + \operatorname{epi} g)$。
     
     所以，$\operatorname{epi} f + \operatorname{epi} g = \operatorname{epi}h$ 当且仅当它是闭凸集。一个使其满足的条件是，$f$ 和 $g$ 都是正常凸函数且 [下半连续](https://en.wikipedia.org/wiki/Semi-continuity)。对于算法竞赛的应用来说，这已经足够了，比如分段线性函数总是满足这些条件的。
 
@@ -380,13 +380,13 @@ $$
 ### 例题：转移带限制的情形
 
 ???+ example "[\[NOISG 2018 Finals\] Safety](https://www.luogu.com.cn/problem/P11598)"
-    给定长度为 $n$ 的序列 $\{a_i\}$，求序列 $\{b_i\}$ 使其满足 $|b_i-b_{i-1}|\le h$ 对所有 $1<i\le n$ 都成立，并使得 $\sum_i|a_i-b_i|$ 最小，输出最小值。
+    给定长度为 $n$ 的序列 $\{a_i\}$，求序列 $\{b_i\}$ 使其满足 $|b_i-b_{i-1}|\le h$ 对所有 $1 < i\le n$ 都成立，并使得 $\sum_i|a_i-b_i|$ 最小，输出最小值。
 
 ??? note "解答"
     内容大致与上一个题目相仿，只是序列 $\{b_i\}$ 的限制发生了变化。同样地，设 $f_i(x)$ 为第 $i$ 个数字取 $x$ 时，前 $i$ 个数字的差值的最小值：
     
     $$
-    f_i(x) = \min\sum_{j=1}^i|a_j-b_j|\text{ s.t. }|b_{j-1}-b_j|\le h,\forall 1<j\le i,~b_i=x.
+    f_i(x) = \min\sum_{j=1}^i|a_j-b_j|\text{ s.t. }|b_{j-1}-b_j|\le h,\forall 1 < j\le i,~b_i=x.
     $$
     
     由此，有状态转移方程为
@@ -409,7 +409,7 @@ $$
     
     显然，对于本题，将正负斜率段分别维护较为方便。因为操作主要集中在零斜率段附近，因此考虑使用 [对顶堆](../../ds/binary-heap.md#对顶堆)，即分别用最大堆和最小堆维护负斜率段和正斜率段的拐点。拐点的整体平移操作用懒标记完成。因为第二步操作需要分别对两个堆插入一个 $a_i$，而且，插入完成后，未必最大堆的堆顶仍然小于等于最小堆的堆顶。此时，交换两堆顶，直到堆顶的大小关系得到满足即可。
     
-    最后，考虑操作过程中如何更新最小值。因为第一步平移操作并不会改变最小值，所以只要考虑交换堆顶的操作即可。设 $\xi_{-1}>\xi_1$，将堆顶 $\xi_{-1}$ 与 $\xi_1$ 交换时，函数由
+    最后，考虑操作过程中如何更新最小值。因为第一步平移操作并不会改变最小值，所以只要考虑交换堆顶的操作即可。设 $\xi_{-1} > \xi_1$，将堆顶 $\xi_{-1}$ 与 $\xi_1$ 交换时，函数由
     
     $$
     \max\{0,x-\xi_{-1}\}+\max\{0,x-\xi_1\}
@@ -496,7 +496,7 @@ $$
     给定长度为 $n$ 的序列 $\{a_i\}$ 和 $\{b_i\}$，分别表示第 $i$ 个花园已经有的泥土数量和需要的泥土数量（不能多也不能少）。购买一单位泥土放入任意花园价格为 $X$，从任意花园运走一单位泥土价格为 $Y$，从花园 $i$ 向花园 $j$ 运送一单位泥土价格为 $Z|i-j|$。求满足所有花园需求的最小成本。（$a_i,b_i\le 10$）
 
 ??? note "解答"
-    考虑朴素 DP 解法。设 $f_i(x)$ 为满足前 $i$ 个花园需求且净剩余 $x$ 单位泥土运到后面的花园时的最小代价。如果 $x<0$，就相当于净亏空 $|x|$ 单位泥土需要从后面的花园运送过来。那么，可以写成状态转移方程为
+    考虑朴素 DP 解法。设 $f_i(x)$ 为满足前 $i$ 个花园需求且净剩余 $x$ 单位泥土运到后面的花园时的最小代价。如果 $x < 0$，就相当于净亏空 $|x|$ 单位泥土需要从后面的花园运送过来。那么，可以写成状态转移方程为
     
     $$
     f_i(x) = \min_{y\in\mathbf R} f_{i-1}(y) + |y|Z + h((x-y)+(b_i-a_i)).
@@ -532,7 +532,7 @@ $$
     
     1.  对左右两个栈分别打懒标记，左侧加 $-Z$，右侧加 $Z$；
     2.  每次栈内弹出元素时，都对 $-Y$ 取最大值，对 $X$ 取最小值。如果左栈为空，则弹出 $-Y$。如果右栈为空，则弹出 $X$；
-    3.  将左栈顶部的 $(b_i-a_i)$ 个元素弹出，插入右栈；当然，$b_i-a_i<0$ 时，就反过来。
+    3.  将左栈顶部的 $(b_i-a_i)$ 个元素弹出，插入右栈；当然，$b_i-a_i < 0$ 时，就反过来。
     
     在交换栈顶时，更新答案，向左移动就减去当前斜率，向右移动就加上当前斜率。
     

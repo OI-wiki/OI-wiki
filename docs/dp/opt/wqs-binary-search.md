@@ -238,7 +238,7 @@ $$
     
     对不等式右侧中的 $x^*$ 取上确界，就有 $f(x)\ge f^{**}(x)$。
     
-    第二步，利用 [超平面分离定理](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem) 说明 $f(x)\le f^{**}(x)$。假设不然，存在 $x_0\in\mathbf R^d$ 使得 $f(x_0)>f^{**}(x_0)$ 成立。因为 $f(x)$ 的上境图 $\operatorname{epi}(f)$ 是闭凸集，而且单点集 $\{(x_0,f^{**}(x_0))\}$ 是紧凸集，所以，根据超平面分离定理，存在 $(\lambda,t)\in\mathbf R^d\times\mathbf R$ 和 $\alpha\in\mathbf R$ 使得对于所有 $x\in\operatorname{dom} f:=\{x\in\mathbf R^d:f(x)<+\infty\}$ 和所有 $y\ge f(x)$ 都有
+    第二步，利用 [超平面分离定理](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem) 说明 $f(x)\le f^{**}(x)$。假设不然，存在 $x_0\in\mathbf R^d$ 使得 $f(x_0) > f^{**}(x_0)$ 成立。因为 $f(x)$ 的上境图 $\operatorname{epi}(f)$ 是闭凸集，而且单点集 $\{(x_0,f^{**}(x_0))\}$ 是紧凸集，所以，根据超平面分离定理，存在 $(\lambda,t)\in\mathbf R^d\times\mathbf R$ 和 $\alpha\in\mathbf R$ 使得对于所有 $x\in\operatorname{dom} f:=\{x\in\mathbf R^d:f(x) < +\infty\}$ 和所有 $y\ge f(x)$ 都有
     
     $$
     \lambda\cdot x-ty <\alpha <\lambda\cdot x_0 - tf^{**}(x_0)
@@ -246,7 +246,7 @@ $$
     
     成立。因为 $y$ 可以选得任意大，所以必然有 $t\ge 0$。这又可以分为两种情形。
     
-    首先，讨论 $t>0$ 的情形。此时，将不等式的各部分都同除以 $t$，并设 $\lambda'=t^{-1}\lambda$ 和 $\alpha'=t^{-1}\alpha$，就得到
+    首先，讨论 $t > 0$ 的情形。此时，将不等式的各部分都同除以 $t$，并设 $\lambda'=t^{-1}\lambda$ 和 $\alpha'=t^{-1}\alpha$，就得到
     
     $$
     \lambda'\cdot x-y < \alpha'< \lambda'\cdot x_0-f^{**}(x_0).
@@ -270,21 +270,21 @@ $$
     f^{**}(x_0) < \lambda'\cdot x_0-f^*(\lambda') \le \sup_{x^*\in\mathbf R^d}x^*\cdot x_0-f^*(x^*) = f^{**}(x_0).
     $$
     
-    这一矛盾说明 $t>0$ 的情形并不成立。
+    这一矛盾说明 $t > 0$ 的情形并不成立。
     
-    最后，讨论 $t=0$ 的情形。事实上，将要说明的是，可以通过微扰，将它转化为 $t>0$ 的情形。任取 $\lambda_0\in\operatorname{dom}f^*$，根据凸共轭的定义可知，对于任何 $x\in\operatorname{dom}f$ 和 $y\ge f(x)$ 都有
+    最后，讨论 $t=0$ 的情形。事实上，将要说明的是，可以通过微扰，将它转化为 $t > 0$ 的情形。任取 $\lambda_0\in\operatorname{dom}f^*$，根据凸共轭的定义可知，对于任何 $x\in\operatorname{dom}f$ 和 $y\ge f(x)$ 都有
     
     $$
     \lambda_0\cdot x-y\le f^*(\lambda_0).
     $$
     
-    因此，对于任意 $\varepsilon>0$，都有
+    因此，对于任意 $\varepsilon > 0$，都有
     
     $$
-    (\lambda+\varepsilon\lambda_0)\cdot x - \varepsilon y<\alpha+\varepsilon f^*(\lambda_0).
+    (\lambda+\varepsilon\lambda_0)\cdot x - \varepsilon y < \alpha+\varepsilon f^*(\lambda_0).
     $$
     
-    同时，因为 $\alpha<\lambda\cdot x_0$，所以，对于充分小的 $\varepsilon>0$，又有
+    同时，因为 $\alpha < \lambda\cdot x_0$，所以，对于充分小的 $\varepsilon > 0$，又有
     
     $$
     \alpha+\varepsilon f^*(\lambda_0) < (\lambda+\varepsilon\lambda_0)\cdot x_0 - \varepsilon f^{**}(x_0).
@@ -298,7 +298,7 @@ $$
     
     这就又回到了前一种情形，仍然会导致矛盾。
     
-    这一矛盾说明，并不存在满足 $f(x_0)>f^{**}(x_0)$ 的点 $x_0\in\mathbf R^d$。故而，总有 $f(x_0)\le f^{**}(x_0)$。
+    这一矛盾说明，并不存在满足 $f(x_0) > f^{**}(x_0)$ 的点 $x_0\in\mathbf R^d$。故而，总有 $f(x_0)\le f^{**}(x_0)$。
     
     结合这两步证明的结果，就得到 $f^{**}(x)=f(x)$ 成立。
 
@@ -460,7 +460,7 @@ $$
     1.  目标函数 $f(x,y)$ 是关于 $(x,y)$ 的凸函数；
     2.  可行域映射 $y\mapsto\mathcal D(y)$ 的图像 $\{(x,y):x\in\mathcal D(y)\}$ 是凸集。
     
-    如果对于任意 $y\in\mathbf R^d$，都有 $v(y)>-\infty$，那么，价值函数 $v(y)$ 是关于 $y$ 的正常凸函数。
+    如果对于任意 $y\in\mathbf R^d$，都有 $v(y) > -\infty$，那么，价值函数 $v(y)$ 是关于 $y$ 的正常凸函数。
 
 ??? note "证明"
     对于任意 $y_1,y_2\in\mathbf R^d$ 和 $\alpha\in(0,1)$，需要证明
@@ -469,7 +469,7 @@ $$
     v(\alpha y_1+(1-\alpha)y_2) \le \alpha v(y_1) + (1-\alpha) v(y_2).
     $$
     
-    如果 $v(y_1)=+\infty$ 或 $v(y_2)=+\infty$，那么不等式的右侧就是 $+\infty$，不等式必然成立。否则，$v(y_1)$ 和 $v(y_2)$ 都是有限值。对于任意 $\varepsilon>0$ 和 $i=1,2$，都存在 $x_i\in\mathcal D(y_i)$ 使得 $f(x_i,y_i)< v(y_i)+\varepsilon$ 成立。利用映射 $\mathcal D$ 的图像的凸性可知
+    如果 $v(y_1)=+\infty$ 或 $v(y_2)=+\infty$，那么不等式的右侧就是 $+\infty$，不等式必然成立。否则，$v(y_1)$ 和 $v(y_2)$ 都是有限值。对于任意 $\varepsilon > 0$ 和 $i=1,2$，都存在 $x_i\in\mathcal D(y_i)$ 使得 $f(x_i,y_i)< v(y_i)+\varepsilon$ 成立。利用映射 $\mathcal D$ 的图像的凸性可知
     
     $$
     \alpha x_1+(1-\alpha)x_2 \in \mathcal D(\alpha y_1+(1-\alpha)y_2).
@@ -648,7 +648,7 @@ $$
     
     的区间分拆问题。也就是说，每一段的收益是除去第一棵树外，其余树的收益的最大值——这就保证了间隔种树。
     
-    因为这是最大化问题，需要验证「交叉大于包含」，即对于任意 $a<b<c<d$，都成立
+    因为这是最大化问题，需要验证「交叉大于包含」，即对于任意 $a < b < c < d$，都成立
     
     $$
     w(a,c)+w(b,d) \ge w(a,d)+w(b,c).

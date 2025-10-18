@@ -36,14 +36,14 @@ int main(int argc, char* argv[]) {
 
 该对象有许多有用的成员函数，下面是一些例子：
 
-| 调用                                           | 含义                                                                                                                                                                                                                                                      |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rnd.next(4)`                                | 等概率生成一个 $[0,4)$ 范围内的整数                                                                                                                                                                                                                                  |
-| `rnd.next(4, 100)`                           | 等概率生成一个 $[4,100]$ 范围内的整数                                                                                                                                                                                                                                |
-| `rnd.next(10.0)`                             | 等概率生成一个 $[0,10.0)$ 范围内的浮点数                                                                                                                                                                                                                              |
-| <code>rnd.next("one \| two \| three")</code> | 等概率从 `one`,`two`,`three` 三个串中返回一个                                                                                                                                                                                                                       |
-| `rnd.wnext(4, t)`                            | `wnext()` 是一个生成不等分布（具有偏移期望）的函数[^note1]，$t$ 表示调用 `next()` 的次数，并取生成值的最大值。例如 `rnd.wnext(3, 1)` 等同于 `max({rnd.next(3), rnd.next(3)})`；`rnd.wnext(4, 2)` 等同于 `max({rnd.next(4), rnd.next(4), rnd.next(4)})`。如果 $t<0$，则为调用 $-t$ 次，取最小值；如果 $t=0$，等同于 `next()`。 |
-| `rnd.any(container)`                         | 等概率返回一个具有随机访问迭代器（如 `std::vector` 和 `std::string`）的容器内的某一元素的引用                                                                                                                                                                                           |
+| 调用                                           | 含义                                                                                                                                                                                                                                                        |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rnd.next(4)`                                | 等概率生成一个 $[0,4)$ 范围内的整数                                                                                                                                                                                                                                    |
+| `rnd.next(4, 100)`                           | 等概率生成一个 $[4,100]$ 范围内的整数                                                                                                                                                                                                                                  |
+| `rnd.next(10.0)`                             | 等概率生成一个 $[0,10.0)$ 范围内的浮点数                                                                                                                                                                                                                                |
+| <code>rnd.next("one \| two \| three")</code> | 等概率从 `one`,`two`,`three` 三个串中返回一个                                                                                                                                                                                                                         |
+| `rnd.wnext(4, t)`                            | `wnext()` 是一个生成不等分布（具有偏移期望）的函数[^note1]，$t$ 表示调用 `next()` 的次数，并取生成值的最大值。例如 `rnd.wnext(3, 1)` 等同于 `max({rnd.next(3), rnd.next(3)})`；`rnd.wnext(4, 2)` 等同于 `max({rnd.next(4), rnd.next(4), rnd.next(4)})`。如果 $t < 0$，则为调用 $-t$ 次，取最小值；如果 $t=0$，等同于 `next()`。 |
+| `rnd.any(container)`                         | 等概率返回一个具有随机访问迭代器（如 `std::vector` 和 `std::string`）的容器内的某一元素的引用                                                                                                                                                                                             |
 
 附：关于 `rnd.wnext(i,t)` 的形式化定义：
 
@@ -151,4 +151,4 @@ g4 --length 5 --total 21 -ord
 
 **本文主要翻译自 [Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291)。新特性翻译自 [Testlib: Opts—parsing command line options](https://codeforces.com/blog/entry/72702)。`testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。**
 
-[^note1]: 事实上，当 `i` 为浮点数时，`rnd.wnext(i, t)` 服从 $[0,i)$ 上的 [Beta 分布](https://en.wikipedia.org/wiki/Beta_distribution)：当 $t>0$ 时，服从 $i\cdot \mathrm{Beta}(t+1,1)$；当 $t<0$ 时，服从 $i\cdot \mathrm{Beta}(1,t+1)$。
+[^note1]: 事实上，当 `i` 为浮点数时，`rnd.wnext(i, t)` 服从 $[0,i)$ 上的 [Beta 分布](https://en.wikipedia.org/wiki/Beta_distribution)：当 $t > 0$ 时，服从 $i\cdot \mathrm{Beta}(t+1,1)$；当 $t < 0$ 时，服从 $i\cdot \mathrm{Beta}(1,t+1)$。

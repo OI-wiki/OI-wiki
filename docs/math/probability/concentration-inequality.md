@@ -173,7 +173,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
     \Big(1-\dfrac 1n\Big)^{n\log\epsilon^{-1}}\leq e^{\log\epsilon}=\epsilon
     $$
     
-    现在有 $k>1$ 个奖球，那么根据 Union Bound，我们只需保证每个奖球被漏掉的概率都不超过 $\dfrac \epsilon k$ 即可。于是答案是 $n \log \dfrac{k}{\epsilon}$。
+    现在有 $k > 1$ 个奖球，那么根据 Union Bound，我们只需保证每个奖球被漏掉的概率都不超过 $\dfrac \epsilon k$ 即可。于是答案是 $n \log \dfrac{k}{\epsilon}$。
 
 ### 例：随机选取一半元素
 
