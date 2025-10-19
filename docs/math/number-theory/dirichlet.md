@@ -149,7 +149,7 @@ Dirichlet 卷积具有一系列代数性质．
 ???+ note "定理"
     设 $\alpha$ 是完全积性函数，$f,g$ 是数论函数．那么，有：
     
-    1.  分配律：$(\alpha f)\ast(\alpha g) = \alpha(f\ast g)$．
+    1.  分配律：$(\alpha f)\ast(\alpha g) = \alpha\cdot(f\ast g)$．
     2.  逆元：$(\alpha f)^{-1}=\alpha f^{-1}$，只要 $f^{-1}$ 存在．
     3.  积性函数 $f$ 是完全积性函数，当且仅当 $f^{-1}=\mu f$，其中，$\mu$ 是 [莫比乌斯函数](./mobius.md#莫比乌斯函数)．
 
@@ -380,6 +380,8 @@ $$
     ```cpp
     --8<-- "docs/math/code/dirichlet/dirichlet-2.cpp:core"
     ```
+
+特别地，当积性函数 $g$ 是完全积性函数或其 Dirichlet 逆时，例如当 $g = 1$ 或 $g = \mu$ 时，那么算法可以进一步简化。此时，Dirichlet 卷积 $h = f\ast g$ 的计算可以采用常数更小的 [Dirichlet 前缀和/差分](./mobius.md#dirichlet-前缀和) 算法，但是算法时间复杂度仍为 $O(n\log\log n)$。
 
 ### 结果为积性函数的情形
 
