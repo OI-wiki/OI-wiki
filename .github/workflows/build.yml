@@ -40,11 +40,14 @@ jobs:
       - name: Install Node.js dependencies
         if: steps.cache-node.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile --production
+      - name: Debug 1
+        run: |
+          cat ./docs/math/algebra/field-theory.md
       - name: Page Build
         run: |
           ./scripts/pre-build/pre-build.sh
           uv run mkdocs build -v
-      - name: Debug 1
+      - name: Debug (already boom)
         run: |
           cat ./site/math/algebra/field-theory/index.html
       - name: Post-process HTML
@@ -53,19 +56,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_OPTIONS: --max_old_space_size=3072
-      - name: Debug 2
-        run: |
-          cat ./site/math/algebra/field-theory/index.html
       - name: Minify html
         run: ./scripts/post-build/minify-html/minify-html.sh
-      - name: Debug 3
-        run: |
-          cat ./site/math/algebra/field-theory/index.html
       - name: Generate redirects
         run: uv run python scripts/post-build/redirect/generate-redirects.py
-      - name: Debug 4
-        run: |
-          cat ./site/math/algebra/field-theory/index.html
       - name: Check links
         uses: wjdp/htmltest-action@master
         with:
