@@ -26,25 +26,19 @@ $$
 解：将方程组中两方程相加，消元 $y$ 可得：
 
 $$
-\begin{aligned}
 5x = 200
-\end{aligned}
 $$
 
 解得：
 
 $$
-\begin{aligned}
 x = 40
-\end{aligned}
 $$
 
 将 $x = 40$ 代入方程组中第二个方程可得：
 
 $$
-\begin{aligned}
 y = -60
-\end{aligned}
 $$
 
 ### 消元法理论的核心
