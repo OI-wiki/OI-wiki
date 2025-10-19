@@ -566,6 +566,7 @@ theme:
     - content.action.edit
     - navigation.tabs
     - navigation.instant
+    - content.code.copy
   font:
     text: 'Fira Sans'
     code: 'Fira Mono'
