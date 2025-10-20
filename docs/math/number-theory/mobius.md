@@ -143,7 +143,7 @@ $$
         $$
         [n\in\mathbf P] = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\omega(d).
         $$
-    4.  考察满足 $\log n = \sum_{d\mid n}\Lambda(d)$ 的数论函数 $\Lambda(n)$．它就是对数函数的莫比乌斯反演，也称为 von Mangoldt 函数：
+    4.  [](){#von-mangoldt}考察满足 $\log n = \sum_{d\mid n}\Lambda(d)$ 的数论函数 $\Lambda(n)$．它就是对数函数的莫比乌斯反演，也称为 von Mangoldt 函数：
     
         $$
         \Lambda(n) = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\log d = 
@@ -594,7 +594,7 @@ $$
     \sum_{i=1}^{\lfloor n/k\rfloor}i[d\mid i] = d\sum_{i=1}^{\lfloor\lfloor n/k\rfloor/d\rfloor}i = dG\left(\left\lfloor\dfrac{\lfloor n/k\rfloor}{d}\right\rfloor\right) = dG\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right).
     $$
     
-    其中，$G(n)=\dfrac{1}{2}n(n+1)$ 就是等差数列求和，最后一个等号利用了下取整函数的 [特性](./sqrt-decomposition.md#性质)．对称地，对于另一个和式可以类似计算．代回前文表达式，就有
+    其中，$G(n)=\dfrac{1}{2}n(n+1)$ 就是等差数列求和，最后一个等号利用了下取整函数的 [特性](./sqrt-decomposition.md#iter-floor-div)．对称地，对于另一个和式可以类似计算．代回前文表达式，就有
     
     $$
     f(n,m) = \sum_k k\sum_{d}\mu(d)d^2G\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right)G\left(\left\lfloor\dfrac{m}{kd}\right\rfloor\right).
@@ -743,7 +743,7 @@ $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/k\rfloor}\prod_{j=1}^{\lfloor n/k\rfloor}k\uparrow(\mu(d)[d\mid i][d\mid j]).
     $$
     
-    进一步地提取因数（即令 $i=di'$，$j=dj'$），并应用下取整函数的 [特性](./sqrt-decomposition.md#性质)，就得到：
+    进一步地提取因数（即令 $i=di'$，$j=dj'$），并应用下取整函数的 [特性](./sqrt-decomposition.md#iter-floor-div)，就得到：
     
     $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/(kd)\rfloor}\prod_{j=1}^{\lfloor n/(kd)\rfloor}k\uparrow\mu(d).
@@ -780,7 +780,7 @@ $$
     \end{cases}
     $$
     
-    [von Mangoldt 函数](#莫比乌斯反演) 就是它的自然对数．得到 $F(n)$ 的取值后，直接应用乘积版本的数论分块就可以在 $O(\sqrt{n})$ 时间内求出 $g(n)$ 的取值，进而得到 $f(n)$ 的取值．总的时间复杂度为 $O(n)$．
+    [von Mangoldt 函数](#von-mangoldt) 就是它的自然对数．得到 $F(n)$ 的取值后，直接应用乘积版本的数论分块就可以在 $O(\sqrt{n})$ 时间内求出 $g(n)$ 的取值，进而得到 $f(n)$ 的取值．总的时间复杂度为 $O(n)$．
     
     值得注意的是，涉及乘积的计算时，往往需要用到 [欧拉定理](./fermat.md)，因此指数部分取模用到的模数与题目所给的模数并不相同．
 
@@ -805,7 +805,7 @@ $$
     \end{aligned}
     $$
     
-    其中，$\Lambda(n)$ 是 [von Mangoldt 函数](#莫比乌斯反演)．将这一推导结果取幂，就得到解答一的结果．
+    其中，$\Lambda(n)$ 是 [von Mangoldt 函数](#von-mangoldt)．将这一推导结果取幂，就得到解答一的结果．
 
 ??? note "参考代码"
     ```cpp
