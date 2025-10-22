@@ -135,7 +135,7 @@ $$
 
 Montgomery 模乘算法的功能和 Barrett 算法十分类似，它同样可以减少模整数运算过程中取模运算的开销。与前两个算法都是在近似计算商数不同，Montgomery 模乘将所有整数都映射到 Montgomery 空间上，而 Montgomery 空间中的运算相对容易，进而降低了整体计算成本。
 
-设模数 $m$ 为奇数，并选取 $R = 2^k > m$。那么，同余类 $a \bmod m$ 对应的 Montgomery 形式就是 
+设模数 $m$ 为奇数，并选取 $R = 2^k > m$。那么，同余类 $a \bmod m$ 对应的 Montgomery 形式就是
 
 $$
 aR\bmod m.
@@ -198,7 +198,7 @@ $$
 根据这一表达式，只要从 $x = 1$ 开始，反复应用 $x \gets x(2-mx)$，就可以在 $\lceil\log_2 k\rceil$ 次迭代后得到 $m^{-1}\bmod R$。其次，将不同操作归约为 Barrett 约减操作时，还涉及诸如 $R^2\bmod m$ 这样的常数。为了得到它，需要计算一次 $R\bmod m$，将它与自身相加就得到 $2R\bmod m$。随后，将它看作 $2$ 的 Montgomery 形式，直接计算快速幂，就可以得到 $2^kR\bmod m = R^2\bmod m$。
 
 相对于 Barrett 约减实现模意义下乘法，Montgomery 模乘的计算涉及转换、Montgomery 形式的乘法、逆转换等多个步骤。因此，只有在转换和逆转换之间的模运算次数足够多时，转换和逆转换的成本才可以摊平，进而获得较高的整体效率。但是，由于 Montgomery 模乘的实现过程中只涉及长度为 $2\ell(m)$ 的中间变量，所以实现起来更为灵活。例如，$32$ 位整数的模乘仅需要 $64$ 位整数的中间变量。所以，如果需要实现一个模整数类用于各种数论计算，Montgomery 模乘更为合适。
- 
+
 ## 参考资料与注释
 
 -   [Fast modular multiplication by orz - Codeforces](https://codeforces.com/blog/entry/96759)
