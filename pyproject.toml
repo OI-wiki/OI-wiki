@@ -15,9 +15,27 @@ dependencies = [
     "mkdocs-toggle-sidebar-plugin==0.0.8",
 ]
 
-[tool.uv]
-dev-dependencies = []
+[dependency-groups]
+dev = [
+    "coverage>=7.10.6",
+    "parameterized>=0.9.0",
+]
 
 [tool.uv.pip]
 index-url = "https://pypi.org/simple"
 extra-index-url = ["https://pypi.tuna.tsinghua.edu.cn/simple"]
+
+[tool.coverage.run]
+branch = true
+omit = [
+    "test/*"
+    ]
+
+[tool.coverage.report]
+# Regexes for lines to exclude from consideration
+exclude_also = [
+    "if __name__ == .__main__.:",
+    ]
+
+[tool.coverage.html]
+directory = ".coverage_html_report"
