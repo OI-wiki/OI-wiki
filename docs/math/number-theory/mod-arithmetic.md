@@ -205,6 +205,7 @@ $$
 -   [Barrett Reduction - Wikipedia](https://en.wikipedia.org/wiki/Barrett_reduction)
 -   Barrett, Paul. "Implementing the Rivest Shamir and Adleman public key encryption algorithm on a standard digital signal processor." In Conference on the Theory and Application of Cryptographic Techniques, pp. 311-323. Berlin, Heidelberg: Springer Berlin Heidelberg, 1986.
 -   [Barrett Reduction - A41](https://encrypt.a41.io/primitives/modular-arithmetic/modular-reduction/barrett-reduction#cost-analysis-of-modular-multiplication)
+-   Becker, Hanno, Vincent Hwang, Matthias J. Kannwischer, Bo-Yin Yang, and Shang-Yi Yang. Neon NTT: Faster Dilithium, Kyber, and Saber on Cortex-A72 and Apple M1. IACR TCHES 2022 (1), 221–244 (2022). 2022.
 
 [^long-double-80bit]: 这适用于大多数 64 位系统上的 GCC 或 Clang 编译器。
 
