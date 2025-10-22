@@ -42,7 +42,7 @@ author: 383494, buuzzing, c-forrest, cr4c1an, Emp7iness, Enter-tainer, Great-des
 -   [组合数](./lucas.md)
 -   [开平方](./quad-residue.md)
 -   [取对数](./discrete-logarithm.md)
--   [开各次方](./residue.md)
+-   [开方](./residue.md)
 
 这些运算通常在素数模数下比较容易。对于合数模数，往往需要用到对应算法的扩展版本和 [中国剩余定理](./crt.md)。这些模意义下的运算大多可以看作求解某种同余方程。对于求解同余方程的一般方法，可以参考 [同余方程](./congruence-equation.md) 页面。
 
@@ -87,6 +87,41 @@ long long mul(long long a, long long b, long long m) {
 如今，绝大多数测评系统所配备的 C/C++ 编译器已支持 `__int128` 类型，因此也可以利用 Barrett 约减进行快速乘。之所以不直接将乘数类型提升至 `__int128` 后取模计算是因为此方法仍然可以节省一次时间可观的 `__int128` 类型取模。
 
 ### Barrett 约减
+
+前文提到，除法和取模运算通常比其他四则运算更为耗时。为了减少取模运算的开销，有一些算法可以在不直接做取模的情况下得到相同的结果。本节要介绍的 Barrett 约减算法就是其中之一。
+
+设 $m$ 为固定模数，假设要对不同的 $a > 0$ 多次计算 $a\bmod m$。由带余除法可知
+
+$$
+z = a\bmod m = a - \left\lfloor\dfrac{a}{m}\right\rfloor m.
+$$
+
+关键在于商数 $\left\lfloor\dfrac{a}{m}\right\rfloor$ 的计算。设 $r$ 是某个常数，就有
+
+$$
+\left\lfloor\dfrac{a}{m}\right\rfloor = \left\lfloor a\dfrac{r}{m} / r\right\rfloor \approx \left\lfloor a\left\lfloor\dfrac{r}{m}\right\rfloor/r\right\rfloor.
+$$
+
+如果选取 $r = 2^k$，那么，右式中 $\left\lfloor\dfrac{r}{m}\right\rfloor$ 可以预处理，除以 $r$ 的操作可以通过移位运算进行。所以，用右式计算商数，仅需要一次乘法和一次移位操作。再代入 $a\bmod m$ 的表达式，就得到所求余数的估计 $z'$。
+
+现在分析这样做的误差。因为对于 $x > y > 0$ 都有 $\lfloor x\rfloor - \lfloor y\rfloor \le \lceil x - y\rceil$，所以误差
+
+$$
+\begin{aligned}
+\Delta &= |z' - z| = m\left|\left\lfloor\dfrac{a}{m}\right\rfloor - \left\lfloor a\left\lfloor\dfrac{r}{m}\right\rfloor/r\right\rfloor\right|\\
+&\le m\left\lceil a\left(\dfrac{r}{m} - \left\lfloor\dfrac{r}{m}\right\rfloor\right) /r\right\rceil \le m\left\lceil\dfrac{a}{r}\right\rceil.
+\end{aligned}
+$$
+
+只要 $a \le r$，误差 $\Delta$ 就不超过 $m$。由于 $z' \ge z$，所以估计值 $z'$ 只能是 $z$ 或 $z + m$。只要在得到估计值后，在 $z' \ge m$ 时再减去多余的 $m$，即可保证答案正确。
+
+通常用到 Barrett 约减时，需要计算乘积的余数 $ab\bmod m$。如果 $a,b$ 都不固定，通常需要计算出 $ab$ 后再做 Barrett 约减。如果其中一个乘数固定，比如 $b$ 固定时，可以通过
+
+$$
+ab\bmod m = ab - \left\lfloor a\left\lfloor\dfrac{bR}{m}\right\rfloor/R\right\rfloor m
+$$
+
+进行类似的估计，只要预处理出 $\left\lfloor\dfrac{bR}{m}\right\rfloor$ 的值即可。这种 $b$ 固定的情形有时也称为 Shoup 模乘。
 
 ### Montgomery 模乘
 

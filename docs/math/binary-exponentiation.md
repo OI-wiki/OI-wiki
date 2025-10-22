@@ -228,27 +228,18 @@ $$
 
 ## 底数固定的预处理快速幂
 
-在同一底数与同一模数的条件下，可以利用 [分块思想](../ds/decompose.md)，用一定的时间（一般是 $O(\sqrt n)$）预处理后用 $O(1)$ 的时间回答一次幂询问。
+当底数 $a$ 固定时，可以利用 [分块思想](../ds/decompose.md)，用一定的时间预处理后用 $O(1)$ 的时间回答一次幂询问。这一算法也常称为光速幂。过程如下：
 
-1.  选定一个数 $s$，预处理出 $a^0$ 到 $a^s$ 与 $a^{0\cdot s}$ 到 $a^{\lfloor\frac ps\rfloor\cdot s}$ 的值并存在两个数组里；
-2.  对于每一次询问 $a^b\bmod p$，将 $b$ 拆分成 $\left\lfloor\dfrac bs\right\rfloor\cdot s+b\bmod s$，则 $a^b=a^{\lfloor\frac bs\rfloor\cdot s}\times a^{b\bmod s}$，可以 $O(1)$ 求出答案。
+1.  选定一个数 $s$，预处理出 $a^0,a^1,\cdots,a^{s-1}$ 与 $a^0,a^s,\cdots,a^{\lfloor p/s\rfloor s}$ 的值并存在两个数组里；
+2.  对于每一次询问 $a^b$，将 $b$ 拆分成 $\lfloor b/s\rfloor s+(b\bmod s)$，则 $a^b=a^{\lfloor b/s\rfloor s}\cdot a^{b\bmod s}$，就可以 $O(1)$ 求出答案。
 
-关于这个数 $s$ 的选择，我们一般选择 $\sqrt p$ 或者一个大小适当的 $2$ 的次幂。选择 $\sqrt p$ 可以使预处理较优，选择 $2$ 的次幂可以使用位运算简化计算。
+假设指数 $b$ 的范围是 $[0,n]$，那么块长 $s$ 经常选择为 $\sqrt{n}$ 或者与之相近的 $2$ 的幂次。选择 $\sqrt{n}$ 可以获得最优的预处理复杂度 $O(\sqrt{n})$，而选择 $2$ 的幂次可以使用位运算简化计算。
 
-??? note "参考代码"
+特别地，对于模意义下幂的计算，底数 $a$ 相同隐含着模数 $m$ 也要相同这一要求。由于 [扩展欧拉定理](./number-theory/fermat.md#扩展欧拉定理)，对于任意模数 $m$，预处理的指数范围上界为 $n = 2\varphi(m)$；对于素模数 $p$，预处理的范围上界为 $n = p - 1$。这两种情形预处理的复杂度都是 $O(\sqrt{m})$。
+
+???+ example "参考代码"
     ```cpp
-    int pow1[65536], pow2[65536];
-    
-    void preproc(int a, int mod) {
-      pow1[0] = pow2[0] = 1;
-      for (int i = 1; i < 65536; i++) pow1[i] = 1LL * pow1[i - 1] * a % mod;
-      int pow65536 = 1LL * pow1[65535] * a % mod;
-      for (int i = 1; i < 65536; i++) pow2[i] = 1LL * pow2[i - 1] * pow65536 % mod;
-    }
-    
-    int query(int pows) {
-      return 1LL * pow1[pows & 65535] * pow2[pows >> 16] % mod;
-    }
+    --8<-- "docs/math/code/binary-exponentiation/pre-exp.cpp:core"
     ```
 
 ## 习题
