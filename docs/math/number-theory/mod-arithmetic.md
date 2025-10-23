@@ -54,35 +54,39 @@ author: 383494, buuzzing, c-forrest, cr4c1an, Emp7iness, Enter-tainer, Great-des
 
 在素性测试与质因数分解中，经常会遇到模数在 `long long` 范围内的乘法取模运算。为了避免运算中的整型溢出问题，本节介绍一种可以处理模数在 `long long` 范围内，不需要使用 `__int128` 且复杂度为 $O(1)$ 的「快速乘」。本算法要求测评系统中，`long double` 至少表示为 $80$ 位扩展精度浮点数[^long-double-80bit]。
 
-注意到：
+假设 $0 \le a, b < m$，要计算 $ab\bmod m$。注意到：
 
 $$
-a\times b\bmod m=a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m.
+ab\bmod m=ab-\left\lfloor \dfrac{ab}m \right\rfloor m.
 $$
 
 利用 `unsigned long long` 的自然溢出：
 
 $$
-a\times b\bmod m=a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m=\left(a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m\right)\bmod 2^{64}.
+ab\bmod m=ab-\left\lfloor \dfrac{ab}m \right\rfloor m=\left(ab-\left\lfloor \dfrac{ab}m \right\rfloor m\right)\bmod 2^{64}.
 $$
 
 只要能算出商 $\left\lfloor\dfrac{ab}m\right\rfloor$，最右侧表达式中的乘法和减法运算都可以使用 `unsigned long long` 直接计算。
 
-接下来，只需要考虑如何计算 $\left\lfloor\dfrac {ab}m\right\rfloor$。解决方案是先使用 `long double` 算出 $\dfrac am$ 再乘上 $b$。既然使用了 `long double`，就无疑会有精度误差。假设 `long double` 表示为 $80$ 位扩展精度浮点数（即符号为 $1$ 位，指数为 $15$ 位，尾数为 $64$ 位），那么 `long double` 最多能精确表示的有效位数为 $64$[^note1]。所以 $\dfrac am$ 最差从第 $65$ 位开始出错，误差范围为 $\left(-2^{-64},2^{-64}\right)$。乘上 $b$ 这个 $64$ 位带符号整数，误差范围为 $(-0.5,0.5)$。为了简化后续讨论，可以先加一个 $0.5$ 再取整，最后的误差范围是 $\{0,1\}$。
+接下来，只需要考虑如何计算 $\left\lfloor\dfrac {ab}m\right\rfloor$。解决方案是先使用 `long double` 算出 $\dfrac am$ 再乘上 $b$。既然使用了 `long double`，就无疑会有精度误差。假设 `long double` 表示为 $80$ 位扩展精度浮点数（即符号为 $1$ 位，指数为 $15$ 位，尾数为 $64$ 位），那么 `long double` 最多能精确表示的有效位数为 $64$[^floating-format]。所以 $\dfrac am$ 最差从第 $65$ 位开始出错，误差范围[^ld-mul-err]为 $\left(-2^{-64},2^{-64}\right)$。乘上 $b$ 这个 $64$ 位带符号整数，误差范围为 $(-0.5,0.5)$。为了简化后续讨论，可以先加一个 $0.5$ 再取整，最后的误差范围是 $\{0,1\}$。
 
 最后，代入上式计算时，需要乘以 $-m$，所以最后的误差范围是 $\{0,-m\}$。因为 $m$ 在 `long long` 范围内，所以当结果 $r\in[0,m)$ 时，直接返回 $r$，否则返回 $r+m$。当然也可以直接返回 $(r+m)\bmod m$。
 
 代码实现如下：
 
-```cpp
-long long mul(long long a, long long b, long long m) {
-  unsigned long long c =
-      (unsigned long long)a * b -
-      (unsigned long long)((long double)a / m * b + 0.5L) * m;
-  if (c < m) return c;
-  return c + m;
-}
-```
+???+ example "参考实现"
+    ```cpp
+    --8<-- "docs/math/code/mod-arithmetic/i64-mul.cpp:ld-mul"
+    ```
+
+如今，绝大多数测评系统所配备的 C/C++ 编译器已支持 `__int128` 类型，因此也可以直接将乘数类型提升至 `__int128` 后取模计算。
+
+???+ example "参考实现"
+    ```cpp
+    --8<-- "docs/math/code/mod-arithmetic/i64-mul.cpp:i128-mul"
+    ```
+
+当然，`__int128` 的取模运算时间可观。如果需要进一步卡常，可以考虑接下来两节介绍的方法。
 
 ### Barrett 约减
 
@@ -199,17 +203,21 @@ $$
 
 相对于 Barrett 约减实现模意义下乘法，Montgomery 模乘的计算涉及转换、Montgomery 形式的乘法、逆转换等多个步骤。因此，只有在转换和逆转换之间的模运算次数足够多时，转换和逆转换的成本才可以摊平，进而获得较高的整体效率。但是，由于 Montgomery 模乘的实现过程中只涉及长度为 $2\ell(m)$ 的中间变量，所以实现起来更为灵活。例如，$32$ 位整数的模乘仅需要 $64$ 位整数的中间变量。所以，如果需要实现一个模整数类用于各种数论计算，Montgomery 模乘更为合适。
 
+### 模数是 2 的幂次
+
 ## 参考资料与注释
 
 -   [Fast modular multiplication by orz - Codeforces](https://codeforces.com/blog/entry/96759)
 -   [Barrett Reduction - Wikipedia](https://en.wikipedia.org/wiki/Barrett_reduction)
--   Barrett, Paul. "Implementing the Rivest Shamir and Adleman public key encryption algorithm on a standard digital signal processor." In Conference on the Theory and Application of Cryptographic Techniques, pp. 311-323. Berlin, Heidelberg: Springer Berlin Heidelberg, 1986.
 -   [Barrett Reduction - A41](https://encrypt.a41.io/primitives/modular-arithmetic/modular-reduction/barrett-reduction#cost-analysis-of-modular-multiplication)
+-   Barrett, Paul. "Implementing the Rivest Shamir and Adleman public key encryption algorithm on a standard digital signal processor." In Conference on the Theory and Application of Cryptographic Techniques, pp. 311-323. Berlin, Heidelberg: Springer Berlin Heidelberg, 1986.
 -   Becker, Hanno, Vincent Hwang, Matthias J. Kannwischer, Bo-Yin Yang, and Shang-Yi Yang. Neon NTT: Faster Dilithium, Kyber, and Saber on Cortex-A72 and Apple M1. IACR TCHES 2022 (1), 221–244 (2022). 2022.
 
 [^long-double-80bit]: 这适用于大多数 64 位系统上的 GCC 或 Clang 编译器。
 
-[^note1]: 参见 [Double-precision floating-point format - Wikipedia](https://en.wikipedia.org/wiki/Double-precision_floating-point_format)。
+[^floating-format]: 参见 [Double-precision floating-point format - Wikipedia](https://en.wikipedia.org/wiki/Double-precision_floating-point_format)。
+
+[^ld-mul-err]: 此处用到了条件 $a < m$，即 $a / m \in [0,1)$。
 
 [^floor-barrett]: 此处 $\left\lfloor\dfrac{r}{m}\right\rfloor$ 也可以替换成 $\dfrac{r}{m}$ 的其他整数估计，例如上取整函数 $\left\lceil\dfrac{r}{m}\right\rceil$ 和四舍五入取整函数 $\left\lfloor\dfrac{r}{m}\right\rceil$ 等，只要相应地调整对估计值的误差修正步骤。
 
