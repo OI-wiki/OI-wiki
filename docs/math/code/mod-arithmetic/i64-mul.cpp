@@ -4,9 +4,9 @@
 // Check whether a working __int128 type is available.
 // Clang-cl on Windows may fail to link when using mod/div with __int128.
 #if defined(__SIZEOF_INT128__) && !(defined(__clang__) && defined(_MSC_VER))
-#  define HAS_WORKING_INT128 1
+#define HAS_WORKING_INT128 1
 #else
-#  define HAS_WORKING_INT128 0
+#define HAS_WORKING_INT128 0
 #endif
 
 namespace LongDoubleMul {
