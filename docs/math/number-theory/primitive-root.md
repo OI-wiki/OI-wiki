@@ -603,7 +603,7 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 
 [^more-evidence]: 更多结果可以参考 [Least prime primitive root of prime numbers](https://sweet.ua.pt/tos/p_roots.html)．
 
-[^density-prim-root]: 如果模 $m$ 的原根存在，那么，$\varphi(m)\ge\dfrac{1}{3}m$，且等号仅在 $m=2p^e~(e\in\mathbf N_+)$ 处取得．进一步地，当 $m > 2$ 时，对欧拉函数 $\varphi(m)$ 有估计：$\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$．将这两者结合，就得到文中的表达式．关于欧拉函数的该估计，可以参考论文 Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94．
+[^density-prim-root]: 如果模 $m$ 的原根存在，那么，$\varphi(m)\ge\dfrac{1}{3}m$，且等号仅在 $m=2\times 3^e~(e\in\mathbf N_+)$ 处取得．进一步地，当 $m > 2$ 时，对欧拉函数 $\varphi(m)$ 有估计：$\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$．将这两者结合，就得到文中的表达式．关于欧拉函数的该估计，可以参考论文 Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94．
 
 [^korselt1899probleme]: Korselt, A. R. (1899). "Problème chinois." L'Intermédiaire des Mathématiciens. 6: 142–143.
 
