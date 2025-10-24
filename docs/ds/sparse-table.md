@@ -64,7 +64,7 @@ ST 表基于 [倍增](../basic/binary-lifting.md) 思想，可以做到 $\Theta(
 
 === "Python"
     ```python
-    --8<-- "docs/ds/code/sparse-table/sparse-table.py"
+    --8<-- "docs/ds/code/sparse-table/sparse-table_1.py"
     ```
 
 ## 注意点
