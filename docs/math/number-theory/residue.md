@@ -244,7 +244,7 @@
 
     转化为求底数为 $g^k$ 时 $a$ 的离散对数．这同样可以通过 BSGS 算法找到一组特解．它的通解可以通过前文的解的表达式求出，也就是将特解与全体 $k$ 次单位根逐一相乘得到．
 
-    无论采用哪种思路，原根已知时，该算法求出单个解的复杂度都是 $O(m^{1/2})$．原根未知时，总是可以在 $o(m^{1/2})$ 时间内求出．总的时间复杂度都是 $O(m^{1/2})$．
+    无论采用哪种思路，原根已知时，该算法求出单个解的复杂度都是 $O(m^{1/2})$．因为可以在 $o(m^{1/2})$ 时间内找到一个原根，所以，总的时间复杂度仍然是 $O(m^{1/2})$．
 
 -   当 $m=2^e$ 且 $e\in\mathbf N_+$ 时，可以首先求出 $a\equiv (-1)^s5^r\pmod m$ 中的 $s,r$．这两个指数中，$s$ 可以在 $O(1)$ 时间内确定：
 
@@ -432,7 +432,7 @@ $$
 
 [^fnnt]: 实际上，模数 $m$ 未必是素数．只要 $a$ 是模 $m$ 的 $k=2^e$ 次本原单位根，就可以用于模 $m$ 的快速数论变换．但是，由于通常需要处理的 $2^e$ 比较大，这意味着模数 $m$ 中的每个素因子都是 $c2^e+1$ 形式．因此，单个素因子就很大，而模数 $m$ 通常会更大，因而一般模数的情形并没有素数模的情形常用．
 
-[^lambda-density]: 根据中国剩余定理，设 $m=\prod_p p^{e_p}$，那么模 $m$ 的 $\lambda$‑原根可以通过模 $p^{e_p}$ 的原根构造出来（模数为 $2$ 的幂次时，需要引入 $-1$ 和 $5$）．而且，当模 $m$ 的原根存在时，原根的密度是 $\Omega\left(\dfrac{1}{\log\log m}\right)$ 的（参考 [欧拉函数的增长率](https://en.wikipedia.org/wiki/Euler%27s_totient_function#Growth_rate)）．因此，$\lambda$‑原根的密度是 $\Omega\left(\prod_p\dfrac{1}{\log\log p^{e_p}}\right)$ 的，可以通过随机方法在期望 $O(\prod_p\log\log p^{e_p})$ 时间内找到．
+[^lambda-density]: 根据 [原根个数相关结论](./primitive-root.md#原根个数) 可知，$\lambda$‑原根的数量恰为 $\varphi(\lambda(m))$，其中，$\varphi(\cdot)$ 和 $\lambda(\cdot)$ 分别是欧拉函数和 Carmichael 函数。因为对于几乎所有整数 $n$，都有 $\lambda(n)/n = \exp(-(1+o(1))\log\log n\log\log\log n)$，而存在 $C > 0$，使得对于整数 $n > 2$，都有 $\varphi(n)/n = C / \log\log n$，所以，对于几乎所有整数 $n$，都有 $\varphi(\lambda(m))/m = \exp(-(1+o(1))\log\log m\log\log\log m)$。故而，$\lambda$‑原根可以在期望 $\exp((1+o(1))\log\log m\log\log\log m)$ 次内找到。关于欧拉函数的估计，可以参考论文 Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94．关于 Carmichael 函数的估计，可以参考论文 Erdos, Paul, Carl Pomerance, and Eric Schmutz. "Carmichael’s lambda function." Acta Arith 58, no. 4 (1991): 363-385．
 
 [^amm]: 原始论文参见 Adleman, Leonard, Kenneth Manders, and Gary Miller. "On taking roots in finite fields." In 18th Annual Symposium on Foundations of Computer Science (sfcs 1977), pp. 175-178. IEEE Computer Society, 1977．一个更易读的介绍可见于 Cao, Zhengjun, Qian Sha, and Xiao Fan. "Adleman-Manders-Miller root extraction method revisited." In International Conference on Information Security and Cryptology, pp. 77-85. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011．
 
