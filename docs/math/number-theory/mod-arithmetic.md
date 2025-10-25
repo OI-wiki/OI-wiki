@@ -138,6 +138,9 @@ $$
 作为示例，利用 Barrett 约减实现 32 位有符号整数模乘的参考实现如下：
 
 ???+ example "参考实现"
+    
+
+实现中需要用到 128 位整数[^int128]。
 
 ### Montgomery 模乘
 
@@ -202,7 +205,7 @@ $$
 作为示例，$32$ 位有符号整数的 Montgomery 模乘实现如下：
 
 ???+ example "参考实现"
-
+    
 
 相对于 Barrett 约减实现模意义下乘法，Montgomery 模乘的计算涉及转换、Montgomery 形式的乘法、逆转换等多个步骤。因此，只有在转换和逆转换之间的模运算次数足够多时，转换和逆转换的成本才可以摊平，进而获得较高的整体效率。但是，由于 Montgomery 模乘的实现过程中只涉及长度为 $2\ell(m)$ 的中间变量，所以实现起来更为灵活。例如，$32$ 位整数的模乘仅需要 $64$ 位整数的中间变量。所以，如果需要实现一个模整数类用于各种数论计算，Montgomery 模乘更为合适。
 
@@ -280,7 +283,7 @@ $$
 作为示例，模 $2^{32}$ 整数类（即 $32$ 位无符号整数）的参考实现如下：
 
 ???+ example "参考实现"
-
+    
 
 离散对数的预处理可以通过 Pohlig–Hellman 算法进行。
 
@@ -301,8 +304,7 @@ $$
 
 [^ld-mul-err]: 此处用到了条件 $a < m$，即 $a / m \in [0,1)$。
 
-[^int128]: 在目前的主流编译环境中，只有 Windows 平台上的 MSVC 不支持 `__int128` 类型。
-若需要编写可在多平台上兼容的代码，可以通过宏 `_MSC_VER` 检测 MSVC 编译环境，并在该条件下包含 [`<intrin.h>`](https://learn.microsoft.com/en-us/cpp/intrinsics/x64-amd64-intrinsics-list?view=msvc-170) 头文件，利用其提供的内建函数（如 `_umul128` 等）来间接实现 128 位整数运算（仅在 64 位平台上可用）。
+[^int128]: 在目前的主流编译环境中，只有 Windows 平台上的 MSVC 不支持 `__int128` 类型。若需要编写可在多平台上兼容的代码，可以通过宏 `_MSC_VER` 检测 MSVC 编译环境，并在该条件下包含 [`<intrin.h>`](https://learn.microsoft.com/en-us/cpp/intrinsics/x64-amd64-intrinsics-list?view=msvc-170) 头文件，利用其提供的内建函数（如 `_umul128` 等）来间接实现 128 位整数运算（仅在 64 位平台上可用）。
 
 [^floor-barrett]: 此处 $\left\lfloor\dfrac{r}{m}\right\rfloor$ 也可以替换成 $\dfrac{r}{m}$ 的其他整数估计，例如上取整函数 $\left\lceil\dfrac{r}{m}\right\rceil$ 和四舍五入取整函数 $\left\lfloor\dfrac{r}{m}\right\rceil$ 等，只要相应地调整对估计值的误差修正步骤。
 
