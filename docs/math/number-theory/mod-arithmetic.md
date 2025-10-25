@@ -79,14 +79,14 @@ $$
     --8<-- "docs/math/code/mod-arithmetic/i64-mul.cpp:ld-mul"
     ```
 
-如今，绝大多数测评系统所配备的 C/C++ 编译器已支持 `__int128` 类型，因此也可以直接将乘数类型提升至 `__int128` 后取模计算。
+如今，绝大多数测评系统所配备的 C/C++ 编译器已支持 `__int128` 类型[^int128]，因此也可以直接将乘数类型提升至 `__int128` 后取模计算：
 
 ???+ example "参考实现"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/i64-mul.cpp:i128-mul"
     ```
 
-当然，`__int128` 的取模运算时间可观。如果需要进一步卡常，可以考虑接下来两节介绍的方法。
+当然，`__int128` 的取模运算耗时并不少。如果需要进一步卡常，可以考虑接下来两节介绍的方法。
 
 ### Barrett 约减
 
@@ -135,6 +135,10 @@ $$
 
 更为常见的情形是 $a, b$ 都不固定。此时，需要首先计算 $ab$ 的值，再利用 Barrett 约减得到 $ab\bmod m$。例如，实现模意义下乘法时，需要对 $0 \le a,b < m$ 计算 $ab\bmod m$。此时，选取的 $r$ 需要满足 $ab < R$。根据前文分析，计算过程涉及的最长中间变量长度为 $2\ell(ab)-\ell(m)$。当 $\ell(a)\approx\ell(b)\approx\ell(m)$ 时，该长度为 $3\ell(m)$。也就是说，如果要用 Barrett 约减实现 $32$ 位整数的模乘，中间变量需要 $96$ 位整数。这也是 Barrett 约减在算法竞赛中实际应用时的一个限制。
 
+作为示例，利用 Barrett 约减实现 32 位有符号整数模乘的参考实现如下：
+
+???+ example "参考实现"
+
 ### Montgomery 模乘
 
 Montgomery 模乘算法的功能和 Barrett 算法十分类似，它同样可以减少模整数运算过程中取模运算的开销。与前两个算法都是在近似计算商数不同，Montgomery 模乘将所有整数都映射到 Montgomery 空间上，而 Montgomery 空间中的运算相对容易，进而降低了整体计算成本。
@@ -171,7 +175,7 @@ $$
 -   将 $a$ 的 Montgomery 形式转换回 $a\bmod m$ 就是 $\operatorname{REDC}(aR\bmod m)$。
 -   模逆元 $a^{-1}\bmod m$ 对应的 Montgomery 形式就是 $\operatorname{REDC}((aR\bmod m)^{-1}(R^3\bmod m))$。
 
-现在讨论 Montgomery 约减操作 $\operatorname{REDC}$ 的实现方法。在计算 $\operatorname{REDC}(x)$ 时，总是假定 $0 \le x < m^2$，这对于以上情形都是成立的。因为 $R\perp m$，所以由 [裴属定理](./bezouts.md)，存在整数 $R^{-1},m'$ 使得
+现在讨论 Montgomery 约减操作 $\operatorname{REDC}$ 的实现方法。在计算 $\operatorname{REDC}(x)$ 时，总是假定 $0 \le x < m^2$，这对于以上情形都是成立的。因为 $R\perp m$，所以由 [裴蜀定理](./bezouts.md)，存在整数 $R^{-1},m'$ 使得
 
 $$
 RR^{-1} + mm' = 1.
@@ -193,31 +197,112 @@ $$
 
 也就是说，这个商和 $xR^{-1}\bmod m$ 之间至多差一个 $m$。只要在商小于零时，再加上 $m$ 就可以得到 $\operatorname{REDC}(x)$。计算这个商，只需要两次整数乘法、一次整数减法和两次位操作（分别是对 $R=2^k$ 取模和做除法）。因此，Montgomery 约减操作可以高效进行。
 
-为了进行 Montgomery 模乘操作，需要预处理出一系列常数。首先，Barrett 约减中会用到 $m' = m^{-1}\bmod R$。它可以通过 [扩展欧几里得算法](./gcd.md#扩展欧几里得算法) 计算，但这仍需要一系列取模运算。由于 $R=2^k$ 较为特殊，所以更为高效的方法是 [Newton–Hensel 方法](../poly/newton.md)。具体地，考虑应用如下结论：[^newton-hensel]
+为了进行 Montgomery 模乘操作，需要预处理出一系列常数。首先，Barrett 约减中会用到 $m' = m^{-1}\bmod R$，可以通过 [下文](#模-2-的幂次的整数类) 介绍的 Newton–Hensel 方法计算。其次，将不同操作归约为 Barrett 约减操作时，还涉及诸如 $R^2\bmod m$ 这样的常数。为了得到它，需要计算一次 $R\bmod m$，将它与自身相加就得到 $2R\bmod m$。随后，将它看作 $2$ 的 Montgomery 形式，直接计算快速幂，就可以得到 $2^kR\bmod m = R^2\bmod m$。
+
+作为示例，$32$ 位有符号整数的 Montgomery 模乘实现如下：
+
+???+ example "参考实现"
+
+
+相对于 Barrett 约减实现模意义下乘法，Montgomery 模乘的计算涉及转换、Montgomery 形式的乘法、逆转换等多个步骤。因此，只有在转换和逆转换之间的模运算次数足够多时，转换和逆转换的成本才可以摊平，进而获得较高的整体效率。但是，由于 Montgomery 模乘的实现过程中只涉及长度为 $2\ell(m)$ 的中间变量，所以实现起来更为灵活。例如，$32$ 位整数的模乘仅需要 $64$ 位整数的中间变量。所以，如果需要实现一个模整数类用于各种数论计算，Montgomery 模乘更为合适。
+
+### 模 2 的幂次的整数类
+
+本节讨论模数是 $2$ 的幂次时，模整数类的实现。在这一特殊情形中，除法和取模运算可以通过位操作实现，计算效率很高。Barrett 约减和 Montgomery 模乘都是将问题转化到模 $2^e$ 整数类上来加速运算。特别地，当模数恰为 $2^{32}$ 和 $2^{64}$ 等特殊数字时，可以利用相应位长的无符号整数结合自然溢出实现模整数类，无需任何显式的取模运算。除了取模方便外，模 $2^e$ 整数类的其他操作也有很多特殊实现。本节重点介绍逆元和取幂操作的实现方式。
+
+首先是取逆操作：给定奇数 $a$ 和模数 $m=2^e~(e > 2)$，需要求出 $a^{-1}\bmod m$。求逆元的 [常见方法](./inverse.md) 包括扩展欧几里得算法和快速幂法。扩展欧几里得算法的过程涉及对一般模数取模；普通的快速幂法需要计算 $a^{\varphi(m)-1}\bmod{m}$，这需要 $\Theta(e)$ 次整数乘法。更为高效的方法是 [Newton–Hensel 方法](../poly/newton.md)。具体地，考虑应用如下结论：[^newton-hensel]
 
 $$
 mx \equiv 1 \pmod{2^e} \implies mx(2 - mx) \equiv 1\pmod{2^{2e}}.
 $$
 
-根据这一表达式，只要从 $x = 1$ 开始，反复应用 $x \gets x(2-mx)$，就可以在 $\lceil\log_2 k\rceil$ 次迭代后得到 $m^{-1}\bmod R$。其次，将不同操作归约为 Barrett 约减操作时，还涉及诸如 $R^2\bmod m$ 这样的常数。为了得到它，需要计算一次 $R\bmod m$，将它与自身相加就得到 $2R\bmod m$。随后，将它看作 $2$ 的 Montgomery 形式，直接计算快速幂，就可以得到 $2^kR\bmod m = R^2\bmod m$。
+根据这一表达式，只要从 $x = 1$ 开始，反复应用 $x \gets x(2-mx)$，就可以在 $\lceil\log_2 k\rceil$ 次迭代后得到 $m^{-1}\bmod R$。
 
-相对于 Barrett 约减实现模意义下乘法，Montgomery 模乘的计算涉及转换、Montgomery 形式的乘法、逆转换等多个步骤。因此，只有在转换和逆转换之间的模运算次数足够多时，转换和逆转换的成本才可以摊平，进而获得较高的整体效率。但是，由于 Montgomery 模乘的实现过程中只涉及长度为 $2\ell(m)$ 的中间变量，所以实现起来更为灵活。例如，$32$ 位整数的模乘仅需要 $64$ 位整数的中间变量。所以，如果需要实现一个模整数类用于各种数论计算，Montgomery 模乘更为合适。
+接下来，讨论取幂操作：给定 $x,a,b$ 和模数 $m=2^e~(e > 2)$，需要求出 $xa^b\bmod m$，其中，$a$ 是奇数。根据对模 $2^e$ 整数乘法结构的 [分析](./primitive-root.md#mod-pow-2) 可知，$a$ 总是可以写成 $\pm 5^{\ell}$ 的形式，且负号出现且仅出现在 $a\equiv 3\pmod 4$ 的情形。对于这种情况，可以将 $a$ 替换成 $-a$，并将最终结果再乘上 $(-1)^b$。因此，接下来不妨假设 $a\equiv 1\pmod 4$ 成立。此时，算法的核心想法是，将 $a$ 写成 $5^{L(a)}\bmod m$ 的形式，然后用 $x5^{bL(a)}\bmod m$ 计算所求的幂。
 
-### 模数是 2 的幂次
+计算 $L(a)$ 就是计算离散对数 $\operatorname{ind}_5a$。注意到，只要 $a\equiv 1\pmod 4$，那么 $a$ 总能写成如下形式：
+
+$$
+a \equiv (2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1) \pmod{m},
+$$
+
+其中，$1 < e_1 < e_2 < \cdots < e_s < e$。这是因为直接将这一乘积展开可以发现，$a$ 的二进制表示中等于 $1$ 的次低位就是第 $e_1$ 位（下标从 $0$ 开始），由此就可以递归地找到这一表示。根据离散对数的 [性质](./discrete-logarithm.md#性质) 可知，有
+
+$$
+4L(a) \equiv 4L(2^{e_1}+1) + 4L(2^{e_2}+1) + \cdots + 4L(2^{e_s}+1) \pmod{m}. 
+$$
+
+由于离散对数的模数等于阶 $\delta_m(5)=2^{e-2}=m/4$，所以此处直接将整个同余式都乘以 $4$，以保证计算可以在模 $m$ 剩余类中进行。由此，只需要对 $1 < d < e$ 预处理出所有的 $4L(2^d+1)$，就可以快速计算 $4L(a)$ 的值。
+
+反过来，从 $L(a)$ 也很容易得到 $5^a\bmod{m}$ 的值。根据 [二项式定理](../combinatorics/combination.md#二项式定理) 可知，对于 $1 < d < e$，都有
+
+$$
+\begin{aligned}
+(2^d+1)^{2^{e-d}} \equiv 1 \pmod{m},\quad
+(2^d+1)^{2^{e-d-1}} \equiv 1 + 2^{e-1} \pmod{m},
+\end{aligned}
+$$
+
+所以，$\delta_m(2^d+1) = 2^{e-d}$。根据阶的性质可知
+
+$$
+\delta_m(2^d+1) = \dfrac{\delta_m(5)}{\gcd(\delta_m(5), \operatorname{ind}_5(2^d+1))}.
+$$
+
+所以，$\gcd(\delta_m(5), \operatorname{ind}_5(2^d+1)) = 2^{d-2}$。这说明 $L(2^d+1) = \operatorname{ind}_5(2^d+1) = 2^{d-2}r$，其中，$2\nmid r$。所以，$4L(2^d+1)$ 的二进制表示中等于 $1$ 的最低位恰为第 $d$ 位（下标从 $0$ 开始）。因此，将 $4L(a)$ 表示为形如 $4L(2^d+1)$ 的和同样可以通过二进制表示递归地计算。由此，就可以得到 $a$ 的值。
+
+具体实现时，有一些可以进一步优化的点。首先，将 $a$ 分解为乘积形式时，还是需要用到除法。更方便的是计算 $a^{-1}$ 的分解，即寻找 $1 < e_1 < e_2 < \cdots < e_s < e$ 使得
+
+$$
+a(2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1) \equiv 1 \pmod{m}
+$$
+
+成立。同样是通过寻找等于 $1$ 的次低位来确定 $e_1$，但是要在 $a^{-1}$ 中消去 $2^{e_1}+1$ 因子，只需要在 $a$ 上乘以 $2^{e_1}+1$ 即可。其次，迭代无需进行到 $d = e-1$，而只要进行到 $d = \lceil e/2\rceil - 1$ 即可。由上一段的分析可知，$4L(2^d+1)=2^dr$，其中，$2\nmid r$。因为 $4L(a)$ 一定小于 $2^e$，所以 $4L(2^{e-1}+1)=2^{e-1}$。对于 $d \ge e / 2$，都有
+
+$$
+(2^d+1)^2 = 2^{2d} + 2^{d+1} + 1 \equiv 2^{d+1} + 1 \pmod{m}.
+$$
+
+所以，从 $d = e-1$ 开始，依次递减 $d$ 并归纳可知，$L(2^d+1)=2^d$ 对于所有 $d \ge e/2$ 都成立。进而，只要 $e/2 \le e_1 < e_2 < \cdots < e_s < e$，就有
+
+$$
+(2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1) \equiv 1 + 2^{e_1} + 2^{e_2} + \cdots + 2^{e_s} \pmod{m}
+$$
+
+以及
+
+$$
+4L((2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1)) = 2^{e_1} + 2^{e_2} + \cdots + 2^{e_s}.
+$$
+
+因此，处理完所有 $d < e/2$ 的二进制位后，可以直接得到剩余部分的离散对数，而无需逐位计算。应用这些优化后，整个取幂操作只需要 $O(e)$ 次加法和位操作和 $1$ 次乘法操作。
+
+作为示例，模 $2^{32}$ 整数类（即 $32$ 位无符号整数）的参考实现如下：
+
+???+ example "参考实现"
+
+
+离散对数的预处理可以通过 Pohlig–Hellman 算法进行。
 
 ## 参考资料与注释
 
 -   [Fast modular multiplication by orz - Codeforces](https://codeforces.com/blog/entry/96759)
 -   [Barrett Reduction - Wikipedia](https://en.wikipedia.org/wiki/Barrett_reduction)
 -   [Barrett Reduction - A41](https://encrypt.a41.io/primitives/modular-arithmetic/modular-reduction/barrett-reduction#cost-analysis-of-modular-multiplication)
+-   [Montgomery Multiplication - CP Algorithms](https://cp-algorithms.com/algebra/montgomery_multiplication.html)
+-   [Binary Exponentiation by Factoring - CP Algorithms](https://cp-algorithms.com/algebra/factoring-exp.html)
 -   Barrett, Paul. "Implementing the Rivest Shamir and Adleman public key encryption algorithm on a standard digital signal processor." In Conference on the Theory and Application of Cryptographic Techniques, pp. 311-323. Berlin, Heidelberg: Springer Berlin Heidelberg, 1986.
 -   Becker, Hanno, Vincent Hwang, Matthias J. Kannwischer, Bo-Yin Yang, and Shang-Yi Yang. Neon NTT: Faster Dilithium, Kyber, and Saber on Cortex-A72 and Apple M1. IACR TCHES 2022 (1), 221–244 (2022). 2022.
+-   Montgomery, Peter L. "Modular multiplication without trial division." Mathematics of computation 44, no. 170 (1985): 519-521.
 
 [^long-double-80bit]: 这适用于大多数 64 位系统上的 GCC 或 Clang 编译器。
 
 [^floating-format]: 参见 [Double-precision floating-point format - Wikipedia](https://en.wikipedia.org/wiki/Double-precision_floating-point_format)。
 
 [^ld-mul-err]: 此处用到了条件 $a < m$，即 $a / m \in [0,1)$。
+
+[^int128]: 在目前的主流编译环境中，只有 Windows 平台上的 MSVC 不支持 `__int128` 类型。
+若需要编写可在多平台上兼容的代码，可以通过宏 `_MSC_VER` 检测 MSVC 编译环境，并在该条件下包含 [`<intrin.h>`](https://learn.microsoft.com/en-us/cpp/intrinsics/x64-amd64-intrinsics-list?view=msvc-170) 头文件，利用其提供的内建函数（如 `_umul128` 等）来间接实现 128 位整数运算（仅在 64 位平台上可用）。
 
 [^floor-barrett]: 此处 $\left\lfloor\dfrac{r}{m}\right\rfloor$ 也可以替换成 $\dfrac{r}{m}$ 的其他整数估计，例如上取整函数 $\left\lceil\dfrac{r}{m}\right\rceil$ 和四舍五入取整函数 $\left\lfloor\dfrac{r}{m}\right\rceil$ 等，只要相应地调整对估计值的误差修正步骤。
 
