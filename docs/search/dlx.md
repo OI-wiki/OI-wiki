@@ -108,12 +108,16 @@ $$
       for (int j = m; j >= 1; --j) num[i] = num[i] << 1 | a[i][j];
     for (int state = 0; state < 1 << n; ++state) {
       int tmp = 0;
+      bool flag = true;
       for (int i = 1; i <= n; ++i)
         if ((1 << i - 1) & state) {
-          if (tmp & num[i]) break;
+          if (tmp & num[i]) {
+            flag = false;
+            break;
+          }
           tmp |= num[i];
         }
-      if (tmp == (1 << m) - 1) {
+      if (flag && tmp == (1 << m) - 1) {
         ok = 1;
         for (int i = 1; i <= n; ++i)
           if ((1 << i - 1) & state) printf("%d ", i);
