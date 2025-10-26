@@ -6,10 +6,10 @@ constexpr int p[15] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47};
 int n;
 lint ans = 2e18;
 
-// u：当前考虑的质数在 p 中的下标
-// num：当前构成的数值
-// cnt：当前数值的因数个数
-// pre：上一个因子的幂次，限定本次选择的幂次
+// u: 当前考虑的质数在 p 中的下标
+// num: 当前构成的数值
+// cnt: 当前数值的因数个数
+// pre: 上一个因子的幂次，限定本次选择的幂次
 void dfs(int u, lint num, lint cnt, int pre) {
 	if (cnt > n || u >= 15) return ;
 	if (cnt == n) return ans = std::min(ans, num), void();
