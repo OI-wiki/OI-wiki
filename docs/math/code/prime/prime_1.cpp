@@ -1,7 +1,5 @@
 #include <iostream>
-using uint = unsigned;
 using lint = long long;
-using pii = std::pair<int, int>;
 constexpr int p[15] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47};
 // p 中的素数乘积超过了 1e18
 
