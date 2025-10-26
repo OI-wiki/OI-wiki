@@ -1,7 +1,7 @@
 #include <algorithm>
+#include <functional>
 #include <iostream>
 #include <vector>
-#include <functional>
 #if defined(_MSC_VER) && !defined(__clang__)
 #include <immintrin.h>
 #define __builtin_clz _lzcnt_u32
@@ -9,9 +9,7 @@
 using namespace std;
 
 // 使用内建函数计算 ⌊ log_2 x ⌋
-int lg2(int x) {
-  return 31 - __builtin_clz(x);
-}
+int lg2(int x) { return 31 - __builtin_clz(x); }
 
 template <typename T>
 class SparseTable {
@@ -51,7 +49,7 @@ int main() {
   int n, m;
   cin >> n >> m;
   vector<int> a(n);
-  for (int& i : a) cin >> i;
+  for (int &i : a) cin >> i;
   SparseTable<int> st(a);
   for (int i = 1; i <= m; ++i) {
     int x, y;

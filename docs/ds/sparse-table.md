@@ -12,7 +12,7 @@ ST 表（Sparse Table，稀疏表）是用于解决 **可重复贡献问题** �
 
 ## 引入
 
-???+ example "[Luogu P3865 【模板】ST 表 & RMQ 问题](https://www.luogu.com.cn/problem/P3865)"
+???+ example "[Luogu P3865【模板】ST 表 & RMQ 问题](https://www.luogu.com.cn/problem/P3865)"
     给定 $n$（$1\le n\le 10^5$）个整数，有 $m$（$1\le m\le 2\times 10^6$）个询问，对于每个询问，你需要回答区间 $[l,r]$ 中的最大值。
 
 考虑暴力做法。每次都对区间 $[l,r]$ 扫描一遍，求出最大值。
@@ -47,7 +47,7 @@ ST 表基于 [倍增](../basic/binary-lifting.md) 思想，可以做到 $\Theta(
 
 根据上面对于「可重复贡献问题」的论证，由于最大值是「可重复贡献问题」，重叠并不会对区间最大值产生影响。又因为这两个区间完全覆盖了 $[l,r]$，可以保证答案的正确性。
 
-???+ example "[Luogu P3865 【模板】ST 表 & RMQ 问题](https://www.luogu.com.cn/problem/P3865) 参考实现 "
+???+ example "[Luogu P3865【模板】ST 表 & RMQ 问题](https://www.luogu.com.cn/problem/P3865) 参考实现"
     === "C 风格"
         ```cpp
         --8<-- "docs/ds/code/sparse-table/sparse-table_1.cpp"
