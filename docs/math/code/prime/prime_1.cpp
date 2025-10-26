@@ -7,9 +7,9 @@ unsigned long long ans;
 unsigned long long n;
 
 // depth: 当前在枚举第几个素数
-// temp: 当前因子数量为 num的时候的数值
+// temp: 当前因子数量为 num 的时候的数值
 // num: 当前因子数
-// up：上一个素数的幂，这次应该小于等于这个幂次嘛
+// up：上一个素数的幂，限制当前因子幂次上界
 void dfs(unsigned long long depth, unsigned long long temp,
          unsigned long long num, unsigned long long up) {
   if (num > n || depth >= 16) return;  // 边界条件
