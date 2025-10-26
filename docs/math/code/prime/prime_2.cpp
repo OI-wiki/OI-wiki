@@ -7,7 +7,7 @@ unsigned long long ans,
               // ans的因子数。
 
 // depth: 当前在枚举第几个素数
-// temp: 当前因子数量为 num的时候的数值
+// temp: 当前因子数量为 num 的时候的数值
 // num: 当前因子数
 // up：上一个素数的幂，限制当前因子幂次上界
 void dfs(int depth, unsigned long long temp, unsigned long long num, int up) {
