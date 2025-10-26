@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using uint = unsigned;
 using lint = long long;
 using pii = std::pair<int, int>;
