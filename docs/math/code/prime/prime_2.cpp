@@ -36,5 +36,6 @@ int main() {
     dfs(0, 1, 1, 60);
     cout << ans << '\n';
   }
+  cout.flush();
   return 0;
 }

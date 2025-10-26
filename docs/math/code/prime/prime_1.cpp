@@ -29,7 +29,6 @@ using std::cin;
 using std::cout;
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
   cin >> n;
   ans = ~(unsigned long long)0;
   dfs(0, 1, 1, 64);
