@@ -52,7 +52,7 @@ int main() {
   cin >> n >> m;
   vector<int> a(n);
   for (int& i : a) cin >> i;
-  SparseTable st(a);
+  SparseTable<int> st(a);
   for (int i = 1; i <= m; ++i) {
     int x, y;
     cin >> x >> y;
