@@ -147,16 +147,16 @@ $$
 称为复数 $z$ 的 **辐角**，记为：
 
 $$
-\theta= \operatorname{arg} z
+\theta= \arg z
 $$
 
-任一个 **非零** 复数 $z$ 有无穷多个辐角，故 $\operatorname{arg} z$ 事实上是一个集合。借助开头大写的 $\operatorname{Arg} z$ 表示 **其中一个特定值**，满足条件：
+任一个 **非零** 复数 $z$ 有无穷多个辐角，故 $\arg z$ 事实上是一个集合。借助开头大写的 $\operatorname{Arg} z$ 表示 **其中一个特定值**，满足条件：
 
 $$
 -\pi<\operatorname{Arg} z \le \pi
 $$
 
-称 $\operatorname{Arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\operatorname{arg} z = \{\operatorname{Arg} z + 2k\pi \mid k\in \mathbf Z\}$。
+称 $\operatorname{Arg} z$ 为 **辐角主值** 或 **主辐角**。辐角就是辐角主值基础上加若干整数个（可以为零或负整数）$2k\pi$，即 $\arg z = \{\operatorname{Arg} z + 2k\pi \mid k\in \mathbf Z\}$。
 
 需要注意的是两个辐角主值相加后不一定还是辐角主值，而两个辐角相加一定还是合法的辐角。
 
@@ -180,24 +180,24 @@ $$
 对于复数 $z=x+\mathrm{i}y$，函数 $f(z)=\mathrm{e}^x(\cos y+\mathrm{i}\sin y)$ 满足 $f(z_1+z_2)=f(z_1)f(z_2)$。由此给出 **复指数函数** 的定义：
 
 $$
-\operatorname{exp} z=\mathrm{e}^x(\cos y+\mathrm{i}\sin y)
+\exp z=\mathrm{e}^x(\cos y+\mathrm{i}\sin y)
 $$
 
 复指数函数在实数集上与实指数函数的定义完全一致。在复平面上拥有性质：
 
--   模恒正：$|\operatorname{exp} z|=\operatorname{exp} x>0$。
--   辐角：$\operatorname{arg}(\operatorname{exp} z)=\{y + 2k\pi \mid k\in\mathbf Z\}$。
--   加法定理：$\operatorname{exp} (z_1+z_2)=\operatorname{exp} (z_1)\operatorname{exp} (z_2)$。
--   周期性：$\operatorname{exp} z$ 是以 $2\pi \mathrm{i}$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
+-   模恒正：$|\exp z|=\exp x>0$。
+-   辐角：$\arg(\exp z)=\{y + 2k\pi \mid k\in\mathbf Z\}$。
+-   加法定理：$\exp (z_1+z_2)=\exp (z_1)\exp (z_2)$。
+-   周期性：$\exp z$ 是以 $2\pi \mathrm{i}$ 为基本周期的周期函数。如果一个函数 $f(z)$ 的周期是某一周期的整倍数，称该周期为 **基本周期**。
 
 **复三角函数**（也简称 **三角函数**）的定义如下：
 
 $$
-\cos z=\frac{\operatorname{exp} (\mathrm{i}z)+\operatorname{exp} (-\mathrm{i}z)}{2}
+\cos z=\frac{\exp (\mathrm{i}z)+\exp (-\mathrm{i}z)}{2}
 $$
 
 $$
-\sin z=\frac{\operatorname{exp} (\mathrm{i}z)-\operatorname{exp} (-\mathrm{i}z)}{2\mathrm{i}}
+\sin z=\frac{\exp (\mathrm{i}z)-\exp (-\mathrm{i}z)}{2\mathrm{i}}
 $$
 
 若取 $z\in\mathbf{R}$，则由 [欧拉公式](#欧拉公式) 有：
@@ -233,50 +233,58 @@ $$
 复数的 **三角形式** 和 **指数形式**，用于表示非零复数。
 
 $$
-z=r(\cos \theta +\mathrm{i}\sin \theta)=r \operatorname{exp} (\mathrm{i}\theta)
+z=r(\cos \theta +\mathrm{i}\sin \theta)=r \exp (\mathrm{i}\theta)
 $$
 
 这两种形式用于计算复数的乘除两个运算以及后面的运算较为方便。如果只用高中见过的函数，可以使用三角形式。如果引入了复指数函数，写成等价的指数形式会更加方便。
 
 ## 单位根
 
-称 $x^n=1$ 在复数意义下的解是 $n$ 次复根。显然，这样的解有 $n$ 个，称这 $n$ 个解都是 $n$ 次 **单位根** 或 **单位复根**（the $n$-th root of unity）。根据复平面的知识，$n$ 次单位根把单位圆 $n$ 等分。
+考察方程 $x^n=1$ 在复数意义下的解。显然，这样的解有 $n$ 个，称这 $n$ 个解都是 **$n$ 次单位（复）根**（$n$-th root of unity）。根据复平面的知识，$n$ 次单位根把单位圆 $n$ 等分。
 
-设 $\omega_n=\operatorname{exp} \frac{2\pi \mathrm{i}}{n}$（即幅角为 $2\frac \pi n$ 的单位复数），则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$。
-
-如果不加说明，一般叙述的 $n$ 次单位根，是指从 $1$ 开始逆时针方向的第一个解，即上述 $\omega_n$，其它解均可以用 $\omega_n$ 的幂表示。
-
-### 性质
-
-单位根有三个重要的性质。对于任意正整数 $n$ 和整数 $k$：
+设 $\omega_n=\exp\dfrac{2\pi \mathrm{i}}{n}$（即幅角为 $2\pi/n$ 的单位复数），则 $x^n=1$ 的解集表示为 $\{\omega_n^k\mid k=0,1\cdots,n-1\}$，其中，
 
 $$
-\begin{aligned}
-\omega_n^n&=1\\
-\omega_n^k&=\omega_{2n}^{2k}\\
-\omega_{2n}^{k+n}&=-\omega_{2n}^k\\
-\end{aligned}
+w_n^k = \exp\dfrac{2\pi k \mathrm{i}}{n} = \cos\dfrac{2\pi k}{n} + \mathrm{i}\sin\dfrac{2\pi k}{n}.
 $$
 
-推导留给读者自证。这三个性质在快速傅里叶变换中会得到应用。
+如果不加说明，一般叙述中的 $n$ 次单位根，是指从 $1$ 开始逆时针方向的第一个解，即上述 $\omega_n$，其它解均可以用 $\omega_n$ 的幂表示。
 
-## 本原单位根
+???+ tip "为什么通常提到 $n$ 次单位根，总是特指第一个？"
+    主要是为了应用时方便。所有 $n$ 次单位根都可以表示为第一个 $n$ 次单位根 $\omega_n$ 的幂次；而且，对于任意 $k < n$，复数 $\omega_n$ 都不是 $k$ 次单位根。
 
-为什么说，上述 $n$ 个解都是 $n$ 次单位根，而平时说的 $n$ 次单位根一般特指第一个？
+### 本原单位根
 
-特指第一个，是为了在应用时方便。
-
-在解方程的视角看来，满足 $\omega_n$ 性质的不止 $\omega_n$ 一个，对于 $\omega_n$ 的若干次幂也会满足性质。
-
-称集合：
+事实上，$n$ 次单位根中满足类似性质的不止 $\omega_n$ 一个。称集合
 
 $$
-\{\omega_n^k\mid 0\le k<n, \gcd(n,k)=1\}
+\{\omega_n^k\mid 0\le k<n,~\gcd(n,k)=1\}
 $$
 
-中的元素为 **本原单位根**。任意一个本原单位根 $\omega$，与上述 $\omega_n$ 具有相同的性质：对于任意的 $0<k<n$，$\omega$ 的 $k$ 次幂不为 $1$。因此，借助任意一个本原单位根，都可以生成全体单位根。
+中的元素为 **$n$ 次本原单位根**（$n$-th primitive root of unity）。根据上述表达式可知，全体 $n$ 次本原单位根共有 $\varphi(n)$ 个，其中，$\varphi(n)$ 为 [欧拉函数](./number-theory/euler-totient.md)。
 
-全体 $n$ 次本原单位根共有 $\varphi(n)$ 个。
+任意一个本原单位根 $\omega$，都与上述 $\omega_n$ 具有相同的性质：对于任意的 $0<k<n$，$\omega$ 的 $k$ 次幂不为 $1$，也就是说，$\omega$ 不是 $k$ 次单位根。因此，借助任意一个本原单位根，都可以生成全体单位根。
+
+为了理解 $n$ 次本原单位根的结构，需要考虑单位根的如下性质：
+
+???+ note "性质"
+    对于整数 $n$ 和 $k$，设 $d=\gcd(n,k)$，有 $\omega_n^k = \omega_{n/d}^{k/d}$。
+
+??? note "证明"
+    直接计算可知
+    
+    $$
+    w_n^k = \exp\dfrac{2\pi k\mathrm{i}}{n} = \exp\dfrac{2\pi (k/d)\mathrm{i}}{n/d} = \omega_{n/d}^{k/d}.
+    $$
+
+这说明，只要 $\gcd(n,k)\neq 1$，那么，$\omega_n^k$ 就一定是 $\dfrac{n}{\gcd(n,k)}$ 次（本原）单位根。因此，满足前述性质的单位根 $\omega_n^k$ 一定是满足 $\gcd(n,k)=1$。这正是本原单位根具有上述定义的原因。
+
+另外，作为这些分析的简单推论，有：
+
+???+ note "定理"
+    当 $k$ 遍历 $n$ 的因数，所有 $k$ 次本原单位根恰构成 $n$ 次单位根的一个划分。而且，对于 $\ell\perp n$，映射 $x\mapsto x^\ell$ 给出 $n$ 次单位根之间的双射，且保持上述划分不变：它将 $k\mid n$ 次本原单位根仍然映射到 $k$ 次本原单位根。
+
+尽管本原单位根有很多选择，但是由于第一个根 $\omega_n$ 形式最为简单，算法竞赛中还是 $\omega_n$ 最为常用。对于部分场景，为提高计算效率，还可以考虑用某一模数下的 [本原单位根](./number-theory/residue.md#单位根) 代替复数域中的 $\omega_n$。
 
 ## 编程语言中的复数
 
