@@ -3,12 +3,17 @@
 // --8<-- [start:core]
 // A simple ModInt implementation.
 template <int M>
-struct ModInt {
+class ModInt {
+  struct skip_mod {};
+  ModInt(int v, skip_mod): v(v) {}
   int v;
+
+ public:
+  ModInt(): v(0) {}
 
   // Initialization: find remainder.
   // Equivalent to: v = int((x % M + M) % M)
-  ModInt(long long x = 0) {
+  ModInt(long long x) {
     x %= M;
     if (x < 0) x += M;
     v = int(x);
@@ -19,7 +24,7 @@ struct ModInt {
   friend ModInt operator+(ModInt l, ModInt r) {
     int res = l.v + r.v;
     if (res >= M) res -= M;
-    return ModInt(res);
+    return ModInt(res, skip_mod{});
   }
 
   // Subtraction.
@@ -27,12 +32,12 @@ struct ModInt {
   friend ModInt operator-(ModInt l, ModInt r) {
     int res = l.v - r.v;
     if (res < 0) res += M;
-    return ModInt(res);
+    return ModInt(res, skip_mod{});
   }
 
   // Multiplication.
   friend ModInt operator*(ModInt l, ModInt r) {
-    return ModInt(1LL * l.v * r.v % M);
+    return ModInt(1LL * l.v * r.v % M, skip_mod{});
   }
 
   // Exponentiation.
