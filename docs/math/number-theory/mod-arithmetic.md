@@ -305,7 +305,7 @@ $$
     --8<-- "docs/math/code/mod-arithmetic/mod-32-inv-pow.cpp:pow"
     ```
 
-离散对数的预处理可以通过 Pohlig–Hellman 算法进行，基底 $g$ 可以选择为 
+离散对数的预处理可以通过 Pohlig–Hellman 算法进行，基底 $g$ 可以选择为
 
 $$
 5^{\operatorname{ind}_5(2^{\lceil e/2\rceil})/2^{\lceil e/2\rceil - 2}}\bmod{2^e}.

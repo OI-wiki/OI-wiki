@@ -3,13 +3,14 @@
 // --8<-- [start:core]
 // A simple ModInt implementation.
 template <int M>
-class ModInt {
+struct ModInt {
   struct skip_mod {};
-  ModInt(int v, skip_mod): v(v) {}
+
+  ModInt(int v, skip_mod) : v(v) {}
+
   int v;
 
- public:
-  ModInt(): v(0) {}
+  ModInt() : v(0) {}
 
   // Initialization: find remainder.
   // Equivalent to: v = int((x % M + M) % M)

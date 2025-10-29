@@ -43,9 +43,7 @@ $$
 
 且 $q^{\binom{i + 1}{2}} = q^{\binom{i}{2}}\cdot q^i$，$\binom{-i}{2} = \binom{i + 1}{2}$。可以由一次多项式乘法完成求算，该算法被称为 Bluestein 算法。
 
-??? note " 模板（[P6800【模板】Chirp Z-Transform](https://www.luogu.com.cn/problem/P6800)）"
-    
-
+??? note "模板（[P6800【模板】Chirp Z-Transform](https://www.luogu.com.cn/problem/P6800)）"
     ```cpp
     --8<-- "docs/math/code/poly/czt/czt_1.cpp:core"
     ```
@@ -125,8 +123,6 @@ $$
 其中每一步的时间复杂度都等于两个次数小于等于 $n$ 的多项式相乘的时间复杂度。
 
 ??? note "模板实现"
-    
-
     ```cpp
     --8<-- "docs/math/code/poly/czt/inv_czt_1.cpp:core"
     ```
