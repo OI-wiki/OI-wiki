@@ -47,7 +47,7 @@ char& char_number(std::string& s, std::size_t n) {
 int main() {
   std::string str = "Test";
   char_number(str, 1) = 'a';  // 函数返回是左值，可被赋值
-  std::cout << str << '\n';   // 此处输出 "TastTest"
+  std::cout << str << '\n';   // 此处输出 "TestTest"
 }
 ```
 
