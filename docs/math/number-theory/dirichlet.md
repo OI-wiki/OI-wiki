@@ -319,7 +319,7 @@ Dirichlet 生成函数可以用于将积性函数表示为 Dirichlet 卷积．
 
 例如在杜教筛的过程中，要计算积性函数 $f$ 的前缀和，需要找到另一个积性函数 $g$ 使得 $f\ast g$ 和 $g$ 都可以快速求前缀和．可以利用 Dirichlet 生成函数推导这一过程．
 
-以杜教筛一节的例题 [Luogu P3768 简单的数学题](../number-theory/du.md#问题二) 为例，需要对 $f(n)=n^2\varphi(n)$ 构造满足上述条件的数论函数 $g(n)$．由于 $f$ 是积性函数，它的 Dirichlet 生成函数为
+以杜教筛一节的例题 [Luogu P3768 简单的数学题](../number-theory/hyperbola.md#例题) 为例，需要对 $f(n)=n^2\varphi(n)$ 构造满足上述条件的数论函数 $g(n)$．由于 $f$ 是积性函数，它的 Dirichlet 生成函数为
 
 $$
 F(s) = \prod_{p\in\mathbf P}\left(1 + \sum_{k=1}^{\infty}\dfrac{p^{3k-1}(p-1)}{p^{ks}}\right) = \prod_{p\in\mathbf P}\dfrac{1-p^{2-s}}{1-p^{3-s}} = \dfrac{\zeta(s-3)}{\zeta(s-2)}.

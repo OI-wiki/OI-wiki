@@ -259,7 +259,7 @@ nav:
       - 数论分块: math/number-theory/sqrt-decomposition.md
       - 狄利克雷卷积: math/number-theory/dirichlet.md
       - 莫比乌斯反演: math/number-theory/mobius.md
-      - 杜教筛: math/number-theory/du.md
+      - 狄利克雷双曲线法 & 杜教筛: math/number-theory/hyperbola.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
