@@ -8,9 +8,9 @@ author: LeverImmy, 383494, sxt2204
 
 精确覆盖问题（英文：Exact Cover Problem）是指给定许多集合 $S_i (1 \le i \le n)$ 以及一个集合 $X$，求满足以下条件的无序多元组 $(T_1, T_2, \cdots , T_m)$：
 
-1. $\forall i, j \in [1, m],T_i\bigcap T_j = \varnothing (i \neq j)$
-2. $X = \bigcup\limits_{i = 1}^{m}T_i$
-3. $\forall i \in[1, m], T_i \in \{S_1, S_2, \cdots, S_n\}$
+1.  $\forall i, j \in [1, m],T_i\bigcap T_j = \varnothing (i \neq j)$
+2.  $X = \bigcup\limits_{i = 1}^{m}T_i$
+3.  $\forall i \in[1, m], T_i \in \{S_1, S_2, \cdots, S_n\}$
 
 ### 解释
 
@@ -34,7 +34,7 @@ $$
 
 将 $\bigcup\limits_{i = 1}^{n}S_i$ 中的所有数离散化，可以得到这么一个模型：
 
-> 给定一个 01 矩阵，你可以选择一些行（row），使得最终每列（column）[^note1]都恰好有一个 1。
+> 给定一个 01 矩阵，你可以选择一些行（row），使得最终每列（column）\[^note1] 都恰好有一个 1。
 > 举个例子，我们对上文中的例子进行建模，可以得到这么一个矩阵：
 
 $$
@@ -150,10 +150,12 @@ $$
 \end{pmatrix}
 $$
 
-1. 此时第一行有 $3$ 个 $1$，第二行有 $3$ 个 $1$，第三行有 $3$ 个 $1$，第四行有 $2$ 个 $1$，第五行有 $2$ 个 $1$，第六行有 $3$ 个 $1$。选择第一行，将它删除，并将所有 $1$ 所在的列打上标记；
-   
-   $$
-   \begin{pmatrix}
+1.  此时第一行有 $3$ 个 $1$，第二行有 $3$ 个 $1$，第三行有 $3$ 个 $1$，第四行有 $2$ 个 $1$，第五行有 $2$ 个 $1$，第六行有 $3$ 个 $1$。选择第一行，将它删除，并将所有 $1$ 所在的列打上标记；
+
+    $$
+    \begin{pmatrix}
+    $$
+
 \color{Blue}0 & \color{Blue}0 & \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 & \color{Blue}0 \\
 1 & 0 & \color{Red}0 & 1 & \color{Red}0 & \color{Red}0 & 1 \\
 0 & 1 & \color{Red}1 & 0 & \color{Red}0 & \color{Red}1 & 0 \\
@@ -161,12 +163,14 @@ $$
 0 & 1 & \color{Red}0 & 0 & \color{Red}0 & \color{Red}0 & 1 \\
 0 & 0 & \color{Red}0 & 1 & \color{Red}1 & \color{Red}0 & 1
 \end{pmatrix}
-   $$
+
+$$
 
 2. 选择所有被标记的列，将它们删除，并将这些列中含 $1$ 的行打上标记（重复覆盖问题无需打标记）；
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+\begin{pmatrix}
 \color{Blue}0 & \color{Blue}0 & \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 & \color{Blue}0 \\
 1 & 0 & \color{Blue}0 & 1 & \color{Blue}0 & \color{Blue}0 & 1 \\
 \color{Red}0 & \color{Red}1 & \color{Blue}1 & \color{Red}0 & \color{Blue}0 & \color{Blue}1 & \color{Red}0 \\
@@ -174,12 +178,14 @@ $$
 0 & 1 & \color{Blue}0 & 0 & \color{Blue}0 & \color{Blue}0 & 1 \\
 \color{Red}0 & \color{Red}0 & \color{Blue}0 & \color{Red}1 & \color{Blue}1 & \color{Blue}0 & \color{Red}1
 \end{pmatrix}
-   $$
+
+$$
 
 3. 选择所有被标记的行，将它们删除；
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+\begin{pmatrix}
 \color{Blue}0 & \color{Blue}0 & \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 & \color{Blue}0 \\
 1 & 0 & \color{Blue}0 & 1 & \color{Blue}0 & \color{Blue}0 & 1 \\
 \color{Blue}0 & \color{Blue}1 & \color{Blue}1 & \color{Blue}0 & \color{Blue}0 & \color{Blue}1 & \color{Blue}0 \\
@@ -187,103 +193,122 @@ $$
 0 & 1 & \color{Blue}0 & 0 & \color{Blue}0 & \color{Blue}0 & 1 \\
 \color{Blue}0 & \color{Blue}0 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 & \color{Blue}0 & \color{Blue}1
 \end{pmatrix}
-   $$
-   
-   **这表示这一行已被选择，且这一行的所有 $1$ 所在的列不能有其他 $1$ 了**。
-   于是得到一个新的小 01 矩阵：
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+**这表示这一行已被选择，且这一行的所有 $1$ 所在的列不能有其他 $1$ 了**。
+于是得到一个新的小 01 矩阵：
+
+$$
+
+\begin{pmatrix}
 1 & 0 & 1 & 1 \\
 1 & 0 & 1 & 0 \\
 0 & 1 & 0 & 1
 \end{pmatrix}
-   $$
+
+$$
 
 4. 此时第一行（原来的第二行）有 $3$ 个 $1$，第二行（原来的第四行）有 $2$ 个 $1$，第三行（原来的第五行）有 $2$ 个 $1$。选择第一行（原来的第二行），将它删除，并将所有 $1$ 所在的列打上标记；
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+\begin{pmatrix}
 \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 \\
 \color{Red}1 & 0 & \color{Red}1 & \color{Red}0 \\
 \color{Red}0 & 1 & \color{Red}0 & \color{Red}1
 \end{pmatrix}
-   $$
+
+$$
 
 5. 选择所有被标记的列，将它们删除，并将这些列中含 $1$ 的行打上标记；
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+\begin{pmatrix}
 \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 \\
 \color{Blue}1 & \color{Red}0 & \color{Blue}1 & \color{Blue}0 \\
 \color{Blue}0 & \color{Red}1 & \color{Blue}0 & \color{Blue}1
 \end{pmatrix}
-   $$
+
+$$
 
 6. 选择所有被标记的行，将它们删除；
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+\begin{pmatrix}
 \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 \\
 \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}0 \\
 \color{Blue}0 & \color{Blue}1 & \color{Blue}0 & \color{Blue}1
 \end{pmatrix}
-   $$
-   
-   这样就得到了一个空矩阵。但是上次删除的行 `1 0 1 1` 不是全 $1$ 的，说明选择有误；
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+这样就得到了一个空矩阵。但是上次删除的行 `1 0 1 1` 不是全 $1$ 的，说明选择有误；
+
+$$
+
+\begin{pmatrix}
 \end{pmatrix}
-   $$
+
+$$
 
 7. 回溯到步骤 4，考虑选择第二行（原来的第四行），将它删除，并将所有 $1$ 所在的列打上标记；
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+\begin{pmatrix}
 \color{Red}1 & 0 & \color{Red}1 & 1 \\
 \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}0 \\
 \color{Red}0 & 1 & \color{Red}0 & 1
 \end{pmatrix}
-   $$
+
+$$
 
 8. 选择所有被标记的列，将它们删除，并将这些列中含 $1$ 的行打上标记；
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+\begin{pmatrix}
 \color{Blue}1 & \color{Red}0 & \color{Blue}1 & \color{Red}1 \\
 \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}0 \\
 \color{Blue}0 & 1 & \color{Blue}0 & 1
 \end{pmatrix}
-   $$
+
+$$
 
 9. 选择所有被标记的行，将它们删除；
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+\begin{pmatrix}
 \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}1 \\
 \color{Blue}1 & \color{Blue}0 & \color{Blue}1 & \color{Blue}0 \\
 \color{Blue}0 & 1 & \color{Blue}0 & 1
 \end{pmatrix}
-   $$
-   
-   于是我们得到了这样的一个矩阵：
-   
-   $$
-   \begin{pmatrix}
+
+$$
+
+于是我们得到了这样的一个矩阵：
+
+$$
+
+\begin{pmatrix}
 1 & 1
 \end{pmatrix}
-   $$
+
+$$$
 
 10. 此时第一行（原来的第五行）有 $2$ 个 $1$，将它们全部删除，得到一个空矩阵：
-    
-    $$
-    \begin{pmatrix}
+
+ $$
+ \begin{pmatrix}
 \end{pmatrix}
-    $$
+ $$
 
 11. 上一次删除的时候，删除的是全 $1$ 的行，因此成功，算法结束。
-    答案即为被删除的三行：$1, 4, 5$。
+ 答案即为被删除的三行：$1, 4, 5$。
 
 强烈建议自己模拟一遍矩阵删除、还原与回溯的过程后，再接着阅读下文。
 
@@ -298,8 +323,8 @@ $$
 4. 删除所有标记的行和列，得到新矩阵 $M'$；
 
 5. 如果 $M'$ 为空，且 $r$ 为全 $1$，则算法结束，输出被删除的行组成的集合 $S$；
-   如果 $M'$ 为空，且 $r$ 不全为 $1$，则恢复与 $r$ 相关的行 $r_i$ 以及列 $c_i$，跳转至步骤 1；
-   如果 $M'$ 不为空，则跳转至步骤 1。
+如果 $M'$ 为空，且 $r$ 不全为 $1$，则恢复与 $r$ 相关的行 $r_i$ 以及列 $c_i$，跳转至步骤 1；
+如果 $M'$ 不为空，则跳转至步骤 1。
 
 不难看出，X 算法需要大量的「删除行」、「删除列」和「恢复行」、「恢复列」的操作。
 
@@ -367,17 +392,17 @@ int col[MS], row[MS];
 `remove` 函数的代码实现如下：
 
 ???+ note "实现"
-    ```cpp
-    void remove(const int &c) {
-      int i, j;
-      L[R[c]] = L[c], R[L[c]] = R[c];
-      // 顺着这一列从上往下遍历
-      for (i = D[c]; i != c; i = D[i])
-          // 顺着这一行从左往右遍历
-          for (j = R[i]; j != i; j = R[j])
-                  U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
-    }
-    ```
+ ```cpp
+ void remove(const int &c) {
+   int i, j;
+   L[R[c]] = L[c], R[L[c]] = R[c];
+   // 顺着这一列从上往下遍历
+   for (i = D[c]; i != c; i = D[i])
+       // 顺着这一行从左往右遍历
+       for (j = R[i]; j != i; j = R[j])
+               U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
+ }
+ ```
 
 #### recover 操作
 
@@ -390,15 +415,15 @@ int col[MS], row[MS];
 `recover(c)` 的代码实现如下：
 
 ???+ note "实现"
-    ```cpp
-    void recover(const int &c) {
-      int i, j;
-      for (i = U[c]; i != c; i = U[i])
-          for (j = L[i]; j != i; j = L[j])
-              U[D[j]] = D[U[j]] = j, ++siz[col[j]];
-              L[R[c]] = R[L[c]] = c;
-    }
-    ```
+ ```cpp
+ void recover(const int &c) {
+   int i, j;
+   for (i = U[c]; i != c; i = U[i])
+       for (j = L[i]; j != i; j = L[j])
+           U[D[j]] = D[U[j]] = j, ++siz[col[j]];
+           L[R[c]] = R[L[c]] = c;
+ }
+ ```
 
 #### build 操作
 
@@ -417,18 +442,18 @@ int col[MS], row[MS];
 `build(r, c)` 的代码实现如下：
 
 ???+ note "实现"
-    ```cpp
-    void build(const int &r, const int &c) {
-      n = r, m = c;
-      for (int i = 0; i <= c; ++i) {
-        L[i] = i - 1, R[i] = i + 1;
-        U[i] = D[i] = i;
-      }
-      L[0] = c, R[c] = 0, idx = c;
-      memset(first, 0, sizeof(first));
-      memset(siz, 0, sizeof(siz));
-    }
-    ```
+ ```cpp
+ void build(const int &r, const int &c) {
+   n = r, m = c;
+   for (int i = 0; i <= c; ++i) {
+     L[i] = i - 1, R[i] = i + 1;
+     U[i] = D[i] = i;
+   }
+   L[0] = c, R[c] = 0, idx = c;
+   memset(first, 0, sizeof(first));
+   memset(siz, 0, sizeof(siz));
+ }
+ ```
 
 #### insert 操作
 
@@ -437,40 +462,40 @@ int col[MS], row[MS];
 插入操作分为两种情况：
 
 - 如果第 $r$ 行没有元素，那么直接插入一个元素，并使 `first[r]` 指向这个元素。
-  这可以通过 `first[r] = L[idx] = R[idx] = idx;` 来实现。
+这可以通过 `first[r] = L[idx] = R[idx] = idx;` 来实现。
 
 - 如果第 $r$ 行有元素，那么将这个新元素用一种特殊的方式与 $c$ 和 $first(r)$ 连接起来。
-  设这个新元素为 $idx$，然后：
-  
-  - 把 $idx$ 插入到 $c$ 的正下方，此时：
-    
-    - $idx$ 下方的结点为原来 $c$ 的下结点；
-    - $idx$ 下方的结点（即原来 $c$ 的下结点）的上结点为 $idx$;
-    - $idx$ 的上结点为 $c$；
-    - $c$ 的下结点为 $idx$。
-    
-    注意记录 $idx$ 的所在列和所在行，以及更新这一列的元素个数。
-    
-    ```cpp
-    col[++idx] = c, row[idx] = r, ++siz[c];
-    U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
-    ```
-    
-    **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
-  
-  - 把 $idx$ 插入到 $first(r)$ 的正右方，此时：
-    
-    - $idx$ 右侧的结点为原来 $first(r)$ 的右结点；
-    - 原来 $first(r)$ 右侧的结点的左结点为 $idx$；
-    - $idx$ 的左结点为 $first(r)$；
-    - $first(r)$ 的右结点为 $idx$。
-    
-    ```cpp
-    L[idx] = first[r], R[idx] = R[first[r]];
-    L[R[first[r]]] = idx, R[first[r]] = idx;
-    ```
-    
-    **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
+设这个新元素为 $idx$，然后：
+
+- 把 $idx$ 插入到 $c$ 的正下方，此时：
+
+ - $idx$ 下方的结点为原来 $c$ 的下结点；
+ - $idx$ 下方的结点（即原来 $c$ 的下结点）的上结点为 $idx$;
+ - $idx$ 的上结点为 $c$；
+ - $c$ 的下结点为 $idx$。
+ 
+ 注意记录 $idx$ 的所在列和所在行，以及更新这一列的元素个数。
+ 
+ ```cpp
+ col[++idx] = c, row[idx] = r, ++siz[c];
+ U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
+ ```
+ 
+ **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
+
+- 把 $idx$ 插入到 $first(r)$ 的正右方，此时：
+
+ - $idx$ 右侧的结点为原来 $first(r)$ 的右结点；
+ - 原来 $first(r)$ 右侧的结点的左结点为 $idx$；
+ - $idx$ 的左结点为 $first(r)$；
+ - $first(r)$ 的右结点为 $idx$。
+ 
+ ```cpp
+ L[idx] = first[r], R[idx] = R[first[r]];
+ L[R[first[r]]] = idx, R[first[r]] = idx;
+ ```
+ 
+ **强烈建议读者完全掌握这几步的顺序后再继续阅读本文。**
 
 `insert(r, c)` 这个操作可以通过图片来辅助理解：
 
@@ -481,18 +506,18 @@ int col[MS], row[MS];
 `insert(r, c)` 的代码实现如下：
 
 ???+ note "实现"
-    ```cpp
-    void insert(const int &r, const int &c) {
-      row[++idx] = r, col[idx] = c, ++siz[c];
-      U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
-      if (!first[r])
-        first[r] = L[idx] = R[idx] = idx;
-      else {
-        L[idx] = first[r], R[idx] = R[first[r]];
-        L[R[first[r]]] = idx, R[first[r]] = idx;
-      }
-    }
-    ```
+ ```cpp
+ void insert(const int &r, const int &c) {
+   row[++idx] = r, col[idx] = c, ++siz[c];
+   U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
+   if (!first[r])
+     first[r] = L[idx] = R[idx] = idx;
+   else {
+     L[idx] = first[r], R[idx] = R[first[r]];
+     L[R[first[r]]] = idx, R[first[r]] = idx;
+   }
+ }
+ ```
 
 #### dance 操作
 
@@ -507,27 +532,27 @@ int col[MS], row[MS];
 `dance()` 的代码实现如下：
 
 ???+ note "实现"
-    ```cpp
-    bool dance(int dep) {
-      int i, j, c = R[0];
-      if (!R[0]) {
-        ans = dep;
-        return true;
-      }
-      for (i = R[0]; i != 0; i = R[i]){ 
-          if (siz[i] < siz[c]) c = i;
-      }
-      remove(c);
-     for (i = D[c]; i != c; i = D[i]) {
-        stk[dep] = row[i];
-       for (j = R[i]; j != i; j = R[j]) remove(col[j]);
-        if (dance(dep + 1)) return true;
-        or (j = L[i]; j != i; j = L[j]) recover(col[j]);
-      }
-      recover(c);
-      return false;
-    }
-    ```
+ ```cpp
+ bool dance(int dep) {
+   int i, j, c = R[0];
+   if (!R[0]) {
+     ans = dep;
+     return true;
+   }
+   for (i = R[0]; i != 0; i = R[i]){ 
+       if (siz[i] < siz[c]) c = i;
+   }
+   remove(c);
+  for (i = D[c]; i != c; i = D[i]) {
+     stk[dep] = row[i];
+    for (j = R[i]; j != i; j = R[j]) remove(col[j]);
+     if (dance(dep + 1)) return true;
+     or (j = L[i]; j != i; j = L[j]) recover(col[j]);
+   }
+   recover(c);
+   return false;
+ }
+ ```
 
 其中 `stk[]` 用来记录答案。
 
@@ -538,9 +563,9 @@ int col[MS], row[MS];
 ## 模板
 
 ??? note "[模板代码](https://www.luogu.com.cn/problem/P4929)"
-    ```cpp
-    --8<-- "docs/search/code/dlx/dlx_1.cpp"
-    ```
+ ```cpp
+ --8<-- "docs/search/code/dlx/dlx_1.cpp"
+ ```
 
 ## 性质
 
@@ -565,66 +590,66 @@ DLX 的难点，不全在于链表的建立，而在于建模。
 ### 例题 1 [P1784 数独](https://www.luogu.com.cn/problem/P1784)
 
 ??? note "解题思路"
-    先考虑决策是什么。
-    在这一题中，每一个决策可以用形如 $(r, c, w)$ 的有序三元组表示。
-    注意到「宫」并不是决策的参数，因为它 **可以被每个确定的 $(r, c)$ 表示**。
-    因此有 $9 \times 9 \times 9 = 729$ 行。
-    再考虑状态是什么。
-    我们思考一下 $(r, c, w)$ 这个决将会造成什么影响。记 $(r, c)$ 所在的宫为 $b$。
-    1.  第 $r$ 行用了一个 $w$（用 $9 \times 9 = 81$ 列表示）；
-    2.  第 $c$ 列用了一个 $w$（用 $9 \times 9 = 81$ 列表示）；
-    3.  第 $b$ 宫用了一个 $w$（用 $9 \times 9 = 81$ 列表示）；
-    4.  $(r, c)$ 中填入了一个数（用 $9 \times 9 = 81$ 列表示）。
-    因此有 $81 \times 4 = 324$ 列，共 $729 \times 4 = 2916$ 个 $1$。
-    至此，我们成功地将 $9 \times 9$ 的数独问题转化成了一个 **有 $729$ 行，$324$ 列，共 $2916$ 个 $1$** 的精确覆盖问题。
+ 先考虑决策是什么。
+ 在这一题中，每一个决策可以用形如 $(r, c, w)$ 的有序三元组表示。
+ 注意到「宫」并不是决策的参数，因为它 **可以被每个确定的 $(r, c)$ 表示**。
+ 因此有 $9 \times 9 \times 9 = 729$ 行。
+ 再考虑状态是什么。
+ 我们思考一下 $(r, c, w)$ 这个决将会造成什么影响。记 $(r, c)$ 所在的宫为 $b$。
+ 1.  第 $r$ 行用了一个 $w$（用 $9 \times 9 = 81$ 列表示）；
+ 2.  第 $c$ 列用了一个 $w$（用 $9 \times 9 = 81$ 列表示）；
+ 3.  第 $b$ 宫用了一个 $w$（用 $9 \times 9 = 81$ 列表示）；
+ 4.  $(r, c)$ 中填入了一个数（用 $9 \times 9 = 81$ 列表示）。
+ 因此有 $81 \times 4 = 324$ 列，共 $729 \times 4 = 2916$ 个 $1$。
+ 至此，我们成功地将 $9 \times 9$ 的数独问题转化成了一个 **有 $729$ 行，$324$ 列，共 $2916$ 个 $1$** 的精确覆盖问题。
 
 ??? note "参考代码"
-    ```cpp
-    --8<-- "docs/search/code/dlx/dlx_2.cpp"
-    ```
+ ```cpp
+ --8<-- "docs/search/code/dlx/dlx_2.cpp"
+ ```
 
 ### 例题 2 [靶形数独](https://www.luogu.com.cn/problem/P1074)
 
 ??? note "解题思路"
-    这一题与 [数独](https://www.luogu.com.cn/problem/P1784) 的模型构建 **一模一样**，主要区别在于答案的更新。
-    这一题可以开一个权值数组，每次找到一组数独的解时，
-    每个位置上的数乘上对应的权值计入答案即可。
+ 这一题与 [数独](https://www.luogu.com.cn/problem/P1784) 的模型构建 **一模一样**，主要区别在于答案的更新。
+ 这一题可以开一个权值数组，每次找到一组数独的解时，
+ 每个位置上的数乘上对应的权值计入答案即可。
 
 ??? note "参考代码"
-    ```cpp
-    --8<-- "docs/search/code/dlx/dlx_3.cpp"
-    ```
+ ```cpp
+ --8<-- "docs/search/code/dlx/dlx_3.cpp"
+ ```
 
 ### 例题 3 [「NOI2005」智慧珠游戏](https://www.luogu.com.cn/problem/P4205)
 
 ??? note "解题思路"
-    定义：题中给我们的智慧珠的形态，称为这个智慧珠的*标准形态*。
-    显然，我们可以通过改变两个参数 $d$（表示顺时针旋转 $90^{\circ}$ 的次数）和 $f$（是否水平翻转）来改变这个智慧珠的形态。
-    仍然，我们先考虑决策是什么。
-    在这一题中，每一个决策可以用形如 $(v, d, f, i)$ 的有序五元组表示。
-    表示第 $i$ 个智慧珠的*标准形态*的左上角的位置，序号为 $v$，经过了 $d$ 次顺时针转 $90^{\circ}$。
-    巧合的是，我们可以令 $f = 1$ 时不水平翻转，$f = -1$ 时水平翻转，从而达到简化代码的目的。
-    因此有 $55 \times 4 \times 2 \times 12 = 5280$ 行。
-    需要注意的是，因为一些不合法的填充，如 $(1, 0, 1, 4)$，
-    所以 **在实际操作中，空的智慧珠棋盘也只需要建出 $2730$ 行。**
-
-    再考虑状态是什么。
-
-    这一题的状态比较简单。
-
-    我们思考一下，$(v, d, f, i)$ 这个决策会造成什么影响。
-
-    1.  某些格子被占了（用 $55$ 列表示）；
-    2.  第 $i$ 个智慧珠被用了（用 $12$ 列表示）。
-
-    因此有 $55 + 12 = 67$ 列，共 $5280 \times (5 + 1) = 31680$ 个 $1$。
-
-    至此，我们成功地将智慧珠游戏转化成了一个 **有 $5280$ 行，$67$ 列，共 $31680$ 个 $1$** 的精确覆盖问题。
+ 定义：题中给我们的智慧珠的形态，称为这个智慧珠的*标准形态*。
+ 显然，我们可以通过改变两个参数 $d$（表示顺时针旋转 $90^{\circ}$ 的次数）和 $f$（是否水平翻转）来改变这个智慧珠的形态。
+ 仍然，我们先考虑决策是什么。
+ 在这一题中，每一个决策可以用形如 $(v, d, f, i)$ 的有序五元组表示。
+ 表示第 $i$ 个智慧珠的*标准形态*的左上角的位置，序号为 $v$，经过了 $d$ 次顺时针转 $90^{\circ}$。
+ 巧合的是，我们可以令 $f = 1$ 时不水平翻转，$f = -1$ 时水平翻转，从而达到简化代码的目的。
+ 因此有 $55 \times 4 \times 2 \times 12 = 5280$ 行。
+ 需要注意的是，因为一些不合法的填充，如 $(1, 0, 1, 4)$，
+ 所以 **在实际操作中，空的智慧珠棋盘也只需要建出 $2730$ 行。**
+ 
+ 再考虑状态是什么。
+ 
+ 这一题的状态比较简单。
+ 
+ 我们思考一下，$(v, d, f, i)$ 这个决策会造成什么影响。
+ 
+ 1.  某些格子被占了（用 $55$ 列表示）；
+ 2.  第 $i$ 个智慧珠被用了（用 $12$ 列表示）。
+ 
+ 因此有 $55 + 12 = 67$ 列，共 $5280 \times (5 + 1) = 31680$ 个 $1$。
+ 
+ 至此，我们成功地将智慧珠游戏转化成了一个 **有 $5280$ 行，$67$ 列，共 $31680$ 个 $1$** 的精确覆盖问题。
 
 ??? note "参考代码"
-    ```cpp
-    --8<-- "docs/search/code/dlx/dlx_4.cpp"
-    ```
+ ```cpp
+ --8<-- "docs/search/code/dlx/dlx_4.cpp"
+ ```
 
 ## 习题
 
@@ -640,4 +665,5 @@ DLX 的难点，不全在于链表的建立，而在于建模。
 ## 注释
 
 [^note1]:
-    （两岸用语差异）台灣：直行（column）、橫列（row）
+ （两岸用语差异）台灣：直行（column）、橫列（row）
+$$$
