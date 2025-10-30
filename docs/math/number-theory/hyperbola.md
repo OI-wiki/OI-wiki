@@ -1,4 +1,121 @@
-author: hsfzLZH1, sshwy, StudyingFather, Marcythm
+author: Backl1ght, c-forrest, Enter-tainer, Great-designer, Henry-ZHR, huayucaiji, hsfzLZH1, Ir1d, kenlig, ksyx, Marcythm, MegaOwIer, Menci, Nanarikom, nanmenyangde, ouuan, purple-vine, shawlleyw, sshwy, StudyingFather, Tiphereth-A, Xeonacid
+
+前置知识：[Dirichlet 卷积](./dirichlet.md)
+
+本文介绍 Dirichlet 双曲线法，并以此为基础探讨数论函数前缀和的通用计算方法。Dirichlet 双曲线法可用于在亚线性时间复杂度内计算两个数论函数的 Dirichlet 卷积的前缀和。通过对该算法的分析，可以引申出块筛的概念；据此，本文将进一步介绍块筛卷积的快速计算方法。最后，本文将介绍杜教筛，它可以用于计算两个数论函数在 Dirichlet 卷积意义下的商的前缀和。
+
+## Dirichlet 双曲线法
+
+Dirichlet 双曲线法可以用于计算两个数论函数的 Dirichlet 卷积的前缀和。
+
+设 $f,g,h$ 是数论函数，且 $h = f\ast g$。那么，利用 Dirichlet 卷积的定义，$h$ 的前缀和
+
+$$
+H(n) = \sum_{k=1}^nh(k) = \sum_{k=1}^n\sum_{xy=k}f(x)g(y).
+$$
+
+求和式遍历的点集恰为第一象限（不含坐标轴）中双曲线 $xy=n$ 下方的整点集合。设整点 $(x,y)$ 的权值为 $f(x)g(y)$，那么 $H(n)$ 就是这一权值的和。
+
+![](./images/dirichlet-hyperbola.svg)
+
+如图所示，这一权值和可以通过容斥原理计算：
+
+$$
+H(n) = \sum_{x=1}^{\lfloor x_0\rfloor}f(x)G\left(\left\lfloor\dfrac{n}{x}\right\rfloor\right) + \sum_{y=1}^{\lfloor y_0\rfloor}F\left(\left\lfloor\dfrac{n}{y}\right\rfloor\right)g(y) - F(\lfloor x_0\rfloor)G(\lfloor y_0\rfloor).
+$$
+
+其中，$F,G$ 分别是 $f,g$ 的前缀和函数，$(x_0,y_0)$ 是双曲线 $xy=n$ 上任意一个点。表达式中，第一项表示图中绿色区域的权值和，第二项表示图中橙色区域的权值和，第三项则表示两个区域重叠部分的权值和。这个表达式仅含有 $\lfloor x_0\rfloor + \lfloor y_0\rfloor + 1$ 项。对于合理选择的 $(x_0,y_0)$，它的计算复杂度显著优于暴力计算 $h(n)$ 的前缀和。这就是 **Dirichlet 双曲线法**（Dirichlet hyperbola method）。
+
+### 前缀和点值的计算
+
+Dirichlet 双曲线法最基本的应用就是计算前缀和函数的点值 $H(n)$。
+
+如果 $F,G$ 的点值已知（或可以在 $O(1)$ 时间内计算），进而 $f,g$ 的点值也已知，那么 Dirichlet 双曲线法的表达式中每一项都可以在 $O(1)$ 时间内计算，总时间复杂度就等于 $O(x_0+y_0)$。因为 $x_0y_0=n$，所以由均值不等式可知，当 $x_0=y_0=\sqrt{n}$ 时，就得到最低时间复杂度 $O(\sqrt{n})$。
+
+这并非新的结果。在 Dirichlet 双曲线法的表达式中，令 $x_0 > n$，就得到
+
+$$
+H(n) = \sum_{x=1}^nf(x)G\left(\left\lfloor\dfrac{n}{x}\right\rfloor\right).
+$$
+
+利用 [数论分块](./sqrt-decomposition.md) 的技巧，当 $F,G$ 的点值已知时，该式可以在 $O(\sqrt{n})$ 时间内计算。这实际上和本节得到的算法是几乎等价的：它们需要的已知信息基本类似，计算的表达式也大致相同。
+
+??? note "等价性的说明"
+    细究数论分块的计算过程可以发现，实际计算的表达式为
+    
+    $$
+    H(n) = \sum_{y\in D_n}\left(F\left(\left\lfloor\dfrac{n}{y}\right\rfloor\right)-F\left(\left\lfloor\dfrac{n}{y+1}\right\rfloor\right)\right)G(y).
+    $$
+    
+    其中，$D_n = \left\{\left\lfloor\dfrac{n}{x}\right\rfloor : 1 \le x \le n,~x\in\mathbf N_+\right\}$ 是数论分块中的关键点集合。对于 $y > \sqrt{n}$，有
+    
+    $$
+    \dfrac{n}{y} - \dfrac{n}{y+1} = \dfrac{n}{y(y+1)} < 1.
+    $$
+    
+    对于 $a > b > 0$，总有 $\lfloor a\rfloor - \lfloor b\rfloor \le \lceil a-b\rceil$，所以
+    
+    $$
+    \left\lfloor\dfrac{n}{y}\right\rfloor - \left\lfloor\dfrac{n}{y + 1}\right\rfloor \le \left\lceil\dfrac{n}{y(y+1)}\right\rceil = 1.
+    $$
+    
+    根据数论分块的 [性质](./sqrt-decomposition.md#性质) 可知，只要 $y\in D_n$，即存在 $x$ 使得 $\lfloor n/x\rfloor = y$ 成立，就有
+    
+    $$
+    \left\lfloor\dfrac{n}{y + 1}\right\rfloor +1 \le x \le\left\lfloor\dfrac{n}{y}\right\rfloor.
+    $$
+    
+    因此，对于 $y\in D_n$ 且 $y \ge \sqrt{n}$，总有
+    
+    $$
+    \left\lfloor\dfrac{n}{y + 1}\right\rfloor +1 = x = \left\lfloor\dfrac{n}{y}\right\rfloor.
+    $$
+    
+    而且，这里满足 $\lfloor n/x\rfloor = y$ 的 $x$ 是唯一的。也就是说，不同的 $x \ge \sqrt{n}$ 一定对应不同的 $y \in D_n$。只要 $x$ 遍历 $1,2,\cdots,\lfloor \sqrt{n}\rfloor$，相应的 $y = \lfloor n/x\rfloor$ 就遍历 $D_n$ 中所有大于等于 $\sqrt{n}$ 的元素。对称地，$D_n$ 中的剩余元素就是 $1,2,\cdots,\lceil \sqrt{n}\rceil-1$。利用这一结论，数论分块的求和过程可以分成两部分：
+    
+    $$
+    H(n) = \sum_{x=1}^{\lfloor\sqrt{n}\rfloor}f(x)G\left(\left\lfloor\dfrac{n}{x}\right\rfloor\right) + \sum_{y=1}^{\lceil \sqrt{n}\rceil-1}\left(F\left(\left\lfloor\dfrac{n}{y}\right\rfloor\right)-F\left(\left\lfloor\dfrac{n}{y+1}\right\rfloor\right)\right)G(y)
+    $$
+    
+    其中，第一项的变形用到了 $F(x)-F(x-1)=f(x)$。设第二项为 $I_2$，对它进行 [Abel 变换](https://en.wikipedia.org/wiki/Summation_by_parts)（即分部积分法的求和形式），就得到
+    
+    $$
+    I_2=\sum_{y=1}^{\lceil\sqrt{n}\rceil -1}F\left(\left\lfloor\dfrac{n}{y}\right\rfloor\right)(G(y)-G(y-1)) - F\left(\left\lfloor\dfrac{n}{\lceil\sqrt{n}\rceil}\right\rfloor\right)G(\lceil\sqrt{n}\rceil-1).
+    $$
+    
+    当 $n$ 不是完全平方数时，$\lceil\sqrt{n}\rceil -1 = \lfloor\sqrt{n}\rfloor$ 且 $\lfloor n/\lceil\sqrt{n}\rceil\rfloor = \lfloor \sqrt{n}\rfloor$，有
+    
+    $$
+    I_2=\sum_{y=1}^{\lfloor\sqrt{n}\rfloor}F\left(\left\lfloor\dfrac{n}{y}\right\rfloor\right)g(y) - F(\lfloor\sqrt{n}\rfloor)G(\lfloor\sqrt{n}\rfloor).
+    $$
+    
+    而当 $n$ 是完全平方数时，$\lceil\sqrt{n}\rceil = \lfloor\sqrt{n}\rfloor = \lfloor n/\lceil\sqrt{n}\rceil\rfloor$，同样有
+    
+    $$
+    \begin{aligned}
+    I_2 &= \sum_{y=1}^{\lfloor\sqrt{n}\rfloor-1}F\left(\left\lfloor\dfrac{n}{y}\right\rfloor\right)g(y) - F(\lfloor\sqrt{n}\rfloor)G(\lfloor\sqrt{n}\rfloor-1)\\
+    &= \sum_{y=1}^{\lfloor\sqrt{n}\rfloor-1}F\left(\left\lfloor\dfrac{n}{y}\right\rfloor\right)g(y) -  F(\lfloor\sqrt{n}\rfloor)\left(G(\lfloor\sqrt{n}\rfloor) - g(\lfloor\sqrt{n}\rfloor)\right) \\
+    &= \sum_{y=1}^{\lfloor\sqrt{n}\rfloor}F\left(\left\lfloor\dfrac{n}{y}\right\rfloor\right)g(y) - F(\lfloor\sqrt{n}\rfloor)G(\lfloor\sqrt{n}\rfloor).
+    \end{aligned}
+    $$
+    
+    综上，除了一个 Abel 变换，数论分块的计算过程实际上就是在计算如下算式：
+    
+    $$
+    H(n) = \sum_{x=1}^{\lfloor\sqrt{n}\rfloor}f(x)G\left(\left\lfloor\dfrac{n}{x}\right\rfloor\right) + \sum_{y=1}^{\lfloor\sqrt{n}\rfloor}F\left(\left\lfloor\dfrac{n}{y}\right\rfloor\right)g(y) - F(\lfloor\sqrt{n}\rfloor)G(\lfloor\sqrt{n}\rfloor).
+    $$
+    
+    这就是 $(x_0,y_0)=(\sqrt{n},\sqrt{n})$ 时 Dirichlet 双曲线法的表达式。因此可以说，两种算法的计算过程几乎等价。
+
+在处理实际问题时，已知 $F,G$ 点值这一条件可能过强。但是，Dirichlet 双曲线法（或对应的数论分块）其实并不需要 $F,G$ 的全部点值信息。
+
+## Dirichlet 卷积前缀和
+
+## 杜教筛
+
+## 块筛卷积
+
+## 例题
 
 杜教筛被用于处理一类数论函数的前缀和问题。对于数论函数 $f$，杜教筛可以在低于线性时间的复杂度内计算 $S(n)=\sum_{i=1}^{n}f(i)$。
 
