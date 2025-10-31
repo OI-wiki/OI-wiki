@@ -594,7 +594,7 @@ $$
     \sum_{i=1}^{\lfloor n/k\rfloor}i[d\mid i] = d\sum_{i=1}^{\lfloor\lfloor n/k\rfloor/d\rfloor}i = dG\left(\left\lfloor\dfrac{\lfloor n/k\rfloor}{d}\right\rfloor\right) = dG\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right).
     $$
     
-    其中，$G(n)=\dfrac{1}{2}n(n+1)$ 就是等差数列求和，最后一个等号利用了下取整函数的 [特性](./sqrt-decomposition.md#性质)．对称地，对于另一个和式可以类似计算．代回前文表达式，就有
+    其中，$G(n)=\dfrac{1}{2}n(n+1)$ 就是等差数列求和，最后一个等号利用了 [下取整函数](./basic.md#取整函数) 的性质．对称地，对于另一个和式可以类似计算．代回前文表达式，就有
     
     $$
     f(n,m) = \sum_k k\sum_{d}\mu(d)d^2G\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right)G\left(\left\lfloor\dfrac{m}{kd}\right\rfloor\right).
@@ -743,7 +743,7 @@ $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/k\rfloor}\prod_{j=1}^{\lfloor n/k\rfloor}k\uparrow(\mu(d)[d\mid i][d\mid j]).
     $$
     
-    进一步地提取因数（即令 $i=di'$，$j=dj'$），并应用下取整函数的 [特性](./sqrt-decomposition.md#性质)，就得到：
+    进一步地提取因数（即令 $i=di'$，$j=dj'$），并应用 [下取整函数](./basic.md#取整函数) 的性质，就得到：
     
     $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/(kd)\rfloor}\prod_{j=1}^{\lfloor n/(kd)\rfloor}k\uparrow\mu(d).
