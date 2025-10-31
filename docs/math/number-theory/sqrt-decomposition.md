@@ -79,49 +79,7 @@ $$
 
 这一性质还体现了图像的对称性：每个块的右端点（前文图中的绿点）的集合恰为 $D_n$．这很容易理解，因为整个图像关于直线 $y=x$ 是对称的．
 
-除了这两条性质外，集合 $D_n$ 还具有良好的递归性质．这基于如下引理：
-
-???+ note "引理"
-    对于 $a,b,c\in\mathbf N_+$，有
-    
-    $$
-    \left\lfloor\dfrac{\lfloor a/b\rfloor}{c}\right\rfloor = \left\lfloor\dfrac{a}{bc}\right\rfloor.
-    $$
-
-??? note "证明"
-    令 $a$ 对于 $b$ 做带余除法有 $a=qb+r$，其中 $q,r\in\mathbf N$ 且 $r < b$．需要证明的是
-    
-    $$
-    \left\lfloor\dfrac{q}{c}\right\rfloor = \left\lfloor\dfrac{q}{c}+\dfrac{r}{bc}\right\rfloor.
-    $$
-    
-    这等价于
-    
-    $$
-    \left\lfloor\dfrac{q}{c}\right\rfloor \le \dfrac{q}{c}+\dfrac{r}{bc} < \left\lfloor\dfrac{q}{c}\right\rfloor + 1.
-    $$
-    
-    左侧不等式是显然的．关键是要证明右侧不等式．为此，令 $q$ 对 $c$ 做带余除法，就有
-    
-    $$
-    q = \left\lfloor\dfrac{q}{c}\right\rfloor c + r',
-    $$
-    
-    其中，$0\le r' \le c - 1$．所以，有
-    
-    $$
-    q \le \left\lfloor\dfrac{q}{c}\right\rfloor c + c - 1 \iff \dfrac{q + 1}{c} \le \left\lfloor\dfrac{q}{c}\right\rfloor + 1.
-    $$
-    
-    进而，利用 $r < b$，就有
-    
-    $$
-    \dfrac{q}{c}+\dfrac{r}{bc} < \dfrac{q+1}{c}  \le \left\lfloor\dfrac{q}{c}\right\rfloor + 1.
-    $$
-    
-    这就证明右侧不等式，进而完成本命题的证明．
-
-这一引理经常出现在数论分块的各种应用中．利用该引理可以得到如下性质：
+除了这两条性质外，集合 $D_n$ 还具有良好的递归性质：
 
 ???+ note "性质 3"
     对于 $m\in D(n)$，有 $D(m)\subseteq D(n)$．
@@ -133,7 +91,7 @@ $$
     \left\lfloor\dfrac{m}{i}\right\rfloor = \left\lfloor\dfrac{\lfloor n/k\rfloor}{i}\right\rfloor = \left\lfloor\dfrac{n}{ki}\right\rfloor \in D(n),
     $$
     
-    所以，$D(m)\subseteq D(n)$．
+    所以，$D(m)\subseteq D(n)$．其中，第二个等号用到了 [取整函数](./basic.md#取整函数) 关于嵌套分式的性质．
 
 前文已经提到，$D(n)$ 既是每块中 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 的取值集合，也是每块的右端点集合．这意味着，如果要递归地应用数论分块（即函数在 $n$ 处的值依赖于它在 $m\in D(n)\setminus\{n\}$ 处的值），那么在整个计算过程中所涉及的取值集合和右端点集合，其实都是 $D(n)$．一个典型的例子是 [杜教筛](./du.md)．
 
