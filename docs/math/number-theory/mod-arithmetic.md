@@ -107,7 +107,7 @@ $$
 
 如果选取 $R = 2^k$，那么，右式中 $\left\lfloor\dfrac{R}{m}\right\rfloor$ 可以预处理，除以 $R$ 的操作可以通过移位运算进行．所以，用右式计算商数，仅需要一次乘法和一次移位操作．再代入 $a\bmod m$ 的表达式，就得到所求余数的估计 $z'$．
 
-现在分析这样做的误差．因为对于 $x > y > 0$ 都有 $\lfloor x\rfloor - \lfloor y\rfloor \le \lceil x - y\rceil$，所以误差
+现在分析这样做的误差．[取整函数](./basic.md#取整函数) 具有性质：对于 $x > y > 0$ 都有 $\lfloor x\rfloor - \lfloor y\rfloor \le \lceil x - y\rceil$．所以，误差
 
 $$
 \begin{aligned}
