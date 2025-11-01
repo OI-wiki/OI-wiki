@@ -1,0 +1,189 @@
+name: Check Example Codes
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  file-lists:
+    name: Build File Lists
+    runs-on: ubuntu-latest
+    outputs:
+      TEST_CPP_FILES: ${{ steps.get-files.outputs.TEST_CPP_FILES }}
+      TEST_PY_FILES: ${{ steps.get-files.outputs.TEST_PY_FILES }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Get changed code files
+        id: changed-files
+        uses: tj-actions/changed-files@v47
+        with:
+          files: |
+            docs/**/*.cpp
+            docs/**/*.py
+            docs/**/*.in
+            docs/**/*.ans
+      - uses: actions/setup-python@v6
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          python-version: '3.14'
+      - name: Get Files to Test
+        if: steps.changed-files.outputs.any_changed == 'true'
+        id: get-files
+        run: python scripts/check-example-codes/file-lists.py
+        env:
+          all_changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
+
+  cpp-correctness:
+    name: C++ Correctness Test
+    needs: file-lists
+    if: needs.file-lists.outputs.TEST_CPP_FILES != 'None'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+      - name: Install C++
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++
+      - name: Correctness Check
+        env: 
+          TEST_CPP_FILES: ${{ needs.file-lists.outputs.TEST_CPP_FILES }}
+        run: python scripts/check-example-codes/correctness.py -language cpp
+
+  cpp-undefined-behaviors:
+    name: C++ UB Check (${{ matrix.name }})
+    needs: [file-lists, cpp-correctness]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: x86_64 Ubuntu
+            os: ubuntu-latest
+            container: ghcr.io/trickeye/ubuntu_gcc1x:clang
+            setup: |
+              apt-get update
+              apt-get install -y g++-9
+              echo "::group::Check g++ Version"
+              g++-9 --version
+              echo "::endgroup::"
+              echo "::group::Check Clang Version"
+              clang --version
+              echo "::endgroup::"
+          - name: arm64 macOS
+            os: macos-latest
+            setup: |
+              echo "::group::Check g++ Version"
+              g++-14 --version
+              echo "::endgroup::"
+              echo "::group::Check Clang Version"
+              clang --version
+              echo "::endgroup::"
+          - name: riscv64 Ubuntu
+            os: ubuntu-latest
+            setup: |
+              echo "::group::Launch RISC-V Docker"
+              docker pull --platform riscv64 ghcr.io/trickeye/ubtest:latest
+              docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+              docker run -d --name ubtest --platform riscv64 \
+                --volume $PWD:$PWD \
+                --volume $GITHUB_STEP_SUMMARY:$GITHUB_STEP_SUMMARY \
+                --workdir $PWD \
+                --env TEST_CPP_FILES="${{ needs.file-lists.outputs.TEST_CPP_FILES }}" \
+                --env RUNS_ON="riscv64 Ubuntu" \
+                --env PYTHONIOENCODING="UTF-8" \
+                --env GITHUB_STEP_SUMMARY=$GITHUB_STEP_SUMMARY \
+                ghcr.io/trickeye/ubtest:latest sleep infinity
+              docker exec ubtest uname -a
+              echo "::endgroup::"
+              echo "::group::Check GCC Version"
+              docker exec ubtest gcc --version
+              echo "::endgroup::"
+              echo "::group::Check g++ Version"
+              docker exec ubtest g++ --version
+              echo "::endgroup::"
+              echo "::group::Check Clang++ Version"
+              docker exec ubtest clang++ --version
+              echo "::endgroup::"
+            run: docker exec ubtest python3 scripts/check-example-codes/cpp-undefined-behaviors.py
+          - name: x86_64 Windows
+            os: windows-2025
+            setup: |
+              echo ::group::Install Clang and MinGW
+              choco install -y llvm mingw
+              echo ::endgroup::
+              echo ::group::Check Clang Version
+              clang --version
+              echo ::endgroup::
+              echo ::group::Check g++ Version
+              g++ --version
+              echo ::endgroup::
+              echo ::group::Check MSVC Version
+              call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+              cl.exe
+              echo ::endgroup::
+            run: |
+              chcp 65001
+              python scripts/check-example-codes/cpp-undefined-behaviors.py
+          - name: x86_64 Alpine
+            os: ubuntu-latest
+            container: alpine:latest
+            setup: |
+              echo "::group::Install Python, GCC and Clang"
+              apk add build-base python3 llvm clang
+              echo "::endgroup::"
+              echo "::group::Check g++ Version"
+              g++ --version
+              echo "::endgroup::"
+              echo "::group::Check Clang Version"
+              clang --version
+              echo "::endgroup::"
+    runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container || '' }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        if: matrix.container != 'alpine:latest'
+        with:
+          python-version: '3.14'
+      - name: Setup Environment (Ubuntu/macOS)
+        if: runner.os != 'Windows'
+        run: ${{ matrix.setup }}
+      - name: Setup Environment (Windows)
+        if: runner.os == 'Windows'
+        shell: cmd
+        run: ${{ matrix.setup }}
+      - name: Run Undefined Behavior Check
+        run: ${{ matrix.run || 'python scripts/check-example-codes/cpp-undefined-behaviors.py' }}
+        env:
+          TEST_CPP_FILES: ${{ needs.file-lists.outputs.TEST_CPP_FILES }}
+          RUNS_ON: ${{ matrix.name }}
+          PYTHONIOENCODING: UTF-8
+
+  py-correctness:
+    name: Python Correctness Test
+    needs: file-lists
+    if: needs.file-lists.outputs.TEST_PY_FILES != 'None'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+      - name: Correctness Check
+        env: 
+          TEST_PY_FILES: ${{ needs.file-lists.outputs.TEST_PY_FILES }}
+        run: python scripts/check-example-codes/correctness.py -language py
