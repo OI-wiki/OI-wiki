@@ -68,7 +68,7 @@ $$
     要得到 $|D(n)|$ 最终的表达式，需要考察何时 $s = \left\lfloor\dfrac{n}{s}\right\rfloor$ 成立．
     
     -   当 $s = \left\lfloor\dfrac{n}{s}\right\rfloor$ 时，总有 $s \le \dfrac{n}{s} < s + 1$，亦即 $s^2 \le n < s^2+s$．此时，有 $4s^2 + 1 \le 4n + 1 < 4s^2+4s+1 = (2s+1)^2$．又因为 $4n+1$ 一定是奇数，左侧可以等价地松弛到 $4s^2$，所以该条件就等价于 $2s \le \sqrt{4n+1} < 2s+1$，亦即 $\lfloor \sqrt{4n+1}\rfloor = 2s$．
-    -   当 $s < \left\lfloor\dfrac{n}{s}\right\rfloor$ 时，类似地，有 $s^2 + s\le n < (s+1)^2$，这等价于 $(2s+1)^2\le 4n+1 < 4(s+1)^2+1$．再次利用 $4n+1$ 是奇数这一点，右侧可以等价地收紧到 $4(s+1)^2$，所以该条件就等价于 $2s+1\le\sqrt{4n+1} < 2s+2$，亦即 $\lfloor \sqrt{4n+1}\rfloor = 2s+1$．
+    -   当 $s < \left\lfloor\dfrac{n}{s}\right\rfloor$ 时，总有 $s + 1 \le \dfrac{n}{s}$，亦即 $s^2 + s\le n$，又因为 $n < (s+1)^2$，这就等价于 $(2s+1)^2\le 4n+1 < 4(s+1)^2+1$．再次利用 $4n+1$ 是奇数这一点，右侧可以等价地收紧到 $4(s+1)^2$，所以该条件就等价于 $2s+1\le\sqrt{4n+1} < 2s+2$，亦即 $\lfloor \sqrt{4n+1}\rfloor = 2s+1$．
     
     总结这两种情形，就得到 $|D(n)| = \lfloor \sqrt{4n+1}\rfloor - 1$ 成立．
 
