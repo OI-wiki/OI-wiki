@@ -31,7 +31,7 @@ $$
 本节讨论关于双曲线 $y = \dfrac{n}{x}$ 下整点分块的若干结论．具体地，需要将 $1\sim n$ 之间的整数按照 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 的取值分为若干块．设
 
 $$
-D_n = \left\{\left\lfloor\dfrac{n}{i}\right\rfloor : 1 \le i \le n,~i\in\mathbf N_+\right\}.
+D(n) = \left\{\left\lfloor\dfrac{n}{i}\right\rfloor : 1 \le i \le n,~i\in\mathbf N_+\right\}.
 $$
 
 这就是 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 所有可能的取值集合．
@@ -39,7 +39,7 @@ $$
 首先，这样的不同取值只有 $O(\sqrt{n})$ 个．所以，数论分块得到的块的数目只有 $O(\sqrt{n})$ 个．
 
 ???+ note "性质 1"
-    $|D_n|\le 2\sqrt{n}$．
+    $|D(n)|\le 2\sqrt{n}$．
 
 ??? note "证明"
     分两种情况讨论：
@@ -47,12 +47,35 @@ $$
     -   当 $i\le\sqrt{n}$ 时，$i$ 的取值至多 $\sqrt{n}$ 个，所以 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 的取值也至多只有 $\sqrt{n}$ 个．
     -   当 $i>\sqrt{n}$ 时，$\left\lfloor\dfrac{n}{i}\right\rfloor \le\dfrac{n}{i} < \sqrt{n}$ 也至多只有 $\sqrt{n}$ 个取值．
     
-    因此，所有可能取值的总数 $|D_n|\le 2\sqrt{n}$．
+    因此，所有可能取值的总数 $|D(n)|\le 2\sqrt{n}$．
+
+通过更细致的分析，实际上可以精确地描述集合 $D(n)$ 及其大小．
+
+???+ note "性质 2"
+    设 $s = \lfloor\sqrt{n}\rfloor$．集合 $D(n)$ 中的元素从小到大依次是
+    
+    $$
+    1 < 2 < \cdots < s-1 < s \le \left\lfloor\dfrac{n}{s}\right\rfloor < \left\lfloor\dfrac{n}{s-1}\right\rfloor < \cdots < \left\lfloor\dfrac{n}{2}\right\rfloor < \left\lfloor\dfrac{n}{1}\right\rfloor = n.
+    $$
+    
+    进而，$|D(n)| = \lfloor \sqrt{4n+1}\rfloor - 1$．
+
+??? note "证明"
+    首先，对于 $1 \le i \le s$，可以证明 $\left\lfloor\dfrac{n}{\lfloor n/i\rfloor}\right\rfloor = i$．令 $d = \left\lfloor\dfrac{n}{i}\right\rfloor$，需要证明 $\left\lfloor\dfrac{n}{d}\right\rfloor = i$．写成不等式，这相当于已知 $d \le \dfrac{n}{i} < d + 1$，需要证明 $i \le \dfrac{n}{d} < i + 1$．已知条件可以写作 $i\le\dfrac{n}{d} < i + \dfrac{i}{d}$，因此，只需要证明 $\dfrac{i}{d} \le 1$，亦即 $i \le d = \left\lfloor\dfrac{n}{i}\right\rfloor$．这等价于 $i \le \dfrac{n}{i}$，这对于所有 $1 \le i \le s \le \sqrt{n}$ 都成立．
+    
+    这一结果实际上说明，映射 $i \mapsto \left\lfloor\dfrac{n}{i}\right\rfloor$ 构成集合 $\{i:1\le i \le s\}$ 和集合 $\left\{\left\lfloor\dfrac{n}{i}\right\rfloor: 1\le i\le s\right\}$ 之间的双射．由于 $i$ 各不相同，$\left\lfloor\dfrac{n}{i}\right\rfloor$ 也各不相同．两个集合唯一有可能相同的元素就是 $s$ 与 $\left\lfloor\dfrac{n}{s}\right\rfloor$．所以，$|D(n)|=2s - \left[s = \lfloor n/s\rfloor\right]$．
+    
+    要得到 $|D(n)|$ 最终的表达式，需要考察何时 $s = \left\lfloor\dfrac{n}{s}\right\rfloor$ 成立．
+    
+    -   当 $s = \left\lfloor\dfrac{n}{s}\right\rfloor$ 时，总有 $s \le \dfrac{n}{s} < s + 1$，亦即 $s^2 \le n < s^2+s$．此时，有 $4s^2 + 1 \le 4n + 1 < 4s^2+4s+1 = (2s+1)^2$．又因为 $4n+1$ 一定是奇数，左侧可以等价地松弛到 $4s^2$，所以该条件就等价于 $2s \le \sqrt{4n+1} < 2s+1$，亦即 $\lfloor \sqrt{4n+1}\rfloor = 2s$．
+    -   当 $s < \left\lfloor\dfrac{n}{s}\right\rfloor$ 时，总有 $s + 1 \le \dfrac{n}{s}$，亦即 $s^2 + s\le n$．又因为 $n < (s+1)^2$，就有 $s^2 + s\le n < (s+1)^2$．这就等价于 $(2s+1)^2\le 4n+1 < 4(s+1)^2+1$．再次利用 $4n+1$ 是奇数这一点，右侧可以等价地收紧到 $4(s+1)^2$，所以该条件就等价于 $2s+1\le\sqrt{4n+1} < 2s+2$，亦即 $\lfloor \sqrt{4n+1}\rfloor = 2s+1$．
+    
+    总结这两种情形，就得到 $|D(n)| = \lfloor \sqrt{4n+1}\rfloor - 1$ 成立．
 
 然后，单个块的左右端点都很容易确定．
 
-???+ note "性质 2"
-    对于 $d\in D_n$，所有满足 $\left\lfloor\dfrac{n}{i}\right\rfloor=d$ 的整数 $i$ 的取值范围为
+???+ note "性质 3"
+    对于 $d\in D(n)$，所有满足 $\left\lfloor\dfrac{n}{i}\right\rfloor=d$ 的整数 $i$ 的取值范围为
     
     $$
     \left\lfloor\dfrac{n}{d+1}\right\rfloor + 1\le i \le \left\lfloor\dfrac{n}{d}\right\rfloor.
@@ -77,53 +100,11 @@ $$
     \left\lfloor\dfrac{n}{d+1}\right\rfloor + 1 \le i\le \left\lfloor\dfrac{n}{d}\right\rfloor.
     $$
 
-这一性质还体现了图像的对称性：每个块的右端点（前文图中的绿点）的集合恰为 $D_n$．这很容易理解，因为整个图像关于直线 $y=x$ 是对称的．
+这一性质还体现了图像的对称性：每个块的右端点（前文图中的绿点）的集合恰为 $D(n)$．这很容易理解，因为整个图像关于直线 $y=x$ 是对称的．
 
-除了这两条性质外，集合 $D_n$ 还具有良好的递归性质．这基于如下引理：
+除了这些性质外，集合 $D(n)$ 还具有良好的递归性质：
 
-???+ note "引理"
-    对于 $a,b,c\in\mathbf N_+$，有
-    
-    $$
-    \left\lfloor\dfrac{\lfloor a/b\rfloor}{c}\right\rfloor = \left\lfloor\dfrac{a}{bc}\right\rfloor.
-    $$
-
-??? note "证明"
-    令 $a$ 对于 $b$ 做带余除法有 $a=qb+r$，其中 $q,r\in\mathbf N$ 且 $r < b$．需要证明的是
-    
-    $$
-    \left\lfloor\dfrac{q}{c}\right\rfloor = \left\lfloor\dfrac{q}{c}+\dfrac{r}{bc}\right\rfloor.
-    $$
-    
-    这等价于
-    
-    $$
-    \left\lfloor\dfrac{q}{c}\right\rfloor \le \dfrac{q}{c}+\dfrac{r}{bc} < \left\lfloor\dfrac{q}{c}\right\rfloor + 1.
-    $$
-    
-    左侧不等式是显然的．关键是要证明右侧不等式．为此，令 $q$ 对 $c$ 做带余除法，就有
-    
-    $$
-    q = \left\lfloor\dfrac{q}{c}\right\rfloor c + r',
-    $$
-    
-    其中，$0\le r' \le c - 1$．所以，有
-    
-    $$
-    q \le \left\lfloor\dfrac{q}{c}\right\rfloor c + c - 1 \iff \dfrac{q + 1}{c} \le \left\lfloor\dfrac{q}{c}\right\rfloor + 1.
-    $$
-    
-    进而，利用 $r < b$，就有
-    
-    $$
-    \dfrac{q}{c}+\dfrac{r}{bc} < \dfrac{q+1}{c}  \le \left\lfloor\dfrac{q}{c}\right\rfloor + 1.
-    $$
-    
-    这就证明右侧不等式，进而完成本命题的证明．
-
-这一引理经常出现在数论分块的各种应用中．利用该引理可以得到如下性质：
-
-???+ note "性质 3"
+???+ note "性质 4"
     对于 $m\in D(n)$，有 $D(m)\subseteq D(n)$．
 
 ??? note "证明"
@@ -133,7 +114,7 @@ $$
     \left\lfloor\dfrac{m}{i}\right\rfloor = \left\lfloor\dfrac{\lfloor n/k\rfloor}{i}\right\rfloor = \left\lfloor\dfrac{n}{ki}\right\rfloor \in D(n),
     $$
     
-    所以，$D(m)\subseteq D(n)$．
+    所以，$D(m)\subseteq D(n)$．其中，第二个等号用到了 [取整函数](./basic.md#取整函数) 关于嵌套分式的性质．
 
 前文已经提到，$D(n)$ 既是每块中 $\left\lfloor\dfrac{n}{i}\right\rfloor$ 的取值集合，也是每块的右端点集合．这意味着，如果要递归地应用数论分块（即函数在 $n$ 处的值依赖于它在 $m\in D(n)\setminus\{n\}$ 处的值），那么在整个计算过程中所涉及的取值集合和右端点集合，其实都是 $D(n)$．一个典型的例子是 [杜教筛](./du.md)．
 
@@ -236,13 +217,13 @@ $$
     对于正整数 $n$ 和正实数 $\alpha, \beta$，设
     
     $$
-    D_{n,\alpha,\beta} = \left\{\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor: i=1,2,\cdots,\lfloor n^{\alpha/\beta}\rfloor\right\}.
+    D(n,\alpha,\beta) = \left\{\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor: i=1,2,\cdots,\lfloor n^{\alpha/\beta}\rfloor\right\}.
     $$
     
     那么，有
     
-    1.  $|D_{n,\alpha,\beta}|\le 2n^{\alpha/(1+\beta)}$．
-    2.  对于 $d\in D_{n,\alpha,\beta}$，使得 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=d$ 成立的 $i$ 的取值范围为
+    1.  $|D(n,\alpha,\beta)|\le 2n^{\alpha/(1+\beta)}$．
+    2.  对于 $d\in D(n,\alpha,\beta)$，使得 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=d$ 成立的 $i$ 的取值范围为
     
         $$
         \left\lfloor\dfrac{n^{\alpha/\beta}}{(d+1)^{1/\beta}}\right\rfloor + 1\le i \le \left\lfloor\dfrac{n^{\alpha/\beta}}{d^{1/\beta}}\right\rfloor.
@@ -254,7 +235,7 @@ $$
     -   当 $i\le \dfrac{n^\alpha}{i^\beta}$ 时，有 $i\le n^{\alpha/(1+\beta)}$，所以 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ 至多有 $n^{\alpha/(1+\beta)}$ 种取值．
     -   当 $i > \dfrac{n^\alpha}{i^\beta}$ 时，有 $i> n^{\alpha/(1+\beta)}$，进而有 $\dfrac{n^\alpha}{i^\beta} < n^{\alpha/(1+\beta)}$，所以 $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ 也至多只有 $n^{\alpha/(1+\beta)}$ 种取值．
     
-    综合两种情形，就有 $|D_{n,\alpha,\beta}|\le 2n^{\alpha/(1+\beta)}$．
+    综合两种情形，就有 $|D(n,\alpha,\beta)|\le 2n^{\alpha/(1+\beta)}$．
     
     对于第二点，$\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=d$ 就等价于
     

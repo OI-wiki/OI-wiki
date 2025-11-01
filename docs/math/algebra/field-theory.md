@@ -343,7 +343,7 @@ $$
 所有的代数闭包的代数扩张都是平凡的。这样的域称为代数闭域。
 
 ???+ abstract "代数闭域"
-    如果域 $F$ 上任意多项式 $f(x)$ 都至少有一个根 $\alpha\in F$，那么就称域 $F$ 为一个 **代数闭域**（algebraically closed field）。
+    如果域 $F$ 上任意非常数多项式 $f(x)$ 都至少有一个根 $\alpha\in F$，那么就称域 $F$ 为一个 **代数闭域**（algebraically closed field）。
 
 事实上，它有如下等价定义：
 

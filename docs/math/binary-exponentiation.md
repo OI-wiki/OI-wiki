@@ -1,92 +1,128 @@
 autor: iamtwz, billchenchina, CBW2007, CCXXXI, chinggg, Enter-tainer, eyedeng, FFjet, gaojude, Great-designer, H-J-Granger, Henry-ZHR, hsfzLZH1, Ir1d, kenlig, Konano, ksyx, luoguyuntianming, Marcythm, Menci, NachtgeistW, ouuan, Peanut-Tang, qwqAutomaton, sshwy, StudyingFather, Tiphereth-A, TrisolarisHD, TRSWNCA, Xeonacid, Yuuko10032, Zhangjiacheng2006, Zhoier, Hszzzx, shenshuaijie, kfy666
 
-## 定义
+## 引入
 
-快速幂，二进制取幂（Binary Exponentiation，也称平方法），是一个在 $\Theta(\log n)$ 的时间内计算 $a^n$ 的小技巧，而暴力的计算需要 $\Theta(n)$ 的时间。
+**快速幂**（fast exponentiation），也称 **二进制取幂**（binary exponentiation）或 **平方取幂法**（exponentiation by squaring），是一个在 $\Theta(\log n)$ 的时间内计算 $a^n$ 的小技巧，而暴力的计算需要 $\Theta(n)$ 的时间。
 
-这个技巧也常常用在非计算的场景，因为它可以应用在任何具有结合律的运算中。其中显然的是它可以应用于模意义下取幂、矩阵幂等运算，我们接下来会讨论。
-
-## 解释
-
-计算 $a$ 的 $n$ 次方表示将 $n$ 个 $a$ 乘在一起：$a^{n} = \underbrace{a \times a \cdots \times a}_{n\text{ 个 a}}$。然而当 $a,n$ 太大的时侯，这种方法就不太适用了。不过我们知道：$a^{b+c} = a^b \cdot a^c,\,\,a^{2b} = a^b \cdot a^b = (a^b)^2$。二进制取幂的想法是，我们将取幂的任务按照指数的 **二进制表示** 来分割成更小的任务。
+这个技巧可以应用于任何 $a$ 的乘法满足结合律的场景中，例如模意义下取幂、矩阵幂等，详见后文 [应用](#应用) 一节。
 
 ## 过程
 
+计算 $a$ 的 $n$ 次方表示将 $n$ 个 $a$ 乘在一起：$a^{n} = \underbrace{a \times a \cdots \times a}_{n\text{ 个 a}}$。然而当 $n$ 太大或单次乘法开销太大的时侯，这种方法就不太适用了。二进制取幂的想法是，将取幂的任务按照指数的 **二进制表示** 来分割成更小的任务。
+
+???+ example "例子"
+    假设要计算 $3^{13}$。如果将它展开为连乘式，需要 $13-1=12$ 次乘法。但是，因为
+    
+    $$
+    3^{13} = 3^{(1101)_2} = 3^8 \times 3^4 \times 3^1,
+    $$
+    
+    所以，只要能快速计算出 $3^{1},3^{2},3^{4},3^{8}$，就能通过 $2$ 次乘法计算出 $3^{13}$ 的值。于是，只需要知道一个快速的方法来计算上述 $3$ 的 $2^k$ 次幂的序列。这是容易的，因为因为序列中（除第一个）任意一个元素都是其前一个元素的平方。
+    
+    根据这些分析，可以得到 $3^{13}$ 的计算过程如下：
+    
+    $$
+    \begin{aligned}
+    3^1 &= 3, \\
+    3^2 &= \left(3^1\right)^2 = 3^2 = 9, \\
+    3^4 &= \left(3^2\right)^2 = 9^2 = 81, \\
+    3^8 &= \left(3^4\right)^2 = 81^2 = 6561, \\
+    3^{13} &= 6561 \times 81 \times 3 = 1594323.
+    \end{aligned}
+    $$
+    
+    过程中，只进行了 $5$ 次乘法运算。
+
+这就是快速幂的基本想法。至于具体实现，有两种常见的版本。
+
 ### 迭代版本
 
-首先我们将 $n$ 表示为 2 进制，举一个例子：
+设 $n$ 的二进制表示为 $(n_tn_{t-1}\cdots n_1n_0)_2$，也就是说，有
 
 $$
-3^{13} = 3^{(1101)_2} = 3^8 \cdot 3^4 \cdot 3^1
+n = n_t2^t + n_{t-1}2^{t-1} + \cdots + n_12^1 + n_02^0,
 $$
 
-因为 $n$ 有 $\lfloor \log_2 n \rfloor + 1$ 个二进制位，因此当我们知道了 $a^1, a^2, a^4, a^8, \dots, a^{2^{\lfloor \log_2 n \rfloor}}$ 后，我们只用计算 $\Theta(\log n)$ 次乘法就可以计算出 $a^n$。
-
-于是我们只需要知道一个快速的方法来计算上述 3 的 $2^k$ 次幂的序列。这个问题很简单，因为序列中（除第一个）任意一个元素就是其前一个元素的平方。举一个例子：
-
-$$
-\begin{align}
-3^1 &= 3 \\
-3^2 &= \left(3^1\right)^2 = 3^2 = 9 \\
-3^4 &= \left(3^2\right)^2 = 9^2 = 81 \\
-3^8 &= \left(3^4\right)^2 = 81^2 = 6561
-\end{align}
-$$
-
-因此为了计算 $3^{13}$，我们只需要将对应二进制位为 1 的整系数幂乘起来就行了：
-
-$$
-3^{13} = 6561 \cdot 81 \cdot 3 = 1594323
-$$
-
-将上述过程说得形式化一些，如果把 $n$ 写作二进制为 $(n_tn_{t-1}\cdots n_1n_0)_2$，那么有：
-
-$$
-n = n_t2^t + n_{t-1}2^{t-1} + n_{t-2}2^{t-2} + \cdots + n_12^1 + n_02^0
-$$
-
-其中 $n_i\in\{0,1\}$。那么就有
+其中，$n_i\in\{0,1\}$。那么，就有
 
 $$
 \begin{aligned}
-a^n & = (a^{n_t 2^t + \cdots + n_0 2^0})\\\\
-& = a^{n_0 2^0} \times a^{n_1 2^1}\times \cdots \times a^{n_t2^t}
+a^n & = a^{n_t2^t + n_{t-1}2^{t-1} + \cdots + n_12^1 + n_02^0}\\
+& = a^{n_0 2^0} \times a^{n_1 2^1}\times \cdots \times a^{n_{t-1}2^{t-1}} \times a^{n_t2^t}.
 \end{aligned}
 $$
 
-根据上式我们发现，原问题被我们转化成了形式相同的子问题的乘积，并且我们可以在常数时间内从 $2^i$ 项推出 $2^{i+1}$ 项。
+注意，只有 $n_i=1$ 的项才会真正出现在乘积的计算中。
 
-这个算法的复杂度是 $\Theta(\log n)$ 的，我们计算了 $\Theta(\log n)$ 个 $2^k$ 次幂的数，然后花费 $\Theta(\log n)$ 的时间选择二进制为 1 对应的幂来相乘。
+根据这一表达式，可以首先在 $\Theta(\log n)$ 时间内计算出 $a$ 的 $\Theta(\log n)$ 个 $2^k$ 次幂的取值，然后花费 $\Theta(\log n)$ 的时间选择等于 $1$ 的二进制位对应的幂次乘到最终结果中。这就是快速幂的迭代版本实现。
+
+伪代码如下：
+
+$$
+\begin{array}{l}
+\textbf{Algorithm }\text{FastPow}(a, n): \\
+\textbf{Input. }\text{Base }a\text{ and exponent }n.\\
+\textbf{Output. }\text{Power }a^n.\\
+\textbf{Method.}\\
+\begin{array}{ll}
+1 & \textit{result}\gets\mathrm{Id}\\
+2 & \textbf{while }n > 0\textbf{ do}\\
+3 & \qquad \textbf{if }n \bmod 2 = 1\textbf{ then}\\
+4 & \qquad \qquad \textit{result} \gets \textit{result}\cdot a\\
+5 & \qquad \textbf{end if}\\
+6 & \qquad a \gets a \cdot a\\
+7 & \qquad n \gets n / 2\\
+8 & \textbf{end while}\\
+9 & \textbf{return }\textit{result}
+\end{array}
+\end{array}
+$$
+
+利用这一方法计算快速幂，需要进行 $\Theta(\log n)$ 次乘法运算。
 
 ### 递归版本
 
-上述迭代版本中，由于 $2^{i+1}$ 项依赖于 $2^i$，使得其转换为递归版本比较困难（一方面需要返回一个额外的 $a^{2^i}$，对函数来说无法实现一个只返回计算结果的接口；另一方面则是必须从低位往高位计算，即从高位往低位调用，这也造成了递归实现的困扰），下面则提供递归版本的思路。
-
-给定形式 $n_{t\dots i} = (n_tn_{t-1}\cdots n_i)_2$，即 $n_{t\dots i}$ 表示将 $n$ 的前 $t - i + 1$ 位二进制位当作一个二进制数，则有如下变换：
+这一过程同样可以通过递归形式实现。注意到，指数 $n$ 的二进制展开可以递归地写作
 
 $$
-\begin{aligned}
-n &= n_{t\dots 0} \\
-  &= 2\times n_{t\dots 1} + n_0\\
-  &= 2\times (2\times n_{t\dots 2} + n_1) + n_0 \\
-  &\cdots
-\end{aligned}
+(n_tn_{t-1}\cdots n_1n_0)_2 = 2 \times (n_tn_{t-1}\cdots n_1)_2 + n_0.
 $$
 
-那么有：
+因此，幂次 $a^n$ 可以递归地计算为
 
 $$
-\begin{aligned}
-a^n &= a^{n_{t\dots 0}} \\
-    &= a^{2\times n_{t\dots 1} + n_0} = \left(a^{n_{t\dots 1}}\right)^2  a^{n_0} \\
-    &= \left(a^{2\times n_{t\dots 2} + n_1}\right)^2  a^{n_0} = \left(\left(a^{n_{t\dots 2}}\right)^2 a^{n_1}\right)^2  a^{n_0} \\
-    &\cdots
-\end{aligned}
+a^n = \begin{cases}
+1, & n = 0,\\
+(a^{\lfloor n/2\rfloor})^2, & n > 0 \text{ and }n\text{ is even},\\
+(a^{\lfloor n/2\rfloor})^2\cdot a, & n > 0 \text{ and }n\text{ is odd}.\\
+\end{cases}
 $$
 
-如上所述，在递归时，对于不同的递归深度是相同的处理：$a^{n_{t\dots i}} = (a^{n_{t\dots (i+1)}})^2a^{n_i}$，即将当前递归的二进制数拆成两部分：最低位在递归出来时乘上去，其余部分则变成新的二进制数递归进入更深一层作相同的处理。
+这就是快速幂的递归版本实现。
 
-可以观察到，每递归深入一层则二进制位减少一位，所以该算法的时间复杂度也为 $\Theta(\log n)$。
+伪代码如下：
+
+$$
+\begin{array}{l}
+\textbf{Algorithm }\text{FastPow}(a, n): \\
+\textbf{Input. }\text{Base }a\text{ and exponent }n.\\
+\textbf{Output. }\text{Power }a^n.\\
+\textbf{Method.}\\
+\begin{array}{ll}
+1 & \textbf{if }n = 0\textbf{ then}\\
+2 & \qquad \textbf{return }\mathrm{Id}\\
+3 & \textbf{end if}\\
+4 & \textit{result} \gets \text{FastPow}(a, n / 2) \\
+5 & \textbf{if }n\bmod 2 = 0\textbf{ then}\\
+6 & \qquad \textbf{return }\textit{result}\cdot\textit{result}\cdot a\\
+7 & \textbf{else}\\
+8 & \qquad \textbf{return }\textit{result}\cdot\textit{result}\\
+9 & \textbf{end if}
+\end{array}
+\end{array}
+$$
+
+利用这一方法计算快速幂，需要递归 $\Theta(\log n)$ 次，同样需要 $\Theta(\log n)$ 次乘法运算。尽管复杂度相同，由于递归本身有一定开销，所以实践中迭代版本的速度更快。
 
 ## 应用
 
@@ -176,7 +212,7 @@ a \cdot b = \begin{cases}
 \end{cases}
 $$
 
-但在实际使用中，此方法由于引入了更大的计算复杂度导致时间效率不优。实际编程中通常利用 [快速乘](./number-theory/basic.md#快速乘) 来进行模数范围在 `long long` 时的乘法操作。
+但在实际使用中，此方法由于引入了更大的计算复杂度导致时间效率不优。实际编程中通常利用 [快速乘](./number-theory/mod-arithmetic.md#快速乘) 来进行模数范围在 `long long` 时的乘法操作。
 
 ### 高精度快速幂
 
@@ -190,31 +226,20 @@ $$
     --8<-- "docs/math/code/binary-exponentiation/luogu-P1045.cpp"
     ```
 
-### 同一底数与同一模数的预处理快速幂
+## 底数固定的预处理快速幂
 
-在同一底数与同一模数的条件下，可以利用 [分块思想](../ds/decompose.md)，用一定的时间（一般是 $O(\sqrt n)$）预处理后用 $O(1)$ 的时间回答一次幂询问。
+当底数 $a$ 固定时，可以利用 [分块思想](../ds/decompose.md)，用一定的时间预处理后用 $O(1)$ 的时间回答一次幂询问。这一算法也常称为光速幂。过程如下：
 
-#### 过程
+1.  选定一个数 $s$，预处理出 $a^0,a^1,\cdots,a^{s-1}$ 与 $a^0,a^s,\cdots,a^{\lfloor p/s\rfloor s}$ 的值并存在两个数组里；
+2.  对于每一次询问 $a^b$，将 $b$ 拆分成 $\lfloor b/s\rfloor s+(b\bmod s)$，则 $a^b=a^{\lfloor b/s\rfloor s}\cdot a^{b\bmod s}$，就可以 $O(1)$ 求出答案。
 
-1.  选定一个数 $s$，预处理出 $a^0$ 到 $a^s$ 与 $a^{0\cdot s}$ 到 $a^{\lfloor\frac ps\rfloor\cdot s}$ 的值并存在两个数组里；
-2.  对于每一次询问 $a^b\bmod p$，将 $b$ 拆分成 $\left\lfloor\dfrac bs\right\rfloor\cdot s+b\bmod s$，则 $a^b=a^{\lfloor\frac bs\rfloor\cdot s}\times a^{b\bmod s}$，可以 $O(1)$ 求出答案。
+假设指数 $b$ 的范围是 $[0,n]$，那么块长 $s$ 经常选择为 $\sqrt{n}$ 或者与之相近的 $2$ 的幂次。选择 $\sqrt{n}$ 可以获得最优的预处理复杂度 $O(\sqrt{n})$，而选择 $2$ 的幂次可以使用位运算简化计算。
 
-关于这个数 $s$ 的选择，我们一般选择 $\sqrt p$ 或者一个大小适当的 $2$ 的次幂。选择 $\sqrt p$ 可以使预处理较优，选择 $2$ 的次幂可以使用位运算简化计算。
+特别地，对于模意义下幂的计算，底数 $a$ 相同隐含着模数 $m$ 也要相同这一要求。由于 [扩展欧拉定理](./number-theory/fermat.md#扩展欧拉定理)，对于任意模数 $m$，预处理的指数范围上界为 $n = 2\varphi(m)$；对于素模数 $p$，预处理的范围上界为 $n = p - 1$。这两种情形预处理的复杂度都是 $O(\sqrt{m})$。
 
-??? note "参考代码"
+???+ example "参考代码"
     ```cpp
-    int pow1[65536], pow2[65536];
-    
-    void preproc(int a, int mod) {
-      pow1[0] = pow2[0] = 1;
-      for (int i = 1; i < 65536; i++) pow1[i] = 1LL * pow1[i - 1] * a % mod;
-      int pow65536 = 1LL * pow1[65535] * a % mod;
-      for (int i = 1; i < 65536; i++) pow2[i] = 1LL * pow2[i - 1] * pow65536 % mod;
-    }
-    
-    int query(int pows) {
-      return 1LL * pow1[pows & 65535] * pow2[pows >> 16] % mod;
-    }
+    --8<-- "docs/math/code/binary-exponentiation/pre-exp.cpp:core"
     ```
 
 ## 习题

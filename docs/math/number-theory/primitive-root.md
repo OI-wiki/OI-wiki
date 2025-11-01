@@ -428,7 +428,7 @@ $$
 
 所以，通过随机方法寻找原根时，枚举部分的期望复杂度为 $O((\log m)^2\log\log m)$．
 
-需要注意的是，判定原根时需要已知 $\varphi(m)$ 的质因数分解．算法竞赛 [常用质因数分解算法](./pollard-rho.md) 中，复杂度最优的 Phollard Rho 算法也需要 $O(m^{1/4+\varepsilon})$ 的时间．因此，只要 $\varphi(m)$ 的质因数分解是未知的，无论采用哪种枚举方式，求原根的复杂度瓶颈都在于质因数分解这一步，而非枚举验证的部分．
+需要注意的是，判定原根时需要已知 $\varphi(m)$ 的质因数分解．算法竞赛 [常用质因数分解算法](./pollard-rho.md) 中，复杂度最优的 Pollard Rho 算法也需要 $O(m^{1/4+\varepsilon})$ 的时间．因此，只要 $\varphi(m)$ 的质因数分解是未知的，无论采用哪种枚举方式，求原根的复杂度瓶颈都在于质因数分解这一步，而非枚举验证的部分．
 
 ## Carmichael 函数
 
@@ -491,11 +491,7 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
     设模数为 $2^e$ 且 $e \ge 2$．那么，所有奇数都同余于唯一一个 $\pm 5^k$ 形式的整数同余，其中，$k\in\mathbf N$ 且 $k < 2^{e-2}$．也就是说，$\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 两两不同余，且构成一个既约剩余系．
 
 ??? note "证明"
-    容易验证，$e=2$ 的情形成立．对于 $e \ge 3$ 的情形，由于前述证明中已经得到 $5$ 模 $2^e$ 的阶是 $2^{e-2}$，所以，$1,5,\cdots,5^{2^{e-2}-1}$ 两两不同余．只需要再说明，不存在整数 $i,j$ 使得 $0\le j\le i < 2^{e-2}$ 且 $5^{i}\equiv -5^{j}\pmod{2^e}$ 成立．
-    
-    为此，使用反证法．不妨设 $k=i-j$，那么，$5^k=5^{i-j}\equiv -1\pmod{2^e}$．进而，有 $5^{2k} \equiv (-1)^2 = 1 \pmod {2^e}$．由阶的 [性质 2](#ord-prop-2) 可知，$\delta_{2^e}(5)=2^{e-2}\mid 2k$，又知道 $0 < k < 2^{e-2}$，唯一的可能性是 $k=2^{e-3}$．但是，前述证明中已经得到 $5^{2^{e-3}}\equiv 1 + 2^{e-1}\not\equiv -1\pmod{2^{e}}$．
-    
-    这一矛盾说明，满足条件的 $i,j$ 并不存在．所以，$\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 两两不同余．由于它们共计 $2^{e-1}$ 个，恰为模 $2^{e}$ 的既约剩余系的大小，所以，它们就构成了既约剩余系本身．
+    容易验证，$e=2$ 的情形成立．对于 $e \ge 3$ 的情形，由于前述证明中已经得到 $5$ 模 $2^e$ 的阶是 $2^{e-2}$，所以，$1,5,\cdots,5^{2^{e-2}-1}$ 两两不同余．因为这些整数都模 $4$ 余 $1$，它们的相反数都模 $4$ 余 $3$，所以 $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 模 $2^e$ 两两不同余．由于它们共计 $2^{e-1}$ 个，恰为模 $2^{e}$ 的既约剩余系的大小，所以，它们就构成了既约剩余系本身．
 
 然后，处理奇素数幂的情形．
 
@@ -607,7 +603,7 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 
 [^more-evidence]: 更多结果可以参考 [Least prime primitive root of prime numbers](https://sweet.ua.pt/tos/p_roots.html)．
 
-[^density-prim-root]: 如果模 $m$ 的原根存在，那么，$\varphi(m)\ge\dfrac{1}{3}m$，且等号仅在 $m=2p^e~(e\in\mathbf N_+)$ 处取得．进一步地，当 $m > 2$ 时，对欧拉函数 $\varphi(m)$ 有估计：$\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$．将这两者结合，就得到文中的表达式．关于欧拉函数的该估计，可以参考论文 Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94．
+[^density-prim-root]: 如果模 $m$ 的原根存在，那么，$\varphi(m)\ge\dfrac{1}{3}m$，且等号仅在 $m=2\times 3^e~(e\in\mathbf N_+)$ 处取得．进一步地，当 $m > 2$ 时，对欧拉函数 $\varphi(m)$ 有估计：$\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$．将这两者结合，就得到文中的表达式．关于欧拉函数的该估计，可以参考论文 Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94．
 
 [^korselt1899probleme]: Korselt, A. R. (1899). "Problème chinois." L'Intermédiaire des Mathématiciens. 6: 142–143.
 

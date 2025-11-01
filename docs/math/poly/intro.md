@@ -397,7 +397,7 @@ $$
 
 1.  普通生成函数：$k_n(x)=x^n$。
 2.  指数生成函数：$k_n(x)=\dfrac{x^n}{n!}$。
-3.  狄利克雷生成函数：$k_n(x)=\dfrac{1}{n^x}$。
+3.  [狄利克雷生成函数](../number-theory/dirichlet.md#dirichlet-生成函数)：$k_n(x)=\dfrac{1}{n^x}$。
 
 ## 参考资料与拓展阅读
 

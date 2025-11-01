@@ -13,4 +13,4 @@ while r - l > eps:
         r = mid
     else:
         l = mid
-print(l)
+print(round(l, 6))
