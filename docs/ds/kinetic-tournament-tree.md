@@ -2,16 +2,14 @@
 
 ### 问题引入
 
-给定有序单元线性函数集合 $F=\{f_1,\dots,f_n\}$： $f_i: \R \rightarrow \R$。其中 $f_i(x)=k_ix+b_i$。 我们需要维护以下操作：
+给定有序单元线性函数集合 $F=\{f_1,\dots,f_n\}$：$f_i: \R \rightarrow \R$。其中 $f_i(x)=k_ix+b_i$。我们需要维护以下操作：
 
-- **QueryMax$(l,r)$**：给定 $l$ 和 $r$, 返回 $\max_{i=l}^r{f_i(0)}$。
-- **TranslateLeft$(l,r,\delta)$**：给定 $l$, $r$ 和 $\delta$, 对于所有 $i\in[l,r]$，执行操作 $f_i(x) \leftarrow f_i(x+\delta)$，这个操作等价于执行 $b_i\leftarrow b_i+k_i\delta$。其中 $\delta > 0$。
+-   **QueryMax $(l,r)$**：给定 $l$ 和 $r$, 返回 $\max_{i=l}^r{f_i(0)}$。
+-   **TranslateLeft $(l,r,\delta)$**：给定 $l$,$r$ 和 $\delta$, 对于所有 $i\in[l,r]$，执行操作 $f_i(x) \leftarrow f_i(x+\delta)$，这个操作等价于执行 $b_i\leftarrow b_i+k_i\delta$。其中 $\delta > 0$。
 
 为了方便，我们假定所有函数互不相同。
 
 为了展示 KTT 独特的二叉树形分治结构，我们将直接从区间平移入手。
-
-
 
 ### Kinetic Data Structures
 
@@ -21,7 +19,7 @@ KDS 用于维护几何对象系统在连续运动过程中的属性。
 
 我们假设每一个点都有一个已知的运动计划，这个计划可以提供它的完整或者部分运动信息，例如函数 $f_i(x)$ 形成的曲线或直线能够很好的描述动点 $i$ 的运动轨迹。运动计划随时可能变化，它可能是由于碰撞，或者环境交互的原因；我们称造成运动计划更改的原因为事件。事件队列会按时间顺序给出事件。
 
-KDS 的一个关键方面是需要拥有容易维护的事件，即事件队列中事件类型对应于可能的组合变化，这些变化涉及数量恒定且通常较少的物体。例如，在本题的维护中，我们使用的一种事件类型是“函数 $f_i(0)$ 与函数 $f_{j}(0)$的大小发生变化”。
+KDS 的一个关键方面是需要拥有容易维护的事件，即事件队列中事件类型对应于可能的组合变化，这些变化涉及数量恒定且通常较少的物体。例如，在本题的维护中，我们使用的一种事件类型是“函数 $f_i(0)$ 与函数 $f_{j}(0)$ 的大小发生变化”。
 
 事件队列可以隐式维护。
 
@@ -29,16 +27,14 @@ KDS 的一个关键方面是需要拥有容易维护的事件，即事件队列�
 
 这些事件应当可以等价于通过一系列低阶代数条件的交保证，每个代数条件都涉及有限数量的对象。我们将这些条件称为 KDS 的证书。例如 $[f_i(0) > f_j(0)]$.
 
-
-
 ### Kinetic Tournament Tree
 
 #### 简介
 
-Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Sturctures（简称 KDS），首次出现于 1999 年的 [Data Structures for Mobile Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889)，被用于维护连续变化的数据。更普遍的，对于一个采用如下动态化策略 （kinetization strategy）的结构，都可以被成为 Kinetic Tournament：
+Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Sturctures（简称 KDS），首次出现于 1999 年的 [Data Structures for Mobile Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889)，被用于维护连续变化的数据。更普遍的，对于一个采用如下动态化策略（kinetization strategy）的结构，都可以被成为 Kinetic Tournament：
 
-- 为静态算法中的关键操作（例如比较）生成正确性证书，并将每个证书与一个全局事件队列关联，记录该证书可能失效的时间点。
-- 当某个证书失效时，我们能够高效地更新算法输出并维护证书集合。
+-   为静态算法中的关键操作（例如比较）生成正确性证书，并将每个证书与一个全局事件队列关联，记录该证书可能失效的时间点。
+-   当某个证书失效时，我们能够高效地更新算法输出并维护证书集合。
 
 在算法竞赛社区，它兴起于 2020 年国家集训队论文，浅谈函数最值的动态维护。为此我们将介绍为算法竞赛界进行一些优化过后的 KTT。
 
@@ -59,54 +55,68 @@ Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Sturctures（简�
 因此我们便可以得到简单实现。
 
 ```cpp
-struct node{
-	int l,r;
-	int tag; // the lazy propagation tag
-	int k,b; // the linear function
-	int swc; // the time of certificate violation
-}v[4*N];
-int round(double x){
-	if(x >= 0 && x <= inf)return int(ceil(x));
-	return inf;
+struct node {
+  int l, r;
+  int tag;   // the lazy propagation tag
+  int k, b;  // the linear function
+  int swc;   // the time of certificate violation
+} v[4 * N];
+
+int round(double x) {
+  if (x >= 0 && x <= inf) return int(ceil(x));
+  return inf;
 }
-void push_up(int rt){
-	int mx=v[rt<<1].b>v[rt<<1|1].b?rt<<1:rt<<1|1,mi=mx^1;
-	v[rt].k=v[mx].k,v[rt].b=v[mx].b;
-	v[rt].swc=v[mx].k<v[mi].k?round(1.0*(v[mx].b-v[mi].b)/(v[mi].k-v[mx].k)):inf;
+
+void push_up(int rt) {
+  int mx = v[rt << 1].b > v[rt << 1 | 1].b ? rt << 1 : rt << 1 | 1, mi = mx ^ 1;
+  v[rt].k = v[mx].k, v[rt].b = v[mx].b;
+  v[rt].swc = v[mx].k < v[mi].k
+                  ? round(1.0 * (v[mx].b - v[mi].b) / (v[mi].k - v[mx].k))
+                  : inf;
 }
-void push_tag(int rt,int val){
-	v[rt].tag+=val,v[rt].swc-=val,v[rt].b+=v[rt].k*val;
+
+void push_tag(int rt, int val) {
+  v[rt].tag += val, v[rt].swc -= val, v[rt].b += v[rt].k * val;
 }
-void push_down(int rt){
-	if(v[rt].tag)push_tag(rt<<1,v[rt].tag),push_tag(rt<<1|1,v[rt].tag),v[rt].tag=0;
+
+void push_down(int rt) {
+  if (v[rt].tag)
+    push_tag(rt << 1, v[rt].tag), push_tag(rt << 1 | 1, v[rt].tag),
+        v[rt].tag = 0;
 }
-void checkswitch(int rt){
-	if(v[rt].l==v[rt].r)return;
-	push_down(rt);
-	if(v[rt].swc<=0)checkswitch(rt<<1),checkswitch(rt<<1|1);
-	push_up(rt);
+
+void checkswitch(int rt) {
+  if (v[rt].l == v[rt].r) return;
+  push_down(rt);
+  if (v[rt].swc <= 0) checkswitch(rt << 1), checkswitch(rt << 1 | 1);
+  push_up(rt);
 }
-void build(int rt,int l,int r){
-	v[rt].l=l,v[rt].r=r;
-	if(l==r)return v[rt].k=k[l],v[rt].b=b[l],void();
-	int mid=(l+r)>>1;
-	build(rt<<1,l,mid);
-	build(rt<<1|1,mid+1,r);
-	push_up(rt);
+
+void build(int rt, int l, int r) {
+  v[rt].l = l, v[rt].r = r;
+  if (l == r) return v[rt].k = k[l], v[rt].b = b[l], void();
+  int mid = (l + r) >> 1;
+  build(rt << 1, l, mid);
+  build(rt << 1 | 1, mid + 1, r);
+  push_up(rt);
 }
-void modify(int rt,int l,int r,int val){
-	if(l<=v[rt].l&&v[rt].r<=r)return push_tag(rt,val),checkswitch(rt);
-	int mid=v[rt<<1].r;push_down(rt);
-	if(l<=mid)modify(rt<<1,l,r,val);
-	if(mid<r)modify(rt<<1|1,l,r,val);
-	push_up(rt);
+
+void modify(int rt, int l, int r, int val) {
+  if (l <= v[rt].l && v[rt].r <= r) return push_tag(rt, val), checkswitch(rt);
+  int mid = v[rt << 1].r;
+  push_down(rt);
+  if (l <= mid) modify(rt << 1, l, r, val);
+  if (mid < r) modify(rt << 1 | 1, l, r, val);
+  push_up(rt);
 }
-int ask(int rt,int l,int r){
-	if(l<=v[rt].l&&v[rt].r<=r)return v[rt].L.b;
-	int mid=v[rt<<1].r,res=0;push_down(rt);
-	if(l<=mid)res=max(res,ask(rt<<1,l,r));
-	if(mid<r)res=max(res,ask(rt<<1|1,l,r));
-	return res;
+
+int ask(int rt, int l, int r) {
+  if (l <= v[rt].l && v[rt].r <= r) return v[rt].L.b;
+  int mid = v[rt << 1].r, res = 0;
+  push_down(rt);
+  if (l <= mid) res = max(res, ask(rt << 1, l, r));
+  if (mid < r) res = max(res, ask(rt << 1 | 1, l, r));
+  return res;
 }
 ```
 
@@ -115,36 +125,44 @@ int ask(int rt,int l,int r){
 证明 KTT 在当前的维护需要用到势能分析。
 
 $d(x)$ 为节点 $x$ 在线段树上的深度，根节点的深度为 $1$。定义节点 $x$ 在线段树上的势能为：
+
 $$
 \rho(x) = \begin{cases}
 d(x) & \text{if the lower slope function has larger value}  \\
 0    & \text{otherwise}\\
 \end{cases}
 $$
+
 即在 $x$ 比较的两个函数，如果拥有较小斜率的函数的值在 $0$ 点更大，那么当前节点势能为 $d(x)$，否则为 $0$。
 
 定义整个 KTT 的势能为所有节点势能之和：
+
 $$
 \Phi = \sum_x \rho(x)
 $$
+
 考虑某次对于节点 $x$，和它的父亲 $p$ 的实际更新代价 $c=1$，更新前后的势能分别为 $\Phi$ 和 $\Phi'$，我们得到均摊更新代价，由于当前节点 $x$ 被更新，那么在当下它的势能一定是由 $d(x)$ 下降到 $0$，而对于 $p$，它的势能最坏情况可能由 $0$ 上升到 $d(p)$：
+
 $$
 \begin{aligned}
 \hat{c} &= 1 + \Phi' - \Phi\\
-		&= 1 + (\rho'(p) + \rho'(x)) - (\rho(p) + \rho(x))\\
-		&= 1 + (\rho'(p) - \rho(p)) + (\rho'(x) - \rho(x))\\
-		&\leq 1 + d(p) - d(x)\\
-		&= 0
+    &= 1 + (\rho'(p) + \rho'(x)) - (\rho(p) + \rho(x))\\
+    &= 1 + (\rho'(p) - \rho(p)) + (\rho'(x) - \rho(x))\\
+    &\leq 1 + d(p) - d(x)\\
+    &= 0
 \end{aligned}
 $$
+
 对实际代价求和，定义初始势能 $\Phi_s$ 以及最终势能 $\Phi_t$：
+
 $$
 \begin{aligned}
 \sum c  &= \sum \hat{c} + \Phi_{t} - \Phi_s\\
-		&\leq \Phi_{t} - \Phi_s\\
-		&=O(n\log n)
+    &\leq \Phi_{t} - \Phi_s\\
+    &=O(n\log n)
 \end{aligned}
 $$
+
 这部分为 KTT 在仅存在全局修改的情况下，它将所有证书失效更新完毕的次数。
 
 额外的，考虑区间平移对势能的影响。对于某次区间平移，我们需要考虑的节点应当为，其子树当中存在但不是所有树节点被执行区间平移操作的节点。这样的节点也就是我们在执行修改操作的时候在树上经过的节点，它的数量不超过 $O(\log n)$ 个，最坏情况下每个节点的势能上涨 $d(x)\le \log n$，因此每次操作上涨 $O(\log^2 n)$ 的势能。
@@ -160,14 +178,19 @@ $$
 对于同样的问题，我们使用势能分析。
 
 $d(x)$ 为节点 $x$ 在线段树上的深度，根节点的深度为 $1$。定义 $I(x)$ 表示在节点 $x$ 比较的两个函数，在 $0$ 点过后有几个交点。定义节点 $x$ 在线段树上的势能为：
+
 $$
 \rho(x)=d(x)^{\log_2(s+1)}I(x)
 $$
+
 定义整个 KTT 的势能为所有节点势能之和：
+
 $$
 \Phi = \sum_x \rho(x)
 $$
+
 考虑某次对于节点 $x$，和它的父亲 $p$ 的实际更新代价 $c=1$，更新前后的势能分别为 $\Phi$ 和 $\Phi'$，我们得到均摊更新代价，由于当前节点 $x$ 被更新，那么在当下它的势能一定是由 $d(x)^{\log_2(s+1)}I(x)$ 下降到 $d(x)^{\log_2(s+1)}(I(x)-1)$，而对于 $p$，它的势能最坏情况可能由 $0$ 上升到 $d(p)^{\log_2(s+1)}s$：
+
 $$
 \begin{aligned}
         \hat{c} &= 1 + \Phi' - \Phi\\
@@ -176,9 +199,11 @@ $$
                 &\leq 0
     \end{aligned}
 $$
+
 由第三行到第四行我们使用了 $d(x)$ 为正整数的限制。
 
 对实际代价求和，定义初始势能 $\Phi_s$ 以及最终势能 $\Phi_t$：
+
 $$
 \begin{aligned}
     \sum c  &= \sum \hat{c} - \Phi_t + \Phi_s\\
@@ -186,11 +211,13 @@ $$
             &= O(ns (\log n)^{\log_2{(s+1)}})
 \end{aligned}
 $$
+
 需要注意的是，这仅仅给出的是上界，复杂度的下界应为 $O(\lambda_{s}(n)\log n)$。笔者猜测这里的势能分析构造应当参考 Davenport-Schinzel 序列对应的 $\lambda_{s}(n)$ 的通项公式以获取更紧的上界。
 
 #### 近似情况
 
 给定一个连续、完全定义的单变量函数集合 $F=\{f_1,\dots,f_n\}$，定义 $\mathfrak U_F(x)$，$\mathfrak L_F(x)$ 和 $\mathfrak E_F(x)$ 分别为上包络、下包络和幅度。
+
 $$
 \begin{aligned}
     \mathfrak U_F(x) & = \max\{f_i(x) \mid f_i \in F\} \\
@@ -198,53 +225,56 @@ $$
     \mathfrak E_F(x) & = \mathfrak U_F(x) - \mathfrak L_F(x)
 \end{aligned}
 $$
- 我们只要求程序返回 $\tilde{\mathfrak U}_F(x)$ 满足
+
+我们只要求程序返回 $\tilde{\mathfrak U}_F(x)$ 满足
+
 $$
 \mathfrak U_F(x) \geq \tilde{\mathfrak U}_F(x) \geq \mathfrak U_F(x) - \epsilon \mathfrak E_F(x)
 $$
+
 那么在复杂情况下我们可以做到 $O((1/\epsilon^2)n\log^3 n)$，完全脱离多项式次数，以及我们允许函数同时进行区间左移或者右移。
 
 Author: Jerry3128.
 
 ## References
 
-[1] P. K. Agarwal, G. Cormode, Z. Haung, J. M. Phillips, Z. Wei, and K. Yi. Mergeable
+\[1] P. K. Agarwal, G. Cormode, Z. Haung, J. M. Phillips, Z. Wei, and K. Yi. Mergeable
 coresets. 2011.
 
-[2] P. K. Agarwal, S. Har-Peled, and K. R. Varadarajan. Approximating extent measures of
+\[2] P. K. Agarwal, S. Har-Peled, and K. R. Varadarajan. Approximating extent measures of
 points. J. ACM, 51(4):606–635, July 2004.
 
-[3] P. K. Agarwal and M. Sharir. Davenport-schinzel sequences and their geometric applica-
+\[3] P. K. Agarwal and M. Sharir. Davenport-schinzel sequences and their geometric applica-
 tions. In J.-R. Sack and J. Urrutia, editors, Handbook of Computational Geometry, pages
 1–47. North-Holland, Amsterdam, 2000.
 
-[4] G. Alexandron, H. Kaplan, and M. Sharir. Kinetic and dynamic data structures for convex
+\[4] G. Alexandron, H. Kaplan, and M. Sharir. Kinetic and dynamic data structures for convex
 hulls and upper envelopes. Computational Geometry, 36(2):144–158, 2007.
 
-[5] G. Barequet and S. Har-Peled. Efficiently approximating the minimum-volume bounding
+\[5] G. Barequet and S. Har-Peled. Efficiently approximating the minimum-volume bounding
 box of a point set in three dimensions. Journal of Algorithms, 38(1):91–109, 2001.
 
-[6] J. Basch, L. J. Guibas, and J. Hershberger. Data structures for mobile data. Journal of
+\[6] J. Basch, L. J. Guibas, and J. Hershberger. Data structures for mobile data. Journal of
 Algorithms, 31(1):1–28, 1999.
 
-[7] F. Botana and T. Recio. Computing envelopes in dynamic geometry environments. Annals
+\[7] F. Botana and T. Recio. Computing envelopes in dynamic geometry environments. Annals
 of Mathematics and Artificial Intelligence, 80(1):3–20, may 2017.
 
-[8] G. Brodal and R. Jacob. Dynamic planar convex hull. In The 43rd Annual IEEE Symposium
+\[8] G. Brodal and R. Jacob. Dynamic planar convex hull. In The 43rd Annual IEEE Symposium
 on Foundations of Computer Science, 2002. Proceedings., pages 617–626, 2002.
 
-[9] B. Chazelle and L. J. Guibas. Fractional cascading: II. applications. Algorithmica, 1(1):163–191, nov 1986.
+\[9] B. Chazelle and L. J. Guibas. Fractional cascading: II. applications. Algorithmica, 1(1):163–191, nov 1986.
 
-[10] H. Edelsbrunner, L. J. Guibas, and M. Sharir. The upper envelope of piecewise linear
+\[10] H. Edelsbrunner, L. J. Guibas, and M. Sharir. The upper envelope of piecewise linear
 functions: Algorithms and applications. Discrete & Computational Geometry, 4(1):311–
 336, aug 1989.
 
-[11] M. Keil. A simple algorithm for determining the envelope of a set of lines. Information
+\[11] M. Keil. A simple algorithm for determining the envelope of a set of lines. Information
 Processing Letters, 39(3):121–124, 1991.
 
-[12] M. H. Overmars and J. van Leeuwen. Maintenance of configurations in the plane. Journal of Computer and System Sciences, 23(2):166–204, 1981.
+\[12] M. H. Overmars and J. van Leeuwen. Maintenance of configurations in the plane. Journal of Computer and System Sciences, 23(2):166–204, 1981.
 
-[13] T. Schulz and B. J¨uttler. Envelope computation in the plane by approximate implicitization. Applicable Algebra in Engineering, Communication and Computing, 22(4):265–288, nov 2011. 10
+\[13] T. Schulz and B. J¨uttler. Envelope computation in the plane by approximate implicitization. Applicable Algebra in Engineering, Communication and Computing, 22(4):265–288, nov 2011. 10
 
-[14] M. Sharir. Almost tight upper bounds for lower envelopes in higher dimensions. Discrete
+\[14] M. Sharir. Almost tight upper bounds for lower envelopes in higher dimensions. Discrete
 & Computational Geometry, 12(1):327–345, sep 1994.
