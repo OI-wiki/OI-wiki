@@ -2,7 +2,7 @@
 
 ### 问题引入
 
-给定有序单元线性函数集合 $F=\{f_1,\dots,f_n\}$：$f_i: \R \rightarrow \R$。其中 $f_i(x)=k_ix+b_i$。我们需要维护以下操作：
+给定有序单元线性函数集合 $F=\{f_1,\dots,f_n\}$：$f_i: \mathbb{R} \rightarrow \mathbb{R}$。其中 $f_i(x)=k_ix+b_i$。我们需要维护以下操作：
 
 -   **QueryMax $(l,r)$**：给定 $l$ 和 $r$, 返回 $\max_{i=l}^r{f_i(0)}$。
 -   **TranslateLeft $(l,r,\delta)$**：给定 $l$,$r$ 和 $\delta$, 对于所有 $i\in[l,r]$，执行操作 $f_i(x) \leftarrow f_i(x+\delta)$，这个操作等价于执行 $b_i\leftarrow b_i+k_i\delta$。其中 $\delta > 0$。
