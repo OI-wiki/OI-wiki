@@ -103,6 +103,7 @@
 /math/poly/lagrange /math/numerical/interp
 /math/numerical/lagrange /math/numerical/interp
 /math/poly/cntt /math/poly/ntt
+/math/poly/dgf /math/number-theory/dirichlet
 /math/linear-algebra/gauss /math/numerical/gauss
 /math/integral /math/numerical/integral
 /math/newton /math/numerical/newton

@@ -46,7 +46,7 @@
     "remark-clang-format": "2.4.5",
     "remark-cli": "^10.0.1",
     "remark-copywriting-correct": "0.6.0",
-    "remark-details": "^4.1.1",
+    "remark-details": "^5.0.1",
     "remark-gfm": "^3.0.1",
     "remark-lint-final-newline": "^2.1.1",
     "remark-lint-no-duplicate-headings-in-section": "^4.0.1",

@@ -15,7 +15,7 @@ $$
 \end{aligned}
 $$
 
-其中 $f*g$ 为数论函数 $f$ 和 $g$ 的 [狄利克雷卷积](../poly/dgf.md#dirichlet-%E5%8D%B7%E7%A7%AF)。
+其中 $f*g$ 为数论函数 $f$ 和 $g$ 的 [狄利克雷卷积](./dirichlet.md#dirichlet-卷积)。
 
 ???+ note "略证"
     $g(d)f\left(\frac{i}{d}\right)$ 就是对所有 $i\leq n$ 的做贡献，因此变换枚举顺序，枚举 $d$,$\frac{i}{d}$（分别对应新的 $i,j$）
@@ -108,7 +108,7 @@ $$
     \end{aligned}
     $$
     
-    ??? bug
+    ??? bug "Bug"
         问题在于「视作高阶无穷小，从而可以舍去」这一处。我们将 $T\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$ 代入 $T(n)$ 的式子里，有：
         
         $$

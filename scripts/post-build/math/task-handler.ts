@@ -27,6 +27,16 @@ import "@mathjax/src/js/input/tex/physics/PhysicsConfiguration.js";
 
 import { TaskHandler, log } from "../html-postprocess.js";
 
+// More details: https://github.com/mathjax/MathJax/issues/3443
+// Should remove it after mathjax v4.0.1
+import { Styles } from "@mathjax/src/js/util/Styles.js";
+Styles.connect.margin = { ...Styles.connect.padding };
+
+// More details: https://github.com/mathjax/MathJax/issues/3441
+// Should remove it after mathjax v4.0.1
+import { MO, OPTABLE } from "@mathjax/src/js/core/MmlTree/OperatorDictionary.js";
+OPTABLE.infix["\u27C2"] = MO.REL;
+
 // All HTML files will reference the CSS file with relative paths (to the HTML file)
 // The CSS file will reference the fonts files with relative paths (to the CSS file)
 const MATHJAX_TARGET_CSS_FILE = "assets/stylesheets/mathjax.css";

@@ -28,7 +28,7 @@
 
 -   **无根树的叶结点（leaf node）**：度数不超过 $1$ 的结点。
 
-    ???+ question " 为什么不是度数恰为 $1$？"
+    ???+ question "为什么不是度数恰为 $1$？"
         考虑 $n = 1$。
 
 -   **有根树的叶结点（leaf node）**：没有子结点的结点。
@@ -74,7 +74,7 @@
 
     ![](images/tree-binary-perfect.svg)
 
-???+ warning
+???+ warning "Warning"
     Proper binary tree 的汉译名称不固定，且完全二叉树和满二叉树的定义在不同教材中定义不同，遇到的时候需根据上下文加以判断。
 
 OIers 所说的「满二叉树」多指完美二叉树。

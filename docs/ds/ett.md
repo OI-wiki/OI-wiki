@@ -210,7 +210,7 @@ void Delete(int u, int v) {
 
 维护连通性的模板题。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/ds/code/ett/ett_connectivity.cpp"
     ```
@@ -225,7 +225,7 @@ void Delete(int u, int v) {
 
 ### 例题 [LOJ #2230.「BJOI2014」大融合](https://loj.ac/p/2230)
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/ds/code/ett/ett_subtree_size.cpp"
     ```
@@ -244,7 +244,7 @@ void Delete(int u, int v) {
 
 可以把点权转成边权，维护树的括号序，换父亲操作转化成把整个子树对应的括号序列平移至父亲左括号后面。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/ds/code/ett/ett_1.cpp"
     ```

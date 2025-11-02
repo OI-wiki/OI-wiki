@@ -18,7 +18,7 @@ author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, E
 -   `-UDEBUG`：在编译时取消定义 `DEBUG` 符号。
 -   `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）。
 
-???+ note
+???+ note "Note"
     在 Unix 下，如使用了标准 C 库里的 math 库（`math.h`），则需在编译时添加 `-lm` 参数。[^have-to-link-libm-in-gcc]
 
 ???+ note "如何开大栈空间？"
@@ -67,7 +67,7 @@ $ ./a.out
 test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'
 ```
 
-???+ warning
+???+ warning "Warning"
     Windows 下的 g++ 不支持 sanitizers，需要使用 [修改过后的 MinGW64](https://github.com/ssbssa/gcc/releases) 或使用其它编译器。
     
     MSVC 从 16.0 截至版本 17.14 仅支持 AddressSanitizer。

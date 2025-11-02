@@ -1,4 +1,4 @@
-author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309, shigengxin123456, Re-Ori，hcx1204
+author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309, shigengxin123456, Re-Ori, hcx1204
 
 ## 赛事简介
 
@@ -297,7 +297,7 @@ eJOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](ht
 
 ### NOI
 
-???+ warning
+???+ warning "Warning"
     此处介绍的不是「全国信息学奥林匹克竞赛」。
 
 **NOI** 全名 Nordic Olympiads in Informatics。

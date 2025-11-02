@@ -63,7 +63,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 ### 自动安装
 
-???+ warning
+???+ warning "Warning"
     本部分适用于 Windows 10 版本 2004 及更高版本（内部版本 19041 及更高版本）或 Windows 11。
     
     如果你正在使用 2004 以下版本或你的电脑不支持虚拟化，请阅读下面的手动安装一节。
@@ -80,7 +80,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 ### 手动安装[^ref4]
 
-???+ warning
+???+ warning "Warning"
     下面介绍手动安装 WSL 的步骤。如果你已经完成了自动安装，请跳过此部分。
 
 #### 启用适用于 Linux 的 Windows 子系统
@@ -138,7 +138,7 @@ wsl --set-default-version 2
 
 进入 Microsoft Store，搜索「Ubuntu」，然后选择「Ubuntu」，点击「安装」进行安装。也可打开 [Ubuntu 的商店页面](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)。
 
-???+ warning
+???+ warning "Warning"
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变。如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本。
 
 ## 配置分发版[^ref5]
@@ -280,7 +280,7 @@ $ ./cpuid
 AMD Ryzen 5 1400 Quad-Core Processor
 ```
 
-???+ note
+???+ note "Note"
     Linux 环境下可执行文件可不带扩展名，运行方式参见上方命令。
 
 ## 进阶操作
@@ -412,7 +412,7 @@ Welcome!
 
 ## WSL1 升级为 WSL2
 
-???+ warning
+???+ warning "Warning"
     请确认已经完成前面 WSL1 的安装步骤。
 
 执行命令 `wsl -l -v` 可以看到 WSL 版本号是 1，需要执行升级，才能到 2。

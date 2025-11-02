@@ -1,6 +1,6 @@
 author: hydingsy, hyp1231, ranwen, 383494
 
-前置知识：[数论分块](./sqrt-decomposition.md)、[狄利克雷卷积](../poly/dgf.md#dirichlet-%E5%8D%B7%E7%A7%AF)
+前置知识：[数论分块](./sqrt-decomposition.md)、[狄利克雷卷积](./dirichlet.md#dirichlet-卷积)
 
 莫比乌斯反演是数论中的重要内容．对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值．
 
@@ -153,7 +153,7 @@ $$
         \end{cases}
         $$
 
-??? note " 附：$\Lambda(n)$ 表达式的证明 "
+??? note "附：$\Lambda(n)$ 表达式的证明"
     对于素数幂 $n=p^e~(e\in\mathbf N_+)$，有
     
     $$
@@ -226,7 +226,7 @@ $$
     
     其中，$a\uparrow b = a^b$ 是 Knuth 箭头．对比基本形式的证明可以发现，唯一的区别就是加法换成了乘法，且乘法换成了取幂．
 
-从 Dirichlet 卷积的角度看，莫比乌斯反演只是利用了「莫比乌斯函数是常值函数的 Dirichlet 逆」这一点．容易想象，类似莫比乌斯反演的关系对于一般的 Dirichlet 逆同样成立．
+从 Dirichlet 卷积的角度看，莫比乌斯反演只是利用了「莫比乌斯函数是常值函数的 Dirichlet 逆」这一点．容易想象，类似莫比乌斯反演的关系对于一般的 [Dirichlet 逆](./dirichlet.md#dirichlet-卷积) 同样成立．
 
 ???+ note "拓展三"
     设 $f(n),g(n),\alpha(n)$ 都是数论函数，且 $\alpha^{-1}(n)$ 是 $\alpha(n)$ 的 Dirichlet 逆，即
@@ -265,13 +265,7 @@ $$
     $$
 
 ??? note "证明"
-    只需要验证对于完全积性函数 $t(n)$，它的 Dirichlet 逆就是 $\mu(n)t(n)$．直接验证，有：
-    
-    $$
-    \sum_{d\mid n}\mu(d)t(d)t\left(\dfrac{n}{d}\right) = \sum_{d\mid n}\mu(d)t(n) = t(n)[n = 1] = [n = 1].
-    $$
-    
-    最后一步用到了 $t(1)=1$．这对于 [完全积性函数](./basic.md#积性函数) 是成立的．
+    由 Dirichlet 卷积的 [性质](./dirichlet.md#性质) 可知，对于完全积性函数 $t(n)$，它的 Dirichlet 逆就是 $\mu(n)t(n)$．
 
 最后，莫比乌斯反演还可以推广到 $[1,+\infty)$ 上的复值函数，而不仅仅局限于数论函数．基本形式的莫比乌斯反演可以看作是复值函数在所有非整数点处均取零值的特殊情形．
 
@@ -600,7 +594,7 @@ $$
     \sum_{i=1}^{\lfloor n/k\rfloor}i[d\mid i] = d\sum_{i=1}^{\lfloor\lfloor n/k\rfloor/d\rfloor}i = dG\left(\left\lfloor\dfrac{\lfloor n/k\rfloor}{d}\right\rfloor\right) = dG\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right).
     $$
     
-    其中，$G(n)=\dfrac{1}{2}n(n+1)$ 就是等差数列求和，最后一个等号利用了下取整函数的 [特性](./sqrt-decomposition.md#性质)．对称地，对于另一个和式可以类似计算．代回前文表达式，就有
+    其中，$G(n)=\dfrac{1}{2}n(n+1)$ 就是等差数列求和，最后一个等号利用了 [下取整函数](./basic.md#取整函数) 的性质．对称地，对于另一个和式可以类似计算．代回前文表达式，就有
     
     $$
     f(n,m) = \sum_k k\sum_{d}\mu(d)d^2G\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right)G\left(\left\lfloor\dfrac{m}{kd}\right\rfloor\right).
@@ -749,7 +743,7 @@ $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/k\rfloor}\prod_{j=1}^{\lfloor n/k\rfloor}k\uparrow(\mu(d)[d\mid i][d\mid j]).
     $$
     
-    进一步地提取因数（即令 $i=di'$，$j=dj'$），并应用下取整函数的 [特性](./sqrt-decomposition.md#性质)，就得到：
+    进一步地提取因数（即令 $i=di'$，$j=dj'$），并应用 [下取整函数](./basic.md#取整函数) 的性质，就得到：
     
     $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/(kd)\rfloor}\prod_{j=1}^{\lfloor n/(kd)\rfloor}k\uparrow\mu(d).

@@ -22,7 +22,7 @@ author: ouuan, Ir1d, Marcythm, Xeonacid
 
 所以，总复杂度为 $O((n+m)(\sqrt n+\frac c{32}))$。
 
-??? "参考代码"
+??? note "参考代码"
     ```cpp
     --8<-- "docs/ds/code/tree-decompose/tree-decompose_1.cpp"
     ```
