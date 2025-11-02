@@ -78,23 +78,22 @@ int QueryMax(int rt, int l, int r) {
 // --8<-- [end:core]
 
 int main(){
-    cin>>n>>m,k.resize(n+5),b.resize(n+5),v.resize(n<<2|31);
-    for(int i=1;i<=n;i++)
-        cin>>k[i]>>b[i];
-    build(1,1,n);
-    for(int i=1;i<=m;i++){
-        int opt=0;
-        cin>>opt;
-        if(opt==1){
-            int l=0,r=0;
-            cin>>l>>r;
-            cout<<QueryMax(1, l, r)<<'\n';
-        }
-        if(opt==2){
-            int l=0,r=0,delta=0;
-            cin>>l>>r>>delta;
-            TranslateLeft(1,l,r,delta);
-        }
+  cin >> n >> m, k.resize(n + 5), b.resize(n + 5), v.resize(n << 2 | 31);
+  for (int i = 1; i <= n; i++) cin >> k[i] >> b[i];
+  build(1,1,n);
+  for (int i = 1; i <= m; i++) {
+    int opt = 0;
+    cin >> opt;
+    if (opt == 1) {
+      int l = 0, r = 0;
+      cin >> l >> r;
+      cout << QueryMax(1, l, r) << '\n';
     }
-    return 0;
+    if (opt == 2) {
+      int l = 0, r = 0, delta = 0;
+      cin >> l >> r >> delta;
+      TranslateLeft(1, l, r, delta);
+    }
+  }
+  return 0;
 }
