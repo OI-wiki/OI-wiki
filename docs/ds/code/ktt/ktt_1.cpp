@@ -1,14 +1,14 @@
-#include <iostream>
-#include <vector>
 #include <algorithm>
 #include <cmath>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
 const int inf = 0x3f3f3f3f;
 
-int n,m;
-vector<int> k,b;
+int n, m;
+vector<int> k, b;
 
 // --8<-- [start:core]
 struct node {
@@ -17,6 +17,7 @@ struct node {
   int k, b;  // the linear function
   int swc;   // the time of certificate violation
 };
+
 vector<node> v;
 
 int IntegerPart(double x) {
@@ -75,12 +76,13 @@ int QueryMax(int rt, int l, int r) {
   if (mid < r) res = max(res, QueryMax(rt << 1 | 1, l, r));
   return res;
 }
+
 // --8<-- [end:core]
 
-int main(){
+int main() {
   cin >> n >> m, k.resize(n + 5), b.resize(n + 5), v.resize(n << 2 | 31);
   for (int i = 1; i <= n; i++) cin >> k[i] >> b[i];
-  build(1,1,n);
+  build(1, 1, n);
   for (int i = 1; i <= m; i++) {
     int opt = 0;
     cin >> opt;
