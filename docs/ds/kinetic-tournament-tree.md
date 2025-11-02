@@ -2,7 +2,7 @@ author: Jerry3128
 
 ## 问题引入
 
-给定单变量线性函数序列 $F=\{f_1,\dots,f_n\}$：$f_i: \mathbf{R} \rightarrow \mathbf{R}$。其中 $f_i(x)=k_ix+b_i$。我们需要维护以下操作：
+给定单变量线性函数序列 $F=\{f_1,\dots,f_n\}$：$f_i: \mathbf{R} \rightarrow \mathbf{R}$。其中 $f_i(x)=k_ix+b_i$ 且 $k_i,b_i \in \mathbf{R}$。我们需要维护以下操作：
 
 -   **QueryMax $(l,r)$**：给定 $l$ 和 $r$, 返回 $\max_{i=l}^r{f_i(0)}$。
 -   **TranslateLeft $(l,r,\delta)$**：给定 $l$,$r$ 和 $\delta$, 对于所有 $i\in[l,r]$，执行操作 $f_i(x) \leftarrow f_i(x+\delta)$，这个操作等价于执行 $b_i\leftarrow b_i+k_i\delta$。其中 $\delta > 0$。
