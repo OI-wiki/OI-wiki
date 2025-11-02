@@ -96,8 +96,8 @@ $$
 
 $$
 \begin{aligned}
-\sum c  &= \sum \hat{c} + \Phi_{t} - \Phi_s\\
-    &\leq \Phi_{t} - \Phi_s\\
+\sum c  &= \sum \hat{c} + \Phi_{s} - \Phi_{t}\\
+    &\leq \Phi_{s} - \Phi_{t}\\
     &=O(n\log n)
 \end{aligned}
 $$
