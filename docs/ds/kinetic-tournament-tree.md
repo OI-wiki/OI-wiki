@@ -2,7 +2,7 @@ Author: Jerry3128.
 
 ## 问题引入
 
-给定有序单元线性函数集合 $F=\{f_1,\dots,f_n\}$：$f_i: \mathbb{R} \rightarrow \mathbb{R}$。其中 $f_i(x)=k_ix+b_i$。我们需要维护以下操作：
+给定有序单元线性函数集合 $F=\{f_1,\dots,f_n\}$：$f_i: \mathbf{R} \rightarrow \mathbf{R}$。其中 $f_i(x)=k_ix+b_i$。我们需要维护以下操作：
 
 -   **QueryMax $(l,r)$**：给定 $l$ 和 $r$, 返回 $\max_{i=l}^r{f_i(0)}$。
 -   **TranslateLeft $(l,r,\delta)$**：给定 $l$,$r$ 和 $\delta$, 对于所有 $i\in[l,r]$，执行操作 $f_i(x) \leftarrow f_i(x+\delta)$，这个操作等价于执行 $b_i\leftarrow b_i+k_i\delta$。其中 $\delta > 0$。
@@ -173,7 +173,7 @@ $$
 
 ### 高次情况
 
-如果我们维护的不是线性函数而是多项式函数，或者更加复杂的函数我们如何应对。两个复杂函数之间可能拥有多个交点。给定一个连续、完全定义的单变量函数集合 $F=\{f_1,\dots,f_n\}$：$f_i: \mathbb{R} \rightarrow \mathbb{R}$。其中每对函数的图像至多相交于 $s$ 个点。具有代表性的，$s$ 次多项式函数集合符合这个要求。
+如果我们维护的不是线性函数而是多项式函数，或者更加复杂的函数我们如何应对。两个复杂函数之间可能拥有多个交点。给定一个连续、完全定义的单变量函数集合 $F=\{f_1,\dots,f_n\}$：$f_i: \mathbf{R} \rightarrow \mathbf{R}$。其中每对函数的图像至多相交于 $s$ 个点。具有代表性的，$s$ 次多项式函数集合符合这个要求。
 
 对于同样的问题，我们使用势能分析。
 
