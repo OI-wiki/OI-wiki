@@ -371,6 +371,7 @@ nav:
       - 猫树: ds/cat-tree.md
       - 区间最值操作 & 区间历史最值: ds/seg-beats.md
     - 划分树: ds/dividing.md
+    - Kinetic Tournament Tree: ds/kinetic-tournament-tree.md
     - 二叉搜索树 & 平衡树:
       - 二叉搜索树 & 平衡树: ds/bst.md
       - Treap: ds/treap.md
@@ -407,8 +408,6 @@ nav:
     - PQ 树: ds/pq-tree.md
     - 手指树: ds/finger-tree.md
     - 霍夫曼树: ds/huffman-tree.md
-    - Kinetic Data Structures:
-      - Kinetic Tournament Tree: ds/kinetic-tournament-tree.md
   - 图论:
     - 图论部分简介: graph/index.md
     - 图论相关概念: graph/concept.md
