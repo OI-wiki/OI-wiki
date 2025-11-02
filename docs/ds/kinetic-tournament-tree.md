@@ -2,7 +2,7 @@ author: Jerry3128
 
 ## 问题引入
 
-给定有序单元线性函数集合 $F=\{f_1,\dots,f_n\}$：$f_i: \mathbf{R} \rightarrow \mathbf{R}$。其中 $f_i(x)=k_ix+b_i$。我们需要维护以下操作：
+给定单变量线性函数序列 $F=\{f_1,\dots,f_n\}$：$f_i: \mathbf{R} \rightarrow \mathbf{R}$。其中 $f_i(x)=k_ix+b_i$。我们需要维护以下操作：
 
 -   **QueryMax $(l,r)$**：给定 $l$ 和 $r$, 返回 $\max_{i=l}^r{f_i(0)}$。
 -   **TranslateLeft $(l,r,\delta)$**：给定 $l$,$r$ 和 $\delta$, 对于所有 $i\in[l,r]$，执行操作 $f_i(x) \leftarrow f_i(x+\delta)$，这个操作等价于执行 $b_i\leftarrow b_i+k_i\delta$。其中 $\delta > 0$。
@@ -13,7 +13,7 @@ author: Jerry3128
 
 ## Kinetic Data Structures
 
-KDS 用于维护几何对象系统在连续运动过程中的属性。[^ref6]
+KDS 用于维护几何对象系统在连续运动过程中的属性。
 
 ### 事件队列
 
@@ -31,12 +31,12 @@ KDS 的一个关键方面是需要拥有容易维护的事件，即事件队列�
 
 ### 简介
 
-Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Structures（简称 KDS），首次出现于 1999 年的 [Data Structures for Mobile Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889)，被用于维护连续变化的数据。更普遍的，对于一个采用如下动态化策略（kinetization strategy）的结构，都可以被成为 Kinetic Tournament：
+Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Structures（简称 KDS），首次出现于 1999 年的 [Data Structures for Mobile Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889)[^ref2]，被用于维护连续变化的数据。更普遍的，对于一个采用如下动态化策略（kinetization strategy）的结构，都可以被成为 Kinetic Tournament：
 
 -   为静态算法中的关键操作（例如比较）生成正确性证书，并将每个证书与一个全局事件队列关联，记录该证书可能失效的时间点。
 -   当某个证书失效时，我们能够高效地更新算法输出并维护证书集合。
 
-在算法竞赛社区，它兴起于 2020 年国家集训队论文，浅谈函数最值的动态维护。学术界的 KTT 与算法竞赛界的 KTT 在应用领域和实现上有所不同[^ref4]，为此我们将介绍为算法竞赛界进行一些优化过后的 KTT。
+在算法竞赛社区，它兴起于 2020 年国家集训队论文，浅谈函数最值的动态维护。学术界的 KTT 与算法竞赛界的 KTT 在应用领域和实现上有所不同，为此我们将介绍为算法竞赛界进行一些优化过后的 KTT。
 
 线段树和平衡树是 KTT 的基础，因为它依赖于这两个结构之一。
 
@@ -54,71 +54,10 @@ Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Structures（简�
 
 因此我们便可以得到简单实现。
 
-```cpp
-struct node {
-  int l, r;
-  int tag;   // the lazy propagation tag
-  int k, b;  // the linear function
-  int swc;   // the time of certificate violation
-} v[4 * N];
-
-int IntegerPart(double x) {
-  if (x >= 0 && x <= inf) return int(ceil(x));
-  return inf;
-}
-
-void push_up(int rt) {
-  int mx = v[rt << 1].b > v[rt << 1 | 1].b ? rt << 1 : rt << 1 | 1, mi = mx ^ 1;
-  v[rt].k = v[mx].k, v[rt].b = v[mx].b;
-  v[rt].swc = v[mx].k < v[mi].k
-                  ? IntegerPart(1.0 * (v[mx].b - v[mi].b) / (v[mi].k - v[mx].k))
-                  : inf;
-}
-
-void push_tag(int rt, int val) {
-  v[rt].tag += val, v[rt].swc -= val, v[rt].b += v[rt].k * val;
-}
-
-void push_down(int rt) {
-  if (v[rt].tag)
-    push_tag(rt << 1, v[rt].tag), push_tag(rt << 1 | 1, v[rt].tag),
-        v[rt].tag = 0;
-}
-
-void checkswitch(int rt) {
-  if (v[rt].l == v[rt].r) return;
-  push_down(rt);
-  if (v[rt].swc <= 0) checkswitch(rt << 1), checkswitch(rt << 1 | 1);
-  push_up(rt);
-}
-
-void build(int rt, int l, int r) {
-  v[rt].l = l, v[rt].r = r;
-  if (l == r) return v[rt].k = k[l], v[rt].b = b[l], void();
-  int mid = (l + r) >> 1;
-  build(rt << 1, l, mid);
-  build(rt << 1 | 1, mid + 1, r);
-  push_up(rt);
-}
-
-void TranslateLeft(int rt, int l, int r, int val) {
-  if (l <= v[rt].l && v[rt].r <= r) return push_tag(rt, val), checkswitch(rt);
-  int mid = v[rt << 1].r;
-  push_down(rt);
-  if (l <= mid) TranslateLeft(rt << 1, l, r, val);
-  if (mid < r) TranslateLeft(rt << 1 | 1, l, r, val);
-  push_up(rt);
-}
-
-int QueryMax(int rt, int l, int r) {
-  if (l <= v[rt].l && v[rt].r <= r) return v[rt].b;
-  int mid = v[rt << 1].r, res = 0;
-  push_down(rt);
-  if (l <= mid) res = max(res, QueryMax(rt << 1, l, r));
-  if (mid < r) res = max(res, QueryMax(rt << 1 | 1, l, r));
-  return res;
-}
-```
+???+ example "参考实现"
+    ```cpp
+    --8<-- "docs/ds/code/ktt/ktt.cpp:core"
+    ```
 
 ### 复杂度分析
 
@@ -212,7 +151,7 @@ $$
 \end{aligned}
 $$
 
-需要注意的是，这仅仅给出的是上界，复杂度的下界应为 $O(\lambda_{s}(n)\log n)$。笔者猜测这里的势能分析构造应当参考 Davenport-Schinzel 序列对应的 $\lambda_{s}(n)$ 的通项公式以获取更紧的上界。[^ref7]
+需要注意的是，这仅仅给出的是上界，复杂度的下界应为 $O(\lambda_{s}(n)\log n)$。笔者猜测这里的势能分析构造应当参考 Davenport-Schinzel 序列对应的 $\lambda_{s}(n)$ 的通项公式以获取更紧的上界。
 
 ### 近似情况
 
@@ -232,20 +171,10 @@ $$
 \mathfrak U_F(x) \geq \tilde{\mathfrak U}_F(x) \geq \mathfrak U_F(x) - \epsilon \mathfrak E_F(x)
 $$
 
-那么在复杂情况下我们可以做到 $O((1/\epsilon^2)n\log^3 n)$，与多项式次数无关，以及我们允许函数同时进行区间左移或者右移。[^ref1][^ref2][^ref3][^ref5]
+那么在复杂情况下我们可以做到 $O((1/\epsilon^2)n\log^3 n)$，与多项式次数无关，以及我们允许函数同时进行区间左移或者右移。[^ref1]
 
 ## 参考资料
 
-[^ref1]: P. K. Agarwal, G. Cormode, Z. Haung, J. M. Phillips, Z. Wei, and K. Yi. Mergeable coresets. 2011.
+[^ref1]: P. K. Agarwal, S. Har-Peled, and K. R. Varadarajan. Approximating extent measures of points. J. ACM, 51(4):606–635, July 2004.
 
-[^ref2]: P. K. Agarwal, S. Har-Peled, and K. R. Varadarajan. Approximating extent measures of points. J. ACM, 51(4):606–635, July 2004.
-
-[^ref3]: P. K. Agarwal and M. Sharir. Davenport-schinzel sequences and their geometric applications. In J.-R. Sack and J. Urrutia, editors, Handbook of Computational Geometry, pages 1–47 North-Holland, Amsterdam, 2000.
-
-[^ref4]: G. Alexandron, H. Kaplan, and M. Sharir. Kinetic and dynamic data structures for convex hulls and upper envelopes. Computational Geometry, 36(2):144–158, 2007.
-
-[^ref5]: G. Barequet and S. Har-Peled. Efficiently approximating the minimum-volume bounding box of a point set in three dimensions. Journal of Algorithms, 38(1):91–109, 2001.
-
-[^ref6]: J. Basch, L. J. Guibas, and J. Hershberger. Data structures for mobile data. Journal of Algorithms, 31(1):1–28, 1999.
-
-[^ref7]: M. Sharir. Almost tight upper bounds for lower envelopes in higher dimensions. Discrete & Computational Geometry, 12(1):327–345, sep 1994.
+[^ref2]: J. Basch, L. J. Guibas, and J. Hershberger. Data structures for mobile data. Journal of Algorithms, 31(1):1–28, 1999.
