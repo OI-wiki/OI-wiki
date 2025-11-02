@@ -232,7 +232,7 @@ $$
 \mathfrak U_F(x) \geq \tilde{\mathfrak U}_F(x) \geq \mathfrak U_F(x) - \epsilon \mathfrak E_F(x)
 $$
 
-那么在复杂情况下我们可以做到 $O((1/\epsilon^2)n\log^3 n)$，完全脱离多项式次数，以及我们允许函数同时进行区间左移或者右移。
+那么在复杂情况下我们可以做到 $O((1/\epsilon^2)n\log^3 n)$，与多项式次数无关，以及我们允许函数同时进行区间左移或者右移。
 
 Author: Jerry3128.
 
