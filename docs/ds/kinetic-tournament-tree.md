@@ -1,4 +1,4 @@
-Author: Jerry3128.
+Author: Jerry3128
 
 ## 问题引入
 
