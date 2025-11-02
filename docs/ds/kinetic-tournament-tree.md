@@ -111,7 +111,7 @@ void modify(int rt, int l, int r, int val) {
 }
 
 int ask(int rt, int l, int r) {
-  if (l <= v[rt].l && v[rt].r <= r) return v[rt].L.b;
+  if (l <= v[rt].l && v[rt].r <= r) return v[rt].b;
   int mid = v[rt << 1].r, res = 0;
   push_down(rt);
   if (l <= mid) res = max(res, ask(rt << 1, l, r));
