@@ -13,7 +13,7 @@ Author: Jerry3128.
 
 ## Kinetic Data Structures
 
-KDS 用于维护几何对象系统在连续运动过程中的属性。
+KDS 用于维护几何对象系统在连续运动过程中的属性。[^ref6]
 
 ### 事件队列
 
@@ -36,7 +36,7 @@ Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Structures（简�
 -   为静态算法中的关键操作（例如比较）生成正确性证书，并将每个证书与一个全局事件队列关联，记录该证书可能失效的时间点。
 -   当某个证书失效时，我们能够高效地更新算法输出并维护证书集合。
 
-在算法竞赛社区，它兴起于 2020 年国家集训队论文，浅谈函数最值的动态维护。为此我们将介绍为算法竞赛界进行一些优化过后的 KTT。
+在算法竞赛社区，它兴起于 2020 年国家集训队论文，浅谈函数最值的动态维护。学术界的 KTT 与算法竞赛界的 KTT 在应用领域和实现上有所不同[^ref4]，为此我们将介绍为算法竞赛界进行一些优化过后的 KTT。
 
 线段树和平衡树是 KTT 的基础，因为它依赖于这两个结构之一。
 
@@ -212,7 +212,7 @@ $$
 \end{aligned}
 $$
 
-需要注意的是，这仅仅给出的是上界，复杂度的下界应为 $O(\lambda_{s}(n)\log n)$。笔者猜测这里的势能分析构造应当参考 Davenport-Schinzel 序列对应的 $\lambda_{s}(n)$ 的通项公式以获取更紧的上界。
+需要注意的是，这仅仅给出的是上界，复杂度的下界应为 $O(\lambda_{s}(n)\log n)$。笔者猜测这里的势能分析构造应当参考 Davenport-Schinzel 序列对应的 $\lambda_{s}(n)$ 的通项公式以获取更紧的上界。[^ref7]
 
 ### 近似情况
 
@@ -232,7 +232,7 @@ $$
 \mathfrak U_F(x) \geq \tilde{\mathfrak U}_F(x) \geq \mathfrak U_F(x) - \epsilon \mathfrak E_F(x)
 $$
 
-那么在复杂情况下我们可以做到 $O((1/\epsilon^2)n\log^3 n)$，与多项式次数无关，以及我们允许函数同时进行区间左移或者右移。
+那么在复杂情况下我们可以做到 $O((1/\epsilon^2)n\log^3 n)$，与多项式次数无关，以及我们允许函数同时进行区间左移或者右移。[^ref1][^ref2][^ref3][^ref5]
 
 ## 参考资料
 
@@ -248,18 +248,4 @@ $$
 
 [^ref6]: J. Basch, L. J. Guibas, and J. Hershberger. Data structures for mobile data. Journal of Algorithms, 31(1):1–28, 1999.
 
-[^ref7]: F. Botana and T. Recio. Computing envelopes in dynamic geometry environments. Annals of Mathematics and Artificial Intelligence, 80(1):3–20, may 2017.
-
-[^ref8]: G. Brodal and R. Jacob. Dynamic planar convex hull. In The 43rd Annual IEEE Symposium on Foundations of Computer Science, 2002. Proceedings., pages 617–626, 2002.
-
-[^ref9]: B. Chazelle and L. J. Guibas. Fractional cascading: II. applications. Algorithmica, 1(1):163–191, nov 1986.
-
-[^ref10]: H. Edelsbrunner, L. J. Guibas, and M. Sharir. The upper envelope of piecewise linear functions: Algorithms and applications. Discrete & Computational Geometry, 4(1):311–336, aug 1989.
-
-[^ref11]: M. Keil. A simple algorithm for determining the envelope of a set of lines. Information Processing Letters, 39(3):121–124, 1991.
-
-[^ref12]: M. H. Overmars and J. van Leeuwen. Maintenance of configurations in the plane. Journal of Computer and System Sciences, 23(2):166–204, 1981.
-
-[^ref13]: T. Schulz and B. J¨uttler. Envelope computation in the plane by approximate implicitization. Applicable Algebra in Engineering, Communication and Computing, 22(4):265–288, nov 2011. 10
-
-[^ref14]: M. Sharir. Almost tight upper bounds for lower envelopes in higher dimensions. Discrete & Computational Geometry, 12(1):327–345, sep 1994.
+[^ref7]: M. Sharir. Almost tight upper bounds for lower envelopes in higher dimensions. Discrete & Computational Geometry, 12(1):327–345, sep 1994.
