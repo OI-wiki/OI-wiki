@@ -56,7 +56,7 @@ Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Structures（简�
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/ds/code/ktt/ktt.cpp:core"
+    --8<-- "docs/ds/code/ktt/ktt_1.cpp:core"
     ```
 
 ### 复杂度分析
