@@ -105,6 +105,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
             if met[MAXN - a[i]]:
                 ans += 1
             met[a[i] + MAXN] = True
+        ans *= 2
         ```
     
     === "Java"
@@ -114,6 +115,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
             if (met[MAXN - a[i]]) ++ans;
             met[MAXN + a[i]] = true;
         }
+        ans *= 2;
         ```
 
 ### 复杂度分析
