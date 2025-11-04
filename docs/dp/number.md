@@ -196,7 +196,7 @@
       pre();
       while (~scanf("%d%d", &x, &y)) {
         if (!x && !y) break;
-        x = min(x, y), y = max(x, y);
+        if (x > y) swap(x, y);
         printf("%d\n", cal(y + 1) - cal(x));
       }
       return 0;

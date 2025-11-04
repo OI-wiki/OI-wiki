@@ -233,6 +233,7 @@ nav:
     - 复数: math/complex.md
     - 数论:
       - 数论基础: math/number-theory/basic.md
+      - 模算术简介: math/number-theory/mod-arithmetic.md
       - 素数: math/number-theory/prime.md
       - 最大公约数: math/number-theory/gcd.md
       - 欧拉函数: math/number-theory/euler-totient.md
@@ -250,7 +251,7 @@ nav:
       - 二次剩余: math/number-theory/quad-residue.md
       - 阶 & 原根: math/number-theory/primitive-root.md
       - 离散对数: math/number-theory/discrete-logarithm.md
-      - 剩余: math/number-theory/residue.md
+      - 高次剩余 & 单位根: math/number-theory/residue.md
       - 数论分块: math/number-theory/sqrt-decomposition.md
       - 狄利克雷卷积: math/number-theory/dirichlet.md
       - 莫比乌斯反演: math/number-theory/mobius.md

@@ -298,7 +298,9 @@ $$
 
 我们还可以把模数进一步推广为 **整数**（只需补充 $\left(\dfrac{a}{-1}\right)$、$\left(\dfrac{a}{0}\right)$ 和 $\left(\dfrac{a}{2}\right)$ 的定义），这样就得到了 [Kronecker 符号](https://en.wikipedia.org/wiki/Kronecker_symbol)。
 
-## 相关算法
+## 模意义下开平方
+
+本节讨论模意义下开平方的算法。特别地，本节主要介绍素数模的情形。对于一般模数的情形，可以参考 [模意义下开高次方](./residue.md#模意义下开方) 的讨论。
 
 ### 特殊情况时的算法
 

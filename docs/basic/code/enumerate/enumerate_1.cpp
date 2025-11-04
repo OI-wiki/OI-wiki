@@ -9,5 +9,5 @@ int solve(int n, int a[]) {
     if (met[MAXN - a[i]]) ++ans;  // 如果桶内有想要的元素，答案加一
     met[MAXN + a[i]] = true;  // 无论如何，都要把当前元素放进桶里
   }
-  return ans;
+  return ans * 2;
 }
