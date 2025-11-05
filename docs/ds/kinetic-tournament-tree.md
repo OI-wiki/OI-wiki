@@ -38,7 +38,7 @@ Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Structures（简�
 
 在算法竞赛社区，它兴起于 2020 年国家集训队论文《[浅谈函数最值的动态维护](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/IOI2020%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87%E9%9B%86%20%E9%9D%9E%E6%AD%A3%E5%BC%8F%E7%89%88.pdf)》。学术界的 KTT 与算法竞赛界的 KTT 在应用领域和实现上有所不同，为此我们将介绍为算法竞赛界进行一些优化过后的 KTT。
 
-线段树和平衡树是 KTT 的基础，因为它依赖于这两个结构之一。
+[线段树](./seg.md) 和 [平衡树](./bst.md) 是 KTT 的基础，因为它依赖于这两个结构之一。
 
 ### 基本结构
 
