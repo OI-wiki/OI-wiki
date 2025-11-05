@@ -1,5 +1,7 @@
 author: Jerry3128
 
+前置知识：[线段树](./seg.md) 和 [平衡树](./bst.md)。
+
 ## 问题引入
 
 给定单变量线性函数序列 $F=\{f_1,\dots,f_n\}$：$f_i: \mathbf{R} \rightarrow \mathbf{R}$。其中 $f_i(x)=k_ix+b_i$ 且 $k_i,b_i \in \mathbf{R}$。我们需要维护以下操作：
