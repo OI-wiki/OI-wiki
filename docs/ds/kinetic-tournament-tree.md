@@ -33,7 +33,7 @@ KDS 的一个关键方面是需要拥有容易维护的事件，即事件队列�
 
 ### 简介
 
-Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Structures（简称 KDS），首次出现于 1999 年的 [Data Structures for Mobile Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889)[^ref2]，被用于维护连续变化的数据。更普遍的，对于一个采用如下动态化策略（kinetization strategy）的结构，都可以被成为 Kinetic Tournament：
+Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Structures（简称 KDS），首次出现于 1999 年的 [Data Structures for Mobile Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889)，被用于维护连续变化的数据。更普遍的，对于一个采用如下动态化策略（kinetization strategy）的结构，都可以被成为 Kinetic Tournament：
 
 -   为静态算法中的关键操作（例如比较）生成正确性证书，并将每个证书与一个全局事件队列关联，记录该证书可能失效的时间点。
 -   当某个证书失效时，我们能够高效地更新算法输出并维护证书集合。
@@ -173,7 +173,7 @@ $$
 \mathfrak U_F(x) \geq \tilde{\mathfrak U}_F(x) \geq \mathfrak U_F(x) - \epsilon \mathfrak E_F(x)
 $$
 
-那么在复杂情况下我们可以做到 $O((1/\epsilon^2)n\log^3 n)$，与多项式次数无关，以及我们允许函数同时进行区间左移或者右移。[^ref1]
+那么在复杂情况下我们可以做到 $O((1/\epsilon^2)n\log^3 n)$，与多项式次数无关，以及我们允许函数同时进行区间左移或者右移。
 
 ## 参考文献与注释
 
