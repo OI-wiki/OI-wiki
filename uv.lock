@@ -329,7 +329,7 @@ requires-dist = [
     { name = "mkdocs-toggle-sidebar-plugin", specifier = "==0.0.8" },
     { name = "pygments" },
     { name = "pymdown-extensions", specifier = "==10.16.1" },
-    { name = "python-markdown-document-offsets-injection-extension", specifier = "==0.5.13" },
+    { name = "python-markdown-document-offsets-injection-extension", specifier = "==0.5.16" },
     { name = "requests" },
 ]
 
@@ -399,14 +399,14 @@ wheels = [
 
 [[package]]
 name = "python-markdown-document-offsets-injection-extension"
-version = "0.5.13"
+version = "0.5.16"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "markdown" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/83/51/e23273f78c5a10cdb8be196354e44845e36be0944926355d86a2c5ae0b18/python_markdown_document_offsets_injection_extension-0.5.13.tar.gz", hash = "sha256:908b4ee3274b3d16b10bf883c5a97d90628066dcc5dd5803c393cf59348a87ef", size = 17779, upload-time = "2025-07-26T16:24:48.104Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ac/5e/8158c7db0e0359fa911f5e32c26bd85c0d5f296b85cde1f04f6e7e0c6144/python_markdown_document_offsets_injection_extension-0.5.16.tar.gz", hash = "sha256:e9c82625648aa42f1ac8317e73e6abe04dcc37f72ee31ff9650a3837ebaa2988", size = 17778, upload-time = "2025-11-08T10:36:07.946Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/60/a2/b425c48ed7dc15f1aa4ef0d2196399bcd82317a7eadfd4027648b5bf0be4/python_markdown_document_offsets_injection_extension-0.5.13-py3-none-any.whl", hash = "sha256:88824b1c0b5c3db78cfdb39f41fa1029945c6c97e15f71c97539cf167bd8a8ea", size = 4514, upload-time = "2025-07-26T16:24:46.774Z" },
+    { url = "https://files.pythonhosted.org/packages/04/0a/232564d9491e47e01a3ed40f5bffe5847354cf8a1ad5556dae3b8012b1c7/python_markdown_document_offsets_injection_extension-0.5.16-py3-none-any.whl", hash = "sha256:97ade1d6a45f2ee0a8ffad28a12e9eca1804857797177f2a8f3c6327adc59c54", size = 4513, upload-time = "2025-11-08T10:36:06.548Z" },
 ]
 
 [[package]]
