@@ -1,4 +1,4 @@
-author: iamtwz, Marcythm, 383494, abc1763613206, aofall, Chrogeek, CoelacanthusHex, Dafenghh, DanJoshua, Enter-tainer, GavinZhengOI, Gesrua, Henry-ZHR, Ir1d, kenlig, ksyx, lyccrius, Menci, opsiff, orzAtalod, ouuan, partychicken, Persdre, qq2964, Ruakker, shuzhouliu, sshwy, StudyingFather, szdytom, Tiphereth-A, Xeonacid, ZXyaang, rickyxrc, XuYueming520
+author: Ir1d, Tiphereth-A, sshwy, ksyx, Marcythm, orzAtalod, Xeonacid, Enter-tainer, GavinZhengOI, Henry-ZHR, iamtwz, 383494, abc1763613206, aofall, Chrogeek, CoelacanthusHex, Dafenghh, DanJoshua, Gesrua, kenlig, lyccrius, Menci, opsiff, ouuan, partychicken, Persdre, Ruakker, shuzhouliu, StudyingFather, szdytom, XuYueming520, ZXyaang, alphagocc, c-forrest, Early0v0, GoodCoder666, HeRaNO, liangbob2023, qq2964, r-value, rickyxrc, Rickyxrc, shawlleyw, Unnamed2964, zica87, ZnPdCo, sun2snow
 
 ## 概述
 
@@ -23,7 +23,7 @@ AC 自动机在初始时会将若干个模式串插入到一个 Trie 里，然�
 
 需要注意的是，Trie 中的结点表示的是某个模式串的前缀。我们在后文也将其称作状态。一个结点表示一个状态，Trie 的边就是状态的转移。
 
-形式化地说，对于若干个模式串 $s_1,s_2\dots s_n$，将它们构建一棵字典树后的所有状态的集合记作 $Q$。
+形式化地说，对于若干个模式串 $s_1,s_2,\cdots s_n$，将它们构建一棵字典树后的所有状态的集合记作 $Q$。
 
 ## 失配指针
 
@@ -85,7 +85,7 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
 2.  队列 `q`：用于 BFS 遍历字典树。
 3.  `tr[u].fail`：结点 $u$ 的 fail 指针。
 
-???+ note "实现"
+??? note "实现"
     === "C++"
         ```cpp
         void build() {
@@ -233,7 +233,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 `build` 函数在原先的基础上，增加了入度统计一部分，为拓扑排序做准备。
 
-???+ note "构建"
+??? note "构建"
     ```cpp
     void build() {
       queue<int> q;
@@ -256,7 +256,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 然后我们在查询的时候就可以只为找到结点的 `ans` 打上标记，在最后再用拓扑排序求出答案。
 
-???+ note "查询"
+??? note "查询"
     ```cpp
     void query(const char t[]) {
       int u = 0;
@@ -283,7 +283,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 最后是主函数：
 
-???+ note "主函数"
+??? note "主函数"
     ```cpp
     int main() {
       // do_something();
@@ -296,7 +296,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
     }
     ```
 
-???+ note "完整代码"
+??? note "完整代码"
     [Luogu P5357【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)
     
     ```cpp
@@ -317,7 +317,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 主要代码如下。若不熟悉代码中的类型定义，可以先看末尾的完整代码：
 
-???+ note "查询部分主要代码"
+??? note "查询部分主要代码"
     ```cpp
     int query(const char t[]) {
       int u = 0, len = strlen(t + 1);
@@ -346,7 +346,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 那么我们在 `build` 的时候就可以这么写：
 
-???+ note "构建 fail 指针"
+??? note "构建 fail 指针"
     ```cpp
     void build() {
       queue<int> q;
@@ -376,7 +376,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 然后查询时就可以去掉跳 fail 的循环，将代码简化如下：
 
-???+ note "查询"
+??? note "查询"
     ```cpp
     int query(const char t[]) {
       int u = 0, mx = 0;
@@ -394,7 +394,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 `&` 运算后结果不为 $0$，则代表两个长度集的交集非空，我们此时就找到了一个匹配。
 
-???+ note "完整代码"
+??? note "完整代码"
     [P2292 \[HNOI2004\] L 语言](https://www.luogu.com.cn/problem/P2292)
     
     ```cpp
@@ -405,21 +405,21 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 时间复杂度：定义 $|s_i|$ 是模板串的长度，$|S|$ 是文本串的长度，$|\Sigma|$ 是字符集的大小（常数，一般为 $26$）。如果连了 trie 图，时间复杂度就是 $O(\sum|s_i|+n|\Sigma|+|S|)$，其中 $n$ 是 AC 自动机中结点的数目，并且最大可以达到 $O(\sum|s_i|)$。如果不连 trie 图，并且在构建 fail 指针的时候避免遍历到空儿子，时间复杂度就是 $O(\sum|s_i|+|S|)$。
 
-???+ note "模板 1"
+??? note "模板 1"
     [Luogu P3808 AC 自动机（简单版）](https://www.luogu.com.cn/problem/P3808)
     
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_1.cpp"
     ```
 
-???+ note "模板 2"
+??? note "模板 2"
     [Luogu P3796 AC 自动机（简单版 II）](https://www.luogu.com.cn/problem/P3796)
     
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_2.cpp"
     ```
 
-???+ note "模版 3"
+??? note "模版 3"
     [Luogu P5357【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)
     
     ```cpp
