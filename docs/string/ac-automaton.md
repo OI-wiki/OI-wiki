@@ -418,4 +418,3 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_3.cpp"
     ```
-
