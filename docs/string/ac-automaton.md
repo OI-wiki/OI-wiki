@@ -419,7 +419,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
     --8<-- "docs/string/code/ac-automaton/ac-automaton_2.cpp"
     ```
 
-??? note "模版 3"
+??? note "模板 3"
     [Luogu P5357【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)
     
     ```cpp
