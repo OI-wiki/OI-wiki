@@ -342,7 +342,7 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 
 3.  当前因子大于我们想要的因子了；
 
-4.  当前因子正好是我们想要的因子（此时判断是否需要更新最小 $\mathrm{ans}$）。
+4.  当前因子正好是我们想要的因子（此时判断是否需要更新最小 $\mathit{ans}$）。
 
 然后 dfs 里面不断一层一层枚举次数继续往下迭代可以。
 
