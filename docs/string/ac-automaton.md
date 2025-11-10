@@ -295,9 +295,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
     }
     ```
 
-??? note "完整代码"
-    [Luogu P5357【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)
-    
+??? note "模板题 [Luogu P5357「模板」AC 自动机](https://www.luogu.com.cn/problem/P5357) 拓扑排序优化参考代码"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_topu.cpp"
     ```
@@ -393,9 +391,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 `&` 运算后结果不为 $0$，则代表两个长度集的交集非空，我们此时就找到了一个匹配。
 
-??? note "完整代码"
-    [P2292 \[HNOI2004\] L 语言](https://www.luogu.com.cn/problem/P2292)
-    
+??? note "[P2292 \[HNOI2004\] L 语言](https://www.luogu.com.cn/problem/P2292) 完整代码"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac_automaton_luoguP2292.cpp"
     ```
@@ -414,7 +410,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
     --8<-- "docs/string/code/ac-automaton/ac-automaton_2.cpp"
     ```
 
-??? note "模板题 [Luogu P5357「模板」AC 自动机](https://www.luogu.com.cn/problem/P5357) 参考代码"
+??? note "模板题 [Luogu P5357「模板」AC 自动机](https://www.luogu.com.cn/problem/P5357) DFS 优化参考代码"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_3.cpp"
     ```
