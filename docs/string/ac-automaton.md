@@ -1,4 +1,4 @@
-author: iamtwz, Marcythm, 383494, abc1763613206, aofall, Chrogeek, CoelacanthusHex, Dafenghh, DanJoshua, Enter-tainer, GavinZhengOI, Gesrua, Henry-ZHR, Ir1d, kenlig, ksyx, lyccrius, Menci, opsiff, orzAtalod, ouuan, partychicken, Persdre, qq2964, Ruakker, shuzhouliu, sshwy, StudyingFather, szdytom, Tiphereth-A, Xeonacid, ZXyaang, rickyxrc, XuYueming520
+author: Ir1d, Tiphereth-A, sshwy, ksyx, Marcythm, orzAtalod, Xeonacid, Enter-tainer, GavinZhengOI, Henry-ZHR, iamtwz, 383494, abc1763613206, aofall, Chrogeek, CoelacanthusHex, Dafenghh, DanJoshua, Gesrua, kenlig, lyccrius, Menci, opsiff, ouuan, partychicken, Persdre, Ruakker, shuzhouliu, StudyingFather, szdytom, XuYueming520, ZXyaang, alphagocc, c-forrest, Early0v0, GoodCoder666, HeRaNO, liangbob2023, qq2964, r-value, rickyxrc, Rickyxrc, shawlleyw, Unnamed2964, zica87, ZnPdCo, sun2snow
 
 ## 概述
 
@@ -23,7 +23,7 @@ AC 自动机在初始时会将若干个模式串插入到一个 Trie 里，然�
 
 需要注意的是，Trie 中的结点表示的是某个模式串的前缀。我们在后文也将其称作状态。一个结点表示一个状态，Trie 的边就是状态的转移。
 
-形式化地说，对于若干个模式串 $s_1,s_2\dots s_n$，将它们构建一棵字典树后的所有状态的集合记作 $Q$。
+形式化地说，对于若干个模式串 $s_1,s_2,\cdots,s_n$，将它们构建一棵字典树后的所有状态的集合记作 $Q$。
 
 ## 失配指针
 
@@ -166,35 +166,34 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 接下来分析匹配函数 `query`：
 
-### 实现
-
-=== "C++"
-    ```cpp
-    int query(const char t[]) {
-      int u = 0, res = 0;
-      for (int i = 1; t[i]; i++) {
-        u = tr[u].son[t[i] - 'a'];
-        for (int j = u; j && tr[j].cnt != -1; j = tr[j].fail) {
-          res += tr[j].cnt, tr[j].cnt = -1;
+???+ note "实现"
+    === "C++"
+        ```cpp
+        int query(const char t[]) {
+          int u = 0, res = 0;
+          for (int i = 1; t[i]; i++) {
+            u = tr[u].son[t[i] - 'a'];
+            for (int j = u; j && tr[j].cnt != -1; j = tr[j].fail) {
+              res += tr[j].cnt, tr[j].cnt = -1;
+            }
+          }
+          return res;
         }
-      }
-      return res;
-    }
-    ```
-
-=== "Python"
-    ```python
-    def query(t: str) -> int:
-        u, res = 0, 0
-        for c in t:
-            u = tr[u][c - ord("a")]
-            j = u
-            while j and e[j] != -1:
-                res += e[j]
-                e[j] = -1
-                j = fail[j]
-        return res
-    ```
+        ```
+    
+    === "Python"
+        ```python
+        def query(t: str) -> int:
+            u, res = 0, 0
+            for c in t:
+                u = tr[u][c - ord("a")]
+                j = u
+                while j and e[j] != -1:
+                    res += e[j]
+                    e[j] = -1
+                    j = fail[j]
+            return res
+        ```
 
 ### 解释
 
@@ -296,9 +295,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
     }
     ```
 
-???+ note "完整代码"
-    [Luogu P5357【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)
-    
+??? note "模板题 [Luogu P5357「模板」AC 自动机](https://www.luogu.com.cn/problem/P5357) 拓扑排序优化参考代码"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_topu.cpp"
     ```
@@ -394,9 +391,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 `&` 运算后结果不为 $0$，则代表两个长度集的交集非空，我们此时就找到了一个匹配。
 
-???+ note "完整代码"
-    [P2292 \[HNOI2004\] L 语言](https://www.luogu.com.cn/problem/P2292)
-    
+??? note "[P2292 \[HNOI2004\] L 语言](https://www.luogu.com.cn/problem/P2292) 完整代码"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac_automaton_luoguP2292.cpp"
     ```
@@ -405,23 +400,17 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 时间复杂度：定义 $|s_i|$ 是模板串的长度，$|S|$ 是文本串的长度，$|\Sigma|$ 是字符集的大小（常数，一般为 $26$）。如果连了 trie 图，时间复杂度就是 $O(\sum|s_i|+n|\Sigma|+|S|)$，其中 $n$ 是 AC 自动机中结点的数目，并且最大可以达到 $O(\sum|s_i|)$。如果不连 trie 图，并且在构建 fail 指针的时候避免遍历到空儿子，时间复杂度就是 $O(\sum|s_i|+|S|)$。
 
-???+ note "模板 1"
-    [Luogu P3808 AC 自动机（简单版）](https://www.luogu.com.cn/problem/P3808)
-    
+??? note "模板题 [Luogu P3808 AC 自动机（简单版）](https://www.luogu.com.cn/problem/P3808) 参考代码"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_1.cpp"
     ```
 
-???+ note "模板 2"
-    [Luogu P3796 AC 自动机（简单版 II）](https://www.luogu.com.cn/problem/P3796)
-    
+??? note "模板题 [Luogu P3796 AC 自动机（简单版 II）](https://www.luogu.com.cn/problem/P3796) 参考代码"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_2.cpp"
     ```
 
-???+ note "模版 3"
-    [Luogu P5357【模板】AC 自动机](https://www.luogu.com.cn/problem/P5357)
-    
+??? note "模板题 [Luogu P5357「模板」AC 自动机](https://www.luogu.com.cn/problem/P5357) DFS 优化参考代码"
     ```cpp
     --8<-- "docs/string/code/ac-automaton/ac-automaton_3.cpp"
     ```
