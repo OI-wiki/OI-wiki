@@ -114,9 +114,9 @@ $$
 3 & \textbf{end if}\\
 4 & \textit{result} \gets \text{FastPow}(a, n / 2) \\
 5 & \textbf{if }n\bmod 2 = 0\textbf{ then}\\
-6 & \qquad \textbf{return }\textit{result}\cdot\textit{result}\cdot a\\
+6 & \qquad \textbf{return }\textit{result}\cdot\textit{result}\\
 7 & \textbf{else}\\
-8 & \qquad \textbf{return }\textit{result}\cdot\textit{result}\\
+8 & \qquad \textbf{return }\textit{result}\cdot\textit{result}\cdot a\\
 9 & \textbf{end if}
 \end{array}
 \end{array}
