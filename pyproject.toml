@@ -11,7 +11,7 @@ dependencies = [
     "beautifulsoup4",
     "requests",
     "markdown==3.9",
-    "python-markdown-document-offsets-injection-extension==0.5.13",
+    "python-markdown-document-offsets-injection-extension==0.5.16",
     "mkdocs-toggle-sidebar-plugin==0.0.8",
 ]
 
