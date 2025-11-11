@@ -14,7 +14,7 @@ author: Ir1d, Anguei, hsfzLZH1
 
 ## 性质
 
-一般使用 Bellman–Ford 或队列优化的 Bellman–Ford（俗称 SPFA，在某些随机图跑得很快）判断图中是否存在负环，最坏时间复杂度为 $O(nm)$。
+一般使用 Bellman–Ford 或队列优化的 Bellman–Ford（俗称 SPFA，在某些随机图跑得很快）判断图中是否存在负环，最坏时间复杂度为 $O(VE)$。
 
 ## 常用变形技巧
 

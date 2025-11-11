@@ -47,7 +47,7 @@ Welsh–Powell 算法是一种在 **不限制最大着色数** 时寻找着色�
 
 $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 
-按 Welsh–Powell 算法着色后的颜色数至多为 $\max_{i=1}^n\min\{\deg(v_i)+1,i\}$, 该算法的时间复杂度为 $O\left(n\max_{i=1}^n\min\{\deg(v_i)+1,i\}\right)=O(n^2)$。
+按 Welsh–Powell 算法着色后的颜色数至多为 $\max_{i=1}^n\min\{\deg(v_i)+1,i\}$, 该算法的时间复杂度为 $O\left(V\max_{i=1}^V\min\{\deg(v_i)+1,i\}\right)=O(V^2)$。
 
 #### 过程
 
@@ -149,7 +149,7 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 
 若 G 是二部图，则 $\chi'(G)=\Delta(G)$
 
-当 $n$ 为奇数（$n \neq 1$）时，$\chi'(K_n)=n$; 当 $n$ 为偶数时，$\chi'(K_n)=n-1$
+当 $V$ 为奇数（$V \neq 1$）时，$\chi'(K_V)=V$; 当 $V$ 为偶数时，$\chi'(K_V)=V-1$
 
 ### 二分图 Vizing 定理的构造性证明
 
@@ -170,7 +170,7 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
     
     所以我们可以在增广之后直接将连接 $x$ 和 $y$ 的边的颜色设为 $l_x$。
     
-    总构造时间复杂度为 $O(nm)$。
+    总构造时间复杂度为 $O(VE)$。
 
 ???+ note "示例代码 [UVa10615 Rooks](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=18&page=show_problem&problem=1556)"
     ```cpp

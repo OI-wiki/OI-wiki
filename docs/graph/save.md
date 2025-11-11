@@ -95,13 +95,13 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 ### 复杂度
 
-查询是否存在某条边：$O(m)$。
+查询是否存在某条边：$O(E)$。
 
-遍历一个点的所有出边：$O(m)$。
+遍历一个点的所有出边：$O(E)$。
 
-遍历整张图：$O(nm)$。
+遍历整张图：$O(VE)$。
 
-空间复杂度：$O(m)$。
+空间复杂度：$O(E)$。
 
 ### 应用
 
@@ -184,11 +184,11 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 查询是否存在某条边：$O(1)$。
 
-遍历一个点的所有出边：$O(n)$。
+遍历一个点的所有出边：$O(V)$。
 
-遍历整张图：$O(n^2)$。
+遍历整张图：$O(V^2)$。
 
-空间复杂度：$O(n^2)$。
+空间复杂度：$O(V^2)$。
 
 ### 应用
 
@@ -278,9 +278,9 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 遍历点 $u$ 的所有出边：$O(d^+(u))$。
 
-遍历整张图：$O(n+m)$。
+遍历整张图：$O(V+E)$。
 
-空间复杂度：$O(m)$。
+空间复杂度：$O(E)$。
 
 ### 应用
 
@@ -380,9 +380,9 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 遍历点 $u$ 的所有出边：$O(d^+(u))$。
 
-遍历整张图：$O(n+m)$。
+遍历整张图：$O(V+E)$。
 
-空间复杂度：$O(m)$。
+空间复杂度：$O(E)$。
 
 ### 应用
 

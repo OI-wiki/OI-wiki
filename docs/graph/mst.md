@@ -129,11 +129,11 @@ Prim 算法是另一种常见并且好写的最小生成树算法。该算法的
 
 堆优化的方式类似 Dijkstra 的堆优化，但如果使用二叉堆等不支持 $O(1)$ decrease-key 的堆，复杂度就不优于 Kruskal，常数也比 Kruskal 大。所以，一般情况下都使用 Kruskal 算法，在稠密图尤其是完全图上，暴力 Prim 的复杂度比 Kruskal 优，但 **不一定** 实际跑得更快。
 
-暴力：$O(n^2+m)$。
+暴力：$O(V^2+E)$。
 
-二叉堆：$O((n+m) \log n)$。
+二叉堆：$O((V+E) \log V)$。
 
-Fib 堆：$O(n \log n + m)$。
+Fib 堆：$O(V \log V + E)$。
 
 伪代码：
 

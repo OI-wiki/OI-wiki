@@ -82,7 +82,7 @@ Dinkelbach 算法[^note1]的大概思想是每次用上一轮的答案当做新�
     
     因为我们只需要判最小值是否小于 $0$，所以只需要判断图中是否存在负环即可。
     
-    另外本题存在一种复杂度 $O(nm)$ 的算法，如果有兴趣可以阅读 [这篇文章](https://www.cnblogs.com/y-clever/p/7043553.html)。
+    另外本题存在一种复杂度 $O(VE)$ 的算法，如果有兴趣可以阅读 [这篇文章](https://www.cnblogs.com/y-clever/p/7043553.html)。
 
 ??? note "参考代码"
     ```cpp
