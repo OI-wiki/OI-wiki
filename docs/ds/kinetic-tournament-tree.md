@@ -65,7 +65,7 @@ Kinetic Tournament Tree（简称 KTT），属于 Kinetic Data Structures（简�
 
 证明 KTT 在当前的维护需要用到势能分析。
 
-$d(x)$ 为节点 $x$ 在线段树上的深度，根节点的深度为 $1$。定义节点 $x$ 在线段树上的势能为：
+设 $d(x)$ 为节点 $x$ 在线段树上的深度，根节点的深度为 $1$。定义节点 $x$ 在线段树上的势能为：
 
 $$
 \rho(x) = \begin{cases}
