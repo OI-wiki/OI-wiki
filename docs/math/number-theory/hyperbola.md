@@ -112,7 +112,7 @@ $$
 \mathcal S_h(n) = \left\{H(x) : x \in D(n)\right\}.
 $$
 
-本节讨论已知 $f,g$ 的块筛时，求它们的 Dirichlet 卷积 $h = f\ast g$ 的块筛的计算方法。这一问题也称为 **块筛卷积** 问题。
+本节讨论 **块筛卷积** 问题的计算方法：已知 $f,g$ 的块筛时，求它们的 Dirichlet 卷积 $h = f\ast g$ 的块筛。
 
 ### 朴素算法
 
@@ -207,13 +207,18 @@ $$
 当 $g$ 是积性函数时，可以应用线性筛，即 $T_0(z)=\Theta(z)$，所以最优需要预处理到 $z = n^{2/3}$ 处，总时间复杂度为 $O(n^{2/3})$；对于更一般的情形，总时间复杂度则为 $O(n^{2/3}(\log n)^{1/3})$。这些都和块筛部分的分析完全一致。
 
 ??? warning "递归实现时，不使用记忆化将导致复杂度错误"
+    杜教筛的表达式中，计算 $G(n)$ 的值，需要依赖于 $D(n)\setminus\{n\}$ 中 $G$ 的取值。此处保证复杂度的关键在于注意到集合 $D(n)$ 的递归结构：当 $m\in D(n)$ 时，$D(m)\subseteq D(n)$。利用这一性质，可以通过记忆化加速计算。利用记忆化后，如前文所示，算法的复杂度是 $O(n^{3/4})$ 的。此处要说明的是，如果不使用记忆化，算法复杂度是错误的。
+    
     设不使用记忆化时，应用递归方法计算 $G(n)$ 的复杂度是 $T(n)$。那么，有
     
     $$
-    T(n) = \Theta(\sqrt{n}) + \sum_{d\in D(n),~d\neq 1}T(d).
+    \begin{aligned}
+    T(n) &= \Theta(\sqrt{n}) + \sum_{d\in D(n),~d\neq 1}T(d)\\
+    &= \Theta(\sqrt{n}) + \sum_{x=1}^{\lfloor n/\lfloor\sqrt{n}\rfloor\rfloor - 1} T(x) + \sum_{x = 1}^{\lfloor\sqrt{n}\rfloor}T\left(\left\lfloor\dfrac{n}{x}\right\rfloor\right).
+    \end{aligned}
     $$
     
-    它增长的速度为 $O(n^{\alpha})$，其中，$\alpha\approx 1.73$ 是 $\zeta(\alpha)=2$ 的根。
+    利用类似 [主定理](../../basic/complexity.md#主定理-master-theorem) 的证明思路，可以说明，最后一项主导了该式的增长，且 $T(n)\in\Theta(n^\alpha)$，其中，$\alpha\approx 1.73$ 是 $\zeta(\alpha)=2$ 的根。
 
 ## 例题
 
