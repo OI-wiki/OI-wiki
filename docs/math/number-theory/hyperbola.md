@@ -114,6 +114,12 @@ $$
 
 本节讨论 **块筛卷积** 问题的计算方法：已知 $f,g$ 的块筛时，求它们的 Dirichlet 卷积 $h = f\ast g$ 的块筛。
 
+$$
+\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ}
+\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}
+$$
+
+
 ### 朴素算法
 
 朴素算法就是将块筛的计算看作是 $|D(n)|$ 次前缀和点值的计算。这样做的总时间复杂度为

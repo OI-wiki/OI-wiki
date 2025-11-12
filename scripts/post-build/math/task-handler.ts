@@ -64,8 +64,7 @@ export class MathRenderer {
       // in windows, relative return with \, so need to replace
       fontURL: path.relative(path.dirname(MATHJAX_TARGET_CSS_FILE), MATHJAX_TARGET_FONTS_DIR).replaceAll("\\", "/"),
       adaptiveCSS: false,
-      displayOverflow: "scroll",
-      mathcal: "caligraphic"
+      displayOverflow: "scroll"
     });
 
     this.document = mathjax.document("", {
