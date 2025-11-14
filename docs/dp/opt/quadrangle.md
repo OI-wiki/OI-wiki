@@ -52,7 +52,7 @@ $$
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/dp/code/opt/quadrangle/quadrangle-divide-conquer.py:core"
+    --8<-- "docs/dp/code/opt/quadrangle/quadrangle-divide-conquer.cpp:core"
     ```
 
 ### 二分队列
