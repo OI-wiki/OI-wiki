@@ -13,10 +13,10 @@ constexpr val_t inf = 1e18;
 val_t w(int j, int i);  // 成本函数
 val_t f[N];             // 最优值
 int opt[N];             // 最小最优决策
+int lt[N], rt[N];       // 决策 j 可以解决的问题区间 [l_j,r_j]
 
 // 求解整个区间 [1,n] 的问题
 void solve(int n) {
-  int lt[N], rt[N];    // 决策 j 可以解决的问题区间 [l_j,r_j]
   std::deque<int> dq;  // 存储所有可行决策的单调队列
 
   // 顺次考虑所有问题和决策，下标从 1 开始
