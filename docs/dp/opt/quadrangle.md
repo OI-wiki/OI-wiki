@@ -55,6 +55,8 @@ $$
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle-divide-conquer.cpp:core"
     ```
 
+除了 $w(j,i)$ 可以在 $O(1)$ 时间内计算的情形外，本算法在 $w(j,i)$ 只能由相邻函数值（即 $w(j\pm 1,i)$ 或 $w(j,i\pm 1)$）以 $O(1)$ 时间转移计算的情形同样可以做到 $O(n\log n)$ 的时间复杂度。对于相关内容的讨论，可以参考下文 [简化 LARSCH 算法](#简化-larsch-算法) 一节。
+
 ### 二分队列
 
 注意到对于每个决策点 $j$，能使其成为最小最优决策点的问题 $i$ 必然构成一个区间。可以通过单调队列记录到目前为止每个决策点可以解决的问题的区间，这样，问题的最优解自然可以通过队列中记录的决策点计算得到。
@@ -67,9 +69,9 @@ $$
     设 $\operatorname{opt}_k(i)$ 是仅考虑 $[1,k]$ 中的决策时，问题 $i$ 的最小最优决策。如果 $w$ 满足四边形不等式，那么对于任意 $i_1 < i_2$，必然成立 $\operatorname{opt}_k(i_1) \leq \operatorname{opt}_k(i_2)$。
 
 ??? note "证明"
-    设 $M$ 是充分大的正实数。函数 $w_M(j,i) = w(j,i) + M[j > k]$ 仍然满足四边形不等式，其中，$[\cdot]$ 是 Iverson 括号。而且，对于任何问题 $i$，决策 $j > k$ 都不可能是最小最优的，即 $\operatorname{opt}_k(i) = \operatorname{opt}(i)$。对 $w_M(j,i)$ 应用定理 1 就得到本推论。
+    设 $M$ 是充分大的正实数。函数 $w_M(j,i) = w(j,i) + M[j > k]$ 仍然满足四边形不等式，其中，$[\cdot]$ 是 Iverson 括号。考虑以 $w_M$ 为成本函数的辅助 DP。在辅助 DP 中，对于任何问题 $i$，决策 $j > k$ 都不可能是最小最优的，即 $\operatorname{opt}(i;w_M) = \operatorname{opt}_k(i;w_M) = \operatorname{opt}_k(i;w)$。此处显式地写出了对应的成本函数以区分原 DP 和辅助 DP。对辅助 DP 应用定理 1 就得到本推论。
 
-该算法过程如下：
+该算法过程如下：[^cmp-min-opt]
 
 -   初始时，队列是空的。类似于单调队列，每次考虑下一个决策 $j$ 的时候，都需要进行出队和入队操作。
 -   **出队**：首先将上一个问题 $j-1$ 从队列中移除。如果队首的决策能够解决的问题的右端点恰为 $j-1$，直接弹出队首；否则，将队首决策能够解决问题的左端点更新为 $j$。
@@ -137,7 +139,38 @@ $$
 
 然后，需要说明该算法的复杂度仍然是 $O(n\log n)$ 的。递归树的层数是 $O(\log n)$ 的。对于递归树中的同一层的每个结点，分别遍历区间 $[\operatorname{opt}(l),\operatorname{opt}_l(r)]$ 和 $(l,\textit{mid}]$ 中的决策。因为 $\operatorname{opt}(l)\le\operatorname{opt}_l(r)\le\operatorname{opt}(r)$，所以在同一层中，每个决策点只遍历了 $O(1)$ 次。故而，递归树的每一层中总的遍历次数是 $O(n)$ 的。假设单次访问或计算 $w(j,i)$ 的复杂度是 $O(1)$ 的，算法的时间复杂度就是 $O(n\log n)$ 的。
 
-对于一些 $w(j,i)$ 无法随机访问的情形，这一算法的复杂度仍然是 $O(n\log n)$ 的。特别地，此处考虑和 [莫队算法](../../misc/mo-algo.md) 类似的情形：假设 $w(j,i)$ 的取值可以从 $w(j\pm 1,i)$ 或 $w(j,i\pm 1)$ 以 $O(1)$ 时间转移得到。对于这类情形，需要为算法流程中的步骤 1 和步骤 3 分别维护 $w(j,i)$ 的当前取值。每次需要访问新的值时，需要将参数 $(j,i)$ 从上一次访问时的状态暴力更新到当前状态，并对 $w(j,i)$ 进行转移。容易验证，当对递归树进行遍历时，这些暴力更新的总次数是 $O(n\log n)$ 的。所以，算法的时间复杂度仍然是 $O(n\log n)$ 的。
+对于一些 $w(j,i)$ 无法随机访问的情形，这一算法的复杂度仍然是 $O(n\log n)$ 的。特别地，考虑与 [莫队算法](../../misc/mo-algo.md) 类似的情形：$w(j,i)$ 的取值可以从 $w(j\pm 1,i)$ 或 $w(j,i\pm 1)$ 以 $O(1)$ 时间转移得到。对于这类情形，需要为算法流程中的步骤 1 和步骤 3 分别维护游标 $(j,i)$ 和 $w(j,i)$ 的当前取值。每次需要访问新的值时，需要将游标 $(j,i)$ 从上一次访问时的位置暴力更新到当前位置，并对函数值 $w(j,i)$ 进行转移。容易验证，当对递归树进行遍历时，这些暴力更新的总次数是 $O(n\log n)$ 的。所以，算法的时间复杂度仍然是 $O(n\log n)$ 的。
+
+??? note "非随机访问的复杂度证明"
+    只需要证明游标移动的总次数是 $O(n\log n)$ 的。设 $A$ 和 $B$ 分别为步骤 1 和 3 对应的游标。实际上可以保证：在求解区间 $(l,r]$ 的问题之前，游标 $A$ 处于位置 $(\operatorname{opt}(l),l)$，游标 $B$ 处于位置 $(l,l)$；而在这之后，游标 $A$ 处于位置 $(\operatorname{opt}(r),r)$，游标 $B$ 处于位置 $(r,r)$。
+
+    考虑构造如下游标移动规则。步骤 1 中，可以令游标 $A$ 沿着路径
+
+    $$
+    (\operatorname{opt}(l),l)\to(\operatorname{opt}(l),\textit{mid})\to(\operatorname{opt}_l(r),\textit{mid})\to(\operatorname{opt}(l),\textit{mid})\to(\operatorname{opt}(l),l)
+    $$
+
+    移动。此时，游标 $A$ 和 $B$ 均处于求解区间 $(l,\textit{mid}]$ 的问题之前的规定位置上。步骤 2 中，按规定，游标 $A$ 将移动到 $(\operatorname{opt}(\textit{mid}),\textit{mid})$，游标 $B$ 将移动到 $(\textit{mid},\textit{mid})$。步骤 3 中，可以令游标 $B$ 沿着路径
+
+    $$
+    (\textit{mid},\textit{mid}) \to (l,\textit{mid}) \to (l, r) \to (\textit{mid},r) \to (\textit{mid},\textit{mid})
+    $$
+
+    移动。此时，游标 $A$ 和 $B$ 均处于求解区间 $(\textit{mid},r]$ 的问题之前的规定位置上。步骤 4 中，按规定，游标 $A$ 将移动到 $(\operatorname{opt}(r),r)$，游标 $B$ 将移动到 $(r,r)$。两个游标均在结束求解区间 $(l,r]$ 的问题的规定位置上。因此，这一移动规则符合上述规定。而且，该移动规则足以完成步骤 1 和 3 中的所有计算。直接计算该规则中游标的移动次数可知，步骤 1 需要
+
+    $$
+    2(\operatorname{opt}_l(r) - \operatorname{opt}(l)) + 2(\textit{mid} - l)
+    $$
+
+    次移动，步骤 3 需要
+
+    $$
+    2(\textit{mid}-l)+2(r-\textit{mid}) = 2(r-l)
+    $$
+
+    次移动。将这些移动次数对递归树中的所有结点求和，利用同一层中的所有 $[l,r]$ 和 $[\operatorname{opt}(l),\operatorname{opt}_l(r)]$ 至多只在端点处重合这一性质，就可以说明总的移动次数是 $O(n\log n)$ 的。
+
+    由于上述移动规则比起实际计算时游标的移动设置了更多的途径点，所以游标的实际移动次数不会超过该规则下移动次数的估计。因此，游标的实际移动次数也是 $O(n\log n)$ 的。
 
 ## 区间分拆问题
 
@@ -387,5 +420,7 @@ $$
 -   [簡易版 LARSCH Algorithm by noshi91](https://noshi91.hatenablog.com/entry/2023/02/18/005856)
 -   [四边形不等式和决策单调性 by b6e0\_ - 洛谷专栏](https://www.luogu.com.cn/article/h81hh5lk)
 -   [在线决策单调性的丐版 LARSCH 算法 by Register\_int - 洛谷专栏](https://www.luogu.com.cn/article/vqf42hah)
+
+[^cmp-min-opt]: 算法描述中提到的「更劣」和「更优」都应看做是在描述先比较函数值大小再比较决策点大小的字典序。在这一字典序下，「更优」意味着要么函数值更小，要么函数值一样但是决策点更小。
 
 [^larsch]: Larmore, Lawrence L., and Baruch Schieber. "On-line dynamic programming with applications to the prediction of RNA secondary structure." Journal of Algorithms 12, no. 3 (1991): 490-515.
