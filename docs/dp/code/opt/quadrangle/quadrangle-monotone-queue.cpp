@@ -16,8 +16,8 @@ int opt[N];             // 最小最优决策
 
 // 求解整个区间 [1,n] 的问题
 void solve(int n) {
-  int lt[N], rt[N];       // 决策 j 可以解决的问题区间 [l_j,r_j]
-  std::deque<int> dq;     // 存储所有可行决策的单调队列
+  int lt[N], rt[N];    // 决策 j 可以解决的问题区间 [l_j,r_j]
+  std::deque<int> dq;  // 存储所有可行决策的单调队列
 
   // 顺次考虑所有问题和决策，下标从 1 开始
   for (int j = 1; j <= n; ++j) {
@@ -63,9 +63,8 @@ void solve(int n) {
 
 // --8<-- [end:core]
 std::function<val_t(int, int)> impl;
-val_t w(int j, int i) {
-  return impl(j, i);
-}
+
+val_t w(int j, int i) { return impl(j, i); }
 
 int main() {
   std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
@@ -80,7 +79,7 @@ int main() {
   for (int i = 1; i <= n; ++i) ans[i] = std::ceil(-f[i]);
   std::reverse(a.begin() + 1, a.end());
   solve(n);
-  for (int i = 1; i <= n; ++i) 
+  for (int i = 1; i <= n; ++i)
     std::cout << std::max(ans[i], (int)std::ceil(-f[n + 1 - i])) << '\n';
   return 0;
 }
