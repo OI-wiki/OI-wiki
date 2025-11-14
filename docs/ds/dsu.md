@@ -13,7 +13,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 并查集在经过修改后可以支持单个元素的删除、移动或维护树上的边权。使用动态开点线段树还可以实现 [可持久化并查集](./persistent-seg.md#拓展基于主席树的可持久化并查集)。
 
-???+ warning
+???+ warning "Warning"
     并查集无法以较低复杂度实现集合的分离。
 
 ## 初始化
@@ -149,7 +149,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 带有路径压缩、按节点数合并的并查集的完整实现如下所示：
 
-??? example " 模板题 [Luogu P3367【模板】并查集](https://www.luogu.com.cn/problem/P3367) 参考实现 "
+??? example "模板题 [Luogu P3367【模板】并查集](https://www.luogu.com.cn/problem/P3367) 参考实现"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_0.cpp"
@@ -183,7 +183,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 注意，删除单个节点后，需要重新为该节点建立一个虚点作为其父节点；否则，无法正确执行后续的合并和删除操作。
 
-??? example " 模板题 [SPOJ JMFILTER - Junk-Mail Filter](https://www.spoj.com/problems/JMFILTER/) 参考实现 "
+??? example "模板题 [SPOJ JMFILTER - Junk-Mail Filter](https://www.spoj.com/problems/JMFILTER/) 参考实现"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_4.cpp"
@@ -202,7 +202,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 为了维护并查集中的边权，需要将边权下放到子节点中存储。因此，每个节点存储的都是它到它的父节点之间的边权。只有当一个节点的父节点发生变化时，才需要相应地调整边权。一般情形中，这可能发生在路径压缩和合并两个节点时。例如，如果边权是当前节点与父节点之间的距离，那么，在路径压缩时，每次将当前节点的父节点替换为根节点，都需要将父节点到根节点的距离加到当前节点存储的边权上；类似地，在合并两个节点所在集合时，需要计算两个根节点之间新连接的边的权值。
 
-??? example " 模板题 [Library Checker - Unionfind with Potential](https://judge.yosupo.jp/problem/unionfind_with_potential) 参考实现 "
+??? example "模板题 [Library Checker - Unionfind with Potential](https://judge.yosupo.jp/problem/unionfind_with_potential) 参考实现"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_5.cpp"

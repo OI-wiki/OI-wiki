@@ -27,6 +27,16 @@ import "@mathjax/src/js/input/tex/physics/PhysicsConfiguration.js";
 
 import { TaskHandler, log } from "../html-postprocess.js";
 
+// More details: https://github.com/mathjax/MathJax/issues/3443
+// Should remove it after mathjax v4.0.1
+import { Styles } from "@mathjax/src/js/util/Styles.js";
+Styles.connect.margin = { ...Styles.connect.padding };
+
+// More details: https://github.com/mathjax/MathJax/issues/3441
+// Should remove it after mathjax v4.0.1
+import { MO, OPTABLE } from "@mathjax/src/js/core/MmlTree/OperatorDictionary.js";
+OPTABLE.infix["\u27C2"] = MO.REL;
+
 // All HTML files will reference the CSS file with relative paths (to the HTML file)
 // The CSS file will reference the fonts files with relative paths (to the CSS file)
 const MATHJAX_TARGET_CSS_FILE = "assets/stylesheets/mathjax.css";
@@ -37,15 +47,6 @@ const FONT_PKG = "@mathjax/mathjax-newcm-font";
 // Mark the client-side math rendering script with an extra query parameter
 // to remove it when using server-side rendering
 const MATH_CSR_SCRIPT_SUFFIX = "?math-csr";
-
-// Add horizontal scrollbar automatically on narrow screens
-const MATHJAX_EXTRA_CSS = `
-  mjx-container[jax="CHTML"][display="true"] mjx-math {
-    overflow-x: auto;
-    overflow-y: hidden;
-    max-width: 100%;
-  }
-`;
 
 export class MathRenderer {
   private adaptor: LiteAdaptor;
@@ -62,7 +63,8 @@ export class MathRenderer {
     const outputJax = new CHTML<LiteElement, unknown, LiteDocument>({
       // in windows, relative return with \, so need to replace
       fontURL: path.relative(path.dirname(MATHJAX_TARGET_CSS_FILE), MATHJAX_TARGET_FONTS_DIR).replaceAll("\\", "/"),
-      adaptiveCSS: false
+      adaptiveCSS: false,
+      displayOverflow: "scroll"
     });
 
     this.document = mathjax.document("", {
@@ -76,7 +78,7 @@ export class MathRenderer {
   }
 
   getCSS() {
-    return this.css + "\n" + MATHJAX_EXTRA_CSS;
+    return this.css;
   }
 
   render(math: string, isDisplay: boolean) {

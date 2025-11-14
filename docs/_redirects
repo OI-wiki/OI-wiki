@@ -64,6 +64,7 @@
 /math/fibonacci /math/combinatorics/fibonacci
 /math/drawer-principle /math/combinatorics/drawer-principle
 /math/eulerian /math/combinatorics/eulerian
+/math/notation /intro/symbol
 /math/prime /math/number-theory/prime
 /math/meissel-lehmer /math/number-theory/meissel-lehmer
 /math/gcd /math/number-theory/gcd
@@ -102,6 +103,7 @@
 /math/poly/lagrange /math/numerical/interp
 /math/numerical/lagrange /math/numerical/interp
 /math/poly/cntt /math/poly/ntt
+/math/poly/dgf /math/number-theory/dirichlet
 /math/linear-algebra/gauss /math/numerical/gauss
 /math/integral /math/numerical/integral
 /math/newton /math/numerical/newton

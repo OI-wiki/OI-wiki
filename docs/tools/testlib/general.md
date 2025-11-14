@@ -98,7 +98,7 @@ ensuref(s.length() % 2 == 0,
 
 它有一个简化版 `ensure()`，我们可以直接使用 `ensure(x> y)` 而不添加说明内容（也不支持添加说明内容），如果条件不满足报错将为 `FAIL Condition failed: "x > y"`。很多情况下不加额外的说明的这种报错很不友好，所以我们通常使用 `ensuref()` 并加以说明内容，而非使用 `ensure()`。
 
-???+ warning
+???+ warning "Warning"
     注意全局与成员 `ensuref/ensure()` 的区别
     
     全局函数 `::ensuref/ensure()` 多用于 generator 和 validator 中，如果检查失败将统一返回 `_fail`。

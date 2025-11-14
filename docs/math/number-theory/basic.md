@@ -58,7 +58,7 @@ $0$ 是所有非 $0$ 整数的倍数。对于整数 $b\ne0$，$b$ 的约数只�
 
 关于公约数、公倍数、最大公约数与最小公倍数，四个名词的定义，见 [最大公约数](./gcd.md)。
 
-???+ warning
+???+ warning "Warning"
     一些作者认为 $0$ 和 $0$ 的最大公约数无定义，其余作者一般将其视为 $0$。C++ STL 的实现中采用后者，即认为 $0$ 和 $0$ 的最大公约数为 $0$[^gcdcpp]。
 
 最大公约数有如下性质：
@@ -147,7 +147,7 @@ $p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明�
 ???+ note "素数的另一种定义"
     对整数 $p\ne 0,\pm 1$，若对任意满足 $p\mid a_1a_2$ 的整数 $a_1,a_2$ 均有 $p\mid a_1$ 或 $p\mid a_2$ 成立，则称 $p$ 是素数。
 
-??? tip
+??? tip "Tip"
     这个定义的动机可以从 [素理想](../algebra/ring-theory.md#素理想) 中找到。
 
 ???+ note "算术基本定理（唯一分解定理）"
@@ -201,64 +201,6 @@ $p$ 和 $-p$ 总是同为素数或者同为合数。**如果没有特别说明�
 -   若 $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*$，则当 $a\equiv b\pmod m$ 成立时，有 $(a,m)=(b,m)$。若 $d$ 能整除 $m$ 及 $a,b$ 中的一个，则 $d$ 必定能整除 $a,b$ 中的另一个。
 
 还有性质是乘法逆元。见 [乘法逆元](./inverse.md)。
-
-## C/C++ 的整数除法和取模运算
-
-在 C/C++ 中，整数除法和取模运算，与数学上习惯的取模和除法不一致。
-
-对于所有标准版本的 C/C++，规定在整数除法中：
-
-1.  当除数为 0 时，行为未定义；
-2.  否则 `(a / b) * b + a % b` 的运算结果与 `a` 相等。
-
-也就是说，取模运算的符号取决于除法如何取整；而除法如何取整，这是实现定义的（由编译器决定）。
-
-**从 C99[^operatorc]和 C++11[^operatorcpp]标准版本起**，规定 **商向零取整**（舍弃小数部分）；取模的符号即与被除数相同。从此以下运算结果保证为真：
-
-```text
-5 % 3 == 2;
-5 % -3 == 2;
--5 % 3 == -2;
--5 % -3 == -2;
-```
-
-### 快速乘
-
-在素性测试与质因数分解中，经常会遇到模数在 `long long` 范围内的乘法取模运算。为了避免运算中的整型溢出问题，本节介绍一种可以处理模数在 `long long` 范围内，不需要使用 `__int128` 且复杂度为 $O(1)$ 的「快速乘」。
-
-我们发现：
-
-$$
-a\times b\bmod m=a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m
-$$
-
-我们巧妙运用 `unsigned long long` 的自然溢出：
-
-$$
-a\times b\bmod m=a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m=\left(a\times b-\left\lfloor \dfrac{ab}m \right\rfloor\times m\right)\bmod 2^{64}
-$$
-
-于是在算出 $\left\lfloor\dfrac{ab}m\right\rfloor$ 后，两边的乘法和中间的减法部分都可以使用 `unsigned long long` 直接计算，现在我们只需要解决如何计算 $\left\lfloor\dfrac {ab}m\right\rfloor$。
-
-我们考虑先使用 `long double` 算出 $\dfrac am$ 再乘上 $b$。
-
-既然使用了 `long double`，就无疑会有精度误差。极端情况就是第一个有效数字（二进制下）在小数点后一位。在 64 位系统中，`long double` 通常表示为 $80$ 位扩展精度浮点数（即符号为 $1$ 位，指数为 $15$ 位，尾数为 $64$ 位），所以 `long double` 最多能精确表示的有效位数为 $64$[^note1]。所以 $\dfrac am$ 最差从第 $65$ 位开始出错，误差范围为 $\left(-2^{-64},2^{-64}\right)$。乘上 $b$ 这个 $64$ 位整数，误差范围为 $(-0.5,0.5)$，再加上 $0.5$ 误差范围为 $(0,1)$，取整后误差范围位 $\{0,1\}$。于是乘上 $-m$ 后，误差范围变成 $\{0,-m\}$，我们需要判断这两种情况。
-
-因为 $m$ 在 `long long` 范围内，所以如果计算结果 $r$ 在 $[0,m)$ 时，直接返回 $r$，否则返回 $r+m$，当然你也可以直接返回 $(r+m)\bmod m$。
-
-代码实现如下：
-
-```cpp
-long long binmul(long long a, long long b, long long m) {
-  unsigned long long c =
-      (unsigned long long)a * b -
-      (unsigned long long)((long double)a / m * b + 0.5L) * m;
-  if (c < m) return c;
-  return c + m;
-}
-```
-
-如今，绝大多数测评系统所配备的 C/C++ 编译器已支持 `__int128` 类型，因此也可以利用 [Barrett Reduction](https://en.wikipedia.org/wiki/Barrett_reduction) 进行快速乘。之所以不直接将乘数类型提升至 `__int128` 后取模计算是因为此方法仍然可以节省一次时间可观的 `__int128` 类型取模。
 
 ## 同余类与剩余系
 
@@ -333,7 +275,7 @@ $$
 \mathbf{Z}_m^*:=\{r\bmod m:0\leq r<m,(r,m)=1\}
 $$
 
-???+ warning
+???+ warning "Warning"
     对于任意的整数 $a$ 和与 $m$ 互质的整数 $b$，$b\mathbf{Z}_m^*=\mathbf{Z}_m^*$，但是 $a+\mathbf{Z}_m^*$ 不一定为 $\mathbf{Z}_m^*$。这一点与 $\mathbf{Z}_m$ 不同。
 
 由 [抽屉原理](../combinatorics/drawer-principle.md) 可知：
@@ -393,7 +335,7 @@ $$
 
     为模 $m$ 的 **既约** 剩余系。
 
-???+ tip
+???+ tip "Tip"
     该定理等价于证明 Euler 函数为 [积性函数](#积性函数)。
 
 ???+ note "证明"
@@ -441,7 +383,7 @@ $$
 
 ## 数论函数
 
-数论函数（也称算数函数）指定义域为正整数的函数。数论函数也可以视作一个数列。
+数论函数（也称算术函数）指定义域为正整数的函数。数论函数也可以视作一个数列。
 
 ### 积性函数
 
@@ -498,23 +440,96 @@ $$
 
 #### 例子
 
-为方便叙述，令所有质数组成的集合为 $P$.
+为方便叙述，令所有质数组成的集合为 $\mathbf P$.
 
--   所有质因子数目：$\Omega(n)=\sum_{p \mid n} [p \in P] \sum_{k=1}^{\lceil\log_p n\rceil} [p^k \mid n \wedge p^{k+1} \nmid n] \cdot k$。（完全加性）
--   相异质因子数目：$\omega(n)=\sum_{p \mid n} [p \in P]$。
--   所有质因子之和：$a_0(n)=\sum_{p \mid n} [p \in P] \sum_{k=1}^{\lceil\log_p n\rceil} [p^k \mid n \wedge p^{k+1} \nmid n] \cdot kp$。（完全加性）
--   相异质因子之和：$a_1(n)=\sum_{p \mid n}[p \in P] \cdot p$。
+-   素因数分解中 $p$ 的重数：$\nu_p(n) = \max\{k\in\mathbf N: p^k\mid n\}$，其中，$p\in\mathbf P$。（完全加性）
+-   所有质因子数目：$\Omega(n)=\sum_{p \in\mathbf P} \nu_p(n)$。（完全加性）
+-   相异质因子数目：$\omega(n)=\sum_{p \in\mathbf P} [p \mid n]$。
+-   所有质因子之和：$a_0(n)=\sum_{p \in\mathbf P} \nu_p(n)\cdot p$。（完全加性）
+-   相异质因子之和：$a_1(n)=\sum_{p \in\mathbf P} [p \mid n] \cdot p$。
+
+## 取整函数
+
+对于实数 $x$，定义 **下取整函数**（floor function）和 **上取整函数**（ceiling function）分别为
+
+$$
+\lfloor x\rfloor = \max\{k\in\mathbf Z:k\le x\},~\lceil x\rceil = \min\{k\in\mathbf Z:k\ge x\}.
+$$
+
+利用下取整函数，一个实数可以分解为整数部分和小数部分：$x = \lfloor x\rfloor + \{x\}$。其中，$\{x\}$ 表示 $x$ 的小数部分。
+
+取整函数有如下基本性质：（$x\in\mathbf R,~n\in\mathbf Z$）
+
+-   $x\in\mathbf Z \iff x = \lfloor x\rfloor = \lceil x\rceil$。
+-   $\lceil x\rceil - \lfloor x\rfloor = [x\notin\mathbf Z]$。
+-   $x - 1 < \lfloor x\rfloor \le x \le \lceil x\rceil < x + 1$。
+-   $\lfloor -x\rfloor = -\lceil x\rceil,~\lceil -x\rceil = -\lfloor x\rfloor$。
+-   $\lfloor x + n\rfloor = \lfloor x\rfloor + n,~\lceil x + n\rceil = \lceil x \rceil + n$。
+-   $\lfloor x\rfloor$ 和 $\lceil x\rceil$ 都是关于 $x$ 的单调弱增函数。
+
+证明关于下（上）取整函数的等式经常用到如下等价形式：（$x\in\mathbf R,~n\in\mathbf Z$）
+
+-   $\lfloor x\rfloor = n \iff n \le x < n + 1 \iff x - 1 < n \le x$。
+-   $\lceil x\rceil = n \iff n - 1 < x \le n \iff x \le n < x + 1$。
+
+证明关于下（上）取整函数的不等式经常用到如下等价形式：（$x\in\mathbf R,~n\in\mathbf Z$）
+
+-   $x < n \iff \lfloor x\rfloor < n$。
+-   $n < x \iff n < \lceil x\rceil$。
+-   $x \le n \iff \lceil x\rceil \le n$。
+-   $n \le x \iff n \le \lfloor x\rfloor$。
+
+涉及和、差的性质如下：（$x,y\in\mathbf R$）
+
+-   $\lfloor x\rfloor + \lfloor y\rfloor \le \lfloor x + y\rfloor \le \lfloor x\rfloor + \lfloor y\rfloor + 1$，且恰有一个等号成立。
+-   $\lceil x\rceil +\lceil y\rceil -1\leq \lceil x+y\rceil \leq \lceil x\rceil +\lceil y\rceil$，且恰有一个等号成立。
+-   $\lfloor|x - y|\rfloor \le |\lfloor x\rfloor - \lfloor y\rfloor| \le \lceil|x - y|\rceil$。
+-   $\lfloor|x - y|\rfloor \le |\lceil x\rceil - \lceil y\rceil| \le \lceil|x-y|\rceil$。
+
+涉及商的性质如下：（$x\in\mathbf R,~n\in\mathbf Z,~m\in\mathbf Z_+$）
+
+-   $\left\lceil\dfrac{n}{m}\right\rceil = \left\lfloor\dfrac{n+m-1}{m}\right\rfloor,~\left\lfloor\dfrac{n}{m}\right\rfloor = \left\lceil\dfrac{n-m+1}{m}\right\rceil$。
+-   $\left\lfloor\dfrac{x + n}{m} \right\rfloor = \left\lfloor\dfrac{\lfloor x\rfloor + n}{m} \right\rfloor,~\left\lceil\dfrac{x + n}{m} \right\rceil = \left\lceil\dfrac{\lceil x\rceil + n}{m} \right\rceil$。
+-   $\left\lfloor\dfrac{\lfloor x/n\rfloor}{m}\right\rfloor = \left\lfloor\dfrac{x}{nm}\right\rfloor,~\left\lceil\dfrac{\lceil x/n\rceil}{m}\right\rceil = \left\lceil\dfrac{x}{nm}\right\rceil$。
+-   对于 $x > 0$，有 $\displaystyle\left\lfloor\dfrac{x}{m}\right\rfloor = \sum_{k=1}^{\lfloor x\rfloor}[m\mid k]$。
+
+其中，第二条和第三条性质都可以看作是如下结论的直接推论：
+
+-   设 $f$ 为连续单增函数，且只要 $f(x)\in\mathbf Z$，就有 $x\in\mathbf Z$，那么
+
+    $$
+    \lfloor f(x)\rfloor = \lfloor f(\lfloor x\rfloor)\rfloor,~ \lceil f(x)\rceil = \lceil f(\lceil x\rceil)\rceil.
+    $$
+
+    ??? note "证明"
+        由对称性，只需要证明第一个等式。如果 $x$ 是整数，那么命题显然。否则，$\lfloor x\rfloor < x$。由 $f$ 和下取整函数的单调性可知，$\lfloor f(x)\rfloor \ge \lfloor f(\lfloor x\rfloor)\rfloor$。如果等号不成立，那么设 $y = \lfloor f(x)\rfloor$，它满足 $\lfloor f(\lfloor x\rfloor)\rfloor < y \le \lfloor f(x)\rfloor$，这等价于 $f(\lfloor x\rfloor) < y \le f(x)$。由 $f$ 的连续性可知，存在 $\lfloor x\rfloor < x_0 \le x$ 使得 $f(x_0)=y$。因为 $y\in\mathbf Z$，所以 $x_0\in\mathbf Z$，这与 $\lfloor x\rfloor$ 的定义矛盾。故而，等号成立，即 $\lfloor f(x)\rfloor = \lfloor f(\lfloor x\rfloor)\rfloor$。
+
+最后是一组关于带有取整函数的求和式的结论：（$x\in\mathbf R,~n\in\mathbf Z,~m\in\mathbf Z_+$）
+
+-   $n = \left\lfloor\dfrac{n}{2}\right\rfloor + \left\lceil\dfrac{n}{2}\right\rceil$。
+-   $n = \left\lfloor\dfrac{n}{m} \right\rfloor + \left\lfloor\dfrac{n+1}{m} \right\rfloor + \cdots + \left\lfloor\dfrac{n+m-1}{m} \right\rfloor$。
+-   $n = \left\lceil\dfrac{n}{m} \right\rceil + \left\lceil\dfrac{n-1}{m} \right\rceil + \cdots + \left\lceil\dfrac{n-m+1}{m} \right\rceil$。
+-   $\lfloor mx\rfloor = \lfloor x\rfloor + \left\lfloor x+\dfrac{1}{m}\right\rfloor + \cdots + \left\lfloor x+\dfrac{m-1}{m}\right\rfloor$。
+-   $\lceil mx\rceil = \lceil x\rceil + \left\lceil x - \dfrac{1}{m}\right\rceil + \cdots + \left\lceil x - \dfrac{m-1}{m}\right\rceil$。
+-   当 $m\perp n$ 时，$\displaystyle\sum_{k=1}^{m-1}\left\lfloor\dfrac{kn}{m}\right\rfloor=\dfrac{1}{2}(n-1)(m-1)$。
+-   当 $m\perp n$ 时，$\displaystyle\sum_{k=1}^{m-1}\left\lceil\dfrac{kn}{m}\right\rceil=\dfrac{1}{2}(n+1)(m-1)$。
+
+这些乃至更一般的类似形式求和式的推导可以参考 [类欧几里得算法](./euclidean.md) 页面。
+
+取整函数的更多性质以及应用可以参考如下页面：
+
+-   取模运算：$n\bmod m = n - \left\lfloor\dfrac{n}{m}\right\rfloor m$。它可以用于 [优化整数取模运算](./mod-arithmetic.md#相关算法)。
+-   利用 Gauss 引理证明 [二次互反律](./quad-residue.md#二次互反律)。
+-   [数论分块](./sqrt-decomposition.md)，尤其是它的性质证明部分。
+-   计算阶乘中素数因子幂次的 [Legendre 公式](./factorial.md#legendre-公式)。
+-   [Beatty 数列](../game-theory/impartial-game.md#wythoff-游戏)、Rayleigh 定理以及 Wythoff 博弈。
 
 ## 参考资料与注释
 
-1.  潘承洞，潘承彪。初等数论。北京大学出版社。
+-   潘承洞，潘承彪。初等数论。北京大学出版社。
+-   [Floor and ceiling functions - Wikipedia](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)
+-   Graham, Ronald L., Donald E. Knuth, and Oren Patashnik. "Concrete mathematics: a foundation for computer science." (1989).
 
 [^ref1]: [Are all primes (past 2 and 3) of the forms 6n+1 and 6n-1?](https://primes.utm.edu/notes/faq/six.html)
-
-[^note1]: 参见 [C 语言小数表示法 - 维基百科](https://en.wikipedia.org/wiki/Double-precision_floating-point_format)
-
-[^operatorc]: [Arithmetic operators (C) - cppreference.com](https://en.cppreference.com/w/c/language/operator_arithmetic)
-
-[^operatorcpp]: [Arithmetic operators (C++) - cppreference.com](https://en.cppreference.com/w/cpp/language/operator_arithmetic)
 
 [^gcdcpp]: [std::gcd - cppreference.com](https://en.cppreference.com/w/cpp/numeric/gcd)

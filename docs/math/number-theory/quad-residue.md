@@ -62,7 +62,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
 
 基于 Euler 判别法，我们可以得到如下推论：
 
-???+ abstruct "二次剩余的数量"
+???+ note "二次剩余的数量"
     对于奇素数 $p$，模 $p$ 意义下二次剩余和二次非剩余均有 $\dfrac{p-1}{2}$ 个。
 
 ??? note "证明"
@@ -165,17 +165,17 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
 
 ### 二次互反律
 
-???+ abstruct "二次互反律"
+???+ note "二次互反律"
     设 $p$，$q$ 是两个不同的奇素数，则
     
     $$
     \left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}.
     $$
 
-证明方式很多[^ref5]。一种证明方式是基于如下引理：
+证明方式很多[^ref5]。一种证明方式是基于如下引理[^ref6]：
 
-???+ abstruct "Gauss 引理"
-    设 $p$ 是奇素数，$(n,p)=1$，对整数 $k~\left(1\leq k\leq (p-1)/2\right)$，令 $r_k$ 为 $nk$ 模 $p$ 的最小非负剩余，设 $A=\{r_k:r_k < p/2\}$，$B=\{r_k:r_k>p/2\}$，则
+???+ note "Gauss 引理"
+    设 $p$ 是奇素数，$(n,p)=1$，对整数 $k~\left(1\leq k\leq (p-1)/2\right)$，令 $r_k=nk\bmod p$，设 $A=\{r_k:r_k < p/2\}$，$B=\{r_k:r_k > p/2\}$，则
     
     $$
     \left(\frac{n}{p}\right)=(-1)^{|B|}.
@@ -202,9 +202,22 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
     
     从而由 Legendre 符号的 [性质 1](#性质) 即得证。
 
+??? tip "推广"
+    Gauss 引理可做如下推广[^ref7]：
+    
+    设 $p$ 是奇素数，令 $I\subset\mathbf{Z}_p^*$ 满足 $I\cup -I=\mathbf{Z}_p^*$ 且 $I\cap -I=\varnothing$，其中 $-I:=\{-i:i\in I\}$，则对任意与 $p$ 互质的整数 $n$，
+    
+    $$
+    \left(\frac{n}{p}\right)=(-1)^{|J|},
+    $$
+    
+    其中 $J=\{j\in I:nj\in -I\}$.
+    
+    不难发现取 $I=\{1,2,\dots,(p-1)/2\}$ 即可得到 Gauss 引理。证明方法和 Gauss 引理的证明基本相同，故省略。
+
 容易得到如下推论：
 
-???+ abstruct "推论"
+???+ note "推论"
     对奇素数 $p$，有
     
     $$
@@ -260,7 +273,7 @@ $$
 
 二次互反律不仅能用于判断数 $n$ 是否是模 $p$ 的二次剩余，还能用于确定使数 $n$ 为二次剩余的模数的结构。
 
-???+ example
+???+ example "Example"
     -   使得 $5$ 为二次剩余的奇素数 $p$ 满足 $p\equiv \pm 1\pmod 5.$
     -   使得 $-3$ 为二次剩余的奇素数 $p$ 满足 $p\equiv 1\pmod 3.$
     -   使得 $-2$，$3$ 同时为二次剩余的奇素数 $p$ 满足 $p\equiv 11\pmod{24}.$
@@ -280,12 +293,14 @@ $$
     
     其中等式右端的 $\left(\frac{a}{p_i}\right)$ 为 [Legendre 符号](#legendre-符号)。另外对整数 $a$ 有 $\left(\dfrac{a}{1}\right)=1.$
 
-???+ warning
+???+ warning "Warning"
     我们一般不区分 Legendre 符号和 Jacobi 符号，因为由完全积性可知 Jacobi 符号具有和 Legendre 符号一样的性质，所以这两种符号的计算方法是一致的。但是有一点需要注意：当 $m$  **不是奇素数** 时，$\left(\dfrac{a}{m}\right)$ 的值与 $a$ 是否是模 $m$ 的二次剩余 **无关**，但是若 $\left(\dfrac{a}{m}\right)=-1$，则说明 $m$ 至少存在一个（实际上是奇数个）素因子 $p$ 使得 $a$ 是模 $p$ 的二次非剩余，从而此时 $a$ 是模 $m$ 的二次非剩余。
 
 我们还可以把模数进一步推广为 **整数**（只需补充 $\left(\dfrac{a}{-1}\right)$、$\left(\dfrac{a}{0}\right)$ 和 $\left(\dfrac{a}{2}\right)$ 的定义），这样就得到了 [Kronecker 符号](https://en.wikipedia.org/wiki/Kronecker_symbol)。
 
-## 相关算法
+## 模意义下开平方
+
+本节讨论模意义下开平方的算法。特别地，本节主要介绍素数模的情形。对于一般模数的情形，可以参考 [模意义下开高次方](./residue.md#模意义下开方) 的讨论。
 
 ### 特殊情况时的算法
 
@@ -407,7 +422,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     
     由于 $a$ 和 $a_1^{-2}$ 都是二次剩余，由 Legendre 符号的积性可知 $aa_1^{-2}$ 也是二次剩余，这与 $r^2-a$ 是二次非剩余矛盾。于是原式不存在一个解使得 $x$ 的系数非 $0$，我们求出的解的 $x$ 的系数也必定为 $0$。
 
-??? example " 模板题 [洛谷 P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491)"
+??? example "模板题 [洛谷 P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491)"
     ```cpp
     --8<-- "docs/math/code/quad-residue/quad-residue_1.cpp"
     ```
@@ -529,3 +544,7 @@ $$
 [^ref4]: Alin Bostan, Ryuhei Mori. A Simple and Fast Algorithm for Computing the N-th Term of a Linearly Recurrent Sequence. Available at <https://arxiv.org/abs/2008.08822>.
 
 [^ref5]: [Proofs of quadratic reciprocity - Wikipedia](https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity)
+
+[^ref6]: Carl Friedrich Gauss. Untersuchungen über höhere Arithmetik, 1965. Page 458-462.
+
+[^ref7]: Kobi Kremnizer.[Lectures in number theory 2022](https://courses.maths.ox.ac.uk/pluginfile.php/29788/mod_resource/content/1/numbertheory-2022.pdf). Proposition 4.3.

@@ -49,7 +49,7 @@ Gale–Shapley 算法有两个对称的版本，分别由男士求婚和女士�
 
 参考实现如下：
 
-??? example " 模板题 [SPOJ STABLEMP - Stable Marriage Problem](https://www.spoj.com/problems/STABLEMP/) 参考实现 "
+??? example "模板题 [SPOJ STABLEMP - Stable Marriage Problem](https://www.spoj.com/problems/STABLEMP/) 参考实现"
     ```cpp
     --8<-- "docs/graph/code/graph-matching/stable-match/stable-match.cpp"
     ```

@@ -208,7 +208,7 @@ for (auto i : x) std::cout << i << " ";
 
 由于 **parameters 参数列表** 是可选的，如果不将参数传递给 lambda，并且其声明不包含 [mutable](#mutable-可变规范)，且没有后置返回值类型，则可以省略空括号。
 
-??? note " 使用 `auto` 声明的参数 "
+??? note "使用 `auto` 声明的参数"
     **C++14** 后，若参数使用 `auto` 声明类型，那么会构造一个 [泛型 Lambda 表达式](#泛型-lambdac14)。
 
 #### 显式对象形参（C++23）
@@ -316,7 +316,7 @@ auto dfs = [&](int i) -> void {
         dfs(1);
         ```
 
-    ??? warning " 不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归 "
+    ??? warning "不建议使用 [`std::function`](./new.md#stdfunction) 实现的递归"
         `std::function` 的类型擦除通常需要分配额外内存，同时间接调用带来的寻址操作会进一步降低性能。
         
         在 [Benchmark](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c) 测试中，使用 Clang 17 编译器，libc++ 作为标准库，`std::function` 实现比 lambda 实现的递归慢了约 2.5 倍。

@@ -1,4 +1,4 @@
-author: sshwy, FFjet
+author: sshwy, FFjet, qz-cqy
 
 ## 引入
 
@@ -63,7 +63,7 @@ $$
 \end{aligned}
 $$
 
-变形过程中多次利用了取整函数的性质。代入变形后的条件，原式可以写作：
+变形过程中多次利用了 [取整函数](./basic.md#取整函数) 的性质。代入变形后的条件，原式可以写作：
 
 $$
 \begin{aligned}
@@ -97,7 +97,7 @@ $$
 
 模板题的参考实现如下：
 
-??? example " 模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
+??? example "模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-0.cpp:full-text"
     ```
@@ -536,7 +536,7 @@ $$
 
 利用万能欧几里得算法可以得到模板题的实现如下：
 
-??? example " 模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
+??? example "模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-4.cpp:full-text"
     ```
@@ -591,7 +591,7 @@ $$
     **贡献合并**：一段操作序列的贡献定义为 $(x,y,\sum y,\sum xy,\sum y^2)$。两个操作分别为
     
     $$
-    U = (1,0,0,0,0),~ R = (0,1,0,0,0).
+    U = (0,1,0,0,0),~ R = (1,0,0,0,0).
     $$
     
     贡献合并时，有

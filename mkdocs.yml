@@ -222,7 +222,6 @@ nav:
     - Main–Lorentz 算法: string/main-lorentz.md
   - 数学:
     - 数学部分简介: math/index.md
-    - 符号: math/notation.md
     - 进位制: math/base.md
     - 位运算: math/bit.md
     - 二进制集合操作: math/binary-set.md
@@ -234,15 +233,13 @@ nav:
     - 复数: math/complex.md
     - 数论:
       - 数论基础: math/number-theory/basic.md
+      - 模算术简介: math/number-theory/mod-arithmetic.md
       - 素数: math/number-theory/prime.md
       - 最大公约数: math/number-theory/gcd.md
-      - 数论分块: math/number-theory/sqrt-decomposition.md
       - 欧拉函数: math/number-theory/euler-totient.md
       - 筛法: math/number-theory/sieve.md
-      - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 分解质因数: math/number-theory/pollard-rho.md
       - 裴蜀定理 & 一次不定方程: math/number-theory/bezouts.md
-      - 类欧几里德算法: math/number-theory/euclidean.md
       - 费马小定理 & 欧拉定理: math/number-theory/fermat.md
       - 模逆元: math/number-theory/inverse.md
       - 线性同余方程: math/number-theory/linear-equation.md
@@ -254,12 +251,16 @@ nav:
       - 二次剩余: math/number-theory/quad-residue.md
       - 阶 & 原根: math/number-theory/primitive-root.md
       - 离散对数: math/number-theory/discrete-logarithm.md
-      - 剩余: math/number-theory/residue.md
+      - 高次剩余 & 单位根: math/number-theory/residue.md
+      - 数论分块: math/number-theory/sqrt-decomposition.md
+      - 狄利克雷卷积: math/number-theory/dirichlet.md
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 杜教筛: math/number-theory/du.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
+      - 类欧几里德算法: math/number-theory/euclidean.md
+      - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
@@ -281,7 +282,6 @@ nav:
       - 形式幂级数复合|复合逆: math/poly/comp-rev.md
       - 普通生成函数: math/poly/ogf.md
       - 指数生成函数: math/poly/egf.md
-      - 狄利克雷生成函数: math/poly/dgf.md
     - 组合数学:
       - 排列组合: math/combinatorics/combination.md
       - 抽屉原理: math/combinatorics/drawer-principle.md
@@ -329,6 +329,7 @@ nav:
     - 博弈论: 
       - 博弈论简介: math/game-theory/intro.md
       - 公平组合游戏: math/game-theory/impartial-game.md
+      - 零和游戏: math/game-theory/zero-sum-game.md
       - 非公平组合游戏: math/game-theory/partizan-game.md
     - 数值算法:
       - 插值: math/numerical/interp.md
@@ -566,6 +567,7 @@ theme:
     - content.action.edit
     - navigation.tabs
     - navigation.instant
+    - content.code.copy
   font:
     text: 'Fira Sans'
     code: 'Fira Mono'

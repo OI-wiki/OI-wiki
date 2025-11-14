@@ -46,7 +46,7 @@ $$
     对于 $a,n\in\mathbf Z,m\in\mathbf N_+$ 且 $a\perp m$，同余关系 $a^n \equiv 1 \pmod m$ 成立，当且仅当 $\delta_m(a)\mid n$．
 
 ??? note "证明"
-    如前文所述，$a^{n}\equiv a^{n\bmod\delta_m(a)}\pmod m$．由 [性质 1](#ord-prop-1) 可知，$0\le r < \delta_m(a)$ 中唯一一个使得 $a^r\equiv 1\pmod m$ 成立的 $r$ 就是 $r=0$．因此，$a^n \equiv 1 \pmod m$，当且仅当 $n\bmod \delta_m(a) = 0$，也就是 $\delta_m(a)\mid a$．
+    如前文所述，$a^{n}\equiv a^{n\bmod\delta_m(a)}\pmod m$．由 [性质 1](#ord-prop-1) 可知，$0\le r < \delta_m(a)$ 中唯一一个使得 $a^r\equiv 1\pmod m$ 成立的 $r$ 就是 $r=0$．因此，$a^n \equiv 1 \pmod m$，当且仅当 $n\bmod \delta_m(a) = 0$，也就是 $\delta_m(a)\mid n$．
 
 [欧拉定理](./fermat.md#欧拉定理) 中，同余关系 $a^{\varphi(m)}\equiv 1\pmod m$ 对于所有 $a\perp m$ 都成立．结合 [性质 2](#ord-prop-2)，这说明对于所有 $a\perp m$，都有 $\delta_m(a)\mid\varphi(m)$．换句话说，$\varphi(m)$ 是所有 $a\perp m$ 的阶的一个公倍数．对于一个正整数 $m$，所有 $a\perp m$ 的阶 $\delta_m(a)$ 的最小公倍数，记作 $\lambda(m)$，就是 $m$ 的 [Carmichael 函数](#carmichael-函数)．后文会详细讨论它的性质．
 
@@ -301,7 +301,7 @@ $$
         
         **第二步**：对于 $d\mid(p-1)$，$d$ 阶元素恰好有 $\varphi(d)$ 个．
         
-        对于 $\varphi(m)$ 的所有因子排序，然后应用归纳法．因为 $1$ 阶元素只能是 $1$，只有一个，归纳起点成立．对于 $d\mid(p-1)$，根据前文的 [性质 2](#ord-prop-2)，同余方程 $x^d\equiv 1\pmod m$ 的解一定满足 $\delta_p(x)\mid d$．因此，其中 $d$ 阶元素个数为
+        对于 $\varphi(p)$ 的所有因子排序，然后应用归纳法．因为 $1$ 阶元素只能是 $1$，只有一个，归纳起点成立．对于 $d\mid(p-1)$，根据前文的 [性质 2](#ord-prop-2)，同余方程 $x^d\equiv 1\pmod p$ 的解一定满足 $\delta_p(x)\mid d$．因此，其中 $d$ 阶元素个数为
         
         $$
         N(d) = d - \sum_{e\mid d,~e\neq d} N(e) =  d - \sum_{e\mid d,~e\neq d} \varphi(e) = \varphi(d).
@@ -408,13 +408,27 @@ $$
 
 综合以上四个引理，我们便给出了一个数存在原根的充要条件．
 
-### 最小原根的范围估计
+### 求原根的算法
 
-王元[^yuan1959note]和 Burgess[^burgess1962character]证明了素数 $p$ 的最小原根 $g_p=O\left(p^{0.25+\epsilon}\right)$，其中 $\epsilon>0$．Cohen, Odoni, and Stothers[^cohen1974least]和 Elliott and Murata[^elliott1998least]分别证明了该估计对于模数 $p^2$ 和 $2p^2$ 也成立，其中，$p$ 是奇素数．由于对于 $e>2$，模 $p^2$（或 $2p^2$）的原根也是模 $p^e$（或 $2p^e$）的原根，所以，最小原根的上界 $O\left(p^{0.25+\epsilon}\right)$ 对于所有情形都成立．
+对于任何存在原根的模数 $m$，要求得它的原根 $g$，只需要枚举可能的正整数，并逐个判断它是否为原根即可．枚举时，通常有两种处理方式：从小到大逐一枚举、随机生成一些正整数．这两种枚举方式的实际效率相当．
 
-Fridlander[^fridlender1949least]和 Salié[^salie1949kleinsten]证明了素数 $p$ 的最小原根 $g_p=\Omega(\log p)$．
+从小到大逐一枚举时，得到的是模 $m$ 的最小原根 $g_m$，因此，枚举部分的复杂度取决于 $g_m$ 的大小．对此，有如下估计：
 
-这保证了暴力找一个数的最小原根时，复杂度可以接受．
+-   上界的估计：王元[^yuan1959note]和 Burgess[^burgess1962character]证明了素数 $p$ 的最小原根 $g_p=O\left(p^{0.25+\epsilon}\right)$，其中 $\epsilon>0$．Cohen, Odoni, and Stothers[^cohen1974least]和 Elliott and Murata[^elliott1998least]分别证明了该估计对于模数 $p^2$ 和 $2p^2$ 也成立，其中，$p$ 是奇素数．由于对于 $e>2$，模 $p^2$（或 $2p^2$）的原根也是模 $p^e$（或 $2p^e$）的原根，所以，最小原根的上界 $O\left(p^{0.25+\epsilon}\right)$ 对于所有情形都成立．
+-   下界的估计：Fridlander[^fridlender1949least]和 Salié[^salie1949kleinsten]证明了存在 $C>0$，使得对于无穷多素数 $p$，都有最小原根 $g_p > C\log p$ 成立．
+-   平均情形的估计：Burgess and Elliott[^burgess1968average]证明了平均情形下素数 $p$ 的最小原根 $g_p=O((\log p)^2(\log\log p)^4)$．Elliott and Murata[^elliott1997average]进一步猜想素数 $p$ 的最小原根的平均值是一个常数，且通过数值验证[^more-evidence]得到它大概为 $4.926$．随后，Elliott and Murata[^elliott1998least]将这一猜想推广到模 $2p^2$ 的情形．
+
+根据这些分析，暴力寻找最小原根时，枚举部分的复杂度 $O(g_m(\log m)^2)$ 是可以接受的．
+
+除了从小到大枚举外，还可以通过随机生成正整数并验证的方法寻找原根．原根的密度并不低：[^density-prim-root]
+
+$$
+\dfrac{\varphi(\varphi(m))}{m} = \Omega\left(\dfrac{1}{\log\log m}\right).
+$$
+
+所以，通过随机方法寻找原根时，枚举部分的期望复杂度为 $O((\log m)^2\log\log m)$．
+
+需要注意的是，判定原根时需要已知 $\varphi(m)$ 的质因数分解．算法竞赛 [常用质因数分解算法](./pollard-rho.md) 中，复杂度最优的 Pollard Rho 算法也需要 $O(m^{1/4+\varepsilon})$ 的时间．因此，只要 $\varphi(m)$ 的质因数分解是未知的，无论采用哪种枚举方式，求原根的复杂度瓶颈都在于质因数分解这一步，而非枚举验证的部分．
 
 ## Carmichael 函数
 
@@ -477,11 +491,7 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
     设模数为 $2^e$ 且 $e \ge 2$．那么，所有奇数都同余于唯一一个 $\pm 5^k$ 形式的整数同余，其中，$k\in\mathbf N$ 且 $k < 2^{e-2}$．也就是说，$\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 两两不同余，且构成一个既约剩余系．
 
 ??? note "证明"
-    容易验证，$e=2$ 的情形成立．对于 $e \ge 3$ 的情形，由于前述证明中已经得到 $5$ 模 $2^e$ 的阶是 $2^{e-2}$，所以，$1,5,\cdots,5^{2^{e-2}-1}$ 两两不同余．只需要再说明，不存在整数 $i,j$ 使得 $0\le j\le i < 2^{e-2}$ 且 $5^{i}\equiv -5^{j}\pmod{2^e}$ 成立．
-    
-    为此，使用反证法．不妨设 $k=i-j$，那么，$5^k=5^{i-j}\equiv -1\pmod{2^e}$．进而，有 $5^{2k} \equiv (-1)^2 = 1 \pmod {2^e}$．由阶的 [性质 2](#ord-prop-2) 可知，$\delta_{2^e}(5)=2^{e-2}\mid 2k$，又知道 $0 < k < 2^{e-2}$，唯一的可能性是 $k=2^{e-3}$．但是，前述证明中已经得到 $5^{2^{e-3}}\equiv 1 + 2^{e-1}\not\equiv -1\pmod{2^{e}}$．
-    
-    这一矛盾说明，满足条件的 $i,j$ 并不存在．所以，$\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 两两不同余．由于它们共计 $2^{e-1}$ 个，恰为模 $2^{e}$ 的既约剩余系的大小，所以，它们就构成了既约剩余系本身．
+    容易验证，$e=2$ 的情形成立．对于 $e \ge 3$ 的情形，由于前述证明中已经得到 $5$ 模 $2^e$ 的阶是 $2^{e-2}$，所以，$1,5,\cdots,5^{2^{e-2}-1}$ 两两不同余．因为这些整数都模 $4$ 余 $1$，它们的相反数都模 $4$ 余 $3$，所以 $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 模 $2^e$ 两两不同余．由于它们共计 $2^{e-1}$ 个，恰为模 $2^{e}$ 的既约剩余系的大小，所以，它们就构成了既约剩余系本身．
 
 然后，处理奇素数幂的情形．
 
@@ -586,6 +596,14 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 [^fridlender1949least]: FRIDLENDER, V. R. "On the least n-th power non-residue." Dokl. Akad. Nauk SSSR. 1949. p. 351-352.
 
 [^salie1949kleinsten]: SALIÉ, Hans. "Über den kleinsten positiven quadratischen Nichtrest nach einer Primzahl." Mathematische Nachrichten, 1949, 3.1: 7-8.
+
+[^burgess1968average]: Burgess, D. A., and P. D. T. A. Elliott. "The average of the least primitive root." Mathematika 15, no. 1 (1968): 39-50.
+
+[^elliott1997average]: Elliott, Peter DTA, and Leo Murata. "On the average of the least primitive root modulo p." Journal of The london Mathematical Society 56, no. 3 (1997): 435-454.
+
+[^more-evidence]: 更多结果可以参考 [Least prime primitive root of prime numbers](https://sweet.ua.pt/tos/p_roots.html)．
+
+[^density-prim-root]: 如果模 $m$ 的原根存在，那么，$\varphi(m)\ge\dfrac{1}{3}m$，且等号仅在 $m=2\times 3^e~(e\in\mathbf N_+)$ 处取得．进一步地，当 $m > 2$ 时，对欧拉函数 $\varphi(m)$ 有估计：$\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$．将这两者结合，就得到文中的表达式．关于欧拉函数的该估计，可以参考论文 Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94．
 
 [^korselt1899probleme]: Korselt, A. R. (1899). "Problème chinois." L'Intermédiaire des Mathématiciens. 6: 142–143.
 

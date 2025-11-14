@@ -199,7 +199,7 @@ $$
 n[x^n]f^k=k[x^{n-k}]\left(\dfrac{x}{g}\right)^n
 $$
 
-式中记号 $[x^k]f(x)$ 表示 $f(x)$ 在 $x^k$ 处的系数。
+其中 $[x^k]f(x)$ 表示 $f(x)$ 在 $x^k$ 处的系数。
 
 ### 多项式整除
 
@@ -397,7 +397,7 @@ $$
 
 1.  普通生成函数：$k_n(x)=x^n$。
 2.  指数生成函数：$k_n(x)=\dfrac{x^n}{n!}$。
-3.  狄利克雷生成函数：$k_n(x)=\dfrac{1}{n^x}$。
+3.  [狄利克雷生成函数](../number-theory/dirichlet.md#dirichlet-生成函数)：$k_n(x)=\dfrac{1}{n^x}$。
 
 ## 参考资料与拓展阅读
 

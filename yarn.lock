@@ -1855,6 +1855,27 @@ mhchemparser@^4.2.1:
   resolved "https://registry.npmmirror.com/mhchemparser/-/mhchemparser-4.2.1.tgz#d73982e66bc06170a85b1985600ee9dabe157cb0"
   integrity sha512-kYmyrCirqJf3zZ9t/0wGgRZ4/ZJw//VwaRVGA75C4nhE60vtnIzhl9J9ndkX/h6hxSN7pjg/cE0VxbnNM+bnDQ==
 
+micromark-core-commonmark@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/micromark-core-commonmark/-/micromark-core-commonmark-1.0.1.tgz#a64987cafe872e8b80bc8f2352a5d988586ac4f1"
+  integrity sha512-vEOw8hcQ3nwHkKKNIyP9wBi8M50zjNajtmI+cCUWcVfJS+v5/3WCh4PLKf7PPRZFUutjzl4ZjlHwBWUKfb/SkA==
+  dependencies:
+    micromark-factory-destination "^1.0.0"
+    micromark-factory-label "^1.0.0"
+    micromark-factory-space "^1.0.0"
+    micromark-factory-title "^1.0.0"
+    micromark-factory-whitespace "^1.0.0"
+    micromark-util-character "^1.0.0"
+    micromark-util-chunked "^1.0.0"
+    micromark-util-classify-character "^1.0.0"
+    micromark-util-html-tag-name "^1.0.0"
+    micromark-util-normalize-identifier "^1.0.0"
+    micromark-util-resolve-all "^1.0.0"
+    micromark-util-subtokenize "^1.0.0"
+    micromark-util-symbol "^1.0.0"
+    micromark-util-types "^1.0.1"
+    parse-entities "^3.0.0"
+
 micromark-core-commonmark@^1.0.0, micromark-core-commonmark@^1.0.1:
   version "1.0.6"
   resolved "https://registry.npmjs.org/micromark-core-commonmark/-/micromark-core-commonmark-1.0.6.tgz"
@@ -2432,10 +2453,10 @@ octokit@^4.0.2:
     "@octokit/request-error" "^6.0.0"
     "@octokit/types" "^13.0.0"
 
-oiwiki-feedback-sys-frontend@^0.5.13:
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/oiwiki-feedback-sys-frontend/-/oiwiki-feedback-sys-frontend-0.5.13.tgz#0709485cfdc627c8f49b915444fc62f4f7724157"
-  integrity sha512-ZnwjCZu8+bURTw08H+nVnjzgBNl76wI0P7eP5mEH94Azf/JPb6JhqZUET0zYhApFesfoKzYNB8nsv1XHa6We2Q==
+oiwiki-feedback-sys-frontend@^0.5.16:
+  version "0.5.16"
+  resolved "https://registry.yarnpkg.com/oiwiki-feedback-sys-frontend/-/oiwiki-feedback-sys-frontend-0.5.16.tgz#d0bef1a4a862d44536a8e91c2aaeb4437c6f3276"
+  integrity sha512-R2gt04aQu9elv/KBM84xHARsrDUY3FbKX8IQTPF/b5o+XZ60VTL45ZaWJnJIw0aF8al39e6jDDE0laz5Lxy8jg==
 
 once@^1.3.0:
   version "1.4.0"
@@ -2480,6 +2501,19 @@ pangu@3.3.0:
   version "3.3.0"
   resolved "https://registry.npmjs.org/pangu/-/pangu-3.3.0.tgz"
   integrity sha512-Li2jTSAwLDlfF5/9okzUlei72pOvhMtPMVAY2EBB547egYmimDhU7EN6K2WyJbumpYLAAEqznBa+KuqVEjHFuw==
+
+parse-entities@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/parse-entities/-/parse-entities-3.1.0.tgz#82b04f2c26f2b3604e4df1972beb231f20d207e2"
+  integrity sha512-xf2yeHbsfg1vJySsQelVwgtI/67eAndVU05skrr/XN6KFMoVVA95BYrW8y78OfW4jqcuHwB7tlMlLkvbq4WbHQ==
+  dependencies:
+    "@types/unist" "^2.0.0"
+    character-entities "^2.0.0"
+    character-entities-legacy "^3.0.0"
+    character-reference-invalid "^2.0.0"
+    is-alphanumerical "^2.0.0"
+    is-decimal "^2.0.0"
+    is-hexadecimal "^2.0.0"
 
 parse-entities@^4.0.0:
   version "4.0.2"
@@ -2624,15 +2658,16 @@ remark-copywriting-correct@0.6.0:
     unist-util-is "^2.1.1"
     unist-util-visit "^1.1.3"
 
-remark-details@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.npmjs.org/remark-details/-/remark-details-4.1.1.tgz"
-  integrity sha512-D/1LMFEVDILgiwMAVyBqLJ0cdTqzxkKeo2SrIrZrwv+zLO0cVPo/7WuXL4gxDzxdbUol0mNFvk2TA2g4QO8hvA==
+remark-details@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/remark-details/-/remark-details-5.0.1.tgz#8970834971bee80b59816cf1166c77e84f9e0229"
+  integrity sha512-Ml2L1qitwn6s5KVNMUyrPUClXzw7q81J7UpFCmkkX3GVMi1zhygrfGK9LpxISft5tTAJqoNhqN1VjXE6AB3TKA==
   dependencies:
     hast "^1.0.0"
     hastscript "^7.0.2"
     mdast-util-from-markdown "^1.0.2"
     mdast-util-to-markdown "^1.0.0"
+    micromark-core-commonmark "1.0.1"
     micromark-factory-space "^1.0.0"
     micromark-util-character "^1.1.0"
     micromark-util-symbol "^1.0.0"

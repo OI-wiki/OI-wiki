@@ -244,7 +244,7 @@ $$
 <a id="定理-6"></a>
 
 ???+ note "定理 6"
-    设 $n\nmid p-1$，$p\nmid a$，则方程
+    设 $n\mid p-1$，$p\nmid a$，则方程
     
     $$
     x^n\equiv a\pmod p\tag{9}
@@ -258,7 +258,7 @@ $$
     
     而且，若 $(9)$ 有解，则解数为 $n$．
 
-???+ note
+???+ note "Note"
     方程 $(9)$ 解集的具体结构可参见 [k 次剩余](./residue.md)．
 
 ???+ note "证明"

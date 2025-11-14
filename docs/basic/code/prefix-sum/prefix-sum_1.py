@@ -21,7 +21,6 @@ def query(l, r):
 
 # --8<-- [end:core]
 if __name__ == "__main__":
-    global n, a
     n = int(input())
     a = [0] + list(map(int, input().split()))  # Pad with 0 for 1-based indexing
     prefix_sum()

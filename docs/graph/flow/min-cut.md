@@ -24,7 +24,7 @@
 
 通过 **最大流最小割定理**，我们可以直接得到如下代码：
 
-??? "参考代码"
+??? note "参考代码"
     ```cpp
     #include <algorithm>
     #include <cstdio>

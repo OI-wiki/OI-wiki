@@ -26,7 +26,7 @@
 
 ## 例题一
 
-???+ note " 例 1 [Luogu P2602 数字计数](https://www.luogu.com.cn/problem/P2602)"
+???+ note "例 1 [Luogu P2602 数字计数](https://www.luogu.com.cn/problem/P2602)"
     题目大意：给定两个正整数 $a,b$，求在 $[a,b]$ 中的所有整数中，每个数码（digit）各出现了多少次。
 
 ### 方法一
@@ -143,7 +143,7 @@
 
 ## 例题二
 
-???+ note " 例 2 [HDU 2089 不要 62](https://acm.hdu.edu.cn/showproblem.php?pid=2089)"
+???+ note "例 2 [HDU 2089 不要 62](https://acm.hdu.edu.cn/showproblem.php?pid=2089)"
     题面大意：统计一个区间内数位上不能有 4 也不能有连续的 62 的数有多少。
 
 ### 解释
@@ -196,7 +196,7 @@
       pre();
       while (~scanf("%d%d", &x, &y)) {
         if (!x && !y) break;
-        x = min(x, y), y = max(x, y);
+        if (x > y) swap(x, y);
         printf("%d\n", cal(y + 1) - cal(x));
       }
       return 0;
@@ -205,7 +205,7 @@
 
 ## 例题三
 
-???+ note " 例 3 [SCOI2009 windy 数](https://loj.ac/problem/10165)"
+???+ note "例 3 [SCOI2009 windy 数](https://loj.ac/problem/10165)"
     题目大意：给定一个区间 $[l,r]$，求其中满足条件 **不含前导 $0$ 且相邻两个数字相差至少为 $2$** 的数字个数。
 
 ### 解释
@@ -257,7 +257,7 @@
 
 ## 例题四
 
-???+ note " 例 4.[SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
+???+ note "例 4.[SPOJMYQ10](https://www.spoj.com/problems/MYQ10/en/)"
     题面大意：假如手写下 $[n,m]$ 之间所有整数，会有多少数看起来和在镜子里看起来一模一样？（$n,m<10^{44}, T<10^5$）
 
 ### 解释
@@ -324,7 +324,7 @@
 
 ## 例题五
 
-???+ note " 例 5.[P3311 数数](https://www.luogu.com.cn/problem/P3311)"
+???+ note "例 5.[P3311 数数](https://www.luogu.com.cn/problem/P3311)"
     题面：我们称一个正整数 $x$ 是幸运数，当且仅当它的十进制表示中不包含数字串集合 $S$ 中任意一个元素作为其子串。例如当 $S = \{22, 333, 0233\}$ 时，$233233$ 是幸运数，$23332333$、$2023320233$、$32233223$ 不是幸运数。给定 $n$ 和 $S$，计算不大于 $n$ 的幸运数个数。答案对 $10^9 + 7$ 取模。
     
     $1 \leq n<10^{1201}，1 \leq m \leq 100，1 \leq \sum_{i = 1}^m |s_i| \leq 1500，\min_{i = 1}^m |s_i| \geq 1$，其中 $|s_i|$ 表示字符串 $s_i$ 的长度。$n$ 没有前导 $0$，但是 $s_i$ 可能有前导 $0$。

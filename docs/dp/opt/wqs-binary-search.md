@@ -135,7 +135,7 @@ v(y) &= \min_{x\in X}\sup_{\lambda\in\mathbf R^d}L(x,\lambda,y).
 \end{aligned}
 $$
 
-交换两次最值操作，就得到它的 [对偶问题](https://en.wikipedia.org/wiki/Duality_\(optimization\))：
+交换两次最值操作，就得到它的 [对偶问题](https://en.wikipedia.org/wiki/Duality_%28optimization%29)：
 
 $$
 \begin{aligned}

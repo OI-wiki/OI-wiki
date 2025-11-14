@@ -31,7 +31,7 @@
 
 有一个选择是使用当前系统时间来作为随机种子：`srand(time(nullptr))`。
 
-??? warning
+??? warning "Warning"
     在 `Windows` 系统下 `rand()` 返回值的取值范围为 $\left[0,2^{15}\right)$（即 `RAND_MAX` 等于 $2^{15}-1$），当需要生成的数不小于 $2^{15}$ 时建议使用 `(rand() << 15 | rand())` 来生成更大的随机数。
 
 关于 `rand()` 和 `rand()%n` 的随机性：
@@ -44,7 +44,7 @@
 
 定义了数个特别的流行算法。如没有特别说明，均定义于头文件 `<random>`。
 
-??? warning
+??? warning "Warning"
     预定义随机数生成器仅在于 C++11 标准[^ref2]中开始使用。
 
 #### mt19937
@@ -104,7 +104,7 @@ $$
 -   GCC 中 `random_shuffle` 随机性上的缺陷的原因之一，是因为它使用了 `rand()%n` 这样的写法。如先前所述，这样生成的不是均匀随机的整数。
 -   原因之二，是因为 `rand()` 的值域有限。如果所传入的区间长度超过 `RAND_MAX`，将存在某些排列 **不可能** 被产生[^ref1]。
 
-??? warning
+??? warning "Warning"
     `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除。
 
 ### `shuffle`

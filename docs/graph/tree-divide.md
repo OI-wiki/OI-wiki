@@ -2,7 +2,7 @@
 
 点分治适合处理大规模的树上路径信息问题。
 
-??? note " 例题 1 [Luogu P3806【模板】点分治 1](https://www.luogu.com.cn/problem/P3806)"
+??? note "例题 1 [Luogu P3806【模板】点分治 1](https://www.luogu.com.cn/problem/P3806)"
     给定一棵有 $n$ 个点的带边权树，$m$ 次询问，每次询问给出 $k$，询问树上距离为 $k$ 的点对是否存在。
     
     $n\le 10000,m\le 100,k\le 10000000$
@@ -15,7 +15,7 @@
 
 点分治过程中，每一层的所有递归过程合计对每个点处理一次，假设共递归 $h$ 层，则总时间复杂度为 $O(hn)$。
 
-若我们 **每次选择子树的重心作为根节点**，可以保证递归层数最少，时间复杂度为 $O(n\log n)$。
+若我们每次选择子树的 [重心](./tree-centroid.md) 作为根节点，可以保证递归层数最少，时间复杂度为 $O(n\log n)$。因此，点分治在国外竞赛圈也常称为树的 **重心分解**（centroid decomposition）。
 
 请注意在重新选择根节点之后一定要重新计算子树的大小，否则一点看似微小的改动就可能会使时间复杂度错误或正确性难以保证。
 
@@ -24,7 +24,7 @@
     --8<-- "docs/graph/code/tree-divide/tree-divide_1.cpp"
     ```
 
-??? note " 例题 2 [Luogu P4178 Tree](https://www.luogu.com.cn/problem/P4178)"
+??? note "例题 2 [Luogu P4178 Tree](https://www.luogu.com.cn/problem/P4178)"
     给定一棵有 $n$ 个点的带权树，给出 $k$，询问树上距离小于等于 $k$ 的点对数量。
     
     $n\le 40000,k\le 20000,w_i\le 1000$
@@ -36,7 +36,7 @@
     --8<-- "docs/graph/code/tree-divide/tree-divide_2.cpp"
     ```
 
-??? note " 例题 3 [Luogu P2664 树上游戏](https://www.luogu.com.cn/problem/P2664)"
+??? note "例题 3 [Luogu P2664 树上游戏](https://www.luogu.com.cn/problem/P2664)"
     一棵每个节点都给定颜色的树，定义 $s(i,j)$ 为 $\mathit{i}$ 到 $\mathit{j}$ 的颜色数量，$\mathit{sum_{i}}=\sum_{j=1}^n s(i,j)$。对所有的 $1\leq i\leq n$，求 $sum_i$。（$1 \le n, c_i \le 10^5$）
 
 这道题很考验对点分治思想的理解和应用，适合作为点分治的难度较高的例题和练习题。

@@ -6,12 +6,12 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "mkdocs==1.5.3",
-    "pymdown-extensions==10.3.1",
+    "pymdown-extensions==10.16.1",
     "pygments",
     "beautifulsoup4",
     "requests",
-    "markdown==3.6",
-    "python-markdown-document-offsets-injection-extension==0.5.13",
+    "markdown==3.9",
+    "python-markdown-document-offsets-injection-extension==0.5.16",
     "mkdocs-toggle-sidebar-plugin==0.0.8",
 ]
 

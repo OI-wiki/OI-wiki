@@ -120,6 +120,17 @@ int main() {
           for (tx[0] = 1; tx[0] <= 10; ++tx[0]) {
             for (tx[1] = 1; tx[1] <= tx[0]; ++tx[1]) {
               bool flag = true;
+              // Check if out of bound.
+              for (int k = 0; k < len[id]; ++k) {
+                nxt[op] = tx[op] + f[dx] * table[id][k][0];
+                nxt[op ^ 1] = tx[op ^ 1] + f[dy] * table[id][k][1];
+                if (nxt[1] < 1 || nxt[0] < nxt[1] || nxt[0] > 10) {
+                  flag = false;
+                  break;
+                }
+              }
+              if (!flag) continue;
+              // Check if illegal.
               for (int k = 0; k < len[id]; ++k) {
                 nxt[op] = tx[op] + f[dx] * table[id][k][0];
                 nxt[op ^ 1] = tx[op ^ 1] + f[dy] * table[id][k][1];
@@ -134,6 +145,7 @@ int main() {
                 }
               }
               if (!flag) continue;
+              // Try to insert.
               dfn[++numrow] = id;
               solver.insert(numrow, numcol);
               for (int k = 0; k < len[id]; ++k) {

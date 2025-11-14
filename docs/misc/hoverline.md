@@ -33,7 +33,7 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 ### 实现
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/misc/code/hoverline/hoverline_1.cpp"
     ```
@@ -43,7 +43,7 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 本题中我们可以考虑枚举最小值，将每个位置的数 $a_i$ 当作最小值，并考虑从 $i$ 向左右扩展，找到满足 $\min\limits _ {j = l} ^ r a_j = a_i$ 的尽可能向左右扩展的区间 $[l, r]$。这样本题就被转化成了悬线法模型。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/misc/code/hoverline/hoverline_2.cpp"
     ```
@@ -55,7 +55,7 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 我们会发现本题的模型和第一题的模型很像。仔细分析，发现如果我们每次只考虑某一行的所有元素，将位置 $(x, y)$ 的元素尽可能向上扩展的距离作为该位置的悬线长度，那最大子矩阵一定是这些悬线向左右扩展得到的尽可能大的矩形中的一个。
 
-??? 参考代码
+??? note "参考代码"
     ```cpp
     --8<-- "docs/misc/code/hoverline/hoverline_3.cpp"
     ```

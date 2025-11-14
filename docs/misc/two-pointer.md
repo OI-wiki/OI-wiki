@@ -14,7 +14,7 @@
 
 ### 例题 1
 
-???+ note " 例题 1 [leetcode 713. 乘积小于 K 的子数组](https://leetcode-cn.com/problems/subarray-product-less-than-k/)"
+???+ note "例题 1 [leetcode 713. 乘积小于 K 的子数组](https://leetcode-cn.com/problems/subarray-product-less-than-k/)"
     给定一个长度为 $n$ 的正整数数组 $\mathit{nums}$ 和整数 $k$，找出该数组内乘积小于 $k$ 的连续子数组的个数。
     
     其中，$1 \leq n \leq 3 \times 10^4, 1 \leq nums[i] \leq 1000, 0 \leq k \leq 10^6$。
@@ -44,7 +44,7 @@ int numSubarrayProductLessThanK(vector<int>& nums, int k) {
 
 接下来看一道在树上使用双指针并结合树上差分的例题：
 
-???+ note " 例题 2 [luogu P3066 Running Away From the Barn G](https://www.luogu.com.cn/problem/P3066)"
+???+ note "例题 2 [luogu P3066 Running Away From the Barn G](https://www.luogu.com.cn/problem/P3066)"
     给定一颗 $n$ 个点的有根树，边有边权，节点从 1 至 $n$ 编号，1 号节点是这棵树的根。再给出一个参数 $t$，对于树上的每个节点 $u$，请求出 $u$ 的子树中有多少节点满足该节点到 $u$ 的距离不大于 $t$。数据范围：$1\leq n \leq 2\times 10^5,1 \leq t \leq 10^{18},1 \leq p_i \lt i,1 \leq w_i \leq 10^{12}$
 
 #### 过程
@@ -52,9 +52,13 @@ int numSubarrayProductLessThanK(vector<int>& nums, int k) {
 从根开始用 dfs 遍历整棵树，使用一个栈来记录根到当前节点的树链，设一个指针 $u$ 指向当前节点，另一个指针 $p$ 指向与 $u$ 距离不大于 $t$ 的节点中深度最小的节点。记录到根的距离，每次二分查找确定 $p$。此时 $u$ 对 $p$ 到 $u$ 路径上的所有节点都有一个贡献，可以用树上差分来记录。  
 注意不能直接暴力移动 $p$，否则时间复杂度可能会退化至 $O(n^2)$。
 
+### 习题
+
+[leetcode 1438. 绝对差不超过限制的最长连续子数组](https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/)
+
 ## 子序列匹配
 
-???+ note " 例题 3 [leetcode 524. 通过删除字母匹配到字典里最长单词](https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/)"
+???+ note "例题 3 [leetcode 524. 通过删除字母匹配到字典里最长单词](https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/)"
     给定一个字符串 $s$ 和一个字符串数组 $\mathit{dictionary}$ 作为字典，找出并返回字典中最长的字符串，该字符串可以通过删除 $s$ 中的某些字符得到。
 
 ### 过程
@@ -90,7 +94,7 @@ string findLongestWord(string s, vector<string>& dictionary) {
 
 很多时候在序列上使用双指针之所以能够正确地达到目的，是因为序列的某些性质，最常见的就是利用序列的有序性。
 
-???+ note " 例题 4 [leetcode 167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/)"
+???+ note "例题 4 [leetcode 167. 两数之和 II - 输入有序数组](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/)"
     给定一个已按照 **升序排列** 的整数数组 `numbers`，请你从数组中找出两个数满足相加之和等于目标数 `target`。
 
 ### 过程
@@ -127,6 +131,10 @@ vector<int> twoSum(vector<int>& numbers, int target) {
 
 在归并排序中，在 $O(n+m)$ 时间内合并两个有序数组，也是保证数组的有序性条件下使用的双指针法。
 
+### 习题
+
+[leetcode 15. 三数之和](https://leetcode-cn.com/problems/3sum/)
+
 ## 在单向链表中找环
 
 ### 过程
@@ -148,8 +156,10 @@ $$
 
 第一次相遇时 $n$ 取最小正整数 1。也就是说 $k=C$。那么利用这个等式，可以在两个指针相遇后，将其中一个指针移到表头，让两者都一步一步走，再度相遇的位置即为环的起点。
 
-### 习题
+### 实现
 
-[leetcode 15. 三数之和](https://leetcode-cn.com/problems/3sum/)
+```cpp
+--8<-- "docs/misc/code/two-pointer/two-pointer_1.cpp:core"
+```
 
-[leetcode 1438. 绝对差不超过限制的最长连续子数组](https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/)
+时间复杂度 $O(n)$。

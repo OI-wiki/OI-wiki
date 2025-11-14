@@ -1,4 +1,4 @@
-author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309, shigengxin123456, Re-Ori，hcx1204
+author: Ir1d, Planet6174, abc1763613206, StudyingFather, cjsoft, Marcythm, luoguyuntianming, ChungZH, Xeonacid, YZircon, i-Yirannn, H-J-Granger, NachtgeistW, YuzhenQin, Andycode3759, HHH2309, shigengxin123456, Re-Ori, hcx1204
 
 ## 赛事简介
 
@@ -29,6 +29,9 @@ OI 竞赛种类繁多，仅中国就包括：
 ### OI 赛制
 
 选手仅有一次提交机会。比赛时无法看到评测结果，评分会在赛后公布。每道题都有多个测试点，根据每道题通过的测试点的数量获得相应的分数；每个测试点还可能会有部分分，即使只有部分数据通过也能拿到分数。
+
+???+ note "自评测工具 selfEval"
+    现如今，在一些 NOI 系列赛中，提供了 selfEval 自评测工具。selfEval 内置于全国赛定制版 NOI Linux 中。自 NOI2023 正式公布并投入使用后，selfEval 陆续用于其后的 NOI 全国赛、APIO（中国区）和 NOI 冬令营等。选手可以使用 selfEval 在一组测试数据（称为预测试数据）上测试自己的程序，并得到反馈结果。选手在每场比赛中的自测次数有指定上限（NOI2024 自测次数上限为 50 次，NOI2025 自测次数上限为 30 次），而且预测试数据也是选手不可见的。由于预测试数据不同于正式测试数据，因此自测结果仅用于调试，不能被视作正式评测成绩。选手在同一题目上多次进行预测试，所使用的预测试数据是相同的。
 
 CSP-J/S 第二轮、NOIP、省选、NOI 都是 OI 赛制。
 
@@ -95,21 +98,31 @@ NOI 一般在七月份举行，选手分为正式选手与夏令营选手两类�
 
 在国际平台上，为了与其他同样称作 NOI 的比赛区分，有时会被称作 CNOI。
 
+### CTT
+
+**CTT**（英文：China Team Training，中文：国际信息学奥林匹克国家集训队培训）是每年冬天为 IOI 国家集训队选手举办的集训与选拔活动，由 3-4 场测试组成。除国家集训队外，部分在当年 NOI 中取得优异成绩的选手也可以「精英集训」的名义参加 CTT。
+
+CTT 与平时作业等其他流程共同组成了国家队选拔的第一阶段。自 2021 年起，在第一阶段排名前 30 的选手将成为国家候选队，进入第二阶段的选拔（WC）。
+
 ### WC
 
-**WC**（英文：Winter Camp，中文：全国青少年信息学奥林匹克竞赛冬令营）是每年冬天在当年 NOI 举办地进行的一项活动。
+**WC**（英文：Winter Camp，中文：全国青少年信息学奥林匹克竞赛冬令营）是每年冬天在当年 NOI 举办地进行的一项活动。虽然该活动主要用于集训队培训与国家队选拔，但是前一年 NOIP 与 CSP-S 第二轮取得较好成绩的选手也可作为非正式营员参加。
 
-WC 的内容包括若干天的培训和一天的考试。这项考试主要用于从国家集训队（50 人）选拔国家候选队（15 人），但是前一年 NOIP 与 CSP-S 第二轮取得较好成绩的选手也可以参加（不参与选拔）。
+WC 的内容包括若干天的培训和测试，测试成绩将和先前阶段的成绩汇总，算出集训队选手的综合排名。在 2020 年前，测试仅有一场，且集训队与非正式营员的测试题目相同，集训队综合成绩前 15 的选手将成为国家候选队，参与最后阶段的选拔（CTS 等）；而自 2021 年起，随着 CTS 的国家队选拔功能并入到 WC 中，国家候选队的测试变为两场，而非正式营员的测试仍为一场，且非正式营员的测试题目和候选队测试题目有部分重合。候选队中综合排名前 6 的选手将进入到最终的面试，并选出 4 名正式选手和 2 名替补选手参与当年的 IOI 比赛。
 
 ### APIO
 
 **APIO**（英文：Asia-Pacific Informatics Olympiad，中文：亚太地区信息学奥林匹克竞赛）是一个面向亚太地区在校中学生的信息学学科竞赛。CCF 每年会在五月初举办中国赛区镜像赛。在比赛日前后会有培训活动。
+
+APIO 参赛选手可分为 A 类和 B 类，A 类选手中的前六名（含并列）可参与 APIO 的国际奖项评选；而 B 类选手只能参与中国赛区的奖项评选。
 
 ### CTS
 
 **CTS**（旧称：CTSC, 英文：China Team Selection Competition，中文：国际信息学奥林匹克竞赛中国队选拔赛）用来从国家候选队（15 人）中选拔国家队（6 人）准备参加当年夏天的 IOI 比赛，其中正式选手 4 人，替补选手 2 人。与 WC 一样，前一年 NOIP 取得较好成绩的选手也可以参加（不参与选拔）。
 
 APIO 和 CTS 都以省为单位报名，一般按照 NOIP 的成绩排序来确定参加 APIO 和 CTS 的人员（二者一般时间上非常接近）。
+
+2020 年的 CTS 因为疫情而停办，当年的国家集训队通过 NOI 选出；2021 年起，CTS 的选拔流程被 WC 取代。
 
 ### IOI
 
@@ -295,15 +308,9 @@ CEOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](ht
 
 eJOI 每年都公开题面、测试数据和题解，官网地址见 [帖子](https://loj.ac/article/416)。
 
-### ISIJ
-
-**ISIJ** 全名 International School in Informatics "Junior"，中文名「国际初中生信息学竞赛」。
-
-官网地址：<http://isi-junior.com/>
-
 ### NOI
 
-???+ warning
+???+ warning "Warning"
     此处介绍的不是「全国信息学奥林匹克竞赛」。
 
 **NOI** 全名 Nordic Olympiads in Informatics。

@@ -172,7 +172,7 @@ author: PeterlitsZo, Tiphereth-A
 
 ## 例题
 
-本节通过一道例题展示扩展欧拉定理的一个经典应用——计算任意模数下的幂塔。**幂塔**（power tower）指形如 $A\uparrow(B\uparrow(C\uparrow(D\uparrow\cdots)))$ 的式子，其中，$\uparrow$ 是 [Knuth 箭头记号](https://en.wikipedia.org/wiki/Knuth%27s_up-arrow_notation)，即 $A\uparrow B$ 表示幂 $A^B$，而 $A,B,C,D,\cdots$ 是一系列非负整数。
+本节通过一道例题展示扩展欧拉定理的一个经典应用——计算任意模数下的幂塔。**幂塔**（power tower）指形如 $A\uparrow(B\uparrow(C\uparrow(D\uparrow\cdots)))$ 的式子，其中，$\uparrow$ 是 Knuth 箭头记号，而 $A,B,C,D,\cdots$ 是一系列非负整数。
 
 ???+ example "[Library Checker - Tetration Mod](https://judge.yosupo.jp/problem/tetration_mod)"
     $T$ 组测试。每组测试中，给定 $A,B,M$，求 $(A\uparrow\uparrow B)\bmod M$。其中，$A\uparrow\uparrow B$ 表示由 $B$ 个 $A$ 组成的幂塔。或者，形式化地，定义

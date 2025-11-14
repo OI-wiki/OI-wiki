@@ -30,8 +30,8 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
 
 以下是一个使用枚举解题与优化枚举范围的例子。
 
-??? 例题
-    一个数组中的数互不相同，求其中和为 $0$ 的数对的个数。
+??? note "例题"
+    给定一个数组，其所有元素互不相同且均不为 $0$。求该数组中和为 $0$ 的数对个数。
 
 ??? note "解题思路"
     枚举两个数的代码很容易就可以写出来。
@@ -60,13 +60,14 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     
     来看看枚举的范围如何优化。由于题中没要求数对是有序的，答案就是有序的情况的两倍（考虑如果 `(a, b)` 是答案，那么 `(b, a)` 也是答案）。对于这种情况，只需统计人为要求有顺序之后的答案，最后再乘上 $2$ 就好了。
     
-    不妨要求第一个数要出现在靠前的位置。代码如下：
+    不妨要求第一个数要出现在靠后的位置。代码如下：
     
     === "C++"
         ```cpp
         for (int i = 0; i < n; ++i)
           for (int j = 0; j < i; ++j)
             if (a[i] + a[j] == 0) ++ans;
+        ans *= 2;
         ```
     
     === "Python"
@@ -75,6 +76,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
             for j in range(i):
                 if a[i] + a[j] == 0:
                     ans += 1
+        ans *= 2
         ```
     
     === "Java"
@@ -82,6 +84,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
         for (int i = 0; i < n; ++i)
             for (int j = 0; j < i; ++j)
                 if (a[i] + a[j] == 0) ++ans;
+        ans *= 2;
         ```
     
     不难发现这里已经减少了 $j$ 的枚举范围，减少了这段代码的时间开销。
@@ -102,6 +105,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
             if met[MAXN - a[i]]:
                 ans += 1
             met[a[i] + MAXN] = True
+        ans *= 2
         ```
     
     === "Java"
@@ -111,6 +115,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
             if (met[MAXN - a[i]]) ++ans;
             met[MAXN + a[i]] = true;
         }
+        ans *= 2;
         ```
 
 ### 复杂度分析
@@ -124,4 +129,4 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
 
 ## 脚注
 
-[^1]: [桶排序](../basic/bucket-sort.md) 以及 [主元素问题](../misc/main-element.md#桶计数做法) 以及 [Stack Overflow 上对桶数据结构的讲解](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure)（英文）
+[^1]: [桶排序](../basic/bucket-sort.md) 以及 [主元素问题](../misc/main-element.md#离线算法) 以及 [Stack Overflow 上对桶数据结构的讲解](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure)（英文）
