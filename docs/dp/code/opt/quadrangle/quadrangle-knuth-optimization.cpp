@@ -35,10 +35,9 @@ void solve(int n) {
 }
 
 // --8<-- [end:core]
-std::function<val_t(int,int)> impl;
-int w(int j, int i) {
-  return impl(j, i);
-}
+std::function<val_t(int, int)> impl;
+
+int w(int j, int i) { return impl(j, i); }
 
 int main() {
   std::ios::sync_with_stdio(false), std::cin.tie(nullptr);

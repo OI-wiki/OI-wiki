@@ -329,7 +329,7 @@ $$
     ```cpp
     --8<-- "docs/dp/code/opt/quadrangle/quadrangle-knuth-optimization.cpp:core"
     ```
-    
+
 ## 满足四边形不等式的函数类
 
 为了更方便地证明一个函数满足四边形不等式，我们有以下几条性质：
