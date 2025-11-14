@@ -50,37 +50,10 @@ $$
 
 要求解所有状态，只需要求解所有最优决策点。为了对所有 $1 \leq i \leq n$ 求解 $\operatorname{opt}(i)$，首先计算 $\operatorname{opt}(n/2)$，而后分别计算 $1 \leq i < n/2$ 和 $n/2 < i \leq n$ 上的 $\operatorname{opt}(i)$，注意此时已知前半段的 $\operatorname{opt}(i)$ 必然位于 $1$ 和 $\operatorname{opt}(n/2)$ 之间（含端点），而后半段的 $\operatorname{opt}(i)$ 必然位于 $\operatorname{opt}(n/2)$ 和 $\operatorname{opt}(n)$ 之间（含端点）。对于两个子区间，也类似处理，直至计算出每个问题的最优决策。在分治的过程中记录搜索的上下边界，就可以保证算法复杂度控制在 $O(n\log n)$。递归树层数为 $O(\log n)$，而每层中，单个决策点至多计算两次，所以总的计算次数是 $O(n\log n)$。
 
-???+ example "核心代码"
-    === "C++"
-        ```cpp
-        int w(int j, int i);
-        
-        void DP(int l, int r, int k_l, int k_r) {
-          int mid = (l + r) / 2, k = k_l;
-          // 求状态f[mid]的最优决策点
-          for (int j = k_l; j <= min(k_r, mid - 1); ++j)
-            if (w(j, mid) < w(k, mid)) k = j;
-          f[mid] = w(k, mid);
-          // 根据决策单调性得出左右两部分的决策区间，递归处理
-          if (l < mid) DP(l, mid - 1, k_l, k);
-          if (r > mid) DP(mid + 1, r, k, k_r);
-        }
-        ```
-    
-    === "Python"
-        ```python
-        def DP(l, r, k_l, k_r):
-            mid = int((l + r) / 2)
-            k = k_l  # 求状态f[mid]的最优决策点
-            for i in range(k_l, min(k_r, mid - 1)):
-                if w(i, mid) < w(k, mid):
-                    k = i
-            f[mid] = w(k, mid)  # 根据决策单调性得出左右两部分的决策区间，递归处理
-            if l < mid:
-                DP(l, mid - 1, k_l, k)
-            if r > mid:
-                DP(mid + 1, r, k, k_r)
-        ```
+???+ example "参考实现"
+    ```cpp
+    --8<-- "docs/dp/code/opt/quadrangle/quadrangle-divide-conquer.py:core"
+    ```
 
 ### 二分队列
 
@@ -107,54 +80,10 @@ $$
     -   最后的情形是，队尾决策 $j'$ 比起要入队的决策 $j$ 对于问题 $l_{j'}$ 严格更优，而对于问题 $r_{j'}$ 严格更劣。这说明，存在问题 $i\in(l_{j'},r_{j'}]$ 使得问题 $[l_{j'},i-1]$ 的最小最优决策为 $j'$ 且问题 $[i,r_{j'}]$ 的最小最优决策为 $j$。因而，需要通过 **二分** 找到最小的 $i\in[l_{j'},r_{j'}]$ 使得 $w(j,i) < w(j',i)$，再将队尾的区间右端点 $r_{j'}$ 修改为 $i-1$，并入队 $(j,i,n)$。
 -   处理完决策 $j$ 后，就已经处理了所有到 $j$ 为止的决策。此时，队首决策就是问题 $j$ 的最小最优决策，可以记录相应的最优解。
 
-参考实现如下：
-
-???+ example "核心代码"
-    === "C++"
-        ```cpp
-        int val(int j, int i);
-        int lt[N], rt[N], f[N];
-        deque<int> dq;
-        // 顺次考虑所有问题和决策，下标从 1 开始
-        for (int j = 1; j <= n; ++j) {
-          // 出队
-          if (!dq.empty() && rt[dq.front()] < j) dq.pop_front();
-          if (!dq.empty()) lt[dq.front()] = j;
-          // 入队
-          while (!dq.empty() && val(j, lt[dq.back()]) < val(dq.back(), lt[dq.back()])) {
-            dq.pop_back();
-          }
-          if (dq.empty()) {
-            lt[j] = j;
-            rt[j] = n;
-            dq.emplace_back(j);
-          } else if (val(j, rt[dq.back()]) >= val(dq.back(), rt[dq.back()])) {
-            if (rt[dq.back()] < n) {
-              lt[j] = rt[dq.back()] + 1;
-              rt[j] = n;
-              dq.emplace_back(j);
-            }
-          } else {
-            int ll = lt[dq.back()], rr = rt[dq.back()], i = rr;
-            // 二分
-            while (ll <= rr) {
-              int mm = (ll + rr) / 2;
-              if (val(j, mm) < val(dq.back(), mm)) {
-                i = mm;
-                rr = mm - 1;
-              } else {
-                ll = mm + 1;
-              }
-            }
-            rt[dq.back()] = i - 1;
-            lt[j] = i;
-            rt[j] = n;
-            dq.emplace_back(j);
-          }
-          // 计算
-          f[j] = val(dq.front(), j);
-        }
-        ```
+???+ example "参考实现"
+    ```cpp
+    --8<-- "docs/dp/code/opt/quadrangle/quadrangle-monotone-queue.cpp:core"
+    ```
 
 类似于单调队列，每个决策点至多入队一次，出队一次。其中，出队是 $O(1)$ 的，而入队是 $O(\log n)$ 的（可能需要二分），所以总的时间复杂度是 $O(n\log n)$。
 
@@ -198,6 +127,11 @@ $$
 4.  递归求解区间 $(\textit{mid},r]$ 中的问题。
 
 对整个区间 $[1,n]$ 执行递归前，首先需要用决策 $j=1$ 更新问题 $i\in\{1,n\}$。该算法在递归到 $l=r$ 时就终止。
+
+???+ example "参考实现"
+    ```cpp
+    --8<-- "docs/dp/code/opt/quadrangle/quadrangle-simplified-larsch.cpp:core"
+    ```
 
 首先，可以说明这一算法的正确性。为此，只要检查每一递归求解的步骤（即步骤 2 和 4）前都满足上文给出的前提条件。由前一节得到的推论 1，有 $\operatorname{opt}(l)=\operatorname{opt}_l(l)\le\operatorname{opt}_l(\textit{mid})\le\operatorname{opt}_l(r)$，所以步骤 1 后，$\operatorname{opt}_l(\textit{mid})$ 是已知的，进而执行步骤 2 前递归求解区间 $(l,\textit{mid}]$ 中问题的前提条件成立。由于之前 $\{\operatorname{opt}(i):i\in[1,l]\}$ 是已知的，步骤 2 又得到了 $\{\operatorname{opt}(i):i\in(l,\textit{mid}]\}$ 的取值，所以这之后 $\{\operatorname{opt}(i):i\in[1,\textit{mid}]\}$ 都是已知的；同时，由于之前 $\operatorname{opt}_l(r)$ 是已知的，步骤 3 后，$\operatorname{opt}_\textit{mid}(r)$ 就也是已知的。因此，执行步骤 4 前递归求解区间 $(\textit{mid},r]$ 中问题的前提条件也成立。
 
