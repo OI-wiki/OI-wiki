@@ -143,33 +143,33 @@ $$
 
 ??? note "非随机访问的复杂度证明"
     只需要证明游标移动的总次数是 $O(n\log n)$ 的。设 $A$ 和 $B$ 分别为步骤 1 和 3 对应的游标。实际上可以保证：在求解区间 $(l,r]$ 的问题之前，游标 $A$ 处于位置 $(\operatorname{opt}(l),l)$，游标 $B$ 处于位置 $(l,l)$；而在这之后，游标 $A$ 处于位置 $(\operatorname{opt}(r),r)$，游标 $B$ 处于位置 $(r,r)$。
-
+    
     考虑构造如下游标移动规则。步骤 1 中，可以令游标 $A$ 沿着路径
-
+    
     $$
     (\operatorname{opt}(l),l)\to(\operatorname{opt}(l),\textit{mid})\to(\operatorname{opt}_l(r),\textit{mid})\to(\operatorname{opt}(l),\textit{mid})\to(\operatorname{opt}(l),l)
     $$
-
+    
     移动。此时，游标 $A$ 和 $B$ 均处于求解区间 $(l,\textit{mid}]$ 的问题之前的规定位置上。步骤 2 中，按规定，游标 $A$ 将移动到 $(\operatorname{opt}(\textit{mid}),\textit{mid})$，游标 $B$ 将移动到 $(\textit{mid},\textit{mid})$。步骤 3 中，可以令游标 $B$ 沿着路径
-
+    
     $$
     (\textit{mid},\textit{mid}) \to (l,\textit{mid}) \to (l, r) \to (\textit{mid},r) \to (\textit{mid},\textit{mid})
     $$
-
+    
     移动。此时，游标 $A$ 和 $B$ 均处于求解区间 $(\textit{mid},r]$ 的问题之前的规定位置上。步骤 4 中，按规定，游标 $A$ 将移动到 $(\operatorname{opt}(r),r)$，游标 $B$ 将移动到 $(r,r)$。两个游标均在结束求解区间 $(l,r]$ 的问题的规定位置上。因此，这一移动规则符合上述规定。而且，该移动规则足以完成步骤 1 和 3 中的所有计算。直接计算该规则中游标的移动次数可知，步骤 1 需要
-
+    
     $$
     2(\operatorname{opt}_l(r) - \operatorname{opt}(l)) + 2(\textit{mid} - l)
     $$
-
+    
     次移动，步骤 3 需要
-
+    
     $$
     2(\textit{mid}-l)+2(r-\textit{mid}) = 2(r-l)
     $$
-
+    
     次移动。将这些移动次数对递归树中的所有结点求和，利用同一层中的所有 $[l,r]$ 和 $[\operatorname{opt}(l),\operatorname{opt}_l(r)]$ 至多只在端点处重合这一性质，就可以说明总的移动次数是 $O(n\log n)$ 的。
-
+    
     由于上述移动规则比起实际计算时游标的移动设置了更多的途径点，所以游标的实际移动次数不会超过该规则下移动次数的估计。因此，游标的实际移动次数也是 $O(n\log n)$ 的。
 
 ## 区间分拆问题
