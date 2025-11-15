@@ -1611,6 +1611,11 @@ markdown-table@^3.0.0:
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-3.0.3.tgz"
   integrity sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==
 
+md-attr-parser@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/md-attr-parser/-/md-attr-parser-1.3.0.tgz#23e1d507858746d4e84beb244c089799979cfce8"
+  integrity sha512-KTVlfU5Oxo/6kd0YZ2mLP3eWJj+5vzh5mBCxLo3yGl1fzHIgxmtadbE9tHb7TbUBi3XZbl+P0xKeGmakat135w==
+
 mdast-comment-marker@^2.0.0:
   version "2.1.1"
   resolved "https://registry.npmjs.org/mdast-comment-marker/-/mdast-comment-marker-2.1.1.tgz"
@@ -1618,6 +1623,19 @@ mdast-comment-marker@^2.0.0:
   dependencies:
     "@types/mdast" "^3.0.0"
     mdast-util-mdx-expression "^1.1.0"
+
+mdast-util-directive@^2.0.0:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/mdast-util-directive/-/mdast-util-directive-2.2.4.tgz#e397ed699ec83938cb4a48dc1cec3ae69cbd7aa3"
+  integrity sha512-sK3ojFP+jpj1n7Zo5ZKvoxP1MvLyzVG63+gm40Z/qI00avzdPCYxt7RBMgofwAva9gBjbDBWVRB/i+UD+fUCzQ==
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "@types/unist" "^2.0.0"
+    mdast-util-from-markdown "^1.3.0"
+    mdast-util-to-markdown "^1.5.0"
+    parse-entities "^4.0.0"
+    stringify-entities "^4.0.0"
+    unist-util-visit-parents "^5.1.3"
 
 mdast-util-find-and-replace@^2.0.0:
   version "2.2.1"
@@ -1632,6 +1650,24 @@ mdast-util-from-markdown@^1.0.0, mdast-util-from-markdown@^1.0.2:
   version "1.3.0"
   resolved "https://registry.npmjs.org/mdast-util-from-markdown/-/mdast-util-from-markdown-1.3.0.tgz"
   integrity sha512-HN3W1gRIuN/ZW295c7zi7g9lVBllMgZE40RxCX37wrTPWXCWtpvOZdfnuK+1WNpvZje6XuJeI3Wnb4TJEUem+g==
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "@types/unist" "^2.0.0"
+    decode-named-character-reference "^1.0.0"
+    mdast-util-to-string "^3.1.0"
+    micromark "^3.0.0"
+    micromark-util-decode-numeric-character-reference "^1.0.0"
+    micromark-util-decode-string "^1.0.0"
+    micromark-util-normalize-identifier "^1.0.0"
+    micromark-util-symbol "^1.0.0"
+    micromark-util-types "^1.0.0"
+    unist-util-stringify-position "^3.0.0"
+    uvu "^0.5.0"
+
+mdast-util-from-markdown@^1.3.0:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/mdast-util-from-markdown/-/mdast-util-from-markdown-1.3.1.tgz#9421a5a247f10d31d2faed2a30df5ec89ceafcf0"
+  integrity sha512-4xTO/M8c82qBcnQc1tgpNtubGUW/Y1tBQ1B0i5CtSoelOLKFYlElIr3bvgREYYO5iRqbMY1YuqZng0GVOI8Qww==
   dependencies:
     "@types/mdast" "^3.0.0"
     "@types/unist" "^2.0.0"
@@ -1802,6 +1838,14 @@ mdast-util-mdxjs-esm@^2.0.0:
     mdast-util-from-markdown "^2.0.0"
     mdast-util-to-markdown "^2.0.0"
 
+mdast-util-phrasing@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/mdast-util-phrasing/-/mdast-util-phrasing-3.0.1.tgz#c7c21d0d435d7fb90956038f02e8702781f95463"
+  integrity sha512-WmI1gTXUBJo4/ZmSk79Wcb2HcjPJBzM1nlI/OUWA8yk2X9ik3ffNbBGsU+09BFmXaL1IBb9fiuvq6/KMiNycSg==
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    unist-util-is "^5.0.0"
+
 mdast-util-phrasing@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/mdast-util-phrasing/-/mdast-util-phrasing-4.1.0.tgz#7cc0a8dec30eaf04b7b1a9661a92adb3382aa6e3"
@@ -1818,6 +1862,20 @@ mdast-util-to-markdown@^1.0.0, mdast-util-to-markdown@^1.3.0:
     "@types/mdast" "^3.0.0"
     "@types/unist" "^2.0.0"
     longest-streak "^3.0.0"
+    mdast-util-to-string "^3.0.0"
+    micromark-util-decode-string "^1.0.0"
+    unist-util-visit "^4.0.0"
+    zwitch "^2.0.0"
+
+mdast-util-to-markdown@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/mdast-util-to-markdown/-/mdast-util-to-markdown-1.5.0.tgz#c13343cb3fc98621911d33b5cd42e7d0731171c6"
+  integrity sha512-bbv7TPv/WC49thZPg3jXuqzuvI45IL2EVAr/KxF0BSdHsU0ceFHOmwQn6evxAh1GaoK/6GQ1wp4R4oW2+LFL/A==
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    "@types/unist" "^2.0.0"
+    longest-streak "^3.0.0"
+    mdast-util-phrasing "^3.0.0"
     mdast-util-to-string "^3.0.0"
     micromark-util-decode-string "^1.0.0"
     unist-util-visit "^4.0.0"
@@ -1919,6 +1977,19 @@ micromark-core-commonmark@^2.0.0:
     micromark-util-subtokenize "^2.0.0"
     micromark-util-symbol "^2.0.0"
     micromark-util-types "^2.0.0"
+
+micromark-extension-directive@^2.0.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/micromark-extension-directive/-/micromark-extension-directive-2.2.1.tgz#181751e433a0f2cdfbccc520eb1da42d63cbe4bd"
+  integrity sha512-ZFKZkNaEqAP86IghX1X7sE8NNnx6kFNq9mSBRvEHjArutTCJZ3LYg6VH151lXVb1JHpmIcW/7rX25oMoIHuSug==
+  dependencies:
+    micromark-factory-space "^1.0.0"
+    micromark-factory-whitespace "^1.0.0"
+    micromark-util-character "^1.0.0"
+    micromark-util-symbol "^1.0.0"
+    micromark-util-types "^1.0.0"
+    parse-entities "^4.0.0"
+    uvu "^0.5.0"
 
 micromark-extension-gfm-autolink-literal@^1.0.0:
   version "1.0.3"
@@ -2297,6 +2368,11 @@ micromark-util-symbol@^1.0.0:
   resolved "https://registry.npmjs.org/micromark-util-symbol/-/micromark-util-symbol-1.0.1.tgz"
   integrity sha512-oKDEMK2u5qqAptasDAwWDXq0tG9AssVwAx3E9bBF3t/shRIGsWIRG+cGafs2p/SnDSOecnt6hZPCE2o6lHfFmQ==
 
+micromark-util-symbol@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/micromark-util-symbol/-/micromark-util-symbol-1.1.0.tgz#813cd17837bdb912d069a12ebe3a44b6f7063142"
+  integrity sha512-uEjpEYY6KMs1g7QfJ2eX1SQEV+ZT4rUD3UcF6l57acZvLNK7PBZL+ty82Z1qhK1/yXIY4bdx04FKMgR0g4IAag==
+
 micromark-util-symbol@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/micromark-util-symbol/-/micromark-util-symbol-2.0.1.tgz#e5da494e8eb2b071a0d08fb34f6cefec6c0a19b8"
@@ -2628,6 +2704,26 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+"remark-anchor@github:c-forrest/remark-anchor#main":
+  version "1.0.0"
+  resolved "https://codeload.github.com/c-forrest/remark-anchor/tar.gz/e297a3c708037fea0c1bdbedc91975b62b8261d5"
+  dependencies:
+    unist-util-visit "^5.0.0"
+
+remark-attributes@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/remark-attributes/-/remark-attributes-0.3.2.tgz#99acceea46e20da1e0eb5b04cc85358a1f7582f2"
+  integrity sha512-idJCYZv5JVmxmvHQ4kHu3AyotnBaaOu5U7qOSX8nXdRLqsB7c1OKD0LgLkNaI45n8y+ULHljN4U+ri3Ju+dgtQ==
+  dependencies:
+    "@types/mdast" "^3.0.0"
+    md-attr-parser "^1.3.0"
+    mdast-util-directive "^2.0.0"
+    mdast-util-from-markdown "^1.3.0"
+    micromark-extension-directive "^2.0.0"
+    micromark-util-symbol "^1.1.0"
+    unified "^10.0.0"
+    unist-util-visit "^5.0.0"
 
 remark-clang-format@2.4.5:
   version "2.4.5"
@@ -3751,6 +3847,14 @@ unist-util-visit-parents@^5.0.0:
   version "5.1.0"
   resolved "https://registry.npmjs.org/unist-util-visit-parents/-/unist-util-visit-parents-5.1.0.tgz"
   integrity sha512-y+QVLcY5eR/YVpqDsLf/xh9R3Q2Y4HxkZTp7ViLDU6WtJCEcPmRzW1gpdWDCDIqIlhuPDXOgttqPlykrHYDekg==
+  dependencies:
+    "@types/unist" "^2.0.0"
+    unist-util-is "^5.0.0"
+
+unist-util-visit-parents@^5.1.3:
+  version "5.1.3"
+  resolved "https://registry.yarnpkg.com/unist-util-visit-parents/-/unist-util-visit-parents-5.1.3.tgz#b4520811b0ca34285633785045df7a8d6776cfeb"
+  integrity sha512-x6+y8g7wWMyQhL1iZfhIPhDAs7Xwbn9nRosDXl7qoPTSCy0yNxnKc+hWokFifWQIDGi154rdUqKvbCa4+1kLhg==
   dependencies:
     "@types/unist" "^2.0.0"
     unist-util-is "^5.0.0"
