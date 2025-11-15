@@ -1,0 +1,42 @@
+name: Check external link (Regular task on 30 days)
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Check external link (Regular task on 30 days)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: patch-4
+      - uses: actions/checkout@v4
+        with:
+          ref: archiveLink
+          path: scripts/archive-link/data
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Install Python dependencies
+        run: pip install -r scripts/archive-link/archive_link/requirements.txt
+      - name: Scan all the links in the repo
+        run: python -u -m archive_link.scanOriginalLink
+        working-directory: scripts/archive-link
+        env:
+          PYTHONPATH: ${{ github.workspace }}/scripts/archive-link
+      - name: Upload data.json
+        run: |
+          if [[ -n "$(git diff --quiet data.json)" ]]; then
+            git config user.name github-actions
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -a -m "Update the status of each links on $(date '+%Y-%m-%d %H:%M:%S')"
+            git push origin archiveLink
+          else
+            echo "No changes to commit."
+          fi
+        working-directory: scripts/archive-link/data
+      
