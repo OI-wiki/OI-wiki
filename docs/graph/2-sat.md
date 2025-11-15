@@ -73,7 +73,7 @@ CNF-SAT 是指：有 $n$ 个布尔变量和 $m$ 个条件，第 $i$ 个条件形
 
 实际上，实际运用中我们一般只研究 2-SAT，因为上面的三个问题都 **可以被证明是 NPC 的**。 
 
-??? note "C-SAT 是 NPC 的"
+??? note "C-SAT 是 NPC 问题"
     先把 NPC 分成 NP 和 NP-Hard。
 
     ### NP
@@ -134,7 +134,7 @@ CNF-SAT 是指：有 $n$ 个布尔变量和 $m$ 个条件，第 $i$ 个条件形
 
     综上，C-SAT 是 NPC 问题。
 
-??? note CNF-SAT 是 NPC 问题
+??? note "CNF-SAT 是 NPC 问题"
     考虑从 C-SAT 规约得到。
 
     ### $\to$
@@ -165,7 +165,7 @@ CNF-SAT 是指：有 $n$ 个布尔变量和 $m$ 个条件，第 $i$ 个条件形
 
     所以，CNF-SAT 也是 NPC 问题。
 
-??? note 3-SAT 是 NPC 问题
+??? note "3-SAT 是 NPC 问题"
     考虑从 CNF-SAT 规约得到。
 
     ### $\to$
