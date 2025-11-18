@@ -50,7 +50,7 @@ void upd(int step, int M) {
         if (d[las] != LLONG_MAX) {
           d[now] = std::min(d[now], d[las] + step);
         }
-        // 这里是为了避免加爆，而且本题 h 达到 ll 上界，不写 ull 就只能判一下了
+        // 这里是为了避免加爆，而且本题 h 达到 ll 上界，不写 ull 就只能判一下
       }
     }
   }
