@@ -58,7 +58,12 @@ $$
 
 代码实现上注意到 $h$ 的范围是 $h \leq 2^{63}-1$，所以在求解最短路之前 $d_i$ 的初始值应至少设为 $2^{63}$，这超过了 C++ 中 `long long` 的最大值。所以可以使用 `unsigned long long` 或者先把 $h \gets h - 1$，然后把最低楼层设为 $0$ 层，其他代码无异。
 
-???+ note "参考实现"
+???+ note "基于环优化的实现"
+    ```cpp
+    --8<-- "docs/graph/code/mod-shortest-path/mod-shortest-path_2.cpp"
+    ```
+
+???+ note "基于最短路的实现"
     ```cpp
     --8<-- "docs/graph/code/mod-shortest-path/mod-shortest-path_1.cpp"
     ```
