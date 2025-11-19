@@ -138,7 +138,7 @@ $$
 
 ### 利用点值信息优化
 
-如果已知信息除了 $f,g$ 的块筛外，还包含它们的点值，那么，确实可以改进这一算法的复杂度。实践中，这一算法通常应用于 $f,g$ 的点值可以快速预处理时。
+如果已知信息除了 $f,g$ 的块筛外，还包含它们的更多点值，那么，确实可以改进这一算法的复杂度。实践中，这一算法通常应用于 $f,g$ 的点值可以快速预处理时。
 
 选择 $z \ge \sqrt{n}$。卷积 $h$ 的块筛分为两部分：
 
@@ -220,16 +220,14 @@ $$
     
     利用类似 [主定理](../../basic/complexity.md#主定理-master-theorem) 的证明思路，可以说明，最后一项主导了该式的增长，且 $T(n)\in\Theta(n^\alpha)$，其中，$\alpha\approx 1.73$ 是 $\zeta(\alpha)=2$ 的根。
 
+应用杜教筛计算数论函数 $g$ 前缀和时，关键在于找到合适的 $f,h$ 使得 $h=f\ast g$ 且 $f,h$ 的块筛都容易计算。在有些时候，这样的 $f,h$ 是显然的；在另一些时候，需要利用 Dirichlet 卷积的性质或通过计算相应的 Dirichlet 生成函数来找到相应的分解。后文的例题展示了这些情形。
+
 ## 例题
 
-杜教筛被用于处理一类数论函数的前缀和问题。对于数论函数 $f$，杜教筛可以在低于线性时间的复杂度内计算 $S(n)=\sum_{i=1}^{n}f(i)$。
+本节介绍几道计算数论函数前缀和的题目。
 
-假如我们可以构造恰当的数论函数 $g$ 使得：
+???+ note ""
 
-1.  可以快速计算 $\sum_{i=1}^n(f * g)(i)$；
-2.  可以快速计算 $g$ 的前缀和，以用数论分块求解 $\sum_{i=2}^ng(i)S\left(\left\lfloor\dfrac{n}{i}\right\rfloor\right)$。
-
-则我们可以在较短时间内求得 $g(1)S(n)$。
 
 ### 问题一
 
@@ -351,7 +349,16 @@ $$
     --8<-- "docs/math/code/du/du_2.cpp"
     ```
 
-### 参考资料
+## 习题
+
+-   [AtCoder Xmas Contest 2019 D - Sum of (-1)^f(n)](https://atcoder.jp/contests/xmascon19/tasks/xmascon19_d)
+
+## 参考资料
 
 -   任之洲。2016。《积性函数求和的几种方法》。2016 年信息学奥林匹克中国国家队候选队员论文。
+-   周康阳。2024。《关于积性函数求和问题的一些进展》。2024 年信息学奥林匹克中国国家队候选队员论文。
+-   [Dirichlet hyperbola method - Wikipedia](https://en.wikipedia.org/wiki/Dirichlet_hyperbola_method)
 -   [杜教筛的时空复杂度分析 - riteme.site](https://riteme.site/blog/2018-9-11/time-space-complexity-dyh-algo.html)
+-   [OI中常用数论函数求和法的简化陈述 by negiizhao - UOJ](https://negiizhao.blog.uoj.ac/blog/7165)
+-   [Dirichlet 積と、数論関数の累積和 by maspy](https://maspypy.com/dirichlet-%e7%a9%8d%e3%81%a8%e3%80%81%e6%95%b0%e8%ab%96%e9%96%a2%e6%95%b0%e3%81%ae%e7%b4%af%e7%a9%8d%e5%92%8c)
+-   [Dirichlet convolution. Part 1: Fast prefix sum computations by adamant - Codeforces](https://codeforces.com/blog/entry/117635)
