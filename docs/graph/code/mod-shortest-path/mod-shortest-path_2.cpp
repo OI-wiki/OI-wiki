@@ -1,28 +1,12 @@
 #include <algorithm>
-#include <cctype>
 #include <climits>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 #include <vector>
 
-typedef long long ll;
+using ll = long long;
 
-ll fr() {
-  ll x = 0, f = 1;
-  char c = getchar();
-  while (!isdigit(c)) {
-    if (c == '-') f = -1;
-    c = getchar();
-  }
-  while (isdigit(c)) {
-    x = (x << 3) + (x << 1) + (c ^ 48);
-    c = getchar();
-  }
-  return x * f;
-}
-
-const int maxn = 1e5 + 100;
+constexpr int maxn = 1e5 + 100;
 
 ll d[maxn];
 bool vis[maxn];
@@ -57,10 +41,11 @@ void upd(int step, int M) {
 }
 
 int main() {
-  ll h = fr();
+  ll h;
+  std::cin >> h;
   int x[3];
   for (int i = 0; i < 3; i++) {
-    x[i] = fr();
+    std::cin >> x[i];
   }
   std::sort(x, x + 3);
   int M = x[0];
