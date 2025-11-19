@@ -32,9 +32,9 @@ void upd(int step, int M) {
         int las = v[i];
         int now = v[(i + 1) % len];
         if (d[las] != LLONG_MAX) {
+          //如果使用 LLONG_MAX 更新的话会越界，需要特判一下
           d[now] = std::min(d[now], d[las] + step);
         }
-        // 这里是为了避免加爆，而且本题 h 达到 ll 上界，不写 ull 就只能判一下
       }
     }
   }
@@ -52,6 +52,7 @@ int main() {
 
   for (int i = 0; i < M; i++) {
     d[i] = LLONG_MAX;
+    //本题的 h 达到了 long long 的上界，如果使用 long long 的话必需把初值置为 LLONG_MAX
   }
   d[0] = 0;
 
