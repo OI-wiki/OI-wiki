@@ -52,7 +52,7 @@ int main() {
 
   for (int i = 0; i < M; i++) {
     d[i] = LLONG_MAX;
-    //本题的 h 达到了 long long 的上界，如果使用 long long 的话必需把初值置为 LLONG_MAX
+    //本题的 h 达到了 long long 的上界，如果使用 long long 的话必需把初值置为LLONG_MAX
   }
   d[0] = 0;
 
