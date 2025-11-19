@@ -31,6 +31,11 @@
 
 接下来只需要求出 $d_0, d_1, d_2, \dots, d_{x-1}$，只需要跑一次最短路就可求出相应的 $d_i$。
 
++ note "基于最短路的实现"
+    ```cpp
+    --8<-- "docs/graph/code/mod-shortest-path/mod-shortest-path_1.cpp"
+    ```
+
 但是事实上也不需要进行正常的最短路求解，注意到有两个特殊的性质：
 
 首先，只有两种边权，且对于每一条路径，由于加法交换律，走两种边权的顺序是无影响的。因此可以考虑做两次最短路，每次只建出一类边权的边；
@@ -58,14 +63,9 @@ $$
 
 代码实现上注意到 $h$ 的范围是 $h \leq 2^{63}-1$，所以在求解最短路之前 $d_i$ 的初始值应至少设为 $2^{63}$，这超过了 C++ 中 `long long` 的最大值。所以可以使用 `unsigned long long` 或者先把 $h \gets h - 1$，然后把最低楼层设为 $0$ 层，其他代码无异。
 
-???+ note "基于环优化的实现"
++ note "基于环优化的实现"
     ```cpp
     --8<-- "docs/graph/code/mod-shortest-path/mod-shortest-path_2.cpp"
-    ```
-
-???+ note "基于最短路的实现"
-    ```cpp
-    --8<-- "docs/graph/code/mod-shortest-path/mod-shortest-path_1.cpp"
     ```
 
 ### 例题二
