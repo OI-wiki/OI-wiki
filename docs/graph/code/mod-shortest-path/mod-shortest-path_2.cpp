@@ -32,7 +32,7 @@ void upd(int step, int M) {
         int las = v[i];
         int now = v[(i + 1) % len];
         if (d[las] != LLONG_MAX) {
-          //如果使用 LLONG_MAX 更新的话会越界，需要特判一下
+          //如果 d[las] = LLONG_MAX 的话，d[las] + step 会越界，需要特判一下
           d[now] = std::min(d[now], d[las] + step);
         }
       }
