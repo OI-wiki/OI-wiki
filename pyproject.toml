@@ -16,7 +16,9 @@ dependencies = [
 ]
 
 [tool.uv]
-dev-dependencies = []
+dev-dependencies = [
+    "parameterized>=0.9.0",
+]
 
 [tool.uv.pip]
 index-url = "https://pypi.org/simple"
