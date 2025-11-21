@@ -17,7 +17,7 @@ Lambda 表达式因数学中的 $\lambda$ 演算得名，直接对应于其中�
 
 Lambda 表达式本身是一个类，展开后如以下形式：
 
-<!-- preprocess.skipdetails on -->
+<!-- scripts.linter.preprocess.fix_details off -->
 
 ```text
 class Lambda_1 {
@@ -32,7 +32,7 @@ class Lambda_1 {
 };
 ```
 
-<!-- preprocess.skipdetails off -->
+<!-- scripts.linter.preprocess.fix_details on -->
 
 空的 capture 可以隐式转换为函数指针，例如：
 
