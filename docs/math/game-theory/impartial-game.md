@@ -282,6 +282,8 @@ $$
 
 ### Nim 数
 
+主页面：[Nim 数](./nimber.md)
+
 所有的公平游戏都唯一对应一个 Nim 数。（有限）Nim 数的集合就是自然数集 $\mathbf N$。但是，它的代数性质和自然数集不同。具体来说，Nim 数上可以定义 Nim 和 $\oplus$、Nim 乘积 $\otimes$ 两种运算：
 
 ???+ abstract "Nim 数的运算"
