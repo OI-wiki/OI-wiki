@@ -5,6 +5,7 @@ import { HTMLElement } from "node-html-parser";
 import fetch from "node-fetch";
 import * as path from "node:path";
 import * as fs from "node:fs/promises";
+import * as nodegit from "nodegit";
 
 import { AuthorsCache, AuthorUserMap, fetchAuthors } from "./authors-cache.js";
 import { TaskHandler, log } from "../html-postprocess.js";
@@ -13,46 +14,82 @@ const execFileAsync = util.promisify(child_process.execFile);
 
 type CommitInfo = { commitDate: Date; authors: { name: string; email: string }[] };
 
+// async function readCommitsLogRepoPath(repoRelPath: string): Promise<CommitInfo[]> {
+//   const { stdout: log } = await execFileAsync(
+//     "bash",
+//     [
+//       "-c",
+//       `git log --follow --date=iso-strict '--pretty=format:D|%cI%nA|%aN|%aE%n%b' "$FILENAME" \
+// | awk 'BEGIN{IGNORECASE=1} \
+//   /^D\\|/{print; next} \
+//   /^A\\|/{print; next} \
+//   /^[[:space:]]*Co-Authored-By[[:space:]]*:/ { \
+//     if (match($0, /^[[:space:]]*Co-Authored-By[[:space:]]*:[[:space:]]*(.+)[[:space:]]*<([^>]+)>[[:space:]]*$/, m)) { \
+//       print "C|" m[1] "|" m[2]; \
+//     } \
+//   }'`
+//     ],
+//     { env: { ...process.env, FILENAME: repoRelPath } }
+//   );
+
+//   const lines = log
+//     .split("\n")
+//     .map(s => s.trim())
+//     .filter(Boolean);
+//   const commits: CommitInfo[] = [];
+//   let current: CommitInfo | null = null;
+
+//   for (const line of lines) {
+//     if (line.startsWith("D|")) {
+//       if (current) commits.push(current);
+//       current = { commitDate: new Date(line.slice(2)), authors: [] };
+//     } else if (line.startsWith("A|") || line.startsWith("C|")) {
+//       if (!current) continue;
+//       const parts = line.split("|"); // ["A","name","email"] or ["C","name","email"]
+//       const name = (parts[1] || "").trim();
+//       const email = (parts[2] || "").trim().toLowerCase();
+//       if (name && email) current.authors.push({ name, email });
+//     }
+//   }
+//   if (current) commits.push(current);
+
+//   return commits;
+// }
+
 async function readCommitsLogRepoPath(repoRelPath: string): Promise<CommitInfo[]> {
-  const { stdout: log } = await execFileAsync(
-    "bash",
-    [
-      "-c",
-      `git log --follow --date=iso-strict '--pretty=format:D|%cI%nA|%aN|%aE%n%b' "$FILENAME" \
-| awk 'BEGIN{IGNORECASE=1} \
-  /^D\\|/{print; next} \
-  /^A\\|/{print; next} \
-  /^[[:space:]]*Co-Authored-By[[:space:]]*:/ { \
-    if (match($0, /^[[:space:]]*Co-Authored-By[[:space:]]*:[[:space:]]*(.+)[[:space:]]*<([^>]+)>[[:space:]]*$/, m)) { \
-      print "C|" m[1] "|" m[2]; \
-    } \
-  }'`
-    ],
-    { env: { ...process.env, FILENAME: repoRelPath } }
-  );
+  const repo = await nodegit.Repository.open(".");
+  const walker = repo.createRevWalk();
+  const commits = await walker.fileHistoryWalk(repoRelPath, 5000);
 
-  const lines = log
-    .split("\n")
-    .map(s => s.trim())
-    .filter(Boolean);
-  const commits: CommitInfo[] = [];
-  let current: CommitInfo | null = null;
+  const results: CommitInfo[] = [];
 
-  for (const line of lines) {
-    if (line.startsWith("D|")) {
-      if (current) commits.push(current);
-      current = { commitDate: new Date(line.slice(2)), authors: [] };
-    } else if (line.startsWith("A|") || line.startsWith("C|")) {
-      if (!current) continue;
-      const parts = line.split("|"); // ["A","name","email"] or ["C","name","email"]
-      const name = (parts[1] || "").trim();
-      const email = (parts[2] || "").trim().toLowerCase();
-      if (name && email) current.authors.push({ name, email });
+  for (const entry of commits) {
+    const commit = entry.commit;
+    const commitDate = commit.date();
+    const mainAuthor = {
+      name: commit.author().name(),
+      email: commit.author().email().toLowerCase()
+    };
+
+    const authors = [mainAuthor];
+    const trailers = nodegit.Message.trailers(commit.message());
+
+    for (const tr of trailers) {
+      if (tr.key.toLowerCase() !== "co-authored-by") continue;
+
+      const m = tr.value.match(/(.+?)\s*<([^>]+)>/);
+      if (!m) continue;
+
+      authors.push({
+        name: m[1].trim(),
+        email: m[2].trim().toLowerCase()
+      });
     }
-  }
-  if (current) commits.push(current);
 
-  return commits;
+    results.push({ commitDate, authors });
+  }
+
+  return results;
 }
 
 async function readCommitsLogFromRef(refPath: string) {
