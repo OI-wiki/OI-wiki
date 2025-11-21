@@ -1,0 +1,77 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+
+\usepackage{anyfontsize} % allows arbitrary font sizes
+\usepackage{lmodern} % better font scaling
+
+\makeatletter
+\renewcommand\normalsize{%
+  \@setfontsize\normalsize{16pt}{19pt}%
+}
+\renewcommand\Large{%
+  \@setfontsize\Large{20pt}{24pt}%
+}
+\makeatother
+
+\begin{document}
+
+\begin{tikzpicture}[thick,scale=1.2]
+\draw[fill=red!15, draw=none, overlay] (1.94,0.1) rectangle (7.96,-5);
+% Layer 1.
+\draw (0,0) rectangle (12.9,-0.9);
+\node at (6.45,-0.45) {$[1,13]$};
+% Layer 2.
+\draw (0,-1) rectangle (6.9,-1.9);
+\node at (3.45,-1.45) {$[1,7]$};
+\draw (7,-1) rectangle (12.9,-1.9);
+\node at (9.95,-1.45) {$[8,13]$};
+% Layer 3.
+\draw (0,-2) rectangle (3.9,-2.9);
+\node at (1.95,-2.45) {$[1,4]$};
+\draw[ultra thick] (4,-2) rectangle (6.9,-2.9);
+\node at (5.45,-2.45) {$[5,7]$};
+\draw (7,-2) rectangle (9.9,-2.9);
+\node at (8.45,-2.45) {$[8,10]$};
+\draw (10,-2) rectangle (12.9,-2.9);
+\node at (11.45,-2.45) {$[11,13]$};
+% Layer 4.
+\draw (0,-3) rectangle (1.9,-3.9);
+\node at (0.95,-3.45) {$[1,2]$};
+\draw[ultra thick] (2,-3) rectangle (3.9,-3.9);
+\node at (2.95,-3.45) {$[3,4]$};
+\draw (4,-3) rectangle (5.9,-3.9);
+\node at (4.95,-3.45) {$[5,6]$};
+\draw (6,-3) rectangle (6.9,-3.9);
+\node at (6.45,-3.45) {$7$};
+\draw (7,-3) rectangle (8.9,-3.9);
+\node at (7.95,-3.45) {$[8,9]$};
+\draw (9,-3) rectangle (9.9,-3.9);
+\node at (9.45,-3.45) {$10$};
+\draw (10,-3) rectangle (11.9,-3.9);
+\node at (10.95,-3.45) {$[11,12]$};
+\draw (12,-3) rectangle (12.9,-3.9);
+\node at (12.45,-3.45) {$13$};
+% Layer 5.
+\draw (0,-4) rectangle (0.9,-4.9);
+\node at (0.45,-4.45) {$1$};
+\draw (1,-4) rectangle (1.9,-4.9);
+\node at (1.45,-4.45) {$2$};
+\draw (2,-4) rectangle (2.9,-4.9);
+\node at (2.45,-4.45) {$3$};
+\draw (3,-4) rectangle (3.9,-4.9);
+\node at (3.45,-4.45) {$4$};
+\draw (4,-4) rectangle (4.9,-4.9);
+\node at (4.45,-4.45) {$5$};
+\draw (5,-4) rectangle (5.9,-4.9);
+\node at (5.45,-4.45) {$6$};
+\draw[ultra thick] (7,-4) rectangle (7.9,-4.9);
+\node at (7.45,-4.45) {$8$};
+\draw (8,-4) rectangle (8.9,-4.9);
+\node at (8.45,-4.45) {$9$};
+\draw (10,-4) rectangle (10.9,-4.9);
+\node at (10.45,-4.45) {$11$};
+\draw (11,-4) rectangle (11.9,-4.9);
+\node at (11.45,-4.45) {$12$};
+\end{tikzpicture}
+
+\end{document}
