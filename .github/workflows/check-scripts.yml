@@ -13,8 +13,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  nodejs:
-    name: Check Scripts
+  check-node-scripts:
+    name: Check Node.js Scripts
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -37,20 +37,20 @@ jobs:
       - name: Check TypeScript Compile
         run: yarn tsc
 
-  python:
+  check-python-scripts:
     name: Check Python Scripts
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      - name: Install dependencies
-        run: |
-          pip install uv
-          uv sync
-          uv sync --dev
-      
+          python-version: '3.10'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "latest"
+      - name: Install Python dependencies
+        run: uv sync --group dev
       - name: Run All Python Unit Tests
         run: |
           uv run python3 -m unittest
