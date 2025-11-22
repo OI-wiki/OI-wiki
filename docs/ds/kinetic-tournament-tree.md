@@ -15,7 +15,6 @@ author: Jerry3128
 
 一次函数区间向左平移的本质是 $b_i \leftarrow k_i\cdot \delta$；这种操作等价于我们在许多数据结构问题中遇到的「按位置系数加权区间加」：即对于区间 $[l, r]$ 内的每个下标 $i$，给其值加上一个固定的数 $\delta$ 乘上该位置特有的系数 $k_i$。因此本质上一次函数区间平移就是所谓的，按位置系数加权区间加法。
 
-
 ## Kinetic Data Structures
 
 Kinetic Data Structures 简称 KDS。KDS 用于维护几何对象系统在连续运动过程中的属性。
