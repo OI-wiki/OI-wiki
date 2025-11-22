@@ -1,5 +1,8 @@
 位操作指的是对位数组或二进制数的一元和二元操作，分为 **位运算** 和 **移位** 两类．位操作是 CPU 中最基础的一类运算，其速度往往是相当快的．
 
+???+ warning "注意"
+    如果您是初学者，推荐您优先掌握位运算和移位的规则以及应用，如果您觉得布尔代数相关内容难以理解可以先行跳过．
+
 ## 布尔函数
 
 ???+ abstract "定义"
@@ -10,47 +13,88 @@
 除了函数的一般表达方式外，我们还可以用 **真值表**（Truth table）、[Venn 图](https://en.wikipedia.org/wiki/Venn_diagram) 来表示布尔函数．
 
 ???+ abstract "真值表"
-    对一个布尔函数，我们枚举其输入的所有情况，并将输入和对应的输出列成一张表，输入放在左列，输出放在右列，这个表就叫做真值表．
+    对一个布尔函数，我们枚举其输入的所有情况，并将输入和对应的输出列成一张表，这个表就叫做真值表．
 
-以下是一些常见布尔函数的真值表：
+以下是一些常见布尔函数，我们也会把这些布尔函数统称为 **逻辑运算符**（logical connective）或 **逻辑算子**（logical operator）：
 
-| $p$ | $q$ | $\lnot p$（非） | $p\land q$（与） | $p\lor q$（或） | $p\oplus q$（异或） | $p\odot q$（同或） | $p\bar{\land}q$（与非） | $p\bar{\lor}q$（或非） |
-| --- | --- | ------------ | ------------- | ------------ | --------------- | -------------- | ------------------- | ------------------ |
-| $0$ | $0$ | $1$          | $0$           | $0$          | $0$             | $1$            | $1$                 | $1$                |
-| $0$ | $1$ | $1$          | $0$           | $1$          | $1$             | $0$            | $1$                 | $0$                |
-| $1$ | $0$ | $0$          | $0$           | $1$          | $1$             | $0$            | $1$                 | $0$                |
-| $1$ | $1$ | $0$          | $1$           | $1$          | $0$             | $1$            | $0$                 | $0$                |
+| 名称（数理逻辑）                                           | 其他名称          | 记号                               |
+| -------------------------------------------------- | ------------- | -------------------------------- |
+| 恒真（truth、tautology）                                |               | $\top$                           |
+| 恒假（falsity、contradiction）                          |               | $\bot$                           |
+| 命题                                                 |               | $A$                              |
+| 否定（negation）                                       | 非             | $\lnot A$                        |
+| 合取（conjunction）                                    | 与             | $A \land B$                      |
+| 析取（disjunction）                                    | 或             | $A \lor B$                       |
+|                                                    | 异或            | $A \oplus B$                     |
+|                                                    | 同或            | $A \odot B$                      |
+| 非合取（non-conjunction）                               | 与非、Sheffer 竖线 | $A \bar{\land} B$、$A\uparrow B$  |
+| 非析取（non-disjunction）                               | 或非            | $A \bar{\lor} B$、$A\downarrow B$ |
+| 实质蕴含（material implication）[^note1]                 |               | $A \to B$                        |
+| 实质非蕴含（material nonimplication）[^note1]             |               | $A \nrightarrow B$               |
+| 反蕴涵（converse implication）[^note1]                  |               | $A \gets B$                      |
+| 非反蕴涵（converse nonimplication）[^note1]              |               | $A \nleftarrow B$                |
+| 双条件（biconditional）、等价（equivalence）[^note1][^note2] |               | $A \leftrightarrow B$            |
+| 非等价（non-equivalence）[^note1][^note3]               |               | $A \nleftrightarrow B$           |
 
-实际上，我们只用与非或者或非即可表达其余的布尔函数，CPU 也是基于这一点构建的．但是，由于与、或、非、异或这四种布尔函数的性质更好，所以我们在研究布尔代数时一般只使用这四种函数．
+对应的真值表（From [Wikipedia](https://commons.wikimedia.org/wiki/File:Logical_connectives_table.svg)）：
 
-??? example "如何分别用与非、或非表示其余的布尔函数"
+![](./images/logical-connectives-table.svg)
+
+对应的 Venn 图和 [Hasse 图](./order-theory.md#偏序集的可视化表示hasse-图)（以集合的包含关系 $\subseteq$ 为偏序，From [Wikipedia](https://en.wikipedia.org/wiki/File:Logical_connectives_Hasse_diagram.svg)）：
+
+![](./images/logical-connectives-hasse-diagram.svg)
+
+我们把逻辑算子的组合称为 **逻辑表达式**（logical expression）．
+
+如果我们把 $\mathbb{B}$ 视作模 $2$ 的一个 [剩余类](./number-theory/basic.md#同余类与剩余系)，此时异或等价于模 $2$ 加法，与等价于模 $2$ 乘法，所以有时我们也用 $\mathbf{Z}_2$ 表示布尔域．
+
+### 优先级
+
+逻辑算子的元数越低，其优先级越高，即 $\lnot$ 的优先级高于 $\land$、$\lor$、$\oplus$ 等的优先级．
+
+二元逻辑算子之间的优先级有多种规定，有的资料认为 $\land$、$\lor$、$\oplus$ 的优先级比 $\to$、$\gets$、$\leftrightarrow$ 更高，而有的资料持相反观点．所以在使用时推荐多加括号来明确顺序．
+
+C++ 中的规定参见 [C++ 运算符优先级总表](../lang/op.md#c-运算符优先级总表)．
+
+### 自足算子与完备算子集
+
+实际上，我们只用与非或者或非即可表达其余的逻辑算子，CPU 也是基于这一点构建的．但是，由于 **与、或、非、异或** 这四种逻辑算子的性质更好，所以我们在研究布尔代数时一般只使用这四种函数．
+
+??? example "如何分别用与非、或非表示其余的逻辑算子"
     我们有
     
     -   $\lnot p=p\bar{\land} p=p\bar{\lor} p$，
     -   $p\land q=(p\bar{\land}q)\bar{\land}(p\bar{\land}q)=(p\bar{\lor}p)\bar{\lor}(q\bar{\lor}q)$，
     -   $p\lor q=(p\bar{\land}p)\bar{\land}(q\bar{\land}q)=(p\bar{\lor}q)\bar{\lor}(p\bar{\lor}q)$，
-    -   $p\oplus q=(p\lor q)\land\lnot (p\land q)$，
-    -   $p\odot q=\lnot(p\oplus q)$．
+    -   $p\to q=p\bar{\land} (q\bar{\land} q)=((p\bar{\lor}p)\bar{\lor}q)\bar{\lor}((p\bar{\lor}p)\bar{\lor}q)$．
+    
+    另外
+    
+    -   $p=\lnot\lnot p$，
+    -   $p\nleftrightarrow q=p\oplus q=(p\lor q)\land\lnot (p\land q)$，
+    -   $p\leftrightarrow q=p\odot q=\lnot(p\oplus q)$，
+    -   $p\nrightarrow q=\lnot(p\to q)$，
+    -   $p\gets q=q\to p$，
+    -   $p\nleftarrow q=\lnot(p\gets q)$．
 
-如果我们把 $\mathbb{B}$ 视作模 $2$ 的一个 [剩余类](./number-theory/basic.md#同余类与剩余系)，此时异或等价于模 $2$ 加法，与等价于模 $2$ 乘法，所以有时我们也用 $\mathbf{Z}_2$ 表示布尔域．
+我们能不能用指定的若干逻辑算子描述所有的逻辑算子？这便引出了完备算子集的定义．
 
-[数理逻辑](../intro/symbol.md#数理逻辑) 中的一些符号也是布尔函数，真值表如下：
+???+ abstract "定义"
+    对一个给定的逻辑算子集，如果能只用这个集合里的函数描述所有的逻辑算子，则称该集合为 **完备算子集**（functionally complete operator set）．特别地，如果只用一个逻辑算子即可描述所有的逻辑算子，则称该算子为 **自足算子**（sole sufficient operator）或 **Sheffer 函数**（Sheffer function）．
+    
+    如果在一个完备算子集中删去任意一个元素，其都不能描述所有的逻辑算子，则称该集合为 **极小完备算子集**（minimal functionally complete operator set）．
 
-| $p$ | $q$ | $p\implies q$ | $p\impliedby q$ | $p\iff q$ |
-| --- | --- | ------------- | --------------- | --------- |
-| $0$ | $0$ | $1$           | $1$             | $1$       |
-| $0$ | $1$ | $1$           | $0$             | $0$       |
-| $1$ | $0$ | $0$           | $1$             | $0$       |
-| $1$ | $1$ | $1$           | $1$             | $1$       |
+可以证明逻辑算子中只有 $\bar{\land}$、$\bar{\lor}$ 是自足算子．
 
-可以发现 $p\iff q$ 和 $p\odot q$ 等价．
+以下为常见的极小完备算子集[^vaughan1942complete]：
 
-### 自足集
-
-???+ abstract "自足"
-    对一个给定的布尔函数集，如果能只用这个集合里的函数描述所有的布尔函数，则称该集合为 **自足**（functionally complete）的．
-
-例如根据上文所述，$\{\bar{\land}\}$、$\{\bar{\lor}\}$ 均为自足的．常见的自足集还有 $\{\land,\lnot\}$、$\{\lor,\lnot\}$、$\{\implies,\lnot\}$、$\{\impliedby,\lnot\}$ 等．
+-   $\{\bar{\land}\}$，$\{\bar{\lor}\}$，
+-   $\{\land,\lnot\}$，$\{\lor,\lnot\}$，$\{\gets,\lnot\}$，$\{\to,\lnot\}$，$\{\nleftarrow,\lnot\}$，$\{\nrightarrow,\lnot\}$，
+-   $\{\gets,\bot\}$，$\{\to,\bot\}$，$\{\nleftarrow,\top\}$，$\{\nrightarrow,\top\}$，
+-   $\{\gets,\nleftarrow\}$，$\{\to,\nleftarrow\}$，$\{\gets,\nrightarrow\}$，$\{\to,\nrightarrow\}$，
+-   $\{\gets,\nleftrightarrow\}$，$\{\to,\nleftrightarrow\}$，$\{\nleftarrow,\leftrightarrow\}$，$\{\nrightarrow,\leftrightarrow\}$，
+-   $\{\lor,\leftrightarrow,\bot\}$，$\{\lor,\leftrightarrow,\nleftrightarrow\}$，$\{\lor,\nleftrightarrow,\top\}$，
+-   $\{\land,\leftrightarrow,\bot\}$，$\{\land,\leftrightarrow,\nleftrightarrow\}$，$\{\land,\nleftrightarrow,\top\}$．
 
 ### 性质
 
@@ -66,7 +110,7 @@
     -   $a\land(b\diamond c)=(a\land b)\diamond (a\land c)$，其中 $\diamond$ 可以为 $\land$、$\lor$、$\oplus$，
     -   $a\lor(b\diamond c)=(a\lor b)\diamond (a\lor c)$，其中 $\diamond$ 可以为 $\land$、$\lor$、$\odot$．
 -   **幂等**（idempotence）律：$x\land x=x$、$x\lor x=x$．
--   单调性：$(a\implies b)\iff((a\land c)\implies(b\land c))$、$(a\implies b)\iff((a\lor c)\implies(b\lor c))$．
+-   单调性：$a\to b\iff(a\land c)\to(b\land c)$、$a\to b\iff(a\lor c)\to(b\lor c)$．
 -   **吸收**（absorption）律：$x\land(x\lor y)=x\lor(x\land y)=x$．
 
 ???+ tip "布尔函数的单调性"
@@ -74,13 +118,15 @@
 
 我们还有如下性质
 
+-   **排中律**（law of excluded middle）：$p\lor\lnot p$ 恒真．
+-   $\lnot p\iff p\to\bot$．
 -   双重否定/$\lnot$ 的 **对合**（involution）律：$\lnot\lnot x=x$．
 -   $\oplus$、$\odot$ 的对合律：$x\oplus y\oplus y=x$、$x\odot y\odot y=x$．
 -   De Morgan 律：$\lnot(p\land q)=\lnot p\lor \lnot q$、$\lnot(p\lor q)=\lnot p\land \lnot q$．
 
 ### 逻辑表达式的标准化
 
-根据上述性质，我们可以对逻辑表达式进行一定的等价变换，使其符合特定的范式，这一点可用于自动定理证明中．常见的标准化范式有 **合取范式**（conjunctive normal form，CNF）和 **析取范式**（disjunctive normal form，DNF）．
+根据上述性质，我们可以对逻辑表达式进行一定的等价变换，使其符合特定的范式，这一点可用于自动定理证明中．常见的标准化范式有 **合取范式**（conjunctive normal form，CNF）、**析取范式**（disjunctive normal form，DNF）和 **代数范式**（algebraic normal form，ANF）．
 
 ???+ abstract "合取范式与析取范式"
     我们做如下递归式的定义：
@@ -129,6 +175,28 @@ $$
 $$
 
 要得到表达式 $X$ 的 CNF，只需得到 $\lnot X$ 的 DNF 后取反并应用 De Morgan 律即可．
+
+???+ abstract "代数范式"
+    我们做如下递归式的定义：
+    
+    1.  子式：
+        1.  变量 $x$ 是子式，
+        2.  若 $A$ 是子式，$x$ 是变量，则 $x\land A$ 是子式．
+    
+    则满足如下三种形式之一的逻辑表达式为代数范式：
+    
+    1.  $1$、$0$，
+    2.  若干不等价子式的异或，如 $a\oplus b\oplus(a\land b)\oplus(a\land b\land c)$，
+    3.  若干不等价子式与唯一的 $1$ 的异或，如 $1\oplus a\oplus b\oplus(a\land b)\oplus(a\land b\land c)$．
+
+注意到代数范式和 $\mathbf{Z}_2$ 上的多项式一一对应，所以代数范式也被称为 **Zhegalkin 多项式**（Zhegalkin polynomial）．
+
+我们可以通过如下的步骤将任意一个逻辑表达式变形为 ANF：
+
+1.  $\oplus$：直接展开，如 $(1\oplus x)\oplus(1\oplus x\oplus y)=1\oplus x\oplus 1\oplus x\oplus y=y$，
+2.  $\land$：用分配律展开，如 $x\land(1\oplus x\oplus y)=(x\land 1)\oplus (x\land x)\oplus (x\land y)=x\oplus (x\land y)$，
+3.  $\lnot x$：用 $1\oplus x$ 代替，如 $\lnot(1\oplus x\oplus y)=1\oplus 1\oplus x\oplus y=x\oplus y$，
+4.  $x\lor y$：用 $1\oplus((1\oplus x)\land(1\oplus y))=x\oplus y\oplus (x\land y)$ 代替，如 $(1\oplus x)\lor(1\oplus x\oplus y)=1\oplus((1\oplus 1\oplus x)\land(1\oplus 1\oplus x\oplus y))=1\oplus x\oplus(x\land y)$．
 
 ## 位运算
 
@@ -534,5 +602,14 @@ GCC 中还有一些用于位操作的内建函数：
 4.  [Boolean function - Wikipedia](https://en.wikipedia.org/wiki/Boolean_function)
 5.  [Logical connective - Wikipedia](https://en.wikipedia.org/wiki/Logical_connective)
 6.  [Disjunctive normal form - Wikipedia](https://en.wikipedia.org/wiki/Disjunctive_normal_form)
+7.  [Zhegalkin polynomial - Wikipedia](https://en.wikipedia.org/wiki/Zhegalkin_polynomial)
+
+[^note1]: 用于命题推导时应使用双横长箭头，如 $A\implies B$、$A\impliedby B$、$A\iff B$ 等．
+
+[^note2]: 等价于同或．
+
+[^note3]: 等价于异或．
+
+[^vaughan1942complete]: Vaughan, H. E. (1942). Complete sets of logical functions.*Transactions of the American Mathematical Society 51*: 117–32.
 
 [^note4]: 一个数二进制表示从低往高的第一个 $1$ 连同后面的零，如 $(1010)_2$ 的 `lowbit` 是 $(0010)_2$，详见 [树状数组](../ds/fenwick.md)．
