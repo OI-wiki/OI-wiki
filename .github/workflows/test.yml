@@ -9,64 +9,66 @@ on:
       - master
 
 jobs:
-  correctness:
-    name: OI-wiki Offline Test
+  file-list:
+    name: Make File List
     runs-on: ubuntu-latest
     outputs:
       any_changed: ${{ steps.changed-files.outputs.any_changed }}
       files_to_test: ${{ steps.GetFiles.outputs.files_to_test }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Get changed code files
         id: changed-files
-        uses: tj-actions/changed-files@v46
+        uses: tj-actions/changed-files@v47
         with:
           files: |
             docs/**/*.cpp
             docs/**/*.in
             docs/**/*.ans
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
-          python-version: '3.10'
-      - name: Install uv
-        if: steps.changed-files.outputs.any_changed == 'true'
-        uses: astral-sh/setup-uv@v6
-        with:
-          version: "latest"
-      - name: Install Python dependencies
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: uv sync
-      - name: Install C++
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y g++
-      - name: Make the File list
+          python-version: '3.14'
+      - name: Make the File List
         if: steps.changed-files.outputs.any_changed == 'true'
         run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
       - name: Get Files to Test
         if: steps.changed-files.outputs.any_changed == 'true'
         id: GetFiles
-        run: uv run python scripts/get_files_to_test.py
+        run: python scripts/get_files_to_test.py
+
+  correctness:
+    name: OI-wiki Offline Test
+    needs: file-list
+    if: ${{ needs.file-list.outputs.any_changed == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+      - name: Install C++
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++
       - name: Correctness Check
-        if: steps.changed-files.outputs.any_changed == 'true'
         env: 
-          FILES_TO_TEST: ${{ steps.GetFiles.outputs.files_to_test }}
-        run: uv run python scripts/correctness_check.py
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+        run: python scripts/correctness_check.py
 
   undefinedbehaviors-ubuntu:
     name: UB Check - x86_64 Ubuntu
-    needs: correctness
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    needs: [file-list, correctness]
     runs-on: ubuntu-latest
     container: ghcr.io/trickeye/ubuntu_gcc1x:clang
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Install g++-9
@@ -75,20 +77,19 @@ jobs:
           apt-get install -y g++-9
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
           RUNS_ON: x86_64 Ubuntu
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
 
   undefinedbehaviors-macos:
     name: UB Check - Arm64 MacOS
-    needs: correctness
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    needs: [file-list, correctness]
     runs-on: macos-latest
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Check Compiler Version
@@ -101,20 +102,19 @@ jobs:
           echo "::endgroup::"
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
           RUNS_ON: arm64 MacOS
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
 
   undefinedbehaviors-rv:
     name: UB Check - RISC-V Ubuntu
-    needs: correctness
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    needs: [file-list, correctness]
     runs-on: ubuntu-latest
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Launch Risc-V Docker
@@ -125,7 +125,7 @@ jobs:
             --volume $PWD:$PWD \
             --volume $GITHUB_STEP_SUMMARY:$GITHUB_STEP_SUMMARY \
             --workdir $PWD \
-            --env FILES_TO_TEST="${{ needs.correctness.outputs.files_to_test }}" \
+            --env FILES_TO_TEST="${{ needs.file-list.outputs.files_to_test }}" \
             --env RUNS_ON="riscv64 Ubuntu" \
             --env PYTHONIOENCODING="UTF-8" \
             --env GITHUB_STEP_SUMMARY=$GITHUB_STEP_SUMMARY \
@@ -148,13 +148,12 @@ jobs:
 
   undefinedbehaviors-windows:
     name: UB Check - x86_64 Windows
-    needs: correctness
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    needs: [file-list, correctness]
     runs-on: windows-2025
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Check Compiler Version
@@ -175,7 +174,7 @@ jobs:
           echo ::endgroup::
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
           RUNS_ON: x86_64 Windows
           PYTHONIOENCODING: UTF-8
         run: |
@@ -185,14 +184,13 @@ jobs:
 
   undefinedbehaviors-alpine:
     name: UB Check - x86_64 Alpine
-    needs: correctness
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    needs: [file-list, correctness]
     runs-on: ubuntu-latest
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     container: alpine:latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Check Compiler Version
@@ -208,7 +206,7 @@ jobs:
           echo "::endgroup::"
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
           RUNS_ON: x86_64 Alpine
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
