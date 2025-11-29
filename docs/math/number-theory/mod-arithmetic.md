@@ -15,13 +15,13 @@ author: 383494, buuzzing, c-forrest, cr4c1an, Emp7iness, Enter-tainer, Great-des
 
 也就是说，取模运算的符号取决于除法如何取整；而除法如何取整，这是实现定义的（由编译器决定）．
 
-从 [C99](https://en.cppreference.com/w/c/language/operator_arithmetic) 和 [C++11](https://en.cppreference.com/w/cpp/language/operator_arithmetic) 标准版本起，规定 **商向零取整**（舍弃小数部分）；取模的符号就与被除数相同．从此，以下运算结果保证为真：
+从 [C99](https://en.cppreference.com/w/c/language/operator_arithmetic) 和 [C++11](https://en.cppreference.com/w/cpp/language/operator_arithmetic) 标准版本起，规定 **商向零取整**（舍弃小数部分）；取模的符号就与被除数相同．从此，以下断言保证为真：
 
 ```c
-5 % 3 == 2;
-5 % -3 == 2;
--5 % 3 == -2;
--5 % -3 == -2;
+assert(5 % 3 == 2);
+assert(5 % -3 == 2);
+assert(-5 % 3 == -2);
+assert(-5 % -3 == -2);
 ```
 
 ## 模整数类

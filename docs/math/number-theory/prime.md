@@ -1,3 +1,5 @@
+author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, iamtwz, ksyx, Marcythm, MegaOwIer, 383494, Alpacabla, HeRaNO, abc1763613206, alphagocc, Backl1ght, CCXXXI, drkelo, Early0v0, Great-designer, greyqz, GuanghaoYe, H-J-Granger, HHH2309, isdanni, kenlig, lazyasn, Menci, ouuan, r-value, shawlleyw, shopee-jin, shuzhouliu, Siger Young, TrisolarisHD, untitledunrevised, void-mian, Voileexperiments, weilycoder, xtlsoft, yusancky, YuzhenQin1, sun2snow
+
 素数与合数的定义，见 [数论基础](./basic.md)。
 
 素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示。随着 $x$ 的增大，有这样的近似结果：$\pi(x) \sim \dfrac{x}{\ln(x)}$。
@@ -324,11 +326,11 @@
 
 1.  对于给定的 $n$，要枚举到哪一个素数呢？
 
-    最极端的情况大不了就是 $n=p_{1}p_{2} \cdots p_{n}$，所以只要连续素数连乘到刚好小于等于 $n$ 就可以的呢。再大了，连全都一次幂，都用不了，当然就是用不到的啦！
+    最极端的情况大不了就是 $n=p_{1}p_{2} \cdots p_{n}$，所以只要连续素数连乘到刚好小于等于 $n$ 即可。如果枚举到更大的素数，则意味这必定某个之前素数的幂次为 $0$，那么就不可能成为反素数。
 
 2.  我们要枚举到多少次幂呢？
 
-    我们考虑一个极端情况，当我们最小的素数的某个幂次已经比所给的 $n$（的最大值）大的话，那么展开成其他的形式，最大幂次一定小于这个幂次。`unsigned long long` 的最大值是 $2^{64} - 1$，所以可以枚举到 $2^{64} - 1$。
+    我们考虑一个极端情况，当我们最小的素数的某个幂次已经比所给的 $n$（的最大值）大的话，那么展开成其他的形式，最大幂次一定小于这个幂次。极端情况下 $n$ 分解为 $2$ 的次幂，那么枚举到 $\lfloor\log_2 n\rfloor$ 即可。
 
 细节有了，那么我们具体如何具体实现呢？
 
@@ -340,7 +342,7 @@
 
 3.  当前因子大于我们想要的因子了；
 
-4.  当前因子正好是我们想要的因子（此时判断是否需要更新最小 $ans$）。
+4.  当前因子正好是我们想要的因子（此时判断是否需要更新最小 $\mathit{ans}$）。
 
 然后 dfs 里面不断一层一层枚举次数继续往下迭代可以。
 
