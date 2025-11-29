@@ -8,7 +8,7 @@ double a[MAXN][MAXN], f[MAXN];
 int n, m;
 
 void solve(int x) {
-  memset(a, 0, sizeof a);
+
   for (int i = 1; i <= m; i++) {
     if (i == 1) {
       a[i][i] = 2;
@@ -53,3 +53,4 @@ int main() {
   printf("%.10f\n", f[ed]);
   return 0;
 }
+
