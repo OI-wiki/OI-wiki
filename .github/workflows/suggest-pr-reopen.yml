@@ -21,6 +21,14 @@ jobs:
             const createdAt = new Date(pr.created_at);
             const closedAt = new Date(pr.closed_at);
             const diffMinutes = (closedAt - createdAt) / (1000 * 60);
+            const authorLogin = pr.user?.login;
+            const closedByLogin = pr.closed_by?.login ?? context.actor;
+
+            if (closedByLogin !== authorLogin) {
+              core.info('PR was closed by someone other than the author. Skip suggestion.');
+              return;
+            }
+
             if (diffMinutes <= 60) {
               const branchLink = `https://github.com/${pr.head.repo.full_name}/tree/${pr.head.ref}`;
               const body = [
