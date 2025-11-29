@@ -1505,9 +1505,9 @@ js-tokens@^4.0.0:
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
 js-yaml@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.0.tgz"
-  integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.1.1.tgz#854c292467705b699476e1a2decc0c8a3458806b"
+  integrity sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==
   dependencies:
     argparse "^2.0.1"
 
@@ -2453,10 +2453,10 @@ octokit@^4.0.2:
     "@octokit/request-error" "^6.0.0"
     "@octokit/types" "^13.0.0"
 
-oiwiki-feedback-sys-frontend@^0.5.13:
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/oiwiki-feedback-sys-frontend/-/oiwiki-feedback-sys-frontend-0.5.13.tgz#0709485cfdc627c8f49b915444fc62f4f7724157"
-  integrity sha512-ZnwjCZu8+bURTw08H+nVnjzgBNl76wI0P7eP5mEH94Azf/JPb6JhqZUET0zYhApFesfoKzYNB8nsv1XHa6We2Q==
+oiwiki-feedback-sys-frontend@^0.5.16:
+  version "0.5.16"
+  resolved "https://registry.yarnpkg.com/oiwiki-feedback-sys-frontend/-/oiwiki-feedback-sys-frontend-0.5.16.tgz#d0bef1a4a862d44536a8e91c2aaeb4437c6f3276"
+  integrity sha512-R2gt04aQu9elv/KBM84xHARsrDUY3FbKX8IQTPF/b5o+XZ60VTL45ZaWJnJIw0aF8al39e6jDDE0laz5Lxy8jg==
 
 once@^1.3.0:
   version "1.4.0"
