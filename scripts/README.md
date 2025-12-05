@@ -17,7 +17,11 @@
 
 以下是与构建无关的脚本：
 
-- `test.py` 测试文档中的实例代码正常编译
+- `check-example-codes` 用于测试文档中的示例代码能否正常编译、运行并通过样例测试
+    - `file-lists.py` 生成需要参与测试的文件列表
+    - `correctness.py` 编译、运行示例代码，并比对运行结果与预期输出
+    - `cpp-undefined-behaviors.py` 检查不同运行环境下 C++ 代码中潜在的未定义行为
+    - `utils.py` 提供 `correctness.py` 与 `cpp-undefined-behaviors.py` 共用的常量与函数定义
 - `check-characters.py` 扫描修改的 Markdown 与 TeX 文件中的异常非可见字符与可替换为对应 CJK 字符的部首（和笔画字符）
 - `celebration.py` 自动创建庆祝 star 数量的 issue
 -   `utils` 一些工具
