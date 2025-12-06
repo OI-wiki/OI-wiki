@@ -32,7 +32,7 @@ jobs:
           sudo apt-get install curl git unzip imagemagick libwebp-dev librsvg2-dev fonts-noto-cjk fonts-noto-cjk-extra
           sudo apt-get remove fonts-noto-color-emoji
 
-          git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
+          git clone --recurse-submodules --remote-submodules https://github.com/jyeric/OI-Wiki-export.git
           cd OI-Wiki-export
           cd remark-snippet
           npm install
@@ -41,6 +41,7 @@ jobs:
           npm install
           cd ..
           cd oi-wiki-export-typst
+          wget https://github.com/jyeric/OI-wiki/raw/refs/heads/archiveLink/data.json
           npm install
 
           mkdir .fonts
