@@ -370,6 +370,7 @@ nav:
       - 李超线段树: ds/li-chao-tree.md
       - 猫树: ds/cat-tree.md
       - 区间最值操作 & 区间历史最值: ds/seg-beats.md
+      - Kinetic Tournament Tree: ds/kinetic-tournament-tree.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
       - 二叉搜索树 & 平衡树: ds/bst.md
