@@ -324,25 +324,40 @@ $$
 \left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)^M\equiv 1\pmod {p^{k-1}}
 $$
 
-当 $p$ 是奇素数时，由 [升幂引理](../number-theory/lift-the-exponent.md)，有：
+有了这样的充要条件，接下来的工作是做一个简单的升幂。但要注意的是通常意义下的 [升幂引理](../number-theory/lift-the-exponent.md) 中需要定义质因子次数 $\nu_p$，然而我们的讨论是在扩域的基础上的，即 $\nu_p(a + b\sqrt{5})$ 无法很好地定义。所以下面我们不借助这个定理，直接做推导。
+
+已知：
 
 $$
-\nu_p\left(a^t-1\right)=\nu_p\left(a-1\right)+\nu_p(t)
+\left(\frac{1+\sqrt{5}}{2}\right)^{M}=ap^{k-1}+bp^{k-1}\sqrt 5+1
 $$
 
-当 $p=2$ 时，由 [升幂引理](../number-theory/lift-the-exponent.md)，有：
+那么：
 
 $$
-\nu_2\left(a^t-1\right)=\nu_2\left(a-1\right)+\nu_2\left(a+1\right)+\nu_2(t)-1
+\left(\frac{1+\sqrt{5}}{2}\right)^{Mp}=(ap^{k-1}+bp^{k-1}\sqrt 5+1)^{p}
 $$
 
-代入 $a$ 为 $\left(\frac{1+\sqrt{5}}{2}\right)$ 和 $\left(\frac{1-\sqrt{5}}{2}\right)$，$t$ 为 $M$ 和 $Mp$，上述条件也就等价于：
+将右式二项式展开：
 
 $$
-\left(\frac{1+\sqrt{5}}{2}\right)^{Mp} \equiv \left(\frac{1-\sqrt{5}}{2}\right)^{Mp}\equiv 1\pmod {p^k}
+\sum\limits_{j=0}^{p}\binom{p}{j}((a+b\sqrt{5})p^{k-1})^{j}
 $$
 
-因此也等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期．
+这个式子模 $p^{k}$ 的结果中：除了 $j=0,1$ 的情况，总是有 $p^{k} | (p^{k-1})^{j}$。另外 $j=1$ 的时候 $\binom{p}{j}$ 含有 $p$ 的因子，所以恰好又能 $p^{k} | (p^{k-1}\cdot p)$。从而只有 $j=0$ 的时候会产生贡献，所以：
+
+$$
+\left(\frac{1+\sqrt{5}}{2}\right)^{Mp} \equiv 1 \pmod {p^{k}}
+$$
+
+同理：
+
+$$
+\left(\frac{1-\sqrt{5}}{2}\right)^{Mp} \equiv 1 \pmod {p^{k}}
+$$
+
+
+因此也等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。
 
 因为周期等价，所以最小正周期也等价．
 
@@ -399,4 +414,8 @@ unsigned long long get_cycle_from_mod(
 -   [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
 -   [洛谷 P4000 斐波那契数列](https://www.luogu.com.cn/problem/P4000)
 
-    **本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+## 参考文献
+
+-   [Fibonacci 数 - Sergio Gao's Notebook](https://note.shujie.cc/XCPC/%E5%88%86%E7%B1%BB%E9%A2%98%E8%A7%A3/Fibonacci%20%E6%95%B0/)
+
+    **本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
