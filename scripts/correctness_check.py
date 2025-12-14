@@ -1,5 +1,5 @@
 # Check correctness of example code.
-# input: related files to test (from get_files_to_test.py, read from $FILES_TO_TEST)
+# input: mainfile list (from get_files_to_test.py, read from $FILES_TO_TEST)
 # output: None. Print to GitHub Action step summary.
 
 import os
@@ -8,6 +8,48 @@ import subprocess
 ACCEPTED = 1
 ERROR = 0
 SKIPPED = -1
+
+
+def derive_test_files(mainfile):
+    """
+    Derive auxfiles, examples, and skiptest status from mainfile.
+    
+    Args:
+        mainfile: Path to the main source code file
+        
+    Returns:
+        tuple: (auxfiles, examples, skiptest)
+            auxfiles: List of all .cpp files with same basename (including mainfile)
+            examples: List of .in files that have corresponding .ans files
+            skiptest: Boolean indicating if .skip_test file exists
+    """
+    dirname = os.path.dirname(mainfile)
+    basename = os.path.splitext(os.path.basename(mainfile))[0]
+    
+    # Find all auxiliary files (all .cpp files with same basename)
+    auxfiles = []
+    for root, _, files in os.walk(dirname):
+        for file in files:
+            if file.split(".")[0] == basename and file.endswith(".cpp"):
+                auxfiles.append(os.path.normpath(os.path.join(root, file)))
+    
+    # Find example test cases in corresponding examples directory
+    examples = []
+    examples_dir = dirname.replace("/code/", "/examples/")
+    if os.path.exists(examples_dir):
+        for root, _, files in os.walk(examples_dir):
+            for file in files:
+                if (
+                    file.split(".")[0] == basename
+                    and file.endswith(".in")
+                    and os.path.exists(os.path.join(root, file.replace(".in", ".ans")))
+                ):
+                    examples.append(os.path.normpath(os.path.join(root, file)))
+    
+    # Check if test should be skipped
+    skiptest = os.path.exists(os.path.join(dirname, basename + ".skip_test"))
+    
+    return auxfiles, examples, skiptest
 
 
 def correctness_check(mainfile, auxfiles, examples, skiptest, summary):
@@ -24,13 +66,13 @@ def correctness_check(mainfile, auxfiles, examples, skiptest, summary):
         return SKIPPED, summary
 
     # 检测文件存在
-    for file in auxfile:
+    for file in auxfiles:
         if not os.path.exists(file):
             print(f"::endgroup::")
             print(f"::error file={file},title=file {file} not found::")
             summary += f"## 找不到文件：{file}\n对{mainfile}的测试因找不到文件{file}而被迫中止\n\n"
             return ERROR, summary
-    for file in example:
+    for file in examples:
         if not os.path.exists(file):
             print(f"::endgroup::")
             print(f"::error file={file},title=file {file} not found::")
@@ -99,15 +141,18 @@ def correctness_check(mainfile, auxfiles, examples, skiptest, summary):
     return ACCEPTED, summary
 
 
-mainfiles, auxfiles, examples, skiptests = eval(os.environ.get("FILES_TO_TEST"))
+# Get mainfiles from environment variable (space-separated list)
+mainfiles_str = os.environ.get("FILES_TO_TEST", "")
+mainfiles = mainfiles_str.split() if mainfiles_str else []
 summary = ""
 
 cnt_ac, cnt_error, cnt_skip = 0, 0, 0
-for mainfile, auxfile, example, skiptest in zip(
-    mainfiles, auxfiles, examples, skiptests
-):
+for mainfile in mainfiles:
+    # Derive auxfiles, examples, and skiptest from mainfile
+    auxfiles, examples, skiptest = derive_test_files(mainfile)
+    
     correctness, summary = correctness_check(
-        mainfile, auxfile, example, skiptest, summary
+        mainfile, auxfiles, examples, skiptest, summary
     )
     cnt_ac = cnt_ac + 1 if correctness == ACCEPTED else cnt_ac
     cnt_error = cnt_error + 1 if correctness == ERROR else cnt_error

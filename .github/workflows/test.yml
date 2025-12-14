@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       any_changed: ${{ steps.changed-files.outputs.any_changed }}
-      files_to_test: ${{ steps.GetFiles.outputs.files_to_test }}
+      TEST_CPP_FILES: ${{ steps.GetFiles.outputs.TEST_CPP_FILES }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -31,12 +31,11 @@ jobs:
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           python-version: '3.14'
-      - name: Make the File List
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
       - name: Get Files to Test
         if: steps.changed-files.outputs.any_changed == 'true'
         id: GetFiles
+        env:
+          all_changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
         run: python scripts/get_files_to_test.py
 
   correctness:
@@ -57,7 +56,7 @@ jobs:
           sudo apt-get install -y g++
       - name: Correctness Check
         env: 
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
         run: python scripts/correctness_check.py
 
   undefinedbehaviors-ubuntu:
@@ -77,7 +76,7 @@ jobs:
           apt-get install -y g++-9
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
           RUNS_ON: x86_64 Ubuntu
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
@@ -102,7 +101,7 @@ jobs:
           echo "::endgroup::"
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
           RUNS_ON: arm64 MacOS
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
@@ -125,7 +124,7 @@ jobs:
             --volume $PWD:$PWD \
             --volume $GITHUB_STEP_SUMMARY:$GITHUB_STEP_SUMMARY \
             --workdir $PWD \
-            --env FILES_TO_TEST="${{ needs.file-list.outputs.files_to_test }}" \
+            --env FILES_TO_TEST="${{ needs.file-list.outputs.TEST_CPP_FILES }}" \
             --env RUNS_ON="riscv64 Ubuntu" \
             --env PYTHONIOENCODING="UTF-8" \
             --env GITHUB_STEP_SUMMARY=$GITHUB_STEP_SUMMARY \
@@ -174,7 +173,7 @@ jobs:
           echo ::endgroup::
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
           RUNS_ON: x86_64 Windows
           PYTHONIOENCODING: UTF-8
         run: |
@@ -206,7 +205,7 @@ jobs:
           echo "::endgroup::"
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
           RUNS_ON: x86_64 Alpine
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py

@@ -1,8 +1,13 @@
 import os
 import subprocess
 from dataclasses import dataclass
+from correctness_check import (
+    derive_test_files,
+)  # Derive auxfiles, examples, and skiptest status from mainfile
 
-mainfiles, auxfiles, examples, skiptests = eval(os.environ.get("FILES_TO_TEST"))
+# Get mainfiles from environment variable (space-separated list)
+mainfiles_str = os.environ.get("FILES_TO_TEST", "")
+mainfiles = mainfiles_str.split() if mainfiles_str else []
 runs_on = os.environ.get("RUNS_ON")
 
 RED = "\033[0;31m"
@@ -462,10 +467,13 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
 
 cnt_ac, cnt_error = 0, 0
 output = {}
-for mainfile, auxfile, example, skiptest in zip(
-    mainfiles, auxfiles, examples, skiptests
-):
-    this_file_looks_odd, return_status = ub_check(mainfile, auxfile, example, skiptest)
+for mainfile in mainfiles:
+    # Derive auxfiles, examples, and skiptest from mainfile
+    auxfiles, examples, skiptest = derive_test_files(mainfile)
+
+    this_file_looks_odd, return_status = ub_check(
+        mainfile, auxfiles, examples, skiptest
+    )
     output_status = {}
     for key in return_status:
         output_status[key] = [str(_) for _ in return_status[key]]
