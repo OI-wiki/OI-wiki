@@ -239,48 +239,33 @@ $p$ 的剩余系大小为 $p$，意味着在前 $p^2+1$ 个数对中必有两个
 当需要计算第 $n$ 项斐波那契数模 $m$ 的值的时候，如果 $n$ 非常大，就需要计算斐波那契数模 $m$ 的周期。当然，只需要计算周期，不一定是最小正周期。
 
 ```cpp
-
 struct prime {
   unsigned long long p;
-
   int times;
 };
 
 struct prime pp[2048];
-
 int pptop;
 
 unsigned long long get_cycle_from_mod(
-    unsigned long long mod)    // 这里求解的只是周期，不一定是最小正周期
+    unsigned long long mod)  // 这里求解的只是周期，不一定是最小正周期
 {
   pptop = 0;
-
   srand(time(nullptr));
-
   while (n != 1) {
     __int128_t factor = (__int128_t)10000000000 * 10000000000;
-
-    min_factor(mod, &factor);
-    // 计算最小素因数
-
+    min_factor(mod, &factor);  // 计算最小素因数
     struct prime temp;
-
     temp.p = factor;
-
     for (temp.times = 0; mod % factor == 0; temp.times++) {
       mod /= factor;
     }
-
     pp[pptop] = temp;
-
     pptop++;
   }
-
   unsigned long long m = 1;
-
   for (int i = 0; i < pptop; ++i) {
     int g;
-
     if (pp[i].p == 2) {
       g = 3;
     } else if (pp[i].p == 5) {
@@ -290,13 +275,10 @@ unsigned long long get_cycle_from_mod(
     } else {
       g = (pp[i].p + 1) << 1;
     }
-
     m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
   }
-
   return m;
 }
-
 ```
 
 实际上，皮萨诺周期总是不超过 $6m$。下面我们证明这一点——
