@@ -251,9 +251,7 @@ struct prime pp[2048];
 int pptop;
 
 unsigned long long get_cycle_from_mod(
-
     unsigned long long mod)    // 这里求解的只是周期，不一定是最小正周期
-
 {
     pptop = 0;
 
@@ -360,15 +358,11 @@ $\sqrt{5}$ 的偶数幂也都是良定义的，当然不会有 $\sqrt{5}$ 部。
 由二项式展开：
 
 $$
-
 F_p=\frac{2}{2^p\sqrt{5}}\left(\dbinom{p}{1}\sqrt{5}+\dbinom{p}{3}\sqrt{5}^3+\ldots+\dbinom{p}{p}\sqrt{5}^p\right)\equiv\sqrt{5}^{p-1}\equiv 1\pmod p
-
 $$
 
 $$
-
 F_{p+1}=\frac{2}{2^{p+1}\sqrt{5}}\left(\dbinom{p+1}{1}\sqrt{5}+\dbinom{p+1}{3}\sqrt{5}^3+\ldots+\dbinom{p+1}{p}\sqrt{5}^p\right)\equiv\frac{1}{2}\left(1+\sqrt{5}^{p-1}\right)\equiv 1\pmod p
-
 $$
 
 因为 $F_p$ 和 $F_{p+1}$ 两项都同余于 $1$，与 $F_1$ 和 $F_2$ 一致，所以 $p-1$ 是周期。
@@ -384,29 +378,21 @@ $$
 由二项式展开：
 
 $$
-
 F_{2p}=\frac{2}{2^{2p}\sqrt{5}}\left(\dbinom{2p}{1}\sqrt{5}+\dbinom{2p}{3}\sqrt{5}^3+\ldots+\dbinom{2p}{2p-1}\sqrt{5}^{2p-1}\right)
-
 $$
 
 $$
-
 F_{2p+1}=\frac{2}{2^{2p+1}\sqrt{5}}\left(\dbinom{2p+1}{1}\sqrt{5}+\dbinom{2p+1}{3}\sqrt{5}^3+\ldots+\dbinom{2p+1}{2p+1}\sqrt{5}^{2p+1}\right)
-
 $$
 
 模 $p$ 之后，在 $F_{2p}$ 式中，只有 $\dbinom{2p}{p}\equiv 2 \pmod p$ 项留了下来；在 $F_{2p+1}$ 式中，有 $\dbinom{2p+1}{1}\equiv 1 \pmod p$、$\dbinom{2p+1}{p}\equiv 2 \pmod p$、$\dbinom{2p+1}{2p+1}\equiv 1 \pmod p$，三项留了下来。
 
 $$
-
 F_{2p}\equiv\frac{1}{2}\dbinom{2p}{p}\sqrt{5}^{p-1}\equiv -1 \pmod p
-
 $$
 
 $$
-
 F_{2p+1}\equiv\frac{1}{4}\left(\dbinom{2p+1}{1}+\dbinom{2p+1}{p}\sqrt{5}^{p-1}+\dbinom{2p+1}{2p+1}\sqrt{5}^{2p}\right)\equiv\frac{1}{4}\left(1-2+5\right)\equiv 1 \pmod p
-
 $$
 
 于是 $F_{2p}$ 和 $F_{2p+1}$ 两项与 $F_{-2}$ 和 $F_{-1}$ 一致，所以 $2p+2$ 是周期。
@@ -420,37 +406,27 @@ $$
 由于：
 
 $$
-
 F_M=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^M-\left(\frac{1-\sqrt{5}}{2}\right)^M\right)\equiv 0\pmod {p^{k-1}}
-
 $$
 
 $$
-
 F_{M+1}=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{M+1}-\left(\frac{1-\sqrt{5}}{2}\right)^{M+1}\right)\equiv 1\pmod {p^{k-1}}
-
 $$
 
 因此：
 
 $$
-
 \left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)^M\pmod {p^{k-1}}
-
 $$
 
 $$
-
 1\equiv\frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^M\left(\left(\frac{1+\sqrt{5}}{2}\right)-\left(\frac{1-\sqrt{5}}{2}\right)\right)=\left(\frac{1+\sqrt{5}}{2}\right)^M\pmod {p^{k-1}}
-
 $$
 
 因为反方向也可以推导，所以 $M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于：
 
 $$
-
 \left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)^M\equiv 1\pmod {p^{k-1}}
-
 $$
 
 有了这样的充要条件，接下来的工作是做一个简单的升幂。但要注意的是通常意义下的 [升幂引理](../number-theory/lift-the-exponent.md) 中需要定义质因子次数 $\nu_p$，然而我们的讨论是在扩域的基础上的，即 $\nu_p(a + b\sqrt{5})$ 无法很好地定义。所以下面我们不借助这个定理，直接做推导。
@@ -458,41 +434,31 @@ $$
 已知：
 
 $$
-
 \left(\frac{1+\sqrt{5}}{2}\right)^{M}=ap^{k-1}+bp^{k-1}\sqrt 5+1
-
 $$
 
 那么：
 
 $$
-
 \left(\frac{1+\sqrt{5}}{2}\right)^{Mp}=(ap^{k-1}+bp^{k-1}\sqrt 5+1)^{p}
-
 $$
 
 将右式二项式展开：
 
 $$
-
 \sum\limits_{j=0}^{p}\binom{p}{j}((a+b\sqrt{5})p^{k-1})^{j}
-
 $$
 
 这个式子模 $p^{k}$ 的结果中：除了 $j=0,1$ 的情况，总是有 $p^{k} | (p^{k-1})^{j}$。另外 $j=1$ 的时候 $\binom{p}{j}$ 含有 $p$ 的因子，所以恰好又能 $p^{k} | (p^{k-1}\cdot p)$。从而只有 $j=0$ 的时候会产生贡献，所以：
 
 $$
-
 \left(\frac{1+\sqrt{5}}{2}\right)^{Mp} \equiv 1 \pmod {p^{k}}
-
 $$
 
 同理：
 
 $$
-
 \left(\frac{1-\sqrt{5}}{2}\right)^{Mp} \equiv 1 \pmod {p^{k}}
-
 $$
 
 因此也等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。
