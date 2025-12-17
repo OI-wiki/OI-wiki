@@ -235,99 +235,94 @@ $p$ 的剩余系大小为 $p$，意味着在前 $p^2+1$ 个数对中必有两个
 ### 皮萨诺周期
 
 模 $m$ 意义下斐波那契数列的最小正周期被称为 [皮萨诺周期](https://en.wikipedia.org/wiki/Pisano_period)（Pisano periods,[OEIS A001175](http://oeis.org/A001175)）。
-  
+
 当需要计算第 $n$ 项斐波那契数模 $m$ 的值的时候，如果 $n$ 非常大，就需要计算斐波那契数模 $m$ 的周期。当然，只需要计算周期，不一定是最小正周期。
 
 ```cpp
 
 struct prime {
+    unsigned long long p;
 
-  unsigned long long p;
-
-  int times;
-
+    int times;
 };
-
-  
 
 struct prime pp[2048];
 
 int pptop;
 
-  
-
 unsigned long long get_cycle_from_mod(
 
-    unsigned long long mod)  // 这里求解的只是周期，不一定是最小正周期
+    unsigned long long mod)    // 这里求解的只是周期，不一定是最小正周期
 
 {
+    pptop = 0;
 
-  pptop = 0;
+    srand(time(nullptr));
 
-  srand(time(nullptr));
+    while (n != 1) {
+        __int128_t factor = (__int128_t)10000000000 * 10000000000;
 
-  while (n != 1) {
-
-    __int128_t factor = (__int128_t)10000000000 * 10000000000;
-
-    min_factor(mod, &factor);  // 计算最小素因数
+        min_factor(mod, &factor);
+       // 计算最小素因数
 
     struct prime temp;
 
-    temp.p = factor;
+        temp.p = factor;
 
-    for (temp.times = 0; mod % factor == 0; temp.times++) {
+        for (temp.times = 0; mod % factor == 0; temp.times++) {
+            mod /= factor;
 
-      mod /= factor;
+         
+    }
 
-    }
+        pp[pptop] = temp;
 
-    pp[pptop] = temp;
+        pptop++;
 
-    pptop++;
+     
+  }
 
-  }
+    unsigned long long m = 1;
 
-  unsigned long long m = 1;
+    for (int i = 0; i < pptop; ++i) {
+        int g;
 
-  for (int i = 0; i < pptop; ++i) {
+        if (pp[i].p == 2) {
+            g = 3;
 
-    int g;
+         
+    }
+    else if (pp[i].p == 5) {
+            g = 20;
 
-    if (pp[i].p == 2) {
+         
+    }
+    else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4) {
+            g = pp[i].p - 1;
 
-      g = 3;
+         
+    }
+    else {
+            g = (pp[i].p + 1) << 1;
 
-    } else if (pp[i].p == 5) {
+         
+    }
 
-      g = 20;
+        m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
 
-    } else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4) {
+     
+  }
 
-      g = pp[i].p - 1;
-
-    } else {
-
-      g = (pp[i].p + 1) << 1;
-
-    }
-
-    m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
-
-  }
-
-  return m;
-
+    return m;
 }
 
 ```
 
-
-实际上，皮萨诺周期总是不超过 $6m$。 下面我们证明这一点——
+实际上，皮萨诺周期总是不超过 $6m$。下面我们证明这一点——
 
 ### 特殊素数情况
 
-容易验证，斐波那契数模 $2$ 的最小正周期是 $3$，模 $5$ 的最小正周期是 $20$。  
+容易验证，斐波那契数模 $2$ 的最小正周期是 $3$，模 $5$ 的最小正周期是 $20$。
 
 （这里去除这两个情况的动机是：2 是唯一的偶素数；5 是斐波那契数列通项公式中 $\sqrt{5}$ 根号下的数。）
 
@@ -339,7 +334,7 @@ $$
 \left( \frac{p}{q} \right) \left( \frac{q}{p} \right) = (-1)^{\frac{p-1}{2} \frac{q-1}{2}}
 $$
 
-其中 $\left( \frac{a}{b} \right)$ 为 [勒让德符号]([Legendre symbol - Wikipedia](https://en.wikipedia.org/wiki/Legendre_symbol))，它从数值上等于：
+其中 $\left( \frac{a}{b} \right)$ 为 \[勒让德符号]\([Legendre symbol - Wikipedia](https://en.wikipedia.org/wiki/Legendre_symbol))，它从数值上等于：
 
 $$
 a^{\frac{b-1}{2}} \bmod b
@@ -379,23 +374,17 @@ $\sqrt{5}$ 的偶数幂也都是良定义的，当然不会有 $\sqrt{5}$ 部。
 
 由二项式展开：
 
-  
-
 $$
 
 F_p=\frac{2}{2^p\sqrt{5}}\left(\dbinom{p}{1}\sqrt{5}+\dbinom{p}{3}\sqrt{5}^3+\ldots+\dbinom{p}{p}\sqrt{5}^p\right)\equiv\sqrt{5}^{p-1}\equiv 1\pmod p
 
 $$
 
-  
-
 $$
 
 F_{p+1}=\frac{2}{2^{p+1}\sqrt{5}}\left(\dbinom{p+1}{1}\sqrt{5}+\dbinom{p+1}{3}\sqrt{5}^3+\ldots+\dbinom{p+1}{p}\sqrt{5}^p\right)\equiv\frac{1}{2}\left(1+\sqrt{5}^{p-1}\right)\equiv 1\pmod p
 
 $$
-
-  
 
 因为 $F_p$ 和 $F_{p+1}$ 两项都同余于 $1$，与 $F_1$ 和 $F_2$ 一致，所以 $p-1$ 是周期。
 
@@ -409,15 +398,11 @@ $$
 
 由二项式展开：
 
-  
-
 $$
 
 F_{2p}=\frac{2}{2^{2p}\sqrt{5}}\left(\dbinom{2p}{1}\sqrt{5}+\dbinom{2p}{3}\sqrt{5}^3+\ldots+\dbinom{2p}{2p-1}\sqrt{5}^{2p-1}\right)
 
 $$
-
-  
 
 $$
 
@@ -425,11 +410,7 @@ F_{2p+1}=\frac{2}{2^{2p+1}\sqrt{5}}\left(\dbinom{2p+1}{1}\sqrt{5}+\dbinom{2p+1}{
 
 $$
 
-  
-
 模 $p$ 之后，在 $F_{2p}$ 式中，只有 $\dbinom{2p}{p}\equiv 2 \pmod p$ 项留了下来；在 $F_{2p+1}$ 式中，有 $\dbinom{2p+1}{1}\equiv 1 \pmod p$、$\dbinom{2p+1}{p}\equiv 2 \pmod p$、$\dbinom{2p+1}{2p+1}\equiv 1 \pmod p$，三项留了下来。
-
-  
 
 $$
 
@@ -437,15 +418,11 @@ F_{2p}\equiv\frac{1}{2}\dbinom{2p}{p}\sqrt{5}^{p-1}\equiv -1 \pmod p
 
 $$
 
-  
-
 $$
 
 F_{2p+1}\equiv\frac{1}{4}\left(\dbinom{2p+1}{1}+\dbinom{2p+1}{p}\sqrt{5}^{p-1}+\dbinom{2p+1}{2p+1}\sqrt{5}^{2p}\right)\equiv\frac{1}{4}\left(1-2+5\right)\equiv 1 \pmod p
 
 $$
-
-  
 
 于是 $F_{2p}$ 和 $F_{2p+1}$ 两项与 $F_{-2}$ 和 $F_{-1}$ 一致，所以 $2p+2$ 是周期。
 
@@ -453,13 +430,9 @@ $$
 
 结论：对于素数 $p$，$M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。特别地，$M$ 是模 $p^{k-1}$ 的皮萨诺周期，等价于 $Mp$ 是模 $p^k$ 的皮萨诺周期。
 
-  
 证明：
-  
 
 由于：
-
-  
 
 $$
 
@@ -467,18 +440,13 @@ F_M=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^M-\left(\frac{1-\s
 
 $$
 
-
 $$
 
 F_{M+1}=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{M+1}-\left(\frac{1-\sqrt{5}}{2}\right)^{M+1}\right)\equiv 1\pmod {p^{k-1}}
 
 $$
 
-  
-
 因此：
-
-  
 
 $$
 
@@ -486,19 +454,13 @@ $$
 
 $$
 
-  
-
 $$
 
 1\equiv\frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^M\left(\left(\frac{1+\sqrt{5}}{2}\right)-\left(\frac{1-\sqrt{5}}{2}\right)\right)=\left(\frac{1+\sqrt{5}}{2}\right)^M\pmod {p^{k-1}}
 
 $$
 
-  
-
 因为反方向也可以推导，所以 $M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于：
-
-  
 
 $$
 
@@ -506,15 +468,9 @@ $$
 
 $$
 
-  
-
 有了这样的充要条件，接下来的工作是做一个简单的升幂。但要注意的是通常意义下的 [升幂引理](../number-theory/lift-the-exponent.md) 中需要定义质因子次数 $\nu_p$，然而我们的讨论是在扩域的基础上的，即 $\nu_p(a + b\sqrt{5})$ 无法很好地定义。所以下面我们不借助这个定理，直接做推导。
 
-  
-
 已知：
-
-  
 
 $$
 
@@ -522,11 +478,7 @@ $$
 
 $$
 
-  
-
 那么：
-
-  
 
 $$
 
@@ -534,11 +486,7 @@ $$
 
 $$
 
-  
-
 将右式二项式展开：
-
-  
 
 $$
 
@@ -546,11 +494,7 @@ $$
 
 $$
 
-  
-
 这个式子模 $p^{k}$ 的结果中：除了 $j=0,1$ 的情况，总是有 $p^{k} | (p^{k-1})^{j}$。另外 $j=1$ 的时候 $\binom{p}{j}$ 含有 $p$ 的因子，所以恰好又能 $p^{k} | (p^{k-1}\cdot p)$。从而只有 $j=0$ 的时候会产生贡献，所以：
-
-  
 
 $$
 
@@ -558,11 +502,7 @@ $$
 
 $$
 
-  
-
 同理：
-
-  
 
 $$
 
@@ -570,38 +510,35 @@ $$
 
 $$
 
-  
-
 因此也等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。
 
-  
 因为周期等价，所以最小正周期也等价。
 
 ### 合并
 
 结论：两个互素的模数 $m_1,m_2$，有 $\pi(m_1\cdot m_2) = \operatorname{lcm}(\pi(m_1), \pi(m_2))$。
 
-证明：只需考虑到 $(Fib_{k},Fib_{k+1}) \equiv (0,1)$ 在模 $m_1\cdot m_2$ 下成立等价于在模  $m_1,m_2$ 意义下同时成立即可。
+证明：只需考虑到 $(Fib_{k},Fib_{k+1}) \equiv (0,1)$ 在模 $m_1\cdot m_2$ 下成立等价于在模 $m_1,m_2$ 意义下同时成立即可。
 
 ### 合数情况
 
 我们先对上面的推导做一个汇总：
 
-- $\pi(2) = 3, \pi(5) = 20$。
+-   $\pi(2) = 3, \pi(5) = 20$。
 
-- 对于奇素数 $p\equiv 1,4 \pmod 5$，$\pi(p^{k})|(p-1)p^{k-1}$。
+-   对于奇素数 $p\equiv 1,4 \pmod 5$，$\pi(p^{k})|(p-1)p^{k-1}$。
 
-- 对于奇素数 $p\equiv 2,3 \pmod 5$，$\pi(p^{k})|(2p+2)p^{k-1}$。
+-   对于奇素数 $p\equiv 2,3 \pmod 5$，$\pi(p^{k})|(2p+2)p^{k-1}$。
 
 在对所有 $\pi(p_i^{k_i})$ 的数值作 $\operatorname{lcm}$ 的时候，我们先尽量地先提取一个因子 $4$ 出来。这样，剩下的部分 $\pi'(p_{i}^{k_i})$ 分别是
 
-- $\pi'(2^{k}) = 3 \cdot 2^{k-1} \le \frac{3}{2} \cdot 2^{k}$。
+-   $\pi'(2^{k}) = 3 \cdot 2^{k-1} \le \frac{3}{2} \cdot 2^{k}$。
 
-- $\pi'(5^{k}) = \frac{20}{4} \cdot 5^{k-1} \le 5^{k}$
+-   $\pi'(5^{k}) = \frac{20}{4} \cdot 5^{k-1} \le 5^{k}$
 
-- 对于奇素数 $p\equiv 1,4 \pmod 5$，$\pi'(p^{k}) \le p^{k}$。
+-   对于奇素数 $p\equiv 1,4 \pmod 5$，$\pi'(p^{k}) \le p^{k}$。
 
-- 对于偶素数 $p\equiv 2,3 \pmod 5$，$\pi'(p^{k}) \le \frac{p+1}{2}p^{k-1} \le p^{k}$。
+-   对于偶素数 $p\equiv 2,3 \pmod 5$，$\pi'(p^{k}) \le \frac{p+1}{2}p^{k-1} \le p^{k}$。
 
 所以可知
 
