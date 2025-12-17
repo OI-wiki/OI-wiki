@@ -271,15 +271,11 @@ unsigned long long get_cycle_from_mod(
 
         for (temp.times = 0; mod % factor == 0; temp.times++) {
             mod /= factor;
-
-         
     }
 
         pp[pptop] = temp;
 
         pptop++;
-
-     
   }
 
     unsigned long long m = 1;
@@ -288,29 +284,18 @@ unsigned long long get_cycle_from_mod(
         int g;
 
         if (pp[i].p == 2) {
-            g = 3;
-
-         
-    }
+            g = 3; }
     else if (pp[i].p == 5) {
             g = 20;
-
-         
     }
     else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4) {
             g = pp[i].p - 1;
-
-         
     }
     else {
             g = (pp[i].p + 1) << 1;
-
-         
     }
 
         m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
-
-     
   }
 
     return m;
