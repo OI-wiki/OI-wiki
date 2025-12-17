@@ -240,10 +240,11 @@ $p$ 的剩余系大小为 $p$，意味着在前 $p^2+1$ 个数对中必有两个
 
 ```cpp
 
-struct prime {
-    unsigned long long p;
+struct prime
+{
+    unsigned long long p;
 
-    int times;
+    int times;
 };
 
 struct prime pp[2048];
@@ -251,52 +252,60 @@ struct prime pp[2048];
 int pptop;
 
 unsigned long long get_cycle_from_mod(
-    unsigned long long mod)    // 这里求解的只是周期，不一定是最小正周期
+    unsigned long long mod)   // 这里求解的只是周期，不一定是最小正周期
 {
-    pptop = 0;
+    pptop = 0;
 
-    srand(time(nullptr));
+    srand(time(nullptr));
 
-    while (n != 1) {
-        __int128_t factor = (__int128_t)10000000000 * 10000000000;
+    while (n != 1)
+    {
+        __int128_t factor = (__int128_t)10000000000 * 10000000000;
 
-        min_factor(mod, &factor);
-       // 计算最小素因数
+        min_factor(mod, &factor);
+        // 计算最小素因数
 
-    struct prime temp;
+        struct prime temp;
 
-        temp.p = factor;
+        temp.p = factor;
 
-        for (temp.times = 0; mod % factor == 0; temp.times++) {
-            mod /= factor;
+        for (temp.times = 0; mod % factor == 0; temp.times++)
+        {
+            mod /= factor;
+        }
+
+        pp[pptop] = temp;
+
+        pptop++;
     }
 
-        pp[pptop] = temp;
+    unsigned long long m = 1;
 
-        pptop++;
-  }
+    for (int i = 0; i < pptop; ++i)
+    {
+        int g;
 
-    unsigned long long m = 1;
+        if (pp[i].p == 2)
+        {
+            g = 3;
+        }
+        else if (pp[i].p == 5)
+        {
+            g = 20;
+        }
+        else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4)
+        {
+            g = pp[i].p - 1;
+        }
+        else
+        {
+            g = (pp[i].p + 1) << 1;
+        }
 
-    for (int i = 0; i < pptop; ++i) {
-        int g;
-
-        if (pp[i].p == 2) {
-            g = 3; }
-    else if (pp[i].p == 5) {
-            g = 20;
+        m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
     }
-    else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4) {
-            g = pp[i].p - 1;
-    }
-    else {
-            g = (pp[i].p + 1) << 1;
-    }
 
-        m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
-  }
-
-    return m;
+    return m;
 }
 
 ```
@@ -331,7 +340,7 @@ $$
 
 因此：$p^{2} \bmod 5$ 的结果，就决定了 $5^{\frac{p-1}{2}} \bmod p$ 的结果，这是有限个情况。
 
-### 临时借用扩域
+### 临时借用扩域（环）
 
 由于斐波那契数列原本就是整数，模 $p$ 的结果也会是整数。但如果我们考虑利用其通项公式：
 
@@ -339,13 +348,15 @@ $$
 F_n = \frac{\left(\frac{1 + \sqrt{5}}{2}\right)^n - \left(\frac{1 - \sqrt{5}}{2}\right)^n}{\sqrt{5}}
 $$
 
-则需要考虑在扩域 $\mathbb{Z}_{p}(\sqrt{5})$ 下的运算。简单来说，就是考虑 $\left\{a+b\sqrt{5}:a,b\in \mathbb{Z}_{p}\right\}$ 上的运算。类似复数的实部和虚部，为了方便，我们后面可能会用 $\sqrt{5}$ 部来指代这里的 $b$。
+则需要考虑在扩域 $\mathbb{Z}_{p}(\sqrt{5})$ 下的运算。简单来说，就是考虑 $\left\{a+b\sqrt{5}:a,b\in \mathbb{Z}_{p}\right\}$ 上的运算。类似复数的实部和虚部，为了方便，我们后面可能会用 $\sqrt{5}$ 部来指代这里的 $b$，整部来指代这里的 $a$。
 
 后面的操作之所以是良定义的，因为 $p$ 选取的是非 $2,5$ 的素数，从而 $\frac{a + b\sqrt{5}}{\sqrt{5}} = b + \frac{a}{5} \sqrt{5}$，其中 $\frac{a}{5}$ 在 $\mathbb{Z}_p$ 上是良定义的。
 
 $\sqrt{5}$ 的偶数幂也都是良定义的，当然不会有 $\sqrt{5}$ 部。特别地，数值上 $5^\frac{p-1}{2}$ 可以用二次互反律的结论计算（依赖于 $p$ 的分类）。
 
 结果上，$F_{n}$ 的 $\sqrt{5}$ 部总是 $0$，所以每次我们都只需要临时借用一下后，把计算结果压回 $\mathbb{Z}_p$ 即可。
+
+后面还会碰到一个看似涉及到除以 $\sqrt{5}$ 同时除数是 $p^{k}$，这个时候就不再是扩域，而是扩环 $\mathbb{Z}_{p^k}(\sqrt{5})$，唯一除以 $\sqrt{5}$ 的时候保证了整部为 $0$，所以它等价于提取 $\sqrt{5}$ 部。
 
 ### 其它素数情况一
 
@@ -397,9 +408,9 @@ $$
 
 于是 $F_{2p}$ 和 $F_{2p+1}$ 两项与 $F_{-2}$ 和 $F_{-1}$ 一致，所以 $2p+2$ 是周期。
 
-### 素数升幂
+### 奇素数升幂
 
-结论：对于素数 $p$，$M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。特别地，$M$ 是模 $p^{k-1}$ 的皮萨诺周期，等价于 $Mp$ 是模 $p^k$ 的皮萨诺周期。
+结论：对于奇素数 $p$，$M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。特别地，$M$ 是模 $p^{k-1}$ 的皮萨诺周期，等价于 $Mp$ 是模 $p^k$ 的皮萨诺周期。
 
 证明：
 
@@ -465,6 +476,61 @@ $$
 
 因为周期等价，所以最小正周期也等价。
 
+### 素数 2 升幂
+
+结论：$M$ 是斐波那契数模 $2^{k-1}$ 的周期，等价于 $2M$ 是斐波那契数模 $2^k$ 的周期。特别地，$M$ 是模 $2^{k-1}$ 的皮萨诺周期，等价于 $2M$ 是模 $2^k$ 的皮萨诺周期。
+
+证明：
+
+这里我们绕过通项公式，使用矩阵形式，考虑到
+
+$$
+\begin{bmatrix}
+F_n+1 & F_n\\
+F_n & F_{n-1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 1\\
+1 & 0
+\end{bmatrix}^{n}
+$$
+
+周期 $M$ 即：
+
+$$
+\begin{bmatrix}
+1 & 1\\
+1 & 0
+\end{bmatrix}^{M} \equiv I \mod 2^{k-1}
+$$
+
+只需证明：
+
+$$
+\begin{bmatrix}
+1 & 1\\
+1 & 0
+\end{bmatrix}^{2M} \equiv I \mod 2^{k}
+$$
+
+这是容易的，因为如果记 
+
+$$
+\begin{bmatrix}
+1 & 1\\
+1 & 0
+\end{bmatrix}^{M} 
+= 
+2^{k-1}X + I
+$$
+
+平方得
+
+$$
+2^{2(k-1)}X^2 + I + 2^{k-1+1}X \equiv I \mod 2^{k}
+$$
+
 ### 合并
 
 结论：两个互素的模数 $m_1,m_2$，有 $\pi(m_1\cdot m_2) = \operatorname{lcm}(\pi(m_1), \pi(m_2))$。
@@ -475,17 +541,17 @@ $$
 
 我们先对上面的推导做一个汇总：
 
--   $\pi(2) = 3, \pi(5) = 20$。
+-   $\pi(2^k) = 3\cdot 2^{k-1}, \pi(5^k) = 20\cdot 5^{k-1}$。
 
--   对于奇素数 $p\equiv 1,4 \pmod 5$，$\pi(p^{k})|(p-1)p^{k-1}$。
+-   对于奇素数 $p\equiv 1,4 \pmod 5$，$\pi(p^{k})\mid (p-1)p^{k-1}$。
 
--   对于奇素数 $p\equiv 2,3 \pmod 5$，$\pi(p^{k})|(2p+2)p^{k-1}$。
+-   对于奇素数 $p\equiv 2,3 \pmod 5$，$\pi(p^{k})\mid (2p+2)p^{k-1}$。
 
 在对所有 $\pi(p_i^{k_i})$ 的数值作 $\operatorname{lcm}$ 的时候，我们先尽量地先提取一个因子 $4$ 出来。这样，剩下的部分 $\pi'(p_{i}^{k_i})$ 分别是
 
--   $\pi'(2^{k}) = 3 \cdot 2^{k-1} \le \frac{3}{2} \cdot 2^{k}$。
+-   $\pi'(2^{k}) \le 3 \cdot 2^{k-1} \le \frac{3}{2} \cdot 2^{k}$。
 
--   $\pi'(5^{k}) = \frac{20}{4} \cdot 5^{k-1} \le 5^{k}$
+-   $\pi'(5^{k}) \le \frac{20}{4} \cdot 5^{k-1} \le 5^{k}$
 
 -   对于奇素数 $p\equiv 1,4 \pmod 5$，$\pi'(p^{k}) \le p^{k}$。
 
@@ -494,7 +560,7 @@ $$
 所以可知
 
 $$
-\pi(m) \le 4\cdot \prod\limits_{p|n,p \text{ is prime}}\pi'(p^{\nu_p(n)}) \le 6\cdot n
+\pi(m) \le 4\cdot \prod\limits_{p|m,p \text{ is prime}}\pi'(p^{\nu_p(m)}) \le 6\cdot m
 $$
 
 这就证明了上界。
