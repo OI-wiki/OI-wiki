@@ -319,7 +319,7 @@ $$
 \left( \frac{p}{q} \right) \left( \frac{q}{p} \right) = (-1)^{\frac{p-1}{2} \frac{q-1}{2}}
 $$
 
-其中 $\left( \frac{a}{b} \right)$ 为 \[勒让德符号]\([Legendre symbol - Wikipedia](https://en.wikipedia.org/wiki/Legendre_symbol))，它从数值上等于：
+其中 $\left( \frac{a}{b} \right)$ 为 [勒让德符号](https://en.wikipedia.org/wiki/Legendre_symbol)，它从数值上等于：
 
 $$
 a^{\frac{b-1}{2}} \bmod b
@@ -410,6 +410,126 @@ F_{2p+1}\equiv\frac{1}{4}\left(\dbinom{2p+1}{1}+\dbinom{2p+1}{p}\sqrt{5}^{p-1}+\
 $$
 
 于是 $F_{2p}$ 和 $F_{2p+1}$ 两项与 $F_{-2}$ 和 $F_{-1}$ 一致，所以 $2p+2$ 是周期。
+
+### 素数升幂
+
+结论：对于素数 $p$，$M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。特别地，$M$ 是模 $p^{k-1}$ 的皮萨诺周期，等价于 $Mp$ 是模 $p^k$ 的皮萨诺周期。
+
+证明：
+
+由于：
+
+$$
+
+F_M=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^M-\left(\frac{1-\sqrt{5}}{2}\right)^M\right)\equiv 0\pmod {p^{k-1}}
+
+$$
+
+$$
+
+F_{M+1}=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{M+1}-\left(\frac{1-\sqrt{5}}{2}\right)^{M+1}\right)\equiv 1\pmod {p^{k-1}}
+
+$$
+
+因此：
+
+$$
+
+\left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)^M\pmod {p^{k-1}}
+
+$$
+
+$$
+
+1\equiv\frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^M\left(\left(\frac{1+\sqrt{5}}{2}\right)-\left(\frac{1-\sqrt{5}}{2}\right)\right)=\left(\frac{1+\sqrt{5}}{2}\right)^M\pmod {p^{k-1}}
+
+$$
+
+因为反方向也可以推导，所以 $M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于：
+
+$$
+
+\left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)^M\equiv 1\pmod {p^{k-1}}
+
+$$
+
+有了这样的充要条件，接下来的工作是做一个简单的升幂。但要注意的是通常意义下的 [升幂引理](../number-theory/lift-the-exponent.md) 中需要定义质因子次数 $\nu_p$，然而我们的讨论是在扩域的基础上的，即 $\nu_p(a + b\sqrt{5})$ 无法很好地定义。所以下面我们不借助这个定理，直接做推导。
+
+已知：
+
+$$
+
+\left(\frac{1+\sqrt{5}}{2}\right)^{M}=ap^{k-1}+bp^{k-1}\sqrt 5+1
+
+$$
+
+那么：
+
+$$
+
+\left(\frac{1+\sqrt{5}}{2}\right)^{Mp}=(ap^{k-1}+bp^{k-1}\sqrt 5+1)^{p}
+
+$$
+
+将右式二项式展开：
+
+$$
+
+\sum\limits_{j=0}^{p}\binom{p}{j}((a+b\sqrt{5})p^{k-1})^{j}
+
+$$
+
+这个式子模 $p^{k}$ 的结果中：除了 $j=0,1$ 的情况，总是有 $p^{k} | (p^{k-1})^{j}$。另外 $j=1$ 的时候 $\binom{p}{j}$ 含有 $p$ 的因子，所以恰好又能 $p^{k} | (p^{k-1}\cdot p)$。从而只有 $j=0$ 的时候会产生贡献，所以：
+
+$$
+
+\left(\frac{1+\sqrt{5}}{2}\right)^{Mp} \equiv 1 \pmod {p^{k}}
+
+$$
+
+同理：
+
+$$
+
+\left(\frac{1-\sqrt{5}}{2}\right)^{Mp} \equiv 1 \pmod {p^{k}}
+
+$$
+
+因此也等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期。
+
+因为周期等价，所以最小正周期也等价。
+
+### 合并
+
+结论：两个互素的模数 $m_1,m_2$，有 $\pi(m_1\cdot m_2) = \operatorname{lcm}(\pi(m_1), \pi(m_2))$。
+
+证明：只需考虑到 $(Fib_{k},Fib_{k+1}) \equiv (0,1)$ 在模 $m_1\cdot m_2$ 下成立等价于在模 $m_1,m_2$ 意义下同时成立即可。
+
+### 合数情况
+
+我们先对上面的推导做一个汇总：
+
+-   $\pi(2) = 3, \pi(5) = 20$。
+
+-   对于奇素数 $p\equiv 1,4 \pmod 5$，$\pi(p^{k})|(p-1)p^{k-1}$。
+
+-   对于奇素数 $p\equiv 2,3 \pmod 5$，$\pi(p^{k})|(2p+2)p^{k-1}$。
+
+在对所有 $\pi(p_i^{k_i})$ 的数值作 $\operatorname{lcm}$ 的时候，我们先尽量地先提取一个因子 $4$ 出来。这样，剩下的部分 $\pi'(p_{i}^{k_i})$ 分别是
+
+-   $\pi'(2^{k}) = 3 \cdot 2^{k-1} \le \frac{3}{2} \cdot 2^{k}$。
+
+-   $\pi'(5^{k}) = \frac{20}{4} \cdot 5^{k-1} \le 5^{k}$
+
+-   对于奇素数 $p\equiv 1,4 \pmod 5$，$\pi'(p^{k}) \le p^{k}$。
+
+-   对于偶素数 $p\equiv 2,3 \pmod 5$，$\pi'(p^{k}) \le \frac{p+1}{2}p^{k-1} \le p^{k}$。
+
+所以可知
+
+$$
+\pi(m) \le 4\cdot \prod\limits_{p|n,p \text{ is prime}}\pi'(p^{\nu_p(n)}) \le 6\cdot n
+$$
 
 这就证明了上界。
 
