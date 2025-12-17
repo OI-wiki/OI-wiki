@@ -240,11 +240,10 @@ $p$ 的剩余系大小为 $p$，意味着在前 $p^2+1$ 个数对中必有两个
 
 ```cpp
 
-struct prime
-{
-    unsigned long long p;
+struct prime {
+  unsigned long long p;
 
-    int times;
+  int times;
 };
 
 struct prime pp[2048];
@@ -252,60 +251,50 @@ struct prime pp[2048];
 int pptop;
 
 unsigned long long get_cycle_from_mod(
-    unsigned long long mod)   // 这里求解的只是周期，不一定是最小正周期
+    unsigned long long mod)    // 这里求解的只是周期，不一定是最小正周期
 {
-    pptop = 0;
+  pptop = 0;
 
-    srand(time(nullptr));
+  srand(time(nullptr));
 
-    while (n != 1)
-    {
-        __int128_t factor = (__int128_t)10000000000 * 10000000000;
+  while (n != 1) {
+    __int128_t factor = (__int128_t)10000000000 * 10000000000;
 
-        min_factor(mod, &factor);
-        // 计算最小素因数
+    min_factor(mod, &factor);
+    // 计算最小素因数
 
-        struct prime temp;
+    struct prime temp;
 
-        temp.p = factor;
+    temp.p = factor;
 
-        for (temp.times = 0; mod % factor == 0; temp.times++)
-        {
-            mod /= factor;
-        }
-
-        pp[pptop] = temp;
-
-        pptop++;
+    for (temp.times = 0; mod % factor == 0; temp.times++) {
+      mod /= factor;
     }
 
-    unsigned long long m = 1;
+    pp[pptop] = temp;
 
-    for (int i = 0; i < pptop; ++i)
-    {
-        int g;
+    pptop++;
+  }
 
-        if (pp[i].p == 2)
-        {
-            g = 3;
-        }
-        else if (pp[i].p == 5)
-        {
-            g = 20;
-        }
-        else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4)
-        {
-            g = pp[i].p - 1;
-        }
-        else
-        {
-            g = (pp[i].p + 1) << 1;
-        }
+  unsigned long long m = 1;
 
-        m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
+  for (int i = 0; i < pptop; ++i) {
+    int g;
+
+    if (pp[i].p == 2) {
+      g = 3;
+    } else if (pp[i].p == 5) {
+      g = 20;
+    } else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4) {
+      g = pp[i].p - 1;
+    } else {
+      g = (pp[i].p + 1) << 1;
     }
 
-    return m;
+    m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
+  }
+
+  return m;
 }
 
 ```
@@ -514,7 +503,7 @@ $$
 \end{bmatrix}^{2M} \equiv I \mod 2^{k}
 $$
 
-这是容易的，因为如果记 
+这是容易的，因为如果记
 
 $$
 \begin{bmatrix}
