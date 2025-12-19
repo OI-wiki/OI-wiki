@@ -19,7 +19,6 @@ $$
 ???+ note "性质"
     设 $g$ 是模 $m$ 的原根，$(a,m)=(b,m)=1$，则：
     
-
     1.  $\operatorname{ind}_g(ab)\equiv\operatorname{ind}_g a+\operatorname{ind}_g b\pmod{\varphi(m)}$
     
         进而 $(\forall n\in\mathbf{N}),~~\operatorname{ind}_g a^n\equiv n\operatorname{ind}_g a\pmod{\varphi(m)}$
@@ -30,7 +29,6 @@ $$
     1.  $g^{\operatorname{ind}_g(ab)}\equiv ab\equiv g^{\operatorname{ind}_g a}g^{\operatorname{ind}_g b}\equiv g^{\operatorname{ind}_g a+\operatorname{ind}_g b}\pmod m$
     2.  令 $x=\operatorname{ind}_{g_1}a$，则 $a\equiv g_1^x\pmod m$. 又令 $y=\operatorname{ind}_g g_1$，则 $g_1\equiv g^y\pmod m$.
     
-
         故 $a\equiv g^{xy}\pmod m$，即 $\operatorname{ind}_g a\equiv xy\equiv\operatorname{ind}_{g_1}a \cdot \operatorname{ind}_g g_1\pmod{\varphi(m)}$
     3.  注意到
     
@@ -105,7 +103,7 @@ $$
 
 前文的 BSGS 算法时间复杂度为单次 $O(\sqrt m)$，在询问量级比较大的时候效率较低。若每次求解的质数是固定的，我们就有一个基于值域预处理的、更加快速的算法。
 
-前文我们已经知道，$\operatorname{ind}_g(ab)\equiv\operatorname{ind}_g a+\operatorname{ind}_g b\pmod{P-1}$。由此，我们可以只对于所有质数求出离散对数，那么对于不是质数的整数，都可以通过上述公式转化为两个已经求得的离散对数值来得到。此时复杂度仍然不优，我们考虑只预处理一部分的离散对数。具体来说，我们预处理到 $O(\sqrt P)$，注意此时 BSGS 块长**不能直接取**根号量级，因为我们发现，设块长为 $B$，预处理（插入哈希表）部分是 $O(B)$，而查询一共需要 $O(\pi(\sqrt P))$ 次，总时间为 $O(\frac{P\pi(\sqrt P)}B)$，取 $B=O(\sqrt{P\pi(\sqrt P)})$ 才是最优。视 $\pi(n)=O(\frac{n}{\log n})$，则总时间复杂度可以平衡为 $O(\frac{P^{0.75}}{\log^{0.5} P})$。
+前文我们已经知道，$\operatorname{ind}_g(ab)\equiv\operatorname{ind}_g a+\operatorname{ind}_g b\pmod{P-1}$。由此，我们可以只对于所有质数求出离散对数，那么对于不是质数的整数，都可以通过上述公式转化为两个已经求得的离散对数值来得到。此时复杂度仍然不优，我们考虑只预处理一部分的离散对数。具体来说，我们预处理到 $O(\sqrt P)$，注意此时 BSGS 块长 **不能直接取** 根号量级，因为我们发现，设块长为 $B$，预处理（插入哈希表）部分是 $O(B)$，而查询一共需要 $O(\pi(\sqrt P))$ 次，总时间为 $O(\frac{P\pi(\sqrt P)}B)$，取 $B=O(\sqrt{P\pi(\sqrt P)})$ 才是最优。视 $\pi(n)=O(\frac{n}{\log n})$，则总时间复杂度可以平衡为 $O(\frac{P^{0.75}}{\log^{0.5} P})$。
 
 接下来是如何求答案，假设当前要求的是 $\operatorname{ind}_g y$，若 $y$ 在根号范围内（下文说的根号范围，实际可能要比 $\sqrt P$ 大 $1$）直接返回，否则设 $v=\lfloor\frac{P}y\rfloor$，$r=P\bmod y$，则 $P=vy+r$，所以 $y=\frac{P-r}v$，可以得出 $\operatorname{ind}_g y\equiv \operatorname{ind}_g (P-r)-\operatorname{ind}_g v\equiv \operatorname{ind}_g (-r)-\operatorname{ind}_g v\equiv \operatorname{ind}_g (P-1)+\operatorname{ind}_g r-\operatorname{ind}_g v$。
 
@@ -117,73 +115,72 @@ $$
 
 至此得到一个 $O(\frac{P^{0.75}}{\log^{0.5} P})-O(\log p)$ 的较优秀算法。
 
-???+ example "[P11175 【模板】基于值域预处理的快速离散对数 - 洛谷](https://www.luogu.com.cn/problem/P11175)"
-
+???+ example "[P11175【模板】基于值域预处理的快速离散对数 - 洛谷](https://www.luogu.com.cn/problem/P11175)"
     ```cpp
-#include<bits/stdc++.h>
-#include<ext/pb_ds/assoc_container.hpp>
-#define N 2000005
-#define int long long
-using namespace std;
-const int B=2e6;
-int P,g,q,p[N],t,inv,sq,vis[N],lxy;
-__gnu_pbds::gp_hash_table<int,int>qwq;
-int qpow(int x,int y){
-	int ans=1;
-	while(y){
-		if(y&1)ans=ans*x%P;
-		x=x*x%P;y>>=1; 
-	}
-	return ans;
-}
-int calc(int x){
-	int s=x;
-	for(int i=0;i<=P/B;++i){
-		if(qwq.find(s)!=qwq.end())return i*B+qwq[s];
-		s=s*inv%P;
-	}
-	throw;
-}
-int Lg[N];
-void init(){
-	int s=1;
-	for(int i=0;i<B;++i){
-		if(qwq.find(s)!=qwq.end())break;
-		qwq[s]=i,s=s*g%P;
-	}
-	inv=qpow(qpow(g,B),P-2);
-	for(int i=2;i<=sq;++i){
-		if(!vis[i]){
-			p[++t]=i;Lg[i]=calc(i);
-			for(int j=1;j<=t&&p[j]*i<=sq;++j){
-				vis[p[j]*i]=1;
-				Lg[p[j]*i]=(Lg[p[j]]+Lg[i])%(P-1);
-				if(i%p[j]==0)break;
-			}
-		}
-	}
-}
-int solve(int y){
-	if(y<=sq)return Lg[y];
-	int k=P/y,r=P%y;
-	if(r<y-r)return (lxy+solve(r)-Lg[k]+(P-1))%(P-1);
-	else return (solve(y-r)-Lg[k+1]+(P-1))%(P-1);
-}
-signed main(){
-	ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-	cin>>P>>g>>q;
-	assert(P!=2);
-	sq=min((int)sqrt(P)+1,P-1);
-	init();lxy=calc(P-1);
-	while(q--){
-		int y;cin>>y;
-		cout<<solve(y)<<'\n';	
-	}
-	return 0;
-}
     ```
 
-
+\#include\<bits/stdc++.h>
+\#include\<ext/pb\_ds/assoc\_container.hpp>
+\#define N 2000005
+\#define int long long
+using namespace std;
+const int B=2e6;
+int P,g,q,p\[N],t,inv,sq,vis\[N],lxy;
+\_\_gnu\_pbds::gp\_hash\_table\<int,int>qwq;
+int qpow(int x,int y){
+int ans=1;
+while(y){
+if(y&1)ans=ans*x%P;
+x=x*x%P;y>>=1;
+}
+return ans;
+}
+int calc(int x){
+int s=x;
+for(int i=0;i<=P/B;++i){
+if(qwq.find(s)!=qwq.end())return i*B+qwq\[s];
+s=s*inv%P;
+}
+throw;
+}
+int Lg\[N];
+void init(){
+int s=1;
+for(int i=0;i\<B;++i){
+if(qwq.find(s)!=qwq.end())break;
+qwq\[s]=i,s=s\*g%P;
+}
+inv=qpow(qpow(g,B),P-2);
+for(int i=2;i<=sq;++i){
+if(!vis\[i]){
+p\[++t]=i;Lg\[i]=calc(i);
+for(int j=1;j<=t&&p\[j]\*i<=sq;++j){
+vis\[p\[j]\*i]=1;
+Lg\[p\[j]\*i]=(Lg\[p\[j]]+Lg\[i])%(P-1);
+if(i%p\[j]==0)break;
+}
+}
+}
+}
+int solve(int y){
+if(y<=sq)return Lg\[y];
+int k=P/y,r=P%y;
+if(r\<y-r)return (lxy+solve(r)-Lg\[k]+(P-1))%(P-1);
+else return (solve(y-r)-Lg\[k+1]+(P-1))%(P-1);
+}
+signed main(){
+ios::sync\_with\_stdio(0);cin.tie(0);cout.tie(0);
+cin>>P>>g>>q;
+assert(P!=2);
+sq=min((int)sqrt(P)+1,P-1);
+init();lxy=calc(P-1);
+while(q--){
+int y;cin>>y;
+cout<\<solve(y)<<'\n';  
+}
+return 0;
+}
+\`\`\`
 
 ## 习题
 
