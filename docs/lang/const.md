@@ -104,8 +104,8 @@ int main() {
     constexpr int FivePlus(int x) { return 5 + x; }
     
     void test(const int x) {
-      std::array<x> c1;            // 错误，x在编译时不可知
-      std::array<FivePlus(6)> c2;  // 可行，FivePlus编译时可知
+      std::array<int, x> c1;            // 错误，x在编译时不可知
+      std::array<int, FivePlus(6)> c2;  // 可行，FivePlus编译时可知
     }
     ```
 
