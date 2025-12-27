@@ -5,7 +5,7 @@
 import os
 
 # Supported file extensions for testing
-extnames = [".cpp"]
+extnames = [".cpp", ".py"]
 
 
 def check_availability(file):
