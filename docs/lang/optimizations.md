@@ -272,7 +272,7 @@ if (unlikely(/* 一些边界条件检查 */ false)) {
     hotblock1:
       Stmts;  // <-- 热！
       if (/* 边界条件 */ false)
-        codeBlock();  // 将冷代码分离出，使得热路径对 cache 更友好
+        coldBlock();  // 将冷代码分离出，使得热路径对 cache 更友好
     hotblock2:
       Stmts;  // <- 热！
     }
