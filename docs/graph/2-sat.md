@@ -13,7 +13,7 @@ SAT 是适定性（Satisfiability）问题的简称。
 
 C-SAT 是指：有 $n$ 个布尔变量 $x_i (1 \le i \le n)$，现在给你一个布尔表达式，给这些变量的每一个赋予一个独立的值，使这个布尔表达式为真。如上的问题叫做 C-SAT。
 
-CNF-SAT 是指：有 $n$ 个布尔变量和 $m$ 个条件，第 $i$ 个条件形如「对于某一个 $1 \le j \le l_i$ $x_{p_j}$ 为 `true`/`false`」。还是给这些变量的每一个赋予一个独立的值，使这个布尔表达式为真。如上的问题叫做 CNF-SAT。简单的说就是给出 $n$ 个布尔方程，每个方程和某些变量相关，如 $a \vee b$，表示变量 $a, b$ 至少满足一个。然后判断是否存在可行方案，一般题中只需要求出一种即可。另外，$\neg a$ 表示 $a$ 取反。
+CNF-SAT 是指：有 $n$ 个布尔变量和 $m$ 个条件，第 $i$ 个条件形如「对于某一个 $1 \le j \le l_i$  $x_{p_j}$ 为 `true`/`false`」。还是给这些变量的每一个赋予一个独立的值，使这个布尔表达式为真。如上的问题叫做 CNF-SAT。简单的说就是给出 $n$ 个布尔方程，每个方程和某些变量相关，如 $a \vee b$，表示变量 $a, b$ 至少满足一个。然后判断是否存在可行方案，一般题中只需要求出一种即可。另外，$\neg a$ 表示 $a$ 取反。
 
 3-SAT 与 CNF-SAT 类似，但是对于 $1 \le i \le m$，$l_i = 3$。简单的说就是给出 $n$ 个布尔方程，每个方程和三个变量相关，如 $a \vee b$，表示变量 $a, b$ 至少满足一个。然后判断是否存在可行方案，一般题中只需要求出一种即可。
 
@@ -32,7 +32,7 @@ CNF-SAT 是指：有 $n$ 个布尔变量和 $m$ 个条件，第 $i$ 个条件形
 
 可以发现一个 SCC 里面所有命的点要么一起被满足，要么一起不被满足。所以可以跑 Tarjan 求出 SCC 缩点，然后检查每一个 $a$，如果 $a$ 与 $\neg a$ 被缩进了同一个 SCC 里面，那么 2-SAT 就是无解的，否则就是有解的。
 
-绝大部分 2-SAT 问题都需要找出如 $a$ **不成立**，则 $b$ **成立** 的关系。
+绝大部分 2-SAT 问题都需要找出如 $a$  **不成立**，则 $b$  **成立** 的关系。
 
 输出方案时可以通过变量在图中的拓扑序确定该变量的取值。如果变量 $x$ 的拓扑序在 $\neg x$ 之后，那么取 $x$ 值为真时不会有满足 $\neg x$ 的必要，所以直接使 $x$ 为真即可。应用到 Tarjan 算法的缩点，即 $x$ 所在 SCC 编号在 $\neg x$ 之前时，取 $x$ 为真。因为 Tarjan 算法求强连通分量时使用了栈，如果跑完 Tarjan 缩点之后呈现出的拓扑序更大，在 Tarjan 会更晚被遍历到，就会更早地被弹出栈而缩点，分量编号会更小，所以 Tarjan 求得的 SCC 编号相当于 **反拓扑序**。
 
@@ -71,133 +71,133 @@ CNF-SAT 是指：有 $n$ 个布尔变量和 $m$ 个条件，第 $i$ 个条件形
 
 ## C-SAT，CNF-SAT，3-SAT 的 NPC
 
-实际上，实际运用中我们一般只研究 2-SAT，因为上面的三个问题都 **可以被证明是 NPC 的**。 
+实际上，实际运用中我们一般只研究 2-SAT，因为上面的三个问题都 **可以被证明是 NPC 的**。
 
 ??? note "C-SAT 是 NPC 问题"
     先把 NPC 分成 NP 和 NP-Hard。
-
+    
     ### NP
-
+    
     显然可以使用一个非确定性图灵机暴力枚举每一个变量的取值，然乎校验即可。
-
+    
     ### NP-Hard
-
+    
     考虑把一个可以解决一个 NP-Hard 问题的图灵机用布尔电路表示。
-
+    
     设：
-
+    
     图灵机的状态为 $Q$，接收状态为 $F$，字符集为 $\Gamma$，转移函数为 $\delta$，使用了 $p(n)$ 的时间；
-
+    
     $S_{i, q}$ 表示在时间 $i$，图灵机在状态 $q$；
-
+    
     $T_{i, j, a}$ 表示在时间 $i$，纸带上位置 $j$ 的字符是 $a$；
-
+    
     $H_{i, j}$ 表示在时间 $i$，读写头在位置 $j$。
-
+    
     考虑恰当的设置这一些变量去构造出非确定性图灵机的某一条接受并停机的分支。
-
+    
     首先，既然这只是某一个分支，状态、纸带和读写头都会是唯一的。所以，有如下限制：
-
+    
     $$
     \forall i (\bigvee_{q \in Q} S_{i, q} \land (\forall q \forall q' (\neg(S_{i, q} \land S_{i, q'}))))
     $$
-
+    
     $$
     \forall i \forall j (\bigvee_{a \in \Gamma} T_{i, j, a} \land (\forall a \forall a' (\neq(T_{i, j, a} \land T_{i, j, a'}))))
     $$
-
+    
     $$
     \forall i (\bigvee_{j} H_{i, j} \land \forall j \forall j'(\neq(H_{i, j} \land H_{i, j'})))
     $$
-
+    
     然后，考虑图灵机的转移函数 $\delta$，它会影响到状态、纸带和读写头。对于状态，有：
-
+    
     $$
     S_{i + 1, q'} = \bigvee_{j} \bigvee_{q} \bigvee_{a} \bigvee_{(q', a', d) \in \delta(q, a)} (H_{i, j} \land S_{i, q} \land T_{i, j, a})
     $$
-
+    
     $$
     T_{i + 1, j, a} = \neg(H_{i, j} \land T_{i, j, a}) \lor (H_{i, j} \land \bigvee_{q} \bigvee_{a_0} \bigvee_{(q', a, d) \in \delta(q, a_0)} (S_{i, q} \land T_{i, j, a_0}))
     $$
-
+    
     $$
     H_{i + 1, j} = \bigvee_{q} \bigvee_{a} (\bigvee_{(q', a', L) \in \delta(q, a)} (H_{i, j + 1} \land S_{i, q} \land T_{i, j + 1, a}) \lor \bigvee_{(q', a', R) \in \delta(q, a)} (H_{i, j - 1} \land S_{i, q} \land T_{i, j - 1, a}))
     $$
-
+    
     然后，考虑确定图灵机是否接受输入。这是简单的，只需枚举接受输入的时间：
-
+    
     $$
     \bigvee \limits_{i = 0}^{p(n)} \bigvee_{q \in F} S_{i, q}
     $$
-
+    
     最后，只需要把输入转化成 $S_{0, q}$，$T_{0, j, a}$ 和 $H_{0, 0}$，就构造出了一个可以模拟非确定性图灵机的布尔电路了：这个电路的输出可以是 $1$ 当且仅当 $M(x) = 1$。可以发现这样子会产生 $(p(n))^k \times |Q| \times |\Gamma|$ 个逻辑门，其中 $k = O(1)$。
-
+    
     综上，C-SAT 是 NPC 问题。
 
 ??? note "CNF-SAT 是 NPC 问题"
     考虑从 C-SAT 规约得到。
-
+    
     ### $\to$
-
+    
     对于一个 C-SAT 电路，这样构造 CNF-SAT：
-
+    
     设有 $n$ 个输入，$m$ 个逻辑门，如下设定限制：
-
+    
     对每一个输入设定一个变量 $x_i$，每一个逻辑门的输出设定一个变量 $w_i$，输出变量为 $o$。
-
+    
     设输入为 $a$，$b$，输出为 $c$（只有单个输入的无视 $b$），
-
+    
     首先输出变量肯定为 $1$；
-
+    
     对于与门，加入 $(\neg a \lor \neg b \lor c) \land (a \lor \neg c) \land (b \lor \neg c)$；
-
+    
     对于或门，加入 $(a \lor b \lor \neg c) \land (\neg a \lor c) \land (\neg b \lor c)$；
-
+    
     对于非门，加入 $(\neg a \lor \neg c) \land (a \lor c)$；
-
+    
     对于异或门，先将其转化为 $(a \lor b) \land \neg(a \land b)$，然后按照上面的方式处理即可。
-
+    
     注意到这一些子句可以直接拼起来，所以我们就在线性时间内把 C-SAT 问题规约到了 CNF-SAT 问题。
-
+    
     ### $\leftarrow$
-
+    
     显然。
-
+    
     所以，CNF-SAT 也是 NPC 问题。
 
 ??? note "3-SAT 是 NPC 问题"
     考虑从 CNF-SAT 规约得到。
-
+    
     ### $\to$
-
+    
     首先对 CNF-SAT 做一下等价变换，使其每一个子句包含的变量是不超过 $n$ 的（显然这一定可以做到）。
-
+    
     对于某一个子句，分类讨论：
-
+    
     如果这个子句只有一个变量 $x$，引入两个新的变量 $a$，$b$，然后加入 $(x \lor a \lor b) \land (x \lor \neg a \lor b) \land (x \lor a \lor \neg b) \land (x \lor \neg a \lor \neg b)$，这样就可以使整个子句在 $x = 0$ 时无法满足；
     
     如果这个子句有两个变量 $x, y$，引入新变量 $a$，然后加入 $(x \lor y \lor a) \land (x \lor y \lor \neg a)$，正确性同上；
-
+    
     如果这个子句有三个变量，复制粘贴即可；
-
+    
     如果这个子句有 $k > 3$ 个变量，设这些变量为 $x_1, x_2, \cdots, x_k$，引入新变量 $a_1, a_2, \cdots, a_{k - 3}$，然后加入
-
+    
     $$
     (x_1 \lor x_2 \lor a_1) \land \bigwedge \limits_{i = 3}^{k - 2} (\neg a_{i - 2} \lor l_i \lor a_{i - 1}) \land (\neg a_{k - 3} \lor l_{k - 1} \lor l_k)
     $$
-
+    
     考虑这样做的正确性：
-
+    
     如果某一个 $x_i$ 被满足了，那么设置 $a_1$ 到 $a_{i - 2}$ 为真，$a_{i - 1}$ 到 $a_{k - 3}$ 为假，满足所有限制。
-
+    
     如果所有 $x_i$ 都没有被满足，那么相当于要求所有 $a_i$ 为真，不满足最后的限制。
-
+    
     注意到这些子句可以拼起来，所以我们在 $O(\sum l_i)$ 的时间内把 CNF-SAT 规约到了 3-SAT。
-
+    
     ### $\leftarrow$
-
+    
     显然。
-
+    
     所以，3-SAT 也是 NPC 问题。
 
 ## 习题
