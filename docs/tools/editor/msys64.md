@@ -36,3 +36,17 @@ Thread model: posix
 Supported LTO compression algorithms: zlib zstd
 gcc version 15.2.0 (Rev8, Built by MSYS2 project)
 ```
+
+# 使用
+
+你可以在记事本上编辑代码，在终点输入`g++ hello.cpp -o Hello`，就可以把名为`hello`的代码编译成`Hello.exe`了，其他语言类似，这里自行百度。
+
+msys的另一用处就是配合其他软件使用，这里以 vscode 里的 c++ 为例。
+
+1.安装汉化插件，C/C++ 插件。
+2.用 vscode 打开一个 cpp 文件。
+3.按`F1`，输入`> C/C++:选择 intelliSense 配置...`，选择默认编译器。
+4.按`F1`，输入`> C/C++:编辑配置(UI)`，会弹出 c++ 插件的设置面板，选则你的编译喜好。
+5.在 cpp 程序右上角找到一个虫子和三角形的符号，若点击可以正常调试，则配置成功。
+
+其他语言同理。
