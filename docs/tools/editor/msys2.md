@@ -1,5 +1,3 @@
-authors: HZY1618yzh
-
 ## MSYS2 简介
 
 MSYS2 是一个在 Windows 上提供类 Unix 环境的工具集，包含 GCC、Make 等编译工具链，适用于需要命令行编译环境的开发场景。
