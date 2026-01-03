@@ -1,7 +1,4 @@
----
-title: MSYS2 安装指南
 authors: HZY1618yzh
----
 
 ## MSYS2 简介
 
