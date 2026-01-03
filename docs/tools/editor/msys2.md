@@ -1,4 +1,8 @@
-author: HZY1618yzh
+---
+title: MSYS2 安装指南
+authors:
+  - HZY1618yzh
+---
 
 ## MSYS2 简介
 
@@ -30,12 +34,12 @@ MSYS2 是一个在 Windows 上提供类 Unix 环境的工具集，包含 GCC、M
 打开命令提示符，输入：
 ```bash
 gcc --version
-
-```如果显示 GCC 版本信息，则表示安装成功。
+```
+如果显示 GCC 版本信息，则表示安装成功。
 
 ## 使用
 
-你可以在记事本上编辑代码，在终点输入`g++ hello.cpp -o Hello`，就可以把名为`hello`的代码编译成`Hello.exe`了，其他语言类似，这里自行百度。
+你可以在记事本上编辑代码，在终端输入`g++ hello.cpp -o Hello`，就可以把名为`hello`的代码编译成`Hello.exe`了，其他语言类似，可以按照语言的官方编译器使用指示使用。
 
 msys的另一用处就是配合其他软件使用，这里以 vscode 里的 c++ 为例。
 
