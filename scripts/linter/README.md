@@ -9,6 +9,7 @@ The linter system consists of several components:
 - **`utils.py`**: Core utilities
 - **`decorators.py`**: Decorators for the linter pipeline
 - **`preprocess.py`**: Preprocessing functions for fixing Markdown formatting issues
+- **`postprocess.py`**: Postprocessing functions for fixing Markdown formatting issues
 - **`linter_patch.py`**: Main entry point script that orchestrates the linting process
 
 ## Architecture
@@ -55,6 +56,12 @@ Preprocessing functions:
   - Preserves blank line indentation based on surrounding content
   - Uses bidirectional scanning to determine proper indentation levels
 
+### postprocess.py
+
+Postprocessing functions:
+
+- **`fix_full_stop()`**: Fixes full stop issues in Markdown content
+
 ## Usage
 
 ### Command Line Interface
@@ -100,7 +107,7 @@ The linter can be integrated into build processes or used as a standalone tool. 
 
 ### Adding New Processors
 
-1. Create a new function in the appropriate module (`preprocess.py`)
+1. Create a new function in the appropriate module (`preprocess.py` or `postprocess.py`)
 2. Apply the `@step` decorator to handle skip blocks
 3. Add the function to the appropriate mode in `linter_patch.py`
 

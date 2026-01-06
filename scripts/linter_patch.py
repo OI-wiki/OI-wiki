@@ -10,6 +10,7 @@ sys.path.append(os.path.abspath('.'))
 from scripts.linter.decorators import pipeline
 from scripts.linter.utils import log
 from scripts.linter.preprocess import fix_details
+from scripts.linter.postprocess import fix_full_stop
 
 sys.path.pop()
 # autopep8: on
@@ -53,6 +54,7 @@ def apply_postprocess(md_content: str):
         str: The processed Markdown content
     """
     log("Starting postprocessing pipeline...")
+    md_content = fix_full_stop(md_content)
     log("Postprocessing pipeline completed.")
 
     return md_content
