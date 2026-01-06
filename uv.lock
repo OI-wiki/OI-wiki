@@ -333,6 +333,9 @@ requires-dist = [
     { name = "requests" },
 ]
 
+[package.metadata.requires-dev]
+dev = []
+
 [[package]]
 name = "packaging"
 version = "25.0"
