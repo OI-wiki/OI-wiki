@@ -205,7 +205,9 @@
 #### 标点符号的使用
 
 -   <a id="PUNC-1"></a>PUNC-1：请在每句话的末尾添加 **句号**．
--   <a id="PUNC-2"></a>PUNC-2：请正确使用 **全角** 标点符号与 **半角** 标点符号．汉语请使用全角符号，英语请使用半角符号．中文中夹用英文时，请参考 [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)．
+<!-- scripts.linter.postprocess.fix_full_stop off -->
+-   <a id="PUNC-2"></a>PUNC-2：请正确使用 **全角** 标点符号与 **半角** 标点符号．汉语请使用全角符号，英语请使用半角符号．中文中夹用英文时，请参考 [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)．特别的，请用全角句点「．」替代中文句号「。」．
+<!-- scripts.linter.postprocess.fix_full_stop on -->
 -   <a id="PUNC-3"></a>PUNC-3：由于 `“……”` 未区分全半角，请使用 `「……」` 作为全角引号，`"..."` 作为半角引号．
 -   <a id="PUNC-4"></a>PUNC-4：注意区分 **顿号** 与 **逗号** 的使用．
 -   <a id="PUNC-5"></a>PUNC-5：注意 **括号** 的位置．句内括号与句外括号的位置不同．
