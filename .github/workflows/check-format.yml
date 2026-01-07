@@ -48,7 +48,7 @@ jobs:
       
       - name: Pre process
         run: |
-          python3 scripts/fix_details.py ./docs
+          python3 scripts/linter_patch.py ./docs --mode pre
       
       - name: Run bot formatter
         run: |
@@ -59,6 +59,10 @@ jobs:
       - name: Run ruff
         run: |
           ruff format ./docs
+      
+      - name: Post process
+        run: |
+          python3 scripts/linter_patch.py ./docs --mode post
       
       - name: Generate patch
         run: |
