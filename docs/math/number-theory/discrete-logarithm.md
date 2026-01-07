@@ -1,8 +1,8 @@
 ## 定义
 
-前置知识：[阶与原根](./primitive-root.md)。
+前置知识：[阶与原根](./primitive-root.md)．
 
-离散对数的定义方式和对数类似。取有原根的正整数模数 $m$，设其一个原根为 $g$. 对满足 $(a,m)=1$ 的整数 $a$，我们知道必存在唯一的整数 $0\leq k<\varphi(m)$ 使得
+离散对数的定义方式和对数类似．取有原根的正整数模数 $m$，设其一个原根为 $g$. 对满足 $(a,m)=1$ 的整数 $a$，我们知道必存在唯一的整数 $0\leq k<\varphi(m)$ 使得
 
 $$
 g^k\equiv a\pmod m
@@ -14,7 +14,7 @@ $$
 
 ## 性质
 
-离散对数的性质也和对数有诸多类似之处。
+离散对数的性质也和对数有诸多类似之处．
 
 ???+ note "性质"
     设 $g$ 是模 $m$ 的原根，$(a,m)=(b,m)=1$，则：
@@ -42,15 +42,15 @@ $$
 
 ## 大步小步算法
 
-目前离散对数问题仍不存在多项式时间经典算法（离散对数问题的输入规模是输入数据的位数）。在密码学中，基于这一点人们设计了许多非对称加密算法，如 [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519)。
+目前离散对数问题仍不存在多项式时间经典算法（离散对数问题的输入规模是输入数据的位数）．在密码学中，基于这一点人们设计了许多非对称加密算法，如 [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519)．
 
-在算法竞赛中，BSGS（baby-step giant-step，大步小步算法）常用于求解离散对数问题。形式化地说，对 $a,b,m\in\mathbf{Z}^+$，该算法可以在 $O(\sqrt{m})$ 的时间内求解
+在算法竞赛中，BSGS（baby-step giant-step，大步小步算法）常用于求解离散对数问题．形式化地说，对 $a,b,m\in\mathbf{Z}^+$，该算法可以在 $O(\sqrt{m})$ 的时间内求解
 
 $$
 a^x \equiv b \pmod m
 $$
 
-其中 $a\perp m$。方程的解 $x$ 满足 $0 \le x < m$.（注意 $m$ 不一定是素数）
+其中 $a\perp m$．方程的解 $x$ 满足 $0 \le x < m$.（注意 $m$ 不一定是素数）
 
 ### 算法描述
 
@@ -71,11 +71,11 @@ $$
 a^x\equiv b\pmod m
 $$
 
-其中 $a,m$ 不一定互质。
+其中 $a,m$ 不一定互质．
 
-当 $(a, m)=1$ 时，在模 $m$ 意义下 $a$ 存在逆元，因此可以使用 BSGS 算法求解。于是我们想办法让他们变得互质。
+当 $(a, m)=1$ 时，在模 $m$ 意义下 $a$ 存在逆元，因此可以使用 BSGS 算法求解．于是我们想办法让他们变得互质．
 
-具体地，设 $d_1=(a, m)$. 如果 $d_1\nmid b$，则原方程无解。否则我们把方程同时除以 $d_1$，得到
+具体地，设 $d_1=(a, m)$. 如果 $d_1\nmid b$，则原方程无解．否则我们把方程同时除以 $d_1$，得到
 
 $$
 \frac{a}{d_1}\cdot a^{x-1}\equiv \frac{b}{d_1}\pmod{\frac{m}{d_1}}
@@ -95,9 +95,9 @@ $$
 \frac{a^k}{D}\cdot a^{x-k}\equiv\frac{b}{D} \pmod{\frac{m}{D}}
 $$
 
-由于 $a\perp\dfrac{m}{D}$，于是推出 $\dfrac{a^k}{D}\perp \dfrac{m}{D}$. 这样 $\dfrac{a^k}{D}$ 就有逆元了，于是把它丢到方程右边，这就是一个普通的 BSGS 问题了，于是求解 $x-k$ 后再加上 $k$ 就是原方程的解啦。
+由于 $a\perp\dfrac{m}{D}$，于是推出 $\dfrac{a^k}{D}\perp \dfrac{m}{D}$. 这样 $\dfrac{a^k}{D}$ 就有逆元了，于是把它丢到方程右边，这就是一个普通的 BSGS 问题了，于是求解 $x-k$ 后再加上 $k$ 就是原方程的解啦．
 
-注意，不排除解小于等于 $k$ 的情况，所以在消因子之前做一下 $\Theta(k)$ 枚举，直接验证 $a^i\equiv b \pmod m$，这样就能避免这种情况。
+注意，不排除解小于等于 $k$ 的情况，所以在消因子之前做一下 $\Theta(k)$ 枚举，直接验证 $a^i\equiv b \pmod m$，这样就能避免这种情况．
 
 ## 习题
 
@@ -109,10 +109,10 @@ $$
 -   [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F)
 -   [LOJ6542 离散对数](https://loj.ac/problem/6542) index calculus 方法，非模板
 
-**本页面部分内容以及代码译自博文 [Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root) 与其英文翻译版 [Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html)。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。**
+**本页面部分内容以及代码译自博文 [Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root) 与其英文翻译版 [Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
 
 ## 参考资料
 
 1.  [Discrete logarithm - Wikipedia](https://en.wikipedia.org/wiki/Discrete_logarithm)
-2.  潘承洞，潘承彪。初等数论。
-3.  冯克勤。初等数论及其应用。
+2.  潘承洞，潘承彪．初等数论．
+3.  冯克勤．初等数论及其应用．
