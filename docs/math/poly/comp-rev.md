@@ -1,8 +1,8 @@
-形式幂级数的复合和复合逆也是常见的形式幂级数操作，对于没有特殊性质的 $f$ 之前我们一直使用的多是 $O\left(n^2\right)$ 的算法来计算 $f(g) \bmod{x^n}$ 其中 $f\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$，但是因为效率较低应用较少。我们介绍 Kinoshita–Li 的 $O\left(\mathsf{M}\left(n\right)\log n\right)$ 的算法，其中 $O\left(\mathsf{M}\left(n\right)\right)$ 为两个次数为 $O\left( n\right)$ 的多项式相乘的时间。
+形式幂级数的复合和复合逆也是常见的形式幂级数操作，对于没有特殊性质的 $f$ 之前我们一直使用的多是 $O\left(n^2\right)$ 的算法来计算 $f(g) \bmod{x^n}$ 其中 $f\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$，但是因为效率较低应用较少．我们介绍 Kinoshita–Li 的 $O\left(\mathsf{M}\left(n\right)\log n\right)$ 的算法，其中 $O\left(\mathsf{M}\left(n\right)\right)$ 为两个次数为 $O\left( n\right)$ 的多项式相乘的时间．
 
 ## 形式幂级数/多项式的复合
 
-若要计算 $f\left(g\left(x\right)\right)\bmod{x^n}$ 那么需要 $f\left(g\left(x\right)\right)$ 的每一项系数都是有限项之和，所以之前要求 $f(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g(x)\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$，而如果 $f(x),g(x)\in\mathbb{C}\left\lbrack x\right\rbrack$ 也可以满足这个条件。因为我们需要将 $f\left(g\left(x\right)\right)$ 的系数截断，不妨直接考虑 $f(x),g(x)$ 都是多项式的情况。对于 $f(x)=\sum_{j=0}^{n-1}f_jx^j$，有
+若要计算 $f\left(g\left(x\right)\right)\bmod{x^n}$ 那么需要 $f\left(g\left(x\right)\right)$ 的每一项系数都是有限项之和，所以之前要求 $f(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g(x)\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$，而如果 $f(x),g(x)\in\mathbb{C}\left\lbrack x\right\rbrack$ 也可以满足这个条件．因为我们需要将 $f\left(g\left(x\right)\right)$ 的系数截断，不妨直接考虑 $f(x),g(x)$ 都是多项式的情况．对于 $f(x)=\sum_{j=0}^{n-1}f_jx^j$，有
 
 $$
 f\left(g\left(x\right)\right)=\sum_{j=0}^{n-1}f_jg\left(x\right)^j
@@ -33,7 +33,7 @@ $$
 \frac{P(y)}{Q(x,y)}\bmod{x}=\frac{P(y)}{Q(0,y)}\in\mathbb{C}\left(\left( y\right)\right)
 $$
 
-在计算 $\dfrac{P(y)}{V(z,y)}\bmod{z^{\left\lceil n/2\right\rceil}}\in\mathbb{C}\left\lbrack z\right\rbrack\left(\left( y\right)\right)$ 时我们不需要保留所有 $y$ 的系数，因为最后我们只需要提取 $y^0$ 的系数，所以 $y^{>0}$ 的系数是不需要的，而因为求出前者之后需要将其乘以若干个形如 $Q(-x,y)\in\mathbb{C}\left\lbrack x,y\right\rbrack$ 的「**多项式**」，所以只需要保留对于 $y^0$ 有贡献的系数即可。我们准备好给出伪代码：
+在计算 $\dfrac{P(y)}{V(z,y)}\bmod{z^{\left\lceil n/2\right\rceil}}\in\mathbb{C}\left\lbrack z\right\rbrack\left(\left( y\right)\right)$ 时我们不需要保留所有 $y$ 的系数，因为最后我们只需要提取 $y^0$ 的系数，所以 $y^{>0}$ 的系数是不需要的，而因为求出前者之后需要将其乘以若干个形如 $Q(-x,y)\in\mathbb{C}\left\lbrack x,y\right\rbrack$ 的「**多项式**」，所以只需要保留对于 $y^0$ 有贡献的系数即可．我们准备好给出伪代码：
 
 $$
 \begin{array}{ll}
@@ -57,9 +57,9 @@ $$
 f\left(g\left(x\right)\right)\bmod{x^n}=\operatorname{\mathsf{Comp}}\left(f\left(y^{-1}\right),1-y\cdot g(x),\max\left\lbrace 1+\deg f,n\right\rbrace ,1\right)\bmod{x^n}
 $$
 
-注意第三个参数是因为 $g(0)$ 可能不为零，如果 $\deg f\geq n$ 此时不能截断 $f(x)$ 来计算 $f\left(g(x)\right)$，我们也可以选择计算 $f(g)=f\circ \left(x+g(0)\right)\circ \left(g-g(0)\right)$，此时可以取 $F:=f\left(x+g(0)\right)\bmod{x^n}$ 和 $G:=g-g(0)$ 转而计算 $\operatorname{\mathsf{Comp}}\left(F\left(y^{-1}\right),1-y\cdot G(x),n,1\right)$。
+注意第三个参数是因为 $g(0)$ 可能不为零，如果 $\deg f\geq n$ 此时不能截断 $f(x)$ 来计算 $f\left(g(x)\right)$，我们也可以选择计算 $f(g)=f\circ \left(x+g(0)\right)\circ \left(g-g(0)\right)$，此时可以取 $F:=f\left(x+g(0)\right)\bmod{x^n}$ 和 $G:=g-g(0)$ 转而计算 $\operatorname{\mathsf{Comp}}\left(F\left(y^{-1}\right),1-y\cdot G(x),n,1\right)$．
 
-另外因为调用的限制最后递归终止时的 $Q(0,y)^{-1}$ 是可以直接导出的，不需要使用形式幂级数的乘法逆元算法来计算，我们只需计算一次乘法然后提取需要的系数。
+另外因为调用的限制最后递归终止时的 $Q(0,y)^{-1}$ 是可以直接导出的，不需要使用形式幂级数的乘法逆元算法来计算，我们只需计算一次乘法然后提取需要的系数．
 
 ## 常见的特殊形式复合
 
@@ -74,18 +74,18 @@ g(0)=1&,\space g^e=1+\dfrac{e}{1}(g-1)+\dfrac{e(e-1)}{2}(g-1)^2+\cdots
 \end{aligned}
 $$
 
-在复合逆的计算中我们也会用到求幂函数。
+在复合逆的计算中我们也会用到求幂函数．
 
 ### Kronecker 代换
 
-在分析时间复杂度之前我们先考虑如何作二元多项式乘法，一种想法是将系数「打包」，这一方法由 Kronecker 在 1882 年通过 $y\mapsto x^N$ 将 $R\left\lbrack x,y\right\rbrack$ 上的乘法缩减为 $R\left\lbrack x\right\rbrack$ 上的乘法，但是要求 $N$ 足够大。
+在分析时间复杂度之前我们先考虑如何作二元多项式乘法，一种想法是将系数「打包」，这一方法由 Kronecker 在 1882 年通过 $y\mapsto x^N$ 将 $R\left\lbrack x,y\right\rbrack$ 上的乘法缩减为 $R\left\lbrack x\right\rbrack$ 上的乘法，但是要求 $N$ 足够大．
 
-不妨设 $\deg_x \left(AB\right)<N$，那么我们计算 $A\left(x,x^N\right)B\left(x,x^N\right)$ 之后仍然可以还原出 $A(x,y)B(x,y)$ 且「打包」和「拆包」的时间为线性。
+不妨设 $\deg_x \left(AB\right)<N$，那么我们计算 $A\left(x,x^N\right)B\left(x,x^N\right)$ 之后仍然可以还原出 $A(x,y)B(x,y)$ 且「打包」和「拆包」的时间为线性．
 
-我们使用 Kronecker 代换再计算一元多项式乘法即可，不难发现在 $n$ 为二的幂时上述算法可以在 $O\left(\mathsf{M}\left(n\right)\log n\right)$ 时间完成，因为每一次递归中 $y$ 的次数翻倍，但是 $x$ 的次数减半。
+我们使用 Kronecker 代换再计算一元多项式乘法即可，不难发现在 $n$ 为二的幂时上述算法可以在 $O\left(\mathsf{M}\left(n\right)\log n\right)$ 时间完成，因为每一次递归中 $y$ 的次数翻倍，但是 $x$ 的次数减半．
 
 ??? note "模板（[P5373【模板】多项式复合函数](https://www.luogu.com.cn/problem/P5373)）"
-    代码相对于原算法作了一些简化及修改，使得代码更短。
+    代码相对于原算法作了一些简化及修改，使得代码更短．
     
     ```cpp
     --8<-- "docs/math/code/poly/comp-rev/comp_1.cpp"
@@ -93,7 +93,7 @@ $$
 
 ## 形式幂级数的复合逆
 
-现给出 $f\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ 且 $f'(0)\neq 0$，求出 $g(x)\bmod{x^n}$ 满足 $f(g)\equiv g(f)\equiv x\pmod{x^n}$。
+现给出 $f\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ 且 $f'(0)\neq 0$，求出 $g(x)\bmod{x^n}$ 满足 $f(g)\equiv g(f)\equiv x\pmod{x^n}$．
 
 根据 [Lagrange 反演](./lagrange-inversion.md)，对于 $n>1,k\geq 0$ 我们有
 
@@ -101,7 +101,7 @@ $$
 \left\lbrack x^{n-1}\right\rbrack f(x)^k=\frac{k}{n-1}\left\lbrack x^{n-1-k}\right\rbrack \left(\frac{g(x)}{x}\right)^{-(n-1)}
 $$
 
-也就是我们如果能对 $k=0,1,\dots ,n-1$ 求出 $\left\lbrack x^{n-1}\right\rbrack f(x)^k$，那么就可以求出其复合逆。
+也就是我们如果能对 $k=0,1,\dots ,n-1$ 求出 $\left\lbrack x^{n-1}\right\rbrack f(x)^k$，那么就可以求出其复合逆．
 
 Kinoshita 和 Li 指出我们可以考虑二元有理函数
 
@@ -175,7 +175,7 @@ $$
 $$
 
 ??? note "模板（[P5809【模板】多项式复合逆](https://www.luogu.com.cn/problem/P5809)）"
-    代码相对于原算法作了一些简化及修改，使得代码更短。
+    代码相对于原算法作了一些简化及修改，使得代码更短．
     
     ```cpp
     --8<-- "docs/math/code/poly/comp-rev/rev_1.cpp"
@@ -183,7 +183,7 @@ $$
 
 ### 由转置原理导出
 
-Power Projection 问题是 Modular Composition 的转置，Kinoshita 和 Li 指出我们前文的复合算法可以由 Power Projection 算法直接转置得到。同样的，如果优化可以应用于 Power Projection 算法，其也可以应用于 Modular Composition 算法。我们省略细节。
+Power Projection 问题是 Modular Composition 的转置，Kinoshita 和 Li 指出我们前文的复合算法可以由 Power Projection 算法直接转置得到．同样的，如果优化可以应用于 Power Projection 算法，其也可以应用于 Modular Composition 算法．我们省略细节．
 
 ## 参考文献
 
