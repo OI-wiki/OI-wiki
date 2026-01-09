@@ -115,6 +115,54 @@ $$
 
 至此得到一个 $O(\frac{P^{0.75}}{\log^{0.5} P})-O(\log p)$ 的较优秀算法。
 
+## 参考代码
+
+=== "C++"
+    ```cpp
+    __gnu_pbds::gp_hash_table<int,int>qwq;
+    int qpow(int x,int y){
+    	int ans=1;
+    	while(y){
+    		if(y&1)ans=ans*x%P;
+    		x=x*x%P;y>>=1; 
+    	}
+    	return ans;
+    }
+    int calc(int x){
+    	int s=x;
+    	for(int i=0;i<=P/B;++i){
+    		if(qwq.find(s)!=qwq.end())return i*B+qwq[s];
+    		s=s*inv%P;
+    	}
+    	throw;
+    }
+    int Lg[N];
+    void init(){
+    	int s=1;
+    	for(int i=0;i<B;++i){
+    		if(qwq.find(s)!=qwq.end())break;
+    		qwq[s]=i,s=s*g%P;
+    	}
+    	inv=qpow(qpow(g,B),P-2);
+    	for(int i=2;i<=sq;++i){
+    		if(!vis[i]){
+    			p[++t]=i;Lg[i]=calc(i);
+    			for(int j=1;j<=t&&p[j]*i<=sq;++j){
+    				vis[p[j]*i]=1;
+    				Lg[p[j]*i]=(Lg[p[j]]+Lg[i])%(P-1);
+    				if(i%p[j]==0)break;
+    			}
+    		}
+    	}
+    }
+    int solve(int y){
+    	if(y<=sq)return Lg[y];
+    	int k=P/y,r=P%y;
+    	if(r<y-r)return (lxy+solve(r)-Lg[k]+(P-1))%(P-1);//lxy 为 P-1 的离散对数
+    	else return (solve(y-r)-Lg[k+1]+(P-1))%(P-1);
+    }
+    ```
+
 ## 习题
 
 -   [SPOJ MOD](https://www.spoj.com/problems/MOD/) 模板
