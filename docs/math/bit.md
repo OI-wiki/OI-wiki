@@ -17,6 +17,7 @@
     对于非负整数来说，其表示规则和无符号的规则一致；对于负整数来说，我们将其相反数对应的位数组 **按位取反**（即将 `0` 变为 `1`，将 `1` 变为 `0`）后的结果称为反码，将反码按无符号的对应关系转为整数，然后加一，最后按无符号的对应关系转为位序列，超出原位序列长度的部分舍弃，得到的新序列称为补码．
 
     在反码的对应关系下，长度为 $N$ 的位序列可以表示 $[-2^{N-1}-1,2^{N-1}-1]$ 内的整数．
+
     在补码的对应关系下，长度为 $N$ 的位序列可以表示 $[-2^{N-1},2^{N-1}-1]$ 内的整数．
 
 以 $3$ 位的位序列为例：
@@ -102,7 +103,7 @@ $$
 移位为一类将位序列「按位向左或向右移动」的二元运算，第一个参数为位序列，第二个参数一般为非负整数．向左移动称为 **左移**，向右移动称为 **右移**．根据对移动后的空位填充方式，可将移位操作分为 **算术移位**、**逻辑移位**、**循环移位**．其中
 
 -   逻辑移位用 0 填充空位，
--   算数右移用 1 填充空位，算数左移和逻辑左移相同，
+-   算术右移用符号位填充空位，算术左移和逻辑左移相同，
 -   循环移位用溢出位填充空位．
 
 例如对 $8$ 位的位序列 `10 01 01 10`：
@@ -141,23 +142,12 @@ $$
 
 === "C++"
     ```cpp
-    int mulPowerOfTwo(int n, int m) {  // 计算 n*(2^m)
-      return n << m;
-    }
-    
-    int divPowerOfTwo(int n, int m) {  // 计算 n/(2^m)
-      return n >> m;
-    }
+    --8<-- "docs/math/code/bit/bit_2.cpp:mul"
     ```
 
 === "Python"
     ```python
-    def mulPowerOfTwo(n, m):  # 计算 n*(2^m)
-        return n << m
-    
-    
-    def divPowerOfTwo(n, m):  # 计算 n/(2^m)
-        return n >> m
+    --8<-- "docs/math/code/bit/bit_2.py:mul"
     ```
 
 ??? warning "Warning"
@@ -169,25 +159,12 @@ $$
 
 === "C++"
     ```cpp
-    int Abs(int n) {
-      return (n ^ (n >> 31)) - (n >> 31);
-      /* n>>31 取得 n 的符号，若 n 为正数，n>>31 等于 0，若 n 为负数，n>>31 等于 -1
-        若 n 为正数 n^0=n, 数不变，若 n 为负数有 n^(-1)
-        需要计算 n 和 -1 的补码，然后进行异或运算，
-        结果 n 变号并且为 n 的绝对值减 1，再减去 -1 就是绝对值 */
-    }
+    --8<-- "docs/math/code/bit/bit_2.cpp:abs"
     ```
 
 === "Python"
     ```python
-    def Abs(n):
-        return (n ^ (n >> 31)) - (n >> 31)
-        """
-        n>>31 取得 n 的符号，若 n 为正数，n>>31 等于 0，若 n 为负数，n>>31 等于 -1
-        若 n 为正数 n^0=n, 数不变，若 n 为负数有 n^(-1)
-        需要计算 n 和 -1 的补码，然后进行异或运算，
-        结果 n 变号并且为 n 的绝对值减 1，再减去 -1 就是绝对值
-        """
+    --8<-- "docs/math/code/bit/bit_2.py:abs"
     ```
 
 ### 取两个数的最大/最小值
@@ -196,37 +173,24 @@ $$
 
 === "C++"
     ```cpp
-    // 如果 a >= b, (a - b) >> 31 为 0，否则为 -1
-    int max(int a, int b) { return (b & ((a - b) >> 31)) | (a & (~(a - b) >> 31)); }
-    
-    int min(int a, int b) { return (a & ((a - b) >> 31)) | (b & (~(a - b) >> 31)); }
+    --8<-- "docs/math/code/bit/bit_2.cpp:minmax"
     ```
 
 === "Python"
     ```python
-    # 如果 a >= b, (a - b) >> 31 为 0，否则为 -1
-    def max(a, b):
-        return b & ((a - b) >> 31) | a & (~(a - b) >> 31)
-    
-    
-    def min(a, b):
-        return a & ((a - b) >> 31) | b & (~(a - b) >> 31)
+    --8<-- "docs/math/code/bit/bit_2.py:minmax"
     ```
 
 ### 判断两非零数符号是否相同
 
 === "C++"
     ```cpp
-    bool isSameSign(int x, int y) {  // 有 0 的情况例外
-      return (x ^ y) >= 0;
-    }
+    --8<-- "docs/math/code/bit/bit_2.cpp:sgn"
     ```
 
 === "Python"
     ```python
-    # 有 0 的情况例外
-    def isSameSign(x, y):
-        return (x ^ y) >= 0
+    --8<-- "docs/math/code/bit/bit_2.py:sgn"
     ```
 
 ### 交换两个数
@@ -237,7 +201,7 @@ $$
     对于一般情况下的交换操作，推荐直接调用 `algorithm` 库中的 `std::swap` 函数．
 
 ```cpp
-void swap(int &a, int &b) { a ^= b ^= a ^= b; }
+--8<-- "docs/math/code/bit/bit_2.cpp:swap"
 ```
 
 ### 操作一个数的二进制位
@@ -246,60 +210,48 @@ void swap(int &a, int &b) { a ^= b ^= a ^= b; }
 
 === "C++"
     ```cpp
-    // 获取 a 的第 b 位，最低位编号为 0
-    int getBit(int a, int b) { return (a >> b) & 1; }
+    --8<-- "docs/math/code/bit/bit_2.cpp:get_bit"
     ```
 
 === "Python"
     ```python
-    # 获取 a 的第 b 位，最低位编号为 0
-    def getBit(a, b):
-        return (a >> b) & 1
+    --8<-- "docs/math/code/bit/bit_2.py:get_bit"
     ```
 
 将一个数二进制的某一位设置为 $0$：
 
 === "C++"
     ```cpp
-    // 将 a 的第 b 位设置为 0 ，最低位编号为 0
-    int unsetBit(int a, int b) { return a & ~(1 << b); }
+    --8<-- "docs/math/code/bit/bit_2.cpp:unset_bit"
     ```
 
 === "Python"
     ```python
-    # 将 a 的第 b 位设置为 0 ，最低位编号为 0
-    def unsetBit(a, b):
-        return a & ~(1 << b)
+    --8<-- "docs/math/code/bit/bit_2.py:unset_bit"
     ```
 
 将一个数二进制的某一位设置为 $1$：
 
 === "C++"
     ```cpp
-    // 将 a 的第 b 位设置为 1 ，最低位编号为 0
-    int setBit(int a, int b) { return a | (1 << b); }
+    --8<-- "docs/math/code/bit/bit_2.cpp:set_bit"
     ```
 
 === "Python"
     ```python
-    # 将 a 的第 b 位设置为 1 ，最低位编号为 0
-    def setBit(a, b):
-        return a | (1 << b)
+    --8<-- "docs/math/code/bit/bit_2.py:set_bit"
     ```
 
 将一个数二进制的某一位取反：
 
 === "C++"
     ```cpp
-    // 将 a 的第 b 位取反 ，最低位编号为 0
-    int flapBit(int a, int b) { return a ^ (1 << b); }
+    --8<-- "docs/math/code/bit/bit_2.cpp:flap_bit"
     ```
 
 === "Python"
     ```python
-    # 将 a 的第 b 位取反 ，最低位编号为 0
-    def flapBit(a, b):
-        return a ^ (1 << b)
+    --8<-- "docs/math/code/bit/bit_2.py:flap_bit"
     ```
 
 这些操作相当于将一个 $32$ 位整型变量当作一个长度为 $32$ 的布尔数组．
@@ -313,15 +265,7 @@ void swap(int &a, int &b) { a ^= b ^= a ^= b; }
 代码如下：
 
 ```cpp
-// 求 x 的汉明权重
-int popcount(int x) {
-  int cnt = 0;
-  while (x) {
-    cnt += x & 1;
-    x >>= 1;
-  }
-  return cnt;
-}
+--8<-- "docs/math/code/bit/bit_2.cpp:popcnt1"
 ```
 
 求一个数的汉明权重还可以使用 `lowbit` 操作：我们将这个数不断地减去它的 `lowbit`[^note1]，直到这个数变为 $0$．
@@ -329,15 +273,7 @@ int popcount(int x) {
 代码如下：
 
 ```cpp
-// 求 x 的汉明权重
-int popcount(int x) {
-  int cnt = 0;
-  while (x) {
-    cnt++;
-    x -= x & -x;
-  }
-  return cnt;
-}
+--8<-- "docs/math/code/bit/bit_2.cpp:popcnt2"
 ```
 
 ### 构造汉明权重递增的排列
@@ -357,8 +293,7 @@ int popcount(int x) {
 这个过程可以用位操作优化：
 
 ```cpp
-int t = x + (x & -x);
-x = t | ((((t & -t) / (x & -x)) >> 1) - 1);
+--8<-- "docs/math/code/bit/bit_3.cpp:hamming1"
 ```
 
 -   第一个步骤中，我们把数 $x$ 加上它的 `lowbit`，在二进制表示下，就相当于把 $x$ 最右边的连续一段 $1$ 换成它左边的一个 $1$．如刚才提到的二进制数 $(10110)_2$，它在加上它的 `lowbit` 后是 $(11000)_2$．这其实得到了我们答案的前半部分．
@@ -368,12 +303,8 @@ x = t | ((((t & -t) / (x & -x)) >> 1) - 1);
 所以枚举 $0\sim n$ 按汉明权重递增的排列的完整代码为：
 
 ```cpp
-for (int i = 0; (1 << i) - 1 <= n; i++) {
-  for (int x = (1 << i) - 1, t; x <= n; t = x + (x & -x),
-           x = x ? (t | ((((t & -t) / (x & -x)) >> 1) - 1)) : (n + 1)) {
-    //  写下需要完成的操作
-  }
-}
+--8<-- "docs/math/code/bit/bit_3.cpp:hamming2_begin"
+--8<-- "docs/math/code/bit/bit_3.cpp:hamming2_end"
 ```
 
 其中要注意 $0$ 的特判，因为 $0$ 没有相同汉明权重的后继．
