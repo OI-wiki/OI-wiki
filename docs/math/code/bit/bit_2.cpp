@@ -87,6 +87,10 @@ int popcount(int x) {
 
 #include <cassert>
 #include <iostream>
+#if defined(_MSC_VER) && !defined(__clang__)
+#include <immintrin.h>
+#define __builtin_popcount __popcnt
+#endif
 
 int main() {
   int a, b;
