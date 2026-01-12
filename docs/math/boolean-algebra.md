@@ -109,6 +109,9 @@ C++ 中的规定参见 [C++ 运算符优先级总表](../lang/op.md#c-运算符�
 -   **幂等**（idempotence）律：$x\land x=x$、$x\lor x=x$．
 -   单调性：$a\to b\iff(a\land c)\to(b\land c)$、$a\to b\iff(a\lor c)\to(b\lor c)$．
 -   **吸收**（absorption）律：$x\land(x\lor y)=x\lor(x\land y)=x$．
+-   和实质蕴涵的关系：
+    -   $a \lor b \iff (\lnot a \to b) \land (\lnot b \to a)$，
+    -   $a \land b \iff \lnot((a \to \lnot b) \lor (b \to \lnot a))$．
 
 ???+ tip "布尔函数的单调性"
     对一个布尔函数 $f(x_1,\dots,x_n)$ 和 $\mathbb{B}^n$ 中的两个元素 $(a_1,\dots,a_n),(b_1,\dots,b_n)$，若当 $a_i\leq b_i,~~\forall i=1,\dots,n$ 时恒有 $f(a_1,\dots,a_n)\leq f(b_1,\dots,b_n)$，则称该布尔函数是单调的．
