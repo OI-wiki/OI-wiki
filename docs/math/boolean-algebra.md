@@ -14,24 +14,24 @@
 
 以下是一些常见布尔函数，我们也会把这些布尔函数统称为 **逻辑运算符**（logical connective）或 **逻辑算子**（logical operator）：
 
-| 名称（数理逻辑）                                           | 其他名称          | 记号                               |
-| -------------------------------------------------- | ------------- | -------------------------------- |
-| 恒真（truth、tautology）                                |               | $\top$                           |
-| 恒假（falsity、contradiction）                          |               | $\bot$                           |
-| 命题                                                 |               | $A$                              |
-| 否定（negation）                                       | 非             | $\lnot A$                        |
-| 合取（conjunction）                                    | 与             | $A \land B$                      |
-| 析取（disjunction）                                    | 或             | $A \lor B$                       |
-|                                                    | 异或            | $A \oplus B$                     |
-|                                                    | 同或            | $A \odot B$                      |
-| 非合取（non-conjunction）                               | 与非、Sheffer 竖线 | $A \bar{\land} B$、$A\uparrow B$  |
-| 非析取（non-disjunction）                               | 或非            | $A \bar{\lor} B$、$A\downarrow B$ |
-| 实质蕴含（material implication）[^note1]                 |               | $A \to B$                        |
-| 实质非蕴含（material nonimplication）[^note1]             |               | $A \nrightarrow B$               |
-| 反蕴涵（converse implication）[^note1]                  |               | $A \gets B$                      |
-| 非反蕴涵（converse nonimplication）[^note1]              |               | $A \nleftarrow B$                |
-| 双条件（biconditional）、等价（equivalence）[^note1][^note2] |               | $A \leftrightarrow B$            |
-| 非等价（non-equivalence）[^note1][^note3]               |               | $A \nleftrightarrow B$           |
+| 名称（数理逻辑）                                           | 其他名称                 | 记号                               |
+| -------------------------------------------------- | -------------------- | -------------------------------- |
+| 恒真（truth、tautology）                                |                      | $\top$                           |
+| 恒假（falsity、contradiction）                          |                      | $\bot$                           |
+| 命题                                                 | 自身                   | $A$                              |
+| 否定（negation）                                       | 非（NOT）               | $\lnot A$                        |
+| 合取（conjunction）                                    | 与（AND）               | $A \land B$                      |
+| 析取（disjunction）                                    | 或（OR）                | $A \lor B$                       |
+| 非合取（non-conjunction）                               | 与非（NAND）、Sheffer 竖线  | $A \bar{\land} B$、$A\uparrow B$  |
+| 非析取（non-disjunction）                               | 或非（NOR）              | $A \bar{\lor} B$、$A\downarrow B$ |
+|                                                    | 异或（Exclusive-OR，XOR） | $A \oplus B$                     |
+|                                                    | 同或（Exclusive-NOR）    | $A \odot B$                      |
+| 实质蕴含（material implication）[^note1]                 |                      | $A \to B$                        |
+| 实质非蕴含（material nonimplication）[^note1]             |                      | $A \nrightarrow B$               |
+| 反蕴涵（converse implication）[^note1]                  |                      | $A \gets B$                      |
+| 非反蕴涵（converse nonimplication）[^note1]              |                      | $A \nleftarrow B$                |
+| 双条件（biconditional）、等价（equivalence）[^note1][^note2] |                      | $A \leftrightarrow B$            |
+| 非等价（non-equivalence）[^note1][^note3]               |                      | $A \nleftrightarrow B$           |
 
 对应的真值表（From [Wikipedia](https://commons.wikimedia.org/wiki/File:Logical_connectives_table.svg)）：
 
@@ -98,7 +98,7 @@ C++ 中的规定参见 [C++ 运算符优先级总表](../lang/op.md#c-运算符�
 首先是代数结构的相关性质
 
 -   与、或均关于 $\mathbb{B}$ 构成 [交换幺半群](./algebra/basic.md#群)．即与运算和或运算均具有交换律、结合律和幺元（$x\land 1=x\lor 0=x$）．
--   异或、同或均关于 $\mathbb{B}$ 构成 [群](./algebra/basic.md#群)．即与运算和或运算均具有交换律、结合律、幺元（$x\oplus 0=x\odot 1=x$）和逆元（$x\oplus x=0$，$x\odot x=1$）．
+-   异或、同或均关于 $\mathbb{B}$ 构成 [群](./algebra/basic.md#群)．即异或运算和同或运算均具有交换律、结合律、幺元（$x\oplus 0=x\odot 1=x$）和逆元（$x\oplus x=0$，$x\odot x=1$）．
 -   与非、或非均不具有结合律，所以不构成半群．
 
 对于 $\land$、$\lor$，我们有
