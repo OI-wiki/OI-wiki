@@ -38,7 +38,7 @@
 
 ## 位运算
 
-位运算指的是对位序列逐位应用某些 [布尔函数](./logic.md#布尔函数) 的运算．形式化地说，对布尔函数 $f:\mathbb{B}^k\to \mathbb{B}$，位运算即为形如
+位运算指的是对位序列逐位应用某些 [布尔函数](./boolean-algebra.md#布尔函数) 的运算．形式化地说，对布尔函数 $f:\mathbb{B}^k\to \mathbb{B}$，位运算即为形如
 
 $$
 \begin{aligned}

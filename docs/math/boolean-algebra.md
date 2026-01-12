@@ -1,11 +1,13 @@
+在数理逻辑中，布尔代数（Boolean algebra）是代数的一个分支．初等代数中变量的值是数字，其研究的主要运算符有加法、乘法、乘方以及这三种运算的逆运算．而布尔代数中变量的值仅为 **真** 和 **假** 两种（通常记作 $1$ 和 $0$），其研究的主要运算符有合取（与，$\land$）、析取（或，$\lor$）、否定（非，$\lnot$）．就像初等代数是描述数字运算的一种形式一样，布尔代数是描述逻辑运算的一种形式．
+
 ## 布尔函数
 
 ???+ abstract "定义"
-    **布尔函数**（Boolean function）指的是形如 $f:\mathbb{B}^k\to \mathbb{B}$ 的函数，其中 $\mathbb{B}=\{0,1\}$ 称为 **布尔域**（Boolean domain），$k$ 为非负整数，为该布尔函数的 **元数**（Arity）．$k=1$ 的布尔函数为一元函数，以此类推．$k=0$ 时，我们认为函数退化为 $\mathbb{B}$ 中的常量．
+    **布尔函数**（Boolean function）指的是形如 $f:\mathbb{B}^k\to \mathbb{B}$ 的函数，其中 $\mathbb{B}=\{0,1\}$ 为 **布尔域**（Boolean domain），非负整数 $k$ 为该布尔函数的 **元数**（Arity）．$k=1$ 的布尔函数为一元函数，以此类推．$k=0$ 时，我们认为函数退化为 $\mathbb{B}$ 中的常量．
 
 我们一般只研究一元和二元的布尔函数．如无特殊说明，下文的布尔函数仅限于一元和二元的情况．
 
-除了函数的一般表达方式外，我们还可以用 **真值表**（Truth table）、[Venn 图](https://en.wikipedia.org/wiki/Venn_diagram) 来表示布尔函数．
+除了函数的一般表达方式外，我们还可以用 **真值表**（Truth table）、**逻辑门**（Logic gate）、[Venn 图](https://en.wikipedia.org/wiki/Venn_diagram) 来表示布尔函数．
 
 ???+ abstract "真值表"
     对一个布尔函数，我们枚举其输入的所有情况，并将输入和对应的输出列成一张表，这个表就叫做真值表．
@@ -45,7 +47,7 @@
 
 ### 优先级
 
-逻辑算子的元数越低，其优先级越高，即 $\lnot$ 的优先级高于 $\land$、$\lor$、$\oplus$ 等的优先级．
+一元逻辑算子优先级高于二元逻辑算子，即 $\lnot$ 的优先级高于 $\land$、$\lor$、$\oplus$ 等的优先级．
 
 二元逻辑算子之间的优先级有多种规定，有的资料认为 $\land$、$\lor$、$\oplus$ 的优先级比 $\to$、$\gets$、$\leftrightarrow$ 更高，而有的资料持相反观点．所以在使用时推荐多加括号来明确顺序．
 
@@ -195,10 +197,11 @@ $$
 
 ## 参考资料与注释
 
-1.  [Boolean function - Wikipedia](https://en.wikipedia.org/wiki/Boolean_function)
-2.  [Logical connective - Wikipedia](https://en.wikipedia.org/wiki/Logical_connective)
-3.  [Disjunctive normal form - Wikipedia](https://en.wikipedia.org/wiki/Disjunctive_normal_form)
-4.  [Zhegalkin polynomial - Wikipedia](https://en.wikipedia.org/wiki/Zhegalkin_polynomial)
+1.  [Boolean algebra - Wikipedia](https://en.wikipedia.org/wiki/Boolean_algebra)
+2.  [Boolean function - Wikipedia](https://en.wikipedia.org/wiki/Boolean_function)
+3.  [Logical connective - Wikipedia](https://en.wikipedia.org/wiki/Logical_connective)
+4.  [Disjunctive normal form - Wikipedia](https://en.wikipedia.org/wiki/Disjunctive_normal_form)
+5.  [Zhegalkin polynomial - Wikipedia](https://en.wikipedia.org/wiki/Zhegalkin_polynomial)
 
 [^note1]: 用于命题推导时应使用双横长箭头，如 $A\implies B$、$A\impliedby B$、$A\iff B$ 等．
 
