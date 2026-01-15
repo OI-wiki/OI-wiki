@@ -216,3 +216,7 @@ $$
 见 [单调队列/单调栈优化](./opt/monotonous-queue-stack.md)．
 
 习题：[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.com.cn/problem/P1776)
+
+## 参考资料与注释
+
+-   [背包问题九讲 - 崔添翼](https://github.com/tianyicui/pack)．
