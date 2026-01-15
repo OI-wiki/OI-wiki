@@ -48,20 +48,14 @@ jobs:
             py3-pygments
             libxml2
             sqlite-dev
+            font-noto
+            font-noto-cjk
           pre_compile: |
             umask 0 && npm config set cache /tmp/.npm
-            wget -O notosans.zip "https://fonts.google.com/download?family=Noto%20Sans"
-            wget -O notoserif.zip "https://fonts.google.com/download?family=Noto%20Serif"
-            wget -O notoserifcjk.zip "https://fonts.google.com/download?family=Noto%20Serif%20SC"
-            wget -O notosanscjk.zip "https://fonts.google.com/download?family=Noto%20Sans%20SC"
             wget "https://mirror.math.princeton.edu/pub/CTAN/fonts/cm-unicode.zip" --no-check-certificate
             git clone https://github.com/googlefonts/RobotoMono
-            unzip notosans.zip -d notosans
-            unzip notoserif.zip -d notoserif
-            unzip notosanscjk.zip -d notosanscjk
-            unzip notoserifcjk.zip -d notoserifcjk
             unzip  ./cm-unicode.zip
-            cp -r notosans notoserif notosanscjk notoserifcjk cm-unicode/fonts/otf/* RobotoMono/fonts/ttf/* /usr/share/fonts
+            cp -r cm-unicode/fonts/otf/* RobotoMono/fonts/ttf/* /usr/share/fonts
             fc-cache
             git config --global --add safe.directory /github/workspace
             git clone https://github.com/OI-wiki/OI-Wiki-export.git
