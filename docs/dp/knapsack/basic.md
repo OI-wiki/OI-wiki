@@ -1,6 +1,6 @@
 author: hydingsy, Link-cute, Ir1d, greyqz, LuoshuiTianyi, odeinjul, xyf007, GoodCoder666, paigeman, shenshuaijie, oldoldtea, hhc0001
 
-前置知识：[动态规划部分简介](./index.md)．
+前置知识：[动态规划部分简介](../index.md)．
 
 ## 引入
 
@@ -213,7 +213,7 @@ $$
 
 ### 单调队列优化
 
-见 [单调队列/单调栈优化](./opt/monotonous-queue-stack.md)．
+见 [单调队列/单调栈优化](../opt/monotonous-queue-stack.md)．
 
 习题：[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.com.cn/problem/P1776)
 
