@@ -135,6 +135,7 @@
 /ds/odt /misc/odt
 /ds/leafy-tree /ds/wblt
 /ds/2-3-4-tree /ds/rbtree
+/dp/knapsack.md /dp/knapsack/basic.md
 /ds/2-3-tree /ds/llrbt
 /ds/b-tree /ds/bst
 /ds/bplus-tree /ds/bst
