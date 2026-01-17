@@ -66,9 +66,7 @@ author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, Nachtg
     
     目标是让所有购买的物品的 $v_i \times p_i$ 之和最大．
 
-考虑分类讨论．对于一个主件和它的若干附件，有以下几种可能：只买主件，买主件 + 某些附件．因为这几种可能性只能选一种，所以可以将这看成分组背包．
-
-如果是多叉树的集合，则要先算子节点的集合，最后算父节点的集合．
+直接当成 [树上背包](https://oi-wiki.org/dp/tree/#%E6%A0%91%E4%B8%8A%E8%83%8C%E5%8C%85) 处理即可．注意在最后将所有背包合并在一起．
 
 ## 求方案数
 
