@@ -66,7 +66,7 @@ author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, Nachtg
     
     目标是让所有购买的物品的 $v_i \times p_i$ 之和最大．
 
-直接当成 [树上背包](https://oi-wiki.org/dp/tree/#%E6%A0%91%E4%B8%8A%E8%83%8C%E5%8C%85) 处理即可．注意在最后将所有背包合并在一起．
+直接当成 [树上背包](../tree.md) 处理即可．注意在最后将所有背包合并在一起．
 
 ## 求方案数
 
