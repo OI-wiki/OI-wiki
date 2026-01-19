@@ -8,18 +8,18 @@
 
 ### 容斥原理的计算
 
-全集 $U$ 即为 $1\sim n$ 的排列，$|U|=n!$；属性就是 $P_i\neq i$. 套用补集的公式，问题变成求 $\left|\bigcup_{i=1}^n\overline{S_i}\right|$.
+全集 $U$ 即为 $1\sim n$ 的排列，$|U|=n!$；属性 $S_i$ 就是 $P_i\neq i$. 套用补集的公式，问题变成求 $\left|\bigcup_{i=1}^n\overline{S_i}\right|$.
 
 可以知道，$\overline{S_i}$ 的含义是满足 $P_i=i$ 的排列的数量．用容斥原理把问题式子展开，需要对若干个特定的集合的交集求大小，即：
 
 $$
-\left|\bigcap_{i=1}^{k}S_{a_i}\right|
+\left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|
 $$
 
 其中省略了 $a_i<a_{i+1}$ 的条件以方便表示．上述 $k$ 个集合的交集表示有 $k$ 个变量满足 $P_{a_i}=a_i$ 的排列数，而剩下 $n-k$ 个数的位置任意，因此排列数：
 
 $$
-\left|\bigcap_{i=1}^{k}S_{a_i}\right|=(n-k)!
+\left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|=(n-k)!
 $$
 
 那么选择 $k$ 个元素的方案数为 $\dbinom{n}{k}$，因此有：
@@ -27,7 +27,7 @@ $$
 $$
 \begin{aligned}
 \left|\bigcup_{i=1}^n\overline{S_i}\right|
-&=\sum_{k=1}^n(-1)^{k-1}\sum_{a_{1,\cdots,k} }\left|\bigcap_{i=1}^{k}S_{a_i}\right|\\
+&=\sum_{k=1}^n(-1)^{k-1}\sum_{a_{1,\cdots,k} }\left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|\\
 &=\sum_{k=1}^n(-1)^{k-1}\dbinom{n}{k}(n-k)!\\
 &=\sum_{k=1}^n(-1)^{k-1}\frac{n!}{k!}\\
 &=n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}
