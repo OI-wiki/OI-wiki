@@ -8,7 +8,7 @@
 
 ### 容斥原理的计算
 
-全集 $U$ 即为 $1\sim n$ 的排列，$|U|=n!$；令 $S_i$ 是其中满足 $P_i\neq i$ 的排列. 运用补集和[容斥原理](./inclusion-exclusion-principle.md)的知识，问题变成求：
+全集 $U$ 即为 $1\sim n$ 的排列，$|U|=n!$；令 $S_i$ 是其中满足 $P_i\neq i$ 的排列. 运用补集和 [容斥原理](./inclusion-exclusion-principle.md) 的知识，问题变成求：
 
 $$
 \begin{aligned}
