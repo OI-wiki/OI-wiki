@@ -12,13 +12,13 @@
 
 $$
 \begin{aligned}
-|\bigcap_{i=1}^n S_i|
+\left|\bigcap_{i=1}^n S_i\right|
 &=|U|-\left|\bigcup_{i=1}^n\overline{S_i}\right|\\
 &=n!-\sum_{k=1}^n(-1)^{k-1}\sum_{a_i<a_{i+1}}\left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|
 \end{aligned}
 $$
 
-其中
+其中求和的含义是 $1, 2, \cdots, n$ 中取 $a_1, a_2, \cdots, a_k$ 且满足 $a_i<a_{i+1}$．于是
 
 $$
 \left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|
@@ -41,7 +41,7 @@ $$
 \end{aligned}
 $$
 
-因此 $n$ 的错位排列数为：
+因此 $n$ 个元素的错位排列数为：
 
 $$
 D_n=n!-n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}=n!\sum_{k=0}^n\frac{(-1)^k}{k!}
