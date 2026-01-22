@@ -1,4 +1,4 @@
-author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran
+author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran, CuriosityQiu
 
 ## 关于 Python
 
@@ -677,10 +677,12 @@ lst2 = append_to(42)
 print(lst1, lst2)
 
 # 你可能以为输出是 [12] [42]
-# 但运行结果其实是 [12] [12, 42]
+# 但运行结果其实是 [12, 42] [12, 42]
 
 
 # 这是因为默认参数的值仅仅在函数定义的时候赋值一次
+# 对于可变对象（如列表、字典、集合），所有调用会共享同一个对象
+# lst1和 lst2实际上都指向内存中同一个默认列表对象。因此，第二次调用后，这个共享列表的内容被修改为 [12, 42]
 # 默认参数的值应该是不可变对象，使用 None 占位是一种最佳实践
 def append_to(element, to=None):
     if to is None:
