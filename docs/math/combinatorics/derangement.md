@@ -8,33 +8,40 @@
 
 ### 容斥原理的计算
 
-全集 $U$ 即为 $1\sim n$ 的排列，$|U|=n!$；属性就是 $P_i\neq i$. 套用补集的公式，问题变成求 $\left|\bigcup_{i=1}^n\overline{S_i}\right|$.
-
-可以知道，$\overline{S_i}$ 的含义是满足 $P_i=i$ 的排列的数量．用容斥原理把问题式子展开，需要对若干个特定的集合的交集求大小，即：
-
-$$
-\left|\bigcap_{i=1}^{k}S_{a_i}\right|
-$$
-
-其中省略了 $a_i<a_{i+1}$ 的条件以方便表示．上述 $k$ 个集合的交集表示有 $k$ 个变量满足 $P_{a_i}=a_i$ 的排列数，而剩下 $n-k$ 个数的位置任意，因此排列数：
-
-$$
-\left|\bigcap_{i=1}^{k}S_{a_i}\right|=(n-k)!
-$$
-
-那么选择 $k$ 个元素的方案数为 $\dbinom{n}{k}$，因此有：
+全集 $U$ 即为 $1\sim n$ 的排列，$|U|=n!$；令 $S_i$ 是其中满足 $P_i\neq i$ 的排列．运用补集和 [容斥原理](./inclusion-exclusion-principle.md) 的知识，问题变成求：
 
 $$
 \begin{aligned}
-\left|\bigcup_{i=1}^n\overline{S_i}\right|
-&=\sum_{k=1}^n(-1)^{k-1}\sum_{a_{1,\cdots,k} }\left|\bigcap_{i=1}^{k}S_{a_i}\right|\\
-&=\sum_{k=1}^n(-1)^{k-1}\dbinom{n}{k}(n-k)!\\
-&=\sum_{k=1}^n(-1)^{k-1}\frac{n!}{k!}\\
-&=n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}
+\left|\bigcap_{i=1}^n S_i\right|
+&=|U|-\left|\bigcup_{i=1}^n\overline{S_i}\right|\\
+&=n!-\sum_{k=1}^n(-1)^{k-1}\sum_{a_i<a_{i+1}}\left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|
 \end{aligned}
 $$
 
-因此 $n$ 的错位排列数为：
+其中求和的含义是 $1, 2, \cdots, n$ 中取 $a_1, a_2, \cdots, a_k$ 且满足 $a_i<a_{i+1}$．于是
+
+$$
+\left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|
+$$
+
+表示有 $k$ 个数 $a_1,a_2,\cdots,a_k$ 满足 $P_{a_i}=a_i$，而剩下 $n-k$ 个数的位置任意的排列数，因此：
+
+$$
+\left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|=(n-k)!
+$$
+
+这 $k$ 个数的选择情况共 $\dbinom{n}{k}$ 种，对其求和有：
+
+$$
+\begin{aligned}
+&\sum_{k=1}^n(-1)^{k-1}\sum_{a_i<a_{i+1}}\left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|\\
+=&\sum_{k=1}^n(-1)^{k-1}\dbinom{n}{k}(n-k)!\\
+=&\sum_{k=1}^n(-1)^{k-1}\frac{n!}{k!}\\
+=&n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}
+\end{aligned}
+$$
+
+因此 $n$ 个元素的错位排列数为：
 
 $$
 D_n=n!-n!\sum_{k=1}^n\frac{(-1)^{k-1} }{k!}=n!\sum_{k=0}^n\frac{(-1)^k}{k!}
