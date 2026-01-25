@@ -1,4 +1,4 @@
-author: JiZiQian, llleixx
+author: JiZiQian, llleixx, firefly-zjyjoe
 
 ## 什么是左偏树？
 
@@ -9,7 +9,7 @@ author: JiZiQian, llleixx
 对于一棵二叉树，我们定义 **外节点** 为子节点数小于两个的节点，定义一个节点的 $\mathrm{dist}$ 为其到子树中最近的外节点所经过的边的数量．空节点的 $\mathrm{dist}$ 为 $0$．
 
 ???+ note "注意"
-    有些资料中对 $\mathrm{dist}$ 的定义是本文中的 $\mathrm{dist}$ 减 $1$，这样定义是因为代码编写时可以省略一些判空流程，但需要注意应预先置空节点的 $\mathrm{dist}$ 为 $-1$．本文中所有代码对 $\mathrm{dist}$ 的定义 **均为后者**，请注意与行文间 $\mathrm{dist}$ 定义的差别．
+    有些资料中对 $\mathrm{dist}$ 的定义是本文中的 $\mathrm{dist}$ 减 $1$，这样定义是因为代码编写时可以省略一些判空流程，但需要注意应预先置空节点的 $\mathrm{dist}$ 为 $-1$．本文中所有代码对 $\mathrm{dist}$ 的定义 **均为空节点 $\mathrm{dist}$ 为 $-1$ 的定义**，请注意与行文间 $\mathrm{dist}$ 定义的差别．
 
 左偏树是一棵二叉树，它不仅具有堆的性质，并且是「左偏」的：每个节点左儿子的 $\mathrm{dist}$ 都大于等于右儿子的 $\mathrm{dist}$．
 

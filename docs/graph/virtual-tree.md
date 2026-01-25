@@ -1,4 +1,4 @@
-author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy
+author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy, y-kx-b
 
 ## 引入
 
@@ -222,6 +222,8 @@ void build_virtual_tree() {
 
 其中有很多细节，比如用邻接表存图的方式存虚树的话，需要清空邻接表．但是直接清空整个邻接表是很慢的，所以我们在 **有一个从未入栈的元素入栈的时候清空该元素对应的邻接表** 即可．
 
+时间复杂度同样为 $O(m\log n)$（因为有排序），其中 $m$ 为关键点数，$n$ 为总点数．
+
 #### 实现
 
 建立虚树的 C++ 代码大概长这样：
@@ -233,14 +235,14 @@ void build_virtual_tree() {
     void build() {
       sort(h + 1, h + k + 1, cmp);
       sta[top = 1] = 1, g.sz = 0, g.head[1] = -1;
-      // 1 号节点入栈，清空 1 号节点对应的邻接表，设置邻接表边数为 1
+      // 1 号节点入栈，清空 1 号节点对应的邻接表，设置邻接表边数为 0
       for (int i = 1, l; i <= k; ++i)
         if (h[i] != 1) {
           // 如果 1 号节点是关键节点就不要重复添加
           l = lca(h[i], sta[top]);
           // 计算当前节点与栈顶节点的 LCA
           if (l != sta[top]) {
-            // 如果 LCA 和栈顶元素不同，则说明当前节点不再当前栈所存的链上
+            // 如果 LCA 和栈顶元素不同，则说明当前节点不在当前栈所存的链上
             while (id[l] < id[sta[top - 1]])
               // 当次大节点的 Dfs 序大于 LCA 的 Dfs 序
               g.push(sta[top - 1], sta[top]), top--;

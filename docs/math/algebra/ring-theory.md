@@ -65,7 +65,7 @@ $$
 $$
 \begin{aligned}
 (a+I)+(b+I)&=(a+b)+I,\\
-(a+I)(b+I)&=(ab)I
+(a+I)(b+I)&=(ab)+I
 \end{aligned}
 $$
 

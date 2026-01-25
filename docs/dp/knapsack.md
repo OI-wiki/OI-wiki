@@ -371,7 +371,7 @@ for (从最后一件循环至第一件) {
 例如 0-1 背包问题的转移方程就变成了：
 
 $$
-\mathit{dp}_i=\sum(\mathit{dp}_i,\mathit{dp}_{i-c_i})
+\mathit{dp}_j \leftarrow \mathit{dp}_j + \mathit{dp}_{j-c_i} \qquad (j \ge c_i)
 $$
 
 初始条件：$\mathit{dp}_0=1$
