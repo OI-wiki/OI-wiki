@@ -149,11 +149,12 @@ author: JiZiQian, llleixx, firefly-zjyjoe
 ???+ note "实现"
     ```cpp
     void pushdown(int x) {
-        if (!x || t[t[x].ch[1]].d + 1 == t[x].d) return ;
-
-        t[x].d = t[t[x].ch[1]].d + 1;
-        pushdown(t[x].fa);
+      if (!x || t[t[x].ch[1]].d + 1 == t[x].d) return;
+    
+      t[x].d = t[t[x].ch[1]].d + 1;
+      pushdown(t[x].fa);
     }
+    
     int merge(int x, int y) {
       if (!x || !y) return x | y;
       if (t[y].val < t[x].val) swap(x, y);
