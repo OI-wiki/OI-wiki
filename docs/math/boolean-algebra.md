@@ -12,6 +12,8 @@
 ???+ abstract "真值表"
     对一个布尔函数，我们枚举其输入的所有情况，并将输入和对应的输出列成一张表，这个表就叫做真值表．
 
+$n$ 元布尔函数也可以用含 $n$ 个变量的 **命题公式**（propositional formula）表示，命题公式 $p$ 与 $q$ **逻辑等价**（logically equivalent）当且仅当其描述的是同一个布尔函数，记作 $p\iff q$．
+
 以下是一些常见布尔函数，我们也会把这些布尔函数统称为 **逻辑运算符**（logical connective）或 **逻辑算子**（logical operator）：
 
 | 名称（数理逻辑）                                           | 其他名称                 | 记号                               |
@@ -40,6 +42,8 @@
 对应的 Venn 图和 [Hasse 图](./order-theory.md#偏序集的可视化表示hasse-图)（以集合的包含关系 $\subseteq$ 为偏序，From [Wikipedia](https://en.wikipedia.org/wiki/File:Logical_connectives_Hasse_diagram.svg)）：
 
 ![](./images/logical-connectives-hasse-diagram.svg)
+
+由于 $n$ 元布尔函数的输入有 $2^n$ 种，所以 $n$ 元布尔函数有 $2\uparrow (2\uparrow n)$ 种，其中 $\uparrow$ 为 Knuth 箭头．
 
 我们把逻辑算子的组合称为 **逻辑表达式**（logical expression）．
 
