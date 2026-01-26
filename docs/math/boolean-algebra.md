@@ -12,7 +12,7 @@
 ???+ abstract "真值表"
     对一个布尔函数，我们枚举其输入的所有情况，并将输入和对应的输出列成一张表，这个表就叫做真值表．
 
-$n$ 元布尔函数也可以用含 $n$ 个变量的 **命题公式**（propositional formula）表示，命题公式 $p$ 与 $q$ **逻辑等价**（logically equivalent）当且仅当其描述的是同一个布尔函数，记作 $p\iff q$．
+$n$ 元布尔函数也可以用含 $n$ 个变量的 **命题公式**（propositional formula）表示，命题公式 $p$ 与 $q$  **逻辑等价**（logically equivalent）当且仅当其描述的是同一个布尔函数，记作 $p\iff q$．
 
 以下是一些常见布尔函数，我们也会把这些布尔函数统称为 **逻辑运算符**（logical connective）或 **逻辑算子**（logical operator）：
 
