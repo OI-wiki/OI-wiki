@@ -33,5 +33,7 @@ int main() {
   main1::main(x);
   main2::main(n);
 
+  std::cout << std::endl;
+
   return 0;
 }
