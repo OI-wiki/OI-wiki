@@ -1,4 +1,4 @@
-???+ warning
+???+ warning "Warning"
     此处讨论的不是 [number system](https://en.wikipedia.org/wiki/Number#Classification)，数学中的数字系统（number system）指的是一类集合，如整数集 $\mathbf{Z}$、复数集 $\mathbf{C}$ 等．
 
 **数字系统**（numeral system），又称 **记数系统**，指的是用以表示数字的书写系统，如 [印度–阿拉伯数字系统](https://en.wikipedia.org/wiki/Hindu%E2%80%93Arabic_numeral_system)、[罗马数字](https://en.wikipedia.org/wiki/Roman_numerals)、[苏州码子](https://en.wikipedia.org/wiki/Suzhou_numerals) 等．数字系统是我们给数做编码的工具．
