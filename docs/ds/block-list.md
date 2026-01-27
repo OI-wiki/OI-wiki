@@ -60,7 +60,7 @@ using namespace __gnu_cxx;
 
 |             操作            |               作用              |
 | :-----------------------: | :---------------------------: |
-|      `rope<int> a`      | 初始化 `rope`（与 `vector` 等容器很相似） |
+|       `rope<int> a`       | 初始化 `rope`（与 `vector` 等容器很相似） |
 |      `a.push_back(x)`     |       在 `a` 的末尾添加元素 `x`       |
 |     `a.insert(pos, x)`    |   在 `a` 的 `pos` 个位置添加元素 `x`   |
 |     `a.erase(pos, x)`     |  在 `a` 的 `pos` 个位置删除 `x` 个元素  |
