@@ -122,6 +122,32 @@ Ukkonen 算法是一种增量构造算法．我们依次向树中插入串 $S$ �
 
 由该引理，我们定义 $\operatorname{Link}(x)=y$，称为 x 的 **后缀链接 (Suffix Link)**．于是 $now'=\operatorname{Link}(now)$ 一定存在．现在我们只要能求出隐式后缀树中所有非根非叶节点的 $\operatorname{Link}$ 即可．
 
+#### 扩展规则
+
+在介绍 Ukkonen 算法之前，我们首先需要理解算法的核心：**三条扩展规则**．对于每个阶段 $i$，算法需要将字符 $S[i]$ 添加到所有当前后缀的末尾．根据后缀在树中的位置，应用以下规则：
+
+-   **规则 1（叶节点扩展）**：如果路径终止于叶节点，则自动延长叶边．由于叶边的右端点为 $\infty$（全局结束指针），所有叶节点会隐式地同时扩展，无需显式操作．
+
+-   **规则 2（创建新叶节点）**：如果路径终止于非叶节点（内部节点或边的中间位置），且不存在以当前字符开头的出边，则需要：
+    -   **情况 A**：若位置恰好在某个节点上，直接从该节点创建新的叶边．
+    -   **情况 B**：若位置在某条边的中间，需要先分裂该边创建新的内部节点，再从新节点创建叶边．
+
+-   **规则 3（隐式扩展/早停）**：如果路径终止于非叶节点，且存在以当前字符开头的出边，则当前后缀已经隐式存在于树中，不需要任何操作．此时可以立即停止当前阶段的扩展（因为更短的后缀也一定是隐式的）．
+
+#### 关键优化技术
+
+Ukkonen 算法通过以下优化达到 $O(n)$ 时间复杂度：
+
+1.  **边标签压缩**：用索引对 $(start, end)$ 代替实际字符串存储边标签，空间从 $O(n^2)$ 降至 $O(n)$．
+
+2.  **全局结束指针（Global End）**：所有叶节点的边共享一个全局结束指针．当插入新字符时，只需将此指针加一，即可在 $O(1)$ 时间内完成所有叶节点的扩展（规则 1）．这利用了 "一旦成为叶节点，永远是叶节点" 的性质．
+
+3.  **后缀链接（Suffix Link）**：内部节点之间的快速跳转．若节点 $v$ 对应字符串 $x\alpha$（$x$ 为单个字符，$\alpha$ 为可能为空的字符串），则 $\operatorname{Link}(v)$ 指向对应字符串 $\alpha$ 的节点．
+
+4.  **Skip/Count 技巧**：当已知要遍历的路径长度时，可以直接跳过整条边而无需逐字符比较，加速边的遍历．
+
+5.  **早停优化**：一旦应用规则 3，当前阶段可以立即停止，因为所有更短的后缀也一定是隐式的．
+
 #### Ukkonen 算法
 
 Ukkonen 算法的整体流程如下：
@@ -181,6 +207,317 @@ Ukkonen 算法的整体流程如下：
     } Tree;
     ```
 
+???+ note "参考实现（Python 工程风格，带详细注释）"
+    以下是具有完整类型注解和详细文档的 Python 实现，便于理解算法细节：
+    
+    ```python
+    """
+    Ukkonen's Suffix Tree: Linear-Time Online Construction Algorithm
+    
+    Extension Rules:
+        Rule 1: Path ends at a leaf → Extend the leaf edge (implicit via global end)
+        Rule 2: Path ends at non-leaf with no continuation → Create new leaf node
+        Rule 3: Path ends at non-leaf with matching continuation → Do nothing (implicit)
+    
+    Key Optimizations:
+        1. Edge-label compression: Store (start, end) indices instead of substrings
+        2. Suffix links: O(1) transitions between internal nodes during extensions
+        3. Skip/Count trick: Rapid edge traversal using known edge lengths
+        4. Global end pointer: Implicit Rule 1 extensions in O(1) amortized time
+        5. Early termination: Stop phase on Rule 3 application (showstopper)
+    
+    References:
+        [1] Ukkonen, E. (1995). "On-line construction of suffix trees"
+            Algorithmica, 14(3), 249-260.
+        [2] Gusfield, D. (1997). "Algorithms on Strings, Trees, and Sequences"
+            Cambridge University Press. Chapter 6.
+    """
+    
+    from typing import Dict, List, Optional, Tuple, Union
+    
+    
+    class GlobalEnd:
+        """
+        Mutable container for the global end index of leaf nodes.
+    
+        All leaf edges share this common end point. By incrementing it once,
+        all leaf edges extend simultaneously in O(1) time.
+        This implements the "once a leaf, always a leaf" property.
+        """
+    
+        def __init__(self, index: int = -1):
+            self.index = index
+    
+        def increment(self) -> int:
+            """Advance the global end and return the new value."""
+            self.index += 1
+            return self.index
+    
+    
+    class SuffixTreeNode:
+        """
+        Node in the suffix tree data structure.
+    
+        Edge labels are stored as index pairs (start, end) into the original string,
+        reducing space from O(n²) to O(n).
+    
+        Attributes:
+            children: Map from first character to child node
+            suffix_link: Pointer to suffix-linked node (None for leaves)
+            edge_start_index: Start position of edge label in original string
+            edge_end_index: End position (int for internal, GlobalEnd for leaves)
+        """
+    
+        def __init__(self, start: int, end: Union[int, GlobalEnd]):
+            self.children: Dict[str, "SuffixTreeNode"] = {}
+            self.suffix_link: Optional["SuffixTreeNode"] = None
+            self.edge_start_index: int = start
+            self.edge_end_index: Union[int, GlobalEnd] = end
+    
+        def get_child(self, char: str) -> Optional["SuffixTreeNode"]:
+            """Retrieve child node by edge's first character, or None."""
+            return self.children.get(char)
+    
+        def get_edge_length(self) -> int:
+            """Compute the length of the incoming edge label."""
+            if self.edge_start_index == -1:
+                return 0
+            end = (
+                self.edge_end_index.index
+                if isinstance(self.edge_end_index, GlobalEnd)
+                else self.edge_end_index
+            )
+            return end - self.edge_start_index + 1
+    
+        def is_leaf(self) -> bool:
+            """Check if this node is a leaf (has GlobalEnd as end index)."""
+            return isinstance(self.edge_end_index, GlobalEnd)
+    
+        def is_root(self) -> bool:
+            """Check if this node is the root."""
+            return self.edge_start_index == -1
+    
+    
+    class UkkonenSuffixTree:
+        """
+        Suffix tree constructed using Ukkonen's online algorithm.
+    
+        Example:
+            >>> tree = UkkonenSuffixTree("banana$")
+            >>> tree.get_suffix_array()
+            [6, 5, 3, 1, 0, 4, 2]
+        """
+    
+        def __init__(self, text: str):
+            self.text = text
+            self.size = len(text)
+            self.root = self._build_tree()
+    
+        def _build_tree(self) -> SuffixTreeNode:
+            """Implement Ukkonen's algorithm with all optimizations."""
+            # Initialize root with self-referencing suffix link
+            root = SuffixTreeNode(-1, -1)
+            root.suffix_link = root
+    
+            # Global end pointer for O(1) leaf extensions (Rule 1)
+            global_end = GlobalEnd(-1)
+    
+            # Active point: (node, edge_char, length_on_edge)
+            active_node = root
+            active_edge = ""
+            active_length = 0
+    
+            # For skip/count optimization
+            total_steps = 0
+    
+            # Previous internal node awaiting suffix link
+            prev_internal_node: Optional[SuffixTreeNode] = None
+    
+            # Last j where Rule 1 or 2 was applied
+            last_rule_12_j = -1
+    
+            # Process each phase (add character at position i)
+            for i in range(self.size):
+                # Implicit extension of all leaves via global_end
+                global_end.increment()
+                prev_internal_node = None
+    
+                # Process extensions for this phase
+                j = last_rule_12_j + 1
+                while j <= i:
+                    current_char = self.text[i]
+    
+                    if active_length == 0:
+                        active_edge = current_char
+    
+                    # Navigate using skip/count
+                    next_node = active_node.get_child(active_edge)
+                    next_node, active_node, active_edge, active_length, total_steps = (
+                        self._skip_count_traverse(
+                            next_node,
+                            active_node,
+                            active_edge,
+                            active_length,
+                            j,
+                            total_steps,
+                        )
+                    )
+    
+                    # Apply extension rules
+                    if next_node is None:
+                        # Rule 2 (Case A): No outgoing edge - create new leaf
+                        new_leaf = SuffixTreeNode(i, global_end)
+                        active_node.children[active_edge] = new_leaf
+                        if prev_internal_node:
+                            prev_internal_node.suffix_link = active_node
+                        prev_internal_node = None
+                        last_rule_12_j = j
+    
+                    elif (
+                        self.text[next_node.edge_start_index + active_length]
+                        == current_char
+                    ):
+                        # Rule 3: Character exists - implicit extension (showstopper)
+                        if prev_internal_node:
+                            prev_internal_node.suffix_link = active_node
+                        active_length += 1
+                        break  # Early termination
+    
+                    else:
+                        # Rule 2 (Case B): Split edge and create new leaf
+                        split_end = next_node.edge_start_index + active_length - 1
+                        split_node = SuffixTreeNode(next_node.edge_start_index, split_end)
+                        active_node.children[active_edge] = split_node
+    
+                        # Create new leaf for current suffix
+                        new_leaf = SuffixTreeNode(i, global_end)
+                        split_node.children[current_char] = new_leaf
+    
+                        # Reconnect existing subtree
+                        next_node.edge_start_index += active_length
+                        split_node.children[self.text[next_node.edge_start_index]] = (
+                            next_node
+                        )
+    
+                        # Handle suffix links
+                        if prev_internal_node:
+                            prev_internal_node.suffix_link = split_node
+                        prev_internal_node = split_node
+                        last_rule_12_j = j
+    
+                    # Update active point for next extension
+                    if active_node.is_root() and active_length > 0:
+                        active_length -= 1
+                        if j + 1 < self.size:
+                            active_edge = self.text[j + 1]
+    
+                    if total_steps > 0:
+                        total_steps -= 1
+    
+                    if not active_node.is_root():
+                        active_node = active_node.suffix_link or root
+    
+                    j += 1
+    
+            return root
+    
+        def _skip_count_traverse(
+            self,
+            next_node: Optional[SuffixTreeNode],
+            active_node: SuffixTreeNode,
+            active_edge: str,
+            active_length: int,
+            j: int,
+            total_steps: int,
+        ) -> Tuple[Optional[SuffixTreeNode], SuffixTreeNode, str, int, int]:
+            """
+            Skip/Count optimization for rapid edge traversal.
+    
+            When we know the length of the path to traverse, we can skip entire
+            edges without character-by-character comparison.
+            """
+            if next_node is None:
+                return next_node, active_node, active_edge, active_length, total_steps
+    
+            edge_length = next_node.get_edge_length()
+            position = j + total_steps
+    
+            while edge_length <= active_length:
+                active_length -= edge_length
+                total_steps += edge_length
+                position += edge_length
+    
+                if position < self.size:
+                    active_edge = self.text[position]
+    
+                active_node = next_node
+                next_node = next_node.get_child(active_edge)
+    
+                if next_node is None:
+                    break
+                edge_length = next_node.get_edge_length()
+    
+            return next_node, active_node, active_edge, active_length, total_steps
+    
+        def get_suffix_array(self) -> List[int]:
+            """Extract suffix array via DFS traversal."""
+            suffix_array: List[int] = []
+            self._dfs_collect_suffixes(self.root, 0, suffix_array)
+            return suffix_array
+    
+        def _dfs_collect_suffixes(
+            self, node: SuffixTreeNode, depth: int, result: List[int]
+        ) -> None:
+            """DFS to collect suffix positions in lexicographic order."""
+            edge_length = 0 if node.is_root() else node.get_edge_length()
+    
+            if node.is_leaf():
+                suffix_start = self.size - depth - edge_length
+                result.append(suffix_start)
+            else:
+                for char in sorted(node.children.keys()):
+                    self._dfs_collect_suffixes(
+                        node.children[char], depth + edge_length, result
+                    )
+    
+        def print_tree(
+            self, node: Optional[SuffixTreeNode] = None, indent: int = 0
+        ) -> None:
+            """Print tree structure for debugging."""
+            if node is None:
+                node = self.root
+                print("ROOT")
+    
+            for char, child in sorted(node.children.items()):
+                end = (
+                    child.edge_end_index.index
+                    if isinstance(child.edge_end_index, GlobalEnd)
+                    else child.edge_end_index
+                )
+                edge_label = self.text[child.edge_start_index : end + 1]
+                node_type = "LEAF" if child.is_leaf() else "INTERNAL"
+                print("  " * (indent + 1) + f"--[{edge_label}]--> {node_type}")
+                self.print_tree(child, indent + 1)
+    
+    
+    # 使用示例
+    if __name__ == "__main__":
+        tree = UkkonenSuffixTree("banana$")
+        tree.print_tree()
+        print(f"Suffix Array: {tree.get_suffix_array()}")
+    ```
+
+## 复杂度分析
+
+| 操作       | 时间复杂度        | 空间复杂度  |
+| -------- | ------------ | ------ |
+| 后缀树构建    | $O(n)$       | $O(n)$ |
+| 后缀数组提取   | $O(n)$       | $O(n)$ |
+| 子串匹配     | $O(m)$       | $O(1)$ |
+| 最长公共前缀查询 | $O(1)$（预处理后） | $O(n)$ |
+
+其中 $n$ 为文本长度，$m$ 为模式串长度．
+
 ## 作用
 
 后缀树上每一个节点到根的路径都是 $S$ 的一个非空子串，这在处理很多字符串问题时都很有用．
@@ -229,5 +566,14 @@ Ukkonen 算法的整体流程如下：
 
 ## 参考文献
 
-1.  2021 国家集训队论文《后缀树的构建》代晨昕
-2.  [炫酷后缀树魔术 - EternalAlexander 的博客](https://www.luogu.com.cn/blog/EternalAlexander/xuan-ku-hou-zhui-shu-mo-shu)
+### 原始学术论文
+
+1.  Ukkonen, E. (1995). "On-line construction of suffix trees".*Algorithmica*, 14(3), 249-260.
+2.  Gusfield, D. (1997). "Algorithms on Strings, Trees, and Sequences: Computer Science and Computational Biology".*Cambridge University Press*. Chapter 6: Linear-Time Construction of Suffix Trees.
+3.  McCreight, E. M. (1976). "A space-economical suffix tree construction algorithm".*Journal of the ACM*, 23(2), 262-272.
+4.  Weiner, P. (1973). "Linear pattern matching algorithms".*14th Annual Symposium on Switching and Automata Theory*, 1-11.
+
+### 中文资料
+
+5.  2021 国家集训队论文《后缀树的构建》代晨昕
+6.  [炫酷后缀树魔术 - EternalAlexander 的博客](https://www.luogu.com.cn/blog/EternalAlexander/xuan-ku-hou-zhui-shu-mo-shu)
