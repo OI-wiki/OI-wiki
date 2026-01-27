@@ -99,6 +99,81 @@ $$
 
 注意，不排除解小于等于 $k$ 的情况，所以在消因子之前做一下 $\Theta(k)$ 枚举，直接验证 $a^i\equiv b \pmod m$，这样就能避免这种情况．
 
+## 基于值域预处理的快速离散对数
+
+前文的 BSGS 算法时间复杂度为单次 $O(\sqrt m)$，在询问量级比较大的时候效率较低．若每次求解的质数是固定的，我们就有一个基于值域预处理的、更加快速的算法．
+
+前文我们已经知道，$\operatorname{ind}_g(ab)\equiv\operatorname{ind}_g a+\operatorname{ind}_g b\pmod{P-1}$．由此，我们可以只对于所有质数求出离散对数，那么对于不是质数的整数，都可以通过上述公式转化为两个已经求得的离散对数值来得到．此时复杂度仍然不优，我们考虑只预处理一部分的离散对数．具体来说，我们预处理到 $O(\sqrt P)$，注意此时 BSGS 块长 **不能直接取** 根号量级，因为我们发现，设块长为 $B$，预处理（插入哈希表）部分是 $O(B)$，而查询一共需要 $O(\pi(\sqrt P))$ 次，总时间为 $O(\frac{P\pi(\sqrt P)}B)$，取 $B=O(\sqrt{P\pi(\sqrt P)})$ 才是最优．视 $\pi(n)=O(\frac{n}{\log n})$，则总时间复杂度可以平衡为 $O(\frac{P^{0.75}}{\log^{0.5} P})$．
+
+接下来是如何求答案，假设当前要求的是 $\operatorname{ind}_g y$，若 $y$ 在根号范围内（下文说的根号范围，实际可能要比 $\sqrt P$ 大 $1$）直接返回，否则设 $v=\lfloor\frac{P}y\rfloor$，$r=P\bmod y$，则 $P=vy+r$，所以 $y=\frac{P-r}v$，可以得出 $\operatorname{ind}_g y\equiv \operatorname{ind}_g (P-r)-\operatorname{ind}_g v\equiv \operatorname{ind}_g (-r)-\operatorname{ind}_g v\equiv \operatorname{ind}_g (P-1)+\operatorname{ind}_g r-\operatorname{ind}_g v$．
+
+注意到此时 $P-1$ 的离散对数可以提前算好，$v$ 在根号范围以内，只需递归计算 $r$ 的离散对数，但时间复杂度很不优秀．
+
+考虑 $y$ 的另一种表达方式，因为 $P=vy+r=(v+1)y+r-y$，所以 $y=\frac{P-r+y}{v+1}$，即得 $\operatorname{ind}_g y\equiv \operatorname{ind}_g (y-r)-\operatorname{ind}_g (v+1)$，此时 $v+1$ 也在根号范围内，只需要递归计算 $y-r$ 的离散对数．
+
+综合这两种计算方式，我们发现 $\min(r,y-r)\le \frac{y}2$，于是递归计算较小的一方可以做到 $O(\log P)$．
+
+至此得到一个 $O(\frac{P^{0.75}}{\log^{0.5} P})-O(\log p)$ 的较优秀算法．
+
+## 参考代码
+
+???+ note "实现"
+    === "C++"
+        ```cpp
+        __gnu_pbds::gp_hash_table<int, int> qwq;
+        
+        int qpow(int x, int y) {
+          int ans = 1;
+          while (y) {
+            if (y & 1) ans = ans * x % P;
+            x = x * x % P;
+            y >>= 1;
+          }
+          return ans;
+        }
+        
+        int calc(int x) {
+          int s = x;
+          for (int i = 0; i <= P / B; ++i) {
+            if (qwq.find(s) != qwq.end()) return i * B + qwq[s];
+            s = s * inv % P;
+          }
+          throw;
+        }
+        
+        int Lg[N];
+        
+        void init() {
+          int s = 1;
+          for (int i = 0; i < B; ++i) {
+            if (qwq.find(s) != qwq.end()) break;
+            qwq[s] = i, s = s * g % P;
+          }
+          inv = qpow(qpow(g, B), P - 2);
+          for (int i = 2; i <= sq; ++i) {
+            if (!vis[i]) {
+              p[++t] = i;
+              Lg[i] = calc(i);
+              for (int j = 1; j <= t && p[j] * i <= sq; ++j) {
+                vis[p[j] * i] = 1;
+                Lg[p[j] * i] = (Lg[p[j]] + Lg[i]) % (P - 1);
+                if (i % p[j] == 0) break;
+              }
+            }
+          }
+        }
+        
+        int solve(int y) {
+          if (y <= sq) return Lg[y];
+          int k = P / y, r = P % y;
+          if (r < y - r)
+            return (lxy + solve(r) - Lg[k] + (P - 1)) %
+                   (P - 1);  // lxy 为 P-1 的离散对数
+          else
+            return (solve(y - r) - Lg[k + 1] + (P - 1)) % (P - 1);
+        }
+        ```
+
 ## 习题
 
 -   [SPOJ MOD](https://www.spoj.com/problems/MOD/) 模板
@@ -108,6 +183,7 @@ $$
 -   [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.com.cn/problem/P4195) 模板
 -   [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F)
 -   [LOJ6542 离散对数](https://loj.ac/problem/6542) index calculus 方法，非模板
+-   [Luogu11175【模板】基于值域预处理的快速离散对数](https://www.luogu.com.cn/problem/P11175) 模板
 
 **本页面部分内容以及代码译自博文 [Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root) 与其英文翻译版 [Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
 
