@@ -38,11 +38,11 @@ author: HeRaNO, konnyakuxzy, littlefrog
 list<vector<char>> orz_list;
 ```
 
-## STL 中的 `rope`
+## libstdc++ 中的 `rope`
 
 ### 导入
 
-STL 中的 `rope` 也起到块状链表的作用，它采用可持久化平衡树实现，可完成随机访问和插入、删除元素的操作．
+libstdc++ 中的 `rope` 也起到块状链表的作用，它采用可持久化平衡树实现，可完成随机访问和插入、删除元素的操作．
 
 由于 `rope` 并不是真正的用块状链表来实现，所以它的时间复杂度并不等同于块状链表，而是相当于可持久化平衡树的复杂度（即 $O(\log n)$）．
 
@@ -60,7 +60,7 @@ using namespace __gnu_cxx;
 
 |             操作            |               作用              |
 | :-----------------------: | :---------------------------: |
-|      `rope <int > a`      | 初始化 `rope`（与 `vector` 等容器很相似） |
+|      `rope<int> a`      | 初始化 `rope`（与 `vector` 等容器很相似） |
 |      `a.push_back(x)`     |       在 `a` 的末尾添加元素 `x`       |
 |     `a.insert(pos, x)`    |   在 `a` 的 `pos` 个位置添加元素 `x`   |
 |     `a.erase(pos, x)`     |  在 `a` 的 `pos` 个位置删除 `x` 个元素  |
