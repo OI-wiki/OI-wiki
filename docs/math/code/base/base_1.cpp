@@ -1,12 +1,9 @@
+// --8<-- [start:from_dec]
 #include <algorithm>
-#include <cassert>
-#include <cctype>
-#include <iostream>
 #include <string>
 
-// --8<-- [start:from_dec]
+// 2 <= base && base <= 36
 std::string from_dec(int x, int base) {
-  assert(2 <= base && base <= 36);
   if (x == 0) return "0";
   std::string res;
   while (x) {
@@ -24,8 +21,11 @@ std::string from_dec(int x, int base) {
 // --8<-- [end:from_dec]
 
 // --8<-- [start:to_dec]
+#include <cctype>
+#include <string>
+
+// 2 <= base && base <= 36
 int to_dec(std::string const& s, int base) {
-  assert(2 <= base && base <= 36);
   int res = 0;
   for (char c : s) {
     res *= base;
@@ -40,6 +40,8 @@ int to_dec(std::string const& s, int base) {
 }
 
 // --8<-- [end:to_dec]
+
+#include <iostream>
 
 int main() {
   int x, base;
