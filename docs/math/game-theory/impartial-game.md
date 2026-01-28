@@ -67,7 +67,7 @@ Nim 游戏中，局面可能的变化可以用博弈图来描述．
 ???+ abstract "Nim 和"
     自然数 $a_1,a_2,\cdots,a_n$ 的 **Nim 和**（Nim sum）定义为 $a_1\oplus a_2\oplus\cdots\oplus a_n$．
 
-所谓 Nim 和，就是 [异或运算](../bit.md#与或异或)．
+所谓 Nim 和，就是 [异或运算](../bit.md#位运算)．
 
 ???+ note "定理"
     Nim 游戏中，状态 $(a_1,a_2,\cdots,a_n)$ 是必败状态 $\mathcal P$，当且仅当 Nim 和

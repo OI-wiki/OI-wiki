@@ -401,7 +401,7 @@ int fac(int acc, int n) {
 
 #### 标量运算符变换
 
-##### 位运算代替乘法
+##### 移位代替乘法
 
 ```cpp
 int a;
@@ -699,7 +699,7 @@ GCC 和 Clang 都支持这个 Sanitizer．包括如下检查项：
 
 Undefined Behavior Sanitizer (a.k.a UBSan) 用于检查代码中的未定义行为．GCC 和 Clang 都支持这个 Sanitizer．自动检查你的程序有无未定义行为．UBSan 的检查项目包括：
 
--   位运算溢出，例如 32 位整数左移 72 位
+-   移位溢出，例如 32 位整数左移 72 位
 -   有符号整数溢出
 -   浮点数转换到整数数据溢出
 
