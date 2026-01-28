@@ -124,11 +124,7 @@ $$
     -   $03_{(8)}+27_{(8)}+45_{(8)}=77_{(8)}$．
 
 ??? note "证明"
-    对定理中的 $a,b,p,l,n,k$，不难发现 $1\leq a<p$，$b>1$ 且 $(a,p)=(b,p)=1$．注意到
-    
-    $$
-    \left(b^k-1\right)a/p=a_1a_2\cdots a_k.\overline{a_{k+1}a_{k+2}\cdots a_{nk}a_1a_2\cdots a_k}-0.\overline{a_{1}a_{2}\cdots a_{nk}},
-    $$
+    对定理中的 $a,b,p,l,n,k$，不难发现 $1\leq a<p$，$b>1$ 且 $(a,p)=(b,p)=1$．
     
     对整数 $0\leq i<l$，令 $f(i)=b^i\cdot a/p-\lfloor b^i\cdot a/p\rfloor$，我们有
     
@@ -138,7 +134,7 @@ $$
     
     注意到 $pf(i)\in\mathbf{N}_+$ 且 $pf(i)\equiv ab^i\pmod p$，因此 $pf(i)=ab^i\bmod p$．
     
-    令 $S_n=\sum_{i=0}^{n-1}f(ik)=\sum_{i=0}^{n-1}0.\overline{a_{ik+1}a_{ik+2}\cdots a_{nk}a_1a_2\cdots a_{ik}}$，我们可以在各个小数间「交换」若干位（例如 $0.\overline{{\color{Orchid}14}{\color{RoyalBlue}28}{\color{YellowGreen}57}}+0.\overline{{\color{RoyalBlue}28}{\color{YellowGreen}57}{\color{Orchid}14}}+0.\overline{{\color{YellowGreen}57}{\color{Orchid}14}{\color{RoyalBlue}28}}=0.\overline{\color{Orchid}141414}+0.\overline{\color{RoyalBlue}282828}+0.\overline{\color{YellowGreen}575757}=0.\overline{\color{Orchid}14}+0.\overline{\color{RoyalBlue}28}+0.\overline{\color{YellowGreen}57}=14/99+28/99+57/99=1$），则
+    令 $S_n=\sum_{i=0}^{n-1}f(ik)=\sum_{i=0}^{n-1}0.\overline{a_{ik+1}a_{ik+2}\cdots a_{nk}a_1a_2\cdots a_{ik}}$，我们可以在各个小数间「交换」若干位（例如 $0.\overline{{\color{Orchid}{14}}{\color{RoyalBlue}{28}}{\color{YellowGreen}{57}}}+0.\overline{{\color{RoyalBlue}{28}}{\color{YellowGreen}{57}}{\color{Orchid}{14}}}+0.\overline{{\color{YellowGreen}{57}}{\color{Orchid}{14}}{\color{RoyalBlue}{28}}}=0.\overline{\color{Orchid}{141414}}+0.\overline{\color{RoyalBlue}{282828}}+0.\overline{\color{YellowGreen}{575757}}=0.\overline{\color{Orchid}{14}}+0.\overline{\color{RoyalBlue}{28}}+0.\overline{\color{YellowGreen}{57}}=14/99+28/99+57/99=1$），则
     
     $$
     \begin{aligned}
@@ -159,7 +155,13 @@ $$
     \sum_{i=0}^{n-1}a_{ik+1}a_{ik+2}\cdots a_{(i+1)k}=\left(b^k-1\right)\frac{\sum_{i=0}^{n-1} \left(ab^{ik}\bmod p\right)}{p}.
     $$
     
-    若 $p\mid \left(b^k-1\right)$，则有 $a_{k+1}a_{k+2}\cdots a_{nk}a_1a_2\cdots a_k=a_{1}a_{2}\cdots a_{nk}$，进而 $a_1a_2\cdots a_k=a_{k+1}a_{k+2}\cdots a_{2k}=\dots=a_{(n-1)k+1}a_{(n-1)k+2}\cdots a_{nk}$，即 $0.\overline{a_1a_2\cdots a_l}=0.\overline{a_1a_2\cdots a_k}$，这与 $l$ 的定义矛盾，因此 $p\nmid \left(b^k-1\right)$．
+    若 $p\mid \left(b^k-1\right)$，注意到
+    
+    $$
+    \left(b^k-1\right)a/p=a_1a_2\cdots a_k.\overline{a_{k+1}a_{k+2}\cdots a_{nk}a_1a_2\cdots a_k}-0.\overline{a_{1}a_{2}\cdots a_{nk}},
+    $$
+    
+    则有 $a_{k+1}a_{k+2}\cdots a_{nk}a_1a_2\cdots a_k=a_{1}a_{2}\cdots a_{nk}$，进而 $a_1a_2\cdots a_k=a_{k+1}a_{k+2}\cdots a_{2k}=\dots=a_{(n-1)k+1}a_{(n-1)k+2}\cdots a_{nk}$，即 $0.\overline{a_1a_2\cdots a_l}=0.\overline{a_1a_2\cdots a_k}$，这与 $l$ 的定义矛盾，因此 $p\nmid \left(b^k-1\right)$．
     
     故存在正整数 $c=\dfrac{\sum_{i=0}^{n-1} \left(ab^{ik}\bmod p\right)}{p}$，使得
     
@@ -254,7 +256,7 @@ $a_n\cdots a_1a_0$ 在 $b$ 进制下表示的数为 $\sum_{i=0}^n a_ib^i$，而�
 -   [Midy's theorem - Wikipedia](https://en.wikipedia.org/wiki/Midy%27s_theorem)
 -   [N3472 - Binary Literals in the C++ Core Language](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3472.pdf)
 
-[^note1]: 对于非零数，我们把最高的非 $0$ 位之前的 $0$ 称为 [**前导零**](https://en.wikipedia.org/wiki/Leading_zero)（leading zero），对于零，我们将最低位的零视作最高的非 $0$ 位，按照同样的方式定义前导零．类似地，我们可以定义 [**后导零**](https://en.wikipedia.org/wiki/Trailing_zero)（trailing zero）．
+[^note1]: 我们把最高的非 $0$ 位之前的 $0$ 称为 [**前导零**](https://en.wikipedia.org/wiki/Leading_zero)（leading zero）．类似地，我们可以定义 [**后导零**](https://en.wikipedia.org/wiki/Trailing_zero)（trailing zero）．
 
 [^note2]: $a_i$ 对应的基数是 $i+1$，$0\leq a_i\leq i$．注意到 $(n+1)!-n!=n\cdot n!$，所以数在阶乘进制下的表示在去除前导零的情况下是唯一的．
 
