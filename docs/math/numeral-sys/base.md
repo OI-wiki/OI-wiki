@@ -2,7 +2,7 @@ author: c-forrest, Enter-tainer, hhc0001, Ir1d, KingMario, ksyx, Lutra-Fs, MegaO
 
 **进位制**，又称 **进位系统**（carry system）、**进制系统**、**位置记法**（positional notation）、**位值记数法**（place-value notation）、**位置数值系统**（positional numeral system），是一种能用有限种符号表示所有自然数的数字系统．一种进位制可以使用的符号数目称为 **基数**（radix）或 **底数**（base），基数为 $n$ 的进位制称为 $n$ 进制（$n>1$），例如我们最常用的十进制，通常只使用 `0, 1, 2, 3, 4, 5, 6, 7, 8, 9` 这十个符号来记数．进位指的是「当一个数字的某一位达到基数时，将其置为 0 并使高一位的数加一」的操作．
 
-一般地，我们常将一个 $n$ 进制的数记作 $(a_k\cdots a_1a_0)_n$、$(a_k\cdots a_1a_0)_{(n)}$、${a_k\cdots a_1a_0}_{(n)}$ 等．若基数隐含在上下文中我们也可以省略下标．注意此处的 $a_k\cdots a_1a_0$ 并不是 $k+1$ 个数的乘积，而是一串序列．
+一般地，我们常将一个 $n$ 进制的数记作 $(a_k\cdots a_1a_0)_n$、$(a_k\cdots a_1a_0)_{(n)}$、${a_k\cdots a_1a_0}_{(n)}$、${a_k\cdots a_1a_0}_{n}$ 等．若基数隐含在上下文中我们也可以省略下标．注意此处的 $a_k\cdots a_1a_0$ 并不是 $k+1$ 个数的乘积，而是一串序列．
 
 对于 $k$ 进制数 $a_n\cdots a_1a_0$，其表示的值为 $a_nk^n+\cdots+a_1k^1+a_0k^0=\sum_{i=0}^n a_ik^i$；对一个数 $m$，设其 $k$ 进制下的表示为 $a_n\cdots a_1a_0$，则有：
 
@@ -106,6 +106,74 @@ $$
 
 另外，对 $k$ 进制下的数，我们设 $d=k-1$，则 $\cdots dd=:\overline{d}=\sum_{i=0}^{\infty} dk^i=-1$，所以对 $n$ 位数 $x$，设其数基补数在 $k$ 进制下的表示为 $a_{n-1}\cdots a_1a_0$，则 $\overline{d}a_{n-1}\cdots a_1a_0$ 即为 $\sum_{i=0}^{n-1}a_ik^i+\sum_{i=n}^{\infty} dk^i=k^n-x+(-k^n)=-x$．这种「无限位的数」的思想可以推广为 [**$p$ 进数**](https://en.wikipedia.org/wiki/P-adic_number)（$p$-adic number）．
 
+此外，我们有一个关于补数和无限循环小数的有趣定理：
+
+???+ note "Midy 定理"
+    设 $a$ 是正整数，$p$ 是正素数，$a/p$ 在 $b$ 进制下的表示为 $0.\overline{a_1a_2\cdots a_l}$，其中 $l$ 为（最短）循环节长度．若 $l$ 是偶数[^note5]，设 $l=2k$，则 $a_1a_2\cdots a_k$ 是 $a_{k+1}a_{k+2}\cdots a_{2k}$ 的减补数，即：
+    
+    -   $a_i+a_{i+k}=b$，
+    -   $a_1a_2\cdots a_k+a_{k+1}a_{k+2}\cdots a_{2k}=b^k-1$．
+    
+    进一步，若 $l$ 有非平凡因子 $k$，设 $l=nk$，则 $\sum_{i=0}^{n-1}a_{ik+1}a_{ik+2}\cdots a_{(i+1)k}$ 是 $b^k-1$ 的倍数．
+    
+    例如 $1/19=0.\overline{052~631~578~947~368~421}=0.\overline{032~745}_{(8)}$，我们有：
+    
+    -   $052~631~578+947~368~421=999~999~999$，
+    -   $052+631+578+947+368+421=3\times 999$，
+    -   $032_{(8)}+745_{(8)}=777_{(8)}$，
+    -   $03_{(8)}+27_{(8)}+45_{(8)}=77_{(8)}$．
+
+??? note "证明"
+    对定理中的 $a,b,p,l,n,k$，不难发现 $1\leq a<p$，$b>1$ 且 $(a,p)=(b,p)=1$．注意到
+    
+    $$
+    \left(b^k-1\right)a/p=a_1a_2\cdots a_k.\overline{a_{k+1}a_{k+2}\cdots a_{nk}a_1a_2\cdots a_k}-0.\overline{a_{1}a_{2}\cdots a_{nk}},
+    $$
+    
+    对整数 $0\leq i<l$，令 $f(i)=b^i\cdot a/p-\lfloor b^i\cdot a/p\rfloor$，我们有
+    
+    $$
+    0<f(i)=0.\overline{a_{i+1}a_{i+2}\cdots a_{nk}a_1a_2\cdots a_i}<1 \implies 0<pf(i)<p.
+    $$
+    
+    注意到 $pf(i)\in\mathbf{N}_+$ 且 $pf(i)\equiv ab^i\pmod p$，因此 $pf(i)=ab^i\bmod p$．
+    
+    令 $S_n=\sum_{i=0}^{n-1}f(ik)=\sum_{i=0}^{n-1}0.\overline{a_{ik+1}a_{ik+2}\cdots a_{nk}a_1a_2\cdots a_{ik}}$，我们可以在各个小数间「交换」若干位（例如 $0.\overline{{\color{Orchid}14}{\color{RoyalBlue}28}{\color{YellowGreen}57}}+0.\overline{{\color{RoyalBlue}28}{\color{YellowGreen}57}{\color{Orchid}14}}+0.\overline{{\color{YellowGreen}57}{\color{Orchid}14}{\color{RoyalBlue}28}}=0.\overline{\color{Orchid}141414}+0.\overline{\color{RoyalBlue}282828}+0.\overline{\color{YellowGreen}575757}=0.\overline{\color{Orchid}14}+0.\overline{\color{RoyalBlue}28}+0.\overline{\color{YellowGreen}57}=14/99+28/99+57/99=1$），则
+    
+    $$
+    \begin{aligned}
+        S_n&=\sum_{i=0}^{n-1}0.\overline{a_{ik+1}a_{ik+2}\cdots a_{(i+1)k}}\\
+        &=\sum_{i=0}^{n-1}a_{ik+1}a_{ik+2}\cdots a_{(i+1)k}/\left(b^k-1\right),
+    \end{aligned}
+    $$
+    
+    进而
+    
+    $$
+    pS_n=p\sum_{i=0}^{n-1}a_{ik+1}a_{ik+2}\cdots a_{(i+1)k}/\left(b^k-1\right)= \sum_{i=0}^{n-1} \left(ab^{ik}\bmod p\right),
+    $$
+    
+    因此
+    
+    $$
+    \sum_{i=0}^{n-1}a_{ik+1}a_{ik+2}\cdots a_{(i+1)k}=\left(b^k-1\right)\frac{\sum_{i=0}^{n-1} \left(ab^{ik}\bmod p\right)}{p}.
+    $$
+    
+    若 $p\mid \left(b^k-1\right)$，则有 $a_{k+1}a_{k+2}\cdots a_{nk}a_1a_2\cdots a_k=a_{1}a_{2}\cdots a_{nk}$，进而 $a_1a_2\cdots a_k=a_{k+1}a_{k+2}\cdots a_{2k}=\dots=a_{(n-1)k+1}a_{(n-1)k+2}\cdots a_{nk}$，即 $0.\overline{a_1a_2\cdots a_l}=0.\overline{a_1a_2\cdots a_k}$，这与 $l$ 的定义矛盾，因此 $p\nmid \left(b^k-1\right)$．
+    
+    故存在正整数 $c=\dfrac{\sum_{i=0}^{n-1} \left(ab^{ik}\bmod p\right)}{p}$，使得
+    
+    $$
+    \sum_{i=0}^{n-1}a_{ik+1}a_{ik+2}\cdots a_{(i+1)k}=c\left(b^k-1\right).
+    $$
+
+???+ note "推论"
+    对上述的 $b,n,k,p$，有
+    
+    $$
+    \sum_{i=0}^{n-1} b^{ik}\equiv 0\pmod p.
+    $$
+
 ## 广义进制系统
 
 标准的进制系统中，基数 $b$ 总是一个固定的正数，每个数位在 $b$ 种不同的符号中选取，用以表示一个非负数（不考虑小数点和负号）．实际上仍有许多记数系统和进制系统有类似的特征，但不完全符合进制系统的规定，我们把这样的记数系统称为 **广义进制系统** 或 **非标准进制系统**（Non-standard positional numeral systems）．下面介绍几种常见的广义进制系统．
@@ -183,6 +251,7 @@ $a_n\cdots a_1a_0$ 在 $b$ 进制下表示的数为 $\sum_{i=0}^n a_ib^i$，而�
 -   [Method of complements - Wikipedia](https://en.wikipedia.org/wiki/Method_of_complements)
 -   [Non-standard positional numeral systems - Wikipedia](https://en.wikipedia.org/wiki/Non-standard_positional_numeral_systems)
 -   [Bijective numeration - Wikipedia](https://en.wikipedia.org/wiki/Bijective_numeration)
+-   [Midy's theorem - Wikipedia](https://en.wikipedia.org/wiki/Midy%27s_theorem)
 -   [N3472 - Binary Literals in the C++ Core Language](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3472.pdf)
 
 [^note1]: 对于非零数，我们把最高的非 $0$ 位之前的 $0$ 称为 [**前导零**](https://en.wikipedia.org/wiki/Leading_zero)（leading zero），对于零，我们将最低位的零视作最高的非 $0$ 位，按照同样的方式定义前导零．类似地，我们可以定义 [**后导零**](https://en.wikipedia.org/wiki/Trailing_zero)（trailing zero）．
@@ -192,3 +261,5 @@ $a_n\cdots a_1a_0$ 在 $b$ 进制下表示的数为 $\sum_{i=0}^n a_ib^i$，而�
 [^note3]: `0` 是八进制字面量．
 
 [^note4]: 有的地区使用「$,$」表示小数点．
+
+[^note5]: 当 $a=1$ 时，在十进制下满足该条件的素数序列是 [A028416](https://oeis.org/A028416)．
