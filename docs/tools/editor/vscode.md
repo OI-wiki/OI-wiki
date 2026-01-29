@@ -144,10 +144,11 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 
 ### 快捷键
 
-官方快捷键 PDF 如下，也可以在 VS Code 中按下 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> 打开命令面板并输入命令 `> Help: Keyboard Shortcuts Reference` 打开．[^ref3]
-- [Windows 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
-- [Linux 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
-- [Mac OS 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+官方快捷键 PDF 如下，也可以在 VS Code 中按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>打开命令面板并输入命令 `> Help: Keyboard Shortcuts Reference` 打开．[^ref3]
+
+-   [Windows 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+-   [Linux 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
+-   [Mac OS 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
 
 部分快捷键：
 
