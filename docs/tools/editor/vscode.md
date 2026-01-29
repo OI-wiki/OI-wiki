@@ -6,6 +6,8 @@ Visual Studio Code（以下简称 VS Code）是一个由微软开发，同时支
 
 官网：[Visual Studio Code - The open source AI code editor](https://code.visualstudio.com/)
 
+在阅读以下内容前，建议你先简单了解 VS Code 的基本使用方法：[开始使用 Get started](https://code.visualstudio.com/docs/getstarted/getting-started)．
+
 ## 使用 C/C++ Compile Run 扩展运行代码
 
 C/C++ Compile Run 是一个专注于 C/C++ 单文件编译与运行的插件．它免去了传统 C/C++ 插件中繁琐的配置步骤，非常适合编程竞赛的需要，上手迅速，操作简单．
@@ -142,7 +144,7 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 
 ### 快捷键
 
-官方快捷键 PDF 如下，也可以在 VS Code 中按下 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> 打开命令面板并输入命令 `> Help: Keyboard Shortcuts Reference` 打开.
+官方快捷键 PDF 如下，也可以在 VS Code 中按下 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> 打开命令面板并输入命令 `> Help: Keyboard Shortcuts Reference` 打开．[^ref3]
 - [Windows 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 - [Linux 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
 - [Mac OS 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
@@ -182,4 +184,4 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 
 [^ref2]: 从扩展商店安装 CodeLLDB 后它会再从 GitHub 下载本体，下载速度奇慢，有时下载出错，所以最好直接下载本体然后安装．更新也可直接按照以上步骤下载安装．
 
-[^ref3]: VS Code 官方文档：[](https://code.visualstudio.com/docs/)
+[^ref3]: [VS Code 官方文档](https://code.visualstudio.com/docs/)．
