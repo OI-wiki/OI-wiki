@@ -43,11 +43,11 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 ## 更多扩展
 
-Chinese (Simplified) (简体中文) Language Pack for Visual Studio Code 是简体中文翻译扩展，如果你不熟悉英文，请务必安装它来降低你学习 VS Code 的门槛.
+Chinese (Simplified)（简体中文）Language Pack for Visual Studio Code 是简体中文翻译扩展，如果你不熟悉英文，请务必安装它来降低你学习 VS Code 的门槛．
 
-OI Runner++ 在一键运行代码的基础上，还支持保留程序的输入，调试时不必频繁输入，直观地看到程序的输出输出、运行时间等，同时支持 Python、C++ 两种语言.
+OI Runner++ 在一键运行代码的基础上，还支持保留程序的输入，调试时不必频繁输入，直观地看到程序的输出输出、运行时间等，同时支持 Python、C++ 两种语言．
 
-vscode-luogu 可以为你轻松的让你在 VS Code 上使用洛谷，省去浏览器和 VS Code 窗口频繁切换的动作，如果你经常使用洛谷，它会是一个不错的选择.
+vscode-luogu 可以为你轻松的让你在 VS Code 上使用洛谷，省去浏览器和 VS Code 窗口频繁切换的动作，如果你经常使用洛谷，它会是一个不错的选择．
 
 ## 使用 C/C++ 扩展编译并调试/智能补全代码
 
