@@ -1,4 +1,4 @@
-author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh, xiaofu-15191, Sekakou
+author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh, xiaofu-15191, Sekakou, fuxianhu
 
 ## 简介
 
@@ -41,6 +41,14 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
     
     记得勾选设置中的 Run In Terminal 选项，如图：![](./images/vscode-7.png)
 
+## 更多扩展
+
+Chinese (Simplified) (简体中文) Language Pack for Visual Studio Code 是简体中文翻译扩展，如果你不熟悉英文，请务必安装它来降低你学习 VS Code 的门槛.
+
+OI Runner++ 在一键运行代码的基础上，还支持保留程序的输入，调试时不必频繁输入，直观地看到程序的输出输出、运行时间等，同时支持 Python、C++ 两种语言.
+
+vscode-luogu 可以为你轻松的让你在 VS Code 上使用洛谷，省去浏览器和 VS Code 窗口频繁切换的动作，如果你经常使用洛谷，它会是一个不错的选择.
+
 ## 使用 C/C++ 扩展编译并调试/智能补全代码
 
 ### 安装扩展
@@ -50,7 +58,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 ![](./images/vscode-2.png)
 
 ???+ warning "Warning"
-    在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了 `PATH` 中．请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端．
+    在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了环境变量 `PATH` 中．请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端．
 
 ### 配置 GDB/LLDB 调试器
 
@@ -161,7 +169,7 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 
 ### 多光标
 
-按住<kbd>Alt</kbd>并单击即可在编辑器中添加光标，多数编辑操作都可同时进行；按住鼠标中键并在编辑器中移动也可添加多行光标，如图：
+按住<kbd>Alt</kbd>并单击即可在编辑器中添加光标，多数编辑操作都可同时进行；按住鼠标中键并在编辑器中拖动也可添加多行光标，如图：
 
 ![](images/vscode-12.gif)
 
