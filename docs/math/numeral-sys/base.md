@@ -215,6 +215,13 @@ $$
 -   $k\geq 2$ 时，数 $n$ 在双射 $k$ 进制下表示的长度为 $\lfloor\log_k (n+1)(k-1)\rfloor$．
 -   $k\geq 2$ 时，若一个数 $n$ 在 $k$ 进制下的表示中不含 $0$，则其在 $k$ 进制下的表示和在双射 $k$ 进制下的表示相同．
 
+双射 $k$ 进制转十进制和 $k$ 进制转十进制的代码相同，下面是十进制转双射 $k$ 进制的参考实现
+
+???+ note "实现"
+    ```cpp
+    --8<-- "docs/math/code/base/base_1.cpp:from_dec_bi"
+    ```
+
 ### 有符号位数进制
 
 有的进位制系统允许数位中出现负数，例如 [平衡三进制](./balanced-ternary.md)．
@@ -238,6 +245,16 @@ Gray 码又叫 **循环二进制码** 或 **反射二进制码**（reflected bin
 $a_n\cdots a_1a_0$ 在 $b$ 进制下表示的数为 $\sum_{i=0}^n a_ib^i$，而在混合基数进制下，其表示的数为 $\sum_{i=0}^n a_i\prod_{j=0}^{i-1}b_j$，其中 $b_j$ 为 $a_j$ 对应的基数．
 
 在算法竞赛中，最常见的混合基数进制系统是 [**阶乘进制**](https://en.wikipedia.org/wiki/Factorial_number_system)（factorial number system），其中的数可以记作 ${a_n\cdots a_1a_0}_{~!}$，其表示的数为 $\sum_{i=0}^na_i i!$[^note2]．阶乘进制在算法竞赛中的应用可参见 [Lehmer 码/Cantor 展开](../permutation.md#排名)．
+
+???+ note "实现（十进制转阶乘进制）"
+    ```cpp
+    --8<-- "docs/math/code/base/base_1.cpp:from_dec_factorial"
+    ```
+
+???+ note "实现（阶乘进制转十进制）"
+    ```cpp
+    --8<-- "docs/math/code/base/base_1.cpp:to_dec_factorial"
+    ```
 
 ## C++ 中的实现
 
