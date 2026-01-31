@@ -38,7 +38,9 @@ uint64_t pow(uint64_t x, uint64_t y) {
 // Not necessarily be the exact Pisano period.
 uint32_t calc_cycle_from_mod(uint32_t m) {
   uint32_t res = 1;
-  for (auto [p, e] : factorize(m)) {
+  for (auto pe : factorize(m)) {
+    auto p = pe.first;
+    auto e = pe.second;
     uint64_t cur = pow(p, e - 1);
     if (p == 2) {
       cur *= 3;
