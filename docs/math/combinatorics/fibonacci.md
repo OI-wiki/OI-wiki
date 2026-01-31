@@ -246,7 +246,7 @@ $$
 4.  对于 $m=5^e~(e\in\mathbf N_+)$，有 $\pi(m)=4\cdot 5^e$．
 5.  最后，对于素数 $p\equiv\pm1\pmod{10}$，有 $\pi(p)\mid(p-1)$；对于素数 $p\equiv\pm3\pmod{10}$，有 $\pi(p)\mid 2(p+1)$．
 
-综合这些情形，可以说明：模 $m$ 的 Pisano 周期不会超过 $6m$．
+综合这些情形，可以说明：模 $m$ 的 Pisano 周期不会超过 $6m$，等号当且仅当 $m = 2\times 5^e~(e\in\mathbf N_+)$ 时取得．
 
 利用上述结论，可以基于素因数分解算法，得到如下快速计算 Pisano 周期的方法：
 
@@ -324,45 +324,49 @@ $$
 
 因此，由 [阶的性质](../number-theory/primitive-root.md#幂的循环结构)，有 $\pi(p^{e+1})\mid kp = p\pi(p^e)$．对 $e$ 归纳可知，$\pi(p^e)\mid p^{e-1}\pi(p)$ 总是成立．
 
-对于素数模 $p$ 的情形，本文讨论两种证明方式．一种是利用斐波那契数列的通项公式：
+对于素数模 $p$ 的情形，本文讨论两种证明方式．
 
-$$
-F_n = \dfrac{1}{\sqrt{5}}\left(\dfrac{1+\sqrt{5}}{2}\right)^n - \dfrac{1}{\sqrt{5}}\left(\dfrac{1-\sqrt{5}}{2}\right)^n.
-$$
-
-将它用二项式定理展开，并消去根式项：
-
-$$
-F_n = \dfrac{1}{2^{n-1}}\sum_{i=0}^{\lfloor(n-1)/2\rfloor}\binom{n}{2i+1}5^i.
-$$
-
-对于 $p=2$，这一表达式无法直接取模，但可以验证对应的 Pisano 周期为 $\pi(2)=3$．对于 $p=5$，有 $F_n\equiv n\cdot 3^{n-1}\pmod{p}$，可以直接验证对应的 Pisano 周期为 $\pi(5)=20$．对于剩余的奇素模数，可以分为两种情形：
-
--   如果 $p\equiv 1,4\pmod{5}$，就有
+=== "利用通项公式"
+    一种是利用斐波那契数列的通项公式：
 
     $$
-    \begin{aligned}
-    F_{p} &\equiv \dfrac{1}{2^{p-1}}\binom{p}{p}5^{(p-1)/2} \equiv 1 \pmod{p},\\
-    F_{p+1} &\equiv \dfrac{1}{2^p}\left(\binom{p+1}{1} + \binom{p+1}{p}5^{(p-1)/2}\right) \equiv 1 \pmod{p}.
-    \end{aligned}
+    F_n = \dfrac{1}{\sqrt{5}}\left(\dfrac{1+\sqrt{5}}{2}\right)^n - \dfrac{1}{\sqrt{5}}\left(\dfrac{1-\sqrt{5}}{2}\right)^n.
     $$
 
-    化简过程中，利用了如下结论：由 [Lucas 定理](../number-theory/lucas.md)，对于 $0 < k < p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，而对于 $1 < k < p$ 都有 $\dbinom{p+1}{k}\equiv 0\pmod{p}$；由 [Fermat 小定理](../number-theory/fermat.md#费马小定理)，有 $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$；对于 $p\equiv 1,4\pmod{5}$，都有 $p$ 是模 $5$ 的二次剩余，利用 [二次互反律](../number-theory/quad-residue.md#二次互反律)，也有 $5$ 是模 $p$ 的二次剩余，故而 $5^{(p-1)/2} \equiv 1\pmod{p}$．由此，有 $(F_p,F_{p+1}) \equiv (F_1,F_2) \pmod{p}$，所以 $(p-1)$ 是模 $p$ 的一个周期．所以，$\pi(p)\mid(p-1)$．
-
--   如果 $p\equiv 2,3\pmod{5}$，就有
+    将它用二项式定理展开，并消去根式项：
 
     $$
-    \begin{aligned}
-    F_{2p} &\equiv \dfrac{1}{2^{2p-1}}\binom{2p}{p}5^{(p-1)/2} \equiv -1 \pmod{p},\\
-    F_{2p+1} &\equiv \dfrac{1}{2^{2p}}\left(\binom{2p+1}{1} + \binom{2p+1}{p}5^{(p-1)/2} + \binom{2p+1}{2p+1}5^p\right) \equiv -1\pmod{p}.
-    \end{aligned}
+    F_n = \dfrac{1}{2^{n-1}}\sum_{i=0}^{\lfloor(n-1)/2\rfloor}\binom{n}{2i+1}5^i.
     $$
 
-    化简过程中，利用了如下结论：由 Lucas 定理，对于 $0 < k < p$ 和 $p < k < 2p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，以及 $\dbinom{2p}{p}\equiv 2\pmod{p}$，而对于 $1 < k < p$ 和 $p + 1 < k < 2p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，以及 $\dbinom{2p+1}{p}\equiv 2\pmod{p}$；由 Fermat 小定理，有 $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$；对于 $p\equiv 2,3\pmod{5}$，都有 $p$ 是模 $5$ 的二次非剩余，利用二次互反律，也有 $5$ 是模 $p$ 的二次非剩余，故而 $5^{(p-1)/2} \equiv -1\pmod{p}$．由此，有 $(F_{2p},F_{2p+1}) \equiv (F_{-2},F_{-1}) \pmod{p}$，所以 $2(p+1)$ 是模 $p$ 的一个周期．所以，$\pi(p)\mid 2(p+1)$．
+    对于 $p=2$，这一表达式无法直接取模，但可以验证对应的 Pisano 周期为 $\pi(2)=3$．对于 $p=5$，有 $F_n\equiv n\cdot 3^{n-1}\pmod{p}$，可以直接验证对应的 Pisano 周期为 $\pi(5)=20$．对于剩余的奇素模数，可以分为两种情形：
 
-这就完成了证明．这一方法的局限性在于它高度依赖于斐波那契数列的通项公式，所以较难直接推广到一般的情形．
+    -   如果 $p\equiv 1,4\pmod{5}$，就有
 
-另一种证明方式则是试图直接计算矩阵 $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ 的阶．它的 [特征多项式](../linear-algebra/char-poly.md) 是 $f(x) = x^2-x-1$，对应的判别式为 $\Delta = 5$．对于模 $p=5$，有 $\Delta\equiv 0\pmod{5}$，矩阵 $A$ 有两个相同特征值 $\lambda=3$，且不能对角化，需要单独计算．对于模 $p\equiv 1,4\pmod{5}$，由二次互反律可知，判别式 $\Delta=5$ 是模 $p$ 的二次剩余，矩阵 $A$ 在域 $\mathbf F_p$ 内有两个相异特征值 $\lambda_1\neq\lambda_2$，矩阵 $A$ 的阶就是 $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$，必然整除 $|\mathbf F_p^\times|=p-1$．对于模 $p\equiv 2,3\pmod{5}$，由二次互反律可知，判别式 $\Delta=5$ 是模 $p$ 的二次非剩余，矩阵 $A$ 在域 $\mathbf F_p$ 内没有特征值，而只有在 [扩域](../algebra/field-theory.md#域的扩张) $\mathbf F_p[\sqrt{5}]$ 内才有两个相异特征值 $\lambda_1\neq\lambda_2$，由于 Frobenius 自同态 $x\mapsto x^p$ 将两根交换，有 $\lambda_2=\lambda_1^p$，故而 $\lambda_1^{p+1}=\lambda_2^{p+1}=\lambda_1\lambda_2=-1$，亦即 $\lambda_1^{2(p+1)}=\lambda_2^{2(p+1)}=1$，由此，矩阵 $A$ 的阶就是 $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$，必然整除 $2(p+1)$．这就得到了与前种方法一致的结论．
+        $$
+        \begin{aligned}
+        F_{p} &\equiv \dfrac{1}{2^{p-1}}\binom{p}{p}5^{(p-1)/2} \equiv 1 \pmod{p},\\
+        F_{p+1} &\equiv \dfrac{1}{2^p}\left(\binom{p+1}{1} + \binom{p+1}{p}5^{(p-1)/2}\right) \equiv 1 \pmod{p}.
+        \end{aligned}
+        $$
+
+        化简过程中，利用了如下结论：由 [Lucas 定理](../number-theory/lucas.md)，对于 $0 < k < p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，而对于 $1 < k < p$ 都有 $\dbinom{p+1}{k}\equiv 0\pmod{p}$；由 [Fermat 小定理](../number-theory/fermat.md#费马小定理)，有 $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$；对于 $p\equiv 1,4\pmod{5}$，都有 $p$ 是模 $5$ 的二次剩余，利用 [二次互反律](../number-theory/quad-residue.md#二次互反律)，也有 $5$ 是模 $p$ 的二次剩余，故而 $5^{(p-1)/2} \equiv 1\pmod{p}$．由此，有 $(F_p,F_{p+1}) \equiv (F_1,F_2) \pmod{p}$，所以 $(p-1)$ 是模 $p$ 的一个周期．所以，$\pi(p)\mid(p-1)$．
+
+    -   如果 $p\equiv 2,3\pmod{5}$，就有
+
+        $$
+        \begin{aligned}
+        F_{2p} &\equiv \dfrac{1}{2^{2p-1}}\binom{2p}{p}5^{(p-1)/2} \equiv -1 \pmod{p},\\
+        F_{2p+1} &\equiv \dfrac{1}{2^{2p}}\left(\binom{2p+1}{1} + \binom{2p+1}{p}5^{(p-1)/2} + \binom{2p+1}{2p+1}5^p\right) \equiv -1\pmod{p}.
+        \end{aligned}
+        $$
+
+        化简过程中，利用了如下结论：由 Lucas 定理，对于 $0 < k < p$ 和 $p < k < 2p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，以及 $\dbinom{2p}{p}\equiv 2\pmod{p}$，而对于 $1 < k < p$ 和 $p + 1 < k < 2p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，以及 $\dbinom{2p+1}{p}\equiv 2\pmod{p}$；由 Fermat 小定理，有 $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$；对于 $p\equiv 2,3\pmod{5}$，都有 $p$ 是模 $5$ 的二次非剩余，利用二次互反律，也有 $5$ 是模 $p$ 的二次非剩余，故而 $5^{(p-1)/2} \equiv -1\pmod{p}$．由此，有 $(F_{2p},F_{2p+1}) \equiv (F_{-2},F_{-1}) \pmod{p}$，所以 $2(p+1)$ 是模 $p$ 的一个周期．所以，$\pi(p)\mid 2(p+1)$．
+
+    这就完成了证明．这一方法的局限性在于它高度依赖于斐波那契数列的通项公式，所以较难直接推广到一般的情形．
+
+=== "利用扩域"
+    另一种证明方式则是试图直接计算矩阵 $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ 的阶．它的 [特征多项式](../linear-algebra/char-poly.md) 是 $f(x) = x^2-x-1$，对应的判别式为 $\Delta = 5$．对于模 $p=5$，有 $\Delta\equiv 0\pmod{5}$，矩阵 $A$ 有两个相同特征值 $\lambda=3$，且不能对角化，需要单独计算．对于模 $p\equiv 1,4\pmod{5}$，由二次互反律可知，判别式 $\Delta=5$ 是模 $p$ 的二次剩余，矩阵 $A$ 在域 $\mathbf F_p$ 内有两个相异特征值 $\lambda_1\neq\lambda_2$，矩阵 $A$ 的阶就是 $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$，必然整除 $|\mathbf F_p^\times|=p-1$．对于模 $p\equiv 2,3\pmod{5}$，由二次互反律可知，判别式 $\Delta=5$ 是模 $p$ 的二次非剩余，矩阵 $A$ 在域 $\mathbf F_p$ 内没有特征值，而只有在 [扩域](../algebra/field-theory.md#域的扩张) $\mathbf F_p[\sqrt{5}]$ 内才有两个相异特征值 $\lambda_1\neq\lambda_2$，由于 Frobenius 自同态 $x\mapsto x^p$ 将两根交换，有 $\lambda_2=\lambda_1^p$，故而 $\lambda_1^{p+1}=\lambda_2^{p+1}=\lambda_1\lambda_2=-1$，亦即 $\lambda_1^{2(p+1)}=\lambda_2^{2(p+1)}=1$，由此，矩阵 $A$ 的阶就是 $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$，必然整除 $2(p+1)$．这就得到了与前种方法一致的结论．
 
 综上，对于不同的情形，相应地有：
 
