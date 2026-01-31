@@ -21,7 +21,7 @@ auto factorize(uint32_t m) {
 
 uint64_t gcd(uint64_t x, uint64_t y) { return y ? gcd(y, x % y) : x; }
 
-uint64_t lcm(uint64_t x, uint64_t y) { return x * y / gcd(x, y); }
+uint64_t lcm(uint64_t x, uint64_t y) { return x / gcd(x, y) * y; }
 
 uint64_t pow(uint64_t x, uint64_t y) {
   uint64_t res = 1;
