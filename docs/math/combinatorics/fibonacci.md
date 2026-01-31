@@ -252,46 +252,7 @@ $$
 
 ??? example "参考代码"
     ```cpp
-    struct prime {
-      unsigned long long p;
-      int times;
-    };
-    
-    struct prime pp[2048];
-    int pptop;
-    
-    unsigned long long get_cycle_from_mod(
-        unsigned long long mod)  // 这里求解的只是周期，不一定是最小正周期
-    {
-      pptop = 0;
-      srand(time(nullptr));
-      while (n != 1) {
-        __int128_t factor = (__int128_t)10000000000 * 10000000000;
-        min_factor(mod, &factor);  // 计算最小素因数
-        struct prime temp;
-        temp.p = factor;
-        for (temp.times = 0; mod % factor == 0; temp.times++) {
-          mod /= factor;
-        }
-        pp[pptop] = temp;
-        pptop++;
-      }
-      unsigned long long m = 1;
-      for (int i = 0; i < pptop; ++i) {
-        int g;
-        if (pp[i].p == 2) {
-          g = 3;
-        } else if (pp[i].p == 5) {
-          g = 20;
-        } else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4) {
-          g = pp[i].p - 1;
-        } else {
-          g = (pp[i].p + 1) << 1;
-        }
-        m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
-      }
-      return m;
-    }
+    --8<-- "docs/math/code/combinatorics/fibonacci/pisano_estimate.cpp:pisano"
     ```
 
 这样得到的周期可能只是 Pisano 周期的一个倍数．要得到精确的 Pisano 周期，可以进一步考察该周期的因数；或者，可以直接通过 [BSGS 算法](../number-theory/discrete-logarithm.md#大步小步算法) 以 $O(\sqrt{m})$ 的时间复杂度计算．
