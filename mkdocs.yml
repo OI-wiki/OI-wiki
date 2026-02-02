@@ -177,9 +177,9 @@ nav:
     - 动态规划基础: dp/basic.md
     - 记忆化搜索: dp/memo.md
     - 背包 DP:
-      - 背包 dp 基础: dp/knapsack/basic.md
-      - 背包 dp 进阶: dp/knapsack/intermediate.md
-      - 背包 dp 杂项: dp/knapsack/misc.md
+      - 背包 DP 基础: dp/knapsack/basic.md
+      - 背包 DP 进阶: dp/knapsack/intermediate.md
+      - 背包 DP 杂项: dp/knapsack/misc.md
     - 区间 DP: dp/interval.md
     - DAG 上的 DP: dp/dag.md
     - 树形 DP: dp/tree.md
