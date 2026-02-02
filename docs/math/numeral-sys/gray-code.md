@@ -1,6 +1,6 @@
-author: sshwy
+author: CCXXXI, danni, Early0v0, Enter-tainer, frank-xjh, Henry-ZHR, infiWang, Ir1d, mingyEx, ouuan, sshwy, StudyingFather, Tiphereth-A, Yanjun-Zhao
 
-格雷码是一个二进制数系，其中两个相邻数的二进制位只有一位不同．举个例子，$3$ 位二进制数的格雷码序列为
+格雷码是一个二进制数字系统，其中两个相邻数的二进制位只有一位不同．举个例子，$3$ 位二进制数的格雷码序列为
 
 $$
 000,001,011,010,110,111,101,100
