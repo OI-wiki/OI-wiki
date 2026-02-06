@@ -1,3 +1,5 @@
+author: c-forrest, HeRaNO, jyeric, Tiphereth-A, lkjlkjlkj2012
+
 ## 引入
 
 本文介绍利用 WQS 二分优化动态规划问题的方法．在不同的文章中，它也常称作带权二分、凸优化 DP、凸完全单调性 DP、Lagrange 乘子法等，在国外也称作 Aliens Trick．它最早由王钦石在《浅析一类二分方法》一文中总结．
