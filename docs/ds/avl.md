@@ -21,7 +21,7 @@ $$
 ## 性质
 
 1.  空二叉树是一个 AVL 树
-2.  如果 $x$ 是一个 AVL 树的根节点，那么其左右子树也是 AVL 树，并且满足 $|\operatorname{BF}(x)| \leq 2$
+2.  如果 $x$ 是一个 AVL 树的根节点，那么其左右子树也是 AVL 树，并且满足 $|\operatorname{BF}(x)| \leq 1$
 3.  一个包含 $n$ 个节点的 AVL 树的根节点 $x$ 满足 $h(x) = O(\log n)$
 
 ???+ note "树高的证明"
