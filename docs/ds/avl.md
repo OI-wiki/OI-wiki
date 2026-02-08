@@ -52,7 +52,7 @@ $$
 
 ## 旋转
 
-作为基本操作，我们给出旋转的伪代码，其中 $\operatorname{\mathsf{Propagate}}$ 用来向子节点传播「懒惰标记」（与我们熟知的线段树一样），而 $\operatorname{\mathsf{Update}}$ 用来在结构变化时更新子树大小，树高等信息。
+作为基本操作，我们给出旋转的伪代码，其中 $\operatorname{\mathsf{Propagate}}$ 用来向子节点传播「懒惰标记」（与我们熟知的线段树一样），而 $\operatorname{\mathsf{Update}}$ 用来在结构变化时更新子树大小，树高等信息．
 
 $$
 \begin{array}{ll}
@@ -70,7 +70,7 @@ $$
 \end{array}
 $$
 
-这里给出向左旋转的伪代码，向右旋转的伪代码是对称的。
+这里给出向左旋转的伪代码，向右旋转的伪代码是对称的．
 
 ## 过程
 
@@ -179,11 +179,11 @@ $$
 
 AVL 树的其他操作（Predecessor、Successor、Select、Rank 等）与普通的二叉搜索树相同．
 
-考虑记 $s(x)$ 为 AVL 树 $x$ 的大小（即节点数），我们有 $s(\perp) = 0, s(x) = s(x.\mathrm{left}) + 1 + s(x.\mathrm{right})$。
+考虑记 $s(x)$ 为 AVL 树 $x$ 的大小（即节点数），我们有 $s(\perp) = 0, s(x) = s(x.\mathrm{left}) + 1 + s(x.\mathrm{right})$．
 
 ### 合并两个 AVL 树
 
-合并两个 AVL 树 $x, y$ 在这里简单理解为将 $x$ 的中序遍历结果与 $y$ 的中序遍历结果进行拼接得到的 AVL 树。考虑沿着树较高的 AVL 树向子节点遍历，必然会有一时刻两个 AVL 树的高度之差小于等于 $1$，此时我们考虑从较高的树中抽取最左/最右的节点作为新的根节点，而两个 AVL 树作为其左右孩子，此时新的根节点树高最多只会变化 $1$，我们的 $\operatorname{\mathsf{Balance}}$ 函数可以处理。
+合并两个 AVL 树 $x, y$ 在这里简单理解为将 $x$ 的中序遍历结果与 $y$ 的中序遍历结果进行拼接得到的 AVL 树．考虑沿着树较高的 AVL 树向子节点遍历，必然会有一时刻两个 AVL 树的高度之差小于等于 $1$，此时我们考虑从较高的树中抽取最左/最右的节点作为新的根节点，而两个 AVL 树作为其左右孩子，此时新的根节点树高最多只会变化 $1$，我们的 $\operatorname{\mathsf{Balance}}$ 函数可以处理．
 
 $$
 \begin{array}{ll}
@@ -207,7 +207,7 @@ $$
 \end{array}
 $$
 
-通用的 $\operatorname{\mathsf{Join}}$ 函数只是简单的使用上面实现的函数，$\operatorname{\mathsf{JoinLeft}}$ 与 $\operatorname{\mathsf{JoinRight}}$ 类似，我们省略细节。
+通用的 $\operatorname{\mathsf{Join}}$ 函数只是简单的使用上面实现的函数，$\operatorname{\mathsf{JoinLeft}}$ 与 $\operatorname{\mathsf{JoinRight}}$ 类似，我们省略细节．
 
 $$
 \begin{array}{ll}
@@ -224,11 +224,11 @@ $$
 \end{array}
 $$
 
-其时间复杂度显然为 $O(\log(\max(s(x), s(y))))$。
+其时间复杂度显然为 $O(\log(\max(s(x), s(y))))$．
 
 ### 分裂
 
-我们简单介绍按照大小分裂一个 AVL 树为两个 AVL 树，按照权值分裂的函数是类似的。在给出分裂的过程前，我们需要先给出一个辅助函数，其是我们前面介绍的合并函数的一个简单变体，因为此时我们不再需要从高的树当中抽取节点，而是有本来已经存在的节点作为新的根。
+我们简单介绍按照大小分裂一个 AVL 树为两个 AVL 树，按照权值分裂的函数是类似的．在给出分裂的过程前，我们需要先给出一个辅助函数，其是我们前面介绍的合并函数的一个简单变体，因为此时我们不再需要从高的树当中抽取节点，而是有本来已经存在的节点作为新的根．
 
 $$
 \begin{array}{ll}
@@ -268,7 +268,7 @@ $$
 \end{array}
 $$
 
-然后考虑按照大小分裂一个 AVL 树为两部分，前一部分包含恰好 $k$ 个节点，这一部分与 Treap 类似，但是我们不能直接连接子树，而需要使用上面的 $\operatorname{\mathsf{Join}}'$ 函数，否则 AVL 树的性质则不能满足。
+然后考虑按照大小分裂一个 AVL 树为两部分，前一部分包含恰好 $k$ 个节点，这一部分与 Treap 类似，但是我们不能直接连接子树，而需要使用上面的 $\operatorname{\mathsf{Join}}'$ 函数，否则 AVL 树的性质则不能满足．
 
 $$
 \begin{array}{ll}
@@ -296,9 +296,9 @@ $$
 \end{array}
 $$
 
-注意 $\operatorname{\mathsf{Join}}'$ 的时间为 $O(|h(x) - h(y)|)$。
+注意 $\operatorname{\mathsf{Join}}'$ 的时间为 $O(|h(x) - h(y)|)$．
 
-$\operatorname{\mathsf{Split}}$ 函数的时间复杂度也是 $O(\log(s(x)))$。
+$\operatorname{\mathsf{Split}}$ 函数的时间复杂度也是 $O(\log(s(x)))$．
 
 ## 参考代码
 
