@@ -726,12 +726,12 @@ $$
           int sum = 0, x = 0;
           for (int i = log2(n); ~i; --i) {
             x += 1 << i;                    // 尝试扩展
-            if (x >= n || sum + t[x] >= k)  // 如果扩展失败
+            if (x > n || sum + t[x] >= k)  // 如果扩展失败
               x -= 1 << i;
             else
               sum += t[x];
           }
-          return x + 1;
+          return x + 1;  // 找不到就返回 n + 1
         }
         ```
     
@@ -744,12 +744,12 @@ $$
             i = int(log2(n))
             while ~i:
                 x = x + (1 << i)  # 尝试扩展
-                if x >= n or sum + t[x] >= k:  # 如果扩展失败
+                if x > n or sum + t[x] >= k:  # 如果扩展失败
                     x = x - (1 << i)
                 else:
                     sum = sum + t[x]
                 i = i - 1
-            return x + 1
+            return x + 1  # 找不到就返回 n + 1
         ```
 
 ### 全局逆序对（全局二维偏序）
