@@ -11,7 +11,7 @@ repo_url: 'https://github.com/OI-wiki/OI-wiki'
 edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2025 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2026 OI Wiki Team'
 
 # Contents
 nav:
@@ -223,10 +223,13 @@ nav:
   - 数学:
     - 数学部分简介: math/index.md
     - 布尔代数: math/boolean-algebra.md
-    - 进位制: math/base.md
+    - 数字系统:
+      - 数字系统简介: math/numeral-sys/intro.md
+      - 进位制: math/numeral-sys/base.md
+      - 平衡三进制: math/numeral-sys/balanced-ternary.md
+      - 格雷码: math/numeral-sys/gray-code.md
     - 位操作: math/bit.md
     - 二进制集合操作: math/binary-set.md
-    - 平衡三进制: math/balanced-ternary.md
     - 高精度计算: math/bignum.md
     - 快速幂: math/binary-exponentiation.md
     - 置换和排列: math/permutation.md
@@ -521,7 +524,6 @@ nav:
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
-    - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
     - 主元素问题: misc/main-element.md
