@@ -72,7 +72,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 -   使用 `scanf` 或 `printf` 的时候参数类型与格式指定符不符．
 
--   同时使用位运算和逻辑运算符 `==` 并且未加括号．
+-   同时使用位操作和逻辑运算符 `==` 并且未加括号．
     -   示例：`(x >> j) & 3 == 2`
 
 -   `int` 字面量溢出．
@@ -169,7 +169,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
         ```
 
 -   哈希的时候没有使用 `unsigned` 导致的运算错误．
-    -   对负数的右移运算会在最高位补 1．参见：[位运算](../math/bit.md)
+    -   对负数的右移运算会在最高位补 1．参见：[位操作符](../lang/op.md#位操作符)．
 
 -   没有删除或注释掉调试输出语句．
 
