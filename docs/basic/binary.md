@@ -207,7 +207,7 @@ int upper(const void *p1, const void *p2) {
 
 ![](images/ternary.svg)
 
-三分法的正确性并不依赖于 $lmid$ 和 $rmid$ 的选择，通常可以取两个三等分点．但是，它们的选择确实会影响三分法的效率．这是因为三分法的每次操作都会舍去两侧区间中的其中一个．为减少三分法的操作次数，应使两侧区间尽可能大．因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择．事实上， $mid\pm \varepsilon$ 的取法相当于求 $mid$ 处的近似导数 $\dfrac{f(mid+\varepsilon)-f(mid-\varepsilon)}{2\varepsilon}$ 判断正负以确定极值点在 $mid$ 的哪一侧．此外，使用这个取法有时可能会死循环，例如 $l=0,~ r=2\varepsilon$ 的状态．如果有这种情况，可以在循环条件和分割点处使用不同的 $\varepsilon$，例如分割点取 $mid\pm \varepsilon/3$ ．
+三分法的正确性并不依赖于 $lmid$ 和 $rmid$ 的选择，通常可以取两个三等分点．但是，它们的选择确实会影响三分法的效率．这是因为三分法的每次操作都会舍去两侧区间中的其中一个．为减少三分法的操作次数，应使两侧区间尽可能大．因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择．事实上，$mid\pm \varepsilon$ 的取法相当于求 $mid$ 处的近似导数 $\dfrac{f(mid+\varepsilon)-f(mid-\varepsilon)}{2\varepsilon}$ 判断正负以确定极值点在 $mid$ 的哪一侧．此外，使用这个取法有时可能会死循环，例如 $l=0,~ r=2\varepsilon$ 的状态．如果有这种情况，可以在循环条件和分割点处使用不同的 $\varepsilon$，例如分割点取 $mid\pm \varepsilon/3$．
 
 ### 实现
 
