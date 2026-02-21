@@ -5,7 +5,8 @@ import sys
 
 # autopep8: off
 # fix ModuleNotFoundError by adding current directory to Python path
-sys.path.append(os.path.abspath('.'))
+import pathlib
+sys.path.append(str(pathlib.Path(__file__).resolve().parents[1]))
 
 from scripts.linter.decorators import pipeline
 from scripts.linter.utils import log
