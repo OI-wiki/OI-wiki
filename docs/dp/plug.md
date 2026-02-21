@@ -8,8 +8,12 @@
 
 温故而知新，在开始学习插头 DP 之前，不妨先让我们回顾一个经典问题．
 
+<!-- scripts.linter.postprocess.fix_quotation off -->
+
 ???+ note "例题 [「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400)"
     题目大意：在 $N\times M$ 的棋盘内铺满 $1\times 2$ 或 $2\times 1$ 的多米诺骨牌，求方案数．
+
+<!-- scripts.linter.postprocess.fix_quotation on -->
 
 当 $n$ 或 $m$ 规模不大的时候，这类问题可以使用 [状压 DP](./state.md) 解决．逐行划分阶段，设 $dp(i,s)$ 表示当前已考虑过前 $i$ 行，且第 $i$ 行的状态为 $s$ 的方案数．这里的状态 $s$ 的每一位可以表示这个这个位置是否已被上一行覆盖．
 
@@ -795,7 +799,11 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ### 多米诺骨牌覆盖
 
+<!-- scripts.linter.postprocess.fix_quotation off -->
+
 [「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400) 也出现在 [《算法竞赛入门经典训练指南》](../contest/resources.md#书籍) 中，并作为《轮廓线上的动态规划》一节的例题．[多米诺骨牌覆盖（Domino tiling）](https://en.wikipedia.org/wiki/Domino_tiling) 是一组非常经典的数学问题，稍微修改其数据范围就可以得到不同难度，需要应用不同的算法解决的子问题．
+
+<!-- scripts.linter.postprocess.fix_quotation on -->
 
 当限定 $m=2$ 时，多米诺骨牌覆盖等价于斐波那契数列．[《具体数学》](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) 中使用了该问题以引出斐波那契数列，并使用了多种方法得到其解析解．
 

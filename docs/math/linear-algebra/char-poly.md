@@ -493,6 +493,11 @@ $$
 
 ## 参考文献
 
+<!-- scripts.linter.postprocess.fix_quotation off -->
+
 -   Rizwana Rehman, Ilse C.F. Ipsen.[La Budde’s Method for Computing Characteristic Polynomials](https://ipsen.math.ncsu.edu/ps/charpoly3.pdf).
+
+<!-- scripts.linter.postprocess.fix_quotation on -->
+
 -   Marshall Law.[Computing Characteristic Polynomials of Matrices of Structured Polynomials](http://summit.sfu.ca/system/files/iritems1/17301/etd10125_.pdf).
 -   Mike Paterson.[On the Number of Nonscalar Multiplications Necessary to Evaluate Polynomials](https://epubs.siam.org/doi/10.1137/0202007).

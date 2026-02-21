@@ -129,10 +129,14 @@ auto val = init-value;
 
 以下是错误的写法：
 
+<!-- scripts.linter.postprocess.fix_quotation off -->
+
 ```cpp
 auto f = [val]() { return val; };  // Error: ‘val’ was not declared in this
                                    // scope, identifier "val" is undefined
 ```
+
+<!-- scripts.linter.postprocess.fix_quotation on -->
 
 初始化值也可以是外部变量，例如：
 

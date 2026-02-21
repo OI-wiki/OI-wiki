@@ -32,7 +32,13 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
 -   [AtCoder](https://atcoder.jp/)：日本 OJ，日文版里会有日本高校的比赛，英文内不会显示．题目有趣，质量较高．
 -   [CodeChef](https://codechef.com/)：印度 OJ，周期举办比赛．系统基于 SPOJ 的 Sphere Engine．
 -   [Codeforces](https://codeforces.com/)：俄罗斯 OJ，始于 2010 年，创始人是 [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/)．有多种系列的比赛，并支持个人出题、申请组织比赛．题目质量较高．
+
+<!-- scripts.linter.postprocess.fix_quotation off -->
+
 -   [CSES](https://cses.fi/problemset/)(Code Submission Evaluation System)，按专题划分的题库，[旨在](https://cses.fi/problemset/text/2433) 成为综合的高质量题库，主要由 [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf) 作者 Antti Laaksonen 开发，始于 2013 年．
+
+<!-- scripts.linter.postprocess.fix_quotation on -->
+
 -   [CS Academy](https://csacademy.com/)
 -   [DMOJ](https://dmoj.ca/) 加拿大开源的 OJ，语言支持广；题库是各大比赛的存档，也有定期自行举办的比赛．
 -   [HackerRank](https://www.hackerrank.com/) 有很多比赛
@@ -112,7 +118,11 @@ author: Suyun514, ChungZH, Enter-tainer, StudyingFather, Konano, JulieSigtuna, G
     -   提纲挚领，但内容较少．
 -   [Legend-K 的数据结构与算法的笔记](http://web.archive.org/web/20180826111306/http://www.legend-k.com/Algorithm/Algorithm.pdf)
 -   [acm-cheat-sheet](https://github.com/soulmachine/acm-cheat-sheet)
+
+<!-- scripts.linter.postprocess.fix_quotation off -->
+
 -   [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf)- Antti Laaksonen
+    <!-- scripts.linter.postprocess.fix_quotation on -->
     -   作者花了三年个人时间完成．面向算法竞赛，覆盖面广，详略得当．
 -   [《挑战编程：程序设计竞赛训练手册》](http://acm.cs.buap.mx/downloads/Programming_Challenges.pdf)- Steven S. Skiena/Miguel A. Revilla
     -   由西班牙 University of Valladolid 的两位教授编写．
