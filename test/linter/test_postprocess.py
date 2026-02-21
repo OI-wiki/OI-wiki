@@ -49,11 +49,14 @@ class TestFixFullStop(unittest.TestCase):
         )
         result = fix_full_stop(content)
         
-        # Lines outside skip block should be modified
-        self.assertIn("修改这行．", result)
-        self.assertIn("也修改这行．", result)
-        # Line inside skip block should NOT be modified
-        self.assertIn("不修改这行。", result)
+        expected = (
+            "修改这行．\n"
+            "<!-- scripts.linter.postprocess.fix_full_stop off -->\n"
+            "不修改这行。\n"
+            "<!-- scripts.linter.postprocess.fix_full_stop on -->\n"
+            "也修改这行．\n"
+        )
+        self.assertEqual(result, expected)
 
     def test_nested_skip_blocks(self):
         """Test nested skip blocks preserve content."""
@@ -70,13 +73,18 @@ class TestFixFullStop(unittest.TestCase):
         )
         result = fix_full_stop(content)
         
-        # Only outer lines should be modified
-        self.assertIn("外部．", result)
-        self.assertIn("外部末．", result)
-        # All inner lines should be preserved
-        self.assertIn("内部一。", result)
-        self.assertIn("内部二。", result)
-        self.assertIn("内部三。", result)
+        expected = (
+            "外部．\n"
+            "<!-- scripts.linter.postprocess.fix_full_stop off -->\n"
+            "内部一。\n"
+            "<!-- scripts.linter.postprocess.fix_full_stop off -->\n"
+            "内部二。\n"
+            "<!-- scripts.linter.postprocess.fix_full_stop on -->\n"
+            "内部三。\n"
+            "<!-- scripts.linter.postprocess.fix_full_stop on -->\n"
+            "外部末．\n"
+        )
+        self.assertEqual(result, expected)
 
     def test_mixed_content_with_skip_blocks(self):
         """Test mixed content with multiple skip blocks."""
@@ -93,13 +101,18 @@ class TestFixFullStop(unittest.TestCase):
         )
         result = fix_full_stop(content)
         
-        # Normal lines should be modified
-        self.assertIn("正常行一．", result)
-        self.assertIn("正常行二．", result)
-        self.assertIn("正常行三．", result)
-        # Skip block lines should be preserved
-        self.assertIn("跳过行。", result)
-        self.assertIn("另一跳过行。", result)
+        expected = (
+            "正常行一．\n"
+            "<!-- scripts.linter.postprocess.fix_full_stop off -->\n"
+            "跳过行。\n"
+            "<!-- scripts.linter.postprocess.fix_full_stop on -->\n"
+            "正常行二．\n"
+            "<!-- scripts.linter.postprocess.fix_full_stop off -->\n"
+            "另一跳过行。\n"
+            "<!-- scripts.linter.postprocess.fix_full_stop on -->\n"
+            "正常行三．\n"
+        )
+        self.assertEqual(result, expected)
 
 
 class TestFixQuotation(unittest.TestCase):
@@ -174,11 +187,14 @@ class TestFixQuotation(unittest.TestCase):
         )
         result = fix_quotation(content)
         
-        # Lines outside skip block should be modified
-        self.assertIn("修改这行「引用」", result)
-        self.assertIn("也修改这行「引用」", result)
-        # Line inside skip block should NOT be modified
-        self.assertIn('不修改这行“引用”', result)
+        expected = (
+            '修改这行「引用」\n'
+            "<!-- scripts.linter.postprocess.fix_quotation off -->\n"
+            '不修改这行“引用”\n'
+            "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
+            '也修改这行「引用」\n'
+        )
+        self.assertEqual(result, expected)
 
     def test_nested_skip_blocks(self):
         """Test nested skip blocks preserve content."""
@@ -195,13 +211,18 @@ class TestFixQuotation(unittest.TestCase):
         )
         result = fix_quotation(content)
         
-        # Only outer lines should be modified
-        self.assertIn("外部「引用」", result)
-        self.assertIn("外部末「引用」", result)
-        # All inner lines should be preserved
-        self.assertIn('内部一“引用”', result)
-        self.assertIn('内部二“引用”', result)
-        self.assertIn('内部三“引用”', result)
+        expected = (
+            '外部「引用」\n'
+            "<!-- scripts.linter.postprocess.fix_quotation off -->\n"
+            '内部一“引用”\n'
+            "<!-- scripts.linter.postprocess.fix_quotation off -->\n"
+            '内部二“引用”\n'
+            "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
+            '内部三“引用”\n'
+            "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
+            '外部末「引用」\n'
+        )
+        self.assertEqual(result, expected)
 
     def test_mixed_content_with_skip_blocks(self):
         """Test mixed content with multiple skip blocks."""
@@ -218,13 +239,18 @@ class TestFixQuotation(unittest.TestCase):
         )
         result = fix_quotation(content)
         
-        # Normal lines should be modified
-        self.assertIn("正常行一「引用」", result)
-        self.assertIn("正常行二「引用」", result)
-        self.assertIn("正常行三「引用」", result)
-        # Skip block lines should be preserved
-        self.assertIn('跳过行“引用”', result)
-        self.assertIn('另一跳过行“引用”', result)
+        expected = (
+            '正常行一「引用」\n'
+            "<!-- scripts.linter.postprocess.fix_quotation off -->\n"
+            '跳过行“引用”\n'
+            "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
+            '正常行二「引用」\n'
+            "<!-- scripts.linter.postprocess.fix_quotation off -->\n"
+            '另一跳过行“引用”\n'
+            "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
+            '正常行三「引用」\n'
+        )
+        self.assertEqual(result, expected)
 
     def test_single_quote_on_line(self):
         """Test a single quote character on a line."""
