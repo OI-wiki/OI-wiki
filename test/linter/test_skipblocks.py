@@ -21,7 +21,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
             "结束。\n"
         )
-        
+
         # Apply fix_full_stop
         result = fix_full_stop(content)
         expected_fullstop = (
@@ -36,7 +36,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "结束．\n"
         )
         self.assertEqual(result, expected_fullstop)
-        
+
         # Apply fix_quotation
         result = fix_quotation(content)
         expected_quotation = (
@@ -65,7 +65,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
             "句号正常。引用“正常”。\n"
         )
-        
+
         # Apply fix_full_stop
         result = fix_full_stop(content)
         expected_fullstop = (
@@ -80,7 +80,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "句号正常．引用“正常”．\n"
         )
         self.assertEqual(result, expected_fullstop)
-        
+
         # Apply fix_quotation
         result = fix_quotation(content)
         expected_quotation = (
@@ -109,7 +109,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "<!-- scripts.linter.postprocess.fix_full_stop on -->\n"
             "外部。引用“正常”。\n"
         )
-        
+
         # Apply fix_full_stop
         result = fix_full_stop(content)
         expected_fullstop = (
@@ -124,7 +124,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "外部．引用“正常”．\n"
         )
         self.assertEqual(result, expected_fullstop)
-        
+
         # Apply fix_quotation
         result = fix_quotation(content)
         expected_quotation = (
@@ -157,7 +157,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
             "    结束\n"
         )
-        
+
         # Apply fix_details
         result = fix_details(content)
         expected_details = (
@@ -176,7 +176,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "    结束\n"
         )
         self.assertEqual(result, expected_details)
-        
+
         # Apply fix_full_stop
         result = fix_full_stop(content)
         expected_fullstop = (
@@ -195,7 +195,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "    结束\n"
         )
         self.assertEqual(result, expected_fullstop)
-        
+
         # Apply fix_quotation
         result = fix_quotation(content)
         expected_quotation = (
@@ -224,7 +224,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
             "转换‘单引号’正常。\n"
         )
-        
+
         result = fix_quotation(content)
         expected = (
             "外层『内层』引用。\n"
@@ -244,7 +244,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
             "正常“双引号”和‘单引号’。\n"
         )
-        
+
         result = fix_quotation(content)
         expected = (
             "双引号「测试」和单引号『测试』。\n"
@@ -265,7 +265,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
             "结束。引用“测试”。\n"
         )
-        
+
         # Apply fix_full_stop
         result = fix_full_stop(content)
         expected_fullstop = (
@@ -277,7 +277,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "结束．引用“测试”．\n"
         )
         self.assertEqual(result, expected_fullstop)
-        
+
         # Apply fix_quotation
         result = fix_quotation(content)
         expected_quotation = (
@@ -314,7 +314,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "    结尾。引用“结束”。\n"
             "    ```\n"
         )
-        
+
         # Apply fix_details
         result = fix_details(content)
         expected_details = (
@@ -340,7 +340,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "    ```\n"
         )
         self.assertEqual(result, expected_details)
-        
+
         # Apply fix_full_stop
         result = fix_full_stop(content)
         expected_fullstop = (
@@ -366,7 +366,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "    ```\n"
         )
         self.assertEqual(result, expected_fullstop)
-        
+
         # Apply fix_quotation
         result = fix_quotation(content)
         expected_quotation = (
@@ -404,7 +404,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
             "结束。\n"
         )
-        
+
         # Apply fix_full_stop
         result = fix_full_stop(content)
         expected_fullstop = (
@@ -417,7 +417,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "结束．\n"
         )
         self.assertEqual(result, expected_fullstop)
-        
+
         # Apply fix_quotation
         result = fix_quotation(content)
         expected_quotation = content  # No quotes to change
@@ -436,7 +436,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "<!-- scripts.linter.postprocess.fix_quotation on -->\n"
             "行五。引用“测试”。\n"
         )
-        
+
         # Apply fix_full_stop
         result = fix_full_stop(content)
         expected_fullstop = (
@@ -451,7 +451,7 @@ class TestMixedSkipBlocks(unittest.TestCase):
             "行五．引用“测试”．\n"
         )
         self.assertEqual(result, expected_fullstop)
-        
+
         # Apply fix_quotation
         result = fix_quotation(content)
         expected_quotation = (

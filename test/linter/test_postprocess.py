@@ -37,7 +37,7 @@ class TestFixFullStop(unittest.TestCase):
 
     def test_skip_block_content_not_modified(self):
         """Test that content in skip blocks is not modified.
-        
+
         This tests the continue branch when line_origins[i] == -1.
         """
         content = (
@@ -48,7 +48,7 @@ class TestFixFullStop(unittest.TestCase):
             "也修改这行。\n"
         )
         result = fix_full_stop(content)
-        
+
         expected = (
             "修改这行．\n"
             "<!-- scripts.linter.postprocess.fix_full_stop off -->\n"
@@ -72,7 +72,7 @@ class TestFixFullStop(unittest.TestCase):
             "外部末。\n"
         )
         result = fix_full_stop(content)
-        
+
         expected = (
             "外部．\n"
             "<!-- scripts.linter.postprocess.fix_full_stop off -->\n"
@@ -100,7 +100,7 @@ class TestFixFullStop(unittest.TestCase):
             "正常行三。\n"
         )
         result = fix_full_stop(content)
-        
+
         expected = (
             "正常行一．\n"
             "<!-- scripts.linter.postprocess.fix_full_stop off -->\n"
@@ -175,7 +175,7 @@ class TestFixQuotation(unittest.TestCase):
 
     def test_skip_block_content_not_modified(self):
         """Test that content in skip blocks is not modified.
-        
+
         This tests the continue branch when line_origins[i] == -1.
         """
         content = (
@@ -186,7 +186,7 @@ class TestFixQuotation(unittest.TestCase):
             '也修改这行“引用”\n'
         )
         result = fix_quotation(content)
-        
+
         expected = (
             '修改这行「引用」\n'
             "<!-- scripts.linter.postprocess.fix_quotation off -->\n"
@@ -210,7 +210,7 @@ class TestFixQuotation(unittest.TestCase):
             '外部末“引用”\n'
         )
         result = fix_quotation(content)
-        
+
         expected = (
             '外部「引用」\n'
             "<!-- scripts.linter.postprocess.fix_quotation off -->\n"
@@ -238,7 +238,7 @@ class TestFixQuotation(unittest.TestCase):
             '正常行三“引用”\n'
         )
         result = fix_quotation(content)
-        
+
         expected = (
             '正常行一「引用」\n'
             "<!-- scripts.linter.postprocess.fix_quotation off -->\n"
