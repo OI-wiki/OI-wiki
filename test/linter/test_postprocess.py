@@ -252,18 +252,57 @@ class TestFixQuotation(unittest.TestCase):
         )
         self.assertEqual(result, expected)
 
-    def test_single_quote_on_line(self):
-        """Test a single quote character on a line."""
+    def test_single_right_double_on_line_treated_as_left(self):
         content = '”\n'
         result = fix_quotation(content)
-        # Both left and right quote replacements apply
-        self.assertEqual(result, '」\n')
+        self.assertEqual(result, '「\n')
+
+    def test_single_right_single_on_line_treated_as_left(self):
+        content = '’\n'
+        result = fix_quotation(content)
+        self.assertEqual(result, '『\n')
 
     def test_asymmetric_quotes(self):
         """Test handling of asymmetric quote usage."""
         content = '“开始但没结束\n'
         result = fix_quotation(content)
         self.assertEqual(result, '「开始但没结束\n')
+
+    def test_curly_apostrophe_between_ascii_unchanged(self):
+        """Curly apostrophe (’ U+2019) between ASCII letters should be left unchanged."""
+        content = "don’t do it\n"
+        result = fix_quotation(content)
+        self.assertEqual(result, "don’t do it\n")
+
+    def test_deeply_nested_mixed_quotes(self):
+        """Test deep nesting of mixed double/single quotes."""
+        content = '“外层‘中层“内层”’结束”\n'
+        result = fix_quotation(content)
+        self.assertEqual(result, '「外层『中层「内层」』结束」\n')
+
+    def test_extra_left_double_treated_as_right(self):
+        """Two consecutive left double quotes: second is treated as a right quote."""
+        content = '““重复”\n'
+        result = fix_quotation(content)
+        self.assertEqual(result, '「」重复「\n')
+
+    def test_extra_left_single_treated_as_right(self):
+        """Two consecutive left single quotes: second is treated as a right quote."""
+        content = '‘‘内层’\n'
+        result = fix_quotation(content)
+        self.assertEqual(result, '『』内层『\n')
+
+    def test_extra_right_double_treated_as_left(self):
+        """Two consecutive right double quotes: second is treated as left quote."""
+        content = '””重复“\n'
+        result = fix_quotation(content)
+        self.assertEqual(result, '「」重复「\n')
+
+    def test_extra_right_single_treated_as_left(self):
+        """Two consecutive right single quotes: second is treated as left quote."""
+        content = '’’内层‘\n'
+        result = fix_quotation(content)
+        self.assertEqual(result, '『』内层『\n')
 
 
 if __name__ == "__main__":
