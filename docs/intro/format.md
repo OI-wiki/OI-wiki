@@ -214,7 +214,12 @@
 
 <!-- scripts.linter.postprocess.fix_full_stop on -->
 
+<!-- scripts.linter.postprocess.fix_quotation off -->
+
 -   <a id="PUNC-3"></a>PUNC-3：由于 `“……”` 和 `‘……’` 未区分全半角，请使用 `「……」` 作为全角双引号，`"..."` 作为半角双引号，`『……』` 作为全角单引号，`'...'` 作为半角单引号．
+
+<!-- scripts.linter.postprocess.fix_quotation on -->
+
 -   <a id="PUNC-4"></a>PUNC-4：注意区分 **顿号** 与 **逗号** 的使用．
 -   <a id="PUNC-5"></a>PUNC-5：注意 **括号** 的位置．句内括号与句外括号的位置不同．
 -   <a id="PUNC-6"></a>PUNC-6：通常使用 **分号** 来表示列表环境中各复句之间的关系．
