@@ -1,6 +1,7 @@
+import unicodedata
+
 from scripts.linter.decorators import step
 from scripts.linter.utils import log
-import re
 
 
 @step
@@ -53,7 +54,9 @@ def fix_quotation(md_content: str, **kwargs):
     - Left double quote `“` → `「`
     - Right double quote `”` → `」`
 
-    Additionally, if `’` is adjacent to ASCII characters, then it will be detected as an apostrophe, which will be left unchanged.
+    Additionally, if the previous character of a single quote is alnum-like, then it will be detected as an apostrophe, which will be preserved as `’`.
+
+    This function also attempts to detect mismatched quotes and log warnings, treating them as the expected type based on the current stack of open quotes. For example, if a `”` is found but the last opened quote was `‘`, it will be treated as a `“` and a warning will be logged.
 
     Args:
         md_content: The Markdown content to process
@@ -70,56 +73,46 @@ def fix_quotation(md_content: str, **kwargs):
     # Track changes for logging
     total_changes = 0
 
+    stack: list[str] = []  # only `“` and `‘`.
+
     for i, line in enumerate(lines):
         if line_origins[i] == -1:
             # Skip placeholder lines (from skip blocks)
             continue
 
-        stack: list[str] = []  # only `“` and `‘`.
-
-        def inner_replace(ln, col, char) -> str:
-            nonlocal stack
+        def _quote_replace(ln, col, char) -> str:
             match char:
-                case '“':
-                    if stack and stack[-1] == '“':
-                        log(f"extra left double quote detected, treating as right quote",
+                case '“' | '”':
+                    corrected = '”' if stack and stack[-1] == '“' else '“'
+                    if char != corrected:
+                        log(f"mismatched quote detected, treating as `{corrected}`",
                             type=f'warning line={ln + 1},col={col + 1}')
-                        return inner_replace(ln, col, '”')
-                    stack.append('“')
-                    return '「'
-                case '”':
-                    if not stack or stack[-1] == '‘':
-                        log(f"extra right double quote detected, treating as left quote",
-                            type=f'warning line={ln + 1},col={col + 1}')
-                        return inner_replace(ln, col, '“')
-                    if stack:
+                    if corrected == '“':
+                        stack.append(corrected)
+                    else:
                         stack.pop()
-                    return '」'
-                case '‘':
-                    if stack and stack[-1] == '‘':
-                        log(f"extra left single quote detected, treating as right quote",
+                    return '「' if corrected == '“' else '」'
+                case '‘' | '’':
+                    if len(line) > 1 and (unicodedata.category(line[col-1]) in ('Ll', 'Lu', 'Lt', 'Lm', 'Nd', 'Nl') if col > 0 else False):
+                        # Treat as apostrophe
+                        if char == '‘':
+                            log("`‘` as apostrophe detected, treating as `’`",
+                                type=f'warning line={ln + 1},col={col + 1}')
+                        return '’'
+                    corrected = '’' if stack and stack[-1] == '‘' else '‘'
+                    if char != corrected:
+                        log(f"mismatched quote detected, treating as `{corrected}`",
                             type=f'warning line={ln + 1},col={col + 1}')
-                        return inner_replace(ln, col, '’')
-                    stack.append('‘')
-                    return '『'
-                case '’':
-                    nonlocal line
-                    if len(line) > 1 and (line[col - 1].isascii() if col > 0 else True) and (line[col + 1].isascii() if col < len(line) - 1 else True):
-                        # This is likely an apostrophe, not a quotation mark
-                        return char
-                    if not stack or stack[-1] == '“':
-                        log(f"extra right single quote detected, treating as left quote",
-                            type=f'warning line={ln + 1},col={col + 1}')
-                        return inner_replace(ln, col, '‘')
-                    if stack:
+                    if corrected == '‘':
+                        stack.append(corrected)
+                    else:
                         stack.pop()
-                    return '』'
+                    return '『' if corrected == '‘' else '』'
                 case _:
                     return char
 
-        modified_line = ""
-        for j, char in enumerate(line):
-            modified_line += inner_replace(line_origins[i], j, char)
+        modified_line = ''.join(_quote_replace(
+            line_origins[i], j, char) for j, char in enumerate(line))
 
         # Update line if changed
         if modified_line != line:
