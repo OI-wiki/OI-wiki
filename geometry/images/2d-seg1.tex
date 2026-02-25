@@ -1,0 +1,20 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+
+\draw[thick] (-1,-2) node (A) {} node[below right] {$A$} -- 
+    (2,2) node (B) {} node[below right] {$B$};
+
+\draw[thick] (4,3) node (C) {} node[above right] {$C$} -- 
+    (5,-3) node (D) {} node[above right] {$D$};
+
+\fill (A) circle (2pt);
+\fill (B) circle (2pt);
+\fill (C) circle (2pt);
+\fill (D) circle (2pt);
+
+\end{tikzpicture}
+\end{document}

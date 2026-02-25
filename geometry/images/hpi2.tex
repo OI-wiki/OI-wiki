@@ -1,0 +1,32 @@
+\documentclass[tikz]{standalone}
+\usepackage{mathtools}
+\usepackage{etoolbox}
+\usetikzlibrary{intersections}
+
+\newcommand{\drawcsys}[5][0]{
+    \def\vstep{#1}
+    \def\vxmin{#2}
+    \def\vxmax{#3}
+    \def\vymin{#4}
+    \def\vymax{#5}
+
+	\ifstrequal{#1}{0}{}{%
+        \draw[help lines,step=\vstep] (\vxmin,\vymin) grid (\vxmax,\vymax);
+    }
+    \draw[->,thick] (\vxmin,0) -- (\vxmax,0) node[anchor=north] {$x$};
+    \draw[->,thick] (0,\vymin) -- (0,\vymax) node[anchor=east]  {$y$};
+}
+
+
+\begin{document}
+\begin{tikzpicture}[vector/.style={thick,-latex,green!50!black}]
+    \drawcsys{-3.5}{4}{-4}{3.5}
+
+	\draw[name path=veca] [vector] (.4,-2) -- (3,-.2) node [black,below] {$\vec a$};
+	\draw[name path=vecb] [vector] (1.5,-1.8) -- (3.5,1) node [black,below] {$\vec b$};
+	\draw[name path=vecc] [vector] (2,-1.9) -- (1,2) node [black,right] {$\vec c$};
+	\path[name intersections={of=veca and vecb}];
+	\coordinate [label=180:$D$](D) at (intersection-1);
+	\filldraw[draw=red!50!black,fill=red!40!white] (D) circle[radius=.05];
+\end{tikzpicture}
+\end{document}

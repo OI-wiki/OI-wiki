@@ -1,0 +1,19 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+
+\tikzset{real edge/.style={solid,very thick}}
+
+\begin{document}
+\begin{tikzpicture}
+
+    \scoped[every node/.style={solid,thin,circle,draw}]
+    \node {1}
+    child[real edge] {node {2}
+            child[real edge] {node {5}}
+            child[real edge] {node {6}}
+        }
+    child[real edge] {node {3}}
+    child[real edge] {node {4}};
+\end{tikzpicture}
+\end{document}

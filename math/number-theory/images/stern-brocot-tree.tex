@@ -1,0 +1,49 @@
+% Modified from https://tex.stackexchange.com/a/302012
+% License: CC BY-SA 3.0
+\documentclass[border=5mm]{standalone}
+\usepackage{unicode-math}
+\setmainfont{TeX Gyre Schola}
+\usepackage{luamplib}
+\mplibtextextlabel{enable}
+\usepackage{adjustbox}
+\begin{document}
+\adjustbox{scale=2}{%
+\begin{mplibcode}
+path S; S = superellipse(9 right, 12 up, 9 left, 12 down, 0.79);
+def connect(expr a,b) = 
+    draw a -- b cutbefore S shifted a cutafter S shifted b
+enddef;              
+def putfrac(expr num, den, pos) = 
+    draw (left--right) scaled 4 shifted pos;
+    label.top(decimal num,pos);
+    label.bot(decimal den,pos);
+enddef;    
+vardef mediant(expr a,b,c,d, depth, L, R) =
+    save m,n, p; pair p;
+    p = ((L+R)/2,depth * v);
+    m = a+c; n = b+d;
+    if depth > 1:
+        connect(p, mediant(a,b,m,n,depth-1, L, xpart p)) withcolor .53 red;
+        connect(p, mediant(m,n,c,d,depth-1, xpart p, R)) withcolor .53 blue;
+        connect(p, p shifted (0,-v)) dashed withdots scaled 1/2;
+        connect((L, ypart p), (L,ypart p-v)) dashed withdots scaled 1/2;
+        if d=0:
+            connect((R, ypart p), (R,ypart p-v)) dashed withdots scaled 1/2;
+        fi
+    fi
+    if depth > 0:
+        putfrac(m,n,p);
+        putfrac(a,b,(L,ypart p));
+        if d=0: 
+            putfrac(c,d,(R,ypart p));
+        fi
+    fi
+    p
+enddef;
+beginfig(1);
+v = 2cm;
+z0 = mediant(0,1,1,0,4,0,120mm);
+endfig;
+\end{mplibcode}%
+}
+\end{document}

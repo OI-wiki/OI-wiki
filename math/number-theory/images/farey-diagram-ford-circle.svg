@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+""" To recover the Python script to generate this SVG, delete the line above -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="-12 -508 1024 576">
+ <title>Comparison Ford circles Farey diagram</title>
+ <desc>Comparison of Ford circles and a Farey diagram with circular arcs for n from 1 to 9 by CMG Lee. Note that each arc intersects its corresponding circles at right angles. In the SVG image, hover over a circle or curve to highlight it and its terms.</desc>
+ <style type="text/css">
+  #main { font-family:Helvetica,Arial,sans-serif; font-size:32px; text-anchor:middle;
+          stroke-linecap:round; stroke-linejoin:round;
+          stroke-opacity:0.75; stroke:none; fill:none; }
+  #main:hover   { stroke-opacity:0.1; fill-opacity:0; }
+  .active:hover { stroke-opacity:1;   fill-opacity:1; }
+  text          { cursor:default; }
+ </style>
+ <defs>
+  <path id="cross" d="M -3,-3 L 3,3 M -3,3 L 3,-3" stroke-width="3" stroke-opacity="0.75" stroke="#ffffff"/>
+ </defs>
+ <circle cx="0" cy="0" r="99999" fill="#ffffff"/>
+ <g id="main">
+<!-- BEGIN_DYNAMIC_SVG { -->
+  <path d="M 0,0 H 1000" stroke="#999999"/>
+  <g class="active" stroke="#999999" fill="#999999">
+   <text transform="translate(   0,0) scale(0.8,1)" x="0" y="1em"><tspan>0</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <text transform="translate( 111,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">9</tspan></text>
+   <text transform="translate( 125,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">8</tspan></text>
+   <text transform="translate( 143,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 167,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">6</tspan></text>
+   <text transform="translate( 200,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 222,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">9</tspan></text>
+   <text transform="translate( 250,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 286,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 333,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 375,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">8</tspan></text>
+   <text transform="translate( 400,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 429,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 444,0) scale(0.8,1)" x="0" y="1em"><tspan>4</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">9</tspan></text>
+   <text transform="translate( 500,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">2</tspan></text>
+   <text transform="translate( 556,0) scale(0.8,1)" x="0" y="1em"><tspan>5</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">9</tspan></text>
+   <text transform="translate( 571,0) scale(0.8,1)" x="0" y="1em"><tspan>4</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 600,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 625,0) scale(0.8,1)" x="0" y="1em"><tspan>5</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">8</tspan></text>
+   <text transform="translate( 667,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 714,0) scale(0.8,1)" x="0" y="1em"><tspan>5</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 750,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 778,0) scale(0.8,1)" x="0" y="1em"><tspan>7</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">9</tspan></text>
+   <text transform="translate( 800,0) scale(0.8,1)" x="0" y="1em"><tspan>4</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 833,0) scale(0.8,1)" x="0" y="1em"><tspan>5</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">6</tspan></text>
+   <text transform="translate( 857,0) scale(0.8,1)" x="0" y="1em"><tspan>6</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 875,0) scale(0.8,1)" x="0" y="1em"><tspan>7</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">8</tspan></text>
+   <text transform="translate( 889,0) scale(0.8,1)" x="0" y="1em"><tspan>8</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">9</tspan></text>
+   <text transform="translate(1000,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <g opacity="0.25">
+    <g transform="translate(   0,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 111,  -6)"><circle cx="0" cy="0" r="6"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 125,  -8)"><circle cx="0" cy="0" r="8"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 143, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 167, -14)"><circle cx="0" cy="0" r="14" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 200, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 222,  -6)"><circle cx="0" cy="0" r="6"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 250, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 286, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 333, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 375,  -8)"><circle cx="0" cy="0" r="8"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 400, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 429, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 444,  -6)"><circle cx="0" cy="0" r="6"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 500,-125)"><circle cx="0" cy="0" r="125"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 556,  -6)"><circle cx="0" cy="0" r="6"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 571, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 600, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 625,  -8)"><circle cx="0" cy="0" r="8"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 667, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 714, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 750, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 778,  -6)"><circle cx="0" cy="0" r="6"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 800, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 833, -14)"><circle cx="0" cy="0" r="14" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 857, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 875,  -8)"><circle cx="0" cy="0" r="8"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 889,  -6)"><circle cx="0" cy="0" r="6"  /><use xlink:href="#cross"/></g>
+    <g transform="translate(1000,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+   </g>
+   <path d="M 0,0 A 55,55 0 0 1 111,0 A 7,7 0 0 1 125,0 A 9,9 0 0 1 143,0 A 12,12 0 0 1 167,0 A 16,16 0 0 1 200,0 A 11,11 0 0 1 222,0 A 14,14 0 0 1 250,0 A 18,18 0 0 1 286,0 A 23,23 0 0 1 333,0 A 21,21 0 0 1 375,0 A 12,12 0 0 1 400,0 A 14,14 0 0 1 429,0 A 7,7 0 0 1 444,0 A 28,28 0 0 1 500,0 A 28,28 0 0 1 556,0 A 7,7 0 0 1 571,0 A 14,14 0 0 1 600,0 A 12,12 0 0 1 625,0 A 21,21 0 0 1 667,0 A 23,23 0 0 1 714,0 A 18,18 0 0 1 750,0 A 14,14 0 0 1 778,0 A 11,11 0 0 1 800,0 A 16,16 0 0 1 833,0 A 12,12 0 0 1 857,0 A 9,9 0 0 1 875,0 A 7,7 0 0 1 889,0 A 55,55 0 0 1 1000,0" stroke-width="4" fill="none"/>
+   <title>F(9) = { 0/1, 1/9, 1/8, 1/7, 1/6, 1/5, 2/9, 1/4, 2/7, 1/3, 3/8, 2/5, 3/7, 4/9, 1/2, 5/9, 4/7, 3/5, 5/8, 2/3, 5/7, 3/4, 7/9, 4/5, 5/6, 6/7, 7/8, 8/9, 1/1 }</title>
+  </g>
+  <g class="active" stroke="#333333" fill="#333333">
+   <text transform="translate(   0,0) scale(0.8,1)" x="0" y="1em"><tspan>0</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <text transform="translate( 125,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">8</tspan></text>
+   <text transform="translate( 143,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 167,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">6</tspan></text>
+   <text transform="translate( 200,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 250,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 286,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 333,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 375,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">8</tspan></text>
+   <text transform="translate( 400,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 429,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 500,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">2</tspan></text>
+   <text transform="translate( 571,0) scale(0.8,1)" x="0" y="1em"><tspan>4</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 600,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 625,0) scale(0.8,1)" x="0" y="1em"><tspan>5</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">8</tspan></text>
+   <text transform="translate( 667,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 714,0) scale(0.8,1)" x="0" y="1em"><tspan>5</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 750,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 800,0) scale(0.8,1)" x="0" y="1em"><tspan>4</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 833,0) scale(0.8,1)" x="0" y="1em"><tspan>5</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">6</tspan></text>
+   <text transform="translate( 857,0) scale(0.8,1)" x="0" y="1em"><tspan>6</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 875,0) scale(0.8,1)" x="0" y="1em"><tspan>7</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">8</tspan></text>
+   <text transform="translate(1000,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <g opacity="0.25">
+    <g transform="translate(   0,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 125,  -8)"><circle cx="0" cy="0" r="8"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 143, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 167, -14)"><circle cx="0" cy="0" r="14" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 200, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 250, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 286, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 333, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 375,  -8)"><circle cx="0" cy="0" r="8"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 400, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 429, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 500,-125)"><circle cx="0" cy="0" r="125"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 571, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 600, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 625,  -8)"><circle cx="0" cy="0" r="8"  /><use xlink:href="#cross"/></g>
+    <g transform="translate( 667, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 714, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 750, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 800, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 833, -14)"><circle cx="0" cy="0" r="14" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 857, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 875,  -8)"><circle cx="0" cy="0" r="8"  /><use xlink:href="#cross"/></g>
+    <g transform="translate(1000,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+   </g>
+   <path d="M 0,0 A 62,62 0 0 1 125,0 A 9,9 0 0 1 143,0 A 12,12 0 0 1 167,0 A 16,16 0 0 1 200,0 A 25,25 0 0 1 250,0 A 18,18 0 0 1 286,0 A 23,23 0 0 1 333,0 A 21,21 0 0 1 375,0 A 12,12 0 0 1 400,0 A 14,14 0 0 1 429,0 A 35,35 0 0 1 500,0 A 35,35 0 0 1 571,0 A 14,14 0 0 1 600,0 A 12,12 0 0 1 625,0 A 21,21 0 0 1 667,0 A 23,23 0 0 1 714,0 A 18,18 0 0 1 750,0 A 25,25 0 0 1 800,0 A 16,16 0 0 1 833,0 A 12,12 0 0 1 857,0 A 9,9 0 0 1 875,0 A 62,62 0 0 1 1000,0" stroke-width="4" fill="none"/>
+   <title>F(8) = { 0/1, 1/8, 1/7, 1/6, 1/5, 1/4, 2/7, 1/3, 3/8, 2/5, 3/7, 1/2, 4/7, 3/5, 5/8, 2/3, 5/7, 3/4, 4/5, 5/6, 6/7, 7/8, 1/1 }</title>
+  </g>
+  <g class="active" stroke="#cc00ff" fill="#cc00ff">
+   <text transform="translate(   0,0) scale(0.8,1)" x="0" y="1em"><tspan>0</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <text transform="translate( 143,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 167,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">6</tspan></text>
+   <text transform="translate( 200,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 250,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 286,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 333,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 400,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 429,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 500,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">2</tspan></text>
+   <text transform="translate( 571,0) scale(0.8,1)" x="0" y="1em"><tspan>4</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 600,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 667,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 714,0) scale(0.8,1)" x="0" y="1em"><tspan>5</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate( 750,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 800,0) scale(0.8,1)" x="0" y="1em"><tspan>4</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 833,0) scale(0.8,1)" x="0" y="1em"><tspan>5</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">6</tspan></text>
+   <text transform="translate( 857,0) scale(0.8,1)" x="0" y="1em"><tspan>6</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">7</tspan></text>
+   <text transform="translate(1000,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <g opacity="0.25">
+    <g transform="translate(   0,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 143, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 167, -14)"><circle cx="0" cy="0" r="14" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 200, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 250, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 286, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 333, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 400, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 429, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 500,-125)"><circle cx="0" cy="0" r="125"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 571, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 600, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 667, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 714, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 750, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 800, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 833, -14)"><circle cx="0" cy="0" r="14" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 857, -10)"><circle cx="0" cy="0" r="10" /><use xlink:href="#cross"/></g>
+    <g transform="translate(1000,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+   </g>
+   <path d="M 0,0 A 71,71 0 0 1 143,0 A 12,12 0 0 1 167,0 A 16,16 0 0 1 200,0 A 25,25 0 0 1 250,0 A 18,18 0 0 1 286,0 A 23,23 0 0 1 333,0 A 33,33 0 0 1 400,0 A 14,14 0 0 1 429,0 A 35,35 0 0 1 500,0 A 35,35 0 0 1 571,0 A 14,14 0 0 1 600,0 A 33,33 0 0 1 667,0 A 23,23 0 0 1 714,0 A 18,18 0 0 1 750,0 A 25,25 0 0 1 800,0 A 16,16 0 0 1 833,0 A 12,12 0 0 1 857,0 A 71,71 0 0 1 1000,0" stroke-width="4" fill="none"/>
+   <title>F(7) = { 0/1, 1/7, 1/6, 1/5, 1/4, 2/7, 1/3, 2/5, 3/7, 1/2, 4/7, 3/5, 2/3, 5/7, 3/4, 4/5, 5/6, 6/7, 1/1 }</title>
+  </g>
+  <g class="active" stroke="#0000ff" fill="#0000ff">
+   <text transform="translate(   0,0) scale(0.8,1)" x="0" y="1em"><tspan>0</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <text transform="translate( 167,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">6</tspan></text>
+   <text transform="translate( 200,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 250,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 333,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 400,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 500,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">2</tspan></text>
+   <text transform="translate( 600,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 667,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 750,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 800,0) scale(0.8,1)" x="0" y="1em"><tspan>4</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 833,0) scale(0.8,1)" x="0" y="1em"><tspan>5</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">6</tspan></text>
+   <text transform="translate(1000,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <g opacity="0.25">
+    <g transform="translate(   0,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 167, -14)"><circle cx="0" cy="0" r="14" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 200, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 250, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 333, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 400, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 500,-125)"><circle cx="0" cy="0" r="125"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 600, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 667, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 750, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 800, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 833, -14)"><circle cx="0" cy="0" r="14" /><use xlink:href="#cross"/></g>
+    <g transform="translate(1000,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+   </g>
+   <path d="M 0,0 A 83,83 0 0 1 167,0 A 16,16 0 0 1 200,0 A 25,25 0 0 1 250,0 A 41,41 0 0 1 333,0 A 33,33 0 0 1 400,0 A 50,50 0 0 1 500,0 A 50,50 0 0 1 600,0 A 33,33 0 0 1 667,0 A 41,41 0 0 1 750,0 A 25,25 0 0 1 800,0 A 16,16 0 0 1 833,0 A 83,83 0 0 1 1000,0" stroke-width="4" fill="none"/>
+   <title>F(6) = { 0/1, 1/6, 1/5, 1/4, 1/3, 2/5, 1/2, 3/5, 2/3, 3/4, 4/5, 5/6, 1/1 }</title>
+  </g>
+  <g class="active" stroke="#00cc00" fill="#00cc00">
+   <text transform="translate(   0,0) scale(0.8,1)" x="0" y="1em"><tspan>0</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <text transform="translate( 200,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 250,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 333,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 400,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 500,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">2</tspan></text>
+   <text transform="translate( 600,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate( 667,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 750,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 800,0) scale(0.8,1)" x="0" y="1em"><tspan>4</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">5</tspan></text>
+   <text transform="translate(1000,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <g opacity="0.25">
+    <g transform="translate(   0,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 200, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 250, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 333, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 400, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 500,-125)"><circle cx="0" cy="0" r="125"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 600, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 667, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 750, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 800, -20)"><circle cx="0" cy="0" r="20" /><use xlink:href="#cross"/></g>
+    <g transform="translate(1000,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+   </g>
+   <path d="M 0,0 A 100,100 0 0 1 200,0 A 25,25 0 0 1 250,0 A 41,41 0 0 1 333,0 A 33,33 0 0 1 400,0 A 50,50 0 0 1 500,0 A 50,50 0 0 1 600,0 A 33,33 0 0 1 667,0 A 41,41 0 0 1 750,0 A 25,25 0 0 1 800,0 A 100,100 0 0 1 1000,0" stroke-width="4" fill="none"/>
+   <title>F(5) = { 0/1, 1/5, 1/4, 1/3, 2/5, 1/2, 3/5, 2/3, 3/4, 4/5, 1/1 }</title>
+  </g>
+  <g class="active" stroke="#ffcc00" fill="#ffcc00">
+   <text transform="translate(   0,0) scale(0.8,1)" x="0" y="1em"><tspan>0</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <text transform="translate( 250,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate( 333,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 500,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">2</tspan></text>
+   <text transform="translate( 667,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 750,0) scale(0.8,1)" x="0" y="1em"><tspan>3</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">4</tspan></text>
+   <text transform="translate(1000,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <g opacity="0.25">
+    <g transform="translate(   0,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 250, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 333, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 500,-125)"><circle cx="0" cy="0" r="125"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 667, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 750, -31)"><circle cx="0" cy="0" r="31" /><use xlink:href="#cross"/></g>
+    <g transform="translate(1000,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+   </g>
+   <path d="M 0,0 A 125,125 0 0 1 250,0 A 41,41 0 0 1 333,0 A 83,83 0 0 1 500,0 A 83,83 0 0 1 667,0 A 41,41 0 0 1 750,0 A 125,125 0 0 1 1000,0" stroke-width="4" fill="none"/>
+   <title>F(4) = { 0/1, 1/4, 1/3, 1/2, 2/3, 3/4, 1/1 }</title>
+  </g>
+  <g class="active" stroke="#ff9900" fill="#ff9900">
+   <text transform="translate(   0,0) scale(0.8,1)" x="0" y="1em"><tspan>0</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <text transform="translate( 333,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate( 500,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">2</tspan></text>
+   <text transform="translate( 667,0) scale(0.8,1)" x="0" y="1em"><tspan>2</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">3</tspan></text>
+   <text transform="translate(1000,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <g opacity="0.25">
+    <g transform="translate(   0,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 333, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate( 500,-125)"><circle cx="0" cy="0" r="125"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 667, -56)"><circle cx="0" cy="0" r="56" /><use xlink:href="#cross"/></g>
+    <g transform="translate(1000,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+   </g>
+   <path d="M 0,0 A 166,166 0 0 1 333,0 A 83,83 0 0 1 500,0 A 83,83 0 0 1 667,0 A 166,166 0 0 1 1000,0" stroke-width="4" fill="none"/>
+   <title>F(3) = { 0/1, 1/3, 1/2, 2/3, 1/1 }</title>
+  </g>
+  <g class="active" stroke="#ff0000" fill="#ff0000">
+   <text transform="translate(   0,0) scale(0.8,1)" x="0" y="1em"><tspan>0</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <text transform="translate( 500,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">2</tspan></text>
+   <text transform="translate(1000,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <g opacity="0.25">
+    <g transform="translate(   0,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+    <g transform="translate( 500,-125)"><circle cx="0" cy="0" r="125"/><use xlink:href="#cross"/></g>
+    <g transform="translate(1000,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+   </g>
+   <path d="M 0,0 A 250,250 0 0 1 500,0 A 250,250 0 0 1 1000,0" stroke-width="4" fill="none"/>
+   <title>F(2) = { 0/1, 1/2, 1/1 }</title>
+  </g>
+  <g class="active" stroke="#663300" fill="#663300">
+   <text transform="translate(   0,0) scale(0.8,1)" x="0" y="1em"><tspan>0</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <text transform="translate(1000,0) scale(0.8,1)" x="0" y="1em"><tspan>1</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">1</tspan></text>
+   <g opacity="0.25">
+    <g transform="translate(   0,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+    <g transform="translate(1000,-500)"><circle cx="0" cy="0" r="500"/><use xlink:href="#cross"/></g>
+   </g>
+   <path d="M 0,0 A 500,500 0 0 1 1000,0" stroke-width="4" fill="none"/>
+   <title>F(1) = { 0/1, 1/1 }</title>
+  </g>
+<!-- } END_DYNAMIC_SVG -->
+ </g>
+</svg>
+<!-- Please retain this and other comments, which contain Python code to generate this SVG. """
+import re, math
+def fmt(string): ## string.format(**vars()) using tags {expression!format} by CMG Lee
+ def f(tag): i_sep = tag.rfind('!'); return (re.sub('\.0+$', '', str(eval(tag[1:-1])))
+  if (i_sep < 0) else ('{:%s}' % tag[i_sep + 1:-1]).format(eval(tag[1:i_sep])))
+ return (re.sub(r'(?<!{){[^{}]+}', lambda m:f(m.group()), string)
+         .replace('{{', '{').replace('}}', '}'))
+def append(obj, string): return obj.append(fmt(string))
+def format_tab(*arg): return '\t'.join([str(el) for el in (arg if len(arg) > 1 else arg[0])])
+
+n_max   = 9
+colours = ['#000000','#663300','#ff0000','#ff9900','#ffcc00',
+           '#00cc00','#0000ff','#cc00ff','#333333','#999999']
+scale   = 1000
+outs    = []
+append(outs, '''  <path d="M 0,0 H {scale}" stroke="#999999"/>''')
+
+for n in range(n_max, 0, -1):
+ print(fmt("n = {n}:"))
+ terms = {}
+ for q in range(1, n + 1):
+  for p in range(q + 1):
+   term = float(p) / q
+   if (not term in terms):
+    terms[term] = {'p':p, 'q':q, 'label':fmt('''\
+   <text transform="translate({term * scale!4.0f},0) scale(0.8,1)" x="0" y="1em">\
+<tspan>{p}</tspan><tspan x="0">_</tspan><tspan x="0" dy="1em">{q}</tspan></text>''')}
+ out_pathds    = []
+ out_labels    = []
+ out_titles    = []
+ out_circles   = []
+ x_previous    = 0
+ for term in sorted(terms):
+  p        = terms[term]['p']
+  q            = terms[term]['q']
+  r_circle     = round(scale * 0.5 / (q * q))
+  x            = round(scale * term)
+  y            = -r_circle
+  r_arc        = int((x - x_previous) / 2)
+  title        = fmt('{p}/{q}')
+  out_r_circle = fmt('r="{r_circle}"')
+  print(fmt("{term!6.3f}: {title}"))
+  append(out_pathds, '''M 0,0''' if (term == 0) else '''A {r_arc},{r_arc} 0 0 1 {x},0''')
+  append(out_labels, terms[term]['label'])
+  append(out_titles, title)
+  append(out_circles, '''\
+    <g transform="translate({x!4.0f},{y!4.0f})">\
+<circle cx="0" cy="0" {out_r_circle!7s}/><use xlink:href="#cross"/></g>''')
+  x_previous = x
+ colour = colours[n % len(colours)]
+ append(outs, '''\
+  <g class="active" stroke="{colour}" fill="{colour}">
+{'\\n'.join(out_labels)}
+   <g opacity="0.25">
+{'\\n'.join(out_circles)}
+   </g>
+   <path d="{' '.join(out_pathds)}" stroke-width="4" fill="none"/>
+   <title>F({n}) = {{ {', '.join(out_titles)} }}</title>
+  </g>''')
+
+out_p = 'width="100%" height="100%" viewBox="-12 -508 1024 576"'
+
+## Compile everything into an .svg file
+myself   = open(__file__, 'r').read() ## the contents of this very file
+file_out = open(__file__[:__file__.rfind('.')] + '.svg', 'w') ## *.* -> *.svg
+try: ## use try/finally so that file is closed even if write fails
+ file_out.write('''<?xml version="1.0" encoding="utf-8"?><!%s
+%s%s%s\n%s%s''' % ('-' + '-', ## because SVG comments cannot have 2 consecutive '-'s
+  myself[ : myself.find('width',myself.find('<svg'))], ## assume width specified before height/viewBox
+  out_p, ## replace SVG width/height/viewBox with {out_p} & dynamic SVG block with {outs} contents
+  myself[myself.find('>',myself.find('<svg')) : myself.find('\n',myself.find('BEGIN_'+'DYNAMIC_SVG'))],
+  '\n'.join(outs), myself[myself.rfind('\n',0,myself.find('END_'+'DYNAMIC_SVG')) : ]))
+finally:
+ file_out.close()
+
+## SVG-Python near-polyglot framework version 2 by CMG Lee (Feb 2016) -->
