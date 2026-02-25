@@ -61,7 +61,7 @@ $$
 \end{array}
 $$
 
-第二个 DFS 记录所在链的链顶（$\textit{top}$，应初始化为结点本身）、重边优先遍历时的 DFS 序（$\textit{top}$）、DFS 序对应的结点编号（$\textit{rank}$）．
+第二个 DFS 记录所在链的链顶（$\textit{top}$，应初始化为结点本身）、重边优先遍历时的 DFS 序（$\textit{dfn}$）、DFS 序对应的结点编号（$\textit{rank}$）．
 
 $$
 \begin{array}{l}

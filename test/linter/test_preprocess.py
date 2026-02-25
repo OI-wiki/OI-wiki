@@ -50,7 +50,15 @@ class TestFixDetails(unittest.TestCase):
             " b\n"
         )
         result = fix_details(md)
-        self.assertIn("     \t ", result)  # Tab preserved in skip block
+        expected = (
+            "  a\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "     \t \n"
+            "   \n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
+            " b\n"
+        )
+        self.assertEqual(result, expected)
 
     def test_nested_skip_blocks(self):
         """Test nested skip blocks."""
@@ -66,21 +74,34 @@ class TestFixDetails(unittest.TestCase):
             " e\n"
         )
         result = fix_details(md)
-        self.assertIn("   c", result)  # Content in nested skip block preserved
+        expected = (
+            "     a\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "    b\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "   c\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
+            "  d\n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
+            " e\n"
+        )
+        self.assertEqual(result, expected)
 
     def test_unclosed_skip_block_raises_error(self):
         """Test error handling for unclosed skip block."""
         content = "\n<!-- scripts.linter.preprocess.fix_details off -->\n   \n"
         with self.assertRaises(RuntimeError) as context:
             fix_details(content)
-        self.assertIn("unclosed skip block", str(context.exception))
+        expected_message = "unclosed skip block for tag 'scripts.linter.preprocess.fix_details' starting at line 2. Please ensure all skip blocks are properly closed with '<!-- scripts.linter.preprocess.fix_details on -->'"
+        self.assertEqual(str(context.exception), expected_message)
 
     def test_unopened_skip_block_raises_error(self):
         """Test error handling for unopened skip block."""
         content = "\n   \n<!-- scripts.linter.preprocess.fix_details on -->\n"
         with self.assertRaises(RuntimeError) as context:
             fix_details(content)
-        self.assertIn("unopened skip block", str(context.exception))
+        expected_message = "unopened skip block for tag 'scripts.linter.preprocess.fix_details' ending at line 3. Please ensure all skip blocks are properly opened with '<!-- scripts.linter.preprocess.fix_details off -->'"
+        self.assertEqual(str(context.exception), expected_message)
 
     def test_complex_real_world_scenario(self):
         """Test complex real-world indentation scenario."""
