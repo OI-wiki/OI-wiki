@@ -44,9 +44,14 @@ class TestStep(unittest.TestCase):
             "after"
         )
         result = self.dummy_func(content)
-        self.assertIn("before", result)
-        self.assertIn("skip this", result)
-        self.assertIn("after", result)
+        expected = (
+            "before\n"
+            f"<!-- {self.__module__}.dummy off -->\n"
+            "skip this\n"
+            f"<!-- {self.__module__}.dummy on -->\n"
+            "after\n"
+        )
+        self.assertEqual(result, expected)
 
     def test_nested_skip_blocks(self):
         """Test with nested skip blocks."""
@@ -62,8 +67,18 @@ class TestStep(unittest.TestCase):
             "after"
         )
         result = self.dummy_func(content)
-        self.assertIn("inner", result)
-        self.assertIn("outer again", result)
+        expected = (
+            "before\n"
+            f"<!-- {self.__module__}.dummy off -->\n"
+            "outer\n"
+            f"<!-- {self.__module__}.dummy off -->\n"
+            "inner\n"
+            f"<!-- {self.__module__}.dummy on -->\n"
+            "outer again\n"
+            f"<!-- {self.__module__}.dummy on -->\n"
+            "after\n"
+        )
+        self.assertEqual(result, expected)
 
     def test_tabs_in_skip_blocks_preserved(self):
         """Test that tabs in skip blocks are preserved."""
@@ -75,21 +90,30 @@ class TestStep(unittest.TestCase):
             "after"
         )
         result = self.dummy_func(content)
-        self.assertIn("line\twith\ttabs", result)
+        expected = (
+            "before\n"
+            "<!-- test.linter.test_decorators.dummy off -->\n"
+            "line\twith\ttabs\n"
+            "<!-- test.linter.test_decorators.dummy on -->\n"
+            "after\n"
+        )
+        self.assertEqual(result, expected)
 
     def test_unclosed_skip_block_raises_error(self):
         """Test error handling for unclosed skip block."""
         content = "before\n<!-- test.linter.test_decorators.dummy off -->\nskip\n"
         with self.assertRaises(RuntimeError) as context:
             self.dummy_func(content)
-        self.assertIn("unclosed skip block", str(context.exception))
+        expected_message = "unclosed skip block for tag 'test.linter.test_decorators.dummy' starting at line 2. Please ensure all skip blocks are properly closed with '<!-- test.linter.test_decorators.dummy on -->'"
+        self.assertEqual(str(context.exception), expected_message)
 
     def test_unopened_skip_block_raises_error(self):
         """Test error handling for unopened skip block."""
         content = "before\n<!-- test.linter.test_decorators.dummy on -->\nafter"
         with self.assertRaises(RuntimeError) as context:
             self.dummy_func(content)
-        self.assertIn("unopened skip block", str(context.exception))
+        expected_message = "unopened skip block for tag 'test.linter.test_decorators.dummy' ending at line 2. Please ensure all skip blocks are properly opened with '<!-- test.linter.test_decorators.dummy off -->'"
+        self.assertEqual(str(context.exception), expected_message)
 
     def test_content_modification_preserved(self):
         """Test that content modifications are preserved."""
@@ -114,9 +138,14 @@ class TestStep(unittest.TestCase):
             "old after"
         )
         result = modifier(content)
-        self.assertIn("new content", result)
-        self.assertIn("old in skip", result)  # Should NOT be modified
-        self.assertIn("new after", result)
+        expected = (
+            "new content\n"
+            f"<!-- {self.__module__}.modifier off -->\n"
+            "old in skip\n"
+            f"<!-- {self.__module__}.modifier on -->\n"
+            "new after\n"
+        )
+        self.assertEqual(result, expected)
 
 
 if __name__ == '__main__':

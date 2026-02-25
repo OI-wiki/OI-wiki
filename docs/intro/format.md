@@ -9,6 +9,7 @@
     
     | 时间         | 主要内容                                                | 相关 Issue/Pull Request 链接                                                                                    |
     | ---------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+    | 2026-02-22 | 完善引号使用的相关规定                                         | [#6793](https://github.com/OI-wiki/OI-wiki/pull/6793)                                                       |
     | 2026-01-07 | 要求使用全角句点替代中文句号                                      | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                       |
     | 2025-08-10 | 添加格式手册的格式要求；<br>代码：补充片段代码相关要求                       | [#6412](https://github.com/OI-wiki/OI-wiki/pull/6412)                                                       |
     | 2025-08-10 | 添加 Changelog 与 TL;DR                                | [#6409](https://github.com/OI-wiki/OI-wiki/pull/6409)                                                       |
@@ -213,7 +214,12 @@
 
 <!-- scripts.linter.postprocess.fix_full_stop on -->
 
--   <a id="PUNC-3"></a>PUNC-3：由于 `“……”` 未区分全半角，请使用 `「……」` 作为全角引号，`"..."` 作为半角引号．
+<!-- scripts.linter.postprocess.fix_quotation off -->
+
+-   <a id="PUNC-3"></a>PUNC-3：由于 `“……”` 和 `‘……’` 未区分全半角，请使用 `「……」` 作为全角双引号，`"..."` 作为半角双引号，`『……』` 作为全角单引号，`'...'` 作为半角单引号．
+
+<!-- scripts.linter.postprocess.fix_quotation on -->
+
 -   <a id="PUNC-4"></a>PUNC-4：注意区分 **顿号** 与 **逗号** 的使用．
 -   <a id="PUNC-5"></a>PUNC-5：注意 **括号** 的位置．句内括号与句外括号的位置不同．
 -   <a id="PUNC-6"></a>PUNC-6：通常使用 **分号** 来表示列表环境中各复句之间的关系．

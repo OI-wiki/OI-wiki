@@ -5,12 +5,13 @@ import sys
 
 # autopep8: off
 # fix ModuleNotFoundError by adding current directory to Python path
-sys.path.append(os.path.abspath('.'))
+import pathlib
+sys.path.append(str(pathlib.Path(__file__).resolve().parents[1]))
 
 from scripts.linter.decorators import pipeline
 from scripts.linter.utils import log
 from scripts.linter.preprocess import fix_details
-from scripts.linter.postprocess import fix_full_stop
+from scripts.linter.postprocess import fix_full_stop, fix_quotation
 
 sys.path.pop()
 # autopep8: on
@@ -55,6 +56,7 @@ def apply_postprocess(md_content: str):
     """
     log("Starting postprocessing pipeline...")
     md_content = fix_full_stop(md_content)
+    md_content = fix_quotation(md_content)
     log("Postprocessing pipeline completed.")
 
     return md_content
