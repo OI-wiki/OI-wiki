@@ -20,7 +20,7 @@ CLion 默认不带编译器，构建工具和调试工具，需要手动进行�
 
 #### Windows
 
-参见 [Tutorial: Configure CLion on Windows | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-windows.html)
+参见 [Tutorial: Configure CLion on Windows | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-windows.html)．
 
 值得一提的是 CLion 的 Windows 版本中自带了 MinGW，所以可以不用额外安装 MinGW 工具链．
 
@@ -52,7 +52,7 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 
 #### macOS
 
-参见 [Tutorial: Configure CLion on macOS | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-macos.html)
+参见 [Tutorial: Configure CLion on macOS | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-macos.html)．
 
 ### 工具链设置
 
@@ -92,11 +92,16 @@ CMake 默认使用项目根目录下的 `CMakeList.txt` 作为构建项目的配
 add_compile_options(-std=c++17 -DDEBUG)
 ```
 
-其他 CMake 的功能请参考 [CMake 官方文档](https://cmake.org/documentation/)
+其他 CMake 的功能请参考 [CMake 官方文档](https://cmake.org/documentation/)．
 
 ## 免费获取 CLion IDE 许可证
 
-CLion 为付费产品，但是可以通过教育邮箱或开源项目申请特殊许可证．申请之后不仅可以免费使用正版 CLion IDE, 还可以免费使用 JetBrains 公司开发的其他付费产品．
+CLion 为付费产品，但是可以通过教育邮箱或开源项目申请特殊许可证．申请之后不仅可以免费使用正版 CLion IDE，还可以免费使用 JetBrains 公司开发的其他付费产品．
+
+???+ note "Note"
+    [自 2025 年 5 月起，CLion 对非商业用途免费．](https://blog.jetbrains.com/clion/2025/05/clion-is-now-free-for-non-commercial-use)
+    
+    根据 Toolbox 非商业用途订阅协议中的定义，商业产品是指有偿分发或提供或者作为您的商业活动的一部分使用的产品．但某些类别被明确排除在这一定义之外．常见的非商业用例包括学习和自我教育、任何形式的内容创作、开源代码和业余爱好开发．
 
 ### 使用教育邮箱获取
 

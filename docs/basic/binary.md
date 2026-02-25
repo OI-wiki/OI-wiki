@@ -48,7 +48,7 @@ int binary_search(int start, int end, int key) {
 ```
 
 ???+ note "Note"
-    参考 [编译优化 #位运算代替乘法](../lang/optimizations.md#%E4%BD%8D%E8%BF%90%E7%AE%97%E4%BB%A3%E6%9B%BF%E4%B9%98%E6%B3%95)，对于 $n$ 是有符号数的情况，当你可以保证 $n\ge 0$ 时，`n >> 1` 比 `n / 2` 指令数更少．
+    参考 [编译优化 #移位代替乘法](../lang/optimizations.md#移位代替乘法)，对于 $n$ 是有符号数的情况，当你可以保证 $n\ge 0$ 时，`n >> 1` 比 `n / 2` 指令数更少．
 
 ### 最大值最小化
 
@@ -207,7 +207,7 @@ int upper(const void *p1, const void *p2) {
 
 ![](images/ternary.svg)
 
-三分法的正确性并不依赖于 $lmid$ 和 $rmid$ 的选择，通常可以取两个三等分点．但是，它们的选择确实会影响三分法的效率．这是因为三分法的每次操作都会舍去两侧区间中的其中一个．为减少三分法的操作次数，应使两侧区间尽可能大．因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择．
+三分法的正确性并不依赖于 $lmid$ 和 $rmid$ 的选择，通常可以取两个三等分点．但是，它们的选择确实会影响三分法的效率．这是因为三分法的每次操作都会舍去两侧区间中的其中一个．为减少三分法的操作次数，应使两侧区间尽可能大．因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择．事实上，$mid\pm \varepsilon$ 的取法相当于求 $mid$ 处的近似导数 $\dfrac{f(mid+\varepsilon)-f(mid-\varepsilon)}{2\varepsilon}$ 判断正负以确定极值点在 $mid$ 的哪一侧．
 
 ### 实现
 
@@ -222,8 +222,8 @@ $$
 \begin{array}{ll}
 1 & \textbf{while } r - l > \varepsilon\\
 2 & \qquad mid\gets (l+r)/2\\
-3 & \qquad lmid\gets mid - \varepsilon \\
-4 & \qquad rmid\gets mid + \varepsilon \\
+3 & \qquad lmid\gets mid - \varepsilon / 3 \\
+4 & \qquad rmid\gets mid + \varepsilon / 3 \\
 5 & \qquad \textbf{if } f(lmid) < f(rmid) \\
 6 & \qquad \qquad l\gets lmid \\
 7 & \qquad \textbf{else } \\
@@ -233,6 +233,9 @@ $$
 \end{array}
 \end{array}
 $$
+
+???+ tip "分割点的选取"
+    代码中，分割点选取为 $mid \pm \varepsilon / 3$ 是为了保证分割点总是在当前的 $l$ 和 $r$ 之间，进而避免陷入死循环．
 
 ???+ info "整数的情形"
     如果函数 $f(x)$ 的定义域是整数，那么上述三分法和后文的黄金分割法都应该在 $r-l$ 很小时就终止．对于 $r-l$ 很小的情形，需要通过暴力遍历的方法求得最大值点．

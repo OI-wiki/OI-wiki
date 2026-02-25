@@ -1,4 +1,4 @@
-author: ouuan, Henry-ZHR, StudyingFather, ChungZH, xyf007, Cryflmind, oierlinch
+author: ouuan, Henry-ZHR, StudyingFather, ChungZH, xyf007, Cryflmind, oierlinch, xk2013awa
 
 ## 出题前的准备
 
@@ -330,6 +330,10 @@ OI 中的数学题与其它数学题的区别，也是体现 OI 本质的一个�
 去重后质因数个数尽量多：最小的若干个质数相乘．
 
 约数尽量多：可以参考 OEIS 上的 [A002182](http://oeis.org/A002182) 数列．
+
+#### 需要求最大公因数的题目
+
+让需要求最大公因数的两个数为 [斐波那契数列](../math/combinatorics/fibonacci.md) 的相邻两项，可以让欧几里得算法达到最坏时间复杂度．
 
 #### 树上问题
 

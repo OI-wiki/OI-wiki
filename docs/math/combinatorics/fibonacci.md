@@ -224,172 +224,132 @@ $$
 
 ## 模意义下周期性
 
-考虑模 $p$ 意义下的斐波那契数列，可以容易地使用抽屉原理证明，该数列是有周期性的．考虑模意义下前 $p^2+1$ 个斐波那契数对（两个相邻数配对）：
+对于模 $m$ 意义下的斐波那契数列，可以容易地使用抽屉原理证明，该数列是有周期性的．由于斐波那契数每一项的计算都依赖于前两项的取值，所以需要用相邻斐波那契数组成的数对描述数列当且所处的状态．考虑模意义下前 $m^2+1$ 个斐波那契数对：
 
 $$
-(F_1,\ F_2),\ (F_2,\ F_3),\ \ldots,\ (F_{p^2 + 1},\ F_{p^2 + 2})
+(F_0,\ F_1),\ (F_1,\ F_2),\ \ldots,\ (F_{m^2},\ F_{m^2 + 1})
 $$
 
-$p$ 的剩余系大小为 $p$，意味着在前 $p^2+1$ 个数对中必有两个相同的数对，于是这两个数对可以往后生成相同的斐波那契数列，那么他们就是周期性的．
+模 $m$ 的剩余系大小为 $m$，这意味着至多只可能有 $m^2$ 种互不相同的数对．因此，在前 $m^2+1$ 个数对中必有两个相同的数对，于是从这两个数对可以往后生成相同的斐波那契数列．那么，斐波那契数列就是周期性的，且（最小正）周期不会超过 $m^2$．
 
-### 皮萨诺周期
+### Pisano 周期
 
-模 $m$ 意义下斐波那契数列的最小正周期被称为 [皮萨诺周期](https://en.wikipedia.org/wiki/Pisano_period)（Pisano periods,[OEIS A001175](http://oeis.org/A001175)）．
+模 $m$ 意义下斐波那契数列的最小正周期被称为 **Pisano 周期**（Pisano period，皮萨诺周期，[OEIS A001175](http://oeis.org/A001175)）．本文中用 $\pi(m)$ 表示模 $m$ 的 Pisano 周期．
 
-皮萨诺周期总是不超过 $6m$，且只有在满足 $m=2\times 5^k$ 的形式时才取到等号．
+这一观察可以用于计算第 $n$ 项斐波那契数模 $m$ 的值．如果 $n$ 非常大，就需要计算斐波那契数模 $m$ 的周期．当然，只需要计算周期，不一定是最小正周期．
 
-当需要计算第 $n$ 项斐波那契数模 $m$ 的值的时候，如果 $n$ 非常大，就需要计算斐波那契数模 $m$ 的周期．当然，只需要计算周期，不一定是最小正周期．
+为此，有如下结论：
 
-容易验证，斐波那契数模 $2$ 的最小正周期是 $3$，模 $5$ 的最小正周期是 $20$．
+1.  对于互素的模数 $m_1,m_2$，有 $\pi(m_1m_2)=\operatorname{lcm}(\pi(m_1),\pi(m_2))$．
+2.  对于素数 $p$ 和正整数 $e$，有 $\pi(p^{e})\mid p^{e-1}\pi(p)$．
+3.  对于 $m=2^e~(e\in\mathbf N_+)$，有 $\pi(m)=3\cdot 2^{e-1}$．
+4.  对于 $m=5^e~(e\in\mathbf N_+)$，有 $\pi(m)=4\cdot 5^e$．
+5.  最后，对于素数 $p\equiv\pm1\pmod{10}$，有 $\pi(p)\mid(p-1)$；对于素数 $p\equiv\pm3\pmod{10}$，有 $\pi(p)\mid 2(p+1)$．
 
-显然，如果 $a$ 与 $b$ 互素，$ab$ 的皮萨诺周期就是 $a$ 的皮萨诺周期与 $b$ 的皮萨诺周期的最小公倍数．
+综合这些情形，可以说明：模 $m$ 的 Pisano 周期不会超过 $6m$，等号当且仅当 $m = 2\times 5^e~(e\in\mathbf N_+)$ 时取得．
 
-计算周期还需要以下结论：
+利用上述结论，可以基于素因数分解算法，得到如下快速计算 Pisano 周期的方法：
 
-结论 1：对于奇素数 $p\equiv 1,4 \pmod 5$，$p-1$ 是斐波那契数模 $p$ 的周期．即，奇素数 $p$ 的皮萨诺周期整除 $p-1$．
+??? example "参考代码"
+    ```cpp
+    --8<-- "docs/math/code/combinatorics/fibonacci/pisano_estimate.cpp:pisano"
+    ```
 
-证明：
+这样得到的周期可能只是 Pisano 周期的一个倍数．要得到精确的 Pisano 周期，可以进一步考察该周期的因数；或者，可以直接通过 [BSGS 算法](../number-theory/discrete-logarithm.md#大步小步算法) 以 $O(\sqrt{m})$ 的时间复杂度计算．
 
-此时 $5^\frac{p-1}{2} \equiv 1\pmod p$．
+### 证明
 
-由二项式展开：
+最后，本文简要证明上述关于 Pisano 周期的结论．值得说明的是，利用下文说明的方法，类似的结论可以推广到一般的二阶常系数线性齐次递推数列．尽管具体的常数有所差异，这些数列模 $m$ 的 Pisano 周期都是 $O(m)$ 的．
 
-$$
-F_p=\frac{2}{2^p\sqrt{5}}\left(\dbinom{p}{1}\sqrt{5}+\dbinom{p}{3}\sqrt{5}^3+\ldots+\dbinom{p}{p}\sqrt{5}^p\right)\equiv\sqrt{5}^{p-1}\equiv 1\pmod p
-$$
+第一个观察是：利用 [中国剩余定理](../number-theory/crt.md)，可以将讨论限制在素数幂模的情形．设 $m_1,m_2$ 是两个互素的模数．斐波那契数列在模 $m_1$ 下的周期是 $\pi(m_1)$ 及其倍数，在模 $m_2$ 下的周期是 $\pi(m_2)$ 及其倍数，所以它在模 $m_1m_2$ 下的最小正周期则恰为 $\pi(m_1)$ 和 $\pi(m_2)$ 的最小公倍数．这就是前文的结论 1．
 
-$$
-F_{p+1}=\frac{2}{2^{p+1}\sqrt{5}}\left(\dbinom{p+1}{1}\sqrt{5}+\dbinom{p+1}{3}\sqrt{5}^3+\ldots+\dbinom{p+1}{p}\sqrt{5}^p\right)\equiv\frac{1}{2}\left(1+\sqrt{5}^{p-1}\right)\equiv 1\pmod p
-$$
-
-因为 $F_p$ 和 $F_{p+1}$ 两项都同余于 $1$，与 $F_1$ 和 $F_2$ 一致，所以 $p-1$ 是周期．
-
-结论 2：对于奇素数 $p\equiv 2,3 \pmod 5$，$2p+2$ 是斐波那契数模 $p$ 的周期．即，奇素数 $p$ 的皮萨诺周期整除 $2p+2$．
-
-证明：
-
-此时 $5^\frac{p-1}{2} \equiv -1\pmod p$．
-
-由二项式展开：
+另一个观察是：模 $m$ 下的 Pisano 周期，其实是最小的正整数 $k$，使得
 
 $$
-F_{2p}=\frac{2}{2^{2p}\sqrt{5}}\left(\dbinom{2p}{1}\sqrt{5}+\dbinom{2p}{3}\sqrt{5}^3+\ldots+\dbinom{2p}{2p-1}\sqrt{5}^{2p-1}\right)
+A^k = \begin{pmatrix} 1&1\\1&0 \end{pmatrix}^k \equiv I \pmod{m}.
 $$
 
-$$
-F_{2p+1}=\frac{2}{2^{2p+1}\sqrt{5}}\left(\dbinom{2p+1}{1}\sqrt{5}+\dbinom{2p+1}{3}\sqrt{5}^3+\ldots+\dbinom{2p+1}{2p+1}\sqrt{5}^{2p+1}\right)
-$$
+也就是说，它其实是矩阵 $A$ 在模 $m$ 下[^mod-m]的 [阶](../algebra/group-theory.md#阶)．
 
-模 $p$ 之后，在 $F_{2p}$ 式中，只有 $\dbinom{2p}{p}\equiv 2 \pmod p$ 项留了下来；在 $F_{2p+1}$ 式中，有 $\dbinom{2p+1}{1}\equiv 1 \pmod p$、$\dbinom{2p+1}{p}\equiv 2 \pmod p$、$\dbinom{2p+1}{2p+1}\equiv 1 \pmod p$，三项留了下来．
+对于素数幂模 $m=p^e$ 的情形，可以通过经典的升幂论证联系到相应的素数模的情形．设 $k=\pi(p^e)$，就存在二阶方阵 $\Lambda$，使得
 
 $$
-F_{2p}\equiv\frac{1}{2}\dbinom{2p}{p}\sqrt{5}^{p-1}\equiv -1 \pmod p
+A^k = p^e\Lambda + I 
 $$
 
-$$
-F_{2p+1}\equiv\frac{1}{4}\left(\dbinom{2p+1}{1}+\dbinom{2p+1}{p}\sqrt{5}^{p-1}+\dbinom{2p+1}{2p+1}\sqrt{5}^{2p}\right)\equiv\frac{1}{4}\left(1-2+5\right)\equiv 1 \pmod p
-$$
-
-于是 $F_{2p}$ 和 $F_{2p+1}$ 两项与 $F_{-2}$ 和 $F_{-1}$ 一致，所以 $2p+2$ 是周期．
-
-结论 3：对于素数 $p$，$M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期．特别地，$M$ 是模 $p^{k-1}$ 的皮萨诺周期，等价于 $Mp$ 是模 $p^k$ 的皮萨诺周期．
-
-证明：
-
-这里的证明需要把 $\frac{1+\sqrt{5}}{2}$ 看作一个整体．
-
-由于：
+成立．故而，由 [二项式定理](./combination.md#二项式定理) 可知
 
 $$
-F_M=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^M-\left(\frac{1-\sqrt{5}}{2}\right)^M\right)\equiv 0\pmod {p^{k-1}}
+A^{kp} = (p^e\Lambda + I)^p = I + \sum_{i=1}^p\binom{p}{i}(p^e\Lambda)^i \equiv I\pmod{p^{e+1}}. 
 $$
 
+因此，由 [阶的性质](../number-theory/primitive-root.md#幂的循环结构)，有 $\pi(p^{e+1})\mid kp = p\pi(p^e)$．对 $e$ 归纳可知，$\pi(p^e)\mid p^{e-1}\pi(p)$ 总是成立．
+
+对于素数模 $p$ 的情形，本文讨论两种证明方式．
+
+=== "利用通项公式"
+    一种是利用斐波那契数列的通项公式：
+    
+    $$
+    F_n = \dfrac{1}{\sqrt{5}}\left(\dfrac{1+\sqrt{5}}{2}\right)^n - \dfrac{1}{\sqrt{5}}\left(\dfrac{1-\sqrt{5}}{2}\right)^n.
+    $$
+    
+    将它用二项式定理展开，并消去根式项：
+    
+    $$
+    F_n = \dfrac{1}{2^{n-1}}\sum_{i=0}^{\lfloor(n-1)/2\rfloor}\binom{n}{2i+1}5^i.
+    $$
+    
+    对于 $p=2$，这一表达式无法直接取模，但可以验证对应的 Pisano 周期为 $\pi(2)=3$．对于 $p=5$，有 $F_n\equiv n\cdot 3^{n-1}\pmod{p}$，可以直接验证对应的 Pisano 周期为 $\pi(5)=20$．对于剩余的奇素模数，可以分为两种情形：
+    
+    -   如果 $p\equiv 1,4\pmod{5}$，就有
+    
+        $$
+        \begin{aligned}
+        F_{p} &\equiv \dfrac{1}{2^{p-1}}\binom{p}{p}5^{(p-1)/2} \equiv 1 \pmod{p},\\
+        F_{p+1} &\equiv \dfrac{1}{2^p}\left(\binom{p+1}{1} + \binom{p+1}{p}5^{(p-1)/2}\right) \equiv 1 \pmod{p}.
+        \end{aligned}
+        $$
+    
+        化简过程中，利用了如下结论：由 [Lucas 定理](../number-theory/lucas.md)，对于 $0 < k < p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，而对于 $1 < k < p$ 都有 $\dbinom{p+1}{k}\equiv 0\pmod{p}$；由 [Fermat 小定理](../number-theory/fermat.md#费马小定理)，有 $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$；对于 $p\equiv 1,4\pmod{5}$，都有 $p$ 是模 $5$ 的二次剩余，利用 [二次互反律](../number-theory/quad-residue.md#二次互反律)，也有 $5$ 是模 $p$ 的二次剩余，故而 $5^{(p-1)/2} \equiv 1\pmod{p}$．由此，有 $(F_p,F_{p+1}) \equiv (F_1,F_2) \pmod{p}$，所以 $(p-1)$ 是模 $p$ 的一个周期．所以，$\pi(p)\mid(p-1)$．
+    -   如果 $p\equiv 2,3\pmod{5}$，就有
+    
+        $$
+        \begin{aligned}
+        F_{2p} &\equiv \dfrac{1}{2^{2p-1}}\binom{2p}{p}5^{(p-1)/2} \equiv -1 \pmod{p},\\
+        F_{2p+1} &\equiv \dfrac{1}{2^{2p}}\left(\binom{2p+1}{1} + \binom{2p+1}{p}5^{(p-1)/2} + \binom{2p+1}{2p+1}5^p\right) \equiv -1\pmod{p}.
+        \end{aligned}
+        $$
+    
+        化简过程中，利用了如下结论：由 Lucas 定理，对于 $0 < k < p$ 和 $p < k < 2p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，以及 $\dbinom{2p}{p}\equiv 2\pmod{p}$，而对于 $1 < k < p$ 和 $p + 1 < k < 2p$ 都有 $\dbinom{p}{k}\equiv 0\pmod{p}$，以及 $\dbinom{2p+1}{p}\equiv 2\pmod{p}$；由 Fermat 小定理，有 $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$；对于 $p\equiv 2,3\pmod{5}$，都有 $p$ 是模 $5$ 的二次非剩余，利用二次互反律，也有 $5$ 是模 $p$ 的二次非剩余，故而 $5^{(p-1)/2} \equiv -1\pmod{p}$．由此，有 $(F_{2p},F_{2p+1}) \equiv (F_{-2},F_{-1}) \pmod{p}$，所以 $2(p+1)$ 是模 $p$ 的一个周期．所以，$\pi(p)\mid 2(p+1)$．
+    
+    这就完成了证明．这一方法的局限性在于它高度依赖于斐波那契数列的通项公式，所以较难直接推广到一般的情形．
+
+=== "利用扩域"
+    另一种证明方式则是试图直接计算矩阵 $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ 的阶．它的 [特征多项式](../linear-algebra/char-poly.md) 是 $f(x) = x^2-x-1$，对应的判别式为 $\Delta = 5$．对于模 $p=5$，有 $\Delta\equiv 0\pmod{5}$，矩阵 $A$ 有两个相同特征值 $\lambda=3$，且不能对角化，需要单独计算．对于模 $p\equiv 1,4\pmod{5}$，由二次互反律可知，判别式 $\Delta=5$ 是模 $p$ 的二次剩余，矩阵 $A$ 在域 $\mathbf F_p$ 内有两个相异特征值 $\lambda_1\neq\lambda_2$，矩阵 $A$ 的阶就是 $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$，必然整除 $|\mathbf F_p^\times|=p-1$．对于模 $p\equiv 2,3\pmod{5}$，由二次互反律可知，判别式 $\Delta=5$ 是模 $p$ 的二次非剩余，矩阵 $A$ 在域 $\mathbf F_p$ 内没有特征值，而只有在 [扩域](../algebra/field-theory.md#域的扩张) $\mathbf F_p[\sqrt{5}]$ 内才有两个相异特征值 $\lambda_1\neq\lambda_2$，由于 Frobenius 自同态 $x\mapsto x^p$ 将两根交换，有 $\lambda_2=\lambda_1^p$，故而 $\lambda_1^{p+1}=\lambda_2^{p+1}=\lambda_1\lambda_2=-1$，亦即 $\lambda_1^{2(p+1)}=\lambda_2^{2(p+1)}=1$，由此，矩阵 $A$ 的阶就是 $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$，必然整除 $2(p+1)$．这就得到了与前种方法一致的结论．
+
+综上，对于不同的情形，相应地有：
+
+-   $\pi(2^e)=\dfrac{3}{2}\cdot 2^e,~\dfrac{1}{4}\pi(5^e)=5^e$．
+-   当 $p\equiv\pm1\pmod{10}$ 时，$\pi(p^e) \mid (p-1)p^{e-1}$，所以 $\pi(p^e)\le p^e$．
+-   当 $p\equiv\pm3\pmod{10}$ 时，$\dfrac{1}{4}\pi(p^e) \mid \dfrac{p+1}{2}p^{e-1}$，所以 $\dfrac{1}{4}\pi(p^e)\le p^e$．
+
+所以，利用结论 1，对于一般的模数 $m=\prod_i p_i^{e_i}$，有
+
 $$
-F_{M+1}=\frac{1}{\sqrt{5}}\left(\left(\frac{1+\sqrt{5}}{2}\right)^{M+1}-\left(\frac{1-\sqrt{5}}{2}\right)^{M+1}\right)\equiv 1\pmod {p^{k-1}}
+\begin{aligned}
+\pi(m)&=\operatorname{lcm}\{\pi(p_i^{e_i}):p_i\in\mathbf P\} \\
+&\le \operatorname{lcm}\{\pi(p_i^{e_i}):p_i=2\text{ or }p_i\equiv\pm1~(\operatorname{mod}{10})\}\\
+&\quad \cdot 4\cdot\operatorname{lcm}\{\pi(p_i^{e_i})/4:p_i=5\text{ or }p_i\equiv\pm3~(\operatorname{mod}{10})\}\\
+&\le \prod\{\pi(p_i^{e_i}):p_i=2\text{ or }p_i\equiv\pm1~(\operatorname{mod}{10})\}\\
+&\quad \cdot 4\cdot\prod\{\pi(p_i^{e_i})/4:p_i=5\text{ or }p_i\equiv\pm3~(\operatorname{mod}{10})\}\\
+&\le \dfrac{3}{2}\cdot\prod\{p_i^{e_i}:p_i=2\text{ or }p_i\equiv\pm1~(\operatorname{mod}{10})\}\\
+&\quad \cdot 4\cdot\prod\{p_i^{e_i}:p_i=5\text{ or }p_i\equiv\pm3~(\operatorname{mod}{10})\}\\
+&= 6m.
+\end{aligned}
 $$
 
-因此：
-
-$$
-\left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)^M\pmod {p^{k-1}}
-$$
-
-$$
-1\equiv\frac{1}{\sqrt{5}}\left(\frac{1+\sqrt{5}}{2}\right)^M\left(\left(\frac{1+\sqrt{5}}{2}\right)-\left(\frac{1-\sqrt{5}}{2}\right)\right)=\left(\frac{1+\sqrt{5}}{2}\right)^M\pmod {p^{k-1}}
-$$
-
-因为反方向也可以推导，所以 $M$ 是斐波那契数模 $p^{k-1}$ 的周期，等价于：
-
-$$
-\left(\frac{1+\sqrt{5}}{2}\right)^M \equiv \left(\frac{1-\sqrt{5}}{2}\right)^M\equiv 1\pmod {p^{k-1}}
-$$
-
-当 $p$ 是奇素数时，由 [升幂引理](../number-theory/lift-the-exponent.md)，有：
-
-$$
-\nu_p\left(a^t-1\right)=\nu_p\left(a-1\right)+\nu_p(t)
-$$
-
-当 $p=2$ 时，由 [升幂引理](../number-theory/lift-the-exponent.md)，有：
-
-$$
-\nu_2\left(a^t-1\right)=\nu_2\left(a-1\right)+\nu_2\left(a+1\right)+\nu_2(t)-1
-$$
-
-代入 $a$ 为 $\left(\frac{1+\sqrt{5}}{2}\right)$ 和 $\left(\frac{1-\sqrt{5}}{2}\right)$，$t$ 为 $M$ 和 $Mp$，上述条件也就等价于：
-
-$$
-\left(\frac{1+\sqrt{5}}{2}\right)^{Mp} \equiv \left(\frac{1-\sqrt{5}}{2}\right)^{Mp}\equiv 1\pmod {p^k}
-$$
-
-因此也等价于 $Mp$ 是斐波那契数模 $p^k$ 的周期．
-
-因为周期等价，所以最小正周期也等价．
-
-三个结论证完．据此可以写出代码：
-
-```cpp
-struct prime {
-  unsigned long long p;
-  int times;
-};
-
-struct prime pp[2048];
-int pptop;
-
-unsigned long long get_cycle_from_mod(
-    unsigned long long mod)  // 这里求解的只是周期，不一定是最小正周期
-{
-  pptop = 0;
-  srand(time(nullptr));
-  while (n != 1) {
-    __int128_t factor = (__int128_t)10000000000 * 10000000000;
-    min_factor(mod, &factor);  // 计算最小素因数
-    struct prime temp;
-    temp.p = factor;
-    for (temp.times = 0; mod % factor == 0; temp.times++) {
-      mod /= factor;
-    }
-    pp[pptop] = temp;
-    pptop++;
-  }
-  unsigned long long m = 1;
-  for (int i = 0; i < pptop; ++i) {
-    int g;
-    if (pp[i].p == 2) {
-      g = 3;
-    } else if (pp[i].p == 5) {
-      g = 20;
-    } else if (pp[i].p % 5 == 1 || pp[i].p % 5 == 4) {
-      g = pp[i].p - 1;
-    } else {
-      g = (pp[i].p + 1) << 1;
-    }
-    m = lcm(m, g * qpow(pp[i].p, pp[i].times - 1));
-  }
-  return m;
-}
-```
+这就说明了斐波那契数列模 $m$ 的 Pisano 周期总是不超过 $6m$，而且等号当且仅当在 $m=2\cdot 5^e$ 处取得．
 
 ## 习题
 
@@ -399,4 +359,12 @@ unsigned long long get_cycle_from_mod(
 -   [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
 -   [洛谷 P4000 斐波那契数列](https://www.luogu.com.cn/problem/P4000)
 
-    **本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
+## 参考文献与注释
+
+-   [Fibonacci sequence - Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_sequence)
+-   [Zeckendorf's theorem - Wikipedia](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem)
+-   [Pisano period - Wikipedia](https://en.wikipedia.org/wiki/Pisano_period)
+
+**本页面主要译自博文 [Числа Фибоначчи](http://e-maxx.ru/algo/fibonacci_numbers) 与其英文翻译版 [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．内容有改动．**
+
+[^mod-m]: 严格来说，它是矩阵 $A$ 在一般线性群 $GL_2(\mathbf Z_m)$ 中的阶．

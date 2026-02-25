@@ -4,6 +4,8 @@ import os
 import unittest
 from unittest.mock import patch
 from scripts.linter.utils import index_lfirst_neq, log
+from scripts.linter.utils import Grouping
+from unittest.mock import call
 
 
 class TestIndexLfirstNeq(unittest.TestCase):
@@ -53,6 +55,22 @@ class TestLog(unittest.TestCase):
             mock_print.assert_not_called()
 
     @patch('builtins.print')
+    def test_non_debug_types_print_without_runner_debug(self, mock_print):
+        """Non-debug log types should print even if RUNNER_DEBUG is not set."""
+        cases = [
+            ("error", "error message", "::error::error message"),
+            ("warning", "warning message", "::warning::warning message"),
+            ("group", "group message", "::group::group message"),
+            ("endgroup", "", "::endgroup::"),
+        ]
+        with patch.dict(os.environ, {}, clear=True):
+            for log_type, message, expected in cases:
+                with self.subTest(log_type=log_type):
+                    mock_print.reset_mock()
+                    log(message, type=log_type)
+                    mock_print.assert_called_once_with(expected)
+
+    @patch('builtins.print')
     def test_log_types(self, mock_print):
         """Test logging with different log types."""
         cases = [
@@ -67,6 +85,46 @@ class TestLog(unittest.TestCase):
                 with patch.dict(os.environ, {'RUNNER_DEBUG': '1'}):
                     log(message, type=log_type)
                     mock_print.assert_called_once_with(expected)
+
+
+class TestGrouping(unittest.TestCase):
+    """Test cases for the Grouping context manager."""
+
+    @patch('builtins.print')
+    def test_grouping_with_runner_debug(self, mock_print):
+        """When RUNNER_DEBUG is set, group and endgroup should be printed."""
+        with patch.dict(os.environ, {'RUNNER_DEBUG': '1'}):
+            with Grouping('mygroup'):
+                pass
+
+        self.assertEqual(mock_print.call_args_list,
+                         [call('::group::mygroup'), call('::endgroup::')])
+
+    @patch('builtins.print')
+    def test_grouping_without_runner_debug_disabled(self, mock_print):
+        """When RUNNER_DEBUG is not set and enable_only_debug=True, nothing prints."""
+        with patch.dict(os.environ, {}, clear=True):
+            with Grouping('mygroup'):
+                pass
+
+        mock_print.assert_not_called()
+
+    @patch('builtins.print')
+    def test_grouping_force_enabled(self, mock_print):
+        """When enable_only_debug=False, group commands are always printed."""
+        with patch.dict(os.environ, {}, clear=True):
+            with Grouping('forced', enable_only_debug=False):
+                pass
+
+        self.assertEqual(mock_print.call_args_list,
+                         [call('::group::forced'), call('::endgroup::')])
+
+    def test_grouping_does_not_suppress_exceptions(self):
+        """Exceptions inside the context should propagate (exit returns False)."""
+        with patch.dict(os.environ, {}, clear=True):
+            with self.assertRaises(ValueError):
+                with Grouping('forced', enable_only_debug=False):
+                    raise ValueError('boom')
 
 
 if __name__ == '__main__':
