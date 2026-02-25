@@ -1,10 +1,12 @@
-author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh, xiaofu-15191, Sekakou
+author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink, abc1763613206, partychicken, Chrogeek, xkww3n, HeliumOI, Pinghigh, xiaofu-15191, Sekakou, fuxianhu
 
 ## 简介
 
 Visual Studio Code（以下简称 VS Code）是一个由微软开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器．它是用 TypeScript 编写的，并且采用 Electron 架构．它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统．
 
-官网：[Visual Studio Code - Code Editing. Redefined](https://code.visualstudio.com/)
+官网：[Visual Studio Code - The open source AI code editor](https://code.visualstudio.com/)
+
+在阅读以下内容前，建议你先简单了解 VS Code 的基本使用方法：[开始使用 Get started](https://code.visualstudio.com/docs/getstarted/getting-started)．
 
 ## 使用 C/C++ Compile Run 扩展运行代码
 
@@ -50,7 +52,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 ![](./images/vscode-2.png)
 
 ???+ warning "Warning"
-    在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了 `PATH` 中．请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端．
+    在配置前，请确保系统已经安装了 G++ 或 Clang，并已添加到了环境变量 `PATH` 中．请使用 CMD 或者 PowerShell，而不是 Git Bash 作为集成终端．
 
 ### 配置 GDB/LLDB 调试器
 
@@ -142,6 +144,12 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 
 ### 快捷键
 
+官方快捷键 PDF 如下，也可以在 VS Code 中按下<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>打开命令面板并输入命令 `> Help: Keyboard Shortcuts Reference` 打开．[^ref3]
+
+-   [Windows 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+-   [Linux 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
+-   [Mac OS 系统快捷键](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+
 部分快捷键：
 
 | 按键                                                            | 操作                        |
@@ -161,11 +169,11 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 
 ### 多光标
 
-按住<kbd>Alt</kbd>并单击即可在编辑器中添加光标，多数编辑操作都可同时进行；按住鼠标中键并在编辑器中移动也可添加多行光标，如图：
+按住<kbd>Alt</kbd>并单击即可在编辑器中添加光标，多数编辑操作都可同时进行；按住鼠标中键并在编辑器中拖动也可添加多行光标，如图：
 
 ![](images/vscode-12.gif)
 
-按<kbd>Ctrl</kbd>+<kbd>F2</kbd>可在编辑器中同时更改所有匹配项，如图：
+按<kbd>Ctrl</kbd>+<kbd>F2</kbd>可在编辑器中同时更改所有匹配项，也可以在右键菜单中找到 Change All Occurrences，如图：
 
 ![](images/vscode-13.gif)
 
@@ -176,3 +184,5 @@ VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易�
 [^ref1]: VS Code 的 C/C++ 扩展如果选择 lldb 作调试器，则会默认采用 lldb-mi 程序，而它已经被 LLVM 开发团队从项目中分离出来，需要自己编译该程序．而它本身就有一些 bug，使用体验和方便程度都不如 CodeLLDB 扩展．
 
 [^ref2]: 从扩展商店安装 CodeLLDB 后它会再从 GitHub 下载本体，下载速度奇慢，有时下载出错，所以最好直接下载本体然后安装．更新也可直接按照以上步骤下载安装．
+
+[^ref3]: [VS Code 官方文档](https://code.visualstudio.com/docs/)．
