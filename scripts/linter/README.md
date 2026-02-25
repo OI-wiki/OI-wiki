@@ -61,6 +61,7 @@ Preprocessing functions:
 Postprocessing functions:
 
 - **`fix_full_stop()`**: Fixes full stop issues in Markdown content
+- **`fix_quotation()`**: Fixes quotation issues in Markdown content while preserving apostrophe
 
 ## Usage
 

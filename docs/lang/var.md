@@ -363,11 +363,11 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
     
     ```text
     In file included from test.c:2:
-    test.c: In function ‘test’:
-    test.c:14:35: warning: ‘float’ is promoted to ‘double’ when passed through ‘...’
+    test.c: In function 'test':
+    test.c:14:35: warning: 'float' is promoted to 'double' when passed through '...'
       14 |         float xx = va_arg(valist, float);
          |                                   ^
-    test.c:14:35: note: (so you should pass ‘double’ not ‘float’ to ‘va_arg’)
+    test.c:14:35: note: (so you should pass 'double' not 'float' to 'va_arg')
     test.c:14:35: note: if this code is reached, the program will abort
     ```
     
@@ -513,7 +513,7 @@ const int a = 2;
 a = 3;
 ```
 
-如果修改了常量的值，在编译环节就会报错：`error: assignment of read-only variable‘a’`．
+如果修改了常量的值，在编译环节就会报错：`error: assignment of read-only variable 'a'`．
 
 ## 参考资料与注释
 
