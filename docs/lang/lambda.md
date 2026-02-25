@@ -130,7 +130,7 @@ auto val = init-value;
 以下是错误的写法：
 
 ```cpp
-auto f = [val]() { return val; };  // Error: ‘val’ was not declared in this
+auto f = [val]() { return val; };  // Error: 'val' was not declared in this
                                    // scope, identifier "val" is undefined
 ```
 
