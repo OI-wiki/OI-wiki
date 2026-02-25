@@ -88,8 +88,14 @@ class TestFileOperations(unittest.TestCase):
         apply_preprocess(filepath)
 
         result = self._read_file(filepath)
-        self.assertIn("scripts.linter.preprocess.fix_details off", result)
-        self.assertIn("scripts.linter.preprocess.fix_details on", result)
+        expected = (
+            "  a\n"
+            "<!-- scripts.linter.preprocess.fix_details off -->\n"
+            "  \n"
+            "<!-- scripts.linter.preprocess.fix_details on -->\n"
+            "  b\n"
+        )
+        self.assertEqual(result, expected)
 
     def test_unicode_content(self):
         """Test processing with unicode content."""

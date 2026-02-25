@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/OI-wiki/OI-wiki#readme",
   "dependencies": {
-    "@mathjax/src": "^4.0.0",
+    "@mathjax/src": "^4.1.0",
     "@swc/core": "^1.2.210",
     "chalk": "^4.1.0",
     "colors": "^1.4.0",

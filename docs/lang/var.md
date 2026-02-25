@@ -89,7 +89,7 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 | `long long`,`long long int`,`signed long long`,`signed long long int` | `long long int`          | $\geq 64$  | $64$   | -                          |
 | `unsigned long long`,`unsigned long long int`                         | `unsigned long long int` | $\geq 64$  | $64$   | -                          |
 
-当位宽为 $x$ 时，有符号类型的表示范围为 $-2^{x-1}\sim 2^{x-1}-1$, 无符号类型的表示范围为 $0 \sim 2^x-1$. 具体而言，有下表：
+当位宽为 $x$ 时，有符号类型的表示范围为 $-2^{x-1}\sim 2^{x-1}-1$[^note16], 无符号类型的表示范围为 $0 \sim 2^x-1$. 具体而言，有下表：
 
 | 位宽   | 表示范围                                              |
 | ---- | ------------------------------------------------- |
@@ -363,11 +363,11 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
     
     ```text
     In file included from test.c:2:
-    test.c: In function ‘test’:
-    test.c:14:35: warning: ‘float’ is promoted to ‘double’ when passed through ‘...’
+    test.c: In function 'test':
+    test.c:14:35: warning: 'float' is promoted to 'double' when passed through '...'
       14 |         float xx = va_arg(valist, float);
          |                                   ^
-    test.c:14:35: note: (so you should pass ‘double’ not ‘float’ to ‘va_arg’)
+    test.c:14:35: note: (so you should pass 'double' not 'float' to 'va_arg')
     test.c:14:35: note: if this code is reached, the program will abort
     ```
     
@@ -513,7 +513,7 @@ const int a = 2;
 a = 3;
 ```
 
-如果修改了常量的值，在编译环节就会报错：`error: assignment of read-only variable‘a’`．
+如果修改了常量的值，在编译环节就会报错：`error: assignment of read-only variable 'a'`．
 
 ## 参考资料与注释
 
@@ -538,3 +538,5 @@ a = 3;
 [^note14]: 定义一个变量时，除了类型说明符之外，还可以包含其他说明符．详见 [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)．
 
 [^note15]: 更准确的说法是 [声明点](https://zh.cppreference.com/w/cpp/language/scope#.E5.A3.B0.E6.98.8E.E7.82.B9)．
+
+[^note16]: C++20 前规定有符号整数至少要覆盖 [反码](../math/bit.md#整数与位序列) 的表示范围（即 $-2^{x-1}+1\sim 2^{x-1}-1$），但实际上绝大多数实现中均采用 [补码](../math/bit.md#整数与位序列) 实现；C++20 起进一步规定有符号整数必须使用补码实现．详见 [Range of values - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values)．
