@@ -11,7 +11,7 @@ repo_url: 'https://github.com/OI-wiki/OI-wiki'
 edit_uri: 'https://oi-wiki.org/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2025 OI Wiki Team'
+copyright: 'Copyright &copy; 2016 - 2026 OI Wiki Team'
 
 # Contents
 nav:
@@ -222,10 +222,14 @@ nav:
     - Main–Lorentz 算法: string/main-lorentz.md
   - 数学:
     - 数学部分简介: math/index.md
-    - 进位制: math/base.md
-    - 位运算: math/bit.md
+    - 布尔代数: math/boolean-algebra.md
+    - 数字系统:
+      - 数字系统简介: math/numeral-sys/intro.md
+      - 进位制: math/numeral-sys/base.md
+      - 平衡三进制: math/numeral-sys/balanced-ternary.md
+      - 格雷码: math/numeral-sys/gray-code.md
+    - 位操作: math/bit.md
     - 二进制集合操作: math/binary-set.md
-    - 平衡三进制: math/balanced-ternary.md
     - 高精度计算: math/bignum.md
     - 快速幂: math/binary-exponentiation.md
     - 置换和排列: math/permutation.md
@@ -233,6 +237,7 @@ nav:
     - 复数: math/complex.md
     - 数论:
       - 数论基础: math/number-theory/basic.md
+      - 模算术简介: math/number-theory/mod-arithmetic.md
       - 素数: math/number-theory/prime.md
       - 最大公约数: math/number-theory/gcd.md
       - 欧拉函数: math/number-theory/euler-totient.md
@@ -250,7 +255,7 @@ nav:
       - 二次剩余: math/number-theory/quad-residue.md
       - 阶 & 原根: math/number-theory/primitive-root.md
       - 离散对数: math/number-theory/discrete-logarithm.md
-      - 剩余: math/number-theory/residue.md
+      - 高次剩余 & 单位根: math/number-theory/residue.md
       - 数论分块: math/number-theory/sqrt-decomposition.md
       - 狄利克雷卷积: math/number-theory/dirichlet.md
       - 莫比乌斯反演: math/number-theory/mobius.md
@@ -369,6 +374,7 @@ nav:
       - 李超线段树: ds/li-chao-tree.md
       - 猫树: ds/cat-tree.md
       - 区间最值操作 & 区间历史最值: ds/seg-beats.md
+      - Kinetic Tournament Tree: ds/kinetic-tournament-tree.md
     - 划分树: ds/dividing.md
     - 二叉搜索树 & 平衡树:
       - 二叉搜索树 & 平衡树: ds/bst.md
@@ -517,7 +523,6 @@ nav:
     - 计算理论基础: misc/cc-basic.md
     - 字节顺序: misc/endianness.md
     - 约瑟夫问题: misc/josephus.md
-    - 格雷码: misc/gray-code.md
     - 表达式求值: misc/expression.md
     - 在一台机器上规划任务: misc/job-order.md
     - 主元素问题: misc/main-element.md

@@ -14,20 +14,20 @@ C++ 的类型系统由如下几部分组成：
 
 ### 布尔类型
 
-一个 `bool` 类型的变量取值只可能为两种：`true` 和 `false`。
+一个 `bool` 类型的变量取值只可能为两种：`true` 和 `false`．
 
-一般情况下，一个 `bool` 类型变量占有 $1$ 字节（一般情况下，$1$ 字节 =$8$ 位）的空间。
+一般情况下，一个 `bool` 类型变量占有 $1$ 字节（一般情况下，$1$ 字节 =$8$ 位）的空间．
 
 ???+ tip "Tip"
-    可通过头文件 `<climits>`(C++)/`<limits.h>`(C) 中的宏常量 `CHAR_BIT` 获取字节的位数。
+    可通过头文件 `<climits>`(C++)/`<limits.h>`(C) 中的宏常量 `CHAR_BIT` 获取字节的位数．
 
 ???+ note "C 语言的布尔类型"
-    另请参阅 [C++ 与其他常用语言的区别 - bool](./cpp-other-langs.md#bool)。
+    另请参阅 [C++ 与其他常用语言的区别 - bool](./cpp-other-langs.md#bool)．
     
-    C 语言最初是没有布尔类型的，直到 C99 时才引入 `_Bool` 关键词作为布尔类型，其被视作无符号整数类型。
+    C 语言最初是没有布尔类型的，直到 C99 时才引入 `_Bool` 关键词作为布尔类型，其被视作无符号整数类型．
     
     ???+ note "Note"
-        C 语言的 `bool` 类型从 C23 起不再使用整型的零与非零值定义，而是定义为足够储存 `true` 和 `false` 两个常量的类型。
+        C 语言的 `bool` 类型从 C23 起不再使用整型的零与非零值定义，而是定义为足够储存 `true` 和 `false` 两个常量的类型．
     
     为方便使用，`stdbool.h` 中提供了 `bool`,`true`,`false` 三个宏，定义如下：
     
@@ -37,42 +37,42 @@ C++ 的类型系统由如下几部分组成：
     #define false 0
     ```
     
-    这些宏于 C23 中移除，并且 C23 起引入 `true`,`false` 和 `bool` 作为关键字，同时保留 `_Bool` 作为替代拼写形式[^note10]。
+    这些宏于 C23 中移除，并且 C23 起引入 `true`,`false` 和 `bool` 作为关键字，同时保留 `_Bool` 作为替代拼写形式[^note10]．
     
-    另外，C23 起还可以通过 `<limits.h>` 中的宏常量 `BOOL_WIDTH` 获取布尔类型的位宽。
+    另外，C23 起还可以通过 `<limits.h>` 中的宏常量 `BOOL_WIDTH` 获取布尔类型的位宽．
 
 ### 整数类型
 
-用于存储整数。最基础的整数类型是 `int`.
+用于存储整数．最基础的整数类型是 `int`.
 
 ???+ warning "注意"
-    由于历史原因，C++ 中布尔类型和字符类型会被视作特殊的整型。
+    由于历史原因，C++ 中布尔类型和字符类型会被视作特殊的整型．
     
-    在几乎所有的情况下都 **不应该** 将除 `signed char` 和 `unsigned char` 之外的字符类型作为整型使用。
+    在几乎所有的情况下都 **不应该** 将除 `signed char` 和 `unsigned char` 之外的字符类型作为整型使用．
 
 整数类型一般按位宽有 5 个梯度：`char`,`short`,`int`,`long`,`long long`.
 
 C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)`
 
-由于历史原因，整数类型的位宽有多种流行模型，为解决这一问题，C99/C++11 引入了 [定宽整数类型](#定宽整数类型)。
+由于历史原因，整数类型的位宽有多种流行模型，为解决这一问题，C99/C++11 引入了 [定宽整数类型](#定宽整数类型)．
 
 ???+ note "`int` 类型的大小"
-    在 C++ 标准中，规定 `int` 的位数 **至少** 为 $16$ 位。
+    在 C++ 标准中，规定 `int` 的位数 **至少** 为 $16$ 位．
     
-    事实上在现在的绝大多数平台，`int` 的位数均为 $32$ 位。
+    事实上在现在的绝大多数平台，`int` 的位数均为 $32$ 位．
 
 对于 `int` 关键字，可以使用如下修饰关键字进行修饰：
 
 符号性：
 
 -   `signed`：表示带符号整数（默认）；
--   `unsigned`：表示无符号整数。
+-   `unsigned`：表示无符号整数．
 
 大小：
 
 -   `short`：表示 **至少**  $16$ 位整数；
 -   `long`：表示 **至少**  $32$ 位整数；
--   （C++11 起）`long long`：表示 **至少**  $64$ 位整数。
+-   （C++11 起）`long long`：表示 **至少**  $64$ 位整数．
 
 下表给出在 **一般情况下**，各整数类型的位宽和表示范围大小（少数平台上一些类型的表示范围可能与下表不同）：
 
@@ -89,7 +89,7 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 | `long long`,`long long int`,`signed long long`,`signed long long int` | `long long int`          | $\geq 64$  | $64$   | -                          |
 | `unsigned long long`,`unsigned long long int`                         | `unsigned long long int` | $\geq 64$  | $64$   | -                          |
 
-当位宽为 $x$ 时，有符号类型的表示范围为 $-2^{x-1}\sim 2^{x-1}-1$, 无符号类型的表示范围为 $0 \sim 2^x-1$. 具体而言，有下表：
+当位宽为 $x$ 时，有符号类型的表示范围为 $-2^{x-1}\sim 2^{x-1}-1$[^note16], 无符号类型的表示范围为 $0 \sim 2^x-1$. 具体而言，有下表：
 
 | 位宽   | 表示范围                                              |
 | ---- | ------------------------------------------------- |
@@ -99,14 +99,14 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 | $64$ | 有符号：$-2^{63}\sim 2^{63}-1$, 无符号：$0 \sim 2^{64}-1$ |
 
 ???+ note "等价的类型表述"
-    在不引发歧义的情况下，允许省略部分修饰关键字，或调整修饰关键字的顺序。这意味着同一类型会存在多种等价表述。
+    在不引发歧义的情况下，允许省略部分修饰关键字，或调整修饰关键字的顺序．这意味着同一类型会存在多种等价表述．
     
-    例如 `int`，`signed`，`int signed`，`signed int` 表示同一类型，而 `unsigned long` 和 `unsigned long int` 表示同一类型。
+    例如 `int`，`signed`，`int signed`，`signed int` 表示同一类型，而 `unsigned long` 和 `unsigned long int` 表示同一类型．
 
-另外，一些编译器实现了扩展整数类型，如 GCC 实现了 128 位整数：有符号版的 `__int128_t` 和无符号版的 `__uint128_t`，如果您在比赛时想使用这些类型，**请仔细阅读比赛规则** 以确定是否允许或支持使用扩展整数类型。
+另外，一些编译器实现了扩展整数类型，如 GCC 实现了 128 位整数：有符号版的 `__int128_t` 和无符号版的 `__uint128_t`，如果您在比赛时想使用这些类型，**请仔细阅读比赛规则** 以确定是否允许或支持使用扩展整数类型．
 
 ???+ warning "注意"
-    STL 不一定对扩展整数类型有足够的支持，故使用扩展整数类型时需格外小心。
+    STL 不一定对扩展整数类型有足够的支持，故使用扩展整数类型时需格外小心．
     
     ???+ note "示例代码"
         ```cpp
@@ -141,9 +141,9 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
     
     以上示例代码存在如下问题：
     
-    1.  `__int128_t f3(__int128_t)` 中使用的是 C 风格的绝对值函数，其签名为 `int abs(int)`，故 `n` 首先会强制转换为 `int`，然后才会调用 `abs` 函数。
-    2.  `__int128_t f4(__int128_t)` 中使用的是 C++ 风格的绝对值函数，其并没有签名为 `__int128_t std::abs(__int128_t)` 的函数重载，所以无法通过编译。
-    3.  C++ 的流式输出不支持 `__int128_t` 与 `__uint128_t`。
+    1.  `__int128_t f3(__int128_t)` 中使用的是 C 风格的绝对值函数，其签名为 `int abs(int)`，故 `n` 首先会强制转换为 `int`，然后才会调用 `abs` 函数．
+    2.  `__int128_t f4(__int128_t)` 中使用的是 C++ 风格的绝对值函数，其并没有签名为 `__int128_t std::abs(__int128_t)` 的函数重载，所以无法通过编译．
+    3.  C++ 的流式输出不支持 `__int128_t` 与 `__uint128_t`．
     
     以下是一种解决方案：
     
@@ -183,30 +183,30 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 
 ### 字符类型
 
-分为「窄字符类型」和「宽字符类型」，由于算法竞赛几乎不会用到宽字符类型，故此处仅介绍窄字符类型。
+分为「窄字符类型」和「宽字符类型」，由于算法竞赛几乎不会用到宽字符类型，故此处仅介绍窄字符类型．
 
 窄字符型位数一般为 $8$ 位，实际上底层存储方式仍然是整数，一般通过 [ASCII 编码](http://www.asciitable.com/) 实现字符与整数的一一对应，有如下三种：
 
--   `signed char`：有符号字符表示的类型，表示范围在 $-128 \sim 127$ 之间。
--   `unsigned char`：无符号字符表示的类型，表示范围在 $0 \sim 255$ 之间。
--   `char` 拥有与 `signed char` 或 `unsigned char` 之一相同的表示和对齐，但始终是独立的类型。
+-   `signed char`：有符号字符表示的类型，表示范围在 $-128 \sim 127$ 之间．
+-   `unsigned char`：无符号字符表示的类型，表示范围在 $0 \sim 255$ 之间．
+-   `char` 拥有与 `signed char` 或 `unsigned char` 之一相同的表示和对齐，但始终是独立的类型．
 
-    `char` 的符号性取决于编译器和目标平台：ARM 和 PowerPC 的默认设置通常没有符号，而 x86 与 x64 的默认设置通常有符号。
+    `char` 的符号性取决于编译器和目标平台：ARM 和 PowerPC 的默认设置通常没有符号，而 x86 与 x64 的默认设置通常有符号．
 
-    GCC 可以在编译参数中添加 `-fsigned-char` 或 `-funsigned-char` 指定将 `char` 视作 `signed char` 或 `unsigned char`，其他编译器请参照文档。需要注意指定与架构默认值不同的符号有可能会破坏 ABI，造成程序无法正常工作。
+    GCC 可以在编译参数中添加 `-fsigned-char` 或 `-funsigned-char` 指定将 `char` 视作 `signed char` 或 `unsigned char`，其他编译器请参照文档．需要注意指定与架构默认值不同的符号有可能会破坏 ABI，造成程序无法正常工作．
 
 ???+ warning "注意"
-    与其他整型不同，`char`、`signed char`、`unsigned char` 是 **三种不同的类型**。
+    与其他整型不同，`char`、`signed char`、`unsigned char` 是 **三种不同的类型**．
     
-    一般来说 `signed char`,`unsigned char` 不应用来存储字符，绝大多数情况下，这两种类型均被视作整数类型。
+    一般来说 `signed char`,`unsigned char` 不应用来存储字符，绝大多数情况下，这两种类型均被视作整数类型．
 
 ### 浮点类型
 
 用于存储「实数」（注意并不是严格意义上的实数，而是实数在一定规则下的近似），包括以下三种：
 
--   `float`：单精度浮点类型。如果支持就会匹配 IEEE-754 binary32 格式。
--   `double`：双精度浮点类型。如果支持就会匹配 IEEE-754 binary64 格式。
--   `long double`：扩展精度浮点类型。如果支持就会匹配 IEEE-754 binary128 格式，否则如果支持就会匹配 IEEE-754 binary64 扩展格式，否则匹配某种精度优于 binary64 而值域至少和 binary64 一样好的非 IEEE-754 扩展浮点格式，否则匹配 IEEE-754 binary64 格式。
+-   `float`：单精度浮点类型．如果支持就会匹配 IEEE-754 binary32 格式．
+-   `double`：双精度浮点类型．如果支持就会匹配 IEEE-754 binary64 格式．
+-   `long double`：扩展精度浮点类型．如果支持就会匹配 IEEE-754 binary128 格式，否则如果支持就会匹配 IEEE-754 binary64 扩展格式，否则匹配某种精度优于 binary64 而值域至少和 binary64 一样好的非 IEEE-754 扩展浮点格式，否则匹配 IEEE-754 binary64 格式．
 
 | 浮点格式                   | 位宽        | 最大正数                       | 精度位数             |
 | ---------------------- | --------- | -------------------------- | ---------------- |
@@ -215,19 +215,19 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 | IEEE-754 binary64 扩展格式 | $\geq 80$ | $\geq 1.2\times 10^{4932}$ | $\geq 18\sim 21$ |
 | IEEE-754 binary128 格式  | $128$     | $1.2\times 10^{4932}$      | $33\sim 36$      |
 
-> IEEE-754 浮点格式的最小负数是最大正数的相反数。
+> IEEE-754 浮点格式的最小负数是最大正数的相反数．
 
-因为 `float` 类型表示范围较小，且精度不高，实际应用中常使用 `double` 类型表示浮点数。
+因为 `float` 类型表示范围较小，且精度不高，实际应用中常使用 `double` 类型表示浮点数．
 
 另外，浮点类型可以支持一些特殊值：
 
 -   无穷（正或负）：`INFINITY`.
 -   负零：`-0.0`，例如 `1.0 / 0.0 == INFINITY`,`1.0 / -0.0 == -INFINITY`.
--   非数（NaN）：`std::nan`,`NAN`，一般可以由 `0.0 / 0.0` 之类的运算产生。它与任何值（包括自身）比较都不相等，C++11 后可以 使用 `std::isnan` 判断一个浮点数是不是 NaN.
+-   非数（NaN）：`std::nan`,`NAN`，一般可以由 `0.0 / 0.0` 之类的运算产生．它与任何值（包括自身）比较都不相等，C++11 后可以 使用 `std::isnan` 判断一个浮点数是不是 NaN.
 
 ### 无类型
 
-`void` 类型为无类型，与上面几种类型不同的是，不能将一个变量声明为 `void` 类型。但是函数的返回值允许为 `void` 类型，表示该函数无返回值。
+`void` 类型为无类型，与上面几种类型不同的是，不能将一个变量声明为 `void` 类型．但是函数的返回值允许为 `void` 类型，表示该函数无返回值．
 
 ### 空指针类型
 
@@ -237,8 +237,8 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 
 C++11 起提供了定宽整数的支持，具体如下：
 
--   `<cstdint>`：提供了若干定宽整数的类型和各定宽整数类型最大值、最小值等的宏常量。
--   `<cinttypes>`：为定宽整数类型提供了用于 `std::fprintf` 系列函数和 `std::fscanf` 系列函数的格式宏常量。
+-   `<cstdint>`：提供了若干定宽整数的类型和各定宽整数类型最大值、最小值等的宏常量．
+-   `<cinttypes>`：为定宽整数类型提供了用于 `std::fprintf` 系列函数和 `std::fscanf` 系列函数的格式宏常量．
 
 定宽整数有如下几种：
 
@@ -266,8 +266,8 @@ C++11 起提供了定宽整数的支持，具体如下：
 
 在实现了对应类型的情况下，C++ 标准规定必须实现表示对应类型的最大值、最小值、位宽的宏常量，格式为将类型名末尾的 `_t` 去掉后转大写并添加后缀：
 
--   `_MAX` 表示最大值，如 `INT32_MAX` 即为 `int32_t` 的最大值。
--   `_MIN` 表示最小值，如 `INT32_MIN` 即为 `int32_t` 的最小值。
+-   `_MAX` 表示最大值，如 `INT32_MAX` 即为 `int32_t` 的最大值．
+-   `_MIN` 表示最小值，如 `INT32_MIN` 即为 `int32_t` 的最小值．
 
 ???+ warning "注意"
     定宽整数类型本质上是普通整数类型的类型别名，所以混用定宽整数类型和普通整数类型可能会影响跨平台编译，例如：
@@ -287,9 +287,9 @@ C++11 起提供了定宽整数的支持，具体如下：
         }
         ```
     
-    `int64_t` 在 64 位 Windows 下一般为 `long long int`, 而在 64 位 Linux 下一般为 `long int`, 所以这段代码在使用 64 位 Linux 下的 GCC 时不能通过编译，而使用 64 位 Windows 下的 MSVC 时可以通过编译，因为 `std::max` 要求输入的两个参数类型必须相同。
+    `int64_t` 在 64 位 Windows 下一般为 `long long int`, 而在 64 位 Linux 下一般为 `long int`, 所以这段代码在使用 64 位 Linux 下的 GCC 时不能通过编译，而使用 64 位 Windows 下的 MSVC 时可以通过编译，因为 `std::max` 要求输入的两个参数类型必须相同．
 
-此外，C++17 起在 `<limits>` 中提供了 `std::numeric_limits` 类模板，用于查询各种算数类型的属性，如最大值、最小值、是否是整形、是否有符号等。
+此外，C++17 起在 `<limits>` 中提供了 `std::numeric_limits` 类模板，用于查询各种算数类型的属性，如最大值、最小值、是否是整形、是否有符号等．
 
 ```cpp
 #include <cstdint>
@@ -305,16 +305,16 @@ std::numeric_limits<double>::epsilon();  // 1.0 与 double 的下个可表示值
 
 ## 类型转换
 
-在一些时候（比如某个函数接受 `int` 类型的参数，但传入了 `double` 类型的变量），我们需要将某种类型，转换成另外一种类型。
+在一些时候（比如某个函数接受 `int` 类型的参数，但传入了 `double` 类型的变量），我们需要将某种类型，转换成另外一种类型．
 
-C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据类型的两种转换：数值提升和数值转换。
+C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据类型的两种转换：数值提升和数值转换．
 
 ### 数值提升
 
-数值提升过程中，值本身保持不变。
+数值提升过程中，值本身保持不变．
 
 ???+ note "Note"
-    C 风格的可变参数域在传值过程中会进行默认参数提升。如：
+    C 风格的可变参数域在传值过程中会进行默认参数提升．如：
     
     ???+ note "示例代码"
         ```c
@@ -363,110 +363,110 @@ C++ 中类型的转换机制较为复杂，这里主要介绍对于基础数据�
     
     ```text
     In file included from test.c:2:
-    test.c: In function ‘test’:
-    test.c:14:35: warning: ‘float’ is promoted to ‘double’ when passed through ‘...’
+    test.c: In function 'test':
+    test.c:14:35: warning: 'float' is promoted to 'double' when passed through '...'
       14 |         float xx = va_arg(valist, float);
          |                                   ^
-    test.c:14:35: note: (so you should pass ‘double’ not ‘float’ to ‘va_arg’)
+    test.c:14:35: note: (so you should pass 'double' not 'float' to 'va_arg')
     test.c:14:35: note: if this code is reached, the program will abort
     ```
     
-    此时的程序将会在输出前终止。
+    此时的程序将会在输出前终止．
     
-    这一点也能解释为什么 `printf` 的 `%f` 既能匹配 `float` 也能匹配 `double`。
+    这一点也能解释为什么 `printf` 的 `%f` 既能匹配 `float` 也能匹配 `double`．
 
 #### 整数提升
 
-小整数类型（如 `char`）的纯右值可转换成较大整数类型（如 `int`）的纯右值。
+小整数类型（如 `char`）的纯右值可转换成较大整数类型（如 `int`）的纯右值．
 
-具体而言，算术运算符不接受小于 `int` 的类型作为它的实参，而在左值到右值转换后，如果适用就会自动实施整数提升。
+具体而言，算术运算符不接受小于 `int` 的类型作为它的实参，而在左值到右值转换后，如果适用就会自动实施整数提升．
 
 具体地，有如下规则：
 
--   源类型为 `signed char`、`signed short / short` 时，可提升为 `int`。
--   源类型为 `unsigned char`、`unsigned short` 时，若 `int` 能保有源类型的值范围，则可提升为 `int`，否则可提升为 `unsigned int`。（`C++20` 起 `char8_t` 也适用本规则）
--   `char` 的提升规则取决于其底层类型是 `signed char` 还是 `unsigned char`。
--   `bool` 类型可转换到 `int`：`false` 变为 `0`，`true` 变为 `1`。
--   若目标类型的值范围包含源类型，且源类型的值范围不能被 `int` 和 `unsigned int` 包含，则源类型可提升为目标类型。[^note12]
+-   源类型为 `signed char`、`signed short / short` 时，可提升为 `int`．
+-   源类型为 `unsigned char`、`unsigned short` 时，若 `int` 能保有源类型的值范围，则可提升为 `int`，否则可提升为 `unsigned int`．（`C++20` 起 `char8_t` 也适用本规则）
+-   `char` 的提升规则取决于其底层类型是 `signed char` 还是 `unsigned char`．
+-   `bool` 类型可转换到 `int`：`false` 变为 `0`，`true` 变为 `1`．
+-   若目标类型的值范围包含源类型，且源类型的值范围不能被 `int` 和 `unsigned int` 包含，则源类型可提升为目标类型．[^note12]
 
 ???+ warning "注意"
-    `char`->`short` 不是数值提升，因为 `char` 要优先提升为 `int / unsigned int`，之后是 `int / unsigned int`->`short`，不满足数值提升的条件。
+    `char`->`short` 不是数值提升，因为 `char` 要优先提升为 `int / unsigned int`，之后是 `int / unsigned int`->`short`，不满足数值提升的条件．
 
 如（以下假定 `int` 为 32 位，`unsigned short` 为 16 位，`signed char` 和 `unsigned char` 为 8 位，`bool` 为 1 位）
 
--   `(signed char)'\0' - (signed char)'\xff'` 会先将 `(signed char)'\0'` 提升为 `(int)0`、将 `(signed char)'\xff'` 提升为 `(int)-1`, 再进行 `int` 间的运算，最终结果为 `(int)1`。
--   `(unsigned char)'\0' - (unsigned char)'\xff'` 会先将 `(unsigned char)'\0'` 提升为 `(int)0`、将 `(unsigned char)'\xff'` 提升为 `(int)255`, 再进行 `int` 间的运算，最终结果为 `(int)-255`。
--   `false - (unsigned short)12` 会先将 `false` 提升为 `(int)0`、将 `(unsigned short)12` 提升为 `(int)12`, 再进行 `int` 间的运算，最终结果为 `(int)-12`。
+-   `(signed char)'\0' - (signed char)'\xff'` 会先将 `(signed char)'\0'` 提升为 `(int)0`、将 `(signed char)'\xff'` 提升为 `(int)-1`, 再进行 `int` 间的运算，最终结果为 `(int)1`．
+-   `(unsigned char)'\0' - (unsigned char)'\xff'` 会先将 `(unsigned char)'\0'` 提升为 `(int)0`、将 `(unsigned char)'\xff'` 提升为 `(int)255`, 再进行 `int` 间的运算，最终结果为 `(int)-255`．
+-   `false - (unsigned short)12` 会先将 `false` 提升为 `(int)0`、将 `(unsigned short)12` 提升为 `(int)12`, 再进行 `int` 间的运算，最终结果为 `(int)-12`．
 
 #### 浮点提升
 
-位宽较小的浮点数可以提升为位宽较大的浮点数（例如 `float` 类型的变量和 `double` 类型的变量进行算术运算时，会将 `float` 类型变量提升为 `double` 类型变量），其值不变。
+位宽较小的浮点数可以提升为位宽较大的浮点数（例如 `float` 类型的变量和 `double` 类型的变量进行算术运算时，会将 `float` 类型变量提升为 `double` 类型变量），其值不变．
 
 ### 数值转换
 
-数值转换过程中，值可能会发生改变。
+数值转换过程中，值可能会发生改变．
 
 ???+ warning "注意"
-    数值提升优先于数值转换。如 `bool`->`int` 时是数值提升而非数值转换。
+    数值提升优先于数值转换．如 `bool`->`int` 时是数值提升而非数值转换．
 
 #### 整数转换
 
-<!-- preprocess.skipdetails on -->
+<!-- scripts.linter.preprocess.fix_details off -->
 
--   如果目标类型为位宽为 $x$ 的无符号整数类型，则转换结果是原值 $\bmod 2^x$ 后的结果。
+-   如果目标类型为位宽为 $x$ 的无符号整数类型，则转换结果是原值 $\bmod 2^x$ 后的结果．
 
     -   若目标类型位宽大于源类型位宽：
 
-        -   若源类型为有符号类型，一般情况下需先进行符号位扩展再转换。
+        -   若源类型为有符号类型，一般情况下需先进行符号位扩展再转换．
 
             如
 
-            -   将 `(short)-1`（`(short)0b1111'1111'1111'1111`）转换为 `unsigned int` 类型时，先进行符号位扩展，得到 `0b1111'1111'1111'1111'1111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）。
-            -   将 `(short)32'767`（`(short)0b0111'1111'1111'1111`）转换为 `unsigned int` 类型时，先进行符号位扩展，得到 `0b0000'0000'0000'0000'0111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned int)32'767`（`(unsigned int)0b0000'0000'0000'0000'0111'1111'1111'1111`）。
+            -   将 `(short)-1`（`(short)0b1111'1111'1111'1111`）转换为 `unsigned int` 类型时，先进行符号位扩展，得到 `0b1111'1111'1111'1111'1111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）．
+            -   将 `(short)32'767`（`(short)0b0111'1111'1111'1111`）转换为 `unsigned int` 类型时，先进行符号位扩展，得到 `0b0000'0000'0000'0000'0111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned int)32'767`（`(unsigned int)0b0000'0000'0000'0000'0111'1111'1111'1111`）．
 
-        -   若源类型为无符号类型，则需先进行零扩展再转换。
+        -   若源类型为无符号类型，则需先进行零扩展再转换．
 
-            如将 `(unsigned short)65'535`（`(unsigned short)0b1111'1111'1111'1111`）转换为 `unsigned int` 类型时，先进行零扩展，得到 `0b0000'0000'0000'0000'1111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned int)65'535`（`(unsigned int)0b0000'0000'0000'0000'1111'1111'1111'1111`）。
+            如将 `(unsigned short)65'535`（`(unsigned short)0b1111'1111'1111'1111`）转换为 `unsigned int` 类型时，先进行零扩展，得到 `0b0000'0000'0000'0000'1111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned int)65'535`（`(unsigned int)0b0000'0000'0000'0000'1111'1111'1111'1111`）．
 
-    -   若目标类型位宽不大于源类型位宽，则需先截断再转换。
+    -   若目标类型位宽不大于源类型位宽，则需先截断再转换．
 
-        如将 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）转换为 `unsigned short` 类型时，先进行截断，得到 `0b1111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned short)65'535`（`(unsigned short)0b1111'1111'1111'1111`）。
+        如将 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）转换为 `unsigned short` 类型时，先进行截断，得到 `0b1111'1111'1111'1111`，再进行整数转换，结果为 `(unsigned short)65'535`（`(unsigned short)0b1111'1111'1111'1111`）．
 
--   如果目标类型为位宽为 $x$ 的带符号整数类型，则 **一般情况下**，转换结果可以认为是原值 $\bmod 2^x$ 后的结果。[^note13]
+-   如果目标类型为位宽为 $x$ 的带符号整数类型，则 **一般情况下**，转换结果可以认为是原值 $\bmod 2^x$ 后的结果．[^note13]
 
-    例如将 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）转换为 `short` 类型时，结果为 `(short)-1`（`(short)0b1111'1111'1111'1111`）。
+    例如将 `(unsigned int)4'294'967'295`（`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`）转换为 `short` 类型时，结果为 `(short)-1`（`(short)0b1111'1111'1111'1111`）．
 
--   如果目标类型是 `bool`，则是 [布尔转换](#布尔转换)。
+-   如果目标类型是 `bool`，则是 [布尔转换](#布尔转换)．
 
--   如果源类型是 `bool`，则 `false` 转为对应类型的 0，`true` 转为对应类型的 1。
+-   如果源类型是 `bool`，则 `false` 转为对应类型的 0，`true` 转为对应类型的 1．
 
-<!-- preprocess.skipdetails off -->
+<!-- scripts.linter.preprocess.fix_details on -->
 
 #### 浮点转换
 
-位宽较大的浮点数转换为位宽较小的浮点数，会将该数舍入到目标类型下最接近的值。
+位宽较大的浮点数转换为位宽较小的浮点数，会将该数舍入到目标类型下最接近的值．
 
 #### 浮点整数转换
 
--   浮点数转换为整数时，会舍弃浮点数的全部小数部分。
+-   浮点数转换为整数时，会舍弃浮点数的全部小数部分．
 
-    如果目标类型是 `bool`，则是 [布尔转换](#布尔转换)。
+    如果目标类型是 `bool`，则是 [布尔转换](#布尔转换)．
 
--   整数转换为浮点数时，会舍入到目标类型下最接近的值。
+-   整数转换为浮点数时，会舍入到目标类型下最接近的值．
 
-    如果该值不能适应到目标类型中，那么行为未定义。
+    如果该值不能适应到目标类型中，那么行为未定义．
 
-    如果源类型是 `bool`，那么 `false` 转换为零，而 `true` 转换为一。
+    如果源类型是 `bool`，那么 `false` 转换为零，而 `true` 转换为一．
 
 #### 布尔转换
 
-将其他类型转换为 `bool` 类型时，零值转换为 `false`，非零值转换为 `true`。
+将其他类型转换为 `bool` 类型时，零值转换为 `false`，非零值转换为 `true`．
 
 ## 定义变量
 
-简单地说[^note14]，定义一个变量，需要包含类型说明符（指明变量的类型），以及要定义的变量名。
+简单地说[^note14]，定义一个变量，需要包含类型说明符（指明变量的类型），以及要定义的变量名．
 
-例如，下面这几条语句都是变量定义语句。
+例如，下面这几条语句都是变量定义语句．
 
 ```cpp
 int oi;
@@ -474,19 +474,19 @@ double wiki;
 char org = 'c';
 ```
 
-在目前我们所接触到的程序段中，定义在花括号包裹的地方的变量是局部变量，而定义在没有花括号包裹的地方的变量是全局变量。实际有例外，但是现在不必了解。
+在目前我们所接触到的程序段中，定义在花括号包裹的地方的变量是局部变量，而定义在没有花括号包裹的地方的变量是全局变量．实际有例外，但是现在不必了解．
 
-定义时没有初始化值的全局变量会被初始化为 $0$。而局部变量没有这种特性，需要手动赋初始值，否则可能引起难以发现的 bug。
+定义时没有初始化值的全局变量会被初始化为 $0$．而局部变量没有这种特性，需要手动赋初始值，否则可能引起难以发现的 bug．
 
 ## 变量作用域
 
-作用域是变量可以发挥作用的代码块。
+作用域是变量可以发挥作用的代码块．
 
-全局变量的作用域，自其定义之处开始[^note15]，至文件结束位置为止。
+全局变量的作用域，自其定义之处开始[^note15]，至文件结束位置为止．
 
-局部变量的作用域，自其定义之处开始，至代码块结束位置为止。
+局部变量的作用域，自其定义之处开始，至代码块结束位置为止．
 
-由一对大括号括起来的若干语句构成一个代码块。
+由一对大括号括起来的若干语句构成一个代码块．
 
 ```cpp
 int g = 20;  // 定义全局变量
@@ -498,22 +498,22 @@ int main() {
 }
 ```
 
-如果一个代码块的内嵌块中定义了相同变量名的变量，则内层块中将无法访问外层块中相同变量名的变量。
+如果一个代码块的内嵌块中定义了相同变量名的变量，则内层块中将无法访问外层块中相同变量名的变量．
 
-例如上面的代码中，输出的 $g$ 的值将是 $10$。因此为了防止出现意料之外的错误，请尽量避免局部变量与全局变量重名的情况。
+例如上面的代码中，输出的 $g$ 的值将是 $10$．因此为了防止出现意料之外的错误，请尽量避免局部变量与全局变量重名的情况．
 
 ## 常量
 
-常量是固定值，在程序执行期间不会改变。
+常量是固定值，在程序执行期间不会改变．
 
-常量的值在定义后不能被修改。定义时加一个 `const` 关键字即可。
+常量的值在定义后不能被修改．定义时加一个 `const` 关键字即可．
 
 ```cpp
 const int a = 2;
 a = 3;
 ```
 
-如果修改了常量的值，在编译环节就会报错：`error: assignment of read-only variable‘a’`。
+如果修改了常量的值，在编译环节就会报错：`error: assignment of read-only variable 'a'`．
 
 ## 参考资料与注释
 
@@ -529,12 +529,14 @@ a = 3;
 
 [^note10]: 参见 <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf>
 
-[^note11]: 包括数组类型、引用类型、指针类型、类类型、函数类型等。由于本篇文章是面向初学者的，故不在本文做具体介绍。具体请参阅 [类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
+[^note11]: 包括数组类型、引用类型、指针类型、类类型、函数类型等．由于本篇文章是面向初学者的，故不在本文做具体介绍．具体请参阅 [类型 - cppreference.com](https://zh.cppreference.com/w/cpp/language/type)
 
-[^note12]: 不包含宽字符类型、位域和枚举类型，详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
+[^note12]: 不包含宽字符类型、位域和枚举类型，详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)．
 
-[^note13]: 自 C++20 起生效。C++20 前结果是实现定义的。详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)。
+[^note13]: 自 C++20 起生效．C++20 前结果是实现定义的．详见 [整型转换 - cppreference](https://zh.cppreference.com/w/cpp/language/implicit_conversion#.E6.95.B4.E5.9E.8B.E8.BD.AC.E6.8D.A2)．
 
-[^note14]: 定义一个变量时，除了类型说明符之外，还可以包含其他说明符。详见 [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)。
+[^note14]: 定义一个变量时，除了类型说明符之外，还可以包含其他说明符．详见 [声明 - cppreference](https://zh.cppreference.com/w/cpp/language/declarations)．
 
-[^note15]: 更准确的说法是 [声明点](https://zh.cppreference.com/w/cpp/language/scope#.E5.A3.B0.E6.98.8E.E7.82.B9)。
+[^note15]: 更准确的说法是 [声明点](https://zh.cppreference.com/w/cpp/language/scope#.E5.A3.B0.E6.98.8E.E7.82.B9)．
+
+[^note16]: C++20 前规定有符号整数至少要覆盖 [反码](../math/bit.md#整数与位序列) 的表示范围（即 $-2^{x-1}+1\sim 2^{x-1}-1$），但实际上绝大多数实现中均采用 [补码](../math/bit.md#整数与位序列) 实现；C++20 起进一步规定有符号整数必须使用补码实现．详见 [Range of values - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values)．

@@ -20,5 +20,7 @@
 - `test.py` 测试文档中的实例代码正常编译
 - `check-characters.py` 扫描修改的 Markdown 与 TeX 文件中的异常非可见字符与可替换为对应 CJK 字符的部首（和笔画字符）
 - `celebration.py` 自动创建庆祝 star 数量的 issue
+- `linter_patch.py` 用于协助 bot 修正错误的文档格式化结果
+-   `linter` `linter_patch.py` 的一部分，详见 `linter/README.md`
 -   `utils` 一些工具
     - `find_jk.py` 寻找源文件中非中文码位的汉字字符

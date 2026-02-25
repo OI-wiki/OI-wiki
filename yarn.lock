@@ -35,6 +35,18 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@isaacs/balanced-match@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@isaacs/balanced-match/-/balanced-match-4.0.1.tgz#3081dadbc3460661b751e7591d7faea5df39dd29"
+  integrity sha512-yzMTt9lEb8Gv7zRioUilSglI0c0smZ9k5D65677DLWLtWJaXIS3CqcGyUFByYKlnUj6TkjLVs54fBl6+TiGQDQ==
+
+"@isaacs/brace-expansion@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@isaacs/brace-expansion/-/brace-expansion-5.0.1.tgz#0ef5a92d91f2fff2a37646ce54da9e5f599f6eff"
+  integrity sha512-WMz71T1JS624nWj2n2fnYAuPovhv7EUhk69R6i9dsVyzxt5eM3bjwvgk9L+APE1TRscGysAVMANkB0jh0LQZrQ==
+  dependencies:
+    "@isaacs/balanced-match" "^4.0.1"
+
 "@jridgewell/resolve-uri@^3.0.3":
   version "3.1.0"
   resolved "https://registry.npmjs.org/@jridgewell/resolve-uri/-/resolve-uri-3.1.0.tgz"
@@ -53,20 +65,20 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@mathjax/mathjax-newcm-font@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.npmmirror.com/@mathjax/mathjax-newcm-font/-/mathjax-newcm-font-4.0.0.tgz#01afa8b20f2114665dc1d9a7fbc623a23ddb54e4"
-  integrity sha512-kpsJgIF4FpWiwIkFgOPmWwy5GXfL25spmJJNg27HQxPddmEL8Blx0jn2BuU/nlwjM/9SnYpEfDrWiAMgLPlB8Q==
+"@mathjax/mathjax-newcm-font@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@mathjax/mathjax-newcm-font/-/mathjax-newcm-font-4.1.0.tgz#746a03368eb5fa611b2aac46de26277bdedada12"
+  integrity sha512-n10AwYubUa2hyOzxSRzkwRrgCVns083zkentryXICMPKaWT/watfvK2sUk5D9Bow9mpDfoqb5EWApuUvqnlzaw==
 
-"@mathjax/src@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.npmmirror.com/@mathjax/src/-/src-4.0.0.tgz#30b3990c00a4d9eb77b7dec15dc3427c5546fb8f"
-  integrity sha512-i7oYVLkHTskfTqxBzrbvcJN8ptGChWb6bx2LZsCySk7QWf61JqaMYX5N7M0qr8tnYqRmN5DDedkRda7wDuTdBA==
+"@mathjax/src@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@mathjax/src/-/src-4.1.0.tgz#44de3d21c9cf3aa0d1a39d4a11d2f0dc86a5bd05"
+  integrity sha512-xnBL2E5uNHR82iLiUVJXYicKh/Jbq2I1+8yCpcBfJqLEM6CrAR9zBpYYkAFtC/Myvykd5U5uMmRrtr49AKk0TA==
   dependencies:
-    "@mathjax/mathjax-newcm-font" "4.0.0"
+    "@mathjax/mathjax-newcm-font" "4.1.0"
     mhchemparser "^4.2.1"
-    mj-context-menu "^0.9.1"
-    speech-rule-engine "5.0.0-beta.1"
+    mj-context-menu "^1.0.0"
+    speech-rule-engine "5.0.0-beta.3"
 
 "@octokit/app@^15.0.0":
   version "15.1.0"
@@ -759,7 +771,7 @@
 
 "@xmldom/xmldom@0.9.8":
   version "0.9.8"
-  resolved "https://registry.npmmirror.com/@xmldom/xmldom/-/xmldom-0.9.8.tgz#1471e82bdff9e8f20ee8bbe60d4ffa8a516e78d8"
+  resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.9.8.tgz#1471e82bdff9e8f20ee8bbe60d4ffa8a516e78d8"
   integrity sha512-p96FSY54r+WJ50FIOsCOjyj/wavs8921hG5+kVMmZgKcvIKxMXHTrjNJvRgWa/zuX3B6t2lijLNFaOyuxUH+2A==
 
 "@yarnpkg/lockfile@^1.1.0":
@@ -1022,10 +1034,10 @@ comma-separated-tokens@^2.0.0:
   resolved "https://registry.npmjs.org/comma-separated-tokens/-/comma-separated-tokens-2.0.3.tgz"
   integrity sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==
 
-commander@14.0.0:
-  version "14.0.0"
-  resolved "https://registry.npmmirror.com/commander/-/commander-14.0.0.tgz#f244fc74a92343514e56229f16ef5c5e22ced5e9"
-  integrity sha512-2uM9rYjPvyq39NwLRqaiLtWHyDC1FvryJDa2ATTVims5YAS4PupsEQsDvP14FqhFr0P49CYDugi59xaxJlTXRA==
+commander@14.0.2:
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-14.0.2.tgz#b71fd37fe4069e4c3c7c13925252ada4eba14e8e"
+  integrity sha512-TywoWNNRbhoD0BXs1P3ZEScW8W5iKrnbithIl0YH+uCmBd0QpPOA8yc82DS3BIE5Ma6FnBVUsJ7wVUDz4dvOWQ==
 
 commander@^8.0.0:
   version "8.3.0"
@@ -1308,6 +1320,15 @@ glob-parent@~5.1.2:
   dependencies:
     is-glob "^4.0.1"
 
+glob@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-13.0.0.tgz#9d9233a4a274fc28ef7adce5508b7ef6237a1be3"
+  integrity sha512-tvZgpqk6fz4BaNZ66ZsRaZnbHvP/jG3uKJvAZOwEVUL4RTA5nJeeLYfyN9/VA8NX/V3IBG+hkeuGpKjvELkVhA==
+  dependencies:
+    minimatch "^10.1.1"
+    minipass "^7.1.2"
+    path-scurry "^2.0.0"
+
 glob@^7.0.0, glob@^7.1.3:
   version "7.2.3"
   resolved "https://registry.npmjs.org/glob/-/glob-7.2.3.tgz"
@@ -1505,9 +1526,9 @@ js-tokens@^4.0.0:
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
 js-yaml@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.0.tgz"
-  integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.1.1.tgz#854c292467705b699476e1a2decc0c8a3458806b"
+  integrity sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==
   dependencies:
     argparse "^2.0.1"
 
@@ -1593,6 +1614,11 @@ lru-cache@^10.0.0:
   version "10.2.2"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.2.2.tgz#48206bc114c1252940c41b25b41af5b545aca878"
   integrity sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==
+
+lru-cache@^11.0.0:
+  version "11.2.5"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-11.2.5.tgz#6811ae01652ae5d749948cdd80bcc22218c6744f"
+  integrity sha512-vFrFJkWtJvJnD5hg+hJvVE8Lh/TcMzKnTgCWmtBipwI5yLX/iX+5UB2tfuyODF5E7k9xEzMdYgGqaSb1c0c5Yw==
 
 lru-cache@^6.0.0:
   version "6.0.0"
@@ -1852,7 +1878,7 @@ mdast-util-to-string@^4.0.0:
 
 mhchemparser@^4.2.1:
   version "4.2.1"
-  resolved "https://registry.npmmirror.com/mhchemparser/-/mhchemparser-4.2.1.tgz#d73982e66bc06170a85b1985600ee9dabe157cb0"
+  resolved "https://registry.yarnpkg.com/mhchemparser/-/mhchemparser-4.2.1.tgz#d73982e66bc06170a85b1985600ee9dabe157cb0"
   integrity sha512-kYmyrCirqJf3zZ9t/0wGgRZ4/ZJw//VwaRVGA75C4nhE60vtnIzhl9J9ndkX/h6hxSN7pjg/cE0VxbnNM+bnDQ==
 
 micromark-core-commonmark@1.0.1:
@@ -2371,6 +2397,13 @@ micromatch@^4.0.2:
     braces "^3.0.3"
     picomatch "^2.3.1"
 
+minimatch@^10.1.1:
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-10.1.1.tgz#e6e61b9b0c1dcab116b5a7d1458e8b6ae9e73a55"
+  integrity sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==
+  dependencies:
+    "@isaacs/brace-expansion" "^5.0.0"
+
 minimatch@^3.1.1:
   version "3.1.2"
   resolved "https://registry.npmjs.org/minimatch/-/minimatch-3.1.2.tgz"
@@ -2383,10 +2416,17 @@ minimist@^1.0.0, minimist@^1.2.6:
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.7.tgz"
   integrity sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==
 
-mj-context-menu@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.npmmirror.com/mj-context-menu/-/mj-context-menu-0.9.1.tgz#8195fb10092488d9feeba8b50f03fa56080edb14"
-  integrity sha512-ECPcVXZFRfeYOxb1MWGzctAtnQcZ6nRucE3orfkKX7t/KE2mlXO2K/bq4BcCGOuhdz3Wg2BZDy2S8ECK73/iIw==
+minipass@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-7.1.2.tgz#93a9626ce5e5e66bd4db86849e7515e92340a707"
+  integrity sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==
+
+mj-context-menu@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mj-context-menu/-/mj-context-menu-1.0.0.tgz#143edb0a57161d1743fabf0f8459f4cb65ef19bc"
+  integrity sha512-OSgBFQRCVhrZwRa9lhqnKcJU92dd/YXgBjup0uyeuj9bOaVsf4myOyrjU4PfhYkdDk6AqVUTov7v5uFMvIbduA==
+  dependencies:
+    rimraf "^6.0.1"
 
 mri@^1.1.0:
   version "1.2.0"
@@ -2453,10 +2493,10 @@ octokit@^4.0.2:
     "@octokit/request-error" "^6.0.0"
     "@octokit/types" "^13.0.0"
 
-oiwiki-feedback-sys-frontend@^0.5.13:
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/oiwiki-feedback-sys-frontend/-/oiwiki-feedback-sys-frontend-0.5.13.tgz#0709485cfdc627c8f49b915444fc62f4f7724157"
-  integrity sha512-ZnwjCZu8+bURTw08H+nVnjzgBNl76wI0P7eP5mEH94Azf/JPb6JhqZUET0zYhApFesfoKzYNB8nsv1XHa6We2Q==
+oiwiki-feedback-sys-frontend@^0.5.16:
+  version "0.5.16"
+  resolved "https://registry.yarnpkg.com/oiwiki-feedback-sys-frontend/-/oiwiki-feedback-sys-frontend-0.5.16.tgz#d0bef1a4a862d44536a8e91c2aaeb4437c6f3276"
+  integrity sha512-R2gt04aQu9elv/KBM84xHARsrDUY3FbKX8IQTPF/b5o+XZ60VTL45ZaWJnJIw0aF8al39e6jDDE0laz5Lxy8jg==
 
 once@^1.3.0:
   version "1.4.0"
@@ -2496,6 +2536,11 @@ p-try@^2.0.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/p-try/-/p-try-2.2.0.tgz"
   integrity sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==
+
+package-json-from-dist@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/package-json-from-dist/-/package-json-from-dist-1.0.1.tgz#4f1471a010827a86f94cfd9b0727e36d267de505"
+  integrity sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==
 
 pangu@3.3.0:
   version "3.3.0"
@@ -2577,6 +2622,14 @@ path-key@^3.1.0:
   version "3.1.1"
   resolved "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz"
   integrity sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==
+
+path-scurry@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/path-scurry/-/path-scurry-2.0.1.tgz#4b6572376cfd8b811fca9cd1f5c24b3cbac0fe10"
+  integrity sha512-oWyT4gICAu+kaA7QWk/jvCHWarMKNs6pXOGWKDTr7cw4IGcUbW+PeTfbaQiLGheFRpjo6O9J0PmyMfQPjH71oA==
+  dependencies:
+    lru-cache "^11.0.0"
+    minipass "^7.1.2"
 
 picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.3.1:
   version "2.3.1"
@@ -3356,6 +3409,14 @@ rimraf@^2.6.3:
   dependencies:
     glob "^7.1.3"
 
+rimraf@^6.0.1:
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-6.1.2.tgz#9a0f3cea2ab853e81291127422116ecf2a86ae89"
+  integrity sha512-cFCkPslJv7BAXJsYlK1dZsbP8/ZNLkCAQ0bi1hf5EKX2QHegmDFEFA6QhuYJlk7UDdc+02JjO80YSOrWPpw06g==
+  dependencies:
+    glob "^13.0.0"
+    package-json-from-dist "^1.0.1"
+
 sade@^1.7.3:
   version "1.8.1"
   resolved "https://registry.npmjs.org/sade/-/sade-1.8.1.tgz"
@@ -3421,13 +3482,13 @@ space-separated-tokens@^2.0.0:
   resolved "https://registry.npmjs.org/space-separated-tokens/-/space-separated-tokens-2.0.2.tgz"
   integrity sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==
 
-speech-rule-engine@5.0.0-beta.1:
-  version "5.0.0-beta.1"
-  resolved "https://registry.npmmirror.com/speech-rule-engine/-/speech-rule-engine-5.0.0-beta.1.tgz#dc0d8edf50f8a7deaeea09540a4338fde7a55c84"
-  integrity sha512-arqcJpXEYRG9mQMxRCNd2xFERGvIvwvuhcnoXDw/SyeYNyJ5I9SUU5ft+BPw0M1rPpwl3Q+6ZeeYAcwGXTa6oQ==
+speech-rule-engine@5.0.0-beta.3:
+  version "5.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/speech-rule-engine/-/speech-rule-engine-5.0.0-beta.3.tgz#21f93d35f8c14cc7b82e58cb87edd07df555d12f"
+  integrity sha512-wSrjCo8h4SJmGtjicD0OrTuCNH/wEaMsV+ktA1D9C2IPnensiP4pfPv+DnEZDMbauC5SCSE1prP5KA0z/W8bLg==
   dependencies:
     "@xmldom/xmldom" "0.9.8"
-    commander "14.0.0"
+    commander "14.0.2"
     wicked-good-xpath "1.3.0"
 
 string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
@@ -3935,7 +3996,7 @@ which@^2.0.1:
 
 wicked-good-xpath@1.3.0:
   version "1.3.0"
-  resolved "https://registry.npmjs.org/wicked-good-xpath/-/wicked-good-xpath-1.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/wicked-good-xpath/-/wicked-good-xpath-1.3.0.tgz#81b0e95e8650e49c94b22298fff8686b5553cf6c"
   integrity sha512-Gd9+TUn5nXdwj/hFsPVx5cuHHiF5Bwuc30jZ4+ronF1qHK5O7HD0sgmXWSEgwKquT3ClLoKPVbO6qGwVwLzvAw==
 
 wrap-ansi@^7.0.0:

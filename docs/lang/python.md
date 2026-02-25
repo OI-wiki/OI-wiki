@@ -1,43 +1,43 @@
-author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran
+author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran, CuriosityQiu
 
 ## 关于 Python
 
-Python 是一门已在世界上广泛使用的解释型语言。它提供了高效的高级数据结构，还能简单有效地面向对象编程，也可以在算法竞赛。
+Python 是一门已在世界上广泛使用的解释型语言．它提供了高效的高级数据结构，还能简单有效地面向对象编程，也可以在算法竞赛．
 
 ### Python 的优点
 
--   Python 是一门 **解释型** 语言：Python 不需要编译和链接，可以在一定程度上减少操作步骤。
--   Python 是一门 **交互式** 语言：Python 解释器实现了交互式操作，可以直接在终端输入并执行指令。
--   Python **易学易用**：Python 提供了大量的数据结构，也支持开发大型程序。
--   Python **兼容性强**：Python 同时支持 Windows、macOS 和 Unix 操作系统。
--   Python **实用性强**：从简单的输入输出到科学计算甚至于大型 WEB 应用，都可以写出适合的 Python 程序。
--   Python **程序简洁、易读**：Python 代码通常比实现同种功能的其他语言的代码短。
--   Python **支持拓展**：Python 会开发 C 语言程序（即 CPython），支持把 Python 解释器和用 C 语言开发的应用链接，用 Python 扩展和控制该应用。
+-   Python 是一门 **解释型** 语言：Python 不需要编译和链接，可以在一定程度上减少操作步骤．
+-   Python 是一门 **交互式** 语言：Python 解释器实现了交互式操作，可以直接在终端输入并执行指令．
+-   Python **易学易用**：Python 提供了大量的数据结构，也支持开发大型程序．
+-   Python **兼容性强**：Python 同时支持 Windows、macOS 和 Unix 操作系统．
+-   Python **实用性强**：从简单的输入输出到科学计算甚至于大型 WEB 应用，都可以写出适合的 Python 程序．
+-   Python **程序简洁、易读**：Python 代码通常比实现同种功能的其他语言的代码短．
+-   Python **支持拓展**：Python 会开发 C 语言程序（即 CPython），支持把 Python 解释器和用 C 语言开发的应用链接，用 Python 扩展和控制该应用．
 
 ### 学习 Python 的注意事项
 
--   目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用。本文将 **介绍较新版本的 Python**。如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码。
--   Python 的设计理念和语法结构 **与一些其他语言的差异较大**，隐藏了许多底层细节，所以呈现出实用而优雅的风格。
--   Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时。在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能。
+-   目前主要使用的 Python 版本是 Python 3.7 及以上的版本，Python 2 和 Python 3.6 及以前的 Python 3 已经 [不被支持](https://devguide.python.org/versions/#unsupported-versions)，但仍被一些老旧系统与代码所使用．本文将 **介绍较新版本的 Python**．如果遇到 Python 2 代码，可以尝试 [`2to3`](https://docs.python.org/zh-cn/3/library/2to3.html) 程序将 Python 2 代码转换为 Python 3 代码．
+-   Python 的设计理念和语法结构 **与一些其他语言的差异较大**，隐藏了许多底层细节，所以呈现出实用而优雅的风格．
+-   Python 是高度动态的解释型语言，因此其 **程序运行速度相对较慢**，尤其在使用其内置的 `for` 循环语句时．在使用 Python 时，应尽量使用 `filter`、`map` 等内置函数，或使用 [列表生成](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python) 语法的手段来提高程序性能．
 
 ## 环境搭建
 
-参见 [Python 3](../tools/compiler.md#python-3)。或者：
+参见 [Python 3](../tools/compiler.md#python-3)．或者：
 
--   Windows：也可以在 Microsoft Store 中免费而快捷地获取 Python。
+-   Windows：也可以在 Microsoft Store 中免费而快捷地获取 Python．
 
--   macOS/Linux：通常情况下，大部分的 Linux 发行版中已经自带了 Python。如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python。
+-   macOS/Linux：通常情况下，大部分的 Linux 发行版中已经自带了 Python．如果只打算学习 Python 语法，并无其它开发需求，不必另外安装 Python．
 
     ???+ warning "注意"
-        在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器。[^ref1]
+        在一些默认安装（指使用软件包管理器安装）Python 的系统（如 Unix 系统）中，应在终端中运行 `python3` 打开 Python 3 解释器．[^ref1]
 
-此外，也可以通过 venv、conda、Nix 等工具管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题。
+此外，也可以通过 venv、conda、Nix 等工具管理 Python 工具链和 Python 软件包，创建隔离的虚拟环境，避免出现依赖问题．
 
-作为一种解释型语言，Python 的执行方式和 C++ 有所不同，这种差异在使用 IDE 编程时往往得不到体现，因此这里需要强调一下运行程序的不同方式。
+作为一种解释型语言，Python 的执行方式和 C++ 有所不同，这种差异在使用 IDE 编程时往往得不到体现，因此这里需要强调一下运行程序的不同方式．
 
-当在命令行中键入 `python3` 或刚刚打开 IDLE 时，你实际进入了一种交互式的编程环境，也称「REPL」（「读取 - 求值 - 输出」循环），初学者可以在这里输入语句并立即看到结果，这让验证一些语法变得极为容易，我们也将在后文中大量使用这种形式。
+当在命令行中键入 `python3` 或刚刚打开 IDLE 时，你实际进入了一种交互式的编程环境，也称「REPL」（「读取 - 求值 - 输出」循环），初学者可以在这里输入语句并立即看到结果，这让验证一些语法变得极为容易，我们也将在后文中大量使用这种形式．
 
-但若要编写完整的程序，你最好还是新建一个文本文件（通常后缀为 `.py`），然后在命令行中执行 `python3 filename.py`，就能够运行代码看到结果了。
+但若要编写完整的程序，你最好还是新建一个文本文件（通常后缀为 `.py`），然后在命令行中执行 `python3 filename.py`，就能够运行代码看到结果了．
 
 ### 一些平台提供的 Python 版本
 
@@ -50,15 +50,15 @@ Python 是一门已在世界上广泛使用的解释型语言。它提供了高�
 | 微软商店             | 最新正式版                   |
 
 ???+ warning "注意"
-    本表格在本文撰写时（2025/01/15）时有效，建议前往相关平台重新查证。
+    本表格在本文撰写时（2025/01/15）时有效，建议前往相关平台重新查证．
 
-目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学自由与开源软件镜像站](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://repo.huaweicloud.com/python/)，可以到那里尝试下载 Python 安装文件。
+目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学自由与开源软件镜像站](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://repo.huaweicloud.com/python/)，可以到那里尝试下载 Python 安装文件．
 
 ## 使用 `pip` 安装第三方库
 
-Python 的生命力很大程度上来自于丰富的第三方库，编写一些实用程序时「调库」是常规操作，`pip` 是首选的安装第三方库的程序。自 Python 3.4 版本起，它被默认包含在 Python 二进制安装程序中。
+Python 的生命力很大程度上来自于丰富的第三方库，编写一些实用程序时「调库」是常规操作，`pip` 是首选的安装第三方库的程序．自 Python 3.4 版本起，它被默认包含在 Python 二进制安装程序中．
 
-`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台。使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 等使用帮助。你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源。
+`pip` 中的第三方库主要存储在 [Python 包索引（PyPI）](https://pypi.org/) 上，用户也可以指定其它第三方库的托管平台．使用方法可参照 [pypi 镜像使用帮助 - 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/pypi/) 等使用帮助．你可以在 [MirrorZ](https://mirrorz.org/list/pypi) 上获取更多 PyPI 镜像源．
 
 ???+ info "使用清华大学开源镜像站安装一个包"
     ```sh
@@ -67,11 +67,11 @@ Python 的生命力很大程度上来自于丰富的第三方库，编写一些�
 
 ## 基本语法
 
-Python 的语法简洁而易懂，也有许多官方和第三方文档与教程。这里仅介绍一些对 OIer 比较实用的语言特性，你可以在 [Python 文档](https://docs.python.org/zh-cn/3/) 和 [Python Wiki](https://wiki.python.org/moin/) 等网页上了解更多关于 Python 的教程。
+Python 的语法简洁而易懂，也有许多官方和第三方文档与教程．这里仅介绍一些对 OIer 比较实用的语言特性，你可以在 [Python 文档](https://docs.python.org/zh-cn/3/) 和 [Python Wiki](https://wiki.python.org/moin/) 等网页上了解更多关于 Python 的教程．
 
 ### 注释
 
-加入注释并不会对代码的运行产生影响，但加入注释可以使代码更加易懂易用。
+加入注释并不会对代码的运行产生影响，但加入注释可以使代码更加易懂易用．
 
 ```python
 # 用 # 字符开头的是单行注释
@@ -83,7 +83,7 @@ Python 的语法简洁而易懂，也有许多官方和第三方文档与教程�
 """
 ```
 
-加入注释代码并不会对代码产生影响。我们鼓励加入注释来使代码更加易懂易用。
+加入注释代码并不会对代码产生影响．我们鼓励加入注释来使代码更加易懂易用．
 
 ### 基本数据类型
 
@@ -121,9 +121,9 @@ True
 ```
 
 ???+ note "[**内置函数**](https://docs.python.org/zh-cn/3/library/functions.html) 是什么？"
-    在 C/C++ 中，很多常用函数都分散在不同的头文件中，但 Python 的解释器内置了许多实用且通用的函数，你可以直接使用而无需注意它们的存在，但这也带来了小问题，这些内置函数的名称多为常见单词，你需要注意避免给自己的变量起相同的名字，否则可能会产生奇怪的结果。
+    在 C/C++ 中，很多常用函数都分散在不同的头文件中，但 Python 的解释器内置了许多实用且通用的函数，你可以直接使用而无需注意它们的存在，但这也带来了小问题，这些内置函数的名称多为常见单词，你需要注意避免给自己的变量起相同的名字，否则可能会产生奇怪的结果．
 
-正如我们所看到的，Python 内置有整数、浮点数、字符串和布尔类型，可以类比为 C++ 中的 `int`，`float`，`string` 和 `bool`。但有一些明显的不同之处，比如没有 `char` 字符类型，也没有 `double` 类型（但 `float` 其实对应 C 中的双精度），如果需要更精确的浮点运算，可以使用标准库中的 [decimal](https://docs.python.org/zh-cn/3/library/decimal.html) 模块，如果需要用到复数，Python 还内置了 `complex` 类型（而这也意味着最好不要给变量起名为 `complex`）。
+正如我们所看到的，Python 内置有整数、浮点数、字符串和布尔类型，可以类比为 C++ 中的 `int`，`float`，`string` 和 `bool`．但有一些明显的不同之处，比如没有 `char` 字符类型，也没有 `double` 类型（但 `float` 其实对应 C 中的双精度），如果需要更精确的浮点运算，可以使用标准库中的 [decimal](https://docs.python.org/zh-cn/3/library/decimal.html) 模块，如果需要用到复数，Python 还内置了 `complex` 类型（而这也意味着最好不要给变量起名为 `complex`）．
 可以看到这些类型都以 `class` 开头，而这正是 Python 不同于 C++ 的关键之处，Python 程序中的所有数据都是由对象或对象间关系来表示的，函数是对象，类型本身也是对象：
 
 ```pycon
@@ -135,11 +135,11 @@ True
 <class 'type'>
 ```
 
-你或许会觉得这些概念一时难以理解且没有用处，所以我们暂时不再深入，在后文的示例中你或许能慢慢体会到，Python 的对象提供了强大的方法，我们在编程时应当优先考虑围绕对象而不是过程进行操作，这会让我们的代码显得更加紧凑明晰。
+你或许会觉得这些概念一时难以理解且没有用处，所以我们暂时不再深入，在后文的示例中你或许能慢慢体会到，Python 的对象提供了强大的方法，我们在编程时应当优先考虑围绕对象而不是过程进行操作，这会让我们的代码显得更加紧凑明晰．
 
 #### 数字运算
 
-有人说，你可以把你系统里装的 Python 当作一个多用计算器，这是事实。  
+有人说，你可以把你系统里装的 Python 当作一个多用计算器，这是事实．  
 在交互模式下，你可以在提示符 `>>>` 后面输入一个表达式，就像其他大部分语言（如 C++）一样使用运算符 `+`、`-`、`*`、`/`、`%` 来对数字进行运算，也可以使用 `()` 来进行符合结合律的分组，读者可以自行试验，在这里我们仅展示与 C++ 差异较大的部分：
 
 ```pycon
@@ -163,9 +163,9 @@ True
 10001.0
 ```
 
-在上面的实践中可以发现，除法运算（`/`）永远返回浮点类型（在 Python 2 中返回整数）。如果你想要整数或向下取整的结果的话，可以使用整数除法（`//`）。同样的，你也可以像 C++ 中一样，使用模（`%`）来计算余数，科学计数法的形式也相同。
+在上面的实践中可以发现，除法运算（`/`）永远返回浮点类型（在 Python 2 中返回整数）．如果你想要整数或向下取整的结果的话，可以使用整数除法（`//`）．同样的，你也可以像 C++ 中一样，使用模（`%`）来计算余数，科学计数法的形式也相同．
 
-特别地，Python 用 `**` 即可进行幂运算，还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/binary-exponentiation.md) 的高效实现。
+特别地，Python 用 `**` 即可进行幂运算，还通过内置的 `pow(a, b, mod)` 提供了 [快速幂](../math/binary-exponentiation.md) 的高效实现．
 
 ```pycon
 >>> 3 ** 4 # 幂运算
@@ -181,7 +181,7 @@ False
 
 #### 数据类型判断
 
-对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`。
+对于一个变量，可以使用 `type(object)` 返回变量的类型，例如 `type(8)` 和 `type('a')` 的值分别为 `<class 'int'>` 和 `<class 'str'>`．
 
 #### [基本输入输出](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
 
@@ -199,7 +199,7 @@ Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成
 >>> print(str(a[0]) + ', ' + str(a[1]))  # 输出同上，但是手动拼接成一整个字符串
 ```
 
-`input()` 函数的行为接近 C++ 中的 `getline()`，即将一整行作为字符串读入，且末尾没有换行符。
+`input()` 函数的行为接近 C++ 中的 `getline()`，即将一整行作为字符串读入，且末尾没有换行符．
 
 ```pycon
 >>> s = input('请输入一串数字: '); s  # 自己调试时可以向 input() 传入字符串作为提示
@@ -209,7 +209,7 @@ Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成
 
 #### 字符串
 
-Python 3 提供了强大的基于 [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) 的字符串类型，使用起来和 C++ 中的 `string` 类似，一些概念如转义字符也都相通，除了加号拼接和索引访问，还额外支持数乘 `*` 重复字符串，和 `in` 操作符。
+Python 3 提供了强大的基于 [Unicode](https://docs.python.org/zh-cn/3/howto/unicode.html#unicode-howto) 的字符串类型，使用起来和 C++ 中的 `string` 类似，一些概念如转义字符也都相通，除了加号拼接和索引访问，还额外支持数乘 `*` 重复字符串，和 `in` 操作符．
 
 ```pycon
 >>> s1 = "O"  # 单引号和双引号都能包起字符串，有时可节省转义字符
@@ -234,7 +234,7 @@ Traceback (most recent call last):
 TypeError: 'str' object does not support item assignment
 ```
 
-Python 支持多种复合数据类型，可将不同值组合在一起。最常用的 `list`，类型是用方括号标注、逗号分隔的一组值。例如，`[1, 2, 3]` 和 `['a','b','c']` 都是列表。
+Python 支持多种复合数据类型，可将不同值组合在一起．最常用的 `list`，类型是用方括号标注、逗号分隔的一组值．例如，`[1, 2, 3]` 和 `['a','b','c']` 都是列表．
 
 除了索引，字符串还支持*切片*，它的设计非常精妙，格式为 `s[左闭索引:右开索引:步长]`：
 
@@ -254,19 +254,19 @@ Python 支持多种复合数据类型，可将不同值组合在一起。最常�
 'OI-Wiki 感谢你的阅读\n欢迎参与贡献!'
 ```
 
-在最新的 Python 3 版本中，字符串是以 Unicode 编码的，也就是说，Python 的字符串支持多语言。[^ref2]在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`。C/C++ 中 `char` 类型也可以和 对应的 ASCII 码互转。
+在最新的 Python 3 版本中，字符串是以 Unicode 编码的，也就是说，Python 的字符串支持多语言．[^ref2]在 Python 中，可以对一个 Unicode 字符使用内置函数 `ord()` 将其转换为对应的 Unicode 编码，逆向的转换使用内置函数 `chr()`．C/C++ 中 `char` 类型也可以和 对应的 ASCII 码互转．
 
-如果想把数字转换成对应的字符串，可以使用内置函数 `str()`，反之可以使用 `int()` 和 `float()`，你可以类比为 C/C++ 中的强制类型转换，但括号不是加在类型上而是作为函数的一部分括住参数。
+如果想把数字转换成对应的字符串，可以使用内置函数 `str()`，反之可以使用 `int()` 和 `float()`，你可以类比为 C/C++ 中的强制类型转换，但括号不是加在类型上而是作为函数的一部分括住参数．
 
-Python 的字符串类型提供了许多强大的方法，包括计算某字符的索引与出现次数，转换大小写等等，这里就不一一列举，强烈建议查看 [官方文档](https://docs.python.org/zh-cn/3/library/stdtypes.html#text-sequence-type-str) 熟悉常用方法，遇到字符串操作应当首先考虑使用这些方法而非自力更生。
+Python 的字符串类型提供了许多强大的方法，包括计算某字符的索引与出现次数，转换大小写等等，这里就不一一列举，强烈建议查看 [官方文档](https://docs.python.org/zh-cn/3/library/stdtypes.html#text-sequence-type-str) 熟悉常用方法，遇到字符串操作应当首先考虑使用这些方法而非自力更生．
 
 ### 创建数组
 
-从 C++ 转过来的同学可能很迷惑怎么在 Python 中创建数组，这里就介绍在 Python 开「数组」的语法，需要强调我们介绍的其实是几种 [序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#iterator-types)，和 C 的数组有着本质区别，而更接近 C++ 中的 `vector`。
+从 C++ 转过来的同学可能很迷惑怎么在 Python 中创建数组，这里就介绍在 Python 开「数组」的语法，需要强调我们介绍的其实是几种 [序列类型](https://docs.python.org/zh-cn/3/library/stdtypes.html#iterator-types)，和 C 的数组有着本质区别，而更接近 C++ 中的 `vector`．
 
 #### 使用 `list`
 
-列表（`list`）大概是 Python 中最常用也最强大的序列类型，列表中可以存放任意类型的元素，包括嵌套的列表，这符合数据结构中「广义表」的定义。请注意不要将其与 C++ STL 中的双向链表 [`list`](./csl/sequence-container.md#list) 混淆，故本文将使用「列表」而非 `list` 以免造成误解。
+列表（`list`）大概是 Python 中最常用也最强大的序列类型，列表中可以存放任意类型的元素，包括嵌套的列表，这符合数据结构中「广义表」的定义．请注意不要将其与 C++ STL 中的双向链表 [`list`](./csl/sequence-container.md#list) 混淆，故本文将使用「列表」而非 `list` 以免造成误解．
 
 ```pycon
 >>> []  # 创建空列表，注意列表使用方括号
@@ -300,9 +300,9 @@ Python 的字符串类型提供了许多强大的方法，包括计算某字符�
 >>> nums.clear(); nums  # 同 vector 的 clear()
 ```
 
-以上示例展现了列表与 `vector` 的相似之处，`vector` 中常用的操作一般也都能在列表中找到对应方法，不过某些方法如 `len()`,`sorted()` 会以内置函数的面目出现，而 STL 算法中的函数如 `find()`,`count()`,`max_element()`,`sort()`,`reverse()` 在 Python 中又成了对象的方法，使用时需要注意区分，更多方法请参见官方文档的 [列表详解](https://docs.python.org/zh-cn/3/tutorial/datastructures.html#more-on-lists)。下面将展示列表作为 Python 的基本序列类型的一些强大功能：
+以上示例展现了列表与 `vector` 的相似之处，`vector` 中常用的操作一般也都能在列表中找到对应方法，不过某些方法如 `len()`,`sorted()` 会以内置函数的面目出现，而 STL 算法中的函数如 `find()`,`count()`,`max_element()`,`sort()`,`reverse()` 在 Python 中又成了对象的方法，使用时需要注意区分，更多方法请参见官方文档的 [列表详解](https://docs.python.org/zh-cn/3/tutorial/datastructures.html#more-on-lists)．下面将展示列表作为 Python 的基本序列类型的一些强大功能：
 
-Python 支持多种复合数据类型，可将不同值组合在一起。最常用的 `list`，类型是用方括号标注、逗号分隔的一组值。例如，`[1, 2, 3]` 和 `['a','b','c']` 都是列表。
+Python 支持多种复合数据类型，可将不同值组合在一起．最常用的 `list`，类型是用方括号标注、逗号分隔的一组值．例如，`[1, 2, 3]` 和 `['a','b','c']` 都是列表．
 
 ```pycon
 >>> lst = [1, '1'] + ["2", 3.0]  # 列表直接相加生成一个新列表
@@ -322,7 +322,7 @@ False
 [1, 2, 3, 3.0]
 ```
 
-以上示例展现了列表作为序列的一些常用操作，可以看出许多操作如切片是与字符串相通的，但字符串是「不可变序列」而列表是「可变序列」，故可以通过切片灵活地修改列表。在 C/C++ 中我们往往会通过循环处理字符数组，下面将展示如何使用 [「列表推导式」](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) 在字符串和列表之间转换：
+以上示例展现了列表作为序列的一些常用操作，可以看出许多操作如切片是与字符串相通的，但字符串是「不可变序列」而列表是「可变序列」，故可以通过切片灵活地修改列表．在 C/C++ 中我们往往会通过循环处理字符数组，下面将展示如何使用 [「列表推导式」](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) 在字符串和列表之间转换：
 
 ```pycon
 >>> # 建立一个 [65, 70) 区间上的整数数组，range 也是一种类型，可看作左闭右开区间，第三个参数为步长可省略
@@ -373,7 +373,7 @@ True
 [139760373248192, 139760373248192, 139760373248192]
 ```
 
-其实有一个重要的事实，Python 中赋值只传递了引用而非创建新值，你可以创建不同类型的变量并赋给新变量，验证发现二者的标识值是相同的，只不过直到现在我们才介绍了列表这一种可变类型，而给数字、字符串这样的不可变类型赋新值时实际上创建了新的对象，故而前后两个变量互不干扰。但列表是可变类型，所以我们修改一个列表的元素时，另一个列表由于指向同一个对象所以也被修改了。创建二维数组也是类似的情况，示例中用乘法创建二维列表相当于把 `[0]*3` 这个一维列表重复了 3 遍，所以涉及其中一个列表的操作会同时影响其他两个列表。更不幸的是，在将二维列表赋给其他变量的时候，就算用切片来拷贝，也只是「浅拷贝」，其中的元素仍然指向相同的对象，解决这个问题需要使用标准库中的 [`deepcopy`](https://docs.python.org/3/library/copy.html)，或者尽量避免整个赋值二维列表。不过还好，创建二维列表时避免创建重复的列表还是比较简单，只需使用「列表推导式」：
+其实有一个重要的事实，Python 中赋值只传递了引用而非创建新值，你可以创建不同类型的变量并赋给新变量，验证发现二者的标识值是相同的，只不过直到现在我们才介绍了列表这一种可变类型，而给数字、字符串这样的不可变类型赋新值时实际上创建了新的对象，故而前后两个变量互不干扰．但列表是可变类型，所以我们修改一个列表的元素时，另一个列表由于指向同一个对象所以也被修改了．创建二维数组也是类似的情况，示例中用乘法创建二维列表相当于把 `[0]*3` 这个一维列表重复了 3 遍，所以涉及其中一个列表的操作会同时影响其他两个列表．更不幸的是，在将二维列表赋给其他变量的时候，就算用切片来拷贝，也只是「浅拷贝」，其中的元素仍然指向相同的对象，解决这个问题需要使用标准库中的 [`deepcopy`](https://docs.python.org/3/library/copy.html)，或者尽量避免整个赋值二维列表．不过还好，创建二维列表时避免创建重复的列表还是比较简单，只需使用「列表推导式」：
 
 ```pycon
 >>> vis1 = [[0] * 3 for _ in range(3)]  # 把用不到的循环计数变量设为下划线 _ 是一种惯例
@@ -387,14 +387,14 @@ True
 >>> a2[0][0] = 10  # 访问和赋值二维数组
 ```
 
-我们未讲循环的用法就先介绍了列表推导式，这是由于 Python 是高度动态的解释型语言，因此其程序运行有大量的额外开销。尤其是 **for 循环在 Python 中运行的奇慢无比**。因此在使用 Python 时若想获得高性能，尽量使用列表推导式，或者 `filter`,`map` 等内置函数直接操作整个序列来避免循环，当然这还是要根据具体问题而定。
+我们未讲循环的用法就先介绍了列表推导式，这是由于 Python 是高度动态的解释型语言，因此其程序运行有大量的额外开销．尤其是 **for 循环在 Python 中运行的奇慢无比**．因此在使用 Python 时若想获得高性能，尽量使用列表推导式，或者 `filter`,`map` 等内置函数直接操作整个序列来避免循环，当然这还是要根据具体问题而定．
 
 #### 使用 NumPy
 
 ??? note "什么是 NumPy"
-    [NumPy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算。在测试算法原型时可以利用 NumPy 避免手写排序、求最值等算法。NumPy 的核心数据结构是 `ndarray`，即 n 维数组，它在内存中连续存储，是定长的。此外 NumPy 核心是用 C 编写的，运算效率很高。不过需要注意，它不是标准库的一部分，可以使用 `pip install numpy` 安装，但不保证 OI 考场环境中可用（参见文首 [Python 版本](#一些平台提供的-python-版本)）。
+    [NumPy](https://numpy.org/) 是著名的 Python 科学计算库，提供高性能的数值及矩阵运算．在测试算法原型时可以利用 NumPy 避免手写排序、求最值等算法．NumPy 的核心数据结构是 `ndarray`，即 n 维数组，它在内存中连续存储，是定长的．此外 NumPy 核心是用 C 编写的，运算效率很高．不过需要注意，它不是标准库的一部分，可以使用 `pip install numpy` 安装，但不保证 OI 考场环境中可用（参见文首 [Python 版本](#一些平台提供的-python-版本)）．
 
-下面的代码将介绍如何利用 NumPy 建立多维数组并进行访问。
+下面的代码将介绍如何利用 NumPy 建立多维数组并进行访问．
 
 ```pycon
 >>> import numpy as np  # 请自行搜索 import 的意义和用法
@@ -432,17 +432,17 @@ array([[0, 0, 1],
 
 #### 使用 `array`
 
-[`array`](https://docs.python.org/zh-cn/3/library/array.html) 是 Python 标准库提供的一种高效数值数组，可以紧凑地表示基本类型值的数组，但不支持数组嵌套，也很少见到有人使用它，这里只是顺便提一下。
+[`array`](https://docs.python.org/zh-cn/3/library/array.html) 是 Python 标准库提供的一种高效数值数组，可以紧凑地表示基本类型值的数组，但不支持数组嵌套，也很少见到有人使用它，这里只是顺便提一下．
 
-若无特殊说明，后文出现「数组」一般指「列表」。
+若无特殊说明，后文出现「数组」一般指「列表」．
 
 ### [输入输出](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html)
 
-Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成。前文已经介绍过，下面介绍进阶用法。
+Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成．前文已经介绍过，下面介绍进阶用法．
 
 #### 格式化输出
 
-算法竞赛中通常只涉及到基本的数值和字符串输出，`print()` 已基本足够，只有当涉及到浮点数位数时需要用到格式化字符串输出。格式化有三种方法，第一种也是最老旧的方法是使用 `printf()` 风格的 `%` 操作符；另一种是利用 [`format` 函数](https://docs.python.org/3/library/string.html#formatstrings)；第三种是 Python 3.6 新增的 [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals)，最为简洁，但不保证考场中的 Python 版本足够新。详细丰富的说明可以参考 [这个网页](https://www.python-course.eu/python3_formatted_output.php)，尽管更推荐使用 `format()` 方法，但为了获得与 C 接近的体验，下面仅演示与 `printf()` 类似的老式方法：
+算法竞赛中通常只涉及到基本的数值和字符串输出，`print()` 已基本足够，只有当涉及到浮点数位数时需要用到格式化字符串输出．格式化有三种方法，第一种也是最老旧的方法是使用 `printf()` 风格的 `%` 操作符；另一种是利用 [`format` 函数](https://docs.python.org/3/library/string.html#formatstrings)；第三种是 Python 3.6 新增的 [f-string](https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#formatted-string-literals)，最为简洁，但不保证考场中的 Python 版本足够新．详细丰富的说明可以参考 [这个网页](https://www.python-course.eu/python3_formatted_output.php)，尽管更推荐使用 `format()` 方法，但为了获得与 C 接近的体验，下面仅演示与 `printf()` 类似的老式方法：
 
 ```pycon
 >>> pi = 3.1415926; print('%.4f' % pi)   # 格式为 %[flags][width][.precision]type
@@ -495,7 +495,7 @@ Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成
 [1, 1, 2, 3] [3, 4, 3, 4] [3, 1, 4, 1]
 ```
 
-上述程序实际上相当于先读入一个 N 行 3 列的矩阵，然后将其转置成 3 行 N 列的矩阵，也就是外层列表中嵌套了 3 个列表，最后将代表这起点、终点、权值的 3 个列表分别赋值给 u, v, w。内置函数 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip) 可以将多个等长序列中的对应元素拼接在「元组」内，得到新序列。而 `map()` 其实是函数式编程的一种操作，它将一个给定函数作用于 `zip()` 所产生序列的元素，这里就是用 `list()` 将元组变成列表。你可以自行练习使用 `*` 和 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip)，[`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 以理解其含义。需要注意的是 Python 3 中 `zip()` 和 `map()` 创建的不再返回列表而是返回迭代器，这里暂不解释它们之间的异同，你可以认为迭代器可以产生列表中的各个元素，用 `list()` 套住迭代器就能生成列表。
+上述程序实际上相当于先读入一个 N 行 3 列的矩阵，然后将其转置成 3 行 N 列的矩阵，也就是外层列表中嵌套了 3 个列表，最后将代表这起点、终点、权值的 3 个列表分别赋值给 u, v, w．内置函数 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip) 可以将多个等长序列中的对应元素拼接在「元组」内，得到新序列．而 `map()` 其实是函数式编程的一种操作，它将一个给定函数作用于 `zip()` 所产生序列的元素，这里就是用 `list()` 将元组变成列表．你可以自行练习使用 `*` 和 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip)，[`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 以理解其含义．需要注意的是 Python 3 中 `zip()` 和 `map()` 创建的不再返回列表而是返回迭代器，这里暂不解释它们之间的异同，你可以认为迭代器可以产生列表中的各个元素，用 `list()` 套住迭代器就能生成列表．
 
 #### [文件读写](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
 
@@ -511,11 +511,11 @@ with open("out.txt", "w") as f:
     f.write("1\n")
 ```
 
-关于文件读写的函数有很多，分别适用于不同的场景，由于 OI 赛事尚不支持使用 Python，这里从略。
+关于文件读写的函数有很多，分别适用于不同的场景，由于 OI 赛事尚不支持使用 Python，这里从略．
 
 ### [控制流程](https://docs.python.org/zh-cn/3/tutorial/controlflow.html)
 
-尽管我们已经学习了 Python 的许多特性，但到目前为止我们展示的 Python 代码都是单行语句，这掩盖了 Python 和 C 在代码风格上的重大差异：首先，Python 中不用 `{}` 而是用缩进表示块结构，如果缩进没有对齐会直接报错，如果 tab 和 空格混用也会报错；其次，块结构开始的地方比如 `if` 和 `for` 语句的行末要有冒号 `:`。这有助于代码的可读性，但你也可能怀念 C 那种自由的体验，毕竟如果复制粘贴时因为丢失缩进而不得不手动对齐是很恼人的。
+尽管我们已经学习了 Python 的许多特性，但到目前为止我们展示的 Python 代码都是单行语句，这掩盖了 Python 和 C 在代码风格上的重大差异：首先，Python 中不用 `{}` 而是用缩进表示块结构，如果缩进没有对齐会直接报错，如果 tab 和 空格混用也会报错；其次，块结构开始的地方比如 `if` 和 `for` 语句的行末要有冒号 `:`．这有助于代码的可读性，但你也可能怀念 C 那种自由的体验，毕竟如果复制粘贴时因为丢失缩进而不得不手动对齐是很恼人的．
 
 #### 循环结构
 
@@ -532,7 +532,7 @@ for i in range(4):  # 这里假设输入 4 行数据
 print(u, v, w)
 ```
 
-需要注意，Python 中的 for 循环和 C/C++ 有较大的差别，其作用类似 C++ 11 引入的 [「基于范围的循环」](./new.md#基于范围的-for-循环)，实质是迭代序列中的元素，比如编写循环遍历数组下标需要迭代 `range(len(lst))`，而非真正定义起始和终止条件，所以使用起来并没有 C/C++ 灵活。
+需要注意，Python 中的 for 循环和 C/C++ 有较大的差别，其作用类似 C++ 11 引入的 [「基于范围的循环」](./new.md#基于范围的-for-循环)，实质是迭代序列中的元素，比如编写循环遍历数组下标需要迭代 `range(len(lst))`，而非真正定义起始和终止条件，所以使用起来并没有 C/C++ 灵活．
 
 下面再用 while 循环展示行数不定的情况下如何输入：
 
@@ -551,7 +551,7 @@ print(u, v, w)
 
 #### 选择结构
 
-和 C/C++ 大同小异，一些形式上的差别都在下面的示例中有所展示，此外还需注意条件表达式中不允许使用赋值运算符（Python 3.8 以上可用 [`:=`](https://www.python.org/dev/peps/pep-0572/)），以及 [没有 switch 语句](https://docs.python.org/zh-cn/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python)。
+和 C/C++ 大同小异，一些形式上的差别都在下面的示例中有所展示，此外还需注意条件表达式中不允许使用赋值运算符（Python 3.8 以上可用 [`:=`](https://www.python.org/dev/peps/pep-0572/)），以及 [没有 switch 语句](https://docs.python.org/zh-cn/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python)．
 
 ```python
 # 条件表达式两侧无括号
@@ -590,9 +590,9 @@ except ValueError:
 
 ### 内置容器
 
-Python 内置了许多强大的容器类型，只有熟练使用并了解其特点才能真正让 Python 在算法竞赛中有用武之地，除了上面详细介绍的 `list`（列表），还有 `tuple`（元组）、[`dict`](https://docs.python.org/zh-cn/3/library/stdtypes.html#mapping-types-dict)（字典）和 `set`（集合）这几种类型。
+Python 内置了许多强大的容器类型，只有熟练使用并了解其特点才能真正让 Python 在算法竞赛中有用武之地，除了上面详细介绍的 `list`（列表），还有 `tuple`（元组）、[`dict`](https://docs.python.org/zh-cn/3/library/stdtypes.html#mapping-types-dict)（字典）和 `set`（集合）这几种类型．
 
-元组可以简单理解成不可变的列表，不过还需注意「不可变」的内涵，如果元组中的某元素是可变类型比如列表，那么仍可以修改该列表的值，元组中存放的是对列表的引用所以元组本身并没有改变。元组的优点是开销较小且「[可哈希](https://docs.python.org/zh-cn/3/glossary.html)」，后者在创建字典和集合时非常有用。
+元组可以简单理解成不可变的列表，不过还需注意「不可变」的内涵，如果元组中的某元素是可变类型比如列表，那么仍可以修改该列表的值，元组中存放的是对列表的引用所以元组本身并没有改变．元组的优点是开销较小且「[可哈希](https://docs.python.org/zh-cn/3/glossary.html)」，后者在创建字典和集合时非常有用．
 
 ```python
 tup = tuple([[1, 2], 4])  # 由列表得到元组
@@ -606,7 +606,7 @@ print(id(a), id(b))  # 你应该会看到 a, b 的 id 值现在互换了
 # 这更说明 Python 中，变量更像是名字，赋值只是让其指代对象
 ```
 
-字典就像 C++ STL 中的 [`map`](./csl/associative-container.md#map)（请注意和 Python 中内置函数 [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 区分）用于存储键值对，形式类似 [JSON](https://docs.python.org/3/library/json.html)，但 JSON 中键必须是字符串且以双引号括住，字典则更加灵活强大，可哈希的对象都可作为字典的键。需要注意 Python 几次版本更新后字典的特性有了较多变化，包括其中元素的顺序等，请自行探索。
+字典就像 C++ STL 中的 [`map`](./csl/associative-container.md#map)（请注意和 Python 中内置函数 [`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 区分）用于存储键值对，形式类似 [JSON](https://docs.python.org/3/library/json.html)，但 JSON 中键必须是字符串且以双引号括住，字典则更加灵活强大，可哈希的对象都可作为字典的键．需要注意 Python 几次版本更新后字典的特性有了较多变化，包括其中元素的顺序等，请自行探索．
 
 ```python
 dic = {"key": "value"}  # 基本形式
@@ -633,7 +633,7 @@ except KeyError:
     cnter[key] = 1
 ```
 
-集合就像 C++ STL 中的 [`set`](./csl/associative-container.md#set)，不会保存重复的元素，可以看成只保存键的字典。需要注意集合和字典都用 `{}` 括住，不过单用 `{}` 会创建空字典而不是空集合，这里就不再给出示例。
+集合就像 C++ STL 中的 [`set`](./csl/associative-container.md#set)，不会保存重复的元素，可以看成只保存键的字典．需要注意集合和字典都用 `{}` 括住，不过单用 `{}` 会创建空字典而不是空集合，这里就不再给出示例．
 
 ### 编写函数
 
@@ -664,7 +664,7 @@ print(lst1, lst2)
 
 #### 默认参数
 
-Python 中函数的参数非常灵活，有关键字参数、可变参数等，但在算法竞赛中这些特性的用处并不是很大，这里只介绍一下默认参数，因为 C++ 中也有默认参数，且在 Python 中使用默认参数很有可能遇到坑。
+Python 中函数的参数非常灵活，有关键字参数、可变参数等，但在算法竞赛中这些特性的用处并不是很大，这里只介绍一下默认参数，因为 C++ 中也有默认参数，且在 Python 中使用默认参数很有可能遇到坑．例如如下代码．
 
 ```python
 def append_to(element, to=[]):
@@ -677,16 +677,24 @@ lst2 = append_to(42)
 print(lst1, lst2)
 
 # 你可能以为输出是 [12] [42]
-# 但运行结果其实是 [12] [12, 42]
+# 但运行结果其实是 [12, 42] [12, 42]
+```
 
+之所以出现以上的运行结果，是因为默认参数的值仅仅在函数定义的时候赋值一次，对于可变对象（如列表、字典、集合），所有调用会共享同一个对象，`lst1` 和 `lst2` 实际上都指向内存中同一个默认列表对象．因此，第二次调用后，这个共享列表的内容被修改为 `[12, 42]`．所以函数的默认参数的值应该设为不可变对象，使用 `None` 占位是一种最佳实践：
 
-# 这是因为默认参数的值仅仅在函数定义的时候赋值一次
-# 默认参数的值应该是不可变对象，使用 None 占位是一种最佳实践
+```python
 def append_to(element, to=None):
     if to is None:
         to = []
     to.append(element)
     return to
+
+
+lst1 = append_to(12)
+lst2 = append_to(42)
+print(lst1, lst2)
+
+# 运行结果为 [12] [42]
 ```
 
 #### 类型标注
@@ -719,7 +727,7 @@ def headline(
 print(headline("type comments work", width=40))
 ```
 
-除了函数参数，变量也是可以类型标注的，你可以通过调用 `__annotations__` 来查看函数中所有的类型标注。变量类型标注赋予了 Python 静态语言的性质，即声明与赋值分离：
+除了函数参数，变量也是可以类型标注的，你可以通过调用 `__annotations__` 来查看函数中所有的类型标注．变量类型标注赋予了 Python 静态语言的性质，即声明与赋值分离：
 
 ```pycon
 >>> nothing: str
@@ -732,15 +740,15 @@ NameError: name 'nothing' is not defined
 
 ## 装饰器
 
-装饰器是一个函数，接受一个函数或方法作为其唯一的参数，并返回一个新函数或方法，其中整合了修饰后的函数或方法，并附带了一些额外的功能。简而言之，可以在不修改函数代码的情况下，增加函数的功能。相关知识可以参考 [官方文档](https://docs.python.org/3/glossary.html#term-decorator)。
+装饰器是一个函数，接受一个函数或方法作为其唯一的参数，并返回一个新函数或方法，其中整合了修饰后的函数或方法，并附带了一些额外的功能．简而言之，可以在不修改函数代码的情况下，增加函数的功能．相关知识可以参考 [官方文档](https://docs.python.org/3/glossary.html#term-decorator)．
 
 部分装饰器在竞赛中非常实用，比如 [`lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache)，可以为函数自动增加记忆化的能力，在递归算法中非常实用：
 
 `@lru_cache(maxsize=128,typed=False)`
 
--   传入的参数有 2 个：`maxsize` 和 `typed`，如果不传则 `maxsize` 的默认值为 128，`typed` 的默认值为 `False`。
--   其中 `maxsize` 参数表示的是 LRU 缓存的容量，即被装饰的方法的最大可缓存结果的数量。如果该参数值为 128，则表示被装饰方法最多可缓存 128 个返回结果；如果 `maxsize` 传入为 `None` 则表示可以缓存无限个结果。
--   如果 `typed` 设置为 `True`，不同类型的函数参数将被分别缓存，例如，`f(3)` 和 `f(3.0)` 会缓存两次。
+-   传入的参数有 2 个：`maxsize` 和 `typed`，如果不传则 `maxsize` 的默认值为 128，`typed` 的默认值为 `False`．
+-   其中 `maxsize` 参数表示的是 LRU 缓存的容量，即被装饰的方法的最大可缓存结果的数量．如果该参数值为 128，则表示被装饰方法最多可缓存 128 个返回结果；如果 `maxsize` 传入为 `None` 则表示可以缓存无限个结果．
+-   如果 `typed` 设置为 `True`，不同类型的函数参数将被分别缓存，例如，`f(3)` 和 `f(3.0)` 会缓存两次．
 
 以下是使用 `lru_cache` 优化计算斐波那契数列的例子：
 
@@ -754,7 +762,7 @@ def fib(n):
 
 ## 常用内置库
 
-在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html)。
+在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html)．
 
 | 库名                                                                  | 用途             |
 | ------------------------------------------------------------------- | -------------- |
@@ -776,7 +784,7 @@ def fib(n):
 ## 从例题对比 C++ 与 Python
 
 ??? note "[例题 洛谷 P4779【模板】单源最短路径（标准版）](https://www.luogu.com.cn/problem/P4779)"
-    给定一个 $n(1 \leq n \leq 10^5)$ 个点、$m(1 \leq m \leq 2\times 10^5)$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离。数据保证能从 $s$ 出发到任意点。
+    给定一个 $n(1 \leq n \leq 10^5)$ 个点、$m(1 \leq m \leq 2\times 10^5)$ 条有向边的带非负权图，请你计算从 $s$ 出发，到每个点的距离．数据保证能从 $s$ 出发到任意点．
 
 ### 声明常量
 
@@ -917,7 +925,7 @@ def fib(n):
 === "Python"
     ```python
     if __name__ == "__main__":
-        # 一行读入多个整数。注意它会把整行都读进来
+        # 一行读入多个整数．注意它会把整行都读进来
         n, m, s = map(int, input().split())
         for i in range(m):
             u, v, w = map(int, input().split())
@@ -1050,7 +1058,7 @@ def fib(n):
     
     # 如果你直接运行这个 Python 代码（不是模块调用什么的）就执行命令
     if __name__ == "__main__":
-        # 一行读入多个整数。注意它会把整行都读进来
+        # 一行读入多个整数．注意它会把整行都读进来
         n, m, s = map(int, input().split())
         for i in range(m):
             u, v, w = map(int, input().split())
