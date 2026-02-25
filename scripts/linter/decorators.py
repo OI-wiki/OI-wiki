@@ -1,7 +1,7 @@
 import random
 
 from functools import wraps
-from scripts.linter.utils import TAB_LENGTH, index_lfirst_neq, log
+from scripts.linter.utils import TAB_LENGTH, Grouping, index_lfirst_neq, log
 
 
 def step(func):
@@ -143,31 +143,29 @@ def pipeline(func):
     """
     @wraps(func)
     def inner(file: str):
-        log(file, type='group')
+        with Grouping(file):
+            old, new = '', ''
+            try:
+                # Read file content
+                with open(file, 'r', encoding='utf-8') as f:
+                    old = f.read()
+                    log(f"Read {len(old)} characters from {file}")
 
-        old, new = '', ''
-        try:
-            # Read file content
-            with open(file, 'r', encoding='utf-8') as f:
-                old = f.read()
-                log(f"Read {len(old)} characters from {file}")
+                # Apply processing
+                new = func(old)
+                log(
+                    f"Processing completed, result length: {len(new)} characters")
 
-            # Apply processing
-            new = func(old)
-            log(f"Processing completed, result length: {len(new)} characters")
+                # Write back if changed
+                if old != new:
+                    with open(file, 'w', encoding='utf-8') as f:
+                        f.write(new)
+                        log(f"File modified: wrote {len(new)} characters to {file}")
+                else:
+                    log("No changes detected, file not modified")
 
-            # Write back if changed
-            if old != new:
-                with open(file, 'w', encoding='utf-8') as f:
-                    f.write(new)
-                    log(f"File modified: wrote {len(new)} characters to {file}")
-            else:
-                log("No changes detected, file not modified")
-
-        except Exception as e:
-            log(f"Error processing {file}: {str(e)}", type='error')
-            raise
-
-        log('', type='endgroup')
+            except Exception as e:
+                log(f"Error processing {file}: {str(e)}", type='error')
+                raise
 
     return inner
