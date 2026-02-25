@@ -1,59 +1,87 @@
-# Find related files to conduct correctness check and undefined behavior checks.
-# input: changed files (from tj-actions/changed-files, read from res.txt)
-# output: related files to test (write to $GITHUB_OUTPUT, access by setting env to the output and with os.environ.get())
+# Generate list of code files to test based on changed files
+# Input: changed files from tj-actions/changed-files (via all_changed_files env variable)
+# Output: TEST_<LANGUAGE>_FILES containing space-separated list of main source files only
 
 import os
 
-def get_files_to_test(filenames):
-    mainfiles_to_test = set()
-    mainfiles, auxfiles, examples, skiptest = [], [], [], []
+# Supported file extensions for testing
+extnames = [".cpp", ".py"]
 
-    for filename in filenames:
-        dirname, basename, extname = os.path.dirname(filename), os.path.splitext(os.path.basename(filename))[0], os.path.splitext(filename)[1]
-        
-        if extname.endswith('.cpp'):
-            mainfile = os.path.normpath(os.path.join(dirname, basename.split('.')[0] + '.cpp'))
-            if mainfile in mainfiles_to_test:
-                continue
-            else:
-                mainfiles_to_test.add(mainfile)
-            temp_auxfiles = []
-            for root, _, files in os.walk(dirname):
-                for file in files:
-                    if file.split('.')[0] == basename.split('.')[0] and file.endswith('.cpp'):
-                        temp_auxfiles.append(os.path.normpath(os.path.join(root, file)))
-            temp_examples = []
-            for root, _, files in os.walk(dirname.replace('code', 'examples')):
-                for file in files:
-                    if file.split('.')[0] == basename.split('.')[0] and file.endswith('.in') and os.path.exists(os.path.join(root, file.replace('.in', '.ans'))):
-                        temp_examples.append(os.path.normpath(os.path.join(root, file)))
-            
-        elif extname.endswith(('.in', '.ans')):
-            mainfile = os.path.normpath(os.path.join(dirname.replace('examples', 'code'), basename.split('.')[0] + '.cpp'))
-            if mainfile in mainfiles_to_test:
-                continue
-            else:
-                mainfiles_to_test.add(mainfile)
-            temp_auxfiles = []
-            for root, _, files in os.walk(dirname.replace('examples', 'code')):
-                for file in files:
-                    if file.split('.')[0] == basename.split('.')[0] and file.endswith('.cpp'):
-                        temp_auxfiles.append(os.path.normpath(os.path.join(root, file)))
-            temp_examples = [os.path.normpath(os.path.join(dirname, basename + '.in'))]
 
-        temp_skiptest = False
-        if os.path.exists(os.path.join(dirname, basename + '.skip_test')):
-            temp_skiptest = True
-        
-        mainfiles.append(mainfile)
-        auxfiles.append(temp_auxfiles)
-        examples.append(temp_examples)
-        skiptest.append(temp_skiptest)
-        with open(os.environ.get("GITHUB_OUTPUT"), 'w') as f:
-            print(f'mainfiles={mainfiles}, auxfiles={auxfiles}, examples={examples}, skiptest={skiptest}')
-            f.write(f'files_to_test={(mainfiles, auxfiles, examples, skiptest)}')
+def check_availability(file):
+    """
+    Check if a file is available for testing.
+    
+    Returns the normalized file path if available, empty string otherwise.
+    A file is not available if:
+    - It doesn't exist
+    - It's not in a 'code' directory
+    - It's a variant file (e.g., file.1.cpp) and the main file doesn't exist
+    - A .skip_test marker file exists for it
+    """
+    if not os.path.exists(file):
+        return ""
+    dirname = os.path.dirname(file)
+    # Only test files in 'code' directories
+    if "code" not in dirname.split("/"):
+        return ""
+    basename, extname = os.path.splitext(os.path.basename(file))
+    # Handle variant files like file.1.cpp - check if main file exists
+    if "." in basename:
+        basename = basename.split(".")[0]
+        if not os.path.exists(os.path.join(dirname, basename + extname)):
+            return ""
+    # Skip if .skip_test marker exists
+    if os.path.exists(os.path.join(dirname, basename + ".skip_test")):
+        return ""
+    return os.path.normpath(os.path.join(dirname, basename + extname))
 
-with open("res.txt") as file_object:
-    lines = file_object.readlines()
-changed_files = [name for line in lines for name in line.split()]
-get_files_to_test(changed_files)
+
+def examples2code(example_file):
+    """
+    Convert an example file path (e.g., .in/.ans file) to corresponding code file paths.
+    
+    Maps files from docs/.../examples/... to docs/.../code/...
+    Returns list of available code files with supported extensions.
+    """
+    dirname = os.path.dirname(example_file)
+    basename = os.path.splitext(os.path.basename(example_file))[0]
+    pos = dirname.rfind("/examples/")
+    if pos == -1:
+        return ".invalidExamplePath"
+    # Convert examples path to code path
+    code_dir = dirname[:pos] + "/code/" + dirname[pos + 10:]
+    code_files = []
+    for extname in extnames:
+        code_file = os.path.normpath(os.path.join(code_dir, basename + extname))
+        if available_file := check_availability(code_file):
+            code_files.append(available_file)
+    return code_files
+
+
+def output(name, value):
+    """Write output variable to GitHub Actions output file."""
+    with open(os.environ.get("GITHUB_OUTPUT"), "a") as f:
+        f.write(f"{name}={value if value else 'None'}\n")
+
+
+if __name__ == "__main__":
+    # Get changed files from environment variable
+    changed_files = os.environ.get("all_changed_files")
+    changed_codes = set()
+    
+    # Process each changed file
+    for changed_file in changed_files.split():
+        if os.path.splitext(changed_file)[1] in extnames:
+            # Direct code file change
+            changed_codes.add(changed_file)
+        else:
+            # Example file change - find corresponding code files
+            changed_codes.update(examples2code(changed_file))
+    
+    # Output mainfiles only, grouped by extension
+    for extname in extnames:
+        changed_extnamed_codes = " ".join(
+            filter(lambda x: x.endswith(extname), changed_codes)
+        )
+        output(f"TEST_{extname[1:].upper()}_FILES", changed_extnamed_codes)
