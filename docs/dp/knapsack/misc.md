@@ -102,8 +102,6 @@ author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, Nachtg
 
 直接当成 [树上背包](../tree.md) 处理即可．注意在最后将所有背包合并在一起．
 
-
-
 ## 求方案数
 
 对于给定的一个背包容量、物品费用、其他关系等的问题，求装到一定容量的方案总数．
