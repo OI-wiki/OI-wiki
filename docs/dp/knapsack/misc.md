@@ -59,6 +59,40 @@ author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, Nachtg
                 dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1)
     ```
 
+## 分组背包
+
+???+ note "[「Luogu P1757」通天之分组背包](https://www.luogu.com.cn/problem/P1757)"
+    有 $n$ 件物品和一个大小为 $m$ 的背包，第 $i$ 个物品的价值为 $w_i$，体积为 $v_i$．同时，每个物品属于一个组，同组内最多只能选择一个物品．求背包能装载物品的最大总价值．
+
+这种题其实只是从「在所有物品中选择一件」变成了「从当前组中选择一件」，于是就对每一组进行一次 0-1 背包就可以了．然后，使用「泛化物品的背包」中提到的合并方法把每一组背包合并即可．
+
+再说一说如何进行存储．我们可以将 $t_{k,i}$ 表示第 $k$ 组的第 $i$ 件物品的编号是多少，再用 $\mathit{cnt}_k$ 表示第 $k$ 组物品有多少个．
+
+### 实现
+
+=== "C++"
+    ```cpp
+    for (int k = 1; k <= ts; k++)          // 循环每一组
+      for (int i = m; i >= 0; i--)         // 循环背包容量
+        for (int j = 1; j <= cnt[k]; j++)  // 循环该组的每一个物品
+          if (i >= w[t[k][j]])             // 背包容量充足
+            dp[i] = max(dp[i],
+                        dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+    ```
+
+=== "Python"
+    ```python
+    for k in range(1, ts + 1):  # 循环每一组
+        for i in range(m, -1, -1):  # 循环背包容量
+            for j in range(1, cnt[k] + 1):  # 循环该组的每一个物品
+                if i >= w[t[k][j]]:  # 背包容量充足
+                    dp[i] = max(
+                        dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]
+                    )  # 像0-1背包一样状态转移
+    ```
+
+这里要注意：**一定不能搞错循环顺序**，这样才能保证正确性．
+
 ## 有依赖的背包
 
 ???+ note "[「Luogu P1064」金明的预算方案](https://www.luogu.com.cn/problem/P1064)"
@@ -67,6 +101,8 @@ author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, Nachtg
     目标是让所有购买的物品的 $v_i \times p_i$ 之和最大．
 
 直接当成 [树上背包](../tree.md) 处理即可．注意在最后将所有背包合并在一起．
+
+
 
 ## 求方案数
 
