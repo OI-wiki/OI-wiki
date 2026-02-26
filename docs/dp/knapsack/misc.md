@@ -102,22 +102,6 @@ author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, Nachtg
 
 直接当成 [树上背包](../tree.md) 处理即可．注意在最后将所有背包合并在一起．
 
-## 求方案数
-
-对于给定的一个背包容量、物品费用、其他关系等的问题，求装到一定容量的方案总数．
-
-这种问题就是把求最大值换成求和即可．
-
-例如 0-1 背包问题的转移方程就变成了：
-
-$$
-\mathit{dp}_j \leftarrow \mathit{dp}_j + \mathit{dp}_{j-c_i} \qquad (j \ge c_i)
-$$
-
-初始条件：$f_0=1$
-
-因为当容量为 $0$ 时也有一个方案，即什么都不装．
-
 ## 参考资料与注释
 
 -   [背包问题九讲 - 崔添翼](https://github.com/tianyicui/pack)．
