@@ -1,0 +1,232 @@
+author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, NachtgeistW, countercurrent-time, Enter-tainer, Tiphereth-A, weiranfu, greyqz, iamtwz, Konano, ksyx, ouuan, paigeman, wolfdan666, AngelKitty, CCXXXI, cjsoft, diauweb, Early0v0, ezoixx130, GekkaSaori, GoodCoder666, Henry-ZHR, HeRaNO, Link-cute, LovelyBuggies, LuoshuiTianyi, Makkiy, mgt, minghu6, odeinjul, oldoldtea, P-Y-Y, PotassiumWings, SamZhangQingChuan, shenshuaijie, Suyun514, weiyong1024, Xeonacid, xyf007, Alisahhh, Alphnia, c-forrest, cbw2007, dhbloo, fps5283, GavinZhengOI, Gesrua, hsfzLZH1, hydingsy, kenlig, kxccc, lychees, Menci, Peanut-Tang, PlanariaIce, sbofgayschool, shawlleyw, Siyuan, SukkaW, TianKong-y, tLLWtG, WAAutoMaton, x4Cx58x54, xk2013, zhb2000, zhufengning, hhc0001
+
+前置知识：[动态规划部分简介](../index.md)．
+
+## 引入
+
+在具体讲何为「背包 dp」前，先来看如下的例题：
+
+???+ note "[「USACO07 DEC」Charm Bracelet](https://www.luogu.com.cn/problem/P2871)"
+    题意概要：有 $n$ 个物品和一个容量为 $W$ 的背包，每个物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量．
+
+在上述例题中，由于每个物体只有两种可能的状态（取与不取），对应二进制中的 $0$ 和 $1$，这类问题便被称为「0-1 背包问题」．
+
+## 0-1 背包
+
+### 解释
+
+例题中已知条件有第 $i$ 个物品的重量 $w_{i}$，价值 $v_{i}$，以及背包的总容量 $W$．
+
+设 DP 状态 $f_{i,j}$ 为在只能放前 $i$ 个物品的情况下，容量为 $j$ 的背包所能达到的最大总价值．
+
+考虑转移．假设当前已经处理好了前 $i-1$ 个物品的所有状态，那么对于第 $i$ 个物品，当其不放入背包时，背包的剩余容量不变，背包中物品的总价值也不变，故这种情况的最大价值为 $f_{i-1,j}$；当其放入背包时，背包的剩余容量会减小 $w_{i}$，背包中物品的总价值会增大 $v_{i}$，故这种情况的最大价值为 $f_{i-1,j-w_{i}}+v_{i}$．
+
+由此可以得出状态转移方程：
+
+$$
+f_{i,j}=\max(f_{i-1,j},f_{i-1,j-w_{i}}+v_{i})
+$$
+
+这里如果直接采用二维数组对状态进行记录，会出现 MLE．可以考虑改用滚动数组的形式来优化．
+
+由于对 $f_i$ 有影响的只有 $f_{i-1}$，可以去掉第一维，直接用 $f_{i}$ 来表示处理到当前物品时背包容量为 $i$ 的最大价值，得出以下方程：
+
+$$
+f_j=\max \left(f_j,f_{j-w_i}+v_i\right)
+$$
+
+**务必牢记并理解这个转移方程，因为大部分背包问题的转移方程都是在此基础上推导出来的．**
+
+### 实现
+
+还有一点需要注意的是，很容易写出这样的 **错误核心代码**：
+
+=== "C++"
+    ```cpp
+    for (int i = 1; i <= n; i++)
+      for (int l = 0; l <= W - w[i]; l++)
+        f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
+    // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]),
+    // f[i][l + w[i]]); 简化而来
+    ```
+
+=== "Python"
+    ```python
+    for i in range(1, n + 1):
+        for l in range(0, W - w[i] + 1):
+            f[l + w[i]] = max(f[l] + v[i], f[l + w[i]])
+    # 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + w[i]),
+    # f[i][l + w[i]]) 简化而来
+    ```
+
+这段代码哪里错了呢？枚举顺序错了．
+
+仔细观察代码可以发现：对于当前处理的物品 $i$ 和当前状态 $f_{i,j}$，在 $j\geqslant w_{i}$ 时，$f_{i,j}$ 是会被 $f_{i,j-w_{i}}$ 所影响的．这就相当于物品 $i$ 可以多次被放入背包，与题意不符．（事实上，这正是完全背包问题的解法）
+
+为了避免这种情况发生，我们可以改变枚举的顺序，从 $W$ 枚举到 $w_{i}$，这样就不会出现上述的错误，因为 $f_{i,j}$ 总是在 $f_{i,j-w_{i}}$ 前被更新．
+
+因此实际核心代码为
+
+=== "C++"
+    ```cpp
+    for (int i = 1; i <= n; i++)
+      for (int l = W; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
+    ```
+
+=== "Python"
+    ```python
+    for i in range(1, n + 1):
+        for l in range(W, w[i] - 1, -1):
+            f[l] = max(f[l], f[l - w[i]] + v[i])
+    ```
+
+??? note "例题代码"
+    ```cpp
+    --8<-- "docs/dp/code/knapsack/knapsack_1.cpp"
+    ```
+
+## 完全背包
+
+### 解释
+
+完全背包模型与 0-1 背包类似，与 0-1 背包的区别仅在于一个物品可以选取无限次，而非仅能选取一次．
+
+我们可以借鉴 0-1 背包的思路，进行状态定义：设 $f_{i,j}$ 为只能选前 $i$ 个物品时，容量为 $j$ 的背包可以达到的最大价值．
+
+需要注意的是，虽然定义与 0-1 背包类似，但是其状态转移方程与 0-1 背包并不相同．
+
+### 过程
+
+可以考虑一个朴素的做法：对于第 $i$ 件物品，枚举其选了多少个来转移．这样做的时间复杂度是 $O(n^3)$ 的．
+
+状态转移方程如下：
+
+$$
+f_{i,j}=\max_{k=0}^{+\infty}(f_{i-1,j-k\times w_i}+v_i\times k)
+$$
+
+考虑做一个简单的优化．可以发现，对于 $f_{i,j}$，只要通过 $f_{i,j-w_i}$ 转移就可以了．因此状态转移方程为：
+
+$$
+f_{i,j}=\max(f_{i-1,j},f_{i,j-w_i}+v_i)
+$$
+
+理由是当我们这样转移时，$f_{i,j-w_i}$ 已经由 $f_{i,j-2\times w_i}$ 更新过，那么 $f_{i,j-w_i}$ 就是充分考虑了第 $i$ 件物品所选次数后得到的最优结果．换言之，我们通过局部最优子结构的性质重复使用了之前的枚举过程，优化了枚举的复杂度．
+
+与 0-1 背包相同，我们可以将第一维去掉来优化空间复杂度．如果理解了 0-1 背包的优化方式，就不难明白压缩后的循环是正向的（也就是上文中提到的错误优化）．
+
+??? note "[「Luogu P1616」疯狂的采药](https://www.luogu.com.cn/problem/P1616)"
+    题意概要：有 $n$ 种物品和一个容量为 $W$ 的背包，每种物品有重量 $w_{i}$ 和价值 $v_{i}$ 两种属性，要求选若干个物品放入背包使背包中物品的总价值最大且背包中物品的总重量不超过背包的容量．
+
+??? note "例题代码"
+    ```cpp
+    --8<-- "docs/dp/code/knapsack/knapsack_2.cpp"
+    ```
+
+## 多重背包
+
+多重背包也是 0-1 背包的一个变式．与 0-1 背包的区别在于每种物品有 $k_i$ 个，而非一个．
+
+一个很朴素的想法就是：把「每种物品选 $k_i$ 次」等价转换为「有 $k_i$ 个相同的物品，每个物品选一次」．这样就转换成了一个 0-1 背包模型，套用上文所述的方法就可已解决．状态转移方程如下：
+
+$$
+f_{i,j}=\max_{k=0}^{k_i}(f_{i-1,j-k\times w_i}+v_i\times k)
+$$
+
+时间复杂度 $O(W\sum_{i=1}^nk_i)$．
+
+??? note "核心代码"
+    ```cpp
+    for (int i = 1; i <= n; i++) {
+      for (int weight = W; weight >= w[i]; weight--) {
+        // 多遍历一层物品数量
+        for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
+          dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
+        }
+      }
+    }
+    ```
+
+### 二进制分组优化
+
+考虑优化．我们仍考虑把多重背包转化成 0-1 背包模型来求解．
+
+### 解释
+
+显然，复杂度中的 $O(nW)$ 部分无法再优化了，我们只能从 $O(\sum k_i)$ 处入手．为了表述方便，我们用 $A_{i,j}$ 代表第 $i$ 种物品拆分出的第 $j$ 个物品．
+
+在朴素的做法中，$\forall j\le k_i$，$A_{i,j}$ 均表示相同物品．那么我们效率低的原因主要在于我们进行了大量重复性的工作．举例来说，我们考虑了「同时选 $A_{i,1},A_{i,2}$」与「同时选 $A_{i,2},A_{i,3}$」这两个完全等效的情况．这样的重复性工作我们进行了许多次．那么优化拆分方式就成为了解决问题的突破口．
+
+### 过程
+
+我们可以通过「二进制分组」的方式使拆分方式更加高效．
+
+具体地说就是令 $A_{i,j}\left(j\in\left[0,\lfloor \log_2(k_i+1)\rfloor-1\right]\right)$ 分别表示由 $2^{j}$ 个单个物品「捆绑」而成的大物品．特殊地，若 $k_i+1$ 不是 $2$ 的整数次幂，则需要在最后添加一个由 $k_i-2^{\lfloor \log_2(k_i+1)\rfloor-1}$ 个单个物品「捆绑」而成的大物品用于补足．
+
+举几个例子：
+
+-   $6=1+2+3$
+-   $8=1+2+4+1$
+-   $18=1+2+4+8+3$
+-   $31=1+2+4+8+16$
+
+显然，通过上述拆分方式，可以表示任意 $\le k_i$ 个物品的等效选择方式．将每种物品按照上述方式拆分后，使用 0-1 背包的方法解决即可．
+
+时间复杂度 $O(W\sum_{i=1}^n\log_2k_i)$
+
+### 实现
+
+??? note "二进制分组代码"
+    === "C++"
+        ```cpp
+        index = 0;
+        for (int i = 1; i <= m; i++) {
+          int c = 1, p, h, k;
+          cin >> p >> h >> k;
+          while (k > c) {
+            k -= c;
+            list[++index].w = c * p;
+            list[index].v = c * h;
+            c *= 2;
+          }
+          list[++index].w = p * k;
+          list[index].v = h * k;
+        }
+        ```
+    
+    === "Python"
+        ```python
+        index = 0
+        for i in range(1, m + 1):
+            c = 1
+            p, h, k = map(int, input().split())
+            while k > c:
+                k -= c
+                index += 1
+                list[index].w = c * p
+                list[index].v = c * h
+                c *= 2
+            index += 1
+            list[index].w = p * k
+            list[index].v = h * k
+        ```
+
+## 求方案数
+
+对于给定的一个背包容量、物品费用、其他关系等的问题，求装到一定容量的方案总数．
+
+这种问题就是把求最大值换成求和即可．
+
+例如 0-1 背包问题的转移方程就变成了：
+
+$$
+\mathit{dp}_j \leftarrow \mathit{dp}_j + \mathit{dp}_{j-c_i} \qquad (j \ge c_i)
+$$
+
+初始条件：$f_0=1$
+
+因为当容量为 $0$ 时也有一个方案，即什么都不装．
+
+## 参考资料与注释
+
+-   [背包问题九讲 - 崔添翼](https://github.com/tianyicui/pack)．
