@@ -13,7 +13,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
 理解抽象代数不能够离开实例．作为理解下文概念的例子，这里讨论正三角形的空间对称群 $D_6$．
 
-???+ example "例子：正三角形的空间对称群 $D_6$"
+???+ example "例子：正三角形的空间对称群 $D_3$"
     如图所示，对于给定正三角形，共计有六种不同的操作可以使得它与自身重合．
     
     ![正三角形的空间对称群 D\_6](../images/triangle_d6.svg)
