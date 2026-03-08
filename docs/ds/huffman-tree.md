@@ -1,4 +1,4 @@
-author: Alex-McAvoy, lingkerio
+author: Alex-McAvoy, lingkerio, LvCGame
 
 ## 树的带权路径长度
 
@@ -76,7 +76,7 @@ $$
 
 1.  设需要编码的字符集为：$d_1,d_2,\dots,d_n$，他们在字符串中出现的频率为：$w_1,w_2,\dots,w_n$．
 2.  以 $d_1,d_2,\dots,d_n$ 作为叶结点，$w_1,w_2,\dots,w_n$ 作为叶结点的权值，构造一棵霍夫曼树．
-3.  规定哈夫曼编码树的左分支代表 $0$，右分支代表 $1$，则从根结点到每个叶结点所经过的路径组成的 $0$、$1$ 序列即为该叶结点对应字符的编码．
+3.  规定霍夫曼编码树的左分支代表 $0$，右分支代表 $1$，则从根结点到每个叶结点所经过的路径组成的 $0$、$1$ 序列即为该叶结点对应字符的编码．
 
 ![](./images/huffman-tree-3.svg)
 
@@ -102,7 +102,7 @@ $$
         forest[i] = temp;
       }
     
-      for (int i = 1; i < n; i++) {  // n-1 次循环建哈夫曼树
+      for (int i = 1; i < n; i++) {  // n-1 次循环建霍夫曼树
         int minn = -1, minnSub;  // minn 为最小值树根下标，minnsub 为次小值树根下标
         for (int j = 0; j < n; j++) {
           if (forest[j] != NULL && minn == -1) {
