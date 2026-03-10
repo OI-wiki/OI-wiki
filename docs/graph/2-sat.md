@@ -135,8 +135,6 @@ CNF-SAT 是指：有一个 CNF 方程，需要给所有的变量赋值，这个 
 
 #### 例题 2
 
-
-
 ## 习题
 
 -   [洛谷 P5782 和平委员会](https://www.luogu.com.cn/problem/P5782)
