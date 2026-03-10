@@ -68,8 +68,3 @@ CNF-SAT 是指：有 $n$ 个布尔变量和 $m$ 个条件，第 $i$ 个条件形
     ```cpp
     --8<-- "docs/graph/code/2-sat/2-sat_2.cpp"
     ```
-
-## 习题
-
--   [洛谷 P5782 和平委员会](https://www.luogu.com.cn/problem/P5782)
--   [POJ3683 Priest John's Busiest Day](http://poj.org/problem?id=3683)
