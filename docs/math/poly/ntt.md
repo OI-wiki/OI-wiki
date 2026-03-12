@@ -96,26 +96,6 @@ DFT、FFT、NTT、FNTT 的具体关系是：
     #include <vector>
     using namespace std;
     
-    int read() {
-      int x = 0, f = 1;
-      char ch = getchar();
-      while (ch < '0' || ch > '9') {
-        if (ch == '-') f = -1;
-        ch = getchar();
-      }
-      while (ch <= '9' && ch >= '0') {
-        x = 10 * x + ch - '0';
-        ch = getchar();
-      }
-      return x * f;
-    }
-    
-    void print(int x) {
-      if (x < 0) putchar('-'), x = -x;
-      if (x >= 10) print(x / 10);
-      putchar(x % 10 + '0');
-    }
-    
     constexpr int N = 300100, P = 998244353;
     
     int qpow(int x, int y) {
