@@ -53,6 +53,7 @@ int main() {
   ntt(B, lim, 1);
   for (int i = 0; i < lim; ++i) C[i] = 1ll * A[i] * B[i] % P;
   ntt(C, lim, -1);
-  for (int i = 0; i < n + m - 1; i++) printf("%d%c", C[i], " \n"[i == n + m - 2]);
+  for (int i = 0; i < n + m - 1; i++)
+    printf("%d%c", C[i], " \n"[i == n + m - 2]);
   return 0;
 }

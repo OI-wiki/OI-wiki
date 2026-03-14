@@ -87,4 +87,4 @@ DFT、FFT、NTT、FNTT 的具体关系是：
 2.  [FFT（快速傅里叶变换）0 基础详解！附 NTT（ACM/OI）](https://zhuanlan.zhihu.com/p/40505277)
 3.  [Number-theoretic transform(NTT) - Wikipedia](https://en.wikipedia.org/wiki/Discrete_Fourier_transform_%28general%29#Number-theoretic_transform)
 4.  [Tutorial on FFT/NTT—The tough made simple. (Part 1)](https://codeforces.com/blog/entry/43499)
-5.  [NTT模板 - BlackJack_ CSDN 博客](https://blog.csdn.net/blackjack_/article/details/79346433)
+5.  [NTT 模板 - BlackJack\_ CSDN 博客](https://blog.csdn.net/blackjack_/article/details/79346433)
