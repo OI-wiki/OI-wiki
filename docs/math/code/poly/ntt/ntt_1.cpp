@@ -45,7 +45,7 @@ int main() {
   scanf("%d %d", &n, &m);
   for (int i = 0; i < n; i++) scanf("%d", &A[i]);
   for (int i = 0; i < m; i++) scanf("%d", &B[i]);
-  int N = std::max(n, m), lim = 1;
+  int N = max(n, m), lim = 1;
   while (lim < (N << 1)) lim <<= 1;
   for (int i = 0; i < lim; ++i) r[i] = (i & 1) * (lim >> 1) + (r[i >> 1] >> 1);
   ntt(A, lim, 1);
