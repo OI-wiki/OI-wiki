@@ -5,7 +5,7 @@ using namespace std;
 constexpr int N = 1 << 20, P = 998244353;
 
 int qpow(int x, int y) {
-  int res(1);
+  int res = 1;
   while (y) {
     if (y & 1) res = 1ll * res * x % P;
     x = 1ll * x * x % P;
@@ -17,16 +17,15 @@ int qpow(int x, int y) {
 int r[N];
 
 void ntt(int *x, int lim, int opt) {
-  int i, j, k, m, gn, g, tmp;
-  for (i = 0; i < lim; ++i)
+  for (int i = 0; i < lim; ++i)
     if (r[i] < i) swap(x[i], x[r[i]]);
-  for (m = 2; m <= lim; m <<= 1) {
-    k = m >> 1;
-    gn = qpow(3, (P - 1) / m);
-    for (i = 0; i < lim; i += m) {
-      g = 1;
-      for (j = 0; j < k; ++j, g = 1ll * g * gn % P) {
-        tmp = 1ll * x[i + j + k] * g % P;
+  for (int m = 2; m <= lim; m <<= 1) {
+    int k = m >> 1;
+    int gn = qpow(3, (P - 1) / m);
+    for (int i = 0; i < lim; i += m) {
+      int g = 1;
+      for (int j = 0; j < k; ++j, g = 1ll * g * gn % P) {
+        int tmp = 1ll * x[i + j + k] * g % P;
         x[i + j + k] = (x[i + j] - tmp + P) % P;
         x[i + j] = (x[i + j] + tmp) % P;
       }
@@ -35,7 +34,7 @@ void ntt(int *x, int lim, int opt) {
   if (opt == -1) {
     reverse(x + 1, x + lim);
     int inv = qpow(lim, P - 2);
-    for (i = 0; i < lim; ++i) x[i] = 1ll * x[i] * inv % P;
+    for (int i = 0; i < lim; ++i) x[i] = 1ll * x[i] * inv % P;
   }
 }
 
