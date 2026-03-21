@@ -13,8 +13,9 @@ using ll = long long;
 
 const int kN = 1 << 18;
 
-int t, n, m, u, v, d[kN * 2 + 10], fa[100010], dfn[200020], low[200020], dcnt,
-    bel[200020], scnt;
+int t, n, m, u, v, d[kN * 2 + 10], fa[100010];
+int dfn[200020], low[200020], dcnt;
+int bel[200020], scnt;
 vector<int> to[200020], stk;
 
 void modify(int p, int x) {
@@ -48,13 +49,13 @@ void DFS(int x, int pa, int cd) {
       DFS(i + n, x, cd);
       low[x] = min(low[x], low[i + n]);
     }
-    low[x] =
-        min({low[x], query(max(x - cd, 1ll), x - 1),
-             query(x + 1, min(x + cd,
-                              n))});  // 处理被遍历过，但是没有加入某个 SCC 的点
+    low[x] = min({
+             low[x],
+             query(max(x - cd, 1ll), x - 1),
+             query(x + 1, min(x + cd, n))});  // 处理被遍历过，但是没有加入某个 SCC 的点
   } else {
-    fa[x - n] =
-        findfa(x - n + 1);  // 注意要在这里赋值，否则可能两次走到同一个节点
+    // 注意要在这里赋值，否则可能两次走到同一个节点
+    fa[x - n] = findfa(x - n + 1);
     modify(x - n, dfn[x]);
     for (auto i : to[x]) {
       if (!dfn[i]) {
