@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
+#include <numeric>
+#include <utility>
+#include <vector>
 #define int ll
 #define popc __builtin_popcountll
 #define ctz __builtin_ctzll
