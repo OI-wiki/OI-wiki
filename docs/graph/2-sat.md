@@ -148,19 +148,21 @@ CNF-SAT 是指：有一个 CNF 方程，需要给所有的变量赋值，这个 
 考虑 Tarjan SCC 的核心代码：
 
 ```cpp
-// to[x] 表示 x 的出边，dfn[x] 表示 x 的 dfs 序，low[x] 就是 low[x]，vis[x] 表示 x 是否被经过过
-for(auto i : to[x]) {
-  if(!dfn[i]) {
+// to[x] 表示 x 的出边，dfn[x] 表示 x 的 dfs 序，low[x] 就是 low[x]，vis[x] 表示
+// x 是否被经过过
+for (auto i : to[x]) {
+  if (!dfn[i]) {
     DFS(i, x, cd);
     low[x] = min(low[x], low[i]);
-  }else if(!vis[i]) low[x] = min(low[x], dfn[i]);
+  } else if (!vis[i])
+    low[x] = min(low[x], dfn[i]);
 }
 ```
 
 那么，对于第二类边我们可以：
 
-- 开一棵线段树，处理第二种情况下，`dfn` 的最小值；
-- 使用某种东西，精准处理第一种情况．
+-   开一棵线段树，处理第二种情况下，`dfn` 的最小值；
+-   使用某种东西，精准处理第一种情况．
 
 现在需要一种东西精准处理第一种情况．注意到每一个点都只会被遍历一次，于是可以从前往后遍历，开一个并查集维护一下每一个点下一个需要处理第一种情况的点，在处理第一种情况时直接转移即可．
 
