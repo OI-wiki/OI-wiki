@@ -223,7 +223,6 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
                 dfs2(v)
     ```
 
-  
 def kosaraju(u):
 sccCnt = 0
 for i in range(1, n + 1):
