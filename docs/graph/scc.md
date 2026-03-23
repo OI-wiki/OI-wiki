@@ -221,18 +221,18 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
         for v in g2[u]:
             if color[v] == False:
                 dfs2(v)
+    
+    
+    def kosaraju(u):
+        sccCnt = 0
+        for i in range(1, n + 1):
+            if vis[i] == False:
+                dfs1(i)
+        for i in range(n, 0, -1):
+            if color[s[i]] == False:
+                sccCnt = sccCnt + 1
+                dfs2(s[i])
     ```
-
-def kosaraju(u):
-sccCnt = 0
-for i in range(1, n + 1):
-if vis\[i] == False:
-dfs1(i)
-for i in range(n, 0, -1):
-if color\[s\[i]] == False:
-sccCnt = sccCnt + 1
-dfs2(s\[i])
-\`\`\`
 
 ## Garbow 算法
 
