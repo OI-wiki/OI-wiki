@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="600" height="480" viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<desc>Produced by GNUPLOT 4.2 patchlevel 0 </desc>
+
+<defs>
+
+
+	<circle id="gpDot" r="1"/>
+	<path id="gpPt0" style="stroke-width:0.107" d="M-1,0 h2 M0,-1 v2"/>
+	<path id="gpPt1" style="stroke-width:0.107" d="M-1,-1 L1,1 M1,-1 L-1,1"/>
+	<path id="gpPt2" style="stroke-width:0.107" d="M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1"/>
+	<rect id="gpPt3" style="stroke-width:0.107" x="-1" y="-1" width="2" height="2"/>
+	<use xlink:href="#gpPt3" id="gpPt4" style="fill:currentColor; stroke:none"/>
+	<circle id="gpPt5" style="stroke-width:0.107" cx="0" cy="0" r="1"/>
+	<use xlink:href="#gpPt5" id="gpPt6" style="fill:currentColor; stroke:none"/>
+	<path id="gpPt7" style="stroke-width:0.107" d="M0,-1.33 L-1.33,0.67 L1.33,0.67 z"/>
+	<use xlink:href="#gpPt7" id="gpPt8" style="fill:currentColor; stroke:none"/>
+	<use xlink:href="#gpPt7" id="gpPt9" transform="rotate(180)"/>
+	<use xlink:href="#gpPt9" id="gpPt10" style="fill:currentColor; stroke:none"/>
+	<use xlink:href="#gpPt3" id="gpPt11" transform="rotate(45)"/>
+	<use xlink:href="#gpPt11" id="gpPt12" style="fill:currentColor; stroke:none"/>
+</defs>
+<g style="fill:none; color:white; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+</g>
+<g style="fill:none; color:black; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<path d="M88.3,445.2 L107.0,445.2 "/>
+	<g transform="translate(70.9,454.6)" style="stroke:none; fill:black; font-family:Vera; font-size:25.00; text-anchor:end">
+		<text>-1</text>
+	</g>
+	<path d="M88.3,240.0 L107.0,240.0 "/>
+	<g transform="translate(70.9,249.4)" style="stroke:none; fill:black; font-family:Vera; font-size:25.00; text-anchor:end">
+		<text> 0</text>
+	</g>
+	<path d="M88.3,34.8 L107.0,34.8 "/>
+	<g transform="translate(70.9,44.2)" style="stroke:none; fill:black; font-family:Vera; font-size:25.00; text-anchor:end">
+		<text> 1</text>
+	</g>
+	<path d="M164.7,240.0 L164.7,258.7 M164.7,240.0 L164.7,221.3 "/>
+	<g transform="translate(164.7,305.5)" style="stroke:none; fill:black; font-family:Vera; font-size:25.00; text-anchor:middle">
+		<text> 1</text>
+	</g>
+	<path d="M241.0,240.0 L241.0,258.7 M241.0,240.0 L241.0,221.3 "/>
+	<g transform="translate(241.0,305.5)" style="stroke:none; fill:black; font-family:Vera; font-size:25.00; text-anchor:middle">
+		<text> 2</text>
+	</g>
+	<path d="M317.4,240.0 L317.4,258.7 M317.4,240.0 L317.4,221.3 "/>
+	<g transform="translate(317.4,305.5)" style="stroke:none; fill:black; font-family:Vera; font-size:25.00; text-anchor:middle">
+		<text> 3</text>
+	</g>
+	<path d="M393.8,240.0 L393.8,258.7 M393.8,240.0 L393.8,221.3 "/>
+	<g transform="translate(393.8,305.5)" style="stroke:none; fill:black; font-family:Vera; font-size:25.00; text-anchor:middle">
+		<text> 4</text>
+	</g>
+	<path d="M470.1,240.0 L470.1,258.7 M470.1,240.0 L470.1,221.3 "/>
+	<g transform="translate(470.1,305.5)" style="stroke:none; fill:black; font-family:Vera; font-size:25.00; text-anchor:middle">
+		<text> 5</text>
+	</g>
+	<path d="M546.5,240.0 L546.5,258.7 M546.5,240.0 L546.5,221.3 "/>
+	<g transform="translate(546.5,305.5)" style="stroke:none; fill:black; font-family:Vera; font-size:25.00; text-anchor:middle">
+		<text> 6</text>
+	</g>
+</g>
+<g style="fill:none; color:gray; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<path d="M88.3,240.0 L546.5,240.0 "/>
+</g>
+<g style="fill:none; color:black; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<path d="M88.3,34.8 L88.3,445.2 M546.5,445.2 M546.5,34.8 M88.3,34.8 "/>
+</g>
+<g style="fill:none; color:black; stroke:currentColor; stroke-width:4.00; stroke-linecap:butt; stroke-linejoin:miter">
+</g>
+<g style="fill:none; color:blue; stroke:currentColor; stroke-width:4.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<path d="M88.3,240.0 L164.7,67.3 L241.0,53.4 L317.4,211.0 L393.8,395.3 L470.1,436.8 L546.5,297.3 "/>
+</g>
+<g style="fill:none; color:blue; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+</g>
+<g style="fill:none; color:red; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<use xlink:href="#gpPt6" transform="translate(88.3,240.0) scale(6.54)"/>
+	<use xlink:href="#gpPt6" transform="translate(164.7,67.3) scale(6.54)"/>
+	<use xlink:href="#gpPt6" transform="translate(241.0,53.4) scale(6.54)"/>
+	<use xlink:href="#gpPt6" transform="translate(317.4,211.0) scale(6.54)"/>
+	<use xlink:href="#gpPt6" transform="translate(393.8,395.3) scale(6.54)"/>
+	<use xlink:href="#gpPt6" transform="translate(470.1,436.8) scale(6.54)"/>
+	<use xlink:href="#gpPt6" transform="translate(546.5,297.3) scale(6.54)"/>
+</g>
+<g style="fill:none; color:black; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+	<path d="M88.3,240.0 L546.5,240.0 M88.3,34.8 L88.3,445.2 M546.5,445.2 M546.5,34.8 M88.3,34.8 "/>
+</g>
+<style xmlns="http://www.w3.org/1999/xhtml" id="ls07lbzl.mze">rt.katakana-terminator-rt::before { content: attr(data-rt); }</style></svg>
