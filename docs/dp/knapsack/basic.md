@@ -211,6 +211,12 @@ $$
             list[index].v = h * k
         ```
 
+### 单调队列优化
+
+见 [单调队列/单调栈优化](../opt/monotonous-queue-stack.md)．
+
+习题：[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.com.cn/problem/P1776)
+
 ## 求方案数
 
 对于给定的一个背包容量、物品费用、其他关系等的问题，求装到一定容量的方案总数．
