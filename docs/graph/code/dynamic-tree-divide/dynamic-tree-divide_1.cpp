@@ -137,10 +137,11 @@ int main() {
   for (int i = 1; i <= n; i++)
     for (int j = i; j; j = fa[j]) d[i][dep[i] - dep[j]] = lca.dist(i, j);
   cin >> m;
+  int cnt = n;
   while (m--) {
     cin >> op;
     if (op == 'G') {
-      if (ans.size())
+      if (cnt)
         cout << ans.top() << '\n';
       else
         cout << "-1\n";
@@ -159,6 +160,7 @@ int main() {
           if (ch[fa[i]].size() >= 2)
             ans.insert(ch[fa[i]].top() + ch[fa[i]].top2());
         }
+        cnt--;
       } else {
         if (ch[x].size() >= 2) ans.erase(ch[x].top() + ch[x].top2());
         ch[x].insert(0);
@@ -172,6 +174,7 @@ int main() {
           if (ch[fa[i]].size() >= 2)
             ans.insert(ch[fa[i]].top() + ch[fa[i]].top2());
         }
+        cnt++;
       }
       col[x] ^= 1;
     }
