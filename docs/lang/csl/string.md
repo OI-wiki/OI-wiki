@@ -32,7 +32,7 @@ std::string s;
 
 ```cpp
 printf("%s", s);          // 编译错误
-printf("%s", s.data());   // 编译通过，但是是 undefined behavior
+printf("%s", s.data());   // 编译通过，但是 undefined behavior
 printf("%s", s.c_str());  // 一定能够正确输出
 ```
 
