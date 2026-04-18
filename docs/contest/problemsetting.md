@@ -57,7 +57,7 @@ author: ouuan, Henry-ZHR, StudyingFather, ChungZH, xyf007, Cryflmind, oierlinch,
 可以放宽要求的例外情况：
 
 1.  校内模拟赛．
-2.  以专题训练为目的的模拟赛．
+2.  以专题训练为目的模拟赛．
 3.  难度较低的比赛，或是定位为送分题的题目．
 
 #### 关于毒瘤题
