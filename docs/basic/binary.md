@@ -90,7 +90,7 @@ bsearch 函数的返回值是查找到的元素的地址，该地址为 void 类
 ```cpp
 int A[100005];  // 示例全局数组
 
-// 查找首个不小于待查元素的元素的地址
+// 查找首个不小于待查元素的元素地址
 int lower(const void *p1, const void *p2) {
   int *a = (int *)p1;
   int *b = (int *)p2;
@@ -102,7 +102,7 @@ int lower(const void *p1, const void *p2) {
     return 0;
 }
 
-// 查找首个大于待查元素的元素的地址
+// 查找首个大于待查元素的元素地址
 int upper(const void *p1, const void *p2) {
   int *a = (int *)p1;
   int *b = (int *)p2;
