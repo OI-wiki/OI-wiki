@@ -54,7 +54,7 @@ root@seniorious:~# apt-get install gcc
 
     Windows/Unix 用 `.` 代表当前目录，`..` 代表当前目录的父目录．特别地，在 Unix 下，用 `~` 表示用户主目录（注意 `~` 由 shell 展开，因此在其他地方可能不可用）．
 
-在 Windows/Unix 下，使用 `pwd` 命令可以打印当前的目录（特别的，在命令提示符中没有 `pwd` 命令，但可以用 `echo %cd%` 近似代替），`cd <目录>` 命令可以切换当前的目录．例如，`cd folder` 会切换到当前目录的 `folder` 子目录；`cd ..` 会切换到当前目录的父目录．
+在 Windows PowerShell/Unix 下，使用 `pwd` 命令可以打印当前的目录；在 Windows 命令提示符中没有 `pwd` 命令，但可以用 `echo %cd%` 近似代替．在两操作系统中，`cd <目录>` 命令都可以切换当前的目录．例如，`cd folder` 会切换到当前目录的 `folder` 子目录；`cd ..` 会切换到当前目录的父目录．
 
 在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表．在 Unix 下，列出文件列表的命令是 `ls`．特别的，在 PowerShell 下，可以使用与 Unix 相同的 `ls` 命令．
 
