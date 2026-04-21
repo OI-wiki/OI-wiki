@@ -60,13 +60,13 @@ root@seniorious:~# apt-get install gcc
     在 Windows 命令提示符中并没有 `pwd` 命令，但可以用没有任何参数的 `cd` 命令近似代替．
     
     同时，需要注意的是，在 Windows 命令提示符下使用 `cd` 命令切换目录，如果 **切换到的目录的盘符不是与当前目录的盘符相同**，则当前目录不会改变．你可以再敲一遍切换到的路径的盘符，也可以使用 `cd /d <目录>` 命令来同时切换盘符．两种方法对应的命令行界面如下：
-
+    
     ```doscon
     C:\Users\Libaray>cd D:\Codes
     C:\Users\Libaray>D:
     D:\Codes>
     ```
-
+    
     ```doscon
     C:\Users\Libaray>cd /d D:\Codes
     D:\Codes>
