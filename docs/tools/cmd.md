@@ -59,7 +59,18 @@ root@seniorious:~# apt-get install gcc
 ???+ note "对 Windows 命令提示符的特别提示"
     在 Windows 命令提示符中并没有 `pwd` 命令，但可以用没有任何参数的 `cd` 命令近似代替．
     
-    同时，需要注意的是，在 Windows 命令提示符下使用 `cd` 命令切换目录，如果 **切换到的目录的盘符不是与当前目录的盘符相同**，则当前目录不会改变．你可以再敲一遍切换到的路径的盘符，也可以使用 `cd /d <目录>` 命令来同时切换盘符．
+    同时，需要注意的是，在 Windows 命令提示符下使用 `cd` 命令切换目录，如果 **切换到的目录的盘符不是与当前目录的盘符相同**，则当前目录不会改变．你可以再敲一遍切换到的路径的盘符，也可以使用 `cd /d <目录>` 命令来同时切换盘符．两种方法对应的命令行界面如下：
+
+    ```doscon
+    C:\Users\Libaray>cd D:\Codes
+    C:\Users\Libaray>D:
+    D:\Codes>
+    ```
+
+    ```doscon
+    C:\Users\Libaray>cd /d D:\Codes
+    D:\Codes>
+    ```
 
 在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表．在 Unix 下，列出文件列表的命令是 `ls`．特别的，在 PowerShell 下，可以使用与 Unix 相同的 `ls` 命令．
 
