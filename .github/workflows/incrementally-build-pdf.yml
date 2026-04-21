@@ -26,9 +26,9 @@ jobs:
     if: needs.pre_build.outputs.should_skip != 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Build the LaTeX document
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
@@ -73,7 +73,7 @@ jobs:
             node incremental-build.js ${{ github.ref }} ${{ secrets.GITHUB_TOKEN }}
           root_file: |
             oi-wiki-export.tex
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: OI-wiki.pdf
           path: ./OI-Wiki-export/oi-wiki-export/oi-wiki-export.pdf
