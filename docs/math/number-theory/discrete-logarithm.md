@@ -103,7 +103,7 @@ $$
 
 前文的 BSGS 算法时间复杂度为单次 $O(\sqrt m)$，在询问量级较大的时候效率较低．若每次求解的模数是一个固定的质数 $p$，我们就有一个基于值域预处理的快速算法．
 
-我们已经知道 $\operatorname{ind}_g(ab)\equiv\operatorname{ind}_g a+\operatorname{ind}_g b\pmod{p-1}$，所以我们可以只对所有质数通过 BSGS 算法计算离散对数，合数的离散对数则可通过该式转化为若干已知的质数离散对数值之和．此时复杂度仍然不优，我们考虑只预处理一部分的离散对数，具体来说，我们预处理 $1$ 到 $L = \lfloor\sqrt p\rfloor + 1$ 的离散对数．注意此时的 BSGS 块长 $B$ **不能取** $O(\sqrt{L})$，因为 BSGS 预处理（插入哈希表）部分的复杂度是 $O(B)$，而查询一共需要 $O(\pi(L))$ 次，则总时间复杂度为 $O\left(B+\dfrac{\pi(L)p}{B}\right)$，此时取 $B=O(\sqrt{\pi(L)p})$ 才是最优．由 [素数定理](./prime.md) $\pi(n)\sim\dfrac{n}{\log n}$，则总的预处理时间复杂度可以平衡为 $O\left(\dfrac{p^{3/4}}{\log^{1/2} p}\right)$．
+我们已经知道 $\operatorname{ind}_g(ab)\equiv\operatorname{ind}_g a+\operatorname{ind}_g b\pmod{p-1}$，所以我们可以只对所有质数通过 BSGS 算法计算离散对数，合数的离散对数则可通过该式转化为若干已知的质数离散对数值之和．此时复杂度仍然不优，我们考虑只预处理一部分的离散对数，具体来说，我们预处理 $1$ 到 $L = \lfloor\sqrt p\rfloor + 1$ 的离散对数．注意此时的 BSGS 块长 $B$  **不能取**  $O(\sqrt{L})$，因为 BSGS 预处理（插入哈希表）部分的复杂度是 $O(B)$，而查询一共需要 $O(\pi(L))$ 次，则总时间复杂度为 $O\left(B+\dfrac{\pi(L)p}{B}\right)$，此时取 $B=O(\sqrt{\pi(L)p})$ 才是最优．由 [素数定理](./prime.md) $\pi(n)\sim\dfrac{n}{\log n}$，则总的预处理时间复杂度可以平衡为 $O\left(\dfrac{p^{3/4}}{\log^{1/2} p}\right)$．
 
 接下来是如何求答案．假设当前要求的是 $\operatorname{ind}_g y$，若 $y\le L$ 则直接返回，否则设 $p=vy+r$，则 $v=\left\lfloor\dfrac{p}{y}\right\rfloor<L$，$r=p\bmod y$，$y=\dfrac{p-r}{v}$，从而
 
