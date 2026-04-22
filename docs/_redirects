@@ -54,6 +54,8 @@
 /math/gen-func/ogf /math/poly/ogf
 /math/gen-func/egf /math/poly/egf
 /math/gen-func/dgf /math/poly/dgf
+/math/balanced-ternary /math/numeral-sys/balanced-ternary
+/math/base /math/numeral-sys/base
 /math/combination /math/combinatorics/combination
 /math/catalan /math/combinatorics/catalan
 /math/stirling /math/combinatorics/stirling
@@ -117,6 +119,7 @@
 /math/schreier-sims /math/algebra/schreier-sims
 /math/fourier-motzkin-elimination /math/linear-programming
 /math/game-theory/misere-game /math/game-theory/impartial-game
+/misc/gray-code /math/numeral-sys/gray-code
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut

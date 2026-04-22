@@ -15,8 +15,9 @@ dependencies = [
     "mkdocs-toggle-sidebar-plugin==0.0.8",
 ]
 
-[tool.uv]
-dev-dependencies = []
+[dependency-groups]
+dev = [
+]
 
 [tool.uv.pip]
 index-url = "https://pypi.org/simple"

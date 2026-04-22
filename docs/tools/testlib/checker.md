@@ -1,13 +1,13 @@
-Checker，即 [Special Judge](../special-judge.md)，用于检验答案是否合法。使用 Testlib 可以让我们免去检验许多东西，使编写简单许多。
+Checker，即 [Special Judge](../special-judge.md)，用于检验答案是否合法．使用 Testlib 可以让我们免去检验许多东西，使编写简单许多．
 
 Checker 从命令行参数读取到输入文件名、选手输出文件名、标准输出文件名，并确定选手输出是否正确，并返回一个预定义的结果：
 
-请在阅读下文前先阅读 [通用](./general.md)。
+请在阅读下文前先阅读 [通用](./general.md)．
 
 ## 简单的例子
 
 ???+ note "题目"
-    给定两个整数 $a,b$（$-1000 \le a,b \le 1000$），输出它们的和。
+    给定两个整数 $a,b$（$-1000 \le a,b \le 1000$），输出它们的和．
 
 这题显然不需要 checker 对吧，但是如果一定要的话也可以写一个：
 
@@ -32,9 +32,9 @@ int main(int argc, char* argv[]) {
 
 ## 编写 readAns 函数
 
-假设你有一道题输入输出均有很多数，如：给定一张 DAG，求 $s$ 到 $t$ 的最长路并输出路径（可能有多条，输出任一）。
+假设你有一道题输入输出均有很多数，如：给定一张 DAG，求 $s$ 到 $t$ 的最长路并输出路径（可能有多条，输出任一）．
 
-下面是一个 **不好** 的 checker 的例子。
+下面是一个 **不好** 的 checker 的例子．
 
 ### 不好的实现
 
@@ -108,10 +108,10 @@ int main(int argc, char* argv[]) {
 
 这个 checker 主要有两个问题：
 
-1.  它确信标准输出是正确的。如果选手输出比标准输出更优，它会被判成 WA，这不太妙。同时，如果标准输出不合法，也会产生 WA。对于这两种情况，正确的操作都是返回 Fail 状态。
-2.  读入标准输出和选手输出的代码是重复的。在这道题中写两遍读入问题不大，只需要一个 `for` 循环；但是如果有一道题输出很复杂，就会导致你的 checker 结构混乱。重复代码会大大降低可维护性，让你在 debug 或修改格式时变得困难。
+1.  它确信标准输出是正确的．如果选手输出比标准输出更优，它会被判成 WA，这不太妙．同时，如果标准输出不合法，也会产生 WA．对于这两种情况，正确的操作都是返回 Fail 状态．
+2.  读入标准输出和选手输出的代码是重复的．在这道题中写两遍读入问题不大，只需要一个 `for` 循环；但是如果有一道题输出很复杂，就会导致你的 checker 结构混乱．重复代码会大大降低可维护性，让你在 debug 或修改格式时变得困难．
 
-读入标准输出和选手输出的方式实际上是完全相同的，这就是我们通常编写一个用流作为参数的读入函数的原因。
+读入标准输出和选手输出的方式实际上是完全相同的，这就是我们通常编写一个用流作为参数的读入函数的原因．
 
 ### 好的实现
 
@@ -187,23 +187,23 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-注意到这种写法我们同时也检查了标准输出是否合法，这样写 checker 让程序更短，且易于理解和 debug。此种写法也适用于输出 YES（并输出方案什么的），或 NO 的题目。
+注意到这种写法我们同时也检查了标准输出是否合法，这样写 checker 让程序更短，且易于理解和 debug．此种写法也适用于输出 YES（并输出方案什么的），或 NO 的题目．
 
 ???+ note "Note"
-    对于某些限制的检查可以用 `InStream::ensure/ensuref()` 函数更简洁地实现。如上例第 23 至 25 行也可以等价地写成如下形式：
+    对于某些限制的检查可以用 `InStream::ensure/ensuref()` 函数更简洁地实现．如上例第 23 至 25 行也可以等价地写成如下形式：
     
     ```cpp
     stream.ensuref(!used[v - 1], "vertex %d was used twice", v);
     ```
 
 ???+ warning "Warning"
-    请在 `readAns` 中避免调用 **全局** 函数 `::ensure/ensuref()`，这会导致在某些应判为 WA 的选手输出下返回 `_fail`，产生错误。
+    请在 `readAns` 中避免调用 **全局** 函数 `::ensure/ensuref()`，这会导致在某些应判为 WA 的选手输出下返回 `_fail`，产生错误．
 
 ## 建议与常见错误
 
--   编写 `readAns` 函数，它真的可以让你的 checker 变得很棒。
+-   编写 `readAns` 函数，它真的可以让你的 checker 变得很棒．
 
--   读入选手输出时永远限定好范围，如果某些变量忘记了限定且被用于某些参数，你的 checker 可能会判定错误或 RE 等。
+-   读入选手输出时永远限定好范围，如果某些变量忘记了限定且被用于某些参数，你的 checker 可能会判定错误或 RE 等．
 
     -   反面教材
 
@@ -233,13 +233,13 @@ int main(int argc, char* argv[]) {
     // ....
     ```
 
--   使用项别名。
+-   使用项别名．
 
--   和 validator 不同，checker 不用特意检查非空字符。例如对于一个按顺序比较整数的 checker，我们只需判断选手输出的整数和答案整数是否对应相等，而选手是每行输出一个整数，还是在一行中输出所有整数等格式问题，我们的 checker 不必关心。
+-   和 validator 不同，checker 不用特意检查非空字符．例如对于一个按顺序比较整数的 checker，我们只需判断选手输出的整数和答案整数是否对应相等，而选手是每行输出一个整数，还是在一行中输出所有整数等格式问题，我们的 checker 不必关心．
 
 ## 使用方法
 
-通常我们不需要本地运行它，评测工具/OJ 会帮我们做好这一切。但是如果需要的话，以以下格式在命令行运行：
+通常我们不需要本地运行它，评测工具/OJ 会帮我们做好这一切．但是如果需要的话，以以下格式在命令行运行：
 
 ```bash
 ./checker <input-file> <output-file> <answer-file> [<report-file> [<-appes>]]
@@ -247,13 +247,13 @@ int main(int argc, char* argv[]) {
 
 ## 一些预设的 checker
 
-很多时候我们的 checker 完成的工作很简单（如判断输出的整数是否正确，输出的浮点数是否满足精度要求），[Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers) 已经为我们给出了这些 checker 的实现，我们可以直接使用。
+很多时候我们的 checker 完成的工作很简单（如判断输出的整数是否正确，输出的浮点数是否满足精度要求），[Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers) 已经为我们给出了这些 checker 的实现，我们可以直接使用．
 
 一些常用的 checker 有：
 
--   ncmp：按顺序比较 64 位整数。
--   rcmp4：按顺序比较浮点数，最大可接受误差（绝对误差或相对误差）不超过 $10^{-4}$（还有 rcmp6，rcmp9 等对精度要求不同的 checker，用法和 rcmp4 类似）。
--   wcmp：按顺序比较字符串（不带空格，换行符等非空字符）。
--   yesno：比较 YES 和 NO，大小写不敏感。
+-   ncmp：按顺序比较 64 位整数．
+-   rcmp4：按顺序比较浮点数，最大可接受误差（绝对误差或相对误差）不超过 $10^{-4}$（还有 rcmp6，rcmp9 等对精度要求不同的 checker，用法和 rcmp4 类似）．
+-   wcmp：按顺序比较字符串（不带空格，换行符等非空字符）．
+-   yesno：比较 YES 和 NO，大小写不敏感．
 
-    **本文主要翻译自 [Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431)。`testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)。**
+    **本文主要翻译自 [Checkers with testlib.h - Codeforces](https://codeforces.com/blog/entry/18431)．`testlib.h` 的 GitHub 存储库为 [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)．**

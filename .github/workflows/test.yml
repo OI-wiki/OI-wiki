@@ -16,7 +16,7 @@ jobs:
       TEST_CPP_FILES: ${{ steps.GetFiles.outputs.TEST_CPP_FILES }}
       TEST_PY_FILES: ${{ steps.GetFiles.outputs.TEST_PY_FILES }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Get changed code files
@@ -32,7 +32,7 @@ jobs:
         with:
           python-version: '3.14'
       - name: Install uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v8.1.0
       - name: Install Python dependencies
         run: uv sync
       - name: Get Files to Test
@@ -74,7 +74,7 @@ jobs:
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Install g++-9
@@ -95,7 +95,7 @@ jobs:
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Check Compiler Version
@@ -120,7 +120,7 @@ jobs:
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Launch Risc-V Docker
@@ -159,7 +159,7 @@ jobs:
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Check Compiler Version
@@ -196,7 +196,7 @@ jobs:
       output: ${{ steps.set-output.outputs.output }}
     container: alpine:latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Check Compiler Version
