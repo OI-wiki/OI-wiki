@@ -115,64 +115,10 @@ $$
 
 至此得到一个 $O(\frac{P^{0.75}}{\log^{0.5} P})-O(\log p)$ 的较优秀算法．
 
-## 参考代码
-
-???+ note "实现"
-    === "C++"
-        ```cpp
-        __gnu_pbds::gp_hash_table<int, int> qwq;
-        
-        int qpow(int x, int y) {
-          int ans = 1;
-          while (y) {
-            if (y & 1) ans = ans * x % P;
-            x = x * x % P;
-            y >>= 1;
-          }
-          return ans;
-        }
-        
-        int calc(int x) {
-          int s = x;
-          for (int i = 0; i <= P / B; ++i) {
-            if (qwq.find(s) != qwq.end()) return i * B + qwq[s];
-            s = s * inv % P;
-          }
-          throw;
-        }
-        
-        int Lg[N];
-        
-        void init() {
-          int s = 1;
-          for (int i = 0; i < B; ++i) {
-            if (qwq.find(s) != qwq.end()) break;
-            qwq[s] = i, s = s * g % P;
-          }
-          inv = qpow(qpow(g, B), P - 2);
-          for (int i = 2; i <= sq; ++i) {
-            if (!vis[i]) {
-              p[++t] = i;
-              Lg[i] = calc(i);
-              for (int j = 1; j <= t && p[j] * i <= sq; ++j) {
-                vis[p[j] * i] = 1;
-                Lg[p[j] * i] = (Lg[p[j]] + Lg[i]) % (P - 1);
-                if (i % p[j] == 0) break;
-              }
-            }
-          }
-        }
-        
-        int solve(int y) {
-          if (y <= sq) return Lg[y];
-          int k = P / y, r = P % y;
-          if (r < y - r)
-            return (lxy + solve(r) - Lg[k] + (P - 1)) %
-                   (P - 1);  // lxy 为 P-1 的离散对数
-          else
-            return (solve(y - r) - Lg[k + 1] + (P - 1)) % (P - 1);
-        }
-        ```
+??? example "[Luogu11175【模板】基于值域预处理的快速离散对数](https://www.luogu.com.cn/problem/P11175)"
+    ```cpp
+    --8<-- "docs/math/code/discrete-logarithm/discrete-logarithm-1.cpp"
+    ```
 
 ## 习题
 
@@ -183,7 +129,6 @@ $$
 -   [Luogu4195【模板】exBSGS/Spoj3105 Mod](https://www.luogu.com.cn/problem/P4195) 模板
 -   [Codeforces - Lunar New Year and a Recursive Sequence](https://codeforces.com/contest/1106/problem/F)
 -   [LOJ6542 离散对数](https://loj.ac/problem/6542) index calculus 方法，非模板
--   [Luogu11175【模板】基于值域预处理的快速离散对数](https://www.luogu.com.cn/problem/P11175) 模板
 
 **本页面部分内容以及代码译自博文 [Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root) 与其英文翻译版 [Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
 
