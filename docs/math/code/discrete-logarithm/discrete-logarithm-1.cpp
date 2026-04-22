@@ -77,7 +77,7 @@ int main() {
   sq = sqrt(P) + 1;
   B = sqrt(1ll * P * sqrt(P) / log(P));
   init();
-  LP_1 = calc(P - 1);  // g ^ LP_1 = P - 1 (mod P)
+  LP_1 = (P - 1) / 2;  // g ^ LP_1 = P - 1 (mod P)
   int T;
   cin >> T;
   while (T--) {
