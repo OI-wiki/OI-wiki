@@ -3,7 +3,7 @@
 #include <unordered_map>
 using namespace std;
 
-const int N = 1'000'000; // sqrt(P * sqrt(P) / ln(P))
+const int N = 1'000'000;  // sqrt(P * sqrt(P) / ln(P))
 
 unordered_map<int, int> M;
 int Lg[N], p[N], t;
@@ -12,21 +12,17 @@ int P, g, B, sq, LP_1, inv;
 
 int fadd(int x, int y, int P) {
   x += y;
-  if (x >= P)
-    x -= P;
+  if (x >= P) x -= P;
   return x;
 }
 
 int fsub(int x, int y, int P) {
   x -= y;
-  if (x < 0)
-    x += P;
+  if (x < 0) x += P;
   return x;
 }
 
-int fmul(int x, int y, int P) {
-  return 1ll * x * y % P;
-}
+int fmul(int x, int y, int P) { return 1ll * x * y % P; }
 
 int qpow(int x, int y) {
   int ans = 1;
@@ -70,8 +66,7 @@ void init() {
 int solve(int y) {
   if (y <= sq) return Lg[y];
   int k = P / y, r = P % y;
-  if (r < y - r)
-    return fadd(fsub(solve(r), Lg[k], P - 1), LP_1, P - 1);
+  if (r < y - r) return fadd(fsub(solve(r), Lg[k], P - 1), LP_1, P - 1);
   return fsub(solve(y - r), Lg[k + 1], P - 1);
 }
 
@@ -82,7 +77,7 @@ int main() {
   sq = sqrt(P) + 1;
   B = sqrt(1ll * P * sqrt(P) / log(P));
   init();
-  LP_1 = calc(P - 1); // g ^ LP_1 = P - 1 (mod P)
+  LP_1 = calc(P - 1);  // g ^ LP_1 = P - 1 (mod P)
   int T;
   cin >> T;
   while (T--) {
