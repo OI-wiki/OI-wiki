@@ -65,9 +65,9 @@ void init() {
 
 int solve(int y) {
   if (y <= sq) return Lg[y];
-  int k = P / y, r = P % y;
-  if (r < y - r) return fadd(fsub(solve(r), Lg[k], P - 1), LP_1, P - 1);
-  return fsub(solve(y - r), Lg[k + 1], P - 1);
+  int v = P / y, r = P % y;
+  if (r < y - r) return fadd(fsub(solve(r), Lg[v], P - 1), LP_1, P - 1);
+  return fsub(solve(y - r), Lg[v + 1], P - 1);
 }
 
 int main() {
