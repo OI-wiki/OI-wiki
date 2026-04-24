@@ -156,13 +156,13 @@
     
       void build() {
         queue<pair<int, int>> q;
-        for (int i = 0; i < 26; ++i)
+        for (int i = 0; i < CHAR_NUM; ++i)
           if (next[0][i]) q.push({i, 0});
         while (!q.empty()) {
           auto item = q.front();
           q.pop();
           auto last = insertSAM(item.second, item.first);
-          for (int i = 0; i < 26; ++i)
+          for (int i = 0; i < CHAR_NUM; ++i)
             if (next[last][i]) q.push({i, last});
         }
       }
