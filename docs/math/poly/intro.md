@@ -81,7 +81,7 @@ $$
 
 $\circ$ 满足结合律（$(f\circ g)\circ h$ 和 $f\circ (g\circ h)$ 均存在时），不满足交换律．$R$ 为幺环时 $\circ$ 存在单位元 $1\times x$．
 
-多项式复合（与复合逆）已经有了 $\Theta(n\log^2 n)$ 的做法，其由 Yasunori Kinoshita 与李白天于 2024 年提出，详见 [形式幂级数复合 | 复合逆](./comp-rev.md)．
+多项式复合（与复合逆）有 $\Theta(n\log^2 n)$ 的做法，其由 Yasunori Kinoshita 与李白天于 2024 年提出，详见 [形式幂级数复合 | 复合逆](./comp-rev.md)．
 
 ### 导数
 
