@@ -88,7 +88,7 @@ $$
 从 C++11 开始，模板类 `std::linear_congruential_engine` 实现基于如上方法的随机数生成器，模板参数如下：
 
 ```cpp
-template<class UIntType, UIntType A, UIntType C, UIntType M>
+template <class UIntType, UIntType A, UIntType C, UIntType M>
 class linear_congruential_engine;
 ```
 
@@ -98,9 +98,9 @@ class linear_congruential_engine;
 
 之后于 1988 年，该参数的 LCG 由 Park 与 Miller 采纳为「最小标准」，只因其实现极其简单、易懂、高效、且质量相对不错．最后于 1993 年，Park、Miller 和 Stockmeyer 将参数 $A$ 改为 $48271$，成为较新的「最小标准」．两个版本的「最小标准」作为 `linear_congruential_engine` 的特化，也都于 C++11 中预定义，分别为 `minstd_rand0` 和 `minstd_rand`．具体而言：
 
-- 对于 `minstd_rand0`，$s_i$ 的类型为 32 位无符号整数，$A$ 取 $16807$，$C$ 取 $0$，$M$ 取 $2147483647$．
+-   对于 `minstd_rand0`，$s_i$ 的类型为 32 位无符号整数，$A$ 取 $16807$，$C$ 取 $0$，$M$ 取 $2147483647$．
 
--  对于 `minstd_rand`，$s_i$ 的类型为 32 位无符号整数，$A$ 取 $48271$，$C$ 取 $0$，$M$ 取 $2147483647$．
+-   对于 `minstd_rand`，$s_i$ 的类型为 32 位无符号整数，$A$ 取 $48271$，$C$ 取 $0$，$M$ 取 $2147483647$．
 
 使用方法也很简单，直接定义 `std::minstd_rand myrand(seed);`，其中 `seed` 为种子，不填时默认为 $1$．然后调用 `myrand()` 即可．
 
@@ -122,7 +122,7 @@ class linear_congruential_engine;
       }
     
       // 生成随机序列的下一个随机数
-      int next() { return x = ((long long) A * x + C) % M; }
+      int next() { return x = ((long long)A * x + C) % M; }
     };
     
     myrand rnd(3, 5, 97);  // 初始化一个随机数生成器
@@ -259,8 +259,10 @@ struct MyHash {
     x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
     return x ^ (x >> 31);
   }
+
   size_t operator()(size_t x) {
-    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();
+    static const u64 FIXED_RANDOM =
+        std::chrono::steady_clock::now().time_since_epoch().count();
     return mix64(x + FIXED_RANDOM);
   }
 }
@@ -429,12 +431,11 @@ int main() {
 #include <random>
 #include <string>
 
-int main()
-{
-    std::string in {"ABCDEFGHIJK"}, out;
-    std::sample(in.begin(), in.end(), std::back_inserter(out), 4,
-                std::mt19937 {std::random_device{}()});
-    std::cout << "Four random letters out of " << in << " : " << out << '\n';
+int main() {
+  std::string in{"ABCDEFGHIJK"}, out;
+  std::sample(in.begin(), in.end(), std::back_inserter(out), 4,
+              std::mt19937{std::random_device{}()});
+  std::cout << "Four random letters out of " << in << " : " << out << '\n';
 }
 ```
 
