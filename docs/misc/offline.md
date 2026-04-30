@@ -1,4 +1,4 @@
-本章将介绍介绍离线算法（Offline Algorithm）的思想、常见算法及优化．
+本章将介绍离线算法（Offline Algorithm）的思想、常见算法及优化．
 
 离线算法是基于「**求解前已知所有数据**」这一假设来设计的，适用于有多组询问的题目．相对的还有 [在线算法](https://en.wikipedia.org/wiki/Online_algorithm)（Online Algorithm）．
 

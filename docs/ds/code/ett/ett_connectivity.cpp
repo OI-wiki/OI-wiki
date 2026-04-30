@@ -137,7 +137,7 @@ class DynamicForest {
     /**
      * Get the number of nodes with keys less than or equal to the key of p.
      *
-     * In the other word, the the 1-based index of p inside the sequencec
+     * In the other word, the 1-based index of p inside the sequence
      * containing p.
      */
     static int GetPosition(Node* p) {
