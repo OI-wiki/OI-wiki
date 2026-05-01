@@ -18,7 +18,7 @@ u64 y;
 
 u64 xorshift64() {
   y ^= y << 13;
-  x ^= y >> 7;
+  y ^= y >> 7;
   y ^= y << 17;
   return y;
 }
