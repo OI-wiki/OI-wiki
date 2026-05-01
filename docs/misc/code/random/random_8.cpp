@@ -26,10 +26,10 @@ struct MyHash {
 
 int main() {
   std::unordered_map<u64, u64, MyHash> kvs;
-  for(u64 i = 0; i < 10; ++i) {
+  for (u64 i = 0; i < 10; ++i) {
     kvs[i] = i;
   }
-  for(u64 i = 0; i < 10; ++i) {
+  for (u64 i = 0; i < 10; ++i) {
     std::cout << kvs[i] << " ";
   }
   return 0;

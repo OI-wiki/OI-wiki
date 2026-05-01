@@ -19,7 +19,7 @@ using std::cout;
 
 int main() {
   x = 1;
-  for(int i = 0; i < 10; ++i) {
+  for (int i = 0; i < 10; ++i) {
     cout << splitmix64() << " ";
   }
   return 0;

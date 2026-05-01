@@ -11,7 +11,7 @@ struct myrand {
     this->j = j;
     this->k = k;
     cur = 0;
-    for(int i = 0; i < l; i++) {
+    for (int i = 0; i < l; i++) {
       vec.push_back(rand());  // 先用其他方法生成随机序列中的前几个元素
     }
   }

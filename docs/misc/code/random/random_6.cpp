@@ -30,11 +30,11 @@ using std::cout;
 int main() {
   x = 1;
   y = 1;
-  for(int i = 0; i < 10; ++i) {
+  for (int i = 0; i < 10; ++i) {
     cout << xorshift32() << " ";
   }
   cout << "\n";
-  for(int i = 0; i < 10; ++i) {
+  for (int i = 0; i < 10; ++i) {
     cout << xorshift64() << " ";
   }
   return 0;
