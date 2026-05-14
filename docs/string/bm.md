@@ -28,7 +28,7 @@ $string$ 的长度 $stringlen$，$stringlastpos = stringlen-1$．
 
 ### 观察 1
 
-如果我们知道 $char$ 这个字符不在 $pat$ 中，我们就不用考虑 $pat$ 从 $string$ 的第 $1$ 个、第 $2$ 个……第 $patlen$ 个字符起出现的情况，，而可以直接将 $pat$ 向下滑动 $patlen$ 个字符．
+如果我们知道 $char$ 这个字符不在 $pat$ 中，我们就不用考虑 $pat$ 从 $string$ 的第 $1$ 个、第 $2$ 个……第 $patlen$ 个字符起出现的情况，而可以直接将 $pat$ 向下滑动 $patlen$ 个字符．
 
 ### 观察 2
 
@@ -89,7 +89,7 @@ $$
 \end{array}
 $$
 
-于是我们在失配时，可以把把 $string$ 上的注意力往后跳过 $\max(delta_1,delta_2)$ 个字符
+于是我们在失配时，可以把 $string$ 上的注意力往后跳过 $\max(delta_1,delta_2)$ 个字符
 
 ## 过程
 
