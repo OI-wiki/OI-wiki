@@ -166,7 +166,7 @@ $$
     如果 $\gcd(h_{t+1},h_t)=1$，则程序先执行完 $\text{InsertionSort}(h_{t+1})$ 与 $\text{InsertionSort}(h_t)$ 后，执行 $\text{InsertionSort}(h_{t-1})$ 的时间复杂度为 $O\left(\dfrac{nh_{t+1}h_t}{h_{t-1}} \right)$，且对于每个 $j$，其 $i$ 的移动次数是 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 级别的．
 
 ??? note "定理 2 证明"
-    对于 $j\le h_{t+1}h_t$ 的部分，$i$ 的移动次数显然是是 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 级别的．
+    对于 $j\le h_{t+1}h_t$ 的部分，$i$ 的移动次数显然是 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 级别的．
     
     故以下假设 $j>h_{t+1}h_t$．
     

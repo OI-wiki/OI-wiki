@@ -99,6 +99,41 @@ $$
 
 注意，不排除解小于等于 $k$ 的情况，所以在消因子之前做一下 $\Theta(k)$ 枚举，直接验证 $a^i\equiv b \pmod m$，这样就能避免这种情况．
 
+## 基于值域预处理的快速离散对数
+
+前文的 BSGS 算法时间复杂度为单次 $O(\sqrt m)$，在询问量级较大的时候效率较低．若每次求解的模数是一个固定的质数 $p$，我们就有一个基于值域预处理的快速算法．
+
+我们已经知道 $\operatorname{ind}_g(ab)\equiv\operatorname{ind}_g a+\operatorname{ind}_g b\pmod{p-1}$，所以我们可以只对所有质数通过 BSGS 算法计算离散对数，合数的离散对数则可通过该式转化为若干已知的质数离散对数值之和．此时复杂度仍然不优，我们考虑只预处理一部分的离散对数，具体来说，我们预处理 $1$ 到 $L = \lfloor\sqrt p\rfloor + 1$ 的离散对数．注意此时的 BSGS 块长 $B$  **不能取**  $O(\sqrt{L})$，因为 BSGS 预处理（插入哈希表）部分的复杂度是 $O(B)$，而查询一共需要 $O(\pi(L))$ 次，则总时间复杂度为 $O\left(B+\dfrac{\pi(L)p}{B}\right)$，此时取 $B=O(\sqrt{\pi(L)p})$ 才是最优．由 [素数定理](./prime.md) $\pi(n)\sim\dfrac{n}{\log n}$，则总的预处理时间复杂度可以平衡为 $O\left(\dfrac{p^{3/4}}{\log^{1/2} p}\right)$．
+
+接下来是如何求答案．假设当前要求的是 $\operatorname{ind}_g y$，若 $y\le L$ 则直接返回，否则设 $p=vy+r$，则 $v=\left\lfloor\dfrac{p}{y}\right\rfloor<L$，$r=p\bmod y$，$y=\dfrac{p-r}{v}$，从而
+
+$$
+\begin{aligned}
+\operatorname{ind}_g y &\equiv \operatorname{ind}_g (p-r)-\operatorname{ind}_g v\\
+&\equiv \operatorname{ind}_g (-r)-\operatorname{ind}_g v\\
+&\equiv \operatorname{ind}_g (p-1)+\operatorname{ind}_g r-\operatorname{ind}_g v \pmod{p-1}.
+\end{aligned}
+$$
+
+注意到 $\operatorname{ind}_g (p-1)=(p-1)/2$，因此只需递归计算 $r$ 的离散对数即可．
+
+我们还可以考虑 $y$ 的另一种表达方式，注意到 $p=vy+r=(v+1)y+r-y$，则 $y=\dfrac{p-r+y}{v+1}$，从而
+
+$$
+\operatorname{ind}_g y\equiv \operatorname{ind}_g (y-r)-\operatorname{ind}_g (v+1) \pmod{p-1}.
+$$
+
+我们有 $v+1 \le L$，因此只需要递归计算 $y-r$ 的离散对数即可．
+
+综合这两种计算方式，我们有 $\min\{r,y-r\}\le \dfrac{y}{2}$，所以递归计算较小的一方即可达到 $O(\log p)$ 的查询复杂度．
+
+至此我们得到了一个时间复杂度为 $O\left(\dfrac{p^{3/4}}{\log^{1/2} p}\right)-O(\log p)$ 的算法．
+
+??? example "[Luogu11175【模板】基于值域预处理的快速离散对数](https://www.luogu.com.cn/problem/P11175)"
+    ```cpp
+    --8<-- "docs/math/code/discrete-logarithm/discrete-logarithm-1.cpp"
+    ```
+
 ## 习题
 
 -   [SPOJ MOD](https://www.spoj.com/problems/MOD/) 模板

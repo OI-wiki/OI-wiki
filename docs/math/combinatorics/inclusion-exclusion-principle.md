@@ -316,7 +316,7 @@ $$
 \sum_{Q}g(Q)\sum_{T\subseteq (S\setminus Q)}(-1)^{|S\setminus Q|-|T|}=\sum_{Q}g(Q)F(S\setminus Q)=\sum_{Q}g(Q)\cdot 0^{|S\setminus Q|}
 $$
 
-分析发现，仅当 $|S\setminus Q|=0$ 时有 $0^0=1$，这时 $Q=S$，对答案的贡献就是 $g(S)$，其他时侯 $0^{|S\setminus Q|}=0$，则对答案无贡献．于是得到
+分析发现，仅当 $|S\setminus Q|=0$ 时有 $0^0=1$，这时 $Q=S$，对答案的贡献就是 $g(S)$，其他时候 $0^{|S\setminus Q|}=0$，则对答案无贡献．于是得到
 
 $$
 \sum_{Q}g(Q)\cdot 0^{|S\setminus Q|}=g(S)
