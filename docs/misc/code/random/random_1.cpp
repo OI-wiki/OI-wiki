@@ -9,7 +9,7 @@ constexpr int SEED = 5489u;
 using namespace std;
 
 int main() {
-  mt19937 myrand(SEED); // 将 SEED 替换为任意整数或换为 time(nullptr)
+  mt19937 myrand(SEED);  // 将 SEED 替换为任意整数或换为 time(nullptr)
   cout << myrand() << endl;
   return 0;
 }
