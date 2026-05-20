@@ -1,9 +1,12 @@
+constexpr int SEED = 5497u;
+
+// --8<-- [end:core]
+
 #include <iostream>
 #include <random>
 
 int main() {
-  std::random_device rd;   // 将用于为随机数引擎获得种子
-  std::mt19937 gen(rd());  // 以播种标准 mersenne_twister_engine
+  std::mt19937 gen(SEED);  // 播种标准 mersenne_twister_engine
   std::uniform_int_distribution<> dis(1, 6);
 
   for (int n = 0; n < 10; ++n)
@@ -12,3 +15,5 @@ int main() {
   std::cout << '\n';
   return 0;
 }
+
+// --8<-- [end:core]

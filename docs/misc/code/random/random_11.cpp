@@ -1,3 +1,7 @@
+constexpr int SEED = 5489;
+
+// --8<-- [start:core]
+
 #include <algorithm>
 #include <ctime>
 #include <iostream>
@@ -6,7 +10,7 @@
 int a[100];
 
 int main() {
-  std::mt19937 rng(time(nullptr));
+  std::mt19937 rng(SEED);
   int n = rng() % 99 + 1;
   for (int i = 1; i <= n; i++) a[i] = i;
   std::cout << n << '\n';
@@ -17,3 +21,5 @@ int main() {
     std::cout << 0 << '\n';
   }
 }
+
+// --8<-- [end:core]

@@ -2,40 +2,60 @@
 
 // --8<-- [start:core]
 
-using u32 = unsigned int;
-using u64 = unsigned long long;
+#include <cstdint>
 
-u32 x;
+using u32 = std::uint32_t;
+using u64 = std::uint64_t;
 
-u32 xorshift32() {
-  x ^= x << 13;
-  x ^= x >> 17;
-  x ^= x << 5;
-  return x;
-}
+class xorshift32 {
 
-u64 y;
+private:
+  u32 x;
 
-u64 xorshift64() {
-  y ^= y << 13;
-  y ^= y >> 7;
-  y ^= y << 17;
-  return y;
-}
+public:
+  xorshift32(): x(2463534242) {}
+  xorshift32(u32 s): x(s) {}
+
+  u32 operator()() {
+    x ^= x << 13;
+    x ^= x >> 17;
+    x ^= x << 5;
+    return x;
+  }
+};
+
+class xorshift64 {
+
+private:
+  u64 x;
+
+public:
+  xorshift64(): x(88172645463325252) {}
+  xorshift64(u64 s): x(s) {}
+
+  u64 operator()() {
+    x ^= x << 13;
+    x ^= x >> 7;
+    x ^= x << 17;
+    return x;
+  }
+};
 
 // --8<-- [end:core]
 
 using std::cout;
 
 int main() {
-  x = 1;
-  y = 1;
+  
+  xorshift32 rng32;
+  xorshift64 rng64;
+
   for (int i = 0; i < 10; ++i) {
-    cout << xorshift32() << " ";
+    cout << rng32() << " ";
   }
   cout << "\n";
   for (int i = 0; i < 10; ++i) {
-    cout << xorshift64() << " ";
+    cout << rng64() << " ";
   }
   return 0;
 }
