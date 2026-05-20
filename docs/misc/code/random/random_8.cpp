@@ -9,7 +9,6 @@ using u64 = unsigned long long;
 
 struct MyHash {
   u64 mix64(u64 x) const {
-    // x += 0x9e3779b97f4a7c15; // 这一步实际上失去意义
     x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
     x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
     return x ^ (x >> 31);
