@@ -1,6 +1,6 @@
 constexpr int SEED = 5497u;
 
-// --8<-- [end:core]
+// --8<-- [start:core]
 
 #include <iostream>
 #include <random>
