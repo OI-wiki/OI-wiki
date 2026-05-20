@@ -4,8 +4,8 @@ constexpr int SEED = 5489;
 // --8<-- [start:core]
 
 #include <iostream>
-#include <vector>
 #include <random>
+#include <vector>
 
 using namespace std;
 
@@ -13,7 +13,7 @@ struct myrand {
   vector<unsigned int> vec;
   int l, j, k, cur;
 
-  template<class URBG>
+  template <class URBG>
   myrand(int l, int j, int k, URBG &&rng) {
     this->l = l;
     this->j = j;
@@ -31,7 +31,8 @@ struct myrand {
   }
 };
 
-myrand rnd(11, 4, 7, mt19937(SEED)); // 最后一个可以换成其它随机数生成器，自行设置种子
+myrand rnd(11, 4, 7,
+           mt19937(SEED));  // 最后一个可以换成其它随机数生成器，自行设置种子
 
 int main() {
   unsigned int x = rnd.next();
