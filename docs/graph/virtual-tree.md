@@ -101,7 +101,7 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy, y
 ??? note "证明"
     如果 $x$ 是 $y$ 的祖先，那么 $x$ 直接到 $y$ 连边．因为 DFS 序保证了 $x$ 和 $y$ 的 DFS 序是相邻的，所以 $x$ 到 $y$ 的路径上面没有关键点．
     
-    如果 $x$ 不是 $y$ 的祖先，那么就把 $\operatorname{LCA}(x,y)$ 当作 $y$ 的的祖先，根据上一种情况也可以证明 $\operatorname{LCA}(x,y)$ 到 $y$ 点的路径上不会有关键点．
+    如果 $x$ 不是 $y$ 的祖先，那么就把 $\operatorname{LCA}(x,y)$ 当作 $y$ 的祖先，根据上一种情况也可以证明 $\operatorname{LCA}(x,y)$ 到 $y$ 点的路径上不会有关键点．
     
     所以连接 $\operatorname{LCA}(x,y)$ 和 $y$，不会遗漏，也不会重复．
     

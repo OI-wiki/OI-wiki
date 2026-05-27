@@ -14,24 +14,24 @@ jobs:
     name: OI-Wiki Page Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.10'
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v8.1.0
         with:
           version: "latest"
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '20.x'
           check-latest: true
       - name: Install Python dependencies
         run: uv sync
       - name: Cache Node.js dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: cache-node
         with:
           path: node_modules
@@ -59,7 +59,7 @@ jobs:
         with:
           skip_external: true
       - name: Fetch old site
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: gh-pages
           path: old-site
@@ -86,26 +86,26 @@ jobs:
     if: ${{ github.ref == 'refs/heads/master' }}
     steps:
       - name: Checkout latest
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Get changed files
-        uses: tj-actions/changed-files@v46
+        uses: tj-actions/changed-files@v47
         with:
           files: docs/**/*.md
           include_all_old_new_renamed_files: true
           write_output_files: true
       - name: Checkout before
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ github.event.before }}
           path: before
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
             python-version: '3.10'
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v8.1.0
         with:
           version: "latest"
       - name: Install Python dependencies

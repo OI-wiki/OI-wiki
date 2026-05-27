@@ -215,7 +215,7 @@ C++ 标准库中实现了差分函数 [`std::adjacent_difference`](https://zh.cp
     -   序列 $\{a_i\}$ 是序列 $\{D_i\}$ 的前缀和，即
     
         $$
-        a_i = \sum_{j=1}^i D_i.
+        a_i = \sum_{j=1}^i D_j.
         $$
     -   序列 $\{a_i\}$ 的前缀和为
     

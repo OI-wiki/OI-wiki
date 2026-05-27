@@ -106,7 +106,7 @@
 
 所以可以证明其最坏复杂度为线性
 
-而通常伪广义后缀自动机的平均复杂度等同于广义后缀自动机的最差复杂度，面对对于大量的字符串时，伪广义后缀自动机的效率远不如标准的广义后缀自动机
+而通常伪广义后缀自动机的平均复杂度等同于广义后缀自动机的最差复杂度，面对大量的字符串时，伪广义后缀自动机的效率远不如标准的广义后缀自动机
 
 ### 实现
 
@@ -156,13 +156,13 @@
     
       void build() {
         queue<pair<int, int>> q;
-        for (int i = 0; i < 26; ++i)
+        for (int i = 0; i < CHAR_NUM; ++i)
           if (next[0][i]) q.push({i, 0});
         while (!q.empty()) {
           auto item = q.front();
           q.pop();
           auto last = insertSAM(item.second, item.first);
-          for (int i = 0; i < 26; ++i)
+          for (int i = 0; i < CHAR_NUM; ++i)
             if (next[last][i]) q.push({i, last});
         }
       }

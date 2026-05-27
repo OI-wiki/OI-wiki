@@ -16,24 +16,24 @@ jobs:
       any_changed: ${{ steps.changed-files.outputs.any_changed }}
       files_to_test: ${{ steps.GetFiles.outputs.files_to_test }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Get changed code files
         id: changed-files
-        uses: tj-actions/changed-files@v46
+        uses: tj-actions/changed-files@v47
         with:
           files: |
             docs/**/*.cpp
             docs/**/*.in
             docs/**/*.ans
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           python-version: '3.10'
       - name: Install uv
         if: steps.changed-files.outputs.any_changed == 'true'
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v8.1.0
         with:
           version: "latest"
       - name: Install Python dependencies
@@ -66,7 +66,7 @@ jobs:
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Install g++-9
@@ -88,7 +88,7 @@ jobs:
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Check Compiler Version
@@ -114,7 +114,7 @@ jobs:
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Launch Risc-V Docker
@@ -154,7 +154,7 @@ jobs:
     outputs:
       output: ${{ steps.set-output.outputs.output }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Check Compiler Version
@@ -192,7 +192,7 @@ jobs:
       output: ${{ steps.set-output.outputs.output }}
     container: alpine:latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Check Compiler Version

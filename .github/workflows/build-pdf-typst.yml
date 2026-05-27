@@ -16,10 +16,10 @@ jobs:
       LANG: C.UTF-8
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20.x
           cache: 'npm'
@@ -52,7 +52,7 @@ jobs:
           cd ..
           cp -r fonts/* .fonts
 
-      - uses: typst-community/setup-typst@v4
+      - uses: typst-community/setup-typst@v5
         with:
           typst-version: 0.13.1
           cache-dependency-path: OI-Wiki-export/oi-wiki-export-typst/oi-wiki.typ
@@ -65,7 +65,7 @@ jobs:
           typst compile oi-wiki-export.typ --font-path .fonts
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: OI-wiki-typst-export
           path: ./OI-Wiki-export/oi-wiki-export-typst/oi-wiki-export.pdf
