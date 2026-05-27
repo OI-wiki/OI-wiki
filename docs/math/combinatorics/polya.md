@@ -4,7 +4,7 @@ author: Wajov, Early0v0, Enter-tainer, Great-designer, iamtwz, Ir1d, MegaOwIer, 
 
 ## 引入
 
-Pólya 计数原理通常通常用来解决一些涉及「本质不同」的计数问题．
+Pólya 计数原理通常用来解决一些涉及「本质不同」的计数问题．
 
 ???+ info "本文可能涉及群论的相关内容"
     本文可能涉及到群论的相关内容．本文会对涉及到的群论概念做简单的解释，以便于不熟悉相关内容的读者理解和应用 Pólya 计数原理．关于群论的内容，严格的表述和讨论请参考 [抽象代数基本概念](../algebra/basic.md)、[群论](../algebra/group-theory.md) 等章节．
