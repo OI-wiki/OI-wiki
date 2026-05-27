@@ -514,7 +514,7 @@ $ git push <remote> <from>:<to> # 将本地 <from> 分支的更改推送至 <rem
 $ git clone git@github.com:OI-wiki/OI-wiki.git
 ```
 
-将更改推送至远程仓库的过程与使用 HTTP(S) 连接类似．但使用 ssh 连接可以免去验证远程仓库帐号密码的过程．
+将更改推送至远程仓库的过程与使用 HTTP(S) 连接类似．但使用 ssh 连接可以免去验证远程仓库账号密码的过程．
 
 ## Git GUI Tools
 

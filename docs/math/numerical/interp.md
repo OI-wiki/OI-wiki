@@ -109,7 +109,7 @@ $$
 f(x)=\sum\limits_{i=1}^{n+1}(-1)^{n+1-i}y_i\cdot\frac{\prod\limits_{j=1}^{n+1}(x-j)}{(i-1)!(n+1-i)!(x-i)}
 $$
 
-预处理 $(x-i)$ 前后缀积、阶乘阶乘逆，然后代入这个式子，复杂度为 $O(n)$.
+预处理 $(x-i)$ 前后缀积、阶乘、阶乘逆，然后代入这个式子，复杂度为 $O(n)$.
 
 ???+ note "例题 [CF622F The Sum of the k-th Powers](https://codeforces.com/contest/622/problem/F)"
     给出 $n,k$，求 $\sum\limits_{i=1}^ni^k$ 对 $10^9+7$ 取模的值．
