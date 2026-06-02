@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC
+	  "-//W3C//DTD SVG 1.1 Tiny//EN"
+	  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">
+<svg version="1.1"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 255 150"
+	width="255" height="150">
+  <!-- 	This SVG image was created May 3, 2008, for Wikipedia.  It's based
+	on a handwritten diagram
+		"http://en.wikipedia.org/wiki/Image:AA_Tree_Split.png"
+	which was contributed under the GFDL and the Creative Commons
+	Attribution-ShareAlike licenses by en:User:Rkleckner.  I'm also
+	using as a base,
+	"http://commons.wikimedia.org/wiki/Image:Red_Black_Shape_Cases.svg"
+	which was my own work.
+
+	My purpose is to replace that handwritten drawing with something more
+	polished looking, with the same meaning.
+
+	It represents what a "split" operation does to an "AA tree" data
+	structure and accompanies some pseudocode that is found in the
+	article "en:AA Tree" on Wikipedia.
+
+	Permission is granted to copy, distribute and/or modify this
+	document under the terms of the GNU Free Documentation License,
+	Version 1.2 or any later version published by the Free Software
+	Foundation; with no Invariant Sections, no Front-Cover Texts, and
+	no Back-Cover Texts. A copy of the license is included in the
+	section entitled "GNU Free Documentation License". -->
+  <defs>
+    <marker id="arrowhead"
+	    viewBox="0 0 24 24" refX="24" refY="12"
+	    markerUnits="strokeWidth"
+	    markerWidth="9.6" markerHeight="7.2"
+	    orient="auto">
+	<path d="M 0 0 L 24 12 L 0 24 z" />
+    </marker>
+    <g id="BallT">
+      <ellipse cx="0" cy="0" rx="12" ry="12" fill="white" stroke="black"/>
+      <text text-anchor="middle" x="-1" y="7"
+	    font-size="18"
+	    font-style="normal" font-weight="normal">T</text>
+    </g>
+    <g id="BallX">
+      <ellipse cx="0" cy="0" rx="12" ry="12" fill="white" stroke="black"/>
+      <text text-anchor="middle" x="0" y="7"
+	    font-size="18"
+	    font-style="normal" font-weight="normal">X</text>
+    </g>
+    <g id="BallR">
+      <ellipse cx="0" cy="0" rx="12" ry="12" fill="white" stroke="black"/>
+      <text text-anchor="middle" x="-1" y="7"
+	    font-size="18"
+	    font-style="normal" font-weight="normal">R</text>
+    </g>
+    <g id="BallA">
+      <ellipse cx="0" cy="0" rx="12" ry="12" fill="white" stroke="black"/>
+      <text text-anchor="middle" x="0" y="6"
+	    font-size="18"
+	    font-style="normal" font-weight="normal">A</text>
+    </g>
+    <g id="BallB">
+      <ellipse cx="0" cy="0" rx="12" ry="12" fill="white" stroke="black"/>
+      <text text-anchor="middle" x="-1" y="7"
+	    font-size="18"
+	    font-style="normal" font-weight="normal">B</text>
+    </g>
+  </defs>
+  <g id="SplitBefore" transform="translate(5 5)">
+    <use xlink:href="#BallT" transform="translate(32 45)"/>
+    <use xlink:href="#BallR" transform="translate(72 45)"/>
+    <use xlink:href="#BallX" transform="translate(112 45)"/>
+    <use xlink:href="#BallA" transform="translate(12 85)"/>
+    <use xlink:href="#BallB" transform="translate(52 85)"/>
+    <g stroke="black">
+      <!-- arrow: top to T (dashed) -->
+      <line x1="32" y1="0" x2="32" y2="33" marker-end="url(#arrowhead)"
+	    stroke-dasharray="3,2"/>
+      <!-- arrow: T to R -->
+      <line x1="44" y1="45" x2="60" y2="45" marker-end="url(#arrowhead)"/>
+      <!-- arrow: T to A -->
+      <line x1="26.63" y1="55.73" x2="17.37" y2="74.27"
+	    marker-end="url(#arrowhead)"/>
+      <!-- arrow: R to B -->
+      <line x1="66.63" y1="55.73" x2="57.37" y2="74.27"
+	    marker-end="url(#arrowhead)"/>
+      <!-- arrow: R to X -->
+      <line x1="84" y1="45" x2="100" y2="45"
+	    marker-end="url(#arrowhead)"/>
+    </g>
+  </g>
+  <path id="BigArrow" transform="translate(175 50)"
+     stroke="none" fill="black"
+	d="M -11,-9 L -9,-11 L 1,-1 L 1,1 L -9,11 L -11,9
+	   L -7,5 L -27,5 L -27,2 L -4,2 L -2,0
+	   L -4,-2 L -27,-2 L -27,-5 L -7,-5 z
+	   "/>
+  <g id="SplitAfter" transform="translate(155 5)">
+    <use xlink:href="#BallR" transform="translate(52 45)"/>
+    <use xlink:href="#BallT" transform="translate(32 85)"/>
+    <use xlink:href="#BallX" transform="translate(72 85)"/>
+    <use xlink:href="#BallA" transform="translate(12 125)"/>
+    <use xlink:href="#BallB" transform="translate(52 125)"/>
+    <g stroke="black">
+      <!-- arrow: top to R (dashed) -->
+      <line x1="52" y1="0" x2="52" y2="33" marker-end="url(#arrowhead)"
+	    stroke-dasharray="3,2"/>
+      <!-- arrow: R to T -->
+      <line x1="46.63" y1="55.73" x2="37.37" y2="74.27"
+	    marker-end="url(#arrowhead)"/>
+      <!-- arrow: R to X -->
+      <line x1="57.37" y1="55.73" x2="66.63" y2="74.27"
+	    marker-end="url(#arrowhead)"/>
+      <!-- arrow: T to A -->
+      <line x1="26.63" y1="95.73" x2="17.37" y2="114.27"
+	    marker-end="url(#arrowhead)"/>
+      <!-- arrow: T to B -->
+      <line x1="37.37" y1="95.73" x2="46.63" y2="114.27"
+	    marker-end="url(#arrowhead)"/>
+    </g>
+  </g>
+</svg>
