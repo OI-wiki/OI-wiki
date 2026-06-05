@@ -92,7 +92,7 @@ int main() {
     }
     auto it = upper_bound(
         a.begin() + 1, a.end(), v,
-        [](const Point<i64> &a, const Point<i64> &b) { return (a ^ b) < 0; });
+        [](const Point<T> &a, const Point<T> &b) { return (a ^ b) < 0; });
     if (it == a.begin() + 1 || it == a.end()) {
       cout << "0\n";
       continue;
