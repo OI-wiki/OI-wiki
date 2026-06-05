@@ -1,4 +1,4 @@
-前置知识：[Dijstra 算法](./shortest-path.md#dijkstra-算法)、[A\* 算法](../search/astar.md)、[可持久化可并堆](../ds/persistent-heap.md)
+前置知识：[Dijkstra 算法](./shortest-path.md#dijkstra-算法)、[A\* 算法](../search/astar.md)、[可持久化可并堆](../ds/persistent-heap.md)
 
 ## 问题描述
 
