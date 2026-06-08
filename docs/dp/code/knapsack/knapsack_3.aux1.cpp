@@ -1,7 +1,7 @@
 #include <cstdio>
-#include <cstring>
 
-const int kMaxN = 1010, kMaxK = 33;
+const int kMaxN = 1010;
+extern const int kMaxK = 33;
 
 int t, n, m, K, w[kMaxN], c[kMaxN], dp[kMaxN][kMaxK];
 

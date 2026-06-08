@@ -1,3 +1,5 @@
+#include <cstdlib>
+
 extern const int kMaxK;
 
 void solve(int n, int m, int K, int *w, int *c, int (*dp)[kMaxK]) {
