@@ -1,8 +1,8 @@
 const int kMaxK = 33;
 
 void solve(int n, int m, int K, int *w, int *c, int (*dp)[kMaxK]) {
-  for(int i = 0; i <= m; i++) {
-    for(int j = 1; j <= K; j++) dp[i][j] = 0;
+  for (int i = 0; i <= m; i++) {
+    for (int j = 1; j <= K; j++) dp[i][j] = 0;
   }
   int i, j, p, x, y, z;
   int a[kMaxK], b[kMaxK];
