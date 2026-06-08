@@ -1,9 +1,9 @@
-void solve(int* dp, int n) {
+extern const int kMaxK;
+
+void solve(int n, int m, int K, int *w, int *c, int (*dp)[kMaxK]) {
   memset(dp, 0, sizeof(dp));
   int i, j, p, x, y, z;
-  scanf("%d%d%d", &n, &m, &K);
-  for (i = 0; i < n; i++) scanf("%d", &w[i]);
-  for (i = 0; i < n; i++) scanf("%d", &c[i]);
+  int a[kMaxK], b[kMaxK];
   for (i = 0; i < n; i++) {
     for (j = m; j >= c[i]; j--) {
       for (p = 1; p <= K; p++) {
@@ -21,5 +21,4 @@ void solve(int* dp, int n) {
       }
     }
   }
-  printf("%d\n", dp[m][K]);
 }
