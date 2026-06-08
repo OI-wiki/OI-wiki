@@ -1,6 +1,6 @@
-#include <cstdlib>
+#include <cstring>
 
-extern const int kMaxK;
+const int kMaxK = 33;
 
 void solve(int n, int m, int K, int *w, int *c, int (*dp)[kMaxK]) {
   memset(dp, 0, sizeof(dp));
