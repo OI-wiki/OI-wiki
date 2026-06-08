@@ -1,8 +1,8 @@
 #include <cstdio>
 
-const int kMaxN = 1010, kMaxK = 33;
+const int kMaxM = 1010, kMaxK = 33;
 
-int t, n, m, K, w[kMaxN], c[kMaxN], dp[kMaxN][kMaxK];
+int t, n, m, K, w[kMaxM], c[kMaxM], dp[kMaxM][kMaxK];
 
 extern void solve(int n, int m, int K, int *w, int *c, int (*dp)[kMaxK]);
 
