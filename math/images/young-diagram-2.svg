@@ -1,0 +1,16 @@
+<svg width="265" height="165" viewBox="0 0 265 165" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 5 5 L 55 5 L 55 55 L 205 55 L 205 105 L 255 105 L 255 155 L 5 155 Z" 
+        fill="none" stroke="black" stroke-width="2"/>
+  
+  <line x1="5" y1="55" x2="55" y2="55" stroke="black" stroke-width="2"/>
+  <line x1="5" y1="105" x2="255" y2="105" stroke="black" stroke-width="2"/>
+  
+  <line x1="55" y1="55" x2="55" y2="105" stroke="black" stroke-width="2"/>
+  <line x1="105" y1="55" x2="105" y2="105" stroke="black" stroke-width="2"/>
+  <line x1="155" y1="55" x2="155" y2="105" stroke="black" stroke-width="2"/>
+  
+  <line x1="55" y1="105" x2="55" y2="155" stroke="black" stroke-width="2"/>
+  <line x1="105" y1="105" x2="105" y2="155" stroke="black" stroke-width="2"/>
+  <line x1="155" y1="105" x2="155" y2="155" stroke="black" stroke-width="2"/>
+  <line x1="205" y1="105" x2="205" y2="155" stroke="black" stroke-width="2"/>
+</svg>
