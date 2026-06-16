@@ -58,7 +58,7 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 
 示例如下：
 
-![Orignal](images/color1.png)
+![Original](images/color1.png)
 
 （由 [Graph Editor](https://csacademy.com/app/graph_editor/) 生成）
 

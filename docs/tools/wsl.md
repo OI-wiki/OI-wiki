@@ -159,7 +159,7 @@ wsl --set-default-version 2
     Installing, this may take a few minutes...
 ```
 
-等待一两分钟时间，系统会提示创建新的用户帐户．
+等待一两分钟时间，系统会提示创建新的用户账户．
 
 ```console
     Please create a default UNIX user account. The username does not need to match your Windows username.
@@ -173,7 +173,7 @@ wsl --set-default-version 2
     Enter new UNIX password:
 ```
 
-设置好帐户名和密码后，WSL 就安装完成了．
+设置好账户名和密码后，WSL 就安装完成了．
 
 ```console
     Installation successful!

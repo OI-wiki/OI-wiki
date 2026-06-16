@@ -111,7 +111,7 @@ do {
 } while (statement2);
 ```
 
-在 statement1 中没有 `continue` 语句的时候这两种方式也也是等价的．
+在 statement1 中没有 `continue` 语句的时候这两种方式也是等价的．
 
 ```cpp
 while (1) {

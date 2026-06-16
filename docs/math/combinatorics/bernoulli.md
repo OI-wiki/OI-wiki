@@ -146,7 +146,6 @@ $$
 $$
 \begin{aligned}
 n^{m+1}&=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\binom{m+1}{k}[m - k = 0]+(m+1)\Delta\\
-&=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\binom{m+1}{k}+(m+1)\Delta\\
 &=\frac{n^{m+1}}{m+1}\binom{m+1}{m}+(m+1)\Delta\\
 &=n^{m+1}+(m+1)\Delta
 \end{aligned}

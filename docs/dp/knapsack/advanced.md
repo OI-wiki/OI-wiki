@@ -1,18 +1,12 @@
 author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, NachtgeistW, countercurrent-time, Enter-tainer, Tiphereth-A, weiranfu, greyqz, iamtwz, Konano, ksyx, ouuan, paigeman, wolfdan666, AngelKitty, CCXXXI, cjsoft, diauweb, Early0v0, ezoixx130, GekkaSaori, GoodCoder666, Henry-ZHR, HeRaNO, Link-cute, LovelyBuggies, LuoshuiTianyi, Makkiy, mgt, minghu6, odeinjul, oldoldtea, P-Y-Y, PotassiumWings, SamZhangQingChuan, shenshuaijie, Suyun514, weiyong1024, Xeonacid, xyf007, Alisahhh, Alphnia, c-forrest, cbw2007, dhbloo, fps5283, GavinZhengOI, Gesrua, hsfzLZH1, hydingsy, kenlig, kxccc, lychees, Menci, Peanut-Tang, PlanariaIce, sbofgayschool, shawlleyw, Siyuan, SukkaW, TianKong-y, tLLWtG, WAAutoMaton, x4Cx58x54, xk2013, zhb2000, zhufengning, hhc0001
 
-## 单调队列优化
-
-见 [单调队列/单调栈优化](../opt/monotonous-queue-stack.md)．
-
-习题：[「Luogu P1776」宝物筛选\_NOI 导刊 2010 提高（02）](https://www.luogu.com.cn/problem/P1776)
-
 ## 背包相关 trick
 
 ### 泛化物品的背包
 
 这种背包，单个物品 $i$ 没有固定的费用和价值，它的价值是随着分配给它的费用而定．在背包容量为 $V$ 的背包问题中，当分配给物品 $i$ 的费用为 $v_i$ 时，能得到的价值就是 $h_i\left(v_i\right)$．
 
-那么，我们枚举分配给第 $i$ 个物品的重量 $w'$，这时的物品价值将会是 $h_i(w')$，那么现在的价值就是 $f_{i - 1, w - w'} + h(w')$．所以此时状态转移的方程为 $f_{i, j} = \max \limits_{0 \le k \le j}(f_{i - 1, j - k} + h_i(k))$．实际上上面这一堆东西讲的就是 $\max +$ 卷积．
+那么，我们枚举分配给第 $i$ 个物品的重量 $w'$，这时的物品价值将会是 $h_i(w')$，那么现在的价值就是 $f_{i - 1, w - w'} + h(w')$．所以此时状态转移的方程为 $f_{i, j} = \max \limits_{0 \le k \le j}(f_{i - 1, j - k} + h_i(k))$．实际上上面这一堆东西讲的就是 $(\max, +)$ 卷积．
 
 ### 分组背包
 
@@ -50,12 +44,12 @@ author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, Nachtg
 
 ### 回退背包
 
-普通的 0-1 背包求方案数只需要直接 dp 即可，但是有时会遇到形如「其他物品都能选，只有几个物品不能选」的情况，这时在部分情况下直接 dp 可能会 TLE．所以需要引入回退背包来处理这种情况．
+普通的 0-1 背包求方案数只需要直接 dp 即可，但是有时会遇到形如「其他物品都能选，只有几个物品不能选」的情况，而且通常是在同一组物品中多次出现不同的物品不能选，比如部分复杂的树上背包．这时直接 dp 可能会 TLE，所以需要引入回退背包来处理这种情况．
 
 注意到背包中物品是无序的：对于两个物品，先放哪个不会当前情况造成任何影响，可以认为 **每一个物品都是最后被放入的那个**．所以可以先把所有东西的 dp 预处理出来，然后把某一个物品的贡献撤销即可．即：
 
 $$
-dp_j = dp_j - dp_{j - w_i}
+dp_j \gets dp_j - dp_{j - w_i}
 $$
 
 注意循环时从小到大执行，否则它对应的贡献方式就是完全背包的方式了．
@@ -146,34 +140,14 @@ g[0] = 1;  // 什么都不装是一种方案
 
 ??? note "实现"
     ```cpp
-    memset(dp, 0, sizeof(dp));
-    int i, j, p, x, y, z;
-    scanf("%d%d%d", &n, &m, &K);
-    for (i = 0; i < n; i++) scanf("%d", &w[i]);
-    for (i = 0; i < n; i++) scanf("%d", &c[i]);
-    for (i = 0; i < n; i++) {
-      for (j = m; j >= c[i]; j--) {
-        for (p = 1; p <= K; p++) {
-          a[p] = dp[j - c[i]][p] + w[i];
-          b[p] = dp[j][p];
-        }
-        a[p] = b[p] = -1;
-        x = y = z = 1;
-        while (z <= K && (a[x] != -1 || b[y] != -1)) {
-          if (a[x] > b[y])
-            dp[j][z] = a[x++];
-          else
-            dp[j][z] = b[y++];
-          if (dp[j][z] != dp[j][z - 1]) z++;
-        }
-      }
-    }
-    printf("%d\n", dp[m][K]);
+    --8<-- "docs/dp/code/knapsack/knapsack_3.cpp"
     ```
+
+## 背包相关问题
 
 ### 混合背包
 
-混合背包就是将前面三种的背包问题混合起来，有的只能取一次，有的能取无限次，有的只能取 $k$ 次．
+混合背包就是将 01 背包、完全背包和多重背包混合起来，有的只能取一次，有的能取无限次，有的只能取 $k$ 次．
 
 这种题目看起来很难，但是每一种物品的选择依然是独立的，因此可以判断当前物品是哪一种背包，然后使用这种背包的解决方案即可．
 
@@ -237,7 +211,7 @@ g[0] = 1;  // 什么都不装是一种方案
     
     目标是让所有购买的物品的 $v_i \times p_i$ 之和最大．
 
-直接当成 [树上背包](../tree.md) 处理即可．注意在最后将所有背包合并在一起．
+直接当成 [树上背包](../tree.md#树上背包) 处理即可．注意在最后将所有背包合并在一起．
 
 ## 参考资料与注释
 

@@ -1,4 +1,4 @@
-author: StudyingFather, ayalhw, qinyihao, CoderOJ, mcendu
+author: StudyingFather, ayalhw, qinyihao, CoderOJ, mcendu, Libaray
 
 虽然图形界面能做的事情越来越多，但有很多高阶操作仍然需要使用命令行来解决．
 
@@ -54,11 +54,27 @@ root@seniorious:~# apt-get install gcc
 
     Windows/Unix 用 `.` 代表当前目录，`..` 代表当前目录的父目录．特别地，在 Unix 下，用 `~` 表示用户主目录（注意 `~` 由 shell 展开，因此在其他地方可能不可用）．
 
-在 Windows/Unix 下，使用 `pwd` 命令可以打印当前的目录，`cd <目录>` 命令可以切换当前的目录．例如，`cd folder` 会切换到当前目录的 `folder` 子目录；`cd ..` 会切换到当前目录的父目录．
+在 Unix 下，使用 `pwd` 命令可以打印当前的目录（在 Windows PowerShell 中也有此命令，但在 Windows 命令提示符中无此命令，详情见下面的提示）．在 Windows/Unix 中，`cd <目录>` 命令都可以切换当前的目录．例如，`cd folder` 会切换到当前目录的 `folder` 子目录；`cd ..` 会切换到当前目录的父目录．
+
+???+ note "对 Windows 命令提示符的特别提示"
+    在 Windows 命令提示符中并没有 `pwd` 命令，但可以用没有任何参数的 `cd` 命令近似代替．
+    
+    同时，需要注意的是，在 Windows 命令提示符下使用 `cd` 命令切换目录，如果 **切换到的目录的盘符与当前目录的盘符不同**，则当前目录不会改变．你可以再敲一遍切换到的路径的盘符，也可以使用 `cd /d <目录>` 命令来同时切换盘符．两种方法对应的命令行界面如下：
+    
+    ```doscon
+    C:\Users\Libaray>cd D:\Codes
+    C:\Users\Libaray>D:
+    D:\Codes>
+    ```
+    
+    ```doscon
+    C:\Users\Libaray>cd /d D:\Codes
+    D:\Codes>
+    ```
 
 在 Windows 下，使用 `dir` 命令可以列出当前目录的文件列表．在 Unix 下，列出文件列表的命令是 `ls`．特别的，在 PowerShell 下，可以使用与 Unix 相同的 `ls` 命令．
 
-在 Windows 下，使用 `md <目录>` 或者 `mkdir <目录>` 命令创建一个新目录，使用 `rd <目录>` 命令删除一个目录．在 Unix 下，这两个命令分别是 `mkdir` 和 `rmdir`．需要注意的是，**使用 `rd` 或是 `rmdir` 删除一个目录前，这个目录必须是空的**．如果想要删除非空目录（和该目录下的所有文件）的话，Unix 下可以执行 `rm -r <目录>` 命令，Windows 下可以执行 `rd /s <目录>` 命令．
+在 Windows 下，使用 `md <目录>` 或者 `mkdir <目录>` 命令创建一个新目录，使用 `rd <目录>` 或者 `rmdir <目录>` 命令删除一个目录．在 Unix 下，这两个命令分别是 `mkdir` 和 `rmdir`．需要注意的是，**使用 `rd` 或是 `rmdir` 删除一个目录前，这个目录必须是空的**．如果想要删除非空目录（和该目录下的所有文件）的话，Unix 下可以执行 `rm -r <目录>` 命令，Windows 下可以执行 `rd /s <目录>` 命令．
 
 ### 重定向机制
 
