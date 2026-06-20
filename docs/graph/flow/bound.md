@@ -31,10 +31,10 @@
     
     构造一种方案使得每条边的流量 $w_i$ 满足流量限制 $l_i\leq w_i\leq r_i$，且每个点流量平衡，即每个点流入流量等于流出流量.或报告无解.
     
-    ??? example "参考代码"
-        ```cpp
-        --8<-- "docs/graph/code/bound/bound_1.cpp"
-        ```
+??? example "参考代码"
+    ```cpp
+    --8<-- "docs/graph/code/bound/bound_1.cpp"
+    ```
 
 ## 有源汇上下界可行流
 
