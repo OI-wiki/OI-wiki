@@ -172,6 +172,7 @@ jobs:
           echo ::endgroup::
           echo ::group::Check MSVC Version
           REM Use vswhere to find the latest VS installation that includes VC tools
+          REM See https://github.com/microsoft/vswhere/wiki/Find-VC#batch for details
           for /f "usebackq delims=" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do set "VSINSTALL=%%i"
           if not defined VSINSTALL (
             echo No Visual Studio with VC tools found via vswhere.
