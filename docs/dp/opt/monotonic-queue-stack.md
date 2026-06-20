@@ -2,7 +2,7 @@ author: liujiaxi123456, Marcythm, hsfzLZH1, Ir1d, greyqz, Anguei, billchenchina,
 
 ## 引入
 
-前置知识：[单调队列](../../ds/monotonous-queue.md)、[单调栈](../../ds/monotonous-stack.md)．
+前置知识：[单调队列](../../ds/monotonic-queue.md)、[单调栈](../../ds/monotonic-stack.md)．
 
 单调队列主要用于维护两端指针单调不减的区间最值，而单调栈则主要用于维护前/后第一个大于/小于当前值的数．
 
@@ -52,7 +52,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/dp/code/opt/monotonous-queue-stack/monotonous-queue-stack_2.cpp"
+    --8<-- "docs/dp/code/opt/monotonic-queue-stack/monotonic-queue-stack_2.cpp"
     ```
 
 ## 习题
@@ -86,7 +86,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/dp/code/opt/monotonous-queue-stack/monotonous-queue-stack_1.cpp"
+    --8<-- "docs/dp/code/opt/monotonic-queue-stack/monotonic-queue-stack_1.cpp"
     ```
 
 -   [「Luogu P1886」滑动窗口](https://loj.ac/problem/10175)
