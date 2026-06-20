@@ -1,14 +1,14 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-const int maxn = 3e4 + 10;
-const int inf = 1e9 + 10;
+constexpr int MAXN = 3e4 + 10;
+constexpr int INF = 1e9 + 10;
 int n, m, s = 0, t;
-int ecnt = 1, head[maxn], dep[maxn], now[maxn], l[maxn], d[maxn], id[maxn];
+int ecnt = 1, head[MAXN], dep[MAXN], now[MAXN], l[MAXN], d[MAXN], id[MAXN];
 
 struct edge {
   int to, nxt, w;
-} e[maxn];
+} e[MAXN];
 
 void add_edge(int u, int v, int w) {
   e[++ecnt] = {v, head[u], w};
@@ -80,7 +80,7 @@ int main() {
     }
   }
   long long ans = 0;
-  while (bfs()) ans += dfs(s, inf);
+  while (bfs()) ans += dfs(s, INF);
   if (ans < sum) {
     cout << "No\n";
     return 0;
