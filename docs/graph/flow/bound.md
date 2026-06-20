@@ -33,7 +33,7 @@
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/bound/bound_1.cpp"
+    --8<-- "docs/graph/code/flow/bound/bound_1.cpp"
     ```
 
 ## 有源汇上下界可行流
