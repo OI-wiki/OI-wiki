@@ -26,12 +26,12 @@
 
 ### 例题
 
-???+ example "[luogu P14578 【模板】无源汇上下界可行流](https://www.luogu.com.cn/problem/P14578)"
+???+ note "[luogu P14578 【模板】无源汇上下界可行流](https://www.luogu.com.cn/problem/P14578)"
     一个 $n$ 个点、$m$ 条有向边的有向图 $G$，每条边有流量下界 $l_i$ 和流量上界 $r_i$.
     
     构造一种方案使得每条边的流量 $w_i$ 满足流量限制 $l_i\leq w_i\leq r_i$，且每个点流量平衡，即每个点流入流量等于流出流量.或报告无解.
     
-??? example "参考代码"
+??? note "参考代码"
     ```cpp
     --8<-- "docs/graph/code/bound/bound_1.cpp"
     ```
