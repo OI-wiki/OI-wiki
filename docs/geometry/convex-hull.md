@@ -265,7 +265,7 @@ $$
       a.pop_back(), b.pop_back();
       c.resize(a.size() + b.size() + 1);
       merge(a.begin(), a.end(), b.begin(), b.end(), c.begin() + 1,
-            [](const Point<i64> &a, const Point<i64> &b) { return (a ^ b) < 0; });
+            [](const Point<T> &a, const Point<T> &b) { return (a ^ b) < 0; });
       for (usz i = 1; i < c.size(); ++i) c[i] = c[i] + c[i - 1];
       return c;
     }
