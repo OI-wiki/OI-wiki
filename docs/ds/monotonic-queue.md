@@ -66,7 +66,7 @@ Ps. 单调队列中的 "队列" 与正常的队列有一定的区别，稍后会
 
 ???+ note "例题参考代码"
     ```cpp
-    --8<-- "docs/ds/code/monotonous-queue/monotonous-queue_1.cpp"
+    --8<-- "docs/ds/code/monotonic-queue/monotonic-queue_1.cpp"
     ```
 
 Ps. 此处的 "队列" 跟普通队列的一大不同就在于可以从队尾进行操作，STL 中有类似的数据结构 deque．
@@ -82,5 +82,5 @@ Ps. 此处的 "队列" 跟普通队列的一大不同就在于可以从队尾进
 
 ???+ note "参考代码"
     ```cpp
-    --8<-- "docs/ds/code/monotonous-queue/monotonous-queue_2.cpp"
+    --8<-- "docs/ds/code/monotonic-queue/monotonic-queue_2.cpp"
     ```
