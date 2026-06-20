@@ -158,6 +158,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Check Compiler Version
+        id: check-compiler-version
         shell: cmd
         run: |
           echo ::group::Install Clang, MinGW
@@ -170,7 +171,15 @@ jobs:
           g++ --version
           echo ::endgroup::
           echo ::group::Check MSVC Version
-          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          REM Use vswhere to find the latest VS installation that includes VC tools
+          for /f "usebackq delims=" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do set "VSINSTALL=%%i"
+          if not defined VSINSTALL (
+            echo No Visual Studio with VC tools found via vswhere.
+            exit /b 1
+          )
+          echo Found VS at %VSINSTALL%
+          >> "%GITHUB_OUTPUT%" echo VSINSTALL=%VSINSTALL%
+          call "%VSINSTALL%\VC\Auxiliary\Build\vcvars64.bat"
           cl.exe
           echo ::endgroup::
       - name: Undefined Behaviors Check
@@ -178,6 +187,7 @@ jobs:
           FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
           RUNS_ON: x86_64 Windows
           PYTHONIOENCODING: UTF-8
+          VSINSTALL: ${{ steps.check-compiler-version.outputs.VSINSTALL }}
         run: |
           chcp 65001
           python scripts/ub-check.py
