@@ -142,5 +142,8 @@
 /ds/b-tree /ds/bst
 /ds/bplus-tree /ds/bst
 /ds/loser-tree /basic/merge-sort/
+/ds/monotonous-queue /ds/monotonic-queue
+/ds/monotonous-stack /ds/monotonic-stack
+/dp/opt/monotonous-queue-stack /dp/opt/monotonic-queue-stack
 /graph/min-circle /graph/min-cycle
 /string/automaton /misc/fsm
