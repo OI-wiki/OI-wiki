@@ -191,7 +191,7 @@ nav:
     - DP 套 DP: dp/dp-of-dp.md
     - DP 优化:
       - DP 优化简介: dp/opt/dp-opt.md
-      - 单调队列/单调栈优化: dp/opt/monotonous-queue-stack.md
+      - 单调队列/单调栈优化: dp/opt/monotonic-queue-stack.md
       - 斜率优化: dp/opt/slope.md
       - 四边形不等式优化: dp/opt/quadrangle.md
       - Slope Trick 优化: dp/opt/slope-trick.md
@@ -366,8 +366,8 @@ nav:
       - 块状链表: ds/block-list.md
       - 树分块: ds/tree-decompose.md
       - Sqrt Tree: ds/sqrt-tree.md
-    - 单调栈: ds/monotonous-stack.md
-    - 单调队列: ds/monotonous-queue.md
+    - 单调栈: ds/monotonic-stack.md
+    - 单调队列: ds/monotonic-queue.md
     - ST 表: ds/sparse-table.md
     - 树状数组: ds/fenwick.md
     - 线段树:
