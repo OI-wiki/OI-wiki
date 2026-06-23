@@ -432,7 +432,7 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
     
     我们知道 $lcp(i,j)=k$ 等价于 $\min\{height[i+1..j]\}=k$．所以，可以把 $lcp(i,j)$ 记作 $\min\{x|i+1\le x\le j, height[x]=lcp(i,j)\}$ 对答案的贡献．
     
-    考虑每个位置对答案的贡献是哪些后缀的 LCP，其实就是从它开始向左若干个连续的 $height$ 大于它的后缀中选一个，再从向右若干个连续的 $height$ 不小于它的后缀中选一个．这个东西可以用 [单调栈](../ds/monotonous-stack.md) 计算．
+    考虑每个位置对答案的贡献是哪些后缀的 LCP，其实就是从它开始向左若干个连续的 $height$ 大于它的后缀中选一个，再从向右若干个连续的 $height$ 不小于它的后缀中选一个．这个东西可以用 [单调栈](../ds/monotonic-stack.md) 计算．
     
     单调栈部分类似于 [Luogu P2659 美丽的序列](https://www.luogu.com.cn/problem/P2659) 以及 [悬线法](../misc/hoverline.md)．
 
