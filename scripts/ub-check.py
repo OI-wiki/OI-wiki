@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 mainfiles, auxfiles, examples, skiptests = eval(os.environ.get("FILES_TO_TEST"))
 runs_on = os.environ.get("RUNS_ON")
+vsinstall = os.environ.get("VSINSTALL")
 
 RED = "\033[0;31m"
 GREEN = "\033[0;32m"
@@ -68,7 +69,12 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
         print(incolor(BLUE, f"Test for {mainfile} skipped because file {mainfile + '.skip_test'} exists\n"))
         return False, {mainfile: [Skipped()]}
     
-    CALL_VCVARS_BAT = r'call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"'
+    call_vcvars_bat = None
+    if runs_on == "x86_64 Windows":
+        if not vsinstall:
+            raise RuntimeError("VSINSTALL environment variable is required for Windows UB checks.")
+        vcvars64_bat = os.path.join(vsinstall, "VC", "Auxiliary", "Build", "vcvars64.bat")
+        call_vcvars_bat = f'call "{vcvars64_bat}"'
 
     def gen(compilers, standards, optimizations, auxfiles, sanitizers, mainfile, omit_ms_style=False):
         assert compilers is not None and compilers != []
@@ -137,7 +143,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             auxfiles=auxfiles,
             mainfile=mainfile
         ), gen(
-            compilers=[(f'{CALL_VCVARS_BAT} && cl.exe /EHsc /D_CRT_SECURE_NO_WARNINGS', '.MSVC')],
+            compilers=[(f'{call_vcvars_bat} && cl.exe /EHsc /D_CRT_SECURE_NO_WARNINGS', '.MSVC')],
             standards=[('/std:c++14', '.CPP14'), ('/std:c++17', '.CPP17'), ('/std:c++20', '.CPP20')],
             optimizations=[('/Od', '.O0'), ('/O2', '.O2')],
             sanitizers=[('', '.NA')],
