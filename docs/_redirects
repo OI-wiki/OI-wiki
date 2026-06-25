@@ -85,7 +85,8 @@
 /math/primitive-root /math/number-theory/primitive-root
 /math/lucas /math/number-theory/lucas
 /math/mobius /math/number-theory/mobius
-/math/du /math/number-theory/du
+/math/du /math/number-theory/hyperbola
+/math/number-theory/du /math/number-theory/hyperbola
 /math/powerful-number /math/number-theory/powerful-number
 /math/min-25 /math/number-theory/min-25
 /math/zhou /math/number-theory/zhou
