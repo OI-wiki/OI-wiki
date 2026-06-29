@@ -32,17 +32,17 @@ $$
 
 ## 形式留数
 
-形式留数是形式 Laurent 级数中 $x^{-1}$ 项的系数。记 $\operatorname{res} f:=\lbrack x^{-1}\rbrack f$。
+形式留数是形式 Laurent 级数中 $x^{-1}$ 项的系数．记 $\operatorname{res} f:=\lbrack x^{-1}\rbrack f$．
 
-**引理**：对于任何形式 Laurent 级数 $f$ 有 $\operatorname{res} f'=0$。
+**引理**：对于任何形式 Laurent 级数 $f$ 有 $\operatorname{res} f'=0$．
 
-**证明**：考虑形式导数的定义 $\left(x^k\right)'=kx^{k-1}$。
+**证明**：考虑形式导数的定义 $\left(x^k\right)'=kx^{k-1}$．
 
-**引理**：对于任何形式 Laurent 级数 $f,g$ 有 $\operatorname{res}(f'g)=-\operatorname{res}(fg')$。
+**引理**：对于任何形式 Laurent 级数 $f,g$ 有 $\operatorname{res}(f'g)=-\operatorname{res}(fg')$．
 
-**证明**：考虑乘法法则 $(fg)'=f'g+fg'$ 所以 $0=\operatorname{res}((fg)')=\operatorname{res}(f'g)+\operatorname{res}(fg')$。
+**证明**：考虑乘法法则 $(fg)'=f'g+fg'$ 所以 $0=\operatorname{res}((fg)')=\operatorname{res}(f'g)+\operatorname{res}(fg')$．
 
-**引理**：对于形式 Laurent 级数 $f(x)\neq 0$ 有 $\operatorname{res}(f'/f)=\operatorname{ord}f$。
+**引理**：对于形式 Laurent 级数 $f(x)\neq 0$ 有 $\operatorname{res}(f'/f)=\operatorname{ord}f$．
 
 **证明**：设 $\operatorname{ord}f=k$ 那么
 
@@ -54,7 +54,7 @@ $$
 \end{aligned}
 $$
 
-**引理**：对于形式 Laurent 级数 $f$ 和形式幂级数 $g\neq 0$ 有 $\operatorname{res}(f)\operatorname{ord}(g)=\operatorname{res}(f(g)g')$。
+**引理**：对于形式 Laurent 级数 $f$ 和形式幂级数 $g\neq 0$ 有 $\operatorname{res}(f)\operatorname{ord}(g)=\operatorname{res}(f(g)g')$．
 
 **证明**：考虑线性性，我们只需证明 $f=x^k$ 其中 $k\in\mathbb{Z}$ 的情况即可，若 $k\neq -1$ 那么
 
@@ -80,9 +80,9 @@ $$
 
 ## 复合逆
 
-记 $A(x)\circ B(x):=A(B(x))$。
+记 $A(x)\circ B(x):=A(B(x))$．
 
-**命题**：$f(x):=\sum_{k\geq 1}f_kx^k$ 存在复合逆 $f^{\langle -1\rangle}(x)$ 当且仅当 $f(0)=0\neq f'(0)$，此时 $f^{\langle -1\rangle}(x)$ 是唯一的。进一步说：若 $g(x)=\sum_{k\geq 1}g_kx^k$ 满足 $f(g(x))=x$ 或 $g(f(x))=x$ 那么 $g(x)=f^{\langle -1\rangle}(x)$。
+**命题**：$f(x):=\sum_{k\geq 1}f_kx^k$ 存在复合逆 $f^{\langle -1\rangle}(x)$ 当且仅当 $f(0)=0\neq f'(0)$，此时 $f^{\langle -1\rangle}(x)$ 是唯一的．进一步说：若 $g(x)=\sum_{k\geq 1}g_kx^k$ 满足 $f(g(x))=x$ 或 $g(f(x))=x$ 那么 $g(x)=f^{\langle -1\rangle}(x)$．
 
 **证明**：考虑
 
@@ -107,13 +107,13 @@ g_1f_3+2g_2f_1f_2+g_3f_1^3&=0 \\
 \end{cases}
 $$
 
-我们只能在 $f_1\neq 0$ 时才能解出第一个等式，然后依次可以解出 $g_2,\dots$。
+我们只能在 $f_1\neq 0$ 时才能解出第一个等式，然后依次可以解出 $g_2,\dots$．
 
-特别的，考虑 $f(h(x))=x$ 那么 $g(f(h(x)))=g(x)$，进而 $g(x)=g\circ f\circ h(x)=x\circ h(x)=h(x)$。
+特别的，考虑 $f(h(x))=x$ 那么 $g(f(h(x)))=g(x)$，进而 $g(x)=g\circ f\circ h(x)=x\circ h(x)=h(x)$．
 
 ## Lagrange 反演公式
 
-令 $f(x),g(x)\in\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$ 满足 $f(g(x))=g(f(x))=x$。取 $\Phi(x)\in\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$（或 $\Phi(x)\in\mathbb{C}\left(\left(x\right)\right)$），那么
+令 $f(x),g(x)\in\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$ 满足 $f(g(x))=g(f(x))=x$．取 $\Phi(x)\in\mathbb{C}\lbrack\lbrack x\rbrack\rbrack$（或 $\Phi(x)\in\mathbb{C}\left(\left(x\right)\right)$），那么
 
 $$
 \begin{aligned}
@@ -156,7 +156,7 @@ $$
 \end{aligned}
 $$
 
-可以通过我们已经证明的部分导出。
+可以通过我们已经证明的部分导出．
 
 ## 参考文献
 

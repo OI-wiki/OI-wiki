@@ -25,7 +25,18 @@ async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Dat
        * <AuthorEmail
        * <...
        */
-      `git log --follow '--pretty=format:D %cD%n<%aE%n%w(0,2,2)%b' $FILENAME | sed -nE 's/^(D (.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
+      /**
+       * Regex explanation:
+       * - ^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>): Matches lines in the `git log` output.
+       *   - (>.+): Matches lines starting with '>' (e.g., commit date lines).
+       *   - (<.+): Matches lines starting with '<' (e.g., author or co-author email lines).
+       *   - (  Co-Authored-By: .+?(<.+)>): Matches 'Co-Authored-By' lines and captures the email in '<>'.
+       * - \\2\\3\\4: Replaces the matched line with the content of the second, third, or fourth capture group.
+       * - The `pi` flags:
+       *   - `p`: Prints the substituted line.
+       *   - `i`: Makes the regex case-insensitive.
+       */
+      `git log --follow '--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' $FILENAME | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
     ],
     {
       env: {
@@ -37,15 +48,10 @@ async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Dat
 
   const commits = log.trim().slice(1).split("\n>");
   return commits.map(commit => {
-    /**
-     * Format:
-     *
-     * Date
-     * >AuthorEmail
-     * >CoAuthorEmail
-     * >...
-     */
-    const [dateLine, ...emailLines] = commit.split("\n");
+    const [dateLine, ...emailLines] = commit
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
     return {
       commitDate: new Date(dateLine),
       authorEmails: Array.from(new Set(emailLines.map(emailLine => emailLine.slice(1).toLowerCase())))

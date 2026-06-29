@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 int n, fa[100005][22], dep[100005], rt[100005];
 int sum[5000005], cnt = 0, res[5000005], ls[5000005], rs[5000005];
@@ -76,7 +77,7 @@ void cacl(int x) {
 }
 
 int main() {
-  ios::sync_with_stdio(0);
+  ios::sync_with_stdio(false);
   cin >> n >> m;
   for (int i = 0; i < n - 1; i++) {
     int a, b;

@@ -1,26 +1,26 @@
 author: accelsao, Henry-ZHR, yuhuoji
 
-本页从一般图最大权完美匹配到一般图最大权匹配（最大权匹配可以通过增加零边变成最大权完美匹配）。
+本页从一般图最大权完美匹配到一般图最大权匹配（最大权匹配可以通过增加零边变成最大权完美匹配）．
 
 ## 预备知识
 
 ### 花（blossom）
 
-一般图匹配和二分图匹配不同的是，图可能存在奇环。可以将偶环视为二分图。
+一般图匹配和二分图匹配不同的是，图可能存在奇环．可以将偶环视为二分图．
 
-带花树算法（Blossom Algorithm）的处理方式时是遇到奇环就把它缩成一个 **花（Blossom）**，并把花中所有的点设为偶点。既然花上的点都可以成为偶点，那么可以把整个花直接缩成一个偶点。注意，一个花可以包含其它花。
+带花树算法（Blossom Algorithm）的处理方式时是遇到奇环就把它缩成一个 **花（Blossom）**，并把花中所有的点设为偶点．既然花上的点都可以成为偶点，那么可以把整个花直接缩成一个偶点．注意，一个花可以包含其它花．
 
-这也可以变成线性规划和对偶问题，但是要对花进行一些处理。
+这也可以变成线性规划和对偶问题，但是要对花进行一些处理．
 
 ### 顶标（vertex labeling）和等边（Equality Edge）
 
-定义 $z_u$ 是点 $u$ 的顶标（vertex labeling），与 $KM$ 算法中定义的顶标含义相同。定义边 $e(u,v)$ 为 "等边" 当且仅当点 $u$ 和点 $v$ 的标号和等于边 $e$ 的权值（$z_u + z_v = w(e)$），此时边的标号 $z_e = z_u + z_v − w(e) = 0$。
+定义 $z_u$ 是点 $u$ 的顶标（vertex labeling），与 $KM$ 算法中定义的顶标含义相同．定义边 $e(u,v)$ 为 "等边" 当且仅当点 $u$ 和点 $v$ 的标号和等于边 $e$ 的权值（$z_u + z_v = w(e)$），此时边的标号 $z_e = z_u + z_v − w(e) = 0$．
 
 ## 一般图最大权完美匹配的线性规划
 
 ### 定义
 
-因为一朵花最少有三个点，缩花后成为一个点。设 $O$ 为大小为 $≥3$ 奇数的集合的集合（包含所有花），$\gamma(S)$ 表示 $S$ 集合中的边。
+因为一朵花最少有三个点，缩花后成为一个点．设 $O$ 为大小为 $≥3$ 奇数的集合的集合（包含所有花），$\gamma(S)$ 表示 $S$ 集合中的边．
 
 $$
 \begin{aligned}
@@ -43,7 +43,7 @@ $$
     \end{aligned}
     $$
 
-然后通过原始对偶（Primal-Dual）将问题转换为对偶问题。
+然后通过原始对偶（Primal-Dual）将问题转换为对偶问题．
 
 ???+ note "对偶问题"
     $$
@@ -59,67 +59,67 @@ $$
     \end{aligned}
     $$
 
-$x_e=1$ 的边是匹配边，$x_e=0$ 的边是非匹配边。和二分图一样，我们必须满足 $x_e\in\{0,1\}:\forall e\in E$。因此必须在最大权完美匹配的时候，让所有匹配边都是 **等边** 的。
+$x_e=1$ 的边是匹配边，$x_e=0$ 的边是非匹配边．和二分图一样，我们必须满足 $x_e\in\{0,1\}:\forall e\in E$．因此必须在最大权完美匹配的时候，让所有匹配边都是 **等边** 的．
 
-和二分图不同的是，一般图多了 $z_B$ 要处理。下面考虑 $z_B$ 什么时候大于 $0$。
+和二分图不同的是，一般图多了 $z_B$ 要处理．下面考虑 $z_B$ 什么时候大于 $0$．
 
-可以看出，尽量使 $z_B=0$ 是最好的做法，但在不得已时还是要让 $z_B>0$。在 $x(\gamma(B)) = \left\lfloor \dfrac{|B|}2 \right\rfloor \text{且} x(\delta(B)) = 1$ 时，让 $z_B>0$ 即可。因为除了在这种情况下，$z_B>0$ 是无意义的。
+可以看出，尽量使 $z_B=0$ 是最好的做法，但在不得已时还是要让 $z_B>0$．在 $x(\gamma(B)) = \left\lfloor \dfrac{|B|}2 \right\rfloor \text{且} x(\delta(B)) = 1$ 时，让 $z_B>0$ 即可．因为除了在这种情况下，$z_B>0$ 是无意义的．
 
 根据互补松弛条件，有以下的对应关系：
 
--   对于选中的边 $e$，必有 $z_e=0$。
+-   对于选中的边 $e$，必有 $z_e=0$．
 
     $$
     x_e>0 \longrightarrow z_e=0,\quad \forall e\in E
     $$
 
--   对于选中的集合*B*，$z_B>0 \longrightarrow x(\gamma(B))= \left\lfloor \dfrac{|B|}2 \right\rfloor$，即所有 $z_B>0$ 的集合 $B$，都被选了集合大小一半的边，也即集合 $B$ 是一朵花，选中花中的一条边进行增广。同时，我们加入一个条件：$x(\delta(B))=1$，即只有花 $B$ 向外连了一条边的时候，$z_B>0$ 才是有意义的。
+-   对于选中的集合*B*，$z_B>0 \longrightarrow x(\gamma(B))= \left\lfloor \dfrac{|B|}2 \right\rfloor$，即所有 $z_B>0$ 的集合 $B$，都被选了集合大小一半的边，也即集合 $B$ 是一朵花，选中花中的一条边进行增广．同时，我们加入一个条件：$x(\delta(B))=1$，即只有花 $B$ 向外连了一条边的时候，$z_B>0$ 才是有意义的．
 
     $$
     z_B>0 \longrightarrow x(\gamma(B))=\left\lfloor\frac{|B|}2\right\rfloor, x(\delta(B))=1\quad \forall B\in O
     $$
 
-以「**等边**」的概念，结合之前的带花树算法：用「等边」构成的增广路不断进行扩充，由于用来扩充的边全是「等边」，最后得到的最大权完美匹配仍然全是「等边」。
+以「**等边**」的概念，结合之前的带花树算法：用「等边」构成的增广路不断进行扩充，由于用来扩充的边全是「等边」，最后得到的最大权完美匹配仍然全是「等边」．
 
 ### 处理花的问题
 
-当遇到花的时候，要将它缩成一个偶点。将花中所有点都设为偶点，并让它的 $z_B=0$。
+当遇到花的时候，要将它缩成一个偶点．将花中所有点都设为偶点，并让它的 $z_B=0$．
 
-由于缩花后会把花保存起来，直到满足某些条件才会拆开，所以不能用之前的方法记录花。
+由于缩花后会把花保存起来，直到满足某些条件才会拆开，所以不能用之前的方法记录花．
 
-如果没有特殊说明，之前提到的点，都包含缩花形成的偶点。
+如果没有特殊说明，之前提到的点，都包含缩花形成的偶点．
 
-由于花也有可能缩成点被加入队列中，并且花的数量是不固定的，因此不能像之前一样枚举每个点来检查是否有增广路。因此，在进行广度优先搜索（BFS）时，必须将所有未匹配的点都放入队列中。
+由于花也有可能缩成点被加入队列中，并且花的数量是不固定的，因此不能像之前一样枚举每个点来检查是否有增广路．因此，在进行广度优先搜索（BFS）时，必须将所有未匹配的点都放入队列中．
 
-这样会同时产生很多棵交错树。
+这样会同时产生很多棵交错树．
 
 ### 算法的四个步骤
 
-这个算法可以分成四个步骤。
+这个算法可以分成四个步骤．
 
-1.  GROW（等边）：用 "等边" 构成交错树。
-2.  AUGMENT（增广）：找出增广路并扩充匹配。
-3.  SHRINK（缩花）：把花缩成一个点。
-4.  EXPAND（展开）：把花拆开。
+1.  GROW（等边）：用 "等边" 构成交错树．
+2.  AUGMENT（增广）：找出增广路并扩充匹配．
+3.  SHRINK（缩花）：把花缩成一个点．
+4.  EXPAND（展开）：把花拆开．
 
 ![general-weight-match-1](images/general-weight-match-1.png)
 
-在 AUGMENT 阶段时，因为所有未匹配点都会在不同的交错树上，所以当增广时两棵交错树的偶点连在一起，就表示找到了一条增广路。
+在 AUGMENT 阶段时，因为所有未匹配点都会在不同的交错树上，所以当增广时两棵交错树的偶点连在一起，就表示找到了一条增广路．
 
 ### 找不到等边扩充
 
-和二分图一样，也会有找不到「等边」扩充的问题。这时就需要调整 vertex labeling。
+和二分图一样，也会有找不到「等边」扩充的问题．这时就需要调整 vertex labeling．
 
 ### 调整 VERTEX LABELING
 
-vertex labeling 仍要维持大于等于的性质，而且既有的「等边」不能被改变，还要让 $z_B$ 尽量的小。
+vertex labeling 仍要维持大于等于的性质，而且既有的「等边」不能被改变，还要让 $z_B$ 尽量的小．
 
 ???+ note "定义符号 奇偶点"
-    以 $u^−$ 来表示 $u$ 在交错树上为奇点。  
-    以 $u^+$ 来表示 $u$ 在交错树上为偶点。  
-    以 $u^\varnothing$ 来表示 $u$ 不在任何一棵交错树上。  
-    之后所有提到的 $B$ 预设都是花，并同时代表缩花之后的点。  
-    花也可以有奇花偶花之分，因此也适用 $B^+$、$B^−$、$B^\varnothing$ 等符号。
+    以 $u^−$ 来表示 $u$ 在交错树上为奇点．  
+    以 $u^+$ 来表示 $u$ 在交错树上为偶点．  
+    以 $u^\varnothing$ 来表示 $u$ 不在任何一棵交错树上．  
+    之后所有提到的 $B$ 预设都是花，并同时代表缩花之后的点．  
+    花也可以有奇花偶花之分，因此也适用 $B^+$、$B^−$、$B^\varnothing$ 等符号．
 
 设目前有 r 棵交错树 $T_i=(U_{t_i},V_{t_i}):1\leq i\leq r$，令
 
@@ -131,7 +131,7 @@ d3 &= \min(\{z_{B^-} : B^- \in O\}) / 2
 \end{aligned}
 $$
 
-注意这里*B*是缩花之后的点，所以可以有奇偶性。
+注意这里*B*是缩花之后的点，所以可以有奇偶性．
 
 设 $d=min(d1,d2,d3)$，让
 
@@ -144,27 +144,27 @@ z_{B^-} - &= 2d \\
 \end{aligned}
 $$
 
-如果出现 $z_B=0(d=d3)$，为了防止 $z_B<0$ 的情况，所以要把这朵花拆了 (EXPAND)。
-拆花后只留下花里的交替路径，并把花里不在交替路径上的点设为未走访 ($\varnothing$)。
+如果出现 $z_B=0(d=d3)$，为了防止 $z_B<0$ 的情况，所以要把这朵花拆了 (EXPAND)．
+拆花后只留下花里的交替路径，并把花里不在交替路径上的点设为未走访 ($\varnothing$)．
 
-如此便制造了一条（以上）的等边，既有等边保持不动，并维持了 $z_e\geq0:\forall e\in E$ 的性质，且最低限度增加了 $z_B$，可以继续找增广路了。
+如此便制造了一条（以上）的等边，既有等边保持不动，并维持了 $z_e\geq0:\forall e\in E$ 的性质，且最低限度增加了 $z_B$，可以继续找增广路了．
 
 ## 一般图最大权匹配
 
-以上求的是最大权完美匹配，求最大权匹配需要在 vertex labeling 额外增加一个限制：对于所有匹配点 $u$，$z_u>0$。
+以上求的是最大权完美匹配，求最大权匹配需要在 vertex labeling 额外增加一个限制：对于所有匹配点 $u$，$z_u>0$．
 
-开始时先设所有的 $z_u=max(\{w(e):e\in E\})/2$。
+开始时先设所有的 $z_u=max(\{w(e):e\in E\})/2$．
 
-vertex labeling 为 $0$ 的点最后将成为未匹配点。
+vertex labeling 为 $0$ 的点最后将成为未匹配点．
 
 ### 参考代码
 
-这里为了方便实现，使用边权乘 $2$ 来计算 $z_e$ 的值，这样就不会出现浮点数误差了。
+这里为了方便实现，使用边权乘 $2$ 来计算 $z_e$ 的值，这样就不会出现浮点数误差了．
 
 ???+ note "存储"
-    ```c++
-    #define INF INT_MAX
-    #define MAXN 400
+    ```cpp
+    constexpr int INF = INT_MAX;
+    constexpr int MAXN = 400;
     
     struct edge {
       int u, v, w;
@@ -185,11 +185,11 @@ vertex labeling 为 $0$ 的点最后将成为未匹配点。
     // 我们记录花中的点的方式是只记录花里面的最外层花
     ```
 
-下面是嵌套花的例子。
+下面是嵌套花的例子．
 
 ![general-weight-match-2](images/general-weight-match-2.png)
 
-其中 $\{ 6, 5, 8\} \in b1,\{ b1, 4, 3, 2, 11, 10, 9\} \in b2$。存储为：
+其中 $\{ 6, 5, 8\} \in b1,\{ b1, 4, 3, 2, 11, 10, 9\} \in b2$．存储为：
 
 ```text
 flower[b2] = {b1, 4, 3, 2, 11, 10, 9} 
@@ -203,14 +203,14 @@ flower[b2] = {9, b1, 4, 3, 2, 11, 10}
 flower[b1] = {5, 8, 6}
 ```
 
-```c++
+```cpp
 int lab[MAXN * 2 + 1];
 // lab[u]用来记录z_u, lab[b]用来记录z_B
 int match[MAXN * 2 + 1], slack[MAXN * 2 + 1], st[MAXN * 2 + 1],
     pa[MAXN * 2 + 1];
 // match[x]=y表示(x,y)是匹配，这里x、y可能是花
 // slack[x]=u表示z(x,u)是所有和x相邻的边中最小的那条边
-// 表示节点 x 所在的花是 b。如果 x=b 且 b<=n，则表示 x
+// 表示节点 x 所在的花是 b．如果 x=b 且 b<=n，则表示 x
 // 是一个普通节点（不属于任何花） 表示在交错树中，节点 v 的父节点是 u
 int flower_from[MAXN * 2 + 1][MAXN + 1], S[MAXN * 2 + 1], vis[MAXN * 2 + 1];
 /*
@@ -233,21 +233,21 @@ flower_from[b1][6] = 6
 以此类推
 ```
 
-```c++
-inline int e_delta(const edge &e) {
+```cpp
+int e_delta(const edge &e) {
   // 计算ze，为了方便起见先把所有边的权重乘二
   // 在花里面直接计算 e_delta 值会导致错误
   return lab[e.u] + lab[e.v] - g[e.u][e.v].w * 2;
 }
 
-inline void update_slack(int u, int x) {
+void update_slack(int u, int x) {
   // 以u更新slack[x]的值
   if (!slack[x] || e_delta(g[u][x]) < e_delta(g[slack[x]][x])) {
     slack[x] = u;
   }
 }
 
-inline void set_slack(int x) {
+void set_slack(int x) {
   // 算出slack[x]的值，slack[x]=0表示x是交错树中的节点
   slack[x] = 0;
   for (int u = 1; u <= n; ++u) {
@@ -258,7 +258,7 @@ inline void set_slack(int x) {
 }
 ```
 
-```c++
+```cpp
 void q_push(int x) {
   // 把x丟到queue里面，我们设定queue不能直接push一朵花
   if (x <= n)
@@ -271,7 +271,7 @@ void q_push(int x) {
   }
 }
 
-inline void set_st(int x, int b) {
+void set_st(int x, int b) {
   // 将x所在的花设为b
   st[x] = b;
   if (x > n) {
@@ -283,8 +283,8 @@ inline void set_st(int x, int b) {
 }
 ```
 
-```c++
-inline int get_pr(int b, int xr) {
+```cpp
+int get_pr(int b, int xr) {
   // xr是flower[b]中的一个点，返回值pr是它的位置
   // 为了方便程序运行，我们让 flower[b][0]~flower[b][pr]为花里的交替路
   int pr = find(flower[b].begin(), flower[b].end(), xr) - flower[b].begin();
@@ -301,12 +301,12 @@ inline int get_pr(int b, int xr) {
 
 ![general-weight-match-5](images/general-weight-match-5.png)
 
-如果使用 `get_pr(b2,11)`，`flower[b2]` 会变成 `{9,10,11,2,3,4,b1}`，并返回 2。
+如果使用 `get_pr(b2,11)`，`flower[b2]` 会变成 `{9,10,11,2,3,4,b1}`，并返回 2．
 
-如果使用 `get_pr(b2,2)`，`flower[b2]` 会变成 `{9,b1,4,3,2,11,10}`，并返回 4。
+如果使用 `get_pr(b2,2)`，`flower[b2]` 会变成 `{9,b1,4,3,2,11,10}`，并返回 4．
 
-```c++
-inline void set_match(int u, int v) {
+```cpp
+void set_match(int u, int v) {
   // 设置u和v为匹配边，u和v有可能是花
   match[u] = g[u][v].v;
   if (u > n) {
@@ -324,7 +324,7 @@ inline void set_match(int u, int v) {
   }
 }
 
-inline void augment(int u, int v) {
+void augment(int u, int v) {
   // 把u和u的祖先全部增广，并设(u,v)为匹配边
   for (;;) {
     int xnv = st[match[u]];
@@ -336,7 +336,7 @@ inline void augment(int u, int v) {
   }
 }
 
-inline int get_lca(int u, int v) {
+int get_lca(int u, int v) {
   // 找出u,v在交错树上的lca
   static int t = 0;
   for (++t; u || v; swap(u, v)) {
@@ -351,8 +351,8 @@ inline int get_lca(int u, int v) {
 ```
 
 ???+ note "增加一朵奇花"
-    ```c++
-    inline void add_blossom(int u, int lca, int v) {
+    ```cpp
+    void add_blossom(int u, int lca, int v) {
       // 将u,v,lca这朵花缩成一个点 b
       // 交错树上u,v的lca即为花托
       int b = n + 1;
@@ -409,8 +409,8 @@ inline int get_lca(int u, int v) {
     ```
 
 ???+ note "拆花"
-    ```c++
-    inline void expand_blossom(int b) {
+    ```cpp
+    void expand_blossom(int b) {
       // b是奇花且zB=0时，必须要把b拆开
       // 因为只拆开b而已，所以如果b里面有包含其他的花
       // 不需要把他们拆开
@@ -446,8 +446,8 @@ inline int get_lca(int u, int v) {
     ```
 
 ???+ note "尝试增广一条等边"
-    ```c++
-    inline bool on_found_edge(const edge &e) {
+    ```cpp
+    bool on_found_edge(const edge &e) {
       // BFS时找到一条等边e
       // 要对它进行以下的处理
       // 这里u一定是偶点
@@ -477,8 +477,8 @@ inline int get_lca(int u, int v) {
     ```
 
 ???+ note "增广"
-    ```c++
-    inline bool matching() {
+    ```cpp
+    bool matching() {
       memset(S + 1, -1, sizeof(int) * n_x);
       memset(slack + 1, 0, sizeof(int) * n_x);
       q = queue<int>();  // 把queue清空
@@ -525,7 +525,7 @@ inline int get_lca(int u, int v) {
           }
         for (int u = 1; u <= n; ++u) {
           if (S[st[u]] == 0) {
-            if (lab[u] == d) return 0;
+            if (lab[u] == d) return false;
             // 如果lab[u]=0就直接结束程序
             lab[u] -= d;
           } else if (S[st[u]] == 1)
@@ -556,8 +556,8 @@ inline int get_lca(int u, int v) {
     ```
 
 ???+ note "主函数"
-    ```c++
-    inline pair<long long, int> weight_blossom() {
+    ```cpp
+    pair<long long, int> weight_blossom() {
       // 主函数，一开始先初始化
       memset(match + 1, 0, sizeof(int) * n);
       n_x = n;  // 一开始没有花
@@ -589,8 +589,8 @@ inline int get_lca(int u, int v) {
 ???+ note "初始化"
     很重要 使用前一定要初始化
     
-    ```c++
-    inline void init_weight_graph() {
+    ```cpp
+    void init_weight_graph() {
       // 在把边输入到图里面前必须要初始化
       // 因为是最大权匹配所以把不存在的边设为0
       for (int u = 1; u <= n; ++u)
@@ -600,9 +600,9 @@ inline int get_lca(int u, int v) {
 
 ## 复杂度分析
 
-每朵花在一次 BFS 中只会被缩花或拆花一次。每次缩花或拆花的时间复杂度为 $O(|V|)$。最多总共有 $O(|V|)$ 朵花，所以花的处理花费 $O(|V|^2)$ 的时间。而 BFS 花费 $O(|V| + |E|)$ 的时间复杂度。因此，找增广路花费 $O(|V| + |E|) + O(|V|^2) = O(|V|^2)$ 的时间复杂度。
+每朵花在一次 BFS 中只会被缩花或拆花一次．每次缩花或拆花的时间复杂度为 $O(|V|)$．最多总共有 $O(|V|)$ 朵花，所以花的处理花费 $O(|V|^2)$ 的时间．而 BFS 花费 $O(|V| + |E|)$ 的时间复杂度．因此，找增广路花费 $O(|V| + |E|) + O(|V|^2) = O(|V|^2)$ 的时间复杂度．
 
-最多做 $|V|$ 次 BFS。所以，总时间复杂度为 $O(|V|^3)$。
+最多做 $|V|$ 次 BFS．所以，总时间复杂度为 $O(|V|^3)$．
 
 ## 习题
 

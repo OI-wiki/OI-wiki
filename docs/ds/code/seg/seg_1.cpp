@@ -1,5 +1,5 @@
 #include <iostream>
-typedef long long LL;
+using LL = long long;
 LL n, a[100005], d[270000], b[270000];
 
 void build(LL l, LL r, LL p) {  // l:区间左端点 r:区间右端点 p:节点标号
@@ -44,7 +44,7 @@ LL getsum(LL l, LL r, LL s, LL t, LL p) {
 }
 
 int main() {
-  std::ios::sync_with_stdio(0);
+  std::ios::sync_with_stdio(false);
   LL q, i1, i2, i3, i4;
   std::cin >> n >> q;
   for (LL i = 1; i <= n; i++) std::cin >> a[i];

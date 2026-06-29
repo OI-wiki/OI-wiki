@@ -1,10 +1,10 @@
-伯努利数 $B_n$ 是一个与数论有密切关联的有理数序列。前几项被发现的伯努利数分别为：
+伯努利数 $B_n$ 是一个与数论有密切关联的有理数序列．前几项被发现的伯努利数分别为：
 
 $B_0=1,B_1=-\frac{1}{2},B_2=\frac{1}{6},B_3=0,B_4=-\frac{1}{30},\dots$
 
 ## 等幂求和
 
-伯努利数是由雅各布·伯努利的名字命名的，他在研究 $m$ 次幂和的公式时发现了奇妙的关系。我们记
+伯努利数是由雅各布·伯努利的名字命名的，他在研究 $m$ 次幂和的公式时发现了奇妙的关系．我们记
 
 $$
 S_{m}(n)=\sum_{k=0}^{n-1}k^m=0^m+1^m+\dots+(n-1)^m
@@ -22,9 +22,9 @@ S_4(n)&=\frac{1}{5}n^5-\frac{1}{2}n^4+\frac{1}{3}n^3-\frac{1}{30}n
 \end{aligned}
 $$
 
-可以发现，在 $S_m(n)$ 中 $n^{m+1}$ 的系数总是 $\frac{1}{m+1}$，$n^m$ 的系数总是 $-\frac{1}{2}$，$n^{m-1}$ 的系数总是 $\frac{m}{12}$，$n^{m-3}$ 的系数是 $-\frac{m(m-1)(m-2)}{720}$，$n^{m-4}$ 的系数总是零等。
+可以发现，在 $S_m(n)$ 中 $n^{m+1}$ 的系数总是 $\frac{1}{m+1}$，$n^m$ 的系数总是 $-\frac{1}{2}$，$n^{m-1}$ 的系数总是 $\frac{m}{12}$，$n^{m-3}$ 的系数是 $-\frac{m(m-1)(m-2)}{720}$，$n^{m-4}$ 的系数总是零等．
 
-而 $n^{m-k}$ 的系数总是某个常数乘以 $m^{\underline{k}}$，$m^{\underline{k}}$ 表示下降阶乘幂，即 $\frac{m!}{(m-k)!}$。
+而 $n^{m-k}$ 的系数总是某个常数乘以 $m^{\underline{k}}$，$m^{\underline{k}}$ 表示下降阶乘幂，即 $\frac{m!}{(m-k)!}$．
 
 ## 递推公式
 
@@ -54,7 +54,7 @@ $$
 
 #### 利用归纳法证明
 
-这个证明方法来自 Concrete Mathematics 6.5 BERNOULLI NUMBER。
+这个证明方法来自 Concrete Mathematics 6.5 BERNOULLI NUMBER．
 
 运用二项式系数的恒等变换和归纳法进行证明：
 
@@ -66,7 +66,7 @@ S_{m+1}(n)+n^{m+1}&= \sum_{k=0}^{n-1}(k+1)^{m+1}\\
 \end{aligned}
 $$
 
-令 $\hat{S}_{m}(n)=\frac{1}{m+1} \sum_{k=0}^{m} \binom{m+1}{k}B_kn^{m+1-k}$，我们希望证明 $S_m(n)=\hat{S}_m(n)$，假设对 $j\in[0,m)$，有 $S_j(n)=\hat{S}_j(n)$。
+令 $\hat{S}_{m}(n)=\frac{1}{m+1} \sum_{k=0}^{m} \binom{m+1}{k}B_kn^{m+1-k}$，我们希望证明 $S_m(n)=\hat{S}_m(n)$，假设对 $j\in[0,m)$，有 $S_j(n)=\hat{S}_j(n)$．
 
 将原式中两边都减去 $S_{m+1}(n)$ 后可以得到：
 
@@ -146,13 +146,12 @@ $$
 $$
 \begin{aligned}
 n^{m+1}&=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\binom{m+1}{k}[m - k = 0]+(m+1)\Delta\\
-&=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\binom{m+1}{k}+(m+1)\Delta\\
 &=\frac{n^{m+1}}{m+1}\binom{m+1}{m}+(m+1)\Delta\\
 &=n^{m+1}+(m+1)\Delta
 \end{aligned}
 $$
 
-于是 $\Delta=0$，且有 $S_m(n)=\hat{S}_m(n)$。
+于是 $\Delta=0$，且有 $S_m(n)=\hat{S}_m(n)$．
 
 #### 利用指数生成函数证明
 
@@ -217,20 +216,20 @@ S \times m(n)&=m![z^m]F_n(z)\\
 \end{aligned}
 $$
 
-故得证。
+故得证．
 
 ??? note "参考实现"
-    ```c++
-    typedef long long ll;
-    const int maxn = 10000;
-    const int mod = 1e9 + 7;
-    ll B[maxn];        // 伯努利数
-    ll C[maxn][maxn];  // 组合数
-    ll inv[maxn];      // 逆元（计算伯努利数）
+    ```cpp
+    using ll = long long;
+    constexpr int MAXN = 10000;
+    constexpr int mod = 1e9 + 7;
+    ll B[MAXN];        // 伯努利数
+    ll C[MAXN][MAXN];  // 组合数
+    ll inv[MAXN];      // 逆元（计算伯努利数）
     
     void init() {
       // 预处理组合数
-      for (int i = 0; i < maxn; i++) {
+      for (int i = 0; i < MAXN; i++) {
         C[i][0] = C[i][i] = 1;
         for (int k = 1; k < i; k++) {
           C[i][k] = (C[i - 1][k] % mod + C[i - 1][k - 1] % mod) % mod;
@@ -238,14 +237,14 @@ $$
       }
       // 预处理逆元
       inv[1] = 1;
-      for (int i = 2; i < maxn; i++) {
+      for (int i = 2; i < MAXN; i++) {
         inv[i] = (mod - mod / i) * inv[mod % i] % mod;
       }
       // 预处理伯努利数
       B[0] = 1;
-      for (int i = 1; i < maxn; i++) {
+      for (int i = 1; i < MAXN; i++) {
         ll ans = 0;
-        if (i == maxn - 1) break;
+        if (i == MAXN - 1) break;
         for (int k = 0; k < i; k++) {
           ans += C[i + 1][k] * B[k];
           ans %= mod;

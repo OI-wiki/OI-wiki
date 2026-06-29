@@ -16,10 +16,10 @@ jobs:
       LANG: C.UTF-8
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20.x
           cache: 'npm'
@@ -28,11 +28,15 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          sudo apt-get update
           sudo apt-get install curl git unzip imagemagick libwebp-dev librsvg2-dev fonts-noto-cjk fonts-noto-cjk-extra
           sudo apt-get remove fonts-noto-color-emoji
 
           git clone --recurse-submodules --remote-submodules https://github.com/OI-wiki/OI-Wiki-export.git
           cd OI-Wiki-export
+          cd remark-snippet
+          npm install
+          cd ..
           cd remark-typst
           npm install
           cd ..
@@ -41,10 +45,16 @@ jobs:
 
           mkdir .fonts
           curl -L $(gh api /repos/lxgw/LxgwWenKai/releases/latest -q '.assets[].browser_download_url | select(contains("tar.gz"))') | tar xfz - -C .fonts
+          git clone --filter=blob:none --no-checkout --depth 1 --sparse https://github.com/google/fonts.git
+          cd fonts
+          git sparse-checkout add ofl/crimsontext
+          git checkout
+          cd ..
+          cp -r fonts/* .fonts
 
-      - uses: typst-community/setup-typst@v3
+      - uses: typst-community/setup-typst@v5
         with:
-          typst-version: 0.11.1
+          typst-version: 0.13.1
           cache-dependency-path: OI-Wiki-export/oi-wiki-export-typst/oi-wiki.typ
 
       - name: Build Typst document
@@ -55,7 +65,7 @@ jobs:
           typst compile oi-wiki-export.typ --font-path .fonts
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: OI-wiki-typst-export
           path: ./OI-Wiki-export/oi-wiki-export-typst/oi-wiki-export.pdf

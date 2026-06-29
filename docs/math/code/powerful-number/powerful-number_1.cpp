@@ -1,7 +1,8 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <map>
 using namespace std;
 
-const int MOD = 1e9 + 7;
+constexpr int MOD = 1e9 + 7;
 
 template <typename T>
 int mint(T x) {
@@ -14,7 +15,9 @@ int add(int x, int y) { return x + y >= MOD ? x + y - MOD : x + y; }
 
 int mul(int x, int y) { return (long long)1 * x * y % MOD; }
 
-int sub(int x, int y) { return x < y ? x - y + MOD : x - y; }  // 防止负数
+int sub(int x, int y) {
+  return x < y ? x - y + MOD : x - y;  // 防止负数
+}
 
 int qp(int x, int y) {
   int r = 1;
@@ -28,8 +31,8 @@ int qp(int x, int y) {
 int inv(int x) { return qp(x, MOD - 2); }
 
 namespace PNS {
-const int N = 2e6 + 5;
-const int M = 35;
+constexpr int N = 2e6 + 5;
+constexpr int M = 35;
 
 long long global_n;
 
@@ -105,7 +108,7 @@ int G(long long n) {
 void dfs(long long d, int hd, int pid) {
   ans = add(ans, mul(hd, G(global_n / d)));
 
-  for (int i = pid, p; i <= pcnt; ++i) {
+  for (int i = pid; i <= pcnt; ++i) {
     if (i > 1 && d > global_n / prime[i] / prime[i]) break;  // 剪枝
 
     int c = 2;
@@ -141,7 +144,7 @@ int solve(long long n) {
 int main() {
   PNS::init();
   long long n;
-  scanf("%lld", &n);
-  printf("%d\n", PNS::solve(n));
+  cin >> n;
+  cout << PNS::solve(n) << '\n';
   return 0;
 }

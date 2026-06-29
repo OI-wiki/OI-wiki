@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
+#include <string>
 using namespace std;
 constexpr int N(1e6);
 
@@ -87,21 +89,21 @@ struct SuffixTree {
   }
 } T;
 
-char s[N * 2 + 5];
+string s;
 
 int main() {
-  scanf("%s", s + 1);
-  for (int i{1}; s[i]; ++i) T.extend(s[i] - 'a' + 1);
+  cin >> s;
+  for (int i = 0; i < s.size(); ++i) T.extend(s[i] - 'a' + 1);
   T.extend(0);
   T.init(1);
   int pw;
   cin >> pw;
   while (pw--) {
-    scanf("%s", s + 1);
-    int n{strlen(s + 1)};
-    for (int i{1}; i <= n; ++i) s[i] += 1 - 'a';
-    copy(s + 1, s + 1 + n, s + 1 + n);
-    cout << T.test(s, n) << "\n";
+    cin >> s;
+    int n = s.size();
+    for (auto &ch : s) ch += 1 - 'a';
+    s = " " + s + s;
+    cout << T.test(s.data(), n) << "\n";
   }
   return 0;
 }

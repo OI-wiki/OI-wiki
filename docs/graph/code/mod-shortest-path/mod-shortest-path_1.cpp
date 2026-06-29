@@ -1,19 +1,19 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <queue>
 
 using namespace std;
-typedef long long ll;
-const int maxn = 100010;
-const int INF = 0x3f3f3f3f;
-const long long linf = (1ull << 63) - 1;
+using ll = long long;
+constexpr int MAXN = 100010;
+constexpr ll linf = (1ull << 63) - 1;
 
 ll h, x, y, z;
-ll head[maxn << 1], tot;
-ll dis[maxn], vis[maxn];
+ll head[MAXN << 1], tot;
+ll dis[MAXN], vis[MAXN];
 queue<int> q;
 
 struct edge {
   ll to, next, w;
-} e[maxn << 1];
+} e[MAXN << 1];
 
 void add(ll u, ll v, ll w) {
   e[++tot] = edge{v, head[u], w};
@@ -42,10 +42,11 @@ void spfa() {  // spfa算法，可看最短路部分
 }
 
 int main() {
-  scanf("%lld", &h);
-  scanf("%lld %lld %lld", &x, &y, &z);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> h;
+  cin >> x >> y >> z;
   if (x == 1 || y == 1 || z == 1) {
-    printf("%lld\n", h);
+    cout << h << '\n';
     return 0;
   }
   --h;
@@ -59,6 +60,6 @@ int main() {
   for (int i = 0; i < x; i++) {
     if (h >= dis[i]) ans += (h - dis[i]) / x + 1;
   }
-  printf("%lld\n", ans);
+  cout << ans << '\n';
   return 0;
 }

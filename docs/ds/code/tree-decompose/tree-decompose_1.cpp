@@ -1,22 +1,16 @@
-#include <algorithm>
 #include <bitset>
 #include <cctype>
-#include <cstdio>
 #include <iostream>
+
+#if defined(_MSC_VER) && !defined(__clang__)
+#include <immintrin.h>
+#endif
 
 using namespace std;
 
-int read() {
-  int out = 0;
-  char c;
-  while (!isdigit(c = getchar()));
-  for (; isdigit(c); c = getchar()) out = out * 10 + c - '0';
-  return out;
-}
-
-const int N = 100010;
-const int B = 666;
-const int C = 30000;
+constexpr int N = 100010;
+constexpr int B = 666;
+constexpr int C = 30000;
 
 void add(int u, int v);
 void dfs(int u);
@@ -27,18 +21,40 @@ int n, m, type, c[N], fa[N], dep[N], sta[N], top, tot, bl[N], key[N / B + 5],
 bool vis[N];
 bitset<C> bs[N / B + 5][N / B + 5], temp;
 
+template <size_t N>
+size_t find_first(std::bitset<N> b) {
+#if defined(__GNUC__) && !defined(__clang__)
+  return b._Find_first();
+#elif defined(_MSC_VER) && !defined(__clang__)
+  using word_t = decltype(b._Getword(0));
+  constexpr ptrdiff_t word_len = CHAR_BIT * sizeof(word_t);
+  constexpr ptrdiff_t words = N == 0 ? 0 : (N - 1) / word_len;
+  size_t ans = 0;
+  for (size_t i = 0; i <= words; ++i)
+    if (b._Getword(i) != 0) {
+      if (sizeof(word_t) == sizeof(unsigned int))
+        return i * word_len + _tzcnt_u32(b._Getword(i));
+      else
+        return i * word_len + _tzcnt_u64(b._Getword(i));
+    }
+  return N;
+#else
+  auto s = b.to_string();
+  for (size_t i = s.size() - 1; ~i; --i)
+    if (s[i] & 1) return s.size() - 1 - i;
+  return N;
+#endif
+}
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int i, u, v, x, y, k, lastans = 0;
+  cin >> n >> m >> type;
 
-  n = read();
-  m = read();
-  type = read();
-
-  for (i = 1; i <= n; ++i) c[i] = read();
+  for (i = 1; i <= n; ++i) cin >> c[i];
 
   for (i = 1; i < n; ++i) {
-    u = read();
-    v = read();
+    cin >> u >> v;
     add(u, v);
     add(v, u);
   }
@@ -65,11 +81,12 @@ int main() {
   }
 
   while (m--) {
-    k = read();
+    cin >> k;
     temp.reset();
     while (k--) {
-      u = x = read() ^ lastans;
-      v = y = read() ^ lastans;
+      cin >> x >> y;
+      u = x ^= lastans;
+      v = y ^= lastans;
 
       while (key[bl[x]] != key[bl[y]]) {
         if (dep[key[bl[x]]] > dep[key[bl[y]]]) {
@@ -105,8 +122,8 @@ int main() {
       }
       temp[c[x]] = true;
     }
-    int ans1 = temp.count(), ans2 = (~temp)._Find_first();
-    printf("%d %d\n", ans1, ans2);
+    int ans1 = temp.count(), ans2 = find_first(~temp);
+    cout << ans1 << ' ' << ans2 << '\n';
     lastans = (ans1 + ans2) * type;
   }
 

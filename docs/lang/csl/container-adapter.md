@@ -2,7 +2,7 @@ author: Xeonacid, ksyx, Early0v0
 
 ## 栈
 
-STL [栈](../../ds/stack.md)(`std::stack`) 是一种后进先出 (Last In, First Out) 的容器适配器，仅支持查询或删除最后一个加入的元素（栈顶元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器。
+STL [栈](../../ds/stack.md)(`std::stack`) 是一种后进先出 (Last In, First Out) 的容器适配器，仅支持查询或删除最后一个加入的元素（栈顶元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器．
 
 ### 头文件
 
@@ -44,7 +44,7 @@ std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 
 ## 队列
 
-STL [队列](../../ds/queue.md)(`std::queue`) 是一种先进先出 (First In, First Out) 的容器适配器，仅支持查询或删除第一个加入的元素（队首元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器。
+STL [队列](../../ds/queue.md)(`std::queue`) 是一种先进先出 (First In, First Out) 的容器适配器，仅支持查询或删除第一个加入的元素（队首元素），不支持随机访问，且为了保证数据的严格有序性，不支持迭代器．
 
 ### 头文件
 
@@ -87,7 +87,7 @@ std::cout << q1.empty() << " " << q2.empty() << std::endl;  // 1 0
 
 ## 优先队列
 
-优先队列 `std::priority_queue` 是一种 [堆](../../ds/heap.md)，一般为 [二叉堆](../../ds/binary-heap.md)。
+优先队列 `std::priority_queue` 是一种 [堆](../../ds/heap.md)，一般为 [二叉堆](../../ds/binary-heap.md)．
 
 ### 头文件
 
@@ -113,7 +113,7 @@ std::priority_queue<TypeName, Container, Compare> q;
 auto cmp = [](const std::pair<int, int> &l, const std::pair<int, int> &r) {
   return l.second < r.second;
 };
-std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int> >,
+std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
                     decltype(cmp)>
     pq(cmp);
 ```
@@ -135,9 +135,9 @@ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int> >,
 
 ```cpp
 std::priority_queue<int> q1;
-std::priority_queue<int, std::vector<int> > q2;
+std::priority_queue<int, std::vector<int>> q2;
 // C++11 后空格可省略
-std::priority_queue<int, std::deque<int>, std::greater<int> > q3;
+std::priority_queue<int, std::deque<int>, std::greater<int>> q3;
 // q3 为小根堆
 for (int i = 1; i <= 5; i++) q1.push(i);
 // q1 中元素 :  [1, 2, 3, 4, 5]

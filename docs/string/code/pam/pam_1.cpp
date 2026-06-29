@@ -1,11 +1,14 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstring>
+#include <iostream>
+#include <string>
 using namespace std;
-const int maxn = 300000 + 5;
+constexpr int MAXN = 300000 + 5;
 
 namespace pam {
 int sz, tot, last;
-int cnt[maxn], ch[maxn][26], len[maxn], fail[maxn];
-char s[maxn];
+int cnt[MAXN], ch[MAXN][26], len[MAXN], fail[MAXN];
+char s[MAXN];
 
 int node(int l) {  // 建立一个新节点，长度为 l
   sz++;
@@ -53,14 +56,15 @@ long long solve() {
 }
 }  // namespace pam
 
-char s[maxn];
+string s;
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   pam::clear();
-  scanf("%s", s + 1);
-  for (int i = 1; s[i]; i++) {
+  cin >> s;
+  for (int i = 0; i < s.size(); i++) {
     pam::insert(s[i]);
   }
-  printf("%lld\n", pam::solve());
+  cout << pam::solve() << '\n';
   return 0;
 }

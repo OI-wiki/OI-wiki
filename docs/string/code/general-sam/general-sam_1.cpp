@@ -1,7 +1,9 @@
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
+#include <queue>
 using namespace std;
-const int MAXN = 2000000;  // 双倍字符串长度
-const int CHAR_NUM = 30;   // 字符集个数，注意修改下方的 (-'a')
+constexpr int MAXN = 2000000;  // 双倍字符串长度
+constexpr int CHAR_NUM = 30;   // 字符集个数，注意修改下方的 (-'a')
 
 struct exSAM {
   int len[MAXN];             // 节点长度
@@ -68,13 +70,13 @@ struct exSAM {
 
   void build() {
     queue<pair<int, int>> q;
-    for (int i = 0; i < 26; ++i)
+    for (int i = 0; i < CHAR_NUM; ++i)
       if (next[0][i]) q.push({i, 0});
     while (!q.empty()) {  // 广搜遍历
       auto item = q.front();
       q.pop();
       auto last = insertSAM(item.second, item.first);
-      for (int i = 0; i < 26; ++i)
+      for (int i = 0; i < CHAR_NUM; ++i)
         if (next[last][i]) q.push({i, last});
     }
   }

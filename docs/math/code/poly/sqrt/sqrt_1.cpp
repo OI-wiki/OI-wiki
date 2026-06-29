@@ -1,9 +1,10 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <iostream>
 using namespace std;
 
-const int maxn = 1 << 20, mod = 998244353;
+constexpr int MAXN = 1 << 20, mod = 998244353;
 
-int a[maxn], b[maxn], g[maxn], gg[maxn];
+int a[MAXN], b[MAXN], g[MAXN], gg[MAXN];
 
 int qpow(int x, int y) {  // 快速幂
   int ans = 1;
@@ -72,7 +73,7 @@ void inv(int deg, int *f, int *h) {  // 求逆元
     return;
   }
 
-  inv(deg + 1 >> 1, f, h);
+  inv((deg + 1) >> 1, f, h);
 
   int len = 1;
   while (len < deg * 2) {  // 倍增
@@ -93,7 +94,7 @@ void inv(int deg, int *f, int *h) {  // 求逆元
   fill(h + deg, h + len, 0);
 }
 
-int n, t[maxn];
+int n, t[MAXN];
 
 // deg:次数
 // f:被开根数组
@@ -104,7 +105,7 @@ void sqrt(int deg, int *f, int *h) {
     return;
   }
 
-  sqrt(deg + 1 >> 1, f, h);
+  sqrt((deg + 1) >> 1, f, h);
 
   int len = 1;
   while (len < deg * 2) {  // 倍增
@@ -130,12 +131,12 @@ int main() {
   cin >> n;
 
   for (int i = 0; i < n; i++) {
-    scanf("%d", &a[i]);
+    cin >> a[i];
   }
   sqrt(n, a, b);
 
   for (int i = 0; i < n; i++) {
-    printf("%d ", b[i]);
+    cout << b[i] << ' ';
   }
 
   return 0;

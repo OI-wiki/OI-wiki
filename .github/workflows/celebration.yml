@@ -10,14 +10,15 @@ jobs:
   celebrate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.10'
-          cache: pipenv
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8.1.0
+        with:
+          version: "latest"
       - name: Install Python dependencies
-        run: |
-          curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python3
-          pipenv install
+        run: uv sync
       - name: Celebrate
-        run: pipenv run python scripts/celebration.py "${{ secrets.GITHUB_TOKEN }}"
+        run: uv run python scripts/celebration.py "${{ secrets.GITHUB_TOKEN }}"

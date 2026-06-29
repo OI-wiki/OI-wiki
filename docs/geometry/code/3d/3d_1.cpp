@@ -1,10 +1,10 @@
 #include <cmath>
-#include <cstdio>
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
 using namespace std;
-const int N = 2010;
-const double eps = 1e-9;
+constexpr int N = 2010;
+constexpr double eps = 1e-9;
 int n, cnt, vis[N][N];
 double ans;
 
@@ -23,13 +23,13 @@ struct Node {
 
   double len() { return sqrt(x * x + y * y + z * z); }
 
-  Node operator-(Node A) { return {x - A.x, y - A.y, z - A.z}; }
+  Node operator-(Node A) const { return {x - A.x, y - A.y, z - A.z}; }
 
-  Node operator*(Node A) {
+  Node operator*(Node A) const {
     return {y * A.z - z * A.y, z * A.x - x * A.z, x * A.y - y * A.x};
   }
 
-  double operator&(Node A) { return x * A.x + y * A.y + z * A.z; }
+  double operator&(Node A) const { return x * A.x + y * A.y + z * A.z; }
 } A[N];
 
 struct Face {
@@ -76,6 +76,6 @@ int main() {
 
   for (int i = 1; i <= cnt; i++) ans += f[i].area();
 
-  printf("%.3f\n", ans);
+  cout << fixed << setprecision(3) << ans << '\n';
   return 0;
 }

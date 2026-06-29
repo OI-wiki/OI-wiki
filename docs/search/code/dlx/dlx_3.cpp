@@ -1,25 +1,22 @@
-#include <bits/stdc++.h>
-const int oo = 0x3f3f3f3f;
-const int N = 1e5 + 10;
-const int e[] = {6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 6, 6, 7,  8,
-                 8, 8, 8, 8, 7, 6, 6, 7, 8, 9, 9, 9, 8, 7, 6, 6, 7, 8, 9, 10, 9,
-                 8, 7, 6, 6, 7, 8, 9, 9, 9, 8, 7, 6, 6, 7, 8, 8, 8, 8, 8, 7,  6,
-                 6, 7, 7, 7, 7, 7, 7, 7, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6};
+#include <algorithm>
+#include <cctype>
+#include <cstring>
+#include <iostream>
+constexpr int oo = 0x3f3f3f3f;
+constexpr int N = 1e5 + 10;
+constexpr int e[] = {6, 6, 6, 6, 6, 6, 6,  6, 6, 6, 7, 7, 7, 7, 7, 7, 7,
+                     6, 6, 7, 8, 8, 8, 8,  8, 7, 6, 6, 7, 8, 9, 9, 9, 8,
+                     7, 6, 6, 7, 8, 9, 10, 9, 8, 7, 6, 6, 7, 8, 9, 9, 9,
+                     8, 7, 6, 6, 7, 8, 8,  8, 8, 8, 7, 6, 6, 7, 7, 7, 7,
+                     7, 7, 7, 6, 6, 6, 6,  6, 6, 6, 6, 6, 6};
 int ans = -oo, a[10][10], stk[N];
-
-int read() {
-  int x = 0, f = 0, ch;
-  while (!isdigit(ch = getchar())) f |= ch == '-';
-  while (isdigit(ch)) x = (x << 1) + (x << 3) + (ch ^ 48), ch = getchar();
-  return f ? -x : x;
-}
 
 int GetWeight(int row, int col, int num) {  // 求数乘上对应的权值
   return num * e[(row - 1) * 9 + (col - 1)];
 }
 
 struct DLX {
-  static const int MAXSIZE = 1e5 + 10;
+  static constexpr int MAXSIZE = 1e5 + 10;
   int n, m, tot, first[MAXSIZE + 10], siz[MAXSIZE + 10];
   int L[MAXSIZE + 10], R[MAXSIZE + 10], U[MAXSIZE + 10], D[MAXSIZE + 10];
   int col[MAXSIZE + 10], row[MAXSIZE + 10];
@@ -106,17 +103,21 @@ void Insert(int row, int col, int num) {
   solver.insert(id, f4);
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   solver.build(729, 324);
   for (int i = 1; i <= 9; ++i)
     for (int j = 1; j <= 9; ++j) {
-      a[i][j] = read();
+      cin >> a[i][j];
       for (int v = 1; v <= 9; ++v) {
         if (a[i][j] && v != a[i][j]) continue;
         Insert(i, j, v);
       }
     }
   solver.dance(1);
-  printf("%d", ans == -oo ? -1 : ans);
+  cout << (ans == -oo ? -1 : ans);
   return 0;
 }

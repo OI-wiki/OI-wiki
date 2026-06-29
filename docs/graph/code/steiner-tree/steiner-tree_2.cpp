@@ -1,13 +1,15 @@
-#include <bits/stdc++.h>
+#include <cstring>
+#include <iostream>
+#include <queue>
 
 using namespace std;
 
 #define mp make_pair
-typedef pair<int, int> P;
-typedef pair<P, int> PP;
-const int INF = 0x3f3f3f3f;
-const int dx[] = {0, 0, -1, 1};
-const int dy[] = {1, -1, 0, 0};
+using P = pair<int, int>;
+using PP = pair<P, int>;
+constexpr int INF = 0x3f3f3f3f;
+constexpr int dx[] = {0, 0, -1, 1};
+constexpr int dy[] = {1, -1, 0, 0};
 int n, m, K, root;
 int f[101][1111], a[101], ans[11][11];
 bool inq[101];
@@ -28,14 +30,14 @@ void spfa(int s) {
   while (!q.empty()) {
     P u = q.front();
     q.pop();
-    inq[num(u)] = 0;
+    inq[num(u)] = false;
     for (int d = 0; d < 4; d++) {
       P v = mp(u.first + dx[d], u.second + dy[d]);
       int du = num(u), dv = num(v);
       if (legal(v) && f[dv][s] > f[du][s] + a[dv]) {
         f[dv][s] = f[du][s] + a[dv];
         if (!inq[dv]) {
-          inq[dv] = 1;
+          inq[dv] = true;
           q.push(v);
         }
         pre[dv][s] = mp(u, s);
@@ -54,12 +56,13 @@ void dfs(P u, int s) {
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   memset(f, INF, sizeof(f));
-  scanf("%d %d", &n, &m);
+  cin >> n >> m;
   int tot = 0;
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
-      scanf("%d", &a[tot]);
+      cin >> a[tot];
       if (!a[tot]) {
         f[tot][1 << (K++)] = 0;
         root = tot;
@@ -79,16 +82,16 @@ int main() {
     }
     spfa(s);
   }
-  printf("%d\n", f[root][(1 << K) - 1]);
+  cout << f[root][(1 << K) - 1] << '\n';
   dfs(mp(root / m, root % m), (1 << K) - 1);
   for (int i = 0, tot = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
       if (!a[tot++])
-        putchar('x');
+        cout << 'x';
       else
-        putchar(ans[i][j] ? 'o' : '_');
+        cout << (ans[i][j] ? 'o' : '_');
     }
-    if (i != n - 1) printf("\n");
+    if (i != n - 1) cout << '\n';
   }
   return 0;
 }

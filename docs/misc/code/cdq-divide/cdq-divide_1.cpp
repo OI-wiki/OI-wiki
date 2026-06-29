@@ -1,8 +1,8 @@
 #include <algorithm>
-#include <cstdio>
+#include <iostream>
 
-const int maxN = 1e5 + 10;
-const int maxK = 2e5 + 10;
+constexpr int MAXN = 1e5 + 10;
+constexpr int MAXK = 2e5 + 10;
 
 int n, k;
 
@@ -11,7 +11,7 @@ struct Element {
   int cnt;
   int res;
 
-  bool operator!=(Element other) {
+  bool operator!=(Element other) const {
     if (a != other.a) return true;
     if (b != other.b) return true;
     if (c != other.c) return true;
@@ -19,13 +19,13 @@ struct Element {
   }
 };
 
-Element e[maxN];
-Element ue[maxN];
+Element e[MAXN];
+Element ue[MAXN];
 int m, t;
-int res[maxN];
+int res[MAXN];
 
 struct BinaryIndexedTree {
-  int node[maxK];
+  int node[MAXK];
 
   int lowbit(int x) { return x & -x; }
 
@@ -79,9 +79,13 @@ void CDQ(int l, int r) {
   return;
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
-  scanf("%d%d", &n, &k);
-  for (int i = 1; i <= n; i++) scanf("%d%d%d", &e[i].a, &e[i].b, &e[i].c);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> k;
+  for (int i = 1; i <= n; i++) cin >> e[i].a >> e[i].b >> e[i].c;
   std::sort(e + 1, e + n + 1, cmpA);
   for (int i = 1; i <= n; i++) {
     t++;
@@ -96,6 +100,6 @@ int main() {
   }
   CDQ(1, m);
   for (int i = 1; i <= m; i++) res[ue[i].res + ue[i].cnt - 1] += ue[i].cnt;
-  for (int i = 0; i < n; i++) printf("%d\n", res[i]);
+  for (int i = 0; i < n; i++) cout << res[i] << '\n';
   return 0;
 }

@@ -1,5 +1,5 @@
-#include <cstdio>
-const int N = 1000000;
+#include <iostream>
+constexpr int N = 1000000;
 int tot, p[N + 5];
 long long g[N + 5];
 bool flg[N + 5];  // 标记数组
@@ -12,7 +12,7 @@ void solve() {
       g[i] = (long long)1 * i * (i - 1) + 1;
     }
     for (int j = 1; j <= tot && i * p[j] <= N; ++j) {
-      flg[i * p[j]] = 1;
+      flg[i * p[j]] = true;
       if (i % p[j] == 0) {
         g[i * p[j]] =
             g[i] + (g[i] - g[i / p[j]]) * p[j] * p[j];  // 代入推出来的式子
@@ -23,13 +23,17 @@ void solve() {
   }
 }
 
+using std::cin;
+using std::cout;
+
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int T, n;
   solve();  // 预处理g数组
-  scanf("%d", &T);
+  cin >> T;
   for (int i = 1; i <= T; ++i) {
-    scanf("%d", &n);
-    printf("%lld\n", (g[n] + 1) * n / 2);
+    cin >> n;
+    cout << (g[n] + 1) * n / 2 << '\n';
   }
   return 0;
 }

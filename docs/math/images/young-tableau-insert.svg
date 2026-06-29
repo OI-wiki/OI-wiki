@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="230" viewBox="0 0 720 230">
+  <!-- 图1 -->
+  <g transform="translate(0,0)">
+    <svg width="170" height="170" viewBox="0 0 170 170">
+      <!-- 外框 -->
+      <path d="M5 5 H155 V55 H105 V105 H55 V155 H5 Z" fill="none" stroke="black" stroke-width="2"/>
+      <!-- 内线 -->
+      <line x1="55" y1="5" x2="55" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="105" y1="5" x2="105" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="5" y1="55" x2="105" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="55" y1="55" x2="55" y2="105" stroke="black" stroke-width="2"/>
+      <line x1="5" y1="105" x2="55" y2="105" stroke="black" stroke-width="2"/>
+      <!-- 文字 -->
+      <text x="30" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">2</text>
+      <text x="80" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">5</text>
+      <text x="130" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">9</text>
+      <text x="30" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">6</text>
+      <text x="80" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">7</text>
+      <text x="30" y="130" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">8</text>
+    </svg>
+  </g>
+
+  <!-- 图2 -->
+  <g transform="translate(170,0)">
+    <svg width="220" height="170" viewBox="0 0 220 170">
+      <path d="M5 5 H155 V55 H105 V105 H55 V155 H5 Z" fill="none" stroke="black" stroke-width="2"/>
+      <line x1="55" y1="5" x2="55" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="105" y1="5" x2="105" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="5" y1="55" x2="105" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="55" y1="55" x2="55" y2="105" stroke="black" stroke-width="2"/>
+      <line x1="5" y1="105" x2="55" y2="105" stroke="black" stroke-width="2"/>
+      <!-- 文字 -->
+      <text x="30" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">2</text>
+      <text x="80" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32" fill="red">3</text>
+      <text x="130" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">9</text>
+      <text x="180" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32" fill="red">(5)</text>
+      <text x="30" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">6</text>
+      <text x="80" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">7</text>
+      <text x="30" y="130" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">8</text>
+    </svg>
+  </g>
+
+  <!-- 图3 -->
+  <g transform="translate(390,0)">
+    <svg width="220" height="170" viewBox="0 0 220 170">
+      <path d="M5 5 H155 V55 H105 V105 H55 V155 H5 Z" fill="none" stroke="black" stroke-width="2"/>
+      <line x1="55" y1="5" x2="55" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="105" y1="5" x2="105" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="5" y1="55" x2="155" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="55" y1="55" x2="55" y2="105" stroke="black" stroke-width="2"/>
+      <line x1="105" y1="55" x2="105" y2="105" stroke="black" stroke-width="2"/>
+      <line x1="5" y1="105" x2="55" y2="105" stroke="black" stroke-width="2"/>
+      <!-- 文字 -->
+      <text x="30" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">2</text>
+      <text x="80" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32" fill="blue">3</text>
+      <text x="130" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">9</text>
+      <text x="30" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32" fill="red">5</text>
+      <text x="80" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">7</text>
+      <text x="130" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32" fill="red">(6)</text>
+      <text x="30" y="130" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">8</text>
+    </svg>
+  </g>
+
+  <!-- 图4 -->
+  <g transform="translate(560,0)">
+    <svg width="170" height="230" viewBox="0 0 170 230">
+      <path d="M5 5 H155 V55 H105 V105 H55 V155 H55 V205 H5 Z" fill="none" stroke="black" stroke-width="2"/>
+      <line x1="55" y1="5" x2="55" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="105" y1="5" x2="105" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="5" y1="55" x2="105" y2="55" stroke="black" stroke-width="2"/>
+      <line x1="55" y1="55" x2="55" y2="105" stroke="black" stroke-width="2"/>
+      <line x1="5" y1="105" x2="55" y2="105" stroke="black" stroke-width="2"/>
+      <line x1="5" y1="155" x2="55" y2="155" stroke="black" stroke-width="2"/>
+      <!-- 文字 -->
+      <text x="30" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">2</text>
+      <text x="80" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32" fill="blue">3</text>
+      <text x="130" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">9</text>
+      <text x="30" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32" fill="blue">5</text>
+      <text x="80" y="80" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32">7</text>
+      <text x="30" y="130" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32" fill="blue">6</text>
+      <text x="30" y="180" text-anchor="middle" dominant-baseline="middle" font-family="Times" font-size="32" fill="red">8</text>
+    </svg>
+  </g>
+</svg>

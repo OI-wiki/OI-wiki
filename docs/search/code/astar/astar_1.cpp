@@ -1,10 +1,10 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 #include <queue>
 #include <set>
 using namespace std;
-const int dx[4] = {1, -1, 0, 0}, dy[4] = {0, 0, 1, -1};
+constexpr int dx[4] = {1, -1, 0, 0}, dy[4] = {0, 0, 1, -1};
 int fx, fy;
 char ch;
 
@@ -23,7 +23,7 @@ int h(matrix a) {
   int ret = 0;
   for (int i = 1; i <= 3; i++)
     for (int j = 1; j <= 3; j++)
-      if (a.a[i][j] != st.a[i][j]) ret++;
+      if (a.a[i][j] != st.a[i][j] && a.a[i][j] != 0) ret++;
   return ret;
 }
 
@@ -38,6 +38,7 @@ priority_queue<node> q;  // 搜索队列
 set<matrix> s;           // 防止搜索队列重复
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   st.a[1][1] = 1;  // 定义标准表
   st.a[1][2] = 2;
   st.a[1][3] = 3;
@@ -49,15 +50,16 @@ int main() {
   st.a[3][3] = 5;
   for (int i = 1; i <= 3; i++)  // 输入
     for (int j = 1; j <= 3; j++) {
-      scanf(" %c", &ch);
+      cin >> ch;
       f.a[i][j] = ch - '0';
     }
+  s.insert(f);
   q.push({f, 0});
   while (!q.empty()) {
     x = q.top();
     q.pop();
     if (!h(x.a)) {  // 判断是否与标准矩阵一致
-      printf("%d\n", x.t);
+      cout << x.t << '\n';
       return 0;
     }
     for (int i = 1; i <= 3; i++)

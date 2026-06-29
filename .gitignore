@@ -2,6 +2,7 @@
 _build/
 site/
 .vscode/
+.debug/
 .DS_Store
 .env
 .well-known/

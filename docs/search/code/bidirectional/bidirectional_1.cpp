@@ -1,57 +1,82 @@
-#include <algorithm>
-#include <cstdio>
 #include <iostream>
 #include <map>
-
+#include <queue>
+#include <string>
 using namespace std;
 
-int n, m, ans = 0x7fffffff;
-map<long long, int> f;
-long long a[40];
+struct State {
+  int A[3][3];
+  State() = default;
+
+  State(string s) {
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        A[i][j] = s[i * 3 + j] - '0';
+      }
+    }
+  }
+
+  friend bool operator<(const State &a, const State &b) {
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < 3; j++) {
+        if (a.A[i][j] != b.A[i][j]) {
+          return a.A[i][j] < b.A[i][j];
+        }
+      }
+    }
+    return false;
+  }
+};
+
+int dir[4][2] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+void bfs(queue<State> &q, map<State, int> &m1, map<State, int> &m2) {
+  auto u = q.front();
+  q.pop();
+  int xx, yy;
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      if (u.A[i][j] == 0) {
+        xx = i;
+        yy = j;
+      }
+    }
+  }
+  for (int i = 0; i < 4; i++) {
+    int tx = dir[i][0] + xx, ty = dir[i][1] + yy;
+    if (tx >= 0 && tx < 3 && ty >= 0 && ty < 3) {
+      auto v = u;
+      swap(v.A[xx][yy], v.A[tx][ty]);
+      if (m2.count(v)) {
+        cout << m1[u] + m2[v] << endl;
+        exit(0);
+      }
+      if (!m1.count(v)) {
+        m1[v] = m1[u] + 1;
+        q.push(v);
+      }
+    }
+  }
+}
 
 int main() {
-  cin >> n >> m;
-  a[0] = 1;
-  for (int i = 1; i < n; ++i) a[i] = a[i - 1] * 2;  // 进行预处理
-
-  for (int i = 1; i <= m; ++i) {  // 对输入的边的情况进行处理
-    int u, v;
-    cin >> u >> v;
-    --u;
-    --v;
-    a[u] |= ((long long)1 << v);
-    a[v] |= ((long long)1 << u);
+  string I, O;
+  cin >> I;
+  O = "123804765";
+  State in = I, ou = O;
+  queue<State> q1, q2;
+  map<State, int> mp1, mp2;
+  q1.push(in);
+  mp1[in] = 0;
+  q2.push(ou);
+  mp2[ou] = 1;
+  if (I == O) {
+    cout << 0;
+    return 0;
   }
-
-  for (int i = 0; i < (1 << (n / 2)); ++i) {  // 对前一半进行搜索
-    long long t = 0;
-    int cnt = 0;
-    for (int j = 0; j < n / 2; ++j) {
-      if ((i >> j) & 1) {
-        t ^= a[j];
-        ++cnt;
-      }
-    }
-    if (!f.count(t))
-      f[t] = cnt;
-    else
-      f[t] = min(f[t], cnt);
+  while (1) {
+    bfs(q1, mp1, mp2);
+    bfs(q2, mp2, mp1);
   }
-
-  for (int i = 0; i < (1 << (n - n / 2)); ++i) {  // 对后一半进行搜索
-    long long t = 0;
-    int cnt = 0;
-    for (int j = 0; j < (n - n / 2); ++j) {
-      if ((i >> j) & 1) {
-        t ^= a[n / 2 + j];
-        ++cnt;
-      }
-    }
-    if (f.count((((long long)1 << n) - 1) ^ t))
-      ans = min(ans, cnt + f[(((long long)1 << n) - 1) ^ t]);
-  }
-
-  cout << ans;
-
   return 0;
 }

@@ -1,11 +1,14 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cassert>
+#include <cstring>
+#include <iostream>
 using namespace std;
-typedef long long T_state;
-typedef int T_key;
-const int N = 8;
+using T_state = long long;
+using T_key = int;
+constexpr int N = 8;
 int n, m;
 char A[N + 1][N + 1], B[N + 1][N + 1];
-const int Offset = 5, Mask = (1 << Offset) - 1;
+constexpr int Offset = 5, Mask = (1 << Offset) - 1;
 int c[N + 2];
 int b[N + 2], bb[N + 3];
 
@@ -31,7 +34,7 @@ void decode(T_state s) {
   }
 }
 
-const int Prime = 9979, MaxSZ = 1 << 20;
+constexpr int Prime = 9979, MaxSZ = 1 << 20;
 
 template <class T_state, class T_key>
 struct hashTable {
@@ -113,7 +116,7 @@ void trans(int i, int j, int u, int cc) {
 
 void init() {
   cin >> n >> m;
-  for (int i = 0; i < n; i++) scanf("%s", A[i]);
+  for (int i = 0; i < n; i++) cin >> A[i];
 }
 
 void solve() {
@@ -151,12 +154,13 @@ void print() {
         u = H[i][j].pre[u];
       }
     }
-    for (int i = 0; i < n; i++) puts(B[i]);
+    for (int i = 0; i < n; i++) cout << B[i] << '\n';
   }
-  puts("");
+  cout << '\n';
 }
 
 int main() {
+  cin.tie(nullptr)->sync_with_stdio(false);
   int T;
   cin >> T;
   while (T--) {

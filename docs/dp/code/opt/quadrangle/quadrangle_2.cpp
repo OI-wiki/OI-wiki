@@ -1,12 +1,11 @@
-#include <algorithm>
 #include <iostream>
-#define N 3009
-#define M 309
+constexpr int N = 3009;
+constexpr int M = 309;
 using namespace std;
 int n, m, a[N], s[N], g[M][N], p[M][N];
 
 int f(int i, int j) {
-  int k = i + j >> 1;
+  int k = (i + j) >> 1;
   return a[k] * (k - i + 1) - (s[k] - s[i - 1]) + (s[j] - s[k]) -
          a[k] * (j - k);
 }

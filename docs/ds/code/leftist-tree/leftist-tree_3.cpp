@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const int N = 300010;
+constexpr int N = 300010;
 
 struct Node {
   int val, ch[2], d, fa;

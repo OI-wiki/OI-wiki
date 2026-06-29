@@ -4,7 +4,7 @@ using namespace std;
 
 using ll = long long;
 
-const int N = 300010;
+constexpr int N = 300010;
 
 struct Node {
   int ls, rs, d;

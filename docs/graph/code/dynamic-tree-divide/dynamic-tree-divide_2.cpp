@@ -1,13 +1,13 @@
 #include <algorithm>
-#include <cstdio>
 #include <cstring>
+#include <iostream>
 using namespace std;
-const int maxn = 100010;
-const int inf = 2e9;
-const int ddd = 6000010;
+constexpr int MAXN = 100010;
+constexpr int inf = 2e9;
+constexpr int ddd = 6000010;
 
 struct Segtree {
-  int cnt, rt[maxn], sum[ddd], lc[ddd], rc[ddd];
+  int cnt, rt[MAXN], sum[ddd], lc[ddd], rc[ddd];
 
   void update(int& o, int l, int r, int x, int v) {
     if (!o) o = ++cnt;
@@ -31,8 +31,8 @@ struct Segtree {
   }
 } dist, ch;
 
-int n, m, val[maxn], u, v, op, x, y, lstans;
-int cur, h[maxn * 2], nxt[maxn * 2], p[maxn * 2];
+int n, m, val[MAXN], u, v, op, x, y, lstans;
+int cur, h[MAXN * 2], nxt[MAXN * 2], p[MAXN * 2];
 
 void add_edge(int x, int y) {
   cur++;
@@ -42,7 +42,7 @@ void add_edge(int x, int y) {
 }
 
 struct LCA {
-  int dep[maxn], lg[maxn], fa[maxn][20];
+  int dep[MAXN], lg[MAXN], fa[MAXN][20];
 
   void dfs(int x, int f) {
     for (int j = h[x]; j; j = nxt[j])
@@ -72,9 +72,9 @@ struct LCA {
   int dist(int x, int y) { return dep[x] + dep[y] - 2 * dep[query(x, y)]; }
 } lca;
 
-int rt, sum, siz[maxn], maxx[maxn], fa[maxn];
-int d[maxn][20], dep[maxn];
-bool vis[maxn];
+int rt, sum, siz[MAXN], maxx[MAXN], fa[MAXN];
+int d[MAXN][20], dep[MAXN];
+bool vis[MAXN];
 
 void calcsiz(int x, int fa) {
   siz[x] = 1;
@@ -121,10 +121,10 @@ void pre(int x) {
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
-  for (int i = 1; i <= n; i++) scanf("%d", val + i);
-  for (int i = 1; i < n; i++)
-    scanf("%d%d", &u, &v), add_edge(u, v), add_edge(v, u);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> m;
+  for (int i = 1; i <= n; i++) cin >> val[i];
+  for (int i = 1; i < n; i++) cin >> u >> v, add_edge(u, v), add_edge(v, u);
   lca.init();
   rt = 0;
   maxx[rt] = inf;
@@ -132,11 +132,10 @@ int main() {
   calcsiz(1, -1);
   calcsiz(rt, -1);
   pre(rt);
-  // for(int i=1;i<=n;i++)printf("%d ",fa[i]);printf("\n");
   for (int i = 1; i <= n; i++)
     for (int j = i; j; j = fa[j]) d[i][dep[i] - dep[j]] = lca.dist(i, j);
   while (m--) {
-    scanf("%d%d%d", &op, &x, &y);
+    cin >> op >> x >> y;
     x ^= lstans;
     y ^= lstans;
     if (op == 0) {
@@ -147,7 +146,7 @@ int main() {
         lstans += dist.query(dist.rt[fa[i]], 0, n, 0, y - nww);
         lstans -= ch.query(ch.rt[i], 0, n, 0, y - nww);
       }
-      printf("%d\n", lstans);
+      cout << lstans << '\n';
     }
     if (op == 1) {
       int nww = 0;

@@ -1,14 +1,15 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-const int N = 3e5 + 5;
+constexpr int N = 3e5 + 5;
 
 int n, q;  // 点数，询问数
 int fa[N];
 vector<int> son[N];
 int siz[N],     // 子树大小
     ans[N],     // 以节点 u 为根的子树重心是 ans[u]
-    weight[N];  // 节点重量
+    weight[N];  // 节点重量（不包括向上的子树）
 
 void dfs(int u) {
   siz[u] = 1, ans[u] = u;
@@ -29,8 +30,8 @@ void dfs(int u) {
   }
 }
 
-signed main() {
-  ios::sync_with_stdio(0);
+int main() {
+  ios::sync_with_stdio(false);
   cin >> n >> q;
   for (int v = 2; v <= n; v++) cin >> fa[v], son[fa[v]].push_back(v);
   dfs(1);

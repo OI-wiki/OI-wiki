@@ -2,16 +2,16 @@ author: hyp1231, 383494
 
 ## 引入
 
-反演变换适用于题目中存在多个圆/直线之间的相切关系的情况。利用反演变换的性质，在反演空间求解问题，可以大幅简化计算。
+反演变换适用于题目中存在多个圆/直线之间的相切关系的情况．利用反演变换的性质，在反演空间求解问题，可以大幅简化计算．
 
 ## 定义
 
-给定反演中心点 $O$ 和反演半径 $R$。若平面上点 $P$ 和 $P'$ 满足：
+给定反演中心点 $O$ 和反演半径 $R$．若平面上点 $P$ 和 $P'$ 满足：
 
 -   点 $P'$ 在射线 $\overrightarrow{OP}$ 上
 -   $|OP| \cdot |OP'| = R^2$
 
-则称点 $P$ 和点 $P'$ 互为反演点。
+则称点 $P$ 和点 $P'$ 互为反演点．
 
 ## 解释
 
@@ -21,9 +21,9 @@ author: hyp1231, 383494
 
 ## 性质
 
-1.  圆 $O$ 外的点的反演点在圆 $O$ 内，反之亦然；圆 $O$ 上的点的反演点为其自身。
+1.  圆 $O$ 外的点的反演点在圆 $O$ 内，反之亦然；圆 $O$ 上的点的反演点为其自身．
 
-2.  不过点 $O$ 的圆 $A$，其反演图形也是不过点 $O$ 的圆。
+2.  不过点 $O$ 的圆 $A$，其反演图形也是不过点 $O$ 的圆．
 
     ![Inv2](./images/inverse2.png)
 
@@ -33,20 +33,19 @@ author: hyp1231, 383494
         r_2 = \frac{1}{2}\left(\frac{1}{|OA| - r_1} - \frac{1}{|OA| + r_1}\right) R^2
         $$
 
-        **证明：**
-
+    ???+ note "证明"
         ![Inv3](./images/inverse3.png)
-
+        
         根据反演变换定义：
-
+        
         $$
         \begin{aligned}
         |OC|\cdot|OC'| &= (|OA|+r_1)\cdot(|OB|-r_2) = R^2 \\
         |OD|\cdot|OD'| &= (|OA|-r_1)\cdot(|OB|+r_2) = R^2
         \end{aligned}
         $$
-
-        消掉 $|OB|$，解方程即可。
+        
+        消掉 $|OB|$，解方程即可．
 
     -   记点 $O$ 坐标为 $(x_0, y_0)$，点 $A$ 坐标为 $x_1, y_1$，点 $B$ 坐标为 $x_2, y_2$，则有：
 
@@ -57,16 +56,13 @@ author: hyp1231, 383494
         \end{aligned}
         $$
 
-        其中 $|OB|$ 可在上述求 $r_2$ 的过程中计算得到。
+        其中 $|OB|$ 可在上述求 $r_2$ 的过程中计算得到．
 
-3.  过点 $O$ 的圆 $A$，其反演图形是不过点 $O$ 的直线。
-
-    ??? note
-        为什么是一条直线呢？因为圆 $A$ 上无限接近点 $O$ 的一点，其反演点离点 $O$ 无限远。
+3.  过点 $O$ 的圆 $A$，其反演图形是不过点 $O$ 的直线．因为圆 $A$ 上无限接近点 $O$ 的一点，其反演点离点 $O$ 无限远．
 
     ![Inv4](./images/inverse4.png)
 
-4.  两个图形相切且存在不为点 $O$ 的切点，则他们的反演图形也相切。
+4.  两个图形相切且存在不为点 $O$ 的切点，则他们的反演图形也相切．
 
 ## 例题
 
@@ -74,17 +70,17 @@ author: hyp1231, 383494
 
 #### 题目大意
 
-求过两圆外一点，且与两圆相切的所有的圆。
+求过两圆外一点，且与两圆相切的所有的圆．
 
 #### 解法
 
-首先考虑解析几何解法，似乎很难求解。
+首先考虑解析几何解法，似乎很难求解．
 
-考虑以需要经过的点为反演中心进行反演（反演半径任意），所求的圆的反演图形是一条直线（应用性质 $3$），且与题目给出两圆的反演图形（性质 $2$）相切（性质 $4$）。
+考虑以需要经过的点为反演中心进行反演（反演半径任意），所求的圆的反演图形是一条直线（应用性质 $3$），且与题目给出两圆的反演图形（性质 $2$）相切（性质 $4$）．
 
-于是题目经过反演变换后转变为：求两圆的所有公切线。
+于是题目经过反演变换后转变为：求两圆的所有公切线．
 
-求出公切线后，反演回原平面即可。
+求出公切线后，反演回原平面即可．
 
 ??? note "示例代码"
     ```cpp
@@ -96,54 +92,56 @@ author: hyp1231, 383494
     #include <vector>
     using namespace std;
     
-    const double EPS = 1e-8;       // 精度系数
+    constexpr double EPS = 1e-8;   // 精度系数
     const double PI = acos(-1.0);  // π
-    const int N = 4;
+    constexpr int N = 4;
     
+    // 点的定义
     struct Point {
       double x, y;
     
       Point(double x = 0, double y = 0) : x(x), y(y) {}
     
-      const bool operator<(Point A) const { return x == A.x ? y < A.y : x < A.x; }
-    };  // 点的定义
+      bool operator<(Point A) const { return x == A.x ? y < A.y : x < A.x; }
+    };
     
-    typedef Point Vector;  // 向量的定义
+    // 向量的定义
+    using Vector = Point;
     
-    Vector operator+(Vector A, Vector B) {
-      return Vector(A.x + B.x, A.y + B.y);
-    }  // 向量加法
+    // 向量加法
+    Vector operator+(Vector A, Vector B) { return Vector(A.x + B.x, A.y + B.y); }
     
-    Vector operator-(Vector A, Vector B) {
-      return Vector(A.x - B.x, A.y - B.y);
-    }  // 向量减法
+    // 向量减法
+    Vector operator-(Vector A, Vector B) { return Vector(A.x - B.x, A.y - B.y); }
     
-    Vector operator*(Vector A, double p) {
-      return Vector(A.x * p, A.y * p);
-    }  // 向量数乘
+    // 向量数乘
+    Vector operator*(Vector A, double p) { return Vector(A.x * p, A.y * p); }
     
-    Vector operator/(Vector A, double p) {
-      return Vector(A.x / p, A.y / p);
-    }  // 向量数除
+    // 向量数除
+    Vector operator/(Vector A, double p) { return Vector(A.x / p, A.y / p); }
     
+    // 与0的关系
     int dcmp(double x) {
-      if (fabs(x) < EPS)
-        return 0;
-      else
-        return x < 0 ? -1 : 1;
-    }  // 与0的关系
+      if (fabs(x) < EPS) return 0;
+      return x < 0 ? -1 : 1;
+    }
     
-    double Dot(Vector A, Vector B) { return A.x * B.x + A.y * B.y; }  // 向量点乘
+    // 向量点乘
+    double Dot(Vector A, Vector B) { return A.x * B.x + A.y * B.y; }
     
-    double Length(Vector A) { return sqrt(Dot(A, A)); }  // 向量长度
+    // 向量长度
+    double Length(Vector A) { return sqrt(Dot(A, A)); }
     
-    double Cross(Vector A, Vector B) { return A.x * B.y - A.y * B.x; }  // 向量叉乘
+    // 向量叉乘
+    double Cross(Vector A, Vector B) { return A.x * B.y - A.y * B.x; }
     
+    // 点在直线上投影
     Point GetLineProjection(Point P, Point A, Point B) {
       Vector v = B - A;
       return A + v * (Dot(v, P - A) / Dot(v, v));
-    }  // 点在直线上投影
+    }
     
+    // 圆
     struct Circle {
       Point c;
       double r;
@@ -152,11 +150,11 @@ author: hyp1231, 383494
     
       Circle(Point c, double r = 0) : c(c), r(r) {}
     
-      Point point(double a) {
-        return Point(c.x + cos(a) * r, c.y + sin(a) * r);
-      }  // 输入极角返回点坐标
-    };  // 圆
+      // 输入极角返回点坐标
+      Point point(double a) { return Point(c.x + cos(a) * r, c.y + sin(a) * r); }
+    };
     
+    // 两圆公切线 返回切线的条数，-1表示无穷多条切线
     // a[i] 和 b[i] 分别是第i条切线在圆A和圆B上的切点
     int getTangents(Circle A, Circle B, Point* a, Point* b) {
       int cnt = 0;
@@ -200,8 +198,9 @@ author: hyp1231, 383494
         ++cnt;
       }
       return cnt;
-    }  // 两圆公切线 返回切线的条数，-1表示无穷多条切线
+    }
     
+    // 点 O 在圆 A 外，求圆 A 的反演圆 B，R 是反演半径
     Circle Inversion_C2C(Point O, double R, Circle A) {
       double OA = Length(A.c - O);
       double RB = 0.5 * ((1 / (OA - A.r)) - (1 / (OA + A.r))) * R * R;
@@ -209,19 +208,21 @@ author: hyp1231, 383494
       double Bx = O.x + (A.c.x - O.x) * OB / OA;
       double By = O.y + (A.c.y - O.y) * OB / OA;
       return Circle(Point(Bx, By), RB);
-    }  // 点 O 在圆 A 外，求圆 A 的反演圆 B，R 是反演半径
+    }
     
+    // 直线反演为过 O 点的圆 B，R 是反演半径
     Circle Inversion_L2C(Point O, double R, Point A, Vector v) {
       Point P = GetLineProjection(O, A, A + v);
       double d = Length(O - P);
       double RB = R * R / (2 * d);
       Vector VB = (P - O) / d * RB;
       return Circle(O + VB, RB);
-    }  // 直线反演为过 O 点的圆 B，R 是反演半径
+    }
     
+    // 返回 true 如果 A B 两点在直线同侧
     bool theSameSideOfLine(Point A, Point B, Point S, Vector v) {
       return dcmp(Cross(A - S, v)) * dcmp(Cross(B - S, v)) > 0;
-    }  // 返回 true 如果 A B 两点在直线同侧
+    }
     
     int main() {
       int T;
@@ -254,7 +255,7 @@ author: hyp1231, 383494
 
 ## 练习
 
-[「ICPC 2017 南宁赛区网络赛」Finding the Radius for an Inserted Circle](https://nanti.jisuanke.com/t/A1283)
+[「ICPC 2017 南宁赛区网络赛」Finding the Radius for an Inserted Circle](https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-A1283)
 
 [「CCPC 2017 网络赛」The Designer](https://acm.hdu.edu.cn/showproblem.php?pid=6158)
 

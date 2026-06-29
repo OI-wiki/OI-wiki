@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdint>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 int main() {

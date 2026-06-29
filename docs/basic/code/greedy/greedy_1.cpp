@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <cmath>
-#include <cstdio>
 #include <cstring>
 #include <iostream>
 #include <queue>
@@ -13,14 +12,14 @@ struct f {
 
 bool cmp(f A, f B) { return A.d < B.d; }
 
-priority_queue<long long, vector<long long>, greater<long long> >
-    q;  // 小根堆维护最小值
+// 小根堆维护最小值
+priority_queue<long long, vector<long long>, greater<long long>> q;
 
 int main() {
   long long n, i;
   cin >> n;
   for (i = 1; i <= n; i++) {
-    scanf("%lld%lld", &a[i].d, &a[i].p);
+    cin >> a[i].d >> a[i].p;
   }
   sort(a + 1, a + n + 1, cmp);
   long long ans = 0;

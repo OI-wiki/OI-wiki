@@ -1,0 +1,24 @@
+[project]
+name = "oi-wiki"
+version = "1.0.0"
+description = "OI Wiki - Programming Competition Knowledge Base"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mkdocs==1.5.3",
+    "pymdown-extensions==10.16.1",
+    "pygments",
+    "beautifulsoup4",
+    "requests",
+    "markdown==3.9",
+    "python-markdown-document-offsets-injection-extension==0.5.16",
+    "mkdocs-toggle-sidebar-plugin==0.0.8",
+]
+
+[dependency-groups]
+dev = [
+]
+
+[tool.uv.pip]
+index-url = "https://pypi.org/simple"
+extra-index-url = ["https://pypi.tuna.tsinghua.edu.cn/simple"]
