@@ -28,15 +28,17 @@ $$
 
     这样，我们的 $m$ 的取值范围就变为了 $3$ 到 $14$。在这一年中，原来的前两个月的天数为 $59 + u$，其中 $u$ 在当年是闰年时为 $1$，否则为 $0$。然后让我们列出 $3$ 到 $13$ 月的天数表。
 
-    |月份|$3$|$4$|$5$|$6$|$7$|$8$|$9$|$10$|$11$|$12$|$13$|$14$|
-    |天数|$31$|$30$|$31$|$30$|$31$|$31$|$30$|$31$|$30$|$31$|$31$||
-    |$D_2-u$|$59$|$90$|$120$|$151$|$181$|$212$|$243$|$273$|$304$|$334$|$365$|$396$|
+    | 月份    | $3$  | $4$  | $5$   | $6$   | $7$   | $8$   |$9$   | $10$   | $11$   | $12$   | $13$  | $14$ |
+    | 天数    | $31$ | $30$ | $31$  | $30$  | $31$  | $31$  |$30$  | $31$   | $30$   | $31$   | $31$  | $28$ |
+    | $D_2-u$ | $59$ |$90$  | $120$ | $151$ | $181$ | $212$ |$243$ | $273$  | $304$  | $334$  | $365$ | $396$ |
 
     我们发现天数具有这样的性质：大体是 $31$ 与 $30$ 交替出现，但是每隔 $4$ 个月就会出现两个 $31$ 天相连，形成了 $5$ 个月为循环节的循环。每个循环内一共 $153$ 天，平均一个月 $\frac{153}{5}$ 天。天数之和是整数，我们不妨考察函数 $f(x)=\lfloor\frac{153}{5}x\rfloor$ 的值。
 
-    |$x$|$1$|$2$|$3$|$4$|$5$|$6$|$7$|$8$|$9$|$10$|$11$|$12$|$13$|$14$|
-    |$f(x)$|$30$|$61$|$91$|$122$|$153$|$183$|$214$|$244$|$275$|$306$|$336$|$367$|$397$|$428$|
-    |$f(x + 1) - f(x)$|$31$|$30$|$31$|$31$|$30$|$31$|$30$|$31$|$31$|$30$|$31$|$30$|$31$|$31$|
+    下面是根据您的要求对齐的表格：
+
+    | $x$               | $1$  | $2$  | $3$  | $4$   | $5$   | $6$   | $7$   | $8$   | $9$   | $10$  | $11$  | $12$  | $13$  | $14$  |
+    | $f(x)$            | $30$ | $61$ | $91$ | $122$ | $153$ | $183$ | $214$ | $244$ | $275$ | $306$ | $336$ | $367$ | $397$ | $428$ |
+    | $f(x + 1) - f(x)$ | $31$ | $30$ | $31$ | $31$  | $30$  | $31$  | $30$  | $31$  | $31$  | $30$  | $31$  | $30$  | $31$  | $31$  |
 
     观察发现，$f(x+1)-f(x)$ 和第 $x-1$ 个月的天数相等，由此我们又可以发现 $D_2-u=f(m+1)-63$。可以得到：
 
@@ -51,22 +53,22 @@ $$
     $$
     
     综上，我们可以得到：
-	
-	$$
-	\begin{aligned}
-	D&=D_1+D_2+D_3\\&=d+\lfloor\frac{153}{5}(m+1)\rfloor-63+365(y - 1)+u + \lfloor\frac{y - 1}{4}\rfloor - \lfloor\frac{y - 1}{100}\rfloor + \lfloor\frac{y - 1}{400}\rfloor\\&=d+\lfloor\frac35(m+1)\rfloor+30(m+1)-63+365(y - 1)+u + \lfloor\frac{y - 1}{4}\rfloor - \lfloor\frac{y - 1}{100}\rfloor + \lfloor\frac{y - 1}{400}\rfloor\\&=d+\lfloor\frac35(m+1)\rfloor+30m+365y+u + \lfloor\frac{y - 1}{4}\rfloor - \lfloor\frac{y - 1}{100}\rfloor + \lfloor\frac{y - 1}{400}\rfloor-398
-	\end{aligned}
-	$$
-	
-	这里，$u$ 表示第 $y$ 年闰出的天数，而 $\lfloor\frac{y - 1}{100}\rfloor + \lfloor\frac{y - 1}{400}\rfloor$ 是前 $y-1$ 年闰出来的天数。它们的和即为前 $y$ 年闰出的天数。同时我们只要求 $D$ 模 $7$ 的值，继续化简可得：
-	
-	$$
-	\begin{aligned}
-	D&=d+\lfloor\frac35(m+1)\rfloor+30m+365y+\lfloor\frac{y}{4}\rfloor - \lfloor\frac{y}{100}\rfloor + \lfloor\frac{y}{400}\rfloor-398\\
-	&\equiv d+\lfloor\frac35(m+1)\rfloor+2m+y+\lfloor\frac{y}{4}\rfloor - \lfloor\frac{y}{100}\rfloor + \lfloor\frac{y}{400}\rfloor+1&\pmod 7\\
-	&=y+\lfloor\frac{y}{4}\rfloor - \lfloor\frac{y}{100}\rfloor + \lfloor\frac{y}{400}\rfloor+\lfloor\frac35(m+1)\rfloor+2(m+1)-2+d+1\\&=y+\lfloor\frac{y}{4}\rfloor - \lfloor\frac{y}{100}\rfloor + \lfloor\frac{y}{400}\rfloor+\lfloor\frac{13}5(m+1)\rfloor+d-1
-	\end{aligned}
-	$$
+    
+    $$
+    \begin{aligned}
+    D&=D_1+D_2+D_3\\&=d+\lfloor\frac{153}{5}(m+1)\rfloor-63+365(y - 1)+u + \lfloor\frac{y - 1}{4}\rfloor - \lfloor\frac{y - 1}{100}\rfloor + \lfloor\frac{y - 1}{400}\rfloor\\&=d+\lfloor\frac35(m+1)\rfloor+30(m+1)-63+365(y - 1)+u + \lfloor\frac{y - 1}{4}\rfloor - \lfloor\frac{y - 1}{100}\rfloor + \lfloor\frac{y - 1}{400}\rfloor\\&=d+\lfloor\frac35(m+1)\rfloor+30m+365y+u + \lfloor\frac{y - 1}{4}\rfloor - \lfloor\frac{y - 1}{100}\rfloor + \lfloor\frac{y - 1}{400}\rfloor-398
+    \end{aligned}
+    $$
+    
+    这里，$u$ 表示第 $y$ 年闰出的天数，而 $\lfloor\frac{y - 1}{100}\rfloor + \lfloor\frac{y - 1}{400}\rfloor$ 是前 $y-1$ 年闰出来的天数。它们的和即为前 $y$ 年闰出的天数。同时我们只要求 $D$ 模 $7$ 的值，继续化简可得：
+    
+    $$
+    \begin{aligned}
+    D&=d+\lfloor\frac35(m+1)\rfloor+30m+365y+\lfloor\frac{y}{4}\rfloor - \lfloor\frac{y}{100}\rfloor + \lfloor\frac{y}{400}\rfloor-398\\
+    &\equiv d+\lfloor\frac35(m+1)\rfloor+2m+y+\lfloor\frac{y}{4}\rfloor - \lfloor\frac{y}{100}\rfloor + \lfloor\frac{y}{400}\rfloor+1&\pmod 7\\
+    &=y+\lfloor\frac{y}{4}\rfloor - \lfloor\frac{y}{100}\rfloor + \lfloor\frac{y}{400}\rfloor+\lfloor\frac35(m+1)\rfloor+2(m+1)-2+d+1\\&=y+\lfloor\frac{y}{4}\rfloor - \lfloor\frac{y}{100}\rfloor + \lfloor\frac{y}{400}\rfloor+\lfloor\frac{13}5(m+1)\rfloor+d-1
+    \end{aligned}
+    $$
 
 ???+ note "示例代码"
     ```cpp
