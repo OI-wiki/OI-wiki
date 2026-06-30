@@ -9,8 +9,8 @@ int main() {
   for (int i = 1; i <= n; i++) {
     cin >> w[i] >> v[i] >> cnt[i];
   }
-  if(a.size() < 5) a = '0' + a;
-  if(b.size() < 5) b = '0' + b;
+  if (a.size() < 5) a = '0' + a;
+  if (b.size() < 5) b = '0' + b;
   int h1 = (a[0] - '0') * 10 + (a[1] - '0'),
       m1 = (a[3] - '0') * 10 + (a[4] - '0');
   int h2 = (b[0] - '0') * 10 + (b[1] - '0'),
