@@ -14,8 +14,9 @@ int main() {
     for (int i = m; i >= 0; i--)         // 循环背包容量
       for (int j = 1; j <= cnt[k]; j++)  // 循环该组的每一个物品
         if (i >= w[t[k][j]])             // 背包容量充足
-          dp[i] = max(dp[i],
-                      dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+          dp[i] =
+              max(dp[i],
+                  dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
   // --8<-- [end:core]
   cout << dp[m] << '\n';
   return 0;
