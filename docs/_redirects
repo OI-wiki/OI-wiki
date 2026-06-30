@@ -147,3 +147,4 @@
 /dp/opt/monotonous-queue-stack /dp/opt/monotonic-queue-stack
 /graph/min-circle /graph/min-cycle
 /string/automaton /misc/fsm
+/dp/knapsack /dp/knapsack/basic
