@@ -21,7 +21,7 @@ author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, Nachtg
 
 === "C++"
     ```cpp
-    --8<-- "../code/knapsack/knapsack_4.cpp"
+    --8<-- "docs/dp/code/knapsack/knapsack_4.cpp"
     ```
 
 === "Python"
