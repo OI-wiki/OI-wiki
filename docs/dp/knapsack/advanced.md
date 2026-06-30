@@ -21,7 +21,7 @@ author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, Nachtg
 
 === "C++"
     ```cpp
-    --8<-- "docs/dp/code/knapsack/knapsack_4.cpp"
+    --8<-- "docs/dp/code/knapsack/knapsack_4.cpp:core"
     ```
 
 === "Python"
@@ -135,7 +135,7 @@ g[0] = 1;  // 什么都不装是一种方案
 
 ??? note "实现"
     ```cpp
-    --8<-- "docs/dp/code/knapsack/knapsack_3.cpp"
+    --8<-- "docs/dp/code/knapsack/knapsack_3.cpp:core"
     ```
 
 ## 背包相关问题
@@ -153,19 +153,7 @@ g[0] = 1;  // 什么都不装是一种方案
 
 ??? note "核心代码"
     ```cpp
-    for (int i = 1; i <= n; i++) {
-      if (cnt[i] == 0) {  // 如果数量没有限制使用完全背包的核心代码
-        for (int weight = w[i]; weight <= W; weight++) {
-          dp[weight] = max(dp[weight], dp[weight - w[i]] + v[i]);
-        }
-      } else {  // 物品有限使用多重背包的核心代码，它也可以处理0-1背包问题
-        for (int weight = W; weight >= w[i]; weight--) {
-          for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
-            dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
-          }
-        }
-      }
-    }
+    --8<-- docs/dp/code/knapsack/knapsack_5.cpp:core
     ```
 
 习题：[HDU 5410 CRB and His Birthday](https://acm.hdu.edu.cn/showproblem.php?pid=5410)
@@ -185,10 +173,7 @@ g[0] = 1;  // 什么都不装是一种方案
 
 === "C++"
     ```cpp
-    for (int k = 1; k <= n; k++)
-      for (int i = m; i >= mi; i--)    // 对经费进行一层枚举
-        for (int j = t; j >= ti; j--)  // 对时间进行一层枚举
-          dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1);
+    --8<-- docs/dp/code/knapsack/knapsack_6.cpp:core
     ```
 
 === "Python"

@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 int m, n, c[1010], w[1010], x, t[110][1010], ts, cnt[110], dp[1010];
