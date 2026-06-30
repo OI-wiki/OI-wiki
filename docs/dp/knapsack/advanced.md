@@ -153,7 +153,7 @@ g[0] = 1;  // 什么都不装是一种方案
 
 ??? note "核心代码"
     ```cpp
-    --8<-- docs/dp/code/knapsack/knapsack_5.cpp:core
+    --8<-- "docs/dp/code/knapsack/knapsack_5.cpp:core"
     ```
 
 习题：[HDU 5410 CRB and His Birthday](https://acm.hdu.edu.cn/showproblem.php?pid=5410)
@@ -173,7 +173,7 @@ g[0] = 1;  // 什么都不装是一种方案
 
 === "C++"
     ```cpp
-    --8<-- docs/dp/code/knapsack/knapsack_6.cpp:core
+    --8<-- "docs/dp/code/knapsack/knapsack_6.cpp:core"
     ```
 
 === "Python"
