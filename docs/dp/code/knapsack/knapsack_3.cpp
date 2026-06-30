@@ -29,6 +29,7 @@ void solve(int n, int m, int K, int *w, int *c, int (*dp)[kMaxK]) {
     }
   }
 }
+
 // --8<-- [end:core]
 
 int main() {
