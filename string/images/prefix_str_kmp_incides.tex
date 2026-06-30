@@ -1,0 +1,270 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+\usepackage{tikz}
+\usepackage{ctex}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{patterns}
+\tikzstyle{block} = [rectangle, rounded corners, minimum width=2.5cm, minimum height=1cm,text centered, draw=black, fill=blue!20]
+\tikzstyle{attention_block} = [rectangle, rounded corners, minimum width=2.5cm, minimum height=1cm,text centered, draw=black, fill=green!20]
+\tikzstyle{convblock} = [rectangle, rounded corners, minimum width=2.5cm, minimum height=1cm,text centered, draw=black, fill=orange!20]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\begin{document}
+\begin{tikzpicture}
+    % 定义数组方块的宽度和高度
+    \def\w{0.8}
+    \def\h{0.8}
+
+    % 绘制所有方块及边框（包括省略号部分）
+    \foreach \x in {0,...,10} {
+        \ifnum \x<4
+            \fill[fill=green!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x=4
+            \fill[fill=yellow!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x=5
+            % 省略号方块
+            \fill[fill=white] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x<10
+            \fill[fill=green!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \else
+            \fill[fill=yellow!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \fi\fi\fi\fi
+        \draw (\x*\w,0) rectangle ++ (\w,\h);
+    }
+
+    % 添加字母
+    \foreach \pos/\letter/\col in {0/a/black,1/c/black,2/a/black,3/c/black,4/e/red} {
+        \node[anchor=center] at (\pos*\w+0.4,0.4) {\textcolor{\col}{\letter}};
+    }
+
+    \node at (5*\w+0.4,0.4) {$\cdots$};
+
+    \foreach \pos/\letter/\col in {6/a/black,7/c/black,8/a/black,9/c/black,10/c/red} {
+        \node[anchor=center] at (\pos*\w+0.4,0.4) {\textcolor{\col}{\letter}};
+    }
+
+    % 添加大括号和标注
+    \draw[decoration={brace},decorate] (0,\h+0.1) -- (3.2,\h+0.1)
+        node[midway,above=6pt] {$s[0 \ldots \pi[i]-1]$};
+
+    \draw[decoration={brace},decorate] (4.8,\h+0.1) -- (8.0,\h+0.1)
+        node[midway,above=6pt] {$s[i-\pi[i]-1 \ldots i]$};
+
+    % 添加箭头标注
+    \draw[->] (3.6,\h+0.1) -- (3.6,\h+0.8);
+    \node[above] at (3.6,\h+0.8) {$s[\pi[i]]$};
+
+    \draw[decorate,decoration={brace,mirror,amplitude=6pt}] (0,-0.2) -- (8.0,-0.2)
+        node[midway,below=8pt] {$s[0 \ldots i]$};
+
+    \draw[->] (8.4,\h+0.1) -- (8.4,\h+0.8);
+    \node[above] at (8.4,\h+0.8) {$s[i+1]$};
+
+    % 添加最右侧的不匹配标注
+    \node[right] at (11*\w,0.4) {$s[\pi[i]] \neq s[i+1]$不匹配};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    % 定义数组方块的宽度和高度
+    \def\w{0.8}
+    \def\h{0.8}
+
+    % 绘制所有方块及边框（包括省略号部分）
+    \foreach \x in {0,...,10} {
+        \ifnum \x<2
+            \fill[fill=green!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x=2
+            \fill[fill=yellow!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x<5
+            \fill[fill=gray!20] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x=5
+            % 省略号方块
+            \fill[fill=gray!20] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x<8
+            \fill[fill=gray!20] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x<10
+            \fill[fill=green!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \else
+            \fill[fill=yellow!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \fi\fi\fi\fi\fi\fi
+        \draw (\x*\w,0) rectangle ++ (\w,\h);
+    }
+
+    % 添加字母
+    \foreach \pos/\letter/\col in {0/a/black,1/c/black,2/a/red,3/c/black,4/e/black} {
+        \node[anchor=center] at (\pos*\w+0.4,0.4) {\textcolor{\col}{\letter}};
+    }
+
+    \node at (5*\w+0.4,0.4) {$\cdots$};
+
+    \foreach \pos/\letter/\col in {6/a/black,7/c/black,8/a/black,9/c/black,10/c/red} {
+        \node[anchor=center] at (\pos*\w+0.4,0.4) {\textcolor{\col}{\letter}};
+    }
+
+    % 添加箭头标注
+    \draw[->] (2*\w+0.4,\h+0.1) -- (2*\w+0.4,\h+0.8);
+    \node[above] at (2*\w+0.4,\h+0.8) {$s[j]$};
+
+    \draw[->] (6.8,\h+0.1) -- (6.8,\h+0.3);
+    \node[above] at (6.8,\h+0.3) {$s[i-j+1]$};
+
+    \draw[->] (10*\w+0.4,\h+0.1) -- (10*\w+0.4,\h+0.8);
+    \node[above] at (10*\w+0.4,\h+0.8) {$s[i+1]$};
+
+    % 添加下方大括号标注
+    \draw[decorate,decoration={brace,mirror,amplitude=6pt}] (0,-0.2) -- (1.6,-0.2)
+        node[midway,below=8pt] {第二长度$j$};
+
+    \draw[decorate,decoration={brace,mirror,amplitude=6pt}] (8*\w,-0.2) -- (8.0,-0.2)
+        node[midway,below=8pt] {第二长度$j$};
+
+    % 添加最右侧的文字
+    \node[right] at (11*\w,0.4) {寻找可能的匹配};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    % 定义数组方块的宽度和高度
+    \def\w{0.8}
+    \def\h{0.8}
+
+    % 绘制上方数组
+    \foreach \x in {0,...,10} {
+        \ifnum \x<4
+            \fill[fill=green!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x=4
+            \fill[fill=white] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x=5
+            \fill[fill=white] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x<8
+            \fill[fill=gray!20] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x<10
+            \fill[fill=green!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \else
+            \fill[fill=white] (\x*\w,0) rectangle ++ (\w,\h);
+        \fi\fi\fi\fi\fi
+        \draw (\x*\w,0) rectangle ++ (\w,\h);
+    }
+
+    % 添加字母
+    \foreach \pos/\letter in {0/a,1/c,2/a,3/c,4/e} {
+        \node[anchor=center] at (\pos*\w+0.4,0.4) {\letter};
+    }
+
+    \node at (5*\w+0.4,0.4) {$\cdots$};
+
+    \foreach \pos/\letter in {6/a,7/c,8/a,9/c,10/c} {
+        \node[anchor=center] at (\pos*\w+0.4,0.4) {\letter};
+    }
+
+    % 绘制下方数组
+    \foreach \x in {0,...,3} {
+        \fill[fill=green!30] (\x*\w,-2.6) rectangle ++ (\w,\h);
+        \draw (\x*\w,-2.6) rectangle ++ (\w,\h);
+        \ifcase\x
+            \node[anchor=center] at (\x*\w+0.4,-2.2) {a};
+        \or
+            \node[anchor=center] at (\x*\w+0.4,-2.2) {c};
+        \or
+            \node[anchor=center] at (\x*\w+0.4,-2.2) {a};
+        \or
+            \node[anchor=center] at (\x*\w+0.4,-2.2) {c};
+        \fi
+    }
+
+    % 添加上方大括号标注
+    \draw[decoration={brace},decorate] (0,\h+0.1) -- (3.2,\h+0.1)
+        node[midway,above=6pt] {$s[0 \ldots \pi[i]-1]$};
+
+    \draw[decoration={brace},decorate] (4.8,\h+0.1) -- (8.0,\h+0.1)
+        node[midway,above=6pt] {$s[i-\pi[i]+1 \ldots i]$};
+
+    % 添加椭圆标注
+    \draw[blue, thick] (0.8,0.4) ellipse (0.8cm and 0.4cm);
+    \draw[blue, thick] (7.2,0.4) ellipse (0.8cm and 0.4cm);
+
+    % 添加下方标注
+    \draw[decoration={brace,mirror},decorate] (6.4,-0.1) -- (8.0,-0.1)
+        node[midway,below=6pt] {$s[i-j+1 \ldots i]$};
+
+    \draw[decoration={brace,mirror},decorate] (0,-2.8) -- (1.6,-2.8)
+        node[midway,below=6pt] {$s[0 \ldots j-1]$};
+
+    \draw[decoration={brace},decorate] (1.6,-1.6) -- (3.2,-1.6)
+        node[midway,above=6pt] {$s[\pi[i]-j \ldots \pi[i]-1]$};
+
+    % 添加下方椭圆
+    \draw[blue, thick] (0.8,-2.2) ellipse (0.8cm and 0.4cm);
+    \draw[blue, thick] (2.4,-2.2) ellipse (0.8cm and 0.4cm);
+
+    % 添加虚线连接
+    \draw[gray, dashed, ->] (7.2,0) -- (2.4,-1.6);
+    \draw[gray, dashed, ->] (0.8,0) -- (0.8,-1.6);
+
+    \draw[->] (3.5*\w,-2.8) -- (3.5*\w,-3.6);
+    \node[below] at (3.5*\w,-3.6) {$s[\pi[i]-1]$};
+    \node[below] at (3.5*\w,-4.2) {前缀函数值$\pi[\pi[i]-1]=2=j$};
+
+    % 添加右侧文字说明
+    \node[right] at (6*\w,-2.2) {第二长度 $j$ 等价为子串};
+    \node[right] at (6*\w,-2.8) {$s[0 \ldots \pi[i]-1]$的前缀函数值};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+    % 定义方块的宽度和高度
+    \def\w{0.8}
+    \def\h{0.8}
+
+    % 绘制上方的字母部分
+    \foreach \x/\letter in {
+        0/a,1/b,2/a,3/b,4/c,5/\#,6/a,7/b,8/c,9/d,10/e,11/f,12/a,13/b,14/a,15/b,
+        16/g,17/a,18/b,19/a,20/b,21/c,22/f,23/g
+    } {
+        \ifnum \x<5
+            \fill[fill=green!20] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x=5
+            \fill[fill=gray!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x>16 \ifnum \x<21
+            \fill[fill=green!20] (\x*\w,0) rectangle ++ (\w,\h);
+        \else \ifnum \x=21
+            \fill[fill=green!30] (\x*\w,0) rectangle ++ (\w,\h);
+        \fi\fi\fi\fi\fi
+        \draw (\x*\w,0) rectangle ++ (\w,\h);
+        \node[anchor=center] at (\x*\w+0.4,0.4) {\letter};
+    }
+
+    % 绘制下方的数字部分
+    \foreach \x/\num in {
+        0/0,1/0,2/1,3/2,4/0,5/0,6/1,7/2,8/0,9/0,10/0,11/0,12/1,13/2,14/3,15/4,
+        16/0,17/1,18/2,19/3,20/4,21/5,22/0,23/0
+    } {
+        \draw (\x*\w,-\h) rectangle ++ (\w,\h);
+        \node[anchor=center] at (\x*\w+0.4,-0.4) {\num};
+    }
+
+    % 添加下方的标注和箭头
+    % n 标注
+    \draw[decoration={brace,mirror},decorate] (0,-1.2) -- (4.0,-1.2);
+    \node[below] at (2,-1.3) {长度$n$的字符串s};
+
+    % n 标注（右侧）
+    \draw[decoration={brace,mirror},decorate] (17*\w,-1.2) -- (22*\w,-1.2);
+    \node[below] at (19.5*\w,-1.3) {长度$n$的匹配子串};
+
+    % 垂直箭头标注
+    \draw[->] (6.5*\w,-1.0) -- (6.5*\w,-3.2);
+    \node[below] at (6.5*\w,-3.2) {索引$[n+1]$};
+
+    \draw[->] (17.5*\w,-1.0) -- (17.5*\w,-3.2);
+    \node[below] at (17.5*\w,-3.2) {索引$[i-(n-1)]$};
+
+    \draw[->] (21.5*\w,-1.0) -- (21.5*\w,-2.4);
+    \node[below] at (21.5*\w,-2.4) {索引$[i]$满足$\pi[{i}]=n$};
+
+    % 水平箭头
+    \draw[->, thick] (6.5*\w,-2.5) -- (17.5*\w,-2.5);
+    \node[below] at (11.5*\w,-2.5) {子字符串在文本t中的索引为$i-2n$};
+
+\end{tikzpicture}
+
+\end{document}

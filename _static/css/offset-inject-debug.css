@@ -1,0 +1,12 @@
+article.md-content__inner > [data-offset-accurate-end="false"], article.md-content__inner > [data-offset-accurate-end="false"] {
+        background-color: yellow;
+}
+
+article.md-content__inner > :not([data-original-document-start]), article.md-content__inner > :not([data-original-document-end]){
+        background-color: red;
+}     
+
+[data-original-document]:hover::after, [data-original-document]:focus::after {
+	color: gray;
+	content: attr(data-original-document);
+}
