@@ -1,4 +1,4 @@
-形式幂级数的复合和复合逆也是常见的形式幂级数操作，对于没有特殊性质的 $f$ 之前我们一直使用的多是 $O\left(n^2\right)$ 的算法来计算 $f(g) \bmod{x^n}$ 其中 $f\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$，但是因为效率较低应用较少．我们介绍 Kinoshita–Li 的 $O\left(\mathsf{M}\left(n\right)\log n\right)$ 的算法，其中 $O\left(\mathsf{M}\left(n\right)\right)$ 为两个次数为 $O\left( n\right)$ 的多项式相乘的时间．
+形式幂级数的复合和复合逆也是常见的形式幂级数操作，对于没有特殊性质的 $f$ 之前我们一直使用的多是 $O\left(n^2\right)$ 的算法（该算法仍需使用 FFT）来计算 $f(g) \bmod{x^n}$ 其中 $f\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$，但是因为效率较低应用较少．我们介绍 Kinoshita–Li 的 $O\left(\mathsf{M}\left(n\right)\log n\right)$ 的算法，其中 $O\left(\mathsf{M}\left(n\right)\right)$ 为两个次数为 $O\left( n\right)$ 的多项式相乘的时间．
 
 ## 形式幂级数/多项式的复合
 
@@ -70,7 +70,7 @@ $$
 g(0)=1&,\space g^{-1}=1+(1-g)+(1-g)^2+\cdots \\
 g(0)=1&,\space \log g=-\dfrac{1-g}{1}-\dfrac{(1-g)^2}{2}-\dfrac{(1-g)^3}{3}-\cdots \\
 g(0)=0&,\space \exp g=1+\dfrac{g}{1!}+\dfrac{g^2}{2!}+\dfrac{g^3}{3!}+\cdots \\
-g(0)=1&,\space g^e=1+\dfrac{e}{1}(g-1)+\dfrac{e(e-1)}{2}(g-1)^2+\cdots
+g(0)=1&,\space g^e=1+\dfrac{e}{1!}(g-1)+\dfrac{e(e-1)}{2!}(g-1)^2+\cdots
 \end{aligned}
 $$
 
