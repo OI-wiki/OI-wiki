@@ -1,4 +1,4 @@
-author: GoodCoder666, Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy, LuoshuiTianyi, hyp1231, sun2snow
+author: GoodCoder666, Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogeek, ftxj, sshwy, LuoshuiTianyi, hyp1231, sun2snow, Desmos666-xh
 
 ## 引入
 
@@ -340,7 +340,7 @@ int lca(int u, int v) {
 
 长链剖分本质上就是另外一种链剖分方式．
 
-定义 **重子结点** 表示其子结点中子树深度最大的子结点．如果有多个子树最大的子结点，取其一．如果没有子结点，就无重子结点．
+定义 **重子结点** 表示其子结点中子树深度最大的子结点．如果有多个子树深度最大的子结点，取其一．如果没有子结点，就无重子结点．
 
 定义 **轻子结点** 表示剩余的子结点．
 
