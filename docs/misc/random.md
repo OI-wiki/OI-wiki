@@ -14,10 +14,10 @@
 
 -   抽样调查时往往只需使用伪随机数．这是因为我们本就只关心统计特征．
 -   网络安全中往往要用到（比刚刚提到的伪随机数）更强的随机数．这是因为攻击者可能会利用可预测性做文章．
--   OI/ICPC 中用到的随机算法，基本都只需要伪随机数．这是因为，这些算法往往是 通过引入随机数 来把概率引入复杂度分析，从而降低复杂度．这本质上依然只利用了随机数的统计特征．
+-   OI/ICPC 中用到的随机算法，基本都只需要伪随机数．这是因为，这些算法往往是通过引入随机数来把概率引入复杂度分析，从而降低复杂度．这本质上依然只利用了随机数的统计特征．
 -   某些随机算法（例如 [Moser 算法](https://en.wikipedia.org/wiki/Algorithmic_Lov%C3%A1sz_local_lemma)）用到了随机数的熵相关的性质，因此必须使用真正的随机数．
 
-## 实现
+## 随机数生成方法
 
 ### `rand`
 
@@ -37,7 +37,7 @@
 关于 `rand()` 和 `rand()%n` 的随机性：
 
 -   C/C++ 标准并未关于 `rand()` 所生成随机数的任何方面的质量做任何规定．
--   GCC 编译器对 `rand()` 所采用的实现方式，保证了分布的均匀性等基本性质，但具有 低位周期长度短 等明显缺陷．（例如在笔者的机器上，`rand()%2` 所生成的序列的周期长约 $2\cdot 10^6$）
+-   GCC 对 `rand()` 所采用的实现方式，保证了分布的均匀性等基本性质，但具有低位周期长度短等明显缺陷．（例如在笔者的机器上，`rand()%2` 所生成的序列的周期长约 $2\cdot 10^6$）
 -   即使假设 `rand()` 是均匀随机的，`rand()%n` 也不能保证均匀性，因为 `[0,n)` 中的每个数在 `0%n,1%n,...,RAND_MAX%n` 中的出现次数可能不相同．
 
 ### 预定义随机数生成器
@@ -45,143 +45,68 @@
 定义了数个特别的流行算法．如没有特别说明，均定义于头文件 `<random>`．
 
 ??? warning "Warning"
-    预定义随机数生成器仅在于 C++11 标准[^ref2]中开始使用．
+    预定义随机数生成器于 C++11 标准[^ref2]开始使用．
 
-#### mt19937
+#### 梅森缠绕器
 
-是一个随机数生成器类，效用同 `rand()`，随机数的范围同 `unsigned int` 类型的取值范围．
+梅森缠绕器（Mersenne Twister）由松本与西村于 1998 年提出[^ref3]，因其中一种实现 MT19937 具有梅森素数 $M_{19937} = 2^{19937} - 1$ 这么长的周期而得名．
 
-其优点是随机数质量高（一个表现为，出现循环的周期更长；其他方面也都至少不逊于 `rand()`），且速度比 `rand()` 快很多．使用时需要 `#include<random>`．
+从 C++11 开始，模板类 `std::mersenne_twister_engine` 实现基于如上方法的随机数生成器．因其使用起来十分复杂，通常实际使用的是该模板类的特化：`std::mt19937` 和 `std::mt19937_64`．其优点是随机数质量高，且速度比 `rand()` 快很多．
 
-`mt19937` 基于 32 位梅森缠绕器，由松本与西村设计于 1998 年[^ref3]，使用时用其定义一个随机数生成器即可：`std::mt19937 myrand(seed)`，`seed` 可不填，不填 `seed` 则会使用默认随机种子．
+`mt19937` 基于 32 位梅森缠绕器，由松本与西村于 1998 年提出[^ref3]，是一个随机数生成器类，效用同 `rand()`，随机数的范围同 `unsigned int` 类型的取值范围．使用时用其定义一个随机数生成器即可：`mt19937 myrand(seed)`，`seed` 可不填，不填 `seed` 则会使用默认随机种子．其重载了 `operator()`，需要生成随机数时调用 `myrand()` 即可返回一个随机数．
 
-`mt19937` 重载了 `operator ()`，需要生成随机数时调用 `myrand()` 即可返回一个随机数．
-
-另一个类似的生成器是 `mt19937_64`，基于 64 位梅森缠绕器，由松本与西村设计于 2000 年，使用方式同 `mt19937`，但随机数范围扩大到了 `unsigned long long` 类型的取值范围．
+另一个类似的生成器是 `mt19937_64`，基于 64 位梅森缠绕器，由松本与西村于 2000 年提出，使用方式同 `mt19937`，但随机数范围扩大到了 `unsigned long long` 类型的取值范围．
 
 ??? note "代码示例"
     ```cpp
-    #include <ctime>
-    #include <iostream>
-    #include <random>
-    
-    using namespace std;
-    
-    int main() {
-      mt19937 myrand(time(nullptr));
-      cout << myrand() << endl;
-      return 0;
-    }
+    --8<-- "docs/misc/code/random/random_1.cpp:core"
     ```
 
-#### `minstd_rand0`
+#### 线性同余随机数生成器
 
-线性同余算法由 Lewis、Goodman 及 Miller 发现于 1969，由 Park 与 Miller 于 1988 采纳为「最小标准」．
-
-计算公式如下，其中 $A,C,M$ 为预定义常数．
+线性同余随机数生成器（简称 LCG）由 Thomson 和 Rotenberg 于 1958 年提出．其计算公式如下，其中 $A, C, M$ 为预定义常数：
 
 $$
-s_i\equiv s_{i-1}\times A+C\mod{M}
+s_i \equiv \begin{cases}
+\operatorname{seed} & i = 0 \\
+s_{i-1} \times A + C & i \ge 1
+\end{cases}\pmod{M}
 $$
 
-`minstd_rand()` 是较新的「最小标准」，为 Park、Miller 和 Stockmeyer 于 1993 推荐．
-
-对于 `minstd_rand0()`，$s$ 的类型取 32 位无符号整数，$A$ 取 16807，$C$ 取 0，$M$ 取 2147483647．
-
-对于 `minstd_rand()`，$s$ 的类型取 32 位无符号整数，$A$ 取 48271，$C$ 取 0，$M$ 取 2147483647．
-
-### `random_shuffle`
-
-用于随机打乱指定序列．使用时需要 `#include<algorithm>`．
-
-使用时传入指定区间的首尾指针或迭代器（左闭右开）即可：`std::random_shuffle(first, last)` 或 `std::random_shuffle(first, last, myrand)`
-
-内部使用的随机数生成器默认为 `rand()`．当然也可以传入自定义的随机数生成器．
-
-关于 `random_shuffle` 的随机性：
-
--   C++ 标准中要求 `random_shuffle` 在所有可能的排列中 **等概率** 随机选取，但 GCC[^note1]编译器 **并未** 严格执行．
--   GCC 中 `random_shuffle` 随机性上的缺陷的原因之一，是因为它使用了 `rand()%n` 这样的写法．如先前所述，这样生成的不是均匀随机的整数．
--   原因之二，是因为 `rand()` 的值域有限．如果所传入的区间长度超过 `RAND_MAX`，将存在某些排列 **不可能** 被产生[^ref1]．
-
-??? warning "Warning"
-    `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除．
-
-### `shuffle`
-
-效用同 `random_shuffle`．使用时需要 `#include<algorithm>`．
-
-区别在于必须使用自定义的随机数生成器：`std::shuffle(first, last, myrand)`．
-
-GCC[^note1]实现的 `shuffle` 符合 C++ 标准的要求，即在所有可能的排列中等概率随机选取．
-
-下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器．生成数据为 [「ZJOI2012」灾难](https://www.luogu.com.cn/problem/P2597) 的随机小数据．
+从 C++11 开始，模板类 `std::linear_congruential_engine` 实现基于如上方法的随机数生成器，模板参数如下：
 
 ```cpp
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
-#include <iostream>
-
-int a[100];
-
-int main() {
-  srand(time(nullptr));
-  int n = rand() % 99 + 1;
-  for (int i = 1; i <= n; i++) a[i] = i;
-  std::cout << n << '\n';
-  for (int i = 1; i <= n; i++) {
-    std::random_shuffle(a + 1, a + i);
-    int cnt = rand() % i;
-    for (int j = 1; j <= cnt; j++) std::cout << a[j] << ' ';
-    std::cout << 0 << '\n';
-  }
-}
+template <class UIntType, UIntType A, UIntType C, UIntType M>
+class linear_congruential_engine;
 ```
 
-下面是用 `mt19937` 及 `shuffle()` 编写的同一个数据生成器．
+这里 `UIntType` 表示 $s$ 的类型，随后是三个常数．
+
+随后 Lewis、Goodman 及 Miller 于 1969 提出，取 $A = 7^{5} = 16807$、$C = 0$、$M = 2^{31} - 1 = 2147483647$ 时，此算法可以达到该模数下近乎最大的周期 $2^{31} - 2$（因为 $16807$ 是该模数下的 [原根](../math/number-theory/primitive-root.md)）且具有相对不错的统计特征．
+
+之后于 1988 年，该参数的 LCG 由 Park 与 Miller 采纳为「最小标准」，只因其实现极其简单、易懂、高效、且质量相对不错．最后于 1993 年，Park、Miller 和 Stockmeyer 将参数 $A$ 改为 $48271$，成为较新的「最小标准」．两个版本的「最小标准」作为 `linear_congruential_engine` 的特化，也都于 C++11 中预定义，分别为 `minstd_rand0` 和 `minstd_rand`．具体而言：
+
+-   对于 `minstd_rand0`，$s_i$ 的类型为 `std::uint_fast32_t`，$A$ 取 $16807$，$C$ 取 $0$，$M$ 取 $2147483647$．
+
+-   对于 `minstd_rand`，$s_i$ 的类型为 `std::uint_fast32_t`，$A$ 取 $48271$，$C$ 取 $0$，$M$ 取 $2147483647$．
+
+使用方法也很简单．首先定义 `std::minstd_rand myrand(seed);`，其中 `seed` 为种子，不填时默认为 $1$．然后调用 `myrand()` 即可获得一个随机数．
+
+如果需要自定义该形式的随机数生成器，且 $A, C, M$ 不是常数，则还可以考虑手写实现．该方法实现难度低，但生成的随机序列周期长度较短（周期最大为 $M$，但大多数情况下都会比 $M$ 短）．
+
+??? note "参考实现"
+    ```cpp
+    --8<-- "docs/misc/code/random/random_2.cpp"
+    ```
+
+### 随机数引擎适配器
+
+在预定义随机数生成器的基础上，可以对其进行二次封装得到新的随机数生成器．具体类名和使用方法请参见 [伪随机数生成——随机数引擎适配器](https://zh.cppreference.com/cpp/numeric/random#.E9.9A.8F.E6.9C.BA.E6.95.B0.E5.BC.95.E6.93.8E.E9.80.82.E9.85.8D.E5.99.A8) 的列表．
+
+下面的代码使用 `std::independent_bits_engine` 包装 `std::minstd_rand` 的输出．
 
 ```cpp
-#include <algorithm>
-#include <ctime>
-#include <iostream>
-#include <random>
-
-int a[100];
-
-int main() {
-  std::mt19937 rng(time(nullptr));
-  int n = rng() % 99 + 1;
-  for (int i = 1; i <= n; i++) a[i] = i;
-  std::cout << n << '\n';
-  for (int i = 1; i <= n; i++) {
-    std::shuffle(a + 1, a + i, rng);
-    int cnt = rng() % i;
-    for (int j = 1; j <= cnt; j++) std::cout << a[j] << ' ';
-    std::cout << 0 << '\n';
-  }
-}
-```
-
-下面是随机排列前十个正整数的一个实现．
-
-```cpp
-#include <algorithm>
-#include <iostream>
-#include <iterator>
-#include <random>
-
-int main() {
-  std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
-  std::random_device rd;
-  std::mt19937 g(rd());
-
-  std::shuffle(v.begin(), v.end(), g);
-
-  std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "));
-  std::cout << "\n";
-}
+--8<-- "docs/misc/code/random/random_3.cpp"
 ```
 
 ### 非确定随机数的均匀分布整数随机数生成器
@@ -193,25 +118,7 @@ int main() {
 参考代码如下．
 
 ```cpp
-#include <iostream>
-#include <map>
-#include <random>
-#include <string>
-
-int main() {
-  std::random_device rd;
-  std::map<int, int> hist;
-  std::uniform_int_distribution<int> dist(0, 9);
-  for (int n = 0; n < 20000; ++n) {
-    ++hist[dist(rd)];  // 注意：仅用于演示：一旦熵池耗尽，
-                       // 许多 random_device 实现的性能就急剧下滑
-                       // 对于实践使用， random_device 通常仅用于
-                       // 播种类似 mt19937 的伪随机数生成器
-  }
-  for (auto p : hist) {
-    std::cout << p.first << " : " << std::string(p.second / 100, '*') << '\n';
-  }
-}
+--8<-- "docs/misc/code/random/random_4.cpp"
 ```
 
 可能的输出如下．
@@ -235,68 +142,41 @@ int main() {
 
 具体类名请参见 [伪随机数生成——随机数分布](https://zh.cppreference.com/w/cpp/numeric/random#.E9.9A.8F.E6.9C.BA.E6.95.B0.E5.88.86.E5.B8.83) 的列表．
 
-#### 实现
-
 下面的程序模拟了一个六面体骰子．
 
 ```cpp
-#include <iostream>
-#include <random>
-
-int main() {
-  std::random_device rd;   // 将用于为随机数引擎获得种子
-  std::mt19937 gen(rd());  // 以播种标准 mersenne_twister_engine
-  std::uniform_int_distribution<> dis(1, 6);
-
-  for (int n = 0; n < 10; ++n)
-    // 用 dis 变换 gen 所生成的随机 unsigned int 到 [1, 6] 中的 int
-    std::cout << dis(gen) << ' ';
-  std::cout << '\n';
-}
+--8<-- "docs/misc/code/random/random_5.cpp:core"
 ```
 
 ### 其他实现方法
 
 有的时候我们需要实现自己的随机数生成器．下面是一些常用的随机数生成方法．
 
-#### 线性同余随机数生成器
+#### Xorshift
 
-利用下式来生成随机数序列 $\{R_i\}$：
+Xorshift 系列随机数生成器由 George Marsaglia 于 2003 年提出，其主要基于异或一个数的移位这一种操作．在算法竞赛中常用的版本有 `xorshift32` 和 `xorshift64` 两种：
 
-$$
-R_{i+1} = (A \times R_i + B) \bmod P
-$$
+```cpp
+--8<-- "docs/misc/code/random/random_6.cpp:core"
+```
 
-其中 $A,B,P$ 均为常数．
+使用方法与前面介绍的大多数随机数生成器类似：首先定义随机数生成器 `xorshift32 rng32(seed)` 或 `xorshift64 rng64(seed)`，其中 `seed` 为种子，不填时使用默认种子；之后调用 `rng32()` 或 `rng64()` 即可获得随机数．这两个随机数生成器在种子不为 $0$ 时分别具有 $2^{32} - 1$ 和 $2^{64} - 1$ 的周期，因其实现极其简单，常将其和种子下发给选手生成大范围的数据以减少 I/O 开销．
 
-该方法实现难度低，但生成的随机序列周期长度较短（周期最大为 $P$，但大多数情况下都会比 $P$ 短）．
+#### SplitMix
 
-??? note "参考实现"
-    ```cpp
-    #include <iostream>
-    using namespace std;
-    
-    struct myrand {
-      int A, B, P, x;
-    
-      myrand(int A, int B, int P) {
-        this->A = A;
-        this->B = B;
-        this->P = P;
-      }
-    
-      // 生成随机序列的下一个随机数
-      int next() { return x = (A * x + B) % P; }
-    };
-    
-    myrand rnd(3, 5, 97);  // 初始化一个随机数生成器
-    
-    int main() {
-      int x = rnd.next();
-      cout << x << endl;
-      return 0;
-    }
-    ```
+SplitMix 系列随机数生成器由 Stelle，Lee 和 Flood 于 2014 年提出，并应用于 Java 8 的 `java.util.SplittableRandom` 类中．在算法竞赛界最常用的版本为 `splitmix64`：
+
+```cpp
+--8<-- "docs/misc/code/random/random_7.cpp:core"
+```
+
+其最主要的用途是对一个已经求出的哈希值进行二次哈希，以防止被人通过精心构造的数据卡哈希表卡到超时：
+
+```cpp
+--8<-- "docs/misc/code/random/random_8.cpp:core"
+```
+
+其亦可用于生成随机数：首先定义 `splitmix64 rng64(seed)`，其中 `seed` 为种子，不填时使用默认种子；之后调用 `rng64()` 即可获得随机数．此时较为显然的，该函数具有 $2^{64}$ 的周期（因为所有的大数都是奇数，所以 $x$ 具有 $2^{64}$ 的周期，且后面对 $z$ 的所有操作都是完全可逆的）．这也意味着即使你记不住如上的大参数，你也可以直接随便写几个足够大的奇数结合异或右移来达到相近的效果．
 
 #### 时滞斐波那契随机数生成器
 
@@ -312,39 +192,69 @@ $$
 
 ??? note "参考实现"
     ```cpp
-    #include <iostream>
-    #include <vector>
-    using namespace std;
-    
-    struct myrand {
-      vector<unsigned> vec;
-      int l, j, k, cur;
-    
-      myrand(int l, int j, int k) {
-        this->l = l;
-        this->j = j;
-        this->k = k;
-        cur = 0;
-        for (int i = 0; i < l; i++) {
-          vec.push_back(rand());  // 先用其他方法生成随机序列中的前几个元素
-        }
-      }
-    
-      unsigned next() {
-        vec[cur] = vec[(cur - j + l) % l] * vec[(cur - k + l) % l];
-        // 这里用 unsigned 类型是为了实现自动对 2^32 取模
-        return vec[cur++];
-      }
-    };
-    
-    myrand rnd(11, 4, 7);
-    
-    int main() {
-      unsigned x = rnd.next();
-      cout << x << endl;
-      return 0;
-    }
+    --8<-- "docs/misc/code/random/random_9.cpp:core"
     ```
+
+值得一提的是，在 C++11 中，`std::subtract_with_carry_engine` 是这一类随机数生成器的其中一种实现，而 `std::ranlux24_base` 和 `std::ranlux48_base` 是该模板类的特化，`std::ranlux24` 和 `std::ranlux48` 则是在前者的基础上再套上一个适配器 `std::discard_block_engine` 得到．不过现在通常不再推荐使用它们．
+
+## 随机算法
+
+下面介绍在 C++ 标准中定义的一些依赖随机数生成的随机算法．
+
+### `random_shuffle`
+
+`std::random_shuffle` 于 C++98 引入，用于随机打乱指定序列．使用时需要 `#include<algorithm>`，常用实现方法为 [Fisher-Yates 算法](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)．
+
+使用时传入指定区间的首尾指针或迭代器（左闭右开）即可：`std::random_shuffle(first, last)` 或 `std::random_shuffle(first, last, myrand)`．
+
+内部使用的随机数生成器默认为 `rand()`．当然也可以传入自定义的随机数生成器．
+
+关于 `random_shuffle` 的随机性：
+
+-   C++ 标准中要求 `random_shuffle` 在所有可能的排列中 **等概率** 随机选取，但 GCC[^note1]的默认标准库 libstdc++**并未** 严格执行．
+-   GCC 中 `random_shuffle` 随机性上的缺陷的原因之一，是因为它使用了 `rand()%n` 这样的写法．如先前所述，这样生成的不是均匀随机的整数．
+-   原因之二，是因为 `rand()` 的值域有限．如果所传入的区间长度超过 `RAND_MAX`，将存在某些排列 **不可能** 被产生[^ref1]．
+
+??? warning "Warning"
+    `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除．
+
+### `shuffle`
+
+`std::shuffle` 于 C++11 引入，效用同 `random_shuffle`．使用时需要 `#include<algorithm>`．
+
+区别在于必须使用自定义的随机数生成器：`std::shuffle(first, last, myrand)`．
+
+GCC[^note1]实现的 `shuffle` 符合 C++ 标准的要求，即在所有可能的排列中等概率随机选取．
+
+下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器．生成数据为 [「ZJOI2012」灾难](https://www.luogu.com.cn/problem/P2597) 的随机小数据．
+
+```cpp
+--8<-- "docs/misc/code/random/random_10.cpp:core"
+```
+
+下面是用 `mt19937` 及 `shuffle()` 编写的同一个数据生成器．
+
+```cpp
+--8<-- "docs/misc/code/random/random_11.cpp:core"
+```
+
+下面是随机排列前十个正整数的一个实现．
+
+```cpp
+--8<-- "docs/misc/code/random/random_12.cpp:core"
+```
+
+### `sample`
+
+`std::sample` 于 C++17 引入，用于从序列里随机选择其中 $n$ 个元素，与 `shuffle` 后提取前 $n$ 个元素的主要区别在于选出来的元素输出后仍保持相对顺序．常用实现方法为 [蓄水池抽样法](https://en.wikipedia.org/wiki/Reservoir_sampling)．
+
+使用方法为 `std::sample(first, last, dest, n, myrand)`，其中 `[first, last)` 表示要采样的范围，`[dest, dest + n)` 表示要输出到的地方，`myrand` 是指定的随机数生成器．
+
+下面是从 11 个大写字母里随机抽取 4 个的实现．
+
+```cpp
+--8<-- "docs/misc/code/random/random_13.cpp:core"
+```
 
 ## 参考资料与注释
 
