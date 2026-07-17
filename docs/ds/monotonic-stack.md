@@ -12,11 +12,11 @@
 
 例如，栈中自顶向下的元素为 $\{0,11,45,81\}$．
 
-![](images/monotonous-stack-before.svg)
+![](images/monotonic-stack-before.svg)
 
 插入元素 $14$ 时为了保证单调性需要依次弹出元素 $0,11$，操作后栈变为 $\{14,45,81\}$．
 
-![](images/monotonous-stack-after.svg)
+![](images/monotonic-stack-after.svg)
 
 用伪代码描述如下：
 

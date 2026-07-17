@@ -9,6 +9,7 @@ from correctness_check import (
 mainfiles_str = os.environ.get("FILES_TO_TEST", "")
 mainfiles = mainfiles_str.split() if mainfiles_str else []
 runs_on = os.environ.get("RUNS_ON")
+vsinstall = os.environ.get("VSINSTALL")
 
 RED = "\033[0;31m"
 GREEN = "\033[0;32m"
@@ -85,8 +86,13 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             )
         )
         return False, {mainfile: [Skipped()]}
-
-    CALL_VCVARS_BAT = r'call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"'
+    
+    call_vcvars_bat = None
+    if runs_on == "x86_64 Windows":
+        if not vsinstall:
+            raise RuntimeError("VSINSTALL environment variable is required for Windows UB checks.")
+        vcvars64_bat = os.path.join(vsinstall, "VC", "Auxiliary", "Build", "vcvars64.bat")
+        call_vcvars_bat = f'call "{vcvars64_bat}"'
 
     def gen(
         compilers,
@@ -200,7 +206,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             gen(
                 compilers=[
                     (
-                        f"{CALL_VCVARS_BAT} && cl.exe /EHsc /D_CRT_SECURE_NO_WARNINGS",
+                        f"{call_vcvars_bat} && cl.exe /EHsc /D_CRT_SECURE_NO_WARNINGS",
                         ".MSVC",
                     )
                 ],
