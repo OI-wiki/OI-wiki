@@ -969,7 +969,7 @@ $$
     }
     
     Big Big::operator^(const int& n) const {
-      Big t(n), res(1);
+      Big t(*this), res(1);
       int y = n;
       while (y) {
         if (y & 1) res = res * t;
