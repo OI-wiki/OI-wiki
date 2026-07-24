@@ -1,0 +1,30 @@
+#import "@preview/fletcher:0.5.1" as fletcher: diagram, node, edge
+#set page(height: auto, width: auto, fill: white)
+#diagram(
+  node-stroke: 1pt,
+  node-inset: 8pt,
+  node((0, 0), [$X$], name: <x>),
+  edge("-"),
+  node((to: <x>, rel: (60deg, 1)), [$Z$], name: <z>),
+  edge((rel: (60deg, 1)), "-"),
+  edge((rel: (30deg, 1)), "-"),
+  node((to: <x>, rel: (120deg, 1)), [$Y$], name: <y>),
+  edge((rel: (120deg, 1)), "-"),
+  edge((rel: (150deg, 1)), "-"),
+  edge(<x>, <y>, "-"),
+  node(snap: -1, name: <left>, enclose: (<y>, <z>), stroke: none),
+  node((to: <z>, rel: (3, 0)), [$Y$], name: <y2>),
+  edge((rel: (120deg, 1)), "-"),
+  edge((rel: (150deg, 1)), "-"),
+  node((to: <y2>, rel: (1.5, 0)), [$Z$], name: <z2>),
+  edge((rel: (60deg, 1)), "-"),
+  edge((rel: (30deg, 1)), "-"),
+  edge(<y2>, <z2>, "-"),
+  node(snap: -1, name: <right>, enclose: (<y2>, <z2>), stroke: none),
+  edge(
+    (to: <left>, rel: (1, 0)),
+    (to: <right>, rel: (0, 0)),
+    "=>",
+    [Compress(X)],
+  ),
+)
