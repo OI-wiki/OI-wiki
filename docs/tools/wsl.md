@@ -78,7 +78,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 4.  接下来，请转到下面「配置分发版」一节完成其他设置．
 
-> 如果你的 `wsl --install` 进度条很慢或多次失败，请在 ![GitHub 上的 release 页面](https://github.com/microsoft/wsl/releases) 下载后缀名为 `.msi` 的离线安装包.
+> 如果你的 `wsl --install` 进度条很慢或多次失败，请在![GitHub 上的 release 页面](https://github.com/microsoft/wsl/releases)下载后缀名为 `.msi` 的离线安装包．
 
 ### 手动安装[^ref4]
 
@@ -143,7 +143,7 @@ wsl --set-default-version 2
 ???+ warning "Warning"
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变．如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本．
 
-由于 Microsoft Store 在国内下载速度不稳定，推荐访问 ![Ubuntu 官网](https://ubuntu.com/download/wsl) 获取最新发布的 LTS 版本，或前往 ![Ubuntu Release](https://releases.ubuntu.com/) 获取先前版本，下载后缀名为 `.wsl` 的文件后双击即可，对于其他版本，也可在 ![WSL/Distribution.json](https://github.com/microsoft/WSL/blob/master/distributions/DistributionInfo.json) 中找到对应网址.
+由于 Microsoft Store 在国内下载速度不稳定，推荐访问![Ubuntu 官网](https://ubuntu.com/download/wsl)获取最新发布的 LTS 版本，或前往![Ubuntu Release](https://releases.ubuntu.com/)获取先前版本，下载后缀名为 `.wsl` 的文件后双击即可，对于其他版本，也可在![WSL/Distribution.json](https://github.com/microsoft/WSL/blob/master/distributions/DistributionInfo.json)中找到对应网址．
 
 ## 配置分发版[^ref5]
 
@@ -211,12 +211,10 @@ Ubuntu 默认的软件源在国外．可以换成国内的软件源以加快速�
 
 打开 bash，输入 `cat /etc/apt/sources.list`，如出现：
 
-```
-# Ubuntu sources have moved to the /etc/apt/sources.list.d/ubuntu.sources
-# file, which uses the deb822 format. Use deb822-formatted .sources files
-# to manage package sources in the /etc/apt/sources.list.d/ directory.
-# See the sources.list(5) manual page for details.
-```
+    # Ubuntu sources have moved to the /etc/apt/sources.list.d/ubuntu.sources
+    # file, which uses the deb822 format. Use deb822-formatted .sources files
+    # to manage package sources in the /etc/apt/sources.list.d/ directory.
+    # See the sources.list(5) manual page for details.
 
 使用以下方法更新源：
 
@@ -226,13 +224,14 @@ $ sudo su
 # cp /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list.bak
 # vim /etc/apt/sources.list.d/ubuntu.sources
 ```
-按 `a` 后 使用 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> 将先前复制的镜像源粘贴，随后按 <kbd>Esc</kbd>，输入 `:wq`，按 <kbd>Enter</kbd> 保存并退出.
 
-??? note "关于 vim" 
-    如果不会使用 vim 编辑器，请查阅 ![OI-wiki 上的 Vim 教程](https://oi-wiki.org/tools/editor/vim/).
+按 `a` 后 使用<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>将先前复制的镜像源粘贴，随后按<kbd>Esc</kbd>，输入 `:wq`，按<kbd>Enter</kbd>保存并退出．
 
-随后，依次运行 `apt update` 与 `apt upgrade -y`，更新完毕.
- 
+??? note "关于 vim"
+    如果不会使用 vim 编辑器，请查阅![OI-wiki 上的 Vim 教程](https://oi-wiki.org/tools/editor/vim/).
+
+随后，依次运行 `apt update` 与 `apt upgrade -y`，更新完毕．
+
 对于 Ubuntu 22.04 及更早的版本，使用以下命令更新软件和软件源：
 
 ```console
