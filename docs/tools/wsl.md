@@ -143,7 +143,7 @@ wsl --set-default-version 2
 ???+ warning "Warning"
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变．如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本．
 
-由于 Microsoft Store 在国内下载速度不稳定，推荐访问 [Ubuntu 官网](https://ubuntu.com/download/wsl)获取最新发布的 LTS 版本，或前往 [Ubuntu Release](https://releases.ubuntu.com/) 获取先前版本，下载后缀名为 `.wsl` 的文件后双击即可，对于其他版本，也可在 [WSL/Distribution.json](https://github.com/microsoft/WSL/blob/master/distributions/DistributionInfo.json) 中找到对应网址．
+由于 Microsoft Store 在国内下载速度不稳定，推荐访问 [Ubuntu 官网](https://ubuntu.com/download/wsl) 获取最新发布的 LTS 版本，或前往 [Ubuntu Release](https://releases.ubuntu.com/) 获取先前版本，下载后缀名为 `.wsl` 的文件后双击即可，对于其他版本，也可在 [WSL/Distribution.json](https://github.com/microsoft/WSL/blob/master/distributions/DistributionInfo.json) 中找到对应网址．
 
 ## 配置分发版[^ref5]
 
