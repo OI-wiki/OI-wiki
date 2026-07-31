@@ -143,7 +143,7 @@ wsl --set-default-version 2
 ???+ warning "Warning"
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变．如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本．
 
-由于 Microsoft Store 在国内下载速度不稳定，推荐访问 ![Ubuntu 官网](https://ubuntu.com/download/wsl) 获取最新发布的 LTS 版本，或前往 ![Ubuntu Release](https://releases.ubuntu.com/) 获取先前版本，下载后缀名为 `.wsl` 的文件后双击即可.
+由于 Microsoft Store 在国内下载速度不稳定，推荐访问 ![Ubuntu 官网](https://ubuntu.com/download/wsl) 获取最新发布的 LTS 版本，或前往 ![Ubuntu Release](https://releases.ubuntu.com/) 获取先前版本，下载后缀名为 `.wsl` 的文件后双击即可，对于其他版本，也可在 ![WSL/Distribution.json](https://github.com/microsoft/WSL/blob/master/distributions/DistributionInfo.json) 中找到对应网址.
 
 ## 配置分发版[^ref5]
 
@@ -211,7 +211,7 @@ Ubuntu 默认的软件源在国外．可以换成国内的软件源以加快速�
 
 打开 bash，输入 `cat /etc/apt/sources.list`，如出现：
 
-```console
+```
 # Ubuntu sources have moved to the /etc/apt/sources.list.d/ubuntu.sources
 # file, which uses the deb822 format. Use deb822-formatted .sources files
 # to manage package sources in the /etc/apt/sources.list.d/ directory.
