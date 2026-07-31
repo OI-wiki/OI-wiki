@@ -78,7 +78,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 4.  接下来，请转到下面「配置分发版」一节完成其他设置．
 
-> 如果你的 `wsl --install` 进度条很慢或多次失败，请在![GitHub 上的 release 页面](https://github.com/microsoft/wsl/releases)下载后缀名为 `.msi` 的离线安装包．
+> 如果你的 `wsl --install` 进度条很慢或多次失败，请在 [GitHub 上的 release 页面](https://github.com/microsoft/wsl/releases) 下载后缀名为 `.msi` 的离线安装包．
 
 ### 手动安装[^ref4]
 
@@ -143,7 +143,7 @@ wsl --set-default-version 2
 ???+ warning "Warning"
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变．如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本．
 
-由于 Microsoft Store 在国内下载速度不稳定，推荐访问![Ubuntu 官网](https://ubuntu.com/download/wsl)获取最新发布的 LTS 版本，或前往![Ubuntu Release](https://releases.ubuntu.com/)获取先前版本，下载后缀名为 `.wsl` 的文件后双击即可，对于其他版本，也可在![WSL/Distribution.json](https://github.com/microsoft/WSL/blob/master/distributions/DistributionInfo.json)中找到对应网址．
+由于 Microsoft Store 在国内下载速度不稳定，推荐访问 [Ubuntu 官网](https://ubuntu.com/download/wsl)获取最新发布的 LTS 版本，或前往 [Ubuntu Release](https://releases.ubuntu.com/) 获取先前版本，下载后缀名为 `.wsl` 的文件后双击即可，对于其他版本，也可在 [WSL/Distribution.json](https://github.com/microsoft/WSL/blob/master/distributions/DistributionInfo.json) 中找到对应网址．
 
 ## 配置分发版[^ref5]
 
@@ -228,7 +228,7 @@ $ sudo su
 按 `a` 后 使用<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>将先前复制的镜像源粘贴，随后按<kbd>Esc</kbd>，输入 `:wq`，按<kbd>Enter</kbd>保存并退出．
 
 ??? note "关于 vim"
-    如果不会使用 vim 编辑器，请查阅![OI-wiki 上的 Vim 教程](https://oi-wiki.org/tools/editor/vim/).
+    如果不会使用 vim 编辑器，请查阅 [OI-wiki 上的 Vim 教程](https://oi-wiki.org/tools/editor/vim/).
 
 随后，依次运行 `apt update` 与 `apt upgrade -y`，更新完毕．
 
