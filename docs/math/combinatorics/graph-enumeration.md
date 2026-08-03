@@ -284,7 +284,7 @@ $$
 注意到当有两个重心的情况时，上面的过程只会减去一次，因此还需要减去
 
 $$
-g_n = f_n - \sum_{i=\left\lceil\frac{n}{2}\right\rceil}^{n-1} f_i f_{n-i} - \binom{f_{\frac{n}{2}}}{2}
+g_n = f_n - \sum_{i=\frac{n}{2}+1}^{n-1} f_i f_{n-i} - \binom{f_{\frac{n}{2}}}{2}
 $$
 
 ### 例题「Luogu P5900」无标号无根树计数

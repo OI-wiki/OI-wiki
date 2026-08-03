@@ -58,7 +58,7 @@ STL [队列](../../ds/queue.md)(`std::queue`) 是一种先进先出 (First In, F
 std::queue<TypeName> q;  // 使用默认底层容器 deque，数据类型为 TypeName
 std::queue<TypeName, Container> q;  // 使用 Container 作为底层容器
 
-std::queue<TypeName> q2(q1);  // 将 s1 复制一份用于构造 q2
+std::queue<TypeName> q2(q1);  // 将 q1 复制一份用于构造 q2
 ```
 
 ### 成员函数
