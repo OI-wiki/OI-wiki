@@ -1,4 +1,4 @@
-author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, Linky
+author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, Linky , yinqf
 
 ## 括号序树上莫队
 
@@ -10,14 +10,17 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ### 过程
 
-dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点，就直接 `push_back(-x)`，然后我们在挪动指针的时候，
+我们通过 DFS 维护树的括号序列（进入节点 $x$ 时向序列加入 $x$，离开节点 $x$ 时再次向序列加入 $x$，序列总长为 $2N$）。
 
--   新加入的值是 x  --->`add(x)`
--   新加入的值是 - x --->`del(x)`
--   新删除的值是 x  --->`del(x)`
--   新删除的值是 - x --->`add(x)`
+我们令 $st[x]$ 为 $x$ 进入的时间，$ed[x]$ 为 $x$ 离开的时间。
 
-这样的话，我们就把一棵树处理成了序列．
+根据括号序列的性质，对于树上路径 $u \to v$（不妨设 $st[u] \le st[v]$）：
+- 若 $\text{LCA}(u, v) = u$，路径上的节点恰好在区间 $[st[u], st[v]]$ 中出现 1 次；不在路径上的节点出现 0 次或 2 次。
+- 若 $\text{LCA}(u, v) \neq u$，路径上除 $\text{LCA}(u, v)$ 外的节点恰好在区间 $[ed[u], st[v]]$ 中出现 1 次；不在路径上的节点出现 0 次或 2 次。注意特殊考虑 $\text{LCA}(u, v)$ 。
+
+因此，进行莫队时，无论遇到的节点是入栈还是出栈，其本质都是改变了该节点在当前区间的出现次数。我们只需要维护每个节点 $x$ 是否在当前维护的路径集合中。
+
+状态更新可以统一抽象为一次翻转操作。
 
 ### 例题
 
