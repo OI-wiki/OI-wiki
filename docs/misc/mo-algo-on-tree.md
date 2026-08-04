@@ -15,7 +15,6 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 我们令 $st[x]$ 为 $x$ 进入的时间，$ed[x]$ 为 $x$ 离开的时间．
 
 根据括号序列的性质，对于树上路径 $u \to v$（不妨设 $st[u] \le st[v]$）：
-
 -   若 $\text{LCA}(u, v) = u$，路径上的节点恰好在区间 $[st[u], st[v]]$ 中出现 1 次；不在路径上的节点出现 0 次或 2 次．
 -   若 $\text{LCA}(u, v) \neq u$，路径上除 $\text{LCA}(u, v)$ 外的节点恰好在区间 $[ed[u], st[v]]$ 中出现 1 次；不在路径上的节点出现 0 次或 2 次．注意特殊考虑 $\text{LCA}(u, v)$．
 
