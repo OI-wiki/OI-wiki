@@ -507,10 +507,10 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
     (1+p)^{p^{e-1}} \equiv 1,\quad (1+p)^{p^{e-2}} \equiv 1 + p^{e-1} \not\equiv 1 \pmod{p^e}.
     $$
     
-    所以，$\delta_m(1+p)=p^{e-1}$．另外，设模 $p$ 的原根为 $g$，那么，由于 $g^{\delta_m(g)}\equiv 1 \pmod{p}$，所以，由阶的 [性质 2](#ord-prop-2) 可知，$p-1\mid\delta_m(p)$．由 Carmichael 函数的定义和欧拉定理可知
+    所以，$\delta_m(1+p)=p^{e-1}$．另外，设模 $p$ 的原根为 $g$，那么，由于 $g^{\delta_m(g)}\equiv 1 \pmod{p}$，所以，由阶的 [性质 2](#ord-prop-2) 可知，$p-1\mid\delta_m(g)$．由 Carmichael 函数的定义和欧拉定理可知
     
     $$
-    p^{e-1}(p-1) = [\delta_m(p),p^{e-1}]\mid\lambda(m) \mid \varphi(m) = p^{e-1}(p-1).
+    p^{e-1}(p-1) = [\delta_m(1+p),\delta_m(g)]\mid\lambda(m) \mid \varphi(m) = p^{e-1}(p-1).
     $$
     
     因此，$\lambda(m)=p^{e-1}(p-1)$．
