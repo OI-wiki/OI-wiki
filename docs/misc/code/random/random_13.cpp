@@ -7,7 +7,6 @@ constexpr int SEED = 5489;
 #include <type_traits>
 #include <utility>
 
-#if __cplusplus > 201103L && __cplusplus <= 201402L  // C++14
 namespace std {
 
 // ============================================================
@@ -72,7 +71,7 @@ class urng_adapter {
 // ============================================================
 // 前向迭代器：蓄水池抽样（与 MSVC 的 _Sample_fwd 一致）
 template <class PopIt, class SampleIt, class Diff, class Adapter>
-SampleIt sample_fwd(PopIt first, PopIt last, SampleIt out, Diff n,
+SampleIt _Oi_sample_fwd(PopIt first, PopIt last, SampleIt out, Diff n,
                     Adapter& rng) {
   Diff k = 0;
   // 先填满前 n 个
@@ -94,7 +93,7 @@ SampleIt sample_fwd(PopIt first, PopIt last, SampleIt out, Diff n,
 
 // 随机访问迭代器：部分 Fisher‑Yates 选索引（与 MSVC 的 _Sample_ra 一致）
 template <class PopIt, class SampleIt, class Diff, class Adapter>
-SampleIt sample_ra(PopIt first, PopIt last, SampleIt out, Diff n,
+SampleIt _Oi_sample_ra(PopIt first, PopIt last, SampleIt out, Diff n,
                    Adapter& rng) {
   Diff N = last - first;
   if (n >= N) {
@@ -120,34 +119,17 @@ SampleIt sample_ra(PopIt first, PopIt last, SampleIt out, Diff n,
   return out;
 }
 
-// 标签分发
-template <class PopIt, class SampleIt, class Size, class URNG>
-SampleIt sample_impl(PopIt first, PopIt last, SampleIt out, Size n,
-                     urng_adapter<std::remove_reference_t<URNG>>& adapter,
-                     std::forward_iterator_tag) {
-  return sample_fwd(first, last, out, static_cast<decltype(last - first)>(n),
-                    adapter);
-}
-
-template <class PopIt, class SampleIt, class Size, class URNG>
-SampleIt sample_impl(PopIt first, PopIt last, SampleIt out, Size n,
-                     urng_adapter<std::remove_reference_t<URNG>>& adapter,
-                     std::random_access_iterator_tag) {
-  return sample_ra(first, last, out, static_cast<decltype(last - first)>(n),
-                   adapter);
-}
-
 // sample 入口
 template <class PopIt, class SampleIt, class Size, class URNG>
-SampleIt sample(PopIt first, PopIt last, SampleIt out, Size n, URNG&& rng) {
+SampleIt _Oi_sample(PopIt first, PopIt last, SampleIt out, Size n, URNG&& rng) {
   using diff_t = typename std::iterator_traits<PopIt>::difference_type;
   urng_adapter<std::remove_reference_t<URNG>> adapter(std::forward<URNG>(rng));
-  return sample_impl(first, last, out, static_cast<diff_t>(n), adapter,
-                     typename std::iterator_traits<PopIt>::iterator_category());
+  return _Oi_sample_ra(first, last, out, static_cast<diff_t>(n), adapter);
 }
 
 }  // namespace std
-#endif
+
+#define sample _Oi_sample
 
 // --8<-- [start:core]
 
@@ -159,8 +141,8 @@ SampleIt sample(PopIt first, PopIt last, SampleIt out, Size n, URNG&& rng) {
 
 int main() {
   std::string in{"ABCDEFGHIJK"}, out;
-  std::sample(in.begin(), in.end(), std::back_inserter(out), 4,
-              std::mt19937{SEED});
+  std::mt19937 rng{SEED};
+  std::sample(in.begin(), in.end(), std::back_inserter(out), 4, rng);
   std::cout << "Four random letters out of " << in << " : " << out << '\n';
 }
 
