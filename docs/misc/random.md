@@ -117,10 +117,6 @@ class linear_congruential_engine;
 
 参考代码如下．
 
-??? warning "Warning"
-    如下代码仅用于演示．一旦熵池耗尽，许多 `random_device` 实现的性能就急剧下滑．对于实践使用，`random_device` 通常仅用于播种类似 `mt19937` 的伪随机数生成器．
-    ???
-
 ```cpp
 --8<-- "docs/misc/code/random/random_4.cpp"
 ```
@@ -142,7 +138,7 @@ class linear_congruential_engine;
 
 ### 随机数分布
 
-这里介绍的是要求生成的随机数按照一定的概率出现，如等概率，[伯努利分布](https://en.wikipedia.org/wiki/Bernoulli_distribution)，[二项分布](https://en.wikipedia.org/wiki/Binomial_distribution)，[几何分布](https://en.wikipedia.org/wiki/Geometric_distribution)，[标准正态（高斯）分布](https://en.wikipedia.org/wiki/Normal_distribution)．
+这里介绍的是要求生成的随机数遵从某一分布的随机数生成器，如[离散均匀分布](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)，[伯努利分布](https://en.wikipedia.org/wiki/Bernoulli_distribution)，[二项分布](https://en.wikipedia.org/wiki/Binomial_distribution)，[几何分布](https://en.wikipedia.org/wiki/Geometric_distribution)，[标准正态（高斯）分布](https://en.wikipedia.org/wiki/Normal_distribution)．
 
 具体类名请参见 [伪随机数生成——随机数分布](https://zh.cppreference.com/w/cpp/numeric/random#.E9.9A.8F.E6.9C.BA.E6.95.B0.E5.88.86.E5.B8.83) 的列表．
 
@@ -216,8 +212,8 @@ $$
 关于 `random_shuffle` 的随机性：
 
 -   C++ 标准中要求 `random_shuffle` 在所有可能的排列中 **等概率** 随机选取，但 GCC[^note1]的默认标准库 libstdc++**并未** 严格执行．
--   GCC 中 `random_shuffle` 随机性上的缺陷的原因之一，是因为它使用了 `rand()%n` 这样的写法．如先前所述，这样生成的不是均匀随机的整数．
--   原因之二，是因为 `rand()` 的值域有限．如果所传入的区间长度超过 `RAND_MAX`，将存在某些排列 **不可能** 被产生[^ref1]．
+-   GCC 中 `random_shuffle` 随机性上的缺陷的原因之一，是它使用了 `rand()%n` 这样的写法．如先前所述，这样生成的不是均匀随机的整数．
+-   原因之二，是 `rand()` 的值域有限．如果所传入的区间长度超过 `RAND_MAX`，将存在某些排列 **不可能** 被产生[^ref1]．
 
 ??? warning "Warning"
     `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除．
