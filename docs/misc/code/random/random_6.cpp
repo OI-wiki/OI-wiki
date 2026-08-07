@@ -14,7 +14,7 @@ class xorshift32 {
  public:
   xorshift32() : x(2463534242) {}
 
-  xorshift32(u32 s) : x(s) {}
+  explicit xorshift32(u32 s) : x(s) {}
 
   u32 operator()() {
     x ^= x << 13;
@@ -31,7 +31,7 @@ class xorshift64 {
  public:
   xorshift64() : x(88172645463325252) {}
 
-  xorshift64(u64 s) : x(s) {}
+  explicit xorshift64(u64 s) : x(s) {}
 
   u64 operator()() {
     x ^= x << 13;

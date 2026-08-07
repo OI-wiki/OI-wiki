@@ -117,6 +117,10 @@ class linear_congruential_engine;
 
 参考代码如下．
 
+??? warning "Warning"
+    如下代码仅用于演示．一旦熵池耗尽，许多 `random_device` 实现的性能就急剧下滑．对于实践使用，`random_device` 通常仅用于播种类似 `mt19937` 的伪随机数生成器．
+???
+
 ```cpp
 --8<-- "docs/misc/code/random/random_4.cpp"
 ```

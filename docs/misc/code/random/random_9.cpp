@@ -31,8 +31,8 @@ struct myrand {
   }
 };
 
-myrand rnd(11, 4, 7,
-           mt19937(SEED));  // 最后一个可以换成其它随机数生成器，自行设置种子
+// 最后一个可以换成其它随机数生成器，自行设置种子
+myrand rnd(11, 4, 7, mt19937(SEED));
 
 int main() {
   unsigned int x = rnd.next();

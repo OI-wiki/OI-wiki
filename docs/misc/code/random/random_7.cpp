@@ -13,7 +13,7 @@ class splitmix64 {
  public:
   splitmix64() : x(0) {}
 
-  splitmix64(u64 s) : x(s) {}
+  explicit splitmix64(u64 s) : x(s) {}
 
   u64 operator()() {
     u64 z = (x += 0x9e3779b97f4a7c15);
