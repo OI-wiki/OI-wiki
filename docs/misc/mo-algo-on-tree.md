@@ -1,4 +1,4 @@
-author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, Linky
+author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, Linky , yinqf
 
 ## 括号序树上莫队
 
@@ -10,18 +10,22 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ### 过程
 
-dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点，就直接 `push_back(-x)`，然后我们在挪动指针的时候，
+我们通过 DFS 维护树的括号序列（进入节点 $x$ 时向序列加入 $x$，离开节点 $x$ 时再次向序列加入 $x$，序列总长为 $2N$）．
 
--   新加入的值是 x  --->`add(x)`
--   新加入的值是 - x --->`del(x)`
--   新删除的值是 x  --->`del(x)`
--   新删除的值是 - x --->`add(x)`
+我们令 $st_x$ 为 $x$ 进入的时间，$ed_x$ 为 $x$ 离开的时间．
 
-这样的话，我们就把一棵树处理成了序列．
+根据括号序列的性质，对于树上路径 $u \to v$（不妨设 $st_u \le st_v$）：
+
+-   若 $\text{LCA}(u, v) = u$，路径上的节点恰好在区间 $[st_u, st_v]$ 中出现 1 次；不在路径上的节点出现 0 次或 2 次．
+-   若 $\text{LCA}(u, v) \neq u$，路径上除 $\text{LCA}(u, v)$ 外的节点恰好在区间 $[ed_u, st_v]$ 中出现 1 次；不在路径上的节点出现 0 次或 2 次．注意特殊考虑 $\text{LCA}(u, v)$．
+
+因此，进行莫队时，无论遇到的节点是入栈还是出栈，其本质都是改变了该节点在当前区间的出现次数．我们只需要维护每个节点 $x$ 是否在当前维护的路径集合中．
+
+状态更新可以统一抽象为一次翻转操作．
 
 ### 例题
 
-???+ note "例题 [「WC2013」糖果公园](https://uoj.ac/problem/58)"
+???+ note "例题 [「WC2013」糖果公园](https://uoj．ac/problem/58)"
     题意：给你一棵树，树上第 $i$ 个点颜色为 $c_i$，每次询问一条路径 $u_i$,$v_i$, 求这条路径上的
     
     $\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$
@@ -74,8 +78,9 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
       int l, r, t, id;
     
       bool operator<(const query &b) const {
-        return (pos[l] < pos[b.l]) || (pos[l] == pos[b.l] && pos[r] < pos[b.r]) ||
-               (pos[l] == pos[b.l] && pos[r] == pos[b.r] && t < b.t);
+        return (pos[l] < pos[b．l]) ||
+               (pos[l] == pos[b．l] && pos[r] < pos[b．r]) ||
+               (pos[l] == pos[b．l] && pos[r] == pos[b．r] && t < b．t);
       }
     } a[MAXN], b[MAXN];
     
@@ -86,11 +91,11 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
     
     void dfs(int x) {
       id[f[x] = ++index] = x;
-      for (int i = head[x]; i; i = e[i].nxt) {
-        if (e[i].to != fa[x][0]) {
-          fa[e[i].to][0] = x;
-          dep[e[i].to] = dep[x] + 1;
-          dfs(e[i].to);
+      for (int i = head[x]; i; i = e[i]．nxt) {
+        if (e[i]．to != fa[x][0]) {
+          fa[e[i]．to][0] = x;
+          dep[e[i]．to] = dep[x] + 1;
+          dfs(e[i]．to);
         }
       }
       id[g[x] = ++index] = x;  // 括号序
@@ -146,7 +151,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
       for (int j = 1; j <= 20; j++)
         for (int i = 1; i <= n; i++)
           fa[i][j] = fa[fa[i][j - 1]][j - 1];  // 预处理祖先
-      int block = pow(index, 2.0 / 3);
+      int block = pow(index, 2．0 / 3);
       for (int i = 1; i <= index; i++) {
         pos[i] = (i - 1) / block;
       }
@@ -154,9 +159,9 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
         int opt, x, y;
         scanf("%d%d%d", &opt, &x, &y);
         if (opt == 0) {
-          b[++cnt2].l = x;
-          b[cnt2].r = last[x];
-          last[x] = b[cnt2].t = y;
+          b[++cnt2]．l = x;
+          b[cnt2]．r = last[x];
+          last[x] = b[cnt2]．t = y;
         } else {
           if (f[x] > f[y]) swap(x, y);
           a[++cnt1] = query{lca(x, y) == x ? f[x] : g[x], f[y], cnt2, cnt1};
@@ -167,27 +172,27 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
       L = R = 0;
       T = 1;
       for (int i = 1; i <= cnt1; i++) {
-        while (T <= a[i].t) {
-          modify(b[T].l, b[T].t);
+        while (T <= a[i]．t) {
+          modify(b[T]．l, b[T]．t);
           T++;
         }
-        while (T > a[i].t) {
-          modify(b[T].l, b[T].r);
+        while (T > a[i]．t) {
+          modify(b[T]．l, b[T]．r);
           T--;
         }
-        while (L > a[i].l) {
+        while (L > a[i]．l) {
           L--;
           add(id[L]);
         }
-        while (L < a[i].l) {
+        while (L < a[i]．l) {
           add(id[L]);
           L++;
         }
-        while (R > a[i].r) {
+        while (R > a[i]．r) {
           add(id[R]);
           R--;
         }
-        while (R < a[i].r) {
+        while (R < a[i]．r) {
           R++;
           add(id[R]);
         }
@@ -195,10 +200,10 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
         int llca = lca(x, y);
         if (x != llca && y != llca) {
           add(llca);
-          ans[a[i].id] = cur;
+          ans[a[i]．id] = cur;
           add(llca);
         } else
-          ans[a[i].id] = cur;
+          ans[a[i]．id] = cur;
       }
       for (int i = 1; i <= cnt1; i++) {
         printf("%lld\n", ans[i]);
@@ -224,7 +229,7 @@ dfs 一棵树，然后如果 dfs 到 x 点，就 `push_back(x)`，dfs 完 x 点�
 -   每个节点都要属于一个块
 -   编号相邻的块之间的距离不能太大
 
-了解了这些条件后，我们看到这样一道题 [「SCOI2005」王室联邦](https://loj.ac/problem/2152)．
+了解了这些条件后，我们看到这样一道题 [「SCOI2005」王室联邦](https://loj．ac/problem/2152)．
 
 在这道题的基础上我们只要保证最后一个条件就可以解决分块的问题了．
 
@@ -272,7 +277,7 @@ stack<int> sta;
 
 void dfs1(int x) {
   sz[x] = 1;
-  unsigned ss = sta.size();
+  unsigned ss = sta．size();
   for (int i = head[x]; i; i = nxt[i])
     if (ver[i] != fa[x]) {
       fa[ver[i]] = x;
@@ -280,18 +285,18 @@ void dfs1(int x) {
       dfs1(ver[i]);
       sz[x] += sz[ver[i]];
       if (sz[ver[i]] > sz[hs[x]]) hs[x] = ver[i];
-      if (sta.size() - ss >= step) {
+      if (sta．size() - ss >= step) {
         bls++;
-        while (sta.size() != ss) bl[sta.top()] = bls, sta.pop();
+        while (sta．size() != ss) bl[sta．top()] = bls, sta．pop();
       }
     }
-  sta.push(x);
+  sta．push(x);
 }
 
 // main
-if (!sta.empty()) {
+if (!sta．empty()) {
   bls++;  // 这一行可写可不写
-  while (!sta.empty()) bl[sta.top()] = bls, sta.pop();
+  while (!sta．empty()) bl[sta．top()] = bls, sta．pop();
 }
 ```
 
@@ -308,7 +313,7 @@ if (!sta.empty()) {
 
 ### 例题「WC2013」糖果公园
 
-由于多了时间维，块的大小取到 $n^{0.6}$ 的样子就差不多了．
+由于多了时间维，块的大小取到 $n^{0．6}$ 的样子就差不多了．
 
 ??? note "参考代码"
     ```cpp
@@ -343,19 +348,19 @@ if (!sta.empty()) {
     
     void dfs1(int x) {
       sz[x] = 1;
-      unsigned ss = sta.size();
+      unsigned ss = sta．size();
       for (int i = head[x]; i; i = nxt[i])
         if (ver[i] != fa[x]) {
           fa[ver[i]] = x, dp[ver[i]] = dp[x] + 1;
           dfs1(ver[i]);
           sz[x] += sz[ver[i]];
           if (sz[ver[i]] > sz[hs[x]]) hs[x] = ver[i];
-          if (sta.size() - ss >= step) {
+          if (sta．size() - ss >= step) {
             bls++;
-            while (sta.size() != ss) bl[sta.top()] = bls, sta.pop();
+            while (sta．size() != ss) bl[sta．top()] = bls, sta．pop();
           }
         }
-      sta.push(x);
+      sta．push(x);
     }
     
     int cnt = 0;
@@ -380,8 +385,8 @@ if (!sta.empty()) {
       int x, y, t, id;
     
       bool operator<(const qu a) const {
-        return bl[x] == bl[a.x] ? (bl[y] == bl[a.y] ? t < a.t : bl[y] < bl[a.y])
-                                : bl[x] < bl[a.x];
+        return bl[x] == bl[a．x] ? (bl[y] == bl[a．y] ? t < a．t : bl[y] < bl[a．y])
+                                 : bl[x] < bl[a．x];
       }
     } q[100001];
     
@@ -401,19 +406,19 @@ if (!sta.empty()) {
     bool vis[100001] = {false};
     
     void back(int t) {
-      if (vis[upd[t].x]) {
-        now -= w[b[upd[t].y]--] * v[upd[t].y];
-        now += w[++b[upd[t].b]] * v[upd[t].b];
+      if (vis[upd[t]．x]) {
+        now -= w[b[upd[t]．y]--] * v[upd[t]．y];
+        now += w[++b[upd[t]．b]] * v[upd[t]．b];
       }
-      a[upd[t].x] = upd[t].b;
+      a[upd[t]．x] = upd[t]．b;
     }
     
     void change(int t) {
-      if (vis[upd[t].x]) {
-        now -= w[b[upd[t].b]--] * v[upd[t].b];
-        now += w[++b[upd[t].y]] * v[upd[t].y];
+      if (vis[upd[t]．x]) {
+        now -= w[b[upd[t]．b]--] * v[upd[t]．b];
+        now += w[++b[upd[t]．y]] * v[upd[t]．y];
       }
-      a[upd[t].x] = upd[t].y;
+      a[upd[t]．x] = upd[t]．y;
     }
     
     void update(int x) {
@@ -432,36 +437,37 @@ if (!sta.empty()) {
     
     int main() {
       int n = gi(), m = gi(), k = gi();
-      step = (int)pow(n, 0.6);
+      step = (int)pow(n, 0．6);
       for (int i = 1; i <= m; i++) v[i] = gi();
       for (int i = 1; i <= n; i++) w[i] = gi();
       for (int i = 1; i < n; i++) add(gi(), gi());
       for (int i = 1; i <= n; i++) a[i] = gi();
       for (int i = 1; i <= k; i++)
         if (gi())
-          q[++qs].x = gi(), q[qs].y = gi(), q[qs].t = ups, q[qs].id = qs;
+          q[++qs]．x = gi(), q[qs]．y = gi(), q[qs]．t = ups, q[qs]．id = qs;
         else
-          upd[++ups].x = gi(), upd[ups].y = gi();
-      for (int i = 1; i <= ups; i++) upd[i].b = a[upd[i].x], a[upd[i].x] = upd[i].y;
+          upd[++ups]．x = gi(), upd[ups]．y = gi();
+      for (int i = 1; i <= ups; i++)
+        upd[i]．b = a[upd[i]．x], a[upd[i]．x] = upd[i]．y;
       for (int i = ups; i; i--) back(i);
       fa[1] = 1;
       dfs1(1), dfs2(1, 1);
-      if (!sta.empty()) {
+      if (!sta．empty()) {
         bls++;
-        while (!sta.empty()) bl[sta.top()] = bls, sta.pop();
+        while (!sta．empty()) bl[sta．top()] = bls, sta．pop();
       }
       for (int i = 1; i <= n; i++)
-        if (id[q[i].x] > id[q[i].y]) swap(q[i].x, q[i].y);
+        if (id[q[i]．x] > id[q[i]．y]) swap(q[i]．x, q[i]．y);
       sort(q + 1, q + qs + 1);
       int x = 1, y = 1, t = 0;
       for (int i = 1; i <= qs; i++) {
-        if (x != q[i].x) move(x, q[i].x), x = q[i].x;
-        if (y != q[i].y) move(y, q[i].y), y = q[i].y;
+        if (x != q[i]．x) move(x, q[i]．x), x = q[i]．x;
+        if (y != q[i]．y) move(y, q[i]．y), y = q[i]．y;
         int f = lca(x, y);
         update(f);
-        while (t < q[i].t) change(++t);
-        while (t > q[i].t) back(t--);
-        ans[q[i].id] = now;
+        while (t < q[i]．t) change(++t);
+        while (t > q[i]．t) back(t--);
+        ans[q[i]．id] = now;
         update(f);
       }
       for (int i = 1; i <= qs; i++) printf("%lld\n", ans[i]);
