@@ -1,11 +1,11 @@
 constexpr int SEED = 5489;
 
 #include <algorithm>
+#include <climits>
 #include <iterator>
 #include <memory>
 #include <type_traits>
 #include <utility>
-#include <climits>
 
 #if __cplusplus > 201103L && __cplusplus <= 201402L  // C++14
 namespace std {

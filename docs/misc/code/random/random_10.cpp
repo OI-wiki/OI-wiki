@@ -1,17 +1,17 @@
 constexpr int SEED = 12345;
 
 #include <algorithm>
+#include <climits>
 #include <iterator>
 #include <memory>
 #include <type_traits>
 #include <utility>
-#include <climits>
 
 namespace std {
 
 template <class _FwdIt1, class _FwdIt2>
-void _Oi_iter_swap(_FwdIt1 _Left, _FwdIt2 _Right) { // swap *_Left and *_Right
-    swap(*_Left, *_Right); // intentional ADL
+void _Oi_iter_swap(_FwdIt1 _Left, _FwdIt2 _Right) {  // swap *_Left and *_Right
+  swap(*_Left, *_Right);                             // intentional ADL
 }
 
 // ============================================================
