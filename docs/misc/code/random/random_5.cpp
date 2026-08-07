@@ -1,6 +1,8 @@
 constexpr int SEED = 5497u;
 
+#include <climits>
 #include <random>
+#include <type_traits>
 
 namespace std {
 
