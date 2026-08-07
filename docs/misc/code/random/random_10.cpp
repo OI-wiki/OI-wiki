@@ -2,6 +2,7 @@ constexpr int SEED = 12345;
 
 #include <algorithm>
 #include <climits>
+#include <cstdlib>
 #include <iterator>
 #include <memory>
 #include <type_traits>
@@ -71,7 +72,6 @@ int _Oi_rand() { return std::eng(); }
 
 #include <algorithm>
 #include <cstdlib>
-#include <ctime>
 #include <iostream>
 
 int a[100];
