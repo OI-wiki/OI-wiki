@@ -2,8 +2,6 @@
 #include <unordered_map>
 
 // --8<-- [start:core]
-
-#include <chrono>
 #include <cstdint>
 
 using u64 = std::uint64_t;
@@ -16,8 +14,8 @@ struct MyHash {
   }
 
   size_t operator()(size_t x) const {
-    // 推荐使用 std::chrono::steady_clock::now().time_since_epoch().count() 作为
-    // FIXED_RANDOM
+    // 推荐使用 <chrono> 库的 std::chrono::steady_clock::now().time_since_epoch().count()
+    // 作为 FIXED_RANDOM
     static const u64 FIXED_RANDOM = 0x9e3779b97f4a7c15;
     return mix64(x + FIXED_RANDOM);
   }
