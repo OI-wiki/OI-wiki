@@ -72,7 +72,7 @@ class urng_adapter {
 // 前向迭代器：蓄水池抽样（与 MSVC 的 _Sample_fwd 一致）
 template <class PopIt, class SampleIt, class Diff, class Adapter>
 SampleIt _Oi_sample_fwd(PopIt first, PopIt last, SampleIt out, Diff n,
-                    Adapter& rng) {
+                        Adapter& rng) {
   Diff k = 0;
   // 先填满前 n 个
   for (; first != last && k < n; ++first, ++k) {
@@ -94,7 +94,7 @@ SampleIt _Oi_sample_fwd(PopIt first, PopIt last, SampleIt out, Diff n,
 // 随机访问迭代器：部分 Fisher‑Yates 选索引（与 MSVC 的 _Sample_ra 一致）
 template <class PopIt, class SampleIt, class Diff, class Adapter>
 SampleIt _Oi_sample_ra(PopIt first, PopIt last, SampleIt out, Diff n,
-                   Adapter& rng) {
+                       Adapter& rng) {
   Diff N = last - first;
   if (n >= N) {
     for (Diff i = 0; i < N; ++i) *out++ = first[i];

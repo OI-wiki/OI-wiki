@@ -59,13 +59,9 @@ void _Oi_random_shuffle(RanIt first, RanIt last) {
 
 }  // namespace std
 
-void _Oi_srand(int _seed) {
-  std::eng.state = _seed;
-}
+void _Oi_srand(int _seed) { std::eng.state = _seed; }
 
-int _Oi_rand() {
-  return std::eng();
-}
+int _Oi_rand() { return std::eng(); }
 
 #define srand _Oi_srand
 #define rand _Oi_rand
