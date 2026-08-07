@@ -19,7 +19,7 @@ void _Oi_iter_swap(_FwdIt1 _Left, _FwdIt2 _Right) {  // swap *_Left and *_Right
 // ============================================================
 // 3.1 模拟 MSVC 的 rand() 的线性同余引擎
 struct msvc_rand_engine {
-  unsigned long state = 1;  // 默认种子对应 std::srand(1)
+  unsigned long state = SEED;
 
   int operator()() {
     state = state * 214013UL + 2531011UL;
@@ -48,16 +48,27 @@ void _Oi_random_shuffle(RanIt first, RanIt last, RngFn&& rng) {
   }
 }
 
+msvc_rand_engine eng;
+
 // 3.4 无 RNG 版本：使用 MSVC 的 rand() 实现保证一致性
 template <class RanIt>
 void _Oi_random_shuffle(RanIt first, RanIt last) {
-  msvc_rand_engine eng;  // 固定种子 1，可改为由用户配置
   msvc_rand_fn<decltype(last - first)> rand_fn{eng};
   _Oi_random_shuffle(first, last, rand_fn);
 }
 
 }  // namespace std
 
+void _Oi_srand(int _seed) {
+  std::eng.state = _seed;
+}
+
+int _Oi_rand() {
+  return std::eng();
+}
+
+#define srand _Oi_srand
+#define rand _Oi_rand
 #define random_shuffle _Oi_random_shuffle
 
 // --8<-- [start:core]
