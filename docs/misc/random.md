@@ -138,7 +138,7 @@ class linear_congruential_engine;
 
 ### 随机数分布
 
-这里介绍的是要求生成的随机数遵从某一分布的随机数生成器，如[离散均匀分布](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)，[伯努利分布](https://en.wikipedia.org/wiki/Bernoulli_distribution)，[二项分布](https://en.wikipedia.org/wiki/Binomial_distribution)，[几何分布](https://en.wikipedia.org/wiki/Geometric_distribution)，[标准正态（高斯）分布](https://en.wikipedia.org/wiki/Normal_distribution)．
+这里介绍的是要求生成的随机数遵从某一分布的随机数生成器，如 [离散均匀分布](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)，[伯努利分布](https://en.wikipedia.org/wiki/Bernoulli_distribution)，[二项分布](https://en.wikipedia.org/wiki/Binomial_distribution)，[几何分布](https://en.wikipedia.org/wiki/Geometric_distribution)，[标准正态（高斯）分布](https://en.wikipedia.org/wiki/Normal_distribution)．
 
 具体类名请参见 [伪随机数生成——随机数分布](https://zh.cppreference.com/w/cpp/numeric/random#.E9.9A.8F.E6.9C.BA.E6.95.B0.E5.88.86.E5.B8.83) 的列表．
 
