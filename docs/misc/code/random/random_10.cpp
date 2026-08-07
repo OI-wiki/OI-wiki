@@ -1,63 +1,18 @@
 constexpr int SEED = 12345;
 
+#include <algorithm>
+#include <iterator>
+#include <memory>
+#include <type_traits>
+#include <utility>
+#include <climits>
+
 namespace std {
 
-// ============================================================
-// 1. 辅助类：模拟 MSVC 的 _Rng_from_urng
-// ============================================================
-template <class URNG>
-class urng_adapter {
- public:
-  explicit urng_adapter(URNG&& rng) : rng_(std::move(rng)) {}
-
-  // 返回 [0, limit] 范围的随机索引，与 MSVC 的 operator() 行为一致
-  template <class Diff>
-  Diff operator()(Diff limit) {
-    return static_cast<Diff>(
-        generate_random_index(static_cast<unsigned int>(limit)));
-  }
-
- private:
-  URNG rng_;
-
-  // 从 URNG 获取 32 位随机数（与 MSVC 的 _Get_bits 完全一致）
-  unsigned int get_bits() noexcept {
-    if constexpr (sizeof(typename URNG::result_type) == sizeof(unsigned int)) {
-      return rng_();
-    } else {
-      constexpr int src_bits = CHAR_BIT * sizeof(typename URNG::result_type);
-      constexpr int need_bits = CHAR_BIT * sizeof(unsigned int);
-      unsigned int val = rng_();
-      int bits = src_bits;
-      while (bits < need_bits) {
-        val <<= src_bits;
-        val |= rng_();
-        bits += src_bits;
-      }
-      return val;
-    }
-  }
-
-  // 拒绝采样生成 [0, limit] 的均匀整数（与 MSVC 的 _Generate_random_index
-  // 一致）
-  unsigned int generate_random_index(const unsigned int limit) noexcept {
-    unsigned int ret = get_bits();
-    if (limit == UINT_MAX) {
-      return ret;
-    }
-    const unsigned int divisor = UINT_MAX / (limit + 1);
-    unsigned int quotient;
-    unsigned int remainder;
-    do {
-      quotient = ret / (limit + 1);
-      remainder = ret % (limit + 1);
-      if (quotient != divisor) {
-        return remainder;
-      }
-      ret = get_bits();
-    } while (true);
-  }
-};
+template <class _FwdIt1, class _FwdIt2>
+void _Oi_iter_swap(_FwdIt1 _Left, _FwdIt2 _Right) { // swap *_Left and *_Right
+    swap(*_Left, *_Right); // intentional ADL
+}
 
 // ============================================================
 // 3. random_shuffle
@@ -86,22 +41,24 @@ struct msvc_rand_fn {
 
 // 3.3 带 RNG 的版本（与 MSVC 算法一致）
 template <class RanIt, class RngFn>
-void random_shuffle(RanIt first, RanIt last, RngFn&& rng) {
+void _Oi_random_shuffle(RanIt first, RanIt last, RngFn&& rng) {
   auto n = last - first;
   for (auto i = n; i > 1; --i) {
-    std::iter_swap(first + (i - 1), first + rng(i));
+    std::_Oi_iter_swap(first + (i - 1), first + rng(i));
   }
 }
 
 // 3.4 无 RNG 版本：使用 MSVC 的 rand() 实现保证一致性
 template <class RanIt>
-void random_shuffle(RanIt first, RanIt last) {
+void _Oi_random_shuffle(RanIt first, RanIt last) {
   msvc_rand_engine eng;  // 固定种子 1，可改为由用户配置
   msvc_rand_fn<decltype(last - first)> rand_fn{eng};
-  random_shuffle(first, last, rand_fn);
+  _Oi_random_shuffle(first, last, rand_fn);
 }
 
 }  // namespace std
+
+#define random_shuffle _Oi_random_shuffle
 
 // --8<-- [start:core]
 

@@ -1,6 +1,18 @@
 constexpr int SEED = 5489;
 
+#include <algorithm>
+#include <iterator>
+#include <memory>
+#include <type_traits>
+#include <utility>
+#include <climits>
+
 namespace std {
+
+template <class _FwdIt1, class _FwdIt2>
+void _Oi_iter_swap(_FwdIt1 _Left, _FwdIt2 _Right) { // swap *_Left and *_Right
+    swap(*_Left, *_Right); // intentional ADL
+}
 
 // ============================================================
 // 1. 辅助类：模拟 MSVC 的 _Rng_from_urng
@@ -8,7 +20,7 @@ namespace std {
 template <class URNG>
 class urng_adapter {
  public:
-  explicit urng_adapter(URNG&& rng) : rng_(std::move(rng)) {}
+  explicit urng_adapter(URNG& rng) : rng_(rng) {}
 
   // 返回 [0, limit] 范围的随机索引，与 MSVC 的 operator() 行为一致
   template <class Diff>
@@ -63,16 +75,18 @@ class urng_adapter {
 // 2. shuffle（基于 MSVC 的 _Shuffle）
 // ============================================================
 template <class RanIt, class URNG>
-void shuffle(RanIt first, RanIt last, URNG&& rng) {
+void _Oi_shuffle(RanIt first, RanIt last, URNG&& rng) {
   urng_adapter<std::remove_reference_t<URNG>> adapter(std::forward<URNG>(rng));
   if (first == last) return;
   for (auto i = last - first - 1; i > 0; --i) {
     auto idx = adapter(i);  // 返回 [0, i]
-    std::iter_swap(first + i, first + idx);
+    std::_Oi_iter_swap(first + i, first + idx);
   }
 }
 
 }  // namespace std
+
+#define shuffle _Oi_shuffle
 
 // --8<-- [start:core]
 

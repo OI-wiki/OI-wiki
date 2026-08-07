@@ -1,5 +1,12 @@
 constexpr int SEED = 5489;
 
+#include <algorithm>
+#include <iterator>
+#include <memory>
+#include <type_traits>
+#include <utility>
+#include <climits>
+
 #if __cplusplus > 201103L && __cplusplus <= 201402L  // C++14
 namespace std {
 
@@ -9,7 +16,7 @@ namespace std {
 template <class URNG>
 class urng_adapter {
  public:
-  explicit urng_adapter(URNG&& rng) : rng_(std::move(rng)) {}
+  explicit urng_adapter(URNG& rng) : rng_(rng) {}
 
   // 返回 [0, limit] 范围的随机索引，与 MSVC 的 operator() 行为一致
   template <class Diff>
