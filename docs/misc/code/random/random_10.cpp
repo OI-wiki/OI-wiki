@@ -16,7 +16,8 @@ using std::cout;
 // --8<-- [end:real-using]
 
 namespace fake_using {
-#if (defined(_MSVC_LANG) && _MSVC_LANG < 201703L) || (!defined(_MSVC_LANG) && __cplusplus < 201703L)
+#if (defined(_MSVC_LANG) && _MSVC_LANG < 201703L) || \
+    (!defined(_MSVC_LANG) && __cplusplus < 201703L)
 // --8<-- [start:fake-using]
 using std::random_shuffle;
 // --8<-- [end:fake-using]
