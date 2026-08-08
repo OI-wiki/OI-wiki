@@ -26,7 +26,7 @@ using std::sample;
 }  // namespace fake_using
 
 template <class RanIt, class OutIt, class URNG>
-void sample(RanIt first, RanIt last, OutIt dest, size_t k, URNG &&rng) {
+void sample(RanIt first, RanIt last, OutIt dest, int k, URNG &&rng) {
   size_t n = last - first;
   for (; n; ++first, --n) {
     if (rng() % n < k) {
