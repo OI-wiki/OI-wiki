@@ -145,7 +145,10 @@ class linear_congruential_engine;
 下面的程序模拟了一个六面体骰子．
 
 ```cpp
---8<-- "docs/misc/code/random/random_5.cpp:core"
+--8<-- "docs/misc/code/random/random_5.cpp:header"
+--8<-- "docs/misc/code/random/random_5.cpp:real-using"
+--8<-- "docs/misc/code/random/random_5.cpp:fake-using"
+--8<-- "docs/misc/code/random/random_5.cpp:main"
 ```
 
 ### 其他实现方法
@@ -229,19 +232,28 @@ GCC[^note1]实现的 `shuffle` 符合 C++ 标准的要求，即在所有可能�
 下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器．生成数据为 [「ZJOI2012」灾难](https://www.luogu.com.cn/problem/P2597) 的随机小数据．
 
 ```cpp
---8<-- "docs/misc/code/random/random_10.cpp:core"
+--8<-- "docs/misc/code/random/random_10.cpp:header"
+--8<-- "docs/misc/code/random/random_10.cpp:real-using"
+--8<-- "docs/misc/code/random/random_10.cpp:fake-using"
+--8<-- "docs/misc/code/random/random_10.cpp:main"
 ```
 
 下面是用 `mt19937` 及 `shuffle()` 编写的同一个数据生成器．
 
 ```cpp
---8<-- "docs/misc/code/random/random_11.cpp:core"
+--8<-- "docs/misc/code/random/random_11.cpp:header"
+--8<-- "docs/misc/code/random/random_11.cpp:real-using"
+--8<-- "docs/misc/code/random/random_11.cpp:fake-using"
+--8<-- "docs/misc/code/random/random_11.cpp:main"
 ```
 
 下面是随机排列前十个正整数的一个实现．
 
 ```cpp
---8<-- "docs/misc/code/random/random_12.cpp:core"
+--8<-- "docs/misc/code/random/random_12.cpp:header"
+--8<-- "docs/misc/code/random/random_12.cpp:real-using"
+--8<-- "docs/misc/code/random/random_12.cpp:fake-using"
+--8<-- "docs/misc/code/random/random_12.cpp:main"
 ```
 
 ### `sample`
@@ -253,7 +265,10 @@ GCC[^note1]实现的 `shuffle` 符合 C++ 标准的要求，即在所有可能�
 下面是从 11 个大写字母里随机抽取 4 个的实现．
 
 ```cpp
---8<-- "docs/misc/code/random/random_13.cpp:core"
+--8<-- "docs/misc/code/random/random_13.cpp:header"
+--8<-- "docs/misc/code/random/random_13.cpp:real-using"
+--8<-- "docs/misc/code/random/random_13.cpp:fake-using"
+--8<-- "docs/misc/code/random/random_13.cpp:main"
 ```
 
 ## 参考资料与注释
