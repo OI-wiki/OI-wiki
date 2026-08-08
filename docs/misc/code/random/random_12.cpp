@@ -31,7 +31,7 @@ void shuffle(RanIt first, RanIt last, URNG &rng) {
   }
 }
 
-// --8<-- [start:core]
+// --8<-- [start:main]
 
 int main() {
   vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -44,4 +44,4 @@ int main() {
   cout << "\n";
 }
 
-// --8<-- [end:core]
+// --8<-- [end:main]

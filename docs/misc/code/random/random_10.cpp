@@ -55,4 +55,4 @@ int main() {
   }
 }
 
-// --8<-- [end:cmain]
+// --8<-- [end:main]
