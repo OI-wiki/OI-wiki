@@ -28,3 +28,5 @@
 
 -   维护者：Menci（[men.ci](https://men.ci)），线路：Azure + 阿里云 CDN，同步频率：与主站相同
     -   <https://oi.wiki>
+-   维护者：cgy6666（[xqyhcc.qzz.io](https://xqyhcc.qzz.io)），线路：GitHub Pages + Cloudflare CDN，同步频率：2小时
+    -   <https://oi-wiki.xqyhcc.qzz.io>
