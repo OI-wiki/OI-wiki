@@ -8,18 +8,18 @@ constexpr int SEED = 5497u;
 // --8<-- [start:real-using]
 using std::cout;
 using std::mt19937;
+
 // --8<-- [end:real-using]
 
-template<class Ty = int>
+template <class Ty = int>
 class uniform_int_distribution {
-
-private:
+ private:
   int a, b;
 
-public:
-  uniform_int_distribution(int _a, int _b): a(_a), b(_b) {}
+ public:
+  uniform_int_distribution(int _a, int _b) : a(_a), b(_b) {}
 
-  template<class Rng>
+  template <class Rng>
   int operator()(Rng &rng) {
     return rng() % (b - a + 1) + a;
   }
@@ -29,7 +29,7 @@ namespace fake_using {
 // --8<-- [start:fake-using]
 using std::uniform_int_distribution;
 // --8<-- [end:fake-using]
-}
+}  // namespace fake_using
 
 // --8<-- [start:main]
 int main() {
@@ -42,4 +42,5 @@ int main() {
   cout << '\n';
   return 0;
 }
+
 // --8<-- [end:main]

@@ -14,6 +14,7 @@ using std::copy;
 using std::cout;
 using std::mt19937;
 using std::string;
+
 // --8<-- [end:real-using]
 
 namespace fake_using {
@@ -22,13 +23,13 @@ namespace fake_using {
 using std::sample;
 // --8<-- [end:fake-using]
 #endif
-}
+}  // namespace fake_using
 
-template<class RanIt, class OutIt, class URNG>
+template <class RanIt, class OutIt, class URNG>
 void sample(RanIt first, RanIt last, OutIt dest, size_t k, URNG &&rng) {
   size_t n = last - first;
-  for(; n; ++first, --n) {
-    if(rng() % n < k) {
+  for (; n; ++first, --n) {
+    if (rng() % n < k) {
       --k;
       *dest = *first;
       ++dest;

@@ -9,18 +9,19 @@ constexpr int SEED = 5489;
 // --8<-- [start:real-using]
 using std::cout;
 using std::mt19937;
+
 // --8<-- [end:real-using]
 
 namespace fake_using {
 // --8<-- [start:fake-using]
 using std::shuffle;
 // --8<-- [end:fake-using]
-}
+}  // namespace fake_using
 
-template<class RanIt, class URNG>
+template <class RanIt, class URNG>
 void shuffle(RanIt first, RanIt last, URNG &rng) {
   size_t n = last - first;
-  for(; n; --n) {
+  for (; n; --n) {
     std::swap(first[rng() % n], first[n - 1]);
   }
 }

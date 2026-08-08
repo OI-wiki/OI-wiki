@@ -12,6 +12,7 @@ std::minstd_rand rng;
 
 // --8<-- [start:real-using]
 using std::cout;
+
 // --8<-- [end:real-using]
 
 namespace fake_using {
@@ -20,16 +21,16 @@ namespace fake_using {
 using std::random_shuffle;
 // --8<-- [end:fake-using]
 #endif
-}
+}  // namespace fake_using
 
 void _Oi_srand(int _seed) { rng.seed(_seed); }
 
 int _Oi_rand() { return rng(); }
 
-template<class RanIt>
+template <class RanIt>
 void random_shuffle(RanIt first, RanIt last) {
   size_t n = last - first;
-  for(; n; --n) {
+  for (; n; --n) {
     std::swap(first[rng() % n], first[n - 1]);
   }
 }
