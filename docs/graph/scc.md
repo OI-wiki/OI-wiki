@@ -48,7 +48,7 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
 在 Tarjan 算法中为每个结点 $u$ 维护了以下几个变量：
 
 1.  $\textit{dfn}_u$：深度优先搜索遍历时结点 $u$ 被搜索的次序．
-2.  $\textit{low}_u$：在 $u$ 的子树中能够回溯到的最早的已经在栈中的结点．设以 $u$ 为根的子树为 $\textit{Subtree}_u$．$\textit{low}_u$ 定义为以下结点的 $\textit{dfn}$ 的最小值：$\textit{Subtree}_u$ 中的结点；从 $\textit{Subtree}_u$ 通过一条反祖边能到达的结点．
+2.  $\textit{low}_u$：在 $u$ 的子树中能够回溯到的最早的已经在栈中的结点．设以 $u$ 为根的子树为 $\textit{Subtree}_u$．$\textit{low}_u$ 定义为以下结点的 $\textit{dfn}$ 的最小值：从 $u$ 出发经过树边，横叉边，前向边和**至多一条**返祖边能到达的结点．
 
 一个结点的子树内结点的 dfn 都大于该结点的 dfn．
 
