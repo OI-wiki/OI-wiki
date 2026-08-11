@@ -152,4 +152,4 @@ printf("将字符串 s 的前两位替换为 NOI 后得到的字符串是 %s", s
 
 ## 参考资料与注释
 
-[^string1]: [C++标准草案 \[basic.string\]](https://eel.is/c++draft/basic.string#general-3)
+[^string1]: [C++ 标准草案 \[basic.string\]](https://eel.is/c++draft/basic.string#general-3)
