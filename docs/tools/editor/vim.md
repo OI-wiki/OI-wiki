@@ -1,4 +1,4 @@
-author: Enter-tainer, ouuan, Xeonacid, Ir1d, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise, StudyingFather, SukkaW, SodaCris, SkyeYoung, 383494, danielqfmai
+author: Enter-tainer, ouuan, Xeonacid, Ir1d, partychicken, ChungZH, LuoshuiTianyi, Kewth, s0cks5, Doveqise, StudyingFather, SukkaW, SodaCris, SkyeYoung, 383494, danielqfmai, yui-ng
 
 Vim - 无处不在的文本编辑器．
 
@@ -8,7 +8,7 @@ Vim 是从 vi 发展出来的一个文本编辑器．其代码补完、编译及
 
 ## 安装
 
-Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用．
+Linux 系统通常自带 Vim，打开终端输入 `vim` 即可启用，输入 `vim filename` 来直接打开文件，也可以进入 Vim 后 `:e filename` 打开．
 
 若需手动安装，Vim 的 [官方网站](https://www.vim.org/) 提供了下载的 [说明文档](https://www.vim.org/download.php)，按照需求编译安装即可．
 
@@ -36,14 +36,18 @@ Vim 的方向键是<kbd>↑</kbd>、<kbd>↓</kbd>、<kbd>←</kbd>、<kbd>→</
 
 以下是命令模式常用的命令：
 
--   `i` 切换到输入模式，在光标当前位置开始输入文本．按<kbd>Esc</kbd>键可回到普通模式．
--   `x` 用于删除光标后的一个字符．
+-   `i` 切换到输入模式，在**光标当前位置**开始输入文本．按<kbd>Esc</kbd>键可回到普通模式．
+-   `r` 替换光标下的字符，按下此按键后按下其他按键来替换，按<kbd>Esc</kbd>键取消．
+-   `R` 切换到替换模式，在光标当前位置开始替换后面的文本．按<kbd>Esc</kbd>键可回到普通模式．
+-   `x` 用于删除光标下的一个字符．
 -   `:` 切换到底线命令模式，以在最底一行输入命令．
--   `a` 切换到输入模式，在光标后开始输入文本．
--   `o` 切换到输入模式，在光标下插入新的一行；`O` 切换到输入模式，在光标上插入新的一行．
+-   `a` 切换到输入模式，在**光标后**开始输入文本．
+-   `o` 切换到输入模式，在光标下插入新的一行
+-   `O` 切换到输入模式，在光标上插入新的一行．
 -   `p` 粘贴剪贴板内容到光标下方；`P` 粘贴剪贴板内容到光标上方．
 -   `dd` 删除光标所在的一整行．
--   `d` 命令也是删除，通常配合其他键使用．
+-   `d` 命令也是删除，通常配合移动命令使用，也可以使用可视模式．
+-   `c` 命令用于修改，`cX` 等价于 `dX` 加上 `i`．
 -   `u` 撤销上一次对文本的更改．
 -   `y` 命令可以复制被选中的区域．需要按 `v` 进入可视模式操作．
 -   `yy` 复制当前行．
@@ -52,14 +56,31 @@ Vim 的方向键是<kbd>↑</kbd>、<kbd>↓</kbd>、<kbd>←</kbd>、<kbd>→</
 -   `:q` 退出 Vim．
 -   `:q!` 强制退出 Vim，不保存修改．
 
+??? info "关于剪贴板"
+    原生 Vim 中的剪贴板是和外界隔离的，可以在插入/替换模式按下<kbd>Ctrl</kbd>+<kbd>V</kbd>（类 Unix 中是 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>）粘贴外部内容。 
+
+移动命令（单独按下为移动，可以和 `c`、`d`、`y` 命令组合使用）：
+-   `w` 单词尾
+-   `e` 下个单词头
+-   `b` 单词头
+-   `0` 行首
+-   `$` 行尾
+-   `gg` 文件的第一行
+-   `G` 最后一行
+
+比如如下的场景：
+
+```cpp
+int a = 1<<32;
+``` 
+
+找到这一行，按下 `0` 跳到开头，按下 `cw` 修改单词，输入 `long long`，按下<kbd>Esc</kbd>即可完成修改。 
+
 部分其他命令：
 
--   `c` 命令用于修改，相当于 `di`．
 -   `=` 命令可以以默认格式对选中行应用自动缩进．
 -   `==` 自动缩进当前行．
--   `.` 命令可以重复上次执行的命令．
--   `gg` 命令可跳至代码的开头；`G` 命令可跳至代码最后一行的开头；`G` 命令前加数字可跳至指定行．
--   `w` 可以跳到下个单词的开头；`e` 可以跳到当前单词或下一单词的结尾；`b` 可以跳到当前单词或上一单词的开头；`0` 可以跳至行首；`$` 可以跳至行尾．`w`、`e`、-`0`、`$` 还可以与其他命令组合，比如 `de`、`dw`、`d0` 和 `d$` 分别对应删至单词尾、删至下个单词头、删至行首和删至行尾．
+-   `.` 命令可以重复上次执行的命令．（参见“进阶知识”） 
 
 命令模式下按<kbd>/</kbd>，下方即会出现查找框，输入需要查找的字符，按回车后就能查看搜索结果．如果有多个查找结果，按<kbd>n</kbd>即可跳至下一个查找结果；按<kbd>N</kbd>可跳至上一个．
 
@@ -94,11 +115,14 @@ Vim 的方向键是<kbd>↑</kbd>、<kbd>↓</kbd>、<kbd>←</kbd>、<kbd>→</
 在底线命令模式中，基本的命令有：
 
 -   `:help`/`:h` 查看英文版 Vim 在线帮助文档．
+-   `:e` 打开文件，输入不存在的文件名来创建文件 
+-   `:split` 在下方开一个分屏打开文件 
+-   `:vsplit` 在左侧开一个分屏打开文件 
 -   `:w` 保存文件．
 -   `:q` 退出 Vim．
 -   `:wq` 保存文件，退出 Vim．
 -   `:q!`/`:!q` 强制退出 Vim，不保存修改．
--   `:e filename` 可以打开当前目录下的指定文件．
+-   `:read src` 读取指定内容到光标下，可以是文件，也可以是 `!command` 命令输出。 
 -   `:s` 命令是替换．
 
 ```vim
@@ -122,7 +146,7 @@ Vim 的方向键是<kbd>↑</kbd>、<kbd>↓</kbd>、<kbd>←</kbd>、<kbd>→</
 :%s/str1/str2/gc
 ```
 
-如果命令形式是 `:! command`，则命令将在 bash 终端执行．
+如果命令形式是 `:!command`，则命令将在 bash 终端执行．
 
 按<kbd>Esc</kbd>键可以退出底线命令模式．
 
@@ -238,3 +262,4 @@ Vim 的宏功能可以重复任意长的命令．
 -   [Vim scripting cheatsheet](https://devhints.io/vimscript)
 -   [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com)
 -   [Linux vi/vim | 菜鸟教程](https://www.runoob.com/linux/linux-vim.html)
+
