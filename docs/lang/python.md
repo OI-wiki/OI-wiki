@@ -1,4 +1,4 @@
-author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran, CuriosityQiu,Jerry_CHZY
+author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran, CuriosityQiu,Jerry\_CHZY
 
 ## 关于 Python
 
@@ -73,6 +73,7 @@ PyCharm 主要有三个版本：
 1.  下载：[访问 PyCharm 官网下载页面](https://www.jetbrains.com/pycharm/download/)，根据你的操作系统选择 Community 版本下载．
 2.  安装：双击下载的安装包（如 pycharm-community-2024.1.1.exe），按照安装向导的提示进行操作．
     > 在安装选项步骤中，建议勾选以下选项：
+    >
     > -   创建桌面快捷方式，方便快速启动．
     > -   添加 bin 文件夹到 PATH，便于在命令行中直接使用 PyCharm 的相关命令．
     > -   关联 .py 文件，让系统用 PyCharm 作为 Python 文件的默认打开方式．
@@ -104,8 +105,8 @@ PyCharm 主要有三个版本：
 如果在创建项目时未正确配置解释器，或需要更换，可以按以下步骤操作：
 
 1.  打开设置：File > Settings（Windows/Linux）或 PyCharm > Preferences（macOS）．
-2.  在左侧导航栏找到 Project: [项目名] > Python Interpreter．
-3.  点击右侧的齿轮图标，选择 Add… 来添加新的解释器．
+2.  在左侧导航栏找到 Project: \[项目名] > Python Interpreter．
+3.  点击右侧的齿轮图标，选择 Add…来添加新的解释器．
 4.  在弹出的对话框中，你可以选择 System Interpreter（使用系统中已安装的 Python），或创建 Virtualenv 等虚拟环境．
 5.  选择或创建完成后，点击 OK 保存设置．
 
@@ -114,9 +115,9 @@ PyCharm 主要有三个版本：
 在 PyCharm 中可以通过以下两种方式安装第三方库：
 
 -   使用内置终端：点击底部的 Terminal 选项卡，输入 pip install 库名 命令安装．若下载速度慢，可指定国内镜像源，如：
-    pip install 库名 -i https://pypi.tuna.tsinghua.edu.cn/simple
+    pip install 库名 -i <https://pypi.tuna.tsinghua.edu.cn/simple>
 -   通过设置界面：
-    1.  进入 File > Settings > Project: [项目名] > Python Interpreter．
+    1.  进入 File > Settings > Project: \[项目名] > Python Interpreter．
     2.  点击右侧的 + 号按钮．
     3.  在弹出的窗口中搜索并选择你想要安装的库，点击 Install Package 即可．
 
@@ -136,7 +137,7 @@ PyCharm 的调试器是定位问题的利器：
 
 ### 参考资料与注释
 
- [JetBrains 教育许可申请](https://www.jetbrains.com/community/education/#students)
+[JetBrains 教育许可申请](https://www.jetbrains.com/community/education/#students)
 
 ## 使用 `pip` 安装第三方库
 
