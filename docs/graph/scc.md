@@ -200,7 +200,7 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
       sccCnt = 0;
       for (int i = 1; i <= n; ++i)
         if (!vis[i]) dfs1(i);
-      for (int i = n; i >= 1; --i)
+      for (int i = n - 1; i >= 0; --i)
         if (!color[s[i]]) {
           ++sccCnt;
           dfs2(s[i]);
@@ -230,7 +230,7 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
         for i in range(1, n + 1):
             if vis[i] == False:
                 dfs1(i)
-        for i in range(n, 0, -1):
+        for i in range(n - 1, -1, -1):
             if color[s[i]] == False:
                 sccCnt = sccCnt + 1
                 dfs2(s[i])
