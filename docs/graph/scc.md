@@ -76,7 +76,7 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
             if v hasn't been searched then
                 TARJAN_SEARCH(v) // 搜索
                 low[u]=min(low[u],low[v]) // 回溯
-            else if v is in the stack then
+            else if v has been in the stack then
                 low[u]=min(low[u],dfn[v])
         if dfn[u] equal to low[u] then
             ++scccnt
