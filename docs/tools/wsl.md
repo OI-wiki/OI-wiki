@@ -141,6 +141,17 @@ wsl --set-default-version 2
 ???+ warning "Warning"
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变．如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本．
 
+???+ note "命令行安装 WSL 分发版"
+    查找可用 WSL 分发版命令
+    ```powershell
+    wsl -l -v
+    ```
+    命令行安装 WSL 分发版的指令
+    ```powershell
+    wsl --install <name>
+    ```
+    额外参数：`--location <path>` 以指定安装路径；`-n` 使得安装完成后不会打开 WSL 分发版。
+
 ## 配置分发版[^ref5]
 
 本章以 Windows 自动安装的 Ubuntu 为例．
