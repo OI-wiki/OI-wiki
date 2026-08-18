@@ -1,0 +1,23 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>Layer 1</title>
+  <ellipse ry="47.5" rx="47.5" id="svg_1" cy="88" cx="119" stroke="#000" fill="#fff"/>
+  <ellipse ry="47.5" rx="47.5" id="svg_4" cy="515" cx="118" stroke="#000" fill="#fff"/>
+  <path id="svg_5" d="m637,134.5c-26.24309,0 -47.5,-21.25691 -47.5,-47.5c0,-26.24309 21.25691,-47.5 47.5,-47.5c26.24309,0 47.5,21.25691 47.5,47.5c0,26.24309 -21.25691,47.5 -47.5,47.5z" opacity="undefined" stroke="#000" fill="#fff"/>
+  <ellipse ry="47.5" rx="47.5" id="svg_6" cy="522" cx="673" stroke="#000" fill="#fff"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_7" y="92.5" x="117.5" stroke="#000" fill="#000000">1</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_8" y="85.5" x="632.5" stroke="#000" fill="#000000">2</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_9" y="514.5" x="102.5" stroke="#000" fill="#000000">-1</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_10" y="522.5" x="673.5" stroke="#000" fill="#000000">-2</text>
+  <line id="svg_11" y2="132.5" x2="638.5" y1="475.5" x1="670.5" stroke="#000" fill="none"/>
+  <line id="svg_12" y2="476.5" x2="146.5" y1="99.5" x1="591.5" stroke="#000" fill="none"/>
+  <line id="svg_13" y2="136.5" x2="115.5" y1="468.5" x1="116.5" stroke="#000" fill="none"/>
+  <line id="svg_14" y2="175.5" x2="611.5" y1="132.5" x1="638.5" stroke="#000" fill="none"/>
+  <line id="svg_15" y2="474.5" x2="206.5" y1="476.5" x1="146.5" stroke="#000" fill="none"/>
+  <line id="svg_16" y2="173.5" x2="92.5" y1="137.5" x1="113.5" stroke="#000" fill="none"/>
+  <line id="svg_17" y2="166.5" x2="672.5" y1="133.5" x1="638.5" stroke="#000" fill="none"/>
+  <line id="svg_18" y2="419.5" x2="158.5" y1="476.5" x1="146.5" stroke="#000" fill="none"/>
+  <line id="svg_19" y2="169.5" x2="140.5" y1="133.5" x1="115.5" stroke="#000" fill="none"/>
+ </g>
+</svg>
