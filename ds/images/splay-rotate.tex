@@ -1,0 +1,27 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\tikzset{tree/.style={every node/.style={circle, draw}}}
+
+\begin{document}
+\begin{tikzpicture}
+
+\scoped[tree] \node at (-2,0) {1}
+    child {node {2}
+        child {node {4}}
+        child {node {5}}}
+    child {node {3}};
+
+\scoped[tree] \node at (2,0) {2}
+    child {node {4}}
+    child {node {1}
+        child {node {5}}
+        child {node {3}}};
+
+\draw[->] (-0.5,-1.25) -- node[above] {右旋} ++(1,0);
+\draw[->] (0.5,-1.75) -- node[below] {左旋} ++(-1,0);
+
+\end{tikzpicture}
+\end{document}

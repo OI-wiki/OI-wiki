@@ -1,0 +1,21 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}[x=2cm,y=2cm]
+
+\begin{scope}[every node/.style={circle,draw,minimum size=10mm}]
+    \node (u) at (0.5,0) {$u$};
+    \node (v) at (2,0) {$v$};
+    \node (i1) at (0,1) {$i$};
+    \node (i2) at (2.5,2) {$i$};
+\end{scope}
+
+\draw (u) -- node[circle,fill] {} node[below=6pt] {$c$} (v);
+\draw (i1) -- (u);
+\draw (i2) -- (v);
+
+\end{tikzpicture}
+\end{document}
