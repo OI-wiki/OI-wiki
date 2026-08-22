@@ -196,12 +196,12 @@ $$
 这相当于
 
 $$
-xyt \in (ne^{-2/S},n].
+xyt \in (n\mathrm{e}^{-2/S},n].
 $$
 
 这是一个长度为 $O(n/S)$ 的区间．枚举区间内所有可能的贡献 $(x,y,t)$，逐个检验是否遗漏，就可以完成误差的修正．为了快速枚举区间内所有贡献，可以首先筛出不超过 $\sqrt{n}$ 的全部素数，再利用这些素数去除区间中的整数，剩下的因子必然是大于 $\sqrt{n}$ 的素数，由此就可以得到区间内所有整数的素因数分解，进而可以快速枚举所有可能的 $(x,y,t)$．
 
-考察最后这一部分贡献计算的时间复杂度．估计贡献时，需要对长度为 $S\log n$ 的多项式做乘法，时间复杂度为 $O(S\log n\log(S\log n))$．误差修正时，预处理素因数分解的时间复杂度为 $O(\sqrt{n}+(n/S)\log\log n)$，枚举区间内所有贡献的时间复杂度为 $O(\sum_{k\in(ne^{-2/S},n]}d_3(k))$，此处，$d_3(n)$ 表示将 $n$ 分解成三个有序整数乘积的方法数．解析数论的结果[^piltz]指出：
+考察最后这一部分贡献计算的时间复杂度．估计贡献时，需要对长度为 $S\log n$ 的多项式做乘法，时间复杂度为 $O(S\log n\log(S\log n))$．误差修正时，预处理素因数分解的时间复杂度为 $O(\sqrt{n}+(n/S)\log\log n)$，枚举区间内所有贡献的时间复杂度为 $O(\sum_{k\in(n\mathrm{e}^{-2/S},n]}d_3(k))$，此处，$d_3(n)$ 表示将 $n$ 分解成三个有序整数乘积的方法数．解析数论的结果[^piltz]指出：
 
 $$
 \sum_{k\le n}d_3(k) = nP(\log n) + O(n^{43/96+\varepsilon}),
@@ -378,4 +378,4 @@ $$
 -   [Dirichlet 積と、数論関数の累積和 by maspy](https://maspypy.com/dirichlet-%e7%a9%8d%e3%81%a8%e3%80%81%e6%95%b0%e8%ab%96%e9%96%a2%e6%95%b0%e3%81%ae%e7%b4%af%e7%a9%8d%e5%92%8c)
 -   [Dirichlet convolution. Part 1: Fast prefix sum computations by adamant - Codeforces](https://codeforces.com/blog/entry/117635)
 
-[^piltz]: <https://en.wikipedia.org/wiki/Divisor_summatory_function#Piltz_divisor_problem>
+[^piltz]: [Piltz divisor problem - Divisor summatory function - Wikipedia](https://en.wikipedia.org/wiki/Divisor_summatory_function#Piltz_divisor_problem)
