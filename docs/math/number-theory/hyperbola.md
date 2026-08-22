@@ -217,7 +217,7 @@ $$
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/hyperbola/fast_bs_conv.cpp"
+    --8<-- "docs/math/code/hyperbola/fast_bs_conv.cpp:core"
     ```
 
 ## 杜教筛
