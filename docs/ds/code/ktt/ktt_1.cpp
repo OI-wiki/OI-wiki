@@ -31,6 +31,7 @@ void push_up(int rt) {
   v[rt].swc = v[mx].k < v[mi].k
                   ? IntegerPart(1.0 * (v[mx].b - v[mi].b) / (v[mi].k - v[mx].k))
                   : inf;
+  v[rt].swc = min({v[rt].swc, v[mx].swc, v[mi].swc});
 }
 
 void push_tag(int rt, int val) {
@@ -52,7 +53,7 @@ void checkswitch(int rt) {
 
 void build(int rt, int l, int r) {
   v[rt].l = l, v[rt].r = r;
-  if (l == r) return v[rt].k = k[l], v[rt].b = b[l], void();
+  if (l == r) return v[rt].k = k[l], v[rt].b = b[l], v[rt].swc = inf, void();
   int mid = (l + r) >> 1;
   build(rt << 1, l, mid);
   build(rt << 1 | 1, mid + 1, r);
