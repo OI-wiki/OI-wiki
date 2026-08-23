@@ -43,12 +43,12 @@ Tarjan 发明了很多算法和数据结构．不少他发明的算法都以他�
 
 ### Tarjan 算法求强连通分量
 
-Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个连通分量为搜索树中的一棵子树，在搜索过程中，维护一个栈，每次把搜索树中尚未处理的节点加入栈中．
+Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个连通分量为搜索树中的一棵子树，在搜索过程中，维护一个栈，每次把搜索树中尚未处理的节点加入栈中，并将确定下来答案的点从栈中弹出．
 
 在 Tarjan 算法中为每个结点 $u$ 维护了以下几个变量：
 
 1.  $\textit{dfn}_u$：深度优先搜索遍历时结点 $u$ 被搜索的次序．
-2.  $\textit{low}_u$：在 $u$ 的子树中能够回溯到的最早的已经在栈中的结点．设以 $u$ 为根的子树为 $\textit{Subtree}_u$．$\textit{low}_u$ 定义为以下结点的 $\textit{dfn}$ 的最小值：$\textit{Subtree}_u$ 中的结点；从 $\textit{Subtree}_u$ 通过一条不在搜索树上的边能到达的结点．
+2.  $\textit{low}_u$：在 $u$ 的子树中能够回溯到的最早的已经在栈中的结点．设在搜索树中以 $u$ 为根的子树为 $\textit{Subtree}_u$．$\textit{low}_u$ 定义为以下结点的 $\textit{dfn}$ 的最小值：从 $\textit{Subtree}_u$ 通过一条不在搜索树上的边能到达的在栈中的结点．
 
 一个结点的子树内结点的 dfn 都大于该结点的 dfn．
 
@@ -59,6 +59,10 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
 1.  $v$ 未被访问：继续对 $v$ 进行深度搜索．在回溯过程中，用 $\textit{low}_v$ 更新 $\textit{low}_u$．因为存在从 $u$ 到 $v$ 的直接路径，所以 $v$ 能够回溯到的已经在栈中的结点，$u$ 也一定能够回溯到．
 2.  $v$ 被访问过，已经在栈中：根据 low 值的定义，用 $\textit{dfn}_v$ 更新 $\textit{low}_u$．
 3.  $v$ 被访问过，已不在栈中：说明 $v$ 已搜索完毕，其所在连通分量已被处理，所以不用对其做操作．
+
+对于一个连通分量图，我们很容易想到，在该连通图中有且仅有一个 $u$ 使得 $\textit{dfn}_u=\textit{low}_u$．该结点一定是在深度遍历的过程中，该连通分量中第一个被访问过的结点，因为它的 dfn 和 low 值最小，不会被该连通分量中的其他结点所影响．
+
+因此，在回溯的过程中，判定 $\textit{dfn}_u=\textit{low}_u$ 是否成立，如果成立，则栈中 $u$ 及其上方的结点构成一个 SCC．
 
 将上述算法写成伪代码：
 
@@ -74,11 +78,14 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
                 low[u]=min(low[u],low[v]) // 回溯
             else if v has been in the stack then
                 low[u]=min(low[u],dfn[v])
+        if dfn[u] equal to low[u] then
+            ++scccnt
+            while top of stack not equal to u then
+                scc[top of stack] = scccnt
+                pop stack
+            scc[u] = scccnt
+            pop stack // 处理并删除残余的 u
     ```
-
-对于一个连通分量图，我们很容易想到，在该连通图中有且仅有一个 $u$ 使得 $\textit{dfn}_u=\textit{low}_u$．该结点一定是在深度遍历的过程中，该连通分量中第一个被访问过的结点，因为它的 dfn 和 low 值最小，不会被该连通分量中的其他结点所影响．
-
-因此，在回溯的过程中，判定 $\textit{dfn}_u=\textit{low}_u$ 是否成立，如果成立，则栈中 $u$ 及其上方的结点构成一个 SCC．
 
 ### 实现
 
