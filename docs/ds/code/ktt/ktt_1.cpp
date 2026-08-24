@@ -53,7 +53,12 @@ void checkswitch(int rt) {
 
 void build(int rt, int l, int r) {
   v[rt].l = l, v[rt].r = r;
-  if (l == r) return v[rt].k = k[l], v[rt].b = b[l], v[rt].swc = inf, void();
+  if (l == r) {
+    v[rt].k = k[l];
+    v[rt].b = b[l];
+    v[rt].swc = inf;
+    return;
+  }
   int mid = (l + r) >> 1;
   build(rt << 1, l, mid);
   build(rt << 1 | 1, mid + 1, r);
