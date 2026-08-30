@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "mkdocs==1.5.3",
-    "pymdown-extensions==10.16.1",
+    "pymdown-extensions==11.0",
     "pygments",
     "beautifulsoup4",
     "requests",
