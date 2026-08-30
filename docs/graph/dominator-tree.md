@@ -309,7 +309,7 @@ $sdom(u) = \min(v|\exists v=v_0 \rightarrow v_1 \rightarrow\dots \rightarrow v_k
 
 然后我们证明 $sdom(u)\ge x$．考虑 $u$ 到其半支配点的定义中所述路径 $sdom(u)=v_0\rightarrow v_1 \rightarrow\dots\rightarrow v_k=u$．不难看出 $k=1$ 和 $k > 1$ 分别对应了定义中的两个选取方法．若 $k = 1$，则存在有向边 $sdom(u) \rightarrow u$，根据引理 7 即可得证；若 $k>1$，令 $j$ 是满足 $j \ge 1$ 且 $v_j$ 是 $v_{k-1}$ 在 $T$ 上祖先的最小数．考虑到 $k$ 满足上述条件，这样的 $j$ 一定存在．
 
-考虑证明 $v_0 \rightarrow \dots \rightarrow v_j$ 是满足成为 $v_j$ 半支配点条件的一条路径，即证明 $\forall i \in [1, j), v_i>v_j$．若不是，则令 $i$ 为满足 $v_i < v_j$ 中使 $v_i$ 最小的数，根据引理 11 我们知道 $v_i$ 是 $v_j$ 的祖先，这和 $j$ 的定义矛盾．于是 $sdom(v_j)\le sdom(u)$．综上 $sdom(u) \le x$，故 $x=sdom(u)$．
+考虑证明 $v_0 \rightarrow \dots \rightarrow v_j$ 是满足成为 $v_j$ 半支配点条件的一条路径，即证明 $\forall i \in [1, j), v_i>v_j$．若不是，则令 $i$ 为满足 $v_i < v_j$ 中使 $v_i$ 最小的数．于是路径 $v_i\rightarrow\dots\rightarrow v_j$ 上所有结点都不小于 $v_i$，根据 dfs 树的性质，$v_i$ 一定是 $v_j$ 的祖先，进而也是 $v_{k-1}$ 的祖先，这和 $j$ 的最小性矛盾．于是 $sdom(v_j)\le sdom(u)$．又因为 $x\le sdom(v_j)$，所以 $sdom(u)\ge x$. 结合此前证明的 $sdom(u) \le x$，故 $x=sdom(u)$．
 
 根据定理 1 我们便可以求出每个点的半支配点了．不难发现计算半支配点的复杂度瓶颈在第二种情况上，我们考虑利用带权并查集优化，每次路径压缩时更新最小值即可．
 
