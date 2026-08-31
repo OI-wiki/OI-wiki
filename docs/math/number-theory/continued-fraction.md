@@ -1,4 +1,4 @@
-author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Menci, shawlleyw, shuzhouliu, StudyingFather, Tiphereth-A, untitledunrevised, c-forrest
+author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Menci, shawlleyw, shuzhouliu, StudyingFather, Tiphereth-A, untitledunrevised, c-forrest, Resorie
 
 ## 引入
 
@@ -12,7 +12,7 @@ author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Me
 **连分数**（continued fraction）本身只是一种形式记号．
 
 ???+ abstract "有限连分数"
-    对于数列 $\{a_k\}_{i=0}^n$，连分数 $[a_0,a_1,\cdots,a_n]$ 表示展开式
+    对于数列 $\{a_k\}_{i=0}^n$，连分数 $[a_0,a_1,\ldots,a_n]$ 表示展开式
     
     $$
     x = a_0+\dfrac{1}{a_1+\dfrac{1}{a_2+\dfrac{1}{\cdots+\dfrac{1}{a_n}}}}.
@@ -26,35 +26,35 @@ author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Me
 当然，连分数还可以推广到无穷数列的情形．
 
 ???+ abstract "无限连分数"
-    对于无穷数列 $\{a_k\}_{i=0}^\infty$，连分数 $[a_0,a_1,\cdots]$ 表示极限
+    对于无穷数列 $\{a_k\}_{i=0}^\infty$，连分数 $[a_0,a_1,\ldots]$ 表示极限
     
     $$
-    x = \lim_{k\rightarrow\infty} x_k = \lim_{k\rightarrow\infty} [a_0,a_1,\cdots,a_k].
+    x = \lim_{k\rightarrow\infty} x_k = \lim_{k\rightarrow\infty} [a_0,a_1,\ldots,a_k].
     $$
     
-    连分数有意义，当且仅当对应的极限有意义．其中，$x_k=[a_0,a_1,\cdots,a_k]$ 称为 $x$ 的第 $k$ 个 **渐近分数**（convergent）或 **收敛子**，而 $r_k=[a_k,a_{k+1},\cdots]$ 称为 $x$ 的第 $k$ 个 **余项** 或 **完全商**（complete quotient）．相应地，项 $a_k$ 有时也称为第 $k$ 个 **部分商**（partial quotient）．
+    连分数有意义，当且仅当对应的极限有意义．其中，$x_k=[a_0,a_1,\ldots,a_k]$ 称为 $x$ 的第 $k$ 个 **渐近分数**（convergent）或 **收敛子**，而 $r_k=[a_k,a_{k+1},\ldots]$ 称为 $x$ 的第 $k$ 个 **余项** 或 **完全商**（complete quotient）．相应地，项 $a_k$ 有时也称为第 $k$ 个 **部分商**（partial quotient）．
 
 ### 简单连分数
 
 数论中，主要考虑连分数的项都是整数的情形．
 
 ???+ abstract "简单连分数"
-    对于连分数 $[a_0,a_1,\cdots]$，如果 $a_0$ 是整数，$a_1,a_2,\cdots$ 都是正整数，则称它为 **简单连分数**（simple continued fraction），也简称 **连分数**．如果数列 $\{a_i\}$ 有限，则称为 **有限（简单）连分数**；否则称为 **无限（简单）连分数**．而且，$a_0$ 称为它的 **整数部分**（integer part）．
+    对于连分数 $[a_0,a_1,\ldots]$，如果 $a_0$ 是整数，$a_1,a_2,\ldots$ 都是正整数，则称它为 **简单连分数**（simple continued fraction），也简称 **连分数**．如果数列 $\{a_i\}$ 有限，则称为 **有限（简单）连分数**；否则称为 **无限（简单）连分数**．而且，$a_0$ 称为它的 **整数部分**（integer part）．
 
 除非特别说明，本文提到的连分数都指的是简单连分数．可以证明，无限的简单连分数必然是收敛的，而且简单连分数的余项也一定是正的．
 
 连分数有如下基本性质：
 
 ???+ note "性质"
-    设实数 $x=[a_0,a_1,a_2,\cdots]$．那么，成立如下性质：
+    设实数 $x=[a_0,a_1,a_2,\ldots]$．那么，成立如下性质：
     
-    1.  对于任意 $k\in\mathbf Z$，有 $x+k=[a_0+k,a_1,a_2,\cdots]$；
-    2.  对实数 $x>1$，有 $a_0>0$，且它的倒数 $x^{-1}=[0,a_0,a_1,a_2,\cdots]$．
+    1.  对于任意 $k\in\mathbf Z$，有 $x+k=[a_0+k,a_1,a_2,\ldots]$；
+    2.  对实数 $x>1$，有 $a_0>0$，且它的倒数 $x^{-1}=[0,a_0,a_1,a_2,\ldots]$．
 
 有限连分数对应的是有理数．每个有理数都有且仅有两种方式可以表示成连分数，长度必然一奇一偶．这两种方式唯一的区别在于最后一项是否为 $1$，即
 
 $$
-x = [a_0,a_1,\cdots,a_n] = [a_0,a_1,\cdots,a_n-1,1].
+x = [a_0,a_1,\ldots,a_n] = [a_0,a_1,\ldots,a_n-1,1].
 $$
 
 这两个连分数称为有理数 $x$ 的 **连分数表示**（continued fraction representation）．其中，末项不为一的称为标准表示，末项为一的称为非标准表示．[^one-representation]
@@ -76,7 +76,7 @@ $$
 要求某个实数 $x$ 的连分数表示，只需要注意到它的余项 $r_k$ 如果不是整数，就一定满足
 
 $$
-r_k = [a_k,a_{k+1},\cdots] = [a_k,r_{k+1}] = a_k + \dfrac{1}{r_{k+1}}.
+r_k = [a_k,a_{k+1},\ldots] = [a_k,r_{k+1}] = a_k + \dfrac{1}{r_{k+1}}.
 $$
 
 而且，$r_{k+1}>1$．因此，可以从 $r_0=x$ 开始递归地计算
@@ -93,10 +93,10 @@ $$
 a_k = \left\lfloor\frac{p_k}{q_k}\right\rfloor,\ r_{k+1} = \dfrac{1}{r_k-a_k} = \dfrac{q_k}{p_k-a_kq_k} = \dfrac{q_k}{p_k\bmod q_k}.
 $$
 
-此时的计算过程实际上是对 $p$ 和 $q$ 做 [辗转相除法](./gcd.md#欧几里得算法)．这也说明，对于有理数 $r=\dfrac{p}{q}$，连分数表示的长度是 $O(\log\min\{p, q\})$ 的．计算有理数 $\dfrac{p}{q}$ 的复杂度也是 $O(\log\min\{p, q\})$ 的．
+此时的计算过程实际上是对 $p$ 和 $q$ 做 [辗转相除法](./gcd.md#欧几里得算法)．这也说明，对于有理数 $x=\dfrac{p}{q}$，连分数表示的长度是 $O(\log\min\{p, q\})$ 的．计算有理数 $\dfrac{p}{q}$ 的复杂度也是 $O(\log\min\{p, q\})$ 的．
 
 ???+ example "参考实现"
-    给定分数的分子 $p$ 和分母 $q$，输出连分数的系数序列 $[a_0,a_1,\cdots,a_n]$．
+    给定分数的分子 $p$ 和分母 $q$，输出连分数的系数序列 $[a_0,a_1,\ldots,a_n]$．
     
     === "C++"
         ```cpp
@@ -113,7 +113,7 @@ $$
 在连分数的定义中介绍了渐近分数的概念．实数的渐近分数就是它的连分数表示的渐近分数：在实数 $x$ 的连分数表示中，只保留前 $k$ 个项，得到的连分数 $x_k$ 就称为实数 $x$ 的第 $k$ 个渐近分数．实数 $x$ 的渐近分数 $x_k$ 都是有理数，而且序列 $\{x_k\}$ 收敛于实数 $x$．
 
 ??? example "例子：黄金分割比的渐近分数"
-    连分数 $x=[1,1,1,1,\cdots]$ 的前几个渐近分数分别是
+    连分数 $x=[1,1,1,1,\ldots]$ 的前几个渐近分数分别是
     
     $$
     \begin{aligned}
@@ -143,7 +143,7 @@ $$
     x=\lim_{k\rightarrow\infty}x_k=\phi.
     $$
     
-    因而，连分数 $x=[1,1,1,1,\cdots]$ 表示的是黄金分割比 $\phi$．
+    因而，连分数 $x=[1,1,1,1,\ldots]$ 表示的是黄金分割比 $\phi$．
 
 这些渐近分数趋近于相应的实数，所以可以用于逼近该实数．为此，有必要了解渐近分数的性质．
 
@@ -152,7 +152,7 @@ $$
 首先，要解决这些渐近分数的计算问题．虽然渐近分数总是在连分数的后面添加一项，但是并不需要每次都重新计算它的值．其实，渐近分数有如下递推关系：
 
 ???+ note "递推公式"
-    对于连分数 $x=[a_0,a_1,a_2,\cdots]$，设它的第 $k$ 个渐近分数 $x_k$ 可以写成分数 $\dfrac{p_k}{q_k}$．那么，有
+    对于连分数 $x=[a_0,a_1,a_2,\ldots]$，设它的第 $k$ 个渐近分数 $x_k=[a_0,a_1,\ldots,a_k]$ 可以唯一写成既约分数 $\dfrac{p_k}{q_k}$．那么，有
     
     $$
     \begin{aligned}
@@ -168,73 +168,38 @@ $$
     $$
 
 ??? note "证明"
-    渐近分数 $x_k$ 的分子和分母可以看作 $a_0, a_1, \cdots, a_k$ 的多元多项式：
+    每个渐近分数都是有限连分数．前面已经提到过，求有限连分数其实相当于做辗转相除法．但是辗转相除法得到的实际上是连分数的一个后缀，而渐近分数需要的是连分数的一个前缀．为了得到这个前缀，需要考察每次加上一步时，连分数怎么变化．一个好用的工具是，使用矩阵乘法来表示辗转相除过程的一步：
     
     $$
-    r_k = \frac{P_k(a_0, a_1, \cdots, a_k)}{Q_k(a_0,a_1, \cdots, a_k)}.
+    M(a)=\begin{pmatrix} a & 1 \\ 1 & 0 \end{pmatrix},\qquad
+    M(a)\begin{pmatrix} u\\ v \end{pmatrix}=\begin{pmatrix} au+v\\u \end{pmatrix},\qquad
+    \frac{au+v}{u}=a+\frac{1}{u/v}.
     $$
     
-    根据渐近分数的定义，有
+    向量 $(a_k,1)^{\mathsf T}$ 表示有限连分数 $[a_k]$；依次左乘矩阵相当于在左侧依次补上连分数的系数．将该连分数补成渐进分数 $x_k=\dfrac{p_k}{q_k}=[a_0,a_1,\ldots,a_k]$ 的过程得到如下等式：
     
     $$
-    r_k = a_0 + \frac{1}{[a_1,a_2,\cdots, a_k]}= a_0 + \frac{Q_{k-1}(a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)} = \frac{a_0 P_{k-1}(a_1, \dots, a_k) + Q_{k-1}(a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)}.
+    M(a_0)M(a_1)M(a_2)\cdots M(a_{k-1})\begin{pmatrix}a_k\\1\end{pmatrix}=\begin{pmatrix}p_k\\q_k\end{pmatrix}.
     $$
     
-    和上式比较，不妨设 $Q_k(a_0, \cdots, a_k) = P_{k-1}(a_1, \cdots, a_k)$，就可以将渐近分数写作
+    由 $\det(M(a_0)M(a_1)\cdots M(a_{k-1}))=(-1)^{k}$ 知，该矩阵变换将本原向量 $(a_k,1)^{\mathsf T}$ 变换为 $(p_k,q_k)^{\mathsf T}$，故 $p_k$ 和 $q_k$ 必互质．$M(a_k)$ 的第二列为 $(1,0)^{\mathsf T}$，而 $M(a_{k-1})(1,0)^{\mathsf T}=(a_{k-1},1)^{\mathsf T}$，这一列的乘积可以递推带入得到．补上这一列即得：
     
     $$
-    r_k =  \frac{P_k(a_0, a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)}
+    M(a_0)M(a_1)M(a_2)\cdots M(a_k)=\begin{pmatrix}p_k & p_{k-1}\\q_k & q_{k-1}\end{pmatrix}.
     $$
     
-    且多项式 $P_k$ 有递推关系
+    现在只需代入矩阵乘法的前 $k$ 项，便容易得渐近分数的递推公式：
     
     $$
-    P_k(a_0, \cdots, a_k) = a_0 P_{k-1}(a_1, \cdots, a_k) + P_{k-2}(a_2, \cdots, a_k).
+    \begin{aligned}
+    \begin{pmatrix}p_{k-1} & p_{k-2}\\q_{k-1} & q_{k-2}\end{pmatrix}M(a_k)
+    &=\begin{pmatrix}p_k & p_{k-1}\\q_k & q_{k-1}\end{pmatrix}\\
+    \Rightarrow\quad p_k&=a_k p_{k-1}+p_{k-2},\qquad q_k=a_k q_{k-1}+q_{k-2}.
+    \end{aligned}
     $$
-    
-    因为
-    
-    $$
-    r_0 = a_0,\ r_1 = a_0+\dfrac{1}{a_1} = \frac{a_0a_1+1}{a_1},
-    $$
-    
-    所以，递推的起点是
-    
-    $$
-    P_0(a_0) = a_0,\ P_1(a_0,a_1) = a_0a_1 + 1.
-    $$
-    
-    如果设
-    
-    $$
-    P_{-1} = 1,\ P_{-2} = 0,
-    $$
-    
-    可以验证对于 $k=0,1$ 也成立上述递推关系．这相当于规定了形式分数 $r_{-1}=\dfrac{1}{0}$ 和 $r_{-2}=\dfrac{0}{1}$．
-    
-    满足上述递推关系的多项式列 $P_k$ 称为 **连项式**[^continuant]（continuant）．它可以写作行列式的形式：
-    
-    $$
-    P_k(a_0,\cdots,a_k)=\det
-    \begin{pmatrix}
-    a_0 & 1 & 0 & \cdots & 0 \\
-    -1 & a_1 & 1 & \ddots & \vdots \\
-    0 & -1 & a_2 & \ddots & 0 \\
-    \vdots & \ddots & \ddots & \ddots & 1 \\
-    0 & \cdots & 0 & -1 & a_k
-    \end{pmatrix}.
-    $$
-    
-    这是一个 [三对角矩阵](https://en.wikipedia.org/wiki/Tridiagonal_matrix) 的行列式，从左上角开始展开，可以验证它具有上面的递推关系和初值条件．反过来，从右下角开始展开，则又能得到递推关系
-    
-    $$
-    P_k(a_0, \cdots, a_k) = a_k P_{k-1}(a_0, \cdots, a_{k-1}) + P_{k-2}(a_0, \cdots, a_{k-2}),
-    $$
-    
-    这就是所要求证的．
 
 ???+ info "记号"
-    本文将渐近分数 $x_k$ 记作 $\dfrac{p_k}{q_k}$ 时，总是默认分子 $p_k$ 和 $q_k$ 由上面的递推关系给出．下文还要说明，这样总能得到渐近分数的既约表示．
+    本文将渐近分数 $x_k$ 记作 $\dfrac{p_k}{q_k}$ 时，总是默认分子 $p_k$ 和 $q_k$ 由上面的递推关系给出．前文的证明说明，这样总能得到渐近分数的既约表示．
 
 这个递推式说明
 
@@ -244,48 +209,10 @@ $$
 
 介于 $x_{k-1}$ 和 $x_{k-2}$ 之间．
 
-作为渐近分数的递推关系的推论，成立如下的反序定理和倒数定理：
-
-???+ note "反序定理"
-    设实数 $x=[a_0,a_1,a_2,\cdots]$ 的第 $k$ 个渐近分数是 $\dfrac{p_k}{q_k}$，则相邻两个渐近分数的分子和分母的比值分别为
-    
-    $$
-    \begin{aligned}
-    \frac{p_k}{p_{k-1}}&=[a_k,a_{k-1},\cdots,a_1,a_0],\\
-    \frac{q_k}{q_{k-1}}&=[a_k,a_{k-1},\cdots,a_1].
-    \end{aligned}
-    $$
-    
-    如果 $a_0=0$，则第一个连分数应当理解为在倒数第二项处截断，即 $[a_k,a_{k-1},\cdots,a_2]$．
-
-??? note "证明"
-    在 $p_k$ 和 $q_k$ 的递推关系中，左右两侧分别同除以 $p_{k-1}$ 和 $q_{k-1}$，就得到
-    
-    $$
-    \begin{aligned}
-    \frac{p_k}{p_{k-1}} &= a_k + \frac{p_{k-2}}{p_{k-1}},\\
-    \frac{q_k}{q_{k-1}} &= a_k + \frac{q_{k-2}}{q_{k-1}}.
-    \end{aligned}
-    $$
-    
-    迭代这两个式子，就可以得到两个连分数．再代入初始值 $\dfrac{p_0}{p_{-1}}=a_0$ 和 $\dfrac{q_1}{q_0}=a_1$ 即可．至于 $a_0=0$ 的情形，将得到的连分数理解为形式表达式，则它的余项
-    
-    $$
-    [a_2,a_1,0]=a_2+\dfrac{1}{a_1+\dfrac{1}{0}}=a_2+\dfrac{0}{0a_1+1}=a_2.
-    $$
-    
-    因而可以直接略去最后两项．如果需要严格的证明，只要注意到这个式子可以看作 $a_0\rightarrow 0$ 的极限即可．
-
-???+ note "倒数定理"
-    实数 $x>0$ 的渐近分数的倒数是 $x^{-1}$ 的渐近分数．
-
-??? note "证明"
-    不妨设 $x>1$ 且有连分数表示 $[a_0,a_1,a_2,\cdots]$，则 $x^{-1}$ 的连分数表示是 $[0,a_0,a_1,a_2,\cdots]$．它们的渐近分数可以从递推关系中求得．而且，对于 $x$，有初值条件 $x_{-2}=\dfrac{0}{1}$ 和 $x_{-1}=\dfrac{1}{0}$；对于 $y=x^{-1}$，有初值条件 $y_{-1}=\dfrac{1}{0}$ 和 $y_{0}=\dfrac{0}{1}$．因此，有 $x_{-2}=(y_{-1})^{-1}$ 和 $x_{-1}=(y_0)^{-1}$．根据递推关系，可以得到 $x_k=y_{k+1}^{-1}$．这就说明，$x$ 的渐近分数的倒数是 $y=x^{-1}$ 的渐近分数．对于 $0<x\le 1$ 的情形，也可以做类似讨论．
-
 利用本节得到的递推关系，可以得到计算渐近分数的算法如下：
 
 ???+ example "参考实现"
-    给定连分数的系数 $a_0,a_1,\cdots,a_n$，求渐近分数的分子和分母序列 $(p_0,q_0),(p_1,q_1),\cdots,(p_n,q_n)$．
+    给定连分数的系数 $a_0,a_1,\ldots,a_n$，求渐近分数的分子和分母序列 $(p_0,q_0),(p_1,q_1),\ldots,(p_n,q_n)$．
     
     === "C++"
         ```cpp
@@ -297,6 +224,207 @@ $$
         --8<-- "docs/math/code/continued-fraction/diophantine.py:convergents"
         ```
 
+### 连项式
+
+**连项式**（continuant）来源于渐进分数递推关系的中间量．[^continuant]
+
+???+ abstract "连项式"
+    对任意有限序列，如下递归定义连项式：
+    
+    -   $K(\varnothing)=1,\, K(a)=a$；
+    -   对 $n\ge 1$，$K(a_0,\ldots,a_n)=a_n K(a_0,\ldots,a_{n-1})+K(a_0,\ldots,a_{n-2})$．
+
+根据渐近分数的递推容易发现，对 $x=[a_0,a_1,a_2,\ldots]$，其渐近分数 $\dfrac{p_k}{q_k}=[a_0,a_1,\ldots,a_k]$ 可以表示成连项式的形式：
+
+$$
+p_k=K(a_0,a_1,\ldots,a_k),\quad q_k=K(a_1,\ldots,a_k).
+$$
+
+也就是说，连项式可以用来表示有限连分数：
+
+$$
+\frac{K(a_0,a_1,\ldots,a_k)}{K(a_1,\ldots,a_k)}=[a_0,a_1,\ldots,a_k].
+$$
+
+先前的矩阵表示也容易用连项式改写．当 $k\ge 1$ 时有：
+
+$$
+M(a_0)\cdots M(a_k)=
+\begin{pmatrix}
+K(a_0,\ldots,a_k)&K(a_0,\ldots,a_{k-1})\\
+K(a_1,\ldots,a_k)&K(a_1,\ldots,a_{k-1})
+\end{pmatrix}.
+$$
+
+连项式最重要的性质是其对称性：
+
+???+ note "连项式的对称性"
+    由于任意矩阵 $M(a)$ 都是对称矩阵，考察其乘积的转置有：
+    
+    $$
+    (M(a_0)\cdots M(a_n))^{\mathsf T}=M(a_n)^{\mathsf T}\cdots M(a_0)^{\mathsf T}=M(a_n)\cdots M(a_0).
+    $$
+    
+    考察两个乘积矩阵的左上角立得：
+    
+    $$
+    K(a_0,\ldots,a_n)=K(a_n,\ldots,a_0).
+    $$
+    
+    由对称性能够写出连项式递推的反向版本：
+    
+    $$
+    K(a_0,\ldots,a_n)=a_0 K(a_1,\ldots,a_n)+K(a_2,\ldots,a_n).
+    $$
+
+??? info "连项式的行列式表示"
+    连项式可以写成行列式的形式：
+    
+    $$
+    K(a_0,\ldots,a_k)=\det
+    \begin{pmatrix}
+    a_0 & 1 & 0 & \cdots & 0 \\
+    -1 & a_1 & 1 & \ddots & \vdots \\
+    0 & -1 & a_2 & \ddots & 0 \\
+    \vdots & \ddots & \ddots & \ddots & 1 \\
+    0 & \cdots & 0 & -1 & a_k
+    \end{pmatrix}.
+    $$
+    
+    这是一个 [三对角矩阵](https://en.wikipedia.org/wiki/Tridiagonal_matrix) 的行列式，从左上角开始展开，可以得到反向递推．反过来，从右下角开始展开，则能得到定义中的递推关系．
+
+连项式另一个有趣的性质是其拼接性质．
+
+???+ note "连项式的拼接"
+    对两个非空序列 $(a_1,\ldots,a_m)$ 和 $(b_1,\ldots,b_n)$，有
+    
+    $$
+    K(a_1,\ldots,a_m,b_1,\ldots,b_n)=K(a_1,\ldots,a_m)K(b_1,\ldots,b_n)+K(a_1,\ldots,a_{m-1})K(b_2,\ldots,b_n).
+    $$
+
+??? note "证明"
+    仅需要将两端矩阵乘积利用结合律分开即可．令：
+    
+    $$
+    P=M(a_1)\cdots M(a_m),\quad Q=M(b_1)\cdots M(b_n),
+    $$
+    
+    那么有
+    
+    $$
+    (PQ)_{1,1}=P_{1,1}Q_{1,1}+P_{1,2}Q_{2,1}.
+    $$
+    
+    这恰对应拼接性质的恒等式．
+
+该性质可以用来考察辗转相除法的中间量．
+
+???+ example "[洛谷 P17229 \[Math×Girl²\] 英雄变奏曲](https://www.luogu.com.cn/problem/P17229)"
+    给定一个正整数 $N$，以及两个整数值函数 $g,h:\{1,2,\ldots,N\}\to\mathbb Z$ 的点值．
+    
+    对于满足 $1\le y<x\le N$ 的整数 $x,y$，令 $z=x\bmod y$，并递归定义
+    
+    $$
+    f(x,y)=
+    \begin{cases}
+    0, & z=0,\\
+    g\!\left(\left\lfloor\dfrac{x}{y}\right\rfloor\right)
+    h\!\left(\left\lfloor\dfrac{y}{z}\right\rfloor\right)
+    +f(y,z), & z>0.
+    \end{cases}
+    $$
+    
+    求
+    
+    $$
+    S(N)=
+    \sum_{\substack{1\le b<a\le N\\\gcd(a,b)=1}}f(a,b).
+    $$
+
+??? note "思路"
+    题目中 $f(x,y)$ 的定义对应欧几里得算法的过程．用连分数表示欧几里得算法，设 $\dfrac{x}{y}=[a_0,a_1,\ldots,a_k]$ 为有限连分数的标准表示，那么有：
+    
+    $$
+    f(x,y)=\sum_{i=0}^{k-1}g(a_i)h(a_{i+1}).
+    $$
+    
+    利用连项式的拼接性质，从 $a_i$ 处切开连项式，有：
+    
+    $$
+    K(a_0,a_1,\ldots,a_k)=K(a_0,\ldots,a_i)K(a_{i+1},\ldots,a_k)+K(a_0,\ldots,a_{i-1})K(a_{i+2},\ldots,a_k).
+    $$
+    
+    令：
+    
+    $$
+    \begin{aligned}
+    X&=K(a_0,\ldots,a_i),\quad Y=K(a_0,\ldots,a_{i-1}),\\
+    Z&=K(a_{i+1},\ldots,a_k),\quad W=K(a_{i+2},\ldots,a_k).
+    \end{aligned}
+    $$
+    
+    由连项式表示有限连分数的性质得到：
+    
+    $$
+    \frac{X}{Y}=[a_i,a_{i-1},\ldots,a_0],\quad \frac{Z}{W}=[a_{i+1},a_{i+2},\ldots,a_k].
+    $$
+    
+    需要满足的条件是 $\gcd(X,Y)=\gcd(Z,W)=1$，$1\le Y\le X$，$1\le W\le Z$，$XZ+YW=x\le N$．看起来我们做出了一个 $(x,y,i)$ 和 $(X,Y,Z,W)$ 之间的双射．但是注意此处由于 $a_0$ 可能为 $1$，$\dfrac{X}{Y}$ 对应的连分数可能是非标准表示；而 $\dfrac{Z}{W}$ 对应的连分数则必定为标准表示（由此也必不可能有 $Z=W=1$）．
+    
+    现在算一下这个变换之后，四元组 $(X,Y,Z,W)$ 对原求和式的贡献．对分数取整可以得到连分数首项，这样我们就得到了函数的自变量．接下来对 $(X,Y)$ 分情况讨论：
+    
+    1.  $Y>1$：$\dfrac{X}{Y}$ 的标准表示和非标准表示均对应一组 $(x,y,i)$，贡献为 $2g\left(\left\lfloor\dfrac{X}{Y}\right\rfloor\right)h\left(\left\lfloor\dfrac{Z}{W}\right\rfloor\right)$；
+    2.  $Y=1,X\ge2$：$\dfrac{X}{Y}=X$，对应 $[X]$ 和 $[X-1,1]$，注意后者的贡献不同，总贡献为 $(g(X)+g(X-1))h\left(\left\lfloor\dfrac{Z}{W}\right\rfloor\right)$；
+    3.  $X=Y=1$：贡献为 $g(1)h\left(\left\lfloor\dfrac{Z}{W}\right\rfloor\right)$．
+    
+    由此我们将特别难处理的 $S(N)$ 变为了关于 $X,Y,Z,W$ 的求和，即（补充定义 $g(0)=2g(1)$）：
+    
+    $$
+    \begin{aligned}
+    S(N)={}&2\sum_{\substack{XZ+YW\le N\\X>Y\ge 1,\, Z>W\ge 1\\ \gcd(X,Y)=\gcd(Z,W)=1}}g(\lfloor X/Y\rfloor)h(\lfloor Z/W\rfloor) \\
+    &+\sum_{\substack{XZ+W\le N\\X\ge 1,\, Z>W\ge 1\\\gcd(Z,W)=1}}(g(X-1)-g(X))h(\lfloor Z/W\rfloor).
+    \end{aligned}
+    $$
+    
+    这个和式相对更容易用常规工具处理，在此不再赘述．
+
+作为渐近分数的递推关系和连项式性质的推论，成立如下的反序定理和倒数定理：
+
+???+ note "反序定理"
+    设实数 $x=[a_0,a_1,a_2,\ldots]>0$ 的第 $k$ 个渐近分数是 $\dfrac{p_k}{q_k}$，则相邻两个渐近分数的分子和分母的比值分别为
+    
+    $$
+    \begin{aligned}
+    \frac{p_k}{p_{k-1}}&=[a_k,a_{k-1},\ldots,a_1,a_0],\\
+    \frac{q_k}{q_{k-1}}&=[a_k,a_{k-1},\ldots,a_1].
+    \end{aligned}
+    $$
+    
+    如果 $a_0=0$ 且 $k\ge 2$，则第一个连分数应当理解为在倒数第二项处截断，即 $[a_k,a_{k-1},\ldots,a_2]$．
+
+??? note "证明"
+    $$
+    \frac{q_k}{q_{k-1}}=\frac{K(a_1,\ldots,a_{k-1},a_k)}{K(a_1,\ldots,a_{k-1})}=\frac{K(a_k,a_{k-1},\ldots,a_1)}{K(a_{k-1},\ldots,a_1)}=[a_k,a_{k-1},\ldots,a_1].
+    $$
+    
+    如果 $a_0\neq 0$：
+    
+    $$
+    \frac{p_k}{p_{k-1}}=\frac{K(a_0,\ldots,a_{k-1},a_k)}{K(a_0,\ldots,a_{k-1})}=\frac{K(a_k,a_{k-1},\ldots,a_0)}{K(a_{k-1},\ldots,a_0)}=[a_k,a_{k-1},\ldots,a_0].
+    $$
+    
+    如果 $a_0=0$，由连项式的递推关系有 $K(0,a_1,a_2,\ldots,a_k)=K(a_2,\ldots,a_k)$，故：
+    
+    $$
+    \frac{p_k}{p_{k-1}}=\frac{K(a_2,\ldots,a_{k-1},a_k)}{K(a_2,\ldots,a_{k-1})}=\frac{K(a_k,a_{k-1},\ldots,a_2)}{K(a_{k-1},\ldots,a_2)}=[a_k,a_{k-1},\ldots,a_2].
+    $$
+
+???+ note "倒数定理"
+    实数 $x>0$ 的渐近分数的倒数是 $x^{-1}$ 的渐近分数．
+
+??? note "证明"
+    不妨设 $x>1$ 且有连分数表示 $[a_0,a_1,a_2,\ldots]$，则 $x^{-1}$ 的连分数表示是 $[0,a_0,a_1,a_2,\ldots]$．它们的渐近分数可以从递推关系中求得．而且，对于 $x$，有初值条件 $x_{-2}=\dfrac{0}{1}$ 和 $x_{-1}=\dfrac{1}{0}$；对于 $y=x^{-1}$，有初值条件 $y_{-1}=\dfrac{1}{0}$ 和 $y_{0}=\dfrac{0}{1}$．因此，有 $x_{-2}=(y_{-1})^{-1}$ 和 $x_{-1}=(y_0)^{-1}$．根据递推关系，可以得到 $x_k=y_{k+1}^{-1}$．这就说明，$x$ 的渐近分数的倒数是 $y=x^{-1}$ 的渐近分数．对于 $0<x\le 1$ 的情形，也可以做类似讨论．
+
 ### 误差估计
 
 利用渐近分数的递推公式，可以估计用渐近分数逼近实数产生的误差．
@@ -307,7 +435,7 @@ $$
     设 $x_k=\dfrac{p_k}{q_k}$ 是实数 $x$ 的第 $k$ 个渐近分数．那么，有
     
     $$
-    p_{k+1}q_k − p_kq_{k+1} = (−1)^k.
+    p_{k+1}q_k - p_kq_{k+1} = (-1)^k.
     $$
     
     因此，相邻两项的渐近分数的差分是
@@ -352,7 +480,7 @@ $$
     \end{aligned}
     $$
     
-    这就是 $p_{k+1}q_k − p_kq_{k+1} = (−1)^k$．对两边同除以 $q_{k+1}q_k$，就得到关于 $x_{k+1}-x_k$ 的结论．
+    这就是 $p_{k+1}q_k - p_kq_{k+1} = (-1)^k$．对两边同除以 $q_{k+1}q_k$，就得到关于 $x_{k+1}-x_k$ 的结论．
 
 因而，奇数项渐近分数总是大于相邻两项，偶数项渐近分数总是小于相邻两项：渐近分数是交错变化的．
 
@@ -395,7 +523,7 @@ $$
     $$
 
 ??? note "证明"
-    因为 $x=[a_0,a_1,\cdots,a_k,r_{k+1}]$，而且对形式连分数也成立渐近分数的差分公式，所以有
+    因为 $x=[a_0,a_1,\ldots,a_k,r_{k+1}]$，而且对形式连分数也成立渐近分数的差分公式，所以有
     
     $$
     x-x_k = \dfrac{(-1)^k}{q_k\left(r_{k+1}q_k+q_{k-1}\right)},
@@ -439,7 +567,7 @@ $$
 ??? note "解答"
     虽然这个问题通常是用 [扩展欧几里得算法](./bezouts.md#两个变量的情形) 解决的，但是同样可以通过连分数求解．
     
-    设 $\dfrac{A}{B}=[a_0, a_1, \cdots, a_k]$．上面证明了 $p_k q_{k-1} - p_{k-1} q_k = (-1)^{k-1}$．将 $p_k$ 和 $q_k$ 替换为 $A$ 和 $B$，得到
+    设 $\dfrac{A}{B}=[a_0, a_1, \ldots, a_k]$．上面证明了 $p_k q_{k-1} - p_{k-1} q_k = (-1)^{k-1}$．将 $p_k$ 和 $q_k$ 替换为 $A$ 和 $B$，得到
     
     $$
     Aq_{k-1} - Bp_{k-1} = (-1)^{k-1} g,
@@ -586,7 +714,7 @@ $$
 第一类最佳逼近未必是渐近分数，而是一类更宽泛的分数．
 
 ???+ abstract "中间分数"
-    设实数 $x$ 有渐近分数 $x_{k+1}=[a_0,a_1,\cdots,a_k,a_{k+1}]$，且整数 $t$ 满足 $0\le t\le a_{k+1}$[^semi-range]，则分数 $x_{k,t}=[a_0,a_1,\cdots,a_{k},t]$ 称为 $x$ 的 **中间分数**（intermediate fraction）、**半收敛子**（semiconvergent）或 **次渐近分数**（secondary convergent）．[^semiconvergent]
+    设实数 $x$ 有渐近分数 $x_{k+1}=[a_0,a_1,\ldots,a_k,a_{k+1}]$，且整数 $t$ 满足 $0\le t\le a_{k+1}$[^semi-range]，则分数 $x_{k,t}=[a_0,a_1,\ldots,a_{k},t]$ 称为 $x$ 的 **中间分数**（intermediate fraction）、**半收敛子**（semiconvergent）或 **次渐近分数**（secondary convergent）．[^semiconvergent]
     
     类似于渐近分数的情形，大于（小于）$x$ 的中间分数称为 **上（下）中间分数**（upper (lower) semiconvergent）．
 
@@ -613,7 +741,7 @@ $$
     因为 $a_0\le x\le a_0+1$，所以第一类最佳逼近必然位于 $x_{1,0}=a_0$ 与 $x_{0,1}=a_0+1$ 之间．所有中间分数从小到大可以排列成
     
     $$
-    x_{1,0}<x_{1,1}< \cdots < x_{1,a_2}=x_{3,0}<\ldots<x<\ldots<x_{2,0}=x_{0,a_1}<\cdots<x_{0,1}.
+    x_{1,0}<x_{1,1}< \cdots < x_{1,a_2}=x_{3,0}<\cdots<x<\cdots<x_{2,0}=x_{0,a_1}<\cdots<x_{0,1}.
     $$
     
     同阶的中间分数是连续出现的，而不同阶的中间分数之间又没有间隔．这意味着，任何位于 $x_{1,0}=a_0$ 与 $x_{0,1}=a_0+1$ 之间的有理数 $\dfrac{p}{q}$ 必然落在两个同阶的中间分数 $x_{k,t}$ 和 $x_{k,t+1}$ 之间．不妨设它不是中间分数且小于 $x$，因而有
@@ -687,7 +815,7 @@ $$
 所以，如果将实数 $x$ 的所有第一类最佳逼近按照分母自小到大的顺序排列，那么它会根据与 $x$ 的大小关系分成若干段．每一段总是由若干个（可以是零个）连续的同阶的中间分数组成，且总以渐近分数结尾．段内总能保持在实数 $x$ 的一侧，段与段之间则交错排列在 $x$ 两侧．
 
 ??? example "例子：圆周率 $\pi$ 的第一类最佳逼近"
-    圆周率 $\pi=[3,7,15,1,292,\cdots]$，因而它分母最小的前 15 个第一类最佳逼近是：
+    圆周率 $\pi=[3,7,15,1,292,\ldots]$，因而它分母最小的前 15 个第一类最佳逼近是：
     
     $$
     \begin{aligned}
@@ -764,7 +892,7 @@ $$
     
     不等式全部成立等号，当且仅当 $a_{k+1}=1$ 且是连分数的末项．不考虑这样的情形，那么 $x_{k-1}=\dfrac{p_{k-1}}{q_{k-1}}$ 严格劣于 $x_k=\dfrac{p_k}{q_k}$．
     
-    任取一分数 $\dfrac{p}{q}\neq x_k$ 且 $0<q\le q_k$，因为有差分公式 $p_{k}q_{k-1} − p_{k-1}q_{k} = (−1)^{k-1}$，所以由 Cramer 法则可知，线性方程组
+    任取一分数 $\dfrac{p}{q}\neq x_k$ 且 $0<q\le q_k$，因为有差分公式 $p_{k}q_{k-1} - p_{k-1}q_{k} = (-1)^{k-1}$，所以由 Cramer 法则可知，线性方程组
     
     $$
     \begin{cases}
@@ -791,7 +919,7 @@ $$
     对于实数 $x$ 与分数 $\dfrac{p}{q}$，如果有
     
     $$
-    \left|x−\dfrac{p}{q}\right|<\dfrac{1}{2q^2}
+    \left|x-\dfrac{p}{q}\right|<\dfrac{1}{2q^2}
     $$
     
     那么 $\dfrac{p}{q}$ 一定是 $x$ 的渐近分数．
@@ -800,10 +928,10 @@ $$
     设 $\epsilon\in\{-1,1\}$ 和 $\theta\in(0,1/2)$ 是使得
     
     $$
-    x−\dfrac{p}{q} = \dfrac{\epsilon\theta}{q^2}
+    x-\dfrac{p}{q} = \dfrac{\epsilon\theta}{q^2}
     $$
     
-    成立的常数．将有理数 $\dfrac{p}{q}$ 展开成连分数 $[a_0,a_1,\cdots,a_n]$．此处，有理数有两种连分数表示，其中的 $n$ 恰好相差一，所以可以取连分数表示使得 $(-1)^n=\epsilon$，并记这个连分数表示的渐近分数为 $\dfrac{p_k}{q_k}$．设实数 $\omega$ 满足
+    成立的常数．将有理数 $\dfrac{p}{q}$ 展开成连分数 $[a_0,a_1,\ldots,a_n]$．此处，有理数有两种连分数表示，其中的 $n$ 恰好相差一，所以可以取连分数表示使得 $(-1)^n=\epsilon$，并记这个连分数表示的渐近分数为 $\dfrac{p_k}{q_k}$．设实数 $\omega$ 满足
     
     $$
     x = \dfrac{\omega p_n+p_{n-1}}{\omega q_n+q_{n-1}}.
@@ -812,7 +940,7 @@ $$
     那么，必然有
     
     $$
-    \dfrac{\epsilon\theta}{q^2} = x−\dfrac{p}{q} = x-\dfrac{p_n}{q_n} = \dfrac{p_{n-1}q_n-p_nq_{n-1}}{(\omega q_n+q_{n-1})q_n} = \dfrac{(-1)^n}{(\omega q_n+q_{n-1})q_n}.
+    \dfrac{\epsilon\theta}{q^2} = x-\dfrac{p}{q} = x-\dfrac{p_n}{q_n} = \dfrac{p_{n-1}q_n-p_nq_{n-1}}{(\omega q_n+q_{n-1})q_n} = \dfrac{(-1)^n}{(\omega q_n+q_{n-1})q_n}.
     $$
     
     故而，有
@@ -827,10 +955,10 @@ $$
     \omega=\dfrac{1}{\theta}-\dfrac{q_{n-1}}{q_n}>1.
     $$
     
-    将 $\omega$ 也展成连分数 $[b_0,b_1,\cdots]$，则
+    将 $\omega$ 也展成连分数 $[b_0,b_1,\ldots]$，则
     
     $$
-    x = \dfrac{\omega p_n+p_{n-1}}{\omega q_n+q_{n-1}} = [a_0,a_1,\cdots,a_n,\omega] = [a_0,a_1,\cdots,a_n,b_0,b_1,\cdots].
+    x = \dfrac{\omega p_n+p_{n-1}}{\omega q_n+q_{n-1}} = [a_0,a_1,\ldots,a_n,\omega] = [a_0,a_1,\ldots,a_n,b_0,b_1,\ldots].
     $$
     
     这是合法的简单连分数，所以 $\dfrac{p}{q}$ 就是 $x$ 的渐近分数．
@@ -843,7 +971,7 @@ $$
     实数 $x$ 的相邻两个渐近分数中至少有一个满足
     
     $$
-    \left|x−\dfrac{p}{q}\right|<\dfrac{1}{2q^2}.
+    \left|x-\dfrac{p}{q}\right|<\dfrac{1}{2q^2}.
     $$
 
 ??? note "证明"
@@ -913,7 +1041,7 @@ $$
         r_k = -\dfrac{q_{k-1}\xi-p_{k-1}}{q_{k-2}\xi-p_{k-2}} \iff \xi = \dfrac{p_{k-1}r_k + p_{k-2}}{q_{k-1}r_k+q_{k-2}}.
         $$
     
-        这就是连分数关系式 $\xi = [a_0,a_1,\cdots,a_{k-1},r_k]$．
+        这就是连分数关系式 $\xi = [a_0,a_1,\ldots,a_{k-1},r_k]$．
     -   因为每次添加向量造成的 $\vec\xi\times\vec\xi_{k-1,t}$ 的变化的步长都是 $|\vec\xi\times\vec\xi_{k-1}|$，所以最后剩余的距离 $|\vec\xi\times\vec\xi_k|$ 必然严格小于 $|\vec\xi\times\vec\xi_{k-1}|$．这说明，渐近分数的逼近程度（由 $|qx-p|$ 衡量）是随着 $k$ 的增加严格更优的．
     -   利用叉积的运算法则，有
     
@@ -948,18 +1076,18 @@ $$
 
 主条目：[Stern–Brocot 树与 Farey 序列](./stern-brocot.md)
 
-Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二叉搜索树](../../ds/bst.md)．有限连分数实际上编码了 Stern–Brocot 树上从根到某个分数所在位置的路径．也就是说，有理数 $x$ 的连分数表示 $[a_0,a_1,\cdots,a_{n-1},1]$ 意味着从树根 $\dfrac{1}{1}$ 开始，需要先向右子节点移动 $a_0$ 次，再向左子节点移动 $a_1$ 次，交替方向移动，直到向某个方向移动了 $a_{n-1}$ 次为止．应当注意，此处只能使用末尾为 $1$ 的连分数表示．
+Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二叉搜索树](../../ds/bst.md)．有限连分数实际上编码了 Stern–Brocot 树上从根到某个分数所在位置的路径．也就是说，有理数 $x$ 的连分数表示 $[a_0,a_1,\ldots,a_{n-1},1]$ 意味着从树根 $\dfrac{1}{1}$ 开始，需要先向右子节点移动 $a_0$ 次，再向左子节点移动 $a_1$ 次，交替方向移动，直到向某个方向移动了 $a_{n-1}$ 次为止．应当注意，此处只能使用末尾为 $1$ 的连分数表示．
 
 将连分数表示理解为 Stern–Brocot 树上的路径，可以得到比较连分数大小的算法．
 
 ???+ example "连分数大小比较"
-    给定连分数 $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$ 和 $\beta=[\beta_0,\beta_1,\cdots,\beta_m]$，比较两者大小．
+    给定连分数 $\alpha=[\alpha_0,\alpha_1,\ldots,\alpha_n]$ 和 $\beta=[\beta_0,\beta_1,\ldots,\beta_m]$，比较两者大小．
 
 ??? note "解答"
     首先将两个连分数表示都转化成末尾是 $1$ 的形式．不妨设题目所给的已经是这样形式的连分数，即 $\alpha_n=\beta_m=1$．因为偶数位置（下标从 $0$ 开始）是向右移动的步数，奇数位置是向左移动的步数，所以，$\alpha<\beta$ 当且仅当按照 [字典序](../../string/basic.md#字典序) 比较时，有
     
     $$
-    (\alpha_0,-\alpha_1,\alpha_2,\cdots,(-1)^{n-1}\alpha_{n-1},0,\cdots)<(\beta_0,-\beta_1,\beta_2,\cdots,(-1)^{m-1}\beta_{m-1},0,\cdots).
+    (\alpha_0,-\alpha_1,\alpha_2,\ldots,(-1)^{n-1}\alpha_{n-1},0,\ldots)<(\beta_0,-\beta_1,\beta_2,\ldots,(-1)^{m-1}\beta_{m-1},0,\ldots).
     $$
     
     相较于连分数表示，交替地添加正负号，删去末尾的 $1$，并且长度不足的位置用 $0$ 补齐．
@@ -980,7 +1108,7 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
 ??? note "解答"
     因为 Stern–Brocot 树既是 $[0,\infty]$ 中的分数的二叉搜索树，又是二元组 $(q,p)$ 的 [笛卡尔树](../../ds/cartesian-tree.md)，所以题意几乎可以转化为求 Stern–Brocot 树上两个点的 LCA（最近公共祖先）．但是，LCA 只能处理闭区间内的情形，LCA 可能是端点本身．为了避免额外的讨论，可以首先构造出 $\dfrac{p_0}{q_0}+\varepsilon$ 和 $\dfrac{p_1}{q_1}-\varepsilon$，再计算 LCA．在已经通过连分数计算出根到节点的路径的情况下，LCA 只要取最长的公共路径即可．
     
-    要构造出 $x\pm\varepsilon$，只需要在节点 $x$ 处首先向右（左）移动一次，再向左（右）移动 $\infty$ 次即可．转化成连分数的语言，对于分数 $x=[a_0,a_1,\cdots,a_{n-1},1]$，可以知道 $x\pm\varepsilon$ 必然是 $[a_0,a_1,\cdots,a_{n-1}+1,\infty]$ 和 $[a_0,a_1,\cdots,a_{n-1},1,\infty]$，因而只需要比较这两个连分数，将较大（小）的定义为 $x\pm\varepsilon$．
+    要构造出 $x\pm\varepsilon$，只需要在节点 $x$ 处首先向右（左）移动一次，再向左（右）移动 $\infty$ 次即可．转化成连分数的语言，对于分数 $x=[a_0,a_1,\ldots,a_{n-1},1]$，可以知道 $x\pm\varepsilon$ 必然是 $[a_0,a_1,\ldots,a_{n-1}+1,\infty]$ 和 $[a_0,a_1,\ldots,a_{n-1},1,\infty]$，因而只需要比较这两个连分数，将较大（小）的定义为 $x\pm\varepsilon$．
     
     === "C++"
         ```cpp
@@ -1066,7 +1194,7 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
     y = L_1(x) = \dfrac{a_1x+b_1}{c_1x+d_1} \iff x = L_1^{-1}(y) = \dfrac{d_1y - b_1}{-c_1y + a_1}.
     $$
 
-有限连分数 $[a_0,a_1,\cdots,a_n]$ 可以看做是一系列分式线性变换复合的结果．设
+有限连分数 $[a_0,a_1,\ldots,a_n]$ 可以看做是一系列分式线性变换复合的结果．设
 
 $$
 L_i(x) = \dfrac{a_ix+1}{x} = [a_i,x]. 
@@ -1075,15 +1203,15 @@ $$
 那么，有限连分数
 
 $$
-[a_0,a_1,\cdots,a_n] = L_0\circ L_1\circ \cdots L_n(\infty).
+[a_0,a_1,\ldots,a_n] = L_0\circ L_1\circ\cdots\circ L_n(\infty).
 $$
 
 其中，分式线性变换 $L(x)=\dfrac{ax+b}{cx+d}$ 变换在 $x=\infty$ 处的取值是 $\dfrac{a}{c}$，这是函数在 $x\rightarrow\pm\infty$ 时的极限值．
 
-对于一般的连分数，设实数 $x$ 的余项为 $r_{k+1}$，即 $x=[a_0,\cdots,a_k,r_{k+1}]$，则有
+对于一般的连分数，设实数 $x$ 的余项为 $r_{k+1}$，即 $x=[a_0,\ldots,a_k,r_{k+1}]$，则有
 
 $$
-x = L_0\circ L_1\circ \cdots L_k(r_{k+1}) = \dfrac{p_kr_{k+1}+p_{k-1}}{q_kr_{k+1}+q_{k-1}}.
+x = L_0\circ L_1\circ\cdots\circ L_k(r_{k+1}) = \dfrac{p_kr_{k+1}+p_{k-1}}{q_kr_{k+1}+q_{k-1}}.
 $$
 
 这同时也给出了分式线性变换 $L_0\circ L_1\circ\cdots\circ L_k$ 的形式．
@@ -1109,7 +1237,7 @@ $$
 这就可以归纳地得到了上述形式．分式线性变换也提供了递推公式和初值条件的另一个角度的理解．
 
 ???+ example "[DMOPC '19 Contest 7 P4 - Bob and Continued Fractions](https://dmoj.ca/problem/dmopc19c7p4)"
-    给定正整数数组 $a_1,\cdots,a_n$ 和 $m$ 组查询，每次查询给定 $l\le r$，并要求计算 $[a_l,\cdots,a_r]$ 的值．
+    给定正整数数组 $a_1,\ldots,a_n$ 和 $m$ 组查询，每次查询给定 $l\le r$，并要求计算 $[a_l,\ldots,a_r]$ 的值．
 
 ??? note "解答"
     将连分数理解为一列分式线性变换的复合在 $x=\infty$ 处取值的结果，只需要能够多次查询一段分式线性变换的复合即可．因为每个分式线性变换都可以取逆，所以可以预处理前缀和再用差分的方法查询，复杂度为 $O(n+m)$ 的；如果需要修改，也可以用线段树等结构存储．
@@ -1131,7 +1259,7 @@ $$
 算法的基石是计算连分数的分式线性变换．本节以有限连分数为例，但是因为算法每输出一位，只需要读入有限多个连分数的项，所以对于无限连分数也是适用的，而且可以算到任意精度．结合前文的连分数比较算法，可以精确地比较任意精度的实数差异．
 
 ???+ example "连分数的分式线性变换"
-    给定分式线性变换 $L(x)=\dfrac{ax+b}{cx+d}$ 和连分数 $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$，求 $\beta=L(\alpha)$ 的连分数表示 $[\beta_0,\beta_1,\cdots,\beta_m]$．
+    给定分式线性变换 $L(x)=\dfrac{ax+b}{cx+d}$ 和连分数 $\alpha=[\alpha_0,\alpha_1,\ldots,\alpha_n]$，求 $\beta=L(\alpha)$ 的连分数表示 $[\beta_0,\beta_1,\ldots,\beta_m]$．
 
 ??? note "解答"
     算法的基本思路就是逐个确定 $\beta_i$ 的值．记
@@ -1143,30 +1271,30 @@ $$
     因为连分数
     
     $$
-    L(\alpha) = L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_n}(\infty),
+    L(\alpha) = L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ\cdots\circ L_{\alpha_n}(\infty),
     $$
     
-    所以，可以向 $L$ 通过逐步复合 $L_{\alpha_k}$ 的方式计算 $L(\alpha)$ 的大小．但是，如果是希望得到 $L(\alpha)$ 的连分数表示，那么并不需要完全计算 $L(\alpha)$ 的值再求出连分数表示．可以在复合 $L_{\alpha_i}$ 的过程中就能判断 $\beta_0,\beta_1,\cdots$ 的值．
+    所以，可以向 $L$ 通过逐步复合 $L_{\alpha_k}$ 的方式计算 $L(\alpha)$ 的大小．但是，如果是希望得到 $L(\alpha)$ 的连分数表示，那么并不需要完全计算 $L(\alpha)$ 的值再求出连分数表示．可以在复合 $L_{\alpha_i}$ 的过程中就能判断 $\beta_0,\beta_1,\ldots$ 的值．
     
     比如，假设当前计算到
     
     $$
-    L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x) = \dfrac{a_kx+b_k}{c_kx+d_k}
+    L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ\cdots\circ L_{\alpha_k}(x) = \dfrac{a_kx+b_k}{c_kx+d_k}
     $$
     
-    且 $c_k,d_k$ 同号．那么，$L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x)$ 在 $[0,\infty]$ 上单调，且必然取值在 $\dfrac{a_k}{c_k}$ 和 $\dfrac{b_k}{d_k}$ 之间．所以，如果
+    且 $c_k,d_k$ 同号．那么，$L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ\cdots\circ L_{\alpha_k}(x)$ 在 $[0,\infty]$ 上单调，且必然取值在 $\dfrac{a_k}{c_k}$ 和 $\dfrac{b_k}{d_k}$ 之间．所以，如果
     
     $$
     \left\lfloor\dfrac{a_k}{c_k}\right\rfloor = \left\lfloor\dfrac{b_k}{d_k}\right\rfloor,
     $$
     
-    就可以确定它就是 $L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x)$ 的整数部分 $\beta_0$．此时，在左侧复合 $L_{\beta_0}^{-1}$ 就可以得到
+    就可以确定它就是 $L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ\cdots\circ L_{\alpha_k}(x)$ 的整数部分 $\beta_0$．此时，在左侧复合 $L_{\beta_0}^{-1}$ 就可以得到
     
     $$
-    L_{\beta_0}^{-1}\circ L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}.
+    L_{\beta_0}^{-1}\circ L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ\cdots\circ L_{\alpha_k}.
     $$
     
-    此时，继续添加 $L_{\alpha_{k+1}},L_{\alpha_{k+2}},\cdots$ 就可以确定新的整数部分，即 $\beta_1$．这样计算下去，直到确定出所有的 $\beta_j$ 的值．
+    此时，继续添加 $L_{\alpha_{k+1}},L_{\alpha_{k+2}},\ldots$ 就可以确定新的整数部分，即 $\beta_1$．这样计算下去，直到确定出所有的 $\beta_j$ 的值．
     
     算法要求 $c$ 和 $d$ 同号，是因为要保证函数的不连续点不在 $[0,\infty]$ 范围内．这总是可能的，因为简单连分数的定义要求（除了 $\alpha_0$ 外的）系数都是正整数．由此可以证明，必然在有限步内成立 $c$ 和 $d$ 同号，且将在之后一直保持同号．
     
@@ -1185,7 +1313,7 @@ x+y = \dfrac{0xy+x+y+0}{0xy+0x+0y+1},\ xy = \dfrac{1xy+0x+0y+0}{0xy+0x+0y+1},\ \
 $$
 
 ???+ example "连分数的双分式线性变换"
-    给定双分式线性变换 $L(x,y)=\dfrac{axy+bx+cy+d}{exy+fx+gy+h}$ 和连分数 $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$ 和 $\beta=[\beta_0,\beta_1,\cdots,\beta_m]$，求 $\gamma=L(\alpha,\beta)$ 的连分数表示 $[\gamma_0,\gamma_1,\cdots,\gamma_\ell]$．
+    给定双分式线性变换 $L(x,y)=\dfrac{axy+bx+cy+d}{exy+fx+gy+h}$ 和连分数 $\alpha=[\alpha_0,\alpha_1,\ldots,\alpha_n]$ 和 $\beta=[\beta_0,\beta_1,\ldots,\beta_m]$，求 $\gamma=L(\alpha,\beta)$ 的连分数表示 $[\gamma_0,\gamma_1,\ldots,\gamma_\ell]$．
 
 ??? note "解答"
     与单变量的分式线性变换的情形类似，要确定整数部分只需要保证当前的分式线性变换在 $(x,y)\in[0,\infty]\times[0,\infty]$ 内的整数部分保持不变，即 $e,f,g,h$ 皆同号，且
@@ -1203,7 +1331,7 @@ $$
 类似于循环小数的概念，如果连分数的系数形成了循环，就称为循环连分数．
 
 ???+ abstract "循环连分数"
-    设连分数 $x=[a_0,a_1,a_2,\cdots]$，且存在自然数 $K$ 和正整数 $L$ 使得对于任何 $k\ge K$，都有 $a_k=a_{k+L}$，就称连分数 $x$ 为 **循环连分数**（periodic continued fraction）．满足这个条件的最小的 $L$ 称为它的最小正周期，而在连分数中重复出现的 $a_{k},\cdots,a_{k+L-1}$ 序列就称为它的循环节．利用循环节，循环连分数可以写作 $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$．如果 $K$ 可以取作 $0$，即 $x=[\overline{a_0,\cdots,a_{L-1}}]$，就称它为 **纯循环连分数**（purely periodic continued fraction），否则称它为 **混循环连分数**（eventually periodic continued fraction）．
+    设连分数 $x=[a_0,a_1,a_2,\ldots]$，且存在自然数 $K$ 和正整数 $L$ 使得对于任何 $k\ge K$，都有 $a_k=a_{k+L}$，就称连分数 $x$ 为 **循环连分数**（periodic continued fraction）．满足这个条件的最小的 $L$ 称为它的最小正周期，而在连分数中重复出现的 $a_{k},\ldots,a_{k+L-1}$ 序列就称为它的循环节．利用循环节，循环连分数可以写作 $x=[a_0,\ldots,a_{k-1},\overline{a_k,\ldots,a_{k+L-1}}]$．如果 $K$ 可以取作 $0$，即 $x=[\overline{a_0,\ldots,a_{L-1}}]$，就称它为 **纯循环连分数**（purely periodic continued fraction），否则称它为 **混循环连分数**（eventually periodic continued fraction）．
 
 ### 二次无理数
 
@@ -1221,12 +1349,12 @@ Euler 的结果说明，所有循环连分数都是二次无理数．
     循环连分数表示的都是二次无理数．
 
 ??? note "证明"
-    对于一般的循环连分数 $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$，可以设 $y=[\overline{a_k,\cdots,a_{k+L-1}}]$，则
+    对于一般的循环连分数 $x=[a_0,\ldots,a_{k-1},\overline{a_k,\ldots,a_{k+L-1}}]$，可以设 $y=[\overline{a_k,\ldots,a_{k+L-1}}]$，则
     
     $$
     \begin{aligned}
-    x&=[a_0,\cdots,a_{k-1},y] = L_0(y),\\
-    y&=[a_k,\cdots,a_{k+L-1},y] = L_1(y),
+    x&=[a_0,\ldots,a_{k-1},y] = L_0(y),\\
+    y&=[a_k,\ldots,a_{k+L-1},y] = L_1(y),
     \end{aligned}
     $$
     
@@ -1404,13 +1532,13 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
     对于纯循环连分数
     
     $$
-    x = \left[\overline{a_0,a_1,\cdots,a_{\ell}}\right],
+    x = \left[\overline{a_0,a_1,\ldots,a_{\ell}}\right],
     $$
     
     记
     
     $$
-    x' = \left[\overline{a_{\ell},\cdots,a_1,a_0}\right].
+    x' = \left[\overline{a_{\ell},\ldots,a_1,a_0}\right].
     $$
     
     则 $x$ 和 $x'$ 互为「倒数负共轭」，即 $x$ 的共轭的倒数的相反数是 $x'$．
@@ -1420,8 +1548,8 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
     
     $$
     \begin{aligned}
-    \dfrac{p_\ell}{p_{\ell-1}} &= [a_\ell,\cdots,a_1,a_0] = \dfrac{p'_\ell}{q'_\ell},\\
-    \dfrac{q_\ell}{q_{\ell-1}} &= [a_\ell,\cdots,a_1] = \dfrac{p'_{\ell-1}}{q'_{\ell-1}}.
+    \dfrac{p_\ell}{p_{\ell-1}} &= [a_\ell,\ldots,a_1,a_0] = \dfrac{p'_\ell}{q'_\ell},\\
+    \dfrac{q_\ell}{q_{\ell-1}} &= [a_\ell,\ldots,a_1] = \dfrac{p'_{\ell-1}}{q'_{\ell-1}}.
     \end{aligned}
     $$
     
@@ -1511,7 +1639,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     对于有理数 $r>1$，如果 $\sqrt{r}$ 是无理数，那么
     
     $$
-    \sqrt{r} = [\lfloor\sqrt{r}\rfloor,\overline{a_1,\cdots,a_{\ell},2\lfloor\sqrt{r}\rfloor}]
+    \sqrt{r} = [\lfloor\sqrt{r}\rfloor,\overline{a_1,\ldots,a_{\ell},2\lfloor\sqrt{r}\rfloor}]
     $$
     
     且对于任意 $1\le k\le\ell$，都有 $a_k = a_{\ell+1-k}$．
@@ -1520,25 +1648,25 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     对于二次无理数 $\sqrt{r}$，因为 $\lfloor\sqrt{r}\rfloor+\sqrt{r}>1$ 且 $-1<\lfloor\sqrt{r}\rfloor-\sqrt{r}<0$，所以 $\lfloor\sqrt{r}\rfloor+\sqrt{r}$ 是纯循环连分数：
     
     $$
-    \lfloor\sqrt{r}\rfloor+\sqrt{r} = [\overline{2\lfloor\sqrt{r}\rfloor,a_1,\cdots,a_\ell}].
+    \lfloor\sqrt{r}\rfloor+\sqrt{r} = [\overline{2\lfloor\sqrt{r}\rfloor,a_1,\ldots,a_\ell}].
     $$
     
     根据上述定理，它的倒数负共轭具有形式
     
     $$
-    \dfrac{1}{\sqrt{r}-\lfloor\sqrt{r}\rfloor} = [\overline{a_\ell,\cdots,a_1,2\lfloor\sqrt{r}\rfloor}].
+    \dfrac{1}{\sqrt{r}-\lfloor\sqrt{r}\rfloor} = [\overline{a_\ell,\ldots,a_1,2\lfloor\sqrt{r}\rfloor}].
     $$
     
     利用连分数的基本性质可知
     
     $$
-    \sqrt{r}=\lfloor\sqrt{r}\rfloor+\dfrac{1}{\dfrac{1}{\sqrt{r}-\lfloor\sqrt{r}\rfloor}}=[\lfloor\sqrt{r}\rfloor,\overline{a_\ell,\cdots,a_1,2\lfloor\sqrt{r}\rfloor}].
+    \sqrt{r}=\lfloor\sqrt{r}\rfloor+\dfrac{1}{\dfrac{1}{\sqrt{r}-\lfloor\sqrt{r}\rfloor}}=[\lfloor\sqrt{r}\rfloor,\overline{a_\ell,\ldots,a_1,2\lfloor\sqrt{r}\rfloor}].
     $$
     
     但是，又由 $\lfloor\sqrt{r}\rfloor+\sqrt{r}$ 的连分数表示可知，
     
     $$
-    \sqrt{r} = -\lfloor\sqrt{r}\rfloor+\left(\lfloor\sqrt{r}\rfloor+\sqrt{r}\right) = [\lfloor\sqrt{r}\rfloor,\overline{a_1,\cdots,a_\ell,2\lfloor\sqrt{r}\rfloor}].
+    \sqrt{r} = -\lfloor\sqrt{r}\rfloor+\left(\lfloor\sqrt{r}\rfloor+\sqrt{r}\right) = [\lfloor\sqrt{r}\rfloor,\overline{a_1,\ldots,a_\ell,2\lfloor\sqrt{r}\rfloor}].
     $$
     
     因为无理数的连分数表示是唯一的，所以比较中间的系数就知道，$a_k=a_{\ell+1-k}$ 对所有 $1\le k\le\ell$ 都成立．
@@ -1578,7 +1706,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 在掌握了基础概念后，需要研究一些具体的例题来理解如何在算法竞赛中应用连分数的方法．
 
 ???+ example "线下凸包"
-    给定 $r=[a_0,a_1,\cdots,a_n]$，求出满足 $0\le x\le N$ 和 $0\le y\le rx$ 的整点 $(x,y)$ 的集合的凸包．
+    给定 $r=[a_0,a_1,\ldots,a_n]$，求出满足 $0\le x\le N$ 和 $0\le y\le rx$ 的整点 $(x,y)$ 的集合的凸包．
 
 ??? note "解答"
     对于无界集合 $x\ge 0$，上凸壳就是直线 $y=rx$ 本身．然而，如下图所示，如果还要求 $x\le N$，那么上凸壳最终会偏离直线．
@@ -1650,7 +1778,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 ???+ example "[June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)"
     求 $\sum\limits_{x=1}^N \lfloor \mathrm{e}x \rfloor$ 的值，其中，$\mathrm{e}$ 是自然对数的底．
     
-    提示：$e = [2,1,2,1,1,4,1,1,6,1,\cdots,1,2n,1, \cdots]$．[^continued-fraction-of-e]
+    提示：$e = [2,1,2,1,1,4,1,1,6,1,\ldots,1,2n,1, \ldots]$．[^continued-fraction-of-e]
 
 ??? note "解答"
     这个和等于集合 $\{(x,y):1\le x\le N,1\le y\le\mathrm{e}x\}$ 中的整点个数．在构建完直线 $y=\mathrm{e}x$ 下的整点的凸包后，可以使用 [Pick 定理](../../geometry/pick.md) 计算整点个数．时间复杂度为 $O(\log N)$．
@@ -1691,7 +1819,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
         ```
 
 ???+ example "[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)"
-    给定正整数 $N,M,A,B$，求 $\displaystyle\sum_{i=0}^{N-1} \left\lfloor \frac{A \cdot i + B}{M} \right\rfloor$ 的值．
+    给定正整数 $N,M,A,B$，求 $\displaystyle\sum_{i=0}^{N-1} \left\lfloor \dfrac{A \cdot i + B}{M} \right\rfloor$ 的值．
 
 ??? note "解答"
     这是到目前为止最为复杂的题目．它可以通过 [类欧几里得算法](./euclidean.md) 计算．此处给出基于连分数的算法，时间复杂度是 $O(\log\min\{A,B\})$．
@@ -1734,7 +1862,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 
 ## 习题
 
--   [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
+-   [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge\&Itemid=8\&page=show_problem\&problem=775)
 -   [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
 -   [「LibreOJ NOI Round #2」单枪匹马](https://loj.ac/p/573)
 -   [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)
