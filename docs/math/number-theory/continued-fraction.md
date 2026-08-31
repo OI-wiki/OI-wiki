@@ -317,7 +317,7 @@ $$
     
     这恰对应拼接性质的恒等式．
 
-该性质可以用来考察辗转相除法的中间量．
+该性质可以用来考察辗转相除法的中间量．例如，Heilbronn 曾用它估计辗转相除法的平均步数[^heilbronn]．下面给出一个利用该性质处理相关求和问题的竞赛例题．
 
 ???+ example "[洛谷 P17229 \[Math×Girl²\] 英雄变奏曲](https://www.luogu.com.cn/problem/P17229)"
     给定一个正整数 $N$，以及两个整数值函数 $g,h:\{1,2,\ldots,N\}\to\mathbb Z$ 的点值．
@@ -1889,6 +1889,8 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 [^one-representation]: 自然数 $1$ 只有非标准表示：$1=[1]=[0,1]$．
 
 [^continuant]: 译名来自张明尧、张凡翻译的《具体数学》第 6.7 节．
+
+[^heilbronn]: H. Heilbronn, [On the Average Length of a Class of Finite Continued Fractions](https://link.springer.com/chapter/10.1007/978-1-4615-4819-5_7), 1969.
 
 [^sqrt5]: 此时不能默认既约分数 $\dfrac{p}{q}$ 一定是渐近分数，虽然 Legendre 定理表明 $\dfrac{p}{q}$ 确实只能是某个渐近分数．对于渐近分数的情形，可以通过渐近分数逼近实数的误差入手加以证明．
 
