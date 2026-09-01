@@ -168,7 +168,7 @@ $$
     $$
 
 ??? note "证明"
-    每个渐近分数都是有限连分数．前面已经提到过，求有限连分数其实相当于做辗转相除法．但是辗转相除法得到的实际上是连分数的一个后缀，而渐近分数需要的是连分数的一个前缀．为了得到这个前缀，需要考察每次加上一步时，连分数怎么变化．一个好用的工具是，使用矩阵乘法来表示辗转相除过程的一步：
+    每个渐近分数都是有限连分数．前面已经提到过，求有限连分数其实相当于做辗转相除法．但是辗转相除法得到的实际上是连分数的一个后缀，而渐近分数需要的是连分数的一个前缀．为了得到这个前缀，需要考察每次加上一步时，连分数怎么变化．为此，可以使用矩阵乘法表示辗转相除过程的一步，即
     
     $$
     M(a)=\begin{pmatrix} a & 1 \\ 1 & 0 \end{pmatrix},\qquad
@@ -176,13 +176,13 @@ $$
     \frac{au+v}{u}=a+\frac{1}{u/v}.
     $$
     
-    向量 $(a_k,1)^{\mathsf T}$ 表示有限连分数 $[a_k]$；依次左乘矩阵相当于在左侧依次补上连分数的系数．将该连分数补成渐进分数 $x_k=\dfrac{p_k}{q_k}=[a_0,a_1,\ldots,a_k]$ 的过程得到如下等式：
+    向量 $(a_k,1)^{\mathrm{T}}$ 表示有限连分数 $[a_k]$；依次左乘矩阵相当于在左侧依次补上连分数的系数．将该连分数补成渐进分数 $x_k=\dfrac{p_k}{q_k}=[a_0,a_1,\ldots,a_k]$ 的过程得到如下等式：
     
     $$
     M(a_0)M(a_1)M(a_2)\cdots M(a_{k-1})\begin{pmatrix}a_k\\1\end{pmatrix}=\begin{pmatrix}p_k\\q_k\end{pmatrix}.
     $$
     
-    由 $\det(M(a_0)M(a_1)\cdots M(a_{k-1}))=(-1)^{k}$ 知，该矩阵变换将本原向量 $(a_k,1)^{\mathsf T}$ 变换为 $(p_k,q_k)^{\mathsf T}$，故 $p_k$ 和 $q_k$ 必互质．$M(a_k)$ 的第二列为 $(1,0)^{\mathsf T}$，而 $M(a_{k-1})(1,0)^{\mathsf T}=(a_{k-1},1)^{\mathsf T}$，这一列的乘积可以递推带入得到．补上这一列即得：
+    由 $\det(M(a_0)M(a_1)\cdots M(a_{k-1}))=(-1)^{k}$ 知，该矩阵变换将本原向量 $(a_k,1)^{\mathrm{T}}$ 变换为 $(p_k,q_k)^{\mathrm{T}}$，故 $p_k$ 和 $q_k$ 必互质．$M(a_k)$ 的第二列为 $(1,0)^{\mathrm{T}}$，而 $M(a_{k-1})(1,0)^{\mathrm{T}}=(a_{k-1},1)^{\mathrm{T}}$，这一列的乘积可以递推带入得到．补上这一列，便得到
     
     $$
     M(a_0)M(a_1)M(a_2)\cdots M(a_k)=\begin{pmatrix}p_k & p_{k-1}\\q_k & q_{k-1}\end{pmatrix}.
@@ -246,7 +246,7 @@ $$
 \frac{K(a_0,a_1,\ldots,a_k)}{K(a_1,\ldots,a_k)}=[a_0,a_1,\ldots,a_k].
 $$
 
-先前的矩阵表示也容易用连项式改写．当 $k\ge 1$ 时有：
+先前的矩阵表示也容易用连项式改写．当 $k\ge 1$ 时，有
 
 $$
 M(a_0)\cdots M(a_k)=
@@ -256,26 +256,29 @@ K(a_1,\ldots,a_k)&K(a_1,\ldots,a_{k-1})
 \end{pmatrix}.
 $$
 
-连项式最重要的性质是其对称性：
+连项式最重要的性质是其对称性．
 
 ???+ note "连项式的对称性"
-    由于任意矩阵 $M(a)$ 都是对称矩阵，考察其乘积的转置有：
-    
-    $$
-    (M(a_0)\cdots M(a_n))^{\mathsf T}=M(a_n)^{\mathsf T}\cdots M(a_0)^{\mathsf T}=M(a_n)\cdots M(a_0).
-    $$
-    
-    考察两个乘积矩阵的左上角立得：
+    对任意有限序列 $(a_0,\ldots,a_n)$，有
     
     $$
     K(a_0,\ldots,a_n)=K(a_n,\ldots,a_0).
     $$
-    
-    由对称性能够写出连项式递推的反向版本：
+
+??? note "证明"
+    由于任意矩阵 $M(a)$ 都是对称矩阵，将其乘积转置，得到
     
     $$
-    K(a_0,\ldots,a_n)=a_0 K(a_1,\ldots,a_n)+K(a_2,\ldots,a_n).
+    (M(a_0)\cdots M(a_n))^{\mathrm{T}}=M(a_n)^{\mathrm{T}}\cdots M(a_0)^{\mathrm{T}}=M(a_n)\cdots M(a_0).
     $$
+    
+    比较两个乘积矩阵的左上角，立即得到结论．
+
+由对称性，连项式的递推关系也可以反向写作
+
+$$
+K(a_0,\ldots,a_n)=a_0 K(a_1,\ldots,a_n)+K(a_2,\ldots,a_n).
+$$
 
 ??? info "连项式的行列式表示"
     连项式可以写成行列式的形式：
@@ -303,7 +306,7 @@ $$
     $$
 
 ??? note "证明"
-    仅需要将两端矩阵乘积利用结合律分开即可．令：
+    仅需要将两端矩阵乘积利用结合律分开即可．令
     
     $$
     P=M(a_1)\cdots M(a_m),\quad Q=M(b_1)\cdots M(b_n),
@@ -320,7 +323,7 @@ $$
 该性质可以用来考察辗转相除法的中间量．例如，Heilbronn 曾用它估计辗转相除法的平均步数[^heilbronn]．下面给出一个利用该性质处理相关求和问题的竞赛例题．
 
 ???+ example "[洛谷 P17229 \[Math×Girl²\] 英雄变奏曲](https://www.luogu.com.cn/problem/P17229)"
-    给定一个正整数 $N$，以及两个整数值函数 $g,h:\{1,2,\ldots,N\}\to\mathbb Z$ 的点值．
+    给定一个正整数 $N$，以及两个整数值函数 $g,h:\{1,2,\ldots,N\}\to\mathbf{Z}$ 的点值．
     
     对于满足 $1\le y<x\le N$ 的整数 $x,y$，令 $z=x\bmod y$，并递归定义
     
@@ -342,19 +345,19 @@ $$
     $$
 
 ??? note "思路"
-    题目中 $f(x,y)$ 的定义对应欧几里得算法的过程．用连分数表示欧几里得算法，设 $\dfrac{x}{y}=[a_0,a_1,\ldots,a_k]$ 为有限连分数的标准表示，那么有：
+    题目中 $f(x,y)$ 的定义对应欧几里得算法的过程．用连分数表示欧几里得算法，设 $\dfrac{x}{y}=[a_0,a_1,\ldots,a_k]$ 为有限连分数的标准表示，那么有
     
     $$
     f(x,y)=\sum_{i=0}^{k-1}g(a_i)h(a_{i+1}).
     $$
     
-    利用连项式的拼接性质，从 $a_i$ 处切开连项式，有：
+    利用连项式的拼接性质，从 $a_i$ 处切开连项式，有
     
     $$
     K(a_0,a_1,\ldots,a_k)=K(a_0,\ldots,a_i)K(a_{i+1},\ldots,a_k)+K(a_0,\ldots,a_{i-1})K(a_{i+2},\ldots,a_k).
     $$
     
-    令：
+    令
     
     $$
     \begin{aligned}
@@ -363,7 +366,7 @@ $$
     \end{aligned}
     $$
     
-    由连项式表示有限连分数的性质得到：
+    由连项式表示有限连分数的性质得到
     
     $$
     \frac{X}{Y}=[a_i,a_{i-1},\ldots,a_0],\quad \frac{Z}{W}=[a_{i+1},a_{i+2},\ldots,a_k].
@@ -377,7 +380,7 @@ $$
     2.  $Y=1,X\ge2$：$\dfrac{X}{Y}=X$，对应 $[X]$ 和 $[X-1,1]$，注意后者的贡献不同，总贡献为 $(g(X)+g(X-1))h\left(\left\lfloor\dfrac{Z}{W}\right\rfloor\right)$；
     3.  $X=Y=1$：贡献为 $g(1)h\left(\left\lfloor\dfrac{Z}{W}\right\rfloor\right)$．
     
-    由此我们将特别难处理的 $S(N)$ 变为了关于 $X,Y,Z,W$ 的求和，即（补充定义 $g(0)=2g(1)$）：
+    由此，我们将特别难处理的 $S(N)$ 变为了以下关于 $X,Y,Z,W$ 的求和（补充定义 $g(0)=2g(1)$）：
     
     $$
     \begin{aligned}
@@ -403,17 +406,19 @@ $$
     如果 $a_0=0$ 且 $k\ge 2$，则第一个连分数应当理解为在倒数第二项处截断，即 $[a_k,a_{k-1},\ldots,a_2]$．
 
 ??? note "证明"
+    根据连项式表示可知
+    
     $$
     \frac{q_k}{q_{k-1}}=\frac{K(a_1,\ldots,a_{k-1},a_k)}{K(a_1,\ldots,a_{k-1})}=\frac{K(a_k,a_{k-1},\ldots,a_1)}{K(a_{k-1},\ldots,a_1)}=[a_k,a_{k-1},\ldots,a_1].
     $$
     
-    如果 $a_0\neq 0$：
+    如果 $a_0\neq 0$，则
     
     $$
     \frac{p_k}{p_{k-1}}=\frac{K(a_0,\ldots,a_{k-1},a_k)}{K(a_0,\ldots,a_{k-1})}=\frac{K(a_k,a_{k-1},\ldots,a_0)}{K(a_{k-1},\ldots,a_0)}=[a_k,a_{k-1},\ldots,a_0].
     $$
     
-    如果 $a_0=0$，由连项式的递推关系有 $K(0,a_1,a_2,\ldots,a_k)=K(a_2,\ldots,a_k)$，故：
+    如果 $a_0=0$，由连项式的递推关系有 $K(0,a_1,a_2,\ldots,a_k)=K(a_2,\ldots,a_k)$，故有
     
     $$
     \frac{p_k}{p_{k-1}}=\frac{K(a_2,\ldots,a_{k-1},a_k)}{K(a_2,\ldots,a_{k-1})}=\frac{K(a_k,a_{k-1},\ldots,a_2)}{K(a_{k-1},\ldots,a_2)}=[a_k,a_{k-1},\ldots,a_2].
