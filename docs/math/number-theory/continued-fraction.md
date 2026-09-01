@@ -226,7 +226,7 @@ $$
 
 ### 连项式
 
-**连项式**（continuant）来源于渐进分数递推关系的中间量．[^continuant]
+**连项式**（continuant）来源于渐近分数递推关系的中间量．[^continuant]
 
 ???+ abstract "连项式"
     对任意有限序列，如下递归定义连项式：
