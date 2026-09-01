@@ -1895,7 +1895,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 
 [^continuant]: 译名来自张明尧、张凡翻译的《具体数学》第 6.7 节．
 
-[^heilbronn]: H. Heilbronn, [On the Average Length of a Class of Finite Continued Fractions](https://link.springer.com/chapter/10.1007/978-1-4615-4819-5_7), 1969.
+[^heilbronn]: [H. Heilbronn, On the Average Length of a Class of Finite Continued Fractions, 1969.](https://link.springer.com/chapter/10.1007/978-1-4615-4819-5_7)
 
 [^sqrt5]: 此时不能默认既约分数 $\dfrac{p}{q}$ 一定是渐近分数，虽然 Legendre 定理表明 $\dfrac{p}{q}$ 确实只能是某个渐近分数．对于渐近分数的情形，可以通过渐近分数逼近实数的误差入手加以证明．
 
