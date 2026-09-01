@@ -176,7 +176,7 @@ $$
     \frac{au+v}{u}=a+\frac{1}{u/v}.
     $$
     
-    向量 $(a_k,1)^{\mathrm{T}}$ 表示有限连分数 $[a_k]$；依次左乘矩阵相当于在左侧依次补上连分数的系数．将该连分数补成渐进分数 $x_k=\dfrac{p_k}{q_k}=[a_0,a_1,\ldots,a_k]$ 的过程得到如下等式：
+    向量 $(a_k,1)^{\mathrm{T}}$ 表示有限连分数 $[a_k]$；依次左乘矩阵相当于在左侧依次补上连分数的系数．将该连分数补成渐近分数 $x_k=\dfrac{p_k}{q_k}=[a_0,a_1,\ldots,a_k]$ 的过程得到如下等式：
     
     $$
     M(a_0)M(a_1)M(a_2)\cdots M(a_{k-1})\begin{pmatrix}a_k\\1\end{pmatrix}=\begin{pmatrix}p_k\\q_k\end{pmatrix}.
