@@ -233,7 +233,7 @@ $$
     --8<-- "docs/math/code/mod-arithmetic/mod-32-inv-pow.cpp:inv"
     ```
 
-接下来，讨论取幂操作：给定 $x,a,b$ 和模数 $m=2^e~(e > 2)$，需要求出 $xa^b\bmod m$，其中，$a$ 是奇数．根据对模 $2^e$ 整数乘法结构的 [分析](./primitive-root.md#mod-pow-2) 可知，$a$ 总是可以写成 $\pm g^{\ell}$ 的形式[^mod-2-g]，且负号出现且仅出现在 $a\equiv 3\pmod 4$ 的情形．对于这种情况，可以将 $a$ 替换成 $-a$，并将最终结果再乘上 $(-1)^b$．因此，接下来不妨假设 $a\equiv 1\pmod 4$ 成立．此时，算法的核心想法是，将 $a$ 写成 $g^{L(a)}\bmod m$ 的形式，然后用 $xg^{bL(a)}\bmod m$ 计算所求的幂．
+接下来，讨论取幂操作：给定 $x,a,b$ 和模数 $m=2^e~(e > 2)$，需要求出 $xa^b\bmod m$，其中，$a$ 是奇数．根据对模 $2^e$ 整数乘法结构的 [分析](./primitive-root.md#递推公式) 可知，$a$ 总是可以写成 $\pm g^{\ell}$ 的形式[^mod-2-g]，且负号出现且仅出现在 $a\equiv 3\pmod 4$ 的情形．对于这种情况，可以将 $a$ 替换成 $-a$，并将最终结果再乘上 $(-1)^b$．因此，接下来不妨假设 $a\equiv 1\pmod 4$ 成立．此时，算法的核心想法是，将 $a$ 写成 $g^{L(a)}\bmod m$ 的形式，然后用 $xg^{bL(a)}\bmod m$ 计算所求的幂．
 
 计算 $L(a)$ 就是计算离散对数 $\operatorname{ind}_ga$．注意到，只要 $a\equiv 1\pmod 4$，那么 $a$ 总能写成如下形式：
 
