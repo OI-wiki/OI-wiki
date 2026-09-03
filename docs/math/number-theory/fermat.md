@@ -210,7 +210,7 @@ author: PeterlitsZo, Tiphereth-A
     a^{k\bmod\varphi(m)+\varphi(m)} < m \le a^{k}.
     $$
     
-    该不等式只能在 $a \ge 2$ 时成立，所以左侧表达式不小于 $2^{\varphi(m)}$．但是，$2^{\varphi(m)} < m$ 只会发生在 $m = 6$ 时（$m\ge 16$ 时 $\varphi(m)\ge\sqrt m\ge\log_2m$，其余可逐一验证）．代入上式，就得到 $a^{k\bmod 2 + 2} < 6 \le a^{k}$．左侧表达式中，若 $k$ 是偶数，则指数是 $2$，有 $a = 2$ 且 $k \ge 4$；若 $k$ 是奇数，则指数是 $3$，无解．综上，丢失越界信息只发生在 $m=6,~a=2$ 且 $k\ge 4$ 是偶数时．
+    该不等式只能在 $a \ge 2$ 时成立，所以左侧表达式不小于 $2^{\varphi(m)}$．但是，$2^{\varphi(m)} < m$ 只会发生在 $m = 6$ 时．[^phi-ineq]代入上式，就得到 $a^{k\bmod 2 + 2} < 6 \le a^{k}$．左侧表达式中，若 $k$ 是偶数，则指数是 $2$，有 $a = 2$ 且 $k \ge 4$；若 $k$ 是奇数，则指数是 $3$，无解．综上，丢失越界信息只发生在 $m=6,~a=2$ 且 $k\ge 4$ 是偶数时．
     
     下面说明，这一情形下丢失越界信息并不影响后续计算．只考虑 $a_i\ge 2$ 的非平凡情形（$a_i\le 1$ 时幂值不超过 $1$，不会越界）．内层模数为 $6$，故回溯一层后的模数 $m_1$ 满足 $\varphi(m_1)=6$，只能是 $7,9,14,18$ 之一．回溯到该层时，需要计算 $r_{m_1}(a_1^{k_1})$，而 $k_1$ 本应为 $10$，实际为 $4$．但对所有 $a_1$ 和这些 $m_1$，都有 $a_1^{4}\equiv a_1^{10}\pmod {m_1}$．为说明这一点，注意到前文扩展欧拉定理的 [证明](#严格证明) 中已经得到：对任何 $a$ 和 $m$，幂次余数 $a^k\bmod m$ 进入循环节之前的长度 $k_0$ 都不超过 $\nu_+(m):=\max\{\nu_p(m) : p\mid m\}$，且循环节长度整除 $\varphi(m)$．而 $\nu_+(m_1)\le 2$，故 $k_1=4$ 已进入循环节，且它与 $10$ 相差 $\varphi(m_1)=6$，亦即上式总成立．所以余数信息正确．再看越界信息．由于内层真实值为 $2^k\ge 16>10$，故 $a_1^{2^k}\ge a_1^{10}\ge m_1$，本层总应该标记越界．但本层只会返回 $a_1^4$ 是否越界；唯一出错的可能是 $a_1^4<m_1$，即只能有 $a_1=2,~m_1=18$．其余情形的越界信息已正确标记，继续回溯自然正确．而 $a_1=2,~m_1=18$ 时，本应返回 $34$，实际返回 $16$，需再回溯一层，此时 $m_2$ 只能是 $19,27,38,54$ 之一．此时总有 $\nu_+(m_2)\le 3 < 16$ 且 $34-16=\varphi(m_2)$，余数信息正确；且 $a_2^{16}\ge m_2$ 恒成立，越界信息也正确．所以此时结果正确，后续回溯也必然正确．
     
@@ -232,3 +232,5 @@ author: PeterlitsZo, Tiphereth-A
 -   Hardy, Godfrey Harold, and Edward Maitland Wright. An introduction to the theory of numbers. Oxford university press, 1979.
 
 [^ex-euler]: 这一名字主要出现在算法竞赛圈中，而并非该结论的通用名称．
+
+[^phi-ineq]: 根据 Kendall, R. and Osborn, R. (1965) Two Simple Lower Bounds for the Euler ϕ-Function. Texas Journal of Science, 17, 324-326 一文，对于 $m > 6$ 总有 $\varphi(m)\ge\sqrt{m}$．直接计算可知，对于 $m\ge 16$，总有 $\sqrt{m}\ge\log_2m$．因此，不等式 $\varphi(m)\ge\sqrt{m}$ 对 $m\ge 16$ 都成立．其余可逐一验证．
