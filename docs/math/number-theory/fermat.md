@@ -233,4 +233,4 @@ author: PeterlitsZo, Tiphereth-A
 
 [^ex-euler]: 这一名字主要出现在算法竞赛圈中，而并非该结论的通用名称．
 
-[^phi-ineq]: 根据 Kendall, R. and Osborn, R. (1965) Two Simple Lower Bounds for the Euler ϕ-Function. Texas Journal of Science, 17, 324-326 一文，对于 $m > 6$ 总有 $\varphi(m)\ge\sqrt{m}$．直接计算可知，对于 $m\ge 16$，总有 $\sqrt{m}\ge\log_2m$．因此，不等式 $\varphi(m)\ge\sqrt{m}$ 对 $m\ge 16$ 都成立．其余可逐一验证．
+[^phi-ineq]: 根据 Kendall, R. and Osborn, R. (1965) Two Simple Lower Bounds for the Euler ϕ-Function. Texas Journal of Science, 17, 324-326 一文，对于 $m > 6$ 总有 $\varphi(m)\ge\sqrt{m}$．直接计算可知，对于 $m\ge 16$，总有 $\sqrt{m}\ge\log_2m$．因此，不等式 $\varphi(m)\ge\log_2m$ 对 $m\ge 16$ 都成立．其余可逐一验证．
