@@ -49,14 +49,14 @@ struct Transform {
 
 int rt, id, L, R;
 std::vector<std::array<int, 2>> ch;
-std::vector<Info> info;
+std::vector<Info> val;
 std::vector<Transform> lazy;
 
-void push_up(int cr) { info[cr] = info[lc(cr)] + info[rc(cr)]; }
+void push_up(int cr) { val[cr] = val[lc(cr)] + val[rc(cr)]; }
 
 // Build the tree based on info stored in vec (0-indexed).
 void build(int cr, int ll, int rr, const std::vector<Info>& vec) {
-  if (ll == rr) return (void)(info[cr] = vec[ll]);
+  if (ll == rr) return (void)(val[cr] = vec[ll]);
   int mm = ll + ((rr - ll) >> 1);
   build(lc(cr) = ++id, ll, mm, vec);
   build(rc(cr) = ++id, mm + 1, rr, vec);
@@ -65,7 +65,7 @@ void build(int cr, int ll, int rr, const std::vector<Info>& vec) {
 
 void build(int n, const std::vector<Info>& vec) {
   rt = 1, id = 0, L = 0, R = n - 1;
-  ch.resize(n << 1), info.resize(n << 1), lazy.resize(n << 1);
+  ch.resize(n << 1), val.resize(n << 1), lazy.resize(n << 1);
   build(rt = ++id, L, R, vec);
 }
 
@@ -74,7 +74,7 @@ void build(int n, const std::vector<Info>& vec) {
 // Lazy update.
 void lazy_update(int cr, const Transform& f) {
   if (!cr) return;
-  info[cr] = f(info[cr]);
+  val[cr] = f(val[cr]);
   lazy[cr] += f;
 }
 
@@ -90,7 +90,7 @@ void push_down(int cr) {
 // --8<-- [start:point-get]
 // Query info at x.
 Info query(int cr, int ll, int rr, int x) {
-  if (ll == rr) return info[cr];
+  if (ll == rr) return val[cr];
   push_down(cr);
   int mm = ll + ((rr - ll) >> 1);
   if (x <= mm)
@@ -105,7 +105,7 @@ Info query(int x) { return query(rt, L, R, x); }
 // --8<-- [start:point-set]
 // Apply transformation f to the value at x.
 void modify(int cr, int ll, int rr, int x, const Transform& f) {
-  if (ll == rr) return (void)(info[cr] = f(info[cr]));
+  if (ll == rr) return (void)(val[cr] = f(val[cr]));
   push_down(cr);
   int mm = ll + ((rr - ll) >> 1);
   if (x <= mm)
@@ -121,7 +121,7 @@ void modify(int x, const Transform& f) { modify(rt, L, R, x, f); }
 // --8<-- [start:range-get]
 // Query info in [tl, tr].
 Info query(int cr, int ll, int rr, int tl, int tr) {
-  if (tl <= ll && rr <= tr) return info[cr];
+  if (tl <= ll && rr <= tr) return val[cr];
   push_down(cr);
   int mm = ll + ((rr - ll) >> 1);
   Info res;

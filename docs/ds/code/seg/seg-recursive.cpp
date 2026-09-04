@@ -28,13 +28,13 @@ struct Info {
 #define rc(x) (((x) << 1) | 1)
 
 int rt, L, R;
-std::vector<Info> info;
+std::vector<Info> val;
 
-void push_up(int cr) { info[cr] = info[lc(cr)] + info[rc(cr)]; }
+void push_up(int cr) { val[cr] = val[lc(cr)] + val[rc(cr)]; }
 
 // Build the tree based on info stored in vec (0-indexed).
 void build(int cr, int ll, int rr, const std::vector<Info>& vec) {
-  if (ll == rr) return (void)(info[cr] = vec[ll]);
+  if (ll == rr) return (void)(val[cr] = vec[ll]);
   int mm = ll + ((rr - ll) >> 1);
   build(lc(cr), ll, mm, vec);
   build(rc(cr), mm + 1, rr, vec);
@@ -43,7 +43,7 @@ void build(int cr, int ll, int rr, const std::vector<Info>& vec) {
 
 void build(int n, const std::vector<Info>& vec) {
   rt = 1, L = 0, R = n - 1;
-  info.resize(n << 2);
+  val.resize(n << 2);
   build(rt, L, R, vec);
 }
 
@@ -51,7 +51,7 @@ void build(int n, const std::vector<Info>& vec) {
 // --8<-- [start:point-get]
 // Query info at x.
 Info query(int cr, int ll, int rr, int x) {
-  if (ll == rr) return info[cr];
+  if (ll == rr) return val[cr];
   int mm = ll + ((rr - ll) >> 1);
   if (x <= mm)
     return query(lc(cr), ll, mm, x);
@@ -65,7 +65,7 @@ Info query(int x) { return query(rt, L, R, x); }
 // --8<-- [start:point-set]
 // Modify info at x to v.
 void modify(int cr, int ll, int rr, int x, const Info& v) {
-  if (ll == rr) return (void)(info[cr] = v);
+  if (ll == rr) return (void)(val[cr] = v);
   int mm = ll + ((rr - ll) >> 1);
   if (x <= mm)
     modify(lc(cr), ll, mm, x, v);
@@ -80,7 +80,7 @@ void modify(int x, const Info& v) { modify(rt, L, R, x, v); }
 // --8<-- [start:range-get]
 // Query info in [tl, tr].
 Info query(int cr, int ll, int rr, int tl, int tr) {
-  if (tl <= ll && rr <= tr) return info[cr];
+  if (tl <= ll && rr <= tr) return val[cr];
   int mm = ll + ((rr - ll) >> 1);
   Info res;
   if (tl <= mm) res = query(lc(cr), ll, mm, tl, tr);
