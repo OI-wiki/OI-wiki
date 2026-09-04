@@ -85,7 +85,7 @@ void push_down(int cr) {
   lazy[cr] = Transform();
 }
 
-// --8<-- [emd:tag]
+// --8<-- [end:tag]
 // --8<-- [start:point-get]
 // Query info at x.
 Info query(int cr, int ll, int rr, int x) {
