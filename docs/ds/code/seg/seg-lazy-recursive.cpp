@@ -26,13 +26,13 @@ struct Transform {
 
   Transform(int _a = 1, int _b = 0) : a(_a), b(_b) {}
 
-  operator bool() const { return a != 1 || b != 0; }
+  explicit operator bool() const { return a != 1 || b != 0; }
 
   Transform operator+(const Transform& o) const {
     return Transform((long long)o.a * a % M, ((long long)o.a * b + o.b) % M);
   }
 
-  Transform operator+=(const Transform& o) { return *this = *this + o; }
+  Transform& operator+=(const Transform& o) { return *this = *this + o; }
 
   Info operator()(const Info& v) const {
     return Info(v.len, ((long long)a * v.sum + (long long)b * v.len) % M);
@@ -40,7 +40,8 @@ struct Transform {
 };
 
 // --8<-- [end:transform]
-// ------------ Lazy seg tree implementation. --------------------------------
+// --8<-- [start:seg-tree]
+// Segment Tree Implementation. Recursive. With lazy tag.
 // --8<-- [start:build]
 // Recursive structure, stored in full binary tree.
 #define lc(x) ch[(x)][0]
@@ -146,7 +147,7 @@ void modify(int cr, int ll, int rr, int tl, int tr, const Transform& f) {
 void modify(int tl, int tr, const Transform& f) { modify(rt, L, R, tl, tr, f); }
 
 // --8<-- [end:range-set]
-// ------------ End of lazy seg tree implementation. -------------------------
+// --8<-- [end:seg-tree]
 int main() {
   std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
   int n, q;

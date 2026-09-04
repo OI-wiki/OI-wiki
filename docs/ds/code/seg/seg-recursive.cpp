@@ -4,7 +4,7 @@
 constexpr int M = 998244353;
 
 // --8<-- [start:info]
-// Affine transformation: f(x) = ax + b.
+// Affine function: f(x) = ax + b.
 // Composition: (f1 + f2)(x) = f2(f1(x)).
 // Identity: e(x) = x.
 struct Info {
@@ -20,7 +20,8 @@ struct Info {
 };
 
 // --8<-- [end:info]
-// ------------ Segment tree implementation. ---------------------------------
+// --8<-- [start:seg-tree]
+// Segment Tree Implementation. Recursive. No lazy tag.
 // --8<-- [start:build]
 // Recursive structure, stored in heap.
 #define lc(x) ((x) << 1)
@@ -90,7 +91,7 @@ Info query(int cr, int ll, int rr, int tl, int tr) {
 Info query(int tl, int tr) { return query(rt, L, R, tl, tr); }
 
 // --8<-- [end:range-get]
-// ------------ End of segment tree implementation. --------------------------
+// --8<-- [end:seg-tree]
 int main() {
   std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
   int n, q;

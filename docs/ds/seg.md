@@ -166,15 +166,20 @@ $$
 
 ### 参考实现
 
-??? example "模板题 [Library Checker - Point Set Range Composite](https://judge.yosupo.jp/problem/point_set_range_composite) 参考实现"
-    ```cpp
-    --8<-- "docs/ds/code/seg/seg-recursive.cpp"
-    ```
+下面给出不带懒惰标记和带懒惰标记的线段树的完整参考实现．
 
-??? example "模板题 [Library Checker - Range Affine Range Sum](https://judge.yosupo.jp/problem/range_affine_range_sum) 参考实现"
-    ```cpp
-    --8<-- "docs/ds/code/seg/seg-lazy-recursive.cpp"
-    ```
+??? example "参考实现"
+    === "不带懒惰标记"
+        ```cpp
+        --8<-- "docs/ds/code/seg/seg-recursive.cpp:seg-tree"
+        ```
+    
+    === "带懒惰标记"
+        ```cpp
+        --8<-- "docs/ds/code/seg/seg-lazy-recursive.cpp:seg-tree"
+        ```
+
+具体应用时，可能需要判断修改和查询操作是否合法．
 
 ## 常见技巧
 
