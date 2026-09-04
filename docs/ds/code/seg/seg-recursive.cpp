@@ -22,7 +22,7 @@ struct Info {
 // --8<-- [end:info]
 // ------------ Segment tree implementation. ---------------------------------
 // --8<-- [start:build]
-// Recursive structure, stored in heap; no lazy tag.
+// Recursive structure, stored in heap.
 #define lc(x) ((x) << 1)
 #define rc(x) (((x) << 1) | 1)
 
@@ -47,6 +47,20 @@ void build(int n, const std::vector<Info>& vec) {
 }
 
 // --8<-- [end:build]
+// --8<-- [start:point-get]
+// Query info at x.
+Info query(int cr, int ll, int rr, int x) {
+  if (ll == rr) return info[cr];
+  int mm = ll + ((rr - ll) >> 1);
+  if (x <= mm)
+    return query(lc(cr), ll, mm, x);
+  else
+    return query(rc(cr), mm + 1, rr, x);
+}
+
+Info query(int x) { return query(rt, L, R, x); }
+
+// --8<-- [end:point-get]
 // --8<-- [start:point-set]
 // Modify info at x to v.
 void modify(int cr, int ll, int rr, int x, const Info& v) {
@@ -62,20 +76,6 @@ void modify(int cr, int ll, int rr, int x, const Info& v) {
 void modify(int x, const Info& v) { modify(rt, L, R, x, v); }
 
 // --8<-- [end:point-set]
-// --8<-- [start:point-get]
-// Query info at x.
-Info query(int cr, int ll, int rr, int x) {
-  if (ll == rr) return info[cr];
-  int mm = ll + ((rr - ll) >> 1);
-  if (x <= mm)
-    return query(lc(cr), ll, mm, x);
-  else
-    return query(rc(cr), mm + 1, rr, x);
-}
-
-Info query(int x) { return query(rt, L, R, x); }
-
-// --8<-- [end:point-get]
 // --8<-- [start:range-get]
 // Query info in [tl, tr].
 Info query(int cr, int ll, int rr, int tl, int tr) {

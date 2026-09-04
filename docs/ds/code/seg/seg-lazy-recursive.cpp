@@ -40,9 +40,9 @@ struct Transform {
 };
 
 // --8<-- [end:transform]
-// ------------ Segment tree implementation. ---------------------------------
+// ------------ Lazy seg tree implementation. --------------------------------
 // --8<-- [start:build]
-// Recursive structure, stored in full binary tree; with lazy tag.
+// Recursive structure, stored in full binary tree.
 #define lc(x) ch[(x)][0]
 #define rc(x) ch[(x)][1]
 
@@ -86,6 +86,21 @@ void push_down(int cr) {
 }
 
 // --8<-- [emd:tag]
+// --8<-- [start:point-get]
+// Query info at x.
+Info query(int cr, int ll, int rr, int x) {
+  if (ll == rr) return info[cr];
+  push_down(cr);
+  int mm = ll + ((rr - ll) >> 1);
+  if (x <= mm)
+    return query(lc(cr), ll, mm, x);
+  else
+    return query(rc(cr), mm + 1, rr, x);
+}
+
+Info query(int x) { return query(rt, L, R, x); }
+
+// --8<-- [end:point-get]
 // --8<-- [start:point-set]
 // Apply transformation f to the value at x.
 void modify(int cr, int ll, int rr, int x, const Transform& f) {
@@ -102,35 +117,6 @@ void modify(int cr, int ll, int rr, int x, const Transform& f) {
 void modify(int x, const Transform& f) { modify(rt, L, R, x, f); }
 
 // --8<-- [end:point-set]
-// --8<-- [start:range-set]
-// Apply transformation f to the range [tl, tr].
-void modify(int cr, int ll, int rr, int tl, int tr, const Transform& f) {
-  if (tl <= ll && rr <= tr) return lazy_update(cr, f);
-  push_down(cr);
-  int mm = ll + ((rr - ll) >> 1);
-  if (tl <= mm) modify(lc(cr), ll, mm, tl, tr, f);
-  if (mm < tr) modify(rc(cr), mm + 1, rr, tl, tr, f);
-  push_up(cr);
-}
-
-void modify(int tl, int tr, const Transform& f) { modify(rt, L, R, tl, tr, f); }
-
-// --8<-- [end:range-set]
-// --8<-- [start:point-get]
-// Query info at x.
-Info query(int cr, int ll, int rr, int x) {
-  if (ll == rr) return info[cr];
-  push_down(cr);
-  int mm = ll + ((rr - ll) >> 1);
-  if (x <= mm)
-    return query(lc(cr), ll, mm, x);
-  else
-    return query(rc(cr), mm + 1, rr, x);
-}
-
-Info query(int x) { return query(rt, L, R, x); }
-
-// --8<-- [end:point-get]
 // --8<-- [start:range-get]
 // Query info in [tl, tr].
 Info query(int cr, int ll, int rr, int tl, int tr) {
@@ -146,7 +132,21 @@ Info query(int cr, int ll, int rr, int tl, int tr) {
 Info query(int tl, int tr) { return query(rt, L, R, tl, tr); }
 
 // --8<-- [end:range-get]
-// ------------ End of segment tree implementation. --------------------------
+// --8<-- [start:range-set]
+// Apply transformation f to the range [tl, tr].
+void modify(int cr, int ll, int rr, int tl, int tr, const Transform& f) {
+  if (tl <= ll && rr <= tr) return lazy_update(cr, f);
+  push_down(cr);
+  int mm = ll + ((rr - ll) >> 1);
+  if (tl <= mm) modify(lc(cr), ll, mm, tl, tr, f);
+  if (mm < tr) modify(rc(cr), mm + 1, rr, tl, tr, f);
+  push_up(cr);
+}
+
+void modify(int tl, int tr, const Transform& f) { modify(rt, L, R, tl, tr, f); }
+
+// --8<-- [end:range-set]
+// ------------ End of lazy seg tree implementation. -------------------------
 int main() {
   std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
   int n, q;
