@@ -8,7 +8,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 ### 字符串
 
-一个 **字符串**  $S$ 是将 $n$ 个字符顺次排列形成的序列，$n$ 称为 $S$ 的长度，表示为 $|S|$．
+一个 **字符串**  $S$ 是将 $n\ (n\ge 0)$ 个字符顺次排列形成的序列，$n$ 称为 $S$ 的长度，表示为 $|S|$．特别地，$n=0$ 时 $S$ 不含任何字符，称为 **空串**，记作 $\varepsilon$．
 
 如果字符串下标从 $1$ 开始计算，$S$ 的第 $i$ 个字符表示为 $S[i]$；
 
@@ -18,11 +18,11 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 字符串 $S$ 的 **子串**  $S[i..j]，i≤j$，表示 $S$ 串中从 $i$ 到 $j$ 这一段，也就是顺次排列 $S[i],S[i+1],\ldots,S[j]$ 形成的字符串．
 
-有时也会用 $S[i..j]$，$i>j$ 来表示空串．
+有时也会用 $S[i..j]$，$i>j$ 来表示空串 $\varepsilon$．
 
 ### 子序列
 
-字符串 $S$ 的 **子序列** 是从 $S$ 中将若干元素提取出来并不改变相对位置形成的序列，即 $S[p_1],S[p_2],\ldots,S[p_k]$，$1\le p_1< p_2<\cdots< p_k\le|S|$．
+字符串 $S$ 的 **子序列** 是从 $S$ 中将若干元素提取出来并不改变相对位置形成的序列，即 $S[p_1],S[p_2],\ldots,S[p_k]$，$1\le p_1< p_2<\cdots< p_k\le|S|$，$k\ge 0$．
 
 ### 后缀
 
@@ -30,7 +30,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 **真后缀** 指除了 $S$ 本身的 $S$ 的后缀．
 
-举例来说，字符串 `abcabcd` 的所有后缀为 `{d, cd, bcd, abcd, cabcd, bcabcd, abcabcd}`，而它的真后缀为 `{d, cd, bcd, abcd, cabcd, bcabcd}`．
+举例来说，字符串 `abcabcd` 的所有后缀为 `{ε, d, cd, bcd, abcd, cabcd, bcabcd, abcabcd}`，而它的真后缀为 `{ε, d, cd, bcd, abcd, cabcd, bcabcd}`．
 
 ### 前缀
 
@@ -38,7 +38,7 @@ author: Ir1d, ouuan, qinggniq, i-Yirannn, minghu6
 
 **真前缀** 指除了 $S$ 本身的 $S$ 的前缀．
 
-举例来说，字符串 `abcabcd` 的所有前缀为 `{a, ab, abc, abca, abcab, abcabc, abcabcd}`, 而它的真前缀为 `{a, ab, abc, abca, abcab, abcabc}`．
+举例来说，字符串 `abcabcd` 的所有前缀为 `{ε, a, ab, abc, abca, abcab, abcabc, abcabcd}`, 而它的真前缀为 `{ε, a, ab, abc, abca, abcab, abcabc}`．
 
 ### 字典序
 
