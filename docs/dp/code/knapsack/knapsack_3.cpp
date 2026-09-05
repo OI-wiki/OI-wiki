@@ -1,11 +1,13 @@
 #include <cstdio>
 
-const int kMaxM = 1010, kMaxK = 33;
-
-int t, n, m, K, w[kMaxM], c[kMaxM], dp[kMaxM][kMaxK];
+int t, n, m, K;
 
 // --8<-- [start:core]
-void solve(int n, int m, int K, int *w, int *c, int (*dp)[kMaxK]) {
+const int kMaxM = 1010, kMaxK = 33;
+
+int w[kMaxM], c[kMaxM], dp[kMaxM][kMaxK];
+
+void solve(int n, int m, int K) {
   for (int i = 0; i <= m; i++) {
     for (int j = 1; j <= K; j++) dp[i][j] = 0;
   }
