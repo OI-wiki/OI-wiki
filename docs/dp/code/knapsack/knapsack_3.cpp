@@ -39,7 +39,7 @@ int main() {
     scanf("%d%d%d", &n, &m, &K);
     for (int i = 0; i < n; i++) scanf("%d", &w[i]);
     for (int i = 0; i < n; i++) scanf("%d", &c[i]);
-    solve(n, m, K, w, c, dp);
+    solve(n, m, K);
     printf("%d\n", dp[m][K]);
   }
   return 0;
