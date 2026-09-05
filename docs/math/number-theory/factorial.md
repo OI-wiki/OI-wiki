@@ -24,7 +24,7 @@ Wilson 定理给出了判断某个自然数是素数的一个充分必要条件�
     对于自然数 $n>1$，当且仅当 $n$ 是素数时，$(n-1)!\equiv -1\pmod n$．
 
 ??? note "证明"
-    首先，证明对于素数 $p$ 有 $(p-1)!\equiv -1\pmod{p}$．对于这一点，可以利用 [同余方程](./congruence-equation.md#推论-2) 或 [原根](./primitive-root.md) 得到两种简洁的证明，此处略去不表．下面提供前置知识较少的一种证明方法：
+    首先，证明对于素数 $p$ 有 $(p-1)!\equiv -1\pmod{p}$．对于这一点，可以利用 [同余方程](./congruence-equation.md#素数模同余方程) 或 [原根](./primitive-root.md) 得到两种简洁的证明，此处略去不表．下面提供前置知识较少的一种证明方法：
     
     当 $p=2$ 时，命题显然成立．下面设 $p\geq 3$，继而要证明 $\mathbf{Z}_p$ 中所有非零元素（即同余类）的积为 $\overline{-1}$．因为 $\mathbf{Z}_p$ 中所有非零元素 $\overline{a}$ 都有逆元 $\overline{a}^{-1}$，于是 $\mathbf{Z}_p$ 中彼此互逆的元素乘积为 $\overline{1}$．但是要注意 $\overline{a}$ 和 $\overline{a}^{-1}$ 可能相等：$\overline{a}=\overline{a}^{-1}$，当且仅当 $a^2\equiv 1\pmod p$，即
     
