@@ -1,0 +1,52 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+
+\tikzset{real edge/.style={black,solid,very thick}}
+\tikzset{virtual edge/.style={black,dashed,thin}}
+
+\begin{document}
+\begin{tikzpicture}[x=1.5cm,y=1.5cm]
+
+\begin{scope}[real edge,every node/.style={black,solid,thin,circle,draw}]
+
+\node (B) at (0,5) {$B$}
+    child {node (A) {$A$}}
+    child[missing]
+    child {node (E) {$E$}};
+
+\node (D) at (-0.5,3) {$D$};
+
+\node (F) at (0.5,3) {$F$};
+
+\node (G) at (-1.5,3) {$G$}
+    child {node (C) {$C$}}
+    child {node (J) {$J$}
+        child {node (H) {$H$}}
+        child[missing]};
+
+\node (K) at (0,0) {$K$}
+    child {node (I) {$I$}}
+    child[missing];
+
+\node (M) at (-1,-2) {$M$};
+
+\node[red] (N) at (0,-2) {$N$}
+    child[red] {node[red] (L) {$L$}}
+    child[missing];
+
+\node[red] (O) at (0.5,-3) {$O$};
+
+\end{scope}
+
+\draw[virtual edge]
+    (B) edge (D)
+    (B) edge (F)
+    (A) edge (G)
+    (H) edge (K)
+    (I) edge (M)
+    (I) edge (N)
+    (N) edge[red] (O);
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,22 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+% the coordinates frame
+
+\draw[->] (0,0) -- (0,5);
+\draw[->] (6,0) -- (6,5);
+\draw[->] (0,0) -- (8,0) node[right] {$w$};
+
+% the plot
+
+\draw[thick] (0,3) node[left] {$d(u,i)$} -- (2,4) -- (6,2) node[right] {$d(v,i)$};
+
+\draw[dashed] (2,0) node[below] {$c(x,0)$} -- (2,4);
+
+\end{tikzpicture}
+\end{document}

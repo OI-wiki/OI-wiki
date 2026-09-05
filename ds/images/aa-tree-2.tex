@@ -1,0 +1,62 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+    \scoped[->,every node/.style={circle,draw}]
+    \node (1){}
+    child {node(2) {}}
+    child[missing] {};
+\end{tikzpicture}
+\hskip 10pt
+\begin{tikzpicture}
+    \scoped[->,every node/.style={circle,draw}]
+    \node (1){}
+    child[missing] {}
+    child {node(2) {}};
+\end{tikzpicture}
+\hskip 10pt
+\begin{tikzpicture}
+    \scoped[->,every node/.style={circle,draw}]
+    \node (1){}
+    child {node(2) {}}
+    child {node(3) {}};
+\end{tikzpicture}
+\hskip 10pt
+\begin{tikzpicture}
+    \scoped[->,every node/.style={circle,draw}]
+    \node (1){}
+    child[missing] {}
+    child {node(2) {}
+            child {node(3) {}}
+            child[missing] {}};
+\end{tikzpicture}
+\hskip 10pt
+\begin{tikzpicture}
+    \scoped[->,every node/.style={circle,draw}]
+    \node (1){}
+    child {node(2) {}
+            child[missing] {}
+            child {node(3) {}}}
+    child[missing] {};
+\end{tikzpicture}
+\hskip 10pt
+\begin{tikzpicture}
+    \scoped[->,every node/.style={circle,draw}]
+    \node (1){}
+    child {node(2) {}
+            child {node(3) {}}
+            child[missing] {}}
+    child[missing] {};
+\end{tikzpicture}
+\hskip 10pt
+\begin{tikzpicture}
+    \scoped[->,every node/.style={circle,draw}]
+    \node (1){}
+    child[missing] {}
+    child {node(2) {}
+            child[missing] {}
+            child {node(3) {}}};
+\end{tikzpicture}
+
+\end{document}
