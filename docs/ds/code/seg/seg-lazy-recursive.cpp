@@ -56,15 +56,16 @@ void push_up(int cr) { val[cr] = val[lc(cr)] + val[rc(cr)]; }
 
 // Build the tree based on info stored in vec (0-indexed).
 void build(int cr, int ll, int rr, const std::vector<Info>& vec) {
-  if (ll == rr) return (void)(val[cr] = vec[ll]);
+  if (ll == rr) return (void)(val[cr] = vec[ll - L]);
   int mm = ll + ((rr - ll) >> 1);
   build(lc(cr) = ++id, ll, mm, vec);
   build(rc(cr) = ++id, mm + 1, rr, vec);
   push_up(cr);
 }
 
-void build(int n, const std::vector<Info>& vec) {
-  rt = 1, id = 0, L = 0, R = n - 1;
+void build(int l, int r, const std::vector<Info>& vec) {
+  rt = 1, id = 0, L = l, R = r;
+  int n = R - L + 1;
   ch.resize(n << 1), val.resize(n << 1), lazy.resize(n << 1);
   build(rt = ++id, L, R, vec);
 }
@@ -157,7 +158,7 @@ int main() {
     std::cin >> x;
     vec.emplace_back(1, x);
   }
-  build(n, vec);
+  build(0, n - 1, vec);
   for (; q; --q) {
     int op;
     std::cin >> op;
