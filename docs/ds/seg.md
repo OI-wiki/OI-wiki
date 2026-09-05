@@ -195,14 +195,14 @@ $$
 
 ??? example "参考实现"
     === "不带懒惰标记"
-```cpp
+        ```cpp
         --8<-- "docs/ds/code/seg/seg-recursive.cpp:seg-tree"
-```
+        ```
     
     === "带懒惰标记"
-```cpp
+        ```cpp
         --8<-- "docs/ds/code/seg/seg-lazy-recursive.cpp:seg-tree"
-```
+        ```
 
 具体应用时，可能需要判断修改和查询操作是否合法．
 
