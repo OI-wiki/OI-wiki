@@ -149,7 +149,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
    \lim_{n\rightarrow\infty}P\{|X-EX|\ge \epsilon\sqrt{DX}\}=1-\int_{-\epsilon}^{\epsilon}\dfrac{\mathrm{e}^{-\frac{t^2}{2} } }{\sqrt{2\pi} }\mathrm{d}t\le2\mathrm{e}^{-\frac{\epsilon^2}{2} }\le \mathop{\underline{\lim}}\limits_{n\rightarrow\infty}2\exp\left(\dfrac{-2\epsilon^2 D X}{\sum\limits_{i=1}^n(b_i-a_i)^2}\right)
    $$
    
-   在实践中，往往先根据中心极限定理辅助判断 $X$ 大致的概率分布，再使用相对宽松但更严格的 Cherloff 不等式或 Hoeffding 不等式进行证明。
+   在实践中，往往先根据中心极限定理辅助判断 $X$ 大致的概率分布，再使用相对宽松但更严格的 Cherloff 不等式或 Hoeffding 不等式进行证明.
 
 
 从经验上讲，如果 $EX$ 不太接近 $a_1+\cdots+a_n$，则该不等式给出的界往往相对比较紧；如果非常接近的话（例如在 [UOJ #72 全新做法](https://matthew99.blog.uoj.ac/blog/5511) 中），给出的界则往往很松，此时更好的选择是使用 Chernoff 不等式．
