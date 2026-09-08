@@ -26,6 +26,7 @@ struct BIT {
 
 // Lucy's Quotient DP to find pi, with BIT optimization.
 long long lucy_pi(long long n) {
+  if (n <= 1) return 0;
   int s = std::sqrt(n + 0.25l);
   int y = std::pow(n / std::log(n), 2.0l / 3);
   y = std::max(y, s + 1);
