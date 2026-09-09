@@ -63,7 +63,7 @@ $$
 ???+ example "示例"
     以 $x=30,a=2$ 为例（$p_a=3$），递推的一步如下图所示：
     
-    ![](images/phi_recurrence.svg)
+    ![](images/phi-recurrence.svg)
     
     图中绿色格子表示所有素因数都大于 $p_a=3$ 的整数（$1$ 没有素因数，也计入其中），绿色与橙色合起来则表示所有素因数都大于 $2$ 的整数．前者的个数是 $\varphi(x,a)=\varphi(30,2)=10$，后者的个数是 $\varphi(x,a-1)=\varphi(30,1)=15$．
     
@@ -170,7 +170,7 @@ $$
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/prime-counting/lmo_offline.cpp:core"
+    --8<-- "docs/math/code/prime-counting/lmo-offline.cpp:core"
     ```
 
 这种离线做法的空间复杂度较高，难以处理 $10^{13}$ 规模的问题．瓶颈在于，预处理时需要存储 $[1,x/y]$ 中的 $\operatorname{lpf}$ 信息．实际上该信息仅用于后续离线查询，只需要单次顺序访问，完全可以使用 [分块筛法](./sieve.md#分块筛选) 在查询时计算．
@@ -190,7 +190,7 @@ $$
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/prime-counting/lmo_online.cpp:core"
+    --8<-- "docs/math/code/prime-counting/lmo-online.cpp:core"
     ```
 
 原论文和后续论文对于特殊叶子结点做了更多分类和讨论，进一步优化了时空复杂度．但是，本节给出的实现足以满足竞赛需求，故不再讨论 Meissel–Lehmer 算法那些更复杂的优化思路．
@@ -214,7 +214,7 @@ $$
 ???+ example "示例"
     同样是 $x=30,a=2$ 的情形，$S(x,a)$ 的递推关系如下图所示：
     
-    ![](images/s_recurrence.svg)
+    ![](images/s-recurrence.svg)
     
     Eratosthenes 筛法的初始区间为 $[2,x] = [2,30]$，故格子 $1$ 画成白色，不参与计数．灰色格子是之前已经筛去的合数，橙色格子是这一轮用素数 $p_a=3$ 筛去的合数；剩下的格子中，浅紫色表示之前的素数，深紫色表示当前的素数 $3$，绿色则表示尚未被筛去的整数（可能是素数，也可能是合数，如 $25$）．于是 $S(x,a-1)=S(30,1)=15$ 是橙、紫、绿三色格子之和，$S(x,a)=S(30,2)=11$ 是紫、绿格子之和，两者的差值正是那 $4$ 个橙色格子．
     
@@ -273,7 +273,7 @@ $$
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/prime-counting/lucy_fenwick.cpp:core"
+    --8<-- "docs/math/code/prime-counting/lucy-fenwick.cpp:core"
     ```
 
 需要说明的是，尽管理论时间复杂度确实降低，但是引入树状数组后带来的常数损失使得算法运行效率在较小数据规模时反而降低，而在较大数据规模时显著恶化的空间占用又限制了算法使用．所以，这一优化的实用性不高．
@@ -400,7 +400,7 @@ $$
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/prime-counting/lucy_opt.cpp:core"
+    --8<-- "docs/math/code/prime-counting/lucy-opt.cpp:core"
     ```
 
 在算法竞赛常见数据范围（$10^{10}\sim 10^{14}$）内，这一实现的时空成本都相当优秀．需要说明的是，尽管理论复杂度分析中，最后一部分是复杂度瓶颈，但是由于其复杂度中对数因子更小、常数更优，在上述数据范围内，算法表现的实际瓶颈仍然是筛法和动态规划部分．这也正是对它们复杂度优化必不可少的原因．
@@ -440,7 +440,7 @@ $$
 
 ??? example "模板题 [Luogu P5493 质数前缀统计](https://www.luogu.com.cn/problem/P5493) 参考实现"
     ```cpp
-    --8<-- "docs/math/code/prime-counting/prime_power_sum.cpp"
+    --8<-- "docs/math/code/prime-counting/prime-power-sum.cpp"
     ```
 
 原则上，对于推广后的 Lucy 算法建议预处理素数，而不是合并到动态规划中．这是因为判据 $S(u,\pi(u-1))\neq S(u-1,\pi(u-1))$ 对于一般的 $f$ 未必成立．另外，尽管本节仅讨论了 Lucy 算法的推广，其他算法也可以做类似推广；但是 Lucy 算法可以处理出 $D(x)$ 内所有值处的 $F_\text{prime}$ 值，对于后续积性函数求和更为有用，所以本节只介绍了它的推广．
@@ -461,7 +461,7 @@ $$
 
 ??? note "参考实现"
     ```cpp
-    --8<-- "docs/math/code/prime-counting/prime_count_1.cpp"
+    --8<-- "docs/math/code/prime-counting/prime-count-1.cpp"
     ```
 
 ???+ example "[LOJ 6028.「from CommonAnts」质数计数 II](https://loj.ac/p/6028)"
@@ -480,7 +480,7 @@ $$
 
 ??? note "参考实现"
     ```cpp
-    --8<-- "docs/math/code/prime-counting/prime_count_2.cpp"
+    --8<-- "docs/math/code/prime-counting/prime-count-2.cpp"
     ```
 
 ## 习题
