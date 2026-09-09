@@ -1,4 +1,4 @@
-author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1, iamtwz, Ir1d, konnyakuxzy, luoguojie, Marcythm, orzAtalod, StudyingFather, wy-luke, Xeonacid, CCXXXI, chenryang, chenzheAya, CJSoft, cjsoft, countercurrent-time, DawnMagnet, Enter-tainer, GavinZhengOI, Haohu Shen, Henry-ZHR, hjsjhn, hly1204, jaxvanyang, Jebearssica, kenlig, ksyx, megakite, Menci, moon-dim, NachtgeistW, onelittlechildawa, ouuan, shadowice1984, shawlleyw, shuzhouliu, SukkaW, Tiphereth-A, x2e6, Ycrpro, yifan0305, zeningc, hcx2012Git
+author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1, iamtwz, Ir1d, konnyakuxzy, luoguojie, Marcythm, orzAtalod, StudyingFather, wy-luke, Xeonacid, CCXXXI, chenryang, chenzheAya, CJSoft, cjsoft, countercurrent-time, DawnMagnet, Enter-tainer, GavinZhengOI, Haohu Shen, Henry-ZHR, hjsjhn, hly1204, jaxvanyang, Jebearssica, kenlig, ksyx, megakite, Menci, moon-dim, NachtgeistW, onelittlechildawa, ouuan, shadowice1984, shawlleyw, shuzhouliu, SukkaW, Tiphereth-A, x2e6, Ycrpro, yifan0305, zeningc, hcx2012Git, karsl-program
 
 ## 引入
 
@@ -13,6 +13,8 @@ author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1
 构造一棵这样的静态线段树需要 $O(n\log{n})$ 次合并操作，但是此时的查询复杂度被加速至 $O(1)$ 次合并操作．
 
 在处理矩阵乘法这样合并代价高昂的信息的时候，使用猫树可以将单次查询复杂度从 $O(k^3 \log n)$ 降至 $O(k^3)$．
+
+注意，在处理静态区间线性基查询这个问题上，虽然猫树可以优化普通线段树实现的区间线性基的复杂度，但有一种时空复杂度都更优的做法：[前缀线性基](../math/linear-algebra/basis.md#拓展前缀线性基)．然而普通线段树可以处理动态区间线性基问题，但对于静态区间线性基查询，猫树不仅实现较为复杂，不是最优解，在功能上也没有差别．
 
 ## 原理
 
@@ -59,10 +61,6 @@ author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1
 这样我们就构建了一个猫树．
 
 由于建树的时候涉及到求前缀和和求后缀和，所以对于矩阵乘法这种虽然合并是 $O(k^3)$ 但是求前缀和却是 $O(n\log n \cdot k^3)$ 的信息，使用猫树可以将静态区间矩阵乘法查询从 $O(n\log n \cdot k^3 + m \cdot k^3 \log n)$ 优化至 $O(n\log n \cdot k^3 + m \cdot k^3)$ 的复杂度．
-
-## 静态区间线性基
-
-在处理静态区间线性基查询这个问题上，虽然猫树可以优化普通线段树实现的区间线性基的复杂度，但有一种时空复杂度都更优的做法：[前缀线性基](../math/linear-algebra/basis.md#拓展前缀线性基)．然而普通线段树可以处理动态区间线性基问题，但对于静态区间线性基查询，猫树不仅实现较为复杂，不是最优解，在功能上也没有差别．
 
 ### 参考
 
