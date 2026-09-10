@@ -1,4 +1,4 @@
-author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1, iamtwz, Ir1d, konnyakuxzy, luoguojie, Marcythm, orzAtalod, StudyingFather, wy-luke, Xeonacid, CCXXXI, chenryang, chenzheAya, CJSoft, cjsoft, countercurrent-time, DawnMagnet, Enter-tainer, GavinZhengOI, Haohu Shen, Henry-ZHR, hjsjhn, hly1204, jaxvanyang, Jebearssica, kenlig, ksyx, megakite, Menci, moon-dim, NachtgeistW, onelittlechildawa, ouuan, shadowice1984, shawlleyw, shuzhouliu, SukkaW, Tiphereth-A, x2e6, Ycrpro, yifan0305, zeningc, hcx2012Git
+author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1, iamtwz, Ir1d, konnyakuxzy, luoguojie, Marcythm, orzAtalod, StudyingFather, wy-luke, Xeonacid, CCXXXI, chenryang, chenzheAya, CJSoft, cjsoft, countercurrent-time, DawnMagnet, Enter-tainer, GavinZhengOI, Haohu Shen, Henry-ZHR, hjsjhn, hly1204, jaxvanyang, Jebearssica, kenlig, ksyx, megakite, Menci, moon-dim, NachtgeistW, onelittlechildawa, ouuan, shadowice1984, shawlleyw, shuzhouliu, SukkaW, Tiphereth-A, x2e6, Ycrpro, yifan0305, zeningc, hcx2012Git, karsl-program
 
 ## 引入
 
@@ -6,13 +6,15 @@ author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1
 
 但是有一个问题在于普通线段树的区间询问在某些毒瘤的眼里可能还是有些慢了．
 
-简单来说就是线段树建树的时候需要做 $O(n)$ 次合并操作，而每一次区间询问需要做 $O(\log{n})$ 次合并操作，询问区间和这种东西的时候还可以忍受，但是当我们需要询问区间线性基这种合并复杂度高达 $O(\log^2{w})$ 的信息的话，此时就算是做 $O(\log{n})$ 次合并有些时候在时间上也是不可接受的．
+简单来说就是线段树建树的时候需要做 $O(n)$ 次合并操作，而每一次区间询问需要做 $O(\log{n})$ 次合并操作，询问区间和这种东西的时候还可以忍受，但是当我们需要询问区间矩阵乘法这种合并（即一次矩阵乘法）复杂度高达 $O(k^3)$ 的信息的话，此时就算是做 $O(\log{n})$ 次合并有些时候在时间上也是不可接受的．
 
-而所谓「猫树」就是一种不支持修改，仅仅支持快速区间询问的一种静态线段树．
+而所谓「猫树」就是一种不支持修改，仅仅支持快速区间询问的一种静态线段树．在询问次数较多（$m=\Omega(n)$）时，该做法才有显著价值．
 
 构造一棵这样的静态线段树需要 $O(n\log{n})$ 次合并操作，但是此时的查询复杂度被加速至 $O(1)$ 次合并操作．
 
-在处理线性基这样特殊的信息的时候甚至可以将复杂度降至 $O(n\log^2{w})$．
+在处理矩阵乘法这样合并代价高昂的信息的时候，使用猫树可以将单次查询复杂度从 $O(k^3 \log n)$ 降至 $O(k^3)$．
+
+注意，在处理静态区间线性基查询这个问题上，虽然猫树可以优化普通线段树实现的区间线性基的复杂度，但有一种时空复杂度都更优的做法：[前缀线性基](../math/linear-algebra/basis.md#拓展前缀线性基)．而且普通线段树可以处理动态区间线性基问题，但对于静态区间线性基查询，猫树不仅实现较为复杂，不是最优解，在功能上也没有差别．
 
 ## 原理
 
@@ -58,7 +60,7 @@ author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1
 
 这样我们就构建了一个猫树．
 
-由于建树的时候涉及到求前缀和和求后缀和，所以对于线性基这种虽然合并是 $O(\log^2{w})$ 但是求前缀和却是 $O(n\log{n})$ 的信息，使用猫树可以将静态区间线性基从 $O(n\log^2{w}+m\log^2{w}\log{n})$ 优化至 $O(n\log{n}\log{w}+m\log^2{w})$ 的复杂度．
+由于建树的时候涉及到求前缀和和求后缀和，所以对于矩阵乘法这种合并复杂度为 $O(k^3)$ 的信息，建树复杂度为 $O(n\log n \cdot k^3)$．在此基础上，猫树将静态区间矩阵乘法查询的单次复杂度从 $O(k^3 \log n)$ 降至 $O(k^3)$，从而在询问次数较多（$m=\Omega(n)$）时，将处理 $m$ 次查询的总复杂度从 $O(n \cdot k^3 + m \cdot k^3 \log n)$ 优化至 $O(n\log n \cdot k^3 + m \cdot k^3)$．
 
 ### 参考
 
