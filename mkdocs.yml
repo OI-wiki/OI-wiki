@@ -261,9 +261,7 @@ nav:
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 狄利克雷双曲线法 & 杜教筛: math/number-theory/hyperbola.md
       - 素数计数: math/number-theory/prime-counting.md
-      - Powerful Number 筛: math/number-theory/powerful-number.md
-      - Min_25 筛: math/number-theory/min-25.md
-      - 洲阁筛: math/number-theory/zhou.md
+      - 积性函数求和: math/number-theory/sum-multiplicative.md
       - 类欧几里德算法: math/number-theory/euclidean.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
