@@ -60,7 +60,7 @@ author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1
 
 这样我们就构建了一个猫树．
 
-由于建树的时候涉及到求前缀和和求后缀和，所以对于矩阵乘法这种合并复杂度为 $O(k^3)$ 的信息，建树复杂度为 $O(n\log n \cdot k^3)$．在此基础上，猫树将静态区间矩阵乘法查询的单次复杂度从 $O(k^3 \log n)$ 降至 $O(k^3)$，从而将处理 $m$ 次查询的总复杂度从 $O(n\log n \cdot k^3 + m \cdot k^3 \log n)$ 降至 $O(n\log n \cdot k^3 + m \cdot k^3)$．
+由于建树的时候涉及到求前缀和和求后缀和，所以对于矩阵乘法这种合并复杂度为 $O(k^3)$ 的信息，建树复杂度为 $O(n\log n \cdot k^3)$．在此基础上，猫树将静态区间矩阵乘法查询的单次复杂度从 $O(k^3 \log n)$ 降至 $O(k^3)$，从而将处理 $m$ 次查询的总复杂度从 $O(n \cdot k^3 + m \cdot k^3 \log n)$ 降至 $O(n\log n \cdot k^3 + m \cdot k^3)$．
 
 ### 参考
 
