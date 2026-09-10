@@ -260,11 +260,11 @@ nav:
       - 狄利克雷卷积: math/number-theory/dirichlet.md
       - 莫比乌斯反演: math/number-theory/mobius.md
       - 狄利克雷双曲线法 & 杜教筛: math/number-theory/hyperbola.md
+      - 素数计数: math/number-theory/prime-counting.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
       - 类欧几里德算法: math/number-theory/euclidean.md
-      - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
