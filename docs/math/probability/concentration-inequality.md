@@ -123,37 +123,37 @@ $$
 
 Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望值的程度．这两个不等式的证明过程较为冗长，有兴趣的同学可以查阅 Probability and Computing 一书中的相关章节．
 
-??? note "与中心极限定理的关系"   
-   Chernoff 不等式和 Hoeffding 不等式都是中心极限定理在有限大小的 $n$ 下的保守估计.   
-   对于 Possion 实验之和的 Chernoff 不等式，有
+??? note "与中心极限定理的关系"
+    
 
-   $$
-   \lim_{n\rightarrow\infty} P\{|X-EX|\ge \epsilon\sqrt{DX}\}=1-\int_{-\epsilon}^{\epsilon}\dfrac{\mathrm{e}^{-\frac{t^2}{2} } }{\sqrt{2\pi} }\mathrm{d}t\le2\mathrm{e}^{-\frac{\epsilon^2}{3} }\le\mathop{\underline{\lim} }\limits_{n\rightarrow\infty}2\exp\left(-\dfrac{1}{3}\mu\left(\dfrac{\epsilon\sqrt{DX} }{\mu}\right)^2\right)
-   $$
+Chernoff 不等式和 Hoeffding 不等式都是中心极限定理在有限大小的 $n$ 下的保守估计．  
+对于 Possion 实验之和的 Chernoff 不等式，有
 
-   对于 Hoeffding 不等式，注意到
+$$
+\lim_{n\rightarrow\infty} P\{|X-EX|\ge \epsilon\sqrt{DX}\}=1-\int_{-\epsilon}^{\epsilon}\dfrac{\mathrm{e}^{-\frac{t^2}{2} } }{\sqrt{2\pi} }\mathrm{d}t\le2\mathrm{e}^{-\frac{\epsilon^2}{3} }\le\mathop{\underline{\lim} }\limits_{n\rightarrow\infty}2\exp\left(-\dfrac{1}{3}\mu\left(\dfrac{\epsilon\sqrt{DX} }{\mu}\right)^2\right)
+$$
 
-   $$
-   DX_i\le\dfrac{(b_i-a_i)^2}{4}
-   $$
+对于 Hoeffding 不等式，注意到
 
-   当且仅当 $P\{X_i=a_i\}=P\{X_i=b_i\}=\dfrac{1}{2}$ 时取等号，故
-   
-   $$
-   2\exp\left(\dfrac{-2\epsilon^2 D X}{\sum\limits_{i=1}^n(b_i-a_i)^2}\right)\ge 2\mathrm{e}^{-\frac{\epsilon^2}{2} }
-   $$
+$$
+DX_i\le\dfrac{(b_i-a_i)^2}{4}
+$$
 
-   于是
-   
-   $$
-   \lim_{n\rightarrow\infty}P\{|X-EX|\ge \epsilon\sqrt{DX}\}=1-\int_{-\epsilon}^{\epsilon}\dfrac{\mathrm{e}^{-\frac{t^2}{2} } }{\sqrt{2\pi} }\mathrm{d}t\le2\mathrm{e}^{-\frac{\epsilon^2}{2} }\le \mathop{\underline{\lim}}\limits_{n\rightarrow\infty}2\exp\left(\dfrac{-2\epsilon^2 D X}{\sum\limits_{i=1}^n(b_i-a_i)^2}\right)
-   $$
-   
-   在实践中，往往先通过中心极限定理辅助判断 $X$ 大致的概率分布，再使用相对宽松但更严格的 Chernoff 不等式或 Hoeffding 不等式进行证明.
+当且仅当 $P\{X_i=a_i\}=P\{X_i=b_i\}=\dfrac{1}{2}$ 时取等号，故
 
+$$
+2\exp\left(\dfrac{-2\epsilon^2 D X}{\sum\limits_{i=1}^n(b_i-a_i)^2}\right)\ge 2\mathrm{e}^{-\frac{\epsilon^2}{2} }
+$$
+
+于是
+
+$$
+\lim_{n\rightarrow\infty}P\{|X-EX|\ge \epsilon\sqrt{DX}\}=1-\int_{-\epsilon}^{\epsilon}\dfrac{\mathrm{e}^{-\frac{t^2}{2} } }{\sqrt{2\pi} }\mathrm{d}t\le2\mathrm{e}^{-\frac{\epsilon^2}{2} }\le \mathop{\underline{\lim}}\limits_{n\rightarrow\infty}2\exp\left(\dfrac{-2\epsilon^2 D X}{\sum\limits_{i=1}^n(b_i-a_i)^2}\right)
+$$
+
+在实践中，往往先通过中心极限定理辅助判断 $X$ 大致的概率分布，再使用相对宽松但更严格的 Chernoff 不等式或 Hoeffding 不等式进行证明．
 
 从经验上讲，如果 $EX$ 不太接近 $a_1+\cdots+a_n$，则该不等式给出的界往往相对比较紧；如果非常接近的话（例如在 [UOJ #72 全新做法](https://matthew99.blog.uoj.ac/blog/5511) 中），给出的界则往往很松，此时更好的选择是使用 Chernoff 不等式．
-
 
 ## 应用举例
 
