@@ -307,7 +307,7 @@ $$
 x_{B_{j'}} = \left((\tilde T_B)_{j'0} - (\tilde T_B)_{j'i}\dfrac{(\tilde T_B)_{j0}}{(\tilde T_B)_{ji}}\right) + \dfrac{(\tilde T_B)_{j'i}}{(\tilde T_B)_{ji}}x_{B_j} - \sum_{i'\neq i}\left((\tilde T_B)_{j'i'}-(\tilde T_B)_{j'i}\dfrac{(\tilde T_B)_{ji'}}{(\tilde T_B)_{ji}}\right)x_{N_{i'}}.
 $$
 
-第 $0$ 行类似，只是等式左侧变为 $-z$．虽然式子看起来复杂，但是实现时，只需要分两步：
+第 $0$ 行类似，只是等式左侧变为 $-z_B$．虽然式子看起来复杂，但是实现时，只需要分两步：
 
 1.  更新第 $j$ 行，即令 $\alpha=(\tilde T_B)_{ji}$，再令第 $i$ 列数字为 $1$，然后将整行所有数字同除以 $\alpha$；
 2.  更新第 $j'\neq j$ 行，即令 $\beta=(\tilde T_B)_{j'i}$，再令第 $i$ 列数字为 $0$，然后将整行数字同时减去 $\beta$ 倍的第 $j$ 行数字．
