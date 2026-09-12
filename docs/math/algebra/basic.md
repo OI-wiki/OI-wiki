@@ -1,6 +1,6 @@
 author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, isdanni, Menci, ouuan, Tiphereth-A, warzone-oier, Xeonacid, c-forrest
 
-本章节将简要介绍抽象代数的相关知识．现阶段算法竞赛的主要内容并不直接考察抽象代数的知识，但是在算法的描述或是问题的题解中常常会牵涉一些抽象函数的基本概念，这使得掌握了基础抽象代数概念的读者能够更快速理解一些算法．因此，这部分内容并不是任何选手的必修知识，而仅供那些感兴趣或者可能从中受益的读者参考使用．同时，本章节将避免过全过深的介绍抽象代数的知识[^oi-wiki-not-wikipedia]，而会集中在基础概念以及与 OI 其他部分知识联系最为紧密的部分．想系统学习抽象代数知识的读者，应当参考专业的抽象代数教科书学习．
+本章节将简要介绍抽象代数的相关知识．现阶段算法竞赛的主要内容并不直接考察抽象代数的知识，但是在算法的描述或是问题的题解中常常会牵涉一些抽象代数的基本概念，这使得掌握了基础抽象代数概念的读者能够更快速理解一些算法．因此，这部分内容并不是任何选手的必修知识，而仅供那些感兴趣或者可能从中受益的读者参考使用．同时，本章节将避免过全过深的介绍抽象代数的知识[^oi-wiki-not-wikipedia]，而会集中在基础概念以及与 OI 其他部分知识联系最为紧密的部分．想系统学习抽象代数知识的读者，应当参考专业的抽象代数教科书学习．
 
 为了更好帮助读者理解阅读本部分内容可能的收获，列举一些算法竞赛中可能牵涉到抽象代数知识的例子：
 
@@ -47,7 +47,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     -   所有 $M$ 到自身的映射（不一定是双射），并不构成群．因为那些不是双射的映射不存在逆元．
     -   整数在乘法下并不构成群，因为 $2$ 在整数范围内没有乘法逆元．
     -   正整数在加法下也不构成群，因为正整数没有加法单位元．
-    -   模 $n$ 的所有非零同余类在乘法意义下往往不构成群．比如说 $(\mathbf Z/6\mathbf Z)\setminus\{\overline 0\}$ 中，$\overline 2\times\overline 3=\overline 0$ 不属于这个集合，这意味着乘法都不是这个集合上良定义的二元运算（或者说，它不满足封闭性）．
+    -   模 $n$ 的所有非零同余类在乘法意义下往往不构成群．比如说 $(\mathbf Z/6\mathbf Z)\setminus\{\overline 0\}$ 中，$\overline 2\times\overline 3=\overline 0$ 不属于这个集合，这意味着乘法不是这个集合上良定义的二元运算（或者说，它不满足封闭性）．
 
 有时，也需要讨论这些更不完善的结构的性质．因此，可以定义如下概念，它们比群更宽泛．
 
@@ -63,7 +63,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 最后，很多熟悉的群上的运算除了满足结合律外，还满足交换律．这类群的结构相对简单，它们称作 Abel 群，也称作交换群．
 
 ???+ abstract "Abel 群"
-    对于群 $(G,\cdot)$，如果运算 $\cdot$ 还满足交换律（commutative property），即对于所有 $a,b\in G$，都成立 $a\cdot b=b\cdot a$，则称 $(G,\cdot)$ 是一个 **Abel 群**（Abelian group）或 **交换群**（communicate group）．
+    对于群 $(G,\cdot)$，如果运算 $\cdot$ 还满足交换律（commutative property），即对于所有 $a,b\in G$，都成立 $a\cdot b=b\cdot a$，则称 $(G,\cdot)$ 是一个 **Abel 群**（Abelian group）或 **交换群**（commutative group）．
 
 ???+ example "Abel 群和非 Abel 群的例子"
     -   整数加法群 $(\mathbf Z,+)$ 就是一个 Abel 群．
@@ -142,7 +142,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     
         那么可以验证，$\mathbf H$ 构成环，而且，它是一个非交换的除环．
     -   整数集的子集 $2\mathbf Z$，在通常意义的加法和乘法下构成环，它是交换环，没有零因子，但是并不含幺．
-    -   整数模 $n$ 同余类 $\mathbf Z/n\mathbf Z$ 在同余类的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）．这样的环含有零因子，当且仅当 $n$ 是合数．所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成为了一个域．它的乘法群 $((\mathbf Z/n\mathbf Z)^\times,\times)$ 就是整数模 $n$ 乘法群．
+    -   整数模 $n$ 同余类 $\mathbf Z/n\mathbf Z$ 在同余类的加法和乘法运算下构成环，它是交换环，含幺（即 $\bar 1$）．这样的环含有零因子，当且仅当 $n$ 是合数．所以，当 $n$ 是素数时，环 $(\mathbf Z/n\mathbf Z, +,\times)$ 是整环；而且，此时它也是除环，所以它实际构成了一个域．它的乘法群 $((\mathbf Z/n\mathbf Z)^\times,\times)$ 就是整数模 $n$ 乘法群．
     -   矩阵环：环 $R$ 上的全体 $n$ 维方阵在矩阵的加法和乘法下构成一个环 $M_n(R)$．一般地，这个环有零因子，且不是交换环．
     -   对于一个集合 $A$ 的全体子集 $\mathcal P(A)$，如果定义集合的对称差 $\triangle$ 和交 $\cap$ 分别为其加法和乘法运算，则 $(\mathcal P(A),\triangle,\cap)$ 构成环．一般地，这个环含幺，有零因子，且是交换环．
 
@@ -157,6 +157,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     
     1.  $(F,+)$ 构成 Abel 群，其单位元记作 $0$，元素 $a\in F$ 在 $+$ 下的逆元记作 $-a$．
     2.  $(F\setminus\{0\},\cdot)$ 构成 Abel 群，其单位元记作 $1$，元素 $a\in F\setminus\{0\}$ 在 $\cdot$ 下的逆元记作 $a^{-1}$．
+    3.  分配律：对于所有 $a,b,c\in F$，成立 $a\cdot(b+c)=a\cdot b+a\cdot c$．
 
 换句话说，域是对加、减、乘、除四则运算都封闭的代数结构．
 
@@ -211,7 +212,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     基于热带半环 $(R,\oplus,\otimes)$，可以定义它上面的矩阵乘法．即对于 $m\times n$ 维矩阵 $A=(a_{ij})$ 和 $n\times p$ 维矩阵 $B=(b_{jk})$，可以定义其乘积 $AB$ 为 $(c_{ik})$，它的每项元素等于
     
     $$
-    c_{ik} = \bigoplus_{j=1}^n(b_{ij}\otimes c_{jk}) = \max_{1\le j\le n}\;(b_{ij}+c_{jk}).
+    c_{ik} = \bigoplus_{j=1}^n(a_{ij}\otimes b_{jk}) = \max_{1\le j\le n}\;(a_{ij}+b_{jk}).
     $$
     
     有了这些记号，可以将上述递推关系看作是热带半环上的线性变换，并用矩阵语言写作
@@ -237,7 +238,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
     $$
     \begin{aligned}
     f_{i,1}&=w_i+f_{h,0}+g_{i,1},\\
-    f_{i,0}&=\max\{f_{j,0},f_{j,1}\}+g_{i,0},
+    f_{i,0}&=\max\{f_{h,0},f_{h,1}\}+g_{i,0},
     \end{aligned}
     $$
     
@@ -256,7 +257,7 @@ author: jifbt, billchenchina, Enter-tainer, Great-designer, iamtwz, ImpleLee, is
 
 ## 参考资料与注释
 
--   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+-   Dummit, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 -   [Tropical semiring - Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring)
 
 [^oi-wiki-not-wikipedia]: 因为 [OI Wiki 不是百科全书](../../intro/what-oi-wiki-is-not.md#oi-wiki-不是百科全书)．
