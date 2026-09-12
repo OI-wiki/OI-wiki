@@ -1,0 +1,37 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+% the tree
+
+\begin{scope}[circle,draw=red,every node/.style={draw}]
+    \node at (0,0) {$1$}
+        child {node {$2$}
+            child[draw=black,dashed,thin] {node {$3$}
+                child {node {$5$}}}
+            child {node {$4$}}};
+\end{scope}
+
+% the stack
+
+\begin{scope}[minimum height=6mm,minimum width=1.5cm,
+        every node/.style={draw}]
+    \node at (3cm,0mm) {$1$};
+    \node at (3cm,-6mm) {$2$};
+    \node[draw=teal] at (3cm,-15mm) {$3$};
+    \node[draw=teal] at (3cm,-21mm) {$5$};
+
+    \node at (5cm,0mm) {$1$};
+    \node at (5cm,-6mm) {$2$};
+    \node[draw=red] at (5cm,-18mm) {$4$};
+\end{scope}
+
+\draw[->] (3cm,-25mm) -- (3cm,-29mm);
+\draw[->] (5cm,-14mm) -- (5cm,-10mm);
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,27 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+    [level distance=2cm,
+    level 1/.style={sibling distance=4cm},
+    level 2/.style={sibling distance=2cm}]
+
+    \scoped[color=lightgray,every node/.style={circle,draw}]
+    \node (A) at (0,0) {$1$}
+        child {node[color=black,thick] (B) {$2$}
+            child {node[color=red,thick] (D) {$4$}}
+            child {node[color=red,thick] (E) {$5$}}}
+        child {node (C) {$3$}
+            child {node (F) {$6$}}
+            child {node (G) {$7$}}};
+
+    \draw[thick] (B) -- (D);
+    \draw[thick] (B) -- (E);
+
+    \node at (0,-5) {$\{4,5\}$ 的虚树};
+
+\end{tikzpicture}
+\end{document}

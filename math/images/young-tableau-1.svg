@@ -1,0 +1,30 @@
+<svg width="340" height="220" viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 20 20 L 80 20 L 80 80 L 260 80 L 260 140 L 320 140 L 320 200 L 20 200 Z" 
+        fill="none" stroke="black" stroke-width="2"/>
+  
+  <line x1="20" y1="80" x2="80" y2="80" stroke="black" stroke-width="2"/>
+  
+  <line x1="20" y1="140" x2="320" y2="140" stroke="black" stroke-width="2"/>
+  
+  <line x1="80" y1="80" x2="80" y2="140" stroke="black" stroke-width="2"/>
+  <line x1="140" y1="80" x2="140" y2="140" stroke="black" stroke-width="2"/>
+  <line x1="200" y1="80" x2="200" y2="140" stroke="black" stroke-width="2"/>
+  
+  <line x1="80" y1="140" x2="80" y2="200" stroke="black" stroke-width="2"/>
+  <line x1="140" y1="140" x2="140" y2="200" stroke="black" stroke-width="2"/>
+  <line x1="200" y1="140" x2="200" y2="200" stroke="black" stroke-width="2"/>
+  <line x1="260" y1="140" x2="260" y2="200" stroke="black" stroke-width="2"/>
+  
+  <text x="50" y="58" text-anchor="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">5</text>
+  
+  <text x="50" y="118" text-anchor="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">3</text>
+  <text x="110" y="118" text-anchor="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">6</text>
+  <text x="170" y="118" text-anchor="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">8</text>
+  <text x="230" y="118" text-anchor="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">10</text>
+  
+  <text x="50" y="178" text-anchor="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">1</text>
+  <text x="110" y="178" text-anchor="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">2</text>
+  <text x="170" y="178" text-anchor="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">4</text>
+  <text x="230" y="178" text-anchor="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">7</text>
+  <text x="290" y="178" text-anchor="middle" font-family="Computer Modern, Times, serif" font-size="32" fill="black">9</text>
+</svg>

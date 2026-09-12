@@ -1,0 +1,32 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}[x=2cm,y=2cm,every node/.style={draw}]
+
+\node (000) at (0,0) {$\varnothing$};
+\node (001) at (-1.5,1) {$\{0\}$};
+\node (010) at (0,1) {$\{1\}$};
+\node (100) at (1.5,1) {$\{2\}$};
+\node (011) at (-1.5,2) {$\{0,1\}$};
+\node (101) at (0,2) {$\{0,2\}$};
+\node (110) at (1.5,2) {$\{1,2\}$};
+\node (111) at (0,3) {$\{0,1,2\}$};
+
+\draw[->,thick] (000) -- (001);
+\draw[->,thick] (001) -- (011);
+\draw[->,thick] (011) -- (111);
+\draw[->,thick] (000) -- (100);
+\draw[->,thick] (100) -- (110);
+\draw[->,thick] (110) -- (111);
+\draw[->,thick] (000) -- (010);
+\draw[->,thick] (010) -- (011);
+\draw[->,thick] (010) -- (110);
+\draw[->,thick] (001) -- (101);
+\draw[->,thick] (100) -- (101);
+\draw[->,thick] (101) -- (111);
+
+\end{tikzpicture}
+\end{document}

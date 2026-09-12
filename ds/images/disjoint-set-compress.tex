@@ -1,0 +1,30 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+\matrix at (-3,0) {
+    \scoped[<-,every node/.style={circle,draw}]
+    \node {1}
+        child {node {2}}
+        child {node {3}
+            child {node {4}}
+            child {node {5}}};
+\\};
+
+\draw[->] (-1,0) -- node[above] {路径压缩} (1,0);
+
+\matrix at (4,0) {
+    \scoped[<-,every node/.style={circle,draw}]
+    \node {1}
+        child {node {2}}
+        child {node {3}}
+        child {node {4}}
+        child {node {5}};
+\\};
+
+\end{tikzpicture}
+\end{document}

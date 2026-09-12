@@ -1,0 +1,76 @@
+\documentclass{standalone}
+\usepackage{unicode-math}
+\setmainfont{TeX Gyre Schola}
+\usepackage{tikz}
+\usepackage{adjustbox}
+\begin{document}
+\adjustbox{scale=2}{%
+\begin{tikzpicture}
+    [
+        level 1/.style={sibling distance=48mm},
+        level 2/.style={sibling distance=24mm},
+        level 3/.style={sibling distance=12mm},
+        level 4/.style={sibling distance=6mm},
+    ]
+        \node {$1/1$}
+            child {
+                node {$1/2$}
+                child {
+                    node {$1/3$} 
+                    child {
+                        node {$1/4$}
+                        child {node {}}
+                        child {node {}}
+                    }
+                    child {
+                        node {$4/3$}
+                        child {node {}}
+                        child {node {}}
+                    }
+                }
+                child {
+                    node {$3/2$} 
+                    child {
+                        node {$3/5$}
+                        child {node {}}
+                        child {node {}}
+                    }
+                    child {
+                        node {$5/2$}
+                        child {node {}}
+                        child {node {}}
+                    }
+                }
+            }
+            child {
+                node {$2/1$}
+                child {
+                    node {$2/3$} 
+                    child {
+                        node {$2/5$}
+                        child {node {}}
+                        child {node {}}
+                    }
+                    child {
+                        node {$5/3$}
+                        child {node {}}
+                        child {node {}}
+                    }
+                }
+                child {
+                    node {$3/1$} 
+                    child {
+                        node {$3/4$}
+                        child {node {}}
+                        child {node {}}
+                    }
+                    child {
+                        node {$4/1$}
+                        child {node {}}
+                        child {node {}}
+                    }
+                }
+            };
+    \end{tikzpicture}
+}
+\end{document}

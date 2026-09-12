@@ -1,0 +1,15 @@
+\documentclass[12pt]{standalone}
+\usepackage{amsmath,amssymb}
+\usepackage{newtxtext,newtxmath}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}[scale=1.5]
+\draw[dashed] (-3.8,-2.4) grid (3.8,3.8);
+\draw[->,thick] (-3.8,0) -- (3.8,0) node[below left] {Re};
+\draw[->,thick] (0,-2.4) -- (0,3.8) node[below left] {Im};
+\draw (0,0) node[below left] {$0$};
+\draw (0,1) node[below left] {$\mathrm{i}$};
+\draw (1,0) node[below left] {$1$};
+\draw[fill=black] (3,2) circle (2pt) node[above left] {$3+2\mathrm{i}$}; 
+\end{tikzpicture}
+\end{document}

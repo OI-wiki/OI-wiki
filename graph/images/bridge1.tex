@@ -1,0 +1,31 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+\begin{scope}[every node/.style={draw},circle,thick]
+    \node (A) at (0,1) {$1$};
+    \node (B) at (0,0) {$2$};
+    \node (C) at (-1,-1) {$3$};
+    \node (D) at (0,-2) {$4$};
+    \node (E) at (1,-1) {$5$};
+    \node (F) at (-1,2) {$6$};
+    \node (G) at (1,2) {$7$};
+\end{scope}
+
+\draw[color=red] (A) -- (B);
+
+\draw[thick]
+    (B) -- (C)
+    (C) -- (D)
+    (D) -- (E)
+    (E) -- (B)
+    (A) -- (F)
+    (F) -- (G)
+    (G) -- (A);
+
+\end{tikzpicture}
+\end{document}
