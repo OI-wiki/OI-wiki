@@ -26,9 +26,7 @@ function parseCommitsLog(log: string): CommitLog[] {
   });
 }
 
-async function readGitCommitsLog(path: string, follow: boolean): Promise<CommitLog[]> {
-  const pathVariable = follow ? "FILENAME" : "DIRECTORY";
-  const followOption = follow ? "--follow " : "";
+async function readGitCommitsLog(path: string): Promise<CommitLog[]> {
   const { stdout: log } = await execFileAsync(
     "bash",
     [
@@ -55,12 +53,12 @@ async function readGitCommitsLog(path: string, follow: boolean): Promise<CommitL
        *   - `i`: Makes the regex case-insensitive.
        */
       "-c",
-      `git log ${followOption}'--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' -- "$${pathVariable}" | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
+      `git log --follow '--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' -- "$FILENAME" | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
     ],
     {
       env: {
         ...process.env,
-        [pathVariable]: follow ? `docs${path}` : path
+        FILENAME: path
       }
     }
   );
@@ -68,16 +66,16 @@ async function readGitCommitsLog(path: string, follow: boolean): Promise<CommitL
   return parseCommitsLog(log);
 }
 
-function findIncludedCodeDirectories(markdown: string): string[] {
+function findIncludedCodeFiles(markdown: string): string[] {
   return [
     ...new Set(
-      [...markdown.matchAll(/--8<--\s*"(docs\/[^"\n]+)"/g)]
+      [...markdown.matchAll(/--8<--\s*"(docs\/[^"\n:]+)"/g)]
         .map(([, path]) => path.replaceAll("\\", "/"))
         .filter(path => path.includes("/code/"))
-        .map(path => path.slice(0, path.lastIndexOf("/")))
     )
   ];
 }
+
 const GITHUB_REPO = "OI-wiki/OI-wiki";
 const AUTHORS_CACHE_URL = `https://raw.githubusercontent.com/${GITHUB_REPO}/authors-cache/authors.json`;
 const AUTHORS_EXCLUDED = ["24OI-Bot", "OI-wiki"];
@@ -114,15 +112,15 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
       // Set link to git history
       $(".edit_history").setAttribute("href", `https://github.com/${GITHUB_REPO}/commits/master/docs${sourceFilePath}`);
 
-      const commitsLog = await readGitCommitsLog(sourceFilePath, true);
-      let directories: string[] = [];
+      const commitsLog = await readGitCommitsLog(`docs${sourceFilePath}`);
+      let codeFiles: string[] = [];
       try {
         const markdown = await fs.promises.readFile(`docs${sourceFilePath}`, "utf8");
-        directories = findIncludedCodeDirectories(markdown);
+        codeFiles = findIncludedCodeFiles(markdown);
       } catch (error) {
         log(`Failed to read source markdown for ${sourceFilePath}: ${error}`);
       }
-      const directoryLogs = await Promise.all(directories.map(directory => readGitCommitsLog(directory, false)));
+      const codeFileLogs = await Promise.all(codeFiles.map(readGitCommitsLog));
 
       // "本页面最近更新"
       const latestDate = new Date(
@@ -144,7 +142,7 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
             .map(username => `${username.trim()}\ngithub`),
           // From git history
           ...commitsLog
-            .concat(...directoryLogs)
+            .concat(...codeFileLogs)
             .flatMap(l => l.authorEmails)
             .filter(email => email in this.userMap)
             .map(
