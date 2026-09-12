@@ -1,3 +1,4 @@
+import fs from "fs";
 import util from "util";
 import child_process from "child_process";
 import chalk from "chalk";
@@ -9,12 +10,27 @@ import { TaskHandler, log } from "../html-postprocess.js";
 
 const execFileAsync = util.promisify(child_process.execFile);
 
-async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Date; authorEmails: string[] }[]> {
+type CommitLog = { commitDate: Date; authorEmails: string[] };
+
+function parseCommitsLog(log: string): CommitLog[] {
+  const commits = log.trim().slice(1).split("\n>");
+  return commits.map(commit => {
+    const [dateLine, ...emailLines] = commit
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+    return {
+      commitDate: new Date(dateLine),
+      authorEmails: Array.from(new Set(emailLines.map(emailLine => emailLine.slice(1).toLowerCase())))
+    };
+  });
+}
+
+async function readGitCommitsLog(path: string): Promise<CommitLog[]> {
   const { stdout: log } = await execFileAsync(
     "bash",
     [
-      "-c",
-      /**
+      /*
        * Format:
        *
        * >Date
@@ -36,27 +52,28 @@ async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Dat
        *   - `p`: Prints the substituted line.
        *   - `i`: Makes the regex case-insensitive.
        */
-      `git log --follow '--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' $FILENAME | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
+      "-c",
+      `git log --follow '--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' -- "$FILENAME" | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
     ],
     {
       env: {
         ...process.env,
-        FILENAME: `docs${sourceFilePath}`
+        FILENAME: path
       }
     }
   );
 
-  const commits = log.trim().slice(1).split("\n>");
-  return commits.map(commit => {
-    const [dateLine, ...emailLines] = commit
-      .split("\n")
-      .map(line => line.trim())
-      .filter(Boolean);
-    return {
-      commitDate: new Date(dateLine),
-      authorEmails: Array.from(new Set(emailLines.map(emailLine => emailLine.slice(1).toLowerCase())))
-    };
-  });
+  return parseCommitsLog(log);
+}
+
+function findIncludedCodeFiles(markdown: string): string[] {
+  return [
+    ...new Set(
+      [...markdown.matchAll(/--8<--\s*"(docs\/[^"\n:]+)"/g)]
+        .map(([, path]) => path.replaceAll("\\", "/"))
+        .filter(path => path.includes("/code/"))
+    )
+  ];
 }
 
 const GITHUB_REPO = "OI-wiki/OI-wiki";
@@ -95,7 +112,15 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
       // Set link to git history
       $(".edit_history").setAttribute("href", `https://github.com/${GITHUB_REPO}/commits/master/docs${sourceFilePath}`);
 
-      const commitsLog = await readCommitsLog(sourceFilePath);
+      const commitsLog = await readGitCommitsLog(`docs${sourceFilePath}`);
+      let codeFiles: string[] = [];
+      try {
+        const markdown = await fs.promises.readFile(`docs${sourceFilePath}`, "utf8");
+        codeFiles = findIncludedCodeFiles(markdown);
+      } catch (error) {
+        log(`Failed to read source markdown for ${sourceFilePath}: ${error}`);
+      }
+      const codeFileLogs = await Promise.all(codeFiles.map(readGitCommitsLog));
 
       // "本页面最近更新"
       const latestDate = new Date(
@@ -117,6 +142,7 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
             .map(username => `${username.trim()}\ngithub`),
           // From git history
           ...commitsLog
+            .concat(...codeFileLogs)
             .flatMap(l => l.authorEmails)
             .filter(email => email in this.userMap)
             .map(
