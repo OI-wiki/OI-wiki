@@ -726,7 +726,7 @@ $$
 前文已经指出，有限域上的不可约多项式的根未必是相应扩域作为有限域的本原元．有限域 $\mathbf F_q$ 的本原元在它的素子域 $\mathbf F_p$ 上的极小多项式也称为域 $\mathbf F_p$ 上的 **本原多项式**[^prim-poly]（primitive polynomial）．用这样的多项式实现扩域，就可以保证 $\overline x$ 必然是扩域中的本原元．域 $\mathbf F_p$ 上的 $n$ 次本原多项式可以通过在 $\mathbf F_p$ 上对分圆多项式 $\Phi_{p^n-1}(x)$ 进行因式分解得到．
 
 ???+ note "定理"
-    设 $p$ 为素数，$n$ 为正整数，且 $p\perp n$．又设 $d$ 是乘法群 $(\mathbf Z/n\mathbf Z)^\times$ 中元素 $p$ 的阶．那么，分圆多项式 $\Phi_n(x)$ 在域 $\mathbf F_p$ 上可以分解为 $\dfrac{\varphi(n)}{d}$ 个 $\mathbf F_p$ 上的 $d$ 次不可约多项式的乘积（当且仅当 $n=p^d-1$ 时，这些因子是本原多项式）．特别地，分圆多项式 $\Phi_n(x)$ 在域 $\mathbf F_p$ 上不可约，当且仅当 $p$ 是模 $n$ 的原根．
+    设 $p$ 为素数，$n$ 为正整数，且 $p\perp n$．又设 $d$ 是乘法群 $(\mathbf Z/n\mathbf Z)^\times$ 中元素 $p$ 的阶．那么，分圆多项式 $\Phi_n(x)$ 在域 $\mathbf F_p$ 上可以分解为 $\dfrac{\varphi(n)}{d}$ 个 $\mathbf F_p$ 上的 $d$ 次不可约多项式的乘积；而且，当且仅当 $n=p^d-1$ 时，这些因子是本原多项式．特别地，分圆多项式 $\Phi_n(x)$ 在域 $\mathbf F_p$ 上不可约，当且仅当 $p$ 是模 $n$ 的原根．
 
 ??? note "证明"
     如果注意到，$n$ 次分圆多项式的根是所有 $\mathbf F_p$ 的 $n$ 次本原单位根，而 $n$ 次本原单位根的极小多项式的次数 $d$ 就是它的共轭（包括自身）的数量，也就等于它在自同构群 $\langle\sigma_p\rangle$ 下的轨道长度，那么就可以知道 $d$ 是 $\{\zeta^i:i\perp n\}$ 中映射 $\zeta^i\mapsto\zeta^{ip}$ 的循环子群的轨道长度，亦即乘法群 $(\mathbf Z/n\mathbf Z)^\times$ 中元素 $p$ 的阶．如果不想依赖于 Galois 理论，也可以通过说明 $d$ 是最小的正整数使得 $(x^n-1)\mid(x^{p^d-1}-1)$ 成立来证明此事．其余结论显然．
