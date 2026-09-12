@@ -1,3 +1,4 @@
+import fs from "fs";
 import util from "util";
 import child_process from "child_process";
 import chalk from "chalk";
@@ -9,43 +10,9 @@ import { TaskHandler, log } from "../html-postprocess.js";
 
 const execFileAsync = util.promisify(child_process.execFile);
 
-async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Date; authorEmails: string[] }[]> {
-  const { stdout: log } = await execFileAsync(
-    "bash",
-    [
-      "-c",
-      /**
-       * Format:
-       *
-       * >Date
-       * <AuthorEmail
-       * <CoAuthorEmail
-       * <...
-       * >Date
-       * <AuthorEmail
-       * <...
-       */
-      /**
-       * Regex explanation:
-       * - ^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>): Matches lines in the `git log` output.
-       *   - (>.+): Matches lines starting with '>' (e.g., commit date lines).
-       *   - (<.+): Matches lines starting with '<' (e.g., author or co-author email lines).
-       *   - (  Co-Authored-By: .+?(<.+)>): Matches 'Co-Authored-By' lines and captures the email in '<>'.
-       * - \\2\\3\\4: Replaces the matched line with the content of the second, third, or fourth capture group.
-       * - The `pi` flags:
-       *   - `p`: Prints the substituted line.
-       *   - `i`: Makes the regex case-insensitive.
-       */
-      `git log --follow '--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' $FILENAME | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
-    ],
-    {
-      env: {
-        ...process.env,
-        FILENAME: `docs${sourceFilePath}`
-      }
-    }
-  );
+type CommitLog = { commitDate: Date; authorEmails: string[] };
 
+function parseCommitsLog(log: string): CommitLog[] {
   const commits = log.trim().slice(1).split("\n>");
   return commits.map(commit => {
     const [dateLine, ...emailLines] = commit
@@ -59,6 +26,36 @@ async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Dat
   });
 }
 
+async function readGitCommitsLog(path: string, follow: boolean): Promise<CommitLog[]> {
+  const pathVariable = follow ? "FILENAME" : "DIRECTORY";
+  const followOption = follow ? "--follow " : "";
+  const { stdout: log } = await execFileAsync(
+    "bash",
+    [
+      "-c",
+      `git log ${followOption}'--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' -- "$${pathVariable}" | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
+    ],
+    {
+      env: {
+        ...process.env,
+        [pathVariable]: follow ? `docs${path}` : path
+      }
+    }
+  );
+
+  return parseCommitsLog(log);
+}
+
+function findIncludedCodeDirectories(markdown: string): string[] {
+  return [
+    ...new Set(
+      [...markdown.matchAll(/--8<--\s*"(docs\/[^"\n]+)"/g)]
+        .map(([, path]) => path.replaceAll("\\", "/"))
+        .filter(path => path.includes("/code/"))
+        .map(path => path.slice(0, path.lastIndexOf("/")))
+    )
+  ];
+}
 const GITHUB_REPO = "OI-wiki/OI-wiki";
 const AUTHORS_CACHE_URL = `https://raw.githubusercontent.com/${GITHUB_REPO}/authors-cache/authors.json`;
 const AUTHORS_EXCLUDED = ["24OI-Bot", "OI-wiki"];
@@ -95,7 +92,15 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
       // Set link to git history
       $(".edit_history").setAttribute("href", `https://github.com/${GITHUB_REPO}/commits/master/docs${sourceFilePath}`);
 
-      const commitsLog = await readCommitsLog(sourceFilePath);
+      const commitsLog = await readGitCommitsLog(sourceFilePath, true);
+      let directories: string[] = [];
+      try {
+        const markdown = await fs.promises.readFile(`docs${sourceFilePath}`, "utf8");
+        directories = findIncludedCodeDirectories(markdown);
+      } catch (error) {
+        log(`Failed to read source markdown for ${sourceFilePath}: ${error}`);
+      }
+      const directoryLogs = await Promise.all(directories.map(directory => readGitCommitsLog(directory, false)));
 
       // "本页面最近更新"
       const latestDate = new Date(
@@ -117,6 +122,7 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
             .map(username => `${username.trim()}\ngithub`),
           // From git history
           ...commitsLog
+            .concat(...directoryLogs)
             .flatMap(l => l.authorEmails)
             .filter(email => email in this.userMap)
             .map(
