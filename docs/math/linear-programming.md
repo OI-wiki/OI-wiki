@@ -334,11 +334,7 @@ $$
     2.  存在 $y\in\mathbf R^m$，使得 $A^T y\ge 0$ 且 $b^Ty<0$．
 
 ??? note "证明"
-    如果两种情形同时成立，那么就有 $0\le (A^Ty)^Tx = y^T(Ax) = b^Ty<0$，矛盾．所以，至多有一种情形成立．
-    
-    接下来说明至少有一种情形成立．记 $C=\{Ax:x\ge 0\}$ 为 $A$ 的列向量生成的多面体锥．如果 $b\in C$，那么情形 1 成立；否则，需要说明情形 2 成立．
-    
-    因为 [多面体锥](#可行域与问题的解) $C$ 也可以写成有限多个经过原点的半空间的交集，所以它是闭凸集．又因为 $b\notin C$，所以，由超平面分离定理可知，存在 $y\in\mathbf R^m$ 和 $\alpha\in\mathbf R$，使得 $b^Ty<\alpha$，且对所有 $z\in C$ 都有 $z^Ty>\alpha$．因为 $0\in C$，所以 $\alpha<0$，进而 $b^Ty<0$．又因为对所有 $x\ge 0$ 和 $t>0$ 都有 $t(A^Ty)^Tx>\alpha$，令 $t\to+\infty$ 可知 $(A^Ty)^Tx\ge 0$ 对所有 $x\ge 0$ 都成立，即 $A^Ty\ge 0$．这就是情形 2．
+    如果两种情形同时成立，那么就有 $0\le (A^Ty)^Tx = y^T(Ax) = b^Ty<0$，矛盾．所以，至多有一种情形成立．接下来说明至少有一种情形成立．记 $C=\{Ax:x\ge 0\}$ 为 $A$ 的列向量生成的多面体锥．如果 $b\in C$，那么情形 1 成立；否则，需要说明情形 2 成立．因为多面体锥 $C$ 也可以写成有限多个经过原点的半空间的交集，所以它是闭凸集．又因为 $b\notin C$，所以，由超平面分离定理可知，存在 $y\in\mathbf R^m$ 和 $\alpha\in\mathbf R$，使得 $b^Ty<\alpha$，且对所有 $z\in C$ 都有 $z^Ty>\alpha$．因为 $0\in C$，所以 $\alpha<0$，进而 $b^Ty<0$．又因为对所有 $x\ge 0$ 和 $t>0$ 都有 $t(A^Ty)^Tx>\alpha$，令 $t\to+\infty$ 可知 $(A^Ty)^Tx\ge 0$ 对所有 $x\ge 0$ 都成立，即 $A^Ty\ge 0$．这就是情形 2．
 
 从几何角度看，情形 1 是在说，点 $b$ 位于 $A$ 的列向量生成的多面体锥 $C$ 里；情形 2 则是在说，存在经过原点且法向量为 $y$ 的超平面 $H:y^Tx = 0$ 强分离了点 $b$ 和多面体锥 $C$．因此，Farkas 引理相当于一种 [超平面分离定理](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem)．
 
