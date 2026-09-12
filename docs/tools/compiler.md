@@ -39,6 +39,42 @@
 
 ![](./images/compiler6.png)
 
+#### MSYS2 安装
+
+打开 PowerShell，运行以下命令：
+
+```powershell
+winget install MSYS2.MSYS2
+```
+
+在开始菜单中搜索并打开 MSYS2 UCRT64 终端，输入以下命令：
+
+```bash
+pacman -S mingw-w64-ucrt-x86_64-gcc
+```
+
+??? note "为什么是 UCRT64"
+    安装完成后，你还会在开始菜单中找到MSYS2 MINGW64、MSYS CLANG64、MSYS2 MSYS等其他终端，这些终端彼此之间的区别在于虽然它们共享同一个底层平台，但在底层 C 运行时库（C Runtime）、编译器工具链以及生成的程序类型上有本质区别。
+    
+    其中，UCRT64和CLANG64使用的是UCRT64 (Universal C Runtime)，依赖微软自 Windows 10 起内置并主推的 ucrtbase.dll（与 Visual Studio 使用相同的 C 运行时）。这一环境的优点是完全符合 C/C++ 标准，UTF-8支持良好（解决了老旧 MinGW 在 Windows 下控制台输出中文乱码、文件名包含中文导致无法打开等痛点），并且编译出的`.dll`和`.lib`与MSVC完全兼容。这两者的区别在于CLANG64环境的编译器不是 GNU GCC 而是 Clang/LLVM.
+    而 MINGW64 环境使用的则是 Windows 95/98 时代的历史遗留库 `msvcrt.dll`，微软在多年前就已经不建议开发者直接将 `msvcrt.dll` 作为应用程序的标准 C 运行时库。其功能和接口长期保持不变，不再添加新的 C 标准（如 C99/C11）。在 Windows 7 之前，`msvcrt.dll` 是唯一保证每台 Windows 电脑都自带的 C 运行时，因此传统的 MinGW/MinGW-w64 默认选择了它。
+    MSYS环境的 C 运行时则是`msys-2.0.dll`，一个基于 Cygwin 的 POSIX 兼容层。因此，所有在 MSYS 环境下编译的可执行文件都必须在有`msys-2.0.dll`的情况下才能运行，通常用于将将 Unix 软件直接移植到 Windows 系统中。
+
+???+note "提示"
+    如果你还需要 gdb 调试器和 make 工具，建议直接安装完整的工具链包：
+    ```bash
+    pacman -S mingw-w64-ucrt-x86_64-toolchain
+    ```
+
+然后在系统环境变量中添加`C:\msys64\ucrt64\bin`，打开一个新的PowerShell窗口，输入`gcc --version`，显示如下输出则已配置成功：
+
+```
+gcc.exe (Rev5, Built by MSYS2 project) 16.1.0
+Copyright (C) 2026 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+
 #### Scoop 安装
 
 打开 PowerShell，运行以下脚本：
@@ -132,6 +168,44 @@ InstalledDir: <omitted>
 ```
 
 类似物即代表成功．
+
+#### MSYS2 安装
+
+##### UCRT64 环境
+
+如果你平时的主力编译器是 GNU GCC，但偶尔想用 Clang 编译器（或者`clangd`等需要 LLVM 的代码分析工具），你可以直接在 UCRT64 中安装基于 UCRT 构建的 LLVM 编译器.
+
+在 MSYS2 UCRT64 终端中输入以下命令：
+
+```bash
+pacman -S mingw-w64-ucrt-x86_64-clang mingw-w64-ucrt-x86_64-llvm
+```
+
+在这种混合环境下，虽然你调用的是 clang++，但它默认使用的 C++ 标准库依然是 GCC 提供的 libstdc++，而不是 LLVM 原生的 libc++，因此可以使用“万能头文件” `bits/stdc++.h` 等 libstdc++ 的特性.
+
+安装完成后，输入以下命令验证：
+
+```bash
+clang --version
+clang++ --version
+```
+
+如果你看到类似于 clang version 18.x.x 的输出内容，就说明 LLVM/Clang 已经安装成功.
+
+##### CLANG64 环境
+
+CLANG64 环境下所有工具（包括 C++ 标准库、链接器等）默认都是基于 LLVM 体系（clang, libc++, lld）构建的，是纯正的 LLVM 原生环境。
+
+在开始菜单中搜索并打开 MSYS2 CLANG64 终端（注意：不要打开之前的 UCRT64 或 MSYS 终端），输入以下命令：
+
+```bash
+pacman -S mingw-w64-clang-x86_64-toolchain
+```
+
+安装完成后，再将路径 `C:\msys64\clang64\bin` 添加到系统环境变量 Path 中。
+
+??? note "路径顺序"
+    如果你的主力编译器是 GNU GCC，建议将新添加的路径 `C:\msys64\clang64\bin` 放在后面。
 
 #### Scoop 安装
 
