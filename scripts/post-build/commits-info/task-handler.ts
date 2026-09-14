@@ -1,3 +1,4 @@
+import fs from "fs";
 import util from "util";
 import child_process from "child_process";
 import chalk from "chalk";
@@ -9,19 +10,52 @@ import { TaskHandler, log } from "../html-postprocess.js";
 
 const execFileAsync = util.promisify(child_process.execFile);
 
-async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Date; authorEmails: string[] }[]> {
+type CommitLog = { commitHash?: string; commitDate: Date; authorEmails: string[] };
+
+type CodeSnippet = { path: string; section?: string };
+
+function parseCommitsLog(log: string): CommitLog[] {
+  const commits = log.trim().slice(1).split("\n>");
+  return commits.map(commit => {
+    const [headerLine, ...emailLines] = commit
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+    const commitHash = headerLine?.slice(0, headerLine.indexOf(" "));
+    const commitDate = headerLine?.slice(headerLine.indexOf(" ") + 1);
+    return {
+      commitHash,
+      commitDate: new Date(commitDate),
+      authorEmails: Array.from(new Set(emailLines.map(emailLine => emailLine.slice(1).toLowerCase())))
+    };
+  });
+}
+
+function mergeCommitsLogs(logs: CommitLog[][]): CommitLog[] {
+  const seen = new Set<string>();
+  const merged: CommitLog[] = [];
+  for (const log of logs.flatMap(entry => entry)) {
+    if (log.commitHash !== undefined) {
+      if (seen.has(log.commitHash)) continue;
+      seen.add(log.commitHash);
+    }
+    merged.push(log);
+  }
+  return merged;
+}
+
+async function readGitCommitsLog(path: string, useLineRange = false): Promise<CommitLog[]> {
   const { stdout: log } = await execFileAsync(
     "bash",
     [
-      "-c",
-      /**
+      /*
        * Format:
        *
-       * >Date
+       * >CommitHash CommitDate
        * <AuthorEmail
        * <CoAuthorEmail
        * <...
-       * >Date
+       * >CommitHash CommitDate
        * <AuthorEmail
        * <...
        */
@@ -36,27 +70,70 @@ async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Dat
        *   - `p`: Prints the substituted line.
        *   - `i`: Makes the regex case-insensitive.
        */
-      `git log --follow '--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' $FILENAME | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
+      "-c",
+      `git log '--pretty=format:>%H %cD%n<%aE%n%w(0,2,2)%b' ${
+        useLineRange ? "-L" : "--follow --"
+      } "$FILENAME" | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
     ],
     {
       env: {
         ...process.env,
-        FILENAME: `docs${sourceFilePath}`
+        FILENAME: path
       }
     }
   );
 
-  const commits = log.trim().slice(1).split("\n>");
-  return commits.map(commit => {
-    const [dateLine, ...emailLines] = commit
-      .split("\n")
-      .map(line => line.trim())
-      .filter(Boolean);
-    return {
-      commitDate: new Date(dateLine),
-      authorEmails: Array.from(new Set(emailLines.map(emailLine => emailLine.slice(1).toLowerCase())))
-    };
-  });
+  return parseCommitsLog(log);
+}
+
+async function readSnippetCommitsLog(snippet: CodeSnippet): Promise<CommitLog[]> {
+  let lineRange: { start: number; end: number } | undefined;
+  if (snippet.section !== undefined) {
+    const content = await fs.promises.readFile(snippet.path, "utf8");
+    lineRange = findSectionRange(content, snippet.section);
+    if (lineRange === undefined) {
+      log(`Snippet section ${chalk.yellow(snippet.section)} not found in ${chalk.yellow(snippet.path)}, skipping`);
+      return [];
+    }
+  }
+  return await readGitCommitsLog(
+    lineRange === undefined ? snippet.path : `${lineRange.start},${lineRange.end}:${snippet.path}`,
+    lineRange !== undefined
+  );
+}
+
+function findIncludedCodeSnippets(markdown: string): CodeSnippet[] {
+  return [
+    ...new Map(
+      [...markdown.matchAll(/--8<--\s*"(docs\/[^"\n]+)"/g)]
+        .map(([, path]) => path.replaceAll("\\", "/"))
+        .filter(path => path.includes("/code/"))
+        .map(path => {
+          const separator = path.indexOf(":", path.lastIndexOf("/") + 1);
+          return separator === -1
+            ? { path, section: undefined }
+            : { path: path.slice(0, separator), section: path.slice(separator + 1) };
+        })
+        .filter(snippet => snippet.section === undefined || /^[a-z][-_0-9a-z]*$/.test(snippet.section))
+        .map(snippet => [`${snippet.path}:${snippet.section ?? ""}`, snippet])
+    ).values()
+  ];
+}
+
+function findSectionRange(content: string, section: string): { start: number; end: number } | undefined {
+  const lines = content.split("\n");
+  const marker = /--8<--\s*\[\s*(start|end)\s*:\s*([a-z][-_0-9a-z]*)\s*\]/;
+  let start: number | undefined;
+  for (const [i, line] of lines.entries()) {
+    const match = marker.exec(line);
+    if (!match || match[2] !== section) continue;
+    if (match[1] === "start") {
+      if (start === undefined) start = i + 2;
+    } else if (start !== undefined) {
+      return { start, end: i };
+    }
+  }
+  return undefined;
 }
 
 const GITHUB_REPO = "OI-wiki/OI-wiki";
@@ -95,7 +172,15 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
       // Set link to git history
       $(".edit_history").setAttribute("href", `https://github.com/${GITHUB_REPO}/commits/master/docs${sourceFilePath}`);
 
-      const commitsLog = await readCommitsLog(sourceFilePath);
+      const commitsLog = await readGitCommitsLog(`docs${sourceFilePath}`);
+      let codeSnippets: CodeSnippet[] = [];
+      try {
+        const markdown = await fs.promises.readFile(`docs${sourceFilePath}`, "utf8");
+        codeSnippets = findIncludedCodeSnippets(markdown);
+      } catch (error) {
+        log(`Failed to read source markdown for ${sourceFilePath}: ${error}`);
+      }
+      const codeFileLogs = await Promise.all(codeSnippets.map(readSnippetCommitsLog));
 
       // "本页面最近更新"
       const latestDate = new Date(
@@ -116,7 +201,7 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
             .split(",")
             .map(username => `${username.trim()}\ngithub`),
           // From git history
-          ...commitsLog
+          ...mergeCommitsLogs([commitsLog, ...codeFileLogs])
             .flatMap(l => l.authorEmails)
             .filter(email => email in this.userMap)
             .map(

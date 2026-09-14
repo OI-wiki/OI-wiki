@@ -1,7 +1,6 @@
 import { Octokit } from "octokit";
 
 export const AUTHORS_FILE = "authors.json";
-const GITHUB_REPO = "OI-wiki/OI-wiki";
 
 export type AuthorUserMap = Record<string, { name: string; githubUsername: string }>;
 
@@ -10,7 +9,26 @@ export interface AuthorsCache {
   userMap: AuthorUserMap;
 }
 
-export async function fetchAuthors(cachedData: AuthorsCache, fetchConcurrency = 1): Promise<AuthorsCache> {
+type GitActor = { name: string; email: string; user: { login: string } | null };
+
+type CommitHistoryResponse = {
+  repository: {
+    defaultBranchRef: {
+      target: {
+        history: {
+          nodes: {
+            committedDate: string;
+            authors: { nodes: GitActor[] };
+          }[];
+          pageInfo: { hasNextPage: boolean; endCursor: string };
+        };
+      };
+    };
+  };
+};
+
+// https://docs.github.com/en/graphql/reference/objects#commit
+export async function fetchAuthors(cachedData: AuthorsCache): Promise<AuthorsCache> {
   cachedData = cachedData || {
     latestCommitTime: undefined,
     userMap: {}
@@ -24,37 +42,48 @@ export async function fetchAuthors(cachedData: AuthorsCache, fetchConcurrency = 
 
   const result: AuthorUserMap = { ...cachedData.userMap };
   let latestCommitTime = 0;
-  for (let i = 1; ; i += fetchConcurrency) {
-    const responses = await Promise.all(
-      Array(fetchConcurrency)
-        .fill(null)
-        .map((_, j) => i + j)
-        .map(page =>
-          octokit.request(`GET /repos/${GITHUB_REPO}/commits`, {
-            per_page: 100,
-            page,
-            ...(since ? { since } : {})
-          })
-        )
+  let cursor: string | undefined;
+  for (;;) {
+    const data = await octokit.graphql<CommitHistoryResponse>(
+      `query($owner: String!, $name: String!, $cursor: String, $since: GitTimestamp) {
+        repository(owner: $owner, name: $name) {
+          defaultBranchRef {
+            target {
+              ... on Commit {
+                history(first: 100, after: $cursor, since: $since) {
+                  nodes {
+                    committedDate
+                    authors(first: 100) { nodes { name email user { login } } }
+                  }
+                  pageInfo { hasNextPage endCursor }
+                }
+              }
+            }
+          }
+        }
+      }`,
+      { owner: "OI-wiki", name: "OI-wiki", cursor, since }
     );
-    const data = responses.flatMap(response => response.data);
-    if (data.length === 0) break;
 
-    for (const item of data) {
-      const commitTime = +new Date(item.commit.committer.date);
+    const history = data.repository.defaultBranchRef.target.history;
+    for (const node of history.nodes) {
+      const commitTime = +new Date(node.committedDate);
       if (latestCommitTime < commitTime) {
         latestCommitTime = commitTime;
       }
 
-      const email = item.commit.author.email.toLowerCase();
-      const name = item.commit.author.name;
-      if (name.includes("[bot]")) continue;
-      if (!(email in result))
-        result[email] = {
-          name,
-          githubUsername: item.author && item.author.login ? item.author.login : undefined
-        };
+      for (const author of node.authors.nodes) {
+        if (!author.name || !author.email || author.name.includes("[bot]")) continue;
+        const email = author.email.toLowerCase();
+        if (!(email in result))
+          result[email] = {
+            name: author.name,
+            githubUsername: author.user ? author.user.login : undefined
+          };
+      }
     }
+    if (!history.pageInfo.hasNextPage) break;
+    cursor = history.pageInfo.endCursor;
   }
 
   return {
