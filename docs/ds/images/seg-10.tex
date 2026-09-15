@@ -1,0 +1,157 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+% Tapered arrow: stacked copies, each thicker and started further along,
+% giving a stroke that grows from a thin tail into the head.
+% #1 = colour/style, #2 = path.  Taper length fixed at 14pt.
+\newcommand{\taperarrow}[2][]{%
+  \foreach \i in {1,...,10}{%
+    \pgfmathsetmacro{\tw}{1.8*\i/10}%
+    \pgfmathsetmacro{\ts}{1.4*(\i-1)}%
+    \draw[#1, line width=\tw pt, shorten <=\ts pt,
+          line cap=round, rounded corners=4pt] #2;%
+  }%
+  \draw[#1, line width=1.8pt, shorten <=14pt, rounded corners=4pt,
+        -{Stealth[length=8pt,width=7pt]}] #2;%
+}
+
+\usepackage{anyfontsize} % allows arbitrary font sizes
+\usepackage{lmodern} % better font scaling
+
+\makeatletter
+\renewcommand\normalsize{%
+  \@setfontsize\normalsize{16pt}{19pt}%
+}
+\renewcommand\Large{%
+  \@setfontsize\Large{20pt}{24pt}%
+}
+\makeatother
+
+\begin{document}
+
+\begin{tikzpicture}[
+  thick, scale=1.2,
+  small label/.style={
+    anchor=north west,
+    font=\scriptsize,
+    xshift=-3pt,
+    yshift=3pt,
+    blue,
+    overlay
+  }
+]
+% The query is [3,r]; the band covers the answer and fades rightwards.
+% Fade drawn as flat strips: PDF shadings are dropped by some SVG converters.
+\fill[red!17.8, overlay] (1.9400,0.1) rectangle (2.1947,-5);
+\fill[red!17.2, overlay] (2.1907,0.1) rectangle (2.4454,-5);
+\fill[red!16.8, overlay] (2.4414,0.1) rectangle (2.6961,-5);
+\fill[red!16.2, overlay] (2.6921,0.1) rectangle (2.9469,-5);
+\fill[red!15.8, overlay] (2.9429,0.1) rectangle (3.1976,-5);
+\fill[red!15.2, overlay] (3.1936,0.1) rectangle (3.4483,-5);
+\fill[red!14.8, overlay] (3.4443,0.1) rectangle (3.6990,-5);
+\fill[red!14.2, overlay] (3.6950,0.1) rectangle (3.9497,-5);
+\fill[red!13.8, overlay] (3.9457,0.1) rectangle (4.2004,-5);
+\fill[red!13.2, overlay] (4.1964,0.1) rectangle (4.4511,-5);
+\fill[red!12.8, overlay] (4.4471,0.1) rectangle (4.7019,-5);
+\fill[red!12.2, overlay] (4.6979,0.1) rectangle (4.9526,-5);
+\fill[red!11.8, overlay] (4.9486,0.1) rectangle (5.2033,-5);
+\fill[red!11.2, overlay] (5.1993,0.1) rectangle (5.4540,-5);
+\fill[red!10.8, overlay] (5.4500,0.1) rectangle (5.7047,-5);
+\fill[red!10.2, overlay] (5.7007,0.1) rectangle (5.9554,-5);
+\fill[red!9.8, overlay] (5.9514,0.1) rectangle (6.2061,-5);
+\fill[red!9.2, overlay] (6.2021,0.1) rectangle (6.4569,-5);
+\fill[red!8.8, overlay] (6.4529,0.1) rectangle (6.7076,-5);
+\fill[red!8.2, overlay] (6.7036,0.1) rectangle (6.9583,-5);
+\fill[red!7.8, overlay] (6.9543,0.1) rectangle (7.2090,-5);
+\fill[red!7.2, overlay] (7.2050,0.1) rectangle (7.4597,-5);
+\fill[red!6.8, overlay] (7.4557,0.1) rectangle (7.7104,-5);
+\fill[red!6.2, overlay] (7.7064,0.1) rectangle (7.9611,-5);
+\fill[red!5.8, overlay] (7.9571,0.1) rectangle (8.2119,-5);
+\fill[red!5.2, overlay] (8.2079,0.1) rectangle (8.4626,-5);
+\fill[red!4.8, overlay] (8.4586,0.1) rectangle (8.7133,-5);
+\fill[red!4.2, overlay] (8.7093,0.1) rectangle (8.9640,-5);
+% Layer 1.
+\draw (0,0) node[small label] {1} rectangle (15.9,-0.9);
+\node at (7.95,-0.45) {$[1,13]$};
+% Layer 2.
+\draw (0,-1) node[small label] {2} rectangle (7.9,-1.9);
+\node at (3.95,-1.45) {$[1,8]$};
+\draw[ultra thick, densely dashed] (8,-1) node[small label] {3} rectangle (15.9,-1.9);
+\node at (11.95,-1.45) {$[9,13]$};
+% Layer 3.
+\draw (0,-2) node[small label] {4} rectangle (3.9,-2.9);
+\node at (1.95,-2.45) {$[1,4]$};
+\draw[ultra thick] (4,-2) node[small label] {5} rectangle (7.9,-2.9);
+\node at (5.95,-2.45) {$[5,8]$};
+\draw[ultra thick, densely dashed] (8,-2) node[small label] {6} rectangle (11.9,-2.9);
+\node at (9.95,-2.45) {$[9,12]$};
+\draw (12,-2) node[small label] {7} rectangle (15.9,-2.9);
+\node at (13.95,-2.45) {$[13,13]$};
+% Layer 4.
+\draw (0,-3) node[small label] {8} rectangle (1.9,-3.9);
+\node at (0.95,-3.45) {$[1,2]$};
+\draw[ultra thick] (2,-3) node[small label] {9} rectangle (3.9,-3.9);
+\node at (2.95,-3.45) {$[3,4]$};
+\draw (4,-3) node[small label] {10} rectangle (5.9,-3.9);
+\node at (4.95,-3.45) {$[5,6]$};
+\draw (6,-3) node[small label] {11} rectangle (7.9,-3.9);
+\node at (6.95,-3.45) {$[7,8]$};
+\draw[ultra thick, densely dashed] (8,-3) node[small label] {12} rectangle (9.9,-3.9);
+\node at (8.95,-3.45) {$[9,10]$};
+\draw (10,-3) node[small label] {13} rectangle (11.9,-3.9);
+\node at (10.95,-3.45) {$[11,12]$};
+\draw (12,-3) node[small label] {14} rectangle (13.9,-3.9);
+\node at (12.95,-3.45) {$[13,13]$};
+\draw[dashed] (14,-3) node[small label] {15} rectangle (15.9,-3.9);
+\node at (14.95,-3.45) {};
+% Layer 5.
+\draw (0,-4) node[small label] {16} rectangle (0.9,-4.9);
+\node at (0.45,-4.45) {$1$};
+\draw (1,-4) node[small label] {17} rectangle (1.9,-4.9);
+\node at (1.45,-4.45) {$2$};
+\draw (2,-4) node[small label] {18} rectangle (2.9,-4.9);
+\node at (2.45,-4.45) {$3$};
+\draw (3,-4) node[small label] {19} rectangle (3.9,-4.9);
+\node at (3.45,-4.45) {$4$};
+\draw (4,-4) node[small label] {20} rectangle (4.9,-4.9);
+\node at (4.45,-4.45) {$5$};
+\draw (5,-4) node[small label] {21} rectangle (5.9,-4.9);
+\node at (5.45,-4.45) {$6$};
+\draw (6,-4) node[small label] {22} rectangle (6.9,-4.9);
+\node at (6.45,-4.45) {$7$};
+\draw (7,-4) node[small label] {23} rectangle (7.9,-4.9);
+\node at (7.45,-4.45) {$8$};
+\draw[ultra thick] (8,-4) node[small label] {24} rectangle (8.9,-4.9);
+\node at (8.45,-4.45) {$9$};
+\draw (9,-4) node[small label] {25} rectangle (9.9,-4.9);
+\node at (9.45,-4.45) {$10$};
+\draw (10,-4) node[small label] {26} rectangle (10.9,-4.9);
+\node at (10.45,-4.45) {$11$};
+\draw (11,-4) node[small label] {27} rectangle (11.9,-4.9);
+\node at (11.45,-4.45) {$12$};
+\draw (12,-4) node[small label] {28} rectangle (12.9,-4.9);
+\node at (12.45,-4.45) {$13$};
+\draw[dashed] (13,-4) node[small label] {29} rectangle (13.9,-4.9);
+\node at (13.45,-4.45) {};
+\draw[dashed] (14,-4) node[small label] {30} rectangle (14.9,-4.9);
+\node at (14.45,-4.45) {};
+\draw[dashed] (15,-4) node[small label] {31} rectangle (15.9,-4.9);
+\node at (15.45,-4.45) {};
+% Climb: 18 -> 9; take 9, step to 10, climb to 5; take 5, step to 6, climb to 3.
+\taperarrow[red!75!black]{(2.70,-4.45) -- (2.70,-3.78)}
+\taperarrow[red!75!black]{(3.55,-3.45) -- (4.45,-3.45) -- (4.45,-2.78)}
+\taperarrow[red!75!black]{(7.00,-2.45) -- (8.60,-2.45) -- (8.60,-1.78)}
+% Node 3 is too big, so descend: 3 -> 6 -> 12 -> 24, taking 24.
+\taperarrow[red!75!black]{(8.28,-1.45) -- (8.28,-2.30)}
+\taperarrow[red!75!black]{(8.28,-2.45) -- (8.28,-3.30)}
+\taperarrow[red!75!black]{(8.28,-3.45) -- (8.28,-4.30)}
+% The query: starts at l and reaches as far right as the condition allows.
+\draw[red!75!black, line width=1.2pt] (1.94,0.16) -- (1.94,0.40);
+\draw[red!75!black, line width=1.2pt, -{Stealth[length=7pt,width=6pt]}]
+  (1.94,0.28) -- (8.96,0.28);
+\node[red!75!black, anchor=south] at (1.94,0.44) {$l=3$};
+\node[red!75!black, anchor=south] at (8.96,0.44) {$r$};
+\end{tikzpicture}
+
+\end{document}
