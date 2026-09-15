@@ -6,10 +6,10 @@ class SegmentTree {
   static constexpr int N = 2e7;
   int rt, id, L, R;
   std::vector<int> lc, rc;
-  std::vector<long long> sum;
-  std::vector<long long> lz;
+  std::vector<unsigned long long> sum;
+  std::vector<unsigned long long> lz;
 
-  void lazy_update(int& cr, int ll, int rr, long long v) {
+  void lazy_update(int& cr, int ll, int rr, unsigned long long v) {
     if (!cr) cr = ++id;
     sum[cr] += v * (rr - ll + 1);
     lz[cr] += v;
@@ -33,12 +33,12 @@ class SegmentTree {
     sum[cr] = sum[lc[cr]] + sum[rc[cr]];
   }
 
-  long long query(int cr, int ll, int rr, int tl, int tr) {
+  unsigned long long query(int cr, int ll, int rr, int tl, int tr) {
     if (!cr) return 0;
     if (tl <= ll && rr <= tr) return sum[cr];
     push_down(cr, ll, rr);
     int mm = (ll + rr) / 2;
-    long long res = 0;
+    unsigned long long res = 0;
     if (tl <= mm) res = query(lc[cr], ll, mm, tl, tr);
     if (mm < tr) res += query(rc[cr], mm + 1, rr, tl, tr);
     return res;
@@ -49,7 +49,7 @@ class SegmentTree {
 
   void add(int l, int r, int k) { add(rt, L, R, l, r, k); }
 
-  long long query(int l, int r) { return query(rt, L, R, l, r); }
+  unsigned long long query(int l, int r) { return query(rt, L, R, l, r); }
 };
 
 int main() {
