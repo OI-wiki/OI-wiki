@@ -145,6 +145,23 @@ Tarjan 算法需要初始化并查集，所以预处理的时间复杂度为 $O(
 
 若使用 ST 表来解决 RMQ 问题，那么该算法不支持在线修改，预处理的时间复杂度为 $O(n\log n)$，每次查询 LCA 的时间复杂度为 $O(1)$．
 
+### 利用 DFS 序转化为 RMQ 问题
+
+欧拉序列的长度是 $2n-1$，时空常数略大．实际上，可以直接利用 DFS 时间戳 $\operatorname{dfn}$ 求 LCA．
+
+考虑点对 $(u,v)$ 的 LCA，记 $d=\operatorname{LCA}(u,v)$．若 $u=v$，则 $d=u$，需要特判．否则不妨设 $\operatorname{dfn}(u) < \operatorname{dfn}(v)$，此时，$v$ 一定不是 $u$ 的祖先结点．和欧拉序列不同，在 DFS 序中，区间 $(\operatorname{dfn}(u), \operatorname{dfn}(v)]$ 内不会出现 $d$．但是，它一定包含位于自 $d$ 到 $v$ 的路径上 $d$ 的那个子结点．无论 $u$ 是不是 $v$ 的祖先结点，这一点总是成立的．所以，只要找到区间 $[\operatorname{dfn}(u) + 1, \operatorname{dfn}(v)]$ 中深度最小的那个结点（未必唯一），它的父结点一定是 LCA．其中，区间开始是 $\operatorname{dfn}(u) + 1$ 的原因是：若 $u$ 是 $v$ 的祖先，区间包含 $u$ 时深度最小的结点将是 $u$ 本身，而它的父结点并非 LCA．
+
+由此，求 LCA 就又变成了一个 RMQ 问题．
+
+如果不想存储额外的深度和父结点信息，可以直接在 DFS 序中 $\operatorname{dfn}(u)$ 位置处存储 $\operatorname{fa}(u)$．然后，在这个序列上，利用时间戳比较两个值．那么，区间 $[\operatorname{dfn}(u) + 1, \operatorname{dfn}(v)]$ 中该序列时间戳最小的就是 $\operatorname{LCA}(u,v)$．这是因为，区间 $[\operatorname{dfn}(u) + 1, \operatorname{dfn}(v)]$ 中结点一定是 $d$ 的真子孙结点，这些结点父结点的 DFS 时间戳不会小于 $\operatorname{dfn}(d)$；而在区间内 $d$ 的子结点处恰取得最小值 $\operatorname{dfn}(d)$，按照前文讨论，这样的子结点一定存在．
+
+利用 DFS 序将 LCA 转化为 RMQ 问题的过程是 $O(n)$ 的，总复杂度取决于所用的 RMQ 方法．利用 ST 表 $O(n\log n)$ 预处理、$O(1)$ 查询的参考实现如下：
+
+??? example "参考实现"
+    ```cpp
+    --8<-- "docs/graph/code/lca/lca-dfs.cpp:lca"
+    ```
+
 ### 树链剖分
 
 LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所指向的点．
@@ -177,3 +194,7 @@ LCA 为两个游标跳转到同一条重链上时深度较小的那个游标所�
 -   [祖孙询问](https://loj.ac/problem/10135)
 -   [货车运输](https://loj.ac/problem/2610)
 -   [点的距离](https://loj.ac/problem/10130)
+
+## 参考资料
+
+-   [冷门科技——DFS 序求 LCA by Alex\_Wei - 洛谷](https://www.luogu.com.cn/article/pu52m9ue)
