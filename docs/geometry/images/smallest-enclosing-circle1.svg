@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1333" height="817" viewBox="0 0 1333 817">
+  <rect width="1333" height="817" fill="#fff" />
+
+  <line x1="0" y1="410.5" x2="1333" y2="410.5" stroke="#4a4a4a" stroke-width="4" />
+  <line x1="753.5" y1="0" x2="753.5" y2="817" stroke="#4a4a4a" stroke-width="4" />
+
+  <circle cx="753.5" cy="410.5" r="281" fill="none" stroke="#4d998f" stroke-width="4" />
+  <circle cx="603.5" cy="410.5" r="319" fill="none" stroke="#cf4864" stroke-width="4" />
+  <circle cx="492.5" cy="410.5" r="383" fill="none" stroke="#8c83e6" stroke-width="4" />
+
+  <circle cx="753.5" cy="410.5" r="8" fill="#777" stroke="#111" stroke-width="2" />
+
+  <g fill="#1976d2" stroke="#111" stroke-width="2">
+    <circle cx="754" cy="130" r="7.5" />
+    <circle cx="754" cy="691" r="7.5" />
+    <circle cx="366" cy="306" r="7.5" />
+    <circle cx="533" cy="499" r="7.5" />
+    <circle cx="427" cy="577" r="7.5" />
+    <circle cx="636" cy="582" r="7.5" />
+    <circle cx="823" cy="507" r="7.5" />
+  </g>
+
+  <g>
+    <rect x="286" y="480" width="14" height="14" fill="#c3002f" transform="rotate(45 293 487)" />
+    <rect x="866" y="364" width="14" height="14" fill="#8e5bb0" transform="rotate(45 873 371)" />
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="24">
+    <text x="760" y="115" fill="#1565c0">A</text>
+    <text x="760" y="678" fill="#1565c0">B</text>
+    <text x="203" y="112" fill="#5c55d8">C<tspan baseline-shift="sub" font-size="16">r</tspan></text>
+    <text x="424" y="176" fill="#c3002f">C<tspan baseline-shift="sub" font-size="16">l</tspan></text>
+    <text x="614" y="201" fill="#00796b">C</text>
+    <text x="303" y="485" fill="#c3002f">P<tspan baseline-shift="sub" font-size="16">l</tspan></text>
+    <text x="832" y="361" fill="#8e5bb0">P<tspan baseline-shift="sub" font-size="16">r</tspan></text>
+  </g>
+</svg>
