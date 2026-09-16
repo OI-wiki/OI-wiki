@@ -1,6 +1,7 @@
 import { Octokit } from "octokit";
 
 export const AUTHORS_FILE = "authors.json";
+export const GITHUB_REPO = "OI-wiki/OI-wiki";
 
 export type AuthorUserMap = Record<string, { name: string; githubUsername: string }>;
 
@@ -27,7 +28,7 @@ type CommitHistoryResponse = {
   };
 };
 
-// https://docs.github.com/en/graphql/reference/objects#commit
+// https://docs.github.com/en/graphql/reference/objects#gitactor
 export async function fetchAuthors(cachedData: AuthorsCache): Promise<AuthorsCache> {
   cachedData = cachedData || {
     latestCommitTime: undefined,
@@ -35,6 +36,7 @@ export async function fetchAuthors(cachedData: AuthorsCache): Promise<AuthorsCac
   };
 
   const since = cachedData.latestCommitTime;
+  const [owner, name] = GITHUB_REPO.split("/");
 
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN
@@ -62,7 +64,7 @@ export async function fetchAuthors(cachedData: AuthorsCache): Promise<AuthorsCac
           }
         }
       }`,
-      { owner: "OI-wiki", name: "OI-wiki", cursor, since }
+      { owner, name, cursor, since }
     );
 
     const history = data.repository.defaultBranchRef.target.history;
