@@ -346,7 +346,7 @@ Min\_25 筛：
 
 PN 筛：
 
-???+ example "[Luogu P5325【模板】Min\_25 筛](https://www.luogu.com.cn/problem/P5325)"
+???+ example "[Luogu P5325【模板】Min_25 筛](https://www.luogu.com.cn/problem/P5325)"
     给定积性函数 $f(p^k) = p^k(p^k-1)$，求 $\sum_{i=1}^{n} f(i)$．
 
 ??? note "解答"
