@@ -5,24 +5,22 @@ import chalk from "chalk";
 import { HTMLElement } from "node-html-parser";
 import fetch from "node-fetch";
 
-import { AuthorsCache, AuthorUserMap, fetchAuthors } from "./authors-cache.js";
+import { AuthorsCache, AuthorUserMap, GITHUB_REPO, fetchAuthors } from "./authors-cache.js";
 import { TaskHandler, log } from "../html-postprocess.js";
 
 const execFileAsync = util.promisify(child_process.execFile);
 
-type CommitLog = { commitHash?: string; commitDate: Date; authorEmails: string[] };
-
-type CodeSnippet = { path: string; section?: string };
+type CommitLog = { commitHash: string; commitDate: Date; authorEmails: string[] };
 
 function parseCommitsLog(log: string): CommitLog[] {
   const commits = log.trim().slice(1).split("\n>");
-  return commits.map(commit => {
+  return commits.filter(Boolean).map(commit => {
     const [headerLine, ...emailLines] = commit
       .split("\n")
       .map(line => line.trim())
       .filter(Boolean);
-    const commitHash = headerLine?.slice(0, headerLine.indexOf(" "));
-    const commitDate = headerLine?.slice(headerLine.indexOf(" ") + 1);
+    // "CommitHash CommitDate" (the leading ">" of each commit is consumed by the split above)
+    const [commitHash, commitDate] = [headerLine.slice(0, 40), headerLine.slice(41)];
     return {
       commitHash,
       commitDate: new Date(commitDate),
@@ -32,111 +30,52 @@ function parseCommitsLog(log: string): CommitLog[] {
 }
 
 function mergeCommitsLogs(logs: CommitLog[][]): CommitLog[] {
-  const seen = new Set<string>();
-  const merged: CommitLog[] = [];
-  for (const log of logs.flatMap(entry => entry)) {
-    if (log.commitHash !== undefined) {
-      if (seen.has(log.commitHash)) continue;
-      seen.add(log.commitHash);
-    }
-    merged.push(log);
-  }
-  return merged;
+  return [...new Map(logs.flat().map(log => [log.commitHash, log])).values()];
 }
 
-async function readGitCommitsLog(path: string, useLineRange = false): Promise<CommitLog[]> {
-  const { stdout: log } = await execFileAsync(
-    "bash",
-    [
-      /*
-       * Format:
-       *
-       * >CommitHash CommitDate
-       * <AuthorEmail
-       * <CoAuthorEmail
-       * <...
-       * >CommitHash CommitDate
-       * <AuthorEmail
-       * <...
-       */
-      /**
-       * Regex explanation:
-       * - ^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>): Matches lines in the `git log` output.
-       *   - (>.+): Matches lines starting with '>' (e.g., commit date lines).
-       *   - (<.+): Matches lines starting with '<' (e.g., author or co-author email lines).
-       *   - (  Co-Authored-By: .+?(<.+)>): Matches 'Co-Authored-By' lines and captures the email in '<>'.
-       * - \\2\\3\\4: Replaces the matched line with the content of the second, third, or fourth capture group.
-       * - The `pi` flags:
-       *   - `p`: Prints the substituted line.
-       *   - `i`: Makes the regex case-insensitive.
-       */
-      "-c",
-      `git log '--pretty=format:>%H %cD%n<%aE%n%w(0,2,2)%b' ${
-        useLineRange ? "-L" : "--follow --"
-      } "$FILENAME" | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
-    ],
-    {
-      env: {
-        ...process.env,
-        FILENAME: path
-      }
-    }
-  );
+async function readGitCommitsLog(...gitArgs: string[]): Promise<CommitLog[]> {
+  const { stdout: log } = await execFileAsync("bash", [
+    "-c",
+    /*
+     * Format:
+     *
+     * >CommitHash CommitDate
+     * <AuthorEmail
+     * <CoAuthorEmail
+     * <...
+     * >CommitHash CommitDate
+     * <AuthorEmail
+     * <...
+     */
+    /**
+     * Regex explanation:
+     * - ^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>): Matches lines in the `git log` output.
+     *   - (>.+): Matches lines starting with '>' (e.g., commit date lines).
+     *   - (<.+): Matches lines starting with '<' (e.g., author or co-author email lines).
+     *   - (  Co-Authored-By: .+?(<.+)>): Matches 'Co-Authored-By' lines and captures the email in '<>'.
+     * - \\2\\3\\4: Replaces the matched line with the content of the second, third, or fourth capture group.
+     * - The `pi` flags:
+     *   - `p`: Prints the substituted line.
+     *   - `i`: Makes the regex case-insensitive.
+     */
+    `git log -s '--pretty=format:>%H %cD%n<%aE%n%w(0,2,2)%b' "$@" | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`,
+    "--",
+    ...gitArgs
+  ]);
 
   return parseCommitsLog(log);
 }
 
-async function readSnippetCommitsLog(snippet: CodeSnippet): Promise<CommitLog[]> {
-  let lineRange: { start: number; end: number } | undefined;
-  if (snippet.section !== undefined) {
-    const content = await fs.promises.readFile(snippet.path, "utf8");
-    lineRange = findSectionRange(content, snippet.section);
-    if (lineRange === undefined) {
-      log(`Snippet section ${chalk.yellow(snippet.section)} not found in ${chalk.yellow(snippet.path)}, skipping`);
-      return [];
-    }
-  }
-  return await readGitCommitsLog(
-    lineRange === undefined ? snippet.path : `${lineRange.start},${lineRange.end}:${snippet.path}`,
-    lineRange !== undefined
+function findIncludedCodeSnippets(markdown: string): string[][] {
+  const snippets = [...markdown.matchAll(/--8<--\s*"(docs\/[^"\n]*\/code\/[^"\n:]+)(?::([a-z][-_0-9a-z]*))?"/g)].map(
+    ([, path, section]): string[] =>
+      section
+        ? ["-L", `/--8<-- \\[start:${section}\\]/,/--8<-- \\[end:${section}\\]/:${path}`]
+        : ["--follow", "--", path]
   );
+  return [...new Map(snippets.map((args): [string, string[]] => [args.join(" "), args])).values()];
 }
 
-function findIncludedCodeSnippets(markdown: string): CodeSnippet[] {
-  return [
-    ...new Map(
-      [...markdown.matchAll(/--8<--\s*"(docs\/[^"\n]+)"/g)]
-        .map(([, path]) => path.replaceAll("\\", "/"))
-        .filter(path => path.includes("/code/"))
-        .map(path => {
-          const separator = path.indexOf(":", path.lastIndexOf("/") + 1);
-          return separator === -1
-            ? { path, section: undefined }
-            : { path: path.slice(0, separator), section: path.slice(separator + 1) };
-        })
-        .filter(snippet => snippet.section === undefined || /^[a-z][-_0-9a-z]*$/.test(snippet.section))
-        .map(snippet => [`${snippet.path}:${snippet.section ?? ""}`, snippet])
-    ).values()
-  ];
-}
-
-function findSectionRange(content: string, section: string): { start: number; end: number } | undefined {
-  const lines = content.split("\n");
-  const marker = /--8<--\s*\[\s*(start|end)\s*:\s*([a-z][-_0-9a-z]*)\s*\]/;
-  let start: number | undefined;
-  for (const [i, line] of lines.entries()) {
-    const match = marker.exec(line);
-    if (!match || match[2] !== section) continue;
-    if (match[1] === "start") {
-      if (start === undefined) start = i + 2;
-    } else if (start !== undefined) {
-      return { start, end: i };
-    }
-  }
-  return undefined;
-}
-
-const GITHUB_REPO = "OI-wiki/OI-wiki";
 const AUTHORS_CACHE_URL = `https://raw.githubusercontent.com/${GITHUB_REPO}/authors-cache/authors.json`;
 const AUTHORS_EXCLUDED = ["24OI-Bot", "OI-wiki"];
 
@@ -172,15 +111,12 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
       // Set link to git history
       $(".edit_history").setAttribute("href", `https://github.com/${GITHUB_REPO}/commits/master/docs${sourceFilePath}`);
 
-      const commitsLog = await readGitCommitsLog(`docs${sourceFilePath}`);
-      let codeSnippets: CodeSnippet[] = [];
-      try {
-        const markdown = await fs.promises.readFile(`docs${sourceFilePath}`, "utf8");
-        codeSnippets = findIncludedCodeSnippets(markdown);
-      } catch (error) {
-        log(`Failed to read source markdown for ${sourceFilePath}: ${error}`);
-      }
-      const codeFileLogs = await Promise.all(codeSnippets.map(readSnippetCommitsLog));
+      const commitsLog = await readGitCommitsLog("--follow", "--", `docs${sourceFilePath}`);
+      const codeFileLogs = await Promise.all(
+        findIncludedCodeSnippets(await fs.promises.readFile(`docs${sourceFilePath}`, "utf8")).map(args =>
+          readGitCommitsLog(...args)
+        )
+      );
 
       // "本页面最近更新"
       const latestDate = new Date(
