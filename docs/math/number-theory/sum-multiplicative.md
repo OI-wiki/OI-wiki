@@ -231,37 +231,6 @@ $$
 2.  对 $f(p)$ 多项式表示中的每一项筛出对应的 $G$，合并得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个有用点值；
 3.  按照 $F_{k}$ 的递推式实现递归，求出 $F_{1}(n)$．
 
-### 例题
-
-???+ example "[Luogu P4213【模板】杜教筛](https://www.luogu.com.cn/problem/P4213)"
-    求 $\displaystyle \sum_{i = 1}^{n} \varphi(i)$ 和 $\displaystyle \sum_{i = 1}^{n} \mu(i)$．
-
-??? note "解答"
-    对于求 $\varphi(i)$ 的前缀和，首先易知 $f(p) = p - 1$．对于 $f(p)$ 的一次项 $(p)$，有 $g(p) = p, G_{0}(n) = \sum_{i = 2}^{n} g(i) = \frac{(n + 2) (n - 1)}{2}$；对于 $f(p)$ 的常数项 $(-1)$，有 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$．筛两次加起来即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值．
-    
-    对于求 $\mu(i)$ 的前缀和，易知 $f(p) = -1$．则 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$．直接筛即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值．
-
-???+ example "[LOJ 6053 简单的函数](https://loj.ac/p/6053)"
-    给定 $f(n)$：
-    
-    $$
-    f(n) = \begin{cases}
-        1 & n = 1 \\
-        p \operatorname{xor} c & n = p^{c} \\
-        f(a)f(b) & n = ab \land a \perp b
-    \end{cases}
-    $$
-    
-    求 $\displaystyle \sum_{i = 1}^{n} f(i)$．
-
-??? note "解答"
-    易知 $f(p) = p - 1 + 2[p = 2]$．则按照筛 $\varphi$ 的方法筛，对 $2$ 讨论一下即可．
-
-??? note "参考代码"
-    ```cpp
-    --8<-- "docs/math/code/min-25/min-25_1.cpp"
-    ```
-
 ## PN 筛
 
 ### 定义
@@ -342,124 +311,161 @@ $O(\sqrt{n})$ 找出所有 PN，计算出所有 $h$ 的有效值．对于 $h$ �
 
 对于空间复杂度，其瓶颈在于存储 $h(p^c)$．若使用二维数组 $a$ 记录，$a_{i,j}$ 表示 $h(p_i^j)$ 的值，则空间复杂度为 $O\left(\dfrac{\sqrt{n}}{\log n} \cdot \log n\right) = O(\sqrt{n})$．
 
-### 例题
+## 例题
 
-### [Luogu P5325【模板】Min\_25 筛](https://www.luogu.com.cn/problem/P5325)
+Min\_25 筛：
 
-**题意**：给定积性函数 $f(p^k) = p^k(p^k-1)$，求 $\sum_{i=1}^{n} f(i)$．
+???+ example "[Luogu P4213【模板】杜教筛](https://www.luogu.com.cn/problem/P4213)"
+    求 $\displaystyle \sum_{i = 1}^{n} \varphi(i)$ 和 $\displaystyle \sum_{i = 1}^{n} \mu(i)$．
 
-易得 $f(p) = p(p-1) = \operatorname{id}(p)\varphi(p)$，构造 $g(n) = \operatorname{id}(n)\varphi(n)$．
+??? note "解答"
+    对于求 $\varphi(i)$ 的前缀和，首先易知 $f(p) = p - 1$．对于 $f(p)$ 的一次项 $(p)$，有 $g(p) = p, G_{0}(n) = \sum_{i = 2}^{n} g(i) = \frac{(n + 2) (n - 1)}{2}$；对于 $f(p)$ 的常数项 $(-1)$，有 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$．筛两次加起来即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值．
+    
+    对于求 $\mu(i)$ 的前缀和，易知 $f(p) = -1$．则 $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$．直接筛即可得到 $F_{\mathrm{prime}}$ 的所有 $O(\sqrt{n})$ 个所需点值．
 
-考虑使用杜教筛求 $G(n)$，根据 $(\operatorname{id}\cdot \varphi) * \operatorname{id} = \operatorname{id}_2$ 可得 $G(n)= \sum_{i=1}^{n} i^2 - \sum_{d=2}^{n} d \cdot G\left(\left\lfloor \dfrac{n}{d} \right\rfloor\right)$．
+???+ example "[LOJ 6053 简单的函数](https://loj.ac/p/6053)"
+    给定 $f(n)$：
+    
+    $$
+    f(n) = \begin{cases}
+        1 & n = 1 \\
+        p \operatorname{xor} c & n = p^{c} \\
+        f(a)f(b) & n = ab \land a \perp b
+    \end{cases}
+    $$
+    
+    求 $\displaystyle \sum_{i = 1}^{n} f(i)$．
 
-之后 $h(p^k)$ 的取值可以枚举计算，这种方法不再赘述．
+??? note "解答"
+    易知 $f(p) = p - 1 + 2[p = 2]$．则按照筛 $\varphi$ 的方法筛，对 $2$ 讨论一下即可．
 
-此外，此题还可以直接求出 $h(p^k)$ 仅与 $p, k$ 有关的公式，过程如下：
+??? note "参考代码"
+    ```cpp
+    --8<-- "docs/math/code/min-25/min-25_1.cpp"
+    ```
 
-$$
-\begin{aligned}
-& f(p^k) = \sum_{i=0}^{k} g(p^{k-i})h(p^i)\\
-\iff & p^k(p^k-1) = \sum_{i=0}^{k} p^{k-i}\varphi(p^{k-i}) h(p^i)\\
-\iff & p^k(p^k-1) = \sum_{i=0}^{k} p^{2k-2i-1}(p - 1) h(p^i)\\
-\iff & p^k(p^k-1) = h(p^k) + \sum_{i=0}^{k-1} p^{2k-2i-1}(p - 1) h(p^i)\\
-\iff & h(p^k) = p^k(p^k-1) - \sum_{i=0}^{k-1} p^{2k-2i-1}(p - 1) h(p^i)\\
-\iff & h(p^k) - p^2h(p^{k-1}) = p^{k}(p^k-1)-p^{k+1}(p^{k-1}-1) - p(p-1)h(p^{k-1})\\
-\iff & h(p^k) - ph(p^{k-1}) = p^{k+1} - p^k\\
-\iff & \frac{h(p^k)}{p^k} - \frac{h(p^{k-1})}{p^{k-1}} = p - 1\\
-\end{aligned}
-$$
+PN 筛：
 
-再根据 $h(p) = 0$，通过累加法即可推出 $h(p^k) = (k-1)(p-1)p^k$．
+???+ example "[Luogu P5325【模板】Min\_25 筛](https://www.luogu.com.cn/problem/P5325)"
+    给定积性函数 $f(p^k) = p^k(p^k-1)$，求 $\sum_{i=1}^{n} f(i)$．
+
+??? note "解答"
+    易得 $f(p) = p(p-1) = \operatorname{id}(p)\varphi(p)$，构造 $g(n) = \operatorname{id}(n)\varphi(n)$．
+    
+    考虑使用杜教筛求 $G(n)$，根据 $(\operatorname{id}\cdot \varphi) * \operatorname{id} = \operatorname{id}_2$ 可得 $G(n)= \sum_{i=1}^{n} i^2 - \sum_{d=2}^{n} d \cdot G\left(\left\lfloor \dfrac{n}{d} \right\rfloor\right)$．
+    
+    之后 $h(p^k)$ 的取值可以枚举计算，这种方法不再赘述．
+    
+    此外，此题还可以直接求出 $h(p^k)$ 仅与 $p, k$ 有关的公式，过程如下：
+    
+    $$
+    \begin{aligned}
+    & f(p^k) = \sum_{i=0}^{k} g(p^{k-i})h(p^i)\\
+    \iff & p^k(p^k-1) = \sum_{i=0}^{k} p^{k-i}\varphi(p^{k-i}) h(p^i)\\
+    \iff & p^k(p^k-1) = \sum_{i=0}^{k} p^{2k-2i-1}(p - 1) h(p^i)\\
+    \iff & p^k(p^k-1) = h(p^k) + \sum_{i=0}^{k-1} p^{2k-2i-1}(p - 1) h(p^i)\\
+    \iff & h(p^k) = p^k(p^k-1) - \sum_{i=0}^{k-1} p^{2k-2i-1}(p - 1) h(p^i)\\
+    \iff & h(p^k) - p^2h(p^{k-1}) = p^{k}(p^k-1)-p^{k+1}(p^{k-1}-1) - p(p-1)h(p^{k-1})\\
+    \iff & h(p^k) - ph(p^{k-1}) = p^{k+1} - p^k\\
+    \iff & \frac{h(p^k)}{p^k} - \frac{h(p^{k-1})}{p^{k-1}} = p - 1\\
+    \end{aligned}
+    $$
+    
+    再根据 $h(p) = 0$，通过累加法即可推出 $h(p^k) = (k-1)(p-1)p^k$．
 
 ??? note "参考代码"
     ```cpp
     --8<-- "docs/math/code/powerful-number/powerful-number_1.cpp"
     ```
 
-#### [「LOJ #6053」简单的函数](https://loj.ac/problem/6053)
+???+ example "[「LOJ #6053」简单的函数](https://loj.ac/problem/6053)"
+    略．
 
-给定 $f(n)$：
-
-$$
-f(n) =
-\begin{cases}
-1 & n = 1 \\
-p \oplus c & n=p^c \\
-f(a)f(b) & n=ab \text{ and } a \perp b
-\end{cases}
-$$
-
-易得：
-
-$$
-f(p) =
-\begin{cases}
-p + 1 & p = 2 \\
-p - 1 & \text{otherwise} \\
-\end{cases}
-$$
-
-构造 $g$ 为
-
-$$
-g(n) =
-\begin{cases}
-3 \varphi(n) & 2 \mid n \\
-\varphi(n) & \text{otherwise} \\
-\end{cases}
-$$
-
-易证 $g(p) = f(p)$ 且 $g$ 为积性函数．
-
-下面考虑求 $G(n)$．
-
-$$
-\begin{aligned}
-G(n)
-&= \sum_{i=1}^{n}[i \bmod 2 = 1] \varphi(i) + 3 \sum_{i=1}^{n}[i \bmod 2 = 0] \varphi(i)\\
-&= \sum_{i=1}^{n} \varphi(i) + 2\sum_{i=1}^{n} [i \bmod 2 = 0]\varphi(i) \\
-&= \sum_{i=1}^{n} \varphi(i) + 2\sum_{i=1}^{\lfloor \frac{n}{2} \rfloor} \varphi(2i)
-\end{aligned}
-$$
-
-记 $S_1(n) = \sum_{i=1}^{n} \varphi(i)$，$S_2(n) = \sum_{i=1}^{n} \varphi(2i)$，则 $G(n) = S_1(n) + 2S_2\left(\left\lfloor \dfrac{n}{2} \right\rfloor\right)$．
-
-当 $2 \mid n$ 时，有
-
-$$
-\begin{aligned}
-S_2(n)
-&= \sum_{i=1}^{n} \varphi(2i) \\
-&= \sum_{i=1}^{\frac{n}{2}} (\varphi(2(2i-1)) + \varphi(2(2i))) \\
-&= \sum_{i=1}^{\frac{n}{2}} (\varphi(2i-1) + 2\varphi(2i)) \\
-&= \sum_{i=1}^{\frac{n}{2}} (\varphi(2i-1) + \varphi(2i)) + \sum_{i=1}^{\frac{n}{2}} \varphi(2i) \\
-&= \sum_{i=1}^{n} \varphi(i) + S_2\left(\frac{n}{2}\right)\\
-&= S_1(n) + S_2\left(\left\lfloor \frac{n}{2} \right\rfloor\right)\\
-\end{aligned}
-$$
-
-当 $2 \nmid n$ 时，有
-
-$$
-\begin{aligned}
-S_2(n)
-&= S_2(n-1) + \varphi(2n) \\
-&= S_2(n-1) + \varphi(n) \\
-&= \sum_{i=1}^{n-1} \varphi(i) + S_2\left(\frac{n-1}{2}\right) + \varphi(n)\\
-&= S_1(n) + S_2\left(\left\lfloor \frac{n}{2} \right\rfloor\right)\\
-\end{aligned}
-$$
-
-综上，有 $S_2(n) = S_1(n) + S_2\left(\left\lfloor \dfrac{n}{2} \right\rfloor\right)$．
-
-$S_1$ 可以用杜教筛求，$S_2$ 直接按照公式推，这样 $G$ 也可以求出来了．
+??? note "解答"
+    给定 $f(n)$：
+    
+    $$
+    f(n) =
+    \begin{cases}
+    1 & n = 1 \\
+    p \oplus c & n=p^c \\
+    f(a)f(b) & n=ab \text{ and } a \perp b
+    \end{cases}
+    $$
+    
+    易得：
+    
+    $$
+    f(p) =
+    \begin{cases}
+    p + 1 & p = 2 \\
+    p - 1 & \text{otherwise} \\
+    \end{cases}
+    $$
+    
+    构造 $g$ 为
+    
+    $$
+    g(n) =
+    \begin{cases}
+    3 \varphi(n) & 2 \mid n \\
+    \varphi(n) & \text{otherwise} \\
+    \end{cases}
+    $$
+    
+    易证 $g(p) = f(p)$ 且 $g$ 为积性函数．
+    
+    下面考虑求 $G(n)$．
+    
+    $$
+    \begin{aligned}
+    G(n)
+    &= \sum_{i=1}^{n}[i \bmod 2 = 1] \varphi(i) + 3 \sum_{i=1}^{n}[i \bmod 2 = 0] \varphi(i)\\
+    &= \sum_{i=1}^{n} \varphi(i) + 2\sum_{i=1}^{n} [i \bmod 2 = 0]\varphi(i) \\
+    &= \sum_{i=1}^{n} \varphi(i) + 2\sum_{i=1}^{\lfloor \frac{n}{2} \rfloor} \varphi(2i)
+    \end{aligned}
+    $$
+    
+    记 $S_1(n) = \sum_{i=1}^{n} \varphi(i)$，$S_2(n) = \sum_{i=1}^{n} \varphi(2i)$，则 $G(n) = S_1(n) + 2S_2\left(\left\lfloor \dfrac{n}{2} \right\rfloor\right)$．
+    
+    当 $2 \mid n$ 时，有
+    
+    $$
+    \begin{aligned}
+    S_2(n)
+    &= \sum_{i=1}^{n} \varphi(2i) \\
+    &= \sum_{i=1}^{\frac{n}{2}} (\varphi(2(2i-1)) + \varphi(2(2i))) \\
+    &= \sum_{i=1}^{\frac{n}{2}} (\varphi(2i-1) + 2\varphi(2i)) \\
+    &= \sum_{i=1}^{\frac{n}{2}} (\varphi(2i-1) + \varphi(2i)) + \sum_{i=1}^{\frac{n}{2}} \varphi(2i) \\
+    &= \sum_{i=1}^{n} \varphi(i) + S_2\left(\frac{n}{2}\right)\\
+    &= S_1(n) + S_2\left(\left\lfloor \frac{n}{2} \right\rfloor\right)\\
+    \end{aligned}
+    $$
+    
+    当 $2 \nmid n$ 时，有
+    
+    $$
+    \begin{aligned}
+    S_2(n)
+    &= S_2(n-1) + \varphi(2n) \\
+    &= S_2(n-1) + \varphi(n) \\
+    &= \sum_{i=1}^{n-1} \varphi(i) + S_2\left(\frac{n-1}{2}\right) + \varphi(n)\\
+    &= S_1(n) + S_2\left(\left\lfloor \frac{n}{2} \right\rfloor\right)\\
+    \end{aligned}
+    $$
+    
+    综上，有 $S_2(n) = S_1(n) + S_2\left(\left\lfloor \dfrac{n}{2} \right\rfloor\right)$．
+    
+    $S_1$ 可以用杜教筛求，$S_2$ 直接按照公式推，这样 $G$ 也可以求出来了．
 
 ??? note "参考代码"
     ```cpp
     --8<-- "docs/math/code/powerful-number/powerful-number_2.cpp"
     ```
 
-### 习题
+## 习题
+
+PN 筛：
 
 -   [PE708 Twos are all you need](https://projecteuler.net/problem=708)
 -   [PE639 Summing a multiplicative function](https://projecteuler.net/problem=639)
