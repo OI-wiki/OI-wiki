@@ -1,65 +1,81 @@
+import fs from "fs";
 import util from "util";
 import child_process from "child_process";
 import chalk from "chalk";
 import { HTMLElement } from "node-html-parser";
 import fetch from "node-fetch";
 
-import { AuthorsCache, AuthorUserMap, fetchAuthors } from "./authors-cache.js";
+import { AuthorsCache, AuthorUserMap, GITHUB_REPO, fetchAuthors } from "./authors-cache.js";
 import { TaskHandler, log } from "../html-postprocess.js";
 
 const execFileAsync = util.promisify(child_process.execFile);
 
-async function readCommitsLog(sourceFilePath: string): Promise<{ commitDate: Date; authorEmails: string[] }[]> {
-  const { stdout: log } = await execFileAsync(
-    "bash",
-    [
-      "-c",
-      /**
-       * Format:
-       *
-       * >Date
-       * <AuthorEmail
-       * <CoAuthorEmail
-       * <...
-       * >Date
-       * <AuthorEmail
-       * <...
-       */
-      /**
-       * Regex explanation:
-       * - ^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>): Matches lines in the `git log` output.
-       *   - (>.+): Matches lines starting with '>' (e.g., commit date lines).
-       *   - (<.+): Matches lines starting with '<' (e.g., author or co-author email lines).
-       *   - (  Co-Authored-By: .+?(<.+)>): Matches 'Co-Authored-By' lines and captures the email in '<>'.
-       * - \\2\\3\\4: Replaces the matched line with the content of the second, third, or fourth capture group.
-       * - The `pi` flags:
-       *   - `p`: Prints the substituted line.
-       *   - `i`: Makes the regex case-insensitive.
-       */
-      `git log --follow '--pretty=format:>%cD%n<%aE%n%w(0,2,2)%b' $FILENAME | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`
-    ],
-    {
-      env: {
-        ...process.env,
-        FILENAME: `docs${sourceFilePath}`
-      }
-    }
-  );
+type CommitLog = { commitHash: string; commitDate: Date; authorEmails: string[] };
 
+function parseCommitsLog(log: string): CommitLog[] {
   const commits = log.trim().slice(1).split("\n>");
-  return commits.map(commit => {
-    const [dateLine, ...emailLines] = commit
+  return commits.filter(Boolean).map(commit => {
+    const [headerLine, ...emailLines] = commit
       .split("\n")
       .map(line => line.trim())
       .filter(Boolean);
+    // "CommitHash CommitDate" (the leading ">" of each commit is consumed by the split above)
+    const [commitHash, commitDate] = [headerLine.slice(0, 40), headerLine.slice(41)];
     return {
-      commitDate: new Date(dateLine),
+      commitHash,
+      commitDate: new Date(commitDate),
       authorEmails: Array.from(new Set(emailLines.map(emailLine => emailLine.slice(1).toLowerCase())))
     };
   });
 }
 
-const GITHUB_REPO = "OI-wiki/OI-wiki";
+function mergeCommitsLogs(logs: CommitLog[][]): CommitLog[] {
+  return [...new Map(logs.flat().map(log => [log.commitHash, log])).values()];
+}
+
+async function readGitCommitsLog(...gitArgs: string[]): Promise<CommitLog[]> {
+  const { stdout: log } = await execFileAsync("bash", [
+    "-c",
+    /*
+     * Format:
+     *
+     * >CommitHash CommitDate
+     * <AuthorEmail
+     * <CoAuthorEmail
+     * <...
+     * >CommitHash CommitDate
+     * <AuthorEmail
+     * <...
+     */
+    /**
+     * Regex explanation:
+     * - ^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>): Matches lines in the `git log` output.
+     *   - (>.+): Matches lines starting with '>' (e.g., commit date lines).
+     *   - (<.+): Matches lines starting with '<' (e.g., author or co-author email lines).
+     *   - (  Co-Authored-By: .+?(<.+)>): Matches 'Co-Authored-By' lines and captures the email in '<>'.
+     * - \\2\\3\\4: Replaces the matched line with the content of the second, third, or fourth capture group.
+     * - The `pi` flags:
+     *   - `p`: Prints the substituted line.
+     *   - `i`: Makes the regex case-insensitive.
+     */
+    `git log -s '--pretty=format:>%H %cD%n<%aE%n%w(0,2,2)%b' "$@" | sed -nE 's/^((>.+)|(<.+)|  Co-Authored-By: .+?(<.+)>)/\\2\\3\\4/pi'`,
+    "--",
+    ...gitArgs
+  ]);
+
+  return parseCommitsLog(log);
+}
+
+function findIncludedCodeSnippets(markdown: string): string[][] {
+  const snippets = [...markdown.matchAll(/--8<--\s*"(docs\/[^"\n]*\/code\/[^"\n:]+)(?::([a-z][-_0-9a-z]*))?"/g)].map(
+    ([, path, section]): string[] =>
+      section
+        ? ["-L", `/--8<-- \\[start:${section}\\]/,/--8<-- \\[end:${section}\\]/:${path}`]
+        : ["--follow", "--", path]
+  );
+  return [...new Map(snippets.map((args): [string, string[]] => [args.join(" "), args])).values()];
+}
+
 const AUTHORS_CACHE_URL = `https://raw.githubusercontent.com/${GITHUB_REPO}/authors-cache/authors.json`;
 const AUTHORS_EXCLUDED = ["24OI-Bot", "OI-wiki"];
 
@@ -95,7 +111,12 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
       // Set link to git history
       $(".edit_history").setAttribute("href", `https://github.com/${GITHUB_REPO}/commits/master/docs${sourceFilePath}`);
 
-      const commitsLog = await readCommitsLog(sourceFilePath);
+      const commitsLog = await readGitCommitsLog("--follow", "--", `docs${sourceFilePath}`);
+      const codeFileLogs = await Promise.all(
+        findIncludedCodeSnippets(await fs.promises.readFile(`docs${sourceFilePath}`, "utf8")).map(args =>
+          readGitCommitsLog(...args)
+        )
+      );
 
       // "本页面最近更新"
       const latestDate = new Date(
@@ -116,7 +137,7 @@ export const taskHandler = new (class implements TaskHandler<AuthorUserMap> {
             .split(",")
             .map(username => `${username.trim()}\ngithub`),
           // From git history
-          ...commitsLog
+          ...mergeCommitsLogs([commitsLog, ...codeFileLogs])
             .flatMap(l => l.authorEmails)
             .filter(email => email in this.userMap)
             .map(
