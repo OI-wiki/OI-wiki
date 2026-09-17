@@ -12,7 +12,7 @@ author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Me
 **连分数**（continued fraction）本身只是一种形式记号．
 
 ???+ abstract "有限连分数"
-    对于数列 $\{a_k\}_{i=0}^n$，连分数 $[a_0,a_1,\ldots,a_n]$ 表示展开式
+    对于数列 $\{a_k\}_{k=0}^n$，连分数 $[a_0,a_1,\ldots,a_n]$ 表示展开式
     
     $$
     x = a_0+\dfrac{1}{a_1+\dfrac{1}{a_2+\dfrac{1}{\cdots+\dfrac{1}{a_n}}}}.
@@ -26,7 +26,7 @@ author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Me
 当然，连分数还可以推广到无穷数列的情形．
 
 ???+ abstract "无限连分数"
-    对于无穷数列 $\{a_k\}_{i=0}^\infty$，连分数 $[a_0,a_1,\ldots]$ 表示极限
+    对于无穷数列 $\{a_k\}_{k=0}^\infty$，连分数 $[a_0,a_1,\ldots]$ 表示极限
     
     $$
     x = \lim_{k\rightarrow\infty} x_k = \lim_{k\rightarrow\infty} [a_0,a_1,\ldots,a_k].
@@ -182,7 +182,7 @@ $$
     M(a_0)M(a_1)M(a_2)\cdots M(a_{k-1})\begin{pmatrix}a_k\\1\end{pmatrix}=\begin{pmatrix}p_k\\q_k\end{pmatrix}.
     $$
     
-    由 $\det(M(a_0)M(a_1)\cdots M(a_{k-1}))=(-1)^{k}$ 知，该矩阵变换将本原向量 $(a_k,1)^{\mathrm{T}}$ 变换为 $(p_k,q_k)^{\mathrm{T}}$，故 $p_k$ 和 $q_k$ 必互质．$M(a_k)$ 的第二列为 $(1,0)^{\mathrm{T}}$，而 $M(a_{k-1})(1,0)^{\mathrm{T}}=(a_{k-1},1)^{\mathrm{T}}$，这一列的乘积可以递推带入得到．补上这一列，便得到
+    由 $\det(M(a_0)M(a_1)\cdots M(a_{k-1}))=(-1)^{k}$ 知，该矩阵变换将本原向量 $(a_k,1)^{\mathrm{T}}$ 变换为 $(p_k,q_k)^{\mathrm{T}}$，故 $p_k$ 和 $q_k$ 必互质．$M(a_k)$ 的第二列为 $(1,0)^{\mathrm{T}}$，而 $M(a_{k-1})(1,0)^{\mathrm{T}}=(a_{k-1},1)^{\mathrm{T}}$，这一列的乘积可以递推代入得到．补上这一列，便得到
     
     $$
     M(a_0)M(a_1)M(a_2)\cdots M(a_k)=\begin{pmatrix}p_k & p_{k-1}\\q_k & q_{k-1}\end{pmatrix}.
@@ -306,7 +306,7 @@ $$
     $$
 
 ??? note "证明"
-    仅需要将两端矩阵乘积利用结合律分开即可．令
+    仅需要将两段矩阵乘积利用结合律分开即可．令
     
     $$
     P=M(a_1)\cdots M(a_m),\quad Q=M(b_1)\cdots M(b_n),
@@ -690,7 +690,7 @@ $$
     \dfrac{1}{q^2}\le\frac{|p^2-pq-q^2|}{q^2}=\left|\dfrac{p}{q}-\phi\right|\left|\dfrac{p}{q}-\phi'\right|\le\left|\dfrac{p}{q}-\phi\right|\left(\left|\dfrac{p}{q}-\phi\right|+|\phi-\phi'|\right)<\dfrac{1}{Cq^2}\left(\dfrac{1}{Cq^2}+\sqrt{5}\right).
     $$
     
-    对于 $C>\sqrt{5}$，可以直接解出 $q<\sqrt{C(C-\sqrt{5})}$，因而不可能存在无穷多组解满足上述不等式．
+    对于 $C>\sqrt{5}$，可以直接解出 $q<\dfrac{1}{\sqrt{C(C-\sqrt{5})}}$，因而不可能存在无穷多组解满足上述不等式．
 
 这些定理的证明说明，渐近分数提供了相当好的丢番图逼近．但是，这未必是最佳逼近．要讨论最佳逼近，需要说明逼近程度的度量．这常常有两种选择．
 
@@ -764,7 +764,7 @@ $$
     另一方面有
     
     $$
-    \left|x_{k,t}-\dfrac{p}{q}\right| = \dfrac{|q(tp_k+p_{k-1})-p((t+1)q_k+q_{k-1})|}{q(tq_k+q_{k-1})}\ge\dfrac{1}{q(tq_k+q_{k-1})}.
+    \left|x_{k,t}-\dfrac{p}{q}\right| = \dfrac{|q(tp_k+p_{k-1})-p(tq_k+q_{k-1})|}{q(tq_k+q_{k-1})}\ge\dfrac{1}{q(tq_k+q_{k-1})}.
     $$
     
     因此，必然有
@@ -813,9 +813,9 @@ $$
     
     此时，有三种可能的情况：
     
-    1.  如果 $t<\dfrac{a_{t+1}}{2}$，那么 $2t<a_{t+1}$．因为两侧都是整数，所以 $2t\le a_{k+1}-1$，故而 $2t+\dfrac{q_{k-1}}{q_k}\le 2t+1\le a_{k+1}\le r_{t+1}$．此时，$x_{k,t}$ 不是第一类最佳逼近；
-    2.  如果 $t>\dfrac{a_{t+1}}{2}$，那么 $2t>a_{t+1}$．因为两侧都是整数，所以 $2t\ge a_{t+1}+1>r_{t+1}$．此时，$x_{k,t}$ 是第一类最佳逼近；
-    3.  如果 $a_{t+1}$ 是偶数，还有第三种情况，即 $t=\dfrac{a_{t+1}}{2}$．上述条件等价于 $\dfrac{1}{r_{k+1}}=r_{k+1}-a_{k+1}<\dfrac{q_{k-1}}{q_k}$，亦即 $r_{k+2}>\dfrac{q_k}{q_{k-1}}$．
+    1.  如果 $t<\dfrac{a_{k+1}}{2}$，那么 $2t<a_{k+1}$．因为两侧都是整数，所以 $2t\le a_{k+1}-1$，故而 $2t+\dfrac{q_{k-1}}{q_k}\le 2t+1\le a_{k+1}\le r_{k+1}$．此时，$x_{k,t}$ 不是第一类最佳逼近；
+    2.  如果 $t>\dfrac{a_{k+1}}{2}$，那么 $2t>a_{k+1}$．因为两侧都是整数，所以 $2t\ge a_{k+1}+1>r_{k+1}$．此时，$x_{k,t}$ 是第一类最佳逼近；
+    3.  如果 $a_{k+1}$ 是偶数，还有第三种情况，即 $t=\dfrac{a_{k+1}}{2}$．上述条件等价于 $\dfrac{1}{r_{k+1}}=r_{k+1}-a_{k+1}<\dfrac{q_{k-1}}{q_k}$，亦即 $r_{k+2}>\dfrac{q_k}{q_{k-1}}$．
 
 所以，如果将实数 $x$ 的所有第一类最佳逼近按照分母自小到大的顺序排列，那么它会根据与 $x$ 的大小关系分成若干段．每一段总是由若干个（可以是零个）连续的同阶的中间分数组成，且总以渐近分数结尾．段内总能保持在实数 $x$ 的一侧，段与段之间则交错排列在 $x$ 两侧．
 
@@ -834,7 +834,7 @@ $$
     x_{1,10} = \dfrac{223}{71},\
     x_{1,11} = \dfrac{245}{78},\
     x_{1,12} = \dfrac{267}{85},\\
-    &x_{1,13} = \dfrac{289}{92},
+    &x_{1,13} = \dfrac{289}{92},\ 
     x_{1,14} = \dfrac{311}{99},\
     x_2 = \dfrac{333}{106},\
     x_3 = \dfrac{355}{113},\
@@ -972,7 +972,7 @@ $$
 
 这个判别法说明，只要逼近的程度足够好，就一定是渐近分数．下一个定理说明，这样好的渐近分数足够多：至少有一半的渐近分数都符合这个条件．
 
-???+ note "定理（Valhen）"
+???+ note "定理（Vahlen）"
     实数 $x$ 的相邻两个渐近分数中至少有一个满足
     
     $$
@@ -980,13 +980,13 @@ $$
     $$
 
 ??? note "证明"
-    假设不然．存在实数 $x$ 有两个相邻的渐近分数 $x_{k-1}$ 和 $x_k$ 满足
+    假设不然．存在实数 $x$ 有两个相邻的渐近分数 $x_k$ 和 $x_{k+1}$ 满足
     
     $$
     \left|x-\dfrac{p_k}{q_k}\right|\ge \dfrac{1}{2q_{k}^2},\ \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right|\ge \dfrac{1}{2q_{k+1}^2}.
     $$
     
-    因为 $x$ 位于 $x_{k-1}$ 和 $x_k$ 之间，所以
+    因为 $x$ 位于 $x_k$ 和 $x_{k+1}$ 之间，所以
     
     $$
     \dfrac{1}{2q_{k}^2} + \dfrac{1}{2q_{k+1}^2} \le \left|x-\dfrac{p_k}{q_k}\right| + \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right| = \left|\dfrac{p_k}{q_k}-\dfrac{p_{k+1}}{q_{k+1}}\right| = \dfrac{1}{q_kq_{k+1}}.
@@ -1009,17 +1009,17 @@ $$
     -   直线 $y=\xi x$ 的方向向量是 $\vec\xi=(1,\xi)$．利用 [叉积](../linear-algebra/product.md#二维向量的情形) $(x_1,y_1)\times(x_2,y_2)=x_1y_2-x_2y_1$ 的概念，可以通过 $\vec\xi\times\vec\nu=p-q\xi$ 的正负判断点在直线上方还是下方．因而，在直线上方的点就对应着大于等于 $\xi$ 的分数，在直线下方的点就对应着小于等于 $\xi$ 的分数．叉积的绝对值 $|\vec\xi\times\vec\nu|$ 正比于点 $\vec\nu$ 与直线 $y=\xi x$ 的距离
     
         $$
-        \dfrac{|p-qx|}{\sqrt{1+\xi^2}},
+        \dfrac{|p-q\xi|}{\sqrt{1+\xi^2}},
         $$
     
         对应着分数 $\nu$ 对实数 $\xi$ 的逼近程度．
-    -   将渐近分数 $\xi_k=\dfrac{p_k}{q_k}$ 对应的点记作 $\vec\xi_k=(p_k,q_k)$，则递推公式就可以写作
+    -   将渐近分数 $\xi_k=\dfrac{p_k}{q_k}$ 对应的点记作 $\vec\xi_k=(q_k,p_k)$，则递推公式就可以写作
     
         $$
         \vec\xi_k = a_k\vec\xi_{k-1} + \vec\xi_{k-2}.
         $$
     
-        递归的起点是 $\xi_{-2} = (1,0)$ 和 $\xi_{-1} = (0,1)$．
+        递归的起点是 $\vec\xi_{-2} = (1,0)$ 和 $\vec\xi_{-1} = (0,1)$．
     -   对于整数 $t$，如果 $0\le t\le a_k$，那么点
     
         $$
@@ -1027,7 +1027,7 @@ $$
         $$
     
         就落在连结点 $\vec\xi_{k-2}$ 和点 $\vec\xi_k$ 的线段上．它们对应着中间分数 $\xi_{k-1,t}$．
-    -   利用几何的方法可以构造出所有的渐近分数和中间分数．从点 $\vec\xi_{-2}=(1,0)$ 和点 $\vec\xi_{-1}=(0,1)$ 开始，两个点位于直线 $y=\xi x$ 两侧，这意味着 $\vec\xi\times\vec\xi_{-2}$ 和 $\vec\xi\times\vec\xi_{-1}$ 符号相反．将 $\vec\xi_{-1}$ 按照向量的加法添加到 $\vec\xi_{-2}$ 上，直到无法继续添加而不穿过直线 $y=\xi x$ 为止，将结果记作 $\vec\xi_0$，此时仍与 $\vec\xi_{-1}$ 不同侧．再将 $\vec\xi_0$ 添加到 $\vec\xi_{-1}$ 上，直到无法继续添加而不穿过直线 $y=\xi x$ 为止，将结果记作 $\vec\xi_1$，此时仍与 $\vec\xi_0$ 不同侧．这个过程可以一直持续到无穷，除非在有限步内某个 $\vec\xi_n$ 就恰好落在直线 $y=\xi x$ 上．后者意味着向量 $\vec\xi$ 与 $\vec\xi_n$ 共线，即 $\xi=\dfrac{p_n}{q_n}$ 为有理点．这个过程就可以得到前面示意图中的图形．Boris Delaunay 将这个过程形象地称为鼻子拉伸算法（nose-streching algorithm）[^nose-streching]．
+    -   利用几何的方法可以构造出所有的渐近分数和中间分数．从点 $\vec\xi_{-2}=(1,0)$ 和点 $\vec\xi_{-1}=(0,1)$ 开始，两个点位于直线 $y=\xi x$ 两侧，这意味着 $\vec\xi\times\vec\xi_{-2}$ 和 $\vec\xi\times\vec\xi_{-1}$ 符号相反．将 $\vec\xi_{-1}$ 按照向量的加法添加到 $\vec\xi_{-2}$ 上，直到无法继续添加而不穿过直线 $y=\xi x$ 为止，将结果记作 $\vec\xi_0$，此时仍与 $\vec\xi_{-1}$ 不同侧．再将 $\vec\xi_0$ 添加到 $\vec\xi_{-1}$ 上，直到无法继续添加而不穿过直线 $y=\xi x$ 为止，将结果记作 $\vec\xi_1$，此时仍与 $\vec\xi_0$ 不同侧．这个过程可以一直持续到无穷，除非在有限步内某个 $\vec\xi_n$ 就恰好落在直线 $y=\xi x$ 上．后者意味着向量 $\vec\xi$ 与 $\vec\xi_n$ 共线，即 $\xi=\dfrac{p_n}{q_n}$ 为有理点．这个过程就可以得到前面示意图中的图形．Boris Delaunay 将这个过程形象地称为鼻子拉伸算法（nose-stretching algorithm）[^nose-stretching]．
     -   如果需要快速计算每一步将 $\vec\xi_{k-1}$ 添加到 $\vec\xi_{k-2}$ 需要的次数，可以借助叉积．因为 $\vec\xi\times\vec\xi_{k-1}$ 与 $\vec\xi\times\vec\xi_{k-2}$ 符号相反，所以如果记 $\vec\xi_{k-1,t}=t\vec\xi_{k-1}+\vec\xi_{k-2}$ 为向 $\vec\xi_{k-2}$ 添加 $t$ 次 $\vec\xi_{k-1}$ 得到的结果，则 $\vec\xi\times\vec\xi_{k-1,t}=t(\vec\xi\times\vec\xi_{k-1})+(\vec\xi\times\vec\xi_{k-2})$ 不改变符号，就意味着没有穿过直线．在不变号之前，$\vec\xi\times\vec\xi_{k-1,t}$ 的绝对值会逐渐下降．记
     
         $$
@@ -1129,7 +1129,7 @@ Stern–Brocot 树是存储了所有位于 $[0,\infty]$ 之间的分数的 [二�
     给定 $N$ 个正整数对 $(C_i,J_i)$，求正整数对 $(x,y)$ 使得 $\{C_ix+J_iy\}$ 严格递增．在所有符合要求的数对中，输出字典序最小的一对．
 
 ??? note "解答"
-    不妨设 $A_i=C_i-C_{i-1}$ 和 $B_i=J_i-J_{i-1}$．问题转化为求 $(x,y)$ 使得所有 $A_ix+B_iy$ 都是整数．这些数对可以分为四种情形：
+    不妨设 $A_i=C_i-C_{i-1}$ 和 $B_i=J_i-J_{i-1}$．问题转化为求 $(x,y)$ 使得所有 $A_ix+B_iy$ 都是正数．这些数对可以分为四种情形：
     
     1.  $A_i,B_i>0$ 的情形可以忽略，因为已经假设 $(x,y)>0$；
     2.  $A_i,B_i\le 0$ 的情形直接输出「IMPOSSIBLE」；
@@ -1392,10 +1392,10 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
     的形式，其中，$P_0,Q_0,D$ 都是整数且 $Q_0\mid D-P_0^2$．这总是可能的，比如二次无理数 $x$ 总可以写成
     
     $$
-    a+b\sqrt{D'} = \dfrac{p_a}{q_a}+\dfrac{p_b}{q_b}\sqrt{D'} = \dfrac{p_aq_b+p_bq_a\sqrt{D'}}{q_aq_b} = \dfrac{p_ap_bq_aq_b+\sqrt{(q_aq_b)^2D'}}{(q_aq_b)^2}
+    a+b\sqrt{D'} = \dfrac{p_a}{q_a}+\dfrac{p_b}{q_b}\sqrt{D'} = \dfrac{p_aq_b+\sqrt{p_b^2q_a^2D'}}{q_aq_b} = \dfrac{p_aq_aq_b^2+\sqrt{(q_aq_b)^2p_b^2q_a^2D'}}{(q_aq_b)^2}
     $$
     
-    再令 $P=p_ap_bq_aq_b$，$Q=(q_aq_b)^2$ 和 $D=QD'$ 即可．
+    再令 $P=p_aq_aq_b^2$，$Q=(q_aq_b)^2$ 和 $D=Qp_b^2q_a^2D'$ 即可（不妨设 $b>0$）．
     
     将它写成这种形式的好处是，可以证明它的所有余项都具有类似的形式：
     
@@ -1612,7 +1612,7 @@ Galois 利用这个观察，进一步地给出了二次无理数有纯循环连�
     
     利用这个递推关系，可以证明 $-1<r_{k}^*<0$ 对所有 $k\ge 0$ 都成立．
     
-    首先，对于 $k=0$，有 $-1<r_0^*=x_0^*<0$，显然．对于 $k\ge 0$，由简单连分数定义和 $x>1$ 可知，$a_k\ge 1$．故而，假设 $-1<r_k^*<0$，就有
+    首先，对于 $k=0$，有 $-1<r_0^*=x^*<0$，显然．对于 $k\ge 0$，由简单连分数定义和 $x>1$ 可知，$a_k\ge 1$．故而，假设 $-1<r_k^*<0$，就有
     
     $$
     -1<-\dfrac{1}{a_k}< r_{k+1}^* = \dfrac{1}{r_k^*-a_k} < -\dfrac{1}{1+a_k} < 0.
@@ -1702,7 +1702,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     \end{alignedat}
     $$
     
-    根据 Galois 的结论，余项 $r_k$ 和 $r_{L+1-k}$ 循环部分恰好相反，因此互为倒数负共轭．如果 $\sqrt{D}$ 的循环节长度 $L$ 为奇数，那么中间的一项就与自身互为倒数负共轭；如果循环节长度 $L$ 为偶数，就不存在这样的项．Pell 方程一节的讨论会说明，循环节长度的奇偶性将决定了方程 $x^2-Dy^2=-1$ 是否有解．
+    根据 Galois 的结论，余项 $r_k$ 和 $r_{L+1-k}$ 循环部分恰好相反，因此互为倒数负共轭．如果 $\sqrt{D}$ 的循环节长度 $L$ 为奇数，那么中间的一项就与自身互为倒数负共轭；如果循环节长度 $L$ 为偶数，就不存在这样的项．Pell 方程一节的讨论会说明，循环节长度的奇偶性将决定方程 $x^2-Dy^2=-1$ 是否有解．
 
 二次无理数 $\sqrt{D}$ 的连分数展开主要应用在 [Pell 方程](./pell-equation.md) 的求解中．
 
@@ -1730,9 +1730,9 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     
     当然，实际求解时，没必要对每个子问题都重新求出这样的下中间分数．应该首先求出所有的渐近分数，这相当于提供了遍历所有的下中间分数的方法．然后分母从大到小地遍历下中间分数，每次都尝试将它加到前一个整点 $(x,y)$ 上，直到不能添加为止才继续尝试下一个下中间分数．
     
-    此处有一些显然的优化．首先，对于下中间分数 $(q,p)$，必然存在奇数 $k$ 和 $0\le t<a_k$ 使得 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$．只要找到最大的 $t$ 使得 $q_{k-1}+tq_k+x\le N$ 满足就好了，亦即 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$．不用担心 $t$ 越界，因为更大的下渐近分数 $(q_{k+2},p_{k+2})$ 已经添加完了．而每次确定添加的次数的时候，直接计算 $\left\lfloor\dfrac{N-x}{q}\right\rfloor$ 即可，不必逐个尝试．
+    此处有一些显然的优化．首先，对于下中间分数 $(q,p)$，必然存在奇数 $k$ 和 $0\le t<a_{k+1}$ 使得 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$．只要找到最大的 $t$ 使得 $q_{k-1}+tq_k+x\le N$ 满足就好了，亦即 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$．不用担心 $t$ 越界，因为更大的下渐近分数 $(q_{k+1},p_{k+1})$ 已经添加完了．而每次确定添加的次数的时候，直接计算 $\left\lfloor\dfrac{N-x}{q}\right\rfloor$ 即可，不必逐个尝试．
     
-    优化后的算法的复杂度是 $O(n)$ 的．虽然下中间分数对应的整点可能有很多，但是真正成为增量的并不多．下面要说明，所有 $0\le t<a_k$ 的下中间分数 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ 中，至多会出现两个增量．假设这些下中间分数中确实出现了增量，则此时必然有 $q_{k-1}\le N-x<q_{k+1}$．不妨设 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$．如果 $t=0$，则增量就有 $\Delta x=q_{k-1}$，故而添加完增量后，就有 $N-x'<q_{k-1}$，不会再在这些下中间分数中出现新的增量；如果 $t>0$，那么添加完增量后，必然有 $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$，即使还会在同一段下中间分数中出现新的增量，下次也只能有 $t'=0$．因此，在这样的一段下中间分数中，至多只能出现两个增量．这就说明，总的时间复杂度是 $O(n)$ 的．
+    优化后的算法的复杂度是 $O(n)$ 的．虽然下中间分数对应的整点可能有很多，但是真正成为增量的并不多．下面要说明，所有 $0\le t<a_{k+1}$ 的下中间分数 $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ 中，至多会出现两个增量．假设这些下中间分数中确实出现了增量，则此时必然有 $q_{k-1}\le N-x<q_{k+1}$．不妨设 $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$．如果 $t=0$，则增量就有 $\Delta x=q_{k-1}$，故而添加完增量后，就有 $N-x'<q_{k-1}$，不会再在这些下中间分数中出现新的增量；如果 $t>0$，那么添加完增量后，必然有 $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$，即使还会在同一段下中间分数中出现新的增量，下次也只能有 $t'=0$．因此，在这样的一段下中间分数中，至多只能出现两个增量．这就说明，总的时间复杂度是 $O(n)$ 的．
     
     === "C++"
         ```cpp
@@ -1771,7 +1771,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     仿照上一个例题的思路．分母从小到大考察所有上中间分数，如果能够找到横坐标和纵坐标都不越界的上中间分数，就添加进去，并更新相应的上界．当所有可行的上中间分数都添加结束后，得到的就是最优解．相较于之前，这个题目需要同时保证横纵坐标都不越界，需要格外注意．基于和上一个例题类似的论述，不过这次是使用 $B\Delta y-A\Delta x$ 代替之前的 $\Delta x$，可以说明这个算法的复杂度是 $O(\log\min\{A,B\})$ 的．
     
     === "C++"
-        ```py
+        ```cpp
         --8<-- "docs/math/code/continued-fraction/closest-dio.cpp:core"
         ```
     
@@ -1783,7 +1783,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 ???+ example "[June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)"
     求 $\sum\limits_{x=1}^N \lfloor \mathrm{e}x \rfloor$ 的值，其中，$\mathrm{e}$ 是自然对数的底．
     
-    提示：$e = [2,1,2,1,1,4,1,1,6,1,\ldots,1,2n,1, \ldots]$．[^continued-fraction-of-e]
+    提示：$\mathrm{e} = [2,1,2,1,1,4,1,1,6,1,\ldots,1,2n,1, \ldots]$．[^continued-fraction-of-e]
 
 ??? note "解答"
     这个和等于集合 $\{(x,y):1\le x\le N,1\le y\le\mathrm{e}x\}$ 中的整点个数．在构建完直线 $y=\mathrm{e}x$ 下的整点的凸包后，可以使用 [Pick 定理](../../geometry/pick.md) 计算整点个数．时间复杂度为 $O(\log N)$．
@@ -1827,12 +1827,12 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
     给定正整数 $N,M,A,B$，求 $\displaystyle\sum_{i=0}^{N-1} \left\lfloor \dfrac{A \cdot i + B}{M} \right\rfloor$ 的值．
 
 ??? note "解答"
-    这是到目前为止最为复杂的题目．它可以通过 [类欧几里得算法](./euclidean.md) 计算．此处给出基于连分数的算法，时间复杂度是 $O(\log\min\{A,B\})$．
+    这是到目前为止最为复杂的题目．它可以通过 [类欧几里得算法](./euclidean.md) 计算．此处给出基于连分数的算法，时间复杂度是 $O(\log\min\{A,M\})$．
     
     可以通过构造直线 $y=\dfrac{Ax+B}{M}$ 以下且 $0\le x< N$ 的全部整点的凸包，并用 Pick 定理计算整点的个数．之前已经解决 $B=0$ 的情形．对于一般的情形，可以分为两步进行．首先通过添加上中间分数来逐步接近直线（即第二个例题），直到找到最接近直线的点，再通过添加下中间分数来逐步远离直线（即第一个例题）．
     
     === "C++"
-        ```py
+        ```cpp
         --8<-- "docs/math/code/continued-fraction/sum-floor-axbc.cpp:core"
         ```
     
@@ -1844,7 +1844,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 ???+ example "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
     有个未知的有理数 $\dfrac{p}{q}$ 且 $1\le p, q\le 10^9$，可以询问对某个素数 $m\in[10^9,10^{12}]$ 取模后的 $pq^{-1}$ 的值．请在不超过十次询问内确定 $p$ 和 $q$ 的值．
     
-    这个问题等价于找到 $[1,N]$ 中使得 $Ax\bmod M$ 最小的 $x$．
+    这个问题等价于找到 $[1,n]$ 中使得 $rx\bmod m$ 最小的 $x$．
 
 ??? note "解答"
     根据 [中国剩余定理](./crt.md)，询问对多个素数取模后的结果，相当于询问对这些素数的乘积取模的结果．因此，本题可以看作是询问分数对足够大的模数 $m$ 取模后的结果，要求确定分数的分子和分母．
@@ -1903,7 +1903,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 
 [^semiconvergent]: $t=0$ 时，应理解为形式连分数，相当于截断到连分数的倒数第二项．
 
-[^nose-streching]: 此说法并非专业术语．可能转译自俄文文献 [ЦЕПНЫЕ ДРОБИ](https://old.mccme.ru/free-books/mmmf-lectures/book.14-full.pdf)，在 Алгоритм «вытягивания носов» 一节．
+[^nose-stretching]: 此说法并非专业术语．可能转译自俄文文献 [ЦЕПНЫЕ ДРОБИ](https://old.mccme.ru/free-books/mmmf-lectures/book.14-full.pdf)，在 Алгоритм «вытягивания носов» 一节．
 
 [^pgl2]: 这些性质表明，全体分式线性变换的群同构于 [射影线性群](https://en.wikipedia.org/wiki/Projective_linear_group)  $PGL_2(\mathbf R)$．
 
