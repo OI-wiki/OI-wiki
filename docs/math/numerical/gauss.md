@@ -217,7 +217,7 @@ $$
 
 ??? note "代码实现"
     ```cpp
-    --8<-- "docs/math/code/numerical/gauss.cpp"
+    --8<-- "docs/math/code/numerical/gauss/gauss.cpp"
     ```
 
 ## 行列式计算
