@@ -1395,7 +1395,7 @@ Lagrange 的结果说明反过来也成立，因而二次无理数和循环连�
     a+b\sqrt{D'} = \dfrac{p_a}{q_a}+\dfrac{p_b}{q_b}\sqrt{D'} = \dfrac{p_aq_b+\sqrt{p_b^2q_a^2D'}}{q_aq_b} = \dfrac{p_aq_aq_b^2+\sqrt{(q_aq_b)^2p_b^2q_a^2D'}}{(q_aq_b)^2}
     $$
     
-    再令 $P=p_aq_aq_b^2$，$Q=(q_aq_b)^2$ 和 $D=Qp_b^2q_a^2D'$ 即可（不妨设 $b>0$）．
+    再令 $P=p_aq_aq_b^2$，$Q=(q_aq_b)^2$ 和 $D=Qp_b^2q_a^2D'$ 即可（这里设 $b>0$；若 $b<0$，只需将 $P$ 和 $Q$ 同时取相反数）．
     
     将它写成这种形式的好处是，可以证明它的所有余项都具有类似的形式：
     
@@ -1844,7 +1844,7 @@ Galois 定理揭示了纯二次不尽根（pure quadratic surd）——即形如
 ???+ example "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
     有个未知的有理数 $\dfrac{p}{q}$ 且 $1\le p, q\le 10^9$，可以询问对某个素数 $m\in[10^9,10^{12}]$ 取模后的 $pq^{-1}$ 的值．请在不超过十次询问内确定 $p$ 和 $q$ 的值．
     
-    这个问题等价于找到 $[1,n]$ 中使得 $rx\bmod m$ 最小的 $x$．
+    这个问题等价于找到 $[1,n]$ 中使得 $rx\bmod m$ 最小的 $x$，其中 $r$ 为 $pq^{-1}$ 对 $m$ 取模的结果，$n=10^9$．
 
 ??? note "解答"
     根据 [中国剩余定理](./crt.md)，询问对多个素数取模后的结果，相当于询问对这些素数的乘积取模的结果．因此，本题可以看作是询问分数对足够大的模数 $m$ 取模后的结果，要求确定分数的分子和分母．
