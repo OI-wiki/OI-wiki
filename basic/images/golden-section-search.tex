@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\usepackage[active,tightpage]{preview}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{14pt}{16pt}\selectfont}
+
+\pgfplotsset{compat=1.18}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+
+\begin{tikzpicture}[scale=15,very thick]
+\pgfmathsetmacro{\golden}{((sqrt(5)-1)/2)}
+
+\draw (0,0) node[draw,fill,circle,inner sep=-1.5pt,label=$l_1$] {} 
+    -- (1-\golden,0) node[draw,red,fill,circle,inner sep=-1.5pt,label=$m_1^l$] {} 
+    -- (\golden,0) node[draw,red,fill,circle,inner sep=-1.5pt,label=$m_1^r$] {} 
+    -- (1,0) node[draw,fill,circle,inner sep=-1.5pt,label=$r_1$] {};
+\draw (0,-0.2) node[draw,fill,circle,inner sep=-1.5pt,label=$l_2$] {} 
+    -- ({(1-\golden)*\golden},-0.2) node[draw,red,fill,circle,inner sep=-1.5pt,label=$m_2^l$] {} 
+    -- ({\golden*\golden},-0.2) node[draw,fill,circle,inner sep=-1.5pt,label=$m_2^r$] {} 
+    -- (\golden,-0.2) node[draw,fill,circle,inner sep=-1.5pt,label=$r_2$] {};
+\draw ({(1-\golden)*\golden},-0.4) node[draw,fill,circle,inner sep=-1.5pt,label=$l_3$] {} 
+    -- ({(1-\golden)*\golden+(1-\golden)*\golden*\golden},-0.4) node[draw,fill,circle,inner sep=-1.5pt,label=$m_3^l$] {} 
+    -- ({(1-\golden)*\golden+\golden*\golden*\golden},-0.4) node[draw,red,fill,circle,inner sep=-1.5pt,label=$m_3^r$] {} 
+    -- (\golden,-0.4) node[draw,fill,circle,inner sep=-1.5pt,label=$r_3$] {};
+
+\end{tikzpicture}
+
+\end{document}

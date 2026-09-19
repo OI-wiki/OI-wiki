@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="350" height="410" viewBox="0 0 350 410">
+    <style>
+        text {
+            font-size: 50px;
+            text-anchor: middle;
+            transform: translate(0, -10px);
+        }
+        line, path {
+            fill: none;
+            stroke: black;
+            stroke-width: 2.5px;
+            transform: translate(0, -25px);
+        }
+    </style>
+    <text x="200" y="140">4</text>
+    <text x="250" y="140">5</text>
+    <text x="300" y="140">6</text>
+    <path d="M 125 170 A 30 50 0 0 0 155 110 L 325 110" />
+    <text x="50" y="140">1</text>
+    <text x="100" y="140">2</text>
+    <text x="250" y="80">3</text>
+    <text x="300" y="80">8</text>
+    <text x="200" y="200">3</text>
+    <text x="250" y="200">6</text>
+    <line x1="175" y1="230" x2="325" y2="230" />
+    <text x="250" y="260">9</text>
+    <text x="300" y="260">6</text>
+    <text x="250" y="320">9</text>
+    <text x="300" y="320">6</text>
+    <line x1="175" y1="350" x2="325" y2="350" />
+    <text x="300" y="380">0</text>
+</svg>

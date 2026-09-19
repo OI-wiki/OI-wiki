@@ -1,0 +1,94 @@
+\documentclass{standalone}
+\usepackage[active,tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{trees,shapes.geometric,positioning,arrows.meta,fit}
+
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{14pt}{16pt}\selectfont}
+
+\PreviewEnvironment{tikzpicture}
+
+\pgfdeclarelayer{bg}
+\pgfsetlayers{bg,main}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    line width=1pt,
+    minimum size=1.5cm,
+    inner sep=-1em,
+    scale=2,
+  ]
+
+  \begin{scope}[
+    local bounding box=plot-left,
+    level distance=1.2cm,
+    every node/.style={circle,draw},
+    level 1/.style={sibling distance=1cm},
+    level 2/.style={sibling distance=1cm},
+    level 3/.style={sibling distance=1cm},
+  ] 
+  
+  \node (A-1) {}
+    child { node {$x$}
+      child { node {$z$} }
+      child { node {$w$}
+        child { node {$u$} }
+        child { node (B-1) {$v$} }
+      }
+    }
+    child { node {$y$} };
+  
+  \end{scope};
+
+  \begin{scope}[
+    xshift=3cm,
+    level distance=1.2cm,
+    every node/.style={circle,draw},
+    level 1/.style={sibling distance=2cm},
+    level 2/.style={sibling distance=1cm},
+  ] 
+  
+  \node (A-2) {}
+    child { node {$z+u$} 
+      child { node {$z$} }
+      child { node {$u$} }
+    }
+    child { node {$v+y$}
+      child { node {$v$} }
+      child { node {$y$} }
+    };
+  
+  \end{scope};
+
+  \begin{scope}[
+    xshift=6cm,
+    level distance=1.2cm,
+    every node/.style={circle,draw},
+    level 1/.style={sibling distance=1cm},
+    level 2/.style={sibling distance=1cm},
+    level 3/.style={sibling distance=1cm},
+  ] 
+  
+  \node {}
+    child { node {$z$} }
+    child { node {$w+y$}
+      child { node {$w$}
+        child { node (B-2) {$u$} }
+        child { node {$v$} }
+      }
+      child { node {$y$} }
+    };
+  
+  \end{scope};
+
+  \draw [->] ([xshift=1em]A-1.0) 
+    -- node[below,pos=0.5] {\begin{tabular}{c}Double\\Rotation\end{tabular}} 
+    ([xshift=-1em]A-2.180);
+  \draw [->] ([xshift=1em]B-1.0) 
+    -- node[above,pos=0.5,yshift=-10pt] {Single Rotation} 
+    ([xshift=-1em]B-2.180);
+
+\end{tikzpicture}
+
+\end{document}

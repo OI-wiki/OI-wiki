@@ -1,0 +1,77 @@
+\documentclass{standalone}
+\usepackage[active,tightpage]{preview}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{arrows.meta,intersections}
+\usepackage{pgffor}
+\usepackage{ifthen}
+
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{12pt}{14pt}\selectfont}
+
+\pgfplotsset{compat=1.18}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+  \begin{axis}[
+    axis lines=middle,
+    xlabel={$x$},
+    ylabel={$y$},
+    xlabel style={xshift=10pt,yshift=-15pt},
+    ylabel style={xshift=-15pt},
+    xtick={0,...,6},
+    ytick={0,...,6},
+    grid=major,
+    major grid style={gray!50}, 
+    ymin=0,
+    ymax=6.75,
+    xmin=0,
+    xmax=6.5,
+    clip=false,
+    axis on top=false,
+    scale=2,
+    axis equal image,
+    axis line style={thick},
+    width=8cm,
+    legend style={at={(0.03,0.97)},anchor=north west},
+  ] 
+  
+  \draw[thick,red] (axis cs: 1, 2) -- (axis cs: 1, 3);
+  \draw[thick,blue] (axis cs: 1, 3) -- (axis cs: 2, 3);
+  \draw[thick,red] (axis cs: 2, 3) -- (axis cs: 2, 4);
+  \draw[thick,blue] (axis cs: 2, 4) -- (axis cs: 3, 4);
+  \draw[thick,red] (axis cs: 3, 4) -- (axis cs: 3, 5);
+  \draw[thick,red] (axis cs: 4, 4) -- (axis cs: 4, 5);
+  \draw[thick,blue] (axis cs: 4, 5) -- (axis cs: 5, 5);
+  \draw[thick,red] (axis cs: 5, 5) -- (axis cs: 5, 6);
+  \draw[thick,red] (axis cs: 6, 5) -- (axis cs: 6, 6);
+
+  \node [xshift=11pt,yshift=-4pt] at (axis cs: 0, 11/5) {$\color{blue}{UU}$};
+  \node [xshift=5pt,yshift=-4pt] at (axis cs: 1, 14/5) {$\color{red}{R}$};
+  \node [xshift=3pt,yshift=-6pt] at (axis cs: 4/3, 3) {$\color{blue}{U}$};
+  \node [xshift=5pt,yshift=-4pt] at (axis cs: 2, 17/5) {$\color{red}{R}$};
+  \node [xshift=9pt,yshift=-5pt] at (axis cs: 3, 4) {$\color{blue}{U}\color{red}{R}$};
+  \node [xshift=5pt,yshift=-4pt] at (axis cs: 4, 23/5) {$\color{red}{R}$};
+  \node [xshift=3pt,yshift=-6pt] at (axis cs: 14/3, 5) {$\color{blue}{U}$};
+  \node [xshift=5pt,yshift=-4pt] at (axis cs: 5, 26/5) {$\color{red}{R}$};
+  \node [xshift=5pt,yshift=-4pt] at (axis cs: 6, 29/5) {$\color{red}{R}$};
+
+  \addplot [very thick,black,samples=100,domain=0:6] { (3 * x + 11) / 5 };
+  \node [draw,fill=white,circle,inner sep=-1.5pt] at (axis cs: 0, 11/5) {};
+  \node [draw,fill=black,circle,inner sep=-1.5pt] at (axis cs: 6, 29/5) {};
+
+  \node[below left] at (axis cs: 0, 0) {$O$};
+
+  \node[draw,fill=white] at (axis cs: 4, 2) {
+    $\begin{aligned}&y=\dfrac{3x+11}{5},~x\in(0,6]\\&S=UURURURRURR\end{aligned}$
+  };
+  
+  \end{axis}
+
+\end{tikzpicture}
+
+\end{document}
