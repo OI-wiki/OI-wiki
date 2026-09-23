@@ -73,7 +73,7 @@ $$
 设 $a,b$ 是与 $m$ 互素的不同整数．如果已知阶 $\delta_m(a)$ 和 $\delta_m(b)$，那么，同样可以获得一些关于它们乘积 $ab$ 的阶 $\delta_{m}(ab)$ 的信息．
 
 ???+ note "性质 4"
-    对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，那么，有
+    对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，有
     
     $$
     \dfrac{[\delta_m(a),\delta_m(b)]}{(\delta_m(a),\delta_m(b))} \mid \delta_m(ab) \mid [\delta_m(a),\delta_m(b)].
@@ -129,7 +129,7 @@ $$
 对于 $a$ 和 $b$ 的阶互素的情形，这一结论有着更为简单的形式．
 
 ???+ note "性质 4'"
-    对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，那么，有
+    对于 $a,b\in\mathbf Z,m\in\mathbf N_+$ 且 $a,b\perp m$，有
     
     $$
     \delta_m(ab) = \delta_m(a)\delta_m(b) \iff \delta_m(a)\perp\delta_m(b).
@@ -201,7 +201,7 @@ $$
 
 ## 原根
 
-原根是一些特殊元素——它的阶就等于所有模 $m$ 既约剩余系的个数．
+原根是一些特殊元素——它的阶就等于模 $m$ 既约剩余系中元素的个数．
 
 ???+ abstract "原根"
     对于 $m\in\mathbf N_+$，如果存在 $g\in\mathbf Z$ 且 $g\perp m$ 使得 $\delta_m(g)=|\mathbf Z_m^*|=\varphi(m)$，就称 $g$ 为 **模 $m$ 的原根**（primitive root modulo $m$）．其中，$\varphi(m)$ 是 [欧拉函数](./euler-totient.md)．
@@ -215,10 +215,10 @@ $$
 
 ### 原根判定定理
 
-如果已知模数 $\varphi(m)$ 的全体素因子，那么很容易判断模 $m$ 的原根是否存在．
+如果已知 $\varphi(m)$ 的全体素因子，那么很容易判断给定的 $g$ 是否为模 $m$ 的原根．
 
 ???+ note "定理"
-    对于整数 $m\ge 3$ 和 $g\perp m$，那么，$g$ 是模 $m$ 的原根，当且仅当对于 $\varphi(m)$ 的每个素因数 $p$，都有
+    对于整数 $m\ge 3$ 和 $g\perp m$，$g$ 是模 $m$ 的原根，当且仅当对于 $\varphi(m)$ 的每个素因数 $p$，都有
     
     $$
     g^{\frac{\varphi(m)}{p}}\not\equiv 1 \pmod m.
@@ -231,7 +231,7 @@ $$
     g^{\frac{\varphi(m)}{p}} \equiv 1 \pmod m.
     $$
     
-    但是，$p$ 也是 $\varphi(m)$ 的一个因子，这就与题设条件矛盾．由此，原命题的充分性成立．
+    但是，$p$ 也是 $\varphi(m)$ 的一个素因子，这就与题设条件矛盾．由此，原命题的充分性成立．
 
 ### 原根个数
 
@@ -289,10 +289,10 @@ $$
         
         **第二步**：对于 $d\mid(p-1)$，$d$ 阶元素恰好有 $\varphi(d)$ 个．
         
-        对于 $\varphi(p)$ 的所有因子排序，然后应用归纳法．因为 $1$ 阶元素只能是 $1$，只有一个，归纳起点成立．对于 $d\mid(p-1)$，根据前文的 [性质 2](#幂的循环结构)，同余方程 $x^d\equiv 1\pmod p$ 的解一定满足 $\delta_p(x)\mid d$．因此，其中 $d$ 阶元素个数为
+        将 $p-1$ 的所有因子排序，然后应用归纳法．因为 $1$ 阶元素只能是 $1$，只有一个，归纳起点成立．对于 $d\mid(p-1)$，根据前文的 [性质 2](#幂的循环结构)，同余方程 $x^d\equiv 1\pmod p$ 的解一定满足 $\delta_p(x)\mid d$．因此，其中 $d$ 阶元素个数为
         
         $$
-        N(d) = d - \sum_{e\mid d,~e\neq d} N(e) =  d - \sum_{e\mid d,~e\neq d} \varphi(e) = \varphi(d).
+        N(d) = d - \sum_{e\mid d,~e\neq d} N(e) = d - \sum_{e\mid d,~e\neq d} \varphi(e) = \varphi(d).
         $$
         
         第二个等号是归纳假设，第三个等号是欧拉函数的性质．由数学归纳法，就知道对于所有 $d\mid(p-1)$，都恰有 $\varphi(d)$ 个 $d$ 阶元素．
@@ -319,23 +319,23 @@ $$
         
         **第二步**：上文选取的 $g$，对于任意 $e\ge 1$，都有 $g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$．
         
-        对 $g$ 的选取保证了 $e=1$ 时，该式成立．假设该式对于 $e$ 的情形成立，现要证明 $e+1$ 的情形也成立．对于任意 $e \ge 1$，由欧拉定理可知，存在 $\lambda$ 使得
+        对 $g$ 的选取保证了 $e=1$ 时，该式成立．假设该式对于 $e$ 的情形成立，现要证明 $e+1$ 的情形也成立．对于任意 $e \ge 1$，由欧拉定理可知，存在整数 $t$ 使得
         
         $$
-        g^{\varphi(p^e)} = 1 + \lambda p^e
+        g^{\varphi(p^e)} = 1 + t p^e
         $$
         
-        成立．由归纳假设，$\lambda\perp p$．因为 $\varphi(p^{e+1})=p\varphi(p^e)$，所以
+        成立．由归纳假设，$t\perp p$．因为 $\varphi(p^{e+1})=p\varphi(p^e)$，所以
         
         $$
-        g^{\varphi(p^{e+1})} = \left(g^{\varphi(p^{e})}\right)^p = (1 + \lambda p^e)^p \equiv 1 + \lambda p^{e+1} \pmod{p^{e+2}}.
+        g^{\varphi(p^{e+1})} = \left(g^{\varphi(p^{e})}\right)^p = (1 + t p^e)^p \equiv 1 + t p^{e+1} \pmod{p^{e+2}}.
         $$
         
-        结合 $\lambda\perp p$ 可知，$g^{\varphi(p^{e+1})}\not\equiv 1\pmod{p^{e+2}}$．由数学归纳法可知，命题成立．
+        结合 $t\perp p$ 可知，$g^{\varphi(p^{e+1})}\not\equiv 1\pmod{p^{e+2}}$．由数学归纳法可知，命题成立．
         
         **第三步**：上文选取的 $g$，对于任意 $e\ge 1$，都是模 $p^e$ 的原根．
         
-        对 $g$ 的选取保证了 $e=1$ 时，命题成立．假设命题对于 $e$ 成立，现在要证明命题对于 $e+1$ 也成立．将 $\delta_{p^{e+1}}(g)$ 简记为 $\delta$．由于 $g^\delta\equiv 1\pmod{p^{e+1}}$，必然也有 $g^\delta\equiv 1\pmod{p^e}$．由归纳假设可知，$\delta_{p^e}(g) = \varphi(p^e)$．因此，由前文阶的 [性质 2](#幂的循环结构)，就有 $\varphi(p^e)\mid\delta$．又由欧拉定理可知，$\delta\mid\varphi(p^{e+1})$．但是，$\varphi(p^{e+1})=p\varphi(p^e)$．因此，只有两种可能：$\delta=\varphi(p^e)$ 或 $\delta=\varphi(p^{e+1})$．但是，第二步的结论说明，$g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$．因此，可能性 $\delta=\varphi(p^e)$ 并不成立．唯一的可能性就是 $\delta=\varphi(p^{e+1})$．这就说明 $g$ 是 $p^{e+1}$ 的原根．由数学归纳法，命题对于所有 $e\ge 1$ 都成立．
+        对 $g$ 的选取保证了 $e=1$ 时，命题成立．假设命题对于 $e$ 成立，现在要证明命题对于 $e+1$ 也成立．将 $\delta_{p^{e+1}}(g)$ 简记为 $\delta$．由于 $g^\delta\equiv 1\pmod{p^{e+1}}$，必然也有 $g^\delta\equiv 1\pmod{p^e}$．由归纳假设可知，$\delta_{p^e}(g) = \varphi(p^e)$．因此，由前文阶的 [性质 2](#幂的循环结构)，就有 $\varphi(p^e)\mid\delta$．又由欧拉定理可知，$\delta\mid\varphi(p^{e+1})$．但是，$\varphi(p^{e+1})=p\varphi(p^e)$．因此，只有两种可能：$\delta=\varphi(p^e)$ 或 $\delta=\varphi(p^{e+1})$．但是，第二步的结论说明，$g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$．因此，可能性 $\delta=\varphi(p^e)$ 并不成立．唯一的可能性就是 $\delta=\varphi(p^{e+1})$．这就说明 $g$ 是模 $p^{e+1}$ 的原根．由数学归纳法，命题对于所有 $e\ge 1$ 都成立．
 
 3.  $m=2p^{e}$，其中，$p$ 为奇素数，$e\in\mathbf N_+$．
 
@@ -343,7 +343,7 @@ $$
         对于奇素数 $p$ 和 $e \in \mathbf{N}_+$，模 $2p^e$ 的原根存在．
 
     ??? note "证明"
-        设 $g$ 是模 $p^{e}$ 的原根，则 $g+p^e$ 也是模 $p^{e}$ 的原根．两者之间必然有一个是奇数，不妨设它就是 $g$．显然，$(g,2p^e)=1$．设 $\delta=\delta_{2p^e}(g)$，需要证明 $\delta=\varphi(2p^e)$．由欧拉定理，$\delta\mid\varphi(2p^e)$．同时，根据定义 $g^\delta\equiv 1\pmod{2p^e}$，所以，$g^\delta\equiv 1\pmod{p^e}$，因此，由阶的 [性质 2](#幂的循环结构) 和 $g$ 的选取可知，$\delta_{p^e}(g)=\varphi(p^e)\mid \delta$．由欧拉函数表达式可知，$\varphi(2p^e) = \varphi(p^e)$．所以，$\delta=\delta_{2p^e}(g)=\varphi(p^e)$．这就说明 $\delta$ 是模 $2p^e$ 的原根．
+        设 $g$ 是模 $p^{e}$ 的原根，则 $g+p^e$ 也是模 $p^{e}$ 的原根．两者之间必然有一个是奇数，不妨设它就是 $g$．显然，$(g,2p^e)=1$．设 $\delta=\delta_{2p^e}(g)$，需要证明 $\delta=\varphi(2p^e)$．由欧拉定理，$\delta\mid\varphi(2p^e)$．同时，根据定义 $g^\delta\equiv 1\pmod{2p^e}$，所以，$g^\delta\equiv 1\pmod{p^e}$，因此，由阶的 [性质 2](#幂的循环结构) 和 $g$ 的选取可知，$\delta_{p^e}(g)=\varphi(p^e)\mid \delta$．由欧拉函数表达式可知，$\varphi(2p^e) = \varphi(p^e)$．所以，$\delta=\delta_{2p^e}(g)=\varphi(p^e)=\varphi(2p^e)$．这就说明 $g$ 是模 $2p^e$ 的原根．
 
 4.  $m\ne 1,2,4,p^{e},2p^{e}$，其中，$p$ 为奇素数，$e\in\mathbf N_+$．
 
@@ -392,7 +392,7 @@ $$
         
         这与 $g$ 是模 $m$ 的原根的假设矛盾．故而，由反证法知，模 $m$ 的原根不存在．
 
-综合以上四个引理，我们便给出了一个数存在原根的充要条件．
+综合以上四种情形，我们便给出了一个数存在原根的充要条件．
 
 ### 求原根的算法
 
@@ -401,7 +401,7 @@ $$
 从小到大逐一枚举时，得到的是模 $m$ 的最小原根 $g_m$，因此，枚举部分的复杂度取决于 $g_m$ 的大小．对此，有如下估计：
 
 -   上界的估计：王元[^yuan1959note]和 Burgess[^burgess1962character]证明了素数 $p$ 的最小原根 $g_p=O\left(p^{0.25+\epsilon}\right)$，其中 $\epsilon>0$．Cohen, Odoni, and Stothers[^cohen1974least]和 Elliott and Murata[^elliott1998least]分别证明了该估计对于模数 $p^2$ 和 $2p^2$ 也成立，其中，$p$ 是奇素数．由于对于 $e>2$，模 $p^2$（或 $2p^2$）的原根也是模 $p^e$（或 $2p^e$）的原根，所以，最小原根的上界 $O\left(p^{0.25+\epsilon}\right)$ 对于所有情形都成立．
--   下界的估计：Fridlander[^fridlender1949least]和 Salié[^salie1949kleinsten]证明了存在 $C>0$，使得对于无穷多素数 $p$，都有最小原根 $g_p > C\log p$ 成立．
+-   下界的估计：Fridlender[^fridlender1949least]和 Salié[^salie1949kleinsten]证明了存在 $C>0$，使得对于无穷多素数 $p$，都有最小原根 $g_p > C\log p$ 成立．
 -   平均情形的估计：Burgess and Elliott[^burgess1968average]证明了平均情形下素数 $p$ 的最小原根 $g_p=O((\log p)^2(\log\log p)^4)$．Elliott and Murata[^elliott1997average]进一步猜想素数 $p$ 的最小原根的平均值是一个常数，且通过数值验证[^more-evidence]得到它大概为 $4.926$．随后，Elliott and Murata[^elliott1998least]将这一猜想推广到模 $2p^2$ 的情形．
 
 根据这些分析，暴力寻找最小原根时，枚举部分的复杂度 $O(g_m(\log m)^2)$ 是可以接受的．
@@ -414,7 +414,7 @@ $$
 
 所以，通过随机方法寻找原根时，枚举部分的期望复杂度为 $O((\log m)^2\log\log m)$．
 
-需要注意的是，判定原根时需要已知 $\varphi(m)$ 的质因数分解．算法竞赛 [常用质因数分解算法](./pollard-rho.md) 中，复杂度最优的 Pollard Rho 算法也需要 $O(m^{1/4+\varepsilon})$ 的时间．因此，只要 $\varphi(m)$ 的质因数分解是未知的，无论采用哪种枚举方式，求原根的复杂度瓶颈都在于质因数分解这一步，而非枚举验证的部分．
+需要注意的是，判定原根时需要已知 $\varphi(m)$ 的素因数分解．算法竞赛 [常用素因数分解算法](./pollard-rho.md) 中，复杂度最优的 Pollard Rho 算法也需要 $O(m^{1/4+\epsilon})$ 的时间．因此，只要 $\varphi(m)$ 的素因数分解是未知的，无论采用哪种枚举方式，求原根的复杂度瓶颈都在于素因数分解这一步，而非枚举验证的部分．
 
 ## Carmichael 函数
 
@@ -464,7 +464,7 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
     对于 $m=2,4$ 的情形，单独讨论即可．对于 $m=2^e$ 且 $e\ge 3$ 的情形，首先重复前文 [引理 4](#原根存在定理) 的证明的第一部分，就得到 $\lambda(m)\le 2^{e-2}$．进而，只需要证明存在 $2^{e-2}$ 阶元素即可．为此，有
     
     $$
-    5^{2^{e-3}} = (1 + 2^2)^{2^{e-3}} = 1 + 2^2\times 2^{e-3} = 1 + 2^{e-1} \not\equiv 1 \pmod{2^e}.
+    5^{2^{e-3}} = (1 + 2^2)^{2^{e-3}} \equiv 1 + 2^2\times 2^{e-3} = 1 + 2^{e-1} \not\equiv 1 \pmod{2^e}.
     $$
     
     这说明 $\delta_m(5)\nmid 2^{e-3}$，又因为 $\delta_m(5) \mid 2^{e-2}$，所以，$5$ 只能是 $2^{e-2}$ 阶元素．这就说明，$\lambda(m)=2^{e-2}$．
@@ -472,7 +472,7 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 在这个引理的证明过程中，实际上得到了关于模 $2^e$ 既约剩余系结构的刻画：
 
 ???+ note "推论"
-    设模数为 $2^e$ 且 $e \ge 2$．那么，所有奇数都同余于唯一一个 $\pm 5^k$ 形式的整数同余，其中，$k\in\mathbf N$ 且 $k < 2^{e-2}$．也就是说，$\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 两两不同余，且构成一个既约剩余系．
+    设模数为 $2^e$ 且 $e \ge 2$．那么，所有奇数都同余于唯一一个 $\pm 5^k$ 形式的整数，其中，$k\in\mathbf N$ 且 $k < 2^{e-2}$．也就是说，$\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 两两不同余，且构成一个既约剩余系．
 
 ??? note "证明"
     容易验证，$e=2$ 的情形成立．对于 $e \ge 3$ 的情形，由于前述证明中已经得到 $5$ 模 $2^e$ 的阶是 $2^{e-2}$，所以，$1,5,\cdots,5^{2^{e-2}-1}$ 两两不同余．因为这些整数都模 $4$ 余 $1$，它们的相反数都模 $4$ 余 $3$，所以 $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ 模 $2^e$ 两两不同余．由于它们共计 $2^{e-1}$ 个，恰为模 $2^{e}$ 的既约剩余系的大小，所以，它们就构成了既约剩余系本身．
@@ -536,12 +536,12 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 由 Carmichael 函数的定义可知，合数 $n$ 是 Carmichael 数当且仅当 $\lambda(n)\mid n-1$，其中 $\lambda(n)$ 为 Carmichael 函数．进一步地，可以得到如下判断合数 $n$ 是否为 Carmichael 数的方法：
 
 ???+ note "Korselt 判别法[^korselt1899probleme]"
-    合数 $n$ 是 Carmichael 数当且仅当 $n$ 无平方因子且对 $n$ 的任意质因子 $p$ 均有 $(p-1) \mid (n-1)$．
+    合数 $n$ 是 Carmichael 数当且仅当 $n$ 无平方因子且对 $n$ 的任意素因子 $p$ 均有 $(p-1) \mid (n-1)$．
 
 ??? note "证明"
-    首先证明条件的必要性．假设 $\lambda(n)\mid (n-1)$．检查 Carmichael 函数的递推公式可知，如果 $n$ 有平方因子 $p$，那么，一定有 $p\mid \lambda(n)$．但是 $p\nmid (n-1)$，矛盾．同理，Carmichael 函数的递推公式说明，$(p-1)\mid \lambda(n)$，所以，也有 $(p-1) \mid (n-1)$．
+    首先证明条件的必要性．假设 $\lambda(n)\mid (n-1)$．检查 Carmichael 函数的递推公式可知，如果 $n$ 有平方因子 $p^2$，那么，一定有 $p\mid \lambda(n)$．但是 $p\nmid (n-1)$，矛盾．同理，对于 $n$ 的任意素因子 $p$，Carmichael 函数的递推公式说明，$(p-1)\mid \lambda(n)$，所以，也有 $(p-1) \mid (n-1)$．
     
-    然后证明条件的充分性．因为 $n$ 是合数，所以它一定有奇素因子 $p$，因此 $n-1$ 是偶数，$n$ 也就一定是奇数．对于无平方因子的奇合数 $n$，由 Carmichael 函数的递推公式可知，$\lambda(n)=\operatorname{lcm}\{p-1:p\mid n\}$．因此，只要 $(p-1) \mid (n-1)$ 对于所有素因子 $p$ 都成立，就一定有 $\lambda(n)\mid (n-1)$．
+    然后证明条件的充分性．因为 $n$ 是无平方因子的合数，所以它至少有两个不同的素因子，其中一定有奇素因子 $p$，由 $(p-1)\mid(n-1)$ 可知 $n-1$ 是偶数，$n$ 也就一定是奇数．对于无平方因子的奇合数 $n$，由 Carmichael 函数的递推公式可知，$\lambda(n)=\operatorname{lcm}\{p-1:p\mid n\}$．因此，只要 $(p-1) \mid (n-1)$ 对于所有素因子 $p$ 都成立，就一定有 $\lambda(n)\mid (n-1)$．
 
 从这一判别法出发，可以建立 Carmichael 数的一些简单性质：
 
@@ -569,13 +569,13 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 -   [Carmichael number - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_number)
 -   [Carmichael Number - Wolfram MathWorld](https://mathworld.wolfram.com/CarmichaelNumber.html)
 
-[^yuan1959note]: Wang Y. "On the least primitive root of a prime." (in Chinese). Acta Math Sinica, 1959, 4: 432–441; English transl. in*Sci. Sinica*, 1961, 10: 1–14.
+[^yuan1959note]: Wang Y. "On the least primitive root of a prime." (in Chinese). Acta Math Sinica, 1959, 4: 432–441; English transl. in *Sci. Sinica*, 1961, 10: 1–14.
 
 [^burgess1962character]: BURGESS, David A. "On character sums and primitive roots." Proceedings of the London Mathematical Society, 1962, 3.1: 179-192.
 
-[^cohen1974least]: Cohen, S. D., R. W. K. Odoni, and W. W. Stothers. "On the least primitive root modulo p 2." Bulletin of the London Mathematical Society 6, no. 1 (1974): 42-46.
+[^cohen1974least]: Cohen, S. D., R. W. K. Odoni, and W. W. Stothers. "On the least primitive root modulo $p^2$." Bulletin of the London Mathematical Society 6, no. 1 (1974): 42-46.
 
-[^elliott1998least]: Elliott, P. D. T. A., and L. Murata. "The least primitive root mod 2p2." Mathematika 45, no. 2 (1998): 371-379.
+[^elliott1998least]: Elliott, P. D. T. A., and L. Murata. "The least primitive root mod $2p^2$." Mathematika 45, no. 2 (1998): 371-379.
 
 [^fridlender1949least]: FRIDLENDER, V. R. "On the least n-th power non-residue." Dokl. Akad. Nauk SSSR. 1949. p. 351-352.
 
@@ -583,7 +583,7 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 
 [^burgess1968average]: Burgess, D. A., and P. D. T. A. Elliott. "The average of the least primitive root." Mathematika 15, no. 1 (1968): 39-50.
 
-[^elliott1997average]: Elliott, Peter DTA, and Leo Murata. "On the average of the least primitive root modulo p." Journal of The london Mathematical Society 56, no. 3 (1997): 435-454.
+[^elliott1997average]: Elliott, Peter DTA, and Leo Murata. "On the average of the least primitive root modulo p." Journal of The London Mathematical Society 56, no. 3 (1997): 435-454.
 
 [^more-evidence]: 更多结果可以参考 [Least prime primitive root of prime numbers](https://sweet.ua.pt/tos/p_roots.html)．
 

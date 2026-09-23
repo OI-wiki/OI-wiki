@@ -29,7 +29,7 @@ Wilson 定理给出了判断某个自然数是素数的一个充分必要条件�
     当 $p=2$ 时，命题显然成立．下面设 $p\geq 3$，继而要证明 $\mathbf{Z}_p$ 中所有非零元素（即同余类）的积为 $\overline{-1}$．因为 $\mathbf{Z}_p$ 中所有非零元素 $\overline{a}$ 都有逆元 $\overline{a}^{-1}$，于是 $\mathbf{Z}_p$ 中彼此互逆的元素乘积为 $\overline{1}$．但是要注意 $\overline{a}$ 和 $\overline{a}^{-1}$ 可能相等：$\overline{a}=\overline{a}^{-1}$，当且仅当 $a^2\equiv 1\pmod p$，即
     
     $$
-    0\equiv a^2-1\equiv (a+1)(a-1),\pmod p
+    0\equiv a^2-1\equiv (a+1)(a-1)\pmod p,
     $$
     
     从而，$a\equiv 1\pmod p$ 或 $a\equiv -1\pmod p$．这说明 $\mathbf{Z}_p\setminus\{\overline{0},\overline{1},\overline{-1}\}$ 中所有元素的乘积为 $\overline{1}$，进而 $\mathbf{Z}_p$ 中所有非零元素的积为 $\overline{-1}$．
@@ -52,7 +52,7 @@ Wilson 定理可以推广到一般模数的情形．
     而且，余数中的 $\pm 1$ 取值为 $-1$ 当且仅当模 $m$ 的 [原根存在](./primitive-root.md#原根存在定理)，即 $m=2,4,p^\alpha,2p^\alpha$ 时，其中 $p$ 是奇素数且 $\alpha$ 是正整数．
 
 ??? note "证明"
-    这个定理可以通过 [模 $n$ 整数乘法群](../algebra/ring-theory.md#应用整数同余类的乘法群) 的结构简单地证明．此处给出思路相仿，但是较为初等的证明．
+    这个定理可以通过 [模 $m$ 整数乘法群](../algebra/ring-theory.md#应用整数同余类的乘法群) 的结构简单地证明．此处给出思路相仿，但是较为初等的证明．
     
     对于 $m=2$ 的情形，有 $1!=1\equiv -1\pmod{2}$．对于其他存在原根的情形，设原根为 $g$，则所有满足小于 $m$ 且与它互素的正整数 $k$ 都可以唯一地表示为 $g^i\bmod m$ 的形式，其中 $0\le i<\varphi(m)$ 且 $\varphi(m)$ 是 [Euler 函数](./euler-totient.md)．直接验证可知，$\varphi(m)$ 一定是偶数．因为 $g^i$ 和 $g^{\varphi(m)-i}$ 互为乘法逆元，所以在乘积中将它们两两配对，就有
     
@@ -62,19 +62,19 @@ Wilson 定理可以推广到一般模数的情形．
     
     因为 $g^{\varphi(m)/2}\bmod m$ 是唯一的不等于 $1\bmod{m}$ 且乘法逆元就是它自身的元素，所以它就等于 $-1\bmod{m}$．这就说明了此时的余数等于 $-1$．
     
-    对于模 $m$ 的原根不存在的情形，要证明余数等于 $1$．为此，可以首先做质因数分解 $m=p_1^{e_1}p_2^{e_2}\cdots p_s^{e_s}$，然后应用 [中国剩余定理](./crt.md) 可知，只需要证明
+    对于模 $m$ 的原根不存在的情形，要证明余数等于 $1$．为此，可以首先做素因数分解 $m=p_1^{e_1}p_2^{e_2}\cdots p_s^{e_s}$，然后应用 [中国剩余定理](./crt.md) 可知，只需要证明
     
     $$
     \prod_{1\le k<m,\ k\perp m} k\equiv 1\pmod{p_j^{e_j}}
     $$
     
-    对所有因子 $p_j^{e_j}$ 都成立．中国剩余定理说明，每一个可能的余数组合 $(r_1,r_2,\cdots,r_s)$，其中，$1\le r_j<p_j^{e_j}$ 且 $p_j\perp r_j$，都唯一地对应着一个 $1\le k<m$ 且 $k\perp m$ 使得 $k\equiv r_j\pmod{p_j^{e_j}}$ 成立．所以，对于某个余数 $r_j$，都恰好有 ${\varphi(m)}/{\varphi(p_j^{e_j})}$ 个 $k$ 使得 $k\equiv r_j\pmod{p_j^{e_j}}$ 成立．利用这一点，可以对乘积进行分组，就有
+    对所有因子 $p_j^{e_j}$ 都成立．中国剩余定理说明，每一个可能的余数组合 $(r_1,r_2,\cdots,r_s)$，其中，$1\le r_j<p_j^{e_j}$ 且 $p_j\perp r_j$，都唯一地对应着一个 $1\le k<m$ 且 $k\perp m$ 使得 $k\equiv r_j\pmod{p_j^{e_j}}$ 成立．所以，对于每个余数 $r_j$，都恰好有 ${\varphi(m)}/{\varphi(p_j^{e_j})}$ 个 $k$ 使得 $k\equiv r_j\pmod{p_j^{e_j}}$ 成立．利用这一点，可以对乘积进行分组，就有
     
     $$
     \prod_{1\le k<m,\ k\perp m} k\equiv\left(\prod_{1\le r_j<p_j^{e_j},\ r_j\perp p_j} r_j\right)^{{\varphi(m)}/{\varphi(p_j^{e_j})}}\pmod{p_j^{e_j}}.
     $$
     
-    此处的指数 ${\varphi(m)}/{\varphi(p_j^{e_j})}=\varphi(m/p_j^{e_j})$ 要成为奇数，必然要求 $m/p_j^{e_j}=1,2$，因为欧拉函数 $\varphi(n)$ 对于 $n\ge 3$ 都是偶数．如果 $p_j$ 是奇素数，因为模 $m$ 的原根不存在，必然有 $m/p_j^{e_j}\neq 1,2$；如果 $p_j^{e_j}=2,4$，因为模 $m$ 的原根不存在，必然有 $m/p_j^{e_j}$ 含有某个奇素因子，故而大于 $2$：这两种情形指数 ${\varphi(m)}/{\varphi(p_j^{e_j})}$ 都是偶数．而上式中括号里的项已经证明是模 $p_j^{e_j}$ 余 $-1$ 的，所以这个幂模 $p_j^{e_j}$ 的余数一定是 $1$．剩余的情形只有 $p_j=2$ 且 $e_j>2$ 时，对于这个情形，可以直接证明 \`
+    此处的指数 ${\varphi(m)}/{\varphi(p_j^{e_j})}=\varphi(m/p_j^{e_j})$ 要成为奇数，必然要求 $m/p_j^{e_j}=1,2$，因为 Euler 函数 $\varphi(n)$ 对于 $n\ge 3$ 都是偶数．如果 $p_j$ 是奇素数，因为模 $m$ 的原根不存在，必然有 $m/p_j^{e_j}\neq 1,2$；如果 $p_j^{e_j}=2,4$，因为模 $m$ 的原根不存在，必然有 $m/p_j^{e_j}$ 含有某个奇素因子，故而大于 $2$：这两种情形指数 ${\varphi(m)}/{\varphi(p_j^{e_j})}$ 都是偶数．而上式中括号里的项已经证明是模 $p_j^{e_j}$ 余 $-1$ 的，所以这个幂模 $p_j^{e_j}$ 的余数一定是 $1$．剩余的情形只有 $p_j=2$ 且 $e_j>2$ 时，对于这个情形，可以直接证明：
     
     $$
     \prod_{1\le r_j<2^{e_j},\ r_j\perp 2}r_j \equiv 1\pmod{2^{e_j}}.
@@ -157,8 +157,8 @@ Wilson 定理可以推广到一般模数的情形．
     $$
     \begin{aligned}
     (n!)_p &= 1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot \underbrace{1}_{p} \cdot (p+1) \cdot (p+2) \cdot \ldots \cdot (2p-1) \cdot \underbrace{2}_{2p} \\
-    &\quad \cdot (2p+1) \cdot \ldots \cdot (p^2-1) \cdot \underbrace{1}_{p^2} \cdot (p^2 +1) \cdot \ldots \cdot n \pmod{p} \\
-    &= 1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot \underbrace{1}_{p} \cdot 1 \cdot 2 \cdot \ldots \cdot (p-1) \cdot \underbrace{2}_{2p} \cdot 1 \cdot 2 \\
+    &\quad \cdot (2p+1) \cdot \ldots \cdot (p^2-1) \cdot \underbrace{1}_{p^2} \cdot (p^2 +1) \cdot \ldots \cdot n \\
+    &\equiv 1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot \underbrace{1}_{p} \cdot 1 \cdot 2 \cdot \ldots \cdot (p-1) \cdot \underbrace{2}_{2p} \cdot 1 \cdot 2 \\
     &\quad \cdot \ldots \cdot (p-1) \cdot \underbrace{1}_{p^2} \cdot 1 \cdot 2 \cdot \ldots \cdot (n \bmod p) \pmod{p}.
     \end{aligned}
     $$
@@ -167,12 +167,12 @@ Wilson 定理可以推广到一般模数的情形．
     
     $$
     \begin{aligned}
-    (n!)_p&= \underbrace{1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot 1}_{1\text{st}} \cdot \underbrace{1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot 2}_{2\text{nd}} \cdot \ldots \\
-    &\quad \cdot \underbrace{1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot 1}_{p\text{th}} \cdot \ldots \cdot \quad \underbrace{1 \cdot 2 \cdot \cdot \ldots \cdot (n \bmod p)}_{\text{tail}} \pmod{p}.
+    (n!)_p&\equiv \underbrace{1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot 1}_{1\text{st}} \cdot \underbrace{1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot 2}_{2\text{nd}} \cdot \ldots \\
+    &\quad \cdot \underbrace{1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot 1}_{p\text{th}} \cdot \ldots \cdot \quad \underbrace{1 \cdot 2 \cdot \ldots \cdot (n \bmod p)}_{\text{tail}} \pmod{p}.
     \end{aligned}
     $$
     
-    除了块的最后一个元素外，完整的块的主要部分 $(p-1)!\ \mathrm{mod}\ p$ 很容易计算，可以应用 Wilson 定理：
+    除了块的最后一个元素外，完整的块的主要部分 $(p-1)!\bmod p$ 很容易计算，可以应用 Wilson 定理：
     
     $$
     (p-1)!\equiv -1\pmod p.
@@ -209,7 +209,7 @@ Wilson 定理可以推广到一般模数的情形．
 
 ### 素数幂模的情形
 
-对于素数幂模的情形，可以仿照素数模的情形解决，只需要将 Wilson 定理替换成它的推广形式．本节两个结论中的 $\pm 1$，均特指这样的定义：当模数 $p=2$ 且 $\alpha\ge 3$ 时取 $1$，其余情形取 $-1$．
+对于素数幂模的情形，可以仿照素数模的情形解决，只需要将 Wilson 定理替换成它的推广形式．本节两个结论中的 $\pm 1$，均特指这样的定义：当 $p=2$ 且 $\alpha\ge 3$ 时取 $1$，其余情形取 $-1$．
 
 ???+ note "递推公式"
     对于素数 $p$ 和正整数 $\alpha,n$，有
@@ -239,7 +239,7 @@ $$
 \prod_{1\le k\le n,\ k\perp p} k\bmod{p^\alpha}.
 $$
 
-在素数模的情形，它退化为 $n!\bmod p$，但是该表达式在一般的素数幂的情形不再适用．
+在素数模的情形，当 $n<p$ 时，它退化为 $n!\bmod p$，但是该表达式在一般的素数幂的情形不再适用．
 
 下面提供了在素数幂模的情形下计算阶乘余数的例子，以便理解上述方法：
 
@@ -268,7 +268,7 @@ $$
     -   尾部不完整的块：所有不被 $3$ 整除的整数从 $1$ 一直乘到 $32\bmod 9$；
     -   所有被 $3$ 整除的整数的乘积，对比倒数第二个等号的结果可知，这就是它的前 $\lfloor 32/3\rfloor=10$ 项，亦即 $(\lfloor 32/3\rfloor!)_3\bmod 9$．
     
-    最后一个括号里的递归求解即可，这样就将原问题转化为了更小的问题．
+    最后一个括号里的部分递归求解即可，这样就将原问题转化为了更小的问题．
 
 由此，就可以得到如下递推结果：
 
@@ -276,7 +276,7 @@ $$
     对于素数 $p$ 和正整数 $\alpha,n$，有
     
     $$
-    (n!)_p \equiv (\pm 1)^{\sum_{j\ge\alpha}\lfloor{n}/{p^j}\rfloor}\prod_{j\ge 0}F(\lfloor n/p^j\rfloor\bmod p^\alpha),
+    (n!)_p \equiv (\pm 1)^{\sum_{j\ge\alpha}\lfloor{n}/{p^j}\rfloor}\prod_{j\ge 0}F(\lfloor n/p^j\rfloor\bmod p^\alpha)\pmod{p^\alpha},
     $$
     
     其中，$F(m) = \prod_{1\le k\le m,\ k\perp p} k\bmod{p^\alpha}$ 且 $\pm 1$ 的取值与上文所述相同．
@@ -364,7 +364,7 @@ $$
     \nu_p\left(\dbinom{m}{n}\right)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}.
     $$
     
-    特别地，组合数中 $2$ 的幂次是 $\nu_2\left(\dbinom{m}{n}\right)=S_2(n)+S_2(m-n)-S_2(m)$.
+    特别地，组合数中 $2$ 的幂次是 $\nu_2\left(\dbinom{m}{n}\right)=S_2(n)+S_2(m-n)-S_2(m)$．
 
 ??? note "证明"
     首先证明下面的表达式．为此，利用 Legendre 公式，有
@@ -378,7 +378,7 @@ $$
     \end{aligned}
     $$
     
-    该表达式可以理解为 $p$ 进制下 $m$ 减掉 $n$ 需要借位的次数．因为如果在计算第 $i$ 位（最低位下标是 $1$）时存在不够减需要借位的情况，那么相减的结果中第 $i$ 位之前的数字 $\left\lfloor\dfrac{m-n}{p^i}\right\rfloor$，其实是 $m$ 中第 $i$ 位之前的数字 $\left\lfloor\dfrac{m}{p^i}\right\rfloor$，减去一（即借掉的一），再减去 $n$ 中第 $i$ 位之前的数字得到的差值 $\left\lfloor\dfrac{n}{p^i}\right\rfloor$，所以，差值
+    该表达式可以理解为 $p$ 进制下 $m$ 减掉 $n$ 需要借位的次数．因为如果在计算第 $i$ 位（最低位下标是 $1$）时存在不够减需要借位的情况，那么相减的结果中第 $i$ 位之前的数字 $\left\lfloor\dfrac{m-n}{p^i}\right\rfloor$，其实是 $m$ 中第 $i$ 位之前的数字 $\left\lfloor\dfrac{m}{p^i}\right\rfloor$，减去一（即借掉的一），再减去 $n$ 中第 $i$ 位之前的数字 $\left\lfloor\dfrac{n}{p^i}\right\rfloor$ 得到的差值，所以，差值
     
     $$
     \left\lfloor\dfrac{m}{p^i}\right\rfloor-\left\lfloor\dfrac{n}{p^i}\right\rfloor-\left\lfloor\dfrac{m-n}{p^i}\right\rfloor = 1
@@ -389,37 +389,37 @@ $$
 ## 例题
 
 ???+ example "例题 [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
-    给定 $n$, 计算
+    给定 $n$，计算
     
     $$
     \sum_{k=1}^n\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor
     $$
 
 ??? note "解题思路"
-    若 $3k+7$ 是质数，则
+    若 $3k+7$ 是素数，则
     
     $$
     (3k+6)!\equiv-1\pmod{3k+7}
     $$
     
-    设 $(3k+6)!+1=k(3k+7)$
+    设 $(3k+6)!+1=m(3k+7)$
     
     则
     
     $$
-    \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor k-\left\lfloor k-\frac{1}{3k+7}\right\rfloor\right\rfloor=1
+    \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor m-\left\lfloor m-\frac{1}{3k+7}\right\rfloor\right\rfloor=1
     $$
     
-    若 $3k+7$ 不是质数，则有 $(3k+7)\mid(3k+6)!$，即
+    若 $3k+7$ 不是素数，则由于 $3k+7>4$ 是合数，有 $(3k+7)\mid(3k+6)!$，即
     
     $$
     (3k+6)!\equiv 0\pmod{3k+7}
     $$
     
-    设 $(3k+6)!=k(3k+7)$，则
+    设 $(3k+6)!=m(3k+7)$，则
     
     $$
-    \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor k+\frac{1}{3k+7}-k\right\rfloor=0
+    \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor m+\frac{1}{3k+7}-m\right\rfloor=0
     $$
     
     因此
