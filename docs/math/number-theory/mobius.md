@@ -476,7 +476,7 @@ $$
     \end{aligned}
     $$
     
-    特别地，$H_1(p^e)=1$，故 $H_1\equiv 1$ 是常值函数，而
+    特别地，$H_1(p^e)=1$ 是常值函数，而
     
     $$
     H_2(p^e) = p^{2e} + (1-p)\dfrac{1-p^{2e}}{1-p^2} = H_2(p^{e-1}) + p^{2e} - p^{2e-1}.
@@ -564,7 +564,7 @@ $$
     求值：
     
     $$
-    \sum_{i=1}^n\sum_{j=1}^m\operatorname{lcm}(i,j)\pmod{20101009}.
+    \sum_{i=1}^n\sum_{j=1}^m\operatorname{lcm}(i,j)\mod{20101009}.
     $$
     
     数据范围：$1\le n,m\le 10^7$．

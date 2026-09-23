@@ -264,7 +264,7 @@ nav:
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
-      - 类欧几里德算法: math/number-theory/euclidean.md
+      - 类欧几里得算法: math/number-theory/euclidean.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
