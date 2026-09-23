@@ -11,7 +11,7 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 素性测试有两种：
 
 1.  确定性测试：绝对确定一个数是否为素数．常见例子包括试除法、Lucas–Lehmer 测试和椭圆曲线素性证明．
-2.  概率性测试：通常比确定性测试快很多，但有可能（尽管概率很小）错误地将 [合数](../number-theory/basic.md#素数与合数) 识别为质数（尽管反之则不会）．因此，通过概率素性测试的数字被称为 **可能素数**，直到它们的素数可以被确定性地证明．而通过测试但实际上是合数的数字则被称为 **伪素数**．有许多特定类型的伪素数，最常见的是费马伪素数，它们是满足费马小定理的合数．概率性测试的常见例子包括 Miller–Rabin 测试．
+2.  概率性测试：通常比确定性测试快很多，但有可能（尽管概率很小）错误地将 [合数](./basic.md#素数与合数) 识别为素数（尽管反之则不会）．因此，通过概率素性测试的数字被称为 **可能素数**，直到它们的素性可以被确定性地证明．而通过测试但实际上是合数的数字则被称为 **伪素数**．有许多特定类型的伪素数，最常见的是费马伪素数，它们是满足费马小定理的合数．概率性测试的常见例子包括 Miller–Rabin 测试．
 
 ### 试除法
 
@@ -106,13 +106,13 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
             return True
         ```
 
-如果 $a^{n−1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则称 $n$ 为以 $a$ 为底的 **Fermat 伪素数**．我们在实践中观察到，如果 $a^{n−1} \equiv 1 \pmod n$，那么 $n$ 通常是素数．但其实存在反例：对于 $n = 341$ 且 $a = 2$，虽然有 $2^{340}\equiv 1 {\pmod {341}}$，但是 $341 = 11 \cdot 31$ 是合数．事实上，对于任何固定的基底 $a$，这样的反例都有无穷多个[^inf-fermat-pp]．
+如果 $a^{n-1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则称 $n$ 为以 $a$ 为底的 **Fermat 伪素数**．我们在实践中观察到，如果 $a^{n-1} \equiv 1 \pmod n$，那么 $n$ 通常是素数．但其实存在反例：对于 $n = 341$ 且 $a = 2$，虽然有 $2^{340}\equiv 1 {\pmod {341}}$，但是 $341 = 11 \cdot 31$ 是合数．事实上，对于任何固定的基底 $a$，这样的反例都有无穷多个[^inf-fermat-pp]．
 
 既然对于单个基底，Fermat 素性测试无法保证正确性，一个自然的想法就是多检查几组基底．但是，即使检查了所有可能的与 $n$ 互素的基底 $a$，依然无法保证 $n$ 是素数．也就是说，费马小定理的逆命题并不成立：即使对于所有 $a\perp n$，都有 $a^{n-1}\equiv 1\pmod n$，$n$ 也不一定是素数．这样的数称为 [Carmichael 数](./primitive-root.md#carmichael-数)．它也有无穷多个．这迫使我们寻找更为严格的素性测试．
 
 ### Miller–Rabin 素性测试
 
-**Miller–Rabin 素性测试**（Miller–Rabin primality test）是更好的素数判定方法．它是由 Miller 和 Rabin 二人根据 Fermat 素性测试优化得到的．和其它概率性素数测试一样，它也只能检测出伪素数．要确保是素数，需要用慢得多的确定性算法．然而，实际上没有已知的数字通过了 Miller–Rabin 测试等高级概率性测试但实际上却是合数，因此我们可以放心使用．
+**Miller–Rabin 素性测试**（Miller–Rabin primality test）是更好的素数判定方法．它是由 Miller 和 Rabin 二人根据 Fermat 素性测试优化得到的．和其它概率性素数测试一样，它也只能检测出可能素数．要确保是素数，需要用慢得多的确定性算法．然而，目前还没有发现能够通过 Miller–Rabin 测试等高级概率性测试的合数，因此我们可以放心使用．
 
 在不考虑乘法的复杂度时，对数 $n$ 进行 $k$ 轮测试的时间复杂度是 $O(k \log n)$．Miller–Rabin 素性测试常用于对高精度数进行测试，此时时间复杂度是 $O(k \log^3n)$，利用 FFT 等技术可以优化到 [$O(k \log^2n \log \log n \log \log \log n)$](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)．
 
@@ -126,7 +126,7 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 
 将费马小定理和二次探测定理结合起来使用，就得到 Miller–Rabin 素性测试：
 
-1.  将 $a^{n-1} \equiv 1 \pmod n$ 中的指数 $n−1$ 分解为 $n−1=u \times 2^t$；
+1.  将 $a^{n-1} \equiv 1 \pmod n$ 中的指数 $n-1$ 分解为 $n-1=u \times 2^t$，其中 $u$ 为奇数；
 2.  在每轮测试中对随机出来的 $a$ 先求出 $v = a^{u} \bmod n$，之后对这个值执行最多 $t$ 次平方操作；
 3.  在整个过程中，如果发现 $1$ 的非平凡平方根（即除了 $\pm 1$ 之外的其他根），就可以判断该数不是素数；
 4.  否则，再使用 Fermat 素性测试判断．
@@ -134,9 +134,9 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 还有一些实现上的小细节：
 
 -   对于一轮测试，如果某一时刻 $a^{u \times 2^s} \equiv n-1 \pmod n$，则之后的平方操作全都会得到 $1$，则可以直接通过本轮测试．
--   如果找出了一个非平凡平方根 $a^{u \times 2^s} \not\equiv n-1 \pmod n$，则之后的平方操作全都会得到 $1$．可以选择直接返回 `false`，也可以放到 $t$ 次平方操作后再返回 `false`．
+-   如果找出了一个非平凡平方根，即 $a^{u \times 2^s} \not\equiv n-1 \text{ or } 1 \pmod n$ 而 $a^{u \times 2^{s+1}} \equiv 1 \pmod n$，则之后的平方操作全都会得到 $1$．可以选择直接返回 `false`，也可以放到 $t$ 次平方操作后再返回 `false`．
 
-这样得到了较正确的 Miller Rabin：（来自 fjzzq2002）
+这样得到了较正确的 Miller–Rabin：（来自 fjzzq2002）
 
 ???+ example "参考实现"
     === "C++"
@@ -297,7 +297,7 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 一种符合直觉的反素数定义是：在一个正整数集合中，因子最多并且值最小的数，就是反素数．
 
 ???+ abstract "反素数"
-    对于某个正整数 $n$，如果任何小于 $n$ 的正数的约数个数都小于 $n$ 的约数个数，则称为是 **反素数**（anti-prime, a.k.a., highly compositive numbers）．
+    对于某个正整数 $n$，如果任何小于 $n$ 的正整数的约数个数都小于 $n$ 的约数个数，则称 $n$ 为 **反素数**（anti-prime, a.k.a. highly composite number）．
 
 ???+ warning "注意"
     注意区分 [emirp](https://en.wikipedia.org/wiki/Emirp)，它表示的是逐位反转后是不同素数的素数（如 149 和 941 均为 emirp，101 不是 emirp）．
@@ -306,15 +306,15 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 
 那么，如何来求解反素数呢？
 
-首先，既然要求因子数，首先要做的就是素因子分解．把 $n$ 分解成 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 的形式，其中 $p$ 是素数，$k$ 为他的指数．这样的话总因子个数就是 $(k_1+1) \times (k_2+1) \times (k_3+1) \cdots \times (k_n+1)$．
+首先，既然要求因子数，首先要做的就是素因子分解．把 $n$ 分解成 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{m}^{k_{m}}$ 的形式，其中 $p$ 是素数，$k$ 为它的指数．这样的话总因子个数就是 $(k_1+1) \times (k_2+1) \times \cdots \times (k_m+1)$．
 
-但是显然质因子分解的复杂度是很高的，并且前一个数的结果不能被后面利用．所以要换个方法．
+但是显然素因子分解的复杂度是很高的，并且前一个数的结果不能被后面利用．所以要换个方法．
 
 我们来观察一下反素数的特点．
 
 1.  反素数肯定是从 $2$ 开始的连续素数的幂次形式的乘积．
 
-2.  数值小的素数的幂次大于等于数值大的素数，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_n$．
+2.  数值小的素数的幂次大于等于数值大的素数的幂次，即 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{m}^{k_{m}}$ 中，有 $k_1 \geq k_2 \geq k_3 \geq \cdots \geq k_m$．
 
 解释：
 
@@ -326,15 +326,15 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 
 1.  对于给定的 $n$，要枚举到哪一个素数呢？
 
-    最极端的情况大不了就是 $n=p_{1}p_{2} \cdots p_{n}$，所以只要连续素数连乘到刚好小于等于 $n$ 即可．如果枚举到更大的素数，则意味这必定某个之前素数的幂次为 $0$，那么就不可能成为反素数．
+    最极端的情况大不了就是 $n=p_{1}p_{2} \cdots p_{m}$，所以只要连续素数连乘到刚好小于等于 $n$ 即可．如果枚举到更大的素数，则意味着必定某个之前素数的幂次为 $0$，那么就不可能成为反素数．
 
 2.  我们要枚举到多少次幂呢？
 
     我们考虑一个极端情况，当我们最小的素数的某个幂次已经比所给的 $n$（的最大值）大的话，那么展开成其他的形式，最大幂次一定小于这个幂次．极端情况下 $n$ 分解为 $2$ 的次幂，那么枚举到 $\lfloor\log_2 n\rfloor$ 即可．
 
-细节有了，那么我们具体如何具体实现呢？
+细节有了，那么我们具体如何实现呢？
 
-我们可以把当前走到每一个素数前面的时候列举成一棵树的根节点，然后一层层的去找．找到什么时候停止呢？
+我们可以把当前走到每一个素数前面的时候列举成一棵树的根节点，然后一层层地去找．找到什么时候停止呢？
 
 1.  当前走到的数字已经大于我们想要的数字了；
 
@@ -344,7 +344,7 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 
 4.  当前因子正好是我们想要的因子（此时判断是否需要更新最小 $\mathit{ans}$）．
 
-然后 dfs 里面不断一层一层枚举次数继续往下迭代可以．
+然后 dfs 里面不断一层一层枚举次数继续往下迭代即可．
 
 ### 例题
 
