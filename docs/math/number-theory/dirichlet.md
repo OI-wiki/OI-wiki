@@ -469,4 +469,4 @@ $$
 -   [Euler product - Wikipedia](https://en.wikipedia.org/wiki/Euler_product)
 -   [Bell series - Wikipedia](https://en.wikipedia.org/wiki/Bell_series)
 -   [Dirichlet 積と、数論関数の累積和 by maspy](https://maspypy.com/dirichlet-%e7%a9%8d%e3%81%a8%e3%80%81%e6%95%b0%e8%ab%96%e9%96%a2%e6%95%b0%e3%81%ae%e7%b4%af%e7%a9%8d%e5%92%8c)
--   [杜教筛（+ 贝尔级数 + powerful number） by command\_block - 洛谷](https://www.luogu.com.cn/article/ygfzawod)
+-   [杜教筛（+ 贝尔级数 + powerful number）by command\_block - 洛谷](https://www.luogu.com.cn/article/ygfzawod)

@@ -569,7 +569,7 @@ Carmichael 函数是一个 [数论函数](./basic.md#数论函数)．本节讨�
 -   [Carmichael number - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_number)
 -   [Carmichael Number - Wolfram MathWorld](https://mathworld.wolfram.com/CarmichaelNumber.html)
 
-[^yuan1959note]: Wang Y. "On the least primitive root of a prime." (in Chinese). Acta Math Sinica, 1959, 4: 432–441; English transl. in *Sci. Sinica*, 1961, 10: 1–14.
+[^yuan1959note]: Wang Y. "On the least primitive root of a prime." (in Chinese). Acta Math Sinica, 1959, 4: 432–441; English transl. in*Sci. Sinica*, 1961, 10: 1–14.
 
 [^burgess1962character]: BURGESS, David A. "On character sums and primitive roots." Proceedings of the London Mathematical Society, 1962, 3.1: 179-192.
 
