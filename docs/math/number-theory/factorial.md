@@ -410,7 +410,7 @@ $$
     \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor m-\left\lfloor m-\frac{1}{3k+7}\right\rfloor\right\rfloor=1
     $$
     
-    若 $3k+7$ 不是素数，则由于 $3k+7>4$ 是合数，有 $(3k+7)\mid(3k+6)!$，即
+    若 $3k+7$ 不是素数，则它是大于 $4$ 的合数，有 $(3k+7)\mid(3k+6)!$，即
     
     $$
     (3k+6)!\equiv 0\pmod{3k+7}

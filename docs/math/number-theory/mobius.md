@@ -166,7 +166,7 @@ $$
     \Lambda(n) = \sum_{d\mid n}\mu(d)(\log n-\log d) = \left(\sum_{d\mid n}\mu(d)\right)\log n-\sum_{d\mid n}\mu(d)\log d.
     $$
     
-    根据莫比乌斯函数的性质，$\log n$ 一项的系数为 $[n=1]=0$．对于后面的一项，可以进一步将 $d$ 分解为素因数之积．对于任何素数 $p\mid n$，设 $n=p^em$ 且 $p\perp m$（此时 $m>1$），考察 $\log p$ 的系数（只有无平方因子的 $d$ 才有贡献），都有：
+    根据莫比乌斯函数的性质，$\log n$ 一项的系数为 $[n=1]=0$．对于后面的一项，可以进一步将 $d$ 分解为素因数之积．对于任何素数 $p\mid n$，设 $n=p^em$ 且 $p\perp m$（由于 $n$ 不是素数幂，$m>1$），考察 $\log p$ 的系数（只有无平方因子的 $d$ 才有贡献），都有：
     
     $$
     -\sum_{p\mid d\mid n}\mu(d) = -\sum_{d'\mid m}\mu(pd') = \sum_{d'\mid m}\mu(d') = [m=1]=0.
