@@ -77,7 +77,7 @@ gdb --version
     UCRT 能提高与 MSVC 在 C 运行时层面的兼容性，但这并不意味着 GCC/MinGW 与 MSVC 的 C++ ABI 或对象文件、静态库可以直接互换．
 
 ??? warning "不要修改全局 Path"
-    不建议将 `C:\\msys64\\ucrt64\\bin` 添加到 Windows 的全局 `Path`．MSYS2 UCRT64 终端启动时已经会为当前环境设置正确的 `PATH`；直接使用对应的 MSYS2 终端可以避免不同环境的工具链和运行库相互混用．
+    不建议将 `C:\msys64\ucrt64\bin` 添加到 Windows 的全局 `Path`．MSYS2 UCRT64 终端启动时已经会为当前环境设置正确的 `PATH`；直接使用对应的 MSYS2 终端可以避免不同环境的工具链和运行库相互混用．
 
 #### Scoop 安装
 
@@ -212,7 +212,7 @@ pacman -Suy
 pacman -S ${MINGW_PACKAGE_PREFIX}-toolchain
 ```
 
-在 CLANG64 环境中，`MINGW_PACKAGE_PREFIX` 的值为 `mingw-w64-clang-x86_64`；该工具链包含 Clang、LLVM、LLD、LLDB、libc++、Make 等组件．CLANG64 终端会自动设置当前环境所需的 `PATH`，同样不建议把 `C:\\msys64\\clang64\\bin` 添加到 Windows 的全局 `Path`．
+在 CLANG64 环境中，`MINGW_PACKAGE_PREFIX` 的值为 `mingw-w64-clang-x86_64`；该工具链包含 Clang、LLVM、LLD、LLDB、libc++、Make 等组件．CLANG64 终端会自动设置当前环境所需的 `PATH`，同样不建议把 `C:\msys64\clang64\bin` 添加到 Windows 的全局 `Path`．
 
 #### Scoop 安装
 
