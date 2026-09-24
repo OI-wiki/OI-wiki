@@ -23,7 +23,7 @@ int main() {
   for (int i = 0; i < n - 2; ++i) {
     tmp[i] = std::max(tmp[i], tmp[i + 1]);
   }
-  for (int l = (n - 3) / 2, r = n / 2 - 1, ma = 0; l >= 0; --l, ++r) {
+  for (int l = (n - 1) / 2 - 1, r = n / 2 - 1, ma = 0; l >= 0; --l, ++r) {
     ma = std::max({ma, tmp[l], tmp[r]});
     ans[r - l] = ma;
   }
