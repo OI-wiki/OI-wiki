@@ -1,6 +1,6 @@
 author: hydingsy, hyp1231, ranwen, 383494
 
-前置知识：[数论分块](./sqrt-decomposition.md)、[狄利克雷卷积](./dirichlet.md#dirichlet-卷积)
+前置知识：[数论分块](./sqrt-decomposition.md)、[Dirichlet 卷积](./dirichlet.md#dirichlet-卷积)
 
 莫比乌斯反演是数论中的重要内容．对于一些函数 $f(n)$，如果很难直接求出它的值，而容易求出其倍数和或约数和 $g(n)$，那么可以通过莫比乌斯反演简化运算，求得 $f(n)$ 的值．
 
@@ -59,7 +59,7 @@ $$
 
 ### 求法
 
-如果需要对单个 $n$ 计算莫比乌斯函数 $\mu(n)$ 的值，可以利用它的 [质因数分解](./pollard-rho.md)．例如，在 $n$ 不太大时，可以在 $O(\sqrt{n})$ 时间内求出 $\mu(n)$ 的值．
+如果需要对单个 $n$ 计算莫比乌斯函数 $\mu(n)$ 的值，可以利用它的 [素因数分解](./pollard-rho.md)．例如，在 $n$ 不太大时，可以在 $O(\sqrt{n})$ 时间内求出 $\mu(n)$ 的值．
 
 ???+ example "参考实现"
     === "C++"
@@ -166,10 +166,10 @@ $$
     \Lambda(n) = \sum_{d\mid n}\mu(d)(\log n-\log d) = \left(\sum_{d\mid n}\mu(d)\right)\log n-\sum_{d\mid n}\mu(d)\log d.
     $$
     
-    根据莫比乌斯函数的性质，$\log n$ 一项的系数为 $[n=1]=0$．对于后面的一项，可以进一步将 $d$ 分解为素因数之积．对于任何素数 $p\mid n$，考察 $\log p$ 的系数，都有：
+    根据莫比乌斯函数的性质，$\log n$ 一项的系数为 $[n=1]=0$．对于后面的一项，可以进一步将 $d$ 分解为素因数之积．对于任何素数 $p\mid n$，设 $n=p^em$ 且 $p\perp m$（由于 $n$ 不是素数幂，$m>1$），考察 $\log p$ 的系数（只有无平方因子的 $d$ 才有贡献），都有：
     
     $$
-    -\sum_{p\mid d\mid n}\mu(d) = \sum_{(d/p)\mid(n/p)}\mu\left(\dfrac{d}{p}\right) = \left[\dfrac{n}{p}=1\right]=0.
+    -\sum_{p\mid d\mid n}\mu(d) = -\sum_{d'\mid m}\mu(pd') = \sum_{d'\mid m}\mu(d') = [m=1]=0.
     $$
     
     由此，对于不止一个素因子的合数 $n$，都有 $\Lambda(n)=0$．
@@ -321,7 +321,7 @@ $$
 f(n) = \sum_{d\mid n}g(d) \iff g(n) = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)f(d).
 $$
 
-左侧等式中，$f(n)$ 的值是 $n$ 的所有因数处 $g(n)$ 的值之和．如果将 $a\mid b$ 理解为 $a$ 排在 $b$ 之前，那么 $f(n)$ 就可以理解为某种意义下 $g(n)$ 的前缀和．因此，在国内竞赛圈，由 $\{g(k)\}_{k=1}^n$ 求出 $\{f(k)\}_{k=1}^n$ 的过程也称为 **Dirichlet 前缀和**，相应的逆过程则称为 Dirichlet 差分．这些方法大多出现在需要预处理某个数论函数在前 $N$ 个点处取值的情形．
+左侧等式中，$f(n)$ 的值是 $n$ 的所有因数处 $g$ 的值之和．如果将 $a\mid b$ 理解为 $a$ 排在 $b$ 之前，那么 $f(n)$ 就可以理解为某种意义下 $g(n)$ 的前缀和．因此，在国内竞赛圈，由 $\{g(k)\}_{k=1}^n$ 求出 $\{f(k)\}_{k=1}^n$ 的过程也称为 **Dirichlet 前缀和**，相应的逆过程则称为 Dirichlet 差分．这些方法大多出现在需要预处理某个数论函数在前 $N$ 个点处取值的情形．
 
 接下来，讨论 Dirichlet 前缀和的计算．如果将每一个素数都看作一个维度，这就是一种高维前缀和．回忆高维前缀和的 [逐维前缀和算法](../../basic/prefix-sum.md#逐维前缀和)：逐个遍历所有的维度，并将每个位置的值都累加到该位置在该维度上的后继位置．对于数论函数，这相当于说，从小到大遍历所有素数 $p$，并将 $n$ 处的函数值累加到 $np$ 处．这和 [Eratosthenes 筛法](./sieve.md#埃拉托斯特尼筛法) 的遍历顺序是一致的．因此，这一算法可以在 $O(n\log\log n)$ 时间内计算出长度为 $n$ 的数列的 Dirichlet 前缀和．类似地，利用逐维差分就可以在相同时间复杂度内求出数列的 Dirichlet 差分．
 
@@ -458,13 +458,13 @@ $$
     因为 $\mu(d)d$ 是积性函数，所以它和常值函数 $1$ 的卷积 $F(n)$ 也是积性函数．尽管上述表达式中，求和式呈现 Dirichlet 卷积的形式，但是 $G(n)$ 并非积性函数，所以这一求和式的整体并非积性函数．但是，$G(n)$ 是多项式，所以它其实是若干完全积性函数的线性组合．所以，有
     
     $$
-    f(n) = \dfrac{1}{2}n\left(\sum_{\ell}\left(\dfrac{n}{\ell}\right)^2F(\ell) + \sum_{\ell}\dfrac{n}{\ell}F(\ell)\right).
+    f(n) = \dfrac{1}{2}n\left(\sum_{\ell\mid n}\left(\dfrac{n}{\ell}\right)^2F(\ell) + \sum_{\ell\mid n}\dfrac{n}{\ell}F(\ell)\right).
     $$
     
     这两项（不包含系数）都是积性函数，可以直接通过线性筛预处理（或者也可以线性筛出内层函数后，用 Dirichlet 前缀和在 $O(N\log\log N)$ 时间内预处理）．具体地，设
     
     $$
-    H_s(n) = \sum_{\ell}\left(\dfrac{n}{\ell}\right)^sF(\ell),~s=1,2.
+    H_s(n) = \sum_{\ell\mid n}\left(\dfrac{n}{\ell}\right)^sF(\ell),~s=1,2.
     $$
     
     要推导它们的表达式，只需要确定它们在素数幂处的取值即可．为此，对于素数 $p$ 和正指数 $e$，有
@@ -476,7 +476,7 @@ $$
     \end{aligned}
     $$
     
-    特别地，$H_1(p^e)\equiv 1$ 是常值函数，而
+    特别地，$H_1(p^e)=1$ 是常值函数，而
     
     $$
     H_2(p^e) = p^{2e} + (1-p)\dfrac{1-p^{2e}}{1-p^2} = H_2(p^{e-1}) + p^{2e} - p^{2e-1}.
@@ -484,7 +484,7 @@ $$
     
     这就很容易通过线性筛求解．在线性筛预处理出 $H_2(n)$ 后，单次询问可以通过表达式 $f(n)=(n/2)(H_2(n)+1)$ 在 $O(1)$ 时间内求解．总的时间复杂度为 $O(N+T)$，其中，$N$ 为 $n$ 的上界，$T$ 为数据组数．
     
-    参考实现中，利用本题表达式的特殊性，对线性筛部分做了进一步推导，这并非必须的．仅利用素数幂处的取值，仍然可以在 $O(N)$ 时间内完成预处理．这些推导详见解答二．
+    参考实现中，利用本题表达式的特殊性，对线性筛部分做了进一步推导，这并非必需的．仅利用素数幂处的取值，仍然可以在 $O(N)$ 时间内完成预处理．这些推导详见解答二．
 
 ??? note "解答二"
     就本题而言，有着更为灵活的处理方法．从解答一可以看出
@@ -496,7 +496,7 @@ $$
     如果在这一步不继续做莫比乌斯反演，而是观察后面的求和式实际上是不超过 $d=n/k$ 且与之互素的整数之和．对于 $d>1$，因为与 $d$ 互素的整数成对出现，即 $i$ 和 $d-i$ 必定同时与 $d$ 互素，所以，有
     
     $$
-    F(d)=\sum_{i=1}^{n'}i[i\perp d] = \sum_{i=1}^{d}(d-i)[i\perp d] = \dfrac{1}{2}d\sum_{i=1}^{d}[i\perp d] = \dfrac{1}{2}d\varphi(d).
+    F(d)=\sum_{i=1}^{d}i[i\perp d] = \sum_{i=1}^{d}(d-i)[i\perp d] = \dfrac{1}{2}d\sum_{i=1}^{d}[i\perp d] = \dfrac{1}{2}d\varphi(d).
     $$
     
     对于 $d=1$，则有
@@ -514,7 +514,7 @@ $$
     由于 $G(n)=\sum_{d\mid n}d\varphi(d)$ 是积性函数 $n\varphi(n)$ 与常值函数 $1$ 的 Dirichlet 卷积，所以它也是积性函数，可以通过线性筛预处理．为此，只需要确定它在素数幂处的取值．对于素数 $p$ 和正指数 $e$，有
     
     $$
-    G(p^e) = 1 + \sum_{i=1}^ep^e(p^e-1) = G(p^{e-1}) + p^{2e} - p^{2e-1}.
+    G(p^e) = 1 + \sum_{i=1}^ep^i\cdot p^{i-1}(p-1) = G(p^{e-1}) + p^{2e} - p^{2e-1}.
     $$
     
     可以看出，这一表达式和解答一推导的结果是一致的．这一方法的总时间复杂度仍然是 $O(N+T)$．
@@ -541,7 +541,7 @@ $$
     \end{aligned}
     $$
     
-    直接验证可知，这一表达式对于 $p\perp n$ 的情形也成立．因此，就有
+    直接验证可知，这一表达式对于 $p\perp n$（即 $e=0$）的情形也成立．而当 $p\mid n$ 时，还有
     
     $$
     G(n) - G\left(\dfrac{n}{p}\right) = (p^{2e}-p^{2e-1})G(m).
@@ -639,7 +639,7 @@ $$
     \sigma_0(ij) = 1 + e_1 + e_2 = \sum_{x\mid i}\sum_{y\mid j}[x\perp y].
     $$
     
-    对于一般情形，不妨设 $i=\prod_p i_p$ 且 $j=\prod_p j_p$，其中，$i_p,j_p$ 分别是 $i,j$ 的素因数分解中 $p$ 的幂次．进而，有
+    对于一般情形，不妨设 $i=\prod_p i_p$ 且 $j=\prod_p j_p$，其中，$i_p,j_p$ 分别是 $i,j$ 的素因数分解中 $p$ 对应的素数幂因子．进而，有
     
     $$
     \sigma_0(ij) = \prod_p\sigma_0(i_pj_p)= \prod_p\sum_{x_p\mid i_p}\sum_{y_p\mid j_p}[x_p\perp y_p].
@@ -716,7 +716,7 @@ $$
     f(n) = \prod_{i=1}^n\prod_{j=1}^n\dfrac{ij}{(\gcd(i,j))^2}.
     $$
     
-    注意，对这些因子的乘积是相互独立的，可以分别计算．令
+    注意，这些因子的乘积是相互独立的，可以分别计算．令
     
     $$
     g(n) = \prod_{i=1}^n\prod_{j=1}^n\gcd(i,j).
@@ -798,9 +798,9 @@ $$
     \log g(n) 
     &= \sum_k\log k\sum_{i=1}^n\sum_{j=1}^n[\gcd(i,j)=k]\\
     &= \sum_k\log k\sum_{i=1}^{\lfloor n/k\rfloor}\sum_{j=1}^{\lfloor n/k\rfloor}[\gcd(i,j)=1]\\
-    &= \sum_k\log k\sum_d\mu(d)\left(\sum_{i=1}^{\lfloor n/k\rfloor}[i\mid d]\right)\left(\sum_{j=1}^{\lfloor n/k\rfloor}[j\mid d]\right)\\
+    &= \sum_k\log k\sum_d\mu(d)\left(\sum_{i=1}^{\lfloor n/k\rfloor}[d\mid i]\right)\left(\sum_{j=1}^{\lfloor n/k\rfloor}[d\mid j]\right)\\
     &= \sum_k\log k\sum_d\mu(d)\left\lfloor\dfrac{n}{kd}\right\rfloor^2\\
-    &= \sum_{\ell}\left(\sum_d\mu(d)\log\dfrac{\ell}{d}\right)\left\lfloor\dfrac{n}{\ell}\right\rfloor^2\\
+    &= \sum_{\ell}\left(\sum_{d\mid\ell}\mu(d)\log\dfrac{\ell}{d}\right)\left\lfloor\dfrac{n}{\ell}\right\rfloor^2\\
     &= \sum_{\ell}\Lambda(\ell)\left\lfloor\dfrac{n}{\ell}\right\rfloor^2.
     \end{aligned}
     $$
@@ -825,7 +825,7 @@ $$
 -   [Luogu P6825「EZEC-4」求和](https://www.luogu.com.cn/problem/P6825)
 -   [Luogu P7486「Stoi2031」彩虹](https://www.luogu.com.cn/problem/P7486)
 -   [AtCoder Grand Contest 038 C - LCMs](https://atcoder.jp/contests/agc038/tasks/agc038_c)
--   [Codeforeces 1139 D. Steps to One](https://codeforces.com/problemset/problem/1139/D)
+-   [Codeforces 1139 D. Steps to One](https://codeforces.com/problemset/problem/1139/D)
 
 ## 参考文献
 

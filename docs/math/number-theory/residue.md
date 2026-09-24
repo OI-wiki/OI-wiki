@@ -21,7 +21,7 @@
 
 类似二次剩余，可以讨论 $k$ 次剩余的判定、个数以及 $k$ 次剩余类的个数问题．和其他 [同余方程](./congruence-equation.md) 问题一样，可以通过 [中国剩余定理](./crt.md) 将它们转化为素数幂模的情形．根据原根的有无，这进一步区分为奇素数幂模和模数为 $2$ 的幂次的情形．
 
-奇数幂模的情形较为简单．事实上，对于所有原根存在的情形，都有如下结论：
+奇素数幂模的情形较为简单．事实上，对于所有原根存在的情形，都有如下结论：
 
 ???+ note "定理"
     设整数 $k\geq 2$，整数 $a$ 和正整数 $m$ 互素．设模 $m$ 的原根存在，且 $g$ 是模 $m$ 的一个原根．记 $d=\gcd(k,\varphi(m))$ 且 $d'=\dfrac{\varphi(m)}{d}$，其中，$\varphi(m)$ 是 [欧拉函数](./euler-totient.md)．那么，有：
@@ -34,7 +34,7 @@
     2.  当 $a$ 为模 $m$ 的 $k$ 次剩余时，同余意义下，$a$ 模 $m$ 恰有 $d$ 个互不相同的 $k$ 次方根，且它们具有形式
     
         $$
-        x \equiv g^{y_0+id'}\pmod{\varphi(m)},~0\le y_0 < d',~i=0,1,\cdots,d-1.
+        x \equiv g^{y_0+id'}\pmod m,~0\le y_0 < d',~i=0,1,\cdots,d-1.
         $$
     3.  模 $m$ 的 $k$ 次剩余类的个数为 $d'$，且它们的全体就是
     
@@ -58,13 +58,13 @@
     这是关于 $y$ 的 [线性同余方程](./linear-equation.md)．应用该页面对其解结构的分析，就可以知道方程有解当且仅当 $d\mid\operatorname{ind}_g a$，且通解形式为
     
     $$
-    y = y_0 + id' \pmod{\varphi(m)},~0\le y_0 < d',~i=0,1,\cdots,d-1.
+    y \equiv y_0 + id' \pmod{\varphi(m)},~0\le y_0 < d',~i=0,1,\cdots,d-1.
     $$
     
     由此，就几乎可以得到本定理的全部内容；唯一需要额外说明的是判别式 $a^{d'} \equiv 1 \pmod m$．由 [阶的性质 3](./primitive-root.md#幂的循环结构) 可知
     
     $$
-    \delta_m(a) = \delta_m(g^{\operatorname{ind}_g a}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_g a)} = \dfrac{\varphi(m)}{\operatorname{ind}_g a}.
+    \delta_m(a) = \delta_m(g^{\operatorname{ind}_g a}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_g a)}.
     $$
     
     又已知方程有解当且仅当 $d\mid \operatorname{ind}_g a$，亦即 $\delta_m(a)\mid d'$．由 [阶的性质 2](./primitive-root.md#幂的循环结构) 可知，这就等价于该判别式．
@@ -84,7 +84,7 @@
     2.  当 $a$ 为模 $m$ 的 $k$ 次剩余时，同余意义下，$a$ 模 $m$ 恰有 $2d$ 个互不相同的 $k$ 次方根，且它们具有形式
     
         $$
-        x \equiv \pm 5^{y_0 + id'} \pmod{2^{e-1}},~ 0 \le y_0 < d',~i = 0, 1,\cdots,d-1. 
+        x \equiv \pm 5^{y_0 + id'} \pmod{2^e},~ 0 \le y_0 < d',~i = 0, 1,\cdots,d-1. 
         $$
     3.  模 $m$ 的 $k$ 次剩余类的个数为 $d'$，且它们的全体就是
     
@@ -93,7 +93,7 @@
         $$
 
 ??? note "证明"
-    因为 $a\perp m$，所以 $x\perp m$．因为 $x$ 和 $a$ 都是奇数，由前述结论可知，可以设 $a\equiv (-1)^s5^r\pmod{2^e}$ 且 $x=(-1)^z5^{y}\pmod{2^e}$．因为表示是唯一的，所以同余方程 $x^k\equiv a\pmod{2^e}$ 等价于 [线性同余方程](./linear-equation.md) 组
+    因为 $a\perp m$，所以 $x\perp m$．因为 $x$ 和 $a$ 都是奇数，由前述结论可知，可以设 $a\equiv (-1)^s5^r\pmod{2^e}$ 且 $x\equiv(-1)^z5^{y}\pmod{2^e}$．因为表示是唯一的，所以同余方程 $x^k\equiv a\pmod{2^e}$ 等价于 [线性同余方程](./linear-equation.md) 组
     
     $$
     \begin{aligned}
@@ -105,12 +105,12 @@
     结合该页面对于线性同余方程解的分析，就可以得到同余方程 $x^k\equiv a\pmod{2^e}$ 解的结构．根据 $k$ 的奇偶性不同，可以分为两种情形：
     
     -   当 $k$ 是奇数时，因为 $\gcd(k,2)=\gcd(k,2^{e-2})=1$，所以两个线性同余方程对于所有 $s,r$ 都有解，故而原同余方程对于所有奇数 $a$ 总是有解．
-    -   当 $k$ 是偶数时，第一个方程有解当且仅当 $2\mid s$，第二个方程有解当且仅当 $d=\gcd(k,2^{e-2})\mid r$．将两者结合就得到 $k$ 次剩余类的全体形式．直接计算可知，第一个条件等价于 $a\equiv 1\pmod 4$；重复奇素数幂情形的分析可知，第二个条件等价于 $a^{d'}=1$．将两点结合起来就得到定理中的判定方法．两个线性同余方程的通解也是已知的：
+    -   当 $k$ 是偶数时，第一个方程有解当且仅当 $2\mid s$，第二个方程有解当且仅当 $d=\gcd(k,2^{e-2})\mid r$．将两者结合就得到 $k$ 次剩余类的全体形式．直接计算可知，第一个条件等价于 $a\equiv 1\pmod 4$；重复奇素数幂情形的分析可知，第二个条件等价于 $a^{d'}\equiv 1\pmod m$．将两点结合起来就得到定理中的判定方法．两个线性同余方程的通解也是已知的：
     
         $$
         \begin{aligned}
         z &\equiv0,1\pmod 2, \\
-        y &\equiv y_0 + id' \pmod{2^{e-2}},~ 0\le y_0 < 2^{e-2}.
+        y &\equiv y_0 + id' \pmod{2^{e-2}},~ 0\le y_0 < d',~i=0,1,\cdots,d-1.
         \end{aligned}
         $$
     
@@ -143,7 +143,7 @@
     3.  元素 $a$ 是模 $m$ 的 $k$ 次（本原）单位根，那么元素 $a^{\ell}$ 是模 $m$ 的 $\dfrac{k}{\gcd(k,\ell)}$ 次（本原，相应地）单位根．
     4.  当 $k'$ 遍历 $k$ 的因数，所有模 $m$ 的 $k'$ 次本原单位根恰构成模 $m$ 的 $k$ 次单位根的一个划分．而且，对于 $\ell\perp k$，映射 $x\mapsto x^\ell$ 给出 $k$ 次单位根之间的双射，且保持上述划分不变：它将 $k'\mid k$ 次本原单位根仍然映射到 $k'$ 次本原单位根．
     5.  模 $m$ 的 $k$ 次本原单位根存在，当且仅当 $k\mid\lambda(m)$．特别地，模 $m$ 的 $\lambda(m)$ 次本原单位根存在，称为 **模 $m$ 的 $\lambda$‑原根**．
-    6.  元素 $a$ 是模 $m$ 的 $k$ 次单位根，当且仅当 $a^k\equiv 1\pmod{m}$ 且对于任意素因子 $p\mid k$ 都有 $a^{k/p}\not\equiv 1\pmod{m}$．
+    6.  元素 $a$ 是模 $m$ 的 $k$ 次本原单位根，当且仅当 $a^k\equiv 1\pmod{m}$ 且对于任意素因子 $p\mid k$ 都有 $a^{k/p}\not\equiv 1\pmod{m}$．
 
 ??? note "证明"
     根据阶的定义，所有与 $m$ 互素的整数 $a$ 都是模 $m$ 的 $\delta_m(a)$ 次本原单位根，其中，$\delta_m(a)$ 是 $a$ 模 $m$ 的阶．反过来，如果 $a$ 是模 $m$ 的 $k$ 次单位根，那么 $\gcd(a^k,m)=1$，所以 $\gcd(a,m)=1$．因此，$a$ 是模 $m$ 的（本原）单位根，当且仅当 $a$ 与 $m$ 互素．这就是性质 1．
@@ -151,7 +151,7 @@
     直接验证定义可知，只要 $k\mid k'$，就可以从 $a^k\equiv 1\pmod m$ 推出 $a^{k'}\equiv 1\pmod m$，这就是性质 2．根据 [阶的性质](./primitive-root.md#幂的循环结构) 可知
     
     $$
-    \delta(a^\ell) = \dfrac{\delta_m(a)}{\gcd(\delta_m(a),\ell)}.
+    \delta_m(a^\ell) = \dfrac{\delta_m(a)}{\gcd(\delta_m(a),\ell)}.
     $$
     
     如果 $a$ 是模 $m$ 的 $k$ 次本原单位根，那么，$\delta_m(a)=k$，直接代入上式就得到 $a^\ell$ 是模 $m$ 的 $\dfrac{k}{\gcd(k,\ell)}$ 次本原单位根．如果 $a$ 只是模 $m$ 的 $k$ 次单位根，设它是 $k'\mid k$ 次本原单位根，故而 $a^\ell$ 是模 $m$ 的 $\dfrac{k'}{\gcd(k',\ell)}$ 次本原单位根．由于 $k'\mid k$，有
@@ -162,12 +162,12 @@
     
     再由性质 2，就得到 $a^\ell$ 是模 $m$ 的 $\dfrac{k}{\gcd(k,\ell)}$ 次单位根．这就是性质 3．
     
-    对于 $k'\mid k$，由性质 2，模 $m$ 的 $k'$ 次本原单位根必然是模 $m$ 的 $k$ 次单位根．它们两两不交，故而构成划分．而对于 $\ell\perp k$，总有 $\ell\perp k'$，因此对于模 $m$ 的 $k'$ 次本原单位根 $a$，总有 $a^\ell$ 是模 $m$ 的 $k'$ 次本原单位根．取 $\ell'=\ell^{-1}\bmod k$，可以验证 $x\mapsto x^\ell$ 和 $x\mapsto x^{\ell'}$ 互为逆映射，因此，$x\mapsto x^\ell$ 是双射．这就是性质 4．
+    对于 $k'\mid k$，由性质 2，模 $m$ 的 $k'$ 次本原单位根必然是模 $m$ 的 $k$ 次单位根；反过来，每个模 $m$ 的 $k$ 次单位根 $a$ 都是 $\delta_m(a)$ 次本原单位根，且 $\delta_m(a)\mid k$．这些集合两两不交，故而构成划分．而对于 $\ell\perp k$，总有 $\ell\perp k'$，因此对于模 $m$ 的 $k'$ 次本原单位根 $a$，总有 $a^\ell$ 是模 $m$ 的 $k'$ 次本原单位根．取 $\ell'=\ell^{-1}\bmod k$，可以验证 $x\mapsto x^\ell$ 和 $x\mapsto x^{\ell'}$ 互为逆映射，因此，$x\mapsto x^\ell$ 是双射．这就是性质 4．
     
     根据 Carmichael 函数的性质可知，模 $m$ 的 $\lambda(m)$ 次本原单位根总是存在的，设它为 $a$，且 $\delta_m(a)=\lambda(m)$．对于 $k\mid\lambda(m)$，设 $k'=\dfrac{\lambda(m)}{k}$，总有
     
     $$
-    \delta_m(a^{k'}) = \dfrac{\lambda(m)}{(\lambda(m),k')} = \dfrac{\lambda(m)}{k'} = k.
+    \delta_m(a^{k'}) = \dfrac{\lambda(m)}{\gcd(\lambda(m),k')} = \dfrac{\lambda(m)}{k'} = k.
     $$
     
     因此，$a^{k'}$ 是 $k$ 次本原单位根．而根据 Carmichael 函数的定义，所有 $x\perp m$ 的阶都是 $\lambda(m)$ 的因子．这就得到性质 5．
@@ -182,7 +182,7 @@
     设 $x$ 是 $a$ 模 $m$ 的一个 $k$ 次方根，当 $r$ 遍历模 $m$ 的全体 $k$ 次单位根时，$xr$ 遍历 $a$ 模 $m$ 的全体 $k$ 次方根．
 
 ??? note "证明"
-    对于 $a$ 模 $m$ 的两个 $k$ 次方根 $x,y$，设 $r=x^{-1}y\bmod m$，那么 $r$ 满足 $r^k\equiv 1\pmod m$，是模 $m$ 的 $k$ 次方根．反过来，只要 $r$ 是模 $m$ 的 $k$ 次单位根，那么，$(xr)^{k}= x^kr^k\equiv a\pmod m$，也就是说，$xr$ 是模 $m$ 的 $k$ 次方根．
+    对于 $a$ 模 $m$ 的两个 $k$ 次方根 $x,y$，设 $r=x^{-1}y\bmod m$，那么 $r$ 满足 $r^k\equiv 1\pmod m$，是模 $m$ 的 $k$ 次单位根．反过来，只要 $r$ 是模 $m$ 的 $k$ 次单位根，那么，$(xr)^{k}= x^kr^k\equiv a\pmod m$，也就是说，$xr$ 是 $a$ 模 $m$ 的 $k$ 次方根．
 
 利用 $k$ 次单位根生成全体 $k$ 次方根，就类似于利用齐次线性方程组的解生成非齐次线性方程组的通解一样．
 
@@ -261,7 +261,7 @@
     \end{aligned}
     $$
 
-    这个线性方程组的通解 $(z,y)$ 容易求出，而 $x=(-1)^z5^y$ 就是所求的方根．这一算法求出单个解的复杂度仍然是 $O(m^{1/2})$．
+    这个线性同余方程组的通解 $(z,y)$ 容易求出，而 $x=(-1)^z5^y$ 就是所求的方根．这一算法求出单个解的复杂度仍然是 $O(m^{1/2})$．
 
 当然，对于无解的情形，其实可以通过前文叙述的判别方法在 $O(\log m)$ 时间内快速判断，而无需在求解过程中判断．
 
@@ -370,7 +370,7 @@ $$
 
 由于满足 $e < s$ 的素因子 $p$ 至少在 $\varphi(m)$ 中出现 $2$ 次，必然有 $p < m^{1/2}$．故而，总时间复杂度为 $O(m^{1/4+\varepsilon})$．
 
-事实上，在这一情景中，无需使用 Pollard Rho 算法分解素因数，仍然可以获得 $O(m^{1/4+\varepsilon})$ 的时间复杂度．事实上，只需要对 $d$ 暴力试除进行分解，并只枚举到不超过 $m^{1/4}$ 的素因子．设去除这些小素因子后得到的整数为 $z$．那么，对于 $z$ 的素因子 $p > m^{1/4}$，必然有 $\nu_p(\varphi(m)) < 4$，其中，$\nu_p(n)$ 表示 $n$ 的素因数分解中 $p$ 的次数．由于只需要考虑
+事实上，在这一情景中，无需使用 Pollard Rho 算法分解素因数，仍然可以获得 $O(m^{1/4+\varepsilon})$ 的时间复杂度．具体来说，只需要对 $d$ 暴力试除进行分解，并只枚举到不超过 $m^{1/4}$ 的素因子．设去除这些小素因子后得到的整数为 $z$．那么，对于 $z$ 的素因子 $p > m^{1/4}$，必然有 $\nu_p(\varphi(m)) < 4$，其中，$\nu_p(n)$ 表示 $n$ 的素因数分解中 $p$ 的次数．由于只需要考虑
 
 $$
 1 \le e = \nu_p(d) < s = \nu_p(\varphi(m)) < 4
@@ -379,7 +379,7 @@ $$
 的情形，满足该条件的素因子 $p$ 至多只能有一个；否则，它们在 $\varphi(m)$ 中的次数都不小于 $2$，总的乘积必然超过 $m$．要分离出这个（可能存在的）唯一的大素因子，只需要计算
 
 $$
-p^\star=\gcd\left(z,\dfrac{\varphi(m)}{z}\right) = \prod_{p : \nu_p(d) < \nu_p(\varphi(m))}p^{\min\{\nu_p(d),\nu_p(\varphi(m))-\nu_p(d)\}}.
+p^\star=\gcd\left(z,\dfrac{\varphi(m)}{z}\right) = \prod_{p\mid z,~\nu_p(d) < \nu_p(\varphi(m))}p^{\min\{\nu_p(d),\nu_p(\varphi(m))-\nu_p(d)\}}.
 $$
 
 枚举 $\nu_p(d),\nu_p(\varphi(m))$ 的所有可能性可知，乘积中 $p$ 的次数一定是 $1$，因此这样算出来的就是唯一的大素因子 $p^\star$（如果存在的话）．至于剩余的部分 $z/p^\star$，因为其中只能包含若干满足 $e=s$ 的素因子，所以无需继续分解．
@@ -396,7 +396,7 @@ $$
 考虑一般的情形，仍然设模数 $m$ 是素数幂 $p^e$，但是 $\gcd(a,m)>1$．如果 $a\equiv 0\pmod{m}$，那么
 
 $$
-x = p^{\lceil e/k \rceil}\ell\pmod{p^e},~\ell=0,1,\cdots,p^{e-\lceil e/k\rceil}-1
+x \equiv p^{\lceil e/k \rceil}\ell\pmod{p^e},~\ell=0,1,\cdots,p^{e-\lceil e/k\rceil}-1
 $$
 
 都是原方程的解．接下来，考察 $a\not\equiv 0\pmod{m}$ 的情形．设 $a = p^sa'$ 且 $p\perp a'$．于是，设 $x=p^zx'$ 且 $p\perp x'$，就有
@@ -432,7 +432,7 @@ $$
 
 [^fnnt]: 实际上，模数 $m$ 未必是素数．只要 $a$ 是模 $m$ 的 $k=2^e$ 次本原单位根，就可以用于模 $m$ 的快速数论变换．但是，由于通常需要处理的 $2^e$ 比较大，这意味着模数 $m$ 中的每个素因子都是 $c2^e+1$ 形式．因此，单个素因子就很大，而模数 $m$ 通常会更大，因而一般模数的情形并没有素数模的情形常用．
 
-[^lambda-density]: 根据 [原根个数相关结论](./primitive-root.md#原根个数) 可知，$\lambda$‑原根的数量恰为 $\varphi(\lambda(m))$，其中，$\varphi(\cdot)$ 和 $\lambda(\cdot)$ 分别是欧拉函数和 Carmichael 函数．因为对于几乎所有整数 $m$，都有 $\lambda(m)/m = \exp(-(1+o(1))\log\log m\log\log\log m)$，而存在 $C > 0$，使得对于整数 $m > 2$，都有 $\varphi(m)/m = C / \log\log m$，所以，对于几乎所有整数 $m$，都有 $\varphi(\lambda(m))/m = \exp(-(1+o(1))\log\log m\log\log\log m)$．其中，指数部分系数中的 $o(1)$ 吸收了因子 $\varphi(\lambda(m))/\lambda(m)$ 的贡献．故而，$\lambda$‑原根可以在期望 $\exp((1+o(1))\log\log m\log\log\log m)$ 次内找到．关于欧拉函数的估计，可以参考论文 Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94．关于 Carmichael 函数的估计，可以参考论文 Erdos, Paul, Carl Pomerance, and Eric Schmutz. "Carmichael’s lambda function." Acta Arith 58, no. 4 (1991): 363-385．
+[^lambda-density]: 根据 [原根个数相关结论](./primitive-root.md#原根个数) 可知，$\lambda$‑原根的数量恰为 $\varphi(\lambda(m))$，其中，$\varphi(\cdot)$ 和 $\lambda(\cdot)$ 分别是欧拉函数和 Carmichael 函数．因为对于几乎所有整数 $m$，都有 $\lambda(m)/m = \exp(-(1+o(1))\log\log m\log\log\log m)$，而存在 $C > 0$，使得对于整数 $m > 2$，都有 $\varphi(m)/m \ge C / \log\log m$，所以，对于几乎所有整数 $m$，都有 $\varphi(\lambda(m))/m = \exp(-(1+o(1))\log\log m\log\log\log m)$．其中，指数部分系数中的 $o(1)$ 吸收了因子 $\varphi(\lambda(m))/\lambda(m)$ 的贡献．故而，$\lambda$‑原根可以在期望 $\exp((1+o(1))\log\log m\log\log\log m)$ 次内找到．关于欧拉函数的估计，可以参考论文 Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94．关于 Carmichael 函数的估计，可以参考论文 Erdos, Paul, Carl Pomerance, and Eric Schmutz. "Carmichael’s lambda function." Acta Arith 58, no. 4 (1991): 363-385．
 
 [^amm]: 原始论文参见 Adleman, Leonard, Kenneth Manders, and Gary Miller. "On taking roots in finite fields." In 18th Annual Symposium on Foundations of Computer Science (sfcs 1977), pp. 175-178. IEEE Computer Society, 1977．一个更易读的介绍可见于 Cao, Zhengjun, Qian Sha, and Xiao Fan. "Adleman-Manders-Miller root extraction method revisited." In International Conference on Information Security and Cryptology, pp. 77-85. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011．
 

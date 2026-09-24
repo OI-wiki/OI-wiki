@@ -119,9 +119,9 @@ Dirichlet 卷积具有一系列代数性质．
     \end{aligned}
     $$
     
-    其中，第三个等号改变求和顺序的逻辑是：当 $k$ 遍历 $n_1n_2$ 的因数时，$k$ 的素因子可以根据它是 $n_1$ 还是 $n_2$ 的素因子分为两类，将两类中的素因子（计重复）分别乘起来得到 $k_1$ 和 $k_2$，它们将分别遍历 $n_1$ 和 $n_2$ 的因数；反过来，根据 $n_1$ 和 $n_2$ 的因数 $k_1$ 和 $k_2$，总是可以得到 $n_1n_2$ 的因数 $k=k_1k_2$．
+    其中，第三个等号利用了 $f,g$ 的积性，其改变求和顺序的逻辑是：当 $k$ 遍历 $n_1n_2$ 的因数时，$k$ 的素因子可以根据它是 $n_1$ 还是 $n_2$ 的素因子分为两类，将两类中的素因子（计重复）分别乘起来得到 $k_1$ 和 $k_2$，它们将分别遍历 $n_1$ 和 $n_2$ 的因数；反过来，根据 $n_1$ 和 $n_2$ 的因数 $k_1$ 和 $k_2$，总是可以得到 $n_1n_2$ 的因数 $k=k_1k_2$．
     
-    对于第二点，设 $g=f^{-1}$，考虑应用数学归纳法．首先，$g(1)=1/f(1)=1$．此时，逆元的递归公式可以写作
+    对于第二点，设 $g=f^{-1}$，考虑应用数学归纳法．首先，$g(1)=1/f(1)=1$．此时，逆元的递推公式可以写作
     
     $$
     g(n) = \varepsilon(n) - \sum_{k\ell = n,~k\neq 1} f(k)g(\ell).
@@ -243,12 +243,12 @@ Dirichlet 生成函数的乘积对应着相应的数论函数的 Dirichlet 卷�
 
 $$
 \begin{aligned}
-F(s) &= \sum_{n=1}^{\infty}\dfrac{f(n)}{n^s} = \sum_{n=1}^{\infty}\prod_{p\in\mathbf P}\dfrac{f(p^{e})}{p^{es}} = \prod_{p\in\mathbf P}\sum_{e=0}^{\infty}\dfrac{f(p^e)}{p^{es}}\\
+F(s) &= \sum_{n=1}^{\infty}\dfrac{f(n)}{n^s} = \sum_{n=1}^{\infty}\prod_{p\in\mathbf P}\dfrac{f(p^{\nu_p(n)})}{p^{\nu_p(n)s}} = \prod_{p\in\mathbf P}\sum_{e=0}^{\infty}\dfrac{f(p^e)}{p^{es}}\\
 &= \prod_{p\in\mathbf P}\left(1 + \dfrac{f(p)}{p^s} + \dfrac{f(p^2)}{p^{2s}} + \dfrac{f(p^3)}{p^{3s}} + \cdots\right).
 \end{aligned}
 $$
 
-这意味着，$F(s)$ 可以分解为若干 $F_p(s)$ 的乘积，且每个 $F_p(s)$ 对应的数论函数都只在 $p$ 的幂次处可能取非零值．这一无穷乘积也称为 **Euler 乘积**（Euler product）．如果 $F(s)$ 和 $G(s)$ 都能分解成类似的形式，那么它们的乘积同样如此；将这一观察对应到数论函数上，就是积性函数的 Dirichlet 卷积仍然是积性函数．
+其中，$\nu_p(n)$ 表示 $n$ 的素因数分解中 $p$ 的幂次．这意味着，$F(s)$ 可以分解为若干 $F_p(s)=\sum_{e=0}^{\infty}f(p^e)p^{-es}$ 的乘积，且每个 $F_p(s)$ 对应的数论函数都只在 $p$ 的幂次处可能取非零值．这一无穷乘积也称为 **Euler 乘积**（Euler product）．如果 $F(s)$ 和 $G(s)$ 都能分解成类似的形式，那么它们的乘积同样如此；将这一观察对应到数论函数上，就是积性函数的 Dirichlet 卷积仍然是积性函数．
 
 进一步地，如果 $f(n)$ 还是完全积性函数，那么 $f(p^e)=f(p)^e$，上式可以继续简化：
 
@@ -265,7 +265,7 @@ $$
         E(s) = \sum_{n=1}^{\infty}\dfrac{\varepsilon(n)}{n^s} = 1.
         $$
     
-    2.  常数函数 $1(n)$ 是完全积性函数．它的 Dirichlet 生成函数是 Riemann 函数
+    2.  常数函数 $1(n)$ 是完全积性函数．它的 Dirichlet 生成函数是 Riemann ζ 函数
     
         $$
         I(s) = \sum_{n=1}^{\infty}\dfrac{1}{n^s} = \prod_{p\in\mathbf P}\dfrac{1}{1-p^{-s}} = \zeta(s).
@@ -292,20 +292,20 @@ $$
         \end{aligned}
         $$
     
-        结合幂函数的 Dirichlet 函数表达式，就得到 $\mathrm{id} = \varphi\ast 1$．
+        结合幂函数的 Dirichlet 生成函数表达式，就得到 $\mathrm{id} = \varphi\ast 1$．
     
     6.  约数函数 $\sigma_k(n)=\sum_{d\mid n}d^k$ 是积性函数．它的 Dirichlet 生成函数是
     
         $$
         \begin{aligned}
         \Sigma_k(s) &= \prod_{p\in\mathbf P}\left(1+\dfrac{1+p^k}{p^s}+\dfrac{1+p^k+p^{2k}}{p^{2s}}+\dfrac{1+p^k+p^{2k}+p^{3k}}{p^{3s}}+\cdots\right) \\
-        &= \prod_{p\in\mathbf P}\dfrac{1}{1-p^k}\left((1-p^k)+\dfrac{1-p^{2k}}{p^s}+\dfrac{1-p^{3k}}{p^{2s}}+\dfrac{1-p^{4k}}{p^{3k}}+\cdots\right)\\
+        &= \prod_{p\in\mathbf P}\dfrac{1}{1-p^k}\left((1-p^k)+\dfrac{1-p^{2k}}{p^s}+\dfrac{1-p^{3k}}{p^{2s}}+\dfrac{1-p^{4k}}{p^{3s}}+\cdots\right)\\
         &= \prod_{p\in\mathbf P}\dfrac{1}{1-p^k}\left(\dfrac{1}{1-p^{-s}} - \dfrac{p^k}{1-p^{k-s}}\right)\\
         &= \prod_{p\in\mathbf P}\dfrac{1}{(1-p^{-s})(1-p^{k-s})} = \zeta(s-k)\zeta(s).
         \end{aligned}
         $$
     
-        结合幂函数的 Dirichlet 表达式，就得到 $\sigma_k = \mathrm{id}_k\ast 1$．这正是 $\sigma_k$ 的定义式．
+        结合幂函数的 Dirichlet 生成函数表达式，就得到 $\sigma_k = \mathrm{id}_k\ast 1$．这正是 $\sigma_k$ 的定义式．
     
     7.  无平方因子数的指示函数 $u(n)=|\mu(n)|=\mu^2(n)$ 是积性函数．它的 Dirichlet 生成函数是
     
@@ -329,7 +329,7 @@ $$
 F(s) = \prod_{p\in\mathbf P}f_p(p^{-s}).
 $$
 
-引入这一记号说明，Dirichlet 卷积在局部化之后就是普通的幂级数乘法．
+引入这一记号后可以看出，Dirichlet 卷积在局部化之后就是普通的幂级数乘法．
 
 将 Dirichlet 生成函数的结果转译到 Bell 级数上，就得到如下性质：
 
@@ -416,7 +416,7 @@ $$
 其中，$G_p(s)$ 是 $G(s)$ 的 Euler 乘积分解中的因式，它只包含 $p$ 的幂次处的系数：
 
 $$
-G_p(s) = \sum_{p^k\le n}\dfrac{f(p^k)}{p^{ks}} = 1 + \dfrac{f(p)}{p^s} + \dfrac{f(p^2)}{p^{2s}} + \cdots.
+G_p(s) = \sum_{p^k\le n}\dfrac{g(p^k)}{p^{ks}} = 1 + \dfrac{g(p)}{p^s} + \dfrac{g(p^2)}{p^{2s}} + \cdots.
 $$
 
 那么，从 $F(s)$ 开始，遍历所有不超过 $n$ 的素数 $p$，将 $G_p(s)$ 逐一乘上去，同样可以得到最终结果 $H(s)$．将 $G_p(s)$ 乘上去时，直接应用一般情形中的暴力枚举算法即可．总枚举次数
@@ -434,7 +434,7 @@ $$
     --8<-- "docs/math/code/dirichlet/dirichlet-2.cpp:core"
     ```
 
-特别地，当积性函数 $g$ 是完全积性函数或其 Dirichlet 逆时，例如当 $g = 1$ 或 $g = \mu$ 时，那么算法可以进一步简化．此时，Dirichlet 卷积 $h = f\ast g$ 的计算可以采用常数更小的 [Dirichlet 前缀和/差分](./mobius.md#dirichlet-前缀和) 算法，但是算法时间复杂度仍为 $O(n\log\log n)$．
+特别地，当积性函数 $g$ 是完全积性函数或其 Dirichlet 逆时，例如当 $g = 1$ 或 $g = \mu$ 时，算法可以进一步简化．此时，Dirichlet 卷积 $h = f\ast g$ 的计算可以采用常数更小的 [Dirichlet 前缀和/差分](./mobius.md#dirichlet-前缀和) 算法，但是算法时间复杂度仍为 $O(n\log\log n)$．
 
 ### 结果为积性函数的情形
 
@@ -448,8 +448,8 @@ $$
 
 $$
 \begin{aligned}
-\sum_{p\in\mathbf P,~p\le n}\sum_{e=1}^{\lfloor\log_p n\rfloor}(e+1) &\le \sum_{p\in\mathbf P,~p\le\sqrt{n}}\lfloor\log_p n\rfloor^2 + \sum_{p\in\mathbf P,~\sqrt{n} < p\le n}1 \\
-&\le \sqrt{n}(\log_2 n)^2 + n \in O(n).
+\sum_{p\in\mathbf P,~p\le n}\sum_{e=1}^{\lfloor\log_p n\rfloor}(e+1) &\le \sum_{p\in\mathbf P,~p\le\sqrt{n}}2\lfloor\log_p n\rfloor^2 + \sum_{p\in\mathbf P,~\sqrt{n} < p\le n}2 \\
+&\le 2\sqrt{n}(\log_2 n)^2 + 2n \in O(n).
 \end{aligned}
 $$
 
@@ -469,4 +469,4 @@ $$
 -   [Euler product - Wikipedia](https://en.wikipedia.org/wiki/Euler_product)
 -   [Bell series - Wikipedia](https://en.wikipedia.org/wiki/Bell_series)
 -   [Dirichlet 積と、数論関数の累積和 by maspy](https://maspypy.com/dirichlet-%e7%a9%8d%e3%81%a8%e3%80%81%e6%95%b0%e8%ab%96%e9%96%a2%e6%95%b0%e3%81%ae%e7%b4%af%e7%a9%8d%e5%92%8c)
--   [杜教筛（+ 贝尔级数 + powerful number) by command\_block - 洛谷](https://www.luogu.com.cn/article/ygfzawod)
+-   [杜教筛（+ 贝尔级数 + powerful number）by command\_block - 洛谷](https://www.luogu.com.cn/article/ygfzawod)

@@ -10,7 +10,7 @@ $$
 
 规模不大时，组合数可以通过 [递推公式](../combinatorics/combination.md#组合数性质--二项式推论) 求解，时间复杂度为 $O(nk)$；也可以在较大的素数模数 $p>n$ 下，通过计算分子和分母的阶乘在 $O(n)$ 时间内求解．但当问题规模很大（$n\sim 10^{18}$）时，这些方法不再适用．
 
-基于 Lucas 定理及其推广，本文讨论一种可以在模数不太大 ($m \sim 10^6$) 时求解组合数的方法．更准确地说，只要模数的唯一分解 $m=\prod p_i^{e_i}$ 中所有素数幂的和（即 $\sum p_i^{e_i}$）在 $10^6$ 规模时就可以使用该方法，因为算法的预处理大致相当于这一规模．
+基于 Lucas 定理及其推广，本文讨论一种可以在模数不太大（$m \sim 10^6$）时求解组合数的方法．更准确地说，只要模数的唯一分解 $m=\prod p_i^{e_i}$ 中所有素数幂的和（即 $\sum p_i^{e_i}$）在 $10^6$ 规模时就可以使用该方法，因为算法的预处理大致相当于这一规模．
 
 ## Lucas 定理
 
@@ -68,7 +68,7 @@ $$
     \binom{n}{k}\bmod p.
     $$
     
-    转而计算等式右侧中项 $x^k$ 的系数．第一个因子中各项的次数必然是 $p$ 的倍数，第二个因子中各项的次数必然小于 $p$，而 $k$ 分解成这样两部分的和的方式是唯一的，即带余除法：$k=p\lfloor k/p\rfloor +(k\bmod p)$．因此，第一个因子只能贡献其 $p\lfloor k/p\rfloor$ 次项，第二个因子只能贡献其 $k\bmod p$ 次项．所以，右侧等式中 $x^k$ 系数为两个因子各自贡献的项的系数的乘积：
+    转而计算等式右侧中项 $x^k$ 的系数．第一个因子中各项的次数必然是 $p$ 的倍数，第二个因子中各项的次数必然小于 $p$，而 $k$ 分解成这样两部分的和的方式是唯一的，即带余除法：$k=p\lfloor k/p\rfloor +(k\bmod p)$．因此，第一个因子只能贡献其 $p\lfloor k/p\rfloor$ 次项，第二个因子只能贡献其 $k\bmod p$ 次项．所以，等式右侧中 $x^k$ 的系数为两个因子各自贡献的项的系数的乘积：
     
     $$
     \binom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}\binom{n\bmod p}{k\bmod p}\bmod p.
@@ -133,18 +133,18 @@ $$
     
     等式右侧，前两项的和严格小于 $2p$，而第三项 $n\bmod p$ 正是前两项的和的余数，所以右侧必然非负，但小于 $2p$，又需要是 $p$ 的倍数，就只能是 $0$ 或 $p$．这说明 $\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor$ 只能是 $0$ 或 $1$：
     
-    -   如果它是 $0$，那么此时也成立 $(n\bmod p) = (k\bmod p)+((n-k)\bmod p)$．因此，上式中的第一个因子的指数为 $0$，该因子就等于一；第二个因子就是 $\dbinom{n\bmod p}{k\bmod p}$；第三个因子则由前文的展开式可知，就等于 $\dbinom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}$．此时，Lucas 公式成立；
+    -   如果它是 $0$，那么此时也成立 $(n\bmod p) = (k\bmod p)+((n-k)\bmod p)$．因此，上式中的第一个因子的指数为 $0$，该因子就等于一；第二个因子就是 $\dbinom{n\bmod p}{k\bmod p}$；第三个因子则由前文的展开式（注意此时 $\lfloor(n-k)/p\rfloor=\lfloor n/p\rfloor-\lfloor k/p\rfloor$）可知，就等于 $\dbinom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}$．此时，Lucas 定理成立；
     -   如果它是 $1$，那么第一个因子的指数为 $1$，该因子就等于零，所以二项式系数的余数为零．同时，Lucas 定理所要证明的等式右侧的 $\dbinom{n\bmod p}{k\bmod p}$ 也必然是零，因为此时必然有 $(n\bmod p)<(k\bmod p)$；否则，将有
     
         $$
-        ((n-k)\bmod p) = p + (n\bmod p)  - (k\bmod p) \ge p.
+        ((n-k)\bmod p) = p + (n\bmod p) - (k\bmod p) \ge p.
         $$
     
         这显然与余数的定义矛盾．
     
     综合两种情形，就得到了所要求证的 Lucas 定理．这一证明说明，在求解素数模下组合数时，利用 Lucas 定理和利用 exLucas 算法得到的结果是等价的．
 
-Lucas 定理指出，模数为素数 $p$ 时，大组合数的计算可以转化为规模更小的组合数的计算．在右式中，第一个组合数可以继续递归，直到 $n,k<p$ 为止；第二个组合数则可以直接计算，或者提前预处理出来．写成代码的形式就是：
+Lucas 定理指出，模数为素数 $p$ 时，大组合数的计算可以转化为规模更小的组合数的计算．在右式中，第一个组合数可以继续递归，直到 $k=0$ 为止；第二个组合数则可以直接计算，或者提前预处理出来．写成代码的形式就是：
 
 ???+ example "示意"
     ```cpp
@@ -171,11 +171,11 @@ Lucas 定理指出，模数为素数 $p$ 时，大组合数的计算可以转化
 
 ## exLucas 算法
 
-Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于 $p$ 不是素数的情况，就需要用到 exLucas 算法．虽然名字如此，该算法实际操作时并没有用到 Lucas 定理．它的关键步骤是 [计算素数幂模下的阶乘](./factorial.md)．上文的第二个证明指出了它与 Lucas 定理的联系．
+Lucas 定理中对于模数 $p$ 要求必须为素数，那么对于模数不是素数的情况，就需要用到 exLucas 算法．虽然名字如此，该算法实际操作时并没有用到 Lucas 定理．它的关键步骤是 [计算素数幂模下的阶乘](./factorial.md)．上文的第二个证明指出了它与 Lucas 定理的联系．
 
 ### 素数幂模的情形
 
-首先考虑模数为素数幂 $p^\alpha$ 的情形．将阶乘 $n!$ 中的 $p$ 的幂次和其他幂次分开，可以得到分解：
+首先考虑模数为素数幂 $p^\alpha$ 的情形．将阶乘 $n!$ 中的 $p$ 的幂次和其他因子分开，可以得到分解：
 
 $$
 n! = p^{\nu_p(n!)}(n!)_p.
@@ -203,10 +203,10 @@ $$
 
 $$
 \begin{cases}
-\dbinom{n}{k} \equiv r_1, &\pmod{p_1^{\alpha_1}}, \\
-\dbinom{n}{k} \equiv r_2, &\pmod{p_2^{\alpha_2}}, \\
+\dbinom{n}{k} \equiv r_1 &\pmod{p_1^{\alpha_1}}, \\
+\dbinom{n}{k} \equiv r_2 &\pmod{p_2^{\alpha_2}}, \\
 \quad\quad\cdots\\
-\dbinom{n}{k} \equiv r_s, &\pmod{p_s^{\alpha_s}}.
+\dbinom{n}{k} \equiv r_s &\pmod{p_s^{\alpha_s}}.
 \end{cases}
 $$
 
@@ -226,6 +226,6 @@ $$
 ## 习题
 
 -   [Luogu3807【模板】卢卡斯定理](https://www.luogu.com.cn/problem/P3807)
--   [SDOI2010 古代猪文  卢卡斯定理](https://loj.ac/problem/10229)
+-   [SDOI2010 古代猪文 卢卡斯定理](https://loj.ac/problem/10229)
 -   [Luogu4720【模板】扩展卢卡斯](https://www.luogu.com.cn/problem/P4720)
 -   [Ceizenpok’s formula](http://codeforces.com/gym/100633/problem/J)
