@@ -61,15 +61,15 @@
     y = y_0 + id' \pmod{\varphi(m)},~0\le y_0 < d',~i=0,1,\cdots,d-1.
     $$
     
-    由此，就几乎可以得到本定理的全部内容；唯一需要额外说明的是判别式 $a^{d'} \equiv 1 \pmod m$．由 [阶的性质 3](./primitive-root.md#ord-prop-3) 可知
+    由此，就几乎可以得到本定理的全部内容；唯一需要额外说明的是判别式 $a^{d'} \equiv 1 \pmod m$．由 [阶的性质 3](./primitive-root.md#幂的循环结构) 可知
     
     $$
     \delta_m(a) = \delta_m(g^{\operatorname{ind}_g a}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_g a)} = \dfrac{\varphi(m)}{\operatorname{ind}_g a}.
     $$
     
-    又已知方程有解当且仅当 $d\mid \operatorname{ind}_g a$，亦即 $\delta_m(a)\mid d'$．由 [阶的性质 2](./primitive-root.md#ord-prop-2) 可知，这就等价于该判别式．
+    又已知方程有解当且仅当 $d\mid \operatorname{ind}_g a$，亦即 $\delta_m(a)\mid d'$．由 [阶的性质 2](./primitive-root.md#幂的循环结构) 可知，这就等价于该判别式．
 
-模数为 $2$ 的幂次的情形较为特殊．为处理这种情形，需要用到关于模 $2^e$ 既约剩余系结构的一个 [结论](./primitive-root.md#mod-pow-2)：所有奇数 $a$ 都唯一地同余于某个 $(-1)^s5^r\bmod 2^e$ 形式的整数，其中，$s\in\{0,1\}$ 且 $0\le r < 2^{e-2}$．借助这一结果，可以得到如下结论：
+模数为 $2$ 的幂次的情形较为特殊．为处理这种情形，需要用到关于模 $2^e$ 既约剩余系结构的一个 [结论](./primitive-root.md#递推公式)：所有奇数 $a$ 都唯一地同余于某个 $(-1)^s5^r\bmod 2^e$ 形式的整数，其中，$s\in\{0,1\}$ 且 $0\le r < 2^{e-2}$．借助这一结果，可以得到如下结论：
 
 ???+ note "定理"
     设整数 $k\ge 2$，奇数 $a$ 和正整数 $m=2^e$ 且 $e \ge 2$．那么，当 $k$ 是奇数时，有：
@@ -148,7 +148,7 @@
 ??? note "证明"
     根据阶的定义，所有与 $m$ 互素的整数 $a$ 都是模 $m$ 的 $\delta_m(a)$ 次本原单位根，其中，$\delta_m(a)$ 是 $a$ 模 $m$ 的阶．反过来，如果 $a$ 是模 $m$ 的 $k$ 次单位根，那么 $\gcd(a^k,m)=1$，所以 $\gcd(a,m)=1$．因此，$a$ 是模 $m$ 的（本原）单位根，当且仅当 $a$ 与 $m$ 互素．这就是性质 1．
     
-    直接验证定义可知，只要 $k\mid k'$，就可以从 $a^k\equiv 1\pmod m$ 推出 $a^{k'}\equiv 1\pmod m$，这就是性质 2．根据 [阶的性质](./primitive-root.md#ord-prop-3) 可知
+    直接验证定义可知，只要 $k\mid k'$，就可以从 $a^k\equiv 1\pmod m$ 推出 $a^{k'}\equiv 1\pmod m$，这就是性质 2．根据 [阶的性质](./primitive-root.md#幂的循环结构) 可知
     
     $$
     \delta(a^\ell) = \dfrac{\delta_m(a)}{\gcd(\delta_m(a),\ell)}.

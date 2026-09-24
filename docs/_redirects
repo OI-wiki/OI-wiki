@@ -68,7 +68,8 @@
 /math/eulerian /math/combinatorics/eulerian
 /math/notation /intro/symbol
 /math/prime /math/number-theory/prime
-/math/meissel-lehmer /math/number-theory/meissel-lehmer
+/math/meissel-lehmer /math/number-theory/prime-counting
+/math/number-theory/meissel-lehmer /math/number-theory/prime-counting
 /math/gcd /math/number-theory/gcd
 /math/euler /math/number-theory/euler-totient
 /math/number-theory/euler /math/number-theory/euler-totient
