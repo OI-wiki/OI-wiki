@@ -15,14 +15,14 @@
 -   对于每位男士 $m\in M$，都存在集合 $W\cup\{m\}$ 上一个严格的全序 $\preceq_m$；
 -   对于每位女士 $w\in W$，都存在集合 $M\cup\{w\}$ 上一个严格的全序 $\preceq_w$．
 
-除了在异性之间相互比较之外，每个人还会将自身加入到这个偏好顺序中．这表示，这个人只会接受与排在自身前面的异性匹配；这些异性称为 **可接受的**（acceptable）．显然，不可接受的异性的偏好顺序是无足轻重的；原则上，只需要给出可接受的异性之间的偏好顺序即可．所以，这些存在不可接受异性的偏好也称为列表不完整的偏好（preferences with incomplete lists）．
+除了在异性之间相互比较之外，每个人还会将自身加入到这个偏好顺序中．这表示，这个人只会接受比单身更偏好的异性；这些异性称为 **可接受的**（acceptable）．显然，不可接受的异性的偏好顺序是无足轻重的；原则上，只需要给出可接受的异性之间的偏好顺序即可．所以，这些存在不可接受异性的偏好也称为列表不完整的偏好（preferences with incomplete lists）．
 
 ???+ example "例子"
     假设 $m$ 是一位男士，$w_1,w_2,w_3$ 是三位女士，且有偏好关系 $w_1\prec_m m \prec_m w_2\prec_m w_3$ 成立．那么，男士 $m$ 相对于和女士 $w_1$ 匹配，更喜欢单身；相对于单身，更喜欢和女士 $w_2$ 匹配；相对于和女士 $w_2$ 匹配，更喜欢和女士 $w_3$ 匹配．对于男士 $m$，女士 $w_1$ 就是不可接受的，女士 $w_2,w_3$ 就是可接受的．
 
 市场上的一个 **匹配** $\mu:M\cup W\rightarrow M\cup W$ 需要满足如下性质：
 
--   每个人只能匹配异性或其自身，即对所有 $m\in M$ 都有 $\mu(m)\in W\cup\{m\}$ 且对所有 $w\in W$ 都有 $\mu(w)\in W\cup\{w\}$．
+-   每个人只能匹配异性或其自身，即对所有 $m\in M$ 都有 $\mu(m)\in W\cup\{m\}$ 且对所有 $w\in W$ 都有 $\mu(w)\in M\cup\{w\}$．
 -   匹配是相互的，即对所有 $i\in M\cup W$ 都有 $i = \mu(\mu(i))$．
 
 一个匹配 $\mu$ 中可能存在两种不稳定因素：
@@ -42,7 +42,7 @@ Gale–Shapley 算法有两个对称的版本，分别由男士求婚和女士�
 
 1.  算法开始时，每位女士都视为保留着她对其自身的求婚请求，每位男士都标记为活跃的．
 2.  活跃的男士会向他可接受但是尚未求婚过的女士中最喜欢的那位求婚；如果这样的女士不存在，就无需进行任何操作．无论求婚与否，将所有男士都标记为不活跃的．
-3.  收到新的求婚请求的女士，会将他们与之前保留的求婚请求比较，只保留其中最喜欢的那一个（可能是她自身），并拒绝所有其他的求婚请求．将遭到拒绝的男士恢复标记为活跃的．
+3.  收到新的求婚请求的女士，会将它们与之前保留的求婚请求比较，只保留其中最喜欢的那一个（可能是她自身），并拒绝所有其他的求婚请求．将遭到拒绝的男士恢复标记为活跃的．
 4.  重复前两个步骤，直到没有活跃的男士为止．此时，女士接受她们当前保留的求婚请求．这样得到的匹配结果，就是一个稳定匹配．
 
 由于每位男士向每位女士至多求婚一次，算法在 $O(|M||W|)$ 时间内一定会结束．
@@ -56,7 +56,7 @@ Gale–Shapley 算法有两个对称的版本，分别由男士求婚和女士�
 
 ### 稳定匹配的性质
 
-稳定匹配有着良好的理论性质．首先，Gale–Shapley 算法构造性地证明，稳定匹配一定存在．
+稳定匹配有着良好的理论性质．
 
 ???+ note "定理 1（Gale and Shapley, 1962）"
     Gale–Shapley 算法得到的是一个稳定匹配．因此，稳定匹配存在．
@@ -64,7 +64,7 @@ Gale–Shapley 算法有两个对称的版本，分别由男士求婚和女士�
 ??? note "证明"
     男士不会对他不接受的女士求婚，女士也会立即拒绝她不接受的男士的求婚．因此，最终互相匹配的男士和女士一定是彼此接受的，不可能存在阻塞个体．要证明它是稳定匹配，只需要说明不存在阻塞对．
     
-    反证法．假设 $(m,w)$ 是一个阻塞对．那么，在男士 $m$ 向 $\mu(m)$ 求婚之前，他一定已经向 $w$ 求过婚．但是，既然女士 $w$ 拒绝了 $m$，她一定是收到了她更喜欢的人 $m'$ 的求婚请求．如果 $m'\neq \mu(w)$，那么，女士 $w$ 相对于 $m'$ 只会更喜欢 $\mu(w)$．由此，相对于 $m$，女士 $w$ 一定更喜欢最终的匹配对象 $\mu(w)$．这与 $(m,w)$ 是阻塞对矛盾．所以，匹配是稳定的．
+    反证法．假设 $(m,w)$ 是一个阻塞对．那么，由于 $\mu(m)\prec_m w$，男士 $m$ 一定已经向 $w$ 求过婚．但是，既然女士 $w$ 拒绝了 $m$，她一定是收到了她更喜欢的人 $m'$ 的求婚请求．如果 $m'\neq \mu(w)$，那么，女士 $w$ 相对于 $m'$ 只会更喜欢 $\mu(w)$．由此，相对于 $m$，女士 $w$ 一定更喜欢最终的匹配对象 $\mu(w)$．这与 $(m,w)$ 是阻塞对矛盾．所以，匹配是稳定的．
 
 ???+ note "推论"
     如果 $|M|=|W|$ 且所有异性都是可接受的，那么，存在一个稳定的完美匹配．
@@ -77,7 +77,7 @@ Gale–Shapley 算法中，可以由男士求婚，也可以由女士求婚．�
 ??? note "证明"
     根据对称性，只需要证明 $\mu(m)\preceq_m\mu_M(m)$ 对于所有 $m\in M$ 成立．为此，仍然考虑由男士求婚的 Gale–Shapley 算法，并记 $k(m,w)$ 为女士 $w$ 拒绝男士 $m$ 的求婚时，算法进行到的轮次．这个轮次对于所有满足 $\mu_M(m)\prec_m w$ 的 $(m,w)$ 都是良定义的．
     
-    假设 $\mu_M$ 并非对所有男士都最有利的，也就是说，存在稳定匹配 $\mu$ 和男士 $m\in M$ 使得 $\mu_M(m)\prec_m\mu(m)$ 成立．由于匹配 $\mu_M$ 是稳定的，就有 $m\preceq_m\mu_M(m)\prec_m\mu(m)$，所以 $\mu(m)$ 是女士，一定有良定义的 $k(m,\mu(m))$．于是，不妨设 $m$ 恰为所有这样的男士中，$k(m,\mu(m))$ 最小的那个．设算法过程中，女士 $w=\mu(m)$ 拒绝男士 $m$ 时保留的是男士 $m'$ 的求婚请求，也就是说，$m=\mu(w)\prec_w m'$．由于 $\mu$ 是稳定匹配，$(w,m')$ 不能是阻塞对，又有 $\mu(m')\neq w$，所以，$w\prec_{m'}\mu(m')$．由于 Gale–Shapley 算法过程中，女士 $w$ 未必会保留 $m'$ 的求婚请求到最后，所以 $\mu_M(m')\preceq_{m'}w\prec_{m'}\mu(m')$．此时，$k(m',\mu(m'))$ 是良定义的．而且，由于 $w\prec_{m'}\mu(m')$，所以，女士 $\mu(m')$ 拒绝 $m'$ 的求婚请求之后，才会有 $w$ 保留 $m'$ 的求婚请求，也就是说，$k(m',\mu(m')) < k(m,\mu(m))$．这与 $m$ 的选取相矛盾．所以，根据反证法，$\mu_M$ 是对所有男士最有利的稳定匹配．
+    假设 $\mu_M$ 并非对所有男士都最有利的，也就是说，存在稳定匹配 $\mu$ 和男士 $m\in M$ 使得 $\mu_M(m)\prec_m\mu(m)$ 成立．由于匹配 $\mu_M$ 是稳定的，就有 $m\preceq_m\mu_M(m)\prec_m\mu(m)$，所以 $\mu(m)$ 是女士，一定有良定义的 $k(m,\mu(m))$．于是，不妨设 $m$ 恰为所有这样的男士中，$k(m,\mu(m))$ 最小的那个．设算法过程中，女士 $w=\mu(m)$ 拒绝男士 $m$ 时保留的是男士 $m'$ 的求婚请求（由于 $m$ 对于 $w$ 是可接受的，$m'$ 不是 $w$ 自身），也就是说，$m=\mu(w)\prec_w m'$．由于 $\mu$ 是稳定匹配，$(m',w)$ 不能是阻塞对，又有 $\mu(m')\neq w$，所以，$w\prec_{m'}\mu(m')$．由于 Gale–Shapley 算法过程中，女士 $w$ 未必会保留 $m'$ 的求婚请求到最后，所以 $\mu_M(m')\preceq_{m'}w\prec_{m'}\mu(m')$．此时，$k(m',\mu(m'))$ 是良定义的．而且，由于 $w\prec_{m'}\mu(m')$，所以，女士 $\mu(m')$ 拒绝 $m'$ 的求婚请求之后，才会有 $w$ 保留 $m'$ 的求婚请求，也就是说，$k(m',\mu(m')) < k(m,\mu(m))$．这与 $m$ 的选取相矛盾．所以，根据反证法，$\mu_M$ 是对所有男士最有利的稳定匹配．
 
 一个匹配市场可能存在指数级数量的稳定匹配．设 $\mathcal S$ 为全体稳定匹配的集合．在这个集合上，可以定义两个偏序：
 
@@ -104,7 +104,7 @@ Gale–Shapley 算法中，可以由男士求婚，也可以由女士求婚．�
 ??? note "证明"
     根据引理，容易说明两个偏序集是对偶的．如果 $\mu_1\preceq_M\mu_2$，这说明 $M(\mu_1)=\varnothing$；由引理，$W(\mu_2)=\varnothing$，此即 $\mu_2\preceq_W\mu_1$．反之亦然．这就说明两者互为对偶．再结合前文的定理 2，就得到 $\mu_M$ 和 $\mu_W$ 是两个偏序集的最值元素．命题中还需要证明的是，两个偏序集是格．由对称性，只需要证明 $(\mathcal S,\preceq_M)$ 是格．再根据交和并运算的对称性，只需要证明稳定匹配的并仍然是稳定匹配．形式化地，对于任意 $\mu_1,\mu_2\in\mathcal S$，需要证明对于所有 $m\in M$ 都满足 $\mu(m)=\mu_1(m)\lor_m\mu_2(m)$ 的匹配 $\mu=\mu_1\lor_M\mu_2$ 是稳定匹配，其中，$\lor_m$ 是全序 $\preceq_m$ 下的并运算（即两者中 $m$ 更喜欢的那个）．
     
-    仍采用引理中的记号．对于 $i\in M(\mu_1)\cup W(\mu_2)$，有 $\mu(i)=\mu_1(i)$；否则，有 $\mu(i)=\mu_2(i)$．由于 $\mu_1$ 和 $\mu_2$ 都是稳定的，不存在阻塞个体，$\mu$ 也同样如此．假设 $(m,w)$ 是 $\mu$ 的阻塞对．如果 $m\in M(\mu_1)$，那么，$\mu_2(m)\prec_m\mu_1(m)=\mu(m)\prec_m w$．此时，如果 $w\in W(\mu_2)$，那么，$\mu_1(w)=\mu(w)\prec_w m$，所以，$(m,w)$ 是 $\mu_1$ 的阻塞对，矛盾；否则，$w\in W\setminus W(\mu_2)$，有 $\mu_2(w)=\mu(w)\prec_w m$，所以，$(m,w)$ 是 $\mu_2$ 的阻塞对，也矛盾．类似地，$m\in M\setminus M(\mu_1)$ 的情形也只能导出矛盾．由反证法可知，这样的阻塞对不存在．所以，$\mu_1\lor_M\mu_2$ 是稳定匹配．命题得证．
+    仍采用引理中的记号．对于 $i\in M(\mu_1)\cup W(\mu_2)$，令 $\mu(i)=\mu_1(i)$；否则，令 $\mu(i)=\mu_2(i)$．由引理，$\mu_1$ 和 $\mu_2$ 都将集合 $M(\mu_1)\cup W(\mu_2)$ 映射到其自身，所以 $\mu$ 是良定义的匹配．由于 $\mu_1$ 和 $\mu_2$ 都是稳定的，不存在阻塞个体，$\mu$ 也同样如此．假设 $(m,w)$ 是 $\mu$ 的阻塞对．如果 $m\in M(\mu_1)$，那么，$\mu_2(m)\prec_m\mu_1(m)=\mu(m)\prec_m w$．此时，如果 $w\in W(\mu_2)$，那么，$\mu_1(w)=\mu(w)\prec_w m$，所以，$(m,w)$ 是 $\mu_1$ 的阻塞对，矛盾；否则，$w\in W\setminus W(\mu_2)$，有 $\mu_2(w)=\mu(w)\prec_w m$，所以，$(m,w)$ 是 $\mu_2$ 的阻塞对，也矛盾．类似地，$m\in M\setminus M(\mu_1)$ 的情形也只能导出矛盾．由反证法可知，这样的阻塞对不存在．所以，$\mu_1\lor_M\mu_2$ 是稳定匹配．命题得证．
 
 最后，在所有稳定匹配中，未匹配的男士和女士的集合都是固定的．
 
@@ -124,15 +124,15 @@ Gale–Shapley 算法中，可以由男士求婚，也可以由女士求婚．�
 
 如果将稳定婚姻问题中的一对一匹配的限制放宽，允许多对一匹配，就得到了 **学院招生问题**（college admissions problem）．此时，一个学院可以招收多名学生，只要不超过招生限额；但是，一名学生仍然只允许进入至多一个学院学习．类似的情景还出现在公司招聘、医院招收实习医生等场景中．
 
-对于这类问题，Gale–Shapley 算法仍然适用．例如，由学生申请的 Gale–Shapley 算法中，学院可以维持一个不超过限额长度的候选名单（waitlist），每次只要在申请数量超过限额时，拒绝最差学生的申请即可．前文关于稳定匹配性质的讨论对于这一场景仍然适用．特别地，定理 4 对应的版本是，在所有稳定匹配中，学校能够招到的学生人数是固定的．这也称为 **乡村医院定理**（rural hospitals theorem）．因为它意味着，无论如何更改匹配机制，只要得到的结果是稳定的，那些招不满医生的乡村医院永远招不到人．
+对于这类问题，Gale–Shapley 算法仍然适用．例如，由学生申请的 Gale–Shapley 算法中，学院可以维持一个不超过限额长度的候选名单（waitlist），每次只要在申请数量超过限额时，拒绝最差学生的申请即可．前文关于稳定匹配性质的讨论对于这一场景仍然适用．特别地，定理 4 对应的版本是，在所有稳定匹配中，学院能够招到的学生人数是固定的．这也称为 **乡村医院定理**（rural hospitals theorem）．因为它意味着，无论如何更改匹配机制，只要得到的结果是稳定的，那些招不满医生的乡村医院永远也招不满．
 
 ### 稳定室友问题
 
 如果将稳定婚姻问题中，只能匹配异性的条件放宽，就得到了 **稳定室友问题**（stable roommates problem）．此时，初始只有若干名学生，需要两两结对成为室友．对于这类问题，稳定匹配未必存在．Irving 在 1985 年提出了可以在 $O(n^2)$ 时间内解决该问题的算法．
 
-### 住房分配问题
+### 住房市场问题
 
-稳定婚姻问题中，两组个体互相有偏好，所以是双边匹配问题．除此之外，还可以考虑单边匹配问题．一个常见的场景是 **住房分配问题**（house allocation problem）．有 $n$ 名居民，各自拥有一套住房．每人对所有住房有一个严格偏好．现在，要将这些住房重新分配给这些居民，要求每名居民都不能分配到比初始更差的住房，且不存在任何数量的居民，可以私自交换房产，得到更满意的结局．对于这一问题，可以通过 Top Trading Cycle 算法在 $O(n^2)$ 时间内解决．这类问题还出现在肾移植等场景中．
+稳定婚姻问题中，两组个体互相有偏好，所以是双边匹配问题．除此之外，还可以考虑单边匹配问题．一个常见的场景是 **住房市场问题**（housing market problem）．有 $n$ 名居民，各自拥有一套住房．每人对所有住房有一个严格偏好．现在，要将这些住房重新分配给这些居民，要求每名居民都不能分配到比初始更差的住房，且不存在任何数量的居民，可以私自交换房产，得到更满意的结局．对于这一问题，可以通过 Top Trading Cycle 算法在 $O(n^2)$ 时间内解决．这类问题还出现在肾移植等场景中．
 
 ## 习题
 
@@ -149,9 +149,9 @@ Gale–Shapley 算法中，可以由男士求婚，也可以由女士求婚．�
 -   [Top trading cycle - Wikipedia](https://en.wikipedia.org/wiki/Top_trading_cycle)
 -   [Stable matching: Theory, evidence, and practical design - the 2012 Nobel Prize in Economics](https://www.nobelprize.org/uploads/2018/06/popular-economicsciences2012.pdf)
 -   [Notes on Matching and Market Design by Xiang Sun](https://www.xiangsun.org/wp-content/uploads/2013/02/notes-2015-matching.pdf)
--   Gale, David, and Lloyd S. Shapley. "College admissions and the stability of marriage." The American mathematical monthly 69, no. 1 (1962): 9-15.
+-   Gale, David, and Lloyd S. Shapley. "College admissions and the stability of marriage." The American Mathematical Monthly 69, no. 1 (1962): 9-15.
 -   Irving, Robert W. "An efficient algorithm for the stable roommates problem." Journal of Algorithms 6, no. 4 (1985): 577-595.
--   Knuth, Donald Ervin. "Marriages stables." Technical report (1976).
+-   Knuth, Donald Ervin. "Mariages stables et leurs relations avec d’autres problèmes combinatoires." Les Presses de l’Université de Montréal (1976).
 -   McVitie, David G., and Leslie B. Wilson. "Stable marriage assignment for unequal sets." BIT Numerical Mathematics 10, no. 3 (1970): 295-309.
 -   Roth, Alvin E., and Marilda Sotomayor. "Two-sided matching." Handbook of game theory with economic applications 1 (1992): 485-541.
--   Roth, Alvin E. "Deferred acceptance algorithms: History, theory, practice, and open questions." international Journal of game Theory 36, no. 3-4 (2008): 537-569.
+-   Roth, Alvin E. "Deferred acceptance algorithms: History, theory, practice, and open questions." International Journal of Game Theory 36, no. 3-4 (2008): 537-569.

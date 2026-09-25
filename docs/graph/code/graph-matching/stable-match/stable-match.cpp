@@ -24,7 +24,7 @@ struct StableMatching {
     // Compute Y's ranks over X.
     std::vector<std::vector<int>> ranks(ny, std::vector<int>(nx));
     for (int j = 0; j != ny; ++j) {
-      for (int i = 0; i != pref_y[j].size(); ++i) {
+      for (int i = 0; i != (int)pref_y[j].size(); ++i) {
         ranks[j][pref_y[j][i]] = nx - i;
       }
     }
@@ -37,6 +37,7 @@ struct StableMatching {
     while (!q.empty()) {
       auto i = q.front();
       q.pop();
+      if (ids[i] == (int)pref_x[i].size()) continue;  // List exhausted.
       auto j = pref_x[i][ids[i]++];
       if (ranks[j][i] > waitlist[j]) {
         if (waitlist[j]) q.push(pref_y[j][nx - waitlist[j]]);
