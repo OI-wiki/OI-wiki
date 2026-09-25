@@ -1,4 +1,5 @@
-author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran, CuriosityQiu
+author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZH, CoelacanthusHex, countercurrent-time, Dong Tsing-hsuen, Early0v0, Enter-tainer, F1shAndCat, Great-designer, hensier, HeRaNO, Hszzzx, imba-tjd, Ir1d, ksyx, lingxier, LovelyBuggies, Marcythm, mgt, Mooos-MoSheng, NachtgeistW, ouuan, Rottenwooood, shawlleyw, shuzhouliu, sshwy, SukkaW, Suyun514, Tiphereth-A, tLLWtG, wineee, wxh06, Xeonacid, yusancky, zyouxam, zzjjbb, jiangmuran, CuriosityQiu,
+Jerry-CHZY
 
 ## 关于 Python
 
@@ -53,6 +54,91 @@ Python 是一门已在世界上广泛使用的解释型语言．它提供了高�
     本表格在本文撰写时（2025/01/15）时有效，建议前往相关平台重新查证．
 
 目前国内关于 **源码** 的镜像缓存主要是 [北京交通大学自由与开源软件镜像站](https://mirror.bjtu.edu.cn/python/) 和 [华为开源镜像站](https://repo.huaweicloud.com/python/)，可以到那里尝试下载 Python 安装文件．
+
+## 本文介绍 PyCharm 的安装与基本配置，帮助你在编程竞赛中快速上手 Python 开发．
+
+PyCharm 是 JetBrains 公司开发的一款专为 Python 设计的集成开发环境（IDE）．它集成了代码编写、调试、语法高亮、智能提示、项目管理等一系列功能，能有效提升开发效率．
+
+### 版本选择
+
+PyCharm 主要有三个版本：
+
+-   Community（社区版）：免费、开源，包含 Python 开发的核心功能，适合初学者和大多数 OI 场景．
+-   Edu（教育版）：免费，基于社区版构建，内置了 Python 课程学习平台，特别适合编程入门．
+-   Professional（专业版）：付费，功能最全，支持 Web 开发、远程调试等高级特性．学生和教师可以免费申请使用许可．
+
+对于参加编程竞赛，社区版（Community）的功能已完全足够，是初学者的理想选择．
+
+### 安装步骤
+
+1.  下载：[访问 PyCharm 官网下载页面](https://www.jetbrains.com/pycharm/download/)，根据你的操作系统选择 Community 版本下载．
+2.  安装：双击下载的安装包（如 pycharm-community-2024.1.1.exe），按照安装向导的提示进行操作．
+    > 在安装选项步骤中，建议勾选以下选项：
+    >
+    > -   创建桌面快捷方式，方便快速启动．
+    > -   添加 bin 文件夹到 PATH，便于在命令行中直接使用 PyCharm 的相关命令．
+    > -   关联 .py 文件，让系统用 PyCharm 作为 Python 文件的默认打开方式．
+
+### 首次运行配置
+
+安装完成后，首次启动 PyCharm 会进入欢迎界面：
+
+1.  用户协议：阅读并同意用户协议．
+2.  UI 主题：选择你喜欢的界面主题，如 Darcula（暗色）或 Light（亮色）．
+3.  插件安装（可选）：在欢迎界面的插件市场中，可以安装 Chinese Language Pack 来切换中文界面．
+
+### 创建第一个 Python 项目
+
+1.  新建项目：在欢迎界面点击 New Project，或在主菜单选择 File > New Project．
+2.  配置项目：
+    -   Name：输入项目名称，如 HelloWorld．
+    -   Location：选择项目文件的保存位置．
+    -   Interpreter type：选择解释器类型．
+        -   Project venv（推荐）：为当前项目创建一个独立的虚拟环境，避免不同项目间的依赖冲突．
+        -   Base conda：基于 Conda 的环境，功能更强大．
+        -   Custom environment：自定义环境．
+    -   Python version：选择已安装的 Python 解释器版本．
+3.  创建 Python 文件：在项目名称上右键，选择 New > Python File，输入文件名（如 hello）并回车．
+4.  编写并运行代码：在编辑器中输入 print("Hello, OI Wiki!")．点击编辑器右上角的绿色运行按钮（或按 Shift + F10），即可在底部的 Run 窗口看到输出结果．
+
+### 配置 Python 解释器
+
+如果在创建项目时未正确配置解释器，或需要更换，可以按以下步骤操作：
+
+1.  打开设置：File > Settings（Windows/Linux）或 PyCharm > Preferences（macOS）．
+2.  在左侧导航栏找到 Project: \[项目名] > Python Interpreter．
+3.  点击右侧的齿轮图标，选择 Add…来添加新的解释器．
+4.  在弹出的对话框中，你可以选择 System Interpreter（使用系统中已安装的 Python），或创建 Virtualenv 等虚拟环境．
+5.  选择或创建完成后，点击 OK 保存设置．
+
+### 安装第三方库
+
+在 PyCharm 中可以通过以下两种方式安装第三方库：
+
+-   使用内置终端：点击底部的 Terminal 选项卡，输入 pip install 库名 命令安装．若下载速度慢，可指定国内镜像源，如：
+    pip install 库名 -i <https://pypi.tuna.tsinghua.edu.cn/simple>
+-   通过设置界面：
+    1.  进入 File > Settings > Project: \[项目名] > Python Interpreter．
+    2.  点击右侧的 + 号按钮．
+    3.  在弹出的窗口中搜索并选择你想要安装的库，点击 Install Package 即可．
+
+### 调试代码
+
+PyCharm 的调试器是定位问题的利器：
+
+1.  设置断点：在代码编辑器的行号右侧单击，会出现一个红色圆点．
+2.  启动调试：点击工具栏上的绿色虫子（Debug）图标，或按 Shift + F9（Windows/Linux）．
+3.  单步执行：程序会在第一个断点处暂停，你可以使用调试面板的按钮进行单步执行（Step Over, F8）、步入（Step Into, F7）等操作，逐行观察代码执行过程．
+
+### 常见问题与技巧
+
+-   启动报错「Failed to create JVM」：可能是内存分配不足．可以尝试修改 PyCharm 安装目录下的 pycharm64.exe.vmoptions 文件，将 -Xmx 参数的值调大（如 -Xmx2048m）．
+-   快捷键：熟练使用快捷键能极大提升效率，如 Ctrl + Alt + S 快速打开设置，Shift + F10 运行程序，Shift + F9 调试程序．
+-   版本控制：PyCharm 集成了 Git 等版本控制工具，可以方便地管理代码．
+
+### 参考资料与注释
+
+[JetBrains 教育许可申请](https://www.jetbrains.com/community/education/#students)
 
 ## 使用 `pip` 安装第三方库
 
