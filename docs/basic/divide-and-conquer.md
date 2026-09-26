@@ -6,11 +6,11 @@ author: fudonglai, AngelKitty, labuladong
 
 ### 定义
 
-递归（英语：Recursion），在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法．
+递归（Recursion），在数学和计算机科学中是指在函数的定义中使用函数自身的方法，在计算机科学中还额外指一种通过重复将问题分解为同类的子问题而解决问题的方法．
 
 ### 引入
 
-> 要理解递归，就得先理解什么是递归．
+要理解递归，就得先理解什么是递归．
 
 递归的基本思想是某个函数直接或者间接地调用自身，这样原问题的求解就转换为了许多性质相同但是规模更小的子问题．求解时只需要关注如何把原问题划分成符合条件的子问题，而不需要过分关注这个子问题是如何被解决的．
 
@@ -38,50 +38,15 @@ int func(传入数值) {
 
     === "C++"
         ```cpp
-        // 不使用递归的归并排序算法
-        template <typename T>
-        void merge_sort(vector<T> a) {
-          int n = a.size();
-          for (int seg = 1; seg < n; seg = seg + seg)
-            for (int start = 0; start < n - seg; start += seg + seg)
-              merge(a, start, start + seg - 1, std::min(start + seg + seg - 1, n - 1));
-        }
-        
-        // 使用递归的归并排序算法
-        template <typename T>
-        void merge_sort(vector<T> a, int front, int end) {
-          if (front >= end) return;
-          int mid = front + (end - front) / 2;
-          merge_sort(a, front, mid);
-          merge_sort(a, mid + 1, end);
-          merge(a, front, mid, end);
-        }
+        --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_1.cpp:sort"
         ```
 
     === "Python"
         ```python
-        # 不使用递归的归并排序算法
-        def merge_sort(a):
-            n = len(a)
-            seg, start = 1, 0
-            while seg < n:
-                while start < n - seg:
-                    merge(a, start, start + seg - 1, min(start + seg + seg - 1, n - 1))
-                    start = start + seg + seg
-                seg = seg + seg
-        
-        
-        # 使用递归的归并排序算法
-        def merge_sort(a, front, end):
-            if front >= end:
-                return
-            mid = front + (end - front) / 2
-            merge_sort(a, front, mid)
-            merge_sort(a, mid + 1, end)
-            merge(a, front, mid, end)
+        --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_1.py:sort"
         ```
 
-    显然，递归版本比非递归版本更易理解．递归版本的做法一目了然：把左半边排序，把右半边排序，最后合并两边．而非递归版本看起来不知所云，充斥着各种难以理解的边界计算细节，特别容易出 bug，且难以调试．
+    两份代码中的 `merge(a, front, mid, end)` 均原地合并同一数组的两个有序闭区间 `[front,mid]` 和 `[mid+1,end]`．
 
 2.  练习分析问题的结构．当发现问题可以被分解成相同结构的小问题时，递归写多了就能敏锐发现这个特点，进而高效解决问题．
 
@@ -89,7 +54,7 @@ int func(传入数值) {
 
 在程序执行中，递归是利用堆栈来实现的．每当进入一个函数调用，栈就会增加一层栈帧，每次函数返回，栈就会减少一层栈帧．而栈不是无限大的，当递归层数过多时，就会造成 **栈溢出** 的后果．
 
-显然有时候递归处理是高效的，比如归并排序；**有时候是低效的**，比如数孙悟空身上的毛，因为堆栈会消耗额外空间，而简单的递推不会消耗空间．比如这个例子，给一个链表头，计算它的长度：
+递归实现可能需要额外的调用栈，而递推实现可以只使用常数辅助空间．例如，给定一个链表头，计算它的长度：
 
 ```cpp
 // 典型的递推遍历框架
@@ -99,14 +64,14 @@ int size(Node *head) {
   return size;
 }
 
-// 我就是要写递归，递归天下第一
+// 递归遍历，每层处理一个结点
 int size_recursion(Node *head) {
   if (head == nullptr) return 0;
   return size_recursion(head->next) + 1;
 }
 ```
 
-![\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1\](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.png "\[二者的对比，compiler 设为 Clang 10.0，优化设为 O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
+[![二者的对比](images/divide-and-conquer-2.svg)](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)
 
 ### 递归的优化
 
@@ -118,7 +83,7 @@ int size_recursion(Node *head) {
 
 ### 定义
 
-分治（英语：Divide and Conquer），字面上的解释是「分而治之」，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并．
+分治（Divide and Conquer），字面上的解释是「分而治之」，就是把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以直接求解，原问题的解即子问题的解的合并．
 
 ### 过程
 
@@ -126,8 +91,8 @@ int size_recursion(Node *head) {
 
 大概的流程可以分为三步：分解 -> 解决 -> 合并．
 
-1.  分解原问题为结构相同的子问题．
-2.  分解到某个容易求解的边界之后，进行递归求解．
+1.  分解原问题为结构相同的子问题；
+2.  分解到某个容易求解的边界之后，进行递归求解；
 3.  将子问题的解合并成原问题的解．
 
 分治法能解决的问题一般有如下特征：
@@ -158,7 +123,7 @@ void merge_sort(一个数组) {
 
 ### 写递归的要点
 
-**明白一个函数的作用并相信它能完成这个任务，千万不要跳进这个函数里面企图探究更多细节，** 否则就会陷入无穷的细节无法自拔，人脑能压几个栈啊．
+先明确函数的输入、输出和递归不变量，再验证递归终点以及从子问题到当前问题的转移，不建议直接从具体实现入手尝试模拟．
 
 以遍历二叉树为例．
 
@@ -172,7 +137,7 @@ void traverse(TreeNode* root) {
 
 这几行代码就足以遍历任何一棵二叉树了．对于递归函数 `traverse(root)`，只要相信给它一个根节点 `root`，它就能遍历这棵树．所以只需要把这个节点的左右节点再传给这个函数就行了．
 
-同样扩展到遍历一棵 N 叉树．与二叉树的写法一模一样．不过，对于 N 叉树，显然没有中序遍历．
+同样扩展到遍历一棵 $N$ 叉树．与二叉树的写法一模一样．不过，对于 $N$ 叉树，显然没有中序遍历．
 
 ```cpp
 void traverse(TreeNode* root) {
@@ -200,7 +165,7 @@ void traverse(TreeNode* root) {
     
     路径不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）．
     
-    二叉树不超过 1000 个节点，且节点数值范围是 \[-1000000,1000000] 的整数．
+    二叉树不超过 1000 个节点，且节点数值范围是 $[-10^6,10^6]$ 的整数．
     
     示例：
     
@@ -223,12 +188,12 @@ void traverse(TreeNode* root) {
     ```
     
     ```cpp
-    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_1.h"
+    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_2.h"
     ```
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_1.cpp"
+    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_2.cpp"
     ```
 
 ??? note "题目解析"
@@ -238,36 +203,18 @@ void traverse(TreeNode* root) {
     
     按照前面说的技巧，根据刚才的分析来定义清楚每个递归函数应该做的事：
     
-    `PathSum` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，和为目标值的路径总数．
+    `pathSum` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，和为目标值的路径总数．
     
     `count` 函数：给定一个节点和一个目标值，返回以这个节点为根的树中，能凑出几个以该节点为路径开头，和为目标值的路径总数．
     
-    ??? note "参考代码（附注释）"
+    ??? note "参考代码"
         ```cpp
-        int pathSum(TreeNode *root, int sum) {
-          if (root == nullptr) return 0;
-          int pathImLeading = count(root, sum);  // 自己为开头的路径数
-          int leftPathSum = pathSum(root->left, sum);  // 左边路径总数（相信它能算出来）
-          int rightPathSum =
-              pathSum(root->right, sum);  // 右边路径总数（相信它能算出来）
-          return leftPathSum + rightPathSum + pathImLeading;
-        }
-        
-        int count(TreeNode *node, int sum) {
-          if (node == nullptr) return 0;
-          // 能不能作为一条单独的路径呢？
-          int isMe = (node->val == sum) ? 1 : 0;
-          // 左边的，你那边能凑几个 sum - node.val ？
-          int leftNode = count(node->left, sum - node->val);
-          // 右边的，你那边能凑几个 sum - node.val ？
-          int rightNode = count(node->right, sum - node->val);
-          return isMe + leftNode + rightNode;  // 我这能凑这么多个
-        }
+        --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_2.cpp"
         ```
     
     还是那句话，**明白每个函数能做的事，并相信它们能够完成．**
     
-    总结下，`PathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）．`count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径．
+    总结下，`pathSum` 函数提供了二叉树遍历框架，在遍历中对每个节点调用 `count` 函数（这里用的是先序遍历，不过中序遍历和后序遍历也可以）．`count` 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径．
 
 ## 习题
 

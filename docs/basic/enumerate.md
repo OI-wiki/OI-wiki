@@ -4,7 +4,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
 
 ## 简介
 
-枚举（英语：Enumerate）是基于已有知识来猜测答案的一种问题求解策略．
+枚举（Enumerate）是基于已有知识来猜测答案的一种问题求解策略．
 
 枚举的思想是不断地猜测，从可能的集合中一一尝试，然后再判断题目的条件是否成立．
 
@@ -24,14 +24,14 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
 
 ### 选择合适的枚举顺序
 
-根据题目判断．比如例题中要求的是最大的符合条件的素数，那自然是从大到小枚举比较合适．
+根据题目判断．例如，若题目要求最大的符合条件的素数，那自然是从大到小枚举比较合适．
 
 ## 例题
 
 以下是一个使用枚举解题与优化枚举范围的例子．
 
 ??? note "例题"
-    给定一个数组，其所有元素互不相同且均不为 $0$．求该数组中和为 $0$ 的数对个数．
+    给定一个数组，其所有元素互不相同且均不为 $0$．求该数组中和为 $0$ 的有序数对个数．
 
 ??? note "解题思路"
     枚举两个数的代码很容易就可以写出来．
@@ -58,7 +58,7 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
             if (a[i] + a[j] == 0) ++ans;
         ```
     
-    来看看枚举的范围如何优化．由于题中没要求数对是有序的，答案就是有序的情况的两倍（考虑如果 `(a, b)` 是答案，那么 `(b, a)` 也是答案）．对于这种情况，只需统计人为要求有顺序之后的答案，最后再乘上 $2$ 就好了．
+    来看看枚举的范围如何优化．先只枚举 $j<i$，使每个无序配对仅统计一次，再乘 $2$ 得到有序数对个数．
     
     不妨要求第一个数要出现在靠后的位置．代码如下：
     
@@ -127,6 +127,6 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
 
 -   [2811: 熄灯问题 - OpenJudge](http://bailian.openjudge.cn/practice/2811/)
 
-## 脚注
+## 参考资料与注释
 
 [^1]: [桶排序](../basic/bucket-sort.md) 以及 [主元素问题](../misc/main-element.md#离线算法) 以及 [Stack Overflow 上对桶数据结构的讲解](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure)（英文）
