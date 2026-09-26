@@ -194,4 +194,4 @@ std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大�
 
 [^note1]: 因为大部分标准算法默认使用 `operator<` 进行比较．
 
-[^note2]: [qsort, qsort_s - cppreference.com](https://en.cppreference.com/c/algorithm/qsort)
+[^note2]: [qsort, qsort\_s - cppreference.com](https://en.cppreference.com/c/algorithm/qsort)
