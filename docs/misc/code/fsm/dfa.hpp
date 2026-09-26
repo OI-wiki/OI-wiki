@@ -45,16 +45,18 @@ DFA DFA::hopcroft_minimize() const {
   // - os: starting index in the state list.
   // - sz: number of states in this class.
   // - cnt: temporary count of marked states during refinement.
+  // - mv: temporary count of marked states moved to the front.
   struct EquivClasses {
-    int os, sz, cnt;
+    int os, sz, cnt, mv;
 
-    EquivClasses(int os, int sz, int cnt) : os(os), sz(sz), cnt(cnt) {}
+    EquivClasses(int os, int sz, int cnt) : os(os), sz(sz), cnt(cnt), mv(0) {}
   };
 
   // Partition and helper data structures.
   std::vector<EquivClasses> ec;  // Current list of equivalence classes.
   std::vector<int> ids(n);       // Permutation of states, grouped by ECs.
   std::vector<int> par(n);       // Maps state to its EC index.
+  std::vector<int> loc(n);       // Position of each state in ids.
   std::vector<bool> tag(n);      // Temporary marking for splitting.
   std::queue<int> evidences;     // Worklist of ECs to check.
 
@@ -68,13 +70,14 @@ DFA DFA::hopcroft_minimize() const {
     if (l) evidences.push(ec.size());  // Add all but first class to worklist.
     ec.emplace_back(l, r - l, 0);
   }
+  for (int i = 0; i < n; ++i) loc[ids[i]] = i;
 
   // Refinement loop.
   while (!evidences.empty()) {
     int cr = evidences.front();
     evidences.pop();
     for (int c = 0; c < m; ++c) {
-      std::vector<int> todo;
+      std::vector<int> todo, marked;
       for (int i = ec[cr].os; i < ec[cr].os + ec[cr].sz; ++i) {
         for (int k = pos[c][ids[i]]; k < pos[c][ids[i] + 1]; ++k) {
           int j = pre[c][k];
@@ -82,35 +85,35 @@ DFA DFA::hopcroft_minimize() const {
             if (!ec[par[j]].cnt) todo.push_back(par[j]);
             ++ec[par[j]].cnt;
             tag[j] = true;
+            marked.push_back(j);
           }
         }
       }
-      // Perform splits.
-      for (int i : todo) {
-        int ti = i;
-        if (ec[i].cnt != ec[i].sz) {
-          // Split into two: larger vs smaller segment.
-          bool majority_tagged = ec[i].cnt * 2 >= ec[i].sz;
-          int mid =
-              std::partition(ids.begin() + ec[i].os,
-                             ids.begin() + ec[i].os + ec[i].sz,
-                             [&](int x) { return tag[x] == majority_tagged; }) -
-              ids.begin() - ec[i].os;
-
-          // Assign new EC index to the smaller segment.
-          for (int j = ec[i].os + mid; j < ec[i].os + ec[i].sz; ++j)
-            par[ids[j]] = ec.size();
-
-          evidences.push(ec.size());
-          if (!majority_tagged) ti = ec.size();
-          ec.emplace_back(ec[i].os + mid, ec[i].sz - mid, 0);
-          ec[i].sz = mid;
-        }
-        // Clear temporary counters and tags.
-        ec[i].cnt = 0;
-        for (int j = ec[ti].os; j < ec[ti].os + ec[ti].sz; ++j)
-          tag[ids[j]] = false;
+      // Move marked states to the front of their ECs, in O(#marked).
+      for (int j : marked) {
+        int e = par[j], d = ec[e].os + ec[e].mv++;
+        int k = ids[d];
+        std::swap(ids[loc[j]], ids[d]);
+        loc[k] = loc[j];
+        loc[j] = d;
       }
+      // Perform splits: the smaller segment becomes a new EC.
+      for (int i : todo) {
+        int cnt = ec[i].cnt;
+        if (cnt != ec[i].sz) {
+          bool small_tagged = cnt * 2 <= ec[i].sz;
+          int l = small_tagged ? ec[i].os : ec[i].os + cnt;
+          int len = small_tagged ? cnt : ec[i].sz - cnt;
+          for (int j = l; j < l + len; ++j) par[ids[j]] = ec.size();
+          evidences.push(ec.size());
+          if (small_tagged) ec[i].os += cnt;
+          ec[i].sz -= len;
+          ec.emplace_back(l, len, 0);
+        }
+        ec[i].cnt = ec[i].mv = 0;
+      }
+      // Clear temporary tags.
+      for (int j : marked) tag[j] = false;
     }
   }
 
