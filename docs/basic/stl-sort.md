@@ -6,13 +6,16 @@
 
 参见：[`qsort`](https://zh.cppreference.com/w/c/algorithm/qsort)，[`std::qsort`](https://zh.cppreference.com/w/cpp/algorithm/qsort)
 
-该函数为 C 标准库实现的 [快速排序](./quick-sort.md)，定义在 `<stdlib.h>` 中．在 C++ 标准库里，该函数定义在 `<cstdlib>` 中．
+该函数是 C 标准库的通用数组排序函数，具体算法由库实现决定，定义在 `<stdlib.h>` 中．在 C++ 标准库里，该函数定义在 `<cstdlib>` 中．
+
+???+ warning "注意[^note2]"
+    虽然该函数名字叫 `qsort`，但 C 和 POSIX 标准都未要求此函数使用 [快速排序](./quick-sort.md)，也从未保证任何复杂度或稳定性．
 
 ### qsort 与 bsearch 的比较函数
 
 qsort 函数有四个参数：数组名、元素个数、元素大小、比较规则．其中，比较规则通过指定比较函数来实现，指定不同的比较函数可以实现不同的排序规则．
 
-比较函数的参数限定为两个 const void 类型的指针．返回值规定为正数、负数和 0．
+比较函数的参数限定为两个类型为 `const void *` 的参数．返回值规定为正数、负数和 0．
 
 比较函数的一种示例写法为：
 
@@ -72,11 +75,11 @@ std::sort(a, a + n);
 std::sort(a, a + n, cmp);
 ```
 
-注意：sort 的比较函数的返回值是 true 和 false，用 true 和 false 表示两个元素的大小（先后）关系，这与 qsort 的三值比较函数的语义完全不同．具体内容详见上方给出的 sort 的文档．
+注意：sort 的比较函数的返回值是 `true` 和 `false`，用 `true` 和 `false` 表示两个元素的大小（先后）关系，这与 qsort 的三值比较函数的语义完全不同．具体内容详见上方给出的 sort 的文档．
 
-如果要将 sort 简单改写为 qsort，维持排序顺序整体上不变（不考虑等价的元素），需要将返回 true 改为 - 1，返回 false 改为 1．
+若 `cmp` 定义严格弱序，转换为 `qsort` 的三值比较规则时应返回 `cmp(a,b) ? -1 : cmp(b,a) ? 1 : 0`，等价元素必须返回零．
 
-`std::sort` 函数是更常用的 C++ 库比较函数．该函数的最后一个参数为二元比较函数，未指定 `cmp` 函数时，默认按从小到大的顺序排序．
+`std::sort` 函数是更常用的 C++ 库排序函数．该函数的最后一个参数为二元比较函数，未指定 `cmp` 函数时，默认按从小到大的顺序排序．
 
 旧版 C++ 标准中仅要求它的 **平均** 时间复杂度达到 $O(n\log n)$．C++11 标准以及后续标准要求它的 **最坏** 时间复杂度达到 $O(n\log n)$．
 
@@ -95,7 +98,7 @@ std::nth_element(first, nth, last, cmp);
 
 它重排 `[first, last)` 中的元素，使得 `nth` 所指向的元素被更改为 `[first, last)` 排好序后该位置会出现的元素．这个新的 `nth` 元素前的所有元素小于或等于新的 `nth` 元素后的所有元素．
 
-实现算法是未完成的内省排序．
+具体实现由标准库决定，常见实现采用 [快速选择](https://en.wikipedia.org/wiki/Quickselect) 或 [内省选择](https://en.wikipedia.org/wiki/Introselect) 等算法，每次划分后只继续处理包含目标位置的一侧．
 
 对于以上两种用法，C++ 标准要求它的平均时间复杂度为 $O(n)$，其中 n 为 `std::distance(first, last)`．
 
@@ -128,9 +131,9 @@ std::partial_sort(first, mid, last);
 std::partial_sort(first, mid, last, cmp);
 ```
 
-将序列中前 `k` 元素按 `cmp` 给定的顺序进行原地排序，后面的元素不保证顺序．未指定 `cmp` 函数时，默认按从小到大的顺序排序．
+从 `[first,last)` 中选出按 `cmp` 排序最靠前的 `k` 个元素，将它们排序放入 `[first,mid)`；其余部分的顺序不保证．未指定 `cmp` 函数时，默认按从小到大的顺序排序．
 
-复杂度：约 $(\mathit{last}-\mathit{first})\log(\mathit{mid}-\mathit{first})$ 次应用 `cmp`．
+复杂度：约 $(\textit{last}-\textit{first})\log(\textit{mid}-\textit{first})$ 次应用 `cmp`．
 
 原理：
 
@@ -190,3 +193,5 @@ std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大�
 ## 参考资料与注释
 
 [^note1]: 因为大部分标准算法默认使用 `operator<` 进行比较．
+
+[^note2]: [qsort, qsort\_s - cppreference.com](https://en.cppreference.com/c/algorithm/qsort)

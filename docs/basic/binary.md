@@ -4,7 +4,7 @@
 
 ### 定义
 
-二分查找（英语：binary search），也称折半搜索（英语：half-interval search）、对数搜索（英语：logarithmic search），是用来在一个有序数组中查找某一元素的算法．
+二分查找（binary search），也称折半搜索（half-interval search）、对数搜索（logarithmic search），是用来在一个有序数组中查找某一元素的算法．
 
 ### 过程
 
@@ -58,7 +58,7 @@ int binary_search(int start, int end, int key) {
 
 1.  答案在一个固定区间内；
 2.  可能查找一个符合条件的值不是很容易，但是要求能比较容易地判断某个值是否是符合条件的；
-3.  可行解对于区间满足一定的单调性．换言之，如果 $x$ 是符合条件的，那么有 $x + 1$ 或者 $x - 1$ 也符合条件．（这样下来就满足了上面提到的单调性）
+3.  可行解对于区间满足一定的单调性．换言之，必须在整个区间内保持同一个方向：例如对所有 $x\le y$，$x$ 可行蕴含 $y$ 可行；或对所有 $x\ge y$，$x$ 可行蕴含 $y$ 可行．
 
 当然，最小值最大化是同理的．
 
@@ -76,16 +76,16 @@ bsearch 函数相比 qsort（[排序相关 STL](./stl-sort.md)）的四个参数
 
 于是 bsearch 函数总共有五个参数：待查元素的地址、数组名、元素个数、元素大小、比较规则．比较规则仍然通过指定比较函数实现，详见 [排序相关 STL](./stl-sort.md)．
 
-bsearch 函数的返回值是查找到的元素的地址，该地址为 void 类型．
+bsearch 函数的返回值是查找到的元素的地址，返回类型为 `void *`．
 
 注意：bsearch 与上文的 lower\_bound 和 upper\_bound 有两点不同：
 
--   当符合条件的元素有重复多个的时候，会返回执行二分查找时第一个符合条件的元素，从而这个元素可能位于重复多个元素的中间部分．
+-   当符合条件的元素有重复多个的时候，返回其中哪一个元素未指定．
 -   当查找不到相应的元素时，会返回 NULL．
 
 用 lower\_bound 可以实现与 bsearch 完全相同的功能，所以可以使用 bsearch 通过的题目，直接改写成 lower\_bound 同样可以实现．但是鉴于上述不同之处的第二点，例如，在序列 1、2、4、5、6 中查找 3，bsearch 实现 lower\_bound 的功能会变得困难．
 
-利用 bsearch 实现 lower\_bound 的功能比较困难，是否一定就不能实现？答案是否定的，存在比较 tricky 的技巧．借助编译器处理比较函数的特性：总是将第一个参数指向待查元素，将第二个参数指向待查数组中的元素，也可以用 bsearch 实现 lower\_bound 和 upper\_bound，如下文示例．只是，这要求待查数组必须是全局数组，从而可以直接传入首地址．
+利用 bsearch 实现 lower\_bound 和 upper\_bound 时，可以利用其比较函数的参数约定：第一个参数指向待查元素，第二个参数指向待查数组中的元素．所以只要比较函数能得到数组首地址即可实现．
 
 ```cpp
 int A[100005];  // 示例全局数组
@@ -115,7 +115,7 @@ int upper(const void *p1, const void *p2) {
 }
 ```
 
-因为现在的 OI 选手很少写纯 C，并且此方法作用有限，所以不是重点．对于新手而言，建议老老实实地使用 C++ 中的 lower\_bound 和 upper\_bound 函数．
+因为现在的 OI 选手很少写纯 C，并且此方法作用有限，所以不是重点．对于新手而言，建议使用 C++ 中的 `std::lower_bound` 和 `std::upper_bound` 函数．
 
 ### 二分答案
 
@@ -126,44 +126,16 @@ int upper(const void *p1, const void *p2) {
     
     米尔科的伐木机工作过程如下：米尔科设置一个高度参数 $H$（米），伐木机升起一个巨大的锯片到高度 $H$，并锯掉所有的树比 $H$ 高的部分（当然，树木不高于 $H$ 米的部分保持不变）．米尔科就得到树木被锯下的部分．
     
-    例如，如果一行树的高度分别为 $20,~15,~10,~17$，米尔科把锯片升到 $15$ 米的高度，切割后树木剩下的高度将是 $15,~15,~10,~15$，而米尔科将从第 $1$ 棵树得到 $5$ 米木材，从第 $4$ 棵树得到 $2$ 米木材，共 $7$ 米木材．
+    例如，如果一行树的高度分别为 $20,~15,~10,~17$，米尔科把锯片升到 $15$ 米的高度，切割后树木剩下的高度将是 $15,~15,~10,~15$，而米尔科将从第一棵树得到 $5$ 米木材，从第四棵树得到 $2$ 米木材，共 $7$ 米木材．
     
     米尔科非常关注生态保护，所以他不会砍掉过多的木材．这正是他尽可能高地设定伐木机锯片的原因．你的任务是帮助米尔科找到伐木机锯片的最大的整数高度 $H$，使得他能得到木材至少为 $M$ 米．即，如果再升高 $1$ 米锯片，则他将得不到 $M$ 米木材．
 
 ??? note "解题思路"
-    我们可以在 $1$ 到 $10^9$ 中枚举答案，但是这种朴素写法肯定拿不到满分，因为从 $1$ 枚举到 $10^9$ 太耗时间．我们可以在 $[1,~10^9]$ 的区间上进行二分作为答案，然后检查各个答案的可行性（一般使用贪心法）．**这就是二分答案．**
+    我们可以在 $0$ 到 $10^9$ 中枚举答案，但是这种朴素写法肯定拿不到满分，因为从 $0$ 枚举到 $10^9$ 太耗时间．我们可以在 $[0,~10^9]$ 的区间上进行二分作为答案，然后检查各个答案的可行性（一般使用贪心法）．**这就是二分答案．**
 
 ??? note "参考代码"
     ```cpp
-    int a[1000005];
-    int n, m;
-    
-    bool check(int k) {  // 检查可行性，k 为锯片高度
-      long long sum = 0;
-      for (int i = 1; i <= n; i++)       // 检查每一棵树
-        if (a[i] > k)                    // 如果树高于锯片高度
-          sum += (long long)(a[i] - k);  // 累加树木长度
-      return sum >= m;                   // 如果满足最少长度代表可行
-    }
-    
-    int find() {
-      int l = 1, r = 1e9 + 1;   // 因为是左闭右开的，所以 10^9 要加 1
-      while (l + 1 < r) {       // 如果两点不相邻
-        int mid = (l + r) / 2;  // 取中间值
-        if (check(mid))         // 如果可行
-          l = mid;              // 升高锯片高度
-        else
-          r = mid;  // 否则降低锯片高度
-      }
-      return l;  // 返回左边值
-    }
-    
-    int main() {
-      cin >> n >> m;
-      for (int i = 1; i <= n; i++) cin >> a[i];
-      cout << find();
-      return 0;
-    }
+    --8<-- "docs/basic/code/binary/binary_2.cpp"
     ```
     
     看完了上面的代码，你肯定会有两个疑问：
@@ -189,25 +161,34 @@ int upper(const void *p1, const void *p2) {
 
 二分法可以用于近似求出函数的零点．如果需要求出单峰函数的极值点，通常需要使用三分法（ternary search）．
 
-对于一个函数 $f(x)$，如果存在 $x^*$ 使得 $f(x)$ 在 $x<x^*$ 时单调递增且 $f(x)$ 在 $x>x^*$ 时单调递减，就称 $f(x)$ 为单峰函数（unimodal function）．显然，$x^*$ 就是它的最大值点，而 $f(x^*)$ 则是它的最大值．
+本节采用如下严格单峰约定：对于定义在 $[l,r]$ 上的函数 $f(x)$，如果存在 $x^*\in[l,r]$，使得 $f(x)$ 在 $[l,x^*]$ 上严格单调递增，在 $[x^*,r]$ 上严格单调递减，就称 $f(x)$ 为单峰函数（unimodal function）．这里两个区间均包含 $x^*$，因此 $x^*$ 是唯一的最大值点，而 $f(x^*)$ 是最大值．
 
 ??? note "为什么不通过求导函数的零点来求极值点？"
-    客观上，求出导数后，通过二分法求出导数的零点（由于函数是单峰函数，其导数在同一范围内的零点是唯一的）得到单峰函数的极值点是可行的．
+    首先，单峰并不保证导数零点唯一，即使导数零点唯一也不能说明最大值一定在导数零点处取得．例如
     
-    但首先，对于一些函数，求导的过程和结果比较复杂．
+    $$
+    f(x)=\begin{cases}
+      (x-1)^3+1,&0\le x<2,\\
+      (3-x)^3+1,&2\le x\le 4.
+    \end{cases}
+    $$
     
-    其次，某些题中需要求极值点的单峰函数并非一个单独的函数，而是多个函数进行特殊运算得到的函数（如求多个单调性不完全相同的一次函数的最小值的最大值）．此时函数的导函数可能是分段函数，且在函数某些点上可能不可导．
+    $f'(x)$ 的零点为 $x=1$ 与 $x=3$，而 $f(x)$ 的最大值在 $x=2$ 处取得．
+    
+    其次，对于一些函数，求导的过程和结果比较复杂，甚至无法写成 $y=f(x)$ 的形式．
+    
+    最后，某些题中需要求极值点的单峰函数并非一个单独的函数，而是多个函数进行特殊运算得到的函数（如求多个单调性不完全相同的一次函数的最小值的最大值）．此时函数的导函数可能是分段函数，且在函数某些点上可能不可导．
 
 ???+ warning "注意"
     三分法既可以求出单峰函数的最大值，也可以求出「单谷函数」的最小值．为行文方便，除特殊说明外，下文中均以求单峰函数的最大值为例．
 
 ### 过程
 
-三分法与二分法的基本思想类似，但每次操作需在当前区间 $[l,r]$（下图中两个橙点之间）内任取两点 $lmid < rmid$（下图中的两个蓝点）．如下图所示，如果 $f(lmid)<f(rmid)$，则在 $[l,lmid)$（下图中的红色部分）中函数必然单调递增，最大值点（下图中的绿点）必然不在这一区间内，可舍去这一区间；但是，无法排除最大值点在 $rmid$ 右侧的可能性，所以无法舍去更多区间．反之亦然．
+三分法与二分法的基本思想类似，但每次操作需在当前区间 $[l,r]$（下图中两个橙点之间）内任取两点 $\textit{lmid} < \textit{rmid}$（下图中的两个蓝点）．如下图所示，如果 $f(\textit{lmid})<f(\textit{rmid})$，则在 $[l,\textit{lmid})$（下图中的红色部分）中函数必然单调递增，最大值点（下图中的绿点）必然不在这一区间内，可舍去这一区间；但是，无法排除最大值点在 $\textit{rmid}$ 右侧的可能性，所以无法舍去更多区间．反之亦然．
 
 ![](images/ternary.svg)
 
-三分法的正确性并不依赖于 $lmid$ 和 $rmid$ 的选择，通常可以取两个三等分点．但是，它们的选择确实会影响三分法的效率．这是因为三分法的每次操作都会舍去两侧区间中的其中一个．为减少三分法的操作次数，应使两侧区间尽可能大．因此，每一次操作时的 $lmid$ 和 $rmid$ 分别取 $mid-\varepsilon$ 和 $mid+\varepsilon$ 是一个不错的选择．事实上，$mid\pm \varepsilon$ 的取法相当于求 $mid$ 处的近似导数 $\dfrac{f(mid+\varepsilon)-f(mid-\varepsilon)}{2\varepsilon}$ 判断正负以确定极值点在 $mid$ 的哪一侧．
+三分法的正确性并不依赖于 $\textit{lmid}$ 和 $\textit{rmid}$ 的具体选择，只需保证它们是区间内的两个不同点，通常可以取两个三等分点．但是，它们的选择会影响三分法的效率．每次操作都会舍去两侧区间中的一个，因此也可以取靠近中点的两个分点，以增大能舍去的区间．若取 $\textit{mid}\pm\delta$，其中 $\delta>0$ 足够小，此时比较函数值相当于判断近似导数 $\dfrac{f(\textit{mid}+\delta)-f(\textit{mid}-\delta)}{2\delta}$ 的符号．由于算法竞赛中遇到的函数往往都有良好的光滑性，所以我们可以基于此来粗略判定极值点位于 $\textit{mid}$ 哪一侧，从而达到接近二分法的效率．
 
 ### 实现
 
@@ -221,13 +202,13 @@ $$
 \textbf{Method. } \\
 \begin{array}{ll}
 1 & \textbf{while } r - l > \varepsilon\\
-2 & \qquad mid\gets (l+r)/2\\
-3 & \qquad lmid\gets mid - \varepsilon / 3 \\
-4 & \qquad rmid\gets mid + \varepsilon / 3 \\
-5 & \qquad \textbf{if } f(lmid) < f(rmid) \\
-6 & \qquad \qquad l\gets lmid \\
+2 & \qquad \textit{mid}\gets (l+r)/2\\
+3 & \qquad \textit{lmid}\gets \textit{mid} - \varepsilon / 3 \\
+4 & \qquad \textit{rmid}\gets \textit{mid} + \varepsilon / 3 \\
+5 & \qquad \textbf{if } f(\textit{lmid}) < f(\textit{rmid}) \\
+6 & \qquad \qquad l\gets \textit{lmid} \\
 7 & \qquad \textbf{else } \\
-8 & \qquad \qquad r\gets rmid \\
+8 & \qquad \qquad r\gets \textit{rmid} \\
 9 & x^* \gets (l+r)/2 \\
 10& \textbf{return } x^*,~ f(x^*)
 \end{array}
@@ -235,7 +216,7 @@ $$
 $$
 
 ???+ tip "分割点的选取"
-    代码中，分割点选取为 $mid \pm \varepsilon / 3$ 是为了保证分割点总是在当前的 $l$ 和 $r$ 之间，进而避免陷入死循环．
+    代码中，分割点选取为 $\textit{mid} \pm \varepsilon / 3$ 是为了保证分割点总是在当前的 $l$ 和 $r$ 之间，进而避免陷入死循环．
 
 ???+ info "整数的情形"
     如果函数 $f(x)$ 的定义域是整数，那么上述三分法和后文的黄金分割法都应该在 $r-l$ 很小时就终止．对于 $r-l$ 很小的情形，需要通过暴力遍历的方法求得最大值点．
@@ -285,23 +266,23 @@ $$
 \textbf{Output. } \text{The maximizer }x^*\text{, up to an error of }\varepsilon\text{, and its value } f(x^*). \\
 \textbf{Method. } \\
 \begin{array}{ll}
-1 & lmid \gets \phi l + (1-\phi)r \\
-2 & rmid \gets (1-\phi)l + \phi r \\
-3 & lval \gets f(lmid) \\
-4 & rval \gets f(rmid) \\
+1 & \textit{lmid} \gets \phi l + (1-\phi)r \\
+2 & \textit{rmid} \gets (1-\phi)l + \phi r \\
+3 & \textit{lval} \gets f(\textit{lmid}) \\
+4 & \textit{rval} \gets f(\textit{rmid}) \\
 5 & \textbf{while } r - l > \varepsilon \\
-6 & \qquad \textbf{if } lval > rval \\
-7 & \qquad \qquad r \gets rmid \\
-8 & \qquad \qquad rmid \gets lmid \\
-9 & \qquad \qquad rval \gets lval \\
-10& \qquad \qquad lmid \gets \phi l + (1-\phi)r \\
-11& \qquad \qquad lval \gets f(lmid) \\
+6 & \qquad \textbf{if } \textit{lval} > \textit{rval} \\
+7 & \qquad \qquad r \gets \textit{rmid} \\
+8 & \qquad \qquad \textit{rmid} \gets \textit{lmid} \\
+9 & \qquad \qquad \textit{rval} \gets \textit{lval} \\
+10& \qquad \qquad \textit{lmid} \gets \phi l + (1-\phi)r \\
+11& \qquad \qquad \textit{lval} \gets f(\textit{lmid}) \\
 12& \qquad \textbf{else} \\
-13& \qquad \qquad l \gets lmid \\
-14& \qquad \qquad lmid \gets rmid \\
-15& \qquad \qquad lval \gets rval \\
-16& \qquad \qquad rmid \gets (1-\phi)l + \phi r \\
-17& \qquad \qquad rval \gets f(rmid) \\
+13& \qquad \qquad l \gets \textit{lmid} \\
+14& \qquad \qquad \textit{lmid} \gets \textit{rmid} \\
+15& \qquad \qquad \textit{lval} \gets \textit{rval} \\
+16& \qquad \qquad \textit{rmid} \gets (1-\phi)l + \phi r \\
+17& \qquad \qquad \textit{rval} \gets f(\textit{rmid}) \\
 18& x^* \gets (l+r)/2 \\
 19& \textbf{return }x^*,~f(x^*)
 \end{array}
@@ -314,7 +295,7 @@ $$
     给定一个 $N$ 次函数和范围 $[l, r]$，求出使函数在 $[l, x]$ 上单调递增且在 $[x, r]$ 上单调递减的唯一的 $x$ 的值．
 
 ??? note "解题思路"
-    本题要求求 $N$ 次函数在 $[l, r]$ 取最大值时自变量的值，显然可以使用三分法．
+    本题要求求 $N$ 次函数在 $[l, r]$ 取最大值时自变量的值，显然可以使用三分法．以下实现使用两个三等分点，并将区间端点更新到实际比较的分点；当区间长度足够小时，输出区间中点．
 
 ??? note "参考代码"
     === "C++"
@@ -338,14 +319,14 @@ $$
 
 参见：[分数规划](../misc/frac-programming.md)
 
-分数规划通常描述为下列问题：每个物品有两个属性 $c_i$，$d_i$，要求通过某种方式选出若干个，使得 $\frac{\sum{c_i}}{\sum{d_i}}$ 最大或最小．
+分数规划通常描述为下列问题：每个物品有两个属性 $c_i$，$d_i$，要求通过某种方式选出若干个，使得 $\dfrac{\sum{c_i}}{\sum{d_i}}$ 最大或最小．
 
 经典的例子有最优比率环、最优比率生成树等等．
 
 分数规划可以用二分法来解决．
 
-## 参考资料
+## 参考资料与注释
 
 -   [Ternary search - Wikipedia](https://en.wikipedia.org/wiki/Ternary_search)
 -   [Golden-section search - Wikipedia](https://en.wikipedia.org/wiki/Golden-section_search)
--   [Ternary search - CP Algortihms](https://cp-algorithms.com/num_methods/ternary_search.html)
+-   [Ternary search - CP Algorithms](https://cp-algorithms.com/num_methods/ternary_search.html)

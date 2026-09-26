@@ -19,7 +19,7 @@ void add(int x, int y) {  // 加边
   head[x] = tot;
 }
 
-void dfs(int now, int father) {  // dfs求最大压力
+void dfs(int now, int father) {  // DFS 预处理结点深度和倍增祖先
   fa[now][0] = father;
   depth[now] = depth[father] + 1;
   for (int i = 1; i <= lg[depth[now]]; ++i)
@@ -38,7 +38,7 @@ int lca(int x, int y) {  // 求LCA，最近公共祖先
   return fa[x][0];
 }
 
-// 用dfs求最大压力，回溯时将子树的权值加上
+// 用 DFS 累加子树差分，求出每个结点的压力并更新最大压力
 void get_ans(int u, int father) {
   for (int i = head[u]; i; i = edge[i].next) {
     int to = edge[i].to;

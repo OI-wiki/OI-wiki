@@ -16,7 +16,7 @@ void MSD_radix_sort_string_base(string* arr, int* begin, int* end,
 // 对仅由小写字母构成的字符串排序
 // 参数表示现在 [begin,end) 内的元素 [0,digit) 位都相同
 // 现在从 digit 位开始进行排序
-// 调用示例：MSD_radix_sort_string(a,a+n,0)
+// 调用示例：MSD_radix_sort_string(a, a + n)
 // 和上一份代码几乎完全相同，所以注释较少
 // 为节省空间和时间，我们对下标数组进行排序，比较函数依旧比较字符串对应位
 {

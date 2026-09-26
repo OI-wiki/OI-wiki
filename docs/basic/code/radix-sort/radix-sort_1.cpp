@@ -16,7 +16,7 @@ unsigned get_digit(unsigned value, int digit)  // 提取第 digit 位
 void MSD_radix_sort(unsigned* begin, unsigned* end, int digit)
 // 表示现在 [begin,end) 内的元素（10 进制下）前若干位都相同
 // 只有最后 digit 位（第 digit-1 到 0 位）需要进行排序
-// 调用示例：MSD_radix_sort(a,a+n,9)
+// 调用示例：MSD_radix_sort(a,a+n,10)
 {
   if (begin >= end)  // 空区间
   {
@@ -48,17 +48,16 @@ void MSD_radix_sort(unsigned* begin, unsigned* end, int digit)
   }
   for (unsigned* it = begin; it != end; it++)  // 将计数排序结果放入 tmp
   {
-    unsigned bitVal = get_digit(*it, digit - 1);  // 提取第 bit-1 位
-    tmp[beg[bitVal] + cnt[bitVal]] =
-        *it;  // 因为是倒序枚举，所以当前是第 cnt[bitVal]+1 个第 bit-1 位是
-              // cnt[bitVal] 的
+    unsigned bitVal = get_digit(*it, digit - 1);  // 提取第 digit - 1 位
+    // 按原顺序遍历，当前是第 cnt[bitVal]+1 个在第 digit-1 位为 bitVal 的元素
+    tmp[beg[bitVal] + cnt[bitVal]] = *it;
     cnt[bitVal]++;
   }
   for (unsigned* it = begin; it != end; it++)  // 将 tmp 拷贝回原数组
   {
     *it = tmp[it - begin];
   }
-  /**迭代计算**/
+  /**递归排序各桶的下一位**/
   if (digit == 1)  // 已经是最低位
   {
     return;
@@ -76,6 +75,6 @@ int main() {
   int n;
   cin >> n;
   for (int i = 1; i <= n; i++) cin >> a[i];
-  MSD_radix_sort(a + 1, a + n + 1, 9);
+  MSD_radix_sort(a + 1, a + n + 1, 10);
   for (int i = 1; i <= n; i++) cout << a[i] << " \n"[i == n];
 }

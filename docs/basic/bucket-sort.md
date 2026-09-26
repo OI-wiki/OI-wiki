@@ -23,79 +23,22 @@
 
 ### 时间复杂度
 
-桶排序的平均时间复杂度为 $O(n + n^2/k + k)$（将值域平均分成 $n$ 块 + 排序 + 重新合并元素），当 $k\approx n$ 时为 $O(n)$．[^ref1]
+设 $n$ 为元素个数，$k$ 为桶数．若元素独立且均匀落桶，桶排序的平均时间复杂度为 $O(n + n^2/k + k)$（将值域平均分成 $k$ 块 + 排序 + 重新合并元素），当 $k\approx n$ 时为 $O(n)$．[^ref1]
 
-桶排序的最坏时间复杂度为 $O(n^2)$．
+桶排序的最坏时间复杂度为 $O(n^2+k)$．
 
 ## 实现
 
+下面 `a[]` 下标从 $1$ 开始，要求 $0\le a_i\le w$、$0\le n<N$，其中 $w$ 是最大键值的上界．
+
 === "C++"
     ```cpp
-    constexpr int N = 100010;
-    
-    int n, w, a[N];
-    vector<int> bucket[N];
-    
-    void insertion_sort(vector<int>& A) {
-      for (int i = 1; i < A.size(); ++i) {
-        int key = A[i];
-        int j = i - 1;
-        while (j >= 0 && A[j] > key) {
-          A[j + 1] = A[j];
-          --j;
-        }
-        A[j + 1] = key;
-      }
-    }
-    
-    void bucket_sort() {
-      int bucket_size = w / n + 1;
-      for (int i = 0; i < n; ++i) {
-        bucket[i].clear();
-      }
-      for (int i = 1; i <= n; ++i) {
-        bucket[a[i] / bucket_size].push_back(a[i]);
-      }
-      int p = 0;
-      for (int i = 0; i < n; ++i) {
-        insertion_sort(bucket[i]);
-        for (int j = 0; j < bucket[i].size(); ++j) {
-          a[++p] = bucket[i][j];
-        }
-      }
-    }
+    --8<-- "docs/basic/code/bucket-sort/bucket-sort_1.cpp:sort"
     ```
 
 === "Python"
     ```python
-    N = 100010
-    w = n = 0
-    a = [0] * N
-    bucket = [[] for i in range(N)]
-    
-    
-    def insertion_sort(A):
-        for i in range(1, len(A)):
-            key = A[i]
-            j = i - 1
-            while j >= 0 and A[j] > key:
-                A[j + 1] = A[j]
-                j -= 1
-            A[j + 1] = key
-    
-    
-    def bucket_sort():
-        bucket_size = int(w / n + 1)
-        for i in range(0, n):
-            bucket[i].clear()
-        for i in range(1, n + 1):
-            bucket[int(a[i] / bucket_size)].append(a[i])
-        p = 0
-        for i in range(0, n):
-            insertion_sort(bucket[i])
-            for j in range(0, len(bucket[i])):
-                a[p] = bucket[i][j]
-                p += 1
+    --8<-- "docs/basic/code/bucket-sort/bucket-sort_1.py:sort"
     ```
 
 ## 参考资料与注释
