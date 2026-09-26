@@ -29,7 +29,7 @@ int main() {
   int *a = new int[n];
   for (int i = 0; i < n; ++i) std::cin >> a[i];
   radix_sort(n, a);
-  for (int i = 0; i < n; ++i) std::cout << a[i] << ' ';
+  for (int i = 0; i < n; ++i) std::cout << a[i] << " \n"[i == n - 1];
   delete[] a;
   return 0;
 }
