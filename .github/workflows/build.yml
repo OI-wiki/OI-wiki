@@ -50,8 +50,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_OPTIONS: --max_old_space_size=3072
-      - name: Minify html
-        run: ./scripts/post-build/minify-html/minify-html.sh
       - name: Generate redirects
         run: uv run python scripts/post-build/redirect/generate-redirects.py
       - name: Check links
