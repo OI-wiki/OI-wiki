@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="230"
+    viewbox="0 0 300 220">
+    <style>
+        path, ellipse {
+            fill: none;
+            stroke: black;
+            stroke-width: 0.8pt;
+        }
+        text {
+            text-anchor: middle;
+            font-size: 12pt;
+            font-family: system-ui;
+        }
+    </style>
+    <g>
+        <ellipse cx="150" cy="100" rx="145" ry="95"/>
+        <path d="M 150 5 v 190"/>
+        <text x="225" y="104">实数集</text>
+        <text x="90" y="60">虚数集</text>
+        <g>
+            <ellipse cx="90" cy="140" rx="50" ry="20"/>
+            <text x="90" y="145">纯虚数集</text>
+        </g>
+    </g>
+    <text x="150" y="220">复数集</text>
+</svg>
