@@ -2,7 +2,7 @@
 
 ## 定义
 
-桶排序（英文：Bucket sort）是排序算法的一种，适用于待排序数据值域较大但分布比较均匀的情况．
+桶排序（Bucket sort）是排序算法的一种，适用于待排序数据值域较大但分布比较均匀的情况．
 
 ## 过程
 
@@ -43,4 +43,4 @@
 
 ## 参考资料与注释
 
-[^ref1]: [（英文）Bucket sort - Wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis)
+[^ref1]: [Bucket sort - Wikipedia](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis)

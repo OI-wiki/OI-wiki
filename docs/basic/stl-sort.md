@@ -20,10 +20,10 @@ qsort 函数有四个参数：数组名、元素个数、元素大小、比较�
 比较函数的一种示例写法为：
 
 ```c
-int compare(const void *p1, const void *p2)  // int 类型数组的比较函数
+int compare(const void* p1, const void* p2)  // int 类型数组的比较函数
 {
-  int *a = (int *)p1;
-  int *b = (int *)p2;
+  int* a = (int*)p1;
+  int* b = (int*)p2;
   if (*a > *b)
     return 1;  // 返回正数表示 a 大于 b
   else if (*a < *b)
@@ -44,11 +44,11 @@ struct eg  // 示例结构体
   int g;
 };
 
-int compare(const void *p1,
-            const void *p2)  // struct eg 类型数组的比较函数：按成员 e 排序
+// struct eg 类型数组的比较函数：按成员 e 排序
+int compare(const void* p1, const void* p2)
 {
-  struct eg *a = (struct eg *)p1;
-  struct eg *b = (struct eg *)p2;
+  struct eg* a = (struct eg*)p1;
+  struct eg* b = (struct eg*)p2;
   if (a->e > b->e)
     return 1;  // 返回正数表示 a 大于 b
   else if (a->e < b->e)
@@ -83,7 +83,7 @@ std::sort(a, a + n, cmp);
 
 旧版 C++ 标准中仅要求它的 **平均** 时间复杂度达到 $O(n\log n)$．C++11 标准以及后续标准要求它的 **最坏** 时间复杂度达到 $O(n\log n)$．
 
-C++ 标准并未严格要求此函数的实现算法，具体实现取决于编译器．[libstdc++](https://github.com/mirrors/gcc/blob/master/libstdc++-v3/include/bits/stl_algo.h) 和 [libc++](http://llvm.org/svn/llvm-project/libcxx/trunk/include/algorithm) 中的实现都使用了 [内省排序](./quick-sort.md#内省排序)．
+C++ 标准并未严格要求此函数的实现算法，具体实现取决于标准库．例如，[libstdc++ 14.2.0](https://github.com/gcc-mirror/gcc/blob/releases/gcc-14.2.0/libstdc%2B%2B-v3/include/bits/stl_algo.h#L1876-L1908) 和 [libc++ 20.1.8](https://github.com/llvm/llvm-project/blob/llvmorg-20.1.8/libcxx/include/__algorithm/sort.h#L709-L727) 中的实现都使用了 [内省排序](./quick-sort.md#内省排序)．
 
 ## std::nth\_element
 

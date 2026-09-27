@@ -91,9 +91,9 @@ bsearch 函数的返回值是查找到的元素的地址，返回类型为 `void
 int A[100005];  // 示例全局数组
 
 // 查找首个不小于待查元素的元素的地址
-int lower(const void *p1, const void *p2) {
-  int *a = (int *)p1;
-  int *b = (int *)p2;
+int lower(const void* p1, const void* p2) {
+  int* a = (int*)p1;
+  int* b = (int*)p2;
   if ((b == A || compare(a, b - 1) > 0) && compare(a, b) > 0)
     return 1;
   else if (b != A && compare(a, b - 1) <= 0)
@@ -103,9 +103,9 @@ int lower(const void *p1, const void *p2) {
 }
 
 // 查找首个大于待查元素的元素的地址
-int upper(const void *p1, const void *p2) {
-  int *a = (int *)p1;
-  int *b = (int *)p2;
+int upper(const void* p1, const void* p2) {
+  int* a = (int*)p1;
+  int* b = (int*)p2;
   if ((b == A || compare(a, b - 1) >= 0) && compare(a, b) >= 0)
     return 1;
   else if (b != A && compare(a, b - 1) < 0)
@@ -164,7 +164,7 @@ int upper(const void *p1, const void *p2) {
 本节采用如下严格单峰约定：对于定义在 $[l,r]$ 上的函数 $f(x)$，如果存在 $x^*\in[l,r]$，使得 $f(x)$ 在 $[l,x^*]$ 上严格单调递增，在 $[x^*,r]$ 上严格单调递减，就称 $f(x)$ 为单峰函数（unimodal function）．这里两个区间均包含 $x^*$，因此 $x^*$ 是唯一的最大值点，而 $f(x^*)$ 是最大值．
 
 ??? note "为什么不通过求导函数的零点来求极值点？"
-    首先，单峰并不保证导数零点唯一，即使导数零点唯一也不能说明最大值一定在导数零点处取得．例如
+    首先，单峰并不保证导数零点唯一，导数为零的点也未必是最大值点．例如
     
     $$
     f(x)=\begin{cases}
@@ -173,7 +173,7 @@ int upper(const void *p1, const void *p2) {
     \end{cases}
     $$
     
-    $f'(x)$ 的零点为 $x=1$ 与 $x=3$，而 $f(x)$ 的最大值在 $x=2$ 处取得．
+    $f'(x)$ 的零点为 $x=1$ 与 $x=3$，而 $f(x)$ 的最大值在不可导的 $x=2$ 处取得．
     
     其次，对于一些函数，求导的过程和结果比较复杂，甚至无法写成 $y=f(x)$ 的形式．
     

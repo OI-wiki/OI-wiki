@@ -12,6 +12,20 @@
 2.  对这些子序列进行插入排序；
 3.  减小每个子序列中元素之间的间距，重复上述过程直至间距减少为 $1$．
 
+为便于分析，下面给出单次间距为 $h$ 的插入排序伪代码，记为 $\text{InsertionSort}(h)$．数组 $A$ 的下标从 $1$ 到 $n$，$v$ 保存当前待插入的值；希尔排序按间距从大到小调用这一过程．
+
+$$
+\begin{array}{ll}
+1 & \textbf{for } j\gets h+1 \textbf{ to } n\\
+2 & \qquad v\gets A_j\\
+3 & \qquad i\gets j-h\\
+4 & \qquad \textbf{while } i\ge 1 \textbf{ and } A_i>v\\
+5 & \qquad\qquad A_{i+h}\gets A_i\\
+6 & \qquad\qquad i\gets i-h\\
+7 & \qquad A_{i+h}\gets v
+\end{array}
+$$
+
 ## 性质
 
 ### 稳定性
@@ -68,7 +82,7 @@
     
     所以 $x'_{n+i}$ 至少大于等于 $Y$ 也即 $Y'$ 中的 $i$ 个元素，那么自然有 $y'_i\le x'_{n+i}\,(1\le i\le l)$．
 
-再回到原命题的证明．设数组长度为 $N$，我们只需证明 $\text{InsertionSort}(k)$ 会保持已有 $h$ 的有序性，再调用次数归纳即可．这里 $h,k$ 为任意正整数．若 $h\ge N$，没有需要检查的相距 $h$ 的元素对，结论显然成立．以下设 $h<N$．
+再回到原命题的证明．设数组长度为 $N$，我们只需证明 $\text{InsertionSort}(k)$ 会保持已有 $h$ 的有序性，再对调用次数归纳即可．这里 $h,k$ 为任意正整数．若 $h\ge N$，没有需要检查的相距 $h$ 的元素对，结论显然成立．以下设 $h<N$．
 
 记调用前后的数组分别为 $A$ 与 $A'$．调用前有 $A_i\le A_{i+h}$，其中 $1\le i\le N-h$．对每个 $1\le w\le\min(k,N-h)$，按带余除法写成
 
@@ -135,9 +149,11 @@ $$
 而下面这个定理则揭示了引理 $2$ 是如何扩展定理 $1$ 的．
 
 ???+ note "定理 2"
-    如果 $\gcd(h_{t+1},h_t)=1$，则程序先执行完 $\text{InsertionSort}(h_{t+1})$ 与 $\text{InsertionSort}(h_t)$ 后，执行 $\text{InsertionSort}(h_{t-1})$ 的时间复杂度为 $O\left(\dfrac{nh_{t+1}h_t}{h_{t-1}} \right)$，且对于每个 $j$，其 $i$ 的移动次数是 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 级别的．
+    设 $h_{t+1}>h_t>h_{t-1}$ 为正整数．如果 $\gcd(h_{t+1},h_t)=1$，则程序先执行完 $\text{InsertionSort}(h_{t+1})$ 与 $\text{InsertionSort}(h_t)$ 后，执行 $\text{InsertionSort}(h_{t-1})$ 的时间复杂度为 $O\left(\dfrac{nh_{t+1}h_t}{h_{t-1}} \right)$，且对于每个 $j$，其 $i$ 的移动次数是 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 级别的．
 
 ??? note "定理 2 证明"
+    以下 $A$ 表示调用 $\text{InsertionSort}(h_{t-1})$ 前的数组．固定外层循环的下标 $j$，待插入的值为 $v=A_j$．
+    
     对于 $j\le h_{t+1}h_t$ 的部分，$i$ 的移动次数显然是 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 级别的．
     
     故以下假设 $j>h_{t+1}h_t$．
@@ -168,7 +184,7 @@ $$
     
     所以对于任何 $1\le k\le j-h_{t+1}h_t$，有 $A_k\le A_j$．
     
-    在 Shell-Sort 伪代码中 $i$ 指针每次减 $h_{t-1}$，减 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ 次，即可使得 $i\le j-h_{t+1}h_t$，进而有 $A_i\le A_j$，不满足 while 循环的条件退出．
+    在 $v$ 所属子序列的已处理前缀中，只有原下标位于 $(j-h_{t+1}h_t,j)$ 内的元素可能大于 $v$，这样的元素至多有 $\left\lceil\dfrac{h_{t+1}h_t}{h_{t-1}}\right\rceil$ 个．此前的插入只将该子序列的前缀排序，因此，在上面的伪代码中，$i$ 每次减 $h_{t-1}$，越过这些元素后就会遇到不大于 $v$ 的元素或越过数组左端，从而退出 while 循环．移动次数为 $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$．
     
     证明完对于每个 $j$ 的移动复杂度后，即可得到总的时间复杂度：
     
@@ -191,14 +207,14 @@ $$
     
     Shell-Sort 执行顺序为：$\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor-1}),\ldots,\text{InsertionSort}(h_2),\text{InsertionSort}(h_1)$．
     
-    分两部分去分析复杂度：
+    以下设 $n\ge4$，分两部分去分析复杂度：
     
     -   对于前面的若干个满足 $h_t\ge \sqrt{n}$ 的 $h_t$，显然有 $\text{InsertionSort}(h_t)$ 的时间复杂度为 $O\left(\dfrac{n^2}{h_t} \right)$．
     
-        考虑对最接近 $\sqrt{n}$ 的项 $h_k$，有：
+        取 $k=\min\{t:h_t\ge\sqrt n\}$，则 $h_k=\Theta(\sqrt n)$，有：
     
         $$
-        O\left(\frac{n^2}{h_t} \right)=O(n^{3/2})
+        O\left(\frac{n^2}{h_k} \right)=O(n^{3/2})
         $$
     
         而对于 $i> k$ 的 $h_i$，因为有 $2h_i< h_{i+1}$，所以可得：
