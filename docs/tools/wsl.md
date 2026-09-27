@@ -455,7 +455,7 @@ Welcome!
 ## 外部链接
 
 -   [关于适用于 Linux 的 Windows 子系统](https://docs.microsoft.com/zh-cn/windows/wsl/about)
--   [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+-   [Ubuntu 软件仓库 - MirrorZ Help](https://help.mirrorz.org/ubuntu/)
 -   [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com)
 -   [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
 -   [排查适用于 Linux 的 Windows 子系统问题](https://docs.microsoft.com/zh-cn/windows/wsl/troubleshooting)
