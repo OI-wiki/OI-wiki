@@ -210,7 +210,10 @@ Ubuntu 默认的软件源在国外，可以换成国内镜像以加快速度．�
 换源后运行以下命令更新软件：
 
 ```console
-$ sudo apt update && sudo apt upgrade -y
+$ sudo su # 执行这行指令后，终端提示符会从 $ 变成 #，执行下文的命令前注意关注提示符
+[sudo] xxx 的密码：
+# apt update
+# apt upgrade -y
 ```
 
 ### 安装中文环境
