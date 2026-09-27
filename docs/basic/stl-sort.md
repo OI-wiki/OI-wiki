@@ -45,8 +45,7 @@ struct eg  // 示例结构体
 };
 
 // struct eg 类型数组的比较函数：按成员 e 排序
-int compare(const void* p1, const void* p2)
-{
+int compare(const void* p1, const void* p2) {
   struct eg* a = (struct eg*)p1;
   struct eg* b = (struct eg*)p2;
   if (a->e > b->e)
