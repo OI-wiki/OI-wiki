@@ -1,4 +1,4 @@
-#include "divide-and-conquer_1.h"
+#include "divide-and-conquer_2.h"
 
 #include <cstring>
 #include <iostream>
