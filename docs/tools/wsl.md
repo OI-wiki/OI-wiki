@@ -202,49 +202,15 @@ sudo apt install g++
 
 ### 更换为国内软件源
 
-Ubuntu 默认的软件源在国外．可以换成国内的软件源以加快速度，如 [清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)．
+Ubuntu 默认的软件源在国外，可以换成国内镜像以加快速度．请参考 [MirrorZ 的 Ubuntu 帮助页面](https://help.mirrorz.org/ubuntu/)，选择与自己系统版本相匹配的配置（可使用 `lsb_release -a` 查看 Ubuntu 版本），并按页面给出的命令操作．
 
 ???+ warning "使用与自己系统版本匹配的软件源"
-    请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看 Ubuntu 版本）．
-    
     除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！
 
-打开 bash，输入 `cat /etc/apt/sources.list`，如出现：
-
-    # Ubuntu sources have moved to the /etc/apt/sources.list.d/ubuntu.sources
-    # file, which uses the deb822 format. Use deb822-formatted .sources files
-    # to manage package sources in the /etc/apt/sources.list.d/ directory.
-    # See the sources.list(5) manual page for details.
-
-使用以下方法更新源：
+换源后运行以下命令更新软件：
 
 ```console
-$ sudo su
-[sudo] xxx 的密码：
-# cp /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list.bak
-# vim /etc/apt/sources.list.d/ubuntu.sources
-```
-
-按 `a` 后 使用<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>将先前复制的镜像源粘贴，随后按<kbd>Esc</kbd>，输入 `:wq`，按<kbd>Enter</kbd>保存并退出．
-
-??? note "关于 vim"
-    如果不会使用 vim 编辑器，请查阅 [OI-wiki 上的 Vim 教程](https://oi-wiki.org/tools/editor/vim/).
-
-随后，依次运行 `apt update` 与 `apt upgrade -y`，更新完毕．
-
-对于 Ubuntu 22.04 及更早的版本，使用以下命令更新软件和软件源：
-
-```console
-$ sudo su # 执行这行指令后，终端提示符会从 $ 变成 #，执行下文的命令前注意关注提示符
-[sudo] xxx 的密码：
-# cp /etc/apt/sources.list /etc/apt/sources.list.bak
-# vim /etc/apt/sources.list
-...（按 i 之后将上文的源右键粘贴进去，编辑完后按 Esc，再输入 :wq 和回车）
-# apt update
-# apt upgrade -y
-# exit
-exit
-$ 
+$ sudo apt update && sudo apt upgrade -y
 ```
 
 ### 安装中文环境
