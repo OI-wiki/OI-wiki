@@ -1,4 +1,4 @@
-author:F7487
+author: F7487
 
 ## Self-Adjusting Top Tree
 

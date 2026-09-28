@@ -119,9 +119,9 @@ Dirichlet 卷积具有一系列代数性质．
     \end{aligned}
     $$
     
-    其中，第三个等号改变求和顺序的逻辑是：当 $k$ 遍历 $n_1n_2$ 的因数时，$k$ 的素因子可以根据它是 $n_1$ 还是 $n_2$ 的素因子分为两类，将两类中的素因子（计重复）分别乘起来得到 $k_1$ 和 $k_2$，它们将分别遍历 $n_1$ 和 $n_2$ 的因数；反过来，根据 $n_1$ 和 $n_2$ 的因数 $k_1$ 和 $k_2$，总是可以得到 $n_1n_2$ 的因数 $k=k_1k_2$．
+    其中，第三个等号利用了 $f,g$ 的积性，其改变求和顺序的逻辑是：当 $k$ 遍历 $n_1n_2$ 的因数时，$k$ 的素因子可以根据它是 $n_1$ 还是 $n_2$ 的素因子分为两类，将两类中的素因子（计重复）分别乘起来得到 $k_1$ 和 $k_2$，它们将分别遍历 $n_1$ 和 $n_2$ 的因数；反过来，根据 $n_1$ 和 $n_2$ 的因数 $k_1$ 和 $k_2$，总是可以得到 $n_1n_2$ 的因数 $k=k_1k_2$．
     
-    对于第二点，设 $g=f^{-1}$，考虑应用数学归纳法．首先，$g(1)=1/f(1)=1$．此时，逆元的递归公式可以写作
+    对于第二点，设 $g=f^{-1}$，考虑应用数学归纳法．首先，$g(1)=1/f(1)=1$．此时，逆元的递推公式可以写作
     
     $$
     g(n) = \varepsilon(n) - \sum_{k\ell = n,~k\neq 1} f(k)g(\ell).
@@ -243,12 +243,12 @@ Dirichlet 生成函数的乘积对应着相应的数论函数的 Dirichlet 卷�
 
 $$
 \begin{aligned}
-F(s) &= \sum_{n=1}^{\infty}\dfrac{f(n)}{n^s} = \sum_{n=1}^{\infty}\prod_{p\in\mathbf P}\dfrac{f(p^{e})}{p^{es}} = \prod_{p\in\mathbf P}\sum_{e=0}^{\infty}\dfrac{f(p^e)}{p^{es}}\\
+F(s) &= \sum_{n=1}^{\infty}\dfrac{f(n)}{n^s} = \sum_{n=1}^{\infty}\prod_{p\in\mathbf P}\dfrac{f(p^{\nu_p(n)})}{p^{\nu_p(n)s}} = \prod_{p\in\mathbf P}\sum_{e=0}^{\infty}\dfrac{f(p^e)}{p^{es}}\\
 &= \prod_{p\in\mathbf P}\left(1 + \dfrac{f(p)}{p^s} + \dfrac{f(p^2)}{p^{2s}} + \dfrac{f(p^3)}{p^{3s}} + \cdots\right).
 \end{aligned}
 $$
 
-这意味着，$F(s)$ 可以分解为若干 $F_p(s)$ 的乘积，且每个 $F_p(s)$ 对应的数论函数都只在 $p$ 的幂次处可能取非零值．这一无穷乘积也称为 **Euler 乘积**（Euler product）．如果 $F(s)$ 和 $G(s)$ 都能分解成类似的形式，那么它们的乘积同样如此；将这一观察对应到数论函数上，就是积性函数的 Dirichlet 卷积仍然是积性函数．
+其中，$\nu_p(n)$ 表示 $n$ 的素因数分解中 $p$ 的幂次．这意味着，$F(s)$ 可以分解为若干 $F_p(s)=\sum_{e=0}^{\infty}f(p^e)p^{-es}$ 的乘积，且每个 $F_p(s)$ 对应的数论函数都只在 $p$ 的幂次处可能取非零值．这一无穷乘积也称为 **Euler 乘积**（Euler product）．如果 $F(s)$ 和 $G(s)$ 都能分解成类似的形式，那么它们的乘积同样如此；将这一观察对应到数论函数上，就是积性函数的 Dirichlet 卷积仍然是积性函数．
 
 进一步地，如果 $f(n)$ 还是完全积性函数，那么 $f(p^e)=f(p)^e$，上式可以继续简化：
 
@@ -265,7 +265,7 @@ $$
         E(s) = \sum_{n=1}^{\infty}\dfrac{\varepsilon(n)}{n^s} = 1.
         $$
     
-    2.  常数函数 $1(n)$ 是完全积性函数．它的 Dirichlet 生成函数是 Riemann 函数
+    2.  常数函数 $1(n)$ 是完全积性函数．它的 Dirichlet 生成函数是 Riemann ζ 函数
     
         $$
         I(s) = \sum_{n=1}^{\infty}\dfrac{1}{n^s} = \prod_{p\in\mathbf P}\dfrac{1}{1-p^{-s}} = \zeta(s).
@@ -292,32 +292,77 @@ $$
         \end{aligned}
         $$
     
-        结合幂函数的 Dirichlet 函数表达式，就得到 $\mathrm{id} = \varphi\ast 1$．
+        结合幂函数的 Dirichlet 生成函数表达式，就得到 $\mathrm{id} = \varphi\ast 1$．
     
     6.  约数函数 $\sigma_k(n)=\sum_{d\mid n}d^k$ 是积性函数．它的 Dirichlet 生成函数是
     
         $$
         \begin{aligned}
         \Sigma_k(s) &= \prod_{p\in\mathbf P}\left(1+\dfrac{1+p^k}{p^s}+\dfrac{1+p^k+p^{2k}}{p^{2s}}+\dfrac{1+p^k+p^{2k}+p^{3k}}{p^{3s}}+\cdots\right) \\
-        &= \prod_{p\in\mathbf P}\dfrac{1}{1-p^k}\left((1-p^k)+\dfrac{1-p^{2k}}{p^s}+\dfrac{1-p^{3k}}{p^{2s}}+\dfrac{1-p^{4k}}{p^{3k}}+\cdots\right)\\
+        &= \prod_{p\in\mathbf P}\dfrac{1}{1-p^k}\left((1-p^k)+\dfrac{1-p^{2k}}{p^s}+\dfrac{1-p^{3k}}{p^{2s}}+\dfrac{1-p^{4k}}{p^{3s}}+\cdots\right)\\
         &= \prod_{p\in\mathbf P}\dfrac{1}{1-p^k}\left(\dfrac{1}{1-p^{-s}} - \dfrac{p^k}{1-p^{k-s}}\right)\\
         &= \prod_{p\in\mathbf P}\dfrac{1}{(1-p^{-s})(1-p^{k-s})} = \zeta(s-k)\zeta(s).
         \end{aligned}
         $$
     
-        结合幂函数的 Dirichlet 表达式，就得到 $\sigma_k = \mathrm{id}_k\ast 1$．这正是 $\sigma_k$ 的定义式．
+        结合幂函数的 Dirichlet 生成函数表达式，就得到 $\sigma_k = \mathrm{id}_k\ast 1$．这正是 $\sigma_k$ 的定义式．
     
-    7.  无平方因子数的指示函数 $u(n)=|\mu(n)|$ 是积性函数．它的 Dirichlet 生成函数是
+    7.  无平方因子数的指示函数 $u(n)=|\mu(n)|=\mu^2(n)$ 是积性函数．它的 Dirichlet 生成函数是
     
         $$
         U(s) = \prod_{p\in\mathbf P}(1+p^{-s}) = \prod_{p\in\mathbf P}\dfrac{1-p^{-2s}}{1-p^{-s}} = \dfrac{\zeta(s)}{\zeta(2s)}.
         $$
 
+### Bell 级数
+
+Euler 乘积说明，积性函数的 Dirichlet 生成函数可以分解为局部因子 $F_p(s)$ 的乘积．如果只关心单个素数处的信息，可以将 $p^{-s}$ 整体看作一个形式变元，这就得到了 Bell 级数．
+
+对于积性函数 $f$ 和素数 $p$，定义 $f$ 关于 $p$ 的 **Bell 级数**（Bell series）为形式幂级数
+
+$$
+f_p(x) = \sum_{e=0}^{\infty} f(p^e)x^e = 1 + f(p)x + f(p^2)x^2 + \cdots.
+$$
+
+对比 Euler 乘积的表达式可知，$f_p(x)$ 就是将 $F_p(s)$ 中的 $p^{-s}$ 替换为 $x$ 的结果，即 $F_p(s) = f_p(p^{-s})$，从而
+
+$$
+F(s) = \prod_{p\in\mathbf P}f_p(p^{-s}).
+$$
+
+引入这一记号后可以看出，Dirichlet 卷积在局部化之后就是普通的幂级数乘法．
+
+将 Dirichlet 生成函数的结果转译到 Bell 级数上，就得到如下性质：
+
+1.  对于积性函数 $f,g$ 及任意素数 $p$，有 $(f\ast g)_p(x) = f_p(x)g_p(x)$．
+2.  积性函数 $f$ 是完全积性函数，当且仅当对每个素数 $p$ 都有 $f_p(x) = \dfrac{1}{1-f(p)x}$．
+3.  积性函数的 Dirichlet 逆总是存在，且 $(f^{-1})_p(x) = \dfrac{1}{f_p(x)}$．
+
+因为积性函数由它在素数幂处的取值唯一确定，所以积性函数与它的全体 Bell 级数 $\{f_p\}_{p\in\mathbf P}$ 是一一对应的．于是，关于积性函数的 Dirichlet 卷积的许多问题，都可以逐个素数地转化为形式幂级数的问题来讨论．相比直接使用 Dirichlet 生成函数，其形式上要简洁一些．例如，第三条性质说明，求 Dirichlet 逆只需逐个素数地求形式幂级数的逆；在实际计算中，因为只需要 $p^e\le n$ 的部分，每个素数至多截断到 $x^{\lfloor\log_p n\rfloor}$ 项．
+
+???+ example "例子"
+    前文例子中的积性函数，对应的 Bell 级数如下：
+    
+    |    $f$   | $\varepsilon$ |        $1$       | $\mu$ | $\operatorname{id}_k$ |      $\varphi$      |         $\sigma_k$         | $\lvert\mu\rvert=\mu^2$ |
+    | :------: | :-----------: | :--------------: | :---: | :-------------------: | :-----------------: | :------------------------: | :---------------------: |
+    | $f_p(x)$ |      $1$      | $\dfrac{1}{1-x}$ | $1-x$ |  $\dfrac{1}{1-p^kx}$  | $\dfrac{1-x}{1-px}$ | $\dfrac{1}{(1-x)(1-p^kx)}$ |          $1+x$          |
+    
+    利用上表，常见的 Dirichlet 卷积关系都可以直接验证．例如 $\mu\ast 1=\varepsilon$ 对应
+    
+    $$
+    (1-x)\cdot\dfrac{1}{1-x} = 1,
+    $$
+    
+    而 $\varphi\ast 1=\operatorname{id}$ 对应
+    
+    $$
+    \dfrac{1-x}{1-px}\cdot\dfrac{1}{1-x} = \dfrac{1}{1-px}.
+    $$
+
 ### 应用
 
-Dirichlet 生成函数可以用于将积性函数表示为 Dirichlet 卷积．
+Dirichlet 生成函数可以用于将数论函数表示为 Dirichlet 卷积．
 
-例如在杜教筛的过程中，要计算积性函数 $f$ 的前缀和，需要找到另一个积性函数 $g$ 使得 $f\ast g$ 和 $g$ 都可以快速求前缀和．可以利用 Dirichlet 生成函数推导这一过程．
+例如在杜教筛的过程中，要计算数论函数 $f$ 的前缀和，需要找到另一个数论函数 $g$ 使得 $f\ast g$ 和 $g$ 都可以快速求前缀和．可以利用 Dirichlet 生成函数推导这一过程．
 
 以杜教筛一节的例题 [Luogu P3768 简单的数学题](../number-theory/hyperbola.md#例题) 为例，需要对 $f(n)=n^2\varphi(n)$ 构造满足上述条件的数论函数 $g(n)$．由于 $f$ 是积性函数，它的 Dirichlet 生成函数为
 
@@ -326,6 +371,14 @@ F(s) = \prod_{p\in\mathbf P}\left(1 + \sum_{k=1}^{\infty}\dfrac{p^{3k-1}(p-1)}{p
 $$
 
 对比幂函数的 Dirichlet 生成函数可知，只要取 $g = \mathrm{id}_2$，就有 $f \ast g = \mathrm{id}_3$．两者都是可以快速计算前缀和的．
+
+由于常见问题中的数论函数都是积性函数，实践中利用 Bell 级数往往更加方便．例如，刚刚的例子中 $f(n)$ 的 Bell 级数可以直接由 $f(p^e)=p^{3e-1}(p-1)$ 推得为
+
+$$
+f_p(x) = 1 + \dfrac{p-1}{p}\sum_{e=1}^{\infty}(p^3x)^e = 1 + \dfrac{(p-1)p^2x}{1-p^3x} = \dfrac{1-p^2x}{1-p^3x}.
+$$
+
+对比幂函数的 Bell 级数立即得到 $f \ast \mathrm{id}_2 = \mathrm{id}_3$．
 
 ## Dirichlet 卷积的计算
 
@@ -363,7 +416,7 @@ $$
 其中，$G_p(s)$ 是 $G(s)$ 的 Euler 乘积分解中的因式，它只包含 $p$ 的幂次处的系数：
 
 $$
-G_p(s) = \sum_{p^k\le n}\dfrac{f(p^k)}{p^{ks}} = 1 + \dfrac{f(p)}{p^s} + \dfrac{f(p^2)}{p^{2s}} + \cdots.
+G_p(s) = \sum_{p^k\le n}\dfrac{g(p^k)}{p^{ks}} = 1 + \dfrac{g(p)}{p^s} + \dfrac{g(p^2)}{p^{2s}} + \cdots.
 $$
 
 那么，从 $F(s)$ 开始，遍历所有不超过 $n$ 的素数 $p$，将 $G_p(s)$ 逐一乘上去，同样可以得到最终结果 $H(s)$．将 $G_p(s)$ 乘上去时，直接应用一般情形中的暴力枚举算法即可．总枚举次数
@@ -381,7 +434,7 @@ $$
     --8<-- "docs/math/code/dirichlet/dirichlet-2.cpp:core"
     ```
 
-特别地，当积性函数 $g$ 是完全积性函数或其 Dirichlet 逆时，例如当 $g = 1$ 或 $g = \mu$ 时，那么算法可以进一步简化．此时，Dirichlet 卷积 $h = f\ast g$ 的计算可以采用常数更小的 [Dirichlet 前缀和/差分](./mobius.md#dirichlet-前缀和) 算法，但是算法时间复杂度仍为 $O(n\log\log n)$．
+特别地，当积性函数 $g$ 是完全积性函数或其 Dirichlet 逆时，例如当 $g = 1$ 或 $g = \mu$ 时，算法可以进一步简化．此时，Dirichlet 卷积 $h = f\ast g$ 的计算可以采用常数更小的 [Dirichlet 前缀和/差分](./mobius.md#dirichlet-前缀和) 算法，但是算法时间复杂度仍为 $O(n\log\log n)$．
 
 ### 结果为积性函数的情形
 
@@ -395,8 +448,8 @@ $$
 
 $$
 \begin{aligned}
-\sum_{p\in\mathbf P,~p\le n}\sum_{e=1}^{\lfloor\log_p n\rfloor}(e+1) &\le \sum_{p\in\mathbf P,~p\le\sqrt{n}}\lfloor\log_p n\rfloor^2 + \sum_{p\in\mathbf P,~\sqrt{n} < p\le n}1 \\
-&\le \sqrt{n}(\log_2 n)^2 + n \in O(n).
+\sum_{p\in\mathbf P,~p\le n}\sum_{e=1}^{\lfloor\log_p n\rfloor}(e+1) &\le \sum_{p\in\mathbf P,~p\le\sqrt{n}}2\lfloor\log_p n\rfloor^2 + \sum_{p\in\mathbf P,~\sqrt{n} < p\le n}2 \\
+&\le 2\sqrt{n}(\log_2 n)^2 + 2n \in O(n).
 \end{aligned}
 $$
 
@@ -414,4 +467,6 @@ $$
 -   [Dirichlet convolution - Wikipedia](https://en.wikipedia.org/wiki/Dirichlet_convolution)
 -   [Dirichlet series - Wikipedia](https://en.wikipedia.org/wiki/Dirichlet_series)
 -   [Euler product - Wikipedia](https://en.wikipedia.org/wiki/Euler_product)
+-   [Bell series - Wikipedia](https://en.wikipedia.org/wiki/Bell_series)
 -   [Dirichlet 積と、数論関数の累積和 by maspy](https://maspypy.com/dirichlet-%e7%a9%8d%e3%81%a8%e3%80%81%e6%95%b0%e8%ab%96%e9%96%a2%e6%95%b0%e3%81%ae%e7%b4%af%e7%a9%8d%e5%92%8c)
+-   [杜教筛（+ 贝尔级数 + powerful number）by command\_block - 洛谷](https://www.luogu.com.cn/article/ygfzawod)

@@ -4,7 +4,7 @@ $$
 \sum_{i=1}^nf(i)g\left(\left\lfloor\dfrac ni\right\rfloor\right)
 $$
 
-的和式．如果可以在 $O(1)$ 时间内计算出 $\sum_{i=l}^{r}f(i)$ 或已经预处理出 $f$ 的前缀和时，数论分块就可以在 $O(\sqrt{n})$ 时间内计算出上述和式的值．
+的和式．如果可以在 $O(1)$ 时间内计算出 $\sum_{i=l}^{r}f(i)$ 或已经预处理出 $f$ 的前缀和，数论分块就可以在 $O(\sqrt{n})$ 时间内计算出上述和式的值．
 
 数论分块常与 [莫比乌斯反演](./mobius.md) 等技巧结合使用．
 
@@ -22,9 +22,9 @@ $$
 
 这是前文所示和式在 $f(k)=1,~g(k)=k$ 时的特殊情况．
 
-最简单的做法当然是逐列计算然后求和，但是这样需要计算第 $i=1,2,\cdots,11$ 列中每列整点的个数．观察图示可以发现，这些整点列的可以分成 $5$ 块，每块内点列的高度是一致的，形成一个矩形点阵．所以，只要能够知道这些块的宽度，就能够通过计算这些矩形块的大小快速完成统计．
+最简单的做法当然是逐列计算然后求和，但是这样需要计算第 $i=1,2,\cdots,11$ 列中每列整点的个数．观察图示可以发现，这些整点列可以分成 $5$ 块，每块内点列的高度是一致的，形成一个矩形点阵．所以，只要能够知道这些块的宽度，就能够通过计算这些矩形块的大小快速完成统计．
 
-这就是整除分块的基本思路．
+这就是数论分块的基本思路．
 
 ## 性质
 
@@ -141,7 +141,7 @@ $$
 $$
 \begin{array}{l}
 \textbf{Algorithm }\text{Sum}(f,g,n):\\
-\textbf{Input. }n,~s(k)=\sum_{i=1}^kf(k),~g(k).\\
+\textbf{Input. }n,~s(k)=\sum_{i=1}^kf(i),~g(k).\\
 \textbf{Output. }S(n) = \sum_{i=1}^nf(i)g(\lfloor n/i\rfloor).\\
 \textbf{Method.}\\
 \begin{array}{ll}
@@ -181,13 +181,13 @@ $$
 
 ### 多维数论分块
 
-数论分块还可以用于处理包含不只有一个取整式的和式：
+数论分块还可以用于处理包含不止一个取整式的和式：
 
 $$
 \sum_{i=1}^{n}f(i)g\left(\left\lfloor\dfrac {n_1}i\right\rfloor,\left\lfloor\dfrac {n_2}i\right\rfloor,\cdots,\left\lfloor\dfrac {n_m}i\right\rfloor\right).
 $$
 
-为了应用数论分块的思想，需要保证每块中所有取整式 $\left\lfloor\dfrac {n_1}i\right\rfloor,\left\lfloor\dfrac {n_2}i\right\rfloor,\cdots,\left\lfloor\dfrac {n_m}i\right\rfloor$ 的取值都不发生变化，也就是说，多维的块应当是所有一维的块的交集．为此，对于已知的左端点 $l$，相应的右端点为
+其中，通常有 $n\le\min\{n_1,n_2,\cdots,n_m\}$，否则需要单独处理某个 $\lfloor n_j/i\rfloor=0$ 的情形．为了应用数论分块的思想，需要保证每块中所有取整式 $\left\lfloor\dfrac {n_1}i\right\rfloor,\left\lfloor\dfrac {n_2}i\right\rfloor,\cdots,\left\lfloor\dfrac {n_m}i\right\rfloor$ 的取值都不发生变化，也就是说，多维的块应当是所有一维的块的交集．为此，对于已知的左端点 $l$，相应的右端点为
 
 $$
 \min\left\{\left\lfloor\dfrac {n_1}{\lfloor n_1/l\rfloor}\right\rfloor,\left\lfloor\dfrac {n_2}{\lfloor n_2/l\rfloor}\right\rfloor,\cdots,\left\lfloor\dfrac {n_m}{\lfloor n_m/l\rfloor}\right\rfloor\right\}.
@@ -276,12 +276,12 @@ $$
     令 $a_0=0$．假设击杀所有前 $(i-1)$ 只怪兽需要 $T(k,i-1)$ 次攻击，第 $i$ 只怪兽的血量为 $a_i$．由于击杀第 $(i-1)$ 只怪兽时，需要攻击它 $\lceil a_{i-1}/k\rceil$ 次，这些攻击都可以延伸到第 $i$ 只怪兽．因此，要击杀第 $i$ 只怪兽，只需要再攻击 $\max\{0,\lceil a_i/k\rceil-\lceil a_{i-1}/k\rceil\}$ 次．由此，总的攻击次数为
     
     $$
-    T(k,n)=\sum_{i=1}^n\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right).
+    T(k,n)=\sum_{i=1}^n\max\left\{0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right\}.
     $$
     
-    由于题目涉及的 $n,k$ 都比较大，对每个 $k$ 分别计算该和式并不可行．可以考虑对每个 $i=1,2,\cdots,n$，都维护数列 $\{T(k,i)\}_k$．初始时，设 $T(k,0)\equiv 0$．假设数列 $\{T(k,i-1)\}_k$ 已知，考虑如何对它进行修改才能得到数列 $\{T(k,i)\}_k$．根据前文分析，只需要对数列的第 $k$ 项增加 $\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right)$ 即可．利用二维数论分块，可以将这一修改操作拆分成 $O(\sqrt{a_{i-1}}+\sqrt{a_i})$ 段区间修改操作，且每段区间上增加的值是固定的．最后得到的数列 $\{T(k,n)\}_k$ 就是答案．
+    由于题目涉及的 $n,k$ 都比较大，对每个 $k$ 分别计算该和式并不可行．可以考虑对每个 $i=1,2,\cdots,n$，都维护数列 $\{T(k,i)\}_k$．初始时，设 $T(k,0)\equiv 0$．假设数列 $\{T(k,i-1)\}_k$ 已知，考虑如何对它进行修改才能得到数列 $\{T(k,i)\}_k$．根据前文分析，只需要对数列的第 $k$ 项增加 $\max\left\{0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right\}$ 即可．利用二维数论分块，可以将这一修改操作拆分成 $O(\sqrt{a_{i-1}}+\sqrt{a_i})$ 段区间修改操作，且每段区间上增加的值是固定的．最后得到的数列 $\{T(k,n)\}_k$ 就是答案．
     
-    由于题目涉及一系列区间加操作，且查询只发生所有修改完成后．所以，可以通过维护差分序列进行区间加修改，最后通过求前缀和得到所求数列．总的时间复杂度为 $O(\sum\sqrt{a_i})$．本题也存在其他解法．
+    由于题目涉及一系列区间加操作，且查询只发生在所有修改完成后．所以，可以通过维护差分序列进行区间加修改，最后通过求前缀和得到所求数列．总的时间复杂度为 $O(\max_i a_i+\sum_i\sqrt{a_i})$．本题也存在其他解法．
 
 ??? note "实现"
     ```cpp

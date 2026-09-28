@@ -51,7 +51,7 @@ int merge(int a, int b, int l, int r) {
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg_6.cpp"
+        --8<-- "docs/ds/code/seg/seg-merge.cpp"
         ```
 
 ## 线段树分裂
@@ -109,7 +109,7 @@ void split(int &p, int &q, int s, int t, int l, int r) {
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg_7.cpp"
+        --8<-- "docs/ds/code/seg/seg-split.cpp"
         ```
 
 ## 习题

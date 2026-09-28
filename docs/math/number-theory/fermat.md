@@ -7,10 +7,10 @@ author: PeterlitsZo, Tiphereth-A
 **费马小定理**（Fermat's little theorem）是数论中最基础的定理之一．它也是 [Fermat 素性测试](./prime.md#fermat-素性测试) 的理论基础．
 
 ???+ note "费马小定理"
-    设 $p$ 是素数．对于任意整数 $a$ 且 $p\nmid a$，都成立 $a^{p-1}\equiv 1\pmod p$.
+    设 $p$ 是素数．对于任意整数 $a$ 且 $p\nmid a$，都成立 $a^{p-1}\equiv 1\pmod p$．
 
 ???+ note "定理"
-    设 $p$ 是素数．对于任意整数 $a$，都成立 $a^{p}\equiv a\pmod p$.
+    设 $p$ 是素数．对于任意整数 $a$，都成立 $a^{p}\equiv a\pmod p$．
 
 这两个同余关系在 $p\nmid a$ 时是等价的；而在 $p\mid a$ 时，$a^p\equiv 0\equiv a\pmod p$ 平凡地成立．因此，这两个命题是等价的．这两个命题常常都称作费马小定理．
 
@@ -18,7 +18,7 @@ author: PeterlitsZo, Tiphereth-A
     设 $p$ 是素数，且 $p\nmid a$．首先证明：对于 $i=1,2,\cdots,p-1$，余数 $ia \bmod p$ 各不相同．反证法．如果有 $1\le i < j < p$ 使得
     
     $$
-    ia \bmod p = ja \bmod p. \iff (j-i)a\equiv 0.\pmod p
+    ia \bmod p = ja \bmod p \iff (j-i)a\equiv 0.\pmod p
     $$
     
     但是，$(j-i)$ 和 $a$ 都不是 $p$ 的倍数，这显然矛盾．
@@ -54,11 +54,11 @@ author: PeterlitsZo, Tiphereth-A
     
     其中，第二步应用了归纳假设．因此，利用数学归纳法可知，费马小定理成立．
 
-费马小定理的逆命题并不成立．即使对于所有与 $n$ 互素的 $a$，都有 $a^{n-1}\equiv 1\pmod n$，那么，$n$ 也未必是素数．相关讨论详见 [Fermat 素性测试](./prime.md#fermat-素性测试) 一节．
+费马小定理的逆命题并不成立．即使对于所有与 $n$ 互素的 $a$，都有 $a^{n-1}\equiv 1\pmod n$，$n$ 也未必是素数．相关讨论详见 [Fermat 素性测试](./prime.md#fermat-素性测试) 一节．
 
 ## 欧拉定理
 
-**欧拉定理**（Euler's theorem）将费马小定理推广到了一般模数的情形，但仍然要求底数与指数互素．
+**欧拉定理**（Euler's theorem）将费马小定理推广到了一般模数的情形，但仍然要求底数与模数互素．
 
 ???+ note "欧拉定理"
     对于整数 $m>0$ 和整数 $a$，且 $\gcd(a,m)=1$，有 $a^{\varphi(m)}\equiv 1\pmod{m}$，其中，$\varphi(\cdot)$ 为 [欧拉函数](./euler-totient.md)．
@@ -109,7 +109,7 @@ author: PeterlitsZo, Tiphereth-A
 
 ![fermat1](./images/fermat.svg)
 
-考虑余数 $a^k\bmod m$ 随着 $b$ 增大而变化的情况．由于余数的取值一定在区间 $[0,m)$ 内，而 $k$ 有无限多个．将 $a^k\bmod m \mapsto a^{k+1}\bmod m$ 看作这些余数结点之间的有向边．那么，一定可以构成如图所示的循环．
+考虑余数 $a^k\bmod m$ 随着 $k$ 增大而变化的情况．由于余数的取值一定在区间 $[0,m)$ 内，而 $k$ 有无限多个．将 $a^k\bmod m \mapsto a^{k+1}\bmod m$ 看作这些余数结点之间的有向边．那么，一定可以构成如图所示的循环．
 
 扩展欧拉定理说明，这些循环可能是纯循环（第一种情形）或者混循环（第二、三种情形）．纯循环中，没有结点存在两个前驱，而混循环中就会出现这样的情形．因此，对于一般的情况，只需要能够求出循环节的长度和进入循环节之前的长度，就可以利用这个性质进行降幂．
 
@@ -135,7 +135,7 @@ author: PeterlitsZo, Tiphereth-A
     由于 $\gcd(a^{k_0},m)=\gcd(a^k,m)\mid b$，所以，将等式两侧（包括模数）同时除以 $\gcd(a^{k_0},m)$，就有
     
     $$
-    \dfrac{b}{\gcd(a^{k_0},m)} = \dfrac{a^{k_0}}{\gcd(a^{k_0},m)}\cdot a^{k-k_0}. \pmod{m'}
+    \dfrac{b}{\gcd(a^{k_0},m)} \equiv \dfrac{a^{k_0}}{\gcd(a^{k_0},m)}\cdot a^{k-k_0}. \pmod{m'}
     $$
     
     此时，因为 $a$ 与模数 $m'$ 互素，可以直接应用欧拉定理，得到

@@ -45,9 +45,9 @@ int main() {
     }
 
     // The original game corresponds to attaching nothing on the left.
-    // It is a P-position if and only if the unique value y satisfying
-    //     f_{-1, n-1}(0, y) = 0
-    // is y = 0.
+    // It is a P-position if and only if the unique value x satisfying
+    //     f_{-1, n-1}(x, a_{n-1}) = 0
+    // is x = 0.
     std::cout << (dp[0][n - 1][0] != 0) << '\n';
   }
   return 0;

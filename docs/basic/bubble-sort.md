@@ -2,13 +2,13 @@
 
 ## 定义
 
-冒泡排序（英语：Bubble sort）是一种简单的排序算法．由于在算法的执行过程中，较小的元素像是气泡般慢慢「浮」到数列的顶端，故叫做冒泡排序．
+冒泡排序（Bubble sort）是一种简单的排序算法．由于在算法的执行过程中，较小的元素像是气泡般慢慢「浮」到数列的顶端，故叫做冒泡排序．
 
 ## 过程
 
 它的工作原理是每次检查相邻两个元素，如果前面的元素与后面的元素满足给定的排序条件，就将相邻两个元素交换．当没有相邻的元素需要交换时，排序就完成了．
 
-经过 $i$ 次扫描后，数列的末尾 $i$ 项必然是最大的 $i$ 项，因此冒泡排序最多需要扫描 $n-1$ 遍数组就能完成排序．
+经过 $i$ 次扫描后，数列的末尾 $i$ 项必然是最大的 $i$ 项，因此扫描 $n-1$ 遍足以使数组有序．
 
 ## 性质
 
@@ -20,7 +20,7 @@
 
 在序列完全有序时，冒泡排序只需遍历一遍数组，不用执行任何交换操作，时间复杂度为 $O(n)$．
 
-在最坏情况下，冒泡排序要执行 $\frac{(n-1)n}{2}$ 次交换操作，时间复杂度为 $O(n^2)$．
+在最坏情况下，冒泡排序要执行 $\dfrac{(n-1)n}{2}$ 次交换操作，时间复杂度为 $O(n^2)$．
 
 冒泡排序的平均时间复杂度为 $O(n^2)$．
 
@@ -33,12 +33,12 @@ $$
 1 & \textbf{Input. } \text{An array } A \text{ consisting of }n\text{ elements.} \\
 2 & \textbf{Output. } A\text{ will be sorted in nondecreasing order stably.} \\
 3 & \textbf{Method. }  \\
-4 & flag\gets True\\
-5 & \textbf{while }flag\\
-6 & \qquad flag\gets False\\
+4 & \textit{flag}\gets \mathrm{True}\\
+5 & \textbf{while }\textit{flag}\\
+6 & \qquad \textit{flag}\gets \mathrm{False}\\
 7 & \qquad\textbf{for }i\gets1\textbf{ to }n-1\\
 8 & \qquad\qquad\textbf{if }A[i]>A[i + 1]\\
-9 & \qquad\qquad\qquad flag\gets True\\
+9 & \qquad\qquad\qquad \textit{flag}\gets \mathrm{True}\\
 10 & \qquad\qquad\qquad \text{Swap } A[i]\text{ and }A[i + 1]
 \end{array}
 $$
