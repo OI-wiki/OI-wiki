@@ -130,7 +130,7 @@ APIO 和 CTS 都以省为单位报名，一般按照 NOIP 的成绩排序来确�
 
 ### ISIJ
 
-**ISIJ**（英文：International School in Informatics “Junior”，中文：国际初中生信息学竞赛）是面向初中生的信息学训练与竞赛活动．以 [ISIJ 2023](https://www.ccf.org.cn/Media_list/noi/2023-07-10/794002.shtml) 为例，活动包含热身训练赛、数学赛、码力赛、马拉松赛和团体赛，并设置不同难度的组别．
+**ISIJ**（英文：International School in Informatics「Junior」，中文：国际初中生信息学竞赛）是面向初中生的信息学训练与竞赛活动．以 [ISIJ 2023](https://www.ccf.org.cn/Media_list/noi/2023-07-10/794002.shtml) 为例，活动包含热身训练赛、数学赛、码力赛、马拉松赛和团体赛，并设置不同难度的组别．
 
 中国计算机学会（CCF）在 2023 年接受符合年龄和成绩要求的初中生报名：学校向各省 NOI 特派员提交材料，由特派员汇总、核验后报至 NOI 竞赛办公室．[当届选拔](https://noi.ccf.org.cn/xw/2023-06-01/792053.shtml) 以初中生体验省选能力测试成绩为主要依据，选出 12 名国家队选手；另结合省份基本名额、承办单位奖励名额及低龄组要求，选出 30 名其他代表队选手．具体报名资格见 [CCF 的 2023 年报名通知](https://www.noi.cn/xw/2023-04-25/790883.shtml)．
 
