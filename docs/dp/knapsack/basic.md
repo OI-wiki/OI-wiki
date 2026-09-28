@@ -102,7 +102,7 @@ $$
 状态转移方程如下：
 
 $$
-f_{i,j}=\max_{k=0}^{+\infty}(f_{i-1,j-k\times w_i}+v_i\times k)
+f_{i,j}=\max_{k=0}^{\lfloor j/w_i\rfloor}(f_{i-1,j-k\times w_i}+v_i\times k)
 $$
 
 考虑做一个简单的优化．可以发现，对于 $f_{i,j}$，只要通过 $f_{i,j-w_i}$ 转移就可以了．因此状态转移方程为：
