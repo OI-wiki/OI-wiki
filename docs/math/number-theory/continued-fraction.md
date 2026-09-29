@@ -758,7 +758,7 @@ $$
     此时，一方面有
     
     $$
-    \left|x_{k,t}-\dfrac{p}{q}\right| \le \left|x_{k,t}-x_{k,t+1}\right| = \dfrac{1}{((t+1)q_k+q_{k-1})(tq_k+q_{k-1})}.
+    \left|x_{k,t}-\dfrac{p}{q}\right| \lt \left|x_{k,t}-x_{k,t+1}\right| = \dfrac{1}{((t+1)q_k+q_{k-1})(tq_k+q_{k-1})}.
     $$
     
     另一方面有
