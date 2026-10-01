@@ -2,14 +2,16 @@
 
 ## 引入
 
-Timsort 由 Python 核心开发者 Tim Peters 于 2002 年设计，并应用于 Python 语言，其巧妙结合了插入排序和归并排序的优点，针对数据集中的有序性进行了精确的优化，尤其适合处理包含大量部分有序子序列的数据集．自 Python 2.3 版本以来，Timsort 被选为 Python 标准库的默认排序算法，并被广泛应用于其他编程环境，例如在 Java SE 7 中被用于对非原始对象数组进行排序．
+Timsort 由 Python 核心开发者 Tim Peters 于 2002 年设计，并应用于 Python 语言，其巧妙结合了插入排序和归并排序的优点，针对数据集中的有序性进行了精确的优化，尤其适合处理包含大量部分有序子序列的数据集．CPython 从 2.3 版本开始使用 Timsort，之后从 3.11 版本开始将其归并顺序策略替换为 Powersort[^powersort]．Timsort 也被广泛应用于其他编程环境，例如在 Java SE 7 中被用于对非原始对象数组进行排序．
+
+本页介绍传统 Timsort，并以 CPython 3.6.5 中已修复栈不变量维护问题的归并规则为准[^merge-policy]．
 
 ## 步骤
 
 Timsort 的核心思想是通过识别和利用数据集中已有的有序性，提高排序效率，其主要包括以下步骤：
 
-1.  **识别 Run**：扫描待排序数组，识别出有序的连续子序列（Run）．
-2.  **扩展 Run**：如果识别的 Run 长度小于 `MIN_RUN`，则使用插入排序对其进行扩展．
+1.  **识别 Run**：扫描待排序数组，识别出有序的连续子序列（Run）；
+2.  **扩展 Run**：如果识别的 Run 长度小于 `MIN_RUN`，则使用插入排序对其进行扩展；
 3.  **归并 Run**：Timsort 维护一个特殊的栈，采用特定的归并策略将栈中已有的 Run 合并成更大的有序序列．
 
 ### 识别 Run
@@ -34,20 +36,31 @@ Timsort 的核心思想是通过识别和利用数据集中已有的有序性，
 
 Timsort 是一种稳定的排序算法，即相同元素在排序后仍然保持原有的相对顺序．为确保这一点，Timsort 在归并时只会合并相邻的、连续的 Run，而不会直接合并非相邻的 Run．因为非相邻的 Run 之间可能存在相同的元素，直接合并很有可能会打乱它们的相对顺序．
 
-同时，为了确保合并的平衡性，Timsort 引入了特定的归并规则．在每次合并操作之前，算法会检查栈顶的三个 Run X、Y 和 Z，以确保满足以下两个条件：
+同时，为了控制合并的平衡性和待合并 Run 的数量，Timsort 要求栈中每组相邻的三个 Run 都满足以下不变量．记三个 Run 从栈顶向栈底的方向依次为 X、Y 和 Z：
 
 -   **条件一**：`len(Z) > len(Y) + len(X)`
 -   **条件二**：`len(Y) > len(X)`
 
-如果栈顶的三个 Run 不满足上述条件，Timsort 会将 Y 与 X 或 Z 中较小的一个进行合并，然后再次检查条件．一旦条件满足，则开始继续搜索新的 Run，将其添加到栈中并开始下一轮的归并．
+栈中只有两个 Run 时也要求 `len(Y) > len(X)`．每次压入新 Run 后，`mergeCollapse` 会检查栈顶至多四个 Run，记它们从栈顶向下依次为 X、Y、Z、W，并按以下顺序决定是否合并[^merge-policy]：
 
-![Merge Rules](./images/tim-sort-1.png)
+1.  若 `len(Z) <= len(Y) + len(X)` 或 `len(W) <= len(Z) + len(Y)`，则将 Y 与 X、Z 中较短的一个合并；X 与 Z 等长时选择 X；
+2.  否则，若 `len(Y) <= len(X)`，则合并 Y 与 X；
+3.  否则，停止本轮合并，继续识别下一个 Run．
+
+只检查所需 Run 均存在的条件；每次合并后重新确定 X、Y、Z、W 并重复上述过程．下图示意合并 X 与 Y 时栈的变化．
+
+![Merge Rules](./images/tim-sort-1.svg)
+
+???+ note "为什么需要检查第四个 Run？"
+    仅检查栈顶三个 Run，可能在合并后遗漏栈中更深处的不变量失效．例如，依次压入长度为 $240,160,50,40,60$ 的 Run（从栈底到栈顶），旧规则会合并 $50$ 和 $40$，得到 $240,160,90,60$．此时栈顶满足 $160>90+60$ 和 $90>60$，但更深处有 $240\le160+90$．
+    
+    这一缺陷会使根据全栈不变量推导的固定栈容量保证失效．CPython 在 2015 年修复了检查条件[^merge-fix]．
 
 #### 归并优化
 
 为了在归并不同长度的 Run 时提高效率并减少空间开销，Timsort 在归并前会通过二分查找精确定位需要处理的元素范围，只对需要移动的部分进行归并，具体方式为：
 
-1.  **确定插入点**：使用二分查找，找到第二个 Run 的第一个元素在第一个 Run 中的插入位置，以及第一个 Run 的最后一个元素在第二个 Run 中的插入位置．这样，可以缩小需要归并的范围，只对需要移动的元素进行处理．
+1.  **确定插入点**：使用二分查找，找到第二个 Run 的第一个元素在第一个 Run 中的插入位置，以及第一个 Run 的最后一个元素在第二个 Run 中的插入位置．这样，可以缩小需要归并的范围，只对需要移动的元素进行处理；
 
 2.  **临时缓冲区**：传统的原地合并算法效率太低，需要大量的元素移动．为了减少这种开销，Timsort 使用一个临时缓冲区，将长度较小的 Run 复制到缓冲区中，然后逐步将元素从缓冲区复制回原数组．
 
@@ -71,7 +84,7 @@ Timsort 是一种稳定的排序算法，即相同元素在排序后仍然保持
 
 为了解决这一问题，Timsort 设定了一个阈值 `Min_Gallop`（默认值为 $7$）．当一侧 Run 中的元素连续比较胜利的次数达到 `Min_Gallop` 时，算法会进入加速模式，快速定位元素位置，其具体步骤如下：
 
-1.  **指数查找**：从当前位置开始，算法以指数增长的步长 $(1, 2, 4, 8, \dots)$ 在一侧的 Run 中查找，直到找到一个区间，使得目标元素位于该区间内．
+1.  **指数查找**：从当前位置开始，算法以指数增长的步长 $(1, 2, 4, 8, \dots)$ 在一侧的 Run 中查找，直到找到一个区间，使得目标元素位于该区间内；
 2.  **二分查找**：一旦确定了包含目标元素的区间，算法会在该区间内使用二分查找，精确定位目标元素的位置．
 
 通过这种方式，Timsort 可以跳过大量不必要的比较，快速处理一侧 Run 中连续的、较小（或较大）的元素，将它们批量移动到合并结果中．
@@ -89,17 +102,9 @@ Timsort 的时间复杂度取决于数据的有序性：
 -   **最优情况**：$O(n)$
     -   当数据已经有序或近似有序时，算法识别出的 Run 长度接近 $n$，归并次数减少，复杂度趋近于 $O(n)$．
 -   **最坏情况**：$O(n \log n)$
-    -   在数据完全无序的情况下，每一个 Run 的长度都接近 $1$，因此需要 $O(\log n)$ 次归并，每次归并的代价为 $O(n)$，总复杂度为 $O(n \log n)$．
+    -   若有 $r$ 个 Run，最终需要 $r-1$ 次二路合并；不能把合并次数写成 $O(\log n)$．
 
-**证明**：
-
--   **识别和扩展 Run**：
-    -   识别 Run 需线性遍历一次数组，其复杂度为 $O(n)$．
-    -   使用插入排序扩展 Run 也需线性遍历数组，其复杂度为 $O(n)$．
-
--   **归并 Run**：
-    -   归并操作的总次数与 Run 的总数有关，最坏情况下 Run 的数量为 `n / MIN_RUN`，由于 `MIN_RUN` 是常数，因此 Run 的数量可看作 $O(n)$．
-    -   $O(n)$ 个 Run 需要进行的归并次数为 $O(\log n)$，每次归并操作的代价为 $O(n)$，因此归并操作的总复杂度为 $O(n \log n)$．
+识别 Run 花费 $O(n)$，以有界的 `MIN_RUN` 扩展短 Run 也共需 $O(n)$．归并成本则是每次合并的两个 Run 长度之和，等价于对每个元素参与合并的次数求和．这个总和的上界依赖具体合并规则，对文献[^complexity]所分析的 Python 3.6.5 TimSort 合并规则而言，均摊分析给出 $O(n+n\log r)$，从而最坏为 $O(n\log n)$．
 
 而对于空间复杂度，由于 Timsort 大致需要额外的 $O(n)$ 空间用于存储栈和临时缓冲区，因此总的空间复杂度为 $O(n)$．
 
@@ -108,29 +113,36 @@ Timsort 的时间复杂度取决于数据的有序性：
 ???+ note "伪代码实现"
     $$
     \begin{array}{ll}
-    1 & nRemaining \gets \text{数组长度} \\
-    2 & minRun \gets \text{选择合适的 MinRun 的值}(nRemaining) \\
-    3 & startIndex \gets 0 \\
-    4 & \textbf{while } nRemaining > 0 \ \textbf{do} \\
-    5 & \qquad runLength \gets \text{识别 Run }(array, startIndex, nRemaining) \\
-    6 & \qquad \textbf{if } runLength < minRun \ \textbf{then} \\
-    7 & \qquad \qquad extendLength \gets \min(minRun, nRemaining) \\
-    8 & \qquad \qquad \text{使用插入排序扩展区间 } [startIndex, startIndex + extendLength - 1]\\
-    9 & \qquad \qquad runLength \gets extendLength \\
+    1 & \textit{nRemaining} \gets \text{数组长度} \\
+    2 & \textit{minRun} \gets \text{选择合适的 MinRun 的值}(\textit{nRemaining}) \\
+    3 & \textit{startIndex} \gets 0 \\
+    4 & \textbf{while } \textit{nRemaining} > 0 \ \textbf{do} \\
+    5 & \qquad \textit{runLength} \gets \text{识别 Run }(\textit{array}, \textit{startIndex}, \textit{nRemaining}) \\
+    6 & \qquad \textbf{if } \textit{runLength} < \textit{minRun} \ \textbf{then} \\
+    7 & \qquad \qquad \textit{extendLength} \gets \min(\textit{minRun}, \textit{nRemaining}) \\
+    8 & \qquad \qquad \text{使用插入排序扩展区间 } [\textit{startIndex}, \textit{startIndex} + \textit{extendLength} - 1]\\
+    9 & \qquad \qquad \textit{runLength} \gets \textit{extendLength} \\
     10 & \qquad \textbf{end if} \\
-    11 & \qquad \text{将 Run  } (startIndex, runLength) \text{ 压入栈中} \\
+    11 & \qquad \text{将 Run  } (\textit{startIndex}, \textit{runLength}) \text{ 压入栈中} \\
     12 & \qquad \textbf{调用 } \text{mergeCollapse(栈)} \ \text{检查并合并栈中的 Run } \\
-    13 & \qquad startIndex \gets startIndex + runLength \ \text{更新起始位置} \\
-    14 & \qquad nRemaining \gets nRemaining - runLength \ \text{更新剩余长度} \\
+    13 & \qquad \textit{startIndex} \gets \textit{startIndex} + \textit{runLength} \ \text{更新起始位置} \\
+    14 & \qquad \textit{nRemaining} \gets \textit{nRemaining} - \textit{runLength} \ \text{更新剩余长度} \\
     15 & \textbf{end while} \\
     16 & \textbf{调用 } \text{mergeForceCollapse(栈)} \ \text{对栈中所有 Run 进行最终的合并} \\
     \end{array}
     $$
 
-## 参考资料
+## 参考资料与注释
 
 1.  [Timsort](https://en.wikipedia.org/wiki/Timsort)
-2.  [On the Worst-Case Complexity of TimSort](https://drops.dagstuhl.de/opus/volltexte/2018/9467/pdf/LIPIcs-ESA-2018-4.pdf)
-3.  [Original Explanation by Tim Peters](https://github.com/python/cpython/blob/main/Objects/listsort.txt)
-4.  [Java 实现](https://cs.android.com/android/platform/superproject/main/+/main:libcore/ojluni/src/main/java/java/util/TimSort.java)
-5.  [C 语言实现](https://github.com/python/cpython/blob/main/Objects/listobject.c)
+2.  [Tim Peters 的设计说明（CPython 3.6.5，归并条件以对应版本代码为准）](https://github.com/python/cpython/blob/v3.6.5/Objects/listsort.txt)
+3.  [Java 实现](https://cs.android.com/android/platform/superproject/main/+/main:libcore/ojluni/src/main/java/java/util/TimSort.java)
+4.  [C 语言实现（CPython 3.6.5）](https://github.com/python/cpython/blob/v3.6.5/Objects/listobject.c)
+
+[^complexity]: [On the Worst-Case Complexity of TimSort](https://drops.dagstuhl.de/opus/volltexte/2018/9467/pdf/LIPIcs-ESA-2018-4.pdf)．
+
+[^powersort]: [CPython：采用 Powersort 归并顺序策略的提交](https://github.com/python/cpython/commit/5cb4c672d855033592f0e05162f887def236c00a)；[CPython 3.11 的归并策略说明](https://github.com/python/cpython/blob/v3.11.0/Objects/listsort.txt#L329-L347)．
+
+[^merge-policy]: [CPython 3.6.5：`merge_collapse`](https://github.com/python/cpython/blob/v3.6.5/Objects/listobject.c#L1816-L1849)．
+
+[^merge-fix]: [CPython Issue 23515：Bad logic in timsort's merge\_collapse](https://bugs.python.org/issue23515)．

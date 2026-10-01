@@ -116,7 +116,7 @@
     1.  对于无平方因子的整数 $D\neq 0,1$，二次域 $\mathbf Q(\sqrt D)$ 就是在域 $\mathbf Q$ 中添加了 $\sqrt D\in\mathbf C\setminus\mathbf Q$ 得到的单扩张．它的扩张次数是 $2$，因为 $\{1,\sqrt D\}$ 构成了一组基．
     2.  域 $\mathbf Q(\sqrt 2,\sqrt 3)$ 就是在域 $\mathbf Q$ 中添加了 $\sqrt 2$ 和 $\sqrt 3$ 得到的扩张．当然有 $\mathbf Q(\sqrt 2,\sqrt 3)=\mathbf Q(\sqrt 2)(\sqrt 3)=\mathbf Q(\sqrt 3)(\sqrt 2)$，即最后的扩张与元素的添加顺序和方式无关．这也是单扩张，因为 $\mathbf Q(\sqrt 2,\sqrt 3)=\mathbf Q(\sqrt 2+\sqrt 3)$．它的扩张次数是 $4$，因为 $\{1,\sqrt 2,\sqrt 3,\sqrt 6\}$ 构成了一组基．
     3.  域 $\mathbf Q(\pi)$ 也是单扩张，其中，$\pi$ 是圆周率．它是无限扩张，因为 $\mathbf Q[\pi]\subseteq \mathbf Q(\pi)$ 已经有一组基 $\{1,\pi,\pi^2,\cdots\}$．
-    4.  域 $\mathbf Q(\pi,\mathrm e)$ 是有限生成的扩张，但不是单扩张．其中，$\pi$ 是圆周率，$\mathrm e$ 是自然对数的底．
+    4.  有限生成的扩张未必是单扩张．例如，设 $x,y$ 是两个不定元，则有理分式域 $\mathbf Q(x,y)$ 是 $\mathbf Q$ 的有限生成扩张，但它的超越次数是 $2$，故而不是单扩张．
 
 这些例子说明，单扩张的性质可能相差悬殊．这取决于添加的元素的性质．
 
@@ -153,7 +153,7 @@
     1.  $\sqrt 2$ 是 $\mathbf Q$ 上的代数元，极小多项式是 $x^2-2$．
     2.  $\sqrt 2$ 是 $\mathbf R$ 上的代数元，极小多项式是 $x-\sqrt 2$．
     3.  $\pi$ 是 $\mathbf Q$ 上的超越元．
-    4.  一般地，$\mathbf Q$ 上的代数元称为 **代数数**（algebraic number），而超越元称为 **超越数**（transcendental number）．特别地，如果代数数的极小多项式是首一多项式，它就称作 **代数整数**（algebraic integer）．代数扩张中的全体代数整数构成环．例如，二次域 $\mathbf Q(\sqrt{D})$ 中的代数整数就构成二次整数环 $\mathbf Z[\omega]$．此处记号的含义见 [二次整数环](./ring-theory.md#例子二次整数环) 页面．
+    4.  一般地，$\mathbf Q$ 上的代数元称为 **代数数**（algebraic number），而超越元称为 **超越数**（transcendental number）．特别地，如果代数数的极小多项式是整系数多项式，它就称作 **代数整数**（algebraic integer）．代数扩张中的全体代数整数构成环．例如，二次域 $\mathbf Q(\sqrt{D})$ 中的代数整数就构成二次整数环 $\mathbf Z[\omega]$．此处记号的含义见 [二次整数环](./ring-theory.md#例子二次整数环) 页面．
 
 ???+ abstract "代数扩张与超越扩张"
     对于扩张 $E/F$，如果域 $E$ 的元素都是 $F$ 中的代数元，则称域 $E$ 是 $F$ 上的 **代数扩张**（algebraic extension）；否则，称域 $E$ 是 $F$ 上的 **超越扩张**（transcendental extension）．
@@ -172,7 +172,7 @@
 
 ### 单代数扩张的结构与计算
 
-本节中，设 $F$ 是数域，$E$ 是它的扩域，且 $\alpha\in E\setminus F$ 是域 $F$ 上的代数元．设 $\alpha$ 的极小多项式是 $f(x)$，且多项式 $f(x)$ 是 $n$ 次首一多项式，亦即
+本节中，设 $F$ 是域，$E$ 是它的扩域，且 $\alpha\in E\setminus F$ 是域 $F$ 上的代数元．设 $\alpha$ 的极小多项式是 $f(x)$，且多项式 $f(x)$ 是 $n$ 次首一多项式，亦即
 
 $$
 f(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0,
@@ -290,7 +290,7 @@ $$
 上文已经对单代数扩张的结构做了详尽的讨论．但是，这样的扩张往往并不充分：
 
 ???+ example "例子"
-    考察扩张 $\mathbf Q(\sqrt[3]{2})/\mathbf Q$．代数元 $\sqrt[3]{2}$ 在域 $\mathbf Q$ 上的极小多项式是 $x^3-2$．在复数域 $\mathbf C$ 中，多项式 $x^3-2$ 有三个根，即 $\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2$，其中，$\omega=\mathrm{e}^{2\pi\mathrm{i}/3}$ 是 $1$ 的三次原根．尽管 $\mathbf Q(\sqrt[3]{2})\cong\mathbf Q(\sqrt[3]{2}\omega)\cong\mathbf Q(\sqrt[3]{2}\omega^2)$，但是 $\mathbf Q(\sqrt[3]{2})$ 中并没有另外的两个根，这使得 $\sqrt[3]{2}+\sqrt[3]{2}\omega$ 这种运算就已经无法进行．如果要完整地考察这三个根，需要对域 $\mathbf Q(\sqrt[3]{2})$ 做进一步扩张，即扩张至 $\mathbf Q(\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2)$．
+    考察扩张 $\mathbf Q(\sqrt[3]{2})/\mathbf Q$．代数元 $\sqrt[3]{2}$ 在域 $\mathbf Q$ 上的极小多项式是 $x^3-2$．在复数域 $\mathbf C$ 中，多项式 $x^3-2$ 有三个根，即 $\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2$，其中，$\omega=\mathrm{e}^{2\pi\mathrm{i}/3}$ 是 $1$ 的三次本原单位根．尽管 $\mathbf Q(\sqrt[3]{2})\cong\mathbf Q(\sqrt[3]{2}\omega)\cong\mathbf Q(\sqrt[3]{2}\omega^2)$，但是 $\mathbf Q(\sqrt[3]{2})$ 中并没有另外的两个根，这使得 $\sqrt[3]{2}+\sqrt[3]{2}\omega$ 这种运算就已经无法进行．如果要完整地考察这三个根，需要对域 $\mathbf Q(\sqrt[3]{2})$ 做进一步扩张，即扩张至 $\mathbf Q(\sqrt[3]{2},\sqrt[3]{2}\omega,\sqrt[3]{2}\omega^2)$．
     
     前文已经说明，要做这样的扩张，只要对元素逐个做单扩张即可．应当注意的是，$\sqrt[3]{2}\omega$ 在域 $\mathbf Q$ 中和在域 $\mathbf Q(\sqrt[3]{2})$ 中的极小多项式并不相同：前者是 $x^3-2\in\mathbf Q[x]$，后者则是 $x^2+\sqrt[3]{2}x+\sqrt[3]{4}\in \mathbf Q(\sqrt[3]{2})[x]$，因为有
     
@@ -383,12 +383,12 @@ $$
     的 **（形式）导数**（derivative），记作 $Df(x)$，定义为多项式
     
     $$
-    Df(x)=a_1+2a_2x+\cdots+(n-1)a_{n-1}x^{n-1}+na_nx^{n-1}=\sum_{i=1}^nia_ix^{i-1}.
+    Df(x)=a_1+2a_2x+\cdots+(n-1)a_{n-1}x^{n-2}+na_nx^{n-1}=\sum_{i=1}^nia_ix^{i-1}.
     $$
 
 这个定义对于所有域上的多项式都适用，不依赖于任何拓扑结构，此处的导数算子 $D$ 只是把一个多项式映射到了另一个多项式．而且，可以通过对比系数验证，常见的导数运算法则，比如 $D(f(x)g(x))=(Df(x))g(x)+f(x)(Dg(x))$ 等，对于形式导数依然成立．
 
-进而，要检查多项式 $f(x)$ 和它的导数 $Df(x)$ 在分裂域中是否有相同的根，可以不显式地构造出这个分裂域，而是通过它们的最小公因子来判断；这是因为多项式的根总是出现在它的极小多项式中，重复的根意味着相应的极小多项式因子也重复．于是，有重根的判断法则如下：
+进而，要检查多项式 $f(x)$ 和它的导数 $Df(x)$ 在分裂域中是否有相同的根，可以不显式地构造出这个分裂域，而是通过它们的最大公因子来判断；这是因为多项式的根总是出现在它的极小多项式中，重复的根意味着相应的极小多项式因子也重复．于是，有重根的判断法则如下：
 
 ???+ note "定理"
     对于域 $F$ 上的多项式 $f(x)$，如果 $f(x)$ 有重根 $\alpha$，那么导数 $Df(x)$ 也有同样的根 $\alpha$．进而，多项式 $f(x)$ 可分的充分必要条件是 $f(x)$ 与它的导数 $Df(x)$ 互素，即 $\gcd(f(x),Df(x))=1$．
@@ -412,7 +412,7 @@ $$
 \begin{aligned}
 f(x)&=a_0+a_px^p+a_{2p}x^{2p}+\cdots+a_{(k-1)p}x^{(k-1)p}+a_{kp}x^{kp}\\
 &=b_0^p+b_1^px^p+b_2^px^{2p}+\cdots+b_{k-1}^px^{(k-1)p}+b_k^px^{kp}\\
-&=\left(b_0+b_1x+b_2x+\cdots+b_{k-1}x^{k-1}+b_kx^k\right)^p.
+&=\left(b_0+b_1x+b_2x^2+\cdots+b_{k-1}x^{k-1}+b_kx^k\right)^p.
 \end{aligned}
 $$
 
@@ -443,7 +443,7 @@ $$
 最后回到域的扩张的讨论．
 
 ???+ abstract "可分扩张"
-    对于代数扩张 $E/F$，如果对所有 $\alpha\in E$ 都有 $\alpha$ 的极小多项式是可分多项式，那么称域 $E$ 是域 $F$ 的 **可分扩张**（seperable extension）．
+    对于代数扩张 $E/F$，如果对所有 $\alpha\in E$ 都有 $\alpha$ 的极小多项式是可分多项式，那么称域 $E$ 是域 $F$ 的 **可分扩张**（separable extension）．
 
 完美域上的代数扩张都是可分扩张．这也可以作为完美域的等价定义．
 
@@ -455,7 +455,7 @@ $$
 
 ### 单位根群
 
-复数域 $\mathbf C$ 中，多项式 $x^n=1$ 的根称为 **$n$ 次单位根**（$n$-th root of unity）．记 $\zeta_n=\mathrm{e}^{2\pi\mathrm{i}/n}$．那么，全体 $n$ 次单位根就是集合 $C_n=\{\zeta_n^k:k\in\mathbf Z\}$．在乘法运算下，$C_n$ 构成 $n$ 次循环群，可以记作 $\langle\zeta_n\rangle$，称为 $n$ 次单位根群．群 $C_n$ 的生成元，也就是那些阶恰好为 $n$ 的元素，称为 **$n$ 次本原单位根**（primitive $n$-th root of unity）．$n$ 次本原单位根的集合 $P_n=\{\zeta_n^k:k\in\mathbf Z,k\perp n\}$，恰有 $\varphi(n)$ 个元素；其中，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)．将单位根群 $C_n$ 的元素按照它的阶分类，就得到如下分解：
+复数域 $\mathbf C$ 中，多项式 $x^n-1$ 的根称为 **$n$ 次单位根**（$n$-th root of unity）．记 $\zeta_n=\mathrm{e}^{2\pi\mathrm{i}/n}$．那么，全体 $n$ 次单位根就是集合 $C_n=\{\zeta_n^k:k\in\mathbf Z\}$．在乘法运算下，$C_n$ 构成 $n$ 次循环群，可以记作 $\langle\zeta_n\rangle$，称为 $n$ 次单位根群．群 $C_n$ 的生成元，也就是那些阶恰好为 $n$ 的元素，称为 **$n$ 次本原单位根**（primitive $n$-th root of unity）．$n$ 次本原单位根的集合 $P_n=\{\zeta_n^k:k\in\mathbf Z,k\perp n\}$，恰有 $\varphi(n)$ 个元素；其中，$\varphi(n)$ 是 [欧拉函数](../number-theory/euler-totient.md)．将单位根群 $C_n$ 的元素按照它的阶分类，就得到如下分解：
 
 $$
 C_n=\bigcup_{d|n}P_d.
@@ -519,7 +519,7 @@ $$
 因此，$(x^d-1)\mid(x^n-1)$ 当且仅当 $d\mid n$．而且，对此式应用 [Möbius 反演](../number-theory/mobius.md) 可得
 
 $$
-\Phi_d(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}.
+\Phi_n(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}.
 $$
 
 利用这个表达式，可以递归地计算出全部的分圆多项式．此处给出前几个分圆多项式的例子，便于读者熟悉．
@@ -551,7 +551,7 @@ $$
     
     1.  如果素数 $p\mid n$，则 $\Phi_{pn}(x)=\Phi_n(x^p)$；
     2.  如果素数 $p\perp n$，则 $\Phi_{pn}(x)=\dfrac{\Phi_n(x^p)}{\Phi_n(x)}$；
-    3.  特别地，如果 $n$ 是奇数，则 $\Phi_{2n}(x)=\Phi_n(-x)$；
+    3.  特别地，如果 $n>1$ 是奇数，则 $\Phi_{2n}(x)=\Phi_n(-x)$；
     4.  对于素数 $p$，有 $\Phi_{p}(x)=1+x+\cdots+x^{p-1}$；
     5.  特别地，$\Phi_{2^k}(x)=x^{2^{k-1}}+1$．
 
@@ -568,7 +568,7 @@ $$
     4.  设 $b>1$ 且 $p$ 为 $\Phi_n(b)$ 的素因子，则 $p\mid n$，或者 $n$ 是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶，且这两种情况不能同时发生．
 
 ??? note "证明"
-    对于前三条性质，只需要利用 Möbius 反演即可．对于 1，直接考察 $\Phi_n(x)$ 的 Möbius 反演形式，即 $\Phi_d(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}$；对于 2，设 $\Phi_n(x)$ 的 $\varphi(n)-1$ 次项系数为 $f(n)$，则比较 $x^n-1=\prod_{d\mid n}\Phi_d(x)$ 等式两侧的 $n-1$ 次项系数可知，$\sum_{d\mid n}f(d)=-[n=1]$，再做 Möbius 反演；对于 3，在 $x^n-1=\prod_{d\mid n}\Phi_n(x)$ 两侧同时除以 $\Phi_1(x)=x-1$，再代入 $x=1$，即有 $n=\prod_{d\mid n,d\neq 1}\Phi_n(1)$，再做 Möbius 反演．
+    对于前三条性质，只需要利用 Möbius 反演即可．对于 1，直接考察 $\Phi_n(x)$ 的 Möbius 反演形式，即 $\Phi_n(x)=\prod_{d\mid n}(x^d-1)^{\mu(n/d)}$；对于 2，设 $\Phi_n(x)$ 的 $\varphi(n)-1$ 次项系数为 $f(n)$，则比较 $x^n-1=\prod_{d\mid n}\Phi_d(x)$ 等式两侧的 $n-1$ 次项系数可知，$\sum_{d\mid n}f(d)=-[n=1]$，再做 Möbius 反演；对于 3，在 $x^n-1=\prod_{d\mid n}\Phi_d(x)$ 两侧同时除以 $\Phi_1(x)=x-1$，再代入 $x=1$，即有 $n=\prod_{d\mid n,d\neq 1}\Phi_d(1)$，再做 Möbius 反演．
     
     下面证明第四条性质．首先，如果 $n$ 是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶，那么 $n$ 是满足 $p\mid b^n-1$ 的正整数中最小的，故而 $p\mid\Phi_n(b)$．反过来，如果 $p\mid\Phi_n(b)$，则有 $b^n\equiv 1\pmod p$；可如果 $n$ 不是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶，那么设它的阶为 $k$，必然有 $k\mid n$ 且 $p\mid\Phi_k(b)$．此时，$\Phi_k(x)$ 和 $\Phi_n(x)$ 在域 $\mathbf F_p$ 中有公共根 $b$，这说明 $x^n-1$ 有重根 $b$．这说明 $p\mid n$；否则，$x^n-1$ 与它的导数互素，所以在 $\mathbf F_p$ 上可分，不可能有重根．因而，$\Phi_n(b)$ 的素因子 $p$ 只有两种情况：$p\mid n$，或者 $n$ 是乘法群 $(\mathbf Z/p\mathbf Z)^\times$ 中的 $b$ 的阶．这两种情况是互斥的，因为后者意味着 $n\mid p-1$．
 
@@ -596,7 +596,7 @@ $$
 
 ### 乘法结构
 
-有限域的乘法群 $\mathbf F^\times=\mathbf F\setminus\{0\}$ 一定是循环群．
+有限域的乘法群 $\mathbf F_q^\times=\mathbf F_q\setminus\{0\}$ 一定是循环群．
 
 ???+ note "定理"
     域 $F$ 的乘法群的有限子群一定是循环群．
@@ -618,7 +618,7 @@ $$
 ??? warning "$\mathbf F_{q}$ 中的本原元和模 $q$ 的原根也不相同"
     对于奇数特征的有限域 $\mathbf F_{q}$，总是存在模 $q$ 的 [原根](./ring-theory.md#应用整数同余类的乘法群)（primitive root）．但是，不应将它与有限域 $\mathbf F_{q}$ 中的本原元（primitive element）混淆．虽然它们都是相应的乘法结构作为循环群时的生成元，但是 $(\mathbf Z/q\mathbf Z)^\times$ 和 $\mathbf F_q$ 在 $q$ 本身不是素数的情况下并不相同．比如，前者的阶是 $\varphi(q)$ 而后者的阶是 $q-1$，两个乘法群的大小就不相同．
 
-设 $\alpha$ 是有限域 $\mathbf F_q$ 的一个本原元．那么，对于所有 $x\in\mathbf F_q$ 都存在唯一的自然数 $k<q-1$ 使得 $x=\alpha^k$；这个 $k$ 就称为 $\mathbf F_q$ 上元素 $x$ 关于基 $\alpha$ 的 **离散对数**（discrete logarithm）．和 $\mathbf F_p$ 上的情形一致，[离散对数的算法](../number-theory/discrete-logarithm.md) 的复杂度都比较高．
+设 $\alpha$ 是有限域 $\mathbf F_q$ 的一个本原元．那么，对于所有非零元 $x\in\mathbf F_q^\times$ 都存在唯一的自然数 $k<q-1$ 使得 $x=\alpha^k$；这个 $k$ 就称为 $\mathbf F_q$ 上元素 $x$ 关于基 $\alpha$ 的 **离散对数**（discrete logarithm）．和 $\mathbf F_p$ 上的情形一致，[离散对数的算法](../number-theory/discrete-logarithm.md) 的复杂度都比较高．
 
 通过乘法运算，本原元已经可以生成域的全体非零元素．这说明，有限域作为它的子域的扩张，一定是单扩张．
 
@@ -648,9 +648,9 @@ $$
     2.  全体特征为 $p$ 的有限域 $\mathbf F_{p^n}$ 在包含关系下形成的格，同构于整数 $n$ 在整除关系下形成的格．特别地，$\mathbf F_{p^n}$ 和 $\mathbf F_{p^m}$ 的交集 $\mathbf F_{p^n}\cap\mathbf F_{p^m}=\mathbf F_{p^{\gcd(n,m)}}$，而同时包含 $\mathbf F_{p^n}$ 和 $\mathbf F_{p^m}$ 的最小的域 $\mathbf F_{p^n}\mathbf F_{p^m}=\mathbf F_{p^{\operatorname{lcm}(n,m)}}$．
 
 ??? note "证明"
-    关键在于证明第一部分，即 $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 是 $F_p$ 的代数闭包．第二部分是前面关于有限域的子域的定理的简单推论．
+    关键在于证明第一部分，即 $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 是 $\mathbf F_p$ 的代数闭包．第二部分是前面关于有限域的子域的定理的简单推论．
     
-    注意到，任取 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$，必然存在 $n\in\mathbf N_+$ 使得 $\alpha\in\mathbf F_{p^n}$ 成立，故而 $\alpha$ 是 $\mathbf F_p$ 上的代数元；因而，$\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 是 $\mathbf F_p$ 的代数扩张．对于任何 $\mathbf F_p$ 上的 $m$ 次多项式 $f(x)$，它在代数闭包 $F$ 中有至多 $m$ 个不同的根 $\{\alpha_i\}_{i=1}^m$．设根 $\alpha_i$ 的极小多项式次数为 $n_i$，则 $\alpha_i$ 必然包含在域 $\mathbf F_{p^{n_i}}$ 内；故而，$f(x)$ 的所有根都在 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 中，亦即 $f(x)$ 在 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 上分裂．根据代数闭包的定义，$\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 就是 $\mathbf F_p$ 的代数闭包．
+    注意到，任取 $\alpha\in\bigcup_{n=1}^\infty\mathbf F_{p^n}$，必然存在 $n\in\mathbf N_+$ 使得 $\alpha\in\mathbf F_{p^n}$ 成立，故而 $\alpha$ 是 $\mathbf F_p$ 上的代数元；因而，$\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 是 $\mathbf F_p$ 的代数扩张．对于任何 $\mathbf F_p$ 上的 $m$ 次多项式 $f(x)$，它在代数闭包 $F$ 中有至多 $m$ 个不同的根 $\{\alpha_i\}_{i=1}^m$．设根 $\alpha_i$ 的极小多项式次数为 $n_i$，则 $\alpha_i$ 必然包含在域 $\mathbf F_{p^{n_i}}$ 内；故而，$f(x)$ 的所有根都在 $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 中，亦即 $f(x)$ 在 $\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 上分裂．根据代数闭包的定义，$\bigcup_{n=1}^\infty\mathbf F_{p^n}$ 就是 $\mathbf F_p$ 的代数闭包．
 
 ### 自同构群
 
@@ -664,7 +664,7 @@ $$
 ??? note "证明"
     首先，Frobenius 自同态 $\sigma_p$ 在有限域 $\mathbf F_q$ 上是自同构，因为有限集合上的单射必然也是满射．因此，$\sigma_p\in\operatorname{Aut}(\mathbf F_q)$．
     
-    然后，$\sigma_p$ 的阶是 $n$．这是因为对于所有 $x\in\mathbf F_q$ 都有 $\sigma_p^n(x)=x^{p^n}=x$，故而 $x^{p^n}$ 是恒等映射；而且对于任何 $k<n$ 都有 $\sigma_p^k$ 不是恒等映射，否则 $\mathbf F_q$ 的元素都得是 $x^{p^k}-x$ 的根，这不可能．
+    然后，$\sigma_p$ 的阶是 $n$．这是因为对于所有 $x\in\mathbf F_q$ 都有 $\sigma_p^n(x)=x^{p^n}=x$，故而 $\sigma_p^n$ 是恒等映射；而且对于任何 $k<n$ 都有 $\sigma_p^k$ 不是恒等映射，否则 $\mathbf F_q$ 的元素都得是 $x^{p^k}-x$ 的根，这不可能．
     
     最后，$\operatorname{Aut}(\mathbf F_q)$ 至多有 $n$ 个元素．设 $\alpha$ 为 $\mathbf F_q$ 的一个本原元，则自同构 $\sigma\in \operatorname{Aut}(\mathbf F_q)$ 由它在 $\alpha$ 处的取值 $\sigma(\alpha)$ 唯一确定．但是，$\sigma$ 必须将 $\alpha$ 映射到它的共轭元；否则，$\alpha$ 和 $\sigma(\alpha)$ 不再是同一个极小多项式的根．这样的共轭元只有 $n$ 个，这就说明 $\operatorname{Aut}(\mathbf F_q)$ 也至多有 $n$ 个元素．
     
@@ -686,7 +686,7 @@ $$
 
 有限域 $\mathbf F_q$ 上的不可约多项式十分容易确定．因为有限域 $\mathbf F_q$ 上的每个 $n$ 次不可约多项式都对应着 $n$ 次代数扩张，而这样的扩张是唯一的，故而所有 $n$ 次不可约多项式的根都可以在 $\mathbf F_{q^n}$ 中找到．这说明，$\mathbf F_q$ 上的 $n$ 次不可约多项式必然是 $x^{q^n}-x$ 的因子．要确定有限域 $\mathbf F_q$ 上的所有 $n$ 次不可约多项式，需要考察 $x^{q^n}-x$ 在 $\mathbf F_q$ 上的因式分解．这和分圆多项式的情形十分类似．
 
-有理数域 $\mathbf F_q$ 上的代数元可以根据其极小多项式的次数分类．设 $P_n$ 是极小多项式次数恰为 $n$ 的代数元集合，则
+有限域 $\mathbf F_q$ 上的代数元可以根据其极小多项式的次数分类．设 $P_n$ 是极小多项式次数恰为 $n$ 的代数元集合，则
 
 $$
 \mathbf F_{q^n} = \bigcup_{d\mid n}P_d.
@@ -716,17 +716,17 @@ $$
 \frac1n\sum_{d\mid n}\mu(d)q^{n/d}
 $$
 
-个．这恰为不计旋转意义下，$q$ 个颜色的珠子能够串成的长度为 $n$ 的项链的种类个数（[证明](../combinatorics/polya.md#循环群)），所以又称为项链多项式（necklace polynomial）．
+个．这恰为不计旋转意义下，$q$ 个颜色的珠子能够串成的长度为 $n$ 的非周期项链的种类个数（[证明](../combinatorics/polya.md#循环群)），所以又称为项链多项式（necklace polynomial）．
 
 ???+ note "定理"
     有限域 $\mathbf F_q$ 上存在任意次数的不可约多项式．
 
-因为有限域上的不可约多项式有着简单的结构，这使得有限域上的多项式的因式分解十分容易．比如，要确定给定多项式的全体 $n$ 次不可约因子，只要求解给定多项式与 $x^{q^n}-x$ 的最大公因子即可[^ddf]．类似地，只要 $n$ 次多项式对所有的 $k<n$ 都与多项式 $x^{q^k}-1$ 互素，就可以断定该 $n$ 次多项式在 $\mathbf F_q$ 上不可约．
+因为有限域上的不可约多项式有着简单的结构，这使得有限域上的多项式的因式分解十分容易．比如，要确定给定多项式的全体 $n$ 次不可约因子，只要求解给定多项式与 $x^{q^n}-x$ 的最大公因子即可[^ddf]．类似地，只要 $n$ 次多项式对所有的 $k<n$ 都与多项式 $x^{q^k}-x$ 互素，就可以断定该 $n$ 次多项式在 $\mathbf F_q$ 上不可约．
 
-前文已经指出，有限域上的不可约多项式的根未必是相应扩域作为有限域的本原元．有限域 $\mathbf F_q$ 的本原元在它的素子域 $\mathbf F_p$ 上的极小多项式也称为域 $\mathbf F_p$ 上的 **本原多项式**[^prim-poly]（primitive polynomial）．用这样的多项式实现扩域，就可以保证 $\overline x$ 必然是扩域中的本原元．域 $\mathbf F_p$ 上的 $n$ 次本原多项式可以通过在 $\mathbf F_p$ 上对分圆多项式 $\Phi_n(x)$ 进行因式分解得到．
+前文已经指出，有限域上的不可约多项式的根未必是相应扩域作为有限域的本原元．有限域 $\mathbf F_q$ 的本原元在它的素子域 $\mathbf F_p$ 上的极小多项式也称为域 $\mathbf F_p$ 上的 **本原多项式**[^prim-poly]（primitive polynomial）．用这样的多项式实现扩域，就可以保证 $\overline x$ 必然是扩域中的本原元．域 $\mathbf F_p$ 上的 $n$ 次本原多项式可以通过在 $\mathbf F_p$ 上对分圆多项式 $\Phi_{p^n-1}(x)$ 进行因式分解得到．
 
 ???+ note "定理"
-    设 $p$ 为素数，$n$ 为正整数，且 $p\perp n$．又设 $d$ 是乘法群 $(\mathbf Z/n\mathbf Z)^\times$ 中元素 $p$ 的阶．那么，分圆多项式 $\Phi_n(x)$ 在域 $\mathbf F_p$ 可以分解为 $\dfrac{\varphi(n)}{d}$ 个 $\mathbf F_p$ 上的 $d$ 次本原多项式的乘积．特别地，分圆多项式 $\Phi_n(x)$ 在域 $\mathbf F_p$ 上不可约，当且仅当 $p$ 是模 $n$ 的原根．
+    设 $p$ 为素数，$n$ 为正整数，且 $p\perp n$．又设 $d$ 是乘法群 $(\mathbf Z/n\mathbf Z)^\times$ 中元素 $p$ 的阶．那么，分圆多项式 $\Phi_n(x)$ 在域 $\mathbf F_p$ 上可以分解为 $\dfrac{\varphi(n)}{d}$ 个 $\mathbf F_p$ 上的 $d$ 次不可约多项式的乘积；而且，当且仅当 $n=p^d-1$ 时，这些因子是本原多项式．特别地，分圆多项式 $\Phi_n(x)$ 在域 $\mathbf F_p$ 上不可约，当且仅当 $p$ 是模 $n$ 的原根．
 
 ??? note "证明"
     如果注意到，$n$ 次分圆多项式的根是所有 $\mathbf F_p$ 的 $n$ 次本原单位根，而 $n$ 次本原单位根的极小多项式的次数 $d$ 就是它的共轭（包括自身）的数量，也就等于它在自同构群 $\langle\sigma_p\rangle$ 下的轨道长度，那么就可以知道 $d$ 是 $\{\zeta^i:i\perp n\}$ 中映射 $\zeta^i\mapsto\zeta^{ip}$ 的循环子群的轨道长度，亦即乘法群 $(\mathbf Z/n\mathbf Z)^\times$ 中元素 $p$ 的阶．如果不想依赖于 Galois 理论，也可以通过说明 $d$ 是最小的正整数使得 $(x^n-1)\mid(x^{p^d-1}-1)$ 成立来证明此事．其余结论显然．
@@ -766,13 +766,13 @@ $$
 f(n)=\frac{\phi^n-(-\phi)^{-n}}{2\phi-1}=\frac{\phi^n-(1-\phi)^n}{2\phi-1}.
 $$
 
-如果 $5$ 并非模 $p$ 下的二次剩余，多项式 $x^2-x-1$ 就是不可约的．此时，可以在扩域 $\mathbf F_p(\theta)\cong\mathbf F_p[x]/(x^2-x-1)$ 上进行计算，能够得到和前文一致的结果．
+如果 $5$ 并非模 $p$ 下的二次剩余，多项式 $x^2-x-1$ 就是不可约的．此时，可以在扩域 $\mathbf F_p(\phi)\cong\mathbf F_p[x]/(x^2-x-1)$ 上进行计算，能够得到和前文一致的结果．
 
 计算斐波那契数列的方法当然可以推广到别的情形．但是，有一点应当注意：有限域上多项式的不可约性和有理数域并不一致．譬如 $x^4-10x^2+1$，它在 $\mathbf Q$ 上是不可约的，相应的分裂域是 $\mathbf Q(\sqrt 2+\sqrt 3)=\mathbf Q(\sqrt 2,\sqrt 3)$；但是在 $\mathbf F_p$ 中，如果 $2$ 和 $3$ 都不是模 $p$ 的二次剩余，那么它是两个不可约多项式的乘积，亦即在扩域 $\mathbf F_p(\sqrt 2)$ 中就已经存在平方根 $\sqrt{3}$ 而不需要进一步扩张．
 
 ### 推广到环上的「扩张」
 
-正如上一节所展示的那样，域的扩张有着各种各样的限制．对于斐波那契数列的计算，只用扩域的方法只能解决模数 $p$ 是素数且 $5$ 不是 $p$ 的二次剩余的情形．但是应当注意，在 [代数扩张](#代数扩张) 一节中的论述表明，如果不要求在扩张后的结构中做除法运算，那么可以对环进行扩张[^ring-extension]．本节以任意模数 $n$ 下斐波那契数列的计算为例，简要讨论这种方法．其他的不涉及过多除法运算的常见情景，包括行列式的计算、快速傅里叶变换等，有必要的时候都可以尝试应用这种方法．
+正如上一节所展示的那样，域的扩张有着各种各样的限制．对于斐波那契数列的计算，只用扩域的方法只能解决模数 $p$ 是素数且 $5$ 不是 $p$ 的二次剩余的情形．但是应当注意，在 [代数扩张](#代数扩张) 一节中的论述表明，如果不要求在扩张后的结构中做除法运算，那么可以对环进行扩张[^ring-extension]．本节以任意模数 $m$ 下斐波那契数列的计算为例，简要讨论这种方法．其他的不涉及过多除法运算的常见情景，包括行列式的计算、快速傅里叶变换等，有必要的时候都可以尝试应用这种方法．
 
 设 $m$ 为任意正整数，$f(n)$ 为斐波那契数列的第 $n$ 项．问题是要计算 $f(n)\bmod m$ 的值．原则上，需要在 $\mathbf Z/m\mathbf Z$ 上进行计算．但是，正如上节所表明的，在不同模数下，多项式 $x^2-x-1$ 的可约性和有无重根的情形不一致，所以斐波那契数列的通项可能相差甚远．而且，如果本身 $\mathbf Z/m\mathbf Z$ 并不是域，扩张后的元素也往往没有合法的逆（比如模 $5$ 的时候，分母 $\sqrt 5$ 直接就是零）．虽然有着诸多问题，但是其实在系数对 $m$ 取模的条件下，计算余数
 
@@ -822,7 +822,7 @@ $$
 
 ## 参考资料与注释
 
--   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+-   Dummit, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
 -   [Milne, J.S. Fields and Galois Theory.](https://www.jmilne.org/math/CourseNotes/FT.pdf)
 -   [Factorization of polynomials - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials)
 -   [Factorization of polynomials over finite fields - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials_over_finite_fields)
@@ -838,7 +838,7 @@ $$
 
 [^polynomial-universal]: 严格地说，这里指的是多项式环 $R[x]$ 的 [万有性质](https://en.wikipedia.org/wiki/Polynomial_ring#Polynomial_evaluation)（universal property）．
 
-[^multi-poly-ring]: 此处的多项式环有无限多个不定元．要定义这样的多项式环，首先要定义单项式．设不定元的集合为 $X$，则它上面的单项式是全体只在有限多个不定元处取值不为零的函数 $\alpha:X\rightarrow\mathbf N$，可以记作 $x_{i_1}^{\alpha(i_i)}\cdots x_{i_k}^{\alpha(i_k)}$，其中，$i_1,\cdots,i_k$ 是所有 $\alpha$ 取值不为零的不定元的指标．多项式是所有有限多个单项式的线性组合．它们在相应定义的加法和乘法运算下成为环．对于有限多个不定元的情形，可以证明这种定义与 [多元多项式环](./ring-theory.md#多元多项式环) 一节的递归定义得到的结果是一致的．
+[^multi-poly-ring]: 此处的多项式环有无限多个不定元．要定义这样的多项式环，首先要定义单项式．设不定元的集合为 $X$，则它上面的单项式是全体只在有限多个不定元处取值不为零的函数 $\alpha:X\rightarrow\mathbf N$，可以记作 $x_{i_1}^{\alpha(i_1)}\cdots x_{i_k}^{\alpha(i_k)}$，其中，$i_1,\cdots,i_k$ 是所有 $\alpha$ 取值不为零的不定元的指标．多项式是所有有限多个单项式的线性组合．它们在相应定义的加法和乘法运算下成为环．对于有限多个不定元的情形，可以证明这种定义与 [多元多项式环](./ring-theory.md#多元多项式环) 一节的递归定义得到的结果是一致的．
 
 [^fundamental-algebra]: 虽然名字是代数基本定理，这个结论并不是纯代数的，这是因为实数域的构造需要通过拓扑结构进行．
 

@@ -414,7 +414,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
     === "Python"
         ```python
         class Edge:
-            def __init(self, v=0, w=0):
+            def __init__(self, v=0, w=0):
                 self.v = v
                 self.w = w
         

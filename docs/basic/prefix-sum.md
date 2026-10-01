@@ -128,7 +128,7 @@ $$
 
 即 $g(S)$ 等于其所有子集 $T\subseteq S$ 上的函数值 $f(T)$ 的和．
 
-首先，子集和问题可以写成高维前缀和的形式．注意到，$S$ 的子集可以通过状态压缩的思想表示为长度为 $n$ 的 0-1 字符串 $s$．将字符串的每一位都看作是数组下标的一个维度，那么 $f$ 其实就是一个 $n$ 维数组，且每个维度下标都一定在 $\{0,1\}$ 中．同时，子集的包含关系就等价于下标的大小关系，即
+首先，子集和问题可以写成高维前缀和的形式．注意到，任意子集 $S$ 可以通过状态压缩的思想表示为长度为 $n$ 的 0-1 字符串 $s$，子集 $T$ 对应字符串 $t$．将字符串的每一位都看作是数组下标的一个维度，那么 $f$ 其实就是一个 $n$ 维数组，且每个维度下标都一定在 $\{0,1\}$ 中．同时，子集的包含关系就等价于下标的大小关系，即
 
 $$
 T\subseteq S \iff \forall i(t_i \le s_i). 
@@ -169,7 +169,7 @@ $$
 
 权值储存在边上的情形几乎可以转化为点权的情形．对于所有非根结点 $x\neq 1$，记 $\operatorname{edge}(x)$ 表示连接结点 $x$ 和它的父结点 $\operatorname{fa}(x)$ 的边．那么，可以假设边权存储在离根远的结点上．也就是说，结点 $x$ 处存储的是边 $\operatorname{edge}(x)$ 上的边权．根结点处存储的权值是 $0$．那么，通过上一小节讨论过的递推关系，同样可以预处理出根结点到结点 $x$ 的路径经过的所有边的权值和 $S_x$．
 
-此时，连接结点 $x$ 和 $y$ 的路径上的结点权值和可以通过
+此时，连接结点 $x$ 和 $y$ 的路径上的边权和可以通过
 
 $$
 S_x + S_y - 2S_{\operatorname{lca}(x, y)}
@@ -184,7 +184,7 @@ $$
 以结点 $x$ 为根的子树的点权权值和，即相应的子树和，就是
 
 $$
-T_x = \sum_{y\in\operatorname{desc}(x)} a_x.
+T_x = \sum_{y\in\operatorname{desc}(x)} a_y.
 $$
 
 其中，$\operatorname{desc}(x)$ 表示 $x$ 的所有子孙结点（包括其自身）的集合．
@@ -290,7 +290,7 @@ $$
 ???+ example "示例"
     对结点 $S$ 和 $T$ 之间的路径上的点权做区间加操作时，上述公式中的前两条是对蓝色方框内的路径进行一维差分操作，后两条是对红色方框内的路径进行一维差分操作：
     
-    ![](./images/prefix_sum1.svg)
+    ![](./images/prefix-sum1.svg)
     
     自下而上求和，就相当于对这两个区间从下向上计算前缀和．由此，对比上文的一维差分操作，就能知道点差分操作的正确性．
 
@@ -306,24 +306,24 @@ D_{\operatorname{lca}(x, y)} &\gets D_{\operatorname{lca}(x, y)} - 2v.
 \end{aligned}
 $$
 
-在所有修改操作完成后，可以计算一次子树和，就能得到更新后的点权．
+在所有修改操作完成后，可以计算一次子树和，就能得到更新后的边权（存储在相应边的子结点处）．
 
 ???+ example "示例"
     如图所示，边差分操作可以用于解决红色路径上的边权区间加问题．
     
-    ![](./images/prefix_sum2.svg)
+    ![](./images/prefix-sum2.svg)
     
     由于在边上直接进行差分比较困难，所以将本来应当累加到红色边上的值向下移动到相邻的结点里，操作起来就方便了．对比点差分的公式，就可以理解边差分的公式．
 
 ### 例题
 
-???+ example "[洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128)"
+???+ example "[「USACO15DEC」Max Flow](https://usaco.org/index.php?page=viewproblem2&cpid=576)"
     FJ 给他的牛棚的 $N(2 \le N \le 50,000)$ 个隔间之间安装了 $N-1$ 根管道，隔间编号从 $1$ 到 $N$．所有隔间都被管道连通了．
     
-    FJ 有 $K(1 \le K \le 100,000)$ 条运输牛奶的路线，第 $i$ 条路线从隔间 $s_i$ 运输到隔间 $t_i$．一条运输路线会给它的两个端点处的隔间以及中间途径的所有隔间带来一个单位的运输压力，你需要计算压力最大的隔间的压力是多少．
+    FJ 有 $K(1 \le K \le 100,000)$ 条运输牛奶的路线，第 $i$ 条路线从隔间 $s_i$ 运输到隔间 $t_i$．一条运输路线会给它的两个端点处的隔间以及中间途经的所有隔间带来一个单位的运输压力，你需要计算压力最大的隔间的压力是多少．
 
 ??? note "解题思路"
-    需要统计每个点经过了多少次，那么就用树上差分将每一次的路径上的点加一，可以很快得到每个点经过的次数．这里采用倍增法计算 LCA，最后对 DFS 遍历整棵树，在回溯时对差分数组求和就能求得答案了．
+    需要统计每个点经过了多少次，那么就用树上差分将每一次的路径上的点加一，可以很快得到每个点经过的次数．这里采用倍增法计算 LCA，最后用 DFS 遍历整棵树，在回溯时对差分数组求和就能求得答案了．
 
 ??? note "参考代码"
     ```cpp
@@ -337,7 +337,7 @@ $$
 -   [洛谷 B3612【深进 1. 例 1】求区间和](https://www.luogu.com.cn/problem/B3612)
 -   [洛谷 U69096 前缀和的逆](https://www.luogu.com.cn/problem/U69096)
 -   [AtCoder joi2007ho\_a 最大の和](https://atcoder.jp/contests/joi2007ho/tasks/joi2007ho_a)
--   [「USACO16JAN」子共七 Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
+-   [「USACO16JAN」Subsequences Summing to Sevens](https://usaco.org/index.php?page=viewproblem2&cpid=595)
 -   [「USACO05JAN」Moo Volume S](https://www.luogu.com.cn/problem/P6067)
 
 二维/多维前缀和：
@@ -367,7 +367,7 @@ $$
 
 树上差分：
 
--   [洛谷 3128 最大流](https://www.luogu.com.cn/problem/P3128)
+-   [「USACO15DEC」Max Flow](https://usaco.org/index.php?page=viewproblem2&cpid=576)
 -   [JLOI2014 松鼠的新家](https://loj.ac/problem/2236)
 -   [NOIP2015 运输计划](http://uoj.ac/problem/150)
 -   [NOIP2016 天天爱跑步](http://uoj.ac/problem/261)

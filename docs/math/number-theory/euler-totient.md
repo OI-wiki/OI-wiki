@@ -2,7 +2,7 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 
 ## 定义
 
-欧拉函数（Euler's totient function），即 $\varphi(n)$，表示的是小于等于 $n$ 和 $n$ 互质的数的个数．
+欧拉函数（Euler's totient function），即 $\varphi(n)$，表示的是小于等于 $n$ 且与 $n$ 互质的数的个数．
 
 比如说 $\varphi(1) = 1$．
 
@@ -37,9 +37,9 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
     ???+ note "证明"
         -   引理：设 $p$ 为任意质数，那么 $\varphi(p^k)=p^{k-1}\times(p-1)$．
         
-            证明：显然对于从 1 到 $p^k$ 的所有数中，除了 $p^{k-1}$ 个 $p$ 的倍数以外其它数都与 $p^k$ 互素，故 $\varphi(p^k)=p^k-p^{k-1}=p^{k-1}\times(p-1)$，证毕．
+            证明：显然在从 $1$ 到 $p^k$ 的所有数中，除了 $p^{k-1}$ 个 $p$ 的倍数以外其它数都与 $p^k$ 互素，故 $\varphi(p^k)=p^k-p^{k-1}=p^{k-1}\times(p-1)$，证毕．
         
-        接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$．由唯一分解定理与 $\varphi(x)$ 函数的积性
+        接下来我们证明 $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$．由唯一分解定理与 $\varphi(x)$ 函数的积性可知
         
         $$
         \begin{aligned}
@@ -51,13 +51,13 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
         \end{aligned}
         $$
 
--   对任意不全为 $0$ 的整数 $m,n$，$\varphi(mn)\varphi(\gcd(m,n))=\varphi(m)\varphi(n)\gcd(m,n)$．
+-   对任意正整数 $m,n$，$\varphi(mn)\varphi(\gcd(m,n))=\varphi(m)\varphi(n)\gcd(m,n)$．
 
     可由上一条直接计算得出．
 
 ## 实现
 
-如果只要求一个数的欧拉函数值，那么直接根据定义质因数分解的同时求就好了．这个过程可以用 [Pollard Rho](./pollard-rho.md) 算法优化．
+如果只要求一个数的欧拉函数值，那么直接根据定义，在质因数分解的同时求就好了．这个过程可以用 [Pollard Rho](./pollard-rho.md) 算法优化．
 
 ???+ note "参考实现"
     === "C++"
@@ -104,22 +104,22 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 在结论
 
 $$
-n=\sum_{d|n}\varphi(d)
+n=\sum_{d \mid n}\varphi(d)
 $$
 
 中代入 $n=\gcd(a,b)$，则有
 
 $$
-\gcd(a,b) = \sum_{d|\gcd(a,b)}\varphi(d) = \sum_d [d|a][d|b]\varphi(d),
+\gcd(a,b) = \sum_{d \mid \gcd(a,b)}\varphi(d) = \sum_d [d \mid a][d \mid b]\varphi(d),
 $$
 
 其中 $[\cdot]$ 为 Iverson 括号．对上式求和，就可以得到
 
 $$
-\sum_{i=1}^n\gcd(i,n)=\sum_{d}\sum_{i=1}^n[d|i][d|n]\varphi(d)=\sum_d\left\lfloor\frac{n}{d}\right\rfloor[d|n]\varphi(d)=\sum_{d|n}\left\lfloor\frac{n}{d}\right\rfloor\varphi(d).
+\sum_{i=1}^n\gcd(i,n)=\sum_{d}\sum_{i=1}^n[d \mid i][d \mid n]\varphi(d)=\sum_d\left\lfloor\frac{n}{d}\right\rfloor[d \mid n]\varphi(d)=\sum_{d \mid n}\left\lfloor\frac{n}{d}\right\rfloor\varphi(d).
 $$
 
-这里关键的观察是 $\sum_{i=1}^n[d|i]=\lfloor\frac{n}{d}\rfloor$，即在 $1$ 和 $n$ 之间能够被 $d$ 整除的 $i$ 的个数是 $\lfloor\frac{n}{d}\rfloor$．
+这里关键的观察是 $\sum_{i=1}^n[d \mid i]=\lfloor\frac{n}{d}\rfloor$，即在 $1$ 和 $n$ 之间能够被 $d$ 整除的 $i$ 的个数是 $\lfloor\frac{n}{d}\rfloor$．
 
 利用这个式子，就可以遍历约数求和了．需要多组查询的时候，可以预处理欧拉函数的前缀和，利用数论分块查询．
 

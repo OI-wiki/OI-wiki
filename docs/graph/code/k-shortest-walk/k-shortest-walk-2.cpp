@@ -1,5 +1,6 @@
 // Submission: https://judge.yosupo.jp/submission/311623
 #include <algorithm>
+#include <ctime>
 #include <iostream>
 #include <queue>
 #include <random>

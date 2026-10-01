@@ -58,7 +58,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
     \end{aligned}
     $$
     
-    由 [同余方程的定理 5](./congruence-equation.md#定理-5) 可知，$a$ 是模 $p$ 的二次剩余当且仅当 $a^{(p-1)/2}\equiv 1\pmod p$. 进而 $a$ 是模 $p$ 的非二次剩余当且仅当 $a^{(p-1)/2}\equiv -1\pmod p$.
+    由 [同余方程的定理 5](./congruence-equation.md#素数模同余方程) 可知，$a$ 是模 $p$ 的二次剩余当且仅当 $a^{(p-1)/2}\equiv 1\pmod p$. 进而 $a$ 是模 $p$ 的非二次剩余当且仅当 $a^{(p-1)/2}\equiv -1\pmod p$.
 
 基于 Euler 判别法，我们可以得到如下推论：
 
@@ -68,7 +68,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
 ??? note "证明"
     根据 Euler 判别法，考虑 $a^{\frac{p-1}{2}}\equiv 1\pmod p.$
     
-    注意到 $\dfrac{p-1}{2}\mid (p-1)$，由 [同余方程的定理 6](./congruence-equation.md#定理-6) 可知 $a^{\frac{p-1}{2}}\equiv 1\pmod p$ 有 $\dfrac{p-1}{2}$ 个解．所以模 $p$ 意义下二次剩余和二次非剩余均有 $\dfrac{p-1}{2}$ 个．
+    注意到 $\dfrac{p-1}{2}\mid (p-1)$，由 [同余方程的定理 6](./congruence-equation.md#素数模同余方程) 可知 $a^{\frac{p-1}{2}}\equiv 1\pmod p$ 有 $\dfrac{p-1}{2}$ 个解．所以模 $p$ 意义下二次剩余和二次非剩余均有 $\dfrac{p-1}{2}$ 个．
 
 ## Legendre 符号
 

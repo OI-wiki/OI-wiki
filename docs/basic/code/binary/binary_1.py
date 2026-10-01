@@ -1,4 +1,4 @@
-eps = 1e-6
+eps = 1e-7
 n, l, r = map(float, input().split())
 a = tuple(map(float, input().split()))[::-1]
 
@@ -8,9 +8,10 @@ def f(x):
 
 
 while r - l > eps:
-    mid = (l + r) / 2
-    if f(mid - eps) > f(mid + eps):
-        r = mid
+    lmid = l + (r - l) / 3
+    rmid = r - (r - l) / 3
+    if f(lmid) > f(rmid):
+        r = rmid
     else:
-        l = mid
-print(round(l, 6))
+        l = lmid
+print(f"{(l + r) / 2:.6f}")

@@ -176,7 +176,9 @@ nav:
     - 动态规划部分简介: dp/index.md
     - 动态规划基础: dp/basic.md
     - 记忆化搜索: dp/memo.md
-    - 背包 DP: dp/knapsack.md
+    - 背包 DP:
+      - 背包 DP 基础: dp/knapsack/basic.md
+      - 背包 DP 进阶: dp/knapsack/advanced.md
     - 区间 DP: dp/interval.md
     - DAG 上的 DP: dp/dag.md
     - 树形 DP: dp/tree.md
@@ -259,12 +261,12 @@ nav:
       - 数论分块: math/number-theory/sqrt-decomposition.md
       - 狄利克雷卷积: math/number-theory/dirichlet.md
       - 莫比乌斯反演: math/number-theory/mobius.md
-      - 杜教筛: math/number-theory/du.md
+      - 狄利克雷双曲线法 & 杜教筛: math/number-theory/hyperbola.md
+      - 素数计数: math/number-theory/prime-counting.md
       - Powerful Number 筛: math/number-theory/powerful-number.md
       - Min_25 筛: math/number-theory/min-25.md
       - 洲阁筛: math/number-theory/zhou.md
-      - 类欧几里德算法: math/number-theory/euclidean.md
-      - Meissel–Lehmer 算法: math/number-theory/meissel-lehmer.md
+      - 类欧几里得算法: math/number-theory/euclidean.md
       - 连分数: math/number-theory/continued-fraction.md
       - Stern–Brocot 树与 Farey 序列: math/number-theory/stern-brocot.md
       - 二次域: math/number-theory/quadratic.md
@@ -493,6 +495,7 @@ nav:
     - 半平面交: geometry/half-plane.md
     - 平面最近点对: geometry/nearest-points.md
     - 随机增量法: geometry/random-incremental.md
+    - 最小圆覆盖: geometry/smallest-enclosing-circle.md
     - 反演变换: geometry/inverse.md
     - 计算几何杂项: geometry/misc.md
   - 杂项:
