@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int m, n, c[1010], w[1010], x, t[110][1010], ts, cnt[110], dp[1010];
+int m, n, c[1010], w[1010], x, t[10010][1010], ts, cnt[10010], dp[1010];
 
 int main() {
   cin >> m >> n;
