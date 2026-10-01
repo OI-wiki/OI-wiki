@@ -162,7 +162,7 @@ int binary_search_min(int L, int R) {
 
 ??? note "为什么两种写法本质相同？"
     设要求的是满足 $f(x)=1$ 的最小整数 $\textit{ans}$．由于问题满足广义有序性，$f$ 在整数点上必然形如
-
+    
     $$
     0,0,\dots,0,1,1,\dots,1
     $$
@@ -185,8 +185,8 @@ int binary_search_min(int L, int R) {
 
 下面把几种常见组合列成表格．以最小的满足条件的值为例，且假设答案存在：
 
-| 搜索区间         | 初始 $l,r$        | 循环条件     | $\textit{mid}$                                     | $f(\textit{mid})=1$ 时   | $f(\textit{mid})=0$ 时   | 结束时        | 返回  |
-| ------------ | --------------- | -------- | ----------------------------------------- | -------------- | -------------- | ---------- | --- |
+| 搜索区间         | 初始 $l,r$        | 循环条件     | $\textit{mid}$                            | $f(\textit{mid})=1$ 时   | $f(\textit{mid})=0$ 时   | 结束时        | 返回  |
+| ------------ | --------------- | -------- | ----------------------------------------- | ----------------------- | ----------------------- | ---------- | --- |
 | 闭区间 $[l,r]$  | $l=L,\ r=R$     | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}-1$ | $l\gets \textit{mid}+1$ | $l>r$      | $l$ |
 | 闭区间 $[l,r]$  | $l=L,\ r=R$     | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}$   | $l\gets \textit{mid}+1$ | $l=r$      | $l$ |
 | 左闭右开 $[l,r)$ | $l=L,\ r=R+1$   | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}$   | $l\gets \textit{mid}+1$ | $l=r$      | $l$ |
