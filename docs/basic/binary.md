@@ -12,13 +12,11 @@
 
 它每次访问数组当前部分的中间元素，如果中间元素刚好是要找的，就结束搜索过程；如果中间元素小于所查找的值，那么左侧的只会更小，不会有所查找的元素，只需到右侧查找；如果中间元素大于所查找的值同理，只需到左侧查找．
 
-具体地，设数组 $a$ 下标从 $1$ 开始，长度为 $n$，要查找数 $x$ 在哪个位置．记 $l,r$ 表示当前只考虑数组中下标 $x$ 满足 $l\le x\le r$ 的数．一开始时，令 $l\gets1$，$r\gets n$．每次我们访问中间元素 $a_{mid}$，其中 $mid=\lfloor\dfrac{l+r}{2}\rfloor$，然后分情况讨论：
+具体地，设数组 $a$ 下标从 $1$ 开始，长度为 $n$，要查找数 $x$ 在哪个位置．记 $l,r$ 表示当前只考虑数组中下标 $x$ 满足 $l\le x\le r$ 的数．一开始时，令 $l\gets1$，$r\gets n$．每次我们访问中间元素 $a_{\textit{mid}}$，其中 $\textit{mid}=\lfloor\dfrac{l+r}{2}\rfloor$，然后分情况讨论：
 
--   若 $a_{mid}<x$，由于数组升序，下标小于等于 $mid$ 的数一定都比 $x$ 小，因此我们一定不用查找这些数，我们只需要查找下标大于 $mid$ 的数就可以了，也就是令 $l\gets mid+1$，$r$ 不变．
-
--   若 $a_{mid}>x$，由于数组升序，下标大于等于 $mid$ 的数一定都比 $x$ 大，因此我们一定不用查找这些数，我们只需要查找下标小于 $mid$ 的数就可以了，也就是令 $l$ 不变，$r\gets mid-1$．
-
--   若 $a_{mid}=x$，我们就找到了数 $x$ 的位置，算法结束．
+-   若 $a_{\textit{mid}}<x$，由于数组升序，下标小于等于 $\textit{mid}$ 的数一定都比 $x$ 小，因此我们一定不用查找这些数，我们只需要查找下标大于 $\textit{mid}$ 的数就可以了，也就是令 $l\gets \textit{mid}+1$，$r$ 不变．
+-   若 $a_{\textit{mid}}>x$，由于数组升序，下标大于等于 $\textit{mid}$ 的数一定都比 $x$ 大，因此我们一定不用查找这些数，我们只需要查找下标小于 $\textit{mid}$ 的数就可以了，也就是令 $l$ 不变，$r\gets \textit{mid}-1$．
+-   若 $a_{\textit{mid}}=x$，我们就找到了数 $x$ 的位置，算法结束．
 
 如果直到考虑范围为空，即 $l>r$ 时都没有找到数 $x$ 的位置，就说明 $x$ 不在数组 $a$ 中．
 
@@ -110,10 +108,10 @@ bsearch 函数的返回值是查找到的元素的地址，返回类型为 `void
 
 以利用二分答案求最小值为例（此时算法要求问题满足上文所述的第一种有序性质）．设答案的粗略上下界为 $L$ 和 $R$．
 
-记 $l,r$ 表示当前可以确定答案 $x$ 一定满足 $l \le x \le r$．和二分查找类似，一开始时，令 $l=L$，$r=R$．每次我们判断 $mid=\lfloor\dfrac{l+r}{2}\rfloor$ 是否满足问题的非最优化条件，然后分情况讨论：
+记 $l,r$ 表示当前可以确定答案 $x$ 一定满足 $l \le x \le r$．和二分查找类似，一开始时，令 $l=L$，$r=R$．每次我们判断 $\textit{mid}=\lfloor\dfrac{l+r}{2}\rfloor$ 是否满足问题的非最优化条件，然后分情况讨论：
 
--   如果此时 $mid$ 不满足条件（即 $f(mid)$ 为 $0$），根据问题的有序性质，此时小于等于 $mid$ 的所有数都不满足条件，都无需考虑，因此令 $l\gets mid+1$，$r$ 不变．
--   如果此时 $mid$ 满足条件（即 $f(mid)$ 为 $1$），根据问题的有序性质，此时大于等于 $mid$ 的所有数都满足条件，但是由于要求最小，因此取 $mid$ 是最优的．此时令 $r \gets mid$，$l$ 不变．
+-   如果此时 $\textit{mid}$ 不满足条件（即 $f(\textit{mid})$ 为 $0$），根据问题的有序性质，此时小于等于 $\textit{mid}$ 的所有数都不满足条件，都无需考虑，因此令 $l\gets \textit{mid}+1$，$r$ 不变．
+-   如果此时 $\textit{mid}$ 满足条件（即 $f(\textit{mid})$ 为 $1$），根据问题的有序性质，此时大于等于 $\textit{mid}$ 的所有数都满足条件，但是由于要求最小，因此取 $\textit{mid}$ 是最优的．此时令 $r \gets \textit{mid}$，$l$ 不变．
 
 当答案范围满足 $l=r$（即不再满足 $l<r$）时，算法结束．此时 $l$ 或 $r$ 为答案．
 
@@ -162,24 +160,24 @@ int binary_search_min(int L, int R) {
 
 这种实现方式与上文的实现方式本质相同．
 
-??? question "为什么两种写法本质相同？"
-    设要求的是满足 $f(x)=1$ 的最小整数 $ans$．由于问题满足广义有序性，$f$ 在整数点上必然形如
-    
+??? note "为什么两种写法本质相同？"
+    设要求的是满足 $f(x)=1$ 的最小整数 $\textit{ans}$．由于问题满足广义有序性，$f$ 在整数点上必然形如
+
     $$
     0,0,\dots,0,1,1,\dots,1
     $$
     
-    也就是说，存在一个分界点 $ans$，使得
+    也就是说，存在一个分界点 $\textit{ans}$，使得
     
     $$
-    f(x)=0\quad (x<ans),\qquad f(x)=1\quad (x\ge ans).
+    f(x)=0\quad (x<\textit{ans}),\qquad f(x)=1\quad (x\ge \textit{ans}).
     $$
     
-    上文 $l<r$ 的写法维护的不变量是 $ans\in [l,r]$．每次取 $mid=\left\lfloor\dfrac{l+r}{2}\right\rfloor$．若 $f(mid)=1$，则 $ans\le mid$，故答案在 $[l,mid]$ 中，令 $r\gets mid$；若 $f(mid)=0$，则 $ans>mid$，故答案在 $[mid+1,r]$ 中，令 $l\gets mid+1$．当 $l=r$ 时，区间缩为一点，于是 $ans=l$．
+    上文 $l<r$ 的写法维护的不变量是 $\textit{ans}\in [l,r]$．每次取 $\textit{mid}=\left\lfloor\dfrac{l+r}{2}\right\rfloor$．若 $f(\textit{mid})=1$，则 $\textit{ans}\le \textit{mid}$，故答案在 $[l,\textit{mid}]$ 中，令 $r\gets \textit{mid}$；若 $f(\textit{mid})=0$，则 $\textit{ans}>\textit{mid}$，故答案在 $[\textit{mid}+1,r]$ 中，令 $l\gets \textit{mid}+1$．当 $l=r$ 时，区间缩为一点，于是 $\textit{ans}=l$．
     
-    而 $l\le r$ 的写法维护的不变量则是：所有 $x<l$ 都满足 $f(x)=0$，所有 $x>r$ 都满足 $f(x)=1$．每次仍取 $mid=\left\lfloor\dfrac{l+r}{2}\right\rfloor$．若 $f(mid)=1$，则所有 $x\ge mid$ 都满足 $f(x)=1$，因此可以令 $r\gets mid-1$；若 $f(mid)=0$，则所有 $x\le mid$ 都满足 $f(x)=0$，因此可以令 $l\gets mid+1$．当 $l>r$ 时，所有 $x<l$ 都有 $f(x)=0$，所有 $x\ge l$ 都有 $f(x)=1$，所以 $l$ 恰为最小的满足 $f(x)=1$ 的整数，即 $l=ans$．
+    而 $l\le r$ 的写法维护的不变量则是：所有 $x<l$ 都满足 $f(x)=0$，所有 $x>r$ 都满足 $f(x)=1$．每次仍取 $\textit{mid}=\left\lfloor\dfrac{l+r}{2}\right\rfloor$．若 $f(\textit{mid})=1$，则所有 $x\ge \textit{mid}$ 都满足 $f(x)=1$，因此可以令 $r\gets \textit{mid}-1$；若 $f(\textit{mid})=0$，则所有 $x\le \textit{mid}$ 都满足 $f(x)=0$，因此可以令 $l\gets \textit{mid}+1$．当 $l>r$ 时，所有 $x<l$ 都有 $f(x)=0$，所有 $x\ge l$ 都有 $f(x)=1$，所以 $l$ 恰为最小的满足 $f(x)=1$ 的整数，即 $l=\textit{ans}$．
     
-    两种写法的区别只在于如何描述分界点两侧．$l<r$ 的写法把答案保留在闭区间 $[l,r]$ 中，靠区间收缩到一点来定位；$l\le r$ 的写法则把已经确认满足 $f(x)=0$ 和 $f(x)=1$ 的元素分别排除到 $l$ 左侧和 $r$ 右侧，最终让 $l$ 停在分界点上．后者中 $r\gets mid-1$ 看似排除了 $mid$，但由于 $l$ 只在 $f(mid)=0$ 时右移，它不会越过真正的分界点 $ans$，因此最终返回的 $l$ 与前者返回的 $l$ 完全相同．
+    两种写法的区别只在于如何描述分界点两侧．$l<r$ 的写法把答案保留在闭区间 $[l,r]$ 中，靠区间收缩到一点来定位；$l\le r$ 的写法则把已经确认满足 $f(x)=0$ 和 $f(x)=1$ 的元素分别排除到 $l$ 左侧和 $r$ 右侧，最终让 $l$ 停在分界点上．后者中 $r\gets \textit{mid}-1$ 看似排除了 $\textit{mid}$，但由于 $l$ 只在 $f(\textit{mid})=0$ 时右移，它不会越过真正的分界点 $\textit{ans}$，因此最终返回的 $l$ 与前者返回的 $l$ 完全相同．
     
     若要求最大值，只需把 $f$ 的方向反过来．若区间内可能无解，则 $l\le r$ 写法结束时可能得到 $l=R+1$，需要检查 $l\le R$ 且 $f(l)=1$．这与 $l<r$ 写法结束后检查 $f(l)=1$ 是同一目的．
 
@@ -187,13 +185,13 @@ int binary_search_min(int L, int R) {
 
 下面把几种常见组合列成表格．以最小的满足条件的值为例，且假设答案存在：
 
-| 搜索区间         | 初始 $l,r$        | 循环条件     | $mid$                                     | $f(mid)=1$ 时   | $f(mid)=0$ 时   | 结束时        | 返回  |
+| 搜索区间         | 初始 $l,r$        | 循环条件     | $\textit{mid}$                                     | $f(\textit{mid})=1$ 时   | $f(\textit{mid})=0$ 时   | 结束时        | 返回  |
 | ------------ | --------------- | -------- | ----------------------------------------- | -------------- | -------------- | ---------- | --- |
-| 闭区间 $[l,r]$  | $l=L,\ r=R$     | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets mid-1$ | $l\gets mid+1$ | $l>r$      | $l$ |
-| 闭区间 $[l,r]$  | $l=L,\ r=R$     | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets mid$   | $l\gets mid+1$ | $l=r$      | $l$ |
-| 左闭右开 $[l,r)$ | $l=L,\ r=R+1$   | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets mid$   | $l\gets mid+1$ | $l=r$      | $l$ |
-| 左开右闭 $(l,r]$ | $l=L-1,\ r=R$   | $l<r$    | $\left\lceil\dfrac{l+r}{2}\right\rceil$   | $l\gets mid$   | $r\gets mid-1$ | $l=r$      | $r$ |
-| 开区间 $(l,r)$  | $l=L-1,\ r=R+1$ | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets mid$   | $l\gets mid$   | $l+1\ge r$ | $r$ |
+| 闭区间 $[l,r]$  | $l=L,\ r=R$     | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}-1$ | $l\gets \textit{mid}+1$ | $l>r$      | $l$ |
+| 闭区间 $[l,r]$  | $l=L,\ r=R$     | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}$   | $l\gets \textit{mid}+1$ | $l=r$      | $l$ |
+| 左闭右开 $[l,r)$ | $l=L,\ r=R+1$   | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}$   | $l\gets \textit{mid}+1$ | $l=r$      | $l$ |
+| 左开右闭 $(l,r]$ | $l=L-1,\ r=R$   | $l<r$    | $\left\lceil\dfrac{l+r}{2}\right\rceil$   | $l\gets \textit{mid}$   | $r\gets \textit{mid}-1$ | $l=r$      | $r$ |
+| 开区间 $(l,r)$  | $l=L-1,\ r=R+1$ | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}$   | $l\gets \textit{mid}$   | $l+1\ge r$ | $r$ |
 
 ### 最大值最小化与最小值最大化
 
@@ -281,16 +279,16 @@ C++ 标准库中实现了：
 
 #### 过程
 
-以求最小值为例．设答案的粗略上下界为 $L$ 和 $R$．记 $l,r$ 表示当前可以确定答案 $x$ 一定满足 $l\le x\le r$．一开始时，令 $l\gets L$，$r\gets R$．每次取 $mid=\dfrac{l+r}{2}$（注意，这里是实数运算），判断 $mid$ 是否满足问题的非最优化条件：
+以求最小值为例．设答案的粗略上下界为 $L$ 和 $R$．记 $l,r$ 表示当前可以确定答案 $x$ 一定满足 $l\le x\le r$．一开始时，令 $l\gets L$，$r\gets R$．每次取 $\textit{mid}=\dfrac{l+r}{2}$（注意，这里是实数运算），判断 $\textit{mid}$ 是否满足问题的非最优化条件：
 
--   若 $mid$ 满足条件，根据问题的有序性质，所有大于等于 $mid$ 的数都满足条件，但要求最小，因此答案一定在 $[l,mid]$ 中，令 $r\gets mid$，$l$ 不变．
--   若 $mid$ 不满足条件，根据问题的有序性质，所有小于等于 $mid$ 的数都不满足条件，答案一定在 $[mid,r]$ 中，令 $l\gets mid$，$r$ 不变．
+-   若 $\textit{mid}$ 满足条件，根据问题的有序性质，所有大于等于 $\textit{mid}$ 的数都满足条件，但要求最小，因此答案一定在 $[l,\textit{mid}]$ 中，令 $r\gets \textit{mid}$，$l$ 不变．
+-   若 $\textit{mid}$ 不满足条件，根据问题的有序性质，所有小于等于 $\textit{mid}$ 的数都不满足条件，答案一定在 $[\textit{mid},r]$ 中，令 $l\gets \textit{mid}$，$r$ 不变．
 
-当区间长度 $r-l$ 小于给定精度 $eps$，或达到预设的迭代次数时，算法结束．此时 $l$、$r$ 或 $\dfrac{l+r}{2}$ 均可作为答案的近似值．求最大值时，只需将上述两种情况的方向反过来：若 $mid$ 满足条件，则令 $l\gets mid$；否则令 $r\gets mid$．
+当区间长度 $r-l$ 小于给定精度 $\textit{eps}$，或达到预设的迭代次数时，算法结束．此时 $l$、$r$ 或 $\dfrac{l+r}{2}$ 均可作为答案的近似值．求最大值时，只需将上述两种情况的方向反过来：若 $\textit{mid}$ 满足条件，则令 $l\gets \textit{mid}$；否则令 $r\gets \textit{mid}$．
 
-需要注意的是，与整数二分答案不同，实数二分答案不能通过 `mid + 1` 或 `mid - 1` 缩小区间，因为实数域中不存在相邻元素；只能令边界等于 $mid$，依赖区间长度不断减半来逼近答案．
+需要注意的是，与整数二分答案不同，实数二分答案不能通过 `mid + 1` 或 `mid - 1` 缩小区间，因为实数域中不存在相邻元素；只能令边界等于 $\textit{mid}$，依赖区间长度不断减半来逼近答案．
 
-若采用 `while (r - l > eps)`，实数二分答案的时间复杂度为 $O(\log((R-L)/eps))$．若采用固定迭代次数 $k$，则时间复杂度为 $O(k)$．空间复杂度通常为 $O(1)$．由于实数运算存在浮点误差，实际实现中通常不直接判断 $l=r$，而是判断 $r-l<eps$，或直接循环固定次数，例如 $60$ 至 $100$ 次，以避免死循环并保证精度．
+若采用 `while (r - l > eps)`，实数二分答案的时间复杂度为 $O(\log((R-L)/\textit{eps}))$．若采用固定迭代次数 $k$，则时间复杂度为 $O(k)$．空间复杂度通常为 $O(1)$．由于实数运算存在浮点误差，实际实现中通常不直接判断 $l=r$，而是判断 $r-l<\textit{eps}$，或直接循环固定次数，例如 $60$ 至 $100$ 次，以避免死循环并保证精度．
 
 #### 实现
 
