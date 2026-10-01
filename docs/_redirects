@@ -122,6 +122,7 @@
 /math/fourier-motzkin-elimination /math/linear-programming
 /math/game-theory/misere-game /math/game-theory/impartial-game
 /misc/gray-code /math/numeral-sys/gray-code
+/geometry/misc /geometry
 /geometry/polar-coordinate/ /math/coordinate
 /graph/tree-misc /graph/tree-centroid
 /graph/bridge /graph/cut
@@ -150,3 +151,4 @@
 /graph/min-circle /graph/min-cycle
 /string/automaton /misc/fsm
 /dp/knapsack /dp/knapsack/basic
+/dp/misc /dp
