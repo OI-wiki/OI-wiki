@@ -78,7 +78,8 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 4.  接下来，请转到下面「配置分发版」一节完成其他设置．
 
-> 如果你的 `wsl --install` 进度条很慢或多次失败，请在 [GitHub 上的 release 页面](https://github.com/microsoft/wsl/releases) 下载后缀名为 `.msi` 的离线安装包．
+???+ tip "提示"
+    如果你的 `wsl --install` 进度条很慢或多次失败，请在 [GitHub 上的 release 页面](https://github.com/microsoft/wsl/releases) 下载后缀名为 `.msi` 的离线安装包．
 
 ### 手动安装[^ref4]
 
