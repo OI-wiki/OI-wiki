@@ -498,6 +498,7 @@ PN 筛：
 -   [任之洲．积性函数求和的几种方法．国家集训队 2016 年论文集．](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf)
 -   [The prefix-sum of multiplicative function: the black algorithm - baihacker](https://baihacker.github.io/main/2020/The_prefix-sum_of_multiplicative_function_the_black_algorithm.html)
 -   [Summing Multiplicative Functions (Pt. 1.5) - griff's math blog!](https://gbroxey.github.io/blog/2025/04/07/mult-sum-1-5.html)
+-   [Sum of Multiplicative Functions by Min\_25](https://web.archive.org/web/20211009144526/https://min-25.hatenablog.com/entry/2018/11/11/172216)
 -   [Min-25 筛学习笔记 by DaiRuiChen007](https://www.cnblogs.com/DaiRuiChen007/p/17492875.html)
 -   [洲阁筛学习笔记 by myee](https://www.cnblogs.com/myee/p/zhouge-sieve.html)
 -   [积性函数线性筛/杜教筛/洲阁筛学习笔记 | Bill Yang's Blog](https://blog.bill.moe/multiplicative-function-sieves-notes)
