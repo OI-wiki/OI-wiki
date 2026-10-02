@@ -78,6 +78,9 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
 
 4.  接下来，请转到下面「配置分发版」一节完成其他设置．
 
+???+ tip "提示"
+    如果你的 `wsl --install` 进度条很慢或多次失败，请在 [GitHub 上的 release 页面](https://github.com/microsoft/wsl/releases) 下载后缀名为 `.msi` 的离线安装包．
+
 ### 手动安装[^ref4]
 
 ???+ warning "Warning"
@@ -141,6 +144,8 @@ wsl --set-default-version 2
 ???+ warning "Warning"
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变．如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本．
 
+由于 Microsoft Store 在国内下载速度不稳定，推荐访问 [Ubuntu 官网](https://ubuntu.com/download/wsl) 获取最新发布的 LTS 版本，或前往 [Ubuntu Release](https://releases.ubuntu.com/) 获取先前版本，下载后缀名为 `.wsl` 的文件后双击即可，对于其他版本，也可在 [WSL/Distribution.json](https://github.com/microsoft/WSL/blob/master/distributions/DistributionInfo.json) 中找到对应网址．
+
 ## 配置分发版[^ref5]
 
 本章以 Windows 自动安装的 Ubuntu 为例．
@@ -198,26 +203,18 @@ sudo apt install g++
 
 ### 更换为国内软件源
 
-Ubuntu 默认的软件源在国外．可以换成国内的软件源以加快速度，如 [清华 TUNA 的软件源](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)．
+Ubuntu 默认的软件源在国外，可以换成国内镜像以加快速度．请参考 [MirrorZ 的 Ubuntu 帮助页面](https://help.mirrorz.org/ubuntu/)，选择与自己系统版本相匹配的配置（可使用 `lsb_release -a` 查看 Ubuntu 版本），并按页面给出的命令操作．
 
 ???+ warning "使用与自己系统版本匹配的软件源"
-    请在页面中寻找与自己系统版本相配的源（可使用 `sudo lsb_release -a` 查看 Ubuntu 版本）．
-    
     除非你知道你在做什么，否则不要使用与自己的系统版本不匹配的源！
 
-使用以下命令更新软件和软件源：
+换源后运行以下命令更新软件：
 
 ```console
 $ sudo su # 执行这行指令后，终端提示符会从 $ 变成 #，执行下文的命令前注意关注提示符
 [sudo] xxx 的密码：
-# cp /etc/apt/sources.list /etc/apt/sources.list.bak
-# vim /etc/apt/sources.list
-...（按 i 之后将上文的源右键粘贴进去，编辑完后按 Esc，再输入 :wq 和回车）
 # apt update
 # apt upgrade -y
-# exit
-exit
-$ 
 ```
 
 ### 安装中文环境
@@ -459,7 +456,7 @@ Welcome!
 ## 外部链接
 
 -   [关于适用于 Linux 的 Windows 子系统](https://docs.microsoft.com/zh-cn/windows/wsl/about)
--   [Ubuntu 镜像使用帮助，清华 TUNA](https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/)
+-   [Ubuntu 软件仓库 - MirrorZ Help](https://help.mirrorz.org/ubuntu/)
 -   [Dev on Windows with WSL（在 Windows 上用 WSL 优雅开发）](https://dowww.spencerwoo.com)
 -   [GitHub 上的 Awesome-WSL](https://github.com/sirredbeard/Awesome-WSL)
 -   [排查适用于 Linux 的 Windows 子系统问题](https://docs.microsoft.com/zh-cn/windows/wsl/troubleshooting)
