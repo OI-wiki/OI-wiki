@@ -10,7 +10,7 @@
 
 它每次访问数组当前部分的中间元素，如果中间元素刚好是要找的，就结束搜索过程；如果中间元素小于所查找的值，那么左侧的只会更小，不会有所查找的元素，只需到右侧查找；如果中间元素大于所查找的值同理，只需到左侧查找．
 
-具体地，设数组 $a$ 下标从 $1$ 开始，长度为 $n$，要查找数 $x$ 在哪个位置．记 $l,r$ 表示当前只考虑数组中下标 $x$ 满足 $l\le x\le r$ 的数．一开始时，令 $l\gets1$，$r\gets n$．每次我们访问中间元素 $a_{\textit{mid}}$，其中 $\textit{mid}=\lfloor\dfrac{l+r}{2}\rfloor$，然后分情况讨论：
+具体地，设数组 $a$ 下标从 $1$ 开始，长度为 $n$，要查找数 $x$ 在哪个位置．记 $l,r$ 表示当前只考虑数组中下标 $i$ 满足 $l\le i\le r$ 的数．一开始时，令 $l\gets1$，$r\gets n$．每次我们访问中间元素 $a_{\textit{mid}}$，其中 $\textit{mid}=\lfloor\dfrac{l+r}{2}\rfloor$，然后分情况讨论：
 
 -   若 $a_{\textit{mid}}<x$，由于数组升序，下标小于等于 $\textit{mid}$ 的数一定都比 $x$ 小，因此我们一定不用查找这些数，我们只需要查找下标大于 $\textit{mid}$ 的数就可以了，也就是令 $l\gets \textit{mid}+1$，$r$ 不变．
 -   若 $a_{\textit{mid}}>x$，由于数组升序，下标大于等于 $\textit{mid}$ 的数一定都比 $x$ 大，因此我们一定不用查找这些数，我们只需要查找下标小于 $\textit{mid}$ 的数就可以了，也就是令 $l$ 不变，$r\gets \textit{mid}-1$．
@@ -107,7 +107,7 @@ bsearch 函数的返回值是查找到的元素的地址，返回类型为 `void
 记 $l,r$ 表示当前可以确定答案 $x$ 一定满足 $l \le x \le r$．和二分查找类似，一开始时，令 $l=L$，$r=R$．每次我们判断 $\textit{mid}=\lfloor\dfrac{l+r}{2}\rfloor$ 是否满足条件 $P$，然后分情况讨论：
 
 -   如果此时 $\textit{mid}$ 不满足条件（即 $f(\textit{mid})$ 为 $0$），根据问题的有序性质，此时小于等于 $\textit{mid}$ 的所有数都不满足条件，都无需考虑，因此令 $l\gets \textit{mid}+1$，$r$ 不变．
--   如果此时 $\textit{mid}$ 满足条件（即 $f(\textit{mid})$ 为 $1$），根据问题的有序性质，此时大于等于 $\textit{mid}$ 的所有数都满足条件，但是由于要求最小，因此取 $\textit{mid}$ 是最优的．此时令 $r \gets \textit{mid}$，$l$ 不变．
+-   如果此时 $\textit{mid}$ 满足条件（即 $f(\textit{mid})$ 为 $1$），根据问题的有序性质，此时大于等于 $\textit{mid}$ 的所有数都满足条件，但是因为题目要求最小值，所以所有大于 $mid$ 的数都没必要考虑了，只考虑小于等于 $mid$ 的数就可以了．此时令 $r \gets \textit{mid}$，$l$ 不变．
 
 当答案范围满足 $l=r$（即不再满足 $l<r$）时，算法结束．此时 $l$ 或 $r$ 为答案．
 
@@ -254,9 +254,9 @@ C++ 标准库中实现了：
 
 二者均采用二分实现，所以调用前必须保证元素有序，这样二者的问题才满足广义的有序条件（即若 $a_i$ 不小于或者大于给定值时，$i$ 之后的数同样不小于或者大于给定值）．
 
-`std::lower_bound` 和 `std::upper_bound` 均有三个参数，分别是：
+`std::lower_bound` 和 `std::upper_bound` 均有四个参数，分别是：
 
--   `first`：序列的起始 [迭代器](../lang/csl/iterator)．可以理解为序列的开头．
+-   `first`：序列的起始 [迭代器](../lang/csl/iterator.md)．可以理解为序列的开头．
 -   `last`：序列的终止迭代器．可以理解为序列的结尾的 **后一项**．换言之，`--last` 返回的是序列的结尾．
 -   `value`：给定值．
 -   `comp`（可选）：比较函数，参考 `sort` 函数的书写方式．
@@ -277,8 +277,9 @@ C++ 标准库中实现了：
     在 GCC 使用的 libstdc++ 标准库实现中，二者均使用 `std::advance` 来访问中间元素．这意味着当迭代器支持随机访问时（比如传入数组或是 vector 迭代器），函数的复杂度才是 $O(\log n)$ 的．如果不支持随机访问（比如 set 或者 map），函数的复杂度为每次查询中间元素的时间复杂度之和（通常为线性）．例如，在 set 或者 map 中，执行 `lower_bound(st.begin(),st.end(),val)` 类似的操作，时间复杂度为 $O(n)$．
 
 ??? note "利用 bsearch 实现 `std::lower_bound` 与 `std::upper_bound`"
-    鉴于上文所述 besearch 和  lower\_bound 和 upper\_bound 不同之处的第二点，例如，在序列 1、2、4、5、6 中查找 3，bsearch 实现 lower\_bound 的功能会变得困难．
+    鉴于上文所述 bsearch 和  lower\_bound 和 upper\_bound 不同之处的第二点，例如，在序列 1、2、4、5、6 中查找 3，bsearch 实现 lower\_bound 的功能会变得困难．
     
+
     利用 bsearch 实现 lower\_bound 和 upper\_bound 时，可以利用其比较函数的参数约定：第一个参数指向待查元素，第二个参数指向待查数组中的元素．所以只要比较函数能得到数组首地址即可实现．
     
     ```cpp
