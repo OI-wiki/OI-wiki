@@ -223,7 +223,7 @@ $$
 O\left(\sum_{x\in D(n),~ x > n^{2/3}}\pi(\sqrt{x})\right) = O\left(\sum_{i=1}^{n^{1/3}}\dfrac{\sqrt{n/i}}{\log n}\right) = O\left(\dfrac{n^{2/3}}{\log n}\right)
 $$
 
-的．第二段的时间成本主要分为两部分．对于 $x > y$ 的部分，需要更新 $O(n/y)$ 个 $F_{a-1}(x)$ 的值，每次更新需要访问 $O(\log_p n)$ 次 $F_a(x/p_a^e)$ 的值．即使这些访问都是对树状数组的查询，总成本也只有 $O((n/y)\log y\log_p n)$．第二段总共 $O(\pi(n^{1/3}))$ 层，所以这一部分的总成本是 $O\left(\pi(n^{1/3})\dfrac{n}{y}\log y\right) = O(n^{2/3})$ 的．对于 $x \le y$ 的部分，第二段中枚举的总次数就等于 $[1,y]$ 中最小素因子在区间 $(n^{1/6},n^{1/3}]$ 内的整数个数．这些整数都是 $n^{1/6}$‑粗糙数，其个数只有 $O\left(\dfrac{y}{\log y}\right)$．单次修改是 $O(\log y)$ 的．所以，总成本仍然是 $O(y)=O(n^{2/3})$ 的．第三段，单层转移是 $O(\sqrt{n}\log_p n)$，总层数是 $O(\pi(n^{1/6}))$ 的，总时间成本就是 $O\left(\dfrac{n^{2/3}}{\log n}\right)$ 的．此处，由前文脚注可知，单层转移中的 $\log_p n$ 因子并不影响求和后的最终复杂度．
+的．第二段的时间成本主要分为两部分．对于 $x > y$ 的部分，需要更新 $O(n/y)$ 个 $F_{a-1}(x)$ 的值，每次更新需要访问 $O(\log_p n)$ 次 $F_a(x/p_a^e)$ 的值．即使这些访问都是对树状数组的查询，总成本也只有 $O((n/y)\log y\log_p n)$．第二段总共 $O(\pi(n^{1/3}))$ 层，所以这一部分的总成本是 $O\left(\pi(n^{1/3})\dfrac{n}{y}\log y\right) = O(n^{2/3})$ 的．对于 $x \le y$ 的部分，第二段中枚举的总次数就等于 $[1,y]$ 中最小素因子在区间 $(n^{1/6},n^{1/3}]$ 内的整数个数．这些整数都是 $n^{1/6}$‑粗糙数，其个数只有 $O\left(\dfrac{y}{\log y}\right)$．[^rough]单次修改是 $O(\log y)$ 的．所以，总成本仍然是 $O(y)=O(n^{2/3})$ 的．第三段，单层转移是 $O(\sqrt{n}\log_p n)$，总层数是 $O(\pi(n^{1/6}))$ 的，总时间成本就是 $O\left(\dfrac{n^{2/3}}{\log n}\right)$ 的．在上述分析中，由前文脚注可知，单层转移中的 $\log_p n$ 因子并不影响求和后的最终复杂度．
 
 算法的空间复杂度是 $O(\sqrt{n})$ 的．算法有两处设计保证了这一点仍然成立．第一，在存储树状数组时，仅存储了 $D(n)$ 中的关键点处 $F_a$ 的值．第二，更新树状数组时，枚举的整数必然具有形式 $p_ar$，其中，$r$ 的最小素因子不小于 $p_a$，但是 $p_ar\le y$，故而，$r\le y/p_a < n^{1/2}$，这就保证了只需要线性筛预处理到 $\sqrt{n}$ 为止即可满足需求．
 
@@ -240,11 +240,11 @@ $$
     --8<-- "docs/math/code/sum-multiplicative/min26.cpp"
     ```
 
-这一优化足以处理 $n\sim 10^{13}$ 的问题．
+改良 Min\_25 筛足以处理 $n\sim 10^{13}$ 的问题．
 
 ## Powerful Number 筛
 
-在利用扩展 Eratosthenes 筛进行函数求和时，对函数在素数处的值限制较大，而对素数其他幂次处的值几乎没有限制．
+在利用扩展 Eratosthenes 筛进行函数求和时，对函数在素数处的值限制较大，而对素数其他幂次处的值几乎没有限制．但是，即使保持函数在素数处的值不变，如果可以修改它在素数其他幂次处的值，那么通常可以简化递推公式，降低算法常数．
 
 ## 欧拉变换法
 
@@ -509,5 +509,7 @@ PN 筛：
 [^ivic-pomerance]: 该集合见于 [OEIS A070003](https://oeis.org/A070003)．对该数量的估计引自 Ivić, Aleksandar. "On sums involving reciprocals of the largest prime factor of an integer II." Acta Arithmetica 71.3 (1995): 229-251. 一文，该文引用了 Ivić, A., and C. Pomerance. "Estimates for certain sums involving the largest prime factor of an integer." Coll. Math. Soc. J. Bolyai 34, North-Holland, 1984: 769-789. 中的结果．
 
 [^log-p-n]: 这一点可以通过积分估计直接说明．此处再提供一种更符合直觉的解释．取定常数 $c\in(0,1/4)$，将求和式在 $n^c$ 处分成两部分：小于 $n^c$ 的部分，$\log_p n$ 可以直接放缩到 $\log_2 n$，而这一部分总共不超过 $\pi(n^c)$ 项，每项至多 $O(\sqrt{n})$，故整体是 $O(n^{c+1/2}\log n)=o(n^{3/4})$，可以忽略；大于 $n^c$ 的部分，$\log_p n<1/c$ 只是一个常数因子．因此，增加 $\log_p n$ 项并不会影响整体复杂度．
+
+[^rough]: 参见 [Buchstab function - Wikipedia](https://en.wikipedia.org/wiki/Buchstab_function#Applications)．
 
 [^zhouge-variant]: 此处描述的是任之洲论文中 6.5.4 小节的「另一种实现」．任之洲本人提出的实现方法是自小到大遍历素数 $p$ 来进行状态转移．两者并无本质区别．
