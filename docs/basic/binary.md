@@ -93,9 +93,9 @@ bsearch 函数的返回值是查找到的元素的地址，返回类型为 `void
 
 假设存在一个函数 $f(x)$，当且仅当 $x$ 满足条件 $P$ 时 $f(x)=1$，否则 $f(x)=0$，则可以用下列方式定义条件 $P$ 的广义的有序性质：
 
--   若对于任意的 $i<j$，$f(i)\le f(j)$．此时若将 $i=L,\dots,R$ 的 $f(i)$ 写成一个 01 序列，则这个序列形如 `00...011...1`．此时二分答案可以求出满足条件 $P$ 的 **最小值**．
+-   若对于任意的 $i<j$，$f(i)\le f(j)$，即 $f(x)$ 单调不减．此时若将 $i=L,\dots,R$ 的 $f(i)$ 写成一个 01 序列，则这个序列形如 `00...011...1`．此时二分答案可以求出满足条件 $P$ 的 **最小值**．
 
--   若对于任意的 $i<j$，$f(i)\ge f(j)$．此时若将 $i=L,\dots,R$ 的 $f(i)$ 写成一个 01 序列，则这个序列形如 `11...100...0`．此时二分答案可以求出满足条件 $P$ 的 **最大值**．
+-   若对于任意的 $i<j$，$f(i)\ge f(j)$，即 $f(x)$ 单调不增．此时若将 $i=L,\dots,R$ 的 $f(i)$ 写成一个 01 序列，则这个序列形如 `11...100...0`．此时二分答案可以求出满足条件 $P$ 的 **最大值**．
 
 对于满足第一种有序性质的问题，可以等价地理解为：如果知道 $x$ 满足条件 $P$，则所有比 $x$ 大的数一定都满足条件 $P$．二分答案可以求出符合「比它小的数都不满足条件 $P$，它和比它大的数都满足条件 $P$」这一描述的 $x$．
 
@@ -105,7 +105,7 @@ bsearch 函数的返回值是查找到的元素的地址，返回类型为 `void
 
 以利用二分答案求最小值为例（此时算法要求问题满足上文所述的第一种有序性质）．设答案的粗略上下界为 $L$ 和 $R$．
 
-记 $l,r$ 表示当前可以确定答案 $x$ 一定满足 $l \le x \le r$．和二分查找类似，一开始时，令 $l=L$，$r=R$．每次我们判断 $\textit{mid}=\lfloor\dfrac{l+r}{2}\rfloor$ 是否满足问题的非最优化条件，然后分情况讨论：
+记 $l,r$ 表示当前可以确定答案 $x$ 一定满足 $l \le x \le r$．和二分查找类似，一开始时，令 $l=L$，$r=R$．每次我们判断 $\textit{mid}=\lfloor\dfrac{l+r}{2}\rfloor$ 是否满足条件 $P$，然后分情况讨论：
 
 -   如果此时 $\textit{mid}$ 不满足条件（即 $f(\textit{mid})$ 为 $0$），根据问题的有序性质，此时小于等于 $\textit{mid}$ 的所有数都不满足条件，都无需考虑，因此令 $l\gets \textit{mid}+1$，$r$ 不变．
 -   如果此时 $\textit{mid}$ 满足条件（即 $f(\textit{mid})$ 为 $1$），根据问题的有序性质，此时大于等于 $\textit{mid}$ 的所有数都满足条件，但是由于要求最小，因此取 $\textit{mid}$ 是最优的．此时令 $r \gets \textit{mid}$，$l$ 不变．
@@ -119,13 +119,15 @@ bsearch 函数的返回值是查找到的元素的地址，返回类型为 `void
 根据上面的算法描述，可以给出如下实现：
 
 ```cpp
-// 求满足 check(x) 的最小整数 x，答案范围 [L, R]
+// 求满足条件 P 的最小整数 x，答案范围 [L, R]
+// 条件 P 需要满足第一种有序性质，即 f(x) 单调不减
+// 在代码实现中，通常 check(x) = f(x)
 // 若区间内无解，返回 -1
 int binary_search_min(int L, int R) {
   int l = L, r = R;
   while (l < r) {
     int mid = (l + r) >> 1;
-    if (check(mid))  // f(mid) = 1，满足非最优化条件
+    if (check(mid))  // f(mid) = 1，满足条件 $P$
       r = mid;       // 答案在 [l, mid]
     else
       l = mid + 1;  // 答案在 [mid + 1, r]
@@ -136,12 +138,20 @@ int binary_search_min(int L, int R) {
 }
 ```
 
+若答案存在，则这种实现方式始终将答案保留在闭区间 $[l,r]$ 内，并最终将区间缩为一个点．若区间内无解，则所有判定结果均为 $0$，最终有 $l=r=R$，通过检查 `check(l)` 即可判断无解．
+
+使用 `-1` 表示无解时，需要保证它不会与合法答案混淆．
+
 ### 实现细节
 
-在查看题解时，我们可能会看到这样一种实现方式：
+在查看题解时，我们可能会看到另一种实现方式：
 
 ```cpp
+// 求 [L, R] 内满足 check(x) 的最小整数 x。
+// 要求 check 在 [L, R] 上单调不减。
+// 若区间为空或区间内无解，返回 -1。
 int binary_search_min(int L, int R) {
+
   int l = L, r = R;
   while (l <= r) {
     int mid = (l + r) >> 1;
@@ -150,45 +160,81 @@ int binary_search_min(int L, int R) {
     else
       l = mid + 1;
   }
-  if (!check(l)) return -1;
+
+  if (l > R) return -1;
   return l;
 }
 ```
 
-这种实现方式与上文的实现方式本质相同．
+这两种写法求出的答案是相同的，但维护的循环不变量不同．
 
-??? note "为什么两种写法本质相同？"
-    设要求的是满足 $f(x)=1$ 的最小整数 $\textit{ans}$．由于问题满足广义有序性，$f$ 在整数点上必然形如
+??? note "为什么两种写法都能找到最小可行值？"
+    先假设 $[L,R]$ 非空，且区间内存在答案，记最小的满足条件 $P$ 的数为 $\textit{ans}$．由 $f$ 的单调不减的性质，在原区间 $[L,R]$ 内有
     
+
     $$
-    0,0,\dots,0,1,1,\dots,1
-    $$
-    
-    也就是说，存在一个分界点 $\textit{ans}$，使得
-    
-    $$
-    f(x)=0\quad (x<\textit{ans}),\qquad f(x)=1\quad (x\ge \textit{ans}).
+    f(x)=0\quad (x<\textit{ans}),\qquad
+    f(x)=1\quad (x\ge \textit{ans}).
     $$
     
-    上文 $l<r$ 的写法维护的不变量是 $\textit{ans}\in [l,r]$．每次取 $\textit{mid}=\left\lfloor\dfrac{l+r}{2}\right\rfloor$．若 $f(\textit{mid})=1$，则 $\textit{ans}\le \textit{mid}$，故答案在 $[l,\textit{mid}]$ 中，令 $r\gets \textit{mid}$；若 $f(\textit{mid})=0$，则 $\textit{ans}>\textit{mid}$，故答案在 $[\textit{mid}+1,r]$ 中，令 $l\gets \textit{mid}+1$．当 $l=r$ 时，区间缩为一点，于是 $\textit{ans}=l$．
+    **`l < r` 的写法将答案保留在闭区间内．**
     
-    而 $l\le r$ 的写法维护的不变量则是：所有 $x<l$ 都满足 $f(x)=0$，所有 $x>r$ 都满足 $f(x)=1$．每次仍取 $\textit{mid}=\left\lfloor\dfrac{l+r}{2}\right\rfloor$．若 $f(\textit{mid})=1$，则所有 $x\ge \textit{mid}$ 都满足 $f(x)=1$，因此可以令 $r\gets \textit{mid}-1$；若 $f(\textit{mid})=0$，则所有 $x\le \textit{mid}$ 都满足 $f(x)=0$，因此可以令 $l\gets \textit{mid}+1$．当 $l>r$ 时，所有 $x<l$ 都有 $f(x)=0$，所有 $x\ge l$ 都有 $f(x)=1$，所以 $l$ 恰为最小的满足 $f(x)=1$ 的整数，即 $l=\textit{ans}$．
+    它维护的不变量是
     
-    两种写法的区别只在于如何描述分界点两侧．$l<r$ 的写法把答案保留在闭区间 $[l,r]$ 中，靠区间收缩到一点来定位；$l\le r$ 的写法则把已经确认满足 $f(x)=0$ 和 $f(x)=1$ 的元素分别排除到 $l$ 左侧和 $r$ 右侧，最终让 $l$ 停在分界点上．后者中 $r\gets \textit{mid}-1$ 看似排除了 $\textit{mid}$，但由于 $l$ 只在 $f(\textit{mid})=0$ 时右移，它不会越过真正的分界点 $\textit{ans}$，因此最终返回的 $l$ 与前者返回的 $l$ 完全相同．
+    $$
+    l\le \textit{ans}\le r.
+    $$
     
-    若要求最大值，只需把 $f$ 的方向反过来．若区间内可能无解，则 $l\le r$ 写法结束时可能得到 $l=R+1$，需要检查 $l\le R$ 且 $f(l)=1$．这与 $l<r$ 写法结束后检查 $f(l)=1$ 是同一目的．
+    每次取 $\textit{mid}=\left\lfloor\dfrac{l+r}{2}\right\rfloor$．若 $f(\textit{mid})=1$，则 $\textit{ans}\le\textit{mid}$，令 $r\gets\textit{mid}$；若 $f(\textit{mid})=0$，则 $\textit{ans}>\textit{mid}$，令 $l\gets\textit{mid}+1$．两种更新都保持不变量．
+    
+    当 $l<r$ 时，有 $l\le\textit{mid}<r$，因此每次迭代都会使区间严格缩小．循环结束时 $l=r$，由不变量可知 $\textit{ans}=l$．
+    
+    **`l <= r` 的写法排除已经确定的部分，答案可能位于右边界的后一位．**
+    
+    它维护的不变量是：在原区间 $[L,R]$ 内，所有 $x<l$ 都满足 $f(x)=0$，所有 $x>r$ 都满足 $f(x)=1$．在答案存在的前提下，这意味着
+    
+    $$
+    l\le \textit{ans}\le r+1.
+    $$
+    
+    若 $f(\textit{mid})=1$，则原区间内所有 $x\ge\textit{mid}$ 都满足 $f(x)=1$，可以令 $r\gets\textit{mid}-1$；若 $f(\textit{mid})=0$，则原区间内所有 $x\le\textit{mid}$ 都满足 $f(x)=0$，可以令 $l\gets\textit{mid}+1$．
+    
+    每次迭代都会从待搜索区间中排除至少一个整数．循环结束时，实际有 $l=r+1$，由 $l\le\textit{ans}\le r+1$ 可知 $\textit{ans}=l$．
+    
+    因此，执行 $r\gets\textit{mid}-1$ 后，虽然最小可行值可能已经不在待搜索区间 $[l,r]$ 内，但它仍然满足 $\textit{ans}\in[l,r+1]$．这正是该写法能够正确返回 $l$ 的原因．
+    
+    **无解时，两种写法的终止位置不同．**
+    
+    对于非空原区间，若所有 $f(x)$ 都为 $0$，`l < r` 的写法最终得到 $l=r=R$，需要检查 `check(l)`；`l <= r` 的写法最终得到 $l=R+1$，检查 `l > R` 即可判断无解．
+    
+    对于后者，若循环结束后有 $l\le R$，由不变量及 $l=r+1$ 可知 $f(l)=1$，因此不必再次调用 `check(l)`．尤其不能在未检查范围的情况下直接调用 `check(l)`，因为无解时 $l=R+1$ 已超出原区间．
 
-实质上，这种实现的不同是 $l,r$ 所代表的区间左右端点是否闭合的不同以及 `while` 循环条件的不同．但只要这些实现保持答案始终在区间内且每次迭代区间严格缩小，它们就是等价的．
+若要求满足条件的最大值，需要根据判定函数的单调方向重新确定不变量、更新规则和中点取整方式．例如，当 $f$ 单调不增，即先为 $1$、后为 $0$，且答案存在时，可以维护答案位于闭区间 $[l,r]$ 内，在 `l < r` 时取上中点 $\textit{mid}=\left\lceil\dfrac{l+r}{2}\right\rceil$：若 $f(\textit{mid})=1$，令 $l\gets\textit{mid}$；否则令 $r\gets\textit{mid}-1$．不能只反转判定结果而保持其他规则不变．
 
-下面把几种常见组合列成表格．以最小的满足条件的值为例，且假设答案存在：
+各种二分写法的区别，主要在于 $l,r$ 的含义、所维护的循环不变量，以及与之配套的循环条件、中点取整方式和边界更新规则．证明一种写法正确，需要确认：
 
-| 搜索区间         | 初始 $l,r$        | 循环条件     | $\textit{mid}$                            | $f(\textit{mid})=1$ 时   | $f(\textit{mid})=0$ 时   | 结束时        | 返回  |
-| ------------ | --------------- | -------- | ----------------------------------------- | ----------------------- | ----------------------- | ---------- | --- |
-| 闭区间 $[l,r]$  | $l=L,\ r=R$     | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}-1$ | $l\gets \textit{mid}+1$ | $l>r$      | $l$ |
-| 闭区间 $[l,r]$  | $l=L,\ r=R$     | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}$   | $l\gets \textit{mid}+1$ | $l=r$      | $l$ |
-| 左闭右开 $[l,r)$ | $l=L,\ r=R+1$   | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}$   | $l\gets \textit{mid}+1$ | $l=r$      | $l$ |
-| 左开右闭 $(l,r]$ | $l=L-1,\ r=R$   | $l<r$    | $\left\lceil\dfrac{l+r}{2}\right\rceil$   | $l\gets \textit{mid}$   | $r\gets \textit{mid}-1$ | $l=r$      | $r$ |
-| 开区间 $(l,r)$  | $l=L-1,\ r=R+1$ | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets \textit{mid}$   | $l\gets \textit{mid}$   | $l+1\ge r$ | $r$ |
+1. 初始化满足循环不变量．
+2. 每次更新都保持不变量，并使搜索范围严格缩小．
+3. 循环结束时，能够由不变量和终止条件确定返回值就是答案．
+
+在讨论实现方式时，需要特别区分「尚待搜索的区间」与「保证包含最终答案的区间」：由于边界条件不同，二者不一定相同，不能统一要求答案始终位于待搜索区间内．
+
+下面列出几种常见写法．均假设 $L\le R$、问题满足第一种有序性质，且最小可行值 $\textit{ans}$ 存在．答案的位置以「答案位置不变量」一列为准．
+
+| 写法 | 初始 $l,r$ | 循环条件 | $\textit{mid}$ | $f(\textit{mid})=1$ 时 | $f(\textit{mid})=0$ 时 | 答案位置不变量 | 结束时 | 返回 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 闭区间 $[l,r]$，排除已判定部分 | $l=L,\ r=R$ | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}-1$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r+1$ | $l=r+1$ | $l$ |
+| 闭区间 $[l,r]$，保留答案 | $l=L,\ r=R$ | $l<r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$ | $l=r$ | $l$ |
+| 左闭右开区间 $[l,r)$，排除已判定部分 | $l=L,\ r=R+1$ | $l<r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$ | $l=r$ | $l$ |
+| 左开右闭区间 $(l,r]$，保留答案 | $l=L-1,\ r=R$ | $l+1<r$ | $\left\lceil\dfrac{l+r}{2}\right\rceil$ | $r\gets\textit{mid}$ | $l\gets\textit{mid}$ | $l<\textit{ans}\le r$ | $l+1=r$ | $r$ |
+| 开区间 $(l,r)$，维护两侧边界 | $l=L-1,\ r=R+1$ | $l+1<r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$ | $l\gets\textit{mid}$ | $l<\textit{ans}\le r$ | $l+1=r$ | $r$ |
+
+表中还有几点需要说明：
+
+- 第 3 行的 $[l,r)$ 是待搜索区间．执行 $r\gets\textit{mid}$ 后，答案可能恰好等于 $r$，因此不能声称答案始终位于 $[l,r)$ 内．
+- 第 4 行将答案保留在 $(l,r]$ 内．由于假设答案存在，初始右边界 $R$ 满足 $f(R)=1$；当 $l+1=r$ 时，区间内只剩下整数 $r$．该行改用下取整也正确，因为循环执行时 $r-l\ge2$，上下取整算出来的中点都严格位于 $l,r$ 之间．
+- 第 5 行中的 $(l,r)$ 表示两个边界之间尚待判断的位置．可以将初始的 $L-1$ 视为值为 $0$ 的虚拟哨兵，将 $R+1$ 视为值为 $1$ 的虚拟哨兵．循环只在原区间内调用判定函数，不需要实际计算哨兵处的函数值．最终答案位于右边界 $r$，不一定在开区间 $(l,r)$ 内．
+- 第 4 行依赖「答案存在」的前提．若要处理无解情况，可以先检查 $f(R)$；第 1、3、5 行则可以通过最终返回位置是否为 $R+1$ 判断无解．
 
 ### 最大值最小化与最小值最大化
 
@@ -274,7 +320,7 @@ C++ 标准库中实现了：
 
 #### 过程
 
-以求最小值为例．设答案的粗略上下界为 $L$ 和 $R$．记 $l,r$ 表示当前可以确定答案 $x$ 一定满足 $l\le x\le r$．一开始时，令 $l\gets L$，$r\gets R$．每次取 $\textit{mid}=\dfrac{l+r}{2}$（注意，这里是实数运算），判断 $\textit{mid}$ 是否满足问题的非最优化条件：
+以求最小值为例．设答案的粗略上下界为 $L$ 和 $R$．记 $l,r$ 表示当前可以确定答案 $x$ 一定满足 $l\le x\le r$．一开始时，令 $l\gets L$，$r\gets R$．每次取 $\textit{mid}=\dfrac{l+r}{2}$（注意，这里是实数运算），判断 $\textit{mid}$ 是否满足条件 $P$：
 
 -   若 $\textit{mid}$ 满足条件，根据问题的有序性质，所有大于等于 $\textit{mid}$ 的数都满足条件，但要求最小，因此答案一定在 $[l,\textit{mid}]$ 中，令 $r\gets \textit{mid}$，$l$ 不变．
 -   若 $\textit{mid}$ 不满足条件，根据问题的有序性质，所有小于等于 $\textit{mid}$ 的数都不满足条件，答案一定在 $[\textit{mid},r]$ 中，令 $l\gets \textit{mid}$，$r$ 不变．
