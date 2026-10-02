@@ -8,6 +8,7 @@
 constexpr int M = 1000000007;
 
 void mod_add(int& a, int b) { (a += b) < M ? a : a -= M; }
+
 void mod_sub(int& a, int b) { (a -= b) >= 0 ? a : a += M; }
 
 // Find block sieve of f(n) by optimized min_25 sieve.
