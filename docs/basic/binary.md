@@ -279,7 +279,6 @@ C++ 标准库中实现了：
 ??? note "利用 bsearch 实现 `std::lower_bound` 与 `std::upper_bound`"
     鉴于上文所述 bsearch 和  lower\_bound 和 upper\_bound 不同之处的第二点，例如，在序列 1、2、4、5、6 中查找 3，bsearch 实现 lower\_bound 的功能会变得困难．
     
-
     利用 bsearch 实现 lower\_bound 和 upper\_bound 时，可以利用其比较函数的参数约定：第一个参数指向待查元素，第二个参数指向待查数组中的元素．所以只要比较函数能得到数组首地址即可实现．
     
     ```cpp
