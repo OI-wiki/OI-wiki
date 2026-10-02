@@ -147,11 +147,10 @@ int binary_search_min(int L, int R) {
 在查看题解时，我们可能会看到另一种实现方式：
 
 ```cpp
-// 求 [L, R] 内满足 check(x) 的最小整数 x。
-// 要求 check 在 [L, R] 上单调不减。
-// 若区间为空或区间内无解，返回 -1。
+// 求 [L, R] 内满足 check(x) 的最小整数 x．
+// 要求 check 在 [L, R] 上单调不减．
+// 若区间为空或区间内无解，返回 -1．
 int binary_search_min(int L, int R) {
-
   int l = L, r = R;
   while (l <= r) {
     int mid = (l + r) >> 1;
@@ -171,7 +170,6 @@ int binary_search_min(int L, int R) {
 ??? note "为什么两种写法都能找到最小可行值？"
     先假设 $[L,R]$ 非空，且区间内存在答案，记最小的满足条件 $P$ 的数为 $\textit{ans}$．由 $f$ 的单调不减的性质，在原区间 $[L,R]$ 内有
     
-
     $$
     f(x)=0\quad (x<\textit{ans}),\qquad
     f(x)=1\quad (x\ge \textit{ans}).
@@ -213,28 +211,28 @@ int binary_search_min(int L, int R) {
 
 各种二分写法的区别，主要在于 $l,r$ 的含义、所维护的循环不变量，以及与之配套的循环条件、中点取整方式和边界更新规则．证明一种写法正确，需要确认：
 
-1. 初始化满足循环不变量．
-2. 每次更新都保持不变量，并使搜索范围严格缩小．
-3. 循环结束时，能够由不变量和终止条件确定返回值就是答案．
+1.  初始化满足循环不变量．
+2.  每次更新都保持不变量，并使搜索范围严格缩小．
+3.  循环结束时，能够由不变量和终止条件确定返回值就是答案．
 
 在讨论实现方式时，需要特别区分「尚待搜索的区间」与「保证包含最终答案的区间」：由于边界条件不同，二者不一定相同，不能统一要求答案始终位于待搜索区间内．
 
 下面列出几种常见写法．均假设 $L\le R$、问题满足第一种有序性质，且最小可行值 $\textit{ans}$ 存在．答案的位置以「答案位置不变量」一列为准．
 
-| 写法 | 初始 $l,r$ | 循环条件 | $\textit{mid}$ | $f(\textit{mid})=1$ 时 | $f(\textit{mid})=0$ 时 | 答案位置不变量 | 结束时 | 返回 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 闭区间 $[l,r]$，排除已判定部分 | $l=L,\ r=R$ | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}-1$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r+1$ | $l=r+1$ | $l$ |
-| 闭区间 $[l,r]$，保留答案 | $l=L,\ r=R$ | $l<r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$ | $l=r$ | $l$ |
-| 左闭右开区间 $[l,r)$，排除已判定部分 | $l=L,\ r=R+1$ | $l<r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$ | $l=r$ | $l$ |
-| 左开右闭区间 $(l,r]$，保留答案 | $l=L-1,\ r=R$ | $l+1<r$ | $\left\lceil\dfrac{l+r}{2}\right\rceil$ | $r\gets\textit{mid}$ | $l\gets\textit{mid}$ | $l<\textit{ans}\le r$ | $l+1=r$ | $r$ |
-| 开区间 $(l,r)$，维护两侧边界 | $l=L-1,\ r=R+1$ | $l+1<r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$ | $l\gets\textit{mid}$ | $l<\textit{ans}\le r$ | $l+1=r$ | $r$ |
+| 写法                     | 初始 $l,r$        | 循环条件     | $\textit{mid}$                            | $f(\textit{mid})=1$ 时  | $f(\textit{mid})=0$ 时  | 答案位置不变量                   | 结束时     | 返回  |
+| ---------------------- | --------------- | -------- | ----------------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------- | --- |
+| 闭区间 $[l,r]$，排除已判定部分    | $l=L,\ r=R$     | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}-1$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r+1$ | $l=r+1$ | $l$ |
+| 闭区间 $[l,r]$，保留答案       | $l=L,\ r=R$     | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$   | $l=r$   | $l$ |
+| 左闭右开区间 $[l,r)$，排除已判定部分 | $l=L,\ r=R+1$   | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$   | $l=r$   | $l$ |
+| 左开右闭区间 $(l,r]$，保留答案    | $l=L-1,\ r=R$   | $l+1<r$  | $\left\lceil\dfrac{l+r}{2}\right\rceil$   | $r\gets\textit{mid}$   | $l\gets\textit{mid}$   | $l<\textit{ans}\le r$     | $l+1=r$ | $r$ |
+| 开区间 $(l,r)$，维护两侧边界     | $l=L-1,\ r=R+1$ | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}$   | $l<\textit{ans}\le r$     | $l+1=r$ | $r$ |
 
 表中还有几点需要说明：
 
-- 第 3 行的 $[l,r)$ 是待搜索区间．执行 $r\gets\textit{mid}$ 后，答案可能恰好等于 $r$，因此不能声称答案始终位于 $[l,r)$ 内．
-- 第 4 行将答案保留在 $(l,r]$ 内．由于假设答案存在，初始右边界 $R$ 满足 $f(R)=1$；当 $l+1=r$ 时，区间内只剩下整数 $r$．该行改用下取整也正确，因为循环执行时 $r-l\ge2$，上下取整算出来的中点都严格位于 $l,r$ 之间．
-- 第 5 行中的 $(l,r)$ 表示两个边界之间尚待判断的位置．可以将初始的 $L-1$ 视为值为 $0$ 的虚拟哨兵，将 $R+1$ 视为值为 $1$ 的虚拟哨兵．循环只在原区间内调用判定函数，不需要实际计算哨兵处的函数值．最终答案位于右边界 $r$，不一定在开区间 $(l,r)$ 内．
-- 第 4 行依赖「答案存在」的前提．若要处理无解情况，可以先检查 $f(R)$；第 1、3、5 行则可以通过最终返回位置是否为 $R+1$ 判断无解．
+-   第 3 行的 $[l,r)$ 是待搜索区间．执行 $r\gets\textit{mid}$ 后，答案可能恰好等于 $r$，因此不能声称答案始终位于 $[l,r)$ 内．
+-   第 4 行将答案保留在 $(l,r]$ 内．由于假设答案存在，初始右边界 $R$ 满足 $f(R)=1$；当 $l+1=r$ 时，区间内只剩下整数 $r$．该行改用下取整也正确，因为循环执行时 $r-l\ge2$，上下取整算出来的中点都严格位于 $l,r$ 之间．
+-   第 5 行中的 $(l,r)$ 表示两个边界之间尚待判断的位置．可以将初始的 $L-1$ 视为值为 $0$ 的虚拟哨兵，将 $R+1$ 视为值为 $1$ 的虚拟哨兵．循环只在原区间内调用判定函数，不需要实际计算哨兵处的函数值．最终答案位于右边界 $r$，不一定在开区间 $(l,r)$ 内．
+-   第 4 行依赖「答案存在」的前提．若要处理无解情况，可以先检查 $f(R)$；第 1、3、5 行则可以通过最终返回位置是否为 $R+1$ 判断无解．
 
 ### 最大值最小化与最小值最大化
 
