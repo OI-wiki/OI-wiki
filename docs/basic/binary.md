@@ -38,9 +38,8 @@
 int binary_search(int x, int l = 1, int r = n) {  // 在升序数组中查找数 x 的下标
   int ret = -1;  // 未搜索到数据返回 -1 下标
   while (l <= r) {
-    int mid =
-        (l + r) >>
-        1;  // 当 l 或 r 特别大时，可能会溢出，详见下方 Note 里面的内容
+    int mid = (l + r) >>
+              1;  // 当 l 或 r 特别大时，可能会溢出，详见下方 Note 里面的内容
     if (arr[mid] < x)
       l = mid + 1;
     else if (arr[mid] > x)
