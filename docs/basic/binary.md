@@ -271,7 +271,7 @@ C++ 标准库中实现了：
 ???+ note "用法示例"
     -   在下标从 $1$ 开始，长度为 $n$ 的数组 $a$ 中下标 $l$ 到 $r$ 的位置查找首个不小于 $x$ 的数，并获取这个数的下标：`lower_bound(a+l,a+r+1,x)-a`．
     -   在下标从 $0$ 开始，长度为 $n$ 的数组 $a$ 中位置查找首个大于 $x$ 的数，并获取这个数的值：`*upper_bound(a,a+n,x)`．
-    -   在长度为 $n$ 的 vector $a$ 中查找首个不小于 $x$ 的数并获取这个数的下标（注意 vector 下标从 $0$ 开始）：`lower_bound(a.begin(),a.end(),x)-a.begin()`.
+    -   在长度为 $n$ 的 vector $a$ 中查找首个不小于 $x$ 的数并获取这个数的下标（注意 vector 下标从 $0$ 开始）：`lower_bound(a.begin(),a.end(),x)-a.begin()`．
 
 ???+ note "关于迭代器"
     上述起始、终止迭代器必须是 ForwardIterator．数组指针以及 vector、set、map、string 的迭代器均符合这一迭代器要求．
