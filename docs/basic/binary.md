@@ -268,7 +268,7 @@ C++ 标准库中实现了：
 ???+ note "用法示例"
     -   在下标从 $1$ 开始，长度为 $n$ 的数组 $a$ 中下标 $l$ 到 $r$ 的位置查找首个不小于 $x$ 的数，并获取这个数的下标：`lower_bound(a+l,a+r+1,x)-a`．
     -   在下标从 $0$ 开始，长度为 $n$ 的数组 $a$ 中位置查找首个大于 $x$ 的数，并获取这个数的值：`*upper_bound(a,a+n,x)`．
-    -   在长度为 $n$ 的 vector $a$ 中查找首个不小于 $x$ 的数并获取这个数的下标：`lower_bound(a.begin(),a.end(),x)`.
+    -   在长度为 $n$ 的 vector $a$ 中查找首个不小于 $x$ 的数并获取这个数的下标（注意 vector 下标从 $0$ 开始）：`lower_bound(a.begin(),a.end(),x)-a.begin()`.
 
 ???+ note "关于迭代器"
     根据 NOI 系列比赛中使用的 C++14 标准（ISO/IEC 14882:2014），上述起始、终止迭代器必须是 ForwardIterator．
@@ -358,11 +358,10 @@ double binary_search_eps(double L, double R) {  // eps 实现
   }
   return l;
 }
-
 ```
 
 ???+ warning "Warning"
-    `eps` 不宜过大，否则精度不足；也不宜过小，否则可能因浮点误差无法达到而超时．若答案范围很大或精度要求很高，建议使用固定迭代次数而非 `while (r - l > eps)`．
+    `eps` 不宜过大，否则精度不足；也不宜过小，否则可能因浮点误差无法达到而死循环．若答案范围很大或精度要求很高，建议使用固定迭代次数而非 `while (r - l > eps)`．
 
 ### 例题
 
