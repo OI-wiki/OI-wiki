@@ -181,28 +181,19 @@ while (cur) {
 
 #### 优化后的算法
 
-根据完美消除序列的定义，设 $v_i$ 在 ${v_i,v_{i+1},\ldots , v_n}$ 中相邻的点从小到大为 $\{v_{c_1},v_{c_2},\ldots ,v_{c_k} \}$，则只需判断 $v_{c_1}$ 与其他点是否直接连通即可．时间复杂度 $O(n+m)$．
+设 $N^+(u)$ 为序列中位于 $u$ 之后且与 $u$ 相邻的点集，$f(u)$ 为其中在序列中最靠前的点．对于每个 $N^+(u)$ 非空的点 $u$，只需检查 $N^+(u)\setminus\{f(u)\}$ 中的每个点是否都与 $f(u)$ 相邻．
 
-```cpp
-jud = true;
-for (int i = 1; i <= n; i++) {
-  cur = 0;
-  for (vector<int>::iterator it = G[p[i]].begin(); it != G[p[i]].end(); it++)
-    if (rnk[p[i]] < rnk[*it]) {
-      s[++cur] = *it;
-      if (rnk[s[cur]] < rnk[s[1]]) swap(s[1], s[cur]);
-    }
-  for (int j = 2; j <= cur; j++)
-    if (!st[s[1]].count(s[j])) {
-      jud = false;
-      break;
-    }
-}
-if (!jud)
-  printf("Imperfect\n");
-else
-  printf("Perfect\n");
-```
+这个条件显然是必要的．充分性可以按序列从后往前归纳：若后面的点均满足完美消除序列的要求，则 $N^+(f(u))$ 是一个团．检查通过时，$N^+(u)\setminus\{f(u)\}\subseteq N^+(f(u))$，且其中的点都与 $f(u)$ 相邻，所以 $N^+(u)$ 也是一个团．$N^+(u)$ 为空时无需检查．
+
+先扫描邻接表求出每个点的 $f(u)$，并将 $f(u)$ 相同的点分为一组．处理 $f(u)=v$ 的这一组时，先将 $v$ 的所有邻点标记，再扫描组内每个点 $u$ 的邻接表，检查序列中位于 $v$ 之后的邻点是否都被标记．用顶点编号 $v$ 作为标记值，就不必在每组检查后清空标记数组．每个点至多属于一个组，每个点的邻接表在求 $f(u)$、设置标记和检查时各至多扫描一次，因此总时间复杂度为 $O(n+m)$．
+
+???+ note "参考实现"
+    ```cpp
+    --8<-- "docs/graph/code/chord/chord_1.cpp:var"
+    --8<-- "docs/graph/code/chord/chord_1.cpp:core"
+    ```
+
+`check()` 在序列是完美消除序列时返回 `true`，否则返回 `false`．完整示例适配 [Library Checker - Chordal Graph Recognition](https://judge.yosupo.jp/problem/chordal_graph_recognition)：先用 MCS 求出候选序列，判定成功时输出该序列，失败时输出一个长度至少为 $4$ 的无弦环．其中 `fail_u` 记录序列中最靠后的失败点，`fail_v` 和 `fail_w` 记录它的两个互不相邻的后继，用于构造无弦环．
 
 至此，**弦图判定问题** 可以在 $O(n+m)$ 的时间复杂度内解决．
 
@@ -269,6 +260,8 @@ for (int i = 1; i <= n; i++)
 ```
 
 ## 习题
+
+[Library Checker - Chordal Graph Recognition](https://judge.yosupo.jp/problem/chordal_graph_recognition)
 
 [SPOJ FISHNET - Fishing Net](https://www.spoj.com/problems/FISHNET)
 
