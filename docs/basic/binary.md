@@ -247,6 +247,8 @@ int binary_search_min(int L, int R) {
 
 ### STL 的二分答案
 
+#### std::lower_bound 与 std::upper_bound
+
 C++ 标准库中实现了：
 
 -   查找首个不小于给定值的元素的函数 [`std::lower_bound`](https://zh.cppreference.com/w/cpp/algorithm/lower_bound)．
@@ -279,6 +281,7 @@ C++ 标准库中实现了：
 ??? note "利用 bsearch 实现 `std::lower_bound` 与 `std::upper_bound`"
     鉴于上文所述 bsearch 和  lower\_bound 和 upper\_bound 不同之处的第二点，例如，在序列 1、2、4、5、6 中查找 3，bsearch 实现 lower\_bound 的功能会变得困难．
     
+
     利用 bsearch 实现 lower\_bound 和 upper\_bound 时，可以利用其比较函数的参数约定：第一个参数指向待查元素，第二个参数指向待查数组中的元素．所以只要比较函数能得到数组首地址即可实现．
     
     ```cpp
@@ -310,6 +313,26 @@ C++ 标准库中实现了：
     ```
     
     因为现在的 OI 选手很少写纯 C，并且此方法作用有限，所以不是重点．对于新手而言，建议直接使用 C++ 中的 `std::lower_bound` 和 `std::upper_bound` 函数．
+
+#### std::partition_point
+
+自 C++11 起，`std::partition_point` 被引入。其作用是在一个已分区的序列中，通过二分答案快速定位“分区点”。
+
+`std::partition_point` 有三个参数，分别是：
+
+-   `first`：序列的起始 [迭代器](../lang/csl/iterator.md)．可以理解为序列的开头．
+-   `last`：序列的终止迭代器．可以理解为序列的结尾的 **后一项**．换言之，`--last` 返回的是序列的结尾．
+-   `p`：一个一元[谓词](../lang/csl/container.md)．这是一个可调用对象，支持传入一个参数 $v$，并返回一个布尔值表示 $v$ 是否符合分区条件．
+
+设传入的序列为 $a$，则该函数返回第一个不满足分区条件的元素的迭代器，即返回最小的满足 $p(a_x)$ 等于 $0$ 的 $x$．
+
+该序列需要已分区，即需要满足上文所述第二类广义有序条件．换言之，将序列中每个元素 $v$ 的 $p(v)$ 的结果列成一个 01 序列，则该序列形如 `11...100...0`，该函数返回第一个 $0$ 对应位置的迭代器．
+
+??? note "std::partition_point 与 std::lower_bound 和 std::upper_bound 的关系"
+
+    实际上，std::lower_bound 和 std::upper_bound 是 std::partition_point 的特殊形式．
+    
+    定义函数 $p$，其代码为：`bool p(int v) { return v < val; }`．将 $p$ 作为谓词传入 std::partition_point 中，即可得到和 std::lower_bound 相同的结果．std::upper_bound 同理．
 
 ### 实数二分答案
 
