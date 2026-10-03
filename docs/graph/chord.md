@@ -143,33 +143,11 @@
 
 考虑反证法，假设不相连，那么 $w,u,v$ 就是一个满足 **Lemma 10** 中性质的序列，我们证明了这样序列不存在，所以矛盾，$vw$ 相连．
 
-参考代码：
-
-```cpp
-while (cur) {
-  p[cur] = h[nww];
-  rnk[p[cur]] = cur;
-  h[nww] = nxt[h[nww]];
-  lst[h[nww]] = 0;
-  lst[p[cur]] = nxt[p[cur]] = 0;
-  tf[p[cur]] = true;
-  for (vector<int>::iterator it = G[p[cur]].begin(); it != G[p[cur]].end();
-       it++)
-    if (!tf[*it]) {
-      if (h[deg[*it]] == *it) h[deg[*it]] = nxt[*it];
-      nxt[lst[*it]] = nxt[*it];
-      lst[nxt[*it]] = lst[*it];
-      lst[*it] = nxt[*it] = 0;
-      deg[*it]++;
-      nxt[*it] = h[deg[*it]];
-      lst[h[deg[*it]]] = *it;
-      h[deg[*it]] = *it;
-    }
-  cur--;
-  if (h[nww + 1]) nww++;
-  while (nww && !h[nww]) nww--;
-}
-```
+???+ note "参考实现"
+    ```cpp
+    --8<-- "docs/graph/code/chord/chord_1.cpp:var"
+    --8<-- "docs/graph/code/chord/chord_1.cpp:mcs"
+    ```
 
 如果此时原图是弦图，此时求出的就是完美消除序列；但是由于原图可能不是弦图，此时求出的一定不是完美消除序列，所以问题转化为 **判断求出的序列是否是原图的完美消除序列**．
 
@@ -192,8 +170,6 @@ while (cur) {
     --8<-- "docs/graph/code/chord/chord_1.cpp:var"
     --8<-- "docs/graph/code/chord/chord_1.cpp:core"
     ```
-
-`check()` 在序列是完美消除序列时返回 `true`，否则返回 `false`．完整示例适配 [Library Checker - Chordal Graph Recognition](https://judge.yosupo.jp/problem/chordal_graph_recognition)：先用 MCS 求出候选序列，判定成功时输出该序列，失败时输出一个长度至少为 $4$ 的无弦环．其中 `fail_u` 记录序列中最靠后的失败点，`fail_v` 和 `fail_w` 记录它的两个互不相邻的后继，用于构造无弦环．
 
 至此，**弦图判定问题** 可以在 $O(n+m)$ 的时间复杂度内解决．
 

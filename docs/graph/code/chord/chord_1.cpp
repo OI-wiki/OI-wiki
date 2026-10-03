@@ -14,6 +14,7 @@ vector<int> p, rnk;
 
 // --8<-- [end:var]
 
+// --8<-- [start:mcs]
 void mcs() {
   vector<int> head(n, 0), prev(n + 1), next(n + 1), label(n + 1, 0);
   p.assign(n + 1, 0);
@@ -48,6 +49,8 @@ void mcs() {
     }
   }
 }
+
+// --8<-- [end:mcs]
 
 // --8<-- [start:core]
 int fail_u, fail_v, fail_w;
