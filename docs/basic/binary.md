@@ -315,7 +315,7 @@ C++ 标准库中实现了：
 
 #### std::partition\_point
 
-自 C++11 起，`std::partition_point` 被引入．其作用是在一个已分区的序列中，通过二分答案快速定位「分区点」．
+自 C++11 起，[`std::partition_point`](https://zh.cppreference.com/cpp/algorithm/partition_point) 被引入．其作用是在一个已分区的序列中，通过二分答案快速定位「分区点」．
 
 `std::partition_point` 有三个参数，分别是：
 
@@ -328,9 +328,10 @@ C++ 标准库中实现了：
 该序列需要已分区，即需要满足上文所述第二类广义有序条件．换言之，将序列中每个元素 $v$ 的 $p(v)$ 的结果列成一个 01 序列，则该序列形如 `11...100...0`，该函数返回第一个 $0$ 对应位置的迭代器．
 
 ??? note "std::partition_point 与 std::lower_bound 和 std::upper_bound 的关系"
-    实际上，std::lower\_bound 和 std::upper\_bound 是 std::partition\_point 的特殊形式．
+    实际上，`std::lower_bound` 和 `std::upper_bound` 是 `std::partition_point` 的特殊形式．
     
-    定义函数 $p$，其代码为：`bool p(int v) { return v < val; }`．将 $p$ 作为谓词传入 std::partition\_point 中，即可得到和 std::lower\_bound 相同的结果．std::upper\_bound 同理．
+
+    定义函数 `check`，其代码为：`bool check(int v) { return v < val; }`．将 `check` 作为谓词传入 `std::partition_point` 中，即可得到和 `std::lower_bound` 相同的结果．`std::upper_bound` 同理．
 
 ### 实数二分答案
 
