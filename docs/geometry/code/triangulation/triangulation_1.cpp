@@ -6,7 +6,6 @@
 #include <vector>
 
 using data_t = double;
-constexpr data_t EPS = 1e-8;
 
 struct Point {
   data_t x, y;
@@ -25,10 +24,10 @@ class Delaunay {
   std::vector<Edge> edges;
   std::vector<int> free_edges;
 
-  // scale 用于控制相对误差比较
+  // 使用相对容差近似判断符号
   static int sign(data_t value, data_t scale) {
-    data_t tolerance =
-        std::max(EPS, 16 * std::numeric_limits<data_t>::epsilon() * scale);
+    const data_t tolerance =
+        16 * std::numeric_limits<data_t>::epsilon() * scale;
     return (value > tolerance) - (value < -tolerance);
   }
 
