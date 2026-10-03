@@ -31,11 +31,11 @@ OI 中的三角剖分主要指二维几何中的完美三角剖分（二维 Dela
 
 DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算法是最易于理解和实现的．
 
-分治构造 DT 的第一步是将给定点集按照 $x$ 坐标 **升序** 排列，如下图是排好序的大小为 $10$ 的点集．
+分治构造 DT 的第一步是将给定点集按照 $x$ 坐标 **升序** 排列，$x$ 相同时按照 $y$ 坐标升序排列，并去除重合点．如下图是排好序的大小为 $10$ 的点集．
 
 ![排好序的大小为 10 的点集](./images/triangulation-2.svg)
 
-一旦点集有序，我们就可以不断地将其分成两个部分（分治），直到子点集大小不超过 $3$．然后这些子点集可以立刻剖分为一个三角形或线段．
+一旦点集有序，我们就可以不断地将其分成两个部分（分治），直到子点集大小不超过 $3$．其中两个点连成一条边，三个不共线的点连成一个三角形，三个共线的点只连接排序后相邻的两对点．
 
 ![分治为包含 2 或 3 个点的点集](./images/triangulation-3.svg)
 
@@ -43,7 +43,7 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
 
 ![edge](./images/triangulation-4.svg)
 
-合并左右两个剖分的第一步是插入 base LR-edge，base LR-edge 是 **最底部** 的不与 **任何** LL-edge 及 RR-edge 相交的 LR-edge．
+合并左右两个剖分的第一步是找到两个凸包的下公切线，并插入对应的 base LR-edge．分治时返回左右凸包的边界边，从左侧凸包的最右端、右侧凸包的最左端开始，沿凸包边界移动，直到所有点都不在有向线段「左端点到右端点」的右侧．
 
 ![合并左右剖分](./images/triangulation-5.svg)
 
@@ -51,20 +51,21 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
 
 ![下一条 LR-edge](./images/triangulation-6.svg)
 
-对于可能的端点，我们需要按以下两个标准检验：
+以右端点为例，应从 base LR-edge 开始，按照夹角从小到大的顺序检查与它相连的 RR-edge：
 
-1.  其对应 RR-edge 与 base LR-edge 的夹角小于 $180$ 度．
-2.  base LR-edge 两端点和这个可能点三点构成的圆内不包含任何其它 **可能点**．
+1.  只有位于 base LR-edge 上方的端点才是有效候选点，也就是对应夹角严格小于 $180$ 度的点．
+2.  设当前候选点为 $c$，沿同一方向紧邻的下一个邻点为 $d$．若 $d$ 严格位于 base LR-edge 两端点与 $c$ 的外接圆内，则删除通向 $c$ 的 RR-edge，并继续检查通向 $d$ 的边．
+3.  否则保留当前候选点，停止这一侧的检查．由于这一侧已经是 Delaunay 三角剖分，只需按环绕顺序比较相邻的候选边即可．
 
 ![检验可能点](./images/triangulation-7.svg)
 
-如上图，$6$ 号可能点所对应的绿色圆包含了 $9$ 号可能点，而 $7$ 号可能点对应的紫色圆则不包含任何其它可能点，故 $7$ 号点为下一条 LR-edge 的右端点．
+如上图，依次检查 $6,7,9$ 号点．$6$ 号点对应的绿色圆包含下一个邻点 $7$，因此删除通向 $6$ 的 RR-edge；$7$ 号点对应的紫色圆不包含下一个邻点 $9$，于是保留 $7$ 作为右侧候选点．之后还要将它与左侧候选点比较，才能确定下一条 LR-edge．
 
 对于左侧点集，我们做镜像处理即可．
 
 ![检验左侧可能点](./images/triangulation-8.svg)
 
-当左右点集都不再含有符合标准的可能点时，合并即完成．当一个可能点符合标准，一条 LR-edge 就需要被添加，对于与需要添加的 LR-edge 相交的 LL-edge 和 RR-edge，将其删除．
+当左右两侧都没有有效候选点时，当前 base LR-edge 就是上公切线，合并完成．若只有一侧有有效候选点，就将它与 base LR-edge 的另一端点连接，得到新的 LR-edge．
 
 当左右点集均存在可能点时，判断左边点所对应圆是否包含右边点，若包含则不符合；对于右边点也是同样的判断．一般只有一个可能点符合标准（除非四点共圆）．
 
@@ -74,201 +75,34 @@ DT 有很多种构造算法，在 $O(n \log n)$ 的构造算法中，分治算�
 
 ![合并](./images/triangulation-10.svg)
 
-## 代码
+### 实现
+
+实现时需要注意，只用无序邻接表存边，然后在每次添加 LR-edge 时扫描两端点的所有邻边是不行的．一个端点可能连续形成多条 LR-edge，导致邻接表被反复扫描．
+
+参考实现中使用 Quad-edge[^quad-edge]结构维护边的环绕顺序．每条无向边用四条有向边记录，其中两条表示原图的两个方向，另外两条表示对偶图的两个方向．同一组记录连续存放，所以只需维护每条有向边的起点和同起点的下一条逆时针边，就能 $O(1)$ 实现以下操作：
+
+| 操作              | 含义           |
+| --------------- | ------------ |
+| `rev(e)`        | 反向边          |
+| `onext(e)`      | 起点相同的下一条逆时针边 |
+| `oprev(e)`      | 起点相同的上一条逆时针边 |
+| `lnext(e)`      | 沿左侧面的边界前进一条边 |
+| `onext(rev(e))` | 沿右侧面的边界后退一条边 |
+
+`splice(a, b)` 同时修改原图和对偶图的环绕关系，用来拼接或拆开两条边所在的环．`connect(a, b)` 在同一个面内连接 `a` 的终点和 `b` 的起点，删除边时，将它的两个方向分别从对应的环中移除．这些操作都是 $O(1)$ 的．
+
+代码中 `base` 的方向是从右侧点集指向左侧点集，因此图示中 base LR-edge「上方」的点位于有向边 `base` 的右侧．左侧候选边为 `onext(rev(base))`，右侧候选边为 `oprev(base)`，删除候选边后，只需沿这一侧的环绕顺序继续前进．
 
 ??? note "实现"
     ```cpp
-    #include <algorithm>
-    #include <cmath>
-    #include <cstring>
-    #include <list>
-    #include <utility>
-    #include <vector>
-    
-    constexpr double EPS = 1e-8;
-    constexpr int MAXV = 10000;
-    
-    struct Point {
-      double x, y;
-      int id;
-    
-      Point(double a = 0, double b = 0, int c = -1) : x(a), y(b), id(c) {}
-    
-      bool operator<(const Point &a) const {
-        return x < a.x || (fabs(x - a.x) < EPS && y < a.y);
-      }
-    
-      bool operator==(const Point &a) const {
-        return fabs(x - a.x) < EPS && fabs(y - a.y) < EPS;
-      }
-    
-      double dist2(const Point &b) {
-        return (x - b.x) * (x - b.x) + (y - b.y) * (y - b.y);
-      }
-    };
-    
-    struct Point3D {
-      double x, y, z;
-    
-      Point3D(double a = 0, double b = 0, double c = 0) : x(a), y(b), z(c) {}
-    
-      Point3D(const Point &p) { x = p.x, y = p.y, z = p.x * p.x + p.y * p.y; }
-    
-      Point3D operator-(const Point3D &a) const {
-        return Point3D(x - a.x, y - a.y, z - a.z);
-      }
-    
-      double dot(const Point3D &a) { return x * a.x + y * a.y + z * a.z; }
-    };
-    
-    struct Edge {
-      int id;
-      std::list<Edge>::iterator c;
-    
-      Edge(int id = 0) { this->id = id; }
-    };
-    
-    int cmp(double v) { return fabs(v) > EPS ? (v > 0 ? 1 : -1) : 0; }
-    
-    double cross(const Point &o, const Point &a, const Point &b) {
-      return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
-    }
-    
-    Point3D cross(const Point3D &a, const Point3D &b) {
-      return Point3D(a.y * b.z - a.z * b.y, -a.x * b.z + a.z * b.x,
-                     a.x * b.y - a.y * b.x);
-    }
-    
-    int inCircle(const Point &a, Point b, Point c, const Point &p) {
-      if (cross(a, b, c) < 0) std::swap(b, c);
-      Point3D a3(a), b3(b), c3(c), p3(p);
-      b3 = b3 - a3, c3 = c3 - a3, p3 = p3 - a3;
-      Point3D f = cross(b3, c3);
-      return cmp(p3.dot(f));  // check same direction, in: < 0, on: = 0, out: > 0
-    }
-    
-    int intersection(const Point &a, const Point &b, const Point &c,
-                     const Point &d) {  // seg(a, b) and seg(c, d)
-      return cmp(cross(a, c, b)) * cmp(cross(a, b, d)) > 0 &&
-             cmp(cross(c, a, d)) * cmp(cross(c, d, b)) > 0;
-    }
-    
-    class Delaunay {
-     public:
-      std::list<Edge> head[MAXV];  // graph
-      Point p[MAXV];
-      int n, rename[MAXV];
-    
-      void init(int n, Point p[]) {
-        memcpy(this->p, p, sizeof(Point) * n);
-        std::sort(this->p, this->p + n);
-        for (int i = 0; i < n; i++) rename[p[i].id] = i;
-        this->n = n;
-        divide(0, n - 1);
-      }
-    
-      void addEdge(int u, int v) {
-        head[u].push_front(Edge(v));
-        head[v].push_front(Edge(u));
-        head[u].begin()->c = head[v].begin();
-        head[v].begin()->c = head[u].begin();
-      }
-    
-      void divide(int l, int r) {
-        if (r - l <= 2) {  // #point <= 3
-          for (int i = l; i <= r; i++)
-            for (int j = i + 1; j <= r; j++) addEdge(i, j);
-          return;
-        }
-        int mid = (l + r) / 2;
-        divide(l, mid);
-        divide(mid + 1, r);
-    
-        std::list<Edge>::iterator it;
-        int nowl = l, nowr = r;
-    
-        for (int update = 1; update;) {
-          // find left and right convex, lower common tangent
-          update = 0;
-          Point ptL = p[nowl], ptR = p[nowr];
-          for (it = head[nowl].begin(); it != head[nowl].end(); it++) {
-            Point t = p[it->id];
-            double v = cross(ptR, ptL, t);
-            if (cmp(v) > 0 || (cmp(v) == 0 && ptR.dist2(t) < ptR.dist2(ptL))) {
-              nowl = it->id, update = 1;
-              break;
-            }
-          }
-          if (update) continue;
-          for (it = head[nowr].begin(); it != head[nowr].end(); it++) {
-            Point t = p[it->id];
-            double v = cross(ptL, ptR, t);
-            if (cmp(v) < 0 || (cmp(v) == 0 && ptL.dist2(t) < ptL.dist2(ptR))) {
-              nowr = it->id, update = 1;
-              break;
-            }
-          }
-        }
-    
-        addEdge(nowl, nowr);  // add tangent
-    
-        for (int update = 1; true;) {
-          update = 0;
-          Point ptL = p[nowl], ptR = p[nowr];
-          int ch = -1, side = 0;
-          for (it = head[nowl].begin(); it != head[nowl].end(); it++) {
-            if (cmp(cross(ptL, ptR, p[it->id])) > 0 &&
-                (ch == -1 || inCircle(ptL, ptR, p[ch], p[it->id]) < 0)) {
-              ch = it->id, side = -1;
-            }
-          }
-          for (it = head[nowr].begin(); it != head[nowr].end(); it++) {
-            if (cmp(cross(ptR, p[it->id], ptL)) > 0 &&
-                (ch == -1 || inCircle(ptL, ptR, p[ch], p[it->id]) < 0)) {
-              ch = it->id, side = 1;
-            }
-          }
-          if (ch == -1) break;  // upper common tangent
-          if (side == -1) {
-            for (it = head[nowl].begin(); it != head[nowl].end();) {
-              if (intersection(ptL, p[it->id], ptR, p[ch])) {
-                head[it->id].erase(it->c);
-                head[nowl].erase(it++);
-              } else {
-                it++;
-              }
-            }
-            nowl = ch;
-            addEdge(nowl, nowr);
-          } else {
-            for (it = head[nowr].begin(); it != head[nowr].end();) {
-              if (intersection(ptR, p[it->id], ptL, p[ch])) {
-                head[it->id].erase(it->c);
-                head[nowr].erase(it++);
-              } else {
-                it++;
-              }
-            }
-            nowr = ch;
-            addEdge(nowl, nowr);
-          }
-        }
-      }
-    
-      std::vector<std::pair<int, int>> getEdge() {
-        std::vector<std::pair<int, int>> ret;
-        ret.reserve(n);
-        std::list<Edge>::iterator it;
-        for (int i = 0; i < n; i++) {
-          for (it = head[i].begin(); it != head[i].end(); it++) {
-            if (it->id < i) continue;
-            ret.push_back(std::make_pair(p[i].id, p[it->id].id));
-          }
-        }
-        return ret;
-      }
-    };
+    --8<-- "docs/geometry/code/triangulation/triangulation_1.cpp:delaunay"
     ```
+
+### 复杂度
+
+设一次合并涉及 $k$ 个点．寻找下公切线时，每次移动都沿某一侧的凸包边界前进，总计 $O(k)$ 次．选候选点时，每次继续向后检查都伴随一条 LL-edge 或 RR-edge 的删除，而两侧子剖分总共只有 $O(k)$ 条边．每次合并主循环除这些删除操作外只做常数次判断，并添加一条 LR-edge；新添加的 LR-edge 在本次合并中不再删除，数目也是 $O(k)$．因此一次合并的总时间为 $O(k)$．
+
+初始排序耗时 $O(n \log n)$，递归满足 $T(n)=T(\lfloor n/2 \rfloor)+T(\lceil n/2 \rceil)+O(n)$，总时间复杂度为 $O(n \log n)$．任一时刻保留的边数为 $O(n)$，代码还会回收被删除边的存储位置，避免保存所有历史边，因此空间复杂度为 $O(n)$．
 
 ## Voronoi 图
 
@@ -277,6 +111,8 @@ Voronoi 图由一组由连接两邻点直线的垂直平分线组成的连续多
 Voronoi 图是 Delaunay 三角剖分的对偶图，可以使用构造 Delaunay 三角剖分的分治算法求出三角网，再使用最左转线算法求出其对偶图实现在 $O(n \log n)$ 的时间复杂度下构造 Voronoi 图．
 
 ## 题目
+
+[Luogu P6362 平面欧几里得最小生成树](https://www.luogu.com.cn/problem/P6362) 三角剖分经典应用
 
 [SGU 383 Caravans](https://codeforces.com/problemsets/acmsguru/problem/99999/383) 三角剖分 + 倍增
 
@@ -289,3 +125,5 @@ Voronoi 图是 Delaunay 三角剖分的对偶图，可以使用构造 Delaunay �
 1.  [Wikipedia - Triangulation (geometry)](https://en.wikipedia.org/wiki/Triangulation_%28geometry%29)
 2.  [Wikipedia - Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation)
 3.  Samuel Peterson -[Computing Constrained Delaunay Triangulations in 2-D (1997-98)](http://www.geom.uiuc.edu/~samuelp/del_project.html)
+
+[^quad-edge]: Leonidas Guibas, Jorge Stolfi.[Primitives for the Manipulation of General Subdivisions and the Computation of Voronoi Diagrams](https://people.eecs.berkeley.edu/~jrs/meshpapers/GuibasStolfi.pdf). ACM Transactions on Graphics, 4(2), 1985, 74–123.
