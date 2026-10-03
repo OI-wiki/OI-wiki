@@ -336,7 +336,7 @@ C++11 引入了 [`std::partition_point`](https://zh.cppreference.com/w/cpp/algor
 
 该序列需要已分区，即需要满足上文所述第二种广义有序性质．换言之，将序列中每个元素 $v$ 的 $p(v)$ 的结果列成一个 01 序列，则该序列形如 `11...100...0`，该函数返回第一个 $0$ 对应位置的迭代器．
 
-??? note "std::partition_point 与 std::lower_bound 和 std::upper_bound 的关系"
+??? note "`std::partition_point` 与 `std::lower_bound` 和 `std::upper_bound` 的关系"
     实际上，`std::lower_bound` 和 `std::upper_bound` 是 `std::partition_point` 的特殊形式．
     
     定义函数 `f`，其代码为：`bool f(int v) { return !(val <= v); }`．将 `f` 作为谓词传入 `std::partition_point` 中，即可得到和 `std::lower_bound` 相同的结果．`std::upper_bound` 同理．
