@@ -330,7 +330,6 @@ C++ 标准库中实现了：
 ??? note "std::partition_point 与 std::lower_bound 和 std::upper_bound 的关系"
     实际上，`std::lower_bound` 和 `std::upper_bound` 是 `std::partition_point` 的特殊形式．
     
-
     定义函数 `check`，其代码为：`bool check(int v) { return v < val; }`．将 `check` 作为谓词传入 `std::partition_point` 中，即可得到和 `std::lower_bound` 相同的结果．`std::upper_bound` 同理．
 
 ### 实数二分答案
