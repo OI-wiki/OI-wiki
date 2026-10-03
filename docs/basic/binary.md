@@ -55,7 +55,7 @@ int binary_search(int x, int l = 1, int r = n) {  // 在升序数组中查找数
 
 ???+ note "Note"
     -   参考 [编译优化 #移位代替乘法](../lang/optimizations.md#移位代替乘法)，对于 $n$ 是有符号数的情况，当你可以保证 $n\ge 0$ 时，`n >> 1` 比 `n / 2` 指令数更少．
-
+    
     -   当 $l$ 或 $r$ 特别大时，$l+r$ 可能会溢出．若此时 $r-l$ 不会溢出，可以将代码中的 `(l + r) >> 1` 更换为 `l + ((r - l) >> 1)`．
 
 ???+ warning "Warning"
@@ -331,7 +331,6 @@ C++ 标准库中实现了：
 ??? note "std::partition_point 与 std::lower_bound 和 std::upper_bound 的关系"
     实际上，`std::lower_bound` 和 `std::upper_bound` 是 `std::partition_point` 的特殊形式．
     
-
     定义函数 `check`，其代码为：`bool check(int v) { return v < val; }`．将 `check` 作为谓词传入 `std::partition_point` 中，即可得到和 `std::lower_bound` 相同的结果．`std::upper_bound` 同理．
 
 ### 实数二分答案
