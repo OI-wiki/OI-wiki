@@ -290,7 +290,8 @@ C++ 标准库中实现了：
     ```cpp
     int A[100005];  // 示例全局数组
     
-    // compare 比较两个 int 指针指向的值：*p1 > *p2 返回正数，相等返回 0，小于返回负数
+    // compare 比较两个 int 指针指向的值：*p1 > *p2 返回正数，相等返回
+    // 0，小于返回负数
     int compare(const void*, const void*);
     
     // 查找首个不小于待查元素的元素的地址
@@ -575,7 +576,7 @@ $$
         ```cpp
         --8<-- "docs/basic/code/binary/binary_1.cpp"
         ```
-
+    
     === "Python"
         ```python
         --8<-- "docs/basic/code/binary/binary_1.py"
