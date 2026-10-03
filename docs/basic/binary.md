@@ -125,6 +125,7 @@ int binary_search(int x, int l = 1, int r = n) {  // 在升序数组中查找数
 // 在代码实现中，通常 check(x) = f(x)
 // 若区间内无解，返回 -1
 int binary_search_min(int L, int R) {
+  if(L > R) return -1;
   int l = L, r = R;
   while (l < r) {
     int mid = (l + r) >> 1;
@@ -150,6 +151,7 @@ int binary_search_min(int L, int R) {
 // 要求 check 在 [L, R] 上单调不减
 // 若区间为空或区间内无解，返回 -1
 int binary_search_min(int L, int R) {
+  if(L > R) return -1;
   int l = L, r = R;
   while (l <= r) {
     int mid = (l + r) >> 1;
@@ -350,7 +352,7 @@ C++11 引入了 [`std::partition_point`](https://zh.cppreference.com/w/cpp/algor
 
 当区间长度 $r-l$ 不超过给定精度 $\textit{eps}$，或达到预设的迭代次数时，算法结束．此时 $l$、$r$ 或 $\dfrac{l+r}{2}$ 均可作为答案的近似值（若要求最终返回值满足条件 $P$，应返回 $r$）．求最大值时，只需将上述两种情况的方向反过来：若 $\textit{mid}$ 满足条件，则令 $l\gets \textit{mid}$；否则令 $r\gets \textit{mid}$（相应地，若要求最终返回值满足条件 $P$，应返回 $l$）．
 
-若采用 `while (r - l > eps)`，实数二分答案的时间复杂度为 $O(M \log((R-L)/\textit{eps}))$．若采用固定迭代次数 $k$，则时间复杂度为 $O(Mk)$．为每次判断 $\textit{mid}$ 是否满足条件 $P$ 的时间复杂度．由于实数运算存在浮点误差，实际实现中通常不直接判断 $l=r$，而是判断 $r-l<\textit{eps}$，或直接循环固定次数，例如 $60$ 至 $100$ 次，以避免死循环并保证精度．
+若采用 `while (r - l > eps)`，实数二分答案的时间复杂度为 $O(M \log((R-L)/\textit{eps}))$．若采用固定迭代次数 $k$，则时间复杂度为 $O(Mk)$．其中 $M$ 为每次判断 $\textit{mid}$ 是否满足条件 $P$ 的时间复杂度．由于实数运算存在浮点误差，实际实现中通常不直接判断 $l=r$，而是判断 $r-l<\textit{eps}$，或直接循环固定次数，例如 $60$ 至 $100$ 次，以避免死循环并保证精度．
 
 #### 实现
 
