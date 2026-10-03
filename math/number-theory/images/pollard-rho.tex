@@ -1,0 +1,56 @@
+\documentclass{standalone}
+
+\usepackage{anyfontsize} % allows arbitrary font sizes
+
+\usepackage{lmodern} % better font scaling
+
+\makeatletter
+\renewcommand\normalsize{%
+  \@setfontsize\normalsize{14pt}{17pt}%
+}
+\makeatother
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    every node/.style={draw, fill=black, circle, inner sep=2.5pt}
+]
+
+\def\R{4cm}
+
+\foreach \i in {0,...,6} {
+    \coordinate (c-\i) at ({-180 + \i / 7 * 360}:\R);
+}
+\coordinate (O) at ({6/7 * 360}:{3*\R});
+\coordinate (a-0) at ($ (O) + (-180:{4*\R}) $);
+\foreach \i in {1,...,4} {
+    \coordinate (a-\i) at ($ (O) + ({-180 - (\i - 0.5) / 7 * 80}:{4*\R}) $);
+}
+
+\node[label=above left:$x_5$] at (a-1) {};
+\node[label=above left:$x_6$] at (a-2) {};
+\node[label=above left:$x_7$] at (a-3) {};
+\node[label=above left:$x_{1784}$] at (a-4) {};
+\node[label=above left:$x_{1785}$] at (c-6) {};
+
+\node[label=right:$x_{3569}$] at (c-0) {};
+\node[label=above right:$x_{3568}$] at (c-1) {};
+\node[label=below right:$x_{1789}$] at (c-2) {};
+\node[label=right:$x_{1788}$] at (c-3) {};
+\node[label=right:$x_{1787}$] at (c-4) {};
+\node[label=above right:$x_{1786}$] at (c-5) {};
+\node[label=below right:$x_{3570}$] at (c-6) {};
+
+\draw[very thick] (c-1) arc ({8/7*360-180}:{2/7*360-180}:\R);
+\draw[very thick, dashed] (c-1) arc ({1/7*360-180}:{2/7*360-180}:\R);
+
+\draw[very thick] (a-4) arc ({-3.5/7*80-180}:{-1/7*360-180}:{4*\R});
+\draw[very thick, dashed] (a-3) arc ({-2.5/7*80-180}:{-3.5/7*80-180}:{4*\R});
+\draw[very thick] (a-0) arc ({-180}:{-2.5/7*80-180}:{4*\R});
+
+\end{tikzpicture}
+
+\end{document}

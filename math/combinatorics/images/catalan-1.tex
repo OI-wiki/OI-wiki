@@ -1,0 +1,52 @@
+\documentclass[10pt]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+
+\begin{document}
+
+% Define colors
+\definecolor{eqxurv}{rgb}{0.88,0.45,0.08} % orange
+\definecolor{dtsfsf}{rgb}{0.83,0.18,0.18} % red
+\definecolor{rvwvcq}{rgb}{0.08,0.40,0.75} % teal
+\definecolor{qqqqff}{rgb}{0.00,0.00,1.00} % blue
+
+\begin{tikzpicture}[line cap=round, line join=round, >=triangle 45,scale=1.5]
+
+\begin{axis}[
+  x=1.0cm,y=1.0cm,
+  axis lines=middle,
+  grid=major,
+  xmin=-1, xmax=9.3,
+  ymin=-0.8, ymax=9.6,
+  xtick={0,...,9},
+  ytick={0,...,9}
+]
+
+% Lines
+\draw[very thick] plot[domain=-3:12] (\x,{\x});            % y = x
+\draw[very thick, color=qqqqff] plot[domain=-3:12] (\x,{\x+1}); % y = x+1
+
+% Piecewise red polyline
+\draw[very thick, color=dtsfsf]
+  (0,0) -- (3,0) -- (3,1) -- (4,1) -- (4,5) -- (8,5) -- (8,8);
+
+% Orange extension
+\draw[very thick, color=eqxurv]
+  (4,5) -- (4,9) -- (7,9);
+
+% Labels for lines
+\node at (3,2.3) {$y = x$};
+\node[color=qqqqff] at (2.2,4.2) {$y = x+1$};
+
+% Points
+\fill[rvwvcq] (0,0) circle (2.5pt) node[below right] {$(0,0)$};
+\fill[rvwvcq] (8,8) circle (2.5pt) node[below right] {$(n,n)$};
+\fill[rvwvcq] (7,9) circle (2.5pt) node[above] {$(n-1,n+1)$};
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

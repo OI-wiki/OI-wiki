@@ -1,0 +1,75 @@
+\documentclass{standalone}
+\usepackage[active,tightpage]{preview}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{arrows.meta,intersections}
+
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{14pt}{16pt}\selectfont}
+
+\pgfplotsset{compat=1.18}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}    
+
+\begin{tikzpicture}
+\begin{axis}[
+  xlabel={$\alpha$},
+  ylabel={$\beta$},
+  xtick={\empty},
+  ytick={\empty},
+  xlabel style={at={(axis description cs:0.98,0)}},
+  ylabel style={at={(axis description cs:0,0.98)}, rotate=-90},
+  ymin=0.5,
+  ymax=0.7,
+  xmin=0.15,
+  xmax=0.35,
+  clip=false,
+  axis on top,
+  scale=3,
+  axis equal image,
+] 
+% The curve
+\addplot [domain=3/13:1/3,samples=1000] plot {(1-2*x)/(1-x)};
+\addplot [domain=0.15:0.35,samples=1000] plot {1/(2-x)};
+\addplot [color=red!40,name path=A,domain=2/11:0.29289,samples=1000]
+  plot {
+    and(2/11 <= x, x <= 1/5) * 5/8
+    + and(1/5 < x, x <= 2/9) * 4/7
+    + and(2/9 < x, x <= 1/4) * 2/3
+    + and(1/4 < x, x <= 2/7) * 3/5
+    + and(2/7 < x, x <= 0.29289) * (1-2*x)/(1-x)
+  };
+\addplot [very thick,color=red,name path=B,domain=2/11:0.29289,samples=1000] plot {1/(2-x)};
+\addplot [color=red!40] fill between[of=A and B];
+\addplot [very thick,domain=2/7:0.29289,color=red,samples=100] plot {(1-2*x)/(1-x)};
+\draw [dashed] (axis cs: 0.29289, {1/(2-0.29289)}) -- (axis cs: 0.29289, 0.5)
+  node[below, xshift=1.25em] {$1-\dfrac{\sqrt{2}}{2}$};
+\draw [dashed] (axis cs: 2/7, 3/5) -- (axis cs: 2/7, 0.5) node[below] {$\dfrac{2}{7}$};
+\draw [dashed] (axis cs: 0.15, 3/5) node[left] {$\dfrac{3}{5}$} --
+  (axis cs: 1/4, 3/5) -- (axis cs: 1/4, 0.5) node[below] {$\dfrac{1}{4}$};
+\draw [dashed] (axis cs: 2/9, 4/7) -- (axis cs: 2/9, 0.5) node[below] {$\dfrac{2}{9}$};
+\draw [dashed] (axis cs: 0.15, 4/7) node[left] {$\dfrac{4}{7}$} --
+  (axis cs: 1/5, 4/7) -- (axis cs: 1/5, 0.5) node[below] {$\dfrac{1}{5}$};
+\draw [dashed] (axis cs: 0.15, 11/20) node[left] {$\dfrac{11}{20}$} --
+  (axis cs: 2/11, 11/20) -- (axis cs: 2/11, 0.5) node[below] {$\dfrac{2}{11}$};
+\draw [dashed] (axis cs: 2/11, 5/8) -- (axis cs: 0.15, 5/8) node[left] {$\dfrac{5}{8}$};
+\draw [dashed] (axis cs:  2/9, 2/3) -- (axis cs: 0.15, 2/3) node[left] {$\dfrac{2}{3}$};
+\draw [very thick,color=red,dashed]
+  (axis cs: 2/11, 11/20) -- (axis cs: 2/11, 5/8)
+  (axis cs:  2/9,   4/7) -- (axis cs:  2/9, 2/3);
+\draw [very thick,color=red] 
+  (axis cs: 2/11, 5/8) node[draw,fill=white,circle,inner sep=-1.5pt] {} -- 
+  (axis cs:  1/5, 5/8) -- (axis cs:  1/5, 4/7) -- (axis cs:  2/9, 4/7)
+  (axis cs:  2/9, 2/3) node[draw,fill=white,circle,inner sep=-1.5pt] {} -- 
+  (axis cs: 1/4, 2/3) -- (axis cs:  1/4, 3/5) -- (axis cs: 2/7, 3/5);
+\node [draw,very thick,color=red,fill=white,circle,inner sep=-1.5pt] 
+  at (axis cs: 2/11, 11/20) {};
+\node [above right] at (axis cs: 0.275, {(1-2*0.275)/(1-0.275)}) 
+  {$\beta=\dfrac{1-2\alpha}{1-\alpha}$};
+\node [below, yshift=-0.5em] at (axis cs: 0.268, {1/(2-0.268)}) {$\beta=\dfrac{1}{2-\alpha}$};
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

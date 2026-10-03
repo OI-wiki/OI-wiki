@@ -1,0 +1,97 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+
+\usepackage{anyfontsize} % allows arbitrary font sizes
+\usepackage{lmodern} % better font scaling
+
+\makeatletter
+\renewcommand\normalsize{%
+  \@setfontsize\normalsize{16pt}{19pt}%
+}
+\makeatother
+
+\begin{document}
+
+\begin{tikzpicture}[
+  thick, scale=1.2,
+  vnode/.style={draw, circle, minimum size=1.05cm, inner sep=0pt},
+  empty/.style={vnode, dashed},
+  rng/.style={font=\scriptsize, inner sep=1.5pt, gray!70}
+]
+\node[vnode] (n1_13) at (8.04,0) {$7$};
+\node[rng, anchor=north] at (8.04,-0.46) {$[1,13]$};
+\node[vnode] (n1_7) at (4.02,-1.48) {$6$};
+\node[rng, anchor=north] at (4.02,-1.94) {$[1,7]$};
+\node[vnode] (n1_4) at (2.01,-2.96) {$3$};
+\node[rng, anchor=north] at (2.01,-3.42) {$[1,4]$};
+\node[vnode] (n1_2) at (0.67,-4.44) {$3$};
+\node[rng, anchor=north] at (0.67,-4.9) {$[1,2]$};
+\node[empty] (n1_1) at (0,-5.92) {$0$};
+\node[rng, anchor=north] at (0,-6.38) {$1$};
+\node[vnode] (n2_2) at (1.34,-5.92) {$3$};
+\node[rng, anchor=north] at (1.34,-6.38) {$2$};
+\node[empty] (n3_4) at (3.35,-4.44) {$0$};
+\node[rng, anchor=north] at (3.35,-4.9) {$[3,4]$};
+\node[empty] (n3_3) at (2.68,-5.92) {$0$};
+\node[rng, anchor=north] at (2.68,-6.38) {$3$};
+\node[empty] (n4_4) at (4.02,-5.92) {$0$};
+\node[rng, anchor=north] at (4.02,-6.38) {$4$};
+\node[vnode] (n5_7) at (6.7,-2.96) {$3$};
+\node[rng, anchor=north] at (6.7,-3.42) {$[5,7]$};
+\node[vnode] (n5_6) at (6.03,-4.44) {$3$};
+\node[rng, anchor=north] at (6.03,-4.9) {$[5,6]$};
+\node[vnode] (n5_5) at (5.36,-5.92) {$3$};
+\node[rng, anchor=north] at (5.36,-6.38) {$5$};
+\node[empty] (n6_6) at (6.7,-5.92) {$0$};
+\node[rng, anchor=north] at (6.7,-6.38) {$6$};
+\node[empty] (n7_7) at (8.04,-4.44) {$0$};
+\node[rng, anchor=north] at (8.04,-4.9) {$7$};
+\node[vnode] (n8_13) at (12.73,-1.48) {$1$};
+\node[rng, anchor=north] at (12.73,-1.94) {$[8,13]$};
+\node[vnode] (n8_10) at (10.72,-2.96) {$1$};
+\node[rng, anchor=north] at (10.72,-3.42) {$[8,10]$};
+\node[vnode] (n8_9) at (10.05,-4.44) {$1$};
+\node[rng, anchor=north] at (10.05,-4.9) {$[8,9]$};
+\node[empty] (n8_8) at (9.38,-5.92) {$0$};
+\node[rng, anchor=north] at (9.38,-6.38) {$8$};
+\node[vnode] (n9_9) at (10.72,-5.92) {$1$};
+\node[rng, anchor=north] at (10.72,-6.38) {$9$};
+\node[empty] (n10_10) at (12.06,-4.44) {$0$};
+\node[rng, anchor=north] at (12.06,-4.9) {$10$};
+\node[empty] (n11_13) at (14.74,-2.96) {$0$};
+\node[rng, anchor=north] at (14.74,-3.42) {$[11,13]$};
+\node[empty] (n11_12) at (14.07,-4.44) {$0$};
+\node[rng, anchor=north] at (14.07,-4.9) {$[11,12]$};
+\node[empty] (n11_11) at (13.4,-5.92) {$0$};
+\node[rng, anchor=north] at (13.4,-6.38) {$11$};
+\node[empty] (n12_12) at (14.74,-5.92) {$0$};
+\node[rng, anchor=north] at (14.74,-6.38) {$12$};
+\node[empty] (n13_13) at (16.08,-4.44) {$0$};
+\node[rng, anchor=north] at (16.08,-4.9) {$13$};
+\draw (n1_13) -- (n1_7);
+\draw (n1_13) -- (n8_13);
+\draw (n1_7) -- (n1_4);
+\draw (n1_7) -- (n5_7);
+\draw (n1_4) -- (n1_2);
+\draw[dashed] (n1_4) -- (n3_4);
+\draw[dashed] (n1_2) -- (n1_1);
+\draw (n1_2) -- (n2_2);
+\draw[dashed] (n3_4) -- (n3_3);
+\draw[dashed] (n3_4) -- (n4_4);
+\draw (n5_7) -- (n5_6);
+\draw[dashed] (n5_7) -- (n7_7);
+\draw (n5_6) -- (n5_5);
+\draw[dashed] (n5_6) -- (n6_6);
+\draw (n8_13) -- (n8_10);
+\draw[dashed] (n8_13) -- (n11_13);
+\draw (n8_10) -- (n8_9);
+\draw[dashed] (n8_10) -- (n10_10);
+\draw[dashed] (n8_9) -- (n8_8);
+\draw (n8_9) -- (n9_9);
+\draw[dashed] (n11_13) -- (n11_12);
+\draw[dashed] (n11_13) -- (n13_13);
+\draw[dashed] (n11_12) -- (n11_11);
+\draw[dashed] (n11_12) -- (n12_12);
+\end{tikzpicture}
+
+\end{document}
