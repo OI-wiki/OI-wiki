@@ -254,7 +254,7 @@ C++ 标准库中实现了：
 -   查找首个不小于给定值的元素的函数 [`std::lower_bound`](https://zh.cppreference.com/w/cpp/algorithm/lower_bound)．
 -   查找首个大于给定值的元素的函数 [`std::upper_bound`](https://zh.cppreference.com/w/cpp/algorithm/upper_bound)．
 
-二者均采用二分实现，所以调用前必须保证元素有序，这样二者的问题才满足广义的有序条件（即若 $a_i$ 不小于或者大于给定值时，$i$ 之后的数同样不小于或者大于给定值）．
+二者均采用二分实现，所以调用前必须保证元素有序（注意这里的有序是指基于下面的比较函数而言的，不一定是数学意义上的有序），这样二者的问题才满足广义的有序条件（即若 $a_i$ 不小于或者大于给定值时，$i$ 之后的数同样不小于或者大于给定值）．
 
 `std::lower_bound` 和 `std::upper_bound` 均有四个参数，分别是：
 
