@@ -36,7 +36,7 @@
 
 ```cpp
 int binary_search(int x, int l = 1, int r = n) {  // 在升序数组中查找数 x 的下标
-  int ret = -1;  // 未找到时返回 -1
+  int ret = -1;                                   // 未找到时返回 -1
   while (l <= r) {
     int mid = (l + r) >> 1;  // l + r 可能溢出，详见下方 Note
     if (a[mid] < x)
@@ -54,11 +54,11 @@ int binary_search(int x, int l = 1, int r = n) {  // 在升序数组中查找数
 
 ???+ note "Note"
     -   参考 [编译优化 #移位代替乘法](../lang/optimizations.md#移位代替乘法)，对于 $s$ 是有符号数的情况，当你可以保证 $s\ge 0$ 时，`s >> 1` 比 `s / 2` 指令数更少．
-
+    
     -   当 $l$ 或 $r$ 特别大时，$l+r$ 可能会溢出．若此时 $r-l$ 不会溢出，可以将代码中的 `(l + r) >> 1` 更换为 `l + ((r - l) >> 1)`．
 
 ???+ warning "Warning"
-    当 $s$ 为负奇数时，`s >> 1` 和 `s / 2` 的结果相差 $1$，并不相同．因为前者向负无穷取整（C++20 列入标准，此前为实现定义），后者向零取整．详见 [C++ 位操作符](../lang/op.md#位操作符)．因此 $l + r$ 可能为负时，`(l + r) / 2` 可能取到 $$r$$，在 `r = mid` 的写法中会导致**死循环**．例如 $l = -1$, $r = 0$ 时，`(l + r) / 2` 等于 $0$．在实现代码时需要注意这点不同．
+    当 $s$ 为负奇数时，`s >> 1` 和 `s / 2` 的结果相差 $1$，并不相同．因为前者向负无穷取整（C++20 列入标准，此前为实现定义），后者向零取整．详见 [C++ 位操作符](../lang/op.md#位操作符)．因此 $l + r$ 可能为负时，`(l + r) / 2` 可能取到 $r$，在 `r = mid` 的写法中会导致 **死循环**．例如 $l = -1$,$r = 0$ 时，`(l + r) / 2` 等于 $0$．在实现代码时需要注意这点不同．
 
 ### bsearch
 
@@ -169,7 +169,6 @@ int binary_search_min(int L, int R) {
 ??? note "为什么两种写法都能找到最小可行值？"
     先假设 $[L,R]$ 非空，且区间内存在答案，记最小的满足条件 $P$ 的数为 $\textit{ans}$．由 $f$ 单调不减的性质，在原区间 $[L,R]$ 内有
     
-
     $$
     f(x)=0\quad (x<\textit{ans}),\qquad
     f(x)=1\quad (x\ge \textit{ans}).
@@ -215,28 +214,28 @@ int binary_search_min(int L, int R) {
 
 证明一种写法正确，需要确认：
 
-1. 初始化满足循环不变量．
-2. 每次更新都保持不变量，并使待搜索区间中的整数个数严格减少，从而保证循环最终结束．
-3. 循环结束时，能够由不变量和终止条件确定返回值就是答案；若允许无解，还需说明如何识别无解情况．
+1.  初始化满足循环不变量．
+2.  每次更新都保持不变量，并使待搜索区间中的整数个数严格减少，从而保证循环最终结束．
+3.  循环结束时，能够由不变量和终止条件确定返回值就是答案；若允许无解，还需说明如何识别无解情况．
 
 在讨论实现方式时，需要特别区分「尚待搜索的区间」与「保证包含最终答案的区间」：由于边界条件不同，二者不一定相同，不能统一要求答案始终位于待搜索区间内．
 
 下面列出几种常见写法．均假设 $L\le R$、问题满足第一种有序性质，且最小可行值 $\textit{ans}$ 存在．答案的位置以「答案位置不变量」一列为准．
 
-| 写法                                 | 初始 $l,r$      | 循环条件 | $\textit{mid}$                            | $f(\textit{mid})=1$ 时 | $f(\textit{mid})=0$ 时 | 答案位置不变量            | 结束时  | 返回 |
-| ------------------------------------ | --------------- | -------- | ----------------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------- | ---- |
-| 闭区间 $[l,r]$，排除已判定部分       | $l=L,\ r=R$     | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}-1$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r+1$ | $l=r+1$ | $l$  |
-| 闭区间 $[l,r]$，保留答案             | $l=L,\ r=R$     | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$   | $l=r$   | $l$  |
-| 左闭右开区间 $[l,r)$，排除已判定部分 | $l=L,\ r=R+1$   | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$   | $l=r$   | $l$  |
-| 左开右闭区间 $(l,r]$，保留答案       | $l=L-1,\ r=R$   | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}$   | $l<\textit{ans}\le r$     | $l+1=r$ | $r$  |
-| 开区间 $(l,r)$，维护两侧边界         | $l=L-1,\ r=R+1$ | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}$   | $l<\textit{ans}\le r$     | $l+1=r$ | $r$  |
+| 写法                     | 初始 $l,r$        | 循环条件     | $\textit{mid}$                            | $f(\textit{mid})=1$ 时  | $f(\textit{mid})=0$ 时  | 答案位置不变量                   | 结束时     | 返回  |
+| ---------------------- | --------------- | -------- | ----------------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------- | --- |
+| 闭区间 $[l,r]$，排除已判定部分    | $l=L,\ r=R$     | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}-1$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r+1$ | $l=r+1$ | $l$ |
+| 闭区间 $[l,r]$，保留答案       | $l=L,\ r=R$     | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$   | $l=r$   | $l$ |
+| 左闭右开区间 $[l,r)$，排除已判定部分 | $l=L,\ r=R+1$   | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$   | $l=r$   | $l$ |
+| 左开右闭区间 $(l,r]$，保留答案    | $l=L-1,\ r=R$   | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}$   | $l<\textit{ans}\le r$     | $l+1=r$ | $r$ |
+| 开区间 $(l,r)$，维护两侧边界     | $l=L-1,\ r=R+1$ | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}$   | $l<\textit{ans}\le r$     | $l+1=r$ | $r$ |
 
 表中还有几点需要说明：
 
-* 第 3 行的 $[l, r]$ 是待搜索区间，答案可能恰好等于 $r$．
-* 第 4 行将答案保留在 $(l, r]$ 内，依赖初始右边界 $R$ 满足 $f(R) = 1$．循环执行时 $r - l \ge 2$，因此第 4、5 行的中点改用上取整也正确．
-* 第 5 行中的 $(l, r)$ 表示两个边界之间尚待判断的位置．可以将初始的 $L - 1$ 视为值为 0 的虚拟哨兵，将 $R + 1$ 视为值为 1 的虚拟哨兵．循环只在原区间内调用判定函数，不需要实际计算哨兵处的函数值．
-* 若要处理无解情况：第 1、3、5 行可以通过返回值是否为 $R + 1$ 判断；第 2 行需要检查 $f(l)$；第 4 行需要先检查 $f(R)$．
+-   第 3 行的 $[l, r]$ 是待搜索区间，答案可能恰好等于 $r$．
+-   第 4 行将答案保留在 $(l, r]$ 内，依赖初始右边界 $R$ 满足 $f(R) = 1$．循环执行时 $r - l \ge 2$，因此第 4、5 行的中点改用上取整也正确．
+-   第 5 行中的 $(l, r)$ 表示两个边界之间尚待判断的位置．可以将初始的 $L - 1$ 视为值为 0 的虚拟哨兵，将 $R + 1$ 视为值为 1 的虚拟哨兵．循环只在原区间内调用判定函数，不需要实际计算哨兵处的函数值．
+-   若要处理无解情况：第 1、3、5 行可以通过返回值是否为 $R + 1$ 判断；第 2 行需要检查 $f(l)$；第 4 行需要先检查 $f(R)$．
 
 ### 最大值最小化与最小值最大化
 
@@ -280,10 +279,9 @@ C++ 标准库中实现了：
     在 GCC 使用的 libstdc++ 标准库实现中，二者均使用 `std::advance` 来访问中间元素．这意味着当迭代器支持随机访问时（比如传入数组或是 vector 迭代器），函数的复杂度才是 $O(\log n)$ 的．如果不支持随机访问（比如 set 或者 map），函数的复杂度为每次查询中间元素的时间复杂度之和（通常为线性）．例如，在 set 或者 map 中，执行 `lower_bound(st.begin(),st.end(),val)` 类似的操作，时间复杂度为 $O(n)$．此时应改用成员函数 `st.lower_bound(val)`．
 
 ??? note "利用 `bsearch` 实现 `std::lower_bound` 与 `std::upper_bound`"
-    由于 bsearch 在查找不到元素时会返回 NULL （见 [bsearch](./binary.md#bsearch)），例如，在序列 1、2、4、5、6 中查找 3，`bsearch` 实现 `lower_bound` 的功能会变得困难．
+    由于 bsearch 在查找不到元素时会返回 NULL（见 [bsearch](./binary.md#bsearch)），例如，在序列 1、2、4、5、6 中查找 3，`bsearch` 实现 `lower_bound` 的功能会变得困难．
     
-
-    利用 `bsearch` 实现 `std::lower_bound` 和 `std::upper_bound`时，可以利用其比较函数的参数约定：第一个参数指向待查元素，第二个参数指向待查数组中的元素．所以只要比较函数能得到数组首地址即可实现．
+    利用 `bsearch` 实现 `std::lower_bound` 和 `std::upper_bound` 时，可以利用其比较函数的参数约定：第一个参数指向待查元素，第二个参数指向待查数组中的元素．所以只要比较函数能得到数组首地址即可实现．
     
     ```cpp
     int A[100005];  // 示例全局数组
@@ -333,7 +331,6 @@ C++11 引入了 [`std::partition_point`](https://zh.cppreference.com/w/cpp/algor
 ??? note "std::partition_point 与 std::lower_bound 和 std::upper_bound 的关系"
     实际上，`std::lower_bound` 和 `std::upper_bound` 是 `std::partition_point` 的特殊形式．
     
-
     定义函数 `f`，其代码为：`bool f(int v) { return !(val <= v); }`．将 `f` 作为谓词传入 `std::partition_point` 中，即可得到和 `std::lower_bound` 相同的结果．`std::upper_bound` 同理．
 
 ### 实数二分答案
