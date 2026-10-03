@@ -57,8 +57,9 @@ int binary_search(int x, int l = 1, int r = n) {  // 在升序数组中查找数
     -   参考 [编译优化 #移位代替乘法](../lang/optimizations.md#移位代替乘法)，对于 $n$ 是有符号数的情况，当你可以保证 $n\ge 0$ 时，`n >> 1` 比 `n / 2` 指令数更少．
     
     -   当 $l$ 或 $r$ 特别大时，$l+r$ 可能会溢出．若此时 $r-l$ 不会溢出，可以将代码中的 `(l + r) >> 1` 更换为 `l + ((r - l) >> 1)`．
-    
-    -   请注意：由于取整方式的不同，当 $n$ 为负数时，`n >> 1` 和 `n / 2` 的结果并不必然相同．具体地，若 $2\nmid \left|n\right|$，则二者结果相差 $1$．其本质原因是 `n >> 1` 采用向负无穷取整，而 `n / 2` 采用向零截断取整．
+
+???+ warning "Warning"
+    由于取整方式的不同，当 $n$ 为负数时，`n >> 1` 和 `n / 2` 的结果并不必然相同．具体地，若 $2\nmid \left|n\right|$，则二者结果相差 $1$．其本质原因是 `n >> 1` 采用向负无穷取整，而 `n / 2` 采用向零截断取整．详见 [C++ 位操作符](../lang/op/#位操作符)．这一不同可能会使得中点的选取在算法过程中变化，并可能导致**死循环**．
 
 ### bsearch
 
@@ -107,7 +108,7 @@ bsearch 函数的返回值是查找到的元素的地址，返回类型为 `void
 记 $l,r$ 表示当前可以确定答案 $x$ 一定满足 $l \le x \le r$．和二分查找类似，一开始时，令 $l=L$，$r=R$．每次我们判断 $\textit{mid}=\lfloor\dfrac{l+r}{2}\rfloor$ 是否满足条件 $P$，然后分情况讨论：
 
 -   如果此时 $\textit{mid}$ 不满足条件（即 $f(\textit{mid})$ 为 $0$），根据问题的有序性质，此时小于等于 $\textit{mid}$ 的所有数都不满足条件，都无需考虑，因此令 $l\gets \textit{mid}+1$，$r$ 不变．
--   如果此时 $\textit{mid}$ 满足条件（即 $f(\textit{mid})$ 为 $1$），根据问题的有序性质，此时大于等于 $\textit{mid}$ 的所有数都满足条件，但是因为题目要求最小值，所以所有大于 $mid$ 的数都没必要考虑了，只考虑小于等于 $mid$ 的数就可以了．此时令 $r \gets \textit{mid}$，$l$ 不变．
+-   如果此时 $\textit{mid}$ 满足条件（即 $f(\textit{mid})$ 为 $1$），根据问题的有序性质，此时大于等于 $\textit{mid}$ 的所有数都满足条件，但是因为题目要求最小值，所以所有大于 $\textit{mid}$ 的数都没必要考虑了，只考虑小于等于 $\textit{mid}$ 的数就可以了．此时令 $r \gets \textit{mid}$，$l$ 不变．
 
 当答案范围满足 $l=r$（即不再满足 $l<r$）时，算法结束．此时 $l$ 或 $r$ 为答案．
 
@@ -128,7 +129,7 @@ int binary_search_min(int L, int R) {
   int l = L, r = R;
   while (l < r) {
     int mid = (l + r) >> 1;
-    if (check(mid))  // f(mid) = 1，满足条件 $P$
+    if (check(mid))  // f(mid) = 1，满足条件 P
       r = mid;       // 答案在 [l, mid]
     else
       l = mid + 1;  // 答案在 [mid + 1, r]
@@ -273,7 +274,7 @@ C++ 标准库中实现了：
     -   在长度为 $n$ 的 vector $a$ 中查找首个不小于 $x$ 的数并获取这个数的下标（注意 vector 下标从 $0$ 开始）：`lower_bound(a.begin(),a.end(),x)-a.begin()`.
 
 ???+ note "关于迭代器"
-    根据 NOI 系列比赛中使用的 C++14 标准（ISO/IEC 14882:2014），上述起始、终止迭代器必须是 ForwardIterator．
+    上述起始、终止迭代器必须是 ForwardIterator．数组指针以及 vector、set、map、string 的迭代器均符合这一迭代器要求．
 
 ??? note "关于算法的时间复杂度"
     在 GCC 使用的 libstdc++ 标准库实现中，二者均使用 `std::advance` 来访问中间元素．这意味着当迭代器支持随机访问时（比如传入数组或是 vector 迭代器），函数的复杂度才是 $O(\log n)$ 的．如果不支持随机访问（比如 set 或者 map），函数的复杂度为每次查询中间元素的时间复杂度之和（通常为线性）．例如，在 set 或者 map 中，执行 `lower_bound(st.begin(),st.end(),val)` 类似的操作，时间复杂度为 $O(n)$．
