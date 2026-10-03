@@ -125,7 +125,7 @@ int binary_search(int x, int l = 1, int r = n) {  // 在升序数组中查找数
 // 在代码实现中，通常 check(x) = f(x)
 // 若区间内无解，返回 -1
 int binary_search_min(int L, int R) {
-  if(L > R) return -1;
+  if (L > R) return -1;
   int l = L, r = R;
   while (l < r) {
     int mid = (l + r) >> 1;
@@ -151,7 +151,7 @@ int binary_search_min(int L, int R) {
 // 要求 check 在 [L, R] 上单调不减
 // 若区间为空或区间内无解，返回 -1
 int binary_search_min(int L, int R) {
-  if(L > R) return -1;
+  if (L > R) return -1;
   int l = L, r = R;
   while (l <= r) {
     int mid = (l + r) >> 1;
