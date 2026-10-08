@@ -102,7 +102,7 @@ $$
 \max\{\operatorname{size}(\mathrm{left}),\operatorname{size}(\mathrm{right})\}\le\alpha\operatorname{size}(\mathrm{parent}).
 $$
 
-可以得到矩形查询的上界 $O(2^{h(k-1)/k})$[^pkdtree]，在上述重量平衡条件下，可以保证单次查询的最坏时间复杂度为
+在上述重量平衡条件下，可以保证单次查询的最坏时间复杂度为
 
 $$
 O(n^p),\qquad p=\frac{k-1}{k-1+\log_2(1/\alpha)}.
@@ -232,5 +232,3 @@ $$
 ## 参考资料与注释
 
 -   [基于替罪羊树维护的 K‑D Tree 复杂度证明 - 洛谷专栏](https://www.luogu.com.cn/article/shh0v8zb)
-
-[^pkdtree]: Ziyang Men, Zheqi Shen, Yan Gu, Yihan Sun.[Parallel kd-tree with Batch Updates](https://pal.cs.ucr.edu/papers/2025/SIGMOD25/pkdtree.pdf). Proc. ACM Manag. Data 3(1), Article 62, 2025. Section 5, Queries. DOI:[10.1145/3709712](https://doi.org/10.1145/3709712).
