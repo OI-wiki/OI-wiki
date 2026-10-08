@@ -283,7 +283,7 @@ $$
 (A \mid I_m) \longrightarrow (B \mid X), \qquad B = XA.
 $$
 
-此时 $m$ 阶可逆方阵 $X$ 记录了消元过程中的行变换．部分资料[^shoup] 将其称为 **扩展高斯消元**（extended Gaussian elimination）．当 $A$ 为可逆方阵且 $B = I_n$ 时，则有 $X = A^{-1}$．
+此时 $m$ 阶可逆方阵 $X$ 记录了消元过程中的行变换．部分资料[^shoup]将其称为 **扩展高斯消元**（extended Gaussian elimination）．当 $A$ 为可逆方阵且 $B = I_n$ 时，则有 $X = A^{-1}$．
 
 设 $r = \operatorname{rank}(A)$．此时 $B$ 的前 $r$ 行非零，后 $m-r$ 行全为 $0$．利用 $B$ 和 $X$，可以同时求出 $A$ 的右核与左核的一组基．
 
@@ -342,8 +342,8 @@ $$
 
 ## 参考资料与注释
 
-[^shoup]: Victor Shoup. [A Computational Introduction to Number Theory and Algebra](https://www.shoup.net/ntb/ntb-v1.pdf). Cambridge University Press, 2005．
+[^shoup]: Victor Shoup.[A Computational Introduction to Number Theory and Algebra](https://www.shoup.net/ntb/ntb-v1.pdf). Cambridge University Press, 2005．
 
-[^mit-nullspace]: MIT OpenCourseWare. [Solving Ax = 0: Pivot Variables, Special Solutions](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/dddb31dfe72d2e2e2fd09e74713b7775_MIT18_06SCF11_Ses1.7sum.pdf#page=2). 18.06SC Linear Algebra, Fall 2011．
+[^mit-nullspace]: MIT OpenCourseWare.[Solving Ax = 0: Pivot Variables, Special Solutions](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/dddb31dfe72d2e2e2fd09e74713b7775_MIT18_06SCF11_Ses1.7sum.pdf#page=2). 18.06SC Linear Algebra, Fall 2011．
 
-[^mit-left-nullspace]: MIT OpenCourseWare. [The Four Fundamental Subspaces](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/62a9db9eeab190694d40afe4734068ca_MIT18_06SCF11_Ses1.10sum.pdf#page=2). 18.06SC Linear Algebra, Fall 2011．
+[^mit-left-nullspace]: MIT OpenCourseWare.[The Four Fundamental Subspaces](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/62a9db9eeab190694d40afe4734068ca_MIT18_06SCF11_Ses1.10sum.pdf#page=2). 18.06SC Linear Algebra, Fall 2011．
