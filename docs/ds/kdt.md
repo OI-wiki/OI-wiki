@@ -108,7 +108,7 @@ $$
 O(n^p),\qquad p=\frac{k-1}{k-1+\log_2(1/\alpha)}.
 $$
 
-其中 $n$ 是树中保留的结点数．对于固定的 $\frac12<\alpha<1$，有 $1-\frac1k<p<1$．例如，$k=2$，$\alpha=0.6$ 时 $p\approx 0.5757$，$k=2$，$\alpha=0.75$ 时 $p\approx 0.7067$．
+其中 $n$ 是树中保留的结点数．对于固定的 $\frac12<\alpha<1$，有 $1-\frac1k<p<1$．例如，$k=2$，$\alpha=0.6$ 时 $p\approx 0.5757$；$k=2$，$\alpha=0.75$ 时 $p\approx 0.7067$．
 
 ??? note "复杂度证明"
     考虑其中一个边界所在的超平面 $x_i=c$，只统计包围盒被这个超平面穿过的非空子树．
@@ -228,7 +228,3 @@ $$
 [luogu P4475 巧克力王国](https://www.luogu.com.cn/problem/P4475)
 
 [「CH 弱省胡策 R2」TATT](https://www.luogu.com.cn/problem/P3769)
-
-## 参考资料与注释
-
--   [基于替罪羊树维护的 K‑D Tree 复杂度证明 - 洛谷专栏](https://www.luogu.com.cn/article/shh0v8zb)
