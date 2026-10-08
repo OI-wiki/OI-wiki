@@ -275,7 +275,44 @@ $$
 
 该方法的正确性证明需要用到较多线性代数的知识，限于篇幅这里不再给出．感兴趣的读者可以自行查阅相关资料．
 
-## 高斯消元法解异或方程组
+## 扩展高斯消元
+
+设 $A$ 是域 $\mathbb{F}$ 上的 $m \times n$ 矩阵，类似矩阵求逆的思路，构造 $m \times (m+n)$ 的矩阵 $(A \mid I_m)$，设 $A$ 的高斯消元结果为 $B$，有
+
+$$
+(A \mid I_m) \longrightarrow (B \mid X), \qquad B = XA.
+$$
+
+此时 $m$ 阶可逆方阵 $X$ 记录了消元过程中的行变换．部分资料[^shoup] 将其称为 **扩展高斯消元**（extended Gaussian elimination）．当 $A$ 为可逆方阵且 $B = I_n$ 时，则有 $X = A^{-1}$．
+
+设 $r = \operatorname{rank}(A)$．此时 $B$ 的前 $r$ 行非零，后 $m-r$ 行全为 $0$．利用 $B$ 和 $X$，可以同时求出 $A$ 的右核与左核的一组基．
+
+$A$ 的 **右核** 是齐次方程组 $Av = 0$ 的解空间，其中 $v \in \mathbb{F}^n$ 是列向量．由于 $X$ 可逆，$Av = 0$ 等价于 $Bv = 0$，所以可以直接得到右核的一组基．
+
+设 $B$ 的主元列依次为 $p_1, p_2, \ldots, p_r$，非主元列（对应自由未知量）为 $q_1, q_2, \ldots, q_{n-r}$．对于每个 $1 \le j \le n-r$，令第 $q_j$ 个未知量为 $1$，其余自由未知量为 $0$，则得到一个解向量 $v^{(j)}$：
+
+$$
+v^{(j)}_{q_k} = \begin{cases}
+1, & k = j, \\
+0, & k \ne j,
+\end{cases}
+\qquad
+v^{(j)}_{p_i} = -B_{i,q_j} \quad (1 \le i \le r).
+$$
+
+这些向量线性无关，且张成整个右核，于是 $v^{(1)}, \ldots, v^{(n-r)}$ 构成右核的一组基，右核的维数为 $n-r$．[^mit-nullspace]
+
+$A$ 的 **左核** 是满足 $u^TA = 0$ 的列向量 $u \in \mathbb{F}^m$ 构成的空间，也即 $A^T$ 的右核．记 $X$ 的第 $i$ 行为 $X_{i,*}$．由 $B = XA$ 可知对 $r < i \le m$ 都有
+
+$$
+X_{i,*} A = B_{i,*} = 0.
+$$
+
+因此，$X$ 的后 $m-r$ 行转置后都属于 $A$ 的左核．又因为 $X$ 各行线性无关，而左核的维数为 $m-r$，所以这些行转置后恰好构成左核的一组基[^shoup][^mit-left-nullspace]．
+
+另外，如果只需求左核，则只将 $A$ 化为行阶梯形即可．
+
+## 高斯–约当消元法解异或方程组
 
 异或方程组是指形如
 
@@ -302,3 +339,11 @@ $$
 
 -   [Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E)
 -   [luogu - SDOI2010 外星千足虫](https://www.luogu.com.cn/problem/P2447)
+
+## 参考资料与注释
+
+[^shoup]: Victor Shoup. [A Computational Introduction to Number Theory and Algebra](https://www.shoup.net/ntb/ntb-v1.pdf). Cambridge University Press, 2005．
+
+[^mit-nullspace]: MIT OpenCourseWare. [Solving Ax = 0: Pivot Variables, Special Solutions](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/dddb31dfe72d2e2e2fd09e74713b7775_MIT18_06SCF11_Ses1.7sum.pdf#page=2). 18.06SC Linear Algebra, Fall 2011．
+
+[^mit-left-nullspace]: MIT OpenCourseWare. [The Four Fundamental Subspaces](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/62a9db9eeab190694d40afe4734068ca_MIT18_06SCF11_Ses1.10sum.pdf#page=2). 18.06SC Linear Algebra, Fall 2011．
