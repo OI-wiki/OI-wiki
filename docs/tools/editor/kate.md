@@ -2,7 +2,7 @@ author: CoelacanthusHex
 
 ## 软件简介
 
-Kate 是一个具有众多功能的跨平台文本编辑器．Kate 还附带了多种插件，包括一个嵌入式终端，可以让你直接从 Kate 中启动控制台命令，强大的搜索和替换插件，以及一个预览插件，可以渲染 MD、HTML 甚至 SVG 文件．支持通过交换文件在系统崩溃时恢复数据，带参数提示的自动补全，同时支持 [LSP (Language Server Protocol)](https://microsoft.github.io/language-server-protocol/) 以获得更为强大的补全．
+Kate，全称 KDE's Advanced Text Editor，是一个具有众多功能的跨平台文本编辑器．Kate 还附带了多种插件，包括一个嵌入式终端，可以让你直接从 Kate 中启动控制台命令，强大的搜索和替换插件，以及一个预览插件，可以渲染 MD、HTML 甚至 SVG 文件．支持通过交换文件在系统崩溃时恢复数据，带参数提示的自动补全，同时支持 [LSP (Language Server Protocol)](https://microsoft.github.io/language-server-protocol/) 以获得更为强大的补全．
 
 ## 下载与安装
 
@@ -21,7 +21,7 @@ Kate 支持三百余种语言的语法高亮．一般来说，Kate 可以自动�
 #### 自己编写语法高亮文件
 
 尽管 Kate 支持超过三百种语言的语法高亮，但是仍不免有语言未被覆盖到，此时可以自己动手编写语法高亮文件．
-Kate 自身自带的文件位于 [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html)，编写好的文件根据 [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files) 放置．[CoelacanthusHex/dotfiles@80a913c/pam\_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) 有笔者编写的一个配置文件可供参考．
+Kate 自身自带的文件位于 [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk_kf6/en/kate/katepart/highlight.html)，编写好的文件根据 [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files) 放置．[CoelacanthusHex/dotfiles@80a913c/pam\_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) 有笔者编写的一个配置文件可供参考．
 
 ### 切换语言
 
@@ -48,25 +48,70 @@ Kate 可以自动识别当前文件使用的是什么编码，如果识别错误
 
 Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、Latex/BibTeX、OCaml、Python、Rust，现如今支持如下表中的语言：
 
-|     语言     |                                       LSP Server                                      |
-| :--------: | :-----------------------------------------------------------------------------------: |
-|    Bash    |        [bash-language-server](https://github.com/bash-lsp/bash-language-server)       |
-|    LaTeX   |                         [texlab](https://texlab.netlify.com/)                         |
-|   BibTeX   |                         [texlab](https://texlab.netlify.com/)                         |
-|      C     |                     [clangd](https://clang.llvm.org/extra/clangd/)                    |
-|     C++    |                     [clangd](https://clang.llvm.org/extra/clangd/)                    |
-|      D     |                      [serve-d](https://github.com/Pure-D/serve-d)                     |
-|   Fortran  |              [fortls](https://github.com/hansec/fortran-language-server)              |
-|     Go     |                       [gopls](https://golang.org/x/tools/gopls)                       |
-|   Haskell  | [haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server) |
-| JavaScript | [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
-|    OCaml   |                     [ocamllsp](https://github.com/ocaml/ocaml-lsp)                    |
-|    Perl    |        [Perl-LanguageServer](https://github.com/richterger/Perl-LanguageServer)       |
-|   Python   |               [pyls](https://github.com/palantir/python-language-server)              |
-|    Rust    |                        [rls](https://github.com/rust-lang/rls)                        |
-| TypeScript | [typescript-language-server](https://github.com/theia-ide/typescript-language-server) |
-|      R     |          [RLanguageServer](https://github.com/REditorSupport/languageserver)          |
-|     zig    |                         [zls](https://github.com/zigtools/zls)                        |
+| Language | LSP Server |
+| :---: | :---: |
+| Ada | [ada_language_server](https://github.com/AdaCore/ada_language_server) |
+| Bash | [bash-language-server](https://github.com/bash-lsp/bash-language-server) |
+| BibTeX | [texlab](https://github.com/latex-lsp/texlab) |
+| Blueprint | [blueprint-compiler](https://gitlab.gnome.org/GNOME/blueprint-compiler) |
+| C | [clangd](https://clangd.llvm.org) |
+| Clojure | [clojure-lsp](https://github.com/clojure-lsp/clojure-lsp) |
+| CMake | [neocmakelsp](https://github.com/neocmakelsp/neocmakelsp) |
+| CSS | [vscode-css-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server) |
+| C++ | [clangd](https://clangd.llvm.org) |
+| C# | [OmniSharp](https://github.com/OmniSharp/omnisharp-roslyn) |
+| D | [serve-d](https://github.com/Pure-D/serve-d) |
+| Dart | [dart language-server](https://github.com/dart-lang/sdk/blob/master/pkg/analysis_server/tool/lsp_spec) |
+| Debputy | [debputy lsp server](https://salsa.debian.org/debian/debputy-lsp) |
+| Dockerfile | [docker-langserver](https://github.com/rcjsuen/dockerfile-language-server-nodejs) |
+| Elm | [elm-language-server](https://github.com/elm-tooling/elm-language-server) |
+| Fish | [fish-lsp](https://github.com/ndonfris/fish-lsp) |
+| Fortran | [fortls](https://github.com/hansec/fortran-language-server) |
+| F# | [fsautocomplete](https://github.com/fsharp/FsAutoComplete) |
+| Gleam | [gleam lsp](https://gleam.run/) |
+| GLSL | [glsl_analyzer](https://github.com/nolanderc/glsl_analyzer) |
+| Go | [gopls](golang.org/x/tools/gopls) |
+| Godot | [nc (Godot Engine)](https://godotengine.org/) |
+| Haskell | [haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server) |
+| HTML | [vscode-html-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/html-language-features/server) |
+| Java | [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls) |
+| JavaScript | [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server) |
+| JSX | [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server) |
+| JSON | [vscode-json-languageserver](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server) |
+| JSONC | [vscode-json-languageserver](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server) |
+| Julia | [LanguageServer.jl](https://github.com/julia-vscode/LanguageServer.jl) |
+| Kotlin | [kotlin-language-server](https://github.com/fwcd/kotlin-language-server) |
+| LaTeX | [texlab](https://github.com/latex-lsp/texlab) |
+| LESS | [vscode-css-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server) |
+| Lua | [lua-language-server](https://github.com/sumneko/lua-language-server) |
+| Markdown | [marksman](https://github.com/artempyanykh/marksman) |
+| Nix | [nil](https://github.com/oxalica/nil) |
+| Nim | [nimlsp](https://github.com/PMunch/nimlsp) |
+| OCaml | [ocamllsp](https://github.com/ocaml/ocaml-lsp) |
+| OpenSCAD | [openscad-lsp](https://github.com/Leathong/openscad-LSP) |
+| Perl | [perlnavigator](https://github.com/bscan/PerlNavigator) |
+| PHP | [phpactor](https://github.com/phpactor/phpactor) |
+| PureScript | [purescript-language-server](https://github.com/nwolverson/purescript-language-server) |
+| Python | [pylsp](https://github.com/python-lsp/python-lsp-server) |
+| QML | [qmlls](https://code.qt.io/cgit/qt/qtdeclarative.git/tree/src/qmlls) |
+| R | [languageserver](https://github.com/REditorSupport/languageserver) |
+| Racket | [racket-langserver](https://github.com/jeapostrophe/racket-langserver) |
+| RPM Spec | [rpm_lsp_server](https://github.com/dcermak/rpm-spec-language-server) |
+| reStructuredText | [esbonio](https://github.com/swyddfa/esbonio) |
+| Ruby | [solargraph](https://solargraph.org) |
+| Rust | [rust-analyzer](https://rust-analyzer.github.io) |
+| Scala | [metals](https://scalameta.org/metals/) |
+| SCSS | [vscode-css-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server) |
+| Terraform | [terraform-ls](https://github.com/hashicorp/terraform-ls) |
+| TypeScript | [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server) |
+| TSX | [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server) |
+| Typst | [tinymist](https://github.com/Myriad-Dreamin/tinymist) |
+| Vala | [vala-language-server](https://github.com/Prince781/vala-language-server) |
+| VHDL | [vhdl_ls](https://github.com/VHDL-LS/rust_hdl) |
+| Vue | [vue-language-server](https://www.npmjs.com/package/@vue/language-server) |
+| XML | [lemminx](https://github.com/redhat-developer/vscode-xml#lemminx-binary) |
+| YAML | [yaml-language-server](https://github.com/redhat-developer/yaml-language-server) |
+| Zig | [zls](https://github.com/zigtools/zls) |
 
 要启用 LSP 相关特性，需要前往菜单栏中 `设置`→`配置 Kate` 然后选择 `插件` 中 `LSP 客户端` 以启用相关特性．当打开对应语言的文件时，Kate 会自动拉起对应的 LSP Server．
 
@@ -137,7 +182,7 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 ##### 手写配置添加
 
-进入配置页面后，点击左下角 `添加`→`添加工具`，然后按提示填写即可．可以参照 [此文档（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html) 来编写自己的外部工具配置．注意可点击如下标志查看可使用的变量．
+进入配置页面后，点击左下角 `添加`→`添加工具`，然后按提示填写即可．可以参照 [此文档（英文）](https://docs.kde.org/trunk_kf6/en/kate/kate/kate-application-plugin-external-tools.html) 来编写自己的外部工具配置．注意可点击如下标志查看可使用的变量．
 
 ![](images/kate-3-var.png)
 
@@ -170,9 +215,9 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 
 ## 相关外部链接
 
--   [The Kate Handbook](https://docs.kde.org/stable5/en/kate/kate/kate.pdf)
--   [关于如何手写自己的 LSP 客户端配置（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
--   [关于如何手写自己的外部工具配置（英文）](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html)
+-   [The Kate Handbook](https://docs.kde.org/stable_kf6/en/kate/kate/kate.pdf)
+-   [关于如何手写自己的 LSP 客户端配置（英文）](https://docs.kde.org/trunk_kf6/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
+-   [关于如何手写自己的外部工具配置（英文）](https://docs.kde.org/trunk_kf6/en/kate/kate/kate-application-plugin-external-tools.html)
 
 ## 参考资料与脚注
 
