@@ -8,7 +8,7 @@ std::bitset<1010> matrix[2010];  // 增广矩阵，0 位置为常数
 
 // n 为未知数个数，m 为方程个数，返回方程组的解
 // 多解 / 无解返回空的 vector
-std::vector<bool> GaussElimination(int n, int m) {
+std::vector<bool> GaussJordanElimination(int n, int m) {
   for (int i = 1; i <= n; i++) {
     int cur = i;
     while (cur <= m && !matrix[cur].test(i)) cur++;
@@ -39,7 +39,7 @@ int main() {
     std::cin >> value;
     matrix[i][0] = value;
   }
-  auto ans = GaussElimination(n, m);
+  auto ans = GaussJordanElimination(n, m);
   if (ans.empty()) {
     std::cout << "No unique solution\n";
   } else {

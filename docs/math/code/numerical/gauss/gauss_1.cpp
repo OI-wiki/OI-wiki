@@ -21,10 +21,11 @@ double determinant(std::vector<std::vector<double>> a) {
     std::swap(a[i], a[k]);
     if (i != k) det = -det;
     det *= a[i][i];
-    for (int j = i + 1; j < n; ++j) a[i][j] /= a[i][i];
-    for (int j = 0; j < n; ++j)
-      if (j != i && std::abs(a[j][i]) > EPS)
-        for (int k = i + 1; k < n; ++k) a[j][k] -= a[i][k] * a[j][i];
+    for (int j = i + 1; j < n; ++j) {
+      double factor = a[j][i] / a[i][i];
+      a[j][i] = 0;
+      for (int k = i + 1; k < n; ++k) a[j][k] -= factor * a[i][k];
+    }
   }
   return det;
 }
