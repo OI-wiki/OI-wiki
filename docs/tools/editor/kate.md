@@ -21,6 +21,7 @@ Kate 支持三百余种语言的语法高亮．一般来说，Kate 可以自动�
 #### 自己编写语法高亮文件
 
 尽管 Kate 支持超过三百种语言的语法高亮，但是仍不免有语言未被覆盖到，此时可以自己动手编写语法高亮文件．
+
 Kate 自身自带的文件位于 [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/)，语法可参照 [Working with Syntax Highlighting](https://docs.kde.org/trunk_kf6/en/kate/katepart/highlight.html)，编写好的文件根据 [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files) 放置．[CoelacanthusHex/dotfiles@80a913c/pam\_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) 有笔者编写的一个配置文件可供参考．
 
 ### 切换语言
@@ -64,6 +65,8 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 |          HTML          | [vscode-html-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/html-language-features/server) |
 |           CSS          |  [vscode-css-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server)  |
 |          LaTeX         |                                     [texlab](https://github.com/latex-lsp/texlab)                                    |
+
+完整列表在 [KDE Kate 源码的 `addons/lspclient/settings.json`](https://invent.kde.org/utilities/kate/-/raw/master/addons/lspclient/settings.json)．
 
 要启用 LSP 相关特性，需要前往菜单栏中 `设置`→`配置 Kate` 然后选择 `插件` 中 `LSP 客户端` 以启用相关特性．当打开对应语言的文件时，Kate 会自动拉起对应的 LSP Server．
 
