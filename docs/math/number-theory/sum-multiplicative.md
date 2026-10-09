@@ -361,8 +361,6 @@ $$
 
 应用 Powerful Number 筛的思想，还可以快速计算块筛 $\mathcal S_f(n)$．
 
-
-
 ??? example "模板题 [LOJ 6783. 简单的函数 加强版](https://loj.ac/p/6783) 参考实现"
     ```cpp
     --8<-- "docs/math/code/sum-multiplicative/pn-block.cpp"
