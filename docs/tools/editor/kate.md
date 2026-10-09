@@ -48,22 +48,22 @@ Kate 可以自动识别当前文件使用的是什么编码，如果识别错误
 
 Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、Latex/BibTeX、OCaml、Python、Rust．下表是一些常用语言的 LSP Server：
 
-| Language | LSP Server |
-| :---: | :---: |
-| C, C++ | [clangd](https://clangd.llvm.org) |
-| Python | [pylsp](https://github.com/python-lsp/python-lsp-server) |
-| Java | [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls) |
-| JavaScript, TypeScript | [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server) |
-| Rust | [rust-analyzer](https://rust-analyzer.github.io) |
-| Go | [gopls](https://golang.org/x/tools/gopls) |
-| Lua | [lua-language-server](https://github.com/sumneko/lua-language-server) |
-| Bash | [bash-language-server](https://github.com/bash-lsp/bash-language-server) |
-| JSON | [vscode-json-languageserver](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server) |
-| YAML | [yaml-language-server](https://github.com/redhat-developer/yaml-language-server) |
-| Markdown | [marksman](https://github.com/artempyanykh/marksman) |
-| HTML | [vscode-html-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/html-language-features/server) |
-| CSS | [vscode-css-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server) |
-| LaTeX | [texlab](https://github.com/latex-lsp/texlab) |
+|        Language        |                                                      LSP Server                                                      |
+| :--------------------: | :------------------------------------------------------------------------------------------------------------------: |
+|         C, C++         |                                           [clangd](https://clangd.llvm.org)                                          |
+|         Python         |                               [pylsp](https://github.com/python-lsp/python-lsp-server)                               |
+|          Java          |                               [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls)                               |
+| JavaScript, TypeScript |        [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server)        |
+|          Rust          |                                   [rust-analyzer](https://rust-analyzer.github.io)                                   |
+|           Go           |                                       [gopls](https://golang.org/x/tools/gopls)                                      |
+|           Lua          |                         [lua-language-server](https://github.com/sumneko/lua-language-server)                        |
+|          Bash          |                       [bash-language-server](https://github.com/bash-lsp/bash-language-server)                       |
+|          JSON          | [vscode-json-languageserver](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server) |
+|          YAML          |                   [yaml-language-server](https://github.com/redhat-developer/yaml-language-server)                   |
+|        Markdown        |                                 [marksman](https://github.com/artempyanykh/marksman)                                 |
+|          HTML          | [vscode-html-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/html-language-features/server) |
+|           CSS          |  [vscode-css-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server)  |
+|          LaTeX         |                                     [texlab](https://github.com/latex-lsp/texlab)                                    |
 
 要启用 LSP 相关特性，需要前往菜单栏中 `设置`→`配置 Kate` 然后选择 `插件` 中 `LSP 客户端` 以启用相关特性．当打开对应语言的文件时，Kate 会自动拉起对应的 LSP Server．
 
