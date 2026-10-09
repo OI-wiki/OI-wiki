@@ -46,72 +46,24 @@ Kate 可以自动识别当前文件使用的是什么编码，如果识别错误
 
 ### Language Server Protocol
 
-Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、Latex/BibTeX、OCaml、Python、Rust，现如今支持如下表中的语言：
+Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、Latex/BibTeX、OCaml、Python、Rust．下表是一些常用语言的 LSP Server：
 
-|     Language     |                                                      LSP Server                                                      |
-| :--------------: | :------------------------------------------------------------------------------------------------------------------: |
-|        Ada       |                        [ada\_language\_server](https://github.com/AdaCore/ada_language_server)                       |
-|       Bash       |                       [bash-language-server](https://github.com/bash-lsp/bash-language-server)                       |
-|      BibTeX      |                                     [texlab](https://github.com/latex-lsp/texlab)                                    |
-|     Blueprint    |                        [blueprint-compiler](https://gitlab.gnome.org/GNOME/blueprint-compiler)                       |
-|         C        |                                           [clangd](https://clangd.llvm.org)                                          |
-|      Clojure     |                               [clojure-lsp](https://github.com/clojure-lsp/clojure-lsp)                              |
-|       CMake      |                               [neocmakelsp](https://github.com/neocmakelsp/neocmakelsp)                              |
-|        CSS       |  [vscode-css-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server)  |
-|        C++       |                                           [clangd](https://clangd.llvm.org)                                          |
-|        C#        |                              [OmniSharp](https://github.com/OmniSharp/omnisharp-roslyn)                              |
-|         D        |                                     [serve-d](https://github.com/Pure-D/serve-d)                                     |
-|       Dart       |        [dart language-server](https://github.com/dart-lang/sdk/blob/master/pkg/analysis_server/tool/lsp_spec)        |
-|      Debputy     |                           [debputy lsp server](https://salsa.debian.org/debian/debputy-lsp)                          |
-|    Dockerfile    |                   [docker-langserver](https://github.com/rcjsuen/dockerfile-language-server-nodejs)                  |
-|        Elm       |                       [elm-language-server](https://github.com/elm-tooling/elm-language-server)                      |
-|       Fish       |                                   [fish-lsp](https://github.com/ndonfris/fish-lsp)                                   |
-|      Fortran     |                              [fortls](https://github.com/hansec/fortran-language-server)                             |
-|        F#        |                              [fsautocomplete](https://github.com/fsharp/FsAutoComplete)                              |
-|       Gleam      |                                            [gleam lsp](https://gleam.run/)                                           |
-|       GLSL       |                             [glsl\_analyzer](https://github.com/nolanderc/glsl_analyzer)                             |
-|        Go        |                                           [gopls](golang.org/x/tools/gopls)                                          |
-|       Godot      |                                     [nc (Godot Engine)](https://godotengine.org/)                                    |
-|      Haskell     |                 [haskell-language-server-wrapper](https://github.com/haskell/haskell-language-server)                |
-|       HTML       | [vscode-html-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/html-language-features/server) |
-|       Java       |                               [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls)                               |
-|    JavaScript    |        [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server)        |
-|        JSX       |        [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server)        |
-|       JSON       | [vscode-json-languageserver](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server) |
-|       JSONC      | [vscode-json-languageserver](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server) |
-|       Julia      |                        [LanguageServer.jl](https://github.com/julia-vscode/LanguageServer.jl)                        |
-|      Kotlin      |                       [kotlin-language-server](https://github.com/fwcd/kotlin-language-server)                       |
-|       LaTeX      |                                     [texlab](https://github.com/latex-lsp/texlab)                                    |
-|       LESS       |  [vscode-css-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server)  |
-|        Lua       |                         [lua-language-server](https://github.com/sumneko/lua-language-server)                        |
-|     Markdown     |                                 [marksman](https://github.com/artempyanykh/marksman)                                 |
-|        Nix       |                                         [nil](https://github.com/oxalica/nil)                                        |
-|        Nim       |                                      [nimlsp](https://github.com/PMunch/nimlsp)                                      |
-|       OCaml      |                                    [ocamllsp](https://github.com/ocaml/ocaml-lsp)                                    |
-|     OpenSCAD     |                               [openscad-lsp](https://github.com/Leathong/openscad-LSP)                               |
-|       Perl       |                                [perlnavigator](https://github.com/bscan/PerlNavigator)                               |
-|        PHP       |                                   [phpactor](https://github.com/phpactor/phpactor)                                   |
-|    PureScript    |                [purescript-language-server](https://github.com/nwolverson/purescript-language-server)                |
-|      Python      |                               [pylsp](https://github.com/python-lsp/python-lsp-server)                               |
-|        QML       |                         [qmlls](https://code.qt.io/cgit/qt/qtdeclarative.git/tree/src/qmlls)                         |
-|         R        |                          [languageserver](https://github.com/REditorSupport/languageserver)                          |
-|      Racket      |                        [racket-langserver](https://github.com/jeapostrophe/racket-langserver)                        |
-|     RPM Spec     |                        [rpm\_lsp\_server](https://github.com/dcermak/rpm-spec-language-server)                       |
-| reStructuredText |                                     [esbonio](https://github.com/swyddfa/esbonio)                                    |
-|       Ruby       |                                         [solargraph](https://solargraph.org)                                         |
-|       Rust       |                                   [rust-analyzer](https://rust-analyzer.github.io)                                   |
-|       Scala      |                                        [metals](https://scalameta.org/metals/)                                       |
-|       SCSS       |  [vscode-css-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server)  |
-|     Terraform    |                               [terraform-ls](https://github.com/hashicorp/terraform-ls)                              |
-|    TypeScript    |        [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server)        |
-|        TSX       |        [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server)        |
-|       Typst      |                                [tinymist](https://github.com/Myriad-Dreamin/tinymist)                                |
-|       Vala       |                       [vala-language-server](https://github.com/Prince781/vala-language-server)                      |
-|       VHDL       |                                    [vhdl\_ls](https://github.com/VHDL-LS/rust_hdl)                                   |
-|        Vue       |                       [vue-language-server](https://www.npmjs.com/package/@vue/language-server)                      |
-|        XML       |                       [lemminx](https://github.com/redhat-developer/vscode-xml#lemminx-binary)                       |
-|       YAML       |                   [yaml-language-server](https://github.com/redhat-developer/yaml-language-server)                   |
-|        Zig       |                                        [zls](https://github.com/zigtools/zls)                                        |
+| Language | LSP Server |
+| :---: | :---: |
+| C, C++ | [clangd](https://clangd.llvm.org) |
+| Python | [pylsp](https://github.com/python-lsp/python-lsp-server) |
+| Java | [jdtls](https://github.com/eclipse-jdtls/eclipse.jdt.ls) |
+| JavaScript, TypeScript | [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server) |
+| Rust | [rust-analyzer](https://rust-analyzer.github.io) |
+| Go | [gopls](https://golang.org/x/tools/gopls) |
+| Lua | [lua-language-server](https://github.com/sumneko/lua-language-server) |
+| Bash | [bash-language-server](https://github.com/bash-lsp/bash-language-server) |
+| JSON | [vscode-json-languageserver](https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server) |
+| YAML | [yaml-language-server](https://github.com/redhat-developer/yaml-language-server) |
+| Markdown | [marksman](https://github.com/artempyanykh/marksman) |
+| HTML | [vscode-html-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/html-language-features/server) |
+| CSS | [vscode-css-languageserver](https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server) |
+| LaTeX | [texlab](https://github.com/latex-lsp/texlab) |
 
 要启用 LSP 相关特性，需要前往菜单栏中 `设置`→`配置 Kate` 然后选择 `插件` 中 `LSP 客户端` 以启用相关特性．当打开对应语言的文件时，Kate 会自动拉起对应的 LSP Server．
 
