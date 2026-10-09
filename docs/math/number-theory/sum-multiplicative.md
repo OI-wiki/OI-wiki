@@ -361,6 +361,8 @@ $$
 
 应用 Powerful Number 筛的思想，还可以快速计算块筛 $\mathcal S_f(n)$．
 
+
+
 ??? example "模板题 [LOJ 6783. 简单的函数 加强版](https://loj.ac/p/6783) 参考实现"
     ```cpp
     --8<-- "docs/math/code/sum-multiplicative/pn-block.cpp"
@@ -411,13 +413,9 @@ PN 筛：
 
 [^black]: 这个名字源于 baihacker 的博文．
 
-[^inv-pn]: 另一个角度或许能更直观地看出 Powerful Number 稀疏性带来的增益．枚举所有 $kd\le n$ 时，复杂度中的 $\log n$ 因子源自倒数和 $\sum_{k\le n}1/k$ 的增长速度；对于 Powerful Number 来说，由于它足够稀疏，倒数和 $\sum_{k\in\mathrm{PN}}1/k$ 是收敛的，其值为 $\prod_{p}\left(1+\dfrac{1}{p(p-1)}\right) = \dfrac{\zeta(2)\zeta(3)}{\zeta(6)} = 1.9435964\cdots$，所以就没有这一对数因子．Powerful Number 的倒数和可以参考 [Powerful number - Wikipedia](https://en.wikipedia.org/wiki/Powerful_number#Mathematical_properties)．
-
 [^ivic-pomerance]: 该集合见于 [OEIS A070003](https://oeis.org/A070003)．对该数量的估计引自 Ivić, Aleksandar. "On sums involving reciprocals of the largest prime factor of an integer II." Acta Arithmetica 71.3 (1995): 229-251. 一文，该文引用了 Ivić, A., and C. Pomerance. "Estimates for certain sums involving the largest prime factor of an integer." Coll. Math. Soc. J. Bolyai 34, North-Holland, 1984: 769-789. 中的结果．
 
 [^log-p-n]: 一般地，在对素数求和的算式中插入任意固定次幂的因子 $(\log_p n)^t$，只会改变常数，不改变渐近阶．这可以通过积分估计说明，也可以在 $n^c$ 处分段直观地看出：取定足够小的常数 $c>0$，对于 $p>n^c$，有 $(\log_p n)^t<c^{-t}$，只是一个常数因子；对于 $p\le n^c$，这样的素数不超过 $n^c$ 个，而每项多出的因子不超过 $\log^t n$，由于 $c$ 可以取得任意小，这一部分在本文各处都可以忽略．
-
-[^pn-block-bound]: 朱震霆在博文中给出的估计是 $\tilde O(n^{3/5})$ 的．这是因为他没有详细说明 $x\le z$ 部分的做法，讨论复杂度时沿用一般情形的结论，将第一部分的成本估作 $\tilde O(z)$，平衡后得到 $z=n^{3/5}$；而本文的做法只枚举 $d\le\sqrt{n}$ 的数对，第一部分的成本只有 $O(n^{1/4}z^{1/2})$．他在文末代码实现中，第一部分实际使用的正是本文叙述的做法．这一优化并非可有可无：如果线性筛出 $f$ 在 $[1,z]$ 上的全部点值，这一段直接求前缀和即可，但空间复杂度会退化为 $O(z)$．
 
 [^rough]: 参见 [Buchstab function - Wikipedia](https://en.wikipedia.org/wiki/Buchstab_function#Applications)．
 
