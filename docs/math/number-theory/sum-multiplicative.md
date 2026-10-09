@@ -253,7 +253,7 @@ $$
 
 那么，能否快速求出前缀和 $F(n)$，或者进一步地，快速计算块筛 $\mathcal S_f(n)$ 呢？
 
-**Powerful Number 筛**（简称 **PN 筛**）提供了这样一种算法．它可以快速修改积性函数在素数平方及以上幂次处的贡献：从块筛 $\mathcal S_g(n)$ 出发，在 $O(\sqrt{n})$ 时间内得到点值 $F(n)$，在 $O(n^{4/7})$ 时间内得到块筛 $\mathcal S_f(n)$．也就是说，只要支付这些成本，就可以自由选取 $g$ 在 $p^e~(e > 1)$ 处的取值，先算出容易计算的 $\mathcal S_g(n)$，再用 PN 筛修正回 $f$ 的前缀和或块筛．这无论是解决某些特殊形式的求和问题，还是加速一般积性函数求和，都是有用的手段．
+**Powerful Number 筛**（简称 **PN 筛**）提供了这样一种算法．它可以快速修改积性函数在素数平方及以上幂次处的贡献：从块筛 $\mathcal S_g(n)$ 出发，在 $O(\sqrt{n})$ 时间内得到点值 $F(n)$，在 $O(\sqrt{n}\log n)$ 时间内得到块筛 $\mathcal S_f(n)$．也就是说，只要支付这些成本，就可以自由选取 $g$ 在 $p^e~(e > 1)$ 处的取值，先算出容易计算的 $\mathcal S_g(n)$，再用 PN 筛修正回 $f$ 的前缀和或块筛．这无论是解决某些特殊形式的求和问题，还是加速一般积性函数求和，都是有用的手段．
 
 ### Powerful Number
 
@@ -359,35 +359,7 @@ $$
 
 ### 块筛计算
 
-应用 Powerful Number 筛的思想，还可以快速计算块筛 $\mathcal S_f(n)$．本节介绍的算法基于朱震霆在他的博文中提及并实现的一种方法．
-
-块筛计算的整体优化思路和一般情况下 [利用点值信息优化](./hyperbola.md#利用点值信息优化) 块筛卷积类似．首先，由于需要计算的点值很多，可以预处理出 $h$ 的块筛 $\mathcal S_h(n)$，这样单次计算 $F(x)~(x\in D(n))$ 的时间成本就从 $O(x^{1/2})$ 下降到 $O(x^{1/3})$．然后，将 $\mathcal S_f(n)$ 中的所有点值分成两段，前半段因为 $D(n)$ 较为稠密，可以计算（数论分块中的）单块贡献再求前缀和，后半段则仍然计算单个点值．最后，要利用好 Powerful Number 的稀疏性．例如，对于一般情形的 Dirichlet 卷积 $f=h\ast g$，计算所有点值 $f(x)~(x=1,\cdots,n)$，暴力枚举贡献 $h(k)g(d)$ 的做法时间复杂度是 $O(n\log n)$ 的；但是，如果 $h$ 仅在 Powerful Number 处有值，那么暴力枚举的复杂度就是 $O(\sum_{d=1}^n\sqrt{n/d})=O(n)$ 的．[^inv-pn]
-
-预处理部分，利用前文提到的方法，可以枚举出所有 Powerful Number，并计算 $h$ 在这些点处的值，统计到 $D(n)$ 对应桶中．对每个桶统计 $h(k)$ 的和，再累加即可得到 $h$ 的块筛 $\mathcal S_h(n)$．而对于求和部分，选择 $z\ge\sqrt{n}$ 且 $z\in D(n)$，具体做法如下：
-
--   对于 $x \in D(n)$ 且 $x\le z$，枚举贡献并统计到 $D(n)$ 对应桶中．由于只有 $g$ 在 $[1,\sqrt{n}]$ 中的点值信息，这一段要分两步完成．首先，枚举所有 $k\in\mathrm{PN},~ d\le\sqrt{n},~ kd\le z$，将贡献 $h(k)g(d)$ 统计到 $kd$ 所在的桶中，再累加得到前缀和．然后，对于还有遗漏的 $x\in D(n)$ 且 $\sqrt{n} < x \le z$，枚举 $k\in\mathrm{PN}$ 且 $k < x/\sqrt{n}$，补充贡献 $h(k)\left(G(x/k)-G(\sqrt{n})\right)$．这样就得到 $F$ 在 $[1,z]\cap D(n)$ 中的点值．
-
--   对于 $x\in D(n)$ 且 $x > z$，应用 Dirichlet 双曲线法或数论分块计算点值 $F(x)$，即选择分点 $w_x\in D(n)$ 计算
-
-    $$
-    F(x) = \sum_{k\le w_x,~k\in\mathrm{PN}}h(k)(G(x/k) - G(x/w_x)) + \sum_{d=1}^{\lfloor x/w_x\rfloor}g(d)H(x/d).
-    $$
-
-之所以要求分点 $z$ 和 $w_x$ 都取作 $D(n)$ 中的值，是为了保证每次枚举 Powerful Number 时访问的都是完整的桶．这样一来，具体实现时只需保留每个桶中 $h(k)$ 的和，而不必存储具体的 $(k,h(k))$ 数对；当需要遍历时，可以将每个桶最右端元素当作对应的 $k$，将桶中记录的和当作 $h(k)$．
-
-考察算法的时空成本．预处理 Powerful Number 得到 $h$ 的点值及其块筛的部分是 $O(\sqrt{n})$ 的．第一部分中，枚举 $(k,d)$ 的总次数是 $O(\sum_{d\le\sqrt{n}}\sqrt{z/d}) = O(n^{1/4}z^{1/2})$ 的，随后补充贡献部分枚举总次数是
-
-$$
-O\left(\sum_{x\in D(n),~\sqrt{n} < x \le z}\sqrt{\dfrac{x}{\sqrt{n}}}\right) = O\left(\sum_{i=1}^{\sqrt{n}}\sqrt{\dfrac{n/i}{\sqrt{n}}}\right) = O(\sqrt{n})
-$$
-
-的．第二部分中，Dirichlet 双曲线法计算每个点值 $F(x)$ 时，利用 $\mathrm{PN}$ 的稀疏性，时间复杂度是 $O(\sqrt{w_x} + x/w_x)$ 的；取分点为 $w_x \sim x^{2/3}$，就得到单次点值计算的最优复杂度 $O(x^{1/3})$．由此，第二部分计算所有点值的时间复杂度是
-
-$$
-O\left(\sum_{x\in D(n),~x > z}x^{1/3}\right) = O\left(\sum_{i=1}^{n/z}\left(\dfrac{n}{i}\right)^{1/3}\right) = O\left(\dfrac{n}{z^{2/3}}\right)
-$$
-
-的．平衡这两部分的复杂度，当 $z \sim n^{9/14}$ 时，总时间复杂度最小为 $O(n^{4/7})$；预处理和补充贡献的开销都只有 $O(\sqrt{n})$，不影响这一结果．[^pn-block-bound]由于所有存储的信息都在 $D(n)$ 或 $\mathrm{PN}\cap[1,n]$ 中，算法的空间复杂度是 $O(\sqrt{n})$ 的．
+应用 Powerful Number 筛的思想，还可以快速计算块筛 $\mathcal S_f(n)$．
 
 ??? example "模板题 [LOJ 6783. 简单的函数 加强版](https://loj.ac/p/6783) 参考实现"
     ```cpp
