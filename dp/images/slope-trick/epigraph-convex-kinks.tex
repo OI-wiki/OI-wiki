@@ -1,0 +1,108 @@
+% Modified from https://tex.stackexchange.com/a/261567.
+\documentclass{standalone}
+\usepackage[active,tightpage]{preview}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{arrows.meta,intersections}
+
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{14pt}{16pt}\selectfont}
+
+\DeclareMathOperator{\dom}{dom}
+
+\pgfmathdeclarefunction{func}{1}{%
+  \pgfmathparse{max(19-4*(#1+8),19-3*(#1+8),7-1*(#1+4),2,2+1*(#1-3),3+2*(#1-4),7+3*(#1-6),19+4*(#1-10))}%
+}
+
+\pgfplotsset{compat=1.16}
+\makeatletter
+\pgfplotsset{
+    mark max/.style={
+        point meta rel=per plot,
+        visualization depends on={x \as \xvalue},
+        scatter/@pre marker code/.code={%
+        \ifx\pgfplotspointmeta\pgfplots@metamax
+            \def\markopts{mark=none}%
+            \coordinate (maximum);
+        \fi
+            \def\markopts{mark=none}
+            \expandafter\scope\expandafter[\markopts]
+        },%
+        scatter/@post marker code/.code={%
+            \endscope
+        },
+        scatter
+    }
+}
+
+% Syntax
+% \DrawEpigraph[<additional options>]{<min domain x>}{<max domain x>}{<shift on the left>}{<shift on the right>}
+\newcommand\DrawEpigraph[6][draw=white,top color=red!05,bottom color=red!45]{
+  \coordinate (plot-left) at ([yshift=#4]axis cs:#2,\pgfplots@metamax);
+  \coordinate (plot-right) at ([yshift=#5]axis cs:#3,\pgfplots@metamax);
+  \path[name path=diagonal,draw=none] (plot-left) -- (plot-right);
+  \addplot[#1] fill between[of=#6 and diagonal];
+}
+\makeatother
+
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}        
+
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=middle,
+  xlabel={$x$},
+  ylabel={$y$},
+  xtick={\empty},
+  ytick={\empty},
+  domain=-8.2:10.2,
+  ymin=0,
+  ymax=20,
+  xmin=-8.5,
+  xmax=11,
+  clip=false,
+  axis on top,
+  scale=2
+] 
+% The curve
+\addplot [mark max,black,thick,name path=B,samples=1000] plot {func(x)};
+% The Epigraph
+\DrawEpigraph{-8.2}{10.2}{0}{0}{B}
+% Lines and labels
+\node[below left] at (axis cs:0,0) {$O$};
+\draw[dashed] 
+    (axis cs:-8,0) node[below] {$\xi_{-4}$} -- (axis cs:-8,{func(-8)})
+    node[draw,fill,circle,inner sep=-1.5pt] {};
+\draw[dashed] 
+    (axis cs:-4,0) node[below] {$\xi_{-3}=\xi_{-2}$} -- (axis cs:-4,{func(-4)})
+    node[draw,fill,circle,inner sep=-1.5pt] {};
+\draw[dashed] 
+    (axis cs:1,0) node[below] {$\xi_{-1}$} -- (axis cs:1,{func(1)})
+    node[draw,fill,circle,inner sep=-1.5pt] {};
+\draw[dashed] 
+    (axis cs:3,0) node[below] {$\xi_1$} -- (axis cs:3,{func(3)})
+    node[draw,fill,circle,inner sep=-1.5pt] {};
+\draw[dashed] 
+    (axis cs:4,0) node[below] {$\xi_2$} -- (axis cs:4,{func(4)})
+    node[draw,fill,circle,inner sep=-1.5pt] {};
+\draw[dashed] 
+    (axis cs:6,0) node[below] {$\xi_3$} -- (axis cs:6,{func(6)})
+    node[draw,fill,circle,inner sep=-1.5pt] {};
+\draw[dashed] 
+    (axis cs:10,0) node[below] {$\xi_4$} -- (axis cs:10,{func(10)})
+    node[draw,fill,circle,inner sep=-1.5pt] {};
+\draw[dashed] 
+    (axis cs:0,{func(1)}) node[left] {$\min f(x)$} -- (axis cs:1,{func(1)})
+    node[draw,fill,circle,inner sep=-1.5pt] {};
+\node[right] at (axis cs:-6,{func(-6)}) {$k=-3$};
+\node[right] at (axis cs:-2.8,{func(-2.8)}) {$k=-1$};
+\node[above] at (axis cs:2,{func(2)}) {$k=0$};
+\node[right] at (axis cs:3,{func(3)}) {$k=1$};
+\node[right] at (axis cs:4.5,{func(4.5)}) {$k=2$};
+\node[right] at (axis cs:7.5,{func(7.5)}) {$k=3$};
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

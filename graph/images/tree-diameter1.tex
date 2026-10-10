@@ -1,0 +1,23 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}[x=2cm,y=2cm]
+
+\begin{scope}[every node/.style={circle,draw,minimum size=1cm}]
+    \node (s) at (0,1) {$s$};
+    \node (t) at (3,1) {$t$};
+    \node (y) at (1,1) {$y$};
+    \node (z) at (2.5,0) {$z$};
+    \node (x) at (2,1) {$x$};
+\end{scope}
+
+\path
+    (s) edge (y)
+    (y) edge (x)
+    (x) edge (z)
+    (x) edge (t);
+
+\end{tikzpicture}
+\end{document}

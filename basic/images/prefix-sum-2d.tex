@@ -1,0 +1,43 @@
+\documentclass  {standalone}
+\usepackage{tikz}
+\usetikzlibrary{fit}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+\begin{document}
+\scalebox{2.5}{%
+\(
+    A = 
+    \left(\begin{array}{*4{c}}
+        \tikzmark{a}{1} & 2 & 4 & 3 \\ 
+        5 & 1 & \tikzmark{c}{2} & 4 \\ 
+        6 & \tikzmark{b}{3}& \tikzmark{d}{5} & 9 
+    \end{array}\right)
+    \tikz[overlay,remember picture]{
+        \node[
+            rectangle,rounded corners,fill=blue,
+            fill opacity=0.2,inner sep=0pt,fit=(a.north west) (b.south east)
+        ] (first) {};
+        \node[
+            rectangle,rounded corners,fill=red,
+            fill opacity=0.2,inner sep=0pt,fit=(a.north west) (c.south east)
+        ] (second) {};
+        \node[
+            rectangle,draw,dashed,color=black!50,thick,
+            inner sep=0pt,fit=(a.north west) (d.south east)
+        ] (third) {};
+    }
+    \qquad
+    S = 
+    \left(\begin{array}{*4{c}}
+    1  & 3 & 7 & 10 \\
+    6  & 9 & 15& 22 \\ 
+    12 &18 & 29& 45
+    \end{array}\right)
+\)
+%
+\tikz[overlay,remember picture] {
+  \node[below of=first] {$S_{3,2}$};
+  \node[above right of=second] {$S_{2,3}$};
+}%
+}
+\end{document}

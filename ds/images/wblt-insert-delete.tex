@@ -1,0 +1,81 @@
+\documentclass{standalone}
+\usepackage[active,tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{trees,shapes.geometric,positioning,arrows.meta,fit}
+
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{14pt}{16pt}\selectfont}
+
+\PreviewEnvironment{tikzpicture}
+
+\pgfdeclarelayer{bg}
+\pgfsetlayers{bg,main}
+
+\begin{document}
+
+\begin{tikzpicture}[
+  thick,
+  minimum size=1.5cm,
+  every node/.style={circle,inner sep=-1em,draw},
+  square/.style={regular polygon,regular polygon sides=4,inner sep=0.5em},
+]
+
+  \begin{scope}[
+    local bounding box=plot-left,
+    level distance=1.2cm,
+    level 1/.style={sibling distance=2cm},
+    level 2/.style={sibling distance=1cm},
+    scale=2,
+  ] 
+  
+  \node {a}
+    child { node {b}
+      child { node [square,draw] {1} }
+      child { node [square,draw] {2} }
+    }
+    child { node (left-c) {c}
+      child { node [square,draw] {3} }
+      child { node [square,draw] {5} }
+    };
+  
+  \end{scope};
+
+  \begin{scope}[
+    local bounding box=plot-right,
+    xshift=9cm,
+    level distance=1.2cm,
+    level 1/.style={sibling distance=2cm},
+    level 2/.style={sibling distance=1cm},
+    scale=2,
+  ] 
+  
+  \node {a}
+    child { node (right-b) {b}
+      child { node [square,draw] {1} }
+      child { node [square,draw] {2} }
+    }
+    child { node {c}
+      child { node [square,draw] {3} }
+      child { node (right-d) {d} 
+        child { node (right-4) [square,draw] {4} }
+        child { node [square,draw] {5} }
+      }
+    };
+  
+  \end{scope};
+
+  \draw[arrows={-Stealth[harpoon]}] ([xshift=1em]left-c.5) -- 
+    node[above,pos=0.5,yshift=-10pt,draw=none] {Insertion} 
+    ([xshift=-1em]right-b.175);
+  \draw[arrows={-Stealth[harpoon]}] ([xshift=-1em]right-b.182) --
+    node[below,pos=0.5,yshift=+10pt,draw=none] {Deletion} 
+    ([xshift=1em]left-c.358);
+
+  \begin{pgfonlayer}{bg}
+    \draw[thick,red,double,double distance=17mm,cap=round]
+      (right-d.center) -- (right-4.center);
+  \end{pgfonlayer}
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,24 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\tikzset{tree/.style={every node/.style={circle, draw}}}
+
+\begin{document}
+\begin{tikzpicture}
+
+\scoped[tree] \node at (-2,0) {$y$}
+    child {node {$x$}}
+    child[missing];
+
+\scoped[tree] \node at (2,0) {$x$}
+    child[missing]
+    child {node {$y$}};
+
+\node at (0,-2.5) {1};
+
+\draw[->] (-0.5,-1) -- ++(1,0);
+
+\end{tikzpicture}
+\end{document}
