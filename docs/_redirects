@@ -88,9 +88,12 @@
 /math/mobius /math/number-theory/mobius
 /math/du /math/number-theory/hyperbola
 /math/number-theory/du /math/number-theory/hyperbola
-/math/powerful-number /math/number-theory/powerful-number
-/math/min-25 /math/number-theory/min-25
-/math/zhou /math/number-theory/zhou
+/math/powerful-number /math/number-theory/sum-multiplicative
+/math/number-theory/powerful-number /math/number-theory/sum-multiplicative
+/math/min-25 /math/number-theory/sum-multiplicative
+/math/number-theory/min-25 /math/number-theory/sum-multiplicative
+/math/zhou /math/number-theory/sum-multiplicative
+/math/number-theory/zhou /math/number-theory/sum-multiplicative
 /math/pollard-rho /math/number-theory/pollard-rho
 /math/continued-fraction /math/number-theory/continued-fraction
 /math/pell-equation /math/number-theory/pell-equation
