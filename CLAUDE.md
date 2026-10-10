@@ -166,11 +166,10 @@ The project uses comprehensive GitHub Actions for continuous integration and dep
   3. Pre-build setup (theme installation)
   4. MkDocs build with verbose output
   5. HTML post-processing (commits info, math rendering, external links)
-  6. HTML minification
-  7. Redirect generation
-  8. Link validation (internal links only)
-  9. Deploy to gh-pages (on push events)
-  10. Baidu search submission (production only)
+  6. Redirect generation
+  7. Link validation (internal links only)
+  8. Deploy to gh-pages (on push events)
+  9. Baidu search submission (production only)
 
 #### Code Quality Workflows
 - **Format checking** (`check-format.yml`): Markdown formatting, C++ code formatting
