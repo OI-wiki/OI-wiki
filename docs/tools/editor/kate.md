@@ -47,7 +47,7 @@ Kate 可以自动识别当前文件使用的是什么编码，如果识别错误
 
 ### Language Server Protocol
 
-Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、Latex/BibTeX、OCaml、Python、Rust．下表是一些常用语言的 LSP Server：
+Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go、LaTeX/BibTeX、OCaml、Python、Rust，现在已经支持数十种语言．下表是一些常用语言的 LSP Server：
 
 |        Language        |                                                      LSP Server                                                      |
 | :--------------------: | :------------------------------------------------------------------------------------------------------------------: |
