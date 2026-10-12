@@ -30,6 +30,7 @@ jobs:
       - name: Build the LaTeX document
         uses: xu-cheng/latex-action@v4
         with:
+          docker_image: "ghcr.io/xu-cheng/texlive-alpine:20260701"
           latexmk_use_xelatex: true
           latexmk_shell_escape: true
           args: "-pdf -file-line-error -halt-on-error -interaction=batchmode -8bit"

@@ -12,13 +12,13 @@
 
 以 **最小锦标赛排序树** 为例：
 
-![tournament-sort1](./images/tournament-sort1.png)
+![tournament-sort1](./images/tournament-sort1.svg)
 
-待排序元素是叶子节点显示的元素．红色边显示的是每一轮比较中较小的元素的胜出路径．显然，完成一次＂锦标赛＂可以选出一组元素中最小的那一个．
+待排序元素是叶子节点显示的元素．红色边显示的是每一轮比较中较小的元素的胜出路径．显然，完成一次「锦标赛」可以选出一组元素中最小的那一个．
 
-每一轮对 $n$ 个元素进行比较后可以得到 $\frac{n}{2}$ 个「优胜者」，每一对中较小的元素进入下一轮比较．如果无法凑齐一对元素，那么这个元素直接进入下一轮的比较．
+每一轮对 $n$ 个元素进行比较后可以得到 $\left\lceil\dfrac{n}{2}\right\rceil$ 个「优胜者」，每一对中较小的元素进入下一轮比较．如果无法凑齐一对元素，那么这个元素直接进入下一轮的比较．
 
-![tournament-sort2](./images/tournament-sort2.png)
+![tournament-sort2](./images/tournament-sort2.svg)
 
 完成一次「锦标赛」后需要将被选出的元素去除．直接将其设置为 $\infty$（这个操作类似 [堆排序](./heap-sort.md)），然后再次举行「锦标赛」选出次小的元素．
 
@@ -42,98 +42,12 @@
 
 === "C++"
     ```cpp
-    int n, a[MAXN], tmp[MAXN << 1];
-    
-    int winner(int pos1, int pos2) {
-      int u = pos1 >= n ? pos1 : tmp[pos1];
-      int v = pos2 >= n ? pos2 : tmp[pos2];
-      if (tmp[u] <= tmp[v]) return u;
-      return v;
-    }
-    
-    void creat_tree(int &value) {
-      for (int i = 0; i < n; i++) tmp[n + i] = a[i];
-      for (int i = 2 * n - 1; i > 1; i -= 2) {
-        int k = i / 2;
-        int j = i - 1;
-        tmp[k] = winner(i, j);
-      }
-      value = tmp[tmp[1]];
-      tmp[tmp[1]] = INF;
-    }
-    
-    void recreat(int &value) {
-      int i = tmp[1];
-      while (i > 1) {
-        int j, k = i / 2;
-        if (i % 2 == 0)
-          j = i + 1;
-        else
-          j = i - 1;
-        tmp[k] = winner(i, j);
-        i = k;
-      }
-      value = tmp[tmp[1]];
-      tmp[tmp[1]] = INF;
-    }
-    
-    void tournament_sort() {
-      int value;
-      creat_tree(value);
-      for (int i = 0; i < n; i++) {
-        a[i] = value;
-        recreat(value);
-      }
-    }
+    --8<-- "docs/basic/code/tournament-sort/tournament-sort_1.cpp:sort"
     ```
 
 === "Python"
     ```python
-    n = 0
-    a = [0] * MAXN
-    tmp = [0] * MAXN * 2
-    
-    
-    def winner(pos1, pos2):
-        u = pos1 if pos1 >= n else tmp[pos1]
-        v = pos2 if pos2 >= n else tmp[pos2]
-        if tmp[u] <= tmp[v]:
-            return u
-        return v
-    
-    
-    def creat_tree():
-        for i in range(0, n):
-            tmp[n + i] = a[i]
-        for i in range(2 * n - 1, 1, -2):
-            k = int(i / 2)
-            j = i - 1
-            tmp[k] = winner(i, j)
-        value = tmp[tmp[1]]
-        tmp[tmp[1]] = INF
-        return value
-    
-    
-    def recreat():
-        i = tmp[1]
-        while i > 1:
-            j = k = int(i / 2)
-            if i % 2 == 0:
-                j = i + 1
-            else:
-                j = i - 1
-            tmp[k] = winner(i, j)
-            i = k
-        value = tmp[tmp[1]]
-        tmp[tmp[1]] = INF
-        return value
-    
-    
-    def tournament_sort():
-        value = creat_tree()
-        for i in range(0, n):
-            a[i] = value
-            value = recreat()
+    --8<-- "docs/basic/code/tournament-sort/tournament-sort_1.py:sort"
     ```
 
 ## 外部链接

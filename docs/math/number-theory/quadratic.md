@@ -16,7 +16,7 @@ $$
 
 的形式，其中，$a$ 与 $b$ 为有理数，$d$ 为整数且无平方因子．任意这种形式的数也都是二次代数数．二次代数数可以分为有理数和 **二次无理数**（quadratic irrational number）．显然，二次无理数表示成上述形式的方法是唯一的．
 
-对于任意无平方因子的整数 $d\neq 0,1$，都可以验证集合 $Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ 对于加、减、乘、除是封闭的．由于对于四则运算封闭的集合称为 [域](../algebra/basic.md#域)，集合 $Q(\sqrt{d})$ 就称为 **二次域**（quadratic field）．每一个二次域都包含全体有理数，因此它们都是有理数域 $\mathbf Q$ 的 [二次扩域](../algebra/field-theory.md#域的扩张)．当 $d>0$ 时，二次域 $\mathbf Q(\sqrt{d})$ 中所有数都是实数，此时的 $\mathbf Q(\sqrt{d})$ 称为实二次域；当 $d<0$ 时，二次域中除了有理数都是复数，此时的 $\mathbf Q(\sqrt{d})$ 称为虚二次域．
+对于任意无平方因子的整数 $d\neq 0,1$，都可以验证集合 $\mathbf Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ 对于加、减、乘、除是封闭的．由于对于四则运算封闭的集合称为 [域](../algebra/basic.md#域)，集合 $\mathbf Q(\sqrt{d})$ 就称为 **二次域**（quadratic field）．每一个二次域都包含全体有理数，因此它们都是有理数域 $\mathbf Q$ 的 [二次扩域](../algebra/field-theory.md#域的扩张)．当 $d>0$ 时，二次域 $\mathbf Q(\sqrt{d})$ 中所有数都是实数，此时的 $\mathbf Q(\sqrt{d})$ 称为实二次域；当 $d<0$ 时，二次域中除了有理数都不是实数，此时的 $\mathbf Q(\sqrt{d})$ 称为虚二次域．
 
 ### 共轭与范数
 
@@ -92,28 +92,28 @@ $$
 
 反过来，任何这种形式的复数都是二次整数．每个非有理数的二次整数写成该形式的方法都是唯一的．
 
-二次域 $\mathbf Q(\sqrt{d})$ 中的全体二次整数构成的集合记作 $\mathbf Z[\omega]$．因为这个集合对于加、减、乘都是封闭的，所以它也称为 **二次整数环**（quadratic integer ring)．二次整数环中的有理数恰为全体整数．如果考察 $\mathbf Z[\omega]$ 中的二次整数的全体比值构成的集合，就得到相应的二次域 $\mathbf Q(\sqrt{d})$．
+二次域 $\mathbf Q(\sqrt{d})$ 中的全体二次整数构成的集合记作 $\mathbf Z[\omega]$．因为这个集合对于加、减、乘都是封闭的，所以它也称为 **二次整数环**（quadratic integer ring）．二次整数环中的有理数恰为全体整数．如果考察 $\mathbf Z[\omega]$ 中的二次整数的全体比值构成的集合，就得到相应的二次域 $\mathbf Q(\sqrt{d})$．
 
-二次整数的迹、范数和判别式都是整数．二次整数环 $\mathbf Z[\omega]$ 中全体二次无理数的判别式的最小值也称为相应的二次域 $\mathbf Q(\sqrt{d})$ 的判别式．当 $d\equiv 1\pmod 4$ 时，判别式是 $d$；当 $d\equiv 2,3\pmod 4$ 时，判别式是 $4d$．
+二次整数的迹、范数和判别式都是整数．二次整数环 $\mathbf Z[\omega]$ 中全体二次无理数的判别式中绝对值最小者也称为相应的二次域 $\mathbf Q(\sqrt{d})$ 的判别式．当 $d\equiv 1\pmod 4$ 时，判别式是 $d$；当 $d\equiv 2,3\pmod 4$ 时，判别式是 $4d$．
 
 ### 整除、相伴与单位数
 
 类似于整数，对于二次整数同样可以建立整除理论．当然，讨论必须在同一个二次整数环内进行．
 
-对于二次整数环 $\mathbf Z[\omega]$ 中的二次整数 $\alpha$ 和 $\beta$，如果存在同一个环中的二次整数 $\gamma$ 使得 $\beta=\alpha\gamma$ 成立，就称 $\alpha$ 整除 $\beta$，记作 $\alpha\mid\beta$．整除关系是二次整数环上的 [偏序](../order-theory.md#二元关系) 关系．如果同时有 $\alpha\mid\beta$ 和 $\beta\mid\alpha$，那么 $\alpha$ 和 $\beta$ 在研究整除理论时就可以视作同一个数，它们称为 **相伴**（associate）．相伴关系是二次整数环上的等价关系．
+对于二次整数环 $\mathbf Z[\omega]$ 中的二次整数 $\alpha$ 和 $\beta$，如果存在同一个环中的二次整数 $\gamma$ 使得 $\beta=\alpha\gamma$ 成立，就称 $\alpha$ 整除 $\beta$，记作 $\alpha\mid\beta$．整除关系是二次整数环上的 [预序](../order-theory.md#二元关系) 关系．如果同时有 $\alpha\mid\beta$ 和 $\beta\mid\alpha$，那么 $\alpha$ 和 $\beta$ 在研究整除理论时就可以视作同一个数，它们称为 **相伴**（associate）．相伴关系是二次整数环上的等价关系．
 
 类比到整数的整除理论上，相伴关系就是互为相反数．整除理论通常只需要考虑自然数就好了，而不必考察负数的情形．对于二次整数而言，相伴关系可能更为复杂一些．如果二次整数 $\alpha$ 和 $\beta$ 相伴，则存在二次整数 $\gamma$ 和 $\delta$ 使得 $\beta=\alpha\gamma$ 和 $\alpha=\beta\delta$ 成立．因此，$\beta$ 和 $\alpha$ 的比值 $\gamma$ 必然是特殊的二次整数，即存在二次整数 $\delta$ 使得 $\gamma\delta=1$．这样的二次整数 $\gamma$ 称为 **单位数**（unit），也称为可逆元．两个二次整数相伴，当且仅当它们的比值是单位数．因此，要理解二次整数环上的相伴关系，就要理解它的单位数的结构．
 
 因为范数可以保持乘法运算，且二次整数的范数总是整数，所以利用范数可以将二次整数的整除关系转化为整数的整除关系．也就是说，如果 $\alpha\mid\beta$，那么必然有 $N(\alpha)\mid N(\beta)$．同样地，二次整数 $\alpha$ 是单位数，当且仅当它的范数 $N(\alpha)=\pm 1$．因此，要获得二次整数环 $\mathbf Z[\omega]$ 中的全体单位数，只需要求解不定方程：
 
 $$
-N(a+b\sqrt{d})=1,
+N(a+b\omega)=\pm 1,
 $$
 
 其中，范数的表达式为
 
 $$
-N(a+b\sqrt{d})=\begin{cases}
+N(a+b\omega)=\begin{cases}
 a^2+ab+\dfrac{1-d}{4}b^2, & d\equiv 1\pmod 4,\\
 a^2-db^2, & d\equiv 2,3\pmod 4.
 \end{cases}
@@ -123,7 +123,7 @@ $$
 
 对于实二次整数环，即 $d>0$ 时，情形较为复杂，可以转化为对相应的 [Pell 方程](./pell-equation.md) 的讨论．由 Pell 方程的相关结论可知，此时的全体单位数的集合可以写作 $\{\pm u^k:k\in\mathbf Z\}$，其中的 $u$ 称为 **基本单位数**（fundamental unit）．基本单位数可以通过相应的 Pell 方程进行求解．基本单位数并不是唯一的：如果 $u$ 是基本单位数，那么它的共轭 $\bar u$ 以及 $-u$ 和 $-\bar u$ 都是基本单位数．
 
-二次整数环的单位数的结构可以推广到一般的 [代数整数环](../algebra/field-theory.md#代数扩张)．代数数论中的 [Dirichlet 单位定理](https://en.wikipedia.org/wiki/Dirichlet%27s_unit_theorem) 指出，所有代数整数环的全体单位数都构成 [有限生成 Abel 群](../algebra/group-theory.md#有限生成-abel-群)，同时这一定理也给出了这个群的阶．
+二次整数环的单位数的结构可以推广到一般的 [代数整数环](../algebra/field-theory.md#代数扩张)．代数数论中的 [Dirichlet 单位定理](https://en.wikipedia.org/wiki/Dirichlet%27s_unit_theorem) 指出，所有代数整数环的全体单位数都构成 [有限生成 Abel 群](../algebra/group-theory.md#有限生成-abel-群)，同时这一定理也给出了这个群的秩．
 
 整数的整除理论中的最大公因数、带余除法、Bezout 定理、唯一分解定理等内容都可以推广到部分或全部的二次整数环上．在某个二次整数环上能否进行这样的推广，其实反映了该二次整数环性质是否足够接近于整数环．并非所有二次整数环上都成立唯一分解定理；在成立唯一分解定理的二次整数环中，也只有一部分二次整数环上可以进行带余除法．对于这部分内容的讨论，可以参考环论部分的 [二次整数环](../algebra/ring-theory.md#例子二次整数环) 一节或相关书籍．
 
@@ -187,7 +187,7 @@ $$
 
 其中，$p_1,\cdots,p_\ell$ 为 $4k+1$ 型素因子，$q_1,\cdots,q_m$ 为 $4k+3$ 型素因子．
 
-首先，方程 $N(x+y\mathrm{i})=n$ 有解，当且仅当 $n$ 的 $4k+3$ 型素因子的指数 $s_1,\cdots,s_\ell$ 都是偶数；这是因为 $q_1,\cdots,q_m$ 也是 Gauss 素数，它们的范数等于自身的平方，因此范数的素因数分解中它们必然成对出现．
+首先，方程 $N(x+y\mathrm{i})=n$ 有解，当且仅当 $n$ 的 $4k+3$ 型素因子的指数 $s_1,\cdots,s_m$ 都是偶数；这是因为 $q_1,\cdots,q_m$ 也是 Gauss 素数，它们的范数等于自身的平方，因此范数的素因数分解中它们必然成对出现．
 
 现在假设方程有解．那么，方程的解必然具有形式
 
@@ -210,7 +210,7 @@ $$
 容易验证，这三种情形都可以写成
 
 $$
-\dfrac14f(p^k) = \sum_{j=0}^k\left(\dfrac{-4}{p}\right)^k = \sum_{j=0}^k\left(\dfrac{-4}{p^k}\right) = \sum_{d\mid p^k}\left(\dfrac{-4}{d}\right).
+\dfrac14f(p^k) = \sum_{j=0}^k\left(\dfrac{-4}{p}\right)^j = \sum_{j=0}^k\left(\dfrac{-4}{p^j}\right) = \sum_{d\mid p^k}\left(\dfrac{-4}{d}\right).
 $$
 
 由于 Kronecker 符号 $\left(\dfrac{-4}{n}\right)$ 是完全积性函数，可以得到
@@ -279,7 +279,7 @@ $$
 
 它也是复平面上上述格点到原点的距离的平方．
 
-Eisenstein 整数与 Gauss 整数也十分相似．在 Eisenstein 整数上同样可以利用范数 $N(\cdot)$ 定义带余除法，并建立辗转相除法、Bezout 定理、唯一分解定理等结论．类似于上文，可以推导出素数在 Eisenstein 整数环中的因子．为此，注意到 $\mathbf Z[\omega]$ 判别式是 $-3$，而 Kronecker 符号
+Eisenstein 整数与 Gauss 整数也十分相似．在 Eisenstein 整数上同样可以利用范数 $N(\cdot)$ 定义带余除法，并建立辗转相除法、Bezout 定理、唯一分解定理等结论．类似于上文，可以推导出素数在 Eisenstein 整数环中的因子．为此，注意到 $\mathbf Z[\omega]$ 的判别式是 $-3$，而 Kronecker 符号
 
 $$
 \left(\dfrac{-3}{n}\right) = \begin{cases}
@@ -292,7 +292,7 @@ $$
 因此，Eisenstein 整数环内的素元，亦即 Eisenstein 素数，有如下三类：
 
 1.  整数中 $3k+2$ 型素数，即 $2$ 和 $6k+5$ 型素数；
-2.  整数中 $3k+1$ 型素数（也就是 $6k+1$ 型素数）的两个共轭的 Gauss 素数因子；
+2.  整数中 $3k+1$ 型素数（也就是 $6k+1$ 型素数）的两个共轭的 Eisenstein 素数因子；
 3.  素数 $3$ 的因子 $(3+\sqrt{3}\mathrm{i})/2$，它的共轭与它相伴．
 
 利用上一节的方法，可以求出范数为 $n$ 的 Eisenstein 整数的数目．设这个数目为 $f(n)$，则它就等于
@@ -303,7 +303,7 @@ $$
 
 其中，$\chi_{3,2}(n)=\left(\dfrac{-3}{n}\right)$ 是模 $3$ 的实 Dirichlet 特征．该表达式说明，这样的 Eisenstein 整数存在，当且仅当 $n$ 的全部 $3k+2$ 型素因子的指数都是偶数．
 
-利用前文的范数公式，$f(n)$ 也是不定方程 $x^2-xy+y^2=n$ 或不定方程 $x^2+xy+y^2=n$ 的数目．它对应的几何意义是斜椭圆 $x^2\pm xy+y^2=n$ 上的整点数目．
+利用前文的范数公式，$f(n)$ 也是不定方程 $x^2-xy+y^2=n$ 或不定方程 $x^2+xy+y^2=n$ 的整数解的数目．它对应的几何意义是斜椭圆 $x^2\pm xy+y^2=n$ 上的整点数目．
 
 与这些方程密切相关的是另一个不定方程 $x^2+3y^2=n$，它的整数解对应着标准椭圆上的整点．做变量代换 $x=(u+v)/2$ 和 $y=(u-v)/2$ 可以将它转化为已经解决的方程 $u^2-uv+v^2=n$．但是，虽然 $x^2+3y^2=n$ 的整数解总对应着 $u^2-uv+v^2=n$ 的整数解，反过来却不一定正确．如果 $n$ 是偶数，那么 $u$ 和 $v$ 必然都是偶数，这意味着 $x$ 和 $y$ 必然是整数，此时 $x^2+3y^2=n$ 的整数解的数目仍然是 $f(n)$．但是，如果 $n$ 是奇数，那么 $u$ 和 $v$ 可能一奇一偶，也可能都是奇数，因而相对应的 $x$ 和 $y$ 可能都是半整数或者都是整数．这种情形需要更细致的讨论．
 

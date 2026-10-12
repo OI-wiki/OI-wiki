@@ -39,6 +39,48 @@
 
 ![](./images/compiler6.png)
 
+#### MSYS2 安装
+
+MSYS2 提供多个彼此独立的开发环境．如果不确定应该选择哪个，MSYS2 官方建议使用 UCRT64．
+
+打开 PowerShell，运行以下命令安装 MSYS2：
+
+```powershell
+winget install MSYS2.MSYS2
+```
+
+安装完成后，在开始菜单中搜索并打开 MSYS2 UCRT64 终端．MSYS2 是滚动发行版，首先完整更新系统：
+
+```bash
+pacman -Suy
+```
+
+如果更新过程中提示关闭所有 MSYS2 进程，确认后重新打开 MSYS2 UCRT64 终端，并再次执行 `pacman -Suy`，直到更新完成．
+
+然后安装 UCRT64 环境下的完整 GNU 工具链：
+
+```bash
+pacman -S ${MINGW_PACKAGE_PREFIX}-toolchain
+```
+
+在 UCRT64 环境中，`MINGW_PACKAGE_PREFIX` 的值为 `mingw-w64-ucrt-x86_64`，因此上述命令会安装 GCC、GDB、Make 等工具．安装完成后，可运行以下命令验证：
+
+```bash
+gcc --version
+g++ --version
+gdb --version
+```
+
+??? note "为什么是 UCRT64"
+    UCRT64 使用 GCC、UCRT 和 libstdc++，也是 MSYS2 在不确定如何选择环境时推荐使用的环境．CLANG64 同样使用 UCRT，但默认使用 LLVM/Clang、LLD 和 libc++．MINGW64 使用较旧的 MSVCRT，目前已被 MSYS2 列为 legacy 环境．MSYS 环境则主要用于运行依赖 POSIX 兼容层的 Unix 工具，不适合用来生成普通的原生 Windows 竞赛程序．
+    
+    UCRT 能提高与 MSVC 在 C 运行时层面的兼容性，但这并不意味着 GCC/MinGW 与 MSVC 的 C++ ABI 或对象文件、静态库可以直接互换．
+
+??? warning "不要修改全局 Path"
+    不建议将 `C:\msys64\ucrt64\bin` 添加到 Windows 的全局 `Path`．MSYS2 UCRT64 终端启动时已经会为当前环境设置正确的 `PATH`；直接使用对应的 MSYS2 终端可以避免不同环境的工具链和运行库相互混用．
+    
+    需要注意的是，在不把 UCRT64 的 `bin` 目录加入 Windows 全局 `Path` 的情况下，也不应直接在普通的 PowerShell 或 CMD 中调用 MSYS2 安装的 GCC．例如，GCC 在编译过程中会启动 `cc1.exe` 等内部程序，而这些程序依赖的 DLL 位于 UCRT64 环境的 `bin` 目录中；如果没有由 MSYS2 UCRT64 终端预先设置好环境变量，就可能因找不到依赖 DLL 而启动失败．因此，使用这套 GCC 工具链时，应从 MSYS2 UCRT64 终端或继承了该终端环境变量的终端中运行编译命令．
+
 #### Scoop 安装
 
 打开 PowerShell，运行以下脚本：
@@ -132,6 +174,47 @@ InstalledDir: <omitted>
 ```
 
 类似物即代表成功．
+
+#### MSYS2 安装
+
+MSYS2 中既可以在 UCRT64 环境里额外安装 Clang，也可以直接使用以 LLVM 为默认工具链的 CLANG64 环境．
+
+##### UCRT64 环境
+
+如果平时主要使用 GNU GCC，只是偶尔需要 Clang，可以在 MSYS2 UCRT64 终端中安装：
+
+```bash
+pacman -S ${MINGW_PACKAGE_PREFIX}-clang ${MINGW_PACKAGE_PREFIX}-llvm
+```
+
+如果还需要 `clangd`、`clang-tidy` 等开发工具，再安装：
+
+```bash
+pacman -S ${MINGW_PACKAGE_PREFIX}-clang-tools-extra
+```
+
+UCRT64 属于 GCC 系环境，因此这里安装的 Clang 默认仍使用 GNU 链接器和 libstdc++，可以继续使用 `bits/stdc++.h` 等 libstdc++ 提供的内容．安装完成后，可运行以下命令验证：
+
+```bash
+clang --version
+clang++ --version
+```
+
+##### CLANG64 环境
+
+如果希望使用以 LLVM 为核心的完整环境，可以从开始菜单打开 MSYS2 CLANG64 终端．如果此前还没有更新 MSYS2，先执行：
+
+```bash
+pacman -Suy
+```
+
+如果更新过程中提示关闭所有 MSYS2 进程，重新打开 MSYS2 CLANG64 终端后再次执行该命令．随后安装当前环境的完整工具链：
+
+```bash
+pacman -S ${MINGW_PACKAGE_PREFIX}-toolchain
+```
+
+在 CLANG64 环境中，`MINGW_PACKAGE_PREFIX` 的值为 `mingw-w64-clang-x86_64`；该工具链包含 Clang、LLVM、LLD、LLDB、libc++、Make 等组件．CLANG64 终端会自动设置当前环境所需的 `PATH`，同样不建议把 `C:\msys64\clang64\bin` 添加到 Windows 的全局 `Path`．
 
 #### Scoop 安装
 

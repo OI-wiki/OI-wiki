@@ -44,7 +44,7 @@ void calc_distances_to_t() {
 std::vector<long long> ans;
 
 // Find the k shortest walk. (A* search)
-// Complexity: O(k * n * log(k * n)).
+// Complexity: O(k * m * log(k * m)).
 void find_k_shortest_walks() {
   ans.assign(k, -1);
   std::vector<int> cnt(n);

@@ -26,7 +26,7 @@ assert(-5 % -3 == -2);
 
 ## 模整数类
 
-模算术可以看做是对某模数下的 [同余类](./basic.md#同余类与剩余系) 进行各种运算．如果用一个结构体来表示一个同余类，并且将同余类之间的加、减、乘等运算封装为结构体的方法或运算符重载，那么模算术就可以自然地实现为一个模整数类．下面给出一个简单的例子，它支持模数 $M < 2^{30}$ 下 $32$ 位带符号整数的加法、减法、乘法以及快速幂运算：
+模算术可以看作是对某模数下的 [同余类](./basic.md#同余类与剩余系) 进行各种运算．如果用一个结构体来表示一个同余类，并且将同余类之间的加、减、乘等运算封装为结构体的方法或运算符重载，那么模算术就可以自然地实现为一个模整数类．下面给出一个简单的例子，它支持模数 $M < 2^{30}$ 下 $32$ 位带符号整数的加法、减法、乘法以及快速幂运算：
 
 ???+ example "一个简单的模整数类"
     ```cpp
@@ -124,7 +124,7 @@ $$
 \ell\left(a\left\lfloor\dfrac{R}{m}\right\rfloor\right) \approx \ell(a) + \ell(R) - \ell(m).
 $$
 
-由于 $R$ 的选取需要满足条件 $a < R$，这一长度至少为 $2\ell(a) - \ell(m)$．但是，需要取模时，一般都有 $\ell(m)\le\ell(a)$，因此，这一中间变量的长度可能大于输入长度 $\ell(a)$．例如，如果需要将 $64$ 位整数对 $32$ 位整数取模，实际上中间变量需要 $64 \times 2 - 32 = 96$ 位整数．
+由于 $R$ 的选取需要满足条件 $a \le R$，这一长度至少为 $2\ell(a) - \ell(m)$．但是，需要取模时，一般都有 $\ell(m)\le\ell(a)$，因此，这一中间变量的长度可能大于输入长度 $\ell(a)$．例如，如果需要将 $64$ 位整数对 $32$ 位整数取模，实际上中间变量需要 $64 \times 2 - 32 = 96$ 位整数．
 
 Barrett 约减的一个应用场景就是计算乘积的余数 $ab\bmod m$．如果其中一个乘数固定，比如 $b$ 固定时，可以通过
 
@@ -134,16 +134,16 @@ $$
 
 进行与上文类似的估计，只要预处理出 $\left\lfloor\dfrac{bR}{m}\right\rfloor$ 的值即可．这种 $b$ 固定的情形有时也称为 Shoup 模乘[^shoup]．
 
-更为常见的情形是 $a, b$ 都不固定．此时，需要首先计算 $ab$ 的值，再利用 Barrett 约减得到 $ab\bmod m$．例如，实现模意义下乘法时，需要对 $0 \le a,b < m$ 计算 $ab\bmod m$．此时，选取的 $r$ 需要满足 $ab < R$．根据前文分析，计算过程涉及的最长中间变量长度为 $2\ell(ab)-\ell(m)$．当 $\ell(a)\approx\ell(b)\approx\ell(m)$ 时，该长度为 $3\ell(m)$．也就是说，如果要用 Barrett 约减实现 $32$ 位整数的模乘，中间变量需要 $96$ 位整数．这也是 Barrett 约减在算法竞赛中实际应用时的一个限制．
+更为常见的情形是 $a, b$ 都不固定．此时，需要首先计算 $ab$ 的值，再利用 Barrett 约减得到 $ab\bmod m$．例如，实现模意义下乘法时，需要对 $0 \le a,b < m$ 计算 $ab\bmod m$．此时，选取的 $R$ 需要满足 $ab \le R$．根据前文分析，计算过程涉及的最长中间变量长度为 $2\ell(ab)-\ell(m)$．当 $\ell(a)\approx\ell(b)\approx\ell(m)$ 时，该长度为 $3\ell(m)$．也就是说，如果要用 Barrett 约减实现 $32$ 位整数的模乘，中间变量需要 $96$ 位整数．这也是 Barrett 约减在算法竞赛中实际应用时的一个限制．
 
-作为示例，利用 Barrett 约减实现 32 位有符号整数模乘的参考实现如下：
+作为示例，利用 Barrett 约减实现 $32$ 位有符号整数模乘的参考实现如下：
 
 ???+ example "参考实现"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/i32-mul.cpp:barrett"
     ```
 
-实现中需要用到 128 位整数[^int128]．
+实现中需要用到 $128$ 位整数[^int128]．
 
 ### Montgomery 模乘
 
@@ -160,7 +160,7 @@ $$
 利用 Montgomery 形式可以方便地进行很多模整数的运算．刚刚已经说明，比较两个同余类是否相同，只要比较它们的 Montgomery 形式．又因为
 
 $$
-(a+b)R\bmod m = ((aR\bmod m)\pm(bR\bmod m)) \bmod{m},
+(a\pm b)R\bmod m = ((aR\bmod m)\pm(bR\bmod m)) \bmod{m},
 $$
 
 所以同余类的加法、减法就对应它们的 Montgomery 形式的加法、减法．但是，要计算同余类的乘法，并不能直接将两个 Montgomery 形式相乘．因为
@@ -221,10 +221,10 @@ $$
 首先是取逆操作：给定奇数 $a$ 和模数 $m=2^e~(e > 2)$，需要求出 $a^{-1}\bmod m$．求逆元的常见方法包括扩展欧几里得算法和快速幂法．扩展欧几里得算法的过程涉及对一般模数取模；普通的快速幂法需要计算 $a^{\varphi(m)-1}\bmod{m}$，这需要 $\Theta(e)$ 次整数乘法．更为高效的方法是 [Newton–Hensel 方法](../poly/newton.md)．具体地，考虑应用如下结论：[^newton-hensel]
 
 $$
-mx \equiv 1 \pmod{2^e} \implies mx(2 - mx) \equiv 1\pmod{2^{2e}}.
+ax \equiv 1 \pmod{2^e} \implies ax(2 - ax) \equiv 1\pmod{2^{2e}}.
 $$
 
-根据这一表达式，只要从 $x = 1$ 开始，反复应用 $x \gets x(2-mx)$，就可以在 $\lceil\log_2 e\rceil$ 次迭代后得到 $m^{-1}\bmod R$．
+根据这一表达式，只要从 $x = 1$ 开始，反复应用 $x \gets x(2-ax)$，就可以在 $\lceil\log_2 e\rceil$ 次迭代后得到 $a^{-1}\bmod m$．
 
 作为示例，模 $2^{32}$ 整数取逆操作参考实现如下：
 
@@ -249,7 +249,7 @@ $$
 
 由于离散对数的模数等于阶 $\delta_m(g)=2^{e-2}=m/4$，所以此处直接将整个同余式都乘以 $4$，以保证计算可以在模 $m$ 剩余类中进行．由此，只需要对 $1 < d < e$ 预处理出所有的 $4L(2^d+1)$，就可以快速计算 $4L(a)$ 的值．
 
-反过来，从 $L(a)$ 也很容易得到 $g^a\bmod{m}$ 的值．根据 [二项式定理](../combinatorics/combination.md#二项式定理) 可知，对于 $1 < d < e$，都有
+反过来，从 $L(a)$ 也很容易得到 $g^{L(a)}\bmod{m}$ 的值．根据 [二项式定理](../combinatorics/combination.md#二项式定理) 可知，对于 $1 < d < e$，都有
 
 $$
 \begin{aligned}
@@ -284,7 +284,7 @@ $$
 (2^d+1)^2 = 2^{2d} + 2^{d+1} + 1 \equiv 2^{d+1} + 1 \pmod{m}.
 $$
 
-所以，从 $d = \lceil e/2\rceil$ 开始归纳可知，$L(2^d+1)=2^d$ 对于所有 $d \ge e/2$ 都成立．进而，只要 $e/2 \le e_1 < e_2 < \cdots < e_s < e$，就有
+所以，从 $d = \lceil e/2\rceil$ 开始归纳可知，$4L(2^d+1)=2^d$ 对于所有 $d \ge e/2$ 都成立．进而，只要 $e/2 \le e_1 < e_2 < \cdots < e_s < e$，就有
 
 $$
 (2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1) \equiv 1 + 2^{e_1} + 2^{e_2} + \cdots + 2^{e_s} \pmod{m}
@@ -296,7 +296,7 @@ $$
 4L((2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1)) = 2^{e_1} + 2^{e_2} + \cdots + 2^{e_s}.
 $$
 
-因此，处理完所有 $d < e/2$ 的二进制位后，可以直接得到剩余部分的离散对数，而无需逐位计算．应用第一个优化后，整个取幂操作只需要 $O(e)$ 次加减法和位操作和 $1$ 次乘法操作；应用第二个优化后，可以省去约一半的加减法和位操作，但需要额外 $1$ 次乘法操作．
+因此，处理完所有 $d < e/2$ 的二进制位后，可以直接得到剩余部分的离散对数，而无需逐位计算．应用第一个优化后，整个取幂操作只需要 $O(e)$ 次加减法和位操作以及 $1$ 次乘法操作；应用第二个优化后，可以省去约一半的加减法和位操作，但需要额外 $1$ 次乘法操作．
 
 作为示例，模 $2^{32}$ 整数取幂操作参考实现如下：
 
@@ -308,7 +308,7 @@ $$
 离散对数的预处理可以通过 Pohlig–Hellman 算法进行，基底 $g$ 可以选择为
 
 $$
-5^{\operatorname{ind}_5(2^{\lceil e/2\rceil})/2^{\lceil e/2\rceil - 2}}\bmod{2^e}.
+5^{\operatorname{ind}_5(2^{\lceil e/2\rceil}+1)/2^{\lceil e/2\rceil - 2}}\bmod{2^e}.
 $$
 
 ## 参考资料与注释
@@ -326,16 +326,16 @@ $$
 
 [^long-double-80bit]: 这适用于大多数 64 位系统上的 GCC 或 Clang 编译器．
 
-[^floating-format]: 参见 [Double-precision floating-point format - Wikipedia](https://en.wikipedia.org/wiki/Double-precision_floating-point_format)．
+[^floating-format]: 参见 [Extended precision - Wikipedia](https://en.wikipedia.org/wiki/Extended_precision)．
 
 [^ld-mul-err]: 此处用到了条件 $a < m$，即 $a / m \in [0,1)$．
 
 [^int128]: 在目前的主流编译环境中，只有 Windows 平台上的 MSVC 不支持 `__int128` 类型．若需要编写可在多平台上兼容的代码，可以通过宏 `_MSC_VER` 检测 MSVC 编译环境，并在该条件下包含 [`<intrin.h>`](https://learn.microsoft.com/en-us/cpp/intrinsics/x64-amd64-intrinsics-list?view=msvc-170) 头文件，利用其提供的内建函数（如 `_umul128` 等）来间接实现 128 位整数运算（仅在 64 位平台上可用）．
 
-[^floor-barrett]: 此处 $\left\lfloor\dfrac{r}{m}\right\rfloor$ 也可以替换成 $\dfrac{r}{m}$ 的其他整数估计，例如上取整函数 $\left\lceil\dfrac{r}{m}\right\rceil$ 和四舍五入取整函数 $\left\lfloor\dfrac{r}{m}\right\rceil$ 等，只要相应地调整对估计值的误差修正步骤．
+[^floor-barrett]: 此处 $\left\lfloor\dfrac{R}{m}\right\rfloor$ 也可以替换成 $\dfrac{R}{m}$ 的其他整数估计，例如上取整函数 $\left\lceil\dfrac{R}{m}\right\rceil$ 和四舍五入取整函数 $\left\lfloor\dfrac{R}{m}\right\rceil$ 等，只要相应地调整对估计值的误差修正步骤．
 
 [^shoup]: Shoup 在他的数论计算库 [NTL](https://libntl.org/) 中实现了 Barrett 约减的这一扩展，因此得名．
 
-[^newton-hensel]: 直接验证：由 $mx \equiv 1 \pmod{2^e}$，可以设 $mx = 1 + \lambda 2^e$，那么就有 $mx(2-mx) = (1+\lambda 2^e)(1-\lambda 2^e) = 1 - \lambda^2 2^{2e} \equiv 1\pmod{2^{2e}}$．
+[^newton-hensel]: 直接验证：由 $ax \equiv 1 \pmod{2^e}$，可以设 $ax = 1 + \lambda 2^e$，那么就有 $ax(2-ax) = (1+\lambda 2^e)(1-\lambda 2^e) = 1 - \lambda^2 2^{2e} \equiv 1\pmod{2^{2e}}$．
 
 [^mod-2-g]: 文中所引页面仅证明了 $g$ 可以取 $5$．实际上，完全重复该证明，可以说明 $g$ 可以取任何模 $8$ 余 $5$ 的整数．后文会讨论 $g$ 的选取方法．

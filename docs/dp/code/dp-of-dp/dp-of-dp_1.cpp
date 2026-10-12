@@ -9,7 +9,7 @@ const int MAXN = 100;
 int T, a[MAXN + 1], h[MAXN + 1];
 int g[MAXN + 1], m, n;
 int nxt[1 << 16]
-       [4];  // 状态转移表：nx[mask][ch] 表示 mask 状态下追加 ch 后的新状态
+       [4];  // 状态转移表：nxt[mask][ch] 表示 mask 状态下追加 ch 后的新状态
 int f[1001]
      [1 << 16];  // DP 数组：f[i][mask] 表示长度为 i，处于状态 mask 的方案数
 int ans[MAXN +
