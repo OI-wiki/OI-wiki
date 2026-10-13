@@ -554,7 +554,6 @@ $$
 
 -   [Luogu P3642 \[APIO2016\] 烟火表演](https://www.luogu.com.cn/problem/P3642)
 -   [Luogu P9962 \[THUPC 2024 初赛\] 一棵树](https://www.luogu.com.cn/problem/P9962)
--   [Luogu P11317 \[RMI 2021\] 路径/Paths](https://www.luogu.com.cn/problem/P11317)
 -   [AtCoder Beginner Contest 383 G - Bar Cover](https://atcoder.jp/contests/abc383/tasks/abc383_g)
 -   [Codeforces 280 D. k-Maximum Subsequence Sum](https://codeforces.com/problemset/problem/280/D)
 -   [Codeforces 280 E. Sequence Transformation](https://codeforces.com/problemset/problem/280/E)
