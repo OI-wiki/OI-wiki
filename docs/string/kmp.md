@@ -296,7 +296,7 @@ $$
           int sz1 = text.size(), sz2 = pattern.size();
           vector<int> v;
           vector<int> lps = prefix_function(cur);
-          for (int i = sz2 + 1; i <= sz1 + sz2; i++) {
+          for (int i = 2 * sz2; i <= sz1 + sz2; i++) {
             if (lps[i] == sz2) v.push_back(i - 2 * sz2);
           }
           return v;
@@ -310,7 +310,7 @@ $$
             sz1, sz2 = len(t), len(s)
             ret = []
             lps = prefix_function(cur)
-            for i in range(sz2 + 1, sz1 + sz2 + 1):
+            for i in range(2 * sz2, sz1 + sz2 + 1):
                 if lps[i] == sz2:
                     ret.append(i - 2 * sz2)
             return ret
@@ -323,7 +323,7 @@ $$
             int sz1 = text.length(), sz2 = pattern.length();
             List<Integer> v = new ArrayList<>();
             int[] lps = prefix_function(cur);
-            for (int i = sz2 + 1; i <= sz1 + sz2; i++) {
+            for (int i = 2 * sz2; i <= sz1 + sz2; i++) {
                 if (lps[i] == sz2) {
                     v.add(i - 2 * sz2);
                 }
