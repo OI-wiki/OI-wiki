@@ -180,18 +180,18 @@ async function checkFile(file: string) {
           node.position?.start.column
       );
 
-    //Check if image resourse name contains file name
+    //Check if image resource name contains file name
     if (errFlag.imgRefNameInvalid && imgSrc.search(RegExp(fileName)) === -1) {
       errList.push(imgRefNameInvalid(imgSrc, file, node.position?.start.line, node.position?.start.column));
 
       if (parg.r) errList.push("[Info] Suggestion: " + fileName + "-" + pImg.base);
     }
 
-    //Check if image resourse is from web
+    //Check if image resource is from web
     if (errFlag.imgRefFromWeb && imgSrc.search(/\:\/\//) !== -1)
       errList.push(imgRefFromWeb(imgSrc, file, node.position?.start.line, node.position?.start.column));
 
-    //Check if image resourse format is recommended
+    //Check if image resource format is recommended
     if (errFlag.imgFormatNotRecommended && pImg.ext.toLowerCase().search(/gif/) !== -1) {
       errList.push(imgFormatNotRecommended(imgSrc, file, node.position?.start.line, node.position?.start.column));
 
@@ -331,7 +331,7 @@ function fileNameLine(file: string) {
 
 function imgRefNameInvalid(imgSrc: string, file: string, line: number | undefined, column: number | undefined) {
   return (
-    "[Warning] [imgRefNameInvalid] Image resourse " +
+    "[Warning] [imgRefNameInvalid] Image resource " +
     imgSrc +
     " does not contain file name at " +
     file +
@@ -343,12 +343,12 @@ function imgRefNameInvalid(imgSrc: string, file: string, line: number | undefine
 }
 
 function imgRefFromWeb(imgSrc: string, file: string, line: number | undefined, column: number | undefined) {
-  return "[Warning] [imgRefFromWeb] Image resourse " + imgSrc + " is from web at " + file + ":" + line + ":" + column;
+  return "[Warning] [imgRefFromWeb] Image resource " + imgSrc + " is from web at " + file + ":" + line + ":" + column;
 }
 
 function imgFormatNotRecommended(imgSrc: string, file: string, line: number | undefined, column: number | undefined) {
   return (
-    "[Warning] [imgFormatNotRecommended] Image resourse " +
+    "[Warning] [imgFormatNotRecommended] Image resource " +
     imgSrc +
     " is not in a recommended format, used at " +
     file +
