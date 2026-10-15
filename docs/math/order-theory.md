@@ -24,7 +24,7 @@
 5.  非对称性（asymmetric）：$(\forall~a,b \in S)~~aRb \implies \lnot(bRa)$，
 6.  传递性（transitive）：$(\forall~a,b,c \in S)~~(aRb \land bRc) \implies aRc$，
 7.  连接性（connected）：$(\forall~a,b \in S)~~a \neq b \implies (aRb \lor bRa)$，
-8.  良基性（well-founded）：$(\exists~m \in S \neq \varnothing)~~(\forall~a \in S\setminus\{m\})~~\lnot(aRm)$（即非空集合 $S$ 中有极小元 $m$），
+8.  良基性（well-founded）：$(\forall~X \subseteq S)~~X \neq \varnothing \implies(\exists~m \in X)~~(\forall~a \in X\setminus\{m\})~~\lnot(aRm)$（即任意非空集合 $X$ 中有极小元 $m$），
 9.  不可比的传递性（transitive of incomparability）：$(\forall~a,b,c \in S)~~(\lnot(aRb \lor bRa) \land \lnot(bRc \lor cRb)) \implies \lnot(aRc \lor cRa)$（若 $\lnot(aRb \lor bRa)$，则称 $a$ 和 $b$ 是不可比的）．
 
 同时我们定义一些特殊的二元关系：
@@ -32,9 +32,10 @@
 | 二元关系                       | 自反性 | 反自反性 | 对称性 | 反对称性 | 非对称性 | 传递性 | 连接性 | 良基性 | 不可比的传递性 |
 | -------------------------- | --- | ---- | --- | ---- | ---- | --- | --- | --- | ------- |
 | 等价关系（equivalence relation） | 有   |      | 有   |      |      | 有   |     |     |         |
-| 预序（preorder，quasiorder）    | 有   |      |     |      |      | 有   |     |     |         |
+| 预序、拟序（preorder,quasi-order） | 有   |      |     |      |      | 有   |     |     |         |
 | 偏序（partial order）          | 有   |      |     | 有    |      | 有   |     |     |         |
 | 全序（total order）            | 有   |      |     | 有    |      | 有   | 有   |     |         |
+| 良拟序（well-quasi-order）      | 有   |      |     |      |      | 有   |     | 有   |         |
 | 良序（well-order）             | 有   |      |     | 有    |      | 有   | 有   | 有   |         |
 | 严格预序（strict preorder）      |     | 有    |     |      |      | 有   |     |     |         |
 | 严格偏序（strict partial order） |     | 有    |     |      | 有    | 有   |     |     |         |
