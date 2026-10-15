@@ -393,8 +393,6 @@ Welcome!
 
 也可以直接使用诸如 `\\wsl$\Ubuntu\home\` 的路径访问其子文件夹．
 
-<div id="配合-visual-sudio-code-进行编辑"></div>
-
 ### 配合 Visual Studio Code 进行编辑
 
 如果习惯在 Windows 环境下使用 [Visual Studio Code](./editor/vscode.md) 进行代码编辑，可以安装 VS Code 中的 `Remote - WSL` 插件，更方便地对 WSL 系统中的文件进行编辑．
