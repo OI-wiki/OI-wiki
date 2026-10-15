@@ -75,35 +75,36 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
     } st;
     
     // 树状数组实现
-    namepace fenwick_impl {
-      int lowbit(int o) { return (o & (-o)); }
+    namespace fenwick_impl {
+    int lowbit(int o) { return (o & (-o)); }
     
-      void upd(int o, int x, int v) {
-        for (; o <= n; o += lowbit(o)) st.update(st.rt[o], 1, n, x, v);
-      }
+    void upd(int o, int x, int v) {
+      for (; o <= n; o += lowbit(o)) st.update(st.rt[o], 1, n, x, v);
+    }
     
-      void gtv(int o, int* A, int& p) {
-        p = 0;
-        for (; o; o -= lowbit(o)) A[++p] = st.rt[o];
-      }
+    void gtv(int o, int* A, int& p) {
+      p = 0;
+      for (; o; o -= lowbit(o)) A[++p] = st.rt[o];
+    }
     
-      int qry(int l, int r, int k) {
-        if (l == r) return l;
-        int mid = (l + r) >> 1, siz = 0;
-        for (int i = 1; i <= cur1; i++) siz += st.sum[st.lc[q1[i]]];
-        for (int i = 1; i <= cur2; i++) siz -= st.sum[st.lc[q2[i]]];
-        // printf("j %d %d %d %d\n",cur1,cur2,siz,k);
-        if (siz >= k) {
-          for (int i = 1; i <= cur1; i++) q1[i] = st.lc[q1[i]];
-          for (int i = 1; i <= cur2; i++) q2[i] = st.lc[q2[i]];
-          return qry(l, mid, k);
-        } else {
-          for (int i = 1; i <= cur1; i++) q1[i] = st.rc[q1[i]];
-          for (int i = 1; i <= cur2; i++) q2[i] = st.rc[q2[i]];
-          return qry(mid + 1, r, k - siz);
-        }
+    int qry(int l, int r, int k) {
+      if (l == r) return l;
+      int mid = (l + r) >> 1, siz = 0;
+      for (int i = 1; i <= cur1; i++) siz += st.sum[st.lc[q1[i]]];
+      for (int i = 1; i <= cur2; i++) siz -= st.sum[st.lc[q2[i]]];
+      // printf("j %d %d %d %d\n",cur1,cur2,siz,k);
+      if (siz >= k) {
+        for (int i = 1; i <= cur1; i++) q1[i] = st.lc[q1[i]];
+        for (int i = 1; i <= cur2; i++) q2[i] = st.lc[q2[i]];
+        return qry(l, mid, k);
+      } else {
+        for (int i = 1; i <= cur1; i++) q1[i] = st.rc[q1[i]];
+        for (int i = 1; i <= cur2; i++) q2[i] = st.rc[q2[i]];
+        return qry(mid + 1, r, k - siz);
       }
     }
+    }  // namespace fenwick_impl
+    
     using namespace fenwick_impl;
     
     // 线段树实现
