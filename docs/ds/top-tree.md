@@ -271,10 +271,10 @@ void rotate(int x, int type) {
 }
 
 void splay(int x, int type, int goal = 0) {
-  pushall(x, ty);  // 下传标记
-  for (int y; y = father[x], (!isroot(x)) && y != goal; rotate(x, ty)) {
+  pushall(x, type);  // 下传标记
+  for (int y; y = father[x], (!isroot(x)) && y != goal; rotate(x, type)) {
     if (father[y] != goal && (!isroot(y))) {
-      rotate(direction(x) ^ diretion(y) ? x : y, type);
+      rotate(direction(x) ^ direction(y) ? x : y, type);
     }
   }
   return;
@@ -555,7 +555,7 @@ $$
 
 如果我们能找到足够多的 zig-zig，zig-zag 操作，我们就可以将这 $3k+1$ 平摊到这些操作上去，从而消掉这个 $3k+1$．
 
-我们发现 Globel Splay 里面就有这么多的 zig-zig，zag-zig 来给我们使用，因为 Globel Splay 里面点的个数一定大于 $k$，而从点 $x$ 到 Globel Splay 根部路径的点数一定不少于 $k$，也就是说一次 `access(x)` 中一定会至少有 $\dfrac k2$ 个 zig-zag 操作，算上 Globel Splay 的均摊复杂度 $a \leq 3\log n +1$，一次 `access(x)` 不记 `delete(x)` 的均摊复杂度为
+我们发现 Global Splay 里面就有这么多的 zig-zig，zag-zig 来给我们使用，因为 Global Splay 里面点的个数一定大于 $k$，而从点 $x$ 到 Global Splay 根部路径的点数一定不少于 $k$，也就是说一次 `access(x)` 中一定会至少有 $\dfrac k2$ 个 zig-zag 操作，算上 Global Splay 的均摊复杂度 $a \leq 3\log n +1$，一次 `access(x)` 不记 `delete(x)` 的均摊复杂度为
 
 $$
 \begin{aligned}

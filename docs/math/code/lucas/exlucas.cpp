@@ -26,7 +26,7 @@ int crt_coeff(int m_i, int m) {
   return mm % m;
 }
 
-// Binominal Coefficient Calculator Modulo Prime Power.
+// Binomial Coefficient Calculator Modulo Prime Power.
 class BinomModPrimePower {
   int p, a, pa;
   std::vector<int> f;
@@ -73,7 +73,7 @@ class BinomModPrimePower {
   }
 };
 
-// Binominal Coefficient Calculator.
+// Binomial Coefficient Calculator.
 class BinomMod {
   int m;
   std::vector<BinomModPrimePower> bp;
