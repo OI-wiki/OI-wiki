@@ -28,7 +28,7 @@ export function log(message: string) {
  * All task modules run in worker thread when process HTML files.
  *
  * For each task module, it's loaded in the main thread, and globalInitialize() is called.
- * Then its initialize() is called in each worker thread, wieh the result of global initialize.
+ * Then its initialize() is called in each worker thread, with the result of global initialize.
  * After all files got processed, each worker's finalize() is called.
  *
  * `siteDir` and `filePath` are **absolute** paths.
@@ -173,7 +173,7 @@ function measureTime<T>(operation: () => T): T extends Promise<any> ? Promise<nu
       workers.push(worker);
     }
 
-    // Intialize all workers
+    // Initialize all workers
     await Promise.all(
       workers.map((worker, workerId) =>
         communicate(
@@ -233,7 +233,7 @@ function measureTime<T>(operation: () => T): T extends Promise<any> ? Promise<nu
         .on("end", () => Promise.all(promises).then(resolve));
     });
 
-    // Intialize all workers
+    // Finalize all workers
     const finishedMessages = await Promise.all(workers.map(worker => communicate(worker, "finalize", "finished")));
     const totalTimeByTask = Object.fromEntries(
       tasks.map(task => [task, finishedMessages.reduce((s, message) => s + message.totalTimeByTask[task], 0)])

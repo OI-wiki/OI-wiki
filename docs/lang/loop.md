@@ -72,7 +72,7 @@ e.g. 枚举排列：
 
 ```cpp
 do {
-  // do someting...
+  // do something...
 } while (next_permutation(a + 1, a + n + 1));
 ```
 

@@ -117,7 +117,7 @@ class DynamicForest {
      * Merge two treap a and b into a single treap, with keys in a less than
      * keys in b.
      *
-     * In the other word, concating sequence a and sequence b.
+     * In the other word, concatenating sequence a and sequence b.
      */
     static Node* Merge(Node* a, Node* b) {
       if (a == nullptr) return b;
@@ -153,7 +153,7 @@ class DynamicForest {
     }
 
     /**
-     * Split sequence containning p into two sequences, the first one contains
+     * Split sequence containing p into two sequences, the first one contains
      * the first k elements, the second one contains the remaining elements.
      */
     static std::pair<Node*, Node*> Split(Node* p, int k) {
@@ -187,9 +187,9 @@ class DynamicForest {
     /*
      * Bottom up split treap p into 2 treaps a and b.
      *   - a: a treap containing nodes with position less than or equal to p.
-     *   - b: a treap containing nodes with postion greater than p.
+     *   - b: a treap containing nodes with position greater than p.
      *
-     * In the other word, split sequence containning p into two sequences, the
+     * In the other word, split sequence containing p into two sequences, the
      * first one contains elements before p and element p, the second one
      * contains elements after p.
      */
@@ -236,7 +236,7 @@ class DynamicForest {
      *   - b: a treap containing nodes with key greater than p.
      *   - c: a treap containing nodes with key equal p.
      *
-     * In the other word, split sequence containning p into three sequences, the
+     * In the other word, split sequence containing p into three sequences, the
      * first one contains elements before p, the second one contains element p,
      * the third one contains elements after p.
      */

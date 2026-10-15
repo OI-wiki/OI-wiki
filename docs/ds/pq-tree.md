@@ -68,7 +68,7 @@ PQ 树有三种结点：**叶子结点**、**P 结点** 和 **Q 结点**．其�
 ![](https://gregable.com/2008/11/i/p3-template.png)  
 ![](https://gregable.com/2008/11/i/p3-replacement.png)
 
-如果 $u$ 有一个灰色儿子 $p$，且 $u$ 是相关根，那么新建一个 P 结点 $v$ 作为其所有黑色儿子的根，将 $v$ 的兄弟设为 $p$ 最后一个一个黑色儿子，然后把 $v$ 设为 $p$ 的最后一个儿子．  
+如果 $u$ 有一个灰色儿子 $p$，且 $u$ 是相关根，那么新建一个 P 结点 $v$ 作为其所有黑色儿子的根，将 $v$ 的兄弟设为 $p$ 最后一个黑色儿子，然后把 $v$ 设为 $p$ 的最后一个儿子．  
 ![](https://gregable.com/2008/11/i/p4-template.png)  
 ![](https://gregable.com/2008/11/i/p4-replacement.png)
 

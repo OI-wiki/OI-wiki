@@ -6,7 +6,7 @@ DIRNAME="$(dirname -- "${BASH_SOURCE[0]}")"
 
 THEME_NAME="mkdocs-material"
 
-# Clear undesired cahces under netlify
+# Clear undesired caches under netlify
 if [[ "$PREBUILD_NETLIFY" == "1" ]]; then
   rm -rf -- "$THEME_NAME"
 fi

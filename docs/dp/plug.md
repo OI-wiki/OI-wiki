@@ -569,7 +569,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "例题 [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://acm.hdu.edu.cn/showproblem.php?pid=5513)"
     题目大意：给出一个 $N\times M$ 的网格图，以及相邻四连通格子之间的边权．
-    对于一颗生成树，每个节点的得分为 1+\[有一条连向上的边]+\[有一条连向左的边]．
+    对于一棵生成树，每个节点的得分为 1+\[有一条连向上的边]+\[有一条连向左的边]．
     生成树的得分为所有节点的得分之积．
     
     你需要求出：最小生成树的边权和，以及所有最小生成树的得分之和．
