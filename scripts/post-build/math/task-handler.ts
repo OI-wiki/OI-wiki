@@ -73,6 +73,29 @@ export class MathRenderer {
 
   render(math: string, isDisplay: boolean) {
     const element = this.document.convert(math, { display: isDisplay }) as LiteElement;
+
+    // Preserve vertical delimiter line breaks during HTML minification.
+    this.adaptor.tags(element, "mjx-spacer").forEach(spacer => {
+      const parent = this.adaptor.parent(spacer);
+      if (
+        this.adaptor.kind(parent) !== "mjx-ext" ||
+        this.adaptor.kind(this.adaptor.parent(parent)) !== "mjx-stretchy-v"
+      )
+        return;
+
+      this.adaptor.childNodes(spacer).forEach(child => {
+        if (this.adaptor.kind(child) !== "#text") return;
+        const lines = this.adaptor.value(child).split("\n");
+        if (lines.length === 1) return;
+
+        lines.forEach((line, i) => {
+          if (i) this.adaptor.insert(this.adaptor.node("br"), child);
+          this.adaptor.insert(this.adaptor.text(line), child);
+        });
+        this.adaptor.remove(child);
+      });
+    });
+
     // @ts-expect-error the .create() method is wrongly set to protected
     const emptyImg = this.adaptor.create("img");
     this.adaptor.setAttribute(

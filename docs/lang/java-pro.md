@@ -22,9 +22,9 @@ class Kattio extends PrintWriter {
         r = new BufferedReader(new InputStreamReader(i));
     }
     // 文件 IO
-    public Kattio(String intput, String output) throws IOException {
+    public Kattio(String input, String output) throws IOException {
         super(output);
-        r = new BufferedReader(new FileReader(intput));
+        r = new BufferedReader(new FileReader(input));
     }
     // 在没有其他输入时返回 null
     public String next() {

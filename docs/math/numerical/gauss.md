@@ -2,7 +2,9 @@ author: StudyingFather, CCXXXI, Chrogeek, ChungZH, countercurrent-time, Early0v0
 
 ## 引入
 
-高斯消元法（Gauss–Jordan elimination）是求解线性方程组的经典算法，它在当代数学中有着重要的地位和价值，是线性代数课程教学的重要组成部分．
+高斯消元法（Gaussian elimination）是求解线性方程组的经典算法，它在当代数学中有着重要的地位和价值，是线性代数课程教学的重要组成部分．
+
+高斯消元法通过行初等变换将增广矩阵化为行阶梯形，再通过回代求解方程组．高斯–约当消元法（Gauss–Jordan elimination）则进一步将主元化为 $1$，并消去主元所在列的其他非零元素，将增广矩阵化为行最简形．两种方法密切相关，但消元过程和最终得到的矩阵形式不同．
 
 高斯消元法除了用于线性方程组求解外，还可以用于行列式计算、求矩阵的逆，以及其他计算机和工程方面．
 
@@ -63,13 +65,13 @@ $$
 
 -   在计算中将变量简化省略，方程的解不变．
 
-高斯在这些结论的基础上，提出了高斯消元法，首先将方程的增广矩阵利用行初等变换化为行最简形，然后以线性无关为准则对自由未知量赋值，最后列出表达方程组通解．
+高斯消元法利用这些思想，将方程组的增广矩阵通过行初等变换化为行阶梯形．如果出现系数全为 $0$ 而常数项非零的行，则方程组无解；否则，可以选取自由未知量，并通过回代求出其余未知量，得到方程组的通解．如果进一步消去主元上方的非零元素并将主元化为 $1$，得到行最简形，则使用的是高斯–约当消元法．
 
-## 高斯消元五步骤法
+## 高斯–约当消元五步骤法
 
 ## 解释
 
-高斯消元法在将增广矩阵化为最简形后对于自由未知量的赋值，需要掌握线性相关知识，且赋值存在人工经验的因素，使得在学习过程中有一定的困难，将高斯消元法划分为五步骤，从而提出五步骤法，内容如下：
+下面将高斯–约当消元法求解有解的线性方程组的过程划分为五个步骤：
 
 1.  增广矩阵行初等行变换为行最简形；
 
@@ -85,7 +87,7 @@ $$
 
 ## 过程
 
-例二：利用高斯消元法五步骤法求解线性方程组：
+例二：利用高斯–约当消元法的五个步骤求解线性方程组：
 
 $$
 \begin{cases}
@@ -97,7 +99,7 @@ $$
 
 ### 增广矩阵行（初等）变换为行最简形
 
-所谓增广矩阵，即为方程组系数矩阵 $A$ 与常数列 $b$ 的并生成的新矩阵，即 $(A | b)$，增广矩阵行初等变换化为行最简形，即是利用了高斯消元法的思想理念，省略了变量而用变量的系数位置表示变量，增广矩阵中用竖线隔开了系数矩阵和常数列，代表了等于符号．
+所谓增广矩阵，即为方程组系数矩阵 $A$ 与常数列 $b$ 的并生成的新矩阵，即 $(A | b)$．使用增广矩阵可以省略变量，而用变量的系数位置表示变量．下面使用高斯–约当消元法将增广矩阵化为行最简形．增广矩阵中用竖线隔开了系数矩阵和常数列，代表了等于符号．
 
 $$
 \left(\begin{matrix}
@@ -253,37 +255,14 @@ $$
 
 -   矩阵行（列）所有元素同时乘以数 $k$，行列式等比例变大．
 
-由此，对矩阵应用高斯消元之后，我们可以得到一个对角线矩阵，此矩阵的行列式由对角线元素之积所决定．其符号可由交换行的数量来确定（如果为奇数，则行列式的符号应颠倒）．因此，我们可以在 $O(n^3)$ 的复杂度下使用高斯算法计算矩阵．
+由此，对矩阵应用高斯消元，只做行交换和将一行的倍数加到另一行的操作，可以得到一个上三角矩阵，此矩阵的行列式由对角线元素之积所决定．其符号可由交换行的数量来确定（如果为奇数，则行列式的符号应颠倒）．因此，我们可以在 $O(n^3)$ 的复杂度下使用高斯消元法计算行列式．
 
 注意，如果在某个时候，我们在当前列中找不到非零单元，则算法应停止并返回 0．
 
-### 实现
-
-```cpp
-constexpr double EPS = 1E-9;
-int n;
-vector<vector<double>> a(n, vector<double>(n));
-
-double det = 1;
-for (int i = 0; i < n; ++i) {
-  int k = i;
-  for (int j = i + 1; j < n; ++j)
-    if (abs(a[j][i]) > abs(a[k][i])) k = j;
-  if (abs(a[k][i]) < EPS) {
-    det = 0;
-    break;
-  }
-  swap(a[i], a[k]);
-  if (i != k) det = -det;
-  det *= a[i][i];
-  for (int j = i + 1; j < n; ++j) a[i][j] /= a[i][i];
-  for (int j = 0; j < n; ++j)
-    if (j != i && abs(a[j][i]) > EPS)
-      for (int k = i + 1; k < n; ++k) a[j][k] -= a[i][k] * a[j][i];
-}
-
-cout << det;
-```
+??? note "参考实现"
+    ```cpp
+    --8<-- "docs/math/code/numerical/gauss/gauss_1.cpp:core"
+    ```
 
 ## 矩阵求逆
 
@@ -292,11 +271,48 @@ cout << det;
 给出 $n$ 阶方阵 $A$，求解其逆矩阵的方法如下：
 
 1.  构造 $n \times 2n$ 的矩阵 $(A, I_n)$；
-2.  用高斯消元法将其化简为最简形 $(I_n, A^{-1})$，即可得到 $A$ 的逆矩阵 $A^{-1}$．如果最终最简形的左半部分不是单位矩阵 $I_n$，则矩阵 $A$ 不可逆．
+2.  用高斯–约当消元法将其化简为行最简形 $(I_n, A^{-1})$，即可得到 $A$ 的逆矩阵 $A^{-1}$．如果最终行最简形的左半部分不是单位矩阵 $I_n$，则矩阵 $A$ 不可逆．
 
 该方法的正确性证明需要用到较多线性代数的知识，限于篇幅这里不再给出．感兴趣的读者可以自行查阅相关资料．
 
-## 高斯消元法解异或方程组
+## 扩展高斯消元
+
+设 $A$ 是域 $\mathbb{F}$ 上的 $m \times n$ 矩阵，类似矩阵求逆的思路，构造 $m \times (m+n)$ 的矩阵 $(A \mid I_m)$，设 $A$ 的高斯消元结果为 $B$，有
+
+$$
+(A \mid I_m) \longrightarrow (B \mid X), \qquad B = XA.
+$$
+
+此时 $m$ 阶可逆方阵 $X$ 记录了消元过程中的行变换．部分资料[^shoup]将其称为 **扩展高斯消元**（extended Gaussian elimination）．当 $A$ 为可逆方阵且 $B = I_n$ 时，则有 $X = A^{-1}$．
+
+设 $r = \operatorname{rank}(A)$．此时 $B$ 的前 $r$ 行非零，后 $m-r$ 行全为 $0$．利用 $B$ 和 $X$，可以同时求出 $A$ 的右核与左核的一组基．
+
+$A$ 的 **右核** 是齐次方程组 $Av = 0$ 的解空间，其中 $v \in \mathbb{F}^n$ 是列向量．由于 $X$ 可逆，$Av = 0$ 等价于 $Bv = 0$，所以可以直接得到右核的一组基．
+
+设 $B$ 的主元列依次为 $p_1, p_2, \ldots, p_r$，非主元列（对应自由未知量）为 $q_1, q_2, \ldots, q_{n-r}$．对于每个 $1 \le j \le n-r$，令第 $q_j$ 个未知量为 $1$，其余自由未知量为 $0$，则得到一个解向量 $v^{(j)}$：
+
+$$
+v^{(j)}_{q_k} = \begin{cases}
+1, & k = j, \\
+0, & k \ne j,
+\end{cases}
+\qquad
+v^{(j)}_{p_i} = -B_{i,q_j} \quad (1 \le i \le r).
+$$
+
+这些向量线性无关，且张成整个右核，于是 $v^{(1)}, \ldots, v^{(n-r)}$ 构成右核的一组基，右核的维数为 $n-r$．[^mit-nullspace]
+
+$A$ 的 **左核** 是满足 $u^TA = 0$ 的列向量 $u \in \mathbb{F}^m$ 构成的空间，也即 $A^T$ 的右核．记 $X$ 的第 $i$ 行为 $X_{i,*}$．由 $B = XA$ 可知对 $r < i \le m$ 都有
+
+$$
+X_{i,*} A = B_{i,*} = 0.
+$$
+
+因此，$X$ 的后 $m-r$ 行转置后都属于 $A$ 的左核．又因为 $X$ 各行线性无关，而左核的维数为 $m-r$，所以这些行转置后恰好构成左核的一组基[^shoup][^mit-left-nullspace]．
+
+另外，如果只需求左核，则只将 $A$ 化为行阶梯形即可．
+
+## 高斯–约当消元法解异或方程组
 
 异或方程组是指形如
 
@@ -314,30 +330,20 @@ $$
 
 注意到异或方程组的增广矩阵是 $01$ 矩阵（矩阵中仅含有 $0$ 与 $1$），所以我们可以使用 C++ 中的 `std::bitset` 进行优化，将时间复杂度降为 $O(\dfrac{n^2m}{\omega})$，其中 $n$ 为元的个数，$m$ 为方程条数，$\omega$ 一般为 $32$（与机器有关）．
 
-参考实现：
-
-```cpp
-std::bitset<1010> matrix[2010];  // matrix[1~n]：增广矩阵，0 位置为常数
-
-std::vector<bool> GaussElimination(
-    int n, int m)  // n 为未知数个数，m 为方程个数，返回方程组的解
-                   // （多解 / 无解返回一个空的 vector）
-{
-  for (int i = 1; i <= n; i++) {
-    int cur = i;
-    while (cur <= m && !matrix[cur].test(i)) cur++;
-    if (cur > m) return std::vector<bool>(0);
-    if (cur != i) swap(matrix[cur], matrix[i]);
-    for (int j = 1; j <= m; j++)
-      if (i != j && matrix[j].test(i)) matrix[j] ^= matrix[i];
-  }
-  std::vector<bool> ans(n + 1);
-  for (int i = 1; i <= n; i++) ans[i] = matrix[i].test(0);
-  return ans;
-}
-```
+??? note "参考实现"
+    ```cpp
+    --8<-- "docs/math/code/numerical/gauss/gauss_2.cpp:core"
+    ```
 
 ## 练习题
 
 -   [Codeforces - 巫师和赌注](http://codeforces.com/contest/167/problem/E)
 -   [luogu - SDOI2010 外星千足虫](https://www.luogu.com.cn/problem/P2447)
+
+## 参考资料与注释
+
+[^shoup]: Victor Shoup.[A Computational Introduction to Number Theory and Algebra](https://www.shoup.net/ntb/ntb-v1.pdf). Cambridge University Press, 2005．
+
+[^mit-nullspace]: MIT OpenCourseWare.[Solving Ax = 0: Pivot Variables, Special Solutions](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/dddb31dfe72d2e2e2fd09e74713b7775_MIT18_06SCF11_Ses1.7sum.pdf#page=2). 18.06SC Linear Algebra, Fall 2011．
+
+[^mit-left-nullspace]: MIT OpenCourseWare.[The Four Fundamental Subspaces](https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/62a9db9eeab190694d40afe4734068ca_MIT18_06SCF11_Ses1.10sum.pdf#page=2). 18.06SC Linear Algebra, Fall 2011．

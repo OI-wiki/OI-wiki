@@ -221,7 +221,7 @@ $$
 -   [HDU 5279. YJC plays Minecraft](https://acm.hdu.edu.cn/showproblem.php?pid=5279)
 -   [Luogu P7364. 有标号二分图计数](https://www.luogu.com.cn/problem/P7364)
 -   [Luogu P5827. 点双连通图计数](https://www.luogu.com.cn/problem/P5827)
--   [Luogu P5827. 边双连通图计数](https://www.luogu.com.cn/problem/P5828)
+-   [Luogu P5828. 边双连通图计数](https://www.luogu.com.cn/problem/P5828)
 -   [Luogu P6596. How Many of Them](https://www.luogu.com.cn/problem/P6596)
 -   [Luogu U152448. 有标号强连通图计数](https://www.luogu.com.cn/problem/U152448)
 -   [Project Euler 434. Rigid graphs](https://projecteuler.net/problem=434)
