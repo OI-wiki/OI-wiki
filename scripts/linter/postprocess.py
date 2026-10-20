@@ -15,7 +15,7 @@ def fix_full_stop(md_content: str, **kwargs):
     Returns:
         str: The processed Markdown content with corrected punctuations
     """
-    line_origins: list[int] = kwargs.get('line_origins', [])  # type: ignore
+    line_origins: list[int] = kwargs.get("line_origins", [])  # type: ignore
     lines = md_content.splitlines()
 
     log(f"Processing {len(lines)} lines for full stop fixes")
@@ -28,7 +28,7 @@ def fix_full_stop(md_content: str, **kwargs):
             # Skip placeholder lines (from skip blocks)
             continue
 
-        modified_line = line.replace('。', '．')
+        modified_line = line.replace("。", "．")
 
         # Update line if changed
         if modified_line != line:
@@ -38,7 +38,7 @@ def fix_full_stop(md_content: str, **kwargs):
             log(f"line {original_line_num}: full stop fixes applied")
 
     log(f"Fullstop fix completed: {total_changes} lines modified")
-    result = '\n'.join(lines) + '\n'
+    result = "\n".join(lines) + "\n"
     log(f"Final result: {len(result)} characters")
 
     return result
@@ -65,7 +65,7 @@ def fix_quotation(md_content: str, **kwargs):
     Returns:
         str: The processed Markdown content with corrected quotation marks
     """
-    line_origins: list[int] = kwargs.get('line_origins', [])  # type: ignore
+    line_origins: list[int] = kwargs.get("line_origins", [])  # type: ignore
     lines = md_content.splitlines()
 
     log(f"Processing {len(lines)} lines for quotes fixes")
@@ -82,37 +82,49 @@ def fix_quotation(md_content: str, **kwargs):
 
         def _quote_replace(ln, col, char) -> str:
             match char:
-                case '“' | '”':
-                    corrected = '”' if stack and stack[-1] == '“' else '“'
+                case "“" | "”":
+                    corrected = "”" if stack and stack[-1] == "“" else "“"
                     if char != corrected:
-                        log(f"mismatched quote detected, treating as `{corrected}`",
-                            type=f'warning line={ln + 1},col={col + 1}')
-                    if corrected == '“':
+                        log(
+                            f"mismatched quote detected, treating as `{corrected}`",
+                            type=f"warning line={ln + 1},col={col + 1}",
+                        )
+                    if corrected == "“":
                         stack.append(corrected)
                     else:
                         stack.pop()
-                    return '「' if corrected == '“' else '」'
-                case '‘' | '’':
-                    if len(line) > 1 and (unicodedata.category(line[col-1]) in ('Ll', 'Lu', 'Lt', 'Lm', 'Nd', 'Nl') if col > 0 else False):
+                    return "「" if corrected == "“" else "」"
+                case "‘" | "’":
+                    if len(line) > 1 and (
+                        unicodedata.category(line[col - 1])
+                        in ("Ll", "Lu", "Lt", "Lm", "Nd", "Nl")
+                        if col > 0
+                        else False
+                    ):
                         # Treat as apostrophe
-                        if char == '‘':
-                            log("`‘` as apostrophe detected, treating as `’`",
-                                type=f'warning line={ln + 1},col={col + 1}')
-                        return '’'
-                    corrected = '’' if stack and stack[-1] == '‘' else '‘'
+                        if char == "‘":
+                            log(
+                                "`‘` as apostrophe detected, treating as `’`",
+                                type=f"warning line={ln + 1},col={col + 1}",
+                            )
+                        return "’"
+                    corrected = "’" if stack and stack[-1] == "‘" else "‘"
                     if char != corrected:
-                        log(f"mismatched quote detected, treating as `{corrected}`",
-                            type=f'warning line={ln + 1},col={col + 1}')
-                    if corrected == '‘':
+                        log(
+                            f"mismatched quote detected, treating as `{corrected}`",
+                            type=f"warning line={ln + 1},col={col + 1}",
+                        )
+                    if corrected == "‘":
                         stack.append(corrected)
                     else:
                         stack.pop()
-                    return '『' if corrected == '‘' else '』'
+                    return "『" if corrected == "‘" else "』"
                 case _:
                     return char
 
-        modified_line = ''.join(_quote_replace(
-            line_origins[i], j, char) for j, char in enumerate(line))
+        modified_line = "".join(
+            _quote_replace(line_origins[i], j, char) for j, char in enumerate(line)
+        )
 
         # Update line if changed
         if modified_line != line:
@@ -122,7 +134,7 @@ def fix_quotation(md_content: str, **kwargs):
             log(f"line {original_line_num}: quotation fixes applied")
 
     log(f"Quotes fix completed: {total_changes} lines modified")
-    result = '\n'.join(lines) + '\n'
+    result = "\n".join(lines) + "\n"
     log(f"Final result: {len(result)} characters")
 
     return result

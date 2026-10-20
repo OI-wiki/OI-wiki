@@ -6,6 +6,7 @@ import sys
 # autopep8: off
 # fix ModuleNotFoundError by adding current directory to Python path
 import pathlib
+
 sys.path.append(str(pathlib.Path(__file__).resolve().parents[1]))
 
 from scripts.linter.decorators import pipeline
@@ -64,21 +65,24 @@ def apply_postprocess(md_content: str):
 
 # Define available processing modes
 MODE = {
-    'pre': apply_preprocess,   # Preprocessing mode
-    'post': apply_postprocess  # Postprocessing mode
+    "pre": apply_preprocess,  # Preprocessing mode
+    "post": apply_postprocess,  # Postprocessing mode
 }
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Set up command line argument parser
-    parser = argparse.ArgumentParser(
-        description="remark-lint patches for OI-wiki")
-    parser.add_argument('directory', nargs='?',
-                        help='directory to process recursively')
-    parser.add_argument('-f', '--files', nargs='+',
-                        help='list of Markdown files to process')
+    parser = argparse.ArgumentParser(description="remark-lint patches for OI-wiki")
+    parser.add_argument("directory", nargs="?", help="directory to process recursively")
     parser.add_argument(
-        '-m', '--mode', choices=MODE.keys(), required=True,
-        help='processing mode: pre for preprocessing, post for postprocessing')
+        "-f", "--files", nargs="+", help="list of Markdown files to process"
+    )
+    parser.add_argument(
+        "-m",
+        "--mode",
+        choices=MODE.keys(),
+        required=True,
+        help="processing mode: pre for preprocessing, post for postprocessing",
+    )
 
     args = parser.parse_args()
 
@@ -88,14 +92,12 @@ if __name__ == '__main__':
     if args.files:
         # Process specific files provided via command line
         print(f"Processing specific files: {args.files}")
-        file_list.extend(
-            filter(lambda f: os.path.splitext(f)[1] == '.md', args.files))
+        file_list.extend(filter(lambda f: os.path.splitext(f)[1] == ".md", args.files))
     elif args.directory:
         # Recursively find all Markdown files in directory
         print(f"Scanning directory: {args.directory}")
         for root, _, files in os.walk(args.directory):
-            markdown_files = [fn for fn in files if os.path.splitext(fn)[
-                1] == '.md']
+            markdown_files = [fn for fn in files if os.path.splitext(fn)[1] == ".md"]
             if markdown_files:
                 print(f"Found {len(markdown_files)} Markdown files in {root}")
             file_list.extend(os.path.join(root, fn) for fn in markdown_files)
@@ -107,15 +109,18 @@ if __name__ == '__main__':
     # Load ignore list from .remarkignore file
     ignore_list = []
     try:
-        with open('.remarkignore', 'r', encoding='utf-8') as f:
+        with open(".remarkignore", "r", encoding="utf-8") as f:
             ignore_list = f.readlines()
         print(f"Loaded {len(ignore_list)} files to ignore from .remarkignore")
     except FileNotFoundError:
         print("Warning: .remarkignore file not found, no files will be ignored")
 
-    file_list = list(filter(lambda f: os.path.isfile(f) and
-                            os.path.split(f)[1] not in ignore_list,
-                            file_list))
+    file_list = list(
+        filter(
+            lambda f: os.path.isfile(f) and os.path.split(f)[1] not in ignore_list,
+            file_list,
+        )
+    )
 
     print(f"Processing {len(file_list)} file(s) with mode '{args.mode}'")
 
