@@ -7,39 +7,39 @@
 ??? abstract "Changelog"
     **注意**：只记录和写作、审阅等相关的改动，不记录格式修正等改动．
     
-    | 时间         | 主要内容                                                | 相关 Issue/Pull Request 链接                                                                                    |
-    | ---------- | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-    | 2026-02-22 | 完善引号使用的相关规定                                         | [#6793](https://github.com/OI-wiki/OI-wiki/pull/6793)                                                       |
-    | 2026-01-07 | 要求使用全角句点替代中文句号                                      | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                       |
-    | 2025-08-10 | 添加格式手册的格式要求；<br>代码：补充片段代码相关要求                       | [#6412](https://github.com/OI-wiki/OI-wiki/pull/6412)                                                       |
-    | 2025-08-10 | 添加 Changelog 与 TL;DR                                | [#6409](https://github.com/OI-wiki/OI-wiki/pull/6409)                                                       |
-    | 2024-10-08 | 代码：为适应全平台测试完善了格式要求                                  | [#5912](https://github.com/OI-wiki/OI-wiki/pull/5912)，[#5924](https://github.com/OI-wiki/OI-wiki/pull/5924) |
-    | 2024-03-26 | 引用 OJ 题目链接时使用原链接，而不是镜像链接                            | [#5482](https://github.com/OI-wiki/OI-wiki/pull/5482)                                                       |
-    | 2023-10-09 | 主题插件：新增选项卡[^note6]的格式要求                             | [#5152](https://github.com/OI-wiki/OI-wiki/pull/5152)                                                       |
-    | 2023-07-23 | 对于工具类内容的下载安装等内容，要求引用官方文档                            | [#5023](https://github.com/OI-wiki/OI-wiki/pull/5023)                                                       |
-    | 2023-04-15 | 补充引号的使用规范                                           | [#4792](https://github.com/OI-wiki/OI-wiki/pull/4792)                                                       |
-    | 2023-03-28 | LaTeX：数学符号表                                         | [#4587](https://github.com/OI-wiki/OI-wiki/pull/4587)                                                       |
-    | 2023-03-02 | 补充全半角标点与连接号的使用规范                                    | [#4726](https://github.com/OI-wiki/OI-wiki/pull/4726)                                                       |
-    | 2022-12-13 | 主题插件：移除嵌套折叠框的阴影样式要求                                 | [#4500](https://github.com/OI-wiki/OI-wiki/pull/4500)                                                       |
-    | 2022-08-09 | 引用内链的某一节内容时，使用中文标题                                  | [#4057](https://github.com/OI-wiki/OI-wiki/pull/4057)                                                       |
-    | 2022-06-12 | 完善目录更改的相关要求[^note4]                                 | [#4043](https://github.com/OI-wiki/OI-wiki/pull/4043)                                                       |
-    | 2021-09-09 | 主题插件：补充折叠框相关要求                                      | [#3517](https://github.com/OI-wiki/OI-wiki/pull/3517)                                                       |
-    | 2021-09-03 | LaTeX：`\Leftrightarrow` $\to$ `\iff`                | [#3499](https://github.com/OI-wiki/OI-wiki/pull/3499)                                                       |
-    | 2021-08-18 | 代码：新增例题代码的格式要求                                      | [#3447](https://github.com/OI-wiki/OI-wiki/pull/3447)                                                       |
-    | 2021-08-12 | 图片：动图优先使用 APNG 格式                                   | [#3422](https://github.com/OI-wiki/OI-wiki/pull/3422)                                                       |
-    | 2021-06-29 | 图片：建议同时提交源文件                                        | [#3255](https://github.com/OI-wiki/OI-wiki/pull/3255)                                                       |
-    | 2021-05-29 | 代码：删除大括号不换行的要求，补充可读性要求                              | [#3197](https://github.com/OI-wiki/OI-wiki/pull/3197)                                                       |
-    | 2021-03-15 | 站点维护：规范 Pull Request 的合并方式[^note5]                  | [#3061](https://github.com/OI-wiki/OI-wiki/pull/3061)                                                       |
-    | 2021-02-01 | LaTeX：`\lt` $\to$ `<`，`\gt` $\to$ `>`               | [#2950](https://github.com/OI-wiki/OI-wiki/pull/2950)                                                       |
-    | 2021-01-27 | 建议在 [互联网档案馆](https://web.archive.org/) 保存外链备份       | [#2918](https://github.com/OI-wiki/OI-wiki/pull/2918)                                                       |
-    | 2020-09-19 | 站点维护：Commit Message 与 Pull Request 标题的书写要求[^note4]  | [#2744](https://github.com/OI-wiki/OI-wiki/pull/2744)                                                       |
-    | 2020-10-18 | 图片：优先使用 SVG 格式                                      | [#2215](https://github.com/OI-wiki/OI-wiki/pull/2215)                                                       |
-    | 2020-08-05 | LaTeX：新增多字母变量的格式要求                                  | [#2502](https://github.com/OI-wiki/OI-wiki/pull/2502)                                                       |
-    | 2020-07-28 | LaTeX：`cases` 环境禁止超过两列                              | [#2466](https://github.com/OI-wiki/OI-wiki/pull/2466)                                                       |
-    | 2020-07-24 | LaTeX：`{n \choose m}`$\to$ `\dbinom{n}{m}`          | [#2442](https://github.com/OI-wiki/OI-wiki/pull/2442)                                                       |
-    | 2020-07-20 | Markdown：禁用删除线语法                                    | [#2422](https://github.com/OI-wiki/OI-wiki/pull/2422)                                                       |
-    | 2020-07-19 | 主题插件：要求保留折叠框[^note3]中空行的缩进空格；<br>LaTeX：追加对数学公式的格式要求 | [#2412](https://github.com/OI-wiki/OI-wiki/pull/2412)                                                       |
-    | 2020-07-11 | 最初版本                                                | [#2350](https://github.com/OI-wiki/OI-wiki/pull/2350)                                                       |
+    | 时间       | 主要内容                                                                              | 相关 Issue/Pull Request 链接                                                                                 |
+    | ---------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+    | 2026-02-22 | 完善引号使用的相关规定                                                                | [#6793](https://github.com/OI-wiki/OI-wiki/pull/6793)                                                        |
+    | 2026-01-07 | 要求使用全角句点替代中文句号                                                          | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                        |
+    | 2025-08-10 | 添加格式手册的格式要求；<br>代码：补充片段代码相关要求                                | [#6412](https://github.com/OI-wiki/OI-wiki/pull/6412)                                                        |
+    | 2025-08-10 | 添加 Changelog 与 TL;DR                                                               | [#6409](https://github.com/OI-wiki/OI-wiki/pull/6409)                                                        |
+    | 2024-10-08 | 代码：为适应全平台测试完善了格式要求                                                  | [#5912](https://github.com/OI-wiki/OI-wiki/pull/5912)，[#5924](https://github.com/OI-wiki/OI-wiki/pull/5924) |
+    | 2024-03-26 | 引用 OJ 题目链接时使用原链接，而不是镜像链接                                          | [#5482](https://github.com/OI-wiki/OI-wiki/pull/5482)                                                        |
+    | 2023-10-09 | 主题插件：新增选项卡[^note6]的格式要求                                                | [#5152](https://github.com/OI-wiki/OI-wiki/pull/5152)                                                        |
+    | 2023-07-23 | 对于工具类内容的下载安装等内容，要求引用官方文档                                      | [#5023](https://github.com/OI-wiki/OI-wiki/pull/5023)                                                        |
+    | 2023-04-15 | 补充引号的使用规范                                                                    | [#4792](https://github.com/OI-wiki/OI-wiki/pull/4792)                                                        |
+    | 2023-03-28 | LaTeX：数学符号表                                                                     | [#4587](https://github.com/OI-wiki/OI-wiki/pull/4587)                                                        |
+    | 2023-03-02 | 补充全半角标点与连接号的使用规范                                                      | [#4726](https://github.com/OI-wiki/OI-wiki/pull/4726)                                                        |
+    | 2022-12-13 | 主题插件：移除嵌套折叠框的阴影样式要求                                                | [#4500](https://github.com/OI-wiki/OI-wiki/pull/4500)                                                        |
+    | 2022-08-09 | 引用内链的某一节内容时，使用中文标题                                                  | [#4057](https://github.com/OI-wiki/OI-wiki/pull/4057)                                                        |
+    | 2022-06-12 | 完善目录更改的相关要求[^note4]                                                        | [#4043](https://github.com/OI-wiki/OI-wiki/pull/4043)                                                        |
+    | 2021-09-09 | 主题插件：补充折叠框相关要求                                                          | [#3517](https://github.com/OI-wiki/OI-wiki/pull/3517)                                                        |
+    | 2021-09-03 | LaTeX：`\Leftrightarrow` $\to$ `\iff`                                                 | [#3499](https://github.com/OI-wiki/OI-wiki/pull/3499)                                                        |
+    | 2021-08-18 | 代码：新增例题代码的格式要求                                                          | [#3447](https://github.com/OI-wiki/OI-wiki/pull/3447)                                                        |
+    | 2021-08-12 | 图片：动图优先使用 APNG 格式                                                          | [#3422](https://github.com/OI-wiki/OI-wiki/pull/3422)                                                        |
+    | 2021-06-29 | 图片：建议同时提交源文件                                                              | [#3255](https://github.com/OI-wiki/OI-wiki/pull/3255)                                                        |
+    | 2021-05-29 | 代码：删除大括号不换行的要求，补充可读性要求                                          | [#3197](https://github.com/OI-wiki/OI-wiki/pull/3197)                                                        |
+    | 2021-03-15 | 站点维护：规范 Pull Request 的合并方式[^note5]                                        | [#3061](https://github.com/OI-wiki/OI-wiki/pull/3061)                                                        |
+    | 2021-02-01 | LaTeX：`\lt` $\to$ `<`，`\gt` $\to$ `>`                                               | [#2950](https://github.com/OI-wiki/OI-wiki/pull/2950)                                                        |
+    | 2021-01-27 | 建议在 [互联网档案馆](https://web.archive.org/) 保存外链备份                          | [#2918](https://github.com/OI-wiki/OI-wiki/pull/2918)                                                        |
+    | 2020-09-19 | 站点维护：Commit Message 与 Pull Request 标题的书写要求[^note4]                       | [#2744](https://github.com/OI-wiki/OI-wiki/pull/2744)                                                        |
+    | 2020-10-18 | 图片：优先使用 SVG 格式                                                               | [#2215](https://github.com/OI-wiki/OI-wiki/pull/2215)                                                        |
+    | 2020-08-05 | LaTeX：新增多字母变量的格式要求                                                       | [#2502](https://github.com/OI-wiki/OI-wiki/pull/2502)                                                        |
+    | 2020-07-28 | LaTeX：`cases` 环境禁止超过两列                                                       | [#2466](https://github.com/OI-wiki/OI-wiki/pull/2466)                                                        |
+    | 2020-07-24 | LaTeX：`{n \choose m}`$\to$ `\dbinom{n}{m}`                                           | [#2442](https://github.com/OI-wiki/OI-wiki/pull/2442)                                                        |
+    | 2020-07-20 | Markdown：禁用删除线语法                                                              | [#2422](https://github.com/OI-wiki/OI-wiki/pull/2422)                                                        |
+    | 2020-07-19 | 主题插件：要求保留折叠框[^note3]中空行的缩进空格；<br>LaTeX：追加对数学公式的格式要求 | [#2412](https://github.com/OI-wiki/OI-wiki/pull/2412)                                                        |
+    | 2020-07-11 | 最初版本                                                                              | [#2350](https://github.com/OI-wiki/OI-wiki/pull/2350)                                                        |
 
 ## 太长不看版
 
@@ -535,22 +535,22 @@ LaTeX 作为公式排版的首选，我们应当正确地使用它．因此对�
 
 我们可以使用一个表格来总结一下上述内容．注意本表格没有举出所有符号的用法，只给出常见的错误．类似的情况类比即可．
 
-| 不符合规定的用法                     | 渲染效果              | 符合规定的用法                                  | 渲染效果                                |
-| ---------------------------- | ----------------- | ---------------------------------------- | ----------------------------------- |
-| `$log, ln, lg$`              | $log, ln, lg$     | `$\log$, $\ln$, $\lg$`                   | $\log$，$\ln$，$\lg$                  |
-| `$sin, cos, tan$`            | $sin, cos, tan$   | `$\sin$, $\cos$, $\tan$`                 | $\sin$，$\cos$，$\tan$                |
-| `$gcd, lcm$`                 | $gcd, lcm$        | `$\gcd$, $\operatorname{lcm}$`           | $\gcd$，$\operatorname{lcm}$         |
-| `$e$, $\text{e}$, e`（自然对数的底） | $e$，$\text{e}$, e | `$\mathrm{e}$`                           | $\mathrm{e}$                        |
-| `$i$, $\text{i}$, i`（虚数单位）   | $i$，$\text{i}$, i | `$\mathrm{i}$`                           | $\mathrm{i}$                        |
-| `$ 小于 a 的质数 $`               | $小于 a 的质数$        | `小于 $a$ 的质数`                             | 小于 $a$ 的质数                          |
-| `$...$`                      | $...$             | `$\cdots$, $\ldots$, $\vdots$, $\ddots$` | $\cdots$，$\ldots$，$\vdots$，$\ddots$ |
-| `$a*b$`（两个数相乘）               | $a*b$             | `$a\times b$, $a\cdot b$`                | $a\times b$，$a\cdot b$              |
-| `$SPFA$`（英文名称）               | $SPFA$            | `SPFA`                                   | SPFA                                |
-| `$a==b$`                     | $a==b$            | `$a=b$`                                  | $a=b$                               |
-| `$f[i][j][k]$`               | $f[i][j][k]$      | `$f_{i,j,k}$, $f(i,j,k)$`                | $f_{i,j,k}$，$f(i,j,k)$              |
-| `$R,N^*$`（集合）                | $R,N^*$           | `$\mathbf{R}$, $\mathbf{N}^*$`           | $\mathbf{R}$，$\mathbf{N}^*$         |
-| `$\emptyset$`                | $\emptyset$       | `$\varnothing$`                          | $\varnothing$                       |
-| `$size$`                     | $size$            | `$\textit{size}$`                        | $\textit{size}$                     |
+| 不符合规定的用法                     | 渲染效果           | 符合规定的用法                           | 渲染效果                               |
+| ------------------------------------ | ------------------ | ---------------------------------------- | -------------------------------------- |
+| `$log, ln, lg$`                      | $log, ln, lg$      | `$\log$, $\ln$, $\lg$`                   | $\log$，$\ln$，$\lg$                   |
+| `$sin, cos, tan$`                    | $sin, cos, tan$    | `$\sin$, $\cos$, $\tan$`                 | $\sin$，$\cos$，$\tan$                 |
+| `$gcd, lcm$`                         | $gcd, lcm$         | `$\gcd$, $\operatorname{lcm}$`           | $\gcd$，$\operatorname{lcm}$           |
+| `$e$, $\text{e}$, e`（自然对数的底） | $e$，$\text{e}$, e | `$\mathrm{e}$`                           | $\mathrm{e}$                           |
+| `$i$, $\text{i}$, i`（虚数单位）     | $i$，$\text{i}$, i | `$\mathrm{i}$`                           | $\mathrm{i}$                           |
+| `$ 小于 a 的质数 $`                  | $小于 a 的质数$    | `小于 $a$ 的质数`                        | 小于 $a$ 的质数                        |
+| `$...$`                              | $...$              | `$\cdots$, $\ldots$, $\vdots$, $\ddots$` | $\cdots$，$\ldots$，$\vdots$，$\ddots$ |
+| `$a*b$`（两个数相乘）                | $a*b$              | `$a\times b$, $a\cdot b$`                | $a\times b$，$a\cdot b$                |
+| `$SPFA$`（英文名称）                 | $SPFA$             | `SPFA`                                   | SPFA                                   |
+| `$a==b$`                             | $a==b$             | `$a=b$`                                  | $a=b$                                  |
+| `$f[i][j][k]$`                       | $f[i][j][k]$       | `$f_{i,j,k}$, $f(i,j,k)$`                | $f_{i,j,k}$，$f(i,j,k)$                |
+| `$R,N^*$`（集合）                    | $R,N^*$            | `$\mathbf{R}$, $\mathbf{N}^*$`           | $\mathbf{R}$，$\mathbf{N}^*$           |
+| `$\emptyset$`                        | $\emptyset$        | `$\varnothing$`                          | $\varnothing$                          |
+| `$size$`                             | $size$             | `$\textit{size}$`                        | $\textit{size}$                        |
 
 #### 对数学公式的附加格式要求
 
