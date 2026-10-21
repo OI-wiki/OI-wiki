@@ -1,0 +1,29 @@
+import stringWidth from "string-width";
+
+export default {
+  settings: {
+    emphasis: "*",
+    bullet: "-",
+    listItemIndent: "tab"
+  },
+  plugins: [
+    "remark-copywriting-correct",
+    "remark-preset-lint-markdown-style-guide",
+    "remark-lint-no-duplicate-headings-in-section",
+    ["remark-lint-no-duplicate-headings", false],
+    ["remark-lint-list-item-spacing", false],
+    ["remark-lint-list-item-indent", false],
+    ["remark-lint-code-block-style", false],
+    ["remark-lint-maximum-line-length", false],
+    ["remark-lint-ordered-list-marker-value", "ordered"],
+    ["remark-lint-table-pipe-alignment", false],
+    ["remark-gfm", { stringLength: stringWidth }],
+    ["remark-details", { normalize: true }],
+    "remark-math",
+    "remark-math-space",
+    "remark-lint-final-newline",
+    "remark-tabbed",
+    "remark-lint-no-tabs",
+    ["remark-clang-format", { math: false }]
+  ]
+};
