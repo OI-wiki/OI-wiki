@@ -16,24 +16,24 @@ $n$ 元布尔函数也可以用含 $n$ 个变量的 **命题公式**（propositi
 
 以下是一些常见布尔函数，我们也会把这些布尔函数统称为 **逻辑运算符**（logical connective）或 **逻辑算子**（logical operator）：
 
-| 名称（数理逻辑）                                           | 其他名称                 | 记号                               |
-| -------------------------------------------------- | -------------------- | -------------------------------- |
-| 恒真（truth、tautology）                                |                      | $\top$                           |
-| 恒假（falsity、contradiction）                          |                      | $\bot$                           |
-| 命题                                                 | 自身                   | $A$                              |
-| 否定（negation）                                       | 非（NOT）               | $\lnot A$                        |
-| 合取（conjunction）                                    | 与（AND）               | $A \land B$                      |
-| 析取（disjunction）                                    | 或（OR）                | $A \lor B$                       |
-| 非合取（non-conjunction）                               | 与非（NAND）、Sheffer 竖线  | $A \bar{\land} B$、$A\uparrow B$  |
-| 非析取（non-disjunction）                               | 或非（NOR）              | $A \bar{\lor} B$、$A\downarrow B$ |
-|                                                    | 异或（Exclusive-OR，XOR） | $A \oplus B$                     |
-|                                                    | 同或（Exclusive-NOR）    | $A \odot B$                      |
-| 实质蕴含（material implication）[^note1]                 |                      | $A \to B$                        |
-| 实质非蕴含（material nonimplication）[^note1]             |                      | $A \nrightarrow B$               |
-| 反蕴涵（converse implication）[^note1]                  |                      | $A \gets B$                      |
-| 非反蕴涵（converse nonimplication）[^note1]              |                      | $A \nleftarrow B$                |
-| 双条件（biconditional）、等价（equivalence）[^note1][^note2] |                      | $A \leftrightarrow B$            |
-| 非等价（non-equivalence）[^note1][^note3]               |                      | $A \nleftrightarrow B$           |
+| 名称（数理逻辑）                                             | 其他名称                   | 记号                              |
+| ------------------------------------------------------------ | -------------------------- | --------------------------------- |
+| 恒真（truth、tautology）                                     |                            | $\top$                            |
+| 恒假（falsity、contradiction）                               |                            | $\bot$                            |
+| 命题                                                         | 自身                       | $A$                               |
+| 否定（negation）                                             | 非（NOT）                  | $\lnot A$                         |
+| 合取（conjunction）                                          | 与（AND）                  | $A \land B$                       |
+| 析取（disjunction）                                          | 或（OR）                   | $A \lor B$                        |
+| 非合取（non-conjunction）                                    | 与非（NAND）、Sheffer 竖线 | $A \bar{\land} B$、$A\uparrow B$  |
+| 非析取（non-disjunction）                                    | 或非（NOR）                | $A \bar{\lor} B$、$A\downarrow B$ |
+|                                                              | 异或（Exclusive-OR，XOR）  | $A \oplus B$                      |
+|                                                              | 同或（Exclusive-NOR）      | $A \odot B$                       |
+| 实质蕴含（material implication）[^note1]                     |                            | $A \to B$                         |
+| 实质非蕴含（material nonimplication）[^note1]                |                            | $A \nrightarrow B$                |
+| 反蕴涵（converse implication）[^note1]                       |                            | $A \gets B$                       |
+| 非反蕴涵（converse nonimplication）[^note1]                  |                            | $A \nleftarrow B$                 |
+| 双条件（biconditional）、等价（equivalence）[^note1][^note2] |                            | $A \leftrightarrow B$             |
+| 非等价（non-equivalence）[^note1][^note3]                    |                            | $A \nleftrightarrow B$            |
 
 对应的真值表（From [Wikipedia](https://commons.wikimedia.org/wiki/File:Logical_connectives_table.svg)）：
 

@@ -226,13 +226,13 @@ int binary_search_min(int L, int R) {
 
 下面列出几种常见写法．均假设 $L\le R$、问题满足第一种有序性质，且最小可行值 $\textit{ans}$ 存在．答案的位置以「答案位置不变量」一列为准．
 
-| 写法                     | 初始 $l,r$        | 循环条件     | $\textit{mid}$                            | $f(\textit{mid})=1$ 时  | $f(\textit{mid})=0$ 时  | 答案位置不变量                   | 结束时     | 返回  |
-| ---------------------- | --------------- | -------- | ----------------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------- | --- |
-| 闭区间 $[l,r]$，排除已判定部分    | $l=L,\ r=R$     | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}-1$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r+1$ | $l=r+1$ | $l$ |
-| 闭区间 $[l,r]$，保留答案       | $l=L,\ r=R$     | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$   | $l=r$   | $l$ |
-| 左闭右开区间 $[l,r)$，排除已判定部分 | $l=L,\ r=R+1$   | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$   | $l=r$   | $l$ |
-| 左开右闭区间 $(l,r]$，保留答案    | $l=L-1,\ r=R$   | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}$   | $l<\textit{ans}\le r$     | $l+1=r$ | $r$ |
-| 开区间 $(l,r)$，维护两侧边界     | $l=L-1,\ r=R+1$ | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}$   | $l<\textit{ans}\le r$     | $l+1=r$ | $r$ |
+| 写法                                 | 初始 $l,r$      | 循环条件 | $\textit{mid}$                            | $f(\textit{mid})=1$ 时 | $f(\textit{mid})=0$ 时 | 答案位置不变量            | 结束时  | 返回 |
+| ------------------------------------ | --------------- | -------- | ----------------------------------------- | ---------------------- | ---------------------- | ------------------------- | ------- | ---- |
+| 闭区间 $[l,r]$，排除已判定部分       | $l=L,\ r=R$     | $l\le r$ | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}-1$ | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r+1$ | $l=r+1$ | $l$  |
+| 闭区间 $[l,r]$，保留答案             | $l=L,\ r=R$     | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$   | $l=r$   | $l$  |
+| 左闭右开区间 $[l,r)$，排除已判定部分 | $l=L,\ r=R+1$   | $l<r$    | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}+1$ | $l\le\textit{ans}\le r$   | $l=r$   | $l$  |
+| 左开右闭区间 $(l,r]$，保留答案       | $l=L-1,\ r=R$   | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}$   | $l<\textit{ans}\le r$     | $l+1=r$ | $r$  |
+| 开区间 $(l,r)$，维护两侧边界         | $l=L-1,\ r=R+1$ | $l+1<r$  | $\left\lfloor\dfrac{l+r}{2}\right\rfloor$ | $r\gets\textit{mid}$   | $l\gets\textit{mid}$   | $l<\textit{ans}\le r$     | $l+1=r$ | $r$  |
 
 表中还有几点需要说明：
 
