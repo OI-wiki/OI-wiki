@@ -1,0 +1,26 @@
+\documentclass[tikz,border=3.14mm]{standalone}
+\usetikzlibrary{3d}
+
+\begin{document}
+\begin{tikzpicture}[scale=4]
+
+    % Bottom square edges
+    \draw[thick,dashed] (0,0,0) -- (1,0,0);
+    \draw[thick] (1,0,0) -- (1,1,0);
+    \draw[thick] (1,1,0) -- (0,1,0);
+    \draw[thick,dashed] (0,1,0) -- (0,0,0);
+    
+    % Top square edges
+    \draw[thick] (0,0,1) -- (1,0,1);
+    \draw[thick] (1,0,1) -- (1,1,1);
+    \draw[thick] (1,1,1) -- (0,1,1);
+    \draw[thick] (0,1,1) -- (0,0,1);
+    
+    % Vertical edges connecting top and bottom
+    \draw[thick,dashed] (0,0,0) -- (0,0,1);
+    \draw[thick] (1,0,0) -- (1,0,1);
+    \draw[thick] (1,1,0) -- (1,1,1);
+    \draw[thick] (0,1,0) -- (0,1,1);
+
+\end{tikzpicture}
+\end{document}
