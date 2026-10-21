@@ -17,7 +17,7 @@ scripts/    @Ir1d @billchenchina
 scripts/checker/    @Junyan721113
 .clang-format   @Ir1d
 .remarkignore   @Enter-tainer
-.remarkrc   @Ir1d @Enter-tainer
+.remarkrc.js   @Ir1d @Enter-tainer
 CODE_OF_CONDUCT.md  @Ir1d
 README.md   @Ir1d
 gulpfile.cjs @Ir1d @Enter-tainer
