@@ -22,7 +22,7 @@ def index_lfirst_neq(l: Iterable, value):
     return next(idx for idx, v in enumerate(l) if v != value)
 
 
-def log(msg, type='debug'):
+def log(msg, type="debug"):
     """
     Log a message with optional type prefix for GitHub Actions compatibility.
 
@@ -42,7 +42,7 @@ def log(msg, type='debug'):
         msg: The message to log
         type: The log type corresponding to GitHub Actions workflow command types
     """
-    if type != 'debug' or os.environ.get('RUNNER_DEBUG'):
+    if type != "debug" or os.environ.get("RUNNER_DEBUG"):
         print(f"::{type}::{msg}")
 
 
@@ -65,11 +65,11 @@ class Grouping:
         self.__enable_only_debug = enable_only_debug
 
     def __enter__(self):
-        if not self.__enable_only_debug or os.environ.get('RUNNER_DEBUG'):
-            log(self.__title, 'group')
+        if not self.__enable_only_debug or os.environ.get("RUNNER_DEBUG"):
+            log(self.__title, "group")
         return self
 
     def __exit__(self, exc_type, exc, tb):
-        if not self.__enable_only_debug or os.environ.get('RUNNER_DEBUG'):
-            log('', 'endgroup')
+        if not self.__enable_only_debug or os.environ.get("RUNNER_DEBUG"):
+            log("", "endgroup")
         return False
