@@ -13,25 +13,30 @@ import re
 
 db = {}
 
+
 def read_unihan_db():
     global db
     with open("Unihan_IRGSources.txt", "r") as f:
         for l in f:
-            if l.startswith("#"): continue
+            if l.startswith("#"):
+                continue
             k = l.strip().split("\t")
-            if len(k) < 3: continue
+            if len(k) < 3:
+                continue
 
             ucode, key, value = k
-            if key == 'kIICore':
+            if key == "kIICore":
                 db[int(ucode[2:], 16)] = value
 
 
 # no idea on how to select U+2F800..U+2FA1F so just assume they do not exist
-CJK_COMPAT = "[\u3300-\u33FF\uFE30-\uFE4F\uF900-\uFAFF]"
-CJK_EXT = "[\u3400-\u4DBF]"
+CJK_COMPAT = "[\u3300-\u33ff\ufe30-\ufe4f\uf900-\ufaff]"
+CJK_EXT = "[\u3400-\u4dbf]"
+
 
 def get_cjk(cp):
-    return map(lambda x: (x.group(0), x.span(0)[0]), re.finditer("[\u4E00-\u9FFF]", cp))
+    return map(lambda x: (x.group(0), x.span(0)[0]), re.finditer("[\u4e00-\u9fff]", cp))
+
 
 def process_lines(lns, name):
     for i, ln in enumerate(lns):
@@ -44,6 +49,7 @@ def process_lines(lns, name):
                 print(f"{name}, ({i}:{ch[1]}): {ch[0]} is not in IRG G Source")
             # print(db[ord(ch[0])])
 
+
 def main():
     read_unihan_db()
 
@@ -52,6 +58,7 @@ def main():
             with open(f"{dirname}/{f}", "r") as ff:
                 lns = ff.readlines()
                 process_lines(lns, f)
-    
+
+
 if __name__ == "__main__":
     main()
