@@ -1,8 +1,9 @@
 # Check correctness of example code.
 # input: main files to test (from get_files_to_test.py, read from $FILES_TO_TEST
-#        as a space separated list)
+#        as a space separated list) and the language to test (--language)
 # output: None. Print to GitHub Action step summary.
 
+import argparse
 import os
 import subprocess
 import sys
@@ -156,13 +157,24 @@ def test_py(mainfile, auxfiles, examples, skiptest, summary):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--language",
+        type=str,
+        default="cpp",
+        choices=["cpp", "py"],
+        help="the language of the example code to test",
+    )
+    language = parser.parse_args().language
+    test = test_cpp if language == "cpp" else test_py
+
     mainfiles = os.environ.get("FILES_TO_TEST", "").split()
 
     cnt_ac, cnt_error, cnt_skip = 0, 0, 0
     summary = ""
     for mainfile in mainfiles:
         auxfiles, examples, skiptest = derive_test_files(mainfile)
-        correctness, summary = test_cpp(mainfile, auxfiles, examples, skiptest, summary)
+        correctness, summary = test(mainfile, auxfiles, examples, skiptest, summary)
         cnt_ac = cnt_ac + 1 if correctness == ACCEPTED else cnt_ac
         cnt_error = cnt_error + 1 if correctness == ERROR else cnt_error
         cnt_skip = cnt_skip + 1 if correctness == SKIPPED else cnt_skip

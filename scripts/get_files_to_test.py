@@ -8,7 +8,7 @@
 import os
 
 # Extensions of the source files that can be tested.
-extnames = [".cpp"]
+extnames = [".cpp", ".py"]
 
 
 def check_availability(file):

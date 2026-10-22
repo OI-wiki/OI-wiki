@@ -15,6 +15,8 @@ jobs:
     outputs:
       TEST_CPP_FILES: ${{ steps.GetFiles.outputs.TEST_CPP_FILES }}
       HAS_CPP: ${{ steps.GetFiles.outputs.HAS_CPP }}
+      TEST_PY_FILES: ${{ steps.GetFiles.outputs.TEST_PY_FILES }}
+      HAS_PY: ${{ steps.GetFiles.outputs.HAS_PY }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -25,6 +27,7 @@ jobs:
         with:
           files: |
             docs/**/*.cpp
+            docs/**/*.py
             docs/**/*.in
             docs/**/*.ans
       - uses: actions/setup-python@v6
@@ -67,7 +70,30 @@ jobs:
       - name: Correctness Check
         env:
           FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
-        run: uv run python scripts/correctness_check.py
+        run: uv run python scripts/correctness_check.py --language cpp
+
+  py-correctness:
+    name: OI-wiki Python Offline Test
+    needs: file-list
+    if: ${{ needs.file-list.outputs.HAS_PY == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.10'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8.1.0
+        with:
+          version: "latest"
+      - name: Install Python dependencies
+        run: uv sync
+      - name: Correctness Check
+        env:
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_PY_FILES }}
+        run: uv run python scripts/correctness_check.py --language py
 
   undefinedbehaviors-ubuntu:
     name: UB Check - x86_64 Ubuntu
