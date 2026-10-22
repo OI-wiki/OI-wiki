@@ -1,11 +1,11 @@
-# Generate the list of files to test from the changed files.
+# Generate the list of code files to test from the changed files.
 # Input: the changed files reported by tj-actions/changed-files, read from the
 #        `all_changed_files` environment variable.
-# Output: the files to test, written to $GITHUB_OUTPUT.
+# Output: for every supported language, `TEST_<LANG>_FILES` (the space separated
+#         main files to test) and `HAS_<LANG>` (whether the list is not empty),
+#         written to $GITHUB_OUTPUT.
 
 import os
-
-from test_utils import derive_test_files
 
 # Extensions of the source files that can be tested.
 extnames = [".cpp"]
@@ -69,23 +69,19 @@ def output(name, value):
 
 
 if __name__ == "__main__":
-    mainfiles, auxfiles, examples, skiptests = [], [], [], []
+    changed_codes = set()
 
     for changed_file in os.environ.get("all_changed_files", "").split():
         # A changed file is resolved to the main files it belongs to: a code
         # file through its own main file, example data through the code files
         # using it.
         if os.path.splitext(changed_file)[1] in extnames:
-            changed_codes = [check_availability(changed_file)]
+            changed_codes.update(filter(None, [check_availability(changed_file)]))
         else:
-            changed_codes = examples2code(changed_file)
-        for mainfile in filter(None, changed_codes):
-            if mainfile in mainfiles:
-                continue
-            mainfiles.append(mainfile)
-            auxfile, example, skiptest = derive_test_files(mainfile)
-            auxfiles.append(auxfile)
-            examples.append(example)
-            skiptests.append(skiptest)
+            changed_codes.update(examples2code(changed_file))
 
-    output("files_to_test", (mainfiles, auxfiles, examples, skiptests))
+    for extname in extnames:
+        language = extname[1:].upper()
+        files = sorted(file for file in changed_codes if file.endswith(extname))
+        output(f"TEST_{language}_FILES", " ".join(files))
+        output(f"HAS_{language}", "true" if files else "false")
