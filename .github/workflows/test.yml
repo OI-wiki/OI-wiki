@@ -39,12 +39,11 @@ jobs:
       - name: Install Python dependencies
         if: steps.changed-files.outputs.any_changed == 'true'
         run: uv sync
-      - name: Make the File list
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
       - name: Get Files to Test
         if: steps.changed-files.outputs.any_changed == 'true'
         id: GetFiles
+        env:
+          all_changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
         run: uv run python scripts/get_files_to_test.py
 
   cpp-correctness:
@@ -126,6 +125,8 @@ jobs:
         with:
           fetch-depth: 0
       - name: Launch Risc-V Docker
+        env:
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
         run: |
           docker pull --platform riscv64 ghcr.io/trickeye/ubtest:latest
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
@@ -133,7 +134,7 @@ jobs:
             --volume $PWD:$PWD \
             --volume $GITHUB_STEP_SUMMARY:$GITHUB_STEP_SUMMARY \
             --workdir $PWD \
-            --env FILES_TO_TEST="${{ needs.file-list.outputs.files_to_test }}" \
+            --env FILES_TO_TEST \
             --env RUNS_ON="riscv64 Ubuntu" \
             --env PYTHONIOENCODING="UTF-8" \
             --env GITHUB_STEP_SUMMARY=$GITHUB_STEP_SUMMARY \
