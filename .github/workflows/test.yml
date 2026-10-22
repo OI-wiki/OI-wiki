@@ -13,8 +13,8 @@ jobs:
     name: Make File List
     runs-on: ubuntu-latest
     outputs:
-      any_changed: ${{ steps.changed-files.outputs.any_changed }}
-      files_to_test: ${{ steps.GetFiles.outputs.files_to_test }}
+      TEST_CPP_FILES: ${{ steps.GetFiles.outputs.TEST_CPP_FILES }}
+      HAS_CPP: ${{ steps.GetFiles.outputs.HAS_CPP }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -28,19 +28,15 @@ jobs:
             docs/**/*.in
             docs/**/*.ans
       - uses: actions/setup-python@v6
-        if: steps.changed-files.outputs.any_changed == 'true'
         with:
           python-version: '3.10'
       - name: Install uv
-        if: steps.changed-files.outputs.any_changed == 'true'
         uses: astral-sh/setup-uv@v8.1.0
         with:
           version: "latest"
       - name: Install Python dependencies
-        if: steps.changed-files.outputs.any_changed == 'true'
         run: uv sync
       - name: Get Files to Test
-        if: steps.changed-files.outputs.any_changed == 'true'
         id: GetFiles
         env:
           all_changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
@@ -49,7 +45,7 @@ jobs:
   cpp-correctness:
     name: OI-wiki C++ Offline Test
     needs: file-list
-    if: ${{ needs.file-list.outputs.any_changed == 'true' }}
+    if: ${{ needs.file-list.outputs.HAS_CPP == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -70,7 +66,7 @@ jobs:
           sudo apt-get install -y g++
       - name: Correctness Check
         env:
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
         run: uv run python scripts/correctness_check.py
 
   undefinedbehaviors-ubuntu:
@@ -88,7 +84,7 @@ jobs:
           apt-get install -y g++-9
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
           RUNS_ON: x86_64 Ubuntu
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
@@ -111,7 +107,7 @@ jobs:
           echo "::endgroup::"
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
           RUNS_ON: arm64 MacOS
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
@@ -126,7 +122,7 @@ jobs:
           fetch-depth: 0
       - name: Launch Risc-V Docker
         env:
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
         run: |
           docker pull --platform riscv64 ghcr.io/trickeye/ubtest:latest
           docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
@@ -191,7 +187,7 @@ jobs:
           echo ::endgroup::
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
           RUNS_ON: x86_64 Windows
           PYTHONIOENCODING: UTF-8
           VSINSTALL: ${{ steps.check-compiler-version.outputs.VSINSTALL }}
@@ -222,7 +218,7 @@ jobs:
           echo "::endgroup::"
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.TEST_CPP_FILES }}
           RUNS_ON: x86_64 Alpine
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
