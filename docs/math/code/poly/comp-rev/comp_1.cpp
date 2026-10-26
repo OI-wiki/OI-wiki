@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <cassert>
 #include <cstdio>
 #include <tuple>
@@ -22,23 +23,19 @@ constexpr int LOG2_ORD = 23;  // __builtin_ctz(MOD - 1)
 constexpr uint ZETA = PowMod(QUAD_NONRESIDUE, (MOD - 1) >> LOG2_ORD);
 constexpr uint INV_ZETA = InvMod(ZETA);
 
-// 返回做 n 长 FFT 所需的单位根数组，长度为一半
-std::pair<std::vector<uint>, std::vector<uint>> GetFFTRoot(int n) {
+std::vector<uint> GetFFTRoot(int n) {
   assert((n & (n - 1)) == 0);
   if (n / 2 == 0) return {};
-  std::vector<uint> root(n / 2), inv_root(n / 2);
-  root[0] = inv_root[0] = 1;
+  std::vector<uint> root(n / 2);
+  root[0] = 1;
   for (int i = 0; (1 << i) < n / 2; ++i)
-    root[1 << i] = PowMod(ZETA, 1LL << (LOG2_ORD - i - 2)),
-              inv_root[1 << i] = PowMod(INV_ZETA, 1LL << (LOG2_ORD - i - 2));
+    root[1 << i] = PowMod(ZETA, 1LL << (LOG2_ORD - i - 2));
   for (int i = 1; i < n / 2; ++i)
-    root[i] = (ull)root[i - (i & (i - 1))] * root[i & (i - 1)] % MOD,
-    inv_root[i] =
-        (ull)inv_root[i - (i & (i - 1))] * inv_root[i & (i - 1)] % MOD;
-  return {root, inv_root};
+    root[i] = (ull)root[i - (i & (i - 1))] * root[i & (i - 1)] % MOD;
+  return root;
 }
 
-void Butterfly(int n, uint a[], const uint root[]) {
+void Butterfly(uint a[], int n, const uint root[]) {
   assert((n & (n - 1)) == 0);
   for (int i = n; i >= 2; i /= 2)
     for (int j = 0; j < n; j += i)
@@ -50,7 +47,7 @@ void Butterfly(int n, uint a[], const uint root[]) {
       }
 }
 
-void InvButterfly(int n, uint a[], const uint root[]) {
+void InvButterfly(uint a[], int n, const uint root[]) {
   assert((n & (n - 1)) == 0);
   for (int i = 2; i <= n; i *= 2)
     for (int j = 0; j < n; j += i)
@@ -61,64 +58,68 @@ void InvButterfly(int n, uint a[], const uint root[]) {
       }
 }
 
-void FFT(int n, uint a[], const uint root[]) { Butterfly(n, a, root); }
+void FFT(uint a[], int n, const uint root[]) { Butterfly(a, n, root); }
 
-void InvFFT(int n, uint a[], const uint root[]) {
-  InvButterfly(n, a, root);
-  const uint inv_n = InvMod(n);
-  for (int i = 0; i < n; ++i) a[i] = (ull)a[i] * inv_n % MOD;
+void InvFFT(uint a[], int n, const uint root[]) {
+  InvButterfly(a, n, root);
+  std::reverse(a + 1, a + n);
+  const uint invn = InvMod(n);
+  for (int i = 0; i < n; ++i) a[i] = (ull)a[i] * invn % MOD;
+}
+
+void TransposedFFT(uint a[], int n, const uint root[]) {
+  InvButterfly(a, n, root);
+}
+
+void TransposedInvFFT(uint a[], int n, const uint root[]) {
+  const uint invn = InvMod(n);
+  for (int i = 0; i < n; ++i) a[i] = (ull)a[i] * invn % MOD;
+  std::reverse(a + 1, a + n);
+  Butterfly(a, n, root);
 }
 
 // 形式幂级数复合，求出 f(g) mod x^n 要求 g(0) = 0
-std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
-                                 int n) {
-  assert(g.empty() || g[0] == 0);
-  int len = 1;
-  while (len < n) len *= 2;
-  std::vector<uint> root, inv_root;
-  std::tie(root, inv_root) = GetFFTRoot(len * 4);
+std::vector<uint> FPSComp(std::vector<uint> f, std::vector<uint> g, int n) {
+  assert(empty(g) || g[0] == 0);
+  int N = 1;
+  while (N < n) N *= 2;
+  const std::vector<uint> root = GetFFTRoot(N * 4);
   // [y^(-1)] (f(y) / (-g(x) + y)) mod x^n in R[x]((y^(-1)))
-  const auto KinoshitaLi = [&](auto &&KinoshitaLi, const std::vector<uint> &P,
-                               const std::vector<uint> &Q, int d, int n) {
-    assert((int)P.size() == d * n);
-    assert((int)Q.size() == d * n);
-    if (n == 1) return P;
-    std::vector<uint> dftQ(d * n * 4);
-    for (int i = 0; i < d; ++i)
-      for (int j = 0; j < n; ++j) dftQ[i * n * 2 + j] = Q[i * n + j];
-    dftQ[d * n * 2] = 1;
-    FFT(d * n * 4, dftQ.data(), root.data());
-    std::vector<uint> V(d * n * 2);
-    for (int i = 0; i < d * n * 4; i += 2)
-      V[i / 2] = (ull)dftQ[i] * dftQ[i + 1] % MOD;
-    InvFFT(d * n * 2, V.data(), inv_root.data());
-    assert(V[0] == 1);
-    V[0] = 0;
-    for (int i = 1; i < d * 2; ++i)
-      for (int j = 0; j < n / 2; ++j) V[i * (n / 2) + j] = V[i * n + j];
-    V.resize(d * n);
-    const std::vector<uint> T = KinoshitaLi(KinoshitaLi, P, V, d * 2, n / 2);
-    std::vector<uint> dftT(d * n * 2);
-    for (int i = 0; i < d * 2; ++i)
-      for (int j = 0; j < n / 2; ++j) dftT[i * n + j] = T[i * (n / 2) + j];
-    FFT(d * n * 2, dftT.data(), root.data());
-    for (int i = 0; i < d * n * 4; i += 2) {
-      const uint u = dftQ[i];
-      dftQ[i] = (ull)dftT[i / 2] * dftQ[i + 1] % MOD;
-      dftQ[i + 1] = (ull)dftT[i / 2] * u % MOD;
+  const auto KinoshitaLi = [&N, &root](auto&& KinoshitaLi, std::vector<uint>& P,
+                                       std::vector<uint> Q, int d, int n) {
+    assert((int)size(P) == N * 2);
+    assert((int)size(Q) == N * 2);
+    if (n == 1) return;
+    Q.resize(N * 4);
+    Q[N * 2] = 1;
+    FFT(data(Q), N * 4, data(root));
+    if (n > 2) {
+      std::vector<uint> V(N * 2);
+      for (int i = 0; i < N * 4; i += 2) V[i / 2] = (ull)Q[i] * Q[i + 1] % MOD;
+      InvFFT(data(V), N * 2, data(root));
+      assert(V[0] == 1);
+      V[0] = 0;
+      for (int i = 0; i < d * 2; ++i)
+        fill_n(begin(V) + (i * n + n / 2), n / 2, 0u);
+      KinoshitaLi(KinoshitaLi, P, std::move(V), d * 2, n / 2);
     }
-    InvFFT(d * n * 4, dftQ.data(), inv_root.data());
+    FFT(data(P), N * 2, data(root));
+    for (int i = 0; i < N * 4; i += 2)
+      std::swap(Q[i] = (ull)Q[i] * P[i / 2] % MOD,
+                Q[i + 1] = (ull)Q[i + 1] * P[i / 2] % MOD);
+    InvFFT(data(Q), N * 4, data(root));
     for (int i = 0; i < d; ++i)
-      for (int j = 0; j < n; ++j) dftQ[i * n + j] = dftQ[(i + d) * (n * 2) + j];
-    dftQ.resize(d * n);
-    return dftQ;
+      fill_n(copy_n(begin(Q) + (i + d) * n * 2, n, begin(P) + i * n * 2), n,
+             0u);
   };
-  f.resize(len);
-  g.resize(len);
-  for (int i = 0; i < len; ++i) g[i] = (g[i] != 0 ? MOD - g[i] : 0);
-  std::vector<uint> res = KinoshitaLi(KinoshitaLi, f, g, 1, len);
-  res.resize(n);
-  return res;
+  f.resize(N * 2);
+  g.resize(N * 2);
+  for (int i = N - 1; i >= 0; --i) f[i * 2] = f[i], f[i * 2 + 1] = 0;
+  for (int i = 0; i < N; ++i) g[i] = (g[i] != 0 ? MOD - g[i] : 0);
+  fill_n(begin(g) + N, N, 0u);
+  KinoshitaLi(KinoshitaLi, f, std::move(g), 1, N);
+  f.resize(n);
+  return f;
 }
 
 std::pair<std::vector<uint>, std::vector<uint>> GetFactorial(int n) {
@@ -138,37 +139,36 @@ std::pair<std::vector<uint>, std::vector<uint>> GetFactorial(int n) {
 
 // f(x) |-> f(x + c)
 std::vector<uint> TaylorShift(std::vector<uint> f, uint c) {
-  if (f.empty() || c == 0) return f;
-  const int n = f.size();
+  if (empty(f) || c == 0) return f;
+  const int n = (int)size(f);
   std::vector<uint> factorial, inv_factorial;
-  std::tie(factorial, inv_factorial) = GetFactorial(n);
+  tie(factorial, inv_factorial) = GetFactorial(n);
   for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * factorial[i] % MOD;
   std::vector<uint> g(n);
   uint cp = 1;
   for (int i = 0; i < n; ++i)
     g[i] = (ull)cp * inv_factorial[i] % MOD, cp = (ull)cp * c % MOD;
-  int len = 1;
-  while (len < n * 2 - 1) len *= 2;
-  std::vector<uint> root, inv_root;
-  std::tie(root, inv_root) = GetFFTRoot(len);
-  f.resize(len);
-  g.resize(len);
-  FFT(len, f.data(), inv_root.data());
-  FFT(len, g.data(), root.data());
-  for (int i = 0; i < len; ++i) f[i] = (ull)f[i] * g[i] % MOD;
-  InvFFT(len, f.data(), root.data());
+  int N = 1;
+  while (N < n * 2 - 1) N *= 2;
+  const std::vector<uint> root = GetFFTRoot(N);
+  f.resize(N);
+  g.resize(N);
+  TransposedInvFFT(data(f), N, data(root));
+  FFT(data(g), N, data(root));
+  for (int i = 0; i < N; ++i) f[i] = (ull)f[i] * g[i] % MOD;
+  TransposedFFT(data(f), N, data(root));
   f.resize(n);
   for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * inv_factorial[i] % MOD;
   return f;
 }
 
 // 多项式复合，求出 f(g) mod x^n
-std::vector<uint> PolyComposition(const std::vector<uint> &f,
-                                  const std::vector<uint> &g, int n) {
-  if (g.empty() || g[0] == 0) return FPSComposition(f, g, n);
+std::vector<uint> PolyComp(const std::vector<uint>& f,
+                           const std::vector<uint>& g, int n) {
+  if (empty(g) || g[0] == 0) return FPSComp(f, g, n);
   std::vector<uint> gg = g;
   gg[0] = 0;
-  return FPSComposition(TaylorShift(f, g[0]), gg, n);
+  return FPSComp(TaylorShift(f, g[0]), std::move(gg), n);
 }
 
 int main() {
@@ -177,7 +177,11 @@ int main() {
   std::vector<uint> f(n + 1), g(m + 1);
   for (int i = 0; i <= n; ++i) std::scanf("%u", &f[i]);
   for (int i = 0; i <= m; ++i) std::scanf("%u", &g[i]);
-  const std::vector<uint> res = PolyComposition(f, g, n + 1);
-  for (int i = 0; i <= n; ++i) std::printf("%u%c", res[i], " \n"[i == n]);
+  const std::vector<uint> res = PolyComp(f, g, n + 1);
+  for (int i = 0; i <= n; ++i) {
+    if (i != 0) std::printf(" ");
+    std::printf("%u", res[i]);
+  }
+  std::puts("");
   return 0;
 }
