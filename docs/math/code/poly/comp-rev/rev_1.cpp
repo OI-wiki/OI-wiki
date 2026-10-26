@@ -137,40 +137,6 @@ std::pair<std::vector<uint>, std::vector<uint>> GetFactorial(int n) {
   return {factorial, inv_factorial};
 }
 
-// f(x) |-> f(x + c)
-std::vector<uint> TaylorShift(std::vector<uint> f, uint c) {
-  if (empty(f) || c == 0) return f;
-  const int n = (int)size(f);
-  std::vector<uint> factorial, inv_factorial;
-  tie(factorial, inv_factorial) = GetFactorial(n);
-  for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * factorial[i] % MOD;
-  std::vector<uint> g(n);
-  uint cp = 1;
-  for (int i = 0; i < n; ++i)
-    g[i] = (ull)cp * inv_factorial[i] % MOD, cp = (ull)cp * c % MOD;
-  int N = 1;
-  while (N < n * 2 - 1) N *= 2;
-  const std::vector<uint> root = GetFFTRoot(N);
-  f.resize(N);
-  g.resize(N);
-  TransposedInvFFT(data(f), N, data(root));
-  FFT(data(g), N, data(root));
-  for (int i = 0; i < N; ++i) f[i] = (ull)f[i] * g[i] % MOD;
-  TransposedFFT(data(f), N, data(root));
-  f.resize(n);
-  for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * inv_factorial[i] % MOD;
-  return f;
-}
-
-// 多项式复合，求出 f(g) mod x^n
-std::vector<uint> PolyComp(const std::vector<uint>& f,
-                           const std::vector<uint>& g, int n) {
-  if (empty(g) || g[0] == 0) return FPSComp(f, g, n);
-  std::vector<uint> gg = g;
-  gg[0] = 0;
-  return FPSComp(TaylorShift(f, g[0]), std::move(gg), n);
-}
-
 // 二项卷积
 // Kinoshita--Li 算法作者之一的李白天在 2021 年的
 // 集训队论文《信息学竞赛中的生成函数计算理论框架》中提到
