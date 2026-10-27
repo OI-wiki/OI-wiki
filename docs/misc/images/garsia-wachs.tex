@@ -48,12 +48,21 @@
     \node at (\right,\row) {$\infty$};
   }
   \begin{scope}[on background layer]
-    \foreach \parent/\child in {
-      r1g/r0b,r1g/r0c,r1a/r0a,r1d/r0d,r1e/r0e,r1f/r0f,
-      r2g/r1g,r2h/r1d,r2h/r1e,r2a/r1a,r2f/r1f,
-      r3i/r2h,r3i/r2a,r3g/r2g,r3f/r2f,
-      r4j/r3g,r4j/r3f,r4i/r3i,r5k/r4j,r5k/r4i}
-      \draw (\parent) -- (\child);
+    % Each edge joins two vertices, bypassing unchanged subtree labels.
+    \draw (r1g) -- (r0b);
+    \draw (r1g) -- (r0c);
+    \draw (r2h) -- (r1d.north west) -- (r1d.south west) -- (r0d);
+    \draw (r2h) -- (r1e.north west) -- (r1e.south west) -- (r0e);
+    \draw (r3i) -- (r2h);
+    \draw (r3i) -- (r2a.north west) -- (r2a.south west)
+      -- (r1a.north west) -- (r1a.south west) -- (r0a);
+    \draw (r4j) -- (r3g.north west) -- (r3g.south west)
+      -- (r2g.north west) -- (r2g.south west) -- (r1g);
+    \draw (r4j) -- (r3f.north west) -- (r3f.south west)
+      -- (r2f.north west) -- (r2f.south west)
+      -- (r1f.north west) -- (r1f.south west) -- (r0f);
+    \draw (r5k) -- (r4j);
+    \draw (r5k) -- (r4i.north west) -- (r4i.south west) -- (r3i);
   \end{scope}
 
   \draw[-{Triangle[length=4mm,width=7mm]},gray!60,line width=2.4mm]
