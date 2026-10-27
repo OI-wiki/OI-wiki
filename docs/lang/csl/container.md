@@ -1,6 +1,6 @@
 ## 分类
 
-![](images/container1.png)
+![](images/container-1.svg)
 
 ### 序列式容器
 

@@ -509,7 +509,7 @@ void test(int *a, int *b, int n) {
 
 两个任意指针对应的区域可能出现重叠 (overlap)，此时需要特判是否可以使用向量代码．下图展示了一个指针重叠的例子：
 
-![](./images/overlap.png)
+![](./images/overlap.svg)
 
 `__restrict` 作为一种约定使编译器假定两个指针所指向的内存区域永远不会重叠．
 
