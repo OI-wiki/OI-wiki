@@ -1,5 +1,6 @@
 % Compile with latex, then dvisvgm --no-fonts --exact --bbox=min.
-\documentclass[tikz,border=5pt]{standalone}
+\documentclass[border=5pt]{standalone}
+\usepackage{tikz}
 \usetikzlibrary{arrows.meta}
 \begin{document}
 \definecolor{carryone}{RGB}{235,38,31}
@@ -7,11 +8,12 @@
 \definecolor{carrythree}{RGB}{28,164,252}
 \definecolor{carryfour}{RGB}{237,98,167}
 \definecolor{carryfive}{RGB}{253,147,38}
+\scalebox{2}{%
 \begin{tikzpicture}[
   x=1.5cm,y=1.2cm,
-  digit/.style={circle,draw,thick,minimum size=10mm,inner sep=1pt,font=\large},
+  digit/.style={circle,draw,very thick,minimum size=10mm,inner sep=1pt,font=\large},
   carry/.style={digit,align=center,font=\normalsize},
-  >={Stealth[length=5pt]},thick
+  >={Stealth[length=5pt]},very thick
 ]
   % Uncarried products: 1337*2 and 1337*4, shifted by one place.
   \foreach \x/\n in {1/2,2/6,3/6,4/14}
@@ -38,4 +40,5 @@
     \draw (c\x) -- (d\x);
   \draw[->] (b4) -- (d4);
 \end{tikzpicture}
+}
 \end{document}
