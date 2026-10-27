@@ -21,26 +21,26 @@
     minimum height=1.3cm] (ground) at (0,0) {Ground\\$(\infty,\infty)$};
 
   % Each blue frame groups the three possible orientations of one brick.
-  \node[brick] (a) at (3,4.5) {$\{31,41\}$};
-  \node[brick] (b) at (3,2.8) {$\{41,59\}$};
-  \node[brick] (c) at (3,1.1) {$\{31,59\}$};
-  \node[brick] (d) at (3,-1.1) {$\{33,83\}$};
-  \node[brick] (e) at (3,-3.4) {$\{83,27\}$};
-  \node[brick] (f) at (3,-4.5) {$\{33,27\}$};
+  \node[brick] (a) at (4,4.5) {$\{31,41\}$};
+  \node[brick] (b) at (4,2.8) {$\{41,59\}$};
+  \node[brick] (c) at (4,1.1) {$\{31,59\}$};
+  \node[brick] (d) at (4,-1.1) {$\{33,83\}$};
+  \node[brick] (e) at (4,-3.4) {$\{83,27\}$};
+  \node[brick] (f) at (4,-4.5) {$\{33,27\}$};
 
-  \node[brick] (af) at (5.7,4.5) {$\{33,27\}$};
-  \node[brick] (ba) at (5.7,3.35) {$\{31,41\}$};
-  \node[brick] (baf) at (8.4,3.35) {$\{33,27\}$};
-  \node[brick] (bf) at (5.7,2.2) {$\{33,27\}$};
-  \node[brick] (cf) at (5.7,1.05) {$\{33,27\}$};
-  \node[brick] (da) at (5.7,-0.1) {$\{31,41\}$};
-  \node[brick] (daf) at (8.4,-0.1) {$\{33,27\}$};
-  \node[brick] (dc) at (5.7,-1.25) {$\{31,59\}$};
-  \node[brick] (dcf) at (8.4,-1.25) {$\{33,27\}$};
-  \node[brick] (df) at (5.7,-2.4) {$\{33,27\}$};
+  \node[brick] (af) at (7.5,4.5) {$\{33,27\}$};
+  \node[brick] (ba) at (7.5,3.35) {$\{31,41\}$};
+  \node[brick] (baf) at (11,3.35) {$\{33,27\}$};
+  \node[brick] (bf) at (7.5,2.2) {$\{33,27\}$};
+  \node[brick] (cf) at (7.5,1.05) {$\{33,27\}$};
+  \node[brick] (da) at (7.5,-0.1) {$\{31,41\}$};
+  \node[brick] (daf) at (11,-0.1) {$\{33,27\}$};
+  \node[brick] (dc) at (7.5,-1.25) {$\{31,59\}$};
+  \node[brick] (dcf) at (11,-1.25) {$\{33,27\}$};
+  \node[brick] (df) at (7.5,-2.4) {$\{33,27\}$};
 
   \foreach \target/\height in {a/59,b/31,c/41,d/27,e/33,f/83}
-    \draw[edge] (ground.east) -- node[weight,pos=0.75] {\height} (\target.west);
+    \draw[edge] (ground.east) -- node[weight,pos=0.6] {\height} (\target.west);
   \draw[edge] (a.east) -- node[weight] {83} (af.west);
   \draw[edge] (b.east) -- node[weight] {59} (ba.west);
   \draw[edge] (b.east) -- node[weight] {83} (bf.west);

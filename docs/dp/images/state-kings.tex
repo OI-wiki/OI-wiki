@@ -3,11 +3,11 @@
 % Regenerate from this directory with:
 % latex -interaction=nonstopmode -halt-on-error state-kings.tex
 % dvisvgm --no-fonts --exact --bbox=papersize -o state-kings.svg state-kings.dvi
-\documentclass[tikz,border=2pt]{standalone}
+\documentclass[tikz,border=0pt]{standalone}
 \definecolor{darkcell}{HTML}{BC9200}
 \definecolor{lightcell}{HTML}{FFE7A0}
 \begin{document}
-\begin{tikzpicture}[x=1cm,y=1cm,line width=0.9pt,line cap=round,line join=round]
+\begin{tikzpicture}[x=1.5cm,y=1.5cm,line width=0.9pt,line cap=round,line join=round]
   \foreach \column in {0,...,5} {
     \pgfmathtruncatemacro{\parity}{mod(\column,2)}
     \ifnum\parity=0
