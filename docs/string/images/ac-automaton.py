@@ -30,31 +30,62 @@ STATE_TEXT_SIZE = 48
 INPUT_TEXT_SIZE = 42
 MATCH_TEXT_SIZE = 38
 POINTS = {
-    0: (130, 470), 1: (365, 300), 2: (665, 150), 3: (985, 150),
-    4: (1300, 150), 5: (665, 380), 6: (985, 380), 7: (365, 610),
-    8: (665, 610), 9: (985, 610), 10: (235, 850),
+    0: (130, 470),
+    1: (365, 300),
+    2: (665, 150),
+    3: (985, 150),
+    4: (1300, 150),
+    5: (665, 380),
+    6: (985, 380),
+    7: (365, 610),
+    8: (665, 610),
+    9: (985, 610),
+    10: (235, 850),
 }
 EDGES = [
-    (0, "h", 1), (1, "e", 2), (2, "r", 3), (3, "s", 4),
-    (1, "i", 5), (5, "s", 6), (0, "s", 7), (7, "h", 8),
-    (8, "e", 9), (0, "i", 10),
+    (0, "h", 1),
+    (1, "e", 2),
+    (2, "r", 3),
+    (3, "s", 4),
+    (1, "i", 5),
+    (5, "s", 6),
+    (0, "s", 7),
+    (7, "h", 8),
+    (8, "e", 9),
+    (0, "i", 10),
 ]
 # Keep the enlarged trie labels clear of the completed transition curves.
 TRIE_LABELS = {
-    (0, 1): (240, 371), (1, 2): (535, 261), (2, 3): (821, 142),
-    (3, 4): (1142, 140), (1, 5): (525, 337), (5, 6): (819, 366),
-    (0, 7): (256, 510), (7, 8): (491, 648), (8, 9): (863, 648),
+    (0, 1): (240, 371),
+    (1, 2): (535, 261),
+    (2, 3): (821, 142),
+    (3, 4): (1142, 140),
+    (1, 5): (525, 337),
+    (5, 6): (819, 366),
+    (0, 7): (256, 510),
+    (7, 8): (491, 648),
+    (8, 9): (863, 648),
     (0, 10): (202, 652),
 }
 PATTERNS = {2: "he", 4: "hers", 6: "his", 9: "she", 10: "i"}
 TEXT = "ushersheishis"
 COLORS = {
-    "trie": "#a8afb6", "label": "#168543", "fail": "#d39200",
-    "new": "#d82535", "extra": "#222a35", "current": "#009ccc",
-    "move": "#e24f98", "match": "#1673c9",
+    "trie": "#a8afb6",
+    "label": "#168543",
+    "fail": "#d39200",
+    "new": "#d82535",
+    "extra": "#222a35",
+    "current": "#009ccc",
+    "move": "#e24f98",
+    "match": "#1673c9",
 }
-FILLS = {"done": "#c5eb70", "new": "#ffeb59", "current": "#a6e4f2",
-         "move": "#f36a72", "match": "#72b5ed"}
+FILLS = {
+    "done": "#c5eb70",
+    "new": "#ffeb59",
+    "current": "#a6e4f2",
+    "move": "#f36a72",
+    "match": "#72b5ed",
+}
 
 # Routes for failure pointers, including the root's self-loop.
 FAIL_ROUTES = {
@@ -126,8 +157,12 @@ def automaton():
 
 
 TRIE, FAIL, GO, ORDER = automaton()
-EXTRAS = {(u, char): v for u in POINTS for char, v in GO[u].items()
-          if char not in TRIE[u] and v}
+EXTRAS = {
+    (u, char): v
+    for u in POINTS
+    for char, v in GO[u].items()
+    if char not in TRIE[u] and v
+}
 assert FAIL == [0, 0, 0, 0, 7, 10, 7, 0, 1, 2, 0]
 assert set(EXTRAS) == set(EXTRA_ROUTES)
 
@@ -156,8 +191,10 @@ def label(x, y, value, color="#26313d", size=EDGE_TEXT_SIZE, anchor="middle"):
 
 def path(d, kind, width=2.8, arrow=True):
     marker = f' marker-end="url(#arrow-{kind})"' if arrow else ""
-    return (f'<path d="{d}" fill="none" stroke="{COLORS[kind]}" '
-            f'stroke-width="{width}" stroke-linecap="round"{marker}/>')
+    return (
+        f'<path d="{d}" fill="none" stroke="{COLORS[kind]}" '
+        f'stroke-width="{width}" stroke-linecap="round"{marker}/>'
+    )
 
 
 def line(u, v):
@@ -166,7 +203,7 @@ def line(u, v):
     dx, dy = x2 - x1, y2 - y1
     length = hypot(dx, dy)
     dx, dy = dx / length * (RADIUS + 3), dy / length * (RADIUS + 3)
-    return f'M {x1 + dx:.2f} {y1 + dy:.2f} L {x2 - dx:.2f} {y2 - dy:.2f}'
+    return f"M {x1 + dx:.2f} {y1 + dy:.2f} L {x2 - dx:.2f} {y2 - dy:.2f}"
 
 
 def pattern_edges(state):
@@ -189,8 +226,15 @@ def draw(scene):
             pattern = PATTERNS[scene.match]
             start = scene.text_index - len(pattern) + 1
             for index, char in enumerate(pattern):
-                pieces.append(label(50 + (start + index) * 44, 95, char,
-                                    COLORS["match"], MATCH_TEXT_SIZE))
+                pieces.append(
+                    label(
+                        50 + (start + index) * 44,
+                        95,
+                        char,
+                        COLORS["match"],
+                        MATCH_TEXT_SIZE,
+                    )
+                )
     # Keep a clear band above the graph for the larger matching strings.
     pieces.append(f'<g transform="translate(0,{GRAPH_TOP})">')
     for u, char, v in EDGES:
@@ -200,7 +244,9 @@ def draw(scene):
         pieces.append(path(FAIL_ROUTES[u], kind))
     for (u, char), v in EXTRAS.items():
         if u in scene.completed:
-            kind = "current" if scene.kind == "current" and u == scene.current else "extra"
+            kind = (
+                "current" if scene.kind == "current" and u == scene.current else "extra"
+            )
             d, (x, y) = EXTRA_ROUTES[u, char]
             pieces.append(path(d, kind))
             pieces.append(label(x, y, char, COLORS[kind]))
@@ -232,50 +278,66 @@ def draw(scene):
             fill = FILLS[scene.kind]
         if u == scene.match and scene.failure_match:
             fill = FILLS["match"]
-        pieces.append(f'<circle cx="{x}" cy="{y}" r="{RADIUS}" '
-                      f'fill="{fill}" stroke="#8b959e" stroke-width="2.8"/>')
-        pieces.append(f'<text x="{x}" y="{y + 17}" text-anchor="middle" '
-                      f'font-size="{STATE_TEXT_SIZE}" fill="#26313d">{u}</text>')
-    pieces.append('</g>')
+        pieces.append(
+            f'<circle cx="{x}" cy="{y}" r="{RADIUS}" '
+            f'fill="{fill}" stroke="#8b959e" stroke-width="2.8"/>'
+        )
+        pieces.append(
+            f'<text x="{x}" y="{y + 17}" text-anchor="middle" '
+            f'font-size="{STATE_TEXT_SIZE}" fill="#26313d">{u}</text>'
+        )
+    pieces.append("</g>")
     return "\n".join(pieces)
 
 
 def document(title, description, content):
     markers = []
     for kind, color in COLORS.items():
-        markers.append(f'<marker id="arrow-{kind}" viewBox="0 0 10 10" '
-                       'refX="9" refY="5" markerWidth="8" markerHeight="8" '
-                       'orient="auto" markerUnits="userSpaceOnUse">'
-                       f'<path d="M 0 0 L 10 5 L 0 10" fill="none" '
-                       f'stroke="{color}" stroke-width="1.8"/></marker>')
-    return (f'<?xml version="1.0" encoding="UTF-8"?>\n'
-            '<!-- Generated by ac-automaton.py; edit that source to regenerate. -->\n'
-            f'<svg xmlns="http://www.w3.org/2000/svg" version="1.1" '
-            f'width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}">\n'
-            f'<title>{escape(title)}</title>\n<desc>{escape(description)}</desc>\n'
-            '<defs>\n' + "\n".join(markers) + '\n</defs>\n'
-            '<g font-family="Arial, Helvetica, sans-serif">\n' + content + '\n</g>\n</svg>\n')
+        markers.append(
+            f'<marker id="arrow-{kind}" viewBox="0 0 10 10" '
+            'refX="9" refY="5" markerWidth="8" markerHeight="8" '
+            'orient="auto" markerUnits="userSpaceOnUse">'
+            f'<path d="M 0 0 L 10 5 L 0 10" fill="none" '
+            f'stroke="{color}" stroke-width="1.8"/></marker>'
+        )
+    return (
+        f'<?xml version="1.0" encoding="UTF-8"?>\n'
+        "<!-- Generated by ac-automaton.py; edit that source to regenerate. -->\n"
+        f'<svg xmlns="http://www.w3.org/2000/svg" version="1.1" '
+        f'width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}">\n'
+        f"<title>{escape(title)}</title>\n<desc>{escape(description)}</desc>\n"
+        "<defs>\n" + "\n".join(markers) + "\n</defs>\n"
+        '<g font-family="Arial, Helvetica, sans-serif">\n'
+        + content
+        + "\n</g>\n</svg>\n"
+    )
 
 
 def animated(frames, fallback):
     duration = sum(frame.duration for frame in frames)
     # Nonanimating SVG consumers show the complete diagram; SMIL hides it.
-    pieces = ['<g>\n' + draw(fallback)
-              + '\n<set attributeName="visibility" to="hidden" begin="0s" dur="indefinite"/>\n</g>']
+    pieces = [
+        "<g>\n"
+        + draw(fallback)
+        + '\n<set attributeName="visibility" to="hidden" begin="0s" dur="indefinite"/>\n</g>'
+    ]
     elapsed = 0
     for i, frame in enumerate(frames):
         start, end = elapsed / duration, (elapsed + frame.duration) / duration
         if i == 0:
-            times, values = f'0;{end:.8f};1', 'visible;hidden;hidden'
+            times, values = f"0;{end:.8f};1", "visible;hidden;hidden"
         elif i == len(frames) - 1:
-            times, values = f'0;{start:.8f};1', 'hidden;visible;visible'
+            times, values = f"0;{start:.8f};1", "hidden;visible;visible"
         else:
-            times = f'0;{start:.8f};{end:.8f};1'
-            values = 'hidden;visible;hidden;hidden'
-        pieces.append(f'<g visibility="hidden">\n<title>{escape(frame.caption)}</title>\n'
-                      + draw(frame) + f'\n<animate attributeName="visibility" '
-                      f'values="{values}" keyTimes="{times}" calcMode="discrete" '
-                      f'dur="{duration:g}s" repeatCount="indefinite"/>\n</g>')
+            times = f"0;{start:.8f};{end:.8f};1"
+            values = "hidden;visible;hidden;hidden"
+        pieces.append(
+            f'<g visibility="hidden">\n<title>{escape(frame.caption)}</title>\n'
+            + draw(frame)
+            + f'\n<animate attributeName="visibility" '
+            f'values="{values}" keyTimes="{times}" calcMode="discrete" '
+            f'dur="{duration:g}s" repeatCount="indefinite"/>\n</g>'
+        )
         elapsed += frame.duration
     return "\n".join(pieces)
 
@@ -285,8 +347,16 @@ def scenes():
     fail_frames = [Scene("BFS: construct failure pointers", duration=1)]
     done = set()
     for u in ORDER:
-        fail_frames.append(Scene(f"fail[{u}] = {FAIL[u]}", done.copy(), done | {u},
-                                 {u}, current=u, duration=1))
+        fail_frames.append(
+            Scene(
+                f"fail[{u}] = {FAIL[u]}",
+                done.copy(),
+                done | {u},
+                {u},
+                current=u,
+                duration=1,
+            )
+        )
         done.add(u)
     fail_final = Scene("Failure pointers", all_states, all_states, duration=2)
     fail_frames.append(fail_final)
@@ -294,23 +364,46 @@ def scenes():
     # Initially, the root and its immediate children have failure pointers.
     known = {0, *TRIE[0].values()}
     done = {0}
-    build_frames = [Scene("BFS: complete the transition function", done.copy(), known.copy(), duration=2)]
+    build_frames = [
+        Scene(
+            "BFS: complete the transition function",
+            done.copy(),
+            known.copy(),
+            duration=2,
+        )
+    ]
     build_focus = None
     for u in ORDER[1:]:
         children = set(TRIE[u].values())
         known |= children
-        scene = Scene(f"u = {u}: complete transitions; set children's failure pointers",
-                      done.copy(), known.copy(), children, done | {u}, u, "current",
-                      duration=2)
+        scene = Scene(
+            f"u = {u}: complete transitions; set children's failure pointers",
+            done.copy(),
+            known.copy(),
+            children,
+            done | {u},
+            u,
+            "current",
+            duration=2,
+        )
         build_frames.append(scene)
         if u == 5:
-            build_focus = replace(scene, caption="fail[6] = trans[fail[5]][s] = trans[10][s] = 7")
+            build_focus = replace(
+                scene, caption="fail[6] = trans[fail[5]][s] = trans[10][s] = 7"
+            )
         done.add(u)
-    completed = Scene("Completed automaton (transitions to the root omitted)",
-                      all_states, all_states, completed=all_states, duration=3)
+    completed = Scene(
+        "Completed automaton (transitions to the root omitted)",
+        all_states,
+        all_states,
+        completed=all_states,
+        duration=3,
+    )
     build_frames.append(completed)
 
-    match_frames = [replace(completed, caption="Match: " + TEXT, text_index=-1, duration=2.5)]
+    match_frames = [
+        replace(completed, caption="Match: " + TEXT, text_index=-1, duration=2.5)
+    ]
     u = 0
     for index, char in enumerate(TEXT):
         previous, u = u, GO[u].get(char, 0)
@@ -320,15 +413,27 @@ def scenes():
             if matched in PATTERNS:
                 outputs.append(matched)
             matched = FAIL[matched]
-        basic = replace(completed, caption=f"p = trans[{previous}][{char}] = {u}",
-                        current=u, kind="move", move=(previous, char, u),
-                        text_index=index, duration=2.5)
+        basic = replace(
+            completed,
+            caption=f"p = trans[{previous}][{char}] = {u}",
+            current=u,
+            kind="move",
+            move=(previous, char, u),
+            text_index=index,
+            duration=2.5,
+        )
         if not outputs:
             match_frames.append(basic)
         else:
             for matched in outputs:
-                match_frames.append(replace(basic, match=matched, failure_match=matched != u,
-                                            caption=basic.caption + "; match: " + PATTERNS[matched]))
+                match_frames.append(
+                    replace(
+                        basic,
+                        match=matched,
+                        failure_match=matched != u,
+                        caption=basic.caption + "; match: " + PATTERNS[matched],
+                    )
+                )
     # Verify the full search trace, including transitions introduced by failure.
     trace = []
     u = 0
@@ -339,37 +444,65 @@ def scenes():
 
     focus6 = next(frame for frame in fail_frames if frame.current == 6)
     static = {
-        "ac-automaton1.svg": (replace(focus6, caption="fail[6] = 7"), "Failure pointer of state 6"),
-        "ac-automaton2.svg": (build_focus, "Computing fail[6] with completed transitions"),
+        "ac-automaton1.svg": (
+            replace(focus6, caption="fail[6] = 7"),
+            "Failure pointer of state 6",
+        ),
+        "ac-automaton2.svg": (
+            build_focus,
+            "Computing fail[6] with completed transitions",
+        ),
         "ac-automaton3.svg": (completed, "The complete AC automaton"),
         "ac-automaton4.svg": (fail_final, "All failure pointers"),
     }
     animations = {
-        "ac-automaton-build-fail.svg": (fail_frames, fail_final, "Construct failure pointers in BFS order"),
-        "ac-automaton-build-transitions.svg": (build_frames, completed, "Construct the completed transition function"),
-        "ac-automaton-match.svg": (match_frames, completed, "Match ushersheishis with the AC automaton"),
+        "ac-automaton-build-fail.svg": (
+            fail_frames,
+            fail_final,
+            "Construct failure pointers in BFS order",
+        ),
+        "ac-automaton-build-transitions.svg": (
+            build_frames,
+            completed,
+            "Construct the completed transition function",
+        ),
+        "ac-automaton-match.svg": (
+            match_frames,
+            completed,
+            "Match ushersheishis with the AC automaton",
+        ),
     }
     return static, animations
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--frames", type=Path, help="also export every animation frame as a static SVG")
+    parser.add_argument(
+        "--frames", type=Path, help="also export every animation frame as a static SVG"
+    )
     args = parser.parse_args()
     destination = Path(__file__).resolve().parent
     static, animations = scenes()
-    description = ("Patterns: i, he, his, she, hers. States 0 to 10 retain the article's numbering. "
-                   "Gray edges are trie edges; orange arrows are failure pointers. "
-                   "Black arrows are completed transitions; transitions to state 0 are omitted.")
+    description = (
+        "Patterns: i, he, his, she, hers. States 0 to 10 retain the article's numbering. "
+        "Gray edges are trie edges; orange arrows are failure pointers. "
+        "Black arrows are completed transitions; transitions to state 0 are omitted."
+    )
     for name, (scene, title) in static.items():
-        (destination / name).write_text(document(title, description, draw(scene)), encoding="utf-8")
+        (destination / name).write_text(
+            document(title, description, draw(scene)), encoding="utf-8"
+        )
     for name, (frames, fallback, title) in animations.items():
-        (destination / name).write_text(document(title, description, animated(frames, fallback)), encoding="utf-8")
+        (destination / name).write_text(
+            document(title, description, animated(frames, fallback)), encoding="utf-8"
+        )
         if args.frames:
             args.frames.mkdir(parents=True, exist_ok=True)
             for index, frame in enumerate(frames):
                 path = args.frames / f"{Path(name).stem}-{index:02}.svg"
-                path.write_text(document(frame.caption, description, draw(frame)), encoding="utf-8")
+                path.write_text(
+                    document(frame.caption, description, draw(frame)), encoding="utf-8"
+                )
     print(f"Generated {len(static)} static SVGs and {len(animations)} SVG animations.")
 
 
