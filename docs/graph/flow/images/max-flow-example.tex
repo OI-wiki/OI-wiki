@@ -1,0 +1,23 @@
+% Vector source for the previously unreferenced flow1.png network example.
+% latex -interaction=nonstopmode -halt-on-error max-flow-example.tex
+% dvisvgm --no-fonts --exact --bbox=papersize max-flow-example.dvi -o max-flow-example.svg
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage{lmodern}
+\usetikzlibrary{arrows.meta,backgrounds}
+\begin{document}
+\begin{tikzpicture}[
+  >={Stealth[length=2.4mm]},line width=.8pt,
+  vertex/.style={circle,draw,fill=white,minimum size=9mm,inner sep=0pt},
+  capacity/.style={fill=white,inner sep=2pt},
+  background rectangle/.style={fill=white},show background rectangle]
+  \node[vertex] (s) at (0,0) {$4$};
+  \node[vertex] (u) at (2.2,1.4) {$1$};
+  \node[vertex] (v) at (2.2,-2.2) {$2$};
+  \node[vertex] (t) at (6,0) {$3$};
+  \draw[->] (s) -- (t) node[capacity,pos=.55] {$20$};
+  \draw[->] (s) -- (v) node[capacity,midway] {$30$};
+  \draw[->] (v) -- (u) node[capacity,pos=.4] {$30$};
+  \draw[->] (u) -- (t) node[capacity,midway] {$30$};
+  \draw[->] (v) -- (t) node[capacity,midway] {$20$};
+\end{tikzpicture}
+\end{document}
