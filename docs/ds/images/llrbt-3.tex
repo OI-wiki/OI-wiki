@@ -1,0 +1,62 @@
+% Inserting a red leaf can produce a left- or right-leaning red link.
+% Editable source for this diagram. From this directory, regenerate with:
+% latex -interaction=nonstopmode -halt-on-error llrbt-3.tex
+% dvisvgm --no-fonts --exact --bbox=papersize --output=llrbt-3.svg llrbt-3.dvi
+\documentclass[tikz,border=12pt]{standalone}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,backgrounds,shapes.geometric,patterns}
+\definecolor{linkred}{HTML}{B5240A}
+\definecolor{noteBlue}{HTML}{0067A5}
+\definecolor{softgreen}{HTML}{D8EAD0}
+\definecolor{softpurple}{HTML}{D9D1E8}
+\definecolor{softpink}{HTML}{F5CECF}
+\definecolor{softyellow}{HTML}{FFF2C9}
+% Translucent vector layers keep the soft shadow in the DVI-to-SVG export.
+\tikzset{
+  llrbt shadow layer/.style args={#1/#2}{
+    preaction={fill=black,draw=none,fill opacity=#2,
+      transform canvas={shift={(3pt,-3pt)},
+        scale around=#1:(current path bounding box.center)}}
+  },
+  llrbt shadow/.style={
+    llrbt shadow layer=1.40/0.01,
+    llrbt shadow layer=1.35/0.015,
+    llrbt shadow layer=1.30/0.025,
+    llrbt shadow layer=1.25/0.04,
+    llrbt shadow layer=1.20/0.06,
+    llrbt shadow layer=1.15/0.08,
+    llrbt shadow layer=1.10/0.10,
+    llrbt shadow layer=1.05/0.12,
+    llrbt shadow layer=1.00/0.14,
+    llrbt shadow layer=0.95/0.16,
+    llrbt shadow layer=0.90/0.18,
+    llrbt shadow layer=0.85/0.20
+  }
+}
+\begin{document}
+\begin{tikzpicture}[x=1pt,y=-1pt,>=Stealth,line cap=round,line join=round]
+\path[use as bounding box] (0,0) rectangle (530,150);
+\begin{scope}[on background layer]
+\draw[draw=black,line width=1.8pt] (65,65) -- (52.6,96);
+\draw[draw=black,line width=1.8pt] (65,65) -- (77.4,96);
+\draw[draw=black,line width=1.8pt] (290,45) -- (302.4,76);
+\draw[draw=black,line width=1.8pt] (255,95) -- (242.6,126);
+\draw[draw=black,line width=1.8pt] (255,95) -- (267.4,126);
+\draw[draw=black,line width=1.8pt] (410,45) -- (397.6,76);
+\draw[draw=black,line width=1.8pt] (445,95) -- (432.6,126);
+\draw[draw=black,line width=1.8pt] (445,95) -- (457.4,126);
+\end{scope}
+\node[llrbt shadow,circle,draw=black!35,fill=white,text=noteBlue,minimum size=34pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{18}{21.6}\selectfont,font=\sffamily\itshape\fontsize{18}{22}\selectfont] (ar) at (65,65) {};
+\node[llrbt shadow,circle,draw=black!35,fill=white,text=noteBlue,minimum size=34pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{18}{21.6}\selectfont,font=\sffamily\itshape\fontsize{18}{22}\selectfont] (br) at (290,45) {};
+\node[llrbt shadow,circle,draw=black!35,fill=white,text=noteBlue,minimum size=34pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{18}{21.6}\selectfont,font=\sffamily\itshape\fontsize{18}{22}\selectfont] (bl) at (255,95) {};
+\node[llrbt shadow,circle,draw=black!35,fill=white,text=noteBlue,minimum size=34pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{18}{21.6}\selectfont,font=\sffamily\itshape\fontsize{18}{22}\selectfont] (cr) at (410,45) {};
+\node[llrbt shadow,circle,draw=black!35,fill=white,text=noteBlue,minimum size=34pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{18}{21.6}\selectfont,font=\sffamily\itshape\fontsize{18}{22}\selectfont] (cl) at (445,95) {};
+\begin{scope}[on background layer]
+\draw[draw=linkred,line width=9pt] (br) -- (bl);
+\draw[draw=linkred,line width=9pt] (cr) -- (cl);
+\end{scope}
+\draw[draw=black!35,line width=6pt,->,>={Stealth[length=18pt,width=19pt]}] (140,65) -- (215,65);
+\node[anchor=center,text=linkred,font=\sffamily\fontsize{21}{25.2}\selectfont,font=\sffamily\itshape\fontsize{21}{25}\selectfont] at (355,67) {or};
+\end{tikzpicture}
+\end{document}

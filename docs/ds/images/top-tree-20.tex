@@ -1,0 +1,43 @@
+% Non-local search: the SATT on the left and its original tree on the right.
+% Colored regions distinguish the cluster path sides and the raked branches.
+% Regeneration commands are in top-tree-common.tex.
+\input{top-tree-common.tex}
+\begin{document}
+\begin{tikzpicture}[top tree,vertex/.append style={minimum size=10mm}]
+  \draw[boundary,clusterred,fill=clusterred!5] (32,3) rectangle (48,21);
+  \foreach \id/\x/\y in {X/40/12,Y/15/35,Z/65/35,W/0/60,B/15/83,A/40/60,E/80/60}
+    \node[vertex] (\id) at (\x,\y) {$\id$};
+  \foreach \parent/\child in {X/Y,X/A,X/Z,Y/W,Y/B,Z/E}
+    \draw (\parent) -- (\child);
+  \foreach \x/\y in {0/73,15/96,40/74,80/74}
+    \node at (\x,\y) {$\cdots$};
+
+  \draw[boundary,clusterred,fill=clusterred!2]
+    (120,-1) -- (168,-1) -- (184,20) -- (197,48) -- (197,90)
+    -- (163,121) -- (118,121) -- (98,87) -- (98,39) -- (120,21) -- cycle;
+  \draw[boundary,clusteryellow,fill=clusteryellow!7]
+    (124,3) -- (163,3) -- (173,21) -- (167,38) -- (148,38)
+    -- (124,21) -- cycle;
+  \draw[boundary,clusterpurple,fill=clusterpurple!7]
+    (104,38) -- (120,36) -- (129,44) -- (123,57) -- (103,57) -- cycle;
+  \draw[boundary,clusterblue,fill=clusterblue!7]
+    (168,47) -- (184,45) -- (193,58) -- (193,77) -- (174,77)
+    -- (164,65) -- cycle;
+  \draw[boundary,clustergreen,fill=clustergreen!7]
+    (141,75) -- (161,76) -- (169,91) -- (148,114) -- (117,115)
+    -- (118,96) -- cycle;
+  \node[vertex] (x) at (145,54) {$X$};
+  \node[vertex] (y) at (158,26) {$Y$};
+  \node[vertex] (z) at (153,88) {$Z$};
+  \node[vertex] (c) at (116,46) {$C$};
+  \node[vertex] (d) at (176,59) {$D$};
+  \node[vertex] (upper) at (134,12) {};
+  \node[vertex] (lower) at (129,103) {};
+  \foreach \parent/\child in {x/y,x/z,x/c,x/d,y/upper,z/lower}
+    \draw (\parent) -- (\child);
+  \foreach \x/\y in {147/7,108/43,186/71,127/112}
+    \node at (\x,\y) {$\cdots$};
+  \node[caption] at (40,132) {SATT};
+  \node[caption] at (148,132) {原树 $T$};
+\end{tikzpicture}
+\end{document}

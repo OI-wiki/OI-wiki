@@ -30,15 +30,15 @@ Splay Tree 是 SATT 的基础，但是 SATT 用的 Splay Tree 和普通的 Splay
 
 具体地，树收缩有两个基本操作：**Compress** 和 **Rake**，Compress 操作指定一个度数为 $2$ 的点 $x$，与点 $x$ 相邻的那两个点记为 $y$、$z$，我们连一条新边 $yz$；将点 $x$、边 $xz$、边 $xy$ 的信息放到 $yz$ 中储存，并删去它们．如图所示．
 
-![](./images/top-tree1.svg)
+![](./images/top-tree-1.svg)
 
 Rake 操作指定一个度为 $1$ 的点 $x$，而且与点 $x$ 相邻的点 $y$ 的度数需大于 $1$，设点 $y$ 的另一个邻点为 $z$，我们将点 $x$、边 $xy$ 的信息放入边 $yz$ 中储存，并删去它们．如图所示．
 
-![](./images/top-tree2.svg)
+![](./images/top-tree-2.svg)
 
 不难证明，任何一棵树都可以只用 Compress 操作和 Rake 操作来将它收缩为一条边，如图所示．
 
-![](./images/top-tree3.svg)
+![](./images/top-tree-3.svg)
 
 ### 簇
 
@@ -48,7 +48,7 @@ Rake 操作指定一个度为 $1$ 的点 $x$，而且与点 $x$ 相邻的点 $y$
 
 这条边除了带有它本身的信息（当然，如果这条边在 $T$ 中不存在，这条边就没有本身的信息）之外，还可能包含其它通过 Compress/Rake 操作合并到它上面的点、边的信息．我们不妨先从下图中的树收缩过程中选取一条边，看看它所包含的信息在 $T$ 中代表哪些点、边．
 
-![](./images/top-tree4.svg)
+![](./images/top-tree-4.svg)
 
 如图，选取的边和对应的图已用红线圈出．
 
@@ -66,7 +66,7 @@ Rake 操作指定一个度为 $1$ 的点 $x$，而且与点 $x$ 相邻的点 $y$
 
 特别地，对于 $T$ 中的每条边，都各自独立为一个簇（仅包含边自己的信息），这种簇我们称之为 **基簇（Base Cluster）**．对于由 $T$ 收缩到只有一条边的最终的 $T_x$，那条边代表的簇包含除了两个端点之外的整棵 $T$ 的信息，这个簇我们称之为 **根簇（Root Cluster）**．
 
-![](./images/top-tree5.svg)
+![](./images/top-tree-5.svg)
 
 如图，上文提到的基簇已用红线标出．
 
@@ -74,7 +74,7 @@ Rake 操作指定一个度为 $1$ 的点 $x$，而且与点 $x$ 相邻的点 $y$
 
 所以我们也可以得到下图，是对一系列树收缩操作的另一表示．
 
-![](./images/top-tree6.svg)
+![](./images/top-tree-6.svg)
 
 ### Top Tree
 
@@ -84,7 +84,7 @@ Rake 操作指定一个度为 $1$ 的点 $x$，而且与点 $x$ 相邻的点 $y$
 
 考虑一个对某棵树进行某一树收缩的更简便表示，我们引入 **Top Tree**．
 
-![](./images/top-tree7.jpg)
+![](./images/top-tree-7.svg)
 
 如图，是以上文的收缩方法和原树为基础的一棵 Top Tree．
 
@@ -110,7 +110,7 @@ Top Tree 对树收缩过程的极大简化，使我们看到通过维护树收�
 
 然而，如果我们选的点它在 Top Tree 中簇信息包含 $x$ 的节点个数很少，也就是说使它的信息尽可能晚地加入簇中，我们单次操作的时间复杂度就会有一个很大的提升．如图．
 
-![](./images/top-tree8.jpg)
+![](./images/top-tree-8.svg)
 
 SATT 就是通过修改 **某个点/某条路径** 在树收缩过程中信息被加入簇中的先后顺序（以降低其在被修改时的单次时间复杂度）来维护树上信息的．
 
@@ -118,41 +118,41 @@ SATT 就是通过修改 **某个点/某条路径** 在树收缩过程中信息�
 
 我们先将一棵原树 $T$ 分层定根，然后我们考虑对某种树收缩顺序的 Top Tree 的根簇，它有两个端点，我们令这其中一个端点就是原树的根，另一个端点任选．
 
-![](./images/top-tree9.jpg)
+![](./images/top-tree-9.svg)
 
-如图，给根簇选出一组端点，这里标注簇时将端点也圈进去了．
+如图，选取 $d$ 为原树的根，$k$ 为根簇的另一个端点，箭头由子节点指向父节点．这里标注簇时将端点也圈进去了．
 
-由树收缩的基本操作可知，簇路径上的点、边 $(j,h,c,jh,hc)$ 的信息最后是通过 Compress 操作才加入 $C(k,g)$ 的，而的非簇路径点 $(a,b,i,f,g,e,ig,\cdots)$ 是通过 Rake 操作才加入 $C(k,g)$ 的．
+由树收缩的基本操作可知，簇路径上的点、边 $(j,h,c,jh,hc)$ 的信息最后是通过 Compress 操作才加入 $C(k,d)$ 的，而非簇路径上的点、边 $(a,b,i,f,g,e,jg,\cdots)$ 是通过 Rake 操作才加入 $C(k,d)$ 的．
 
 我们将簇路径单独拿出来，这是一条形态特殊（为链）的树，我们为这棵树建出一棵 top tree（其代表的树收缩顺序任意）．
 
-![](./images/top-tree10.jpg)
+![](./images/top-tree-10.svg)
 
 我们将这一结构称之为 **Compress Tree**，因为在这棵 Top Tree 中任一个点的两个儿子之间是通过 Compress 操作来合并成它们的父亲．
 
-Compress Tree 里的节点称为 **Compress Node**．只考虑当前这条簇路径，一个非叶子的 Compress Node 就代表一次 compress 过程，表示将左儿子和右儿子信息合并起来，再将这个 `compress(x)` 本身存储的点 $x$ 信息加入．这棵 Compress Tree 就维护了 $C(k,g)$ 簇路径的信息．
+Compress Tree 里的节点称为 **Compress Node**．只考虑当前这条簇路径，一个非叶子的 Compress Node 就代表一次 compress 过程，表示将左儿子和右儿子信息合并起来，再将这个 `compress(x)` 本身存储的点 $x$ 信息加入．这棵 Compress Tree 就维护了 $C(k,d)$ 簇路径的信息．
 
 另外，在 Compress Tree 中，我们实际上还对使用的 Top Tree 做了一些限制．注意到 Compress Tree 维护的是一个 $T$ 中点的深度两两不同的链，我们规定在 Compress Tree 中基簇的中序遍历顺序与对应的 $T$ 中边的深度是一致的，且中序遍历越小深度越浅．同样，对于每个点 $x$ 对应的 `compress(x)` 的关系也是如此．
 
-现在来维护那些非簇路径的信息，我们假设这些非簇路径上的点、边已经形成了一个个极大簇，而这些极大簇是由这些用蓝线圈出的更小簇之间互相 Rake 形成的，对由一些更小簇合并形成一个极大簇的过程，我们用一个三叉树来表示，类似地，我们称这一结构为 **Rake Tree**，对应地 Rake Tree 里的点就是 **Rake Node**．每个 Rake Node 都代表一个簇，是由其左儿子和右儿子 Rake 到其中儿子代表的更小簇上形成的．具体可见下图，可知 Rake Tree 中的每个点都代表了 $T$ 中具有相同端点的更小簇．
+现在来维护那些非簇路径的信息，我们假设这些非簇路径上的点、边已经形成了一个个极大簇，而这些极大簇是由这些用黄线圈出的更小簇之间互相 Rake 形成的，对由一些更小簇合并形成一个极大簇的过程，我们用一个三叉树来表示，类似地，我们称这一结构为 **Rake Tree**，对应地 Rake Tree 里的点就是 **Rake Node**．每个 Rake Node 都代表一个簇，是由其左儿子和右儿子 Rake 到其中儿子代表的更小簇上形成的．具体可见下图，可知 Rake Tree 中的每个点都代表了 $T$ 中具有相同端点的更小簇．
 
-![](./images/top-tree11.jpg)
+![](./images/top-tree-11.svg)
 
 如图，蓝线圈出的是一个个极大簇，黄线圈出的是一个个更小簇．
 
 对于那些更小簇，我们对它们进行相同处理，给它们选择簇路径、建出 Compress Tree、……如此递归下去，就建出了许多表示树收缩过程的 Compress Tree，Rake Tree．
 
-![](./images/top-tree12.jpg)
+![](./images/top-tree-12.svg)
 
 上图为原树的 Rake-Compress Tree（因为每个 Rake Node 都连着一棵 Compress Tree，所以表现为一棵 Rake Tree 连着许多 Compress Tree 的形态）和代表根簇路径的 Compress Tree．
 
 考虑将这些树以某种方式拼接在一起，使它们形成一个有序的整体．记一个 Rake Tree 代表的最小簇的集合的公共端点是点 $x$．我们给这些 Rake Node 的中儿子（一个 Compress Tree 集合）都加入非 $x$ 的另一端点，但仍保持其中序遍历和 Top Tree 的基本性质，如图．
 
-![](./images/top-tree13.jpg)
+![](./images/top-tree-13.svg)
 
 这一步相当于是让 Rake 操作加入某个 $T$ 中点的操作直接发生在 Compress Tree 中，这不仅使我们能正确维护 Rake Node 的信息（只需将三个儿子信息合并即可），还使我们 Compress Tree 的结构更完整．下一步，我们将 Compress Tree 改为三叉树，若某个 Rake Tree 的公共端点是点 $x$，我们就将 Rake Tree 挂在 `compress(x)` 的中儿子处，如图．
 
-![](./images/top-tree14.jpg)
+![](./images/top-tree-14.svg)
 
 此时经过三叉化的 `compress(x)` 点，它的意义就变成先将其中儿子 Rake 到簇路径上，再统计左右儿子和点 $x$ 的信息．
 
@@ -160,7 +160,7 @@ Compress Tree 里的节点称为 **Compress Node**．只考虑当前这条簇路
 
 于是我们就实现了用三度化 Self-Adjusting Top Tree 实现一棵树的信息维护．
 
-![](./images/top-tree15.jpg)
+![](./images/top-tree-15.svg)
 
 总结一下，SATT 有以下性质：
 
@@ -477,17 +477,17 @@ $$
 a = 1 + r'(\gamma)- 0 \leq \log n +1
 $$
 
-![](./images/top-tree16.jpg)
+![](./images/top-tree-16.svg)
 
 如图，为去掉点 $x$ 的右儿子过程．
 
 然后是 Local Splay，Splice 交替进行的过程，经过若干次 Splice，点 $x$ 被旋至 SATT 的根．我们对其中一组 Local Splay，Splice 进行分析：
 
-![](./images/top-tree17.jpg)
+![](./images/top-tree-17.svg)
 
-![](./images/top-tree18.jpg)
+![](./images/top-tree-18.svg)
 
-![](./images/top-tree19.jpg)
+![](./images/top-tree-19.svg)
 
 如图，体现了对点 $x$ 做一次 Splice 的过程，不包括最后左旋点 $x$ 的部分．
 
@@ -671,7 +671,7 @@ void pushup(int x, int op) {
 }
 ```
 
-![](./images/top-tree20.jpg)
+![](./images/top-tree-20.svg)
 
 如图，为在进行 Non-local Search 时的 SATT 和对应的原树 $T$．
 
