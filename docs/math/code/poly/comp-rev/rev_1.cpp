@@ -80,34 +80,34 @@ void TransposedInvFFT(uint a[], int n, const uint root[]) {
 
 // 形式幂级数复合，求出 f(g) mod x^n 要求 g(0) = 0
 std::vector<uint> FPSComp(std::vector<uint> f, std::vector<uint> g, int n) {
-  assert(empty(g) || g[0] == 0);
+  assert(g.empty() || g[0] == 0);
   int N = 1;
   while (N < n) N *= 2;
   const std::vector<uint> root = GetFFTRoot(N * 4);
   // [y^(-1)] (f(y) / (-g(x) + y)) mod x^n in R[x]((y^(-1)))
   const auto KinoshitaLi = [&N, &root](auto&& KinoshitaLi, std::vector<uint>& P,
                                        std::vector<uint> Q, int d, int n) {
-    assert((int)size(P) == N * 2);
-    assert((int)size(Q) == N * 2);
+    assert((int)P.size() == N * 2);
+    assert((int)Q.size() == N * 2);
     if (n == 1) return;
     Q.resize(N * 4);
     Q[N * 2] = 1;
-    FFT(data(Q), N * 4, data(root));
+    FFT(Q.data(), N * 4, root.data());
     if (n > 2) {
       std::vector<uint> V(N * 2);
       for (int i = 0; i < N * 4; i += 2) V[i / 2] = (ull)Q[i] * Q[i + 1] % MOD;
-      InvFFT(data(V), N * 2, data(root));
+      InvFFT(V.data(), N * 2, root.data());
       assert(V[0] == 1);
       V[0] = 0;
       for (int i = 0; i < d * 2; ++i)
         fill_n(begin(V) + (i * n + n / 2), n / 2, 0u);
       KinoshitaLi(KinoshitaLi, P, std::move(V), d * 2, n / 2);
     }
-    FFT(data(P), N * 2, data(root));
+    FFT(P.data(), N * 2, root.data());
     for (int i = 0; i < N * 4; i += 2)
       std::swap(Q[i] = (ull)Q[i] * P[i / 2] % MOD,
                 Q[i + 1] = (ull)Q[i + 1] * P[i / 2] % MOD);
-    InvFFT(data(Q), N * 4, data(root));
+    InvFFT(Q.data(), N * 4, root.data());
     for (int i = 0; i < d; ++i)
       fill_n(copy_n(begin(Q) + (i + d) * n * 2, n, begin(P) + i * n * 2), n,
              0u);
@@ -142,8 +142,8 @@ std::pair<std::vector<uint>, std::vector<uint>> GetFactorial(int n) {
 // 集训队论文《信息学竞赛中的生成函数计算理论框架》中提到
 // Taylor Shift 算法为二项卷积的转置
 std::vector<uint> BinConv(std::vector<uint> f, uint c) {
-  if (empty(f) || c == 0) return f;
-  const int n = (int)size(f);
+  if (f.empty() || c == 0) return f;
+  const int n = (int)f.size();
   std::vector<uint> factorial, inv_factorial;
   tie(factorial, inv_factorial) = GetFactorial(n);
   for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * inv_factorial[i] % MOD;
@@ -156,10 +156,10 @@ std::vector<uint> BinConv(std::vector<uint> f, uint c) {
   const std::vector<uint> root = GetFFTRoot(N);
   f.resize(N);
   g.resize(N);
-  FFT(data(f), N, data(root));
-  FFT(data(g), N, data(root));
+  FFT(f.data(), N, root.data());
+  FFT(g.data(), N, root.data());
   for (int i = 0; i < N; ++i) f[i] = (ull)f[i] * g[i] % MOD;
-  InvFFT(data(f), N, data(root));
+  InvFFT(f.data(), N, root.data());
   f.resize(n);
   for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * factorial[i] % MOD;
   return f;
@@ -168,29 +168,29 @@ std::vector<uint> BinConv(std::vector<uint> f, uint c) {
 // Power Projection: [x^(n-1)] (f g^i) for i = 0, ..., n-1
 // 不难发现该算法就是 PolyComp 算法的转置
 std::vector<uint> PowProj(std::vector<uint> f, std::vector<uint> g, int n) {
-  const uint c = empty(g) ? 0u : g[0];
-  if (!empty(g)) g[0] = 0;
+  const uint c = g.empty() ? 0u : g[0];
+  if (!g.empty()) g[0] = 0;
   int N = 1;
   while (N < n) N *= 2;
   const std::vector<uint> root = GetFFTRoot(N * 4);
   // [x^(n-1)] (f(x) / (-g(x) + y)) in R[x]((y^(-1)))
   const auto KinoshitaLi = [&N, &root](std::vector<uint>& P,
                                        std::vector<uint>& Q, int d, int n) {
-    assert((int)size(P) == N * 2);
-    assert((int)size(Q) == N * 2);
+    assert((int)P.size() == N * 2);
+    assert((int)Q.size() == N * 2);
     P.insert(begin(P), N * 2, 0u);
-    uint* const nP = data(P) + N * 2;
+    uint* const nP = P.data() + N * 2;
     Q.resize(N * 4);
     for (; n > 1; d *= 2, n /= 2) {
       Q[N * 2] = 1;
-      TransposedInvFFT(data(P), N * 4, data(root));
-      FFT(data(Q), N * 4, data(root));
+      TransposedInvFFT(P.data(), N * 4, root.data());
+      FFT(Q.data(), N * 4, root.data());
       for (int i = N * 4 - 2; i >= 0; i -= 2)
         nP[i / 2] = ((ull)P[i] * Q[i + 1] + (ull)P[i + 1] * Q[i]) % MOD;
-      TransposedFFT(nP, N * 2, data(root));
+      TransposedFFT(nP, N * 2, root.data());
       if (n == 2) break;
       for (int i = 0; i < N * 4; i += 2) Q[i / 2] = (ull)Q[i] * Q[i + 1] % MOD;
-      InvFFT(data(Q), N * 2, data(root));
+      InvFFT(Q.data(), N * 2, root.data());
       assert(Q[0] == 1);
       Q[0] = 0;
       for (int i = 0; i < d * 2; ++i) {
@@ -217,7 +217,7 @@ std::vector<uint> PowProj(std::vector<uint> f, std::vector<uint> g, int n) {
 
 // 形式幂级数幂函数，计算 g^e mod x^n 要求 g(0) = 1
 std::vector<uint> FPSPow1(std::vector<uint> g, uint e, int n) {
-  assert(!empty(g) && g[0] == 1);
+  assert(!g.empty() && g[0] == 1);
   if (n == 1) return std::vector<uint>{1u};
   std::vector<uint> inv(n), f(n);
   inv[1] = f[0] = 1;
@@ -230,7 +230,7 @@ std::vector<uint> FPSPow1(std::vector<uint> g, uint e, int n) {
 }
 
 std::vector<uint> FPSRev(std::vector<uint> f, int n) {
-  assert(size(f) >= 2 && f[0] == 0 && f[1] != 0);
+  assert(f.size() >= 2 && f[0] == 0 && f[1] != 0);
   if (n == 1) return std::vector<uint>{0u};
   f.resize(n);
   const uint invf1 = InvMod(f[1]);

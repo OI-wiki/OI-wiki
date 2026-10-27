@@ -80,34 +80,34 @@ void TransposedInvFFT(uint a[], int n, const uint root[]) {
 
 // 形式幂级数复合，求出 f(g) mod x^n 要求 g(0) = 0
 std::vector<uint> FPSComp(std::vector<uint> f, std::vector<uint> g, int n) {
-  assert(empty(g) || g[0] == 0);
+  assert(g.empty() || g[0] == 0);
   int N = 1;
   while (N < n) N *= 2;
   const std::vector<uint> root = GetFFTRoot(N * 4);
   // [y^(-1)] (f(y) / (-g(x) + y)) mod x^n in R[x]((y^(-1)))
   const auto KinoshitaLi = [&N, &root](auto&& KinoshitaLi, std::vector<uint>& P,
                                        std::vector<uint> Q, int d, int n) {
-    assert((int)size(P) == N * 2);
-    assert((int)size(Q) == N * 2);
+    assert((int)P.size() == N * 2);
+    assert((int)Q.size() == N * 2);
     if (n == 1) return;
     Q.resize(N * 4);
     Q[N * 2] = 1;
-    FFT(data(Q), N * 4, data(root));
+    FFT(Q.data(), N * 4, root.data());
     if (n > 2) {
       std::vector<uint> V(N * 2);
       for (int i = 0; i < N * 4; i += 2) V[i / 2] = (ull)Q[i] * Q[i + 1] % MOD;
-      InvFFT(data(V), N * 2, data(root));
+      InvFFT(V.data(), N * 2, root.data());
       assert(V[0] == 1);
       V[0] = 0;
       for (int i = 0; i < d * 2; ++i)
         fill_n(begin(V) + (i * n + n / 2), n / 2, 0u);
       KinoshitaLi(KinoshitaLi, P, std::move(V), d * 2, n / 2);
     }
-    FFT(data(P), N * 2, data(root));
+    FFT(P.data(), N * 2, root.data());
     for (int i = 0; i < N * 4; i += 2)
       std::swap(Q[i] = (ull)Q[i] * P[i / 2] % MOD,
                 Q[i + 1] = (ull)Q[i + 1] * P[i / 2] % MOD);
-    InvFFT(data(Q), N * 4, data(root));
+    InvFFT(Q.data(), N * 4, root.data());
     for (int i = 0; i < d; ++i)
       fill_n(copy_n(begin(Q) + (i + d) * n * 2, n, begin(P) + i * n * 2), n,
              0u);
@@ -139,8 +139,8 @@ std::pair<std::vector<uint>, std::vector<uint>> GetFactorial(int n) {
 
 // f(x) |-> f(x + c)
 std::vector<uint> TaylorShift(std::vector<uint> f, uint c) {
-  if (empty(f) || c == 0) return f;
-  const int n = (int)size(f);
+  if (f.empty() || c == 0) return f;
+  const int n = (int)f.size();
   std::vector<uint> factorial, inv_factorial;
   tie(factorial, inv_factorial) = GetFactorial(n);
   for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * factorial[i] % MOD;
@@ -153,10 +153,10 @@ std::vector<uint> TaylorShift(std::vector<uint> f, uint c) {
   const std::vector<uint> root = GetFFTRoot(N);
   f.resize(N);
   g.resize(N);
-  TransposedInvFFT(data(f), N, data(root));
-  FFT(data(g), N, data(root));
+  TransposedInvFFT(f.data(), N, root.data());
+  FFT(g.data(), N, root.data());
   for (int i = 0; i < N; ++i) f[i] = (ull)f[i] * g[i] % MOD;
-  TransposedFFT(data(f), N, data(root));
+  TransposedFFT(f.data(), N, root.data());
   f.resize(n);
   for (int i = 0; i < n; ++i) f[i] = (ull)f[i] * inv_factorial[i] % MOD;
   return f;
@@ -165,7 +165,7 @@ std::vector<uint> TaylorShift(std::vector<uint> f, uint c) {
 // 多项式复合，求出 f(g) mod x^n
 std::vector<uint> PolyComp(const std::vector<uint>& f,
                            const std::vector<uint>& g, int n) {
-  if (empty(g) || g[0] == 0) return FPSComp(f, g, n);
+  if (g.empty() || g[0] == 0) return FPSComp(f, g, n);
   std::vector<uint> gg = g;
   gg[0] = 0;
   return FPSComp(TaylorShift(f, g[0]), std::move(gg), n);
