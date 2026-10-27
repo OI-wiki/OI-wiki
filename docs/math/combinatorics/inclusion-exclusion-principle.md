@@ -11,7 +11,7 @@ $$
 |A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|B\cap C|-|C\cap A|+|A\cap B\cap C|
 $$
 
-![容斥原理 - venn 图示例](./images/incexcp.png)
+![容斥原理 - venn 图示例](./images/incexcp.svg)
 
 把上述问题推广到一般情况，就是我们熟知的容斥原理．
 
