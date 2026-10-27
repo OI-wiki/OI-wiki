@@ -10,7 +10,7 @@
         text {
             text-anchor: middle;
             font-size: 12pt;
-            font-family: system-ui;
+            font-family: Noto Sans CJK SC,Noto Sans SC, Microsoft YaHei, sans-serif;
         }
     </style>
     <g>
