@@ -17,7 +17,7 @@ author: hyp1231, 383494
 
 下图所示即为平面上一点 $P$ 的反演：
 
-![Inv1](./images/inverse1.png)
+![Inv1](./images/inverse-1.svg)
 
 ## 性质
 
@@ -25,7 +25,7 @@ author: hyp1231, 383494
 
 2.  不过点 $O$ 的圆 $A$，其反演图形也是不过点 $O$ 的圆．
 
-    ![Inv2](./images/inverse2.png)
+    ![Inv2](./images/inverse-2.svg)
 
     -   记圆 $A$ 半径为 $r_1$，其反演图形圆 $B$ 半径为 $r_2$，则有：
 
@@ -34,7 +34,7 @@ author: hyp1231, 383494
         $$
 
     ???+ note "证明"
-        ![Inv3](./images/inverse3.png)
+        ![Inv3](./images/inverse-3.svg)
         
         根据反演变换定义：
         
@@ -60,7 +60,7 @@ author: hyp1231, 383494
 
 3.  过点 $O$ 的圆 $A$，其反演图形是不过点 $O$ 的直线．因为圆 $A$ 上无限接近点 $O$ 的一点，其反演点离点 $O$ 无限远．
 
-    ![Inv4](./images/inverse4.png)
+    ![Inv4](./images/inverse-4.svg)
 
 4.  两个图形相切且存在不为点 $O$ 的切点，则他们的反演图形也相切．
 

@@ -6,8 +6,8 @@
 	<defs>
 		<marker id="TriangleOutM" overflow="visible" orient="auto">
 			<path transform="scale(.4)" d="m5.77 0-8.65 5v-10l8.65 5z"
-				fill="context-stroke" fill-rule="evenodd" 
-				stroke="context-stroke" stroke-width="1pt"/>
+				fill="#000" fill-rule="evenodd"
+				stroke="#000" stroke-width="1pt"/>
 		</marker>
 	</defs>
 	<g id="colored" stroke="none">
