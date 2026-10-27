@@ -1,0 +1,25 @@
+% Table exercises from ../latex.md.
+% Build instructions: latex-for-beginners-common.tex.
+\documentclass[a4paper,12pt]{article}
+\input{latex-for-beginners-common.tex}
+\begin{document}
+\begin{tabular}{l|r|r}
+  Item         & Quantity & Price(\$) \\
+  \hline
+  Nails        &      500 &      0.34 \\
+  Wooden boards &     100 &      4.00 \\
+  Bricks       &      240 &     11.50 \\
+\end{tabular}
+
+\bigskip
+
+\begin{tabular}{l|rrr}
+       & \multicolumn{3}{l}{Year} \\
+  \cline{2-4}
+  City & 2006  & 2007  & 2008  \\
+  \hline
+  London & 45789 & 46551 & 51298 \\
+  Berlin & 34549 & 32543 & 29870 \\
+  Paris  & 49835 & 51009 & 51970 \\
+\end{tabular}
+\end{document}
