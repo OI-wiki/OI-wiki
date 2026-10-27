@@ -25,15 +25,35 @@ SOURCE = Path(__file__).resolve().parent
 VERTICES = range(7)
 S, T = 0, 6
 CAPACITIES = {
-    (0, 1): 4, (0, 3): 5, (1, 2): 5, (1, 3): 1, (3, 2): 2,
-    (3, 4): 5, (4, 2): 6, (4, 5): 3, (2, 6): 5, (5, 6): 2,
+    (0, 1): 4,
+    (0, 3): 5,
+    (1, 2): 5,
+    (1, 3): 1,
+    (3, 2): 2,
+    (3, 4): 5,
+    (4, 2): 6,
+    (4, 5): 3,
+    (2, 6): 5,
+    (5, 6): 2,
 }
 NEIGHBORS = {
-    0: [3, 1], 1: [3, 2, 0], 2: [6, 4, 3, 1],
-    3: [4, 2, 1, 0], 4: [5, 2, 3], 5: [6, 4], 6: [5, 2],
+    0: [3, 1],
+    1: [3, 2, 0],
+    2: [6, 4, 3, 1],
+    3: [4, 2, 1, 0],
+    4: [5, 2, 3],
+    5: [6, 4],
+    6: [5, 2],
 }
-POSITIONS = {0: (10, 48), 1: (65, 12), 2: (120, 36),
-             3: (65, 76), 4: (120, 101), 5: (180, 101), 6: (180, 42)}
+POSITIONS = {
+    0: (10, 48),
+    1: (65, 12),
+    2: (120, 36),
+    3: (65, 76),
+    4: (120, 101),
+    5: (180, 101),
+    6: (180, 42),
+}
 SVG = "http://www.w3.org/2000/svg"
 ET.register_namespace("", SVG)
 ET.register_namespace("xlink", "http://www.w3.org/1999/xlink")
@@ -94,8 +114,9 @@ class Network:
             for v in VERTICES:
                 if v not in (S, T) and old < self.height[v] < self.source_height:
                     self.height[v] = self.source_height + 1
-        self.height[u] = 1 + min(self.height[v] for v in NEIGHBORS[u]
-                                 if self.residual(u, v))
+        self.height[u] = 1 + min(
+            self.height[v] for v in NEIGHBORS[u] if self.residual(u, v)
+        )
 
 
 def snapshot(network, caption=""):
@@ -126,12 +147,29 @@ def hlpp_trace():
     frames.append(snapshot(network, "Initialize"))
     # Preserve the 24 numbered steps of the original walkthrough, including
     # GAP at pic13 -> pic14. Ties between highest vertices follow this order.
-    operations = [("push", 3), ("relabel", 3), ("push", 3), ("push", 1),
-                  ("push", 4), ("push", 2), ("relabel", 2), ("push", 2),
-                  ("relabel", 1), ("push", 1), ("push", 3), ("gap", 4),
-                  ("push", 4), ("relabel", 2), ("push", 2), ("push", 3),
-                  ("push", 5), ("relabel", 5), ("push", 5), ("push", 4),
-                  ("push", 3)]
+    operations = [
+        ("push", 3),
+        ("relabel", 3),
+        ("push", 3),
+        ("push", 1),
+        ("push", 4),
+        ("push", 2),
+        ("relabel", 2),
+        ("push", 2),
+        ("relabel", 1),
+        ("push", 1),
+        ("push", 3),
+        ("gap", 4),
+        ("push", 4),
+        ("relabel", 2),
+        ("push", 2),
+        ("push", 3),
+        ("push", 5),
+        ("relabel", 5),
+        ("push", 5),
+        ("push", 4),
+        ("push", 3),
+    ]
     for action, u in operations:
         if action == "push":
             network.push(u)
@@ -149,21 +187,27 @@ def picture(network, caption, number, plain):
     for u, (x, y) in POSITIONS.items():
         shade = min(95, network.height[u] * 10)
         text = "white" if shade >= 60 else "black"
-        lines.append(rf"\node[vertex,fill=heightcolor!{shade},text={text}] (v{u})"
-                     rf" at ({x},{y}) {{$ {u} $\\$ {network.height[u]}\mid {network.excess[u]} $}};")
+        lines.append(
+            rf"\node[vertex,fill=heightcolor!{shade},text={text}] (v{u})"
+            rf" at ({x},{y}) {{$ {u} $\\$ {network.height[u]}\mid {network.excess[u]} $}};"
+        )
     for u in VERTICES:
         for v in NEIGHBORS[u]:
             residual = network.residual(u, v)
             if not residual:
                 continue
-            color = "admissible" if network.height[u] == network.height[v] + 1 else "black"
+            color = (
+                "admissible" if network.height[u] == network.height[v] + 1 else "black"
+            )
             bend = 13 if network.residual(v, u) else 0
             if not bend and {u, v} == {1, 2}:
                 bend = 20 if u == 1 else -20
             if not bend and {u, v} == {3, 4}:
                 bend = -20 if u == 3 else 20
-            lines.append(rf"\draw[edge,draw={color}] (v{u}) to[bend left={bend}]"
-                         rf" node[capacity,text=black] {{$ {residual} $}} (v{v});")
+            lines.append(
+                rf"\draw[edge,draw={color}] (v{u}) to[bend left={bend}]"
+                rf" node[capacity,text=black] {{$ {residual} $}} (v{v});"
+            )
     if plain:
         # Keep the original pic1 ... pic29 captions without added explanations.
         lines.append(rf"\PlainNetworkEnd{{pic{number}}}")
@@ -173,8 +217,15 @@ def picture(network, caption, number, plain):
 
 
 def run(command, cwd):
-    result = subprocess.run(command, cwd=cwd, text=True, encoding="utf-8",
-                            errors="replace", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    result = subprocess.run(
+        command,
+        cwd=cwd,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+    )
     if result.returncode:
         raise RuntimeError(result.stdout)
 
@@ -182,25 +233,48 @@ def run(command, cwd):
 def render_frames(frames, name, build):
     template = (SOURCE / "max-flow-network.tex").read_text(encoding="utf-8")
     document = template + "\n\\begin{document}\n"
-    document += "\n".join(picture(network, caption, i + 1, name == "push-relabel")
-                           for i, (network, caption) in enumerate(frames))
+    document += "\n".join(
+        picture(network, caption, i + 1, name == "push-relabel")
+        for i, (network, caption) in enumerate(frames)
+    )
     document += "\n\\end{document}\n"
     (build / f"{name}.tex").write_text(document, encoding="utf-8")
     run(["latex", "-interaction=nonstopmode", "-halt-on-error", f"{name}.tex"], build)
-    run(["dvisvgm", "--no-fonts", "--exact", "--bbox=papersize", "--page=1-",
-         f"--output={name}-%p.svg", f"{name}.dvi"], build)
+    run(
+        [
+            "dvisvgm",
+            "--no-fonts",
+            "--exact",
+            "--bbox=papersize",
+            "--page=1-",
+            f"--output={name}-%p.svg",
+            f"{name}.dvi",
+        ],
+        build,
+    )
     # dvisvgm pads %p to the number of digits in the total page count.
     digits = len(str(len(frames)))
-    return [ET.parse(build / f"{name}-{i + 1:0{digits}d}.svg").getroot()
-            for i in range(len(frames))]
+    return [
+        ET.parse(build / f"{name}-{i + 1:0{digits}d}.svg").getroot()
+        for i in range(len(frames))
+    ]
 
 
 def svg_root(width, height, title, description):
-    root = ET.Element(f"{{{SVG}}}svg", {"version": "1.1", "width": f"{width:g}pt",
-                                      "height": f"{height:g}pt", "viewBox": f"0 0 {width:g} {height:g}"})
+    root = ET.Element(
+        f"{{{SVG}}}svg",
+        {
+            "version": "1.1",
+            "width": f"{width:g}pt",
+            "height": f"{height:g}pt",
+            "viewBox": f"0 0 {width:g} {height:g}",
+        },
+    )
     ET.SubElement(root, f"{{{SVG}}}title").text = title
     ET.SubElement(root, f"{{{SVG}}}desc").text = description
-    ET.SubElement(root, f"{{{SVG}}}rect", {"width": "100%", "height": "100%", "fill": "white"})
+    ET.SubElement(
+        root, f"{{{SVG}}}rect", {"width": "100%", "height": "100%", "fill": "white"}
+    )
     return root
 
 
@@ -208,8 +282,11 @@ def frame_group(frame, prefix, x=0, y=0):
     # dvisvgm reuses glyph/page IDs across pages. Namespace every ID and href
     # before combining pages, otherwise labels would point to the wrong glyphs.
     frame = deepcopy(frame)
-    identifiers = {node.attrib["id"]: prefix + node.attrib["id"]
-                   for node in frame.iter() if "id" in node.attrib}
+    identifiers = {
+        node.attrib["id"]: prefix + node.attrib["id"]
+        for node in frame.iter()
+        if "id" in node.attrib
+    }
     for node in frame.iter():
         for key, value in list(node.attrib.items()):
             if key == "id":
@@ -217,10 +294,18 @@ def frame_group(frame, prefix, x=0, y=0):
             elif key.endswith("href") and value.startswith("#"):
                 node.set(key, "#" + identifiers[value[1:]])
             else:
-                node.set(key, re.sub(r"url\(#([^)]+)\)",
-                                    lambda match: f"url(#{identifiers[match[1]]})", value))
+                node.set(
+                    key,
+                    re.sub(
+                        r"url\(#([^)]+)\)",
+                        lambda match: f"url(#{identifiers[match[1]]})",
+                        value,
+                    ),
+                )
     left, top, _, _ = map(float, frame.attrib["viewBox"].split())
-    group = ET.Element(f"{{{SVG}}}g", {"transform": f"translate({x - left:g} {y - top:g})"})
+    group = ET.Element(
+        f"{{{SVG}}}g", {"transform": f"translate({x - left:g} {y - top:g})"}
+    )
     group.extend(frame)
     return group
 
@@ -231,9 +316,14 @@ def save_svg(root, path):
         output.write(b"\n")
 
 
-def export_animation(frames, path, *, title="Push-relabel walkthrough",
-                     description="Residual capacities, node heights and excesses at every relabel. "
-                                 "Source 0, sink 6, seven vertices, maximum flow 7."):
+def export_animation(
+    frames,
+    path,
+    *,
+    title="Push-relabel walkthrough",
+    description="Residual capacities, node heights and excesses at every relabel. "
+    "Source 0, sink 6, seven vertices, maximum flow 7.",
+):
     _, _, width, height = map(float, frames[0].attrib["viewBox"].split())
     root = svg_root(width, height, title, description)
     count = len(frames)
@@ -250,27 +340,42 @@ def export_animation(frames, path, *, title="Push-relabel walkthrough",
         else:
             times = [0, i / duration, (i + 1) / duration, 1]
             values = ["hidden", "visible", "hidden", "hidden"]
-        ET.SubElement(group, f"{{{SVG}}}animate", {
-            "attributeName": "visibility", "values": ";".join(values),
-            "keyTimes": ";".join(f"{time:.12g}" for time in times),
-            "calcMode": "discrete", "dur": f"{duration}s", "repeatCount": "indefinite",
-        })
+        ET.SubElement(
+            group,
+            f"{{{SVG}}}animate",
+            {
+                "attributeName": "visibility",
+                "values": ";".join(values),
+                "keyTimes": ";".join(f"{time:.12g}" for time in times),
+                "calcMode": "discrete",
+                "dur": f"{duration}s",
+                "repeatCount": "indefinite",
+            },
+        )
         root.append(group)
     save_svg(root, path)
 
 
 def export_grid(frames, path):
     _, _, width, height = map(float, frames[0].attrib["viewBox"].split())
-    root = svg_root(4 * width, 6 * height, "Highest-label push-relabel walkthrough",
-                    "24 steps; pic13 to pic14 applies Relabel(4) and GAP. Maximum flow 7.")
+    root = svg_root(
+        4 * width,
+        6 * height,
+        "Highest-label push-relabel walkthrough",
+        "24 steps; pic13 to pic14 applies Relabel(4) and GAP. Maximum flow 7.",
+    )
     for i, frame in enumerate(frames):
-        root.append(frame_group(frame, f"p{i + 1}-", (i % 4) * width, (i // 4) * height))
+        root.append(
+            frame_group(frame, f"p{i + 1}-", (i % 4) * width, (i // 4) * height)
+        )
     save_svg(root, path)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--build-dir", type=Path, default=SOURCE.parents[3] / "_build/flow-vectors")
+    parser.add_argument(
+        "--build-dir", type=Path, default=SOURCE.parents[3] / "_build/flow-vectors"
+    )
     parser.add_argument("--output-dir", type=Path, default=SOURCE)
     args = parser.parse_args()
     plain, hlpp = plain_trace(), hlpp_trace()
@@ -283,7 +388,9 @@ def main():
     save_svg(plain_svg[-1], args.output_dir / "push-relabel-final.svg")
     export_animation(plain_svg, args.output_dir / "push-relabel.svg")
     export_grid(hlpp_svg, args.output_dir / "hlpp.svg")
-    print("Rebuilt push-relabel-initial.svg, push-relabel.svg, push-relabel-final.svg, and hlpp.svg.")
+    print(
+        "Rebuilt push-relabel-initial.svg, push-relabel.svg, push-relabel-final.svg, and hlpp.svg."
+    )
 
 
 if __name__ == "__main__":
