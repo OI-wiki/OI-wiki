@@ -7,4 +7,4 @@
 ## 参考资料与注释
 
 -   [吉如一．区间最值操作与历史最值问题．2016 年国家集训队论文．](https://github.com/enkerewpo/OI-Public-Library/blob/master/IOI%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf)
--   [A simple introduction to "Segment tree beats" by jiry_2 - Codeforces](https://codeforces.com/blog/entry/57319)
+-   [A simple introduction to "Segment tree beats" by jiry\_2 - Codeforces](https://codeforces.com/blog/entry/57319)
