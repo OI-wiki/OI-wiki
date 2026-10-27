@@ -778,7 +778,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note "习题 [「Aizu 2452」Pipeline Plans](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
     题目大意：现有一共 12 种图案的瓷砖，每种瓷砖数量给定．要求铺到一块可视为 $R\times C$ 网格图的矩形地板上，一个格子铺一块瓷砖，且左上角格子的中心与右下角格子的中心通过瓷砖图案上的线联通．$(2 \le R \times C \le 15)$
     
-    ![plug2](./images/plug2.png)
+    ![](./images/plug-tiles.svg)
 
 ??? note "习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
     题目大意：一块 $N\times M$ 的电路板，上面有些位置是电线不能走的障碍，给定 $K$ 个格子对，要求每对格子都有电线相连，且电线之间互不相交（允许一条电路线从上边界进入当前格子，从左边界离开这个格子，另外一条电路线可以从下边界进入格子，从右边界出去）．视电线为无向边，求满足要求的最短电线长度和方案数．
