@@ -295,7 +295,7 @@ def document(title, description, content):
     for kind, color in COLORS.items():
         markers.append(
             f'<marker id="arrow-{kind}" viewBox="0 0 10 10" '
-            'refX="9" refY="5" markerWidth="8" markerHeight="8" '
+            'refX="9" refY="5" markerWidth="18" markerHeight="18" '
             'orient="auto" markerUnits="userSpaceOnUse">'
             f'<path d="M 0 0 L 10 5 L 0 10" fill="none" '
             f'stroke="{color}" stroke-width="1.8"/></marker>'

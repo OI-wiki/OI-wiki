@@ -4,14 +4,14 @@
 <title>All failure pointers</title>
 <desc>Patterns: i, he, his, she, hers. States 0 to 10 retain the article&#x27;s numbering. Gray edges are trie edges; orange arrows are failure pointers. Black arrows are completed transitions; transitions to state 0 are omitted.</desc>
 <defs>
-<marker id="arrow-trie" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#a8afb6" stroke-width="1.8"/></marker>
-<marker id="arrow-label" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#168543" stroke-width="1.8"/></marker>
-<marker id="arrow-fail" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#d39200" stroke-width="1.8"/></marker>
-<marker id="arrow-new" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#d82535" stroke-width="1.8"/></marker>
-<marker id="arrow-extra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#222a35" stroke-width="1.8"/></marker>
-<marker id="arrow-current" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#009ccc" stroke-width="1.8"/></marker>
-<marker id="arrow-move" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#e24f98" stroke-width="1.8"/></marker>
-<marker id="arrow-match" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#1673c9" stroke-width="1.8"/></marker>
+<marker id="arrow-trie" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="18" markerHeight="18" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#a8afb6" stroke-width="1.8"/></marker>
+<marker id="arrow-label" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="18" markerHeight="18" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#168543" stroke-width="1.8"/></marker>
+<marker id="arrow-fail" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="18" markerHeight="18" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#d39200" stroke-width="1.8"/></marker>
+<marker id="arrow-new" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="18" markerHeight="18" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#d82535" stroke-width="1.8"/></marker>
+<marker id="arrow-extra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="18" markerHeight="18" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#222a35" stroke-width="1.8"/></marker>
+<marker id="arrow-current" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="18" markerHeight="18" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#009ccc" stroke-width="1.8"/></marker>
+<marker id="arrow-move" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="18" markerHeight="18" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#e24f98" stroke-width="1.8"/></marker>
+<marker id="arrow-match" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="18" markerHeight="18" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#1673c9" stroke-width="1.8"/></marker>
 </defs>
 <g font-family="Arial, Helvetica, sans-serif">
 <rect width="1450" height="1070" fill="white"/>
