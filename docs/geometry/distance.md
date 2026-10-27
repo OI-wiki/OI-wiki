@@ -32,7 +32,7 @@ $$
 
 那么，三维空间中两点的欧氏距离公式呢？我们来观察下图．
 
-![dis-3-dimensional](./images/distance-0.png)
+![dis-3-dimensional](./images/distance-0.svg)
 
 我们很容易发现，在 $\triangle ADC$ 中，$\angle ADC = 90^\circ$；在 $\triangle ACB$ 中，$\angle ACB = 90^\circ$．
 
@@ -83,7 +83,7 @@ $$
 
 观察下图：
 
-![manhattan-dis-diff](./images/distance-1.png)
+![manhattan-dis-diff](./images/distance-1.svg)
 
 在 $A,B$ 间，黄线、橙线都表示曼哈顿距离，而红线、蓝线表示等价的曼哈顿距离，绿线表示欧氏距离．
 

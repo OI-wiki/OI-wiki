@@ -1,0 +1,62 @@
+% Faithful vector redraw of nearest-points1.png (1103 x 621 pixels).
+% Coordinates use the original image's top-left origin; one unit is one pixel.
+% Regenerate from this directory:
+% latex -interaction=nonstopmode -halt-on-error nearest-points-1.tex
+% dvisvgm --no-fonts --exact --bbox=papersize --output=nearest-points-1.svg nearest-points-1.dvi
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\definecolor{axisgray}{RGB}{112,112,112}
+\definecolor{guideblue}{RGB}{0,0,190}
+\begin{document}
+\begin{tikzpicture}[x=0.75bp,y=-0.75bp,
+  every node/.style={inner sep=0pt,outer sep=0pt,anchor=base west},
+  line cap=round,line join=round]
+  \path[use as bounding box] (0,0) rectangle (1103,621);
+  \clip (0,0) rectangle (1103,621);
+  \fill[white] (0,0) rectangle (1103,621);
+  \begin{scope}
+  % Axes, half-unit tick marks, and the original split/strip boundaries.
+  \draw[axisgray,line width=0.9bp] (-20,559.5) -- (1140,559.5)
+    (65.5,-20) -- (65.5,650);
+  \foreach \x in {2.0,65.5,129.0,192.6,256.2,319.8,383.3,446.9,510.5,574.0,637.6,701.2,764.7,828.3,891.9,955.5,1019.0,1082.6} {
+    \draw[axisgray,line width=0.8bp] (\x,552) -- (\x,567);
+  }
+  \foreach \y in {50.8,114.4,178.0,241.6,305.2,368.8,432.4,496.0,623.2} {
+    \draw[axisgray,line width=0.8bp] (58,\y) -- (73,\y);
+  }
+  \foreach \x/\value in {319.8/2,574.0/4,828.3/6,1082.6/8} {
+    \node[anchor=base,font=\fontsize{12bp}{14bp}\selectfont] at (\x,586) {\value};
+  }
+  \foreach \y/\value in {50.8/4,178.0/3,305.2/2,432.4/1} {
+    \node[anchor=base east,font=\fontsize{12bp}{14bp}\selectfont] at (54,\y+5.5) {\value};
+  }
+  \draw[guideblue,line width=0.85bp,dash pattern=on 5bp off 4bp]
+    (511.3,-20) -- (511.3,650)
+    (779.3,-20) -- (779.3,650)
+    (-20,106.5) -- (1140,106.5);
+  \draw[black,line width=0.9bp] (644.8,-20) -- (644.8,650);
+  \draw[black,line width=2.7bp,line cap=butt] (511.3,106.5) -- (779.3,106.5);
+
+  % Labels retain their roles and positions from the raster baseline.
+  \node[font=\fontsize{25bp}{29bp}\selectfont] at (101,164) {$\mathrm{A}_1$};
+  \node[font=\fontsize{25bp}{29bp}\selectfont] at (845,168) {$\mathrm{A}_2$};
+  \node[font=\fontsize{26bp}{30bp}\selectfont] at (533,156) {B};
+  \node[font=\fontsize{27bp}{31bp}\selectfont] at (553,92) {h};
+  \node[font=\fontsize{27bp}{31bp}\selectfont] at (707,95) {h};
+  \node[font=\fontsize{25bp}{29bp}\selectfont] at (655,231) {$\boldsymbol{m}$};
+  \node[font=\fontsize{25bp}{29bp}\selectfont] at (656,357) {$\boldsymbol{p_m}$};
+
+  % All 11 red sample points from the baseline.
+  \foreach \x/\y in {325.20/189.15,997.21/199.79,848.89/247.77,511.20/309.15,313.31/340.87,155.91/349.82,887.94/367.88,373.20/489.15,982.26/523.98,192.94/559.88,66.00/559.91} {
+    \filldraw[fill=red,draw=black,line width=0.85bp]
+      (\x,\y) circle[radius=4.5bp];
+  }
+  % All 10 green sample points from the baseline.
+  \foreach \x/\y in {692.94/135.21,526.14/198.05,760.14/210.05,645.00/330.17,527.88/436.71,652.28/445.81,754.27/466.87,630.00/528.17,664.27/566.00,516.00/570.17} {
+    \filldraw[fill=green,draw=black,line width=0.85bp]
+      (\x,\y) circle[radius=4.5bp];
+  }
+  \end{scope}
+\end{tikzpicture}
+\end{document}
