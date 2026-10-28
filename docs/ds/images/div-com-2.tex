@@ -7,7 +7,7 @@
 \begin{document}
 \definecolor{split}{HTML}{00DADA}
 \definecolor{combine}{HTML}{FF8800}
-\begin{tikzpicture}[background rectangle/.style={fill=white},show background rectangle,x=1cm,y=1cm,line width=.7pt,font=\small,
+\begin{tikzpicture}[scale=1.75,transform shape,background rectangle/.style={fill=white},show background rectangle,x=1cm,y=1cm,line width=.7pt,font=\small,
   leaf/.style={circle,draw,fill=combine,minimum size=5.5mm,inner sep=0pt},
   interval/.style={rectangle,draw,fill=combine,minimum height=5mm,inner sep=2pt},
   splitnode/.style={interval,fill=split}]
@@ -407,23 +407,24 @@
 \node[anchor=north west,text=blue!75!black,text width=2.45cm,align=left,font=\footnotesize] at (7.2,.22) {又是两个点合并成合点};
 \end{scope}
 % Step 17: [1,10]
+% A deeper first level keeps the three left edges clear of sibling leaves.
 \begin{scope}[yshift=-33.20cm]
 \coordinate (s17n0) at (3.400,0.000);
-\coordinate (s17n1) at (0.340,-0.900);
-\coordinate (s17n2) at (1.020,-0.900);
-\coordinate (s17n3) at (1.700,-0.900);
-\coordinate (s17n4) at (4.420,-0.900);
-\coordinate (s17n5) at (2.720,-1.800);
-\coordinate (s17n6) at (2.380,-2.700);
-\coordinate (s17n7) at (3.060,-2.700);
-\coordinate (s17n8) at (5.100,-1.800);
-\coordinate (s17n9) at (4.760,-2.700);
-\coordinate (s17n10) at (3.740,-3.600);
-\coordinate (s17n11) at (4.760,-3.600);
-\coordinate (s17n12) at (4.420,-4.500);
-\coordinate (s17n13) at (5.100,-4.500);
-\coordinate (s17n14) at (5.780,-3.600);
-\coordinate (s17n15) at (6.460,-2.700);
+\coordinate (s17n1) at (0.340,-1.800);
+\coordinate (s17n2) at (1.020,-1.800);
+\coordinate (s17n3) at (1.700,-1.800);
+\coordinate (s17n4) at (4.420,-1.800);
+\coordinate (s17n5) at (2.720,-2.700);
+\coordinate (s17n6) at (2.380,-3.600);
+\coordinate (s17n7) at (3.060,-3.600);
+\coordinate (s17n8) at (5.100,-2.700);
+\coordinate (s17n9) at (4.760,-3.600);
+\coordinate (s17n10) at (3.740,-4.500);
+\coordinate (s17n11) at (4.760,-4.500);
+\coordinate (s17n12) at (4.420,-5.400);
+\coordinate (s17n13) at (5.100,-5.400);
+\coordinate (s17n14) at (5.780,-4.500);
+\coordinate (s17n15) at (6.460,-3.600);
 \draw (s17n0) -- (s17n1);
 \draw (s17n0) -- (s17n2);
 \draw (s17n0) -- (s17n3);
