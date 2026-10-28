@@ -28,6 +28,7 @@ jobs:
             scripts/get_files_to_test.py
             scripts/correctness_check.py
             scripts/ub-check.py
+            scripts/test_utils.py
       - name: Get changed code files
         id: changed-code-files
         uses: tj-actions/changed-files@v47
