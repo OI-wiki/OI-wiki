@@ -250,6 +250,15 @@ def draw(scene):
             d, (x, y) = EXTRA_ROUTES[u, char]
             pieces.append(path(d, kind))
             pieces.append(label(x, y, char, COLORS[kind]))
+    if scene.match is not None:
+        for u, char, v in pattern_edges(scene.match):
+            pieces.append(path(line(u, v), "match", 5, False))
+        if scene.failure_match:
+            u = scene.current
+            while u != scene.match:
+                pieces.append(path(FAIL_ROUTES[u], "match", 4))
+                u = FAIL[u]
+    # Draw the movement arrow above the matched path when they share an edge.
     if scene.move is not None:
         u, char, v = scene.move
         if char in TRIE[u]:
@@ -261,14 +270,6 @@ def draw(scene):
             assert u == v == 0
             d = FAIL_ROUTES[0]
         pieces.append(path(d, "move", 5))
-    if scene.match is not None:
-        for u, char, v in pattern_edges(scene.match):
-            pieces.append(path(line(u, v), "match", 5, False))
-        if scene.failure_match:
-            u = scene.current
-            while u != scene.match:
-                pieces.append(path(FAIL_ROUTES[u], "match", 4))
-                u = FAIL[u]
     for u, char, v in EDGES:
         x, y = TRIE_LABELS[u, v]
         pieces.append(label(x, y, char, COLORS["label"], TRIE_TEXT_SIZE))
