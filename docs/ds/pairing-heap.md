@@ -5,13 +5,13 @@
 ## 定义
 
 配对堆是一棵满足堆性质的带权多叉树（如下图），即每个节点的权值都小于或等于他的所有儿子（以小根堆为例，下同）．  
-![](./images/pairingheap1.jpg)
+![](./images/pairing-heap-1.svg)
 
 通常我们使用儿子 - 兄弟表示法储存一个配对堆（如下图），一个节点的所有儿子节点形成一个单向链表．每个节点储存第一个儿子的指针，即链表的头节点；和他的右兄弟的指针．
 
 这种方式便于实现配对堆，也将方便复杂度分析．
 
-![](./images/pairingheap2.jpg)
+![](./images/pairing-heap-2.svg)
 
 ```cpp
 struct Node {
@@ -36,7 +36,7 @@ struct Node {
 
 合并两个配对堆的操作很简单，首先令两个根节点较小的一个为新的根节点，然后将较大的根节点作为它的儿子插入进去．（见下图）
 
-![](./images/pairingheap3.jpg)
+![](./images/pairing-heap-3.svg)
 
 需要注意的是，一个节点的儿子链表是按插入时间排序的，即最右边的节点最早成为父节点的儿子，最左边的节点最近成为父节点的儿子．
 
@@ -71,9 +71,9 @@ struct Node {
 1.  把儿子们两两配成一对，用 `meld` 操作把被配成同一对的两个儿子合并到一起（见下图 1），
 2.  将新产生的堆 **从右往左**（即老的儿子到新的儿子的方向）挨个合并在一起（见下图 2）．
 
-![](./images/pairingheap4.jpg)
+![](./images/pairing-heap-4.svg)
 
-![](./images/pairingheap5.jpg)
+![](./images/pairing-heap-5.svg)
 
 先实现一个辅助函数 `merges`，作用是合并一个节点的所有兄弟．
 

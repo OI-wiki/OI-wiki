@@ -4,7 +4,7 @@ author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer, AtomAl
 
 笛卡尔树是一种二叉树，每一个节点由一个键值二元组 $(k,w)$ 构成．要求 $k$ 满足二叉搜索树（BST）的性质，而 $w$ 满足堆的性质．如果笛卡尔树的 $k,w$ 键值确定，且 $k$ 互不相同，$w$ 也互不相同，那么这棵笛卡尔树的结构是唯一的．如下图：
 
-![eg](./images/cartesian-tree1.png)
+![eg](./images/cartesian-tree-1.svg)
 
 （图源自维基百科）
 
@@ -26,7 +26,7 @@ author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer, AtomAl
 
 图中红框部分就是我们始终维护的右链：
 
-![build](./images/cartesian-tree2.png)
+![build](./images/cartesian-tree-2.svg)
 
 显然每个数最多进出右链一次（或者说每个点在右链中存在的是一段连续的时间）．这个过程可以用单调栈维护，栈中维护当前笛卡尔树的右链上的节点．一个点不在右链上了就把它弹掉．这样每个点最多进出一次，复杂度 $O(n)$．
 
@@ -52,7 +52,7 @@ for (int i = 1; i <= n; i++) {
 ???+ note "[HDU 1506. Largest Rectangle in a Histogram](https://acm.hdu.edu.cn/showproblem.php?pid=1506)"
     $n$ 个位置，每个位置上的高度是 $h_i$，求最大子矩形．如下图：
     
-    ![eg](./images/cartesian-tree3.png)
+    ![eg](./images/cartesian-tree-3.svg)
     
     阴影部分就是图中的最大子矩阵．
 

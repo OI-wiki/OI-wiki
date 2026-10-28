@@ -1,0 +1,16 @@
+% Compress Tree for the path d-c-h-j-k. The base cluster below N_h is jh.
+% Regeneration commands are in top-tree-common.tex.
+\input{top-tree-common.tex}
+\begin{document}
+\begin{tikzpicture}[top tree]
+  \node[compress] (c) at (35,0) {$N_c$};
+  \node[cluster] (cd) at (0,23) {$cd$};
+  \node[compress] (j) at (60,23) {$N_j$};
+  \node[compress] (h) at (38,46) {$N_h$};
+  \node[cluster] (jk) at (82,46) {$jk$};
+  \node[cluster] (ch) at (25,69) {$ch$};
+  \node[cluster] (jh) at (51,69) {$jh$};
+  \foreach \parent/\child in {c/cd,c/j,j/h,j/jk,h/ch,h/jh}
+    \draw (\parent) -- (\child);
+\end{tikzpicture}
+\end{document}

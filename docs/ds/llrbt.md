@@ -34,11 +34,11 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
 
 符合条件的情况：
 
-![llrbt1](./images/llrbt-1.png)
+![llrbt1](./images/llrbt-1.svg)
 
 不符合条件的情况：
 
-![llrbt2](./images/llrbt-2.png)
+![llrbt2](./images/llrbt-2.svg)
 
 这是左偏树的「左偏」性质：红色边只能是左偏的．
 
@@ -48,19 +48,19 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
 
 我们首先使用普通的 BST 插入方法，在树的底部插入一个红色的叶子节点，然后通过从下向上的调整，使得插入后的树仍然符合左偏红黑树的性质．下面描述调整的过程：
 
-![llrbt3](./images/llrbt-3.png)
+![llrbt3](./images/llrbt-3.svg)
 
 插入后，可能会产生一条右偏的红色边，因此需要对红边右偏的情况进行一次左旋：
 
-![llrbt4](./images/llrbt-4.png)
+![llrbt4](./images/llrbt-4.svg)
 
 考虑左旋后会产生两条连续的左偏红色边：
 
-![llrbt5](./images/llrbt-5.png)
+![llrbt5](./images/llrbt-5.svg)
 
 因此需要把它进行一次右旋．而对于右旋后的情况，我们应该对它进行 `color_flip`：即翻转该节点和它的两个儿子的颜色
 
-![llrbt6](./images/llrbt-6.png)
+![llrbt6](./images/llrbt-6.svg)
 
 从而消灭右偏的红边．
 
@@ -112,13 +112,13 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
 
 如下图所描述的，是一种较为简单的情况，此时 `h->rc->lc` 为黑色，我们只需要一次翻转颜色即可：
 
-![llrbt-7](./images/llrbt-7.png)
+![llrbt-7](./images/llrbt-7.svg)
 
 并且，在如上所示的翻转之后，不会使 `h->rc` 与 `h->rc->lc` 形成连续的红边；
 
 但如果 `h->rc->lc` 是红色，情况会比较复杂：
 
-![llrbt-8](./images/llrbt-8.png)
+![llrbt-8](./images/llrbt-8.svg)
 
 如果只进行翻转颜色，会产生连续的红边，而考虑我们递归返回的时候，是无法修复这样的情况的，因此需要进行处理．
 
@@ -162,7 +162,7 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
 
 下面考虑删除非叶子节点，我们只需要找到其右子树（如果有）里的最小节点，然后用右子树的最小节点的值代替该节点的值，最后删除右子树里的最小节点．
 
-![llrbt-9](./images/llrbt-9.png)
+![llrbt-9](./images/llrbt-9.svg)
 
 那如果没有右子树怎么办？我们需要把左子树旋转过来，这样就不会出现这个问题了．
 
