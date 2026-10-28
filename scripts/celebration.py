@@ -4,18 +4,18 @@ import sys
 from datetime import datetime
 from math import log2
 
+
 def nextCelebration(current):
     a = (current // 5000 + 1) * 5000
     b = 2 ** (int(log2(current)) + 1)
     return min(a, b)
 
-headers = {
-    "Authorization": f'token {sys.argv[1]}'
-}
+
+headers = {"Authorization": f"token {sys.argv[1]}"}
 
 label = "Celebration / 庆贺"
 
-query = f'''
+query = f"""
 query {{
     repository(owner: "OI-wiki", name: "OI-wiki") {{
         id
@@ -43,22 +43,24 @@ query {{
         }}
     }}
 }}
-'''
+"""
 
-res = requests.post('https://api.github.com/graphql', json.dumps({'query': query}), headers = headers).json()['data']['repository']
+res = requests.post(
+    "https://api.github.com/graphql", json.dumps({"query": query}), headers=headers
+).json()["data"]["repository"]
 
-repositoryId = res['id']
-stars = res['stargazerCount']
-issues = res['issues']['nodes']
+repositoryId = res["id"]
+stars = res["stargazerCount"]
+issues = res["issues"]["nodes"]
 numbers = []
 
 maxCelebration = 0
 for issue in issues:
-    numbers.append('#' + str(issue['number']))
-    maxCelebration = max(maxCelebration, int(issue['title'].split(' ')[0]))
-    timeDelta = (datetime.now() - datetime.fromisoformat(issue['createdAt'][0:-1]))
-    if timeDelta.days >= 7 and not issue['closed']:
-        mutation = f'''
+    numbers.append("#" + str(issue["number"]))
+    maxCelebration = max(maxCelebration, int(issue["title"].split(" ")[0]))
+    timeDelta = datetime.now() - datetime.fromisoformat(issue["createdAt"][0:-1])
+    if timeDelta.days >= 7 and not issue["closed"]:
+        mutation = f"""
 mutation {{
     closeIssue(input: {{ issueId: "{issue['id']}"}}) {{
         issue {{
@@ -67,14 +69,18 @@ mutation {{
         }}
     }}
 }}
-'''
+"""
         print(mutation)
-        mut = requests.post('https://api.github.com/graphql', json.dumps({ 'query': mutation }), headers = headers)
+        mut = requests.post(
+            "https://api.github.com/graphql",
+            json.dumps({"query": mutation}),
+            headers=headers,
+        )
         print(mut.text)
 
 celebration = nextCelebration(maxCelebration)
 
-if stars >= celebration - 1: # "will soon" reach
+if stars >= celebration - 1:  # "will soon" reach
     mutation = f'''
 mutation {{
   createIssue(input: {{
@@ -108,5 +114,9 @@ cc {" ".join(numbers)}
 }}
 '''
     print(mutation)
-    mut = requests.post('https://api.github.com/graphql', json.dumps({ 'query': mutation }), headers = headers)
+    mut = requests.post(
+        "https://api.github.com/graphql",
+        json.dumps({"query": mutation}),
+        headers=headers,
+    )
     print(mut.text)

@@ -569,7 +569,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "例题 [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://acm.hdu.edu.cn/showproblem.php?pid=5513)"
     题目大意：给出一个 $N\times M$ 的网格图，以及相邻四连通格子之间的边权．
-    对于一颗生成树，每个节点的得分为 1+\[有一条连向上的边]+\[有一条连向左的边]．
+    对于一棵生成树，每个节点的得分为 1+\[有一条连向上的边]+\[有一条连向左的边]．
     生成树的得分为所有节点的得分之积．
     
     你需要求出：最小生成树的边权和，以及所有最小生成树的得分之和．
@@ -778,7 +778,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 ??? note "习题 [「Aizu 2452」Pipeline Plans](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
     题目大意：现有一共 12 种图案的瓷砖，每种瓷砖数量给定．要求铺到一块可视为 $R\times C$ 网格图的矩形地板上，一个格子铺一块瓷砖，且左上角格子的中心与右下角格子的中心通过瓷砖图案上的线联通．$(2 \le R \times C \le 15)$
     
-    ![plug2](./images/plug2.png)
+    ![](./images/plug-tiles.svg)
 
 ??? note "习题 [「SDOI 2014」电路板](https://www.luogu.com.cn/problem/P3314)"
     题目大意：一块 $N\times M$ 的电路板，上面有些位置是电线不能走的障碍，给定 $K$ 个格子对，要求每对格子都有电线相连，且电线之间互不相交（允许一条电路线从上边界进入当前格子，从左边界离开这个格子，另外一条电路线可以从下边界进入格子，从右边界出去）．视电线为无向边，求满足要求的最短电线长度和方案数．

@@ -21,9 +21,9 @@ void move(int pos, int sign) {
 
 void solve() {
   BLOCK_SIZE = int(ceil(pow(n, 0.5)));
-  sort(querys, querys + m);
+  sort(queries, queries + m);
   for (int i = 0; i < m; ++i) {
-    const query &q = querys[i];
+    const query &q = queries[i];
     while (l > q.l) move(--l, 1);
     while (r < q.r) move(++r, 1);
     while (l < q.l) move(l++, -1);

@@ -20,20 +20,20 @@ def step(func):
         The wrapped function that handles skip blocks and line origin tracking
     """
     tag = f"{func.__module__}.{func.__name__}"
-    skip_tag_begin = f'<!-- {tag} off -->'
-    skip_tag_end = f'<!-- {tag} on -->'
-    skip_placeholder = f'<!-- {tag} block {random.randint(0, 2147483647)} -->'
+    skip_tag_begin = f"<!-- {tag} off -->"
+    skip_tag_end = f"<!-- {tag} on -->"
+    skip_placeholder = f"<!-- {tag} block {random.randint(0, 2147483647)} -->"
 
     @wraps(func)
     def inner(md_content: str, **kwargs):
         # Handle empty content
         if not len(md_content):
             log("Empty content provided, returning empty string")
-            return ''
+            return ""
 
         lines = md_content.splitlines()
         removed_blocks = []  # Store skipped content blocks
-        line_origins = []    # Track original line numbers
+        line_origins = []  # Track original line numbers
         processed_lines = []  # Store processed content
 
         skip_counter = 0
@@ -49,13 +49,13 @@ def step(func):
             if stripped == skip_tag_begin:
                 last_skip_index = index
                 if skip_counter == 0:
-                    current_skip_block_indent = index_lfirst_neq(line, ' ')
+                    current_skip_block_indent = index_lfirst_neq(line, " ")
                 skip_counter += 1
                 log(f"line {index+1}: skip begin, level = {skip_counter}")
 
             if skip_counter == 0:
                 # Process line: replace tabs with spaces
-                processed_lines.append(line.replace('\t', ' '*TAB_LENGTH))
+                processed_lines.append(line.replace("\t", " " * TAB_LENGTH))
                 line_origins.append(index)
             elif skip_counter > 0:
                 # Add to skip block
@@ -74,7 +74,8 @@ def step(func):
                     removed_blocks.append(current_skip_block)
                     current_skip_block = []
                     processed_lines.append(
-                        ' '*current_skip_block_indent+skip_placeholder)
+                        " " * current_skip_block_indent + skip_placeholder
+                    )
                     line_origins.append(-1)  # Mark as placeholder
 
         # Validate skip block structure
@@ -86,16 +87,17 @@ def step(func):
             raise RuntimeError(
                 f"unopened skip block for tag '{tag}' ending at line {last_skip_index + 1}. Please ensure all skip blocks are properly opened with '{skip_tag_begin}'"
             )
-        processed_content = '\n'.join(processed_lines)+'\n'
+        processed_content = "\n".join(processed_lines) + "\n"
 
         assert line_origins
 
-        log(f"Processed content: {len(processed_lines)} lines, {len(removed_blocks)} skip blocks")
+        log(
+            f"Processed content: {len(processed_lines)} lines, {len(removed_blocks)} skip blocks"
+        )
 
         # Apply the actual processing function
         log(f"Starting {func.__name__} processing")
-        result: str = func(processed_content,
-                           line_origins=line_origins, **kwargs)
+        result: str = func(processed_content, line_origins=line_origins, **kwargs)
         log(f"Completed {func.__name__} processing")
 
         # If no skip blocks, return result directly
@@ -118,7 +120,7 @@ def step(func):
             else:
                 processed_lines.append(line)
 
-        final_result = '\n'.join(processed_lines)+'\n'
+        final_result = "\n".join(processed_lines) + "\n"
         log(f"Final result: {len(processed_lines)} lines")
         return final_result
 
@@ -141,31 +143,31 @@ def pipeline(func):
     Returns:
         The wrapped function that operates on file paths
     """
+
     @wraps(func)
     def inner(file: str):
         with Grouping(file):
-            old, new = '', ''
+            old, new = "", ""
             try:
                 # Read file content
-                with open(file, 'r', encoding='utf-8') as f:
+                with open(file, "r", encoding="utf-8") as f:
                     old = f.read()
                     log(f"Read {len(old)} characters from {file}")
 
                 # Apply processing
                 new = func(old)
-                log(
-                    f"Processing completed, result length: {len(new)} characters")
+                log(f"Processing completed, result length: {len(new)} characters")
 
                 # Write back if changed
                 if old != new:
-                    with open(file, 'w', encoding='utf-8') as f:
+                    with open(file, "w", encoding="utf-8") as f:
                         f.write(new)
                         log(f"File modified: wrote {len(new)} characters to {file}")
                 else:
                     log("No changes detected, file not modified")
 
             except Exception as e:
-                log(f"Error processing {file}: {str(e)}", type='error')
+                log(f"Error processing {file}: {str(e)}", type="error")
                 raise
 
     return inner

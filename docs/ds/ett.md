@@ -55,7 +55,7 @@ $$
 
 即加边操作．ETT 中加边操作被转换成了 2 个序列拆分操作和 5 个序列合并操作．
 
-记包含点 $u$ 的树为 $T_1$，包含点 $v$ 的树为 $T_2$，加边之后两颗树合并成了一颗树 $T$．树 $T_1$ 对应的序列为 $L_1$，树 $T_2$ 对应的序列为 $L_2$．
+记包含点 $u$ 的树为 $T_1$，包含点 $v$ 的树为 $T_2$，加边之后两棵树合并成了一棵树 $T$．树 $T_1$ 对应的序列为 $L_1$，树 $T_2$ 对应的序列为 $L_2$．
 
 将 $L_1$ 在 $(u, u)$ 处拆分成序列 $L_1^1$ 和 $L_1^2$，前者包含 $L_1$ 中 $(u, u)$ 之前的元素以及 $(u, u)$，后者包含剩余元素．类似地将 $L_2$ 在 $(v, v)$ 处拆分成序列 $L_2^1$ 和 $L_2^2$．则依次将 $L_1^2, L_1^1, [(u, v)], L_2^2, L_2^1,  [(v, u)]$ 合并即可得到树 $T$ 对应的序列 $L$．
 
@@ -65,9 +65,9 @@ $$
 
 即删边操作．ETT 中删边操作被转换成了 4 个序列拆分操作以及 1 个序列合并操作．
 
-记包含边 $(u, v)$ 和边 $(v, u)$ 的树为 $T$，其对应序列为 $L$．删边之后 $T$ 分成了两颗树．
+记包含边 $(u, v)$ 和边 $(v, u)$ 的树为 $T$，其对应序列为 $L$．删边之后 $T$ 分成了两棵树．
 
-将 $L$ 拆分成 $L_1, [(u, v)], L_2, [(v, u)], L_3$，删边形成的两颗树对应的序列分别为 $L_2$ 以及 $L_1, L_3$．注意，在序列 $L$ 中 $[(u, v)]$ 有可能出现在 $[(v, u)]$ 的后面，此时可以先交换 $u$ 和 $v$ 的值然后再操作．
+将 $L$ 拆分成 $L_1, [(u, v)], L_2, [(v, u)], L_3$，删边形成的两棵树对应的序列分别为 $L_2$ 以及 $L_1, L_3$．注意，在序列 $L$ 中 $[(u, v)]$ 有可能出现在 $[(v, u)]$ 的后面，此时可以先交换 $u$ 和 $v$ 的值然后再操作．
 
 这里可以理解成把一个欧拉回路从两条有向边处断开形成两条链，然后两条链自己首尾相连形成两个新的欧拉回路．
 
@@ -89,9 +89,9 @@ $$
 /*
  * Bottom up split treap p into 2 treaps a and b.
  *   - a: a treap containing nodes with position less than or equal to p.
- *   - b: a treap containing nodes with postion greater than p.
+ *   - b: a treap containing nodes with position greater than p.
  *
- * In the other word, split sequence containning p into two sequences, the first
+ * In the other word, split sequence containing p into two sequences, the first
  * one contains elements before p and element p, the second one contains
  * elements after p.
  */

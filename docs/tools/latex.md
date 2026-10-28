@@ -134,51 +134,23 @@ $\rightarrow$ 点击 **Typeset** 按扭，核对生成的 PDF 文档．
 $\rightarrow$ 将 "A sentence of text." 替换为以下文本：
 
 ```tex
-\section{Introduction}
-This is the introduction.
-
-\section{Methods}
-
-\subsection{Stage 1}
-The first part of the methods.
-
-\subsection{Stage 2}
-The second part of the methods.
-
-\section{Results}
-Here are my results.
+--8<-- "docs/tools/images/latex-for-beginners-1.tex:sections"
 ```
 
 你的文档会变成
 
 ```tex
-\documentclass[a4paper, 12pt]{article}
+--8<-- "docs/tools/images/latex-for-beginners-1.tex:preamble"
 
-\begin{document}
-  \title{My First Document}
-  \author{My Name}
-  \date{\today}
-  \maketitle
+--8<-- "docs/tools/images/latex-for-beginners-1.tex:header"
 
-  \section{Introduction}
-  This is the introduction.
-
-  \section{Methods}
-
-  \subsection{Stage 1}
-  The first part of the methods.
-
-  \subsection{Stage 2}
-  The second part of the methods.
-
-  \section{Results}
-  Here are my results.
-\end{document}
+--8<-- "docs/tools/images/latex-for-beginners-1.tex:sections"
+--8<-- "docs/tools/images/latex-for-beginners-1.tex:ending"
 ```
 
 $\rightarrow$ 点击 **Typeset** 按扭，核对 PDF 文档．应该是长这样的：
 
-![p1](images/latex-for-beginners-1.png)
+![章节排版效果](images/latex-for-beginners-1.svg)
 
 ### 创建标签
 
@@ -189,33 +161,17 @@ $\rightarrow$ 在 `\subsection{Stage 1}` 下面另起一行，输入 `\label{sec
 你的文档会变成这样：
 
 ```tex
-\documentclass[a4paper, 12pt]{article}
+--8<-- "docs/tools/images/latex-for-beginners-2.tex:preamble"
 
-\begin{document}
-  \title{My First Document}
-  \author{My Name}
-  \date{\today}
-  \maketitle
+--8<-- "docs/tools/images/latex-for-beginners-2.tex:header"
 
-  \section{Introduction}
-  This is the introduction.
-
-  \section{Methods}
-
-  \subsection{Stage 1}
-  \label{sec1} The first part of the methods.
-
-  \subsection{Stage 2}
-  The second part of the methods.
-
-  \section{Results}
-  Here are my results. Referring to section \ref{sec1} on page \pageref{sec1}
-\end{document}
+--8<-- "docs/tools/images/latex-for-beginners-2.tex:sections"
+--8<-- "docs/tools/images/latex-for-beginners-2.tex:ending"
 ```
 
 $\rightarrow$ 编译并检查 PDF 文档（你可能需要连续编译两次）：
 
-![p2](images/latex-for-beginners-2.png)
+![章节和页码的交叉引用](images/latex-for-beginners-2.svg)
 
 ### 生成目录（TOC）
 
@@ -226,39 +182,28 @@ $\rightarrow$ 编译并检查 PDF 文档（你可能需要连续编译两次）�
 $\rightarrow$ 在 `\maketitle` 之后输入以下内容：
 
 ```tex
-\pagenumbering{roman}
-\tableofcontents
-\newpage
-\pagenumbering{arabic}
+--8<-- "docs/tools/images/latex-for-beginners-3.tex:toc"
 ```
 
-`\newpage` 命令会另起一个页面，这样我们就可以看到 `\pagenumbering` 命令带来的影响了．你的文档的前 14 行长这样：
+`\newpage` 命令会另起一个页面，这样我们就可以看到 `\pagenumbering` 命令带来的影响了．你的文档的开头部分长这样：
 
 ```tex
-\documentclass[a4paper, 12pt]{article}
+--8<-- "docs/tools/images/latex-for-beginners-3.tex:preamble"
 
-\begin{document}
+--8<-- "docs/tools/images/latex-for-beginners-3.tex:header"
 
-\title{My First Document}
-\author{My Name}
-\date{\today}
-\maketitle
-
-\pagenumbering{roman}
-\tableofcontents
-\newpage
-\pagenumbering{arabic}
+--8<-- "docs/tools/images/latex-for-beginners-3.tex:toc"
 ```
 
 $\rightarrow$ 编译并核对文档（可能需要多次编译，下文不赘述）．
 
 文档的第一页长这样：
 
-![p3](images/latex-for-beginners-3.png)
+![目录页](images/latex-for-beginners-3.svg)
 
 第二页：
 
-![p4](images/latex-for-beginners-4.png)
+![目录后的正文页](images/latex-for-beginners-4.svg)
 
 ## 文字处理
 
@@ -277,14 +222,12 @@ $\rightarrow$ 编译并核对文档（可能需要多次编译，下文不赘述
 LaTeX 有多种不同的字体效果，在此列举一部分：
 
 ```tex
-\textit{words in italics} \textsl{words slanted} \textsc{words in smallcaps} \textbf{words
-in bold} \texttt{words in teletype} \textsf{sans serif words} \textrm{roman
-words} \underline{underlined words}
+--8<-- "docs/tools/images/latex-for-beginners-5.tex:example"
 ```
 
 效果如下：
 
-![p5](images/latex-for-beginners-5.png)
+![字体效果](images/latex-for-beginners-5.svg)
 
 $\rightarrow$ 在你的文档中添加更多的文本并尝试各种字体效果．
 
@@ -294,7 +237,7 @@ $\rightarrow$ 在你的文档中添加更多的文本并尝试各种字体效果
 
 使用 `\usepackage{color}` 后，我们可以调用常见的颜色：
 
-![p6](images/latex-for-beginners-6.png)
+![彩色字体和背景色](images/latex-for-beginners-6.svg)
 
 使用彩色字体的代码为
 
@@ -319,14 +262,12 @@ $\rightarrow$ 在 `\begin{document}` 前输入 `\usepackage{color}`．$\rightarr
 接下来我们列举一些 LaTeX 的字体大小设定命令：
 
 ```tex
-normal size words {\tiny tiny words} {\scriptsize scriptsize words}
-{\footnotesize footnotesize words} {\small small words} {\large large words}
-{\Large Large words} {\LARGE LARGE words} {\huge huge words}
+--8<-- "docs/tools/images/latex-for-beginners-7.tex:example"
 ```
 
 效果如下：
 
-![p7](images/latex-for-beginners-7.png)
+![字体大小](images/latex-for-beginners-7.svg)
 
 $\rightarrow$ 尝试为你的文本调整字体大小．
 
@@ -341,48 +282,26 @@ LaTeX 支持两种类型的列表：有序列表（enumerate）和无序列表�
 $\rightarrow$ 输入下面的内容来生成一个有序列表套无序列表：
 
 ```tex
-\begin{enumerate}
-  \item First thing
-
-  \item Second thing
-    \begin{itemize}
-      \item A sub-thing
-
-      \item Another sub-thing
-    \end{itemize}
-
-  \item Third thing
-\end{enumerate}
+--8<-- "docs/tools/images/latex-for-beginners-8.tex:example"
 ```
 
 $\rightarrow$ 编译并核对 PDF 文档．
 
 列表长这样：
 
-![p8](images/latex-for-beginners-8.png)
+![有序列表中嵌套无序列表](images/latex-for-beginners-8.svg)
 
 可以使用方括号参数来修改无序列表头的标志．例如，`\item[-]` 会使用一个杠作为标志，你甚至可以使用一个单词，比如 `\item[One]`．
 
 下面的代码：
 
 ```tex
-\begin{itemize}
-  \item[-] First thing
-
-  \item[+] Second thing
-    \begin{itemize}
-      \item[Fish] A sub-thing
-
-      \item[Plants] Another sub-thing
-    \end{itemize}
-
-  \item[Q] Third thing
-\end{itemize}
+--8<-- "docs/tools/images/latex-for-beginners-9.tex:example"
 ```
 
 生成的效果为
 
-![p9](images/latex-for-beginners-9.png)
+![自定义列表标志](images/latex-for-beginners-9.svg)
 
 ### 注释和空格
 
@@ -391,14 +310,12 @@ $\rightarrow$ 编译并核对 PDF 文档．
 下面的代码：
 
 ```tex
-It is a truth universally acknowledged% Note comic irony
-in the very first sentence , that a single man in possession of a good fortune,
-must be in want of a wife.
+--8<-- "docs/tools/images/latex-for-beginners-10.tex:example"
 ```
 
 生成的结果为
 
-![p10](images/latex-for-beginners-10.png)
+![注释和空格的处理效果](images/latex-for-beginners-10.svg)
 
 多个连续空格在 LaTeX 中被视为一个空格．多个连续空行被视为一个空行．空行的主要功能是开始一个新的段落．通常来说，LaTeX 忽略空行和其他空白字符，两个反斜杠（`\\`）可以被用来换行．
 
@@ -417,20 +334,20 @@ $\rightarrow$ 尝试在你的文档中添加注释和空行．
 为了使用这些字符，我们需要在他们前面添加反斜杠进行转义：
 
 ```tex
-\# \$ \% \^{} \& \_ \{ \} \~{}
+--8<-- "docs/tools/images/latex-for-beginners-11.tex:example"
 ```
 
 注意在使用 `^` 和 `~` 字符的时候需要在后面紧跟一对闭合的花括号，否则他们就会被解释为字母的上标，就像 `\^ e` 会变成 $\mathrm {\hat{e}}$．上面的代码生成的效果如下：
 
-![p11](images/latex-for-beginners-11.png)
+![转义后的特殊字符](images/latex-for-beginners-11.svg)
 
 注意，反斜杠不能通过反斜杠转义（不然就变成了换行了），使用 `\textbackslash` 命令代替．
 
 $\rightarrow$ 输入代码来在你的文档中生成下面内容：
 
-![p12](images/latex-for-beginners-12.png)
+![特殊字符练习](images/latex-for-beginners-12.svg)
 
-询问专家或者查看本页面的 [源代码](https://github.com/OI-wiki/OI-wiki/blob/master/docs/tools/latex.md?plain=1) 获取帮助．
+询问专家或者查看本例的 [TeX 源代码](images/latex-for-beginners-12.tex) 获取帮助．
 
 ## 表格
 
@@ -459,39 +376,22 @@ $\rightarrow$ 输入代码来在你的文档中生成下面内容：
 最后使用 `\end{tabular}` 结束表格．举一些例子：
 
 ```tex
-\begin{tabular}{|l|l|}
-  Apples       & Green  \\
-  Strawberries & Red    \\
-  Orange       & Orange \\
-\end{tabular}
+--8<-- "docs/tools/images/latex-for-beginners-13.tex:example1"
 
-\begin{tabular}{rc}
-  Apples              & Green  \\
-  \hline
-  Strawberries        & Red    \\
-  \cline{1-1} Oranges & Orange \\
-\end{tabular}
+--8<-- "docs/tools/images/latex-for-beginners-13.tex:example2"
 
-\begin{tabular}{|r|l|}
-  \hline
-  8              & here's \\
-  \cline{2-2} 86 & stuff  \\
-  \hline
-  \hline
-  2008           & now    \\
-  \hline
-\end{tabular}
+--8<-- "docs/tools/images/latex-for-beginners-13.tex:example3"
 ```
 
 效果如下：
 
-![p13](images/latex-for-beginners-13.png)
+![表格的对齐和边框效果](images/latex-for-beginners-13.svg)
 
 ### 实践
 
 尝试画出下列表格：
 
-![p14](images/latex-for-beginners-14.png)
+![表格练习](images/latex-for-beginners-14.svg)
 
 ## 图表
 
@@ -672,9 +572,9 @@ $$
 
 $\rightarrow$ 撰写代码来生成下列公式：
 
-![p15](images/latex-for-beginners-15.png)
+![公式练习](images/latex-for-beginners-15.svg)
 
-如果需要帮助，可以查看本页面的 [源代码](https://github.com/OI-wiki/OI-wiki/blob/master/docs/tools/latex.md?plain=1)．
+如果需要帮助，可以查看本例的 [TeX 源代码](images/latex-for-beginners-15.tex)．
 
 ## 参考文献
 
