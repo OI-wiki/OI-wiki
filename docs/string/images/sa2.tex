@@ -1,0 +1,67 @@
+% xelatex -no-pdf sa2.tex
+% dvisvgm --no-fonts --exact --bbox=papersize --output=sa2.svg sa2.xdv
+\def\pgfsysdriver{pgfsys-dvisvgm.def}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{courier}
+\newcommand{\rankrow}[3]{%
+  \node at (95,{#1+16}) {rank};
+  \foreach \value[count=\i] in {#2} {
+    \draw ({138+(\i-1)*70.75},#1) rectangle ({138+\i*70.75},{#1+33});
+    \node at ({138+(\i-0.5)*70.75},{#1+16}) {\value};
+  }
+  \node[chinese,anchor=west] at (735,{#1+16}) {长度为#3};
+}
+\newcommand{\pairrow}[2]{%
+  \node at (80,{#1+16}) {x};
+  \node at (120,{#1+16}) {y};
+  \foreach \first/\second[count=\i] in {#2} {
+    \draw ({138+(\i-1)*70.75},#1) rectangle ({138+\i*70.75},{#1+33});
+    \node at ({138+(\i-0.5)*70.75-14},{#1+16}) {\first};
+    \node at ({138+(\i-0.5)*70.75+14},{#1+16}) {\second};
+  }
+}
+\begin{document}
+\begin{tikzpicture}[
+    x=0.6pt,y=-0.6pt,
+    font=\fontencoding{T1}\fontfamily{pcr}\fontsize{14}{17}\selectfont,
+    every node/.style={inner sep=0pt},
+    line width=0.6pt,
+    chinese/.style={font=\rmfamily\fontsize{14.5}{17}\selectfont},
+    link/.style={line width=2.8pt,line cap=round,line join=round}
+  ]
+  % Preserve the original 850 by 677 composition, including black
+  % unheaded connecting strokes, row spacing, and annotation wording.
+  \path[use as bounding box] (0,0) rectangle (850,677);
+  \foreach \letter[count=\i] in {a,a,b,a,a,a,a,b} {
+    \draw ({136+(\i-1)*70.75},21) rectangle ({136+\i*70.75},54);
+    \node at ({136+(\i-0.5)*70.75},37.5) {\letter};
+  }
+  \rankrow{105}{1,1,2,1,1,1,1,2}{1}
+  \pairrow{192}{1/1,1/2,2/1,1/1,1/1,1/1,1/2,2/0}
+  \rankrow{272}{1,2,4,1,1,1,2,3}{2}
+  \pairrow{358}{1/4,2/1,4/1,1/1,1/2,1/3,2/0,3/0}
+  \rankrow{446}{4,6,8,1,2,3,5,7}{4}
+  \pairrow{539}{4/2,6/3,8/5,1/7,2/0,3/0,5/0,7/0}
+  \rankrow{627}{4,6,8,1,2,3,5,7}{8}
+  \foreach \step/\y/\top/\bottom in {
+      1/79/58/99,2/252/228/268,3/422/397/438,4/603/579/620} {
+    \node[chinese] at (82,\y) {第\step 次排序};
+    \foreach \i in {1,...,8} {
+      \draw[link] ({172+(\i-1)*70.75},\top) -- ({172+(\i-1)*70.75},\bottom);
+    }
+  }
+  % A vertical stroke supplies x = rank[i]; the diagonal supplies
+  % y = rank[i + length]. Missing second ranks are shown as zero.
+  \foreach \length/\top/\bottom/\inset in {1/143/186/22,2/309/352/15,4/484/532/15} {
+    \foreach \i in {1,...,8} {
+      \draw[link] ({172+(\i-1)*70.75},\top) -- ({172+(\i-1)*70.75},\bottom);
+      \pgfmathtruncatemacro{\next}{\i+\length}
+      \ifnum\next<9
+        \draw[link] ({172+(\next-1)*70.75-\inset},\top)
+          -- ({172+(\i-1)*70.75},\bottom);
+      \fi
+    }
+  }
+\end{tikzpicture}
+\end{document}

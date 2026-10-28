@@ -58,24 +58,24 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
 
 ### 例子
 
-下面将使用若干张 GIF 动图来演示对字符串 $\mathtt{i}$、$\mathtt{he}$、$\mathtt{his}$、$\mathtt{she}$、$\mathtt{hers}$ 组成的字典树构建 fail 指针的过程：
+下面使用动画来演示对字符串 $\mathtt{i}$、$\mathtt{he}$、$\mathtt{his}$、$\mathtt{she}$、$\mathtt{hers}$ 组成的字典树构建 fail 指针的过程：
 
 1.  黄色结点：当前的结点 $u$．
 2.  绿色结点：表示已经 BFS 遍历完毕的结点．
 3.  橙色的边：fail 指针．
 4.  红色的边：当前求出的 fail 指针．
 
-![AC\_automation\_gif\_b\_3.gif](./images/ac-automaton1.gif)
+![](./images/ac-automaton-build-fail.svg)
 
 我们重点分析结点 $6$ 的 fail 指针构建：
 
-![AC\_automation\_6\_9.png](./images/ac-automaton1.png)
+![](./images/ac-automaton1.svg)
 
 找到 $6$ 的父结点 $5$，$\operatorname{fail}(5)=10$．然而结点 $10$ 没有字母 $\mathtt{s}$ 连出的边；继续跳到 $10$ 的 fail 指针，$\operatorname{fail}(10)=0$．发现 $0$ 结点有字母 $\mathtt{s}$ 连出的边，指向 $7$ 结点；所以 $\operatorname{fail}(6)=7$．
 
 下图展示了构建完毕的状态：
 
-![finish](./images/ac-automaton4.png)
+![](./images/ac-automaton4.svg)
 
 ## 字典树与字典图
 
@@ -143,9 +143,9 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ### 过程
 
-这里依然用若干张 GIF 动图展示构建过程：
+下面使用动画展示构建过程：
 
-![AC\_automation\_gif\_b\_pro3.gif](./images/ac-automaton2.gif)
+![](./images/ac-automaton-build-transitions.svg)
 
 1.  蓝色结点：BFS 遍历到的结点 $u$．
 2.  蓝色的边：当前结点下，AC 自动机修改字典树结构连出的边．
@@ -156,7 +156,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 可以发现，众多交错的黑色边将字典树变成了 **字典图**．图中省略了连向根结点的黑边（否则会更乱）．我们重点分析一下结点 $5$ 遍历时的情况．我们求 $\operatorname{trans}(5, \mathtt{s})=6$ 的 fail 指针：
 
-![AC\_automation\_b\_7.png](./images/ac-automaton2.png)
+![](./images/ac-automaton2.svg)
 
 本来的策略是找 fail 指针，于是我们跳到 $\operatorname{fail}(5)=10$ 发现没有 $\mathtt{s}$ 连出的字典树的边，于是跳到 $\operatorname{fail}(10)=0$，发现有 $\operatorname{trie}(0, \mathtt{s})=7$，于是 $\operatorname{fail}(6)=7$；但是有了黑边、蓝边，我们跳到 $\operatorname{fail}(5)=10$ 之后直接走 $\operatorname{trans}(10, \mathtt{s})=7$ 就走到 $7$ 号结点了．
 
@@ -199,11 +199,11 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 这里 $u$ 作为字典树上当前匹配到的结点，`res` 即返回的答案．循环遍历匹配串，$u$ 在字典树上跟踪当前字符．利用 fail 指针找出所有匹配的模式串，并累加到答案中．然后将匹配到的串的出现次数清零，这样就不会重复统计同一个串．在上文中我们分析过，字典树的结构其实就是一个 trans 函数，而构建好这个函数后，在匹配字符串的过程中，我们会舍弃部分前缀达到最低限度的匹配．fail 指针则指向了更多的匹配状态．最后上一份图．对于刚才的自动机：
 
-![AC\_automation\_b\_13.png](./images/ac-automaton3.png)
+![](./images/ac-automaton3.svg)
 
 我们从根结点开始尝试匹配 $\mathtt{ushersheishis}$，那么 $p$ 的变化将是：
 
-![AC\_automation\_gif\_c.gif](./images/ac-automaton3.gif)
+![](./images/ac-automaton-match.svg)
 
 1.  红色结点：$p$ 结点．
 2.  粉色箭头：$p$ 在自动机上的跳转．
