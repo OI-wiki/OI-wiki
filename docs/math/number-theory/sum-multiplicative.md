@@ -361,6 +361,19 @@ $$
 
 应用 Powerful Number 筛的思想，还可以快速计算块筛 $\mathcal S_f(n)$．
 
+优化块筛计算效率的关键在于利用好 Powerful Number 的稀疏性．对于 $x\in D(n)$，考虑将前缀和 $F(x)$ 分为如下三部分：
+
+$$
+\begin{aligned}
+F(x) &= I_1 + I_2 + I_3,\\
+I_1 &= \sum_{k\le\sqrt{n},~k\in\mathrm{PN},~d\le\sqrt{n/k},~kd\le x} h(k)g(d), \\
+I_2 &= \sum_{k\le\sqrt{n},~k\in\mathrm{PN},~x>\sqrt{nk}}h(k)\left(G(x/k)-G(\sqrt{n/k})\right),\\
+I_3 &= \sum_{d\le x/\sqrt{n}}g(d)\left(H(x/d)-H(\sqrt{n})\right).
+\end{aligned}
+$$
+
+对于第一部分 $I_1$，枚举 $[1,\sqrt{n}]$ 中的 Powerful Number 作为 $k$，再枚举相应的 $d$，将贡献 $h(k)g(d)$ 统计到 $kd$ 对应桶中．随后，求桶中贡献的前缀和，就得到第一部分的贡献．对于第二部分和第三部分，分别枚举 $k$ 和 $d$，累计相应贡献即可．表达式中，$h$ 的前缀和 $H$ 可以通过枚举 Powerful Number 快速预处理．
+
 ??? example "模板题 [LOJ 6783. 简单的函数 加强版](https://loj.ac/p/6783) 参考实现"
     ```cpp
     --8<-- "docs/math/code/sum-multiplicative/pn-block.cpp"
