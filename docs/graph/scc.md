@@ -1,3 +1,5 @@
+author: haloneko
+
 ## 简介
 
 在阅读下列内容之前，请务必了解 [图论相关概念](./concept.md) 中的基础部分．
@@ -217,10 +219,18 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
 
 === "Python"
     ```python
+    # g 是原图，g2 是反图
+    N = 100005
+    vis = [False] * N
+    color = [False] * N
+    s = []  # 按后序遍历的逆序存放结点
+    sccCnt = 0
+    
+    
     def dfs1(u):
         vis[u] = True
         for v in g[u]:
-            if vis[v] == False:
+            if not vis[v]:
                 dfs1(v)
         s.append(u)
     
@@ -228,17 +238,18 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
     def dfs2(u):
         color[u] = sccCnt
         for v in g2[u]:
-            if color[v] == False:
+            if not color[v]:
                 dfs2(v)
     
     
-    def kosaraju(u):
+    def kosaraju():
+        global sccCnt
         sccCnt = 0
         for i in range(1, n + 1):
-            if vis[i] == False:
+            if not vis[i]:
                 dfs1(i)
-        for i in range(n - 1, -1, -1):
-            if color[s[i]] == False:
+        for i in range(len(s) - 1, -1, -1):
+            if not color[s[i]]:
                 sccCnt = sccCnt + 1
                 dfs2(s[i])
     ```
