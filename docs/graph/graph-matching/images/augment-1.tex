@@ -1,0 +1,38 @@
+% Regenerate with latex and dvisvgm; see graph-matching-common.tex.
+\input{graph-matching-common.tex}
+\begin{document}
+\begin{tikzpicture}[diagram]
+  % P has six vertices and five alternating edges. The two isolated
+  % matching edges outside P are retained in both panels, as in the PNG.
+  % Only the matching edges on P change, from two to three.
+  \foreach \panel/\offset in {before/0,after/88} {
+    \begin{scope}[xshift=\offset mm]
+      \foreach \i in {0,...,5}
+        \node[point] (\panel-\i) at (0,18*\i) {};
+      \foreach \i/\j in {0/1,1/2,2/3,3/4,4/5}
+        \draw (\panel-\i) -- (\panel-\j);
+      \foreach \i/\px/\py in {0/-30/23,1/-17/31,2/-29/57,3/-16/65}
+        \node[point] (\panel-off-\i) at (\px,\py) {};
+      \draw[matching] (\panel-off-0) -- (\panel-off-1)
+        (\panel-off-2) -- (\panel-off-3);
+    \end{scope}
+  }
+  \draw[matching] (before-1) -- (before-2) (before-3) -- (before-4);
+  \draw[matching] (after-0) -- (after-1) (after-2) -- (after-3)
+    (after-4) -- (after-5);
+  \foreach \i in {0,5} {
+    \node[exposed] at (before-\i) {};
+    \node[label,text=matchred,left=3mm] at (before-\i) {exposed\\vertex};
+  }
+  \draw[route] (5,0) -- (5,90);
+  \node[label,text=matchred,rotate=-90] at (10,45) {augmenting path $P$};
+  \draw[transition] (19,43) -- (45,43)
+    node[midway,above=3mm,text=matchblue] {augmentation};
+  \node[label] at (-21,79) {edges in matching\\$M$};
+  \node[label] at (67,79) {edges in matching\\$M\oplus P$};
+  \draw[line width=.4pt] (-29,74) -- ($(before-off-2)!.5!(before-off-3)$)
+    (-10,74) -- ($(before-3)!.5!(before-4)$);
+  \draw[line width=.4pt] (58,74) -- ($(after-off-2)!.5!(after-off-3)$)
+    (81,81) -- ($(after-4)!.5!(after-5)$);
+\end{tikzpicture}
+\end{document}

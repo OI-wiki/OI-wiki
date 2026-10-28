@@ -84,7 +84,7 @@ Prüfer 是这样建立的：每次选择一个编号最小的叶结点并删掉
 
 例如，这是一棵 7 个结点的树的 Prüfer 序列构建过程：
 
-![Prüfer](./images/prufer1.png)
+![Prüfer](./images/prufer-1.svg)
 
 最终的序列就是 $2,2,3,3,2$．
 

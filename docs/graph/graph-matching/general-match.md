@@ -8,7 +8,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
 
 一般图匹配和二分图匹配（bipartite matching）不同的是，图可能存在奇环．
 
-![general-matching-1](./images/general-matching-1.png)
+![general-matching-1](./images/general-matching-1.svg)
 
 以此图为例，若直接取反（匹配边和未匹配边对调），会使得取反后的 $M$ 不合法，某些点会出现在两条匹配上，而问题就出在奇环．
 
@@ -22,14 +22,14 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
 
 遇到偶环的情况，将他视为二分图解决，故可忽略．**缩花** 后，再新图中继续找增广路．
 
-![general-matching-2](./images/general-matching-2.png)
+![general-matching-2](./images/general-matching-2.svg)
 
 设原图为 $G$，**缩花** 后的图为 $G'$，我们只需要证明：
 
 1.  若 $G$ 存在增广路，$G'$ 也存在．
 2.  若 $G'$ 存在增广路，$G$ 也存在．
 
-![general-matching-3](./images/general-matching-3.png)
+![general-matching-3](./images/general-matching-3.svg)
 
 设非树边（形成环的那条边）为 $(u,v)$，定义花根 $h=LCA(u,v)$．
 奇环是交替的，有且仅有 $h$ 的两条邻边类型相同，都是非匹配边．
@@ -37,7 +37,7 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
 
 观察可知，从环外的边出去有两种情况，顺时针或逆时针．
 
-![general-matching-4](./images/general-matching-4.png)
+![general-matching-4](./images/general-matching-4.svg)
 
 于是 **缩花** 与 **不缩花** 都不影响正确性．
 

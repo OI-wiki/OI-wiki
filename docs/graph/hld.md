@@ -35,7 +35,7 @@ author: GoodCoder666, Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogee
 
 如图：
 
-![HLD](./images/hld.png)
+![HLD](./images/hld-1.svg)
 
 ## 实现
 
@@ -309,7 +309,7 @@ int lca(int u, int v) {
     
     假设我们需要在子树 $u$ 中找结点 $k$ 所在的位置，我们可以询问 $k$ 与 $u$ 所在重链的尾端的距离，就可以进一步确定 $k$ 的位置，具体见图：
     
-    ![](./images/hld2.png)
+    ![](./images/hld-2.svg)
     
     其中红色虚线是一条重链，$d$ 是询问的结果即 $\textit{dis}(k, \textit{bot}(u))$，$v$ 的深度为 $(\textit{dep}(k)+\textit{dep}(\textit{bot}(u))-d)/2$．
     
@@ -352,7 +352,7 @@ int lca(int u, int v) {
 
 如图（这种剖分方式既可以看成重链剖分也可以看成长链剖分）：
 
-![HLD](./images/hld.png)
+![HLD](./images/hld-1.svg)
 
 长链剖分实现方式和重链剖分类似，这里就不再展开．
 

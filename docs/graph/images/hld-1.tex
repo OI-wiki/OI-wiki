@@ -1,0 +1,107 @@
+% Regenerate from this directory (XeLaTeX and dvisvgm):
+% xelatex -no-pdf -interaction=nonstopmode -halt-on-error hld-1.tex
+% dvisvgm --no-fonts --exact --bbox=papersize hld-1.xdv -o hld-1.svg
+\def\pgfsysdriver{pgfsys-dvisvgm.def}
+\documentclass[border=5pt]{standalone}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{tikz}
+\definecolor{sizecolor}{HTML}{CB2532}
+\definecolor{chaincolor}{HTML}{20A547}
+\definecolor{depthcolor}{HTML}{009DD3}
+\tikzset{
+  vertex/.style={circle,draw=black,line width=.9pt,minimum size=6mm,
+    inner sep=0pt,font=\sffamily\small,text=sizecolor,fill=white},
+  heavy/.style={vertex,fill=black!22},
+  lightedge/.style={line width=.55pt},
+  heavyedge/.style={line width=1.9pt},
+  dfn/.style={text=chaincolor,font=\sffamily\small,inner sep=1pt},
+}
+% Each node is named by its heavy-first DFS number. The red label is its
+% subtree size. The same tree is drawn twice, so topology cannot drift
+% between the depth and chain panels.
+\newcommand{\treecoordinates}{%
+  \coordinate (n1) at (4.7,0);
+  \coordinate (n2) at (4,-1.45);
+  \coordinate (n3) at (3.6,-2.9);
+  \coordinate (n4) at (3,-4.35);
+  \coordinate (n5) at (3.2,-5.8);
+  \coordinate (n6) at (2.4,-7.25);
+  \coordinate (n7) at (4.3,-7.25);
+  \coordinate (n8) at (4.3,-4.35);
+  \coordinate (n9) at (5.5,-2.9);
+  \coordinate (n10) at (5.8,-4.35);
+  \coordinate (n11) at (1.9,-1.45);
+  \coordinate (n12) at (1,-2.9);
+  \coordinate (n13) at (1.5,-4.35);
+  \coordinate (n14) at (.6,-5.8);
+  \coordinate (n15) at (0,-4.35);
+  \coordinate (n16) at (7.2,-1.45);
+  \coordinate (n17) at (8,-2.9);
+  \coordinate (n18) at (7.3,-4.35);
+  \coordinate (n19) at (9,-4.35);
+}
+\newcommand{\drawtree}{%
+  \foreach \parent/\child in {1/11,1/16,2/9,3/8,5/7,12/15,17/19}
+    \draw[lightedge] (n\parent)--(n\child);
+  \foreach \parent/\child in {1/2,2/3,3/4,4/5,5/6,9/10,11/12,12/13,13/14,16/17,17/18}
+    \draw[heavyedge] (n\parent)--(n\child);
+  \foreach \id/\size in {1/19,7/1,8/1,9/2,11/5,15/1,16/4,19/1}
+    \node[vertex] at (n\id) {\size};
+  \foreach \id/\size in {2/9,3/6,4/4,5/3,6/1,10/1,12/4,13/2,14/1,17/3,18/1}
+    \node[heavy] at (n\id) {\size};
+}
+% A narrow green border encloses every heavy chain, including singletons.
+\newcommand{\chain}[1]{%
+  \draw[chaincolor,line width=25pt,line cap=round,line join=round] #1;
+  \draw[white,line width=22.5pt,line cap=round,line join=round] #1;
+}
+\begin{document}
+\begin{tikzpicture}[x=.9cm,y=.9cm]
+  \begin{scope}
+    \treecoordinates
+    \node[font=\small] at (4.2,.8) {子树大小与深度};
+    \foreach \depth in {1,...,6} {
+      \pgfmathsetmacro{\row}{-1.45*(\depth-1)}
+      \node[text=depthcolor,font=\sffamily\small] at (-.8,\row) {\depth};
+    }
+    \foreach \row in {-.725,-2.175,-3.625,-5.075,-6.525}
+      \draw[depthcolor,line width=.6pt] (-.45,\row)--(9.45,\row);
+    \drawtree
+  \end{scope}
+  \begin{scope}[xshift=9.6cm]
+    \treecoordinates
+    \node[font=\small] at (4.2,.8) {重链与 DFN 序};
+    \chain{(n1)--(n2)--(n3)--(n4)--(n5)--(n6)}
+    \chain{(n9)--(n10)}
+    \chain{(n11)--(n12)--(n13)--(n14)}
+    \chain{(n16)--(n17)--(n18)}
+    \foreach \id in {7,8,15,19}
+      \draw[chaincolor,line width=1.25pt] (n\id) circle[radius=12pt];
+    \drawtree
+    \foreach \id in {1,2,3,4,6,9,10,11,12,13,14,16,17,18}
+      \node[dfn,anchor=south west,xshift=7pt,yshift=7pt] at (n\id) {\id};
+    \node[dfn,anchor=south west,xshift=14pt,yshift=7pt] at (n5) {5};
+    \foreach \id in {7,8,15,19}
+      \node[dfn,anchor=south,yshift=13pt] at (n\id) {\id};
+  \end{scope}
+  \begin{scope}[xshift=19cm,yshift=-.7cm]
+    \draw[black!25,line width=.7pt] (-.55,.55) rectangle (3.2,-6.05);
+    \node[heavy] at (0,0) {};
+    \node[anchor=west,font=\small] at (.55,0) {重子结点};
+    \node[vertex] at (0,-.8) {};
+    \node[anchor=west,font=\small] at (.55,-.8) {轻子结点};
+    \draw[heavyedge] (-.25,-1.6)--(.25,-1.6);
+    \node[anchor=west,font=\small] at (.55,-1.6) {重边};
+    \draw[lightedge] (-.25,-2.4)--(.25,-2.4);
+    \node[anchor=west,font=\small] at (.55,-2.4) {轻边};
+    \node[text=sizecolor,font=\sffamily\small] at (0,-3.2) {16};
+    \node[anchor=west,font=\small] at (.55,-3.2) {子树大小};
+    \node[dfn] at (0,-4) {16};
+    \node[anchor=west,font=\small] at (.55,-4) {DFN 序};
+    \draw[chaincolor,line width=1.25pt,rounded corners=3pt] (-.3,-4.65) rectangle (.3,-4.95);
+    \node[anchor=west,font=\small] at (.55,-4.8) {重链};
+    \node[text=depthcolor,font=\sffamily\small] at (0,-5.6) {1};
+    \node[anchor=west,font=\small] at (.55,-5.6) {深度};
+  \end{scope}
+\end{tikzpicture}
+\end{document}
