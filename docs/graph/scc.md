@@ -222,8 +222,8 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
     # g 是原图，g2 是反图
     N = 100005
     vis = [False] * N
-    color = [False] * N
-    s = []  # 按后序遍历的逆序存放结点
+    color = [0] * N
+    s = []  # 后序遍历
     sccCnt = 0
     
     
@@ -238,7 +238,7 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
     def dfs2(u):
         color[u] = sccCnt
         for v in g2[u]:
-            if not color[v]:
+            if color[v] == 0:
                 dfs2(v)
     
     
@@ -249,7 +249,7 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
             if not vis[i]:
                 dfs1(i)
         for i in range(len(s) - 1, -1, -1):
-            if not color[s[i]]:
+            if color[s[i]] == 0:
                 sccCnt = sccCnt + 1
                 dfs2(s[i])
     ```
