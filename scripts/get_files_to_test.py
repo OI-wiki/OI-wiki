@@ -1,83 +1,87 @@
-# Find related files to conduct correctness check and undefined behavior checks.
-# input: changed files (from tj-actions/changed-files, read from res.txt)
-# output: related files to test (write to $GITHUB_OUTPUT, access by setting env to the output and with os.environ.get())
+# Generate the list of code files to test from the changed files.
+# Input: the changed files reported by tj-actions/changed-files, read from the
+#        `all_changed_files` environment variable.
+# Output: for every supported language, `TEST_<LANG>_FILES` (the space separated
+#         main files to test) and `HAS_<LANG>` (whether the list is not empty),
+#         written to $GITHUB_OUTPUT.
 
 import os
 
-
-def get_files_to_test(filenames):
-    mainfiles_to_test = set()
-    mainfiles, auxfiles, examples, skiptest = [], [], [], []
-
-    for filename in filenames:
-        dirname, basename, extname = (
-            os.path.dirname(filename),
-            os.path.splitext(os.path.basename(filename))[0],
-            os.path.splitext(filename)[1],
-        )
-
-        if extname.endswith(".cpp"):
-            mainfile = os.path.normpath(
-                os.path.join(dirname, basename.split(".")[0] + ".cpp")
-            )
-            if mainfile in mainfiles_to_test:
-                continue
-            else:
-                mainfiles_to_test.add(mainfile)
-            temp_auxfiles = []
-            for root, _, files in os.walk(dirname):
-                for file in files:
-                    if file.split(".")[0] == basename.split(".")[0] and file.endswith(
-                        ".cpp"
-                    ):
-                        temp_auxfiles.append(os.path.normpath(os.path.join(root, file)))
-            temp_examples = []
-            for root, _, files in os.walk(dirname.replace("code", "examples")):
-                for file in files:
-                    if (
-                        file.split(".")[0] == basename.split(".")[0]
-                        and file.endswith(".in")
-                        and os.path.exists(
-                            os.path.join(root, file.replace(".in", ".ans"))
-                        )
-                    ):
-                        temp_examples.append(os.path.normpath(os.path.join(root, file)))
-
-        elif extname.endswith((".in", ".ans")):
-            mainfile = os.path.normpath(
-                os.path.join(
-                    dirname.replace("examples", "code"), basename.split(".")[0] + ".cpp"
-                )
-            )
-            if mainfile in mainfiles_to_test:
-                continue
-            else:
-                mainfiles_to_test.add(mainfile)
-            temp_auxfiles = []
-            for root, _, files in os.walk(dirname.replace("examples", "code")):
-                for file in files:
-                    if file.split(".")[0] == basename.split(".")[0] and file.endswith(
-                        ".cpp"
-                    ):
-                        temp_auxfiles.append(os.path.normpath(os.path.join(root, file)))
-            temp_examples = [os.path.normpath(os.path.join(dirname, basename + ".in"))]
-
-        temp_skiptest = False
-        if os.path.exists(os.path.join(dirname, basename + ".skip_test")):
-            temp_skiptest = True
-
-        mainfiles.append(mainfile)
-        auxfiles.append(temp_auxfiles)
-        examples.append(temp_examples)
-        skiptest.append(temp_skiptest)
-        with open(os.environ.get("GITHUB_OUTPUT"), "w") as f:
-            print(
-                f"mainfiles={mainfiles}, auxfiles={auxfiles}, examples={examples}, skiptest={skiptest}"
-            )
-            f.write(f"files_to_test={(mainfiles, auxfiles, examples, skiptest)}")
+# Extensions of the source files that can be tested.
+extnames = [".cpp", ".py"]
 
 
-with open("res.txt") as file_object:
-    lines = file_object.readlines()
-changed_files = [name for line in lines for name in line.split()]
-get_files_to_test(changed_files)
+def check_availability(file):
+    """
+    Check whether `file` is a main source file that can be tested.
+
+    Returns the normalized path of the main file, or an empty string when the
+    file should not be tested:
+    - it does not exist, e.g. because the change deleted it;
+    - it does not live in a `code` directory;
+    - it is a variant of a main file (`foo.1.cpp`) whose main file is missing;
+    - a `foo.skip_test` marker file exists next to it.
+    """
+    if not os.path.exists(file):
+        return ""
+    dirname = os.path.dirname(file)
+    if "code" not in dirname.split("/"):
+        return ""
+    basename, extname = os.path.splitext(os.path.basename(file))
+    if "." in basename:
+        # Variants such as `foo.1.cpp` are tested through their main file.
+        main_basename = basename.split(".")[0]
+        if not os.path.exists(os.path.join(dirname, main_basename + extname)):
+            return ""
+        basename = main_basename
+    if os.path.exists(os.path.join(dirname, basename + ".skip_test")):
+        return ""
+    return os.path.normpath(os.path.join(dirname, basename + extname))
+
+
+def examples2code(example_file):
+    """
+    Map an example data file back to the code files it belongs to.
+
+    `docs/<...>/examples/<topic>/foo.in` belongs to
+    `docs/<...>/code/<topic>/foo.<extname>`, for every supported extension.
+    Returns the code files that can be tested, an empty list when the given path
+    is not an example data file or when no matching code file can be tested.
+    """
+    dirname = os.path.dirname(example_file)
+    basename = os.path.splitext(os.path.basename(example_file))[0]
+    pos = dirname.rfind("/examples/")
+    if pos == -1:
+        return []
+    code_dir = dirname[:pos] + "/code/" + dirname[pos + len("/examples/") :]
+    code_files = []
+    for extname in extnames:
+        code_file = os.path.join(code_dir, basename + extname)
+        if available_file := check_availability(code_file):
+            code_files.append(available_file)
+    return code_files
+
+
+def output(name, value):
+    """Write an output variable to the GitHub Actions output file."""
+    with open(os.environ.get("GITHUB_OUTPUT"), "a") as f:
+        f.write(f"{name}={value}\n")
+
+
+if __name__ == "__main__":
+    changed_codes = set()
+
+    for changed_file in os.environ.get("all_changed_files", "").split():
+        # A changed file is resolved to the main files it belongs to: a code
+        # file through its own main file, example data through the code files
+        # using it.
+        if os.path.splitext(changed_file)[1] in extnames:
+            changed_codes.update(filter(None, [check_availability(changed_file)]))
+        else:
+            changed_codes.update(examples2code(changed_file))
+
+    for extname in extnames:
+        language = extname[1:].upper()
+        files = sorted(file for file in changed_codes if file.endswith(extname))
+        output(f"TEST_{language}_FILES", " ".join(files))
+        output(f"HAS_{language}", "true" if files else "false")

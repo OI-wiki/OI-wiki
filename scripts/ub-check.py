@@ -2,7 +2,10 @@ import os
 import subprocess
 from dataclasses import dataclass
 
-mainfiles, auxfiles, examples, skiptests = eval(os.environ.get("FILES_TO_TEST"))
+from test_utils import derive_test_files
+
+# The main files to test, as a space separated list
+mainfiles = os.environ.get("FILES_TO_TEST", "").split()
 runs_on = os.environ.get("RUNS_ON")
 vsinstall = os.environ.get("VSINSTALL")
 
@@ -472,10 +475,11 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
 
 cnt_ac, cnt_error = 0, 0
 output = {}
-for mainfile, auxfile, example, skiptest in zip(
-    mainfiles, auxfiles, examples, skiptests
-):
-    this_file_looks_odd, return_status = ub_check(mainfile, auxfile, example, skiptest)
+for mainfile in mainfiles:
+    auxfiles, examples, skiptest = derive_test_files(mainfile)
+    this_file_looks_odd, return_status = ub_check(
+        mainfile, auxfiles, examples, skiptest
+    )
     output_status = {}
     for key in return_status:
         output_status[key] = [str(_) for _ in return_status[key]]
