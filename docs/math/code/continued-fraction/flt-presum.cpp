@@ -37,7 +37,7 @@ int main() {
   for (int i = 1; i <= n; ++i) {
     int a;
     std::cin >> a;
-    ps[i] = ps[i - 1] * FracLinearTrans(a);
+    ps.push_back(ps.back() * FracLinearTrans(a));
   }
   // Query.
   for (; q; --q) {
