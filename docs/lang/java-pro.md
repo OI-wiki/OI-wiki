@@ -964,7 +964,7 @@ public class Main {
     
     static void isEmpty() {
         q1.isEmpty();  // 时间复杂度为 O(1) 
-        q2.isEmpty();  // 空间复杂度为 O(1) 
+        q2.isEmpty();  // 时间复杂度为 O(1) 
     }
     
     static void size() {
@@ -974,7 +974,7 @@ public class Main {
     
     static void peek() {
         q1.peek();  // 时间复杂度为 O(1) 
-        q2.peek();  // 时间复杂度为 O(logn) 
+        q2.peek();  // 时间复杂度为 O(1) 
     }
     
     static void poll() {
