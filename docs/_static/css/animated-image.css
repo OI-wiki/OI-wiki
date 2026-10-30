@@ -1,0 +1,303 @@
+/* 动图播放控制 */
+.anim-image {
+  position: relative;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1em 0;
+  line-height: 0;
+}
+
+.anim-image .anim-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.2rem;
+}
+
+/* 控制条 */
+.anim-controls {
+  --anim-height: 1.6rem;
+  --anim-radius: 0.25rem;
+  --anim-font-size: 0.72rem;
+  --anim-surface: rgba(255, 255, 255, 0.14);
+  --anim-surface-hover: rgba(255, 255, 255, 0.26);
+  --anim-surface-active: rgba(255, 255, 255, 0.34);
+  --anim-fg: #fff;
+  --anim-fg-dim: rgba(255, 255, 255, 0.82);
+  --anim-track: rgba(255, 255, 255, 0.3);
+
+  position: absolute;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 0.3rem;
+  background: rgba(0, 0, 0, 0.62);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-sizing: border-box;
+  font-size: var(--anim-font-size);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+
+.anim-image:hover .anim-controls,
+.anim-controls:has(:focus-visible),
+.anim-controls.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 播放按钮 */
+.anim-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--anim-height);
+  height: var(--anim-height);
+  padding: 0;
+  border: 0;
+  border-radius: var(--anim-radius);
+  background: transparent;
+  color: var(--anim-fg);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.anim-btn:hover {
+  background: var(--anim-surface-hover);
+}
+
+.anim-btn svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+/* 进度条 */
+.anim-range {
+  --anim-fill: var(--anim-track);
+
+  flex: 1;
+  min-width: 0;
+  height: var(--anim-height);
+  margin: 0;
+  border: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.anim-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--anim-fill);
+}
+
+.anim-range::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--anim-fill);
+}
+
+.anim-range::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-top: calc((4px - 0.75rem) / 2);
+  border: 0;
+  border-radius: 50%;
+  background: var(--anim-fg);
+  cursor: pointer;
+}
+
+.anim-range::-moz-range-thumb {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--anim-fg);
+  cursor: pointer;
+}
+
+/* 时间 */
+.anim-time {
+  flex: none;
+  color: var(--anim-fg-dim);
+  font-size: var(--anim-font-size);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* 倍速下拉 */
+.anim-speed {
+  position: relative;
+  flex: none;
+  line-height: 0;
+}
+
+.anim-speed-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  height: var(--anim-height);
+  padding: 0 0.3rem;
+  border: 0;
+  border-radius: var(--anim-radius);
+  background: var(--anim-surface);
+  color: var(--anim-fg);
+  font-size: var(--anim-font-size);
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.anim-speed-trigger:hover {
+  background: var(--anim-surface-hover);
+}
+
+.anim-speed.is-open .anim-speed-trigger {
+  background: var(--anim-surface-active);
+}
+
+/* 档位标签 */
+.anim-speed-label {
+  min-width: 2rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.anim-speed-caret {
+  display: block;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-right: -0.1rem;
+  fill: currentColor;
+  opacity: 0.7;
+  transition: transform 0.15s ease;
+}
+
+.anim-speed.is-open .anim-speed-caret {
+  transform: rotate(180deg);
+}
+
+/* 弹层 */
+.anim-speed-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.3rem);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: max(3.4rem, 100%);
+  padding: 0.15rem;
+  border-radius: var(--anim-radius);
+  background: rgba(30, 30, 30, 0.96);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+}
+
+.anim-speed-menu[hidden] {
+  display: none;
+}
+
+.anim-speed-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--anim-height);
+  padding: 0 0.4rem;
+  border: 0;
+  border-radius: calc(var(--anim-radius) - 0.05rem);
+  background: transparent;
+  color: var(--anim-fg-dim);
+  font-size: var(--anim-font-size);
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.anim-speed-item:hover {
+  background: var(--anim-surface-hover);
+  color: var(--anim-fg);
+}
+
+.anim-speed-item[aria-selected='true'] {
+  background: var(--anim-surface-active);
+  color: var(--anim-fg);
+}
+
+/* 聚焦 */
+.anim-btn:focus-visible,
+.anim-speed-trigger:focus-visible,
+.anim-range:focus-visible {
+  outline: 2px solid var(--anim-fg);
+  outline-offset: 1px;
+  border-radius: var(--anim-radius);
+}
+
+.anim-speed-item:focus-visible {
+  outline: 1px solid var(--anim-fg);
+  outline-offset: -2px;
+}
+
+/* 暗色模式 */
+[data-md-color-scheme='slate'] .anim-image .anim-canvas {
+  background: #fff;
+  filter: brightness(0.9);
+}
+
+/* SVG 动画 */
+.anim-image .anim-svg {
+  line-height: 0;
+  max-width: 100%;
+}
+
+[data-md-color-scheme='slate'] .anim-image .anim-svg {
+  background: #fff;
+  box-shadow: 0 0 0 4px #fff;
+}
+
+/* 窄屏 */
+@media (max-width: 30em) {
+  .anim-controls {
+    gap: 0.3rem;
+    padding: 0.2rem 0.3rem;
+  }
+
+  .anim-time {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-controls,
+  .anim-btn,
+  .anim-speed-trigger,
+  .anim-speed-caret,
+  .anim-speed-item {
+    transition: none;
+  }
+}
