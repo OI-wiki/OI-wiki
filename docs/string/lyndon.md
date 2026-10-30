@@ -120,7 +120,7 @@ Duval 算法运用了贪心的思想．算法过程中我们把串 $s$ 分成三
         s += s
         n = len(s)
         i, ans = 0, 0
-        while i < n / 2:
+        while i < n // 2:
             ans = i
             j, k = i + 1, i
             while j < n and s[k] <= s[j]:
@@ -131,7 +131,7 @@ Duval 算法运用了贪心的思想．算法过程中我们把串 $s$ 分成三
                 j += 1
             while i <= k:
                 i += j - k
-        return s[ans : ans + n / 2]
+        return s[ans : ans + n // 2]
     ```
 
 ## 习题

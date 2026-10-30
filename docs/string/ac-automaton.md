@@ -186,7 +186,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
         def query(t: str) -> int:
             u, res = 0, 0
             for c in t:
-                u = tr[u][c - ord("a")]
+                u = tr[u][ord(c) - ord("a")]
                 j = u
                 while j and e[j] != -1:
                     res += e[j]
