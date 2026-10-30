@@ -41,13 +41,13 @@ Python 是一门已在世界上广泛使用的解释型语言．它提供了高�
 
 ### 一些平台提供的 Python 版本
 
-| 系统名/版本           | python 版本               |
-| ---------------- | ----------------------- |
-| Noi Linux 2.0    | 3.8.0, Include requests |
-| Luogu 评测机        | 3.11.5, NumPy 1.25.2    |
-| 基于 Hydro 的 OJ    | 3.8.0+ Include NumPy    |
+| 系统名/版本          | python 版本             |
+| -------------------- | ----------------------- |
+| Noi Linux 2.0        | 3.8.0, Include requests |
+| Luogu 评测机         | 3.11.5, NumPy 1.25.2    |
+| 基于 Hydro 的 OJ     | 3.8.0+ Include NumPy    |
 | Ubuntu 22.04（内置） | 3.10.4                  |
-| 微软商店             | 最新正式版                   |
+| 微软商店             | 最新正式版              |
 
 ???+ warning "注意"
     本表格在本文撰写时（2025/01/15）时有效，建议前往相关平台重新查证．
@@ -764,22 +764,22 @@ def fib(n):
 
 在这里介绍一些写算法可能用得到的内置库，具体用法可以自行搜索或者阅读 [官方文档](https://docs.python.org/3/library/index.html)．
 
-| 库名                                                                  | 用途             |
-| ------------------------------------------------------------------- | -------------- |
-| [`array`](https://docs.python.org/3/library/array.html)             | 定长数组           |
-| [`argparse`](https://docs.python.org/3/library/argparse.html)       | 命令行参数处理        |
-| [`bisect`](https://docs.python.org/3/library/bisect.html)           | 二分查找           |
+| 库名                                                                | 用途                         |
+| ------------------------------------------------------------------- | ---------------------------- |
+| [`array`](https://docs.python.org/3/library/array.html)             | 定长数组                     |
+| [`argparse`](https://docs.python.org/3/library/argparse.html)       | 命令行参数处理               |
+| [`bisect`](https://docs.python.org/3/library/bisect.html)           | 二分查找                     |
 | [`collections`](https://docs.python.org/3/library/collections.html) | 有序字典、双端队列等数据结构 |
-| [`fractions`](https://docs.python.org/3/library/fractions.html)     | 有理数            |
-| [`heapq`](https://docs.python.org/3/library/heapq.html)             | 基于堆的优先级队列      |
-| [`io`](https://docs.python.org/3/library/io.html)                   | 文件流、内存流        |
-| [`itertools`](https://docs.python.org/3/library/itertools.html)     | 迭代器            |
-| [`math`](https://docs.python.org/3/library/math.html)               | 数学函数           |
-| [`os.path`](https://docs.python.org/3/library/os.html)              | 系统路径等          |
-| [`random`](https://docs.python.org/3/library/random.html)           | 随机数            |
-| [`re`](https://docs.python.org/3/library/re.html)                   | 正则表达式          |
-| [`struct`](https://docs.python.org/3/library/struct.html)           | 转换结构体和二进制数据    |
-| [`sys`](https://docs.python.org/3/library/sys.html)                 | 系统信息           |
+| [`fractions`](https://docs.python.org/3/library/fractions.html)     | 有理数                       |
+| [`heapq`](https://docs.python.org/3/library/heapq.html)             | 基于堆的优先级队列           |
+| [`io`](https://docs.python.org/3/library/io.html)                   | 文件流、内存流               |
+| [`itertools`](https://docs.python.org/3/library/itertools.html)     | 迭代器                       |
+| [`math`](https://docs.python.org/3/library/math.html)               | 数学函数                     |
+| [`os.path`](https://docs.python.org/3/library/os.html)              | 系统路径等                   |
+| [`random`](https://docs.python.org/3/library/random.html)           | 随机数                       |
+| [`re`](https://docs.python.org/3/library/re.html)                   | 正则表达式                   |
+| [`struct`](https://docs.python.org/3/library/struct.html)           | 转换结构体和二进制数据       |
+| [`sys`](https://docs.python.org/3/library/sys.html)                 | 系统信息                     |
 
 ## 从例题对比 C++ 与 Python
 

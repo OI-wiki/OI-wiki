@@ -123,31 +123,31 @@ class Main {
 
 以下均用 `this` 代替当前 `BigIntger`:
 
-|             函数名             |               功能               |
-| :-------------------------: | :----------------------------: |
-|           `abs()`           |         返回 `this` 的绝对值         |
-|          `negate()`         |         返回 `this` 的相反数         |
-|    `add(BigInteger val)`    |      返回 `this` 和 `val` 的和      |
-|  `subtract(BigInteger val)` |      返回 `this` 和 `val` 的差      |
-|  `multiply(BigInteger val)` |      返回 `this` 和 `val` 的积      |
-|   `divide(BigInteger val)`  |      返回 `this` 和 `val` 的商      |
-| `remainder(BigInteger val)` |     返回 `this` 除以 `val` 的余数     |
-|    `mod(BigInteger val)`    |     返回 `this` 对 `val` 取模的值     |
-|        `pow(int val)`       |      返回 `this` 的 `val` 次方      |
-|    `and(BigInteger val)`    |     返回 `this` 和 `val` 的按位与     |
-|     `or(BigInteger val)`    |     返回 `this` 和 `val` 的按位或     |
-|           `not()`           |         返回 `this` 的按位取反        |
-|    `xor(BigInteger val)`    |     返回 `this` 和 `val` 的按位异或    |
-|      `shiftLeft(int n)`     |       返回 `this` 左移 `n` 位       |
-|     `shiftRight(int n)`     |       返回 `this` 右移 `n` 位       |
-|    `max(BigInteger val)`    |     返回 `this` 与 `val` 的较大值     |
-|    `min(BigInteger val)`    |     返回 `this` 与 `val` 的较小值     |
+|            函数名           |                       功能                      |
+| :-------------------------: | :---------------------------------------------: |
+|           `abs()`           |               返回 `this` 的绝对值              |
+|          `negate()`         |               返回 `this` 的相反数              |
+|    `add(BigInteger val)`    |            返回 `this` 和 `val` 的和            |
+|  `subtract(BigInteger val)` |            返回 `this` 和 `val` 的差            |
+|  `multiply(BigInteger val)` |            返回 `this` 和 `val` 的积            |
+|   `divide(BigInteger val)`  |            返回 `this` 和 `val` 的商            |
+| `remainder(BigInteger val)` |          返回 `this` 除以 `val` 的余数          |
+|    `mod(BigInteger val)`    |          返回 `this` 对 `val` 取模的值          |
+|        `pow(int val)`       |            返回 `this` 的 `val` 次方            |
+|    `and(BigInteger val)`    |          返回 `this` 和 `val` 的按位与          |
+|     `or(BigInteger val)`    |          返回 `this` 和 `val` 的按位或          |
+|           `not()`           |              返回 `this` 的按位取反             |
+|    `xor(BigInteger val)`    |         返回 `this` 和 `val` 的按位异或         |
+|      `shiftLeft(int n)`     |             返回 `this` 左移 `n` 位             |
+|     `shiftRight(int n)`     |             返回 `this` 右移 `n` 位             |
+|    `max(BigInteger val)`    |          返回 `this` 与 `val` 的较大值          |
+|    `min(BigInteger val)`    |          返回 `this` 与 `val` 的较小值          |
 |         `bitCount()`        | 返回 `this` 的二进制中不包括符号位的 `1` 的个数 |
-|        `bitLength()`        |    返回 `this` 的二进制中不包括符号位的长度    |
-|     `getLowestSetBit()`     |      返回 `this` 的二进制中最右边的位置     |
-| `compareTo(BigInteger val)` |      比较 `this` 和 `val` 值大小     |
-|         `toString()`        |      返回 `this` 的十进制字符串表示形式     |
-|    `toString(int radix)`    |  返回 `this` 的 `raidx` 进制字符串表示形式 |
+|        `bitLength()`        |     返回 `this` 的二进制中不包括符号位的长度    |
+|     `getLowestSetBit()`     |        返回 `this` 的二进制中最右边的位置       |
+| `compareTo(BigInteger val)` |           比较 `this` 和 `val` 值大小           |
+|         `toString()`        |        返回 `this` 的十进制字符串表示形式       |
+|    `toString(int radix)`    |    返回 `this` 的 `raidx` 进制字符串表示形式    |
 
 使用案例如下：
 
@@ -352,13 +352,13 @@ public class Main {
 
 以下均用 `this` 代替当前 `BigIntger`:
 
-|                  函数名                 |                功能                |
-| :----------------------------------: | :------------------------------: |
+|                函数名                |                        功能                       |
+| :----------------------------------: | :-----------------------------------------------: |
 |         `gcd(BigInteger val)`        | 返回 `this` 的绝对值与 `val` 的绝对值的最大公约数 |
-|      `isProbablePrime(int val)`      |      返回一个表示 `this` 是否是素数的布尔值     |
-|         `nextProbablePrime()`        |        返回第一个大于 `this` 的素数        |
-| `modPow(BigInteger b, BigInteger p)` |    返回 `this` 的 `b` 次方模 `p` 的值    |
-|      `modInverse(BigInteger p)`      |     返回 `this` 在模 `p` 意义下的乘法逆元    |
+|      `isProbablePrime(int val)`      |       返回一个表示 `this` 是否是素数的布尔值      |
+|         `nextProbablePrime()`        |            返回第一个大于 `this` 的素数           |
+| `modPow(BigInteger b, BigInteger p)` |         返回 `this` 的 `b` 次方模 `p` 的值        |
+|      `modInverse(BigInteger p)`      |       返回 `this` 在模 `p` 意义下的乘法逆元       |
 
 使用案例如下：
 
@@ -421,16 +421,16 @@ public class Main {
 
 由于基本类型没有面向对象的特征，为了他们参加到面向对象的开发中，Java 为八个基本类型提供了对应的包装类，分别是 `Byte`、`Double`、`Float`、`Integer`、`Long`、`Short`、`Character` 和 `Boolean`．两者之间的对应关系如下：
 
-|   基本数据类型  |    包装数据类型   |
-| :-------: | :---------: |
-|   `byte`  |    `Byte`   |
-|  `short`  |   `Short`   |
-| `boolean` |  `Boolean`  |
-|   `char`  | `Character` |
-|   `int`   |  `Integer`  |
-|   `long`  |    `Long`   |
-|  `float`  |   `Float`   |
-|  `double` |   `Double`  |
+| 基本数据类型 | 包装数据类型 |
+| :----------: | :----------: |
+|    `byte`    |    `Byte`    |
+|    `short`   |    `Short`   |
+|   `boolean`  |   `Boolean`  |
+|    `char`    |  `Character` |
+|     `int`    |   `Integer`  |
+|    `long`    |    `Long`    |
+|    `float`   |    `Float`   |
+|   `double`   |   `Double`   |
 
 ### 区别
 
@@ -489,12 +489,12 @@ int value = integer;
 
 下表列出了不同访问属性的父类成员在子类中的访问属性：
 
-|    父类成员访问属性   |      在父类中的含义      |                     在子类中的含义                    |
-| :-----------: | :---------------: | :--------------------------------------------: |
-|    `public`   |       对所有类开放      |                     对所有类开放                     |
-|  `protected`  | 只有包内其它类、自己和子类可以访问 |                只有包内其它类、自己和子类可以访问               |
-| 缺省（`default`） |    只有包内其它类可以访问    | 如果子类与父类在同一个包内，只有包内其它类可以访问；否则相当于 `private`，不能访问 |
-|   `private`   |      只有自己可以访问     |                      不能访问                      |
+|  父类成员访问属性 |           在父类中的含义           |                                   在子类中的含义                                   |
+| :---------------: | :--------------------------------: | :--------------------------------------------------------------------------------: |
+|      `public`     |            对所有类开放            |                                    对所有类开放                                    |
+|    `protected`    | 只有包内其它类、自己和子类可以访问 |                         只有包内其它类、自己和子类可以访问                         |
+| 缺省（`default`） |       只有包内其它类可以访问       | 如果子类与父类在同一个包内，只有包内其它类可以访问；否则相当于 `private`，不能访问 |
+|     `private`     |          只有自己可以访问          |                                      不能访问                                      |
 
 ## 多态
 
@@ -785,13 +785,13 @@ public class Main {
 
 以下均用 `this` 代替当前 `List<Integer>`：
 
-|            函数名            |                功能                |
-| :-----------------------: | :------------------------------: |
-|          `size()`         |           返回 `this` 的长度          |
-|     `add(Integer val)`    |      在 `this` 尾部插入 `val` 元素      |
-| `add(int idx, Integer e)` |   在 `this` 的 `idx` 位置插入 `e` 元素   |
+|           函数名          |                        功能                       |
+| :-----------------------: | :-----------------------------------------------: |
+|          `size()`         |                 返回 `this` 的长度                |
+|     `add(Integer val)`    |           在 `this` 尾部插入 `val` 元素           |
+| `add(int idx, Integer e)` |        在 `this` 的 `idx` 位置插入 `e` 元素       |
 |       `get(int idx)`      | 返回 `this` 中第 `idx` 位置的值，若越界则抛出异常 |
-| `set(int idx, Integer e)` |   修改 `this` 中第 `idx` 位置的值为 `e`   |
+| `set(int idx, Integer e)` |       修改 `this` 中第 `idx` 位置的值为 `e`       |
 
 使用案例及区别对比：
 
@@ -935,14 +935,14 @@ Queue<Integer> q2 = new PriorityQueue<>((x, y) -> {return y - x;});  // 大根�
 
 下表中队列定义为 `Queue<Integer>`．
 
-|          函数名         |                     功能                     |
-| :------------------: | :----------------------------------------: |
-|       `size()`       |                  返回当前队列长度                  |
-|  `add(Integer val)`  |     将 `val` 插入队列，如果插入时违反了队列的容量限制，将抛出异常     |
+|        函数名        |                                      功能                                     |
+| :------------------: | :---------------------------------------------------------------------------: |
+|       `size()`       |                                返回当前队列长度                               |
+|  `add(Integer val)`  |         将 `val` 插入队列，如果插入时违反了队列的容量限制，将抛出异常         |
 | `offer(Integer val)` | 将 `val` 插入队列，如果插入时违反了队列的容量限制，则插入失败，但不会抛出异常 |
-|      `isEmpty()`     |            判断队列是否为空，为空则返回 `true`           |
-|       `peek()`       |            返回队头元素，若队列为空返回 `null`           |
-|       `poll()`       |          返回并删除队头元素，若队列为空返回 `null`          |
+|      `isEmpty()`     |                      判断队列是否为空，为空则返回 `true`                      |
+|       `peek()`       |                      返回队头元素，若队列为空返回 `null`                      |
+|       `poll()`       |                   返回并删除队头元素，若队列为空返回 `null`                   |
 
 使用案例及区别对比：
 
@@ -1017,24 +1017,24 @@ public class Main {
 
 下表中队列定义为 `Deque<Integer>`．
 
-|            函数名            |                     功能                     |
-| :-----------------------: | :----------------------------------------: |
-|  `addFirst(Integer val)`  |     将 `val` 插入队头，如果插入时违反了队列的容量限制，将抛出异常     |
+|           函数名          |                                      功能                                     |
+| :-----------------------: | :---------------------------------------------------------------------------: |
+|  `addFirst(Integer val)`  |         将 `val` 插入队头，如果插入时违反了队列的容量限制，将抛出异常         |
 | `offerFirst(Integer val)` | 将 `val` 插入队头，如果插入时违反了队列的容量限制，则插入失败，但不会抛出异常 |
-|      `removeFirst()`      |           返回并删除队头元素，如果队列为空，将抛出异常           |
-|       `pollFirst()`       |         返回并删除队头元素，如果队列为空，则返回 `null`        |
-|       `peekFirst()`       |          返回队头元素，如果队列为空，则返回 `null`          |
-|    `push(Integer val)`    |         将 `val` 插入队头，等效于 `addFirst`        |
-|          `pop()`          |         返回并删除队头元素，等效于 `removeFirst`        |
-|         `remove()`        |          删除队头元素，等效于 `removeFirst`          |
-|          `poll()`         |           删除队头元素，等效于 `pollFirst`           |
-|   `addLast(Integer val)`  |     将 `val` 插入队尾，如果插入时违反了队列的容量限制，将抛出异常     |
+|      `removeFirst()`      |                  返回并删除队头元素，如果队列为空，将抛出异常                 |
+|       `pollFirst()`       |                返回并删除队头元素，如果队列为空，则返回 `null`                |
+|       `peekFirst()`       |                   返回队头元素，如果队列为空，则返回 `null`                   |
+|    `push(Integer val)`    |                      将 `val` 插入队头，等效于 `addFirst`                     |
+|          `pop()`          |                    返回并删除队头元素，等效于 `removeFirst`                   |
+|         `remove()`        |                       删除队头元素，等效于 `removeFirst`                      |
+|          `poll()`         |                        删除队头元素，等效于 `pollFirst`                       |
+|   `addLast(Integer val)`  |         将 `val` 插入队尾，如果插入时违反了队列的容量限制，将抛出异常         |
 |  `offerLast(Integer val)` | 将 `val` 插入队尾，如果插入时违反了队列的容量限制，则插入失败，但不会抛出异常 |
-|       `removeLast()`      |           返回并删除队尾元素，如果队列为空，将抛出异常           |
-|        `pollLast()`       |         返回并删除队尾元素，如果队列为空，则返回 `null`        |
-|        `peekLast()`       |          返回队尾元素，如果队列为空，则返回 `null`          |
-|     `add(Integer val)`    |         将 `val` 插入队尾，等效于 `addLast`         |
-|    `offer(Integer val)`   |        将 `val` 插入队尾，等效于 `offerLast`        |
+|       `removeLast()`      |                  返回并删除队尾元素，如果队列为空，将抛出异常                 |
+|        `pollLast()`       |                返回并删除队尾元素，如果队列为空，则返回 `null`                |
+|        `peekLast()`       |                   返回队尾元素，如果队列为空，则返回 `null`                   |
+|     `add(Integer val)`    |                      将 `val` 插入队尾，等效于 `addLast`                      |
+|    `offer(Integer val)`   |                     将 `val` 插入队尾，等效于 `offerLast`                     |
 
 #### 栈的操作
 
@@ -1133,16 +1133,16 @@ TreeSet<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // 降序
 
 下表中均用 `this` 代替当前 `TreeSet<Integer>`．
 
-|           函数名          |                            功能                           |
-| :--------------------: | :-----------------------------------------------------: |
-|        `first()`       |  返回 `this` 中第一个（最小）元素，若集合为空则抛出 `NoSuchElementException` |
+|         函数名         |                                      功能                                     |
+| :--------------------: | :---------------------------------------------------------------------------: |
+|        `first()`       |  返回 `this` 中第一个（最小）元素，若集合为空则抛出 `NoSuchElementException`  |
 |        `last()`        | 返回 `this` 中最后一个（最大）元素，若集合为空则抛出 `NoSuchElementException` |
-|  `floor(Integer val)`  |         返回 `this` 中小于等于 `val` 的最大元素，无则返回 `null`         |
-| `ceiling(Integer val)` |         返回 `this` 中大于等于 `val` 的最小元素，无则返回 `null`         |
-|  `higher(Integer val)` |          返回 `this` 中大于 `val` 的最小元素，无则返回 `null`          |
-|  `lower(Integer val)`  |          返回 `this` 中小于 `val` 的最大元素，无则返回 `null`          |
-|      `pollFirst()`     |             返回并删除 `this` 中第一个元素，无则返回 `null`             |
-|      `pollLast()`      |             返回并删除 `this` 中最后一个元素，无则返回 `null`            |
+|  `floor(Integer val)`  |            返回 `this` 中小于等于 `val` 的最大元素，无则返回 `null`           |
+| `ceiling(Integer val)` |            返回 `this` 中大于等于 `val` 的最小元素，无则返回 `null`           |
+|  `higher(Integer val)` |              返回 `this` 中大于 `val` 的最小元素，无则返回 `null`             |
+|  `lower(Integer val)`  |              返回 `this` 中小于 `val` 的最大元素，无则返回 `null`             |
+|      `pollFirst()`     |                返回并删除 `this` 中第一个元素，无则返回 `null`                |
+|      `pollLast()`      |               返回并删除 `this` 中最后一个元素，无则返回 `null`               |
 
 代码示例：
 
@@ -1179,14 +1179,14 @@ public class Main {
 
 #### Set 常用方法
 
-|            函数名            |                   功能                   |
-| :-----------------------: | :------------------------------------: |
-|          `size()`         |                返回当前集合的大小               |
-|     `add(Integer val)`    |              将 `val` 插入集合              |
-|  `contains(Integer val)`  |            判断集合中是否有元素 `val`            |
-|   `addAll(Collection e)`  |          将容器 `e` 里的所有元素添加进当前集合         |
+|           函数名          |                                功能                                |
+| :-----------------------: | :----------------------------------------------------------------: |
+|          `size()`         |                         返回当前集合的大小                         |
+|     `add(Integer val)`    |                          将 `val` 插入集合                         |
+|  `contains(Integer val)`  |                     判断集合中是否有元素 `val`                     |
+|   `addAll(Collection e)`  |                将容器 `e` 里的所有元素添加进当前集合               |
 | `retainAll(Collection e)` | 删除当前集合中未出现在容器 `e` 中的元素，即求当前集合与 `e` 的交集 |
-| `removeAll(Collection e)` |  删除当前集合中出现在容器 `e` 中的元素，即求当前集合与 `e` 的差集 |
+| `removeAll(Collection e)` |  删除当前集合中出现在容器 `e` 中的元素，即求当前集合与 `e` 的差集  |
 
 ```java
 import java.io.PrintWriter;
@@ -1288,13 +1288,13 @@ Map<Integer, Integer> map4 = new TreeMap<>((x, y) -> {return y - x;});  // 降�
 
 以下均用 `this` 代替当前 `Map<Integer, Integer>`：
 
-|                函数名                |               功能              |
-| :-------------------------------: | :---------------------------: |
-| `put(Integer key, Integer value)` |   将 `<key, value>` 插入 `this`  |
-|              `size()`             |         返回 `this` 的大小         |
+|               函数名              |                     功能                     |
+| :-------------------------------: | :------------------------------------------: |
+| `put(Integer key, Integer value)` |         将 `<key, value>` 插入 `this`        |
+|              `size()`             |              返回 `this` 的大小              |
 |     `containsKey(Integer key)`    | 判断 `this` 中是否有存在某个元素的键为 `key` |
-|         `get(Integer key)`        |  返回 `this` 中键为 `key` 的元素对应的值  |
-|             `keySet()`            |     将 `this` 中所有元素的键作为集合返回    |
+|         `get(Integer key)`        |    返回 `this` 中键为 `key` 的元素对应的值   |
+|             `keySet()`            |     将 `this` 中所有元素的键作为集合返回     |
 
 使用案例：
 
