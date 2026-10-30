@@ -1133,16 +1133,16 @@ TreeSet<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // 降序
 
 下表中均用 `this` 代替当前 `TreeSet<Integer>`．
 
-|           函数名          |                            功能                           |
-| :--------------------: | :-----------------------------------------------------: |
-|        `first()`       |  返回 `this` 中第一个（最小）元素，若集合为空则抛出 `NoSuchElementException` |
+|         函数名         |                                      功能                                     |
+| :--------------------: | :---------------------------------------------------------------------------: |
+|        `first()`       |  返回 `this` 中第一个（最小）元素，若集合为空则抛出 `NoSuchElementException`  |
 |        `last()`        | 返回 `this` 中最后一个（最大）元素，若集合为空则抛出 `NoSuchElementException` |
-|  `floor(Integer val)`  |         返回 `this` 中小于等于 `val` 的最大元素，无则返回 `null`         |
-| `ceiling(Integer val)` |         返回 `this` 中大于等于 `val` 的最小元素，无则返回 `null`         |
-|  `higher(Integer val)` |          返回 `this` 中大于 `val` 的最小元素，无则返回 `null`          |
-|  `lower(Integer val)`  |          返回 `this` 中小于 `val` 的最大元素，无则返回 `null`          |
-|      `pollFirst()`     |             返回并删除 `this` 中第一个元素，无则返回 `null`             |
-|      `pollLast()`      |             返回并删除 `this` 中最后一个元素，无则返回 `null`            |
+|  `floor(Integer val)`  |            返回 `this` 中小于等于 `val` 的最大元素，无则返回 `null`           |
+| `ceiling(Integer val)` |            返回 `this` 中大于等于 `val` 的最小元素，无则返回 `null`           |
+|  `higher(Integer val)` |              返回 `this` 中大于 `val` 的最小元素，无则返回 `null`             |
+|  `lower(Integer val)`  |              返回 `this` 中小于 `val` 的最大元素，无则返回 `null`             |
+|      `pollFirst()`     |                返回并删除 `this` 中第一个元素，无则返回 `null`                |
+|      `pollLast()`      |               返回并删除 `this` 中最后一个元素，无则返回 `null`               |
 
 代码示例：
 
