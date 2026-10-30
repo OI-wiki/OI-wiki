@@ -37,7 +37,7 @@ jobs:
         id: changed-files
         shell: bash
         run: |
-          if [[ "${{ steps.changed-workflow-files.outputs.any_changed }}" == "true" ]]; then
+          if [[ "${{ steps.changed-workflow-files.outputs.any_modified }}" == "true" ]]; then
             echo "Full test triggered. Listing all docs files matching the glob..."
             # 用 git ls-files 列出所有被版本控制跟踪、且匹配 glob 的文件
             FILES=$(git ls-files -- 'docs/*.md' 'docs/**/*.md' 'docs/*.tex' 'docs/**/*.tex' 2>/dev/null | paste -sd ' ' -)
