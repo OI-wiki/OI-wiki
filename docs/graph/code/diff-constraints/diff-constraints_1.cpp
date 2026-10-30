@@ -53,7 +53,7 @@ int main() {
           vis[e[i].v] = 1;
           q.push(e[i].v);
           tot[e[i].v]++;
-          if (tot[e[i].v] >= n) {
+          if (tot[e[i].v] >= n + 1) {
             cout << "No\n";
             return 0;
           }
