@@ -1,0 +1,78 @@
+<svg width="800" height="480" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>Layer 1</title>
+  <ellipse ry="40" rx="34" id="svg_1" cy="56" cx="119" stroke="#000" fill="#fff"/>
+  <path id="svg_3" d="m270,99c-18.78453,0 -34,-17.90055 -34,-40c0,-22.09945 15.21547,-40 34,-40c18.78453,0 34,17.90055 34,40c0,22.09945 -15.21547,40 -34,40z" opacity="undefined" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_4" cy="61" cx="427" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_5" cy="57" cx="580" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_6" cy="431" cx="117" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_7" cy="431" cx="272" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_8" cy="433" cx="429" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_9" cy="433" cx="578" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_53" cy="200" cx="139" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_54" cy="200" cx="302" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_55" cy="315" cx="389" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_56" cy="323" cx="551" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_57" cy="312" cx="57" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_58" cy="314" cx="224" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_59" cy="205" cx="466" stroke="#000" fill="#fff"/>
+  <ellipse ry="40" rx="34" id="svg_60" cy="206" cx="633" stroke="#000" fill="#fff"/>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_62" y="65" x="111" stroke="#000" fill="#000000">1</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_64" y="71" x="268" stroke="#000" fill="#000000">2</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_65" y="69" x="427" stroke="#000" fill="#000000">3</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_66" y="61" x="578" stroke="#000" fill="#000000">4</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_67" y="433" x="113" stroke="#000" fill="#000000">5</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_68" y="433" x="271" stroke="#000" fill="#000000">6</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_69" y="431" x="428" stroke="#000" fill="#000000">7</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_70" y="438" x="573" stroke="#000" fill="#000000">8</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_71" y="312" x="43" stroke="#000" fill="#000000">P5</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_72" y="206" x="129" stroke="#000" fill="#000000">S5</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_73" y="314" x="208" stroke="#000" fill="#000000">P6</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_74" y="210" x="288" stroke="#000" fill="#000000">S6</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_75" y="320" x="378" stroke="#000" fill="#000000">P7</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_76" y="209" x="452" stroke="#000" fill="#000000">S7</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_77" y="325" x="531" stroke="#000" fill="#000000">P8</text>
+  <text xml:space="preserve" text-anchor="start" font-family="Noto Sans JP" font-size="24" stroke-width="0" id="svg_78" y="207" x="617" stroke="#000" fill="#000000">S8</text>
+  <line id="svg_79" y2="402" x2="90" y1="352" x1="51" stroke="#000" fill="none"/>
+  <line id="svg_80" y2="392" x2="128" y1="240" x1="138" stroke="#000" fill="none"/>
+  <line id="svg_81" y2="402" x2="248" y1="354" x1="231" stroke="#000" fill="none"/>
+  <line id="svg_82" y2="396" x2="289" y1="240" x1="306" stroke="#000" fill="none"/>
+  <line id="svg_83" y2="405" x2="400" y1="353" x1="379" stroke="#000" fill="none"/>
+  <line id="svg_84" y2="396" x2="444" y1="248" x1="469" stroke="#000" fill="none"/>
+  <line id="svg_85" y2="398" x2="559" y1="362" x1="546" stroke="#000" fill="none"/>
+  <line id="svg_86" y2="400" x2="601" y1="246" x1="636" stroke="#000" fill="none"/>
+  <line id="svg_87" y2="198" x2="267" y1="196" x1="175" stroke="#000" fill="none"/>
+  <line id="svg_88" y2="200" x2="431" y1="199" x1="336" stroke="#000" fill="none"/>
+  <line id="svg_89" y2="202" x2="598" y1="201" x1="502" stroke="#000" fill="none"/>
+  <line id="svg_90" y2="311" x2="189" y1="311" x1="91" stroke="#000" fill="none"/>
+  <line id="svg_91" y2="312" x2="353" y1="313" x1="259" stroke="#000" fill="none"/>
+  <line id="svg_92" y2="318" x2="516" y1="316" x1="423" stroke="#000" fill="none"/>
+  <line id="svg_95" y2="168" x2="277" y1="92" x1="145" stroke="#000" fill="none"/>
+  <line id="svg_96" y2="309" x2="92" y1="100" x1="267" stroke="#000" fill="none"/>
+  <line id="svg_97" y2="175" x2="447" y1="96" x1="289" stroke="#000" fill="none"/>
+  <line id="svg_98" y2="298" x2="259" y1="99" x1="419" stroke="#000" fill="none"/>
+  <line id="svg_99" y2="175" x2="608" y1="96" x1="446" stroke="#000" fill="none"/>
+  <line id="svg_100" y2="293" x2="427" y1="98" x1="576" stroke="#000" fill="none"/>
+  <path d="m271,153c0,1 0,3 2,5c1,1 1.69254,3.186 3,5c0.8269,1.14726 2,2 2,4c0,1 -0.61731,1.07613 -1,2c-0.5412,1.30656 -1.29291,1.29289 -2,2c-0.70709,0.70711 -1.69345,0.4588 -3,1c-0.92389,0.38269 -2,1 -3,1l-1,0l0,1l-1,0" id="svg_101" stroke="#000" fill="none"/>
+  <path d="m94,296c0,1 -1,2 -1,4c0,1 0,2 0,3c0,1 0,2 0,4c0,1 1,1 3,1l2,1l4,1l4,0" id="svg_102" stroke="#000" fill="none"/>
+  <path d="m71,398c1,0 1.61732,0.07611 2,1c0.5412,1.30655 4.07689,1.73145 8,3c5.12395,1.65686 9,3 10,3c1,0 1,-1 1,-4c0,-7 1,-14 2,-19l0,-1l1,-1l0,-1" id="svg_106" stroke="#000" fill="none"/>
+  <path d="m111,300c-1,0 -1.85273,0.1731 -3,1c-1.814,1.30746 -3.48531,2.85114 -8,5c-3.72291,1.772 -6,1 -7,2c-1,1 -2,1 -2,2c0,1 0.09789,3.82443 2,5c0.85065,0.52573 2,2 3,3c1,1 3,3 4,4l2,0l1,2l1,0" id="svg_107" stroke="#000" fill="none"/>
+  <path d="m273,301c-1,0 -1.61731,1.07611 -2,2c-0.5412,1.30655 -2,1 -2,2c0,2 -1,3 -2,4c-1,1 -1.29291,1.29291 -2,2c-0.70709,0.70709 -1.29291,0.29291 -2,1c-0.70709,0.70709 -0.69345,1.4588 -2,2c-0.92389,0.38269 -1.4588,0.69345 -2,2c-0.38269,0.92389 2.4588,1.69345 3,3c0.38269,0.92389 2,2 3,3c1,1 2,1 3,2l1,1" id="svg_109" stroke="#000" fill="none"/>
+  <path d="m438,304c0,-1 -1.29291,-1.70709 -2,-1c-0.70709,0.70709 -1,1 -2,2c-1,1 -2.15225,2.23462 -4,3c-1.30655,0.5412 -2.29291,1.29291 -3,2c-0.70709,0.70709 -1.29291,1.29291 -2,2c-0.70709,0.70709 -0.29291,1.29291 -1,2c-0.70709,0.70709 -0.29291,1.29291 -1,2c-0.70709,0.70709 -0.30655,2.4588 1,3c0.92389,0.38269 2.4588,0.69345 3,2c0.38269,0.92389 1,1 2,2l1,0l1,1l0,1" id="svg_110" stroke="#000" fill="none"/>
+  <path d="m543,381c0,1 0,2 1,3c1,1 0.85272,2.1731 2,3c1.81396,1.30746 3.07611,1.61731 4,2c1.30658,0.5412 1.58582,0.58578 3,2c0.70709,0.70709 0.47424,1.14935 1,2c1.1756,1.9021 2.48627,1.82376 3,4c0.22974,0.97324 0.29291,2.29291 1,3c0.70709,0.70709 1.4588,-1.69345 2,-3c1.91339,-4.61938 0.54047,-8.0535 1,-10c0.51373,-2.17624 1,-3 2,-4l1,-1l0,-1" id="svg_111" stroke="#000" fill="none"/>
+  <path d="m595,382c1,1 1.48627,1.82376 2,4c0.22974,0.97324 0.48627,3.82376 1,6c0.22974,0.97324 1,2 1,3c0,1 0,2 0,3c0,1 1,2 1,3c0,1 0,2 1,2c1,0 2,0 6,-2c4,-2 10,-4 14,-5l4,-1l0,-1" id="svg_112" stroke="#000" fill="none"/>
+  <path d="m387,396c1,0 2,0 5,1c3,1 4.07611,1.61731 5,2c1.30655,0.5412 1.69345,1.4588 3,2c0.92389,0.38269 1.70438,-2.01459 2,-5c0.50244,-5.07422 2.23462,-9.15225 3,-11c0.5412,-1.30655 2,-1 3,-2l0,-1" id="svg_114" stroke="#000" fill="none"/>
+  <path d="m435,380c0,1 0.1731,1.85272 1,3c2.6149,3.62799 2.1731,6.85272 3,8c1.30746,1.814 1.23462,2.15225 2,4c0.5412,1.30655 1.69345,2.4588 3,3c0.92389,0.38269 2,1 3,1c1,0 0.67963,-1.02582 1,-3c0.50653,-3.12143 2.3851,-5.37201 5,-9c1.65381,-2.29453 7,-4 10,-6l1,-2" id="svg_115" stroke="#000" fill="none"/>
+  <path d="m282,377c0,1 1,2 1,3c0,1 1,2 1,4c0,1 0.48627,1.82376 1,4c0.22977,0.97324 0.77023,2.02676 1,3c0.51373,2.17624 2,3 2,4c0,1 1.4588,2.30655 2,1c0.38269,-0.92389 0.07764,-3.55801 4,-9c4.13452,-5.73636 9,-7 10,-7l0,-1l0,-1" id="svg_116" stroke="#000" fill="none"/>
+  <path d="m226,391c1,0 1.29289,0.29291 2,1c0.70711,0.70709 1,1 3,2c2,1 6,2 10,4c2,1 4.02675,1.77023 5,2c2.17625,0.51373 2.87782,0.99249 3,0c0.50377,-4.09222 2.98163,-9.71201 4,-15c0.37822,-1.9639 -0.22975,-3.02676 0,-4c0.51375,-2.17624 3,-3 3,-4l0,-1" id="svg_117" stroke="#000" fill="none"/>
+  <path d="m116,372c1,1 1,2 2,4c1,2 2,2 2,3c0,1 1.48626,2.82376 2,5c0.22975,0.97324 0,2 0,3c0,1 1.4588,1.69345 2,3c0.76537,1.84775 1.4588,1.69345 2,3c0.38268,0.92389 1,1 2,2c1,1 2.29289,1.70709 3,1c1.41422,-1.41422 1.05682,-2.94623 2,-4c4.27039,-4.77115 7.64746,-13.86551 18,-17c3.82837,-1.15915 6.29289,-0.29291 7,-1c0.70711,-0.70709 0,-2 0,-3l-2,-6" id="svg_118" stroke="#000" fill="none"/>
+  <path d="m257,278c0,1 0,2 0,3c0,1 -1,4 -1,6c0,2 0.76538,3.15225 0,5c-0.5412,1.30655 -1,2 -1,3c0,1 -0.38269,2.07611 0,3c0.5412,1.30655 2,1 3,1c1,0 2,0 3,0l3,0l2,0l1,0" id="svg_119" stroke="#000" fill="none"/>
+  <path d="m424,282c0,1 1,2 1,3c0,1 0.48627,2.82376 1,5c0.68927,2.91974 -0.70709,4.29291 0,5c0.70709,0.70709 2.29291,0.70709 3,0c0.70709,-0.70709 2,-1 3,-2l1,-1l1,-1l0,-1" id="svg_120" stroke="#000" fill="none"/>
+  <path d="m578,189c2,0 2.85272,1.1731 4,2c1.81396,1.30745 2.69257,2.186 4,4c0.8269,1.14726 3.48627,2.82375 4,5c0.22974,0.97325 0.29291,1.29289 1,2c0.70709,0.70711 2.18604,-0.30745 4,1c1.14728,0.8269 3,1 2,1c-1,0 -2.07611,0.61731 -3,1c-1.30658,0.5412 -4,2 -8,4l-2,3l-2,2l0,1" id="svg_121" stroke="#000" fill="none"/>
+  <path d="m418,187c0,1 -0.30655,2.4588 1,3c0.92389,0.38269 1.85272,1.1731 3,2c1.814,1.30745 3.82376,3.48625 6,4c0.97324,0.22975 2,1 2,2c0,1 -0.61731,1.07613 -1,2c-0.5412,1.30656 -1.38687,1.9176 -4,3c-0.92389,0.38269 -2.88153,1.19028 -6,3c-5.802,3.36703 -7,4 -9,4l0,1" id="svg_122" stroke="#000" fill="none"/>
+  <path d="m259,185c0,1 2,2 3,3c1,1 2,2 3,3c1,1 2,2 2,3c0,1 -1.14935,1.47427 -2,2c-1.9021,1.17557 -2,2 -3,3c-3,3 -6,4 -7,5l-1,0" id="svg_123" stroke="#000" fill="none"/>
+  <path d="m441,151c0,1 0,2 0,3c0,2 0,4 1,7c1,3 1,4 1,5c0,1 1,2 1,3c0,1 0.70709,2.29289 0,3c-0.70709,0.70711 -2,0 -3,0c-1,0 -2,0 -3,0c-2,0 -3.186,-0.30745 -5,1c-1.14728,0.8269 -2.15225,0.23463 -4,1c-1.30655,0.5412 -2,1 -3,2c-1,1 -2,1 -2,2l-1,0" id="svg_124" stroke="#000" fill="none"/>
+  <path d="m605,160c0,-1 0,1 0,2c0,1 1.48627,3.82375 2,6c0.22974,0.97325 1.4588,1.69344 2,3c0.38269,0.92387 0.48627,1.82375 1,4c0.22974,0.97325 0,2 -1,2c-1,0 -2,0 -3,0c-2,0 -3.94672,0.49873 -11,1c-6.98236,0.49622 -15,0 -17,0l-1,0" id="svg_125" stroke="#000" fill="none"/>
+ </g>
+</svg>
