@@ -39,7 +39,7 @@ $lx(i) = \max_{1\leq j\leq n} \{ w(i, j)\},\, ly(i) = 0$
 
 令 $S$，$T$ 表示二分图左边右边在交错树中的点，$S'$，$T'$ 表示不在交错树中的点．
 
-![bigraph-weight-match-1](./images/bigraph-weight-match-1.png)
+![bigraph-weight-match-1](./images/bigraph-weight-match-1.svg)
 
 在相等子图中：
 

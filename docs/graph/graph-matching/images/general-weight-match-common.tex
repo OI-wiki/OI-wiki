@@ -1,0 +1,43 @@
+% Shared source for the nested-blossom figures in general-weight-match.md.
+% Figures 2 and 4 show the same state; figures 3 and 5 show its rotated state.
+% Regenerate each numbered file with latex and dvisvgm as documented in
+% graph-matching-common.tex.
+\input{graph-matching-common.tex}
+\newcommand{\NestedBlossom}[1]{%
+  \begin{tikzpicture}[diagram]
+    \foreach \id/\px/\py in {12/5/3,2/22/12,3/42/6,4/58/10,
+        5/60/41,6/68/55,8/54/57,9/25/65,10/14/48,11/9/29}
+      \coordinate (n\id) at (\px,\py);
+    \ifnum#1=0
+      \coordinate (n7) at (76,71);
+    \else
+      \coordinate (n7) at (5,78);
+    \fi
+    \draw[black!75] (40,40) circle[radius=40mm];
+    \draw[black!75] (60,51) circle[radius=14.5mm];
+    % Highlight the stored traversal of each blossom, underneath its edges.
+    \ifnum#1=0
+      % flower[b2] = {b1,4,3,2,11,10,9}; flower[b1] = {6,5,8}.
+      \draw[yellow,line width=3.2mm] (n2) -- (n11) -- (n10) -- (n9) -- (n8);
+      \draw[green,line width=3.2mm] (n8) -- (n5) -- (n6);
+    \else
+      % flower[b2] = {9,b1,4,3,2,11,10}; flower[b1] = {5,8,6}.
+      \draw[yellow,line width=3.2mm] (n2) -- (n3) -- (n4) -- (n5);
+      \draw[yellow,line width=3.2mm] (n9) -- (n8);
+      \draw[cyan,line width=3.2mm] (n5) -- (n6) -- (n8);
+    \fi
+    \foreach \a/\b in {12/2,2/3,3/4,4/5,5/6,6/8,8/5,8/9,9/10,10/11,11/2}
+      \draw (n\a) -- (n\b);
+    \ifnum#1=0
+      \foreach \a/\b in {2/11,3/4,5/8,6/7,9/10}
+        \draw[matching,matchred] (n\a) -- (n\b);
+    \else
+      \foreach \a/\b in {2/3,4/5,6/8,9/7,10/11}
+        \draw[matching,matchred] (n\a) -- (n\b);
+    \fi
+    \foreach \id in {2,3,4,5,6,7,8,9,10,11,12}
+      \node[vertex,minimum size=6mm,font=\large] at (n\id) {$\id$};
+    \node[label,text=matchred,font=\large] at (69,44) {$b_1$};
+    \node[label,text=matchred,font=\large] at (73,25) {$b_2$};
+  \end{tikzpicture}%
+}

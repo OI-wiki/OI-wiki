@@ -18,13 +18,38 @@ jobs:
         with:
           fetch-depth: 2
           ref: ${{ github.event.pull_request.head.sha }}
+      - name: Check for changes in workflow files and runtime dependencies
+        id: changed-workflow-files
+        uses: tj-actions/changed-files@v47
+        with:
+          files: |
+            .github/workflows/check-characters.yml
+            scripts/check-characters.py
+            scripts/char-map.json
       - name: Get Changed Files
-        id: changed-files
+        id: changed-docs-files
         uses: tj-actions/changed-files@v47
         with:
           files: |
             docs/**/*.md
             docs/**/*.tex
+      - name: Determine if a full test is needed
+        id: changed-files
+        shell: bash
+        run: |
+          if [[ "${{ steps.changed-workflow-files.outputs.any_modified }}" == "true" ]]; then
+            echo "Full test triggered. Listing all docs files matching the glob..."
+            # 用 git ls-files 列出所有被版本控制跟踪、且匹配 glob 的文件
+            FILES=$(git ls-files -- 'docs/*.md' 'docs/**/*.md' 'docs/*.tex' 'docs/**/*.tex' 2>/dev/null | paste -sd ' ' -)
+            echo "any_changed=true" >> "$GITHUB_OUTPUT"
+            echo "all_changed_files=${FILES}" >> "$GITHUB_OUTPUT"
+            echo "mode=full" >> "$GITHUB_OUTPUT"
+          else
+            echo "Partial test. Using changed docs files only..."
+            echo "any_changed=${{ steps.changed-docs-files.outputs.any_changed }}" >> "$GITHUB_OUTPUT"
+            echo "all_changed_files=${{ steps.changed-docs-files.outputs.all_changed_files }}" >> "$GITHUB_OUTPUT"
+            echo "mode=partial" >> "$GITHUB_OUTPUT"
+          fi
       - name: Setup Python
         if: steps.changed-files.outputs.any_changed == 'true'
         uses: actions/setup-python@v6

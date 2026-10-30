@@ -102,7 +102,7 @@ $x_e=1$ 的边是匹配边，$x_e=0$ 的边是非匹配边．和二分图一样�
 3.  SHRINK（缩花）：把花缩成一个点．
 4.  EXPAND（展开）：把花拆开．
 
-![general-weight-match-1](images/general-weight-match-1.png)
+![general-weight-match-1](images/general-weight-match-1.svg)
 
 在 AUGMENT 阶段时，因为所有未匹配点都会在不同的交错树上，所以当增广时两棵交错树的偶点连在一起，就表示找到了一条增广路．
 
@@ -187,7 +187,7 @@ vertex labeling 为 $0$ 的点最后将成为未匹配点．
 
 下面是嵌套花的例子．
 
-![general-weight-match-2](images/general-weight-match-2.png)
+![general-weight-match-2](images/general-weight-match-2.svg)
 
 其中 $\{ 6, 5, 8\} \in b1,\{ b1, 4, 3, 2, 11, 10, 9\} \in b2$．存储为：
 
@@ -196,7 +196,7 @@ flower[b2] = {b1, 4, 3, 2, 11, 10, 9}
 flower[b1] = {6, 5, 8}
 ```
 
-![general-weight-match-3](images/general-weight-match-3.png)
+![general-weight-match-3](images/general-weight-match-3.svg)
 
 ```text
 flower[b2] = {9, b1, 4, 3, 2, 11, 10} 
@@ -223,7 +223,7 @@ queue<int> q;
 // BFS找增广路用的queue
 ```
 
-![general-weight-match-4](images/general-weight-match-4.png)
+![general-weight-match-4](images/general-weight-match-4.svg)
 
 ```text
 flower_from[b2][6] = b1 
@@ -299,7 +299,7 @@ int get_pr(int b, int xr) {
 }
 ```
 
-![general-weight-match-5](images/general-weight-match-5.png)
+![general-weight-match-5](images/general-weight-match-5.svg)
 
 如果使用 `get_pr(b2,11)`，`flower[b2]` 会变成 `{9,10,11,2,3,4,b1}`，并返回 2．
 

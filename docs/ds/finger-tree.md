@@ -28,15 +28,15 @@ author: isdanni
 
 我们将从平衡 2-3 树开始这个过程．为了使手指树正常工作，所有的叶节点需要是水平的．如下图所示（图片取自手指树论文）：
 
-![](./images/finger-tree-1.png)
+![](./images/finger-tree-1.svg)
 
 手指是「一种结构，可以有效地访问靠近特定位置的树的节点．」要制作手指树，我们需要将手指放在树的左右两端，取树的最左边和最右边的内部节点并将它们拉起来，使树的其余部分悬在它们之间，这为我们提供了对序列末尾的均摊常量访问时间．
 
-![](./images/finger-tree-2.png)
+![](./images/finger-tree-2.svg)
 
 这种新的数据结构被称为手指树．手指树由沿其树脊（棕色线）分布的几层（下方蓝色框）组成：
 
-![](./images/finger-tree-3.png)
+![](./images/finger-tree-3.svg)
 
 ```haskell
 data FingerTree a = Empty

@@ -14,7 +14,7 @@ A：爬山算法的优势在于当正解的写法你并不了解（常见于毒�
 
 但是对于多数需要求解的函数，爬山算法很容易进入一个局部最优解，如下图（最优解为 $\color{green}{\Uparrow}$，而爬山算法可能找到的最优解为 $\color{red}{\Downarrow}$）．
 
-![](./images/hill-climbing.png)
+![](./images/hill-climbing.svg)
 
 ## 具体实现
 

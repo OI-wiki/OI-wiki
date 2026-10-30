@@ -1,0 +1,22 @@
+% Finally include both root-cluster endpoints d and k in the Compress Tree.
+% Regeneration commands are in top-tree-common.tex.
+\input{top-tree-common.tex}
+\begin{document}
+\begin{tikzpicture}[top tree]
+  \foreach \id/\x/\y in {k/82/0,c/48/18,d/8/40,j/130/50,h/110/77,
+      b/48/84,a/56/104,e/75/104,i/110/141,f/94/165,g/145/154}
+    \node[compress] (\id) at (\x,\y) {$N_{\id}$};
+  \foreach \id/\x/\y in {cd/18/62,jk/155/77,ch/97/98,jh/123/98,
+      bc/30/104,ab/43/124,ce/75/124,ih/104/165,fh/82/187,jg/133/179}
+    \node[cluster] (\id) at (\x,\y) {$\id$};
+  \node[rake] (alpha) at (48,50) {$\alpha$};
+  \node[rake] (beta) at (75,66) {$\beta$};
+  \node[rake] (delta) at (110,118) {$\delta$};
+  \node[rake] (nu) at (94,141) {$\nu$};
+  \node[rake] (epsilon) at (145,122) {$\varepsilon$};
+  \foreach \parent/\child in {k/c,c/d,d/cd,c/alpha,c/j,j/h,j/epsilon,j/jk,
+      h/ch,h/delta,h/jh,alpha/b,alpha/beta,b/bc,b/a,a/ab,
+      beta/e,e/ce,delta/nu,delta/i,nu/f,f/fh,i/ih,epsilon/g,g/jg}
+    \draw (\parent) -- (\child);
+\end{tikzpicture}
+\end{document}

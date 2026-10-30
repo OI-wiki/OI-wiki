@@ -1,0 +1,24 @@
+% Regenerate with latex and dvisvgm; see graph-matching-common.tex.
+\input{graph-matching-common.tex}
+\begin{document}
+\begin{tikzpicture}[diagram]
+  % S and T are the two sides of the alternating tree. The remaining
+  % vertices form S' and T'. Thick edges are the current matching.
+  \foreach \i in {1,...,6} {
+    \node[vertex] (l\i) at (0,12*\i) {};
+    \node[vertex] (r\i) at (40,12*\i) {};
+  }
+  \draw (l1) -- (r1) (l1) -- (r2) (l3) -- (r1)
+    (l4) -- (r3) (l5) -- (r3);
+  \draw[matching] (l2) -- (r1) (l3) -- (r3) (l4) -- (r2)
+    (l5) -- (r4) (l6) -- (r5);
+  \draw[matchblue,line width=.8pt] (-5,7) rectangle (5,53);
+  \draw[matchblue,line width=.8pt] (35,7) rectangle (45,41);
+  \node[label,text=matchred,left] at (-6,8) {$S$};
+  \node[label,text=matchred,left] at (34,8) {$T$};
+  \node[label,text=matchred,left] at (-6,58) {$S'$};
+  \node[label,text=matchred,left] at (34,46) {$T'$};
+  \node[label,text=black!65,left] at (-6,24) {$-a$};
+  \node[label,text=black!65,left] at (34,24) {$+a$};
+\end{tikzpicture}
+\end{document}

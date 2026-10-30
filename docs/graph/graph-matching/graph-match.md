@@ -47,7 +47,7 @@ author: 310552025atNYCU, accelsao, Chrogeek, Enter-tainer, iamtwz, mcendu, Shen-
 
 下图展示了在一次增广操作后，匹配数量由 $2$ 增加为 $3$ 的过程．
 
-![augment-1](./images/augment-1.png)
+![augment-1](./images/augment-1.svg)
 
 ### Berge 引理
 

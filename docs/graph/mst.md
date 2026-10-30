@@ -541,7 +541,7 @@ $$
 
 例如下图：
 
-![](./images/mst5.png)
+![](./images/mst-5.svg)
 
 1 到 4 的最小瓶颈路显然有以下两条：1-2-3-4．1-3-4．
 
@@ -569,11 +569,11 @@ $$
 
 举个例子：
 
-![](./images/mst5.png)
+![](./images/mst-5.svg)
 
 这张图的 Kruskal 重构树如下：
 
-![](./images/mst6.png)
+![](./images/mst-6.svg)
 
 ### 性质
 

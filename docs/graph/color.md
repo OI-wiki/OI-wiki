@@ -58,9 +58,7 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 
 示例如下：
 
-![Original](images/color1.png)
-
-（由 [Graph Editor](https://csacademy.com/app/graph_editor/) 生成）
+![Original](images/color-1.svg)
 
 我们先对点按度数降序排序，得：
 
@@ -76,17 +74,17 @@ $\deg(v_i)\geq\deg(v_{i+1}),~\forall 1\leq i\leq n-1$
 
 -   第一次染色：
 
-    ![Colored 1](images/color2.png)
+    ![Colored 1](images/color-2.svg)
 
     染 `4 9 3 11` 号点．
 -   第二次染色：
 
-    ![Colored 2](images/color3.png)
+    ![Colored 2](images/color-3.svg)
 
     染 `5 2 6 7 8` 号点．
 -   第三次染色：
 
-    ![Colored 3](images/color4.png)
+    ![Colored 3](images/color-4.svg)
 
     染 `0 1 10 12` 号点．
 

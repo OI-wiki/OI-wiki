@@ -9,8 +9,8 @@ on:
       - master
 
 jobs:
-  correctness:
-    name: OI-wiki Offline Test
+  file-list:
+    name: Make File List
     runs-on: ubuntu-latest
     outputs:
       any_changed: ${{ steps.changed-files.outputs.any_changed }}
@@ -19,14 +19,40 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+      - name: Check for changes in workflow files and runtime dependencies
+        id: changed-workflow-files
+        uses: tj-actions/changed-files@v47
+        with:
+          files: |
+            .github/workflows/test.yml
+            scripts/get_files_to_test.py
+            scripts/correctness_check.py
+            scripts/ub-check.py
       - name: Get changed code files
-        id: changed-files
+        id: changed-code-files
         uses: tj-actions/changed-files@v47
         with:
           files: |
             docs/**/*.cpp
             docs/**/*.in
             docs/**/*.ans
+      - name: Determine if a full test is needed
+        id: changed-files
+        shell: bash
+        run: |
+          if [[ "${{ steps.changed-workflow-files.outputs.any_modified }}" == "true" ]]; then
+            echo "Full test triggered. Listing all docs files matching the glob..."
+            # 用 git ls-files 列出所有被版本控制跟踪、且匹配 glob 的文件
+            FILES=$(git ls-files -- 'docs/*.cpp' 'docs/**/*.cpp' 'docs/*.in' 'docs/**/*.in' 'docs/*.ans' 'docs/**/*.ans' 2>/dev/null | paste -sd ' ' -)
+            echo "any_changed=true" >> "$GITHUB_OUTPUT"
+            echo "all_changed_files=${FILES}" >> "$GITHUB_OUTPUT"
+            echo "mode=full" >> "$GITHUB_OUTPUT"
+          else
+            echo "Partial test. Using changed code files only..."
+            echo "any_changed=${{ steps.changed-code-files.outputs.any_changed }}" >> "$GITHUB_OUTPUT"
+            echo "all_changed_files=${{ steps.changed-code-files.outputs.all_changed_files }}" >> "$GITHUB_OUTPUT"
+            echo "mode=partial" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-python@v6
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
@@ -39,32 +65,45 @@ jobs:
       - name: Install Python dependencies
         if: steps.changed-files.outputs.any_changed == 'true'
         run: uv sync
-      - name: Install C++
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y g++
-      - name: Make the File list
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: echo "${{ steps.changed-files.outputs.all_changed_files }}" > res.txt
       - name: Get Files to Test
         if: steps.changed-files.outputs.any_changed == 'true'
         id: GetFiles
+        env:
+          all_changed_files: ${{ steps.changed-files.outputs.all_changed_files }}
         run: uv run python scripts/get_files_to_test.py
+
+  cpp-correctness:
+    name: OI-wiki C++ Offline Test
+    needs: file-list
+    if: ${{ needs.file-list.outputs.any_changed == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.10'
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8.1.0
+        with:
+          version: "latest"
+      - name: Install Python dependencies
+        run: uv sync
+      - name: Install C++
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++
       - name: Correctness Check
-        if: steps.changed-files.outputs.any_changed == 'true'
         env: 
-          FILES_TO_TEST: ${{ steps.GetFiles.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
         run: uv run python scripts/correctness_check.py
 
   undefinedbehaviors-ubuntu:
     name: UB Check - x86_64 Ubuntu
-    needs: correctness
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    needs: [file-list, cpp-correctness]
     runs-on: ubuntu-latest
     container: ghcr.io/trickeye/ubuntu_gcc1x:clang
-    outputs:
-      output: ${{ steps.set-output.outputs.output }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -75,18 +114,15 @@ jobs:
           apt-get install -y g++-9
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
           RUNS_ON: x86_64 Ubuntu
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
 
   undefinedbehaviors-macos:
     name: UB Check - Arm64 MacOS
-    needs: correctness
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    needs: [file-list, cpp-correctness]
     runs-on: macos-latest
-    outputs:
-      output: ${{ steps.set-output.outputs.output }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -101,18 +137,15 @@ jobs:
           echo "::endgroup::"
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
           RUNS_ON: arm64 MacOS
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
 
   undefinedbehaviors-rv:
     name: UB Check - RISC-V Ubuntu
-    needs: correctness
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    needs: [file-list, cpp-correctness]
     runs-on: ubuntu-latest
-    outputs:
-      output: ${{ steps.set-output.outputs.output }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -125,7 +158,7 @@ jobs:
             --volume $PWD:$PWD \
             --volume $GITHUB_STEP_SUMMARY:$GITHUB_STEP_SUMMARY \
             --workdir $PWD \
-            --env FILES_TO_TEST="${{ needs.correctness.outputs.files_to_test }}" \
+            --env FILES_TO_TEST="${{ needs.file-list.outputs.files_to_test }}" \
             --env RUNS_ON="riscv64 Ubuntu" \
             --env PYTHONIOENCODING="UTF-8" \
             --env GITHUB_STEP_SUMMARY=$GITHUB_STEP_SUMMARY \
@@ -148,11 +181,8 @@ jobs:
 
   undefinedbehaviors-windows:
     name: UB Check - x86_64 Windows
-    needs: correctness
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    needs: [file-list, cpp-correctness]
     runs-on: windows-2025
-    outputs:
-      output: ${{ steps.set-output.outputs.output }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -185,7 +215,7 @@ jobs:
           echo ::endgroup::
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
           RUNS_ON: x86_64 Windows
           PYTHONIOENCODING: UTF-8
           VSINSTALL: ${{ steps.check-compiler-version.outputs.VSINSTALL }}
@@ -193,14 +223,10 @@ jobs:
           chcp 65001
           python scripts/ub-check.py
 
-
   undefinedbehaviors-alpine:
     name: UB Check - x86_64 Alpine
-    needs: correctness
-    if: ${{ needs.correctness.outputs.any_changed == 'true' }}
+    needs: [file-list, cpp-correctness]
     runs-on: ubuntu-latest
-    outputs:
-      output: ${{ steps.set-output.outputs.output }}
     container: alpine:latest
     steps:
       - uses: actions/checkout@v6
@@ -219,7 +245,31 @@ jobs:
           echo "::endgroup::"
       - name: Undefined Behaviors Check
         env: 
-          FILES_TO_TEST: ${{ needs.correctness.outputs.files_to_test }}
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
           RUNS_ON: x86_64 Alpine
           PYTHONIOENCODING: UTF-8
         run: python3 scripts/ub-check.py
+
+  offline-test-summary:
+    name: OI-wiki Offline Test
+    needs: [file-list, cpp-correctness]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check upstream result
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const results = {
+              'file-list':       '${{ needs.file-list.result }}',
+              'cpp-correctness': '${{ needs.cpp-correctness.result }}',
+            };
+
+            const bad = [];
+            for (const name in results) {
+              if (!['success', 'skipped'].includes(results[name])) {
+                bad.push(`${name}: ${results[name]}`);
+              }
+            }
+
+            if (bad.length) core.setFailed(bad.join(', '));

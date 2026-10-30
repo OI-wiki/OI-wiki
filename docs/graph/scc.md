@@ -1,3 +1,5 @@
+author: haloneko
+
 ## 简介
 
 在阅读下列内容之前，请务必了解 [图论相关概念](./concept.md) 中的基础部分．
@@ -119,11 +121,12 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
 
 === "Python"
     ```python
+    N = 100005
     dfn = [0] * N
     low = [0] * N
     dfncnt = 0
     s = [0] * N
-    in_stack = [0] * N
+    in_stack = [False] * N
     tp = 0
     scc = [0] * N
     sc = 0  # 结点 i 所在 SCC 的编号
@@ -131,15 +134,16 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
     
     
     def tarjan(u):
-        low[u] = dfn[u] = dfncnt
-        s[tp] = u
-        in_stack[u] = 1
+        global dfncnt, tp, sc
         dfncnt = dfncnt + 1
+        low[u] = dfn[u] = dfncnt
         tp = tp + 1
+        s[tp] = u
+        in_stack[u] = True
         i = h[u]
         while i:
             v = e[i].t
-            if dfn[v] == False:
+            if dfn[v] == 0:
                 tarjan(v)
                 low[u] = min(low[u], low[v])
             elif in_stack[v]:
@@ -147,15 +151,14 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
             i = e[i].nex
         if dfn[u] == low[u]:
             sc = sc + 1
-            while s[tp] != u:
-                scc[s[tp]] = sc
+            while True:
+                x = s[tp]
+                scc[x] = sc
                 sz[sc] = sz[sc] + 1
-                in_stack[s[tp]] = 0
+                in_stack[x] = False
                 tp = tp - 1
-            scc[s[tp]] = sc
-            sz[sc] = sz[sc] + 1
-            in_stack[s[tp]] = 0
-            tp = tp - 1
+                if x == u:
+                    break
     ```
 
 时间复杂度 $O(n + m)$．
@@ -217,10 +220,18 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
 
 === "Python"
     ```python
+    # g 是原图，g2 是反图
+    N = 100005
+    vis = [False] * N
+    color = [0] * N
+    s = []  # 后序遍历
+    sccCnt = 0
+    
+    
     def dfs1(u):
         vis[u] = True
         for v in g[u]:
-            if vis[v] == False:
+            if not vis[v]:
                 dfs1(v)
         s.append(u)
     
@@ -228,17 +239,18 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
     def dfs2(u):
         color[u] = sccCnt
         for v in g2[u]:
-            if color[v] == False:
+            if color[v] == 0:
                 dfs2(v)
     
     
-    def kosaraju(u):
+    def kosaraju():
+        global sccCnt
         sccCnt = 0
         for i in range(1, n + 1):
-            if vis[i] == False:
+            if not vis[i]:
                 dfs1(i)
-        for i in range(n - 1, -1, -1):
-            if color[s[i]] == False:
+        for i in range(len(s) - 1, -1, -1):
+            if color[s[i]] == 0:
                 sccCnt = sccCnt + 1
                 dfs2(s[i])
     ```
