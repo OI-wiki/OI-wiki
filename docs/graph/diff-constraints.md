@@ -70,8 +70,8 @@ author: Ir1d, Anguei, hsfzLZH1
             for i in range(0, n):
                 jud = False
                 for j in range(1, n + 1):
+                    k = h[j]
                     while ~k:
-                        k = h[j]
                         if dist[j] > dist[p[k]] + w[k]:
                             dist[j] = dist[p[k]] + w[k]
                             jud = True
@@ -79,8 +79,8 @@ author: Ir1d, Anguei, hsfzLZH1
                 if jud == False:
                     break
             for i in range(1, n + 1):
+                j = h[i]
                 while ~j:
-                    j = h[i]
                     if dist[i] > dist[p[j]] + w[j]:
                         return False
                     j = nxt[j]

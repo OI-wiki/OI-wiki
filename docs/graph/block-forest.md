@@ -101,8 +101,9 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
     === "Python"
         ```python
         def Tarjan(u):
-            low[u] = dfn[u] = dfc  # low 初始化为当前节点 dfn
+            global dfc
             dfc = dfc + 1
+            low[u] = dfn[u] = dfc  # low 初始化为当前节点 dfn
             for v in G[u]:  # 遍历 u 的相邻节点
                 if dfn[v] == False:  # 如果未访问过
                     Tarjan(v)  # 递归
