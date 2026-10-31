@@ -8,7 +8,7 @@ A(n, m) =
 \left\langle 
 \begin{matrix}
   n\\
-  m - 1
+  m
 \end{matrix}
 \right\rangle
 $$
@@ -41,9 +41,9 @@ $$
 
 可以通过递推或者递归的方法计算欧拉数．
 
-首先，当 $m \ge n$ 或 $n = 0$ 时，没有满足条件的排列，即此时欧拉数为 $0$．
+首先，当 $m = 0$ 时，只有降序的排列满足条件，即此时欧拉数为 $1$．$n = 0$ 时也是如此：唯一的空排列没有「上升」，所以 $A(0, 0) = 1$．
 
-其次，当 $m = 0$ 时，只有降序的排列满足条件，即此时欧拉数为 $1$．
+其次，当 $m \ge 1$ 且 $m \ge n$ 时，由于 $n$ 个元素的排列至多有 $n - 1$ 个「上升」，没有满足条件的排列，即此时欧拉数为 $0$．
 
 最后，考虑在 $n-1$ 的排列的基础上插入 $n$ 从而得到 $n$ 的排列，由于插入 $n$ 至多使欧拉数增加 $1$，所以 $A(n, m)$ 可以仅从 $A(n-1, m-1)$ 处和 $A(n-1, m)$ 处转移得到．
 
@@ -57,8 +57,8 @@ $$
 
 $$
 A(n, m) = \begin{cases}
-    0, & m > n \text{ or } n = 0, \\
     1, & m = 0, \\
+    0, & m \ge n \text{ and } m \ge 1, \\
     (n-m) \cdot A(n-1, m-1) + (m+1) \cdot A(n-1, m), & \text{otherwise}.
 \end{cases}
 $$
@@ -68,8 +68,8 @@ $$
 === "C++"
     ```cpp
     int eulerianNumber(int n, int m) {
-      if (m >= n || n == 0) return 0;
       if (m == 0) return 1;
+      if (m >= n || n == 0) return 0;
       return (((n - m) * eulerianNumber(n - 1, m - 1)) +
               ((m + 1) * eulerianNumber(n - 1, m)));
     }
@@ -78,10 +78,10 @@ $$
 === "Python"
     ```python
     def eulerianNumber(n, m):
-        if m >= n or n == 0:
-            return 0
         if m == 0:
             return 1
+        if m >= n or n == 0:
+            return 0
         return ((n - m) * eulerianNumber(n - 1, m - 1)) + (
             (m + 1) * eulerianNumber(n - 1, m)
         )
