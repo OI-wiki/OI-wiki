@@ -112,7 +112,8 @@ int main() {
   swap(x, y);
   assert(x == b && y == a);
 
-  for (int i = 0; i < 32; i++)
+  // 第 31 位为符号位，左移 31 位会溢出，故只演示低 31 位
+  for (int i = 0; i < 31; i++)
     std::cout << getBit(a, i) << ' ' << unsetBit(a, i) << ' ' << setBit(a, i)
               << ' ' << flapBit(a, i) << std::endl;
 

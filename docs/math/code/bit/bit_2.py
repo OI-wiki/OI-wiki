@@ -82,5 +82,6 @@ if __name__ == "__main__":
 
     print(int(isSameSign(a, b)))
 
-    for i in range(32):
+    # 第 31 位为符号位，左移 31 位会溢出，故只演示低 31 位
+    for i in range(31):
         print(f"{getBit(a, i)} {unsetBit(a, i)} {setBit(a, i)} {flapBit(a, i)}")
