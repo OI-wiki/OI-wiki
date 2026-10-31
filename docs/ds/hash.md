@@ -108,6 +108,7 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
     
     
     def add(key, value):
+        global size
         if get(key) != -1:
             return -1
         size = size + 1

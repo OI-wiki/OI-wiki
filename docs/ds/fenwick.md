@@ -985,6 +985,7 @@ $i$ 按照 $5 \to 1$ 扫：
         
         
         def reset():
+            global Tag
             Tag = Tag + 1
         
         
