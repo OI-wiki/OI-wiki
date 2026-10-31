@@ -131,7 +131,7 @@ using namespace __gnu_pbds;
 
 template <typename T>
 void print_invalidation_guarantee() {
-  using gute = __gnu_pbds::container_traits<T>::invalidation_guarantee;
+  using gute = typename __gnu_pbds::container_traits<T>::invalidation_guarantee;
   cout << abi::__cxa_demangle(typeid(gute).name(), 0, 0, 0) << endl;
 }
 
