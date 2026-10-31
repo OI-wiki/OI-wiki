@@ -43,7 +43,7 @@ author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, x
     using namespace std;
     constexpr int MAXN = 1000010;
     int n, m, a[MAXN], u[MAXN], x[MAXN], l[MAXN], r[MAXN], k[MAXN], cur, cur1, cur2,
-        q1[MAXN], q2[MAXN], v[MAXN];
+        q1[MAXN], q2[MAXN], q[MAXN], v[MAXN];
     char op[MAXN];
     set<int> ST;
     map<int, int> mp;
