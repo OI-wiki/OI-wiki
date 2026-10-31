@@ -29,7 +29,7 @@ def resolve_mainfiles(example_file):
     `docs/<...>/code/<topic>/foo.<extname>`, for every supported extension.
     """
     dirname = os.path.dirname(example_file)
-    basename = os.path.splitext(os.path.basename(example_file))[0]
+    basename = os.path.basename(example_file).split(".")[0]
     pos = dirname.rfind("/examples/")
     if pos == -1:
         return []
