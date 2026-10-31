@@ -110,12 +110,13 @@ $$
     dfn = [0] * MAXN
     idx = 0
     isbridge = [False] * MAXN
-    G = [[0 for i in range(MAXN)] for j in range(MAXN)]
+    G = [[] for i in range(MAXN)]
     cnt_bridge = 0
     father = [0] * MAXN
     
     
     def tarjan(u, fa):
+        global idx, cnt_bridge
         father[u] = fa
         idx = idx + 1
         low[u] = dfn[u] = idx
