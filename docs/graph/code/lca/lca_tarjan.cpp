@@ -15,7 +15,8 @@ class Edge {
 constexpr int MAX = 100;
 int head[MAX], queryHead[MAX];
 Edge edge[MAX], queryEdge[MAX];
-int parent[MAX], visited[MAX];
+// ancestor[r]：以 r 为根的集合中深度最小的结点
+int parent[MAX], setSize[MAX], ancestor[MAX], visited[MAX];
 int vertexCount, queryCount;
 
 int find(int x) {
@@ -26,22 +27,35 @@ int find(int x) {
   }
 }
 
+// 按集合大小合并 x 与 y 所在的集合，返回合并后集合的根
+int unite(int x, int y) {
+  x = find(x);
+  y = find(y);
+  if (setSize[x] < setSize[y]) swap(x, y);
+  parent[y] = x;
+  setSize[x] += setSize[y];
+  return x;
+}
+
 void tarjan(int u) {
   parent[u] = u;
+  setSize[u] = 1;
+  ancestor[u] = u;
   visited[u] = 1;
 
   for (int i = head[u]; i != -1; i = edge[i].next) {
     Edge& e = edge[i];
     if (!visited[e.toVertex]) {
       tarjan(e.toVertex);
-      parent[e.toVertex] = u;
+      // 子树并入 u 所在的集合，合并后集合中深度最小的结点仍是 u
+      ancestor[unite(u, e.toVertex)] = u;
     }
   }
 
   for (int i = queryHead[u]; i != -1; i = queryEdge[i].next) {
     Edge& e = queryEdge[i];
     if (visited[e.toVertex]) {
-      queryEdge[i ^ 1].LCA = e.LCA = find(e.toVertex);
+      queryEdge[i ^ 1].LCA = e.LCA = ancestor[find(e.toVertex)];
     }
   }
 }
