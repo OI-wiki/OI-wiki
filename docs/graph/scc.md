@@ -302,12 +302,13 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
 === "Python"
     ```python
     def garbow(u):
-        stack1[p1] = u
-        stack2[p2] = u
+        global p1, p2, dfs_clock, scc_cnt
         p1 = p1 + 1
+        stack1[p1] = u
         p2 = p2 + 1
-        low[u] = dfs_clock
+        stack2[p2] = u
         dfs_clock = dfs_clock + 1
+        low[u] = dfs_clock
         i = head[u]
         while i:
             v = e[i].to
@@ -316,19 +317,24 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
             elif sccno[v] == False:
                 while low[stack2[p2]] > low[v]:
                     p2 = p2 - 1
+            i = e[i].next
         if stack2[p2] == u:
             p2 = p2 - 1
             scc_cnt = scc_cnt + 1
-            while stack1[p1] != u:
+            while True:
+                x = stack1[p1]
+                sccno[x] = scc_cnt
                 p1 = p1 - 1
-                sccno[stack1[p1]] = scc_cnt
+                if x == u:
+                    break
     
     
     def find_scc(n):
+        global p1, p2, dfs_clock, scc_cnt
         dfs_clock = scc_cnt = 0
         p1 = p2 = 0
-        sccno = []
-        low = []
+        sccno[:] = [0] * len(sccno)
+        low[:] = [0] * len(low)
         for i in range(1, n + 1):
             if low[i] == False:
                 garbow(i)
