@@ -48,7 +48,7 @@ author: xiezheyuan
       auto lvl = sta.size();  // 记录一下应当撤销到第几个
       for (Object x : tree[i]) sta.push(now), now = Merge(now, x);  // 合并信息
       if (l == r)
-        ans[i] = now;  // 记录一下答案
+        ans[l] = now;  // 记录一下时刻 l 的答案
       else
         solve(ls, l, mid), solve(rs, mid + 1, r);  // 分治
       while (sta.size() != lvl) {                  // 撤销信息
