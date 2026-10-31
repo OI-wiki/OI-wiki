@@ -83,12 +83,12 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
     }
     
     template <class Key, class Compare>
-    typename Set<Key, Compare>::Node_Set<Key, Compare>::insert(
-        Set::Node_root, const Key &key) const {
+    typename Set<Key, Compare>::Node *Set<Key, Compare>::insert(
+        Set::Node *root, const Key &key) const {
       if (root == nullptr) return new Node(key, kRed, 1);
       if (root->key == key)
         ;
-      else if (cmp\_(key, root->key))  // if (key < root->key)
+      else if (cmp_(key, root->key))  // if (key < root->key)
         root->lc = insert(root->lc, key);
       else
         root->rc = insert(root->rc, key);
@@ -206,7 +206,9 @@ author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ks
 ??? note "参考代码"
     ```cpp
     #include <algorithm>
+    #include <iostream>
     #include <memory>
+    #include <string>
     #include <vector>
     
     template <class Key, class Compare = std::less<Key>>
