@@ -59,8 +59,8 @@ $$
             n = n * r[i]
         for i in range(1, k + 1):
             m = n // r[i]
-            b = y = 0
-            exgcd(m, r[i], b, y)  # b * m mod r[i] = 1
+            # Exgcd 见扩展欧几里得算法页面，返回 (gcd, x, y)
+            _, b, _ = Exgcd(m, r[i])  # b * m mod r[i] = 1
             ans = (ans + a[i] * m * b % n) % n
         return (ans % n + n) % n
     ```
