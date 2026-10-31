@@ -54,31 +54,32 @@ Prüfer 是这样建立的：每次选择一个编号最小的叶结点并删掉
     
     === "Python"
         ```python
+        import heapq
+        
         # 结点是从 0 标号的
         adj = [[]]
         
         
         def pruefer_code():
             n = len(adj)
-            leafs = set()
+            leafs = []  # 小根堆，堆顶是编号最小的叶结点
             degree = [0] * n
             killed = [False] * n
-            for i in range(1, n):
+            for i in range(n):
                 degree[i] = len(adj[i])
                 if degree[i] == 1:
-                    leafs.intersection(i)
+                    heapq.heappush(leafs, i)
             code = [0] * (n - 2)
-            for i in range(1, n - 2):
-                leaf = leafs[0]
-                leafs.pop()
+            for i in range(n - 2):
+                leaf = heapq.heappop(leafs)
                 killed[leaf] = True
                 for u in adj[leaf]:
-                    if killed[u] == False:
+                    if not killed[u]:
                         v = u
                 code[i] = v
+                degree[v] -= 1
                 if degree[v] == 1:
-                    degree[v] = degree[v] - 1
-                    leafs.intersection(v)
+                    heapq.heappush(leafs, v)
             return code
         ```
 
@@ -158,7 +159,7 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
     ```python
     # 同样以 0 为起点
     adj = [[]]
-    parent = [0] * n
+    parent = []
     
     
     def dfs(v):
@@ -170,6 +171,7 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
     
     def pruefer_code():
         n = len(adj)
+        parent[:] = [0] * n
         parent[n - 1] = -1
         dfs(n - 1)
     
@@ -185,8 +187,8 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
         for i in range(0, n - 2):
             next = parent[leaf]
             code[i] = next
+            degree[next] -= 1
             if degree[next] == 1 and next < ptr:
-                degree[next] = degree[next] - 1
                 leaf = next
             else:
                 ptr = ptr + 1
