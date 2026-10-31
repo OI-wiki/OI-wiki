@@ -1,0 +1,12 @@
+% Compile with latex, then dvisvgm --no-fonts --exact --bbox=min.
+\documentclass[tikz,border=5pt]{standalone}
+\begin{document}
+\begin{tikzpicture}[line width=1pt]
+  % R=1.8, A=(2.7,2.4), r=2.5; B=R^2 A/(|A|^2-r^2).
+  \pgfmathsetmacro{\factor}{1.8^2/(2.7^2+2.4^2-2.5^2)}
+  \draw[red!75] (0,0) circle (1.8);
+  \draw[blue] (2.7,2.4) circle (2.5);
+  \draw[green!65!black] ({2.7*\factor},{2.4*\factor}) circle ({2.5*\factor});
+  \fill[red] (0,0) circle (2pt) node[below left,black] {$O$};
+\end{tikzpicture}
+\end{document}

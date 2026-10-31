@@ -1,0 +1,35 @@
+% Add the non-common endpoint to each middle-child Compress Tree.
+% Regeneration commands are in top-tree-common.tex.
+\input{top-tree-common.tex}
+\begin{document}
+\begin{tikzpicture}[top tree,x=.75mm,y=-.75mm]
+  \node[compress] (c) at (35,25) {$N_c$};
+  \node[cluster] (cd) at (0,48) {$cd$};
+  \node[compress] (j) at (60,48) {$N_j$};
+  \node[compress] (h) at (38,71) {$N_h$};
+  \node[cluster] (jk) at (82,71) {$jk$};
+  \node[cluster] (ch) at (25,94) {$ch$};
+  \node[cluster] (jh) at (51,94) {$jh$};
+  \node[rake] (alpha) at (120,0) {$\alpha$};
+  \node[rake] (beta) at (162,18) {$\beta$};
+  \node[compress] (b) at (120,30) {$N_b$};
+  \node[cluster] (bc) at (105,53) {$bc$};
+  \node[compress] (a) at (135,53) {$N_a$};
+  \node[cluster] (ab) at (123,76) {$ab$};
+  \node[compress] (e) at (162,53) {$N_e$};
+  \node[cluster] (ce) at (150,76) {$ce$};
+  \node[rake] (delta) at (235,0) {$\delta$};
+  \node[rake] (nu) at (205,25) {$\nu$};
+  \node[compress] (i) at (235,30) {$N_i$};
+  \node[compress] (f) at (205,55) {$N_f$};
+  \node[cluster] (ih) at (223,65) {$ih$};
+  \node[cluster] (fh) at (193,78) {$fh$};
+  \node[rake] (epsilon) at (97,100) {$\varepsilon$};
+  \node[compress] (g) at (97,125) {$N_g$};
+  \node[cluster] (jg) at (85,148) {$jg$};
+  \foreach \parent/\child in {c/cd,c/j,j/h,j/jk,h/ch,h/jh,
+      alpha/b,alpha/beta,b/bc,b/a,a/ab,beta/e,e/ce,delta/nu,delta/i,
+      nu/f,f/fh,i/ih,epsilon/g,g/jg}
+    \draw (\parent) -- (\child);
+\end{tikzpicture}
+\end{document}

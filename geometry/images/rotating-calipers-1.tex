@@ -1,0 +1,41 @@
+% Editable vector version of rotating-calipers1.png.
+% Regenerate from this directory:
+% latex -interaction=nonstopmode -halt-on-error rotating-calipers-1.tex
+% dvisvgm --no-fonts --exact --bbox=papersize --output=rotating-calipers-1.svg rotating-calipers-1.dvi
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usetikzlibrary{calc}
+\definecolor{supportred}{RGB}{237,28,36}
+\definecolor{triangleblue}{RGB}{0,174,239}
+\definecolor{triangleyellow}{RGB}{250,220,0}
+\begin{document}
+\begin{tikzpicture}[x=0.75bp,y=-0.75bp,
+  line cap=round,line join=round,line width=2.2bp,
+  every node/.style={inner sep=3bp,font=\fontsize{27bp}{31bp}\selectfont}]
+  \path[use as bounding box] (0,0) rectangle (1422,801);
+  \clip (0,0) rectangle (1422,801);
+  \fill[white] (0,0) rectangle (1422,801);
+  \coordinate (i) at (386,210);
+  \coordinate (inext) at (366,422);
+  \coordinate (j) at (777,483);
+  \coordinate (jnext) at (729,278);
+  \coordinate (edge) at ($(inext)-(i)$);
+
+  \draw (i) -- (inext) -- (497,529) -- (744,548) -- (j)
+    -- (jnext) -- (531,109) -- cycle;
+  % These three red lines are exactly parallel to the enumerated edge.
+  \draw[supportred] ($(i)-0.75*(edge)$) -- ($(i)+1.9*(edge)$);
+  \draw[supportred] ($(j)-1.82*(edge)$) -- ($(j)+0.87*(edge)$);
+  \draw[supportred] ($(jnext)-0.98*(edge)$) -- ($(jnext)+1.77*(edge)$);
+  % The triangles share base (i, i+1), so their areas compare the distances.
+  \draw[triangleblue,dash pattern=on 11bp off 6bp]
+    (i) -- (j) -- (inext);
+  \draw[triangleyellow,dash pattern=on 11bp off 6bp]
+    (i) -- (jnext) -- (inext);
+  \node[left=12bp] at (i) {$i$};
+  \node[left=12bp] at (inext) {$i+1$};
+  \node[right=6bp] at (j) {$j$};
+  \node[above right=4bp,xshift=-2bp] at (jnext) {$j{+}1$};
+\end{tikzpicture}
+\end{document}

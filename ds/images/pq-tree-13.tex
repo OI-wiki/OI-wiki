@@ -1,0 +1,76 @@
+% Redrawn from https://gregable.com/2008/11/i/p6-replacement.png
+% Rebuild: latex -interaction=nonstopmode -halt-on-error pq-tree-13.tex
+%          dvisvgm --no-fonts --exact-bbox --bbox=papersize pq-tree-13.dvi -o pq-tree-13.svg
+\documentclass[tikz,border=4pt]{standalone}
+\usetikzlibrary{backgrounds}
+\pgfdeclarelayer{edges}
+\pgfsetlayers{background,edges,main}
+\definecolor{empty}{HTML}{D3D6DB}
+\definecolor{full}{HTML}{20242B}
+\definecolor{outline}{HTML}{394150}
+\definecolor{edge}{HTML}{29466B}
+% P nodes, Q nodes, and subtree roots are named for the edges below.
+\newcommand{\pnode}[4]{%
+  \node[circle,draw=outline,fill=#4,minimum size=6.8mm,inner sep=0pt]
+    (#1) at (#2,#3) {};
+}
+% Q node: name, left, right, height, start and end of the full segment.
+\newcommand{\qnode}[6]{%
+  \coordinate (#1) at ({(#2+#3)/2},#4);
+  \fill[empty] (#2,{#4-.19}) rectangle (#3,{#4+.19});
+  \fill[full] (#5,{#4-.19}) rectangle (#6,{#4+.19});
+  \draw[outline] (#2,{#4-.19}) rectangle (#3,{#4+.19});
+}
+\newcommand{\subtree}[4]{%
+  \coordinate (#1) at (#2,#3);
+  \filldraw[draw=outline,fill=#4]
+    (#2,#3) -- ({#2-.38},{#3-.78}) -- ({#2+.38},{#3-.78}) -- cycle;
+}
+\newcommand{\siblings}[2]{%
+  \foreach \dx in {-.17,0,.17}
+    \fill[full] ({#1+\dx},{#2-.57}) circle[radius=.045];
+}
+\begin{document}
+\begin{tikzpicture}[x=8.5mm,y=8.5mm,line width=.6pt,
+  background rectangle/.style={fill=white},show background rectangle,
+  edge/.style={draw=edge,line width=1.1pt,line cap=round}]
+\pnode{u}{6.9}{6.3}{empty}
+\subtree{e1}{0}{4.2}{empty}
+\subtree{e2}{2.4}{4.2}{empty}
+\siblings{1.2}{4.2}
+\qnode{partial}{3.42}{21.78}{4.2}{6.9}{18.3}
+\subtree{le1}{3.8}{2.1}{empty}
+\subtree{le2}{6.2}{2.1}{empty}
+\siblings{5}{2.1}
+\subtree{lf1}{7.6}{2.1}{full}
+\subtree{lf2}{10}{2.1}{full}
+\siblings{8.8}{2.1}
+\pnode{f}{12.6}{2.1}{full}
+\subtree{f1}{11.4}{0}{full}
+\subtree{f2}{13.8}{0}{full}
+\siblings{12.6}{0}
+\subtree{rf1}{15.2}{2.1}{full}
+\subtree{rf2}{17.6}{2.1}{full}
+\siblings{16.4}{2.1}
+\subtree{pe1}{19}{2.1}{empty}
+\subtree{pe2}{21.4}{2.1}{empty}
+\siblings{20.2}{2.1}
+% Keep edges behind the node fills and above the white background.
+\begin{pgfonlayer}{edges}
+\draw[edge] (u) -- (e1);
+\draw[edge] (u) -- (e2);
+\draw[edge] (u) -- (partial);
+\draw[edge] (le1 |- partial) -- (le1);
+\draw[edge] (le2 |- partial) -- (le2);
+\draw[edge] (lf1 |- partial) -- (lf1);
+\draw[edge] (lf2 |- partial) -- (lf2);
+\draw[edge] (f |- partial) -- (f);
+\draw[edge] (f) -- (f1);
+\draw[edge] (f) -- (f2);
+\draw[edge] (rf1 |- partial) -- (rf1);
+\draw[edge] (rf2 |- partial) -- (rf2);
+\draw[edge] (pe1 |- partial) -- (pe1);
+\draw[edge] (pe2 |- partial) -- (pe2);
+\end{pgfonlayer}
+\end{tikzpicture}
+\end{document}
