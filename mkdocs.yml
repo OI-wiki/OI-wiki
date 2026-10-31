@@ -599,11 +599,13 @@ extra:
 extra_javascript:
   - '_static/js/math-csr.js?math-csr'
   - 'assets/vendor/mathjax/tex-mml-chtml.js?math-csr'
+  - '_static/js/animated-image.js?v=1'
   - '{OIWikiFeedbackSystemFrontendJS}' # see: scripts/pre-build/install-feedback-sys-frontend.ts
   - '{OIWikiFeedbackSystemFrontendContentScript}' # see: scripts/pre-build/install-feedback-sys-frontend.ts
 
 extra_css:
   - '_static/css/extra.css?v=16'
+  - '_static/css/animated-image.css?v=1'
   # - '_static/css/offset-inject-debug.css'
   - '{OIWikiFeedbackSystemFrontendCSS}' # see: scripts/pre-build/install-feedback-sys-frontend.ts
 
