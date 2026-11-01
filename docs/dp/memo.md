@@ -81,6 +81,7 @@
 ???+ note "实现"
     === "C++"
         ```cpp
+        const int INF = 0x3f3f3f3f;
         int n, t;
         int tcost[103], mget[103];
         int mem[103][1003];
@@ -107,6 +108,7 @@
     
     === "Python"
         ```python
+        INF = 0x3F3F3F3F
         tcost = [0] * 103
         mget = [0] * 103
         mem = [[-1 for i in range(1003)] for j in range(103)]
