@@ -22,8 +22,8 @@ author: wjy-yy, Ir1d, Xeonacid
 
 $$
 \begin{cases}
-A_1x+B_1y+C\ge 0\\
-A_2x+B_2y+C\ge 0\\
+A_1x+B_1y+C_1\ge 0\\
+A_2x+B_2y+C_2\ge 0\\
 \cdots
 \end{cases}
 $$
