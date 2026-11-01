@@ -94,7 +94,7 @@ $$
 能否消除这些下界限制呢？既然要求的是非负整数解，而有些变量的下界又大于 $0$，那么我们直接 **把这个下界减掉**，就可以使得这些变量的下界变成 $0$，即没有下界啦．因此对于
 
 $$
-\left|\bigcap_{a_i<a_{i+1} }^{1\leq i\leq k}S_{a_i}\right|
+\left|\bigcap_{a_i<a_{i+1} }^{1\leq i\leq k}\overline{S_{a_i}}\right|
 $$
 
 的不定方程形式为
@@ -132,14 +132,14 @@ $$
 前面的三道题都是容斥原理的正向运用，这道题则需要用到容斥原理逆向分析．
 
 ???+ note "完全图子图染色问题"
-    A 和 B 喜欢对图（不一定连通）进行染色，而他们的规则是，相邻的结点必须染同一种颜色．今天 A 和 B 玩游戏，对于 $n$ 阶 **完全图**  $G=(V,E)$．他们定义一个估价函数 $F(S)$，其中 S 是边集，$S\subseteq E$.$F(S)$ 的值是对图 $G'=(V,S)$ 用 $m$ 种颜色染色的总方案数．他们的另一个规则是，如果 $|S|$ 是奇数，那么 A 的得分增加 $F(S)$，否则 B 的得分增加 $F(S)$. 问 A 和 B 的得分差值．
+    A 和 B 喜欢对图（不一定连通）进行染色，而他们的规则是，相邻的结点必须染同一种颜色．今天 A 和 B 玩游戏，对于 $n$ 阶 **完全图**  $G=(V,E)$．他们定义一个估价函数 $F(S)$，其中 S 是非空边集，$\varnothing\neq S\subseteq E$.$F(S)$ 的值是对图 $G'=(V,S)$ 用 $m$ 种颜色染色的总方案数．他们的另一个规则是，如果 $|S|$ 是奇数，那么 A 的得分增加 $F(S)$，否则 B 的得分增加 $F(S)$. 问 A 和 B 的得分差值．
 
 ### 数学形式
 
 一看这道题的算法趋向并不明显，因此对于棘手的题目首先抽象出数学形式．得分差即为奇偶对称差，可以用 -1 的幂次来作为系数．我们求的是
 
 $$
-Ans=\sum_{S\subseteq E}(-1)^{|S|-1}F(S)
+Ans=\sum_{\varnothing\neq S\subseteq E}(-1)^{|S|-1}F(S)
 $$
 
 ### 容斥模型
@@ -156,11 +156,11 @@ $$
 
 上述式子右边的含义就是说对于 S 内的每一条边 $(i,j)$ 都满足 $x_i=x_j$ 的染色方案数，也就是 $F(S)$.
 
-是不是很有容斥的味道了？由于容斥原理本身没有二元组的形式，因此我们把 **所有** 的边 $(i,j)$ 映射到 $T=\frac{n(n+1)}{2}$ 个整数上，假设将 $(i,j)$ 映射为 $k,1\leq k\leq T$，同时 $Q_{i,j}$ 映射为 $Q_k$. 那么属性 $x_i=x_j$ 则定义为 $P_k$.
+是不是很有容斥的味道了？由于容斥原理本身没有二元组的形式，因此我们把 **所有** 的边 $(i,j)$ 映射到 $T=\frac{n(n-1)}{2}$ 个整数上，假设将 $(i,j)$ 映射为 $k,1\leq k\leq T$，同时 $Q_{i,j}$ 映射为 $Q_k$. 那么属性 $x_i=x_j$ 则定义为 $P_k$.
 
 同时 S 可以表示为若干个 k 组成的集合，即 $S\iff K=\{k_1,k_2,\cdots,k_m\}$.（也就是说我们在边集与数集间建立了等价关系）．
 
-而 E 对应集合 $M=\left\{1,2,\cdots,\frac{n(n+1)}{2}\right\}$. 于是乎
+而 E 对应集合 $M=\left\{1,2,\cdots,\frac{n(n-1)}{2}\right\}$. 于是乎
 
 $$
 F(S)\iff F(\{ {k_i}\})=\left|\bigcap_{k_i}Q_{k_i}\right|
@@ -172,7 +172,7 @@ $$
 
 $$
 \begin{aligned}
-Ans &= \sum_{K\subseteq M}(-1)^{|K|-1}\left|\bigcap_{k_i\in K}Q_{k_i}\right|\\
+Ans &= \sum_{\varnothing\neq K\subseteq M}(-1)^{|K|-1}\left|\bigcap_{k_i\in K}Q_{k_i}\right|\\
     &= \sum_{i}|Q_i|-\sum_{i<j}|Q_i\cap Q_j|+\sum_{i<j<k}|Q_i\cap Q_j\cap Q_k|-\cdots+(-1)^{T-1}\left|\bigcap_{i=1}^TQ_i\right|
 \end{aligned}
 $$
@@ -253,7 +253,7 @@ $$
 全集大小 $|U|=n$，而 $\overline{S_i}$ 表示的是 $p_i\mid x$ 构成的集合，显然 $|\overline{S_i}|=\frac{n}{p_i}$，并由此推出
 
 $$
-\left|\bigcap_{a_i<a_{i+1}}S_{a_i}\right|=\frac{n}{\prod p_{a_i}}
+\left|\bigcap_{a_i<a_{i+1}}\overline{S_{a_i}}\right|=\frac{n}{\prod p_{a_i}}
 $$
 
 因此可得
