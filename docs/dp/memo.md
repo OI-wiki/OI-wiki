@@ -18,52 +18,12 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        int n, t;
-        int tcost[103], mget[103];
-        int ans = 0;
-        
-        void dfs(int pos, int tleft, int tans) {
-          if (tleft < 0) return;
-          if (pos == n + 1) {
-            ans = max(ans, tans);
-            return;
-          }
-          dfs(pos + 1, tleft, tans);
-          dfs(pos + 1, tleft - tcost[pos], tans + mget[pos]);
-        }
-        
-        int main() {
-          cin >> t >> n;
-          for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
-          dfs(1, t, 0);
-          cout << ans << endl;
-          return 0;
-        }
+        --8<-- "docs/dp/code/memo/memo_1.cpp"
         ```
     
     === "Python"
         ```python
-        tcost = [0] * 103
-        mget = [0] * 103
-        ans = 0
-        
-        
-        def dfs(pos, tleft, tans):
-            global ans
-            if tleft < 0:
-                return
-            if pos == n + 1:
-                ans = max(ans, tans)
-                return
-            dfs(pos + 1, tleft, tans)
-            dfs(pos + 1, tleft - tcost[pos], tans + mget[pos])
-        
-        
-        t, n = map(lambda x: int(x), input().split())
-        for i in range(1, n + 1):
-            tcost[i], mget[i] = map(lambda x: int(x), input().split())
-        dfs(1, t, 0)
-        print(ans)
+        --8<-- "docs/dp/code/memo/memo_1.py"
         ```
 
 这种做法的时间复杂度是指数级别的，并不能通过本题．
@@ -81,57 +41,12 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        const int INF = 0x3f3f3f3f;
-        int n, t;
-        int tcost[103], mget[103];
-        int mem[103][1003];
-        
-        int dfs(int pos, int tleft) {
-          if (mem[pos][tleft] != -1)
-            return mem[pos][tleft];  // 已经访问过的状态，直接返回之前记录的值
-          if (pos == n + 1) return mem[pos][tleft] = 0;
-          int dfs1, dfs2 = -INF;
-          dfs1 = dfs(pos + 1, tleft);
-          if (tleft >= tcost[pos])
-            dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // 状态转移
-          return mem[pos][tleft] = max(dfs1, dfs2);  // 最后将当前状态的值存下来
-        }
-        
-        int main() {
-          memset(mem, -1, sizeof(mem));
-          cin >> t >> n;
-          for (int i = 1; i <= n; i++) cin >> tcost[i] >> mget[i];
-          cout << dfs(1, t) << endl;
-          return 0;
-        }
+        --8<-- "docs/dp/code/memo/memo_2.cpp"
         ```
     
     === "Python"
         ```python
-        INF = 0x3F3F3F3F
-        tcost = [0] * 103
-        mget = [0] * 103
-        mem = [[-1 for i in range(1003)] for j in range(103)]
-        
-        
-        def dfs(pos, tleft):
-            if mem[pos][tleft] != -1:
-                return mem[pos][tleft]
-            if pos == n + 1:
-                mem[pos][tleft] = 0
-                return mem[pos][tleft]
-            dfs1 = dfs2 = -INF
-            dfs1 = dfs(pos + 1, tleft)
-            if tleft >= tcost[pos]:
-                dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos]
-            mem[pos][tleft] = max(dfs1, dfs2)
-            return mem[pos][tleft]
-        
-        
-        t, n = map(lambda x: int(x), input().split())
-        for i in range(1, n + 1):
-            tcost[i], mget[i] = map(lambda x: int(x), input().split())
-        print(dfs(1, t))
+        --8<-- "docs/dp/code/memo/memo_2.py"
         ```
 
 ## 与递推的联系与区别
@@ -141,20 +56,7 @@
 下面给出的是递推实现的代码（为了方便对比，没有添加滚动数组优化），通过对比可以发现二者在形式上的类似性．
 
 ```cpp
-int n, t, w[105], v[105], f[105][1005];
-
-int main() {
-  cin >> n >> t;
-  for (int i = 1; i <= n; i++) cin >> w[i] >> v[i];
-  for (int i = 1; i <= n; i++)
-    for (int j = 0; j <= t; j++) {
-      f[i][j] = f[i - 1][j];
-      if (j >= w[i])
-        f[i][j] = max(f[i][j], f[i - 1][j - w[i]] + v[i]);  // 状态转移方程
-    }
-  cout << f[n][t];
-  return 0;
-}
+--8<-- "docs/dp/code/memo/memo_3.cpp"
 ```
 
 在求解动态规划的问题时，记忆化搜索和递推，都确保了同一状态至多只被求解一次．而它们实现这一点的方式则略有不同：递推通过设置明确的访问顺序来避免重复访问，记忆化搜索虽然没有明确规定访问顺序，但通过给已经访问过的状态打标记的方式，也达到了同样的目的．
