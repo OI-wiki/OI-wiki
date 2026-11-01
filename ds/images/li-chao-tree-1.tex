@@ -1,0 +1,22 @@
+% Compile with xelatex -no-pdf, then dvisvgm --no-fonts --exact --bbox=min.
+\def\pgfsysdriver{pgfsys-dvisvgm.def}
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\begin{document}
+\begin{tikzpicture}[scale=1.8,transform shape,line width=1pt]
+  % f=4-x/2 and g=1+x/8 intersect at x=4.8, to the right of m=3.
+  \draw[gray] (0,-0.8) -- (0,4.5) node[above,black] {$l$};
+  \draw[gray,dashed] (3,-0.8) -- (3,4.5) node[above,black] {$m$};
+  \draw[gray] (6,-0.8) -- (6,4.5) node[above,black] {$r$};
+  \draw[gray,densely dotted] (4.8,-0.8) -- (4.8,1.6);
+  \draw[red!80!black] (0,4) -- (6,1) node[right] {$f$};
+  \draw[blue] (0,1) -- (6,1.75) node[right] {$g$};
+  % The orange polyline highlights max(f,g), offset for visibility.
+  \draw[orange,very thick] (0,4.12) -- (4.8,1.72) -- (6,1.87);
+  \draw[red!80!black,very thick] (0,-0.6) -- (4.8,-0.6);
+  \draw[blue,very thick] (4.8,-0.6) -- (6,-0.6);
+  \node[below=2pt,inner sep=1pt,font=\scriptsize] at (2.3,-0.6) {作为懒标记};
+  \node[below=2pt,inner sep=1pt,font=\scriptsize] at (5.4,-0.6) {递归下传};
+  \fill (4.8,-0.6) circle (1.5pt);
+\end{tikzpicture}
+\end{document}

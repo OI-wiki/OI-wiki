@@ -1,0 +1,58 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{amsmath}
+
+\tikzset{>=latex}
+\tikzstyle{proj}=[blue!70!black,very thin,dashed]
+\tikzstyle{axis}=[->,thick]
+\tikzstyle{vector}=[-stealth,axis,blue!80!black]
+\tikzstyle{unit vector}=[->,green!35!black,very thick]
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{110}
+\begin{tikzpicture}[tdplot_main_coords]
+
+    \pgfmathsetmacro{\coordlen}{7}
+    \pgfmathsetmacro{\px}{3}
+    \pgfmathsetmacro{\py}{4}
+    \pgfmathsetmacro{\pr}{5}
+    \pgfmathsetmacro{\pz}{3.75}
+
+    \coordinate (O) at (0,0,0);
+    \coordinate (P) at (\px,\py,\pz);
+    \coordinate (Pxy) at (\px,\py,0);
+    \coordinate (Pxz) at (\px,0,\pz);
+    \coordinate (Pyz) at (0,\py,\pz);
+    \coordinate (Px) at (\px,0,0);
+    \coordinate (Py) at (0,\py,0);
+    \coordinate (Pz) at (0,0,\pz);
+
+    \draw (O) node[anchor=south east]{$O$};
+
+    \draw[axis] (O) -- (\coordlen,0,0);
+    \draw[axis] (O) -- (0,\coordlen,0);
+    \draw[axis] (O) -- (0,0,\coordlen);
+
+    \draw[vector] (O) -- (P) node[anchor=south east]{$\boldsymbol{r}$};
+
+    \draw[proj] (P) -- (Pz);
+    \draw[proj] (O) -- (Pxy) -- (P);
+    \tdplotdrawarc[proj]{(0,0,\pz)}{\pr}{0}{360}{proj}{}
+    
+    \tdplotgetpolarcoords{\px}{\py}{\pz}
+
+    \draw ($(O)!.5!(Pxy)$) node [anchor=north]{$\rho$};
+    \draw (Pz) node [anchor=east]{$z$};
+    \tdplotdrawarc[->]{(O)}{.5}{0}{\tdplotresphi}{anchor=north}{$\varphi$}
+
+    \tdplotsetrotatedcoords{\tdplotresphi}{0}{0}
+
+    \draw[tdplot_rotated_coords,unit vector] (P) -- +(1,0,0) node[anchor=north west]{$\boldsymbol{e}_{\rho}$};
+    \draw[tdplot_rotated_coords,unit vector] (P) -- +(0,1,0) node[anchor=south]{$\boldsymbol{e}_{\varphi}$};
+    \draw[tdplot_rotated_coords,unit vector] (P) -- +(0,0,1) node[anchor=south]{$\boldsymbol{e}_z$};
+
+\end{tikzpicture}
+
+\end{document}

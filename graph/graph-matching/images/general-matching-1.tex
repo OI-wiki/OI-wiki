@@ -1,0 +1,26 @@
+% Regenerate with latex and dvisvgm; see graph-matching-common.tex.
+\input{graph-matching-common.tex}
+% Offset each arrow to the right of its directed graph edge. Computing
+% both endpoints from the edge keeps the arrows parallel and separates
+% the two directions on a--b without crossing the arrow from d to b.
+\newcommand{\WalkArrow}[2]{%
+  \coordinate (arrowfrom) at ($(#1.center)!.22!(#2.center)$);
+  \coordinate (arrowto) at ($(#1.center)!.78!(#2.center)$);
+  \draw[route,-{Stealth[length=2.8mm,width=1.9mm]}]
+    ($(arrowfrom)!2mm!-90:(arrowto)$) -- ($(arrowto)!2mm!90:(arrowfrom)$);
+}
+\begin{document}
+\begin{tikzpicture}[diagram]
+  \foreach \id/\px/\py in {s/55/0,a/37/13,b/15/21,c/4/44,d/29/42,t/56/27}
+    \node[vertex] (\id) at (\px,\py) {};
+  \draw (s) -- (a) (a) -- (t) (b) -- (c) (d) -- (b);
+  \draw[matching] (a) -- (b) (c) -- (d);
+  \node[label,above left=.5mm] at (s.north west) {$s$};
+  \node[label,right=1mm] at (t.east) {$t$};
+  % This walk revisits a through the odd cycle. Flipping it would give
+  % a two incident matching edges, so it is not an augmenting path.
+  \foreach \from/\to in {s/a,a/b,b/c,c/d,d/b,b/a,a/t} {
+    \WalkArrow{\from}{\to}
+  }
+\end{tikzpicture}
+\end{document}

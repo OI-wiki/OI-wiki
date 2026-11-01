@@ -1,0 +1,21 @@
+% Regenerate with latex and dvisvgm; see graph-matching-common.tex.
+\input{graph-matching-common.tex}
+\begin{document}
+\begin{tikzpicture}[diagram]
+  \foreach \id/\px/\py in {s/0/0,a/30/4,h/41/16}
+    \node[vertex,draw=matchred] (\id) at (\px,\py) {};
+  \foreach \id/\px/\py in {l1/27/31,l2/27/49,l3/27/67,u/27/84,r1/55/31,v/55/49}
+    \node[vertex] (\id) at (\px,\py) {};
+  \draw[route,dashed] (s) .. controls (23,-10) and (17,4) .. (a);
+  \draw[matching,matchred] (a) -- (h);
+  \draw (h) -- (l1) (h) -- (r1) (l2) -- (l3) (u) -- (v);
+  \draw[matching] (l1) -- (l2) (l3) -- (u) (r1) -- (v);
+  % Edges leaving non-base vertices of the blossom are unmatched.
+  \draw (l1) -- (3,29) (l1) -- (6,46) (l3) -- (7,67)
+    (u) -- (7,84) (r1) -- (73,29) (v) -- (74,60);
+  \node[label,above=1mm] at (s.north) {$s$};
+  \node[label,above=1mm] at (h.north) {$h$};
+  \node[label,above left=1mm] at (u.north west) {$u$};
+  \node[label,left=1mm] at (v.west) {$v$};
+\end{tikzpicture}
+\end{document}

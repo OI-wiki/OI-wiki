@@ -1,0 +1,69 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+
+
+\usepackage{anyfontsize}
+\renewcommand{\normalsize}{\fontsize{14pt}{16pt}\selectfont}
+
+
+\begin{document}
+
+\tdplotsetmaincoords{60}{110}
+\begin{tikzpicture}[tdplot_main_coords, scale=0.8]
+
+% Define coordinate system
+\coordinate (O) at (0,0,0);
+
+% Draw axes
+\draw[thick,->] (0,0,0) -- (12,0,0) node[anchor=north east]{$x_1$};
+\draw[thick,->] (0,0,0) -- (0,12,0) node[anchor=north west]{$x_2$};
+\draw[thick,->] (0,0,0) -- (0,0,12) node[anchor=south]{$x_3$};
+
+% Key vertices of the feasible region
+\coordinate (A) at (0,0,0);      % Origin
+\coordinate (B) at (10,0,0);     % x1-axis intercept of constraint 2
+\coordinate (C) at (0,10,0);     % x2-axis intercept of constraints 1&3
+\coordinate (D) at (0,0,10);     % x3-axis intercept of constraints 1&2
+\coordinate (E) at (4,4,4);      % Intersection of all three constraints
+
+% Draw the polyhedron faces
+% Face 1: Triangle on x1=0 plane (origin, (0,10,0), (0,0,10))
+\fill[blue!30,opacity=0.8] (A) -- (C) -- (D) -- cycle;
+
+% Face 2: Triangle on x2=0 plane (origin, (10,0,0), (0,0,10))
+\fill[red!30,opacity=0.8] (A) -- (B) -- (D) -- cycle;
+
+% Face 3: Triangle on x3=0 plane (origin, (10,0,0), (0,10,0))
+\fill[green!30,opacity=0.8] (A) -- (B) -- (C) -- cycle;
+
+% Face 4: Triangle from constraint intersection ((10,0,0), (0,10,0), (4,4,4))
+\fill[yellow!30,opacity=0.8] (B) -- (C) -- (E) -- cycle;
+
+% Face 5: Triangle from constraint intersection ((10,0,0), (0,0,10), (4,4,4))
+\fill[orange!30,opacity=0.8] (B) -- (D) -- (E) -- cycle;
+
+% Face 6: Triangle from constraint intersection ((0,10,0), (0,0,10), (4,4,4))
+\fill[purple!30,opacity=0.8] (C) -- (D) -- (E) -- cycle;
+
+% Draw edges of the polyhedron
+\draw[thick,dashed] (A) -- (B);
+\draw[thick,dashed] (A) -- (C);
+\draw[thick,dashed] (A) -- (D);
+\draw[thick] (B) -- (C);
+\draw[thick] (B) -- (D);
+\draw[thick] (C) -- (D);
+\draw[thick] (B) -- (E);
+\draw[thick] (C) -- (E);
+\draw[thick] (D) -- (E);
+
+% Mark vertices
+\fill[black] (A) circle (2pt) node[left] {$(0,0,0)$};
+\fill[black] (B) circle (2pt) node[left] {$(10,0,0)$};
+\fill[black] (C) circle (2pt) node[below] {$(0,10,0)$};
+\fill[black] (D) circle (2pt) node[left] {$(0,0,10)$};
+\fill[purple] (E) circle (3pt) node[left] {$(4,4,4)$};
+
+\end{tikzpicture}
+
+\end{document}

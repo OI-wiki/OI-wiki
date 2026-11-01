@@ -1,0 +1,30 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+\begin{document}
+\begin{tikzpicture}[
+    node distance=3cm and 3cm,
+    every node/.style={font=\sffamily},
+    commit/.style={draw=green!60!black, rounded corners, minimum width=2.8cm, minimum height=1.5cm, font=\large},
+    branch/.style={font=\large},
+    master/.style={font=\large, text=red}
+  ]
+
+  % Commit nodes
+  \node[commit] (f1) {f992763};
+  \node[commit, right=of f1] (f2) {ae9dd37};
+  \node[commit, above right=2cm and 3cm of f2] (f3) {5da093b};
+  \node[commit, right=of f2] (f4) {5ca15f0};
+
+  % Arrows
+  \draw[-{Latex[length=3mm]}, thick, blue!70!black] (f1) -- (f2);
+  \draw[-{Latex[length=3mm]}, thick, blue!70!black] (f2) -- (f4);
+  \draw[-{Latex[length=3mm]}, thick, blue!70!black] (f2) -- (f3);
+
+  % Branch names
+  \node[branch, above=0.5cm of f3] {dev};
+  \node[master, below=0.5cm of f4] {master};
+
+\end{tikzpicture}
+\end{document}

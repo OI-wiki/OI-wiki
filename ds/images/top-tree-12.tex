@@ -1,0 +1,30 @@
+% Separate Compress and Rake-Compress trees before adding branch endpoints.
+% Regeneration commands are in top-tree-common.tex.
+\input{top-tree-common.tex}
+\begin{document}
+\begin{tikzpicture}[top tree,x=.75mm,y=-.75mm]
+  \node[compress] (c) at (35,25) {$N_c$};
+  \node[cluster] (cd) at (0,48) {$cd$};
+  \node[compress] (j) at (60,48) {$N_j$};
+  \node[compress] (h) at (38,71) {$N_h$};
+  \node[cluster] (jk) at (82,71) {$jk$};
+  \node[cluster] (ch) at (25,94) {$ch$};
+  \node[cluster] (jh) at (51,94) {$jh$};
+  \node[rake] (alpha) at (120,0) {$\alpha$};
+  \node[rake] (beta) at (155,18) {$\beta$};
+  \node[compress] (b) at (120,30) {$N_b$};
+  \node[cluster] (bc) at (107,53) {$bc$};
+  \node[cluster] (ab) at (133,53) {$ab$};
+  \node[cluster] (ce) at (155,50) {$ce$};
+  \node[rake] (delta) at (230,10) {$\delta$};
+  \node[rake] (nu) at (200,35) {$\nu$};
+  \node[cluster] (ih) at (230,60) {$ih$};
+  \node[cluster] (fh) at (200,65) {$fh$};
+  \node[rake] (epsilon) at (140,80) {$\varepsilon$};
+  \node[cluster] (jg) at (140,110) {$jg$};
+  \foreach \parent/\child in {c/cd,c/j,j/h,j/jk,h/ch,h/jh,
+      alpha/b,alpha/beta,b/bc,b/ab,beta/ce,delta/nu,delta/ih,
+      nu/fh,epsilon/jg}
+    \draw (\parent) -- (\child);
+\end{tikzpicture}
+\end{document}

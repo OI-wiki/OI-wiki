@@ -1,0 +1,59 @@
+% Vector redraw of bottom_slide.jpg, preserving its 960 x 545 pixel canvas.
+% Regenerate from this directory:
+% xelatex -no-pdf -interaction=nonstopmode -halt-on-error bottom-slide.tex
+% dvisvgm --no-fonts --exact --bbox=papersize --output=bottom-slide.svg bottom-slide.xdv
+\def\pgfsysdriver{pgfsys-dvisvgm.def}
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\begin{document}
+\begin{tikzpicture}[x=0.75bp,y=-0.75bp,line cap=round,line join=round]
+  \path[use as bounding box] (0,0) rectangle (960,545);
+  \clip (0,0) rectangle (960,545);
+  \fill[white] (0,0) rectangle (960,545);
+
+  % A general partition into distinct parts; ellipses denote omitted dots/rows.
+  \foreach \x/\y in {
+    160/36,225/36,390/36,455/36,620/36,774/36,844/36,
+    160/106,225/106,390/106,455/106,620/106,774/106,
+    160/260,225/260,390/260,455/260,620/260,
+    160/410,225/410,390/410
+  } {
+    \fill (\x,\y) circle[radius=6bp];
+  }
+  % Horizontal ellipses in each visible row.
+  \foreach \x/\y in {
+    305/36,535/36,700/36,
+    305/106,535/106,700/106,
+    305/260,535/260,
+    305/410
+  } {
+    \foreach \offset in {-20,0,20} {
+      \fill ({\x+\offset},\y) circle[radius=1.2bp];
+    }
+  }
+  % Vertical ellipses between the second and third visible rows.
+  \foreach \x in {160,225,390,455,620} {
+    \foreach \y in {166,182,198} {
+      \fill (\x,\y) circle[radius=1.2bp];
+    }
+  }
+  % Vertical ellipses before the bottom row.
+  \foreach \x in {160,225,390} {
+    \foreach \y in {318,334,350} {
+      \fill (\x,\y) circle[radius=1.2bp];
+    }
+  }
+
+  % The slide joins the rightmost dots at 45 degrees.
+  \draw[line width=1.25bp] (620,260) -- (844,36);
+  \node[inner sep=0pt,font=\kaishu\fontsize{24bp}{28bp}\selectfont] at (766,177) {坡};
+
+  % A brace identifies the bottom row.
+  \draw[line width=1.5bp]
+    (151,454) .. controls (155,463) and (162,467) .. (174,467)
+    -- (248,467) .. controls (259,467) and (265,470) .. (270,477)
+    .. controls (275,470) and (281,467) .. (292,467)
+    -- (363,467) .. controls (378,467) and (384,462) .. (388,454);
+  \node[inner sep=0pt,font=\kaishu\fontsize{24bp}{28bp}\selectfont] at (270,514) {底};
+\end{tikzpicture}
+\end{document}

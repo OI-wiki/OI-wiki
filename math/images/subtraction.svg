@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="230" viewBox="0 0 250 230">
+    <style>
+        text {
+            font-size: 50px;
+            text-anchor: middle;
+            transform: translate(0, -10px);
+        }
+        line, path {
+            fill: none;
+            stroke: black;
+            stroke-width: 2.5px;
+            transform: translate(0, -25px);
+        }
+    </style>
+    <text x="100" y="80">1</text>
+    <text x="150" y="80">2</text>
+    <text x="200" y="80">3</text>
+    <text x="50" y="140">-</text>
+    <text x="150" y="140">5</text>
+    <text x="200" y="140">6</text>
+    <line x1="25" y1="170" x2="225" y2="170" />
+    <text x="150" y="200">6</text>
+    <text x="200" y="200">7</text>
+</svg>
