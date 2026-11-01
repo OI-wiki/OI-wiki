@@ -73,15 +73,18 @@ $$
 
 尽管我们可以调用 `sqrt()` 函数来获取平方根的值，但这里还是讲一下牛顿迭代法的变种算法，用于求不等式 $x^2\le n$ 的最大整数解．我们仍然考虑一个类似于牛顿迭代的过程，但需要在边界条件上稍作修改．如果 $x$ 在迭代的过程中上一次迭代值得近似解变小，而这一次迭代使得近似解变大，那么我们就不进行这次迭代，退出循环．
 
+实现时需要特判 $n=0$，否则第一次迭代就会得到 $x=0$，下一次迭代将除以零．另外，在 C++ 实现中，当 $n=2^{31}-1$ 时，第一次迭代的 $x+\lfloor n/x\rfloor=2^{31}$ 超出了 `int` 的范围，因此用 `long long` 计算这个和．
+
 ### 实现
 
 === "C++"
     ```cpp
     int isqrt_newton(int n) {
+      if (n == 0) return 0;
       int x = 1;
       bool decreased = false;
       for (;;) {
-        int nx = (x + n / x) >> 1;
+        int nx = ((long long)x + n / x) >> 1;
         if (x == nx || (nx > x && decreased)) break;
         decreased = nx < x;
         x = nx;
@@ -93,6 +96,8 @@ $$
 === "Python"
     ```python
     def isqrt_newton(n):
+        if n == 0:
+            return 0
         x = 1
         decreased = False
         while True:
@@ -114,6 +119,8 @@ $$
 
 ```java
 public static BigInteger isqrtNewton(BigInteger n) {
+  if (n.signum() == 0)
+    return BigInteger.ZERO;
   BigInteger a = BigInteger.ONE.shiftLeft(n.bitLength() / 2);
   boolean p_dec = false;
   for (;;) {
