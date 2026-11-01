@@ -151,7 +151,7 @@ $$
 $$
 \begin{align}
 \sum_{i=0}^{n} \binom{n}{i}2^{i(n-i)} &= \sum_{i=1}^{n} c_{n, i} 2^i \\
-c_{n, i} &= \sum_{i=0}{n-1} \binom{n-1}{i-1} c_{n, 1}c_{n-i,k-1}
+c_{n, k} &= \sum_{i=1}^{n-1} \binom{n-1}{i-1} c_{i, 1}c_{n-i,k-1}
 \end{align}
 $$
 
@@ -239,7 +239,7 @@ $$
 \end{align}
 $$
 
-设 $\mathcal{E}(A(x))$ 的各项系数为 $b_i$，定义辅助数组 $c_i = \sum_{d|n} d a_d$，则有递推公式
+设 $\mathcal{E}(A(x))$ 的各项系数为 $b_i$，定义辅助数组 $c_i = \sum_{d|i} d a_d$，则有递推公式
 
 $$
 n b_n = c_n + \sum_{i=1}^{n-1} c_i b_{n-i}
