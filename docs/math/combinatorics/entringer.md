@@ -23,7 +23,7 @@ $$
 
 ## Seidel–Entringer–Arnold 三角
 
-恩特林格数的一个适当排列的数字三角，称为 Seidel–Entringer–Arnold 三角（Seidel–Entringer–Arnold triangle，[OEIS A008280](http://oeis.org/A008280)）．该三角是按照「牛耕」顺序（ox-plowing order）排列的恩特林格数 $E_(n,k)$：
+恩特林格数的一个适当排列的数字三角，称为 Seidel–Entringer–Arnold 三角（Seidel–Entringer–Arnold triangle，[OEIS A008280](http://oeis.org/A008280)）．该三角是按照「牛耕」顺序（ox-plowing order）排列的恩特林格数 $E(n,k)$：
 
 $$
 \begin{aligned}
@@ -81,7 +81,7 @@ $$
 
 ## zigzag 置换
 
-一个 zigzag 置换（zigzag permutation）是一个 $1$ 到 $n$ 的排列 $c_1$ 到 $c_i$，使得任意一个元素 $c_i$ 的大小都不介于 $c_{i-1}$ 和 $c_{i+1}$ 之间．
+一个 zigzag 置换（zigzag permutation）是一个 $1$ 到 $n$ 的排列 $c_1$ 到 $c_n$，使得任意一个元素 $c_i$ 的大小都不介于 $c_{i-1}$ 和 $c_{i+1}$ 之间．
 
 对于 zigzag 置换的个数 $Z_n$（[OEIS A001250](http://oeis.org/A001250)），从 $n=0$ 开始有：
 

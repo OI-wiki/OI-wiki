@@ -147,7 +147,7 @@ $G = \{0, 0, \dots, 0, \frac{\Delta_i}{\Delta_k}, -\frac{\Delta_i}{\Delta_k}F_{k
 
 #### 解稀疏方程组
 
-**问题**：已知 $A \mathbf x = \mathbf b$, 其中 $A$ 是一个 $n \times n$ 的 **满秩** 稀疏矩阵，$\mathbf b$ 和 $\mathbf x$ 是 $1\times n$ 的列向量．$A, \mathbf b$ 已知，需要在低于 $n^\omega$ 的复杂度内解出 $x$．
+**问题**：已知 $A \mathbf x = \mathbf b$, 其中 $A$ 是一个 $n \times n$ 的 **满秩** 稀疏矩阵，$\mathbf b$ 和 $\mathbf x$ 是 $n\times 1$ 的列向量．$A, \mathbf b$ 已知，需要在低于 $n^\omega$ 的复杂度内解出 $x$．
 
 **做法**：显然 $\mathbf x = A^{-1} \mathbf b$．如果我们能求出 $\{A^i \mathbf b\}$($i \ge 0$) 的最小递推式 $\{r_0 \dots r_{m - 1}\}$($m \le n$), 那么就有结论
 

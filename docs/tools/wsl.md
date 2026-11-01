@@ -70,7 +70,7 @@ Windows 10 在一周年更新时推出了 Linux 子系统（WSL），在 2020 �
     
     如果你正在使用 1607 以下版本的 Windows 10，你的系统不支持 WSL．
 
-1.  以管理员身份打开 Windows PowerShell（右击「开始」按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员）)
+1.  以管理员身份打开 Windows PowerShell（右击「开始」按钮，选择 Windows PowerShell（管理员）或 Windows 终端（管理员））
 
 2.  输入 `wsl --install`，并等待所有组件自动安装完成．期间你可能需要重启你的计算机来启用必要的 Windows 功能．
 

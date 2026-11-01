@@ -227,7 +227,7 @@ int Access(int x) {
 
     ![step 2 auxtree](images/lct-access-5.svg)
 
--   接下来，按照刚刚的操作步骤，由于 $I$ 的 Father 指向 $H$，我们把 $H$ 旋转到他所在 Splay Tree 的根，然后把 $H$ 的 rs 设为 $I$．
+-   接下来，按照刚刚的操作步骤，由于 $I$ 的 Father 指向 $H$，我们把 $H$ 旋转到它所在 Splay Tree 的根，然后把 $H$ 的 rs 设为 $I$．
 
 -   之后的树是这样的．
 
@@ -348,7 +348,7 @@ int Find(int p) {
 
 ### 注意事项
 
--   操作前一定要想一想需不需要 `PushUp` 或者 `PushDown`，LCT 由于特别灵活的原因，少 `Pushdown` 或者 `Pushup` 一次就可能把修改改到不该改的点上！
+-   操作前一定要想一想需不需要 `PushUp` 或者 `PushDown`，LCT 由于特别灵活的原因，少 `PushDown` 或者 `PushUp` 一次就可能把修改改到不该改的点上！
 -   LCT 的 `Rotate` 和 Splay 的不太一样，`if (z)` 一定要放在前面．
 -   LCT 的 `Splay` 操作就是旋转到根，没有旋转到谁儿子的操作，因为不需要．
 

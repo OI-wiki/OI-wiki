@@ -154,7 +154,7 @@ $\rightarrow$ 点击 **Typeset** 按扭，核对 PDF 文档．应该是长这样
 
 ### 创建标签
 
-你可以对任意章节命令创建标签，这样他们可以在文档的其他部分被引用．使用 `\label{labelname}` 对章节创建标签．然后输入 `\ref{labelname}` 或者 `\pageref{labelname}` 来引用对应的章节．
+你可以对任意章节命令创建标签，这样它们可以在文档的其他部分被引用．使用 `\label{labelname}` 对章节创建标签．然后输入 `\ref{labelname}` 或者 `\pageref{labelname}` 来引用对应的章节．
 
 $\rightarrow$ 在 `\subsection{Stage 1}` 下面另起一行，输入 `\label{sec1}`．$\rightarrow$ 在 **Results** 章节输入 `Referring to section \ref{sec1} on page \pageref{sec1}`．
 
@@ -331,13 +331,13 @@ $\rightarrow$ 尝试在你的文档中添加注释和空行．
 # $ % ^ & _ { } ~ \
 ```
 
-为了使用这些字符，我们需要在他们前面添加反斜杠进行转义：
+为了使用这些字符，我们需要在它们前面添加反斜杠进行转义：
 
 ```tex
 --8<-- "docs/tools/images/latex-for-beginners-11.tex:example"
 ```
 
-注意在使用 `^` 和 `~` 字符的时候需要在后面紧跟一对闭合的花括号，否则他们就会被解释为字母的上标，就像 `\^ e` 会变成 $\mathrm {\hat{e}}$．上面的代码生成的效果如下：
+注意在使用 `^` 和 `~` 字符的时候需要在后面紧跟一对闭合的花括号，否则它们就会被解释为字母的上标，就像 `\^ e` 会变成 $\mathrm {\hat{e}}$．上面的代码生成的效果如下：
 
 ![转义后的特殊字符](images/latex-for-beginners-11.svg)
 
@@ -598,9 +598,9 @@ BibTeX 文件包含了所有你想要在你文档中引用的文献．它的文�
 }
 ```
 
-每一个参考文献先声名它的文献类型（reference type）．示例中使用的是 @article，其他的类型包括 @book，@incollection 用于引用一本书的中的章节，@inproceedings 用于引用会议论文．可以 [在此](http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management) 查看更多支持的类型．
+每一个参考文献先声明它的文献类型（reference type）．示例中使用的是 @article，其他的类型包括 @book，@incollection 用于引用一本书中的章节，@inproceedings 用于引用会议论文．可以 [在此](http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management) 查看更多支持的类型．
 
-接下来的花括号内首先要列出一个引用键值（citation key）．必须保证你引用的文献的引用键值是不同的．你可以自定义键值串，不过使用第一作者名字加上年分会是一个表义清晰的选择．
+接下来的花括号内首先要列出一个引用键值（citation key）．必须保证你引用的文献的引用键值是不同的．你可以自定义键值串，不过使用第一作者名字加上年份会是一个表义清晰的选择．
 
 接下来的若干行包括文献的若干信息，格式如下：
 
@@ -629,7 +629,7 @@ Field name = {field contents},
 
 使用 `\cite{citationkey}` 来在你想要引用文献的地方插入一个标注．如果你不希望在正文中插入一个引用标注，但仍想要在文献列表中显示这次引用，使用 `\nocite{citationkey}` 命令．
 
-想要在引用中插入页码信息，使用方括号：`\cite[p. 215]{citationkay}`．
+想要在引用中插入页码信息，使用方括号：`\cite[p. 215]{citationkey}`．
 
 要引用多个文献，使用逗号分隔：`\cite{citation01,citation02,citation03}`．
 
@@ -651,7 +651,7 @@ LaTeX 包含了多种行内数字标号引用的格式：
 
 如果你想使用作者日期的引用，使用 **natbib** 包．它使用 `\citep{...}` 命令来生成一个方括号标注，如 $[Koppe,2010]$，使用 `\citet{...}` 来生成一个标注，只把年份放到方括号里，如 $Koppe [2010]$．[在此](http://mirror.ctan.org/macros/latex/contrib/natbib/natnotes.pdf) 查看它的更多用法．
 
-Natbib 包也有三种格式：**plainnat**，**abbrvnat** 和 **unsrtnat**，他们与 **plain**，**abbrv** 和 **unsrt** 的效果是一样的．
+Natbib 包也有三种格式：**plainnat**，**abbrvnat** 和 **unsrtnat**，它们与 **plain**，**abbrv** 和 **unsrt** 的效果是一样的．
 
 #### 其他引用格式
 

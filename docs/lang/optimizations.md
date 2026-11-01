@@ -16,7 +16,7 @@ OI 界的常用编程语言是 C++．既然使用了这门语言，就注定要�
 
 ### 常量折叠 (Constant Folding)
 
-常量折叠，又称常量传播 (Constant Propagation)，如果一个表达式可以确定为常量，在他的下一个定义 (Definition) 前，可以进行常量传播．
+常量折叠，又称常量传播 (Constant Propagation)，如果一个表达式可以确定为常量，在它的下一个定义 (Definition) 前，可以进行常量传播．
 
 ```cpp
 int x = 1;
