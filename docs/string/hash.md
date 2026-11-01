@@ -211,7 +211,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
     $$
     \begin{aligned}
     f_i &= f_{i-1} \cdot g_i\\
-        &=f_1 \cdot g_1 \cdot g_2 \cdots g_{i-1}\\
+        &=f_1 \cdot g_2 \cdot g_3 \cdots g_{i}\\
     \end{aligned}
     $$
     
@@ -231,11 +231,11 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
     
     即 $g_i$ 为 $g_{i-1} \cdot c\ (c \equiv 0 \pmod 2)$ 的形式．
     
-    所以 $2 | s_1$，$4 | s_2$，……，即
+    所以 $2 | g_2$，$4 | g_3$，……，即
     
     $$
     \begin{aligned}
-    & 2^i &| g_i\\
+    & 2^{i-1} &| g_i\\
     &2^1\cdot2^2\cdot2^3\cdots2^{i-1} &| f_i\\
     &2^{i(i-1)/2} &| f_i
     \end{aligned}
