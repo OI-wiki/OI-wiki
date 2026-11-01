@@ -61,7 +61,7 @@ $$
 另一方面，设 $X \sim F(x)$，则
 
 $$
-P( l < x \leq l + \Delta x ) = F(l + \Delta x) - F(l)
+P( l < X \leq l + \Delta x ) = F(l + \Delta x) - F(l)
 $$
 
 一个自然的想法是用极限 $\lim\limits_{\Delta x \to 0^+} \frac{F(l + \Delta x) - F(l)}{\Delta x}$ 来描述 $X$ 取值为 $l$ 的可能性．

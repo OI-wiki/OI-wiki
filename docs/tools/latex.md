@@ -70,19 +70,19 @@ $\rightarrow$ 输入以下文字：
 
 空行不是必要的，但它可以让长的文档更易读．
 
-$\rightarrow$ 按下 **Save** 按扭；$\rightarrow$ 在 **Libraries>Documents** 中新建一个名为 **LaTeX course** 文件夹；$\rightarrow$ 将你的文档命名为 **Doc1** 并将其保存为 **TeX document** 放在这个文件夹中．
+$\rightarrow$ 按下 **Save** 按钮；$\rightarrow$ 在 **Libraries>Documents** 中新建一个名为 **LaTeX course** 文件夹；$\rightarrow$ 将你的文档命名为 **Doc1** 并将其保存为 **TeX document** 放在这个文件夹中．
 
 将不同的 LaTeX 文档放在不同的目录下，在编译的时候组合多个文件是一个很好的想法．
 
-$\rightarrow$ 确保 typeset 菜单设置为了 **xeLaTeX**．$\rightarrow$ 点击 **Typeset** 按扭．
+$\rightarrow$ 确保 typeset 菜单设置为了 **xeLaTeX**．$\rightarrow$ 点击 **Typeset** 按钮．
 
 这时你的源文件会被转换为 PDF 文档，这需要花费一定的时间．在编译结束后，TeXworks 的 PDF 查看器会打开并预览生成的文件．PDF 文件会被自动地保存在与 TeX 文档相同的目录下．
 
 ### 处理问题
 
-如果在你的文档中存在错误，TeXworks 无法创建 PDF 文档时，**Typeset** 按扭会变成一个红叉，并且底部的终端输出会保持展开．这时：
+如果在你的文档中存在错误，TeXworks 无法创建 PDF 文档时，**Typeset** 按钮会变成一个红叉，并且底部的终端输出会保持展开．这时：
 
-$\rightarrow$ 点击 **Abort typesetting** 按扭．$\rightarrow$ 阅读终端输出的内容，最后一行可能会给出行号表示出现错误的位置．$\rightarrow$ 找到文档中对应的行并修复错误．$\rightarrow$ 再次点击 **Typeset** 按扭尝试编译源文件．
+$\rightarrow$ 点击 **Abort typesetting** 按钮．$\rightarrow$ 阅读终端输出的内容，最后一行可能会给出行号表示出现错误的位置．$\rightarrow$ 找到文档中对应的行并修复错误．$\rightarrow$ 再次点击 **Typeset** 按钮尝试编译源文件．
 
 ### 添加文档标题
 
@@ -112,7 +112,7 @@ $\rightarrow$ 在 `\begin{document}` 和 命令后紧跟着输入以下文本：
 \end{document}
 ```
 
-$\rightarrow$ 点击 **Typeset** 按扭，核对生成的 PDF 文档．
+$\rightarrow$ 点击 **Typeset** 按钮，核对生成的 PDF 文档．
 
 要点笔记：
 
@@ -148,7 +148,7 @@ $\rightarrow$ 将 "A sentence of text." 替换为以下文本：
 --8<-- "docs/tools/images/latex-for-beginners-1.tex:ending"
 ```
 
-$\rightarrow$ 点击 **Typeset** 按扭，核对 PDF 文档．应该是长这样的：
+$\rightarrow$ 点击 **Typeset** 按钮，核对 PDF 文档．应该是长这样的：
 
 ![章节排版效果](images/latex-for-beginners-1.svg)
 
@@ -499,7 +499,7 @@ $$
 
 尽管一些基础的符号可以直接键入，但大多数特殊符号需要使用命令来显示．
 
-本书只是数学符号使用的入门教程，LaTeX Wikibook 的数学符号章节是另一个更好更完整的教程．如果想要了解更多关于数学符号的内容请移步．如果你想找到一个特定的符号，可以使用 [Detexfiy](http://detexify.kirelabs.org)，它可以识别手写字符．
+本书只是数学符号使用的入门教程，LaTeX Wikibook 的数学符号章节是另一个更好更完整的教程．如果想要了解更多关于数学符号的内容请移步．如果你想找到一个特定的符号，可以使用 [Detexify](http://detexify.kirelabs.org)，它可以识别手写字符．
 
 #### 上标和下标
 
@@ -659,7 +659,7 @@ Natbib 包也有三种格式：**plainnat**，**abbrvnat** 和 **unsrtnat**，�
 
 ### 实践
 
-$\rightarrow$ 在同一文件夹下新建一个同名的 BibTeX 文件，用正确的格式输入参考文献的信息．$\rightarrow$ 切换到 TeX 文档，并使用 `\cite`，`\bibliographystyle` 和 `\bibliograph` 命令来引用文献．$\rightarrow$ 编译 TeX 文件．$\rightarrow$ 切换到 BibTeX 文件，并编译（点击 **Typeset** 按扭）$\rightarrow$ 切换到 TeX 文件并编译它 **两次**，然后核对 PDF 文档．
+$\rightarrow$ 在同一文件夹下新建一个同名的 BibTeX 文件，用正确的格式输入参考文献的信息．$\rightarrow$ 切换到 TeX 文档，并使用 `\cite`，`\bibliographystyle` 和 `\bibliography` 命令来引用文献．$\rightarrow$ 编译 TeX 文件．$\rightarrow$ 切换到 BibTeX 文件，并编译（点击 **Typeset** 按钮）$\rightarrow$ 切换到 TeX 文件并编译它 **两次**，然后核对 PDF 文档．
 
 ## 更多阅读
 

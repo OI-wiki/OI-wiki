@@ -113,7 +113,7 @@ $$
 对 $\binom{m+1}{j}\binom{j}{k}$ 进行恒等变换：
 
 $$
-\binom{m+1}{j}\binom{j}{k}＝\binom{m+1}{k}\binom{m-k+1}{j-k}
+\binom{m+1}{j}\binom{j}{k}=\binom{m+1}{k}\binom{m-k+1}{j-k}
 $$
 
 那么式子就变成了：

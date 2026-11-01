@@ -1,6 +1,6 @@
 ## 简介
 
-RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值．
+RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值查询．
 
 在接下来的描述中，默认初始数组大小为 $n$，询问次数为 $m$．
 

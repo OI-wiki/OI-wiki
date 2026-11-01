@@ -238,7 +238,7 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
         --8<-- "docs/ds/code/dsu/dsu_1.py"
         ```
 
-???+ example "[Luogu P2024「NOI2011」食物链](https://www.luogu.com.cn/problem/P2024)"
+???+ example "[Luogu P2024「NOI2001」食物链](https://www.luogu.com.cn/problem/P2024)"
     动物王国中有三类动物 $A,B,C$，这三类动物的食物链构成了有趣的环形．$A$ 吃 $B$，$B$ 吃 $C$，$C$ 吃 $A$．
     
     现有 $N$ 个动物，以 $1 \sim N$ 编号．每个动物都是 $A,B,C$ 中的一种，但是我们并不知道它到底是哪一种．

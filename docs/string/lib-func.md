@@ -7,7 +7,7 @@ C 标准库操作字符数组 `char[]`/`const char*`．
 参见：[fprintf](https://zh.cppreference.com/w/c/io/fprintf)、[fscanf](https://zh.cppreference.com/w/c/io/fscanf)、[空终止字节字符串](https://zh.cppreference.com/w/c/string/byte)
 
 -   `printf("%s", s)`：用 `%s` 来输出一个字符串（字符数组）．
--   `scanf("%s", &s)`：用 `%s` 来读入一个字符串（字符数组）．
+-   `scanf("%s", s)`：用 `%s` 来读入一个字符串（字符数组）．
 -   `sscanf(const char *__source, const char *__format, ...)`：从字符串 `__source` 里读取变量，比如 `sscanf(str,"%d",&a)`．
 -   `sprintf(char *__stream, const char *__format, ...)`：将 `__format` 字符串里的内容输出到 `__stream` 中，比如 `sprintf(str,"%d",i)`．
 -   `strlen(const char *str)`：返回从 `str[0]` 开始直到 `'\0'` 的字符数．注意，未开启 O2 优化时，该操作写在循环条件中复杂度是 $\Theta(N)$ 的．

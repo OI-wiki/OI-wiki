@@ -19,7 +19,7 @@ author: H-J-Granger, Chrogeek, countercurrent-time, Enter-tainer, Great-designer
     
     推导过程：
     对于一个二次函数 $f(x)=ax^2+bx+c$；
-    求积分可得 $F(x)=\int_0^x f(x) {\mathrm d}x = \frac{a}{3}x^3+\frac{b}{2}x^2+cx+D$ 在这里 D 是一个常数，那么
+    求积分可得 $F(x)=\int f(x) {\mathrm d}x = \frac{a}{3}x^3+\frac{b}{2}x^2+cx+D$ 在这里 $D$ 是一个常数，那么
     
     $$
     \begin{aligned}
@@ -40,7 +40,7 @@ author: H-J-Granger, Chrogeek, countercurrent-time, Enter-tainer, Great-designer
 
 #### 描述
 
-给定一个自然数 $n$，将区间 $[l, r]$ 分成 $2n$ 个等长的区间 $x$．
+给定一个自然数 $n$，将区间 $[l, r]$ 分成 $2n$ 个等长的区间．
 
 $x_i = l + i h, ~~ i = 0 \ldots 2n,$ $h = \frac {r-l} {2n}.$
 
@@ -48,11 +48,11 @@ $x_i = l + i h, ~~ i = 0 \ldots 2n,$ $h = \frac {r-l} {2n}.$
 
 对于 $[x_ {2i-2}, x_ {2i}]$，$i = 1\ldots n$ 的一个区间，选其中的三个点 $(x_ {2i-2}, x_ {2i-1}, x_ {2i})$ 就可以构成一条抛物线从而得到一个函数 $P(x)$，这个函数存在且唯一．计算原函数在该区间的积分值就变成了计算新的二次函数 $P(x)$ 在该段区间的积分值．这样我们就可以利用辛普森公式来近似计算它．
 
-$\int_{x_ {2i-2}} ^ {x_ {2i}} f (x) ~dx \approx \int_{x_ {2i-2}} ^ {x_ {2i}} P (x) ~dx = \left(f(x_{2i-2}) + 4f(x_{2i-1})+(f(x_{2i})\right)\frac {h} {3}$
+$\int_{x_ {2i-2}} ^ {x_ {2i}} f (x) ~dx \approx \int_{x_ {2i-2}} ^ {x_ {2i}} P (x) ~dx = \left(f(x_{2i-2}) + 4f(x_{2i-1})+f(x_{2i})\right)\frac {h} {3}$
 
 将其分段求和即可得到如下结论：
 
-$\int_l ^ r f (x) dx \approx \left(f (x_0) + 4 f (x_1) + 2 f (x_2) + 4f(x_3) + 2 f(x_4) + \ldots + 4 f(x_{2N-1}) + f(x_{2N}) \right)\frac {h} {3}$
+$\int_l ^ r f (x) dx \approx \left(f (x_0) + 4 f (x_1) + 2 f (x_2) + 4f(x_3) + 2 f(x_4) + \ldots + 4 f(x_{2n-1}) + f(x_{2n}) \right)\frac {h} {3}$
 
 #### 误差
 
@@ -110,7 +110,7 @@ $$
 
 于是我们有了这样一种分割方法：每次判断当前段和二次函数的相似程度，如果足够相似的话就直接代入公式计算，否则将当前段分割成左右两段递归求解．
 
-现在就剩下一个问题了：如果判断每一段和二次函数是否相似？
+现在就剩下一个问题了：如何判断每一段和二次函数是否相似？
 
 我们把当前段直接代入公式求积分，再将当前段从中点分割成两段，把这两段再直接代入公式求积分．如果当前段的积分和分割成两段后的积分之和相差很小的话，就可以认为当前段和二次函数很相似了，不用再递归分割了．
 

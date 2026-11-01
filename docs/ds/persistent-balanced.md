@@ -140,7 +140,7 @@ static int _merge(int _x, int _y) {
 
 ## 例题
 
-???+ note "[洛谷 P3835【模版】可持久化平衡树](https://www.luogu.com.cn/problem/P3835)"
+???+ note "[洛谷 P3835【模板】可持久化平衡树](https://www.luogu.com.cn/problem/P3835)"
     你需要实现一个数据结构，要求提供如下操作（最开始时数据结构内无数据）：
     
     1.  插入 $x$ 数；

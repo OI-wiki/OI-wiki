@@ -1,4 +1,4 @@
-在 STL 中，迭代器（Iterator）用来访问和检查 STL 容器中元素的对象，它的行为模式和指针类似，但是它封装了一些有效性检查，并且提供了统一的访问格式．类似的概念在其他很多高级语言中都存在，如 Python 的 `__iter__` 函数，C# 的 `IEnumerator`．
+在 STL 中，迭代器（Iterator）是用来访问和检查 STL 容器中元素的对象，它的行为模式和指针类似，但是它封装了一些有效性检查，并且提供了统一的访问格式．类似的概念在其他很多高级语言中都存在，如 Python 的 `__iter__` 函数，C# 的 `IEnumerator`．
 
 ## 基础使用
 
@@ -26,12 +26,12 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
 
 在 STL 的定义中，迭代器根据其支持的操作依次分为以下几类：
 
--   InputIterator（输入迭代器）：只要求支持拷贝、自增和解引访问．
--   OutputIterator（输出迭代器）：只要求支持拷贝、自增和解引赋值．
--   ForwardIterator（前向迭代器）：在 InputIterator 的基础上支持多次遍历迭代器解引访问，且保证多次访问的结果一致．
+-   InputIterator（输入迭代器）：只要求支持拷贝、自增和解引用访问．
+-   OutputIterator（输出迭代器）：只要求支持拷贝、自增和解引用赋值．
+-   ForwardIterator（前向迭代器）：在 InputIterator 的基础上支持多次遍历迭代器解引用访问，且保证多次访问的结果一致．
 -   BidirectionalIterator（双向迭代器）：在 ForwardIterator 的基础上支持自减（即反向访问）．
 -   RandomAccessIterator（随机访问迭代器）：在 BidirectionalIterator 的基础上支持加减运算和比较运算（即随机访问）．
--   ContiguousIterator（连续迭代器）：在 RandomAccessIterator 的基础上要求对可解引用的迭代器 `a + n` 满足 `*(a + n)` 与 `*(std::address_of(*a) + n)` 等价（即连续存储，其中 `a` 为连续迭代器、`n` 为整型值）．
+-   ContiguousIterator（连续迭代器）：在 RandomAccessIterator 的基础上要求对可解引用的迭代器 `a + n` 满足 `*(a + n)` 与 `*(std::addressof(*a) + n)` 等价（即连续存储，其中 `a` 为连续迭代器、`n` 为整型值）．
 
     ContiguousIterator 于 C++17 中正式引入．
 
@@ -40,7 +40,7 @@ for (vector<int>::iterator iter = data.begin(); iter != data.end(); iter++)
     
     「输入」和「输出」的施动者是程序的其它部分，而不是迭代器自身．
 
-迭代器的这些分类并不互斥．实际上，除了输出迭代器之外，列表中排在前面的迭代器都包含着排在后面的迭代器．例如，在要求使用前向迭代器的地方，同样可以使用双向迭代器．从前向迭代器开始，如果这些迭代器还实现了输出迭代器的功能（即允许写操作），就称它们是可变迭代器．由此，可以衍生出诸如「可变随机访问迭代器」这样的类别．
+迭代器的这些分类并不互斥．实际上，除了输出迭代器之外，列表中排在后面的迭代器都包含着排在前面的迭代器．例如，在要求使用前向迭代器的地方，同样可以使用双向迭代器．从前向迭代器开始，如果这些迭代器还实现了输出迭代器的功能（即允许写操作），就称它们是可变迭代器．由此，可以衍生出诸如「可变随机访问迭代器」这样的类别．
 
 不同的 [STL 容器](./container.md) 支持的迭代器类型不同，在使用时需要留意．
 

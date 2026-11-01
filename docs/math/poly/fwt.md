@@ -457,11 +457,11 @@ $$
 $$
 \begin{bmatrix}
 1 & 1 & 1 & \cdots & 1 \\
-1 & \omega_{K}^1 & \omega_{K}^2 & \cdots & \omega_{K}^{k-1} \\
-1 & \omega_{K}^2 & \omega_{K}^4 & \cdots & \omega_{K}^{2(k-1)} \\
-1 & \omega_{K}^3 & \omega_{K}^6 & \cdots & \omega_{K}^{3(k-1)} \\
+1 & \omega_{K}^1 & \omega_{K}^2 & \cdots & \omega_{K}^{K-1} \\
+1 & \omega_{K}^2 & \omega_{K}^4 & \cdots & \omega_{K}^{2(K-1)} \\
+1 & \omega_{K}^3 & \omega_{K}^6 & \cdots & \omega_{K}^{3(K-1)} \\
 \vdots & \vdots & \vdots & \ddots & \vdots \\
-1 & \omega_{K}^{k-1} & \omega_{K}^{2(k-1)} & \cdots & \omega_{K}^{(k-1)(k-1)}
+1 & \omega_{K}^{K-1} & \omega_{K}^{2(K-1)} & \cdots & \omega_{K}^{(K-1)(K-1)}
 \end{bmatrix}
 $$
 
@@ -470,34 +470,34 @@ $$
 $$
 \frac{1}{K}\begin{bmatrix}
 1 & 1 & 1 & \cdots & 1 \\
-1 & \omega_{K}^{-1} & \omega_{K}^{-2} & \cdots & \omega_{K}^{-(k-1)} \\
-1 & \omega_{K}^{-2} & \omega_{K}^{-4} & \cdots & \omega_{K}^{-2(k-1)} \\
-1 & \omega_{K}^{-3} & \omega_{K}^{-6} & \cdots & \omega_{K}^{-3(k-1)} \\
+1 & \omega_{K}^{-1} & \omega_{K}^{-2} & \cdots & \omega_{K}^{-(K-1)} \\
+1 & \omega_{K}^{-2} & \omega_{K}^{-4} & \cdots & \omega_{K}^{-2(K-1)} \\
+1 & \omega_{K}^{-3} & \omega_{K}^{-6} & \cdots & \omega_{K}^{-3(K-1)} \\
 \vdots & \vdots & \vdots & \ddots & \vdots \\
-1 & \omega_{K}^{-(k-1)} & \omega_{K}^{-2(k-1)} & \cdots & \omega_{K}^{-(k-1)(k-1)}
+1 & \omega_{K}^{-(K-1)} & \omega_{K}^{-2(K-1)} & \cdots & \omega_{K}^{-(K-1)(K-1)}
 \end{bmatrix}
 $$
 
 如果我们题目给出的模数是存在单位根的，我们就可以简单实现．
 
-但是 **单位根在模意义下可能不存在**，所以我们考虑扩域，就是人为地定义一个 $x$，满足 $x^K=1$，然后直接把 $x$ 代入计算，这样每个数都是一个关于 $x$ 的 $k-1$ 次多项式．我们只需要在 $\bmod {x^K-1}$ 下计算即可．那么矩阵可以这么表示：
+但是 **单位根在模意义下可能不存在**，所以我们考虑扩域，就是人为地定义一个 $x$，满足 $x^K=1$，然后直接把 $x$ 代入计算，这样每个数都是一个关于 $x$ 的 $K-1$ 次多项式．我们只需要在 $\bmod {x^K-1}$ 下计算即可．那么矩阵可以这么表示：
 
 $$
 \begin{bmatrix}
 1 & 1 & 1 & \cdots & 1 \\
-1 & x^1 & x^2 & \cdots & x^{k-1} \\
-1 & x^2 & x^4 & \cdots & x^{2(k-1)} \\
-1 & x^3 & x^6 & \cdots & x^{3(k-1)} \\
+1 & x^1 & x^2 & \cdots & x^{K-1} \\
+1 & x^2 & x^4 & \cdots & x^{2(K-1)} \\
+1 & x^3 & x^6 & \cdots & x^{3(K-1)} \\
 \vdots & \vdots & \vdots & \ddots & \vdots \\
-1 & x^{k-1} & x^{2(k-1)} & \cdots & x^{(k-1)(k-1)}
+1 & x^{K-1} & x^{2(K-1)} & \cdots & x^{(K-1)(K-1)}
 \end{bmatrix}
 $$
 
 但是这么做可能会存在零因子，也就是 **一个数有多种表示方法**，我们无法确定一个数的真实值．
 
-我们考虑不 $\bmod {x^K-1}$ 了，我们 $\bmod$ 分圆多项式 $\Phi_{K}(x)$，他满足 $x$ 的阶为 $k$，且在 $\mathbb{Q}$ 上不可约．所以我们定义上面的计算是在 $\bmod {\Phi_{K}(x)}$ 下进行即可．
+我们考虑不 $\bmod {x^K-1}$ 了，我们 $\bmod$ 分圆多项式 $\Phi_{K}(x)$，它满足 $x$ 的阶为 $K$，且在 $\mathbb{Q}$ 上不可约．所以我们定义上面的计算是在 $\bmod {\Phi_{K}(x)}$ 下进行即可．
 
-还有一个问题是，$\bmod \Phi_{K}(x)$ 常数大（因为 $\Phi$ 本身就是一个多项式）．但是因为 $\Phi_{K}(x)\mid x^k-1$，我们只需要在计算时 $\bmod x^k -1$，最后再 $\bmod \Phi_{K}(x)$ 即可．
+还有一个问题是，$\bmod \Phi_{K}(x)$ 常数大（因为 $\Phi$ 本身就是一个多项式）．但是因为 $\Phi_{K}(x)\mid x^K-1$，我们只需要在计算时 $\bmod x^K -1$，最后再 $\bmod \Phi_{K}(x)$ 即可．
 
 ## 例题
 

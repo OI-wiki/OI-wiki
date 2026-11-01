@@ -41,16 +41,16 @@ $$
 
 $$
 \begin{align}
-\det(M)&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n e(a_i,b_{\sigma(i)})\\
-&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:a_i\to b_{\sigma(i)}} \omega(P)
+\det(M)&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n e(A_i,B_{\sigma(i)})\\
+&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:A_i\to B_{\sigma(i)}} \omega(P)
 \end{align}
 $$
 
-观察到 $\prod\limits_{i=1}^n \sum\limits_{P:a_i\to b_{\sigma(i)}} \omega(P)$，实际上是所有从 $A$ 到 $B$ 排列为 $\sigma$ 的路径组 $P$ 的 $\omega(P)$ 之和．
+观察到 $\prod\limits_{i=1}^n \sum\limits_{P:A_i\to B_{\sigma(i)}} \omega(P)$，实际上是所有从 $A$ 到 $B$ 排列为 $\sigma$ 的路径组 $P$ 的 $\omega(P)$ 之和．
 
 $$
 \begin{align}
-&\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:a_i\to b_{\sigma(i)}} \omega(P)\\
+&\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:A_i\to B_{\sigma(i)}} \omega(P)\\
 =&\sum_{\sigma}(-1)^{t(\sigma)}\sum_{P=\sigma}\omega(P)\\
 =&\sum_{P:A\to B}(-1)^{t(\sigma)}\prod_{i=1}^n \omega(P_i)
 \end{align}

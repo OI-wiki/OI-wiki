@@ -60,8 +60,8 @@ void solve() {
     
     $$
     \begin{aligned}
-    & O(\sqrt{n}(\max{}_1-1)+\sqrt{n}(\max{}_2-\max{}_1)+\sqrt{n}(\max{}_3-\max{}_2)+\cdots+\sqrt{n}(\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1))} \\
-    = \phantom{} & O(\sqrt{n}\cdot(\max{}_1-1+\max{}_2-\max{}_1+\max{}_3-\max{}_2+\cdots+\max{}_{\lceil\sqrt{n}\rceil-1}-\max{}_{\lceil\sqrt{n}\rceil-2}+\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1)}) \\
+    & O(\sqrt{n}(\max{}_1-1)+\sqrt{n}(\max{}_2-\max{}_1)+\sqrt{n}(\max{}_3-\max{}_2)+\cdots+\sqrt{n}(\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1})) \\
+    = \phantom{} & O(\sqrt{n}\cdot(\max{}_1-1+\max{}_2-\max{}_1+\max{}_3-\max{}_2+\cdots+\max{}_{\lceil\sqrt{n}\rceil-1}-\max{}_{\lceil\sqrt{n}\rceil-2}+\max{}_{\lceil\sqrt{n}\rceil}-\max{}_{\lceil\sqrt{n}\rceil-1})) \\
     = \phantom{} & O(\sqrt{n}\cdot(\max{}_{\lceil\sqrt{n}\rceil}-1))\\
     \end{aligned}
     $$
@@ -72,7 +72,7 @@ void solve() {
 
 综上所述，莫队算法的时间复杂度为 $O(n\sqrt{n})$．
 
-但是对于 $m$ 的其他取值，如 $m<n$，分块方式需要改变才能变的更优．
+但是对于 $m$ 的其他取值，如 $m<n$，分块方式需要改变才能变得更优．
 
 怎么分块呢？
 
@@ -91,7 +91,7 @@ void solve() {
 ???+ note "例题 [「国家集训队」小 Z 的袜子](https://www.luogu.com.cn/problem/P1494)"
     题目大意：
     
-    有一个长度为 $n$ 的序列 $\{c_i\}$．现在给出 $m$ 个询问，每次给出两个数 $l,r$，从编号在 $l$ 到 $r$ 之间的数中随机选出两个不同的数，求两个数相等的概率．
+    有一个长度为 $n$ 的序列 $\{c_i\}$．现在给出 $m$ 个询问，每次给出两个数 $l,r$，从编号在 $l$ 到 $r$ 之间的数中随机选出两个不同位置的数，求两个数相等的概率．
 
 ### 过程
 
@@ -172,7 +172,7 @@ void solve() {
 
 手动模拟一下可以发现，r 指针的移动次数大概为 300 次，我们处理完第一个块之后，$l = 2, r = 100$，此时只需要移动两次 l 指针就可以得到第四个询问的答案，但是我们却将 r 指针移动到 1 来获取第三个询问的答案，再移动到 100 获取第四个询问的答案，这样多了九十几次的指针移动．我们怎么优化这个地方呢？这里我们就要用到奇偶化排序．
 
-什么是奇偶化排序？奇偶化排序即对于属于奇数块的询问，r 按从小到大排序，对于属于偶数块的排序，r 从大到小排序，这样我们的 r 指针在处理完这个奇数块的问题后，将在返回的途中处理偶数块的问题，再向 n 移动处理下一个奇数块的问题，优化了 r 指针的移动次数，一般情况下，这种优化能让程序快 30% 左右．
+什么是奇偶化排序？奇偶化排序即对于属于奇数块的询问，r 按从小到大排序，对于属于偶数块的询问，r 从大到小排序，这样我们的 r 指针在处理完这个奇数块的问题后，将在返回的途中处理偶数块的问题，再向 n 移动处理下一个奇数块的问题，优化了 r 指针的移动次数，一般情况下，这种优化能让程序快 30% 左右．
 
 ### 实现
 

@@ -81,13 +81,13 @@ $$
 设 $X$ 是一随机变量，则对任意的 $t > 0$ 都有
 
 $$
-P\{ X \geq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
+P\{ X \geq a \} = P\{ \mathrm{e}^{tX} \geq \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 类似地，当 $t < 0$ 时有
 
 $$
-P\{ X \leq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
+P\{ X \leq a \} = P\{ \mathrm{e}^{tX} \geq \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 ### Poisson 试验之和的 Chernoff 不等式

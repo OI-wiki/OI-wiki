@@ -60,7 +60,7 @@ $$
 
 ### 推论
 
-考虑求树括号序的递归算法，我们在回溯时拼接子树的括号序．如果在拼接的时候将字典序小的序列先拼接，并将最后的结果记为 $NAME$．
+考虑求树括号序的递归算法，我们在回溯时拼接子树的括号序．在拼接的时候将字典序小的序列先拼接，并将最后的结果记为 $NAME$．
 
 将以节点 $r$ 为根的子树的 $NAME$ 作为节点 $r$ 的 $NAME$，记为 $NAME(r)$，那么对于有根树 $T_1(V_1,E_1,r_1)$ 和 $T_2(V_2,E_2,r_2)$，如果 $NAME(r_1)=NAME(r_2)$，那么 $T_1$ 和 $T_2$ 同构．
 
@@ -78,7 +78,7 @@ $$
     7 & \qquad \qquad \text{for all child } v \text{ of } u\\
     8 & \qquad \qquad \qquad \text{ASSIGN-NAME(}v\text{)}\\
     9 & \qquad \text{sort the names of the children of }u\\
-    10 & \qquad \text{concatenate the names of all children }u\text{ to temp}\\
+    10 & \qquad \text{concatenate the names of all children of }u\text{ to temp}\\
     11 & \qquad \text{NAME(} u \text{) = (temp)}
     \end{array}
     $$
