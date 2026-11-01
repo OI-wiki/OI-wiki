@@ -124,7 +124,7 @@ DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容
       vis[u] = 1;
       for (int i = head[u]; i; i = e[i].x) {
         if (!vis[e[i].t]) {
-          dfs(v);
+          dfs(e[i].t);
         }
       }
     }
@@ -136,7 +136,7 @@ DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容
         vis[u] = true;
         for (int i = head[u]; i != 0; i = e[i].x) {
             if (!vis[e[i].t]) {
-                dfs(v);
+                dfs(e[i].t);
             }
         }
     }
@@ -149,7 +149,7 @@ DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容
         i = head[u]
         while i:
             if vis[e[i].t] == False:
-                dfs(v)
+                dfs(e[i].t)
             i = e[i].x
     ```
 
