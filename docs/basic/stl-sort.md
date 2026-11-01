@@ -99,7 +99,7 @@ std::nth_element(first, nth, last, cmp);
 
 具体实现由标准库决定，常见实现采用 [快速选择](https://en.wikipedia.org/wiki/Quickselect) 或 [内省选择](https://en.wikipedia.org/wiki/Introselect) 等算法，每次划分后只继续处理包含目标位置的一侧．
 
-对于以上两种用法，C++ 标准要求它的平均时间复杂度为 $O(n)$，其中 n 为 `std::distance(first, last)`．
+对于以上两种用法，C++ 标准要求它的平均时间复杂度为 $O(n)$，其中 $n$ 为 `std::distance(first, last)`．
 
 它常用于构建 [K-D Tree](../ds/kdt.md)．
 

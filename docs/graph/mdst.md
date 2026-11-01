@@ -22,7 +22,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 ![mdst1](./images/mdst-graph.svg)
 
-随着图的绝对中心 $c$ 在边上的改变会生成一个距离与 $c$ 位置的函数图像．显然的，当前的 $d(c,i)$ 的函数图像是一个两条斜率相同的线段构成的折线段．
+随着图的绝对中心 $c$ 在边上的改变会生成一个距离与 $c$ 位置的函数图像．显然的，当前的 $d(c,i)$ 的函数图像是一个两条斜率相反的线段构成的折线段．
 
 ![mdst2](./images/mdst-plot1.svg)
 
@@ -81,7 +81,7 @@ $\textit{rk}(i,j)$ 记录点 $i$ 到其他所有结点中第 $j$ 小的那个结
 
 ### 例题
 
--   [CodeForce 266D BerDonalds](https://codeforces.com/contest/266/problem/D)
+-   [Codeforces 266D BerDonalds](https://codeforces.com/contest/266/problem/D)
 
 ## 最小直径生成树
 

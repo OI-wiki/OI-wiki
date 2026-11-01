@@ -276,7 +276,7 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
   } else {
     // Case 5: both left and right child, right child is not a leaf
     // clang-format off
-    //   Step 1. find the node N with the smallest key
+    //   Step 1. find the node S with the smallest key
     //           and its parent P on the right subtree
     //   Step 2. swap S and N
     //   Step 3. remove node N like Case 1 or Case 3

@@ -22,9 +22,9 @@ $$
 
 $pat$ 的长度为 $patlen$，特别地对于从 0 开始的串来说，规定 $patlastpos=patlen-1$ 为 $pat$ 串最后一个字符的位置；
 
-$string$ 的长度 $stringlen$，$stringlastpos = stringlen-1$．
+$string$ 的长度为 $stringlen$，$stringlastpos = stringlen-1$．
 
-假如我们知道了 $string$ 的第 $patlen$ 个字符 $char$（与 $pat$ 的最后一个字符对齐）考虑我们能得到什么信息：
+假如我们知道了 $string$ 的第 $patlen$ 个字符 $char$（与 $pat$ 的最后一个字符对齐），考虑我们能得到什么信息：
 
 ### 观察 1
 
@@ -76,7 +76,7 @@ $$
 
 使得失配字符 $char$ 在 $pat$ 上对应的字符前面出现的 $subpat$（合理重现，plausible reoccurrence，以下也简称 pr）与 $string$ 的 $subpat$ 对齐．如果 $pat$ 上有多个 $subpat$，按照从右到左的后缀匹配顺序，取第一个（rightmost plausible reoccurrence，以下也简称 rpr）．
 
-假设此时 $pat$ 向下滑动的 $k$ 个字符（也即 $pat$ 末尾端的 $subpat$ 与其最右边的合理重现的距离），这样我们的注意力应该沿着 $string$ 向后滑动 $k+m$ 个字符，这段距离我们称之为 $delta_2(j)$：
+假设此时 $pat$ 向下滑动了 $k$ 个字符（也即 $pat$ 末尾端的 $subpat$ 与其最右边的合理重现的距离），这样我们的注意力应该沿着 $string$ 向后滑动 $k+m$ 个字符，这段距离我们称之为 $delta_2(j)$：
 
 假定 $rpr(j)$ 为 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 上失配时的最右边合理重现的位置，$rpr(j) < j$（这里只给出简单定义，在下文的算法设计章节里会有更精确的讨论），那么显然 $k=j-rpr(j),\ m=patlastpos-j$．
 
@@ -103,7 +103,7 @@ $$
 \end{aligned}
 $$
 
-$\texttt{F}$ 没有出现 $pat$ 中，根据 **观察 1**，$pat$ 直接向下移动 $patlen$ 个字符，也就是 7 个字符：
+$\texttt{F}$ 没有出现在 $pat$ 中，根据 **观察 1**，$pat$ 直接向下移动 $patlen$ 个字符，也就是 7 个字符：
 
 $$
 \begin{aligned}
@@ -201,7 +201,7 @@ $$
 
 然后让我们更精细地描述下计算 $delta_2$，所依靠的 $rpr(j)$ 函数．
 
-根据前文定义，$rpr(j)$ 表示在 $pat(j)$ 失配时，子串 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 最右边合理重现的位置．
+根据前文定义，$rpr(j)$ 表示在 $pat[j]$ 失配时，子串 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 之前最右边合理重现的位置．
 
 也就是说需要找到一个最好的 $k$, 使得 $pat[k\dots k+patlastpos-j-1]=pat[j+1\dots patlastpos]$，另外要考虑两种特殊情况：
 
@@ -301,7 +301,7 @@ i \gets patlastpos \\
 \qquad\qquad\textbf{return}\ false\\
 \\
 \qquad\textbf{while}\ i < stringlen \\
-\qquad\qquad i \gets i+delta0(string(i)) \ \ \text{// 除非string[i]和pat末尾字符匹配，否则至多向下滑动patlen }\\\
+\qquad\qquad i \gets i+delta0(string[i]) \ \ \text{// 除非string[i]和pat末尾字符匹配，否则至多向下滑动patlen }\\
 \qquad\textbf{if}\ i \leqslant\ large \qquad\qquad\qquad\qquad \text{//此时表示string上没有一个字符和pat末尾字符匹配}\ \\
 \qquad\qquad\textbf{return}\ false\\
 \\
@@ -326,7 +326,7 @@ $$
 
 ### 引入
 
-在 1977 年 10 月的*Communications of the ACM*上，Boyer、Moor 的论文[^bm]中只描述了 $delta_2$ 静态表，
+在 1977 年 10 月的*Communications of the ACM*上，Boyer、Moore 的论文[^bm]中只描述了 $delta_2$ 静态表，
 
 构造 $delta_2$ 的具体实现的讨论出现在 1977 年 6 月 Knuth、Morris、Pratt 在*SIAM Journal on Computing*上正式联合发表的 KMP 算法的论文[^kmp]．
 
@@ -382,7 +382,7 @@ $$
     }
     ```
 
-特别地，对 Rust 语言特性进行必要地解释，下不赘述：
+特别地，对 Rust 语言特性进行必要的解释，下不赘述：
 
 -   `usize` 和 `isize` 是和内存指针同字节数的无符号整数和有符号整数，在 32 位机上相当于 `u32` 和 `i32`，64 位机上相当于 `u64` 和 `i64`．
 -   索引数组、向量、分片时使用 `usize` 类型的数字（因为在做内存上的随机访问并且下标不能为负值），所以如果需要处理负值要用 `isize`，而进行索引时又要用 `usize`，这就看到使用 `as` 关键字进行二者之间的显式转换．
@@ -430,7 +430,7 @@ $$
 
 $delta_2(3)$ 的重现 $\texttt{[(XX)ABC]XXXABC}$，$subpat$ $\texttt{XXABC}$ 的后缀与 pat 前缀中，有相等的，是 $\texttt{ABC}$．
 
-实际上，对第二种和第三种情况的计算的关键都需要前缀函数的计算和应用．
+实际上，对第二种和第三种情况的计算都需要前缀函数的计算和应用．
 
 那么只要 $j$ 取值使得 $subpat$ 包含这个相等的后缀，那么就可以得到第二种情况的 $subpat$ 的重现，对于例子，我们只需要使得 $j \leqslant 5$，
 
@@ -550,13 +550,13 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
 
 之前的搜索算法只涉及到在 $string$ 中寻找第一次 $pat$ 匹配的情况，而对于在 $string$ 中寻找全部 $pat$ 的匹配的情况有很多不同的算法思路，这个问题的核心关注点是：如何利用之前匹配成功的字符的信息，将最坏情况下的时间复杂度降为线性．
 
-在原始的成功匹配后，简单的 $string$ 的指针向后滑动 $patlen$ 距离后重新开始后缀匹配，这会导致最坏情况下回到 $O(mn)$ 的时间复杂度（按照惯例，$m$ 为 $patlen$，$n$ 为 $stringlen$，下同）．
+在原始的成功匹配后，简单地将 $string$ 的指针向后滑动 $patlen$ 距离后重新开始后缀匹配，这会导致最坏情况下回到 $O(mn)$ 的时间复杂度（按照惯例，$m$ 为 $patlen$，$n$ 为 $stringlen$，下同）．
 
 比如一个极端的例子：$pat$：$\texttt{AAA}$，$string$：$\texttt{AAAAA}\dots$．
 
 对此 Knuth 提出来的一个方法是用一个「数量有限」的状态的集合来记录 $patlen$ 长度的字符，这种算法保证 $string$ 上每一个字符最多比较一次，但代价是这个「数量有限」的状态可能规模并不小，对于一个字符彼此不相等的 $pat$，需要 $\dfrac{1}{2}m^{2}+m$ 个状态．
 
-下面介绍的思路简单且不需要额外预处理开销的 Galil 算法[^galil-rule]．
+下面介绍的是思路简单且不需要额外预处理开销的 Galil 算法[^galil-rule]．
 
 ### Galil 规则
 
@@ -572,7 +572,7 @@ $pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周�
 
 当我们知道 $pat$ 最长的那一对相等的前缀 - 后缀，我们就得到了 $pat$ 最短的周期．
 
-而最长相等的前后缀长度，$\pi[patlastpos]$，已经在我们在计算 $delta_2$ 的过程中，所以实际不需要额外的预处理时间和空间，就能将后缀匹配算法最坏情况的时间复杂度改善成线性．
+而最长相等的前后缀长度，$\pi[patlastpos]$，已经在我们计算 $delta_2$ 的过程中求出，所以实际不需要额外的预处理时间和空间，就能将后缀匹配算法最坏情况的时间复杂度改善成线性．
 
 ??? note "结合上述优化的 BM 的搜索算法最终实现"
     ```rust
@@ -647,7 +647,7 @@ $pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周�
     }
     ```
 
-### 最坏情况在实践中性能影响
+### 最坏情况在实践中对性能的影响
 
 从实践的角度上说，理论上的最坏情况并不容易影响性能表现，哪怕是很小的只有 4 的字符集的随机文本测试下这种最坏情况的影响也小到难以观察．
 
@@ -659,9 +659,9 @@ $pat$ 至少拥有一个长度为它自身的周期，我们规定最短的周�
 
 BM 算法最复杂的地方就在于 $delta_2$ 表（也就是好后缀表）的构建，而实践中发现，在一般的字符集上的匹配性能主要依靠 $delta_1$ 表（也就是坏字符表），于是出现了仅仅使用 $delta_1$ 表的简化版 BM 算法，通常性能和原版差距很小．
 
-### Boyer–Moore–Horspol 算法
+### Boyer–Moore–Horspool 算法
 
-Horspol 算法同样是基于坏字符的规则，在与 $pat$ 尾部对齐的字符上应用 $delta_1$．效果类似于对原版匹配算法的改进，通常性能优于原版本．
+Horspool 算法同样是基于坏字符的规则，在与 $pat$ 尾部对齐的字符上应用 $delta_1$．效果类似于对原版匹配算法的改进，通常性能优于原版本．
 
 ???+ note "实现"
     ```rust
@@ -836,7 +836,7 @@ B5S 基本思路是：
     }
     ```
 
-该版本的 B5S 性能表现非常理想，在目前介绍的后缀匹配系列算法中是通常情况下是最快的．
+该版本的 B5S 性能表现非常理想，在目前介绍的后缀匹配系列算法中通常情况下是最快的．
 
 #### 空间节省版本
 
@@ -852,7 +852,7 @@ B5S 基本思路是：
         
         impl BytesBloomFilter {
             pub fn new() -> Self {
-                SimpleBloomFilter {
+                Self {
                     mask: 0,
                 }
             }
@@ -861,27 +861,27 @@ B5S 基本思路是：
                 (self.mask) |= 1u64 << (byte & 63);
             }
             
-            fn contains(&self, char: &u8) -> bool {
+            fn contains(&self, byte: &u8) -> bool {
                 (self.mask & (1u64 << (byte & 63))) != 0
             }
         }
         ```
 
-    Bloom 过滤器设设计通过牺牲准确率（实际还有运行时间）来极大地节省存储空间的 `Set` 类型的数据结构，它的特点是会将集合中不存在的项误判为存在（False Positives，简称 FP），但不会把集合中存在的项判断为不存在（False Negatives，简称 FN），因此使用它可能会因为 FP 而没有得到最大的字符跳转，但不会因为 FN 而跳过本应匹配的字符．
+    Bloom 过滤器是通过牺牲准确率（实际还有运行时间）来极大地节省存储空间的 `Set` 类型的数据结构，它的特点是会将集合中不存在的项误判为存在（False Positives，简称 FP），但不会把集合中存在的项判断为不存在（False Negatives，简称 FN），因此使用它可能会因为 FP 而没有得到最大的字符跳转，但不会因为 FN 而跳过本应匹配的字符．
 
     理论上分析，上述「Bloom 过滤器」的实现在 $pat$ 长度在 50 个 Bytes 时，FP 概率约为 0.5，而 $pat$ 长度在 10 个 Bytes 时，FP 概率约为 0.15．
 
-    虽然这不是一个标准的 Bloom 过滤器，首先它实际上没有使用一个真正的哈希函数，实际上它只是一个字符映射，将 0-255 的字节映射为它的前六位构成的数．
+    虽然这不是一个标准的 Bloom 过滤器，首先它实际上没有使用一个真正的哈希函数，实际上它只是一个字符映射，将 0-255 的字节映射为它的低六位构成的数．
 
-    但考虑到我们在内存上的进行字符搜索，这种简化就非常重要，即使用目前已知最快的非加密哈希算法 [xxHash](https://cyan4973.github.io/xxHash/)，计算所需要的时间仍比它高一个数量级．
+    但考虑到我们在内存上进行字符搜索，这种简化就非常重要，即使用目前已知最快的非加密哈希算法 [xxHash](https://cyan4973.github.io/xxHash/)，计算所需要的时间仍比它高一个数量级．
 
     另外当 pat 在 30 字节以下时，为了达到最佳的 FP 概率，需要不止一个哈希函数．但这么做意义不大，因为用装有两个 `u128` 数字的数组就已经可以构建字符表的全字符集．
 
 2.  使用 $delta_1(pat[patlastpos])$ 代替整个 $delta_1$
 
-    观察 $delta_1$，最常使用处就是后缀匹配时第一个字符就不匹配是最常见的不匹配的情况，于是令 `skip = delta1(pat[patlastpos])`，
+    观察 $delta_1$，最常使用处就是后缀匹配时第一个字符就不匹配的情况，于是令 `skip = delta1(pat[patlastpos])`，
 
-    在第一阶段不匹配时，直接向下滑动 `skip` 个字符；但当第二阶段不配时，因为缺乏整个 $delta_1$ 的信息，只能向下滑动一个字符．
+    在第一阶段不匹配时，直接向下滑动 `skip` 个字符；但当第二阶段不匹配时，因为缺乏整个 $delta_1$ 的信息，只能向下滑动一个字符．
 
     ???+ note "实现"
         ```rust
@@ -973,11 +973,11 @@ B5S 基本思路是：
 
 ![小字符集下字符串搜索算法性能对比图](./images/BM/plot4.svg)
 
-综上，在较大的字符集，比如日常搜索的过程中，BoyerMoore 系列算法的优越表现，其中主要依赖 $delta_1$ 表实现字符跳转；
+综上，在较大的字符集，比如日常搜索的过程中，BoyerMoore 系列算法的优越表现，主要依赖 $delta_1$ 表实现字符跳转；
 
 另一方面，在较小的字符集里，$delta_1$ 的作用下降，而 $delta_2$ 的作用得到了体现．
 
-如果有一定富裕空间的情况下，完整的空间复杂度为 $O(m)$ 的 BoyerMoore 算法更加通用，综合表现最优．
+如果有一定富余空间，完整的空间复杂度为 $O(m)$ 的 BoyerMoore 算法更加通用，综合表现最优．
 
 ## 参考资料与注释
 

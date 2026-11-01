@@ -81,20 +81,20 @@ $$
 设 $X$ 是一随机变量，则对任意的 $t > 0$ 都有
 
 $$
-P\{ X \geq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
+P\{ X \geq a \} = P\{ \mathrm{e}^{tX} \geq \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 类似地，当 $t < 0$ 时有
 
 $$
-P\{ X \leq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
+P\{ X \leq a \} = P\{ \mathrm{e}^{tX} \geq \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 ### Poisson 试验之和的 Chernoff 不等式
 
 算法竞赛中涉及的随机变量通常没有那么「一般」，我们可以用概率论中的 Poisson 试验对其进行描述．
 
-所谓 Poisson 试验，是指在只有两种可能结果的随机试验．
+所谓 Poisson 试验，是指只有两种可能结果的随机试验．
 
 一次的 Poisson 试验的结果可以用一个取值为 $0$ 或 $1$ 的随机变量 $X$ 进行刻画，其概率分布为
 

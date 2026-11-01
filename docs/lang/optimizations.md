@@ -16,7 +16,7 @@ OI 界的常用编程语言是 C++．既然使用了这门语言，就注定要�
 
 ### 常量折叠 (Constant Folding)
 
-常量折叠，又称常量传播 (Constant Propagation)，如果一个表达式可以确定为常量，在他的下一个定义 (Definition) 前，可以进行常量传播．
+常量折叠，又称常量传播 (Constant Propagation)，如果一个表达式可以确定为常量，在它的下一个定义 (Definition) 前，可以进行常量传播．
 
 ```cpp
 int x = 1;
@@ -322,7 +322,7 @@ int foo() {
 
 ### 尾调用优化 (Tail Call Optimization)
 
-当一个函数调用位于函数体尾部的位置时，这种函数调用被成为尾调用 (Tail Call)．对于这种特殊形式的调用，可以进行一些特别的优化．绝大多数体系结构拥有 Frame Pointer (a.k.a FP) 和 Stack Pointer (a.k.a SP)，维护者函数的调用帧 (Frame)，而如果调用位于函数尾部，则我们可以不保留外层函数的调用记录，直接用内层函数取代．
+当一个函数调用位于函数体尾部的位置时，这种函数调用被称为尾调用 (Tail Call)．对于这种特殊形式的调用，可以进行一些特别的优化．绝大多数体系结构拥有 Frame Pointer (a.k.a FP) 和 Stack Pointer (a.k.a SP)，维护着函数的调用帧 (Frame)，而如果调用位于函数尾部，则我们可以不保留外层函数的调用记录，直接用内层函数取代．
 
 #### 用跳转指令代替函数调用
 

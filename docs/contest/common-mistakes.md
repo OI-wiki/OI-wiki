@@ -484,7 +484,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
         
         -   关于 RSS 和 VSZ[^ref1][^ref2]
         
-            1.  VSZ (Virtual Memory Size，虚拟内存大小）[^ref3]
+            1.  VSZ（Virtual Memory Size，虚拟内存大小）[^ref3]
         
                 VSZ 表示进程的 **虚拟内存大小**，是进程可以访问的虚拟地址空间的总大小，通常以 KB 显示．
         

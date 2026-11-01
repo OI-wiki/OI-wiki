@@ -14,11 +14,11 @@ $$
 g_k:=
 \begin{cases}
 f_N^{-1}, &\text{ if }k=-N\text{,} \\
--f_N^{-1}\sum_{i> N}f_ig_{k-i}, &\text{ otherwise}
+-f_N^{-1}\sum_{i> N}f_ig_{k+N-i}, &\text{ otherwise}
 \end{cases}
 $$
 
-与形式幂级数类似的，我们也对非零的 $f(x)=\sum_{k\geq N}f_kx^k$ 定义：
+与形式幂级数类似，我们也对非零的 $f(x)=\sum_{k\geq N}f_kx^k$ 定义：
 
 $$
 \operatorname{ord} f:=\min\lbrace k:f_k\neq 0\rbrace
@@ -109,7 +109,7 @@ $$
 
 我们只能在 $f_1\neq 0$ 时才能解出第一个等式，然后依次可以解出 $g_2,\dots$．
 
-特别的，考虑 $f(h(x))=x$ 那么 $g(f(h(x)))=g(x)$，进而 $g(x)=g\circ f\circ h(x)=x\circ h(x)=h(x)$．
+特别地，考虑 $f(h(x))=x$ 那么 $g(f(h(x)))=g(x)$，进而 $g(x)=g\circ f\circ h(x)=x\circ h(x)=h(x)$．
 
 ## Lagrange 反演公式
 

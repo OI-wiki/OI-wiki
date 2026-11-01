@@ -48,11 +48,11 @@ pair<int, double> p2 = make_pair(1, 2.0);
 auto p3 = make_pair(1, 2.0);
 ```
 
-关于 `auto` 的在信息学竞赛中的使用，参见 [迭代器](./iterator.md) 部分的说明．
+关于 `auto` 在信息学竞赛中的使用，参见 [迭代器](./iterator.md) 部分的说明．
 
 ### 访问
 
-通过成员函数 `first` 与 `second`，可以访问 `pair` 中包含的两个变量．
+通过成员变量 `first` 与 `second`，可以访问 `pair` 中包含的两个变量．
 
 ```cpp
 int i = p0.first;
@@ -77,7 +77,7 @@ if (p2 >= p3) {
 }
 ```
 
-由于 `pair` 定义了 STL 中常用的 `<` 与 `==`，使得其能够很好的与其他 STL 函数或数据结构配合．比如，`pair` 可以作为 `priority_queue` 的数据类型．
+由于 `pair` 定义了 STL 中常用的 `<` 与 `==`，其能够很好地与其他 STL 函数或数据结构配合．比如，`pair` 可以作为 `priority_queue` 的数据类型．
 
 ```cpp
 priority_queue<pair<int, double>> q;
@@ -104,7 +104,7 @@ p2.swap(p3);
 
 `pair` 可以轻松实现离散化．
 
-我们可以创建一个 `pair` 数组，将原始数据的值作为每个 `pair` 第一个变量，将原始数据的位置作为第二个变量．在排序后，将原始数据值的排名（该值排序后所在的位置）赋给该值原本所在的位置即可．
+我们可以创建一个 `pair` 数组，将原始数据的值作为每个 `pair` 的第一个变量，将原始数据的位置作为第二个变量．在排序后，将原始数据值的排名（该值排序后所在的位置）赋给该值原本所在的位置即可．
 
 ```cpp
 // a为原始数据
@@ -144,7 +144,7 @@ priority_queue<pair<int, int>, std::vector<pair<int, int>>,
 
 ### pair 与 map
 
-`map` 的是 C++ 中存储键值对的数据结构．很多情况下，`map` 中存储的键值对通过 `pair` 向外暴露．
+`map` 是 C++ 中存储键值对的数据结构．很多情况下，`map` 中存储的键值对通过 `pair` 向外暴露．
 
 ```cpp
 map<int, double> m;

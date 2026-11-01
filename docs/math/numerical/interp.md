@@ -29,7 +29,7 @@ author: AtomAlpaca, billchenchina, caibyte, Chrogeek, Early0v0, EndlessCheng, En
 多项式插值的一般形式如下：
 
 ???+ note "多项式插值"
-    对已知的 $n+1$ 的点 $(x_0,y_0),(x_1,y_1),\dots,(x_n,y_n)$，求形如 $f(x)=\sum_{i=0}^n a_ix^i$ 且满足
+    对已知的 $n+1$ 个点 $(x_0,y_0),(x_1,y_1),\dots,(x_n,y_n)$，求形如 $f(x)=\sum_{i=0}^n a_ix^i$ 且满足
     
     $$
     f(x_i)=y_i,\qquad\forall i=0,1,\dots,n
@@ -109,13 +109,13 @@ $$
 f(x)=\sum\limits_{i=1}^{n+1}(-1)^{n+1-i}y_i\cdot\frac{\prod\limits_{j=1}^{n+1}(x-j)}{(i-1)!(n+1-i)!(x-i)}
 $$
 
-预处理 $(x-i)$ 前后缀积、阶乘、阶乘逆，然后代入这个式子，复杂度为 $O(n)$.
+预处理 $(x-i)$ 前后缀积、阶乘、阶乘逆，然后代入这个式子，复杂度为 $O(n)$．
 
 ???+ note "例题 [CF622F The Sum of the k-th Powers](https://codeforces.com/contest/622/problem/F)"
     给出 $n,k$，求 $\sum\limits_{i=1}^ni^k$ 对 $10^9+7$ 取模的值．
     
     ??? note "题解"
-        本题中，答案是一个 $k+1$ 次多项式，因此我们可以线性筛出 $1^i,\cdots,(k+2)^i$ 的值然后进行 $O(n)$ 插值．
+        本题中，答案是一个 $k+1$ 次多项式，因此我们可以线性筛出 $1^k,\cdots,(k+2)^k$ 的值然后进行 $O(k)$ 插值．
         
         也可以通过组合数学相关知识由差分法的公式推得下式：
         

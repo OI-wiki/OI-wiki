@@ -6,7 +6,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 普通莫队是不能带修改的．
 
-我们可以强行让它可以修改，就像 DP 一样，可以强行加上一维 **时间维**, 表示这次操作的时间．
+我们可以强行让它可以修改，就像 DP 一样，可以强行加上一维 **时间维**，表示这次操作的时间．
 
 时间维表示经历的修改次数．
 
