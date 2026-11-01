@@ -135,7 +135,9 @@ $$
         using namespace std;
         
         int main() {
-          int n, x, y, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
+          int n, x, y;
+          int minx = 0x7fffffff, maxx = -0x7fffffff;
+          int miny = 0x7fffffff, maxy = -0x7fffffff;
           scanf("%d", &n);
           for (int i = 1; i <= n; i++) {
             scanf("%d%d", &x, &y);
@@ -150,9 +152,9 @@ $$
     === "Python"
         ```python
         minx = 0x7FFFFFFF
-        maxx = 0
+        maxx = -0x7FFFFFFF
         miny = 0x7FFFFFFF
-        maxy = 0
+        maxy = -0x7FFFFFFF
         n = int(input())
         for i in range(1, n + 1):
             x, y = map(lambda x: int(x), input().split())
@@ -310,7 +312,9 @@ $$
         using namespace std;
         
         int main() {
-          int n, x, y, a, b, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
+          int n, x, y, a, b;
+          int minx = 0x7fffffff, maxx = -0x7fffffff;
+          int miny = 0x7fffffff, maxy = -0x7fffffff;
           scanf("%d", &n);
           for (int i = 1; i <= n; i++) {
             scanf("%d%d", &a, &b);
@@ -326,9 +330,9 @@ $$
     === "Python"
         ```python
         minx = 0x7FFFFFFF
-        maxx = 0
+        maxx = -0x7FFFFFFF
         miny = 0x7FFFFFFF
-        maxy = 0
+        maxy = -0x7FFFFFFF
         n = int(input())
         for i in range(1, n + 1):
             a, b = map(lambda x: int(x), input().split())
