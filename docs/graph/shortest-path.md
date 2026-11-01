@@ -287,7 +287,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                 self.w = w
         
         
-        e = [[Edge() for i in range(MAXN)] for j in range(MAXN)]
+        e = [[] for i in range(MAXN)]
         INF = 0x3F3F3F3F
         
         
@@ -315,6 +315,7 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
                         if not vis[v]:
                             q.append(v)
                             vis[v] = True
+            return True
         ```
 
 虽然在大多数情况下 SPFA 跑得很快，但其最坏情况下的时间复杂度为 $O(nm)$，将其卡到这个复杂度也是不难的，所以考试时要谨慎使用（在没有负权边时最好使用 Dijkstra 算法，在有负权边且题目中的图没有特殊性质时，若 SPFA 是标算的一部分，题目不应当给出 Bellman–Ford 算法无法通过的数据范围）．
@@ -419,7 +420,7 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
                 self.w = w
         
         
-        e = [[Edge() for i in range(MAXN)] for j in range(MAXN)]
+        e = [[] for i in range(MAXN)]
         INF = 0x3F3F3F3F
         
         
@@ -482,6 +483,10 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
     
     === "Python"
         ```python
+        import heapq
+        from collections import defaultdict
+        
+        
         def dijkstra(e, s):
             """
             输入：
