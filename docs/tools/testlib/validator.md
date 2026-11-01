@@ -6,7 +6,7 @@
 
 Validator（中文：校验器）用于检验造好的数据的合法性．当造好一道题的数据，又担心数据不合法（不符合题目的限制条件：上溢、图不连通、不是树……）时，出题者通常会借助 validator 来检查．[^ref1]
 
-因为 Coderforces 支持 hack 功能，所以所有 Codeforces 上的题目都必须要有 validator．UOJ 也如此．[Polygon](../polygon.md) 内建了对 validator 的支持．
+因为 Codeforces 支持 hack 功能，所以所有 Codeforces 上的题目都必须要有 validator．UOJ 也如此．[Polygon](../polygon.md) 内建了对 validator 的支持．
 
 ## 使用方法
 

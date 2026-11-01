@@ -36,9 +36,9 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 #### 过程
 
-先把树变成序列，然后每次添加/删除一个点，这个点的对答案的贡献是可以在 $O(1)$ 时间内获得的，即 $val_c\times w_{cnt_{c+1}}$
+先把树变成序列，然后每次添加一个点，这个点对答案的贡献是可以在 $O(1)$ 时间内获得的，即 $val_c\times w_{cnt_c+1}$
 
-发现因为他会把起点的子树也扫了一遍，产生多余的贡献，怎么办呢？
+发现因为它会把起点的子树也扫了一遍，产生多余的贡献，怎么办呢？
 
 因为扫的过程中起点的子树里的点肯定会被扫两次，但贡献为 0．
 
@@ -50,7 +50,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 修改的话，加上一维时间维即可，变成带修改树上莫队．
 
-然后因为所包含的区间内可能没有 LCA，对于没有的情况要将多余的贡献删除，然后就完事了．
+然后因为所包含的区间内可能没有 LCA，对于没有的情况要将缺失的贡献补上，然后就完事了．
 
 #### 实现
 
@@ -221,7 +221,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ### 询问的排序
 
-首先我们知道莫队的是基于分块的算法，所以我们需要找到一种树上的分块方法来保证时间复杂度．
+首先我们知道莫队是基于分块的算法，所以我们需要找到一种树上的分块方法来保证时间复杂度．
 
 条件：
 

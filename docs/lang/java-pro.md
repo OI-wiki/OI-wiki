@@ -87,7 +87,7 @@ public class Main {
 ### Kattio + StringTokenizer 的方法与 StreamTokenizer 的方法之间的分析与对比
 
 1.  `StreamTokenizer` 相较于 `StringTokenizer` 使用的内存较少，当 Java 标程 MLE 时可以尝试使用 `StreamTokenizer`，但是 `StreamTokenizer` 会丢失精度，读入部分数据时会出现问题；
-    -   `StreamTokenizer` 源码存在 `Type`，该 `Type` 根据输入内容来决定类型，如果输入类似于 `123oi` 以 **数字开头** 的字符串，他会强制认为的类型是 `double` 类型，因此在读入中以 `double` 类型去读 `String` 类型便会抛出异常；
+    -   `StreamTokenizer` 源码存在 `Type`，该 `Type` 根据输入内容来决定类型，如果输入类似于 `123oi` 以 **数字开头** 的字符串，它会强制认为类型是 `double` 类型，因此在读入中以 `double` 类型去读 `String` 类型便会抛出异常；
     -   `StreamTokenizer` 在读入 `1e14` 以上大小的数字会丢失精度；
 2.  在使用 `PrintWriter` 情况下，需注意在程序结束最后 `close()` 关闭输出流或在需要输出的时候使用 `flush()` 清除缓冲区，否则内容将不会被写入到控制台/文件中．
 3.  `Kattio` 是继承自 `PrintWriter` 类，自身对象具有了 `PrintWriter` 的功能，因此可以直接调用 `PrintWriter` 类的函数输出，同时将 `StringTokenizer` 作为了自身的成员变量来修改．而第二种 `Main` 是同时将 `StreamTokenizer` 与 `PrintWriter` 作为了自身的成员变量，因此在使用上有些许差距．
@@ -419,7 +419,7 @@ public class Main {
 
 ### 简介
 
-由于基本类型没有面向对象的特征，为了他们参加到面向对象的开发中，Java 为八个基本类型提供了对应的包装类，分别是 `Byte`、`Double`、`Float`、`Integer`、`Long`、`Short`、`Character` 和 `Boolean`．两者之间的对应关系如下：
+由于基本类型没有面向对象的特征，为了让它们参与到面向对象的开发中，Java 为八个基本类型提供了对应的包装类，分别是 `Byte`、`Double`、`Float`、`Integer`、`Long`、`Short`、`Character` 和 `Boolean`．两者之间的对应关系如下：
 
 | 基本数据类型 | 包装数据类型 |
 | :----------: | :----------: |
@@ -440,7 +440,7 @@ public class Main {
 2.  `Integer` 类型实例后才能使用，而 `int` 类型不需要．
 3.  `Integer` 实际对应的引用，当 `new` 一个 `Integer` 时，实际上生成了一个对象，而 `int` 则是直接存储数据．
 4.  `Integer` 的默认值是 `null`，可接受 `null` 和 `int` 类型的数据，`int` 默认值是 0，不能接受 `null` 类型的数据．
-5.  `Integer` 判定二个变量是否相同使用 `==` 可能会导致不正确的结果，只能使用 `equals()`，而 `int` 可以直接使用 `==`．
+5.  `Integer` 判定两个变量是否相同使用 `==` 可能会导致不正确的结果，只能使用 `equals()`，而 `int` 可以直接使用 `==`．
 
 ### 装箱与拆箱
 
@@ -526,7 +526,7 @@ Java 中保存对象类型的变量是多态变量．「多态」这个术语（
 
 除非实现接口的类是抽象类，否则该类要定义接口中的所有方法．
 
-接口无法被实例化，但是可以被实现．一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类．另外，在 Java 中，接口类型可用来声明一个变量，他们可以成为一个空指针，或是被绑定在一个以此接口实现的对象．
+接口无法被实例化，但是可以被实现．一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类．另外，在 Java 中，接口类型可用来声明一个变量，它们可以成为一个空指针，或是被绑定在一个以此接口实现的对象．
 
 ### 与类的区别
 
@@ -578,10 +578,10 @@ lambda 表达式声明方式如下：
 // 2. 接收一个参数（数字类型），返回其 2 倍的值
 x -> 2 * x
 
-// 3. 接受 2 个参数（数字）并返回他们的差值
+// 3. 接受 2 个参数（数字）并返回它们的差值
 (x, y) -> x – y
 
-// 4. 接收 2 个 int 类型整数并返回他们的和
+// 4. 接收 2 个 int 类型整数并返回它们的和
 (int x, int y) -> x + y
 
 // 5. 接受一个 String 对象并在控制台打印，不返回任何值（看起来像是返回 void）
@@ -1288,13 +1288,13 @@ Map<Integer, Integer> map4 = new TreeMap<>((x, y) -> {return y - x;});  // 降�
 
 以下均用 `this` 代替当前 `Map<Integer, Integer>`：
 
-|               函数名              |                     功能                     |
-| :-------------------------------: | :------------------------------------------: |
-| `put(Integer key, Integer value)` |         将 `<key, value>` 插入 `this`        |
-|              `size()`             |              返回 `this` 的大小              |
-|     `containsKey(Integer key)`    | 判断 `this` 中是否有存在某个元素的键为 `key` |
-|         `get(Integer key)`        |    返回 `this` 中键为 `key` 的元素对应的值   |
-|             `keySet()`            |     将 `this` 中所有元素的键作为集合返回     |
+|               函数名              |                    功能                    |
+| :-------------------------------: | :----------------------------------------: |
+| `put(Integer key, Integer value)` |        将 `<key, value>` 插入 `this`       |
+|              `size()`             |             返回 `this` 的大小             |
+|     `containsKey(Integer key)`    | 判断 `this` 中是否存在某个元素的键为 `key` |
+|         `get(Integer key)`        |   返回 `this` 中键为 `key` 的元素对应的值  |
+|             `keySet()`            |    将 `this` 中所有元素的键作为集合返回    |
 
 使用案例：
 
@@ -1360,7 +1360,7 @@ Map<String, Set<Integer>> map = new HashMap<>();
 
 ### Arrays.sort()
 
-`Arrays.sort()` 是对数组进行的排序的方法，主要重载方法如下：
+`Arrays.sort()` 是对数组进行排序的方法，主要重载方法如下：
 
 ```java
 import java.util.Arrays;
@@ -1504,7 +1504,7 @@ public class Main {
 
 ### Arrays.binarySearch()
 
-`Arrays.binarySearch()` 是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为 $O(\log_n)$，主要重载方法如下：
+`Arrays.binarySearch()` 是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为 $O(\log n)$，主要重载方法如下：
 
 ```java
 import java.util.Arrays;
@@ -1551,7 +1551,7 @@ private static int binarySearch0(int[] a, int fromIndex, int toIndex, int key) {
 
 ### Arrays.fill()
 
-`Arrays.fill()` 方法将数组中连续位置的元素赋值为统一元素．其接受的参数为数组、`fromIndex`、`toIndex` 和需要填充的数．方法执行后，数组左闭右开区间 `[firstIdx,lastIdx)` 内的所有元素的值均为需要填充的数．
+`Arrays.fill()` 方法将数组中连续位置的元素赋值为统一元素．其接受的参数为数组、`fromIndex`、`toIndex` 和需要填充的数．方法执行后，数组左闭右开区间 `[fromIndex,toIndex)` 内的所有元素的值均为需要填充的数．
 
 ## Collections
 
@@ -1579,7 +1579,7 @@ default void sort(Comparator<? super E> c) {
 
 ### Collections.binarySearch()
 
-`Collections.binarySearch()` 是对集合中指定区间进行二分搜索，功能与 `Arrays.binarySearch()` 相同．
+`Collections.binarySearch()` 是对集合进行二分搜索，功能与 `Arrays.binarySearch()` 相同．
 
 ```java
 Collections.binarySearch(list, key);

@@ -306,7 +306,7 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 
 那么，如何来求解反素数呢？
 
-首先，既然要求因子数，首先要做的就是素因子分解．把 $n$ 分解成 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{m}^{k_{m}}$ 的形式，其中 $p$ 是素数，$k$ 为它的指数．这样的话总因子个数就是 $(k_1+1) \times (k_2+1) \times \cdots \times (k_m+1)$．
+既然要求因子数，首先要做的就是素因子分解．把 $n$ 分解成 $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{m}^{k_{m}}$ 的形式，其中 $p$ 是素数，$k$ 为它的指数．这样的话总因子个数就是 $(k_1+1) \times (k_2+1) \times \cdots \times (k_m+1)$．
 
 但是显然素因子分解的复杂度是很高的，并且前一个数的结果不能被后面利用．所以要换个方法．
 

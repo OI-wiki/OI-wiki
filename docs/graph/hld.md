@@ -275,7 +275,7 @@ int lca(int u, int v) {
         -   若 $\operatorname{dep}(\operatorname{top}(v))=\operatorname{dep}(u)+1$，令 $v\gets\operatorname{top}(v)$．此时，$v$ 是 $u$ 的一个轻儿子．
         -   若 $\operatorname{dep}(\operatorname{top}(v))<\operatorname{dep}(u)+1$，亦即 $\operatorname{dep}(\operatorname{top}(v))\le \operatorname{dep}(u)$，这说明 $u,v$ 处在同一条重链上．根据同一条重链上 DFS 序连续的性质，所求的 $v$ 必然满足 $\operatorname{dfn}(v)=\operatorname{dfn}(u)+1$．所以，可以令 $v\gets\operatorname{rnk}(\operatorname{dfn}(u)+1)$．
     
-        注意，这两种情形中可以合并：在跳完之后可以直接令
+        注意，这两种情形可以合并：在跳完之后可以直接令
     
         $$
         v\gets\operatorname{rnk}(\operatorname{dfn}(\operatorname{top}(v))+\operatorname{dep}(u)+1-\operatorname{dep}(\operatorname{top}(v))).
@@ -401,7 +401,7 @@ int lca(int u, int v) {
     
     直接暴力转移时间复杂度为 $O(n^2)$
     
-    我们考虑每次转移我们直接继承重儿子的 DP 数组和答案，并且考虑在此基础上进行更新．
+    我们考虑每次转移直接继承重儿子的 DP 数组和答案，并且考虑在此基础上进行更新．
     
     首先我们需要将重儿子的 DP 数组前面插入一个元素 1, 这代表着当前结点．
     
@@ -436,9 +436,9 @@ DP 数组的长度我们可以根据子树最深结点算出．
 
 同时我们在预处理的时候找到每条重链的根结点的 $1$ 到 $d$ 级祖先，同样放入表格．
 
-根据长链剖分的性质，$k-2^i \le 2^i \leq d$, 也就是说，我们可以 $O(1)$ 在这条重链的表格上求出的这个结点的 $k$ 级祖先．
+根据长链剖分的性质，$k-2^i \le 2^i \leq d$, 也就是说，我们可以 $O(1)$ 在这条重链的表格上求出这个结点的 $k$ 级祖先．
 
-预处理需要倍增出 $2^i$ 次级祖先，同时需要预处理每条重链对应的表格．
+预处理需要倍增出 $2^i$ 级祖先，同时需要预处理每条重链对应的表格．
 
 预处理复杂度 $O(n\log n)$, 询问复杂度 $O(1)$．
 

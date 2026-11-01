@@ -495,7 +495,7 @@ Python 中的输入输出主要通过内置函数 `input()` 和 `print()` 完成
 [1, 1, 2, 3] [3, 4, 3, 4] [3, 1, 4, 1]
 ```
 
-上述程序实际上相当于先读入一个 N 行 3 列的矩阵，然后将其转置成 3 行 N 列的矩阵，也就是外层列表中嵌套了 3 个列表，最后将代表这起点、终点、权值的 3 个列表分别赋值给 u, v, w．内置函数 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip) 可以将多个等长序列中的对应元素拼接在「元组」内，得到新序列．而 `map()` 其实是函数式编程的一种操作，它将一个给定函数作用于 `zip()` 所产生序列的元素，这里就是用 `list()` 将元组变成列表．你可以自行练习使用 `*` 和 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip)，[`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 以理解其含义．需要注意的是 Python 3 中 `zip()` 和 `map()` 创建的不再返回列表而是返回迭代器，这里暂不解释它们之间的异同，你可以认为迭代器可以产生列表中的各个元素，用 `list()` 套住迭代器就能生成列表．
+上述程序实际上相当于先读入一个 N 行 3 列的矩阵，然后将其转置成 3 行 N 列的矩阵，也就是外层列表中嵌套了 3 个列表，最后将代表起点、终点、权值的 3 个列表分别赋值给 u, v, w．内置函数 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip) 可以将多个等长序列中的对应元素拼接在「元组」内，得到新序列．而 `map()` 其实是函数式编程的一种操作，它将一个给定函数作用于 `zip()` 所产生序列的元素，这里就是用 `list()` 将元组变成列表．你可以自行练习使用 `*` 和 [`zip()`](https://docs.python.org/zh-cn/3/library/functions.html#zip)，[`map()`](https://docs.python.org/zh-cn/3/library/functions.html#map) 以理解其含义．需要注意的是 Python 3 中 `zip()` 和 `map()` 不再返回列表而是返回迭代器，这里暂不解释它们之间的异同，你可以认为迭代器可以产生列表中的各个元素，用 `list()` 套住迭代器就能生成列表．
 
 #### [文件读写](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
 
@@ -1022,7 +1022,7 @@ def fib(n):
     
     
     def add_path(f, t, v):  # 在前向星中加边
-        # 如果要修改全局变量，要使用 global 来声名
+        # 如果要修改全局变量，要使用 global 来声明
         global cnt, e, h
         # 调试时的输出语句，多个变量使用元组
         # print("add_path(%d,%d,%d)" % (f,t,v))

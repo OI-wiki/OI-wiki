@@ -22,7 +22,7 @@ author: Marcythm, YZircon, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan, Ent
 在默认的情况下 `std::cin` 关联的是 `&std::cout`，因此每次进行格式化输入的时候都要调用 `std::cout.flush()` 清空输出缓冲区，这样会增加 I/O 负担．可以通过 `std::cin.tie(nullptr)` 来解除关联，进一步加快执行效率．
 
 ???+ warning "注意"
-    使用时不可以省略参数写做 `std::cin.tie()`，这样不会解除关联，而是返回与 `std::cin` 关联的输出流．并且也无需进行 `std::cout.tie(nullptr)`，因为默认情况下没有另一条输出流与 `std::cout` 关联．
+    使用时不可以省略参数写作 `std::cin.tie()`，这样不会解除关联，而是返回与 `std::cin` 关联的输出流．并且也无需进行 `std::cout.tie(nullptr)`，因为默认情况下没有另一条输出流与 `std::cout` 关联．
 
 ### 代码实现
 
@@ -164,7 +164,7 @@ void *mmap(void addr[.length], size_t length, int prot, int flags, int fd,
 如果需要从标准输入中读入时，可以将 `fd` 设为 `0`．**但是，对标准输入使用 mmap 是极其危险的行为，同时不能在终端输入，可以选择将文件重定向到标准输入．**
 
 ???+ note "例题：[洛谷 P10815【模板】快速读入](https://www.luogu.com.cn/problem/P10815)"
-    读入 $n$ 个范围在 $[-n, n]$ 的整数，求和并输出．其中 $n \leq 10^8$．数据保证对于序列的任何前缀，这个前缀的和在 $32$ 位有符号整形的存储范围内．
+    读入 $n$ 个范围在 $[-n, n]$ 的整数，求和并输出．其中 $n \leq 10^8$．数据保证对于序列的任何前缀，这个前缀的和在 $32$ 位有符号整型的存储范围内．
 
 参考代码如下．
 

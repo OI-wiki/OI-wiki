@@ -255,11 +255,11 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
                 dfs2(s[i])
     ```
 
-## Garbow 算法
+## Gabow 算法
 
 ### 过程
 
-Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 low 来计算强连通分量的根，Garbow 维护一个节点栈，并用第二个栈来确定何时从第一个栈中弹出属于同一个强连通分量的节点．从节点 $w$ 开始的 DFS 过程中，当一条路径显示这组节点都属于同一个强连通分量时，只要栈顶节点的访问时间大于根节点 $w$ 的访问时间，就从第二个栈中弹出这个节点，那么最后只留下根节点 $w$．在这个过程中每一个被弹出的节点都属于同一个强连通分量．
+Gabow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 low 来计算强连通分量的根，Gabow 维护一个节点栈，并用第二个栈来确定何时从第一个栈中弹出属于同一个强连通分量的节点．从节点 $w$ 开始的 DFS 过程中，当一条路径显示这组节点都属于同一个强连通分量时，只要栈顶节点的访问时间大于根节点 $w$ 的访问时间，就从第二个栈中弹出这个节点，那么最后只留下根节点 $w$．在这个过程中每一个被弹出的节点都属于同一个强连通分量．
 
 当回溯到某一个节点 $w$ 时，如果这个节点在第二个栈的顶部，就说明这个节点是强连通分量的起始节点，在这个节点之后搜索到的那些节点都属于同一个强连通分量，于是从第一个栈中弹出那些节点，构成强连通分量．
 
@@ -267,14 +267,14 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
 
 === "C++"
     ```cpp
-    int garbow(int u) {
+    int gabow(int u) {
       stack1[++p1] = u;
       stack2[++p2] = u;
       low[u] = ++dfs_clock;
       for (int i = head[u]; i; i = e[i].next) {
         int v = e[i].to;
         if (!low[v])
-          garbow(v);
+          gabow(v);
         else if (!sccno[v])
           while (low[stack2[p2]] > low[v]) p2--;
       }
@@ -295,13 +295,13 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
       memset(sccno, 0, sizeof(sccno));
       memset(low, 0, sizeof(low));
       for (int i = 1; i <= n; i++)
-        if (!low[i]) garbow(i);
+        if (!low[i]) gabow(i);
     }
     ```
 
 === "Python"
     ```python
-    def garbow(u):
+    def gabow(u):
         global p1, p2, dfs_clock, scc_cnt
         p1 = p1 + 1
         stack1[p1] = u
@@ -313,7 +313,7 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
         while i:
             v = e[i].to
             if low[v] == False:
-                garbow(v)
+                gabow(v)
             elif sccno[v] == False:
                 while low[stack2[p2]] > low[v]:
                     p2 = p2 - 1
@@ -337,7 +337,7 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
         low[:] = [0] * len(low)
         for i in range(1, n + 1):
             if low[i] == False:
-                garbow(i)
+                gabow(i)
     ```
 
 ## 应用

@@ -70,25 +70,25 @@ $\rightarrow$ 输入以下文字：
 
 空行不是必要的，但它可以让长的文档更易读．
 
-$\rightarrow$ 按下 **Save** 按扭；$\rightarrow$ 在 **Libraries>Documents** 中新建一个名为 **LaTeX course** 文件夹；$\rightarrow$ 将你的文档命名为 **Doc1** 并将其保存为 **TeX document** 放在这个文件夹中．
+$\rightarrow$ 按下 **Save** 按钮；$\rightarrow$ 在 **Libraries>Documents** 中新建一个名为 **LaTeX course** 文件夹；$\rightarrow$ 将你的文档命名为 **Doc1** 并将其保存为 **TeX document** 放在这个文件夹中．
 
 将不同的 LaTeX 文档放在不同的目录下，在编译的时候组合多个文件是一个很好的想法．
 
-$\rightarrow$ 确保 typeset 菜单设置为了 **xeLaTeX**．$\rightarrow$ 点击 **Typeset** 按扭．
+$\rightarrow$ 确保 typeset 菜单设置为了 **xeLaTeX**．$\rightarrow$ 点击 **Typeset** 按钮．
 
 这时你的源文件会被转换为 PDF 文档，这需要花费一定的时间．在编译结束后，TeXworks 的 PDF 查看器会打开并预览生成的文件．PDF 文件会被自动地保存在与 TeX 文档相同的目录下．
 
 ### 处理问题
 
-如果在你的文档中存在错误，TeXworks 无法创建 PDF 文档时，**Typeset** 按扭会变成一个红叉，并且底部的终端输出会保持展开．这时：
+如果在你的文档中存在错误，TeXworks 无法创建 PDF 文档时，**Typeset** 按钮会变成一个红叉，并且底部的终端输出会保持展开．这时：
 
-$\rightarrow$ 点击 **Abort typesetting** 按扭．$\rightarrow$ 阅读终端输出的内容，最后一行可能会给出行号表示出现错误的位置．$\rightarrow$ 找到文档中对应的行并修复错误．$\rightarrow$ 再次点击 **Typeset** 按扭尝试编译源文件．
+$\rightarrow$ 点击 **Abort typesetting** 按钮．$\rightarrow$ 阅读终端输出的内容，最后一行可能会给出行号表示出现错误的位置．$\rightarrow$ 找到文档中对应的行并修复错误．$\rightarrow$ 再次点击 **Typeset** 按钮尝试编译源文件．
 
 ### 添加文档标题
 
 `\maketitle` 命令可以给文档创建标题．你需要指定文档的标题．如果没有指定日期，就会使用现在的时间，作者是可选的．
 
-$\rightarrow$ 在 `\begin{document}` 和 命令后紧跟着输入以下文本：
+$\rightarrow$ 在 `\begin{document}` 命令后紧跟着输入以下文本：
 
 ```tex
 \title{My First Document}
@@ -112,7 +112,7 @@ $\rightarrow$ 在 `\begin{document}` 和 命令后紧跟着输入以下文本：
 \end{document}
 ```
 
-$\rightarrow$ 点击 **Typeset** 按扭，核对生成的 PDF 文档．
+$\rightarrow$ 点击 **Typeset** 按钮，核对生成的 PDF 文档．
 
 要点笔记：
 
@@ -121,7 +121,7 @@ $\rightarrow$ 点击 **Typeset** 按扭，核对生成的 PDF 文档．
 
 ### 章节
 
-如果需要的话，你可能想将你的文档分为章（Chatpers）、节（Sections）和小节（Subsections）．下列分节命令适用于 **article** 类型的文档：
+如果需要的话，你可能想将你的文档分为章（Chapters）、节（Sections）和小节（Subsections）．下列分节命令适用于 **article** 类型的文档：
 
 -   `\section{...}`
 -   `\subsection{...}`
@@ -148,13 +148,13 @@ $\rightarrow$ 将 "A sentence of text." 替换为以下文本：
 --8<-- "docs/tools/images/latex-for-beginners-1.tex:ending"
 ```
 
-$\rightarrow$ 点击 **Typeset** 按扭，核对 PDF 文档．应该是长这样的：
+$\rightarrow$ 点击 **Typeset** 按钮，核对 PDF 文档．应该是长这样的：
 
 ![章节排版效果](images/latex-for-beginners-1.svg)
 
 ### 创建标签
 
-你可以对任意章节命令创建标签，这样他们可以在文档的其他部分被引用．使用 `\label{labelname}` 对章节创建标签．然后输入 `\ref{labelname}` 或者 `\pageref{labelname}` 来引用对应的章节．
+你可以对任意章节命令创建标签，这样它们可以在文档的其他部分被引用．使用 `\label{labelname}` 对章节创建标签．然后输入 `\ref{labelname}` 或者 `\pageref{labelname}` 来引用对应的章节．
 
 $\rightarrow$ 在 `\subsection{Stage 1}` 下面另起一行，输入 `\label{sec1}`．$\rightarrow$ 在 **Results** 章节输入 `Referring to section \ref{sec1} on page \pageref{sec1}`．
 
@@ -177,7 +177,7 @@ $\rightarrow$ 编译并检查 PDF 文档（你可能需要连续编译两次）�
 
 如果你使用分节命令，那么可以容易地生成一个目录．使用 `\tableofcontents` 在文档中创建目录．通常我们会在标题的后面建立目录．
 
-你可能也想更改页码为罗马数字（i,ii,iii）．这会确保文档的正文从第 1 页开始．页码可以使用 `\pagenumbering{...}` 在阿拉伯数字和罗马数字见切换．
+你可能也想更改页码为罗马数字（i,ii,iii）．这会确保文档的正文从第 1 页开始．页码可以使用 `\pagenumbering{...}` 在阿拉伯数字和罗马数字间切换．
 
 $\rightarrow$ 在 `\maketitle` 之后输入以下内容：
 
@@ -317,7 +317,7 @@ $\rightarrow$ 编译并核对 PDF 文档．
 
 ![注释和空格的处理效果](images/latex-for-beginners-10.svg)
 
-多个连续空格在 LaTeX 中被视为一个空格．多个连续空行被视为一个空行．空行的主要功能是开始一个新的段落．通常来说，LaTeX 忽略空行和其他空白字符，两个反斜杠（`\\`）可以被用来换行．
+多个连续空格在 LaTeX 中被视为一个空格．多个连续空行被视为一个空行．空行的主要功能是开始一个新的段落．通常来说，LaTeX 忽略多余的空白字符，两个反斜杠（`\\`）可以被用来换行．
 
 $\rightarrow$ 尝试在你的文档中添加注释和空行．
 
@@ -331,13 +331,13 @@ $\rightarrow$ 尝试在你的文档中添加注释和空行．
 # $ % ^ & _ { } ~ \
 ```
 
-为了使用这些字符，我们需要在他们前面添加反斜杠进行转义：
+为了使用这些字符，我们需要在它们前面添加反斜杠进行转义：
 
 ```tex
 --8<-- "docs/tools/images/latex-for-beginners-11.tex:example"
 ```
 
-注意在使用 `^` 和 `~` 字符的时候需要在后面紧跟一对闭合的花括号，否则他们就会被解释为字母的上标，就像 `\^ e` 会变成 $\mathrm {\hat{e}}$．上面的代码生成的效果如下：
+注意在使用 `^` 和 `~` 字符的时候需要在后面紧跟一对闭合的花括号，否则它们就会被解释为字母的重音符号，就像 `\^ e` 会变成 $\mathrm {\hat{e}}$．上面的代码生成的效果如下：
 
 ![转义后的特殊字符](images/latex-for-beginners-11.svg)
 
@@ -351,7 +351,7 @@ $\rightarrow$ 输入代码来在你的文档中生成下面内容：
 
 ## 表格
 
-表格（tabular）命令用于排版表格．LaTeX 默认表格是没有横向和竖向的分割线的——如果你需要，你得手动设定．LaTeX 会根据内容自动设置表格的宽度．下面的代码可以创一个表格：
+表格（tabular）命令用于排版表格．LaTeX 默认表格是没有横向和竖向的分割线的——如果你需要，你得手动设定．LaTeX 会根据内容自动设置表格的宽度．下面的代码可以创建一个表格：
 
 ```tex
 \begin{tabular}{...}
@@ -361,10 +361,10 @@ $\rightarrow$ 输入代码来在你的文档中生成下面内容：
 
 -   `l` 表示一个左对齐的列；
 -   `r` 表示一个右对齐的列；
--   `c` 表示一个向中对齐的列；
+-   `c` 表示一个居中对齐的列；
 -   `|` 表示一个列的竖线；
 
-例如，`{lll}` 会生成一个三列的表格，并且保存向左对齐，没有显式的竖线；`{|l|l|r|}` 会生成一个三列表格，前两列左对齐，最后一列右对齐，并且相邻两列之间有显式的竖线．
+例如，`{lll}` 会生成一个三列的表格，并且保持向左对齐，没有显式的竖线；`{|l|l|r|}` 会生成一个三列表格，前两列左对齐，最后一列右对齐，并且相邻两列之间有显式的竖线．
 
 表格的数据在 `\begin{tabular}` 后输入：
 
@@ -442,7 +442,7 @@ $\rightarrow$ 编译并核对文件．
 
 你可以使用一对 `$` 来启用数学模式，这可以用于撰写行内数学公式．例如 `$1+2=3$` 的生成效果是 $1+2=3$．
 
-如果你想要行间的公式，可以使用 `$$...$$`（现在我们推荐使用 `\[...\]`，因为前者可能产生不良间距）．例如，`$$1+2=3$$` 的生产效果为
+如果你想要行间的公式，可以使用 `$$...$$`（现在我们推荐使用 `\[...\]`，因为前者可能产生不良间距）．例如，`$$1+2=3$$` 的生成效果为
 
 $$
 1+2=3
@@ -499,7 +499,7 @@ $$
 
 尽管一些基础的符号可以直接键入，但大多数特殊符号需要使用命令来显示．
 
-本书只是数学符号使用的入门教程，LaTeX Wikibook 的数学符号章节是另一个更好更完整的教程．如果想要了解更多关于数学符号的内容请移步．如果你想找到一个特定的符号，可以使用 [Detexfiy](http://detexify.kirelabs.org)，它可以识别手写字符．
+本书只是数学符号使用的入门教程，LaTeX Wikibook 的数学符号章节是另一个更好更完整的教程．如果想要了解更多关于数学符号的内容请移步．如果你想找到一个特定的符号，可以使用 [Detexify](http://detexify.kirelabs.org)，它可以识别手写字符．
 
 #### 上标和下标
 
@@ -598,9 +598,9 @@ BibTeX 文件包含了所有你想要在你文档中引用的文献．它的文�
 }
 ```
 
-每一个参考文献先声名它的文献类型（reference type）．示例中使用的是 @article，其他的类型包括 @book，@incollection 用于引用一本书的中的章节，@inproceedings 用于引用会议论文．可以 [在此](http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management) 查看更多支持的类型．
+每一个参考文献先声明它的文献类型（reference type）．示例中使用的是 @article，其他的类型包括 @book，@incollection 用于引用一本书中的章节，@inproceedings 用于引用会议论文．可以 [在此](http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management) 查看更多支持的类型．
 
-接下来的花括号内首先要列出一个引用键值（citation key）．必须保证你引用的文献的引用键值是不同的．你可以自定义键值串，不过使用第一作者名字加上年分会是一个表义清晰的选择．
+接下来的花括号内首先要列出一个引用键值（citation key）．必须保证你引用的文献的引用键值是不同的．你可以自定义键值串，不过使用第一作者名字加上年份会是一个表义清晰的选择．
 
 接下来的若干行包括文献的若干信息，格式如下：
 
@@ -629,7 +629,7 @@ Field name = {field contents},
 
 使用 `\cite{citationkey}` 来在你想要引用文献的地方插入一个标注．如果你不希望在正文中插入一个引用标注，但仍想要在文献列表中显示这次引用，使用 `\nocite{citationkey}` 命令．
 
-想要在引用中插入页码信息，使用方括号：`\cite[p. 215]{citationkay}`．
+想要在引用中插入页码信息，使用方括号：`\cite[p. 215]{citationkey}`．
 
 要引用多个文献，使用逗号分隔：`\cite{citation01,citation02,citation03}`．
 
@@ -651,7 +651,7 @@ LaTeX 包含了多种行内数字标号引用的格式：
 
 如果你想使用作者日期的引用，使用 **natbib** 包．它使用 `\citep{...}` 命令来生成一个方括号标注，如 $[Koppe,2010]$，使用 `\citet{...}` 来生成一个标注，只把年份放到方括号里，如 $Koppe [2010]$．[在此](http://mirror.ctan.org/macros/latex/contrib/natbib/natnotes.pdf) 查看它的更多用法．
 
-Natbib 包也有三种格式：**plainnat**，**abbrvnat** 和 **unsrtnat**，他们与 **plain**，**abbrv** 和 **unsrt** 的效果是一样的．
+Natbib 包也有三种格式：**plainnat**，**abbrvnat** 和 **unsrtnat**，它们与 **plain**，**abbrv** 和 **unsrt** 的效果是一样的．
 
 #### 其他引用格式
 
@@ -659,7 +659,7 @@ Natbib 包也有三种格式：**plainnat**，**abbrvnat** 和 **unsrtnat**，�
 
 ### 实践
 
-$\rightarrow$ 在同一文件夹下新建一个同名的 BibTeX 文件，用正确的格式输入参考文献的信息．$\rightarrow$ 切换到 TeX 文档，并使用 `\cite`，`\bibliographystyle` 和 `\bibliograph` 命令来引用文献．$\rightarrow$ 编译 TeX 文件．$\rightarrow$ 切换到 BibTeX 文件，并编译（点击 **Typeset** 按扭）$\rightarrow$ 切换到 TeX 文件并编译它 **两次**，然后核对 PDF 文档．
+$\rightarrow$ 在同一文件夹下新建一个同名的 BibTeX 文件，用正确的格式输入参考文献的信息．$\rightarrow$ 切换到 TeX 文档，并使用 `\cite`，`\bibliographystyle` 和 `\bibliography` 命令来引用文献．$\rightarrow$ 编译 TeX 文件．$\rightarrow$ 切换到 BibTeX 文件，并编译（点击 **Typeset** 按钮）$\rightarrow$ 切换到 TeX 文件并编译它 **两次**，然后核对 PDF 文档．
 
 ## 更多阅读
 

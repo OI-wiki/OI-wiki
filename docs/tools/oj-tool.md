@@ -114,7 +114,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 使用方法：
 
--   在谷歌或者火狐浏览器上安装插件．该工具会将解析到的测例数据以 JSON 格式的形式发到指定的端口．
+-   在谷歌或者火狐浏览器上安装插件．该工具会将解析到的测例数据以 JSON 格式发到指定的端口．
 -   在本地安装任何可以从端口监听读取数据的工具即可，可以参考 [官方给出的示例](https://github.com/jmerle/competitive-companion-example)．
 
 图片演示：

@@ -81,20 +81,20 @@ $$
 设 $X$ 是一随机变量，则对任意的 $t > 0$ 都有
 
 $$
-P\{ X \geq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
+P\{ X \geq a \} = P\{ \mathrm{e}^{tX} \geq \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 类似地，当 $t < 0$ 时有
 
 $$
-P\{ X \leq a \} = P\{ \mathrm{e}^{tX} > \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
+P\{ X \leq a \} = P\{ \mathrm{e}^{tX} \geq \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
 $$
 
 ### Poisson 试验之和的 Chernoff 不等式
 
 算法竞赛中涉及的随机变量通常没有那么「一般」，我们可以用概率论中的 Poisson 试验对其进行描述．
 
-所谓 Poisson 试验，是指在只有两种可能结果的随机试验．
+所谓 Poisson 试验，是指只有两种可能结果的随机试验．
 
 一次的 Poisson 试验的结果可以用一个取值为 $0$ 或 $1$ 的随机变量 $X$ 进行刻画，其概率分布为
 
@@ -136,7 +136,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
 问题：若要保证上述算法以至少 $(1 - \delta)$ 的概率返回相对误差不超过 $\epsilon$ 的结果，$n$ 应该如何取定？
 
 ??? note "解答"
-    记 $X_i$ 表示事件「随机生成的第 $i$ 个点在单位圆内」，则圆内总点数 $X = \sum_{i=1}^{n} X_i$．我们需要找到一个合适的 $n$ 使得
+    记 $X_i$ 表示事件「随机生成的第 $i$ 个点在单位圆内」的示性函数，则圆内总点数 $X = \sum_{i=1}^{n} X_i$．我们需要找到一个合适的 $n$ 使得
     
     $$
     P\left\{ \left| \frac{4X}{n} - \pi \right| \geq \epsilon \pi \right\} \leq \delta
@@ -186,15 +186,15 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
     -   不断重复这一过程，直到选出的子集大小恰好为 $\dfrac n2$．
         -   注意到大小为 $\dfrac n2$ 的子集至少占所有子集的 $\dfrac 1n$，因此重复次数的期望值 $\leq n$．
     
-    这一算法期望需要抛 $n^2$ 次硬币．
+    这一算法期望至多需要抛 $n^2$ 次硬币．
     
     另一个算法：
     
-    -   我们可以通过抛期望 $2\lceil\log_2 n\rceil$ 次硬币来实现随机 $n$ 选 1．
+    -   我们可以通过抛期望至多 $2\lceil\log_2 n\rceil$ 次硬币来实现随机 $n$ 选 1．
         -   具体方法：随机生成 $\lceil\log_2 n\rceil$ 位的二进制数，如果大于等于 $n$ 则重新随机，否则选择对应编号（编号从 0 开始）的元素并结束过程．
     -   然后我们从所有元素中选一个，再从剩下的元素中再选一个，以此类推，直到选出 $\dfrac n2$ 个元素为止．
     
-    这一算法期望需要抛 $n\lceil\log_2 n\rceil$ 次硬币．
+    这一算法期望至多需要抛 $n\lceil\log_2 n\rceil$ 次硬币．
     
     将两个算法缝合起来：
     
@@ -220,9 +220,9 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
         2 \int_0^\infty \exp \left(-\frac {t^2}{n}\right) \mathrm{d}t=\sqrt{\pi n}
         $$
         
-        从而第二、第三步所需抛硬币次数的期望值是 $\sqrt{\pi n}\cdot2\lceil\log_2 n\rceil$．
+        从而第二、第三步所需抛硬币次数的期望值不超过 $\sqrt{\pi n}\cdot2\lceil\log_2 n\rceil$．
         
-        综上，该算法期望需要抛 $n+2\sqrt{\pi n}\lceil\log_2 n\rceil$ 次硬币．
+        综上，该算法期望至多需要抛 $n+2\sqrt{\pi n}\lceil\log_2 n\rceil$ 次硬币．
 
 ### 练习：Balls and Bins
 

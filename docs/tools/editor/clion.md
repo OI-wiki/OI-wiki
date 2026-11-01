@@ -64,7 +64,7 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 
 ### 编译、运行和调试
 
-虽然 CLion 诞生之初是面向多文件的复杂 C/C++ 项目诞生的，早些时候的 CLion 默认使用 [CMake](https://cmake.org/) 作为构建工具，但是自 CLion 2022.3 版本起，CLion 已经支持 [C, C++ 单文件运行](https://www.jetbrains.com/help/clion/run-single-file.html)．
+虽然 CLion 诞生之初是面向多文件的复杂 C/C++ 项目的，早些时候的 CLion 默认使用 [CMake](https://cmake.org/) 作为构建工具，但是自 CLion 2022.3 版本起，CLion 已经支持 [C, C++ 单文件运行](https://www.jetbrains.com/help/clion/run-single-file.html)．
 
 有多种方式来运行一个 C++ 程序，一个简单的流程如下：
 
@@ -74,7 +74,7 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 
 ![C++ Single File Execution](./images/clion-single-file-execution.png)
 
-如需调试程序，可以编辑区打好断点，在编辑区右键单击，选择 `Debug 'main.cpp'` 选项．
+如需调试程序，可以在编辑区打好断点，在编辑区右键单击，选择 `Debug 'main.cpp'` 选项．
 
 ### 通过 CMake 编译、运行和调试
 
@@ -86,7 +86,7 @@ CLion 也可使用 [CMake](https://cmake.org/) 作为构建工具，关于 CMake
 
 #### 编译选项
 
-CMake 默认使用项目根目录下的 `CMakeList.txt` 作为构建项目的配置文件，可以使用 `add_compile_options` 命令来增加编译选项，例如：
+CMake 默认使用项目根目录下的 `CMakeLists.txt` 作为构建项目的配置文件，可以使用 `add_compile_options` 命令来增加编译选项，例如：
 
 ```cmake
 add_compile_options(-std=c++17 -DDEBUG)

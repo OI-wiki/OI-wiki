@@ -96,7 +96,7 @@ void perform(int l, int r) {
 
 ## 实现（std::map）
 
-相较于 `std::set` 的实现，`std::map` 的实现的 `split` 操作写法更简单．除此之外，其余操作与 `std::set` 并无二异．
+相较于 `std::set` 的实现，`std::map` 的实现的 `split` 操作写法更简单．除此之外，其余操作与 `std::set` 并无二致．
 
 ### 结点存储
 
@@ -125,7 +125,7 @@ auto split(int pos) {
 }
 ```
 
-这里使用了 `std::map::insert` 的重载 `iterator insert( const_iterator pos, const value_type& value );`，其插入 `value` 到尽可能接近正好在 `pos` 之前的位置．如果插入恰好发生在正好在 `pos` 之前的位置，那么复杂度是均摊常数，否则复杂度与容器大小成对数．
+这里使用了 `std::map::insert` 的重载 `iterator insert( const_iterator pos, const value_type& value );`，其插入 `value` 到尽可能接近 `pos` 之前的位置．如果插入恰好发生在 `pos` 之前的位置，那么复杂度是均摊常数，否则复杂度与容器大小成对数．
 
 ### assign 操作
 

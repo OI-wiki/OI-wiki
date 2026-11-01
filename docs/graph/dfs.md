@@ -6,7 +6,7 @@ DFS 全称是 [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_sea
 
 该算法讲解时常常与 BFS 并列，但两者除了都能遍历图的连通块以外，用途完全不同，很少有能混用两种算法的情况．
 
-DFS 常常用来指代用递归函数实现的搜索，但实际上两者并不一样．有关该类搜索思想请参阅 [DFS（搜索）](../search/dfs.md).
+DFS 常常用来指代用递归函数实现的搜索，但实际上两者并不一样．有关该类搜索思想请参阅 [DFS（搜索）](../search/dfs.md)．
 
 ## 过程
 
@@ -38,7 +38,7 @@ DFS 最显著的特征在于其 **递归调用自身**．同时与 BFS 类似，
 
 ### 栈实现
 
-DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容器来实现；这与用 [队列（Queue）](../ds/queue.md) 实现的 BFS 形成高度对应．
+DFS 可以使用 [栈（Stack）](../ds/stack.md) 作为遍历中节点的暂存容器来实现；这与用 [队列（Queue）](../ds/queue.md) 实现的 BFS 形成高度对应．
 
 === "C++"
     ```cpp

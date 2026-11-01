@@ -243,7 +243,7 @@ $$
     综上可得总时间复杂度即为 $O(n^{3/2})$．
 
 ??? note "命题 2 证明"
-    注意到一个事实：如果已经执行过了 $\text{InsertionSort}(2)$ 与 $\text{InsertionSort}(3)$，那么因为 $2\cdot 3-2-3=1$，所以由定理 $2$，每个元素只有与它相邻的前一个元素可能大于它，之前的元素全部都小于它．于是 $i$ 指针只需要最多两次就可以退出 while 循环．也就是说，此时再执行 $\text{InsertionSort}(1)$，复杂度降为 $O(n)$．
+    注意到一个事实：如果已经执行过了 $\text{InsertionSort}(2)$ 与 $\text{InsertionSort}(3)$，那么因为 $2\cdot 3-2-3=1$，所以由定理 $2$，每个元素只有与它相邻的前一个元素可能大于它，之前的元素全部都不大于它．于是 $i$ 指针只需要最多两次就可以退出 while 循环．也就是说，此时再执行 $\text{InsertionSort}(1)$，复杂度降为 $O(n)$．
     
     更进一步：如果已经执行过了 $\text{InsertionSort}(4)$ 与 $\text{InsertionSort}(6)$，我们考虑所有的下标为奇数的元素组成的子列与下标为偶数的元素组成的子列．则这相当于把这两个子列分别执行 $\text{InsertionSort}(2)$ 与 $\text{InsertionSort}(3)$．那么也是一样，这时候再执行 $\text{InsertionSort}(2)$，相当于对两个子列分别执行 $\text{InsertionSort}(1)$，也只需要两个序列和的级别，即 $O(n)$ 的复杂度就可以将数组变为 $2$ 间隔有序．
     

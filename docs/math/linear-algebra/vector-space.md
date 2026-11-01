@@ -119,7 +119,7 @@ $$
 
     则称向量组 $a_1,a_2,\dots,a_n$ 为向量组 $b_1,b_2,\dots,b_m$ 中的一个 **极大线性无关组**．类似地，可定义线性空间 $V$ 的极大线性无关组．
 
-    规定向量组 $\theta,\theta,\dots,\theta$ 的极大线性无关组为空集，于是全 $0$ 矩阵对应的向量组没有极大线性无关组．
+    规定向量组 $\theta,\theta,\dots,\theta$ 的极大线性无关组为空集，于是全 $0$ 矩阵对应的向量组的极大线性无关组为空集．
 
     从向量组删向量的删法不唯一，因此极大线性无关组也不唯一．习惯上从左到右按顺序删．
 
@@ -143,7 +143,7 @@ $$
 
 对线性空间 $(V,+,\cdot,\Bbb{P})$,
 
-1.  设向量组 $a_1,a_2,\dots,a_n$ 能被线性表出向量组 $b_1,b_2,\dots,b_m$ 线性表出．
+1.  设向量组 $a_1,a_2,\dots,a_n$ 能被向量组 $b_1,b_2,\dots,b_m$ 线性表出．
     -   若 $n>m$, 则向量组 $a_1,a_2,\dots,a_n$ 线性相关．
     -   若向量组 $a_1,a_2,\dots,a_n$ 线性无关，则 $n\leq m$．
 
@@ -153,7 +153,7 @@ $$
 
 3.  向量组线性无关当且仅当其秩等于其大小．
 
-4.  若向量组 $a_1,a_2,\dots,a_n$ 能被线性表出向量组 $b_1,b_2,\dots,b_m$ 线性表出，则 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq\operatorname{rank}\{b_1,b_2,\dots,b_m\}$．
+4.  若向量组 $a_1,a_2,\dots,a_n$ 能被向量组 $b_1,b_2,\dots,b_m$ 线性表出，则 $\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq\operatorname{rank}\{b_1,b_2,\dots,b_m\}$．
 
 5.  等价的向量组的秩相等．
 
@@ -231,7 +231,7 @@ $$
 2.  令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，类似于集合的并，线性空间的和适用如下法则：
     1.  交换律：$V_1+V_2=V_2+V_1$
     2.  结合律：$V_1+(V_2+V_3)=(V_1+V_2)+V_3$
-3.  令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，线性空间的交与并有如下关系：
+3.  令 $V_1,V_2,V_3$ 是关于 $\Bbb{P}$ 的线性空间，线性空间的交与和有如下关系：
     1.  $V_1\cap (V_2+V_3)\supseteq (V_1\cap V_2)+(V_1\cap V_3)$
     2.  $V_1+(V_2\cap V_3)\subseteq (V_1+V_2)\cap (V_1+V_3)$
 4.  $\operatorname{span}\{a_1,a_2,\dots,a_n\}+\operatorname{span}\{b_1,b_2,\dots,b_m\}=\operatorname{span}\{a_1,a_2,\dots,a_n,b_1,b_2,\dots,b_m\}$

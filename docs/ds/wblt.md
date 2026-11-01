@@ -61,7 +61,7 @@ Leafy Tree 维护的原始信息仅存储在树的 **叶子节点** 上，而非
 
 ### 平衡的概念
 
-对于一个树，可以定义它在一个非叶节点 $x$ 处的 **平衡度** 为
+对于一棵树，可以定义它在一个非叶节点 $x$ 处的 **平衡度** 为
 
 $$
 \rho(x) = \dfrac{\min\{w(T_{\operatorname{left}(x)}),w(T_{\operatorname{right}(x)})\}}{w(T_x)}.
