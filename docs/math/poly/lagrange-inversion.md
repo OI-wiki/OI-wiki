@@ -14,7 +14,7 @@ $$
 g_k:=
 \begin{cases}
 f_N^{-1}, &\text{ if }k=-N\text{,} \\
--f_N^{-1}\sum_{i> N}f_ig_{k-i}, &\text{ otherwise}
+-f_N^{-1}\sum_{i> N}f_ig_{k+N-i}, &\text{ otherwise}
 \end{cases}
 $$
 
