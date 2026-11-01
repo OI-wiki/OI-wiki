@@ -99,7 +99,7 @@ DFS 可以使用 [栈（Stack）](../ds/stack.md) 为遍历中节点的暂存容
     void dfs(const int u) {
       vis[u] = true;
       for (int v : adj[u])
-        if (!vis[v]) dfs(v)
+        if (!vis[v]) dfs(v);
     }
     ```
 
