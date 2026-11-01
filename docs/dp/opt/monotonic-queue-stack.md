@@ -52,7 +52,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/dp/code/opt/monotonic-queue-stack/monotonic-queue-stack_2.cpp"
+    --8<-- "docs/dp/code/opt/monotonic-queue-stack/monotonic-queue-stack_1.cpp"
     ```
 
 ## 习题
@@ -86,7 +86,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/dp/code/opt/monotonic-queue-stack/monotonic-queue-stack_1.cpp"
+    --8<-- "docs/dp/code/opt/monotonic-queue-stack/monotonic-queue-stack_2.cpp"
     ```
 
 -   [「Luogu P1886」滑动窗口](https://loj.ac/problem/10175)

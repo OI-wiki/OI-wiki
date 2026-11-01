@@ -1,11 +1,12 @@
 #include <algorithm>
 #include <cstdio>
+#include <limits>
 using namespace std;
 
 int main() {
-  int n, x, y, a, b;
-  int minx = 0x7fffffff, maxx = -0x7fffffff;
-  int miny = 0x7fffffff, maxy = -0x7fffffff;
+  int n, x, y, a, b,
+      minx = numeric_limits<int>::max(), maxx = numeric_limits<int>::lowest(),
+      miny = numeric_limits<int>::max(), maxy = numeric_limits<int>::lowest();
   scanf("%d", &n);
   for (int i = 1; i <= n; i++) {
     scanf("%d%d", &a, &b);

@@ -49,19 +49,7 @@ k-D Tree 具有二叉搜索树的形态，二叉搜索树上的每个结点都�
 
 ??? note "实现"
     ```cpp
-    int query(int p) {
-      if (!p) return 0;
-      bool flag{false};
-      for (int k : {0, 1}) flag |= (!(l.x[k] <= t[p].L[k] && t[p].R[k] <= h.x[k]));
-      if (!flag) return t[p].sum;
-      for (int k : {0, 1})
-        if (t[p].R[k] < l.x[k] || h.x[k] < t[p].L[k]) return 0;
-      int ans{0};
-      flag = false;
-      for (int k : {0, 1}) flag |= (!(l.x[k] <= t[p].x[k] && t[p].x[k] <= h.x[k]));
-      if (!flag) ans = t[p].v;
-      return ans += query(t[p].l) + query(t[p].r);
-    }
+    --8<-- "docs/ds/code/kdt/kdt_1.cpp:example74"
     ```
 
 ### 复杂度分析
@@ -177,7 +165,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/ds/code/kdt/kdt_3.cpp"
+    --8<-- "docs/ds/code/kdt/kdt_1.cpp"
     ```
 
 ## 邻域查询
@@ -198,7 +186,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/ds/code/kdt/kdt_1.cpp"
+    --8<-- "docs/ds/code/kdt/kdt_2.cpp"
     ```
 
 ???+ note "例题 [「CQOI2016」K 远点对](https://loj.ac/problem/2043)"
@@ -212,7 +200,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/ds/code/kdt/kdt_2.cpp"
+    --8<-- "docs/ds/code/kdt/kdt_3.cpp"
     ```
 
 ## 习题

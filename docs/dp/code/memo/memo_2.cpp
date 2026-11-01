@@ -3,7 +3,8 @@
 #include <iostream>
 using namespace std;
 
-const int INF = 0x3f3f3f3f;
+// --8<-- [start:core]
+constexpr int INF = 0x3f3f3f3f;
 int n, t;
 int tcost[103], mget[103];
 int mem[103][1003];
@@ -26,3 +27,5 @@ int main() {
   cout << dfs(1, t) << endl;
   return 0;
 }
+
+// --8<-- [end:core]

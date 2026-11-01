@@ -13,7 +13,7 @@
 通常用一个数组模拟一个队列，用两个变量标记队列的首尾．
 
 ```cpp
-int q[SIZE], ql = 1, qr;
+--8<-- "docs/ds/code/queue/queue_1.cpp:example134"
 ```
 
 队列操作对应的代码如下：
@@ -26,7 +26,7 @@ int q[SIZE], ql = 1, qr;
 
 ??? example "[Luogu B3616【模板】队列](https://www.luogu.com.cn/problem/B3616) 数组模拟参考实现"
     ```cpp
-    --8<-- "docs/ds/code/queue/queue_1.cpp"
+    --8<-- "docs/ds/code/queue/queue_2.cpp"
     ```
 
 ### 双栈模拟队列
@@ -42,7 +42,7 @@ int q[SIZE], ql = 1, qr;
 
 ??? example "[Luogu B3616【模板】队列](https://www.luogu.com.cn/problem/B3616) 双栈模拟参考实现"
     ```cpp
-    --8<-- "docs/ds/code/queue/queue_2.cpp"
+    --8<-- "docs/ds/code/queue/queue_3.cpp"
     ```
 
 ## C++ STL 中的队列
@@ -51,11 +51,7 @@ C++ 在 STL 中提供了一个容器 `std::queue`，使用前需要先引入 `<q
 
 ???+ info "STL 中对 `queue` 的定义"
     ```cpp
-    // clang-format off
-    template<
-        class T,
-        class Container = std::deque<T>
-    > class queue;
+    --8<-- "docs/ds/code/queue/queue_4.cpp:example135"
     ```
     
     `T` 为 queue 中要存储的数据类型．
@@ -84,17 +80,7 @@ STL 中的 `queue` 容器提供了一众成员函数以供调用．其中较为�
 此外，`queue` 还提供了一些运算符．较为常用的是使用赋值运算符 `=` 为 `queue` 赋值，示例：
 
 ```cpp
-std::queue<int> q1, q2;
-
-// 向 q1 的队尾插入 1
-q1.push(1);
-
-// 将 q1 赋值给 q2
-q2 = q1;
-
-// 输出 q2 的队首元素
-std::cout << q2.front() << std::endl;
-// 输出: 1
+--8<-- "docs/ds/code/queue/queue_5.cpp:example136"
 ```
 
 ## 特殊队列
@@ -123,7 +109,7 @@ std::cout << q2.front() << std::endl;
 
 ??? example "[Luogu B3656【模板】双端队列 1](https://www.luogu.com.cn/problem/B3656) 参考实现"
     ```cpp
-    --8<-- "docs/ds/code/queue/queue_3.cpp"
+    --8<-- "docs/ds/code/queue/queue_6.cpp"
     ```
 
 #### C++ STL 中的双端队列
@@ -132,11 +118,7 @@ C++ 在 STL 中也提供了一个容器 `std::deque`，使用前需要先引入 
 
 ??? info "STL 中对 `deque` 的定义"
     ```cpp
-    // clang-format off
-    template<
-        class T,
-        class Allocator = std::allocator<T>
-    > class deque;
+    --8<-- "docs/ds/code/queue/queue_7.cpp:example137"
     ```
     
     `T` 为 deque 中要存储的数据类型．
@@ -174,20 +156,7 @@ STL 中的 `deque` 容器提供了一众成员函数以供调用．其中较为�
 
 ???+ note "实现"
     ```python
-    from collections import deque
-    
-    # 新建一个 deque，并初始化内容为 [1, 2, 3]
-    queue = deque([1, 2, 3])
-    
-    # 在队尾插入元素 4
-    queue.append(4)
-    
-    # 在队首插入元素 0
-    queue.appendleft(0)
-    
-    # 访问队列
-    # >>> queue
-    # deque([0, 1, 2, 3, 4])
+    --8<-- "docs/ds/code/queue/queue_8.py:example138"
     ```
 
 ### 循环队列

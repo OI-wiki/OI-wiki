@@ -1,7 +1,9 @@
 #include <algorithm>
+#include <cstring>
 #include <iostream>
 using namespace std;
 
+// --8<-- [start:core]
 int n, t;
 int tcost[103], mget[103];
 int ans = 0;
@@ -23,3 +25,5 @@ int main() {
   cout << ans << endl;
   return 0;
 }
+
+// --8<-- [end:core]

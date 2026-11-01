@@ -1,187 +1,167 @@
 #include <algorithm>
+#include <cassert>
+#include <climits>
+#include <cstdio>
 #include <cstring>
 #include <iostream>
+#include <limits>
 #include <list>
+#include <numeric>
+#include <queue>
+#include <random>
+#include <utility>
+#include <vector>
 using namespace std;
-using LL = long long;
-constexpr LL INF = (LL)1e15;
-constexpr int MAXV = 105;
 
-int N, mateS[MAXV], mateT[MAXV], p[MAXV];
-LL u[MAXV], v[MAXV], slack[MAXV];
-LL W[MAXV][MAXV];
-bool m[MAXV];
-list<int> Q;
+// --8<-- [start:core]
+template <typename T>
+struct hungarian {  // km
+  int n;
+  vector<int> matchx;  // 左集合对应的匹配点
+  vector<int> matchy;  // 右集合对应的匹配点
+  vector<int> pre;     // 连接右集合的左点
+  vector<bool> visx;   // 拜访数组 左
+  vector<bool> visy;   // 拜访数组 右
+  vector<T> lx;
+  vector<T> ly;
+  vector<vector<T>> g;
+  vector<T> slack;
+  T inf;
+  T res;
+  queue<int> q;
+  int org_n;
+  int org_m;
 
-void readMatrix() {
-  cin >> N;
-  for (int i = 0; i < N; i++)
-    for (int j = 0; j < N; j++) cin >> W[i][j];
-}
-
-void initHungarian() {
-  memset(mateS, -1, sizeof(mateS));
-  memset(mateT, -1, sizeof(mateT));
-  for (int i = 0; i < N; i++) {
-    u[i] = -INF;
-    for (int j = 0; j < N; j++) u[i] = max(u[i], W[i][j]);
-    v[i] = 0;
+  hungarian(int _n, int _m) {
+    org_n = _n;
+    org_m = _m;
+    n = max(_n, _m);
+    inf = numeric_limits<T>::max();
+    res = 0;
+    g = vector<vector<T>>(n, vector<T>(n));
+    matchx = vector<int>(n, -1);
+    matchy = vector<int>(n, -1);
+    pre = vector<int>(n);
+    visx = vector<bool>(n);
+    visy = vector<bool>(n);
+    lx = vector<T>(n, -inf);
+    ly = vector<T>(n);
+    slack = vector<T>(n);
   }
-}
 
-void augment(int j) {
-  int i, next;
-  do {
-    i = p[j];
-    mateT[j] = i;
-    next = mateS[i];
-    mateS[i] = j;
-    if (next != -1) j = next;
-  } while (next != -1);
-}
+  void addEdge(int u, int v, int w) {
+    g[u][v] = max(w, 0);  // 负值还不如不匹配 因此设为0不影响
+  }
 
-LL hungarian() {
-  int nres = 0;
-  for (int i = 0; i < N; i++)
-    if (mateS[i] == -1) nres++;
-
-  while (nres > 0) {
-    for (int i = 0; i < N; i++) {
-      m[i] = false;
-      p[i] = -1;
-      slack[i] = INF;
+  bool check(int v) {
+    visy[v] = true;
+    if (matchy[v] != -1) {
+      q.push(matchy[v]);
+      visx[matchy[v]] = true;  // in S
+      return false;
     }
-    bool aug = false;
-    Q.clear();
-    for (int i = 0; i < N; i++)
-      if (mateS[i] == -1) {
-        Q.push_back(i);
-        break;
-      }
+    // 找到新的未匹配点 更新匹配点 pre 数组记录着"非匹配边"上与之相连的点
+    while (v != -1) {
+      matchy[v] = pre[v];
+      swap(v, matchx[pre[v]]);
+    }
+    return true;
+  }
 
-    do {
-      int i, j;
-      i = Q.front();
-      Q.pop_front();
-      m[i] = true;
-      j = 0;
-
-      while (!aug && j < N) {
-        if (mateS[i] != j) {
-          LL minSlack = u[i] + v[j] - W[i][j];
-          if (minSlack < slack[j]) {
-            slack[j] = minSlack;
-            p[j] = i;
-            if (slack[j] == 0) {
-              if (mateT[j] == -1) {
-                augment(j);
-                aug = true;
-                nres--;
-              } else
-                Q.push_back(mateT[j]);
+  void bfs(int i) {
+    while (!q.empty()) {
+      q.pop();
+    }
+    q.push(i);
+    visx[i] = true;
+    while (true) {
+      while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        for (int v = 0; v < n; v++) {
+          if (!visy[v]) {
+            T delta = lx[u] + ly[v] - g[u][v];
+            if (slack[v] >= delta) {
+              pre[v] = u;
+              if (delta) {
+                slack[v] = delta;
+              } else if (check(v)) {  // delta=0 代表有机会加入相等子图 找增广路
+                                      // 找到就return 重建交错树
+                return;
+              }
             }
           }
         }
-        j++;
       }
-
-      if (!aug && Q.size() == 0) {
-        LL minSlack = INF;
-        for (int k = 0; k < N; k++)
-          if (slack[k] > 0) minSlack = min(minSlack, slack[k]);
-        for (int k = 0; k < N; k++)
-          if (m[k]) u[k] -= minSlack;
-
-        int x = -1;
-        bool X[MAXV];
-        for (int k = 0; k < N; k++)
-          if (slack[k] == 0)
-            v[k] += minSlack;
-          else {
-            slack[k] -= minSlack;
-            if (slack[k] == 0 && mateT[k] == -1) x = k;
-            if (slack[k] == 0)
-              X[k] = true;
-            else
-              X[k] = false;
-          }
-
-        if (x == -1) {
-          for (int k = 0; k < N; k++)
-            if (X[k]) Q.push_back(mateT[k]);
-        } else {
-          augment(x);
-          aug = true;
-          nres--;
+      // 没有增广路 修改顶标
+      T a = inf;
+      for (int j = 0; j < n; j++) {
+        if (!visy[j]) {
+          a = min(a, slack[j]);
         }
       }
-    } while (!aug);
+      for (int j = 0; j < n; j++) {
+        if (visx[j]) {  // S
+          lx[j] -= a;
+        }
+        if (visy[j]) {  // T
+          ly[j] += a;
+        } else {  // T'
+          slack[j] -= a;
+        }
+      }
+      for (int j = 0; j < n; j++) {
+        if (!visy[j] && slack[j] == 0 && check(j)) {
+          return;
+        }
+      }
+    }
   }
 
-  LL ans = 0;
-  for (int i = 0; i < N; i++) ans += (u[i] + v[i]);
-  return ans;
-}
-
-void dynamicHungarian() {
-  char type[2];
-  LL w;
-  int i, j;
-
-  cin >> type;
-  if (type[0] == 'C') {
-    cin >> i >> j >> w;
-    if ((w < W[i][j]) && (mateS[i] == j)) {
-      W[i][j] = w;
-      if (mateS[i] != -1) {
-        mateT[mateS[i]] = -1;
-        mateS[i] = -1;
+  void solve() {
+    // 初始顶标
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        lx[i] = max(lx[i], g[i][j]);
       }
-    } else if ((w > W[i][j]) && (u[i] + v[j] < w)) {
-      W[i][j] = w;
-      u[i] = -INF;
-      for (int c = 0; c < N; c++) u[i] = max(u[i], W[i][c] - v[c]);
-      if (mateS[i] != j) {
-        mateT[mateS[i]] = -1;
-        mateS[i] = -1;
-      }
-    } else
-      W[i][j] = w;
-  } else if (type[0] == 'X') {
-    cin >> i;
-    for (int c = 0; c < N; c++) cin >> W[i][c];
-    if (mateS[i] != -1) {
-      mateT[mateS[i]] = -1;
-      mateS[i] = -1;
     }
-    u[i] = -INF;
-    for (int c = 0; c < N; c++) u[i] = max(u[i], W[i][c] - v[c]);
-  } else if (type[0] == 'Y') {
-    cin >> j;
-    for (int r = 0; r < N; r++) cin >> W[r][j];
-    if (mateT[j] != -1) {
-      mateS[mateT[j]] = -1;
-      mateT[j] = -1;
-    }
-    v[j] = -INF;
-    for (int r = 0; r < N; r++) v[j] = max(v[j], W[r][j] - u[r]);
-  } else if (type[0] == 'A') {
-    i = j = N++;
-    u[i] = -INF;
-    for (int c = 0; c < N; c++) u[i] = max(u[i], W[i][c] - v[c]);
-    v[j] = -INF;
-    for (int r = 0; r < N; r++) v[j] = max(v[j], W[r][j] - u[r]);
-  } else if (type[0] == 'Q')
-    cout << hungarian() << '\n';
-}
 
+    for (int i = 0; i < n; i++) {
+      fill(slack.begin(), slack.end(), inf);
+      fill(visx.begin(), visx.end(), false);
+      fill(visy.begin(), visy.end(), false);
+      bfs(i);
+    }
+
+    // custom
+    for (int i = 0; i < n; i++) {
+      if (g[i][matchx[i]] > 0) {
+        res += g[i][matchx[i]];
+      } else {
+        matchx[i] = -1;
+      }
+    }
+    cout << res << "\n";
+    for (int i = 0; i < org_n; i++) {
+      cout << matchx[i] + 1 << " ";
+    }
+    cout << "\n";
+  }
+};
+
+// --8<-- [end:core]
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  readMatrix();
-  initHungarian();
-  LL ans = hungarian();
-  int M;
-  cin >> M;
-  while (M--) dynamicHungarian();
-  return 0;
+  ios::sync_with_stdio(false), cin.tie(nullptr);
+  int n, m, e;
+  cin >> n >> m >> e;
+
+  hungarian<long long> solver(n, m);
+
+  int u, v, w;
+  for (int i = 0; i < e; i++) {
+    cin >> u >> v >> w;
+    u--, v--;
+    solver.addEdge(u, v, w);
+  }
+  solver.solve();
 }

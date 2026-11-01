@@ -24,17 +24,7 @@ Kahan 求和算法主要通过一个单独变量用来累积误差．如下方�
 
 ??? note "参考代码"
     ```cpp
-    float kahanSum(vector<float> nums) {
-      float sum = 0.0f;
-      float c = 0.0f;
-      for (auto num : nums) {
-        float y = num - c;
-        float t = sum + y;
-        c = (t - sum) - y;
-        sum = t;
-      }
-      return sum;
-    }
+    --8<-- "docs/misc/code/kahan-summation/kahan-summation_1.cpp:core"
     ```
 
 ## 习题

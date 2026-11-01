@@ -1,6 +1,5 @@
-#include <algorithm>
-#include <bitset>
 #include <iostream>
+#include <map>
 #include <stack>
 #include <vector>
 #define ls (i << 1)
@@ -8,139 +7,126 @@
 #define mid ((l + r) >> 1)
 using namespace std;
 
-constexpr int N = 5e5 + 5, M = 5e5 + 5;
+int n, m;
+constexpr int N = 1e5 + 5;
+int fa[N], siz[N], tim;
 
-int siz[N], dep[N], father[N], top[N], son[N];
-int n, q;
+struct UndoObject {
+  int pos, val;
 
-struct edge {
-  int nxt, to;
-} g[N << 1];
+  UndoObject(int p, int v) { pos = p, val = v; }
+};
 
-int head[N], ec;
+stack<UndoObject> undo_sz, undo_fa;
 
-void add(int u, int v) {
-  g[++ec].nxt = head[u];
-  g[ec].to = v;
-  head[u] = ec;
+int find(int x) {
+  if (fa[x] == x)
+    return x;
+  else
+    return find(fa[x]);
 }
 
-void dfs1(int u, int fa) {
-  dep[u] = dep[fa] + 1;
-  siz[u] = 1;
-  father[u] = fa;
-  for (int i = head[u]; i; i = g[i].nxt) {
-    int v = g[i].to;
-    if (v == fa) continue;
-    dfs1(v, u);
-    siz[u] += siz[v];
-    if (siz[son[u]] < siz[v]) son[u] = v;
+void merge(int u, int v) {
+  int x = find(u), y = find(v);
+  if (x == y) return;
+  if (siz[x] < siz[y]) {
+    swap(x, y);
   }
+  undo_sz.push(UndoObject(x, siz[x]));
+  siz[x] += siz[y];
+  undo_fa.push(UndoObject(y, fa[y]));
+  fa[y] = x;
 }
 
-void dfs2(int u, int fa) {
-  if (son[u]) {
-    top[son[u]] = top[u];
-    dfs2(son[u], u);
-  }
-  for (int i = head[u]; i; i = g[i].nxt) {
-    int v = g[i].to;
-    if (v == fa || v == son[u]) continue;
-    top[v] = v;
-    dfs2(v, u);
-  }
+void undo() {
+  fa[undo_fa.top().pos] = undo_fa.top().val;
+  undo_fa.pop();
+  siz[undo_sz.top().pos] = undo_sz.top().val;
+  undo_sz.pop();
 }
 
-int lca(int x, int y) {
-  while (top[x] != top[y]) {
-    if (dep[top[x]] < dep[top[y]]) swap(x, y);
-    x = father[top[x]];
-  }
-  return dep[x] < dep[y] ? x : y;
-}
+vector<pair<int, int>> tree[N << 4];
 
-int dis(int x, int y) { return dep[x] + dep[y] - (dep[lca(x, y)] << 1); }
-
-vector<int> t[N << 2];
-
-void update(int ql, int qr, int v, int i, int l, int r) {
+void update(int ql, int qr, pair<int, int> v, int i, int l, int r) {
   if (ql <= l && r <= qr) {
-    t[i].push_back(v);
+    tree[i].push_back(v);
     return;
   }
   if (ql <= mid) update(ql, qr, v, ls, l, mid);
   if (qr > mid) update(ql, qr, v, rs, mid + 1, r);
 }
 
-stack<pair<int, int>> stk;
-int u, v;
-int ans[M];
+map<pair<int, int>, int> tims;
+
+struct ops {
+  int l, r;
+  pair<int, int> v;
+} opp[N << 3];
+
+int opcnt;
+map<int, int> queries;
+map<int, pair<int, int>> querylr;
+int ans[N << 3];
 
 void solve(int i, int l, int r) {
-  auto lvl = stk.size();
-  for (int x : t[i]) {
-    stk.push(make_pair(u, v));
-    if (!u && !v)
-      u = x, v = x;
-    else {
-      vector<int> vct = {dis(u, v), dis(u, x), dis(v, x)};
-      sort(vct.begin(), vct.end(), greater<int>());
-      if (vct[0] == dis(u, x))
-        v = x;
-      else if (vct[0] == dis(x, v))
-        u = x;
-    }
+  auto level = undo_fa.size();
+  for (auto u : tree[i]) {
+    merge(u.first, u.second);
   }
-  if (l == r)
-    ans[l] = (!u || !v) ? -1 : dis(u, v);
-  else
-    solve(ls, l, mid), solve(rs, mid + 1, r);
-  while (stk.size() != lvl) {
-    auto top = stk.top();
-    u = top.first, v = top.second;
-    stk.pop();
+  if (l == r) {
+    if (queries[l]) {
+      int x = querylr[l].first;
+      int y = querylr[l].second;
+      // cout<<siz[find(x)]<<' '<<siz[find(y)]<<'\n';
+      ans[l] = siz[find(x)] * siz[find(y)];
+    }
+  } else {
+    solve(ls, l, mid);
+    solve(rs, mid + 1, r);
+  }
+  while (undo_fa.size() > level) {
+    undo();
   }
 }
-
-int lst[N];
-bitset<N> col;
-bitset<M> haveq;
 
 signed main() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-  cin >> n;
-  for (int i = 1; i < n; i++) {
-    int u, v;
-    cin >> u >> v;
-    add(u, v);
-    add(v, u);
-  }
-  top[1] = 1;
-  dfs1(1, 0);
-  dfs2(1, 0);
-  for (int i = 1; i <= n; i++) lst[i] = 1;
-  cin >> q;
-  for (int i = 2; i <= (q + 1); i++) {
-    char c;
-    int x;
-    cin >> c;
-    if (c == 'C') {
-      cin >> x;
-      if (!col[x]) {
-        col[x] = 1;
-        update(lst[x], i, x, 1, 1, q + 2);
-      } else
-        col[x] = 0, lst[x] = i;
-    } else
-      haveq[i] = 1;
-  }
+  cin >> n >> m;
   for (int i = 1; i <= n; i++) {
-    if (!col[i]) update(lst[i], q + 2, i, 1, 1, q + 2);
+    fa[i] = i;
+    siz[i] = 1;
   }
-  solve(1, 1, q + 2);
-  for (int i = 1; i <= (q + 2); i++) {
-    if (haveq[i]) cout << ans[i] << '\n';
+  while (m--) {
+    char op;
+    int x, y;
+    cin >> op >> x >> y;
+    if (op == 'A') {
+      tims[make_pair(x, y)] = ++tim;
+    } else {
+      pair<int, int> xy = make_pair(x, y);
+      opp[++opcnt] = {tims[xy], (++tim), xy};
+      queries[++tim] = 1;
+      // cout<<tim<<'\n';
+      querylr[tim] = xy;
+      tims[xy] = ++tim;
+    }
+  }
+  int tm = ++tim;
+  for (auto i : tims) {
+    opp[++opcnt] = {tims[i.first], tm, i.first};
+  }
+  for (int i = 1; i <= opcnt; i++) {
+    // cout<<opp[i].l<<' '<<opp[i].r<<' '<<opp[i].v.first<<'
+    // '<<opp[i].v.second<<'\n';
+    update(opp[i].l, opp[i].r, opp[i].v, 1, 1, tim);
+  }
+  // cout<<tim<<'\n';
+  solve(1, 1, tim);
+  for (int i = 1; i <= tim; i++) {
+    if (queries[i]) {
+      cout << ans[i] << "\n";
+    }
   }
   return 0;
 }

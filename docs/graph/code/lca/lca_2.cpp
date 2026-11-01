@@ -1,167 +1,73 @@
+// Sample source: https://www.luogu.com.cn/problem/P3379
 #include <algorithm>
-#include <cmath>
 #include <iostream>
-using namespace std;
-
-constexpr int N = 5e5 + 5;
-
-struct PlusMinusOneRMQ {  // RMQ
-  // Copyright (C) 2018 Skqliao. All rights served.
-  constexpr static int M = 9;
-
-  int blocklen, block, Minv[N], F[N / M * 2 + 5][M << 1], T[N], f[1 << M][M][M],
-      S[N];
-
-  void init(int n) {  // 初始化
-    blocklen = std::max(1, (int)(log(n * 1.0) / log(2.0)) / 2);
-    block = n / blocklen + (n % blocklen > 0);
-    int total = 1 << (blocklen - 1);
-    for (int i = 0; i < total; i++) {
-      for (int l = 0; l < blocklen; l++) {
-        f[i][l][l] = l;
-        int now = 0, minv = 0;
-        for (int r = l + 1; r < blocklen; r++) {
-          f[i][l][r] = f[i][l][r - 1];
-          if ((1 << (r - 1)) & i) {
-            now++;
-          } else {
-            now--;
-            if (now < minv) {
-              minv = now;
-              f[i][l][r] = r;
-            }
-          }
-        }
-      }
-    }
-    T[1] = 0;
-    for (int i = 2; i < N; i++) {
-      T[i] = T[i - 1];
-      if (!(i & (i - 1))) {
-        T[i]++;
-      }
-    }
-  }
-
-  void initmin(int a[], int n) {
-    for (int i = 0; i < n; i++) {
-      if (i % blocklen == 0) {
-        Minv[i / blocklen] = i;
-        S[i / blocklen] = 0;
-      } else {
-        if (a[i] < a[Minv[i / blocklen]]) {
-          Minv[i / blocklen] = i;
-        }
-        if (a[i] > a[i - 1]) {
-          S[i / blocklen] |= 1 << (i % blocklen - 1);
-        }
-      }
-    }
-    for (int i = 0; i < block; i++) {
-      F[i][0] = Minv[i];
-    }
-    for (int j = 1; (1 << j) <= block; j++) {
-      for (int i = 0; i + (1 << j) - 1 < block; i++) {
-        int b1 = F[i][j - 1], b2 = F[i + (1 << (j - 1))][j - 1];
-        F[i][j] = a[b1] < a[b2] ? b1 : b2;
-      }
-    }
-  }
-
-  int querymin(int a[], int L, int R) {
-    int idl = L / blocklen, idr = R / blocklen;
-    if (idl == idr)
-      return idl * blocklen + f[S[idl]][L % blocklen][R % blocklen];
-    else {
-      int b1 = idl * blocklen + f[S[idl]][L % blocklen][blocklen - 1];
-      int b2 = idr * blocklen + f[S[idr]][0][R % blocklen];
-      int buf = a[b1] < a[b2] ? b1 : b2;
-      int c = T[idr - idl - 1];
-      if (idr - idl - 1) {
-        int b1 = F[idl + 1][c];
-        int b2 = F[idr - 1 - (1 << c) + 1][c];
-        int b = a[b1] < a[b2] ? b1 : b2;
-        return a[buf] < a[b] ? buf : b;
-      }
-      return buf;
-    }
-  }
-} rmq;
-
-int n, m, s;
+constexpr int N = 500005;
+int head[N], depth[(N << 1) + 2], lg[(N << 1) + 2], count_edges;
 
 struct Edge {
-  int v, nxt;
-} e[N * 2];
+  int to, next;
+} side[N << 1];
 
-int tot, head[N];
-
-void init(int n) {
-  tot = 0;
-  fill(head, head + n + 1, 0);
+void add(int u, int v) {
+  side[++count_edges] = Edge{v, head[u]};
+  head[u] = count_edges;
 }
 
-void addedge(int u, int v) {  // 加边
-  ++tot;
-  e[tot] = Edge{v, head[u]};
-  head[u] = tot;
+// --8<-- [start:core]
+int dfn[N << 1], pos[N], tot, st[30][(N << 1) + 2],
+    rev[30][(N << 1) + 2];  // rev表示最小深度对应的节点编号
 
-  ++tot;
-  e[tot] = Edge{u, head[v]};
-  head[v] = tot;
-}
-
-int dfs_clock, dfn[N * 2], dep[N * 2], st[N];
-
-void dfs(int u, int fa, int d) {
-  st[u] = dfs_clock;
-
-  dfn[dfs_clock] = u;
-  dep[dfs_clock] = d;
-  ++dfs_clock;
-
-  int v;
-  for (int i = head[u]; i; i = e[i].nxt) {
-    v = e[i].v;
-    if (v == fa) continue;
-    dfs(v, u, d + 1);
-    dfn[dfs_clock] = u;
-    dep[dfs_clock] = d;
-    ++dfs_clock;
+void dfs(int cur, int dep) {
+  dfn[++tot] = cur;
+  depth[tot] = dep;
+  pos[cur] = tot;
+  for (int i = head[cur]; i; i = side[i].next) {
+    int v = side[i].to;
+    if (!pos[v]) {
+      dfs(v, dep + 1);
+      dfn[++tot] = cur, depth[tot] = dep;
+    }
   }
 }
 
-void build_lca() {  // like init
-  rmq.init(dfs_clock);
-  rmq.initmin(dep, dfs_clock);
+void init() {
+  for (int i = 2; i <= tot + 1; ++i)
+    lg[i] = lg[i >> 1] + 1;  // 预处理 lg 代替库函数 log2 来优化常数
+  for (int i = 1; i <= tot; i++) st[0][i] = depth[i], rev[0][i] = dfn[i];
+  for (int i = 1; i <= lg[tot]; i++)
+    for (int j = 1; j + (1 << i) - 1 <= tot; j++)
+      if (st[i - 1][j] < st[i - 1][j + (1 << i - 1)])
+        st[i][j] = st[i - 1][j], rev[i][j] = rev[i - 1][j];
+      else
+        st[i][j] = st[i - 1][j + (1 << i - 1)],
+        rev[i][j] = rev[i - 1][j + (1 << i - 1)];
 }
 
-int LCA(int u, int v) {  // 求解LCA，看题解用RMQ的方法
-  int l = st[u], r = st[v];
-  if (l > r) swap(l, r);
-  return dfn[rmq.querymin(dep, l, r)];
+int query(int l, int r) {
+  int k = lg[r - l + 1];
+  return st[k][l] < st[k][r + 1 - (1 << k)] ? rev[k][l]
+                                            : rev[k][r + 1 - (1 << k)];
 }
+
+// --8<-- [end:core]
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  cin >> n >> m >> s;
-
-  init(n);
-  int u, v;
-  for (int i = 1; i <= n - 1; ++i) {
-    cin >> u >> v;
-    addedge(u, v);
+  std::cin.tie(nullptr)->sync_with_stdio(false);
+  int n, m, root;
+  std::cin >> n >> m >> root;
+  for (int i = 1; i < n; ++i) {
+    int u, v;
+    std::cin >> u >> v;
+    add(u, v);
+    add(v, u);
   }
-
-  dfs_clock = 0;
-  dfs(s, s, 0);
-
-  build_lca();
-
-  for (int i = 1; i <= m; ++i) {
-    cin >> u >> v;
-    cout << LCA(u, v) << '\n';
+  dfs(root, 0);
+  init();
+  while (m--) {
+    int u, v;
+    std::cin >> u >> v;
+    int left = pos[u], right = pos[v];
+    if (left > right) std::swap(left, right);
+    std::cout << query(left, right) << '\n';
   }
-
-  return 0;
 }

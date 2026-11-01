@@ -41,7 +41,7 @@ author: Ir1d, hsfzLZH1, Tiphereth-A, ksyx, Marcythm, StudyingFather, Xeonacid, C
     
     === "区间和"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-2.cpp:info"
+        --8<-- "docs/ds/code/seg/seg_1.cpp:info"
         ```
     
     === "区间最大值（值域非负）"
@@ -56,7 +56,7 @@ author: Ir1d, hsfzLZH1, Tiphereth-A, ksyx, Marcythm, StudyingFather, Xeonacid, C
     
     === "区间最大非空子段和"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-1.cpp:info"
+        --8<-- "docs/ds/code/seg/seg_2.cpp:info"
         ```
 
 需要注意的是，区间信息的合并未必满足交换律．当执行合并操作时，需要严格按照子区间的顺序从左向右进行．
@@ -196,8 +196,8 @@ $$
     
     === "区间和信息 & 区间加操作"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-5.cpp:info"
-        --8<-- "docs/ds/code/seg/seg-5.cpp:transform"
+        --8<-- "docs/ds/code/seg/seg_3.cpp:info"
+        --8<-- "docs/ds/code/seg/seg_3.cpp:transform"
         ```
     
     === "区间最大值信息 & 区间赋值操作"
@@ -463,12 +463,12 @@ $$
     
     === "实现 1"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-2.cpp"
+        --8<-- "docs/ds/code/seg/seg_1.cpp"
         ```
     
     === "实现 2"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-3.cpp"
+        --8<-- "docs/ds/code/seg/seg_4.cpp"
         ```
 
 ???+ example "[Luogu P3372【模板】线段树 1](https://www.luogu.com.cn/problem/P3372)"
@@ -482,12 +482,12 @@ $$
     
     === "实现 1"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-5.cpp"
+        --8<-- "docs/ds/code/seg/seg_3.cpp"
         ```
     
     === "实现 2"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-4.cpp"
+        --8<-- "docs/ds/code/seg/seg_5.cpp"
         ```
 
 ???+ example "[Luogu P3373【模板】线段树 2](https://www.luogu.com.cn/problem/P3373)"
@@ -502,12 +502,12 @@ $$
     
     === "实现 1"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-7.cpp"
+        --8<-- "docs/ds/code/seg/seg_6.cpp"
         ```
     
     === "实现 2"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-6.cpp"
+        --8<-- "docs/ds/code/seg/seg_7.cpp"
         ```
 
 ???+ example "[SPOJ GSS3 - Can you answer these queries III](https://www.spoj.com/problems/GSS3/)"
@@ -520,7 +520,7 @@ $$
     只要实现支持单点修改、区间查询的线段树即可．[前文](#区间信息) 已经分析过维护最大非空子段和的方法．这道题目中，信息合并不再满足交换律，需要注意实现时的合并顺序．
     
     ```cpp
-    --8<-- "docs/ds/code/seg/seg-1.cpp"
+    --8<-- "docs/ds/code/seg/seg_2.cpp"
     ```
 
 ???+ example "[Luogu P13825【模板】线段树 1.5](https://www.luogu.com.cn/problem/P13825)"
@@ -538,17 +538,17 @@ $$
     
     === "实现 1"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-8.cpp"
+        --8<-- "docs/ds/code/seg/seg_8.cpp"
         ```
     
     === "实现 2"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-9.cpp"
+        --8<-- "docs/ds/code/seg/seg_9.cpp"
         ```
     
     === "实现 3"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-10.cpp"
+        --8<-- "docs/ds/code/seg/seg_10.cpp"
         ```
 
 ???+ example "[Luogu P5490【模板】扫描线 & 矩形面积并](https://www.luogu.com.cn/problem/P5490)"
@@ -563,12 +563,12 @@ $$
     
     === "实现 1"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-11.cpp"
+        --8<-- "docs/ds/code/seg/seg_11.cpp"
         ```
     
     === "实现 2"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg-12.cpp"
+        --8<-- "docs/ds/code/seg/seg_12.cpp"
         ```
 
 ???+ example "[Luogu P2894【USACO08FEB】Hotel G](https://www.luogu.com.cn/problem/P2894)"
@@ -583,7 +583,7 @@ $$
     考虑构造线段树，维护每个区间中连续空房的最大长度．为了合并这一信息，还需维护最长空房前缀、最长空房后缀和区间长度：跨越中点的连续空房，恰是左子区间的最长后缀接上右子区间的最长前缀．懒惰标记只需实现区间赋值，即整段置为空或置为已住；不修改的情形记录为特殊值（例如 $-1$）．要找最小的可用房号，只需查询最小的 $r$，使得 $[1,r]$ 中连续空房的最大长度不小于 $x$，房号即 $r-x+1$．为此，利用线段树二分实现即可．
     
     ```cpp
-    --8<-- "docs/ds/code/seg/seg-13.cpp"
+    --8<-- "docs/ds/code/seg/seg_13.cpp"
     ```
 
 ???+ example "[Luogu P1168 中位数](https://www.luogu.com.cn/problem/P1168)"
@@ -593,7 +593,7 @@ $$
     中位数只与元素的大小关系有关，与它们在数列中的位置无关，因此可以用权值线段树维护．依次插入各个元素，每插入奇数个后查询第 $(i+1)/2$ 小的元素即可．只需要实现插入和查询第 $k$ 小两种操作．
     
     ```cpp
-    --8<-- "docs/ds/code/seg/seg-14.cpp"
+    --8<-- "docs/ds/code/seg/seg_14.cpp"
     ```
 
 ## 习题
@@ -663,7 +663,7 @@ $$
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/ds/code/seg/seg_8.cpp"
+        --8<-- "docs/ds/code/seg/seg_15.cpp"
         ```
 
 ## 参考资料与注释

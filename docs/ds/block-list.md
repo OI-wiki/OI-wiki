@@ -11,15 +11,7 @@ author: HeRaNO, konnyakuxzy, littlefrog
 
 ???+ note "实现"
     ```cpp
-    struct node {
-      node* nxt;
-      int size;
-      char d[(sqn << 1) + 5];
-    
-      node() { size = 0, nxt = NULL, memset(d, 0, sizeof(d)); }
-    
-      void pb(char c) { d[size++] = c; }
-    };
+    --8<-- "docs/ds/code/block-list/block-list_1.cpp:example14"
     ```
 
 块状链表应该至少支持：分裂、插入、查找．
@@ -35,7 +27,7 @@ author: HeRaNO, konnyakuxzy, littlefrog
 其实不然，把 $\sqrt{n}$ 设置为一个定值即可．比如题目给的范围是 $10^6$，那么 $\sqrt{n}$ 就设置为大小为 $10^3$ 的常量，不用更改它．
 
 ```cpp
-list<vector<char>> orz_list;
+--8<-- "docs/ds/code/block-list/block-list_2.cpp:example15"
 ```
 
 ## libstdc++ 中的 `rope`
@@ -75,5 +67,5 @@ using namespace __gnu_cxx;
 很简单的模板题．代码如下：
 
 ```cpp
---8<-- "docs/ds/code/block-list/block-list_1.cpp"
+--8<-- "docs/ds/code/block-list/block-list_3.cpp"
 ```

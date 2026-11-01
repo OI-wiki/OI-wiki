@@ -111,7 +111,7 @@ $$
 
 ??? example "三维前缀和的参考实现"
     ```cpp
-    --8<-- "docs/basic/code/prefix-sum/prefix-sum_4.cpp:core"
+    --8<-- "docs/basic/code/prefix-sum/prefix-sum_3.cpp:core"
     ```
 
 因为考虑每一个维度的时候，都只遍历了整个数组一遍，这样的算法复杂度是 $O(kN)$ 的，通常可以接受．
@@ -140,7 +140,7 @@ $$
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/basic/code/prefix-sum/prefix-sum_5.cpp:core"
+    --8<-- "docs/basic/code/prefix-sum/prefix-sum_4.cpp:core"
     ```
 
 子集和的逆操作需要通过 [容斥原理](../math/combinatorics/inclusion-exclusion-principle.md) 进行．子集和问题也是快速莫比乌斯变换的必要步骤之一．
@@ -235,7 +235,7 @@ $$
 
 ???+ example "参考代码"
     ```cpp
-    --8<-- "docs/basic/code/prefix-sum/prefix-sum_6.cpp:core"
+    --8<-- "docs/basic/code/prefix-sum/prefix-sum_5.cpp:core"
     ```
 
 ### 二维/多维差分
@@ -263,7 +263,7 @@ $$
 
 ??? example "参考代码"
     ```cpp
-    --8<-- "docs/basic/code/prefix-sum/prefix-sum_7.cpp:core"
+    --8<-- "docs/basic/code/prefix-sum/prefix-sum_6.cpp:core"
     ```
 
 当然，类似的想法对于维度 $k>2$ 也成立，但是单次修改操作需要的时间复杂度为 $O(2^k)$，随着 $k$ 增大而不再实用．
@@ -327,7 +327,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/basic/code/prefix-sum/prefix-sum_3.cpp"
+    --8<-- "docs/basic/code/prefix-sum/prefix-sum_7.cpp"
     ```
 
 ## 习题

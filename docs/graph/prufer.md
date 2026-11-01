@@ -24,63 +24,12 @@ Prüfer 是这样建立的：每次选择一个编号最小的叶结点并删掉
 ???+ note "实现"
     === "C++"
         ```cpp
-        // 代码摘自原文，结点是从 0 标号的
-        vector<vector<int>> adj;
-        
-        vector<int> pruefer_code() {
-          int n = adj.size();
-          set<int> leafs;
-          vector<int> degree(n);
-          vector<bool> killed(n);
-          for (int i = 0; i < n; i++) {
-            degree[i] = adj[i].size();
-            if (degree[i] == 1) leafs.insert(i);
-          }
-        
-          vector<int> code(n - 2);
-          for (int i = 0; i < n - 2; i++) {
-            int leaf = *leafs.begin();
-            leafs.erase(leafs.begin());
-            killed[leaf] = true;
-            int v;
-            for (int u : adj[leaf])
-              if (!killed[u]) v = u;
-            code[i] = v;
-            if (--degree[v] == 1) leafs.insert(v);
-          }
-          return code;
-        }
+        --8<-- "docs/graph/code/prufer/prufer_1.cpp:core"
         ```
     
     === "Python"
         ```python
-        import heapq
-        
-        # 结点是从 0 标号的
-        adj = [[]]
-        
-        
-        def pruefer_code():
-            n = len(adj)
-            leafs = []  # 小根堆，堆顶是编号最小的叶结点
-            degree = [0] * n
-            killed = [False] * n
-            for i in range(n):
-                degree[i] = len(adj[i])
-                if degree[i] == 1:
-                    heapq.heappush(leafs, i)
-            code = [0] * (n - 2)
-            for i in range(n - 2):
-                leaf = heapq.heappop(leafs)
-                killed[leaf] = True
-                for u in adj[leaf]:
-                    if not killed[u]:
-                        v = u
-                code[i] = v
-                degree[v] -= 1
-                if degree[v] == 1:
-                    heapq.heappush(leafs, v)
-            return code
+        --8<-- "docs/graph/code/prufer/prufer_1.py:core"
         ```
 
 例如，这是一棵 7 个结点的树的 Prüfer 序列构建过程：
@@ -116,86 +65,12 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
 
 === "C++"
     ```cpp
-    // 从原文摘的代码，同样以 0 为起点
-    vector<vector<int>> adj;
-    vector<int> parent;
-    
-    void dfs(int v) {
-      for (int u : adj[v]) {
-        if (u != parent[v]) parent[u] = v, dfs(u);
-      }
-    }
-    
-    vector<int> pruefer_code() {
-      int n = adj.size();
-      parent.resize(n), parent[n - 1] = -1;
-      dfs(n - 1);
-    
-      int ptr = -1;
-      vector<int> degree(n);
-      for (int i = 0; i < n; i++) {
-        degree[i] = adj[i].size();
-        if (degree[i] == 1 && ptr == -1) ptr = i;
-      }
-    
-      vector<int> code(n - 2);
-      int leaf = ptr;
-      for (int i = 0; i < n - 2; i++) {
-        int next = parent[leaf];
-        code[i] = next;
-        if (--degree[next] == 1 && next < ptr) {
-          leaf = next;
-        } else {
-          ptr++;
-          while (degree[ptr] != 1) ptr++;
-          leaf = ptr;
-        }
-      }
-      return code;
-    }
+    --8<-- "docs/graph/code/prufer/prufer_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    # 同样以 0 为起点
-    adj = [[]]
-    parent = []
-    
-    
-    def dfs(v):
-        for u in adj[v]:
-            if u != parent[v]:
-                parent[u] = v
-                dfs(u)
-    
-    
-    def pruefer_code():
-        n = len(adj)
-        parent[:] = [0] * n
-        parent[n - 1] = -1
-        dfs(n - 1)
-    
-        ptr = -1
-        degree = [0] * n
-        for i in range(0, n):
-            degree[i] = len(adj[i])
-            if degree[i] == 1 and ptr == -1:
-                ptr = i
-    
-        code = [0] * (n - 2)
-        leaf = ptr
-        for i in range(0, n - 2):
-            next = parent[leaf]
-            code[i] = next
-            degree[next] -= 1
-            if degree[next] == 1 and next < ptr:
-                leaf = next
-            else:
-                ptr = ptr + 1
-                while degree[ptr] != 1:
-                    ptr = ptr + 1
-                leaf = ptr
-        return code
+    --8<-- "docs/graph/code/prufer/prufer_2.py:core"
     ```
 
 ### Prüfer 序列的性质
@@ -211,27 +86,7 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
 
 ???+ note "实现"
     ```cpp
-    // 原文摘代码
-    vector<pair<int, int>> pruefer_decode(vector<int> const& code) {
-      int n = code.size() + 2;
-      vector<int> degree(n, 1);
-      for (int i : code) degree[i]++;
-    
-      set<int> leaves;
-      for (int i = 0; i < n; i++)
-        if (degree[i] == 1) leaves.insert(i);
-    
-      vector<pair<int, int>> edges;
-      for (int v : code) {
-        int leaf = *leaves.begin();
-        leaves.erase(leaves.begin());
-    
-        edges.emplace_back(leaf, v);
-        if (--degree[v] == 1) leaves.insert(v);
-      }
-      edges.emplace_back(*leaves.begin(), n - 1);
-      return edges;
-    }
+    --8<-- "docs/graph/code/prufer/prufer_3.cpp:core"
     ```
 
 ### 线性时间重建树
@@ -241,30 +96,7 @@ $p$ 是当前编号最小的叶结点，若删除 $p$ 后未产生叶结点，�
 #### 实现
 
 ```cpp
-// 原文摘代码
-vector<pair<int, int>> pruefer_decode(vector<int> const& code) {
-  int n = code.size() + 2;
-  vector<int> degree(n, 1);
-  for (int i : code) degree[i]++;
-
-  int ptr = 0;
-  while (degree[ptr] != 1) ptr++;
-  int leaf = ptr;
-
-  vector<pair<int, int>> edges;
-  for (int v : code) {
-    edges.emplace_back(leaf, v);
-    if (--degree[v] == 1 && v < ptr) {
-      leaf = v;
-    } else {
-      ptr++;
-      while (degree[ptr] != 1) ptr++;
-      leaf = ptr;
-    }
-  }
-  edges.emplace_back(leaf, n - 1);
-  return edges;
-}
+--8<-- "docs/graph/code/prufer/prufer_4.cpp:core"
 ```
 
 通过这些过程其实可以理解，Prüfer 序列与带标号无根树建立了双射关系．

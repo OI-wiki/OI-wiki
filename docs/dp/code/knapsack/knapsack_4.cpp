@@ -1,23 +1,22 @@
+#include <algorithm>
 #include <iostream>
+#include <vector>
 using namespace std;
 
-int m, n, c[1010], w[1010], x, t[10010][1010], ts, cnt[10010], dp[1010];
-
 int main() {
-  cin >> m >> n;
-  for (int i = 1; i <= n; i++) {
-    cin >> w[i] >> c[i] >> x;
-    t[x][++cnt[x]] = i, ts = max(ts, x);
-  }
+  int n, W;
+  cin >> n >> W;
+  vector<int> w(n + 1), v(n + 1), cnt(n + 1), dp(W + 1);
+  for (int i = 1; i <= n; ++i) cin >> v[i] >> w[i] >> cnt[i];
   // --8<-- [start:core]
-  for (int k = 1; k <= ts; k++)          // 循环每一组
-    for (int i = m; i >= 0; i--)         // 循环背包容量
-      for (int j = 1; j <= cnt[k]; j++)  // 循环该组的每一个物品
-        if (i >= w[t[k][j]])             // 背包容量充足
-          dp[i] =
-              max(dp[i],
-                  dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+  for (int i = 1; i <= n; i++) {
+    for (int weight = W; weight >= w[i]; weight--) {
+      // 多遍历一层物品数量
+      for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
+        dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
+      }
+    }
+  }
   // --8<-- [end:core]
-  cout << dp[m] << '\n';
-  return 0;
+  cout << dp[W] << '\n';
 }

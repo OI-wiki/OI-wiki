@@ -93,34 +93,19 @@ $$
 我们将 POJ 1737 的递推过程封装成连通化函数，
 
 ```cpp
-void ln(Int C[], Int G[]) {
-  for (int i = 1; i <= n; ++i) {
-    C[i] = G[i];
-    for (int j = 1; j <= i - 1; ++j)
-      C[i] -= binom[i - 1][j - 1] * C[j] * G[i - j];
-  }
-}
+--8<-- "docs/math/code/combinatorics/graph-enumeration/graph-enumeration_1.cpp:ln"
 ```
 
 前两问即可轻松解决：
 
 ```cpp
-for (int i = 1; i <= n; ++i) G[i] = pow(2, binom[i][2]);
-ln(C, G);
-for (int i = 1; i <= n; ++i) G[i] = pow(2, binom[i - 1][2]);
-ln(E, G);
+--8<-- "docs/math/code/combinatorics/graph-enumeration/graph-enumeration_1.cpp:connected-eulerian"
 ```
 
 注意到这里的连通化递推过程其实等价于对其 EGF 求多项式 ln，同理我们也可以写出逆连通化函数，它等价于对其 EGF 求多项式 exp．
 
 ```cpp
-void exp(Int G[], Int C[]) {
-  for (int i = 1; i <= n; ++i) {
-    G[i] = C[i];
-    for (int j = 1; j <= i - 1; ++j)
-      G[i] += binom[i - 1][j - 1] * C[j] * G[i - j];
-  }
-}
+--8<-- "docs/math/code/combinatorics/graph-enumeration/graph-enumeration_1.cpp:exp"
 ```
 
 下面讨论有标号二分图计数，
@@ -167,13 +152,7 @@ $$
 因此：
 
 ```cpp
-for (int i = 1; i <= n; ++i) {
-  G[i] = 0;
-  for (int j = 0; j < i + 1; ++j) G[i] += binom[i][j] * pow(2, j * (i - j));
-}
-ln(B1, G);
-for (int i = 1; i <= n; ++i) B1[i] /= 2;
-exp(B, B1);
+--8<-- "docs/math/code/combinatorics/graph-enumeration/graph-enumeration_1.cpp:bipartite"
 ```
 
 两种递推的过程复杂度均为 $O(n^2)$，可以通过本题．

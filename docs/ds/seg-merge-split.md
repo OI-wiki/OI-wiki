@@ -28,19 +28,7 @@ author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1
 ### 实现
 
 ```cpp
-int merge(int a, int b, int l, int r) {
-  if (!a) return b;
-  if (!b) return a;
-  if (l == r) {
-    // do something...
-    return a;
-  }
-  int mid = (l + r) >> 1;
-  tr[a].l = merge(tr[a].l, tr[b].l, l, mid);
-  tr[a].r = merge(tr[a].r, tr[b].r, mid + 1, r);
-  pushup(a);
-  return a;
-}
+--8<-- "docs/ds/code/seg-merge-split/seg-merge-split_1.cpp:example152"
 ```
 
 ### 例题
@@ -76,21 +64,7 @@ int merge(int a, int b, int l, int r) {
 ### 实现
 
 ```cpp
-void split(int &p, int &q, int s, int t, int l, int r) {
-  if (t < l || r < s) return;
-  if (!p) return;
-  if (l <= s && t <= r) {
-    q = p;
-    p = 0;
-    return;
-  }
-  if (!q) q = New();
-  int m = s + t >> 1;
-  if (l <= m) split(ls[p], ls[q], s, m, l, r);
-  if (m < r) split(rs[p], rs[q], m + 1, t, l, r);
-  push_up(p);
-  push_up(q);
-}
+--8<-- "docs/ds/code/seg-merge-split/seg-merge-split_2.cpp:example153"
 ```
 
 ### 例题

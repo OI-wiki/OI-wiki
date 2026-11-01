@@ -1,13 +1,16 @@
-#include <cstring>
-constexpr int MAXN = 100000;  // 此处 MAXN 是数组内元素的界
+#include <iostream>
+#include <vector>
 
-int solve(int n, int a[]) {
-  bool met[MAXN * 2 + 1];  // 创建一个能装下 [-MAXN, MAXN] 的桶
-  memset(met, 0, sizeof(met));
+int main() {
+  int n;
+  std::cin >> n;
+  std::vector<int> a(n);
+  for (int& x : a) std::cin >> x;
   int ans = 0;
-  for (int i = 0; i < n; ++i) {
-    if (met[MAXN - a[i]]) ++ans;  // 如果桶内有想要的元素，答案加一
-    met[MAXN + a[i]] = true;  // 无论如何，都要把当前元素放进桶里
-  }
-  return ans * 2;
+  // --8<-- [start:core]
+  for (int i = 0; i < n; ++i)
+    for (int j = 0; j < n; ++j)
+      if (a[i] + a[j] == 0) ++ans;
+  // --8<-- [end:core]
+  std::cout << ans << "\n";
 }

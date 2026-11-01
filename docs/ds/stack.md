@@ -29,34 +29,12 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        int st[N];
-        // 这里使用 st[0] (即 *st) 代表栈中元素数量，同时也是栈顶下标
-        
-        // 压栈 ：
-        st[++*st] = var1;
-        // 取栈顶 ：
-        int u = st[*st];
-        // 弹栈 ：注意越界问题, *st == 0 时不能继续弹出
-        if (*st) --*st;
-        // 清空栈
-        *st = 0;
+        --8<-- "docs/ds/code/stack/stack_1.cpp:example160"
         ```
     
     === "Python"
         ```python
-        st = [0] * N
-        # 这里使用 st[0] 代表栈中元素数量，同时也是栈顶下标
-        
-        # 压栈 ：
-        st[st[0] + 1] = var1
-        st[0] = st[0] + 1
-        # 取栈顶：
-        u = st[st[0]]
-        # 弹栈：注意越界问题, *st == 0 时不能继续弹出
-        if st[0]:
-            st[0] = st[0] - 1
-        # 清空栈
-        st[0] = 0
+        --8<-- "docs/ds/code/stack/stack_1.py:example161"
         ```
 
 ## C++ STL 中的栈
@@ -65,11 +43,7 @@ C++ 中的 STL 也提供了一个容器 `std::stack`，使用前需要引入 `st
 
 ???+ info "STL 中对 `stack` 的定义"
     ```cpp
-    // clang-format off
-    template<
-        class T,
-        class Container = std::deque<T>
-    > class stack;
+    --8<-- "docs/ds/code/stack/stack_2.cpp:example162"
     ```
     
     `T` 为 stack 中要存储的数据类型．
@@ -96,18 +70,7 @@ STL 中的 `stack` 容器提供了一众成员函数以供调用，其中较为�
 此外，`std::stack` 还提供了一些运算符．较为常用的是使用赋值运算符 `=` 为 `stack` 赋值，示例：
 
 ```cpp
-// 新建两个栈 st1 和 st2
-std::stack<int> st1, st2;
-
-// 为 st1 装入 1
-st1.push(1);
-
-// 将 st1 赋值给 st2
-st2 = st1;
-
-// 输出 st2 的栈顶元素
-cout << st2.top() << endl;
-// 输出: 1
+--8<-- "docs/ds/code/stack/stack_3.cpp:example163"
 ```
 
 ## 使用 Python 中的 list 模拟栈
@@ -116,21 +79,7 @@ cout << st2.top() << endl;
 
 ???+ note "实现"
     ```python
-    st = [5, 1, 4]
-    
-    # 使用 append() 向栈顶添加元素
-    st.append(2)
-    st.append(3)
-    # >>> st
-    # [5, 1, 4, 2, 3]
-    
-    # 使用 pop 取出栈顶元素
-    st.pop()
-    # >>> st
-    # [5, 1, 4, 2]
-    
-    # 使用 clear 清空栈
-    st.clear()
+    --8<-- "docs/ds/code/stack/stack_4.py:example164"
     ```
 
 ## 参考资料
