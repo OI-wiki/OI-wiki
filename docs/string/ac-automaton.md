@@ -88,38 +88,12 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
 ???+ note "实现"
     === "C++"
         ```cpp
-        void build() {
-          queue<int> q;
-          for (int i = 0; i < 26; i++)
-            if (tr[0].son[i]) q.push(tr[0].son[i]);
-          while (!q.empty()) {
-            int u = q.front();
-            q.pop();
-            for (int i = 0; i < 26; i++) {
-              if (tr[u].son[i]) {
-                tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];
-                q.push(tr[u].son[i]);
-              } else
-                tr[u].son[i] = tr[tr[u].fail].son[i];
-            }
-          }
-        }
+        --8<-- "docs/string/code/ac-automaton/ac-automaton_7.cpp:build"
         ```
     
     === "Python"
         ```python
-        def build():
-            for i in range(0, 26):
-                if tr[0][i] != 0:
-                    q.append(tr[0][i])
-            while q:
-                u = q.pop(0)
-                for i in range(0, 26):
-                    if tr[u][i] != 0:
-                        fail[tr[u][i]] = tr[fail[u]][i]
-                        q.append(tr[u][i])
-                    else:
-                        tr[u][i] = tr[fail[u]][i]
+        --8<-- "docs/string/code/ac-automaton/ac-automaton_1.py:build"
         ```
 
 ### 解释
@@ -169,30 +143,12 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 ???+ note "实现"
     === "C++"
         ```cpp
-        int query(const char t[]) {
-          int u = 0, res = 0;
-          for (int i = 1; t[i]; i++) {
-            u = tr[u].son[t[i] - 'a'];
-            for (int j = u; j && tr[j].cnt != -1; j = tr[j].fail) {
-              res += tr[j].cnt, tr[j].cnt = -1;
-            }
-          }
-          return res;
-        }
+        --8<-- "docs/string/code/ac-automaton/ac-automaton_7.cpp:query"
         ```
     
     === "Python"
         ```python
-        def query(t: str) -> int:
-            u, res = 0, 0
-            for c in t:
-                u = tr[u][c - ord("a")]
-                j = u
-                while j and e[j] != -1:
-                    res += e[j]
-                    e[j] = -1
-                    j = fail[j]
-            return res
+        --8<-- "docs/string/code/ac-automaton/ac-automaton_1.py:query"
         ```
 
 ### 解释
@@ -234,70 +190,27 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ???+ note "构建"
     ```cpp
-    void build() {
-      queue<int> q;
-      for (int i = 0; i < 26; i++)
-        if (tr[0].son[i]) q.push(tr[0].son[i]);
-      while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        for (int i = 0; i < 26; i++) {
-          if (tr[u].son[i]) {
-            tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];
-            tr[tr[tr[u].fail].son[i]].du++;  // 入度计数
-            q.push(tr[u].son[i]);
-          } else
-            tr[u].son[i] = tr[tr[u].fail].son[i];
-        }
-      }
-    }
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_8.cpp:build"
     ```
 
 然后我们在查询的时候就可以只为找到结点的 `ans` 打上标记，在最后再用拓扑排序求出答案．
 
 ???+ note "查询"
     ```cpp
-    void query(const char t[]) {
-      int u = 0;
-      for (int i = 1; t[i]; i++) {
-        u = tr[u].son[t[i] - 'a'];
-        tr[u].ans++;
-      }
-    }
-    
-    void topu() {
-      queue<int> q;
-      for (int i = 0; i <= tot; i++)
-        if (tr[i].du == 0) q.push(i);
-      while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        ans[tr[u].idx] = tr[u].ans;
-        int v = tr[u].fail;
-        tr[v].ans += tr[u].ans;
-        if (!--tr[v].du) q.push(v);
-      }
-    }
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_8.cpp:query-topu"
     ```
 
 最后是主函数：
 
 ???+ note "主函数"
     ```cpp
-    int main() {
-      // do_something();
-      AC::build();
-      scanf("%s", s + 1);
-      AC::query(s);
-      AC::topu();
-      for (int i = 1; i <= n; i++) printf("%d\n", AC::ans[idx[i]]);
-      // do_another_thing();
-    }
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_8.cpp:main-prefix"
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_8.cpp:main-suffix"
     ```
 
 ??? note "模板题 [Luogu P5357「模板」AC 自动机](https://www.luogu.com.cn/problem/P5357) 拓扑排序优化参考代码"
     ```cpp
-    --8<-- "docs/string/code/ac-automaton/ac-automaton_topu.cpp"
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_2.cpp"
     ```
 
 ### DFS 优化
@@ -316,21 +229,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ???+ note "查询部分主要代码"
     ```cpp
-    int query(const char t[]) {
-      int u = 0, len = strlen(t + 1);
-      for (int i = 1; i <= len; i++) dp[i] = 0;
-      for (int i = 1; i <= len; i++) {
-        u = tr[u].son[t[i] - 'a'];
-        for (int j = u; j; j = tr[j].fail) {
-          if (tr[j].idx && (dp[i - tr[j].depth] || i - tr[j].depth == 0)) {
-            dp[i] = dp[i - tr[j].depth] + tr[j].depth;
-          }
-        }
-      }
-      int ans = 0;
-      for (int i = 1; i <= len; i++) ans = std::max(ans, dp[i]);
-      return ans;
-    }
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_3.cpp:query"
     ```
 
 但是这样的思路复杂度不是线性（因为要跳每个结点的 fail），会在第二个子任务中超时，所以我们需要进行优化．
@@ -345,46 +244,14 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ???+ note "构建 fail 指针"
     ```cpp
-    void build() {
-      queue<int> q;
-      for (int i = 0; i < 26; i++)
-        if (tr[0].son[i]) {
-          q.push(tr[0].son[i]);
-          tr[tr[0].son[i]].depth = 1;
-        }
-      while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        int v = tr[u].fail;
-        // 对状态的更新在这里
-        tr[u].stat = tr[v].stat;
-        if (tr[u].idx) tr[u].stat |= 1 << tr[u].depth;
-        for (int i = 0; i < 26; i++) {
-          if (tr[u].son[i]) {
-            tr[tr[u].son[i]].fail = tr[tr[u].fail].son[i];
-            tr[tr[u].son[i]].depth = tr[u].depth + 1;  // 记录深度
-            q.push(tr[u].son[i]);
-          } else
-            tr[u].son[i] = tr[tr[u].fail].son[i];
-        }
-      }
-    }
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_4.cpp:build"
     ```
 
 然后查询时就可以去掉跳 fail 的循环，将代码简化如下：
 
 ???+ note "查询"
     ```cpp
-    int query(const char t[]) {
-      int u = 0, mx = 0;
-      unsigned st = 1;
-      for (int i = 1; t[i]; i++) {
-        u = tr[u].son[t[i] - 'a'];
-        st <<= 1;  // 往下跳了一位每一位的长度都+1
-        if (tr[u].stat & st) st |= 1, mx = i;
-      }
-      return mx;
-    }
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_9.cpp:query"
     ```
 
 我们的 `tr[u].stat` 维护的是从结点 $u$ 开始，整条 fail 链上的长度集（因为长度集小于 $32$ 所以不影响），而 `st` 则维护的是查询字符串走到现在，前 $32$ 位（因为状态压缩自然溢出）的长度集．
@@ -393,7 +260,7 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ??? note "[P2292 \[HNOI2004\] L 语言](https://www.luogu.com.cn/problem/P2292) 完整代码"
     ```cpp
-    --8<-- "docs/string/code/ac-automaton/ac_automaton_luoguP2292.cpp"
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_4.cpp"
     ```
 
 ## 总结
@@ -407,10 +274,10 @@ Trie 的结点的孩子数组 `son` 还有另一种比较简单的理解方式�
 
 ??? note "模板题 [Luogu P3796 AC 自动机（简单版 II）](https://www.luogu.com.cn/problem/P3796) 参考代码"
     ```cpp
-    --8<-- "docs/string/code/ac-automaton/ac-automaton_2.cpp"
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_5.cpp"
     ```
 
 ??? note "模板题 [Luogu P5357「模板」AC 自动机](https://www.luogu.com.cn/problem/P5357) DFS 优化参考代码"
     ```cpp
-    --8<-- "docs/string/code/ac-automaton/ac-automaton_3.cpp"
+    --8<-- "docs/string/code/ac-automaton/ac-automaton_6.cpp"
     ```

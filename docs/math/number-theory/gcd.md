@@ -48,36 +48,18 @@
 
 === "C++"
     ```cpp
-    // Version 1
-    int gcd(int a, int b) {
-      if (b == 0) return a;
-      return gcd(b, a % b);
-    }
-    
-    // Version 2
-    int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
+    --8<-- "docs/math/code/number-theory/gcd/gcd_1.cpp:core-first"
+    --8<-- "docs/math/code/number-theory/gcd/gcd_1.cpp:core-second"
     ```
 
 === "Java"
     ```java
-    // Version 1
-    public int gcd(int a, int b) {
-        if (b == 0) return a;
-        return gcd(b, a % b);
-    }
-    
-    // Version 2
-    public int gcd(int a, int b) {
-        return b == 0 ? a : gcd(b, a % b);
-    }
+    --8<-- "docs/math/code/number-theory/gcd/gcd_1.java:core"
     ```
 
 === "Python"
     ```python
-    def gcd(a, b):
-        if b == 0:
-            return a
-        return gcd(b, a % b)
+    --8<-- "docs/math/code/number-theory/gcd/gcd_1.py:core"
     ```
 
 递归至 `b == 0`（即上一步的 `a % b == 0`）的情况再返回值即可．
@@ -86,34 +68,17 @@
 
 === "C++"
     ```cpp
-    int gcd(int a, int b) {
-      while (b != 0) {
-        int tmp = a;
-        a = b;
-        b = tmp % b;
-      }
-      return a;
-    }
+    --8<-- "docs/math/code/number-theory/gcd/gcd_2.cpp:core"
     ```
 
 === "Java"
     ```java
-    public int gcd(int a, int b) {
-        while(b != 0) {
-            int tmp = a;
-            a = b;
-            b = tmp % b;
-        }
-        return a;
-    }
+    --8<-- "docs/math/code/number-theory/gcd/gcd_2.java:core"
     ```
 
 === "Python"
     ```python
-    def gcd(a, b):
-        while b != 0:
-            a, b = b, a % b
-        return a
+    --8<-- "docs/math/code/number-theory/gcd/gcd_2.py:core"
     ```
 
 上述算法都可被称作欧几里得算法（Euclidean algorithm）．
@@ -179,25 +144,7 @@
 
 ??? note "C++"
     ```cpp
-    Big gcd(Big a, Big b) {
-      if (a == 0) return b;
-      if (b == 0) return a;
-      // 记录a和b的公因数2出现次数，countr_zero表示二进制末位0的个数
-      int atimes = countr_zero(a);
-      int btimes = countr_zero(b);
-      int mintimes = min(atimes, btimes);
-      a >>= atimes;
-      for (;;) {
-        // a和b公因数中的2已经计算过了，后面不可能出现a为偶数的情况
-        b >>= btimes;
-        // 确保 a<=b
-        if (a > b) swap(a, b);
-        b -= a;
-        if (b == 0) break;
-        btimes = countr_zero(b);
-      }
-      return a << mintimes;
-    }
+    --8<-- "docs/math/code/number-theory/gcd/gcd_3.cpp:core"
     ```
 
 上述代码参考了 [libstdc++](https://github.com/gcc-mirror/gcc/blob/1667962ae755db27965778b8c8c684c6c0c4da21/libstdc%2B%2B-v3/include/std/numeric#L173) 和 [MSVC](https://github.com/microsoft/STL/blob/9aca22477df4eed3222b4974746ee79129eb44e7/stl/inc/numeric#L591) 对 C++17 `std::gcd` 的实现．在 `unsigned int` 和 `unsigned long long` 的数据范围下，如果可以以极快的速度计算 `countr_zero`，则 Stein 算法比欧几里得算法来得快，但反之则可能比欧几里得算法慢．
@@ -208,42 +155,14 @@
     3.  如果不使用不在标准库的函数，又无法使用 C++20 标准，下面的代码是一种在 Word-RAM with multiplication 模型下经过预处理后 $O(1)$ 的实现：
     
     ```cpp
-    constexpr int loghash[64] = {0,  32, 48, 56, 60, 62, 63, 31, 47, 55, 59, 61, 30,
-                                 15, 39, 51, 57, 28, 46, 23, 43, 53, 58, 29, 14, 7,
-                                 35, 49, 24, 44, 54, 27, 45, 22, 11, 37, 50, 25, 12,
-                                 38, 19, 41, 52, 26, 13, 6,  3,  33, 16, 40, 20, 42,
-                                 21, 10, 5,  34, 17, 8,  36, 18, 9,  4,  2,  1};
-    
-    int countr_zero(unsigned long long x) {
-      return loghash[(x & -x) * 0x9150D32D8EB9EFC0Ui64 >> 58];
-    }
+    --8<-- "docs/math/code/number-theory/gcd/gcd_3.cpp:ctz"
     ```
     
     而对于高精度运算，如果实现方法类似 `bitset`，则搭配上述对 `countr_zero` 的实现可以在 `O(n / w)` 的时间复杂度下完成．但如果不便按二进制位拆分，则只能暴力判断最大的 $2$ 的幂因子，时间复杂度取决于实现．比如：
     
     ```cpp
-    // 以小端序实现的二进制 Big，要求能枚举每一个元素
-    int countr_zero(Big a) {
-      int ans = 0;
-      for (auto x : a) {
-        if (x != 0) {
-          ans += 32;  // 每一位数据类型的位长
-        } else {
-          return ans + countr_zero(x);
-        }
-      }
-      return ans;
-    }
-    
-    // 暴力计算，如需使用建议直接写进 gcd 加快常数
-    int countr_zero(Big a) {
-      int ans = 0;
-      while ((a & 1) == 0) {
-        a >>= 1;
-        ++ans;
-      }
-      return ans;
-    }
+    --8<-- "docs/math/code/number-theory/gcd/gcd_3.cpp:ctz-big-limbs"
+    --8<-- "docs/math/code/number-theory/gcd/gcd_3.cpp:ctz-big-slow"
     ```
 
 更多关于 `gcd` 实现上快慢的讨论可阅读 [Fastest way to compute the greatest common divisor](https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/)．
@@ -318,27 +237,12 @@ $ax_1+by_1=ay_2+bx_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2+b(x_2-\lfloor\fra
 
 === "C++"
     ```cpp
-    int Exgcd(int a, int b, int &x, int &y) {
-      if (!b) {
-        x = 1;
-        y = 0;
-        return a;
-      }
-      int d = Exgcd(b, a % b, x, y);
-      int t = x;
-      x = y;
-      y = t - (a / b) * y;
-      return d;
-    }
+    --8<-- "docs/math/code/number-theory/gcd/gcd_4.cpp:core"
     ```
 
 === "Python"
     ```python
-    def Exgcd(a, b):
-        if b == 0:
-            return a, 1, 0
-        d, x, y = Exgcd(b, a % b)
-        return d, y, x - (a // b) * y
+    --8<-- "docs/math/code/number-theory/gcd/gcd_4.py:core"
     ```
 
 函数返回的值为 $\gcd$，在这个过程中计算 $x,y$ 即可．
@@ -398,17 +302,7 @@ $$
 因为迭代的方法避免了递归，所以代码运行速度将比递归代码快一点．
 
 ```cpp
-int gcd(int a, int b, int& x, int& y) {
-  x = 1, y = 0;
-  int x1 = 0, y1 = 1, a1 = a, b1 = b;
-  while (b1) {
-    int q = a1 / b1;
-    tie(x, x1) = make_tuple(x1, x - q * x1);
-    tie(y, y1) = make_tuple(y1, y - q * y1);
-    tie(a1, b1) = make_tuple(b1, a1 - q * b1);
-  }
-  return a1;
-}
+--8<-- "docs/math/code/number-theory/gcd/gcd_5.cpp:core"
 ```
 
 如果你仔细观察 $a_1$ 和 $b_1$，你会发现，他们在迭代版本的欧几里德算法中取值完全相同，并且以下公式无论何时（在 while 循环之前和每次迭代结束时）都是成立的：$x \cdot a +y \cdot b =a_1$ 和 $x_1 \cdot a +y_1 \cdot b= b_1$．因此，该算法肯定能正确计算出 $\gcd$．
@@ -489,16 +383,7 @@ $$
 满足 $a\cdot x_1+b\cdot x_2=\gcd(a,b)$ 即扩展欧几里得算法，注意在最后乘了一个单位矩阵不会影响结果，提示我们可以在开始时维护一个 $2\times 2$ 的单位矩阵编写更简洁的迭代方法如
 
 ```cpp
-int exgcd(int a, int b, int &x, int &y) {
-  int x1 = 1, x2 = 0, x3 = 0, x4 = 1;
-  while (b != 0) {
-    int c = a / b;
-    std::tie(x1, x2, x3, x4, a, b) =
-        std::make_tuple(x3, x4, x1 - x3 * c, x2 - x4 * c, b, a - b * c);
-  }
-  x = x1, y = x2;
-  return a;
-}
+--8<-- "docs/math/code/number-theory/gcd/gcd_6.cpp:core"
 ```
 
 这种表述相较于递归更简单．

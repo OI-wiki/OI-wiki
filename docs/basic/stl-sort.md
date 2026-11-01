@@ -66,12 +66,7 @@ int compare(const void* p1, const void* p2) {
 用法：
 
 ```cpp
-// a[0] .. a[n - 1] 为需要排序的数列
-// 对 a 原地排序，将其按从小到大的顺序排列
-std::sort(a, a + n);
-
-// cmp 为自定义的比较函数
-std::sort(a, a + n, cmp);
+--8<-- "docs/basic/code/stl-sort/stl-sort_1.cpp:core"
 ```
 
 注意：sort 的比较函数的返回值是 `true` 和 `false`，用 `true` 和 `false` 表示两个元素的大小（先后）关系，这与 qsort 的三值比较函数的语义完全不同．具体内容详见上方给出的 sort 的文档．
@@ -91,8 +86,7 @@ C++ 标准并未严格要求此函数的实现算法，具体实现取决于标�
 用法：
 
 ```cpp
-std::nth_element(first, nth, last);
-std::nth_element(first, nth, last, cmp);
+--8<-- "docs/basic/code/stl-sort/stl-sort_2.cpp:core"
 ```
 
 它重排 `[first, last)` 中的元素，使得 `nth` 所指向的元素被更改为 `[first, last)` 排好序后该位置会出现的元素．这个新的 `nth` 元素前的所有元素小于或等于新的 `nth` 元素后的所有元素．
@@ -110,8 +104,7 @@ std::nth_element(first, nth, last, cmp);
 用法：
 
 ```cpp
-std::stable_sort(first, last);
-std::stable_sort(first, last, cmp);
+--8<-- "docs/basic/code/stl-sort/stl-sort_3.cpp:core"
 ```
 
 稳定排序，保证相等元素排序后的相对位置与原序列相同．
@@ -125,9 +118,7 @@ std::stable_sort(first, last, cmp);
 用法：
 
 ```cpp
-// mid = first + k
-std::partial_sort(first, mid, last);
-std::partial_sort(first, mid, last, cmp);
+--8<-- "docs/basic/code/stl-sort/stl-sort_4.cpp:core"
 ```
 
 从 `[first,last)` 中选出按 `cmp` 排序最靠前的 `k` 个元素，将它们排序放入 `[first,mid)`；其余部分的顺序不保证．未指定 `cmp` 函数时，默认按从小到大的顺序排序．
@@ -149,28 +140,13 @@ std::partial_sort(first, mid, last, cmp);
 示例：
 
 ```cpp
-int a[1009], n = 10;
-// ...
-std::sort(a + 1, a + 1 + n);                  // 从小到大排序
-std::sort(a + 1, a + 1 + n, greater<int>());  // 从大到小排序
+--8<-- "docs/basic/code/stl-sort/stl-sort_5.cpp:declarations"
+--8<-- "docs/basic/code/stl-sort/stl-sort_5.cpp:sort"
 ```
 
 ```cpp
-struct data {
-  int a, b;
-
-  bool operator<(const data rhs) const {
-    return (a == rhs.a) ? (b < rhs.b) : (a < rhs.a);
-  }
-} da[1009];
-
-bool cmp(const data u1, const data u2) {
-  return (u1.a == u2.a) ? (u1.b > u2.b) : (u1.a > u2.a);
-}
-
-// ...
-std::sort(da + 1, da + 1 + 10);  // 使用结构体中定义的 < 运算符，从小到大排序
-std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大到小排序
+--8<-- "docs/basic/code/stl-sort/stl-sort_6.cpp:declarations"
+--8<-- "docs/basic/code/stl-sort/stl-sort_6.cpp:sort"
 ```
 
 ### 严格弱序

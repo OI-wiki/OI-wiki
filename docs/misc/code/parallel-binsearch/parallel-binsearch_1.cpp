@@ -1,99 +1,62 @@
 #include <algorithm>
+#include <cstdio>
+#include <cstdlib>
 #include <iostream>
+#include <utility>
+#include <vector>
 using namespace std;
-constexpr int N = 200020;
-int n, m;
-int ans[N];
-// BIT begin
-int t[N];
-int a[N];
 
-int sum(int p) {
-  int ans = 0;
-  while (p) {
-    ans += t[p];
-    p -= p & (-p);
-  }
-  return ans;
-}
+constexpr int N = 200005;
 
-void add(int p, int x) {
-  while (p <= n) {
-    t[p] += x;
-    p += p & (-p);
-  }
-}
-
-// BIT end
-int tot = 0;
-
+// --8<-- [start:core]
 struct Query {
-  int l, r, k, id, type;  // set values to -1 when they are not used!
-} q[N * 2], q1[N * 2], q2[N * 2];
+  int id, k;  // 这个询问的编号, 这个询问的 k
+};
 
-void solve(int l, int r, int ql, int qr) {
-  if (ql > qr) return;
+int ans[N], a[N];  // ans[i] 表示编号为i的询问的答案，a 为原数列
+int val[N], cnt[N];  // 离散化后，记录对应的值及其计数（假设已经处理好）
+
+// 返回原数列中值域在 [l,r] 中的数的个数
+int check(int l, int r) {
+  int res = 0;
+  for (int i = l; i <= r; i++) {
+    res += cnt[i];
+  }
+  return res;
+}
+
+// 整体二分
+void solve(int l, int r, vector<Query> q) {
+  if (q.empty()) return;
+  int m = (l + r) / 2;
   if (l == r) {
-    for (int i = ql; i <= qr; i++)
-      if (q[i].type == 2) ans[q[i].id] = l;
+    for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = val[l];
     return;
   }
-  int mid = (l + r) / 2, cnt1 = 0, cnt2 = 0;
-  for (int i = ql; i <= qr; i++) {
-    if (q[i].type == 1) {
-      if (q[i].l <= mid) {
-        add(q[i].id, 1);
-        q1[++cnt1] = q[i];
-      } else
-        q2[++cnt2] = q[i];
-    } else {
-      int x = sum(q[i].r) - sum(q[i].l - 1);
-      if (q[i].k <= x)
-        q1[++cnt1] = q[i];
-      else {
-        q[i].k -= x;
-        q2[++cnt2] = q[i];
-      }
-    }
+  vector<Query> q1, q2;
+  int t = check(l, m);
+  for (unsigned i = 0; i < q.size(); i++) {
+    if (q[i].k <= t)
+      q1.push_back(q[i]);
+    else
+      q[i].k -= t, q2.push_back(q[i]);
   }
-  // rollback changes
-  for (int i = 1; i <= cnt1; i++)
-    if (q1[i].type == 1) add(q1[i].id, -1);
-  // move them to the main array
-  for (int i = 1; i <= cnt1; i++) q[i + ql - 1] = q1[i];
-  for (int i = 1; i <= cnt2; i++) q[i + cnt1 + ql - 1] = q2[i];
-  solve(l, mid, ql, cnt1 + ql - 1);
-  solve(mid + 1, r, cnt1 + ql, qr);
+  solve(l, m, q1), solve(m + 1, r, q2);
+  return;
 }
 
-pair<int, int> b[N];
-int toRaw[N];
+// --8<-- [end:core]
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  cin >> n >> m;
-  // read and discrete input data
-  for (int i = 1; i <= n; i++) {
-    int x;
-    cin >> x;
-    b[i].first = x;
-    b[i].second = i;
-  }
-  sort(b + 1, b + n + 1);
-  int cnt = 0;
-  for (int i = 1; i <= n; i++) {
-    if (b[i].first != b[i - 1].first) cnt++;
-    a[b[i].second] = cnt;
-    toRaw[cnt] = b[i].first;
-  }
-  for (int i = 1; i <= n; i++) {
-    q[++tot] = {a[i], -1, -1, i, 1};
-  }
-  for (int i = 1; i <= m; i++) {
-    int l, r, k;
-    cin >> l >> r >> k;
-    q[++tot] = {l, r, k, i, 2};
-  }
-  solve(0, cnt + 1, 1, tot);
-  for (int i = 1; i <= m; i++) cout << toRaw[ans[i]] << '\n';
+  int n, m;
+  if (!(cin >> n >> m)) return 0;
+  for (int i = 1; i <= n; ++i) cin >> a[i], val[i] = a[i];
+  sort(val + 1, val + n + 1);
+  int size = unique(val + 1, val + n + 1) - val - 1;
+  for (int i = 1; i <= n; ++i)
+    ++cnt[lower_bound(val + 1, val + size + 1, a[i]) - val];
+  vector<Query> queries(m);
+  for (int i = 0; i < m; ++i) cin >> queries[i].k, queries[i].id = i;
+  solve(1, size, queries);
+  for (int i = 0; i < m; ++i) cout << ans[i] << '\n';
 }

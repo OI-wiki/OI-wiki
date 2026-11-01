@@ -20,46 +20,14 @@
 虽然逐格 DP 中我们的状态增加了一个维度，但是转移的时间复杂度减少为 $O(1)$，所以时间复杂度未变．我们用 $f_0$ 表示当前阶段的状态，用 $f_1$ 表示下一阶段的状态，$u = f_0(s)$ 表示当前枚举的函数值，那么有如下的状态转移方程：
 
 ```cpp
-if (s >> j & 1) {       // 如果已被覆盖
-  f1[s ^ 1 << j] += u;  // 不放
-} else {                // 如果未被覆盖
-  if (j != m - 1 && (!(s >> j + 1 & 1))) f1[s ^ 1 << j + 1] += u;  // 横放
-  f1[s ^ 1 << j] += u;                                             // 竖放
-}
+--8<-- "docs/dp/code/plug/plug_1.cpp:core"
 ```
 
 观察到这里不放和竖放的方程可以合并．
 
 ??? note "实现"
     ```cpp
-    #include <algorithm>
-    #include <iostream>
-    using namespace std;
-    constexpr int N = 11;
-    long long f[2][1 << N], *f0, *f1;
-    int n, m;
-    
-    int main() {
-      while (cin >> n >> m && n) {
-        f0 = f[0];
-        f1 = f[1];
-        fill(f1, f1 + (1 << m), 0);
-        f1[0] = 1;
-        for (int i = 0; i < n; ++i) {
-          for (int j = 0; j < m; ++j) {
-            swap(f0, f1);
-            fill(f1, f1 + (1 << m), 0);
-    #define u f0[s]
-            for (int s = 0; s < 1 << m; ++s)
-              if (u) {
-                if (j != m - 1 && (!(s >> j & 3))) f1[s ^ 1 << j + 1] += u;  // 横放
-                f1[s ^ 1 << j] += u;  // 竖放或不放
-              }
-          }
-        }
-        cout << f1[0] << endl;
-      }
-    }
+    --8<-- "docs/dp/code/plug/plug_2.cpp"
     ```
 
 ??? note "习题 [「SRM 671. Div 1 900」BearDestroys](https://archive.topcoder.com/ProblemStatement/pm/14069)"
@@ -98,7 +66,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? note "例题代码"
     ```cpp
-    --8<-- "docs/dp/code/plug/plug_1.cpp"
+    --8<-- "docs/dp/code/plug/plug_3.cpp"
     ```
 
 #### 习题
@@ -130,28 +98,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? note "代码实现"
     ```cpp
-    int b[M + 1], bb[M + 1];
-    
-    int encode() {
-      int s = 0;
-      memset(bb, -1, sizeof(bb));
-      int bn = 1;
-      bb[0] = 0;
-      for (int i = m; i >= 0; --i) {
-    #define bi bb[b[i]]
-        if (!~bi) bi = bn++;
-        s <<= offset;
-        s |= bi;
-      }
-      return s;
-    }
-    
-    void decode(int s) {
-      REP(i, m + 1) {
-        b[i] = s & mask;
-        s >>= offset;
-      }
-    }
+    --8<-- "docs/dp/code/plug/plug_8.cpp:encoding"
     ```
 
 我们注意到插头总是成对出现，成对消失的．因而 `0 1 2 0 1 2` 这样的状态是不合法的．合法的状态构成一组括号序列，实际中合法状态可能是非常稀疏的．
@@ -162,33 +109,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    constexpr int MaxSZ = 16796, Prime = 9973;
-    
-    struct hashTable {
-      int head[Prime], next[MaxSZ], sz;
-      int state[MaxSZ];
-      long long key[MaxSZ];
-    
-      void clear() {
-        sz = 0;
-        memset(head, -1, sizeof(head));
-      }
-    
-      void push(int s) {
-        int x = s % Prime;
-        for (int i = head[x]; ~i; i = next[i]) {
-          if (state[i] == s) {
-            key[i] += d;
-            return;
-          }
-        }
-        state[sz] = s, key[sz] = d;
-        next[sz] = head[x];
-        head[x] = sz++;
-      }
-    
-      void roll() { REP(i, sz) state[i] <<= offset; }
-    } H[2], *H0, *H1;
+    --8<-- "docs/dp/code/plug/plug_8.cpp:hash"
     ```
 
 上面的代码中：
@@ -209,40 +130,12 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    REP(ii, H0->sz) {
-      decode(H0->state[ii]);                  // 取出状态，并解码
-      d = H0->key[ii];                        // 得到增量 delta
-      int lt = b[j], up = b[j + 1];           // 左插头，上插头
-      bool dn = i != n - 1, rt = j != m - 1;  // 下插头，右插头
-      if (lt && up) {                         // 如果左、上均有插头
-        if (lt == up) {                       // 来自同一个连通块
-          if (i == n - 1 &&
-              j == m - 1) {  // 只有在最后一个格子时，才能合并，封闭回路．
-            push(j, 0, 0);
-          }
-        } else {  // 否则，必须合并这两个连通块，因为本题中需要回路覆盖
-          REP(i, m + 1) if (b[i] == lt) b[i] = up;
-          push(j, 0, 0);
-        }
-      } else if (lt || up) {  // 如果左、上之中有一个插头
-        int t = lt | up;      // 得到这个插头
-        if (dn) {             // 如果可以向下延伸
-          push(j, t, 0);
-        }
-        if (rt) {  // 如果可以向右延伸
-          push(j, 0, t);
-        }
-      } else {           // 如果左、上均没有插头
-        if (dn && rt) {  // 生成一对新插头
-          push(j, m, m);
-        }
-      }
-    }
+    --8<-- "docs/dp/code/plug/plug_8.cpp:transition"
     ```
 
 ??? note "例题代码"
     ```cpp
-    --8<-- "docs/dp/code/plug/plug_2.cpp"
+    --8<-- "docs/dp/code/plug/plug_4.cpp"
     ```
 
 #### 习题
@@ -280,63 +173,12 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    REP(i, n) {
-      REP(j, m) {
-        checkMax(ans, A[i][j]);  // 需要单独处理一个格子的情况
-        if (!A[i][j]) continue;  // 如果有障碍，则跳过，注意这时状态数组不需要滚动
-        swap(H0, H1);
-        REP(c, 3)
-        H1[c].clear();  // c 表示生成和消失事件发生的总次数，最多不超过 2 次
-        REP(c, 3) REP(ii, H0[c].sz) {
-          decode(H0[c].state[ii]);
-          d = H0[c].key[ii] + A[i][j];
-          int lt = b[j], up = b[j + 1];
-          bool dn = A[i + 1][j], rt = A[i][j + 1];
-          if (lt && up) {
-            if (lt == up) {  // 在一条路径问题中，我们不能合并相同的插头．
-              // Cannot deploy here...
-            } else {  // 有可能参与合并的两者中有独立插头，但是也可以用同样的代码片段处理
-              REP(i, m + 1) if (b[i] == lt) b[i] = up;
-              push(c, j, 0, 0);
-            }
-          } else if (lt || up) {
-            int t = lt | up;
-            if (dn) {
-              push(c, j, t, 0);
-            }
-            if (rt) {
-              push(c, j, 0, t);
-            }
-            // 一个插头消失的情况，如果是独立插头则意味着消失，如果是成对出现的插头则相当于生成了一个独立插头，
-            // 无论哪一类事件都需要将 c + 1．
-            if (c < 2) {
-              push(c + 1, j, 0, 0);
-            }
-          } else {
-            d -= A[i][j];
-            H1[c].push(H0[c].state[ii]);
-            d += A[i][j];    // 跳过插头生成，本题中不要求全部覆盖
-            if (dn && rt) {  // 生成一对插头
-              push(c, j, m, m);
-            }
-            if (c < 2) {  // 生成一个独立插头
-              if (dn) {
-                push(c + 1, j, m, 0);
-              }
-              if (rt) {
-                push(c + 1, j, 0, m);
-              }
-            }
-          }
-        }
-      }
-      REP(c, 3) H1[c].roll();  // 一行结束，调整轮廓线
-    }
+    --8<-- "docs/dp/code/plug/plug_9.cpp:transition"
     ```
 
 ??? note "例题代码"
     ```cpp
-    --8<-- "docs/dp/code/plug/plug_3.cpp"
+    --8<-- "docs/dp/code/plug/plug_5.cpp"
     ```
 
 #### 习题
@@ -377,32 +219,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    constexpr int Offset = 5, Mask = (1 << Offset) - 1;
-    int c[N + 2];
-    int b[N + 2], bb[N + 3];
-    
-    T_state encode() {
-      T_state s = 0;
-      memset(bb, -1, sizeof(bb));
-      int bn = 1;
-      bb[0] = 0;
-      for (int i = m; i >= 0; --i) {
-    #define bi bb[b[i]]
-        if (!~bi) bi = bn++;
-        s <<= Offset;
-        s |= (bi << 1) | c[i];
-      }
-      return s;
-    }
-    
-    void decode(T_state s) {
-      REP(i, m + 1) {
-        b[i] = s & Mask;
-        c[i] = b[i] & 1;
-        b[i] >>= 1;
-        s >>= Offset;
-      }
-    }
+    --8<-- "docs/dp/code/plug/plug_10.cpp:encoding"
     ```
 
 ### 手写哈希
@@ -411,37 +228,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    constexpr int Prime = 9979, MaxSZ = 1 << 20;
-    
-    template <class T_state, class T_key>
-    struct hashTable {
-      int head[Prime];
-      int next[MaxSZ], sz;
-      T_state state[MaxSZ];
-      T_key key[MaxSZ];
-      int pre[MaxSZ];
-    
-      void clear() {
-        sz = 0;
-        memset(head, -1, sizeof(head));
-      }
-    
-      void push(T_state s, T_key d, T_state u) {
-        int x = s % Prime;
-        for (int i = head[x]; ~i; i = next[i]) {
-          if (state[i] == s) {
-            key[i] += d;
-            return;
-          }
-        }
-        state[sz] = s, key[sz] = d, pre[sz] = u;
-        next[sz] = head[x], head[x] = sz++;
-      }
-    
-      void roll() { REP(ii, sz) state[ii] <<= Offset; }
-    };
-    
-    hashTable<T_state, T_key> _H, H[N][N], *H0, *H1;
+    --8<-- "docs/dp/code/plug/plug_10.cpp:hash"
     ```
 
 ### 方案构造
@@ -450,31 +237,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "代码实现"
     ```cpp
-    void print() {
-      T_key z = 0;
-      int u;
-      REP(i, H1->sz) {
-        decode(H1->state[i]);
-        if (*max_element(b + 1, b + m + 1) <= 2) {
-          z += H1->key[i];
-          u = i;
-        }
-      }
-      cout << z << endl;
-      if (z) {
-        DWN(i, n, 0) {
-          B[i][m] = 0;
-          DWN(j, m, 0) {
-            decode(H[i][j].state[u]);
-            int cc = j == m - 1 ? c[j + 1] : c[j];
-            B[i][j] = cc ? 'o' : '#';
-            u = H[i][j].pre[u];
-          }
-        }
-        REP(i, n) puts(B[i]);
-      }
-      puts("");
-    }
+    --8<-- "docs/dp/code/plug/plug_10.cpp:reconstruction"
     ```
 
 ### 状态转移
@@ -490,52 +253,14 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ???+ note "状态转移 - 代码"
     ```cpp
-    void trans(int i, int j, int u, int cc) {
-      decode(H0->state[u]);
-      int lf = j ? c[j - 1] : -1, lu = b[j] ? c[j] : -1,
-          up = b[j + 1] ? c[j + 1] : -1;  // 没有颜色也是颜色的一种！
-      if (lf == cc && up == cc) {         // 合并
-        if (lu == cc) return;             // 2x2 子矩形相同的情况
-        int lf_b = b[j - 1], up_b = b[j + 1];
-        REP(i, m + 1) if (b[i] == up_b) { b[i] = lf_b; }
-        b[j] = lf_b;
-      } else if (lf == cc || up == cc) {  // 继承
-        if (lf == cc)
-          b[j] = b[j - 1];
-        else
-          b[j] = b[j + 1];
-      } else {                                             // 生成
-        if (i == n - 1 && j == m - 1 && lu == cc) return;  // 特判
-        b[j] = m + 2;
-      }
-      c[j] = cc;
-      if (!ok(i, j, cc)) return;  // 判断是否会因生成封闭的连通块导致不合法
-      H1->push(encode(), H0->key[u], u);
-    }
+    --8<-- "docs/dp/code/plug/plug_10.cpp:transition"
     ```
 
 对于最后一种情况需要注意的是，如果已经生成了一个封闭的连通区域，那么我们不能再使用她的颜色染色，否则这种颜色会出现两个连通块．我们似乎需要额度记录这种事件，可以参考 [「ZOJ 3213」Beautiful Meadow](#例题_2) 中的做法，再开一维记录这个事件．不过利用本题的特殊性，我们也可以特判掉．
 
 ???+ note "特判 - 代码"
     ```cpp
-    bool ok(int i, int j, int cc) {
-      if (cc == c[j + 1]) return true;
-      int up = b[j + 1];
-      if (!up) return true;
-      int c1 = 0, c2 = 0;
-      REP(i, m + 1) if (i != j + 1) {
-        if (b[i] == b[j + 1]) {  // 连通性相同，颜色一定相同
-          assert(c[i] == c[j + 1]);
-        }
-        if (c[i] == c[j + 1] && b[i] == b[j + 1]) ++c1;
-        if (c[i] == c[j + 1]) ++c2;
-      }
-      if (!c1) {               // 如果会生成新的封闭连通块
-        if (c2) return false;  // 如果轮廓线上还有相同的颜色
-        if (i < n - 1 || j < m - 2) return false;
-      }
-      return true;
-    }
+    --8<-- "docs/dp/code/plug/plug_10.cpp:connectivity"
     ```
 
 进一步讨论连通块消失的情况．每当我们对一个格子进行染色后，如果没有其他格子与其上侧的格子连通，那么会形成一个封闭的连通块．这个事件仅在最后一行的最后两列时可以发生，否则后续为了不出现 $2\times 2$ 的同色连通块，这个颜色一定会再次出现，除了下面的情况：
@@ -548,7 +273,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? note "例题代码"
     ```cpp
-    --8<-- "docs/dp/code/plug/plug_4.cpp"
+    --8<-- "docs/dp/code/plug/plug_6.cpp"
     ```
 
 ### 习题
@@ -599,151 +324,7 @@ if (s >> j & 1) {       // 如果已被覆盖
 
 ??? note "例题代码"
     ```cpp
-    #include <cstring>
-    #include <iostream>
-    using namespace std;
-    #define REP(i, n) for (int i = 0; i < n; ++i)
-    
-    template <class T>
-    bool checkMin(T &a, const T b) {
-      return b < a ? a = b, true : false;
-    }
-    
-    constexpr int N = 10, M = N;
-    constexpr int offset = 3, mask = (1 << offset) - 1;
-    int n, m;
-    int d;
-    constexpr int INF = 0x3f3f3f3f;
-    int b[M + 1], bb[M + 1];
-    
-    int encode() {
-      int s = 0;
-      memset(bb, -1, sizeof(bb));
-      int bn = 1;
-      bb[0] = 0;
-      for (int i = m; i >= 0; --i) {
-    #define bi bb[b[i]]
-        if (!~bi) bi = bn++;
-        s <<= offset;
-        s |= bi;
-      }
-      return s;
-    }
-    
-    void decode(int s) {
-      REP(i, m + 1) {
-        b[i] = s & mask;
-        s >>= offset;
-      }
-    }
-    
-    constexpr int MaxSZ = 16796, Prime = 9973;
-    
-    struct hashTable {
-      int head[Prime], next[MaxSZ], sz;
-      int state[MaxSZ];
-      int key[MaxSZ];
-    
-      void clear() {
-        sz = 0;
-        memset(head, -1, sizeof(head));
-      }
-    
-      void push(int s) {
-        int x = s % Prime;
-        for (int i = head[x]; ~i; i = next[i]) {
-          if (state[i] == s) {
-            checkMin(key[i], d);
-            return;
-          }
-        }
-        state[sz] = s, key[sz] = d;
-        next[sz] = head[x];
-        head[x] = sz++;
-      }
-    
-      void roll() { REP(i, sz) state[i] <<= offset; }
-    } H[2], *H0, *H1;
-    
-    char A[N + 1][M + 1];
-    
-    void push(int i, int j, int dn, int rt) {
-      b[j] = dn;
-      b[j + 1] = rt;
-      if (A[i][j] != '.') {
-        bool bad = A[i][j] == 'o';
-        REP(jj, j + 1) if (b[jj]) bad ^= 1;
-        if (bad) return;
-      }
-      H1->push(encode());
-    }
-    
-    int solve() {
-      cin >> n >> m;
-      int ti, tj;
-      REP(i, n) {
-        scanf("%s", A[i]);
-        REP(j, m) if (A[i][j] == 'o') ti = i, tj = j;
-        A[i][m] = '.';
-      }
-      REP(j, m + 1) A[n][j] = '.';
-      ++n, ++m, ++ti, ++tj;
-      H0 = H, H1 = H + 1;
-      H1->clear();
-      d = 0;
-      H1->push(0);
-      int z = INF;
-      REP(i, n) {
-        REP(j, m) {
-          swap(H0, H1);
-          H1->clear();
-          REP(ii, H0->sz) {
-            decode(H0->state[ii]);
-            d = H0->key[ii] + 1;
-            int lt = b[j], up = b[j + 1];
-            bool dn = i != n - 1, rt = j != m - 1;
-            if (lt && up) {
-              if (lt == up) {
-                int cnt = 0;
-                REP(i, m + 1) if (b[i])++ cnt;
-                if (cnt == 2 && i == ti && j == tj) {
-                  checkMin(z, d);
-                }
-              } else {
-                REP(i, m + 1) if (b[i] == lt) b[i] = up;
-                push(i, j, 0, 0);
-              }
-            } else if (lt || up) {
-              int t = lt | up;
-              if (dn) {
-                push(i, j, t, 0);
-              }
-              if (rt) {
-                push(i, j, 0, t);
-              }
-            } else {
-              --d;
-              push(i, j, 0, 0);
-              ++d;
-              if (dn && rt) {
-                push(i, j, m, m);
-              }
-            }
-          }
-        }
-        H1->roll();
-      }
-      if (z == INF) z = -1;
-      return z;
-    }
-    
-    int main() {
-      int T;
-      cin >> T;
-      for (int Case = 1; Case <= T; ++Case) {
-        printf("Case #%d: %d\n", Case, solve());
-      }
-    }
+    --8<-- "docs/dp/code/plug/plug_7.cpp"
     ```
 
 ### 习题

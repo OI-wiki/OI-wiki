@@ -114,55 +114,12 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
 
 === "C++"
     ```cpp
-    int n, m;
-    vector<int> G[MAXN];
-    int in[MAXN];  // 存储每个结点的入度
-    
-    bool toposort() {
-      vector<int> L;
-      queue<int> S;
-      for (int i = 1; i <= n; i++)
-        if (in[i] == 0) S.push(i);
-      while (!S.empty()) {
-        int u = S.front();
-        S.pop();
-        L.push_back(u);
-        for (auto v : G[u]) {
-          if (--in[v] == 0) {
-            S.push(v);
-          }
-        }
-      }
-      if (L.size() == n) {
-        for (auto i : L) cout << i << ' ';
-        return true;
-      }
-      return false;
-    }
+    --8<-- "docs/graph/code/topo/topo_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    from collections import defaultdict, deque
-    
-    
-    def topo_sort(graph):
-        lst = []
-        in_degree = defaultdict(int)
-        for u in graph:
-            for v in graph[u]:
-                in_degree[v] += 1
-    
-        s = deque([u for u in graph if in_degree[u] == 0])
-        while s:
-            u = s.popleft()
-            lst.append(u)
-            for v in graph.get(u, []):
-                in_degree[v] -= 1
-                if in_degree[v] == 0:
-                    s.append(v)
-    
-        return None if any(in_degree.values()) else lst
+    --8<-- "docs/graph/code/topo/topo_1.py:core"
     ```
 
 ## DFS 算法
@@ -171,76 +128,12 @@ AOE 网中的有些活动是可以并行进行的，所以完成整个工程的�
 
 === "C++"
     ```cpp
-    using Graph = vector<vector<int>>;  // 邻接表
-    
-    struct TopoSort {
-      enum class Status : uint8_t { to_visit, visiting, visited };
-    
-      const Graph& graph;
-      const int n;
-      vector<Status> status;
-      vector<int> order;
-      vector<int>::reverse_iterator it;
-    
-      TopoSort(const Graph& graph)
-          : graph(graph),
-            n(graph.size()),
-            status(n, Status::to_visit),
-            order(n),
-            it(order.rbegin()) {}
-    
-      bool sort() {
-        for (int i = 0; i < n; ++i) {
-          if (status[i] == Status::to_visit && !dfs(i)) return false;
-        }
-        return true;
-      }
-    
-      bool dfs(const int u) {
-        status[u] = Status::visiting;
-        for (const int v : graph[u]) {
-          if (status[v] == Status::visiting) return false;
-          if (status[v] == Status::to_visit && !dfs(v)) return false;
-        }
-        status[u] = Status::visited;
-        *it++ = u;
-        return true;
-      }
-    };
+    --8<-- "docs/graph/code/topo/topo_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    from enum import Enum, auto
-    
-    
-    class Status(Enum):
-        to_visit = auto()
-        visiting = auto()
-        visited = auto()
-    
-    
-    def topo_sort(graph: list[list[int]]) -> list[int] | None:
-        n = len(graph)
-        status = [Status.to_visit] * n
-        order = []
-    
-        def dfs(u: int) -> bool:
-            status[u] = Status.visiting
-            for v in graph[u]:
-                if status[v] == Status.visiting:
-                    return False
-                if status[v] == Status.to_visit and not dfs(v):
-                    return False
-            status[u] = Status.visited
-            order.append(u)
-            return True
-    
-        for i in range(n):
-            if status[i] == Status.to_visit and not dfs(i):
-                return None
-    
-        return order[::-1]
+    --8<-- "docs/graph/code/topo/topo_2.py:core"
     ```
 
 时间复杂度：$O(E+V)$ 空间复杂度：$O(V)$

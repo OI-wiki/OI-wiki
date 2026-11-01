@@ -76,8 +76,7 @@ $$
 从 C++11 开始，模板类 `std::linear_congruential_engine` 实现基于如上方法的随机数生成器，模板参数如下：
 
 ```cpp
-template <class UIntType, UIntType A, UIntType C, UIntType M>
-class linear_congruential_engine;
+--8<-- "docs/misc/code/random/random_2.cpp:declaration"
 ```
 
 这里 `UIntType` 表示 $s$ 的类型，随后是三个常数．
@@ -96,7 +95,7 @@ class linear_congruential_engine;
 
 ??? note "参考实现"
     ```cpp
-    --8<-- "docs/misc/code/random/random_2.cpp"
+    --8<-- "docs/misc/code/random/random_2.cpp:program"
     ```
 
 ### 随机数引擎适配器

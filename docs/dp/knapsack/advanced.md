@@ -21,18 +21,12 @@ author: Ir1d, sshwy, StudyingFather, Marcythm, partychicken, H-J-Granger, Nachtg
 
 === "C++"
     ```cpp
-    --8<-- "docs/dp/code/knapsack/knapsack_4.cpp:core"
+    --8<-- "docs/dp/code/knapsack/knapsack_3.cpp:core"
     ```
 
 === "Python"
     ```python
-    for k in range(1, ts + 1):  # 循环每一组
-        for i in range(m, -1, -1):  # 循环背包容量
-            for j in range(1, cnt[k] + 1):  # 循环该组的每一个物品
-                if i >= w[t[k][j]]:  # 背包容量充足
-                    dp[i] = max(
-                        dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]
-                    )  # 像0-1背包一样状态转移
+    --8<-- "docs/dp/code/knapsack/knapsack_3.py:core"
     ```
 
 这里要注意：**一定不能搞错循环顺序**，这样才能保证正确性．
@@ -53,20 +47,10 @@ $$
 
 ### 输出方案
 
-输出方案其实就是记录下来背包中的某一个状态是怎么推出来的．我们可以用 $g_{i,v}$ 表示第 $i$ 件物品占用空间为 $v$ 的时候是否选择了此物品．然后在转移时记录是选用了哪一种策略（选或不选）．输出时的伪代码：
+输出方案其实就是记录下来背包中的某一个状态是怎么推出来的．我们可以用 $g_{i,v}$ 表示第 $i$ 件物品占用空间为 $v$ 的时候是否选择了此物品．然后在转移时记录是选用了哪一种策略（选或不选）．方案回溯的代码：
 
 ```cpp
-int v = V;  // 记录当前的存储空间
-
-// 因为最后一件物品存储的是最终状态，所以从最后一件物品进行循环
-for (从最后一件循环至第一件) {
-  if (g[i][v]) {
-    选了第 i 项物品;
-    v -= 第 i 项物品的重量;
-  } else {
-    未选第 i 项物品;
-  }
-}
+--8<-- "docs/dp/code/knapsack/knapsack_6.cpp:core"
 ```
 
 ### 求最优方案总数
@@ -90,11 +74,7 @@ $g_{i,j}$ 表示只考虑前 $i$ 个物品时背包体积「正好」是 $j$ 时
 初始条件：
 
 ```cpp
-memset(f, 0xcf, sizeof(f));
-// 因为是求最大值，初始化为负无穷，避免没有装满而进行了转移
-// 若求最小值，则初始化为正无穷0x3f
-f[0] = 0;
-g[0] = 1;  // 什么都不装是一种方案
+--8<-- "docs/dp/code/knapsack/knapsack_7.cpp:initialization"
 ```
 
 因为背包体积最大值有可能装不满，所以最优解不一定是 $f_{m}$．
@@ -103,26 +83,7 @@ g[0] = 1;  // 什么都不装是一种方案
 
 ???+ note "实现"
     ```cpp
-    for (int i = 0; i < N; i++) {
-      for (int j = V; j >= v[i]; j--) {
-        int tmp = std::max(dp[j], dp[j - v[i]] + w[i]);
-        int c = 0;
-        if (tmp == dp[j]) c += cnt[j];                       // 如果从dp[j]转移
-        if (tmp == dp[j - v[i]] + w[i]) c += cnt[j - v[i]];  // 如果从dp[j-v[i]]转移
-        dp[j] = tmp;
-        cnt[j] = c;
-      }
-    }
-    int max = 0;  // 寻找最优解
-    for (int i = 0; i <= V; i++) {
-      max = std::max(max, dp[i]);
-    }
-    int res = 0;
-    for (int i = 0; i <= V; i++) {
-      if (dp[i] == max) {
-        res += cnt[i];  // 求和最优解方案数
-      }
-    }
+    --8<-- "docs/dp/code/knapsack/knapsack_7.cpp:core"
     ```
 
 ### 背包的第 k 优解
@@ -135,7 +96,7 @@ g[0] = 1;  // 什么都不装是一种方案
 
 ??? note "实现"
     ```cpp
-    --8<-- "docs/dp/code/knapsack/knapsack_3.cpp:core"
+    --8<-- "docs/dp/code/knapsack/knapsack_8.cpp:core"
     ```
 
 ## 背包相关问题
@@ -153,7 +114,7 @@ g[0] = 1;  // 什么都不装是一种方案
 
 ??? note "核心代码"
     ```cpp
-    --8<-- "docs/dp/code/knapsack/knapsack_5.cpp:core"
+    --8<-- "docs/dp/code/knapsack/knapsack_9.cpp:core"
     ```
 
 习题：[HDU 5410 CRB and His Birthday](https://acm.hdu.edu.cn/showproblem.php?pid=5410)
@@ -173,15 +134,12 @@ g[0] = 1;  // 什么都不装是一种方案
 
 === "C++"
     ```cpp
-    --8<-- "docs/dp/code/knapsack/knapsack_6.cpp:core"
+    --8<-- "docs/dp/code/knapsack/knapsack_10.cpp:core"
     ```
 
 === "Python"
     ```python
-    for k in range(1, n + 1):
-        for i in range(m, mi - 1, -1):  # 对经费进行一层枚举
-            for j in range(t, ti - 1, -1):  # 对时间进行一层枚举
-                dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1)
+    --8<-- "docs/dp/code/knapsack/knapsack_10.py:core"
     ```
 
 ### 有依赖的背包

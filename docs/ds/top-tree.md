@@ -185,18 +185,7 @@ Compress Tree 里的节点称为 **Compress Node**．只考虑当前这条簇路
 首先考虑上传信息，即 `Pushup(x)` 函数．在考虑对 SATT 的某个节点维护信息时，首先分这个点在 Compress Tree 还是在 Rake Tree 进行讨论，原因可见上文，不再赘述，下面以维护某个点的子树大小为例
 
 ```cpp
-// ls(x) x的左儿子
-// rs(x) x的右儿子
-// ms(x) x的中儿子
-// type==0 是 Compress Node
-// type==1 是 Rake Node
-void pushup(int x, int type) {
-  if (type == 0)
-    size[x] = size[rs(x)] + size[ms(x)] + 1;
-  else
-    size[x] = size[rs(x)] + size[ms(x)] + size[ls(x)];
-  return;
-}
+--8<-- "docs/ds/code/top-tree/top-tree_1.cpp:example165"
 ```
 
 查询点 $x$ 的子树大小，就将其 Access 到 SATT 根，答案是其中儿子的 size $+1$；因为根据上文，在 Access 之后，其中儿子才是它的真子树．
@@ -208,38 +197,7 @@ void pushup(int x, int type) {
 于是我们就知道问题引入的问题怎么做了．
 
 ```cpp
-void pushdown(int x, int type) {
-  if (type == 0) {
-    // 处理链
-    chain[ls(x)] += chain[x] chain[rs(x)] += chain[x];
-    val[ls(x)] += chain[x];
-    val[rs(x)] += chain[x];
-    // 处理子树
-    subtree[ls(x)] += subtree[x];
-    subtree[rs(x)] += subtree[x];
-    subtree[ms(x)] += subtree[x];
-    val[ls(x)] += subtree[x];
-    val[rs(x)] += subtree[x];
-    val[ms(x)] += subtree[x];
-    subtree[x] = 0;
-  } else {
-    subtree[ls(x)] += subtree[x];
-    subtree[rs(x)] += subtree[x];
-    subtree[ms(x)] += subtree[x];
-    val[ls(x)] += subtree[x];
-    val[rs(x)] += subtree[x];
-    val[ms(x)] += subtree[x];
-    subtree[x] = 0;
-  }
-  return;
-}
-
-// 下传标记
-void pushall(int x, int type) {
-  if (!isroot(x)) pushall(father[x], type);
-  pushdown(x, type);
-  return;
-}
+--8<-- "docs/ds/code/top-tree/top-tree_2.cpp:example166"
 ```
 
 #### Splay 类函数
@@ -247,38 +205,10 @@ void pushall(int x, int type) {
 我们知道 SATT 中的 Rake Tree 和 Compress Tree 都是可以旋转的，也就是说它们可以用 Splay 来维护．因此我们可以写出以下代码：
 
 ```cpp
-// 是一个节点的中儿子或无父亲
-// ls 一个SATT节点的左儿子
-// rs 一个SATT节点的右儿子
-// ms 一个SATT节点的中儿子
-// type==1 在 Rake Tree中
-// type==0 在 Compress Tree中
-bool isroot(int x) { return rs(father[x]) != x && ls(father[x]) != x; }
-
-bool direction(int x) { return rs(father[x]) == x; }
-
-void rotate(int x, int type) {
-  int y = father[x], z = father[y], d = direction(x), w = son[x][d ^ 1];
-  if (z) son[z][ms(z) == y ? 2 : direction(y)] = x;
-  son[x][d ^ 1] = y;
-  son[y][d] = w;
-  if (w) father[w] = y;
-  father[y] = x;
-  father[x] = z;
-  pushup(y, type);
-  pushup(x, type);
-  return;
-}
-
-void splay(int x, int type, int goal = 0) {
-  pushall(x, type);  // 下传标记
-  for (int y; y = father[x], (!isroot(x)) && y != goal; rotate(x, type)) {
-    if (father[y] != goal && (!isroot(y))) {
-      rotate(direction(x) ^ direction(y) ? x : y, type);
-    }
-  }
-  return;
-}
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example167a"
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example167b"
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example167c"
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example167d"
 ```
 
 值得注意的是，函数 `direction` 和 `isroot` 与普通 Splay 的不同．因为无论这个点怎么转，这个点的中儿子是不会变的．
@@ -290,15 +220,7 @@ void splay(int x, int type, int goal = 0) {
 为了实现 `access(x)`，我们先将其旋转到其所在 Compress Tree 的树根，再把点 $x$ 的右儿子去掉，使点 $x$ 成为其所在 Compress Tree 对应簇的端点．
 
 ```cpp
-if (rs(x)) {
-  int y = new_node();
-  setfather(ms(x), y, 0);
-  setfather(rs(x), y, 2);
-  rs(x) = 0;
-  setfather(y, x, 2);
-  pushup(y, 1);
-  pushup(x, 0);
-}
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example168"
 ```
 
 如果这时点 $x$ 已经到了根部，则退出；若没有，则执行以下步骤，以让它跨过它上面的 Rake Tree：
@@ -324,95 +246,23 @@ if (rs(x)) {
 最终我们会发现，我们最开始要操作的点 $x$ 一定在根簇的 Compress Tree 最右端．我们只需最后做一次 **Global Splay**，将其旋至 SATT 根部即可．
 
 ```cpp
-// ls 一个SATT节点的左儿子
-// rs 一个SATT节点的右儿子
-// ms 一个SATT节点的中儿子
-// son[x][0] ls
-// son[x][1] rs
-// son[x][2] ms
-// type==1 在 Rake Tree中
-// type==0 在 Compress Tree中
-int new_node() {
-  if (top) {
-    top--;
-    return Stack[top + 1];
-  }
-  return ++tot;
-}
-
-void setfather(int x, int fa, int type) {
-  if (x) father[x] = fa;
-  son[fa][type] = x;
-}
-
-void Delete(int x) {
-  setfather(ms(x), father[x], 1);
-  if (ls(x)) {
-    int p = ls(x);
-    pushdown(p, 1);
-    while (rs(p)) p = rs(p), pushdown(p, 1);
-    splay(p, 1, x);
-    setfather(rs(x), p, 1);
-    setfather(p, father[x], 2);
-    pushup(p, 1);
-    pushup(father[x], 0);
-  } else
-    setfather(rs(x), father[x], 2);
-  Clear(x);
-}
-
-void splice(int x) {
-  // local splay
-  splay(x, 1);
-  int y = father[x];
-  splay(y, 0);
-  pushdown(x, 1);
-  // splice
-  if (rs(y)) {
-    swap(father[ms(x)], father[rs(y)]);
-    swap(ms(x), rs(y));
-  } else
-    Delete(x);
-  pushup(x, 1);
-  pushup(y, 0);
-}
-
-void access(int x) {
-  splay(x, 0);
-  if (rs(x)) {
-    int y = new_node();
-    setfather(ms(x), y, 0);
-    setfather(rs(x), y, 2);
-    rs(x) = 0;
-    setfather(y, x, 2);
-    pushup(y, 1);
-    pushup(x, 0);
-  }
-  while (father[x]) {
-    splice(father[x]);
-    x = father[x];
-    pushup(x, 0);
-  }
-  splay(x, 0)  // global splay
-}
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example169a"
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example169b"
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example169c"
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example169d"
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example169e"
 ```
 
 若要让一个点成为原树的根，那么我们就将点 $x$ Access 到 SATT 的根节点，可知此时点 $x$ 已经是最终状态的簇一个端点．由 Compress Tree 的中序遍历性质可知，将点 $x$ 所在的 Compress Tree 左右颠倒（所有点的左右儿子互换），就使点 $x$ 成为原树的根．在具体实现中，我们通过给点 $x$ 打上一个翻转标记，之后下传来进行这一过程．
 
 ```cpp
-void makeroot(int x) {
-  access(x);
-  push_rev(x);
-}
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example170"
 ```
 
 于是 `expose(x, y)` 就呼之欲出：
 
 ```cpp
-void expose(int x, int y) {
-  makeroot(x);
-  access(y);
-}
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example171"
 ```
 
 ### Link & Cut
@@ -420,33 +270,20 @@ void expose(int x, int y) {
 现在我们要将原树中两个不连通的点之间连一条边，我们先让其中的一个点 $x$ 成为原树的根，再将另一个点 $y$ 旋转到根处，可知此时应该使点 $y$ 成为点 $x$ 的右儿子．然后在点 $y$ 的右儿子上挂上这一条边（在只需维护点的 SATT 中，这一步可省）．
 
 ```cpp
-void Link(int x, int y, int z) {
-  // z代表连接 x, y的边
-  access(x);
-  makeroot(y);
-  setfather(y, x, 1);
-  setfather(z, y, 0);
-  pushup(x, 0);
-  pushup(y, 0);
-}
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example172"
 ```
 
 `Cut` 跟 `Link` 原理差不多
 
 ```cpp
-void cut(int x, int y) {
-  expose(x, y);
-  clear(rs(x));  // 删掉 xy 这一基簇
-  father[x] = ls(y) = rs(x);
-  pushup(y, 0);
-}
+--8<-- "docs/ds/code/top-tree/top-tree_3.cpp:example173"
 ```
 
 ### 完整代码
 
 ??? note "[Luogu P3690【模板】动态树](https://www.luogu.com.cn/problem/P3690)"
     ```cpp
-    --8<-- "docs/ds/code/top-tree/top-tree_1.cpp"
+    --8<-- "docs/ds/code/top-tree/top-tree_4.cpp"
     ```
 
 ### SATT 的时间复杂度证明
@@ -600,28 +437,7 @@ $$
 维护动态直径，建出 SATT 后，我们只需要在 `Pushup(x)` 里面维护每个点的答案，最后查询根节点的答案（即整棵树的直径）就可以了．
 
 ```cpp
-void pushup(int x, int op) {
-  if (op == 0) {
-    // 是 Compress Node
-    len[x] = len[ls(x)] + len[rs(x)];
-    diam[x] = maxs[ls(x)][1] + maxs[rs(x)][0];
-    diam[x] =
-        max(diam[x], max(maxs[ls(x)][1], maxs[rs(x)][0]) + maxs[ms(x)][0]);
-    diam[x] = max(diam[x], max(max(diam[ls(x)], diam[rs(x)]), diam[ms(x)]));
-    maxs[x][0] =
-        max(maxs[ls(x)][0], len[ls(x)] + max(maxs[ms(x)][0], maxs[rs(x)][0]));
-    maxs[x][1] =
-        max(maxs[rs(x)][1], len[rs(x)] + max(maxs[ms(x)][0], maxs[ls(x)][1]));
-  } else {
-    // 是 Rake Node
-    diam[x] = maxs[ls(x)][0] + maxs[rs(x)][0];
-    diam[x] =
-        max(diam[x], maxs[ms(x)][0] + max(maxs[ls(x)][0], maxs[rs(x)][0]));
-    diam[x] = max(max(diam[x], diam[ms(x)]), max(diam[ls(x)], diam[rs(x)]));
-    maxs[x][0] = max(maxs[ms(x)][0], max(maxs[ls(x)][0], maxs[rs(x)][0]));
-  }
-  return;
-}
+--8<-- "docs/ds/code/top-tree/top-tree_5.cpp:example174"
 ```
 
 其中 $diam$ 是当前点的答案（这个点代表的簇的直径）．$len$ 表示当前 Compress Node 所在簇路径的长度，$maxs_{0/1}$ 表示 Compress Node 到簇内点和端点的不选簇路径儿子/不选父亲的最大距离（如果是 Rake Node 则只存储选取当前簇的上端点到簇内点和端点的最大距离 $maxs_0$）．每次查询 SATT 根节点的 diam 即可，正确性显然．
@@ -629,12 +445,7 @@ void pushup(int x, int op) {
 注意对 `Pushrev(x)` 做一些改动．
 
 ```cpp
-void pushrev(int x) {
-  if (!x) return;
-  r[x] ^= 1;
-  swap(ls(x), rs(x));
-  swap(maxs[x][0], maxs[x][1]);
-}
+--8<-- "docs/ds/code/top-tree/top-tree_5.cpp:example175"
 ```
 
 #### 例题 2
@@ -659,16 +470,7 @@ SATT 支持动态 $O(\log n)$ 维护树的重心，做到这需要 **非局部�
 记 $sum$ 表示某一个簇的点个数，$maxs$ 为一棵 Rake Tree 的所有 Rake Node 中儿子的 $sum$ 最大值．
 
 ```cpp
-void pushup(int x, int op) {
-  if (op == 0) {
-    // 是 Compress Node
-    sum[x] = sum[ls(x)] + sum[rs(x)] + sum[ms(x)] + 1;
-  } else {
-    // 是 Rake Node
-    maxs[x] = max(maxs[ls(x)], max(maxs[rs(x)], sum[ms(x)]));
-    sum[x] = sum[ls(x)] + sum[rs(x)] + sum[ms(x)];
-  }
-}
+--8<-- "docs/ds/code/top-tree/top-tree_7.cpp:example176"
 ```
 
 ![](./images/top-tree-20.svg)
@@ -690,68 +492,12 @@ void pushup(int x, int op) {
 假如我们递归到 $Y$，则现在 $Y$ 储存信息的并不完整，因为 $compress(Y)$ 里面只存储了它自己这个簇的信息，而我们要求的是整棵树的重心．解决方法是，将之前簇的信息记录下来，在点 $Y$ 上比较计算时将上一个簇的信息与点 $Y$ 自己的信息合并处理．具体实现如下：
 
 ```cpp
-void non_local_search(int x, int lv, int rv, int op) {
-  // lv 和 rv 都是搜索的上一个簇的信息
-  if (!x) return;
-  psd(x, 0);
-  if (op == 0) {
-    if (maxs[ms(x)] >=
-        sum[ms(x)] - maxs[ms(x)] + sum[rs(x)] + sum[ls(x)] + lv + 1 + rv) {
-      if (maxs[ms(x)] ==
-          sum[ms(x)] - maxs[ms(x)] + sum[rs(x)] + sum[ls(x)] + lv + 1 + rv) {
-        if (ans1)
-          ans2 = x;
-        else
-          ans1 = x;
-      }
-      non_local_search(
-          ms(x),
-          sum[ms(x)] - maxs[ms(x)] + sum[rs(x)] + sum[ls(x)] + 1 + lv + rv, 0,
-          1);
-      return;
-    }
-    if (ss[rs(x)] + rv >= ss[ms(x)] + ss[ls(x)] + lv + 1) {
-      if (ss[rs(x)] + rv == ss[ms(x)] + ss[ls(x)] + lv + 1) {
-        if (ans1)
-          ans2 = x;
-        else
-          ans1 = x;
-      }
-      non_local_search(rs(x), sum[ms(x)] + 1 + sum[ls(x)] + lv, rv, 0);
-      return;
-    }
-    if (sum[ls(x)] + lv >= sum[ms(x)] + sum[rs(x)] + 1 + rv) {
-      if (sum[ls(x)] + lv == sum[ms(x)] + sum[rs(x)] + 1 + rv) {
-        if (ans1)
-          ans2 = x;
-        else
-          ans1 = x;
-      }
-      non_local_search(ls(x), lv, rv + sum[ms(x)] + 1 + sum[rs(x)], 0);
-      return;
-    }
-  } else {
-    if (maxs[ls(x)] == maxs[x]) {
-      non_local_search(ls(x), lv, rv, 1);
-      return;
-    }
-    if (maxs[rs(x)] == maxs[x]) {
-      non_local_search(rs(x), lv, rv, 1);
-      return;
-    }
-    non_local_search(ms(x), lv, rv, 0);
-    return;
-  }
-  if (ans1)
-    ans2 = x;
-  else
-    ans1 = x;
-}
+--8<-- "docs/ds/code/top-tree/top-tree_7.cpp:example177"
 ```
 
 ??? note "示例代码"
     ```cpp
-    --8<-- "docs/ds/code/top-tree/top-tree_2.cpp"
+    --8<-- "docs/ds/code/top-tree/top-tree_6.cpp"
     ```
 
 ### Reference

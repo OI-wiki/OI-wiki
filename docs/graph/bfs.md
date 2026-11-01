@@ -36,69 +36,12 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 
 === "C++"
     ```cpp
-    void bfs(int u) {
-      while (!Q.empty()) Q.pop();
-      Q.push(u);
-      vis[u] = 1;
-      d[u] = 0;
-      p[u] = -1;
-      while (!Q.empty()) {
-        u = Q.front();
-        Q.pop();
-        for (int i = head[u]; i; i = e[i].nxt) {
-          if (!vis[e[i].to]) {
-            Q.push(e[i].to);
-            vis[e[i].to] = 1;
-            d[e[i].to] = d[u] + 1;
-            p[e[i].to] = u;
-          }
-        }
-      }
-    }
-    
-    void restore(int x) {
-      vector<int> res;
-      for (int v = x; v != -1; v = p[v]) {
-        res.push_back(v);
-      }
-      std::reverse(res.begin(), res.end());
-      for (int i = 0; i < res.size(); ++i) printf("%d", res[i]);
-      puts("");
-    }
+    --8<-- "docs/graph/code/bfs/bfs_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    from queue import Queue
-    
-    
-    def bfs(u):
-        Q = Queue()
-        Q.put(u)
-        vis[u] = True
-        d[u] = 0
-        p[u] = -1
-        while Q.qsize() != 0:
-            u = Q.get()
-            i = head[u]
-            while i:
-                if vis[e[i].to] == False:
-                    Q.put(e[i].to)
-                    vis[e[i].to] = True
-                    d[e[i].to] = d[u] + 1
-                    p[e[i].to] = u
-                i = e[i].nxt
-    
-    
-    def restore(x):
-        res = []
-        v = x
-        while v != -1:
-            res.append(v)
-            v = p[v]
-        res.reverse()
-        for i in range(0, len(res)):
-            print(res[i])
+    --8<-- "docs/graph/code/bfs/bfs_1.py:core"
     ```
 
 具体来说，我们用一个队列 Q 来记录要处理的节点，然后开一个布尔数组 `vis[]` 来标记是否已经访问过某个节点．
@@ -193,7 +136,7 @@ while (队列不为空) {
 #### 代码
 
 ```cpp
---8<-- "docs/graph/code/bfs/bfs_1.cpp"
+--8<-- "docs/graph/code/bfs/bfs_2.cpp"
 ```
 
 ## 优先队列 BFS

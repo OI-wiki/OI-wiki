@@ -1,33 +1,37 @@
 #include <iostream>
-using namespace std;
 
-int a[1000005];
-int n, m;
+int threshold;
 
-bool check(int k) {  // 检查可行性，k 为锯片高度
-  long long sum = 0;
-  for (int i = 1; i <= n; i++)       // 检查每一棵树
-    if (a[i] > k)                    // 如果树高于锯片高度
-      sum += (long long)(a[i] - k);  // 累加树木长度
-  return sum >= m;                   // 如果满足最少长度代表可行
-}
+bool check(int x) { return x >= threshold; }
 
-int find() {
-  int l = 0, r = 1e9 + 1;   // 因为是左闭右开的，所以 10^9 要加 1
-                            // 保持 check(l) 为真、check(r) 为假
-  while (l + 1 < r) {       // 如果两点不相邻
-    int mid = (l + r) / 2;  // 取中间值
-    if (check(mid))         // 如果可行
-      l = mid;              // 升高锯片高度
+// --8<-- [start:core]
+// 求 [L, R] 内满足条件 P 的最小整数 x，要求 L <= R
+// 条件 P 需要满足第一种有序性质，即 f(x) 单调不减
+// 在代码实现中，通常 check(x) = f(x)
+// 若区间内无解，返回 -1
+int binary_search_min(int L, int R) {
+  if (L > R) return -1;
+  int l = L, r = R;
+  while (l < r) {
+    int mid = (l + r) >> 1;
+    if (check(mid))  // f(mid) = 1，满足条件 P
+      r = mid;       // 答案在 [l, mid]
     else
-      r = mid;  // 否则降低锯片高度
+      l = mid + 1;  // 答案在 [mid + 1, r]
   }
-  return l;  // 返回左边值
+  // 此时 l == r
+  if (!check(l)) return -1;  // 无解判断
+  return l;
 }
+
+// --8<-- [end:core]
 
 int main() {
-  cin >> n >> m;
-  for (int i = 1; i <= n; i++) cin >> a[i];
-  cout << find();
-  return 0;
+  int q;
+  std::cin >> q;
+  while (q--) {
+    int l, r;
+    std::cin >> l >> r >> threshold;
+    std::cout << binary_search_min(l, r) << "\n";
+  }
 }

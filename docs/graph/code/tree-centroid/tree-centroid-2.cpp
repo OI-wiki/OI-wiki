@@ -1,36 +1,53 @@
 // Verified by https://codeforces.com/gym/101649/problem/G.
 // Codes associating I/O streams to files are omitted.
 #include <iostream>
+#include <limits>
 #include <vector>
 using namespace std;
 
 // --8<-- [start:core]
-const int MAXN = 50005;
+const int N = 50005;
 
-int n;
-// 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]
-int siz[MAXN],  // 这个节点的「大小」（所有子树上节点数 + 该节点）
-    weight[MAXN];  // 这个节点的「重量」，即所有子树「大小」的最大值
-vector<int> centroids;  // 用于记录树的重心（存的是节点编号）
-vector<int> g[MAXN];
+int n, siz[N];
+long long dp[N], ans[N];
+vector<int> g[N], centroids;
 
-void dfs(int cur, int fa) {  // cur 表示当前节点 (current)
-  siz[cur] = 1;
-  weight[cur] = 0;
-  for (int v : g[cur]) {
-    if (v != fa) {  // v 表示这条有向边所通向的节点
-      dfs(v, cur);
-      siz[cur] += siz[v];
-      weight[cur] = max(weight[cur], siz[v]);
-    }
-  }
-  weight[cur] = max(weight[cur], n - siz[cur]);
-  if (weight[cur] <= n / 2) {  // 依照树的重心的定义统计
-    centroids.push_back(cur);
+// 求 1 号节点到所有其他节点的距离和
+void dfs1(int u, int fa) {
+  siz[u] = 1;
+  dp[u] = 0;
+  for (int v : g[u]) {
+    if (v == fa) continue;
+    dfs1(v, u);
+    siz[u] += siz[v];
+    dp[u] += dp[v] + siz[v];  // 子树节点到 u 的距离和
   }
 }
 
-void get_centroids() { dfs(1, 0); }
+// 通过换根 DP 求所有节点为树根时对应的距离和
+void dfs2(int u, int fa) {
+  for (int v : g[u]) {
+    if (v == fa) continue;
+    ans[v] = ans[u] - siz[v] + (n - siz[v]);
+    dfs2(v, u);
+  }
+}
+
+// 求树的重心
+void get_centroids() {
+  dfs1(1, 0);
+  ans[1] = dp[1];
+  dfs2(1, 0);
+
+  long long mini = std::numeric_limits<long long>::max();
+  for (int i = 1; i <= n; i++) {
+    if (ans[i] < mini) {
+      mini = ans[i];
+      centroids = {i};
+    } else if (ans[i] == mini)
+      centroids.push_back(i);
+  }
+}
 
 // --8<-- [end:core]
 int main() {

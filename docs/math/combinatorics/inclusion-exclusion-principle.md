@@ -215,10 +215,7 @@ $$
 由于当 $k>N/2$ 时，我们可以直接算出 $f(k)= \lfloor (N/k) \rfloor ^2$，因此我们可以倒过来，从 $f(N)$ 算到 $f(1)$ 就可以了．于是，我们使用容斥原理完成了本题．
 
 ```cpp
-for (long long k = N; k >= 1; k--) {
-  f[k] = (N / k) * (N / k);
-  for (long long i = k + k; i <= N; i += k) f[k] -= f[i];
-}
+--8<-- "docs/math/code/inclusion-exclusion-principle/inclusion-exclusion-principle_2.cpp:core"
 ```
 
 上述方法的时间复杂度为 $O( \sum_{i=1}^{N} N/i)=O(N \sum_{i=1}^{N} 1/i)=O(N \log N)$．

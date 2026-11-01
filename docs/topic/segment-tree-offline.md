@@ -25,37 +25,7 @@ author: xiezheyuan
 
 ??? note "实现"
     ```cpp
-    #define ls (i << 1)
-    #define rs (i << 1 | 1)
-    #define mid ((l + r) >> 1)
-    
-    vector<Object> tree[N << 2];  // 线段树
-    
-    void update(int ql, int qr, Object obj, int i, int l, int r) {  // 插入
-      if (ql <= l && r <= qr) {
-        tree[i].push_back(obj);
-        return;
-      }
-      if (ql <= mid) update(ql, qr, obj, ls, l, mid);
-      if (qr > mid) update(ql, qr, obj, rs, mid + 1, r);
-    }
-    
-    stack<Object> sta;  // 用于撤销的栈
-    Object now;         // 当前的信息并
-    Object ans[N];      // 答案
-    
-    void solve(int i, int l, int r) {
-      auto lvl = sta.size();  // 记录一下应当撤销到第几个
-      for (Object x : tree[i]) sta.push(now), now = Merge(now, x);  // 合并信息
-      if (l == r)
-        ans[i] = now;  // 记录一下答案
-      else
-        solve(ls, l, mid), solve(rs, mid + 1, r);  // 分治
-      while (sta.size() != lvl) {                  // 撤销信息
-        now = sta.top();
-        sta.pop();
-      }
-    }
+    --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_1.cpp:core"
     ```
 
 ## 例题
@@ -72,7 +42,7 @@ author: xiezheyuan
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_1.cpp"
+        --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_2.cpp"
         ```
 
 ???+ note "颜色限制 restriction"
@@ -87,7 +57,7 @@ author: xiezheyuan
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_2.cpp"
+        --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_3.cpp"
         ```
 
 ???+ note "[luogu P4219 \[BJOI2014\] 大融合](https://www.luogu.com.cn/problem/P4219)"
@@ -109,7 +79,7 @@ author: xiezheyuan
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_3.cpp"
+        --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_4.cpp"
         ```
 
 ???+ note "[luogu P2056 \[ZJOI2007\] 捉迷藏](https://www.luogu.com.cn/problem/P2056)"
@@ -133,7 +103,7 @@ author: xiezheyuan
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_4.cpp"
+        --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_5.cpp"
         ```
 
 ## 习题

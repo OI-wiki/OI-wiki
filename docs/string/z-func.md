@@ -25,24 +25,12 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 ???+ note "实现"
     === "C++"
         ```cpp
-        vector<int> z_function_trivial(string s) {
-          int n = (int)s.length();
-          vector<int> z(n);
-          for (int i = 1; i < n; ++i)
-            while (i + z[i] < n && s[z[i]] == s[i + z[i]]) ++z[i];
-          return z;
-        }
+        --8<-- "docs/string/code/z-func/z-func_1.cpp:core"
         ```
     
     === "Python"
         ```python
-        def z_function_trivial(s):
-            n = len(s)
-            z = [0] * n
-            for i in range(1, n):
-                while i + z[i] < n and s[z[i]] == s[i + z[i]]:
-                    z[i] += 1
-            return z
+        --8<-- "docs/string/code/z-func/z-func_1.py:core"
         ```
 
 ## 线性算法
@@ -69,39 +57,12 @@ Z 函数的朴素算法复杂度为 $O(n^2)$：
 
 === "C++"
     ```cpp
-    vector<int> z_function(string s) {
-      int n = (int)s.length();
-      vector<int> z(n);
-      for (int i = 1, l = 0, r = 0; i < n; ++i) {
-        if (i <= r && z[i - l] < r - i + 1) {
-          z[i] = z[i - l];
-        } else {
-          z[i] = max(0, r - i + 1);
-          while (i + z[i] < n && s[z[i]] == s[i + z[i]]) ++z[i];
-        }
-        if (i + z[i] - 1 > r) l = i, r = i + z[i] - 1;
-      }
-      return z;
-    }
+    --8<-- "docs/string/code/z-func/z-func_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    def z_function(s):
-        n = len(s)
-        z = [0] * n
-        l, r = 0, 0
-        for i in range(1, n):
-            if i <= r and z[i - l] < r - i + 1:
-                z[i] = z[i - l]
-            else:
-                z[i] = max(0, r - i + 1)
-                while i + z[i] < n and s[z[i]] == s[i + z[i]]:
-                    z[i] += 1
-            if i + z[i] - 1 > r:
-                l = i
-                r = i + z[i] - 1
-        return z
+    --8<-- "docs/string/code/z-func/z-func_2.py:core"
     ```
 
 ## 复杂度分析

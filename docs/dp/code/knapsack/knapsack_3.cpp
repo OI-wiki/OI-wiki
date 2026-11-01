@@ -1,46 +1,23 @@
-#include <cstdio>
+#include <iostream>
+using namespace std;
 
-int t, n, m, K;
-
-// --8<-- [start:core]
-const int kMaxM = 1010, kMaxK = 33;
-
-int w[kMaxM], c[kMaxM], dp[kMaxM][kMaxK];
-
-void solve(int n, int m, int K) {
-  for (int i = 0; i <= m; i++) {
-    for (int j = 1; j <= K; j++) dp[i][j] = 0;
-  }
-  int i, j, p, x, y, z;
-  int a[kMaxK], b[kMaxK];
-  for (i = 0; i < n; i++) {
-    for (j = m; j >= c[i]; j--) {
-      for (p = 1; p <= K; p++) {
-        a[p] = dp[j - c[i]][p] + w[i];
-        b[p] = dp[j][p];
-      }
-      a[p] = b[p] = -1;
-      x = y = z = 1;
-      while (z <= K && (a[x] != -1 || b[y] != -1)) {
-        if (a[x] > b[y])
-          dp[j][z] = a[x++];
-        else
-          dp[j][z] = b[y++];
-        if (dp[j][z] != dp[j][z - 1]) z++;
-      }
-    }
-  }
-}
-
-// --8<-- [end:core]
+int m, n, c[1010], w[1010], x, t[10010][1010], ts, cnt[10010], dp[1010];
 
 int main() {
-  for (scanf("%d", &t); t--;) {
-    scanf("%d%d%d", &n, &m, &K);
-    for (int i = 0; i < n; i++) scanf("%d", &w[i]);
-    for (int i = 0; i < n; i++) scanf("%d", &c[i]);
-    solve(n, m, K);
-    printf("%d\n", dp[m][K]);
+  cin >> m >> n;
+  for (int i = 1; i <= n; i++) {
+    cin >> w[i] >> c[i] >> x;
+    t[x][++cnt[x]] = i, ts = max(ts, x);
   }
+  // --8<-- [start:core]
+  for (int k = 1; k <= ts; k++)          // 循环每一组
+    for (int i = m; i >= 0; i--)         // 循环背包容量
+      for (int j = 1; j <= cnt[k]; j++)  // 循环该组的每一个物品
+        if (i >= w[t[k][j]])             // 背包容量充足
+          dp[i] =
+              max(dp[i],
+                  dp[i - w[t[k][j]]] + c[t[k][j]]);  // 像0-1背包一样状态转移
+  // --8<-- [end:core]
+  cout << dp[m] << '\n';
   return 0;
 }

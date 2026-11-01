@@ -1,83 +1,64 @@
 #include <algorithm>
-#include <cstring>
-#include <iostream>
-constexpr int MAXN = 2018;
-constexpr int MAXM = 4000400;
+#include <cstdio>
+#include <stack>
 using namespace std;
-int Index, instack[MAXN], DFN[MAXN], LOW[MAXN];
-int tot, color[MAXN];
-int numedge, head[MAXN];
+const int N = 2e6 + 2;
+int n, m, dfn[N], low[N], t, tot, head[N], a[N];
+bool vis[N];
+stack<int> s;
 
-struct Edge {
-  int nxt, to;
-} edge[MAXM];
+struct node {
+  int to, Next;
+} e[N];
 
-int sta[MAXN], top;
-int n, m;
-
-void add(int x, int y) {
-  edge[++numedge].to = y;
-  edge[numedge].nxt = head[x];
-  head[x] = numedge;
+void adde(int u, int v) {
+  e[++tot].to = v;
+  e[tot].Next = head[u];
+  head[u] = tot;
 }
 
-void tarjan(int x) {  // 缩点看不懂请移步强连通分量上面有一个链接可以点。
-  sta[++top] = x;
-  instack[x] = 1;
-  DFN[x] = LOW[x] = ++Index;
-  for (int i = head[x]; i; i = edge[i].nxt) {
-    int v = edge[i].to;
-    if (!DFN[v]) {
-      tarjan(v);
-      LOW[x] = min(LOW[x], LOW[v]);
-    } else if (instack[v])
-      LOW[x] = min(LOW[x], DFN[v]);
+void Tarjan(int u) {
+  dfn[u] = low[u] = ++t;
+  s.push(u);
+  vis[u] = 1;
+  for (int i = head[u]; i; i = e[i].Next) {
+    int v = e[i].to;
+    if (!dfn[v]) {
+      Tarjan(v);
+      low[u] = min(low[u], low[v]);
+    } else if (vis[v])
+      low[u] = min(low[u], dfn[v]);
   }
-  if (DFN[x] == LOW[x]) {
-    tot++;
+  if (dfn[u] == low[u]) {
+    int cur;
+    ++tot;
     do {
-      color[sta[top]] = tot;  // 染色
-      instack[sta[top]] = 0;
-    } while (sta[top--] != x);
+      cur = s.top();
+      s.pop();
+      vis[cur] = 0;
+      a[cur] = tot;
+    } while (cur != u);
   }
-}
-
-bool solve() {
-  for (int i = 0; i < 2 * n; i++)
-    if (!DFN[i]) tarjan(i);
-  for (int i = 0; i < 2 * n; i += 2)
-    if (color[i] == color[i + 1]) return false;
-  return true;
-}
-
-void init() {
-  top = 0;
-  tot = 0;
-  Index = 0;
-  numedge = 0;
-  memset(sta, 0, sizeof(sta));
-  memset(DFN, 0, sizeof(DFN));
-  memset(instack, 0, sizeof(instack));
-  memset(LOW, 0, sizeof(LOW));
-  memset(color, 0, sizeof(color));
-  memset(head, 0, sizeof(head));
 }
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  while (cin >> n >> m) {
-    init();
-    for (int i = 1; i <= m; i++) {
-      int a1, a2, c1, c2;
-      cin >> a1 >> a2 >> c1 >> c2;
-      add(2 * a1 + c1, 2 * a2 + 1 - c2);
-      // 对于第 i 对夫妇，我们用 2i+1 表示丈夫，2i 表示妻子。
-      add(2 * a2 + c2, 2 * a1 + 1 - c1);
-    }
-    if (solve())
-      cout << "YES\n";
-    else
-      cout << "NO\n";
+  scanf("%d%d", &n, &m);
+  for (int i = 1, I, J, A, B; i <= m; i++) {
+    scanf("%d%d%d%d", &I, &A, &J, &B);
+    adde(A ? I + n : I, B ? J : J + n);
+    adde(B ? J + n : J, A ? I : I + n);
   }
+  tot = 0;
+  for (int i = 1; i <= (n << 1); i++)
+    if (!dfn[i]) Tarjan(i);
+  for (int i = 1; i <= n; i++) {
+    if (a[i] == a[i + n]) {
+      printf("IMPOSSIBLE");
+      return 0;
+    }
+  }
+  puts("POSSIBLE");
+  for (int i = 1; i <= n; i++)
+    printf("%c%c", a[i] < a[i + n] ? '1' : '0', " \n"[i == n]);
   return 0;
 }

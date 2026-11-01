@@ -1,72 +1,61 @@
+#include <algorithm>
 #include <iostream>
 #include <string>
+#include <vector>
+
 using namespace std;
-constexpr int N(1e6), M(2 * N), inf(1e7), RNG{26};
 
-struct SuffixTree {
-  int ch[M + 5][RNG + 1], st[M + 5], len[M + 5], link[M + 5];
-  int s[N + 5];
-  int now{1}, rem{0}, n{0}, tot{1};
+constexpr int N = 1000000 + 5;
 
-  SuffixTree() { len[0] = inf; }
+// --8<-- [start:core]
+struct SuffixAutomaton {
+  int tot, lst;
+  int siz[N << 1];
+  int buc[N], id[N << 1];
 
-  int new_node(int s, int le) {
-    ++tot;
-    st[tot] = s;
-    len[tot] = le;
-    return tot;
-  }
+  struct Node {
+    int len, link;
+    int ch[26];
+  } st[N << 1];
 
-  void extend(int x) {
-    s[++n] = x;
-    ++rem;
-    for (int lst{1}; rem;) {
-      while (rem > len[ch[now][s[n - rem + 1]]])
-        rem -= len[now = ch[now][s[n - rem + 1]]];
-      int &v{ch[now][s[n - rem + 1]]}, c{s[st[v] + rem - 1]};
-      if (!v || x == c) {
-        lst = link[lst] = now;
-        if (!v)
-          v = new_node(n, inf);
-        else
-          break;
-      } else {
-        int u{new_node(st[v], rem - 1)};
-        ch[u][c] = v;
-        ch[u][x] = new_node(n, inf);
-        st[v] += rem - 1;
-        len[v] -= rem - 1;
-        lst = link[lst] = v = u;
+  SuffixAutomaton() : tot(1), lst(1) {}
+
+  void extend(int ch) {
+    int cur = ++tot, p = lst;
+    lst = cur;
+    siz[cur] = 1, st[cur].len = st[p].len + 1;
+    for (; p && !st[p].ch[ch]; p = st[p].link) st[p].ch[ch] = cur;
+    if (!p)
+      st[cur].link = 1;
+    else {
+      int q = st[p].ch[ch];
+      if (st[q].len == st[p].len + 1)
+        st[cur].link = q;
+      else {
+        int pp = ++tot;
+        st[pp] = st[q];
+        st[pp].len = st[p].len + 1;
+        st[cur].link = st[q].link = pp;
+        for (; p && st[p].ch[ch] == q; p = st[p].link) st[p].ch[ch] = pp;
       }
-      if (now == 1)
-        --rem;
-      else
-        now = link[now];
     }
   }
+} SAM;
 
-  pair<long long, int> search(int u, int dep = 0) {
-    if (st[u] + len[u] >= n) return {0, 1};
-    dep += len[u];
-    long long ans{0};
-    int ys{0};
-    for (int i{0}; i <= RNG; ++i)
-      if (ch[u][i]) {
-        auto res = search(ch[u][i], dep);
-        ans = max(ans, res.first);
-        ys += res.second;
-      }
-    if (ys > 1) ans = max(ans, 1LL * dep * ys);
-    return {ans, ys};
-  }
-} T;
-
-string s;
+// --8<-- [end:core]
 
 int main() {
+  string s;
   cin >> s;
-  for (int i = 0; i < s.size(); ++i) T.extend(s[i] - 'a' + 1);
-  T.extend(0);
-  cout << T.search(1).first << endl;
-  return 0;
+  for (char c : s) SAM.extend(c - 'a');
+  for (int i = 1; i <= SAM.tot; ++i) ++SAM.buc[SAM.st[i].len];
+  for (int i = 1; i <= (int)s.size(); ++i) SAM.buc[i] += SAM.buc[i - 1];
+  for (int i = 1; i <= SAM.tot; ++i) SAM.id[SAM.buc[SAM.st[i].len]--] = i;
+  long long ans = 0;
+  for (int i = SAM.tot; i > 1; --i) {
+    int u = SAM.id[i];
+    SAM.siz[SAM.st[u].link] += SAM.siz[u];
+    if (SAM.siz[u] > 1) ans = max(ans, 1LL * SAM.siz[u] * SAM.st[u].len);
+  }
+  cout << ans << "\n";
 }

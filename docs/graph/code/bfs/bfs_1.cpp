@@ -1,59 +1,72 @@
-#include <deque>
+#include <algorithm>
 #include <iostream>
+#include <stack>
+#include <vector>
 using namespace std;
 
-constexpr int INF = 1 << 29;
-int n, m;
-char grid[1001][1001];
-int dist[1001][1001][4];
-int fx[] = {1, -1, 0, 0};
-int fy[] = {0, 0, 1, -1};
-deque<int> q;  // 双端队列
+#include <cstdio>
+#include <queue>
 
-void add_front(int x, int y, int dir, int d) {  // 向前方加
-  if (d < dist[x][y][dir]) {
-    dist[x][y][dir] = d;
-    q.push_front(dir);
-    q.push_front(y);
-    q.push_front(x);
+struct Edge {
+  int to, nxt;
+};
+
+vector<Edge> e(1);
+vector<int> head, d, p;
+vector<bool> vis;
+queue<int> Q;
+
+// --8<-- [start:core]
+void bfs(int u) {
+  while (!Q.empty()) Q.pop();
+  Q.push(u);
+  vis[u] = 1;
+  d[u] = 0;
+  p[u] = -1;
+  while (!Q.empty()) {
+    u = Q.front();
+    Q.pop();
+    for (int i = head[u]; i; i = e[i].nxt) {
+      if (!vis[e[i].to]) {
+        Q.push(e[i].to);
+        vis[e[i].to] = 1;
+        d[e[i].to] = d[u] + 1;
+        p[e[i].to] = u;
+      }
+    }
   }
 }
 
-void add_back(int x, int y, int dir, int d) {  // 向后方加
-  if (d < dist[x][y][dir]) {
-    dist[x][y][dir] = d;
-    q.push_back(x);
-    q.push_back(y);
-    q.push_back(dir);
+void restore(int x) {
+  vector<int> res;
+  for (int v = x; v != -1; v = p[v]) {
+    res.push_back(v);
   }
+  std::reverse(res.begin(), res.end());
+  for (int i = 0; i < res.size(); ++i) {
+    if (i) printf(" ");
+    printf("%d", res[i]);
+  }
+  puts("");
 }
+
+// --8<-- [end:core]
 
 int main() {
+  int n, m, start, target;
   cin >> n >> m;
-  for (int i = 0; i < n; i++) cin >> grid[i];
-
-  for (int i = 0; i < n; i++)
-    for (int j = 0; j < m; j++)
-      for (int k = 0; k < 4; k++) dist[i][j][k] = INF;
-
-  add_front(n - 1, m - 1, 3, 0);
-
-  while (!q.empty()) {  // 具体搜索的过程，可以参考上面写的题解
-    int x = q[0], y = q[1], dir = q[2];
-    q.pop_front();
-    q.pop_front();
-    q.pop_front();
-    int d = dist[x][y][dir];
-    int nx = x + fx[dir], ny = y + fy[dir];
-    if (nx >= 0 && nx < n && ny >= 0 && ny < m)
-      add_front(nx, ny, dir, d);  // 判断条件
-    if (grid[x][y] == '#')
-      for (int i = 0; i < 4; i++)
-        if (i != dir) add_back(x, y, i, d + 1);
+  head.resize(n + 1);
+  vis.resize(n + 1);
+  d.assign(n + 1, -1);
+  p.assign(n + 1, -1);
+  for (int i = 0; i < m; ++i) {
+    int u, v;
+    cin >> u >> v;
+    e.push_back(Edge{v, head[u]});
+    head[u] = static_cast<int>(e.size()) - 1;
   }
-  if (dist[0][0][3] == INF)
-    cout << -1 << endl;
-  else
-    cout << dist[0][0][3] << endl;
-  return 0;
+  cin >> start >> target;
+  bfs(start);
+  cout << d[target] << '\n';
+  if (vis[target]) restore(target);
 }

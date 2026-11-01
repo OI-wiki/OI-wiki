@@ -117,27 +117,12 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 ???+ note "实现"
     === "C++"
         ```cpp
-        int lowbit(int x) {
-          // x 的二进制中，最低位的 1 以及后面所有 0 组成的数．
-          // lowbit(0b01011000) == 0b00001000
-          //          ~~~~^~~~
-          // lowbit(0b01110010) == 0b00000010
-          //          ~~~~~~^~
-          return x & -x;
-        }
+        --8<-- "docs/ds/code/fenwick/fenwick_1.cpp:example42"
         ```
     
     === "Python"
         ```python
-        def lowbit(x):
-            """
-            x 的二进制中，最低位的 1 以及后面所有 0 组成的数．
-            lowbit(0b01011000) == 0b00001000
-                    ~~~~~^~~
-            lowbit(0b01110010) == 0b00000010
-                    ~~~~~~~^~
-            """
-            return x & -x
+        --8<-- "docs/ds/code/fenwick/fenwick_1.py:example43"
         ```
 
 ### 区间查询
@@ -171,24 +156,12 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 ???+ note "实现"
     === "C++"
         ```cpp
-        int getsum(int x) {  // a[1]..a[x]的和
-          int ans = 0;
-          while (x > 0) {
-            ans = ans + c[x];
-            x = x - lowbit(x);
-          }
-          return ans;
-        }
+        --8<-- "docs/ds/code/fenwick/fenwick_1.cpp:example44"
         ```
     
     === "Python"
         ```python
-        def getsum(x):  # a[1]..a[x]的和
-            ans = 0
-            while x > 0:
-                ans = ans + c[x]
-                x = x - lowbit(x)
-            return ans
+        --8<-- "docs/ds/code/fenwick/fenwick_1.py:example45"
         ```
 
 ### 树状数组与其树形态的性质
@@ -330,20 +303,12 @@ $c$ 数组就是用来储存原始数组 $a$ 某段区间的和的，也就是�
 ???+ note "实现"
     === "C++"
         ```cpp
-        void add(int x, int k) {
-          while (x <= n) {  // 不能越界
-            c[x] = c[x] + k;
-            x = x + lowbit(x);
-          }
-        }
+        --8<-- "docs/ds/code/fenwick/fenwick_1.cpp:example46"
         ```
     
     === "Python"
         ```python
-        def add(x, k):
-            while x <= n:  # 不能越界
-                c[x] = c[x] + k
-                x = x + lowbit(x)
+        --8<-- "docs/ds/code/fenwick/fenwick_1.py:example47"
         ```
 
 ### 建树
@@ -409,76 +374,12 @@ $\sum_{i=1}^r d_i$ 并不能推出 $\sum_{i=1}^r d_i \times i$ 的值，所以�
 ???+ note "实现"
     === "C++"
         ```cpp
-        int t1[MAXN], t2[MAXN], n;
-        
-        int lowbit(int x) { return x & (-x); }
-        
-        void add(int k, int v) {
-          int v1 = k * v;
-          while (k <= n) {
-            t1[k] += v, t2[k] += v1;
-            // 注意不能写成 t2[k] += k * v，因为 k 的值已经不是原数组的下标了
-            k += lowbit(k);
-          }
-        }
-        
-        int getsum(int *t, int k) {
-          int ret = 0;
-          while (k) {
-            ret += t[k];
-            k -= lowbit(k);
-          }
-          return ret;
-        }
-        
-        void add1(int l, int r, int v) {
-          add(l, v), add(r + 1, -v);  // 将区间加差分为两个前缀加
-        }
-        
-        long long getsum1(int l, int r) {
-          return (r + 1ll) * getsum(t1, r) - 1ll * l * getsum(t1, l - 1) -
-                 (getsum(t2, r) - getsum(t2, l - 1));
-        }
+        --8<-- "docs/ds/code/fenwick/fenwick_2.cpp:example48"
         ```
     
     === "Python"
         ```python
-        t1 = [0] * MAXN
-        t2 = [0] * MAXN
-        n = 0
-        
-        
-        def lowbit(x):
-            return x & (-x)
-        
-        
-        def add(k, v):
-            v1 = k * v
-            while k <= n:
-                t1[k] = t1[k] + v
-                t2[k] = t2[k] + v1
-                k = k + lowbit(k)
-        
-        
-        def getsum(t, k):
-            ret = 0
-            while k:
-                ret = ret + t[k]
-                k = k - lowbit(k)
-            return ret
-        
-        
-        def add1(l, r, v):
-            add(l, v)
-            add(r + 1, -v)
-        
-        
-        def getsum1(l, r):
-            return (
-                (r) * getsum(t1, r)
-                - l * getsum(t1, l - 1)
-                - (getsum(t2, r) - getsum(t2, l - 1))
-            )
+        --8<-- "docs/ds/code/fenwick/fenwick_2.py:example49"
         ```
 
 根据这个原理，应该可以实现「区间乘区间积」，「区间异或一个数，求区间异或值」等，只要满足维护的信息和区间操作是同种运算即可，感兴趣的读者可以自己尝试．
@@ -536,32 +437,12 @@ $$
 ???+ note "实现"
     === "单点加"
         ```cpp
-        void add(int x, int y, int v) {
-          for (int i = x; i <= n; i += lowbit(i)) {
-            for (int j = y; j <= m; j += lowbit(j)) {
-              // 注意这里必须得建循环变量，不能像一维数组一样直接 while (x <= n) 了
-              c[i][j] += v;
-            }
-          }
-        }
+        --8<-- "docs/ds/code/fenwick/fenwick_3.cpp:example50"
         ```
     
     === "查询子矩阵和"
         ```cpp
-        int sum(int x, int y) {
-          int res = 0;
-          for (int i = x; i > 0; i -= lowbit(i)) {
-            for (int j = y; j > 0; j -= lowbit(j)) {
-              res += c[i][j];
-            }
-          }
-          return res;
-        }
-        
-        int ask(int x1, int y1, int x2, int y2) {
-          // 查询子矩阵和
-          return sum(x2, y2) - sum(x2, y1 - 1) - sum(x1 - 1, y2) + sum(x1 - 1, y1 - 1);
-        }
+        --8<-- "docs/ds/code/fenwick/fenwick_3.cpp:example51"
         ```
 
 ### 子矩阵加，求子矩阵和
@@ -635,39 +516,7 @@ $$
 
 ???+ note "实现"
     ```cpp
-    using ll = long long;
-    ll t1[N][N], t2[N][N], t3[N][N], t4[N][N];
-    
-    void add(ll x, ll y, ll z) {
-      for (int X = x; X <= n; X += lowbit(X))
-        for (int Y = y; Y <= m; Y += lowbit(Y)) {
-          t1[X][Y] += z;
-          t2[X][Y] += z * x;  // 注意是 z * x 而不是 z * X，后面同理
-          t3[X][Y] += z * y;
-          t4[X][Y] += z * x * y;
-        }
-    }
-    
-    void range_add(ll xa, ll ya, ll xb, ll yb,
-                   ll z) {  //(xa, ya) 到 (xb, yb) 子矩阵
-      add(xa, ya, z);
-      add(xa, yb + 1, -z);
-      add(xb + 1, ya, -z);
-      add(xb + 1, yb + 1, z);
-    }
-    
-    ll ask(ll x, ll y) {
-      ll res = 0;
-      for (int i = x; i; i -= lowbit(i))
-        for (int j = y; j; j -= lowbit(j))
-          res += (x + 1) * (y + 1) * t1[i][j] - (y + 1) * t2[i][j] -
-                 (x + 1) * t3[i][j] + t4[i][j];
-      return res;
-    }
-    
-    ll range_ask(ll xa, ll ya, ll xb, ll yb) {
-      return ask(xb, yb) - ask(xb, ya - 1) - ask(xa - 1, yb) + ask(xa - 1, ya - 1);
-    }
+    --8<-- "docs/ds/code/fenwick/fenwick_4.cpp:example52"
     ```
 
 ## 权值树状数组及应用
@@ -721,35 +570,12 @@ $$
 ???+ note "实现"
     === "C++"
         ```cpp
-        // 权值树状数组查询第 k 小
-        int kth(int k) {
-          int sum = 0, x = 0;
-          for (int i = log2(n); ~i; --i) {
-            x += 1 << i;                   // 尝试扩展
-            if (x > n || sum + t[x] >= k)  // 如果扩展失败
-              x -= 1 << i;
-            else
-              sum += t[x];
-          }
-          return x + 1;  // 找不到就返回 n + 1
-        }
+        --8<-- "docs/ds/code/fenwick/fenwick_5.cpp:example53"
         ```
     
     === "Python"
         ```python
-        # 权值树状数组查询第 k 小
-        def kth(k):
-            sum = 0
-            x = 0
-            i = int(log2(n))
-            while ~i:
-                x = x + (1 << i)  # 尝试扩展
-                if x > n or sum + t[x] >= k:  # 如果扩展失败
-                    x = x - (1 << i)
-                else:
-                    sum = sum + t[x]
-                i = i - 1
-            return x + 1  # 找不到就返回 n + 1
+        --8<-- "docs/ds/code/fenwick/fenwick_5.py:example54"
         ```
 
 ### 全局逆序对（全局二维偏序）
@@ -821,19 +647,7 @@ $i$ 按照 $5 \to 1$ 扫：
 
 ???+ note "实现"
     ```cpp
-    int getmax(int l, int r) {
-      int ans = 0;
-      while (r >= l) {
-        ans = max(ans, a[r]);
-        --r;
-        for (; r - lowbit(r) >= l; r -= lowbit(r)) {
-          // 注意，循环条件不要写成 r - lowbit(r) + 1 >= l
-          // 否则 l = 1 时，r 跳到 0 会死循环
-          ans = max(ans, C[r]);
-        }
-      }
-      return ans;
-    }
+    --8<-- "docs/ds/code/fenwick/fenwick_6.cpp:example55"
     ```
 
 可以证明，上述算法的时间复杂度是 $\Theta(\log^2n)$．
@@ -869,16 +683,7 @@ $i$ 按照 $5 \to 1$ 扫：
 
 ???+ note "实现"
     ```cpp
-    void update(int x, int v) {
-      a[x] = v;
-      for (int i = x; i <= n; i += lowbit(i)) {
-        // 枚举受影响的区间
-        C[i] = a[i];
-        for (int j = 1; j < lowbit(i); j *= 2) {
-          C[i] = max(C[i], C[i - j]);
-        }
-      }
-    }
+    --8<-- "docs/ds/code/fenwick/fenwick_6.cpp:example56"
     ```
 
 容易看出上述算法时间复杂度为 $\Theta(\log^2n)$．
@@ -902,25 +707,12 @@ $i$ 按照 $5 \to 1$ 扫：
 ???+ note "实现"
     === "C++"
         ```cpp
-        // Θ(n) 建树
-        void init() {
-          for (int i = 1; i <= n; ++i) {
-            t[i] += a[i];
-            int j = i + lowbit(i);
-            if (j <= n) t[j] += t[i];
-          }
-        }
+        --8<-- "docs/ds/code/fenwick/fenwick_7.cpp:example57"
         ```
     
     === "Python"
         ```python
-        # Θ(n) 建树
-        def init():
-            for i in range(1, n + 1):
-                t[i] = t[i] + a[i]
-                j = i + lowbit(i)
-                if j <= n:
-                    t[j] = t[j] + t[i]
+        --8<-- "docs/ds/code/fenwick/fenwick_7.py:example58"
         ```
 
 方法二：
@@ -930,20 +722,12 @@ $i$ 按照 $5 \to 1$ 扫：
 ???+ note "实现"
     === "C++"
         ```cpp
-        // Θ(n) 建树
-        void init() {
-          for (int i = 1; i <= n; ++i) {
-            t[i] = sum[i] - sum[i - lowbit(i)];
-          }
-        }
+        --8<-- "docs/ds/code/fenwick/fenwick_8.cpp:example59"
         ```
     
     === "Python"
         ```python
-        # Θ(n) 建树
-        def init():
-            for i in range(1, n + 1):
-                t[i] = sum[i] - sum[i - lowbit(i)]
+        --8<-- "docs/ds/code/fenwick/fenwick_8.py:example60"
         ```
 
 ### 时间戳优化
@@ -953,57 +737,12 @@ $i$ 按照 $5 \to 1$ 扫：
 ???+ note "实现"
     === "C++"
         ```cpp
-        // 时间戳优化
-        int tag[MAXN], t[MAXN], Tag;
-        
-        void reset() { ++Tag; }
-        
-        void add(int k, int v) {
-          while (k <= n) {
-            if (tag[k] != Tag) t[k] = 0;
-            t[k] += v, tag[k] = Tag;
-            k += lowbit(k);
-          }
-        }
-        
-        int getsum(int k) {
-          int ret = 0;
-          while (k) {
-            if (tag[k] == Tag) ret += t[k];
-            k -= lowbit(k);
-          }
-          return ret;
-        }
+        --8<-- "docs/ds/code/fenwick/fenwick_9.cpp:example61"
         ```
     
     === "Python"
         ```python
-        # 时间戳优化
-        tag = [0] * MAXN
-        t = [0] * MAXN
-        Tag = 0
-        
-        
-        def reset():
-            Tag = Tag + 1
-        
-        
-        def add(k, v):
-            while k <= n:
-                if tag[k] != Tag:
-                    t[k] = 0
-                t[k] = t[k] + v
-                tag[k] = Tag
-                k = k + lowbit(k)
-        
-        
-        def getsum(k):
-            ret = 0
-            while k:
-                if tag[k] == Tag:
-                    ret = ret + t[k]
-                k = k - lowbit(k)
-            return ret
+        --8<-- "docs/ds/code/fenwick/fenwick_9.py:example62"
         ```
 
 ## 例题

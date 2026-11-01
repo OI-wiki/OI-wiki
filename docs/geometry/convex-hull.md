@@ -45,63 +45,12 @@
 ???+ note "代码实现"
     === "C++"
         ```cpp
-        // stk[] 是整型，存的是下标
-        // p[] 存储向量或点
-        tp = 0;                       // 初始化栈
-        std::sort(p + 1, p + 1 + n);  // 对点进行排序
-        stk[++tp] = 1;
-        // 栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
-        for (int i = 2; i <= n; ++i) {
-          while (tp >= 2  // 下一行 * 操作符被重载为叉积
-                 && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
-            used[stk[tp--]] = 0;
-          used[i] = 1;  // used 表示在凸壳上
-          stk[++tp] = i;
-        }
-        int tmp = tp;  // tmp 表示下凸壳大小
-        for (int i = n - 1; i > 0; --i)
-          if (!used[i]) {
-            // ↓求上凸壳时不影响下凸壳
-            while (tp > tmp && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
-              used[stk[tp--]] = 0;
-            used[i] = 1;
-            stk[++tp] = i;
-          }
-        for (int i = 1; i <= tp; ++i)  // 复制到新数组中去
-          h[i] = p[stk[i]];
-        int ans = tp - 1;
+        --8<-- "docs/geometry/code/convex-hull/convex-hull_1.cpp:core"
         ```
     
     === "Python"
         ```python
-        stk = []  # 是整型，存的是下标
-        p = []  # 存储向量或点
-        tp = 0  # 初始化栈
-        p.sort()  # 对点进行排序
-        tp = tp + 1
-        stk[tp] = 1
-        # 栈内添加第一个元素，且不更新 used，使得 1 在最后封闭凸包时也对单调栈更新
-        for i in range(2, n + 1):
-            while tp >= 2 and (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0:
-                # 下一行 * 操作符被重载为叉积
-                used[stk[tp]] = 0
-                tp = tp - 1
-            used[i] = 1  # used 表示在凸壳上
-            tp = tp + 1
-            stk[tp] = i
-        tmp = tp  # tmp 表示下凸壳大小
-        for i in range(n - 1, 0, -1):
-            if used[i] == False:
-                #      ↓求上凸壳时不影响下凸壳
-                while tp > tmp and (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0:
-                    used[stk[tp]] = 0
-                    tp = tp - 1
-                used[i] = 1
-                tp = tp + 1
-                stk[tp] = i
-        for i in range(1, tp + 1):
-            h[i] = p[stk[i]]
-        ans = tp - 1
+        --8<-- "docs/geometry/code/convex-hull/convex-hull_1.py:core"
         ```
 
 根据上面的代码，最后凸包上有 $\textit{ans}$ 个元素（额外存储了 $1$ 号点，因此 $h$ 数组中有 $\textit{ans}+1$ 个元素），并且按逆时针方向排序．周长就是
@@ -132,45 +81,9 @@ $$
 
 ???+ note "代码实现"
     ```cpp
-    struct Point {
-      double x, y, ang;
-    
-      Point operator-(const Point& p) const { return {x - p.x, y - p.y, 0}; }
-    } p[MAXN];
-    
-    double dis(Point p1, Point p2) {
-      return sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
-    }
-    
-    bool cmp(Point p1, Point p2) {
-      if (p1.ang == p2.ang) {
-        return dis(p1, p[1]) < dis(p2, p[1]);
-      }
-      return p1.ang < p2.ang;
-    }
-    
-    double cross(Point p1, Point p2) { return p1.x * p2.y - p1.y * p2.x; }
-    
-    int main() {
-      for (int i = 2; i <= n; ++i) {
-        if (p[i].y < p[1].y || (p[i].y == p[1].y && p[i].x < p[1].x)) {
-          std::swap(p[1], p[i]);
-        }
-      }
-      for (int i = 2; i <= n; ++i) {
-        p[i].ang = atan2(p[i].y - p[1].y, p[i].x - p[1].x);
-      }
-      std::sort(p + 2, p + n + 1, cmp);
-      sta[++top] = 1;
-      for (int i = 2; i <= n; ++i) {
-        while (top >= 2 &&
-               cross(p[sta[top]] - p[sta[top - 1]], p[i] - p[sta[top]]) < 0) {
-          top--;
-        }
-        sta[++top] = i;
-      }
-      return 0;
-    }
+    --8<-- "docs/geometry/code/convex-hull/convex-hull_2.cpp:display-a"
+    --8<-- "docs/geometry/code/convex-hull/convex-hull_2.cpp:display-b"
+    --8<-- "docs/geometry/code/convex-hull/convex-hull_2.cpp:display-c"
     ```
 
 ## 闵可夫斯基和
@@ -232,43 +145,9 @@ $$
 
 ???+ note "实现"
     ```cpp
-    template <class T>
-    struct Point {
-      T x, y;
-    
-      Point(T x = 0, T y = 0) : x(x), y(y) {}
-    
-      friend Point operator+(const Point &a, const Point &b) {
-        return {a.x + b.x, a.y + b.y};
-      }
-    
-      friend Point operator-(const Point &a, const Point &b) {
-        return {a.x - b.x, a.y - b.y};
-      }
-    
-      // 点乘
-      friend T operator*(const Point &a, const Point &b) {
-        return a.x * b.x + a.y * b.y;
-      }
-    
-      // 叉乘
-      friend T operator^(const Point &a, const Point &b) {
-        return a.x * b.y - a.y * b.x;
-      }
-    };
-    
-    template <class T>
-    vector<Point<T>> minkowski_sum(vector<Point<T>> a, vector<Point<T>> b) {
-      vector<Point<T>> c{a[0] + b[0]};
-      for (usz i = 0; i + 1 < a.size(); ++i) a[i] = a[i + 1] - a[i];
-      for (usz i = 0; i + 1 < b.size(); ++i) b[i] = b[i + 1] - b[i];
-      a.pop_back(), b.pop_back();
-      c.resize(a.size() + b.size() + 1);
-      merge(a.begin(), a.end(), b.begin(), b.end(), c.begin() + 1,
-            [](const Point<T> &a, const Point<T> &b) { return (a ^ b) < 0; });
-      for (usz i = 1; i < c.size(); ++i) c[i] = c[i] + c[i - 1];
-      return c;
-    }
+    --8<-- "docs/geometry/code/convex-hull/convex-hull_3.cpp:point"
+    --8<-- "docs/geometry/code/convex-hull/convex-hull_3.cpp:point-tail"
+    --8<-- "docs/geometry/code/convex-hull/convex-hull_3.cpp:minkowski"
     ```
 
 ### 例题
@@ -278,7 +157,7 @@ $$
 
 ??? note "实现"
     ```cpp
-    --8<-- "docs/geometry/code/convex-hull/convex-hull_1.cpp"
+    --8<-- "docs/geometry/code/convex-hull/convex-hull_3.cpp"
     ```
 
 ## 三维凸包

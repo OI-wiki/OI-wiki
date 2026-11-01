@@ -53,173 +53,12 @@ author: H-J-Granger, accelsao, Ir1d, Early0v0, Henry-ZHR, HeliumOI, AntiLeaf, Sh
 
 ??? note "参考代码"
     ```cpp
-    // graph
-    template <typename T>
-    class graph {
-     public:
-      struct edge {
-        int from;
-        int to;
-        T cost;
-      };
-    
-      vector<edge> edges;
-      vector<vector<int>> g;
-      int n;
-    
-      graph(int _n) : n(_n) { g.resize(n); }
-    
-      virtual int add(int from, int to, T cost) = 0;
-    };
-    
-    // undirectedgraph
-    template <typename T>
-    class undirectedgraph : public graph<T> {
-     public:
-      using graph<T>::edges;
-      using graph<T>::g;
-      using graph<T>::n;
-    
-      undirectedgraph(int _n) : graph<T>(_n) {}
-    
-      int add(int from, int to, T cost = 1) {
-        assert(0 <= from && from < n && 0 <= to && to < n);
-        int id = (int)edges.size();
-        g[from].push_back(id);
-        g[to].push_back(id);
-        edges.push_back({from, to, cost});
-        return id;
-      }
-    };
-    
-    // blossom / find_max_unweighted_matching
-    template <typename T>
-    vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
-      std::mt19937 rng(std::random_device{}());
-      vector<int> match(g.n, -1);   // 匹配
-      vector<int> aux(g.n, -1);     // 时间戳记
-      vector<int> label(g.n);       // 「o」或「i」
-      vector<int> orig(g.n);        // 花根
-      vector<int> parent(g.n, -1);  // 父节点
-      queue<int> q;
-      int aux_time = -1;
-    
-      auto lca = [&](int v, int u) {
-        aux_time++;
-        while (true) {
-          if (v != -1) {
-            if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
-              return v;
-            }
-            aux[v] = aux_time;
-            if (match[v] == -1) {
-              v = -1;
-            } else {
-              v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
-            }
-          }
-          swap(v, u);
-        }
-      };  // lca
-    
-      auto blossom = [&](int v, int u, int a) {
-        while (orig[v] != a) {
-          parent[v] = u;
-          u = match[v];
-          if (label[u] == 1) {  // 初始点设为「o」找增广路
-            label[u] = 0;
-            q.push(u);
-          }
-          orig[v] = orig[u] = a;  // 缩花
-          v = parent[u];
-        }
-      };  // blossom
-    
-      auto augment = [&](int v) {
-        while (v != -1) {
-          int pv = parent[v];
-          int next_v = match[pv];
-          match[v] = pv;
-          match[pv] = v;
-          v = next_v;
-        }
-      };  // augment
-    
-      auto bfs = [&](int root) {
-        fill(label.begin(), label.end(), -1);
-        iota(orig.begin(), orig.end(), 0);
-        while (!q.empty()) {
-          q.pop();
-        }
-        q.push(root);
-        // 初始点设为「o」，这里以「0」代替「o」，「1」代替「i」
-        label[root] = 0;
-        while (!q.empty()) {
-          int v = q.front();
-          q.pop();
-          for (int id : g.g[v]) {
-            auto &e = g.edges[id];
-            int u = e.from ^ e.to ^ v;
-            if (label[u] == -1) {  // 找到未拜访点
-              label[u] = 1;        // 标记「i」
-              parent[u] = v;
-              if (match[u] == -1) {  // 找到未匹配点
-                augment(u);          // 寻找增广路径
-                return true;
-              }
-              // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
-              label[match[u]] = 0;
-              q.push(match[u]);
-              continue;
-            } else if (label[u] == 0 && orig[v] != orig[u]) {
-              // 找到已拜访点 且标记同为「o」代表找到「花」
-              int a = lca(orig[v], orig[u]);
-              // 找LCA 然后缩花
-              blossom(u, v, a);
-              blossom(v, u, a);
-            }
-          }
-        }
-        return false;
-      };  // bfs
-    
-      auto greedy = [&]() {
-        vector<int> order(g.n);
-        // 随机打乱 order
-        iota(order.begin(), order.end(), 0);
-        shuffle(order.begin(), order.end(), rng);
-    
-        // 将可以匹配的点匹配
-        for (int i : order) {
-          if (match[i] == -1) {
-            for (auto id : g.g[i]) {
-              auto &e = g.edges[id];
-              int to = e.from ^ e.to ^ i;
-              if (match[to] == -1) {
-                match[i] = to;
-                match[to] = i;
-                break;
-              }
-            }
-          }
-        }
-      };  // greedy
-    
-      // 一开始先随机匹配
-      greedy();
-      // 对未匹配点找增广路
-      for (int i = 0; i < g.n; i++) {
-        if (match[i] == -1) {
-          bfs(i);
-        }
-      }
-      return match;
-    }
+    --8<-- "docs/graph/code/graph-matching/general-match/general-match_1.cpp:core"
     ```
 
 ??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)"
     ```cpp
-    --8<-- "docs/graph/code/graph-matching/general-match/general-match_1.cpp"
+    --8<-- "docs/graph/code/graph-matching/general-match/general-match_2.cpp"
     ```
 
 ## 基于高斯消元的一般图匹配算法
@@ -327,20 +166,7 @@ $$
 
 ??? note "描述有些抽象，可以参考 C++ 代码"
     ```cpp
-    void eliminate(int A[][MAXN], int r, int c) {  // 消去第 r 行第 c 列
-      row_marked[r] = col_marked[c] = true;        // 已经被消掉
-    
-      int inv = quick_power(A[r][c], p - 2);  // 逆元
-    
-      for (int i = 1; i <= n; i++)
-        if (!row_marked[i] && A[i][c]) {
-          int tmp = (long long)A[i][c] * inv % p;
-    
-          for (int j = 1; j <= n; j++)
-            if (!col_marked[j] && A[r][j])
-              A[i][j] = (A[i][j] - (long long)tmp * A[r][j]) % p;
-        }
-    }
+    --8<-- "docs/graph/code/graph-matching/general-match/general-match_3.cpp:core"
     ```
 
 总共要做 $\frac n 2$ 轮，每轮复杂度为 $O(n^2)$，因此上述算法可以在 $O(n^3)$ 的时间内找到一组完美匹配．
@@ -357,7 +183,7 @@ $$
 
 ??? note "[UOJ #79. 一般图最大匹配](https://uoj.ac/problem/79)"
     ```cpp
-    --8<-- "docs/graph/code/graph-matching/general-match/general-match_2.cpp"
+    --8<-- "docs/graph/code/graph-matching/general-match/general-match_4.cpp"
     ```
 
 ## 习题

@@ -35,117 +35,18 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_n \cdot 127
 
 === "C++"
     ```cpp
-    constexpr int SIZE = 1000000;
-    constexpr int M = 999997;
-    
-    struct HashTable {
-      struct Node {
-        int next, value, key;
-      } data[SIZE];
-    
-      int head[M], size;
-    
-      int f(int key) { return (key % M + M) % M; }
-    
-      int get(int key) {
-        for (int p = head[f(key)]; p; p = data[p].next)
-          if (data[p].key == key) return data[p].value;
-        return -1;
-      }
-    
-      int modify(int key, int value) {
-        for (int p = head[f(key)]; p; p = data[p].next)
-          if (data[p].key == key) return data[p].value = value;
-      }
-    
-      int add(int key, int value) {
-        if (get(key) != -1) return -1;
-        data[++size] = Node{head[f(key)], value, key};
-        head[f(key)] = size;
-        return value;
-      }
-    };
+    --8<-- "docs/ds/code/hash/hash_1.cpp:example66"
     ```
 
 === "Python"
     ```python
-    M = 999997
-    SIZE = 1000000
-    
-    
-    class Node:
-        def __init__(self, next=None, value=None, key=None):
-            self.next = next
-            self.value = value
-            self.key = key
-    
-    
-    data = [Node() for _ in range(SIZE)]
-    head = [0] * M
-    size = 0
-    
-    
-    def f(key):
-        return key % M
-    
-    
-    def get(key):
-        p = head[f(key)]
-        while p:
-            if data[p].key == key:
-                return data[p].value
-            p = data[p].next
-        return -1
-    
-    
-    def modify(key, value):
-        p = head[f(key)]
-        while p:
-            if data[p].key == key:
-                data[p].value = value
-                return data[p].value
-            p = data[p].next
-    
-    
-    def add(key, value):
-        if get(key) != -1:
-            return -1
-        size = size + 1
-        data[size] = Node(head[f(key)], value, key)
-        head[f(key)] = size
-        return value
+    --8<-- "docs/ds/code/hash/hash_1.py:example67"
     ```
 
 这里再提供一个封装过的模板，可以像 map 一样用，并且较短
 
 ```cpp
-struct hash_map {  // 哈希表模板
-
-  struct data {
-    long long u;
-    int v, nex;
-  };  // 前向星结构
-
-  data e[SZ << 1];  // SZ 是 const int 表示大小
-  int h[SZ], cnt;
-
-  int hash(long long u) { return (u % SZ + SZ) % SZ; }
-
-  // 这里使用 (u % SZ + SZ) % SZ 而非 u % SZ 的原因是
-  // C++ 中的 % 运算无法将负数转为正数
-
-  int& operator[](long long u) {
-    int hu = hash(u);  // 获取头指针
-    for (int i = h[hu]; i; i = e[i].nex)
-      if (e[i].u == u) return e[i].v;
-    return e[++cnt] = data{u, -1, h[hu]}, h[hu] = cnt, e[cnt].v;
-  }
-
-  hash_map() {
-    cnt = 0;
-    memset(h, 0, sizeof(h));
-  }
-};
+--8<-- "docs/ds/code/hash/hash_2.cpp:example68"
 ```
 
 在这里，hash 函数是针对键值的类型设计的，并且返回一个链表头指针用于查询．在这个模板中我们写了一个键值对类型为 `(long long, int)` 的 hash 表，并且在查询不存在的键值时返回 -1．函数 `hash_map()` 用于在定义时初始化．
@@ -159,28 +60,7 @@ struct hash_map {  // 哈希表模板
 #### 实现
 
 ```cpp
-constexpr int N = 360007;  // N 是最大可以存储的元素数量
-
-class Hash {
- private:
-  int keys[N];
-  int values[N];
-
- public:
-  Hash() { memset(values, 0, sizeof(values)); }
-
-  int& operator[](int n) {
-    // 返回一个指向对应 Hash[Key] 的引用
-    // 修改成不为 0 的值 0 时候视为空
-    int idx = (n % N + N) % N, cnt = 1;
-    while (keys[idx] != n && values[idx] != 0) {
-      idx = (idx + cnt * cnt) % N;
-      cnt += 1;
-    }
-    keys[idx] = n;
-    return values[idx];
-  }
-};
+--8<-- "docs/ds/code/hash/hash_3.cpp:example69"
 ```
 
 ## 例题

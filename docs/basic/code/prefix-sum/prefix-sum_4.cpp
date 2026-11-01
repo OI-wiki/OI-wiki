@@ -2,54 +2,33 @@
 #include <vector>
 
 // --8<-- [start:core]
-int N1, N2, N3;
-std::vector<std::vector<std::vector<int>>> a,
-    ps;  // (N1 + 1) x (N2 + 1) x (N3 + 1).
+int n;
+std::vector<int> a, ps;  // length = 1 << n.
 
-// Calculate prefix sum of 3d array.
-void prefix_sum() {
+void sum_of_subsets() {
   ps = a;
-
-  // Prefix-sum for 3rd dimension.
-  for (int i = 1; i <= N1; ++i)
-    for (int j = 1; j <= N2; ++j)
-      for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i][j][k - 1];
-
-  // Prefix-sum for 2nd dimension.
-  for (int i = 1; i <= N1; ++i)
-    for (int j = 1; j <= N2; ++j)
-      for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i][j - 1][k];
-
-  // Prefix-sum for 1st dimension.
-  for (int i = 1; i <= N1; ++i)
-    for (int j = 1; j <= N2; ++j)
-      for (int k = 1; k <= N3; ++k) ps[i][j][k] += ps[i - 1][j][k];
+  // Loop over dimensions.
+  for (int i = 0; i < n; ++i) {
+    // Loop over i-th dimension.
+    for (int st = 0; st < (1 << n); ++st) {
+      // This condition implies that i-th dimension is 1.
+      if ((st >> i) & 1) {
+        // ps[... 1 ...] += ps[... 0 ...]. (i-th dimension)
+        ps[st] += ps[st ^ (1 << i)];
+      }
+    }
+  }
 }
 
 // --8<-- [end:core]
 int main() {
-  // Input.
-  std::cin >> N1 >> N2 >> N3;
-  a.assign(N1 + 1,
-           std::vector<std::vector<int>>(N2 + 1, std::vector<int>(N3 + 1)));
+  std::cin >> n;
+  a.resize(1 << n);
+  for (int& x : a) std::cin >> x;
 
-  for (int i = 1; i <= N1; ++i)
-    for (int j = 1; j <= N2; ++j)
-      for (int k = 1; k <= N3; ++k) std::cin >> a[i][j][k];
+  sum_of_subsets();
 
-  // Calculate.
-  prefix_sum();
-
-  // Output.
-  for (int i = 1; i <= N1; ++i) {
-    for (int j = 1; j <= N2; ++j) {
-      for (int k = 1; k <= N3; ++k) {
-        std::cout << ps[i][j][k] << ' ';
-      }
-      std::cout << '\n';
-    }
-    std::cout << '\n';
-  }
-
+  for (int x : ps) std::cout << x << ' ';
+  std::cout << std::endl;
   return 0;
 }

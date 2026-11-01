@@ -20,42 +20,12 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
 
 === "C++"
     ```cpp
-    vector<int> prime;
-    bool is_prime[N];
-    
-    void Eratosthenes(int n) {
-      is_prime[0] = is_prime[1] = false;
-      for (int i = 2; i <= n; ++i) is_prime[i] = true;
-      for (int i = 2; i <= n; ++i) {
-        if (is_prime[i]) {
-          prime.push_back(i);
-          if ((long long)i * i > n) continue;
-          for (int j = i * i; j <= n; j += i)
-            // 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i
-            // 的倍数开始，提高了运行速度
-            is_prime[j] = false;  // 是 i 的倍数的均不是素数
-        }
-      }
-    }
+    --8<-- "docs/math/code/number-theory/sieve/sieve_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    prime = []
-    is_prime = [False] * N
-    
-    
-    def Eratosthenes(n):
-        is_prime[0] = is_prime[1] = False
-        for i in range(2, n + 1):
-            is_prime[i] = True
-        for i in range(2, n + 1):
-            if is_prime[i]:
-                prime.append(i)
-                if i * i > n:
-                    continue
-                for j in range(i * i, n + 1, i):
-                    is_prime[j] = False
+    --8<-- "docs/math/code/number-theory/sieve/sieve_1.py:core"
     ```
 
 以上为 **Eratosthenes 筛法**（埃拉托斯特尼筛法，简称埃氏筛法），时间复杂度是 $O(n\log\log n)$．
@@ -98,40 +68,12 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
 
 === "C++"
     ```cpp
-    vector<int> prime;
-    bool is_prime[N];
-    
-    void Eratosthenes(int n) {
-      is_prime[0] = is_prime[1] = false;
-      for (int i = 2; i <= n; ++i) is_prime[i] = true;
-      // i * i <= n 说明 i <= sqrt(n)
-      for (int i = 2; i * i <= n; ++i) {
-        if (is_prime[i])
-          for (int j = i * i; j <= n; j += i) is_prime[j] = false;
-      }
-      for (int i = 2; i <= n; ++i)
-        if (is_prime[i]) prime.push_back(i);
-    }
+    --8<-- "docs/math/code/number-theory/sieve/sieve_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    prime = []
-    is_prime = [False] * N
-    
-    
-    def Eratosthenes(n):
-        is_prime[0] = is_prime[1] = False
-        for i in range(2, n + 1):
-            is_prime[i] = True
-        # 让 i 循环到 <= sqrt(n)
-        for i in range(2, isqrt(n) + 1):  # `isqrt` 是 Python 3.8 新增的函数
-            if is_prime[i]:
-                for j in range(i * i, n + 1, i):
-                    is_prime[j] = False
-        for i in range(2, n + 1):
-            if is_prime[i]:
-                prime.append(i)
+    --8<-- "docs/math/code/number-theory/sieve/sieve_2.py:core"
     ```
 
 这种优化不会影响渐近时间复杂度，实际上重复以上证明，我们将得到 $n \ln \ln \sqrt n + o(n)$，根据对数的性质，它们的渐近相同，但操作次数会明显减少．
@@ -166,34 +108,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
 
 ???+ note "实现"
     ```cpp
-    int count_primes(int n) {
-      constexpr static int S = 10000;
-      vector<int> primes;
-      int nsqrt = sqrt(n);
-      vector<char> is_prime(nsqrt + 1, true);
-      for (int i = 2; i <= nsqrt; i++) {
-        if (is_prime[i]) {
-          primes.push_back(i);
-          for (int j = i * i; j <= nsqrt; j += i) is_prime[j] = false;
-        }
-      }
-      int result = 0;
-      vector<char> block(S);
-      for (int k = 0; k * S <= n; k++) {
-        fill(block.begin(), block.end(), true);
-        int start = k * S;
-        for (int p : primes) {
-          int start_idx = (start + p - 1) / p;
-          int j = max(start_idx, p) * p - start;
-          for (; j < S; j += p) block[j] = false;
-        }
-        if (k == 0) block[0] = block[1] = false;
-        for (int i = 0; i < S && start + i <= n; i++) {
-          if (block[i]) result++;
-        }
-      }
-      return result;
-    }
+    --8<-- "docs/math/code/number-theory/sieve/sieve_3.cpp:core"
     ```
 
 分块筛法的渐近时间复杂度与埃氏筛法是一样的（除非块非常小），但是所需的内存将缩小为 $O(\sqrt{n} + S)$，并且有更好的缓存结果．
@@ -211,53 +126,12 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
 ???+ note "实现"
     === "C++"
         ```cpp
-        vector<int> pri;
-        bool not_prime[N];
-        
-        void pre(int n) {
-          for (int i = 2; i <= n; ++i) {
-            if (!not_prime[i]) {
-              pri.push_back(i);
-            }
-            for (int pri_j : pri) {
-              if (i * pri_j > n) break;
-              not_prime[i * pri_j] = true;
-              if (i % pri_j == 0) {
-                // i % pri_j == 0
-                // 换言之，i 之前被 pri_j 筛过了
-                // 由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定会被
-                // pri_j 的倍数筛掉，就不需要在这里先筛一次，所以这里直接 break
-                // 掉就好了
-                break;
-              }
-            }
-          }
-        }
+        --8<-- "docs/math/code/number-theory/sieve/sieve_4.cpp:core"
         ```
     
     === "Python"
         ```python
-        pri = []
-        not_prime = [False] * N
-        
-        
-        def pre(n):
-            for i in range(2, n + 1):
-                if not not_prime[i]:
-                    pri.append(i)
-                for pri_j in pri:
-                    if i * pri_j > n:
-                        break
-                    not_prime[i * pri_j] = True
-                    if i % pri_j == 0:
-                        """
-                        i % pri_j == 0
-                        换言之，i 之前被 pri_j 筛过了
-                        由于 pri 里面质数是从小到大的，所以 i 乘上其他的质数的结果一定会被
-                        pri_j 的倍数筛掉，就不需要在这里先筛一次，所以这里直接 break
-                        掉就好了
-                        """
-                        break
+        --8<-- "docs/math/code/number-theory/sieve/sieve_4.py:core"
         ```
 
 上面的这种 **线性筛法** 也称为 **Euler 筛法**（欧拉筛法）．
@@ -294,51 +168,12 @@ $$
 
 === "C++"
     ```cpp
-    vector<int> pri;
-    bool not_prime[N];
-    int phi[N];
-    
-    void pre(int n) {
-      phi[1] = 1;
-      for (int i = 2; i <= n; i++) {
-        if (!not_prime[i]) {
-          pri.push_back(i);
-          phi[i] = i - 1;
-        }
-        for (int pri_j : pri) {
-          if (i * pri_j > n) break;
-          not_prime[i * pri_j] = true;
-          if (i % pri_j == 0) {
-            phi[i * pri_j] = phi[i] * pri_j;
-            break;
-          }
-          phi[i * pri_j] = phi[i] * phi[pri_j];
-        }
-      }
-    }
+    --8<-- "docs/math/code/number-theory/sieve/sieve_5.cpp:core"
     ```
 
 === "Python"
     ```python
-    pri = []
-    not_prime = [False] * N
-    phi = [0] * N
-    
-    
-    def pre(n):
-        phi[1] = 1
-        for i in range(2, n + 1):
-            if not not_prime[i]:
-                pri.append(i)
-                phi[i] = i - 1
-            for pri_j in pri:
-                if i * pri_j > n:
-                    break
-                not_prime[i * pri_j] = True
-                if i % pri_j == 0:
-                    phi[i * pri_j] = phi[i] * pri_j
-                    break
-                phi[i * pri_j] = phi[i] * phi[pri_j]
+    --8<-- "docs/math/code/number-theory/sieve/sieve_5.py:core"
     ```
 
 ## 筛法求莫比乌斯函数
@@ -361,51 +196,12 @@ $$
 
 === "C++"
     ```cpp
-    vector<int> pri;
-    bool not_prime[N];
-    int mu[N];
-    
-    void pre(int n) {
-      mu[1] = 1;
-      for (int i = 2; i <= n; ++i) {
-        if (!not_prime[i]) {
-          mu[i] = -1;
-          pri.push_back(i);
-        }
-        for (int pri_j : pri) {
-          if (i * pri_j > n) break;
-          not_prime[i * pri_j] = true;
-          if (i % pri_j == 0) {
-            mu[i * pri_j] = 0;
-            break;
-          }
-          mu[i * pri_j] = -mu[i];
-        }
-      }
-    }
+    --8<-- "docs/math/code/number-theory/sieve/sieve_6.cpp:core"
     ```
 
 === "Python"
     ```python
-    pri = []
-    not_prime = [False] * N
-    mu = [0] * N
-    
-    
-    def pre(n):
-        mu[1] = 1
-        for i in range(2, n + 1):
-            if not not_prime[i]:
-                pri.append(i)
-                mu[i] = -1
-            for pri_j in pri:
-                if i * pri_j > n:
-                    break
-                not_prime[i * pri_j] = True
-                if i % pri_j == 0:
-                    mu[i * pri_j] = 0
-                    break
-                mu[i * pri_j] = -mu[i]
+    --8<-- "docs/math/code/number-theory/sieve/sieve_6.py:core"
     ```
 
 ## 筛法求约数个数
@@ -430,58 +226,12 @@ $$
 
 === "C++"
     ```cpp
-    vector<int> pri;
-    bool not_prime[N];
-    int d[N], num[N];
-    
-    void pre(int n) {
-      d[1] = 1;
-      for (int i = 2; i <= n; ++i) {
-        if (!not_prime[i]) {
-          pri.push_back(i);
-          d[i] = 2;
-          num[i] = 1;
-        }
-        for (int pri_j : pri) {
-          if (i * pri_j > n) break;
-          not_prime[i * pri_j] = true;
-          if (i % pri_j == 0) {
-            num[i * pri_j] = num[i] + 1;
-            d[i * pri_j] = d[i] / num[i * pri_j] * (num[i * pri_j] + 1);
-            break;
-          }
-          num[i * pri_j] = 1;
-          d[i * pri_j] = d[i] * 2;
-        }
-      }
-    }
+    --8<-- "docs/math/code/number-theory/sieve/sieve_7.cpp:core"
     ```
 
 === "Python"
     ```python
-    pri = []
-    not_prime = [False] * N
-    d = [0] * N
-    num = [0] * N
-    
-    
-    def pre(n):
-        d[1] = 1
-        for i in range(2, n + 1):
-            if not not_prime[i]:
-                pri.append(i)
-                d[i] = 2
-                num[i] = 1
-            for pri_j in pri:
-                if i * pri_j > n:
-                    break
-                not_prime[i * pri_j] = True
-                if i % pri_j == 0:
-                    num[i * pri_j] = num[i] + 1
-                    d[i * pri_j] = d[i] // num[i * pri_j] * (num[i * pri_j] + 1)
-                    break
-                num[i * pri_j] = 1
-                d[i * pri_j] = d[i] * 2
+    --8<-- "docs/math/code/number-theory/sieve/sieve_7.py:core"
     ```
 
 ## 筛法求约数和
@@ -492,58 +242,12 @@ $f_i$ 表示 $i$ 的约数和，$g_i$ 表示 $i$ 的最小质因子的 $p^0+p^1+
 
 === "C++"
     ```cpp
-    vector<int> pri;
-    bool not_prime[N];
-    int g[N], f[N];
-    
-    void pre(int n) {
-      g[1] = f[1] = 1;
-      for (int i = 2; i <= n; ++i) {
-        if (!not_prime[i]) {
-          pri.push_back(i);
-          g[i] = i + 1;
-          f[i] = i + 1;
-        }
-        for (int pri_j : pri) {
-          if (i * pri_j > n) break;
-          not_prime[i * pri_j] = true;
-          if (i % pri_j == 0) {
-            g[i * pri_j] = g[i] * pri_j + 1;
-            f[i * pri_j] = f[i] / g[i] * g[i * pri_j];
-            break;
-          }
-          f[i * pri_j] = f[i] * f[pri_j];
-          g[i * pri_j] = 1 + pri_j;
-        }
-      }
-    }
+    --8<-- "docs/math/code/number-theory/sieve/sieve_8.cpp:core"
     ```
 
 === "Python"
     ```python
-    pri = []
-    not_prime = [False] * N
-    f = [0] * N
-    g = [0] * N
-    
-    
-    def pre(n):
-        g[1] = f[1] = 1
-        for i in range(2, n + 1):
-            if not not_prime[i]:
-                pri.append(i)
-                g[i] = i + 1
-                f[i] = i + 1
-            for pri_j in pri:
-                if i * pri_j > n:
-                    break
-                not_prime[i * pri_j] = True
-                if i % pri_j == 0:
-                    g[i * pri_j] = g[i] * pri_j + 1
-                    f[i * pri_j] = f[i] // g[i] * g[i * pri_j]
-                    break
-                f[i * pri_j] = f[i] * f[pri_j]
-                g[i * pri_j] = 1 + pri_j
+    --8<-- "docs/math/code/number-theory/sieve/sieve_8.py:core"
     ```
 
 ## 一般的积性函数

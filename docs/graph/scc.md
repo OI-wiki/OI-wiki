@@ -93,71 +93,12 @@ Tarjan 算法基于对图进行 [深度优先搜索](./dfs.md)．我们视每个
 
 === "C++"
     ```cpp
-    int dfn[N], low[N], dfncnt, s[N], in_stack[N], tp;
-    int scc[N], sc;  // 结点 i 所在 SCC 的编号
-    int sz[N];       // 强连通 i 的大小
-    
-    void tarjan(int u) {
-      low[u] = dfn[u] = ++dfncnt, s[++tp] = u, in_stack[u] = 1;
-      for (int i = h[u]; i; i = e[i].nex) {
-        const int &v = e[i].t;
-        if (!dfn[v]) {
-          tarjan(v);
-          low[u] = min(low[u], low[v]);
-        } else if (in_stack[v]) {
-          low[u] = min(low[u], dfn[v]);
-        }
-      }
-      if (dfn[u] == low[u]) {
-        ++sc;
-        do {
-          scc[s[tp]] = sc;
-          sz[sc]++;
-          in_stack[s[tp]] = 0;
-        } while (s[tp--] != u);
-      }
-    }
+    --8<-- "docs/graph/code/scc/scc_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    dfn = [0] * N
-    low = [0] * N
-    dfncnt = 0
-    s = [0] * N
-    in_stack = [0] * N
-    tp = 0
-    scc = [0] * N
-    sc = 0  # 结点 i 所在 SCC 的编号
-    sz = [0] * N  # 强连通 i 的大小
-    
-    
-    def tarjan(u):
-        low[u] = dfn[u] = dfncnt
-        s[tp] = u
-        in_stack[u] = 1
-        dfncnt = dfncnt + 1
-        tp = tp + 1
-        i = h[u]
-        while i:
-            v = e[i].t
-            if dfn[v] == False:
-                tarjan(v)
-                low[u] = min(low[u], low[v])
-            elif in_stack[v]:
-                low[u] = min(low[u], dfn[v])
-            i = e[i].nex
-        if dfn[u] == low[u]:
-            sc = sc + 1
-            while s[tp] != u:
-                scc[s[tp]] = sc
-                sz[sc] = sz[sc] + 1
-                in_stack[s[tp]] = 0
-                tp = tp - 1
-            scc[s[tp]] = sc
-            sz[sc] = sz[sc] + 1
-            in_stack[s[tp]] = 0
-            tp = tp - 1
+    --8<-- "docs/graph/code/scc/scc_1.py:core"
     ```
 
 时间复杂度 $O(n + m)$．
@@ -190,68 +131,12 @@ Kosaraju 算法最早在 1978 年由 S. Rao Kosaraju 在一篇未发表的论文
 
 === "C++"
     ```cpp
-    // g 是原图，g2 是反图
-    
-    void dfs1(int u) {
-      vis[u] = true;
-      for (int v : g[u])
-        if (!vis[v]) dfs1(v);
-      s.push_back(u);
-    }
-    
-    void dfs2(int u) {
-      color[u] = sccCnt;
-      for (int v : g2[u])
-        if (!color[v]) dfs2(v);
-    }
-    
-    void kosaraju() {
-      sccCnt = 0;
-      for (int i = 1; i <= n; ++i)
-        if (!vis[i]) dfs1(i);
-      for (int i = n - 1; i >= 0; --i)
-        if (!color[s[i]]) {
-          ++sccCnt;
-          dfs2(s[i]);
-        }
-    }
+    --8<-- "docs/graph/code/scc/scc_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    # g 是原图，g2 是反图
-    N = 100005
-    vis = [False] * N
-    color = [0] * N
-    s = []  # 后序遍历
-    sccCnt = 0
-    
-    
-    def dfs1(u):
-        vis[u] = True
-        for v in g[u]:
-            if not vis[v]:
-                dfs1(v)
-        s.append(u)
-    
-    
-    def dfs2(u):
-        color[u] = sccCnt
-        for v in g2[u]:
-            if color[v] == 0:
-                dfs2(v)
-    
-    
-    def kosaraju():
-        global sccCnt
-        sccCnt = 0
-        for i in range(1, n + 1):
-            if not vis[i]:
-                dfs1(i)
-        for i in range(len(s) - 1, -1, -1):
-            if color[s[i]] == 0:
-                sccCnt = sccCnt + 1
-                dfs2(s[i])
+    --8<-- "docs/graph/code/scc/scc_2.py:core"
     ```
 
 ## Garbow 算法
@@ -266,71 +151,12 @@ Garbow 算法是 Tarjan 算法的另一种实现，Tarjan 算法是用 dfn 和 l
 
 === "C++"
     ```cpp
-    int garbow(int u) {
-      stack1[++p1] = u;
-      stack2[++p2] = u;
-      low[u] = ++dfs_clock;
-      for (int i = head[u]; i; i = e[i].next) {
-        int v = e[i].to;
-        if (!low[v])
-          garbow(v);
-        else if (!sccno[v])
-          while (low[stack2[p2]] > low[v]) p2--;
-      }
-      if (stack2[p2] == u) {
-        p2--;
-        scc_cnt++;
-        do {
-          sccno[stack1[p1]] = scc_cnt;
-          // all_scc[scc_cnt] ++;
-        } while (stack1[p1--] != u);
-      }
-      return 0;
-    }
-    
-    void find_scc(int n) {
-      dfs_clock = scc_cnt = 0;
-      p1 = p2 = 0;
-      memset(sccno, 0, sizeof(sccno));
-      memset(low, 0, sizeof(low));
-      for (int i = 1; i <= n; i++)
-        if (!low[i]) garbow(i);
-    }
+    --8<-- "docs/graph/code/scc/scc_3.cpp:core"
     ```
 
 === "Python"
     ```python
-    def garbow(u):
-        stack1[p1] = u
-        stack2[p2] = u
-        p1 = p1 + 1
-        p2 = p2 + 1
-        low[u] = dfs_clock
-        dfs_clock = dfs_clock + 1
-        i = head[u]
-        while i:
-            v = e[i].to
-            if low[v] == False:
-                garbow(v)
-            elif sccno[v] == False:
-                while low[stack2[p2]] > low[v]:
-                    p2 = p2 - 1
-        if stack2[p2] == u:
-            p2 = p2 - 1
-            scc_cnt = scc_cnt + 1
-            while stack1[p1] != u:
-                p1 = p1 - 1
-                sccno[stack1[p1]] = scc_cnt
-    
-    
-    def find_scc(n):
-        dfs_clock = scc_cnt = 0
-        p1 = p2 = 0
-        sccno = []
-        low = []
-        for i in range(1, n + 1):
-            if low[i] == False:
-                garbow(i)
+    --8<-- "docs/graph/code/scc/scc_3.py:core"
     ```
 
 ## 应用

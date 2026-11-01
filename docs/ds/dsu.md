@@ -23,18 +23,13 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ???+ example "实现"
     === "C++"
         ```cpp
-        struct dsu {
-          vector<size_t> pa;
-        
-          explicit dsu(size_t size) : pa(size) { iota(pa.begin(), pa.end(), 0); }
-        };
+        --8<-- "docs/ds/code/dsu/dsu_1.cpp:example28"
+        --8<-- "docs/ds/code/dsu/dsu_1.cpp:example28-tail"
         ```
     
     === "Python"
         ```python
-        class Dsu:
-            def __init__(self, size):
-                self.pa = list(range(size))
+        --8<-- "docs/ds/code/dsu/dsu_1.py:example29"
         ```
 
 ## 查询
@@ -46,13 +41,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ???+ example "实现"
     === "C++"
         ```cpp
-        size_t dsu::find(size_t x) { return pa[x] == x ? x : find(pa[x]); }
+        --8<-- "docs/ds/code/dsu/dsu_1.cpp:example30"
         ```
     
     === "Python"
         ```python
-        def find(self, x):
-            return x if self.pa[x] == x else self.find(self.pa[x])
+        --8<-- "docs/ds/code/dsu/dsu_1.py:example31"
         ```
 
 ### 路径压缩
@@ -64,15 +58,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ???+ example "实现"
     === "C++"
         ```cpp
-        size_t dsu::find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
+        --8<-- "docs/ds/code/dsu/dsu_2.cpp:example32"
         ```
     
     === "Python"
         ```python
-        def find(self, x):
-            if self.pa[x] != x:
-                self.pa[x] = self.find(self.pa[x])
-            return self.pa[x]
+        --8<-- "docs/ds/code/dsu/dsu_2.py:example33"
         ```
 
 ## 合并
@@ -84,13 +75,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ???+ example "实现"
     === "C++"
         ```cpp
-        void dsu::unite(size_t x, size_t y) { pa[find(x)] = find(y); }
+        --8<-- "docs/ds/code/dsu/dsu_1.cpp:example34"
         ```
     
     === "Python"
         ```python
-        def unite(self, x, y):
-            self.pa[self.find(x)] = self.find(y)
+        --8<-- "docs/ds/code/dsu/dsu_1.py:example35"
         ```
 
 ### 启发式合并
@@ -111,38 +101,13 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ???+ example "实现"
     === "C++"
         ```cpp
-        struct dsu {
-          vector<size_t> pa, size;
-        
-          explicit dsu(size_t size_) : pa(size_), size(size_, 1) {
-            iota(pa.begin(), pa.end(), 0);
-          }
-        
-          void unite(size_t x, size_t y) {
-            x = find(x), y = find(y);
-            if (x == y) return;
-            if (size[x] < size[y]) swap(x, y);
-            pa[y] = x;
-            size[x] += size[y];
-          }
-        };
+        --8<-- "docs/ds/code/dsu/dsu_3.cpp:example36"
+        --8<-- "docs/ds/code/dsu/dsu_3.cpp:example36-tail"
         ```
     
     === "Python"
         ```python
-        class Dsu:
-            def __init__(self, size):
-                self.pa = list(range(size))
-                self.size = [1] * size
-        
-            def unite(self, x, y):
-                x, y = self.find(x), self.find(y)
-                if x == y:
-                    return
-                if self.size[x] < self.size[y]:
-                    x, y = y, x
-                self.pa[y] = x
-                self.size[x] += self.size[y]
+        --8<-- "docs/ds/code/dsu/dsu_3.py:example37"
         ```
 
 ## 参考实现
@@ -152,12 +117,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ??? example "模板题 [Luogu P3367【模板】并查集](https://www.luogu.com.cn/problem/P3367) 参考实现"
     === "C++"
         ```cpp
-        --8<-- "docs/ds/code/dsu/dsu_0.cpp"
+        --8<-- "docs/ds/code/dsu/dsu_4.cpp"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/ds/code/dsu/dsu_0.py"
+        --8<-- "docs/ds/code/dsu/dsu_4.py"
         ```
 
 ## 复杂度
@@ -186,12 +151,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ??? example "模板题 [SPOJ JMFILTER - Junk-Mail Filter](https://www.spoj.com/problems/JMFILTER/) 参考实现"
     === "C++"
         ```cpp
-        --8<-- "docs/ds/code/dsu/dsu_4.cpp"
+        --8<-- "docs/ds/code/dsu/dsu_5.cpp"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/ds/code/dsu/dsu_4.py"
+        --8<-- "docs/ds/code/dsu/dsu_5.py"
         ```
 
 类似的方法还可以用于实现在集合间移动单个元素．实现细节详见例题．
@@ -205,12 +170,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ??? example "模板题 [Library Checker - Unionfind with Potential](https://judge.yosupo.jp/problem/unionfind_with_potential) 参考实现"
     === "C++"
         ```cpp
-        --8<-- "docs/ds/code/dsu/dsu_5.cpp"
+        --8<-- "docs/ds/code/dsu/dsu_6.cpp"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/ds/code/dsu/dsu_5.py"
+        --8<-- "docs/ds/code/dsu/dsu_6.py"
         ```
 
 ## 例题
@@ -230,12 +195,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ??? note "参考实现"
     === "C++"
         ```cpp
-        --8<-- "docs/ds/code/dsu/dsu_1.cpp"
+        --8<-- "docs/ds/code/dsu/dsu_7.cpp"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/ds/code/dsu/dsu_1.py"
+        --8<-- "docs/ds/code/dsu/dsu_7.py"
         ```
 
 ???+ example "[Luogu P2024「NOI2011」食物链](https://www.luogu.com.cn/problem/P2024)"
@@ -264,12 +229,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ??? note "参考实现一"
     === "C++"
         ```cpp
-        --8<-- "docs/ds/code/dsu/dsu_6.cpp"
+        --8<-- "docs/ds/code/dsu/dsu_8.cpp"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/ds/code/dsu/dsu_6.py"
+        --8<-- "docs/ds/code/dsu/dsu_8.py"
         ```
 
 ??? note "解答二"
@@ -294,12 +259,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ??? note "参考实现二"
     === "C++"
         ```cpp
-        --8<-- "docs/ds/code/dsu/dsu_2.cpp"
+        --8<-- "docs/ds/code/dsu/dsu_9.cpp"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/ds/code/dsu/dsu_2.py"
+        --8<-- "docs/ds/code/dsu/dsu_9.py"
         ```
 
 ???+ example "[ABC396E Min of Restricted Sum](https://atcoder.jp/contests/abc396/tasks/abc396_e)"
@@ -317,12 +282,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 ??? note "参考实现"
     === "C++"
         ```cpp
-        --8<-- "docs/ds/code/dsu/dsu_3.cpp"
+        --8<-- "docs/ds/code/dsu/dsu_10.cpp"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/ds/code/dsu/dsu_3.py"
+        --8<-- "docs/ds/code/dsu/dsu_10.py"
         ```
 
 ## 习题

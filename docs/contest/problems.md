@@ -132,15 +132,10 @@ STDIO 交互的一个明显优势在于它可以支持任何编程语言，但�
 题目很经典，但是在绝大多数 OJ 上都很难实现．
 
 ??? note "参考代码"
-    **注意**：源代码不包含下方第一行（即 `// clang-format off`）．
+    **注意**：此程序的空白和换行也是输出的一部分，不要格式化．
     
     ```cpp
-    // clang-format off
-    #include<cstdio>
-    
-    char *s={"#include<cstdio>%cchar *s={%c%s%c};%cint main(){printf(s,10,34,s,34,10);return 0;}"};
-    
-    int main(){printf(s,10,34,s,34,10);return 0;}
+    --8<-- "docs/contest/code/problems/problems_1.cpp"
     ```
 
 ## 参考资料与注释

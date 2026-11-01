@@ -59,11 +59,7 @@
     实现的时候我们将输入的两个数用一个结构体来保存并重载运算符：
     
     ```cpp
-    struct uv {
-      int a, b;
-    
-      bool operator<(const uv& x) const { return 1LL * a * b < 1LL * x.a * x.b; }
-    };
+    --8<-- "docs/basic/code/greedy/greedy_1.cpp:core"
     ```
 
 ### 后悔解法
@@ -82,12 +78,12 @@
 ??? note "参考代码"
     === "C++"
         ```cpp
-        --8<-- "docs/basic/code/greedy/greedy_1.cpp"
+        --8<-- "docs/basic/code/greedy/greedy_2.cpp"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/basic/code/greedy/greedy_1.py"
+        --8<-- "docs/basic/code/greedy/greedy_2.py"
         ```
 
 ??? note "复杂度分析"

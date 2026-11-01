@@ -99,7 +99,7 @@ $$
 
 ??? example "模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
     ```cpp
-    --8<-- "docs/math/code/euclidean/euclidean-0.cpp:full-text"
+    --8<-- "docs/math/code/euclidean/euclidean-1.cpp:full-text"
     ```
 
 ### 几何直观
@@ -215,7 +215,7 @@ $$
     本题的另一个特点是，$g$ 和 $h$ 在递归计算时，会相互交错．因此，需要将 $(f,g,h)$ 作为三元组同时递归．
     
     ```cpp
-    --8<-- "docs/math/code/euclidean/euclidean-1.cpp"
+    --8<-- "docs/math/code/euclidean/euclidean-2.cpp"
     ```
 
 ???+ example "[\[清华集训 2014\] Sum](https://www.luogu.com.cn/problem/P5172)"
@@ -298,7 +298,7 @@ $$
     尽管斜率不会变为零，算法的复杂度仍然是 $O(\log n)$ 的，这一点从前文关于算法复杂度的论证容易看出．
     
     ```cpp
-    --8<-- "docs/math/code/euclidean/euclidean-2.cpp"
+    --8<-- "docs/math/code/euclidean/euclidean-3.cpp"
     ```
 
 ???+ example "[Fraction](https://www.luogu.com.cn/problem/P5179)"
@@ -324,7 +324,7 @@ $$
     因此，$r/q$ 无论按照哪个字典序都严格小于当前解．这与所设条件矛盾．因此，上述算法是正确的．
     
     ```cpp
-    --8<-- "docs/math/code/euclidean/euclidean-3.cpp"
+    --8<-- "docs/math/code/euclidean/euclidean-4.cpp"
     ```
 
 ## 万能欧几里得算法
@@ -531,14 +531,14 @@ $$
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/euclidean/euclidean-4.cpp:euclidean"
+    --8<-- "docs/math/code/euclidean/euclidean-5.cpp:euclidean"
     ```
 
 利用万能欧几里得算法可以得到模板题的实现如下：
 
 ??? example "模板题实现（[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)）"
     ```cpp
-    --8<-- "docs/math/code/euclidean/euclidean-4.cpp:full-text"
+    --8<-- "docs/math/code/euclidean/euclidean-5.cpp:full-text"
     ```
 
 ### 例题
@@ -636,7 +636,7 @@ $$
     只要维护好所有更低幂次的贡献，就可以计算一般情形的和式．
     
     ```cpp
-    --8<-- "docs/math/code/euclidean/euclidean-5.cpp"
+    --8<-- "docs/math/code/euclidean/euclidean-6.cpp"
     ```
 
 ???+ example "[\[清华集训 2014\] Sum](https://www.luogu.com.cn/problem/P5172)"
@@ -691,7 +691,7 @@ $$
     和类欧几里得算法的情形一致，算法的复杂度仍然是 $O(\log n)$ 的．
     
     ```cpp
-    --8<-- "docs/math/code/euclidean/euclidean-6.cpp"
+    --8<-- "docs/math/code/euclidean/euclidean-7.cpp"
     ```
 
 ## 习题

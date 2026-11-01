@@ -38,6 +38,7 @@ void insert(char s[]) {
   tr[u].cnt++;
 }
 
+// --8<-- [start:build]
 void build() {
   queue<int> q;
   for (int i = 0; i < 26; i++)
@@ -57,6 +58,9 @@ void build() {
   }
 }
 
+// --8<-- [end:build]
+
+// --8<-- [start:query]
 int query(char t[]) {
   int u = 0, res = 0;
   for (int i = 1; t[i]; i++) {
@@ -67,6 +71,9 @@ int query(char t[]) {
   }
   return res;
 }
+
+// --8<-- [end:query]
+
 }  // namespace AC
 
 char s[LEN];

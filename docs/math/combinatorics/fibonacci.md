@@ -112,16 +112,7 @@ $$
 于是可以通过这样的方法快速计算两个相邻的斐波那契数（常数比矩乘小）．代码如下，返回值是一个二元组 $(F_n,F_{n+1})$．
 
 ```cpp
-pair<int, int> fib(int n) {
-  if (n == 0) return {0, 1};
-  auto p = fib(n >> 1);
-  int c = p.first * (2 * p.second - p.first);
-  int d = p.first * p.first + p.second * p.second;
-  if (n & 1)
-    return {d, c + d};
-  else
-    return {c, d};
-}
+--8<-- "docs/math/code/combinatorics/fibonacci/fibonacci_1.cpp:core"
 ```
 
 ## 性质

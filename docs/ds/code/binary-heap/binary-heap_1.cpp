@@ -1,40 +1,64 @@
+#include <algorithm>
+#include <cstddef>
 #include <iostream>
-#include <queue>
+#include <numeric>
+#include <vector>
 using namespace std;
 
-int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  int t, x;
-  cin >> t;
-  while (t--) {
-    // 大根堆，维护前一半元素（存小值）
-    priority_queue<int, vector<int>, less<int>> a;
-    // 小根堆，维护后一半元素（存大值）
-    priority_queue<int, vector<int>, greater<int>> b;
-    while (cin >> x, x) {
-      // 若为查询并删除操作，输出并删除大根堆堆顶元素
-      // 因为这题要求输出中位数中较小者（偶数个数字会存在两个中位数候选）
-      // 这个和上面的第k大讲解有稍许出入，但如果理解了上面的，这个稍微变通下便可理清
-      if (x == -1) {
-        cout << a.top() << '\n';
-        a.pop();
-      }
-      // 若为插入操作，根据大根堆堆顶的元素值，选择合适的堆进行插入
-      else {
-        if (a.empty() || x <= a.top())
-          a.push(x);
-        else
-          b.push(x);
-      }
-      // 对对顶堆进行调整
-      if (a.size() > (a.size() + b.size() + 1) / 2) {
-        b.push(a.top());
-        a.pop();
-      } else if (a.size() < (a.size() + b.size() + 1) / 2) {
-        a.push(b.top());
-        b.pop();
-      }
-    }
+int n, i, t;
+vector<int> h;
+
+// --8<-- [start:example4]
+void up(int x) {
+  while (x > 1 && h[x] > h[x / 2]) {
+    std::swap(h[x], h[x / 2]);
+    x /= 2;
   }
-  return 0;
+}
+
+void down(int x) {
+  while (x * 2 <= n) {
+    t = x * 2;
+    if (t + 1 <= n && h[t + 1] > h[t]) t++;
+    if (h[t] <= h[x]) break;
+    std::swap(h[x], h[t]);
+    x = t;
+  }
+}
+
+// --8<-- [end:example4]
+// --8<-- [start:example5]
+void build_heap_1() {
+  for (i = 1; i <= n; i++) up(i);
+}
+
+// --8<-- [end:example5]
+// --8<-- [start:example6]
+void build_heap_2() {
+  for (i = n; i >= 1; i--) down(i);
+}
+
+// --8<-- [end:example6]
+
+int main() {
+  cin >> n;
+  h.resize(n + 1);
+  for (int j = 1; j <= n; ++j) cin >> h[j];
+  const vector<int> initial = h;
+  for (int method = 0; method < 2; ++method) {
+    h = initial;
+    n = static_cast<int>(h.size()) - 1;
+    if (method == 0)
+      build_heap_1();
+    else
+      build_heap_2();
+    bool first = true;
+    while (n) {
+      cout << (first ? "" : " ") << h[1];
+      first = false;
+      h[1] = h[n--];
+      down(1);
+    }
+    cout << '\n';
+  }
 }

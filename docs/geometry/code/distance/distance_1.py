@@ -1,0 +1,12 @@
+minx = float("inf")
+maxx = -float("inf")
+miny = float("inf")
+maxy = -float("inf")
+n = int(input())
+for i in range(1, n + 1):
+    x, y = map(lambda x: int(x), input().split())
+    minx = min(minx, x + y)
+    maxx = max(maxx, x + y)
+    miny = min(miny, x - y)
+    maxy = max(maxy, x - y)
+print(max(maxx - minx, maxy - miny))

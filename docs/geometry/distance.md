@@ -130,37 +130,12 @@ $$
 ??? note "参考代码"
     === "C++"
         ```cpp
-        #include <algorithm>
-        #include <cstdio>
-        using namespace std;
-        
-        int main() {
-          int n, x, y, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
-          scanf("%d", &n);
-          for (int i = 1; i <= n; i++) {
-            scanf("%d%d", &x, &y);
-            minx = min(minx, x + y), maxx = max(maxx, x + y);
-            miny = min(miny, x - y), maxy = max(maxy, x - y);
-          }
-          printf("%d\n", max(maxx - minx, maxy - miny));
-          return 0;
-        }
+        --8<-- "docs/geometry/code/distance/distance_1.cpp"
         ```
     
     === "Python"
         ```python
-        minx = 0x7FFFFFFF
-        maxx = 0
-        miny = 0x7FFFFFFF
-        maxy = 0
-        n = int(input())
-        for i in range(1, n + 1):
-            x, y = map(lambda x: int(x), input().split())
-            minx = min(minx, x + y)
-            maxx = max(maxx, x + y)
-            miny = min(miny, x - y)
-            maxy = max(maxy, x - y)
-        print(max(maxx - minx, maxy - miny))
+        --8<-- "docs/geometry/code/distance/distance_1.py"
         ```
 
 其实还有第二种做法，那就是把曼哈顿距离转化为切比雪夫距离求解，最后部分会讲到．
@@ -305,40 +280,12 @@ $$
 ??? note "参考代码"
     === "C++"
         ```cpp
-        #include <algorithm>
-        #include <cstdio>
-        using namespace std;
-        
-        int main() {
-          int n, x, y, a, b, minx = 0x7fffffff, maxx = 0, miny = 0x7fffffff, maxy = 0;
-          scanf("%d", &n);
-          for (int i = 1; i <= n; i++) {
-            scanf("%d%d", &a, &b);
-            x = a + b, y = a - b;
-            minx = min(minx, x), maxx = max(maxx, x);
-            miny = min(miny, y), maxy = max(maxy, y);
-          }
-          printf("%d\n", max(maxx - minx, maxy - miny));
-          return 0;
-        }
+        --8<-- "docs/geometry/code/distance/distance_2.cpp"
         ```
     
     === "Python"
         ```python
-        minx = 0x7FFFFFFF
-        maxx = 0
-        miny = 0x7FFFFFFF
-        maxy = 0
-        n = int(input())
-        for i in range(1, n + 1):
-            a, b = map(lambda x: int(x), input().split())
-            x = a + b
-            y = a - b
-            minx = min(minx, x)
-            maxx = max(maxx, x)
-            miny = min(miny, y)
-            maxy = max(maxy, y)
-        print(max(maxx - minx, maxy - miny))
+        --8<-- "docs/geometry/code/distance/distance_2.py"
         ```
 
 对比两份代码，我们又能够发现，两种不同的思路，写出来的代码却是完全等价的，是不是很神奇呢？当然，更高深的东西需要大家另行研究．

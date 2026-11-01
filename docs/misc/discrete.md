@@ -27,14 +27,7 @@ author: GavinZhengOI, PlanariaIce
 4.  查找原数组的每一个元素在副本中的位置，位置即为排名，将其作为离散化后的值．
 
 ```cpp
-// arr[i] 为初始数组,下标范围为 [1, n]
-
-for (int i = 1; i <= n; ++i)  // step 1
-  tmp[i] = arr[i];
-std::sort(tmp + 1, tmp + n + 1);                          // step 2
-int len = std::unique(tmp + 1, tmp + n + 1) - (tmp + 1);  // step 3
-for (int i = 1; i <= n; ++i)                              // step 4
-  arr[i] = std::lower_bound(tmp + 1, tmp + len + 1, arr[i]) - tmp;
+--8<-- "docs/misc/code/discrete/discrete_1.cpp:core"
 ```
 
 参考实现中使用的 STL 算法可参考 [STL 算法](../lang/csl/algorithm.md)．
@@ -42,12 +35,7 @@ for (int i = 1; i <= n; ++i)                              // step 4
 同样地，我们也可以对 [std::vector](../lang/csl/sequence-container.md#vector) 进行离散化：
 
 ```cpp
-// std::vector<int> arr;
-std::vector<int> tmp(arr);  // tmp 是 arr 的一个副本
-std::sort(tmp.begin(), tmp.end());
-tmp.erase(std::unique(tmp.begin(), tmp.end()), tmp.end());
-for (int i = 0; i < n; ++i)
-  arr[i] = std::lower_bound(tmp.begin(), tmp.end(), arr[i]) - tmp.begin();
+--8<-- "docs/misc/code/discrete/discrete_2.cpp:core"
 ```
 
 ### 方法二
@@ -63,19 +51,7 @@ for (int i = 0; i < n; ++i)
 3.  将离散化后的数字放回原数组．
 
 ```cpp
-struct Data {
-  int idx, val;
-
-  bool operator<(const Data& o) const {
-    if (val == o.val)
-      return idx < o.idx;  // 当值相同时，先出现的元素离散化后的值更小
-    return val < o.val;
-  }
-} tmp[MAXN];  // 也可以使用 std::pair
-
-for (int i = 1; i <= n; ++i) tmp[i] = Data{i, arr[i]};
-std::sort(tmp + 1, tmp + n + 1);
-for (int i = 1; i <= n; ++i) arr[tmp[i].idx] = i;
+--8<-- "docs/misc/code/discrete/discrete_3.cpp:core"
 ```
 
 ### 复杂度

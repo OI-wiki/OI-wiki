@@ -190,20 +190,7 @@ $A\subsetneqq B$ 当且仅当 $|A|+1\le |B|$．
 问题转化为判断是否存在 $y$，满足 $nxt_y=x$ 且 $|N(x)|+1\le |N(y)|$．时间复杂度 $O(n+m)$．
 
 ```cpp
-for (int i = 1; i <= n; i++) {
-  cur = 0;
-  for (vector<int>::iterator it = G[p[i]].begin(); it != G[p[i]].end(); it++)
-    if (rnk[p[i]] < rnk[*it]) {
-      s[++cur] = *it;
-      if (rnk[s[cur]] < rnk[s[1]]) swap(s[1], s[cur]);
-    }
-  fst[p[i]] = s[1];
-  N[p[i]] = cur;
-}
-for (int i = 1; i <= n; i++) {
-  if (!vis[p[i]]) ans++;
-  if (N[p[i]] >= N[fst[p[i]]] + 1) vis[fst[p[i]]] = true;
-}
+--8<-- "docs/graph/code/chord/chord_2.cpp:core"
 ```
 
 ## 弦图的色数/弦图的团数
@@ -215,7 +202,7 @@ for (int i = 1; i <= n; i++) {
 无需染色方案，只需求出弦图的色数/团数时，可以取 $|\{x\}+N(x)|$ 的最大值得到．
 
 ```cpp
-for (int i = 1; i <= n; i++) ans = max(ans, deg[i] + 1);
+--8<-- "docs/graph/code/chord/chord_3.cpp:core"
 ```
 
 ## 弦图的最大独立集/最小团覆盖
@@ -227,12 +214,7 @@ for (int i = 1; i <= n; i++) ans = max(ans, deg[i] + 1);
 正确性证明：设以上方案独立集数和团覆盖数为 $t$，由定义得 $t\le \alpha(G),t\ge \kappa(G)$，由 **Lemma 2** 得，$\alpha(G)\le \kappa(G)$，所以 $t=\alpha(G)=\kappa(G)$．
 
 ```cpp
-for (int i = 1; i <= n; i++)
-  if (!vis[p[i]]) {
-    ans++;
-    for (vector<int>::iterator it = G[p[i]].begin(); it != G[p[i]].end(); it++)
-      vis[*it] = true;
-  }
+--8<-- "docs/graph/code/chord/chord_4.cpp:core"
 ```
 
 ## 习题

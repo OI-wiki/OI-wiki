@@ -1,38 +1,57 @@
+#include <algorithm>
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
-// Merge sort and count inversions.
-long long merge_sort(std::vector<int>& nums, int b, int e) {
-  // Return 0 when length <= 1.
-  if (e - b <= 1) return 0;
-  long long res = 0;
-  int m = (b + e) / 2;
-  // Merge_sort two halves.
-  res += merge_sort(nums, b, m);
-  res += merge_sort(nums, m, e);
-  // Temporary vector to store sorted array.
-  std::vector<int> tmp(e - b);
-  int i = b, j = m, k = 0;
-  while (i < m && j < e) {
-    if (nums[j] < nums[i]) {
-      tmp[k] = nums[j++];
-      // In this case, all elements in [i,m) are larger than element j.
-      res += m - i;
-    } else {
-      tmp[k] = nums[i++];
+// A simple BIT implementation.
+class BIT {
+  int n;
+  std::vector<int> su;
+
+ public:
+  BIT(int n) : n(n), su(n + 1) {}
+
+  // Add v to the x-th number.
+  void add(int x, int v) {
+    for (; x <= n; x += x & (-x)) {
+      su[x] += v;
     }
-    ++k;
   }
-  // Deal with remaining elements.
-  for (; i < m; ++i, ++k) {
-    tmp[k] = nums[i];
+
+  // Get the cumulative sum till the x-th number.
+  int query(int x) {
+    int res = 0;
+    for (; x; x &= x - 1) {
+      res += su[x];
+    }
+    return res;
   }
-  for (; j < e; ++j, ++k) {
-    tmp[k] = nums[j];
+};
+
+// Count inversions.
+long long solve(const std::vector<int>& nums) {
+  // Discretization.
+  std::vector<int> sorted(nums);
+  std::sort(sorted.begin(), sorted.end());
+  sorted.erase(std::unique(sorted.begin(), sorted.end()), sorted.end());
+  std::unordered_map<int, int> ids;
+  int m = sorted.size();
+  for (int i = 0; i < m; ++i) {
+    // Reverse the order.
+    // Now a smaller id means a larger element.
+    ids[sorted[i]] = m - i;
   }
-  // Copy back to original vector.
-  for (i = b, k = 0; i < e; ++i, ++k) {
-    nums[i] = tmp[k];
+  // Main part.
+  BIT bit(m);
+  long long res = 0;
+  for (int num : nums) {
+    int id = ids[num];
+    // Get inversion pair (i,j) with j the current element.
+    // Namely, count the number of elements larger than
+    //     the current one but located before it.
+    res += bit.query(id - 1);
+    // Insert the current element to the BIT.
+    bit.add(id, 1);
   }
   return res;
 }
@@ -44,6 +63,6 @@ int main() {
   for (int& num : nums) {
     std::cin >> num;
   }
-  std::cout << merge_sort(nums, 0, n);
+  std::cout << solve(nums);
   return 0;
 }

@@ -18,14 +18,18 @@ struct Node {
   }
 } t[N];
 
+// --8<-- [start:example94]
 int merge(int x, int y) {
-  if (!x || !y) return x | y;
-  if (t[x].val > t[y].val) swap(x, y);
-  t[x].rs = merge(t[x].rs, y);
-  if (t[t[x].rs].d > t[t[x].ls].d) swap(t[x].ls, t[x].rs);
-  t[x].d = t[t[x].rs].d + 1;
+  if (!x || !y) return x | y;  // 若一个堆为空则返回另一个堆
+  if (t[x].val > t[y].val) swap(x, y);  // 取值较小的作为根
+  t[x].rs = merge(t[x].rs, y);          // 递归合并右儿子与另一个堆
+  if (t[t[x].rs].d > t[t[x].ls].d)
+    swap(t[x].ls, t[x].rs);   // 若不满足左偏性质则交换左右儿子
+  t[x].d = t[t[x].rs].d + 1;  // 更新dist
   return x;
 }
+
+// --8<-- [end:example94]
 
 int f[N];
 

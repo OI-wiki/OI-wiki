@@ -26,37 +26,12 @@ $$
 
 === "C++"
     ```cpp
-    int k = 0, i = 0, j = 1;
-    while (k < n && i < n && j < n) {
-      if (sec[(i + k) % n] == sec[(j + k) % n]) {
-        ++k;
-      } else {
-        if (sec[(i + k) % n] > sec[(j + k) % n])
-          ++i;
-        else
-          ++j;
-        k = 0;
-        if (i == j) i++;
-      }
-    }
-    i = min(i, j);
+    --8<-- "docs/string/code/minimal-string/minimal-string_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    k, i, j = 0, 0, 1
-    while k < n and i < n and j < n:
-        if sec[(i + k) % n] == sec[(j + k) % n]:
-            k += 1
-        else:
-            if sec[(i + k) % n] > sec[(j + k) % n]:
-                i += 1
-            else:
-                j += 1
-            k = 0
-            if i == j:
-                i += 1
-    i = min(i, j)
+    --8<-- "docs/string/code/minimal-string/minimal-string_1.py:core"
     ```
 
 ### 解释
@@ -98,32 +73,10 @@ $O(n)$
 
 === "C++"
     ```cpp
-    int k = 0, i = 0, j = 1;
-    while (k < n && i < n && j < n) {
-      if (sec[(i + k) % n] == sec[(j + k) % n]) {
-        k++;
-      } else {
-        sec[(i + k) % n] > sec[(j + k) % n] ? i = i + k + 1 : j = j + k + 1;
-        if (i == j) i++;
-        k = 0;
-      }
-    }
-    i = min(i, j);
+    --8<-- "docs/string/code/minimal-string/minimal-string_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    k, i, j = 0, 0, 1
-    while k < n and i < n and j < n:
-        if sec[(i + k) % n] == sec[(j + k) % n]:
-            k += 1
-        else:
-            if sec[(i + k) % n] > sec[(j + k) % n]:
-                i = i + k + 1
-            else:
-                j = j + k + 1
-            if i == j:
-                i += 1
-            k = 0
-    i = min(i, j)
+    --8<-- "docs/string/code/minimal-string/minimal-string_2.py:core"
     ```

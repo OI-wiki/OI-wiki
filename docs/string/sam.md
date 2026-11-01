@@ -318,64 +318,26 @@ SAM 最简单、也最重要的性质是，它包含关于字符串 $s$ 的所�
 首先，我们实现一种存储一个转移的全部信息的数据结构．如果需要的话，你可以在这里加入一个终止标记，也可以是一些其它信息．我们将用一个 `map` 存储转移的列表，允许我们在总计 $O(n)$ 的空间复杂度和 $O(n\log\left|\Sigma\right|)$ 的时间复杂度内处理整个字符串．当然，在字符集大小 $\left|\Sigma\right|=K$ 为较小的常数（比如 26）时，将 `next` 声明为 `int[K]` 更方便．
 
 ```cpp
-struct state {
-  int len, link;
-  std::map<char, int> next;
-};
+--8<-- "docs/string/code/sam/sam_1.cpp:state"
 ```
 
 SAM 本身将会存储在一个 `state` 结构体数组中．我们记录当前自动机的大小 `sz` 和变量 `last`，当前整个字符串对应的状态．
 
 ```cpp
-constexpr int MAXLEN = 100000;
-state st[MAXLEN * 2];
-int sz, last;
+--8<-- "docs/string/code/sam/sam_1.cpp:storage"
 ```
 
 我们定义一个函数来初始化 SAM（创建一个只有初始状态的 SAM）．
 
 ```cpp
-void sam_init() {
-  for (int i = 0; i < sz; i++) st[i].next.clear();
-  st[0].len = 0;
-  st[0].link = -1;
-  sz = 1;
-  last = 0;
-}
+--8<-- "docs/string/code/sam/sam_1.cpp:init"
 ```
 
 最终我们给出主函数的实现：给当前字符串末尾增加一个字符，对应地在之前的基础上建造自动机．
 
 ???+ note "实现"
     ```cpp
-    void sam_extend(char c) {
-      int cur = sz++;
-      st[cur].len = st[last].len + 1;
-      int p = last;
-      while (p != -1 && !st[p].next.count(c)) {
-        st[p].next[c] = cur;
-        p = st[p].link;
-      }
-      if (p == -1) {
-        st[cur].link = 0;
-      } else {
-        int q = st[p].next[c];
-        if (st[p].len + 1 == st[q].len) {
-          st[cur].link = q;
-        } else {
-          int clone = sz++;
-          st[clone].len = st[p].len + 1;
-          st[clone].next = st[q].next;
-          st[clone].link = st[q].link;
-          while (p != -1 && st[p].next[c] == q) {
-            st[p].next[c] = clone;
-            p = st[p].link;
-          }
-          st[q].link = st[cur].link = clone;
-        }
-      }
-      last = cur;
-    }
+    --8<-- "docs/string/code/sam/sam_1.cpp:extend"
     ```
 
 正如之前提到的一样，如果你用内存换时间（空间复杂度为 $O(n\left|\Sigma\right|)$，其中 $\left|\Sigma\right|$ 为字符集大小），你可以在 $O(n)$ 的时间[^time-complexity]内构造字符集大小任意的 SAM．但是这样你需要为每一个状态储存一个大小为 $\left|\Sigma\right|$ 的数组（用于快速根据字符找到相应的转移）以及一个包含所有可用转移的列表（用于快速遍历所有可用的转移）．
@@ -625,21 +587,10 @@ void sam_init() {
     以下是大致的实现：
     
     ```cpp
-    struct state {
-      bool is_clone;
-      int first_pos;
-      std::vector<int> inv_link;
-      // some other variables
-    };
-    
-    // 在构造 SAM 后
-    for (int v = 1; v < sz; v++) st[st[v].link].inv_link.push_back(v);
-    
-    // 输出所有出现位置
-    void output_all_occurrences(int v, int P_length) {
-      if (!st[v].is_clone) cout << st[v].first_pos - P_length + 1 << endl;
-      for (int u : st[v].inv_link) output_all_occurrences(u, P_length);
-    }
+    --8<-- "docs/string/code/sam/sam_2.cpp:state-prefix"
+    --8<-- "docs/string/code/sam/sam_2.cpp:state-suffix"
+    --8<-- "docs/string/code/sam/sam_2.cpp:inverse-links"
+    --8<-- "docs/string/code/sam/sam_2.cpp:occurrences"
     ```
 
 ### 最短的没有出现的字符串
@@ -693,28 +644,7 @@ void sam_init() {
     代码实现：
     
     ```cpp
-    string lcs(const string &S, const string &T) {
-      sam_init();
-      for (int i = 0; i < S.size(); i++) sam_extend(S[i]);
-    
-      int v = 0, l = 0, best = 0, bestpos = 0;
-      for (int i = 0; i < T.size(); i++) {
-        while (v && !st[v].next.count(T[i])) {
-          v = st[v].link;
-          l = st[v].len;
-        }
-        if (st[v].next.count(T[i])) {
-          v = st[v].next[T[i]];
-          l++;
-        }
-        if (l > best) {
-          best = l;
-          bestpos = i;
-        }
-      }
-      if (best == 0) return "";
-      return T.substr(bestpos - best + 1, best);
-    }
+    --8<-- "docs/string/code/sam/sam_3.cpp:lcs"
     ```
 
 例题：[SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/)

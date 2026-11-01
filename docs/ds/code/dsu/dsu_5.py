@@ -1,52 +1,53 @@
-M = 998244353
+# 此代码仅作示意，因超时无法通过原题
+class Dsu:
+    def __init__(self, size, m):
+        self.id = size * 2
+        # 令 i 指向虚点 i + size_，所有虚点指向它自身
+        self.pa = list(range(size, size * 2)) + list(range(size, size * 2 + m))
+        # size 的前半段其实没有使用，只是为了让下标计算更简单
+        self.size = [1] * (size * 2 + m)
 
+    def find(self, x):
+        if self.pa[x] != x:
+            self.pa[x] = self.find(self.pa[x])
+        return self.pa[x]
 
-class DSU:
-    def __init__(self, size: int):
-        self.pa = list(range(size))
-        self.size = [1] * size
-        self.dist = [0] * size
-
-    def find(self, x: int) -> int:
-        if self.pa[x] == x:
-            return x
-        y = self.find(self.pa[x])
-        self.dist[x] = (self.dist[x] + self.dist[self.pa[x]]) % M
-        self.pa[x] = y
-        return y
-
-    def unite(self, x: int, y: int, d: int) -> bool:
-        self.find(x)
-        self.find(y)
-        d = (d + M - self.dist[y]) % M
-        d = (d + self.dist[x]) % M
-        x, y = self.pa[x], self.pa[y]
+    def unite(self, x, y):
+        x, y = self.find(x), self.find(y)
         if x == y:
-            return d == 0
+            return
         if self.size[x] < self.size[y]:
             x, y = y, x
-            d = (M - d) % M
         self.pa[y] = x
         self.size[x] += self.size[y]
-        self.dist[y] = d
-        return True
 
-    def check(self, x: int, y: int) -> int:
-        self.find(x)
-        self.find(y)
-        if self.pa[x] != self.pa[y]:
-            return -1
-        return (self.dist[y] - self.dist[x] + M) % M
+    def erase(self, x):
+        y = self.find(x)
+        self.size[y] -= 1
+        self.pa[x] = self.id
+        self.id += 1
 
 
 if __name__ == "__main__":
-    n, m = map(int, input().split())
-    dsu = DSU(n)
-    for _ in range(m):
-        op, *rest = map(int, input().split())
-        if op:
-            u, v = rest
-            print(dsu.check(u, v))
-        else:
-            u, v, x = rest
-            print(int(dsu.unite(u, v, x)))
+    case_id = 0
+    while True:
+        n, m = map(int, input().split())
+        if not n:
+            break
+        dsu = Dsu(n, m)
+        for _ in range(m):
+            op = input().split()
+            if op[0] == "M":
+                x = int(op[1])
+                y = int(op[2])
+                dsu.unite(x, y)
+            elif op[0] == "S":
+                x = int(op[1])
+                dsu.erase(x)
+        res = 0
+        for i in range(n, dsu.id):
+            if dsu.size[i] and i == dsu.find(i):
+                res += 1
+        case_id += 1
+        print(f"Case #{case_id}: {res}")
+        input()

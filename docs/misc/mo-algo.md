@@ -15,22 +15,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 ## 实现
 
 ```cpp
-void move(int pos, int sign) {
-  // update nowAns
-}
-
-void solve() {
-  BLOCK_SIZE = int(ceil(pow(n, 0.5)));
-  sort(queries, queries + m);
-  for (int i = 0; i < m; ++i) {
-    const query &q = queries[i];
-    while (l > q.l) move(--l, 1);
-    while (r < q.r) move(++r, 1);
-    while (l < q.l) move(l++, -1);
-    while (r > q.r) move(r--, -1);
-    ans[q.id] = nowAns;
-  }
-}
+--8<-- "docs/misc/code/mo-algo/mo-algo_1.cpp:core"
 ```
 
 ## 复杂度分析
@@ -153,7 +138,7 @@ void solve() {
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/misc/code/mo-algo/mo-algo_1.cpp"
+    --8<-- "docs/misc/code/mo-algo/mo-algo_2.cpp"
     ```
 
 ## 普通莫队的优化
@@ -180,29 +165,12 @@ void solve() {
 
 === "压行"
     ```cpp
-    // clang-format off
-    // 这里有个小细节等下会讲
-    int unit; // 块的大小
-    struct node {
-      int l, r, id;
-      bool operator < (const node &x) const {
-        return l / unit == x.l / unit ? (r == x.r ? 0 : ((l / unit) & 1) ^ (r < x.r)) : l < x.l;
-      }
-    };
+    --8<-- "docs/misc/code/mo-algo/mo-algo_3.cpp:comparator"
     ```
 
 === "不压行"
     ```cpp
-    struct node {
-      int l, r, id;
-    
-      bool operator<(const node &x) const {
-        if (l / unit != x.l / unit) return l < x.l;
-        // 注意下面两行不能写小于（大于）等于，否则会出错（详见下面的小细节）
-        if ((l / unit) & 1) return r < x.r;
-        return r > x.r;
-      }
-    };
+    --8<-- "docs/misc/code/mo-algo/mo-algo_4.cpp:comparator"
     ```
 
 ???+ warning "小细节"

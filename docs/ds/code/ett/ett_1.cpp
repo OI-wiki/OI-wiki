@@ -1,159 +1,450 @@
-/*
-虽然上文提到过块状链表实现 ETT
-在某些情况下可能较简单，但对于此题块状链表复杂度有可能无法通过而且实现较繁琐，所以这份代码采用
-FHQ Treap 实现。
-*/
+#include <cassert>
+#include <cstdint>
+#include <functional>
 #include <iostream>
+#include <map>
+#include <random>
+#include <sstream>
+#include <string>
+#include <tuple>
+#include <utility>
 #include <vector>
-constexpr int N = 1000000;
-using namespace std;
-/*FHQ TREAP*/
-long long rt, tot, f[N], rnd[N], ls[N], rs[N], siz[N], tag[N], val[N], sum[N],
-    pd[N], pds[N];
 
-void pushup(long long x) {
-  siz[x] = siz[ls[x]] + siz[rs[x]] + 1;
-  sum[x] = sum[ls[x]] + sum[rs[x]] + val[x];
-  pds[x] = pds[ls[x]] + pds[rs[x]] + pd[x];
-}
+using i64 = int64_t;
+using u64 = uint64_t;
 
-void link(long long x, long long c, long long y) {
-  if (c)
-    rs[x] = y;
-  else
-    ls[x] = y;
-  if (y) f[y] = x;
-  pushup(x);
-}
+void solve_case(int);
 
-long long newNode(long long x, long long y) {
-  siz[++tot] = 1;
-  val[tot] = sum[tot] = x;
-  pd[tot] = pds[tot] = y;
-  rnd[tot] = rand();
-  return tot;
-}
-
-void setTag(long long x, long long v) {
-  tag[x] += v;
-  sum[x] += v * pds[x];
-  val[x] += v * pd[x];
-}
-
-void pushdown(long long x) {
-  if (ls[x]) setTag(ls[x], tag[x]);
-  if (rs[x]) setTag(rs[x], tag[x]);
-  tag[x] = 0;
-}
-
-void split(long long now, long long k, long long &x, long long &y) {
-  f[now] = 0;
-  if (!now) {
-    x = y = 0;
-    return;
-  }
-  pushdown(now);
-  if (siz[ls[now]] + 1 <= k) {
-    x = now;
-    split(rs[now], k - siz[ls[now]] - 1, rs[x], y);
-    link(x, 1, rs[x]);
-  } else {
-    y = now;
-    split(ls[now], k, x, ls[y]);
-    link(y, 0, ls[y]);
-  }
-}
-
-long long merge(long long x, long long y) {
-  if (!x || !y) return x | y;
-  if (rnd[x] < rnd[y]) {
-    pushdown(x);
-    link(x, 1, merge(rs[x], y));
-    return x;
-  } else {
-    pushdown(y);
-    link(y, 0, merge(x, ls[y]));
-    return y;
-  }
-}
-
-long long rnk(long long x) {
-  long long c = 1, ans = 0;
-  while (x) {
-    if (c) ans += siz[ls[x]] + 1;
-    c = (rs[f[x]] == x);
-    x = f[x];
-  }
-  return ans;
-}
-
-/*ETT*/
-long long s[N], e[N];
-
-void add(long long x, long long v) {
-  long long a, b, c;
-  split(rt, rnk(s[x]) - 1, a, b);
-  split(b, rnk(e[x]) - rnk(s[x]) + 1, b,
-        c);  // 这里 b 是我们要进行操作的子树的括号序列。
-  setTag(b, v);
-  rt = merge(merge(a, b), c);
-}
-
-long long query(long long x) {
-  long long a, b;
-  split(rt, rnk(s[x]), a, b);
-  long long ans = sum[a];
-  rt = merge(a, b);
-  return ans;
-}
-
-void changeFa(long long x, long long y) {
-  long long a, b, c, d;
-  split(rt, rnk(s[x]) - 1, a, b);
-  split(b, rnk(e[x]) - rnk(s[x]) + 1, b, c);
-  a = merge(
-      a,
-      c);  // 因为我们确定不了要设置为父亲的节点在括号序列中的哪边，所以先把两边合并。
-  split(a, rnk(s[y]), a, d);
-  rt = merge(merge(a, b), d);  // 把要进行操作的子树放在父亲括号序列的最前面。
-}
-
-/*main function*/
-long long n, m, w[N];
-vector<long long> v[N];
-
-void dfs(long long x) {
-  rt = merge(rt, s[x] = newNode(w[x], 1));
-  for (auto to : v[x]) dfs(to);
-  rt = merge(rt, e[x] = newNode(-w[x], -1));
-}
-
-signed main() {
-  cin >> n;
-  for (long long i = 2; i <= n; i++) {
-    long long f;
-    cin >> f;
-    v[f].push_back(i);
-  }
-  for (long long i = 1; i <= n; i++) cin >> w[i];
-  dfs(1);
-  cin >> m;
-  for (long long i = 1; i <= m; i++) {
-    char c;
-    cin >> c;
-    if (c == 'Q') {
-      long long d;
-      cin >> d;
-      cout << query(d) << endl;
-    } else if (c == 'C') {
-      long long x, y;
-      cin >> x >> y;
-      changeFa(x, y);
-    } else {
-      long long p, q;
-      cin >> p >> q;
-      add(p, q);
-    }
+int main() {
+  std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
+  int T = 1;
+  // std::cin >> T;
+  for (int t = 1; t <= T; ++t) {
+    solve_case(t);
   }
   return 0;
+}
+
+/**
+ * Dynamic Forest Maintained With Euler Tour Tree.
+ *
+ * As said in reference, link and cut operation of dynamic trees can be
+ * transformed into sequence split and sequence merge operation, which can be
+ * easily maintained using balanced search trees like Treap.
+ *
+ * @reference: Dynamic trees as search trees via euler tours, applied to the
+ * network simplex algorithm by Robert E. Tarjan.
+ * https://link.springer.com/article/10.1007/BF02614369
+ */
+class DynamicForest {
+ private:
+  static std::mt19937 rng_;
+
+  struct Node {
+    int size_;
+    int priority_;
+
+    Node* left_;
+    Node* right_;
+    Node* parent_;
+
+    int from_;
+    int to_;
+
+    Node(int from, int to)
+        : size_(1),
+          priority_(rng_()),
+          left_(nullptr),
+          right_(nullptr),
+          parent_(nullptr),
+          from_(from),
+          to_(to) {}
+
+    void Maintain() {
+      size_ = 1;
+      if (left_) {
+        size_ += left_->size_;
+        left_->parent_ = this;
+      }
+      if (right_) {
+        size_ += right_->size_;
+        right_->parent_ = this;
+      }
+    }
+  };
+
+  static int GetSize(Node* p) { return p == nullptr ? 0 : p->size_; }
+
+  static Node* FindRoot(Node* p) {
+    if (!p) return nullptr;
+
+    while (p->parent_ != nullptr) p = p->parent_;
+    return p;
+  }
+
+  static std::string to_string(Node* p) {
+    std::stringstream ss;
+
+    ss << "Node [\n";
+
+    std::function<void(Node*)> dfs = [&](Node* p) {
+      if (!p) return;
+      dfs(p->left_);
+      ss << "(" << p->from_ << "," << p->to_ << "),";
+      dfs(p->right_);
+    };
+    dfs(p);
+
+    ss << "]\n\n";
+
+    return ss.str();
+  }
+
+  Node* AllocateNode(int u, int v) {
+    Node* p = new Node(u, v);
+    return p;
+  }
+
+  void FreeNode(Node*& p) {
+    if (p) {
+      delete p;
+      p = nullptr;
+    }
+  }
+
+  /*
+   * Dynamic Sequence Maintained using Treap.
+   */
+  class Treap {
+   public:
+    /**
+     * Merge two treap a and b into a single treap, with keys in a less than
+     * keys in b.
+     *
+     * In the other word, concatenating sequence a and sequence b.
+     */
+    static Node* Merge(Node* a, Node* b) {
+      if (a == nullptr) return b;
+      if (b == nullptr) return a;
+
+      if (a->priority_ < b->priority_) {
+        a->right_ = Merge(a->right_, b);
+        a->Maintain();
+        return a;
+      } else {
+        b->left_ = Merge(a, b->left_);
+        b->Maintain();
+        return b;
+      }
+    }
+
+    /**
+     * Get the number of nodes with keys less than or equal to the key of p.
+     *
+     * In the other word, the 1-based index of p inside the sequence
+     * containing p.
+     */
+    static int GetPosition(Node* p) {
+      assert(p != nullptr);
+
+      int position = GetSize(p->left_) + 1;
+      while (p) {
+        if (p->parent_ && p == p->parent_->right_)
+          position += GetSize(p->parent_->left_) + 1;
+        p = p->parent_;
+      }
+      return position;
+    }
+
+    /**
+     * Split sequence containing p into two sequences, the first one contains
+     * the first k elements, the second one contains the remaining elements.
+     */
+    static std::pair<Node*, Node*> Split(Node* p, int k) {
+      if (!p) return {nullptr, nullptr};
+
+      std::pair<Node*, Node*> result;
+
+      if (GetSize(p->left_) < k) {
+        auto right_result = Split(p->right_, k - GetSize(p->left_) - 1);
+        p->right_ = right_result.first;
+
+        result.first = p;
+        result.second = right_result.second;
+      } else {
+        auto left_result = Split(p->left_, k);
+        p->left_ = left_result.second;
+
+        result.first = left_result.first;
+        result.second = p;
+      }
+
+      p->Maintain();
+
+      if (result.first) result.first->parent_ = nullptr;
+
+      if (result.second) result.second->parent_ = nullptr;
+
+      return result;
+    }
+
+    // --8<-- [start:example38]
+    /*
+     * Bottom up split treap p into 2 treaps a and b.
+     *   - a: a treap containing nodes with position less than or equal to p.
+     *   - b: a treap containing nodes with position greater than p.
+     *
+     * In the other word, split sequence containing p into two sequences, the
+     * first one contains elements before p and element p, the second one
+     * contains elements after p.
+     */
+    static std::pair<Node*, Node*> SplitUp2(Node* p) {
+      Node *a = nullptr, *b = nullptr;
+      b = p->right_;
+      if (b) b->parent_ = nullptr;
+      p->right_ = nullptr;
+
+      bool is_p_left_child_of_parent = false;
+      bool is_from_left_child = false;
+      while (p) {
+        Node* parent = p->parent_;
+
+        if (parent) {
+          is_p_left_child_of_parent = (parent->left_ == p);
+          if (is_p_left_child_of_parent) {
+            parent->left_ = nullptr;
+          } else {
+            parent->right_ = nullptr;
+          }
+          p->parent_ = nullptr;
+        }
+
+        if (!is_from_left_child) {
+          a = Merge(p, a);
+        } else {
+          b = Merge(b, p);
+        }
+
+        is_from_left_child = is_p_left_child_of_parent;
+        p->Maintain();
+        p = parent;
+      }
+
+      return {a, b};
+    }
+
+    // --8<-- [end:example38]
+
+    /*
+     * Bottom up split treap p into 3 treaps a, b and c.
+     *   - a: a treap containing nodes with key less than p.
+     *   - b: a treap containing nodes with key greater than p.
+     *   - c: a treap containing nodes with key equal p.
+     *
+     * In the other word, split sequence containing p into three sequences, the
+     * first one contains elements before p, the second one contains element p,
+     * the third one contains elements after p.
+     */
+    static std::tuple<Node*, Node*, Node*> SplitUp3(Node* p) {
+      assert(p != nullptr);
+
+      Node* a = p->left_;
+      if (a) a->parent_ = nullptr;
+      p->left_ = nullptr;
+
+      Node* b = p->right_;
+      if (b) b->parent_ = nullptr;
+      p->right_ = nullptr;
+
+      Node* c = p;
+
+      bool is_p_left_child_of_parent = false;
+      bool is_from_left_child = false;
+      Node* parent = p->parent_;
+      if (parent) {
+        is_p_left_child_of_parent = (parent->left_ == p);
+        if (is_p_left_child_of_parent) {
+          parent->left_ = nullptr;
+        } else {
+          parent->right_ = nullptr;
+        }
+        p->parent_ = nullptr;
+      }
+      is_from_left_child = is_p_left_child_of_parent;
+      p->Maintain();
+      p = parent;
+
+      while (p) {
+        Node* parent = p->parent_;
+
+        if (parent) {
+          is_p_left_child_of_parent = (parent->left_ == p);
+          if (is_p_left_child_of_parent) {
+            parent->left_ = nullptr;
+          } else {
+            parent->right_ = nullptr;
+          }
+          p->parent_ = nullptr;
+        }
+
+        if (!is_from_left_child) {
+          a = Merge(p, a);
+        } else {
+          b = Merge(b, p);
+        }
+
+        is_from_left_child = is_p_left_child_of_parent;
+        p->Maintain();
+        p = parent;
+      }
+
+      return {a, c, b};
+    }
+  };
+
+ public:
+  DynamicForest(int n) : n_(n), vertices_(n_), tree_edges_(n_) {
+    assert(n_ > 0);
+
+    for (int i = 0; i < n_; ++i) vertices_[i] = AllocateNode(i, i);
+  }
+
+  ~DynamicForest() {
+    for (int i = 0; i < n_; ++i) {
+      for (auto p : tree_edges_[i]) {
+        FreeNode(p.second);
+      }
+    }
+    for (int i = 0; i < n_; ++i) {
+      FreeNode(vertices_[i]);
+    }
+  }
+
+  // --8<-- [start:example40]
+  void Insert(int u, int v) {
+    Node* vertex_u = vertices_[u];
+    Node* vertex_v = vertices_[v];
+
+    Node* edge_uv = AllocateNode(u, v);
+    Node* edge_vu = AllocateNode(v, u);
+    tree_edges_[u][v] = edge_uv;
+    tree_edges_[v][u] = edge_vu;
+
+    auto p1 = Treap::SplitUp2(vertex_u);
+    auto p2 = Treap::SplitUp2(vertex_v);
+    auto L11 = p1.first, L12 = p1.second;
+    auto L21 = p2.first, L22 = p2.second;
+
+    Node* L = L12;
+    L = Treap::Merge(L, L11);
+    L = Treap::Merge(L, edge_uv);
+    L = Treap::Merge(L, L22);
+    L = Treap::Merge(L, L21);
+    L = Treap::Merge(L, edge_vu);
+  }
+
+  // --8<-- [end:example40]
+
+  // --8<-- [start:example41]
+  void Delete(int u, int v) {
+    Node* edge_uv = tree_edges_[u][v];
+    Node* edge_vu = tree_edges_[v][u];
+    tree_edges_[u].erase(v);
+    tree_edges_[v].erase(u);
+
+    int position_uv = Treap::GetPosition(edge_uv);
+    int position_vu = Treap::GetPosition(edge_vu);
+    if (position_uv > position_vu) {
+      std::swap(edge_uv, edge_vu);
+      std::swap(position_uv, position_vu);
+    }
+
+    auto p1 = Treap::SplitUp3(edge_uv);
+    auto L1 = std::get<0>(p1), uv = std::get<1>(p1);
+    auto p2 = Treap::SplitUp3(edge_vu);
+    auto L2 = std::get<0>(p2), vu = std::get<1>(p2), L3 = std::get<2>(p2);
+    Treap::Merge(L1, L3);
+
+    FreeNode(edge_uv);
+    FreeNode(edge_vu);
+  }
+
+  // --8<-- [end:example41]
+
+  // --8<-- [start:example39]
+  void MakeRoot(int u) {
+    Node* vertex_u = vertices_[u];
+    auto parts = Treap::SplitUp2(vertex_u);
+    Node *L1 = parts.first, *L2 = parts.second;
+    Treap::Merge(L2, L1);
+  }
+
+  // --8<-- [end:example39]
+
+  bool IsConnected(int u, int v) {
+    Node* vertex_u = vertices_[u];
+    Node* vertex_v = vertices_[v];
+    return FindRoot(vertex_u) == FindRoot(vertex_v);
+  }
+
+  std::string to_string() const {
+    std::stringstream ss;
+
+    ss << "DynamicForest [\n";
+
+    std::function<void(Node*)> dfs = [&](Node* p) {
+      if (!p) return;
+      dfs(p->left_);
+      ss << "(" << p->from_ << "," << p->to_ << "),";
+      dfs(p->right_);
+    };
+    for (int i = 0; i < n_; ++i) {
+      if (vertices_[i]->parent_ == nullptr) {
+        ss << "  Component [";
+        dfs(vertices_[i]);
+        ss << "]\n";
+      }
+    }
+    for (int i = 0; i < n_; ++i) {
+      for (auto p : tree_edges_[i]) {
+        if (p.second->parent_ == nullptr) {
+          ss << "  Component [";
+          dfs(p.second);
+          ss << "]\n";
+        }
+      }
+    }
+
+    ss << "]\n\n";
+
+    return ss.str();
+  }
+
+ private:
+  int n_;
+  std::vector<Node*> vertices_;
+  std::vector<std::map<int, Node*>> tree_edges_;
+};
+
+std::mt19937 DynamicForest::rng_(std::random_device{}());
+
+void solve_case(int) {
+  int n, m;
+  std::cin >> n >> m;
+
+  DynamicForest t(n + 1);
+  std::string op;
+  int u, v;
+  for (int i = 1; i <= m; ++i) {
+    std::cin >> op;
+    std::cin >> u >> v;
+    if (op[0] == 'Q') {
+      std::cout << (t.IsConnected(u, v) ? "Yes" : "No") << "\n";
+    } else if (op[0] == 'C') {
+      t.Insert(u, v);
+      t.MakeRoot(u);
+    } else if (op[0] == 'D') {
+      t.Delete(u, v);
+    }
+  }
 }

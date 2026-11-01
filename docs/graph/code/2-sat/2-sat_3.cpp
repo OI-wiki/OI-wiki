@@ -1,64 +1,93 @@
 #include <algorithm>
-#include <cstdio>
-#include <stack>
+#include <iostream>
 using namespace std;
-const int N = 2e6 + 2;
-int n, m, dfn[N], low[N], t, tot, head[N], a[N];
-bool vis[N];
-stack<int> s;
+constexpr int MAXN = 1e4 + 5;
+constexpr int MAXK = 5005;
 
-struct node {
-  int to, Next;
-} e[N];
+int n, k;
+int id[MAXN][5];
+char s[MAXN][5][5], ans[MAXK];
+bool vis[MAXN];
 
-void adde(int u, int v) {
-  e[++tot].to = v;
-  e[tot].Next = head[u];
-  head[u] = tot;
+struct Edge {
+  int v, nxt;
+} e[MAXN * 100];
+
+int head[MAXN], tot = 1;
+
+void addedge(int u, int v) {
+  e[tot].v = v;
+  e[tot].nxt = head[u];
+  head[u] = tot++;
 }
 
-void Tarjan(int u) {
-  dfn[u] = low[u] = ++t;
-  s.push(u);
-  vis[u] = 1;
-  for (int i = head[u]; i; i = e[i].Next) {
-    int v = e[i].to;
+int dfn[MAXN], low[MAXN], color[MAXN], stk[MAXN], ins[MAXN], top, dfs_clock, c;
+
+void tarjan(int x) {  // tarjan算法求强联通
+  stk[++top] = x;
+  ins[x] = 1;
+  dfn[x] = low[x] = ++dfs_clock;
+  for (int i = head[x]; i; i = e[i].nxt) {
+    int v = e[i].v;
     if (!dfn[v]) {
-      Tarjan(v);
-      low[u] = min(low[u], low[v]);
-    } else if (vis[v])
-      low[u] = min(low[u], dfn[v]);
+      tarjan(v);
+      low[x] = min(low[x], low[v]);
+    } else if (ins[v])
+      low[x] = min(low[x], dfn[v]);
   }
-  if (dfn[u] == low[u]) {
-    int cur;
-    ++tot;
+  if (dfn[x] == low[x]) {
+    c++;
     do {
-      cur = s.top();
-      s.pop();
-      vis[cur] = 0;
-      a[cur] = tot;
-    } while (cur != u);
+      color[stk[top]] = c;
+      ins[stk[top]] = 0;
+    } while (stk[top--] != x);
   }
 }
 
 int main() {
-  scanf("%d%d", &n, &m);
-  for (int i = 1, I, J, A, B; i <= m; i++) {
-    scanf("%d%d%d%d", &I, &A, &J, &B);
-    adde(A ? I + n : I, B ? J : J + n);
-    adde(B ? J + n : J, A ? I : I + n);
-  }
-  tot = 0;
-  for (int i = 1; i <= (n << 1); i++)
-    if (!dfn[i]) Tarjan(i);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> k >> n;
   for (int i = 1; i <= n; i++) {
-    if (a[i] == a[i + n]) {
-      printf("IMPOSSIBLE");
-      return 0;
+    for (int j = 1; j <= 3; j++) cin >> id[i][j] >> s[i][j];
+
+    for (int j = 1; j <= 3; j++) {
+      for (int k = 1; k <= 3; k++) {
+        if (j == k) continue;
+        int u = 2 * id[i][j] - (s[i][j][0] == 'B');
+        int v = 2 * id[i][k] - (s[i][k][0] == 'R');
+        addedge(u, v);
+      }
     }
   }
-  puts("POSSIBLE");
-  for (int i = 1; i <= n; i++)
-    printf("%c%c", a[i] < a[i + n] ? '1' : '0', " \n"[i == n]);
+
+  for (int i = 1; i <= 2 * k; i++)
+    if (!dfn[i]) tarjan(i);
+
+  for (int i = 1; i <= 2 * k; i += 2)
+    if (color[i] == color[i + 1]) {
+      cout << "-1\n";
+      return 0;
+    }
+
+  for (int i = 1; i <= 2 * k; i += 2) {
+    int f1 = color[i], f2 = color[i + 1];
+    if (vis[f1]) {
+      ans[(i + 1) >> 1] = 'R';
+      continue;
+    }
+    if (vis[f2]) {
+      ans[(i + 1) >> 1] = 'B';
+      continue;
+    }
+    if (f1 < f2) {
+      vis[f1] = true;
+      ans[(i + 1) >> 1] = 'R';
+    } else {
+      vis[f2] = true;
+      ans[(i + 1) >> 1] = 'B';
+    }
+  }
+  ans[k + 1] = 0;
+  cout << (ans + 1) << '\n';
   return 0;
 }

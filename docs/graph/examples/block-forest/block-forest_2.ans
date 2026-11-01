@@ -1,2 +1,74 @@
-1
-2
+  Enter : #1
+  Enter : #2
+  Enter : #3
+  Enter : #4
+  Enter : #5
+  Enter : #6
+  Exit : #6 : low = 4
+  Stack:
+    1, 2, 3, 4, 5, 6
+  Exit : #5 : low = 3
+  Stack:
+    1, 2, 3, 4, 5, 6
+  Exit : #4 : low = 3
+  Stack:
+    1, 2, 3, 4, 5, 6
+  Found a New BCC #1.
+    BCC #1 has vertex #6
+    BCC #1 has vertex #5
+    BCC #1 has vertex #4
+    BCC #1 has vertex #3
+  Enter : #7
+  Enter : #8
+  Exit : #8 : low = 3
+  Stack:
+    1, 2, 3, 7, 8
+  Enter : #9
+  Exit : #9 : low = 7
+  Stack:
+    1, 2, 3, 7, 8, 9
+  Found a New BCC #2.
+    BCC #2 has vertex #9
+    BCC #2 has vertex #7
+  Exit : #7 : low = 3
+  Stack:
+    1, 2, 3, 7, 8
+  Found a New BCC #3.
+    BCC #3 has vertex #8
+    BCC #3 has vertex #7
+    BCC #3 has vertex #3
+  Exit : #3 : low = 1
+  Stack:
+    1, 2, 3
+  Exit : #2 : low = 1
+  Stack:
+    1, 2, 3
+  Found a New BCC #4.
+    BCC #4 has vertex #3
+    BCC #4 has vertex #2
+    BCC #4 has vertex #1
+  Exit : #1 : low = 1
+  Stack:
+    1
+  Enter : #10
+  Enter : #11
+  Enter : #12
+  Exit : #12 : low = 11
+  Stack:
+    10, 11, 12
+  Found a New BCC #5.
+    BCC #5 has vertex #12
+    BCC #5 has vertex #11
+  Exit : #11 : low = 10
+  Stack:
+    10, 11
+  Found a New BCC #6.
+    BCC #6 has vertex #11
+    BCC #6 has vertex #10
+  Exit : #10 : low = 10
+  Stack:
+    10
+  Enter : #13
+  Exit : #13 : low = 13
+  Stack:
+    13

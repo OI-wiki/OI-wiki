@@ -46,42 +46,15 @@
 
 ???+ note "实现"
     ```cpp
-    constexpr double eps = 1e-9;
-    
-    int cmp(double x, double y) {  // 因为用到了浮点数，所以会有精度误差
-      if (x - y > eps) return 1;
-      if (y - x > eps) return -1;
-      return 0;
-    }
-    
-    //...
-    
-    void upd(int root, int cl, int cr, int u) {  // 对线段完全覆盖到的区间进行修改
-      int &v = s[root], mid = (cl + cr) >> 1;
-      int bmid = cmp(calc(u, mid), calc(v, mid));
-      if (bmid == 1 || (!bmid && u < v))  // 在此题中记得判线段编号
-        swap(u, v);
-      int bl = cmp(calc(u, cl), calc(v, cl)), br = cmp(calc(u, cr), calc(v, cr));
-      if (bl == 1 || (!bl && u < v)) upd(root << 1, cl, mid, u);
-      if (br == 1 || (!br && u < v)) upd(root << 1 | 1, mid + 1, cr, u);
-      // 上面两个 if 的条件最多只有一个成立，这保证了李超树的时间复杂度
-    }
+    --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp:comparison"
+    --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp:insertion"
     ```
 
 拆分线段：
 
 ???+ note "实现"
     ```cpp
-    void update(int root, int cl, int cr, int l, int r,
-                int u) {  // 定位插入线段完全覆盖到的区间
-      if (l <= cl && cr <= r) {
-        upd(root, cl, cr, u);  // 完全覆盖当前区间，更新当前区间的标记
-        return;
-      }
-      int mid = (cl + cr) >> 1;
-      if (l <= mid) update(root << 1, cl, mid, l, r, u);  // 递归拆分区间
-      if (mid < r) update(root << 1 | 1, mid + 1, cr, l, r, u);
-    }
+    --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp:example100"
     ```
 
 注意懒标记并不等价于在区间中点处取值最大的线段．
@@ -96,21 +69,14 @@
 
 ???+ note "实现"
     ```cpp
-    pdi query(int root, int l, int r, int d) {  // 查询
-      if (r < d || d < l) return {0, 0};
-      int mid = (l + r) >> 1;
-      double res = calc(s[root], d);
-      if (l == r) return {res, s[root]};
-      return pmax({res, s[root]}, pmax(query(root << 1, l, mid, d),
-                                       query(root << 1 | 1, mid + 1, r, d)));
-    }
+    --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp:example101"
     ```
 
 根据上面的描述，查询过程的时间复杂度显然为 $O(\log n)$，而插入过程中，我们需要将原线段拆分到 $O(\log n)$ 个区间中，对于每个区间，我们又需要花费 $O(\log n)$ 的时间递归下传，从而插入过程的时间复杂度为 $O(\log^2 n)$．
 
 ??? note "[\[HEOI2013\]Segment](https://www.luogu.com.cn/problem/P4097) 参考代码"
     ```cpp
-    --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_1.cpp"
+    --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_3.cpp"
     ```
 
 ## 合并
@@ -129,36 +95,7 @@
 
 ???+ note "实现"
     ```cpp
-    void upd(int &root, int cl, int cr,
-             int u) {  // 涉及多棵李超线段树合并，使用动态开点．
-      static int idx = 0;
-      if (!root) {
-        s[root = ++idx] = u;
-        return;
-      }
-      int &v = s[root], mid = (cl + cr) >> 1;
-      int bmid = cmp(calc(u, mid), calc(v, mid));
-      if (bmid == 1 || (!bmid && u < v)) swap(u, v);
-      int bl = cmp(calc(u, cl), calc(v, cl)), br = cmp(calc(u, cr), calc(v, cr));
-      if (bl == 1 || (!bl && u < v)) upd(ls[root], cl, mid, u);
-      if (br == 1 || (!br && u < v)) upd(rs[root], mid + 1, cr, u);
-    }
-    
-    int merge(int &u, int &v, int l, int r) {
-      if (!u || !v) {
-        return u + v;
-      }
-      if (l == r) {
-        int b = cmp(calc(s[v], l), calc(s[u], l));
-        if (b == 1 || (!b && s[v] < s[u])) return v;
-        return u;
-      }
-      upd(u, l, r, s[v]);
-      int mid = (l + r) >> 1;
-      ls[u] = merge(ls[u], ls[v], l, mid);
-      rs[u] = merge(rs[u], rs[v], mid + 1, r);
-      return u;
-    }
+    --8<-- "docs/ds/code/li-chao-tree/li-chao-tree_2.cpp:example102"
     ```
 
 ## 习题

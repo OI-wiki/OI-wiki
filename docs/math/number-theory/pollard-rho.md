@@ -12,33 +12,12 @@
 
 === "C++"
     ```cpp
-    vector<int> breakdown(int N) {
-      vector<int> result;
-      for (int i = 2; i * i <= N; i++) {
-        if (N % i == 0) {  // 如果 i 能够整除 N，说明 i 为 N 的一个质因子．
-          while (N % i == 0) N /= i;
-          result.push_back(i);
-        }
-      }
-      if (N != 1) {  // 说明再经过操作之后 N 留下了一个素数
-        result.push_back(N);
-      }
-      return result;
-    }
+    --8<-- "docs/math/code/pollard-rho/pollard-rho_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    def breakdown(N):
-        result = []
-        for i in range(2, int(sqrt(N)) + 1):
-            if N % i == 0:  # 如果 i 能够整除 N，说明 i 为 N 的一个质因子．
-                while N % i == 0:
-                    N //= i
-                result.append(i)
-        if N != 1:  # 说明再经过操作之后 N 留下了一个素数
-            result.append(N)
-        return result
+    --8<-- "docs/math/code/pollard-rho/pollard-rho_1.py:core"
     ```
 
 我们能够证明 `result` 中的所有元素即为 `N` 的全体素因数．
@@ -148,39 +127,12 @@ $$
 ??? note "基于 Floyd 判环的 Pollard Rho 算法"
     === "C++"
         ```cpp
-        ll Pollard_Rho(ll N) {
-          if (N == 4) return 2;  // 因为一开始跳了两步，所以需要特判一下 4
-          ll c = rand() % (N - 1) + 1;
-          ll t = f(0, c, N);
-          ll r = f(f(0, c, N), c, N);
-          while (t != r) {
-            ll d = gcd(abs(t - r), N);
-            if (d > 1) return d;
-            t = f(t, c, N);
-            r = f(f(r, c, N), c, N);
-          }
-          return N;
-        }
+        --8<-- "docs/math/code/pollard-rho/pollard-rho_2.cpp:core"
         ```
     
     === "Python"
         ```python
-        import random
-        
-        
-        def Pollard_Rho(N):
-            if N == 4:
-                return 2  # 因为一开始跳了两步，所以需要特判一下 4
-            c = random.randint(1, N - 1)
-            t = f(0, c, N)
-            r = f(f(0, c, N), c, N)
-            while t != r:
-                d = gcd(abs(t - r), N)
-                if d > 1:
-                    return d
-                t = f(t, c, N)
-                r = f(f(r, c, N), c, N)
-            return N
+        --8<-- "docs/math/code/pollard-rho/pollard-rho_2.py:core"
         ```
 
 #### Brent 判环
@@ -202,55 +154,12 @@ $$
 ??? note "实现"
     === "C++"
         ```cpp
-        ll Pollard_Rho(ll x) {
-          ll t = 0;
-          ll c = rand() % (x - 1) + 1;
-          ll s = t;
-          int step = 0, goal = 1;
-          ll val = 1;
-          for (goal = 1;; goal <<= 1, s = t, val = 1) {
-            for (step = 1; step <= goal; ++step) {
-              t = f(t, c, x);
-              val = val * abs(t - s) % x;
-              // 如果 val 为 0，退出重新分解
-              if (!val) return x;
-              if (step % 127 == 0) {
-                ll d = gcd(val, x);
-                if (d > 1) return d;
-              }
-            }
-            ll d = gcd(val, x);
-            if (d > 1) return d;
-          }
-        }
+        --8<-- "docs/math/code/pollard-rho/pollard-rho_3.cpp:core"
         ```
     
     === "Python"
         ```python
-        from random import randint
-        from math import gcd
-        
-        
-        def Pollard_Rho(x):
-            c = randint(1, x - 1)
-            s = t = f(0, c, x)
-            goal = val = 1
-            while True:
-                for step in range(1, goal + 1):
-                    t = f(t, c, x)
-                    val = val * abs(t - s) % x
-                    if val == 0:
-                        return x  # 如果 val 为 0，退出重新分解
-                    if step % 127 == 0:
-                        d = gcd(val, x)
-                        if d > 1:
-                            return d
-                d = gcd(val, x)
-                if d > 1:
-                    return d
-                s = t
-                goal <<= 1
-                val = 1
+        --8<-- "docs/math/code/pollard-rho/pollard-rho_3.py:core"
         ```
 
 #### 复杂度
@@ -267,7 +176,7 @@ Pollard Rho 算法中的期望迭代次数为 $O(\sqrt p)$，这里 $p$ 是 $N$ 
 
 ??? note "实现"
     ```cpp
-    --8<-- "docs/math/code/pollard-rho/pollard-rho_1.cpp"
+    --8<-- "docs/math/code/pollard-rho/pollard-rho_4.cpp"
     ```
 
 ## 参考资料与链接

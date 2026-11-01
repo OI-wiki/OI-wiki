@@ -62,35 +62,12 @@ author: iamtwz, Chrogeek, Enter-tainer, StudyingFather, aofall, CCXXXI, Coelacan
 ???+ note "参考实现"
     === "C++"
         ```cpp
-        #include <cmath>
-        
-        int euler_phi(int n) {
-          int ans = n;
-          for (int i = 2; i * i <= n; i++)
-            if (n % i == 0) {
-              ans = ans / i * (i - 1);
-              while (n % i == 0) n /= i;
-            }
-          if (n > 1) ans = ans / n * (n - 1);
-          return ans;
-        }
+        --8<-- "docs/math/code/number-theory/euler-totient/euler-totient_1.cpp:core"
         ```
     
     === "Python"
         ```python
-        import math
-        
-        
-        def euler_phi(n):
-            ans = n
-            for i in range(2, math.isqrt(n) + 1):
-                if n % i == 0:
-                    ans = ans // i * (i - 1)
-                    while n % i == 0:
-                        n = n // i
-            if n > 1:
-                ans = ans // n * (n - 1)
-            return ans
+        --8<-- "docs/math/code/number-theory/euler-totient/euler-totient_1.py:core"
         ```
 
 如果是多个数的欧拉函数值，可以利用后面会提到的线性筛法来求得．

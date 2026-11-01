@@ -51,21 +51,12 @@ author: du33169, lingkerio, Taoran-01
 
 === "C++"
     ```cpp
-    for (k = 1; k <= n; k++) {
-      for (x = 1; x <= n; x++) {
-        for (y = 1; y <= n; y++) {
-          f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y]);
-        }
-      }
-    }
+    --8<-- "docs/graph/code/shortest-path/shortest-path_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    for k in range(1, n + 1):
-        for x in range(1, n + 1):
-            for y in range(1, n + 1):
-                f[k][x][y] = min(f[k - 1][x][y], f[k - 1][x][k] + f[k - 1][k][y])
+    --8<-- "docs/graph/code/shortest-path/shortest-path_1.py:core"
     ```
 
 因为第一维对结果无影响，我们可以发现数组的第一维是可以省略的，于是可以直接改成 `f[x][y] = min(f[x][y], f[x][k]+f[k][y])`．
@@ -77,21 +68,12 @@ author: du33169, lingkerio, Taoran-01
 
 === "C++"
     ```cpp
-    for (k = 1; k <= n; k++) {
-      for (x = 1; x <= n; x++) {
-        for (y = 1; y <= n; y++) {
-          f[x][y] = min(f[x][y], f[x][k] + f[k][y]);
-        }
-      }
-    }
+    --8<-- "docs/graph/code/shortest-path/shortest-path_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    for k in range(1, n + 1):
-        for x in range(1, n + 1):
-            for y in range(1, n + 1):
-                f[x][y] = min(f[x][y], f[x][k] + f[k][y])
+    --8<-- "docs/graph/code/shortest-path/shortest-path_2.py:core"
     ```
 
 综上时间复杂度是 $O(N^3)$，空间复杂度是 $O(N^2)$．
@@ -123,10 +105,7 @@ author: du33169, lingkerio, Taoran-01
     再进一步用 bitset 优化，复杂度可以到 $O(\frac{n^3}{w})$．
     
     ```cpp
-    // std::bitset<SIZE> f[SIZE];
-    for (k = 1; k <= n; k++)
-      for (i = 1; i <= n; i++)
-        if (f[i][k]) f[i] = f[i] | f[k];
+    --8<-- "docs/graph/code/shortest-path/shortest-path_3.cpp:core"
     ```
 
 ## Bellman–Ford 算法
@@ -161,73 +140,12 @@ Bellman–Ford 算法所做的，就是不断尝试对图上每一条边进行�
 ??? note "参考实现"
     === "C++"
         ```cpp
-        struct Edge {
-          int u, v, w;
-        };
-        
-        vector<Edge> edge;
-        
-        int dis[MAXN], u, v, w;
-        constexpr int INF = 0x3f3f3f3f;
-        
-        bool bellmanford(int n, int s) {
-          memset(dis, 0x3f, (n + 1) * sizeof(int));
-          dis[s] = 0;
-          bool flag = false;  // 判断一轮循环过程中是否发生松弛操作
-          for (int i = 1; i <= n; i++) {
-            flag = false;
-            for (int j = 0; j < edge.size(); j++) {
-              u = edge[j].u, v = edge[j].v, w = edge[j].w;
-              if (dis[u] == INF) continue;
-              // 无穷大与常数加减仍然为无穷大
-              // 因此最短路长度为 INF 的点引出的边不可能发生松弛操作
-              if (dis[v] > dis[u] + w) {
-                dis[v] = dis[u] + w;
-                flag = true;
-              }
-            }
-            // 没有可以松弛的边时就停止算法
-            if (!flag) {
-              break;
-            }
-          }
-          // 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
-          return flag;
-        }
+        --8<-- "docs/graph/code/shortest-path/shortest-path_4.cpp:core"
         ```
     
     === "Python"
         ```python
-        class Edge:
-            def __init__(self, u=0, v=0, w=0):
-                self.u = u
-                self.v = v
-                self.w = w
-        
-        
-        INF = 0x3F3F3F3F
-        edge = []
-        
-        
-        def bellmanford(n, s):
-            dis = [INF] * (n + 1)
-            dis[s] = 0
-            for i in range(1, n + 1):
-                flag = False
-                for e in edge:
-                    u, v, w = e.u, e.v, e.w
-                    if dis[u] == INF:
-                        continue
-                    # 无穷大与常数加减仍然为无穷大
-                    # 因此最短路长度为 INF 的点引出的边不可能发生松弛操作
-                    if dis[v] > dis[u] + w:
-                        dis[v] = dis[u] + w
-                        flag = True
-                # 没有可以松弛的边时就停止算法
-                if not flag:
-                    break
-            # 第 n 轮循环仍然可以松弛时说明 s 点可以抵达一个负环
-            return flag
+        --8<-- "docs/graph/code/shortest-path/shortest-path_4.py:core"
         ```
 
 ### 队列优化：SPFA
@@ -245,76 +163,12 @@ SPFA 也可以用于判断 $s$ 点是否能抵达一个负环，只需记录最�
 ??? note "实现"
     === "C++"
         ```cpp
-        struct edge {
-          int v, w;
-        };
-        
-        vector<edge> e[MAXN];
-        int dis[MAXN], cnt[MAXN], vis[MAXN];
-        queue<int> q;
-        
-        bool spfa(int n, int s) {
-          memset(dis, 0x3f, (n + 1) * sizeof(int));
-          dis[s] = 0, vis[s] = 1;
-          q.push(s);
-          while (!q.empty()) {
-            int u = q.front();
-            q.pop(), vis[u] = 0;
-            for (auto ed : e[u]) {
-              int v = ed.v, w = ed.w;
-              if (dis[v] > dis[u] + w) {
-                dis[v] = dis[u] + w;
-                cnt[v] = cnt[u] + 1;  // 记录最短路经过的边数
-                if (cnt[v] >= n) return false;
-                // 在不经过负环的情况下，最短路至多经过 n - 1 条边
-                // 因此如果经过了多于 n 条边，一定说明经过了负环
-                if (!vis[v]) q.push(v), vis[v] = 1;
-              }
-            }
-          }
-          return true;
-        }
+        --8<-- "docs/graph/code/shortest-path/shortest-path_5.cpp:core"
         ```
     
     === "Python"
         ```python
-        from collections import deque
-        
-        
-        class Edge:
-            def __init__(self, v=0, w=0):
-                self.v = v
-                self.w = w
-        
-        
-        e = [[Edge() for i in range(MAXN)] for j in range(MAXN)]
-        INF = 0x3F3F3F3F
-        
-        
-        def spfa(n, s):
-            dis = [INF] * (n + 1)
-            cnt = [0] * (n + 1)
-            vis = [False] * (n + 1)
-            q = deque()
-        
-            dis[s] = 0
-            vis[s] = True
-            q.append(s)
-            while q:
-                u = q.popleft()
-                vis[u] = False
-                for ed in e[u]:
-                    v, w = ed.v, ed.w
-                    if dis[v] > dis[u] + w:
-                        dis[v] = dis[u] + w
-                        cnt[v] = cnt[u] + 1  # 记录最短路经过的边数
-                        if cnt[v] >= n:
-                            return False
-                        # 在不经过负环的情况下，最短路至多经过 n - 1 条边
-                        # 因此如果经过了多于 n 条边，一定说明经过了负环
-                        if not vis[v]:
-                            q.append(v)
-                            vis[v] = True
+        --8<-- "docs/graph/code/shortest-path/shortest-path_5.py:core"
         ```
 
 虽然在大多数情况下 SPFA 跑得很快，但其最坏情况下的时间复杂度为 $O(nm)$，将其卡到这个复杂度也是不难的，所以考试时要谨慎使用（在没有负权边时最好使用 Dijkstra 算法，在有负权边且题目中的图没有特殊性质时，若 SPFA 是标算的一部分，题目不应当给出 Bellman–Ford 算法无法通过的数据范围）．
@@ -388,122 +242,23 @@ Dijkstra（/ˈdikstrɑ/或/ˈdɛikstrɑ/）算法由荷兰计算机科学家 E. 
 ???+ note "朴素实现"
     === "C++"
         ```cpp
-        struct edge {
-          int v, w;
-        };
-        
-        vector<edge> e[MAXN];
-        int dis[MAXN], vis[MAXN];
-        
-        void dijkstra(int n, int s) {
-          memset(dis, 0x3f, (n + 1) * sizeof(int));
-          dis[s] = 0;
-          for (int i = 1; i <= n; i++) {
-            int u = 0, mind = 0x3f3f3f3f;
-            for (int j = 1; j <= n; j++)
-              if (!vis[j] && dis[j] < mind) u = j, mind = dis[j];
-            vis[u] = true;
-            for (auto ed : e[u]) {
-              int v = ed.v, w = ed.w;
-              if (dis[v] > dis[u] + w) dis[v] = dis[u] + w;
-            }
-          }
-        }
+        --8<-- "docs/graph/code/shortest-path/shortest-path_6.cpp:core"
         ```
     
     === "Python"
         ```python
-        class Edge:
-            def __init__(self, v=0, w=0):
-                self.v = v
-                self.w = w
-        
-        
-        e = [[Edge() for i in range(MAXN)] for j in range(MAXN)]
-        INF = 0x3F3F3F3F
-        
-        
-        def dijkstra(n, s):
-            dis = [INF] * (n + 1)
-            vis = [0] * (n + 1)
-        
-            dis[s] = 0
-            for i in range(1, n + 1):
-                u = 0
-                mind = INF
-                for j in range(1, n + 1):
-                    if not vis[j] and dis[j] < mind:
-                        u = j
-                        mind = dis[j]
-                vis[u] = True
-                for ed in e[u]:
-                    v, w = ed.v, ed.w
-                    if dis[v] > dis[u] + w:
-                        dis[v] = dis[u] + w
+        --8<-- "docs/graph/code/shortest-path/shortest-path_6.py:core"
         ```
 
 ???+ note "优先队列实现"
     === "C++"
         ```cpp
-        struct edge {
-          int v, w;
-        };
-        
-        struct node {
-          int dis, u;
-        
-          bool operator>(const node& a) const { return dis > a.dis; }
-        };
-        
-        vector<edge> e[MAXN];
-        int dis[MAXN], vis[MAXN];
-        priority_queue<node, vector<node>, greater<node>> q;
-        
-        void dijkstra(int n, int s) {
-          memset(dis, 0x3f, (n + 1) * sizeof(int));
-          memset(vis, 0, (n + 1) * sizeof(int));
-          dis[s] = 0;
-          q.push({0, s});
-          while (!q.empty()) {
-            int u = q.top().u;
-            q.pop();
-            if (vis[u]) continue;
-            vis[u] = 1;
-            for (auto ed : e[u]) {
-              int v = ed.v, w = ed.w;
-              if (dis[v] > dis[u] + w) {
-                dis[v] = dis[u] + w;
-                q.push({dis[v], v});
-              }
-            }
-          }
-        }
+        --8<-- "docs/graph/code/shortest-path/shortest-path_7.cpp:core"
         ```
     
     === "Python"
         ```python
-        def dijkstra(e, s):
-            """
-            输入：
-            e:邻接表
-            s:起点
-            返回：
-            dis:从s到每个顶点的最短路长度
-            """
-            dis = defaultdict(lambda: float("inf"))
-            dis[s] = 0
-            q = [(0, s)]
-            vis = set()
-            while q:
-                _, u = heapq.heappop(q)
-                if u in vis:
-                    continue
-                vis.add(u)
-                for v, w in e[u]:
-                    if dis[v] > dis[u] + w:
-                        dis[v] = dis[u] + w
-                        heapq.heappush(q, (dis[v], v))
-            return dis
+        --8<-- "docs/graph/code/shortest-path/shortest-path_7.py:core"
         ```
 
 ## Johnson 全源最短路径算法

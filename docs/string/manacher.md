@@ -43,33 +43,12 @@ $$
 ???+ note "实现"
     === "C++"
         ```cpp
-        vector<int> d1(n), d2(n);
-        for (int i = 0; i < n; i++) {
-          d1[i] = 1;
-          while (0 <= i - d1[i] && i + d1[i] < n && s[i - d1[i]] == s[i + d1[i]]) {
-            d1[i]++;
-          }
-        
-          d2[i] = 0;
-          while (0 <= i - d2[i] - 1 && i + d2[i] < n &&
-                 s[i - d2[i] - 1] == s[i + d2[i]]) {
-            d2[i]++;
-          }
-        }
+        --8<-- "docs/string/code/manacher/manacher_1.cpp:core"
         ```
     
     === "Python"
         ```python
-        d1 = [0] * n
-        d2 = [0] * n
-        for i in range(0, n):
-            d1[i] = 1
-            while 0 <= i - d1[i] and i + d1[i] < n and s[i - d1[i]] == s[i + d1[i]]:
-                d1[i] += 1
-        
-            d2[i] = 0
-            while 0 <= i - d2[i] - 1 and i + d2[i] < n and s[i - d2[i] - 1] == s[i + d2[i]]:
-                d2[i] += 1
+        --8<-- "docs/string/code/manacher/manacher_1.py:core"
         ```
 
 ## Manacher 算法
@@ -150,66 +129,24 @@ Manacher 算法的另一部分显然也是线性的，因此总复杂度为 $O(n
 
 === "C++"
     ```cpp
-    vector<int> d1(n);
-    for (int i = 0, l = 0, r = -1; i < n; i++) {
-      int k = (i > r) ? 1 : min(d1[l + r - i], r - i + 1);
-      while (0 <= i - k && i + k < n && s[i - k] == s[i + k]) {
-        k++;
-      }
-      d1[i] = k--;
-      if (i + k > r) {
-        l = i - k;
-        r = i + k;
-      }
-    }
+    --8<-- "docs/string/code/manacher/manacher_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    d1 = [0] * n
-    l, r = 0, -1
-    for i in range(0, n):
-        k = 1 if i > r else min(d1[l + r - i], r - i + 1)
-        while 0 <= i - k and i + k < n and s[i - k] == s[i + k]:
-            k += 1
-        d1[i] = k
-        k -= 1
-        if i + k > r:
-            l = i - k
-            r = i + k
+    --8<-- "docs/string/code/manacher/manacher_2.py:core"
     ```
 
 计算 $d_2[]$ 的代码十分类似，但是在算术表达式上有些许不同：
 
 === "C++"
     ```cpp
-    vector<int> d2(n);
-    for (int i = 0, l = 0, r = -1; i < n; i++) {
-      int k = (i > r) ? 0 : min(d2[l + r - i + 1], r - i + 1);
-      while (0 <= i - k - 1 && i + k < n && s[i - k - 1] == s[i + k]) {
-        k++;
-      }
-      d2[i] = k--;
-      if (i + k > r) {
-        l = i - k - 1;
-        r = i + k;
-      }
-    }
+    --8<-- "docs/string/code/manacher/manacher_3.cpp:core"
     ```
 
 === "Python"
     ```python
-    d2 = [0] * n
-    l, r = 0, -1
-    for i in range(0, n):
-        k = 0 if i > r else min(d2[l + r - i + 1], r - i + 1)
-        while 0 <= i - k - 1 and i + k < n and s[i - k - 1] == s[i + k]:
-            k += 1
-        d2[i] = k
-        k -= 1
-        if i + k > r:
-            l = i - k - 1
-            r = i + k
+    --8<-- "docs/string/code/manacher/manacher_3.py:core"
     ```
 
 ### 统一处理

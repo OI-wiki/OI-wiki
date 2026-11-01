@@ -66,14 +66,5 @@ $$
 
 === "C++"
     ```cpp
-    void insertion_sort(int arr[], int len) {
-      if (len < 2) return;
-      for (int i = 1; i != len; ++i) {
-        int key = arr[i];
-        auto index = upper_bound(arr, arr + i, key) - arr;
-        // 使用 memmove 移动元素，比使用 for 循环速度更快，时间复杂度仍为 O(n)
-        memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
-        arr[index] = key;
-      }
-    }
+    --8<-- "docs/basic/code/insertion-sort/insertion-sort_2.cpp:core"
     ```

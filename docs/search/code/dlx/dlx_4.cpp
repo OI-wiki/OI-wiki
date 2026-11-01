@@ -1,47 +1,16 @@
+#include <cctype>
 #include <cstring>
 #include <iostream>
-#include <string>
-int numcol, numrow;
-int dfn[3000], tx[2], nxt[2], num[50][50], vis[50];
-std::string ans[50];
-constexpr int f[2] = {-1, 1};
-constexpr int table[12][5][2] = {
-    // directions of shapes
-    {{0, 0}, {1, 0}, {0, 1}},                   // A
-    {{0, 0}, {0, 1}, {0, 2}, {0, 3}},           // B
-    {{0, 0}, {1, 0}, {0, 1}, {0, 2}},           // C
-    {{0, 0}, {1, 0}, {0, 1}, {1, 1}},           // D
-    {{0, 0}, {1, 0}, {2, 0}, {2, 1}, {2, 2}},   // E
-    {{0, 0}, {0, 1}, {1, 1}, {0, 2}, {0, 3}},   // F
-    {{0, 0}, {1, 0}, {0, 1}, {0, 2}, {1, 2}},   // G
-    {{0, 0}, {1, 0}, {0, 1}, {1, 1}, {0, 2}},   // H
-    {{0, 0}, {0, 1}, {0, 2}, {1, 2}, {1, 3}},   // I
-    {{0, 0}, {-1, 1}, {0, 1}, {1, 1}, {0, 2}},  // J
-    {{0, 0}, {1, 0}, {1, 1}, {2, 1}, {2, 2}},   // K
-    {{0, 0}, {1, 0}, {0, 1}, {0, 2}, {0, 3}},   // L
-};
-constexpr int len[12] = {3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5};
-constexpr int getx[] = {
-    0,  1,  2,  2,  3,  3,  3,  4,  4,  4,  4,  5,  5,  5,  5,  5,  6,
-    6,  6,  6,  6,  6,  7,  7,  7,  7,  7,  7,  7,  8,  8,  8,  8,  8,
-    8,  8,  8,  9,  9,  9,  9,  9,  9,  9,  9,  9,  10, 10, 10, 10, 10,
-    10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12,
-    12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13,
-    13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14};
-constexpr int gety[] = {
-    0, 1, 1,  2,  1,  2,  3,  1,  2, 3, 4, 1, 2, 3,  4,  5,  1, 2, 3, 4, 5,
-    6, 1, 2,  3,  4,  5,  6,  7,  1, 2, 3, 4, 5, 6,  7,  8,  1, 2, 3, 4, 5,
-    6, 7, 8,  9,  1,  2,  3,  4,  5, 6, 7, 8, 9, 10, 1,  2,  3, 4, 5, 6, 7,
-    8, 9, 10, 11, 1,  2,  3,  4,  5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5,
-    6, 7, 8,  9,  10, 11, 12, 13, 1, 2, 3, 4, 5, 6,  7,  8,  9};
+constexpr int N = 1e6 + 10;
+int ans[10][10], stk[N];
 
 struct DLX {
-  static constexpr int MS = 1e5 + 10;
-  int n, m, tot, first[MS], siz[MS];
-  int L[MS], R[MS], U[MS], D[MS];
-  int col[MS], row[MS];
+  static constexpr int MAXSIZE = 1e5 + 10;
+  int n, m, tot, first[MAXSIZE + 10], siz[MAXSIZE + 10];
+  int L[MAXSIZE + 10], R[MAXSIZE + 10], U[MAXSIZE + 10], D[MAXSIZE + 10];
+  int col[MAXSIZE + 10], row[MAXSIZE + 10];
 
-  void build(const int &r, const int &c) {
+  void build(const int &r, const int &c) {  // 进行build操作
     n = r, m = c;
     for (int i = 0; i <= c; ++i) {
       L[i] = i - 1, R[i] = i + 1;
@@ -52,17 +21,18 @@ struct DLX {
     memset(siz, 0, sizeof(siz));
   }
 
-  void insert(const int &r, const int &c) {  // insert
+  void insert(const int &r, const int &c) {  // 进行insert操作
     col[++tot] = c, row[tot] = r, ++siz[c];
     D[tot] = D[c], U[D[c]] = tot, U[tot] = c, D[c] = tot;
     if (!first[r])
       first[r] = L[tot] = R[tot] = tot;
-    else
-      R[tot] = R[first[r]], L[R[first[r]]] = tot, L[tot] = first[r],
-      R[first[r]] = tot;  // !
+    else {
+      R[tot] = R[first[r]], L[R[first[r]]] = tot;
+      L[tot] = first[r], R[first[r]] = tot;
+    }
   }
 
-  void remove(const int &c) {  // remove
+  void remove(const int &c) {  // 进行remove操作
     int i, j;
     L[R[c]] = L[c], R[L[c]] = R[c];
     for (i = D[c]; i != c; i = D[i])
@@ -70,26 +40,31 @@ struct DLX {
         U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
   }
 
-  void recover(const int &c) {  // recover
+  void recover(const int &c) {  // 进行recover操作
     int i, j;
     for (i = U[c]; i != c; i = U[i])
       for (j = L[i]; j != i; j = L[j]) U[D[j]] = D[U[j]] = j, ++siz[col[j]];
     L[R[c]] = R[L[c]] = c;
   }
 
-  bool dance() {  // dance
-    if (!R[0]) return true;
+  bool dance(int dep) {  // dance
     int i, j, c = R[0];
+    if (!R[0]) {
+      for (i = 1; i < dep; ++i) {
+        int x = (stk[i] - 1) / 9 / 9 + 1;
+        int y = (stk[i] - 1) / 9 % 9 + 1;
+        int v = (stk[i] - 1) % 9 + 1;
+        ans[x][y] = v;
+      }
+      return true;
+    }
     for (i = R[0]; i != 0; i = R[i])
       if (siz[i] < siz[c]) c = i;
     remove(c);
     for (i = D[c]; i != c; i = D[i]) {
-      if (col[i] <= 55) ans[getx[col[i]]][gety[col[i]]] = dfn[row[i]] + 'A';
-      for (j = R[i]; j != i; j = R[j]) {
-        remove(col[j]);
-        if (col[j] <= 55) ans[getx[col[j]]][gety[col[j]]] = dfn[row[j]] + 'A';
-      }
-      if (dance()) return true;
+      stk[dep] = row[i];
+      for (j = R[i]; j != i; j = R[j]) remove(col[j]);
+      if (dance(dep + 1)) return true;
       for (j = L[i]; j != i; j = L[j]) recover(col[j]);
     }
     recover(c);
@@ -97,73 +72,41 @@ struct DLX {
   }
 } solver;
 
+int GetId(int row, int col, int num) {
+  return (row - 1) * 9 * 9 + (col - 1) * 9 + num;
+}
+
+void Insert(int row, int col, int num) {
+  int dx = (row - 1) / 3 + 1;
+  int dy = (col - 1) / 3 + 1;
+  int room = (dx - 1) * 3 + dy;
+  int id = GetId(row, col, num);
+  int f1 = (row - 1) * 9 + num;            // task 1
+  int f2 = 81 + (col - 1) * 9 + num;       // task 2
+  int f3 = 81 * 2 + (room - 1) * 9 + num;  // task 3
+  int f4 = 81 * 3 + (row - 1) * 9 + col;   // task 4
+  solver.insert(id, f1);
+  solver.insert(id, f2);
+  solver.insert(id, f3);
+  solver.insert(id, f4);
+}
+
 using std::cin;
 using std::cout;
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
-  for (int i = 1; i <= 10; ++i) {
-    cin >> ans[i];
-    ans[i] = " " + ans[i];
-  }
-  for (int i = 1; i <= 10; ++i)
-    for (int j = 1; j <= i; ++j) {
-      if (ans[i][j] != '.') vis[ans[i][j] - 'A'] = 1;
-      num[i][j] = ++numcol;
-    }
-  solver.build(2730, numcol + 12);
-  /*******build*******/
-  for (int id = 0, op; id < 12; ++id) {  // every block
-    for (++numcol, op = 0; op <= 1; ++op) {
-      for (int dx = 0; dx <= 1; ++dx) {
-        for (int dy = 0; dy <= 1; ++dy) {
-          for (tx[0] = 1; tx[0] <= 10; ++tx[0]) {
-            for (tx[1] = 1; tx[1] <= tx[0]; ++tx[1]) {
-              bool flag = true;
-              // Check if out of bound.
-              for (int k = 0; k < len[id]; ++k) {
-                nxt[op] = tx[op] + f[dx] * table[id][k][0];
-                nxt[op ^ 1] = tx[op ^ 1] + f[dy] * table[id][k][1];
-                if (nxt[1] < 1 || nxt[0] < nxt[1] || nxt[0] > 10) {
-                  flag = false;
-                  break;
-                }
-              }
-              if (!flag) continue;
-              // Check if illegal.
-              for (int k = 0; k < len[id]; ++k) {
-                nxt[op] = tx[op] + f[dx] * table[id][k][0];
-                nxt[op ^ 1] = tx[op ^ 1] + f[dy] * table[id][k][1];
-                if (vis[id]) {
-                  if (ans[nxt[0]][nxt[1]] != id + 'A') {
-                    flag = false;
-                    break;
-                  }
-                } else if (ans[nxt[0]][nxt[1]] != '.') {
-                  flag = false;
-                  break;
-                }
-              }
-              if (!flag) continue;
-              // Try to insert.
-              dfn[++numrow] = id;
-              solver.insert(numrow, numcol);
-              for (int k = 0; k < len[id]; ++k) {
-                nxt[op] = tx[op] + f[dx] * table[id][k][0];
-                nxt[op ^ 1] = tx[op ^ 1] + f[dy] * table[id][k][1];
-                solver.insert(numrow, num[nxt[0]][nxt[1]]);
-              }
-            }
-          }
-        }
+  solver.build(729, 324);
+  for (int i = 1; i <= 9; ++i)
+    for (int j = 1; j <= 9; ++j) {
+      cin >> ans[i][j];
+      for (int v = 1; v <= 9; ++v) {
+        if (ans[i][j] && ans[i][j] != v) continue;
+        Insert(i, j, v);
       }
     }
-  }
-  /********end********/
-  if (!solver.dance())
-    cout << "No solution\n";
-  else
-    for (int i = 1; i <= 10; ++i, cout << '\n')
-      for (int j = 1; j <= i; ++j) cout << ans[i][j];
+  solver.dance(1);
+  for (int i = 1; i <= 9; ++i, cout << '\n')
+    for (int j = 1; j <= 9; ++j, cout << ' ') cout << ans[i][j];
   return 0;
 }

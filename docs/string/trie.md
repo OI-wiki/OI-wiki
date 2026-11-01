@@ -20,93 +20,17 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
 
 === "C++"
     ```cpp
-    struct trie {
-      int nex[100000][26], cnt;
-      bool exist[100000];  // 该结点结尾的字符串是否存在
-    
-      void insert(char *s, int l) {  // 插入字符串
-        int p = 0;
-        for (int i = 0; i < l; i++) {
-          int c = s[i] - 'a';
-          if (!nex[p][c]) nex[p][c] = ++cnt;  // 如果没有，就添加结点
-          p = nex[p][c];
-        }
-        exist[p] = true;
-      }
-    
-      bool find(char *s, int l) {  // 查找字符串
-        int p = 0;
-        for (int i = 0; i < l; i++) {
-          int c = s[i] - 'a';
-          if (!nex[p][c]) return 0;
-          p = nex[p][c];
-        }
-        return exist[p];
-      }
-    };
+    --8<-- "docs/string/code/trie/trie_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    class trie:
-        def __init__(self):
-            self.nex = [[0 for i in range(26)] for j in range(100000)]
-            self.cnt = 0
-            self.exist = [False] * 100000  # 该结点结尾的字符串是否存在
-    
-        def insert(self, s):  # 插入字符串
-            p = 0
-            for i in s:
-                c = ord(i) - ord("a")
-                if not self.nex[p][c]:
-                    self.cnt += 1
-                    self.nex[p][c] = self.cnt  # 如果没有，就添加结点
-                p = self.nex[p][c]
-            self.exist[p] = True
-    
-        def find(self, s):  # 查找字符串
-            p = 0
-            for i in s:
-                c = ord(i) - ord("a")
-                if not self.nex[p][c]:
-                    return False
-                p = self.nex[p][c]
-            return self.exist[p]
+    --8<-- "docs/string/code/trie/trie_1.py:core"
     ```
 
 === "Java"
     ```java
-    public class Trie {
-        int[][] tree = new int[10000][26];
-        int cnt = 0;
-        boolean[] end = new boolean[10000];
-        
-        public void insert(String word) {
-            int p = 0;
-            char[] chars = word.toCharArray();
-            for (int i = 0; i < chars.length; i++) {
-                int c = chars[i] - 'a';
-                if (tree[p][c] == 0) {
-                    tree[p][c] = ++cnt;
-                }
-                p = tree[p][c];
-            }
-            end[p] = true;
-        }
-        
-        public boolean find(String word) {
-            int p = 0;
-            char[] chars = word.toCharArray();
-            for (int i = 0; i < chars.length; i++) {
-                int c = chars[i] - 'a';
-                if (tree[p][c] == 0) {
-                    return false;
-                }
-                p = tree[p][c];
-            }
-            return end[p];
-        }
-    }
+    --8<-- "docs/string/code/trie/trie_1.java:core"
     ```
 
 ## 应用
@@ -125,7 +49,7 @@ trie 的结构非常好懂，我们用 $\delta(u,c)$ 表示结点 $u$ 的 $c$ �
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/string/code/trie/trie_1.cpp"
+        --8<-- "docs/string/code/trie/trie_2.cpp"
         ```
 
 ### AC 自动机
@@ -152,7 +76,7 @@ trie 是 [AC 自动机](./ac-automaton.md) 的一部分．
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/string/code/trie/trie_2.cpp"
+        --8<-- "docs/string/code/trie/trie_3.cpp"
         ```
 
 ### 维护异或和
@@ -176,19 +100,7 @@ trie 是 [AC 自动机](./ac-automaton.md) 的一部分．
 具体维护结点的代码如下所示．
 
 ```cpp
-void maintain(int o) {
-  w[o] = xorv[o] = 0;
-  if (ch[o][0]) {
-    w[o] += w[ch[o][0]];
-    xorv[o] ^= xorv[ch[o][0]] << 1;
-  }
-  if (ch[o][1]) {
-    w[o] += w[ch[o][1]];
-    xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
-  }
-  // w[o] = w[o] & 1;
-  // 只需知道奇偶性即可，不需要具体的值．当然这句话删掉也可以，因为上文就只利用了他的奇偶性．
-}
+--8<-- "docs/string/code/trie/trie_7.cpp:maintain"
 ```
 
 插入和删除的代码非常相似．
@@ -201,43 +113,8 @@ void maintain(int o) {
 
 ???+ note "实现"
     ```cpp
-    namespace trie {
-    constexpr int MAXH = 21;
-    int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
-    int tot = 0;
-    
-    int mknode() {
-      ++tot;
-      ch[tot][1] = ch[tot][0] = w[tot] = xorv[tot] = 0;
-      return tot;
-    }
-    
-    void maintain(int o) {
-      w[o] = xorv[o] = 0;
-      if (ch[o][0]) {
-        w[o] += w[ch[o][0]];
-        xorv[o] ^= xorv[ch[o][0]] << 1;
-      }
-      if (ch[o][1]) {
-        w[o] += w[ch[o][1]];
-        xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
-      }
-      w[o] = w[o] & 1;
-    }
-    
-    void insert(int &o, int x, int dp) {
-      if (!o) o = mknode();
-      if (dp > MAXH) return (void)(w[o]++);
-      insert(ch[o][x & 1], x >> 1, dp + 1);
-      maintain(o);
-    }
-    
-    void erase(int o, int x, int dp) {
-      if (dp > 20) return (void)(w[o]--);
-      erase(ch[o][x & 1], x >> 1, dp + 1);
-      maintain(o);
-    }
-    }  // namespace trie
+    --8<-- "docs/string/code/trie/trie_4.cpp:trie-prefix"
+    --8<-- "docs/string/code/trie/trie_4.cpp:trie-suffix"
     ```
 
 #### 全局加一
@@ -247,11 +124,7 @@ void maintain(int o) {
 形式化的讲，设 trie 中维护的数值有 $V_1, V_2, V_3 \dots V_n$, 全局加一后 其中维护的值应该变成 $V_1+1, V_2+1, V_3+1 \dots V_n+1$
 
 ```cpp
-void addall(int o) {
-  swap(ch[o][0], ch[o][1]);
-  if (ch[o][0]) addall(ch[o][0]);
-  maintain(o);
-}
+--8<-- "docs/string/code/trie/trie_4.cpp:addall"
 ```
 
 ##### 过程
@@ -297,23 +170,7 @@ void addall(int o) {
 #### 实现
 
 ```cpp
-int merge(int a, int b) {
-  if (!a) return b;  // 如果 a 没有这个位置上的结点，返回 b
-  if (!b) return a;  // 如果 b 没有这个位置上的结点，返回 a
-  /*
-    如果 `a`, `b` 都存在，
-    那就把 `b` 的信息合并到 `a` 上．
-  */
-  w[a] = w[a] + w[b];
-  xorv[a] ^= xorv[b];
-  /* 不要使用 maintain()，
-    maintain() 是合并a的两个儿子的信息
-    而这里需要 a b 两个节点进行信息合并
-   */
-  ch[a][0] = merge(ch[a][0], ch[b][0]);
-  ch[a][1] = merge(ch[a][1], ch[b][1]);
-  return a;
-}
+--8<-- "docs/string/code/trie/trie_4.cpp:merge"
 ```
 
 其实 trie 都可以合并，换句话说，trie 合并不仅仅限于 01-trie．
@@ -336,7 +193,7 @@ int merge(int a, int b) {
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/string/code/trie/trie_3.cpp"
+        --8<-- "docs/string/code/trie/trie_5.cpp"
         ```
 
 ???+ note "[【luogu-P6623】【省选联考 2020 A 卷】树](https://www.luogu.com.cn/problem/P6623)"
@@ -352,82 +209,7 @@ int merge(int a, int b) {
     
     ??? note "参考代码"
         ```cpp
-        constexpr int _ = 526010;
-        int n;
-        int V[_];
-        int debug = 0;
-        
-        namespace trie {
-        constexpr int MAXH = 21;
-        int ch[_ * (MAXH + 1)][2], w[_ * (MAXH + 1)], xorv[_ * (MAXH + 1)];
-        int tot = 0;
-        
-        int mknode() {
-          ++tot;
-          ch[tot][1] = ch[tot][0] = w[tot] = xorv[tot] = 0;
-          return tot;
-        }
-        
-        void maintain(int o) {
-          w[o] = xorv[o] = 0;
-          if (ch[o][0]) {
-            w[o] += w[ch[o][0]];
-            xorv[o] ^= xorv[ch[o][0]] << 1;
-          }
-          if (ch[o][1]) {
-            w[o] += w[ch[o][1]];
-            xorv[o] ^= (xorv[ch[o][1]] << 1) | (w[ch[o][1]] & 1);
-          }
-          w[o] = w[o] & 1;
-        }
-        
-        void insert(int &o, int x, int dp) {
-          if (!o) o = mknode();
-          if (dp > MAXH) return (void)(w[o]++);
-          insert(ch[o][x & 1], x >> 1, dp + 1);
-          maintain(o);
-        }
-        
-        int merge(int a, int b) {
-          if (!a) return b;
-          if (!b) return a;
-          w[a] = w[a] + w[b];
-          xorv[a] ^= xorv[b];
-          ch[a][0] = merge(ch[a][0], ch[b][0]);
-          ch[a][1] = merge(ch[a][1], ch[b][1]);
-          return a;
-        }
-        
-        void addall(int o) {
-          swap(ch[o][0], ch[o][1]);
-          if (ch[o][0]) addall(ch[o][0]);
-          maintain(o);
-        }
-        }  // namespace trie
-        
-        int rt[_];
-        long long Ans = 0;
-        vector<int> E[_];
-        
-        void dfs0(int o) {
-          for (int i = 0; i < E[o].size(); i++) {
-            int node = E[o][i];
-            dfs0(node);
-            rt[o] = trie::merge(rt[o], rt[node]);
-          }
-          trie::addall(rt[o]);
-          trie::insert(rt[o], V[o], 0);
-          Ans += trie::xorv[rt[o]];
-        }
-        
-        int main() {
-          n = read();
-          for (int i = 1; i <= n; i++) V[i] = read();
-          for (int i = 2; i <= n; i++) E[read()].push_back(i);
-          dfs0(1);
-          printf("%lld", Ans);
-          return 0;
-        }
+        --8<-- "docs/string/code/trie/trie_6.cpp"
         ```
 
 ### 可持久化字典树

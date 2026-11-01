@@ -14,12 +14,7 @@
 ![](./images/pairing-heap-2.svg)
 
 ```cpp
-struct Node {
-  T v;  // T为权值类型
-  Node *child, *sibling;
-  // child 指向该节点第一个儿子，sibling 指向该节点的下一个兄弟．
-  // 若该节点没有儿子/下个兄弟则指针指向 nullptr．
-};
+--8<-- "docs/ds/code/pairing-heap/pairing-heap_1.cpp:example121"
 ```
 
 从定义可以发现，和其他常见的堆结构相比，配对堆不维护任何额外的树大小，深度，排名等信息（二叉堆也不维护额外信息，但它是通过维持一个严格的完全二叉树结构来保证操作的复杂度），且任何一个满足堆性质的树都是一个合法的配对堆，这样简单又高度灵活的数据结构奠定了配对堆在实践中优秀效率的基础；作为对比，斐波那契堆糟糕的常数就是因为它需要维护很多额外的信息．
@@ -42,16 +37,7 @@ struct Node {
 
 ???+ note "实现"
     ```cpp
-    Node* meld(Node* x, Node* y) {
-      // 若有一个为空则直接返回另一个
-      if (x == nullptr) return y;
-      if (y == nullptr) return x;
-      if (x->v > y->v) std::swap(x, y);  // swap后x为权值小的堆，y为权值大的堆
-      // 将y设为x的儿子
-      y->sibling = x->child;
-      x->child = y;
-      return x;  // 新的根节点为 x
-    }
+    --8<-- "docs/ds/code/pairing-heap/pairing-heap_1.cpp:example122"
     ```
 
 ### 插入
@@ -79,14 +65,7 @@ struct Node {
 
 ???+ note "实现"
     ```cpp
-    Node* merges(Node* x) {
-      if (x == nullptr || x->sibling == nullptr)
-        return x;  // 如果该树为空或他没有下一个兄弟，就不需要合并了，return．
-      Node* y = x->sibling;                // y 为 x 的下一个兄弟
-      Node* c = y->sibling;                // c 是再下一个兄弟
-      x->sibling = y->sibling = nullptr;   // 拆散
-      return meld(merges(c), meld(x, y));  // 核心部分
-    }
+    --8<-- "docs/ds/code/pairing-heap/pairing-heap_1.cpp:example123"
     ```
 
 最后一句话是该函数的核心，这句话分三部分：
@@ -101,11 +80,7 @@ struct Node {
 
 ???+ note "实现"
     ```cpp
-    Node* delete_min(Node* x) {
-      Node* t = merges(x->child);
-      delete x;  // 如果需要内存回收
-      return t;
-    }
+    --8<-- "docs/ds/code/pairing-heap/pairing-heap_1.cpp:example124"
     ```
 
 ### 减小一个元素的值
@@ -116,45 +91,21 @@ struct Node {
 
 ???+ note "实现"
     ```cpp
-    struct Node {
-      LL v;
-      int id;
-      Node *child, *sibling;
-      Node *father;  // 新增：父指针，若该节点为根节点则指向空节点 nullptr
-    };
+    --8<-- "docs/ds/code/pairing-heap/pairing-heap_2.cpp:example125"
     ```
 
 `meld` 操作修改为：
 
 ???+ note "实现"
     ```cpp
-    Node* meld(Node* x, Node* y) {
-      if (x == nullptr) return y;
-      if (y == nullptr) return x;
-      if (x->v > y->v) std::swap(x, y);
-      if (x->child != nullptr) {  // 新增：维护父指针
-        x->child->father = y;
-      }
-      y->sibling = x->child;
-      y->father = x;  // 新增：维护父指针
-      x->child = y;
-      return x;
-    }
+    --8<-- "docs/ds/code/pairing-heap/pairing-heap_2.cpp:example126"
     ```
 
 `merges` 操作修改为：
 
 ???+ note "实现"
     ```cpp
-    Node *merges(Node *x) {
-      if (x == nullptr) return nullptr;
-      x->father = nullptr;  // 新增：维护父指针
-      if (x->sibling == nullptr) return x;
-      Node *y = x->sibling, *c = y->sibling;
-      y->father = nullptr;  // 新增：维护父指针
-      x->sibling = y->sibling = nullptr;
-      return meld(merges(c), meld(x, y));
-    }
+    --8<-- "docs/ds/code/pairing-heap/pairing-heap_2.cpp:example127"
     ```
 
 现在我们来考虑如何实现 `decrease-key` 操作．  
@@ -163,24 +114,7 @@ struct Node {
 
 ???+ note "实现"
     ```cpp
-    // root为堆的根，x为要操作的节点，v为新的权值，调用时需保证 v <= x->v
-    // 返回值为新的根节点
-    Node *decrease_key(Node *root, Node *x, LL v) {
-      x->v = v;                 // 更新权值
-      if (x == root) return x;  // 如果 x 为根，则直接返回
-      // 把x从fa的子节点中剖出去，这里要分x的位置讨论一下．
-      if (x->father->child == x) {
-        x->father->child = x->sibling;
-      } else {
-        x->father->sibling = x->sibling;
-      }
-      if (x->sibling != nullptr) {
-        x->sibling->father = x->father;
-      }
-      x->sibling = nullptr;
-      x->father = nullptr;
-      return meld(root, x);  // 重新合并 x 和根节点
-    }
+    --8<-- "docs/ds/code/pairing-heap/pairing-heap_2.cpp:example128"
     ```
 
 ## 复杂度分析

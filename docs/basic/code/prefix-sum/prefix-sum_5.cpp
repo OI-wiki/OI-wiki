@@ -3,32 +3,34 @@
 
 // --8<-- [start:core]
 int n;
-std::vector<int> a, ps;  // length = 1 << n.
+std::vector<int> diff, a;
 
-void sum_of_subsets() {
-  ps = a;
-  // Loop over dimensions.
-  for (int i = 0; i < n; ++i) {
-    // Loop over i-th dimension.
-    for (int st = 0; st < (1 << n); ++st) {
-      // This condition implies that i-th dimension is 1.
-      if ((st >> i) & 1) {
-        // ps[... 1 ...] += ps[... 0 ...]. (i-th dimension)
-        ps[st] += ps[st ^ (1 << i)];
-      }
-    }
-  }
+// Add v to each element in [l, r].
+void add(int l, int r, int v) {
+  diff[l] += v;
+  if (r < n) diff[r + 1] -= v;
+}
+
+// Execute this after all modifications and before all queries.
+void prefix_sum() {
+  for (int i = 1; i <= n; ++i) a[i] = a[i - 1] + diff[i];
 }
 
 // --8<-- [end:core]
 int main() {
   std::cin >> n;
-  a.resize(1 << n);
-  for (int& x : a) std::cin >> x;
-
-  sum_of_subsets();
-
-  for (int x : ps) std::cout << x << ' ';
-  std::cout << std::endl;
+  diff.resize(n + 1);
+  a.resize(n + 1);
+  int t;
+  std::cin >> t;
+  for (; t; --t) {
+    int l, r, v;
+    std::cin >> l >> r >> v;
+    add(l, r, v);
+  }
+  prefix_sum();
+  for (int i = 1; i <= n; ++i) {
+    std::cout << a[i] << '\n';
+  }
   return 0;
 }

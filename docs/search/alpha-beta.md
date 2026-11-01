@@ -108,24 +108,7 @@ Alpha–Beta 剪枝的剪枝策略依赖于搜索当前节点时 $\alpha$ 和 $\
 
 ???+ example "参考代码"
     ```cpp
-    int alpha_beta(int u, int alph, int beta, bool is_max) {
-      if (!son_num[u]) return val[u];
-      if (is_max) {
-        for (int i = 0; i < son_num[u]; ++i) {
-          int d = son[u][i];
-          alph = max(alph, alpha_beta(d, alph, beta, !is_max));
-          if (alph >= beta) break;
-        }
-        return alph;
-      } else {
-        for (int i = 0; i < son_num[u]; ++i) {
-          int d = son[u][i];
-          beta = min(beta, alpha_beta(d, alph, beta, !is_max));
-          if (alph >= beta) break;
-        }
-        return beta;
-      }
-    }
+    --8<-- "docs/search/code/alpha-beta/alpha-beta_1.cpp:core"
     ```
 
 ## 参考资料与注释

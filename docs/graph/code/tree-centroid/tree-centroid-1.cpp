@@ -1,45 +1,53 @@
+// Verified by https://codeforces.com/gym/101649/problem/G.
+// Codes associating I/O streams to files are omitted.
 #include <iostream>
 #include <vector>
 using namespace std;
 
-constexpr int N = 3e5 + 5;
+// --8<-- [start:core]
+const int MAXN = 50005;
 
-int n, q;  // 点数，询问数
-int fa[N];
-vector<int> son[N];
-int siz[N],     // 子树大小
-    ans[N],     // 以结点 u 为根的子树重心是 ans[u]
-    weight[N];  // 结点重量（不包括向上的子树）
+int n;
+// 这份代码默认节点编号从 1 开始，即 i ∈ [1,n]
+int siz[MAXN],  // 这个节点的「大小」（所有子树上节点数 + 该节点）
+    weight[MAXN];  // 这个节点的「重量」，即所有子树「大小」的最大值
+vector<int> centroids;  // 用于记录树的重心（存的是节点编号）
+vector<int> g[MAXN];
 
-void dfs(int u) {
-  siz[u] = 1, ans[u] = u;
-  int hson = 0;  // 重子结点
-  for (int v : son[u]) {
-    dfs(v);
-    siz[u] += siz[v];
-    if (siz[v] > weight[u]) weight[u] = siz[v], hson = v;
-  }
-  if (hson) {
-    int p = ans[hson];
-    while (p != u) {
-      if (max(weight[p], siz[u] - siz[p]) <= siz[u] / 2) {
-        ans[u] = p;
-        break;
-      } else
-        p = fa[p];
+void dfs(int cur, int fa) {  // cur 表示当前节点 (current)
+  siz[cur] = 1;
+  weight[cur] = 0;
+  for (int v : g[cur]) {
+    if (v != fa) {  // v 表示这条有向边所通向的节点
+      dfs(v, cur);
+      siz[cur] += siz[v];
+      weight[cur] = max(weight[cur], siz[v]);
     }
+  }
+  weight[cur] = max(weight[cur], n - siz[cur]);
+  if (weight[cur] <= n / 2) {  // 依照树的重心的定义统计
+    centroids.push_back(cur);
   }
 }
 
+void get_centroids() { dfs(1, 0); }
+
+// --8<-- [end:core]
 int main() {
   ios::sync_with_stdio(false);
-  cin >> n >> q;
-  for (int v = 2; v <= n; v++) cin >> fa[v], son[fa[v]].push_back(v);
-  dfs(1);
-  while (q--) {
-    int u;
-    cin >> u;
-    cout << ans[u] << '\n';
+  cin.tie(nullptr);
+  cin >> n;
+  for (int i = 1; i < n; i++) {
+    int u, v;
+    cin >> u >> v;
+    g[u].push_back(v);
+    g[v].push_back(u);
   }
+  get_centroids();
+  if (centroids.size() == 1)
+    cout << centroids.front() << '\n';
+  else
+    cout << min(centroids.front(), centroids.back()) << " "
+         << max(centroids.front(), centroids.back()) << '\n';
   return 0;
 }

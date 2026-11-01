@@ -225,44 +225,7 @@ $$
 
 ???+ note "递归版 FFT"
     ```cpp
-    #include <cmath>
-    #include <complex>
-    
-    using Comp = std::complex<double>;  // STL complex
-    
-    constexpr Comp I(0, 1);  // i
-    constexpr int MAX_N = 1 << 20;
-    
-    Comp tmp[MAX_N];
-    
-    // rev=1, DFT; rev=-1, IDFT
-    // 应用完本函数后需要注意归一化系数的处理
-    void DFT(Comp* f, int n, int rev) {
-      if (n == 1) return;
-      for (int i = 0; i < n; ++i) tmp[i] = f[i];
-      // 偶数放左边，奇数放右边
-      for (int i = 0; i < n; ++i) {
-        if (i & 1)
-          f[n / 2 + i / 2] = tmp[i];
-        else
-          f[i / 2] = tmp[i];
-      }
-      Comp *g = f, *h = f + n / 2;
-      // 递归 DFT
-      DFT(g, n / 2, rev), DFT(h, n / 2, rev);
-      // cur 是当前单位复根，对于 k = 0 而言，它对应的单位复根 omega^0_n = 1．
-      // step 是两个单位复根的差，即满足 omega^k_n = step*omega^{k-1}*n，
-      // 定义等价于 exp(I*(-2*M_PI/n*rev))
-      Comp cur(1, 0), step(cos(2 * M_PI / n), sin(-2 * M_PI * rev / n));
-      for (int k = 0; k < n / 2;
-           ++k) {  // F(omega^k_n) = G(omega^k*{n/2}) + omega^k*n\*H(omega^k*{n/2})
-        tmp[k] = g[k] + cur * h[k];
-        // F(omega^{k+n/2}*n) = G(omega^k*{n/2}) - omega^k_n*H(omega^k\_{n/2})
-        tmp[k + n / 2] = g[k] - cur * h[k];
-        cur *= step;
-      }
-      for (int i = 0; i < n; ++i) f[i] = tmp[i];
-    }
+    --8<-- "docs/math/code/poly/fft/fft_1.cpp:core"
     ```
 
 时间复杂度 $O(n\log n)$．
@@ -290,31 +253,7 @@ $$
 
 ???+ note "位逆序置换实现（$O(n)$）"
     ```cpp
-    /*
-     * 进行 FFT 和 IFFT 前的反置变换
-     * 位置 i 和 i 的二进制反转后的位置互换
-     * len 必须为 2 的幂
-     */
-    void change(Complex y[], int len) {
-      // 一开始 i 是 0...01，而 j 是 10...0，在二进制下相反对称．
-      // 之后 i 逐渐加一，而 j 依然维持着和 i 相反对称，一直到 i = 1...11．
-      for (int i = 1, j = len / 2, k; i < len - 1; i++) {
-        // 交换互为小标反转的元素，i < j 保证交换一次
-        if (i < j) swap(y[i], y[j]);
-        // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的．
-        // 这里 k 代表了 0 出现的最高位．j 先减去高位的全为 1 的数字，
-        // 直到遇到了 0，之后再加上即可．
-        // 考虑 j 中比特位的翻转次数，最高位将会翻转 n 次，
-        // 第二高位将会翻转 n/2 次，以此类推，所以时间复杂度为：
-        // T(n) = n + n/2 + n/4 + ... = O(n)
-        k = len / 2;
-        while (j >= k) {
-          j = j - k;
-          k = k / 2;
-        }
-        j += k;
-      }
-    }
+    --8<-- "docs/math/code/poly/fft/fft_2.cpp:reverse-loop"
     ```
 
 位逆序置换也可以 $O(n)$ 从小到大递推实现，设 $len=2^k$，其中 $k$ 表示二进制数的长度，设 $R(x)$ 表示长度为 $k$ 的二进制数 $x$ 翻转后的数（高位补 $0$）．我们要求的是 $R(0),R(1),\cdots,R(n-1)$．
@@ -336,22 +275,7 @@ $$
 
 ???+ note "位逆序置换实现（$O(n)$）"
     ```cpp
-    // 同样需要保证 len 是 2 的幂
-    // 记 rev[i] 为 i 翻转后的值
-    void change(Complex y[], int len) {
-      for (int i = 0; i < len; ++i) {
-        rev[i] = rev[i >> 1] >> 1;
-        if (i & 1) {  // 如果最后一位是 1，则翻转成 len/2
-          rev[i] |= len >> 1;
-        }
-      }
-      for (int i = 0; i < len; ++i) {
-        if (i < rev[i]) {  // 保证每对数只翻转一次
-          swap(y[i], y[rev[i]]);
-        }
-      }
-      return;
-    }
+    --8<-- "docs/math/code/poly/fft/fft_2.cpp:reverse-table"
     ```
 
 #### 蝶形运算优化
@@ -499,85 +423,17 @@ $$
 
 ???+ note "非递归版 FFT（对应方法一）"
     ```cpp
-    /*
-     * 做 FFT
-     * len 必须是 2^k 形式
-     * on == 1 时是 DFT，on == -1 时是 IDFT
-     */
-    void fft(Complex y[], int len, int on) {
-      // 位逆序置换
-      change(y, len);
-      // 模拟合并过程，一开始，从长度为一合并到长度为二，一直合并到长度为 len．
-      for (int h = 2; h <= len; h <<= 1) {
-        // wn：当前单位复根的间隔：w^1_h
-        Complex wn(cos(2 * PI / h), sin(on * 2 * PI / h));
-        // 合并，共 len / h 次．
-        for (int j = 0; j < len; j += h) {
-          // 计算当前单位复根，一开始是 1 = w^0_n，之后是以 wn 为间隔递增： w^1_n
-          // ...
-          Complex w(1, 0);
-          for (int k = j; k < j + h / 2; k++) {
-            // 左侧部分和右侧是子问题的解
-            Complex u = y[k];
-            Complex t = w * y[k + h / 2];
-            // 这就是把两部分分治的结果加起来
-            y[k] = u + t;
-            y[k + h / 2] = u - t;
-            // 后半个 「step」 中的ω一定和 「前半个」 中的成相反数
-            // 「红圈」上的点转一整圈「转回来」，转半圈正好转成相反数
-            // 一个数相反数的平方与这个数自身的平方相等
-            w = w * wn;
-          }
-        }
-      }
-      // 如果是 IDFT，它的逆矩阵的每一个元素不只是原元素取倒数，还要除以长度 len．
-      if (on == -1) {
-        for (int i = 0; i < len; i++) {
-          y[i].x /= len;
-          y[i].y /= len;
-        }
-      }
-    }
+    --8<-- "docs/math/code/poly/fft/fft_2.cpp:fft"
     ```
 
 ???+ note "非递归版 FFT（对应方法二）"
     ```cpp
-    /*
-     * 做 FFT
-     * len 必须是 2^k 形式
-     * on == 1 时是 DFT，on == -1 时是 IDFT
-     */
-    void fft(Complex y[], int len, int on) {
-      change(y, len);
-      for (int h = 2; h <= len; h <<= 1) {             // 模拟合并过程
-        Complex wn(cos(2 * PI / h), sin(2 * PI / h));  // 计算当前单位复根
-        for (int j = 0; j < len; j += h) {
-          Complex w(1, 0);  // 计算当前单位复根
-          for (int k = j; k < j + h / 2; k++) {
-            Complex u = y[k];
-            Complex t = w * y[k + h / 2];
-            y[k] = u + t;  // 这就是把两部分分治的结果加起来
-            y[k + h / 2] = u - t;
-            // 后半个 「step」 中的ω一定和 「前半个」 中的成相反数
-            // 「红圈」上的点转一整圈「转回来」，转半圈正好转成相反数
-            // 一个数相反数的平方与这个数自身的平方相等
-            w = w * wn;
-          }
-        }
-      }
-      if (on == -1) {
-        reverse(y + 1, y + len);
-        for (int i = 0; i < len; i++) {
-          y[i].x /= len;
-          y[i].y /= len;
-        }
-      }
-    }
+    --8<-- "docs/math/code/poly/fft/fft_3.cpp:fft"
     ```
 
 ??? note "FFT 模板（[HDU 1402 - A * B Problem Plus](http://acm.hdu.edu.cn/showproblem.php?pid=1402)）"
     ```cpp
-    --8<-- "docs/math/code/poly/fft/fft_3.cpp"
+    --8<-- "docs/math/code/poly/fft/fft_4.cpp"
     ```
 
 ## 参考文献

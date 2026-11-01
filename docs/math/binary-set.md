@@ -18,13 +18,12 @@
 
 === "C++"
     ```cpp
-    int modPowerOfTwo(int x, int mod) { return x & (mod - 1); }
+    --8<-- "docs/math/code/binary-set/binary-set_1.cpp:mod"
     ```
 
 === "Python"
     ```python
-    def modPowerOfTwo(x, mod):
-        return x & (mod - 1)
+    --8<-- "docs/math/code/binary-set/binary-set_1.py:mod"
     ```
 
 于是可以知道，$2$ 的非负整数次幂对它本身取模，结果为 $0$，即如果 $n$ 是 $2$ 的非负整数次幂，$n$ 和 $n-1$ 的与操作结果为 $0$．
@@ -35,13 +34,12 @@
 
 === "C++"
     ```cpp
-    bool isPowerOfTwo(int n) { return n > 0 && (n & (n - 1)) == 0; }
+    --8<-- "docs/math/code/binary-set/binary-set_1.cpp:power"
     ```
 
 === "Python"
     ```python
-    def isPowerOfTwo(n):
-        return n > 0 and (n & (n - 1)) == 0
+    --8<-- "docs/math/code/binary-set/binary-set_1.py:power"
     ```
 
 ### 子集遍历
@@ -55,30 +53,21 @@
 给定一个掩码 $m$，希望有效迭代 $m$ 的所有子掩码 $s$，可以考虑基于位运算技巧的实现．
 
 ```cpp
-// 降序遍历 m 的非空子集
-int s = m;
-while (s > 0) {
-  // s 是 m 的一个非空子集
-  s = (s - 1) & m;
-}
+--8<-- "docs/math/code/binary-set/binary-set_2.cpp:while-prefix"
+--8<-- "docs/math/code/binary-set/binary-set_2.cpp:while-suffix"
 ```
 
 或者使用更紧凑的 for 语句：
 
 ```cpp
-// 降序遍历 m 的非空子集
-for (int s = m; s; s = (s - 1) & m)
-// s 是 m 的一个非空子集
+--8<-- "docs/math/code/binary-set/binary-set_2.cpp:for"
 ```
 
 这两段代码都不会处理等于 $0$ 的子掩码，要想处理等于 $0$ 的子掩码可以使用其他办法，例如：
 
 ```cpp
-// 降序遍历 m 的子集
-for (int s = m;; s = (s - 1) & m) {
-  // s 是 m 的一个子集
-  if (s == 0) break;
-}
+--8<-- "docs/math/code/binary-set/binary-set_2.cpp:zero-prefix"
+--8<-- "docs/math/code/binary-set/binary-set_2.cpp:zero-suffix"
 ```
 
 接下来证明，上面的代码访问了所有 $m$ 的子掩码，没有重复，并且按降序排列．
@@ -100,10 +89,7 @@ for (int s = m;; s = (s - 1) & m) {
 在使用状压 DP 的问题中，有时会希望对于每个掩码，遍历掩码的所有子掩码：
 
 ```cpp
-for (int m = 0; m < (1 << n); ++m)
-  // 降序遍历 m 的非空子集
-  for (int s = m; s; s = (s - 1) & m)
-// s 是 m 的一个非空子集
+--8<-- "docs/math/code/binary-set/binary-set_2.cpp:all"
 ```
 
 这样做可以遍历大小为 $n$ 的集合的每个子集的子集．

@@ -44,29 +44,12 @@ $$
 
 === "C++"
     ```cpp
-    double sqrt_newton(double n) {
-      constexpr static double eps = 1E-15;
-      double x = 1;
-      while (true) {
-        double nx = (x + n / x) / 2;
-        if (abs(x - nx) < eps) break;
-        x = nx;
-      }
-      return x;
-    }
+    --8<-- "docs/math/code/numerical/newton/newton_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    def sqrt_newton(n):
-        eps = 1e-15
-        x = 1
-        while True:
-            nx = (x + n / x) / 2
-            if abs(x - nx) < eps:
-                break
-            x = nx
-        return x
+    --8<-- "docs/math/code/numerical/newton/newton_1.py:core"
     ```
 
 ## 求解整数平方根
@@ -77,31 +60,12 @@ $$
 
 === "C++"
     ```cpp
-    int isqrt_newton(int n) {
-      int x = 1;
-      bool decreased = false;
-      for (;;) {
-        int nx = (x + n / x) >> 1;
-        if (x == nx || (nx > x && decreased)) break;
-        decreased = nx < x;
-        x = nx;
-      }
-      return x;
-    }
+    --8<-- "docs/math/code/numerical/newton/newton_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    def isqrt_newton(n):
-        x = 1
-        decreased = False
-        while True:
-            nx = (x + n // x) // 2
-            if x == nx or (nx > x and decreased):
-                break
-            decreased = nx < x
-            x = nx
-        return x
+    --8<-- "docs/math/code/numerical/newton/newton_2.py:core"
     ```
 
 ## 高精度平方根
@@ -113,18 +77,7 @@ $$
 给出 Java 代码的实现：
 
 ```java
-public static BigInteger isqrtNewton(BigInteger n) {
-  BigInteger a = BigInteger.ONE.shiftLeft(n.bitLength() / 2);
-  boolean p_dec = false;
-  for (;;) {
-    BigInteger b = n.divide(a).add(a).shiftRight(1);
-    if (a.compareTo(b) == 0 || a.compareTo(b) < 0 && p_dec)
-      break;
-    p_dec = a.compareTo(b) > 0;
-    a = b;
-  }
-  return a;
-}
+--8<-- "docs/math/code/numerical/newton/newton_3.java:core"
 ```
 
 实践效果：在 $n=10^{1000}$ 的时候该算法的运行时间是 60 ms，如果我们不优化 $x_0$ 的值，直接从 $x_0=1$ 开始迭代，那么运行时间将增加到 120 ms．

@@ -20,23 +20,12 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 ???+ example "参考实现"
     === "C++"
         ```cpp
-        bool isPrime(int a) {
-          if (a < 2) return false;
-          for (int i = 2; i < a; ++i)
-            if (a % i == 0) return false;
-          return true;
-        }
+        --8<-- "docs/math/code/number-theory/prime/prime_1.cpp:core"
         ```
     
     === "Python"
         ```python
-        def isPrime(a):
-            if a < 2:
-                return False
-            for i in range(2, a):
-                if a % i == 0:
-                    return False
-            return True
+        --8<-- "docs/math/code/number-theory/prime/prime_1.py:core"
         ```
 
 这样做是十分稳妥了，但是真的有必要每个数都去判断吗？
@@ -50,23 +39,12 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 ???+ example "参考实现"
     === "C++"
         ```cpp
-        bool isPrime(int a) {
-          if (a < 2) return 0;
-          for (int i = 2; (long long)i * i <= a; ++i)  // 防溢出
-            if (a % i == 0) return 0;
-          return 1;
-        }
+        --8<-- "docs/math/code/number-theory/prime/prime_2.cpp:core"
         ```
     
     === "Python"
         ```python
-        def isPrime(a):
-            if a < 2:
-                return False
-            for i in range(2, int(sqrt(a)) + 1):
-                if a % i == 0:
-                    return False
-            return True
+        --8<-- "docs/math/code/number-theory/prime/prime_2.py:core"
         ```
 
 ### Fermat 素性测试
@@ -80,30 +58,12 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 ???+ example "参考实现"
     === "C++"
         ```cpp
-        bool fermat(int n) {
-          if (n < 3) return n == 2;
-          // test_time 为测试次数,建议设为不小于 8
-          // 的整数以保证正确率,但也不宜过大,否则会影响效率
-          for (int i = 1; i <= test_time; ++i) {
-            int a = rand() % (n - 2) + 2;
-            if (quickPow(a, n - 1, n) != 1) return false;
-          }
-          return true;
-        }
+        --8<-- "docs/math/code/number-theory/prime/prime_3.cpp:core"
         ```
     
     === "Python"
         ```python
-        def fermat(n):
-            if n < 3:
-                return n == 2
-            # test_time 为测试次数,建议设为不小于 8
-            # 的整数以保证正确率,但也不宜过大,否则会影响效率
-            for i in range(1, test_time + 1):
-                a = random.randint(0, 32767) % (n - 2) + 2
-                if quickPow(a, n - 1, n) != 1:
-                    return False
-            return True
+        --8<-- "docs/math/code/number-theory/prime/prime_3.py:core"
         ```
 
 如果 $a^{n-1} \equiv 1 \pmod n$ 但 $n$ 不是素数，则称 $n$ 为以 $a$ 为底的 **Fermat 伪素数**．我们在实践中观察到，如果 $a^{n-1} \equiv 1 \pmod n$，那么 $n$ 通常是素数．但其实存在反例：对于 $n = 341$ 且 $a = 2$，虽然有 $2^{340}\equiv 1 {\pmod {341}}$，但是 $341 = 11 \cdot 31$ 是合数．事实上，对于任何固定的基底 $a$，这样的反例都有无穷多个[^inf-fermat-pp]．
@@ -141,60 +101,12 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 ???+ example "参考实现"
     === "C++"
         ```cpp
-        bool millerRabin(int n) {
-          if (n < 3 || n % 2 == 0) return n == 2;
-          if (n % 3 == 0) return n == 3;
-          int u = n - 1, t = 0;
-          while (u % 2 == 0) u /= 2, ++t;
-          // test_time 为测试次数，建议设为不小于 8
-          // 的整数以保证正确率，但也不宜过大，否则会影响效率
-          for (int i = 0; i < test_time; ++i) {
-            // 0, 1, n-1 可以直接通过测试, a 取值范围 [2, n-2]
-            int a = rand() % (n - 3) + 2, v = quickPow(a, u, n);
-            if (v == 1) continue;
-            int s;
-            for (s = 0; s < t; ++s) {
-              if (v == n - 1) break;  // 得到平凡平方根 n-1，通过此轮测试
-              v = (long long)v * v % n;
-            }
-            // 如果找到了非平凡平方根，则会由于无法提前 break; 而运行到 s == t
-            // 如果 Fermat 素性测试无法通过，则一直运行到 s == t 前 v 都不会等于 -1
-            if (s == t) return 0;
-          }
-          return 1;
-        }
+        --8<-- "docs/math/code/number-theory/prime/prime_4.cpp:core"
         ```
     
     === "Python"
         ```python
-        def millerRabin(n):
-            if n < 3 or n % 2 == 0:
-                return n == 2
-            if n % 3 == 0:
-                return n == 3
-            u, t = n - 1, 0
-            while u % 2 == 0:
-                u = u // 2
-                t = t + 1
-            # test_time 为测试次数,建议设为不小于 8
-            # 的整数以保证正确率,但也不宜过大,否则会影响效率
-            for i in range(test_time):
-                # 0, 1, n-1 可以直接通过测试, a 取值范围 [2, n-2]
-                a = random.randint(2, n - 2)
-                v = pow(a, u, n)
-                if v == 1:
-                    continue
-                s = 0
-                while s < t:
-                    if v == n - 1:
-                        break
-                    v = v * v % n
-                    s = s + 1
-                # 如果找到了非平凡平方根，则会由于无法提前 break; 而运行到 s == t
-                # 如果 Fermat 素性测试无法通过，则一直运行到 s == t 前 v 都不会等于 -1
-                if s == t:
-                    return False
-            return True
+        --8<-- "docs/math/code/number-theory/prime/prime_4.py:core"
         ```
 
 可以证明[^millerrabinproof]，奇合数 $n > 9$ 通过随机选取的一个基底 $a$ 的 Miller–Rabin 素性测试的概率至多为四分之一．因此，随机选取 $k$ 个基底后，仍将合数误判为素数的概率不超过 $1/4^k$．
@@ -356,7 +268,7 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/math/code/prime/prime_1.cpp"
+    --8<-- "docs/math/code/prime/prime_6.cpp"
     ```
 
 ???+ example "[ZOJ 2562 More Divisors](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827366061)"
@@ -367,7 +279,7 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/math/code/prime/prime_2.cpp"
+    --8<-- "docs/math/code/prime/prime_5.cpp"
     ```
 
 ## 参考资料与注释

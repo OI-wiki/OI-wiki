@@ -86,49 +86,7 @@ $$
 也可以自底向上地拆分从而实现上述功能，这样做相比上述方法会更高效．具体就是，在从 $u$ 对应的节点往根跳的过程中，根据二叉搜索树的性质就可以确定每个节点在 $L$ 中位于 $u$ 之前还是之后，根据这点就可以计算 $u$ 在序列中的位置，也可以确定每个节点属于拆分后的哪一棵树．
 
 ```cpp
-/*
- * Bottom up split treap p into 2 treaps a and b.
- *   - a: a treap containing nodes with position less than or equal to p.
- *   - b: a treap containing nodes with position greater than p.
- *
- * In the other word, split sequence containing p into two sequences, the first
- * one contains elements before p and element p, the second one contains
- * elements after p.
- */
-static std::pair<Node*, Node*> SplitUp2(Node* p) {
-  Node *a = nullptr, *b = nullptr;
-  b = p->right_;
-  if (b) b->parent_ = nullptr;
-  p->right_ = nullptr;
-
-  bool is_p_left_child_of_parent = false;
-  bool is_from_left_child = false;
-  while (p) {
-    Node* parent = p->parent_;
-
-    if (parent) {
-      is_p_left_child_of_parent = (parent->left_ == p);
-      if (is_p_left_child_of_parent) {
-        parent->left_ = nullptr;
-      } else {
-        parent->right_ = nullptr;
-      }
-      p->parent_ = nullptr;
-    }
-
-    if (!is_from_left_child) {
-      a = Merge(p, a);
-    } else {
-      b = Merge(b, p);
-    }
-
-    is_from_left_child = is_p_left_child_of_parent;
-    p->Maintain();
-    p = parent;
-  }
-
-  return {a, b};
-}
+--8<-- "docs/ds/code/ett/ett_1.cpp:example38"
 ```
 
 ### SplitUp3(u)
@@ -142,11 +100,7 @@ static std::pair<Node*, Node*> SplitUp2(Node* p) {
 基于 `SplitUp2` 以及 `Merge` 易得．
 
 ```cpp
-void MakeRoot(int u) {
-  Node* vertex_u = vertices_[u];
-  auto [L1, L2] = Treap::SplitUp2(vertex_u);
-  Treap::Merge(L2, L1);
-}
+--8<-- "docs/ds/code/ett/ett_1.cpp:example39"
 ```
 
 ### Insert(u, v)
@@ -154,25 +108,7 @@ void MakeRoot(int u) {
 基于 `SplitUp2` 以及 `Merge` 易得．
 
 ```cpp
-void Insert(int u, int v) {
-  Node* vertex_u = vertices_[u];
-  Node* vertex_v = vertices_[v];
-
-  Node* edge_uv = AllocateNode(u, v);
-  Node* edge_vu = AllocateNode(v, u);
-  tree_edges_[u][v] = edge_uv;
-  tree_edges_[v][u] = edge_vu;
-
-  auto [L11, L12] = Treap::SplitUp2(vertex_u);
-  auto [L21, L22] = Treap::SplitUp2(vertex_v);
-
-  Node* L = L12;
-  L = Treap::Merge(L, L11);
-  L = Treap::Merge(L, edge_uv);
-  L = Treap::Merge(L, L22);
-  L = Treap::Merge(L, L21);
-  L = Treap::Merge(L, edge_vu);
-}
+--8<-- "docs/ds/code/ett/ett_1.cpp:example40"
 ```
 
 ### Delete(u, v)
@@ -180,26 +116,7 @@ void Insert(int u, int v) {
 基于 `SplitUp3` 以及 `Merge` 易得．
 
 ```cpp
-void Delete(int u, int v) {
-  Node* edge_uv = tree_edges_[u][v];
-  Node* edge_vu = tree_edges_[v][u];
-  tree_edges_[u].erase(v);
-  tree_edges_[v].erase(u);
-
-  int position_uv = Treap::GetPosition(edge_uv);
-  int position_vu = Treap::GetPosition(edge_vu);
-  if (position_uv > position_vu) {
-    std::swap(edge_uv, edge_vu);
-    std::swap(position_uv, position_vu);
-  }
-
-  auto [L1, uv, _] = Treap::SplitUp3(edge_uv);
-  auto [L2, vu, L3] = Treap::SplitUp3(edge_vu);
-  Treap::Merge(L1, L3);
-
-  FreeNode(edge_uv);
-  FreeNode(edge_vu);
-}
+--8<-- "docs/ds/code/ett/ett_1.cpp:example41"
 ```
 
 ## 维护连通性
@@ -246,7 +163,7 @@ void Delete(int u, int v) {
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/ds/code/ett/ett_1.cpp"
+    --8<-- "docs/ds/code/ett/ett_2.cpp"
     ```
 
 ## 参考资料

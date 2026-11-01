@@ -41,37 +41,7 @@
 
 ???+ note "参考代码"
     ```cpp
-    #include <cstdio>
-    using namespace std;
-    constexpr int N = 15;
-    using ll = long long;
-    ll l, r, dp[N], mi[N];
-    ll ans1[N], ans2[N];
-    int a[N];
-    
-    void solve(ll n, ll *ans) {
-      ll tmp = n;
-      int len = 0;
-      while (n) a[++len] = n % 10, n /= 10;
-      for (int i = len; i >= 1; --i) {
-        for (int j = 0; j < 10; j++) ans[j] += dp[i - 1] * a[i];
-        for (int j = 0; j < a[i]; j++) ans[j] += mi[i - 1];
-        tmp -= mi[i - 1] * a[i], ans[a[i]] += tmp + 1;
-        ans[0] -= mi[i - 1];
-      }
-    }
-    
-    int main() {
-      scanf("%lld%lld", &l, &r);
-      mi[0] = 1ll;
-      for (int i = 1; i <= 13; ++i) {
-        dp[i] = dp[i - 1] * 10 + mi[i - 1];
-        mi[i] = 10ll * mi[i - 1];
-      }
-      solve(r, ans1), solve(l - 1, ans2);
-      for (int i = 0; i < 10; ++i) printf("%lld ", ans1[i] - ans2[i]);
-      return 0;
-    }
+    --8<-- "docs/dp/code/number/number_1.cpp"
     ```
 
 ### 方法二
@@ -86,59 +56,7 @@
 
 ???+ note "参考代码"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    using namespace std;
-    using ll = long long;
-    constexpr int N = 50005;
-    ll a, b;
-    ll f[15], ksm[15], p[15], now[15];
-    
-    ll dfs(int u, int x, bool f0,
-           bool lim) {  // u 表示位数，f0 是否有前导零，lim 是否都贴在上限上
-      if (!u) {
-        if (f0) f0 = false;
-        return 0;
-      }
-      if (!lim && !f0 && (~f[u])) return f[u];
-      ll cnt = 0;
-      int lst = lim ? p[u] : 9;
-      for (int i = 0; i <= lst; i++) {  // 枚举这位要填的数字
-        if (f0 && i == 0)
-          cnt += dfs(u - 1, x, 1, lim && i == lst);  // 处理前导零
-        else if (i == x && lim && i == lst)
-          cnt += now[u - 1] + 1 +
-                 dfs(u - 1, x, 0,
-                     lim && i == lst);  // 此时枚举的前几位都贴在给定的上限上．
-        else if (i == x)
-          cnt += ksm[u - 1] + dfs(u - 1, x, 0, lim && i == lst);
-        else
-          cnt += dfs(u - 1, x, 0, lim && i == lst);
-      }
-      if ((!lim) && (!f0)) f[u] = cnt;  // 只有不贴着上限和没有前导零才能记忆
-      return cnt;
-    }
-    
-    ll gans(ll d, int dig) {
-      int len = 0;
-      memset(f, -1, sizeof(f));
-      while (d) {
-        p[++len] = d % 10;
-        d /= 10;
-        now[len] = now[len - 1] + p[len] * ksm[len - 1];
-      }
-      return dfs(len, dig, 1, 1);
-    }
-    
-    int main() {
-      scanf("%lld%lld", &a, &b);
-      ksm[0] = 1;
-      for (int i = 1; i <= 12; i++) ksm[i] = ksm[i - 1] * 10ll;
-      for (int i = 0; i < 9; i++) printf("%lld ", gans(b, i) - gans(a - 1, i));
-      printf("%lld\n", gans(b, 9) - gans(a - 1, 9));
-      return 0;
-    }
+    --8<-- "docs/dp/code/number/number_2.cpp"
     ```
 
 ## 例题二
@@ -154,53 +72,7 @@
 
 ???+ note "参考代码"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    using namespace std;
-    int x, y, dp[15][3], p[50];
-    
-    void pre() {
-      memset(dp, 0, sizeof(dp));
-      dp[0][0] = 1;
-      for (int i = 1; i <= 10; i++) {
-        dp[i][0] = dp[i - 1][0] * 9 - dp[i - 1][1];
-        dp[i][1] = dp[i - 1][0];
-        dp[i][2] = dp[i - 1][2] * 10 + dp[i - 1][1] + dp[i - 1][0];
-      }
-    }
-    
-    int cal(int x) {
-      int cnt = 0, ans = 0, tmp = x;
-      while (x) {
-        p[++cnt] = x % 10;
-        x /= 10;
-      }
-      bool flag = false;
-      p[cnt + 1] = 0;
-      for (int i = cnt; i; i--) {  // 从高到低枚举数位
-        ans += p[i] * dp[i - 1][2];
-        if (flag)
-          ans += p[i] * dp[i - 1][0];
-        else {
-          if (p[i] > 4) ans += dp[i - 1][0];
-          if (p[i] > 6) ans += dp[i - 1][1];
-          if (p[i] > 2 && p[i + 1] == 6) ans += dp[i][1];
-          if (p[i] == 4 || (p[i] == 2 && p[i + 1] == 6)) flag = true;
-        }
-      }
-      return tmp - ans;
-    }
-    
-    int main() {
-      pre();
-      while (~scanf("%d%d", &x, &y)) {
-        if (!x && !y) break;
-        if (x > y) swap(x, y);
-        printf("%d\n", cal(y + 1) - cal(x));
-      }
-      return 0;
-    }
+    --8<-- "docs/dp/code/number/number_3.cpp"
     ```
 
 ## 例题三
@@ -226,33 +98,7 @@
 
 ???+ note "参考代码"
     ```cpp
-    int dfs(int x, int st, int op)  // op=1 =; op=0 <
-    {
-      if (!x) return 1;
-      if (!op && ~f[x][st]) return f[x][st];
-      int maxx = op ? dim[x] : 9, ret = 0;
-      for (int i = 0; i <= maxx; i++) {
-        if (abs(st - i) < 2) continue;
-        if (st == 11 && i == 0)
-          ret += dfs(x - 1, 11, op & (i == maxx));
-        else
-          ret += dfs(x - 1, i, op & (i == maxx));
-      }
-      if (!op) f[x][st] = ret;
-      return ret;
-    }
-    
-    int solve(int x) {
-      memset(f, -1, sizeof f);
-      dim.clear();
-      dim.push_back(-1);
-      int t = x;
-      while (x) {
-        dim.push_back(x % 10);
-        x /= 10;
-      }
-      return dfs(dim.size() - 1, 11, 1);
-    }
+    --8<-- "docs/dp/code/number/number_4.cpp:core"
     ```
 
 ## 例题四
@@ -278,48 +124,7 @@
 
 ???+ note "参考代码"
     ```cpp
-    int check(char cc[]) {  // n 的特判
-      int strc = strlen(cc);
-      for (int i = 0; i < strc; ++i) {
-        if (!(cc[i] == cc[strc - i - 1] &&
-              (cc[i] == '1' || cc[i] == '8' || cc[i] == '0')))
-          return 0ll;
-      }
-      return 1ll;
-    }
-    
-    // now: 当前位, eff: 有效位, fulc: 是否全顶格, ful0: 是否全0
-    int dfs(int now, int eff, bool ful0, bool fulc) {
-      if (now == 0) return 1ll;
-      if (!fulc && f[now][eff][ful0] != -1)  // 记忆化
-        return f[now][eff][ful0];
-    
-      int res = 0, maxk = fulc ? dig[now] : 9;
-      for (int i = 0; i <= maxk; ++i) {
-        if (i != 0 && i != 1 && i != 8) continue;
-        b[now] = i;
-        if (ful0 && i == 0)  // 全前导 0
-          res += dfs(now - 1, eff - 1, 1, 0);
-        else if (now > eff / 2)                                  // 未过半程
-          res += dfs(now - 1, eff, 0, fulc && (dig[now] == i));  // 已过半程
-        else if (b[now] == b[eff - now + 1])
-          res += dfs(now - 1, eff, 0, fulc && (dig[now] == i));
-      }
-      if (!fulc) f[now][eff][ful0] = res;
-      return res;
-    }
-    
-    char cc1[100], cc2[100];
-    int strc, ansm, ansn;
-    
-    int get(char cc[]) {  // 处理封装
-      strc = strlen(cc);
-      for (int i = 0; i < strc; ++i) dig[strc - i] = cc[i] - '0';
-      return dfs(strc, strc, 1, 1);
-    }
-    
-    scanf("%s%s", cc1, cc2);
-    printf("%lld\n", get(cc2) - get(cc1) + check(cc1));
+    --8<-- "docs/dp/code/number/number_5.cpp:program"
     ```
 
 ## 例题五
@@ -343,76 +148,7 @@
 
 ???+ note "参考代码"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    #include <queue>
-    using namespace std;
-    using ll = long long;
-    constexpr int N = 1505;
-    constexpr int mod = 1000000007;
-    int n, m;
-    char s[N], c[N];
-    int ch[N][10], fail[N], ed[N], tot, len;
-    
-    void insert() {
-      int now = 0;
-      int L = strlen(s);
-      for (int i = 0; i < L; ++i) {
-        if (!ch[now][s[i] - '0']) ch[now][s[i] - '0'] = ++tot;
-        now = ch[now][s[i] - '0'];
-      }
-      ed[now] = 1;
-    }
-    
-    queue<int> q;
-    
-    void build() {
-      for (int i = 0; i < 10; ++i)
-        if (ch[0][i]) q.push(ch[0][i]);
-      while (!q.empty()) {
-        int u = q.front();
-        q.pop();
-        for (int i = 0; i < 10; ++i) {
-          if (ch[u][i]) {
-            fail[ch[u][i]] = ch[fail[u]][i], q.push(ch[u][i]),
-            ed[ch[u][i]] |= ed[fail[ch[u][i]]];
-          } else
-            ch[u][i] = ch[fail[u]][i];
-        }
-      }
-      ch[0][0] = 0;
-    }
-    
-    ll f[N][N][2], ans;
-    
-    void add(ll &x, ll y) { x = (x + y) % mod; }
-    
-    int main() {
-      scanf("%s", c);
-      n = strlen(c);
-      scanf("%d", &m);
-      for (int i = 1; i <= m; ++i) scanf("%s", s), insert();
-      build();
-      f[0][0][1] = 1;
-      for (int i = 0; i < n; ++i) {
-        for (int j = 0; j <= tot; ++j) {
-          if (ed[j]) continue;
-          for (int k = 0; k < 10; ++k) {
-            if (ed[ch[j][k]]) continue;
-            add(f[i + 1][ch[j][k]][0], f[i][j][0]);
-            if (k < c[i] - '0') add(f[i + 1][ch[j][k]][0], f[i][j][1]);
-            if (k == c[i] - '0') add(f[i + 1][ch[j][k]][1], f[i][j][1]);
-          }
-        }
-      }
-      for (int j = 0; j <= tot; ++j) {
-        if (ed[j]) continue;
-        add(ans, f[n][j][0]);
-        add(ans, f[n][j][1]);
-      }
-      printf("%lld\n", ans - 1);
-      return 0;
-    }
+    --8<-- "docs/dp/code/number/number_6.cpp"
     ```
 
 此题可以很好地帮助理解数位 DP 的原理．

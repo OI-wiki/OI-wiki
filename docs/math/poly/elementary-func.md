@@ -120,32 +120,8 @@ $$
 
 ??? note "多项式求逆"
     ```cpp
-    constexpr int MAXN = 262144;
-    constexpr int mod = 998244353;
-    
-    using i64 = long long;
-    using poly_t = int[MAXN];
-    using poly = int *const;
-    
-    void polyinv(const poly &h, const int n, poly &f) {
-      /* f = 1 / h = f_0 (2 - f_0 h) */
-      static poly_t inv_t;
-      std::fill(f, f + n + n, 0);
-      f[0] = fpow(h[0], mod - 2);
-      for (int t = 2; t <= n; t <<= 1) {
-        const int t2 = t << 1;
-        std::copy(h, h + t, inv_t);
-        std::fill(inv_t + t, inv_t + t2, 0);
-    
-        DFT(f, t2);
-        DFT(inv_t, t2);
-        for (int i = 0; i != t2; ++i)
-          f[i] = (i64)f[i] * sub(2, (i64)f[i] * inv_t[i] % mod) % mod;
-        IDFT(f, t2);
-    
-        std::fill(f + t, f + t2, 0);
-      }
-    }
+    --8<-- "docs/math/code/poly/elementary-func/elementary-func_1.cpp:declarations"
+    --8<-- "docs/math/code/poly/elementary-func/elementary-func_1.cpp:core"
     ```
 
 ### 例题
@@ -327,63 +303,8 @@ $$
 
 ??? note "多项式 ln/exp"
     ```cpp
-    constexpr int MAXN = 262144;
-    constexpr int mod = 998244353;
-    
-    using i64 = long long;
-    using poly_t = int[MAXN];
-    using poly = int *const;
-    
-    void derivative(const poly &h, const int n, poly &f) {
-      for (int i = 1; i != n; ++i) f[i - 1] = (i64)h[i] * i % mod;
-      f[n - 1] = 0;
-    }
-    
-    void integrate(const poly &h, const int n, poly &f) {
-      for (int i = n - 1; i; --i) f[i] = (i64)h[i - 1] * inv[i] % mod;
-      f[0] = 0; /* C */
-    }
-    
-    void polyln(const poly &h, const int n, poly &f) {
-      /* f = ln h = ∫ h' / h dx */
-      assert(h[0] == 1);
-      static poly_t ln_t;
-      const int t = n << 1;
-    
-      derivative(h, n, ln_t);
-      std::fill(ln_t + n, ln_t + t, 0);
-      polyinv(h, n, f);
-    
-      DFT(ln_t, t);
-      DFT(f, t);
-      for (int i = 0; i != t; ++i) ln_t[i] = (i64)ln_t[i] * f[i] % mod;
-      IDFT(ln_t, t);
-    
-      integrate(ln_t, n, f);
-    }
-    
-    void polyexp(const poly &h, const int n, poly &f) {
-      /* f = exp(h) = f_0 (1 - ln f_0 + h) */
-      assert(h[0] == 0);
-      static poly_t exp_t;
-      std::fill(f, f + n + n, 0);
-      f[0] = 1;
-      for (int t = 2; t <= n; t <<= 1) {
-        const int t2 = t << 1;
-    
-        polyln(f, t, exp_t);
-        exp_t[0] = sub(pls(h[0], 1), exp_t[0]);
-        for (int i = 1; i != t; ++i) exp_t[i] = sub(h[i], exp_t[i]);
-        std::fill(exp_t + t, exp_t + t2, 0);
-    
-        DFT(f, t2);
-        DFT(exp_t, t2);
-        for (int i = 0; i != t2; ++i) f[i] = (i64)f[i] * exp_t[i] % mod;
-        IDFT(f, t2);
-    
-        std::fill(f + t, f + t2, 0);
-      }
-    }
+    --8<-- "docs/math/code/poly/elementary-func/elementary-func_2.cpp:declarations"
+    --8<-- "docs/math/code/poly/elementary-func/elementary-func_2.cpp:core"
     ```
 
 ### 例题
@@ -446,34 +367,8 @@ $$
     $$
     
     ```cpp
-    constexpr int MAXN = 262144;
-    constexpr int mod = 998244353;
-    constexpr int imgunit = 86583718; /* sqrt(-1) = sqrt(998233452) */
-    
-    using i64 = long long;
-    using poly_t = int[MAXN];
-    using poly = int *const;
-    
-    void polytri(const poly &h, const int n, poly &sin_t, poly &cos_t) {
-      /* sin(f) = (exp(i * f) - exp(- i * f)) / 2i */
-      /* cos(f) = (exp(i * f) + exp(- i * f)) / 2 */
-      /* tan(f) = sin(f) / cos(f) */
-      assert(h[0] == 0);
-      static poly_t tri1_t, tri2_t;
-    
-      for (int i = 0; i != n; ++i) tri2_t[i] = (i64)h[i] * imgunit % mod;
-      polyexp(tri2_t, n, tri1_t);
-      polyinv(tri1_t, n, tri2_t);
-    
-      if (sin_t != nullptr) {
-        const int invi = fpow(pls(imgunit, imgunit), mod - 2);
-        for (int i = 0; i != n; ++i)
-          sin_t[i] = (i64)(tri1_t[i] - tri2_t[i] + mod) * invi % mod;
-      }
-      if (cos_t != nullptr) {
-        for (int i = 0; i != n; ++i) cos_t[i] = div2(pls(tri1_t[i], tri2_t[i]));
-      }
-    }
+    --8<-- "docs/math/code/poly/elementary-func/elementary-func_3.cpp:declarations"
+    --8<-- "docs/math/code/poly/elementary-func/elementary-func_3.cpp:core"
     ```
 
 ## 多项式反三角函数
@@ -514,80 +409,9 @@ $$
 
 ??? note "多项式反三角函数"
     ```cpp
-    constexpr int MAXN = 262144;
-    constexpr int mod = 998244353;
-    
-    using i64 = long long;
-    using poly_t = int[MAXN];
-    using poly = int *const;
-    
-    void derivative(const poly &h, const int n, poly &f) {
-      for (int i = 1; i != n; ++i) f[i - 1] = (i64)h[i] * i % mod;
-      f[n - 1] = 0;
-    }
-    
-    void integrate(const poly &h, const int n, poly &f) {
-      for (int i = n - 1; i; --i) f[i] = (i64)h[i - 1] * inv[i] % mod;
-      f[0] = 0; /* C */
-    }
-    
-    void polyarcsin(const poly &h, const int n, poly &f) {
-      /* arcsin(f) = ∫ f' / sqrt(1 - f^2) dx  */
-      static poly_t arcsin_t;
-      const int t = n << 1;
-      std::copy(h, h + n, arcsin_t);
-      std::fill(arcsin_t + n, arcsin_t + t, 0);
-    
-      DFT(arcsin_t, t);
-      for (int i = 0; i != t; ++i) arcsin_t[i] = sqr(arcsin_t[i]);
-      IDFT(arcsin_t, t);
-    
-      arcsin_t[0] = sub(1, arcsin_t[0]);
-      for (int i = 1; i != n; ++i)
-        arcsin_t[i] = arcsin_t[i] ? mod - arcsin_t[i] : 0;
-    
-      polysqrt(arcsin_t, n, f);
-      polyinv(f, n, arcsin_t);
-      derivative(h, n, f);
-    
-      DFT(f, t);
-      DFT(arcsin_t, t);
-      for (int i = 0; i != t; ++i) arcsin_t[i] = (i64)f[i] * arcsin_t[i] % mod;
-      IDFT(arcsin_t, t);
-    
-      integrate(arcsin_t, n, f);
-    }
-    
-    void polyarccos(const poly &h, const int n, poly &f) {
-      /* arccos(f) = - ∫ f' / sqrt(1 - f^2) dx  */
-      polyarcsin(h, n, f);
-      for (int i = 0; i != n; ++i) f[i] = f[i] ? mod - f[i] : 0;
-    }
-    
-    void polyarctan(const poly &h, const int n, poly &f) {
-      /* arctan(f) = ∫ f' / (1 + f^2) dx  */
-      static poly_t arctan_t;
-      const int t = n << 1;
-      std::copy(h, h + n, arctan_t);
-      std::fill(arctan_t + n, arctan_t + t, 0);
-    
-      DFT(arctan_t, t);
-      for (int i = 0; i != t; ++i) arctan_t[i] = sqr(arctan_t[i]);
-      IDFT(arctan_t, t);
-    
-      inc(arctan_t[0], 1);
-      std::fill(arctan_t + n, arctan_t + t, 0);
-    
-      polyinv(arctan_t, n, f);
-      derivative(h, n, arctan_t);
-    
-      DFT(f, t);
-      DFT(arctan_t, t);
-      for (int i = 0; i != t; ++i) arctan_t[i] = (i64)f[i] * arctan_t[i] % mod;
-      IDFT(arctan_t, t);
-    
-      integrate(arctan_t, n, f);
-    }
+    --8<-- "docs/math/code/poly/elementary-func/elementary-func_4.cpp:declarations"
+    --8<-- "docs/math/code/poly/elementary-func/elementary-func_4.cpp:calculus"
+    --8<-- "docs/math/code/poly/elementary-func/elementary-func_4.cpp:core"
     ```
 
 ## 参考资料与链接

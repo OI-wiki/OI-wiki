@@ -1,137 +1,197 @@
-#include <cstring>
+#include <algorithm>
+#include <cassert>
 #include <iostream>
+#include <numeric>
+#include <queue>
 #include <random>
-#include <utility>
+#include <vector>
 using namespace std;
 
-constexpr int MAXN = 505, p = (int)1e9 + 7;
+// graph
+template <typename T>
+class graph {
+ public:
+  struct edge {
+    int from;
+    int to;
+    T cost;
+  };
 
-int qpow(int a, int b) {
-  int ans = 1;
-  while (b) {
-    if (b & 1) ans = (long long)ans * a % p;
-    a = (long long)a * a % p;
-    b >>= 1;
+  vector<edge> edges;
+  vector<vector<int>> g;
+  int n;
+
+  graph(int _n) : n(_n) { g.resize(n); }
+
+  virtual int add(int from, int to, T cost) = 0;
+};
+
+// undirectedgraph
+template <typename T>
+class undirectedgraph : public graph<T> {
+ public:
+  using graph<T>::edges;
+  using graph<T>::g;
+  using graph<T>::n;
+
+  undirectedgraph(int _n) : graph<T>(_n) {}
+
+  int add(int from, int to, T cost = 1) {
+    assert(0 <= from && from < n && 0 <= to && to < n);
+    int id = (int)edges.size();
+    g[from].push_back(id);
+    g[to].push_back(id);
+    edges.push_back({from, to, cost});
+    return id;
   }
-  return ans;
-}
+};
 
-int A[MAXN][MAXN], B[MAXN][MAXN], t[MAXN][MAXN], id[MAXN];
+// blossom / find_max_unweighted_matching
+template <typename T>
+vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
+  std::mt19937 rng(114514);  // 这里随机种子是无关紧要的
+  // 也可以用 chrono::steady_clock::now().time_since_epoch().count()
+  // 获取当前时间
+  vector<int> match(g.n, -1);   // 匹配
+  vector<int> aux(g.n, -1);     // 时间戳记
+  vector<int> label(g.n);       // "o" or "i"
+  vector<int> orig(g.n);        // 花根
+  vector<int> parent(g.n, -1);  // 父节点
+  queue<int> q;
+  int aux_time = -1;
 
-// 高斯消元 O(n^3)
-// 在传入 B 时表示计算逆矩阵, 传入 nullptr 则只需计算矩阵的秩
-void Gauss(int A[][MAXN], int B[][MAXN], int n) {
-  if (B) {
-    memset(B, 0, sizeof(t));
-    for (int i = 1; i <= n; i++) B[i][i] = 1;
-  }
-
-  for (int i = 1; i <= n; i++) {
-    if (!A[i][i]) {
-      for (int j = i + 1; j <= n; j++)
-        if (A[j][i]) {
-          swap(id[i], id[j]);
-          for (int k = i; k <= n; k++) swap(A[i][k], A[j][k]);
-
-          if (B)
-            for (int k = 1; k <= n; k++) swap(B[i][k], B[j][k]);
-          break;
+  auto lca = [&](int v, int u) {
+    aux_time++;
+    while (true) {
+      if (v != -1) {
+        if (aux[v] == aux_time) {  // 找到拜访过的点 也就是LCA
+          return v;
         }
-
-      if (!A[i][i]) continue;
-    }
-
-    int inv = qpow(A[i][i], p - 2);
-
-    for (int j = 1; j <= n; j++)
-      if (i != j && A[j][i]) {
-        int t = (long long)A[j][i] * inv % p;
-
-        for (int k = i; k <= n; k++)
-          if (A[i][k]) A[j][k] = (A[j][k] - (long long)t * A[i][k]) % p;
-
-        if (B) {
-          for (int k = 1; k <= n; k++)
-            if (B[i][k]) B[j][k] = (B[j][k] - (long long)t * B[i][k]) % p;
+        aux[v] = aux_time;
+        if (match[v] == -1) {
+          v = -1;
+        } else {
+          v = orig[parent[match[v]]];  // 以匹配点的父节点继续寻找
         }
       }
+      swap(v, u);
+    }
+  };  // lca
+
+  auto blossom = [&](int v, int u, int a) {
+    while (orig[v] != a) {
+      parent[v] = u;
+      u = match[v];
+      if (label[u] == 1) {  // 初始点设为"o" 找增广路
+        label[u] = 0;
+        q.push(u);
+      }
+      orig[v] = orig[u] = a;  // 缩花
+      v = parent[u];
+    }
+  };  // blossom
+
+  auto augment = [&](int v) {
+    while (v != -1) {
+      int pv = parent[v];
+      int next_v = match[pv];
+      match[v] = pv;
+      match[pv] = v;
+      v = next_v;
+    }
+  };  // augment
+
+  auto bfs = [&](int root) {
+    fill(label.begin(), label.end(), -1);
+    iota(orig.begin(), orig.end(), 0);
+    while (!q.empty()) {
+      q.pop();
+    }
+    q.push(root);
+    // 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
+    label[root] = 0;
+    while (!q.empty()) {
+      int v = q.front();
+      q.pop();
+      for (int id : g.g[v]) {
+        auto &e = g.edges[id];
+        int u = e.from ^ e.to ^ v;
+        if (label[u] == -1) {  // 找到未拜访点
+          label[u] = 1;        // 标记 "i"
+          parent[u] = v;
+          if (match[u] == -1) {  // 找到未匹配点
+            augment(u);          // 寻找增广路径
+            return true;
+          }
+          // 找到已匹配点 将与她匹配的点丢入queue 延伸交错树
+          label[match[u]] = 0;
+          q.push(match[u]);
+          continue;
+        } else if (label[u] == 0 && orig[v] != orig[u]) {
+          // 找到已拜访点 且标记同为"o" 代表找到"花"
+          int a = lca(orig[v], orig[u]);
+          // 找LCA 然后缩花
+          blossom(u, v, a);
+          blossom(v, u, a);
+        }
+      }
+    }
+    return false;
+  };  // bfs
+
+  auto greedy = [&]() {
+    vector<int> order(g.n);
+    // 随机打乱 order
+    iota(order.begin(), order.end(), 0);
+    shuffle(order.begin(), order.end(), rng);
+
+    // 将可以匹配的点匹配
+    for (int i : order) {
+      if (match[i] == -1) {
+        for (auto id : g.g[i]) {
+          auto &e = g.edges[id];
+          int to = e.from ^ e.to ^ i;
+          if (match[to] == -1) {
+            match[i] = to;
+            match[to] = i;
+            break;
+          }
+        }
+      }
+    }
+  };  // greedy
+
+  // 一开始先随机匹配
+  greedy();
+  // 对未匹配点找增广路
+  for (int i = 0; i < g.n; i++) {
+    if (match[i] == -1) {
+      bfs(i);
+    }
   }
-
-  if (B)
-    for (int i = 1; i <= n; i++) {
-      int inv = qpow(A[i][i], p - 2);
-
-      for (int j = 1; j <= n; j++)
-        if (B[i][j]) B[i][j] = (long long)B[i][j] * inv % p;
-    }
+  return match;
 }
-
-bool row_marked[MAXN] = {false}, col_marked[MAXN] = {false};
-
-int sub_n;  // 极大满秩子矩阵的大小
-
-// 消去一行一列 O(n^2)
-void eliminate(int r, int c) {
-  row_marked[r] = col_marked[c] = true;  // 已经被消掉
-
-  int inv = qpow(B[r][c], p - 2);
-
-  for (int i = 1; i <= sub_n; i++)
-    if (!row_marked[i] && B[i][c]) {
-      int t = (long long)B[i][c] * inv % p;
-
-      for (int j = 1; j <= sub_n; j++)
-        if (!col_marked[j] && B[r][j])
-          B[i][j] = (B[i][j] - (long long)t * B[r][j]) % p;
-    }
-}
-
-int vertices[MAXN], girl[MAXN];  // girl 是匹配点, 用来输出方案
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  auto rng = mt19937(random_device{}());
+  ios::sync_with_stdio(false);
 
   int n, m;
-  cin >> n >> m;  // 点数和边数
+  cin >> n >> m;
+
+  undirectedgraph<int> g(n);
 
   while (m--) {
-    int x, y;
-    cin >> x >> y;
-    A[x][y] = rng() % p;
-    A[y][x] = -A[x][y];  // Tutte 矩阵
+    int u, v;
+    cin >> u >> v;
+    g.add(u - 1, v - 1);  // 0-based
   }
 
-  for (int i = 1; i <= n; i++)
-    id[i] = i;  // 输出方案用的，因为高斯消元的时候会交换列
-  memcpy(t, A, sizeof(t));
+  auto match = find_max_unweighted_matching(g);
 
-  Gauss(A, nullptr, n);
-
-  for (int i = 1; i <= n; i++)
-    if (A[id[i]][id[i]]) vertices[++sub_n] = i;  // 找出一个极大满秩子矩阵
-
-  for (int i = 1; i <= sub_n; i++)
-    for (int j = 1; j <= sub_n; j++) A[i][j] = t[vertices[i]][vertices[j]];
-
-  Gauss(A, B, sub_n);
-
-  for (int i = 1; i <= sub_n; i++)
-    if (!girl[vertices[i]])
-      for (int j = i + 1; j <= sub_n; j++)
-        if (!girl[vertices[j]] && t[vertices[i]][vertices[j]] && B[j][i]) {
-          // 注意上面那句 if 的写法, 现在 t 是邻接矩阵的备份，
-          // 逆矩阵 j 行 i 列不为 0 当且仅当这条边可行
-          girl[vertices[i]] = vertices[j];
-          girl[vertices[j]] = vertices[i];
-
-          eliminate(i, j);
-          eliminate(j, i);
-          break;
-        }
-
-  cout << sub_n / 2 << '\n';
-  for (int i = 1; i <= n; i++) cout << girl[i] << ' ';
+  cout << count_if(match.begin(), match.end(), [](int x) { return x != -1; }) /
+              2
+       << endl;
+  for (int i = 0; i < n; i++) cout << match[i] + 1 << " \n"[i == n - 1];
 
   return 0;
 }

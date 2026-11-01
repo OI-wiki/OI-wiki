@@ -23,9 +23,7 @@
 于是有数组中下标为 `i` 的节点，对应的父结点、左子结点和右子结点如下：
 
 ```cpp
-iParent(i) = (i - 1) / 2;
-iLeftChild(i) = 2 * i + 1;
-iRightChild(i) = 2 * i + 2;
+--8<-- "docs/basic/code/heap-sort/heap-sort_1.cpp:core"
 ```
 
 ## 性质
@@ -46,12 +44,12 @@ iRightChild(i) = 2 * i + 2;
 
 === "C++"
     ```cpp
-    --8<-- "docs/basic/code/heap-sort/heap-sort_1.cpp:sort"
+    --8<-- "docs/basic/code/heap-sort/heap-sort_2.cpp:sort"
     ```
 
 === "Python"
     ```python
-    --8<-- "docs/basic/code/heap-sort/heap-sort_1.py:sort"
+    --8<-- "docs/basic/code/heap-sort/heap-sort_2.py:sort"
     ```
 
 ## 外部链接

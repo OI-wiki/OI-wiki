@@ -58,12 +58,7 @@ $$
 模拟以 $p$ 的概率往上加一层，最后和上限值取最小．
 
 ```cpp
-int randomLevel() {
-  int lv = 1;
-  // MAXL = 32, S = 0xFFFF, PS = S * P, P = 1 / 4
-  while ((rand() & S) < PS) ++lv;
-  return min(MAXL, lv);
-}
+--8<-- "docs/ds/code/skiplist/skiplist_1.cpp:example154"
 ```
 
 ### 查询
@@ -71,24 +66,7 @@ int randomLevel() {
 查询跳表中是否存在键值为 `key` 的节点．具体实现时，可以设置两个哨兵节点以减少边界条件的讨论．
 
 ```cpp
-V& find(const K& key) {
-  SkipListNode<K, V>* p = head;
-
-  // 找到该层最后一个键值小于 key 的节点，然后走向下一层
-  for (int i = level; i >= 0; --i) {
-    while (p->forward[i]->key < key) {
-      p = p->forward[i];
-    }
-  }
-  // 现在是小于，所以还需要再往后走一步
-  p = p->forward[0];
-
-  // 成功找到节点
-  if (p->key == key) return p->value;
-
-  // 节点不存在，返回 INVALID
-  return tail->value;
-}
+--8<-- "docs/ds/code/skiplist/skiplist_1.cpp:example155"
 ```
 
 ### 插入
@@ -96,44 +74,7 @@ V& find(const K& key) {
 插入节点 `(key, value)`．插入节点的过程就是先执行一遍查询的过程，中途记录新节点是要插入哪一些节点的后面，最后再执行插入．每一层最后一个键值小于 `key` 的节点，就是需要进行修改的节点．
 
 ```cpp
-void insert(const K &key, const V &value) {
-  // 用于记录需要修改的节点
-  SkipListNode<K, V> *update[MAXL + 1];
-
-  SkipListNode<K, V> *p = head;
-  for (int i = level; i >= 0; --i) {
-    while (p->forward[i]->key < key) {
-      p = p->forward[i];
-    }
-    // 第 i 层需要修改的节点为 p
-    update[i] = p;
-  }
-  p = p->forward[0];
-
-  // 若已存在则修改
-  if (p->key == key) {
-    p->value = value;
-    return;
-  }
-
-  // 获取新节点的最大层数
-  int lv = randomLevel();
-  if (lv > level) {
-    lv = ++level;
-    update[lv] = head;
-  }
-
-  // 新建节点
-  SkipListNode<K, V> *newNode = new SkipListNode<K, V>(key, value, lv);
-  // 在第 0~lv 层插入新节点
-  for (int i = lv; i >= 0; --i) {
-    p = update[i];
-    newNode->forward[i] = p->forward[i];
-    p->forward[i] = newNode;
-  }
-
-  ++length;
-}
+--8<-- "docs/ds/code/skiplist/skiplist_1.cpp:example156"
 ```
 
 ### 删除
@@ -141,43 +82,7 @@ void insert(const K &key, const V &value) {
 删除键值为 `key` 的节点．删除节点的过程就是先执行一遍查询的过程，中途记录要删的节点是在哪一些节点的后面，最后再执行删除．每一层最后一个键值小于 `key` 的节点，就是需要进行修改的节点．
 
 ```cpp
-bool erase(const K &key) {
-  // 用于记录需要修改的节点
-  SkipListNode<K, V> *update[MAXL + 1];
-
-  SkipListNode<K, V> *p = head;
-  for (int i = level; i >= 0; --i) {
-    while (p->forward[i]->key < key) {
-      p = p->forward[i];
-    }
-    // 第 i 层需要修改的节点为 p
-    update[i] = p;
-  }
-  p = p->forward[0];
-
-  // 节点不存在
-  if (p->key != key) return false;
-
-  // 从最底层开始删除
-  for (int i = 0; i <= level; ++i) {
-    // 如果这层没有 p 删除就完成了
-    if (update[i]->forward[i] != p) {
-      break;
-    }
-    // 断开 p 的连接
-    update[i]->forward[i] = p->forward[i];
-  }
-
-  // 回收空间
-  delete p;
-
-  // 删除节点可能导致最大层数减少
-  while (level > 0 && head->forward[level] == tail) --level;
-
-  // 跳表长度
-  --length;
-  return true;
-}
+--8<-- "docs/ds/code/skiplist/skiplist_1.cpp:example157"
 ```
 
 ### 完整代码
@@ -186,178 +91,7 @@ bool erase(const K &key) {
 
 ??? note "参考代码"
     ```cpp
-    #include <cassert>
-    #include <climits>
-    #include <ctime>
-    #include <iostream>
-    #include <map>
-    using namespace std;
-    
-    template <typename K, typename V>
-    struct SkipListNode {
-      int level;
-      K key;
-      V value;
-      SkipListNode **forward;
-    
-      SkipListNode() {}
-    
-      SkipListNode(K k, V v, int l, SkipListNode *nxt = NULL) {
-        key = k;
-        value = v;
-        level = l;
-        forward = new SkipListNode *[l + 1];
-        for (int i = 0; i <= l; ++i) forward[i] = nxt;
-      }
-    
-      ~SkipListNode() {
-        if (forward != NULL) delete[] forward;
-      }
-    };
-    
-    template <typename K, typename V>
-    struct SkipList {
-      static constexpr int MAXL = 32;
-      static constexpr int P = 4;
-      static constexpr int S = 0xFFFF;
-      static constexpr int PS = S / P;
-      static constexpr int INVALID = INT_MAX;
-    
-      SkipListNode<K, V> *head, *tail;
-      int length;
-      int level;
-    
-      SkipList() {
-        srand(time(nullptr));
-    
-        level = length = 0;
-        tail = new SkipListNode<K, V>(INVALID, 0, 0);
-        head = new SkipListNode<K, V>(INVALID, 0, MAXL, tail);
-      }
-    
-      ~SkipList() {
-        delete head;
-        delete tail;
-      }
-    
-      int randomLevel() {
-        int lv = 1;
-        while ((rand() & S) < PS) ++lv;
-        return MAXL > lv ? lv : MAXL;
-      }
-    
-      void insert(const K &key, const V &value) {
-        SkipListNode<K, V> *update[MAXL + 1];
-    
-        SkipListNode<K, V> *p = head;
-        for (int i = level; i >= 0; --i) {
-          while (p->forward[i]->key < key) {
-            p = p->forward[i];
-          }
-          update[i] = p;
-        }
-        p = p->forward[0];
-    
-        if (p->key == key) {
-          p->value = value;
-          return;
-        }
-    
-        int lv = randomLevel();
-        if (lv > level) {
-          lv = ++level;
-          update[lv] = head;
-        }
-    
-        SkipListNode<K, V> *newNode = new SkipListNode<K, V>(key, value, lv);
-        for (int i = lv; i >= 0; --i) {
-          p = update[i];
-          newNode->forward[i] = p->forward[i];
-          p->forward[i] = newNode;
-        }
-    
-        ++length;
-      }
-    
-      bool erase(const K &key) {
-        SkipListNode<K, V> *update[MAXL + 1];
-        SkipListNode<K, V> *p = head;
-    
-        for (int i = level; i >= 0; --i) {
-          while (p->forward[i]->key < key) {
-            p = p->forward[i];
-          }
-          update[i] = p;
-        }
-        p = p->forward[0];
-    
-        if (p->key != key) return false;
-    
-        for (int i = 0; i <= level; ++i) {
-          if (update[i]->forward[i] != p) {
-            break;
-          }
-          update[i]->forward[i] = p->forward[i];
-        }
-    
-        delete p;
-    
-        while (level > 0 && head->forward[level] == tail) --level;
-        --length;
-        return true;
-      }
-    
-      V &operator[](const K &key) {
-        V v = find(key);
-        if (v == tail->value) insert(key, 0);
-        return find(key);
-      }
-    
-      V &find(const K &key) {
-        SkipListNode<K, V> *p = head;
-        for (int i = level; i >= 0; --i) {
-          while (p->forward[i]->key < key) {
-            p = p->forward[i];
-          }
-        }
-        p = p->forward[0];
-        if (p->key == key) return p->value;
-        return tail->value;
-      }
-    
-      bool count(const K &key) { return find(key) != tail->value; }
-    };
-    
-    int main() {
-      SkipList<int, int> L;
-      map<int, int> M;
-    
-      clock_t s = clock();
-    
-      for (int i = 0; i < 1e5; ++i) {
-        int key = rand(), value = rand();
-        L[key] = value;
-        M[key] = value;
-      }
-    
-      for (int i = 0; i < 1e5; ++i) {
-        int key = rand();
-        if (i & 1) {
-          L.erase(key);
-          M.erase(key);
-        } else {
-          int r1 = L.count(key) ? L[key] : 0;
-          int r2 = M.count(key) ? M[key] : 0;
-          assert(r1 == r2);
-        }
-      }
-    
-      clock_t e = clock();
-      cout << "Time elapsed: " << (double)(e - s) / CLOCKS_PER_SEC << endl;
-      // about 0.2s
-    
-      return 0;
-    }
+    --8<-- "docs/ds/code/skiplist/skiplist_2.cpp:core"
     ```
 
 ## 跳表的随机访问优化

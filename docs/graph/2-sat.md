@@ -35,7 +35,7 @@ SAT 是适定性（Satisfiability）问题的简称．一般形式为 k - 适定
 
 ??? note "代码实现"
     ```cpp
-    --8<-- "docs/graph/code/2-sat/2-sat_3.cpp"
+    --8<-- "docs/graph/code/2-sat/2-sat_1.cpp"
     ```
 
 ## 例题
@@ -49,7 +49,7 @@ SAT 是适定性（Satisfiability）问题的简称．一般形式为 k - 适定
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/2-sat/2-sat_1.cpp"
+    --8<-- "docs/graph/code/2-sat/2-sat_2.cpp"
     ```
 
 ### 例题 2
@@ -65,7 +65,7 @@ SAT 是适定性（Satisfiability）问题的简称．一般形式为 k - 适定
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/2-sat/2-sat_2.cpp"
+    --8<-- "docs/graph/code/2-sat/2-sat_3.cpp"
     ```
 
 ## 习题

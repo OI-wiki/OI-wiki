@@ -34,46 +34,12 @@ Duval 算法运用了贪心的思想．算法过程中我们把串 $s$ 分成三
 
 === "C++"
     ```cpp
-    // duval_algorithm
-    vector<string> duval(string const& s) {
-      int n = s.size(), i = 0;
-      vector<string> factorization;
-      while (i < n) {
-        int j = i + 1, k = i;
-        while (j < n && s[k] <= s[j]) {
-          if (s[k] < s[j])
-            k = i;
-          else
-            k++;
-          j++;
-        }
-        while (i <= k) {
-          factorization.push_back(s.substr(i, j - k));
-          i += j - k;
-        }
-      }
-      return factorization;
-    }
+    --8<-- "docs/string/code/lyndon/lyndon_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    # duval_algorithm
-    def duval(s):
-        n, i = len(s), 0
-        factorization = []
-        while i < n:
-            j, k = i + 1, i
-            while j < n and s[k] <= s[j]:
-                if s[k] < s[j]:
-                    k = i
-                else:
-                    k += 1
-                j += 1
-            while i <= k:
-                factorization.append(s[i : i + j - k])
-                i += j - k
-        return factorization
+    --8<-- "docs/string/code/lyndon/lyndon_1.py:core"
     ```
 
 ### 复杂度分析
@@ -92,46 +58,12 @@ Duval 算法运用了贪心的思想．算法过程中我们把串 $s$ 分成三
 
 === "C++"
     ```cpp
-    // smallest_cyclic_string
-    string min_cyclic_string(string s) {
-      s += s;
-      int n = s.size();
-      int i = 0, ans = 0;
-      while (i < n / 2) {
-        ans = i;
-        int j = i + 1, k = i;
-        while (j < n && s[k] <= s[j]) {
-          if (s[k] < s[j])
-            k = i;
-          else
-            k++;
-          j++;
-        }
-        while (i <= k) i += j - k;
-      }
-      return s.substr(ans, n / 2);
-    }
+    --8<-- "docs/string/code/lyndon/lyndon_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    # smallest_cyclic_string
-    def min_cyclic_string(s):
-        s += s
-        n = len(s)
-        i, ans = 0, 0
-        while i < n / 2:
-            ans = i
-            j, k = i + 1, i
-            while j < n and s[k] <= s[j]:
-                if s[k] < s[j]:
-                    k = i
-                else:
-                    k += 1
-                j += 1
-            while i <= k:
-                i += j - k
-        return s[ans : ans + n / 2]
+    --8<-- "docs/string/code/lyndon/lyndon_2.py:core"
     ```
 
 ## 习题

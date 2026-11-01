@@ -1,5 +1,3 @@
-#include <algorithm>
-#include <cmath>
 #include <iostream>
 
 template <typename T>
@@ -12,50 +10,54 @@ T pow(T a, int b) {
   return res;
 }
 
-struct LinearTransform {
-  int u, v;
+template <typename T>
+T euclid(int a, int b, int c, int n, T U, T R) {
+  if (b >= c) return pow(U, b / c) * euclid(a, b % c, c, n, U, R);
+  if (a >= c) return euclid(a % c, b, c, n, U, pow(U, a / c) * R);
+  auto m = ((long long)a * n + b) / c;
+  if (!m) return pow(R, n);
+  return pow(R, (c - b - 1) / a) * U *
+         euclid(c, (c - b - 1) % a, a, m - 1, R, U) *
+         pow(R, n - (c * m - b - 1) / a);
+}
 
-  LinearTransform() : u(0), v(1) {}
+constexpr int M = 998244353;
 
-  LinearTransform operator*(const LinearTransform& rhs) const {
-    LinearTransform res;
-    res.u = u + v * rhs.u;
-    res.v = v * rhs.v;
+struct Info {
+  long long x, y, s, t, u;
+
+  Info() : x(0), y(0), s(0), t(0), u(0) {}
+
+  Info operator*(const Info& rhs) const {
+    Info res;
+    res.x = (x + rhs.x) % M;
+    res.y = (y + rhs.y) % M;
+    res.s = (s + rhs.s + rhs.x * y) % M;
+    auto tmp = (rhs.x * (rhs.x + 1) / 2 + x * rhs.x) % M;
+    res.t = (t + rhs.t + x * rhs.s + tmp * y) % M;
+    res.u = (u + rhs.u + 2 * y * rhs.s + rhs.x * y % M * y) % M;
     return res;
   }
-
-  int eval(int x) const { return u + v * x; }
 };
 
-int solve(int n, int r) {
-  long double sqrt_r = sqrtl(r);
-  int sqr = sqrt_r;
-  if (r == sqr * sqr) return sqr % 2 ? (n % 2 ? -1 : 0) : n;
-  int P = 0, Q = 1, D = r, val = 0;
-  LinearTransform U, R;
-  U.v = -1;
-  R.u = 1;
-  while (n) {
-    int a = (P + sqr) / Q;
-    R = pow(U, a) * R;
-    int m = ((P + sqrt_r) / Q - a) * n;
-    P = a * Q - P;
-    Q = (D - P * P) / Q;
-    int rem = n - (int)(m * (P + sqrt_r) / Q);
-    val = pow(R, rem).eval(val);
-    std::swap(U, R);
-    n = m;
-  }
-  return val;
+void solve(int a, int b, int c, int n) {
+  Info U, R;
+  U.y = 1;
+  R.x = 1;
+  auto res = euclid(a, b, c, n, U, R);
+  auto f = (res.s + b / c) % M;
+  auto g = res.t;
+  auto h = (res.u + (long long)(b / c) * (b / c)) % M;
+  std::cout << f << ' ' << h << ' ' << g << '\n';
 }
 
 int main() {
   int t;
   std::cin >> t;
   for (; t; --t) {
-    int n, r;
-    std::cin >> n >> r;
-    std::cout << solve(n, r) << '\n';
+    int a, b, c, n;
+    std::cin >> n >> a >> b >> c;
+    solve(a, b, c, n);
   }
   return 0;
 }

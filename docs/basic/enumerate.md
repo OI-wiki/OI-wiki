@@ -38,51 +38,34 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     
     === "C++"
         ```cpp
-        for (int i = 0; i < n; ++i)
-          for (int j = 0; j < n; ++j)
-            if (a[i] + a[j] == 0) ++ans;
+        --8<-- "docs/basic/code/enumerate/enumerate_1.cpp:core"
         ```
     
     === "Python"
         ```python
-        for i in range(n):
-            for j in range(n):
-                if a[i] + a[j] == 0:
-                    ans += 1
+        --8<-- "docs/basic/code/enumerate/enumerate_1.py:core"
         ```
     
     === "Java"
         ```java
-        for (int i = 0; i < n; ++i)
-          for (int j = 0; j < n; ++j)
-            if (a[i] + a[j] == 0) ++ans;
+        --8<-- "docs/basic/code/enumerate/enumerate_1.java:core"
         ```
     
     来看看枚举的范围如何优化．若 $(a_i,a_j)$ 满足条件，则 $(a_j,a_i)$ 也满足条件；又因为元素均不为 $0$，满足条件时必有 $i\ne j$．因此可以只枚举 $j<i$，使每个无序配对只统计一次，再将结果乘 $2$，得到有序数对个数．代码如下：
     
     === "C++"
         ```cpp
-        for (int i = 0; i < n; ++i)
-          for (int j = 0; j < i; ++j)
-            if (a[i] + a[j] == 0) ++ans;
-        ans *= 2;
+        --8<-- "docs/basic/code/enumerate/enumerate_2.cpp:core"
         ```
     
     === "Python"
         ```python
-        for i in range(n):
-            for j in range(i):
-                if a[i] + a[j] == 0:
-                    ans += 1
-        ans *= 2
+        --8<-- "docs/basic/code/enumerate/enumerate_2.py:core"
         ```
     
     === "Java"
         ```java
-        for (int i = 0; i < n; ++i)
-            for (int j = 0; j < i; ++j)
-                if (a[i] + a[j] == 0) ++ans;
-        ans *= 2;
+        --8<-- "docs/basic/code/enumerate/enumerate_2.java:core"
         ```
     
     不难发现这里已经减少了 $j$ 的枚举范围，减少了这段代码的时间开销．
@@ -93,27 +76,17 @@ author: Early0v0, frank-xjh, Great-designer, ksyx, qiqistyle, Tiphereth-A , Sais
     
     === "C++"
         ```cpp
-        --8<-- "docs/basic/code/enumerate/enumerate_1.cpp"
+        --8<-- "docs/basic/code/enumerate/enumerate_3.cpp:core"
         ```
     
     === "Python"
         ```python
-        met = [False] * (MAXN * 2 + 1)
-        for i in range(n):
-            if met[MAXN - a[i]]:
-                ans += 1
-            met[a[i] + MAXN] = True
-        ans *= 2
+        --8<-- "docs/basic/code/enumerate/enumerate_3.py:core"
         ```
     
     === "Java"
         ```java
-        boolean[] met = new boolean[MAXN * 2 + 1];
-        for (int i = 0; i < n; ++i) {
-            if (met[MAXN - a[i]]) ++ans;
-            met[MAXN + a[i]] = true;
-        }
-        ans *= 2;
+        --8<-- "docs/basic/code/enumerate/enumerate_3.java:core"
         ```
 
 ### 复杂度分析

@@ -60,49 +60,7 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
 
 ??? note "实现"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    
-    using namespace std;
-    
-    constexpr int N = 1000010;
-    
-    char s[N];
-    int n, w, sa[N], rk[N << 1], oldrk[N << 1];
-    
-    // 为了防止访问 rk[i+w] 导致数组越界，开两倍数组．
-    // 当然也可以在访问前判断是否越界，但直接开两倍数组方便一些．
-    
-    int main() {
-      int i, p;
-    
-      scanf("%s", s + 1);
-      n = strlen(s + 1);
-      for (i = 1; i <= n; ++i) sa[i] = i, rk[i] = s[i];
-    
-      for (w = 1; w < n; w <<= 1) {
-        sort(sa + 1, sa + n + 1, [](int x, int y) {
-          return rk[x] == rk[y] ? rk[x + w] < rk[y + w] : rk[x] < rk[y];
-        });  // 这里用到了 lambda
-        memcpy(oldrk, rk, sizeof(rk));
-        // 由于计算 rk 的时候原来的 rk 会被覆盖，要先复制一份
-        // 若两个子串相同，它们对应的 rk 也需要相同，所以要去重
-        for (p = 0, i = 1; i <= n; ++i) {
-          if (oldrk[sa[i]] == oldrk[sa[i - 1]] &&
-              oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
-            rk[sa[i]] = p;
-          } else {
-            rk[sa[i]] = ++p;
-          }
-        }
-      }
-    
-      for (i = 1; i <= n; ++i) printf("%d ", sa[i]);
-    
-      return 0;
-    }
+    --8<-- "docs/string/code/sa/sa_1.cpp"
     ```
 
 ### O(nlogn) 做法
@@ -115,67 +73,7 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
 
 ??? note "实现"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    
-    using namespace std;
-    
-    constexpr int N = 1000010;
-    
-    char s[N];
-    int n, sa[N], rk[N << 1], oldrk[N << 1], id[N], cnt[N];
-    
-    int main() {
-      int i, m, p, w;
-    
-      scanf("%s", s + 1);
-      n = strlen(s + 1);
-      m = 127;
-      for (i = 1; i <= n; ++i) ++cnt[rk[i] = s[i]];
-      for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-      for (i = n; i >= 1; --i) sa[cnt[rk[i]]--] = i;
-      memcpy(oldrk + 1, rk + 1, n * sizeof(int));
-      for (p = 0, i = 1; i <= n; ++i) {
-        if (oldrk[sa[i]] == oldrk[sa[i - 1]]) {
-          rk[sa[i]] = p;
-        } else {
-          rk[sa[i]] = ++p;
-        }
-      }
-    
-      for (w = 1; w < n; w <<= 1, m = n) {
-        // 对第二关键字：id[i] + w进行计数排序
-        memset(cnt, 0, sizeof(cnt));
-        memcpy(id + 1, sa + 1,
-               n * sizeof(int));  // id保存一份儿sa的拷贝，实质上就相当于oldsa
-        for (i = 1; i <= n; ++i) ++cnt[rk[id[i] + w]];
-        for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-        for (i = n; i >= 1; --i) sa[cnt[rk[id[i] + w]]--] = id[i];
-    
-        // 对第一关键字：id[i]进行计数排序
-        memset(cnt, 0, sizeof(cnt));
-        memcpy(id + 1, sa + 1, n * sizeof(int));
-        for (i = 1; i <= n; ++i) ++cnt[rk[id[i]]];
-        for (i = 1; i <= m; ++i) cnt[i] += cnt[i - 1];
-        for (i = n; i >= 1; --i) sa[cnt[rk[id[i]]]--] = id[i];
-    
-        memcpy(oldrk + 1, rk + 1, n * sizeof(int));
-        for (p = 0, i = 1; i <= n; ++i) {
-          if (oldrk[sa[i]] == oldrk[sa[i - 1]] &&
-              oldrk[sa[i] + w] == oldrk[sa[i - 1] + w]) {
-            rk[sa[i]] = p;
-          } else {
-            rk[sa[i]] = ++p;
-          }
-        }
-      }
-    
-      for (i = 1; i <= n; ++i) printf("%d ", sa[i]);
-    
-      return 0;
-    }
+    --8<-- "docs/string/code/sa/sa_2.cpp"
     ```
 
 ### 一些常数优化
@@ -191,10 +89,7 @@ $rk[i]$ 表示后缀 $i$ 的排名，是重要的辅助数组，后文也称排�
 思考一下第二关键字排序的实质，其实就是把超出字符串范围（即 $sa[i] + w > n$）的 $sa[i]$ 放到 $sa$ 数组头部，然后把剩下的依原顺序放入：
 
 ```cpp
-int cur = 0;
-for (int i = n - w + 1; i <= n; i++) id[++cur] = i;
-for (int i = 1; i <= n; i++)
-  if (sa[i] > w) id[++cur] = sa[i] - w;
+--8<-- "docs/string/code/sa/sa_3.cpp:second-key"
 ```
 
 #### 优化计数排序的值域
@@ -207,56 +102,7 @@ for (int i = 1; i <= n; i++)
 
 ??? note "实现"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #include <cstring>
-    #include <iostream>
-    
-    using namespace std;
-    
-    constexpr int N = 1000010;
-    
-    char s[N];
-    int n;
-    int m, p, rk[N * 2], oldrk[N], sa[N * 2], id[N], cnt[N];
-    
-    int main() {
-      scanf("%s", s + 1);
-      n = strlen(s + 1);
-      m = 128;
-    
-      for (int i = 1; i <= n; i++) cnt[rk[i] = s[i]]++;
-      for (int i = 1; i <= m; i++) cnt[i] += cnt[i - 1];
-      for (int i = n; i >= 1; i--) sa[cnt[rk[i]]--] = i;
-    
-      for (int w = 1;; w <<= 1, m = p) {  // m = p 即为值域优化
-        int cur = 0;
-        for (int i = n - w + 1; i <= n; i++) id[++cur] = i;
-        for (int i = 1; i <= n; i++)
-          if (sa[i] > w) id[++cur] = sa[i] - w;
-    
-        memset(cnt, 0, sizeof(cnt));
-        for (int i = 1; i <= n; i++) cnt[rk[i]]++;
-        for (int i = 1; i <= m; i++) cnt[i] += cnt[i - 1];
-        for (int i = n; i >= 1; i--) sa[cnt[rk[id[i]]]--] = id[i];
-    
-        p = 0;
-        memcpy(oldrk, rk, sizeof(oldrk));
-        for (int i = 1; i <= n; i++) {
-          if (oldrk[sa[i]] == oldrk[sa[i - 1]] &&
-              oldrk[sa[i] + w] == oldrk[sa[i - 1] + w])
-            rk[sa[i]] = p;
-          else
-            rk[sa[i]] = ++p;
-        }
-    
-        if (p == n) break;  // p = n 时无需再排序
-      }
-    
-      for (int i = 1; i <= n; i++) printf("%d ", sa[i]);
-    
-      return 0;
-    }
+    --8<-- "docs/string/code/sa/sa_3.cpp"
     ```
 
 ### O(n) 做法
@@ -298,7 +144,7 @@ for (int i = 1; i <= n; i++)
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/string/code/sa/sa_1.cpp"
+    --8<-- "docs/string/code/sa/sa_4.cpp"
     ```
 
 ## height 数组
@@ -345,12 +191,7 @@ $height[rk[i]]\ge height[rk[i-1]]-1$
 利用上面这个引理暴力求即可：
 
 ```cpp
-for (i = 1, k = 0; i <= n; ++i) {
-  if (rk[i] == 0) continue;
-  if (k) --k;
-  while (s[i + k] == s[sa[rk[i] - 1] + k]) ++k;
-  height[rk[i]] = k;
-}
+--8<-- "docs/string/code/sa/sa_5.cpp:height"
 ```
 
 $k$ 不会超过 $n$，最多减 $n$ 次，所以最多加 $2n$ 次，总复杂度就是 $O(n)$．
@@ -400,7 +241,7 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/string/code/sa/sa_2.cpp"
+    --8<-- "docs/string/code/sa/sa_6.cpp"
     ```
 
 ### 是否有某字符串在文本串中至少不重叠地出现了两次
@@ -438,7 +279,7 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/string/code/sa/sa_3.cpp"
+    --8<-- "docs/string/code/sa/sa_7.cpp"
     ```
 
 类似的题目：[「HAOI2016」找相同字符](https://loj.ac/problem/2064)．

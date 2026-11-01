@@ -17,81 +17,13 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 ??? note "参考代码"
     === "C++"
         ```cpp
-        #include <iostream>
-        #include <vector>
-        
-        using namespace std;
-        
-        struct Edge {
-          int u, v;
-        };
-        
-        int n, m;
-        vector<Edge> e;
-        vector<bool> vis;
-        
-        bool find_edge(int u, int v) {
-          for (int i = 1; i <= m; ++i) {
-            if (e[i].u == u && e[i].v == v) {
-              return true;
-            }
-          }
-          return false;
-        }
-        
-        void dfs(int u) {
-          if (vis[u]) return;
-          vis[u] = true;
-          for (int i = 1; i <= m; ++i) {
-            if (e[i].u == u) {
-              dfs(e[i].v);
-            }
-          }
-        }
-        
-        int main() {
-          cin >> n >> m;
-        
-          vis.resize(n + 1, false);
-          e.resize(m + 1);
-        
-          for (int i = 1; i <= m; ++i) cin >> e[i].u >> e[i].v;
-        
-          return 0;
-        }
+        --8<-- "docs/graph/code/save/save_1.cpp:display"
+        --8<-- "docs/graph/code/save/save_1.cpp:display_end"
         ```
     
     === "Python"
         ```python
-        class Edge:
-            def __init__(self, u=0, v=0):
-                self.u = u
-                self.v = v
-        
-        
-        n, m = map(int, input().split())
-        
-        e = [Edge() for _ in range(m)]
-        vis = [False] * n
-        
-        for i in range(m):
-            e[i].u, e[i].v = map(int, input().split())
-        
-        
-        def find_edge(u, v):
-            for i in range(m):
-                if e[i].u == u and e[i].v == v:
-                    return True
-            return False
-        
-        
-        def dfs(u):
-            if vis[u]:
-                return
-            vis[u] = True
-            for i in range(m):
-                if e[i].u == u:
-                    dfs(e[i].v)
+        --8<-- "docs/graph/code/save/save_1.py:core"
         ```
 
 ### 复杂度
@@ -121,64 +53,13 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 ??? note "参考代码"
     === "C++"
         ```cpp
-        #include <iostream>
-        #include <vector>
-        
-        using namespace std;
-        
-        int n, m;
-        vector<bool> vis;
-        vector<vector<bool>> adj;
-        
-        bool find_edge(int u, int v) { return adj[u][v]; }
-        
-        void dfs(int u) {
-          if (vis[u]) return;
-          vis[u] = true;
-          for (int v = 1; v <= n; ++v) {
-            if (adj[u][v]) {
-              dfs(v);
-            }
-          }
-        }
-        
-        int main() {
-          cin >> n >> m;
-        
-          vis.resize(n + 1);
-          adj.resize(n + 1, vector<bool>(n + 1));
-        
-          for (int i = 1; i <= m; ++i) {
-            int u, v;
-            cin >> u >> v;
-            adj[u][v] = true;
-          }
-        
-          return 0;
-        }
+        --8<-- "docs/graph/code/save/save_2.cpp:display"
+        --8<-- "docs/graph/code/save/save_2.cpp:display_end"
         ```
     
     === "Python"
         ```python
-        vis = [False] * (n + 1)
-        adj = [[False] * (n + 1) for _ in range(n + 1)]
-        
-        for i in range(1, m + 1):
-            u, v = map(lambda x: int(x), input().split())
-            adj[u][v] = True
-        
-        
-        def find_edge(u, v):
-            return adj[u][v]
-        
-        
-        def dfs(u):
-            if vis[u]:
-                return
-            vis[u] = True
-            for v in range(1, n + 1):
-                if adj[u][v]:
-                    dfs(v)
+        --8<-- "docs/graph/code/save/save_2.py:core"
         ```
 
 ### 复杂度
@@ -208,69 +89,13 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 ??? note "参考代码"
     === "C++"
         ```cpp
-        #include <iostream>
-        #include <vector>
-        
-        using namespace std;
-        
-        int n, m;
-        vector<bool> vis;
-        vector<vector<int>> adj;
-        
-        bool find_edge(int u, int v) {
-          for (int i = 0; i < adj[u].size(); ++i) {
-            if (adj[u][i] == v) {
-              return true;
-            }
-          }
-          return false;
-        }
-        
-        void dfs(int u) {
-          if (vis[u]) return;
-          vis[u] = true;
-          for (int i = 0; i < adj[u].size(); ++i) dfs(adj[u][i]);
-        }
-        
-        int main() {
-          cin >> n >> m;
-        
-          vis.resize(n + 1);
-          adj.resize(n + 1);
-        
-          for (int i = 1; i <= m; ++i) {
-            int u, v;
-            cin >> u >> v;
-            adj[u].push_back(v);
-          }
-        
-          return 0;
-        }
+        --8<-- "docs/graph/code/save/save_3.cpp:display"
+        --8<-- "docs/graph/code/save/save_3.cpp:display_end"
         ```
     
     === "Python"
         ```python
-        vis = [False] * (n + 1)
-        adj = [[] for _ in range(n + 1)]
-        
-        for i in range(1, m + 1):
-            u, v = map(lambda x: int(x), input().split())
-            adj[u].append(v)
-        
-        
-        def find_edge(u, v):
-            for i in range(0, len(adj[u])):
-                if adj[u][i] == v:
-                    return True
-            return False
-        
-        
-        def dfs(u):
-            if vis[u]:
-                return
-            vis[u] = True
-            for i in range(0, len(adj[u])):
-                dfs(adj[u][i])
+        --8<-- "docs/graph/code/save/save_3.py:core"
         ```
 
 ### 复杂度
@@ -297,82 +122,22 @@ author: Ir1d, sshwy, Xeonacid, partychicken, Anguei, HeRaNO
 
 === "C++"
     ```cpp
-    // head[u] 和 cnt 的初始值都为 -1
-    void add(int u, int v) {
-      nxt[++cnt] = head[u];  // 当前边的后继
-      head[u] = cnt;         // 起点 u 的第一条边
-      to[cnt] = v;           // 当前边的终点
-    }
-    
-    // 遍历 u 的出边
-    for (int i = head[u]; ~i; i = nxt[i]) {  // ~i 表示 i != -1
-      int v = to[i];
-    }
+    --8<-- "docs/graph/code/save/save_4.cpp:add"
+    --8<-- "docs/graph/code/save/save_4.cpp:walk"
+    --8<-- "docs/graph/code/save/save_4.cpp:walk_end"
     ```
 
 === "Python"
     ```python
-    # head[u] 和 cnt 的初始值都为 -1
-    def add(u, v):
-        cnt = cnt + 1
-        nex[cnt] = head[u]  # 当前边的后继
-        head[u] = cnt  # 起点 u 的第一条边
-        to[cnt] = v  # 当前边的终点
-    
-    
-    # 遍历 u 的出边
-    i = head[u]
-    while ~i:  # ~i 表示 i != -1
-        v = to[i]
-        i = nxt[i]
+    --8<-- "docs/graph/code/save/save_4.py:add"
+    --8<-- "docs/graph/code/save/save_4.py:walk"
+    --8<-- "docs/graph/code/save/save_4.py:walk_end"
     ```
 
 ??? note "参考代码"
     ```cpp
-    #include <iostream>
-    #include <vector>
-    
-    using namespace std;
-    
-    int n, m;
-    vector<bool> vis;
-    vector<int> head, nxt, to;
-    
-    void add(int u, int v) {
-      nxt.push_back(head[u]);
-      head[u] = to.size();
-      to.push_back(v);
-    }
-    
-    bool find_edge(int u, int v) {
-      for (int i = head[u]; ~i; i = nxt[i]) {  // ~i 表示 i != -1
-        if (to[i] == v) {
-          return true;
-        }
-      }
-      return false;
-    }
-    
-    void dfs(int u) {
-      if (vis[u]) return;
-      vis[u] = true;
-      for (int i = head[u]; ~i; i = nxt[i]) dfs(to[i]);
-    }
-    
-    int main() {
-      cin >> n >> m;
-    
-      vis.resize(n + 1, false);
-      head.resize(n + 1, -1);
-    
-      for (int i = 1; i <= m; ++i) {
-        int u, v;
-        cin >> u >> v;
-        add(u, v);
-      }
-    
-      return 0;
-    }
+    --8<-- "docs/graph/code/save/save_5.cpp:display"
+    --8<-- "docs/graph/code/save/save_5.cpp:display_end"
     ```
 
 ### 复杂度

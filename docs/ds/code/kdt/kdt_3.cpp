@@ -1,99 +1,87 @@
 #include <algorithm>
+#include <cstring>
 #include <iostream>
+#include <queue>
 using namespace std;
-constexpr int N(2e5), LG{18};
+constexpr int MAXN = 100010;
+long long n, k;
+priority_queue<long long, vector<long long>, greater<long long>> q;
 
-struct pt {
-  int x[2];
-  int v, sum;
-  int l, r;
-  int L[2], R[2];
-} t[N + 5], l, h;
+struct node {
+  long long x, y;
+} s[MAXN];
 
-int rt[LG];
-int b[N + 5], cnt;
+bool cmp1(node a, node b) { return a.x < b.x; }
 
-void upd(int p) {
-  t[p].sum = t[t[p].l].sum + t[t[p].r].sum + t[p].v;
-  for (int k : {0, 1}) {
-    t[p].L[k] = t[p].R[k] = t[p].x[k];
-    if (t[p].l) {
-      t[p].L[k] = min(t[p].L[k], t[t[p].l].L[k]);
-      t[p].R[k] = max(t[p].R[k], t[t[p].l].R[k]);
+bool cmp2(node a, node b) { return a.y < b.y; }
+
+long long lc[MAXN], rc[MAXN], L[MAXN], R[MAXN], D[MAXN], U[MAXN];
+
+void maintain(int x) {
+  L[x] = R[x] = s[x].x;
+  D[x] = U[x] = s[x].y;
+  if (lc[x])
+    L[x] = min(L[x], L[lc[x]]), R[x] = max(R[x], R[lc[x]]),
+    D[x] = min(D[x], D[lc[x]]), U[x] = max(U[x], U[lc[x]]);
+  if (rc[x])
+    L[x] = min(L[x], L[rc[x]]), R[x] = max(R[x], R[rc[x]]),
+    D[x] = min(D[x], D[rc[x]]), U[x] = max(U[x], U[rc[x]]);
+}
+
+int build(int l, int r) {
+  if (l > r) return 0;
+  int mid = (l + r) >> 1;
+  double av1 = 0, av2 = 0, va1 = 0, va2 = 0;  // average variance
+  for (int i = l; i <= r; i++) av1 += s[i].x, av2 += s[i].y;
+  av1 /= (r - l + 1);
+  av2 /= (r - l + 1);
+  for (int i = l; i <= r; i++)
+    va1 += (av1 - s[i].x) * (av1 - s[i].x),
+        va2 += (av2 - s[i].y) * (av2 - s[i].y);
+  if (va1 > va2)
+    nth_element(s + l, s + mid, s + r + 1, cmp1);
+  else
+    nth_element(s + l, s + mid, s + r + 1, cmp2);
+  lc[mid] = build(l, mid - 1);
+  rc[mid] = build(mid + 1, r);
+  maintain(mid);
+  return mid;
+}
+
+long long sq(long long x) { return x * x; }
+
+long long dist(int a, int b) {
+  return max(sq(s[a].x - L[b]), sq(s[a].x - R[b])) +
+         max(sq(s[a].y - D[b]), sq(s[a].y - U[b]));
+}
+
+void query(int l, int r, int x) {
+  if (l > r) return;
+  int mid = (l + r) >> 1;
+  long long t = sq(s[mid].x - s[x].x) + sq(s[mid].y - s[x].y);
+  if (t > q.top()) q.pop(), q.push(t);
+  long long distl = dist(x, lc[mid]), distr = dist(x, rc[mid]);
+  if (distl > q.top() && distr > q.top()) {
+    if (distl > distr) {
+      query(l, mid - 1, x);
+      if (distr > q.top()) query(mid + 1, r, x);
+    } else {
+      query(mid + 1, r, x);
+      if (distl > q.top()) query(l, mid - 1, x);
     }
-    if (t[p].r) {
-      t[p].L[k] = min(t[p].L[k], t[t[p].r].L[k]);
-      t[p].R[k] = max(t[p].R[k], t[t[p].r].R[k]);
-    }
+  } else {
+    if (distl > q.top()) query(l, mid - 1, x);
+    if (distr > q.top()) query(mid + 1, r, x);
   }
-}
-
-int build(int l, int r, int dep = 0) {
-  int p{(l + r) >> 1};
-  nth_element(b + l, b + p, b + r + 1,
-              [dep](int x, int y) { return t[x].x[dep] < t[y].x[dep]; });
-  int x{b[p]};
-  if (l < p) t[x].l = build(l, p - 1, dep ^ 1);
-  if (p < r) t[x].r = build(p + 1, r, dep ^ 1);
-  upd(x);
-  return x;
-}
-
-void append(int &p) {
-  if (!p) return;
-  b[++cnt] = p;
-  append(t[p].l);
-  append(t[p].r);
-  p = 0;
-}
-
-int query(int p) {
-  if (!p) return 0;
-  bool flag{false};
-  for (int k : {0, 1}) flag |= (!(l.x[k] <= t[p].L[k] && t[p].R[k] <= h.x[k]));
-  if (!flag) return t[p].sum;
-  for (int k : {0, 1})
-    if (t[p].R[k] < l.x[k] || h.x[k] < t[p].L[k]) return 0;
-  int ans{0};
-  flag = false;
-  for (int k : {0, 1}) flag |= (!(l.x[k] <= t[p].x[k] && t[p].x[k] <= h.x[k]));
-  if (!flag) ans = t[p].v;
-  return ans += query(t[p].l) + query(t[p].r);
 }
 
 int main() {
-  int n;
-  cin >> n;
-  int lst{0};
-  n = 0;
-  while (true) {
-    int op;
-    cin >> op;
-    if (op == 1) {
-      int x, y, A;
-      cin >> x >> y >> A;
-      x ^= lst;
-      y ^= lst;
-      A ^= lst;
-      t[++n] = {{x, y}, A};
-      b[cnt = 1] = n;
-      for (int sz{0};; ++sz)
-        if (!rt[sz]) {
-          rt[sz] = build(1, cnt);
-          break;
-        } else
-          append(rt[sz]);
-    } else if (op == 2) {
-      cin >> l.x[0] >> l.x[1] >> h.x[0] >> h.x[1];
-      l.x[0] ^= lst;
-      l.x[1] ^= lst;
-      h.x[0] ^= lst;
-      h.x[1] ^= lst;
-      lst = 0;
-      for (int i{0}; i < LG; ++i) lst += query(rt[i]);
-      cout << lst << "\n";
-    } else
-      break;
-  }
+  cin >> n >> k;
+  k *= 2;
+  for (int i = 1; i <= k; i++) q.push(0);
+  for (int i = 1; i <= n; i++) cin >> s[i].x >> s[i].y;
+  build(1, n);
+  for (int i = 1; i <= n; i++) query(1, n, i);
+  cout << q.top() << endl;
   return 0;
 }

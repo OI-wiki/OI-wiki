@@ -86,29 +86,12 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
 ???+ note "实现"
     === "C++"
         ```cpp
-        void Tarjan(int u) {
-          low[u] = dfn[u] = ++dfc;                // low 初始化为当前节点 dfn
-          for (int v : G[u]) {                    // 遍历 u 的相邻节点
-            if (!dfn[v]) {                        // 如果未访问过
-              Tarjan(v);                          // 递归
-              low[u] = std::min(low[u], low[v]);  // 未访问的和 low 取 min
-            } else
-              low[u] = std::min(low[u], dfn[v]);  // 已访问的和 dfn 取 min
-          }
-        }
+        --8<-- "docs/graph/code/block-forest/block-forest_1.cpp:core"
         ```
     
     === "Python"
         ```python
-        def Tarjan(u):
-            low[u] = dfn[u] = dfc  # low 初始化为当前节点 dfn
-            dfc = dfc + 1
-            for v in G[u]:  # 遍历 u 的相邻节点
-                if dfn[v] == False:  # 如果未访问过
-                    Tarjan(v)  # 递归
-                    low[u] = min(low[u], low[v])  # 未访问的和 low 取 min
-                else:
-                    low[u] = min(low[u], dfn[v])  # 已访问的和 dfn 取 min
+        --8<-- "docs/graph/code/block-forest/block-forest_1.py:core"
         ```
 
 接下来，我们考虑点双和 DFS 树以及这两个数组之间的关联．
@@ -138,86 +121,13 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
 
 ???+ note "实现"
     ```cpp
-    #include <algorithm>
-    #include <cstdio>
-    #include <vector>
-    
-    constexpr int MN = 100005;
-    
-    int N, M, cnt;
-    std::vector<int> G[MN], T[MN * 2];
-    
-    int dfn[MN], low[MN], dfc;
-    int stk[MN], tp;
-    
-    void Tarjan(int u) {
-      printf("  Enter : #%d\n", u);
-      low[u] = dfn[u] = ++dfc;                // low 初始化为当前节点 dfn
-      stk[++tp] = u;                          // 加入栈中
-      for (int v : G[u]) {                    // 遍历 u 的相邻节点
-        if (!dfn[v]) {                        // 如果未访问过
-          Tarjan(v);                          // 递归
-          low[u] = std::min(low[u], low[v]);  // 未访问的和 low 取 min
-          if (low[v] == dfn[u]) {  // 标志着找到一个以 u 为根的点双连通分量
-            ++cnt;                 // 增加方点个数
-            printf("  Found a New BCC #%d.\n", cnt - N);
-            // 将点双中除了 u 的点退栈，并在圆方树中连边
-            for (int x = 0; x != v; --tp) {
-              x = stk[tp];
-              T[cnt].push_back(x);
-              T[x].push_back(cnt);
-              printf("    BCC #%d has vertex #%d\n", cnt - N, x);
-            }
-            // 注意 u 自身也要连边（但不退栈）
-            T[cnt].push_back(u);
-            T[u].push_back(cnt);
-            printf("    BCC #%d has vertex #%d\n", cnt - N, u);
-          }
-        } else
-          low[u] = std::min(low[u], dfn[v]);  // 已访问的和 dfn 取 min
-      }
-      printf("  Exit : #%d : low = %d\n", u, low[u]);
-      printf("  Stack:\n    ");
-      for (int i = 1; i <= tp; ++i) printf("%d, ", stk[i]);
-      puts("");
-    }
-    
-    int main() {
-      scanf("%d%d", &N, &M);
-      cnt = N;  // 点双 / 方点标号从 N 开始
-      for (int i = 1; i <= M; ++i) {
-        int u, v;
-        scanf("%d%d", &u, &v);
-        G[u].push_back(v);  // 加双向边
-        G[v].push_back(u);
-      }
-      // 处理非连通图
-      for (int u = 1; u <= N; ++u)
-        if (!dfn[u]) Tarjan(u), --tp;
-      // 注意到退出 Tarjan 时栈中还有一个元素即根，将其退栈
-      return 0;
-    }
+    --8<-- "docs/graph/code/block-forest/block-forest_2.cpp"
     ```
 
 提供一个测试用例：
 
 ```text
-13 15
-1 2
-2 3
-1 3
-3 4
-3 5
-4 5
-5 6
-4 6
-3 7
-3 8
-7 8
-7 9
-10 11
-11 10
-11 12
+--8<-- "docs/graph/examples/block-forest/block-forest_2.in"
 ```
 
 这个例子对应的图（包含了重边和孤立点的情况）：
@@ -271,7 +181,7 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/graph/code/block-forest/block-forest_1.cpp"
+        --8<-- "docs/graph/code/block-forest/block-forest_3.cpp"
         ```
     
     顺带一提，刚刚的测试用例在这题的答案是 $212$．
@@ -301,7 +211,7 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/graph/code/block-forest/block-forest_2.cpp"
+        --8<-- "docs/graph/code/block-forest/block-forest_4.cpp"
         ```
 
 ???+ note "[「SDOI2018」战略游戏](https://loj.ac/p/2562)"
@@ -326,7 +236,7 @@ author: GitPinkRabbit, Early0v0, Backl1ght, mcendu, ksyx, iamtwz, Xeonacid, kenl
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/graph/code/block-forest/block-forest_3.cpp"
+        --8<-- "docs/graph/code/block-forest/block-forest_5.cpp"
         ```
 
 ## 习题

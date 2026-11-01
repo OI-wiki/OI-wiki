@@ -1,98 +1,102 @@
 #include <algorithm>
-#include <cmath>
-#include <cstdlib>
-#include <cstring>
-#include <iomanip>
 #include <iostream>
 using namespace std;
-constexpr int MAXN = 200010;
-int n, d[MAXN], lc[MAXN], rc[MAXN];
-double ans = 2e18;
+constexpr int N(2e5), LG{18};
 
-struct node {
-  double x, y;
-} s[MAXN];
+struct pt {
+  int x[2];
+  int v, sum;
+  int l, r;
+  int L[2], R[2];
+} t[N + 5], l, h;
 
-double L[MAXN], R[MAXN], D[MAXN], U[MAXN];
+int rt[LG];
+int b[N + 5], cnt;
 
-double dist(int a, int b) {
-  return (s[a].x - s[b].x) * (s[a].x - s[b].x) +
-         (s[a].y - s[b].y) * (s[a].y - s[b].y);
-}
-
-bool cmp1(node a, node b) { return a.x < b.x; }
-
-bool cmp2(node a, node b) { return a.y < b.y; }
-
-void maintain(int x) {
-  L[x] = R[x] = s[x].x;
-  D[x] = U[x] = s[x].y;
-  if (lc[x])
-    L[x] = min(L[x], L[lc[x]]), R[x] = max(R[x], R[lc[x]]),
-    D[x] = min(D[x], D[lc[x]]), U[x] = max(U[x], U[lc[x]]);
-  if (rc[x])
-    L[x] = min(L[x], L[rc[x]]), R[x] = max(R[x], R[rc[x]]),
-    D[x] = min(D[x], D[rc[x]]), U[x] = max(U[x], U[rc[x]]);
-}
-
-int build(int l, int r) {
-  if (l > r) return 0;
-  if (l == r) {
-    maintain(l);
-    return l;
-  }
-  int mid = (l + r) >> 1;
-  double avx = 0, avy = 0, vax = 0, vay = 0;  // average variance
-  for (int i = l; i <= r; i++) avx += s[i].x, avy += s[i].y;
-  avx /= (double)(r - l + 1);
-  avy /= (double)(r - l + 1);
-  for (int i = l; i <= r; i++)
-    vax += (s[i].x - avx) * (s[i].x - avx),
-        vay += (s[i].y - avy) * (s[i].y - avy);
-  if (vax >= vay)
-    d[mid] = 1, nth_element(s + l, s + mid, s + r + 1, cmp1);
-  else
-    d[mid] = 2, nth_element(s + l, s + mid, s + r + 1, cmp2);
-  lc[mid] = build(l, mid - 1), rc[mid] = build(mid + 1, r);
-  maintain(mid);
-  return mid;
-}
-
-double f(int a, int b) {
-  double ret = 0;
-  if (L[b] > s[a].x) ret += (L[b] - s[a].x) * (L[b] - s[a].x);
-  if (R[b] < s[a].x) ret += (s[a].x - R[b]) * (s[a].x - R[b]);
-  if (D[b] > s[a].y) ret += (D[b] - s[a].y) * (D[b] - s[a].y);
-  if (U[b] < s[a].y) ret += (s[a].y - U[b]) * (s[a].y - U[b]);
-  return ret;
-}
-
-void query(int l, int r, int x) {
-  if (l > r) return;
-  int mid = (l + r) >> 1;
-  if (mid != x) ans = min(ans, dist(x, mid));
-  if (l == r) return;
-  double distl = f(x, lc[mid]), distr = f(x, rc[mid]);
-  if (distl < ans && distr < ans) {
-    if (distl < distr) {
-      query(l, mid - 1, x);
-      if (distr < ans) query(mid + 1, r, x);
-    } else {
-      query(mid + 1, r, x);
-      if (distl < ans) query(l, mid - 1, x);
+void upd(int p) {
+  t[p].sum = t[t[p].l].sum + t[t[p].r].sum + t[p].v;
+  for (int k : {0, 1}) {
+    t[p].L[k] = t[p].R[k] = t[p].x[k];
+    if (t[p].l) {
+      t[p].L[k] = min(t[p].L[k], t[t[p].l].L[k]);
+      t[p].R[k] = max(t[p].R[k], t[t[p].l].R[k]);
     }
-  } else {
-    if (distl < ans) query(l, mid - 1, x);
-    if (distr < ans) query(mid + 1, r, x);
+    if (t[p].r) {
+      t[p].L[k] = min(t[p].L[k], t[t[p].r].L[k]);
+      t[p].R[k] = max(t[p].R[k], t[t[p].r].R[k]);
+    }
   }
 }
+
+int build(int l, int r, int dep = 0) {
+  int p{(l + r) >> 1};
+  nth_element(b + l, b + p, b + r + 1,
+              [dep](int x, int y) { return t[x].x[dep] < t[y].x[dep]; });
+  int x{b[p]};
+  if (l < p) t[x].l = build(l, p - 1, dep ^ 1);
+  if (p < r) t[x].r = build(p + 1, r, dep ^ 1);
+  upd(x);
+  return x;
+}
+
+void append(int &p) {
+  if (!p) return;
+  b[++cnt] = p;
+  append(t[p].l);
+  append(t[p].r);
+  p = 0;
+}
+
+// --8<-- [start:example74]
+int query(int p) {
+  if (!p) return 0;
+  bool flag{false};
+  for (int k : {0, 1}) flag |= (!(l.x[k] <= t[p].L[k] && t[p].R[k] <= h.x[k]));
+  if (!flag) return t[p].sum;
+  for (int k : {0, 1})
+    if (t[p].R[k] < l.x[k] || h.x[k] < t[p].L[k]) return 0;
+  int ans{0};
+  flag = false;
+  for (int k : {0, 1}) flag |= (!(l.x[k] <= t[p].x[k] && t[p].x[k] <= h.x[k]));
+  if (!flag) ans = t[p].v;
+  return ans += query(t[p].l) + query(t[p].r);
+}
+
+// --8<-- [end:example74]
 
 int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
+  int n;
   cin >> n;
-  for (int i = 1; i <= n; i++) cin >> s[i].x >> s[i].y;
-  build(1, n);
-  for (int i = 1; i <= n; i++) query(1, n, i);
-  cout << fixed << setprecision(4) << sqrt(ans) << '\n';
+  int lst{0};
+  n = 0;
+  while (true) {
+    int op;
+    cin >> op;
+    if (op == 1) {
+      int x, y, A;
+      cin >> x >> y >> A;
+      x ^= lst;
+      y ^= lst;
+      A ^= lst;
+      t[++n] = {{x, y}, A};
+      b[cnt = 1] = n;
+      for (int sz{0};; ++sz)
+        if (!rt[sz]) {
+          rt[sz] = build(1, cnt);
+          break;
+        } else
+          append(rt[sz]);
+    } else if (op == 2) {
+      cin >> l.x[0] >> l.x[1] >> h.x[0] >> h.x[1];
+      l.x[0] ^= lst;
+      l.x[1] ^= lst;
+      h.x[0] ^= lst;
+      h.x[1] ^= lst;
+      lst = 0;
+      for (int i{0}; i < LG; ++i) lst += query(rt[i]);
+      cout << lst << "\n";
+    } else
+      break;
+  }
   return 0;
 }

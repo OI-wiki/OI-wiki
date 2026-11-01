@@ -152,30 +152,8 @@ $$
 可以重新排列循环以提高空间局部性，这样的优化不会改变矩阵乘法的时间复杂度，但是会得到常数级别的提升．
 
 ```cpp
-// 以下文的参考代码为例
-mat operator*(const mat& T) const {
-  mat res;
-  for (int i = 0; i < sz; ++i)
-    for (int j = 0; j < sz; ++j)
-      for (int k = 0; k < sz; ++k) {
-        res.a[i][j] += mul(a[i][k], T.a[k][j]);
-        res.a[i][j] %= MOD;
-      }
-  return res;
-}
-
-// 不如
-mat operator*(const mat& T) const {
-  mat res;
-  int r;
-  for (int i = 0; i < sz; ++i)
-    for (int k = 0; k < sz; ++k) {
-      r = a[i][k];
-      for (int j = 0; j < sz; ++j)
-        res.a[i][j] += T.a[k][j] * r, res.a[i][j] %= MOD;
-    }
-  return res;
-}
+--8<-- "docs/math/code/linear-algebra/matrix/matrix_3.cpp:naive"
+--8<-- "docs/math/code/linear-algebra/matrix/matrix_1.cpp:fast"
 ```
 
 ### 方阵的逆
@@ -193,54 +171,8 @@ mat operator*(const mat& T) const {
 一般来说，可以用一个二维数组来模拟矩阵．
 
 ```cpp
-struct mat {
-  LL a[sz][sz];
-
-  mat() { memset(a, 0, sizeof a); }
-
-  mat operator-(const mat& T) const {
-    mat res;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j) {
-        res.a[i][j] = (a[i][j] - T.a[i][j]) % MOD;
-      }
-    return res;
-  }
-
-  mat operator+(const mat& T) const {
-    mat res;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j) {
-        res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
-      }
-    return res;
-  }
-
-  mat operator*(const mat& T) const {
-    mat res;
-    int r;
-    for (int i = 0; i < sz; ++i)
-      for (int k = 0; k < sz; ++k) {
-        r = a[i][k];
-        for (int j = 0; j < sz; ++j)
-          res.a[i][j] += T.a[k][j] * r, res.a[i][j] %= MOD;
-      }
-    return res;
-  }
-
-  mat operator^(LL x) const {
-    mat res, bas;
-    for (int i = 0; i < sz; ++i) res.a[i][i] = 1;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j) bas.a[i][j] = a[i][j] % MOD;
-    while (x) {
-      if (x & 1) res = res * bas;
-      bas = bas * bas;
-      x >>= 1;
-    }
-    return res;
-  }
-};
+--8<-- "docs/math/code/linear-algebra/matrix/matrix_1.cpp:core-prefix"
+--8<-- "docs/math/code/linear-algebra/matrix/matrix_1.cpp:core-suffix"
 ```
 
 ## 看待线性方程组的两种视角
@@ -302,43 +234,7 @@ $$
 下面是求斐波那契数列第 $n$ 项对 $10^9+7$ 取模的示例代码（核心部分）．
 
 ```cpp
-constexpr int mod = 1000000007;
-
-struct Matrix {
-  int a[3][3];
-
-  Matrix() { memset(a, 0, sizeof a); }
-
-  Matrix operator*(const Matrix &b) const {
-    Matrix res;
-    for (int i = 1; i <= 2; ++i)
-      for (int j = 1; j <= 2; ++j)
-        for (int k = 1; k <= 2; ++k)
-          res.a[i][j] = (res.a[i][j] + a[i][k] * b.a[k][j]) % mod;
-    return res;
-  }
-} ans, base;
-
-void init() {
-  base.a[1][1] = base.a[1][2] = base.a[2][1] = 1;
-  ans.a[1][1] = ans.a[1][2] = 1;
-}
-
-void qpow(int b) {
-  while (b) {
-    if (b & 1) ans = ans * base;
-    base = base * base;
-    b >>= 1;
-  }
-}
-
-int main() {
-  int n = read();
-  if (n <= 2) return puts("1"), 0;
-  init();
-  qpow(n - 2);
-  println(ans.a[1][1] % mod);
-}
+--8<-- "docs/math/code/linear-algebra/matrix/matrix_2.cpp"
 ```
 
 这是一个稍微复杂一些的例子．

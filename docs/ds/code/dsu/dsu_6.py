@@ -1,4 +1,4 @@
-M = 3
+M = 998244353
 
 
 class DSU:
@@ -31,15 +31,22 @@ class DSU:
         self.dist[y] = d
         return True
 
+    def check(self, x: int, y: int) -> int:
+        self.find(x)
+        self.find(y)
+        if self.pa[x] != self.pa[y]:
+            return -1
+        return (self.dist[y] - self.dist[x] + M) % M
+
 
 if __name__ == "__main__":
     n, m = map(int, input().split())
-    dsu = DSU(n + 1)
-    res = 0
+    dsu = DSU(n)
     for _ in range(m):
-        op, x, y = map(int, input().split())
-        if x > n or y > n:
-            res += 1
+        op, *rest = map(int, input().split())
+        if op:
+            u, v = rest
+            print(dsu.check(u, v))
         else:
-            res += not dsu.unite(x, y, 0 if op == 1 else 1)
-    print(res)
+            u, v, x = rest
+            print(int(dsu.unite(u, v, x)))

@@ -58,30 +58,7 @@ $$
     观察表格与递推式，按列更新对于存储更有利．不难写出程序：
     
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    
-    int p[10005][1005]; /*将自然数n分拆为k个部分的方法数*/
-    
-    int main() {
-      int n, k;
-      while (~scanf("%d%d", &n, &k)) {
-        memset(p, 0, sizeof(p));
-        p[0][0] = 1;
-        int i;
-        for (i = 1; i <= n; ++i) {
-          int j;
-          for (j = 1; j <= k; ++j) {
-            if (i - j >= 0) /*p[i-j][j]所有部分大于1*/
-            {
-              p[i][j] = (p[i - j][j] + p[i - 1][j - 1]) %
-                        1000007; /*p[i-1][j-1]至少有一个部分为1．*/
-            }
-          }
-        }
-        printf("%d\n", p[n][k]);
-      }
-    }
+    --8<-- "docs/math/code/combinatorics/partition/partition_1.cpp"
     ```
 
 ### 生成函数
@@ -170,35 +147,7 @@ $$
     观察表格与递推式，按列更新对于存储更有利．代码中将后一位缩减了空间，仅保留相邻两项．
     
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    
-    int pd[50005][2]; /*将自然数n分拆为k个部分的互异方法数*/
-    
-    int main() {
-      int n;
-      while (~scanf("%d", &n)) {
-        memset(pd, 0, sizeof(pd));
-        pd[0][0] = 1;
-        int ans = 0;
-        int j;
-        for (j = 1; j < 350; ++j) {
-          int i;
-          for (i = 0; i < 350; ++i) {
-            pd[i][j & 1] = 0; /*pd[i][j]只与pd[][j]和pd[][j-1]有关*/
-          }
-          for (i = 0; i <= n; ++i) {
-            if (i - j >= 0) /*pd[i-j][j]所有部分大于1*/
-            {
-              pd[i][j & 1] = (pd[i - j][j & 1] + pd[i - j][(j - 1) & 1]) %
-                             1000007; /*pd[i-j][j-1]至少有一个部分为1．*/
-            }
-          }
-          ans = (ans + pd[n][j & 1]) % 1000007;
-        }
-        printf("%d\n", ans);
-      }
-    }
+    --8<-- "docs/math/code/combinatorics/partition/partition_2.cpp"
     ```
 
 ### 奇分拆数
@@ -317,40 +266,5 @@ $$
     采用五边形数定理的方法．有代码：
     
     ```cpp
-    #include <cstdio>
-    
-    long long a[100010];
-    long long p[50005];
-    
-    int main() {
-      p[0] = 1;
-      p[1] = 1;
-      p[2] = 2;
-      int i;
-      for (i = 1; i < 50005;
-           i++) /*递推式系数1,2,5,7,12,15,22,26...i*(3*i-1)/2,i*(3*i+1)/2*/
-      {
-        a[2 * i] = i * (i * 3 - 1) / 2; /*五边形数为1,5,12,22...i*(3*i-1)/2*/
-        a[2 * i + 1] = i * (i * 3 + 1) / 2;
-      }
-      for (
-          i = 3; i < 50005;
-          i++) /*p[n]=p[n-1]+p[n-2]-p[n-5]-p[n-7]+p[12]+p[15]-...+p[n-i*[3i-1]/2]+p[n-i*[3i+1]/2]*/
-      {
-        p[i] = 0;
-        int j;
-        for (j = 2; a[j] <= i; j++) /*有可能为负数,式中加1000007*/
-        {
-          if (j & 2) {
-            p[i] = (p[i] + p[i - a[j]] + 1000007) % 1000007;
-          } else {
-            p[i] = (p[i] - p[i - a[j]] + 1000007) % 1000007;
-          }
-        }
-      }
-      int n;
-      while (~scanf("%d", &n)) {
-        printf("%lld\n", p[n]);
-      }
-    }
+    --8<-- "docs/math/code/combinatorics/partition/partition_3.cpp"
     ```

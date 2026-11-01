@@ -43,20 +43,12 @@ $$
 
 === "C++"
     ```cpp
-    for (int i = 1; i <= n; i++)
-      for (int l = 0; l <= W - w[i]; l++)
-        f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
-    // 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + v[i]),
-    // f[i][l + w[i]]); 简化而来
+    --8<-- "docs/dp/code/knapsack/knapsack_1.cpp:wrong"
     ```
 
 === "Python"
     ```python
-    for i in range(1, n + 1):
-        for l in range(0, W - w[i] + 1):
-            f[l + w[i]] = max(f[l] + v[i], f[l + w[i]])
-    # 由 f[i][l + w[i]] = max(max(f[i - 1][l + w[i]], f[i - 1][l] + v[i]),
-    # f[i][l + w[i]]) 简化而来
+    --8<-- "docs/dp/code/knapsack/knapsack_1.py:wrong"
     ```
 
 这段代码哪里错了呢？枚举顺序错了．
@@ -69,20 +61,17 @@ $$
 
 === "C++"
     ```cpp
-    for (int i = 1; i <= n; i++)
-      for (int l = W; l >= w[i]; l--) f[l] = max(f[l], f[l - w[i]] + v[i]);
+    --8<-- "docs/dp/code/knapsack/knapsack_11.cpp:core"
     ```
 
 === "Python"
     ```python
-    for i in range(1, n + 1):
-        for l in range(W, w[i] - 1, -1):
-            f[l] = max(f[l], f[l - w[i]] + v[i])
+    --8<-- "docs/dp/code/knapsack/knapsack_1.py:core"
     ```
 
 ??? note "例题代码"
     ```cpp
-    --8<-- "docs/dp/code/knapsack/knapsack_1.cpp"
+    --8<-- "docs/dp/code/knapsack/knapsack_1.cpp:program"
     ```
 
 ## 完全背包
@@ -137,14 +126,7 @@ $$
 
 ??? note "核心代码"
     ```cpp
-    for (int i = 1; i <= n; i++) {
-      for (int weight = W; weight >= w[i]; weight--) {
-        // 多遍历一层物品数量
-        for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
-          dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
-        }
-      }
-    }
+    --8<-- "docs/dp/code/knapsack/knapsack_4.cpp:core"
     ```
 
 ### 二进制分组优化
@@ -179,36 +161,12 @@ $$
 ??? note "二进制分组代码"
     === "C++"
         ```cpp
-        index = 0;
-        for (int i = 1; i <= m; i++) {
-          int c = 1, p, h, k;
-          cin >> p >> h >> k;
-          while (k > c) {
-            k -= c;
-            list[++index].w = c * p;
-            list[index].v = c * h;
-            c *= 2;
-          }
-          list[++index].w = p * k;
-          list[index].v = h * k;
-        }
+        --8<-- "docs/dp/code/knapsack/knapsack_5.cpp:core"
         ```
     
     === "Python"
         ```python
-        index = 0
-        for i in range(1, m + 1):
-            c = 1
-            p, h, k = map(int, input().split())
-            while k > c:
-                k -= c
-                index += 1
-                list[index].w = c * p
-                list[index].v = c * h
-                c *= 2
-            index += 1
-            list[index].w = p * k
-            list[index].v = h * k
+        --8<-- "docs/dp/code/knapsack/knapsack_5.py:core"
         ```
 
 ### 单调队列优化

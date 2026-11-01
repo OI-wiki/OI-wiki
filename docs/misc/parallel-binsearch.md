@@ -49,40 +49,7 @@
 
 ??? note "参考代码"
     ```cpp
-    struct Query {
-      int id, k;  // 这个询问的编号, 这个询问的 k
-    };
-    
-    int ans[N], a[N];  // ans[i] 表示编号为i的询问的答案，a 为原数列
-    int val[N], cnt[N];  // 离散化后，记录对应的值及其计数（假设已经处理好）
-    
-    // 返回原数列中值域在 [l,r] 中的数的个数
-    int check(int l, int r) {
-      int res = 0;
-      for (int i = l; i <= r; i++) {
-        res += cnt[i];
-      }
-      return res;
-    }
-    
-    // 整体二分
-    void solve(int l, int r, vector<Query> q) {
-      int m = (l + r) / 2;
-      if (l == r) {
-        for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = val[l];
-        return;
-      }
-      vector<Query> q1, q2;
-      int t = check(l, m);
-      for (unsigned i = 0; i < q.size(); i++) {
-        if (q[i].k <= t)
-          q1.push_back(q[i]);
-        else
-          q[i].k -= t, q2.push_back(q[i]);
-      }
-      solve(l, m, q1), solve(m + 1, r, q2);
-      return;
-    }
+    --8<-- "docs/misc/code/parallel-binsearch/parallel-binsearch_1.cpp:core"
     ```
 
 ### 查询区间第 k 小
@@ -95,52 +62,14 @@
 
 ??? note "参考代码（关键部分）"
     ```cpp
-    struct Num {
-      int p, x;
-    };  // 位于数列中第 p 项的数的值为 x
-    
-    struct Query {
-      int l, r, k, id;
-    };  // 一个编号为 id, 询问 [l,r] 中第 k 小数的询问
-    
-    int ans[N];
-    void add(int p, int x);  // 树状数组, 在 p 位置加上 x
-    int query(int p);        // 树状数组, 求 [1,p] 的和
-    void clear();            // 树状数组, 清空
-    
-    void solve(int l, int r, vector<Num> a, vector<Query> q)
-    // a中为给定数列中值在值域区间 [l,r] 中的数
-    {
-      int m = (l + r) / 2;
-      if (l == r) {
-        for (unsigned i = 0; i < q.size(); i++) ans[q[i].id] = l;
-        return;
-      }
-      vector<Num> a1, a2;
-      vector<Query> q1, q2;
-      for (unsigned i = 0; i < a.size(); i++)
-        if (a[i].x <= m)
-          a1.push_back(a[i]), add(a[i].p, 1);
-        else
-          a2.push_back(a[i]);
-      for (unsigned i = 0; i < q.size(); i++) {
-        int t = query(q[i].r) - query(q[i].l - 1);
-        if (q[i].k <= t)
-          q1.push_back(q[i]);
-        else
-          q[i].k -= t, q2.push_back(q[i]);
-      }
-      clear();
-      solve(l, m, a1, q1), solve(m + 1, r, a2, q2);
-      return;
-    }
+    --8<-- "docs/misc/code/parallel-binsearch/parallel-binsearch_2.cpp:core"
     ```
 
 下面提供 [【模板】可持久化线段树 2](https://www.luogu.com.cn/problem/P3834) 一题使用整体二分的，偏向竞赛风格的写法．
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/misc/code/parallel-binsearch/parallel-binsearch_1.cpp"
+    --8<-- "docs/misc/code/parallel-binsearch/parallel-binsearch_3.cpp"
     ```
 
 ### 带修区间第 k 小
@@ -159,53 +88,7 @@
 
 ??? note "参考代码（关键部分）"
     ```cpp
-    struct Opt {
-      int x, y, k, type, id;
-      // 对于询问, type = 1, x, y 表示区间左右边界, k 表示询问第 k 小
-      // 对于修改, type = 0, x 表示修改位置, y 表示修改后的值,
-      // k 表示当前操作是插入(1)还是擦除(-1), 更新树状数组时使用.
-      // id 记录每个操作原先的编号, 因二分过程中操作顺序会被打散
-    };
-    
-    Opt q[N], q1[N], q2[N];
-    // q 为所有操作,
-    // 二分过程中, 分到左边的操作存到 q1 中, 分到右边的操作存到 q2 中.
-    int ans[N];
-    void add(int p, int x);
-    int query(int p);  // 树状数组函数, 含义见题3
-    
-    void solve(int l, int r, int L, int R)
-    // 当前的值域范围为 [l,r], 处理的操作的区间为 [L,R]
-    {
-      if (l > r || L > R) return;
-      int cnt1 = 0, cnt2 = 0, m = (l + r) / 2;
-      // cnt1, cnt2 分别为分到左边, 分到右边的操作数
-      if (l == r) {
-        for (int i = L; i <= R; i++)
-          if (q[i].type == 1) ans[q[i].id] = l;
-        return;
-      }
-      for (int i = L; i <= R; i++)
-        if (q[i].type == 1) {  // 是询问: 进行分类
-          int t = query(q[i].y) - query(q[i].x - 1);
-          if (q[i].k <= t)
-            q1[++cnt1] = q[i];
-          else
-            q[i].k -= t, q2[++cnt2] = q[i];
-        } else
-          // 是修改: 更新树状数组 & 分类
-          if (q[i].y <= m)
-            add(q[i].x, q[i].k), q1[++cnt1] = q[i];
-          else
-            q2[++cnt2] = q[i];
-      for (int i = 1; i <= cnt1; i++)
-        if (q1[i].type == 0) add(q1[i].x, -q1[i].k);  // 清空树状数组
-      for (int i = 1; i <= cnt1; i++) q[L + i - 1] = q1[i];
-      for (int i = 1; i <= cnt2; i++)
-        q[L + cnt1 + i - 1] = q2[i];  // 将临时数组中的元素合并回原数组
-      solve(l, m, L, L + cnt1 - 1), solve(m + 1, r, L + cnt1, R);
-      return;
-    }
+    --8<-- "docs/misc/code/parallel-binsearch/parallel-binsearch_4.cpp:core"
     ```
 
 ### 针对静态序列的优化
@@ -231,61 +114,7 @@
 
 ??? note "参考代码（关键部分）"
     ```cpp
-    struct Query {
-      int i, l, r, k;
-    };  // 第 i 次询问查询区间 [l,r] 的第 k 小值
-    
-    Query s[200005], t1[200005], t2[200005];
-    int n, m, cnt, pos, p[200005], ans[200005];
-    pair<int, int> a[200005];
-    
-    void add(int x, int y);  // 树状数组 位置 x 加 y
-    int sum(int x);          // 树状数组 [1,x] 前缀和
-    
-    // 当前处理的询问为 [l,r],答案值域为 [ql,qr]
-    void overall_binary(int l, int r, int ql, int qr) {
-      if (l > r) return;
-      if (ql == qr) {
-        for (int i = l; i <= r; i++) ans[s[i].i] = ql;
-        return;
-      }
-      int cnt1 = 0, cnt2 = 0, mid = (ql + qr) >> 1;
-      // 追踪分治中心,认为 [1,pos] 的值已经载入树状数组
-      while (pos <= n - 1 && a[pos + 1].first <= mid)
-        add(a[pos + 1].second, 1), ++pos;
-      while (pos >= 1 && a[pos].first > mid) add(a[pos].second, -1), --pos;
-    
-      for (int i = l; i <= r; i++) {
-        int now = sum(s[i].r) - sum(s[i].l - 1);
-        if (s[i].k <= now)
-          t1[++cnt1] = s[i];
-        else
-          t2[++cnt2] = s[i];  // 注意 不应修改询问信息
-      }
-      for (int i = 1; i <= cnt1; i++) s[l + i - 1] = t1[i];
-      for (int i = 1; i <= cnt2; i++) s[l + cnt1 + i - 1] = t2[i];
-    
-      overall_binary(l, l + cnt1 - 1, ql, mid);
-      overall_binary(l + cnt1, r, mid + 1, qr);
-    }
-    
-    int main() {
-      scanf("%d%d", &n, &m);
-      for (int i = 1; i <= n; i++) {
-        scanf("%d", &a[i].first);
-        a[i].second = i;
-        p[++cnt] = a[i].first;
-      }
-      sort(a + 1, a + n + 1);  // 对序列排序 离散化
-      sort(p + 1, p + n + 1);
-      cnt = unique(p + 1, p + n + 1) - p - 1;
-      for (int i = 1; i <= n; i++)
-        a[i].first = lower_bound(p + 1, p + cnt + 1, a[i].first) - p;
-      // 省略读入询问
-      overall_binary(1, m, 1, cnt);
-      for (int i = 1; i <= n; i++) printf("%d\n", p[ans[i]]);
-      return 0;
-    }
+    --8<-- "docs/misc/code/parallel-binsearch/parallel-binsearch_5.cpp:core"
     ```
 
 ### 区间前驱后继
@@ -316,28 +145,7 @@
 
 ??? note "参考代码（关键部分）"
     ```cpp
-    int a[500005], ans[500005];  // a:原序列 ans:构造的序列
-    
-    void overall_binary(int l, int r, int ql, int qr) {
-      if (l > r) return;
-      if (ql == qr) {
-        for (int i = l; i <= r; i++) ans[i] = ql;
-        return;
-      }
-      int cnt = 0,
-          mid = ql + ((qr - ql) >> 1);  // 默认开始都填 mid+1 全部划分到右区间
-      long long res = 0ll, sum = 0ll;
-      for (int i = l; i <= r; i++) sum += abs(a[i] - (mid + 1));
-      res = sum;
-      for (int i = l; i <= r;
-           i++) {  // 尝试把 [l,i] 从 mid+1 换成 mid 并且划分到左区间
-        sum -= abs(a[i] - (mid + 1));
-        sum += abs(a[i] - mid);
-        if (sum < res) cnt = i - l + 1, res = sum;  // 发现 [l,i] 取 mid 更优,更新
-      }
-      overall_binary(l, l + cnt - 1, ql, mid);
-      overall_binary(l + cnt, r, mid + 1, qr);
-    }
+    --8<-- "docs/misc/code/parallel-binsearch/parallel-binsearch_6.cpp:core"
     ```
 
 ### 参考习题

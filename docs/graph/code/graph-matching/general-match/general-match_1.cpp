@@ -1,12 +1,19 @@
 #include <algorithm>
 #include <cassert>
+#include <climits>
+#include <cstdio>
+#include <cstring>
 #include <iostream>
+#include <limits>
+#include <list>
 #include <numeric>
 #include <queue>
 #include <random>
+#include <utility>
 #include <vector>
 using namespace std;
 
+// --8<-- [start:core]
 // graph
 template <typename T>
 class graph {
@@ -49,12 +56,10 @@ class undirectedgraph : public graph<T> {
 // blossom / find_max_unweighted_matching
 template <typename T>
 vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
-  std::mt19937 rng(114514);  // 这里随机种子是无关紧要的
-  // 也可以用 chrono::steady_clock::now().time_since_epoch().count()
-  // 获取当前时间
+  std::mt19937 rng(std::random_device{}());
   vector<int> match(g.n, -1);   // 匹配
   vector<int> aux(g.n, -1);     // 时间戳记
-  vector<int> label(g.n);       // "o" or "i"
+  vector<int> label(g.n);       // 「o」或「i」
   vector<int> orig(g.n);        // 花根
   vector<int> parent(g.n, -1);  // 父节点
   queue<int> q;
@@ -82,7 +87,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     while (orig[v] != a) {
       parent[v] = u;
       u = match[v];
-      if (label[u] == 1) {  // 初始点设为"o" 找增广路
+      if (label[u] == 1) {  // 初始点设为「o」找增广路
         label[u] = 0;
         q.push(u);
       }
@@ -108,7 +113,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       q.pop();
     }
     q.push(root);
-    // 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
+    // 初始点设为「o」，这里以「0」代替「o」，「1」代替「i」
     label[root] = 0;
     while (!q.empty()) {
       int v = q.front();
@@ -117,7 +122,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         auto &e = g.edges[id];
         int u = e.from ^ e.to ^ v;
         if (label[u] == -1) {  // 找到未拜访点
-          label[u] = 1;        // 标记 "i"
+          label[u] = 1;        // 标记「i」
           parent[u] = v;
           if (match[u] == -1) {  // 找到未匹配点
             augment(u);          // 寻找增广路径
@@ -128,7 +133,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
           q.push(match[u]);
           continue;
         } else if (label[u] == 0 && orig[v] != orig[u]) {
-          // 找到已拜访点 且标记同为"o" 代表找到"花"
+          // 找到已拜访点 且标记同为「o」代表找到「花」
           int a = lca(orig[v], orig[u]);
           // 找LCA 然后缩花
           blossom(u, v, a);
@@ -172,6 +177,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
   return match;
 }
 
+// --8<-- [end:core]
 int main() {
   ios::sync_with_stdio(false);
 

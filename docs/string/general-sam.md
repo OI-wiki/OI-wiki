@@ -48,25 +48,7 @@
 
 ??? note "实现"
     ```cpp
-    constexpr int MAXN = 2000000;
-    constexpr int CHAR_NUM = 30;
-    
-    struct Trie {
-      int next[MAXN][CHAR_NUM];  // 转移
-      int tot;                   // 节点总数：[0, tot)
-    
-      void init() { tot = 1; }
-    
-      int insertTrie(int cur, int c) {
-        if (next[cur][c]) return next[cur][c];
-        return next[cur][c] = tot++;
-      }
-    
-      void insert(const string &s) {
-        int root = 0;
-        for (auto ch : s) root = insertTrie(root, ch - 'a');
-      }
-    };
+    --8<-- "docs/string/code/general-sam/general-sam_1.cpp:trie"
     ```
 
 这里我们得到了一棵依赖于 `next` 数组建立的一棵字典树．
@@ -114,59 +96,7 @@
 
 ??? note "参考代码"
     ```cpp
-    struct GSA {
-      int len[MAXN];             // 节点长度
-      int link[MAXN];            // 后缀链接，link
-      int next[MAXN][CHAR_NUM];  // 转移
-      int tot;                   // 节点总数：[0, tot)
-    
-      int insertSAM(int last, int c) {
-        int cur = next[last][c];
-        len[cur] = len[last] + 1;
-        int p = link[last];
-        while (p != -1) {
-          if (!next[p][c])
-            next[p][c] = cur;
-          else
-            break;
-          p = link[p];
-        }
-        if (p == -1) {
-          link[cur] = 0;
-          return cur;
-        }
-        int q = next[p][c];
-        if (len[p] + 1 == len[q]) {
-          link[cur] = q;
-          return cur;
-        }
-        int clone = tot++;
-        for (int i = 0; i < CHAR_NUM; ++i)
-          next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;
-        len[clone] = len[p] + 1;
-        while (p != -1 && next[p][c] == q) {
-          next[p][c] = clone;
-          p = link[p];
-        }
-        link[clone] = link[q];
-        link[cur] = clone;
-        link[q] = clone;
-        return cur;
-      }
-    
-      void build() {
-        queue<pair<int, int>> q;
-        for (int i = 0; i < CHAR_NUM; ++i)
-          if (next[0][i]) q.push({i, 0});
-        while (!q.empty()) {
-          auto item = q.front();
-          q.pop();
-          auto last = insertSAM(item.second, item.first);
-          for (int i = 0; i < CHAR_NUM; ++i)
-            if (next[last][i]) q.push({i, last});
-        }
-      }
-    }
+    --8<-- "docs/string/code/general-sam/general-sam_1.cpp:gsa"
     ```
 
 -   由于整个 BFS 的过程得到的顺序，其父节点始终在变化，所以并不需要保存 `last` 指针．
@@ -190,7 +120,7 @@
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/string/code/general-sam/general-sam_1.cpp"
+    --8<-- "docs/string/code/general-sam/general-sam_3.cpp"
     ```
 
 ### 多个字符串间的最长公共子串

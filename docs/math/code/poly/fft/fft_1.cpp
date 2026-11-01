@@ -1,107 +1,77 @@
+#include <algorithm>
+#include <cassert>
 #include <cmath>
-#include <cstring>
+#include <complex>
 #include <iostream>
+#include <string>
+#include <vector>
 using namespace std;
-const double PI = acos(-1.0);
+#ifndef M_PI
+const double M_PI = acos(-1.0);
+#endif
+using Complex = complex<double>;
+// --8<-- [start:core]
+#include <cmath>
+#include <complex>
 
-struct Complex {
-  double x, y;
+using Comp = std::complex<double>;  // STL complex
 
-  Complex(double _x = 0.0, double _y = 0.0) {
-    x = _x;
-    y = _y;
+constexpr Comp I(0, 1);  // i
+constexpr int MAX_N = 1 << 20;
+
+Comp tmp[MAX_N];
+
+// rev=1, DFT; rev=-1, IDFT
+// 应用完本函数后需要注意归一化系数的处理
+void DFT(Comp* f, int n, int rev) {
+  if (n == 1) return;
+  for (int i = 0; i < n; ++i) tmp[i] = f[i];
+  // 偶数放左边，奇数放右边
+  for (int i = 0; i < n; ++i) {
+    if (i & 1)
+      f[n / 2 + i / 2] = tmp[i];
+    else
+      f[i / 2] = tmp[i];
   }
-
-  Complex operator-(const Complex &b) const {
-    return Complex(x - b.x, y - b.y);
+  Comp *g = f, *h = f + n / 2;
+  // 递归 DFT
+  DFT(g, n / 2, rev), DFT(h, n / 2, rev);
+  // cur 是当前单位复根，对于 k = 0 而言，它对应的单位复根 omega^0_n = 1．
+  // step 是两个单位复根的差，即满足 omega^k_n = step*omega^{k-1}*n，
+  // 定义等价于 exp(I*(-2*M_PI/n*rev))
+  Comp cur(1, 0), step(cos(2 * M_PI / n), sin(-2 * M_PI * rev / n));
+  for (int k = 0; k < n / 2;
+       ++k) {  // F(omega^k_n) = G(omega^k*{n/2}) + omega^k*n\*H(omega^k*{n/2})
+    tmp[k] = g[k] + cur * h[k];
+    // F(omega^{k+n/2}*n) = G(omega^k*{n/2}) - omega^k_n*H(omega^k\_{n/2})
+    tmp[k + n / 2] = g[k] - cur * h[k];
+    cur *= step;
   }
-
-  Complex operator+(const Complex &b) const {
-    return Complex(x + b.x, y + b.y);
-  }
-
-  Complex operator*(const Complex &b) const {
-    return Complex(x * b.x - y * b.y, x * b.y + y * b.x);
-  }
-};
-
-/*
- * 进行 FFT 和 IFFT 前的反置变换
- * 位置 i 和 i 的二进制反转后的位置互换
- *len 必须为 2 的幂
- */
-void change(Complex y[], int len) {
-  int i, j, k;
-  for (int i = 1, j = len / 2; i < len - 1; i++) {
-    if (i < j) swap(y[i], y[j]);
-    // 交换互为小标反转的元素，i<j 保证交换一次
-    // i 做正常的 + 1，j 做反转类型的 + 1，始终保持 i 和 j 是反转的
-    k = len / 2;
-    while (j >= k) {
-      j = j - k;
-      k = k / 2;
-    }
-    if (j < k) j += k;
-  }
+  for (int i = 0; i < n; ++i) f[i] = tmp[i];
 }
 
-/*
- * 做 FFT
- *len 必须是 2^k 形式
- *on == 1 时是 DFT，on == -1 时是 IDFT
- */
-void fft(Complex y[], int len, int on) {
-  change(y, len);
-  for (int h = 2; h <= len; h <<= 1) {
-    Complex wn(cos(2 * PI / h), sin(on * 2 * PI / h));
-    for (int j = 0; j < len; j += h) {
-      Complex w(1, 0);
-      for (int k = j; k < j + h / 2; k++) {
-        Complex u = y[k];
-        Complex t = w * y[k + h / 2];
-        y[k] = u + t;
-        y[k + h / 2] = u - t;
-        w = w * wn;
-      }
-    }
-  }
-  if (on == -1) {
-    for (int i = 0; i < len; i++) {
-      y[i].x /= len;
-    }
-  }
-}
-
-constexpr int MAXN = 200020;
-Complex x1[MAXN], x2[MAXN];
-char str1[MAXN / 2], str2[MAXN / 2];
-int sum[MAXN];
-
+// --8<-- [end:core]
 int main() {
-  while (cin >> str1 >> str2) {
-    int len1 = strlen(str1);
-    int len2 = strlen(str2);
+  string a, b;
+  while (cin >> a >> b) {
     int len = 1;
-    while (len < len1 * 2 || len < len2 * 2) len *= 2;
-    for (int i = 0; i < len1; i++) x1[i] = Complex(str1[len1 - 1 - i] - '0', 0);
-    for (int i = len1; i < len; i++) x1[i] = Complex(0, 0);
-    for (int i = 0; i < len2; i++) x2[i] = Complex(str2[len2 - 1 - i] - '0', 0);
-    for (int i = len2; i < len; i++) x2[i] = Complex(0, 0);
-    fft(x1, len, 1);
-    fft(x2, len, 1);
-    for (int i = 0; i < len; i++) x1[i] = x1[i] * x2[i];
-    fft(x1, len, -1);
-    for (int i = 0; i < len; i++) sum[i] = int(x1[i].x + 0.5);
-    for (int i = 0; i < len; i++) {
-      sum[i + 1] += sum[i] / 10;
-      sum[i] %= 10;
+    while (len < int(a.size() + b.size())) len <<= 1;
+    vector<Complex> x(len), y(len);
+    for (size_t i = 0; i < a.size(); ++i) x[i] = a[a.size() - 1 - i] - '0';
+    for (size_t i = 0; i < b.size(); ++i) y[i] = b[b.size() - 1 - i] - '0';
+    DFT(x.data(), len, 1);
+    DFT(y.data(), len, 1);
+    for (int i = 0; i < len; ++i) x[i] *= y[i];
+    DFT(x.data(), len, -1);
+    vector<long long> digits(len + 1);
+    for (int i = 0; i < len; ++i) digits[i] = llround(x[i].real() / len);
+    for (int i = 0; i < len; ++i) {
+      digits[i + 1] += digits[i] / 10;
+      digits[i] %= 10;
     }
-    len = len1 + len2 - 1;
-    while (sum[len] == 0 && len > 0) len--;
-    for (int i = len; i >= 0; i--) cout << char(sum[i] + '0');
-    cout << '\n';
+    int last = len;
+    while (last > 0 && digits[last] == 0) --last;
+    for (int i = last; i >= 0; --i) cout << digits[i];
+    cout << "\n";
   }
-  return 0;
 }
-
-// 加油加油！

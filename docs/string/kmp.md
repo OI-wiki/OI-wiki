@@ -61,49 +61,17 @@ $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
     
     === "C++"
         ```cpp
-        // 注：
-        // string substr (size_t pos = 0, size_t len = npos) const;
-        vector<int> prefix_function(string s) {
-          int n = (int)s.length();
-          vector<int> pi(n);
-          for (int i = 1; i < n; i++)
-            for (int j = i; j >= 0; j--)
-              if (s.substr(0, j) == s.substr(i - j + 1, j)) {
-                pi[i] = j;
-                break;
-              }
-          return pi;
-        }
+        --8<-- "docs/string/code/kmp/kmp_1.cpp:core"
         ```
     
     === "Python"
         ```python
-        def prefix_function(s):
-            n = len(s)
-            pi = [0] * n
-            for i in range(1, n):
-                for j in range(i, -1, -1):
-                    if s[0:j] == s[i - j + 1 : i + 1]:
-                        pi[i] = j
-                        break
-            return pi
+        --8<-- "docs/string/code/kmp/kmp_1.py:core"
         ```
     
     === "Java"
         ```java
-        static int[] prefix_function(String s) {
-            int n = s.length();
-            int[] pi = new int[n];
-            for (int i = 1; i < n; i++) {
-                for (int j = i; j >= 0; j--) {
-                    if (s.substring(0, j).equals(s.substring(i - j + 1, i + 1))) {
-                        pi[i] = j;
-                        break;
-                    }
-                }
-            }
-            return pi;
-        }
+        --8<-- "docs/string/code/kmp/kmp_1.java:core"
         ```
 
 显见该算法的时间复杂度为 $O(n^3)$，具有很大的改进空间．
@@ -127,47 +95,17 @@ $$
     
     === "C++"
         ```cpp
-        vector<int> prefix_function(string s) {
-          int n = (int)s.length();
-          vector<int> pi(n);
-          for (int i = 1; i < n; i++)
-            for (int j = pi[i - 1] + 1; j >= 0; j--)  // improved: j=i => j=pi[i-1]+1
-              if (s.substr(0, j) == s.substr(i - j + 1, j)) {
-                pi[i] = j;
-                break;
-              }
-          return pi;
-        }
+        --8<-- "docs/string/code/kmp/kmp_2.cpp:core"
         ```
     
     === "Python"
         ```python
-        def prefix_function(s):
-            n = len(s)
-            pi = [0] * n
-            for i in range(1, n):
-                for j in range(pi[i - 1] + 1, -1, -1):
-                    if s[0:j] == s[i - j + 1 : i + 1]:
-                        pi[i] = j
-                        break
-            return pi
+        --8<-- "docs/string/code/kmp/kmp_2.py:core"
         ```
     
     === "Java"
         ```java
-        static int[] prefix_function(String s) {
-            int n = s.length();
-            int[] pi = new int[n];
-            for (int i = 1; i < n; i++) {
-                for (int j = pi[i - 1] + 1; j >= 0; j--) {
-                    if (s.substring(0, j).equals(s.substring(i - j + 1, i + 1))) {
-                        pi[i] = j;
-                        break;
-                    }
-                }
-            }
-            return pi;
-        }
+        --8<-- "docs/string/code/kmp/kmp_2.java:core"
         ```
 
 在这个初步改进的算法中，在计算每个 $\pi[i]$ 时，最好的情况是第一次字符串比较就完成了匹配，也就是说基础的字符串比较次数是 $n-1$ 次．
@@ -217,51 +155,17 @@ $$
 ???+ note "实现"
     === "C++"
         ```cpp
-        vector<int> prefix_function(string s) {
-          int n = (int)s.length();
-          vector<int> pi(n);
-          for (int i = 1; i < n; i++) {
-            int j = pi[i - 1];
-            while (j > 0 && s[i] != s[j]) j = pi[j - 1];
-            if (s[i] == s[j]) j++;
-            pi[i] = j;
-          }
-          return pi;
-        }
+        --8<-- "docs/string/code/kmp/kmp_3.cpp:core"
         ```
     
     === "Python"
         ```python
-        def prefix_function(s):
-            n = len(s)
-            pi = [0] * n
-            for i in range(1, n):
-                j = pi[i - 1]
-                while j > 0 and s[i] != s[j]:
-                    j = pi[j - 1]
-                if s[i] == s[j]:
-                    j += 1
-                pi[i] = j
-            return pi
+        --8<-- "docs/string/code/kmp/kmp_3.py:core"
         ```
     
     === "Java"
         ```java
-        static int[] prefix_function(String s) {
-            int n = s.length();
-            int[] pi = new int[n];
-            for (int i = 1; i < n; i++) {
-                int j = pi[i - 1];
-                while (j > 0 && s.charAt(i) != s.charAt(j)) {
-                    j = pi[j - 1];
-                }
-                if (s.charAt(i) == s.charAt(j)) {
-                    j++;
-                }
-                pi[i] = j;
-            }
-            return pi;
-        }
+        --8<-- "docs/string/code/kmp/kmp_3.java:core"
         ```
 
 这是一个 **在线** 算法，即其当数据到达时处理它——举例来说，你可以一个字符一个字符的读取字符串，立即处理它们以计算出每个字符的前缀函数值．该算法仍然需要存储字符串本身以及先前计算过的前缀函数值，但如果我们已经预先知道该字符串前缀函数的最大可能取值 $M$，那么我们仅需要存储该字符串的前 $M + 1$ 个字符以及对应的前缀函数值．
@@ -291,45 +195,17 @@ $$
 ???+ note "实现"
     === "C++"
         ```cpp
-        vector<int> find_occurrences(string text, string pattern) {
-          string cur = pattern + '#' + text;
-          int sz1 = text.size(), sz2 = pattern.size();
-          vector<int> v;
-          vector<int> lps = prefix_function(cur);
-          for (int i = 2 * sz2; i <= sz1 + sz2; i++) {
-            if (lps[i] == sz2) v.push_back(i - 2 * sz2);
-          }
-          return v;
-        }
+        --8<-- "docs/string/code/kmp/kmp_4.cpp:core"
         ```
     
     === "Python"
         ```python
-        def find_occurrences(t, s):
-            cur = s + "#" + t
-            sz1, sz2 = len(t), len(s)
-            ret = []
-            lps = prefix_function(cur)
-            for i in range(2 * sz2, sz1 + sz2 + 1):
-                if lps[i] == sz2:
-                    ret.append(i - 2 * sz2)
-            return ret
+        --8<-- "docs/string/code/kmp/kmp_4.py:core"
         ```
     
     === "Java"
         ```java
-        static List<Integer> find_occurrences(String text, String pattern) {
-            String cur = pattern + '#' + text;
-            int sz1 = text.length(), sz2 = pattern.length();
-            List<Integer> v = new ArrayList<>();
-            int[] lps = prefix_function(cur);
-            for (int i = 2 * sz2; i <= sz1 + sz2; i++) {
-                if (lps[i] == sz2) {
-                    v.add(i - 2 * sz2);
-                }
-            }
-            return v;
-        }
+        --8<-- "docs/string/code/kmp/kmp_4.java:core"
         ```
 
 ### 字符串的周期
@@ -353,21 +229,12 @@ $$
 ???+ note "实现"
     === "C++"
         ```cpp
-        vector<int> ans(n + 1);
-        for (int i = 0; i < n; i++) ans[pi[i]]++;
-        for (int i = n - 1; i > 0; i--) ans[pi[i - 1]] += ans[i];
-        for (int i = 0; i <= n; i++) ans[i]++;
+        --8<-- "docs/string/code/kmp/kmp_5.cpp:core"
         ```
     
     === "Python"
         ```python
-        ans = [0] * (n + 1)
-        for i in range(0, n):
-            ans[pi[i]] += 1
-        for i in range(n - 1, 0, -1):
-            ans[pi[i - 1]] += ans[i]
-        for i in range(0, n + 1):
-            ans[i] += 1
+        --8<-- "docs/string/code/kmp/kmp_5.py:core"
         ```
 
 #### 解释
@@ -438,40 +305,14 @@ $$
 
 ???+ note "实现"
     ```cpp
-    void compute_automaton(string s, vector<vector<int>>& aut) {
-      s += '#';
-      int n = s.size();
-      vector<int> pi = prefix_function(s);
-      aut.assign(n, vector<int>(26));
-      for (int i = 0; i < n; i++) {
-        for (int c = 0; c < 26; c++) {
-          int j = i;
-          while (j > 0 && 'a' + c != s[j]) j = pi[j - 1];
-          if ('a' + c == s[j]) j++;
-          aut[i][c] = j;
-        }
-      }
-    }
+    --8<-- "docs/string/code/kmp/kmp_6.cpp:core"
     ```
 
 然而在这种形式下，对于小写字母表，算法的时间复杂度为 $O(|\Sigma|n^2)$．注意到我们可以应用动态规划来利用表中已计算过的部分．只要我们从值 $j$ 变化到 $\pi[j - 1]$，那么我们实际上在说转移 $(j, c)$ 所到达的状态同转移 $(\pi[j - 1], c)$ 一样，但该答案我们之前已经精确计算过了．
 
 ???+ note "实现"
     ```cpp
-    void compute_automaton(string s, vector<vector<int>>& aut) {
-      s += '#';
-      int n = s.size();
-      vector<int> pi = prefix_function(s);
-      aut.assign(n, vector<int>(26));
-      for (int i = 0; i < n; i++) {
-        for (int c = 0; c < 26; c++) {
-          if (i > 0 && 'a' + c != s[i])
-            aut[i][c] = aut[pi[i - 1]][c];
-          else
-            aut[i][c] = i + ('a' + c == s[i]);
-        }
-      }
-    }
+    --8<-- "docs/string/code/kmp/kmp_7.cpp:core"
     ```
 
 最终我们可在 $O(|\Sigma|n)$ 的时间复杂度内构造该自动机．

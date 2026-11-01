@@ -110,7 +110,7 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/graph/code/tree-centroid/tree-centroid-2.cpp:core"
+    --8<-- "docs/graph/code/tree-centroid/tree-centroid-1.cpp:core"
     ```
 
 ### 换根 DP 统计深度和
@@ -119,7 +119,7 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
 
 ??? example "参考实现"
     ```cpp
-    --8<-- "docs/graph/code/tree-centroid/tree-centroid-3.cpp:core"
+    --8<-- "docs/graph/code/tree-centroid/tree-centroid-2.cpp:core"
     ```
 
 ## 例题
@@ -136,7 +136,7 @@ author: Ir1d, Marcythm, LucienShui, Anguei, H-J-Granger, CornWorld, ttzc
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/tree-centroid/tree-centroid-1.cpp"
+    --8<-- "docs/graph/code/tree-centroid/tree-centroid-3.cpp"
     ```
 
 ## 习题

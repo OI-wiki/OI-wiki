@@ -1,70 +1,45 @@
-// Verified by https://codeforces.com/gym/101649/problem/G.
-// Codes associating I/O streams to files are omitted.
 #include <iostream>
-#include <limits>
 #include <vector>
 using namespace std;
 
-// --8<-- [start:core]
-const int N = 50005;
+constexpr int N = 3e5 + 5;
 
-int n, siz[N];
-long long dp[N], ans[N];
-vector<int> g[N], centroids;
+int n, q;  // 点数，询问数
+int fa[N];
+vector<int> son[N];
+int siz[N],     // 子树大小
+    ans[N],     // 以结点 u 为根的子树重心是 ans[u]
+    weight[N];  // 结点重量（不包括向上的子树）
 
-// 求 1 号节点到所有其他节点的距离和
-void dfs1(int u, int fa) {
-  siz[u] = 1;
-  dp[u] = 0;
-  for (int v : g[u]) {
-    if (v == fa) continue;
-    dfs1(v, u);
+void dfs(int u) {
+  siz[u] = 1, ans[u] = u;
+  int hson = 0;  // 重子结点
+  for (int v : son[u]) {
+    dfs(v);
     siz[u] += siz[v];
-    dp[u] += dp[v] + siz[v];  // 子树节点到 u 的距离和
+    if (siz[v] > weight[u]) weight[u] = siz[v], hson = v;
+  }
+  if (hson) {
+    int p = ans[hson];
+    while (p != u) {
+      if (max(weight[p], siz[u] - siz[p]) <= siz[u] / 2) {
+        ans[u] = p;
+        break;
+      } else
+        p = fa[p];
+    }
   }
 }
 
-// 通过换根 DP 求所有节点为树根时对应的距离和
-void dfs2(int u, int fa) {
-  for (int v : g[u]) {
-    if (v == fa) continue;
-    ans[v] = ans[u] - siz[v] + (n - siz[v]);
-    dfs2(v, u);
-  }
-}
-
-// 求树的重心
-void get_centroids() {
-  dfs1(1, 0);
-  ans[1] = dp[1];
-  dfs2(1, 0);
-
-  long long mini = std::numeric_limits<long long>::max();
-  for (int i = 1; i <= n; i++) {
-    if (ans[i] < mini) {
-      mini = ans[i];
-      centroids = {i};
-    } else if (ans[i] == mini)
-      centroids.push_back(i);
-  }
-}
-
-// --8<-- [end:core]
 int main() {
   ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  cin >> n;
-  for (int i = 1; i < n; i++) {
-    int u, v;
-    cin >> u >> v;
-    g[u].push_back(v);
-    g[v].push_back(u);
+  cin >> n >> q;
+  for (int v = 2; v <= n; v++) cin >> fa[v], son[fa[v]].push_back(v);
+  dfs(1);
+  while (q--) {
+    int u;
+    cin >> u;
+    cout << ans[u] << '\n';
   }
-  get_centroids();
-  if (centroids.size() == 1)
-    cout << centroids.front() << '\n';
-  else
-    cout << min(centroids.front(), centroids.back()) << " "
-         << max(centroids.front(), centroids.back()) << '\n';
   return 0;
 }

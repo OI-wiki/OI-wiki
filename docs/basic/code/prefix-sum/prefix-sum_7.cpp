@@ -1,47 +1,78 @@
+#include <algorithm>
 #include <iostream>
-#include <vector>
+using namespace std;
 
-// --8<-- [start:core]
-int n, m;
-std::vector<std::vector<int>> diff, a;
+constexpr int MAXN = 50010;
 
-// Add v to each element from [x1, y1] to [x2, y2].
-void add(int x1, int y1, int x2, int y2, int v) {
-  diff[x1][y1] += v;
-  if (x2 < n) diff[x2 + 1][y1] -= v;
-  if (y2 < m) diff[x1][y2 + 1] -= v;
-  if (x2 < n && y2 < m) diff[x2 + 1][y2 + 1] += v;
+struct node {
+  int to, next;
+} edge[MAXN << 1];
+
+int fa[MAXN][30], head[MAXN << 1];
+int power[MAXN];
+int depth[MAXN], lg[MAXN];
+int n, k, ans = 0, tot = 0;
+
+void add(int x, int y) {  // 加边
+  edge[++tot].to = y;
+  edge[tot].next = head[x];
+  head[x] = tot;
 }
 
-// Execute this after all modifications and before all queries.
-void prefix_sum() {
-  a = diff;
-
-  for (int i = 1; i <= n; ++i)
-    for (int j = 1; j <= m; ++j) a[i][j] += a[i - 1][j];
-
-  for (int i = 1; i <= n; ++i)
-    for (int j = 1; j <= m; ++j) a[i][j] += a[i][j - 1];
+void dfs(int now, int father) {  // DFS 预处理结点深度和倍增祖先
+  fa[now][0] = father;
+  depth[now] = depth[father] + 1;
+  for (int i = 1; i <= lg[depth[now]]; ++i)
+    fa[now][i] = fa[fa[now][i - 1]][i - 1];
+  for (int i = head[now]; i; i = edge[i].next)
+    if (edge[i].to != father) dfs(edge[i].to, now);
 }
 
-// --8<-- [end:core]
+int lca(int x, int y) {  // 求LCA，最近公共祖先
+  if (depth[x] < depth[y]) swap(x, y);
+  while (depth[x] > depth[y]) x = fa[x][lg[depth[x] - depth[y]] - 1];
+  if (x == y) return x;
+  for (int k = lg[depth[x]] - 1; k >= 0; k--) {
+    if (fa[x][k] != fa[y][k]) x = fa[x][k], y = fa[y][k];
+  }
+  return fa[x][0];
+}
+
+// 用 DFS 累加子树差分，求出每个结点的压力并更新最大压力
+void get_ans(int u, int father) {
+  for (int i = head[u]; i; i = edge[i].next) {
+    int to = edge[i].to;
+    if (to == father) continue;
+    get_ans(to, u);
+    power[u] += power[to];
+  }
+  ans = max(ans, power[u]);
+}
+
 int main() {
-  std::cin >> n >> m;
-  diff.assign(n + 1, std::vector<int>(m + 1));
-  a.assign(n + 1, std::vector<int>(m + 1));
-  int t;
-  std::cin >> t;
-  for (; t; --t) {
-    int x1, y1, x2, y2, v;
-    std::cin >> x1 >> y1 >> x2 >> y2 >> v;
-    add(x1, y1, x2, y2, v);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n >> k;
+  int x, y;
+  for (int i = 1; i <= n; i++) {
+    lg[i] = lg[i - 1] + (1 << lg[i - 1] == i);
   }
-  prefix_sum();
-  for (int i = 1; i <= n; ++i) {
-    for (int j = 1; j <= m; ++j) {
-      std::cout << a[i][j] << ' ';
-    }
-    std::cout << '\n';
+  for (int i = 1; i <= n - 1; i++) {  // 建图
+    cin >> x >> y;
+    add(x, y);
+    add(y, x);
   }
+  dfs(1, 0);
+  int s, t;
+  for (int i = 1; i <= k; i++) {
+    cin >> s >> t;
+    int ancestor = lca(s, t);
+    // 树上差分
+    power[s]++;
+    power[t]++;
+    power[ancestor]--;
+    power[fa[ancestor][0]]--;
+  }
+  get_ans(1, 0);
+  cout << ans << '\n';
   return 0;
 }

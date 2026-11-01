@@ -9,12 +9,7 @@ author: abc1763613206, cesonic, Ir1d, MingqiHuang, xinchengo, xiaofu-15191, hsef
 举个例子，最常见的就是并查集的启发式合并了，代码是这样的：
 
 ```cpp
-void merge(int x, int y) {
-  int xx = find(x), yy = find(y);
-  if (size[xx] < size[yy]) swap(xx, yy);
-  fa[yy] = xx;
-  size[xx] += size[yy];
-}
+--8<-- "docs/graph/code/dsu-on-tree/dsu-on-tree_1.cpp:core"
 ```
 
 在这里，对于两个大小不一样的集合，我们将小的集合合并到大的集合中，而不是将大的集合合并到小的集合中．
@@ -97,12 +92,12 @@ dfs 序本身就有如下的性质：一个节点的子树在 dfs 序上一定�
 ??? example "参考实现"
     === "递归实现"
         ```cpp
-        --8<-- "docs/graph/code/dsu-on-tree/dsu-on-tree_1.cpp"
+        --8<-- "docs/graph/code/dsu-on-tree/dsu-on-tree_2.cpp"
         ```
     
     === "非递归实现"
         ```cpp
-        --8<-- "docs/graph/code/dsu-on-tree/dsu-on-tree_2.cpp"
+        --8<-- "docs/graph/code/dsu-on-tree/dsu-on-tree_3.cpp"
         ```
 
 ## 运用

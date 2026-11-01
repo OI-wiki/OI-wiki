@@ -9,14 +9,7 @@
 ### 结点类型
 
 ```cpp
-struct Node_t {
-  int l, r;
-  mutable int v;
-
-  Node_t(const int &il, const int &ir, const int &iv) : l(il), r(ir), v(iv) {}
-
-  bool operator<(const Node_t &o) const { return l < o.l; }
-};
+--8<-- "docs/misc/code/odt/odt_1.cpp:node"
 ```
 
 其中，`int v` 是你自己指定的附加数据．
@@ -39,15 +32,7 @@ struct Node_t {
 参考代码如下：
 
 ```cpp
-auto split(int x) {
-  auto it = odt.lower_bound(Node_t(x, 0, 0));
-  if (it != odt.end() && it->l == x) return it;
-  --it;
-  int l = it->l, r = it->r, v = it->v;
-  odt.erase(it);
-  odt.insert(Node_t(l, x - 1, v));
-  return odt.insert(Node_t(x, r, v)).first;
-}
+--8<-- "docs/misc/code/odt/odt_1.cpp:split"
 ```
 
 在不支持使用 `auto` 进行返回类型推导的编译器上，可以将函数的返回类型改为 `set<Node_t>::iterator`．
@@ -65,11 +50,7 @@ auto split(int x) {
 参考代码如下：
 
 ```cpp
-void assign(int l, int r, int v) {
-  auto itr = split(r + 1), itl = split(l);
-  odt.erase(itl, itr);
-  odt.insert(Node_t(l, r, v));
-}
+--8<-- "docs/misc/code/odt/odt_1.cpp:assign"
 ```
 
 ???+ note "为什么需要先 `split(r + 1)` 再 `split(l)`？"
@@ -84,12 +65,7 @@ void assign(int l, int r, int v) {
 参考代码如下：
 
 ```cpp
-void perform(int l, int r) {
-  auto itr = split(r + 1), itl = split(l);
-  for (; itl != itr; ++itl) {
-    // Perform Operations here
-  }
-}
+--8<-- "docs/misc/code/odt/odt_1.cpp:perform"
 ```
 
 注意不应该滥用这样的提取操作，可能使得时间复杂度错误．见下文「复杂度分析」一栏．
@@ -109,20 +85,13 @@ void perform(int l, int r) {
 参考代码：（第一份）
 
 ```cpp
-void split(int x) {
-  auto it = prev(mp.upper_bound(x));  // 找到左端点小于等于 x 的区间．
-  mp[x] = it->second;  // 设立新的区间，并将上一个区间储存的值复制给本区间．
-}
+--8<-- "docs/misc/code/odt/odt_2.cpp:split"
 ```
 
 参考代码：（第二份）
 
 ```cpp
-auto split(int pos) {
-  auto it = prev(mp.upper_bound(pos));  // 找到左端点小于等于 x 的区间．
-  return mp.insert(it, make_pair(pos, it->second));
-  // 设立新的区间，并将上一个区间储存的值复制给本区间．
-}
+--8<-- "docs/misc/code/odt/odt_3.cpp:split"
 ```
 
 这里使用了 `std::map::insert` 的重载 `iterator insert( const_iterator pos, const value_type& value );`，其插入 `value` 到尽可能接近正好在 `pos` 之前的位置．如果插入恰好发生在正好在 `pos` 之前的位置，那么复杂度是均摊常数，否则复杂度与容器大小成对数．
@@ -132,29 +101,13 @@ auto split(int pos) {
 对于 assign 操作，我们需要把 $[l,r−1]$ 内所有区间左端点删除，再建立新的区间．
 
 ```cpp
-void assign(int l, int r, int v) {  // 注意，这里的r是区间右端点+1
-  split(l);
-  split(r);
-  auto it = mp.find(l);
-  while (it->first != r) {
-    it = mp.erase(it);
-  }
-  mp[l] = v;
-}
+--8<-- "docs/misc/code/odt/odt_2.cpp:assign"
 ```
 
 ### perform 操作
 
 ```cpp
-void perform(int l, int r) {  // 注意，这里的r是区间右端点+1
-  split(l);
-  split(r);
-  auto it = mp.find(l);
-  while (it->first != r) {
-    // Perform Operations here
-    it = next(it);
-  }
-}
+--8<-- "docs/misc/code/odt/odt_2.cpp:perform"
 ```
 
 ## 实现（链表）
@@ -164,75 +117,31 @@ void perform(int l, int r) {  // 注意，这里的r是区间右端点+1
 ### 结点存储
 
 ```cpp
-using i64 = int64_t;
-
-struct Block {
-  Block *next;  // 链表下一节点
-  int l, r;     // 区间范围
-  i64 val;      // 区间上的值
-
-  Block(Block *next, int l, int r, i64 val)
-      : next(next), l(l), r(r), val(val) {}
-
-  bool operator<(const Block &b) const { return val < b.val; }
-} *root;
+--8<-- "docs/misc/code/odt/odt_4.cpp:node"
 ```
 
 ### split 操作
 
 ```cpp
-// 返回左端点为 mid+1 的区间
-Block *split(int mid) {
-  for (Block *b = root; b; b = b->next) {  // 遍历链表
-    if (b->l == mid + 1) {                 // 左端点为 mid+1
-      return b;
-    }
-    // 寻找能包含 mid 和 mid+1 的区间 [l, r]，将其被拆分成 [l, mid] 和 [mid+1,
-    // r]
-    if (b->l <= mid && mid + 1 <= b->r) {
-      b->next = new Block(b->next, mid + 1, b->r, b->val);
-      b->r = mid;
-      return b->next;
-    }
-  }
-  return nullptr;  // 未找到，返回空
-}
+--8<-- "docs/misc/code/odt/odt_4.cpp:split"
 ```
 
 在操作区间时，由于不能只维护区间的一部分，所以下面的操作进行之前都需要预先分裂区间，再完成相应操作．
 
 ```cpp
-Block *lb, *rb;
-
-// 预分裂，保证后续操作在 [l, r] 内部
-void prepare(int l, int r) {
-  lb = split(l - 1);
-  rb = split(r);
-}
+--8<-- "docs/misc/code/odt/odt_4.cpp:prepare"
 ```
 
 ### assign 操作
 
 ```cpp
-void assign(int l, int r, i64 val) {
-  prepare(l, r);
-  lb->r = r;  // 将区间 [lb.l, lb.r] 修改成 [lb.l, r]
-  lb->val = val;
-  lb->next = rb;  // 将 [lb.l, r] 链至其右侧相邻区间
-}
-
-// 注：这里没有释放被删除节点的内存，若有需要可自行添加
+--8<-- "docs/misc/code/odt/odt_4.cpp:assign"
 ```
 
 ### perform 操作
 
 ```cpp
-void perform(int l, int r) {
-  prepare(l, r);
-  for (Block *b = lb; b != rb; b = b->next) {
-    // Perform Operations here
-  }
-}
+--8<-- "docs/misc/code/odt/odt_4.cpp:perform"
 ```
 
 ## 复杂度分析

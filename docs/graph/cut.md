@@ -80,55 +80,12 @@ $$
 
 === "C++"
     ```cpp
-    int low[MAXN], dfn[MAXN], idx;
-    bool isbridge[MAXN];
-    vector<int> G[MAXN];
-    int cnt_bridge;
-    int father[MAXN];
-    
-    void tarjan(int u, int fa) {
-      father[u] = fa;
-      low[u] = dfn[u] = ++idx;
-      for (const auto &v : G[u]) {
-        if (!dfn[v]) {
-          tarjan(v, u);
-          low[u] = min(low[u], low[v]);
-          if (low[v] > dfn[u]) {
-            isbridge[v] = true;
-            ++cnt_bridge;
-          }
-        } else if (v != fa) {
-          low[u] = min(low[u], dfn[v]);
-        }
-      }
-    }
+    --8<-- "docs/graph/code/cut/cut_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    low = [0] * MAXN
-    dfn = [0] * MAXN
-    idx = 0
-    isbridge = [False] * MAXN
-    G = [[0 for i in range(MAXN)] for j in range(MAXN)]
-    cnt_bridge = 0
-    father = [0] * MAXN
-    
-    
-    def tarjan(u, fa):
-        father[u] = fa
-        idx = idx + 1
-        low[u] = dfn[u] = idx
-        for i in range(0, len(G[u])):
-            v = G[u][i]
-            if dfn[v] == False:
-                tarjan(v, u)
-                low[u] = min(low[u], low[v])
-                if low[v] > dfn[u]:
-                    isbridge[v] = True
-                    cnt_bridge = cnt_bridge + 1
-            elif v != fa:
-                low[u] = min(low[u], dfn[v])
+    --8<-- "docs/graph/code/cut/cut_2.py:core"
     ```
 
 ## 割边（有重边时）
@@ -147,32 +104,7 @@ $$
 
 === "C++"
     ```cpp
-    int low[MAXN], dfn[MAXN], idx;
-    bool isbridge[MAXN];
-    vector<int> G[MAXN];
-    int cnt_bridge;
-    int father[MAXN];
-    
-    void tarjan(int u, int fa) {
-      bool flag = false;
-      father[u] = fa;
-      low[u] = dfn[u] = ++idx;
-      for (const auto &v : G[u]) {
-        if (!dfn[v]) {
-          tarjan(v, u);
-          low[u] = min(low[u], low[v]);
-          if (low[v] > dfn[u]) {
-            isbridge[v] = true;
-            ++cnt_bridge;
-          }
-        } else {
-          if (v != fa || flag)
-            low[u] = min(low[u], dfn[v]);
-          else
-            flag = true;
-        }
-      }
-    }
+    --8<-- "docs/graph/code/cut/cut_3.cpp:core"
     ```
 
 ## 练习

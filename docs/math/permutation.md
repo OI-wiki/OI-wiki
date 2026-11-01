@@ -277,12 +277,12 @@ $$
 ??? example "参考实现"
     === "归并排序"
         ```cpp
-        --8<-- "docs/math/code/permutation/inversion_2.cpp"
+        --8<-- "docs/math/code/permutation/inversion_1.cpp"
         ```
     
     === "树状数组"
         ```cpp
-        --8<-- "docs/math/code/permutation/inversion_1.cpp"
+        --8<-- "docs/math/code/permutation/inversion_2.cpp"
         ```
 
 ### 顺序
