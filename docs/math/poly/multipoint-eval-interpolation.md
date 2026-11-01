@@ -49,13 +49,13 @@ $$
 
 ### 描述
 
-给出一个 $n+1$ 个点的集合
+给出一个 $n$ 个点的集合
 
 $$
-X=\left\{\left(x_{0},y_{0}\right),\left(x_{1},y_{1}\right),\dots,\left(x_{n},y_{n}\right)\right\}
+X=\left\{\left(x_{1},y_{1}\right),\left(x_{2},y_{2}\right),\dots,\left(x_{n},y_{n}\right)\right\}
 $$
 
-求一个 $n$ 次多项式 $f\left(x\right)$ 使得其满足 $\forall\left(x,y\right)\in X:f\left(x\right)=y$．
+求一个次数小于 $n$ 的多项式 $f\left(x\right)$ 使得其满足 $\forall\left(x,y\right)\in X:f\left(x\right)=y$．
 
 ### 解法
 
