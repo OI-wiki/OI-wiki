@@ -473,7 +473,7 @@ $$
     考虑在 Lucy 算法的状态转移方程中增加一维．令 $S(n,r,a)$ 表示 $[2,n]$ 的整数中，利用前 $a$ 个素数筛完后，剩下的模 $m$ 余 $r$ 的整数个数．和正文类似，可以得到递推关系如下：
     
     $$
-    S(n,rp_a\bmod m,a) = S(n,rp_a\bmod m,a-1) - [p_a^2 \le n]\left(S\left(\dfrac{n}{p_a},r,a-1\right)-S(p_{a}-1,r,a-1)\right).
+    S(n,t,a) = S(n,t,a-1) - [p_a^2 \le n]\sum_{0\le r<m,~rp_a\equiv t\pmod m}\left(S\left(\dfrac{n}{p_a},r,a-1\right)-S(p_{a}-1,r,a-1)\right).
     $$
     
     递推公式中，函数第二个参数采用了乘法而非除法，是考虑到存在 $p_a\mid m$ 的可能．边界条件为 $S(n,r,0) = \left\lfloor\dfrac{n-r}{m}\right\rfloor + [r> 1]$．据此，通过动态规划即可解决．时间复杂度是 $O(mn^{3/4}\log^{-1}n)$ 的，空间复杂度是 $O(mn^{1/2})$ 的．
