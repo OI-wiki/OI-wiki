@@ -56,9 +56,9 @@
     {
       "id": "Q2HvqoHJ_j4KKfUI98dfp",
       "type": "text",
-      "x": 789.5406799316406,
+      "x": 790.4000549316406,
       "y": 258.79998779296875,
-      "width": 11.71875,
+      "width": 10.0,
       "height": 24,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -72,7 +72,7 @@
       "frameId": null,
       "roundness": null,
       "seed": 1592348737,
-      "version": 26,
+      "version": 27,
       "versionNonce": 182559457,
       "isDeleted": false,
       "boundElements": null,
@@ -81,7 +81,7 @@
       "locked": false,
       "text": "c",
       "fontSize": 20,
-      "fontFamily": 3,
+      "fontFamily": 2,
       "textAlign": "center",
       "verticalAlign": "middle",
       "baseline": 19,
@@ -195,7 +195,7 @@
     },
     {
       "type": "text",
-      "version": 109,
+      "version": 110,
       "versionNonce": 1890393761,
       "isDeleted": false,
       "id": "BU-fQdLSWcn0xcx6h85Hz",
@@ -205,11 +205,11 @@
       "roughness": 0,
       "opacity": 100,
       "angle": 0,
-      "x": 777.2218627929688,
+      "x": 782.0167846679688,
       "y": 446.79994201660156,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
-      "width": 35.15625,
+      "width": 25.56640625,
       "height": 24,
       "seed": 878942287,
       "groupIds": [],
@@ -220,7 +220,7 @@
       "link": null,
       "locked": false,
       "fontSize": 20,
-      "fontFamily": 3,
+      "fontFamily": 2,
       "text": "idx",
       "textAlign": "center",
       "verticalAlign": "middle",
@@ -606,7 +606,7 @@
       "type": "text",
       "x": 468.4000549316406,
       "y": 340.8000183105469,
-      "width": 93.75,
+      "width": 49.990234375,
       "height": 24,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -620,7 +620,7 @@
       "frameId": null,
       "roundness": null,
       "seed": 707816961,
-      "version": 75,
+      "version": 76,
       "versionNonce": 1377884673,
       "isDeleted": false,
       "boundElements": [
@@ -634,7 +634,7 @@
       "locked": false,
       "text": "first[r]",
       "fontSize": 20,
-      "fontFamily": 3,
+      "fontFamily": 2,
       "textAlign": "left",
       "verticalAlign": "top",
       "baseline": 19,
@@ -1295,7 +1295,7 @@
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
       "width": 56.7999267578125,
-      "height": 0.000030517578125,
+      "height": 3.0517578125e-05,
       "seed": 833225327,
       "groupIds": [],
       "frameId": null,
@@ -1322,7 +1322,7 @@
         ],
         [
           56.7999267578125,
-          -0.000030517578125
+          -3.0517578125e-05
         ]
       ]
     },
@@ -1343,7 +1343,7 @@
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
       "width": 53.60015869140625,
-      "height": 0.000030517578125,
+      "height": 3.0517578125e-05,
       "seed": 31739343,
       "groupIds": [],
       "frameId": null,
@@ -1370,7 +1370,7 @@
         ],
         [
           -53.60015869140625,
-          -0.000030517578125
+          -3.0517578125e-05
         ]
       ]
     }
