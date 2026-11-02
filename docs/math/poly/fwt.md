@@ -175,7 +175,7 @@ $$
 
 类比异或运算给出公式：
 
-$FWT[A]_{i} = \sum_{C_1}A_{j} - \sum_{C_2}A_{j}$（$C_1$ 表示 $\text{popcnt}(x\cup y)\bmod 2$ 为 $0$，$C_2$ 表示 $\text{popcnt}(x\cup y)\bmod 2$ 为 $1$）
+$FWT[A]_{i} = \sum_{C_1}A_{j} - \sum_{C_2}A_{j}$（$C_1$ 表示 $i$ 与 $j$ 的二进制表示中同为 $0$ 的位数为偶数，$C_2$ 表示该位数为奇数）
 
 $$
 FWT[A] = merge(FWT[A_1] - FWT[A_0], FWT[A_1] + FWT[A_0])
