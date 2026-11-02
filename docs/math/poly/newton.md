@@ -238,7 +238,7 @@ $$
     f(r+sp) \in Rp^2 \iff f(r)+f'(r)sp \in Rp^2
     $$
     
-    因为 $f(r)\in Rp$，且 $f'(r)$ 可逆，所以取 $sp = -\dfrac{f(r)}{f'(r)}$ 即可，这里 $\dfrac{1}{f'(r)}$ 是模 $p^2$ 意义下的逆元．因为 $f'(r)$ 在模 $p$ 意义下可逆，所以它在模 $p^2$ 意义下也必定存在逆元：设有 $a,b,c\in R$ 使 $af'(r) = bp+1$ 和 $f(r)=cp$，那么 $\left(a^2f'(r)-2\right)f'(r) = b^2p^2+1$，故可以取 $s=c(2-a^2f'(r))$．
+    因为 $f(r)\in Rp$，且 $f'(r)$ 可逆，所以取 $sp = -\dfrac{f(r)}{f'(r)}$ 即可，这里 $\dfrac{1}{f'(r)}$ 是模 $p^2$ 意义下的逆元．因为 $f'(r)$ 在模 $p$ 意义下可逆，所以它在模 $p^2$ 意义下也必定存在逆元：设有 $a,b,c\in R$ 使 $af'(r) = bp+1$ 和 $f(r)=cp$，那么 $\left(a^2f'(r)-2a\right)f'(r) = b^2p^2-1$，故可以取 $s=c(a^2f'(r)-2a)$．
 
 对于域 $k$ 上的多项式环 $k[X]$，设有 $G(X, Y)\in k[X, Y]$ 和 $f_n\in k[X]$ 使 $G(X, f_n(X))\in k[X]X^n$，那么应用引理 1 就可得到
 
