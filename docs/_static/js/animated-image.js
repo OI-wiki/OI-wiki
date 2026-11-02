@@ -17,11 +17,215 @@
     '.apng': 'image/png',
     '.webp': 'image/webp'
   };
-  var MAX_FRAMES = 400;
-  var MAX_DECODE_PIXELS = 120 * 1024 * 1024;
+  /* 容器元数据解析：只读文件结构，不解码像素 */
 
-  function decodeFrames(buffer, type) {
+  var PNG_SIGNATURE = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a];
+
+  function readAscii(bytes, offset, length) {
+    var text = '';
+    for (var i = 0; i < length; i++) {
+      text += String.fromCharCode(bytes[offset + i]);
+    }
+    return text;
+  }
+
+  function readUint24(bytes, offset) {
+    return bytes[offset] | (bytes[offset + 1] << 8) | (bytes[offset + 2] << 16);
+  }
+
+  function hasPngSignature(bytes) {
+    if (bytes.length < PNG_SIGNATURE.length) {
+      return false;
+    }
+    for (var i = 0; i < PNG_SIGNATURE.length; i++) {
+      if (bytes[i] !== PNG_SIGNATURE[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /* APNG：帧延时取自每个 fcTL 的 delay_num / delay_den */
+  function parseApngMeta(view, bytes) {
+    var width = 0;
+    var height = 0;
+    var delays = [];
+    var offset = PNG_SIGNATURE.length;
+
+    while (offset + 8 <= bytes.length) {
+      var length = view.getUint32(offset);
+      var type = readAscii(bytes, offset + 4, 4);
+      var data = offset + 8;
+      if (data + length + 4 > bytes.length) {
+        return null;
+      }
+      if (type === 'IHDR' && length >= 8) {
+        width = view.getUint32(data);
+        height = view.getUint32(data + 4);
+      } else if (type === 'fcTL' && length >= 26) {
+        var num = view.getUint16(data + 20);
+        var den = view.getUint16(data + 22);
+        var delay = den ? (num / den) * 1000 : num * 10;
+        delays.push({ delay: delay > 0 ? delay : 100 });
+      } else if (type === 'IEND') {
+        break;
+      }
+      offset = data + length + 4;
+    }
+
+    if (!width || !height || delays.length < 2) {
+      return null;
+    }
+    return { width: width, height: height, frames: delays };
+  }
+
+  function skipGifSubBlocks(bytes, offset) {
+    while (offset < bytes.length) {
+      var size = bytes[offset];
+      offset += 1;
+      if (!size) {
+        return offset;
+      }
+      offset += size;
+    }
+    return -1;
+  }
+
+  /* GIF：帧延时取自 Graphic Control Extension，单位为 1/100 秒 */
+  function parseGifMeta(view, bytes) {
+    if (bytes.length < 13) {
+      return null;
+    }
+    var width = view.getUint16(6, true);
+    var height = view.getUint16(8, true);
+    var packed = bytes[10];
+    var offset = 13;
+    if (packed & 0x80) {
+      offset += 3 * (1 << ((packed & 0x07) + 1));
+    }
+
+    var delays = [];
+    var pending = 0;
+
+    while (offset < bytes.length) {
+      var marker = bytes[offset];
+      offset += 1;
+      if (marker === 0x3b) {
+        break;
+      }
+      if (marker === 0x21) {
+        if (offset >= bytes.length) {
+          break;
+        }
+        var label = bytes[offset];
+        offset += 1;
+        if (label === 0xf9) {
+          if (offset + 6 > bytes.length) {
+            break;
+          }
+          pending = view.getUint16(offset + 2, true);
+          offset += 6;
+        } else {
+          offset = skipGifSubBlocks(bytes, offset);
+          if (offset < 0) {
+            break;
+          }
+        }
+        continue;
+      }
+      if (marker !== 0x2c || offset + 9 > bytes.length) {
+        break;
+      }
+      var imagePacked = bytes[offset + 8];
+      offset += 9;
+      if (imagePacked & 0x80) {
+        offset += 3 * (1 << ((imagePacked & 0x07) + 1));
+      }
+      offset += 1; /* LZW 最小码长 */
+      offset = skipGifSubBlocks(bytes, offset);
+      if (offset < 0) {
+        break;
+      }
+      delays.push({ delay: pending > 0 ? pending * 10 : 100 });
+      pending = 0;
+    }
+
+    if (delays.length < 2) {
+      return null;
+    }
+    return { width: width, height: height, frames: delays };
+  }
+
+  /* 动画 WebP：帧延时取自每个 ANMF，单位为毫秒 */
+  function parseWebpMeta(view, bytes) {
+    if (bytes.length < 12) {
+      return null;
+    }
+    if (readAscii(bytes, 0, 4) !== 'RIFF' || readAscii(bytes, 8, 4) !== 'WEBP') {
+      return null;
+    }
+
+    var width = 0;
+    var height = 0;
+    var delays = [];
+    var offset = 12;
+
+    while (offset + 8 <= bytes.length) {
+      var four = readAscii(bytes, offset, 4);
+      var size = view.getUint32(offset + 4, true);
+      var data = offset + 8;
+      if (data + size > bytes.length) {
+        break;
+      }
+      if (four === 'VP8X' && size >= 10) {
+        width = readUint24(bytes, data + 4) + 1;
+        height = readUint24(bytes, data + 7) + 1;
+      } else if (four === 'ANMF' && size >= 16) {
+        var duration = readUint24(bytes, data + 12);
+        delays.push({ delay: duration > 0 ? duration : 100 });
+      }
+      offset = data + size + (size & 1);
+    }
+
+    if (delays.length < 2) {
+      return null;
+    }
+    return { width: width, height: height, frames: delays };
+  }
+
+  function readMeta(buffer, ext) {
+    var bytes = new Uint8Array(buffer);
+    var view = new DataView(buffer);
+    try {
+      if (ext === '.gif') {
+        return parseGifMeta(view, bytes);
+      }
+      if (ext === '.webp') {
+        return parseWebpMeta(view, bytes);
+      }
+      return hasPngSignature(bytes) ? parseApngMeta(view, bytes) : null;
+    } catch (err) {
+      return null;
+    }
+  }
+
+  /* 容器元数据给出的帧数可能与解码器不一致，按解码器的帧数对齐延时表 */
+  function alignDelays(source, count) {
+    var frames = [];
+    for (var i = 0; i < count; i++) {
+      var delay = source[i] ? source[i].delay : source[source.length - 1].delay;
+      frames.push({ delay: delay > 0 ? delay : 100 });
+    }
+    return frames;
+  }
+
+  function decodeFrames(buffer, type, ext) {
     if (typeof ImageDecoder === 'undefined') {
+      return Promise.resolve(null);
+    }
+
+    var meta = readMeta(buffer, ext);
+    if (!meta) {
       return Promise.resolve(null);
     }
 
@@ -44,53 +248,35 @@
     return decoder.tracks.ready
       .then(function () {
         var track = decoder.tracks.selectedTrack;
-        if (!track || !track.animated || track.frameCount < 2 || track.frameCount > MAX_FRAMES) {
+        if (!track || !track.animated || track.frameCount < 2) {
           return fail();
         }
+        /* 只解码首帧用于首屏显示，其余帧在播放时按需解码 */
+        return decoder.decode({ frameIndex: 0 }).then(function (result) {
+          var frame = result.image;
+          var width = frame.displayWidth || meta.width;
+          var height = frame.displayHeight || meta.height;
 
-        var count = track.frameCount;
-        var frames = [];
-        var width = 0;
-        var height = 0;
-        var first = null;
-
-        function step(index) {
-          return decoder.decode({ frameIndex: index }).then(function (result) {
-            var frame = result.image;
-            width = frame.displayWidth;
-            height = frame.displayHeight;
-            frames.push({ delay: frame.duration ? frame.duration / 1000 : 100 });
-            if (index !== 0) {
-              frame.close();
-              return;
-            }
-            return createImageBitmap(frame).then(function (bitmap) {
-              first = bitmap;
-              frame.close();
-            });
-          });
-        }
-
-        return step(0).then(function () {
-          if (count * width * height > MAX_DECODE_PIXELS) {
-            return fail();
-          }
-          var chain = Promise.resolve();
-          for (var i = 1; i < count; i++) {
-            chain = chain.then(step.bind(null, i));
-          }
-          return chain.then(function () {
-            if (frames.length < 2) {
-              return fail();
-            }
+          function done(bitmap) {
             return {
               width: width,
               height: height,
-              frames: frames,
+              frames: alignDelays(meta.frames, track.frameCount),
               decoder: decoder,
-              first: first
+              first: bitmap
             };
-          });
+          }
+
+          return createImageBitmap(frame).then(
+            function (bitmap) {
+              frame.close();
+              return done(bitmap);
+            },
+            function () {
+              frame.close();
+              return done(null);
+            }
+          );
         });
       })
       .catch(function () {
@@ -799,7 +985,7 @@
 
     bufferPromise
       .then(function (buffer) {
-        return decodeFrames(buffer, type);
+        return decodeFrames(buffer, type, ext);
       })
       .then(function (decoded) {
         if (!decoded || decoded.frames.length < 2) {
@@ -862,6 +1048,7 @@
   return {
     decodeFrames: decodeFrames,
     init: init,
+    _readMeta: readMeta,
     _createDecoderPainter: createDecoderPainter
   };
 });
