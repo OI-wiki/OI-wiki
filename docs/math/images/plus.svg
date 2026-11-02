@@ -4,24 +4,22 @@
         text {
             font-size: 50px;
             text-anchor: middle;
-            transform: translate(0, -10px);
         }
         line, path {
             fill: none;
             stroke: black;
             stroke-width: 2.5px;
-            transform: translate(0, -25px);
         }
     </style>
-    <text x="100" y="80">9</text>
-    <text x="150" y="80">6</text>
-    <text x="200" y="80">2</text>
-    <text x="50" y="140">+</text>
-    <text x="150" y="140">9</text>
-    <text x="200" y="140">3</text>
-    <line x1="25" y1="170" x2="225" y2="170" />
-    <text x="50" y="200">1</text>
-    <text x="100" y="200">0</text>
-    <text x="150" y="200">5</text>
-    <text x="200" y="200">5</text>
+    <text transform="translate(0 -10)" x="100" y="80">9</text>
+    <text transform="translate(0 -10)" x="150" y="80">6</text>
+    <text transform="translate(0 -10)" x="200" y="80">2</text>
+    <text transform="translate(0 -10)" x="50" y="140">+</text>
+    <text transform="translate(0 -10)" x="150" y="140">9</text>
+    <text transform="translate(0 -10)" x="200" y="140">3</text>
+    <line transform="translate(0 -25)" x1="25" y1="170" x2="225" y2="170" />
+    <text transform="translate(0 -10)" x="50" y="200">1</text>
+    <text transform="translate(0 -10)" x="100" y="200">0</text>
+    <text transform="translate(0 -10)" x="150" y="200">5</text>
+    <text transform="translate(0 -10)" x="200" y="200">5</text>
 </svg>

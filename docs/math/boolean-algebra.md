@@ -35,11 +35,11 @@ $n$ 元布尔函数也可以用含 $n$ 个变量的 **命题公式**（propositi
 | 双条件（biconditional）、等价（equivalence）[^note1][^note2] |                            | $A \leftrightarrow B$             |
 | 非等价（non-equivalence）[^note1][^note3]                    |                            | $A \nleftrightarrow B$            |
 
-对应的真值表（From [Wikipedia](https://commons.wikimedia.org/wiki/File:Logical_connectives_table.svg)）：
+对应的真值表（From [Wikipedia](https://commons.wikimedia.org/wiki/File:Logical_connectives_table.svg)，略作修改）：
 
 ![](./images/logical-connectives-table.svg)
 
-对应的 Venn 图和 [Hasse 图](./order-theory.md#偏序集的可视化表示hasse-图)（以集合的包含关系 $\subseteq$ 为偏序，From [Wikipedia](https://en.wikipedia.org/wiki/File:Logical_connectives_Hasse_diagram.svg)）：
+对应的 Venn 图和 [Hasse 图](./order-theory.md#偏序集的可视化表示hasse-图)（以集合的包含关系 $\subseteq$ 为偏序，From [Wikipedia](https://en.wikipedia.org/wiki/File:Logical_connectives_Hasse_diagram.svg)，略作修改）：
 
 ![](./images/logical-connectives-hasse-diagram.svg)
 
