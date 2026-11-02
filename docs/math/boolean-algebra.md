@@ -111,7 +111,7 @@ C++ 中的规定参见 [C++ 运算符优先级总表](../lang/op.md#c-运算符�
     -   $a\land(b\diamond c)=(a\land b)\diamond (a\land c)$，其中 $\diamond$ 可以为 $\land$、$\lor$、$\oplus$，
     -   $a\lor(b\diamond c)=(a\lor b)\diamond (a\lor c)$，其中 $\diamond$ 可以为 $\land$、$\lor$、$\odot$．
 -   **幂等**（idempotence）律：$x\land x=x$、$x\lor x=x$．
--   单调性：$a\to b\iff(a\land c)\to(b\land c)$、$a\to b\iff(a\lor c)\to(b\lor c)$．
+-   单调性：$a\to b\implies(a\land c)\to(b\land c)$、$a\to b\implies(a\lor c)\to(b\lor c)$．
 -   **吸收**（absorption）律：$x\land(x\lor y)=x\lor(x\land y)=x$．
 -   与「$\to$」的关系：
     -   $a \lor b \iff (\lnot a \to b) \land (\lnot b \to a)$，
@@ -154,7 +154,7 @@ C++ 中的规定参见 [C++ 运算符优先级总表](../lang/op.md#c-运算符�
 
 以下逻辑表达式均为合取范式：
 
--   $(\lnot A\lor\lnot B\lor C)\land(\lor D\lor\lnot E)$，
+-   $(\lnot A\lor\lnot B\lor C)\land(D\lor\lnot E)$，
 -   $(A\lor B)\land (C)$，
 -   $(A\lor B)$，
 -   $(A)$．
@@ -195,7 +195,7 @@ $$
 我们可以通过如下的步骤将任意一个只含有 $\lnot$、$\land$、$\lor$、$\oplus$ 运算的逻辑表达式变形为 ANF：
 
 1.  $\oplus$：直接展开，如 $(1\oplus x)\oplus(1\oplus x\oplus y)=1\oplus x\oplus 1\oplus x\oplus y=y$，
-2.  $\land$：用分配律展开，如 $x\land(1\oplus x\oplus y)=(x\land 1)\oplus (x\land x)\oplus (x\land y)=x\oplus (x\land y)$，
+2.  $\land$：用分配律展开，如 $x\land(1\oplus x\oplus y)=(x\land 1)\oplus (x\land x)\oplus (x\land y)=x\oplus x\oplus (x\land y)=x\land y$，
 3.  $\lnot$：将 $\lnot x$ 用 $1\oplus x$ 代替，如 $\lnot(1\oplus x\oplus y)=1\oplus 1\oplus x\oplus y=x\oplus y$，
 4.  $\lor$：将 $x\lor y$ 用 $1\oplus((1\oplus x)\land(1\oplus y))$ 或 $x\oplus y\oplus (x\land y)$ 代替，如 $(1\oplus x)\lor(1\oplus x\oplus y)=1\oplus((1\oplus 1\oplus x)\land(1\oplus 1\oplus x\oplus y))=1\oplus x\oplus(x\land y)$．
 
