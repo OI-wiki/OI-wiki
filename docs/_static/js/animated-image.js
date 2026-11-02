@@ -383,6 +383,8 @@
   }
 
   var SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
+  var SEEK_PREVIEW_DELAY = 80;
+  var SCRUB_END_EVENTS = ['pointerup', 'pointercancel', 'blur'];
   var speedMenuSeq = 0;
 
   function makeSpeedMenu(controller) {
@@ -571,6 +573,9 @@
     var playing = false;
     var scrubbing = false;
     var raf = null;
+    var seekTimer = null;
+    var lastPreviewAt = 0;
+    var resumeAfterScrub = false;
 
     var playButton = makeButton('播放', ICONS.play, function () {
       if (playing) {
@@ -588,21 +593,32 @@
       );
     }
 
+    /* 按百分比刷新滑块、填充条与时间文本 */
+    function setPosition(pct) {
+      var value = Math.min(1, Math.max(0, pct));
+      var total = controller.total || 0;
+      range.value = String(value);
+      paintFill(value);
+      timeEl.textContent = formatTime(value * total) + ' / ' + formatTime(total);
+    }
+
+    /* 滑块当前对应的时刻 */
+    function scrubTime() {
+      return parseFloat(range.value) * (controller.total || 0);
+    }
+
     function paint() {
       var total = controller.total || 0;
       var t = controller.time();
-      var pct = total > 0 ? Math.min(1, Math.max(0, t / total)) : 0;
-      range.value = String(pct);
-      paintFill(pct);
-      timeEl.textContent = formatTime(t) + ' / ' + formatTime(total);
+      setPosition(total > 0 ? t / total : 0);
     }
 
     function frame(now) {
       if (!playing) {
         return;
       }
+      controller.tick(now);
       if (!scrubbing) {
-        controller.tick(now);
         paint();
       }
       raf = window.requestAnimationFrame(frame);
@@ -634,19 +650,97 @@
       paint();
     }
 
-    range.addEventListener('input', function () {
+    function cancelPreview() {
+      if (seekTimer) {
+        window.clearTimeout(seekTimer);
+        seekTimer = null;
+      }
+    }
+
+    function previewSeek() {
+      cancelPreview();
+      lastPreviewAt = Date.now();
+      if (scrubbing) {
+        controller.seek(scrubTime());
+      }
+    }
+
+    function endScrub() {
+      if (!scrubbing) {
+        return;
+      }
+      scrubbing = false;
+      cancelPreview();
+      controller.seek(scrubTime());
+      paint();
+      if (resumeAfterScrub) {
+        resumeAfterScrub = false;
+        controller.play();
+      }
+    }
+
+    function onPointerEnd() {
+      for (var i = 0; i < SCRUB_END_EVENTS.length; i++) {
+        window.removeEventListener(SCRUB_END_EVENTS[i], onPointerEnd);
+      }
+      endScrub();
+    }
+
+    /* 滑块直径（px）：读 CSS 的 --anim-thumb，改尺寸时两边不会脱节 */
+    function thumbSize() {
+      var rootFont = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      var declared = getComputedStyle(range).getPropertyValue('--anim-thumb').trim();
+      var size = parseFloat(declared);
+      if (!isFinite(size)) {
+        return rootFont * 0.75;
+      }
+      return /px$/i.test(declared) ? size : size * rootFont;
+    }
+
+    /* range 的命中区域比球高，按下点常落在球外；把球心吸附到指针位置 */
+    function snapToPointer(event) {
+      var rect = range.getBoundingClientRect();
+      if (!rect.width) {
+        return;
+      }
+      /* 两端各空出半个球，可用行程才是球心能走到的范围 */
+      var half = thumbSize() / 2;
+      var usable = rect.width - half * 2;
+      if (usable <= 0) {
+        return;
+      }
+      var pct = (event.clientX - rect.left - half) / usable;
+      /* 已经在球心附近就不动，避免按住球时画面微小跳动 */
+      if (Math.abs(pct - parseFloat(range.value)) < 0.004) {
+        return;
+      }
+      setPosition(pct);
+      previewSeek();
+    }
+
+    /* 按住滑块即暂停推进，即使指针尚未移动 */
+    range.addEventListener('pointerdown', function (event) {
       scrubbing = true;
-      var pct = parseFloat(range.value);
-      var total = controller.total || 0;
-      paintFill(pct);
-      timeEl.textContent = formatTime(pct * total) + ' / ' + formatTime(total);
+      snapToPointer(event);
+      if (playing) {
+        resumeAfterScrub = true;
+        controller.pause();
+      }
+      for (var i = 0; i < SCRUB_END_EVENTS.length; i++) {
+        window.addEventListener(SCRUB_END_EVENTS[i], onPointerEnd);
+      }
     });
 
-    range.addEventListener('change', function () {
-      scrubbing = false;
-      controller.seek(parseFloat(range.value) * (controller.total || 0));
-      paint();
+    range.addEventListener('input', function () {
+      scrubbing = true;
+      setPosition(parseFloat(range.value));
+      if (!seekTimer) {
+        var wait = Math.max(0, SEEK_PREVIEW_DELAY - (Date.now() - lastPreviewAt));
+        seekTimer = window.setTimeout(previewSeek, wait);
+      }
     });
+
+    range.addEventListener('change', endScrub);
 
     controls.appendChild(playButton);
     controls.appendChild(range);
@@ -679,6 +773,7 @@
     var last = 0;
     var index = -1;
     var speed = 1;
+    var paused = false;
 
     function show(t) {
       var clamped = timeline.total > 0 ? Math.min(t, timeline.total - 0.0001) : 0;
@@ -700,9 +795,11 @@
         show(mediaTime);
       },
       play: function () {
+        paused = false;
         last = 0;
       },
       pause: function () {
+        paused = true;
         last = 0;
       },
       setSpeed: function (value) {
@@ -710,6 +807,9 @@
         last = 0;
       },
       tick: function (now) {
+        if (paused) {
+          return;
+        }
         if (!last) {
           last = now;
           return;
@@ -773,6 +873,7 @@
   function createSvgController(root, duration) {
     var speed = 1;
     var native = true;
+    var paused = false;
     var last = 0;
 
     function clamp(t) {
@@ -819,6 +920,7 @@
         last = 0;
       },
       play: function () {
+        paused = false;
         if (speed === 1) {
           useNative();
         } else {
@@ -826,6 +928,7 @@
         }
       },
       pause: function () {
+        paused = true;
         try {
           root.pauseAnimations();
         } catch (err) {
@@ -836,6 +939,10 @@
       },
       setSpeed: function (value) {
         speed = value > 0 ? value : 1;
+        /* 暂停中只记录速度，不改变播放状态 */
+        if (paused) {
+          return;
+        }
         if (speed === 1) {
           useNative();
         } else {
@@ -843,7 +950,7 @@
         }
       },
       tick: function (now) {
-        if (native) {
+        if (paused || native) {
           return;
         }
         if (!last) {

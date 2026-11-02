@@ -86,6 +86,8 @@
 /* 进度条 */
 .anim-range {
   --anim-fill: var(--anim-track);
+  --anim-thumb: 0.75rem;
+  --anim-track-height: 4px;
 
   flex: 1;
   min-width: 0;
@@ -99,23 +101,23 @@
 }
 
 .anim-range::-webkit-slider-runnable-track {
-  height: 4px;
-  border-radius: 2px;
+  height: var(--anim-track-height);
+  border-radius: calc(var(--anim-track-height) / 2);
   background: var(--anim-fill);
 }
 
 .anim-range::-moz-range-track {
-  height: 4px;
-  border-radius: 2px;
+  height: var(--anim-track-height);
+  border-radius: calc(var(--anim-track-height) / 2);
   background: var(--anim-fill);
 }
 
 .anim-range::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-top: calc((4px - 0.75rem) / 2);
+  width: var(--anim-thumb);
+  height: var(--anim-thumb);
+  margin-top: calc((var(--anim-track-height) - var(--anim-thumb)) / 2);
   border: 0;
   border-radius: 50%;
   background: var(--anim-fg);
@@ -123,8 +125,8 @@
 }
 
 .anim-range::-moz-range-thumb {
-  width: 0.75rem;
-  height: 0.75rem;
+  width: var(--anim-thumb);
+  height: var(--anim-thumb);
   border: 0;
   border-radius: 50%;
   background: var(--anim-fg);
