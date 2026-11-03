@@ -127,7 +127,7 @@ $$
 
 -   $z\cdot\bar{z}=|z|^2$
 -   $\overline{\overline{z}}=z$
--   $\operatorname{Re}(z)=\dfrac{z+\bar{z}}{2}$，$\operatorname{Im}(z)=\dfrac{z-\bar{z}}{2}$
+-   $\operatorname{Re}(z)=\dfrac{z+\bar{z}}{2}$，$\operatorname{Im}(z)=\dfrac{z-\bar{z}}{2\mathrm{i}}$
 -   $\overline{z\pm w}=\bar{z}\pm\bar{w}$
 -   $\overline{zw}=\bar{z}\bar{w}$
 -   $\overline{z/w}=\bar{z}/\bar{w}$
