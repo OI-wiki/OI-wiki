@@ -434,7 +434,7 @@ $$
 
 1.  在 $O(m^2dT\log(dT))$ 时间内获取 $B_T(m+dT^2)$，$B_T(m+(dT+1)T)$，$B_T(m+(dT+2)T)$，$\cdots$，$B_T(m+(2dT-1)T)$，$B_T(m+2dT^2)$．
 2.  在 $O(m^2dT\log(dT))$ 时间内获取 $B_T(m+2dT^2)$，$B_T(m+(2dT+1)T)$，$B_T(m+(2dT+2)T)$，$\cdots$，$B_T(m+(3dT-1)T)$，$B_T(m+3dT^2)$．
-3.  在 $O(m^2dT\log(dT))$ 时间内获取 $B_T(m+3dT^2)$，$B_T(m+(3dT+1)T)$，$B_T(m+(3dT+2)T)$，$\cdots$，$B_T(m+(4dT-1)T)$，$B_T(m+4dT^2)$．
+3.  在 $O(m^2dT\log(dT))$ 时间内获取 $B_T(m+3dT^2)$，$B_T(m+(3dT+1)T)$，$B_T(m+(3dT+2)T)$，$\cdots$，$B_T(m+(4dT-1)T)$，$B_T(m+4dT^2)$，$B_T(m+(4dT+1)T)$．
 4.  计算 $B_{2T}(v)=B_{T}(v+T)B_{T}(v)$．
 
 我们每轮花费 $O(m^2dT\log(dT))$ 的复杂度进行平移；同时，我们每轮只用做 $\Theta(dT)$ 次矩阵乘法，复杂度可以认为是 $O(m^3dT)$．
