@@ -78,14 +78,14 @@ $$
 
 假设此时 $pat$ 向下滑动的 $k$ 个字符（也即 $pat$ 末尾端的 $subpat$ 与其最右边的合理重现的距离），这样我们的注意力应该沿着 $string$ 向后滑动 $k+m$ 个字符，这段距离我们称之为 $delta_2(j)$：
 
-假定 $rpr(j)$ 为 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 上失配时的最右边合理重现的位置，$rpr(j) < j$（这里只给出简单定义，在下文的算法设计章节里会有更精确的讨论），那么显然 $k=j-rpr(j),\ m=patlastpos-j$．
+假定 $rpr(j)$ 为 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 上失配时的最右边合理重现的位置，$rpr(j) \leq j$（这里只给出简单定义，在下文的算法设计章节里会有更精确的讨论），那么显然 $k=j+1-rpr(j),\ m=patlastpos-j$．
 
 所以有：
 
 $$
 \begin{array}{ll}
 \textbf{int}\ delta2(\textbf{int}\ j) \quad\textbf{//}\ \text{j为失配字符在pat上对应字符的位置} \\
-\qquad\qquad\textbf{return}\ patlastpos-rpr(j) \\
+\qquad\qquad\textbf{return}\ patlen-rpr(j) \\
 \end{array}
 $$
 
@@ -211,8 +211,8 @@ $$
 
 还要注意两个限制条件：
 
-1.  $k < j$．因为当 $k=j$ 时，有 $pat[k]=pat[j]$，在 $pat[j]$ 上失配的字符也会在 $pat[k]$ 上失配．
-2.  考虑到 $delta_2(patlastpos)= 0$，所以规定 $rpr(patlastpos) = patlastpos$．
+1.  $k \leq j$．因为当 $k=j+1$ 时，$pat[k\dots k+patlastpos-j-1]$ 就是 $subpat$ 本身，$pat$ 没有滑动．
+2.  考虑到 $delta_2(patlastpos)= 0$，所以规定 $rpr(patlastpos) = patlen$．
 
 #### 过程
 
@@ -222,7 +222,7 @@ $$
 \begin{aligned}
 \textit{j}:\qquad\qquad\quad\ \ &\texttt{0 1 2 3 4 5 6 7 8} \\
 \textit{pat}:\qquad\qquad\ \  &\texttt{A B C X X X A B C} \\
-\textit{rpr(j)}:\qquad\quad\  \  &\texttt{5 4 3 2 1 0 2 1 8} \\
+\textit{rpr(j)}:\qquad\quad\  \  &\texttt{5 4 3 2 1 0 2 1 9} \\
 \textit{sgn}:\qquad\qquad\ \   &\texttt{- - - - - - - - +}
 \end{aligned}
 $$
@@ -243,7 +243,7 @@ $$
 
 对于 $rpr(7)$，$subpat$ 为 $\texttt{C}$，同理又因为 $string[7]=string[1]$，所以 $string[1\dots 2]$ 并不是符合条件的 $subpat$ 的合理重现，在最右边的合理重现是 $\texttt{[(C)]ABCXXXABC}$，所以 $rpr(j)=-1$；
 
-对于 $rpr(8)$，根据 $delta_2$ 定义，$rpr(patlastpos)=patlastpos$，得到 $rpr(8)=8$．
+对于 $rpr(8)$，根据 $delta_2$ 定义，$rpr(patlastpos)=patlen$，得到 $rpr(8)=9$．
 
 现在再看一下另一个例子：
 
@@ -251,7 +251,7 @@ $$
 \begin{aligned}
 \textit{j}:\qquad\qquad\quad\ \ &\texttt{0 1 2 3 4 5 6 7 8} \\
 \textit{pat}:\qquad\qquad\ \ &\texttt{A B Y X C D E Y X} \\
-\textit{rpr(j)}:\qquad\quad\  \  &\texttt{8 7 6 5 4 3 2 1 8} \\
+\textit{rpr(j)}:\qquad\quad\  \  &\texttt{8 7 6 5 4 3 2 1 9} \\
 \textit{sgn}:\qquad\qquad\ \   &\texttt{- - - - - - + - +}
 \end{aligned}
 $$
@@ -272,7 +272,7 @@ $$
 
 对于 $rpr(7)$，$subpat$ 为 $\texttt{X}$，虽然 $string[3]=string[8]$ 但是因为 $string[2] = string[7]$，所以在 $pat[7]$ 之前的最右边的合理重现是 $\texttt{[X]ABYXCDEYX}$，$rpr(j)=-1$;
 
-对于 $rpr(8)$，根据 $delta_2$ 定义，$rpr(patlastpos)=patlastpos$，得到 $rpr(8)=8$．
+对于 $rpr(8)$，根据 $delta_2$ 定义，$rpr(patlastpos)=patlen$，得到 $rpr(8)=9$．
 
 ### 对匹配算法的一个改进
 
@@ -372,7 +372,7 @@ $$
                 })
                 && (j <= 0 || p[(j - 1) as usize] != p[i])
                 {
-                    delta_2.push((lastpos as isize - j) as usize);
+                    delta_2.push((patlen as isize - j) as usize);
                     break;
                 }
             }
@@ -402,12 +402,12 @@ Rytter 在 1980 年*SIAM Journal on Computing*上发表的文章[^rytter]对此�
 
 按照重现位置由远到近，也就是偏移量由大到小，分成如下几类：
 
-1.  整个 $subpat$ 重现位置完全在 $pat$ 左边的，比如 $\texttt{[(EYX)]ABYXCDEYX}$，此时 $delta_2(j) = patlastpos\times 2 - j$；
+1.  整个 $subpat$ 重现位置完全在 $pat$ 左边的，比如 $\texttt{[(EYX)]ABYXCDEYX}$，此时 $delta_2(j) = patlen + patlastpos - j$；
 
-2.  $subpat$ 的重现有一部分在 $pat$ 左边，有一部分是 $pat$ 头部，比如 $\texttt{[(XX)ABC]XXXABC}$，此时 $patlastpos < delta_2(j) < patlastpos\times 2 - j$；
-    我们把 $subpat$ 完全在 $pat$ 头部的边际情况也归类在这里（当然根据实现也可以归类在下边），比如 $\texttt{[ABC]XXXABC}$，此时 $patlastpos = delta_2(j)$；
+2.  $subpat$ 的重现有一部分在 $pat$ 左边，有一部分是 $pat$ 头部，比如 $\texttt{[(XX)ABC]XXXABC}$，此时 $patlen < delta_2(j) < patlen + patlastpos - j$；
+    我们把 $subpat$ 完全在 $pat$ 头部的边际情况也归类在这里（当然根据实现也可以归类在下边），比如 $\texttt{[ABC]XXXABC}$，此时 $patlen = delta_2(j)$；
 
-3.  $subpat$ 的重现完全在 $pat$ 中，比如 $\texttt{AB[YX]CDEYX}$，此时 $delta_2(j) < patlastpos$．
+3.  $subpat$ 的重现完全在 $pat$ 中，比如 $\texttt{AB[YX]CDEYX}$，此时 $delta_2(j) \leq patlastpos$．
 
 现在来讨论如何高效地计算这三种情况：
 
@@ -440,7 +440,7 @@ $delta_2(3)$ 的重现 $\texttt{[(XX)ABC]XXXABC}$，$subpat$ $\texttt{XXABC}$ �
 
 设此时这对相等的前后缀长度为 $\textit{prefixlen}$，可知 $subpatlen = patlastpos - j$，那么在 $pat$ 左边的部分长度是 $subpatlen-\textit{prefixlen}$，
 
-而 $rpr(j) = -(subpatlen-\textit{prefixlen})$，所以得到 $delta_2(j) = patlastpos - rpr(j) = patlastpos \times 2 - j - \textit{prefixlen}$．
+而 $rpr(j) = -(subpatlen-\textit{prefixlen})$，所以得到 $delta_2(j) = patlen - rpr(j) = patlen + patlastpos - j - \textit{prefixlen}$．
 
 其后面可能会有多对相等的前缀和后缀，比如：
 
@@ -487,13 +487,13 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
         let mut delta_2 = Vec::with_capacity(patlen);
         
         // 第一种情况
-        // delta_2[j] = lastpos * 2 - j
+        // delta_2[j] = patlen + lastpos - j
         for i in 0..patlen {
-            delta_2.push(lastpos * 2 - i);
+            delta_2.push(patlen + lastpos - i);
         }
         
         // 第二种情况
-        // lastpos <= delata2[j] = lastpos * 2 - j
+        // patlen <= delta_2[j] < patlen + lastpos - j
         let pi = compute_pi(p);  // 计算前缀函数
         let mut i = lastpos;
         let mut last_i = lastpos; // 只是为了初始化
@@ -510,7 +510,7 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
             end = patlen - pi[i];
             
             for j in start..end {
-                delta_2[j] = lastpos * 2 - j - pi[i];
+                delta_2[j] = patlen + lastpos - j - pi[i];
             }
             
             last_i = i;
@@ -518,7 +518,7 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
         }
         
         // 第三种情况
-        // delata2[j] < lastpos
+        // delta_2[j] <= lastpos
         let mut j = lastpos;
         let mut t = patlen;
         let mut f = pi;
@@ -526,7 +526,7 @@ $subpat$ 的重现恰好就在 $pat$ 中（不包括 $pat$ 的头部），也就
             f[j] = t;
             while t < patlen && p[j] != p[t] {
                 // 使用min函数保证后面可能的回退不会覆盖前面的数据
-                delta_2[t] = min(delta_2[t], lastpos - 1 - j);
+                delta_2[t] = min(delta_2[t], lastpos - j);
                 t = f[t];
             }
             
