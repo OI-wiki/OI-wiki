@@ -78,7 +78,7 @@ $$
 
 假设此时 $pat$ 向下滑动的 $k$ 个字符（也即 $pat$ 末尾端的 $subpat$ 与其最右边的合理重现的距离），这样我们的注意力应该沿着 $string$ 向后滑动 $k+m$ 个字符，这段距离我们称之为 $delta_2(j)$：
 
-假定 $rpr(j)$ 为 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 上失配时的最右边合理重现的位置，$rpr(j) \leqslant j$（这里只给出简单定义，在下文的算法设计章节里会有更精确的讨论），那么显然 $k=j+1-rpr(j),\ m=patlastpos-j$．
+假定 $rpr(j)$ 为 $subpat=pat[j+1\dots patlastpos]$ 在 $pat[j]$ 上失配时的最右边合理重现的位置，$rpr(j) \leq j$（这里只给出简单定义，在下文的算法设计章节里会有更精确的讨论），那么显然 $k=j+1-rpr(j),\ m=patlastpos-j$．
 
 所以有：
 
@@ -211,7 +211,7 @@ $$
 
 还要注意两个限制条件：
 
-1.  $k \leqslant j$．因为当 $k=j+1$ 时，$pat[k\dots k+patlastpos-j-1]$ 就是 $subpat$ 本身，$pat$ 没有滑动．
+1.  $k \leq j$．因为当 $k=j+1$ 时，$pat[k\dots k+patlastpos-j-1]$ 就是 $subpat$ 本身，$pat$ 没有滑动．
 2.  考虑到 $delta_2(patlastpos)= 0$，所以规定 $rpr(patlastpos) = patlen$．
 
 #### 过程
@@ -407,7 +407,7 @@ Rytter 在 1980 年*SIAM Journal on Computing*上发表的文章[^rytter]对此�
 2.  $subpat$ 的重现有一部分在 $pat$ 左边，有一部分是 $pat$ 头部，比如 $\texttt{[(XX)ABC]XXXABC}$，此时 $patlen < delta_2(j) < patlen + patlastpos - j$；
     我们把 $subpat$ 完全在 $pat$ 头部的边际情况也归类在这里（当然根据实现也可以归类在下边），比如 $\texttt{[ABC]XXXABC}$，此时 $patlen = delta_2(j)$；
 
-3.  $subpat$ 的重现完全在 $pat$ 中，比如 $\texttt{AB[YX]CDEYX}$，此时 $delta_2(j) \leqslant patlastpos$．
+3.  $subpat$ 的重现完全在 $pat$ 中，比如 $\texttt{AB[YX]CDEYX}$，此时 $delta_2(j) \leq patlastpos$．
 
 现在来讨论如何高效地计算这三种情况：
 
