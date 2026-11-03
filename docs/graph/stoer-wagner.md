@@ -64,13 +64,13 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 （若 $(i, j) \notin E'$，则 $d(i, j) = 0$）．
 
-容易知道所有点加入 $A$ 的顺序是固定的，令 $\operatorname{ord}(i)$ 表示第 $i$ 个加入 $A$ 的点，$t = \operatorname{ord}(|V'|)$；$\operatorname{pos}(v)$ 表示 $v$ 被加入 $A$ 后 $|A|$ 的大小，即 $v$ 被加入的顺序．
+容易知道所有点加入 $A$ 的顺序是固定的，令 $\operatorname{ord}(i)$ 表示第 $i$ 个加入 $A$ 的点，$t = \operatorname{ord}(|V'|)$，$s = \operatorname{ord}(|V'|-1)$；$\operatorname{pos}(v)$ 表示 $v$ 被加入 $A$ 后 $|A|$ 的大小，即 $v$ 被加入的顺序．
 
-则对任意点 $s$，一个 $s$ 到 $t$ 的割即为 $w(t)$．
+则 $s$ 到 $t$ 的最小割即为 $t$ 加入 $A$ 时的 $w(A, t)$．
 
 ### 证明
 
-定义一个点 $v$ 被激活，当且仅当 $v$ 在加入 $A$ 中时，发现在 $A$ 此时最后一个点 $u$ 早于 $v$ 加入集合，并且在图 $G'' = (V', E'/C)$ 中，$u$ 与 $v$ 不在同一连通块．
+定义一个点 $v$ 被激活，当且仅当 $v$ 在加入 $A$ 中时，发现在 $A$ 此时最后一个点 $u$ 早于 $v$ 加入集合，并且在图 $G'' = (V', E'\setminus C)$ 中，$u$ 与 $v$ 不在同一连通块．
 
 ![Stoer-Wagner1](./images/stoer-wagner-1.svg)
 
@@ -103,7 +103,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
     
     由归纳法得证．
 
-由于 $\operatorname{pos}(s) < \operatorname{pos}(t)$，并且 $s, t$ 不在同一连通块，因此 $t$ 会被激活，由此可以得出 $w(A_t, t) \le w(C_t) = w(C)$．
+由于 $\operatorname{pos}(s) = \operatorname{pos}(t)-1$，并且 $s, t$ 不在同一连通块，因此 $t$ 会被激活，由此可以得出 $w(A_t, t) \le w(C_t) = w(C)$．
 
 ??? note "[P5632【模板】Stoer–Wagner 算法](https://www.luogu.com.cn/problem/P5632)"
     ```cpp
