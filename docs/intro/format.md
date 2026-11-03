@@ -9,6 +9,7 @@
     
     | 时间       | 主要内容                                                                              | 相关 Issue/Pull Request 链接                                                                                 |
     | ---------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+    | 2026-11-03 | 区分参考资料与拓展阅读                                                                | [#1628](https://github.com/OI-wiki/OI-wiki/issues/1628)                                                      |
     | 2026-02-22 | 完善引号使用的相关规定                                                                | [#6793](https://github.com/OI-wiki/OI-wiki/pull/6793)                                                        |
     | 2026-01-07 | 要求使用全角句点替代中文句号                                                          | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                        |
     | 2025-08-10 | 添加格式手册的格式要求；<br>代码：补充片段代码相关要求                                | [#6412](https://github.com/OI-wiki/OI-wiki/pull/6412)                                                        |
@@ -262,33 +263,34 @@
         #include <cstdio>  //好的写法
         ```
 
--   <span id="MDFM-4">MDFM-4</span>：「参考资料与注释」使用 Markdown 的脚注功能进行编写．格式为：
+-   <span id="MDFM-4">MDFM-4</span>：正文中引用的资料使用 Markdown 的脚注功能标注，统一列在文末的 `## 参考资料与注释` 二级标题下；未被正文引用、但与本页主题相关、可供进一步阅读的资料，统一列在 `## 拓展阅读` 二级标题下．判据是**正文中是否存在显式引用**（脚注，或行内链接指向同一资料）：存在则属于参考资料，否则属于拓展阅读．
+
+    -   「参考资料与注释」可以包含解释性注释（如「本页译自……」「感谢……授权」）；
+    -   「拓展阅读」使用无序列表，每项一条链接，可以附一句说明；
+    -   两个小节都至多出现一次；同时存在时，`## 拓展阅读` 在前，`## 参考资料与注释` 在文末；
+    -   不得使用 `## 参考资料`、`## 参考文献`、`## 外部链接`、`## 参考资料与拓展阅读`、`## 参考` 等其他名称．
+
+    脚注格式为：
 
     ```markdown
     文本内容．[^脚注名]
     [^脚注名]: 参考资料内容．注意：冒号是英文冒号，冒号后面跟着一个空格．
     ```
 
-    脚注名既可以使用数字也可以使用文本．脚注名摆放的位置与括号的用法一致．为美观起见，建议同一个页面内的脚注名遵循统一的命名规律，如：ref1、ref2、note1……
-
-    脚注的内容统一放在 `## 参考资料与注释` 二级标题下．
+    脚注名既可以使用数字也可以使用文本．为美观起见，建议同一个页面内的脚注名遵循统一的命名规律，如：ref1、ref2、note1……
 
     ???+ success "示例"
         ```markdown
         当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者．[^ref1]
         
-        2020年1月21日，CCF宣布恢复NOIP．[^ref2]
+        ## 拓展阅读
+        
+        -   [C++ 参考手册](https://zh.cppreference.com/)
         
         ## 参考资料与注释
         
         [^ref1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
-        
-        [^ref2]: [CCF关于恢复NOIP竞赛的公告-中国计算机学会](https://www.ccf.org.cn/c/2020-01-21/694716.shtml)
         ```
-        
-        当 `#include <cxxxx>` 可以替代 `#include <xxxx.h>` 时，应使用前者．[^ref1]
-        
-        2020 年 1 月 21 日，CCF 宣布恢复 NOIP．[^ref2]
 
 -   <span id="MDFM-5">MDFM-5</span>：建议使用主题扩展的 `???+note` 格式（即 [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)）来描述题面和参考代码．也可以用这种格式来展示其他需要补充介绍的内容．
 
@@ -419,7 +421,7 @@
         
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
--   <span id="CONT-7">CONT-7</span>：受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末．
+-   <span id="CONT-7">CONT-7</span>：受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末；同时存在 `## 拓展阅读` 时，它必须紧邻在 `## 参考资料与注释` 之前．
 
 -   <span id="CONT-8">CONT-8</span>：所有用作序号的数字建议使用中文．示例：
     -   数列的第一项．
@@ -732,18 +734,19 @@ $$
 
 ![](./images/format-8.png)
 
-在文末罗列出参考文献，可以使页面的内容更严谨，真实可信．
+在文末分别罗列「拓展阅读」与「参考资料与注释」，可以使页面的内容更清晰、更严谨，真实可信．
 
-## 外部链接
+## 拓展阅读
 
 -   [标点符号用法（GB/T 15834—2011）](http://www.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/W020190128580990138234.pdf)
 -   [维基百科：格式手册/标点符号](https://zh.wikipedia.org/wiki/Wikipedia:%E6%A0%BC%E5%BC%8F%E6%89%8B%E5%86%8C/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7)
 -   [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
 -   [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)
 -   [一份（不太）简短的 LATEX2ε 介绍或 106 分钟了解 LATEX2ε](https://github.com/CTeX-org/lshort-zh-cn/releases)
--   [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)
 
 ## 参考资料与注释
+
+-   [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)
 
 [^note1]: （冒号）表示总结上文．
 
