@@ -59,7 +59,7 @@ $\int_l ^ r f (x) dx \approx \left(f (x_0) + 4 f (x_1) + 2 f (x_2) + 4f(x_3) + 2
 我们直接给出结论，普通辛普森法的误差为：
 
 $$
--\tfrac{1}{90} \left(\tfrac{r-l}{2}\right)^5 f^{(4)}(\xi)
+-\tfrac{r-l}{180} h^4 f^{(4)}(\xi)
 $$
 
 其中 $\xi$ 是位于区间 $[l,r]$ 的某个值．
