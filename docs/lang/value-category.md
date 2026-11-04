@@ -183,8 +183,8 @@ std::string nrvo() {
 }
 
 int main() {
-  std::string str = urvo();  // 直接构造
-  std::string str = nrvo();  // 不一定直接构造，依赖于优化
+  std::string str = urvo();   // 直接构造
+  std::string str2 = nrvo();  // 不一定直接构造，依赖于优化
 }
 ```
 
