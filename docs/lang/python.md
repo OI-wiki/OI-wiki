@@ -753,6 +753,9 @@ NameError: name 'nothing' is not defined
 以下是使用 `lru_cache` 优化计算斐波那契数列的例子：
 
 ```python
+from functools import lru_cache
+
+
 @lru_cache(maxsize=None)
 def fib(n):
     if n < 2:
