@@ -1,3 +1,17 @@
+/* 控制条变量：控制条与倍速菜单共用同一套。
+   菜单展开时会临时挂到 body，放在根上才能继续继承，避免另写一份值。 */
+:root {
+  --anim-height: 1.6rem;
+  --anim-radius: 0.25rem;
+  --anim-font-size: 0.72rem;
+  --anim-surface: rgba(255, 255, 255, 0.14);
+  --anim-surface-hover: rgba(255, 255, 255, 0.26);
+  --anim-surface-active: rgba(255, 255, 255, 0.34);
+  --anim-fg: #fff;
+  --anim-fg-dim: rgba(255, 255, 255, 0.82);
+  --anim-track: rgba(255, 255, 255, 0.3);
+}
+
 /* 动图播放控制 */
 .anim-image {
   position: relative;
@@ -5,7 +19,7 @@
   max-width: 100%;
   line-height: 0;
   box-sizing: border-box;
-  /*container-type: inline-size;*/
+  container-type: inline-size;
 }
 
 .anim-image .anim-canvas {
@@ -17,16 +31,6 @@
 /* 控制条 */
 .anim-controls {
   z-index: 1;
-  --anim-height: 1.6rem;
-  --anim-radius: 0.25rem;
-  --anim-font-size: 0.72rem;
-  --anim-surface: rgba(255, 255, 255, 0.14);
-  --anim-surface-hover: rgba(255, 255, 255, 0.26);
-  --anim-surface-active: rgba(255, 255, 255, 0.34);
-  --anim-fg: #fff;
-  --anim-fg-dim: rgba(255, 255, 255, 0.82);
-  --anim-track: rgba(255, 255, 255, 0.3);
-
   position: absolute;
   left: 0.5rem;
   right: 0.5rem;
@@ -49,6 +53,12 @@
 .anim-image:hover .anim-controls,
 .anim-controls:has(:focus-visible),
 .anim-controls.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 菜单展开期间控制条保持可见，避免控制条隐藏后菜单还单独挂着 */
+.anim-image:has(.anim-speed.is-open) .anim-controls {
   opacity: 1;
   pointer-events: auto;
 }
@@ -214,15 +224,6 @@
   background: rgba(30, 30, 30, 0.96);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
-
-  /* 菜单会临时挂到 body 上，脱离控制条后变量要自带 */
-  --anim-height: 1.6rem;
-  --anim-radius: 0.25rem;
-  --anim-font-size: 0.72rem;
-  --anim-surface-hover: rgba(255, 255, 255, 0.26);
-  --anim-surface-active: rgba(255, 255, 255, 0.34);
-  --anim-fg: #fff;
-  --anim-fg-dim: rgba(255, 255, 255, 0.82);
 }
 
 .anim-speed-menu[hidden] {
@@ -306,18 +307,6 @@
   box-sizing: content-box;
 }
 
-
-/* 窄屏 */
-@media (max-width: 30em) {
-  .anim-controls {
-    gap: 0.3rem;
-    padding: 0.2rem 0.3rem;
-  }
-
-  .anim-time {
-    display: none;
-  }
-}
 
 /* 小图自适应：按图片实际宽度收敛控制条 */
 @container (max-width: 16rem) {

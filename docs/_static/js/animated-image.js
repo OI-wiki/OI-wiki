@@ -482,10 +482,15 @@
       var mh = menu.offsetHeight;
       var margin = 8;
       var gap = 5;
-      var above = rect.top - margin;
+      /* 顶栏是 sticky 的，向上展开会伸进顶栏区域被遮住；
+         把上边界压到顶栏底部，空间不够时统一改为向下，大小图判断一致 */
+      var header = document.querySelector('.md-header');
+      var headerBottom = header ? Math.max(0, header.getBoundingClientRect().bottom) : 0;
+      var topLimit = Math.max(margin, headerBottom + margin);
+      var above = rect.top - topLimit;
       var below = window.innerHeight - rect.bottom - margin;
       var down = mh > above && (mh <= below || below > above);
-      var top = down ? rect.bottom + gap : rect.top - gap - mh;
+      var top = down ? rect.bottom + gap : Math.max(topLimit, rect.top - gap - mh);
       var left = rect.right - mw;
       if (left < margin) {
         left = Math.min(rect.left, window.innerWidth - mw - margin);
@@ -599,7 +604,12 @@
     root.appendChild(trigger);
     root.appendChild(menu);
 
-    return { element: root };
+    return {
+      element: root,
+      close: function () {
+        closeMenu(false);
+      }
+    };
   }
 
   function createControls(controller) {
@@ -725,6 +735,10 @@
         return;
       }
       visible = next;
+      /* 控制条不可见时，倍速菜单不能单独留在页面上 */
+      if (!next) {
+        speedMenu.close();
+      }
       if (pausedByUser) {
         return;
       }
@@ -957,6 +971,11 @@
     var wrapper = document.createElement('span');
     wrapper.className = 'anim-image';
     copyImageAttrs(img, wrapper);
+    /* 容器查询要求显式宽度：inline-size 约束下宽度不再由内容撑开，
+       这里给出原图尺寸，配合 max-width:100% 保持与原 <img> 一致的等比缩放 */
+    if (!wrapper.style.width) {
+      wrapper.style.width = decoded.width + 'px';
+    }
 
     var controller = createFramesController(decoded, painter);
     var box = createControls(controller);
