@@ -388,7 +388,7 @@
   var speedMenuSeq = 0;
 
   function makeSpeedMenu(controller) {
-    var root = document.createElement('div');
+    var root = document.createElement('span');
     root.className = 'anim-speed';
 
     var menuId = 'anim-speed-menu-' + ++speedMenuSeq;
@@ -402,7 +402,7 @@
     trigger.innerHTML = '<span class="anim-speed-label">1x</span>' + ICONS.caret;
     var label = trigger.querySelector('.anim-speed-label');
 
-    var menu = document.createElement('div');
+    var menu = document.createElement('span');
     menu.id = menuId;
     menu.className = 'anim-speed-menu';
     menu.setAttribute('role', 'listbox');
@@ -451,16 +451,54 @@
       }
     }
 
+    /* 菜单会临时挂到 body，判断外部点击/焦点时要同时排除菜单自身 */
     function onDocumentDown(event) {
-      if (!root.contains(event.target)) {
+      if (!root.contains(event.target) && !menu.contains(event.target)) {
         closeMenu(false);
       }
     }
 
     function onDocumentFocus(event) {
-      if (!root.contains(event.target)) {
+      if (!root.contains(event.target) && !menu.contains(event.target)) {
         closeMenu(false);
       }
+    }
+
+    /* 菜单临时挂到 body 并用 fixed 定位：不会被图片容器或祖先 overflow 裁剪，
+       也不会被后续内容盖住。优先向上，上方放不开时向下，两侧都放不开选空间大的一侧。 */
+    function placeMenu() {
+      if (!opened) {
+        return;
+      }
+      if (menu.parentNode !== document.body) {
+        var width = menu.offsetWidth;
+        var height = menu.offsetHeight;
+        document.body.appendChild(menu);
+        menu.classList.add('is-floating');
+        menu.style.minWidth = width + 'px';
+      }
+      var rect = trigger.getBoundingClientRect();
+      var mw = menu.offsetWidth;
+      var mh = menu.offsetHeight;
+      var margin = 8;
+      var gap = 5;
+      var above = rect.top - margin;
+      var below = window.innerHeight - rect.bottom - margin;
+      var down = mh > above && (mh <= below || below > above);
+      var top = down ? rect.bottom + gap : rect.top - gap - mh;
+      var left = rect.right - mw;
+      if (left < margin) {
+        left = Math.min(rect.left, window.innerWidth - mw - margin);
+      }
+      if (left < margin) {
+        left = margin;
+      }
+      menu.style.top = Math.round(top) + 'px';
+      menu.style.left = Math.round(left) + 'px';
+    }
+
+    function onViewportChange() {
+      placeMenu();
     }
 
     function openMenu(index) {
@@ -471,6 +509,9 @@
       menu.hidden = false;
       root.classList.add('is-open');
       trigger.setAttribute('aria-expanded', 'true');
+      placeMenu();
+      window.addEventListener('scroll', onViewportChange, true);
+      window.addEventListener('resize', onViewportChange);
       document.addEventListener('mousedown', onDocumentDown, true);
       document.addEventListener('focusin', onDocumentFocus, true);
       focusItem(typeof index === 'number' ? index : selectedIndex());
@@ -482,8 +523,17 @@
       }
       opened = false;
       menu.hidden = true;
+      if (menu.parentNode === document.body) {
+        root.appendChild(menu);
+      }
+      menu.classList.remove('is-floating');
+      menu.style.top = '';
+      menu.style.left = '';
+      menu.style.minWidth = '';
       root.classList.remove('is-open');
       trigger.setAttribute('aria-expanded', 'false');
+      window.removeEventListener('scroll', onViewportChange, true);
+      window.removeEventListener('resize', onViewportChange);
       document.removeEventListener('mousedown', onDocumentDown, true);
       document.removeEventListener('focusin', onDocumentFocus, true);
       if (returnFocus) {
@@ -553,7 +603,7 @@
   }
 
   function createControls(controller) {
-    var controls = document.createElement('div');
+    var controls = document.createElement('span');
     controls.className = 'anim-controls';
 
     var range = document.createElement('input');
@@ -798,6 +848,28 @@
     observer.observe(wrapper);
   }
 
+  /* 原 img 上的表现属性跟着搬走，替换后尺寸、对齐、锚点、提示都还在 */
+  var COPY_ATTRS = ['id', 'class', 'title', 'style', 'width', 'height'];
+
+  function copyImageAttrs(img, wrapper) {
+    for (var i = 0; i < COPY_ATTRS.length; i++) {
+      var name = COPY_ATTRS[i];
+      var value = img.getAttribute(name);
+      if (!value) {
+        continue;
+      }
+      if (name === 'class') {
+        wrapper.className += ' ' + value;
+      } else if (name === 'width' || name === 'height') {
+        wrapper.style[name] = /^\d+$/.test(value) ? value + 'px' : value;
+      } else if (name === 'style') {
+        wrapper.style.cssText += ';' + value;
+      } else {
+        wrapper.setAttribute(name, value);
+      }
+    }
+  }
+
   function enableTouchToggle(wrapper, controls) {
     wrapper.addEventListener('click', function (event) {
       if (!window.matchMedia || !window.matchMedia('(hover: none)').matches) {
@@ -882,8 +954,9 @@
       canvas.setAttribute('aria-label', img.alt);
     }
 
-    var wrapper = document.createElement('div');
+    var wrapper = document.createElement('span');
     wrapper.className = 'anim-image';
+    copyImageAttrs(img, wrapper);
 
     var controller = createFramesController(decoded, painter);
     var box = createControls(controller);
@@ -1017,7 +1090,7 @@
     };
   }
 
-  function buildSvgPlayer(img, text) {
+  function buildSvgPlayer(img, text, src) {
     var doc;
     try {
       doc = new DOMParser().parseFromString(text, 'image/svg+xml');
@@ -1031,49 +1104,94 @@
       return;
     }
 
-    var w = parseFloat(source.getAttribute('width')) || img.naturalWidth || 600;
-    var h = parseFloat(source.getAttribute('height')) || img.naturalHeight || 400;
-    if (!source.getAttribute('viewBox')) {
-      source.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-    }
-
-    var wrapper = document.createElement('div');
+    /* 原位替换：用原图固有宽高 + aspect-ratio，配合 max-width:100%
+       完全复刻 <img> 的等比缩放行为（窄容器缩窄、宽容器可放大到固有尺寸） */
+    var w = img.naturalWidth || parseFloat(source.getAttribute('width')) || 600;
+    var h = img.naturalHeight || parseFloat(source.getAttribute('height')) || 400;
+    var wrapper = document.createElement('span');
     wrapper.className = 'anim-image';
     wrapper.style.width = w + 'px';
+    wrapper.style.aspectRatio = w + ' / ' + h;
+    var baseStyle = wrapper.getAttribute('style');
+    wrapper.style.setProperty('position', 'fixed', 'important');
+    wrapper.style.setProperty('left', '-10000px', 'important');
+    wrapper.style.setProperty('top', '0', 'important');
+    wrapper.style.setProperty('visibility', 'hidden', 'important');
 
-    var holder = document.createElement('div');
+    var holder = document.createElement('object');
     holder.className = 'anim-svg';
-    var shadow = holder.attachShadow({ mode: 'open' });
-    var style = document.createElement('style');
-    style.textContent = ':host{display:block}svg{display:block;width:100%;height:auto}';
-    shadow.appendChild(style);
-
-    var svg = document.importNode(source, true);
-    svg.removeAttribute('width');
-    svg.removeAttribute('height');
-    shadow.appendChild(svg);
-    var root = shadow.querySelector('svg');
-
-    var duration = parseSvgDuration(text);
-    var controller = createSvgController(root, duration);
-    var box = createControls(controller);
-
+    holder.type = 'image/svg+xml';
+    holder.style.width = '100%';
+    holder.style.height = '100%';
     wrapper.appendChild(holder);
-    wrapper.appendChild(box.element);
-    enableTouchToggle(wrapper, box.element);
 
-    if (img.alt) {
-      holder.setAttribute('role', 'img');
-      holder.setAttribute('aria-label', img.alt);
+    if (!img.parentNode) {
+      return;
+    }
+    img.parentNode.insertBefore(wrapper, img);
+
+    function fail() {
+      if (wrapper.parentNode) {
+        wrapper.parentNode.removeChild(wrapper);
+      }
+      img.setAttribute(EXT_ATTR, 'failed');
     }
 
-    if (img.parentNode) {
-      img.parentNode.replaceChild(wrapper, img);
-    }
+    holder.addEventListener('error', fail, { once: true });
+    holder.addEventListener(
+      'load',
+      function () {
+        var root;
+        try {
+          root = holder.contentDocument.documentElement;
+          if (!root || root.nodeName.toLowerCase() !== 'svg') {
+            fail();
+            return;
+          }
+          /* 这类 Flash 导出的 SVG 只有 width/height、没有 viewBox。
+             <img> 会把它当固有尺寸再等比缩放，而 <object> 里缺 viewBox
+             就无法映射坐标，内容会按 1:1 绘制被裁剪。这里补上 viewBox，
+             让内容等比缩放到容器，和原来的 <img> 表现一致。 */
+          if (!root.getAttribute('viewBox')) {
+            var attrW = parseFloat(root.getAttribute('width'));
+            var attrH = parseFloat(root.getAttribute('height'));
+            if (attrW > 0 && attrH > 0) {
+              root.setAttribute('viewBox', '0 0 ' + attrW + ' ' + attrH);
+              root.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+            }
+          }
+          root.pauseAnimations();
+          root.setCurrentTime(0);
+        } catch (err) {
+          fail();
+          return;
+        }
 
-    controller.seek(0);
-    box.play();
-    watchVisibility(wrapper, box);
+        if (!img.parentNode) {
+          fail();
+          return;
+        }
+
+        var controller = createSvgController(root, parseSvgDuration(text));
+        var box = createControls(controller);
+        wrapper.appendChild(box.element);
+        enableTouchToggle(wrapper, box.element);
+
+        if (img.alt) {
+          holder.setAttribute('role', 'img');
+          holder.setAttribute('aria-label', img.alt);
+        }
+
+        img.parentNode.removeChild(img);
+        wrapper.setAttribute('style', baseStyle);
+        copyImageAttrs(img, wrapper);
+        controller.seek(0);
+        box.play();
+        watchVisibility(wrapper, box);
+      },
+      { once: true }
+    );
+    holder.data = new URL(src, document.baseURI).href;
   }
 
   function processSvgImage(img, src) {
@@ -1091,7 +1209,7 @@
           img.setAttribute(EXT_ATTR, 'static');
           return;
         }
-        buildSvgPlayer(img, text);
+        buildSvgPlayer(img, text, src);
       })
       .catch(function () {
         img.setAttribute(EXT_ATTR, 'failed');
