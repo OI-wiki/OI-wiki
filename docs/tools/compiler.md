@@ -95,7 +95,7 @@ scoop install mingw-winlibs
 
 #### Debian/Ubuntu
 
-首先先更新软件包列表：
+首先更新软件包列表：
 
 ```bash
 sudo apt update

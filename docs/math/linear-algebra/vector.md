@@ -143,7 +143,7 @@ $$
 
 ### 空间向量基本定理
 
-定理内容：如果三个向量 $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ 不共面，那么存在唯一实数对 $(x,y,z)$，使得空间中任意向量 $\boldsymbol p$ 满足 $\mathbf p=x\boldsymbol{e_1}+y\boldsymbol{e_2}+z\boldsymbol{e_3}$．
+定理内容：如果三个向量 $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ 不共面，那么存在唯一实数三元组 $(x,y,z)$，使得空间中任意向量 $\boldsymbol p$ 满足 $\mathbf p=x\boldsymbol{e_1}+y\boldsymbol{e_2}+z\boldsymbol{e_3}$．
 根据空间向量基本定理，我们同样可以使用三个相互垂直的基底 $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ 作为正交基底，建立 **空间直角坐标系** 并用一个三元组 $(x,y,z)$ 作为坐标表示空间向量．
 
 ### 共面向量基本定理
@@ -166,7 +166,7 @@ $$
 
 对于一个面 $ABCD$，其法向量 $\boldsymbol{n}$ 与这个面垂直．
 
-计算方法：任取两个面内直线 $\overrightarrow{AB},\overrightarrow{AD}$，使得 $\overrightarrow{AB} \cdot \boldsymbol{n}=\boldsymbol{0}$ 且 $\overrightarrow{AD} \cdot \boldsymbol{n}=\boldsymbol{0}$，利用坐标法即可计算．
+计算方法：任取两个面内直线 $\overrightarrow{AB},\overrightarrow{AD}$，使得 $\overrightarrow{AB} \cdot \boldsymbol{n}=0$ 且 $\overrightarrow{AD} \cdot \boldsymbol{n}=0$，利用坐标法即可计算．
 
 ## 向量与矩阵
 
@@ -182,7 +182,7 @@ $$
 
 ### 放缩变换
 
-对于 $n$ 维列向量 $\boldsymbol a$，将其每一维放缩 $v_1,v_2,\ldots,v_n$ 倍．很容易发现放缩操作的变换矩阵 $R$ 是 $n\times n$ 的对角矩阵，即 $S=\operatorname{diag}\{v_1,v_2,\ldots,v_n\}$．
+对于 $n$ 维列向量 $\boldsymbol a$，将其每一维放缩 $v_1,v_2,\ldots,v_n$ 倍．很容易发现放缩操作的变换矩阵 $S$ 是 $n\times n$ 的对角矩阵，即 $S=\operatorname{diag}\{v_1,v_2,\ldots,v_n\}$．
 
 ### 旋转变换
 

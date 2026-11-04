@@ -143,7 +143,7 @@ ofstream fout("data.out");
 // data.out 就是输出文件的相对位置或绝对位置
 ```
 
-关闭标准输入/输出流
+关闭文件输入/输出流
 
 ```cpp
 fin.close();

@@ -2,7 +2,7 @@ author: Backl1ght
 
 AHU 算法用于判断两棵有根树是否同构．
 
-判断树同构外还有一种常见的做法是 [树哈希](tree-hash.md)．
+判断树同构还有一种常见的做法是 [树哈希](tree-hash.md)．
 
 前置知识：[树基础](tree-basic.md)，[树的重心](tree-centroid.md)
 
@@ -30,7 +30,7 @@ $$
 
 成立，那么称无根树 $T_1(V_1,E_1)$ 和 $T_2(V_2,E_2)$ 同构．
 
-简单的说就是，如果能够通过把树 $T_1$ 的所有节点重新标号，使得树 $T_1$ 和树 $T_2$  **完全相同**，那么称这两棵树同构．
+简单地说就是，如果能够通过把树 $T_1$ 的所有节点重新标号，使得树 $T_1$ 和树 $T_2$  **完全相同**，那么称这两棵树同构．
 
 ## 问题的转化
 
@@ -56,11 +56,11 @@ $$
 
 ### 原理 2
 
-树的同构关系是传递的．既如果 $T_1$ 和 $T_2$ 同构，$T_2$ 和 $T_3$ 同构，那么 $T_1$ 和 $T_3$ 同构．
+树的同构关系是传递的．即如果 $T_1$ 和 $T_2$ 同构，$T_2$ 和 $T_3$ 同构，那么 $T_1$ 和 $T_3$ 同构．
 
 ### 推论
 
-考虑求树括号序的递归算法，我们在回溯时拼接子树的括号序．如果在拼接的时候将字典序小的序列先拼接，并将最后的结果记为 $NAME$．
+考虑求树括号序的递归算法，我们在回溯时拼接子树的括号序．在拼接的时候将字典序小的序列先拼接，并将最后的结果记为 $NAME$．
 
 将以节点 $r$ 为根的子树的 $NAME$ 作为节点 $r$ 的 $NAME$，记为 $NAME(r)$，那么对于有根树 $T_1(V_1,E_1,r_1)$ 和 $T_2(V_2,E_2,r_2)$，如果 $NAME(r_1)=NAME(r_2)$，那么 $T_1$ 和 $T_2$ 同构．
 
@@ -75,10 +75,10 @@ $$
     4 & \qquad \text{if  } u \text{  is a leaf}\\
     5 & \qquad \qquad \text{NAME(} u \text{) = (0)}\\
     6 & \qquad \text{else }\\
-    7 & \qquad \qquad \text{for all child } v \text{ of } u\\
+    7 & \qquad \qquad \text{for all children } v \text{ of } u\\
     8 & \qquad \qquad \qquad \text{ASSIGN-NAME(}v\text{)}\\
     9 & \qquad \text{sort the names of the children of }u\\
-    10 & \qquad \text{concatenate the names of all children }u\text{ to temp}\\
+    10 & \qquad \text{concatenate the names of all children of }u\text{ to temp}\\
     11 & \qquad \text{NAME(} u \text{) = (temp)}
     \end{array}
     $$
@@ -96,13 +96,13 @@ $$
     6 & \qquad \text{if  NAME}(r_1) = \text{NAME}(r_2)\\
     7 & \qquad \qquad \text{return true}\\
     8 & \qquad \text{else}\\
-    10 & \qquad \qquad \text{return false}
+    9 & \qquad \qquad \text{return false}
     \end{array}
     $$
 
 ### 复杂度证明
 
-对于一棵有 $n$ 个节点的有根树，假设他是链状的，那么节点名字长度最长可以是 $n$，那么 ASSIGN-NAME 算法的复杂度是 $1+2+\cdots+n$ 的常数倍，即 $\Theta(n^2)$．由此，朴素 AHU 算法的复杂度为 $O(n^2)$．
+对于一棵有 $n$ 个节点的有根树，假设它是链状的，那么节点名字长度最长可以是 $n$，那么 ASSIGN-NAME 算法的复杂度是 $1+2+\cdots+n$ 的常数倍，即 $\Theta(n^2)$．由此，朴素 AHU 算法的复杂度为 $O(n^2)$．
 
 ## 优化的 AHU 算法
 
@@ -122,11 +122,11 @@ $$
 
 我们可以将节点原来的 $NAME$ 用其在层内的排名代替，然后把原来拼接节点 $NAME$ 用向数组加入元素代替．
 
-这样用整数和数组来代替字符串，既不会影响算法的正确性，又很大的降低了算法的复杂度．
+这样用整数和数组来代替字符串，既不会影响算法的正确性，又大大降低了算法的复杂度．
 
 ### 复杂度证明
 
-首先注意到第 $i$ 层由拼接得到的 $NAME$ 的总长度为第 $i$ 层点的度数之和，即第 $i+1$ 层的总点数，以下用 $L_i$ 表示．算法的下一步会将这些 $NAME$ 看成字符串（数组）并排序，然后将它们替换为其在层内的排名（即重新映射为一个数）．以下引理表明了对总长为 $L$ 的 $m$ 个字符串排序的复杂度：
+首先注意到第 $i$ 层由拼接得到的 $NAME$ 的总长度为第 $i$ 层点的子结点数之和，即第 $i+1$ 层的总点数，以下用 $L_i$ 表示．算法的下一步会将这些 $NAME$ 看成字符串（数组）并排序，然后将它们替换为其在层内的排名（即重新映射为一个数）．以下引理表明了对总长为 $L$ 的 $m$ 个字符串排序的复杂度：
 
 1.  我们可以使用基数排序在 $O(L+|\Sigma|)$ 的时间内完成排序，其中 $|\Sigma|$ 为字符集的大小．（有一些实现细节，参见参考资料）
 2.  我们可以使用快速排序在 $O(L \log m)$ 的时间内完成排序．证明的大致思路为快排递归树的高度为 $O(\log m)$，且暴力比较长度为 $\ell_1$ 和 $\ell_2$ 的两个字符串的复杂度为 $O(\min\{\ell_1,\ell_2\})$．

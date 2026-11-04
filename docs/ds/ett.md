@@ -14,7 +14,7 @@ ETT 可以使用任意数据结构维护，只需要该数据结构支持对应�
 
 后面要维护的序列其实是 ETR 的一个变种，把树中的点看成了自环也加到了 ETR 中，但是由于原始论文中作者没有给它起新的名字，就还是叫它 ETR 吧．
 
-可以通过下述算法得到树 $T$ 的 欧拉回路表示：
+可以通过下述算法得到树 $T$ 的欧拉回路表示：
 
 $$
 \begin{array}{ll}
@@ -22,7 +22,7 @@ $$
 2 & \textbf{Output. } \text{The dfs sequence of rooted tree }T\\
 3 & \operatorname{ET}(u)\\
 4 & \qquad \text{visit vertex }u\\
-5 & \qquad \text{for all child } v \text{ of } u\\
+5 & \qquad \text{for all children } v \text{ of } u\\
 6 & \qquad \qquad \text{visit directed edge } u \to v\\
 7 & \qquad \qquad \operatorname{ET}(v)\\
 8 & \qquad \qquad \text{visit directed edge } v \to u\\
@@ -31,7 +31,7 @@ $$
 
 树 $T$ 的欧拉回路表示 $\operatorname{ETR}(T)$ 初始为空，DFS 的过程中每次访问一个节点或者一条有向边时就将其加到 $\operatorname{ETR}(T)$ 的尾部，如此便可得到 $\operatorname{ETR}(T)$．
 
-若 $T$ 中包含 $n$ 个节点，则中包含 $2n - 2$ 条有向边，而 DFS 的过程中，每个点和每条有向边都会被访问一次，所以 $\operatorname{ETR}(T)$ 的长度为 $3n - 2$．
+若 $T$ 中包含 $n$ 个节点，则其中包含 $2n - 2$ 条有向边，而 DFS 的过程中，每个点和每条有向边都会被访问一次，所以 $\operatorname{ETR}(T)$ 的长度为 $3n - 2$．
 
 把点 $u$ 看成是一个自环，这样 $\operatorname{ETR}(T)$ 就可以看成有向图中的一个欧拉回路．可以在欧拉回路的某处断开，将其看成是一些边的首尾相连组成的链；也可以把这样的链在断开处重新粘起来变回欧拉回路；还可以通过新增一些边把两个这样的链拼成一个新的欧拉回路．
 

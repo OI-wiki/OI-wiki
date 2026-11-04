@@ -4,7 +4,7 @@ author: Ir1d, Catreap, TianyiQ, Tiphereth-A, Enter-tainer, Henry-ZHR, HeRaNO, ia
 
 对平面上的 $n~(n\ge 1)$ 个点 $P_1,P_2,\cdots,P_n$，找出一个半径最小的圆，使得所有点都不在圆外．这个圆称为这些点的 **最小覆盖圆**（Minimum Enclosing Circle，MEC）．
 
-本文中，我们允许半径为 $0$ 的圆，即当所有点重合于一点 $P$ 时，我们认为这 $n$ 的点的最小覆盖圆为圆心为 $P$、半径为 $0$ 的圆．
+本文中，我们允许半径为 $0$ 的圆，即当所有点重合于一点 $P$ 时，我们认为这 $n$ 个点的最小覆盖圆为圆心为 $P$、半径为 $0$ 的圆．
 
 不难发现最小覆盖圆是唯一的．
 

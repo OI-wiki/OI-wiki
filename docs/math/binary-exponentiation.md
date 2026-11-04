@@ -230,7 +230,7 @@ $$
 
 当底数 $a$ 固定时，可以利用 [分块思想](../ds/decompose.md)，用一定的时间预处理后用 $O(1)$ 的时间回答一次幂询问．这一算法也常称为光速幂．过程如下：
 
-1.  选定一个数 $s$，预处理出 $a^0,a^1,\cdots,a^{s-1}$ 与 $a^0,a^s,\cdots,a^{\lfloor p/s\rfloor s}$ 的值并存在两个数组里；
+1.  选定一个数 $s$，预处理出 $a^0,a^1,\cdots,a^{s-1}$ 与 $a^0,a^s,\cdots,a^{\lfloor n/s\rfloor s}$ 的值并存在两个数组里；
 2.  对于每一次询问 $a^b$，将 $b$ 拆分成 $\lfloor b/s\rfloor s+(b\bmod s)$，则 $a^b=a^{\lfloor b/s\rfloor s}\cdot a^{b\bmod s}$，就可以 $O(1)$ 求出答案．
 
 假设指数 $b$ 的范围是 $[0,n]$，那么块长 $s$ 经常选择为 $\sqrt{n}$ 或者与之相近的 $2$ 的幂次．选择 $\sqrt{n}$ 可以获得最优的预处理复杂度 $O(\sqrt{n})$，而选择 $2$ 的幂次可以使用位操作简化计算．

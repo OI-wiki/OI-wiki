@@ -2,13 +2,13 @@
 
 ## 通用状态
 
-| 结果               | Testlib 别名 | 含义                                                                                                                                                                                                 |
-| ------------------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ok                 | `_ok`        | 答案正确．                                                                                                                                                                                           |
-| Wrong Answer       | `_wa`        | 答案错误．                                                                                                                                                                                           |
-| Presentation Error | `_pe`        | 答案格式错误．注意包括 Codeforces 在内的许多 OJ 并不区分 PE 和 WA．                                                                                                                                  |
-| Partially Correct  | `_pc(score)` | 答案部分正确．仅限于有部分分的测试点，其中 `score` 为一个正整数，从 $0$（没分）到 $100$（可能的最大分数）．（`quitf+_pc` 只是为了兼容旧的 pascal-testlib，如果想要输出部分分，建议使用 `quitp`[^1]） |
-| Fail               | `_fail`      | validator 中表示输入不合法，不通过校验．<br>checker 中表示程序内部错误、标准输出有误或选手输出比标准输出更优，需要裁判/出题人关注．（也就是题目锅了）                                                |
+| 结果               | Testlib 别名 | 含义                                                                                                                                                                                                   |
+| ------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Ok                 | `_ok`        | 答案正确．                                                                                                                                                                                             |
+| Wrong Answer       | `_wa`        | 答案错误．                                                                                                                                                                                             |
+| Presentation Error | `_pe`        | 答案格式错误．注意包括 Codeforces 在内的许多 OJ 并不区分 PE 和 WA．                                                                                                                                    |
+| Partially Correct  | `_pc(score)` | 答案部分正确．仅限于有部分分的测试点，其中 `score` 为一个非负整数，从 $0$（没分）到 $100$（可能的最大分数）．（`quitf+_pc` 只是为了兼容旧的 pascal-testlib，如果想要输出部分分，建议使用 `quitp`[^1]） |
+| Fail               | `_fail`      | validator 中表示输入不合法，不通过校验．<br>checker 中表示程序内部错误、标准输出有误或选手输出比标准输出更优，需要裁判/出题人关注．（也就是题目锅了）                                                  |
 
 通常用程序的返回值表明结果，但是也有一些其他方法：创建一个输出 xml 文件、输出信息到 stdout 或其他位置……这些都通过下方函数表中的 `quitf` 函数来完成．
 
@@ -45,10 +45,10 @@
 | `string readToken(string regex)`/`string readWord(string regex)`                                                                                                  | 读入一个串，必须与 `regex` 匹配                                                                                              |
 | `long long readLong()`                                                                                                                                            | 读入一个 64 位整数                                                                                                           |
 | `long long readLong(long long L, long long R)`                                                                                                                    | 读入一个 64 位整数，必须在 $[L,R]$ 之间                                                                                      |
-| `vector<long long> readLongs(int n, long long L, long long R)`                                                                                                    | 读入 $N$ 个 64 位整数，必须均在 $[L,R]$ 之间                                                                                 |
+| `vector<long long> readLongs(int n, long long L, long long R)`                                                                                                    | 读入 $n$ 个 64 位整数，必须均在 $[L,R]$ 之间                                                                                 |
 | `int readInt()`/`int readInteger()`                                                                                                                               | 读入一个 32 位整数                                                                                                           |
 | `int readInt(int L, int R)`/`int readInteger(L, R)`                                                                                                               | 读入一个 32 位整数，必须在 $[L,R]$ 之间                                                                                      |
-| `vector<int> readInts(int n, int L, int R)`/`vector<int> readIntegers(int n, int L, int R)`                                                                       | 读入 $N$ 个 32 位整数，必须均在 $[L,R]$ 之间                                                                                 |
+| `vector<int> readInts(int n, int L, int R)`/`vector<int> readIntegers(int n, int L, int R)`                                                                       | 读入 $n$ 个 32 位整数，必须均在 $[L,R]$ 之间                                                                                 |
 | `double readReal()`/`double readDouble()`                                                                                                                         | 读入一个双精度浮点数                                                                                                         |
 | `double readReal(double L, double R)`/`double readDouble(double L, double R)`                                                                                     | 读入一个双精度浮点数，必须在 $[L,R]$ 之间                                                                                    |
 | `double readStrictReal(double L, double R, int minPrecision, int maxPrecision)`/`double readStrictDouble(double L, double R, int minPrecision, int maxPrecision)` | 读入一个双精度浮点数，必须在 $[L,R]$ 之间，小数位数必须在 $[minPrecision,maxPrecision]$ 之间，不得使用指数计数法等非正常格式 |

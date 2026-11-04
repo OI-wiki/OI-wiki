@@ -37,7 +37,7 @@ author: littleparrot12345
     
     void dfsd(int cur, int fa) {  // 求取len1和len2
       for (node nxtn : nbr[cur]) {
-        int nxt = nxtn.to, w = nxtn.val;  // nxt为这条边通向的节点，val为边权
+        int nxt = nxtn.to, w = nxtn.val;  // nxt为这条边通向的节点，w为边权
         if (nxt == fa) {
           continue;
         }

@@ -177,6 +177,6 @@ freopen("test.out", "w", stdout);
 
 [^ref1]: 项目源代码托管于 [GitHub](https://github.com/Embarcadero/Dev-Cpp) 和 [SourceForge](https://sourceforge.net/projects/embarcadero-devcpp/).
 
-[^ref2]: 源代码托管于 [Github](https://github.com/royqh1979/Dev-Cpp)
+[^ref2]: 源代码托管于 [GitHub](https://github.com/royqh1979/Dev-Cpp)
 
-[^ref3]: 项目官网位于 [小熊猫 C++](https://royqh1979.gitee.io/redpandacpp)，源代码托管于 [Github](https://github.com/royqh1979/RedPanda-CPP/)
+[^ref3]: 项目官网位于 [小熊猫 C++](https://royqh1979.gitee.io/redpandacpp)，源代码托管于 [GitHub](https://github.com/royqh1979/RedPanda-CPP/)

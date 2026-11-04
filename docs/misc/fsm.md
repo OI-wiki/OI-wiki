@@ -196,7 +196,7 @@ NFA 的计算过程，相当于同时运行多个 DFA．每一步操作都穷举
     3.  连接的结合律：$(LM)N = L(MN)$
     4.  $\varnothing$ 是并运算的单位元：$\varnothing + L = L + \varnothing = L$
     5.  $\varepsilon$ 是连接运算的单位元：$\varepsilon L = L \varepsilon = L$
-    6.  $\varnothing$ 是连接运算的零因子：$\varnothing L = L \varnothing = \varnothing$
+    6.  $\varnothing$ 是连接运算的零元：$\varnothing L = L \varnothing = \varnothing$
     7.  分配律：$L(M + N) = LM + LN$，$(M + N)L = ML + NL$
     8.  并的幂等律：$L + L = L$
     9.  闭包相关的定律：$(L^\ast)^\ast = L^\ast$，$\varnothing^\ast = \varepsilon$，$\varepsilon^\ast = \varepsilon$

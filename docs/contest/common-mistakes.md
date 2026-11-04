@@ -72,7 +72,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 -   使用 `scanf` 或 `printf` 的时候参数类型与格式指定符不符．
 
--   同时使用位操作和逻辑运算符 `==` 并且未加括号．
+-   同时使用位操作和比较运算符 `==` 并且未加括号．
     -   示例：`(x >> j) & 3 == 2`
 
 -   `int` 字面量溢出．
@@ -131,7 +131,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 -   所用数据类型位宽不足，导致溢出．
     -   如习语「三年 OI 一场空，不开 `long long` 见祖宗」所描述的场景．选手因为没有在正确的地方开 `long long`（将整数定义为 `long long` 类型），导致得出错误的答案而失分．
 
--   存图时，节点编号 0 开始，而题目给的边中两个端点的编号从 1 开始，读入的时候忘记 -1．
+-   存图时，节点编号从 0 开始，而题目给的边中两个端点的编号从 1 开始，读入的时候忘记 -1．
 
 -   大/小于号打错或打反．
 
@@ -275,7 +275,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
     -   写线段树的时候，`pushup` 或 `pushdown` 叶节点．
 
-        正确的做法：不要越界，记得检查自己的代码，使得下标访问数 `x` 在定义的下标中．
+        正确的做法：不要越界，记得检查自己的代码，使得访问下标 `x` 在定义的下标范围内．
 
 -   除 main 外有返回值函数执行至结尾未执行任何 return 语句
 
@@ -447,7 +447,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
     这种错误会创建一个临时 `string` 变量，修改完成后再赋值给原变量．这种错误无法被编译器优化，在数据量大的情况下可能会导致时间复杂度退化．
 
-    常见 错误写法：
+    常见错误写法：
 
     ```cpp
     std::string a;
@@ -484,7 +484,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
         
         -   关于 RSS 和 VSZ[^ref1][^ref2]
         
-            1.  VSZ (Virtual Memory Size，虚拟内存大小）[^ref3]
+            1.  VSZ（Virtual Memory Size，虚拟内存大小）[^ref3]
         
                 VSZ 表示进程的 **虚拟内存大小**，是进程可以访问的虚拟地址空间的总大小，通常以 KB 显示．
         
@@ -539,9 +539,9 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
                 ```
         
                 -   虚拟内存 (VSZ)：VSZ 仍为 `400MB`，不会发生变化．
-                -   物理内存 (RSS)：此时是连续访问（访问的 $50,000,000$ 个元素在内存地址上相邻），需要加载的分页数为 $\left\lceil \dfrac{50,000,000}{1024} \right\rceil = 48,828$ 页．
+                -   物理内存 (RSS)：此时是连续访问（访问的 $50,000,000$ 个元素在内存地址上相邻），需要加载的分页数为 $\left\lceil \dfrac{50,000,000}{1024} \right\rceil = 48,829$ 页．
         
-                    假设每页大小为 `4KB`，因此总计 $48,828 \times 4 \text{KB} \approx 190 \text{MB}$，物理内存增加到约 `190MB`．
+                    假设每页大小为 `4KB`，因此总计 $48,829 \times 4 \text{KB} \approx 190 \text{MB}$，物理内存增加到约 `190MB`．
         
                     注：如果对该数组赋值时下标随机，则会导致物理内存占用与预测差距较大（因为内存页加载是以地址为准，导致随机赋值时会加载大量内存页）．
         
@@ -567,7 +567,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 -   将递归转化成迭代的时候，引入了大量额外运算．
 
-### 只在程序在本地运行的时候造成影响的错误
+### 只在程序本地运行的时候造成影响的错误
 
 -   文件操作有可能会发生的错误：
 

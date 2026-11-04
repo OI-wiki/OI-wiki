@@ -30,7 +30,7 @@ author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, E
 
 对于名为 `qwq.c/cpp` 的 C/C++ 程序源代码，可以使用 `make qwq` 自动编译成对应名为 `qwq` 的程序．
 
-如需添加额外的编译选项，可使用 `export CFLAGS="xxx"`（C 程序）或 `export CXXFLAGS="xxx"`（C++ 程序）指定．如需添加额外的预编译选项，可使用 `export CPPFLAGS="xxx"` 指定．上述设置方法也可以写做类似 `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` 来指定单次命令执行中使用的环境变量．
+如需添加额外的编译选项，可使用 `export CFLAGS="xxx"`（C 程序）或 `export CXXFLAGS="xxx"`（C++ 程序）指定．如需添加额外的预编译选项，可使用 `export CPPFLAGS="xxx"` 指定．上述设置方法也可以写作类似 `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` 来指定单次命令执行中使用的环境变量．
 
 ### Sanitizers
 
@@ -74,7 +74,7 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 #### 时间/内存代价
 
-显而易见，这些调试工具会严重拖慢代码的运行时间和增大所用内存，以下为使用它们的时间/内存代价：
+显而易见，这些调试工具会严重延长代码的运行时间和增大所用内存，以下为使用它们的时间/内存代价：
 
 | 名称                       | 所增大内存倍数 | 所增大时间倍数 |
 | :------------------------- | :------------- | :------------- |
@@ -121,7 +121,7 @@ Find the GDB manual and other documentation resources online at:
 | -------------------- | --------------------------------------------------------------------- |
 | `run`                | 运行程序，直到遇到断点或程序结束                                      |
 | `continue`           | 继续运行，直到遇到断点或程序结束                                      |
-| `next`               | 单步执行，遇到函数调用则进入函数                                      |
+| `next`               | 单步执行，遇到函数调用不进入函数                                      |
 | `step`               | 单步执行，遇到函数调用则进入函数                                      |
 | `finish`             | 运行到当前函数返回为止，然后停下来等待命令                            |
 | `until [num]`        | 运行到指定行号 `[num]` 为止，然后停下来等待命令                       |
@@ -158,7 +158,7 @@ Find the GDB manual and other documentation resources online at:
 | `display [p]`      | 每次暂停时打印表达式 `[p]` 的值，但不进入函数               |
 | `watch [var]`      | 监视变量 `[var]` 的值，当变量被写入时，会自动打印出来并暂停 |
 | `rwatch [var]`     | 监视变量 `[var]` 的值，当变量被读取时，会自动打印出来       |
-| `awatch [var]`     | 当变量 `[var]` 被修改或写入时，会自动打印出来并暂停         |
+| `awatch [var]`     | 当变量 `[var]` 被读取或写入时，会自动打印出来并暂停         |
 | `set [assignment]` | 执行赋值语句                                                |
 
 `display` 和 `print` 指令都支持控制输出格式，其方法是在命令后紧跟 `/` 与格式字符，例如 `print/display [var]`（按照十进制打印变量 `[var]` 的值），支持的格式字符有：

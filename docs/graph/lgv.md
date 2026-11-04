@@ -41,16 +41,16 @@ $$
 
 $$
 \begin{align}
-\det(M)&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n e(a_i,b_{\sigma(i)})\\
-&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:a_i\to b_{\sigma(i)}} \omega(P)
+\det(M)&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n e(A_i,B_{\sigma(i)})\\
+&=\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:A_i\to B_{\sigma(i)}} \omega(P)
 \end{align}
 $$
 
-观察到 $\prod\limits_{i=1}^n \sum\limits_{P:a_i\to b_{\sigma(i)}} \omega(P)$，实际上是所有从 $A$ 到 $B$ 排列为 $\sigma$ 的路径组 $P$ 的 $\omega(P)$ 之和．
+观察到 $\prod\limits_{i=1}^n \sum\limits_{P:A_i\to B_{\sigma(i)}} \omega(P)$，实际上是所有从 $A$ 到 $B$ 排列为 $\sigma$ 的路径组 $P$ 的 $\omega(P)$ 之和．
 
 $$
 \begin{align}
-&\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:a_i\to b_{\sigma(i)}} \omega(P)\\
+&\sum_{\sigma}(-1)^{t(\sigma)}\prod_{i=1}^n \sum_{P:A_i\to B_{\sigma(i)}} \omega(P)\\
 =&\sum_{\sigma}(-1)^{t(\sigma)}\sum_{P=\sigma}\omega(P)\\
 =&\sum_{P:A\to B}(-1)^{t(\sigma)}\prod_{i=1}^n \omega(P_i)
 \end{align}
@@ -97,7 +97,7 @@ $$
     ```
 
 ???+ note "例 2 [HDU 5852 Intersection is not allowed!](https://acm.hdu.edu.cn/showproblem.php?pid=5852)"
-    题意：有一个 $n\times n$ 的棋盘，一个棋子从 $(x, y)$ 只能走到 $(x, y+1)$ 或 $(x + 1, y)$，有 $k$ 个棋子，一开始第 $i$ 个棋子放在 $(1, a_i)$，最终要到 $(n, b_i)$，路径要两两不相交，求方案数对 $10^9+7$ 取模．$1\le n\le 10^5$，$1\le k\le 100$，保证 $1\le a_1<a_2<\dots<a_n\le n$，$1\le b_1<b_2<\dots<b_n\le n$．
+    题意：有一个 $n\times n$ 的棋盘，一个棋子从 $(x, y)$ 只能走到 $(x, y+1)$ 或 $(x + 1, y)$，有 $k$ 个棋子，一开始第 $i$ 个棋子放在 $(1, a_i)$，最终要到 $(n, b_i)$，路径要两两不相交，求方案数对 $10^9+7$ 取模．$1\le n\le 10^5$，$1\le k\le 100$，保证 $1\le a_1<a_2<\dots<a_k\le n$，$1\le b_1<b_2<\dots<b_k\le n$．
 
 观察到如果路径不相交就一定是 $a_i$ 到 $b_i$，因此 LGV 引理中一定有 $\sigma(S)_i=i$，不需要考虑符号问题．边权设为 $1$，直接套用引理即可．
 

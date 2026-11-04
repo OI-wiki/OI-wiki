@@ -242,7 +242,7 @@ $$
 \binom{r}{k}=\frac{r^{\underline{k}}}{k!}\quad(r\in\mathbf{C},k\in\mathbf{N})
 $$
 
-注意 $r$ 的范围是复数域．在这种情况下．对于 $\alpha\in\mathbf{C}$，有
+注意 $r$ 的范围是复数域．在这种情况下，对于 $\alpha\in\mathbf{C}$，有
 
 $$
 (1+x)^{\alpha}=\sum_{n\ge 0}\binom{\alpha}{n}x^n
