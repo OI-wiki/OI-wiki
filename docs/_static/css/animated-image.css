@@ -50,7 +50,14 @@
   transition: opacity 0.18s ease;
 }
 
-.anim-image:hover .anim-controls,
+/* 触摸屏的 hover 会粘住，只在支持悬停的设备上用 hover 显示控制条 */
+@media (hover: hover) {
+  .anim-image:hover .anim-controls {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .anim-controls:has(:focus-visible),
 .anim-controls.is-visible {
   opacity: 1;

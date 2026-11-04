@@ -884,16 +884,38 @@
     }
   }
 
+  /* 触摸端：点图片显示控制条，点别处隐藏，而不是点图片来回切换 */
   function enableTouchToggle(wrapper, controls) {
+    function isTouch() {
+      return !!window.matchMedia && window.matchMedia('(hover: none)').matches;
+    }
+
+    function onOutside(event) {
+      var target = event.target;
+      if (wrapper.contains(target)) {
+        return;
+      }
+      /* 倍速菜单挂在 body 上，点它不算点外部 */
+      if (target && target.closest && target.closest('.anim-speed-menu')) {
+        return;
+      }
+      controls.classList.remove('is-visible');
+      document.removeEventListener('click', onOutside, true);
+    }
+
     wrapper.addEventListener('click', function (event) {
-      if (!window.matchMedia || !window.matchMedia('(hover: none)').matches) {
+      if (!isTouch()) {
         return;
       }
       var target = event.target;
       if (target && target.closest && target.closest('.anim-controls')) {
         return;
       }
-      controls.classList.toggle('is-visible');
+      if (controls.classList.contains('is-visible')) {
+        return;
+      }
+      controls.classList.add('is-visible');
+      document.addEventListener('click', onOutside, true);
     });
   }
 
