@@ -172,9 +172,11 @@ $$
 
 通过以上势能函数设计，`push(x)` 操作的均摊成本为 $2$，而 `pop()` 和 `multi-pop(k)` 操作的均摊成本为 $0$．因此，所有堆栈操作的均摊成本均为 $O(1)$．
 
-## 参考资料与注释
+## 拓展阅读
 
 -   [Amortized Analysis - Wikipedia](https://en.wikipedia.org/wiki/Amortized_analysis)
+
+## 参考资料与注释
 
 [^clemson]: [Clemson University - Amortized Analysis + Splay Trees](https://people.computing.clemson.edu/~srimani/8380_F22/Course_Materials_Web/5_F22_Amortized%20Analysis%2BSplay%20Trees.pdf#page=8)
 

@@ -599,7 +599,7 @@ $$
 
 分数规划可以用二分法来解决．
 
-## 参考资料与注释
+## 拓展阅读
 
 -   [Ternary search - Wikipedia](https://en.wikipedia.org/wiki/Ternary_search)
 -   [Golden-section search - Wikipedia](https://en.wikipedia.org/wiki/Golden-section_search)

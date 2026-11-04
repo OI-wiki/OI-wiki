@@ -102,7 +102,7 @@
 
 排序后的数组无逆序对．归并排序的合并操作中，每次后段首元素被作为当前最小值取出时，前段剩余元素个数之和即是合并操作减少的逆序对数量；故归并排序计算逆序对数量的时间复杂度为 $\Theta (n \log n)$．此外，逆序对计数还可以通过树状数组或线段树解决，时间复杂度也是 $O(n \log n)$；这一算法的详细解释参见 [树状数组](../ds/fenwick.md#全局逆序对全局二维偏序) 相应描述．两种算法的参考实现都在 [逆序对](../math/permutation.md#逆序数) 章节．
 
-## 外部链接
+## 拓展阅读
 
 -   [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
 -   [归并排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
