@@ -576,6 +576,8 @@
     var seekTimer = null;
     var lastPreviewAt = 0;
     var resumeAfterScrub = false;
+    var pausedByUser = false;
+    var visible = false;
 
     var playButton = makeButton('播放', ICONS.play, function () {
       if (playing) {
@@ -624,30 +626,63 @@
       raf = window.requestAnimationFrame(frame);
     }
 
-    function play() {
+    function start() {
       if (playing) {
         return;
       }
       playing = true;
       controller.play();
-      playButton.innerHTML = ICONS.pause;
-      playButton.title = '暂停';
-      playButton.setAttribute('aria-label', '暂停');
       paint();
       raf = window.requestAnimationFrame(frame);
     }
 
-    function pause() {
+    function stop() {
       if (!playing) {
         return;
       }
       playing = false;
       window.cancelAnimationFrame(raf);
       controller.pause();
-      playButton.innerHTML = ICONS.play;
-      playButton.title = '播放';
-      playButton.setAttribute('aria-label', '播放');
       paint();
+    }
+
+    function setPlayingLabel(on) {
+      var label = on ? '暂停' : '播放';
+      playButton.innerHTML = on ? ICONS.pause : ICONS.play;
+      playButton.title = label;
+      playButton.setAttribute('aria-label', label);
+    }
+
+    function play() {
+      pausedByUser = false;
+      setPlayingLabel(true);
+      if (visible) {
+        start();
+      } else {
+        controller.pause();
+      }
+    }
+
+    function pause() {
+      pausedByUser = true;
+      setPlayingLabel(false);
+      stop();
+    }
+
+    /*  */
+    function setVisible(next) {
+      if (next === visible) {
+        return;
+      }
+      visible = next;
+      if (pausedByUser) {
+        return;
+      }
+      if (next) {
+        start();
+      } else {
+        stop();
+      }
     }
 
     function cancelPreview() {
@@ -747,7 +782,20 @@
     controls.appendChild(timeEl);
     controls.appendChild(speedMenu.element);
 
-    return { element: controls, play: play, pause: pause };
+    return { element: controls, play: play, pause: pause, setVisible: setVisible };
+  }
+
+  function watchVisibility(wrapper, controls) {
+    if (typeof IntersectionObserver === 'undefined') {
+      controls.setVisible(true);
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        controls.setVisible(entries[i].isIntersecting);
+      }
+    });
+    observer.observe(wrapper);
   }
 
   function enableTouchToggle(wrapper, controls) {
@@ -850,6 +898,7 @@
 
     controller.seek(0);
     box.play();
+    watchVisibility(wrapper, box);
   }
 
   /* SVG 动画 */
@@ -1024,6 +1073,7 @@
 
     controller.seek(0);
     box.play();
+    watchVisibility(wrapper, box);
   }
 
   function processSvgImage(img, src) {
