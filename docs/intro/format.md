@@ -425,7 +425,7 @@
         
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
--   <span id="CONT-7">CONT-7</span>：受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末；同时存在 `## 拓展阅读` 时，它必须紧邻在 `## 参考资料与注释` 之前．
+-   <span id="CONT-7">CONT-7</span>：受 Markdown 格式限制，`## 参考资料与注释` 与 `## 拓展阅读` 二级标题必须放在文末；同时存在时，`## 拓展阅读` 必须紧邻在 `## 参考资料与注释` 之前．
 
 -   <span id="CONT-8">CONT-8</span>：所有用作序号的数字建议使用中文．示例：
     -   数列的第一项．
