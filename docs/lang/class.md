@@ -224,7 +224,7 @@ class Object {
     value = 0;
   }
 
-  Object(int _weight = 0, int _value = 0) {
+  Object(int _weight, int _value) {
     weight = _weight;
     value = _value;
   }
