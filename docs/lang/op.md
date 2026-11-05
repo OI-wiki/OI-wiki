@@ -158,10 +158,10 @@ Result = (1 + 2, 3 + 4, 5 + 6);
 |  `*` （单目） | 间接寻址/解引用 |
 |  `->`     | 指针成员     |
 
-这些运算符用来访问对象的成员或者内存，除了最后一个运算符外上述运算符都可被重载．与 `&` ， `*` 和 `->` 相关的内容请阅读 [指针](./pointer.md) 和 [引用](./reference.md) 教程．这里还省略了两个很少用到的运算符 `.*` 和 `->*` ，其具体用法可以参见 [C++ 语言手册](https://zh.cppreference.com/w/cpp/language/operator_member_access) ．
+这些运算符用来访问对象的成员或者内存，除了 `.` 外上述运算符都可被重载．与 `&` ， `*` 和 `->` 相关的内容请阅读 [指针](./pointer.md) 和 [引用](./reference.md) 教程．这里还省略了两个很少用到的运算符 `.*` 和 `->*` ，其具体用法可以参见 [C++ 语言手册](https://zh.cppreference.com/w/cpp/language/operator_member_access) ．
 
 ```cpp
-auto result1 = v[1];  // 获取v中下标为2的对象
+auto result1 = v[1];  // 获取v中下标为1的对象
 auto result2 = p.q;   // 获取p对象的q成员
 auto result3 = p -> q;  // 获取p指针指向的对象的q成员，等价于 (*p).q
 auto result4 = &v;      // 获取指向v的指针

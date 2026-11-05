@@ -298,7 +298,8 @@ C++11 起提供了定宽整数的支持，具体如下：
 std::numeric_limits<int32_t>::max();  // int32_t 的最大值, 2'147'483'647
 std::numeric_limits<int32_t>::min();  // int32_t 的最小值, -2'147'483'648
 
-std::numeric_limits<double>::min();  // double 的最小值, 约为 2.22507e-308
+std::numeric_limits<double>::min();  // double 的最小正规格化值,
+                                     // 约为 2.22507e-308
 std::numeric_limits<double>::epsilon();  // 1.0 与 double 的下个可表示值的差,
                                          // 约为 2.22045e-16
 ```

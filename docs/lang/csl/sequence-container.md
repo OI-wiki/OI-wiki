@@ -225,7 +225,7 @@ std::array<int, 3> v1{1, 2, 3};
 v0.fill(1);  // 填充数组
 
 // 访问数组
-for (int i = 0; i != arr.size(); ++i) cout << arr[i] << " ";
+for (int i = 0; i != v0.size(); ++i) cout << v0[i] << " ";
 ```
 
 ## `deque`
