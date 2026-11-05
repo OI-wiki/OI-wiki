@@ -383,6 +383,8 @@
   }
 
   var SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
+  var MIN_WIDTH = 100;
+  var MIN_HEIGHT = 100;
   var SEEK_PREVIEW_DELAY = 80;
   var SCRUB_END_EVENTS = ['pointerup', 'pointercancel', 'blur'];
   var speedMenuSeq = 0;
@@ -1145,13 +1147,12 @@
       return;
     }
 
-    /* 原位替换：用原图固有宽高 + aspect-ratio，配合 max-width:100%
-       完全复刻 <img> 的等比缩放行为（窄容器缩窄、宽容器可放大到固有尺寸） */
-    var w = img.naturalWidth || parseFloat(source.getAttribute('width')) || 600;
-    var h = img.naturalHeight || parseFloat(source.getAttribute('height')) || 400;
+    var w = img.clientWidth || img.naturalWidth || parseFloat(source.getAttribute('width')) || 600;
+    var h = img.clientHeight || img.naturalHeight || parseFloat(source.getAttribute('height')) || 400;
+    var fixedWidth = img.getAttribute('width') || source.getAttribute('width');
     var wrapper = document.createElement('span');
     wrapper.className = 'anim-image';
-    wrapper.style.width = w + 'px';
+    wrapper.style.width = fixedWidth ? w + 'px' : '100%';
     wrapper.style.aspectRatio = w + ' / ' + h;
     var baseStyle = wrapper.getAttribute('style');
     wrapper.style.setProperty('position', 'fixed', 'important');
@@ -1265,12 +1266,40 @@
     return dot === -1 ? '' : path.slice(dot).toLowerCase();
   }
 
+  function isTooSmall(img) {
+    var w = img.clientWidth || img.naturalWidth;
+    var h = img.clientHeight || img.naturalHeight;
+    return w > 0 && h > 0 && (w < MIN_WIDTH || h < MIN_HEIGHT);
+  }
+
   function processImage(img) {
     if (img.getAttribute(EXT_ATTR)) {
       return;
     }
     var src = img.getAttribute('src');
     if (!src) {
+      return;
+    }
+    /* 固有尺寸要等图片加载完才知道 */
+    if (!img.complete) {
+      img.addEventListener(
+        'load',
+        function () {
+          processImage(img);
+        },
+        { once: true }
+      );
+      img.addEventListener(
+        'error',
+        function () {
+          processImage(img);
+        },
+        { once: true }
+      );
+      return;
+    }
+    if (isTooSmall(img)) {
+      img.setAttribute(EXT_ATTR, 'small');
       return;
     }
 
