@@ -198,7 +198,7 @@ $$
 T\left(n\right)=T\left(\frac{n}{2}\right)+O\left(n\log{n}\right)=O\left(n\log{n}\right)
 $$
 
-还有一种常数较小的写法就是在倍增维护 $f\left(x\right)$ 的时候同时维护 $f^{-1}\left(x\right)$ 而不是每次都求逆．
+还有一种常数较小的写法：倍增维护 $f\left(x\right)$ 时，同时维护 $f^{-1}\left(x\right)$，而非每次都求逆．
 
 > 当 $\left[x^{0}\right]g\left(x\right)\neq 1$ 时，可能需要使用二次剩余来计算 $\left[x^{0}\right]f\left(x\right)$．
 
@@ -435,7 +435,7 @@ $$
 ### 代码
 
 ??? note "多项式三角函数"
-    注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，虚数单位 $\mathrm{i}$ 应该被换成 $86583718$ 或 $911660635$：
+    注意到我们是在 $\mathbb{Z}_{998244353}$ 上做 NTT，那么相应地，应该将虚数单位 $\mathrm{i}$ 换成 $86583718$ 或 $911660635$：
     
     $$
     \begin{aligned}
@@ -508,7 +508,7 @@ $$
 \end{aligned}
 $$
 
-直接按式子求就可以了．
+直接按式子求解即可．
 
 ### 代码
 

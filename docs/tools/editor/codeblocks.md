@@ -41,7 +41,7 @@ Code::Blocks 是一个使用 C++ 开发的开源集成开发环境（IDE），�
 2.  在 `Selected compiler` 下拉框中选择需要配置的编译器，例如 `GNU GCC Compiler`．
 3.  在 `Toolchain executables` 选项卡中，单击 `Auto-detect` 按钮，Code::Blocks 将自动扫描系统中已安装的编译器．
 4.  如果自动扫描失败，你可以手动设置编译器路径．在 `Compiler's installation directory` 中输入编译器的安装路径，例如 `C:\MinGW\bin`．
-5.  设置完成后，点击 `OK` 保存设置，现在你可以使用该编译器来编译和运行项目．
+5.  设置完成后，点击 `OK` 保存设置，现在你可以用该编译器编译和运行项目．
 
 ## 使用
 

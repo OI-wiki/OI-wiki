@@ -1,6 +1,6 @@
 author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-tainer, yiyangit, shuzhouliu, broken-paint, CarvingAn
 
-本页面主要列举一些竞赛中很多人经常会出现的错误．
+本页面主要列举竞赛中的常见错误．
 
 ## 因环境不同导致的错误
 
@@ -29,7 +29,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
         //错误    没有与参数列表匹配的 重载函数 "std::max" 实例
         ```
 
--   使用 `goto` 和 `switch-case` 的时候跳过了一些局部变量的初始化．
+-   使用 `goto` 和 `switch-case` 时跳过了一些局部变量的初始化．
 
 ## 不会引起 CE 但会引起 Warning 的错误
 
@@ -68,9 +68,9 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 -   不正确地使用 `static` 修饰符．
 
--   使用 `scanf` 读入的时候没加取地址符 `&`．
+-   使用 `scanf` 读入时没加取地址符 `&`．
 
--   使用 `scanf` 或 `printf` 的时候参数类型与格式指定符不符．
+-   使用 `scanf` 或 `printf` 时参数类型与格式指定符不符．
 
 -   同时使用位操作和比较运算符 `==` 并且未加括号．
     -   示例：`(x >> j) & 3 == 2`
@@ -120,7 +120,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 ## 既不会引起 CE 也不会引发 Warning 的错误
 
-这类错误无法被编译器发现，仅能自行查明．
+编译器无法发现这类错误，只能自行查明．
 
 ### 会导致 WA 的错误
 
@@ -131,7 +131,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 -   所用数据类型位宽不足，导致溢出．
     -   如习语「三年 OI 一场空，不开 `long long` 见祖宗」所描述的场景．选手因为没有在正确的地方开 `long long`（将整数定义为 `long long` 类型），导致得出错误的答案而失分．
 
--   存图时，节点编号从 0 开始，而题目给的边中两个端点的编号从 1 开始，读入的时候忘记 -1．
+-   存图时，节点编号从 0 开始，而题目给的边中两个端点的编号从 1 开始，读入时忘记 -1．
 
 -   大/小于号打错或打反．
 
@@ -273,7 +273,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
     -   错误预估了算法的空间复杂度．
 
-    -   写线段树的时候，`pushup` 或 `pushdown` 叶节点．
+    -   写线段树时，`pushup` 或 `pushdown` 叶节点．
 
         正确的做法：不要越界，记得检查自己的代码，使得访问下标 `x` 在定义的下标范围内．
 
@@ -445,7 +445,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 -   使用 + 运算符向 `std::string` 类字符串追加字符
 
-    这种错误会创建一个临时 `string` 变量，修改完成后再赋值给原变量．这种错误无法被编译器优化，在数据量大的情况下可能会导致时间复杂度退化．
+    这种错误会创建一个临时 `string` 变量，修改完成后再赋值给原变量．编译器无法优化这种错误，数据量大时可能导致时间复杂度退化．
 
     常见错误写法：
 
@@ -490,7 +490,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
         
                 虚拟内存是一个逻辑概念，通常会比实际内存使用大很多．
         
-                在 Linux 下你可以使用 `top` 命令来查看某个进程的内存占用组成，其中 `VIRT` 这一列就代表它占用的虚拟内存．
+                在 Linux 下可以用 `top` 命令查看某个进程的内存占用组成，其中 `VIRT` 这一列就代表它占用的虚拟内存．
         
                 虚拟内存一般包括进程分配但未实际使用的地址空间，简而言之，申请了多少，虚拟内存就大约是多少．
         
@@ -554,7 +554,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 ### 会导致常数过大
 
--   定义模数的时候，未定义为常量．
+-   定义模数时，未定义为常量．
 
     -   示例：
 
@@ -565,7 +565,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 -   使用了不必要的递归（尾递归不在此列）．
 
--   将递归转化成迭代的时候，引入了大量额外运算．
+-   将递归转化成迭代时，引入了大量额外运算．
 
 ### 只在程序本地运行的时候造成影响的错误
 

@@ -16,7 +16,7 @@ Kate，全称 KDE Advanced Text Editor，是一个具有众多功能的跨平台
 
 ### 代码高亮
 
-Kate 支持三百余种语言的语法高亮．一般来说，Kate 可以自动地选择对应的语言进行语法高亮，不过偶尔也有错误的时候，这时候可以点击最右下角的按钮，选择正确的语言．
+Kate 支持三百余种语言的语法高亮．一般来说，Kate 可以自动选择对应语言的语法高亮，偶尔出错时，可以点击最右下角的按钮，选择正确的语言．
 
 #### 自己编写语法高亮文件
 
@@ -43,7 +43,7 @@ Kate 可以自动识别当前文件使用的是什么编码，如果识别错误
 1.  是否区分大小写
 2.  支持正则表达式（包括捕获组）
 3.  从当前文件到多文件再到当前工程不等的范围
-4.  对查找的结果进行选择替换
+4.  有选择地替换查找结果
 
 ### Language Server Protocol
 
@@ -112,7 +112,7 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 }
 ```
 
-其中 `server` 里的每一项代表一种语言，在这个语言里，`command` 代表启动 LSP Server 所使用的命令，`command` 是一个数组，是所需要执行的命令以空格分词的结果；`url` 是 LSP 的网址；`rootIndicationFileNames` 是用于确定项目根目录的文件；`highlightingModeRegex` 则匹配某种语法高亮的名字，以确定使用哪个 LSP；如果存在 `use` 项，则代表使用 `use` 项对应的语言的配置．
+其中 `server` 里的每一项代表一种语言，`command` 表示启动 LSP Server 的命令，`command` 是将待执行命令按空格分词得到的数组；`url` 是 LSP 的网址；`rootIndicationFileNames` 是用于确定项目根目录的文件；`highlightingModeRegex` 则匹配某种语法高亮的名字，以确定使用哪个 LSP；如果存在 `use` 项，则代表使用 `use` 项对应的语言的配置．
 
 该配置项位于 `设置`→`配置 Kate`→`LSP 客户端`→`用户服务器设置`，其中 `LSP 客户端` 部分要在 `插件` 中启用 `LSP 客户端` 插件后才可见．
 
@@ -148,7 +148,7 @@ Kate 自 19.12 起支持 LSP Client，最初仅支持 C/C++、D、Fortran、Go�
 在 \* nix 系统下，打开任意 C++ 源文件，在外部工具里找到 `编译执行 cpp`，点击即可．
 
 ???+ note "对于 Windows 用户"
-    在默认情况下，由于该工具的可执行文件为 `sh`，使得该工具在 Windows 下不可用．然而，用户可以对该工具进行修改，使其可用于 Windows 系统．
+    在默认情况下，由于该工具的可执行文件为 `sh`，使得该工具在 Windows 下不可用．用户可以修改该工具，使其可用于 Windows 系统．
     
     要进行修改，请先确保你的系统内有一个可用的 C++ 编译器．然后从默认工具添加 `编译运行 cpp`，将其中 `可执行文件` 从 `sh` 改为 `powershell`，参数改为 `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"` [^note1][^note2]即可．
 

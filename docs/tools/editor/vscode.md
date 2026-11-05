@@ -2,7 +2,7 @@ author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink,
 
 ## 简介
 
-Visual Studio Code（以下简称 VS Code）是一个由微软开发，同时支持 Windows、Linux 和 macOS 等操作系统且开放源代码的代码编辑器．它是用 TypeScript 编写的，并且采用 Electron 架构．它带有对 JavaScript、TypeScript 和 Node.js 的内置支持，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统．
+Visual Studio Code（以下简称 VS Code）是微软开发的开源代码编辑器，支持 Windows、Linux 和 macOS 等操作系统．它是用 TypeScript 编写的，并且采用 Electron 架构．它内置支持 JavaScript、TypeScript 和 Node.js，并为其他语言（如 C、C++、Java、Python、PHP、Go）提供了丰富的扩展生态系统．
 
 官网：[Visual Studio Code - The open source AI code editor](https://code.visualstudio.com/)
 
@@ -32,7 +32,7 @@ VS Code 安装并配置扩展后可实现对 C/C++ 的支持，但配置过程�
 
 Code Runner 是一个可以一键运行代码的扩展，在工程上一般用来验证代码片段，支持 Node.js、Python、C、C++、Java、PHP、Perl、Ruby、Go 等 40 多种语言．
 
-安装的方式是在扩展商店搜索 Code Runner 并点击 Install；或者前往 [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 并点击 Install，浏览器会自动打开 VS Code 并进行安装．
+安装时，在扩展商店搜索 Code Runner 并点击 Install；或者前往 [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) 并点击 Install，浏览器会自动打开 VS Code 并进行安装．
 
 ![](./images/vscode-1.jpg)
 
@@ -90,7 +90,7 @@ Code Runner 是一个可以一键运行代码的扩展，在工程上一般用�
 
 如果编辑器未自动跳转，点击左侧工具栏中的「调试」图标进入调试窗口，即可在左侧看到变量的值．
 
-在「监视」中，你可以输入表达式，在每一次进行 `next` 或 `step` 等操作时都会重新求值并显示．
+在「监视」中，你可以输入表达式，每次执行 `next` 或 `step` 等操作时都会重新求值并显示．
 
 在「调用堆栈」中，你可以看见当前函数执行的栈帧．
 
@@ -118,9 +118,9 @@ LLVM 官网上对 clangd 的介绍是这样的：
 
 > Clangd is an implementation of the Language Server Protocol leveraging Clang. Clangd’s goal is to provide language "smartness" features like code completion, find references, etc. for clients such as C/C++ Editors.
 
-简单来说，clangd 是 Clang 对语言服务器协定（Language Server Protocol）的实现，提供了一些智能的特性，例如全项目索引、代码跳转、变量重命名、更快的代码补全、提示信息、格式化代码等，并且能利用 LSP 与 Vim、Emacs、VSCode 等编辑器协作．虽然官方给出的定义是 LSP 的实现，但 clangd 的功能更接近语言服务器（Language Server）而不仅仅只是协议本身．
+简单来说，clangd 是 Clang 对语言服务器协定（Language Server Protocol）的实现，提供了一些智能的特性，例如全项目索引、代码跳转、变量重命名、更快的代码补全、提示信息、格式化代码等，并且能利用 LSP 与 Vim、Emacs、VSCode 等编辑器协作．虽然官方给出的定义是 LSP 的实现，但 clangd 的功能更接近语言服务器（Language Server）而不仅仅是协议本身．
 
-VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易读程度的准确度等方面与 clangd 相比稍逊一筹，所以我们有时会使用 clangd 代替 C/C++ 扩展来实现代码自动补全等功能．
+VS Code 的 C/C++ 扩展也有自动补全等功能，但在提示信息的易读性和准确度等方面稍逊于 clangd，所以我们有时会使用 clangd 代替 C/C++ 扩展来实现代码自动补全等功能．
 
 ### 安装
 

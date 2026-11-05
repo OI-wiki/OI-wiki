@@ -13,7 +13,7 @@ author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, E
 -   `-o <文件名>`：指定编译器输出可执行文件的文件名．
 -   `-g`：在编译时添加调试信息（使用 gdb 调试时需要）．
 -   `-Wall`：显示所有编译警告信息．
--   `-O1`，`-O2`，`-O3`，`-Ofast`：对编译的程序进行优化，越往后的优化级别表示采用的优化手段越多（开启优化会影响使用 gdb 调试）．
+-   `-O1`，`-O2`，`-O3`，`-Ofast`：优化编译的程序，越往后的优化级别表示采用的优化手段越多（开启优化会影响使用 gdb 调试）．
 -   `-DDEBUG`：在编译时定义 `DEBUG` 符号（符号可以随意更换，例如 `-DONLINE_JUDGE` 定义了 `ONLINE_JUDGE` 符号）．
 -   `-UDEBUG`：在编译时取消定义 `DEBUG` 符号．
 -   `-lm`，`-lgmp`: 链接某个库（此处是 math 和 gmp，具体使用的名字需查阅库文档，但一般与库名相同）．
@@ -197,7 +197,7 @@ Find the GDB manual and other documentation resources online at:
 | `source [filename]`           | 导入断点文件                                           |
 
 ???+ tip "提示"
-    gdb 调试时的命令大多都可以被简写为可以唯一确定的字母缩写，例如 `breakpoint` 简写为 `b`，`step` 简写为 `s`，`info args` 简写为 `i ar`．详见 `help` 命令．
+    gdb 调试命令大多可以简写为能唯一确定该命令的字母缩写，例如 `breakpoint` 简写为 `b`，`step` 简写为 `s`，`info args` 简写为 `i ar`．详见 `help` 命令．
 
 ## 参考资料与注释
 
