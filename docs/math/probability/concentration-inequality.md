@@ -92,11 +92,11 @@ $$
 
 ### Poisson 试验之和的 Chernoff 不等式
 
-算法竞赛中涉及的随机变量通常没有那么「一般」，我们可以用概率论中的 Poisson 试验对其进行描述．
+算法竞赛中涉及的随机变量通常没有那么「一般」，可以用概率论中的 Poisson 试验描述．
 
 所谓 Poisson 试验，是指只有两种可能结果的随机试验．
 
-一次的 Poisson 试验的结果可以用一个取值为 $0$ 或 $1$ 的随机变量 $X$ 进行刻画，其概率分布为
+一次 Poisson 试验的结果可以用取值为 $0$ 或 $1$ 的随机变量 $X$ 刻画，其概率分布为
 
 $$
 P\{ X = i \} = \begin{cases}
@@ -204,7 +204,7 @@ Chernoff 不等式和 Hoeffding 不等式都限制了随机变量偏离其期望
     
     尝试分析第二、第三步所需的操作次数（即添加/删除元素的次数）：
     
-    -   记 01 随机变量 $X_i$ 表示 $i$ 是否被选入初始的子集，令 $X:=X_1+\cdots+X_n$ 表示子集大小，则第二、第三步所需的操作次数等于 $\big|X-\mathrm{E}[X]\big|$．在 Hoeffding 不等式中取 $t=c\cdot\sqrt n$（其中 $c$ 为任意常数），得到 $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2\mathrm{e}^{-c^2}$．也就是说，我们可以通过允许 $\Theta(\sqrt n)$ 级别的偏移，来得到任意小的常数级别的失败概率．
+    -   记 01 随机变量 $X_i$ 表示 $i$ 是否被选入初始的子集，令 $X:=X_1+\cdots+X_n$ 表示子集大小，则第二、第三步所需的操作次数等于 $\big|X-\mathrm{E}[X]\big|$．在 Hoeffding 不等式中取 $t=c\cdot\sqrt n$（其中 $c$ 为任意常数），得到 $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2\mathrm{e}^{-c^2}$．也就是说，允许 $\Theta(\sqrt n)$ 级别的偏移，就能得到任意小的常数级失败概率．
     
     至此我们已经说明：该算法可以以很大概率保证抛硬币次数在 $n+\Theta(\sqrt n\log n)$ 以内．
     

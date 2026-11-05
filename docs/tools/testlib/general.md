@@ -74,7 +74,7 @@
 
 ## 首先 include testlib.h
 
-请确保 testlib.h 是你 include 的 **第一个** 头文件，Testlib 会重写/禁用（通过名字冲突的方式）一些与随机有关的函数（如 `random()`），保证随机结果与环境无关，这对于 generator 非常重要，[generator 页面](./generator.md) 会详细说明这一点．
+请确保 testlib.h 是你 include 的 **第一个** 头文件，Testlib 会重写/禁用（通过名字冲突）一些与随机有关的函数（如 `random()`），保证随机结果与环境无关，这对于 generator 非常重要，[generator 页面](./generator.md) 会详细说明这一点．
 
 ## 使用项别名
 
@@ -96,7 +96,7 @@ ensuref(s.length() % 2 == 0,
         int(s.length()));
 ```
 
-它有一个简化版 `ensure()`，我们可以直接使用 `ensure(x> y)` 而不添加说明内容（也不支持添加说明内容），如果条件不满足报错将为 `FAIL Condition failed: "x > y"`．很多情况下不加额外的说明的这种报错很不友好，所以我们通常使用 `ensuref()` 并加以说明内容，而非使用 `ensure()`．
+它有一个简化版 `ensure()`，我们可以直接使用 `ensure(x> y)` 而不添加说明内容（也不支持添加说明内容），如果条件不满足报错将为 `FAIL Condition failed: "x > y"`．很多情况下，这种缺少说明的报错很不友好，所以我们通常使用 `ensuref()` 并附加说明，而非使用 `ensure()`．
 
 ???+ warning "Warning"
     注意全局与成员 `ensuref/ensure()` 的区别

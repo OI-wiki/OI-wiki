@@ -5,7 +5,7 @@
 ???+ abstract "定义"
     **布尔函数**（boolean function）指的是形如 $f:\mathbf{B}^k\to \mathbf{B}$ 的函数，其中 $\mathbf{B}=\{0,1\}$ 为 **布尔域**（boolean domain），非负整数 $k$ 为该布尔函数的 **元数**（arity）．$k=1$ 的布尔函数为一元函数，以此类推．$k=0$ 时，我们认为函数退化为 $\mathbf{B}$ 中的常量．
 
-我们一般只研究一元和二元的布尔函数．如无特殊说明，下文的布尔函数仅限于一元和二元的情况．
+我们一般只研究一元和二元布尔函数．如无特殊说明，下文的布尔函数均限于这两类．
 
 除了函数的一般表达方式外，我们还可以用 **真值表**（truth table）、**逻辑门**（logic gate）、[Venn 图](https://en.wikipedia.org/wiki/Venn_diagram) 来表示布尔函数．
 
@@ -130,7 +130,7 @@ C++ 中的规定参见 [C++ 运算符优先级总表](../lang/op.md#c-运算符�
 
 ## 逻辑表达式的标准化
 
-根据上述性质，我们可以对逻辑表达式进行一定的等价变换，使其符合特定的范式，这一点可用于自动定理证明中．常见的标准化范式有 **合取范式**（conjunctive normal form，CNF）、**析取范式**（disjunctive normal form，DNF）和 **代数范式**（algebraic normal form，ANF）．
+根据上述性质，可以对逻辑表达式作等价变换，使其符合特定范式，这可用于自动定理证明．常见的标准化范式有 **合取范式**（conjunctive normal form，CNF）、**析取范式**（disjunctive normal form，DNF）和 **代数范式**（algebraic normal form，ANF）．
 
 ???+ abstract "合取范式与析取范式"
     我们做如下递归式的定义：
@@ -164,7 +164,7 @@ C++ 中的规定参见 [C++ 运算符优先级总表](../lang/op.md#c-运算符�
 -   $\lnot(A\land B)$，
 -   $A\land (B\lor (C\land D))$．
 
-我们可以通过如下的步骤将任意一个只含有 $\lnot$、$\land$、$\lor$ 运算的逻辑表达式变形为 DNF：
+按以下步骤，可以将任意只含有 $\lnot$、$\land$、$\lor$ 运算的逻辑表达式变形为 DNF：
 
 $$
 \begin{array}{rcccl}
@@ -190,9 +190,9 @@ $$
     2.  若干不等价子式的异或，如 $a\oplus b\oplus(a\land b)\oplus(a\land b\land c)$，
     3.  若干不等价子式与唯一的 $1$ 的异或，如 $1\oplus a\oplus b\oplus(a\land b)\oplus(a\land b\land c)$．
 
-注意到代数范式和 $\mathbf{Z}_2$ 上的多项式一一对应，所以代数范式也被称为 **Zhegalkin 多项式**（Zhegalkin polynomial）．
+注意到代数范式和 $\mathbf{Z}_2$ 上的多项式一一对应，所以代数范式也称为 **Zhegalkin 多项式**（Zhegalkin polynomial）．
 
-我们可以通过如下的步骤将任意一个只含有 $\lnot$、$\land$、$\lor$、$\oplus$ 运算的逻辑表达式变形为 ANF：
+按以下步骤，可以将任意只含有 $\lnot$、$\land$、$\lor$、$\oplus$ 运算的逻辑表达式变形为 ANF：
 
 1.  $\oplus$：直接展开，如 $(1\oplus x)\oplus(1\oplus x\oplus y)=1\oplus x\oplus 1\oplus x\oplus y=y$，
 2.  $\land$：用分配律展开，如 $x\land(1\oplus x\oplus y)=(x\land 1)\oplus (x\land x)\oplus (x\land y)=x\oplus x\oplus (x\land y)=x\land y$，

@@ -139,7 +139,7 @@ wsl --set-default-version 2
 
 ![搜索页](./images/wsl-search-page.png)
 
-进入 Microsoft Store，搜索「Ubuntu」，然后选择「Ubuntu」，点击「安装」进行安装．也可打开 [Ubuntu 的商店页面](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)．
+进入 Microsoft Store，搜索「Ubuntu」，然后选择「Ubuntu」，点击「安装」．也可打开 [Ubuntu 的商店页面](https://www.microsoft.com/zh-cn/p/ubuntu/9nblggh4msv6)．
 
 ???+ warning "Warning"
     Microsoft Store 的 Ubuntu 随着 Ubuntu 的更新而更新，因此内容可能会有所改变．如果想获取稳定的 Ubuntu 长期支持版，可以在 Microsoft Store 安装 Ubuntu 的 LTS 版本．
@@ -264,7 +264,7 @@ $ sudo su # 执行这行指令后，终端提示符会从 $ 变成 #，执行下
 
 GUIDE 的安装请参考 [Debian 或 Ubuntu 下 GUIDE 的安装](./editor/guide.md#在-debian-或-ubuntu-安装)．
 
-这里安装的是基础 + NOI 官方要求的环境，如有需要可以用 `sudo apt install <程序名>` 来安装其它软件包．
+这里安装的是基础 + NOI 官方要求的环境，如有需要可以用 `sudo apt install <程序名>` 安装其它软件包．
 若想安装其他版本可以参考 Debian 官方的 [包管理手册](https://www.debian.org/doc/manuals/debian-reference/ch02.zh-cn.html)．
 
 以下为一个示例程序：
@@ -372,7 +372,7 @@ $ xfce4-session
 
 ### WSL 与 Windows 文件的互访问
 
-Windows 下的硬盘被自动挂载至 Linux 环境下的 `/mnt` 文件夹下．
+Windows 下的硬盘会自动挂载至 Linux 环境的 `/mnt` 文件夹下．
 如 C 盘在 WSL 下的路径为 `/mnt/c`
 
 ```console
@@ -395,17 +395,17 @@ Welcome!
 
 ### 配合 Visual Studio Code 进行编辑
 
-如果习惯在 Windows 环境下使用 [Visual Studio Code](./editor/vscode.md) 进行代码编辑，可以安装 VS Code 中的 `Remote - WSL` 插件，更方便地对 WSL 系统中的文件进行编辑．
+如果习惯在 Windows 环境下使用 [Visual Studio Code](./editor/vscode.md) 编辑代码，可以安装 VS Code 中的 `Remote - WSL` 插件，更方便地编辑 WSL 系统中的文件．
 
-通过 `Remote - WSL`，可以在 Windows 下的 VS Code 界面中直接对 WSL 子系统进行操作，更加方便地编辑子系统目录下的文件、更方便地使用终端进行调试．
+通过 `Remote - WSL`，可以在 Windows 下的 VS Code 界面中直接对 WSL 子系统进行操作，更方便地编辑子系统目录下的文件、使用终端调试．
 
-通过在 WSL 中直接键入 `code .`，可以在该目录下直接唤出 Visual Studio Code，对于该目录下的文件进行编辑．
+通过在 WSL 中直接键入 `code .`，可以在该目录下直接唤出 Visual Studio Code，编辑该目录下的文件．
 
-同时，可以通过类似 `code filename` 的命令，对于指定文件进行编辑．
+同时，可以通过类似 `code filename` 的命令，编辑指定文件．
 
-在插件 `Remote - WSL` 的 Getting Started 页面，包含对于编辑操作的详细简介．
+在插件 `Remote - WSL` 的 Getting Started 页面，包含编辑操作的详细介绍．
 
-同时，也可以参考 Visual Studio Code 的官方文档中关于 WSL 的内容（[Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)），这篇文章包含从 WSL 安装到配合插件使用的全流程的更详细的介绍．
+同时，也可以参考 Visual Studio Code 的官方文档中关于 WSL 的内容（[Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial)），这篇文章更详细地介绍了从安装 WSL 到配合插件使用的全流程．
 
 ## WSL1 升级为 WSL2
 

@@ -41,7 +41,7 @@ $$
 \end{aligned}
 $$
 
-且 $q^{\binom{i + 1}{2}} = q^{\binom{i}{2}}\cdot q^i$，$\binom{-i}{2} = \binom{i + 1}{2}$．可以由一次多项式乘法完成求算，该算法被称为 Bluestein 算法．
+且 $q^{\binom{i + 1}{2}} = q^{\binom{i}{2}}\cdot q^i$，$\binom{-i}{2} = \binom{i + 1}{2}$．可以由一次多项式乘法完成求算，该算法称为 Bluestein 算法．
 
 ??? note "模板（[P6800【模板】Chirp Z-Transform](https://www.luogu.com.cn/problem/P6800)）"
     ```cpp
@@ -95,7 +95,7 @@ $$
 M(x) = H(x) \cdot q^{k^2} \cdot H\left(\frac{x}{q^k}\right)
 $$
 
-这使得我们可以快速计算 $M(x)$．然后用 Bluestein 算法来计算 $M'(1), \dots, M'(q^{n - 1})$．令 $c_i := f\left(q^i\right)/M'\left(q^i\right)$，我们有
+这使得我们可以快速计算 $M(x)$．然后用 Bluestein 算法计算 $M'(1), \dots, M'(q^{n - 1})$．令 $c_i := f\left(q^i\right)/M'\left(q^i\right)$，我们有
 
 $$
 f(x) = M(x)\left(\sum_{i = 0}^{n - 1}\frac{c_i}{x - q^i}\right)
@@ -111,9 +111,9 @@ $$
 \end{aligned}
 $$
 
-其中 $C(x) = \sum_{i = 0}^{n - 1} c_i x^i$．我们可以用 Bluestein 算法来计算 $C\left(q^{-1}\right), \dots, C\left(q^{-n}\right)$．
+其中 $C(x) = \sum_{i = 0}^{n - 1} c_i x^i$．可以用 Bluestein 算法计算 $C\left(q^{-1}\right), \dots, C\left(q^{-n}\right)$．
 
-简单来说，我们分别进行下面的计算：
+具体计算如下：
 
 1.  用减治法（decrease and conquer）计算 $M(x)$；
 2.  用 Bluestein 算法计算 $M'(1), \dots, M'(q^{n - 1})$；
