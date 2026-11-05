@@ -43,6 +43,13 @@ def output(name, value):
         f.write(f"{name}={value}\n")
 
 
+def replace_directory(dirname, old, new):
+    """Replace complete path components without changing directory names."""
+    return os.path.normpath(
+        os.sep.join(new if part == old else part for part in dirname.split(os.sep))
+    )
+
+
 def get_files_to_test(filenames):
     mainfiles_to_test = set()
     mainfiles, auxfiles, examples, skiptest = [], [], [], []
@@ -79,7 +86,9 @@ def get_files_to_test(filenames):
                     ):
                         temp_auxfiles.append(os.path.normpath(os.path.join(root, file)))
             temp_examples = []
-            for root, _, files in os.walk(dirname.replace("code", "examples")):
+            for root, _, files in os.walk(
+                replace_directory(dirname, "code", "examples")
+            ):
                 for file in files:
                     if (
                         file.split(".")[0] == basename.split(".")[0]
@@ -91,7 +100,9 @@ def get_files_to_test(filenames):
                         temp_examples.append(os.path.normpath(os.path.join(root, file)))
         else:
             temp_auxfiles = []
-            for root, _, files in os.walk(dirname.replace("examples", "code")):
+            for root, _, files in os.walk(
+                replace_directory(dirname, "examples", "code")
+            ):
                 for file in files:
                     if file.split(".")[0] == basename.split(".")[0] and file.endswith(
                         ".cpp"
