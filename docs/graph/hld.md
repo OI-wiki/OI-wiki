@@ -39,7 +39,7 @@ author: GoodCoder666, Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogee
 
 ## 实现
 
-树剖需要两遍 DFS．伪代码如下：
+本文用两遍 DFS 实现重链剖分．伪代码如下：
 
 第一个 DFS 记录每个结点的父结点（$\textit{father}$）、深度（$\textit{depth}$）、子树大小（$\textit{size}$）、重子结点（$\textit{hson}$）．
 

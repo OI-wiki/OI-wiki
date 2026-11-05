@@ -98,7 +98,7 @@ map<string, int> mp;
 ### 插入与删除操作
 
 -   可以直接通过下标查询或插入．例如 `mp["Alan"]=100`．
--   向 `map` 中插入类型为 `pair<Key, T>` 的元素，例如 `mp.insert(pair<string,int>("Alan",100));`；
+-   `map` 的 `insert` 可以接受 `pair<Key, T>` 类型的实参，例如 `mp.insert(pair<string,int>("Alan",100));`．容器中实际存储的元素类型是 `pair<const Key, T>`．
 -   `erase(key)` 函数会删除键为 `key` 的 **所有** 元素．返回值为删除元素的数量．
 -   `erase(pos)`: 删除迭代器为 pos 的元素，要求迭代器必须合法．
 -   `erase(first,last)`: 删除迭代器在 $[first,last)$ 范围内的所有元素．
@@ -152,7 +152,7 @@ using si = set<int>::iterator;
 for (si it = s.begin(); it != s.end(); it++) cout << *it << endl;
 ```
 
-注意，对 `map` 的迭代器解引用后，得到的是类型为 `pair<Key, T>` 的键值对．
+注意，对 `map<Key, T>` 的普通迭代器解引用后，得到 `pair<const Key, T>` 类型元素的引用，因此不能通过迭代器修改键 `first`．
 
 在 C++11 中，使用范围 for 循环会让代码简洁很多：
 
