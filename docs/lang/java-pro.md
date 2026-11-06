@@ -3,11 +3,11 @@
 
 ## 更高速的输入输出
 
-`Scanner` 和 `System.out.print` 在最开始会工作得很好，但是在处理更大的输入的时候会降低效率，因此我们会需要使用一些方法来提高 IO 速度．
+`Scanner` 和 `System.out.print` 在最开始会工作得很好，但处理更大的输入时效率会降低，因此需要提高 IO 速度．
 
 ### 使用 Kattio + StringTokenizer 作为输入
 
-最常用的方法之一是使用来自 Kattis 的 [Kattio.java](https://github.com/Kattis/kattio/blob/master/Kattio.java) 来提高 IO 效率．[^ref1]这个方法会将 `StringTokenizer` 与 `PrintWriter` 包装在一个类中方便使用．而在具体进行解题的时候（假如赛会/组织方允许）可以直接使用这个模板．
+最常用的方法之一是使用来自 Kattis 的 [Kattio.java](https://github.com/Kattis/kattio/blob/master/Kattio.java) 来提高 IO 效率．[^ref1]这个方法会将 `StringTokenizer` 与 `PrintWriter` 包装在一个类中方便使用．解题时（假如赛会/组织方允许）可以直接使用这个模板．
 
 下方即为应包含在代码中的 IO 模板，由于 Kattis 的原 Kattio 包含一些并不常用的功能，下方的模板经过了一些调整（原 Kattio 使用 MIT 作为协议）．
 
@@ -89,14 +89,14 @@ public class Main {
 1.  `StreamTokenizer` 相较于 `StringTokenizer` 使用的内存较少，当 Java 标程 MLE 时可以尝试使用 `StreamTokenizer`，但是 `StreamTokenizer` 会丢失精度，读入部分数据时会出现问题；
     -   `StreamTokenizer` 源码存在 `Type`，该 `Type` 根据输入内容来决定类型，如果输入类似于 `123oi` 以 **数字开头** 的字符串，它会强制认为类型是 `double` 类型，因此在读入中以 `double` 类型去读 `String` 类型便会抛出异常；
     -   `StreamTokenizer` 在读入 `1e14` 以上大小的数字会丢失精度；
-2.  在使用 `PrintWriter` 情况下，需注意在程序结束最后 `close()` 关闭输出流或在需要输出的时候使用 `flush()` 清除缓冲区，否则内容将不会被写入到控制台/文件中．
-3.  `Kattio` 是继承自 `PrintWriter` 类，自身对象具有了 `PrintWriter` 的功能，因此可以直接调用 `PrintWriter` 类的函数输出，同时将 `StringTokenizer` 作为了自身的成员变量来修改．而第二种 `Main` 是同时将 `StreamTokenizer` 与 `PrintWriter` 作为了自身的成员变量，因此在使用上有些许差距．
+2.  使用 `PrintWriter` 时，需在程序结束前用 `close()` 关闭输出流，或在需要输出时用 `flush()` 清除缓冲区，否则内容将不会被写入到控制台/文件中．
+3.  `Kattio` 继承自 `PrintWriter` 类，其对象具有 `PrintWriter` 的功能，因此可以直接调用 `PrintWriter` 类的函数输出，同时将 `StringTokenizer` 作为成员变量来修改．而第二种 `Main` 将 `StreamTokenizer` 与 `PrintWriter` 都作为成员变量，因此用法略有不同．
 
 综上所述，在大部分情况下，`StringTokenizer` 的使用处境要优越于 `StreamTokenizer`，在极端 MLE 的情况下可以尝试 `StreamTokenizer`，同时 `int` 范围以上的数据 `StreamTokenizer` 处理是无能为力的．
 
 ## BigInteger 与数论
 
-`BigInteger` 是 Java 提供的高精度计算类，可以很方便地解决高精度问题．
+`BigInteger` 是 Java 提供的高精度计算类，便于解决高精度问题．
 
 ### 初始化
 
@@ -419,7 +419,7 @@ public class Main {
 
 ### 简介
 
-由于基本类型没有面向对象的特征，为了让它们参与到面向对象的开发中，Java 为八个基本类型提供了对应的包装类，分别是 `Byte`、`Double`、`Float`、`Integer`、`Long`、`Short`、`Character` 和 `Boolean`．两者之间的对应关系如下：
+基本类型没有面向对象的特征，为让它们参与面向对象开发，Java 为八个基本类型提供了对应的包装类，分别是 `Byte`、`Double`、`Float`、`Integer`、`Long`、`Short`、`Character` 和 `Boolean`．两者之间的对应关系如下：
 
 | 基本数据类型 | 包装数据类型 |
 | :----------: | :----------: |
@@ -465,7 +465,7 @@ int value = integer;
 ```
 
 ???+ warning "注意"
-    虽然 JDK 增加了自动装箱拆箱的机制，但在声明变量时请选择合适的类型，因为包装类型 `Integer` 可以接受 `null`，而基本类型 `int` 不能接受 `null`．因此，对使用 `null` 值的包装类型进行拆箱操作时，会抛出异常．如下代码展示了这一行为．
+    虽然 JDK 增加了自动装箱拆箱的机制，但在声明变量时请选择合适的类型，因为包装类型 `Integer` 可以接受 `null`，而基本类型 `int` 不能接受 `null`．因此，对值为 `null` 的包装类型拆箱时，会抛出异常．如下代码展示了这一行为．
     
     ```java
     Integer integer = Integer.valueOf(null);
@@ -477,7 +477,7 @@ int value = integer;
 
 ## 继承
 
-基于已有的设计创造新的设计，就是面向对象程序设计中的继承．在继承中，新的类不是凭空产生的，而是基于一个已经存在的类而定义出来的．通过继承，新的类自动获得了基础类中所有的成员，包括成员变量和方法，包括各种访问属性的成员，无论是 `public` 还是 `private`．显然，通过继承来定义新的类，远比从头开始写一个新的类要简单快捷和方便．继承是支持代码重用的重要手段之一．
+基于已有的设计创造新的设计，就是面向对象程序设计中的继承．在继承中，新的类不是凭空产生的，而是基于一个已经存在的类而定义出来的．通过继承，新的类自动获得了基础类中所有的成员，包括成员变量和方法，包括各种访问属性的成员，无论是 `public` 还是 `private`．通过继承定义新类，远比从头编写简单快捷．继承是支持代码重用的重要手段之一．
 
 在 Java 中，继承的关键字为 `extends`，且 Java 只支持单继承，但可以实现多接口．
 
@@ -508,25 +508,25 @@ Java 中保存对象类型的变量是多态变量．「多态」这个术语（
 
 1.  Java 的对象变量是多态的，它们能保存不止一种类型的对象．
 2.  它们可以保存的是声明类型的对象，或声明类型子类的对象．
-3.  当把子类的对象赋给父类的变量的时候，就发生了向上转型．
+3.  将子类对象赋给父类变量时，就发生了向上转型．
 
 ## 泛型
 
-泛型指在类定义时不设置类中的属性或方法参数的具体类型，而是在使用（或创建对象）时再进行类型的定义．泛型本质是参数化类型，即所操作的数据类型被指定为一个参数．
+泛型指在类定义时不设置类中的属性或方法参数的具体类型，而在使用（或创建对象）时再定义类型．泛型本质是参数化类型，即将所操作的数据类型指定为一个参数．
 
-泛型提供了编译时类型安全检测的机制，该机制允许编译时检测非法类型．
+泛型提供编译时类型安全检测机制，能在编译时检测非法类型．
 
 ## 接口
 
 ### 简介
 
-接口（Interface）在 Java 中是一个抽象类型，是抽象方法的集合，通常以 `interface` 来声明．一个类通过实现接口的方式，从而来继承接口的抽象方法．
+接口（Interface）在 Java 中是一个抽象类型，是抽象方法的集合，通常以 `interface` 来声明．类可以通过实现接口来继承接口的抽象方法．
 
 接口并不是类，编写接口的方式和类很相似，但是它们属于不同的概念．类描述对象的属性和方法．接口则包含类要实现的方法．
 
 除非实现接口的类是抽象类，否则该类要定义接口中的所有方法．
 
-接口无法被实例化，但是可以被实现．一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类．另外，在 Java 中，接口类型可用来声明一个变量，它们可以成为一个空指针，或是被绑定在一个以此接口实现的对象．
+接口无法实例化，但是类可以实现接口．一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类．另外，在 Java 中，接口类型可用来声明一个变量，这个变量可以为空指针，或绑定到一个实现了此接口的对象．
 
 ### 与类的区别
 
@@ -534,7 +534,7 @@ Java 中保存对象类型的变量是多态变量．「多态」这个术语（
 2.  接口没有构造方法．
 3.  接口中所有的方法必须是抽象方法，Java 8 之后接口中可以使用 `default` 关键字修饰的非抽象方法．
 4.  接口不能包含成员变量，除了 static 和 final 变量．
-5.  接口不是被类继承了，而是要被类实现．
+5.  类不继承接口，而是实现接口．
 6.  接口支持多继承，类不支持多继承．
 
 ### 声明
@@ -560,7 +560,7 @@ lambda 表达式也可称为闭包，是 Java 8 的最重要的新特性．
 
 lambda 表达式允许把函数作为一个方法的参数（函数作为参数传递进方法中）．
 
-使用 lambda 表达式可以使代码变的更加简洁紧凑．
+lambda 表达式可以让代码更简洁紧凑．
 
 ### 语法
 
@@ -713,7 +713,7 @@ Java 中的 `Collection` 元素类型定义时必须为对象，不能为基本�
 
 ### 容器定义
 
-当定义泛型容器类时，需要在定义时指定数据类型．如果不指定数据类型，而当成 `Object` 类型随意添加数据，在 Java 8 中虽能编译通过，但会有很多警告风险．
+定义泛型容器类时，需要指定数据类型．如果不指定数据类型，而当成 `Object` 类型随意添加数据，在 Java 8 中虽能编译通过，但会有很多警告风险．
 
 例如，如下定义方式是安全的，容器中只接受 `Integer` 类型．
 
@@ -732,15 +732,15 @@ list.add(1L);
 list.add("I am String");
 ```
 
-因此，如果没有特殊需求的话不推荐第 2 种行为，编译器无法帮忙检查存入的数据是否安全．`list.get(index)` 取值时无法明确数据的类型（取到的数据类型都为 `Object`），需要手动转回原来的类型，稍有不慎可能出现误转型异常．
+因此，如果没有特殊需求，不推荐第 2 种行为，编译器无法帮忙检查存入的数据是否安全．`list.get(index)` 取值时无法明确数据的类型（取到的数据类型都为 `Object`），需要手动转回原来的类型，稍有不慎可能出现误转型异常．
 
-如果是明确了类型如 `List<Integer>`，此时编译器会检查放入的数据类型，只能放入整数的数据．声明集合变量时只能使用包装类型 `List<Integer>` 或者自定义的 `Class`，而不能是基本类型如 `List<int>`．
+如果明确了类型，如 `List<Integer>`，编译器就会检查放入的数据类型，只允许整数数据．声明集合变量时只能使用包装类型 `List<Integer>` 或者自定义的 `Class`，而不能是基本类型如 `List<int>`．
 
 ### List
 
 #### ArrayList
 
-`ArrayList` 是支持可以根据需求动态生长的数组，初始长度默认为 10．如果超出当前长度便扩容 $\dfrac{3}{2}$．
+`ArrayList` 是可以按需动态生长的数组，初始长度默认为 10．如果超出当前长度便扩容 $\dfrac{3}{2}$．
 
 ##### 初始化
 
@@ -881,7 +881,7 @@ public class Main {
 ```
 
 ???+ warning "注意"
-    不要在 `for` 或 `foreach` 遍历 `List` 的过程中删除其中的元素，否则会抛出异常．
+    不要在用 `for` 或 `foreach` 遍历 `List` 时删除其中的元素，否则会抛出异常．
     
     原因也很简单，`list.size()` 改变了，但在循环中已循环的次数却是没有随之变化．原来预计在下一个 `index` 的数据因为删除的操作变成了当前 `index` 的数据，运行下一个循环时操作的会变为原来预计在下下个 `index` 的数据，最终会导致操作的数据不符合预期．
 
@@ -913,9 +913,9 @@ Queue<Integer> q = new ArrayDeque<>();
 
 #### LinkedList 与 ArrayDeque 在实现 Queue 接口上的区别
 
-1.  数据结构：在数据结构上，`ArrayDeque` 和 `LinkedList` 都实现了 Java Deque 双端队列接口．但 `ArrayDeque` 没有实现了 Java List 列表接口，所以不具备根据索引位置操作的行为．
+1.  数据结构：`ArrayDeque` 和 `LinkedList` 都实现了 Java Deque 双端队列接口．但 `ArrayDeque` 没有实现 Java List 列表接口，所以不支持按索引位置操作．
 2.  线程安全：`ArrayDeque` 和 `LinkedList` 都不考虑线程同步，不保证线程安全．
-3.  底层实现：在底层实现上，`ArrayDeque` 是基于动态数组的，而 `LinkedList` 是基于双向链表的．
+3.  底层实现：`ArrayDeque` 基于动态数组，`LinkedList` 基于双向链表．
 4.  在遍历速度上：`ArrayDeque` 是一块连续内存空间，基于局部性原理能够更好地命中 CPU 缓存行，而 `LinkedList` 是离散的内存空间对缓存行不友好．
 5.  在操作速度上：`ArrayDeque` 和 `LinkedList` 的栈和队列行为都是 $O(1)$ 时间复杂度，`ArrayDeque` 的入栈和入队有可能会触发扩容，但从均摊分析上看依然是 $O(1)$ 时间复杂度．
 6.  额外内存消耗上：`ArrayDeque` 在数组的头指针和尾指针外部有闲置空间，而 `LinkedList` 在节点上增加了前驱和后继指针．
@@ -1011,7 +1011,7 @@ public class Main {
 
 ### Deque
 
-`Deque` 是 `Java` 中的双端队列，我们通常用其进行队列的操作以及栈的操作．
+`Deque` 是 `Java` 中的双端队列，通常用于队列和栈操作．
 
 #### 主要函数
 
@@ -1356,11 +1356,11 @@ Map<String, Set<Integer>> map = new HashMap<>();
 
 ## Arrays
 
-`Arrays` 是 `java.util` 中对数组操作的一个工具类．方法均为静态方法，可使用类名直接调用．
+`Arrays` 是 `java.util` 中操作数组的工具类．方法均为静态方法，可使用类名直接调用．
 
 ### Arrays.sort()
 
-`Arrays.sort()` 是对数组进行排序的方法，主要重载方法如下：
+`Arrays.sort()` 用于数组排序，主要重载方法如下：
 
 ```java
 import java.util.Arrays;
@@ -1399,8 +1399,8 @@ public class Main {
 
 序号所对应的重载方法含义：
 
-1.  对数组 `a` 进行排序，默认升序．
-2.  对数组 `a` 的指定位置进行排序，默认升序，排序区间为左闭右开 `[firstIdx, lastIdx)`．
+1.  对数组 `a` 排序，默认升序．
+2.  对数组 `a` 的指定位置排序，默认升序，排序区间为左闭右开 `[firstIdx, lastIdx)`．
 3.  对数组 `a` 以自定义的形式排序，第二个参数 `-` 第一个参数为降序，第一个参数 `-` 第二个参数为升序，当自定义排序比较器时，数组元素类型必须为对象类型．
 4.  对数组 `a` 的指定位置进行自定义排序，排序区间为左闭右开 `[firstIdx, lastIdx)`，当自定义排序比较器时，数组元素类型必须为对象类型．
 5.  和 3 同理，用 Lambda 表达式优化了代码长度．
@@ -1504,7 +1504,7 @@ public class Main {
 
 ### Arrays.binarySearch()
 
-`Arrays.binarySearch()` 是对数组连续区间进行二分搜索的方法，前提是数组必须有序，时间复杂度为 $O(\log n)$，主要重载方法如下：
+`Arrays.binarySearch()` 用于二分搜索数组中的连续区间，前提是数组必须有序，时间复杂度为 $O(\log n)$，主要重载方法如下：
 
 ```java
 import java.util.Arrays;
@@ -1555,7 +1555,7 @@ private static int binarySearch0(int[] a, int fromIndex, int toIndex, int key) {
 
 ## Collections
 
-`Collections` 是 `java.util` 中对集合操作的一个工具类．方法均为静态方法，可使用类名直接调用．
+`Collections` 是 `java.util` 中操作集合的工具类．方法均为静态方法，可使用类名直接调用．
 
 ### Collections.sort()
 
@@ -1579,17 +1579,17 @@ default void sort(Comparator<? super E> c) {
 
 ### Collections.binarySearch()
 
-`Collections.binarySearch()` 是对集合进行二分搜索，功能与 `Arrays.binarySearch()` 相同．
+`Collections.binarySearch()` 用二分法搜索集合，功能与 `Arrays.binarySearch()` 相同．
 
 ```java
 Collections.binarySearch(list, key);
 ```
 
-该方法无法对指定区间进行搜索．
+该方法无法搜索指定区间．
 
 ### Collections.swap()
 
-`Collections.swap()` 的功能是交换集合中指定二个位置的元素．
+`Collections.swap()` 交换集合中指定两个位置的元素．
 
 ```java
  Collections.swap(list, i, j);

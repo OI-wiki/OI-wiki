@@ -187,7 +187,7 @@ $$
 
 考虑剩下的贡献，即满足 $x,y\le\sqrt{n}$ 且 $\left\lfloor n / t\right\rfloor > \sqrt{n}$ 的贡献．所有贡献必须满足 $xyt\le n$，亦即 $\ln x + \ln y \le \ln(n/t)$．取正数 $S$，可以利用 $\lceil S\ln x\rceil + \lceil S\ln y\rceil \le S\ln(n/t)$ 近似估计这一条件．定义多项式 $\sigma_f(u)$ 和 $\sigma_g(u)$，使得它们的系数 $[u^k]\sigma_f$ 和 $[u^k]\sigma_g$ 分别等于满足 $\lceil S\ln x\rceil = k$ 时 $f(x)$ 的和以及满足 $\lceil S\ln y\rceil = k$ 时 $g(y)$ 的和（只考虑 $x,y\le\sqrt{n}$ 的这一部分）．利用快速傅里叶变换（FFT）可以得到它们的乘积 $\sigma_f\sigma_g$，它的系数 $[u^k](\sigma_f\sigma_g)$ 就表示 $\lceil S\ln x\rceil + \lceil S\ln y\rceil = k$ 时 $f(x)g(y)$ 的和．由此，只需要对于每个 $D(n)$ 中剩下的每个 $\lfloor n/t\rfloor$ 都找到满足 $k \le S\ln(n/t)$ 的最大 $k$ 值，就可以得到这一部分贡献的估计值．
 
-最后，对于这一部分贡献进行误差修正．前文试图利用更强的条件 $\lceil S\ln x\rceil + \lceil S\ln y\rceil \le S\ln(n/t)$ 去近似 $\ln x + \ln y \le \ln(n/t)$，可能会遗漏部分贡献．这只会发生在 $\lceil S\ln x\rceil + \lceil S\ln y\rceil > S\ln(n/t)$ 时，所以有
+最后，修正这一部分贡献的误差．前文试图利用更强的条件 $\lceil S\ln x\rceil + \lceil S\ln y\rceil \le S\ln(n/t)$ 去近似 $\ln x + \ln y \le \ln(n/t)$，可能会遗漏部分贡献．这只会发生在 $\lceil S\ln x\rceil + \lceil S\ln y\rceil > S\ln(n/t)$ 时，所以有
 
 $$
 S\ln x + 1 +  S\ln y + 1 \ge \lceil S\ln x\rceil + \lceil S\ln y\rceil >  S\ln(n/t) \ge S\ln x + S\ln y.
@@ -274,7 +274,7 @@ $$
     
     利用类似 [主定理](../../basic/complexity.md#主定理) 的证明思路，可以说明，最后一项主导了该式的增长，且 $T(n)\in\Theta(n^\alpha)$，其中，$\alpha\approx 1.73$ 是 $\zeta(\alpha)=2$ 的根．
 
-应用杜教筛计算数论函数 $g$ 前缀和时，关键在于找到合适的 $f,h$ 使得 $h=f\ast g$ 且 $f,h$ 的块筛都容易计算．在有些时候，这样的 $f,h$ 是显然的；在另一些时候，需要利用 Dirichlet 卷积的性质推导，也可以通过计算相应的 Dirichlet 生成函数或 Bell 级数（当满足积性时）来找到相应的分解．后文的例题展示了这些情形．
+应用杜教筛计算数论函数 $g$ 前缀和时，关键在于找到合适的 $f,h$ 使得 $h=f\ast g$ 且 $f,h$ 的块筛都容易计算．有时，这样的 $f,h$ 是显然的；有时则需要利用 Dirichlet 卷积的性质推导，也可以通过计算相应的 Dirichlet 生成函数或 Bell 级数（当满足积性时）来找到相应的分解．后文的例题展示了这些情形．
 
 ## 例题
 

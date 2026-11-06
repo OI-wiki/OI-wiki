@@ -66,7 +66,7 @@ do {
 
 ![](images/do-while-loop.svg)
 
-与 while 语句的区别在于，do...while 语句是先执行循环体再进行判断的．
+与 while 语句的区别在于，do...while 语句先执行循环体再判断．
 
 e.g. 枚举排列：
 
@@ -94,7 +94,7 @@ while (statement2) {
 }
 ```
 
-在 statement4 中没有 `continue` 语句（见下文）的时候是等价的，但是下面一种方法很少用到．
+在 statement4 中没有 `continue` 语句（见下文）时是等价的，但是下面一种方法很少用到．
 
 ```cpp
 // while 语句
@@ -111,7 +111,7 @@ do {
 } while (statement2);
 ```
 
-在 statement1 中没有 `continue` 语句的时候这两种方式也是等价的．
+在 statement1 中没有 `continue` 语句时这两种方式也是等价的．
 
 ```cpp
 while (1) {
@@ -129,7 +129,7 @@ for (;;) {
 
 1.  循环过程中有个固定的增加步骤（最常见的是枚举）时，使用 for 语句；
 2.  只确定循环的终止条件时，使用 while 语句；
-3.  使用 while 语句时，若要先执行循环体再进行判断，使用 do...while 语句．一般很少用到，常用场景是用户输入．
+3.  使用 while 语句时，若要先执行循环体再判断，使用 do...while 语句．一般很少用到，常用场景是用户输入．
 
 ## break 与 continue 语句
 

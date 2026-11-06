@@ -16,13 +16,13 @@ CLion 是一款由 JetBrains 公司开发的功能丰富且强大的跨平台 C/
 
 ### 工具链安装
 
-CLion 默认不带编译器，构建工具和调试工具，需要手动进行安装．
+CLion 默认不带编译器，构建工具和调试工具，需要手动安装．
 
 #### Windows
 
 参见 [Tutorial: Configure CLion on Windows | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-windows.html)．
 
-值得一提的是 CLion 的 Windows 版本中自带了 MinGW，所以可以不用额外安装 MinGW 工具链．
+CLion 的 Windows 版本自带 MinGW，因此无需额外安装 MinGW 工具链．
 
 #### Linux
 
@@ -69,7 +69,7 @@ sudo dnf install clang clang++ llvm lldb # you can also choose to use clang tool
 有多种方式来运行一个 C++ 程序，一个简单的流程如下：
 
 1.  创建一个 C/C++ 项目：`New -> Project -> C++ Executable`，选择合适的地址和语言标准版本，点击 `Create`．
-2.  打开项目，此时的项目目录下应当存在一个 `cmake-build-debug` 目录、一个 `CMakeLists.txt` 文件和一个 `main.cpp` 文件．因为我们不需要使用 CMake 来管理项目，因此我们可以删去 `CMakeLists.txt` 文件和 `cmake-build-debug` 目录及其内所有文件．
+2.  打开项目，此时的项目目录下应当存在一个 `cmake-build-debug` 目录、一个 `CMakeLists.txt` 文件和一个 `main.cpp` 文件．因为不需要用 CMake 管理项目，我们可以删去 `CMakeLists.txt` 文件和 `cmake-build-debug` 目录及其内所有文件．
 3.  点击打开 `main.cpp` 文件，并在编辑区右键单击，可以看到 `Run 'main.cpp'` 选项．选择此选项后，CLion 可以自动创建一个运行配置并运行程序．
 
 ![C++ Single File Execution](./images/clion-single-file-execution.png)

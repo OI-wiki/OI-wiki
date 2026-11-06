@@ -37,7 +37,7 @@ $$
 
 则有 $\forall x\in X_{0}:f\left(x\right)=g_{0}\left(x\right)Q\left(x\right)+f_{0}\left(x\right)=f_{0}\left(x\right)$，$X_{1}$ 同理．
 
-至此，问题的规模被减半，可以使用分治 + 多项式取模解决．
+至此，问题的规模减半，可以使用分治 + 多项式取模解决．
 
 时间复杂度
 
@@ -71,7 +71,7 @@ $$
 \prod_{j\neq i} (x_i - x_j) = \lim_{x\rightarrow x_i} \frac{\prod_{j=1}^n (x - x_j)}{x - x_i} = M'(x_i)
 $$
 
-因此多项式被表示为
+因此多项式可以表示为
 
 $$
 f(x) = \sum_{i = 1}^n \frac{y_i}{M'(x_i)}\prod_{j \neq i}(x - x_j)
@@ -79,7 +79,7 @@ $$
 
 我们首先通过分治计算出 $M(x)$ 的系数表示，接着可以通过多点求值在 $O(n\log^2 n)$ 时间内计算出所有的 $M'(x_i)$．
 
-我们令 $v_i = \frac{y_i}{M'(x_i)}$，接下来考虑计算出 $f(x)$．对于 $n = 1$ 的情况，有 $f(x) = v_1, M(x) = x - x_1$．否则令
+我们令 $v_i = \frac{y_i}{M'(x_i)}$，接下来计算 $f(x)$．当 $n = 1$ 时，有 $f(x) = v_1, M(x) = x - x_1$．否则令
 
 $$
 \begin{aligned}

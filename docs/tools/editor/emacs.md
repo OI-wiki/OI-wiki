@@ -24,7 +24,7 @@ Emacs 是一款非常容易上手的编辑器，只需要简短的几行配置�
 
 ### 缓冲 (buffer)
 
-缓冲即打开的文件和进程，在不保存的情况下，在缓冲中修改并不会修改到文件．
+缓冲即打开的文件和进程，保存前，缓冲中的修改不会影响文件．
 
 在缓冲区的底部点击缓冲的名字或者使用快捷键可以切换缓冲．
 
@@ -83,14 +83,14 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率．使�
 
 刚安装好的 Emacs 外观难看且不好使用，因此需要对其进行个性化设置．
 
-由于配置不好记，所以部分可以直接设置的部分建议不要记配置．
+由于配置难记，建议直接设置能通过界面调整的选项．
 
 ### 直接设置
 
 -   Options：`Highlight Matching Parentheses` 高亮匹配括号
 -   Options：`Blink Cursor` 设置光标闪烁
 -   Options Show/Hide：`Tool Bar` 显示/不显示工具栏（默认显示，建议不显示）
--   Options：`Use CUA Keys` 勾选后可以使用 Ctrl + C,Ctrl + V 等快捷键进行复制粘贴
+-   Options：`Use CUA Keys` 勾选后可以使用 Ctrl + C,Ctrl + V 等快捷键复制粘贴
 -   Options Customize-Emacs：`Custom Theme` 选择配色方案，选择完后需要点击保存
 -   Options：`Save Options`  **保存配置**
 
@@ -234,7 +234,7 @@ Emacs 拥有极为丰富的快捷键，可以大幅提高工作的效率．使�
 
 要以终端模式启动 Emacs，在启动时添加参数 `-nw`．Emacs 有多种变体，如采用 native-comp 来减少延迟的 [GCC Emacs](http://akrl.sdf.org/gccemacs.html) 及其纯 GTK 版本变体、针对 macOS 优化的 Emacs Macport．
 
-Emacs 有中心化的软件仓库，配置后可通过 `M-x package-install` 来安装插件．使用 [镜像站](https://mirrors.bfsu.edu.cn/help/elpa/) 可以加快下载速度．
+Emacs 有中心化的软件仓库，配置后可通过 `M-x package-install` 安装插件．使用 [镜像站](https://mirrors.bfsu.edu.cn/help/elpa/) 可以加快下载速度．
 
 Emacs 可以使用语言服务器（Language Server Protocol）来提高编辑体验，目前推荐的 C++ 后端是 [Clangd](https://clangd.llvm.org/)．前端可以采用 [Eglot](https://github.com/joaotavora/eglot) 或 [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/)，参阅 [此条目](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) 可能对选择前端有所帮助．
 

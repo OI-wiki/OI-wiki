@@ -1,4 +1,4 @@
-本页面主要解答一些常见的问题．
+本页面主要解答常见问题．
 
 ## 我想问点与这个 Wiki 相关的问题
 
@@ -10,7 +10,7 @@ A：不知道你在学 **OI** 的时候，面对庞大的知识体系，有没�
 
 Q：我很感兴趣，怎么参与？
 
-A：**OI Wiki** 现在托管在 GitHub 上，你可以直接访问这个 [repo](https://github.com/OI-wiki/OI-wiki) 来查看最新进展．参与的途径包括在 GitHub 上面开 [Issue](https://github.com/OI-wiki/OI-wiki/issues)、[Pull Request](https://github.com/OI-wiki/OI-wiki/pulls)，或者在交流群中分享你的想法、直接向管理员投稿．目前，我们使用的框架是用 Python 开发的 [MkDocs](https://mkdocs.readthedocs.io)，支持 Markdown 格式（也支持插入数学公式）．
+A：**OI Wiki** 现在托管在 GitHub 上，你可以直接访问 [repo](https://github.com/OI-wiki/OI-wiki) 查看最新进展．参与的途径包括在 GitHub 上面开 [Issue](https://github.com/OI-wiki/OI-wiki/issues)、[Pull Request](https://github.com/OI-wiki/OI-wiki/pulls)，或者在交流群中分享你的想法、直接向管理员投稿．目前，我们使用的框架是用 Python 开发的 [MkDocs](https://mkdocs.readthedocs.io)，支持 Markdown 格式（也支持插入数学公式）．
 
 ***
 
@@ -22,7 +22,7 @@ A：一切源于热爱．你可以协助其他人审核修改稿件，帮助我�
 
 Q：现在主要是谁在做这件事啊？感觉这是个大坑，真的能做好吗？
 
-A：最开始主要是一些退役老年选手在做这件事，后来遇到了很多志同道合的小伙伴：有现役选手，退役玩家，也有从未参加过 **OI** 的朋友．目前，这个项目主要是由 **OI Wiki** 项目组来维护（下面是一张合影）．
+A：最开始主要是一些退役老年选手在做这件事，后来遇到了很多志同道合的小伙伴：有现役选手，退役玩家，也有从未参加过 **OI** 的朋友．目前，这个项目主要由 **OI Wiki** 项目组维护（下面是一张合影）．
 
 <a href="https://github.com/OI-wiki/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false"/></a>
 
@@ -38,7 +38,7 @@ A：我们把内容托管在 [GitHub](https://github.com/OI-wiki/OI-wiki) 上面
 
 Q：**OI Wiki** 好像有空的页面啊！
 
-A：是的．受限于项目组成员的水平和时间，我们暂时无法完成这些空页面．所以我们在这里进行征稿和招募，希望可以遇到有同样想法的朋友，我们一起把 **OI Wiki** 完善起来．
+A：是的．受限于项目组成员的水平和时间，我们暂时无法完成这些空页面．所以我们在此征稿和招募，希望可以遇到有同样想法的朋友，我们一起把 **OI Wiki** 完善起来．
 
 ***
 
@@ -280,7 +280,7 @@ copyright: SATA
 
 Q：为什么作者信息统计处没有我的名字？
 
-A：如果你发现自己写过一个页面中的部分内容，但是你没有被记录进作者列表，可以把自己的 GitHub ID 加入到文件头的 [author 字段](./htc.md#author-字段)．
+A：如果你写过某个页面的部分内容，却没有被列入作者列表，可以把自己的 GitHub ID 加入到文件头的 [author 字段](./htc.md#author-字段)．
 
 ***
 
