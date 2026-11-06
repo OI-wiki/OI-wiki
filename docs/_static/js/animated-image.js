@@ -385,6 +385,8 @@
   var SPEEDS = [0.5, 0.75, 1, 1.25, 1.5, 2];
   var MIN_WIDTH = 100;
   var MIN_HEIGHT = 100;
+  var pageVisible = typeof document === 'undefined' || !document.hidden;
+  var pageWatchers = [];
   var SEEK_PREVIEW_DELAY = 80;
   var SCRUB_END_EVENTS = ['pointerup', 'pointercancel', 'blur'];
   var speedMenuSeq = 0;
@@ -715,10 +717,21 @@
       playButton.setAttribute('aria-label', label);
     }
 
+    function sync() {
+      if (pausedByUser) {
+        return;
+      }
+      if (visible && pageVisible) {
+        start();
+      } else {
+        stop();
+      }
+    }
+
     function play() {
       pausedByUser = false;
       setPlayingLabel(true);
-      if (visible) {
+      if (visible && pageVisible) {
         start();
       } else {
         controller.pause();
@@ -731,7 +744,6 @@
       stop();
     }
 
-    /*  */
     function setVisible(next) {
       if (next === visible) {
         return;
@@ -741,14 +753,7 @@
       if (!next) {
         speedMenu.close();
       }
-      if (pausedByUser) {
-        return;
-      }
-      if (next) {
-        start();
-      } else {
-        stop();
-      }
+      sync();
     }
 
     function cancelPreview() {
@@ -847,6 +852,8 @@
     controls.appendChild(range);
     controls.appendChild(timeEl);
     controls.appendChild(speedMenu.element);
+
+    pageWatchers.push(sync);
 
     return { element: controls, play: play, pause: pause, setVisible: setVisible };
   }
@@ -1352,10 +1359,18 @@
     }
   }
 
+  function onVisibilityChange() {
+    pageVisible = !document.hidden;
+    for (var i = 0; i < pageWatchers.length; i++) {
+      pageWatchers[i]();
+    }
+  }
+
   function init() {
     if (typeof document === 'undefined') {
       return;
     }
+    document.addEventListener('visibilitychange', onVisibilityChange);
     scan(document);
 
     if (typeof MutationObserver !== 'undefined') {
