@@ -86,6 +86,6 @@
     --8<-- "docs/string/code/suffix-bst/suffix-bst_2.cpp"
     ```
 
-## 参考资料
+## 拓展阅读
 
 -   陈立杰 -《重量平衡树和后缀平衡树在信息学奥赛中的应用》

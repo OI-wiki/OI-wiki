@@ -166,12 +166,14 @@ $$
 -   [2011 ACM-ICPC World Finals, Problem K. Trash Removal](https://codeforces.com/gym/101175)
 -   [ICPC WF Moscow Invitational Contest - Online Mirror, Problem F. Framing Pictures](https://codeforces.com/contest/1578/problem/F)
 
-## 参考资料与注释
-
-[^ref1]: Toussaint, Godfried T. (1983). "Solving geometric problems with the rotating calipers". Proc. MELECON '83, Athens. CiteSeerX 10.1.1.155.5671
+## 拓展阅读
 
 -   <https://en.wikipedia.org/wiki/Rotating_calipers>
 
 -   <http://www-cgrl.cs.mcgill.ca/~godfried/research/calipers.html>
 
 -   Shamos, Michael (1978). "Computational Geometry" (PDF). Yale University. pp. 76–81.
+
+## 参考资料与注释
+
+[^ref1]: Toussaint, Godfried T. (1983). "Solving geometric problems with the rotating calipers". Proc. MELECON '83, Athens. CiteSeerX 10.1.1.155.5671

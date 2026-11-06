@@ -172,8 +172,10 @@ $$
     
     在实现上（以 C++ 为例），需要将 `upper_bound` 函数改为 `lower_bound`．
 
-## 参考资料与注释
+## 拓展阅读
 
 -   [最长不下降子序列 nlogn 算法详解 - lvmememe - 博客园](https://www.cnblogs.com/itlqs/p/5743114.html)
+
+## 参考资料与注释
 
 [^ref1]: [位运算求最长公共子序列 - -Wallace- - 博客园](https://www.cnblogs.com/-Wallace-/p/bit-lcs.html)

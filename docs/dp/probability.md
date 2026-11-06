@@ -134,6 +134,6 @@ author: Tiphereth-A, ShaoChenHeng, Enter-tainer, ksyx, c-forrest, StudyingFather
 -   [HDU 4418 Time Travel](https://acm.hdu.edu.cn/showproblem.php?pid=4418)
 -   [「HNOI2013」游走](https://loj.ac/problem/2383)
 
-## 参考文献
+## 拓展阅读
 
 [kuangbin 概率 DP 总结](https://www.cnblogs.com/kuangbin/archive/2012/10/02/2710606.html)

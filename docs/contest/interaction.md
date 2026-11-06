@@ -570,6 +570,6 @@ $h \le 4$ 时可以直接暴力枚举．然而 $h > 4$ 时需要很高效的遍�
 -   [P5473\[NOI2019\]I 君的探险](https://www.luogu.com.cn/problem/P5473)
 -   [P5208\[WC2019\]I 君的商店](https://www.luogu.com.cn/problem/P5208)
 
-## 参考资料与拓展阅读
+## 拓展阅读
 
 -   [用 Linux 管道实现 online judge 的交互题功能](https://www.cnblogs.com/tsreaper/p/pipe-interactive.html)

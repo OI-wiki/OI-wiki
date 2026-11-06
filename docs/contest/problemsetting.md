@@ -581,7 +581,7 @@ Codeforces 是全球最著名的算法竞赛网站之一，题目质量较高，
 
 公开赛规范：<https://help.luogu.com.cn/rules/academic/opencontest-standard>
 
-## 参考资料
+## 参考资料与注释
 
 1.  [vfk《UOJ 精神之源流》][1]
 
