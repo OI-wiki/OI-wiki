@@ -61,22 +61,7 @@ author: HeRaNO, Xeonacid, AzurIce
 参考代码：
 
 ```cpp
-void up(int x) {
-  while (x > 1 && h[x] > h[x / 2]) {
-    std::swap(h[x], h[x / 2]);
-    x /= 2;
-  }
-}
-
-void down(int x) {
-  while (x * 2 <= n) {
-    t = x * 2;
-    if (t + 1 <= n && h[t + 1] > h[t]) t++;
-    if (h[t] <= h[x]) break;
-    std::swap(h[x], h[t]);
-    x = t;
-  }
-}
+--8<-- "docs/ds/code/binary-heap/binary-heap_1.cpp:example4"
 ```
 
 ### 建堆
@@ -90,9 +75,7 @@ void down(int x) {
 从根开始，按 BFS 序进行．
 
 ```cpp
-void build_heap_1() {
-  for (i = 1; i <= n; i++) up(i);
-}
+--8<-- "docs/ds/code/binary-heap/binary-heap_1.cpp:example5"
 ```
 
 这个做法仍然相当于一个一个插入，只是把元素提前放在了数组里，可以改善常数．故而最坏情况下，算法时间复杂度满足的递推式为 $T(n) = T(n - 1) + \Theta(\log n)$，累加得 $T(n) = \Theta(n \log n)$．
@@ -102,9 +85,7 @@ void build_heap_1() {
 这时换一种思路，从叶子开始，逐个向下调整．
 
 ```cpp
-void build_heap_2() {
-  for (i = n; i >= 1; i--) down(i);
-}
+--8<-- "docs/ds/code/binary-heap/binary-heap_1.cpp:example6"
 ```
 
 换一种理解方法，每次「合并」两个已经调整好的堆，这说明了正确性．
@@ -143,7 +124,7 @@ void build_heap_2() {
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/ds/code/binary-heap/binary-heap_1.cpp"
+    --8<-- "docs/ds/code/binary-heap/binary-heap_2.cpp"
     ```
 
 ### 习题

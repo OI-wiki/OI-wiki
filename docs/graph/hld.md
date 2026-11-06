@@ -95,22 +95,7 @@ $$
 我们进行两遍 DFS 预处理出这些值，其中第一次 DFS 求出 $\operatorname{fa}(x)$，$\operatorname{dep}(x)$，$\operatorname{siz}(x)$，$\operatorname{son}(x)$，第二次 DFS 求出 $\operatorname{top}(x)$，$\operatorname{dfn}(x)$，$\operatorname{rnk}(x)$．
 
 ```cpp
-void dfs1(int u, int f) {
-  fa[u] = f, dep[u] = dep[f] + 1, siz[u] = 1;
-  for (auto v : G[u]) {
-    if (v == f) continue;
-    dfs1(v, u);
-    siz[u] += siz[v];
-    if (siz[v] > siz[son[u]]) son[u] = v;
-  }
-}
-
-void dfs2(int u, int ftop) {
-  top[u] = ftop, dfn[u] = ++idx, rnk[idx] = u;
-  if (son[u]) dfs2(son[u], ftop);
-  for (auto v : G[u])
-    if (v != son[u] && v != fa[u]) dfs2(v, v);
-}
+--8<-- "docs/graph/code/hld/hld_1.cpp:decompose"
 ```
 
 ## 重链剖分的性质
@@ -187,15 +172,7 @@ $$
 参考代码：
 
 ```cpp
-int lca(int u, int v) {
-  while (top[u] != top[v]) {
-    if (dep[top[u]] > dep[top[v]])
-      u = fa[top[u]];
-    else
-      v = fa[top[v]];
-  }
-  return dep[u] > dep[v] ? v : u;
-}
+--8<-- "docs/graph/code/hld/hld_1.cpp:lca"
 ```
 
 ### 换根操作
@@ -242,7 +219,7 @@ int lca(int u, int v) {
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/hld/hld_1.cpp"
+    --8<-- "docs/graph/code/hld/hld_2.cpp"
     ```
 
 然后是一道带换根操作的重链剖分模板题．
@@ -290,7 +267,7 @@ int lca(int u, int v) {
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/hld/hld_4.cpp"
+    --8<-- "docs/graph/code/hld/hld_3.cpp"
     ```
 
 最后是一道交互题，也是树剖的非传统应用．
@@ -331,7 +308,7 @@ int lca(int u, int v) {
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/hld/hld_2.cpp"
+    --8<-- "docs/graph/code/hld/hld_4.cpp"
     ```
 
 ## 长链剖分
@@ -413,7 +390,7 @@ int lca(int u, int v) {
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/hld/hld_3.cpp"
+    --8<-- "docs/graph/code/hld/hld_5.cpp"
     ```
 
 注意，一般情况下 DP 数组的内存分配为一条重链整体分配内存，链上不同的结点有不同的首位置指针．

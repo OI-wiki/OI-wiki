@@ -57,7 +57,7 @@ G(n)=n\oplus \left\lfloor\frac{n}{2}\right\rfloor
 $$
 
 ```cpp
-int g(int n) { return n ^ (n >> 1); }
+--8<-- "docs/math/code/numeral-sys/gray-code/gray-code_1.cpp:forward"
 ```
 
 ### 正确性证明
@@ -93,11 +93,7 @@ n_{k-i} &=\displaystyle\bigoplus_{j=0}^ig_{k-j}
 $$
 
 ```cpp
-int rev_g(int g) {
-  int n = 0;
-  for (; g; g >>= 1) n ^= g;
-  return n;
-}
+--8<-- "docs/math/code/numeral-sys/gray-code/gray-code_1.cpp:inverse"
 ```
 
 ## 实际应用

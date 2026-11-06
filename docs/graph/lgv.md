@@ -93,7 +93,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/lgv/lgv_2.cpp"
+    --8<-- "docs/graph/code/lgv/lgv_1.cpp"
     ```
 
 ???+ note "例 2 [HDU 5852 Intersection is not allowed!](https://acm.hdu.edu.cn/showproblem.php?pid=5852)"
@@ -109,7 +109,7 @@ $$
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/graph/code/lgv/lgv_1.cpp"
+    --8<-- "docs/graph/code/lgv/lgv_2.cpp"
     ```
 
 ## 参考资料

@@ -1,61 +1,163 @@
+// --8<-- [start:full-text]
+#include <algorithm>
+#include <climits>
 #include <cmath>
-#include <cstring>
+#include <iomanip>
 #include <iostream>
-using namespace std;
-constexpr int M = 10005, N = 1005, INF = 1e9;
+#include <numeric>
+#include <vector>
 
-int n, m;
-double a[M][N], b[M], c[N], v;
+// --8<-- [start:core]
+int m, n;  // Number of constraints and variables.
+std::vector<std::vector<long double>>
+    tab;                             // Compressed tableau (transposed) with
+                                     // first-phase objective attached.
+std::vector<int> B, N;               // Basic and nonbasic variables.
+constexpr long double eps = 1e-12l;  // Precision.
 
-void pivot(int l, int e) {  // 转轴操作函数
-  b[l] /= a[l][e];
-  for (int j = 1; j <= n; j++)
-    if (j != e) a[l][j] /= a[l][e];
-  a[l][e] = 1 / a[l][e];
-
-  for (int i = 1; i <= m; i++)
-    if (i != l && fabs(a[i][e]) > 0) {
-      b[i] -= a[i][e] * b[l];
-      for (int j = 1; j <= n; j++)
-        if (j != e) a[i][j] -= a[i][e] * a[l][j];
-      a[i][e] = -a[i][e] * a[l][e];
+// --8<-- [start:pivot]
+// Pivot on (N[x], B[y]).
+void pivot(int x, int y) {
+  std::swap(N[x], B[y]);
+  long double v = -1 / tab[x][y];
+  for (int j = 0; j <= m + 1; ++j) {
+    tab[x][j] = j == y ? -v : v * tab[x][j];
+  }
+  for (int i = 0; i <= n; ++i) {
+    if (i == x) continue;
+    v = tab[i][y];
+    tab[i][y] = 0;
+    for (int j = 0; j <= m + 1; ++j) {
+      tab[i][j] += v * tab[x][j];
     }
-
-  v += c[e] * b[l];
-  for (int j = 1; j <= n; j++)
-    if (j != e) c[j] -= c[e] * a[l][j];
-  c[e] = -c[e] * a[l][e];
-
-  // swap(B[l],N[e])
+  }
 }
 
-double simplex() {
-  while (true) {
-    int e = 0, l = 0;
-    for (e = 1; e <= n; e++)
-      if (c[e] > (double)0) break;
-    if (e == n + 1) return v;  // 此时v即为最优解
-    double mn = INF;
-    for (int i = 1; i <= m; i++) {
-      if (a[i][e] > (double)0 && mn > b[i] / a[i][e]) {
-        mn = b[i] / a[i][e];  // 找对这个e限制最紧的l
-        l = i;
+// --8<-- [end:pivot]
+// --8<-- [start:initialize]
+// First phase: find an initial BFS.
+// Return false if no feasible solution.
+bool initialize() {
+  int neg_count = 0;
+  for (int j = 0; j < m; ++j) {
+    if (tab[n][j] < -eps) {
+      for (int i = 0; i <= n; ++i) {
+        tab[i][m + 1] += tab[i][j];
+      }
+      B[j] = ~B[j];
+      ++neg_count;
+    }
+  }
+  while (neg_count) {
+    int x = -1;
+    long double mi = -eps;
+    for (int i = 0; i < n; ++i) {
+      if (tab[i][m + 1] < mi) {
+        x = i;
+        mi = tab[i][m + 1];
       }
     }
-    if (mn == INF) return INF;  // unbounded
-    pivot(l, e);                // 转动l,e
+    if (x == -1) return false;
+    int y = -1;
+    mi = INFINITY;
+    for (int j = 0; j < m; ++j) {
+      if ((B[j] < 0 && tab[x][j] < -eps) || (B[j] >= 0 && tab[x][j] > eps)) {
+        auto tmp = tab[n][j] / tab[x][j] + (B[j] < 0 ? -eps : eps);
+        if (tmp < mi) {
+          y = j;
+          mi = tmp;
+        }
+      }
+    }
+    if (B[y] < 0) {
+      --neg_count;
+      B[y] = ~B[y];
+      pivot(x, y);
+      tab[x][m + 1] += 1;
+    } else {
+      pivot(x, y);
+    }
   }
+  return true;
 }
 
-int main() {
-  cin.tie(nullptr)->sync_with_stdio(false);
-  cin >> n >> m;
-  for (int i = 1; i <= n; i++) cin >> c[i];
-  for (int i = 1; i <= m; i++) {
-    int s, t;
-    cin >> s >> t;
-    for (int j = s; j <= t; j++) a[i][j] = 1;  // 表示第i种志愿者在j时间可以服务
-    cin >> b[i];
+// --8<-- [end:initialize]
+// --8<-- [start:simplex]
+// Second phase: find an optimal BFS.
+// Return false if the problem is unbounded.
+bool simplex() {
+  while (true) {
+    int x = -1;
+    long double mi = -eps;
+    for (int i = 0; i < n; ++i) {
+      if (tab[i][m] < mi) {
+        x = i;
+        mi = tab[i][m];
+      }
+    }
+    // No column with a negative reduced cost => Optimal.
+    if (x == -1) break;
+    int y = -1;
+    mi = INFINITY;
+    for (int j = 0; j < m; ++j) {
+      if (tab[x][j] <= eps) continue;
+      if (tab[n][j] / tab[x][j] < mi) {
+        y = j;
+        mi = tab[n][j] / tab[x][j];
+      }
+    }
+    // No row with a positive ratio => Unbounded.
+    if (y == -1) return false;
+    pivot(x, y);
   }
-  cout << (int)(simplex() + 0.5);
+  return true;
 }
+
+// --8<-- [end:simplex]
+int solve() {
+  B.resize(m);
+  N.resize(n);
+  std::iota(B.begin(), B.end(), n);
+  std::iota(N.begin(), N.end(), 0);
+  return initialize() ? (simplex() ? 0 : 1) : -1;
+}
+
+// --8<-- [end:core]
+int main() {
+  std::ios::sync_with_stdio(false), std::cin.tie(nullptr);
+  std::cout << std::fixed << std::setprecision(8);
+  std::cin >> n >> m;
+  tab.assign(n + 1, std::vector<long double>(m + 2));
+  for (int i = 0; i < n; ++i) {
+    std::cin >> tab[i][m];
+    tab[i][m] = -tab[i][m];
+  }
+  for (int j = 0; j < m; ++j) {
+    for (int i = 0; i <= n; ++i) {
+      std::cin >> tab[i][j];
+    }
+  }
+  switch (solve()) {
+    case -1:
+      std::cout << "Infeasible" << std::endl;
+      break;
+    case 1:
+      std::cout << "Unbounded" << std::endl;
+      break;
+    case 0: {
+      std::cout << tab[n][m] << std::endl;
+      std::vector<long double> x(n);
+      for (int j = 0; j < m; ++j) {
+        if (B[j] < n) x[B[j]] = tab[n][j];
+      }
+      for (int i = 0; i < n; ++i) {
+        std::cout << x[i] << ' ';
+      }
+      std::cout << std::endl;
+      break;
+    }
+  }
+  return 0;
+}
+
+// --8<-- [end:full-text]

@@ -33,20 +33,12 @@ DFS 的代码如下：
 ???+ note "实现"
     === "C++"
         ```cpp
-        void DFS(int p) {
-          visited[p] = true;
-          for (int to : edge[p])
-            if (!visited[to]) DFS(to);
-        }
+        --8<-- "docs/graph/code/bcc/bcc_1.cpp:core"
         ```
     
     === "Python"
         ```python
-        def DFS(p):
-            visited[p] = True
-            for to in edge[p]:
-                if visited[to] == False:
-                    DFS(to)
+        --8<-- "docs/graph/code/bcc/bcc_1.py:core"
         ```
 
 ## 边双连通分量
@@ -66,7 +58,7 @@ DFS 的代码如下：
 
 ??? note "示例代码"
     ```cpp
-    --8<-- "docs/graph/code/bcc/bcc_1.cpp"
+    --8<-- "docs/graph/code/bcc/bcc_2.cpp"
     ```
 
 ### Tarjan 算法 2
@@ -83,7 +75,7 @@ DFS 的代码如下：
 
 ??? note "示例代码"
     ```cpp
-    --8<-- "docs/graph/code/bcc/bcc_2.cpp"
+    --8<-- "docs/graph/code/bcc/bcc_3.cpp"
     ```
 
 ### 差分算法
@@ -149,7 +141,7 @@ DFS 的代码如下：
 
 ??? note "示例代码"
     ```cpp
-    --8<-- "docs/graph/code/bcc/bcc_3.cpp"
+    --8<-- "docs/graph/code/bcc/bcc_5.cpp"
     ```
 
 ### 差分算法

@@ -18,7 +18,7 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        --8<-- "docs/dp/code/memo/memo_1.cpp"
+        --8<-- "docs/dp/code/memo/memo_1.cpp:core"
         ```
     
     === "Python"
@@ -41,7 +41,7 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        --8<-- "docs/dp/code/memo/memo_2.cpp"
+        --8<-- "docs/dp/code/memo/memo_2.cpp:core"
         ```
     
     === "Python"
@@ -56,7 +56,7 @@
 下面给出的是递推实现的代码（为了方便对比，没有添加滚动数组优化），通过对比可以发现二者在形式上的类似性．
 
 ```cpp
---8<-- "docs/dp/code/memo/memo_3.cpp"
+--8<-- "docs/dp/code/memo/memo_3.cpp:core"
 ```
 
 在求解动态规划的问题时，记忆化搜索和递推，都确保了同一状态至多只被求解一次．而它们实现这一点的方式则略有不同：递推通过设置明确的访问顺序来避免重复访问，记忆化搜索虽然没有明确规定访问顺序，但通过给已经访问过的状态打标记的方式，也达到了同样的目的．
@@ -79,36 +79,12 @@ $dp_{i} = \max\{dp_{j}+1\}\quad (1 \leq j < i \land a_{j}<a_{i})$（最长上升
 
 === "C++"
     ```cpp
-    int dfs(int i) {
-      if (mem[i] != -1) return mem[i];
-      int ret = 1;
-      for (int j = 1; j < i; j++)
-        if (a[j] < a[i]) ret = max(ret, dfs(j) + 1);
-      return mem[i] = ret;
-    }
-    
-    int main() {
-      memset(mem, -1, sizeof(mem));
-      // 读入部分略去
-      int ret = 0;
-      for (int j = 1; j <= n; j++) {
-        ret = max(ret, dfs(j));
-      }
-      cout << ret << endl;
-    }
+    --8<-- "docs/dp/code/memo/memo_4.cpp:core"
     ```
 
 === "Python"
     ```python
-    def dfs(i):
-        if mem[i] != -1:
-            return mem[i]
-        ret = 1
-        for j in range(1, i):
-            if a[j] < a[i]:
-                ret = max(ret, dfs(j) + 1)
-        mem[i] = ret
-        return mem[i]
+    --8<-- "docs/dp/code/memo/memo_4.py:core"
     ```
 
 ### 方法二

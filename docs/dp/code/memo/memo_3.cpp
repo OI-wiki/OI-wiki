@@ -1,7 +1,9 @@
 #include <algorithm>
+#include <cstring>
 #include <iostream>
 using namespace std;
 
+// --8<-- [start:core]
 int n, t, w[105], v[105], f[105][1005];
 
 int main() {
@@ -16,3 +18,5 @@ int main() {
   cout << f[n][t];
   return 0;
 }
+
+// --8<-- [end:core]

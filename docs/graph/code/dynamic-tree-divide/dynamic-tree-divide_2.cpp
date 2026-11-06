@@ -1,37 +1,13 @@
 #include <algorithm>
 #include <cstring>
 #include <iostream>
+#include <queue>
 using namespace std;
 constexpr int MAXN = 100010;
 constexpr int inf = 2e9;
-constexpr int ddd = 6000010;
-
-struct Segtree {
-  int cnt, rt[MAXN], sum[ddd], lc[ddd], rc[ddd];
-
-  void update(int& o, int l, int r, int x, int v) {
-    if (!o) o = ++cnt;
-    if (l == r) {
-      sum[o] += v;
-      return;
-    }
-    int mid = (l + r) >> 1;
-    if (x <= mid)
-      update(lc[o], l, mid, x, v);
-    else
-      update(rc[o], mid + 1, r, x, v);
-    sum[o] = sum[lc[o]] + sum[rc[o]];
-  }
-
-  int query(int o, int l, int r, int ql, int qr) {
-    if (!o || r < ql || l > qr) return 0;
-    if (ql <= l && r <= qr) return sum[o];
-    int mid = (l + r) >> 1;
-    return query(lc[o], l, mid, ql, qr) + query(rc[o], mid + 1, r, ql, qr);
-  }
-} dist, ch;
-
-int n, m, val[MAXN], u, v, op, x, y, lstans;
+int n, a, b, m, x, col[MAXN];
+// 0 off 1 on
+char op;
 int cur, h[MAXN * 2], nxt[MAXN * 2], p[MAXN * 2];
 
 void add_edge(int x, int y) {
@@ -39,6 +15,80 @@ void add_edge(int x, int y) {
   nxt[cur] = h[x];
   h[x] = cur;
   p[cur] = y;
+}
+
+bool vis[MAXN];
+int rt, sum, siz[MAXN], maxx[MAXN], fa[MAXN], dep[MAXN];
+
+void calcsiz(int x, int f) {
+  siz[x] = 1;
+  maxx[x] = 0;
+  for (int j = h[x]; j; j = nxt[j])
+    if (p[j] != f && !vis[p[j]]) {
+      calcsiz(p[j], x);
+      siz[x] += siz[p[j]];
+      maxx[x] = max(maxx[x], siz[p[j]]);
+    }
+  maxx[x] =
+      max(maxx[x], sum - siz[x]);  // maxx[x] 表示以 x 为根时的最大子树大小
+  if (maxx[x] < maxx[rt])
+    rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
+}
+
+struct heap {
+  priority_queue<int> A, B;  // heap=A-B
+
+  void insert(int x) { A.push(x); }
+
+  void erase(int x) { B.push(x); }
+
+  int top() {
+    while (!B.empty() && A.top() == B.top()) A.pop(), B.pop();
+    return A.top();
+  }
+
+  void pop() {
+    while (!B.empty() && A.top() == B.top()) A.pop(), B.pop();
+    A.pop();
+  }
+
+  int top2() {
+    int t = top(), ret;
+    pop();
+    ret = top();
+    A.push(t);
+    return ret;
+  }
+
+  int size() { return A.size() - B.size(); }
+} dist[MAXN], ch[MAXN], ans;
+
+void dfs(int x, int f, int d, heap& y) {
+  y.insert(d);
+  for (int j = h[x]; j; j = nxt[j])
+    if (p[j] != f && !vis[p[j]]) dfs(p[j], x, d + 1, y);
+}
+
+void pre(int x) {
+  vis[x] = true;  // 不考虑 x
+  for (int j = h[x]; j; j = nxt[j])
+    if (!vis[p[j]]) {
+      rt = 0;
+      maxx[rt] = inf;
+      sum = siz[p[j]];
+      calcsiz(p[j], -1);
+      calcsiz(rt, -1);  // 计算两次，第二次求出以 rt 为根时的各子树大小
+      fa[rt] = x;
+      dfs(p[j], -1, 1, dist[rt]);
+      ch[x].insert(dist[rt].top());
+      dep[rt] = dep[x] + 1;
+      pre(rt);  // 记录点分树上的父亲
+    }
+  ch[x].insert(0);
+  if (ch[x].size() >= 2)
+    ans.insert(ch[x].top() + ch[x].top2());
+  else if (ch[x].size())
+    ans.insert(ch[x].top());
 }
 
 struct LCA {
@@ -50,7 +100,6 @@ struct LCA {
   }
 
   void init() {
-    dep[1] = 1;
     dfs(1, -1);
     for (int i = 2; i <= n; i++) lg[i] = lg[i / 2] + 1;
     for (int j = 1; j <= lg[n]; j++)
@@ -72,59 +121,12 @@ struct LCA {
   int dist(int x, int y) { return dep[x] + dep[y] - 2 * dep[query(x, y)]; }
 } lca;
 
-int rt, sum, siz[MAXN], maxx[MAXN], fa[MAXN];
-int d[MAXN][20], dep[MAXN];
-bool vis[MAXN];
-
-void calcsiz(int x, int fa) {
-  siz[x] = 1;
-  maxx[x] = 0;
-  for (int j = h[x]; j; j = nxt[j])
-    if (p[j] != fa && !vis[p[j]]) {
-      calcsiz(p[j], x);
-      siz[x] += siz[p[j]];
-      maxx[x] = max(maxx[x], siz[p[j]]);
-    }
-  maxx[x] =
-      max(maxx[x], sum - siz[x]);  // maxx[x] 表示以 x 为根时的最大子树大小
-  if (maxx[x] < maxx[rt])
-    rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
-}
-
-void dfs1(int x, int fa, int y, int d) {
-  ch.update(ch.rt[y], 0, n, d, val[x]);
-  for (int j = h[x]; j; j = nxt[j])
-    if (p[j] != fa && !vis[p[j]]) dfs1(p[j], x, y, d + 1);
-}
-
-void dfs2(int x, int fa, int y, int d) {
-  dist.update(dist.rt[y], 0, n, d, val[x]);
-  for (int j = h[x]; j; j = nxt[j])
-    if (p[j] != fa && !vis[p[j]]) dfs2(p[j], x, y, d + 1);
-}
-
-void pre(int x) {
-  vis[x] = true;  // 表示在之后的过程中不考虑 x 这个点
-  dfs2(x, -1, x, 0);
-  for (int j = h[x]; j; j = nxt[j])
-    if (!vis[p[j]]) {
-      rt = 0;
-      maxx[rt] = inf;
-      sum = siz[p[j]];
-      calcsiz(p[j], -1);
-      calcsiz(rt, -1);  // 计算两次，第二次求出以 rt 为根时的各子树大小
-      dfs1(p[j], -1, rt, 1);
-      fa[rt] = x;
-      dep[rt] = dep[x] + 1;
-      pre(rt);  // 记录点分树上的父亲
-    }
-}
+int d[MAXN][20];
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
-  cin >> n >> m;
-  for (int i = 1; i <= n; i++) cin >> val[i];
-  for (int i = 1; i < n; i++) cin >> u >> v, add_edge(u, v), add_edge(v, u);
+  cin >> n;
+  for (int i = 1; i < n; i++) cin >> a >> b, add_edge(a, b), add_edge(b, a);
   lca.init();
   rt = 0;
   maxx[rt] = inf;
@@ -134,29 +136,47 @@ int main() {
   pre(rt);
   for (int i = 1; i <= n; i++)
     for (int j = i; j; j = fa[j]) d[i][dep[i] - dep[j]] = lca.dist(i, j);
+  cin >> m;
+  int cnt = n;
   while (m--) {
-    cin >> op >> x >> y;
-    x ^= lstans;
-    y ^= lstans;
-    if (op == 0) {
-      lstans = dist.query(dist.rt[x], 0, n, 0, y);
-      int nww = 0;
-      for (int i = x; fa[i]; i = fa[i]) {
-        nww = d[x][dep[x] - dep[fa[i]]];  // lca.dist(x,fa[i]);
-        lstans += dist.query(dist.rt[fa[i]], 0, n, 0, y - nww);
-        lstans -= ch.query(ch.rt[i], 0, n, 0, y - nww);
+    cin >> op;
+    if (op == 'G') {
+      if (cnt)
+        cout << ans.top() << '\n';
+      else
+        cout << "-1\n";
+    } else {
+      cin >> x;
+      if (!col[x]) {
+        if (ch[x].size() >= 2) ans.erase(ch[x].top() + ch[x].top2());
+        ch[x].erase(0);
+        if (ch[x].size() >= 2) ans.insert(ch[x].top() + ch[x].top2());
+        for (int i = x; fa[i]; i = fa[i]) {
+          if (ch[fa[i]].size() >= 2)
+            ans.erase(ch[fa[i]].top() + ch[fa[i]].top2());
+          ch[fa[i]].erase(dist[i].top());
+          dist[i].erase(d[x][dep[x] - dep[fa[i]]]);
+          if (dist[i].size()) ch[fa[i]].insert(dist[i].top());
+          if (ch[fa[i]].size() >= 2)
+            ans.insert(ch[fa[i]].top() + ch[fa[i]].top2());
+        }
+        cnt--;
+      } else {
+        if (ch[x].size() >= 2) ans.erase(ch[x].top() + ch[x].top2());
+        ch[x].insert(0);
+        if (ch[x].size() >= 2) ans.insert(ch[x].top() + ch[x].top2());
+        for (int i = x; fa[i]; i = fa[i]) {
+          if (ch[fa[i]].size() >= 2)
+            ans.erase(ch[fa[i]].top() + ch[fa[i]].top2());
+          if (dist[i].size()) ch[fa[i]].erase(dist[i].top());
+          dist[i].insert(d[x][dep[x] - dep[fa[i]]]);
+          ch[fa[i]].insert(dist[i].top());
+          if (ch[fa[i]].size() >= 2)
+            ans.insert(ch[fa[i]].top() + ch[fa[i]].top2());
+        }
+        cnt++;
       }
-      cout << lstans << '\n';
-    }
-    if (op == 1) {
-      int nww = 0;
-      dist.update(dist.rt[x], 0, n, 0, y - val[x]);
-      for (int i = x; fa[i]; i = fa[i]) {
-        nww = d[x][dep[x] - dep[fa[i]]];  // lca.dist(x,fa[i]);
-        dist.update(dist.rt[fa[i]], 0, n, nww, y - val[x]);
-        ch.update(ch.rt[i], 0, n, nww, y - val[x]);
-      }
-      val[x] = y;
+      col[x] ^= 1;
     }
   }
   return 0;

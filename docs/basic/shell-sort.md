@@ -270,36 +270,12 @@ $$
 
 === "C++[^ref1]"
     ```cpp
-    template <typename T>
-    void shell_sort(T array[], int length) {
-      int h = 1;
-      while (h < length / 3) {
-        h = 3 * h + 1;
-      }
-      while (h >= 1) {
-        for (int i = h; i < length; i++) {
-          for (int j = i; j >= h && array[j] < array[j - h]; j -= h) {
-            std::swap(array[j], array[j - h]);
-          }
-        }
-        h = h / 3;
-      }
-    }
+    --8<-- "docs/basic/code/shell-sort/shell-sort_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    def shell_sort(array, length):
-        h = 1
-        while h < length / 3:
-            h = int(3 * h + 1)
-        while h >= 1:
-            for i in range(h, length):
-                j = i
-                while j >= h and array[j] < array[j - h]:
-                    array[j], array[j - h] = array[j - h], array[j]
-                    j -= h
-            h = int(h / 3)
+    --8<-- "docs/basic/code/shell-sort/shell-sort_1.py:core"
     ```
 
 ## 参考资料与注释

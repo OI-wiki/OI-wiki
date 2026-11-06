@@ -1,12 +1,27 @@
 #include <algorithm>
 #include <cassert>
+#include <climits>
+#include <cstdio>
+#include <cstring>
 #include <iostream>
+#include <limits>
+#include <list>
 #include <numeric>
 #include <queue>
 #include <random>
+#include <utility>
 #include <vector>
 using namespace std;
 
+// 固定测试时的打乱过程，避免不同标准库的 std::shuffle 实现产生不同结果。
+void shuffle(vector<int>::iterator first, vector<int>::iterator last,
+             mt19937 &rng) {
+  for (size_t n = last - first; n; --n) {
+    swap(first[rng() % n], first[n - 1]);
+  }
+}
+
+// --8<-- [start:core-prefix]
 // graph
 template <typename T>
 class graph {
@@ -49,12 +64,18 @@ class undirectedgraph : public graph<T> {
 // blossom / find_max_unweighted_matching
 template <typename T>
 vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
-  std::mt19937 rng(114514);  // 这里随机种子是无关紧要的
-  // 也可以用 chrono::steady_clock::now().time_since_epoch().count()
-  // 获取当前时间
+  // --8<-- [end:core-prefix]
+#if 0
+  // --8<-- [start:seed]
+  std::mt19937 rng(std::random_device{}());
+  // --8<-- [end:seed]
+#endif
+  // 测试时使用固定种子；文档仍展示 random_device 播种方式。
+  std::mt19937 rng(5489);
+  // --8<-- [start:core-suffix]
   vector<int> match(g.n, -1);   // 匹配
   vector<int> aux(g.n, -1);     // 时间戳记
-  vector<int> label(g.n);       // "o" or "i"
+  vector<int> label(g.n);       // 「o」或「i」
   vector<int> orig(g.n);        // 花根
   vector<int> parent(g.n, -1);  // 父节点
   queue<int> q;
@@ -82,7 +103,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
     while (orig[v] != a) {
       parent[v] = u;
       u = match[v];
-      if (label[u] == 1) {  // 初始点设为"o" 找增广路
+      if (label[u] == 1) {  // 初始点设为「o」找增广路
         label[u] = 0;
         q.push(u);
       }
@@ -108,7 +129,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       q.pop();
     }
     q.push(root);
-    // 初始点设为 "o", 这里以"0"代替"o", "1"代替"i"
+    // 初始点设为「o」，这里以「0」代替「o」，「1」代替「i」
     label[root] = 0;
     while (!q.empty()) {
       int v = q.front();
@@ -117,7 +138,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         auto &e = g.edges[id];
         int u = e.from ^ e.to ^ v;
         if (label[u] == -1) {  // 找到未拜访点
-          label[u] = 1;        // 标记 "i"
+          label[u] = 1;        // 标记「i」
           parent[u] = v;
           if (match[u] == -1) {  // 找到未匹配点
             augment(u);          // 寻找增广路径
@@ -128,7 +149,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
           q.push(match[u]);
           continue;
         } else if (label[u] == 0 && orig[v] != orig[u]) {
-          // 找到已拜访点 且标记同为"o" 代表找到"花"
+          // 找到已拜访点 且标记同为「o」代表找到「花」
           int a = lca(orig[v], orig[u]);
           // 找LCA 然后缩花
           blossom(u, v, a);
@@ -172,6 +193,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
   return match;
 }
 
+// --8<-- [end:core-suffix]
 int main() {
   ios::sync_with_stdio(false);
 
@@ -188,10 +210,21 @@ int main() {
 
   auto match = find_max_unweighted_matching(g);
 
+  // 最大匹配方案可能不唯一，检查方案合法性后只输出匹配数。
+  for (int i = 0; i < n; i++) {
+    int j = match[i];
+    assert(-1 <= j && j < n);
+    if (j == -1) continue;
+    assert(j != i && match[j] == i);
+    assert(any_of(g.g[i].begin(), g.g[i].end(), [&](int id) {
+      const auto &e = g.edges[id];
+      return (e.from ^ e.to ^ i) == j;
+    }));
+  }
+
   cout << count_if(match.begin(), match.end(), [](int x) { return x != -1; }) /
               2
        << endl;
-  for (int i = 0; i < n; i++) cout << match[i] + 1 << " \n"[i == n - 1];
 
   return 0;
 }

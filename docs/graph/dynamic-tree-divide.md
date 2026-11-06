@@ -17,43 +17,11 @@
 下面给出求点分树的参考代码：
 
 ```cpp
-void calcsiz(int x, int f) {
-  siz[x] = 1;
-  maxx[x] = 0;
-  for (int j = h[x]; j; j = nxt[j])
-    if (p[j] != f && !vis[p[j]]) {
-      calcsiz(p[j], x);
-      siz[x] += siz[p[j]];
-      maxx[x] = max(maxx[x], siz[p[j]]);
-    }
-  maxx[x] =
-      max(maxx[x], sum - siz[x]);  // maxx[x] 表示以 x 为根时的最大子树大小
-  if (maxx[x] < maxx[rt])
-    rt = x;  // 这里不能写 <= ，保证在第二次 calcsiz 时 rt 不改变
-}
-
-void pre(int x) {
-  vis[x] = true;  // 表示在之后的过程中不考虑 x 这个点
-  for (int j = h[x]; j; j = nxt[j])
-    if (!vis[p[j]]) {
-      sum = siz[p[j]];
-      rt = 0;
-      maxx[rt] = inf;
-      calcsiz(p[j], -1);
-      calcsiz(rt, -1);  // 计算两次，第二次求出以 rt 为根时的各子树大小
-      fa[rt] = x;
-      pre(rt);  // 记录点分树上的父亲
-    }
-}
-
-int main() {
-  sum = n;
-  rt = 0;
-  maxx[rt] = inf;
-  calcsiz(1, -1);
-  calcsiz(rt, -1);
-  pre(rt);
-}
+--8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_1.cpp:core"
+--8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_1.cpp:main_head"
+--8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_1.cpp:main_init"
+--8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_1.cpp:main_call"
+--8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_1.cpp:main_end"
 ```
 
 ### 实现修改
@@ -83,7 +51,7 @@ int main() {
 参考代码：
 
 ```cpp
---8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_1.cpp"
+--8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_2.cpp"
 ```
 
 ???+ note "例题 [Luogu P6329【模板】点分树 | 震波](https://www.luogu.com.cn/problem/P6329)"
@@ -105,5 +73,5 @@ int main() {
 参考代码：
 
 ```cpp
---8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_2.cpp"
+--8<-- "docs/graph/code/dynamic-tree-divide/dynamic-tree-divide_3.cpp"
 ```

@@ -390,41 +390,7 @@ $$
 
 ??? note "代码"
     ```cpp
-    #include <algorithm>
-    #include <cstdlib>
-    #include <iostream>
-    
-    int n;
-    
-    int a[510], b[510], c[510][510], d[510];
-    int p[510], q[510];
-    
-    int maxans = 0;
-    
-    void check() {
-      memset(d, 0, sizeof d);
-      int nowans = 0;
-      for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= n; j++) d[i] += a[j] * c[i][j];
-      for (int i = 1; i <= n; i++) nowans += (d[i] - b[i]) * a[i];
-      maxans = std::max(maxans, nowans);
-    }
-    
-    int main() {
-      srand(19260817);
-      std::cin >> n;
-      for (int i = 1; i <= n; i++)
-        for (int j = 1; j <= n; j++) std::cin >> c[i][j];
-      for (int i = 1; i <= n; i++) std::cin >> b[i];
-      for (int i = 1; i <= n; i++) a[i] = 1;
-      check();
-      for (int T = 1000; T; T--) {
-        int tmp = rand() % n + 1;
-        a[tmp] ^= 1;
-        check();
-      }
-      std::cout << maxans << '\n';
-    }
+    --8<-- "docs/misc/code/rand-technique/rand-technique_1.cpp"
     ```
 
 ### 例：（\*）随机堆[^ref3]
@@ -435,21 +401,7 @@ $$
 
 ???+ note "代码"
     ```cpp
-    struct Node {
-      int child[2];
-      long long val;
-    } nd[100010];
-    
-    int root[100010];
-    
-    int merge(int u, int v) {
-      if (!(u && v)) return u | v;
-      int x = rand() & 1, p = nd[u].val > nd[v].val ? u : v;
-      nd[p].child[x] = merge(nd[p].child[x], u + v - p);
-      return p;
-    }
-    
-    void pop(int &now) { now = merge(nd[now].child[0], nd[now].child[1]); }
+    --8<-- "docs/misc/code/rand-technique/rand-technique_2.cpp:core"
     ```
 
 随机堆对堆的形态没有任何硬性或软性的要求，合并操作的期望复杂度对任何两个堆（作为 `merge` 函数的参数）都成立．下证．

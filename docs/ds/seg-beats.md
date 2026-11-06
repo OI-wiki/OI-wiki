@@ -91,7 +91,7 @@
 由于需要同时维护区间 $\min$ 和区间加法，所以复杂度仍是 $O(m\log^2 n)$．
 
 ```cpp
---8<-- "docs/ds/code/seg-beats/seg-beats_4.cpp"
+--8<-- "docs/ds/code/seg-beats/seg-beats_3.cpp"
 ```
 
 ### 小结
@@ -172,5 +172,5 @@ $$
 于是我们把这个结点的 Pre 标记拆成 $(P_1,P_2)$．$P_1$ 表示第一阶段的最大加减标记；$P_2$ 表示第二阶段的最大覆盖标记．利用相似的方法，我们可以对这个做标记下传和信息更新．时间复杂度是 $O(m\log n)$ 的（这个问题并没有区间对 $x$ 取最值的操作哦～）
 
 ```cpp
---8<-- "docs/ds/code/seg-beats/seg-beats_3.cpp"
+--8<-- "docs/ds/code/seg-beats/seg-beats_4.cpp"
 ```

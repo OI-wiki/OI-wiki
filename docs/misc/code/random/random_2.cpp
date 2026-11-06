@@ -1,3 +1,9 @@
+// --8<-- [start:declaration]
+template <class UIntType, UIntType A, UIntType C, UIntType M>
+class linear_congruential_engine;
+// --8<-- [end:declaration]
+
+// --8<-- [start:program]
 #include <iostream>
 using namespace std;
 
@@ -22,3 +28,5 @@ int main() {
   cout << x << endl;
   return 0;
 }
+
+// --8<-- [end:program]

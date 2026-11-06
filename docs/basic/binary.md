@@ -35,21 +35,7 @@
 ### 实现
 
 ```cpp
-int binary_search(int x, int l = 1, int r = n) {  // 在升序数组中查找数 x 的下标
-  int ret = -1;                                   // 未找到时返回 -1
-  while (l <= r) {
-    int mid = (l + r) >> 1;  // l + r 可能溢出，详见下方 Note
-    if (a[mid] < x)
-      l = mid + 1;
-    else if (a[mid] > x)
-      r = mid - 1;
-    else {  // 最后检测相等是因为多数搜索情况不是大于就是小于
-      ret = mid;
-      break;
-    }
-  }
-  return ret;
-}
+--8<-- "docs/basic/code/binary/binary_1.cpp:core"
 ```
 
 ???+ note "Note"
@@ -120,24 +106,7 @@ int binary_search(int x, int l = 1, int r = n) {  // 在升序数组中查找数
 根据上面的算法描述，可以给出如下实现：
 
 ```cpp
-// 求 [L, R] 内满足条件 P 的最小整数 x，要求 L <= R
-// 条件 P 需要满足第一种有序性质，即 f(x) 单调不减
-// 在代码实现中，通常 check(x) = f(x)
-// 若区间内无解，返回 -1
-int binary_search_min(int L, int R) {
-  if (L > R) return -1;
-  int l = L, r = R;
-  while (l < r) {
-    int mid = (l + r) >> 1;
-    if (check(mid))  // f(mid) = 1，满足条件 P
-      r = mid;       // 答案在 [l, mid]
-    else
-      l = mid + 1;  // 答案在 [mid + 1, r]
-  }
-  // 此时 l == r
-  if (!check(l)) return -1;  // 无解判断
-  return l;
-}
+--8<-- "docs/basic/code/binary/binary_2.cpp:core"
 ```
 
 使用 `-1` 表示无解时，需要保证它不会与合法答案混淆．
@@ -147,23 +116,7 @@ int binary_search_min(int L, int R) {
 在查看题解时，我们可能会看到另一种实现方式：
 
 ```cpp
-// 求 [L, R] 内满足 check(x) 的最小整数 x
-// 要求 check 在 [L, R] 上单调不减
-// 若区间为空或区间内无解，返回 -1
-int binary_search_min(int L, int R) {
-  if (L > R) return -1;
-  int l = L, r = R;
-  while (l <= r) {
-    int mid = (l + r) >> 1;
-    if (check(mid))
-      r = mid - 1;
-    else
-      l = mid + 1;
-  }
-
-  if (l > R) return -1;
-  return l;
-}
+--8<-- "docs/basic/code/binary/binary_3.cpp:core"
 ```
 
 这两种写法求出的答案是相同的，但维护的循环不变量不同．
@@ -288,35 +241,7 @@ C++ 标准库中实现了：
     利用 `bsearch` 实现 `std::lower_bound` 和 `std::upper_bound` 时，可以利用其比较函数的参数约定：第一个参数指向待查元素，第二个参数指向待查数组中的元素．所以只要比较函数能得到数组首地址即可实现．
     
     ```cpp
-    int A[100005];  // 示例全局数组
-    
-    // compare 比较两个 int 指针指向的值：*p1 > *p2 返回正数，相等返回
-    // 0，小于返回负数
-    int compare(const void*, const void*);
-    
-    // 查找首个不小于待查元素的元素的地址
-    int lower(const void* p1, const void* p2) {
-      int* a = (int*)p1;
-      int* b = (int*)p2;
-      if ((b == A || compare(a, b - 1) > 0) && compare(a, b) > 0)
-        return 1;
-      else if (b != A && compare(a, b - 1) <= 0)
-        return -1;  // 用到地址的减法，因此必须指定元素类型
-      else
-        return 0;
-    }
-    
-    // 查找首个大于待查元素的元素的地址
-    int upper(const void* p1, const void* p2) {
-      int* a = (int*)p1;
-      int* b = (int*)p2;
-      if ((b == A || compare(a, b - 1) >= 0) && compare(a, b) >= 0)
-        return 1;
-      else if (b != A && compare(a, b - 1) < 0)
-        return -1;  // 用到地址的减法，因此必须指定元素类型
-      else
-        return 0;
-    }
+    --8<-- "docs/basic/code/binary/binary_4.cpp:core"
     ```
     
     注意：若答案是尾后位置（如待查元素大于所有元素），上述方法仍会返回 `NULL`，需要单独处理．
@@ -363,31 +288,7 @@ C++11 引入了 [`std::partition_point`](https://zh.cppreference.com/w/cpp/algor
 #### 实现
 
 ```cpp
-double binary_search_iter(double L, double R) {  // 固定迭代次数实现
-  double l = L, r = R;
-  for (int i = 0; i < 100; ++i) {
-    double mid = (l + r) / 2;
-    if (check(mid))
-      r = mid;
-    else
-      l = mid;
-  }
-  return r;
-}
-
-const double eps = 1e-7;  // 精度要求，通常取题目要求精度的 1/100 或更小
-
-double binary_search_eps(double L, double R) {  // eps 实现
-  double l = L, r = R;
-  while (r - l > eps) {
-    double mid = (l + r) / 2;
-    if (check(mid))
-      r = mid;
-    else
-      l = mid;
-  }
-  return r;
-}
+--8<-- "docs/basic/code/binary/binary_5.cpp:core"
 ```
 
 ???+ warning "Warning"
@@ -409,7 +310,7 @@ double binary_search_eps(double L, double R) {  // eps 实现
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/basic/code/binary/binary_2.cpp"
+    --8<-- "docs/basic/code/binary/binary_6.cpp"
     ```
     
     看完了上面的代码，你肯定会有两个疑问：
@@ -574,12 +475,12 @@ $$
 ??? note "参考代码"
     === "C++"
         ```cpp
-        --8<-- "docs/basic/code/binary/binary_1.cpp"
+        --8<-- "docs/basic/code/binary/binary_7.cpp"
         ```
     
     === "Python"
         ```python
-        --8<-- "docs/basic/code/binary/binary_1.py"
+        --8<-- "docs/basic/code/binary/binary_7.py"
         ```
 
 ### 习题

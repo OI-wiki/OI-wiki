@@ -286,96 +286,24 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
 
 === "C++"
     ```cpp
-    using std::string;
-    
-    constexpr int M = 1e9 + 7;
-    constexpr int B = 233;
-    
-    using ll = long long;
-    
-    int get_hash(const string& s) {
-      int res = 0;
-      for (int i = 0; i < s.size(); ++i) {
-        res = ((ll)res * B + s[i]) % M;
-      }
-      return res;
-    }
-    
-    bool cmp(const string& s, const string& t) {
-      return get_hash(s) == get_hash(t);
-    }
+    --8<-- "docs/string/code/hash/hash_1.cpp:core"
     ```
 
 === "Python"
     ```python
-    M = int(1e9 + 7)
-    B = 233
-    
-    
-    def get_hash(s):
-        res = 0
-        for char in s:
-            res = (res * B + ord(char)) % M
-        return res
-    
-    
-    def cmp(s, t):
-        return get_hash(s) == get_hash(t)
+    --8<-- "docs/string/code/hash/hash_1.py:core"
     ```
 
 ### 双值 Hash：
 
 === "C++"
     ```cpp
-    using ull = unsigned long long;
-    ull base = 131;
-    ull mod1 = 212370440130137957, mod2 = 1e9 + 7;
-    
-    ull get_hash1(std::string s) {
-      int len = s.size();
-      ull ans = 0;
-      for (int i = 0; i < len; i++) ans = (ans * base + (ull)s[i]) % mod1;
-      return ans;
-    }
-    
-    ull get_hash2(std::string s) {
-      int len = s.size();
-      ull ans = 0;
-      for (int i = 0; i < len; i++) ans = (ans * base + (ull)s[i]) % mod2;
-      return ans;
-    }
-    
-    bool cmp(const std::string s, const std::string t) {
-      bool f1 = get_hash1(s) != get_hash1(t);
-      bool f2 = get_hash2(s) != get_hash2(t);
-      return f1 || f2;
-    }
+    --8<-- "docs/string/code/hash/hash_2.cpp:core"
     ```
 
 === "Python"
     ```python
-    def get_hash1(s: str) -> int:
-        base = 131
-        mod1 = 212370440130137957
-        ans = 0
-        for char in s:
-            ans = (ans * base + ord(char)) % mod1
-        return ans
-    
-    
-    def get_hash2(s: str) -> int:
-        base = 131
-        mod2 = 1000000007
-        ans = 0
-        for char in s:
-            ans = (ans * base + ord(char)) % mod2
-        return ans
-    
-    
-    def cmp(s: str, t: str) -> bool:
-        f1 = get_hash1(s) != get_hash1(t)
-        f2 = get_hash2(s) != get_hash2(t)
-        return f1 or f2
+    --8<-- "docs/string/code/hash/hash_2.py:core"
     ```
 
 ## Hash 的应用
@@ -420,31 +348,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
 
 ??? note "参考代码"
     ```cpp
-    int count_unique_substrings(string const& s) {
-      int n = s.size();
-    
-      constexpr static int b = 31;
-      constexpr static int m = 1e9 + 9;
-      vector<long long> b_pow(n);
-      b_pow[0] = 1;
-      for (int i = 1; i < n; i++) b_pow[i] = (b_pow[i - 1] * b) % m;
-    
-      vector<long long> h(n + 1, 0);
-      for (int i = 0; i < n; i++)
-        h[i + 1] = (h[i] + (s[i] - 'a' + 1) * b_pow[i]) % m;
-    
-      int cnt = 0;
-      for (int l = 1; l <= n; l++) {
-        set<long long> hs;
-        for (int i = 0; i <= n - l; i++) {
-          long long cur_h = (h[i + l] + m - h[i]) % m;
-          cur_h = (cur_h * b_pow[n - i - 1]) % m;
-          hs.insert(cur_h);
-        }
-        cnt += hs.size();
-      }
-      return cnt;
-    }
+    --8<-- "docs/string/code/hash/hash_3.cpp:core"
     ```
 
 ### 例题
@@ -461,7 +365,7 @@ $s_{12}$ 和 $!s_{12}$ 就是我们要的两个字符串．
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/string/code/hash/hash_1.cpp"
+        --8<-- "docs/string/code/hash/hash_4.cpp"
         ```
 
 **本页面部分内容译自博文 [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md) 与其英文翻译版 [String Hashing](https://cp-algorithms.com/string/string-hashing.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**

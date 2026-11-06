@@ -128,6 +128,7 @@ constexpr int N = int(1e3) + 9;
 Int binom[N][N], C[N], E[N], B[N], B1[N], G[N];
 int n;
 
+// --8<-- [start:ln]
 void ln(Int C[], Int G[]) {
   for (int i = 1; i <= n; ++i) {
     C[i] = G[i];
@@ -136,6 +137,9 @@ void ln(Int C[], Int G[]) {
   }
 }
 
+// --8<-- [end:ln]
+
+// --8<-- [start:exp]
 void exp(Int G[], Int C[]) {
   for (int i = 1; i <= n; ++i) {
     G[i] = C[i];
@@ -143,6 +147,8 @@ void exp(Int G[], Int C[]) {
       G[i] += binom[i - 1][j - 1] * C[j] * G[i - j];
   }
 }
+
+// --8<-- [end:exp]
 
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
@@ -154,10 +160,13 @@ int main() {
       binom[i][j + 1] = binom[i - 1][j] + binom[i - 1][j + 1];
   }
 
+  // --8<-- [start:connected-eulerian]
   for (int i = 1; i <= n; ++i) G[i] = pow(2, binom[i][2]);
   ln(C, G);
   for (int i = 1; i <= n; ++i) G[i] = pow(2, binom[i - 1][2]);
   ln(E, G);
+  // --8<-- [end:connected-eulerian]
+  // --8<-- [start:bipartite]
   for (int i = 1; i <= n; ++i) {
     G[i] = 0;
     for (int j = 0; j < i + 1; ++j) G[i] += binom[i][j] * pow(2, j * (i - j));
@@ -165,6 +174,7 @@ int main() {
   ln(B1, G);
   for (int i = 1; i <= n; ++i) B1[i] /= 2;
   exp(B, B1);
+  // --8<-- [end:bipartite]
 
   int T;
   cin >> T;

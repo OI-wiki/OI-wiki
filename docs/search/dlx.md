@@ -62,31 +62,7 @@ $$
 
 ??? note "实现"
     ```cpp
-    int ok = 0;
-    for (int state = 0; state < 1 << n; ++state) {  // 枚举每行是否被选
-      for (int i = 1; i <= n; ++i)
-        if ((1 << i - 1) & state)
-          for (int j = 1; j <= m; ++j) a[i][j] = 1;
-      int flag = 1;
-      for (int j = 1; j <= m; ++j)
-        for (int i = 1, bo = 0; i <= n; ++i)
-          if (a[i][j]) {
-            if (bo)
-              flag = 0;
-            else
-              bo = 1;
-          }
-      if (!flag)
-        continue;
-      else {
-        ok = 1;
-        for (int i = 1; i <= n; ++i)
-          if ((1 << i - 1) & state) printf("%d ", i);
-        puts("");
-      }
-      memset(a, 0, sizeof(a));
-    }
-    if (!ok) puts("No solution.");
+    --8<-- "docs/search/code/dlx/dlx_1.cpp:core"
     ```
 
 #### 暴力 2
@@ -103,28 +79,7 @@ $$
 
 ??? note "实现"
     ```cpp
-    int ok = 0;
-    for (int i = 1; i <= n; ++i)
-      for (int j = m; j >= 1; --j) num[i] = num[i] << 1 | a[i][j];
-    for (int state = 0; state < 1 << n; ++state) {
-      int tmp = 0;
-      bool flag = true;
-      for (int i = 1; i <= n; ++i)
-        if ((1 << i - 1) & state) {
-          if (tmp & num[i]) {
-            flag = false;
-            break;
-          }
-          tmp |= num[i];
-        }
-      if (flag && tmp == (1 << m) - 1) {
-        ok = 1;
-        for (int i = 1; i <= n; ++i)
-          if ((1 << i - 1) & state) printf("%d ", i);
-        puts("");
-      }
-    }
-    if (!ok) puts("No solution.");
+    --8<-- "docs/search/code/dlx/dlx_2.cpp:core"
     ```
 
 ## 重复覆盖问题
@@ -314,7 +269,7 @@ Donald E. Knuth 想到了用双向十字链表来维护这些操作．
 ### 预编译命令
 
 ```cpp
-#define IT(i, A, x) for (i = A[x]; i != x; i = A[i])
+--8<-- "docs/search/code/dlx/dlx_3.cpp:iteration"
 ```
 
 ### 定义
@@ -336,10 +291,7 @@ Donald E. Knuth 想到了用双向十字链表来维护这些操作．
 特殊地，$0$ 号结点无右结点等价于这个 Dancing Links 为空．
 
 ```cpp
-constexpr int MS = 1e5 + 5;
-int n, m, idx, first[MS], siz[MS];
-int L[MS], R[MS], U[MS], D[MS];
-int col[MS], row[MS];
+--8<-- "docs/search/code/dlx/dlx_3.cpp:data"
 ```
 
 ### 过程
@@ -374,15 +326,7 @@ int col[MS], row[MS];
 
 ???+ note "实现"
     ```cpp
-    void remove(const int &c) {
-      int i, j;
-      L[R[c]] = L[c], R[L[c]] = R[c];
-      // 顺着这一列从上往下遍历
-      IT(i, D, c)
-      // 顺着这一行从左往右遍历
-      IT(j, R, i)
-      U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
-    }
+    --8<-- "docs/search/code/dlx/dlx_3.cpp:remove"
     ```
 
 #### recover 操作
@@ -397,11 +341,7 @@ int col[MS], row[MS];
 
 ???+ note "实现"
     ```cpp
-    void recover(const int &c) {
-      int i, j;
-      IT(i, U, c) IT(j, L, i) U[D[j]] = D[U[j]] = j, ++siz[col[j]];
-      L[R[c]] = R[L[c]] = c;
-    }
+    --8<-- "docs/search/code/dlx/dlx_3.cpp:recover"
     ```
 
 #### build 操作
@@ -422,16 +362,7 @@ int col[MS], row[MS];
 
 ???+ note "实现"
     ```cpp
-    void build(const int &r, const int &c) {
-      n = r, m = c;
-      for (int i = 0; i <= c; ++i) {
-        L[i] = i - 1, R[i] = i + 1;
-        U[i] = D[i] = i;
-      }
-      L[0] = c, R[c] = 0, idx = c;
-      memset(first, 0, sizeof(first));
-      memset(siz, 0, sizeof(siz));
-    }
+    --8<-- "docs/search/code/dlx/dlx_3.cpp:build"
     ```
 
 #### insert 操作
@@ -458,8 +389,7 @@ int col[MS], row[MS];
         注意记录 $idx$ 的所在列和所在行，以及更新这一列的元素个数．
 
         ```cpp
-        col[++idx] = c, row[idx] = r, ++siz[c];
-        U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
+        --8<-- "docs/search/code/dlx/dlx_8.cpp:insert-column"
         ```
 
         **强烈建议读者完全掌握这几步的顺序后再继续阅读本文．**
@@ -472,8 +402,7 @@ int col[MS], row[MS];
         -   $first(r)$ 的右结点为 $idx$．
 
         ```cpp
-        L[idx] = first[r], R[idx] = R[first[r]];
-        L[R[first[r]]] = idx, R[first[r]] = idx;
+        --8<-- "docs/search/code/dlx/dlx_3.cpp:insert-row"
         ```
 
         **强烈建议读者完全掌握这几步的顺序后再继续阅读本文．**
@@ -488,16 +417,7 @@ int col[MS], row[MS];
 
 ???+ note "实现"
     ```cpp
-    void insert(const int &r, const int &c) {
-      row[++idx] = r, col[idx] = c, ++siz[c];
-      U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
-      if (!first[r])
-        first[r] = L[idx] = R[idx] = idx;
-      else {
-        L[idx] = first[r], R[idx] = R[first[r]];
-        L[R[first[r]]] = idx, R[first[r]] = idx;
-      }
-    }
+    --8<-- "docs/search/code/dlx/dlx_3.cpp:insert"
     ```
 
 #### dance 操作
@@ -514,23 +434,7 @@ int col[MS], row[MS];
 
 ???+ note "实现"
     ```cpp
-    bool dance(int dep) {
-      int i, j, c = R[0];
-      if (!R[0]) {
-        ans = dep;
-        return true;
-      }
-      IT(i, R, 0) if (siz[i] < siz[c]) c = i;
-      remove(c);
-      IT(i, D, c) {
-        stk[dep] = row[i];
-        IT(j, R, i) remove(col[j]);
-        if (dance(dep + 1)) return true;
-        IT(j, L, i) recover(col[j]);
-      }
-      recover(c);
-      return false;
-    }
+    --8<-- "docs/search/code/dlx/dlx_3.cpp:dance"
     ```
 
 其中 `stk[]` 用来记录答案．
@@ -543,7 +447,7 @@ int col[MS], row[MS];
 
 ??? note "[模板代码](https://www.luogu.com.cn/problem/P4929)"
     ```cpp
-    --8<-- "docs/search/code/dlx/dlx_1.cpp"
+    --8<-- "docs/search/code/dlx/dlx_7.cpp"
     ```
 
 ## 性质
@@ -592,7 +496,7 @@ DLX 的难点，不全在于链表的建立，而在于建模．
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/search/code/dlx/dlx_2.cpp"
+    --8<-- "docs/search/code/dlx/dlx_4.cpp"
     ```
 
 ### 例题 2 [靶形数独](https://www.luogu.com.cn/problem/P1074)
@@ -606,7 +510,7 @@ DLX 的难点，不全在于链表的建立，而在于建模．
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/search/code/dlx/dlx_3.cpp"
+    --8<-- "docs/search/code/dlx/dlx_5.cpp"
     ```
 
 ### 例题 3 [「NOI2005」智慧珠游戏](https://www.luogu.com.cn/problem/P4205)
@@ -645,7 +549,7 @@ DLX 的难点，不全在于链表的建立，而在于建模．
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/search/code/dlx/dlx_4.cpp"
+    --8<-- "docs/search/code/dlx/dlx_6.cpp"
     ```
 
 ## 习题

@@ -1,21 +1,28 @@
 #include <algorithm>
+#include <cmath>
+#include <cstdlib>
 #include <cstring>
+#include <iomanip>
 #include <iostream>
-#include <queue>
 using namespace std;
-constexpr int MAXN = 100010;
-long long n, k;
-priority_queue<long long, vector<long long>, greater<long long>> q;
+constexpr int MAXN = 200010;
+int n, d[MAXN], lc[MAXN], rc[MAXN];
+double ans = 2e18;
 
 struct node {
-  long long x, y;
+  double x, y;
 } s[MAXN];
+
+double L[MAXN], R[MAXN], D[MAXN], U[MAXN];
+
+double dist(int a, int b) {
+  return (s[a].x - s[b].x) * (s[a].x - s[b].x) +
+         (s[a].y - s[b].y) * (s[a].y - s[b].y);
+}
 
 bool cmp1(node a, node b) { return a.x < b.x; }
 
 bool cmp2(node a, node b) { return a.y < b.y; }
-
-long long lc[MAXN], rc[MAXN], L[MAXN], R[MAXN], D[MAXN], U[MAXN];
 
 void maintain(int x) {
   L[x] = R[x] = s[x].x;
@@ -30,58 +37,62 @@ void maintain(int x) {
 
 int build(int l, int r) {
   if (l > r) return 0;
+  if (l == r) {
+    maintain(l);
+    return l;
+  }
   int mid = (l + r) >> 1;
-  double av1 = 0, av2 = 0, va1 = 0, va2 = 0;  // average variance
-  for (int i = l; i <= r; i++) av1 += s[i].x, av2 += s[i].y;
-  av1 /= (r - l + 1);
-  av2 /= (r - l + 1);
+  double avx = 0, avy = 0, vax = 0, vay = 0;  // average variance
+  for (int i = l; i <= r; i++) avx += s[i].x, avy += s[i].y;
+  avx /= (double)(r - l + 1);
+  avy /= (double)(r - l + 1);
   for (int i = l; i <= r; i++)
-    va1 += (av1 - s[i].x) * (av1 - s[i].x),
-        va2 += (av2 - s[i].y) * (av2 - s[i].y);
-  if (va1 > va2)
-    nth_element(s + l, s + mid, s + r + 1, cmp1);
+    vax += (s[i].x - avx) * (s[i].x - avx),
+        vay += (s[i].y - avy) * (s[i].y - avy);
+  if (vax >= vay)
+    d[mid] = 1, nth_element(s + l, s + mid, s + r + 1, cmp1);
   else
-    nth_element(s + l, s + mid, s + r + 1, cmp2);
-  lc[mid] = build(l, mid - 1);
-  rc[mid] = build(mid + 1, r);
+    d[mid] = 2, nth_element(s + l, s + mid, s + r + 1, cmp2);
+  lc[mid] = build(l, mid - 1), rc[mid] = build(mid + 1, r);
   maintain(mid);
   return mid;
 }
 
-long long sq(long long x) { return x * x; }
-
-long long dist(int a, int b) {
-  return max(sq(s[a].x - L[b]), sq(s[a].x - R[b])) +
-         max(sq(s[a].y - D[b]), sq(s[a].y - U[b]));
+double f(int a, int b) {
+  double ret = 0;
+  if (L[b] > s[a].x) ret += (L[b] - s[a].x) * (L[b] - s[a].x);
+  if (R[b] < s[a].x) ret += (s[a].x - R[b]) * (s[a].x - R[b]);
+  if (D[b] > s[a].y) ret += (D[b] - s[a].y) * (D[b] - s[a].y);
+  if (U[b] < s[a].y) ret += (s[a].y - U[b]) * (s[a].y - U[b]);
+  return ret;
 }
 
 void query(int l, int r, int x) {
   if (l > r) return;
   int mid = (l + r) >> 1;
-  long long t = sq(s[mid].x - s[x].x) + sq(s[mid].y - s[x].y);
-  if (t > q.top()) q.pop(), q.push(t);
-  long long distl = dist(x, lc[mid]), distr = dist(x, rc[mid]);
-  if (distl > q.top() && distr > q.top()) {
-    if (distl > distr) {
+  if (mid != x) ans = min(ans, dist(x, mid));
+  if (l == r) return;
+  double distl = f(x, lc[mid]), distr = f(x, rc[mid]);
+  if (distl < ans && distr < ans) {
+    if (distl < distr) {
       query(l, mid - 1, x);
-      if (distr > q.top()) query(mid + 1, r, x);
+      if (distr < ans) query(mid + 1, r, x);
     } else {
       query(mid + 1, r, x);
-      if (distl > q.top()) query(l, mid - 1, x);
+      if (distl < ans) query(l, mid - 1, x);
     }
   } else {
-    if (distl > q.top()) query(l, mid - 1, x);
-    if (distr > q.top()) query(mid + 1, r, x);
+    if (distl < ans) query(l, mid - 1, x);
+    if (distr < ans) query(mid + 1, r, x);
   }
 }
 
 int main() {
-  cin >> n >> k;
-  k *= 2;
-  for (int i = 1; i <= k; i++) q.push(0);
+  cin.tie(nullptr)->sync_with_stdio(false);
+  cin >> n;
   for (int i = 1; i <= n; i++) cin >> s[i].x >> s[i].y;
   build(1, n);
   for (int i = 1; i <= n; i++) query(1, n, i);
-  cout << q.top() << endl;
+  cout << fixed << setprecision(4) << sqrt(ans) << '\n';
   return 0;
 }

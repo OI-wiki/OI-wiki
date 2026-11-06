@@ -34,75 +34,20 @@
 由此不难写出读入高精度数字的代码：
 
 ```cpp
-void clear(int a[]) {
-  for (int i = 0; i < LEN; ++i) a[i] = 0;
-}
-
-void read(int a[]) {
-  static char s[LEN + 1];
-  scanf("%s", s);
-
-  clear(a);
-
-  int len = strlen(s);
-  // 如上所述，反转
-  for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
-  // s[i] - '0' 就是 s[i] 所表示的数码
-  // 有些同学可能更习惯用 ord(s[i]) - ord('0') 的方式理解
-}
+--8<-- "docs/math/code/bignum/bignum_1.cpp:read"
 ```
 
 输出也按照存储的逆序输出．由于不希望输出前导零，故这里从最高位开始向下寻找第一个非零位，从此处开始输出；终止条件 `i >= 1` 而不是 `i >= 0` 是因为当整个数字等于 $0$ 时仍希望输出一个字符 `0`．
 
 ```cpp
-void print(int a[]) {
-  int i;
-  for (i = LEN - 1; i >= 1; --i)
-    if (a[i] != 0) break;
-  for (; i >= 0; --i) putchar(a[i] + '0');
-  putchar('\n');
-}
+--8<-- "docs/math/code/bignum/bignum_1.cpp:print"
 ```
 
 拼起来就是一个完整的复读机程序咯．
 
 ??? note "`copycat.cpp`"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    
-    constexpr int LEN = 1004;
-    
-    int a[LEN];
-    
-    void clear(int a[]) {
-      for (int i = 0; i < LEN; ++i) a[i] = 0;
-    }
-    
-    void read(int a[]) {
-      static char s[LEN + 1];
-      scanf("%s", s);
-    
-      clear(a);
-    
-      int len = strlen(s);
-      for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
-    }
-    
-    void print(int a[]) {
-      int i;
-      for (i = LEN - 1; i >= 1; --i)
-        if (a[i] != 0) break;
-      for (; i >= 0; --i) putchar(a[i] + '0');
-      putchar('\n');
-    }
-    
-    int main() {
-      read(a);
-      print(a);
-    
-      return 0;
-    }
+    --8<-- "docs/math/code/bignum/bignum_11.cpp"
     ```
 
 ## 四则运算
@@ -120,78 +65,14 @@ void print(int a[]) {
 也就是从最低位开始，将两个加数对应位置上的数码相加，并判断是否达到或超过 $10$．如果达到，那么处理进位：将更高一位的结果上增加 $1$，当前位的结果减少 $10$．
 
 ```cpp
-void add(int a[], int b[], int c[]) {
-  clear(c);
-
-  // 高精度实现中，一般令数组的最大长度 LEN 比可能的输入大一些
-  // 然后略去末尾的几次循环，这样一来可以省去不少边界情况的处理
-  // 因为实际输入不会超过 1000 位，故在此循环到 LEN - 1 = 1003 已经足够
-  for (int i = 0; i < LEN - 1; ++i) {
-    // 将相应位上的数码相加
-    c[i] += a[i] + b[i];
-    if (c[i] >= 10) {
-      // 进位
-      c[i + 1] += 1;
-      c[i] -= 10;
-    }
-  }
-}
+--8<-- "docs/math/code/bignum/bignum_2.cpp:add"
 ```
 
 试着和上一部分结合，可以得到一个加法计算器．
 
 ??? note "`adder.cpp`"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    
-    constexpr int LEN = 1004;
-    
-    int a[LEN], b[LEN], c[LEN];
-    
-    void clear(int a[]) {
-      for (int i = 0; i < LEN; ++i) a[i] = 0;
-    }
-    
-    void read(int a[]) {
-      static char s[LEN + 1];
-      scanf("%s", s);
-    
-      clear(a);
-    
-      int len = strlen(s);
-      for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
-    }
-    
-    void print(int a[]) {
-      int i;
-      for (i = LEN - 1; i >= 1; --i)
-        if (a[i] != 0) break;
-      for (; i >= 0; --i) putchar(a[i] + '0');
-      putchar('\n');
-    }
-    
-    void add(int a[], int b[], int c[]) {
-      clear(c);
-    
-      for (int i = 0; i < LEN - 1; ++i) {
-        c[i] += a[i] + b[i];
-        if (c[i] >= 10) {
-          c[i + 1] += 1;
-          c[i] -= 10;
-        }
-      }
-    }
-    
-    int main() {
-      read(a);
-      read(b);
-    
-      add(a, b, c);
-      print(c);
-    
-      return 0;
-    }
+    --8<-- "docs/math/code/bignum/bignum_12.cpp"
     ```
 
 ### 减法
@@ -203,75 +84,14 @@ void add(int a[], int b[], int c[]) {
 从个位起逐位相减，遇到负的情况则向上一位借 $1$．整体思路与加法完全一致．
 
 ```cpp
-void sub(int a[], int b[], int c[]) {
-  clear(c);
-
-  for (int i = 0; i < LEN - 1; ++i) {
-    // 逐位相减
-    c[i] += a[i] - b[i];
-    if (c[i] < 0) {
-      // 借位
-      c[i + 1] -= 1;
-      c[i] += 10;
-    }
-  }
-}
+--8<-- "docs/math/code/bignum/bignum_3.cpp:sub"
 ```
 
 将上一个程序中的 `add()` 替换成 `sub()`，就有了一个减法计算器．
 
 ??? note "`subtractor.cpp`"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    
-    constexpr int LEN = 1004;
-    
-    int a[LEN], b[LEN], c[LEN];
-    
-    void clear(int a[]) {
-      for (int i = 0; i < LEN; ++i) a[i] = 0;
-    }
-    
-    void read(int a[]) {
-      static char s[LEN + 1];
-      scanf("%s", s);
-    
-      clear(a);
-    
-      int len = strlen(s);
-      for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
-    }
-    
-    void print(int a[]) {
-      int i;
-      for (i = LEN - 1; i >= 1; --i)
-        if (a[i] != 0) break;
-      for (; i >= 0; --i) putchar(a[i] + '0');
-      putchar('\n');
-    }
-    
-    void sub(int a[], int b[], int c[]) {
-      clear(c);
-    
-      for (int i = 0; i < LEN - 1; ++i) {
-        c[i] += a[i] - b[i];
-        if (c[i] < 0) {
-          c[i + 1] -= 1;
-          c[i] += 10;
-        }
-      }
-    }
-    
-    int main() {
-      read(a);
-      read(b);
-    
-      sub(a, b, c);
-      print(c);
-    
-      return 0;
-    }
+    --8<-- "docs/math/code/bignum/bignum_13.cpp"
     ```
 
 试一试，输入 `1 2`——输出 `/9999999`，诶这个 **OI Wiki** 怎么给了我一份假的代码啊……
@@ -299,22 +119,7 @@ $a-b=-(b-a)$
 当然，也是出于这个原因，这个方法需要特别关注乘数 $b$ 的范围．若它和 $10^9$（或相应整型的取值上界）属于同一数量级，那么需要慎用高精度—单精度乘法．
 
 ```cpp
-void mul_short(int a[], int b, int c[]) {
-  clear(c);
-
-  for (int i = 0; i < LEN - 1; ++i) {
-    // 直接把 a 的第 i 位数码乘以乘数，加入结果
-    c[i] += a[i] * b;
-
-    if (c[i] >= 10) {
-      // 处理进位
-      // c[i] / 10 即除法的商数成为进位的增量值
-      c[i + 1] += c[i] / 10;
-      // 而 c[i] % 10 即除法的余数成为在当前位留下的值
-      c[i] %= 10;
-    }
-  }
-}
+--8<-- "docs/math/code/bignum/bignum_4.cpp:core"
 ```
 
 #### 高精度—高精度
@@ -330,21 +135,7 @@ void mul_short(int a[], int b, int c[]) {
 注意这个过程与竖式乘法不尽相同，我们的算法在每一步乘的过程中并不进位，而是将所有的结果保留在对应的位置上，到最后再统一处理进位，但这不会影响结果．
 
 ```cpp
-void mul(int a[], int b[], int c[]) {
-  clear(c);
-
-  for (int i = 0; i < LEN - 1; ++i) {
-    // 这里直接计算结果中的从低到高第 i 位，且一并处理了进位
-    // 第 i 次循环为 c[i] 加上了所有满足 p + q = i 的 a[p] 与 b[q] 的乘积之和
-    // 这样做的效果和直接进行上图的运算最后求和是一样的，只是更加简短的一种实现方式
-    for (int j = 0; j <= i; ++j) c[i] += a[j] * b[i - j];
-
-    if (c[i] >= 10) {
-      c[i + 1] += c[i] / 10;
-      c[i] %= 10;
-    }
-  }
-}
+--8<-- "docs/math/code/bignum/bignum_5.cpp:core"
 ```
 
 ### 除法
@@ -360,55 +151,7 @@ void mul(int a[], int b[], int c[]) {
 参考程序实现了一个函数 `greater_eq()` 用于判断被除数以下标 `last_dg` 为最低位，是否可以再减去除数而保持非负．此后对于商的每一位，不断调用 `greater_eq()`，并在成立的时候用高精度减法从余数中减去除数，也即模拟了竖式除法的过程．
 
 ```cpp
-// 被除数 a 以下标 last_dg 为最低位，是否可以再减去除数 b 而保持非负
-// len 是除数 b 的长度，避免反复计算
-bool greater_eq(int a[], int b[], int last_dg, int len) {
-  // 有可能被除数剩余的部分比除数长，这个情况下最多多出 1 位，故如此判断即可
-  if (a[last_dg + len] != 0) return true;
-  // 从高位到低位，逐位比较
-  for (int i = len - 1; i >= 0; --i) {
-    if (a[last_dg + i] > b[i]) return true;
-    if (a[last_dg + i] < b[i]) return false;
-  }
-  // 相等的情形下也是可行的
-  return true;
-}
-
-void div(int a[], int b[], int c[], int d[]) {
-  clear(c);
-  clear(d);
-
-  int la, lb;
-  for (la = LEN - 1; la > 0; --la)
-    if (a[la - 1] != 0) break;
-  for (lb = LEN - 1; lb > 0; --lb)
-    if (b[lb - 1] != 0) break;
-  if (lb == 0) {  // 除数不能为零
-    puts("> <");
-    return;
-  }
-
-  // c 是商
-  // d 是被除数的剩余部分，算法结束后自然成为余数
-  for (int i = 0; i < la; ++i) d[i] = a[i];
-  for (int i = la - lb; i >= 0; --i) {
-    // 计算商的第 i 位
-    while (greater_eq(d, b, i, lb)) {
-      // 若可以减，则减
-      // 这一段是一个高精度减法
-      for (int j = 0; j < lb; ++j) {
-        d[i + j] -= b[j];
-        if (d[i + j] < 0) {
-          d[i + j + 1] -= 1;
-          d[i + j] += 10;
-        }
-      }
-      // 使商的这一位增加 1
-      c[i] += 1;
-      // 返回循环开头，重新检查
-    }
-  }
-}
+--8<-- "docs/math/code/bignum/bignum_6.cpp:division"
 ```
 
 ## 入门篇完成！
@@ -417,142 +160,7 @@ void div(int a[], int b[], int c[], int d[]) {
 
 ??? note "`calculator.cpp`"
     ```cpp
-    #include <cstdio>
-    #include <cstring>
-    
-    constexpr int LEN = 1004;
-    
-    int a[LEN], b[LEN], c[LEN], d[LEN];
-    
-    void clear(int a[]) {
-      for (int i = 0; i < LEN; ++i) a[i] = 0;
-    }
-    
-    void read(int a[]) {
-      static char s[LEN + 1];
-      scanf("%s", s);
-    
-      clear(a);
-    
-      int len = strlen(s);
-      for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
-    }
-    
-    void print(int a[]) {
-      int i;
-      for (i = LEN - 1; i >= 1; --i)
-        if (a[i] != 0) break;
-      for (; i >= 0; --i) putchar(a[i] + '0');
-      putchar('\n');
-    }
-    
-    void add(int a[], int b[], int c[]) {
-      clear(c);
-    
-      for (int i = 0; i < LEN - 1; ++i) {
-        c[i] += a[i] + b[i];
-        if (c[i] >= 10) {
-          c[i + 1] += 1;
-          c[i] -= 10;
-        }
-      }
-    }
-    
-    void sub(int a[], int b[], int c[]) {
-      clear(c);
-    
-      for (int i = 0; i < LEN - 1; ++i) {
-        c[i] += a[i] - b[i];
-        if (c[i] < 0) {
-          c[i + 1] -= 1;
-          c[i] += 10;
-        }
-      }
-    }
-    
-    void mul(int a[], int b[], int c[]) {
-      clear(c);
-    
-      for (int i = 0; i < LEN - 1; ++i) {
-        for (int j = 0; j <= i; ++j) c[i] += a[j] * b[i - j];
-    
-        if (c[i] >= 10) {
-          c[i + 1] += c[i] / 10;
-          c[i] %= 10;
-        }
-      }
-    }
-    
-    bool greater_eq(int a[], int b[], int last_dg, int len) {
-      if (a[last_dg + len] != 0) return true;
-      for (int i = len - 1; i >= 0; --i) {
-        if (a[last_dg + i] > b[i]) return true;
-        if (a[last_dg + i] < b[i]) return false;
-      }
-      return true;
-    }
-    
-    void div(int a[], int b[], int c[], int d[]) {
-      clear(c);
-      clear(d);
-    
-      int la, lb;
-      for (la = LEN - 1; la > 0; --la)
-        if (a[la - 1] != 0) break;
-      for (lb = LEN - 1; lb > 0; --lb)
-        if (b[lb - 1] != 0) break;
-      if (lb == 0) {
-        puts("> <");
-        return;
-      }
-    
-      for (int i = 0; i < la; ++i) d[i] = a[i];
-      for (int i = la - lb; i >= 0; --i) {
-        while (greater_eq(d, b, i, lb)) {
-          for (int j = 0; j < lb; ++j) {
-            d[i + j] -= b[j];
-            if (d[i + j] < 0) {
-              d[i + j + 1] -= 1;
-              d[i + j] += 10;
-            }
-          }
-          c[i] += 1;
-        }
-      }
-    }
-    
-    int main() {
-      read(a);
-    
-      char op[4];
-      scanf("%s", op);
-    
-      read(b);
-    
-      switch (op[0]) {
-        case '+':
-          add(a, b, c);
-          print(c);
-          break;
-        case '-':
-          sub(a, b, c);
-          print(c);
-          break;
-        case '*':
-          mul(a, b, c);
-          print(c);
-          break;
-        case '/':
-          div(a, b, c, d);
-          print(c);
-          print(d);
-          break;
-        default:
-          puts("> <");
-      }
-    
-      return 0;
-    }
+    --8<-- "docs/math/code/bignum/bignum_14.cpp"
     ```
 
 ## 压位高精度
@@ -583,19 +191,7 @@ void div(int a[], int b[], int c[], int d[]) {
 
 ??? note "压位高精度加法参考实现"
     ```cpp
-    // 这里的 a,b,c 数组均为 p 进制下的数
-    // 最终输出答案时需要将数字转为十进制
-    void add(int a[], int b[], int c[]) {
-      clear(c);
-    
-      for (int i = 0; i < LEN - 1; ++i) {
-        c[i] += a[i] + b[i];
-        if (c[i] >= p) {  // 在普通高精度运算下，p=10
-          c[i + 1] += 1;
-          c[i] -= p;
-        }
-      }
-    }
+    --8<-- "docs/math/code/bignum/bignum_7.cpp:core"
     ```
 
 ### 压位高精下的高效竖式除法
@@ -614,77 +210,7 @@ void div(int a[], int b[], int c[], int d[]) {
 
 ??? note "压位高精度高效竖式除法参考实现"
     ```cpp
-    // 完整模板和实现 https://baobaobear.github.io/post/20210228-bigint1/
-    // 对b乘以mul再左移offset的结果相减，为除法服务
-    BigIntSimple &sub_mul(const BigIntSimple &b, int mul, int offset) {
-      if (mul == 0) return *this;
-      int borrow = 0;
-      // 与减法不同的是，borrow可能很大，不能使用减法的写法
-      for (size_t i = 0; i < b.v.size(); ++i) {
-        borrow += v[i + offset] - b.v[i] * mul - BIGINT_BASE + 1;
-        v[i + offset] = borrow % BIGINT_BASE + BIGINT_BASE - 1;
-        borrow /= BIGINT_BASE;
-      }
-      // 如果还有借位就继续处理
-      for (size_t i = b.v.size(); borrow; ++i) {
-        borrow += v[i + offset] - BIGINT_BASE + 1;
-        v[i + offset] = borrow % BIGINT_BASE + BIGINT_BASE - 1;
-        borrow /= BIGINT_BASE;
-      }
-      return *this;
-    }
-    
-    BigIntSimple div_mod(const BigIntSimple &b, BigIntSimple &r) const {
-      BigIntSimple d;
-      r = *this;
-      if (absless(b)) return d;
-      d.v.resize(v.size() - b.v.size() + 1);
-      // 提前算好除数的最高三位+1的倒数，若最高三位是a3,a2,a1
-      // 那么db是a3+a2/base+(a1+1)/base^2的倒数，最后用乘法估商的每一位
-      // 此法在BIGINT_BASE<=32768时可在int32范围内用
-      // 但即使使用int64，那么也只有BIGINT_BASE<=131072时可用（受double的精度限制）
-      // 能保证估计结果q'与实际结果q的关系满足q'<=q<=q'+1
-      // 所以每一位的试商平均只需要一次，只要后面再统一处理进位即可
-      // 如果要使用更大的base，那么需要更换其它试商方案
-      double t = (b.get((unsigned)b.v.size() - 2) +
-                  (b.get((unsigned)b.v.size() - 3) + 1.0) / BIGINT_BASE);
-      double db = 1.0 / (b.v.back() + t / BIGINT_BASE);
-      for (size_t i = v.size() - 1, j = d.v.size() - 1; j <= v.size();) {
-        int rm = r.get(i + 1) * BIGINT_BASE + r.get(i);
-        int m = std::max((int)(db * rm), r.get(i + 1));
-        r.sub_mul(b, m, j);
-        d.v[j] += m;
-        if (!r.get(i + 1))  // 检查最高位是否已为0，避免极端情况
-          --i, --j;
-      }
-      r.trim();
-      // 修正结果的个位
-      int carry = 0;
-      while (!r.absless(b)) {
-        r.subtract(b);
-        ++carry;
-      }
-      // 修正每一位的进位
-      for (size_t i = 0; i < d.v.size(); ++i) {
-        carry += d.v[i];
-        d.v[i] = carry % BIGINT_BASE;
-        carry /= BIGINT_BASE;
-      }
-      d.trim();
-      d.sign = sign * b.sign;
-      return d;
-    }
-    
-    BigIntSimple operator/(const BigIntSimple &b) const {
-      BigIntSimple r;
-      return div_mod(b, r);
-    }
-    
-    BigIntSimple operator%(const BigIntSimple &b) const {
-      BigIntSimple r;
-      div_mod(b, r);
-      return r;
-    }
+    --8<-- "docs/math/code/bignum/bignum_8.cpp:core"
     ```
 
 ## Karatsuba 乘法
@@ -725,53 +251,7 @@ $$
 
 ??? note "karatsuba_mulc.cpp"
     ```cpp
-    int *karatsuba_polymul(int n, int *a, int *b) {
-      if (n <= 32) {
-        // 规模较小时直接计算，避免继续递归带来的效率损失
-        int *r = new int[n * 2 + 1]();
-        for (int i = 0; i <= n; ++i)
-          for (int j = 0; j <= n; ++j) r[i + j] += a[i] * b[j];
-        return r;
-      }
-    
-      int m = n / 2 + 1;
-      int *r = new int[m * 4 + 1]();
-      int *z0, *z1, *z2;
-    
-      z0 = karatsuba_polymul(m - 1, a, b);
-      z2 = karatsuba_polymul(n - m, a + m, b + m);
-    
-      // 计算 z1
-      // 临时更改，计算完毕后恢复
-      for (int i = 0; i + m <= n; ++i) a[i] += a[i + m];
-      for (int i = 0; i + m <= n; ++i) b[i] += b[i + m];
-      z1 = karatsuba_polymul(m - 1, a, b);
-      for (int i = 0; i + m <= n; ++i) a[i] -= a[i + m];
-      for (int i = 0; i + m <= n; ++i) b[i] -= b[i + m];
-      for (int i = 0; i <= (m - 1) * 2; ++i) z1[i] -= z0[i];
-      for (int i = 0; i <= (n - m) * 2; ++i) z1[i] -= z2[i];
-    
-      // 由 z0、z1、z2 组合获得结果
-      for (int i = 0; i <= (m - 1) * 2; ++i) r[i] += z0[i];
-      for (int i = 0; i <= (m - 1) * 2; ++i) r[i + m] += z1[i];
-      for (int i = 0; i <= (n - m) * 2; ++i) r[i + m * 2] += z2[i];
-    
-      delete[] z0;
-      delete[] z1;
-      delete[] z2;
-      return r;
-    }
-    
-    void karatsuba_mul(int a[], int b[], int c[]) {
-      int *r = karatsuba_polymul(LEN - 1, a, b);
-      memcpy(c, r, sizeof(int) * LEN);
-      for (int i = 0; i < LEN - 1; ++i)
-        if (c[i] >= 10) {
-          c[i + 1] += c[i] / 10;
-          c[i] %= 10;
-        }
-      delete[] r;
-    }
+    --8<-- "docs/math/code/bignum/bignum_9.cpp:core"
     ```
 
 ??? note "关于 `new` 和 `delete`"
@@ -793,221 +273,7 @@ $$
 
 ??? note "这里是另一个模板"
     ```cpp
-    constexpr int MAXN = 9999;
-    // MAXN 是一位中最大的数字
-    constexpr int MAXSIZE = 10024;
-    // MAXSIZE 是位数
-    constexpr int DLEN = 4;
-    
-    // DLEN 记录压几位
-    struct Big {
-      int a[MAXSIZE], len;
-      bool flag;  // 标记符号'-'
-    
-      Big() {
-        len = 1;
-        memset(a, 0, sizeof a);
-        flag = false;
-      }
-    
-      Big(const int);
-      Big(const char*);
-      Big(const Big&);
-      Big& operator=(const Big&);
-      Big operator+(const Big&) const;
-      Big operator-(const Big&) const;
-      Big operator*(const Big&) const;
-      Big operator/(const int&) const;
-      // TODO: Big / Big;
-      Big operator^(const int&) const;
-      // TODO: Big ^ Big;
-    
-      // TODO: Big 位运算;
-    
-      int operator%(const int&) const;
-      // TODO: Big ^ Big;
-      bool operator<(const Big&) const;
-      bool operator<(const int& t) const;
-      void print() const;
-    };
-    
-    Big::Big(const int b) {
-      int c, d = b;
-      len = 0;
-      // memset(a,0,sizeof a);
-      CLR(a);
-      while (d > MAXN) {
-        c = d - (d / (MAXN + 1) * (MAXN + 1));
-        d = d / (MAXN + 1);
-        a[len++] = c;
-      }
-      a[len++] = d;
-    }
-    
-    Big::Big(const char* s) {
-      int t, k, index, l;
-      CLR(a);
-      l = strlen(s);
-      len = l / DLEN;
-      if (l % DLEN) ++len;
-      index = 0;
-      for (int i = l - 1; i >= 0; i -= DLEN) {
-        t = 0;
-        k = i - DLEN + 1;
-        if (k < 0) k = 0;
-        g(j, k, i) t = t * 10 + s[j] - '0';
-        a[index++] = t;
-      }
-    }
-    
-    Big::Big(const Big& T) : len(T.len) {
-      CLR(a);
-      f(i, 0, len) a[i] = T.a[i];
-      // TODO:重载此处？
-    }
-    
-    Big& Big::operator=(const Big& T) {
-      CLR(a);
-      len = T.len;
-      f(i, 0, len) a[i] = T.a[i];
-      return *this;
-    }
-    
-    Big Big::operator+(const Big& T) const {
-      Big t(*this);
-      int big = len;
-      if (T.len > len) big = T.len;
-      f(i, 0, big) {
-        t.a[i] += T.a[i];
-        if (t.a[i] > MAXN) {
-          ++t.a[i + 1];
-          t.a[i] -= MAXN + 1;
-        }
-      }
-      if (t.a[big])
-        t.len = big + 1;
-      else
-        t.len = big;
-      return t;
-    }
-    
-    Big Big::operator-(const Big& T) const {
-      int big;
-      bool ctf;
-      Big t1, t2;
-      if (*this < T) {
-        t1 = T;
-        t2 = *this;
-        ctf = true;
-      } else {
-        t1 = *this;
-        t2 = T;
-        ctf = false;
-      }
-      big = t1.len;
-      int j = 0;
-      f(i, 0, big) {
-        if (t1.a[i] < t2.a[i]) {
-          j = i + 1;
-          while (t1.a[j] == 0) ++j;
-          --t1.a[j--];
-          // WTF?
-          while (j > i) t1.a[j--] += MAXN;
-          t1.a[i] += MAXN + 1 - t2.a[i];
-        } else
-          t1.a[i] -= t2.a[i];
-      }
-      t1.len = big;
-      while (t1.len > 1 && t1.a[t1.len - 1] == 0) {
-        --t1.len;
-        --big;
-      }
-      if (ctf) t1.a[big - 1] = -t1.a[big - 1];
-      return t1;
-    }
-    
-    Big Big::operator*(const Big& T) const {
-      Big res;
-      int up;
-      int te, tee;
-      f(i, 0, len) {
-        up = 0;
-        f(j, 0, T.len) {
-          te = a[i] * T.a[j] + res.a[i + j] + up;
-          if (te > MAXN) {
-            tee = te - te / (MAXN + 1) * (MAXN + 1);
-            up = te / (MAXN + 1);
-            res.a[i + j] = tee;
-          } else {
-            up = 0;
-            res.a[i + j] = te;
-          }
-        }
-        if (up) res.a[i + T.len] = up;
-      }
-      res.len = len + T.len;
-      while (res.len > 1 && res.a[res.len - 1] == 0) --res.len;
-      return res;
-    }
-    
-    Big Big::operator/(const int& b) const {
-      Big res;
-      int down = 0;
-      gd(i, len - 1, 0) {
-        res.a[i] = (a[i] + down * (MAXN + 1)) / b;
-        down = a[i] + down * (MAXN + 1) - res.a[i] * b;
-      }
-      res.len = len;
-      while (res.len > 1 && res.a[res.len - 1] == 0) --res.len;
-      return res;
-    }
-    
-    int Big::operator%(const int& b) const {
-      int d = 0;
-      gd(i, len - 1, 0) d = (d * (MAXN + 1) % b + a[i]) % b;
-      return d;
-    }
-    
-    Big Big::operator^(const int& n) const {
-      Big t(*this), res(1);
-      int y = n;
-      while (y) {
-        if (y & 1) res = res * t;
-        t = t * t;
-        y >>= 1;
-      }
-      return res;
-    }
-    
-    bool Big::operator<(const Big& T) const {
-      int ln;
-      if (len < T.len) return true;
-      if (len == T.len) {
-        ln = len - 1;
-        while (ln >= 0 && a[ln] == T.a[ln]) --ln;
-        if (ln >= 0 && a[ln] < T.a[ln]) return true;
-        return false;
-      }
-      return false;
-    }
-    
-    bool Big::operator<(const int& t) const {
-      Big tee(t);
-      return *this < tee;
-    }
-    
-    void Big::print() const {
-      printf("%d", a[len - 1]);
-      gd(i, len - 2, 0) { printf("%04d", a[i]); }
-    }
-    
-    void print(const Big& s) {
-      int len = s.len;
-      printf("%d", s.a[len - 1]);
-      gd(i, len - 2, 0) { printf("%04d", s.a[i]); }
-    }
-    
-    char s[100024];
+    --8<-- "docs/math/code/bignum/bignum_10.cpp:core"
     ```
 
 ## 习题

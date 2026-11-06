@@ -25,15 +25,7 @@ author: JiZiQian, llleixx, firefly-zjyjoe
 
 ???+ note "实现"
     ```cpp
-    int merge(int x, int y) {
-      if (!x || !y) return x | y;  // 若一个堆为空则返回另一个堆
-      if (t[x].val > t[y].val) swap(x, y);  // 取值较小的作为根
-      t[x].rs = merge(t[x].rs, y);          // 递归合并右儿子与另一个堆
-      if (t[t[x].rs].d > t[t[x].ls].d)
-        swap(t[x].ls, t[x].rs);   // 若不满足左偏性质则交换左右儿子
-      t[x].d = t[t[x].rs].d + 1;  // 更新dist
-      return x;
-    }
+    --8<-- "docs/ds/code/leftist-tree/leftist-tree_1.cpp:example94"
     ```
 
 由于左偏性质，每递归一层，其中一个堆根节点的 $\mathrm{dist}$ 就会减小 $1$，而一棵有 $n$ 个节点的二叉树，根的 $\mathrm{dist}$ 不超过 $\left\lceil\log (n+1)\right\rceil$，所以合并两个大小分别为 $n$ 和 $m$ 的堆复杂度是 $O(\log n+\log m)$．
@@ -45,16 +37,7 @@ author: JiZiQian, llleixx, firefly-zjyjoe
 
 ???+ note "实现"
     ```cpp
-    int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
-    
-    int merge(int x, int y) {
-      if (!x || !y) return x | y;
-      if (t[x].val < t[y].val) swap(x, y);
-      int& rs_ref = rs(x);
-      rs_ref = merge(rs_ref, y);
-      t[x].d = t[rs(x)].d + 1;
-      return x;
-    }
+    --8<-- "docs/ds/code/leftist-tree/leftist-tree_2.cpp:example95"
     ```
 
 ## 左偏树的其它操作
@@ -75,36 +58,7 @@ author: JiZiQian, llleixx, firefly-zjyjoe
 
 ???+ note "实现"
     ```cpp
-    int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
-    
-    // 有了 pushup，直接 merge 左右儿子就实现了删除节点并保持左偏性质
-    int merge(int x, int y) {
-      if (!x || !y) return x | y;
-      if (t[x].val < t[y].val) swap(x, y);
-      int& rs_ref = rs(x);
-      rs_ref = merge(rs_ref, y);
-      t[rs_ref].fa = x;
-      t[x].d = t[rs(x)].d + 1;
-      return x;
-    }
-    
-    void pushup(int x) {
-      if (!x) return;
-      if (t[x].d != t[rs(x)].d + 1) {
-        t[x].d = t[rs(x)].d + 1;
-        pushup(t[x].fa);
-      }
-    }
-    
-    void erase(int x) {
-      int y = merge(t[x].ch[0], t[x].ch[1]);
-      t[y].fa = t[x].fa;
-      if (t[t[x].fa].ch[0] == x)
-        t[t[x].fa].ch[0] = y;
-      else if (t[t[x].fa].ch[1] == x)
-        t[t[x].fa].ch[1] = y;
-      pushup(t[y].fa);
-    }
+    --8<-- "docs/ds/code/leftist-tree/leftist-tree_3.cpp:example96"
     ```
 
 #### 复杂度证明
@@ -126,20 +80,7 @@ author: JiZiQian, llleixx, firefly-zjyjoe
 
 ???+ note "实现"
     ```cpp
-    int merge(int x, int y) {
-      if (!x || !y) return x | y;
-      if (t[x].val > t[y].val) swap(x, y);
-      pushdown(x);
-      t[x].rs = merge(t[x].rs, y);
-      if (t[t[x].rs].d > t[t[x].ls].d) swap(t[x].ls, t[x].rs);
-      t[x].d = t[t[x].rs].d + 1;
-      return x;
-    }
-    
-    int pop(int x) {
-      pushdown(x);
-      return merge(t[x].ls, t[x].rs);
-    }
+    --8<-- "docs/ds/code/leftist-tree/leftist-tree_4.cpp:example97"
     ```
 
 ## 其他可并堆
@@ -148,14 +89,7 @@ author: JiZiQian, llleixx, firefly-zjyjoe
 
 ???+ note "实现"
     ```cpp
-    int merge(int x, int y) {
-      if (!x || !y) return x | y;
-      if (t[y].val < t[x].val) swap(x, y);
-      if (rand() & 1)  // 随机选择是否交换左右子节点
-        swap(t[x].ls, t[x].rs);
-      t[x].ls = merge(t[x].ls, y);
-      return x;
-    }
+    --8<-- "docs/ds/code/leftist-tree/leftist-tree_5.cpp:example98"
     ```
 
 可以看到该实现方法唯一不同之处便是采用了随机数来实现合并，这样一来便可以省去 $\mathrm{dist}$ 的相关计算．且平均时间复杂度亦为 $O(\log n)$，详细证明可参考 [Randomized Heap](https://cp-algorithms.com/data_structures/randomized_heap.html)．
@@ -182,7 +116,7 @@ author: JiZiQian, llleixx, firefly-zjyjoe
 
 ??? note "罗马游戏参考代码"
     ```cpp
-    --8<-- "docs/ds/code/leftist-tree/leftist-tree_1.cpp"
+    --8<-- "docs/ds/code/leftist-tree/leftist-tree_7.cpp"
     ```
 
 ### 树上问题
@@ -195,7 +129,7 @@ author: JiZiQian, llleixx, firefly-zjyjoe
 
 ??? note "城池攻占参考代码"
     ```cpp
-    --8<-- "docs/ds/code/leftist-tree/leftist-tree_2.cpp"
+    --8<-- "docs/ds/code/leftist-tree/leftist-tree_4.cpp"
     ```
 
 ### [「SCOI2011」棘手的操作](https://loj.ac/problem/2441)
@@ -222,7 +156,7 @@ author: JiZiQian, llleixx, firefly-zjyjoe
 
 ??? note "棘手的操作参考代码"
     ```cpp
-    --8<-- "docs/ds/code/leftist-tree/leftist-tree_3.cpp"
+    --8<-- "docs/ds/code/leftist-tree/leftist-tree_6.cpp"
     ```
 
 ### [「BOI2004」Sequence 数字序列](https://www.luogu.com.cn/problem/P4331)

@@ -1,55 +1,40 @@
 #include <algorithm>
+#include <cstddef>
 #include <iostream>
 #include <numeric>
 #include <vector>
+using namespace std;
 
-struct DSU {
-  std::vector<size_t> pa, size;
+// --8<-- [start:example28]
+struct dsu {
+  vector<size_t> pa;
 
-  explicit DSU(size_t size_) : pa(size_), size(size_, 1) {
-    std::iota(pa.begin(), pa.end(), 0);
-  }
+  explicit dsu(size_t size) : pa(size) { iota(pa.begin(), pa.end(), 0); }
 
-  size_t find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
-
-  void unite(size_t x, size_t y) {
-    x = find(x), y = find(y);
-    if (x == y) return;
-    if (size[x] < size[y]) std::swap(x, y);
-    pa[y] = x;
-    size[x] += size[y];
-  }
+  size_t find(size_t x);
+  void unite(size_t x, size_t y);
 };
+
+// --8<-- [end:example28]
+// --8<-- [start:example32]
+size_t dsu::find(size_t x) { return pa[x] == x ? x : pa[x] = find(pa[x]); }
+
+// --8<-- [end:example32]
+// --8<-- [start:example34]
+void dsu::unite(size_t x, size_t y) { pa[find(x)] = find(y); }
+
+// --8<-- [end:example34]
 
 int main() {
   int n, m;
-  std::cin >> n >> m;
-  DSU dsu(n * 3 + 1);
-  int res = 0;
-  for (; m; --m) {
-    int op, x, y;
-    std::cin >> op >> x >> y;
-    if (x > n || y > n)
-      ++res;
-    else if (op == 1) {
-      if (dsu.find(x) == dsu.find(y + n) ||
-          dsu.find(x) == dsu.find(y + (n << 1))) {
-        ++res;
-      } else {
-        dsu.unite(x, y);
-        dsu.unite(x + n, y + n);
-        dsu.unite(x + n * 2, y + n * 2);
-      }
-    } else {
-      if (dsu.find(x) == dsu.find(y) || dsu.find(x) == dsu.find(y + n)) {
-        ++res;
-      } else {
-        dsu.unite(x, y + n * 2);
-        dsu.unite(x + n, y);
-        dsu.unite(x + n * 2, y + n);
-      }
-    }
+  cin >> n >> m;
+  dsu d(n + 1);
+  while (m--) {
+    int z, x, y;
+    cin >> z >> x >> y;
+    if (z == 1)
+      d.unite(x, y);
+    else
+      cout << (d.find(x) == d.find(y) ? 'Y' : 'N') << '\n';
   }
-  std::cout << res << std::endl;
-  return 0;
 }

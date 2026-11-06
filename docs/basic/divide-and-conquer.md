@@ -57,18 +57,7 @@ int func(传入数值) {
 递归实现可能需要额外的调用栈，而递推实现可以只使用常数辅助空间．例如，给定一个链表头，计算它的长度：
 
 ```cpp
-// 典型的递推遍历框架
-int size(Node *head) {
-  int size = 0;
-  for (Node *p = head; p != nullptr; p = p->next) size++;
-  return size;
-}
-
-// 递归遍历，每层处理一个结点
-int size_recursion(Node *head) {
-  if (head == nullptr) return 0;
-  return size_recursion(head->next) + 1;
-}
+--8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_2.cpp:core"
 ```
 
 [![二者的对比](images/divide-and-conquer-2.svg)](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)
@@ -188,12 +177,12 @@ void traverse(TreeNode* root) {
     ```
     
     ```cpp
-    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_2.h"
+    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_3.cpp:node"
     ```
 
 ??? note "参考代码"
     ```cpp
-    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_2.cpp"
+    --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_3.cpp:core"
     ```
 
 ??? note "题目解析"
@@ -209,7 +198,7 @@ void traverse(TreeNode* root) {
     
     ??? note "参考代码"
         ```cpp
-        --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_2.cpp"
+        --8<-- "docs/basic/code/divide-and-conquer/divide-and-conquer_3.cpp:core"
         ```
     
     还是那句话，**明白每个函数能做的事，并相信它们能够完成．**

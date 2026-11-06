@@ -1,7 +1,7 @@
-minx = 0x7FFFFFFF
-maxx = -0x7FFFFFFF
-miny = 0x7FFFFFFF
-maxy = -0x7FFFFFFF
+minx = float("inf")
+maxx = -float("inf")
+miny = float("inf")
+maxy = -float("inf")
 n = int(input())
 for i in range(1, n + 1):
     a, b = map(lambda x: int(x), input().split())

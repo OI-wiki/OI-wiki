@@ -1,43 +1,60 @@
-#include <cstdio>
-using namespace std;
-constexpr int N = 500010;
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
 
-char s[N];
-int n, m, ch[N][26], tag[N], tot = 1;
+using namespace std;
+
+#include <set>
+
+// --8<-- [start:core]
+struct trie {
+  int nex[100000][26], cnt;
+  bool exist[100000];  // 该结点结尾的字符串是否存在
+
+  void insert(char *s, int l) {  // 插入字符串
+    int p = 0;
+    for (int i = 0; i < l; i++) {
+      int c = s[i] - 'a';
+      if (!nex[p][c]) nex[p][c] = ++cnt;  // 如果没有，就添加结点
+      p = nex[p][c];
+    }
+    exist[p] = true;
+  }
+
+  bool find(char *s, int l) {  // 查找字符串
+    int p = 0;
+    for (int i = 0; i < l; i++) {
+      int c = s[i] - 'a';
+      if (!nex[p][c]) return 0;
+      p = nex[p][c];
+    }
+    return exist[p];
+  }
+};
+
+// --8<-- [end:core]
+
+trie dictionary;
 
 int main() {
-  scanf("%d", &n);
-
-  for (int i = 1; i <= n; ++i) {
-    scanf("%s", s + 1);
-    int u = 1;
-    for (int j = 1; s[j]; ++j) {
-      int c = s[j] - 'a';
-      // 如果这个节点的子节点中没有这个字符，添加上并将该字符的节点号记录为++tot
-      if (!ch[u][c]) ch[u][c] = ++tot;
-      u = ch[u][c];  // 往更深一层搜索
-    }
-    tag[u] = 1;  // 最后一个字符为节点 u 的名字未被访问到记录为 1
+  int n, m;
+  cin >> n;
+  while (n--) {
+    string s;
+    cin >> s;
+    dictionary.insert(&s[0], s.size());
   }
-
-  scanf("%d", &m);
-
+  cin >> m;
+  set<string> called;
   while (m--) {
-    scanf("%s", s + 1);
-    int u = 1;
-    for (int j = 1; s[j]; ++j) {
-      int c = s[j] - 'a';
-      u = ch[u][c];
-      if (!u) break;  // 不存在对应字符的出边说明名字不存在
-    }
-    if (tag[u] == 1) {
-      tag[u] = 2;  // 最后一个字符为节点 u 的名字已经被访问
-      puts("OK");
-    } else if (tag[u] == 2)  // 已经被访问，重复访问
-      puts("REPEAT");
+    string s;
+    cin >> s;
+    if (!dictionary.find(&s[0], s.size()))
+      cout << "WRONG\n";
+    else if (!called.insert(s).second)
+      cout << "REPEAT\n";
     else
-      puts("WRONG");
+      cout << "OK\n";
   }
-
-  return 0;
 }

@@ -26,18 +26,12 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        struct Node {
-          int value;
-          Node *next;
-        };
+        --8<-- "docs/ds/code/linked-list/linked-list_1.cpp:example103"
         ```
     
     === "Python"
         ```python
-        class Node:
-            def __init__(self, value=None, next=None):
-                self.value = value
-                self.next = next
+        --8<-- "docs/ds/code/linked-list/linked-list_1.py:example104"
         ```
 
 ### 双向链表
@@ -49,20 +43,12 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        struct Node {
-          int value;
-          Node *left;
-          Node *right;
-        };
+        --8<-- "docs/ds/code/linked-list/linked-list_2.cpp:example105"
         ```
     
     === "Python"
         ```python
-        class Node:
-            def __init__(self, value=None, left=None, right=None):
-                self.value = value
-                self.left = left
-                self.right = right
+        --8<-- "docs/ds/code/linked-list/linked-list_2.py:example106"
         ```
 
 ## 向链表中插入（写入）数据
@@ -86,21 +72,12 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        void insertNode(int i, Node *p) {
-          Node *node = new Node;
-          node->value = i;
-          node->next = p->next;
-          p->next = node;
-        }
+        --8<-- "docs/ds/code/linked-list/linked-list_1.cpp:example107"
         ```
     
     === "Python"
         ```python
-        def insertNode(i, p):
-            node = Node()
-            node.value = i
-            node.next = p.next
-            p.next = node
+        --8<-- "docs/ds/code/linked-list/linked-list_1.py:example108"
         ```
 
 ### 单向循环链表
@@ -126,32 +103,12 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        void insertNode(int i, Node *p) {
-          Node *node = new Node;
-          node->value = i;
-          node->next = NULL;
-          if (p == NULL) {
-            p = node;
-            node->next = node;
-          } else {
-            node->next = p->next;
-            p->next = node;
-          }
-        }
+        --8<-- "docs/ds/code/linked-list/linked-list_3.cpp:example109"
         ```
     
     === "Python"
         ```python
-        def insertNode(i, p):
-            node = Node()
-            node.value = i
-            node.next = None
-            if p == None:
-                p = node
-                node.next = node
-            else:
-                node.next = p.next
-                p.next = node
+        --8<-- "docs/ds/code/linked-list/linked-list_3.py:example110"
         ```
 
 ### 双向循环链表
@@ -173,36 +130,12 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        void insertNode(int i, Node *p) {
-          Node *node = new Node;
-          node->value = i;
-          if (p == NULL) {
-            p = node;
-            node->left = node;
-            node->right = node;
-          } else {
-            node->left = p;
-            node->right = p->right;
-            p->right->left = node;
-            p->right = node;
-          }
-        }
+        --8<-- "docs/ds/code/linked-list/linked-list_2.cpp:example111"
         ```
     
     === "Python"
         ```python
-        def insertNode(i, p):
-            node = Node()
-            node.value = i
-            if p == None:
-                p = node
-                node.left = node
-                node.right = node
-            else:
-                node.left = p
-                node.right = p.right
-                p.right.left = node
-                p.right = node
+        --8<-- "docs/ds/code/linked-list/linked-list_2.py:example112"
         ```
 
 ## 从链表中删除数据
@@ -229,19 +162,12 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        void deleteNode(Node *p) {
-          p->value = p->next->value;
-          Node *t = p->next;
-          p->next = p->next->next;
-          delete t;
-        }
+        --8<-- "docs/ds/code/linked-list/linked-list_1.cpp:example113"
         ```
     
     === "Python"
         ```python
-        def deleteNode(p):
-            p.value = p.next.value
-            p.next = p.next.next
+        --8<-- "docs/ds/code/linked-list/linked-list_1.py:example114"
         ```
 
 ### 双向循环链表
@@ -259,21 +185,12 @@
 ???+ note "实现"
     === "C++"
         ```cpp
-        void deleteNode(Node *&p) {
-          p->left->right = p->right;
-          p->right->left = p->left;
-          Node *t = p;
-          p = p->right;
-          delete t;
-        }
+        --8<-- "docs/ds/code/linked-list/linked-list_2.cpp:example115"
         ```
     
     === "Python"
         ```python
-        def deleteNode(p):
-            p.left.right = p.right
-            p.right.left = p.left
-            p = p.right
+        --8<-- "docs/ds/code/linked-list/linked-list_2.py:example116"
         ```
 
 ## 技巧

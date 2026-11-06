@@ -1,4 +1,3 @@
-#include <bitset>
 #include <iostream>
 #include <stack>
 #include <vector>
@@ -8,77 +7,102 @@
 using namespace std;
 
 int n, m, k;
-constexpr int N = 1e5 + 5;
+constexpr int N = 2e5 + 5;
+int fa[N << 1], siz[N << 1];
 
-struct edge {
-  int u, v, c;
-} g[N];
+struct UndoObject {
+  int pos, val;
 
-vector<int> t[N << 2];
-int fa[N], siz[N], cnt[N];
+  UndoObject(int p, int v) { pos = p, val = v; }
+};
+
+stack<UndoObject> undo_sz, undo_fa;
+
+int find(int x) {
+  if (fa[x] == x)
+    return x;
+  else
+    return find(fa[x]);
+}
+
+void merge(int u, int v) {
+  int x = find(u), y = find(v);
+  if (x == y) return;
+  if (siz[x] < siz[y]) {
+    swap(x, y);
+  }
+  undo_sz.push(UndoObject(x, siz[x]));
+  siz[x] += siz[y];
+  undo_fa.push(UndoObject(y, fa[y]));
+  fa[y] = x;
+}
+
+void undo() {
+  fa[undo_fa.top().pos] = undo_fa.top().val;
+  undo_fa.pop();
+  siz[undo_sz.top().pos] = undo_sz.top().val;
+  undo_sz.pop();
+}
+
+vector<int> tree[N << 2];
 
 void update(int ql, int qr, int v, int i, int l, int r) {
-  if (ql > qr) return;
   if (ql <= l && r <= qr) {
-    t[i].push_back(v);
+    tree[i].push_back(v);
     return;
   }
   if (ql <= mid) update(ql, qr, v, ls, l, mid);
   if (qr > mid) update(ql, qr, v, rs, mid + 1, r);
 }
 
-stack<pair<int, int>> fas, sizs;
+struct edge {
+  int u, v;
+} g[N];
 
-int find(int x) { return fa[x] == x ? x : find(fa[x]); }
-
-void merge(int u, int v) {
-  int fu = find(u), fv = find(v);
-  if (fu == fv) return;
-  if (siz[fu] < siz[fv]) swap(fu, fv);
-  fas.push(make_pair(fv, fa[fv]));
-  fa[fv] = fu;
-  sizs.push(make_pair(fu, siz[fu]));
-  siz[fu] += siz[fv];
-}
-
-bitset<N> ans;
+vector<bool> ret;
 
 void solve(int i, int l, int r) {
-  unsigned lvl = fas.size();
-  for (int eg : t[i]) merge(g[eg].u, g[eg].v);
-  if (l == r)
-    ans[l] = (siz[find(1)] == n);
-  else
-    solve(ls, l, mid), solve(rs, mid + 1, r);
-  while (fas.size() != lvl) {
-    auto p1 = fas.top(), p2 = sizs.top();
-    fas.pop(), sizs.pop();
-    fa[p1.first] = p1.second;
-    siz[p2.first] = p2.second;
+  auto level = undo_fa.size();
+  bool ans = true;
+  for (int u : tree[i]) {
+    int a = find(g[u].u);
+    int b = find(g[u].v);
+    if (a == b) {
+      for (int k = l; k <= r; k++) {
+        ret.push_back(false);
+      }
+      ans = false;
+      break;
+    }
+    merge(g[u].u, g[u].v + n);
+    merge(g[u].v, g[u].u + n);
+  }
+  if (ans) {
+    if (l == r) {
+      ret.push_back(true);
+    } else {
+      solve(ls, l, mid);
+      solve(rs, mid + 1, r);
+    }
+  }
+  while (undo_fa.size() > level) {
+    undo();
   }
 }
 
 signed main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
   cin >> n >> m >> k;
-  for (int i = 1; i <= m; i++) {
-    cin >> g[i].u >> g[i].v >> g[i].c;
-    g[i].c++;
-    update(1, g[i].c - 1, i, 1, 1, k);
-    update(g[i].c + 1, k, i, 1, 1, k);
-    cnt[g[i].c]++;
-  }
-  for (int i = 1; i <= n; i++) {
+  for (int i = 1; i <= (n << 1); i++) {
     fa[i] = i;
     siz[i] = 1;
   }
-  solve(1, 1, k);
-  int ans1 = 0, ans2 = 0;
-  for (int i = 1; i <= k; i++) {
-    ans1 += ans[i];
-    ans2 += (ans[i] && (m - cnt[i]) == (n - 1));
+  for (int i = 1, l, r; i <= m; i++) {
+    cin >> g[i].u >> g[i].v >> l >> r;
+    update(l + 1, r, i, 1, 1, k);
   }
-  cout << ans1 << ' ' << ans2;
+  solve(1, 1, k);
+  for (bool i : ret) {
+    cout << (i ? "Yes" : "No") << '\n';
+  }
   return 0;
 }

@@ -26,16 +26,7 @@
 #### 实现
 
 ```cpp
-int numSubarrayProductLessThanK(vector<int>& nums, int k) {
-  long long ji = 1ll, ans = 0;
-  int l = 0;
-  for (int i = 0; i < nums.size(); ++i) {
-    ji *= nums[i];
-    while (l <= i && ji >= k) ji /= nums[l++];
-    ans += i - l + 1;
-  }
-  return ans;
-}
+--8<-- "docs/misc/code/two-pointer/two-pointer_1.cpp:core"
 ```
 
 使用双指针维护区间信息也可以与其他数据结构比如差分、单调队列、线段树、主席树等等结合使用．另外将双指针技巧融入算法的还有莫队，莫队中将询问离线排序后，一般也都是用两个指针记录当前要处理的区间，随着指针一步步移动逐渐更新区间信息．
@@ -68,24 +59,7 @@ int numSubarrayProductLessThanK(vector<int>& nums, int k) {
 ### 实现
 
 ```cpp
-string findLongestWord(string s, vector<string>& dictionary) {
-  sort(dictionary.begin(), dictionary.end());
-  int mx = 0, r = 0;
-  string ans = "";
-  for (int i = dictionary.size() - 1; i >= 0; i--) {
-    r = 0;
-    for (int j = 0; j < s.length(); ++j) {
-      if (s[j] == dictionary[i][r]) r++;
-    }
-    if (r == dictionary[i].length()) {
-      if (r >= mx) {
-        mx = r;
-        ans = dictionary[i];
-      }
-    }
-  }
-  return ans;
-}
+--8<-- "docs/misc/code/two-pointer/two-pointer_2.cpp:core"
 ```
 
 这种两个指针指向不同对象然后逐步进行比对的方法还可以用在一些 dp 中．
@@ -112,21 +86,7 @@ string findLongestWord(string s, vector<string>& dictionary) {
 ### 实现
 
 ```cpp
-vector<int> twoSum(vector<int>& numbers, int target) {
-  int r = numbers.size() - 1, l = 0;
-  vector<int> ans;
-  ans.clear();
-  while (l < r) {
-    if (numbers[l] + numbers[r] > target)
-      r--;
-    else if (numbers[l] + numbers[r] == target) {
-      ans.push_back(l + 1), ans.push_back(r + 1);
-      return ans;
-    } else
-      l++;
-  }
-  return ans;
-}
+--8<-- "docs/misc/code/two-pointer/two-pointer_3.cpp:core"
 ```
 
 在归并排序中，在 $O(n+m)$ 时间内合并两个有序数组，也是保证数组的有序性条件下使用的双指针法．
@@ -159,7 +119,7 @@ $$
 ### 实现
 
 ```cpp
---8<-- "docs/misc/code/two-pointer/two-pointer_1.cpp:core"
+--8<-- "docs/misc/code/two-pointer/two-pointer_4.cpp:core"
 ```
 
 时间复杂度 $O(n)$．

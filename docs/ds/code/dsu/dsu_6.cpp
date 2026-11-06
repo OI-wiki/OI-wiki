@@ -3,7 +3,7 @@
 #include <numeric>
 #include <vector>
 
-constexpr int M = 3;
+constexpr int M = 998244353;
 
 struct DSU {
   std::vector<size_t> pa, size, dist;
@@ -34,21 +34,30 @@ struct DSU {
     dist[y] = d;
     return true;
   }
+
+  int check(size_t x, size_t y) {
+    find(x), find(y);
+    if (pa[x] != pa[y]) return -1;
+    return (dist[y] - dist[x] + M) % M;
+  }
 };
 
 int main() {
   int n, m;
   std::cin >> n >> m;
-  DSU dsu(n + 1);
-  int res = 0;
+  DSU dsu(n);
   for (; m; --m) {
-    int op, x, y;
-    std::cin >> op >> x >> y;
-    if (x > n || y > n)
-      ++res;
-    else
-      res += !dsu.unite(x, y, op == 1 ? 0 : 1);
+    int op;
+    std::cin >> op;
+    if (op) {
+      int u, v;
+      std::cin >> u >> v;
+      std::cout << dsu.check(u, v) << '\n';
+    } else {
+      int u, v, x;
+      std::cin >> u >> v >> x;
+      std::cout << dsu.unite(u, v, x) << '\n';
+    }
   }
-  std::cout << res << std::endl;
   return 0;
 }

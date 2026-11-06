@@ -40,58 +40,25 @@ author: Dev-jqe, HeRaNO, huaruoji
 操作一：
 
 ```cpp
-int vec_rank(int k, int l, int r, int x, int y, int t) {
-  if (x <= l && r <= y) {
-    return spy[k].chk_rank(t);
-  }
-  int mid = l + r >> 1;
-  int res = 0;
-  if (x <= mid) res += vec_rank(k << 1, l, mid, x, y, t);
-  if (y > mid) res += vec_rank(k << 1 | 1, mid + 1, r, x, y, t);
-  if (x <= mid && y > mid) res--;
-  return res;
-}
+--8<-- "docs/ds/code/balanced-in-seg/balanced-in-seg_1.cpp:example0"
 ```
 
 操作二：
 
 ```cpp
-int el = 0, er = 100000001, emid;
-while (el != er) {
-  emid = el + er >> 1;
-  if (vec_rank(1, 1, n, tl, tr, emid) - 1 < tk)
-    el = emid + 1;
-  else
-    er = emid;
-}
-printf("%d\n", el - 1);
+--8<-- "docs/ds/code/balanced-in-seg/balanced-in-seg_1.cpp:example1"
 ```
 
 操作三：
 
 ```cpp
-void vec_chg(int k, int l, int r, int loc, int x) {
-  int t = spy[k].find(dat[loc]);
-  spy[k].dele(t);
-  spy[k].insert(x);
-  if (l == r) return;
-  int mid = l + r >> 1;
-  if (loc <= mid) vec_chg(k << 1, l, mid, loc, x);
-  if (loc > mid) vec_chg(k << 1 | 1, mid + 1, r, loc, x);
-}
+--8<-- "docs/ds/code/balanced-in-seg/balanced-in-seg_1.cpp:example2"
 ```
 
 操作四：
 
 ```cpp
-int vec_front(int k, int l, int r, int x, int y, int t) {
-  if (x <= l && r <= y) return spy[k].chk_front(t);
-  int mid = l + r >> 1;
-  int res = 0;
-  if (x <= mid) res = max(res, vec_front(k << 1, l, mid, x, y, t));
-  if (y > mid) res = max(res, vec_front(k << 1 | 1, mid + 1, r, x, y, t));
-  return res;
-}
+--8<-- "docs/ds/code/balanced-in-seg/balanced-in-seg_1.cpp:example3"
 ```
 
 ## 相关算法

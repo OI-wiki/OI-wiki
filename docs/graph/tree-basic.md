@@ -91,14 +91,13 @@ OIers 所说的「满二叉树」多指完美二叉树．
 
 -   对于无根树：为每个结点开辟一个线性列表，记录所有与之相连的结点．
     ```cpp
-    std::vector<int> adj[N];
+    --8<-- "docs/graph/code/tree-basic/tree-basic_1.cpp:adj"
     ```
 -   对于有根树：
     -   方法一：若给定的是无向图，则仍可以上述形式存储．下文将介绍如何区分结点的上下关系．
     -   方法二：若输入数据能够确保结点的上下关系，则可以利用这个信息．为每个结点开辟一个线性列表，记录其所有子结点；若有需要，还可在另一个数组中记录其父结点．
         ```cpp
-        std::vector<int> children[N];
-        int parent[N];
+        --8<-- "docs/graph/code/tree-basic/tree-basic_2.cpp:core"
         ```
         当然也可以用其他方式（如链表）替代 `std::vector`．
 
@@ -117,23 +116,15 @@ OIers 所说的「满二叉树」多指完美二叉树．
 遍历一个结点的所有子结点可由如下方式实现．
 
 ```cpp
-int v = child[u];  // 从第一个子结点开始
-while (v != EMPTY_NODE) {
-  // ...
-  // 处理子结点 v
-  // ...
-  v = sib[v];  // 转至下一个子结点，即 v 的一个兄弟
-}
+--8<-- "docs/graph/code/tree-basic/tree-basic_3.cpp:while"
+--8<-- "docs/graph/code/tree-basic/tree-basic_3.cpp:while_end"
 ```
 
 也可简写为以下形式．
 
 ```cpp
-for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
-  // ...
-  // 处理子结点 v
-  // ...
-}
+--8<-- "docs/graph/code/tree-basic/tree-basic_3.cpp:for"
+--8<-- "docs/graph/code/tree-basic/tree-basic_3.cpp:for_end"
 ```
 
 ### 二叉树
@@ -142,10 +133,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 ???+ note "实现"
     ```cpp
-    int parent[N];
-    int lch[N], rch[N];
-    // -- or --
-    int child[N][2];
+    --8<-- "docs/graph/code/tree-basic/tree-basic_4.cpp:storage"
     ```
 
 ## 树的遍历
@@ -166,13 +154,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 ???+ note "实现"
     ```cpp
-    void preorder(BiTree* root) {
-      if (root) {
-        cout << root->key << " ";
-        preorder(root->left);
-        preorder(root->right);
-      }
-    }
+    --8<-- "docs/graph/code/tree-basic/tree-basic_4.cpp:preorder"
     ```
 
 #### 中序遍历
@@ -183,13 +165,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 ???+ note "实现"
     ```cpp
-    void inorder(BiTree* root) {
-      if (root) {
-        inorder(root->left);
-        cout << root->key << " ";
-        inorder(root->right);
-      }
-    }
+    --8<-- "docs/graph/code/tree-basic/tree-basic_4.cpp:inorder"
     ```
 
 #### 后序遍历
@@ -200,13 +176,7 @@ for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
 
 ???+ note "实现"
     ```cpp
-    void postorder(BiTree* root) {
-      if (root) {
-        postorder(root->left);
-        postorder(root->right);
-        cout << root->key << " ";
-      }
-    }
+    --8<-- "docs/graph/code/tree-basic/tree-basic_4.cpp:postorder"
     ```
 
 #### 反推
@@ -235,27 +205,7 @@ BFS 过程中也可以顺便求出各个节点的深度和父亲节点．
 
 ???+ note "实现"
     ```cpp
-    vector<vector<int>> levelOrder(Node* root) {
-      if (!root) {
-        return {};
-      }
-      vector<vector<int>> res;
-      queue<Node*> q;
-      q.push(root);
-      while (!q.empty()) {
-        int currentLevelSize = q.size();  // 当前层的节点个数
-        res.push_back(vector<int>());
-        for (int i = 0; i < currentLevelSize; ++i) {
-          Node* cur = q.front();
-          q.pop();
-          res.back().push_back(cur->val);
-          for (Node* child : cur->children) {  // 把子节点都加入
-            q.push(child);
-          }
-        }
-      }
-      return res;
-    }
+    --8<-- "docs/graph/code/tree-basic/tree-basic_5.cpp:core"
     ```
 
 ### 二叉树 Morris 遍历
@@ -290,32 +240,7 @@ Morris 遍历的实质是避免使用栈，利用底层节点空闲的 `right` �
 
 ???+ note "实现"
     ```cpp
-    void morris(TreeNode* root) {
-      TreeNode* cur = root;
-      while (cur) {
-        if (!cur->left) {
-          // 如果当前节点没有左子节点，则输出当前节点的值并进入右子树
-          std::cout << cur->val << " ";
-          cur = cur->right;
-          continue;
-        }
-        // 找到当前节点的左子树的最右节点
-        TreeNode* mostRight = cur->left;
-        while (mostRight->right && mostRight->right != cur) {
-          mostRight = mostRight->right;
-        }
-        if (!mostRight->right) {
-          // 如果最右节点的right指针为空，将其指向当前节点，并进入左子树
-          mostRight->right = cur;
-          cur = cur->left;
-        } else {
-          // 如果最右节点的right指针指向当前节点，说明左子树已经遍历完毕，输出当前节点的值并进入右子树
-          mostRight->right = nullptr;
-          std::cout << cur->val << " ";
-          cur = cur->right;
-        }
-      }
-    }
+    --8<-- "docs/graph/code/tree-basic/tree-basic_4.cpp:morris"
     ```
 
 ### 无根树
@@ -328,19 +253,9 @@ Morris 遍历的实质是避免使用栈，利用底层节点空闲的 `right` �
 
 ???+ note "实现"
     ```cpp
-    void dfs(int u, int from) {
-      // 递归进入除了 from 之外的所有子结点
-      // 对于出发结点，from 为空，故会访问所有相邻结点，这与期望一致
-      for (int v : adj[u])
-        if (v != from) {
-          dfs(v, u);
-        }
-    }
-    
-    // 开始遍历时
-    int EMPTY_NODE = -1;  // 一个不存在的编号
-    int root = 0;         // 任取一个结点作为出发点
-    dfs(root, EMPTY_NODE);
+    --8<-- "docs/graph/code/tree-basic/tree-basic_1.cpp:dfs"
+    --8<-- "docs/graph/code/tree-basic/tree-basic_1.cpp:dfs_body"
+    --8<-- "docs/graph/code/tree-basic/tree-basic_1.cpp:start"
     ```
 
 ### 有根树

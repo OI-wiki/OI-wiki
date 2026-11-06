@@ -1,54 +1,20 @@
-#include <cstdio>
-using namespace std;
+#include <iostream>
+constexpr int SIZE = 100005;
+// --8<-- [start:example134]
+int q[SIZE], ql = 1, qr;
 
-const int SIZE = 10000 + 5;
-
-struct Queue {
-  int q[SIZE], ql, qr;
-
-  Queue() : ql(1), qr(0) {}
-
-  bool empty() { return ql > qr; }
-
-  void push(int x) { q[++qr] = x; }
-
-  void pop() { ++ql; }
-
-  int front() { return q[ql]; }
-
-  int back() { return q[qr]; }
-
-  int size() { return qr - ql + 1; }
-
-  int clear() {
-    ql = 1;
-    qr = 0;
-  }
-};
+// --8<-- [end:example134]
 
 int main() {
-  Queue q;
   int n;
-  scanf("%d", &n);
-  while (n--) {
-    int opt;
-    scanf("%d", &opt);
-    if (opt == 1) {
-      int x;
-      scanf("%d", &x);
-      q.push(x);
-    } else if (opt == 2) {
-      if (q.empty())
-        printf("ERR_CANNOT_POP\n");
-      else
-        q.pop();
-    } else if (opt == 3) {
-      if (q.empty())
-        printf("ERR_CANNOT_QUERY\n");
-      else
-        printf("%d\n", q.front());
-    } else
-      printf("%d\n", q.size());
+  std::cin >> n;
+  for (int j = 0, value; j < n; ++j) {
+    std::cin >> value;
+    q[++qr] = value;
   }
-  return 0;
+  while (ql <= qr) {
+    if (ql != 1) std::cout << ' ';
+    std::cout << q[ql++];
+  }
+  std::cout << '\n';
 }

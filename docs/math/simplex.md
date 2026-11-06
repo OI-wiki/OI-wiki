@@ -355,7 +355,7 @@ $$
 
 ???+ example "参考实现"
     ```cpp
-    --8<-- "docs/math/code/simplex/simplex_0.cpp:pivot"
+    --8<-- "docs/math/code/simplex/simplex_1.cpp:pivot"
     ```
 
 由该实现可知，单次更新单纯形表的时间复杂度是 $O(mn)$ 的．稍后讨论 [转轴规则](#转轴规则) 时会说明，确定出基变量和入基变量的复杂度同样不会超过 $O(mn)$，因此，单次转轴的时间复杂度就是 $O(mn)$ 的．
@@ -559,7 +559,7 @@ $$
     
     ??? example "参考实现"
         ```cpp
-        --8<-- "docs/math/code/simplex/simplex_0.cpp:initialize"
+        --8<-- "docs/math/code/simplex/simplex_1.cpp:initialize"
         ```
     
     在一阶段开始前，额外添加一行用于记录一阶段的目标函数．转轴时，对整个表进行转轴，包括第二阶段的目标函数．这样，在第一阶段完成时，第二阶段的目标函数也一并相应地更新，可以直接开始二阶段的单纯形法．
@@ -618,7 +618,7 @@ Bland 规则效率很低，因为规则本身对入基和出基变量的选择�
 
 ??? example "[Luogu P13337【模板】线性规划](https://www.luogu.com.cn/problem/P13337)"
     ```cpp
-    --8<-- "docs/math/code/simplex/simplex_0.cpp:full-text"
+    --8<-- "docs/math/code/simplex/simplex_1.cpp:full-text"
     ```
 
 ## 例题
@@ -660,7 +660,7 @@ Bland 规则效率很低，因为规则本身对入基和出基变量的选择�
     通过添加松弛变量，容易得到一组初始可行解，可以直接略过一阶段，通过单纯形法求解．根据对偶原理，得到的解就是原问题的解．
     
     ```cpp
-    --8<-- "docs/math/code/simplex/simplex_1.cpp"
+    --8<-- "docs/math/code/simplex/simplex_3.cpp"
     ```
 
 ## 习题
