@@ -1,0 +1,17 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+\scoped[<-,every node/.style={circle,draw}]
+\node[color=red] {1}
+    child {node {2}}
+    child[color=red] {node {3}
+        child {node {4}}
+        child[color=black] {node {5}}};
+
+\end{tikzpicture}
+\end{document}

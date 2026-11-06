@@ -1,0 +1,32 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{positioning}
+
+\tikzset{flowchart node/.style={draw, minimum height=1cm,
+    minimum width=2cm}}
+\tikzset{startstop/.style={flowchart node, rectangle, rounded corners}}
+\tikzset{start/.style={startstop}}
+\tikzset{stop/.style={startstop}}
+\tikzset{process/.style={flowchart node, rectangle}}
+\tikzset{decision/.style={flowchart node, diamond, aspect=1.5}}
+
+\begin{document}
+\begin{tikzpicture}
+
+\node[start] (init) {初始化};
+\node[process, right=1cm of init] (body) {循环体};
+\node[decision, below=1cm of body] (condition) {判断条件成立};
+\node[stop, below=1cm of condition] (end) {结束};
+
+\draw[->] (init) -- (body);
+\draw[->] (body) -- (condition);
+\draw[->] (condition.east)
+    -- ++(1cm,0) |- node[right, pos=0.25] {是} (body);
+\draw[->] (condition) -- node[right] {否} (end);
+
+\end{tikzpicture}
+\end{document}

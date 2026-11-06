@@ -1,0 +1,29 @@
+\documentclass[11pt]{standalone}
+\usepackage{tikz}
+\tikzset{
+    pics/triangle/.style n args={4}{
+        code = {
+            \begin{scope}
+                \draw  (0,0) node[below left]{#1} 
+                    -- node[below=1em,pos=0.5]{#4} 
+                       (2,0) node[below right]{#2} 
+                    -- (1,1.732) node[above]{#3}
+                    -- cycle;
+            \end{scope}
+        }
+    }
+}
+\begin{document}
+\begin{tikzpicture}
+    \matrix [column sep=1.5em, row sep=1.5em, cells={draw}] {
+        \pic {triangle={1}{2}{3}{$e$}};  &
+        \pic {triangle={2}{3}{1}{$r$}};  &
+        \pic {triangle={3}{1}{2}{$r^2$}};  
+        \\
+        \pic {triangle={1}{3}{2}{$s$}};  &
+        \pic {triangle={3}{2}{1}{$sr$}};  &
+        \pic {triangle={2}{1}{3}{$sr^2$}};  
+        \\
+    };
+\end{tikzpicture}
+\end{document}

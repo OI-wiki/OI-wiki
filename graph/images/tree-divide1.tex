@@ -1,0 +1,16 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\usetikzlibrary{graphs}
+
+\begin{document}
+\begin{tikzpicture}[every node/.style={circle,draw}]
+
+\graph[counterclockwise,chain polar shift=(0:2cm),radius=0,n=5] {
+    1 -- {2,3,4,5,6}
+};
+
+\end{tikzpicture}
+\end{document}

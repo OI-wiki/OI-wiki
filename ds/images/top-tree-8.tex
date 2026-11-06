@@ -1,0 +1,19 @@
+% Updating an original vertex changes the clusters containing that vertex.
+% Regeneration commands are in top-tree-common.tex.
+\input{top-tree-common.tex}
+\begin{document}
+\begin{tikzpicture}[top tree]
+  \begin{scope}[name prefix=g-]
+    \ContractionTree
+    \foreach \id in {root,left,hd}
+      \draw[clusterblue,line width=1.2pt] (\id.center) circle[radius=7mm];
+    \node[caption] at (65,94) {更改点 $G$ 的信息，需要修改 Top Tree 上三个点的信息};
+  \end{scope}
+  \begin{scope}[yshift=-115mm,name prefix=b-]
+    \ContractionTree
+    \foreach \id in {root,right}
+      \draw[clusterblue,line width=1.2pt] (\id.center) circle[radius=7mm];
+    \node[caption] at (65,94) {更改点 $B$ 的信息，只需修改 Top Tree 上两个点的信息};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

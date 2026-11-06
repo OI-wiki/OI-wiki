@@ -1,0 +1,52 @@
+\documentclass[10pt]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+
+\begin{document}
+
+% Define colors
+\definecolor{bqqqsq}{rgb}{0.69,0.00,0.13} % dark red
+\definecolor{qqqqff}{rgb}{0.00,0.00,1.00} % blue
+\definecolor{rvwvcq}{rgb}{0.08,0.40,0.75} % teal
+
+\begin{tikzpicture}[line cap=round, line join=round, >=triangle 45, scale=1.5]
+
+\begin{axis}[
+  x=1.0cm,y=1.0cm,
+  axis lines=middle,
+  grid=major,
+  xmin=-1, xmax=9.3,
+  ymin=-0.8, ymax=9.6,
+  xtick={0,...,9},
+  ytick={0,...,9}
+]
+
+% Lines
+\draw[very thick] plot[domain=-1:9.3] (\x,{\x});
+\draw[very thick, color=qqqqff] plot[domain=-1:9.3] (\x,{\x-1});
+
+% Labels for lines
+\node at (3,3.7) {$y = x$};
+\node[color=qqqqff] at (4.2,2.2) {$y = x-1$};
+
+% Route.
+\draw[very thick,orange] (0,0) -- (2,0) -- (2,1) -- (5,1) -- (5,2) -- (5,3) -- (6,3) 
+    -- (6,6) -- (7,6) -- (7,7) -- (8,7) -- (8,8);
+
+\draw[line width=2pt,brown] (0,0) -- (1,0) (6,5) -- (6,6);
+
+% Points
+\fill[rvwvcq] (0,0) circle (2.5pt) node[above left] {$(0,0)$};
+\fill[rvwvcq] (8,8) circle (2.5pt) node[above left] {$(n,n)$};
+\fill[rvwvcq] (6,6) circle (2.5pt) node[above left] {$(k,k)$};
+
+\fill[bqqqsq] (6,5) circle (2.5pt) node[below right] {$(k,k-1)$};
+\fill[bqqqsq] (1,0) circle (2.5pt) node[below right] {$(1,0)$};
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

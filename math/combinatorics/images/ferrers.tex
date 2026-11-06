@@ -1,0 +1,18 @@
+% Vector redraw of ferrers.jpg, preserving its 592 x 378 pixel canvas.
+% Regenerate from this directory:
+% latex -interaction=nonstopmode -halt-on-error ferrers.tex
+% dvisvgm --no-fonts --exact --bbox=papersize --output=ferrers.svg ferrers.dvi
+\documentclass[tikz,border=0pt]{standalone}
+\begin{document}
+\begin{tikzpicture}[x=0.75bp,y=-0.75bp]
+  \path[use as bounding box] (0,0) rectangle (592,378);
+  \clip (0,0) rectangle (592,378);
+  \fill[white] (0,0) rectangle (592,378);
+  % The rows represent the partition 12 = 5 + 4 + 2 + 1.
+  \foreach \row/\length in {0/5,1/4,2/2,3/1} {
+    \foreach \column in {1,...,\length} {
+      \fill ({184+73*(\column-1)},{76+82*\row}) circle[radius=7.2bp];
+    }
+  }
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,21 @@
+% Shared export settings for the examples in ../latex.md.
+% The example bodies use the tutorial's TeX, not traced screenshots.
+% Run from this directory, replacing N with the example number:
+%   latex -interaction=nonstopmode -halt-on-error latex-for-beginners-N.tex
+%   dvisvgm --no-fonts --exact-bbox --bbox=6pt -o latex-for-beginners-N.svg latex-for-beginners-N.dvi
+% Compile example 2 twice and example 3 three times to resolve references/TOC.
+% Example 3 produces both the contents page (image 3) and the body (image 4):
+%   dvisvgm --no-fonts --exact-bbox --bbox=6pt -p 1 -o latex-for-beginners-3.svg latex-for-beginners-3.dvi
+%   dvisvgm --no-fonts --exact-bbox --bbox=6pt -p 2 -o latex-for-beginners-4.svg latex-for-beginners-3.dvi
+% Omit page footers when cropping, as in the original tutorial illustrations.
+\pagestyle{empty}
+\usepackage[dvisvgm]{color}
+\AtBeginDvi{\special{background rgb 1 1 1}}
+% Keep the full text width on sectioned pages so centered titles stay centered.
+\AddToHook{cmd/section/before}{%
+  \par\special{dvisvgm:bbox \the\textwidth\space 0pt 0pt}%
+}
+% Freeze \today to the date in the original illustrations for reproducibility.
+\year=2019
+\month=8
+\day=16

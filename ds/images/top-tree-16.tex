@@ -1,0 +1,20 @@
+% Move X's right child Y into a new Rake Node gamma.
+% Regeneration commands are in top-tree-common.tex.
+\input{top-tree-common.tex}
+\begin{document}
+\begin{tikzpicture}[top tree,vertex/.append style={minimum size=10mm}]
+  \node[vertex] (x) at (20,0) {$X$};
+  \node[vertex] (z) at (0,24) {$Z$};
+  \node[vertex] (y) at (40,24) {$Y$};
+  \node[vertex] (alpha) at (20,46) {$\alpha$};
+  \node[vertex] (x2) at (108,0) {$X$};
+  \node[vertex] (z2) at (88,24) {$Z$};
+  \node[vertex] (gamma) at (108,46) {$\gamma$};
+  \node[vertex] (alpha2) at (88,70) {$\alpha$};
+  \node[vertex] (y2) at (108,90) {$Y$};
+  \foreach \parent/\child in {x/z,x/y,x/alpha,x2/z2,x2/gamma,
+      gamma/alpha2,gamma/y2}
+    \draw (\parent) -- (\child);
+  \draw[transition] (50,46) -- (78,46);
+\end{tikzpicture}
+\end{document}

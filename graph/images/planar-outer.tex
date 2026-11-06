@@ -1,0 +1,21 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}[scale=1.5]
+    \node[circle, thick, draw, inner sep=2pt] (a) at (0:2) {};
+    \node[circle, thick, draw, inner sep=2pt] (b) at (60:2) {};
+    \node[circle, thick, draw, inner sep=2pt] (c) at (120:2) {};
+    \node[circle, thick, draw, inner sep=2pt] (d) at (180:2) {};
+    \node[circle, thick, draw, inner sep=2pt] (e) at (240:2) {};
+    \node[circle, thick, draw, inner sep=2pt] (f) at (300:2) {};
+    \draw[very thick, black] (a) -- (b);
+    \draw[very thick, black] (a) -- (c);
+    \draw[very thick, black] (b) -- (c);
+    \draw[very thick, black] (c) -- (d);
+    \draw[very thick, black] (a) -- (d);
+    \draw[very thick, black] (d) -- (e);
+    \draw[very thick, black] (e) -- (f);
+    \draw[very thick, black] (a) -- (f);
+\end{tikzpicture}
+\end{document}

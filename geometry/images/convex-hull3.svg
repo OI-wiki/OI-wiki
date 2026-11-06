@@ -1,0 +1,779 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="350"
+    height="320" viewBox="270 110 320 430">
+    <defs>
+        <clipPath id="BEvrVJhOXHtp">
+            <path fill="none" stroke="none" d=" M 0 0 L 1309 0 L 1309 860 L 0 860 L 0 0 Z" />
+        </clipPath>
+    </defs>
+    <g transform="scale(1,1)" clip-path="url(#BEvrVJhOXHtp)">
+        <g>
+            <rect fill="rgb(255,255,255)" stroke="none" x="0" y="0" width="1309" height="860" fill-opacity="1" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 421.5 2.5 L 421.5 860.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 421.5 1.5 L 417.5 5.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 421.5 1.5 L 425.5 5.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 0.5 507.5 L 1307.5 507.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers"
+                d=" M 1308.5 507.5 L 1304.5 503.5" stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers"
+                d=" M 1308.5 507.5 L 1304.5 511.5" stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 6.5 507.5 L 6.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="53" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–7</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="53" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–7</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="53" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–7</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 58.5 507.5 L 58.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="105" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–6</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="105" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–6</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="105" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–6</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 110.5 507.5 L 110.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="157" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–5</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="157" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–5</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="157" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–5</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 162.5 507.5 L 162.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="208" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–4</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="208" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–4</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="208" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–4</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 213.5 507.5 L 213.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="260" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–3</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="260" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–3</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="260" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–3</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 265.5 507.5 L 265.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="312" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–2</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="312" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–2</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="312" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–2</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 317.5 507.5 L 317.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="364" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–1</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="364" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–1</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="364" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–1</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 369.5 507.5 L 369.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 421.5 507.5 L 421.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="471" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">1</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="471" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">1</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="471" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">1</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 473.5 507.5 L 473.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="523" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">2</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="523" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">2</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="523" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">2</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 525.5 507.5 L 525.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="575" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">3</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="575" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">3</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="575" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">3</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 577.5 507.5 L 577.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="626" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">4</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="626" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">4</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="626" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">4</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 628.5 507.5 L 628.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="678" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">5</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="678" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">5</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="678" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">5</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 680.5 507.5 L 680.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="730" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">6</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="730" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">6</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="730" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">6</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 732.5 507.5 L 732.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="782" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">7</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="782" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">7</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="782" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">7</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 784.5 507.5 L 784.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="834" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">8</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="834" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">8</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="834" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">8</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 836.5 507.5 L 836.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="886" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">9</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="886" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">9</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="886" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">9</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 888.5 507.5 L 888.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="935" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">10</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="935" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">10</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="935" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">10</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 940.5 507.5 L 940.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="987" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">11</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="987" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">11</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="987" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">11</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 992.5 507.5 L 992.5 510.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="1038" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">12</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="1038" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">12</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="1038" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">12</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers"
+                d=" M 1043.5 507.5 L 1043.5 510.5" stroke-opacity="1" stroke-miterlimit="10" /><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="1090" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">13</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="1090" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">13</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="1090" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">13</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers"
+                d=" M 1095.5 507.5 L 1095.5 510.5" stroke-opacity="1" stroke-miterlimit="10" /><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="1142" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">14</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="1142" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">14</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="1142" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">14</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers"
+                d=" M 1147.5 507.5 L 1147.5 510.5" stroke-opacity="1" stroke-miterlimit="10" /><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="1194" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">15</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="1194" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">15</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="1194" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">15</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers"
+                d=" M 1199.5 507.5 L 1199.5 510.5" stroke-opacity="1" stroke-miterlimit="10" /><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="1246" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">16</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="1246" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">16</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="1246" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">16</text>
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers"
+                d=" M 1251.5 507.5 L 1251.5 510.5" stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 818.5 L 421.5 818.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 766.5 L 421.5 766.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 715.5 L 421.5 715.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 663.5 L 421.5 663.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 611.5 L 421.5 611.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 559.5 L 421.5 559.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 455.5 L 421.5 455.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 403.5 L 421.5 403.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 351.5 L 421.5 351.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 300.5 L 421.5 300.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 248.5 L 421.5 248.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 196.5 L 421.5 196.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 144.5 L 421.5 144.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 92.5 L 421.5 92.5"
+                stroke-opacity="1" stroke-miterlimit="10" />
+            <path fill="none" stroke="rgb(37,37,37)" paint-order="fill stroke markers" d=" M 418.5 40.5 L 421.5 40.5"
+                stroke-opacity="1" stroke-miterlimit="10" /><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="823" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–6</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="823" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–6</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="400" y="823" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–6</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="771" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–5</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="771" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–5</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="400" y="771" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–5</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="720" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–4</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="720" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–4</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="400" y="720" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–4</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="668" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–3</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="668" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–3</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="400" y="668" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–3</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="616" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–2</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="616" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–2</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="400" y="616" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–2</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="564" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">–1</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="400" y="564" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">–1</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="400" y="564" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">–1</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="460" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">1</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="460" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">1</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="407" y="460" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">1</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="408" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">2</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="408" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">2</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="407" y="408" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">2</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="356" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">3</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="356" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">3</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="407" y="356" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">3</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="305" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">4</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="305" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">4</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="407" y="305" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">4</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="253" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">5</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="253" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">5</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="407" y="253" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">5</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="201" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">6</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="201" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">6</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="407" y="201" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">6</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="149" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">7</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="149" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">7</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="407" y="149" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">7</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="97" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">8</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="97" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">8</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="407" y="97" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">8</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="45" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">9</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="45" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">9</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="407" y="45" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">9</text><text fill="rgb(37,37,37)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">0</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="12px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="407" y="523" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">0</text><text
+                fill="rgb(37,37,37)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="12px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="407" y="523" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">0</text>
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers" fill-rule="evenodd"
+                d=" M 421.41812267938576 507.5732241099792 L 525.1653307551048 455.6996200721196 L 265.7973105658072 351.95241199640043 Z"
+                fill-opacity="0.09803921568627451" />
+            <path fill="rgb(255,0,0)" stroke="none" paint-order="stroke fill markers" fill-rule="evenodd"
+                d=" M 421.41812267938576 507.5732241099792 L 525.1653307551048 403.82601603426 L 473.2917267172453 300.0788079585409 L 369.5445186415262 351.95241199640043 Z"
+                fill-opacity="0.09803921568627451" />
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers" fill-rule="evenodd"
+                d=" M 369.5445186415262 351.95241199640043 L 473.2917267172453 300.0788079585409 L 213.9237065279477 196.3315998828217 Z"
+                fill-opacity="0.09803921568627451" />
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers" fill-rule="evenodd"
+                d=" M 473.2917267172453 300.0788079585409 L 577.0389347929643 248.2052039206813 L 317.67091460366674 144.4579958449621 Z"
+                fill-opacity="0.09803921568627451" />
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers" fill-rule="evenodd"
+                d=" M 525.1653307551048 403.82601603426 L 628.9125388308238 351.95241199640043 L 369.5445186415262 248.2052039206813 Z"
+                fill-opacity="0.09803921568627451" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 421.41812267938576 507.5732241099792 L 525.1653307551048 455.6996200721196"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 525.1653307551048 455.6996200721196 L 265.7973105658072 351.95241199640043"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 265.7973105658072 351.95241199640043 L 421.41812267938576 507.5732241099792"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(255,0,0)" paint-order="fill stroke markers"
+                d=" M 421.41812267938576 507.5732241099792 L 525.1653307551048 403.82601603426"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(255,0,0)" paint-order="fill stroke markers"
+                d=" M 525.1653307551048 403.82601603426 L 473.2917267172453 300.0788079585409"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(255,0,0)" paint-order="fill stroke markers"
+                d=" M 473.2917267172453 300.0788079585409 L 369.5445186415262 351.95241199640043"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(255,0,0)" paint-order="fill stroke markers"
+                d=" M 369.5445186415262 351.95241199640043 L 421.41812267938576 507.5732241099792"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 369.5445186415262 351.95241199640043 L 473.2917267172453 300.0788079585409"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 473.2917267172453 300.0788079585409 L 213.9237065279477 196.3315998828217"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 213.9237065279477 196.3315998828217 L 369.5445186415262 351.95241199640043"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 473.2917267172453 300.0788079585409 L 577.0389347929643 248.2052039206813"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 577.0389347929643 248.2052039206813 L 317.67091460366674 144.4579958449621"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 317.67091460366674 144.4579958449621 L 473.2917267172453 300.0788079585409"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 525.1653307551048 403.82601603426 L 628.9125388308238 351.95241199640043"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 628.9125388308238 351.95241199640043 L 369.5445186415262 248.2052039206813"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(21,101,192)" paint-order="fill stroke markers"
+                d=" M 369.5445186415262 248.2052039206813 L 525.1653307551048 403.82601603426"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 265.7973105658072 351.95241199640043 L 213.9237065279477 196.3315998828217"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 213.9237065279477 196.3315998828217 L 317.67091460366674 144.4579958449621"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 317.67091460366674 144.4579958449621 L 577.0389347929643 248.2052039206813"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 577.0389347929643 248.2052039206813 L 628.9125388308238 351.95241199640043"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 628.9125388308238 351.95241199640043 L 525.1653307551048 455.6996200721196"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 525.1653307551048 455.6996200721196 L 421.41812267938576 507.5732241099792"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 421.41812267938576 507.5732241099792 L 265.7973105658072 351.95241199640043"
+                stroke-opacity="0.6980392156862745" stroke-linecap="round" stroke-linejoin="round"
+                stroke-miterlimit="10" stroke-width="2.5" />
+            <path fill="rgb(97,97,97)" stroke="none" paint-order="stroke fill markers"
+                d=" M 426.41812267938576 507.5732241099792 C 426.41812267938576 510.33464785913316 424.1795464285397 512.5732241099793 421.41812267938576 512.5732241099793 C 418.6566989302318 512.5732241099793 416.41812267938576 510.33464785913316 416.41812267938576 507.5732241099792 C 416.41812267938576 504.81180036082526 418.6566989302318 502.5732241099792 421.41812267938576 502.5732241099792 C 424.1795464285397 502.5732241099792 426.41812267938576 504.81180036082526 426.41812267938576 507.5732241099792 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 426.41812267938576 507.5732241099792 C 426.41812267938576 510.33464785913316 424.1795464285397 512.5732241099793 421.41812267938576 512.5732241099793 C 418.6566989302318 512.5732241099793 416.41812267938576 510.33464785913316 416.41812267938576 507.5732241099792 C 416.41812267938576 504.81180036082526 418.6566989302318 502.5732241099792 421.41812267938576 502.5732241099792 C 424.1795464285397 502.5732241099792 426.41812267938576 504.81180036082526 426.41812267938576 507.5732241099792 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(97,97,97)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="401" y="535" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">A</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="401" y="535" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">A</text><text
+                fill="rgb(97,97,97)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="401" y="535" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">A</text>
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers"
+                d=" M 530.1653307551048 455.6996200721196 C 530.1653307551048 458.46104382127356 527.9267545042588 460.6996200721196 525.1653307551048 460.6996200721196 C 522.4039070059508 460.6996200721196 520.1653307551048 458.46104382127356 520.1653307551048 455.6996200721196 C 520.1653307551048 452.93819632296567 522.4039070059508 450.6996200721196 525.1653307551048 450.6996200721196 C 527.9267545042588 450.6996200721196 530.1653307551048 452.93819632296567 530.1653307551048 455.6996200721196 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 530.1653307551048 455.6996200721196 C 530.1653307551048 458.46104382127356 527.9267545042588 460.6996200721196 525.1653307551048 460.6996200721196 C 522.4039070059508 460.6996200721196 520.1653307551048 458.46104382127356 520.1653307551048 455.6996200721196 C 520.1653307551048 452.93819632296567 522.4039070059508 450.6996200721196 525.1653307551048 450.6996200721196 C 527.9267545042588 450.6996200721196 530.1653307551048 452.93819632296567 530.1653307551048 455.6996200721196 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="529" y="446" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">B</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="529" y="446" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">B</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="529" y="446" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">B</text>
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers"
+                d=" M 270.7973105658072 351.95241199640043 C 270.7973105658072 354.7138357455544 268.55873431496116 356.95241199640043 265.7973105658072 356.95241199640043 C 263.03588681665326 356.95241199640043 260.7973105658072 354.7138357455544 260.7973105658072 351.95241199640043 C 260.7973105658072 349.1909882472465 263.03588681665326 346.95241199640043 265.7973105658072 346.95241199640043 C 268.55873431496116 346.95241199640043 270.7973105658072 349.1909882472465 270.7973105658072 351.95241199640043 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 270.7973105658072 351.95241199640043 C 270.7973105658072 354.7138357455544 268.55873431496116 356.95241199640043 265.7973105658072 356.95241199640043 C 263.03588681665326 356.95241199640043 260.7973105658072 354.7138357455544 260.7973105658072 351.95241199640043 C 260.7973105658072 349.1909882472465 263.03588681665326 346.95241199640043 265.7973105658072 346.95241199640043 C 268.55873431496116 346.95241199640043 270.7973105658072 349.1909882472465 270.7973105658072 351.95241199640043 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="270" y="342" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">C</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="270" y="342" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">C</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="270" y="342" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">C</text>
+            <path fill="rgb(255,0,0)" stroke="none" paint-order="stroke fill markers"
+                d=" M 530.1653307551048 403.82601603426 C 530.1653307551048 406.58743978341397 527.9267545042588 408.82601603426 525.1653307551048 408.82601603426 C 522.4039070059508 408.82601603426 520.1653307551048 406.58743978341397 520.1653307551048 403.82601603426 C 520.1653307551048 401.0645922851061 522.4039070059508 398.82601603426 525.1653307551048 398.82601603426 C 527.9267545042588 398.82601603426 530.1653307551048 401.0645922851061 530.1653307551048 403.82601603426 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 530.1653307551048 403.82601603426 C 530.1653307551048 406.58743978341397 527.9267545042588 408.82601603426 525.1653307551048 408.82601603426 C 522.4039070059508 408.82601603426 520.1653307551048 406.58743978341397 520.1653307551048 403.82601603426 C 520.1653307551048 401.0645922851061 522.4039070059508 398.82601603426 525.1653307551048 398.82601603426 C 527.9267545042588 398.82601603426 530.1653307551048 401.0645922851061 530.1653307551048 403.82601603426 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(255,0,0)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="495" y="408" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">D</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="495" y="408" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">D</text><text
+                fill="rgb(255,0,0)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="495" y="408" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">D</text>
+            <path fill="rgb(255,0,0)" stroke="none" paint-order="stroke fill markers"
+                d=" M 478.2917267172453 300.0788079585409 C 478.2917267172453 302.84023170769484 476.05315046639925 305.0788079585409 473.2917267172453 305.0788079585409 C 470.53030296809135 305.0788079585409 468.2917267172453 302.84023170769484 468.2917267172453 300.0788079585409 C 468.2917267172453 297.31738420938694 470.53030296809135 295.0788079585409 473.2917267172453 295.0788079585409 C 476.05315046639925 295.0788079585409 478.2917267172453 297.31738420938694 478.2917267172453 300.0788079585409 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 478.2917267172453 300.0788079585409 C 478.2917267172453 302.84023170769484 476.05315046639925 305.0788079585409 473.2917267172453 305.0788079585409 C 470.53030296809135 305.0788079585409 468.2917267172453 302.84023170769484 468.2917267172453 300.0788079585409 C 468.2917267172453 297.31738420938694 470.53030296809135 295.0788079585409 473.2917267172453 295.0788079585409 C 476.05315046639925 295.0788079585409 478.2917267172453 297.31738420938694 478.2917267172453 300.0788079585409 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(255,0,0)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="497" y="323" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">E</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="497" y="323" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">E</text><text
+                fill="rgb(255,0,0)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="497" y="323" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">E</text>
+            <path fill="rgb(255,0,0)" stroke="none" paint-order="stroke fill markers"
+                d=" M 374.5445186415262 351.95241199640043 C 374.5445186415262 354.7138357455544 372.3059423906802 356.95241199640043 369.5445186415262 356.95241199640043 C 366.7830948923723 356.95241199640043 364.5445186415262 354.7138357455544 364.5445186415262 351.95241199640043 C 364.5445186415262 349.1909882472465 366.7830948923723 346.95241199640043 369.5445186415262 346.95241199640043 C 372.3059423906802 346.95241199640043 374.5445186415262 349.1909882472465 374.5445186415262 351.95241199640043 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 374.5445186415262 351.95241199640043 C 374.5445186415262 354.7138357455544 372.3059423906802 356.95241199640043 369.5445186415262 356.95241199640043 C 366.7830948923723 356.95241199640043 364.5445186415262 354.7138357455544 364.5445186415262 351.95241199640043 C 364.5445186415262 349.1909882472465 366.7830948923723 346.95241199640043 369.5445186415262 346.95241199640043 C 372.3059423906802 346.95241199640043 374.5445186415262 349.1909882472465 374.5445186415262 351.95241199640043 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(255,0,0)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="349" y="368" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">F</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="349" y="368" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">F</text><text
+                fill="rgb(255,0,0)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="349" y="368" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">F</text>
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers"
+                d=" M 478.2917267172453 300.0788079585409 C 478.2917267172453 302.84023170769484 476.05315046639925 305.0788079585409 473.2917267172453 305.0788079585409 C 470.53030296809135 305.0788079585409 468.2917267172453 302.84023170769484 468.2917267172453 300.0788079585409 C 468.2917267172453 297.31738420938694 470.53030296809135 295.0788079585409 473.2917267172453 295.0788079585409 C 476.05315046639925 295.0788079585409 478.2917267172453 297.31738420938694 478.2917267172453 300.0788079585409 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 478.2917267172453 300.0788079585409 C 478.2917267172453 302.84023170769484 476.05315046639925 305.0788079585409 473.2917267172453 305.0788079585409 C 470.53030296809135 305.0788079585409 468.2917267172453 302.84023170769484 468.2917267172453 300.0788079585409 C 468.2917267172453 297.31738420938694 470.53030296809135 295.0788079585409 473.2917267172453 295.0788079585409 C 476.05315046639925 295.0788079585409 478.2917267172453 297.31738420938694 478.2917267172453 300.0788079585409 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="472" y="278" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">B'</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="472" y="278" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">B'</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="472" y="278" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">B'</text>
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers"
+                d=" M 218.9237065279477 196.3315998828217 C 218.9237065279477 199.09302363197568 216.68513027710168 201.3315998828217 213.9237065279477 201.3315998828217 C 211.16228277879372 201.3315998828217 208.9237065279477 199.09302363197568 208.9237065279477 196.3315998828217 C 208.9237065279477 193.57017613366773 211.16228277879372 191.3315998828217 213.9237065279477 191.3315998828217 C 216.68513027710168 191.3315998828217 218.9237065279477 193.57017613366773 218.9237065279477 196.3315998828217 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 218.9237065279477 196.3315998828217 C 218.9237065279477 199.09302363197568 216.68513027710168 201.3315998828217 213.9237065279477 201.3315998828217 C 211.16228277879372 201.3315998828217 208.9237065279477 199.09302363197568 208.9237065279477 196.3315998828217 C 208.9237065279477 193.57017613366773 211.16228277879372 191.3315998828217 213.9237065279477 191.3315998828217 C 216.68513027710168 191.3315998828217 218.9237065279477 193.57017613366773 218.9237065279477 196.3315998828217 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="218" y="186" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">C'</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="218" y="186" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">C'</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="218" y="186" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">C'</text>
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers"
+                d=" M 582.0389347929643 248.2052039206813 C 582.0389347929643 250.96662766983528 579.8003585421183 253.2052039206813 577.0389347929643 253.2052039206813 C 574.2775110438103 253.2052039206813 572.0389347929643 250.96662766983528 572.0389347929643 248.2052039206813 C 572.0389347929643 245.44378017152732 574.2775110438103 243.2052039206813 577.0389347929643 243.2052039206813 C 579.8003585421183 243.2052039206813 582.0389347929643 245.44378017152732 582.0389347929643 248.2052039206813 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 582.0389347929643 248.2052039206813 C 582.0389347929643 250.96662766983528 579.8003585421183 253.2052039206813 577.0389347929643 253.2052039206813 C 574.2775110438103 253.2052039206813 572.0389347929643 250.96662766983528 572.0389347929643 248.2052039206813 C 572.0389347929643 245.44378017152732 574.2775110438103 243.2052039206813 577.0389347929643 243.2052039206813 C 579.8003585421183 243.2052039206813 582.0389347929643 245.44378017152732 582.0389347929643 248.2052039206813 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="581" y="238" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">B'</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="581" y="238" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">B'</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="581" y="238" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">B'</text><text fill="rgb(21,101,192)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="14px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="595" y="245" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">1</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="14px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="595" y="245" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">1</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="14px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="595" y="245" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">1</text>
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers"
+                d=" M 322.67091460366674 144.4579958449621 C 322.67091460366674 147.2194195941161 320.4323383528207 149.4579958449621 317.67091460366674 149.4579958449621 C 314.9094908545128 149.4579958449621 312.67091460366674 147.2194195941161 312.67091460366674 144.4579958449621 C 312.67091460366674 141.69657209580814 314.9094908545128 139.4579958449621 317.67091460366674 139.4579958449621 C 320.4323383528207 139.4579958449621 322.67091460366674 141.69657209580814 322.67091460366674 144.4579958449621 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 322.67091460366674 144.4579958449621 C 322.67091460366674 147.2194195941161 320.4323383528207 149.4579958449621 317.67091460366674 149.4579958449621 C 314.9094908545128 149.4579958449621 312.67091460366674 147.2194195941161 312.67091460366674 144.4579958449621 C 312.67091460366674 141.69657209580814 314.9094908545128 139.4579958449621 317.67091460366674 139.4579958449621 C 320.4323383528207 139.4579958449621 322.67091460366674 141.69657209580814 322.67091460366674 144.4579958449621 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="322" y="134" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">C'</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="322" y="134" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">C'</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="322" y="134" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">C'</text><text fill="rgb(21,101,192)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="14px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="337" y="141" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">1</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="14px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="337" y="141" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">1</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="14px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="337" y="141" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">1</text>
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers"
+                d=" M 633.9125388308238 351.95241199640043 C 633.9125388308238 354.7138357455544 631.6739625799778 356.95241199640043 628.9125388308238 356.95241199640043 C 626.1511150816698 356.95241199640043 623.9125388308238 354.7138357455544 623.9125388308238 351.95241199640043 C 623.9125388308238 349.1909882472465 626.1511150816698 346.95241199640043 628.9125388308238 346.95241199640043 C 631.6739625799778 346.95241199640043 633.9125388308238 349.1909882472465 633.9125388308238 351.95241199640043 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 633.9125388308238 351.95241199640043 C 633.9125388308238 354.7138357455544 631.6739625799778 356.95241199640043 628.9125388308238 356.95241199640043 C 626.1511150816698 356.95241199640043 623.9125388308238 354.7138357455544 623.9125388308238 351.95241199640043 C 623.9125388308238 349.1909882472465 626.1511150816698 346.95241199640043 628.9125388308238 346.95241199640043 C 631.6739625799778 346.95241199640043 633.9125388308238 349.1909882472465 633.9125388308238 351.95241199640043 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="635" y="334" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">B'</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="635" y="334" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">B'</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="635" y="334" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">B'</text><text fill="rgb(21,101,192)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="14px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="649" y="341" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">2</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="14px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="649" y="341" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">2</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="14px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="649" y="341" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">2</text>
+            <path fill="rgb(21,101,192)" stroke="none" paint-order="stroke fill markers"
+                d=" M 374.5445186415262 248.2052039206813 C 374.5445186415262 250.96662766983528 372.3059423906802 253.2052039206813 369.5445186415262 253.2052039206813 C 366.7830948923723 253.2052039206813 364.5445186415262 250.96662766983528 364.5445186415262 248.2052039206813 C 364.5445186415262 245.44378017152732 366.7830948923723 243.2052039206813 369.5445186415262 243.2052039206813 C 372.3059423906802 243.2052039206813 374.5445186415262 245.44378017152732 374.5445186415262 248.2052039206813 Z"
+                fill-opacity="1" />
+            <path fill="none" stroke="rgb(0,0,0)" paint-order="fill stroke markers"
+                d=" M 374.5445186415262 248.2052039206813 C 374.5445186415262 250.96662766983528 372.3059423906802 253.2052039206813 369.5445186415262 253.2052039206813 C 366.7830948923723 253.2052039206813 364.5445186415262 250.96662766983528 364.5445186415262 248.2052039206813 C 364.5445186415262 245.44378017152732 366.7830948923723 243.2052039206813 369.5445186415262 243.2052039206813 C 372.3059423906802 243.2052039206813 374.5445186415262 245.44378017152732 374.5445186415262 248.2052039206813 Z"
+                stroke-opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" /><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="344" y="227" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">C'</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="16px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="344" y="227" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">C'</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="16px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="344" y="227" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">C'</text><text fill="rgb(21,101,192)" stroke="none"
+                font-family="geogebra-sans-serif, sans-serif" font-size="14px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="359" y="234" text-anchor="start" dominant-baseline="alphabetic"
+                fill-opacity="1">2</text><text fill="none" stroke="rgb(255,255,255)"
+                font-family="geogebra-sans-serif, sans-serif" font-size="14px" font-style="normal" font-weight="normal"
+                text-decoration="normal" x="359" y="234" text-anchor="start" dominant-baseline="alphabetic"
+                stroke-opacity="1" stroke-linejoin="bevel" stroke-miterlimit="10" stroke-width="3">2</text><text
+                fill="rgb(21,101,192)" stroke="none" font-family="geogebra-sans-serif, sans-serif" font-size="14px"
+                font-style="normal" font-weight="normal" text-decoration="normal" x="359" y="234" text-anchor="start"
+                dominant-baseline="alphabetic" fill-opacity="1">2</text>
+        </g>
+    </g>
+</svg>

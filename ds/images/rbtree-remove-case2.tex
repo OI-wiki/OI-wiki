@@ -1,0 +1,79 @@
+\documentclass[border=5mm]{standalone}
+\usepackage{tikz}
+\usepackage{fontspec}
+
+\usetikzlibrary{positioning, shapes.geometric}
+\tikzset{
+    circlenode/.style={draw=black, circle, text=white, minimum size=0.2cm, font=\Large\bfseries\fontspec{Times New Roman}},
+    trinode/.style={draw, isosceles triangle, isosceles triangle stretches, text=black, minimum size=0.4cm, shape border rotate=90, isosceles triangle apex angle=40, line width=0.03cm, font=\bfseries\fontspec{Times New Roman}},
+    twocolornode/.style={draw=black, circle, text=white, font=\bfseries\Large, minimum size=0.4cm,
+        path picture={
+            \fill [red] (path picture bounding box.south west) rectangle (path picture bounding box.north);
+            \fill [black] (path picture bounding box.south) rectangle (path picture bounding box.north east);
+        }
+    },
+    edge from parent/.style={real edge, draw=black},
+    real edge/.style={solid, very thick, -latex}
+}
+
+\begin{document}
+\begin{tikzpicture}
+    \matrix[row sep=1cm, column sep=1cm] {
+        \node[twocolornode] {P}
+        child[real edge] {node[circlenode, fill=black, draw=blue, line width = 0.1cm] {N}
+                child[real edge] {node[circlenode, draw=none, fill=white] (tree1){}}
+                child[real edge] {node[circlenode, draw=none, fill=white] (tree2){}}
+            }
+        child[missing]
+        child[missing]
+        child[real edge] {node[circlenode, fill=black] {S}
+                child[real edge] {node[circlenode, fill=black] {C}
+                        child[real edge] {node[circlenode, draw=none, fill=white] (tree3){}}
+                        child[real edge] {node[circlenode, draw=none, fill=white] (tree4){}}
+                    }
+                child[missing]
+                child[real edge] {node[circlenode, fill=black] {D}
+                        child[real edge] {node[circlenode, draw=none, fill=white] (tree5){}}
+                        child[real edge] {node[circlenode, draw=none, fill=white] (tree6){}}
+                    }
+            };
+
+        \node[trinode, below=-0.4cm of tree1, text = white] {1};
+        \node[trinode, below=-0.4cm of tree2, text = white] {2};
+        \node[trinode, below=-0.4cm of tree3, text = white] {3};
+        \node[trinode, below=-0.4cm of tree4, text = white] {4};
+        \node[trinode, below=-0.4cm of tree5, text = white] {5};
+        \node[trinode, below=-0.4cm of tree6, text = white] {6};
+
+        \\
+
+        \node[twocolornode] {P}
+        child[real edge] {node[circlenode, fill=black] {N}
+                child[real edge] {node[circlenode, draw=none, fill=white] (tree1){}}
+                child[real edge] {node[circlenode, draw=none, fill=white] (tree2){}}
+            }
+        child[missing]
+        child[missing]
+        child[real edge] {node[circlenode, fill=red] {S}
+                child[real edge] {node[circlenode, fill=black] {C}
+                        child[real edge] {node[circlenode, draw=none, fill=white] (tree3){}}
+                        child[real edge] {node[circlenode, draw=none, fill=white] (tree4){}}
+                    }
+                child[missing]
+                child[real edge] {node[circlenode, fill=black] {D}
+                        child[real edge] {node[circlenode, draw=none, fill=white] (tree5){}}
+                        child[real edge] {node[circlenode, draw=none, fill=white] (tree6){}}
+                    }
+            };
+
+        \node[trinode, below=-0.4cm of tree1, text = white] {1};
+        \node[trinode, below=-0.4cm of tree2, text = white] {2};
+        \node[trinode, below=-0.4cm of tree3, text = white] {3};
+        \node[trinode, below=-0.4cm of tree4, text = white] {4};
+        \node[trinode, below=-0.4cm of tree5, text = white] {5};
+        \node[trinode, below=-0.4cm of tree6, text = white] {6};
+
+        \\
+    };
+\end{tikzpicture}
+\end{document}
