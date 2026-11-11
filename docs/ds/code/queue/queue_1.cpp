@@ -20,7 +20,7 @@ struct Queue {
 
   int size() { return qr - ql + 1; }
 
-  int clear() {
+  void clear() {
     ql = 1;
     qr = 0;
   }
