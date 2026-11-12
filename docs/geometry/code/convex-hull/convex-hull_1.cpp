@@ -38,8 +38,10 @@ struct Point {
 template <class T>
 vector<Point<T>> convex_hull(vector<Point<T>> p) {
   assert(!p.empty());
-  sort(p.begin(), p.end(),
-       [](const Point<i64> &a, const Point<i64> &b) { return a.x < b.x; });
+  // 横坐标相同时必须按纵坐标排序，否则横坐标相同的点顺序不确定，求出的凸包可能出错
+  sort(p.begin(), p.end(), [](const Point<T> &a, const Point<T> &b) {
+    return a.x != b.x ? a.x < b.x : a.y < b.y;
+  });
   vector<Point<T>> u{p[0]}, d{p.back()};
   for (usz i = 1; i < p.size(); ++i) {
     while (u.size() >= 2 &&
@@ -82,6 +84,11 @@ int main() {
   a = minkowski_sum(a, b);
   a.pop_back();
   for (usz i = 1; i < a.size(); ++i) a[i] = a[i] - a[0];
+  // 凸包最后一条边上可能有多个共线的顶点，取其中离 a[0] 最远的一个
+  auto cmp = [](const Point<i64> &a, const Point<i64> &b) {
+    return (a ^ b) < 0;
+  };
+  const Point<i64> last = *lower_bound(a.begin() + 1, a.end(), a.back(), cmp);
   while (q--) {
     Point<i64> v;
     cin >> v;
@@ -90,11 +97,16 @@ int main() {
       cout << "0\n";
       continue;
     }
-    auto it = upper_bound(
-        a.begin() + 1, a.end(), v,
-        [](const Point<i64> &a, const Point<i64> &b) { return (a ^ b) < 0; });
-    if (it == a.begin() + 1 || it == a.end()) {
+    auto it = upper_bound(a.begin() + 1, a.end(), v, cmp);
+    if (it == a.begin() + 1) {
       cout << "0\n";
+      continue;
+    }
+    if (it == a.end()) {
+      // 此时 v 不在最后一条射线的逆时针一侧，只有落在凸包的最后一条边上
+      // （含端点，即 v 为零向量的情况）时才在凸包内
+      cout << ((v ^ last) == 0 && v * last >= 0 && v * v <= last * last)
+           << '\n';
       continue;
     }
     i64 s0 = *it ^ *prev(it), s1 = v ^ *prev(it), s2 = *it ^ v;
