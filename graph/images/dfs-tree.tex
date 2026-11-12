@@ -1,0 +1,27 @@
+\documentclass[12pt]{standalone}
+
+\usepackage{xcolor}
+\usepackage{xcolor-solarized}
+
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+    \scoped[->,thick,every node/.style={circle,draw}]
+    \node (1) {1}
+        child {node (2) {2}
+            child {node (3) {3}
+                child {node (4) {4}}
+                child {node (5) {5}
+                    child {node (6) {6}}}}
+            child {node (7) {7}}}
+        child {node (8) {8}
+            child[missing]
+            child {node (9) {9}}};
+
+    \path[->,thick]
+        (7) edge[solarized-red,dashed] (1)
+        (9) edge[solarized-blue,dotted] (7)
+        (3) edge[bend right,solarized-green,dash pattern=on 4pt off 2pt on 2pt off 2pt] (6);
+\end{tikzpicture}
+\end{document}

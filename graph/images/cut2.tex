@@ -1,0 +1,39 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+\begin{scope}[every node/.style={draw},circle,thick]
+    \node (A) at (0,2) {$1$};
+    \node (B) at (0,0) {$2$};
+    \node (C) at (1,1) {$3$};
+    \node (D) at (-1,1) {$4$};
+    \node (E) at (1,-1) {$5$};
+    \node (F) at (-1,-1) {$6$};
+\end{scope}
+
+\begin{scope}[every node/.style={color=red}]
+    \node at (A) [right=3mm] {$1$};
+    \node at (C) [right=3mm] {$2$};
+    \node at (B) [left=3mm] {$3$};
+    \node at (D) [left=3mm] {$4$};
+    \node at (F) [left=3mm] {$5$};
+    \node at (E) [right=3mm] {$6$};
+\end{scope}
+
+\draw[thick]
+    (A) -- (C)
+    (C) -- (B)
+    (D) -- (B)
+    (E) -- (F)
+    (B) -- (F);
+
+\draw[color=lightgray]
+    (A) -- (D)
+    (B) -- (E);
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,56 @@
+% Compile from this directory:
+% xelatex -no-pdf -interaction=nonstopmode -halt-on-error max-flow-augment.tex
+% dvisvgm --no-fonts --exact --bbox=papersize max-flow-augment.xdv -o max-flow-augment.svg
+\def\pgfsysdriver{pgfsys-dvisvgm.def}
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usepackage{lmodern}
+\usetikzlibrary{arrows.meta,backgrounds}
+\definecolor{firstflow}{HTML}{2E6DA4}
+\definecolor{nextflow}{HTML}{C45C00}
+\tikzset{
+  vertex/.style={circle,draw=firstflow,fill=white,thick,minimum size=7mm,inner sep=0pt},
+  first/.style={-{Stealth[length=2.2mm]},draw=firstflow,line width=1pt},
+  next/.style={-{Stealth[length=2.2mm]},draw=nextflow,line width=1pt},
+}
+\begin{document}
+\begin{tikzpicture}[x=9mm,y=9mm,background rectangle/.style={fill=white},show background rectangle]
+  \begin{scope}
+    \node[vertex] (u) at (1.5,3) {$u$};
+    \node[vertex] (v) at (1.5,1) {$v$};
+    \draw[first] (1.5,4) -- (u);
+    \draw[first] (u) -- (v);
+    \draw[first] (v) -- (1.5,0);
+  \end{scope}
+  \begin{scope}[xshift=42mm]
+    \node[vertex] (u) at (1.5,3) {$u$};
+    \node[vertex] (v) at (1.5,1) {$v$};
+    \node[vertex] (p) at (3,2) {$p$};
+    \node[vertex] (q) at (0,2) {$q$};
+    \draw[next] (1.5,4) -- (u);
+    \draw[next] (u) -- (q);
+    \draw[next] (q) -- (0,.8);
+    \draw[next] (3,3.2) -- (p);
+    \draw[next] (p) -- (v);
+    \draw[next] (p) -- (3,.8);
+    \draw[next] (v) -- (1.5,0);
+    \node[font=\sffamily] at (1.5,-.55) {实际更优的情况};
+  \end{scope}
+  \begin{scope}[xshift=87mm]
+    \node[vertex] (u) at (1.5,3) {$u$};
+    \node[vertex] (v) at (1.5,1) {$v$};
+    \node[vertex] (p) at (3,2) {$p$};
+    \node[vertex] (q) at (0,2) {$q$};
+    \draw[first] (1.5,4) -- (u);
+    \draw[first] (u) to[bend right=12] (v);
+    \draw[first] (v) -- (1.5,0);
+    \draw[next] (3,3.2) -- (p);
+    \draw[next] (p) -- (v);
+    \draw[next] (p) -- (3,.8);
+    \draw[next] (v) to[bend right=12] (u);
+    \draw[next] (u) -- (q);
+    \draw[next] (q) -- (0,.8);
+    \node[font=\sffamily] at (1.5,-.55) {就相当于};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

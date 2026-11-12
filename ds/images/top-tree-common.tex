@@ -1,0 +1,93 @@
+% Shared drawing definitions for top-tree-7.tex through top-tree-20.tex.
+% Run from this directory (replace N with the diagram number):
+% xelatex -no-pdf -interaction=nonstopmode -halt-on-error top-tree-N.tex
+% dvisvgm --no-fonts --exact-bbox --bbox=papersize top-tree-N.xdv -o top-tree-N.svg
+% The first six diagrams retain their Typst sources:
+% typst compile --format svg top-tree-N.typ top-tree-N.svg
+\def\pgfsysdriver{pgfsys-dvisvgm.def}
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage[UTF8,fontset=fandol]{ctex}
+\usetikzlibrary{arrows.meta,backgrounds,fit,calc}
+\definecolor{clusterred}{HTML}{BA2942}
+\definecolor{clusterblue}{HTML}{008BB5}
+\definecolor{clusteryellow}{HTML}{C99A00}
+\definecolor{clustergreen}{HTML}{26945B}
+\definecolor{clusterpurple}{HTML}{8C5299}
+\tikzset{
+  top tree/.style={x=1mm,y=-1mm,line width=.8pt,line cap=round,line join=round,
+    every node/.style={font=\small},
+    background rectangle/.style={fill=white},show background rectangle},
+  vertex/.style={circle,draw,fill=white,minimum size=7mm,inner sep=1pt},
+  cluster/.style={draw,rounded corners=1.2pt,fill=white,
+    minimum width=7mm,minimum height=5.5mm,inner sep=1.4pt},
+  compress/.style={draw,fill=white,minimum size=7mm,inner sep=1.4pt},
+  rake/.style={vertex},
+  boundary/.style={line width=1.1pt,rounded corners=3mm},
+  transition/.style={-{Stealth[length=4mm,width=3mm]},line width=1.4pt},
+  caption/.style={font=\small,align=center},
+}
+
+% The original tree, rooted at d, with cluster path d-c-h-j-k.
+% Arrows point from child to parent, towards d, as in the original diagrams.
+\newcommand{\OriginalTree}{%
+  \foreach \id/\x/\y in {d/70/5,c/70/30,b/35/30,a/10/30,e/110/30,
+      h/70/65,i/35/65,f/110/65,j/70/100,g/110/100,k/70/130}
+    \node[vertex] (\id) at (\x,\y) {$\id$};
+  \foreach \parent/\child in {d/c,c/b,b/a,c/e,c/h,h/i,h/f,h/j,j/g,j/k}
+    \draw[-{Stealth[length=2.4mm,width=1.7mm]}] (\child) -- (\parent);
+}
+
+% The binary top tree for the contraction sequence in diagrams 3 and 6.
+% Repeated endpoint labels are distinct clusters at different levels.
+\newcommand{\ContractionTree}{%
+  \foreach \id/\x/\y/\value in {root/76/0/AH,left/37/26/AH,right/109/26/AE,
+      hd/17/52/HD,ad/57/52/AD,be/94/52/BE,ab/127/52/AB,
+      gh/7/78/GH,dg/27/78/DG,adleaf/47/78/AD,ac/67/78/AC,
+      beleaf/84/78/BE,bf/104/78/BF}
+    \node[vertex,minimum size=10mm] (\id) at (\x,\y) {$\value$};
+  \foreach \parent/\child in {root/left,root/right,left/hd,left/ad,
+      right/be,right/ab,hd/gh,hd/dg,ad/adleaf,ad/ac,be/beleaf,be/bf}
+    \draw (\parent) -- (\child);
+  \node[text=clusterred,anchor=north,font=\scriptsize,inner sep=.5pt] at (37,35) {$N_D$};
+  \node[text=clusterred,anchor=north,font=\scriptsize,inner sep=.5pt] at (109,35) {$N_B$};
+  \node[text=clusterred,anchor=north,font=\scriptsize,inner sep=.5pt] at (17,61) {$N_G$};
+}
+
+% The same four states are reused in the three consecutive splice diagrams.
+\newcommand{\SpliceState}[1]{%
+  \ifcase#1\relax
+  \or
+    \def\vertices{A/30/0,B/14/20,E/48/20,C/0/39,D/28/39,
+      alpha/14/60,gamma/0/80,Omega/28/80,sigma/-17/101,X/0/101,
+      lambda/19/101,F/-14/122,delta/0/141}
+    \def\links{A/B,A/E,B/C,B/D,B/alpha,alpha/gamma,alpha/Omega,
+      gamma/sigma,gamma/X,gamma/lambda,X/F,X/delta}
+  \or
+    \def\vertices{A/30/0,B/14/20,E/48/20,C/0/39,D/28/39,
+      gamma/14/60,sigma/-6/80,X/14/80,alpha/42/85,F/0/103,
+      delta/14/122,lambda/30/108,Omega/56/108}
+    \def\links{A/B,A/E,B/C,B/D,B/gamma,gamma/sigma,gamma/X,
+      gamma/alpha,alpha/lambda,alpha/Omega,X/F,X/delta}
+  \or
+    \def\vertices{B/14/0,C/-4/20,A/38/20,D/25/40,E/53/40,
+      gamma/14/60,sigma/-6/80,X/14/80,alpha/42/85,F/0/103,
+      delta/14/122,lambda/30/108,Omega/56/108}
+    \def\links{B/C,B/A,B/gamma,A/D,A/E,gamma/sigma,gamma/X,
+      gamma/alpha,alpha/lambda,alpha/Omega,X/F,X/delta}
+  \or
+    \def\vertices{B/14/0,C/-4/20,X/38/20,F/27/40,delta/53/45,
+      gamma/14/60,sigma/-6/80,A/14/85,alpha/42/90,D/2/110,
+      E/26/110,lambda/40/116,Omega/60/116}
+    \def\links{B/C,B/X,B/gamma,X/F,X/delta,gamma/sigma,gamma/A,
+      gamma/alpha,A/D,A/E,alpha/lambda,alpha/Omega}
+  \fi
+  \foreach \id/\x/\y in \vertices {
+    \ifcsname\id\endcsname
+      \node[vertex] (\id) at (\x,\y) {$\csname\id\endcsname$};
+    \else
+      \node[vertex] (\id) at (\x,\y) {$\id$};
+    \fi
+  }
+  \foreach \parent/\child in \links \draw (\parent) -- (\child);
+  \node[caption] at (20,154) {状态 #1};
+}

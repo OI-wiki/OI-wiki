@@ -1,0 +1,19 @@
+% Custom list labels from ../latex.md. Build instructions: latex-for-beginners-common.tex.
+\documentclass[a4paper,12pt]{article}
+\input{latex-for-beginners-common.tex}
+\begin{document}
+% --8<-- [start:example]
+\begin{itemize}
+  \item[-] First thing
+
+  \item[+] Second thing
+    \begin{itemize}
+      \item[Fish] A sub-thing
+
+      \item[Plants] Another sub-thing
+    \end{itemize}
+
+  \item[Q] Third thing
+\end{itemize}
+% --8<-- [end:example]
+\end{document}

@@ -1,0 +1,41 @@
+% Shared graph for the four Welsh--Powell coloring stages in color.md.
+% The original layout was created with https://csacademy.com/app/graph_editor/.
+% Edit the coordinates and edge list here to keep all stages consistent.
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\definecolor{first}{RGB}{107,146,232}
+\definecolor{second}{RGB}{157,240,34}
+\definecolor{third}{RGB}{216,194,242}
+\begin{document}
+\begin{tikzpicture}[
+  x=0.02cm,y=-0.02cm,
+  line width=1pt,
+  vertex/.style={circle,draw,minimum size=0.95cm,inner sep=0pt,
+    font=\fontsize{12}{14}\selectfont\bfseries}
+]
+  % Coordinates preserve the original graph layout.
+  \foreach \v/\x/\y in {
+    0/188/364,1/251/91,2/349/313,3/530/339,4/135/229,
+    5/280/228,6/431/217,7/556/506,8/62/410,9/203/538,
+    10/410/442,11/399/78,12/289/433%
+  } { \coordinate (v\v) at (\x,\y); }
+  % Degrees for vertices 0,...,12: 4,3,4,3,5,5,3,2,2,4,3,1,3.
+  \foreach \u/\v in {
+    0/2,0/4,0/5,0/9,1/4,1/5,1/6,2/3,2/4,2/12,
+    3/6,3/7,4/5,4/8,5/11,5/12,6/10,7/10,8/9,9/10,9/12%
+  } { \draw (v\u) -- (v\v); }
+  % The order and color classes agree with the degree table in color.md.
+  \foreach \v/\step/\shade in {
+    4/1/first,9/1/first,3/1/first,11/1/first,
+    5/2/second,2/2/second,6/2/second,7/2/second,8/2/second,
+    0/3/third,1/3/third,10/3/third,12/3/third%
+  } {
+    \ifnum\coloringstep<\step
+      \node[vertex,fill=white] at (v\v) {\v};
+    \else
+      \node[vertex,fill=\shade] at (v\v) {\v};
+    \fi
+  }
+\end{tikzpicture}
+\end{document}

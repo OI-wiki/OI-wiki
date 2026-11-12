@@ -1,0 +1,462 @@
+% Rebuild: xelatex -no-pdf -interaction=nonstopmode div-com-2.tex
+%          dvisvgm --no-fonts --exact-bbox div-com-2.xdv -o div-com-2.svg
+\def\pgfsysdriver{pgfsys-dvisvgm.def}
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage[fontset=fandol]{ctex}
+\usetikzlibrary{backgrounds}
+\begin{document}
+\definecolor{split}{HTML}{00DADA}
+\definecolor{combine}{HTML}{FF8800}
+\begin{tikzpicture}[scale=1.75,transform shape,background rectangle/.style={fill=white},show background rectangle,x=1cm,y=1cm,line width=.7pt,font=\small,
+  leaf/.style={circle,draw,fill=combine,minimum size=5.5mm,inner sep=0pt},
+  interval/.style={rectangle,draw,fill=combine,minimum height=5mm,inner sep=2pt},
+  splitnode/.style={interval,fill=split}]
+% Yellow outlines show the part changed in the current construction step.
+\draw[yellow!80!orange,line width=1pt] (3,.75) rectangle (3.4,1.05);
+\node[anchor=west,font=\footnotesize] at (3.55,.9) {增量过程中发生变动的部分};
+% Step 1: 9
+\begin{scope}[yshift=0.00cm]
+\coordinate (s1n0) at (0.340,0.000);
+\node[leaf] at (s1n0) {9};
+\draw[yellow!80!orange,line width=1pt] (-0.030,0.360) rectangle (0.710,-0.360);
+\end{scope}
+% Step 2: 9, 1
+\begin{scope}[yshift=-0.95cm]
+\coordinate (s2n0) at (0.340,0.000);
+\coordinate (s2n1) at (1.020,0.000);
+\node[leaf] at (s2n0) {9};
+\node[leaf] at (s2n1) {1};
+\draw[yellow!80!orange,line width=1pt] (0.650,0.360) rectangle (1.390,-0.360);
+\end{scope}
+% Step 3: 9, 1, 10
+\begin{scope}[yshift=-1.90cm]
+\coordinate (s3n0) at (0.340,0.000);
+\coordinate (s3n1) at (1.020,0.000);
+\coordinate (s3n2) at (1.700,0.000);
+\node[leaf] at (s3n0) {9};
+\node[leaf] at (s3n1) {1};
+\node[leaf] at (s3n2) {10};
+\draw[yellow!80!orange,line width=1pt] (1.330,0.360) rectangle (2.070,-0.360);
+\end{scope}
+% Step 4: 9, 1, 10, 3
+\begin{scope}[yshift=-2.85cm]
+\coordinate (s4n0) at (0.340,0.000);
+\coordinate (s4n1) at (1.020,0.000);
+\coordinate (s4n2) at (1.700,0.000);
+\coordinate (s4n3) at (2.380,0.000);
+\node[leaf] at (s4n0) {9};
+\node[leaf] at (s4n1) {1};
+\node[leaf] at (s4n2) {10};
+\node[leaf] at (s4n3) {3};
+\draw[yellow!80!orange,line width=1pt] (2.010,0.360) rectangle (2.750,-0.360);
+\end{scope}
+% Step 5: 9, 1, 10, 3, 2
+\begin{scope}[yshift=-3.80cm]
+\coordinate (s5n0) at (0.340,0.000);
+\coordinate (s5n1) at (1.020,0.000);
+\coordinate (s5n2) at (1.700,0.000);
+\coordinate (s5n3) at (2.380,0.000);
+\coordinate (s5n4) at (3.060,0.000);
+\node[leaf] at (s5n0) {9};
+\node[leaf] at (s5n1) {1};
+\node[leaf] at (s5n2) {10};
+\node[leaf] at (s5n3) {3};
+\node[leaf] at (s5n4) {2};
+\draw[yellow!80!orange,line width=1pt] (2.690,0.360) rectangle (3.430,-0.360);
+\end{scope}
+% Step 6: 9, 1, 10, [2,3]
+\begin{scope}[yshift=-4.75cm]
+\coordinate (s6n0) at (0.340,0.000);
+\coordinate (s6n1) at (1.020,0.000);
+\coordinate (s6n2) at (1.700,0.000);
+\coordinate (s6n3) at (2.720,0.000);
+\coordinate (s6n4) at (2.380,-0.900);
+\coordinate (s6n5) at (3.060,-0.900);
+\draw (s6n3) -- (s6n4);
+\draw (s6n3) -- (s6n5);
+\node[leaf] at (s6n0) {9};
+\node[leaf] at (s6n1) {1};
+\node[leaf] at (s6n2) {10};
+\node[interval] at (s6n3) {[2,3]};
+\node[leaf] at (s6n4) {3};
+\node[leaf] at (s6n5) {2};
+\draw[yellow!80!orange,line width=1pt] (2.010,0.360) rectangle (3.430,-1.260);
+\node[anchor=north west,text=blue!75!black,text width=2.45cm,align=left,font=\footnotesize] at (7.2,.22) {两个结点合并成合点可以当作特殊情况};
+\end{scope}
+% Step 7: 9, 1, 10, [2,3], 5
+\begin{scope}[yshift=-6.60cm]
+\coordinate (s7n0) at (0.340,0.000);
+\coordinate (s7n1) at (1.020,0.000);
+\coordinate (s7n2) at (1.700,0.000);
+\coordinate (s7n3) at (2.720,0.000);
+\coordinate (s7n4) at (2.380,-0.900);
+\coordinate (s7n5) at (3.060,-0.900);
+\coordinate (s7n6) at (3.740,0.000);
+\draw (s7n3) -- (s7n4);
+\draw (s7n3) -- (s7n5);
+\node[leaf] at (s7n0) {9};
+\node[leaf] at (s7n1) {1};
+\node[leaf] at (s7n2) {10};
+\node[interval] at (s7n3) {[2,3]};
+\node[leaf] at (s7n4) {3};
+\node[leaf] at (s7n5) {2};
+\node[leaf] at (s7n6) {5};
+\draw[yellow!80!orange,line width=1pt] (3.370,0.360) rectangle (4.110,-0.360);
+\end{scope}
+% Step 8: 9, 1, 10, [2,3], 5, 7
+\begin{scope}[yshift=-8.45cm]
+\coordinate (s8n0) at (0.340,0.000);
+\coordinate (s8n1) at (1.020,0.000);
+\coordinate (s8n2) at (1.700,0.000);
+\coordinate (s8n3) at (2.720,0.000);
+\coordinate (s8n4) at (2.380,-0.900);
+\coordinate (s8n5) at (3.060,-0.900);
+\coordinate (s8n6) at (3.740,0.000);
+\coordinate (s8n7) at (4.420,0.000);
+\draw (s8n3) -- (s8n4);
+\draw (s8n3) -- (s8n5);
+\node[leaf] at (s8n0) {9};
+\node[leaf] at (s8n1) {1};
+\node[leaf] at (s8n2) {10};
+\node[interval] at (s8n3) {[2,3]};
+\node[leaf] at (s8n4) {3};
+\node[leaf] at (s8n5) {2};
+\node[leaf] at (s8n6) {5};
+\node[leaf] at (s8n7) {7};
+\draw[yellow!80!orange,line width=1pt] (4.050,0.360) rectangle (4.790,-0.360);
+\end{scope}
+% Step 9: 9, 1, 10, [2,3], 5, 7, 6
+\begin{scope}[yshift=-10.30cm]
+\coordinate (s9n0) at (0.340,0.000);
+\coordinate (s9n1) at (1.020,0.000);
+\coordinate (s9n2) at (1.700,0.000);
+\coordinate (s9n3) at (2.720,0.000);
+\coordinate (s9n4) at (2.380,-0.900);
+\coordinate (s9n5) at (3.060,-0.900);
+\coordinate (s9n6) at (3.740,0.000);
+\coordinate (s9n7) at (4.420,0.000);
+\coordinate (s9n8) at (5.100,0.000);
+\draw (s9n3) -- (s9n4);
+\draw (s9n3) -- (s9n5);
+\node[leaf] at (s9n0) {9};
+\node[leaf] at (s9n1) {1};
+\node[leaf] at (s9n2) {10};
+\node[interval] at (s9n3) {[2,3]};
+\node[leaf] at (s9n4) {3};
+\node[leaf] at (s9n5) {2};
+\node[leaf] at (s9n6) {5};
+\node[leaf] at (s9n7) {7};
+\node[leaf] at (s9n8) {6};
+\draw[yellow!80!orange,line width=1pt] (4.730,0.360) rectangle (5.470,-0.360);
+\end{scope}
+% Step 10: 9, 1, 10, [2,3], 5, [6,7]
+\begin{scope}[yshift=-12.15cm]
+\coordinate (s10n0) at (0.340,0.000);
+\coordinate (s10n1) at (1.020,0.000);
+\coordinate (s10n2) at (1.700,0.000);
+\coordinate (s10n3) at (2.720,0.000);
+\coordinate (s10n4) at (2.380,-0.900);
+\coordinate (s10n5) at (3.060,-0.900);
+\coordinate (s10n6) at (3.740,0.000);
+\coordinate (s10n7) at (4.760,0.000);
+\coordinate (s10n8) at (4.420,-0.900);
+\coordinate (s10n9) at (5.100,-0.900);
+\draw (s10n3) -- (s10n4);
+\draw (s10n3) -- (s10n5);
+\draw (s10n7) -- (s10n8);
+\draw (s10n7) -- (s10n9);
+\node[leaf] at (s10n0) {9};
+\node[leaf] at (s10n1) {1};
+\node[leaf] at (s10n2) {10};
+\node[interval] at (s10n3) {[2,3]};
+\node[leaf] at (s10n4) {3};
+\node[leaf] at (s10n5) {2};
+\node[leaf] at (s10n6) {5};
+\node[interval] at (s10n7) {[6,7]};
+\node[leaf] at (s10n8) {7};
+\node[leaf] at (s10n9) {6};
+\draw[yellow!80!orange,line width=1pt] (4.050,0.360) rectangle (5.470,-1.260);
+\node[anchor=north west,text=blue!75!black,text width=2.45cm,align=left,font=\footnotesize] at (7.2,.22) {先合并 6、7 成合点};
+\end{scope}
+% Step 11: 9, 1, 10, [2,3], [5,7]
+\begin{scope}[yshift=-14.00cm]
+\coordinate (s11n0) at (0.340,0.000);
+\coordinate (s11n1) at (1.020,0.000);
+\coordinate (s11n2) at (1.700,0.000);
+\coordinate (s11n3) at (2.720,0.000);
+\coordinate (s11n4) at (2.380,-0.900);
+\coordinate (s11n5) at (3.060,-0.900);
+\coordinate (s11n6) at (4.420,0.000);
+\coordinate (s11n7) at (3.740,-0.900);
+\coordinate (s11n8) at (4.760,-0.900);
+\coordinate (s11n9) at (4.420,-1.800);
+\coordinate (s11n10) at (5.100,-1.800);
+\draw (s11n3) -- (s11n4);
+\draw (s11n3) -- (s11n5);
+\draw (s11n6) -- (s11n7);
+\draw (s11n6) -- (s11n8);
+\draw (s11n8) -- (s11n9);
+\draw (s11n8) -- (s11n10);
+\node[leaf] at (s11n0) {9};
+\node[leaf] at (s11n1) {1};
+\node[leaf] at (s11n2) {10};
+\node[interval] at (s11n3) {[2,3]};
+\node[leaf] at (s11n4) {3};
+\node[leaf] at (s11n5) {2};
+\node[interval] at (s11n6) {[5,7]};
+\node[leaf] at (s11n7) {5};
+\node[interval] at (s11n8) {[6,7]};
+\node[leaf] at (s11n9) {7};
+\node[leaf] at (s11n10) {6};
+\draw[yellow!80!orange,line width=1pt] (3.370,0.360) rectangle (5.470,-2.160);
+\node[anchor=north west,text=blue!75!black,text width=2.45cm,align=left,font=\footnotesize] at (7.2,.22) {发现 5 和 [6,7] 能继续合并，于是继续合并成 [5,7]};
+\end{scope}
+% Step 12: 9, 1, 10, [2,3], [5,7], 8
+\begin{scope}[yshift=-16.75cm]
+\coordinate (s12n0) at (0.340,0.000);
+\coordinate (s12n1) at (1.020,0.000);
+\coordinate (s12n2) at (1.700,0.000);
+\coordinate (s12n3) at (2.720,0.000);
+\coordinate (s12n4) at (2.380,-0.900);
+\coordinate (s12n5) at (3.060,-0.900);
+\coordinate (s12n6) at (4.420,0.000);
+\coordinate (s12n7) at (3.740,-0.900);
+\coordinate (s12n8) at (4.760,-0.900);
+\coordinate (s12n9) at (4.420,-1.800);
+\coordinate (s12n10) at (5.100,-1.800);
+\coordinate (s12n11) at (5.780,0.000);
+\draw (s12n3) -- (s12n4);
+\draw (s12n3) -- (s12n5);
+\draw (s12n6) -- (s12n7);
+\draw (s12n6) -- (s12n8);
+\draw (s12n8) -- (s12n9);
+\draw (s12n8) -- (s12n10);
+\node[leaf] at (s12n0) {9};
+\node[leaf] at (s12n1) {1};
+\node[leaf] at (s12n2) {10};
+\node[interval] at (s12n3) {[2,3]};
+\node[leaf] at (s12n4) {3};
+\node[leaf] at (s12n5) {2};
+\node[interval] at (s12n6) {[5,7]};
+\node[leaf] at (s12n7) {5};
+\node[interval] at (s12n8) {[6,7]};
+\node[leaf] at (s12n9) {7};
+\node[leaf] at (s12n10) {6};
+\node[leaf] at (s12n11) {8};
+\draw[yellow!80!orange,line width=1pt] (5.410,0.360) rectangle (6.150,-0.360);
+\end{scope}
+% Step 13: 9, 1, 10, [2,3], [5,8]
+\begin{scope}[yshift=-19.50cm]
+\coordinate (s13n0) at (0.340,0.000);
+\coordinate (s13n1) at (1.020,0.000);
+\coordinate (s13n2) at (1.700,0.000);
+\coordinate (s13n3) at (2.720,0.000);
+\coordinate (s13n4) at (2.380,-0.900);
+\coordinate (s13n5) at (3.060,-0.900);
+\coordinate (s13n6) at (4.760,0.000);
+\coordinate (s13n7) at (3.740,-0.900);
+\coordinate (s13n8) at (4.760,-0.900);
+\coordinate (s13n9) at (4.420,-1.800);
+\coordinate (s13n10) at (5.100,-1.800);
+\coordinate (s13n11) at (5.780,-0.900);
+\draw (s13n3) -- (s13n4);
+\draw (s13n3) -- (s13n5);
+\draw (s13n6) -- (s13n7);
+\draw (s13n6) -- (s13n8);
+\draw (s13n8) -- (s13n9);
+\draw (s13n8) -- (s13n10);
+\draw (s13n6) -- (s13n11);
+\node[leaf] at (s13n0) {9};
+\node[leaf] at (s13n1) {1};
+\node[leaf] at (s13n2) {10};
+\node[interval] at (s13n3) {[2,3]};
+\node[leaf] at (s13n4) {3};
+\node[leaf] at (s13n5) {2};
+\node[interval] at (s13n6) {[5,8]};
+\node[leaf] at (s13n7) {5};
+\node[interval] at (s13n8) {[6,7]};
+\node[leaf] at (s13n9) {7};
+\node[leaf] at (s13n10) {6};
+\node[leaf] at (s13n11) {8};
+\draw[yellow!80!orange,line width=1pt] (3.370,0.360) rectangle (6.150,-2.160);
+\node[anchor=north west,text=blue!75!black,text width=2.45cm,align=left,font=\footnotesize] at (7.2,.22) {发现可以把 8 添加到栈顶结点的儿子中，于是添加为儿子};
+\end{scope}
+% Step 14: 9, 1, 10, [2,3], [5,8], 4
+\begin{scope}[yshift=-22.25cm]
+\coordinate (s14n0) at (0.340,0.000);
+\coordinate (s14n1) at (1.020,0.000);
+\coordinate (s14n2) at (1.700,0.000);
+\coordinate (s14n3) at (2.720,0.000);
+\coordinate (s14n4) at (2.380,-0.900);
+\coordinate (s14n5) at (3.060,-0.900);
+\coordinate (s14n6) at (4.760,0.000);
+\coordinate (s14n7) at (3.740,-0.900);
+\coordinate (s14n8) at (4.760,-0.900);
+\coordinate (s14n9) at (4.420,-1.800);
+\coordinate (s14n10) at (5.100,-1.800);
+\coordinate (s14n11) at (5.780,-0.900);
+\coordinate (s14n12) at (6.460,0.000);
+\draw (s14n3) -- (s14n4);
+\draw (s14n3) -- (s14n5);
+\draw (s14n6) -- (s14n7);
+\draw (s14n6) -- (s14n8);
+\draw (s14n8) -- (s14n9);
+\draw (s14n8) -- (s14n10);
+\draw (s14n6) -- (s14n11);
+\node[leaf] at (s14n0) {9};
+\node[leaf] at (s14n1) {1};
+\node[leaf] at (s14n2) {10};
+\node[interval] at (s14n3) {[2,3]};
+\node[leaf] at (s14n4) {3};
+\node[leaf] at (s14n5) {2};
+\node[interval] at (s14n6) {[5,8]};
+\node[leaf] at (s14n7) {5};
+\node[interval] at (s14n8) {[6,7]};
+\node[leaf] at (s14n9) {7};
+\node[leaf] at (s14n10) {6};
+\node[leaf] at (s14n11) {8};
+\node[leaf] at (s14n12) {4};
+\draw[yellow!80!orange,line width=1pt] (6.090,0.360) rectangle (6.830,-0.360);
+\end{scope}
+% Step 15: 9, 1, 10, [2,3], [4,8]
+\begin{scope}[yshift=-25.00cm]
+\coordinate (s15n0) at (0.340,0.000);
+\coordinate (s15n1) at (1.020,0.000);
+\coordinate (s15n2) at (1.700,0.000);
+\coordinate (s15n3) at (2.720,0.000);
+\coordinate (s15n4) at (2.380,-0.900);
+\coordinate (s15n5) at (3.060,-0.900);
+\coordinate (s15n6) at (5.100,0.000);
+\coordinate (s15n7) at (4.760,-0.900);
+\coordinate (s15n8) at (3.740,-1.800);
+\coordinate (s15n9) at (4.760,-1.800);
+\coordinate (s15n10) at (4.420,-2.700);
+\coordinate (s15n11) at (5.100,-2.700);
+\coordinate (s15n12) at (5.780,-1.800);
+\coordinate (s15n13) at (6.460,-0.900);
+\draw (s15n3) -- (s15n4);
+\draw (s15n3) -- (s15n5);
+\draw (s15n6) -- (s15n7);
+\draw (s15n7) -- (s15n8);
+\draw (s15n7) -- (s15n9);
+\draw (s15n9) -- (s15n10);
+\draw (s15n9) -- (s15n11);
+\draw (s15n7) -- (s15n12);
+\draw (s15n6) -- (s15n13);
+\node[leaf] at (s15n0) {9};
+\node[leaf] at (s15n1) {1};
+\node[leaf] at (s15n2) {10};
+\node[interval] at (s15n3) {[2,3]};
+\node[leaf] at (s15n4) {3};
+\node[leaf] at (s15n5) {2};
+\node[interval] at (s15n6) {[4,8]};
+\node[interval] at (s15n7) {[5,8]};
+\node[leaf] at (s15n8) {5};
+\node[interval] at (s15n9) {[6,7]};
+\node[leaf] at (s15n10) {7};
+\node[leaf] at (s15n11) {6};
+\node[leaf] at (s15n12) {8};
+\node[leaf] at (s15n13) {4};
+\draw[yellow!80!orange,line width=1pt] (3.370,0.360) rectangle (6.830,-3.060);
+\node[anchor=north west,text=blue!75!black,text width=2.45cm,align=left,font=\footnotesize] at (7.2,.22) {两个点合并成合点};
+\end{scope}
+% Step 16: 9, 1, 10, [2,8]
+\begin{scope}[yshift=-28.65cm]
+\coordinate (s16n0) at (0.340,0.000);
+\coordinate (s16n1) at (1.020,0.000);
+\coordinate (s16n2) at (1.700,0.000);
+\coordinate (s16n3) at (4.420,0.000);
+\coordinate (s16n4) at (2.720,-0.900);
+\coordinate (s16n5) at (2.380,-1.800);
+\coordinate (s16n6) at (3.060,-1.800);
+\coordinate (s16n7) at (5.100,-0.900);
+\coordinate (s16n8) at (4.760,-1.800);
+\coordinate (s16n9) at (3.740,-2.700);
+\coordinate (s16n10) at (4.760,-2.700);
+\coordinate (s16n11) at (4.420,-3.600);
+\coordinate (s16n12) at (5.100,-3.600);
+\coordinate (s16n13) at (5.780,-2.700);
+\coordinate (s16n14) at (6.460,-1.800);
+\draw (s16n3) -- (s16n4);
+\draw (s16n4) -- (s16n5);
+\draw (s16n4) -- (s16n6);
+\draw (s16n3) -- (s16n7);
+\draw (s16n7) -- (s16n8);
+\draw (s16n8) -- (s16n9);
+\draw (s16n8) -- (s16n10);
+\draw (s16n10) -- (s16n11);
+\draw (s16n10) -- (s16n12);
+\draw (s16n8) -- (s16n13);
+\draw (s16n7) -- (s16n14);
+\node[leaf] at (s16n0) {9};
+\node[leaf] at (s16n1) {1};
+\node[leaf] at (s16n2) {10};
+\node[interval] at (s16n3) {[2,8]};
+\node[interval] at (s16n4) {[2,3]};
+\node[leaf] at (s16n5) {3};
+\node[leaf] at (s16n6) {2};
+\node[interval] at (s16n7) {[4,8]};
+\node[interval] at (s16n8) {[5,8]};
+\node[leaf] at (s16n9) {5};
+\node[interval] at (s16n10) {[6,7]};
+\node[leaf] at (s16n11) {7};
+\node[leaf] at (s16n12) {6};
+\node[leaf] at (s16n13) {8};
+\node[leaf] at (s16n14) {4};
+\draw[yellow!80!orange,line width=1pt] (2.010,0.360) rectangle (6.830,-3.960);
+\node[anchor=north west,text=blue!75!black,text width=2.45cm,align=left,font=\footnotesize] at (7.2,.22) {又是两个点合并成合点};
+\end{scope}
+% Step 17: [1,10]
+% A deeper first level keeps the three left edges clear of sibling leaves.
+\begin{scope}[yshift=-33.20cm]
+\coordinate (s17n0) at (3.400,0.000);
+\coordinate (s17n1) at (0.340,-1.800);
+\coordinate (s17n2) at (1.020,-1.800);
+\coordinate (s17n3) at (1.700,-1.800);
+\coordinate (s17n4) at (4.420,-1.800);
+\coordinate (s17n5) at (2.720,-2.700);
+\coordinate (s17n6) at (2.380,-3.600);
+\coordinate (s17n7) at (3.060,-3.600);
+\coordinate (s17n8) at (5.100,-2.700);
+\coordinate (s17n9) at (4.760,-3.600);
+\coordinate (s17n10) at (3.740,-4.500);
+\coordinate (s17n11) at (4.760,-4.500);
+\coordinate (s17n12) at (4.420,-5.400);
+\coordinate (s17n13) at (5.100,-5.400);
+\coordinate (s17n14) at (5.780,-4.500);
+\coordinate (s17n15) at (6.460,-3.600);
+\draw (s17n0) -- (s17n1);
+\draw (s17n0) -- (s17n2);
+\draw (s17n0) -- (s17n3);
+\draw (s17n0) -- (s17n4);
+\draw (s17n4) -- (s17n5);
+\draw (s17n5) -- (s17n6);
+\draw (s17n5) -- (s17n7);
+\draw (s17n4) -- (s17n8);
+\draw (s17n8) -- (s17n9);
+\draw (s17n9) -- (s17n10);
+\draw (s17n9) -- (s17n11);
+\draw (s17n11) -- (s17n12);
+\draw (s17n11) -- (s17n13);
+\draw (s17n9) -- (s17n14);
+\draw (s17n8) -- (s17n15);
+\node[splitnode] at (s17n0) {[1,10]};
+\node[leaf] at (s17n1) {9};
+\node[leaf] at (s17n2) {1};
+\node[leaf] at (s17n3) {10};
+\node[interval] at (s17n4) {[2,8]};
+\node[interval] at (s17n5) {[2,3]};
+\node[leaf] at (s17n6) {3};
+\node[leaf] at (s17n7) {2};
+\node[interval] at (s17n8) {[4,8]};
+\node[interval] at (s17n9) {[5,8]};
+\node[leaf] at (s17n10) {5};
+\node[interval] at (s17n11) {[6,7]};
+\node[leaf] at (s17n12) {7};
+\node[leaf] at (s17n13) {6};
+\node[leaf] at (s17n14) {8};
+\node[leaf] at (s17n15) {4};
+\node[anchor=north west,text=blue!75!black,text width=2.45cm,align=left,font=\footnotesize] at (7.2,.22) {显然 $L_{10}=1$，即栈中的 9 的左端点，于是就全部合并成一个析点};
+\end{scope}
+\end{tikzpicture}
+\end{document}
