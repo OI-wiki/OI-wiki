@@ -56,6 +56,7 @@ $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_{n-1} \cdot
       int modify(int key, int value) {
         for (int p = head[f(key)]; p; p = data[p].next)
           if (data[p].key == key) return data[p].value = value;
+        return -1;
       }
     
       int add(int key, int value) {
