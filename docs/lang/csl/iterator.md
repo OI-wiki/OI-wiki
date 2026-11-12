@@ -6,7 +6,7 @@
 
 指向某个 [STL 容器](./container.md)  `container` 中元素的迭代器的类型一般为 `container::iterator`．
 
-迭代器可以用来遍历容器，例如，下面两个 for 循环的效果是一样的：
+迭代器可以遍历容器，例如，下面两个 for 循环的效果相同：
 
 ```cpp
 vector<int> data(10);

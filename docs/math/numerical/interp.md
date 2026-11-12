@@ -12,7 +12,7 @@ author: AtomAlpaca, billchenchina, caibyte, Chrogeek, Early0v0, EndlessCheng, En
 
 ![](../images/interp-1.svg)
 
-其中 $f(x)$ 未知，插值法可以通过按一定形式拟合 $f(x)$ 的方式估算未知的数据点．
+其中 $f(x)$ 未知，插值法可以按一定形式拟合 $f(x)$，估算未知的数据点．
 
 例如，我们可以用分段线性函数拟合 $f(x)$：
 
@@ -63,7 +63,7 @@ $$
     给出 $n$ 个点对 $(x_i,y_i)$ 和 $k$，且 $\forall i,j$ 有 $i\neq j \iff x_i\neq x_j$ 且 $f(x_i)\equiv y_i\pmod{998244353}$ 和 $\deg(f(x)) < n$（定义 $\deg(0)=-\infty$），求 $f(k)\bmod{998244353}$.
     
     ??? note "题解"
-        本题中只用求出 $f(k)$ 的值，所以在计算上式的过程中直接将 $k$ 代入即可；有时候则需要进行多次求值等等更为复杂的操作，这时候需要求出 $f$ 的各项系数．代码给出了一种求出系数的实现．
+        本题只需求出 $f(k)$ 的值，所以计算上式时直接将 $k$ 代入即可；有时需要多次求值等更复杂的操作，此时需要求出 $f$ 的各项系数．代码给出了一种计算系数的实现．
         
         $$
         f(k)=\sum_{i=1}^{n}y_i\prod_{j\neq i }\frac{k-x_j}{x_i-x_j}

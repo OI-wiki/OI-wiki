@@ -22,13 +22,13 @@ author: zarttic, xk2013
 
 -   设置 `C++` 命令
 
-    需要设置一些必要的编译命令，这个要根据编译器来设定．
+    需要根据编译器设置必要的编译命令．
 
     ![cp-setting-lang-3](images/cp-setting-lang-3.png)
 
 -   设置模板
 
-    新建文件的时候会自动初始化的模板，需要注意的是 CP Editor 需要的是一个 `xxx.cpp` 的文件作为模板文件．
+    新建文件时用于自动初始化的模板．注意，CP Editor 需要用 `xxx.cpp` 文件作为模板．
 
     ![cp-setting-lang-4](images/cp-setting-lang-4.png)
 
