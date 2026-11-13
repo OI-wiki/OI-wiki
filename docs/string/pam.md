@@ -217,7 +217,7 @@ $g[v]$ 表示 $v$ 所在等差数列的 $dp$ 值之和，且 $v$ 是这个等差
 
 -   [CodeChef Palindromeness](https://www.codechef.com/LTIME23/problems/PALPROB)
 
-## 相关资料
+## 拓展阅读
 
 -   [EERTREE: An Efficient Data Structure for Processing Palindromes in Strings](https://arxiv.org/pdf/1506.04862)
 

@@ -418,7 +418,7 @@ $$
 -   [Hackerrank - Guardians of the Lunatics](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
 -   [ACM ICPC World Finals 2017 - Money](https://open.kattis.com/problems/money)
 
-## 参考资料与注释
+## 拓展阅读
 
 -   [Quora Answer by Michael Levin](https://www.quora.com/What-is-divide-and-conquer-optimization-in-dynamic-programming)
 -   [Video Tutorial by "Sothe" the Algorithm Wolf](https://www.youtube.com/watch?v=wLXEWuDWnzI)
@@ -429,6 +429,8 @@ $$
 -   [簡易版 LARSCH Algorithm by noshi91](https://noshi91.hatenablog.com/entry/2023/02/18/005856)
 -   [四边形不等式和决策单调性 by b6e0\_ - 洛谷专栏](https://www.luogu.com.cn/article/h81hh5lk)
 -   [在线决策单调性的丐版 LARSCH 算法 by Register\_int - 洛谷专栏](https://www.luogu.com.cn/article/vqf42hah)
+
+## 参考资料与注释
 
 [^cmp-min-opt]: 算法描述中提到的「更劣」和「更优」都应看做是在描述先比较函数值大小再比较决策点大小的字典序．在这一字典序下，「更优」意味着要么函数值更小，要么函数值一样但是决策点更小．
 

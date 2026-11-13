@@ -127,7 +127,7 @@ B 维正交范围指在一个 B 维直角坐标系下，第 $i$ 维坐标在一�
 
 总而言之，二维数点的主要思路就是数据结构维护一维，然后枚举另一维．
 
-## 参考资料
+## 拓展阅读
 
 -   [cnblogs/Yang1208：扫描线讲解，动态开点版线段树](https://www.cnblogs.com/yangsongyi/p/8378629.html)
 -   [csdn/riba2534：POJ1151 Atlantis 题解](https://blog.csdn.net/riba2534/article/details/76851233)

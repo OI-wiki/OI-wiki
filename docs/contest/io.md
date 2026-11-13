@@ -172,7 +172,7 @@ void *mmap(void addr[.length], size_t length, int prot, int flags, int fd,
 --8<-- "docs/contest/code/io/io_3.cpp"
 ```
 
-## 参考
+## 拓展阅读
 
 [cin.tie 与 sync\_with\_stdio 加速输入输出 - 码农场](https://www.hankcs.com/program/cpp/cin-tie-with-sync_with_stdio-acceleration-input-and-output.html)
 

@@ -480,7 +480,7 @@ $\frac{n(n+1)}{2}-\sum\limits_{i=2}^nheight[i]$
 -   [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E)
 -   [Gym 101470B - Circle of digits](https://codeforces.com/gym/101470/problem/B)
 
-## 参考资料
+## 参考资料与注释
 
 本页面中（[4070a9b](https://github.com/OI-wiki/OI-wiki/pull/950/commits/4070a9b3db8576db16c74d3ec33806ad10476eef) 引入的部分）主要译自博文 [Суффиксный массив](http://e-maxx.ru/algo/suffix_array) 与其英文翻译版 [Suffix Array](https://cp-algorithms.com/string/suffix-array.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．
 
