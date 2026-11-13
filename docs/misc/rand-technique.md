@@ -392,6 +392,7 @@ $$
     ```cpp
     #include <algorithm>
     #include <cstdlib>
+    #include <cstring>
     #include <iostream>
     
     int n;

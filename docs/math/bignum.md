@@ -834,8 +834,7 @@ $$
     Big::Big(const int b) {
       int c, d = b;
       len = 0;
-      // memset(a,0,sizeof a);
-      CLR(a);
+      memset(a, 0, sizeof a);
       while (d > MAXN) {
         c = d - (d / (MAXN + 1) * (MAXN + 1));
         d = d / (MAXN + 1);
@@ -846,7 +845,7 @@ $$
     
     Big::Big(const char* s) {
       int t, k, index, l;
-      CLR(a);
+      memset(a, 0, sizeof a);
       l = strlen(s);
       len = l / DLEN;
       if (l % DLEN) ++len;
@@ -855,21 +854,21 @@ $$
         t = 0;
         k = i - DLEN + 1;
         if (k < 0) k = 0;
-        g(j, k, i) t = t * 10 + s[j] - '0';
+        for (int j = k; j <= i; ++j) t = t * 10 + s[j] - '0';
         a[index++] = t;
       }
     }
     
     Big::Big(const Big& T) : len(T.len) {
-      CLR(a);
-      f(i, 0, len) a[i] = T.a[i];
+      memset(a, 0, sizeof a);
+      for (int i = 0; i < len; ++i) a[i] = T.a[i];
       // TODO:重载此处？
     }
     
     Big& Big::operator=(const Big& T) {
-      CLR(a);
+      memset(a, 0, sizeof a);
       len = T.len;
-      f(i, 0, len) a[i] = T.a[i];
+      for (int i = 0; i < len; ++i) a[i] = T.a[i];
       return *this;
     }
     
@@ -877,7 +876,7 @@ $$
       Big t(*this);
       int big = len;
       if (T.len > len) big = T.len;
-      f(i, 0, big) {
+      for (int i = 0; i < big; ++i) {
         t.a[i] += T.a[i];
         if (t.a[i] > MAXN) {
           ++t.a[i + 1];
@@ -906,7 +905,7 @@ $$
       }
       big = t1.len;
       int j = 0;
-      f(i, 0, big) {
+      for (int i = 0; i < big; ++i) {
         if (t1.a[i] < t2.a[i]) {
           j = i + 1;
           while (t1.a[j] == 0) ++j;
@@ -930,9 +929,9 @@ $$
       Big res;
       int up;
       int te, tee;
-      f(i, 0, len) {
+      for (int i = 0; i < len; ++i) {
         up = 0;
-        f(j, 0, T.len) {
+        for (int j = 0; j < T.len; ++j) {
           te = a[i] * T.a[j] + res.a[i + j] + up;
           if (te > MAXN) {
             tee = te - te / (MAXN + 1) * (MAXN + 1);
@@ -952,10 +951,12 @@ $$
     
     Big Big::operator/(const int& b) const {
       Big res;
-      int down = 0;
-      gd(i, len - 1, 0) {
-        res.a[i] = (a[i] + down * (MAXN + 1)) / b;
-        down = a[i] + down * (MAXN + 1) - res.a[i] * b;
+      // 余数乘上 MAXN + 1 后可能超出 int 的范围，需要使用 long long
+      long long down = 0;
+      for (int i = len - 1; i >= 0; --i) {
+        long long cur = a[i] + down * (MAXN + 1);
+        res.a[i] = cur / b;
+        down = cur % b;
       }
       res.len = len;
       while (res.len > 1 && res.a[res.len - 1] == 0) --res.len;
@@ -963,8 +964,9 @@ $$
     }
     
     int Big::operator%(const int& b) const {
-      int d = 0;
-      gd(i, len - 1, 0) d = (d * (MAXN + 1) % b + a[i]) % b;
+      // 余数乘上 MAXN + 1 后可能超出 int 的范围，需要使用 long long
+      long long d = 0;
+      for (int i = len - 1; i >= 0; --i) d = (d * (MAXN + 1) + a[i]) % b;
       return d;
     }
     
@@ -998,13 +1000,13 @@ $$
     
     void Big::print() const {
       printf("%d", a[len - 1]);
-      gd(i, len - 2, 0) { printf("%04d", a[i]); }
+      for (int i = len - 2; i >= 0; --i) printf("%04d", a[i]);
     }
     
     void print(const Big& s) {
       int len = s.len;
       printf("%d", s.a[len - 1]);
-      gd(i, len - 2, 0) { printf("%04d", s.a[i]); }
+      for (int i = len - 2; i >= 0; --i) printf("%04d", s.a[i]);
     }
     
     char s[100024];

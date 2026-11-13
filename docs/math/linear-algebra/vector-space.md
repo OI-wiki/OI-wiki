@@ -64,7 +64,7 @@ author: codewasp942, Tiphereth-A
 
 ### 例子
 
-1.  $\Bbb{P}^n$ 关于数域 $\Bbb{P}$ 上的加法和乘法构成 $\Bbb{P}$ 上的一个线性空间．例如 $\Bbb{P}$ 可以是 $\Bbb{R}$,$\Bbb{C}$,$\Bbb{N}_p$（$p$ 为素数）等．
+1.  $\Bbb{P}^n$ 关于数域 $\Bbb{P}$ 上的加法和乘法构成 $\Bbb{P}$ 上的一个线性空间．例如 $\Bbb{P}$ 可以是 $\Bbb{R}$,$\Bbb{C}$,$\Bbb{Z}_p$（$p$ 为素数）等．
 2.  数域 $\Bbb{P}$ 上的 $n\times m$ 阶矩阵 $\Bbb{P}^{n\times m}$ 关于矩阵的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间．
 3.  数域 $\Bbb{P}$ 上的一元多项式环 $\Bbb{P}[x]$ 关于多项式的加法和数乘构成 $\Bbb{P}$ 上的一个线性空间．
 4.  区间 $[a,b]$ 上的全体连续函数（记作 $C[a,b]$）关于「函数加法」和「值与连续函数的数乘」构成值域上的一个线性空间．
@@ -159,7 +159,7 @@ $$
 
 ### 线性包
 
-对于线性空间 $(V,+,\cdot,\Bbb{P})$，$\left\{v=\sum_{i=1}^nk_ia_i:a_i\in V,k_i\in\Bbb{P},i=1,2,\dots,n\right\}$ 也构成一个线性空间，称为由向量组 $a_1,a_2,\dots,a_n$  **张成** 的线性空间（或 **线性包**），记作 $\operatorname{span}\{a_1,a_2,\dots,a_n\}$．
+对于线性空间 $(V,+,\cdot,\Bbb{P})$ 中的向量组 $a_1,a_2,\dots,a_n$，$\left\{v=\sum_{i=1}^nk_ia_i:k_i\in\Bbb{P},i=1,2,\dots,n\right\}$ 也构成一个线性空间，称为由向量组 $a_1,a_2,\dots,a_n$  **张成** 的线性空间（或 **线性包**），记作 $\operatorname{span}\{a_1,a_2,\dots,a_n\}$．
 
 这里的 $n$ 个向量 $a$ 不一定线性无关．
 
@@ -260,7 +260,7 @@ $$
         
         $4 \implies 1$：
         
-        若 $V_1+V_2$ 不是直和，则存在 $\beta\in V_1+V_2$ 使得 $\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, 其中 $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ 且 $\beta_1,\beta_2,\gamma_1,\gamma_2$ 互不相同．
+        若 $V_1+V_2$ 不是直和，则存在 $\beta\in V_1+V_2$ 使得 $\beta=\beta_1+\beta_2=\gamma_1+\gamma_2$, 其中 $\beta_1,\gamma_1\in V_1,\beta_2,\gamma_2\in V_2$ 且 $\beta_1\ne\gamma_1$．
         
         进而 $\theta\ne\beta_1-\gamma_1=\gamma_2-\beta_2\in V_1\cap V_2$, 与条件矛盾．
 

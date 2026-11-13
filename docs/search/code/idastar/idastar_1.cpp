@@ -22,6 +22,7 @@ bool dfs(int d, long long a, long long b, int e) {
       long long x = (a * k - t) / 2;
       long long y = (a * k + t) / 2;
       if (y > max_e) break;
+      if (x <= e) continue;
       if (!t || t * t != delta || (a * k - t) % 2 != 0) continue;
       ans = current;
       ans.push_back(x);
