@@ -9,6 +9,7 @@
     
     | 时间       | 主要内容                                                                              | 相关 Issue/Pull Request 链接                                                                                 |
     | ---------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+    | 2026-11-07 | 增加拓展阅读的格式要求，明确其与参考资料与注释的区别                                  | [#7140](https://github.com/OI-wiki/OI-wiki/pull/7140)                                                        |
     | 2026-02-22 | 完善引号使用的相关规定                                                                | [#6793](https://github.com/OI-wiki/OI-wiki/pull/6793)                                                        |
     | 2026-01-07 | 要求使用全角句点替代中文句号                                                          | [#6746](https://github.com/OI-wiki/OI-wiki/pull/6746)                                                        |
     | 2025-08-10 | 添加格式手册的格式要求；<br>代码：补充片段代码相关要求                                | [#6412](https://github.com/OI-wiki/OI-wiki/pull/6412)                                                        |
@@ -88,6 +89,12 @@
     -   使用折叠框而不是块引用（Blockquotes）．详见 [MDFM-5](#MDFM-5)．
 
     -   代码块只应使用 ` ``` ` 语法，且须标注语言．详见 [LINT-7](#LINT-7)、[MDFM-3](#MDFM-3)．
+
+-   参考资料与注释、拓展阅读：
+
+    -   参考资料与注释用于列出与文章内容直接相关、作者编写文章时实际参考过的资料，以及对正文内容的补充说明．详见 [MDFM-4](#MDFM-4)．
+
+    -   拓展阅读用于作者向有兴趣的读者推荐能帮助其进一步深入理解或拓展视野的资料，应以条目和链接的形式单独列出，不作为脚注，且不应与参考资料与注释重复．详见 [MDFM-7](#MDFM-7)、[CONT-7](#CONT-7)．
 
 -   LaTeX 公式：
     -   不应与 [数学符号表](./symbol.md) 相冲突．详见 [MATH-1.1](#MATH-1.1)．
@@ -375,6 +382,29 @@
 
 如果对 mkdocs-material（我们使用的这个主题）还有什么问题，还可以查阅 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)，其介绍了 mkdocs-material 主题的插件使用方式．
 
+-   <span id="MDFM-7">MDFM-7</span>：`## 拓展阅读` 用于作者向有兴趣的读者推荐能帮助其进一步深入理解或拓展视野的资料．通常不是理解正文所必需的，尤其适合列入作者在正文中显式提及推荐资料涉及的方面，并链接到对应条目（如「该函数的进一步应用可以参考 \[拓展阅读 1]」），有助于读者了解拓展内容．
+
+    拓展阅读应在独立的 `## 拓展阅读` 二级标题下分条列出资料及链接，且不应与 `## 参考资料与注释` 中的资料重复．
+
+    ???+ success "示例"
+        ```markdown
+        不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $O(m\log n)$，这在 Tarjan 的论文[^tarjan]中得到了证明．
+        
+        路径压缩单次合并可能造成大量修改，有时并不适合使用，例如在可持久化并查集、线段树分治 + 并查集中，一般只使用启发式合并．是否值得使用二分路径压缩，可以参考 [拓展阅读 1：是否在并查集中真的有二分路径压缩优化？](#拓展阅读)．
+        
+        ## 拓展阅读
+        
+        -   [是否在并查集中真的有二分路径压缩优化？](https://www.zhihu.com/question/28410263/answer/40966441)
+        
+        ## 参考资料与注释
+        
+        [^tarjan]: Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.
+        ```
+        
+        不使用启发式合并、只使用路径压缩的最坏时间复杂度是 $O(m\log n)$，这在 Tarjan 的论文[^tarjan]中得到了证明．
+        
+        路径压缩单次合并可能造成大量修改，有时并不适合使用，例如在可持久化并查集、线段树分治 + 并查集中，一般只使用启发式合并．是否值得使用二分路径压缩，可以参考 [拓展阅读 1：是否在并查集中真的有二分路径压缩优化？](#拓展阅读)．
+
 #### 文本内容的格式要求
 
 -   <span id="CONT-1">CONT-1</span>：所有的 **OI Wiki** 文本都应使用粗体标记．
@@ -419,7 +449,7 @@
         
         请参考 GitHub 官方的帮助页面 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
 
--   <span id="CONT-7">CONT-7</span>：受 Markdown 格式限制，`## 参考资料与注释` 二级标题必须放在文末．
+-   <span id="CONT-7">CONT-7</span>：当文章存在参考资料或拓展阅读需要注明时，`## 参考资料与注释` 与 `## 拓展阅读` 二级标题必须放在文末，且都至多出现一次；同时存在时，`## 拓展阅读` 必须紧邻在 `## 参考资料与注释` 之前．
 
 -   <span id="CONT-8">CONT-8</span>：所有用作序号的数字建议使用中文．示例：
     -   数列的第一项．
@@ -732,18 +762,19 @@ $$
 
 ![](./images/format-8.png)
 
-在文末罗列出参考文献，可以使页面的内容更严谨，真实可信．
+在文末罗列「拓展阅读」与「参考资料与注释」，可以使页面的内容更清晰、更严谨，真实可信．
 
-## 外部链接
+## 拓展阅读
 
 -   [标点符号用法（GB/T 15834—2011）](http://www.moe.gov.cn/jyb_sjzl/ziliao/A19/201001/W020190128580990138234.pdf)
 -   [维基百科：格式手册/标点符号](https://zh.wikipedia.org/wiki/Wikipedia:%E6%A0%BC%E5%BC%8F%E6%89%8B%E5%86%8C/%E6%A0%87%E7%82%B9%E7%AC%A6%E5%8F%B7)
 -   [中文文案排版指北（简体中文版）](https://mazhuang.org/wiki/chinese-copywriting-guidelines/)
 -   [中文文案风格指南 - PDFE GUIDELINE](https://pdfe.github.io/GUIDELINE/#/others/copywriter)
 -   [一份（不太）简短的 LATEX2ε 介绍或 106 分钟了解 LATEX2ε](https://github.com/CTeX-org/lshort-zh-cn/releases)
--   [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)
 
 ## 参考资料与注释
+
+-   [中文出版物夹用英文的编辑规范](https://www.nppa.gov.cn/xxgk/fdzdgknr/hybz/202210/t20221004_445147.html)
 
 [^note1]: （冒号）表示总结上文．
 
@@ -770,3 +801,5 @@ $$
 [^apng]: [APNG](https://en.wikipedia.org/wiki/APNG)
 
 [^intro-apng]: [OI-wiki/OI-wiki#3422](https://github.com/OI-wiki/OI-wiki/issues/3422)
+
+[^tarjan]: Tarjan, R. E., & Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms. Journal of the ACM (JACM), 31(2), 245-281.
