@@ -173,6 +173,7 @@ std::vector<int> kth_roots_mod_pe(int k, int a, PrimePower pp) {
 
 // Find all the K-th roots of A modulo positive integer M.
 std::vector<int> kth_roots_mod_m(int k, int a, int m) {
+  if (m == 1) return {0};  // Every integer is congruent to 0 modulo 1.
   auto factors = factorize(m);
   int m0 = 0;
   std::vector<std::vector<int>> sols;
