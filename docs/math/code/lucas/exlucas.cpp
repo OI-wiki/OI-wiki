@@ -64,6 +64,7 @@ class BinomModPrimePower {
 
   // Calculate Binom(n, k) mod pa.
   int binomial(long long n, long long k) {
+    if (k < 0 || k > n) return 0;
     long long v = nu(n) - nu(n - k) - nu(k);
     if (v >= a) return 0;
     auto res = fact_mod(n - k) * fact_mod(k) % pa;
