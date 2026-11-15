@@ -121,7 +121,7 @@ BFS 全称是 [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first
 
 ## open-closed 表
 
-实现 BFS 时，我们把未访问过的节点放在一个称为 open 的容器中，而把已经访问过了的节点放在一个称为 closed 的容器中．
+实现 BFS 时，本质上我们把未访问过的节点放在一个称为 open 的容器中，而把已经访问过了的节点放在一个称为 closed 的容器中．
 
 ## 在树/图上 BFS
 

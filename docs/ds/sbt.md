@@ -171,7 +171,7 @@ if (size(node->left->right) > size(node->right)) {
 
 ### 插入
 
-SBT 插入时，先完成普通二叉搜索树的插入操作，再递归更新节点的 `size` 字段并维护平衡．示例代码如下：
+SBT 插入时，先完成普通二叉搜索树的插入操作，再递归地对节点更新 `size` 字段、维护平衡．示例代码如下：
 
 ```cpp
 if (compare(key, node->key)) {

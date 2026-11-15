@@ -198,7 +198,7 @@ C++ 标准保证 `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(lo
 ???+ warning "注意"
     与其他整型不同，`char`、`signed char`、`unsigned char` 是 **三种不同的类型**．
     
-    `signed char` 和 `unsigned char` 都是整数类型，一般不用来存储字符．
+    `signed char` 和 `unsigned char` 一般不应用来存储字符，绝大多数情况下都被视作整数类型．
 
 ### 浮点类型
 

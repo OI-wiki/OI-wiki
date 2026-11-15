@@ -120,7 +120,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 ## 既不会引起 CE 也不会引发 Warning 的错误
 
-编译器无法发现这类错误，只能自行查明．
+这类错误编译器无法发现，只能自行查明．
 
 ### 会导致 WA 的错误
 
@@ -445,7 +445,7 @@ author: Estrella-Explore, H-J-Granger, orzAtalod, ksyx, Ir1d, Chrogeek, Enter-ta
 
 -   使用 + 运算符向 `std::string` 类字符串追加字符
 
-    这种错误会创建一个临时 `string` 变量，修改完成后再赋值给原变量．编译器无法优化这种错误，数据量大时可能导致时间复杂度退化．
+    这种错误会创建一个临时 `string` 变量，修改完成后再赋值给原变量．这种错误无法被编译器优化，数据量大时可能导致时间复杂度退化．
 
     常见错误写法：
 

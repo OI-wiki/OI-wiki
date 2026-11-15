@@ -142,7 +142,7 @@ auto f = [val = value]() { return val; };
 std::cout << f();  // Output: 520
 ```
 
-按引用捕获外部变量时，可以用引用类型的 `val` 为它取别名，例如：
+`val` 也可以是引用类型，引用一个外部变量，从而为按引用捕获的外部变量取别名，例如：
 
 ```cpp
 int value = 520;

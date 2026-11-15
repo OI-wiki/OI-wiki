@@ -113,7 +113,7 @@ $$
 
 其中 $C(x) = \sum_{i = 0}^{n - 1} c_i x^i$．可以用 Bluestein 算法计算 $C\left(q^{-1}\right), \dots, C\left(q^{-n}\right)$．
 
-具体计算如下：
+简单来说，计算步骤如下：
 
 1.  用减治法（decrease and conquer）计算 $M(x)$；
 2.  用 Bluestein 算法计算 $M'(1), \dots, M'(q^{n - 1})$；
