@@ -282,7 +282,7 @@ class PQTree {
     if (typ_[u]) {  // Q
       int l = 1e9, r = -1e9;
       for (int i = 0; i < static_cast<int>(g_[u].size()); i++)
-        if (col_[g_[u][i]]) checkmin(l, i), checkmax(r, i);
+        if (col_[g_[u][i]]) l = std::min(l, i), r = std::max(r, i);
       for (int i = l + 1; i < r; i++)
         if (col_[g_[u][i]] != 1) Fail();
       if (l == r && col_[g_[u][l]] == 2) {
