@@ -18,7 +18,7 @@ void ex_gcd(int a, int b, int& x, int& y) {
 int inverse(int a, int m) {
   int x, y;
   ex_gcd(a, m, x, y);
-  return (x % m + m) % m;
+  return (1LL * x % m + m) % m;
 }
 
 // --8<-- [start:core]
