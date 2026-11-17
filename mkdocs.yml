@@ -341,6 +341,7 @@ nav:
       - 数值积分: math/numerical/integral.md
       - 高斯消元: math/numerical/gauss.md
       - 牛顿迭代法: math/numerical/newton.md
+      - 梯度下降: math/numerical/gradient-descent.md
     - 序理论: math/order-theory.md
     - 杨氏矩阵: math/young-tableau.md
     - 拟阵: math/matroid.md
