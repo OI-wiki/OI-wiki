@@ -12,6 +12,7 @@ void hillclimb() {
     for (int i = 1; i <= n; ++i) {
       double dx = x[i] - ansx, dy = y[i] - ansy;
       double dis = sqrt(dx * dx + dy * dy);
+      if (dis == 0) continue;  // 与当前位置重合的点不产生拉力
       nowx += (x[i] - ansx) * w[i] / dis;
       nowy += (y[i] - ansy) * w[i] / dis;
     }
