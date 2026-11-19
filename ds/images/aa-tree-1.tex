@@ -1,0 +1,54 @@
+% AA tree example. Red nodes and incoming links are the right horizontal links.
+% Editable source for this diagram. From this directory, regenerate with:
+% latex -interaction=nonstopmode -halt-on-error aa-tree-1.tex
+% dvisvgm --no-fonts --exact --bbox=papersize --output=aa-tree-1.svg aa-tree-1.dvi
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,backgrounds,shapes.geometric,patterns}
+\definecolor{linkred}{HTML}{B5240A}
+\definecolor{noteBlue}{HTML}{0067A5}
+\definecolor{softgreen}{HTML}{D8EAD0}
+\definecolor{softpurple}{HTML}{D9D1E8}
+\definecolor{softpink}{HTML}{F5CECF}
+\definecolor{softyellow}{HTML}{FFF2C9}
+\begin{document}
+\begin{tikzpicture}[x=1pt,y=-1pt,>=Stealth,line cap=round,line join=round]
+\path[use as bounding box] (0,0) rectangle (900,410);
+\begin{scope}[on background layer]
+
+\end{scope}
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n30) at (345,40) {30};
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n15) at (200,125) {15};
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n5) at (90,210) {5};
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n20) at (275,210) {20};
+\node[circle,draw=black,fill=red!90!orange,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n10) at (170,295) {10};
+\node[circle,draw=black,fill=red!90!orange,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n70) at (650,110) {70};
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n50) at (530,190) {50};
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n85) at (790,190) {85};
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n35) at (420,280) {35};
+\node[circle,draw=black,fill=red!90!orange,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n60) at (635,280) {60};
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n80) at (745,280) {80};
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n90) at (855,280) {90};
+\node[circle,draw=black,fill=red!90!orange,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n40) at (500,370) {40};
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n55) at (575,370) {55};
+\node[circle,draw=black,fill=black,text=white,minimum size=48pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{23}{27.6}\selectfont,font=\sffamily\bfseries\fontsize{23}{27}\selectfont] (n65) at (705,370) {65};
+\begin{scope}[on background layer]
+\draw[draw=black,line width=2.5pt] (n30) -- (n15);
+\draw[draw=red!90!orange,line width=2.5pt] (n30) -- (n70);
+\draw[draw=black,line width=2.5pt] (n15) -- (n5);
+\draw[draw=black,line width=2.5pt] (n15) -- (n20);
+\draw[draw=red!90!orange,line width=2.5pt] (n5) -- (n10);
+\draw[draw=black,line width=2.5pt] (n70) -- (n50);
+\draw[draw=black,line width=2.5pt] (n70) -- (n85);
+\draw[draw=black,line width=2.5pt] (n50) -- (n35);
+\draw[draw=red!90!orange,line width=2.5pt] (n50) -- (n60);
+\draw[draw=red!90!orange,line width=2.5pt] (n35) -- (n40);
+\draw[draw=black,line width=2.5pt] (n60) -- (n55);
+\draw[draw=black,line width=2.5pt] (n60) -- (n65);
+\draw[draw=black,line width=2.5pt] (n85) -- (n80);
+\draw[draw=black,line width=2.5pt] (n85) -- (n90);
+\end{scope}
+
+\end{tikzpicture}
+\end{document}

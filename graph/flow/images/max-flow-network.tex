@@ -1,0 +1,27 @@
+% Drawing template used by max-flow-push-relabel.py.
+% The generated document supplies one picture per algorithm state.
+\documentclass[tikz,multi=tikzpicture,border=0pt]{standalone}
+\usepackage{lmodern}
+\usetikzlibrary{arrows.meta}
+\definecolor{heightcolor}{HTML}{514582}
+\definecolor{admissible}{HTML}{00FF00}
+\tikzset{
+  network/.style={x=1mm,y=-1mm,line width=.7pt,
+    every node/.style={font=\normalsize}},
+  vertex/.style={circle,draw,minimum size=14mm,inner sep=0pt,align=center},
+  edge/.style={-{Stealth[length=2.4mm,width=1.7mm]}},
+  capacity/.style={fill=white,inner sep=1.2pt,font=\large},
+}
+\newcommand{\NetworkStart}[1]{%
+  \begin{tikzpicture}[network]
+  \path[use as bounding box] (0,0) rectangle (190,#1);
+  \fill[white] (0,0) rectangle (190,#1);
+}
+\newcommand{\PlainNetworkEnd}[1]{%
+  \node[font=\sffamily\LARGE] at (95,115) {#1};
+  \end{tikzpicture}
+}
+\newcommand{\NetworkEnd}[1]{%
+  \node[font=\sffamily\LARGE] at (95,115) {#1};
+  \end{tikzpicture}
+}

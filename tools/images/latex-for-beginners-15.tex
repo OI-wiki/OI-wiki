@@ -1,0 +1,16 @@
+% Equation exercise from ../latex.md, using the recommended align environment.
+% The integral ends at x and the sum starts at i=0, correcting the old screenshot.
+% Build instructions: latex-for-beginners-common.tex.
+\documentclass[a4paper,12pt]{article}
+\input{latex-for-beginners-common.tex}
+\usepackage{amsmath}
+\begin{document}
+\begin{align}
+  e &= mc^2 \\
+  \pi &= \frac{c}{d} \\
+  \frac{d}{dx} e^x &= e^x \\
+  \frac{d}{dx} \int_0^x f(s)\,ds &= f(x) \\
+  f(x) &= \sum_{i=0}^{\infty} \frac{f^{(i)}(0)}{i!} x^i \\
+  x &= \sqrt{\frac{x_i}{z} y}
+\end{align}
+\end{document}

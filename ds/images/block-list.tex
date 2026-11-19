@@ -1,0 +1,28 @@
+% Rebuild: xelatex -no-pdf -interaction=nonstopmode block-list.tex
+%          dvisvgm --no-fonts --exact-bbox block-list.xdv -o block-list.svg
+\def\pgfsysdriver{pgfsys-dvisvgm.def}
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage[fontset=fandol]{ctex}
+\usetikzlibrary{arrows.meta,backgrounds}
+\begin{document}
+\definecolor{background}{HTML}{29001E}
+\definecolor{accent}{HTML}{FFA500}
+\begin{tikzpicture}[x=1cm,y=1cm,line width=2pt,font=\sffamily\bfseries]
+% Linked list of blocks; each block points to its array.
+\fill[background] (-.7,-2.7) rectangle (9.7,2.5);
+\foreach \x in {0,1.7,3.4,5.1,6.8} {
+  \draw[white,line width=2pt] (\x,.7) rectangle (\x+.9,1.55);
+  \draw[white,-{Triangle[length=3mm,width=3mm]}] (\x+.45,.6) -- (\x+.45,.05);
+  \draw[white,line width=2pt] (\x,-1.5) rectangle (\x+.9,0);
+  \foreach \y in {-.3,-.6,-.9,-1.2}
+    \draw[white,line width=1.5pt] (\x,\y) -- (\x+.9,\y);
+}
+\foreach \x in {0,1.7,3.4,5.1}
+  \draw[white,-{Triangle[length=3mm,width=3mm]}] (\x+1.03,1.12) -- (\x+1.57,1.12);
+\draw[accent] (-.17,.5) rectangle (7.87,1.74);
+\draw[accent] (-.17,-1.7) rectangle (7.87,.17);
+\node[white,anchor=south west] at (0,1.77) {head};
+\node[accent,anchor=west,font=\Large\sffamily\bfseries] at (8,1.12) {node};
+\node[accent,font=\Large\sffamily\bfseries] at (3.85,-2.15) {这些都是数组};
+\end{tikzpicture}
+\end{document}

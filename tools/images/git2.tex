@@ -1,0 +1,32 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+\begin{document}
+\begin{tikzpicture}[
+    node distance=2.8cm and 2.5cm,
+    every node/.style={draw, rectangle, rounded corners=2pt, minimum width=2.6cm, minimum height=1.2cm, font=\large, inner sep=0pt},
+    arrow/.style={-{Stealth[length=3mm]}, thick, blue},
+    branch/.style={draw=none, font=\normalsize}
+]
+
+% Nodes
+\node (n1) {f992763};
+\node (n2) [right=of n1] {ae9dd37};
+\node (n4) [right=of n2] {5ca15f0};
+\node (n3) [above=1.8cm of n4] {5da093b};
+\node (n5) [right=of n4] {a105202};
+
+% Arrows
+\draw[arrow] (n1) -- (n2);
+\draw[arrow] (n2) -- (n3);
+\draw[arrow] (n2) -- (n4);
+\draw[arrow] (n3) -- (n5);
+\draw[arrow] (n4) -- (n5);
+
+% Branch names
+\node[branch, above=0.1cm of n3] {dev};
+\node[branch, below=0.1cm of n5, text=red] {master};
+
+\end{tikzpicture}
+\end{document}

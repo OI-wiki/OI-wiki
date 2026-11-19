@@ -1,0 +1,56 @@
+% The same pairing heap represented by first-child and next-sibling links.
+% Editable source for this diagram. From this directory, regenerate with:
+% latex -interaction=nonstopmode -halt-on-error pairing-heap-2.tex
+% dvisvgm --no-fonts --exact --bbox=papersize --output=pairing-heap-2.svg pairing-heap-2.dvi
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,backgrounds,shapes.geometric,patterns}
+\definecolor{linkred}{HTML}{B5240A}
+\definecolor{noteBlue}{HTML}{0067A5}
+\definecolor{softgreen}{HTML}{D8EAD0}
+\definecolor{softpurple}{HTML}{D9D1E8}
+\definecolor{softpink}{HTML}{F5CECF}
+\definecolor{softyellow}{HTML}{FFF2C9}
+\begin{document}
+\begin{tikzpicture}[x=1pt,y=-1pt,>=Stealth,line cap=round,line join=round]
+\path[use as bounding box] (0,0) rectangle (650,245);
+\begin{scope}[on background layer]
+
+\end{scope}
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (r) at (265,25) {1};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (a) at (55,105) {8};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (b) at (190,105) {2};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (c) at (315,105) {3};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (d) at (400,105) {6};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (e) at (550,105) {7};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (b1) at (155,160) {9};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (b2) at (220,160) {10};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (c1) at (305,160) {12};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (d1) at (370,160) {7};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (d2) at (445,160) {14};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (d21) at (410,215) {15};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (d22) at (475,215) {20};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (e1) at (505,160) {8};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (e2) at (550,160) {9};
+\node[circle,draw=none,fill=white,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{17}{20.4}\selectfont,font=\sffamily\bfseries\fontsize{17}{20}\selectfont] (e3) at (615,160) {11};
+\begin{scope}[on background layer]
+\draw[draw=black!65,line width=1.7pt] (r) -- (a);
+\draw[draw=black!65,line width=1.7pt] (a) -- (b);
+\draw[draw=black!65,line width=1.7pt] (b) -- (c);
+\draw[draw=black!65,line width=1.7pt] (c) -- (d);
+\draw[draw=black!65,line width=1.7pt] (d) -- (e);
+\draw[draw=black!65,line width=1.7pt] (b) -- (b1);
+\draw[draw=black!65,line width=1.7pt] (b1) -- (b2);
+\draw[draw=black!65,line width=1.7pt] (c) -- (c1);
+\draw[draw=black!65,line width=1.7pt] (d) -- (d1);
+\draw[draw=black!65,line width=1.7pt] (d1) -- (d2);
+\draw[draw=black!65,line width=1.7pt] (d2) -- (d21);
+\draw[draw=black!65,line width=1.7pt] (d21) -- (d22);
+\draw[draw=black!65,line width=1.7pt] (e) -- (e1);
+\draw[draw=black!65,line width=1.7pt] (e1) -- (e2);
+\draw[draw=black!65,line width=1.7pt] (e2) -- (e3);
+\end{scope}
+
+\end{tikzpicture}
+\end{document}

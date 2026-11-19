@@ -1,0 +1,19 @@
+% Nested lists from ../latex.md. Build instructions: latex-for-beginners-common.tex.
+\documentclass[a4paper,12pt]{article}
+\input{latex-for-beginners-common.tex}
+\begin{document}
+% --8<-- [start:example]
+\begin{enumerate}
+  \item First thing
+
+  \item Second thing
+    \begin{itemize}
+      \item A sub-thing
+
+      \item Another sub-thing
+    \end{itemize}
+
+  \item Third thing
+\end{enumerate}
+% --8<-- [end:example]
+\end{document}
