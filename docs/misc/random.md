@@ -101,7 +101,7 @@ class linear_congruential_engine;
 
 ### 随机数引擎适配器
 
-在预定义随机数生成器的基础上，可以对其进行二次封装得到新的随机数生成器．具体类名和使用方法请参见 [伪随机数生成——随机数引擎适配器](https://zh.cppreference.com/cpp/numeric/random#.E9.9A.8F.E6.9C.BA.E6.95.B0.E5.BC.95.E6.93.8E.E9.80.82.E9.85.8D.E5.99.A8) 的列表．
+在预定义随机数生成器的基础上，可以再次封装它，得到新的随机数生成器．具体类名和使用方法请参见 [伪随机数生成——随机数引擎适配器](https://zh.cppreference.com/cpp/numeric/random#.E9.9A.8F.E6.9C.BA.E6.95.B0.E5.BC.95.E6.93.8E.E9.80.82.E9.85.8D.E5.99.A8) 的列表．
 
 下面的代码使用 `std::independent_bits_engine` 包装 `std::minstd_rand` 的输出．
 
@@ -153,7 +153,7 @@ class linear_congruential_engine;
 
 ### 其他实现方法
 
-有的时候我们需要实现自己的随机数生成器．下面是一些常用的随机数生成方法．
+有时我们需要实现自己的随机数生成器．下面是一些常用的随机数生成方法．
 
 #### Xorshift
 
@@ -173,7 +173,7 @@ SplitMix 系列随机数生成器由 Stelle，Lee 和 Flood 于 2014 年提出�
 --8<-- "docs/misc/code/random/random_7.cpp:core"
 ```
 
-其最主要的用途是对一个已经求出的哈希值进行二次哈希，以防止被人通过精心构造的数据卡哈希表卡到超时：
+其最主要的用途是对一个已经求出的哈希值再次哈希，以防止被人通过精心构造的数据卡哈希表卡到超时：
 
 ```cpp
 --8<-- "docs/misc/code/random/random_8.cpp:core"

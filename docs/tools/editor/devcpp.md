@@ -8,7 +8,7 @@ Dev-C++ 的优点在于界面简洁友好，安装便捷，支持单文件编译
 
 Dev-C++ 起源于 Colin Laplace 编写的 Bloodshed Dev-C++．该版本自 2005 年 2 月 22 日停止更新．2006 年，Dev-C++ 主要开发者 Colin Laplace 曾经对此作出了解释：「因忙于现实生活的事务，没有时间继续 Dev-C++ 的开发．」
 
-Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本，由独立程序员 Orwell (Johan Mes) 开发并维护．其对原版 Dev-C++ 进行了错误修正，并更新了编译器版本．一般而言，Dev-C++ 5.x 均为 Orwell Dev-C++．其最后一次更新于 2015 年，版本为 5.11．
+Orwell Dev-C++ 是 Dev-C++ 的一个衍生版本，由独立程序员 Orwell (Johan Mes) 开发并维护．它修正了原版 Dev-C++ 的错误，并更新了编译器版本．一般而言，Dev-C++ 5.x 均为 Orwell Dev-C++．其最后一次更新于 2015 年，版本为 5.11．
 
 Embarcadero Dev-C++[^ref1]是 Bloodshed Dev-C++ 和 Orwell Dev-C++ 的继任者．2020 年，Embarcadero 赞助并接手了原有的 Dev-C++ 项目，继续开发．Embarcadero Dev-C++ 加入了对高 DPI 的支持，更新了编译器以加入更新版本的 C++ 标准支持，以及暗色模式．
 
@@ -155,7 +155,7 @@ freopen("test.out", "w", stdout);
 
 #### 代码格式化
 
-点击 Astyle-> 格式化当前文件 或 按 Ctrl+Shift+A 进行代码格式化．
+点击 Astyle-> 格式化当前文件 或 按 Ctrl+Shift+A 格式化代码．
 
 ![](./images/Dev-C++-17.png)
 

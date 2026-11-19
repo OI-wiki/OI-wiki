@@ -54,7 +54,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 `vim a.cpp`
 
-用 Vim 写代码（或者用其他的编辑器或 IDE 进行）．
+用 Vim 写代码（也可用其他编辑器或 IDE）．
 
 `cf test`
 
@@ -108,7 +108,7 @@ cf-tool 是 Codeforces 的命令行界面的跨平台（支持 Windows、Linux�
 
 ## Competitive Companion
 
-这个工具是一个浏览器插件，用于解析网页里面的测例数据．它支持解析几乎所有的主流 oj 平台（比如 Codeforces、AtCoder）．使用这个插件后，再也不用手动复制任何的测例数据．
+这个工具是一个浏览器插件，用于解析网页里面的测例数据．它支持解析几乎所有的主流 oj 平台（比如 Codeforces、AtCoder）．使用这个插件后，就不用手动复制测例数据．
 
 源码托管在 [jmerle/competitive-companion](https://github.com/jmerle/competitive-companion) 上．
 

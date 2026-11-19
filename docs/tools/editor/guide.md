@@ -74,7 +74,7 @@ sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y -rpmi
 
 在 编辑 -> 选项 -> 语法高亮设置 中，点击「全部字体」按钮，即可切换编辑器字体．
 
-需要注意的是，对于未保存的新文件，字体仍然是默认字体．因此建议在开始编辑前先保存文件（点击工具栏的「保存」按钮，或按下<kbd>Ctrl</kbd>+<kbd>S</kbd>快捷键），再进行编辑．
+注意，未保存的新文件仍使用默认字体．因此建议在开始编辑前先保存文件（点击工具栏的「保存」按钮，或按下<kbd>Ctrl</kbd>+<kbd>S</kbd>快捷键），再编辑．
 
 ## 编译与运行
 
@@ -91,6 +91,6 @@ sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y -rpmi
 
 GUIDE 自带的调试功能存在很多 bug（如程序中途发生崩溃等），因此不推荐直接使用 GUIDE 的调试功能．
 
-建议直接在 [终端](../cmd.md) 下使用 gdb 来进行调试．
+建议直接在 [终端](../cmd.md) 下使用 gdb 调试．
 
 [^ref1]: [NOI Linux 2.0 发布，将于 9 月 1 日起正式启用！](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)

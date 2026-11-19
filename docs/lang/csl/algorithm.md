@@ -1,4 +1,4 @@
-STL 提供了大约 100 个实现算法的模板函数，基本都包含在 `<algorithm>` 之中，还有一部分包含在 `<numeric>` 和 `<functional>`．完备的函数列表请 [参见参考手册](https://zh.cppreference.com/w/cpp/algorithm)，排序相关的可以参考 [排序内容的对应页面](../../basic/stl-sort.md)．
+STL 提供了大约 100 个实现算法的模板函数，基本都包含在 `<algorithm>` 中，还有一部分包含在 `<numeric>` 和 `<functional>`．完备的函数列表请 [参见参考手册](https://zh.cppreference.com/w/cpp/algorithm)，排序相关内容可参考 [排序内容的对应页面](../../basic/stl-sort.md)．
 
 -   `find`：顺序查找．`find(v.begin(), v.end(), value)`，其中 `value` 为需要查找的值．
 
@@ -11,7 +11,7 @@ STL 提供了大约 100 个实现算法的模板函数，基本都包含在 `<al
     ???+ warning "`random_shuffle` 函数在最新 C++ 标准中已被移除"
         `random_shuffle` 自 C++14 起被弃用，C++17 起被移除．
         
-        在 C++11 以及更新的标准中，您可以使用 `shuffle` 函数代替原来的 `random_shuffle`．使用方法为 `shuffle(v.begin(), v.end(), rng)`（最后一个参数传入的是使用的随机数生成器，一般情况使用以真随机数生成器 [`random_device`](https://zh.cppreference.com/w/cpp/numeric/random/random_device) 播种的梅森旋转伪随机数生成器 [`mt19937`](https://zh.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine)）．
+        在 C++11 以及更新的标准中，您可以使用 `shuffle` 函数代替原来的 `random_shuffle`．使用方法为 `shuffle(v.begin(), v.end(), rng)`（最后一个参数是随机数生成器，一般使用以真随机数生成器 [`random_device`](https://zh.cppreference.com/w/cpp/numeric/random/random_device) 播种的梅森旋转伪随机数生成器 [`mt19937`](https://zh.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine)）．
         
         ```cpp
         // #include <random>
@@ -23,7 +23,7 @@ STL 提供了大约 100 个实现算法的模板函数，基本都包含在 `<al
 
 -   `stable_sort`：稳定排序，用法同 `sort()`．
 
--   `nth_element`：按指定范围进行分类，即找出序列中第 $n$ 大的元素，使其左边均为小于它的数，右边均为大于它的数．`nth_element(v.begin(), v.begin() + n, v.end(), cmp)` 或 `nth_element(a + begin, a + begin + n, a + end, cmp)`．
+-   `nth_element`：按指定范围分类，即找出序列中第 $n$ 大的元素，使其左边均为小于它的数，右边均为大于它的数．`nth_element(v.begin(), v.begin() + n, v.end(), cmp)` 或 `nth_element(a + begin, a + begin + n, a + end, cmp)`．
 
 -   `binary_search`：二分查找．`binary_search(v.begin(), v.end(), value)`，其中 `value` 为需要查找的值．
 
@@ -31,9 +31,9 @@ STL 提供了大约 100 个实现算法的模板函数，基本都包含在 `<al
 
 -   `inplace_merge`：将两个（已按小于运算符排序的）：`[first,middle), [middle,last)` 范围 **原地合并为一个有序序列**．`inplace_merge(v.begin(), v.begin() + middle, v.end())`．
 
--   `lower_bound`：在一个有序序列中进行二分查找，返回指向第一个 **大于等于**  $x$ 的元素的位置的迭代器．如果不存在这样的元素，则返回尾迭代器．`lower_bound(v.begin(),v.end(),x)`．
+-   `lower_bound`：在有序序列中二分查找，返回指向第一个 **大于等于**  $x$ 的元素的位置的迭代器．如果不存在这样的元素，则返回尾迭代器．`lower_bound(v.begin(),v.end(),x)`．
 
--   `upper_bound`：在一个有序序列中进行二分查找，返回指向第一个 **大于**  $x$ 的元素的位置的迭代器．如果不存在这样的元素，则返回尾迭代器．`upper_bound(v.begin(),v.end(),x)`．
+-   `upper_bound`：在有序序列中二分查找，返回指向第一个 **大于**  $x$ 的元素的位置的迭代器．如果不存在这样的元素，则返回尾迭代器．`upper_bound(v.begin(),v.end(),x)`．
 
     ???+ warning "`lower_bound` 和 `upper_bound` 的时间复杂度"
         在一般的数组里，这两个函数的时间复杂度均为 $O(\log n)$，但在 `set` 等关联式容器中，直接调用 `lower_bound(s.begin(),s.end(),val)` 的时间复杂度是 $O(n)$ 的．

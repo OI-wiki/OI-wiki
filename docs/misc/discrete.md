@@ -4,13 +4,13 @@ author: GavinZhengOI, PlanariaIce
 
 离散化是一种数据处理的技巧，本质上可以看成是一种 [哈希](../string/hash.md#hash-的思想)，其保证数据在哈希以后仍然保持原来的 [全/偏序](../math/order-theory.md#偏序集) 关系．
 
-通俗地讲就是当有些数据因为本身很大或者类型不支持，自身无法作为数组的下标来方便地处理，而影响最终结果的只有元素之间的相对大小关系时，我们可以将原来的数据按照排名来处理问题，即离散化．
+通俗地说，若数据数值太大或类型不支持，无法方便地用作数组下标，且只有元素的相对大小关系影响最终结果，就可以按排名处理数据，这就是离散化．
 
 用来离散化的可以是大整数、浮点数、字符串等等．
 
 ## 实现
 
-将一个数组离散化，并进行查询是比较常用的应用场景．
+将数组离散化后查询是常见的应用场景．
 
 ### 方法一
 
@@ -39,7 +39,7 @@ for (int i = 1; i <= n; ++i)                              // step 4
 
 参考实现中使用的 STL 算法可参考 [STL 算法](../lang/csl/algorithm.md)．
 
-同样地，我们也可以对 [std::vector](../lang/csl/sequence-container.md#vector) 进行离散化：
+同样，我们也可以离散化 [std::vector](../lang/csl/sequence-container.md#vector)：
 
 ```cpp
 // std::vector<int> arr;

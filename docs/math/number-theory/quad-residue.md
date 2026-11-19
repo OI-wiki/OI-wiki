@@ -358,7 +358,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
     \end{aligned}
     $$
     
-    需要注意的是，此处的 $x$ 并不是一个具体的数，而是表示多项式中的形式记号．运算中一个关键的点在于利用 $x^2 \equiv g \pmod{(x^2-g)}$ 将二次项转化为一次项和常数项．另外，所有整数运算都需要对 $p$ 取模．
+    注意，此处的 $x$ 并不是具体的数，而是多项式中的形式记号．运算中一个关键的点在于利用 $x^2 \equiv g \pmod{(x^2-g)}$ 将二次项转化为一次项和常数项．另外，所有整数运算都需要对 $p$ 取模．
     
     关于该结构的更多内容，请参见 [多项式](../poly/intro.md) 和 [域论](../algebra/field-theory.md) 等页面．
 
@@ -429,7 +429,7 @@ Cipolla 算法用于求解同余方程 $y^2\equiv a\pmod p$，其中 $p$ 为奇�
 
 ### Bostan–Mori 算法
 
-该算法基于 Cipolla 算法，我们将问题转换为 [常系数齐次线性递推](../poly/linear-recurrence.md) 再应用 Bostan–Mori 算法．考虑另一种常见的 Cipolla 算法的描述：$b=x^{\left(p+1\right)/2}\bmod{\left(x^2-tx+a\right)}$ 为满足 $b^2\equiv a\pmod{p}$ 的一个解[^ref3]，其中 $x^2-tx+a\in \mathbf{F}_p\lbrack x\rbrack$ 为不可约多项式．系数 $t$ 的选取同样使用随机方法．证明过程略．参考 Bostan 和 Mori 论文[^ref4]中的算法我们可以发现问题可转化为求解形式幂级数的乘法逆元的某一项系数：
+该算法基于 Cipolla 算法，我们将问题转换为 [常系数齐次线性递推](../poly/linear-recurrence.md) 再应用 Bostan–Mori 算法．考虑另一种常见的 Cipolla 算法的描述：$b=x^{\left(p+1\right)/2}\bmod{\left(x^2-tx+a\right)}$ 为满足 $b^2\equiv a\pmod{p}$ 的一个解[^ref3]，其中 $x^2-tx+a\in \mathbf{F}_p\lbrack x\rbrack$ 为不可约多项式．系数 $t$ 的选取同样使用随机方法．证明过程略．参考 Bostan 和 Mori 论文[^ref4]中的算法，可以将问题转化为求形式幂级数乘法逆元的某一项系数：
 
 $$
 b=\left\lbrack x^{(p+1)/2}\right\rbrack\dfrac{1}{1-tx+ax^2}

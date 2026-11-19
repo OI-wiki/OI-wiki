@@ -2,7 +2,7 @@ author: Marcythm, Xeonacid, CSPNOIP
 
 ## 定义
 
-从此种筛法的思想方法来说，其又被称为「Extended Eratosthenes Sieve」．
+根据这种筛法的思想，它又称为「Extended Eratosthenes Sieve」．
 
 由于其由 [Min\_25](https://web.archive.org/web/20211104125457/http://min-25.hatenablog.com/) 发明并最早开始使用，故称「Min\_25 筛」．
 

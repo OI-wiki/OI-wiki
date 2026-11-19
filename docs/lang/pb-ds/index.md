@@ -8,7 +8,7 @@ pb\_ds 库封装了很多数据结构，比如哈希（Hash）表，平衡二叉
 
 pb\_ds 只在使用 libstdc++ 为标准库的编译器下可以用．
 
-可以使用 `begin()` 和 `end()` 来获取 `iterator` 从而遍历
+可以用 `begin()` 和 `end()` 获取 `iterator` 来遍历
 
 可以 `increase_key`,`decrease_key` 以及删除单个元素
 
