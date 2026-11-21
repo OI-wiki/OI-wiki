@@ -54,6 +54,6 @@ iRightChild(i) = 2 * i + 2;
     --8<-- "docs/basic/code/heap-sort/heap-sort_1.py:sort"
     ```
 
-## 外部链接
+## 拓展阅读
 
 -   [堆排序 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%A0%86%E6%8E%92%E5%BA%8F)

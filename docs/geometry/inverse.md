@@ -259,7 +259,7 @@ author: hyp1231, 383494
 
 [「CCPC 2017 网络赛」The Designer](https://acm.hdu.edu.cn/showproblem.php?pid=6158)
 
-## 参考资料与拓展阅读
+## 拓展阅读
 
 -   [Inversive geometry - Wikipedia](https://en.wikipedia.org/wiki/Inversive_geometry)
 

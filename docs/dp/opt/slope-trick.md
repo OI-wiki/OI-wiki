@@ -566,12 +566,14 @@ $$
 -   [2018 ACM-ICPC World Finals C. Conquer The World](https://codeforces.com/gym/102482/problem/C)
 -   [300iq Contest 3 F. Farm of Monsters](https://codeforces.com/gym/102538/problem/F)
 
-## 参考文献与注释
+## 拓展阅读
 
 -   [\[Tutorial\] Slope Trick - zscoder](https://codeforces.com/blog/entry/47821)
 -   [Slope trick explained - Kuroni](https://codeforces.com/blog/entry/77298)
 -   [Slope Trick - USACO Guide](https://usaco.guide/adv/slope-trick?lang=cpp)
 -   [\[Tutorial\] Intuition on Slope Trick - maomao90](https://codeforces.com/blog/entry/103222)
+
+## 参考资料与注释
 
 [^convex-def]: 不同教材对于凸函数的称呼可能不同．
 

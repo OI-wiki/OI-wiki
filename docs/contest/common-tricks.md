@@ -175,7 +175,7 @@ Node* newnode() {
 }
 ```
 
-## 参考资料
+## 拓展阅读
 
 [洛谷日报 #86](https://studyingfather.blog.luogu.org/some-coding-tips-for-oiers)
 

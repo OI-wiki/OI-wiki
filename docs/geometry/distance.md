@@ -306,8 +306,10 @@ $$
 
 注意：当 $p \ge 1$ 时，闵可夫斯基距离才是度量，具体证明参见 [Minkowski distance - Wikipedia](https://en.wikipedia.org/wiki/Minkowski_distance)．
 
-## 参考资料与链接
+## 拓展阅读
 
 1.  [浅谈三种常见的距离算法](https://www.luogu.com.cn/blog/xuxing/Distance-Algorithm)，感谢作者 xuxing 的授权．
+
+## 参考资料与注释
 
 [^ref1]: [切比雪夫距离 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%88%87%E6%AF%94%E9%9B%AA%E5%A4%AB%E8%B7%9D%E7%A6%BB)

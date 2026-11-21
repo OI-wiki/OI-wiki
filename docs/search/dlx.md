@@ -653,12 +653,12 @@ DLX 的难点，不全在于链表的建立，而在于建模．
 -   [SUDOKU - Sudoku](https://www.spoj.com/problems/SUDOKU/)
 -   [「kuangbin 带你飞」专题三 Dancing Links](https://vjudge.net/contest/65998#overview)
 
-## 外部链接
+## 拓展阅读
 
 -   [跳跃的舞者，舞蹈链（Dancing Links）算法——求解精确覆盖问题 - 万仓一黍](https://www.cnblogs.com/grenet/p/3145800.html)
 -   [搜索：DLX 算法 - 静听风吟．](https://www.cnblogs.com/aininot260/p/9629926.html)
 -   [《算法竞赛入门经典 - 训练指南》](https://book.douban.com/subject/35431537/)
 
-## 注释
+## 参考资料与注释
 
 [^note1]: （两岸用语差异）台灣：直行（column）、橫列（row）

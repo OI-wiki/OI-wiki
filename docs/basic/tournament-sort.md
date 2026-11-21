@@ -50,6 +50,6 @@
     --8<-- "docs/basic/code/tournament-sort/tournament-sort_1.py:sort"
     ```
 
-## 外部链接
+## 拓展阅读
 
 -   [Tournament sort - Wikipedia](https://en.wikipedia.org/wiki/Tournament_sort)

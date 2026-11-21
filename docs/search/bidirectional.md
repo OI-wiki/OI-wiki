@@ -81,7 +81,7 @@ Meet in the middle 算法的主要思想是将整个搜索过程分成两半，�
     --8<-- "docs/search/code/bidirectional/bidirectional_2.cpp"
     ```
 
-## 外部链接
+## 拓展阅读
 
 -   [What is meet in the middle algorithm w.r.t. competitive programming? - Quora](https://www.quora.com/What-is-meet-in-the-middle-algorithm-w-r-t-competitive-programming)
 -   [Meet in the Middle Algorithm - YouTube](https://www.youtube.com/watch?v=57SUNQL4JFA)

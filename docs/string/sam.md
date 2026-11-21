@@ -765,7 +765,7 @@ void sam_init() {
 -   [CTSC2012 熟悉的文章](https://www.luogu.com.cn/problem/P4022)
 -   [NOI2018 你的名字](https://uoj.ac/problem/395)
 
-## 相关资料
+## 拓展阅读
 
 我们先给出与 SAM 有关的最初的一些文献：
 
@@ -789,6 +789,8 @@ void sam_init() {
 -   <https://www.cnblogs.com/zinthos/p/3899679.html>
 -   <https://codeforces.com/blog/entry/20861>
 -   <https://zhuanlan.zhihu.com/p/25948077>
+
+## 参考资料与注释
 
 **本页面主要译自博文 [Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata) 与其英文翻译版 [Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html)．其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0．**
 
