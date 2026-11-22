@@ -99,21 +99,57 @@ jobs:
           FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
         run: uv run python scripts/correctness_check.py
 
-  undefinedbehaviors-ubuntu:
-    name: UB Check - x86_64 Ubuntu
+  undefinedbehaviors-noilinux:
+    name: UB Check - x86_64 NOI Linux
     needs: [file-list, cpp-correctness]
     runs-on: ubuntu-latest
-    container: ghcr.io/trickeye/ubuntu_gcc1x:clang
+    container: ubuntu:20.04
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - name: Install g++-9
+      - name: Install GCC 9.3.0 and Python 3.8
         run: |
           apt-get update
-          apt-get install -y g++-9
+          apt-get install -y \
+            g++-9=9.3.0-10ubuntu2 \
+            gcc-9=9.3.0-10ubuntu2 \
+            cpp-9=9.3.0-10ubuntu2 \
+            gcc-9-base=9.3.0-10ubuntu2 \
+            libasan5=9.3.0-10ubuntu2 \
+            libgcc-9-dev=9.3.0-10ubuntu2 \
+            libstdc++-9-dev=9.3.0-10ubuntu2 \
+            python3 python3.8
+      - name: Check Compiler Version
+        run: |
+          echo "::group::Check G++ Version"
+          g++-9 --version
+          echo "::endgroup::"
       - name: Undefined Behaviors Check
         env: 
+          FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
+          RUNS_ON: x86_64 NOI Linux
+          PYTHONIOENCODING: UTF-8
+        run: python3 scripts/ub-check.py
+
+  undefinedbehaviors-ubuntu:
+    name: UB Check - x86_64 Ubuntu
+    needs: [file-list, cpp-correctness]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Check Compiler Version
+        run: |
+          echo "::group::Check G++ Version"
+          g++ --version
+          echo "::endgroup::"
+          echo "::group::Check Clang Version"
+          clang --version
+          echo "::endgroup::"
+      - name: Undefined Behaviors Check
+        env:
           FILES_TO_TEST: ${{ needs.file-list.outputs.files_to_test }}
           RUNS_ON: x86_64 Ubuntu
           PYTHONIOENCODING: UTF-8

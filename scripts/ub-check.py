@@ -138,12 +138,23 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
 
     concat = lambda a, b: (a[0] + b[0], a[1] + b[1])
     config_map = {
+        "x86_64 NOI Linux": gen(
+            compilers=[
+                ("g++-9 -Wno-unused-result", ".GCC9"),
+            ],
+            standards=[
+                ("-std=c++14", ".CPP14"),
+            ],
+            optimizations=[("-O0", ".O0"), ("-O2", ".O2"), ("-O3", ".O3")],
+            sanitizers=[("", ".NA")],
+            auxfiles=auxfiles,
+            mainfile=mainfile,
+        ),
         "x86_64 Ubuntu": concat(
             gen(
                 compilers=[
                     ("clang++ -Wno-unused-result", ".Clang"),
-                    ("g++-9 -Wno-unused-result", ".GCC9"),
-                    ("g++-13 -Wno-unused-result", ".GCC13"),
+                    ("g++ -Wno-unused-result", ".GCC"),
                 ],
                 standards=[
                     ("-std=c++14", ".CPP14"),
@@ -158,7 +169,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
             gen(
                 compilers=[
                     ("clang++ -Wno-unused-result", ".Clang"),
-                    ("g++-13 -Wno-unused-result", ".GCC13"),
+                    ("g++ -Wno-unused-result", ".GCC"),
                 ],
                 standards=[
                     ("-std=c++14", ".CPP14"),
@@ -254,6 +265,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     }
 
     compile_commands_dict = {
+        "x86_64 NOI Linux": config_map["x86_64 NOI Linux"][0],
         "x86_64 Ubuntu": config_map["x86_64 Ubuntu"][0],
         "x86_64 Alpine": config_map["x86_64 Alpine"][0],
         "x86_64 Windows": config_map["x86_64 Windows"][0],
@@ -262,6 +274,7 @@ def ub_check(mainfile, auxfiles, examples, skiptest):
     }
 
     compile_products_dict = {
+        "x86_64 NOI Linux": config_map["x86_64 NOI Linux"][1],
         "x86_64 Ubuntu": config_map["x86_64 Ubuntu"][1],
         "x86_64 Alpine": config_map["x86_64 Alpine"][1],
         "x86_64 Windows": config_map["x86_64 Windows"][1],
