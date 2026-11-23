@@ -2,6 +2,8 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 
 素数与合数的定义，见 [数论基础](./basic.md)．
 
+本页面介绍常见的素性测试方法，以及反素数的性质与求解方法．
+
 素数计数函数：小于或等于 $x$ 的素数的个数，用 $\pi(x)$ 表示．随着 $x$ 的增大，有这样的近似结果：
 
 $$
@@ -10,13 +12,13 @@ $$
 
 ## 素性测试
 
-**素性测试**（Primality test）可以用于判定所给自然数是否为素数．
+**素性测试**（Primality test）可以用于判定所给自然数是否为素数．[^ref-matrix67] [^ref-primality-wiki]
 
 素性测试主要分为两类：
 
 1. **确定性测试**：能够确定一个数是否为素数．常见例子包括试除法、Lucas–Lehmer 测试、椭圆曲线素性证明，以及基于已证明的广义 Riemann 猜想（GRH）的确定性 Miller–Rabin 测试．
 
-2. **概率性测试**：通常具有较高的执行效率，但存在将合数误判为素数的可能性（尽管概率很小）．因此，通过概率性素性测试的数字被称为**可能素数**，直到它们的素性得到确定性证明．通过测试但实际上为合数的数字称为**伪素数**．常见例子包括 Fermat 伪素数和强伪素数．
+2. **概率性测试**：通常具有较高的执行效率，但存在将合数误判为素数的可能性．因此，通过概率性素性测试的数字被称为**可能素数**，直到它们的素性得到确定性证明．通过测试但实际上为合数的数字称为**伪素数**．常见例子包括 Fermat 伪素数和强伪素数．
 
 ### 试除法
 
@@ -49,7 +51,7 @@ $$
 
 这样做十分稳妥，但实际上没有必要检查所有小于 $a$ 的整数．
 
-很容易发现：如果 $x$ 是 $a$ 的约数，那么 $\frac{a}{x}$ 也是 $a$ 的约数．
+很容易发现：如果 $x$ 是 $a$ 的约数，那么 $\dfrac{a}{x}$ 也是 $a$ 的约数．
 
 这个结论说明，对于每一对约数
 
@@ -104,7 +106,7 @@ $$
 
 由此可以得到一种素性测试方法：
 
-不断从区间 $[2,n-1]$ 中随机选取基底 $a$，检查是否满足
+不断从区间 $[2,n-2]$ 中均匀随机选取基底 $a$，检查是否满足
 
 $$
 a^{n-1}\equiv 1\pmod n.
@@ -117,11 +119,16 @@ $$
     === "C++"
 
         ```cpp
+        #include <random>
+
         bool fermat(int n, int test_time) {
-          if (n < 3) return n == 2;
+          if (n < 4) return n == 2 || n == 3;
+
+          static std::mt19937 rng(std::random_device{}());
+          std::uniform_int_distribution<int> dist(2, n - 2);
 
           for (int i = 0; i < test_time; ++i) {
-            int a = rand() % (n - 2) + 2;
+            int a = dist(rng);
             if (quickPow(a, n - 1, n) != 1)
               return false;
           }
@@ -135,17 +142,17 @@ $$
         import random
 
         def fermat(n, test_time=8):
-            if n < 3:
-                return n == 2
+            if n < 4:
+                return n == 2 or n == 3
 
             for _ in range(test_time):
-                a = random.randrange(2, n)
+                a = random.randrange(2, n - 1)
                 if pow(a, n - 1, n) != 1:
                     return False
             return True
         ```
 
-其中，`test_time` 表示测试次数．Python 实现直接使用 `pow(a, n - 1, n)` 进行模幂运算．
+其中，`test_time` 表示测试次数．C++ 实现使用 `std::uniform_int_distribution` 在区间 $[2,n-2]$ 上均匀选取基底；Python 实现使用 `random.randrange(2, n - 1)` 选取基底，并直接使用 `pow(a, n - 1, n)` 进行模幂运算．[^ref-fermat-wiki]
 
 如果 $a^{n-1}\equiv 1\pmod n$，但 $n$ 实际上是合数，则称 $n$ 为以 $a$ 为底的 **Fermat 伪素数**．
 
@@ -181,19 +188,19 @@ $n$ 也不一定是素数．
 
 ### Miller–Rabin 素性测试
 
-**Miller–Rabin 素性测试**（Miller–Rabin primality test）是对 Fermat 素性测试的改进．它结合了费马小定理和二次探测定理，具有较高的测试效率和可靠性．
+**Miller–Rabin 素性测试**（Miller–Rabin primality test）是对 Fermat 素性测试的改进．它结合了费马小定理和二次探测定理，具有较高的测试效率和可靠性．[^ref-bill] [^ref-rabin]
 
 Miller–Rabin 素性测试可以采用随机基底进行概率性测试，也可以采用指定范围内的全部基底进行确定性测试．
 
-在概率性测试中，随机选取若干个基底进行检验．对于任意奇合数 $n>9$，单轮测试将其误判为可能素数的概率至多为 $1/4$．因此，独立随机选取多个基底可以显著降低误判概率．
+在概率性测试中，随机选取若干个基底进行检验．对于任意奇合数 $n>9$，单轮测试将其误判为可能素数的概率至多为 $\dfrac{1}{4}$．因此，独立随机选取多个基底可以显著降低误判概率．
 
 在确定性测试中，可以利用已经得到证明的广义 Riemann 猜想（GRH），结合 Bach 给出的显式界，得到一个有限的基底范围．遍历该范围内的全部整数，就可以确定输入数字的素性[^deterministic-proof]．
 
-这里所使用的 GRH 指关于所有模数、所有 Dirichlet 特征对应的 Dirichlet $L$-函数的广义 Riemann 猜想．
+这里所使用的 GRH 指关于所有模数、所有 Dirichlet 特征对应的 Dirichlet $L$-函数的广义 Riemann 猜想．该版本的 GRH 已得到 Lean 形式化证明，并经过独立证明检查器验证[^grh-proof]．
 
 **复杂度分析**
 
-在不考虑大整数乘法复杂度时，对数 $n$ 进行 $k$ 轮 Miller–Rabin 测试，需要进行 $O(k\log n)$ 次模乘运算．
+在不考虑大整数乘法复杂度时，对整数 $n$ 进行 $k$ 轮 Miller–Rabin 测试，需要进行 $O(k\log n)$ 次模乘运算．
 
 对于高精度整数，每次模乘运算涉及 $O(\log n)$ 位整数．采用普通乘法时，时间复杂度为
 
@@ -201,7 +208,7 @@ $$
 O(k\log^3 n).
 $$
 
-利用 FFT 等快速乘法技术，可以将时间复杂度优化到
+利用 FFT 等快速乘法技术，可以将时间复杂度优化到[^ref-mr-complexity]
 
 $$
 O(k\log^2 n\log\log n\log\log\log n).
@@ -307,12 +314,12 @@ $$
   a^{u\cdot 2^s}\equiv n-1\pmod n,
   $$
 
-  则当前轮测试可以直接通过，因为之后的平方操作会得到 $1$．
+  则之后的平方操作都会得到 $1$，可以直接通过本轮测试．
 
 - 如果出现
 
   $$
-  a^{u\cdot 2^s}\not\equiv n-1\pmod n
+  a^{u\cdot 2^s}\not\equiv\pm1\pmod n
   $$
 
   且
@@ -330,16 +337,21 @@ $$
     === "C++"
 
         ```cpp
+        #include <random>
+
         bool millerRabin(int n, int test_time) {
           if (n < 3 || n % 2 == 0) return n == 2;
           if (n % 3 == 0) return n == 3;
 
+          static std::mt19937 rng(std::random_device{}());
+
           int u = n - 1, t = 0;
           while (u % 2 == 0) u /= 2, ++t;
 
+          std::uniform_int_distribution<int> dist(2, n - 2);
           for (int i = 0; i < test_time; ++i) {
             // 随机选取 [2, n-2] 中的基底
-            int a = rand() % (n - 3) + 2;
+            int a = dist(rng);
             int v = quickPow(a, u, n);
 
             if (v == 1) continue;
@@ -393,7 +405,7 @@ $$
 
 上面的实现采用随机选取基底的方式，仍然属于概率性测试．若选择固定次数的随机测试，测试通过后只能将数字判定为可能素数．
 
-可以证明[^millerrabinproof]，对于任意奇合数 $n>9$，随机均匀选取一个基底 $a$ 时，该基底通过 Miller–Rabin 测试的概率至多为 $1/4$．
+可以证明[^millerrabinproof]，对于任意奇合数 $n>9$，随机均匀选取一个基底 $a$ 时，该基底通过 Miller–Rabin 测试的概率至多为 $\dfrac{1}{4}$．
 
 因此，独立随机选取 $k$ 个基底后，合数通过全部测试的概率不超过
 
@@ -668,7 +680,7 @@ $$
     2^{\ell-1}\gcd(u,p-1).
     $$
 
-    **第三步：证明 $|S'|\le\varphi(n)/4$．**
+    **第三步：证明 $|S'|\le\dfrac{\varphi(n)}{4}$．**
 
     结合欧拉函数的表达式
 
@@ -696,7 +708,7 @@ $$
     {2^{\ell-1}\gcd(u,p_i-1)}
     $$
 
-    都是偶数．因此，$\varphi(n)/|S'|$ 是一个整数．
+    都是偶数．因此，$\dfrac{\varphi(n)}{|S'|}$ 是一个整数．
 
     假设
 
@@ -808,7 +820,17 @@ $$
     |S|\le |S'|\le\frac14\varphi(n).
     $$
 
-    因此，对于所有奇合数 $n>9$，随机选择的一个基底通过 Miller–Rabin 测试的概率至多为 $1/4$．
+    实际实现从区间 $[2,n-2]$ 中均匀选取基底，该区间包含 $n-3$ 个整数．由于 $1$ 和 $n-1$ 分别满足 Miller–Rabin 测试的两种通过条件，均属于 $S$，但不在取样区间内，因此区间内通过测试的基底数量至多为 $|S|-2$．于是，单轮测试通过的概率至多为
+
+    $$
+    \begin{aligned}
+    P&\le\frac{|S|-2}{n-3}\\
+    &\le\frac{\varphi(n)/4-2}{n-3}\\
+    &\le\frac14.
+    \end{aligned}
+    $$
+
+    最后一个不等式由 $\varphi(n)\le n-1$ 得到．因此，对于所有奇合数 $n>9$，单轮测试将其误判为可能素数的概率至多为 $\dfrac{1}{4}$．
 
     独立进行 $k$ 轮测试后，误判概率至多为
 
@@ -818,9 +840,9 @@ $$
 
 **基于 GRH 的确定性 Miller–Rabin 测试**
 
-在 GRH 得到证明后，可以将 Miller–Rabin 测试转化为确定性算法．
+由于广义 Riemann 猜想（GRH）已经得到证明，结合 Bach 给出的显式界，可以将 Miller–Rabin 测试转化为确定性算法．
 
-Eric Bach 在 1990 年给出了素性测试所需的显式上界．根据其结果，对于任意奇合数 $n$，存在一个不超过 $2\ln^2 n$ 的 Miller–Rabin 见证[^deterministic-proof]．
+Eric Bach 在 1990 年给出了素性测试所需的显式上界．根据其结果，对于任意奇合数 $n$，都存在一个不超过 $2\ln^2 n$ 的素数基底 $a$，使得 $a$ 是 $n$ 的 Miller–Rabin 见证[^deterministic-proof]．
 
 因此，对于待判定的整数 $n$，先处理 $n<2$、$n=2$ 和偶数等特殊情况，然后只需要依次检验区间
 
@@ -842,7 +864,7 @@ $$
 
 因此，这种方法能够在不使用随机数的情况下确定任意整数的素性．
 
-这里的测试范围需要遍历全部整数，不能只随机抽取其中的一部分．计算时，$\ln$ 表示自然对数．
+这里可以遍历测试范围内的全部整数作为基底，也可以只检验其中的全部素数作为基底．这是因为 Bach 给出的界保证该范围内存在素数见证．计算时，$\ln$ 表示自然对数．
 
 由于基底数量为 $O(\log^2 n)$，每个基底所需的模幂运算需要 $O(\log n)$ 次模乘，因此该确定性算法在不考虑乘法复杂度时的总时间复杂度为
 
@@ -882,7 +904,7 @@ $$
 
 即前 $12$ 个素数，检验 $[1,2^{64})$ 范围内的整数．
 
-这些固定基底集合给出了相应有限范围内的确定性测试方法，实际使用时通常比遍历 GRH 给出的基底范围更加高效．
+这些固定基底集合给出了相应有限范围内的确定性测试方法，实际使用时通常比遍历 GRH 给出的基底范围更加高效．上述 C++ 参考实现使用 `int` 类型，仅用于展示算法流程．若要处理完整的 64 位整数范围，需要将相关变量改为 `uint64_t`，并在支持该扩展的编译器中使用 `unsigned __int128` 等方式实现不会溢出的模乘运算．
 
 注意，如果使用上面的数列作为基底判断 $n$ 的素性：
 
@@ -900,7 +922,7 @@ $$
 
 ???+ abstract "反素数"
 
-    对于某个正整数 $n$，如果任何小于 $n$ 的正整数的约数个数都小于 $n$ 的约数个数，则称 $n$ 为**反素数**（anti-prime, a.k.a. highly composite number）．
+    对于某个正整数 $n$，如果任何小于 $n$ 的正整数的约数个数都小于 $n$ 的约数个数，则称 $n$ 为**反素数**（anti-prime, a.k.a. highly composite number）．[^ref-highly-composite]
 
 ???+ warning "注意"
 
@@ -908,7 +930,7 @@ $$
 
 ### 过程
 
-那么，如何求解反素数呢？
+那么，如何求解反素数呢？[^ref-antiprime-blog]
 
 既然需要计算约数个数，首先考虑素因子分解．将 $n$ 分解为
 
@@ -984,9 +1006,7 @@ $$
 
 2. 当前枚举的素数已经超出允许范围，结束当前分支．
 
-3. 当前因子数已经超过题目要求的约数个数，结束当前分支．
-
-4. 当前因子数恰好等于目标约数个数时，判断并更新答案．
+3. 对于当前构造出的数 $x$，计算其约数个数 $d(x)$，并与当前最优答案比较．如果 $d(x)$ 更大，或者约数个数相同但 $x$ 更小，则更新答案．
 
 DFS 中不断枚举当前素数的指数，并递归处理下一个素数即可．
 
@@ -998,7 +1018,7 @@ DFS 中不断枚举当前素数的指数，并递归处理下一个素数即可�
 
 ??? note "解题思路"
 
-    对于这种题目，可以将当前约数个数作为 DFS 的搜索状态．每次选择一个素数及其指数，更新当前数值和约数个数．当约数个数达到目标值时，更新最小答案．
+    对于这种题目，可以将当前约数个数作为 DFS 的搜索状态．每次选择一个素数及其指数，更新当前数值和约数个数．如果约数个数超过目标值，则结束当前分支；当约数个数达到目标值时，更新最小答案．
 
 ??? note "参考代码"
 
@@ -1008,13 +1028,13 @@ DFS 中不断枚举当前素数的指数，并递归处理下一个素数即可�
 
 ???+ example "[ZOJ 2562 More Divisors](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827366061)"
 
-    求不超过 $n$ 的数中，约数个数最多的数．
+    求不超过 $n$ 的数中，约数个数最多的数．如果有多个数的约数个数相同，则输出其中最小的数．
 
 ??? note "解题思路"
 
-    思路与上一题类似，只需要修改 DFS 的答案更新和终止条件．
+    思路同上．对于每个不超过 $n$ 的候选数，计算其约数个数，并维护约数个数最多且数值最小的答案．更新条件为约数个数更大，或者约数个数相同且当前数值更小．
 
-    需要注意数据范围，使用 32 位整数可能发生溢出，应根据题目范围选择合适的数据类型．
+    注意这样的题目的数据范围，32 位整数可能溢出．
 
 ??? note "参考代码"
 
@@ -1024,34 +1044,28 @@ DFS 中不断枚举当前素数的指数，并递归处理下一个素数即可�
 
 ## 参考资料与注释
 
-1. Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006), pp. 197–217.
+[^ref-matrix67]: [数论部分第一节：素数与素性测试](http://www.matrix67.com/blog/archives/234)．
 
-2. [数论部分第一节：素数与素性测试](http://www.matrix67.com/blog/archives/234)
+[^ref-primality-wiki]: [Primality test - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)．
 
-3. [Miller–Rabin 与 Pollard–Rho 学习笔记 - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
+[^ref-fermat-wiki]: [Fermat pseudoprime - Wikipedia](https://en.wikipedia.org/wiki/Fermat_pseudoprime)．
 
-4. [Primality test - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)
+[^ref-bill]: [Miller–Rabin 与 Pollard–Rho 学习笔记 - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)．
 
-5. [Fermat pseudoprime - Wikipedia](https://en.wikipedia.org/wiki/Fermat_pseudoprime)
+[^ref-rabin]: [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)．
 
-6. [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)
+[^ref-mr-complexity]: [Miller–Rabin primality test - Complexity](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Complexity)．
 
-7. [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
+[^ref-antiprime-blog]: [桃子的算法笔记——反素数详解（acm/OI）](https://zhuanlan.zhihu.com/p/41759808)．
 
-8. [Highly composite number - Wikipedia](https://en.wikipedia.org/wiki/Highly_composite_number)
-
-9. Eric Bach, "[Explicit bounds for primality testing and related problems](https://doi.org/10.1090/S0025-5718-1990-1023756-8)", Mathematics of Computation, 55:191 (1990), pp. 355–380.
-
-10. Andrew W. Sutherland, "[RH Lean proof: verification files](https://math.mit.edu/~drew/grh/)", Massachusetts Institute of Technology, 2026.
-
-11. Lean and Mathlib communities, "[Lean verification of the Riemann Hypothesis](https://leanprover-community.github.io/blog/posts/riemann-hypothesis/)", 2026.
+[^ref-highly-composite]: [Highly composite number - Wikipedia](https://en.wikipedia.org/wiki/Highly_composite_number)．
 
 [^inf-fermat-pp]: Pomerance, Carl, John L. Selfridge, and Samuel S. Wagstaff. "The pseudoprimes to $25\cdot10^9$." Mathematics of Computation 35, no. 151 (1980): 1003–1026. 该文讨论了 Fermat 伪素数及其更严格的变体．
 
 [^millerrabinproof]: 本结论及其证明参考了 Crandall, Richard, and Carl Pomerance. *Prime Numbers: A Computational Perspective*. New York, NY: Springer New York, 2005, 第 3.5 节．
 
-[^deterministic-proof]: Bach, Eric. "[Explicit bounds for primality testing and related problems](https://doi.org/10.1090/S0025-5718-1990-1023756-8)." Mathematics of Computation 55:191 (1990): 355–380．该文在广义 Riemann 猜想成立的条件下，给出了确定性素性测试所需见证的显式上界．
+[^deterministic-proof]: Bach, Eric. "[Explicit bounds for primality testing and related problems](https://doi.org/10.1090/S0025-5718-1990-1023756-8)." Mathematics of Computation 55:191 (1990): 355–380．该文证明，在广义 Riemann 猜想成立时，合数存在不超过 $2\ln^2 n$ 的素性见证．另可参考 Lamzouri, Youness, Xiannan Li, and Kannan Soundararajan, "[Conditional bounds for the least quadratic non-residue and related problems](https://arxiv.org/abs/1309.3595)", 2016, §1.1，其中回顾了 GRH 下关于子群外最小素数的显式界．结合已经得到证明的 Dirichlet $L$-函数版本 GRH，该上界可以无条件使用．
 
-[^grh-proof]: Andrew W. Sutherland, "[RH Lean proof: verification files](https://math.mit.edu/~drew/grh/)"．该核验记录列出了已验证的 Dirichlet $L$-函数相关定理，覆盖所有模数和所有 Dirichlet 特征，并记录了 Lean 内核及独立检查工具的验证结果．这里使用的 GRH 范围为 Dirichlet $L$-函数版本，不包括一般的 Dedekind zeta 函数、Hecke $L$-函数及 automorphic $L$-函数．
+[^grh-proof]: Andrew W. Sutherland, "[RH Lean proof: verification files](https://math.mit.edu/~drew/grh/)"；Michael Rubinstein, "[An independent check of the Lean proof of RH and GRH](https://mrubinst.github.io/grh-lean-verification/)"．相关记录给出了 Dirichlet $L$-函数版本 GRH 的 Lean 定理陈述，以及独立内核对形式化证明的检查结果．这里使用的 GRH 范围为 Dirichlet $L$-函数版本，不包括一般的 Dedekind zeta 函数、Hecke $L$-函数及 automorphic $L$-函数．
 
 [^witnesses]: 更多类似的结果请参考 [Deterministic variant of the Miller–Rabin primality test](https://miller-rabin.appspot.com/#)．
