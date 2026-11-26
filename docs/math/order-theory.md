@@ -113,7 +113,7 @@
 在无限偏序集中，极大元不一定存在．可用 **Zorn 引理**（Zorn's Lemma）来判断无限偏序集中是否存在极大元．
 
 ???+ note "[Zorn 引理](https://en.wikipedia.org/wiki/Zorn%27s_lemma)"
-    **Zorn 引理** 也被称为 **Kuratowski–Zorn 引理**，其内容为：若非空偏序集的每条链都有上界，则该偏序集存在极大元．
+    **Zorn 引理** 也称为 **Kuratowski–Zorn 引理**，其内容为：若非空偏序集的每条链都有上界，则该偏序集存在极大元．
 
 Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**、**[良序定理](https://en.wikipedia.org/wiki/Well-ordering_theorem)** 等价．
 
@@ -121,7 +121,7 @@ Zorn 引理与 **[选择公理](https://en.wikipedia.org/wiki/Axiom_of_choice)**
 
 我们知道若偏序集的子集存在上（下）确界，则一定唯一．但是这一点并不适用于极大（小）元．例如：考虑偏序集 $S=\{\{0\},\{1\},\{2\},\{0,1\},\{0,2\},\{1,2\}\}$ 和其上的偏序 $\subseteq$，不难发现其有 $3$ 个极大元和 $3$ 个极小元．
 
-我们希望通过向偏序集添加一定的条件来使得若极大（小）元存在则一定唯一，这样我们就可以定义最大（小）元的概念了．
+我们希望给偏序集添加条件，使极大（小）元一旦存在就一定唯一，进而定义最大（小）元．
 
 ???+ note "有向集"
     对预序集 $S$ 和其上的预序 $\preceq$，若 $(\forall~a,b\in S)~~(\exists~c\in S)~~a\preceq c\land b\preceq c$，则称 $\preceq$ 为 $S$ 的一个 **方向**（direction），$S$ 称为 **有向集**（directed set）或 **过滤集**（filtered set）．
@@ -246,7 +246,7 @@ Dilworth 定理与 [Hall 婚配定理](../graph/graph-matching/graph-match.md#ha
     $1\le n \le 1000$，$1\le m \le 1000$，每个格子中的财宝不超过 $10^6$ 块．
     
     ??? note "题解"
-        不考虑网格图的点权，不难发现按给定的规则下在网格图上行走等价于在 DAG 上行走，从而我们可以将其视作 Hasse 图来构造偏序集，进而根据 Dilworth 定理有：**DAG 的最小链覆盖数等于最大的点独立集大小**．
+        不考虑网格图的点权，不难发现按给定的规则下在网格图上行走等价于在 DAG 上行走，从而可以将其视作 Hasse 图，构造偏序集，进而根据 Dilworth 定理有：**DAG 的最小链覆盖数等于最大的点独立集大小**．
         
         因此本题所求即为给定网格图最大点权独立集的点权和．
         

@@ -2,7 +2,7 @@ author: DanJoshua, opsiff, yzy-1, yingqi-z20
 
 ## 定义
 
-由于取消了 **源汇点** 的定义，我们需要对 **割** 的概念进行重定义．
+由于取消了 **源汇点** 的定义，需要重新定义 **割**．
 
 （其实是网络流部分有关割的定义与维基百科不符，只是由于一般接触到的割都是「有源汇的最小割问题」，因此这个概念也就约定俗成了．）
 
@@ -28,7 +28,7 @@ author: DanJoshua, opsiff, yzy-1, yingqi-z20
 
 ### 引入
 
-Stoer–Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是一种通过 **递归** 的方式来解决 **无向正权图** 上的全局最小割问题的算法．
+Stoer–Wagner 算法在 1995 年由*Mechthild Stoer*与*Frank Wagner*提出，是一种用 **递归** 解决 **无向正权图** 上全局最小割问题的算法．
 
 ### 性质
 

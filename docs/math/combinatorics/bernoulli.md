@@ -1,4 +1,4 @@
-伯努利数 $B_n$ 是一个与数论有密切关联的有理数序列．前几项被发现的伯努利数分别为：
+伯努利数 $B_n$ 是一个与数论有密切关联的有理数序列．前几项伯努利数分别为：
 
 $B_0=1,B_1=-\frac{1}{2},B_2=\frac{1}{6},B_3=0,B_4=-\frac{1}{30},\dots$
 
@@ -56,7 +56,7 @@ $$
 
 这个证明方法来自 Concrete Mathematics 6.5 BERNOULLI NUMBER．
 
-运用二项式系数的恒等变换和归纳法进行证明：
+用二项式系数的恒等变换和归纳法证明：
 
 $$
 \begin{aligned}
@@ -78,7 +78,7 @@ n^{m+1}&=\sum_{j=0}^{m}\binom{m+1}{j}S_j(n)\\
 \end{aligned}
 $$
 
-尝试在式子的右边加上 $\binom{m+1}{m}\hat{S}_m(n)-\binom{m+1}{m}\hat{S}_m(n)$ 再进行化简，可以得到：
+尝试在式子的右边加上 $\binom{m+1}{m}\hat{S}_m(n)-\binom{m+1}{m}\hat{S}_m(n)$ 再化简，可得：
 
 $$
 n^{m+1}=\sum_{j=0}^{m}\binom{m+1}{j}\hat{S}_j(n)+(m+1)(S_m(n)-\hat{S}_m(n))
@@ -104,7 +104,7 @@ n^{m+1}&=\sum_{j=0}^{m}\binom{m+1}{j}\frac{1}{j+1}\sum_{k=0}^{j}\binom{j+1}{j-k}
 \end{aligned}
 $$
 
-对两个求和符号进行交换，可以得到：
+交换两个求和符号，可得：
 
 $$
 n^{m+1}=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\sum_{j=k}^{m}\binom{m+1}{j}\binom{j}{k}B_{j-k}+(m+1)\Delta
@@ -125,7 +125,7 @@ n^{m+1}&=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\sum_{j=k}^{m}\binom{m+1}{k}\binom{m-k
 \end{aligned}
 $$
 
-将所有的 $j-k$ 用 $j$ 代替，那么就可以得到：
+将所有 $j-k$ 用 $j$ 代替，可得：
 
 $$
 n^{m+1}=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\binom{m+1}{k}\sum_{j=0}^{m-k}\binom{m-k+1}{j}B_{j}+(m+1)\Delta

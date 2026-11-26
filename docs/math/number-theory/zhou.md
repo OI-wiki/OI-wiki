@@ -60,7 +60,7 @@ $l$ 共有 $\sqrt n$ 级别种取值，对于每种取值则需要枚举其质�
 
 所以一旦发现 $p_t^2>l$ 就停止转移，记此时的 $t$ 为 $t_l$，则 $\forall t>t_l,g(t,l)=g(t_l,l)-\sum_{i=t_l+1}^{t}f(p_i)$．
 
-预处理质数的 $f$ 值前缀和即可快速求出 $g$，时间复杂度被优化至 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$．
+预处理质数的 $f$ 值前缀和即可快速求出 $g$，时间复杂度优化至 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$．
 
 ### Part 2
 
@@ -80,7 +80,7 @@ $l$ 共有 $\sqrt n$ 级别种取值，所以直接转移复杂度为 $\displays
 
 所以一旦发现 $p_t^2>l$ 就停止转移，记此时的 $t$ 为 $t_l$，之后用到 $h$ 时，把此时的 $h$ 值加上 $\displaystyle\sum_{i=p_{t_l}}^{\min(l,\sqrt n)}[i\in\mathbb P]f(i)$ 即可．
 
-时间复杂度被优化至 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$．
+时间复杂度优化至 $O\left(\dfrac{n^{\frac34}}{\log n}\right)$．
 
 ### 求和
 

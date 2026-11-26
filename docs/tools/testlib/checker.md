@@ -111,7 +111,7 @@ int main(int argc, char* argv[]) {
 1.  它确信标准输出是正确的．如果选手输出比标准输出更优，它会被判成 WA，这不太妙．同时，如果标准输出不合法，也会产生 WA．对于这两种情况，正确的操作都是返回 Fail 状态．
 2.  读入标准输出和选手输出的代码是重复的．在这道题中写两遍读入问题不大，只需要一个 `for` 循环；但是如果有一道题输出很复杂，就会导致你的 checker 结构混乱．重复代码会大大降低可维护性，让你在 debug 或修改格式时变得困难．
 
-读入标准输出和选手输出的方式实际上是完全相同的，这就是我们通常编写一个用流作为参数的读入函数的原因．
+读入标准输出和选手输出的方式完全相同，这就是我们通常编写一个用流作为参数的读入函数的原因．
 
 ### 好的实现
 
@@ -190,7 +190,7 @@ int main(int argc, char* argv[]) {
 注意到这种写法我们同时也检查了标准输出是否合法，这样写 checker 让程序更短，且易于理解和 debug．此种写法也适用于输出 YES（并输出方案什么的），或 NO 的题目．
 
 ???+ note "Note"
-    对于某些限制的检查可以用 `InStream::ensure/ensuref()` 函数更简洁地实现．如上例第 23 至 25 行也可以等价地写成如下形式：
+    用 `InStream::ensure/ensuref()` 函数可以更简洁地检查某些限制．如上例第 23 至 25 行也可以等价地写成如下形式：
     
     ```cpp
     stream.ensuref(!used[v - 1], "vertex %d was used twice", v);
@@ -239,7 +239,7 @@ int main(int argc, char* argv[]) {
 
 ## 使用方法
 
-通常我们不需要本地运行它，评测工具/OJ 会帮我们做好这一切．但是如果需要的话，以以下格式在命令行运行：
+通常我们不需要本地运行它，评测工具/OJ 会帮我们做好这一切．如果需要，可按以下格式在命令行运行：
 
 ```bash
 ./checker <input-file> <output-file> <answer-file> [<report-file> [<-appes>]]
@@ -247,7 +247,7 @@ int main(int argc, char* argv[]) {
 
 ## 一些预设的 checker
 
-很多时候我们的 checker 完成的工作很简单（如判断输出的整数是否正确，输出的浮点数是否满足精度要求），[Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers) 已经为我们给出了这些 checker 的实现，我们可以直接使用．
+很多时候我们的 checker 完成的工作很简单（如判断输出的整数是否正确，输出的浮点数是否满足精度要求），[Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers) 已实现这些 checker，可以直接使用．
 
 一些常用的 checker 有：
 

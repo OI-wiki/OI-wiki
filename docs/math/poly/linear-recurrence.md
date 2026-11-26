@@ -10,7 +10,7 @@ $$
 
 其中 $c_j$ 不全为零，我们的目标是在给出初值 $a_0,\dots ,a_{d-1}$ 和递推式中的 $c_1,\dots ,c_d$ 后求出 $a_k$．如果 $k\gg d$，我们想要更快速的算法．
 
-这里 $\left(a_j\right)_{j\geq 0}$ 被称为 $d$ 阶的常系数齐次线性递推数列．
+这里 $\left(a_j\right)_{j\geq 0}$ 称为 $d$ 阶的常系数齐次线性递推数列．
 
 ### Fiduccia 算法
 
@@ -181,7 +181,7 @@ $$
 \left\lbrack x^{\left\lbrack L-\deg Q,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)Q(-x)}
 $$
 
-那么对于 $V(x^2)=Q(x)Q(-x)$ 而言，我们只需求出
+那么对 $V(x^2)=Q(x)Q(-x)$，我们只需求出
 
 $$
 \left\lbrack x^{\left\lbrack \lceil (L-\deg Q)/2 \rceil,\lceil (L+\deg Q+1)/2 \rceil\right)}\right\rbrack \frac{1}{V(x)}

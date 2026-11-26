@@ -50,7 +50,7 @@ id = q.push(1);
 -   `top()`: 返回堆顶元素．
 -   `size()` 返回元素个数．
 -   `empty()` 返回是否为空．
--   `modify(point_iterator, const key)`: 把迭代器位置的 `key` 修改为传入的 `key`，并对底层储存结构进行排序．
+-   `modify(point_iterator, const key)`: 把迭代器位置的 `key` 修改为传入的 `key`，并对底层储存结构排序．
 -   `erase(point_iterator)`: 把迭代器位置的键值从堆中擦除．
 -   `join(__gnu_pbds::priority_queue &other)`: 把 `other` 合并到 `*this` 并把 `other` 清空．
 
@@ -111,7 +111,7 @@ int main() {
 
 在上述示例以及一些实践中（如使用本章的 pb-ds 堆来编写单源最短路等算法），常常需要保存并使用堆的迭代器（如 `__gnu_pbds::priority_queue<int>::point_iterator` 等）．
 
-可是例如对于 `__gnu_pbds::priority_queue` 中不同的 Tag 参数，其底层实现并不相同，迭代器的失效条件也不一样，根据\_\_gnu\_pbds 库的设计，以下三种由上至下派生的情况：
+`__gnu_pbds::priority_queue` 的不同 Tag 参数对应不同的底层实现，迭代器的失效条件也不同．根据\_\_gnu\_pbds 库的设计，有以下三种由上至下派生的情况：
 
 1.  基本失效保证（basic\_invalidation\_guarantee）：即不修改容器时，点类型迭代器（point\_iterator）、指针和引用（key/value）**保持** 有效．
 

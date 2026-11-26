@@ -60,7 +60,7 @@ author: 0x03A6, abc1763613206, auuuu4, CCXXXI, Conless, Enter-tainer, fanenr, ha
 
 ### 插入
 
-红黑树的插入操作与普通的 BST 类似，对于红黑树来说，新插入的节点初始为红色，完成插入后需根据插入节点及相关节点的状态进行修正以满足上文提到的四条性质．
+红黑树的插入操作与普通 BST 类似，新插入的节点初始为红色，完成插入后需根据插入节点及相关节点的状态进行修正以满足上文提到的四条性质．
 
 ???+ note "实现"
     ```cpp
@@ -254,7 +254,7 @@ $p$、$c$ 的颜色不确定，$s$ 为黑色，$d$ 为红色．
 
 -   [`linux/lib/rbtree.c`](https://elixir.bootlin.com/linux/latest/source/lib/rbtree.c)
 
-Linux 中的红黑树所有操作均使用循环迭代进行实现，保证效率的同时又增加了大量的注释来保证代码可读性，十分建议读者阅读学习．Linux 内核中的红黑树使用非常广泛，这里仅列举几个经典案例．
+Linux 中的红黑树所有操作均使用循环迭代实现，保证效率的同时，用大量注释保证代码可读性，十分建议读者阅读学习．Linux 内核中的红黑树使用非常广泛，这里仅列举几个经典案例．
 
 -   [CFS 非实时任务调度](https://www.kernel.org/doc/html/latest/scheduler/sched-design-CFS.html)
 
@@ -271,7 +271,7 @@ Linux 中的红黑树所有操作均使用循环迭代进行实现，保证效�
 -   [`nginx/src/core/ngx_rbtree.h`](https://github.com/nginx/nginx/blob/master/src/core/ngx_rbtree.h)
 -   [`nginx/src/core/ngx_rbtree.c`](https://github.com/nginx/nginx/blob/master/src/core/ngx_rbtree.c)
 
-nginx 中的用户态定时器是通过红黑树实现的．在 nginx 中，所有 timer 节点都由一棵红黑树进行维护，在 worker 进程的每一次循环中都会调用 `ngx_process_events_and_timers` 函数，在该函数中就会调用处理定时器的函数 `ngx_event_expire_timers`，每次该函数都不断地从红黑树中取出时间值最小的，查看它们是否已经超时，然后执行它们的函数，直到取出的节点的时间没有超时为止．
+nginx 的用户态定时器用红黑树实现，所有 timer 节点都由一棵红黑树维护，在 worker 进程的每一次循环中都会调用 `ngx_process_events_and_timers` 函数，在该函数中就会调用处理定时器的函数 `ngx_event_expire_timers`，每次该函数都不断地从红黑树中取出时间值最小的，查看它们是否已经超时，然后执行它们的函数，直到取出的节点的时间没有超时为止．
 
 关于 nginx 中红黑树的源码分析公开资源很多，读者可以自行查找学习．
 

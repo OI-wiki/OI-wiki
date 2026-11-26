@@ -29,7 +29,7 @@
 ![](./images/compiler4.png)
 
 ??? note "对部分老版本系统的提示"
-    部分老版本系统只能手动修改变量的文本值，那么需要在变量的值的末尾插入一个 **半角分号**，再将可执行文件所在的目录粘贴到这个半角分号的后面，如图所示：
+    部分老版本系统只能手动修改变量的文本值，则需在变量值末尾插入一个 **半角分号**，再将可执行文件所在的目录粘贴到这个半角分号的后面，如图所示：
     
     ![](./images/compiler5.png)
 
@@ -79,7 +79,7 @@ gdb --version
 ??? warning "不要修改全局 Path"
     不建议将 `C:\msys64\ucrt64\bin` 添加到 Windows 的全局 `Path`．MSYS2 UCRT64 终端启动时已经会为当前环境设置正确的 `PATH`；直接使用对应的 MSYS2 终端可以避免不同环境的工具链和运行库相互混用．
     
-    需要注意的是，在不把 UCRT64 的 `bin` 目录加入 Windows 全局 `Path` 的情况下，也不应直接在普通的 PowerShell 或 CMD 中调用 MSYS2 安装的 GCC．例如，GCC 在编译过程中会启动 `cc1.exe` 等内部程序，而这些程序依赖的 DLL 位于 UCRT64 环境的 `bin` 目录中；如果没有由 MSYS2 UCRT64 终端预先设置好环境变量，就可能因找不到依赖 DLL 而启动失败．因此，使用这套 GCC 工具链时，应从 MSYS2 UCRT64 终端或继承了该终端环境变量的终端中运行编译命令．
+    注意，如果不将 UCRT64 的 `bin` 目录加入 Windows 全局 `Path`，也不应直接在普通的 PowerShell 或 CMD 中调用 MSYS2 安装的 GCC．例如，GCC 在编译过程中会启动 `cc1.exe` 等内部程序，而这些程序依赖的 DLL 位于 UCRT64 环境的 `bin` 目录中；如果没有由 MSYS2 UCRT64 终端预先设置好环境变量，就可能因找不到依赖 DLL 而启动失败．因此，使用这套 GCC 工具链时，应从 MSYS2 UCRT64 终端或继承了该终端环境变量的终端中运行编译命令．
 
 #### Scoop 安装
 
@@ -160,7 +160,7 @@ Python 的实现也有很多[^pythonimpl]，以 CPython 3 为例，参见 [Downl
 
 访问 [LLVM](https://github.com/llvm/llvm-project/releases/latest) 的下载页面，选择 LLVM-\*-win64.exe 下载．
 
-如果你的网络质量不佳，你也可以选择访问 [清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LatestRelease/) 进行下载．
+如果网络质量不佳，也可以访问 [清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LatestRelease/) 进行下载．
 
 打开 .exe 文件，安装时勾选 Add LLVM to system PATH for current user，随后一直点击下一步即可安装完成．
 

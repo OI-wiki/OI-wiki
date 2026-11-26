@@ -24,13 +24,13 @@ int main(int argc, char* argv[]) {
 
 有人说写 generator 不需要用 Testlib，它在这没什么用．实际上这是个不正确的想法．一个好的 generator 应该满足这一点：**在任何环境下对于相同输入它给出相同输出**．写 generator 就避免不了生成随机值，平时我们用的 `rand()` 或 C++11 的 `mt19937/uniform_int_distribution`，当操作系统不同、使用不同编译器编译、不同时间运行等，它们的输出都可能不同（对于非常常用的 `srand(time(nullptr))`，这是显然的），而这就会给生成数据带来不确定性．
 
-需要注意的是，一旦使用了 Testlib，就不能再使用标准库中的 `srand()`，`rand()` 等随机数函数，否则在编译时会报错．因此，**请确保所有与随机相关的函数均使用 Testlib 而非标准库提供的．**
+注意，一旦使用了 Testlib，就不能再使用标准库中的 `srand()`，`rand()` 等随机数函数，否则在编译时会报错．因此，**请确保所有与随机相关的函数均使用 Testlib 而非标准库提供的．**
 
 而 Testlib 中的随机值生成函数则保证了相同调用会输出相同值，与 generator 本身或平台均无关．另外，它给生成各种要求的随机值提供了很大便利，如 `rnd.next("[a-z]{1,10}")` 会生成一个长度在 $[1,10]$ 范围内的串，每个字符为 `a` 到 `z`，很方便吧！
 
 ## Testlib 能做什么？
 
-在一切之前，先执行 `registerGen(argc, argv, 1)` 初始化 Testlib（其中 `1` 是使用的 generator 版本，通常保持不变），然后我们就可以使用 `rnd` 对象来生成随机值．随机数种子取自命令行参数的哈希值，对于某 generator `g.cpp`，`g 100`(Unix-Like) 和 `g.exe "100"`(Windows) 将会有相同的输出，而 `g 100 0` 则与它们不同．
+首先执行 `registerGen(argc, argv, 1)` 初始化 Testlib（其中 `1` 是使用的 generator 版本，通常保持不变），然后就可以使用 `rnd` 对象生成随机值．随机数种子取自命令行参数的哈希值，对于某 generator `g.cpp`，`g 100`(Unix-Like) 和 `g.exe "100"`(Windows) 将会有相同的输出，而 `g 100 0` 则与它们不同．
 
 `rnd` 对象的类型为 `random_t`，你可以建立一个新的随机值生成对象，不过通常你不需要这么做．
 
@@ -99,7 +99,7 @@ for (int i = 0; i + 1 < n; i++)
 
 ## 一次性生成多组数据
 
-跟不使用 Testlib 编写的时候一样，每次输出前重定向输出流就好，不过 Testlib 提供了一个辅助函数 `startTest(test_index)`，它帮助你将输出流重定向到 `test_index` 文件．
+与不使用 Testlib 时一样，每次输出前重定向输出流就好，不过 Testlib 提供了一个辅助函数 `startTest(test_index)`，它帮助你将输出流重定向到 `test_index` 文件．
 
 ## 一些注意事项
 
@@ -111,7 +111,7 @@ for (int i = 0; i + 1 < n; i++)
 
 在之前，我们通常使用类似 `int n = atoi(argv[3]);` 的代码，但是这样并不好．有以下几点原因：
 
--   不存在第三个命令行参数的时候是不安全的；
+-   不存在第三个命令行参数时不安全；
 -   第三个命令行参数可能不是有效的 32 位整数．
 
 现在，你可以这样写：`int n = opt<int>(3)`．与此同时，你也可以使用 `int64_t m = opt<int64_t>(1);`，`bool t = opt<bool>(2);` 和 `string s = opt(4);` 等．

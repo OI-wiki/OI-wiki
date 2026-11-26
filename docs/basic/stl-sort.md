@@ -13,7 +13,7 @@
 
 ### qsort 与 bsearch 的比较函数
 
-qsort 函数有四个参数：数组名、元素个数、元素大小、比较规则．其中，比较规则通过指定比较函数来实现，指定不同的比较函数可以实现不同的排序规则．
+qsort 函数有四个参数：数组名、元素个数、元素大小、比较规则．其中，比较规则由指定的比较函数决定，指定不同的比较函数可以实现不同的排序规则．
 
 比较函数的参数限定为两个类型为 `const void *` 的参数．返回值规定为正数、负数和 0．
 
@@ -95,7 +95,7 @@ std::nth_element(first, nth, last);
 std::nth_element(first, nth, last, cmp);
 ```
 
-它重排 `[first, last)` 中的元素，使得 `nth` 所指向的元素被更改为 `[first, last)` 排好序后该位置会出现的元素．这个新的 `nth` 元素前的所有元素小于或等于新的 `nth` 元素后的所有元素．
+它重排 `[first, last)` 中的元素，将 `nth` 所指向的元素更改为 `[first, last)` 排好序后该位置会出现的元素．这个新的 `nth` 元素前的所有元素小于或等于新的 `nth` 元素后的所有元素．
 
 具体实现由标准库决定，常见实现采用 [快速选择](https://en.wikipedia.org/wiki/Quickselect) 或 [内省选择](https://en.wikipedia.org/wiki/Introselect) 等算法，每次划分后只继续处理包含目标位置的一侧．
 
@@ -136,7 +136,7 @@ std::partial_sort(first, mid, last, cmp);
 
 原理：
 
-`std::partial_sort` 的思想是：对原始容器内区间为 `[first, mid)` 的元素执行 `make_heap()` 操作，构造一个大根堆，然后将 `[mid, last)` 中的每个元素和 `first` 进行比较，保证 `first` 内的元素为堆内的最大值．如果小于该最大值，则互换元素位置，并对 `[first, mid)` 内的元素进行调整，使其保持最大堆序．比较完之后，再对 `[first, mid)` 内的元素做一次堆排序 `sort_heap()` 操作，使其按增序排列．注意，堆序和增序是不同的．
+`std::partial_sort` 的思想是：对原始容器内区间为 `[first, mid)` 的元素执行 `make_heap()` 操作，构造一个大根堆，然后将 `[mid, last)` 中的每个元素与 `first` 比较，保证 `first` 内的元素为堆内的最大值．如果小于该最大值，则互换元素位置，并调整 `[first, mid)` 内的元素，使其保持最大堆序．比较完之后，再对 `[first, mid)` 内的元素做一次堆排序 `sort_heap()` 操作，使其按增序排列．注意，堆序和增序是不同的．
 
 ## 自定义比较
 
@@ -177,7 +177,7 @@ std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大�
 
 另请参阅：[C++ 中的应用 - 序理论](../math/order-theory.md#c-中的应用)
 
-进行排序的运算符必须满足 [严格弱序](../math/order-theory.md#二元关系)，否则会出现不可预料的情况（如运行时错误、无法正确排序）．
+排序所用的运算符必须满足 [严格弱序](../math/order-theory.md#二元关系)，否则会出现不可预料的情况（如运行时错误、无法正确排序）．
 
 常见的错误做法：
 
@@ -191,6 +191,6 @@ std::sort(da + 1, da + 1 + 10, cmp);  // 使用 cmp 函数进行比较，从大�
 
 ## 参考资料与注释
 
-[^note1]: 因为大部分标准算法默认使用 `operator<` 进行比较．
+[^note1]: 因为大部分标准算法默认用 `operator<` 比较．
 
 [^note2]: [qsort, qsort\_s - cppreference.com](https://en.cppreference.com/c/algorithm/qsort)

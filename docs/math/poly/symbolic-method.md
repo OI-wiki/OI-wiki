@@ -1,6 +1,6 @@
-符号化方法（symbolic method）是将组合对象快速转换成生成函数的一种方法，我们将考虑对于集合上定义的特定运算，然后导出其对应的生成函数的运算．
+符号化方法（symbolic method）是将组合对象快速转换成生成函数的一种方法，我们将考虑集合上定义的特定运算，再导出相应的生成函数运算．
 
-我们称一个组合类（或简称为类）为 $(\mathcal{A},\lvert \cdot \rvert)$，其中 $\mathcal{A}$ 为组合对象的集合，函数 $\lvert \cdot \rvert$ 将每一个组合对象映射为一个非负整数，一般称为大小函数．需要注意的是这个非负整数不能是无限大的．例如对于字符集为 $\lbrace 0,1\rbrace$ 的字符串，可以将字符串的长度设置为其大小函数；对于树或图可将节点的数量设置为其大小函数，注意这并非绝对，也可能将某些特定节点的大小函数设置为 $0$ 等．
+我们称一个组合类（或简称为类）为 $(\mathcal{A},\lvert \cdot \rvert)$，其中 $\mathcal{A}$ 为组合对象的集合，函数 $\lvert \cdot \rvert$ 将每一个组合对象映射为一个非负整数，一般称为大小函数．注意，这个非负整数必须有限．例如对于字符集为 $\lbrace 0,1\rbrace$ 的字符串，可以将字符串的长度设置为其大小函数；对于树或图可将节点的数量设置为其大小函数，注意这并非绝对，也可能将某些特定节点的大小函数设置为 $0$ 等．
 
 本文是基于 Analytic Combinatorics 一书第一章的简化．
 
@@ -98,7 +98,7 @@ Sequence 构造生成了所有可能的组合．
     \end{aligned}
     $$
     
-    可以看到 $\lbrace (a,b)\rbrace ,\lbrace (b,a)\rbrace$ 这样组成部分的顺序不同的元素被生成了，可以认为 Sequence 构造生成了有序的组合．
+    可以看到，上述构造生成了 $\lbrace (a,b)\rbrace ,\lbrace (b,a)\rbrace$ 这样组成部分的顺序不同的元素，可以认为 Sequence 构造生成了有序的组合．
 
 我们定义
 
@@ -117,7 +117,7 @@ $$
 其中 $Q$ 为 Pólya 准逆（quasi-inversion）．
 
 ???+ note "例：有序有根树（ordered rooted tree）"
-    我们可以使用 Sequence 构造来定义有序有根树，即孩子之间的顺序有意义的有根树，设该组合类为 $\mathcal{T}$ 那么一棵树为一个根节点和树的 Sequence，即
+    可以用 Sequence 构造定义有序有根树，即孩子之间的顺序有意义的有根树，设该组合类为 $\mathcal{T}$ 那么一棵树为一个根节点和树的 Sequence，即
     
     $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{SEQ}(\mathcal{T})
@@ -190,10 +190,10 @@ $$
 \end{aligned}
 $$
 
-其中 $\operatorname{Exp}$ 为 Pólya 指数，也被称为 Euler 变换．
+其中 $\operatorname{Exp}$ 为 Pólya 指数，也称为 Euler 变换．
 
 ???+ note "例题 [LOJ 6268. 分拆数](https://loj.ac/p/6268)"
-    **题意**：令 $f(n)$ 表示将 $n$ 进行分拆的方案数，求 $f(1),f(2),\dots,f(10^5)$ 对 $998244353$ 取模的值．
+    **题意**：令 $f(n)$ 表示分拆 $n$ 的方案数，求 $f(1),f(2),\dots,f(10^5)$ 对 $998244353$ 取模的值．
     
     **解**：设全体正整数类为 $\mathcal{I}$，那么 $\mathcal{I}=\operatorname{SEQ}_{\geq 1}(\mathcal{Z})=\mathcal{Z}\times \operatorname{SEQ}(\mathcal{Z})$（下标 $\geq 1$ 为有限制的构造，见后文）．所求即
     
@@ -402,7 +402,7 @@ $$
 
 我们发现 $\mathcal{A}=\mathfrak{K}_k(\mathcal{B})$ 中 $A(z)$ 是关于 $B(z),B(z^2),\dots ,B(z^k)$ 的一个表达式．
 
-需要注意的是对于有限制的构造 $\mathfrak{K}_k(\mathcal{B})$ 并没有要求 $\mathcal{B}_0=\varnothing$．
+注意，对有限制的构造 $\mathfrak{K}_k(\mathcal{B})$ 并没有要求 $\mathcal{B}_0=\varnothing$．
 
 ???+ note "常用有限制的构造"
     $$
