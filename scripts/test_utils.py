@@ -1,9 +1,10 @@
 # Helpers shared by the example code test scripts.
 #
-# `get_files_to_test.py` (for now) and later `correctness_check.py` and
-# `ub-check.py` need the auxiliary files, the example data and the skip marker
-# that belong to a main source file. Keeping the derivation here avoids
-# duplicating it, and avoids importing one entry point script from another one.
+# `correctness_check.py` and `ub-check.py` are given a list of main source files
+# and derive the auxiliary files, the example data and the skip marker from them.
+# Keeping the derivation here avoids duplicating it, and avoids importing one
+# entry point script from another one, which would run the driver code of the
+# imported script as an import side effect.
 
 import os
 
