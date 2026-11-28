@@ -1,6 +1,9 @@
-# Find related files to conduct correctness check and undefined behavior checks.
-# input: changed files (from tj-actions/changed-files, read from the all_changed_files environment variable)
-# output: related files to test (write to $GITHUB_OUTPUT, access by setting env to the output and with os.environ.get())
+# Generate the list of code files to test from the changed files.
+# Input: the changed files reported by tj-actions/changed-files, read from the
+#        `all_changed_files` environment variable.
+# Output: for every supported language, `TEST_<LANG>_FILES` (the space separated
+#         main files to test) and `HAS_<LANG>` (whether the list is not empty),
+#         written to $GITHUB_OUTPUT.
 
 import os
 
@@ -8,25 +11,37 @@ import os
 extnames = [".cpp"]
 
 
-def resolve_mainfile(file):
+def check_availability(file):
     """
-    Resolve a changed source file to the main file it belongs to.
+    Check whether `file` is a main source file that can be tested.
 
-    Variants such as `foo.1.cpp` are tested through their main file `foo.cpp`.
+    Returns the normalized path of the main file, or an empty string when the
+    file should not be tested:
+    - it does not exist;
+    - it does not live in a `code` directory;
+    - it is a variant of a main file (`foo.1.cpp`) whose main file is missing;
+    - a `foo.skip_test` marker file exists next to it.
     """
+    if not os.path.exists(file):
+        return ""
     dirname = os.path.dirname(file)
-    basename, extname = os.path.splitext(os.path.basename(file))
-    if "." in basename:
-        basename = basename.split(".")[0]
+    if "code" not in dirname.split("/"):
+        return ""
+    basename = os.path.basename(file).split(".")[0]
+    extname = os.path.splitext(os.path.basename(file))[1]
+    if os.path.exists(os.path.join(dirname, basename + ".skip_test")):
+        return ""
     return os.path.normpath(os.path.join(dirname, basename + extname))
 
 
-def resolve_mainfiles(example_file):
+def examples2code(example_file):
     """
-    Resolve a changed example data file to the code files using it.
+    Map an example data file back to the code files it belongs to.
 
-    `docs/<...>/examples/<topic>/foo.in` is used by
+    `docs/<...>/examples/<topic>/foo.in` belongs to
     `docs/<...>/code/<topic>/foo.<extname>`, for every supported extension.
+    Returns the code files that can be tested, an empty list when the given path
+    is not an example data file or when no matching code file can be tested.
     """
     dirname = os.path.dirname(example_file)
     basename = os.path.basename(example_file).split(".")[0]
@@ -34,7 +49,12 @@ def resolve_mainfiles(example_file):
     if pos == -1:
         return []
     code_dir = dirname[:pos] + "/code/" + dirname[pos + len("/examples/") :]
-    return [os.path.join(code_dir, basename + extname) for extname in extnames]
+    code_files = []
+    for extname in extnames:
+        code_file = os.path.join(code_dir, basename + extname)
+        if available_file := check_availability(code_file):
+            code_files.append(available_file)
+    return code_files
 
 
 def output(name, value):
@@ -43,84 +63,21 @@ def output(name, value):
         f.write(f"{name}={value}\n")
 
 
-def replace_directory(dirname, old, new):
-    """Replace complete path components without changing directory names."""
-    return os.path.normpath(
-        os.sep.join(new if part == old else part for part in dirname.split(os.sep))
-    )
+if __name__ == "__main__":
+    changed_codes = set()
 
-
-def get_files_to_test(filenames):
-    mainfiles_to_test = set()
-    mainfiles, auxfiles, examples, skiptest = [], [], [], []
-
-    for filename in filenames:
-        dirname, basename, extname = (
-            os.path.dirname(filename),
-            os.path.splitext(os.path.basename(filename))[0],
-            os.path.splitext(filename)[1],
-        )
-        is_code_file = extname in extnames
-
-        # 改动文件是代码文件时测试它的主文件，是测试数据时测试使用它的代码文件
-        if is_code_file:
-            mainfile = resolve_mainfile(filename)
-        elif extname in (".in", ".ans"):
-            if not (code_files := resolve_mainfiles(filename)):
-                continue
-            mainfile = code_files[0]
+    for changed_file in os.environ.get("all_changed_files", "").split():
+        # A changed file is resolved to the main files it belongs to: a code
+        # file through its own main file, example data through the code files
+        # using it.
+        if os.path.splitext(changed_file)[-1] in extnames:
+            if available_file := check_availability(changed_file):
+                changed_codes.add(available_file)
         else:
-            continue
+            changed_codes.update(examples2code(changed_file))
 
-        if mainfile in mainfiles_to_test:
-            continue
-        else:
-            mainfiles_to_test.add(mainfile)
-
-        if is_code_file:
-            temp_auxfiles = []
-            for root, _, files in os.walk(dirname):
-                for file in files:
-                    if file.split(".")[0] == basename.split(".")[0] and file.endswith(
-                        ".cpp"
-                    ):
-                        temp_auxfiles.append(os.path.normpath(os.path.join(root, file)))
-            temp_examples = []
-            for root, _, files in os.walk(
-                replace_directory(dirname, "code", "examples")
-            ):
-                for file in files:
-                    if (
-                        file.split(".")[0] == basename.split(".")[0]
-                        and file.endswith(".in")
-                        and os.path.exists(
-                            os.path.join(root, file.replace(".in", ".ans"))
-                        )
-                    ):
-                        temp_examples.append(os.path.normpath(os.path.join(root, file)))
-        else:
-            temp_auxfiles = []
-            for root, _, files in os.walk(
-                replace_directory(dirname, "examples", "code")
-            ):
-                for file in files:
-                    if file.split(".")[0] == basename.split(".")[0] and file.endswith(
-                        ".cpp"
-                    ):
-                        temp_auxfiles.append(os.path.normpath(os.path.join(root, file)))
-            temp_examples = [os.path.normpath(os.path.join(dirname, basename + ".in"))]
-
-        temp_skiptest = False
-        if os.path.exists(os.path.join(dirname, basename + ".skip_test")):
-            temp_skiptest = True
-
-        mainfiles.append(mainfile)
-        auxfiles.append(temp_auxfiles)
-        examples.append(temp_examples)
-        skiptest.append(temp_skiptest)
-
-    output("files_to_test", (mainfiles, auxfiles, examples, skiptest))
-
-
-changed_files = os.environ.get("all_changed_files", "").split()
-get_files_to_test(changed_files)
+    for extname in extnames:
+        language = extname[1:].upper()
+        files = sorted(file for file in changed_codes if file.endswith(extname))
+        output(f"TEST_{language}_FILES", " ".join(files))
+        output(f"HAS_{language}", "true" if files else "false")
