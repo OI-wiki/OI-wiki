@@ -108,12 +108,16 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
     
     === "Python"
         ```python
+        from collections import deque
+
+
         def build():
+            q = deque()
             for i in range(0, 26):
                 if tr[0][i] != 0:
                     q.append(tr[0][i])
             while q:
-                u = q.pop(0)
+                u = q.popleft()
                 for i in range(0, 26):
                     if tr[u][i] != 0:
                         fail[tr[u][i]] = tr[fail[u]][i]
@@ -123,6 +127,8 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
         ```
 
 ### 解释
+
+Python 实现使用 `collections.deque` 维护 BFS 队列，`append` 和 `popleft` 的时间复杂度都是 $O(1)$．如果使用列表的 `pop(0)`，每次出队都需要移动剩余元素，最坏情况下建图时间会退化到 $O(n^2)$，其中 $n$ 是 Trie 的结点数．
 
 `build` 函数将结点按 BFS 顺序入队，依次求 fail 指针．这里的字典树根结点为 $0$，我们将根结点的子结点一一入队．若将根结点入队，则在第一次 BFS 的时候，会将根结点儿子的 fail 指针标记为本身．因此我们将根结点的儿子一一入队，而不是将根结点入队．
 
