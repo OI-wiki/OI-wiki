@@ -595,7 +595,7 @@ $$
 -   选择对应着最陡的边的入基变量，即沿着边移动单位长度引起的价值函数改进（即 $|\tilde c_i|/\sqrt{1+\|A_B^{-1}A_i\|^2}$）最大；
 -   随机选择一个入基变量．
 
-实践中，最陡边规则的效率最高[^steepest-edge]．通常认为，适当的转轴规则可以在大致 $2m$ 次转轴内得到大多数问题的最优解．但是，对于目前所有已知的转轴规则，都存在特殊构造的例子[^klee-minty]，能够将转轴次数卡到指数级．这也正是单纯形法实践中运行效率相当优秀，但是理论最差复杂度是指数级的原因．
+实践中，最陡边规则的效率最高[^steepest-edge]．通常认为，适当的转轴规则可以在大致 $2m$ 次转轴内得到大多数问题的最优解．但是，对于 Dantzig 规则、Bland 规则和最陡边规则等常见的确定性转轴规则，都存在特殊构造的例子[^klee-minty]，能够将转轴次数卡到指数级．随机化的转轴规则表现更好：Kalai 以及 Matoušek、Sharir 和 Welzl 提出的随机面（random facet）规则，期望转轴次数是次指数级的[^random-facet]；同时，这类规则在最坏情况下的期望转轴次数也存在次指数级的下界[^random-facet-lb]．目前仍不知道是否存在只需多项式次转轴的规则．这也正是单纯形法实践中运行效率相当优秀，但是理论最差复杂度至今没有多项式上界的原因．
 
 出基变量的选择往往决定了算法是否会陷入循环．如果存在多组基对应着同一个基本可行解（即退化情形），那么，算法就有可能一直在这些基之间循环．这些情形并不常见，因此很多单纯形法的实现并不会指定出基变量的选择规则．常见的避免循环的规则有两种：
 
@@ -685,5 +685,9 @@ Bland 规则效率很低，因为规则本身对入基和出基变量的选择�
 [^steepest-edge]: 测试结果参见 Forrest, John J., and Donald Goldfarb. "Steepest-edge simplex algorithms for linear programming." Mathematical programming 57, no. 1 (1992): 341-374．
 
 [^klee-minty]: 一个经典的反例可以参见 Klee, Victor, and George J. Minty. "How good is the simplex algorithm." Inequalities 3, no. 3 (1972): 159-175．
+
+[^random-facet]: Kalai, Gil. "A subexponential randomized simplex algorithm." In Proceedings of the twenty-fourth annual ACM symposium on Theory of computing, pp. 475-482. 1992；Matoušek, Jiří, Micha Sharir, and Emo Welzl. "A subexponential bound for linear programming." Algorithmica 16, no. 4 (1996): 498-516．
+
+[^random-facet-lb]: Friedmann, Oliver, Thomas Dueholm Hansen, and Uri Zwick. "Subexponential lower bounds for randomized pivoting rules for the simplex algorithm." In Proceedings of the forty-third annual ACM symposium on Theory of computing, pp. 283-292. 2011．
 
 [^lexico]: 详细的解释可以看 [这份讲义](https://misha.fish/archive/docs/3272-fall-2022/lecture8.pdf)．
