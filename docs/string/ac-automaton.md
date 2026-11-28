@@ -108,12 +108,16 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
     
     === "Python"
         ```python
+        from collections import deque
+        
+        
         def build():
+            q = deque()
             for i in range(0, 26):
                 if tr[0][i] != 0:
                     q.append(tr[0][i])
             while q:
-                u = q.pop(0)
+                u = q.popleft()
                 for i in range(0, 26):
                     if tr[u][i] != 0:
                         fail[tr[u][i]] = tr[fail[u]][i]
