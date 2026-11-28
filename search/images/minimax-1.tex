@@ -1,0 +1,32 @@
+\documentclass[tikz,border=2pt]{standalone}
+\usetikzlibrary{positioning}
+
+\usepackage{anyfontsize} % allows arbitrary font sizes
+\usepackage{lmodern} % better font scaling
+
+\makeatletter
+\renewcommand\normalsize{%
+  \@setfontsize\normalsize{16pt}{19pt}%
+}
+\renewcommand\Large{%
+  \@setfontsize\Large{20pt}{24pt}%
+}
+\makeatother
+
+\begin{document}
+
+\begin{tikzpicture}[
+    xscale=2, yscale=3, thick,
+    max node/.style={draw,orange,rectangle,fill=orange!10!white,inner sep=-10pt,minimum size=40pt,text=black},
+    min node/.style={draw,teal,circle,fill=teal!10!white,inner sep=-10pt,minimum size=40pt,text=black},
+]
+
+\node[max node] (a1) at (0,0) {};
+\node[min node] (a2) at (2,0) {};
+
+\node[right=0cm of a1.east] { MAX };
+\node[right=0cm of a2.east] { MIN };
+
+\end{tikzpicture}
+
+\end{document}

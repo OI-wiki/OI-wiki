@@ -1,0 +1,25 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+
+\tikzset{>=latex}
+\tikzstyle{axis}=[->,thick]
+
+\begin{document}
+
+\tdplotsetmaincoords{70}{110}
+\begin{tikzpicture}[tdplot_main_coords]
+
+    \pgfmathsetmacro{\coordlen}{5}
+
+    \coordinate (O) at (0,0,0);
+
+    \draw (O) node[anchor=south east]{$O$};
+
+    \draw[axis] (O) -- (\coordlen,0,0) node[anchor=north east]{$x$};
+    \draw[axis] (O) -- (0,\coordlen,0) node[anchor=west]{$y$};
+    \draw[axis] (O) -- (0,0,\coordlen) node[anchor=south]{$z$};
+
+\end{tikzpicture}
+
+\end{document}

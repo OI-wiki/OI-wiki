@@ -1,0 +1,23 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{ctex}
+
+\begin{document}
+\begin{tikzpicture}
+
+\begin{scope}
+    [every node/.style={
+        rectangle,thick,draw,minimum size=8mm}]
+    \node at (0,0) {};
+    \node at (2,0) {};
+    \node at (3,0) {};
+    \node at (4,0) {};
+    \node at (5.5,0) {};
+\end{scope}
+
+\draw[->,very thick] (0.6,0) -- node[above] {push} (1.4,0);
+\draw[->,very thick] (6.1,0) -- node[above] {pop} (6.9,0);
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,28 @@
+% p1.svg 的 TikZ 矢量源：排列 p=[4,3,2,5,1] 的两个置换环（左 (2 3)，右 1→5→4→1）
+% 编译：latex p1.tex && dvisvgm --exact --no-fonts --precision=8 p1.dvi
+\def\pgfsysdriver{pgfsys-dvisvgm.def}
+\documentclass[tikz,border=2pt]{standalone}
+\usetikzlibrary{arrows.meta}
+\pagecolor{white}
+\begin{document}
+\begin{tikzpicture}[>=Stealth,line width=1.1pt,line cap=round,
+  num/.style={font=\LARGE\sffamily,inner sep=1.5pt}]
+  % 左环 (2 3)：2→3（右弧），3→2（左弧），椭圆弧经过数字两侧
+  \node[num] (t) at (3.55,1.0)  {2};
+  \node[num] (h) at (3.42,-1.15) {3};
+  \begin{scope}[shift={(3.485,-0.075)}]
+    \draw[->] (70:0.92 and 1.30) arc[start angle=70,end angle=-70,x radius=0.92,y radius=1.30];
+    \draw[->] (250:0.92 and 1.30) arc[start angle=250,end angle=110,x radius=0.92,y radius=1.30];
+  \end{scope}
+  % 右环：1→5→4→1（三段圆弧，凸向外；圆心/半径手工计算）
+  \node[num] (a) at (8.95,1.5)  {1};
+  \node[num] (b) at (10.78,-0.88) {5};
+  \node[num] (c) at (7.68,-1.38) {4};
+  % 右弧（圆心 (9.06,-0.29)，半径 1.86）：1→5
+  \draw[->] (9.30,1.55) arc[start angle=82.6,end angle=-8.0,radius=1.86];
+  % 底弧（圆心 (9.12,-0.02)，半径 1.83）：5→4
+  \draw[->] (10.55,-1.15) arc[start angle=-38.4,end angle=-129.8,radius=1.83];
+  % 左弧（圆心 (9.15,-0.48)，半径 1.83）：4→1
+  \draw[->] (7.42,-1.08) arc[start angle=199.1,end angle=103.6,radius=1.83];
+\end{tikzpicture}
+\end{document}

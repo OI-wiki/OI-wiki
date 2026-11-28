@@ -1,0 +1,25 @@
+% Build from this directory:
+% latex -interaction=nonstopmode -halt-on-error dominator-tree-1.tex
+% dvisvgm --no-fonts --exact --bbox=papersize dominator-tree-1.dvi -o dominator-tree-1.svg
+\documentclass[tikz,border=5pt]{standalone}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\begin{tikzpicture}[
+  vertex/.style={circle,draw,line width=.8pt,fill=white,
+    minimum size=8mm,inner sep=0pt,font=\large},
+  edge/.style={-{Stealth[length=3mm,width=2.5mm]},line width=.8pt}
+]
+  \node[vertex] (1) at (0,2) {1};
+  \node[vertex] (2) at (1.7,.15) {2};
+  \node[vertex] (3) at (2.4,-1.55) {3};
+  \node[vertex] (4) at (4.2,-1.55) {4};
+  \node[vertex] (5) at (3.65,.15) {5};
+  \node[vertex] (6) at (0,0) {6};
+  \node[vertex] (7) at (-1.5,0) {7};
+  \node[vertex] (8) at (-.9,-1.55) {8};
+  \node[vertex] (9) at (.7,-1.55) {9};
+  % Directed edges of the example rooted at vertex 1.
+  \foreach \from/\to in {1/2,2/3,2/5,2/6,3/4,4/5,6/7,6/9,7/8,9/8}
+    \draw[edge] (\from) -- (\to);
+\end{tikzpicture}
+\end{document}

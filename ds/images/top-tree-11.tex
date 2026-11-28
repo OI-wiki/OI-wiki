@@ -1,0 +1,20 @@
+% Blue outlines group maximal off-path clusters at c, h, and j.
+% Yellow outlines identify the constituent branches, including their common
+% endpoint, just as the path endpoints are included in diagram 9's outline.
+% Regeneration commands are in top-tree-common.tex.
+\input{top-tree-common.tex}
+\begin{document}
+\begin{tikzpicture}[top tree]
+  \draw[boundary,clusterblue,fill=clusterblue!4] (0,19) rectangle (122,41);
+  \draw[boundary,clusterblue,fill=clusterblue!4] (23,54) rectangle (122,76);
+  \draw[boundary,clusterblue,fill=clusterblue!4] (59,89) rectangle (122,111);
+  \draw[boundary,clusteryellow] (3,22) rectangle (77,36);
+  \draw[boundary,clusteryellow] (63,24) rectangle (117,38);
+  \draw[boundary,clusteryellow] (28,57) rectangle (77,71);
+  \draw[boundary,clusteryellow] (63,59) rectangle (117,73);
+  \draw[boundary,clusteryellow] (63,93) rectangle (117,107);
+  \OriginalTree
+  \node[caption,text=clusterblue] at (31,145) {蓝色：极大簇};
+  \node[caption,text=clusteryellow] at (96,145) {黄色：更小簇};
+\end{tikzpicture}
+\end{document}

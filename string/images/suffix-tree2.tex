@@ -1,0 +1,20 @@
+% Implicit suffix tree after inserting a. Node numbers match the article.
+% Regenerate from this directory:
+% latex -interaction=nonstopmode -halt-on-error suffix-tree2.tex
+% dvisvgm --no-fonts --exact --bbox=papersize -o suffix-tree2.svg suffix-tree2.dvi
+\documentclass[tikz,border=8pt]{standalone}
+\usepackage{lmodern}
+\usetikzlibrary{arrows.meta}
+\definecolor{nodecolor}{HTML}{242A31}
+\begin{document}
+\begin{tikzpicture}[
+  x=1pt,y=-1pt,line width=1pt,draw=nodecolor,
+  font=\sffamily\fontsize{18}{21}\selectfont,
+  vertex/.style={circle,fill=nodecolor,text=white,minimum size=31pt,inner sep=0pt},
+  every edge/.style={draw,-{Stealth[length=5pt,width=4pt]}}
+]
+  \node[vertex] (n0) at (0,0) {0};
+  \node[vertex] (n1) at (110,0) {1};
+  \path (n0) edge node[above=3pt] {a} (n1);
+\end{tikzpicture}
+\end{document}

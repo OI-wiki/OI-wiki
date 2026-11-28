@@ -1,0 +1,28 @@
+% Regenerate with latex and dvisvgm; see graph-matching-common.tex.
+\input{graph-matching-common.tex}
+\begin{document}
+\begin{tikzpicture}[diagram]
+  \foreach \row/\case/\exit in {0/1/-9,52/2/10} {
+    \begin{scope}[shift={(48,\row)}]
+      \FiveBlossom
+      \foreach \id/\px/\py in {s/-48/0,a/-32/0,c/-16/0,d/45/\exit,e/61/\exit,t/77/\exit}
+        \node[point] (\id) at (\px,\py) {};
+      \node[exposed] at (s) {};
+      \node[exposed] at (t) {};
+      \draw (s) -- (a) (e) -- (t);
+      \draw[matching] (c) -- (b0);
+      \node[font=\large] at (-24,0) {$\cdots$};
+      \node[font=\large] at (53,\exit) {$\cdots$};
+      \ifnum\case=1
+        \draw (b2) -- (d);
+        \draw[route] (-48,-6.5) -- (0,-6.5) -- (12,-20) -- (29,-13) -- (77,-13);
+        \node[label,text=matchblue,font=\bfseries] at (67,3) {Case 1};
+      \else
+        \draw (b3) -- (d);
+        \draw[route] (-48,6) -- (0,6) -- (11,20) -- (29,14) -- (77,14);
+        \node[label,text=matchblue,font=\bfseries] at (67,-1) {Case 2};
+      \fi
+    \end{scope}
+  }
+\end{tikzpicture}
+\end{document}

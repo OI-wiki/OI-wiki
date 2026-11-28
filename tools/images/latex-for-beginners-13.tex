@@ -1,0 +1,37 @@
+% Tables from ../latex.md. Build instructions: latex-for-beginners-common.tex.
+\documentclass[a4paper,12pt]{article}
+\input{latex-for-beginners-common.tex}
+\begin{document}
+% --8<-- [start:example1]
+\begin{tabular}{|l|l|}
+  Apples       & Green  \\
+  Strawberries & Red    \\
+  Orange       & Orange \\
+\end{tabular}
+% --8<-- [end:example1]
+
+\bigskip
+
+% --8<-- [start:example2]
+\begin{tabular}{rc}
+  Apples              & Green  \\
+  \hline
+  Strawberries        & Red    \\
+  \cline{1-1} Oranges & Orange \\
+\end{tabular}
+% --8<-- [end:example2]
+
+\bigskip
+
+% --8<-- [start:example3]
+\begin{tabular}{|r|l|}
+  \hline
+  8              & here's \\
+  \cline{2-2} 86 & stuff  \\
+  \hline
+  \hline
+  2008           & now    \\
+  \hline
+\end{tabular}
+% --8<-- [end:example3]
+\end{document}

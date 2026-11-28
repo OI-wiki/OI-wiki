@@ -1,0 +1,44 @@
+% Compile with latex, then dvisvgm --no-fonts --exact --bbox=min.
+\documentclass[border=5pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+\definecolor{carryone}{RGB}{235,38,31}
+\definecolor{carrytwo}{RGB}{41,175,29}
+\definecolor{carrythree}{RGB}{28,164,252}
+\definecolor{carryfour}{RGB}{237,98,167}
+\definecolor{carryfive}{RGB}{253,147,38}
+\scalebox{2}{%
+\begin{tikzpicture}[
+  x=1.5cm,y=1.2cm,
+  digit/.style={circle,draw,very thick,minimum size=10mm,inner sep=1pt,font=\large},
+  carry/.style={digit,align=center,font=\normalsize},
+  >={Stealth[length=5pt]},very thick
+]
+  % Uncarried products: 1337*2 and 1337*4, shifted by one place.
+  \foreach \x/\n in {1/2,2/6,3/6,4/14}
+    \node[digit] at (\x,3) {$\n$};
+  \foreach \x/\n in {0/4,1/12,2/12,3/28}
+    \node[digit] at (\x,1.9) {$\n$};
+  \node[left] at (-0.6,3) {$\times 2$};
+  \node[left] at (-0.6,1.9) {$\times 4$};
+  \draw (-0.8,1.2) -- (4.6,1.2);
+  \foreach \x/\n/\digitcolor in {0/4/black,1/14/black,2/18/black,3/34/black,4/14/carryone}
+    \node[digit,text=\digitcolor] (b\x) at (\x,0.5) {$\n$};
+  % An incoming carry keeps the color of the column to its right.
+  % The original operand and plus sign stay black; the total uses this column's color.
+  \node[carry] (c0) at (0,-0.6) {\scriptsize $4+\textcolor{carryfour}{1}$\\$\textcolor{carryfive}{5}$};
+  \node[carry] (c1) at (1,-0.6) {\scriptsize $14+\textcolor{carrythree}{2}$\\$\textcolor{carryfour}{16}$};
+  \node[carry] (c2) at (2,-0.6) {\scriptsize $18+\textcolor{carrytwo}{3}$\\$\textcolor{carrythree}{21}$};
+  \node[carry] (c3) at (3,-0.6) {\scriptsize $34+\textcolor{carryone}{1}$\\$\textcolor{carrytwo}{35}$};
+  \draw[->] (b4) -- (c3);
+  \foreach \x/\prev in {3/2,2/1,1/0}
+    \draw[->] (c\x) -- (c\prev);
+  \foreach \x/\n/\digitcolor in {0/5/carryfive,1/6/carryfour,2/1/carrythree,3/5/carrytwo,4/4/carryone}
+    \node[digit,text=\digitcolor] (d\x) at (\x,-2) {$\n$};
+  \foreach \x in {0,1,2,3}
+    \draw (c\x) -- (d\x);
+  \draw[->] (b4) -- (d4);
+\end{tikzpicture}
+}
+\end{document}

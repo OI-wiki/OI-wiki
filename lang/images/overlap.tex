@@ -1,0 +1,27 @@
+% Editable source for the memory-overlap illustration.
+% From this directory, regenerate with:
+% latex -interaction=nonstopmode -halt-on-error overlap.tex
+% dvisvgm --no-fonts --exact --bbox=papersize --output=overlap.svg overlap.dvi
+\documentclass[tikz,border=6pt]{standalone}
+\usetikzlibrary{arrows.meta,backgrounds,decorations.pathreplacing}
+\begin{document}
+\begin{tikzpicture}[
+  line width=0.8pt,
+  >={Stealth[length=5pt]},
+  font=\ttfamily\large,
+  background rectangle/.style={fill=white},
+  show background rectangle
+]
+  % The shared horizontal interval is [2.8,4.8]. The vertical offset
+  % keeps the two memory regions distinguishable, as in the original.
+  \draw[blue!65!cyan] (0,0.9) -- (4.8,0.9);
+  \draw[green!45!black] (2.8,0.65) -- (10.5,0.65);
+  \draw[->] (0,2.3) -- (0,1.15);
+  \draw[->] (10.5,2.05) -- (10.5,0.9);
+  \node[above] at (0,2.3) {*A};
+  \node[above] at (10.5,2.05) {*B};
+  \draw[orange!90!red,decorate,decoration={brace,mirror,amplitude=6pt}]
+    (2.8,0.4) -- (4.8,0.4);
+  \node[red!85!black,below] at (3.8,-0.15) {Overlap!};
+\end{tikzpicture}
+\end{document}

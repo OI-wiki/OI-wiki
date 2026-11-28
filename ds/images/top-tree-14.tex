@@ -1,0 +1,22 @@
+% Attach each Rake Tree to the corresponding Compress Node's middle child.
+% Regeneration commands are in top-tree-common.tex.
+\input{top-tree-common.tex}
+\begin{document}
+\begin{tikzpicture}[top tree]
+  \foreach \id/\x/\y in {c/48/0,j/130/32,h/110/59,b/48/66,
+      a/56/86,e/75/86,i/110/123,f/94/147,g/145/136}
+    \node[compress] (\id) at (\x,\y) {$N_{\id}$};
+  \foreach \id/\x/\y in {cd/8/22,jk/155/59,ch/97/80,jh/123/80,
+      bc/30/86,ab/43/106,ce/75/106,ih/104/147,fh/82/169,jg/133/161}
+    \node[cluster] (\id) at (\x,\y) {$\id$};
+  \node[rake] (alpha) at (48,32) {$\alpha$};
+  \node[rake] (beta) at (75,48) {$\beta$};
+  \node[rake] (delta) at (110,100) {$\delta$};
+  \node[rake] (nu) at (94,123) {$\nu$};
+  \node[rake] (epsilon) at (145,104) {$\varepsilon$};
+  \foreach \parent/\child in {c/cd,c/alpha,c/j,j/h,j/epsilon,j/jk,
+      h/ch,h/delta,h/jh,alpha/b,alpha/beta,b/bc,b/a,a/ab,
+      beta/e,e/ce,delta/nu,delta/i,nu/f,f/fh,i/ih,epsilon/g,g/jg}
+    \draw (\parent) -- (\child);
+\end{tikzpicture}
+\end{document}

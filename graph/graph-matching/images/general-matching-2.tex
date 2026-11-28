@@ -1,0 +1,34 @@
+% Regenerate with latex and dvisvgm; see graph-matching-common.tex.
+\input{graph-matching-common.tex}
+\begin{document}
+\begin{tikzpicture}[diagram]
+  \begin{scope}[xshift=64mm,yshift=0mm]
+    \FiveBlossom
+    \node[label,above right=.5mm] at (b1.north east) {$\mathrm{i}$};
+    \node[label,below right=.5mm] at (b3.south east) {$\mathrm{i}$};
+    \node[label,above=.5mm] at (b4.north) {$\mathrm{o}$};
+    \node[label,below=1mm] at (b4.south) {$u$};
+    \node[label,right=1mm] at (b0.east) {$\mathrm{o}$};
+  \end{scope}
+  \foreach \row in {0,60} {
+    \begin{scope}[shift={(0,\row)}]
+      \foreach \i in {0,1,2,3,4}
+        \node[point] (s\row-\i) at (16*\i,0) {};
+      \draw (s\row-0) -- (s\row-1) (s\row-2) -- (s\row-3);
+      \draw[matching] (s\row-1) -- (s\row-2) (s\row-3) -- (s\row-4);
+      \node[exposed] at (s\row-0) {};
+      \node[label,text=matchred,above=2mm] at (s\row-0) {exposed\\vertex};
+      \node[label,below=1mm] at (s\row-0.south) {$w$};
+      \ifnum\row=0 \def\stemend{62.25}\else \def\stemend{64}\fi
+      \draw[blossomgreen,line width=.8pt] (-1,-13) -- (\stemend,-13)
+        node[midway,above=1mm] {stem};
+    \end{scope}
+  }
+  \draw[blossom] (64,60) circle[radius=3.5mm];
+  \node[point] at (64,60) {};
+  \node[label,text=blossomgreen,above=4mm] at (64,60) {contracted\\blossom};
+  \node[label,below=4mm] at (64,60) {$v_B$};
+  \draw[transition] (32,12) -- (32,40)
+    node[midway,right=2mm,text=matchblue] {contraction};
+\end{tikzpicture}
+\end{document}

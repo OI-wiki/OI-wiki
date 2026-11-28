@@ -1,0 +1,188 @@
+% Successive insertions. Green marks the inserted key; red outlines enclose the right chain.
+% Editable source for this diagram. From this directory, regenerate with:
+% latex -interaction=nonstopmode -halt-on-error cartesian-tree-2.tex
+% dvisvgm --no-fonts --exact --bbox=papersize --output=cartesian-tree-2.svg cartesian-tree-2.dvi
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,backgrounds,shapes.geometric,patterns}
+\definecolor{linkred}{HTML}{B5240A}
+\definecolor{noteBlue}{HTML}{0067A5}
+\definecolor{softgreen}{HTML}{D8EAD0}
+\definecolor{softpurple}{HTML}{D9D1E8}
+\definecolor{softpink}{HTML}{F5CECF}
+\definecolor{softyellow}{HTML}{FFF2C9}
+\begin{document}
+\begin{tikzpicture}[x=1pt,y=-1pt,>=Stealth,line cap=round,line join=round]
+\path[use as bounding box] (0,0) rectangle (1240,1050);
+\begin{scope}[on background layer]
+\draw[draw=red,line width=1.6pt] (135.0,40.0) -- (136.522,32.346) -- (140.858,25.858) -- (147.346,21.522) -- (155.0,20.0) -- (162.654,21.522) -- (169.142,25.858) -- (173.478,32.346) -- (175.0,40.0) -- (173.478,47.654) -- (169.142,54.142) -- (162.654,58.478) -- (155.0,60.0) -- (147.346,58.478) -- (140.858,54.142) -- (136.522,47.654) -- (135.0,40.0);
+\draw[draw=red,line width=1.6pt] (459.0,40.0) -- (460.522,32.346) -- (464.858,25.858) -- (471.346,21.522) -- (479.0,20.0) -- (486.654,21.522) -- (493.142,25.858) -- (497.478,32.346) -- (499.0,40.0) -- (497.478,47.654) -- (493.142,54.142) -- (486.654,58.478) -- (479.0,60.0) -- (471.346,58.478) -- (464.858,54.142) -- (460.522,47.654) -- (459.0,40.0);
+\draw[draw=red,line width=1.6pt] (755.0,40.0) -- (756.522,32.346) -- (760.858,25.858) -- (767.346,21.522) -- (775.0,20.0) -- (782.654,21.522) -- (789.142,25.858) -- (793.478,32.346) -- (821.478,80.346) -- (823.0,88.0) -- (821.478,95.654) -- (817.142,102.142) -- (810.654,106.478) -- (803.0,108.0) -- (795.346,106.478) -- (788.858,102.142) -- (784.522,95.654) -- (756.522,47.654) -- (755.0,40.0);
+\draw[draw=red,line width=1.6pt] (1107.0,40.0) -- (1108.522,32.346) -- (1112.858,25.858) -- (1119.346,21.522) -- (1127.0,20.0) -- (1134.654,21.522) -- (1141.142,25.858) -- (1145.478,32.346) -- (1147.0,40.0) -- (1145.478,47.654) -- (1141.142,54.142) -- (1134.654,58.478) -- (1127.0,60.0) -- (1119.346,58.478) -- (1112.858,54.142) -- (1108.522,47.654) -- (1107.0,40.0);
+\draw[draw=red,line width=1.6pt] (163.0,380.0) -- (164.522,372.346) -- (168.858,365.858) -- (175.346,361.522) -- (183.0,360.0) -- (190.654,361.522) -- (197.142,365.858) -- (201.478,372.346) -- (229.478,420.346) -- (231.0,428.0) -- (229.478,435.654) -- (225.142,442.142) -- (218.654,446.478) -- (211.0,448.0) -- (203.346,446.478) -- (196.858,442.142) -- (192.522,435.654) -- (164.522,387.654) -- (163.0,380.0);
+\draw[draw=red,line width=1.6pt] (459.0,380.0) -- (460.522,372.346) -- (464.858,365.858) -- (471.346,361.522) -- (479.0,360.0) -- (486.654,361.522) -- (493.142,365.858) -- (497.478,372.346) -- (553.478,468.346) -- (555.0,476.0) -- (553.478,483.654) -- (549.142,490.142) -- (542.654,494.478) -- (535.0,496.0) -- (527.346,494.478) -- (520.858,490.142) -- (516.522,483.654) -- (488.522,435.654) -- (460.522,387.654) -- (459.0,380.0);
+\draw[draw=red,line width=1.6pt] (755.0,380.0) -- (756.522,372.346) -- (760.858,365.858) -- (767.346,361.522) -- (775.0,360.0) -- (782.654,361.522) -- (789.142,365.858) -- (873.142,461.858) -- (877.478,468.346) -- (879.0,476.0) -- (877.478,483.654) -- (873.142,490.142) -- (866.654,494.478) -- (859.0,496.0) -- (851.346,494.478) -- (844.858,490.142) -- (788.858,442.142) -- (784.522,435.654) -- (756.522,387.654) -- (755.0,380.0);
+\draw[draw=red,line width=1.6pt] (1051.0,380.0) -- (1052.522,372.346) -- (1056.858,365.858) -- (1063.346,361.522) -- (1071.0,360.0) -- (1078.654,361.522) -- (1085.142,365.858) -- (1169.142,461.858) -- (1173.478,468.346) -- (1201.478,516.346) -- (1203.0,524.0) -- (1201.478,531.654) -- (1197.142,538.142) -- (1190.654,542.478) -- (1183.0,544.0) -- (1175.346,542.478) -- (1168.858,538.142) -- (1084.858,442.142) -- (1080.522,435.654) -- (1052.522,387.654) -- (1051.0,380.0);
+\draw[draw=red,line width=1.6pt] (107.0,720.0) -- (108.522,712.346) -- (112.858,705.858) -- (119.346,701.522) -- (127.0,700.0) -- (134.654,701.522) -- (141.142,705.858) -- (281.142,849.858) -- (285.478,856.346) -- (287.0,864.0) -- (285.478,871.654) -- (281.142,878.142) -- (274.654,882.478) -- (267.0,884.0) -- (259.346,882.478) -- (252.858,878.142) -- (140.858,782.142) -- (136.522,775.654) -- (108.522,727.654) -- (107.0,720.0);
+\draw[draw=red,line width=1.6pt] (403.0,720.0) -- (404.522,712.346) -- (408.858,705.858) -- (415.346,701.522) -- (423.0,700.0) -- (430.654,701.522) -- (437.142,705.858) -- (577.142,849.858) -- (581.478,856.346) -- (609.478,904.346) -- (611.0,912.0) -- (609.478,919.654) -- (605.142,926.142) -- (598.654,930.478) -- (591.0,932.0) -- (583.346,930.478) -- (576.858,926.142) -- (436.858,782.142) -- (432.522,775.654) -- (404.522,727.654) -- (403.0,720.0);
+\draw[draw=red,line width=1.6pt] (699.0,720.0) -- (700.522,712.346) -- (704.858,705.858) -- (711.346,701.522) -- (719.0,700.0) -- (726.654,701.522) -- (922.654,749.522) -- (929.142,753.858) -- (933.478,760.346) -- (935.0,768.0) -- (933.478,775.654) -- (929.142,782.142) -- (922.654,786.478) -- (915.0,788.0) -- (907.346,786.478) -- (711.346,738.478) -- (704.858,734.142) -- (700.522,727.654) -- (699.0,720.0);
+\end{scope}
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t0-9) at (155,40) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t1-9) at (451,88) {9};
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t1-3) at (479,40) {3};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t2-9) at (747,88) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t2-3) at (775,40) {3};
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t2-7) at (803,88) {7};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t3-9) at (1043,136) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t3-3) at (1071,88) {3};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t3-7) at (1099,136) {7};
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t3-1) at (1127,40) {1};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t4-9) at (99,476) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t4-3) at (127,428) {3};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t4-7) at (155,476) {7};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t4-1) at (183,380) {1};
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t4-8) at (211,428) {8};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t5-9) at (395,476) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t5-3) at (423,428) {3};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t5-7) at (451,476) {7};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t5-1) at (479,380) {1};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t5-8) at (507,428) {8};
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t5-12) at (535,476) {12};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t6-9) at (691,476) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t6-3) at (719,428) {3};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t6-7) at (747,476) {7};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t6-1) at (775,380) {1};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t6-8) at (803,428) {8};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t6-12) at (831,524) {12};
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t6-10) at (859,476) {10};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t7-9) at (987,476) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t7-3) at (1015,428) {3};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t7-7) at (1043,476) {7};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t7-1) at (1071,380) {1};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t7-8) at (1099,428) {8};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t7-12) at (1127,524) {12};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t7-10) at (1155,476) {10};
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t7-20) at (1183,524) {20};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t8-9) at (43,816) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t8-3) at (71,768) {3};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t8-7) at (99,816) {7};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t8-1) at (127,720) {1};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t8-8) at (155,768) {8};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t8-12) at (183,864) {12};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t8-10) at (211,816) {10};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t8-20) at (239,912) {20};
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t8-15) at (267,864) {15};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t9-9) at (339,816) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t9-3) at (367,768) {3};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t9-7) at (395,816) {7};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t9-1) at (423,720) {1};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t9-8) at (451,768) {8};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t9-12) at (479,864) {12};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t9-10) at (507,816) {10};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t9-20) at (535,912) {20};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t9-15) at (563,864) {15};
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t9-18) at (591,912) {18};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-9) at (635,816) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-3) at (663,768) {3};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-7) at (691,816) {7};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-1) at (719,720) {1};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-8) at (747,816) {8};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-12) at (775,912) {12};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-10) at (803,864) {10};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-20) at (831,960) {20};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-15) at (859,912) {15};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-18) at (887,960) {18};
+\node[circle,draw=black,fill=green,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t10-5) at (915,768) {5};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-9) at (945,816) {9};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-3) at (973,768) {3};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-7) at (1001,816) {7};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-1) at (1029,720) {1};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-8) at (1057,816) {8};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-12) at (1085,912) {12};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-10) at (1113,864) {10};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-20) at (1141,960) {20};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-15) at (1169,912) {15};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-18) at (1197,960) {18};
+\node[circle,draw=black,fill=gray!25,text=black,minimum size=24pt,inner sep=0pt,line width=0.8pt,font=\sffamily\fontsize{12}{14.4}\selectfont] (t11-5) at (1225,768) {5};
+\begin{scope}[on background layer]
+\draw[draw=black,line width=0.8pt] (t1-3) -- (t1-9);
+\draw[draw=black,line width=0.8pt] (t2-3) -- (t2-9);
+\draw[draw=black,line width=0.8pt] (t2-3) -- (t2-7);
+\draw[draw=black,line width=0.8pt] (t3-3) -- (t3-9);
+\draw[draw=black,line width=0.8pt] (t3-3) -- (t3-7);
+\draw[draw=black,line width=0.8pt] (t3-1) -- (t3-3);
+\draw[draw=black,line width=0.8pt] (t4-3) -- (t4-9);
+\draw[draw=black,line width=0.8pt] (t4-3) -- (t4-7);
+\draw[draw=black,line width=0.8pt] (t4-1) -- (t4-3);
+\draw[draw=black,line width=0.8pt] (t4-1) -- (t4-8);
+\draw[draw=black,line width=0.8pt] (t5-3) -- (t5-9);
+\draw[draw=black,line width=0.8pt] (t5-3) -- (t5-7);
+\draw[draw=black,line width=0.8pt] (t5-8) -- (t5-12);
+\draw[draw=black,line width=0.8pt] (t5-1) -- (t5-3);
+\draw[draw=black,line width=0.8pt] (t5-1) -- (t5-8);
+\draw[draw=black,line width=0.8pt] (t6-3) -- (t6-9);
+\draw[draw=black,line width=0.8pt] (t6-3) -- (t6-7);
+\draw[draw=black,line width=0.8pt] (t6-10) -- (t6-12);
+\draw[draw=black,line width=0.8pt] (t6-8) -- (t6-10);
+\draw[draw=black,line width=0.8pt] (t6-1) -- (t6-3);
+\draw[draw=black,line width=0.8pt] (t6-1) -- (t6-8);
+\draw[draw=black,line width=0.8pt] (t7-3) -- (t7-9);
+\draw[draw=black,line width=0.8pt] (t7-3) -- (t7-7);
+\draw[draw=black,line width=0.8pt] (t7-10) -- (t7-12);
+\draw[draw=black,line width=0.8pt] (t7-10) -- (t7-20);
+\draw[draw=black,line width=0.8pt] (t7-8) -- (t7-10);
+\draw[draw=black,line width=0.8pt] (t7-1) -- (t7-3);
+\draw[draw=black,line width=0.8pt] (t7-1) -- (t7-8);
+\draw[draw=black,line width=0.8pt] (t8-3) -- (t8-9);
+\draw[draw=black,line width=0.8pt] (t8-3) -- (t8-7);
+\draw[draw=black,line width=0.8pt] (t8-15) -- (t8-20);
+\draw[draw=black,line width=0.8pt] (t8-10) -- (t8-12);
+\draw[draw=black,line width=0.8pt] (t8-10) -- (t8-15);
+\draw[draw=black,line width=0.8pt] (t8-8) -- (t8-10);
+\draw[draw=black,line width=0.8pt] (t8-1) -- (t8-3);
+\draw[draw=black,line width=0.8pt] (t8-1) -- (t8-8);
+\draw[draw=black,line width=0.8pt] (t9-3) -- (t9-9);
+\draw[draw=black,line width=0.8pt] (t9-3) -- (t9-7);
+\draw[draw=black,line width=0.8pt] (t9-15) -- (t9-20);
+\draw[draw=black,line width=0.8pt] (t9-15) -- (t9-18);
+\draw[draw=black,line width=0.8pt] (t9-10) -- (t9-12);
+\draw[draw=black,line width=0.8pt] (t9-10) -- (t9-15);
+\draw[draw=black,line width=0.8pt] (t9-8) -- (t9-10);
+\draw[draw=black,line width=0.8pt] (t9-1) -- (t9-3);
+\draw[draw=black,line width=0.8pt] (t9-1) -- (t9-8);
+\draw[draw=black,line width=0.8pt] (t10-3) -- (t10-9);
+\draw[draw=black,line width=0.8pt] (t10-3) -- (t10-7);
+\draw[draw=black,line width=0.8pt] (t10-15) -- (t10-20);
+\draw[draw=black,line width=0.8pt] (t10-15) -- (t10-18);
+\draw[draw=black,line width=0.8pt] (t10-10) -- (t10-12);
+\draw[draw=black,line width=0.8pt] (t10-10) -- (t10-15);
+\draw[draw=black,line width=0.8pt] (t10-8) -- (t10-10);
+\draw[draw=black,line width=0.8pt] (t10-5) -- (t10-8);
+\draw[draw=black,line width=0.8pt] (t10-1) -- (t10-3);
+\draw[draw=black,line width=0.8pt] (t10-1) -- (t10-5);
+\draw[draw=black,line width=0.8pt] (t11-3) -- (t11-9);
+\draw[draw=black,line width=0.8pt] (t11-3) -- (t11-7);
+\draw[draw=black,line width=0.8pt] (t11-15) -- (t11-20);
+\draw[draw=black,line width=0.8pt] (t11-15) -- (t11-18);
+\draw[draw=black,line width=0.8pt] (t11-10) -- (t11-12);
+\draw[draw=black,line width=0.8pt] (t11-10) -- (t11-15);
+\draw[draw=black,line width=0.8pt] (t11-8) -- (t11-10);
+\draw[draw=black,line width=0.8pt] (t11-5) -- (t11-8);
+\draw[draw=black,line width=0.8pt] (t11-1) -- (t11-3);
+\draw[draw=black,line width=0.8pt] (t11-1) -- (t11-5);
+\end{scope}
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (155,71) {insert(9)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (465,119) {insert(3)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (775,119) {insert(7)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (1085,167) {insert(1)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (155,507) {insert(8)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (465,507) {insert(12)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (775,555) {insert(10)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (1085,555) {insert(20)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (155,943) {insert(15)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (465,943) {insert(18)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (775,991) {insert(5)};
+\node[anchor=center,text=black,font=\sffamily\fontsize{14}{16.8}\selectfont] at (1085,991) {Finish};
+\end{tikzpicture}
+\end{document}
