@@ -34,7 +34,6 @@ def check_availability(file):
     return os.path.normpath(os.path.join(dirname, basename + extname))
 
 
-
 def examples2code(example_file):
     """
     Map an example data file back to the code files it belongs to.
