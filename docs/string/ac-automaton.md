@@ -109,8 +109,8 @@ fail 指针与 [KMP](./kmp.md) 中的 next 指针相比：
     === "Python"
         ```python
         from collections import deque
-
-
+        
+        
         def build():
             q = deque()
             for i in range(0, 26):
